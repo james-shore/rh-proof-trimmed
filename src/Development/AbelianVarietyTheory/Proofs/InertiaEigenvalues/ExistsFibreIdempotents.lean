@@ -1,5 +1,10 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NatMMemOfLeHalf
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCuspCoefficient
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsCoversOfHalves
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsPlaceModelPlaceMap
+import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.RationalRayLevels
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ExistsIdealsPrimeToEqSpan
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LFunctionPositiveConductorFourEight
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSecCharVal
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsOrthogonalIdempotentSectionsPeriodSpacesStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CharacterAtDetRootCongOneOddEqOne
@@ -56,7 +61,5 @@ theorem char_root_eq_one' (V : HSp D) {A : Type} [CommGroup A] (c : (AE D)ˣ →
 end GlobalTheory.FibreIdem
 
 namespace GlobalTheory.FibreIdem
-
-variable {D : D7} {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host D.host.E} {Dw : Datum H}
 
 end GlobalTheory.FibreIdem

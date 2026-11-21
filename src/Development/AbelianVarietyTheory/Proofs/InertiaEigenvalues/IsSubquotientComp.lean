@@ -96,34 +96,6 @@ theorem iso_pull {D : D7} (I : Ident D) (k : Fin 2) (v : D.nd.PlG k) {n : ℕ} (
       (Matrix.GeneralLinearGroup.map (I.i k v).toRingHom g)) x
   rw [hg]
 
-theorem ine_eq {hL : GlobalTheory.Published.LocalLanglandsGL} {D : D7} {T : GlobalTheory.RowTie.WDTie D.nd D.naut} {I : Ident D}
-    {rc : GlobalTheory.SerSys.Corr D} (h : IsRc hL T I rc) (k : Fin 2) (v : D.nd.PlG k) (n : ℕ)
-    (σ : IrrRep (GL (Fin n) ((D.naut.plGw k v).adicCompletion D.host.E))) (π : QRep (D.host.g k) n)
-    (e : Nonempty (π ≅ pull I k v σ)) :
-    D.naut.inePol (rc k v n π) (D.ntypes.tg k v) =
-      (GlobalTheory.CuspRep.ParLaws.locRec hL (D.nd.plOm.2 (D.naut.plGw k v)) (GlobalTheory.LocLanglands.cls σ)).charPol
-        (GlobalTheory.WeilDeligne.ineIncl _ ⟨D.ntypes.tg k v, D.ntypes.tg_mem k v⟩) := by
-  rw [T.inePol _ _ _ (D.ntypes.tg_mem k v), h k v n σ π e,
-    GlobalTheory.WeilDeligne.WD.inePol_of_mem_Ine _ (D.ntypes.tg_mem k v)]
-
-theorem suppIne : ∀ (hL : GlobalTheory.Published.LocalLanglandsGL) (D : D7) (T : GlobalTheory.RowTie.WDTie D.nd D.naut) (I : Ident D) (rc : GlobalTheory.SerSys.Corr D), IsRc hL T I rc → ∀ (k : Fin 2) (v : D.nd.PlG k) (π : Supp.GLRep (D.host.g k)) (y : List (GlobalTheory.LocGL.IrrGL ℚ_[D.host.g k])), GlobalTheory.LocGL.HasSupport π.2.ρ (y : Multiset (GlobalTheory.LocGL.IrrGL ℚ_[D.host.g k])) → D.naut.inePol (rc k v π.1 π.2) (D.ntypes.tg k v) = (y.map fun x => D.naut.inePol (rc k v x.1 (Rep.of x.rep)) (D.ntypes.tg k v)).prod := by
-  intro hL D T I rc hRc k v π y hy
-  obtain ⟨n, ρ⟩ := π
-  have hs := hy.isSmooth
-  have hi := hy.isIrreducible
-  change D.naut.inePol (rc k v n ρ) _ = _
-  obtain ⟨a, ha, ε, -, H⟩ := GlobalTheory.CuspRep.ParLaws.isRec_locRec hL (D.nd.plOm.2 (D.naut.plGw k v))
-  have hsupp : HasSupport (GlobalTheory.LocLanglands.cls (tr I k v ρ hs hi)).rep
-      ((y : Multiset _).map (trGL (I.i k v) (continuous_symm I k v))) :=
-    (hasSupport_comp (I.i k v) (I.cont k v) (continuous_symm I k v) hy).of_equiv (IrrGL.equivOf _ _ _)
-  rw [ine_eq hRc k v n _ ρ (iso_pull I k v ρ hs hi), H.supp _ _ hsupp, Multiset.map_coe, Multiset.map_coe,
-    Multiset.prod_coe, List.map_map]
-  congr 1
-  refine List.map_congr_left fun x _ => ?_
-  rw [Function.comp_apply, ine_eq hRc k v x.1 _ (Rep.of x.rep)
-    (iso_pull I k v (Rep.of x.rep) x.2.rep.smooth x.2.rep.irr)]
-  rfl
-
 end GlobalTheory.SuppIne
 
 end

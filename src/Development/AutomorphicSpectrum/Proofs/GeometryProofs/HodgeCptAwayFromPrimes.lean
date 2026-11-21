@@ -63,9 +63,6 @@ section Ring
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X} {q : Cpt ξ}
 
-theorem unitAt_mul {a b : Ω} (ha : unitAt ξ q a) (hb : unitAt ξ q b) : unitAt ξ q (a * b) :=
-  ⟨mul_ne_zero ha.1 hb.1, mul_mem ha.2.1 hb.2.1, by rw [mul_inv]; exact mul_mem ha.2.2 hb.2.2⟩
-
 theorem unitAt_natCast (h : ∀ r : ℕ, r.Prime → ¬ InFibre ξ r q) (n : ℕ) (hn : n ≠ 0) : unitAt ξ q (n : Ω) :=
   _root_.UpperTheory.Reformulated.B.RegularUnitPoints.main h n hn
 

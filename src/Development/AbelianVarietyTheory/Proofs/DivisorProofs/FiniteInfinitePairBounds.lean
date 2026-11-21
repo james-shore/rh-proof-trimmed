@@ -141,8 +141,6 @@ theorem infPair : InfPairK := by
           apply mul_le_mul (mul_le_mul_of_nonneg_left hB1 (Real.exp_pos _).le) hB2 hn2
           exact mul_nonneg (Real.exp_pos _).le hBn
 
-theorem main : GlobalTheory.FunPr.Hypotheses₂ → FinPairK ∧ InfPairK := fun _ => ⟨finPair, infPair⟩
-
 end GlobalTheory.FPair
 
 end

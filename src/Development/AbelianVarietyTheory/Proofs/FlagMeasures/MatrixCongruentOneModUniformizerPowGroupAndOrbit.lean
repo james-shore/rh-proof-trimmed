@@ -78,10 +78,6 @@ theorem cT_cT (L : LocE F E) {m : ℕ} (A : Matrix (Fin m) (Fin m) E) : cT L (cT
   ext a b
   simp [cT, L.cj_cj]
 
-theorem cT_one (L : LocE F E) {m : ℕ} : cT L (1 : Matrix (Fin m) (Fin m) E) = 1 := by
-  ext a b
-  simp [cT, Matrix.one_apply, eq_comm]
-
 theorem mem_hermLat (L : LocE F E) {m : ℕ} {X : Matrix (Fin m) (Fin m) E} :
     X ∈ hermLat L m ↔ IsHerm L X ∧ IsIntM L X := by
   refine ⟨fun h => ?_, fun h => AddSubgroup.subset_closure h⟩

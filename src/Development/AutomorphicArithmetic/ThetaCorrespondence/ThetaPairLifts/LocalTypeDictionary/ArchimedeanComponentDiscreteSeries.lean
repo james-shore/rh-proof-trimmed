@@ -7,13 +7,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaLiftDarbouxAde
 section
 noncomputable section
 namespace GlobalTheory.ArchRep
-section Real
-open MeasureTheory Filter Topology GlobalTheory.RealWeil Matrix
-variable {l : Type} [Fintype l] [DecidableEq l]
-end Real
-section Haar
-open MeasureTheory
-end Haar
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Matrix
 open NumberField MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.BasicNotions.TH GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.FockAlg GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.RealLift
 open scoped Classical

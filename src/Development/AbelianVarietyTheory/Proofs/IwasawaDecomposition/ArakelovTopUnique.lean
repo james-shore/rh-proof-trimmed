@@ -12,9 +12,9 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SelfIntersec
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricPullbackStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricPowStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricShiftElementStatement
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricDifferenceLogStatement
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LogAbsoluteValueRationalStatement
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsElementHeightDifferenceStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClosedPointGeometricFibresFinite
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsTangent
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RatIsomOfInducedHermitianBundlesStatement
 
 set_option autoImplicit false
@@ -96,36 +96,5 @@ theorem Reads.eq (hC : GlobalTheory.Published.ArCalc) (hN : ReciprocityTheory.Ch
   have e := HermLB.IsSelfInter.unique M.ar ⟨H, (hC.arIso _ M.X M.p Y.dim M.ar).1 L L' H
     (GlobalTheory.T.rational_isometry_isometric _ M.X M.p L L' (GlobalTheory.T.ratIsom_of_induced_hermitian_bundles F C Y A M hN L L' k cf hI hI')) hH, rfl⟩ ha'
   rw [e]
-
-theorem Reads.eq' (hC : GlobalTheory.Published.ArCalc) (hD : GlobalTheory.Published.ArDegree)
-    (hN : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme M.X) {L' : HermLB M.p} {t' : ℝ}
-    {cf' : HeightOneSpectrum (𝓞 F) → ℝ} (h : Reads A M L k cf t) (h' : Reads A M L' k cf' t') : t = t' := by
-  obtain ⟨m, b, b', hb, hb', e⟩ := GlobalTheory.T.exists_element_height_difference F (fun v => ((k : ℕ) : ℝ) * (A.n : ℕ) * (cf' v - cf v))
-    ((h.1.1.union h'.1.1).subset fun v hv => by
-      by_contra h0
-      simp only [Set.mem_union, Function.mem_support, not_or, not_not] at h0
-      simp [h0.1, h0.2] at hv) fun v => by
-    obtain ⟨e, α, hα, h₁⟩ := GlobalTheory.T.induced_metric_difference_log F C Y A M L L' k cf cf' h.1 h'.1 v
-    rw [h₁]
-    exact GlobalTheory.T.log_absolute_value_rational F v e α hα
-  obtain ⟨L₁, h₁⟩ := (h.pow hC m).scale hC hD hb
-  obtain ⟨L₂, h₂⟩ := (h'.pow hC m).scale hC hD hb'
-  refine h₁.eq hC hN (L' := L₂) ?_
-  convert h₂ using 2 with v
-  have hm : ((m : ℕ) : ℝ) ≠ 0 := by exact_mod_cast m.ne_zero
-  have hk : ((k : ℕ) : ℝ) ≠ 0 := by exact_mod_cast k.ne_zero
-  have hn : ((A.n : ℕ) : ℝ) ≠ 0 := by exact_mod_cast A.n.ne_zero
-  rw [sub_eq_iff_eq_add.1 (e v).symm, PNat.mul_coe, Nat.cast_mul]
-  field_simp
-  ring
-
-theorem isArTop_unique : GlobalTheory.Published.ArCalc → GlobalTheory.Published.ArDegree → ∀ (F : Type) [Field F] [NumberField F] (C : CxSt F)
-    (Y : Var F) (A : Adl C Y) (t t' : ℝ), A.IsArTop t → A.IsArTop t' → t = t' := by
-  rintro hC hD F _ _ C Y A t t' ⟨M, L, k, cf, a, hI, ha, ht⟩ ⟨M', L', k', cf', a', hI', ha', ht'⟩
-  obtain ⟨N, π, π', hN, hπ, hπ', hj, hj', hU, hU'⟩ := GlobalTheory.ModelDom.exists_normal_dominating F Y M M'
-  have h₁ := (Reads.pull hD.1 ⟨hI, a, ha, ht⟩ N π hπ hj hU).pow hC k'
-  have h₂ := (Reads.pull hD.1 ⟨hI', a', ha', ht'⟩ N π' hπ' hj' hU').pow hC k
-  rw [mul_comm k' k] at h₂
-  exact h₁.eq' hC hD hN h₂
 
 end GlobalTheory.TrueGeo.ArUniq

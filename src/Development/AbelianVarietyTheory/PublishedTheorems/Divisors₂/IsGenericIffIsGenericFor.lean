@@ -38,10 +38,6 @@ theorem isGeneric_iff_isGenericFor (ψ : AddChar k Circle) (π : Representation 
     simp only [LinearMap.mem_ker, map_sub, map_smul, smul_eq_mul, val_whitChar] at h2
     exact sub_eq_zero.1 h2
 
-theorem not_isGeneric_detRep {ψ : AddChar k Circle} (hψ : ψ ≠ 1) (hN : 2 ≤ N) (χ : kˣ →* ℂˣ) :
-    ¬ IsGeneric ψ (detRep (Fin N) χ) := fun h =>
-  GlobalTheory.LocGL.not_isGenericFor_detRep hψ hN χ ((isGeneric_iff_isGenericFor _ _).1 h)
-
 theorem IsGeneric.of_surjective {ψ : AddChar k Circle} {π : Representation ℂ (GL (Fin N) k) V}
     {σ : Representation ℂ (GL (Fin N) k) W} (f : π.IntertwiningMap σ) (hf : Function.Surjective f) (h : IsGeneric ψ σ) :
     IsGeneric ψ π := by
@@ -111,12 +107,6 @@ theorem IsGeneric.of_injective {ψ : AddChar k Circle} (hψ : Continuous ψ) {σ
       (isCompact_grp (conc_wt (points (Fin N)) M))
   exact twKer_mono le_top (mem_twKer_of_map (twistMap (compMap f U.subtype) _) hs hf hc hM)
 
-theorem IsGeneric.of_isSubquotient {ψ : AddChar k Circle} (hψ : Continuous ψ) {σ : Representation ℂ (GL (Fin N) k) V}
-    {π : Representation ℂ (GL (Fin N) k) W} (hπ : IsSmooth π) (hs : IsSubquotient σ π) (h : IsGeneric ψ σ) :
-    IsGeneric ψ π := by
-  obtain ⟨S, f, hf⟩ := hs
-  exact (h.of_surjective f hf).of_injective hψ ⟨S.toSubmodule.subtype, fun _ => rfl⟩ hπ Subtype.val_injective
-
 end Exact
 
 end GlobalTheory.Whittaker
@@ -181,45 +171,7 @@ def GenericityGL : Prop :=
       ∃ l : Module.Dual ℂ W, l ≠ 0 ∧ ∀ u : Levi k fun a => Fin (m a), (∀ a, u a ∈ unipB k (Fin (m a))) →
         ∀ v, l (ρ u v) = (∏ a, (ψ (superDiag (u a)) : ℂ)) * l v
 
-def WhittakerHeredity : Prop :=
-  ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-    (ψ : AddChar k Circle), Continuous ψ → ψ ≠ 1 → ∀ N : ℕ,
-    (∀ (V W : Type) [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W] (σ : Representation ℂ (GL (Fin N) k) V)
-      (π : Representation ℂ (GL (Fin N) k) W) (f : σ.IntertwiningMap π), IsSmooth π → Function.Injective f →
-      GlobalTheory.Whittaker.IsGeneric ψ σ → GlobalTheory.Whittaker.IsGeneric ψ π) ∧
-    ∀ (c : ℕ) (m : Fin c → ℕ) (e : (Σ a, Fin (m a)) ≃ Fin N) (W : Type) [AddCommGroup W] [Module ℂ W]
-      (ρ : Representation ℂ (Levi k fun a => Fin (m a)) W), IsSmooth ρ → GlobalTheory.Whittaker.IsGeneric ψ (parInd e ρ) →
-      ∃ l : Module.Dual ℂ W, l ≠ 0 ∧ ∀ u : Levi k fun a => Fin (m a), (∀ a, u a ∈ unipB k (Fin (m a))) →
-        ∀ v, l (ρ u v) = (∏ a, (ψ (superDiag (u a)) : ℂ)) * l v
-
 namespace GenericityGL
-
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-
-theorem block_le_one (H : GenericityGL) {ψ : AddChar k Circle} (hc : Continuous ψ) (h1 : ψ ≠ 1) {N c : ℕ} {m : Fin c → ℕ}
-    (e : (Σ a, Fin (m a)) ≃ Fin N) {V W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
-    {ρ : Representation ℂ (Levi k fun a => Fin (m a)) W} (hρ : IsSmooth ρ) {σ : Representation ℂ (GL (Fin N) k) V}
-    (hs : IsSubquotient σ (parInd e ρ)) (hg : GlobalTheory.Whittaker.IsGeneric ψ σ) (a : Fin c)
-    (ha : ∀ u ∈ unipB k (Fin (m a)), ∀ v, ρ (Pi.mulSingle a u) v = v) : m a ≤ 1 := by
-  by_contra hm
-  obtain ⟨l, hl, h⟩ := H k ψ hc h1 N c m e W ρ hρ (hg.of_isSubquotient hc (isSmooth_parInd e ρ) hs)
-  obtain ⟨v, hv⟩ : ∃ v, l v ≠ 0 := by
-    by_contra h0
-    push Not at h0
-    exact hl (LinearMap.ext h0)
-  refine not_isGeneric_detRep h1 (N := m a) (by omega) 1
-    ⟨LinearMap.id, fun e => one_ne_zero (LinearMap.congr_fun e 1), fun u hu x => ?_⟩
-  have h2 := h (Pi.mulSingle a u) (fun b => by
-    by_cases hb : b = a
-    · subst hb; simpa using hu
-    · rw [Pi.mulSingle_eq_of_ne hb]; exact one_mem _) v
-  have h3 : ∀ b, superDiag (1 : GL (Fin (m b)) k) = 0 := fun b =>
-    Finset.sum_eq_zero fun i _ => Finset.sum_eq_zero fun j hj =>
-      Matrix.one_apply_ne fun e => by have := (Finset.mem_filter.1 hj).2; rw [e] at this; omega
-  rw [Finset.prod_eq_single a (fun b _ hb => by rw [Pi.mulSingle_eq_of_ne hb, h3]; simp) (by simp),
-    Pi.mulSingle_eq_same, ha u hu] at h2
-  rw [(mul_eq_right₀ hv).1 h2.symm]
-  simp [detRep]
 
 end GenericityGL
 

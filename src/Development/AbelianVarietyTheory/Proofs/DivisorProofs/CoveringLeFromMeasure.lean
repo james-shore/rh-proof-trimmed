@@ -84,16 +84,4 @@ theorem coreAt_of (C : ℝ) (hg : GramAt p i) (hm : MeasAt p i C) (hr : RatAt p 
   rw [hS]
   linarith
 
-theorem coreLe_of_gram_meas_rat : Gram → Meas → GlobalTheory.CovTop.Rat → CoreLe := by
-  intro hg hm hr
-  unfold Gram Meas GlobalTheory.CovTop.Rat CoreLe Lifts at *
-  refine Closed.imp (Closed.and (Closed.and hg hm) hr) ?_
-  rintro eps Fm CH - ⟨⟨⟨C1, -, hg'⟩, ⟨C, hC, hm'⟩⟩, ⟨C3, -, hr'⟩⟩
-  refine ⟨2 * C, by linarith, ?_⟩
-  obtain ⟨x0, h⟩ := (hg'.and hm').and hr'
-  exact ⟨x0, fun x hx hle ι p hp i =>
-    coreAt_of p i C ((h x hx hle ι p hp).1.1 i) ((h x hx hle ι p hp).1.2 i) ((h x hx hle ι p hp).2 i)⟩
-
-example : Gram → Meas → GlobalTheory.CovTop.Rat → CoreLe := coreLe_of_gram_meas_rat
-
 end GlobalTheory.CoreSlope

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FirstOrderTranslationFormulaGerms
-import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.DenseInterior
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechGluingOfKodairaSpencerRelation
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TranslateUnique
@@ -8,6 +7,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentBasisTransla
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompProdOfFn
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LogDerivativePrincipalPolarisationIndependent
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ValCalc
+
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LogKS Formalism.L2.Pj
 open MonoidalCategory CartesianMonoidalCategory MonObj

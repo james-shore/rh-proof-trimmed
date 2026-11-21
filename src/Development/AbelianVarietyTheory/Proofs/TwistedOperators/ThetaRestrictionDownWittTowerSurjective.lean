@@ -42,14 +42,6 @@ theorem ee'_assoc {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) : d.eᴴ * 
     GlobalTheory.MixModel.gram_conjTranspose, Matrix.conjTranspose_one] at h
   exact h
 
-theorem i₀e_assoc {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) : d.i₀ᴴ * (S.gram * d.e) = 0 := by
-  rw [← Matrix.mul_assoc]
-  exact d.i₀e
-
-theorem i₀e'_assoc {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) : d.i₀ᴴ * (S.gram * d.e') = 0 := by
-  rw [← Matrix.mul_assoc]
-  exact d.i₀e'
-
 theorem ei₀_assoc {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) : d.eᴴ * (S.gram * d.i₀) = 0 := by
   have h := congrArg Matrix.conjTranspose d.i₀e
   rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose,

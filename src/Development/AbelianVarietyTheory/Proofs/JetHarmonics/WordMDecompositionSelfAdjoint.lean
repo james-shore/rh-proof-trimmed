@@ -28,15 +28,6 @@ def EM (B : Subalgebra ℂ A) (E : SlopeTestRemainingChoices S A) : Prop := ∀ 
 theorem EM.add {B : Subalgebra ℂ A} {E F : SlopeTestRemainingChoices S A} (hE : EM B E) (hF : EM B F) : EM B (E + F) := fun i j =>
   B.add_mem (hE i j) (hF i j)
 
-theorem EM.smul {B : Subalgebra ℂ A} {E : SlopeTestRemainingChoices S A} (z : ℂ) (hE : EM B E) : EM B (z • E) := fun i j =>
-  B.smul_mem (hE i j) z
-
-theorem EM.io {B : Subalgebra ℂ A} {a : A} (ha : a ∈ B) : EM B (io a : SlopeTestRemainingChoices S A) := fun i j => by
-  simp only [Wd.io, Matrix.scalar_apply, Matrix.diagonal_apply]
-  split_ifs
-  · exact ha
-  · exact B.zero_mem
-
 variable [StarModule ℂ A]
 
 open MeasureTheory in

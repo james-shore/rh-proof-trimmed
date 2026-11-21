@@ -1,11 +1,21 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.FormUniq
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.NLeA
-import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.Imports
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MapHComp
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MemBoundariesZeroIff
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.DcColSurj
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.DoubleComplexMapMemTotal
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.FaceMapCompSuccAboveCastSucc
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.CechDesc
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.CechDifferentialOneInclusion
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.TerminalRes
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.TotPairing
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousCochainFiltrationDecomposition
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ChartGrConst
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeXD
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorDirectSumBasisEquivStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftSumDifferentialCompatStatement
+
 set_option backward.isDefEq.respectTransparency false
 set_option autoImplicit false
 set_option linter.unusedVariables false
@@ -44,10 +54,6 @@ def tupEquiv (P : ℕ → Cx.{1} K) (c n : ℕ) :
   invFun u := ⟨(⟨u.1.a, u.1.a', u.1.ha, u.1.i, u.2⟩, u.1.j), by have := u.1.h; simp only; omega⟩
   left_inv := by rintro ⟨⟨⟨a, a', ha, i, β⟩, m⟩, h⟩; rfl
   right_inv := by rintro ⟨⟨a, i, a', j, ha, h⟩, β⟩; rfl
-
-theorem lof_cast {V : Type 1} [DecidableEq V] (W : V → Type 1) [∀ u, AddCommGroup (W u)] [∀ u, Module K (W u)]
-    {v v' : V} (h : v = v') (x : W v) : DirectSum.lof K V W v x = DirectSum.lof K V W v' (h ▸ x) := by
-  subst h; rfl
 
 theorem reidx {V U : Type 1} [DecidableEq V] [DecidableEq U] (σ : V ≃ U) (W : U → Type 1)
     [∀ u, AddCommGroup (W u)] [∀ u, Module K (W u)] :

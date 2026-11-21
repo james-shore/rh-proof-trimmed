@@ -134,16 +134,6 @@ def val (φ : K₀ →ₐ[c.F] S) (y : FrPt Xo c S) : RulK Xo c K₀ →ₗ[c.F]
 @[simp] theorem val_tmul (φ : K₀ →ₐ[c.F] S) (y : FrPt Xo c S) (a : K₀) (f : Rul Xo c) :
     val φ y (a ⊗ₜ f) = φ a * evR Xo c f y := rfl
 
-theorem val_smul (φ : K₀ →ₐ[c.F] S) (y : FrPt Xo c S) (a : K₀) (s : RulK Xo c K₀) :
-    val φ y (a • s) = φ a * val φ y s := by
-  induction s using TensorProduct.induction_on with
-  | zero => simp
-  | add s s' h h' => rw [smul_add, map_add, map_add, h, h', mul_add]
-  | tmul b f => rw [TensorProduct.smul_tmul', val_tmul, val_tmul, smul_eq_mul, map_mul, mul_assoc]
-
-theorem tmul_mem_secK {e : Ix Dw → ℤ} {f : Rul Xo c} (hf : f ∈ secZ Xo c e) (a : K₀) : a ⊗ₜ f ∈ secK Xo c K₀ e :=
-  Submodule.tmul_mem_baseChange_of_mem a hf
-
 theorem secK_induction {e : Ix Dw → ℤ} {P : RulK Xo c K₀ → Prop} (h0 : P 0)
     (h1 : ∀ a f, f ∈ secZ Xo c e → P (a ⊗ₜ f)) (h2 : ∀ s s', P s → P s' → P (s + s')) {s : RulK Xo c K₀}
     (hs : s ∈ secK Xo c K₀ e) : P s := by

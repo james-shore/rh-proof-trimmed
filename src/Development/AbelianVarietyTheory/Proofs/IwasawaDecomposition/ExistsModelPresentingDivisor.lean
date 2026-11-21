@@ -355,14 +355,4 @@ theorem fromModel_lgOf (hB : HTBoundSt) [IsLocallyNoetherian Z.X] (hX : Z.X.IsSe
 
 end Flags
 
-theorem exists_model_lgOf : HTBoundSt → ∀ (D : D7) (A : Amb D) (N j : ℕ) (S : Sig A N j) (κ : Lv A) (s : FinalTheorems S κ) (fl : s.Flag), AdmEx S κ → ∀ (k : s.Comp) (w : Sym D.host.E →₀ ℤ), (∀ a ∈ w.support, {q | a.1 q = true}.Finite) → ∃ (M : GlobalTheory.TrueGeo.Model (fl.C k).Y) (L : LB M.X) (m : ℕ+) (r : (L.pull M.j).ι → (fl.C k).Y.Fnˣ), L.IsLB ∧ Presents ((m : ℕ) • divOf (fl.C k) (expo S.Dw w)) (L.pull M.j) r ∧ ∀ (v : HeightOneSpectrum (𝓞 D.what₂.LL)) (e : Ext v) (y : AlgPt (fl.C k).Y) (yt : Sp e.O ⟶ M.X) (i : (L.pull M.j).ι), spMap e.O.subtype ≫ yt = y.1 ≫ M.j → ⊤ ≤ yt ⁻¹ᵁ L.U (i PUnit.unit) → ((m : ℕ) : ℝ) * lgOf (fl.C k) w v e y = Real.log (e.w (valAt y.1 (((eqn (divOf (fl.C k) (expo S.Dw w)) (below y.1))⁻¹ ^ (m : ℕ) * r i : (fl.C k).Y.Fnˣ) : (fl.C k).Y.Fn))) := by
-  intro hB D A N j S κ s fl _ k w hw
-  obtain ⟨hX, hN, M, ρ', hM, hρ⟩ := GlobalTheory.T.exists_normal_model_over_projective D.what₂.LL (fl.C k).Y (𝓞 κ.c.F) (RingOfIntegers.mapRingEquiv κ.e)
-    s.T.Z.X s.T.Z.s ((fl.C k).π ≫ genι s.T.Z) s.T.Z.proj (by
-      rw [← (fl.C k).π_str]
-      simp only [Category.assoc]
-      rw [pullback.condition_assoc, ← Spec.map_comp, ← Spec.map_comp]
-      rfl)
-  exact fromModel_lgOf (fl.C k) hB hX M ρ' hM hρ w hw
-
 end GlobalTheory.LineNorm

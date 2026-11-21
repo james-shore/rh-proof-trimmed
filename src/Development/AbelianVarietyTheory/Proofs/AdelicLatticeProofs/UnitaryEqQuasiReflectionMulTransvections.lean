@@ -13,11 +13,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.UTrans.Gen
 
-theorem tv_zero {R : Type} [CommRing R] {n : ℕ} (σ : R →+* R) (G : Matrix (Fin n) (Fin n) R)
-    (x : Fin n → R) : tv σ G x 0 = 1 := by
-  ext a b
-  simp [tv]
-
 end GlobalTheory.UTrans.Gen
 
 namespace GlobalTheory.UTrans

@@ -99,10 +99,6 @@ theorem mapDomain_nonneg {α β : Type} (v : α →₀ ℚ) (hv : ∀ a ∈ v.su
   · exact hv a ha
   · exact le_rfl
 
-example (K : Type) [Field K] (R : Subring K) : Algebra R K := inferInstance
-example (K : Type) [Field K] (R : Subring K) : FaithfulSMul R K := inferInstance
-example (K : Type) [Field K] (R : Subring K) (a : R) : algebraMap R K a = (a : K) := rfl
-
 end GlobalTheory.FieldPair.SpecTower
 
 namespace GlobalTheory.FieldPair.SpecTower

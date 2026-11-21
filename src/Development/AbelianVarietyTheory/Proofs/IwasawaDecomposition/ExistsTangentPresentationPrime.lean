@@ -52,12 +52,6 @@ theorem tors_of {g : T' ⟶ T} {w : Over.mk y ⟶ G} {w' : Over.mk y' ⟶ G} (e 
   obtain ⟨h, rfl⟩ := eq_pull w w' e
   rw [← map_pow, hw, map_one]
 
-theorem mul_of {g : T' ⟶ T} {w₁ w₂ : Over.mk y ⟶ G} {w₁' w₂' : Over.mk y' ⟶ G} (e₁ : w₁'.left = g ≫ w₁.left)
-    (e₂ : w₂'.left = g ≫ w₂.left) : (w₁' * w₂').left = g ≫ (w₁ * w₂).left := by
-  obtain ⟨h, rfl⟩ := eq_pull w₁ w₁' e₁
-  obtain ⟨h', rfl⟩ := eq_pull w₂ w₂' e₂
-  rw [← map_mul]; rfl
-
 theorem one_of {g : T' ⟶ T} (h : g ≫ y = y') : (1 : Over.mk y' ⟶ G).left = g ≫ (1 : Over.mk y ⟶ G).left := by
   rw [← map_one (pull (G := G) g h)]; rfl
 

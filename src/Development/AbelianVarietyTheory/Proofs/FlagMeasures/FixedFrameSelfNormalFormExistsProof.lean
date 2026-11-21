@@ -120,9 +120,6 @@ theorem line_le {A : Submodule (𝓞 E) E} {v : S.V} {M : Submodule (𝓞 E) S.V
     GlobalTheory.DegCnt.line A v ≤ M := by
   rintro _ ⟨x, hx, rfl⟩; exact h x hx
 
-theorem mem_line {A : Submodule (𝓞 E) E} {v : S.V} {x : E} (hx : x ∈ A) : x • v ∈ GlobalTheory.DegCnt.line A v :=
-  ⟨x, hx, rfl⟩
-
 theorem idNF_spec (F : Formalism.MainNotions.S.FlagG S r (n : E)) (hT : ((n : ℕ) : E) ≠ 0) (𝔡 : Ideal (𝓞 E)) (h𝔡 : 𝔡 ≠ ⊥)
     (h𝔡s : ∀ x ∈ 𝔡, ∃ y ∈ 𝔡, (y : E) = star (x : E))
     (hP : Formalism.MainNotions.LatticeGluingRadicals.PosX (⟨F, F.z⟩ : Formalism.MainNotions.S.Lat.LFlag S r (n : E)))

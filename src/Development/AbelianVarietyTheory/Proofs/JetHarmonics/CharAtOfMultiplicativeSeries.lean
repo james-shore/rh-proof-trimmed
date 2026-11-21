@@ -20,7 +20,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SeriesCharacter
 
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.FamGerm GlobalTheory.HodgeTateStep GlobalTheory.KernelNoTorsion GlobalTheory.TorsionCharacter
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.FamGerm GlobalTheory.KernelNoTorsion GlobalTheory.TorsionCharacter
 open GlobalTheory.SeriesValue
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS ev Dof)
 

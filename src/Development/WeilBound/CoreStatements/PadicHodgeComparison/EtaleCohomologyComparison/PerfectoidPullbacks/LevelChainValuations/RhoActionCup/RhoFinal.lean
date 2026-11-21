@@ -102,10 +102,4 @@ theorem rhoSys_ex : Nonempty (RhoSys S Model.Sm (dat Amp) fun a c => IsFirstCher
      one := rho_one_of S hS hC fun M m s => cupOf_rHof_good _ M s _ _ _
      c1 := rho_firstChern_formula S hS hC }⟩
 
-theorem crystalline_deRham_firstChern_exists : ∃ L : KapL (l := l) (K := K) Amp, LieComplementChartContDiffAt L := by
-  obtain ⟨S, hS, hC⟩ := CrystallineSemistableComparison.HT.levSys_ex (l := l) (K := K)
-  obtain ⟨P⟩ := rhoSys_ex S hS hC
-  obtain ⟨A⟩ := kap_abs (facts l K) (fun c => ⟨_, rfl⟩) hS P
-  exact ⟨⟨A.κ, A.lin, A.lin', A.act, A.nat, A.fil, A.cup, A.one⟩, A.c1⟩
-
 end CrystallineSemistableComparison.Pb.Kap.Mo

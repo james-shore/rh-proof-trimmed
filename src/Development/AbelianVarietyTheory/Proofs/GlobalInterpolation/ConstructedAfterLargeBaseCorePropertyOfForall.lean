@@ -7,26 +7,95 @@ import Development.AbelianVarietyTheory.PublishedTheorems.DiscreteSeriesUnitary�
 import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
 import Formalism.SharpRestriction.GlobalSchurBounds.MassRatioUnfoldedOfTheoremTwo
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.GoodReductionCondition
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeServiceGlobalReciprocityStatement
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RowAAtGAtBuilt
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.APerTw
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.DivRows3GIff
+import Formalism.LocalToGlobal.FiniteTOf
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.IsLinked
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.AllRows
+import Development.AbelianVarietyTheory.Definitions.Divisors.MapBaseTiedSel
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ClassSumPin
+import Development.AbelianVarietyTheory.Definitions.Divisors.CovolXOfCovol
+import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.SingleIndexPlacesAreTwisted
+import Development.AbelianVarietyTheory.Definitions.Divisors.SlopeTestRemainingChoicesAlt
+import Development.AbelianVarietyTheory.Definitions.Divisors.RowSideOfCompatibleThetaPair
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SerFixOne
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ThetaChr
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.CountsIrreducibilityConstants
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HasPartAnd
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.BuiltCHasPart
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.BundleBothPartsOfStandardKernelOfGlobalArtinReciStatement
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DeliveryAtBundlePointsOfTrueColumnsStatement
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.RowFormsMatchPeriodMapOfFurtherPropertiesStatement
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DivisionSecondComplementConstructedPoints
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RowCountsOfLinkedTies
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RowJOnOfRowHPA
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PeriodEntriesAtBuilt
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CountConstantsOfSiegelWeil
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IrreducibilityRowOfConcreteAutomorphicDataStatement
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RowsFinDimLink
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ClassCountBoundAtConstructedPoints
+import Formalism.LocalToGlobal.IndefiniteReal.TrISepWith
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RowMapSurjectiveOfPrimitiveRowsStatement
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.AndLeft
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.EventuallyAllScaleContextsAndOfBoth
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.GoodTwistCoresOverTrueColumnsStatement
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LevelPrimeColumnValuationsBundlePointsOverColumnStatement
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ReferencePeriodIntegralBundlePointsOfOverColumnsStatement
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.TwistedPeriodsIntegralAtBundlePointsStatement
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ReferenceChainEvaluationBundlePointsOverColumnsAStatement
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.TwistedChainEvaluationRationalIntegralBundlePoinStatement
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RealSideColumnsCompatibleBundlePointsOverColumnsStatement
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ClassCountBoundParamsLambdaConstructedPoints
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RowHInstROfHU
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LPrjSurjAt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LPrjSurjective
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WorkingFamClassCopiesEqFrozen
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RealTiedSetDiv
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LoopRowOfFiniteDim
+import Formalism.LocalToGlobal.ThresholdSelection
+import Formalism.SharpRestriction.CuspSpanNormBounds.PExtra
+import Formalism.SharpRestriction.GlobalSchurBounds.TheoremThreeFamilyOfFormalDegreeInput
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UniqGapOfUniq
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.MassLandSt
+import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.SettingBlocks
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.ThmSOwn
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.TheoremSRecursion
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.WuDecayAll
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.SzHypFam
+import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.RowsDef
+import Development.AbelianVarietyTheory.Statements.DiscreteSeriesShifts.ThmBpDS
+import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.FormalDegreeCompactDualIff
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LoopRowsOfLargeGapDiscreteSeriesStatement
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HypOfUniqGap
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselMultiplicityOneLargeGapAndWhittakerBesselStatement
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DiscreteSeriesCoefPointwiseBoundUnconditionalStatement
+import Formalism.SharpRestriction.SmoothDesignExistence.DGamSmooth
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ClassNumberAll
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FirstTypePrimeLargeOfRecord
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExactRanksOfRecord
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.NcardPrimesOverOfNorm
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.VolumeEqMassOfReal
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RankConditionOfColumnsEqualSymmetricLevelStatement
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TFrameOfRanksRowThree
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.WuDecayOfGap
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.OffK0Closed
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RowPositivityOfSiegelWeil
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RanksFramesOfSiegelWeil
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryHyperplaneVolumeRatioSiegelWeilStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PartitionSelectionEvaluation
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowOfCovolumeOntoGrid
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowHTwOfTie
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowRepresentationBasePosition
+import Formalism.LocalToGlobal.TieTwRecOf
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntertwinersAndLiftsExistAtChoicesStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EvInjOfIsModelsOfTie
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JEvExistsAndJEvBar
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GeoAct
+import Formalism.LocalToGlobal.IndefiniteReal.RealTB
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneFormMapRowThreeLevelOfCharacterisationStatement
+import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
+import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
+import Formalism.LocalToGlobal.IndefiniteReal.FWExist
+import Formalism.LocalRingCardinality.DataExtra
+import Formalism.LocalRingCardinality.DataTies
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaIoExtensionOfWeakCharacterisationFramesStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisationEveryEmbeddingThirdKind
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteVolumeAdelicUnitaryQuotient
+import Formalism.LocalRingCardinality.NFLeTwoMulTSq
+
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.RT GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc
 
 namespace GlobalTheory.Fc.AllAtMember
@@ -38,13 +107,6 @@ variable {KP : ∀ B : GlobalTheory.Mem.Base, Fr B.toPre → Prop} {Q Q' : V4.Sl
 theorem eventually_coreProperty_mono {r r' : V4.Slot → Prop} (h : Lg1 KP Q Q' r) (hi : ∀ S, r S → r' S) : Lg1 KP Q Q' r' :=
   let ⟨R, hR, h⟩ := h; ⟨R, hR, hi _ h⟩
 
-theorem forall_linked_bundles_and {Lk : LkT Bundle} {H H' : ∀ 𝒜 : FamClass, RawSel Bundle 𝒜 → Prop}
-    (h : Lg1 KP Q Q' fun S => Row S Lk H) (h' : Lg1 KP Q Q' fun S => Row S Lk H') :
-    Lg1 KP Q Q' fun S => Row S Lk fun 𝒜 σ => H 𝒜 σ ∧ H' 𝒜 σ :=
-  RowL.and (KP := KP) (Q := Q) (Q' := Q') h h'
-
 end large₂
-
-def recSpec (D : D7) (O : Obj D) (c : ℝ) (b : Bundle D O c) : Σ R : Formalism.L2.RecT O.ex, Formalism.L2.SG.SpectralTiesReal.STiesR R := ⟨b.R, b.S⟩
 
 end GlobalTheory.Fc.AllAtMember

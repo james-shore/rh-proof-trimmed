@@ -1,5 +1,5 @@
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.EZeroThetaDescentEval
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CohomologicalCsdTempered
+import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RealPack
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TrueW
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IndefRRealT
@@ -19,13 +19,10 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.See
 open scoped TensorProduct Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.GoodFix
-open Formalism.L2.DIV
 end GlobalTheory.GoodFix
 namespace GlobalTheory.GoodFix
-open Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Lev
 end GlobalTheory.GoodFix
 namespace GlobalTheory.GoodFix
-open Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Lev
 end GlobalTheory.GoodFix
 open GlobalTheory.GoodFix in
 set_option maxHeartbeats 1000000 in

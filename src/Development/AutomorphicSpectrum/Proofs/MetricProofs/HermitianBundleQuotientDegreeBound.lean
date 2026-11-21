@@ -2,10 +2,13 @@ import Mathlib
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsOrthFull
 import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.PExactSequence
 import GroundTheory.HeightsAndTheta.Heights.ArithDegreeExact
-import GroundTheory.HeightsAndTheta.Heights.Slopes
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DegreeTopEqArithDegree
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.FiniteSupportHeight
+import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.StatementsBundles
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SlopeBoundComparableMetricStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.NormalizedDegreeFullRankSublatticeStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.NormalizedDegreeBoundedMapStatement
+
 open GroundTheory.Heights₂.Heights NumberField TensorProduct ComplexAt GlobalTheory.CompanionTheory.Ar Matrix
 open scoped BigOperators ComplexOrder
 

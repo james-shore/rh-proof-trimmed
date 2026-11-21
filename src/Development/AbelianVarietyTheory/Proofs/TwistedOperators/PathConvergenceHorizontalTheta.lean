@@ -5,12 +5,68 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermi
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.CuspAlongSmoothRows
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.ThetaIntegralsAgree
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspidalFlipOnVolumes
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegrableOnOfRapidDec
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaKernelMulConjCuspFormIntegrableOn
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspAlongOfPairLifts
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NegativeThetaLevelSecond
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegralEqZeroOfForallApprox
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaLiftLowerTowerVanishing
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NegativeThetaLevelSixth
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsAllTiedNotStable
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.DiscreteSeriesHermitianUniqueOfClassification
+import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.FinitePartTypes
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.AutomorphicFormUniformLimitDiscreteSeriesSeriesStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NegativeThetaLevelFourth
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaGrowthOfThetaSquareIntegrable
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.UnifModGrowthOfIsUnifModerate
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsAutFunSmThetaLift
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsCuspFunOfApprox
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHeightLeTwoMulQuotHeight
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaKernelIteratedIntegralsSwap
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsKernelApprox
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridDownArrowThetaFunctionFockDenseOfLevelStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegrableOnQuotHeightPowMulNorm
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.TypeAtOfDiscreteSeries
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsGrowthSobNeTopOfIsAutFunSm
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.SqNormIntegralFundamentalDomainEqL2NormSq
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContDiffDerivSnoc
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GrowthSobZeroNeTop
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsKFiniteIteratedCompactAverageApproxStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspFormKFiniteApprox
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.AutCuspOfMemCusp
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HorizontalThetaLevelFourth
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ConjThetaKOMulIntegrableOn
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DoubleNegSpaceUnitaryElementHeq
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaLiftDiagonalTypePreserved
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsCuspFunIffConstTerm
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsCuspFunOfApproxAlt
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GoodParOfSigOK
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspidalGridNodeType
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegrableOnThetaKOMulCusp
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ToTWsmallZero
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SignedUnitaryGroupCompat
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.AutomorphicCuspFormsHermitianSpaceSignTwist
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NegativeParabolicThetaSeventh
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NegativeParabolicThetaEighth
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ConjThetaKOMulCuspIntegrableOnFst
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.VerticalThetaLevelSecond
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteDimensionalModel
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspidalListedTopForms
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FinCoefMultT
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsAutFunSmRealProd
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsDualFrameSpanUnitaryRepresentationStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DiscreteSeriesModelAdjointEqInvFiniteDimensionalStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ModelTypeFormExpandsAlongDualFrameStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExpandPiOfExpandEachStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumProdUpdateRegroupStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaLiftVerticalCuspidalSum
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspidalAlongRightGridArrows
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspidalAlongDownGridArrows
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaKOContinuousAndRatInvariant
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridVertexMeasureEqOfSameNormalisationStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstRowSchwartzDataIsThetaFunctionLargeDepthStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstRowCosetVectorsIsLocalThetaVectorStatement
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LiftedCuspFormsListedStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LiftedCuspFormsListed
 
 noncomputable section
 
@@ -93,15 +149,5 @@ theorem rowCore (W : G.Weil) (M₀ M : Vol G) (ρm : RealMatch W) (t : T) (ρ : 
 end GlobalTheory.RowStart
 
 namespace GlobalTheory.RowStart
-
-theorem rowStart : GlobalTheory.FunPr.Hypotheses₂ → GlobalTheory.IndefiniteRowSideFullHecke.CuspAlongSmoothLifts.LiftsCuspidal → GlobalTheory.RowClaim.Big fun {D} _ _ _ _ {T} _ _ _ _ _ {R} ch => ∀ (t : T) (Φ : ch.G.Datum) (M : Vol ch.G), M.Is t → ∀ y : (R.HX t).H, PathConv ch.W M (rowPath T 0 D.R.m) (rowDatum ch.W ch.ρ Φ) (ch.cv.lift t y) ∧ thetaChi ch.W ch.M ch.ρ Φ (ch.cv.lift t y) = liftP ch.W M (rowPath T 0 D.R.m) (rowDatum ch.W ch.ρ Φ) (ch.cv.lift t y) := by
-  intro hP hLC
-  refine ((cuspStep_big hLC hP).and ((GlobalTheory.T.lifted_cusp_forms_listed hP hLC).and (GlobalTheory.T.firstRow_cosetVectors_isLocalThetaVector.and GlobalTheory.T.firstRowSchwartzData_isThetaFunction_largeDepth))).imp fun CF0 h ε CF hC => ?_
-  obtain ⟨x₀, h⟩ := h ε CF hC
-  refine ⟨x₀, fun D large₂ e hx Γ _ _ Pl0 T A Ks _ _ _ R F s ch hch hsc t Φ M hM y => ?_⟩
-  obtain ⟨hstep, hcusp, hloc, hth⟩ := h D large₂ e hx Γ Pl0 T A Ks R F s ch hch hsc
-  have H := rowCore ch.W ch.M M ch.rm t ch.ρ Φ (hstep t M hM) (hloc t) (fun i => hth Φ i) hch.vol hM.isRow
-    (ch.cv.lift t y) (hcusp t y) D.R.m le_rfl
-  exact ⟨H.1, H.2.2⟩
 
 end GlobalTheory.RowStart

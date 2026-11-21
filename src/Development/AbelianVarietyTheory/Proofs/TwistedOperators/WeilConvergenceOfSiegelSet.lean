@@ -81,9 +81,6 @@ theorem weilConvergence_of_siegelSet (hRT : GlobalTheory.Published.SiegelSetUnit
     rw [ENNReal.toReal_mul, ENNReal.toReal_mul, ENNReal.toReal_ofReal hA, ENNReal.coe_toReal]
     ring
 
-theorem weilConvergence : GlobalTheory.Published.SiegelSetUnitary → GlobalTheory.FunPr.Hypotheses₂ → GlobalTheory.SquareSt.WeilConvergence :=
-  fun hRT _ => weilConvergence_of_siegelSet hRT
-
 end GlobalTheory.WeilConv
 
 end

@@ -1,5 +1,8 @@
 import Mathlib
-import ReciprocityTheory.L2DbarEstimates.Imports
+import ReciprocityTheory.L2DbarEstimates.NormFibrations.Hormander
+import ReciprocityTheory.L2DbarEstimates.NormFibrations.MvBlowup
+import ReciprocityTheory.L2DbarEstimates.NormFibrations.LseSmoothRIffReal
+import ReciprocityTheory.L2DbarEstimates.NormFibrations.ImportsAlt
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.FourSignHolds
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.L2ExtensionLogCanonical
 import Development.AbelianVarietyTheory.Definitions.Divisors.EtaleEmpty
@@ -10,6 +13,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedEstimateEtal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExtensionAcrossHypersurfaceValuesAtZerosStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralSublevelTailLeOfFiniteStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasureComplNonvanishingSetEqZeroOfDenseStatement
+
 open MeasureTheory Filter Topology Metric ReciprocityTheory.L2DbarEstimates ReciprocityTheory.L2DbarEstimates.Y GlobalTheory.OTY GlobalTheory.Published.L2Extension
 open scoped ENNReal ContDiff
 

@@ -18,17 +18,6 @@ namespace GlobalTheory.CuspGeo.RedBasisPf
 
 variable (I : AutInst)
 
-theorem vec_add (y : I.Ginf) (u w : Fin I.n → I.E) : vec I y (u + w) = vec I y u + vec I y w := by
-  funext v
-  simp only [vec, Pi.add_apply]
-  rw [← Matrix.mulVec_add, ← Matrix.mulVec_add]
-  congr 2
-  funext i
-  simp
-
-def vecHom (y : I.Ginf) : (Fin I.n → I.E) →+ (InfinitePlace I.F → Fin I.n → ℂ) :=
-  AddMonoidHom.mk' (vec I y) (vec_add I y)
-
 theorem vec_sum_zsmul (y : I.Ginf) {N : ℕ} (z : Fin N → ℤ) (e : Fin N → Fin I.n → I.E) :
     vec I y (∑ j, z j • e j) = ∑ j, z j • vec I y (e j) := by
   exact MulCoord.vec_sum_zsmul I y e z

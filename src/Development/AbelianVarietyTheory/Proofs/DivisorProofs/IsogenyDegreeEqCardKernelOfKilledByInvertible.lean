@@ -26,8 +26,6 @@ theorem comp_pow_id (T G : Over S) [GrpObj G] (x : T ⟶ G) (n : ℕ) : x ≫ (�
 
 end GlobalTheory.AV.DegSep
 
-example (K : Type) [Field K] (X : Scheme) (f : X ⟶ Sp K) [IsFinite f] : LocallyOfFinitePresentation f := inferInstance
-
 namespace GlobalTheory.AV.DegSep
 
 theorem isUnit_natCast_Γ (K : Type) [Field K] (n : ℕ) (hn : (n : K) ≠ 0) : IsUnit (n : Γ(Sp K, ⊤)) := by

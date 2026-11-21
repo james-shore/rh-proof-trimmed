@@ -3,7 +3,8 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeSumPotentia
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsRootOne
 import Development.AbelianVarietyTheory.Definitions.Foundations.LiftApplyOfMemAdmissibleSubalgebra
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsDCReps
-import CompanionTheory.EightfoldTheory.VariationTheory.AutomorphicForms.Newform
+import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
+
 open GlobalTheory.KZ GlobalTheory.KZ.H3 Matrix
 open scoped MatrixGroups
 set_option maxHeartbeats 1000000 in

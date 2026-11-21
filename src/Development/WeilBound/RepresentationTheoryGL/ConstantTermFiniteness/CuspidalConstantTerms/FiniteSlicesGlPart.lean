@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfSlices
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.InjectiveOfIsBlockEmb
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.LeviBlockCentreFinite
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockEmb
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBlockEmb
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockEmbNormalises
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MaxCompactBlockLeviSecond

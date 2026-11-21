@@ -75,4 +75,3 @@ theorem GlobalTheory.GLq.wh_cusp_pos : ∀ (g : ℕ) [Fact g.Prime] (ψ : AddCha
   rw [hwh, Nat.cast_zero, zero_mul, hd'] at hder
   exact absurd hder (by exact_mod_cast hd'pos.ne')
 
-example : ∀ (g : ℕ) [Fact g.Prime] (ψ : AddChar (ZMod g) ℂ), ψ ≠ 1 → ∀ (d : ℕ) (χ : Gn g d → ℂ), IsCusp χ → ∃ m : ℕ, 0 < m ∧ wh ψ χ = m := GlobalTheory.GLq.wh_cusp_pos

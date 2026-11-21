@@ -6,8 +6,31 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.MongeAmpereIntegralMu
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MongeAmpereIntegralCongrPotentialsStatement
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridge
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedF
-import ReciprocityTheory.AnalyticForms.PotentialTheory.ProjectiveLineFubiniStudyFacts
+import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Partition
+import ReciprocityTheory.AnalyticForms.PotentialTheory.LocDens
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupport
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PotentialContDiffAt
+import ReciprocityTheory.AnalyticForms.PotentialTheory.MaMeasure
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShift
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Stokes
+import ReciprocityTheory.AnalyticForms.PotentialTheory.LogInt
+import ReciprocityTheory.AnalyticForms.PotentialTheory.SNCAtlas
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialPullbackStatement
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.GreenSt
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PLCurveA
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PLLocalStatement
+import ReciprocityTheory.AnalyticForms.PotentialTheory.AnalyticSubsetChartLocal
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LintegralImageEqLintegralNormSqDetMul
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Pullback
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Measure
+import ReciprocityTheory.AnalyticForms.PotentialTheory.AtlasIndep
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Degree
+import ReciprocityTheory.AnalyticForms.PotentialTheory.DegreeInt
+import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffFubiniStudyRatioCompChart0
+import ReciprocityTheory.AnalyticForms.PotentialTheory.ProjectiveLinePartitionContinuousCoe
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHFlProdLinear
+
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.Cmp
 
 noncomputable section
@@ -170,50 +193,5 @@ theorem mInt_combLine_eq {D : ℕ} {σ : Type} [Fintype σ] {S : AnSys D σ} {P 
   exact Finset.sum_congr rfl fun w _ => by rw [mInt_ref_eq Re w]
 
 end Real
-
-section Main
-
-variable {Ψ : Type} [Fintype Ψ] [DecidableEq Ψ] {N : ℕ}
-
-theorem geoMono_word (hE : ResExistsStatement) (M : GlobalTheory.CompanionTheory.Ar.Top.RootModel Ψ N) {J : Ideal (MRing M.ι)}
-    (R : AnLogRes M.P J (GlobalTheory.CompanionTheory.Ar.Top.dimFl Ψ N)) (w : Fin (GlobalTheory.CompanionTheory.Ar.Top.dimFl Ψ N) → Ψ × Fin N) :
-    M.geoMono (Finsupp.mapDomain some (∑ j, Finsupp.single (w j) 1)) =
-      mInt R.A (fun j => potOf R (M.x 1 (w j))) (fun _ => 1) / (M.δ : ℝ) := by
-  classical
-  have hmap : Finsupp.mapDomain some (∑ j, Finsupp.single (w j) 1) =
-      ∑ j, Finsupp.single (some (w j)) (1 : ℕ) := by
-    rw [Finsupp.mapDomain_finset_sum]
-    simp [Finsupp.mapDomain_single]
-  rw [hmap]
-  have hdeg : (∑ j, Finsupp.single (some (w j)) (1 : ℕ)).degree = GlobalTheory.CompanionTheory.Ar.Top.dimFl Ψ N := by
-    rw [map_sum]
-    simp [Finsupp.degree_single]
-  have hnone : (∑ j, Finsupp.single (some (w j)) (1 : ℕ)) none = 0 := by
-    simp [Finsupp.finset_sum_apply]
-  have hms : Finsupp.toMultiset (∑ j, Finsupp.single (some (w j)) (1 : ℕ)) =
-      Multiset.map (fun j => some (w j)) Finset.univ.val := by
-    rw [Finsupp.toMultiset_sum]
-    simp only [Finsupp.toMultiset_single, one_smul]
-    rw [Finset.sum_eq_multiset_sum]
-    have e : (fun i => ({some (w i)} : Multiset (Option (Ψ × Fin N)))) = (fun p => {p}) ∘ fun j => some (w j) := rfl
-    rw [e, ← Multiset.map_map, Multiset.sum_map_singleton]
-  obtain ⟨ρ, hρ⟩ := GroundTheory.Heights₂.Heights.LowerBoundFree.FlagHeightMultilinear.exists_perm_toList fun j => some (w j)
-  have hML : GlobalTheory.CompanionTheory.Ar.Top.monoLines (M.line 1) (∑ j, Finsupp.single (some (w j)) (1 : ℕ))
-      (GlobalTheory.CompanionTheory.Ar.Top.dimFl Ψ N) = (fun i => M.x 1 (w i)) ∘ ρ := by
-    funext k
-    have hk : (k : ℕ) < (Multiset.map (fun j => some (w j)) Finset.univ.val).toList.length := by
-      have := k.2
-      simp [Multiset.length_toList]
-    unfold GlobalTheory.CompanionTheory.Ar.Top.monoLines
-    rw [hms, dif_pos hk, hρ k hk]
-    rfl
-  unfold GlobalTheory.CompanionTheory.Ar.Top.RootModel.geoMono
-  rw [if_pos hdeg, hnone, pow_zero, mul_one, hML]
-  congr 1
-  refine (ptsIntegral_one_eq_mInt hE resBridge R M.arith (L := (fun i => M.x 1 (w i)) ∘ ρ)
-    (fun j => M.x_smooth 1 _)).trans ?_
-  exact mIntSymm R.A (fun j => potOf R (M.x 1 (w j))) ρ _
-
-end Main
 
 end GlobalTheory.CompanionTheory.Ar.Cmp

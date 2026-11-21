@@ -242,7 +242,4 @@ theorem starDepth_den : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   rw [← hval]
   exact hall k _ ⟨_, pull_mem _ hβ, fun y => hp _, rfl⟩
 
-example (n : ℕ) (B : (Fin n → ℤ) → (Fin n → ℤ) → ℝ) : (starDepth id (InvFun.minVal ℤ) (zeroFun ℤ)).toFun n B = 0 :=
-  starDepth_zeroFun n B
-
 end GlobalTheory.PolFan.StarDen

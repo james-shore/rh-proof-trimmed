@@ -2,7 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CosetRefinement
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TopPlaceLogTheta
 import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.SignedLogMeans
-import Formalism.LocalToGlobal.GlobalTheory.GL3.ConjugateTorsionPointExists
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PFamily
 import Formalism.LocalToGlobal.GlobalTheory.GL3.PStdOK
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.VacuumNormConjCmPointsAllEmbeddings
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ExistsPowPrincipalFractionalIdeal

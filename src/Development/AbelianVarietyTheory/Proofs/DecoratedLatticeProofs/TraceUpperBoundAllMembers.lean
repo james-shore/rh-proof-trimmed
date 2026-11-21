@@ -403,10 +403,4 @@ theorem eventually_trace_le : EvP fun κ K => ∀ β : BPt K, ∀ u : β.D.what�
   exact tr_le_of C hCT cD ch β.O.L hv N hX hL100 (GlobalTheory.MemberRanks.dstar_mass K β.X β.c.isOver β.c.dsig_eq)
     β.O.ex.duStar_def (fun τ => β.c.dsig_eq τ) u
 
-theorem levelPrime_le_at_points : ∀ (hL : GlobalTheory.Published.LocalLanglandsGL) (p : Bl.Prm hL),
-    GlobalTheory.Fc.RowE (Bl.IsGoodE p.s) (Bl.IsLinked p)
-      (fun κ D O _ _ => ∀ u : D.what₂.Word, Formalism.MainNotions.S.Tr D u ≤ O.L.sc.b ^ (κ.C.CTu * (D.R.m : ℝ))) := by
-  intro hL p
-  exact eventually_trace_le.mono fun _ _ _ H β _ _ _ _ => H β
-
 end GlobalTheory.LevelPrimeUpper

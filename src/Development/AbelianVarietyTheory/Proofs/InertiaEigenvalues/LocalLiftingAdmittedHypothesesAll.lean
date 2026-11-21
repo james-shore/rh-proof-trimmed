@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.ArchimedeanSignatureMatchingOfLiftingTheory
-import Formalism.SharpRestriction.LevelLetterCocycles.UsedConclusionOfUsedInputs
+import Formalism.SharpRestriction.LevelLetterCocycles.UsedLocalConclusion
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.OneSubPhiOntoOfFilZero
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BhattScholzeIntegral
 import Formalism.GaloisCohomology.LocalTateDualityK
@@ -11,6 +11,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoLocal
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FontaineBounds
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.StrictAdm
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrystallineRestrictFiniteExtensionJumpsStatement
+
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations Module
 
 namespace GlobalTheory.AdmAllRecords

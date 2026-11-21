@@ -29,17 +29,6 @@ theorem polEval_one {V : Type} [AddCommGroup V] [Module ℂ V] {ι : Type} (m : 
     (hm : ∀ i j, m i * m j = m j * m i) (f₀ : V) : polEval m hm f₀ 1 = f₀ := by
   simp [polEval]
 
-theorem atPl_add {W Λ : Type} [Fintype W] [DecidableEq W] (w : W) (A B : Module.End ℂ (MvPolynomial Λ ℂ)) :
-    GlobalTheory.RealLift.atPl (V := fun _ : W => MvPolynomial Λ ℂ) w (A + B) =
-      GlobalTheory.RealLift.atPl (V := fun _ : W => MvPolynomial Λ ℂ) w A + GlobalTheory.RealLift.atPl (V := fun _ : W => MvPolynomial Λ ℂ) w B := by
-  simp only [GlobalTheory.RealLift.atPl]
-  exact PiTensorProduct.map_update_add (s := fun _ : W => MvPolynomial Λ ℂ) (t := fun _ : W => MvPolynomial Λ ℂ) (fun _ => LinearMap.id) w A B
-
-theorem atPl_smul {W Λ : Type} [Fintype W] [DecidableEq W] (w : W) (c : ℂ) (A : Module.End ℂ (MvPolynomial Λ ℂ)) :
-    GlobalTheory.RealLift.atPl (V := fun _ : W => MvPolynomial Λ ℂ) w (c • A) = c • GlobalTheory.RealLift.atPl (V := fun _ : W => MvPolynomial Λ ℂ) w A := by
-  simp only [GlobalTheory.RealLift.atPl]
-  exact PiTensorProduct.map_update_smul (s := fun _ : W => MvPolynomial Λ ℂ) (t := fun _ : W => MvPolynomial Λ ℂ) (fun _ => LinearMap.id) w c A
-
 theorem atPl_linear {W Λ : Type} [Fintype W] [DecidableEq W] (w : W) :
     ∃ L : Module.End ℂ (MvPolynomial Λ ℂ) →ₗ[ℂ] Module.End ℂ (⨂[ℂ] _ : W, MvPolynomial Λ ℂ),
       ∀ A, L A = GlobalTheory.RealLift.atPl (V := fun _ : W => MvPolynomial Λ ℂ) w A := ⟨(PiTensorProduct.mapMultilinear ℂ (fun _ : W => MvPolynomial Λ ℂ) (fun _ : W => MvPolynomial Λ ℂ)).toLinearMap

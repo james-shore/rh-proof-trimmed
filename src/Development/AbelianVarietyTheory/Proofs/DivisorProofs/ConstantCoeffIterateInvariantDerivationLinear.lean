@@ -12,8 +12,6 @@ noncomputable section
 
 namespace GlobalTheory.LawDer.ConstLin
 
-variable {R : Type} [CommRing R] {d : ℕ}
-
 end GlobalTheory.LawDer.ConstLin
 
 theorem GlobalTheory.LawDer.constantCoeff_iterate_invDer_sub_linear :

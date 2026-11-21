@@ -9,11 +9,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 
 namespace GlobalTheory.BlockVal
 
-theorem normV_eq_absNorm {E : Type} [Field E] [NumberField E] (v : HeightOneSpectrum (𝓞 E)) :
-    normV v = Ideal.absNorm v.asIdeal := by
-  rw [Ideal.absNorm_apply, Submodule.cardQuot_apply]
-  rfl
-
 open NumberField IsDedekindDomain Polynomial in
 private theorem block_val_mul_sqrt_normV_zpow_neg_eq_mul_inv {E : Type} [Field E] [NumberField E]
     (μ η : _root_.Formalism.L2.Host.HChar E) (r : ℕ) (v : HeightOneSpectrum (𝓞 E)) :

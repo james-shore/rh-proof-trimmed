@@ -68,10 +68,6 @@ theorem commAt_of {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.
     rw [hcomm, inv_mul_cancel]
     exact ⟨one_mem _, map_one _, map_one _⟩
 
-theorem comm : InRange fun _ _ _ _ p j P _ w => SmallAt p j P w → CommAt p j P w :=
-  ⟨1, one_pos, fun _ _ _ => ⟨⟨0, fun _ => 0, fun _ => 0, fun _ => 0⟩, fun _ _ _ _ =>
-    EvPt.of_forall fun _ _ _ p _ _ j P _ _ _ w _ _ _ => commAt_of p j P w⟩⟩
-
 end GlobalTheory.HeckeCommFrame
 
 end

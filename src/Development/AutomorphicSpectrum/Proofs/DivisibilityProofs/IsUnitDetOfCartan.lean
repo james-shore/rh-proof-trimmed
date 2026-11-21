@@ -53,13 +53,6 @@ theorem isUnit_det_of_cartan {F E : Type} [Field F] [NumberField F] [Field E] [N
   refine isUnit_iff_ne_zero.mpr fun h0 => det_ne_zero_of_cartan h ?_
   rw [Matrix.det_smul, show (J.map τ).det = τ J.det from (RingHom.map_det τ J).symm, h0, map_zero, mul_zero]
 
-open GlobalTheory.WeilM GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels in
-
-theorem acts_congr {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ] {T T' : ((κ → AF F) → ℂ) → (κ → AF F) → ℂ}
-    (h : ∀ Φ ∈ schA F κ, T Φ = T' Φ) {R : Type} [Zero R] {ev : AF F → R} {φ φ₁ : (κ → R) → ℂ} :
-    Acts ev T φ φ₁ ↔ Acts ev T' φ φ₁ :=
-  ⟨fun a r hr => (h _ hr.2).symm.trans (a r hr), fun a r hr => (h _ hr.2).trans (a r hr)⟩
-
 end GlobalTheory.CompanionTheory.Ar.RT
 
 end

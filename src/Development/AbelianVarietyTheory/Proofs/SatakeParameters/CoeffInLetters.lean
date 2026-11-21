@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TranslateJets
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelJets
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DifferentiableComb
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.JetsTorsionTranslatesCmThetaProduct
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelAtPrimeEqSumTorsionTranslates

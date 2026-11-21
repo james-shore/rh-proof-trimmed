@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsGroupHomog
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.SectionInputs
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.TheoremA
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.HasMultiplier
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IntStable
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.ValNeBot
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.SpecFirstDetFormNeZero
@@ -8,6 +8,7 @@ import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormSt
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.IsSigmaCompactConeInter
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerMinusConeIntegralIndepStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerMeasureOfProductStatement
+
 set_option maxSynthPendingDepth 1
 
 namespace GlobalTheory.CompanionTheory.Ar.Short

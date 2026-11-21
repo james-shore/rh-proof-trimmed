@@ -432,11 +432,6 @@ def chartPts (ξ : Spec (CommRingCat.of Ω) ⟶ X) (O : Type) [CommRing O] [Alge
     (c : κ) : Set (Cpt ξ) :=
   {q | InChart ξ x c q ∧ ∀ o : O, algebraMap O Ω o ∈ regAt ξ q}
 
-theorem unitAt_mul {q : Cpt ξ} {a b : Ω} (ha : unitAt ξ q a) (hb : unitAt ξ q b) : unitAt ξ q (a * b) :=
-  ⟨mul_ne_zero ha.1 hb.1, mul_mem ha.2.1 hb.2.1, by
-    rw [mul_inv]
-    exact mul_mem ha.2.2 hb.2.2⟩
-
 theorem chartRing_le_regAt {κ : Type} {x : κ → Ω} {c : κ} {q : Cpt ξ} (hq : q ∈ chartPts ξ O x c) :
     (chartRing O x c).toSubring ≤ regAt ξ q := fun a ha =>
   Algebra.adjoin_induction (p := fun u _ => u ∈ regAt ξ q)

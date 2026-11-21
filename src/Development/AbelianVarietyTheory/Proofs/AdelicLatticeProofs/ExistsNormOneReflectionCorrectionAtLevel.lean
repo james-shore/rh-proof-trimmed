@@ -3,22 +3,11 @@ import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.IsHermF
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.UnitaryQuasiReflectionLaws
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.NormOneApproximationAtLevelPrimesStatement
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNatSmulMem
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsPosNatMulMemRingOfIntegers
 
 open NumberField IsDedekindDomain GlobalTheory.AdLat GlobalTheory.UnRep
 open scoped TensorProduct Matrix
 
 namespace GlobalTheory.UnRep
-
-theorem exists_nat_mul_integral {E : Type} [Field E] [NumberField E] (a : E) :
-    ∃ m : ℕ, 0 < m ∧ ∃ b : 𝓞 E, (b : E) = (m : E) * a := by
-  first
-  | exact @_root_.GlobalTheory.NatMultipleRingOfIntegers.exists_pos_nat_mul_mem_ringOfIntegers
-  | exact _root_.GlobalTheory.NatMultipleRingOfIntegers.exists_pos_nat_mul_mem_ringOfIntegers
-  | (apply _root_.GlobalTheory.NatMultipleRingOfIntegers.exists_pos_nat_mul_mem_ringOfIntegers <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatMultipleRingOfIntegers.exists_pos_nat_mul_mem_ringOfIntegers <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatMultipleRingOfIntegers.exists_pos_nat_mul_mem_ringOfIntegers <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatMultipleRingOfIntegers.exists_pos_nat_mul_mem_ringOfIntegers ..)
 
 theorem exists_nat_smul_mem_of_span {E : Type} [Field E] [NumberField E] {n : ℕ}
     (L : Submodule (𝓞 E) (Fin n → E)) (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤)

@@ -77,26 +77,6 @@ theorem hasExpBound_at (hcut : Formalism.CohomologicalDescent.E.ExCut) {c : OnCo
 
 end Point
 
-theorem expSt_of : Formalism.CohomologicalDescent.E.ExCut → NumSt → SumExpSt → ModelSt → ExpSt := by
-  intro hcut hN hS hM
-  obtain ⟨a, ha, H⟩ := (hN.and hS).and hM
-  refine ⟨a, ha, fun e he hle => ?_⟩
-  obtain ⟨K, hK⟩ := H e he hle
-  refine ⟨K, fun Fm CH hc hL => ?_⟩
-  obtain ⟨⟨⟨x1, N1⟩, ⟨x2, S1⟩⟩, ⟨x3, M1⟩⟩ := hK Fm CH hc hL
-  refine ⟨0, fun c _ _ => ⟨max x1 (max x2 x3), fun x hx hle i p hp hMo r O hR => ?_⟩⟩
-  have h1 : x1 ≤ x := (le_max_left _ _).trans hle
-  have h2 : x2 ≤ x := (le_max_left _ _).trans ((le_max_right _ _).trans hle)
-  have h3 : x3 ≤ x := (le_max_right _ _).trans ((le_max_right _ _).trans hle)
-  choose Pj Wj hPW using N1 x hx h1 i p hp hMo
-  obtain ⟨st, hRT⟩ := hR.1.depth
-  letI := st
-  letI := hostAlg (Fm.D x i)
-  intro C CH'
-  exact hasExpBound_at p hcut O hRT.m_eq hRT.x_eq hRT.eps_eq hR.1.realisedChain_torus_eq Pj Wj (fun j => (hPW j).1) (fun j => (hPW j).2)
-    (fun j t w => S1 x hx h2 i p hp hMo j (Pj j) (Wj j) (hPW j).1 (hPW j).2 t w)
-    (fun j w hw hR' => M1 x hx h3 i p hp hMo j (Pj j) (Wj j) (hPW j).1 (hPW j).2 w hw hR') C CH'
-
 end GlobalTheory.ExpTie.Asm
 
 end

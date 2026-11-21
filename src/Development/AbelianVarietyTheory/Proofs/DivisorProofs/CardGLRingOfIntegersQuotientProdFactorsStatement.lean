@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardGLRingOfIntegersQuotientProdFactors
-import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowBlockIndicatorFromLtIff
+
 open NumberField UniqueFactorizationMonoid GlobalTheory.StdLoc
 
 set_option maxHeartbeats 1000000 in

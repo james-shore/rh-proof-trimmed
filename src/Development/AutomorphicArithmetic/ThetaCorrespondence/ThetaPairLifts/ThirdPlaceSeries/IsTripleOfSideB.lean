@@ -1,5 +1,5 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SideEigenExport
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CohomologicalCsdTempered
+import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsReading
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GaloisReps
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IsTripleAtOfConj
@@ -14,11 +14,6 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 namespace GlobalTheory.TripInhab
-open GlobalTheory.Triple GlobalTheory.EigTie
-open GlobalTheory.GalChar (IsGal toQ inQ)
-open GlobalTheory.IndefiniteRowSideFullHecke.RayClassPrimeCounting (IsGaloisRepOf GalE)
-open GlobalTheory.TwistAbove (twGL)
-variable {D : D7} {C : CharFrame D} {art : Neutral.B1.Ideles D.host.E →* GlobalTheory.HeckeGal.Gab D.host.E D.nd.Om}
 end GlobalTheory.TripInhab
 namespace GlobalTheory.TripInhab
 open GlobalTheory.Triple GlobalTheory.EigTie

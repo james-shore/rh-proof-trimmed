@@ -2,7 +2,17 @@ import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSecCharVal
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.PowClassNumberIntegral
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsDeltaDatLargeCoeff
+import Formalism.LocalToGlobal.ProjectiveLattices.HasDataCondition
+import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonalBis
+import Formalism.LocalToGlobal.ProjectiveLattices.RecCond
+import Formalism.LocalToGlobal.ProjectiveLattices.ParCanon
+import Formalism.LocalToGlobal.ProjectiveLattices.ExistsParameterConditions
+import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThExprUniqOfChartIndep2
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLevelMulSplit
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsDeltaDatumHigherLevel
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsEquivariantFunOnSpanningFamilies
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIdempotentSectionFamily
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsComponentWeight
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.MemRangeOfIsAlgebraicRatFun
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsAlgebraMapOfSigRFixed
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsHalfOfBasePins
@@ -267,14 +277,5 @@ theorem finite_tuples {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what
   · by_cases hw : w ∈ R.twPl
     · exact Set.mem_insert_of_mem _ ⟨w, hw, rfl⟩
     · exact (h1 w hw).symm ▸ Set.mem_insert _ _
-
-theorem exists_covers_of_char (T : CoreJ D) [Algebra T.Q.c.F D.what₂.LL] (R : RealDat D A T.Q.c.F) (F : Face D A)
-    (hT : LawsJ T) (hR : R.Char F) (hO : T.pb = R.C.P.pb) (hG : QGuard R) (i : Fin D.R.m) :
-    ∃ (pd : T0 → ℕ) (l₂ : T0 → Level T.Q.H) (c₁ : Coeff T.Q.l),
-      T.Q.c.F ≤ c₁.F ∧ D.what₂.embLL.toRatAlgHom.fieldRange ≤ c₁.F ∧
-      ∀ (c' : Coeff T.Q.l) (hle : T.Q.c.F ≤ c'.F), c₁.F ≤ c'.F →
-        CoversAt T R i (Vc D i).rank pd (fun t => coverHalf D (R.Q t)) l₂ c' hle :=
-  haveI := finite_tuples R hR.tup.mu_off hR.tup.mu_used
-  exists_covers T R hT hR.lev hO hG i _
 
 end GlobalTheory.TupleCover

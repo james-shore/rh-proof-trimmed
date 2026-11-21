@@ -109,5 +109,3 @@ theorem zetaNe_of_real : ∀ D : D7, MetEx D → LevFacts D → LevelLaw D → C
 
 end GlobalTheory.ChainOnto.ZetaNeProof
 
-example : ∀ D : D7, MetEx D → LevFacts D → LevelLaw D → CoefSupp D → RealZeta D → ZetaNe D :=
-  GlobalTheory.ChainOnto.ZetaNeProof.zetaNe_of_real

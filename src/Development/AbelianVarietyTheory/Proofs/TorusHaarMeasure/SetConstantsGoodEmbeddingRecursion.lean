@@ -17,17 +17,6 @@ noncomputable section
 
 namespace GlobalTheory.BigRec
 
-section Inst
-
-variable {D : D7} {T : Top D}
-
-def frNorm (T : Top D) (j : ℕ) (σ : T.Q.c.F →+* ℂ) (u : WeightFamilies.Wt D j) (f : T.R j) (p : FPt (T.U j σ).X) : ℝ :=
-  ((T.U j σ).X p.1).pnorm (laU (T.U j σ) (wtA u) u.n p.1) (rdU (T.U j σ) f p.1) p.2
-
-variable (h : LawsP T) {j : ℕ} (hj : InR D j)
-
-end Inst
-
 set_option maxHeartbeats 4000000 in
 set_option synthInstance.maxHeartbeats 400000 in
 

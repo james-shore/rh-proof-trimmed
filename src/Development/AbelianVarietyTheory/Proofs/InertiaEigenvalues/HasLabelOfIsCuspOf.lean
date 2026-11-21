@@ -68,28 +68,4 @@ theorem five_le (D : D7) (k : Fin 2) : 5 ≤ D.host.g k := by
   have := (D.host.g_prime k).two_le
   omega
 
-theorem labParam_of (D : D7) (L : ∀ k, LabelDatum (D.host.g k)) (rc : Corr D) (hG : Green)
-    (h1 : ∀ k v, TameGen.SupportCompat (fun a => D.naut.inePol a (D.ntypes.tg k v))
-      (fun π : GLRep _ => rc k v π.1 π.2))
-    (h2 : ∀ k, TameGen.DepthZeroCuspidal (D.host.g k))
-    (h3 : ∀ k v, TameGen.TameParam (L k) (fun a => D.naut.inePol a (D.ntypes.tg k v))
-      (fun π : GLRep _ => rc k v π.1 π.2)) :
-    LabParam D L rc := fun k v n π hπ f hf =>
-  TameGen.ine_eq_of_has_green (OfLabel.ofLabel (L k) (five_le D k) hG) (L k) _ _ _ (h1 k v) (h2 k) hG (h3 k v)
-    (labelsCusp _ _ _) ⟨n, π⟩ hπ.1 hπ.2 f hf
-
-theorem serLoc_of (D : D7) (L : ∀ k, LabelDatum (D.host.g k)) (rc : Corr D) (hG : Green)
-    (hL : LabTie D L) (hU : IneUnr D) (hC : LocComp D rc) (hP : LabParam D L rc) : SerLoc D :=
-  have hS : ∀ k, (OfLabel.ofLabel (L k) (five_le D k) hG).IsOf (L k) := fun _ _ _ => rfl
-  GlobalTheory.SerLocal.serLoc D _ (hL.sysTie hS) hU (locType_of_ties hL hS hC hP)
-
-theorem serLoc_of_ties (D : D7) (L : ∀ k, LabelDatum (D.host.g k)) (rc : Corr D) (hG : Green)
-    (hL : LabTie D L) (hU : IneUnr D) (hC : LocComp D rc)
-    (h1 : ∀ k v, TameGen.SupportCompat (fun a => D.naut.inePol a (D.ntypes.tg k v))
-      (fun π : GLRep _ => rc k v π.1 π.2))
-    (h2 : ∀ k, TameGen.DepthZeroCuspidal (D.host.g k))
-    (h3 : ∀ k v, TameGen.TameParam (L k) (fun a => D.naut.inePol a (D.ntypes.tg k v))
-      (fun π : GLRep _ => rc k v π.1 π.2)) : SerLoc D :=
-  serLoc_of D L rc hG hL hU hC (labParam_of D L rc hG h1 h2 h3)
-
 end GlobalTheory.SerSys.Bridge

@@ -29,17 +29,6 @@ theorem map_smulA {T T' : LocLat G Qp LL O} (f : LatHom T.L T'.L) (a : LetA O n)
     W.map f (a • x) = a • W.map f x := by
   rw [← algebraMap_smul W.EE a x, LinearMap.map_smul, algebraMap_smul]
 
-theorem φD_smulA (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) :
-    W.φD T (a • x) = W.φA a • W.φD T x := by
-  rw [← algebraMap_smul W.EE a x, W.φD_smul, W.φE_ext, algebraMap_smul]
-  rfl
-
-theorem φA_letE (i : ZMod n) : W.φA (letE (i - 1) : LetA O n) = letE i := by
-  funext j
-  simp only [LocWach.φA, letφ, AlgHom.pi_apply, AlgHom.comp_apply, Pi.evalAlgHom_apply, letE,
-    Pi.single_apply, sub_left_inj]
-  split_ifs <;> simp
-
 theorem sum_letE [NeZero n] : ∑ i : ZMod n, (letE i : LetA O n) = 1 := by
   funext j
   simp [letE, Finset.sum_apply, Pi.single_apply]

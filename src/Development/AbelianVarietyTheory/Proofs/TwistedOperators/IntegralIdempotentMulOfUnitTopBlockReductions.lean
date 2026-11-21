@@ -112,12 +112,6 @@ theorem topL_mul {m n : ℕ} (hnm : n ≤ m) (A : Matrix (Fin m) (Fin n) (EAf D)
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [topL_pos _ ⟨hi, k.2⟩]
 
-theorem topL_smul {m n : ℕ} (c : EAf D) (A : Matrix (Fin m) (Fin n) (EAf D)) : topL n (c • A) = c • topL n A := by
-  ext i j
-  by_cases h : i.val < m ∧ j.val < n
-  · rw [topL_pos _ h, Matrix.smul_apply, Matrix.smul_apply, topL_pos _ h]
-  · rw [topL_neg _ h, Matrix.smul_apply, topL_neg _ h, smul_zero]
-
 end GlobalTheory.HalfUnit
 
 namespace GlobalTheory.HalfUnit

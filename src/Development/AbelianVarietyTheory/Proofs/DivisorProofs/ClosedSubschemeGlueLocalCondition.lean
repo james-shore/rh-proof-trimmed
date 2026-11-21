@@ -12,16 +12,6 @@ open scoped CategoryTheory.Obj
 namespace GlobalTheory.ClosedGlue
 open Scheme TopologicalSpace
 
-theorem app_comp_ι_eq_zero_iff {T S : Scheme.{0}} (U : S.Opens) (g : T ⟶ U) (V : U.toScheme.Opens)
-    (x : Γ(S, U.ι ''ᵁ V)) :
-    ((g ≫ U.ι).app (U.ι ''ᵁ V)).hom x = 0 ↔ (g.app V).hom x = 0 := by
-  have e : (g ≫ U.ι).app (U.ι ''ᵁ V) = g.app V ≫ T.presheaf.map (eqToHom (by simp)).op := by
-    simp only [Scheme.Hom.comp_app, Scheme.Opens.ι_app]
-    refine (g.naturality (homOfLE (U.ι.preimage_image_eq V).le).op).trans ?_
-    congr 2
-  rw [e]
-  exact map_eq_zero_iff (T.presheaf.map _).hom (ConcreteCategory.bijective_of_isIso _).1
-
 theorem restrict_app_eq_zero_iff {T S : Scheme.{0}} (f : T ⟶ S) (U : S.Opens) (V : U.toScheme.Opens)
     (a : Γ(S, U.ι ''ᵁ V)) : ((f ∣_ U).app V).hom a = 0 ↔ (f.app (U.ι ''ᵁ V)).hom a = 0 := by
   rw [morphismRestrict_app]

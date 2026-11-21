@@ -125,19 +125,6 @@ theorem continuous_idl : Continuous (idl q) :=
   Units.continuous_iff.2 ⟨(q.cont_sec.comp Units.continuous_val).add continuous_const,
     (q.cont_sec.comp Units.continuous_coe_inv).add continuous_const⟩
 
-theorem unram_idl {χ : (AE D)ˣ →* Circle} (hχ : UnramEverywhere D χ) (x : kˣ) (hx : valuation k (x : k) = 1) : χ (idl q x) = 1 := by
-  have one : finPart D 1 ∈ intAE D := by
-    rw [map_one]
-    exact AddSubgroup.subset_closure ⟨1, fun v => by simp, 1, rfl⟩
-  have key : ∀ y : k, valuation k y ≤ 1 → finPart D (q.sec y + (1 - q.e)) ∈ intAE D := fun y hy => by
-    rw [RingHom.map_add, RingHom.map_sub, ← sec_one]
-    exact add_mem ((q.int_iff y).1 hy) (sub_mem one ((q.int_iff 1).1 (one_mem _)))
-  refine hχ _ ?_ (key _ hx.le) (key _ (by simp [hx]))
-  have h1 : infPart D (q.sec x) = 0 := (GlobalTheory.FrameGlob.sec_mem_idAt q x).1
-  have h2 : infPart D q.e = 0 := (GlobalTheory.FrameGlob.e_mem_idAt q).1
-  change infPart D (q.sec x + (1 - q.e)) = 1
-  rw [RingHom.map_add, RingHom.map_sub, h1, h2, RingHom.map_one, zero_add, sub_zero]
-
 theorem res_idl {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP) {χ : (AE D)ˣ →* Circle} {H : Formalism.L2.Host.HChar D.host.E}
     {c : (Formalism.L2.DIV.kP PP)ˣ →* ℂˣ} (hχ : Formalism.IndefR.Links.ChrEq χ H) (hr : Formalism.IndefR.Links.IsRes H PP c) (x : kˣ)
     (hx : valuation k ((x : k) - 1) < 1) : χ (idl q x) = 1 := by
@@ -184,25 +171,6 @@ theorem res_idl {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP) {χ : 
   refine hW' (a := Units.mk0 _ ha3) ha1 (rat a _ rfl ?_)
   have := Valuation.map_add_lt (valuation k) ha2 hx
   simpa using this
-
-theorem tame_comp {c : GlobalTheory.ChainOnto.Com D} (hc : c.Is) {PP : Formalism.L2.DIV.Pl D.host.E} (hP : PP ∈ c.Pg) (h : IsIdemAt q.e PP)
-    {j : ℕ} (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) {μ : kˣ →* ℂˣ} (hμ : (ofSplit q).IsComp (c.chS j)⁻¹ μ) : IsTame μ := by
-  intro x hx
-  have hv : valuation k (x : k) = 1 := by simpa using Valuation.map_one_add_of_lt (valuation k) hx
-  obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
-  obtain ⟨H, hH, hr⟩ := hc.res ⟨i, h2⟩
-  have e1 := res_idl q h hH (hr PP hP) x hx
-  have e2 := unram_idl q hc.chars.2.1 x hv
-  have e3 : c.chS (i + 1) (idl q x) = 1 := by
-    unfold GlobalTheory.ChainOnto.Com.chS Formalism.IndefR.Lift.chrStep
-    split_ifs
-    · change c.μ (i + 1) (idl q x) * (c.η (idl q x))⁻¹ = 1
-      rw [e2, inv_one, mul_one]
-      exact e1
-    · exact e1
-  refine Units.ext ((hμ x (idl q x) rfl).trans ?_)
-  rw [MonoidHom.inv_apply, e3]
-  simp
 
 theorem exists_unif {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP) {ψ : AddChar k Circle} (hψ : HasConductor ψ 1)
     {ψ₀ : AddChar (Formalism.L2.DIV.kP PP) ℂ} (h₀ : ψ₀ ≠ 1) : ∃ ϖ : kˣ, GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum.IsUnif ϖ ∧
@@ -271,36 +239,6 @@ theorem exists_unif {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP) {�
     refine congrArg (fun c => (ψ c : ℂ)) ?_
     simp
     ring
-
-theorem exists_latFrame (S : HSp D) (L : GlobalTheory.FinPl.Lat S) (hL : IsSelfDualC S L) (Y : Type) [Fintype Y] [DecidableEq Y]
-    (e : Y ≃ Fin S.rank) : ∃ F : GlobalTheory.LocMod.Frame k S.rank Y, ∀ y : Y → k, (∀ i, y i ∈ 𝒪[k]) ↔
-      (fun i => q.sec ((F.β *ᵥ y) i)) ∈ latV S L (· = q.v) := by
-  obtain ⟨gl, h1, h2⟩ := GlobalTheory.T.exists_GL_embedding_unitaryAdelic_splitPlace_basis D k q S (Fin S.rank) 1 1 (mul_one _) (mul_one _)
-  obtain ⟨Λ, hΛ, hl, -⟩ := (GlobalTheory.T.splitPlaceHermitianFrame_properties D k q S _ ⟨1, 1, mul_one _, mul_one _, gl, h1, h2⟩).2.2.2.1 L hL
-  let b := (Module.finBasisOfFinrankEq 𝒪[k] Λ (Submodule.IsLattice.finrank_of_pi k Λ)).reindex
-    ((finCongr (Fintype.card_fin _)).trans e.symm)
-  let b' := b.extendOfIsLattice k
-  have hkey : ∀ c : Y → 𝒪[k], b'.equivFun.symm (fun i => (c i : k)) = ((∑ i, c i • b i : Λ) : _ → k) := by
-    intro c
-    rw [Module.Basis.equivFun_symm_apply, Submodule.coe_sum]
-    refine Finset.sum_congr rfl fun i _ => ?_
-    rw [Module.Basis.extendOfIsLattice_apply]
-    rfl
-  refine ⟨⟨LinearMap.toMatrix' b'.equivFun.symm.toLinearMap, LinearMap.toMatrix' b'.equivFun.toLinearMap, ?_, ?_⟩, fun y => ?_⟩
-  · rw [← LinearMap.toMatrix'_comp]; simp
-  · rw [← LinearMap.toMatrix'_comp]; simp
-  have h3 := hl (b'.equivFun.symm y)
-  simp only [one_mulVec] at h3
-  simp only [LinearMap.toMatrix'_mulVec, LinearEquiv.coe_coe]
-  rw [← h3]
-  refine ⟨fun h => ?_, fun h => ?_⟩
-  · have h2 : b'.equivFun.symm y = _ := hkey fun i => ⟨y i, h i⟩
-    rw [h2]
-    exact Subtype.property _
-  · have h1 := hkey (b.repr ⟨_, h⟩)
-    rw [b.sum_repr] at h1
-    rw [← b'.equivFun.symm.injective h1]
-    exact fun i => (b.repr ⟨_, h⟩ i).2
 
 theorem exists_topFrame {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP) (S : HSp D) (L : GlobalTheory.FinPl.Lat S)
     (β : GL (Fin S.rank) (Lev.EAf D)) (hβ : Formalism.L2.DIV.IsFrame β L) : ∃ B : GL (Fin S.rank) k, MovedTo (ofSplit q) S 1 β B.val ∧

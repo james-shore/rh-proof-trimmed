@@ -143,11 +143,6 @@ theorem isPair_tw (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T0 : Type)
     show Lift.tup R.mu0 χ ((i : ℕ) + 1) x * (R.eta x)⁻¹ = 1
     rw [u4 x a b c, u3 x a b c, inv_one, one_mul]
 
-example {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : Formalism.L2.DIV.FamIn D.what₂.LL G Pl0 T0 D.R.m}
-    {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (i : Fin D.R.m) {ξ χ ξR Q ω φ}
-    (h : GlobalTheory.OnCmp.KerDat R i ξ χ ξR Q ω φ) :
-    (∀ PP, ¬ ξ.UnrAt PP ↔ PP ∈ Q ∨ ∃ PP' ∈ Q, Formalism.IndefR.Lev.IsConjPl PP' PP) := h.ram
-
 set_option synthInstance.maxHeartbeats 400000 in
 set_option maxHeartbeats 1600000 in
 

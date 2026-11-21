@@ -206,11 +206,6 @@ theorem rl_X (e : Ψ ≃ Fin f) (τ : Ψ) (i : Fin (j + k)) :
     rl e j k (X (τ, i)) = X (e τ, i) := by
   simp [rl]
 
-omit [Fintype Ψ] [DecidableEq Ψ] in
-theorem rli_X (e : Ψ ≃ Fin f) (τ : Fin f) (i : Fin (j + k)) :
-    rli e j k (X (τ, i)) = X (e.symm τ, i) := by
-  simp [rli]
-
 def flagI (e : Ψ ≃ Fin f) (j k : ℕ) : RestTerms.Roots f j k →ₗ[ℝ] ℝ :=
   (degFlL (j + k)).comp (rli e j k).toLinearMap
 

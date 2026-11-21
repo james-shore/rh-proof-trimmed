@@ -27,7 +27,4 @@ theorem siegelToroidalIntegral_of_polCharts
   exact GlobalTheory.T.isAmple_tensor_lbPow_mono_of_generated S (hodge G g) (CechPic.dual BD.lb) N k (isLB_hodge G g)
     (CechPic.isLB_dual BD.isLB_lb) h12 hk k' hk'
 
-example : (∀ g : ℕ, ∃ φ : InvFun ℤ, IsPolFan (id : ℤ → ℤ) g φ ∧ NoSelfInt (id : ℤ → ℤ) g φ) →
-    GlobalTheory.Published.SiegelToroidalPolCharts → GlobalTheory.Published.SiegelToroidalIntegral := siegelToroidalIntegral_of_polCharts
-
 end GlobalTheory.PolDeg

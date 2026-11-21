@@ -20,10 +20,6 @@ theorem rsT_eq {O₀ O : Z.Opens} (h : O ≤ O₀) (s : Γ(Z, O₀)) : rsT s O =
   unfold rsT
   rw [dif_pos h]
 
-theorem rsT_self {O : Z.Opens} (s : Γ(Z, O)) : rsT s O = s := by
-  unfold rsT resG
-  simp
-
 theorem rsT_add {O₀ : Z.Opens} (O : Z.Opens) (s t : Γ(Z, O₀)) : rsT (s + t) O = rsT s O + rsT t O := by
   unfold rsT
   split_ifs with h

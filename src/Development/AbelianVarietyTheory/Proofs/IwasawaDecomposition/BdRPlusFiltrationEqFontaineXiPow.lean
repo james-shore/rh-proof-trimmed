@@ -29,11 +29,6 @@ theorem evalₐ_algebraMap (n : ℕ) (r : R) :
     AdicCompletion.evalₐ I n (algebraMap R (AdicCompletion I R) r) = Ideal.Quotient.mk _ r := by
   rw [AlgHom.commutes]; rfl
 
-theorem evalₐ_surj (n : ℕ) : Function.Surjective (AdicCompletion.evalₐ I n) := by
-  intro x
-  obtain ⟨r, rfl⟩ := Ideal.Quotient.mk_surjective x
-  exact ⟨_, evalₐ_algebraMap n r⟩
-
 theorem regular_of_isDomain [IsDomain R] (h : I = Ideal.span {a}) (ha : a ≠ 0) (y : AdicCompletion I R)
     (hy : algebraMap R (AdicCompletion I R) a * y = 0) : y = 0 := by
   refine AdicCompletion.ext_evalₐ fun n => ?_

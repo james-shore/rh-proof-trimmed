@@ -11,9 +11,6 @@ namespace GlobalTheory.CompanionTheory.PerfFil
 
 namespace GradedFiltration
 
-theorem Fil0_succ_le {l : ℕ} [Fact l.Prime] (A : PAlg l) (r : ℕ) : A.Fil0 (r + 1) ≤ A.Fil0 r :=
-  Ideal.span_mono fun _ ⟨k, hk, e⟩ => ⟨k, by omega, e⟩
-
 theorem dividedXi_mem_filtration {l : ℕ} [Fact l.Prime] (A : PAlg l) (r : ℕ) : A.dxi0 r ∈ A.Fil0 r :=
   Ideal.subset_span ⟨r, le_rfl, rfl⟩
 

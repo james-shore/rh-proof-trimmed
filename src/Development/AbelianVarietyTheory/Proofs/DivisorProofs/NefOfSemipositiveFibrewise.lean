@@ -2,8 +2,9 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeVolSlopeOfTendsto
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMemChart
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NefFibPullback
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompleteCurveArithModelClosureStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CurveModelRationalDegreeStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompleteCurveArithModelClosure
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RingKrullDimIntegers
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LineBundleIntersectionNumberGroundFieldChange
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EulerCharLineBundleFibreModpEqRatProjectiveStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArithmeticSurfaceFibreIsProjOverZmodDimLeOneStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegreeNonnegOfCurveDegreeNonnegOverZmodStatement
@@ -37,25 +38,6 @@ theorem ratDeg_nonneg : ∀ (k : Type) [CommRing k] (W : Scheme.{0}) (q : W ⟶ 
   rw [ratDeg, degOfRank, ← e1, ← e2]
   simpa [degOfRank] using h
 
-theorem isNef_model : ∀ (F : Type) [Field F] [NumberField F] (Y : Var F) (P : TrueGeo.Model Y) (L : HermLB P.p),
-    ArInt.NefFib L → IsNef F (L.B.pull P.j) := by
-  intro F _ _ Y P L hL
-  refine ⟨LB.isLB_pull L.isLB P.j, fun Z hZ => ?_⟩
-  obtain ⟨W, w, z, _, hW, hz, hpb⟩ := GlobalTheory.T.complete_curve_arith_model_closure F Y P Z hZ
-  have e := GlobalTheory.T.curve_model_rational_degree F Y P Z hZ W w z hW hz hpb L.B L.isLB
-  have h0 := ratDeg_nonneg (𝓞 F) W (w ≫ P.p) (L.pull w rfl) hW
-    (ArInt.nefFib_pull (𝓞 F) P.X W P.p (w ≫ P.p) P.ar.isProjOver hW.isProjOver w rfl L hL)
-  change 0 ≤ ratDeg (w ≫ P.p) (L.B.pull w) at h0
-  rw [e] at h0
-  have hpos : (0 : ℤ) < (Module.finrank ℚ F : ℤ) := by exact_mod_cast Module.finrank_pos
-  exact (mul_nonneg_iff_of_pos_left hpos).mp h0
-
 end GlobalTheory.NefGeneric
-
-theorem GlobalTheory.CovHt.Link.nef_of_semiPos_nefFib : Hypotheses2 → HypothesesH → ∀ (F : Type) [Field F] [NumberField F] (C : CxSt F)
-    (Y : Var F) (M : Adl C Y), M.SemiPos → M.NefFib → Y.nef M.D := by
-  intro _ _ F _ _ C Y M _ ⟨P, L, k, cf, ⟨_, r, hr, _⟩, hL⟩
-  have h := GlobalTheory.NefGeneric.isNef_model F Y P L hL
-  exact (Var.nef_nsmul_iff k.pos).1 ((Var.nef_iff_of_toPic_eq _ hr.toPic_eq).2 h)
 
 end

@@ -184,21 +184,4 @@ theorem cuspVal_eq_psi (ω : Fbar g →*₀ ℂ) {ι : Type} [Fintype ι] [Decid
     rintro ⟨f, m, -, hf, -, e⟩
     exact hh ⟨f, m, hf, by rw [← e, Matrix.charpoly_toLin']⟩
 
-theorem exists_label {ω : Fbar g →*₀ ℂ} (hω : Function.Injective ω) {d : ℕ} (hd : 0 < d) {k : ℕ}
-    (hk : ∀ i : ℕ, 0 < i → i < d → ¬ k * g ^ i ≡ k [MOD g ^ d - 1]) :
-    ∃ x : Fbar g, x ^ (g ^ d - 1) = 1 ∧ ω x = rootC (g ^ d - 1) ^ k ∧ (minpoly (ZMod g) x).natDegree = d := by
-  haveI : NeZero g := ⟨(Fact.out : g.Prime).ne_zero⟩
-  have hprim := rootC_prim (g := g) hd
-  obtain ⟨x, hx, hx'⟩ := exists_preimage hω hd (z := rootC (g ^ d - 1) ^ k)
-    (by rw [← pow_mul, mul_comm, pow_mul, hprim.pow_eq_one, one_pow])
-  refine ⟨x, hx, hx', (GlobalTheory.T.regular_iff_natDegree_and_exists_elliptic_GL (ZMod g) d hd x (by simpa [Nat.card_zmod] using hx)).1.1 fun e he hed h => ?_⟩
-  rw [Nat.card_zmod] at h
-  have h1 := congrArg ω h
-  rw [map_pow, hx', ← pow_mul] at h1
-  have h0 := hprim.ne_zero (g_pow_sub_pos hd).ne'
-  have hu : (Units.mk0 _ h0) ^ (k * g ^ e) = (Units.mk0 _ h0) ^ k := by
-    ext; simpa using h1
-  rw [pow_eq_pow_iff_modEq, ← orderOf_units, Units.val_mk0, ← hprim.eq_orderOf] at hu
-  exact hk e he hed hu
-
 end GlobalTheory.CuspFormula

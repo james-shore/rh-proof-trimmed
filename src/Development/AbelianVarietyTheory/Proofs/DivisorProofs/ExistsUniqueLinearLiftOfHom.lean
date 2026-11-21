@@ -124,8 +124,4 @@ end GlobalTheory.HeckeUnif
 
 namespace GlobalTheory.UPel.HT.Hecke
 
-open GlobalTheory.UnifPull GlobalTheory.HeckeUnif
-
-variable {p : ℕ} [Fact p.Prime] {D : Datum p} {R : Type} [CommRing R] {b : Base D R}
-
 end GlobalTheory.UPel.HT.Hecke

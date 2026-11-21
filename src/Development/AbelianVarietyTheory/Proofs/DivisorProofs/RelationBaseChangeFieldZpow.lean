@@ -5,7 +5,10 @@ import Formalism.LocalRingCardinality.DataParamsT
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.Definitions.Divisors.CuspIso
 import Development.AbelianVarietyTheory.Definitions.Divisors.WellChosen
-import Development.AbelianVarietyTheory.Definitions.Divisors.MeanLogLeOfBounds
+import Development.AbelianVarietyTheory.Definitions.Divisors.IntegralBound
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsCoordAtPoints
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormalizedPointHeightLatticeSmul
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerConstantCoeffEqSpan
 import Development.AbelianVarietyTheory.Definitions.Divisors.WedgeNrmLeOfWedgeNormLe
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsHomWeightHomWeight
 import Development.AbelianVarietyTheory.Definitions.Divisors.MemLevEigenIffTransl
@@ -35,6 +38,7 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsFramedPoin
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUniqueFrameChangeByMatrices
 import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.LawsFieldsSeparately
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FramePolynomialIntegerExponentDegreeEq
+
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory Formalism.L2.Pj Formalism.BasicNotions
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)

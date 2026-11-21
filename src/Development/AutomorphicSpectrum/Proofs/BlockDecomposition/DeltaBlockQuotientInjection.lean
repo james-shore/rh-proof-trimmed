@@ -34,10 +34,6 @@ theorem IsI.neg {x : K} (hx : IsI x) : IsI (-x) := by
   obtain ⟨o, rfl⟩ := hx
   exact ⟨-o, by simp⟩
 
-theorem IsI.sub {x y : K} (hx : IsI x) (hy : IsI y) : IsI (x - y) := by
-  rw [sub_eq_add_neg]
-  exact hx.add hy.neg
-
 theorem IsI.mul {x y : K} (hx : IsI x) (hy : IsI y) : IsI (x * y) := by
   obtain ⟨o, rfl⟩ := hx
   obtain ⟨p, rfl⟩ := hy

@@ -114,8 +114,6 @@ theorem gm_pull_g {X X' Y : Scheme.{0}} {L : LB X} (F : X' ⟶ X) (f : Y ⟶ X')
   rw [Fintype.prod_unique, zpow_one]
   exact (gm_res f y _ hp _).trans (gm_pull f F y (L.U j ⊓ L.U j') ⟨hj, hj'⟩ _)
 
-example {X Y Z : Scheme.{0}} (f : Z ⟶ Y) (g : Y ⟶ X) (z : Z) : (f ≫ g) z = g (f z) := rfl
-
 end GlobalTheory.HeatUConn
 
 namespace GlobalTheory.HeatUConn

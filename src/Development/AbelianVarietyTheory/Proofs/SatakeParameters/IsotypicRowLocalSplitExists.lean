@@ -87,14 +87,6 @@ namespace GlobalTheory.RowLocal
 section Asm
 variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
 
-theorem trivOutside_mul {T : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield L)))} {x y : GAf L n}
-    (hx : TrivOutside T x) (hy : TrivOutside T y) : TrivOutside T (x * y) := by
-  intro v hv
-  have h1 := hx v hv
-  have h2 := hy v hv
-  show ((x.1 * y.1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)).map (compAt L v) = 1
-  rw [Units.val_mul, Matrix.map_mul, h1, h2, mul_one]
-
 theorem isLocS_of_irr (π : NG.FinTyp L n) (s : SplitPlace L) (W : Submodule ℂ (GAf L n → ℂ)) (hWS : W ≤ π.S)
     (hW0 : W ≠ ⊥) (hst : ∀ x : GAf L n, TrivOutside {s.v} x → ∀ f ∈ W, NG.rt L n x f ∈ W)
     (hirr : ∀ W' : Submodule ℂ (GAf L n → ℂ), W' ≤ W →

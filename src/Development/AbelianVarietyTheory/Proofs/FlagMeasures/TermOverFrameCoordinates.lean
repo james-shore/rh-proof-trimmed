@@ -76,9 +76,6 @@ lemma inTh_iff (Λ : Submodule M.L.O V) (x : V) :
   · rintro ⟨z, hz, rfl⟩
     exact ⟨c.e z, (mem_lat c _ _).2 hz, by rw [map_smul]⟩
 
-lemma h_add_right (x y y' : V) : H.h x (y + y') = H.h x y + H.h x y' := by
-  rw [H.h_herm (y + y') x, H.h_add_left, map_add, ← H.h_herm, ← H.h_herm]
-
 lemma X_le_perp (Fr : LocNG.FrameD H r) : H.X Fr.f ≤ H.perp (H.X Fr.f) := by
   unfold HermSp.X
   rw [Submodule.span_le]

@@ -320,11 +320,4 @@ theorem reads_rank (j : Fin D.R.m) (w : HeightOneSpectrum (𝓞 D.what₂.LL)) [
 
 end Point
 
-theorem reads_of_small : InRange fun _ _ _ _ p j P W w => SmallAt p j P w → ReadsAt p j P W w := by
-  refine ⟨1, one_pos, fun _ _ _ => ⟨⟨0, fun _ => 0, fun _ => 0, fun _ => 0⟩, fun Fm _ _ _ =>
-    EvPt.of_forall fun x hx i p _ _ j P W hD _ w _ _ _ _ => ?_⟩⟩
-  choose cs hcs using hD.lam
-  exact ⟨false, fun τ => -cs τ, fun e0 io ev bs rk Lf _ kap chi hC hbs =>
-    reads_rank p j w W.lam cs hcs e0 io ev bs rk Lf kap chi hC hbs⟩
-
 end GlobalTheory.FrameRead

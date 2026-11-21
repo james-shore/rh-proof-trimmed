@@ -52,12 +52,6 @@ theorem hasTh_cast {N' : ℕ} {b : TBase o (N' ^ 2)} {s s₁ : S ⟶ Sp o} (t : 
     {R : Type} [CommRing R] (x : Sp R ⟶ S) (v : Ix g (N' ^ 2) → R) : (cast t h).HasTh x v ↔ t.HasTh x v := by
   subst h; exact Iff.rfl
 
-theorem tmap_comp {s : S ⟶ Sp o} {s' : S' ⟶ Sp o} {s'' : S'' ⟶ Sp o} {t : TObj g k J b s} {t' : TObj g k J b s'}
-    {t'' : TObj g k J b s''} {f : S' ⟶ S} {f' : S'' ⟶ S'} (h' : TMap t'' t' f') (h : TMap t' t f) :
-    TMap t'' t (f' ≫ f) := TMap.comp h' h
-
-theorem tmap_id {s : S ⟶ Sp o} (t : TObj g k J b s) : TMap t t (𝟙 S) := TMap.refl t
-
 theorem exists_spMap {R R' : Type} [CommRing R] [CommRing R'] (x : Sp R' ⟶ Sp R) : ∃ φ : R →+* R', x = spMap φ := by
   refine ⟨(Spec.preimage x).hom, ?_⟩
   simp [spMap]

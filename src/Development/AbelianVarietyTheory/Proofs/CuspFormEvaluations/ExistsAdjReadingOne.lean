@@ -64,9 +64,6 @@ theorem one_adφ {T : Over S} (f f' : A ⟶ A) [IsMonHom f] [IsMonHom f'] (k) :
     funext i; fin_cases i <;> simp
   rcases k with I | I <;> simp only [Sum.elim_inl, Sum.elim_inr, cub, h1, h2, psum_one]
 
-theorem prod_adε {U : Type} [CommGroup U] (x : U) : ∏ k, x ^ adε k = 1 := by
-  simp [adε, Fintype.prod_sum_type, zpow_neg, Finset.prod_inv_distrib]
-
 theorem exists_norm {L : LB A.left} (hL : L.IsLB) (f f' : A ⟶ A) [IsMonHom f] [IsMonHom f']
     (H : LBIso (cubeLB A ![fst A A ≫ f, snd A A] L) (cubeLB A ![fst A A, snd A A ≫ f'] L)) :
     ∃ u : LB.Gen (LB.LinComb L (adφ f f') adε), u.IsGen ∧

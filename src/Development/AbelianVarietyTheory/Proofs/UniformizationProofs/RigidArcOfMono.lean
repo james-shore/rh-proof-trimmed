@@ -1,6 +1,7 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.UnifUniqSt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AgreeOfCore
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ToStkAInjective
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsMonHomOfMul
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.DataRigidTorsionOfDataRigid
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.RigidSys
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.PhiGenPf
@@ -124,17 +125,5 @@ theorem rigidArc_of_mono : Laws → Laws2 → Laws5 →
   obtain ⟨q, τ, hτ⟩ := ArcRigidity.exists_generic W g g₁ h₁
   refine h T g g₁ g₂ τ hτ ?_ h₁ h₂ h₃
   rw [← cancel_mono Y.j, ← q, hτ, Category.assoc, Category.assoc, hy]
-
-theorem uniqWit_of_laws : Laws → Laws2 → Laws5 → UniqWitSt := by
-  intro hL hL₂ hL₅ E _ _ _ H D l Xo c k _ bF a O _ β Y χ W W' y hy hs
-  obtain ⟨-, ψ, h, hA⟩ := ArcRigidity.core hL hL₂ hL₅ W W' y y hy hy hs hs
-  refine ⟨ψ, hA fun T g g₁ g₂ h₁ h₂ h₃ => ?_⟩
-  obtain rfl : g₁ = g₂ := Y.m0.toSABMap.cart.1.hom_ext h₂ h₃
-  obtain ⟨-, τ, hτ⟩ := ArcRigidity.exists_generic W g g₁ h₁
-  have w : (g ≫ W.m.cm.F) ≫ Y.t.G.hom = (τ ≫ y) ≫ Y.j := by
-    rw [Category.assoc, W.m.cart.1.w, reassoc_of% hτ, Category.assoc, hy]
-  obtain ⟨u, u₁, u₂⟩ : ∃ u : T ⟶ Y.oF.t.G.left, u ≫ Y.m.φ = g ≫ W.m.φ ∧ u ≫ Y.oF.t.G.hom = τ ≫ y :=
-    ⟨Y.m.cart.1.lift _ _ w, Y.m.cart.1.lift_fst _ _ _, Y.m.cart.1.lift_snd _ _ _⟩
-  rw [h T g u u τ hτ u₂ u₁.symm rfl rfl, u₁, h₁]
 
 end GlobalTheory

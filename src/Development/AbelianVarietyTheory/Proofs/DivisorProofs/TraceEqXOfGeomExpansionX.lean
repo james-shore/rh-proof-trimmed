@@ -1,9 +1,15 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.TestFnConstTermVanishX
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeasurableEmbeddingEquiv
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealStableOfCharacters
+import Development.AbelianVarietyTheory.Definitions.Divisors.HasTypeVec
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.DiscreteSeriesCharacter
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRegularSemisimpleTorusEllipticElementRealPlaceStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentralizerTorusEllipticElementRealPlaceStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompactRealPlaceTorusClassesSignVectorsStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumDiscreteSeriesCharacterEqWeylCharacterStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricExpansionOfParts
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraceEqualityOfGeomExpansion
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TestFunctionsTransportLocalLatticeIsometriesStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StableOrbitalIntegralPreservedLatticeIsometryStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraceInputsImplyCuspidalTrace
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspidalTraceMultiplicityGiven
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiscreteSeriesOddRankGap
@@ -157,27 +163,6 @@ theorem gap_of_gapG {r : ℕ} {lam : Fin r → ℤ} (h : GapG r lam) : Gap lam :
     · have : (1 : ℤ) ≤ r := by exact_mod_cast hr
       nlinarith [pow_le_pow_left₀ (by positivity : (0:ℤ) ≤ 1) this 3]
   linarith
-
-theorem isPCG_dsRep (M : DSModel V S) (ρ : D.what₂.Tau) (μ : Measure (GArch D.sp.cm.sig V.gram (placeOf D ρ)))
-    [μ.IsHaarMeasure] (f : Formalism.REAL.UJ (M.ε ρ) → ℂ) :
-    haveI := (M.ds ρ).1
-    IsPCG (ujMat (M.ε ρ)) (μ.map (frameEquiv M ρ)) (ujRep (M.ds ρ).2.2.1) f →
-      IsPCG (matAt V ρ) μ (dsRep M ρ) (f ∘ frameEquiv M ρ) := by
-  exact ArchT.isPCG_dsRep M ρ μ f
-
-theorem orb_dsRep (M : DSModel V S) (ρ : D.what₂.Tau) (μ : Measure (GArch D.sp.cm.sig V.gram (placeOf D ρ)))
-    [μ.IsHaarMeasure] (f : Formalism.REAL.UJ (M.ε ρ) → ℂ)
-    (h : ∀ s, IsRegSS (ujMat (M.ε ρ) s) → IsCompact (cent s : Set (Formalism.REAL.UJ (M.ε ρ))) →
-      ∀ (y : Formalism.REAL.UJ (M.ε ρ)) (θ : Fin V.rank → ℝ), y⁻¹ * s * y = torusPt (M.ε ρ) θ →
-      ∀ (dt : Measure (cent s)) [dt.IsHaarMeasure] [dt.IsMulRightInvariant],
-        HasOrbInt (μ.map (frameEquiv M ρ)) s dt f (conj (dsChar (M.ε ρ) (M.lam ρ) θ) / dt.real univ))
-    (s : GArch D.sp.cm.sig V.gram (placeOf D ρ)) (hs : IsRegSS (matAt V ρ s))
-    (hT : IsCompact (cent s : Set (GArch D.sp.cm.sig V.gram (placeOf D ρ))))
-    (y : GArch D.sp.cm.sig V.gram (placeOf D ρ)) (θ : Fin V.rank → ℝ)
-    (hy : frameMat M ρ (y⁻¹ * s * y) = Matrix.diagonal (fun a => Complex.exp (θ a * Complex.I)))
-    (dt : Measure (cent s)) [dt.IsHaarMeasure] [dt.IsMulRightInvariant] :
-    HasOrbInt μ s dt (f ∘ frameEquiv M ρ) (conj (dsChar (M.ε ρ) (M.lam ρ) θ) / dt.real univ) := by
-  exact ArchT.orb_dsRep M ρ μ f h s hs hT y θ hy dt
 
 theorem exists_testArch (hL : LocalPC) (M : DSModel V S) (lam : D.what₂.Tau → Fin V.rank → ℤ) (hodd : Odd V.rank)
     (hgap : ∀ ρ, GapG V.rank (lam ρ)) (hlam : ∀ ρ i, M.lam ρ i = lam ρ i)

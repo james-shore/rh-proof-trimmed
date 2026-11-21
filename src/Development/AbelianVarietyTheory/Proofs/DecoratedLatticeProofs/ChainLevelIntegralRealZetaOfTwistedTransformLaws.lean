@@ -211,4 +211,3 @@ end GlobalTheory.ChainTw.LevIntProof
 
 end
 
-example : ∀ D : D7, LevelLawQ D → LevInt D := GlobalTheory.ChainTw.LevIntProof.levInt

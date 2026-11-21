@@ -125,17 +125,6 @@ theorem standing : Big fun ch => ∀ t, SquareStanding ch.G t := by
     · exact h1 (Ideal.mul_mem_right _ _ h)
     · exact h2 (Ideal.mul_mem_left _ _ h)
 
-theorem big_nonzero : GlobalTheory.FunPr.Hypotheses₂ → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → GlobalTheory.SquareSt.WeilConvergence → GlobalTheory.SquareSt.LocalMatching → GlobalTheory.SquareSt.ThetaIntegralsAgree → Big fun ch => ∀ i j t, ∃ M : Vol ch.G, M.Is t ∧ ∃ a τ τ' n Φ,
-    (∀ w ∈ locPl ch.G t, depthAt ch.G w ≤ n w ∧ IsNatDatum (unifAt w) (n w) (Φ w)) ∧ HasFlip ch.S.B t ch.rm i j n Φ τ τ' ∧
-    ∃ g g₁, ∫ u in M.fd _, kerBig ch.W (tensT ch.W a τ) g g₁ u ∂M.ν _ ≠ 0 := by
-  intro hP hK hLM _ _ _
-  obtain ⟨CF0, hH⟩ := standing
-  refine ⟨CF0, fun ε CF hCF => ?_⟩
-  obtain ⟨x₀, hx⟩ := hH ε CF hCF
-  refine ⟨x₀, fun D large₂ he hx0 Γ _ _ Pl0 T A Ks _ _ _ R F hS ch hch hsc i j t => ?_⟩
-  exact exists_integral_ne_zero hP.strongApproxSU hK hLM hS.core.lev ch.W ch.S.B ch.rm t i j
-    (hx D large₂ he hx0 Γ Pl0 T A Ks R F hS ch hch hsc t)
-
 end GlobalTheory.BigNZ
 
 end

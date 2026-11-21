@@ -86,8 +86,4 @@ theorem grothendieckDeformation₂
     (_hPoinc : PoincareDeRhamDuality) (hLift : AbelianLifting) : GrothendieckDeformation :=
   grothendieckDeformation_of_abelianLifting hCrys hHdR hLift
 
-example : CrystallineSmoothLift → AbelianHodgeDeRham → DualAbelianScheme →
-    PoincareDeRhamDuality → AbelianLifting → GrothendieckDeformation :=
-  grothendieckDeformation₂
-
 end GlobalTheory.Published

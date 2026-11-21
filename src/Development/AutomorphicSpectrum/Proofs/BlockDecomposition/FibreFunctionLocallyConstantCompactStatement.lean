@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreFunctionLocallyConstantCompact
-import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUMOfMem
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemTwKerIffAverage
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentTopMemParabolicStatement
@@ -12,6 +11,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothIntegralL
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwasawaDecompParabolicMaximalCompactStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumOverCompactCosetsJacquetKernelStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInducedSectionSupportedOpenStatement
+
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.Rodier GlobalTheory.CompanionTheory.BZPsiPG
 open scoped TensorProduct
 set_option maxHeartbeats 1000000 in

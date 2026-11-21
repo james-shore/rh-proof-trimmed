@@ -96,13 +96,6 @@ theorem moves_mul {S : HSp D} {L : Lat S} {P : Pl D → Prop} {x x' : GA D S} (h
   rw [mt_mul, ← Matrix.mulVec_mulVec, hx' y hy]
   exact hx _ (supp_mulVec S P x' hy)
 
-theorem moves_inv {S : HSp D} {L : Lat S} {P : Pl D → Prop} {x : GA D S} (hx : Moves S x L L P) :
-    Moves S x⁻¹ L L P := by
-  intro y hy
-  have h1 := hx (mt S x⁻¹ *ᵥ y) (supp_mulVec S P _ hy)
-  rw [Matrix.mulVec_mulVec, ← mt_mul, mul_inv_cancel, mt_one, Matrix.one_mulVec] at h1
-  exact h1.symm
-
 theorem moves_off {S : HSp D} {L : Lat S} {P : Pl D → Prop} {b : GA D S} (hb : b ∈ grpOff S P) :
     Moves S b L L P := by
   intro y hy

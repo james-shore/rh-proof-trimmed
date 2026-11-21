@@ -15,19 +15,6 @@ namespace GlobalTheory.SW.EisTrans
 
 variable {N : ℕ}
 
-open scoped MatrixOrder in
-
-theorem exists_sub_posSemidef {Y : Matrix (Fin N) (Fin N) ℂ} (hY : Y.PosDef) :
-    ∃ δ : ℝ, 0 < δ ∧ (Y - (δ : ℂ) • (1 : Matrix (Fin N) (Fin N) ℂ)).PosSemidef := by
-  rcases Nat.eq_zero_or_pos N with rfl | hN
-  · exact ⟨1, one_pos, by rw [Subsingleton.elim (_ - _) 0]; exact PosSemidef.zero⟩
-  haveI : Nonempty (Fin N) := ⟨⟨0, hN⟩⟩
-  obtain ⟨r, hr, hle⟩ := (CFC.exists_pos_algebraMap_le_iff (A := Matrix (Fin N) (Fin N) ℂ)
-    hY.isStrictlyPositive.isSelfAdjoint).2 fun x hx => hY.isStrictlyPositive.spectrum_pos hx
-  refine ⟨r, hr, ?_⟩
-  have := Matrix.le_iff.mp hle
-  rwa [Algebra.algebraMap_eq_smul_one, ← Complex.coe_smul] at this
-
 theorem exists_mem_HnGe {E : Type} [Field E] (Ψ : Finset (E →+* ℂ)) {Z : CM Ψ N N}
     (hZ : Z ∈ Hn Ψ N) : ∃ δ : ℝ, 0 < δ ∧ Z ∈ HnGe Ψ N δ := by
   first

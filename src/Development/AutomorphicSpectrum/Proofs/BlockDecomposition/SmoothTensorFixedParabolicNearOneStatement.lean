@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothTensorFixedParabolicNearOne
-import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUMOfMem
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemTwKerIffAverage
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentTopMemParabolicStatement
@@ -16,6 +15,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreFunctionLo
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibreIntegralIntertwinesUnipotentStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UMLeviMulUMLevi
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothVectorFixedNearIdentity
+
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.Rodier GlobalTheory.CompanionTheory.BZPsiPG
 open scoped TensorProduct
 set_option maxHeartbeats 1000000 in

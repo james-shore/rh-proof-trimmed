@@ -42,16 +42,4 @@ theorem exists_sym_translate : ∀ (K : Type) [Field K] [IsAlgClosed K] (B : Ove
   rw [CechPic.cls_pull (LB.isLB_linComb hL _ _), CechPic.pull_id] at e
   exact (CechPic.cls_cube_two hL' _ _ _).symm.trans (e.trans (CechPic.cls_cube_two hL _ _ _))
 
-theorem nonempty_riemannData : ∀ (S : Scheme.{0}) (P : PPAS S) (y : Sp ℂ ⟶ S), Nonempty (P.RiemannData y) := by
-  intro S P y
-  have h := isGrpPullback_pullback P.A y
-  obtain ⟨L, hL, ha, hk, hc⟩ := P.isPol.2.2 ℂ y
-  have hB : IsAbelianScheme ((Over.pullback y).obj P.A) := PolPull.isAbelianScheme_of_isGrpPullback P.isAb h
-  obtain ⟨L', hL', hr, hs, ha', hk', hl⟩ := exists_sym_translate ℂ _ hB L hL ha hk
-  let Q' : Out.PolAV (Sp ℂ) := ⟨(Over.pullback y).obj P.A, hB, P.g,
-    (smoothOfRelativeDimension_isStableUnderBaseChange _).of_isPullback h.1 P.smoothDim, L', hL', hr, hs, ha', hk'⟩
-  obtain ⟨rig, hrg⟩ := Q'.rigid
-  obtain ⟨u, H, χ, -, hH, -⟩ := thetaUnifAV_all Q' rig hrg
-  exact ⟨⟨(Over.pullback y).obj P.A, _, h, L', hL', hc.trans hl.symm, u, H, χ, hH⟩⟩
-
 end GlobalTheory.RiemannExists

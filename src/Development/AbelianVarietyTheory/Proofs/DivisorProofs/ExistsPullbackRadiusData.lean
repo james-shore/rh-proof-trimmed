@@ -236,10 +236,4 @@ def auxiliary_data_pullback (T : Tw Z) (x : OddPrimesWithRootsOfUnity Z) : OddPr
 theorem auxiliary_data_pullback_r (T : Tw Z) (x : OddPrimesWithRootsOfUnity Z) (σ : c.F →+* ℂ) (y : CxPts (genStr Z) σ) :
     (auxiliary_data_pullback T x).r σ y = x.r σ (T.pt y) := rfl
 
-theorem exists_auxiliary_data_pullback : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E)
-    (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F)
-    (Z : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model Xo c β) [SmoothOfRelativeDimension Dw.dim (genStr Z)] (T : Tw Z) (x : OddPrimesWithRootsOfUnity Z),
-    ∃ x₁ : OddPrimesWithRootsOfUnity Z, ∀ σ y, x₁.r σ y = x.r σ (T.pt y) :=
-  fun _ _ _ _ _ _ _ _ _ _ _ _ _ _ T x => ⟨auxiliary_data_pullback T x, auxiliary_data_pullback_r T x⟩
-
 end GlobalTheory.ShFam.AutPull

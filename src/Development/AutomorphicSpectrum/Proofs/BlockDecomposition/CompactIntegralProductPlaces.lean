@@ -3,9 +3,10 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrthogonalHaarM
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinBasicThird
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GlobalRankinSelbergBasicFacts
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NewformLiftLevel
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MaxCompactTransposeInvWeyl
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CstD
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SigmaFinitePlaneMeasure
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinEulerProduct
+import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.VerticalStrips.UnramifiedEulerProductIntegral
+
 open NumberField IsDedekindDomain MeasureTheory Matrix Filter Topology
 open GroundTheory.Global GroundTheory.LocalField GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm
 open GroundTheory.Automorphic.GodementSection (localChar)
@@ -101,9 +102,6 @@ instance : IsProbabilityMeasure orthogonalHaarMeasure := ⟨by
 
 open GroundTheory.Automorphic.GL2Classical (realPart realEmb realInf)
 
-abbrev phiR : (default : InfinitePlace ℚ).Completion ≃+* ℝ :=
-  InfinitePlace.Completion.ringEquivRealOfIsReal (RationalIdeles.isReal_infinitePlace default)
-
 section Local
 
 variable (v : Pl)
@@ -124,9 +122,6 @@ end Local
 section Main
 
 variable (S : Finset Pl)
-
-def Phi (κ : KA) : GL (Fin 2) ℝ × ∀ v : S, GL (Fin 2) (Qv v.1) :=
-  (realPart κ.1, fun v => finAt v.1 κ.1)
 
 def nu : Measure (GL (Fin 2) ℝ × ∀ v : S, GL (Fin 2) (Qv v.1)) :=
   orthogonalHaarMeasure.prod (Measure.pi fun v : S => mKv v.1)

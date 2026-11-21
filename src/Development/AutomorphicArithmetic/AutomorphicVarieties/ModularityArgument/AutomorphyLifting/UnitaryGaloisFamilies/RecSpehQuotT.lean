@@ -42,11 +42,3 @@ private theorem rec_spehQuotT {E Ω : Type} [Field E] [NumberField E] [Field Ω]
   refine List.map_congr_left fun i _ => ?_
   exact segSum_nu L.nu _ _
 
-theorem UpperTheory.V.Z.Win.Gu.spehT :
-    HypothesesH → ExtraV → SpehT := by
-  intro H _ E Ω _ _ _ _ _ _ a d P w ρ σ _ _ hP hu hS A h rc hrc
-  have L := H.litN.loc
-  have hd : ∑ _ : Fin d, a = d * a := by simp
-  exact rec_spehQuotT hrc (GlobalTheory.T.generic_unitary_dual_gl L.unit L.sq L.gen L.multi L.cos) L.cos a d _ hd ρ σ hu
-    (GlobalTheory.CuspRep.Generic.isGeneric_of_isLocComp E a P w ρ hP)
-    (GlobalTheory.DiscreteSpectrumCM.isSpehQuot_of_isSpeh hd ρ σ hS)

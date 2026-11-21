@@ -5,7 +5,7 @@ import ReciprocityTheory.SemistableReduction.SJCoreA
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousFirstCoords
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasurePreservingPolarGaussianProbabilityComplexStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianRadialLawProbabilityLogIntegrableMeanStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianFirstCoordsMeasurePreservingStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianFirstCoordsMeasurePreserving
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockSphereProbZeroSetEqZeroStatement
 
 noncomputable section
@@ -200,46 +200,5 @@ theorem radRatio_sub {N n : ℕ} (hN : 0 < N) (hn : 0 < n) :
   rw [e1, e2, radRatio_odd, radRatio_odd]
   simp only [Nat.add_sub_cancel]
   ring
-
-theorem blockSphereMean_incl (B N n δ : ℕ) (f : MvPolynomial (Fin B × Fin N) ℂ) (hN : 0 < N)
-    (hNn : N ≤ n) (hf : f ≠ 0) (hm : IsMultiHomogeneous (fun _ => δ) f) :
-    blockSphereMean B n (GlobalTheory.ChowHt.linSubst (Matrix.of fun (j : Fin N) (k : Fin n) =>
-        if (j : ℕ) = (k : ℕ) then (1 : ℂ) else 0) f) =
-      blockSphereMean B N f + (B : ℝ) * δ * ((harmonic (N - 1) : ℝ) - (harmonic (n - 1) : ℝ)) / 2 := by
-  have hn : 0 < n := lt_of_lt_of_le hN hNn
-  rw [linSubst_incl hNn]
-  set e : Fin B × Fin N → Fin B × Fin n := fun p => (p.1, Fin.castLE hNn p.2) with he
-  have heinj : Function.Injective e := by
-    intro p q hpq
-    simp only [he, Prod.mk.injEq] at hpq
-    exact Prod.ext hpq.1 (Fin.castLE_injective hNn hpq.2)
-  set g := rename e f with hgdef
-  have hg : g ≠ 0 := fun h0 => hf (rename_injective e heinj (by rw [← hgdef, h0, map_zero]))
-  have hgm : IsMultiHomogeneous (fun _ => δ) g := isMultiHomogeneous_rename_castLE hNn _ f hm
-  have hIn := (gauss_blockMean hn δ g hg hgm).2
-  have hIN := (gauss_blockMean hN δ f hf hm).2
-  haveI : IsProbabilityMeasure (gaussProb N) := isProbabilityMeasure_gaussProb hN
-  have hproj : MeasurePreserving (fun (x : Fin B → EuclideanSpace ℂ (Fin n)) b => firstCoords hNn (x b))
-      (Measure.pi fun _ => gaussProb n) (Measure.pi fun _ => gaussProb N) :=
-    measurePreserving_pi _ _ fun _ => GlobalTheory.T.gaussian_first_coords_measure_preserving N n hNn
-  have hev : ∀ x : Fin B → EuclideanSpace ℂ (Fin n),
-      eval (fun p => WithLp.ofLp (x p.1) p.2) g =
-        eval (fun p => WithLp.ofLp (firstCoords hNn (x p.1)) p.2) f := by
-    intro x
-    rw [hgdef, eval_rename]
-    rfl
-  have hmeas : Measurable fun y : Fin B → EuclideanSpace ℂ (Fin N) =>
-      Real.log ‖eval (fun p => WithLp.ofLp (y p.1) p.2) f‖ := by
-    refine Real.measurable_log.comp (Continuous.measurable ?_)
-    exact continuous_norm.comp ((continuous_eval f).comp (by fun_prop))
-  have hchange : ∫ x, Real.log ‖eval (fun p => WithLp.ofLp (x p.1) p.2) g‖
-        ∂(Measure.pi fun _ => gaussProb n) =
-      ∫ y, Real.log ‖eval (fun p => WithLp.ofLp (y p.1) p.2) f‖
-        ∂(Measure.pi fun _ => gaussProb N) := by
-    simp_rw [hev]
-    rw [← hproj.map_eq, integral_map hproj.measurable.aemeasurable hmeas.aestronglyMeasurable]
-  rw [hchange, hIN] at hIn
-  have hr := radRatio_sub hN hn
-  linear_combination hIn.symm + (B : ℝ) * δ * hr
 
 end GlobalTheory.SphereMeanDrop

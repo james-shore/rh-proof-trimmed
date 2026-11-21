@@ -187,8 +187,3 @@ end Point
 
 end GlobalTheory.BigOn.Exp.Adapt
 
-open GlobalTheory.BigOn.Exp.Adapt in
-
-theorem GlobalTheory.BigOn.Exp.adaptEx : AdaptEx := by
-  refine ⟨1, one_pos, fun eps _ _ => ⟨⟨0, fun _ => 0, fun _ => 0, fun _ => 0⟩,
-    fun Fm CH _ _ => ⟨0, fun x hx _ i p _ hm w _ j => adapt_at p w j hm⟩⟩⟩

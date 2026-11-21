@@ -194,8 +194,4 @@ def OStr : Prop :=
     SmoothOfRelativeDimension g A.hom →
     FP R (HO1 A.hom) g ∧ WedgeO (OAff A.hom) ∧ StructureSheafH1BaseChange A.hom ∧ StructureSheafH2BaseChange A.hom
 
-example (R : Type) [CommRing R] {C : Type} [Category.{0} C] (F : C ⥤ CommAlgCat.{0} R)
-    (h : ∀ T, Subsingleton Ω[F.obj T⁄R]) : HasFrame F :=
-  ⟨0, ⟨⟨Fin.elim0, Fin.elim0, fun i ↦ i.elim0, fun T _ ↦ (h T).elim _ _⟩⟩⟩
-
 end GlobalTheory.AbCoh

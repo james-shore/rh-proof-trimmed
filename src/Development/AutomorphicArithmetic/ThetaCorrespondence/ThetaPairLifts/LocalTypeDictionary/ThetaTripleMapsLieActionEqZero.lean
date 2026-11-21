@@ -17,13 +17,10 @@ open GlobalTheory.SquareComm
 open scoped GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 noncomputable section
 namespace GlobalTheory.TripleAssembly.LieInv
-variable {D : D7}
 end GlobalTheory.TripleAssembly.LieInv
 namespace GlobalTheory.TripleAssembly.LieInv
-variable {D : D7}
 end GlobalTheory.TripleAssembly.LieInv
 namespace GlobalTheory.TripleAssembly.LieInv
-variable {D : D7}
 end GlobalTheory.TripleAssembly.LieInv
 namespace GlobalTheory.TripleAssembly.LieInv
 variable {D : D7}

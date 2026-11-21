@@ -101,31 +101,4 @@ theorem mem_unipSet {σ : E →ₐ[F] E} {d d₁ : ℕ} {W : Spc F E d} {H' : Pl
     (hu : u ∈ unip σ W H') : u ∈ unipSet σ W.J H' :=
   (Subgroup.closure_le (unipSet σ W.J H')).mpr (fun _ h => h) hu
 
-theorem coA_coC_inv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E)
-    (B : Base F E) (d d₁ : ℕ) (W : Spc F E d) (W₁ : Spc F E d₁) (H' : Plane E d d₁) (r s i₀ i₁ : ℕ),
-    IsCMExt F E σ → W.IsSkew σ B r s → H'.IsAdapted σ B W W₁ i₀ i₁ →
-    ∀ u ∈ unip σ W H', coA σ W.J H' u⁻¹ = -coA σ W.J H' u ∧ coC σ W.J H' u⁻¹ = -cA σ (coC σ W.J H' u) := by
-  intro F E _ _ _ _ _ σ B d d₁ W W₁ H' r s i₀ i₁ hCM hW hH u hu
-  have hσ := sigma_sigma hCM
-  obtain ⟨hx, hz⟩ := mem_unipSet hu
-  have hxinv : mat u⁻¹ *ᵥ incV F H'.x = incV F H'.x := (mem_unipSet (Subgroup.inv_mem _ hu)).1
-  have hxy : fA σ W.J (incV F H'.x) (incV F H'.y) = 1 := by rw [fA_incV, hH.xy, map_one]
-  refine ⟨funext fun j => ?_, ?_⟩
-  · obtain ⟨a, ha⟩ := hz (Pi.single j 1)
-    have h0 : fA σ W.J (incM F H'.ι *ᵥ Pi.single j 1) (incV F H'.y) = 0 := by
-      have : incM F H'.ι *ᵥ (Pi.single j 1 : Fin d₁ → AE F E) = incV F (H'.ι *ᵥ Pi.single j 1) := by
-        funext i; simp [incM, incV, Matrix.mulVec_single_one, Matrix.transpose_apply]
-      rw [this, fA_incV, (hH.orth _).2, map_zero]
-    have hinv : mat u⁻¹ *ᵥ (incM F H'.ι *ᵥ Pi.single j 1) = incM F H'.ι *ᵥ Pi.single j 1 - a • incV F H'.x := by
-      have h := congrArg (mat u⁻¹ *ᵥ ·) ha
-      simp only [mat_inv_mulVec, Matrix.mulVec_add, Matrix.mulVec_smul, hxinv] at h
-      rw [eq_sub_iff_add_eq, ← h]
-    simp only [coA, Pi.neg_apply]
-    rw [hinv, ha, fA_sub_left, fA_add_left, fA_smul_left, h0, hxy]
-    ring
-  · have h := fA_mulVec σ W.J u (mat u⁻¹ *ᵥ incV F H'.y) (incV F H'.y)
-    rw [Matrix.mulVec_mulVec, ← mat_mul, mul_inv_cancel, mat_one, Matrix.one_mulVec] at h
-    simp only [coC]
-    rw [← h, fA_swap hσ hW.skew]
-
 end GlobalTheory.ThK.UnipDom.Inverse

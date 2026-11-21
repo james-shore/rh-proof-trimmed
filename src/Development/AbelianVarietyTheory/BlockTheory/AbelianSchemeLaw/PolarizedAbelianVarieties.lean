@@ -81,10 +81,6 @@ lemma linComb_g {X Y : Scheme.{0}} (L : LB X) (h : ∀ i j, L.g i j = 1) {K : Ty
   erw [map_one, one_zpow]
   rfl
 
-example {S : Scheme.{0}} (A : Over S) [GrpObj A] (h : KTrivial A (trivialLB A.left)) :
-    𝟙 A = pzero A A :=
-  h A (𝟙 A) (isTrivialLB_of_g _ (linComb_g _ (linComb_g _ (fun _ _ => rfl) _ _) _ _))
-
 lemma isAmpleLB_of_isAffine {X : Scheme.{0}} [IsAffine X] (L : LB X) (h : ∀ i j, L.g i j = 1)
     (hc : ⨆ i, L.U i = ⊤) : IsAmpleLB L := by
   refine ⟨inferInstance, fun x => ⟨1, one_pos, ⟨fun _ => 1, fun i j => ?_⟩, ?_⟩⟩

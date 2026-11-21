@@ -1,5 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CubeRatio
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsRigFr
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CoeIntEmbEmbP
+import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GaugeUniqPf
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.FormalLogEqSumOfMultiplicativeParam
 
 set_option autoImplicit false
@@ -8,7 +10,7 @@ noncomputable section
 
 namespace GlobalTheory.CubeSeries
 
-open MvPowerSeries GlobalTheory.RayHoriz.CubeNorm
+open MvPowerSeries
 
 variable {S : Type} [CommRing S] {ρ : Type}
 
@@ -94,10 +96,6 @@ variable [Finite K] (M : K → K' → ℤ) (v : K' → ℤ)
 @[simp] theorem block_substitution_zsmul (n : ℤ) (h : MvPowerSeries ρ S) : blin1 v (n • h) = n • blin1 v h := by
   simp [← blin1Hom_apply]
 
-theorem constantCoeff_blin (F : MvPowerSeries (K × ρ) S) : constantCoeff (blin M F) = constantCoeff F := by
-  rw [blin, GlobalTheory.FormalCalc.constantCoeff_subst_of_zero (hasSubst_blinV M) (constantCoeff_blinV M)]
-  rfl
-
 end Ring
 
 end Basic
@@ -106,84 +104,12 @@ end GlobalTheory.CubeSeries
 
 namespace GlobalTheory.CubeSeries
 
-open MvPowerSeries GlobalTheory.RayHoriz.CubeNorm
-
-variable {S : Type} [CommRing S] {ρ : Type} [Finite ρ]
-variable {K K' K'' : Type} [Fintype K'] [Fintype K'']
-
-theorem blin_X [Finite K'] (N : K' → K'' → ℤ) (k : K') (r : ρ) :
-    blin N (X (k, r) : MvPowerSeries (K' × ρ) S) = ∑ j, N k j • X (j, r) := by
-  rw [blin, subst_X (hasSubst_blinV N)]; rfl
-
-theorem blin_blin [Finite K] [Finite K'] (M : K → K' → ℤ) (N : K' → K'' → ℤ) (F : MvPowerSeries (K × ρ) S) :
-    blin N (blin M F) = blin (fun k j => ∑ i, M k i * N i j) F := by
-  rw [blin, blin, blin, subst_comp_subst_apply (hasSubst_blinV M) (hasSubst_blinV N)]
-  congr 1
-  funext p
-  change blin N (blinV M p) = _
-  simp only [blinV, blin_sum, blin_zsmul, blin_X, Finset.smul_sum, smul_smul]
-  rw [Finset.sum_comm]
-  simp only [Finset.sum_smul]
-
-theorem linSub_eq_blin [Finite K] [DecidableEq K'] (a : K → Finset K') (F : MvPowerSeries (K × ρ) S) :
-    linSub a F = blin (fun k i => if i ∈ a k then 1 else 0) F := by
-  rw [linSub, blin]
-  congr 1
-  funext p
-  simp [blinV, ite_smul, Finset.sum_ite_mem]
-
 end GlobalTheory.CubeSeries
 
 namespace GlobalTheory.CubeSeries
 
-open MvPowerSeries GlobalTheory.RayHoriz.CubeNorm
-
-variable {S : Type} [CommRing S] {ρ : Type} [Fintype ρ] [DecidableEq ρ]
-variable {K K' : Type} [Fintype K] [Fintype K'] [DecidableEq K']
-
-theorem pderiv_blin (M : K → K' → ℤ) (F : MvPowerSeries (K × ρ) S) (j : K') (r : ρ) :
-    pderiv S (j, r) (blin M F) = ∑ k, M k j • blin M (pderiv S (k, r) F) := by
-  rw [blin, GlobalTheory.FormalCalc.pderiv_subst (hasSubst_blinV M), Fintype.sum_prod_type]
-  refine Finset.sum_congr rfl fun k _ => ?_
-  rw [Finset.sum_eq_single r]
-  · simp only [blinV, map_sum, map_zsmul, GlobalTheory.FormalCalc.pderiv_X_ite, Prod.mk.injEq]
-    simp [smul_ite, Finset.sum_ite_eq', blin, mul_comm]
-  · intro s _ hs
-    simp only [blinV, map_sum, map_zsmul, GlobalTheory.FormalCalc.pderiv_X_ite, Prod.mk.injEq]
-    simp [hs]
-  · simp
-
 end GlobalTheory.CubeSeries
 
 namespace GlobalTheory.CubeSeries
-
-open MvPowerSeries GlobalTheory.RayHoriz.CubeNorm
-
-variable {S : Type} [CommRing S] {ρ : Type} [Fintype ρ]
-
-def killBlock {K : Type} [DecidableEq K] (k₀ : K) : K → K → ℤ :=
-  fun k i => if k = k₀ then 0 else if k = i then 1 else 0
-
-def cubeDiff (f : MvPowerSeries ρ S) : MvPowerSeries (Fin 3 × ρ) S :=
-  sumSer {0, 1, 2} f - sumSer {0, 1} f - sumSer {0, 2} f - sumSer {1, 2} f +
-    sumSer {0} f + sumSer {1} f + sumSer {2} f - sumSer ∅ f
-
-def sqDiff (p : MvPowerSeries ρ S) : MvPowerSeries (Fin 2 × ρ) S :=
-  blin1 ![1, 1] p - blin1 ![1, 0] p - blin1 ![0, 1] p
-
-def IsAddCub (G : MvPowerSeries (Fin 3 × ρ) S) : Prop :=
-  linSub (K' := Fin 3) ![{0}, {1}, ∅] G = 0 ∧
-  linSub (K' := Fin 3) ![{1}, {0}, {2}] G = G ∧
-  linSub (K' := Fin 3) ![{0}, {2}, {1}] G = G ∧
-  linSub (K' := Fin 4) ![{0, 1}, {2}, {3}] G + linSub (K' := Fin 4) ![{0}, {1}, {3}] G =
-    linSub (K' := Fin 4) ![{0}, {1, 2}, {3}] G + linSub (K' := Fin 4) ![{1}, {2}, {3}] G
-
-def IsSymCoc (A : MvPowerSeries (Fin 2 × ρ) S) : Prop :=
-  blin ![![0, 1], ![1, 0]] A = A ∧
-  blin (K' := Fin 3) ![![1, 1, 0], ![0, 0, 1]] A + blin (K' := Fin 3) ![![1, 0, 0], ![0, 1, 0]] A =
-    blin (K' := Fin 3) ![![1, 0, 0], ![0, 1, 1]] A + blin (K' := Fin 3) ![![0, 1, 0], ![0, 0, 1]] A
-
-def faceDeriv (G : MvPowerSeries (Fin 3 × ρ) S) (r : ρ) : MvPowerSeries (Fin 2 × ρ) S :=
-  blin ![![1, 0], ![0, 1], ![0, 0]] (pderiv S ((2 : Fin 3), r) G)
 
 end GlobalTheory.CubeSeries

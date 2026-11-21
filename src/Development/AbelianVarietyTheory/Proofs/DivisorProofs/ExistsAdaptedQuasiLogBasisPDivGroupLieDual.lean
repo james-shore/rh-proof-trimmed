@@ -83,17 +83,6 @@ theorem ql_add_smul (h : ∀ i, constantCoeff (μ i) = 0) {f g : MvPowerSeries (
   · rw [← cobL_apply μ h, map_add, map_smul, cobL_apply, cobL_apply]
     exact in_top_add hf.2.2 (in_top_smul a hg.2.2)
 
-theorem ql_comb (h : ∀ i, constantCoeff (μ i) = 0) {ι : Type} [Fintype ι]
-    {e : ι → MvPowerSeries (Fin d) E} (he : ∀ i, QL μ ⊤ (e i)) (b : ι → O) :
-    QL μ ⊤ (comb b e) := by
-  classical
-  unfold comb
-  induction (Finset.univ : Finset ι) using Finset.induction_on with
-  | empty => simpa using ql_zero h
-  | @insert a s ha ih =>
-    rw [Finset.sum_insert ha, add_comm]
-    exact ql_add_smul h ih (he a) (b a)
-
 theorem comb_sub {ι : Type} [Fintype ι] (e : ι → MvPowerSeries (Fin d) E) (b b' : ι → O) :
     comb (b - b') e = comb b e - comb b' e := by
   simp only [comb, Pi.sub_apply, map_sub, sub_smul, Finset.sum_sub_distrib]

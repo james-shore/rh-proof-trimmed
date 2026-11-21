@@ -91,6 +91,4 @@ theorem thetaVector_ne_zero_of_clauses (D : D7) (G : Type) [Group G] [Fintype G]
 end GlobalTheory.AdTh.PhaseMapFree
 
 namespace GlobalTheory.AdTh.PhaseMapFree
-open GlobalTheory.AdTh.PhaseMap
-
 end GlobalTheory.AdTh.PhaseMapFree

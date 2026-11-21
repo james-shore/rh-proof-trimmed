@@ -309,6 +309,4 @@ end GlobalTheory.Mem.HD.ReQ
 
 namespace GlobalTheory.Mem.HD.ReQ
 
-variable {D : D7} {C : CharFrame D} {nch : NChoice D}
-
 end GlobalTheory.Mem.HD.ReQ

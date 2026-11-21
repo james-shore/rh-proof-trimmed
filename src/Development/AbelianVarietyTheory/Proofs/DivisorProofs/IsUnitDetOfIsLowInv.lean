@@ -42,14 +42,6 @@ theorem IsLowInv.mul {B L : Matrix (Fin m) (Fin m) R} (hB : IsLowInv B) (hL : Is
     rw [this]
     exact (hB.2 i).mul (hL.2 i)
 
-theorem InCell.mul_left {B M : Matrix (Fin m) (Fin m) R} {w : Equiv.Perm (Fin m)} {a : Above m → R}
-    (hB : IsLowInv B) (h : InCell M w a) : InCell (B * M) w a := by
-  obtain ⟨L, hL, e⟩ := h
-  refine ⟨B * L, hB.mul hL, ?_⟩
-  rw [Matrix.mul_assoc, ← e]
-  ext i j
-  simp [Matrix.mul_apply]
-
 theorem upMat_map {S : Type} [CommRing S] (f : R →+* S) (a : Above m → R) :
     (upMat a).map f = upMat (f ∘ a) := by
   ext i j

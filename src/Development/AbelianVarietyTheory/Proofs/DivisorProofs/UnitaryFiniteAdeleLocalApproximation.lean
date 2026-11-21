@@ -93,38 +93,4 @@ theorem mat_atV (v : Pl F) (g : UA σ J) : mat (atV v g) = cut (idem v) (mat g) 
 
 end Adelic
 
-section Main
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-theorem smul_eq_alg {ι : Type} (u : AF F) (B : Matrix ι ι (AE F E)) : u • B = algebraMap (AF F) (AE F E) u • B := by
-  ext i j
-  simp [Matrix.smul_apply, Algebra.smul_def]
-
-theorem cut_sub_one {S ι : Type} [CommRing S] [Fintype ι] [DecidableEq ι] (ε : S) (A : Matrix ι ι S) :
-    cut ε A - 1 = ε • (A - 1) := by
-  simp only [cut, smul_sub, sub_smul, one_smul]
-  abel
-
-variable {σ : E →ₐ[F] E} {n : ℕ} {J : Matrix (Fin n) (Fin n) E}
-
-end Main
-
-theorem localComponents : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E)
-    (d : ℕ) (W : Spc F E d) (hf : UA σ W.J), ∃ h : Pl F → UA σ W.J, ∀ v, h v ∈ UAt σ W (evFin F v) ∧
-      ∀ u : AF F, At (evFin F v) u → u • mat (h v) = u • mat hf := by
-  intro F E _ _ _ _ _ σ d W hf
-  refine ⟨fun v => atV v hf, fun v => ⟨?_, ?_⟩⟩
-  · intro w hw
-    rw [mat_atV, cut_sub_one, smul_eq_alg, smul_smul, idem, ← map_mul, mul_comm, liftV_one_mul_eq, hw, map_zero,
-      map_zero, zero_smul]
-  · intro u hu
-    have h1 : evFin F v (1 - GlobalTheory.LatVac.liftV v 1) = 0 := by
-      rw [map_sub, map_one, GlobalTheory.LatVac.evFin_liftV, sub_self]
-    have h2 : (1 - GlobalTheory.LatVac.liftV v 1) * u = 0 := hu _ h1
-    have h3 : u * GlobalTheory.LatVac.liftV v 1 = u := by linear_combination -h2
-    have h4 : u * (1 - GlobalTheory.LatVac.liftV v 1) = 0 := by linear_combination h2
-    rw [mat_atV, smul_eq_alg, smul_eq_alg u (mat hf), cut, smul_add, smul_smul, smul_smul, idem, ← map_mul, h3,
-      ← map_one (algebraMap (AF F) (AE F E)), ← map_sub, ← map_mul, h4, map_zero, zero_smul, add_zero]
-
 end GlobalTheory.AdelicLocalPoint

@@ -43,7 +43,4 @@ end Alg
 
 variable {S : Type} [CommRing S] {ρ : Type}
 
-def diag (m : ℕ) : Jet S (Fin 2 × ρ) m →ₐ[S] Jet S ρ m :=
-  jetMap (fun p => MvPolynomial.X p.2) fun p => X_mem_orig p.2
-
 end GlobalTheory.ExpUniqCh0

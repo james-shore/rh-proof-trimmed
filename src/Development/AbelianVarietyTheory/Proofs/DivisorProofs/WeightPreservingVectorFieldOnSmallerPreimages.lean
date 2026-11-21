@@ -36,17 +36,6 @@ theorem valR_one' {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) (U :
     valR x U (1 : Γ(X, U)) = 1 := by
   simp only [valR, dif_pos h, map_one]
 
-theorem resG_resG {X : Scheme.{0}} {U V W : X.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (f : Γ(X, U)) :
-    resG X h2 (resG X h1 f) = resG X (h2.trans h1) f := by
-  change (X.presheaf.map (homOfLE h1).op ≫ X.presheaf.map (homOfLE h2).op).hom f = _
-  rw [← Functor.map_comp]
-  rfl
-
-theorem resG_self {X : Scheme.{0}} {U : X.Opens} (h : U ≤ U) (f : Γ(X, U)) : resG X h f = f := by
-  change (X.presheaf.map (homOfLE h).op).hom f = f
-  rw [show homOfLE h = 𝟙 U from rfl, op_id, CategoryTheory.Functor.map_id]
-  rfl
-
 variable {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O] [Module O Q.X]
   {oa : Q.OAct O} {Y : Ray oa}
 

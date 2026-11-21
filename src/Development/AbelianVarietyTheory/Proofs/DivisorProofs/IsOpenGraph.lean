@@ -25,8 +25,4 @@ def Etale.val {P : Set X → (X → ℂ) → Prop} (e : Etale P) : ℂ := (e : X
 theorem Etale.mk_proj_val {P : Set X → (X → ℂ) → Prop} (e : Etale P) :
     Etale.mk P (Etale.proj P e) e.val = e := rfl
 
-theorem Etale.isOpen_graph {P : Set X → (X → ℂ) → Prop} {O : Set X} {f : X → ℂ} (h : P O f) :
-    IsOpen ((fun y => Etale.mk P y (f y)) '' O) :=
-  TopologicalSpace.GenerateOpen.basic _ ⟨O, f, h, rfl⟩
-
 end GlobalTheory.PrimLift

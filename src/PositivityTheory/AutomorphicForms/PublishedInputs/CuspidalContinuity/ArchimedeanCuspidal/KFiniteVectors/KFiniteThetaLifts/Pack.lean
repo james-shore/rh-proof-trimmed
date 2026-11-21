@@ -1,4 +1,7 @@
-import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.KFiniteVectors.QuadraticBaseChangeGL3Statement
+import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.KFiniteVectors.ComplexMatrix3
+import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.GaugeTopology.SSmoothW
+import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.RealLocalIntegrals.StSmooth
+import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.EulerProducts.GenStable
 import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.KFiniteVectors.KFiniteThetaLifts.LocalFunctionalEquationGL3GL2
 
 noncomputable section
@@ -27,19 +30,5 @@ structure Pack (DK : DatK K) (c : HeckeCharacter K) (n : ℤ) (t : ℝ) (S : Fin
   oZ : Ord (fun s => (Z s)⁻¹) (1 / 3)
   oZ' : Ord (fun s => (Z' s)⁻¹) (1 / 3)
   lfe : ∀ s : ℂ, 1 / 4 < s.re → s.re < 3 / 4 → Z' (1 - s) = gamSK DK c n t S s * Z s
-
-variable (K) in
-
-def Asm : Prop :=
-  ∀ (DK : DatK K) c n t S (I I' Z Z' : ℂ → ℂ), Pack DK c n t S I I' Z Z' →
-    ∃ Λ Λ', ContK DK c S Λ ∧ ContK DK c⁻¹ S Λ' ∧
-      ∀ s : ℂ, 1 / 4 < s.re → s.re < 3 / 4 → Λ s = gamSK DK c n t S s * Λ' (1 - s)
-
-variable (K) in
-
-def Out : Prop :=
-  Module.finrank ℚ K = 2 → IsTotallyComplex K → ∀ (D : Dat) (L : GP.Loc D), Explicit D L → ∀ hV : WhA (GP.VA L),
-    QOut D (GP.VA L) hV → ∃ DK : DatK K, DK.k = D.k ∧ BCOf D DK ∧
-      ∀ c n t S, AdmK DK c n t S → ∃ I I' Z Z', Pack DK c n t S I I' Z Z'
 
 end Ad3.K.QuadraticBaseChangeGL3

@@ -75,9 +75,3 @@ instance : tateW.IsElliptic := ⟨isUnit_tateW_Δ⟩
 
 end GlobalTheory.TateCurve
 
-open GlobalTheory.TateCurve in
-
-theorem GlobalTheory.exists_ppas_g_one_hasTheta :
-    ∃ (K : Type) (_ : Field K) (_ : NumberField K) (E : PPAS (Sp (𝓞 K))), E.g = 1 ∧ E.HasTheta :=
-  ⟨realQuadraticSqrtTwentynine, inferInstance, inferInstance, PPAS.ofPolAV (GlobalTheory.WeierstrassCurve.ellPolAV tateW),
-    GlobalTheory.WeierstrassCurve.ellPolAV_g tateW, PPAS.hasTheta_ofPolAV _⟩

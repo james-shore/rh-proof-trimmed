@@ -46,15 +46,6 @@ end GlobalTheory.BigOn.Exp.TupLe.Swap
 
 namespace GlobalTheory.BigOn.Exp.TupLe
 
-open GlobalTheory.BigOn.Exp.TupLe.Swap in
-
-theorem flatSt_holds : FlatSt := by
-  intro D L hT Gi Gl Kc Y cX ex Csz p j hr hm B ψ t hB hB0 hψ hQ hxi hid
-  have hL : Links2 p := GlobalTheory.T.second_link_of_weight_rows D L hT Gi Gl Kc Y cX ex Csz p hr hm.1
-  have hC : GlobalTheory.Hk3.Core (R2 p) (F2 p) := ⟨hL.1.lev, hL.1.grp, hL.1.fam, hL.1.models, hL.1.chain, hL.1.thP⟩
-  exact flat_gen _ _ _ _ _ _ (R2 p) (F2 p) hC p.qGuard j t (GlobalTheory.StdFrame.vStd_of_orthonormal_span _ j (p.stdV j))
-    B ψ hB hB0 hψ hQ hxi hid
-
 end GlobalTheory.BigOn.Exp.TupLe
 
 end

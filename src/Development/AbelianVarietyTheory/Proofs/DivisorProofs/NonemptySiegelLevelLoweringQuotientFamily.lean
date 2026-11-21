@@ -47,8 +47,6 @@ theorem nonempty_sQuot : ∀ (h n N : ℕ) (F : SFam h N (zetaAway N)) (j : cycA
   obtain ⟨a, rfl⟩ := htrans R y y' s' c' h₀ h₁ h₂
   rw [Category.assoc, hG.inv]
 
-example : ∀ (h n N : ℕ) (F : SFam h N (zetaAway N)) (j : cycAway n →+* cycAway N), 3 ≤ n → Odd N → n ∣ N → j (zetaAway n) = zetaAway N ^ (N / n) → IsFinite (spMap j) → Etale (spMap j) → Nonempty (SQuot F n (zetaAway n) j) := nonempty_sQuot
-
 end GlobalTheory.SiegLev
 
 end

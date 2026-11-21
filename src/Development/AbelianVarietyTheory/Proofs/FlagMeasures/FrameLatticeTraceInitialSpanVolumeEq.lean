@@ -15,12 +15,6 @@ namespace GlobalTheory.HL.TraceVol
 def dfam {E V ι : Type} [CommRing E] [AddCommGroup V] [Module E V] (t : E) (g g' : ι → V) : ι ⊕ ι → V :=
   Sum.elim g fun b => t • (g' b - g b)
 
-section
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F] [CharZero F]
-  {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] {L : LocE F E} {r k : ℕ}
-
-end
-
 open ValuativeRel MeasureTheory in
 open scoped Pointwise ENNReal Classical in
 private theorem unitriangular_sum_castLE_eq {E V : Type} [CommRing E] [AddCommGroup V] [Module E V]

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiffsZeroOfLev
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiffsLeSup
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogAbsEEqZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChainEmbZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChainEmbSuccMulVec
@@ -52,9 +51,6 @@ structure Good (s : PiLocalization₂ σ Y Y₁ H) (χa χb : Chr F E) (za zb : 
 
 end PiLocalization₂
 
-def Reg {n : ℕ} {Y : Spc F E n} (f : UA σ Y.J → ℂ) : Prop :=
-  Continuous f ∧ ∀ γ ∈ ratU σ Y.J, ∀ x, f (γ * x) = f x
-
 variable (σ) in
 
 structure Chain {d d₁ : ℕ} (W : Spc F E d) (H' : Plane E d d₁) (sp : ∀ j : ℕ, Spc F E (d₁ - 2 * j))
@@ -86,12 +82,6 @@ theorem lift_succ (C : Chain σ W H' sp pl) (j : ℕ) : C.lift (j + 1) = (C.lift
 structure Good (C : Chain σ W H' sp pl) (X : Chars F E) (a a' p : ℕ) : Prop where
   s0 : C.s0.Good X.α X.β ((a' : ℝ) / 2) ((a : ℝ) / 2)
   s : ∀ j < p, (C.s j).Good X.α X.β ((a' : ℝ) / 2) (zb a j)
-
-def admitted (C : Chain σ W H' sp pl) (X : Chars F E) (a a' i : ℕ) (G : UA σ W.J → ℂ) : Prop :=
-  Reg G ∧ (∃ fa fb, SplitZ (sp 0) H' X.α X.β ((a' : ℝ) / 2) ((a : ℝ) / 2) G fa fb) ∧
-    (∀ k < i, Reg (C.op k G) ∧
-      ∃ fa fb, SplitZ (sp (k + 1)) (pl k) X.α X.β ((a' : ℝ) / 2) (zb a k) (C.op k G) fa fb) ∧
-    Reg (C.op i G)
 
 end Chain
 

@@ -21,21 +21,10 @@ theorem repD_apply {G : Type} [Group G] {V : Type} [AddCommGroup V] [Module ℂ 
     (hmul : ∀ k ∈ K, ∀ k' ∈ K, k * k' ∈ K) (hst : ∀ k ∈ K, ∀ x ∈ D, ρ k x ∈ D)
     (k : subK K h1 hmul) (x : D) : ((repD ρ D K h1 hmul hst k x : D) : V) = ρ k x := rfl
 
-noncomputable def leftMul {G : Type} {m : ℕ} (A : G → Matrix (Fin m) (Fin m) ℂ) (g : G) :
-    EuclideanSpace ℂ (Fin (m * m)) →L[ℂ] EuclideanSpace ℂ (Fin (m * m)) :=
-  Matrix.toEuclideanCLM (n := Fin (m * m)) (𝕜 := ℂ) (Matrix.reindex finProdFinEquiv finProdFinEquiv
-    (Matrix.kroneckerMap (· * ·) (A g) (1 : Matrix (Fin m) (Fin m) ℂ)))
-
 section
 variable {G : Type} [Group G] {V : Type} [AddCommGroup V] [Module ℂ V]
     (ρ : G →* Module.End ℂ V) (D : Submodule ℂ V) (K : Set G) (h1 : (1 : G) ∈ K)
     (hmul : ∀ k ∈ K, ∀ k' ∈ K, k * k' ∈ K) (hst : ∀ k ∈ K, ∀ x ∈ D, ρ k x ∈ D)
-
-theorem smul_val (a : MonoidAlgebra ℂ (subK K h1 hmul)) (u : (repD ρ D K h1 hmul hst).asModule) :
-    (((repD ρ D K h1 hmul hst).asModuleEquiv (a • u) : D) : V) =
-      ∑ κ ∈ a.coeff.support, a.coeff κ • ρ κ (((repD ρ D K h1 hmul hst).asModuleEquiv u : D) : V) := by
-  rw [Representation.asModuleEquiv_map_smul, Representation.asAlgebraHom_def, MonoidAlgebra.lift_apply]
-  simp [Finsupp.sum, repD_apply]
 
 noncomputable def toEndD
     (g : (repD ρ D K h1 hmul hst).asModule →ₗ[MonoidAlgebra ℂ (subK K h1 hmul)]

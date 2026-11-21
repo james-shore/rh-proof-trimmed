@@ -98,12 +98,6 @@ theorem sumAt_of_sizes {PP C₁ C₂ : ℝ} (h1 : 0 ≤ C₁) (h2 : 0 ≤ C₂) 
 
 end Point
 
-theorem sumPt_of_sizes : WtPt → NumPt → SumPt := fun hw hn =>
-  Closed.imp (Closed.and hw hn) fun _ _ _ ⟨⟨C₁, h1, e1⟩, C₂, h2, e2⟩ =>
-    ⟨40 * (4 * C₁ * (2 * C₁ + C₂ + 1) ^ 2 + C₂ * (2 * C₁ + C₂ + 1) + 2 * C₁) * C₂, by positivity,
-      (e1.and e2).imp fun _ h x hx hle ι p hp i hi u1 hu =>
-        sumAt_of_sizes p i h1 h2 u1 ((h x hx hle ι p hp).1 i hi u1 hu) ((h x hx hle ι p hp).2 i hi)⟩
-
 end GlobalTheory.RefSum
 
 end

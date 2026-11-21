@@ -1,5 +1,6 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentCocompact.AdeleUnip
+import Formalism.UnipotentAdelicQuotients.ClassNumberFinite
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentApproximation.MemZeroLocusGLIff
 
 open NumberField IsDedekindDomain
 open scoped RestrictedProduct

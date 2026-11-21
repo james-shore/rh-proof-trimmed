@@ -3,17 +3,107 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.SemiposAtOfPositive
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsCompModel
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopologicalKrullDimEqSucc
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCommonRefinementModels
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricPullback
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ArTopOfInduced
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NefFibPullback
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsIsHodgeFrameIff
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.DegFrame
+import Development.AbelianVarietyTheory.Statements.HeightBoundStatement.HTBoundSt
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LineModel
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ArBirational
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.EqOfIsometricTrivShift
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModelMapSurjectiveBirationalStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqJAndIsClosed
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PointHeightOfInducedBundleStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricDegreeOfInducedBundleStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiPosIffOfInduced
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPtHtShift
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AmpleOnAbelianBase
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ArakelovTopUnique
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricPullbackStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricPowStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalSystemModelMap
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RingHomExtValuationSubring
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CorrespondenceDiagonal
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MultiplicationLatticeSecond
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFrameCover
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntegralFlagCellOfValuedFieldStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SmoothBaseAndNormalCoordinateRing
+import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsAffineLieBasisBaseChange
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.EigLatBasis
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CocycleTrivialOnProjectiveCover
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.MemRangeCompIffOfIsClosedImmersion
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineEigenframeNearImage
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsDiscreteValuationRingAndFiniteResidueFieldValu
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TangentCombinationEigenAction
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LetterConjugation
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteIntegralClosureOfEssFiniteTypeField
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsIsoNormalizationPullbackOfToIntegralClosure
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsProjOverCompFinite
+import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IsOpenOfMemIrreducibleComponentsOfFinite
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPluckerFlagEmbeddingOfProjectiveBaseStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FlagCellsGlueLocallyClosedPluckerProductStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompactNormalNoetherianOfFlagCellCoverStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PreimageIUnionOpensEqRangeFlagCellsStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemSpanOfPluckerProportional
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PluckerVectorBlockTriangularFrameChange
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PreModelChartFrame
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SInfMulNormPlk
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AffineOpenChartCompStructureEqSpMap
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyAdaptedOfIntStep
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdaptedNextStepType
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdaptedSubstepClosure
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyClosureOfEmbedding
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsProperAndExistsIsAmpleLB
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverCompOfIsClosedImmersion
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AtlasLocalRingPoints
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStalkFactor
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsNatDiagIffIsDiag
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFrameBaseChangeRingHom
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LineModelTrueOfFalse
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GrNormPush
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFlagFrame
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSectionOfIsIsoRestrict
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsProperToroidalModelStructureMap
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIdealSheafAwayFromP
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsTanBasisOfUniqueCombination
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsTrans
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.PadicValNatAbsNormEqZero
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TangentBasisOfSplitTorsion
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FrameCombinationCoeffUnique
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GradedLineBundleExists
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SuccessiveMinimaPositiveNorms
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FromModelOfLocMax
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsModelPresentingDivisor
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjFsBasisOfUnitary
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.DualGramInterpGram
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineEigenframeFlag
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocalEquationComplexPoints
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EigenMetricOnSet
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ConjSmoothOnPreimageCharts
+import Development.AbelianVarietyTheory.Definitions.Divisors.FirstChernIntegralEqDegree
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UniformizedFamilyChartIndex
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeriodFamilyChartDomain
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFramedComplexPointOfEigenFrameOffBoundaryStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GramSmoothOfHolomorphicFrames
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsExponentialModelFiberOfUniformisationExp
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExpCoordinatesTangentFieldHolomorphicPeriodMapStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InducedMetricPullback
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RingKrullDimIntegers
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NefFibPullback
+import Development.AbelianVarietyTheory.Definitions.Divisors.EqOfSpecializesOfFinite
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMemChart
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IntersectionNumberFinitePushforward
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ResidueDegreeOfIsOpenImmersion
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClosedPointGeometricFibresFinite
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValAtAlgebraMap
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallSectionHeightLowerBound
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CartierLocalEquationCommon
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinsumLengthMulLogCardEqNegLogAdicAbvNorm
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MemEqnSetOmegaCoeff
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StrictPosOfExists
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GenericallySmoothModel
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleCoordsBaseChange
+import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.AApproxC
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NefFibOfInducedOfInduced
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumLifts
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BijectiveCompAlgebraMap
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SelfIntersectionLowerHeight
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PointHeightDualAndLinearComb
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.BasicNotions.TH Formalism.L2.Theta ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.CovTop GlobalTheory.CovHt GlobalTheory.Mean4 GlobalTheory.Mean4O
 open scoped ENNReal Classical
 open MvPolynomial Formalism.DegreeFormula Formalism.BasicNotions.DV Formalism.MainNotions.WeightThresholdDefs Filter Topology ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M GlobalTheory.FlagPoly GlobalTheory.FlagAr
@@ -23,82 +113,8 @@ noncomputable section
 
 namespace GlobalTheory.ReadModel
 
-theorem dominate2 : ∀ (F : Type) [Field F] [NumberField F] (Y : Var F) (M M₁ : TrueGeo.Model Y), ∃ (P : TrueGeo.Model Y) (π : P.X ⟶ M.X) (ρ : P.X ⟶ M₁.X), π ≫ M.p = P.p ∧ P.j ≫ π = M.j ∧ ρ ≫ M₁.p = P.p ∧ P.j ≫ ρ = M₁.j := by
-  intro F _ _ Y M M₁
-  obtain ⟨P, π, h⟩ := GlobalTheory.Member.DomFin.exists_dominating_fintype F Y M Bool (fun b => bif b then M₁ else M)
-  exact ⟨P, π false, π true, (h false).1, (h false).2, (h true).1, (h true).2⟩
-
 theorem nefFib_shift {k : Type} [CommRing k] {X : Scheme.{0}} {p : X ⟶ Sp k} (L : HermLB p) (t : (k →+* ℂ) → ℝ)
     (ht : ∀ σ, t ((starRingEnd ℂ).comp σ) = t σ) : NefFib (L.shift t ht) ↔ NefFib L := Iff.rfl
-
-theorem gdeg_shift {k : Type} [CommRing k] {X : Scheme.{0}} {p : X ⟶ Sp k} (L : HermLB p) (t : (k →+* ℂ) → ℝ)
-    (ht : ∀ σ, t ((starRingEnd ℂ).comp σ) = t σ) (D : ℕ) : gdeg (L.shift t ht) D = gdeg L D := by
-  simp only [gdeg, chInt, HermLB.shift, Weight.chernInt, Weight.chernPart_addFn_const]
-
-theorem semiPos_shift_iff {k : Type} [CommRing k] {X : Scheme.{0}} {p : X ⟶ Sp k} (L : HermLB p) (t : (k →+* ℂ) → ℝ)
-    (ht : ∀ σ, t ((starRingEnd ℂ).comp σ) = t σ) (D : ℕ) : (L.shift t ht).SemiPos D ↔ L.SemiPos D := by
-  refine ⟨fun h σ i c y hy ξ => ?_, fun h => h.shift t ht⟩
-  have := (h σ).addFn_const (-(2 * t σ)) i c y hy ξ
-  simpa [HermLB.shift, Weight.addFn] using this
-
-theorem readModel : Hypotheses2 → HypothesesH → ∀ (F : Type) [Field F] [NumberField F] (Y : Var F) (e : ℕ), Y.dim = e →
-    ∀ (A' : Adl (cxSt F) Y) (M M' : TrueGeo.Model Y) (L' : HermLB M'.p) (k : ℕ+) (cf : HeightOneSpectrum (𝓞 F) → ℝ),
-    A'.Induced M' L' k cf →
-    ∃ (X' : Scheme.{0}) (_ : IsIntegral X') (q : X' ⟶ Sp (𝓞 F)) (π : X' ⟶ M.X) (_ : π ≫ M.p = q) (H : HermLB q)
-      (n d : ℕ), IsArithVar q e ∧ Surjective π ∧ π.residueDegree (genericPoint X') = d ∧ 0 < d ∧ 0 < n ∧
-      H.IsSelfInter ((Module.finrank ℤ (𝓞 F) : ℝ) * d * (n : ℝ) ^ (e + 1) * A'.arTop) ∧
-      gdeg H e = (Module.finrank ℤ (𝓞 F) : ℝ) * d * (n : ℝ) ^ e * A'.deg ∧
-      (A'.SemiPos ↔ H.SemiPos e) ∧ (A'.NefFib ↔ NefFib H) ∧
-      ∀ (y : Y.X) (x : X'), IsAlgPt x → π x = M.j y → IsPtHt H x (n * A'.ht y) := by
-  intro hP2 hPH F _ _ Y e he A' M M' L' k cf hI
-  have hC : GlobalTheory.Published.ArCalc := hP2.p4
-  have hD : GlobalTheory.Published.ArDegree := hPH.deg
-  subst he
-  obtain ⟨M₁, L₁, k₁, cf₁, hI₁, hN₁⟩ : ∃ (M₁ : TrueGeo.Model Y) (L₁ : HermLB M₁.p) (k₁ : ℕ+)
-      (cf₁ : HeightOneSpectrum (𝓞 F) → ℝ), A'.Induced M₁ L₁ k₁ cf₁ ∧ (A'.NefFib → NefFib L₁) := by
-    by_cases h : A'.NefFib
-    · obtain ⟨M₁, L₁, k₁, cf₁, h₁, h₂⟩ := h
-      exact ⟨M₁, L₁, k₁, cf₁, h₁, fun _ => h₂⟩
-    · exact ⟨M', L', k, cf, hI, fun h' => absurd h' h⟩
-  obtain ⟨P, π, ρ, hπp, hπj, hρp, hρj⟩ := dominate2 F Y M M₁
-  have hI₂ := GlobalTheory.TrueGeo.InducedPull.induced_pull F _ Y A' M₁ P ρ hρp hρj L₁ k₁ cf₁ hI₁
-  haveI := P.ar.isIntegral
-  obtain ⟨hsurj, hdeg⟩ := GlobalTheory.T.model_map_surjective_birational F Y P M π hπp hπj
-  obtain ⟨a, ha⟩ : ∃ a, (L₁.pull ρ hρp).IsSelfInter a := by
-    obtain ⟨h, hh⟩ := (hC.arExists _ P.X P.p _ P.ar).1 (L₁.pull ρ hρp)
-    exact ⟨_, h, hh, rfl⟩
-  have htop := (GlobalTheory.TrueGeo.arTop_of_induced hC hD F _ Y A' P (L₁.pull ρ hρp) k₁ cf₁ hI₂).2 a ha
-  have hg := GlobalTheory.T.geometric_degree_of_induced_bundle hD F _ Y A' P (L₁.pull ρ hρp) k₁ cf₁ hI₂
-  have hfr : (Module.finrank ℤ (𝓞 F) : ℝ) = (Module.finrank ℚ F : ℝ) := by
-    rw [NumberField.RingOfIntegers.rank]
-  have hF : (Module.finrank ℚ F : ℝ) ≠ 0 := Nat.cast_ne_zero.2 Module.finrank_pos.ne'
-  have hN : (((k₁ : ℕ) * (A'.n : ℕ) : ℕ) : ℝ) ≠ 0 := by positivity
-  refine ⟨P.X, P.ar.isIntegral, P.p, π, hπp,
-    (L₁.pull ρ hρp).shift (fun _ => ((k₁ : ℕ) * (A'.n : ℕ) : ℕ) * (∑ᶠ v, cf₁ v) / (Module.finrank ℚ F : ℝ))
-      (fun _ => rfl), (k₁ : ℕ) * (A'.n : ℕ), 1, P.ar, hsurj, hdeg, one_pos, by positivity, ?_, ?_, ?_, ?_, ?_⟩
-  · have := hC.arShift _ P.X P.p Y.dim P.ar (L₁.pull ρ hρp) a
-      ((((k₁ : ℕ) * (A'.n : ℕ) : ℕ) : ℝ) * (∑ᶠ v, cf₁ v) / (Module.finrank ℚ F : ℝ)) ha
-    convert this using 1
-    rw [hg, htop, hfr]
-    push_cast at hN ⊢
-    field_simp
-    ring
-  · rw [gdeg_shift, hg]
-    push_cast
-    ring
-  · exact (GlobalTheory.TrueGeo.InducedSemiPos.semiPos_iff_of_induced F _ Y A' P (L₁.pull ρ hρp) k₁ cf₁ hI₂).trans (semiPos_shift_iff _ _ _ _).symm
-  · rw [nefFib_shift]
-    refine ⟨fun h => ?_, fun h => ⟨P, L₁.pull ρ hρp, k₁, cf₁, hI₂, h⟩⟩
-    have := M₁.ar.finite
-    exact GlobalTheory.ArInt.nefFib_pull _ M₁.X P.X M₁.p P.p M₁.ar.isProjOver P.ar.isProjOver ρ hρp L₁ (hN₁ h)
-  · intro y x hx hxy
-    obtain ⟨rfl, hy⟩ := GlobalTheory.TrueGeo.ReadPts.eq_j_and_isClosed F Y P M π hπj y x hx hxy
-    have h₁ := GlobalTheory.T.point_height_of_induced_bundle hC.arExists F _ Y A' P (L₁.pull ρ hρp) k₁ cf₁ hI₂ y hy
-    have h₂ := GlobalTheory.ShiftHt.isPtHt_shift hC.arExists _ P.X P.p Y.dim P.ar (L₁.pull ρ hρp) _ _
-      ((((k₁ : ℕ) * (A'.n : ℕ) : ℕ) : ℝ) * (∑ᶠ v, cf₁ v) / (Module.finrank ℚ F : ℝ)) hx h₁
-    convert h₂ using 1
-    push_cast
-    ring
 
 end GlobalTheory.ReadModel
 

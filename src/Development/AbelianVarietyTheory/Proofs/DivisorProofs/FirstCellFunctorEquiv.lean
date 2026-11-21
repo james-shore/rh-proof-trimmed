@@ -323,27 +323,4 @@ theorem prod₂_val (φ : ProdSp χ₁ χ₂ u v) (x y : GL (Fin (u + v)) k) :
 theorem cellFunctor_val (F : CellSp χ₁ χ₂ u v) (x y : Levi k (Two (Fin 1) (Fin (u + v)))) :
     (cellFunctor (what₂ u v) (cols u v) (detPair χ₁ χ₂ u v) x F).1.1 y = F.1.1 (y * x) := rfl
 
-theorem cellEquiv_act (hχ₁ : IsSmoothChar χ₁) (F : CellSp χ₁ χ₂ u v) (g : GL (Fin 1) k × GL (Fin (u + v)) k) :
-    cellEquiv χ₁ χ₂ u v hχ₁ (cellFunctor (what₂ u v) (cols u v) (detPair χ₁ χ₂ u v) (leviTwo k (Fin 1) (Fin (u + v)) g) F) =
-      ((χ₁ * absPow k (-(u : ℂ) / 2)) (GeneralLinearGroup.det g.1) : ℂ) •
-        prod₂ (detRep (Fin u) (χ₁ * absPow k (1 / 2))) (detRep (Fin v) χ₂) g.2 (cellEquiv χ₁ χ₂ u v hχ₁ F) := by
-  refine Subtype.ext (Subtype.ext (funext fun y => ?_))
-  simp only [Submodule.coe_smul, Pi.smul_apply, cellEquiv_val, prod₂_val, cellFunctor_val]
-  have hmul : leviTwo k (Fin 1) (Fin (u + v)) (1, y) * leviTwo k (Fin 1) (Fin (u + v)) g =
-      leviTwo k (Fin 1) (Fin (u + v)) (g.1, y * g.2) := by
-    rw [← map_mul, Prod.mk_mul_mk, one_mul]
-  rw [hmul, cell_left, map_smul]
-
-theorem cellFirst_det_equiv : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (χ₁ χ₂ : kˣ →* ℂˣ), IsSmoothChar χ₁ → IsSmoothChar χ₂ → ∀ (u v : ℕ), ∃ (f : ∀ i, (Σ j, Fin ((GlobalTheory.DetProdCells.cellFirst u v).1 i j)) ≃ Two (Fin (u + 1)) (Fin v) i) (g : ∀ j, (Σ i, Fin ((GlobalTheory.DetProdCells.cellFirst u v).1 i j)) ≃ Two (Fin 1) (Fin (u + v)) j), Nonempty (Representation.Equiv ((cellFunctor f g ((extTensor (detRep (Fin (u + 1)) χ₁) (detRep (Fin v) χ₂)).comp (leviTwo k (Fin (u + 1)) (Fin v)).symm.toMonoidHom)).comp (leviTwo k (Fin 1) (Fin (u + v))).toMonoidHom) (extTensor (detRep (Fin 1) (χ₁ * absPow k (-(u : ℂ) / 2))) (prod₂ (detRep (Fin u) (χ₁ * absPow k (1 / 2))) (detRep (Fin v) χ₂)))) := by
-  intro k _ _ _ _ χ₁ χ₂ h₁ _ u v
-  refine ⟨what₂ u v, cols u v, ⟨.mk ((cellEquiv χ₁ χ₂ u v h₁).trans (TensorProduct.lid ℂ _).symm) fun g => ?_⟩⟩
-  refine LinearMap.ext fun F => ?_
-  simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.trans_apply, TensorProduct.lid_symm_apply,
-    MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom]
-  refine (congrArg (fun w => (1 : ℂ) ⊗ₜ[ℂ] w) (cellEquiv_act χ₁ χ₂ u v h₁ F g)).trans ?_
-  have hc : ((χ₁ * absPow k (-(u : ℂ) / 2)) (GeneralLinearGroup.det g.1) : ℂ) • (1 : ℂ) =
-      detRep (Fin 1) (χ₁ * absPow k (-(u : ℂ) / 2)) g.1 1 := by
-    rw [detRep, ofChar_apply, detChar_apply, smul_eq_mul, mul_one]
-  simp only [extTensor_tmul, TensorProduct.tmul_smul, TensorProduct.smul_tmul', hc]
-
 end GlobalTheory.CellFirstDet

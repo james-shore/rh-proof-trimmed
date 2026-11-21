@@ -3,7 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.SemiposAtOfPositive
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormsAtOfNorms
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsLinearMapMultilinearMapBaseChange
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalSection
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsTorsionFreeOfForallExists
 
 set_option autoImplicit false
 
@@ -40,10 +40,6 @@ theorem genVec_smul {V : Z.Opens} (h : genericPoint Z ∈ V) (c : Γ(Z, V)) (v :
 theorem genVec_smul_germ {V : Z.Opens} (h : genericPoint Z ∈ V) {x : Z} (hx : x ∈ V) (c : Γ(Z, V))
     (v : Fin N → Γ(Z, V)) : genVec h (c • v) = Z.presheaf.germ V x hx c • genVec h v := by
   rw [genVec_smul, ← algebraMap_germ hx c, algebraMap_smul]
-
-theorem eq_zero_of_genVec {V : Z.Opens} {v : Fin N → Γ(Z, V)}
-    (hv : ∀ h : genericPoint Z ∈ V, genVec h v = 0) : v = 0 :=
-  funext fun a => fn_ext fun h => (congrFun (hv h) a).trans (map_zero _).symm
 
 variable (C : ∀ x : Z, Submodule (Z.presheaf.stalk x) (Fin N → Z.functionField))
 
@@ -114,8 +110,6 @@ def mk {V : Z.Opens} (v : Fin N → Γ(Z, V)) (hv : v ∈ vsec C V) : Γ(vmod C,
 @[simp] theorem vec_mk {V : Z.Opens} (v : Fin N → Γ(Z, V)) (hv : v ∈ vsec C V) :
     vec (mk v hv) = v := rfl
 
-theorem sec_ext {V : Z.Opens} {s t : Γ(vmod C, V)} (h : vec s = vec t) : s = t := Subtype.ext h
-
 @[simp] theorem vec_add {V : Z.Opens} (s t : Γ(vmod C, V)) : vec (s + t) = vec s + vec t := rfl
 
 @[simp] theorem vec_smul {V : Z.Opens} (c : Γ(Z, V)) (s : Γ(vmod C, V)) : vec (c • s) = c • vec s := rfl
@@ -134,12 +128,6 @@ def vmap (hC : ∀ x, C x ≤ C' x) : vmod C ⟶ vmod C' :=
 
 @[simp] theorem vec_vmap_app (hC : ∀ x, C x ≤ C' x) {V : Z.Opens} (s : Γ(vmod C, V)) :
     vec ((vmap hC).app V s) = vec s := rfl
-
-def vmapOf (h : ∀ V, vsec C V ≤ vsec C' V) : vmod C ⟶ vmod C' :=
-  LB.homOfLinear (F := vmod C) (G := vmod C') (fun V => Submodule.inclusion (h V)) fun _ _ => rfl
-
-def viso (h : ∀ V, vsec C V = vsec C' V) : vmod C ≅ vmod C' :=
-  LB.isoOfLinear (F := vmod C) (G := vmod C') (fun V => LinearEquiv.ofEq _ _ (h V)) fun _ _ => rfl
 
 open Classical in
 
@@ -202,47 +190,7 @@ theorem coord_projLin (hr : IsRatSec L r)
     (s : Γ(vmod C, V)) (c : L.ι) : LB.coord (projLin L r φ hr hC V s) c = projCoord L r φ hC s c :=
   rfl
 
-def vproj (hr : IsRatSec L r) (hC : ∀ x w, w ∈ C x → ∀ c, x ∈ L.U c → RegAt x (φ w * r c)) :
-    vmod C ⟶ LB.toMod L :=
-  LB.homOfLinear (F := vmod C) (G := LB.toMod L) (projLin L r φ hr hC) fun {V W} e s =>
-    LB.sec_ext fun c => Cartier.fn_ext fun h => by
-      simp only [LB.coord_map, coord_projLin, fnOf_resG, fnOf_projCoord, vec_map, genVec_res]
-
-theorem fnOf_coord_vproj (hr : IsRatSec L r)
-    (hC : ∀ x w, w ∈ C x → ∀ c, x ∈ L.U c → RegAt x (φ w * r c)) {V : Z.Opens}
-    (s : Γ(vmod C, V)) (c : L.ι) (h : genericPoint Z ∈ V ⊓ L.U c) :
-    fnOf _ h (LB.coord ((vproj L r φ hr hC).app V s) c) = φ (genVec h.1 (vec s)) * r c :=
-  fnOf_projCoord L r φ hC s c h
-
 open Matrix
-
-def stepSub (M : Matrix (Fin N) (Fin N) Z.functionField) (l : ℕ) :
-    Submodule Z.functionField (Fin N → Z.functionField) where
-  carrier := {v | ∀ k : Fin N, l ≤ (k : ℕ) → (M *ᵥ v) k = 0}
-  add_mem' {v w} hv hw k hk := by rw [Matrix.mulVec_add, Pi.add_apply, hv k hk, hw k hk, add_zero]
-  zero_mem' k _ := by rw [Matrix.mulVec_zero, Pi.zero_apply]
-  smul_mem' a v hv k hk := by rw [Matrix.mulVec_smul, Pi.smul_apply, hv k hk, smul_zero]
-
-def stepC (M : Matrix (Fin N) (Fin N) Z.functionField) (l : ℕ) (x : Z) :
-    Submodule (Z.presheaf.stalk x) (Fin N → Z.functionField) :=
-  (stepSub M l).restrictScalars _
-
-def quotC (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) (L : LB Z)
-    (r : L.ι → Z.functionFieldˣ) (x : Z) : Submodule (Z.presheaf.stalk x) (Fin N → Z.functionField) where
-  carrier := {v | v ∈ stepSub M ((l : ℕ) + 1) ∧ ∀ c, x ∈ L.U c → RegAt x ((M *ᵥ v) l * r c)}
-  add_mem' {v w} hv hw := ⟨add_mem hv.1 hw.1, fun c hc => by
-    rw [Matrix.mulVec_add, Pi.add_apply, add_mul]; exact (hv.2 c hc).add (hw.2 c hc)⟩
-  zero_mem' := ⟨zero_mem _, fun c _ => by
-    rw [Matrix.mulVec_zero, Pi.zero_apply, zero_mul]; exact regAt_zero x⟩
-  smul_mem' a v hv := ⟨(stepSub M ((l : ℕ) + 1)).smul_of_tower_mem a hv.1, fun c hc => by
-    rw [← algebraMap_smul Z.functionField a v, Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul,
-      mul_assoc]
-    exact RegAt.mul ⟨a, rfl⟩ (hv.2 c hc)⟩
-
-abbrev stepMod (M : Matrix (Fin N) (Fin N) Z.functionField) (l : ℕ) : Z.Modules := vmod (stepC M l)
-
-abbrev quotMod (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) (L : LB Z)
-    (r : L.ι → Z.functionFieldˣ) : Z.Modules := vmod (quotC M l L r)
 
 def coordFn (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) :
     (Fin N → Z.functionField) →ₗ[Z.functionField] Z.functionField :=
@@ -250,41 +198,5 @@ def coordFn (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) :
 
 @[simp] theorem coordFn_apply (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N)
     (v : Fin N → Z.functionField) : coordFn M l v = (M *ᵥ v) l := rfl
-
-theorem stepC_le_quotC (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) (L : LB Z)
-    (r : L.ι → Z.functionFieldˣ) (x : Z) : stepC M l x ≤ quotC M l L r x := fun v hv =>
-  ⟨fun k hk => hv k (by omega), fun c _ => by
-    rw [hv l le_rfl, zero_mul]; exact regAt_zero x⟩
-
-theorem quotC_le_stepC (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) (L : LB Z)
-    (r : L.ι → Z.functionFieldˣ) (x : Z) : quotC M l L r x ≤ stepC M ((l : ℕ) + 1) x :=
-  fun _ hv => hv.1
-
-def stepIncl (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) (L : LB Z)
-    (r : L.ι → Z.functionFieldˣ) : stepMod M l ⟶ quotMod M l L r :=
-  vmap (stepC_le_quotC M l L r)
-
-def quotIncl (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) (L : LB Z)
-    (r : L.ι → Z.functionFieldˣ) : quotMod M l L r ⟶ stepMod M ((l : ℕ) + 1) :=
-  vmap (quotC_le_stepC M l L r)
-
-def stepProj (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) {L : LB Z}
-    {r : L.ι → Z.functionFieldˣ} (hr : IsRatSec L r) : quotMod M l L r ⟶ LB.toMod L :=
-  vproj L r (coordFn M l) hr fun x w hw c hc =>
-    (show RegAt x (coordFn M l w * r c) from hw.2 c hc)
-
-theorem stepIncl_stepProj (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) {L : LB Z}
-    {r : L.ι → Z.functionFieldˣ} (hr : IsRatSec L r) : stepIncl M l L r ≫ stepProj M l hr = 0 := by
-  ext V s : 3
-  refine LB.sec_ext fun c => Cartier.fn_ext fun h => ?_
-  change fnOf _ h (LB.coord ((stepProj M l hr).app V ((stepIncl M l L r).app V s)) c) =
-    fnOf _ h (LB.coord (0 : Γ(LB.toMod L, V)) c)
-  rw [stepProj, fnOf_coord_vproj, LB.coord_zero, map_zero, coordFn_apply]
-  show (M *ᵥ genVec h.1 (vec s)) l * _ = 0
-  rw [(vec_mem s h.1 _ h.1 : genVec h.1 (vec s) ∈ stepSub M l) l le_rfl, zero_mul]
-
-def stepSeq (M : Matrix (Fin N) (Fin N) Z.functionField) (l : Fin N) {L : LB Z}
-    {r : L.ι → Z.functionFieldˣ} (hr : IsRatSec L r) : ShortComplex Z.Modules :=
-  ShortComplex.mk (stepIncl M l L r) (stepProj M l hr) (stepIncl_stepProj M l hr)
 
 end GlobalTheory.FlagChi

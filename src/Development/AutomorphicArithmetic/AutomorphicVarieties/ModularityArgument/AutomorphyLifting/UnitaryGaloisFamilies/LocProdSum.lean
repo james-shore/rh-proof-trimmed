@@ -40,8 +40,3 @@ private theorem locProd_sum {E Ω : Type} [Field E] [NumberField E] [Field Ω] [
     rw [List.ofFn_succ]
     exact h1.trans (congrArg _ h2)
 
-theorem UpperTheory.V.Z.Win.Gu.prodT :
-    HypothesesH → ExtraV → ProdT := by
-  intro _ X E Ω _ _ _ _ _ n c N hn w σ _ τ e A h rc hrc
-  obtain ⟨a, ha, ε, L⟩ := X E Ω A w h rc hrc
-  exact locProd_sum L hn σ τ e

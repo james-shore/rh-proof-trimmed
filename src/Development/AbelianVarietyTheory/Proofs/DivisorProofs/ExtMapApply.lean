@@ -26,23 +26,7 @@ def fibMat (n : ℕ) {g : ℕ} (a : Matrix (Fin g) (Fin g) ℂ) :
     Matrix (Fin (n + n + g)) (Fin (n + n + g)) ℂ :=
   Matrix.reindex finSumFinEquiv finSumFinEquiv (Matrix.fromBlocks 1 0 0 a)
 
-theorem fibMat_mul (n : ℕ) {g : ℕ} (a a' : Matrix (Fin g) (Fin g) ℂ) :
-    fibMat n a * fibMat n a' = fibMat n (a * a') := by
-  simp [fibMat, Matrix.fromBlocks_multiply]
-
-theorem fibMat_one (n g : ℕ) : fibMat n (1 : Matrix (Fin g) (Fin g) ℂ) = 1 := by
-  simp [fibMat, Matrix.fromBlocks_one]
-
 def frameMap (n : ℕ) {g : ℕ} (D : Matrix (Fin g) (Fin g) ℂ) : Ext (n + n + g) →L[ℂ] Ext (n + n + g) :=
   extMap (fibMat n (D⁻¹)ᴴ)
-
-def frameMapInv (n : ℕ) {g : ℕ} (D : Matrix (Fin g) (Fin g) ℂ) :
-    Ext (n + n + g) →L[ℂ] Ext (n + n + g) :=
-  extMap (fibMat n Dᴴ)
-
-def kerConj (n : ℕ) {g : ℕ} (D : Matrix (Fin g) (Fin g) ℂ)
-    (K : ℝ → (Fin g → ℂ) → (Fin g → ℂ) → Ext (n + n + g) →L[ℂ] Ext (n + n + g)) :
-    ℝ → (Fin g → ℂ) → (Fin g → ℂ) → Ext (n + n + g) →L[ℂ] Ext (n + n + g) :=
-  fun t z z' => frameMap n D ∘L K t (z ᵥ* D⁻¹) (z' ᵥ* D⁻¹) ∘L frameMapInv n D
 
 end GlobalTheory.TorsionForm

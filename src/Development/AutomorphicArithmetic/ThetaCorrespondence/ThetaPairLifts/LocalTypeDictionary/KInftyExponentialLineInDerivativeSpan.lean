@@ -3,15 +3,15 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompact
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MemPolarizationStabilizerOfDualPair
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.FockVectorsKFinite
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompactActionStatement
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolActs
 
 section
 open NumberField IsDedekindDomain
 noncomputable section
 namespace GlobalTheory.KExpLine
-section Abstract
-variable {Y : Type} [NormedAddCommGroup Y] [NormedSpace ℝ Y]
-end Abstract
 end GlobalTheory.KExpLine
 namespace GlobalTheory.KExpLine
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels

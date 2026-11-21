@@ -233,8 +233,6 @@ theorem finDatK_of (hA : ∃ CF0 : ℝ, ∀ CF : ℝ, CF0 ≤ CF → ∃ c₁ : 
   rw [sum_locPl ch.G t K w] at hP
   exact hP
 
-theorem finDatK : GlobalTheory.FunPr.Hypotheses₂ → FinDatK := fun _ => finDatK_of GlobalTheory.T.flips_loss_bounded_at_exceptional_places GlobalTheory.T.movedTensor_unfolding_integral_valuation_loss_bound
-
 end GlobalTheory.FunDat
 
 end

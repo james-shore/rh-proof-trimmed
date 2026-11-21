@@ -44,10 +44,6 @@ theorem derivOp_spec (hex : ∀ Φ ∈ D, ∃ Φ₁ ∈ D, ∀ x, HasDerivAt (fu
     HasDerivAt (fun t => T t Φ.1 x) (((derivOp D T hex Φ : D) : α → ℂ) x) 0 :=
   (hex Φ.1 Φ.2).choose_spec.2 x
 
-theorem derivOp_eq (hex : ∀ Φ ∈ D, ∃ Φ₁ ∈ D, ∀ x, HasDerivAt (fun t => T t Φ x) (Φ₁ x) 0) (Φ : D) (Ψ : α → ℂ)
-    (h : ∀ x, HasDerivAt (fun t => T t Φ.1 x) (Ψ x) 0) : ((derivOp D T hex Φ : D) : α → ℂ) = Ψ :=
-  funext fun x => (derivOp_spec hex Φ x).unique (h x)
-
 end Deriv
 
 section Adjoin
@@ -176,12 +172,6 @@ theorem iota_apply (B : Base F E) (M : Model σ Y W) (om : Rep σ Y W) (N : Subm
     (hN : GlobalTheory.ThetaFac.WStable B om (PolData B M) N) (φ : ∀ v : Pl F, (Fin n × Fin d → Fv F v) → ℂ) (hφ : Good M φ)
     (f : M.Pol B.ψ B.emb) :
     iota B M om N hN φ hφ f = (Nr B M om N hN).mkQ ⟨pure f.1 φ, Submodule.subset_span ⟨f.1, f.2, φ, hφ.1, hφ.2, rfl⟩⟩ :=
-  rfl
-
-theorem iota_eq_zero (B : Base F E) (M : Model σ Y W) (om : Rep σ Y W) (N : Submodule ℂ (Fn F n d))
-    (hN : GlobalTheory.ThetaFac.WStable B om (PolData B M) N) (φ : ∀ v : Pl F, (Fin n × Fin d → Fv F v) → ℂ) (hφ : Good M φ)
-    (f : M.Pol B.ψ B.emb) : iota B M om N hN φ hφ f = 0 ↔ pure f.1 φ ∈ N := by
-  rw [iota_apply, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]
   rfl
 
 end GlobalTheory.ThetaFibMax

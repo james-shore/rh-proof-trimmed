@@ -54,10 +54,6 @@ theorem isHolTo_congr {X : Scheme.{0}} {B : Set E} {y y' : E → (Sp ℂ ⟶ X)}
   refine ⟨(hy U f).1, (hy U f).2.congr fun b hb => ?_⟩
   simp only [h b hb.1]
 
-theorem isHolTo_mono {X : Scheme.{0}} {B B' : Set E} {y : E → (Sp ℂ ⟶ X)} (hy : IsHolTo B y)
-    (hB' : IsOpen B') (h : B' ⊆ B) : IsHolTo B' y :=
-  isHolTo_precomp hy hB' differentiableOn_id h
-
 variable {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G]
 
 theorem isHolTo_mul {W : Set E} (hW : IsOpen W) (ψ : E → (R →+* ℂ))

@@ -448,16 +448,4 @@ theorem free_and_tensIso_gal {G Qp LL O : Type} [Group G] [TopologicalSpace G] [
     obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective x
     exact Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mul_mem_right _ _ (Ideal.mem_span_singleton.mpr hd))
 
-open GlobalTheory.TopSteps in
-
-theorem freeH_of_vanish : Formalism.GaloisCohomology.LocalFinitenessK → Formalism.GaloisCohomology.LocalEulerCharK →
-    ∀ {l : ℕ} [Fact l.Prime] {P : LocPrime l} (S : TopSit P), S.Vanish → S.FreeH := by
-  intro _ hE l _ P S hV
-  obtain ⟨hS, hT, -⟩ := S.hyp
-  obtain ⟨_, -, -, hA, hF, hfr⟩ := GlobalTheory.CoefInt.integers_laws l S.LL
-  obtain ⟨-, -, -, hR, hO⟩ := GlobalTheory.LocalIntegers.goodO_integers l S.LL
-  obtain ⟨_, -, hl⟩ := GlobalTheory.FinExtIntegers.dvr_complete S.LL
-  exact free_and_tensIso_gal S.Γ hS.2.2.2.2.2 hA hF hO (pow_mul_mem_nhds S.LL _ hS.2.2.2.2.2) hT.2.2.1.1 hl
-    hV.1 hV.2 hT.1 hS.2.2.1 (fun M _ _ _ π => GlobalTheory.T.card_H1_local_euler_formula hE l S.K _ M π)
-
 end GlobalTheory.FreeCoh

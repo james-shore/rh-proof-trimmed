@@ -24,9 +24,6 @@ variable {D : D7}
 theorem wAt_add {m n : ℕ} (p : Place D) (x y : Mx D m n) : wAt p (x + y) = wAt p x + wAt p y := by
   rw [wAt_eq_smul, wAt_eq_smul, wAt_eq_smul, smul_add]
 
-theorem wAt_zero {m n : ℕ} (p : Place D) : wAt p (0 : Mx D m n) = 0 := by
-  rw [wAt_eq_smul, smul_zero]
-
 theorem wAt_two {m n : ℕ} (p : Place D) (x : Mx D m n) : wAt p (2 • x) = 2 • wAt p x := by
   rw [wAt_eq_smul, wAt_eq_smul, smul_comm]
 

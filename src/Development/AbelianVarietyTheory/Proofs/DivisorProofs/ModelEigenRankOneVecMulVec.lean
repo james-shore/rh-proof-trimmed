@@ -102,10 +102,3 @@ theorem ev_law : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFie
 
 end GlobalTheory.LeviEvLaw
 
-example : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E)
-    (B : Base F E) (n d : ℕ) (X : Spc F E n) (W : Spc F E d) (M : Model σ X W), IsStd B.ψ →
-    ∀ (n₁ : ℕ) (X₁ : Spc F E n₁) (H : Plane E n n₁) (j₀ j₁ : ℕ) (M₁ : Model σ X₁ W), H.IsAdapted σ B X X₁ j₀ j₁ →
-    ∀ e, IsEv B M M₁ H.ι 1 {u | ∃ z, u = Matrix.vecMulVec (incV F H.x) z} e →
-    ∀ (y : Fin d → AE F E) (u : Matrix (Fin d) (Fin n₁) (AE F E)), ∀ Φ ∈ schA F (Fin n × Fin d),
-      e (M.co.rho B.ψ (Matrix.vecMulVec (incV F H.x) y + incM F H.ι * uᵀ) Φ) = M₁.co.rho B.ψ uᵀ (e Φ) :=
-  GlobalTheory.LeviEvLaw.ev_law

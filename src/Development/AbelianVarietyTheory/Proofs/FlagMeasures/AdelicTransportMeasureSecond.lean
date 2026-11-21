@@ -299,16 +299,6 @@ theorem infMat_of_mem_fin {D : D7} (V : HSp D) (φ : Ainf D.host.F ⊗[D.host.F]
   show (infHom V k).1.map φ = 1
   rw [hk', Units.val_one, Matrix.map_one _ (map_zero _) (map_one _)]
 
-theorem atTau_spec {D : D7} (V : HSp D) {θ : InfFam D} (hθ : IsInfFam θ) (τ : D.what₂.Tau) {a : Mt V.rank}
-    (ha : a ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ)) : atTau θ V τ a ∈ GinfC V ∧
-      ∀ τ', archM V (θ τ') (atTau θ V τ a) = (Pi.mulSingle τ a : D.what₂.Tau → Mt V.rank) τ' := by
-  obtain ⟨L, hL1, -, -, -, -, hL3, -⟩ := GlobalTheory.RealLift.exists_real_lift D θ V hθ
-  have hu : (Pi.mulSingle τ a : D.what₂.Tau → Mt V.rank) ∈ UG (gramAt D V) := fun τ' => by
-    by_cases h : τ' = τ
-    · subst h; simpa using ha
-    · simp [Pi.mulSingle_eq_of_ne h, Formalism.QuantumDeterminants.UH]
-  exact (hL3 τ a ha).symm ▸ hL1 _ hu
-
 end GlobalTheory.TensRep
 
 open MeasureTheory Formalism.MainNotions.S Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.IndefR.Mult GlobalTheory.RowLev NumberField Matrix

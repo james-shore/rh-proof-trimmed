@@ -45,19 +45,6 @@ def ok : LM c v → Prop
   | ns w σ η Φ => (∀ w' : PlK K, w'.asIdeal.LiesOver v.asIdeal → w' = w) ∧ σ ≠ AlgEquiv.refl ∧
       (∀ a, ((η a : ℂˣ) : ℂ) = GL2LocalData.nsg (Kv K w) (a : Qv v)) ∧ Φ ∈ GL2LocalData.SBc (Qv v) (Kv K w) (localChar c w)
 
-def std : LM c v → Prop
-  | sp _ _ Φ => Φ = Set.indicator {x : Qv v × Qv v | x.1 ∈ 𝒪[Qv v] ∧ x.2 ∈ 𝒪[Qv v]} 1
-  | ns w _ _ Φ => Φ = Set.indicator {x : Kv K w | x ∈ 𝒪[Kv K w]} 1
-
-def IsSp : LM c v → Prop
-  | sp .. => True
-  | ns .. => False
-
-def W : LM c v → GL (Fin 2) (Qv v) → ℂ
-  | sp w₁ w₂ Φ => GL2LocalData.WcS (GP.psiF v)⁻¹ (cAt c v w₁) (cAt c v w₂) Φ
-  | ns w σ η Φ => GL2LocalData.Wc (GP.psiF v)⁻¹ σ (selfDualMeasure (GL2LocalData.chE (Kv K w) (GP.psiF v)⁻¹))
-      (GL2LocalData.lamE (Kv K w) (GP.psiF v)⁻¹ η) (localChar c w) Φ
-
 def val : LM c v → GL (Fin 2) (Qv v) → K → ℂ
   | sp w₁ w₂ Φ => fun g ξ => GL2LocalData.piS (GP.psiF v)⁻¹ (cAt c v w₁) g Φ (dg1 v w₁ ξ, dg1 v w₂ ξ)
   | ns w σ η Φ => fun g ξ => GL2LocalData.piG (GP.psiF v)⁻¹ σ (selfDualMeasure (GL2LocalData.chE (Kv K w) (GP.psiF v)⁻¹))
@@ -86,15 +73,6 @@ def thT {c : HeckeCharacter K} (n : ℤ) (t : ℝ) (M : ∀ v : Pl, LM c v) (g :
 def thP {c : HeckeCharacter K} (n : ℤ) (t : ℝ) (M : ∀ v : Pl, LM c v) (g : G2) : ℂ :=
   ∑' ξ : K, thT n t M g ξ
 
-def AdmM {c : HeckeCharacter K} (M : ∀ v : Pl, LM c v) : Prop :=
-  (∀ v, (M v).ok) ∧ ∃ S0 : Finset Pl, ∀ v ∉ S0, Unr c v ∧ (M v).std
-
-variable (K) in
-
-def THS : Prop := Module.finrank ℚ K = 2 → IsTotallyComplex K → ∀ (DK : DatK K) c n t S, AdmK DK c n t S →
-  ∀ M : ∀ v : Pl, LM c v, AdmM M →
-    ∀ γ : GL (Fin 2) ℚ, (γ.val).det = 1 → ∀ g ∈ Gp M, thP n t M (dia2 γ * g) = thP n t M g
-
 def unQ (v : Pl) : Set (Qv v)ˣ := {u | (u : Qv v) ∈ 𝒪[Qv v] ∧ ((u⁻¹ : (Qv v)ˣ) : Qv v) ∈ 𝒪[Qv v]}
 
 def muU (Sv : Finset Pl) : Measure (∀ v : Sv, (Qv v.1)ˣ) := Measure.pi fun v => (multHaar (Qv v.1)).restrict (unQ v.1)
@@ -112,36 +90,8 @@ open Classical in
 def ctM {c : HeckeCharacter K} (M : ∀ v : Pl, LM c v) (Sv : Finset Pl) (m : Pl →₀ ℤ) (u : ∀ v : Sv, (Qv v.1)ˣ) : ℂ :=
   ∏ v ∈ m.support ∪ Sv, (M v).ct (tu Sv m u v)
 
-def thA {c : HeckeCharacter K} (R : Finset (Pl →₀ ℤ)) (Sv : Finset Pl) (n : ℤ) (t : ℝ) (M : ∀ v : Pl, LM c v)
-    (g : G2) : ℂ :=
-  ∑ m ∈ R, ∫ u, ctM M Sv m u * thP n t (twM M Sv m u) g ∂muU Sv
-
 def th0 {c : HeckeCharacter K} (R : Finset (Pl →₀ ℤ)) (Sv : Finset Pl) (n : ℤ) (t : ℝ) (M : ∀ v : Pl, LM c v)
     (g : G2) : ℂ :=
   ∑ m ∈ R, ∫ u, ctM M Sv m u * thT n t (twM M Sv m u) g 0 ∂muU Sv
-
-def WM {c : HeckeCharacter K} (n : ℤ) (t : ℝ) (M : ∀ v : Pl, LM c v) : G2 → ℂ :=
-  pw2 (WcR (chC n (Complex.I * t)) (PhiInf n)) (fun v => (M v).W)
-
-variable (K) in
-
-def MEX : Prop := Module.finrank ℚ K = 2 → ∀ (c : HeckeCharacter K) (Wtf : ∀ v : Pl, GL (Fin 2) (Qv v) → ℂ)
-  (S0 : Finset Pl), (∀ v ∈ S0, PureTh c v (Wtf v)) → (∀ v ∉ S0, Unr c v ∧ StdTh c v (Wtf v)) →
-    ∃ M : ∀ v : Pl, LM c v, AdmM M ∧ ∀ v, (M v).W = Wtf v
-
-variable (K) in
-
-def AVG : Prop := THS K → Module.finrank ℚ K = 2 → IsTotallyComplex K → ∀ (DK : DatK K) c n t S, AdmK DK c n t S →
-  ∀ M : ∀ v : Pl, LM c v, AdmM M → ∀ R Sv, ∀ γ : GL (Fin 2) ℚ, (γ.val).det = 1 → ∀ g ∈ Gp M,
-    thA R Sv n t M (dia2 γ * g) = thA R Sv n t M g
-
-variable (K) in
-
-def FEX : Prop := Module.finrank ℚ K = 2 → IsTotallyComplex K → ∀ (DK : DatK K) c n t S, AdmK DK c n t S →
-  ∀ M : ∀ v : Pl, LM c v, AdmM M → ∃ (R : Finset (Pl →₀ ℤ)) (Sv : Finset Pl) (κ₀ : ℂ), κ₀ ≠ 0 ∧ ∀ g ∈ Gp M,
-    HasSum (fun α : ℚˣ => κ₀ * WM n t M (dg2 (pri α) 1 * g)) (thA R Sv n t M g - th0 R Sv n t M g) ∧
-    (∀ x : 𝔸[ℚ], th0 R Sv n t M (uni2 x * g) = th0 R Sv n t M g) ∧
-    (∀ κ : Kˣ, th0 R Sv n t M (dg2 (pri (Units.map (Algebra.norm ℚ : K →* ℚ) κ)) 1 * g) = th0 R Sv n t M g) ∧
-    (∀ z : ℚˣ, th0 R Sv n t M (dg2 (pri z) (pri z) * g) = th0 R Sv n t M g)
 
 end Ad3.K.QuadraticBaseChangeGL3.Th

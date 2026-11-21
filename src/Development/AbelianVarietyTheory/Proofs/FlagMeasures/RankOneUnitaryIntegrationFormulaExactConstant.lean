@@ -232,8 +232,6 @@ theorem norm_padL (x : Eu (k + 1)) : ‖padL k r x‖ = ‖x‖ := by
     rw [padL_apply, dif_pos ⟨wI_mid a, wI_mid b⟩]
     simp [wI]
 
-def padI (k r : ℕ) : Eu (k + 1) →ₗᵢ[ℝ] Eu (2 * r + k + 1) := ⟨padL k r, norm_padL⟩
-
 theorem lieE_uwb : lieE (UWb k r) = (lieE (UH (Hb k))).map (padL k r) := by
   unfold lieE
   rw [Submodule.map_span, lieOf_uwb, Set.image_image, Set.image_image]

@@ -17,28 +17,6 @@ noncomputable section
 
 namespace GlobalTheory.HeightCounting.Up.SizePar
 
-theorem exists_params_atMem (hL : GlobalTheory.Published.LocalLanglandsGL) :
-    AtMem hL fun _ _ _ _ w Z _ _ _ _ _ _ => ∃ L : SizeData₂ (w.D Z), Nonempty (ParameterChoice' (w.D Z) L) := by
-  refine (evG_of_ev GlobalTheory.PrimIn.AtData.ev_params).imp fun K _ _ _ _ hK => ?_
-  refine ⟨fun _ _ _ => ∅, fun _ _ _ _ => ∅, fun _ _ _ _ _ => ∅, fun _ _ _ _ _ => ∅, by simp, by simp,
-    fun B f T hO _ _ _ _ w Z Wt p0 t nch n xd c _ _ _ => ?_⟩
-  obtain ⟨L, -, -, hp, -⟩ := hK (w.st Z) hO t.etaF fun v hv j h1 h2 => by
-    have key : ∀ v', (w.D Z).what₂.muAt v' = (w.D Z).what₂.mu0 → v' ∉ Wt := by
-      intro v' he hw
-      have he' : (w.st Z).W.muAt v' = (w.st Z).C.mu0 := he
-      rw [t.mu.on v' hw] at he'
-      have h1 := t.mu.tw v'
-      rw [he', t.mu.mu0] at h1
-      exact (TwFin.tw_fin B f T).2.1 v' h1.symm
-    change (w.D Z).what₂.Aj j v = 0
-    replace hv : (w.D Z).what₂.muAt v = (w.D Z).what₂.mu0 := hv
-    have a := t.untw v (key v hv) j h1 h2
-    have b := t.untw _ (key _ (((w.D Z).what₂.muAt_conj v).trans hv)) j h1 h2
-    unfold Formalism.BasicNotions.Rows.Data.Aj
-    rw [hv, a.1, a.2, b.1]
-    rfl
-  exact ⟨L, hp⟩
-
 end GlobalTheory.HeightCounting.Up.SizePar
 
 namespace GlobalTheory.HeightCounting.Up.SizePar
@@ -131,12 +109,6 @@ theorem exists_params_allSt : AllSt fun _ _ _ _ _ _ x => (∃ L : SizeData₂ (D
     ∀ Lc : LocAll (lay0 (Dof x)), ∃ L : SizeData₂ (withLoc Lc), Nonempty (ParameterChoice' (withLoc Lc) L) :=
   ((stepW_start_ev ev_params_withLoc).and aj_zero_at_state).trans
     (StepW.of_all fun _ _ _ _ w hO _ H P x => H.1 (w.st x.o.Z) hO x.etaF (H.2 P x))
-
-theorem exists_params :
-    (∀ hL : GlobalTheory.Published.LocalLanglandsGL, AtMem hL fun _ _ _ _ w Z _ _ _ _ _ _ => ∃ L : SizeData₂ (w.D Z), Nonempty (ParameterChoice' (w.D Z) L)) ∧
-      AllSt fun _ _ _ _ _ _ x => (∃ L : SizeData₂ (Dof x), Nonempty (ParameterChoice' (Dof x) L)) ∧
-        ∀ Lc : LocAll (lay0 (Dof x)), ∃ L : SizeData₂ (withLoc Lc), Nonempty (ParameterChoice' (withLoc Lc) L) :=
-  ⟨exists_params_atMem, exists_params_allSt⟩
 
 end GlobalTheory.HeightCounting.Up.SizePar
 

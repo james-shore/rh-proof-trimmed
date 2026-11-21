@@ -3,10 +3,69 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.SiegelWeilAnisotrop
 import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHeightLeTwoMulQuotHeight
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaBasicPropertiesStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsHermNDSmulSkewForm
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToGAdMat
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantTermUnipotentIntegral
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousLeftInvariantDual
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperbolicPlaneDecomposition
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsSmoothModerateOfIsAutFunSm
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRationalDarbouxHermitianTensorAdeles
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdelicSchwartzThetaDistributionSumNeZero
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DarbouxCoordsGoodModelStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilEigenSchwartzSurjectiveStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticBasisOfUnitaryFrame
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.DualRestrictSurjectiveOfIsTorsionFreeQuotient
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaActionExists
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SecondConfigurationTripleCompatible
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFactorPureTensorComponentAtPlace
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAdelicCharacterNontrivialAtPlaces
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchroedingerOperatorHeisenbergPreservesSchwartzB
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicHeisenbergActsByLocalSchrodingerStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSplitPlaceAdelicMatrixGivenComponentsStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicTraceSupportedAtSplitPlaceStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianTensorSkewHermitianSplitSymplecticPairStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianSelfDualLatticeSpaceFormHermitianNondeg
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianTensorSkewHermitianSplitSymplecticPair
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepresentationPreservesSchwartz
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigenIntertwinerSkewPlaneUniqueDual
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchrodingerInvariantFunctionalsLagrangian
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUSplittingTrRep
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalIntertwinerUniqueScalarStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilEigenExtendsContinuousStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilEigenContinuousInverseStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RestrictedTensorSchwartzStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchrodingerIntertwinerL2ConstantStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralInfiniteScalingStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigenIntertwinerTransitive
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicSchwartzMemL2
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArchActionReadingsCompatible
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EvaluationGoodModelsIntertwine
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjMapApply
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformSchwartzSeminormBound
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepresentationPointwiseArchimedeanDecayBound
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.UnitaryLatticeDenominatorHeightBoundProof
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsMulIntSingle
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatInvariantUnderIntegralLattice
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatSupportBoundedDenominators
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousCharacterTrivialOnSmallIdeles
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatLevelConductorCompatible
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraceDualLatticeBoundedDenominator
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteAbsMatrixProductLeHeights
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearFormBoundedByLocalConstants
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixEntriesBoundedAlmostEverywhere
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodModelsDifferBySymplecticMatrix
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticChangeOfGoodModelsIntertwines
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilEigenBijectiveSchwartzStatement
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteAdeleStrongApproximationModNat
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockScaledIntegralOfLocal
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicThetaSumNormLePolynomialScale
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSiegelDomainReduction
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdmissibleFormAdelicThetaSumStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocallyConstantFinprodSchwartzBruhatFiniteAdel
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasCompactSupportFinprodSchwartzBruhatFiniteAdel
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.EncardSmulMemLeEncardSmulInterNonempty
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnipotentFundamentalDomain
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsotropicVectorHermitianRankGeThreeIndefin
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnipotentCoordinateAdditive
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnipotentFundamentalDomainExists
 
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
@@ -54,82 +113,3 @@ private theorem plane_span {F E : Type} [Field F] [Field E] [Algebra F E] (σ : 
   obtain ⟨p, hp⟩ := hsurj v
   exact ⟨p.1.1, p.1.2, p.2, by rw [← hL, hp]⟩
 
-set_option maxHeartbeats 800000 in
-set_option synthInstance.maxHeartbeats 400000 in
-theorem _root_.GlobalTheory.T.pair_plane_hyperbolic_reduction : GlobalTheory.ThK.KP → ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
-    (n d : ℕ) (X : Spc F E n) (W : Spc F E d) (M : Model σ X W) (χX χW : Chr F E) (om : Rep σ X W) (r s r' s' : ℕ),
-    IsPair B M χX χW om r s r' s' →
-    ∀ (d₂ : ℕ) (H : Plane E n d₂), (d₂ + 2 = n ∧ form σ X.J H.x H.x = 0 ∧ form σ X.J H.y H.y = 0 ∧ form σ X.J H.x H.y = 1 ∧
-        (∀ u, form σ X.J (H.ι *ᵥ u) H.x = 0 ∧ form σ X.J (H.ι *ᵥ u) H.y = 0) ∧ Function.Injective H.ι.mulVec) →
-    ∀ f : UA σ W.J → ℂ, Continuous f → (∀ N : ℕ, ∃ C : ℝ, ∀ h, ‖f h‖ * (qht h : ℝ) ^ N ≤ C) →
-    ∀ Φ ∈ schA F (Fin n × Fin d),
-    ∀ (μ : Measure (UA σ W.J)) (𝓕 : Set (UA σ W.J)), μ.IsHaarMeasure → IsFundamentalDomain (ratU σ W.J) 𝓕 μ →
-    ∀ (μN : Measure (unip σ X H)) (𝓕N : Set (unip σ X H)), μN.IsHaarMeasure →
-      IsFundamentalDomain ((ratU σ X.J).subgroupOf (unip σ X H)) 𝓕N μN → μN 𝓕N = 1 →
-    ∀ g : UA σ X.J, Integrable (fun p : unip σ X H × UA σ W.J => f p.2 * (starRingEnd ℂ) (theta om Φ (p.1.1 * g) p.2))
-      ((μN.restrict 𝓕N).prod (μ.restrict 𝓕)) := by
-  intro hK F E _ _ _ _ _ σ B n d X W M χX χW om r s r' s' hP d₂ H ⟨hn, hxx, hyy, hxy, ho, hi⟩ f hf hdec Φ hΦ μ 𝓕 hμ h𝓕
-    μN 𝓕N hμN h𝓕N hm g
-  have hcm := hP.base.cm
-  have hσ := GlobalTheory.SiegelSet.sigma_sigma hcm
-  obtain ⟨K, hKc, hcov⟩ := GlobalTheory.UnipHermCover.cocompact_herm F E σ hcm n d₂ X H hP.herm.herm hxx hyy hxy ho
-    (plane_span σ hσ X.J hP.herm.herm H hn hxx hyy hxy ho hi)
-  obtain ⟨hcont, hinv, C, k, hbd⟩ := ((GlobalTheory.T.theta_basic_properties hK.base) F E σ B n d X W M χX χW om r s r' s' hP).1 Φ hΦ
-  obtain ⟨tg1, lc1, sc1, -⟩ := GlobalTheory.UnipCT.topFacts σ X.J
-  obtain ⟨tg2, lc2, sc2, -⟩ := GlobalTheory.UnipCT.topFacts σ W.J
-  haveI : BorelSpace (UA σ X.J) := ⟨rfl⟩
-  haveI : BorelSpace (UA σ W.J) := ⟨rfl⟩
-  have hC0 : 0 ≤ C := by
-    have h0 := (norm_nonneg _).trans (hbd 1 1)
-    have h1 : (0 : ℝ) < (ht (1 : UA σ X.J) : ℝ) := lt_of_lt_of_le zero_lt_one (by exact_mod_cast one_le_heightGL F _)
-    have h2 : (0 : ℝ) < (ht (1 : UA σ W.J) : ℝ) := lt_of_lt_of_le zero_lt_one (by exact_mod_cast one_le_heightGL F _)
-    exact nonneg_of_mul_nonneg_left h0 (pow_pos (mul_pos h1 h2) k)
-  have hug : Continuous fun u : unip σ X H => u.1 * g := continuous_subtype_val.mul continuous_const
-  have hhc : Continuous fun u : unip σ X H => (ht (u.1 * g) : ℝ) :=
-    NNReal.continuous_coe.comp ((GlobalTheory.Grow.continuous_heightGL F).comp (continuous_subtype_val.comp hug))
-  obtain ⟨A₀, hA₀⟩ := hKc.exists_bound_of_continuousOn hhc.continuousOn
-  set A : ℝ := max A₀ 0 with hAdef
-  have hA0 : 0 ≤ A := le_max_right _ _
-  have hb1 : ∀ (u : unip σ X H) h, ‖theta om Φ (u.1 * g) h‖ ≤ C * A ^ k * (ht h : ℝ) ^ k := by
-    intro u h
-    obtain ⟨γ, hγ⟩ := hcov u
-    have hr : γ.1.1 ∈ ratU σ X.J := Subgroup.mem_subgroupOf.1 γ.2
-    have e := hinv γ.1.1 hr 1 (one_mem _) (u.1 * g) h
-    rw [one_mul, ← mul_assoc] at e
-    have h1 : (ht (γ.1.1 * u.1 * g) : ℝ) ≤ A := ((le_abs_self _).trans (hA₀ _ hγ)).trans (le_max_left _ _)
-    rw [← e, mul_assoc C, ← mul_pow]
-    refine (hbd _ _).trans (mul_le_mul_of_nonneg_left ?_ hC0)
-    gcongr
-  have hCA : 0 ≤ C * A ^ k := mul_nonneg hC0 (pow_nonneg hA0 k)
-  have hb2 : ∀ (u : unip σ X H) h, ‖theta om Φ (u.1 * g) h‖ ≤ C * A ^ k * (qht h : ℝ) ^ k := by
-    intro u h
-    have hγ : ∀ γ : ratU σ W.J, ‖theta om Φ (u.1 * g) h‖ ≤ C * A ^ k * ((ht (γ.1 * h) ^ k : ℝ≥0) : ℝ) := by
-      intro γ
-      have e := hinv 1 (one_mem _) γ.1 γ.2 (u.1 * g) h
-      rw [one_mul] at e
-      rw [← e, NNReal.coe_pow]
-      exact hb1 u _
-    have hm : (qht h) ^ k = ⨅ γ : ratU σ W.J, ht (γ.1 * h) ^ k := by
-      show (⨅ γ : ratU σ W.J, ht (γ.1 * h)) ^ k = _
-      exact Monotone.map_ciInf_of_continuousAt (f := fun x : ℝ≥0 => x ^ k) (continuous_pow k).continuousAt
-        (fun x y hxy => pow_le_pow_left₀ (by positivity) hxy k) (OrderBot.bddBelow _)
-    have e2 : (qht h : ℝ) ^ k = ⨅ γ : ratU σ W.J, ((ht (γ.1 * h) ^ k : ℝ≥0) : ℝ) := by
-      rw [← NNReal.coe_pow, ← NNReal.coe_iInf, hm]
-    rw [e2, Real.mul_iInf_of_nonneg hCA]
-    exact le_ciInf hγ
-  obtain ⟨C₂, hC₂⟩ := hdec k
-  obtain ⟨ξ, hξ0, hξ⟩ := GlobalTheory.UnipMassHerm.exists_anti hcm
-  have hJ := GlobalTheory.ThK.SqIntHerm.isHermND_smul_map F E σ B d W r' s' hP.skew ξ hξ0 hξ
-  have hfin : μ 𝓕 < ⊤ :=
-    GlobalTheory.ThKContSmall.measure_fundamental_domain_lt_top hK.siegelSetUnitary hcm hJ _ (GlobalTheory.SiegelSet.ug_eq_hr hσ hξ0) μ hμ 𝓕 h𝓕
-  haveI : IsFiniteMeasure (μ.restrict 𝓕) := isFiniteMeasure_restrict.2 hfin.ne
-  haveI : IsFiniteMeasure (μN.restrict 𝓕N) := isFiniteMeasure_restrict.2 (by rw [hm]; exact ENNReal.one_ne_top)
-  have hFc : Continuous fun p : unip σ X H × UA σ W.J => f p.2 * (starRingEnd ℂ) (theta om Φ (p.1.1 * g) p.2) :=
-    (hf.comp continuous_snd).mul
-      (Complex.continuous_conj.comp (hcont.comp ((hug.comp continuous_fst).prodMk continuous_snd)))
-  refine Integrable.mono' (integrable_const (C * A ^ k * C₂)) hFc.aestronglyMeasurable (Eventually.of_forall fun p => ?_)
-  rw [norm_mul, Complex.norm_conj]
-  calc ‖f p.2‖ * ‖theta om Φ (p.1.1 * g) p.2‖ ≤ ‖f p.2‖ * (C * A ^ k * (qht p.2 : ℝ) ^ k) :=
-        mul_le_mul_of_nonneg_left (hb2 _ _) (norm_nonneg _)
-    _ = C * A ^ k * (‖f p.2‖ * (qht p.2 : ℝ) ^ k) := by ring
-    _ ≤ C * A ^ k * C₂ := mul_le_mul_of_nonneg_left (hC₂ _) hCA

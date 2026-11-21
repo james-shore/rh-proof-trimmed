@@ -1,14 +1,12 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.SiegelWeilAnisotropicHermitian
 import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RatStab
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SetIntegralEqZeroOfMulRight
+
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
-open GlobalTheory.ConeSmallUnf
-
 section
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) {d : ℕ}
   (J : Matrix (Fin d) (Fin d) E)
@@ -129,37 +127,3 @@ private theorem step2 (l : E) (hσ : ∀ a, σ (σ a) = a) (hJ : J.det ≠ 0) (h
 
 end
 
-theorem UpperTheory.exists_witt_partner :
-    ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (d : ℕ) (J : Matrix (Fin d) (Fin d) E) (l : E), (∀ a, σ (σ a) = a) → J.det ≠ 0 → l * σ l = 1 →
-        (∀ w w', form σ J w w' = l * σ (form σ J w' w)) → ∀ x : Fin d → E, x ≠ 0 → form σ J x x = 0 →
-        ∃ γ, IsWitt (σ := σ) (J := J) x γ := by
-  intro F E _ _ _ _ _ σ d J l hσ hJ hl hh x hx0 hx
-  suffices H : ∀ w : IsoV σ J, ∃ γ : UA σ J, γ ∈ ratU σ J ∧ mat γ *ᵥ incV F w.1 = incV F x by
-    choose γ hγ using H
-    exact ⟨γ, hγ⟩
-  rintro ⟨w, hw0, hw⟩
-  obtain ⟨g, hg, hgw⟩ := step2 σ J l hσ hJ hl hh w x hw0 hx0 hw hx
-  set U := LinearMap.toMatrix' g with hUdef
-  have hUv : ∀ v, U *ᵥ v = g v := fun v => LinearMap.toMatrix'_mulVec g v
-  have hU : Uᵀ * J * U.map σ = J := by
-    ext i j
-    rw [← form_single σ (Uᵀ * J * U.map σ), ← form_mulVec, hUv, hUv, hg, form_single]
-  have hdet : U.det ≠ 0 := by
-    intro h0
-    apply hJ
-    rw [← hU, Matrix.det_mul, Matrix.det_mul, Matrix.det_transpose, h0, zero_mul, zero_mul]
-  let g₀ : GL (Fin d) E := Matrix.GeneralLinearGroup.mkOfDetNeZero U hdet
-  let g₁ : GL (Fin d) (AE F E) := Matrix.GeneralLinearGroup.map (inclR (F := F) (E := E) (AF F)) g₀
-  have hgU : g₁ ∈ UG (cA σ) (incM F J) := by
-    show (incM F U)ᵀ * incM F J * (incM F U).map (cA σ : AE F E →ₐ[AF F] AE F E).toRingHom = incM F J
-    have h1 : (incM F U).map (cA σ : AE F E →ₐ[AF F] AE F E).toRingHom = incM F (U.map σ) := by
-      ext i j
-      simp [incM, cA, inclR]
-    rw [h1]
-    simp only [incM]
-    rw [← Matrix.transpose_map, ← Matrix.map_mul, ← Matrix.map_mul, hU]
-  refine ⟨⟨g₁, hgU⟩, Subgroup.mem_subgroupOf.2 ⟨g₀, rfl⟩, ?_⟩
-  show incM F U *ᵥ incV F w = incV F x
-  rw [← hgw, ← hUv]
-  ext i
-  simp [incM, incV, Matrix.mulVec, dotProduct]

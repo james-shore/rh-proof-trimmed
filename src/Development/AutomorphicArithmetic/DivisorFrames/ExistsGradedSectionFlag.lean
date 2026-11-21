@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.LocalEmbeddings.ExistsIsMapToFn
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFlagBundleIff
-import Development.AutomorphicArithmetic.DivisorFrames.ExistsAdaptedFlagCharts
-import Development.AutomorphicArithmetic.DivisorFrames.FlagChartTransitionTriangular
+
 open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.L2.Pj
 open GlobalTheory GlobalTheory.VB GlobalTheory.TangentOrigin GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.TrueGeo GlobalTheory.ProjVar GlobalTheory.LineNorm GlobalTheory.BcLie GlobalTheory.CovTest GlobalTheory.Mean4O GlobalTheory.Cartier GlobalTheory.TrueCx
@@ -73,45 +72,3 @@ private theorem mul_diag {K : Type} [CommRing K] {r : ℕ} (dual : Bool) (B T : 
     · rw [hT b i h, mul_zero]
   · simp
 
-private theorem trAt_one_mul {K : Type} [CommRing K] {X : Scheme.{0}} {L : X.Modules} {x : Sp K ⟶ X} (c c' c'' : Chart L 1)
-    (h : ⊤ ≤ x ⁻¹ᵁ c.U) (h' : ⊤ ≤ x ⁻¹ᵁ c'.U) (h'' : ⊤ ≤ x ⁻¹ᵁ c''.U) :
-    trAt x c c' 0 0 * trAt x c' c'' 0 0 = trAt x c c'' 0 0 := by
-  rw [← trAt_mul c c' c'' h h' h'', mul_apply, Fin.sum_univ_one]
-
-theorem UpperTheory.exists_graded_section_flag :
-    ∀ (F : Type) [Field F] (Y : Var F) (X : Scheme.{0}) (j : Y.X ⟶ X) (M : X.Modules) (r : ℕ) (dual : Bool) (A : Chart M r → Matrix (Fin r) (Fin r) Y.Fn) (fl : Vert.Flag M r) (i : Fin r), IsCo (genericPt Y ≫ j) A → IsFlag (genericPt Y ≫ j) dual A fl → ∃ s, IsGrSec j dual A fl i s := by
-  intro F _ Y X j M r dual A fl i hA hF
-  classical
-  obtain ⟨ch₀, hx₀, had₀⟩ := (UpperTheory.exists_adapted_flag_charts X M r fl).1 (j (genericPoint Y.X))
-  have h₀ := gen_le j hx₀
-  obtain ⟨t₀, ht₀⟩ := had₀ i
-  have hf₀ := (UpperTheory.exists_adapted_flag_charts X M r fl).2 ch₀ had₀ i t₀ ht₀
-  let gc₀ : Chart (fl.gr i) 1 := ⟨ch₀.U, _, hf₀⟩
-  have hu : A ch₀ (pos dual i) i ≠ 0 := diag_ne_zero dual _ (hA.1 ch₀ h₀) (hF ch₀ had₀ h₀) i
-  have hne (c : Chart (fl.gr i) 1) (h : ⊤ ≤ (genericPt Y ≫ j) ⁻¹ᵁ c.U) :
-      trAt (genericPt Y ≫ j) c gc₀ 0 0 * (A ch₀ (pos dual i) i)⁻¹ ≠ 0 := by
-    have := isUnit_det_trAt c gc₀ h h₀
-    rw [det_fin_one] at this
-    exact mul_ne_zero this.ne_zero (inv_ne_zero hu)
-  let s₀ : Chart (fl.gr i) 1 → Y.Fnˣ := fun c =>
-    if h : ⊤ ≤ (genericPt Y ≫ j) ⁻¹ᵁ c.U then Units.mk0 _ (hne c h) else 1
-  have hs₀ (c : Chart (fl.gr i) 1) (h : ⊤ ≤ (genericPt Y ≫ j) ⁻¹ᵁ c.U) :
-      (s₀ c : Y.Fn) = trAt (genericPt Y ≫ j) c gc₀ 0 0 * (A ch₀ (pos dual i) i)⁻¹ := by
-    simp only [s₀, dif_pos h, Units.val_mk0]
-  refine ⟨fun k => s₀ (k PUnit.unit), fun k k' h => ?_, fun ch had h t ht hf => ?_⟩
-  · have h₁ : ⊤ ≤ (genericPt Y ≫ j) ⁻¹ᵁ Chart.U (F := fl.gr i) (r := 1) (k PUnit.unit) :=
-      gen_le j (y := genericPoint Y.X) (Set.mem_iInter.1 h.1 PUnit.unit)
-    have h₂ : ⊤ ≤ (genericPt Y ≫ j) ⁻¹ᵁ Chart.U (F := fl.gr i) (r := 1) (k' PUnit.unit) :=
-      gen_le j (y := genericPoint Y.X) (Set.mem_iInter.1 h.2 PUnit.unit)
-    refine (hs₀ _ h₁).trans (Eq.trans ?_ (congrArg₂ (· * ·) (fnOf_pull_g j (fl.gr i) k k' h) (hs₀ _ h₂)).symm)
-    rw [← mul_assoc, trAt_one_mul _ _ _ h₁ h₂ h₀]
-  · let gc : Chart (fl.gr i) 1 := ⟨ch.U, _, hf⟩
-    obtain ⟨hT, hd⟩ := UpperTheory.flag_chart_transition_triangular X M r fl ch₀ ch had₀ had
-    have hW := le_inf_pre h₀ h
-    have hT' : IsTri (trAt (genericPt Y ≫ j) ch₀ ch) := fun a b hab => by
-      rw [trAt_eq _ _ hW, map_apply, hT a b hab, map_zero]
-    have hd' : trAt (genericPt Y ≫ j) ch₀ ch i i = trAt (genericPt Y ≫ j) gc₀ gc 0 0 := by
-      rw [trAt_eq _ _ hW, trAt_eq gc₀ gc hW, map_apply, map_apply, ← hd i t₀ t ht₀ ht hf₀ hf]
-    change (s₀ gc : Y.Fn) * _ = 1
-    rw [hs₀ gc h, hA.2 ch₀ ch h₀ h, mul_diag dual _ _ (hF ch₀ had₀ h₀) hT', hd', mul_assoc,
-      inv_mul_cancel_left₀ hu, trAt_one_mul gc gc₀ gc h h₀ h, trAt_self gc h, one_apply_eq]

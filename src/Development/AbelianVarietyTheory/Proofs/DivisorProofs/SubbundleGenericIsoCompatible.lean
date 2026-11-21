@@ -2,7 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.GlobalHeightBoundIffAtGoodPrimes
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AppInjectiveOfFrames
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagPairExtendsByOne
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagExtensionOfSubbundle
 
 set_option autoImplicit false
 noncomputable section
@@ -92,10 +92,5 @@ theorem extend_fl' {φ : Z.GenIso E E'} {i : K ⟶ E} {i' : K' ⟶ E'} {ψ : Z.G
     (hi : IsSubbundle i) (hi' : IsSubbundle i') (hE : IsVB E (r + 1)) (hE' : IsVB E' (r + 1))
     (hcomm : ψ.hom ≫ Z.genRes.map i' = Z.genRes.map i ≫ φ.hom) (P : FlagPair ψ r) :
     (extend hi hi' hE hE' hcomm P).fl' = P.fl'.extend i' hi' hE' := rfl
-
-theorem exists_extend_chain : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] (Z : GlobalTheory.Vert.Model O) (E E' E'' K K' K'' : Z.X.Modules) (φ : Z.GenIso E E') (φ' : Z.GenIso E' E'') (i : K ⟶ E) (i' : K' ⟶ E') (i'' : K'' ⟶ E'') (ψ : Z.GenIso K K') (ψ' : Z.GenIso K' K'') (r : ℕ), GlobalTheory.VB.IsSubbundle i → GlobalTheory.VB.IsSubbundle i' → GlobalTheory.VB.IsSubbundle i'' → GlobalTheory.VB.IsVB E (r + 1) → GlobalTheory.VB.IsVB E' (r + 1) → GlobalTheory.VB.IsVB E'' (r + 1) → ψ.hom ≫ Z.genRes.map i' = Z.genRes.map i ≫ φ.hom → ψ'.hom ≫ Z.genRes.map i'' = Z.genRes.map i' ≫ φ'.hom → ∀ (P : GlobalTheory.Vert.Model.FlagPair ψ r) (Q : GlobalTheory.Vert.Model.FlagPair ψ' r), Q.fl = P.fl' → ∃ (P₁ : GlobalTheory.Vert.Model.FlagPair φ (r + 1)) (Q₁ : GlobalTheory.Vert.Model.FlagPair φ' (r + 1)), Q₁.fl = P₁.fl' := by
-  intro O _ _ _ Z E E' E'' K K' K'' φ φ' i i' i'' ψ ψ' r hi hi' hi'' hE hE' hE'' hc hc' P Q hQ
-  refine ⟨extend hi hi' hE hE' hc P, extend hi' hi'' hE' hE'' hc' Q, ?_⟩
-  rw [extend_fl, extend_fl', hQ]
 
 end GlobalTheory.Vert.Model.FlagPair

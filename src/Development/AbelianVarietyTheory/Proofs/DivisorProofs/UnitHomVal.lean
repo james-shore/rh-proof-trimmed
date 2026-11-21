@@ -1,11 +1,12 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.SiegelWeilAnisotropicHermitian
 import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndLineInf
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsSubquotientDetRepParInd
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocFieldFv
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndicatorIntMMemSB
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalUnitaryDeterminedBySplitImage
+import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
+import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
+import Development.AbelianVarietyTheory.Definitions.Divisors.RankEqCardIffExistsFrameMatrixFirstColumnBlock
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalGLEmbeddingUnitary
 
 noncomputable section
@@ -21,31 +22,11 @@ namespace GlobalTheory.SplitCoord
 
 abbrev Ix (m : ℕ) : Type := Σ i : Fin 3, Fin (blk3 m i)
 
-def eIx (m n : ℕ) (h : m + 2 = n) : Ix m ≃ Fin n :=
-  finSigmaFinEquiv.trans (finCongr (by simp [Fin.sum_univ_three, blk3]; omega))
-
 def gamS {R : Type} [Ring R] {m : ℕ} (K : Matrix (Fin m) (Fin m) R) : Matrix (Ix m) (Ix m) R
   | ⟨0, _⟩, ⟨2, _⟩ => 1
   | ⟨2, _⟩, ⟨0, _⟩ => -1
   | ⟨1, i⟩, ⟨1, j⟩ => K i j
   | _, _ => 0
-
-def gam {R : Type} [Ring R] {m n : ℕ} (e : Ix m ≃ Fin n) (K : Matrix (Fin m) (Fin m) R) : Matrix (Fin n) (Fin n) R :=
-  Matrix.reindex e e (gamS K)
-
-def colS {E : Type} {n m : ℕ} (x y : Fin n → E) (ι : Matrix (Fin n) (Fin m) E) : Ix m → Fin n → E
-  | ⟨0, _⟩ => x
-  | ⟨1, j⟩ => fun r => ι r j
-  | ⟨2, _⟩ => y
-
-def basMat {E : Type} [Field E] {n m : ℕ} (H : Plane E n m) (e : Ix m ≃ Fin n) : Matrix (Fin n) (Fin n) E :=
-  fun r k => colS H.x H.y H.ι (e.symm k) r
-
-open Classical in
-
-def basGL {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {v : Pl F} (t : E →ₐ[F] Fv F v) {n m : ℕ}
-    (H : Plane E n m) (e : Ix m ≃ Fin n) : GL (Fin n) (Fv F v) :=
-  if h : IsUnit ((basMat H e).map t).det then Matrix.nonsingInvUnit _ h else 1
 
 def gT {R : Type} [CommRing R] {m : ℕ} (g : GL (Fin m) R) : GL (Fin m) R :=
   ⟨(g : Matrix (Fin m) (Fin m) R)ᵀ, ((g⁻¹ : GL (Fin m) R) : Matrix (Fin m) (Fin m) R)ᵀ,
@@ -54,12 +35,6 @@ def gT {R : Type} [CommRing R] {m : ℕ} (g : GL (Fin m) R) : GL (Fin m) R :=
 
 theorem gT_val {R : Type} [CommRing R] {m : ℕ} (g : GL (Fin m) R) :
     (gT g : Matrix (Fin m) (Fin m) R) = (g : Matrix (Fin m) (Fin m) R)ᵀ := rfl
-
-def levDual {R : Type} [CommRing R] {m : ℕ} (K : GL (Fin m) R) (l : Levi R (fun i : Fin 3 => Fin (blk3 m i))) :
-    Levi R (fun i : Fin 3 => Fin (blk3 m i))
-  | ⟨0, _⟩ => (l 2)⁻¹
-  | ⟨1, _⟩ => (K⁻¹ * gT (show GL (Fin m) R from (l 1)⁻¹) * K : GL (Fin m) R)
-  | ⟨2, _⟩ => (l 0)⁻¹
 
 section Idele
 
@@ -95,26 +70,6 @@ def unitHom (hcm : IsCMExt F E σ) (t : E →ₐ[F] Fv F v) : (Fv F v)ˣ × (Fv 
 
 theorem unitHom_val (hcm : IsCMExt F E σ) (t : E →ₐ[F] Fv F v) (x : (Fv F v)ˣ × (Fv F v)ˣ) :
     (unitHom hcm t x : AE F E) = ptA hcm t x.1 x.2 := rfl
-
-def chrAbs (χ : Chr F E) (z : ℝ) : (AE F E)ˣ →* ℂˣ where
-  toFun s := Units.mk0 ((χ s : ℂ) * (((absE F E s : ℝ) ^ z : ℝ) : ℂ)) (by
-    refine mul_ne_zero (Circle.coe_ne_zero _) ?_
-    have h : absE F E s ≠ 0 := fun h0 => by
-      have := congrArg (absE F E) (mul_inv_cancel s)
-      rw [map_mul, h0, zero_mul, map_one] at this
-      exact zero_ne_one this
-    exact Complex.ofReal_ne_zero.2 (Real.rpow_pos_of_pos (by positivity) z).ne')
-  map_one' := Units.ext (by simp)
-  map_mul' s s' := Units.ext (by
-    simp only [map_mul, Units.val_mul, Units.val_mk0, Circle.coe_mul, NNReal.coe_mul]
-    rw [Real.mul_rpow (NNReal.coe_nonneg _) (NNReal.coe_nonneg _)]
-    push_cast; ring)
-
-def xiOne (hcm : IsCMExt F E σ) (t : E →ₐ[F] Fv F v) (χ : Chr F E) (z : ℝ) : (Fv F v)ˣ →* ℂˣ :=
-  (chrAbs χ z).comp ((unitHom hcm t).comp (MonoidHom.inl _ _))
-
-def xiTwo (hcm : IsCMExt F E σ) (t : E →ₐ[F] Fv F v) (χ : Chr F E) (z : ℝ) : (Fv F v)ˣ →* ℂˣ :=
-  (chrAbs χ z).comp ((unitHom hcm t).comp ((MonoidHom.inr _ _).comp (invMonoidHom : (Fv F v)ˣ →* (Fv F v)ˣ)))
 
 end Idele
 

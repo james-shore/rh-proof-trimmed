@@ -22,6 +22,4 @@ theorem dickson_finite_below_every {ι : Type} (n : ℕ) (f : ι → Fin n → �
   obtain ⟨x, hxi, hx⟩ := hpwo.exists_le_minimal (Set.mem_range_self i)
   exact ⟨g x, Finset.mem_image_of_mem g (hm.mem_toFinset.mpr hx), by rw [hg x hx]; exact hxi⟩
 
-example : ∀ {ι : Type} (n : ℕ) (f : ι → Fin n → ℕ), ∃ F : Finset ι, ∀ i, ∃ j ∈ F, f j ≤ f i := @dickson_finite_below_every
-
 end GlobalTheory

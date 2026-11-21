@@ -54,9 +54,6 @@ def locK (σ : E →ₐ[F] E) {d : ℕ} (W : Spc F E d) (v : Pl F) : Subgroup (U
 theorem mem_locK {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} {v : Pl F} {g : UA σ W.J} :
     g ∈ locK σ W v ↔ g ∈ KAt σ W v := Iff.rfl
 
-theorem locK_le_locU (σ : E →ₐ[F] E) {d : ℕ} (W : Spc F E d) (v : Pl F) : locK σ W v ≤ locU σ W v :=
-  fun _ hg => hg.1
-
 end GlobalTheory.SphLine
 
 end

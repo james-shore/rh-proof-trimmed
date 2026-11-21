@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinkowskiIdealBound.VecNormNonneg
+import Formalism.UnipotentAdelicQuotients.SiegelSetsSL2Adelic
 
 open NumberField NumberField.InfinitePlace NumberField.mixedEmbedding MeasureTheory Module
 open scoped Pointwise
@@ -55,17 +55,7 @@ theorem norm_ringEquiv (y : InfiniteAdeleRing F) :
   rw [mixedEmbedding.norm_apply, InfiniteAdeleRing.norm_def]
   exact Finset.prod_congr rfl fun w _ => by rw [normAtPlace_ringEquiv]
 
-def rmulL (M : Matrix (Fin 2) (Fin 2) (mixedSpace F)) :
-    (Fin 2 → mixedSpace F) →ₗ[ℝ] (Fin 2 → mixedSpace F) :=
-  (Matrix.toLin' M.transpose).restrictScalars ℝ
-
-def bW : Basis (Σ _ : Fin 2, Free.ChooseBasisIndex ℤ (𝓞 F)) ℝ (Fin 2 → mixedSpace F) :=
-  Pi.basis fun _ => latticeBasis F
-
 instance bsW : BorelSpace (Fin 2 → mixedSpace F) := Pi.borelSpace
-
-def B1 (F : Type) [Field F] [NumberField F] : Set (Fin 2 → mixedSpace F) :=
-  Set.pi Set.univ fun _ : Fin 2 => convexBodyLT F (fun _ => 1)
 
 end PIW.MinkowskiIdealBound.MinkR
 

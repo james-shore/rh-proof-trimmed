@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DiscreteSeriesCountingOfFiniteAndBounds
-import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.RowsFinC
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.CuspFrame
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.ConvolutionSmoothL2
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.SameKindIsometric
@@ -11,6 +11,7 @@ import Development.AbelianVarietyTheory.BlockTheory.SiegelWeilLocal.RareFlags
 import Development.AbelianVarietyTheory.BlockTheory.SiegelWeilLocal.DeepSetBound
 import Development.AbelianVarietyTheory.BlockTheory.SiegelWeilLocal.DefiniteFiniteCount
 import Development.AbelianVarietyTheory.BlockTheory.SiegelWeilLocal.LatticeCountingTheorem
+
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec
 open scoped InnerProductSpace ContDiff
 set_option maxHeartbeats 1000000 in

@@ -136,12 +136,6 @@ theorem gramR_ratTup (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) 
   simp only [gramR, hR, hform, ratTup, JR, sigR_incl, Matrix.map_apply, gramE, hE, map_sum, map_mul]
   rfl
 
-theorem actW_smul (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {N n : ℕ}
-    (J : Matrix (Fin N) (Fin N) E) (g : HA R σ J) (a : R ⊗[F] E) (X : Fin n → Fin N → R ⊗[F] E) :
-    actW R σ J g (a • X) = a • actW R σ J g X := by
-  funext i
-  simp [actW, actTup, Matrix.mulVec_smul]
-
 end Tens
 
 def frame (E : Type) [Field E] (M : ℕ) : Fin 2 → Fin (M + 2) → E :=

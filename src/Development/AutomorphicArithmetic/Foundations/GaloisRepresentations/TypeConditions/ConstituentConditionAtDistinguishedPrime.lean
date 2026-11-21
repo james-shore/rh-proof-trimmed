@@ -1,10 +1,21 @@
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PartsGiveDimension
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GoodIdempotentFixesOfOnlySeriesOfLabelActs
+import Formalism.SharpRestriction.LevelLetterCocycles.ExistsInertiaCharpolyFactorOfTameType
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsobaricDiscreteSelfDualStrongMultiplicityOne
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.RankOneUnitary
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsGaloisRepBaseChange
+import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeGaloisRepQbarConjugateUniqueStatement
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsHeckeGaloisQOfIsHeckeGaloisStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeGaloisLocalWeights
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeGaloisLocalWeightsDeRham
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TwistedMuPartInBaseChange
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.RowParamOfThetaLiftBaseChangeStatement
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.GoodRCongr
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.SplitBCOfGalIso
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.DistinctAbsIrredConstituents
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.TraceOfCharpoly
+
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial
 
 namespace UpperTheory.GalS.Parts
@@ -251,11 +262,5 @@ theorem heckeGaloisFamilyProperties_of_admissible (D : D7) (t0 : SumRepresentati
     by_cases h0 : D.nd.l i = D.host.g 0
     · exact constituentCondition_at_distinguishedPrime D a5 i 0 h0 hL r hr gb
     · exact constituentCondition_at_distinguishedPrime D a5 i 1 (by by_contra h1; exact hl ⟨h0, h1⟩) hL r hr gb
-
-theorem p41 (D : D7) (t0 : SumRepresentations.tie0 D) (hO : SumRepresentations.hypO D) (a1 : SumRepresentations.adm1 D) (a2 : SumRepresentations.adm2 D) (a5 : SumRepresentations.adm5 D)
-    (a : SumRepresentations.AdmAt D) : SumRepresentations.Conclusion41 D := (fun _ _ _ => (SumRepresentations.proposition_families_iff D a5 hO).2 (GlobalTheory.NRows.Parts.h41 D a)) t0 a1 a2
-
-theorem main : ∀ D : D7, GlobalTheory.NRows.PartsGive D := fun D a t s hk l th g =>
-  ⟨p41 D a.1.1 a.1.2.1 a.1.2.2.1 a.1.2.2.2.1 a.1.2.2.2.2.2.2 a, g, (SumRepresentations.proposition_parameters_iff_reduced D t).2 (GlobalTheory.NRows.Parts.h42 D a s hk l th)⟩
 
 end UpperTheory.GalS.Parts

@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnfoldingFundamentalDomainIntegral
-import Mathlib
+
 open scoped NNReal ENNReal
 open MeasureTheory
 

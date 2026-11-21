@@ -125,9 +125,6 @@ theorem admT4_of_full_compatibility : ∀ (D : D7) (ρ : Setup D.ntw) (hρ : ρ.
   rw [T.thP_eq k Q ψ hψ f ⟨x, e⟩]
   exact e.symm
 
-example (X : RealSide D) (hX : FieldOk X) (E : IntegralHeckeForms.XD D) (Y : SerSide X E) : IntegralHeckeForms.admT4 D.nexp E :=
-  admT4_of_full_compatibility D Y.Z.ρ Y.Z.good Y.Z.rd Y.Z.full hX.roots E
-
 end GlobalTheory.TwInputs
 
 end

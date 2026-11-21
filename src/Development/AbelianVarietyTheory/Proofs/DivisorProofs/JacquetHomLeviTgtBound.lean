@@ -36,31 +36,4 @@ theorem evalOne_mk {n m : ℕ} (e : (Σ i : Fin 3, Fin (blk3 m i)) ≃ Fin n) {P
     (hA : IsGLIndMap e π σ₁ ξ₁ ξ₂ A) (x : P) :
     (evalOne e hA).toLinearMap (Submodule.Quotient.mk x) = A x 1 := rfl
 
-theorem isGLIndMap_proportional (n m : ℕ) (e : (Σ i : Fin 3, Fin (blk3 m i)) ≃ Fin n) (P P₁ : Type)
-    [AddCommGroup P] [Module ℂ P] [AddCommGroup P₁] [Module ℂ P₁] (π : Representation ℂ (GL (Fin n) k) P)
-    (σ₁ : Representation ℂ (GL (Fin m) k) P₁) (ξ₁ ξ₂ : kˣ →* ℂˣ)
-    (hJ : HomLeOne (jacU e π) (leviTgt σ₁ ξ₁ ξ₂))
-    (A A' : P →ₗ[ℂ] (GL (Fin n) k → P₁)) (hA : IsGLIndMap e π σ₁ ξ₁ ξ₂ A)
-    (hA' : IsGLIndMap e π σ₁ ξ₁ ξ₂ A') : A = 0 ∨ ∃ c : ℂ, A' = c • A := by
-  have key : ∀ (B : P →ₗ[ℂ] (GL (Fin n) k → P₁)) (hB : IsGLIndMap e π σ₁ ξ₁ ξ₂ B) x h,
-      B x h = (evalOne e hB).toLinearMap (Submodule.Quotient.mk (π h x)) := by
-    intro B hB x h
-    rw [evalOne_mk, hB.right, one_mul]
-  rcases hJ (evalOne e hA) (evalOne e hA') with h0 | ⟨c, hc⟩
-  · left
-    refine LinearMap.ext fun x => funext fun h => ?_
-    rw [key A hA, h0]
-    rfl
-  · right
-    refine ⟨c, LinearMap.ext fun x => funext fun h => ?_⟩
-    rw [key A' hA', hc, LinearMap.smul_apply, LinearMap.smul_apply, Pi.smul_apply, key A hA]
-
-theorem glIndMap_proportional_of_jacquet : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-    (n m : ℕ) (e : (Σ i : Fin 3, Fin (blk3 m i)) ≃ Fin n) (P P₁ : Type) [AddCommGroup P] [Module ℂ P]
-    [AddCommGroup P₁] [Module ℂ P₁] (π : Representation ℂ (GL (Fin n) k) P)
-    (σ₁ : Representation ℂ (GL (Fin m) k) P₁) (ξ₁ ξ₂ : kˣ →* ℂˣ),
-    HomLeOne (jacU e π) (leviTgt σ₁ ξ₁ ξ₂) →
-    ∀ A A' : P →ₗ[ℂ] (GL (Fin n) k → P₁), IsGLIndMap e π σ₁ ξ₁ ξ₂ A → IsGLIndMap e π σ₁ ξ₁ ξ₂ A' →
-      A = 0 ∨ ∃ c : ℂ, A' = c • A := fun k _ _ _ _ => isGLIndMap_proportional
-
 end GlobalTheory.IndLineGL

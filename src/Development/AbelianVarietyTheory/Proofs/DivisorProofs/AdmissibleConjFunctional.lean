@@ -40,16 +40,3 @@ theorem conjForm_apply {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] (T 
 
 end GlobalTheory.AdmConj
 
-theorem GlobalTheory.AdmConj.conj_mem_adm : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ], ∀ l ∈ (adeleClass F).adm κ,
-    ∀ l' : ((κ → AF F) → ℂ) →ₗ[ℂ] ℂ, (∀ Φ, l' Φ = starRingEnd ℂ (l (fun x => starRingEnd ℂ (Φ x)))) →
-    l' ∈ (adeleClass F).adm κ := by
-  intro F _ _ κ _ l hl l' hl' g hg
-  classical
-  have hg' : (fun y => star (g y)) ∈ SB (κ → FiniteAdeleRing (𝓞 F) F) :=
-    ⟨hg.1.comp star, hg.2.comp_left (g := star) (star_zero ℂ)⟩
-  obtain ⟨T₀, hT₀⟩ := hl _ hg'
-  refine ⟨GlobalTheory.AdmConj.conjForm T₀, fun f => ?_⟩
-  rw [hl', GlobalTheory.AdmConj.conjForm_apply, ← hT₀]
-  congr 2
-  funext x
-  simp [pureA, GlobalTheory.AdmConj.conjCLM_apply, star_mul']

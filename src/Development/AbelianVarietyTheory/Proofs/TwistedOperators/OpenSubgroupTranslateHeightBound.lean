@@ -50,10 +50,6 @@ theorem finPr_finLift {D : D7} {m n : ℕ} (z : Matrix (Fin m) (Fin n) D.host.E)
   ext i j
   rfl
 
-theorem map_mul_three_alt {R S : Type} [CommRing R] [CommRing S] (f : R →+* S) {a b c d : ℕ} (A : Matrix (Fin a) (Fin b) R)
-    (B : Matrix (Fin b) (Fin c) R) (C : Matrix (Fin c) (Fin d) R) : (A * B * C).map f = A.map f * B.map f * C.map f := by
-  rw [Matrix.map_mul, Matrix.map_mul]
-
 theorem tmul_natCast_mul {D : D7} (N : ℕ) (e : D.host.E) :
     (1 : Af D.host.F) ⊗ₜ[D.host.F] ((N : D.host.E) * e) =
       (N : Af D.host.F ⊗[D.host.F] D.host.E) * ((1 : Af D.host.F) ⊗ₜ[D.host.F] e) := by
@@ -127,12 +123,6 @@ theorem den_matMul {D : D7} {c : ℕ} (hc : ∀ (e₁ e₂ : ℕ) (a b : Af D.ho
   fun i j => by
     rw [Matrix.mul_apply]
     exact den_sum _ _ fun l _ => hc e₁ e₂ _ _ (hA i l) (hB l j)
-
-theorem mt_mul_inv {D : D7} (V : HSp D) (g : GA D V) : mt V g * mt V g⁻¹ = 1 := by
-  simp only [Formalism.L2.Theta.mt, ← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]
-
-theorem mt_inv_mul {D : D7} (V : HSp D) (g : GA D V) : mt V g⁻¹ * mt V g = 1 := by
-  simp only [Formalism.L2.Theta.mt, ← Units.val_mul, ← map_mul, inv_mul_cancel, map_one, Units.val_one]
 
 theorem finCoord_natCast_mul (D : D7) (N : ℕ) (z : Af D.host.F ⊗[D.host.F] D.host.E) (k) :
     finCoord D ((N : Af D.host.F ⊗[D.host.F] D.host.E) * z) k = (N : Af D.host.F) * finCoord D z k := by

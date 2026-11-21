@@ -118,17 +118,6 @@ theorem trace_conj (x : E) : Algebra.trace K E (conj K E x) = Algebra.trace K E 
   apply (algebraMap K E).injective
   rw [algebraMap_trace_eq_add_conj, algebraMap_trace_eq_add_conj, conj_conj, add_comm]
 
-theorem norm_add (x y : E) :
-    Algebra.norm K (x + y) =
-      Algebra.norm K x + Algebra.norm K y + Algebra.trace K E (x * conj K E y) := by
-  apply (algebraMap K E).injective
-  simp only [map_add, algebraMap_norm_eq_mul_conj, algebraMap_trace_eq_add_conj, map_mul,
-    conj_conj]
-  ring
-
-theorem norm_algebraMap_eq_sq (a : K) : Algebra.norm K (algebraMap K E a) = a ^ 2 := by
-  rw [Algebra.norm_algebraMap, hE.out]
-
 end Algebraic
 
 section Local
@@ -189,24 +178,6 @@ theorem map_conj_eq [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [μ.IsAd
     Measure.map_apply continuous_conj.measurable (measurableSet_valBall 0), conj_preimage_valBall,
     coe_valBall_zero, ← eq_smul_haarIntegers μ]
 
-theorem residueCard_eq_pow : residueCard E = residueCard K ^ residueDegree K E :=
-  card_residueField_eq_pow_residueDegree K E
-
-theorem modulus_norm (x : E) : modulus (Algebra.norm K x) = modulus x := by
-  rcases eq_or_ne x 0 with rfl | hx
-  · simp [modulus_zero]
-  have hN : Algebra.norm K x ≠ 0 := (Algebra.norm_ne_zero_iff).2 hx
-  rw [modulus_of_ne_zero hN, modulus_of_ne_zero hx, ord_norm (K := K) (L := E),
-    residueCard_eq_pow (K := K) (E := E), Nat.cast_pow, ← zpow_natCast (residueCard K : ℝ≥0), ← zpow_mul]
-  congr 1
-  ring
-
-theorem modulus_algebraMap (a : K) : modulus (algebraMap K E a) = modulus a ^ 2 := by
-  rw [← modulus_norm (K := K), norm_algebraMap_eq_sq, sq, sq, modulus_mul]
-
-theorem modulus_conj (x : E) : modulus (conj K E x) = modulus x := by
-  rw [← modulus_norm (K := K), norm_conj, modulus_norm]
-
 instance isMulCommutative_gal : IsMulCommutative (E ≃ₐ[K] E) :=
   ⟨⟨fun a b => by
     rcases eq_one_or_eq_conj a with rfl | rfl <;> rcases eq_one_or_eq_conj b with rfl | rfl <;>
@@ -240,9 +211,6 @@ theorem index_range_normUnits_eq_two : (normUnits K E).range.index = 2 := by
 instance finiteIndex_range_normUnits : (normUnits K E).range.FiniteIndex :=
   ⟨by rw [index_range_normUnits_eq_two K E]; norm_num⟩
 
-theorem isOpen_range_normUnits : IsOpen ((normUnits K E).range : Set Kˣ) :=
-  Subgroup.isOpen_of_isClosed_of_finiteIndex _ (isClosed_range_normUnits K E)
-
 variable (K E) in
 
 def quadChar : Kˣ →* ℂˣ where
@@ -257,45 +225,9 @@ def quadChar : Kˣ →* ℂˣ where
 theorem quadChar_apply_of_mem {t : Kˣ} (ht : t ∈ (normUnits K E).range) : quadChar K E t = 1 := by
   simp [quadChar, ht]
 
-theorem quadChar_apply_of_notMem {t : Kˣ} (ht : t ∉ (normUnits K E).range) :
-    quadChar K E t = -1 := by
-  simp [quadChar, ht]
-
-theorem quadChar_eq_one_iff {t : Kˣ} : quadChar K E t = 1 ↔ t ∈ (normUnits K E).range := by
-  refine ⟨fun h => ?_, quadChar_apply_of_mem⟩
-  by_contra ht
-  rw [quadChar_apply_of_notMem ht] at h
-  have := congrArg (fun u : ℂˣ => (u : ℂ)) h
-  norm_num at this
-
 @[simp]
 theorem quadChar_normUnits (x : Eˣ) : quadChar K E (normUnits K E x) = 1 :=
   quadChar_apply_of_mem ⟨x, rfl⟩
-
-theorem quadChar_sq (t : Kˣ) : quadChar K E t ^ 2 = 1 := by
-  classical
-  by_cases ht : t ∈ (normUnits K E).range
-  · simp [quadChar_apply_of_mem ht]
-  · simp [quadChar_apply_of_notMem ht]
-
-theorem quadChar_mul_self (t : Kˣ) : quadChar K E (t * t) = 1 := by
-  rw [map_mul, ← sq, quadChar_sq]
-
-theorem quadChar_ne_one : quadChar K E ≠ 1 := by
-  intro h
-  have htop : (normUnits K E).range = ⊤ := by
-    refine eq_top_iff.2 fun t _ => ?_
-    rw [← quadChar_eq_one_iff, h, MonoidHom.one_apply]
-  have := index_range_normUnits_eq_two K E
-  rw [htop, Subgroup.index_top] at this
-  norm_num at this
-
-theorem isOpen_ker_quadChar : IsOpen ((quadChar K E).ker : Set Kˣ) := by
-  have : (quadChar K E).ker = (normUnits K E).range := by
-    ext t
-    exact quadChar_eq_one_iff
-  rw [this]
-  exact isOpen_range_normUnits
 
 end Local
 

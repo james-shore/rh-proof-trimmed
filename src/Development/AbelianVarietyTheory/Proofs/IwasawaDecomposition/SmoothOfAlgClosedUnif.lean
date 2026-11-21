@@ -153,41 +153,4 @@ theorem exists_flagCpt (hS : ReciprocityTheory.AnForm.R.FinalTheorems.Snc (genBd
 
 end Component
 
-theorem nonempty_flagTor : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : Model Xo c β) (F : Type) [Field F] (e : F ≃+* c.F) (σ : c.F →+* ℂ) (N : ℕ) (U : Formalism.L2.PjFree.Unf Xo c σ N), Formalism.L2.PjFree.GoodEmb c σ → Formalism.L2.PjFree.IsUnf U → (∀ k, (U.X k).dom.Nonempty) → FnAlgClosed Xo c → SmoothOfRelativeDimension Dw.dim (genStr Z) → ReciprocityTheory.AnForm.R.FinalTheorems.Snc (genBdIdeal Z) → Nonempty (FlagTor Z e U) := by
-  intro E _ _ _ H Dw l Xo c O _ β Z F _ e σ N U hσ hU hne hF hsm hS
-  obtain ⟨q, hq⟩ := GlobalTheory.UnifComp.exists_equiv_comp E H Dw l Xo c σ N U hσ hU hne hF
-  obtain ⟨B, j, hB, hcov⟩ := GlobalTheory.T.exists_varieties_components_smooth_genericFibre E H Dw l Xo c O β Z F e hF hsm
-  have key := fun i : U.Comp =>
-    haveI := (hB (q i)).1
-    exists_flagCpt Z e hS (B (q i)) (j (q i)) (hB (q i)).2.2.1
-  choose C f hπ hdim hl using key
-  have lift : ∀ (K : Type) [Field K] (x : Sp K ⟶ gen Z) (i : Comp Xo c),
-      x (IsLocalRing.closedPoint K) ∈ Set.range (j i) → ∃ x' : Sp K ⟶ (B i).X, x' ≫ j i = x := fun K _ x i h => by
-    have := (hB i).1
-    refine ⟨IsOpenImmersion.lift (j i) x ?_, IsOpenImmersion.lift_fac _ _ _⟩
-    rintro _ ⟨w, rfl⟩
-    rwa [show w = IsLocalRing.closedPoint K from Subsingleton.elim (α := PrimeSpectrum K) _ _]
-  refine ⟨⟨C, fun k => ?_, fun K _ _ χ x hx g => ?_, fun i x s => ?_⟩⟩
-  · rw [hdim, (hB _).2.1, GlobalTheory.T.flag_space_dimension_eq_sum_choose E H Dw, hU.1]
-  · obtain ⟨i₀, hi, hi'⟩ := hcov (x (IsLocalRing.closedPoint K))
-    obtain ⟨i, rfl⟩ := q.surjective i₀
-    obtain ⟨x', hx'⟩ := lift K x _ hi
-    obtain ⟨p, ⟨hp1, hp2⟩, hp3⟩ := hl i K χ x x' hx' hx g
-    refine ⟨⟨i, p⟩, ⟨by rw [hπ, ← Category.assoc, hp1, hx'], hp2⟩, ?_⟩
-    rintro ⟨i', p'⟩ ⟨h1, h2⟩
-    dsimp only at h1 h2
-    rw [hπ, ← Category.assoc] at h1
-    obtain rfl : i' = i := q.injective (hi' _ ⟨(p' ≫ f i') (IsLocalRing.closedPoint K), by
-      rw [← h1]; exact (Scheme.Hom.comp_apply _ _ _).symm⟩)
-    have := (hB (q i')).1
-    rw [hp3 p' ⟨(cancel_mono (j (q i'))).1 (h1.trans hx'.symm), h2⟩]
-  · let x₀ : Sp ℂ ⟶ gen Z := (GlobalTheory.AllWt.ptF (S := CAt σ) (U.un i x) ≫ Z.jQ :)
-    have hx₀ : x₀ ≫ genStr Z = spMap σ :=
-      (Category.assoc _ _ _).trans ((congrArg (_ ≫ ·) Z.jQ_over).trans (pullback.lift_snd _ _ _))
-    obtain ⟨x', hx'⟩ := lift ℂ x₀ (q i) ((hB _).2.2.2 _ (hq i x _))
-    obtain ⟨g⟩ := GlobalTheory.ShFam.EigLoc.exists_eigFrame E H Dw l Xo c O β Z _ _ x₀ hx₀
-    obtain ⟨p, ⟨hp1, -⟩, -⟩ := hl i _ _ x₀ x' hx' hx₀ g
-    have : p ≫ (C i).π = x₀ := by rw [hπ, ← Category.assoc, hp1, hx']
-    exact ⟨p s, (Scheme.Hom.comp_apply _ _ _).symm.trans (congrArg (fun t : Sp ℂ ⟶ gen Z => t s) this)⟩
-
 end GlobalTheory.FlagBundle

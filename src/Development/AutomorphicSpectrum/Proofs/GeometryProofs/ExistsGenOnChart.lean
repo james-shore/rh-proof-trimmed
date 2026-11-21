@@ -203,9 +203,4 @@ theorem finite_gen (hsm : ∀ (a : A) (e : E), a • e = ι a • e) (hAR : ∀ 
 
 end Abstract
 
-theorem isLocalRing_regAt {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (CommRingCat.of Ω) ⟶ X) (p : Cpt ξ) :
-    IsLocalRing (regAt ξ p) := by
-  unfold regAt
-  exact IsLocalRing.of_surjective' (genMap ξ p).rangeRestrict (RingHom.rangeRestrict_surjective _)
-
 end GlobalTheory.CompanionTheory.Ar.ChCoh

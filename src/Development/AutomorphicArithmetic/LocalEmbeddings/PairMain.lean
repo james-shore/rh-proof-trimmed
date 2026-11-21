@@ -71,97 +71,6 @@ private theorem isNormal_comp {O : Type} [CommRing O] [IsDomain O] [IsDiscreteVa
 
 end Read
 
-section Syms
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
-
-private theorem lnSym_eq (l : Ln Dw) : ∃ n : ℤ, (n = 1 ∨ n = -1) ∧ ∀ a R, lnSym a R l = Finsupp.single (a, R, l.2.1) n := by
-  rcases l with ⟨_ | _, st⟩
-  · exact ⟨1, .inl rfl, fun _ _ => rfl⟩
-  · exact ⟨-1, .inr rfl, fun _ _ => rfl⟩
-
-private theorem mem_support_lnSym {a : ℕ → Bool} {R : Option ℝ} {l : Ln Dw} {b : Sym E}
-    (h : b ∈ (lnSym a R l).support) : b.1 = a ∧ b.2.1 = R := by
-  obtain ⟨n, -, e⟩ := lnSym_eq l
-  rw [e] at h
-  rw [Finset.mem_singleton.1 (Finsupp.support_single_subset h)]
-  exact ⟨rfl, rfl⟩
-
-private theorem parOf_lnSym (a : ℕ → Bool) (R : Option ℝ) (l : Ln Dw) : parOf (lnSym a R l) = R := by
-  have h : (lnSym a R l).support.Nonempty := by
-    obtain ⟨n, hn, e⟩ := lnSym_eq l
-    rw [e]
-    rcases hn with rfl | rfl <;> simp [Finsupp.support_single_ne_zero]
-  rw [parOf, dif_pos h]
-  exact (mem_support_lnSym h.choose_spec).2
-
-private theorem expo_lnSym (a a' : ℕ → Bool) (R : Option ℝ) (l : Ln Dw) :
-    expo Dw (lnSym a R l) = expo Dw (lnSym a' R l) := by
-  obtain ⟨n, -, e⟩ := lnSym_eq l
-  funext x
-  rw [e, e, expo, expo, Finsupp.sum_single_index (by simp), Finsupp.sum_single_index (by simp)]
-
-variable {l : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Level H} {Xo : Moduli Dw l} {c : Coeff l}
-  {F : Type} [Field F] [NumberField F] {e : F ≃+* c.F}
-
-private theorem adlOf_lnSym_eq {O : Type} [CommRing O] {β : O →+* c.F} {Z : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model Xo c β}
-    (Y : FlagCpt Z e) {C : CxSt F} (hm : Mets Y C) (a a' : ℕ → Bool) (R : Option ℝ) (x : Ln Dw) :
-    adlOf Y hm (lnSym a' R x) = { adlOf Y hm (lnSym a R x) with lg := (adlOf Y hm (lnSym a' R x)).lg } := by
-  have key (n n' : Pad.Letter Dw → ℤ) (h : n = n') (r r' : Option ℝ) (h' : r = r') (lg) :
-      (⟨divOf Y n, 1, fun σ => hm r σ n, 0, lg⟩ : Adl C Y.Y) = ⟨divOf Y n', 1, fun σ => hm r' σ n', 0, lg⟩ := by
-    rw [h, h']
-  exact key _ _ (expo_lnSym _ _ _ _) _ _ ((parOf_lnSym _ _ _).trans (parOf_lnSym _ _ _).symm) _
-
-private theorem abs_lnStep_le (Z : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model Xo c (algebraMap (𝓞 c.F) c.F)) (p : ℕ) [hp : Fact p.Prime]
-    (x : Sp ℂ_[p] ⟶ Z.X) (u : ∀ τ : E →+* ℂ, Fin (Dw.mult τ) → (Sp (DualNumber ℂ_[p]) ⟶ Z.t.G.left))
-    (st : ((E →+* ℂ) × ℕ) ⊕ ℕ) : |lnStep Z.t x u p false st - lnStep Z.t x u p true st| ≤
-      Real.log p / ((p : ℝ) - 1) + vDiff E p * Real.log p := by
-  rcases st with ⟨τ, k⟩ | k
-  · rw [abs_sub_comm]
-    exact LgDiff.abs_lnStep_sub_le HTBound.htBound _ _ _ _ _ _
-  have hv : 0 ≤ vDiff E p * Real.log p := mul_nonneg (by unfold vDiff; positivity) (Real.log_natCast_nonneg p)
-  have hL : 0 ≤ Real.log p / ((p : ℝ) - 1) := by
-    have : (1 : ℝ) < p := by exact_mod_cast hp.out.one_lt
-    exact div_nonneg (Real.log_natCast_nonneg p) (by linarith)
-  simp only [lnStep, lat]
-  split_ifs with h
-  · refine (LgDiff.abs_log_grNorm_DR_HT_le HTBound.htBound Z p x _ _).trans ?_
-    rw [mul_one_div]
-    linarith
-  · rw [sub_self, abs_zero]
-    linarith
-
-private theorem abs_lgOf_lnSym_le {Z : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model Xo c (algebraMap (𝓞 c.F) c.F)} (Y : FlagCpt Z e)
-    (a : ℕ → Bool) (p : ℕ) (R : Option ℝ) (x : Ln Dw) (v : HeightOneSpectrum (𝓞 F))
-    (ε : TrueGeo.Ext v) (y : AlgPt Y.Y) :
-    |lgOf Y (lnSym (Function.update a p false) R x) v ε y - lgOf Y (lnSym (Function.update a p true) R x) v ε y| ≤
-      (if resP v = p then 1 / ((p : ℝ) - 1) + vDiff E p else 0) * (-Real.log (ε.w (resP v : AlgebraicClosure F))) := by
-  have hw : 0 ≤ -Real.log (ε.w (resP v : AlgebraicClosure F)) :=
-    neg_nonneg.2 (Real.log_nonpos (ε.w.nonneg _) ((ε.mem_O _).1 (natCast_mem _ _)))
-  have hp : (resP v).Prime := CharP.char_prime_of_ne_zero (𝓞 F ⧸ v.asIdeal) (CharP.ringChar_ne_zero_of_finite _)
-  haveI := Fact.mk hp
-  obtain ⟨n, hn, hx⟩ := lnSym_eq x
-  have hs (a : ℕ → Bool) (Φ : Sym E → ℝ) : ((lnSym a R x).sum fun b n => (n : ℝ) * Φ b) = n * Φ (a, R, x.2.1) := by
-    rw [hx, Finsupp.sum_single_index (by simp)]
-  have hn' : |(n : ℝ)| = 1 := by rcases hn with rfl | rfl <;> simp
-  simp only [lgOf, dif_pos hp]
-  rewrite [expo_lnSym (Function.update a p false) (Function.update a p true),
-    add_sub_add_left_eq_sub, ← mul_sub, abs_mul, hs, hs, ← mul_sub, abs_mul, hn', one_mul]
-  dsimp only
-  by_cases h : resP v = p
-  · subst h
-    have hl := Real.log_pos (show (1 : ℝ) < resP v by exact_mod_cast hp.one_lt)
-    rewrite [if_pos rfl, Function.update_self, Function.update_self]
-    refine (mul_le_mul_of_nonneg_left (abs_lnStep_le _ _ _ _ _) (abs_nonneg _)).trans_eq ?_
-    rw [abs_of_nonneg (div_nonneg hw hl.le)]
-    field_simp
-  · have hb : Function.update a p false (resP v) = Function.update a p true (resP v) :=
-      (Function.update_of_ne h _ _).trans (Function.update_of_ne h _ _).symm
-    rewrite [hb, sub_self, abs_zero, mul_zero, if_neg h, zero_mul]
-    exact le_rfl
-
-end Syms
-
 section Up
 
 variable {D : D7} {A : Amb D} {N j : ℕ} {S : Sig A N j} {κ : Lv A} {p : ℕ} {hp : p.Prime} {W : ValuationSubring ℂ}
@@ -193,19 +102,6 @@ private theorem exists_up (v : HeightOneSpectrum (𝓞 D.what₂.LL))
 end Up
 
 section Sums
-
-private theorem finsum_eq_sum_places {X ι T : Type} [Fintype ι] (f : X → ℝ) (hf : (Function.support f).Finite)
-    (π : X → T) (v : ι → T) (hv : Function.Injective v) (h : ∀ x, f x ≠ 0 → ∃ i, π x = v i) :
-    ∑ᶠ x, f x = ∑ i, ∑ᶠ x, if π x = v i then f x else 0 := by
-  have e (i : ι) : (∑ᶠ x, if π x = v i then f x else 0) = ∑ x ∈ hf.toFinset, if π x = v i then f x else 0 :=
-    finsum_eq_sum_of_support_subset _ fun x hx => by
-      simp only [Set.Finite.coe_toFinset, Function.mem_support]
-      intro h0
-      exact hx (by simp [h0])
-  rw [finsum_eq_sum _ hf, Finset.sum_congr rfl fun i _ => e i, Finset.sum_comm]
-  refine Finset.sum_congr rfl fun x hx => ?_
-  obtain ⟨i, hi⟩ := h x (hf.mem_toFinset.1 hx)
-  rw [Finset.sum_eq_single i (fun k _ hk => if_neg fun e => hk (hv (e.symm.trans hi))) (by simp), if_pos hi]
 
 private theorem sum_filter_partition {X T : Type} [Fintype X] [Fintype T] (f : X → ℝ) (r : X → T → Prop)
     (h : ∀ x, ∃! t, r x t) : ∑ t, ∑ x ∈ Finset.univ.filter fun x => r x t, f x = ∑ x, f x := by
@@ -331,129 +227,6 @@ private theorem loc_cmp [Fact p.Prime] [CharP (ResidueField (z.Z.i.c.V W)) p] (v
 
 end Place
 
-private theorem adl_eq_of {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
-    {l : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Level H} {Xo : Moduli Dw l} {c : Coeff l} {F : Type} [Field F] [NumberField F]
-    {e : F ≃+* c.F} {Z : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model Xo c (algebraMap (𝓞 c.F) c.F)} (Y : FlagCpt Z e) {C : CxSt F}
-    (hm : Mets Y C) (a : ℕ → Bool) (p : ℕ) (R : Option ℝ) (x : Ln Dw) {A₀ A₁ : Adl C Y.Y}
-    (h₀ : A₀ = adlOf Y hm (lnSym (Function.update a p false) R x))
-    (h₁ : A₁ = adlOf Y hm (lnSym (Function.update a p true) R x)) :
-    A₁ = { A₀ with lg := A₁.lg } ∧ ∀ v e y, |A₀.lg v e y - A₁.lg v e y| ≤
-      (if resP v = p then 1 / ((p : ℝ) - 1) + vDiff E p else 0) * (-Real.log (e.w (resP v : AlgebraicClosure F))) := by
-  subst h₀ h₁
-  exact ⟨adlOf_lnSym_eq Y hm _ _ R x, abs_lgOf_lnSym_le Y a p R x⟩
-
-private theorem greads_congr {F : Type} [Field F] [NumberField F] {C : CxSt F} {Y : Var F} {Q : TrueGeo.Model Y}
-    [AlgebraicGeometry.IsIntegral Q.X] {v : HeightOneSpectrum (𝓞 F)} {L : LB Q.X} {s : L.ι → Q.X.functionFieldˣ} {m : ℝ}
-    {A A' : Adl C Y} (e : A = A') (h : GReads Q v L s fun e y => m * lam A v e y) :
-    GReads Q v L s fun e y => m * lam A' v e y := e ▸ h
-
-private theorem greads_congr₂ {F : Type} [Field F] [NumberField F] {C : CxSt F} {Y : Var F} {Q : TrueGeo.Model Y}
-    [AlgebraicGeometry.IsIntegral Q.X] {v : HeightOneSpectrum (𝓞 F)} {L : LB Q.X} {s : L.ι → Q.X.functionFieldˣ} {m : ℝ}
-    {A A' B B' : Adl C Y} (e : A = A') (e' : B = B') (h : GReads Q v L s fun e y => m * (lam A v e y - lam B v e y)) :
-    GReads Q v L s fun e y => m * (lam A' v e y - lam B' v e y) := e ▸ e' ▸ h
-
-private theorem places_sum (D : D7) (p : ℕ) [Fact p.Prime] [Fintype (Formalism.L2.Geo.PlL D p)] {Y : Var D.what₂.LL}
-    (Q : TrueGeo.Model Y) [AlgebraicGeometry.IsIntegral Q.X] [IsLocallyNoetherian Q.X] (Dv : CartierDiv Q.X)
-    (g : Q.X → ℤ) (hmult : ∀ x, Dv.mult x ≠ 0 → (p : 𝓞 D.what₂.LL) ∈ (Q.p x).asIdeal) (m : ℕ+) (d : ℕ)
-    (T cv : Formalism.L2.Geo.PlL D p → ℝ) (hcv : ∀ la, cv la ≠ 0)
-    (key : ∀ la, ((m : ℕ) : ℝ) ^ (d + 1) * placeDeg p la.1 * T la =
-      cv la * ∑ᶠ x : Q.X, if (Q.p x).asIdeal = la.1.asIdeal then ((Dv.mult x * g x : ℤ) : ℝ) else 0) :
-    (Real.log p * ∑ᶠ x : Q.X, ((Dv.mult x * g x : ℤ) : ℝ)) /
-        (((m : ℕ) : ℝ) ^ (d + 1) * (Module.finrank ℚ D.what₂.LL : ℝ)) =
-      Real.log p * ∑ la, Formalism.L2.Geo.wtL D p la * (T la / cv la) := by
-  have hp : p.Prime := Fact.out
-  haveI : AlgebraicGeometry.IsNoetherian Q.X := Q.ar.isNoetherian
-  rw [finsum_eq_sum_places _ (Dv.finite_support_mult.subset fun x hx h0 => hx (by simp [h0]))
-    (fun x => (Q.p x).asIdeal) (fun la : Formalism.L2.Geo.PlL D p => la.1.asIdeal)
-    (fun la la' e => Subtype.ext (HeightOneSpectrum.ext e)) fun x hx => ?_, mul_div_assoc, Finset.sum_div]
-  · congr 1
-    refine Finset.sum_congr rfl fun la _ => ?_
-    have h₁ : cv la ≠ 0 := hcv la
-    have h₂ : ((m : ℕ) : ℝ) ≠ 0 := Nat.cast_ne_zero.2 m.ne_zero
-    have h₃ : (Module.finrank ℚ D.what₂.LL : ℝ) ≠ 0 := Nat.cast_ne_zero.2 Module.finrank_pos.ne'
-    have h₄ : Formalism.L2.Geo.wtL D p la = placeDeg p la.1 / (Module.finrank ℚ D.what₂.LL : ℝ) := by
-      rw [Formalism.L2.Geo.wtL, placeDeg, div_div]
-    have h₅ := (div_eq_iff h₁).2 ((key la).trans (mul_comm _ _))
-    rw [h₄]
-    refine (congrArg (· / _) h₅.symm).trans ?_
-    field_simp
-  · have hx' := hmult x fun h0 => hx (by simp [h0])
-    refine ⟨⟨⟨(Q.p x).asIdeal, (Q.p x).2, fun e => ?_⟩, hx'⟩, rfl⟩
-    rw [e, Ideal.mem_bot] at hx'
-    exact Nat.cast_ne_zero.2 hp.ne_zero hx'
-
-private theorem bound_nonneg (E : Type) [Field E] [NumberField E] {p : ℕ} (hp : p.Prime) :
-    0 ≤ 1 / ((p : ℝ) - 1) + vDiff E p := by
-  have hp1 : (1 : ℝ) < p := by exact_mod_cast hp.one_lt
-  exact add_nonneg (div_nonneg zero_le_one (by linarith)) (by unfold vDiff; positivity)
-
-private theorem glob_gen (h2 : GlobalTheory.CovTop.Hypotheses2) (D : D7) (p : ℕ) [Fact p.Prime] [Fintype (Formalism.L2.Geo.PlL D p)]
-    {Y : Var D.what₂.LL} (M : TrueGeo.Model Y) {ι : Type} [Fintype ι] (A : ι → Adl (cxSt D.what₂.LL) Y)
-    (L : ι → HermLB M.p) (m : ℕ+) (Ψ : MvPolynomial ι ℝ →ₗ[ℝ] ℝ) (hI : ∀ i, (A i).Induced M (L i) m 0)
-    (hΨ : haveI := M.ar.isIntegral; GlobalTheory.ArInt.IsArFun L Y.dim Ψ) (i₀ i₁ : ι)
-    (e₁ : A i₁ = { A i₀ with lg := (A i₁).lg }) (c : ℝ) (hc : 0 ≤ c)
-    (e₂ : ∀ v e y, |(A i₀).lg v e y - (A i₁).lg v e y| ≤
-      (if resP v = p then c else 0) * (-Real.log (e.w (resP v : AlgebraicClosure D.what₂.LL))))
-    {d : ℕ} (hd : Y.dim = d) (ν : Fin d → ι) (T cv : Formalism.L2.Geo.PlL D p → ℝ) (hcv : ∀ la, cv la ≠ 0)
-    (key : ∀ (la : Formalism.L2.Geo.PlL D p) (Q : TrueGeo.Model Y) [AlgebraicGeometry.IsIntegral Q.X] [IsLocallyNoetherian Q.X]
-      (_ : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme Q.X) (M₀ : LB Q.X) (hM₀ : M₀.IsLB) (r : M₀.ι → Q.X.functionFieldˣ)
-      (hr : IsRatSec M₀ r) (_ : GReads Q la.1 M₀ r fun e y => ((m : ℕ) : ℝ) * (lam (A i₀) la.1 e y - lam (A i₁) la.1 e y))
-      (N : Fin d → LB Q.X) (_ : ∀ k, (N k).IsLB) (s : ∀ k, (N k).ι → Q.X.functionFieldˣ)
-      (_ : ∀ k, GReads Q la.1 (N k) (s k) fun e y => ((m : ℕ) : ℝ) * lam (A (ν k)) la.1 e y),
-      ((m : ℕ) : ℝ) ^ (d + 1) * placeDeg p la.1 * T la = cv la * ∑ᶠ x : Q.X, if (Q.p x).asIdeal = la.1.asIdeal then
-        (((divOfRatSec hM₀ hr).mult x * pdeg p N x : ℤ) : ℝ) else 0) :
-    Ψ ((MvPolynomial.X i₀ - MvPolynomial.X i₁) * ∏ i, MvPolynomial.X (ν i)) /
-        (((m : ℕ) : ℝ) ^ (d + 1) * (Module.finrank ℚ D.what₂.LL : ℝ)) =
-      Real.log p * ∑ la, Formalism.L2.Geo.wtL D p la * (T la / cv la) := by
-  obtain ⟨Q, _, _, Nb, sb, M₀, hM₀, r, hr, hQ, hN, hs, h₀, hmult, hΨ'⟩ :=
-    UpperTheory.arithmetic_function_induced_bound h2 _ _ M _ A L m Ψ hI hΨ p i₀ i₁ e₁ c hc e₂ d hd
-  rw [hΨ' ν]
-  exact places_sum D p Q _ _ hmult m d T cv hcv fun la => key la Q hQ M₀ hM₀ r hr (h₀ la.1) (fun k => Nb (ν k))
-    (fun k => hN _) (fun k => sb (ν k)) fun k => hs la.1 (ν k)
-
-section Main
-
-variable {D : D7} {A : Amb D} {N j : ℕ} {S : Sig A N j} {κ : Lv A} {s : FinalTheorems S κ} (fl : s.Flag)
-  (hd : ∀ k, (fl.C k).Y.dim = Formalism.DegreeFormula.dimFl D.what₂.Tau N) {p : ℕ} [Fact p.Prime]
-  {W : Formalism.L2.Geo.PlL D p → ValuationSubring ℂ} (hW : ∀ la, (p : ℂ) ∈ (W la).nonunits)
-  (z : ∀ la, AdmAt S κ (Fact.out : p.Prime) (hW la)) [∀ la, IsDiscreteValuationRing ((z la).Z.i.c.V (W la))]
-  [∀ la, CharP (ResidueField ((z la).Z.i.c.V (W la))) p]
-  (ε : ∀ la, D.what₂.LL →+* (z la).Z.i.c.F) (b : ∀ la, 𝓞 D.what₂.LL →+* (z la).Z.i.c.V (W la))
-  (hε : ∀ la x, ((ε la x : (z la).Z.i.c.F) : ℂ) = D.what₂.embLL x)
-  (hup : ∀ la, IsUp la.1 (ε la) ((z la).Z.i.c.V (W la)) (b la))
-
-include hd hε hup in
-
-private theorem comp_cmp [Fintype (Formalism.L2.Geo.PlL D p)] (h2 : GlobalTheory.CovTop.Hypotheses2) (c : s.Comp)
-    (hm : Mets (fl.C c) (cxSt D.what₂.LL)) (a₀ : ℕ → Bool) (R : Option ℝ) (l : Ln S.Dw)
-    (ν : Fin (Formalism.DegreeFormula.dimFl D.what₂.Tau N) → Bool × Ln S.Dw) (M : TrueGeo.Model (fl.C c).Y)
-    (L : Bool ⊕ Fin (Formalism.DegreeFormula.dimFl D.what₂.Tau N) → HermLB M.p) (m : ℕ+)
-    (Ψ : MvPolynomial (Bool ⊕ Fin (Formalism.DegreeFormula.dimFl D.what₂.Tau N)) ℝ →ₗ[ℝ] ℝ)
-    (A' : Bool ⊕ Fin (Formalism.DegreeFormula.dimFl D.what₂.Tau N) → Adl (cxSt D.what₂.LL) (fl.C c).Y)
-    (hA₀ : ∀ k, A' (.inl k) = adlOf (fl.C c) hm (lnSym (Function.update a₀ p k) R l))
-    (hA₁ : ∀ i, A' (.inr i) = adlOf (fl.C c) hm (lnSym (Function.update a₀ p (ν i).1) R (ν i).2))
-    (hI : ∀ i, (A' i).Induced M (L i) m 0)
-    (hΨ : haveI := M.ar.isIntegral; GlobalTheory.ArInt.IsArFun L (fl.C c).Y.dim Ψ) :
-    Ψ ((MvPolynomial.X (.inl false) - MvPolynomial.X (.inl true)) * ∏ i, MvPolynomial.X (.inr i)) /
-        (((m : ℕ) : ℝ) ^ (Formalism.DegreeFormula.dimFl D.what₂.Tau N + 1) * (Module.finrank ℚ D.what₂.LL : ℝ)) =
-      Real.log p * ∑ la, Formalism.L2.Geo.wtL D p la * ((∑ C ∈ Finset.univ.filter fun C : (nmodel (z la).Z).Comp =>
-          ∃ μ : Match (fl.C c).Y (b la) ((nmodel (z la).Z).comp C), Link (z la).Z C (fl.C c) μ,
-        ((((nmodel (z la).Z).comp C).capDeg_vp p
-          (NModel.vResQ C ((nmodel (z la).Z).vdiv _ _ (lnId (z la) Fact.out (hW la) l)))
-          (picSymPull ((nmodel (z la).Z).compι C) (∏ k, (lnLB (z la) (ν k).1 (ν k).2).c1)) : ℚ) : ℝ)) /
-        (cov (z la) : ℝ)) := by
-  have e₀ := adl_eq_of (fl.C c) hm a₀ p R l (hA₀ false) (hA₀ true)
-  refine glob_gen h2 D p M A' L m Ψ hI hΨ (.inl false) (.inl true) e₀.1 _ (bound_nonneg _ Fact.out) e₀.2 (hd c) Sum.inr _
-    (fun la => (cov (z la) : ℝ)) (fun la => Nat.cast_ne_zero.2 (cov_pos (z la)).ne') ?_
-  intro la Q _ _ hQ M₀ hM₀ r hr h₀ Nb hN sb hs
-  have k₀ := greads_congr₂ (hA₀ false) (hA₀ true) h₀
-  have k₁ (k) := greads_congr (hA₁ k) (hs k)
-  have key := loc_cmp fl hd Fact.out (hW la) (z la) (ε la) (b la) (hε la) la.1 la.2 (hup la) c _ hm
-    (Function.update a₀ p) (fun _ => Function.update_self _ _ _) R l ν Q hQ m M₀ hM₀ r hr k₀ Nb hN sb k₁
-  exact key
-
-end Main
-
 private theorem sum_part {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] (Z : NModel O) (p d : ℕ)
     (hZ : ∀ C, (Z.comp C).relDim = d) {T : Type} [Fintype T] (r : Z.Comp → T → Prop) (h : ∀ C, ∃! t, r C t)
     (Dv : Z.VDivQ) (G : PicSym Z.X) :
@@ -461,21 +234,6 @@ private theorem sum_part {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuati
       (((Z.comp C).capDeg_vp p (NModel.vResQ C Dv) (picSymPull (Z.compι C) G) : ℚ) : ℝ) =
       ((Z.capDeg_vp p d Dv G : ℚ) : ℝ) := by
   rw [sum_filter_partition _ _ h, NModel.capDeg_vp_eq_sum, Finset.filter_true_of_mem fun C _ => hZ C, Rat.cast_sum]
-
-private theorem num_sub {B : Type} {d d' : ℕ} (hd : d' = d) (num : Multiset B → ℝ) (w₀ : Bool → B) (w₁ : Fin d → B)
-    (Ψ : MvPolynomial (Bool ⊕ Fin d) ℝ →ₗ[ℝ] ℝ) (m c : ℝ)
-    (h : ∀ μ : Multiset (Bool ⊕ Fin d), Multiset.card μ = d' + 1 →
-      num (μ.map (Sum.elim w₀ w₁)) = Ψ (μ.map MvPolynomial.X).prod / (m ^ (d' + 1) * c)) :
-    num (w₀ false ::ₘ Finset.univ.val.map w₁) - num (w₀ true ::ₘ Finset.univ.val.map w₁) =
-      Ψ ((MvPolynomial.X (.inl false) - MvPolynomial.X (.inl true)) * ∏ i, MvPolynomial.X (.inr i)) /
-        (m ^ (d + 1) * c) := by
-  subst hd
-  have e (k : Bool) : num (w₀ k ::ₘ Finset.univ.val.map w₁) =
-      Ψ (MvPolynomial.X (.inl k) * ∏ i, MvPolynomial.X (.inr i)) / (m ^ (d' + 1) * c) := by
-    have := h (.inl k ::ₘ Finset.univ.val.map Sum.inr) (by simp)
-    rw [Multiset.map_cons, Multiset.map_cons, Multiset.prod_cons, Multiset.map_map, Multiset.map_map] at this
-    exact this
-  rw [e, e, ← sub_div, ← map_sub, ← sub_mul]
 
 private theorem sum_link {D : D7} {A : Amb D} {N j : ℕ} {S : Sig A N j} {κ : Lv A} {s : FinalTheorems S κ} (fl : s.Flag) [Fintype s.Comp]
     (hd : ∀ k, (fl.C k).Y.dim = Formalism.DegreeFormula.dimFl D.what₂.Tau N) {p : ℕ} (hp : p.Prime) {W : ValuationSubring ℂ}
@@ -493,13 +251,6 @@ private theorem sum_link {D : D7} {A : Amb D} {N j : ℕ} {S : Sig A N j} {κ : 
   have h := UpperTheory.admissible_point_discrete_valuation D A N j S κ s fl hd p hp W hW z ε b hε hb C
   exact h.imp fun c h => ⟨h, fun c' h' => h.elim fun μ hμ => h'.elim fun μ' hμ' =>
     UpperTheory.admissible_point_charts D A N j S κ s fl hd p hp W hW z ε b hε hb C c' c μ' μ hμ' hμ⟩
-
-private theorem sum_comp {Cp ι : Type} [Fintype Cp] [Fintype ι] (n₀ n₁ : Cp → ℝ) (lg : ℝ) (w cv T : ι → ℝ) (t : ι → Cp → ℝ)
-    (h : ∀ c, n₀ c - n₁ c = lg * ∑ i, w i * (t i c / cv i)) (ht : ∀ i, ∑ c, t i c = T i) :
-    ∑ c, (n₀ c - n₁ c) = lg * ∑ i, w i * (T i / cv i) := by
-  simp only [h, ← ht]
-  rw [← Finset.mul_sum, Finset.sum_comm]
-  simp only [← Finset.mul_sum, ← Finset.sum_div]
 
 section OnePlace
 
@@ -549,37 +300,6 @@ private theorem place (z : AdmAt S κ (Fact.out : p.Prime) hW) (fl : s.Flag)
     (fun c => pow_ne_zero _ (Nat.cast_ne_zero.2 (hm0 c))) k₁ k₂
 
 end OnePlace
-
-theorem pairSt : GlobalTheory.CovTop.Hypotheses2 → GlobalTheory.CovHt.HypothesesH → GlobalTheory.PairTerm.PairSt := by
-  intro h2 hH D O hO p _ W hW hWv z Sx R hR l ν
-  obtain ⟨x, P, h⟩ := hO
-  letI := Formalism.L2.Geo.finPl D p
-  haveI : ∀ la, IsDiscreteValuationRing ((z la).Z.i.c.V (W la)) :=
-    fun la => isDiscreteValuationRing_V (z la).Z.i.c Fact.out (hW la)
-  haveI : ∀ la, CharP (ResidueField ((z la).Z.i.c.V (W la))) p :=
-    fun la => charP_residueField_of_mem_nonunits (z la).Z.i.c Fact.out (hW la)
-  choose ε b hε hup using fun la => exists_up (z la) la.1 (hWv la)
-  let w : Bool ⊕ Fin (Formalism.DegreeFormula.dimFl D.what₂.Tau O.N) → Sym D.host.E →₀ ℤ :=
-    Sum.elim (fun k => lnSym (Function.update (ArIn.ind Sx) p k) (some R) l)
-      (fun i => lnSym (Function.update (ArIn.ind Sx) p (ν i).1) (some R) (ν i).2)
-  have hw : ∀ k, ∀ b ∈ (w k).support, {q | b.1 q = true}.Finite ∧ b.2.1 = some R := by
-    have ha (b : Bool) : {q | Function.update (ArIn.ind Sx) p b q = true}.Finite :=
-      (insert p Sx).finite_toSet.subset fun q hq => by
-        by_cases e : q = p
-        · simp [e]
-        · simpa [ArIn.ind, e] using hq
-    rintro (q | q) b hb <;> obtain ⟨e₁, e₂⟩ := mem_support_lnSym hb <;> exact ⟨e₁ ▸ ha _, e₂⟩
-  choose M L m Ψ hI hΨ hnum using fun c =>
-    (GlobalTheory.ArTopTrue.arTop_true h2.p4 hH.deg HTBound.htBound D _ _ _ _ _ O.s x O.Φ c R hR).2 _ w hw
-  have key (c : O.s.Comp) := comp_cmp O.Φ O.dim_eq hW z ε b hε hup h2 c (metsOf x O.Φ c) (ArIn.ind Sx) (some R) l ν
-    (M c) (L c) (m c) (Ψ c) (fun i => adlOf (O.Φ.C c) (metsOf x O.Φ c) (w i)) (fun _ => rfl) (fun _ => rfl) (hI c) (hΨ c)
-  rw [h.hm_eq]
-  have k₁ (c : O.s.Comp) := (num_sub (O.dim_eq c) ((arIn O.s O.Φ (metsOf x O.Φ)).num c)
-    (fun k => lnSym (Function.update (ArIn.ind Sx) p k) (some R) l)
-    (fun i => lnSym (Function.update (ArIn.ind Sx) p (ν i).1) (some R) (ν i).2) (Ψ c) _ _ (hnum c)).trans (key c)
-  have k₂ (la) := sum_link O.Φ O.dim_eq Fact.out (hW la) (z la) (ε la) (b la) (hε la) (hup la).1
-    ((nmodel (z la).Z).vdiv _ _ (lnId (z la) Fact.out (hW la) l)) (∏ k, (lnLB (z la) (ν k).1 (ν k).2).c1)
-  exact sum_comp _ _ _ _ _ _ _ k₁ k₂
 
 end GlobalTheory.PairMain
 

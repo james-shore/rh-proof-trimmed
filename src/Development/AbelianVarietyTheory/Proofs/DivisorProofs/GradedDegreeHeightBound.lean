@@ -1,11 +1,14 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.KernelSt
+import Development.AbelianVarietyTheory.Definitions.Divisors.SemiposAtOfPositive
+import Development.AbelianVarietyTheory.Definitions.Divisors.TorusExt
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.DemaillyRegularisation
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.MatrixLemma
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.AbsoluteSiegel
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ScholzeWeinsteinB
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.QuasiPlurisubharmonic
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExtFormAdjEqNegSecondForm
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LieAlgebraMaps
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiFibrationLieLatticeFullStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StepLatZero
@@ -206,10 +209,6 @@ private theorem ht_eq {D : D7} (O : Setup D) (x : ToroidalCompactificationData O
 
 end SlopeTestRemainingChoices
 
-open NumberField Formalism.BasicNotions Formalism.MainNotions ReciprocityTheory.GeometryOfNumbersTheory GlobalTheory.CovTop GlobalTheory.CovHt GlobalTheory.Mean4 GlobalTheory.Mean4O GlobalTheory.LieHt GlobalTheory.HeightParts
+open NumberField Formalism.BasicNotions Formalism.MainNotions ReciprocityTheory.GeometryOfNumbersTheory GlobalTheory.CovTop GlobalTheory.CovHt GlobalTheory.Mean4 GlobalTheory.Mean4O GlobalTheory.LieHt
 open GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.LieRead
 
-theorem _root_.GlobalTheory.T.graded_degree_height_bound : Hypotheses2 → HypothesesH → OnObj fun D O _ _ H _ => ∃ C : ℝ, ∀ y : Pt O.s, y ∈ H.int → ∀ (K : Type) [Field K] [NumberField K] (F : SemiFib K) (ι : K →+* Qb) (h : HermFam K (Fin F.P₀.g → K)), FibTie O y F ι → F.IsHerm h → ∀ (τ : D.host.E →+* ℂ) (i : ℕ), i < O.S.Dw.mult τ → |stepGrDeg O F h τ i - (adlOf (O.Φ.C _) (O.met.hm _) (Finsupp.single (ArIn.ind ∅, none, .inl (τ, i)) 1)).ht (basePt O.Φ y)| ≤ C := by
-  intro _ _ D O ⟨x, P, hc⟩ _ A T H hR
-  refine ⟨0, fun y hy K _ _ F ι h hT hH τ i hi => ?_⟩
-  rw [hc.hm_eq, ht_eq O x y ((hR.ht.int y).1 hy) F ι h hT hH τ i hi, sub_self, abs_zero]

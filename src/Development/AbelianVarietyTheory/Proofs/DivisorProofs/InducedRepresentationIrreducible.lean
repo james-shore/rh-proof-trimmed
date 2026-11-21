@@ -62,16 +62,6 @@ theorem indSp_eq_indScal (a a' : ℕ) (α β : kˣ →* ℂˣ) : indSp a a' α �
 
 end
 
-theorem indSp_irreducible : GlobalTheory.Published.BernsteinUnitaryProductIrreducible → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (a a' : ℕ) (α β : kˣ →* ℂˣ), IsSmU α → IsSmU β →
-    ∀ N : Submodule ℂ (GL (Fin (a + a')) k → ℂ), N ≤ indSp a a' α β → (∀ f ∈ N, ∀ x, (fun h => f (h * x)) ∈ N) →
-      N = ⊥ ∨ N = indSp a a' α β := by
-  intro H k _ _ _ _ a a' α β hα hβ N hN hinv
-  rw [indSp_eq_indScal] at hN ⊢
-  have hs : GlobalTheory.SmGL.IsSmoothChar (α * β⁻¹) :=
-    GlobalTheory.SmGL.IsSmoothChar.mul hα.1 (GlobalTheory.SmGL.IsSmoothChar.inv hβ.1)
-  have hu : GlobalTheory.SmGL.IsUnitaryChar (α * β⁻¹) := fun x => by simp [hα.2 x, hβ.2 x]
-  exact (GlobalTheory.RankFibre.indScal_irreducible H k a a' _ β hs hu hβ.1 hβ.2 N hN hinv).imp_right (le_antisymm hN)
-
 end GlobalTheory.KSplit
 
 end

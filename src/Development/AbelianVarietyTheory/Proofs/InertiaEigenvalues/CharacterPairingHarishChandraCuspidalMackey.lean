@@ -49,9 +49,6 @@ theorem isChar_of_isCusp {d : ℕ} {χ : Gn g d → ℂ} (h : IsCusp χ) : IsCha
 theorem degL_cons (p : Pc g) (L : List (Pc g)) : degL (p :: L) = p.1 + degL L := by
   simp [degL]
 
-theorem degL_append (L L' : List (Pc g)) : degL (L ++ L') = degL L + degL L' := by
-  simp [degL]
-
 theorem degL_perm {L L' : List (Pc g)} (h : L.Perm L') : degL L = degL L' := by
   unfold degL
   exact (h.map _).sum_eq

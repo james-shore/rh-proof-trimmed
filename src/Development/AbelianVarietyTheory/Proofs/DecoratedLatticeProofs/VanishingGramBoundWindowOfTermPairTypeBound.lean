@@ -19,6 +19,4 @@ theorem vanishingGramBoundWindow_of_termPairTypeBound (hT : GlobalTheory.TypeAsm
   have hPairs := H4 C' Cl Cg cb Cu cT CT C0 D large₂ X Y u ((le_max_right _ _).trans hCl) hK2 hC hType
   exact GlobalTheory.T.deg_termSumBoundOfPairsAmplitude C' Cl Cg cb Cu cT CT C0 D large₂ X Y u hK2 hC hAbs hPairs
 
-example : GlobalTheory.TypeAsm.TypeP → GlobalTheory.Core.Deg.VanishingGramTermsBoundWindow := vanishingGramBoundWindow_of_termPairTypeBound
-
 end GlobalTheory.Core.Deg

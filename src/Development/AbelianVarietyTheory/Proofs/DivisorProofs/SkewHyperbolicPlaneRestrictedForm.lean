@@ -53,13 +53,4 @@ theorem fA_mulVec_left (σ : E →ₐ[F] E) {m n : ℕ} (J : Matrix (Fin n) (Fin
   rw [Matrix.mulVec_single_one]
   simp [Matrix.mulVec, dotProduct, Matrix.transpose_apply]
 
-theorem form_swap {σ : E →ₐ[F] E} {n : ℕ} {J : Matrix (Fin n) (Fin n) E} (hσ : ∀ e, σ (σ e) = e)
-    (hsk : ∀ i j, σ (J j i) = -J i j) (v w : Fin n → E) : form σ J v w = -σ (form σ J w v) := by
-  simp only [form, dotProduct, Matrix.mulVec, map_sum, map_mul, hσ, hsk, Finset.mul_sum, mul_neg,
-    Finset.sum_neg_distrib, neg_neg]
-  simp only [neg_mul, mul_neg, Finset.sum_neg_distrib, neg_neg]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl (fun i _ => Finset.sum_congr rfl (fun j _ => ?_))
-  ring
-
 end GlobalTheory.ThK.UnipDom.MatEq

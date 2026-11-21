@@ -14,8 +14,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 namespace GlobalTheory.ThetaLineDeriv
-open GlobalTheory.WeilM GlobalTheory.LFun Filter Topology
-open scoped Classical
 end GlobalTheory.ThetaLineDeriv
 namespace GlobalTheory.ThetaLineDeriv
 open GlobalTheory.WeilM GlobalTheory.LFun Filter Topology

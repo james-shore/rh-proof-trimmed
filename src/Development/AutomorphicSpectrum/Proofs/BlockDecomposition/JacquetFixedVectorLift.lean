@@ -7,17 +7,12 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactGroupFin
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacquetHeckeConditionHoldsStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CentralStrictlyDominantExistsStatement
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsFixedLift
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.VecStab
 
 open GlobalTheory.PRep GlobalTheory.SmGL ValuativeRel PositivityTheory.Lbc
 
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.JacquetLemma
-
-noncomputable def vecStab {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V] (π : Representation ℂ G V) (u : V) :
-    Subgroup G :=
-  _root_.UpperTheory.Reformulated.B.VectorStabilizer₂.vecStab π u
 
 def cosetStab {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V] (π : Representation ℂ G V)
     (q : Submodule ℂ V) (u : V) : Subgroup G where

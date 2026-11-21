@@ -532,53 +532,6 @@ theorem isAutFunSm_iff (hθ : IsInfFam θ) (V : HSp D) (φ : GA D V → ℂ) : I
 
 variable {X : ThetaX D}
 
-theorem afTiedSm_iff (T : ThetaTied D X) : ThetaSmoothnessCondition T ↔
-    ∀ V : HSp D, V.SigOK → ∀ φ : GA D V → ℂ, (∃ F : X.AF V, T.ev V F = φ) ↔ IsSmoothAutForm V φ := by
-  constructor
-  · rintro ⟨⟨θ, hθ⟩, h⟩ V hV φ
-    rw [← isAutFunSm_iff hθ]
-    exact Set.ext_iff.1 (h θ hθ V hV) φ
-  · intro h
-    exact ⟨T.actR.1, fun θ hθ V hV => Set.ext fun φ => (h V hV φ).trans (isAutFunSm_iff hθ V φ).symm⟩
-
-theorem compare (D : D7) :
-    (∀ θ, IsInfFam (D := D) θ → ∀ V : HSp D, (∃! e, IsExpFam θ V e) ∧ ∀ e, IsExpFam θ V e →
-      (∀ τ, lieAt V τ = lieU (gramAt D V τ)) ∧
-      (∀ τ (Y : LieAt V τ) t, oneP θ V τ Y.1 t = e (t • atPlace V τ Y)) ∧
-      (∀ τ (Y : LieAt V τ) φ, Rder θ V τ Y.1 φ = lieDer V e (atPlace V τ Y) φ) ∧
-      (∀ τ, ∃ c : ℕ → List (LieAt V τ) →₀ ℂ,
-        Subalgebra.center ℂ (EnvAt V τ) = Algebra.adjoin ℂ (Set.range fun k => envOf V τ (c k)) ∧
-        ∀ k φ, IsSmoothInf V e φ → gelf θ V τ k φ = envDer V e τ (c k) φ) ∧
-      (∀ φ : GA D V → ℂ, (∀ (k : ℕ) (τs : Fin k → D.what₂.Tau) (Xs : Fin k → Matrix (Fin V.rank) (Fin V.rank) ℂ),
-        (∀ i, Xs i ∈ lieAt V (τs i)) → ∀ g,
-          ContDiff ℝ ∞ fun t : Fin k → ℝ => φ (g * (List.ofFn fun i => oneP θ V (τs i) (Xs i) (t i)).prod)) ↔
-        IsSmoothInf V e φ) ∧
-      (∀ φ, IsSmoothInf V e φ →
-        ((∃ W : Submodule ℂ (GA D V → ℂ), FiniteDimensional ℂ W ∧ φ ∈ W ∧ ∀ τ k, ∀ f ∈ W, gelf θ V τ k f ∈ W) ↔
-          ∀ τ, IsZFiniteAt V e τ φ)) ∧
-      (∀ φ, IsAutFun V φ → IsSmoothInf V e φ →
-        ((∃ N : ℕ, ∀ l : List (D.what₂.Tau × Matrix (Fin V.rank) (Fin V.rank) ℂ), (∀ p ∈ l, p.2 ∈ lieAt V p.1) →
-          ∀ x, ∃ C : ℝ, ∀ g ∈ GinfC V,
-            ‖(l.foldr (fun p f => Rder θ V p.1 p.2 f) φ) (x * g)‖ ≤ C * normInf θ V g ^ N) ↔
-          IsUnifModerate θ V e φ))) ∧
-    (∀ θ, IsInfFam (D := D) θ → ∀ (V : HSp D) φ, IsAutFunSm θ V φ ↔ IsSmoothAutForm V φ) ∧
-    ∀ (X : ThetaX D) (T : ThetaTied D X),
-      (ThetaSmoothnessCondition T ↔ ∀ V : HSp D, V.SigOK → ∀ φ : GA D V → ℂ, (∃ F : X.AF V, T.ev V F = φ) ↔ IsSmoothAutForm V φ) ∧
-      (FormsTied T ↔ ThetaSmoothnessCondition T ∧
-        ∀ V : HSp D, ¬ V.SigOK → ∀ φ : GA D V → ℂ, (∃ F : X.AF V, T.ev V F = φ) ↔ IsSmoothAutForm V φ) := by
-  refine ⟨fun θ hθ V => ?_, fun θ hθ => isAutFunSm_iff hθ, fun X T => ⟨afTiedSm_iff T, ?_⟩⟩
-  · have R := (GlobalTheory.T.adelicUnitary_realPoints_structure_realPlaces D).2 θ hθ V
-    refine ⟨⟨_, isExpFam_expInf R, fun e he => eq_expInf R he⟩, fun e he => ?_⟩
-    obtain rfl := eq_expInf R he
-    refine ⟨fun _ => rfl, oneP_eq R, Rder_eq R, fun τ => ?_, smooth_iff R, fun φ => zfin_iff R,
-      fun φ => growth_iff hθ R⟩
-    obtain ⟨c, h1, h2⟩ := exists_gelf R τ
-    choose w hw using fun k => GlobalTheory.T.enveloping_map_surjective D V τ (c k)
-    refine ⟨w, by simpa only [hw] using h1, fun k φ hφ => ?_⟩
-    exact (h2 k ⟨φ, hφ⟩).trans (by rw [← hw]; exact (envDer_eq R τ (w k) ⟨φ, hφ⟩).symm)
-  · rw [afTiedSm_iff]
-    exact ⟨fun h => ⟨fun V _ => h V, fun V _ => h V⟩, fun h V => (em V.SigOK).elim (h.1 V) (h.2 V)⟩
-
 end GlobalTheory.SmoothForms
 
 end

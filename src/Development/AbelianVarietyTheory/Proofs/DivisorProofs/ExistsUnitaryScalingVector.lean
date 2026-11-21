@@ -43,10 +43,6 @@ lemma form_swap (hσ : ∀ e, σ (σ e) = e) (hJ : ∀ i j, σ (J j i) = J i j) 
   refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => ?_
   rw [hJ j i]; ring
 
-lemma vecMulVec_mulVec' (x w v : Fin n → E) : Matrix.vecMulVec x w *ᵥ v = (w ⬝ᵥ v) • x := by
-  ext i
-  simp [Matrix.mulVec, Matrix.vecMulVec, dotProduct, Finset.sum_mul, Finset.mul_sum, mul_comm, mul_left_comm, mul_assoc]
-
 lemma smul_vecMulVec_mulVec (c : E) (x w v : Fin n → E) : (c • Matrix.vecMulVec x w) *ᵥ v = (c * (v ⬝ᵥ w)) • x := by
   ext i
   simp only [Matrix.mulVec, dotProduct, Matrix.smul_apply, Matrix.vecMulVec_apply, smul_eq_mul, Pi.smul_apply]

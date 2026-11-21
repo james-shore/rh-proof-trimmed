@@ -58,11 +58,6 @@ theorem vecExtMap_add (f g : G ⟶ H) : vecExtMap (f + g) = vecExtMap f + vecExt
   refine (Submodule.Quotient.eq _).2 ⟨B, Subtype.ext (funext fun n => ?_)⟩
   exact eq_sub_iff_add_eq'.2 (T.bialgebraPullbackTwo_convMul_symmetricCocycle (f.app n) (g.app n) (c.1 n) (c.2 n).1).symm
 
-theorem vecExtMap_id : vecExtMap (𝟙 G) = LinearMap.id :=
-  LinearMap.ext fun x => by
-    obtain ⟨c, rfl⟩ := Submodule.Quotient.mk_surjective _ x
-    exact congrArg Submodule.Quotient.mk (Subtype.ext (funext fun _ => pullTwo_id _))
-
 theorem SemiHom.ofHom_vecExt (f : G ⟶ H) (x : H.VecExt) :
     (SemiHom.ofHom f).vecExt x = vecExtMap f x := by
   obtain ⟨c, rfl⟩ := Submodule.Quotient.mk_surjective _ x

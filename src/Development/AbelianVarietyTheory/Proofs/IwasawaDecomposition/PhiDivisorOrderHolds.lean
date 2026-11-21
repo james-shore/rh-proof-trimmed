@@ -1,9 +1,77 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BlowPolSt
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinearFormsOnConesStatement
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IntegralLinearFormOnBasisStatement
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinearFormRealCombinationStatement
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FreeAndRankBoundIntegersStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasLinForms
+import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.MemRangeOfForallHeightEqOneOfIsReflexive
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ThetaLevelObjectDescendsFgSubfield
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StalkGenerizationGermCompat
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EtaleCompletionOfDimOneNormal
+import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IsOpenOfMemIrreducibleComponentsOfFinite
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolarizationTransferWithFunction
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolarizationBaseChangeModels
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.CoefficientFieldIntegersDedekindFractionField
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AmpleOfFiniteSurjectivePullback
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsAmpleLBOfRelAmpleOfIsAffine
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PushInvertible
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMonomialLevelFormDvr
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.PsiCoordExistsUniqueUpToUnitLocal
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsPelUnifPsiCoord
+import Development.AbelianVarietyTheory.Proofs.TorusSplitting.ValuationFormPsiBalancedSymmetricPeriodForm
+import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFiniteCubeInduction
+import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ValEqOfAppInjective
+import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TauBimultOfIsPullDeg
+import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AllSixAbelianSchemeLawsHold
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsPullbackDegPreStrictLineBundleIso
+import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.GlobalFnsHolds
+import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsRingActionOfIsPullDeg
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ExistsRosatiGen
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCdvrMkLeContinuum
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.RegKrull
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalizationAtPrimeIsDiscreteValuationRingOfHeig
+import Development.AbelianVarietyTheory.Counterexamples.ModuliSurvey.IsQProjOverOfIsProjOver
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FlatMapColonIdeal
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PelTrivialisationIsUnitOnAbelianLocus
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ModelUniformisationOfAbelianLocusDirectImage
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsProperOfSubsingleton
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LineBundleIsoOfAmpleDeterminantFrames
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsIsoStalkMapOfFlatOfSurjectiveOnStalks
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSabDescentOfFieldExtension
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.RegVert
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdicCompletionQuotientRingEquiv
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdicCompletionReducedOfJacobson
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsNoetherianRingAdicCompletionOfNoetherian
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsAbsoluteValueOfIsDiscreteValuationRing
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsDiscreteValuationRingIntegralClosure
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RangeAlgebraMapEqIInfDiscreteValuationSubring
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHenselRootResidueStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolynomialApproxPowMaximalStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolynomialApproxUniquenessStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HenselRootsCompatibleStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPrimitiveElementUnramifiedStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCommonUnramifiedExtensionStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsDvrResidueLiftIrreducibleStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MonomialFormOnChartRing
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FormallyUnramifiedEtaleCompletion
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.NonemptyFiniteRootsOfBimul
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntOfIsIntegral
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolarizationTransferModels
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFrameOfFreeSec
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolynomialSupportHolds
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ArcDataPsiValuationEqHalfForm
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ArcGenericPointDescendsToPowerSeries
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.AdmissibleBasePowerSeriesSpanX
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.SemiAbelianModelDeterminedByGenericFibre
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsPsiCoordOfIsPsiCoord
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BoundaryEtaleStalkForms
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ConeConditionsProduct
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CodimOneGenerizationStalk
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StalkSpecializesCompatRingMap
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompletionUnramifiedNormal
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteMaximalSpectrumOfFiniteOfIsLocalRing
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.EqZeroOfForallLTensorEqZero
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsOpenAbelianLocus
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniformBaseChange.MemRangeOfForallHeightOne
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalizationAtPrimeIsDiscreteValuationRingOfHeigStatement
+import Formalism.LocalToGlobal.ProjectiveLattices.CompFin
 
 noncomputable section
 
@@ -23,80 +91,9 @@ theorem comb_evalZ {O : Type} [CommRing O] (a : ℕ) (ψ : InvFun O) (b : ℕ) (
     [Module O X] [Module.Finite O X] (β : LinearMap.BilinForm ℤ X) :
     (comb a ψ b φ).evalZ β = a * ψ.evalZ β + b * φ.evalZ β := rfl
 
-theorem comb_linearOn {O : Type} [CommRing O] {a : ℕ} {ψ : InvFun O} {b : ℕ} {φ : InvFun O} {X : Type} [AddCommGroup X]
-    [Module O X] [Module.Finite O X] {m : ℕ} {γ : Fin m → LinearMap.BilinForm ℤ X} (h₁ : ψ.LinearOn γ)
-    (h₂ : φ.LinearOn γ) : (comb a ψ b φ).LinearOn γ := by
-  intro c hc
-  rw [comb_eval, h₁ c hc, h₂ c hc]
-  simp only [comb_evalZ, mul_add, Finset.sum_add_distrib, Finset.mul_sum]
-  congr 1 <;> exact Finset.sum_congr rfl fun i _ => by ring
-
-theorem resInt_eval (φs : InvFun ℤ) (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X]
-    [Module.Finite ℤ X] (B : X → X → ℝ) : (resInt (𝓞 E) φs).eval X B = φs.eval X B := by
-  obtain ⟨n, r, hr⟩ := Module.Finite.exists_fin' (𝓞 E) X
-  rw [InvFun.eval_eq _ hr]
-  exact φs.eval_comp (r := r.restrictScalars ℤ) hr B
-
-theorem resInt_evalZ (φs : InvFun ℤ) {X : Type} [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X]
-    [Module.Finite ℤ X] (β : LinearMap.BilinForm ℤ X) : (resInt (𝓞 E) φs).evalZ β = φs.evalZ β :=
-  resInt_eval φs X _
-
 end GlobalTheory.TorRef.PhiDivO
 
 namespace GlobalTheory.TorRef.PhiDivO
 
-variable {E : Type} [Field E] [NumberField E] [IsCMField E]
-
-theorem vals {H : Host E} {q g : ℕ} {φs : InvFun ℤ} {𝒩 : Finset ℕ} {φ : InvFun (𝓞 E)}
-    (hg : Module.finrank ℚ E * q ≤ g) (hs : IsPolFan id g φs) (hR : Refines H q φs 𝒩 φ)
-    {X : Type} [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X]
-    (hX : Module.finrank (𝓞 E) X ≤ q) {m : ℕ} {γ : Fin m → LinearMap.BilinForm ℤ X} (hγ : IsCone H.bar φ γ) (i : Fin m) :
-    (∃ n : ℕ, φ.evalZ (γ i) = n) ∧ ∃ n : ℕ, (resInt (𝓞 E) φs).evalZ (γ i) = n := by
-  refine ⟨(hR.1 X hX).exists_nat (hγ.mem i) (hγ.nonneg i), ?_⟩
-  obtain ⟨hfree, hrk⟩ := GlobalTheory.T.free_and_rank_bound_integers E X
-  have : Module.Finite ℤ X := Module.Finite.trans (𝓞 E) X
-  have hP : IsPolFanOn id φs X := hs X (hrk.trans ((Nat.mul_le_mul_left _ hX).trans hg))
-  have hmem : γ i ∈ balForms id X :=
-    ⟨(hγ.mem i).1, fun (a : ℤ) y z => by simp only [LinearMap.map_smul, LinearMap.smul_apply, id]⟩
-  obtain ⟨n, hn⟩ := hP.exists_nat hmem (hγ.nonneg i)
-  exact ⟨n, by rw [resInt_evalZ]; exact hn⟩
-
-theorem cone {H : Host E} {q g : ℕ} {φs : InvFun ℤ} {𝒩 : Finset ℕ} {φ : InvFun (𝓞 E)}
-    (hg : Module.finrank ℚ E * q ≤ g) (hs : IsPolFan id g φs) (hR : Refines H q φs 𝒩 φ) (a d b : ℕ)
-    (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X]
-    (hX : Module.finrank (𝓞 E) X ≤ q) (m : ℕ) (γ : Fin m → LinearMap.BilinForm ℤ X) (hγ : ConeO H φ X m γ) :
-    ∃ ℓ : LinearMap.BilinForm ℤ X →ₗ[ℤ] ℤ, ∀ be : LinearMap.BilinForm ℤ X, (∀ y z, be y z = be z y) →
-      (∃ c : Fin m → ℝ, (∀ i, 0 ≤ c i) ∧ toReal be = ∑ i, c i • toReal (γ i)) →
-        (comb a (comb d (resInt _ φs) 0 φ) b φ).evalZ be = ℓ be ∧ 0 ≤ ℓ be := by
-  have hc : IsCone H.bar φ γ := hγ
-  obtain ⟨hfree, -⟩ := GlobalTheory.T.free_and_rank_bound_integers E X
-  have : Module.Finite ℤ X := Module.Finite.trans (𝓞 E) X
-  choose ny hny using fun i => (vals hg hs hR hX hc i).1
-  choose nx hnx using fun i => (vals hg hs hR hX hc i).2
-  set ψ := comb a (comb d (resInt _ φs) 0 φ) b φ with hψ
-  have hval : ∀ i, ψ.evalZ (γ i) = ((a * (d * nx i) + b * ny i : ℕ) : ℝ) := fun i => by
-    rw [hψ, comb_evalZ, comb_evalZ, hnx, hny]; push_cast; ring
-  obtain ⟨ℓ, hℓ⟩ := GlobalTheory.T.integral_linear_form_on_basis H.bar X m γ hc.mem hc.basis fun i => ((a * (d * nx i) + b * ny i : ℕ) : ℤ)
-  have hlin : ψ.LinearOn γ :=
-    comb_linearOn (comb_linearOn ((hR.2.2.2.2.2 X hX m γ hc).1) hc.linear) hc.linear
-  refine ⟨ℓ, fun be _ ⟨c, hc0, hbe⟩ => ?_⟩
-  have hreal := GlobalTheory.T.linear_form_real_combination X ℓ m γ c be hbe
-  have hpt : (fun x y => (be x y : ℝ)) = fun x y => ∑ i, c i * (γ i x y : ℝ) := by
-    funext x y
-    have := LinearMap.congr_fun₂ hbe x y
-    simpa [toReal, LinearMap.sum_apply] using this
-  have h1 : ψ.evalZ be = ∑ i, c i * (ℓ (γ i) : ℝ) := by
-    rw [InvFun.evalZ, hpt, hlin c hc0]
-    exact Finset.sum_congr rfl fun i _ => by rw [hval, hℓ]; push_cast; rfl
-  refine ⟨h1.trans hreal.symm, ?_⟩
-  have : (0 : ℝ) ≤ (ℓ be : ℝ) := by
-    rw [hreal]
-    exact Finset.sum_nonneg fun i _ => mul_nonneg (hc0 i) (by rw [hℓ]; positivity)
-  exact_mod_cast this
-
 end GlobalTheory.TorRef.PhiDivO
 
-theorem GlobalTheory.TorRef.phiDivO : PhiDivOSt := by
-  intro E _ _ _ H D l Xo c Z g φs 𝒩 φ hg hs hR hZ a d b
-  exact GlobalTheory.T.linear_forms_on_cones E H D l Xo c Z (ConeO H φ) _
-    (fun X _ _ _ _ hX m γ hγ => GlobalTheory.TorRef.PhiDivO.cone hg hs hR a d b X hX m γ hγ) hZ

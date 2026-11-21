@@ -22,13 +22,4 @@ def vecSec {A : Type} [CommRing A] (y : Sp A ⟶ Sp ℤ) (v : Fin N → A) :
 theorem vecSec_col {A : Type} [CommRing A] (y : Sp A ⟶ Sp ℤ) (g : Matrix (Fin N) (Fin N) A) (j : Fin N) :
     vecSec y (fun i => g i j) = Taut.colSec y g j := rfl
 
-variable (ι N) in
-
-def stepMap (fl : ∀ _ : ι, Vert.Flag ((Scheme.Modules.pullback (flStr ι N)).obj (Taut.stdE N)) N) {Y : Scheme.{0}}
-    (φ : Y ⟶ Fl ι N) (y : Y ⟶ Sp ℤ) (hy : φ ≫ flStr ι N = y) (a : ι) (l : Fin (N + 1)) :
-    (Scheme.Modules.pullback φ).obj ((fl a).F l) ⟶ (Scheme.Modules.pullback y).obj (Taut.stdE N) :=
-  (Scheme.Modules.pullback φ).map ((fl a).ι l) ≫
-    (Scheme.Modules.pullbackComp φ (flStr ι N)).hom.app (Taut.stdE N) ≫
-      (Scheme.Modules.pullbackCongr hy).hom.app (Taut.stdE N)
-
 end GlobalTheory.FlagZ.TautUniq

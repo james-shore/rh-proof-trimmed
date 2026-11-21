@@ -44,4 +44,3 @@ theorem hom_finite_free_rank_le : ∀ (K : Type) [Field K] (A B : AbVar K),
 
 end GlobalTheory.AV.AbVar
 
-example : ∀ (K : Type) [Field K] (A B : AbVar K), Module.Finite ℤ (A ⟶ B) ∧ Module.Free ℤ (A ⟶ B) ∧ Module.finrank ℤ (A ⟶ B) ≤ 4 * A.dim * B.dim := GlobalTheory.AV.AbVar.hom_finite_free_rank_le

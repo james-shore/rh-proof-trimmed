@@ -13,13 +13,6 @@ namespace GlobalTheory.ThKUTr
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
 open scoped TensorProduct
 
-@[reducible] def starOf {F E : Type} [Field F] [Field E] [Algebra F E] (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) :
-    StarRing E where
-  star := σ
-  star_involutive := hσ
-  star_mul a b := by simp only [map_mul, mul_comm]
-  star_add a b := map_add σ a b
-
 def combine (ι : Type) (n : ℕ) (R : Type) [CommRing R] :
     (ι → Matrix (Fin n) (Fin n) ℂ) × Matrix (Fin n) (Fin n) R →+* Matrix (Fin n) (Fin n) ((ι → ℂ) × R) where
   toFun p := Matrix.of fun i j => (fun w => p.1 w i j, p.2 i j)

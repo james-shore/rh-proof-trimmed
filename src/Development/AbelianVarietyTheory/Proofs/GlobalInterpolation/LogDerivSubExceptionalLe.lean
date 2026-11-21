@@ -9,9 +9,6 @@ open scoped Classical
 
 namespace GlobalTheory.Hk.LogDerivHalf
 
-lemma one_le_ell (𝓕 : LFam) (t : ℝ) : 1 ≤ 𝓕.ell t := by
-  linarith [𝓕.two_lt_ell t]
-
 lemma ell_le (𝓕 : LFam) (t u : ℝ) (h : |u - t| ≤ 3 / 5) : 𝓕.ell u ≤ 4 / 3 * 𝓕.ell t := by
   have hB : (4 : ℝ) ≤ 𝓕.B := 𝓕.B_ge
   have h2 := 𝓕.two_lt_ell t

@@ -1,5 +1,7 @@
 import Development.AutomorphicArithmetic.LocalEmbeddings.RootFrame
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.HodgeTateKernel
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.Divisors.HodgeTateLatticePointFinrankTateModule
+
 open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Formalism.BasicNotions Formalism.L2.Pj GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.TrueGeo GlobalTheory.Mean4O GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.TrivFlag GlobalTheory.LineNorm
 open Formalism.MainNotions.DIV.Cons (intO)
@@ -38,10 +40,6 @@ private theorem pr_tmul {K : Type} [CommRing K] (c : K) (x a : Dw.La) :
 
 private theorem pr_add {K : Type} [CommRing K] (y y' : K ⊗[ℤ] Dw.La) (a : Dw.La) :
     pr Dw (y + y') a = pr Dw y a + pr Dw y' a := by
-  simp [pr]
-
-private theorem pr_smul {K : Type} [CommRing K] (c : K) (y : K ⊗[ℤ] Dw.La) (a : Dw.La) :
-    pr Dw (c • y) a = c * pr Dw y a := by
   simp [pr]
 
 private theorem pr_expand {K : Type} [CommRing K] {N : ℕ} {a s : Fin N → Dw.La}
@@ -147,16 +145,6 @@ private theorem isot (p : ℕ) [Fact p.Prime] (n : ℕ) {T : Type} [AddCommGroup
   rw [norm_mul]
   exact (mul_le_of_le_one_left (norm_nonneg _) (hc _)).trans (hT _)
 
-private theorem exists_lin {K V : Type} [CommRing K] [AddCommGroup V] [Module K V] (g : Dw.La →+ (V →ₗ[K] K)) :
-    ∃ B : V →ₗ[K] K ⊗[ℤ] Dw.La, ∀ w x, pr Dw (B w) x = g x w := by
-  obtain ⟨N, a, s, h1, -⟩ := exists_dual_fam Dw
-  refine ⟨∑ m, (g (a m)).smulRight ((1 : K) ⊗ₜ[ℤ] s m), fun w x => ?_⟩
-  conv_rhs => rw [← h1 x]
-  simp only [pr, LinearMap.sum_apply, LinearMap.smulRight_apply, map_sum,
-    map_smul, LinearMap.smul_apply, LinearMap.BilinForm.baseChange_tmul, map_zsmul,
-    smul_eq_mul, zsmul_eq_mul, _root_.mul_one]
-  exact Finset.sum_congr rfl fun m _ => by simp [mul_comm]
-
 private theorem pr_ext {K : Type} [CommRing K] (y y' : K ⊗[ℤ] Dw.La) (h : ∀ x, pr Dw y x = pr Dw y' x) : y = y' := by
   obtain ⟨N, a, s, -, h2⟩ := exists_dual_fam Dw
   rw [← pr_expand Dw h2 y, ← pr_expand Dw h2 y']
@@ -164,17 +152,3 @@ private theorem pr_ext {K : Type} [CommRing K] (y y' : K ⊗[ℤ] Dw.La) (h : �
 
 end SlopeTestRemainingChoices
 
-theorem UpperTheory.tate_module_pairing_congruence :
-    ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (p : ℕ) [Fact p.Prime] (n : ℕ) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (P : PtP E p) (f : Dw.La →+ P.T) (u : ℤ_[p]), 1 ≤ n → Submodule.span ℤ_[p] (Set.range f) = ⊤ → (∀ (o : 𝓞 E) a, f (o • a) = P.actT o (f a)) → IsUnit u → (∀ a b, (p : ℤ_[p]) ^ n ∣ pairT P.A P.eps (f a) (f b) - u * (Dw.EF a b : ℤ_[p])) → ∃ B : P.V →ₗ[ℂ_[p]] ℂ_[p] ⊗[ℤ] Dw.La, (∀ w a, pr Dw (B w) a = -P.pairV w (1 ⊗ₜ f a)) ∧ (∀ w (σ : 𝓞 E →+* ℂ_[p]), (∀ o, P.actV o w = σ o • w) → IsEigL Dw σ (B w)) ∧ ∀ w w', P.pairV w w' = 0 → (∀ a, ‖pr Dw (B w) a‖ ≤ 1) → (∀ a, ‖pr Dw (B w') a‖ ≤ 1) → ‖Dw.EF.baseChange ℂ_[p] (B w) (B w')‖ ≤ (p : ℝ)⁻¹ ^ n := by
-  intro E _ _ _ H Dw p _ n _ hstar P f u _ hspan hact _ hcong
-  obtain ⟨B, hB'⟩ := exists_lin Dw (K := ℂ_[p]) (V := P.V)
-    (-(P.pairV.flip.toAddMonoidHom.comp ((TensorProduct.mk ℤ_[p] ℂ_[p] P.T 1).toAddMonoidHom.comp f)))
-  have hB : ∀ w x, pr Dw (B w) x = -P.pairV w (1 ⊗ₜ f x) := hB'
-  refine ⟨B, hB, fun w σ hw o => pr_ext Dw _ _ fun x => ?_, fun w w' h0 hw hw' => ?_⟩
-  · rw [pr_act, pr_smul, hB, hB, hact, ← hstar]
-    have e : P.pairV w (1 ⊗ₜ P.actT (star o) (f x)) = P.pairV (P.actV o w) (1 ⊗ₜ f x) :=
-      (P.pairV_act o w (1 ⊗ₜ f x)).symm
-    rw [e, hw, map_smul, LinearMap.smul_apply, smul_eq_mul, mul_neg]
-  · obtain ⟨k, e, t, -, ht⟩ := P.exists_dual_bases
-    have h0' : P.pairV w' w = 0 := by rw [P.pairV_swap w' w, h0, neg_zero]
-    exact isot Dw p n (pairT P.A P.eps) f u hspan hcong e t ht B hB w w' h0' hw hw'

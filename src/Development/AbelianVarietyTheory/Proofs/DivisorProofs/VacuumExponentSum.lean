@@ -96,12 +96,6 @@ theorem trace_eq_zero {m : ℕ} {G s : Matrix ι ι ℂ} (hs : s * s = 1) (hpos 
 
 end Lin
 
-theorem detPlus_one {m n : ℕ} (sS : Matrix (Fin n) (Fin n) ℂ) (sT : Matrix (Fin m) (Fin m) ℂ) :
-    GlobalTheory.WeilParts.detPlus sS sT ((1 : ℂ) • 1) ((1 : ℂ) • 1) = 1 := by
-  unfold GlobalTheory.WeilParts.detPlus
-  rw [one_smul, one_smul, Matrix.transpose_one, Matrix.one_kronecker_one, mul_one,
-    show (1 / 2 : ℂ) • (1 + sT ⊗ₖ sSᵀ) + (1 / 2 : ℂ) • (1 - sT ⊗ₖ sSᵀ) = 1 by module, Matrix.det_one]
-
 variable {D : D7} {θ : InfFam D}
 
 end GlobalTheory.SplitVacSum

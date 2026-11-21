@@ -466,12 +466,6 @@ theorem om_tgt_of_red (hB : B.Good) (hS : S.SigOK) {Q : Finset (Pl D.host.E)} (h
 
 end Target
 
-section TargetSeries
-
-variable {B : Base S T}
-
-end TargetSeries
-
 section TargetSeriesAll
 
 variable {B : Base S T}
@@ -504,12 +498,6 @@ theorem gen_mul_right_of_red (hB : B.Good) (hS : S.SigOK) {ψ : Twist D Circle} 
         rw [mul_assoc, ← mul_assoc ((detChar T ψ.chi κ : Circle) : ℂ), e1, one_mul]
 
 end TargetSeriesAll
-
-section TargetLattice
-
-variable {B : Base S T}
-
-end TargetLattice
 
 section Xi
 
@@ -594,32 +582,6 @@ theorem thetaSeriesData_have_dualType (hB : B.Good) (hS : S.SigOK) {ψ : Twist D
   ⟨fun _ hω _ hk hJ => ⟨dual_type hB hS hψ hQ hω hk hJ, dual_type_fock hB hS hψ hQ hω hk hJ⟩,
     fun _ hω _ hκ sκ hpg h P g => gen_mul_right_of_red hB hS hψ hQ hω hκ sκ hpg h P g,
     fun _ _ _ _ _ hu hQ' _ hΦ _ hω _ hκ sκ hpg h P a g => xiCoef_mul_right_of_red hB hS hu hQ' hΦ hω hκ sκ hpg h P a g⟩
-
-example (D : D7) (k : ℕ) : ∃ (S T : HSp D) (B : Base S T), B.Good ∧ S.SigOK ∧ B.admitted (Twist.triv Circle (∅ : Finset (Pl D.host.E))).Q ∧
-    (Twist.triv Circle (∅ : Finset (Pl D.host.E)) : Twist D Circle).Good := by
-  let S : HSp D := Examples₂.posSpace Examples₂.star_isIntegral (2 * k + 2)
-  let T : HSp D := Examples₂.posSpace Examples₂.star_isIntegral (2 * k + 1)
-  have hr : T.rank ≤ S.rank := Nat.le_succ _
-  obtain ⟨F, hF⟩ := exists_frame_good S T (Examples₂.posSpace_sigOK _ _) (fun _ => rfl) (Examples₂.posSpace_sigOK _ _) hr
-  obtain ⟨η, hη⟩ := GlobalTheory.WeilParts.exists_isEtaTilde_unramified D
-  let B : Base S T := ⟨hr, F, TypeDat.empty D _, Twist.triv Circle ∅,
-    Weight.first D _ (fun _ => 2 * k + 1) (fun _ => 0) fun _ => k, 1, η⟩
-  have hB : B.Good :=
-    { even := ⟨k + 1, by change 2 * k + 2 = _; ring⟩
-      odd := ⟨k, rfl⟩
-      frame := hF
-      de := Twist.triv_good splitSet_empty
-      places := placesOK_empty
-      wt := Weight.first_good _ (fun _ => Nat.succ_pos _) fun _ => Nat.le_succ _
-      sig := fun _ => rfl
-      sigOK := Examples₂.posSpace_sigOK _ _
-      eta := hη
-      hecke := ⟨continuous_const, fun _ => rfl⟩
-      real := fun _ => rfl
-      unram := fun _ _ _ _ _ => rfl
-      tame := fun _ h => absurd h (Finset.notMem_empty _)
-      inf := fun τ => ⟨0, by simp [B, Weight.first]; ring, ⟨_, hF.vac.2.inf⟩, fun _ _ _ _ _ => by simp [B]⟩ }
-  exact ⟨S, T, B, hB, Examples₂.posSpace_sigOK _ _, Base.admissible_empty_of_good hB, Twist.triv_good splitSet_empty⟩
 
 end Statement
 

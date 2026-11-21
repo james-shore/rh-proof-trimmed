@@ -1,9 +1,15 @@
 import Mathlib
 import Development.AutomorphicArithmetic.LocalEmbeddings.ExistsIsMapToFn
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFlagBundleIff
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocalFlagCoordinates
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackSmoothFunctionCInfAt
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.DualGramInterpGram
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineEigenframeFlag
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocalEquationComplexPoints
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.EqOfIsometricTrivShift
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsUniqueLiesUnder
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.FlatBCSec
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAffineOpenPreimageOfIsPullback
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjFsBasisOfUnitary
+
 open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.L2.Pj
 open GlobalTheory GlobalTheory.VB GlobalTheory.TangentOrigin GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.TrueGeo GlobalTheory.ProjVar GlobalTheory.LineNorm GlobalTheory.BcLie GlobalTheory.CovTest GlobalTheory.Mean4O GlobalTheory.Cartier GlobalTheory.TrueCx
@@ -20,39 +26,6 @@ private theorem spread {X : Scheme.{0}} {ι : Type} [Finite ι] {y : X} (t : ι 
   refine ⟨W ⊓ U₀, ⟨hW, Set.mem_iInter.2 hV⟩, fun i => X.presheaf.map (homOfLE (h₀ i)).op (s i), inf_le_left, fun i => ?_⟩
   rw [← hs i]
   exact TopCat.Presheaf.germ_res_apply _ _ _ _ _
-
-private theorem cInf_pull {k k' : Type} [CommRing k] [CommRing k'] {Y Y' : Scheme.{0}} {p : Y ⟶ Sp k}
-    {p' : Y' ⟶ Sp k'} {σ : k →+* ℂ} {σ' : k' →+* ℂ} {π : Y' ⟶ Y} {m : CxPts p' σ' → CxPts p σ}
-    (hm : ∀ z, (m z).1 = z.1 ≫ π) {f : CxPts p σ → ℝ} {z : CxPts p' σ'} (h : CInfAt f (m z)) :
-    CInfAt (fun w => f (m w)) z := by
-  obtain ⟨W, ι, _, g, F, O, h₁, h₂, h₃, h₄, h₅⟩ := h
-  refine ⟨π ⁻¹ᵁ W, ι, inferInstance, fun a => π.app W (g a), F, O, (mem_ptsIn_preimage hm).2 h₁, h₂, ?_, h₄, ?_⟩
-  · simpa only [← ev_of_comp hm] using h₃
-  · simp only [← ev_of_comp hm]
-    exact (continuous_of_comp hm).continuousAt.eventually h₅
-
-private theorem vInf_of_re_im {k : Type} [CommRing k] {Y : Scheme.{0}} {p : Y ⟶ Sp k} {σ : k →+* ℂ}
-    {f : CxPts p σ → ℂ} {z : CxPts p σ} (h : CInfAt (fun w => (f w).re) z) (h' : CInfAt (fun w => (f w).im) z) :
-    VInfAt f z := by
-  have := ((vInfAt_iff_cInfAt.2 h).prodMk (vInfAt_iff_cInfAt.2 h')).comp_contDiff
-    (Ψ := fun x : ℝ × ℝ => Complex.equivRealProdCLM.symm x) Complex.equivRealProdCLM.symm.contDiff
-  exact this.congr (.of_forall fun w => rfl)
-
-private theorem vInf_baseChange {F : Type} [Field F] [NumberField F] {X G : Scheme.{0}} {p : X ⟶ Sp (𝓞 F)}
-    {q : G ⟶ Sp F} {j : G ⟶ X} (H : IsPullback j q p (spMap (algebraMap (𝓞 F) F)))
-    {τ : F →+* ℂ} {σ : 𝓞 F →+* ℂ} {m : CxPts q τ → CxPts p σ} (hm : ∀ z, (m z).1 = z.1 ≫ j)
-    {f : CxPts p σ → ℂ} {z : CxPts q τ} (h : VInfAt (fun w => f (m w)) z) : VInfAt f (m z) :=
-  vInf_of_re_im
-    (OnModelCInf.baseChange_cInfAt F X G p q j H τ σ m hm _ z
-      (vInfAt_iff_cInfAt.1 (h.comp_contDiff (Ψ := Complex.reCLM) Complex.reCLM.contDiff)))
-    (OnModelCInf.baseChange_cInfAt F X G p q j H τ σ m hm _ z
-      (vInfAt_iff_cInfAt.1 (h.comp_contDiff (Ψ := Complex.imCLM) Complex.imCLM.contDiff)))
-
-private theorem inj_emb {F : Type} [Field F] [NumberField F] (σ : 𝓞 F →+* ℂ) : Function.Injective σ := by
-  rw [RingHom.injective_iff_ker_eq_bot]
-  refine Ideal.eq_bot_of_comap_eq_bot (R := ℤ) ?_
-  rw [RingHom.comap_ker, ← RingHom.injective_iff_ker_eq_bot]
-  exact RingHom.injective_int _
 
 section
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
@@ -133,59 +106,3 @@ private theorem exists_nhds (hρ : ρ ≫ genStr Z ≫ spMap e.toRingHom = Y.str
 
 end
 
-theorem UpperTheory.smooth_frame_generic :
-    ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model Xo c β) (F : Type) [Field F] [NumberField F] (e : F ≃+* c.F) [SmoothOfRelativeDimension Dw.dim (genStr Z)] (Y : Var F) (ρ : Y.X ⟶ gen Z) (_ : ρ ≫ genStr Z ≫ spMap e.toRingHom = Y.str) (g₀ : GenFrame e ρ) (τ : E →+* ℂ) (N : GlobalTheory.TrueGeo.Model Y) (M : N.X.Modules) (dual : Bool) (A : Chart M (Dw.mult τ) → Matrix (Fin (Dw.mult τ)) (Fin (Dw.mult τ)) Y.Fn) (G : ∀ σ : c.F →+* ℂ, EigMet Z σ) (h : VMetric N.p M (Dw.mult τ)), IsLie g₀ τ N.j dual A → (∀ σ, (G σ).SmoothOn (manifold Z σ) Set.univ) → IsMet g₀ τ N.j dual A G h → h.IsCInf := by
-  intro E _ _ _ H Dw l Xo c O _ β Z F _ _ e _ Y ρ hρ g₀ τ N M dual A G h hL hG hM σ₀
-  obtain ⟨σ, rfl⟩ : ∃ σ : F →+* ℂ, σ.comp (algebraMap (𝓞 F) F) = σ₀ :=
-    ⟨IsFractionRing.lift (inj_emb σ₀), RingHom.ext fun a => by
-      rw [RingHom.comp_apply, IsFractionRing.lift_algebraMap]⟩
-  intro ch z hz
-  let mN : Pts Y σ → CxPts N.p (σ.comp (algebraMap (𝓞 F) F)) := fun w =>
-    ⟨w.1 ≫ N.j, by rw [Category.assoc, N.pb.w, ← Category.assoc, w.2, spMap_comp_spMap]⟩
-  have hmN : ∀ w, (mN w).1 = w.1 ≫ N.j := fun _ => rfl
-  have h2 : spMap e.toRingHom ≫ spMap e.symm.toRingHom = 𝟙 _ := by
-    refine (Spec.map_comp _ _).symm.trans ((congrArg Spec.map ?_).trans (Spec.map_id _))
-    exact CommRingCat.hom_ext (RingHom.ext fun a => e.apply_symm_apply a)
-  have h3 : ρ ≫ genStr Z = Y.str ≫ spMap e.symm.toRingHom := by
-    rw [← hρ, Category.assoc, Category.assoc, h2, Category.comp_id]
-  let mZ : Pts Y σ → CxPts (genStr Z) (embOf e σ) := fun w =>
-    ⟨w.1 ≫ ρ, by rw [Category.assoc, h3, ← Category.assoc, w.2, spMap_comp_spMap]⟩
-  have hmZ : ∀ w, (mZ w).1 = w.1 ≫ ρ := fun _ => rfl
-  obtain ⟨p, rfl⟩ : ∃ p, mN p = z :=
-    ⟨⟨N.pb.lift z.1 (spMap σ) (z.2.trans (spMap_comp_spMap _ _).symm), N.pb.lift_snd _ _ _⟩,
-      Subtype.ext (N.pb.lift_fst _ _ _)⟩
-  have hp₀ : p ∈ ptsIn Y.str σ (N.j ⁻¹ᵁ ch.U) := (mem_ptsIn_preimage hmN).2 hz
-  obtain ⟨U, V, φ₀, Fr, Q, hU, hUW, hUV, hφ₀, key⟩ := exists_nhds hρ g₀ τ (lieMat dual (A ch)) (N.j ⁻¹ᵁ ch.U)
-    (fun y hy => hL.2 ch y hy) (Var.base p) (mem_ptsIn.1 hp₀)
-  have hp : p ∈ ptsIn Y.str σ U := mem_ptsIn.2 hU
-  have hV : ∀ w ∈ ptsIn Y.str σ U, mZ w ∈ ptsIn (genStr Z) _ V.1 := fun w hw =>
-    (mem_ptsIn_preimage hmZ).1 (ptsIn_mono hUV hw)
-  choose gf hre him hgf using fun a b : Fin (Dw.mult τ) => hG (embOf e σ) V φ₀ Fr τ a b hφ₀
-  have hS : IsOpen (Set.univ ∩ ptsIn (genStr Z) (embOf e σ) V.1) := isOpen_univ.inter (isOpen_ptsIn _)
-  let Mf : Pts Y σ → Matrix (Fin (Dw.mult τ)) (Fin (Dw.mult τ)) ℂ := fun w => of fun a b => gf b a (mZ w)
-  let Qf : Pts Y σ → Matrix (Fin (Dw.mult τ)) (Fin (Dw.mult τ)) ℂ := fun w => of fun a b => ev Y.str σ U (Q a b) w
-  have hMf : MInfAt Mf p := fun a b => vInf_of_re_im
-    (cInf_pull hmZ ((cInfAt_iff_smoothOn _ hS).2 (hre b a) _ ⟨trivial, hV p hp⟩))
-    (cInf_pull hmZ ((cInfAt_iff_smoothOn _ hS).2 (him b a) _ ⟨trivial, hV p hp⟩))
-  have hQf : MInfAt Qf p := fun a b => vInfAt_ev _ hp
-  have hval : ∀ w ∈ ptsIn Y.str σ U, IsUnit (HermFrame.chg (Qf w) (Mf w)).det ∧ (h.met _).G ch (mN w) =
-      cond dual (HermFrame.dualGram (HermFrame.chg (Qf w) (Mf w))) (HermFrame.chg (Qf w) (Mf w)) := fun w hw => by
-    obtain ⟨φ, f, g, f₀, h₁, h₂, h₃, h₄⟩ := key σ w hw (mZ w) (hV w hw) rfl
-    have e1 : f₀.co g τ = Qf w := by
-      rw [h₄]; ext a b; simp [Qf, ev_eq hw]
-    have e2 : ((G _).gram (mZ w) f₀ τ)ᵀ = Mf w := by
-      ext a b; exact hgf b a (mZ w) trivial (hV w hw) f₀ h₃
-    have e3 : HermFrame.chg (Qf w) (Mf w) = ((G _).gram (mZ w) g τ)ᵀ := by
-      rw [(G _).change _ f₀ g τ, e1, ← e2, HermFrame.chg, transpose_mul, transpose_mul, Matrix.mul_assoc]
-    rw [e3, hM ch σ w (mN w) rfl ((mem_ptsIn_preimage hmN).1 (ptsIn_mono hUW hw)) φ f h₁ (mZ w) rfl g h₂]
-    refine ⟨?_, ?_⟩
-    · rw [det_transpose]; exact ((G _).pos _ _ _).det_pos.ne'.isUnit
-    · rw [HermFrame.dualGram, transpose_nonsing_inv, transpose_transpose]
-  have hfin : MInfAt (fun w => (h.met _).G ch (mN w)) p := by
-    have hc := hQf.chg hMf
-    cases dual
-    · refine hc.congr ?_
-      filter_upwards [(isOpen_ptsIn _).mem_nhds hp] with w hw using (hval w hw).2
-    · refine (hc.dualGram (hval p hp).1).congr ?_
-      filter_upwards [(isOpen_ptsIn _).mem_nhds hp] with w hw using (hval w hw).2
-  exact fun a b => vInf_baseChange N.pb hmN (hfin a b)

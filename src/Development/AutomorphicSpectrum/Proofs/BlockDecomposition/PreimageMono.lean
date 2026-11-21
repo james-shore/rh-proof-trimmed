@@ -328,17 +328,6 @@ theorem cover_pre (U : Cov q) : (⨆ α, jF hI q κ ⁻¹ᵁ U.U α) = ⊤ := by
   obtain ⟨α, hα⟩ := TopologicalSpace.Opens.mem_iSup.1 hx
   exact TopologicalSpace.Opens.mem_iSup.2 ⟨α, hα⟩
 
-include hI in
-theorem cech_fin [IsNoetherianRing R] (hp : p ≠ 0) (hn : IsNilpotent (p : R)) [IsProper q] (U : Cov q) (r a : ℕ) :
-    Module.Finite R ((CrystallineSemistableComparison.Pb.cechH (GF (nlFun γ p X q κ) r) (fun α => SQ q κ γ p (U.U α)) r).cx.H a) := by
-  haveI : IsProper (qF hI q κ) := MorphismProperty.pullback_snd (P := @IsProper) _ _ inferInstance
-  obtain ⟨V⟩ := vb_cech (γ := γ) (p := p) (κ := κ) hI hp hn U r
-  have ha : ∀ n (i : Fin (n + 1) → U.ι), IsAffineOpen (capO (fun α => jF hI q κ ⁻¹ᵁ U.U α) i) := fun n i => by
-    rw [capO_pre]
-    exact aff_pre hI (GlobalTheory.CompanionTheory.GrCech.capO_affine U n i)
-  have h := @vb_fin R _ _ (XF hI q κ) (qF hI q κ) _ U.ι _ (fun α => jF hI q κ ⁻¹ᵁ U.U α) (cover_pre hI U) ha
-      (CrystallineSemistableComparison.Pb.cechH (GF (nlFun γ p X q κ) r) (fun α => SQ q κ γ p (U.U α)) r) V a
-  exact h
 end Fin
 
 end GlobalTheory.CompanionTheory.FibGr

@@ -40,7 +40,4 @@ theorem at_mul_right_of {F E : Type} [Field F] [NumberField F] [Field E] [Number
     [Fintype b] {z : Matrix a b (AE F E)} (hz : At (evI F) z) (N : Matrix b c (AE F E)) : At (evI F) (z * N) :=
   fun t ht => by rw [← Matrix.smul_mul, hz t ht, Matrix.zero_mul]
 
-example {F : Type} [Field F] [NumberField F] (f : (Fin 1 → mixedEmbedding.mixedSpace F) → ℂ) (x : Fin 1 → mixedEmbedding.mixedSpace F) :
-    dH 0 0 f x = fderiv ℝ f x 0 := by simp [dH]
-
 end GlobalTheory.ThK.PlaneEv

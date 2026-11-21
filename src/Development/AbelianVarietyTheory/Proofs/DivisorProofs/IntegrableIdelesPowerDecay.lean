@@ -4,7 +4,14 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsCompactIsOpenUnitsAt
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHeightLeTwoMulQuotHeight
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfAtOfPiInf
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdeleWithArchimedeanComponents
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiffsZeroOfLev
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealPlaceComponentAdeleConjugationEqComplexConj
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DarbouxAdaptedPlaneEvaluation
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.StabiliserEqCentraliserCartan
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IwasawaIsotropicColumnsRingIsoComplex
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniqueArchimedeanMatrixAdeleExtensionOfCom
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAtEvIPiInfEq
+
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
@@ -49,8 +56,6 @@ theorem det_scaleMap (t : ι → ℂˣ) : LinearMap.det (scaleMap t) = ∏ i, Co
   rw [scaleMap, LinearMap.det_pi]
   refine Finset.prod_congr rfl fun i _ => ?_
   rw [← Algebra.norm_apply, Algebra.norm_complex_apply]
-
-theorem measurable_units_val : Measurable (Units.val : ℂˣ → ℂ) := fun _ hs => ⟨_, hs, rfl⟩
 
 theorem measurable_to_units {α : Type} [MeasurableSpace α] {f : α → ℂˣ} (hf : Measurable fun x => (f x : ℂ)) :
     Measurable f := by
@@ -174,156 +179,5 @@ instance : IsFiniteMeasureOnCompacts (unitsHaar ι) := by
   rw [lintegral_indicator_const measurableSet_closedBall]
   exact ENNReal.mul_lt_top (ENNReal.prod_ne_top fun i _ => ENNReal.pow_ne_top ENNReal.ofReal_ne_top).lt_top
     measure_closedBall_lt_top
-
-theorem unitsHaar_ne_zero : unitsHaar ι ≠ 0 := by
-  intro h
-  have h1 : unitsHaar ι univ = 0 := by rw [h]; rfl
-  rw [unitsHaar, map_apply measurable_toUnits MeasurableSet.univ, preimage_univ, wVol,
-    withDensity_apply _ MeasurableSet.univ, Measure.restrict_univ,
-    lintegral_eq_zero_iff measurable_invSqWt] at h1
-  have hpos : ∀ b : ι → ℂ, invSqWt b ≠ 0 := fun b =>
-    Finset.prod_ne_zero_iff.2 fun i _ => pow_ne_zero _ (ENNReal.inv_ne_zero.2 enorm_ne_top)
-  have hF : ∀ᵐ b ∂(volume : Measure (ι → ℂ)), False := h1.mono fun b hb => hpos b hb
-  exact NeZero.ne (volume : Measure (ι → ℂ)) (ae_eq_bot.1 (Filter.eventually_false_iff_eq_bot.1 hF))
-
-def decay (z N : ℕ) (a : ι → ℂˣ) : ℝ := (∏ i, ‖(a i : ℂ)‖ ^ 2) ^ z / (1 + ∑ i, ‖(a i : ℂ)‖) ^ N
-
-theorem continuous_decay (z N : ℕ) : Continuous (decay (ι := ι) z N) := by
-  have hc : ∀ i, Continuous fun a : ι → ℂˣ => ‖(a i : ℂ)‖ := fun i =>
-    (Units.continuous_val.comp (continuous_apply i)).norm
-  refine ((continuous_finset_prod _ fun i _ => (hc i).pow 2).pow z).div
-    ((continuous_const.add (continuous_finsetSum _ fun i _ => hc i)).pow N) fun a => ?_
-  positivity
-
-theorem decay_bound (k : ℕ) (x : ι → ℝ) (hx : ∀ i, 0 < x i) :
-    (∏ i, (x i ^ 2)⁻¹) * ((∏ i, x i ^ 2) ^ (k + 1) / (1 + ∑ i, x i) ^ ((2 * k + 3) * Fintype.card ι)) ≤
-      ∏ i, (1 + x i) ^ (-(3 : ℝ)) := by
-  set S := 1 + ∑ i, x i with hSdef
-  have hS : ∀ i, 1 + x i ≤ S := fun i => by
-    have := Finset.single_le_sum (f := x) (fun j _ => (hx j).le) (Finset.mem_univ i)
-    linarith
-  have hpos : ∀ i, 0 < 1 + x i := fun i => by linarith [hx i]
-  have hS0 : 0 < S := by
-    have : 0 ≤ ∑ i, x i := Finset.sum_nonneg fun i _ => (hx i).le
-    linarith
-  rw [← Finset.prod_pow, pow_mul, ← Finset.card_univ, ← Finset.prod_const, ← Finset.prod_div_distrib,
-    ← Finset.prod_mul_distrib]
-  refine Finset.prod_le_prod (fun i _ => by have := hx i; positivity) fun i _ => ?_
-  have hxi := hx i
-  have hxS : x i ≤ S := by linarith [hS i]
-  have e1 : (x i ^ 2)⁻¹ * ((x i ^ 2) ^ (k + 1) / S ^ (2 * k + 3)) = (x i ^ 2) ^ k / S ^ (2 * k + 3) := by
-    have hx2 : x i ^ 2 ≠ 0 := by positivity
-    rw [pow_succ' (x i ^ 2) k, ← mul_div_assoc, ← mul_assoc, inv_mul_cancel₀ hx2, one_mul]
-  have e2 : (1 + x i) ^ (-(3 : ℝ)) = ((1 + x i) ^ 3)⁻¹ := by
-    rw [Real.rpow_neg (hpos i).le]; norm_cast
-  rw [e1, e2]
-  calc (x i ^ 2) ^ k / S ^ (2 * k + 3) ≤ (S ^ 2) ^ k / S ^ (2 * k + 3) := by gcongr
-    _ = (S ^ 3)⁻¹ := by rw [← pow_mul, pow_add]; field_simp
-    _ ≤ ((1 + x i) ^ 3)⁻¹ := by have := hpos i; gcongr; exact hS i
-
-theorem integrable_decay (k : ℕ) :
-    Integrable (decay (ι := ι) (k + 1) ((2 * k + 3) * Fintype.card ι)) (unitsHaar ι) := by
-  set N := (2 * k + 3) * Fintype.card ι
-  have hc := continuous_decay (ι := ι) (k + 1) N
-  refine ⟨hc.aestronglyMeasurable, ?_⟩
-  have hh : Integrable (fun b : ι → ℂ => ∏ i, (1 + ‖b i‖) ^ (-(3 : ℝ))) (volume : Measure (ι → ℂ)) := by
-    have := Integrable.fintype_prod (μ := fun _ : ι => (volume : Measure ℂ))
-      (f := fun _ (x : ℂ) => (1 + ‖x‖) ^ (-(3 : ℝ))) fun _ =>
-        integrable_one_add_norm (by rw [Complex.finrank_real_complex]; norm_num)
-    exact this
-  unfold HasFiniteIntegral
-  rw [unitsHaar, lintegral_map hc.measurable.enorm measurable_toUnits, wVol,
-    lintegral_withDensity_eq_lintegral_mul _ measurable_invSqWt
-      (g := fun b => ‖decay (k + 1) N (toUnits b)‖ₑ) (hc.measurable.enorm.comp measurable_toUnits)]
-  refine lt_of_le_of_lt (lintegral_mono_ae ?_) hh.2
-  filter_upwards [ae_ne_zero] with b hb
-  have hval : ∀ i, ((toUnits b i : ℂˣ) : ℂ) = b i := fun i => by simp [toUnits, hb i]
-  have hx : ∀ i, 0 < ‖b i‖ := fun i => norm_pos_iff.2 (hb i)
-  have hd : decay (k + 1) N (toUnits b) = (∏ i, ‖b i‖ ^ 2) ^ (k + 1) / (1 + ∑ i, ‖b i‖) ^ N := by
-    simp only [decay, hval]
-  have hw : invSqWt b = ENNReal.ofReal (∏ i, (‖b i‖ ^ 2)⁻¹) := by
-    rw [invSqWt, ENNReal.ofReal_prod_of_nonneg (fun i _ => by positivity)]
-    refine Finset.prod_congr rfl fun i _ => ?_
-    rw [ENNReal.ofReal_inv_of_pos (by have := hx i; positivity), ENNReal.ofReal_pow (norm_nonneg _), ofReal_norm,
-      ENNReal.inv_pow]
-  have h1 : 0 ≤ decay (k + 1) N (toUnits b) := by rw [hd]; positivity
-  have h2 : 0 ≤ ∏ i, (1 + ‖b i‖) ^ (-(3 : ℝ)) := Finset.prod_nonneg fun i _ => by positivity
-  simp only [Pi.mul_apply, Function.comp]
-  rw [hw, Real.enorm_eq_ofReal h1, Real.enorm_eq_ofReal h2, ← ENNReal.ofReal_mul (by positivity), hd]
-  exact ENNReal.ofReal_le_ofReal (decay_bound k (fun i => ‖b i‖) hx)
-
-section Ideles
-
-open GlobalTheory.Doubling (absE)
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-theorem absE_of_mem_arch {σ : E →ₐ[F] E} (hcm : IsCMExt F E σ) (τ : ∀ w : InfinitePlace F, EmbOver E w)
-    {l : (AE F E)ˣ} (hl : l ∈ idelesAt E (evI F)) :
-    (absE F E l : ℝ) = ∏ w, ‖piInf (τ w) l.1‖ ^ 2 := by
-  have hfin : ∀ v, GlobalTheory.Doubling.unitFin F E v l = 1 := fun v => by
-    have := (at_evI_iff.1 hl) v
-    rw [map_sub, map_one, sub_eq_zero] at this
-    exact Units.ext this
-  rw [GlobalTheory.Doubling.absE_apply, finprod_eq_one_of_forall_eq_one (fun v => by rw [hfin v, map_one]), mul_one]
-  push_cast
-  refine Finset.prod_congr rfl fun w _ => ?_
-  rw [GlobalTheory.Doubling.absEw_eq_sq hcm (τ w)]
-  push_cast
-  rfl
-
-theorem exists_archEquiv {σ : E →ₐ[F] E} (hcm : IsCMExt F E σ) (τ : ∀ w : InfinitePlace F, EmbOver E w) :
-    ∃ e : idelesAt E (evI F) ≃ₜ* (InfinitePlace F → ℂˣ), ∀ l w, ((e l w : ℂˣ) : ℂ) = piInf (τ w) l.1.1 := by
-  obtain ⟨_, _, _, _, _⟩ := idelesAt_facts E (evI F)
-  let φ : idelesAt E (evI F) →* (InfinitePlace F → ℂˣ) :=
-    MonoidHom.pi fun w => (Units.map (piInf (τ w)).toMonoidHom).comp (idelesAt E (evI F)).subtype
-  have hφ : ∀ l w, ((φ l w : ℂˣ) : ℂ) = piInf (τ w) l.1.1 := fun _ _ => rfl
-  have hφc : Continuous φ := continuous_pi fun w =>
-    (Continuous.units_map _ (GlobalTheory.Grow.continuous_infEmb_compInf F w (τ w))).comp continuous_subtype_val
-  have hinj : Function.Injective φ := by
-    rw [injective_iff_map_eq_one]
-    intro l hl
-    have h1 : l.1.1 - 1 = 0 := GlobalTheory.ArchInj.eq_zero_of_at_of_piInf F E σ hcm τ _ l.2 fun w => by
-      rw [map_sub, map_one, sub_eq_zero, ← hφ, hl]
-      rfl
-    exact Subtype.ext (Units.ext (sub_eq_zero.1 h1))
-  have hsurj : Function.Surjective φ := by
-    intro a
-    obtain ⟨t, ht, htw⟩ := exists_unit_at_evI_piInf_eq σ τ (fun w => (a w : ℂ)) hcm fun w => (a w).ne_zero
-    exact ⟨⟨t, ht⟩, funext fun w => Units.ext (htw w)⟩
-  have ho : IsOpenMap φ := φ.isOpenMap_of_sigmaCompact hsurj hφc
-  let hh := (Equiv.ofBijective φ ⟨hinj, hsurj⟩).toHomeomorphOfContinuousOpen hφc ho
-  exact ⟨{ MulEquiv.ofBijective φ ⟨hinj, hsurj⟩ with continuous_toFun := hφc, continuous_invFun := hh.symm.continuous }, hφ⟩
-
-end Ideles
-
-theorem integrable_absE_pow_div : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    (σ : E →ₐ[F] E) (B : Base F E), B.IsGood σ →
-    ∀ (μ : Measure (idelesAt E (evI F))), μ.IsHaarMeasure → ∀ z : ℕ, 1 ≤ z →
-    ∃ N : ℕ, Integrable (fun l : idelesAt E (evI F) => (GlobalTheory.Doubling.absE F E l.1 : ℝ) ^ z /
-      (1 + ∑ w, ‖piInf (B.emb w) (l.1 : AE F E)‖) ^ N) μ := by
-  intro F E _ _ _ _ _ σ B hB μ hμ z hz
-  obtain ⟨_, _, _, _, _⟩ := idelesAt_facts E (evI F)
-  have hcm : IsCMExt F E σ := hB.cm
-  obtain ⟨k, rfl⟩ : ∃ k, z = k + 1 := ⟨z - 1, by omega⟩
-  obtain ⟨e, he⟩ := exists_archEquiv hcm B.emb
-  haveI := e.isHaarMeasure_map μ
-  have hsm := isMulLeftInvariant_eq_smul (unitsHaar (InfinitePlace F)) (μ.map e)
-  set c := haarScalarFactor (unitsHaar (InfinitePlace F)) (μ.map e)
-  have hc0 : c ≠ 0 := by
-    intro h
-    apply unitsHaar_ne_zero (ι := InfinitePlace F)
-    rw [hsm, h, zero_smul]
-  have hν : μ.map e = (c⁻¹ : NNReal) • unitsHaar (InfinitePlace F) := by
-    rw [hsm, smul_smul, inv_mul_cancel₀ hc0, one_smul]
-  refine ⟨(2 * k + 3) * Fintype.card (InfinitePlace F), ?_⟩
-  have hI := integrable_decay (ι := InfinitePlace F) k
-  have hI' : Integrable (decay (k + 1) ((2 * k + 3) * Fintype.card (InfinitePlace F))) (μ.map e) := by
-    rw [hν]; exact hI.smul_measure_nnreal
-  have hme : MeasurableEmbedding e := e.toHomeomorph.measurableEmbedding
-  rw [hme.integrable_map_iff] at hI'
-  convert hI' using 1
-  funext l
-  simp only [Function.comp, decay, he, absE_of_mem_arch hcm B.emb l.2]
 
 end GlobalTheory.ArchIdeleDecay

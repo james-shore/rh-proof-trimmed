@@ -88,6 +88,4 @@ theorem upSpanQ_of : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory
   rw [hup]
   exact Submodule.subset_span ⟨⟨F', hCC⟩, T φ v, hTK φ v, rfl⟩
 
-example : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.CasselmanWallach → ∀ D : D7, LevelLawQ D → UpSpanQ D := upSpanQ_of
-
 end GlobalTheory.ChainTw.UpSpanTw

@@ -44,10 +44,6 @@ theorem eps_dual {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) (a : A) 
   refine RingHom.ext fun z => ?_
   ext <;> simp [epsMul, dualMap, _root_.mul_comm]
 
-theorem eps_one {A : Type} [CommRing A] : epsMul (1 : A) = RingHom.id _ := by
-  refine RingHom.ext fun z => ?_
-  ext <;> simp [epsMul]
-
 section Divide
 
 variable {O : Type} [CommRing O] [IsDomain O]

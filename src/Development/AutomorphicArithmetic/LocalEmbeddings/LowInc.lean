@@ -12,10 +12,6 @@ variable {R S : ℕ}
 
 def upIx : Ix R S → Ix (R + 1) (S + 1) := Sum.map Fin.succ Fin.succ
 
-variable (R S) in
-
-def lowInc : Matrix (Ix (R + 1) (S + 1)) (Ix R S) ℂ := Matrix.of fun a b => if a = upIx b then 1 else 0
-
 theorem upIx_injective : Function.Injective (upIx (R := R) (S := S)) :=
   Sum.map_injective.2 ⟨Fin.succ_injective _, Fin.succ_injective _⟩
 

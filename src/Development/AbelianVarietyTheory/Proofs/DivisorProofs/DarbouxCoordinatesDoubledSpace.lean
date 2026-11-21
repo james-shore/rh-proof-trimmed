@@ -1,13 +1,12 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.SiegelWeilAnisotropicHermitian
 import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAut
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegFamOfContinuousAt
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsRationalDblCoord
+
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
-open GlobalTheory.Doubling GlobalTheory.ThK.DblKer
+open GlobalTheory.Doubling
 
 noncomputable section
 
@@ -52,40 +51,5 @@ theorem darbouxTransp_e {c : A →ₐ[R] A} {ξ : A} {JA : Matrix α α A} {JB :
 end Transp
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-omit [NumberField E] in
-
-theorem darbouxTransp_rational {σ : E →ₐ[F] E} {α β : Type} [Fintype α] [DecidableEq α] [Fintype β] [DecidableEq β]
-    {JA : Matrix α α E} {JB : Matrix β β E} (d : Darboux (symp (R := AF F) (cA σ) (-1) (incM F JA) (incM F JB)) (α × β))
-    (hd : ∀ x : Matrix α β E, ∃ y z : α × β → F,
-      d.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i)))
-    (x : Matrix β α E) : ∃ y z : β × α → F,
-      (darbouxTransp d).e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i)) := by
-  obtain ⟨y, z, h⟩ := hd xᵀ
-  refine ⟨fun p => y p.swap, fun p => z p.swap, ?_⟩
-  have e : (incM F x)ᵀ = incM F xᵀ := (Matrix.transpose_map).symm
-  rw [darbouxTransp_e, e, h]
-
-omit [NumberField E] in
-
-theorem exists_rational_dblCoord_right : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    (σ : E →ₐ[F] E) (n m : ℕ)
-    (J : Matrix (Fin m) (Fin m) E) (J' : Matrix (Fin n) (Fin n) E) (J₂ : Matrix (Fin (n + n)) (Fin (n + n)) E),
-    J₂ = dblGram finSumFinEquiv J' →
-    ∀ d : Darboux (symp (R := AF F) (cA σ) (-1) (incM F J) (incM F J')) (Fin m × Fin n),
-      (∀ x : Matrix (Fin m) (Fin n) E, ∃ y z : Fin m × Fin n → F,
-        d.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) →
-    ∃ co : Darboux (symp (R := AF F) (cA σ) (-1) (incM F J) (incM F J₂)) (Fin m × Fin (n + n)),
-      (∀ x : Matrix (Fin m) (Fin (n + n)) E, ∃ y z : Fin m × Fin (n + n) → F,
-        co.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) ∧
-      (∀ u, (∀ i, u i ∈ diagSub (AE F E) finSumFinEquiv) → (co.e u).1 = 0) ∧
-      (∀ u, (∀ i, u i ∈ antiSub (AE F E) finSumFinEquiv) → (co.e u).2 = 0) := by
-  intro F E _ _ _ _ _ σ n m J J' J₂ hJ d hd
-  obtain ⟨co, hr, h1, h2⟩ := exists_rational_dblCoord hJ (darbouxTransp d) (darbouxTransp_rational d hd)
-  refine ⟨darbouxTransp co, darbouxTransp_rational co hr, fun u hu => ?_, fun u hu => ?_⟩
-  · rw [darbouxTransp_e, h1 uᵀ (by simpa only [Matrix.transpose_transpose] using hu)]
-    rfl
-  · rw [darbouxTransp_e, h2 uᵀ (by simpa only [Matrix.transpose_transpose] using hu)]
-    rfl
 
 end GlobalTheory.SWAniso

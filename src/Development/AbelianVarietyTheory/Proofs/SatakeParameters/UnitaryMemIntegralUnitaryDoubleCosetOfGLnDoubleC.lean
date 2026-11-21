@@ -16,43 +16,6 @@ section Abstract
 
 variable {O L : Type} [CommRing O] [CommRing L] {n : Type} [Fintype n] [DecidableEq n]
 
-theorem cT_pow (c : O →+* O) {B : Matrix n n O} (hB : cT c B = B) (m : ℕ) : cT c (B ^ m) = B ^ m := by
-  induction m with
-  | zero => simp [cT_one]
-  | succ m ih => rw [pow_succ, cT_mul, ih, hB, ← pow_succ', pow_succ]
-
-theorem cT_aeval (c : O →+* O) {B : Matrix n n O} (hB : cT c B = B) (p : Polynomial O) :
-    cT c (Polynomial.aeval B p) = Polynomial.aeval B (p.map c) := by
-  induction p using Polynomial.induction_on' with
-  | add p q hp hq =>
-    rw [Polynomial.map_add, map_add, map_add, ← hp, ← hq]
-    ext i j; simp [cT]
-  | monomial m a =>
-    rw [Polynomial.map_monomial, Polynomial.aeval_monomial, Polynomial.aeval_monomial,
-      ← Algebra.smul_def, ← Algebra.smul_def]
-    conv_rhs => rw [← cT_pow c hB m]
-    ext i j; simp [cT]
-
-theorem aeval_intertwine (ι : O →+* L) {B B' : Matrix n n O} {g : Matrix n n L}
-    (h : B.map ι * g = g * B'.map ι) (p : Polynomial O) :
-    (Polynomial.aeval B p).map ι * g = g * (Polynomial.aeval B' p).map ι := by
-  have hp : ∀ m : ℕ, (B ^ m).map ι * g = g * (B' ^ m).map ι := by
-    intro m
-    induction m with
-    | zero => simp
-    | succ m ih =>
-      rw [pow_succ, pow_succ, Matrix.map_mul, Matrix.map_mul, Matrix.mul_assoc, h, ← Matrix.mul_assoc, ih,
-        Matrix.mul_assoc]
-  induction p using Polynomial.induction_on' with
-  | add p q hp hq =>
-    rw [map_add, map_add, Matrix.map_add _ (map_add ι), Matrix.map_add _ (map_add ι), Matrix.add_mul,
-      Matrix.mul_add, hp, hq]
-  | monomial m a =>
-    have e : ∀ M : Matrix n n O, (a • M).map ι = ι a • M.map ι := fun M => by
-      ext i j; simp
-    rw [Polynomial.aeval_monomial, Polynomial.aeval_monomial, ← Algebra.smul_def, ← Algebra.smul_def, e, e,
-      Matrix.smul_mul, Matrix.mul_smul, hp]
-
 open IsDedekindDomain NumberField in
 open scoped TensorProduct Matrix in
 variable {O L : Type} [CommRing O] [CommRing L] {n : Type} [Fintype n] [DecidableEq n] in

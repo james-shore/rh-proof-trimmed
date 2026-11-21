@@ -42,17 +42,6 @@ theorem _root_.GlobalTheory.SW.HermComp.row_rel (g : Matrix (Fin N ⊕ Fin N) (F
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-theorem map_unitary (τ : E →+* ℂ) (γ : M2 E N) (h : γ ∈ UU E N) :
-    (γ.map τ)ᴴ * Matrix.J (Fin N) ℂ * γ.map τ = Matrix.J (Fin N) ℂ := by
-  have hJ : (Matrix.J (Fin N) E).map τ = Matrix.J (Fin N) ℂ := by
-    simpa using Matrix.map_J (Fin N) τ
-  have hc : (ccT γ).map τ = (γ.map τ)ᴴ := by
-    ext a b
-    simp only [ccT, Matrix.map_apply, Matrix.transpose_apply, Matrix.conjTranspose_apply, cc]
-    exact IsCMField.complexEmbedding_complexConj E τ _
-  have := congrArg (fun M : M2 E N => M.map τ) h
-  simpa only [Matrix.map_mul, hJ, hc] using this
-
 end GlobalTheory.SW.HermComp
 
 open Matrix Complex NumberField Filter Topology in

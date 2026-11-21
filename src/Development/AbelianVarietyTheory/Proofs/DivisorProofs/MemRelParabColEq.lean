@@ -25,15 +25,6 @@ def sizeFirst (u v : ℕ) : SizeMatrix (Two (Fin u) (Fin (v + 1))) (Two (Fin (u 
     · cases i <;> simp [Fintype.sum_bool, card_two_false', card_two_true'] <;> omega
     · cases j <;> simp [Fintype.sum_bool, card_two_false', card_two_true'] <;> omega⟩
 
-theorem eq_sizeFirst {u v : ℕ} (b : SizeMatrix (Two (Fin u) (Fin (v + 1))) (Two (Fin (u + v)) (Fin 1)))
-    (h : b.1 false true = 0) : b = sizeFirst u v := by
-  have r0 := b.2.1 false
-  have r1 := b.2.1 true
-  have c1 := b.2.2 true
-  simp only [Fintype.sum_bool, card_two_false', card_two_true', Fintype.card_fin] at r0 r1 c1
-  refine Subtype.ext (funext fun i => funext fun j => ?_)
-  cases i <;> cases j <;> simp [sizeFirst] <;> omega
-
 def colFalse (u v : ℕ) : (Σ i, Fin ((sizeFirst u v).1 i false)) ≃ Fin (u + v) :=
   (Equiv.sigmaCongrRight (β₂ := Two (Fin u) (Fin v)) fun i => match i with
     | false => Equiv.refl (Fin u)
@@ -100,16 +91,6 @@ theorem rhoM_apply (χ₁ χ₂ : kˣ →* ℂˣ) (u v : ℕ) (y : Levi k (Two (
     rhoM χ₁ χ₂ u v y w = ((χ₁ (GeneralLinearGroup.det (y false)) *
       χ₂ (GeneralLinearGroup.det (y true)) : ℂˣ) : ℂ) • w :=
   GlobalTheory.IndLineGL.CellTorus.extTensor_detRep_apply χ₁ χ₂ _ w
-
-theorem twKer_rhoM (χ₁ χ₂ : kˣ →* ℂˣ) (u v : ℕ) :
-    twKer (rhoM (k := k) χ₁ χ₂ u v) (relUnip k (rowEq u v)) 1 = ⊥ := by
-  refine Submodule.span_eq_bot.2 ?_
-  rintro _ ⟨n, w, rfl⟩
-  have hd : ∀ i, GeneralLinearGroup.det ((n : Levi k (Two (Fin u) (Fin (v + 1)))) i) = 1 :=
-    fun i => det_eq_one_of_mem_unipRad k (n.2 i trivial)
-  simp only [MonoidHom.one_apply, Units.val_one, one_smul, sub_eq_zero]
-  refine (rhoM_apply χ₁ χ₂ u v (n : Levi k (Two (Fin u) (Fin (v + 1)))) w).trans ?_
-  simp [hd]
 
 abbrev sigmaC (χ₁ χ₂ : kˣ →* ℂˣ) (u v : ℕ) :=
   (twist ((relJac (rowEq u v) (rhoM (k := k) χ₁ χ₂ u v)).comp

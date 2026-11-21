@@ -7,11 +7,6 @@ noncomputable section
 
 namespace GlobalTheory.IntCocycle
 
-theorem stdLat_free (g : ℕ) : Module.Free ℤ (stdLat g) := by
-  have hli : LinearIndependent ℤ (Pi.basisFun ℝ (Fin g ⊕ Fin g)) :=
-    (Pi.basisFun ℝ (Fin g ⊕ Fin g)).linearIndependent.restrict_scalars' ℤ
-  exact Module.Free.of_basis (Module.Basis.span hli)
-
 variable {M : Type} [AddCommGroup M]
 
 @[ext] structure Ext (c : M → M → ℤ) where
@@ -66,38 +61,3 @@ def Ext.addCommGroup (hs : ∀ l l' : M, c l l' = c l' l)
 
 end GlobalTheory.IntCocycle
 
-open GlobalTheory.IntCocycle in
-
-theorem GlobalTheory.symm_int_cocycle_stdLat_coboundary :
-    ∀ {g : ℕ} (c : Fl g → Fl g → ℤ), (∀ l ∈ stdLat g, ∀ l' ∈ stdLat g, c l l' = c l' l) →
-      (∀ l ∈ stdLat g, ∀ l' ∈ stdLat g, ∀ l'' ∈ stdLat g,
-        c l l' + c (l + l') l'' = c l (l' + l'') + c l' l'') →
-      ∃ a : Fl g → ℤ, ∀ l ∈ stdLat g, ∀ l' ∈ stdLat g, c l l' = a (l + l') - a l - a l' := by
-  intro g c hs hc
-  classical
-  let L := stdLat g
-  let c' : L → L → ℤ := fun x y => c x y
-  letI : AddCommGroup (Ext c') :=
-    Ext.addCommGroup (fun x y => hs x x.2 y y.2)
-      (fun x y z => by simpa [c'] using hc x x.2 y y.2 z z.2)
-  haveI : Module.Free ℤ L := stdLat_free g
-  let pr : Ext c' →+ L :=
-    { toFun := Ext.snd
-      map_zero' := rfl
-      map_add' := fun _ _ => rfl }
-  have hpr : Function.Surjective pr := fun l => ⟨⟨0, l⟩, rfl⟩
-  obtain ⟨s, hs'⟩ := Module.projective_lifting_property pr.toIntLinearMap LinearMap.id hpr
-  have hsnd : ∀ l : L, (s l).snd = l := fun l => LinearMap.congr_fun hs' l
-  refine ⟨fun x => if h : x ∈ L then (s ⟨x, h⟩).fst else 0, ?_⟩
-  intro l hl l' hl'
-  have hll : l + l' ∈ L := L.add_mem hl hl'
-  show c l l' = (if h : l + l' ∈ L then (s ⟨l + l', h⟩).fst else 0) - (if h : l ∈ L then (s ⟨l, h⟩).fst else 0) - (if h : l' ∈ L then (s ⟨l', h⟩).fst else 0)
-  rw [dif_pos hll, dif_pos hl, dif_pos hl']
-  have hadd := congrArg Ext.fst (s.map_add ⟨l, hl⟩ ⟨l', hl'⟩)
-  have e : (⟨l, hl⟩ + ⟨l', hl'⟩ : L) = ⟨l + l', hll⟩ := rfl
-  rw [e] at hadd
-  rw [hadd]
-  show c l l' = (s ⟨l, hl⟩).fst + (s ⟨l', hl'⟩).fst + c (s ⟨l, hl⟩).snd.1 (s ⟨l', hl'⟩).snd.1
-    - (s ⟨l, hl⟩).fst - (s ⟨l', hl'⟩).fst
-  rw [hsnd, hsnd]
-  ring

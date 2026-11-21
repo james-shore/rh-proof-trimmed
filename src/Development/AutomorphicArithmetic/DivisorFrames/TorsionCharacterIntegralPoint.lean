@@ -1,8 +1,14 @@
 import Development.AutomorphicArithmetic.LocalEmbeddings.RootFrame
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentBasisTorsionCharsStatement
+import Mathlib
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitKOfIsAlgClosed
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UniqueIntegralLiftNormPInverse
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ScaleZeroComp
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHomogeneousPolysTangentBasis
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsTangentPresentationPrime
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralPointExtensionSplitStatement
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GrNormPosOfBasis
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnitOfPowEqOne
+
 open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Formalism.BasicNotions Formalism.L2.Pj GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.TrueGeo GlobalTheory.Mean4O GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.TrivFlag GlobalTheory.LineNorm
 open Formalism.MainNotions.DIV.Cons (intO)
@@ -68,42 +74,3 @@ private theorem exists_label {E : Type} [Field E] [NumberField E] [IsCMField E] 
   congr 2
   exact Subtype.ext hb'
 
-theorem UpperTheory.torsion_character_integral_point :
-    ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (Z : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model Xo c (algebraMap (𝓞 c.F) c.F)) [IsLocallyNoetherian Z.X], Z.X.IsSeparated → ∀ (p : ℕ) [Fact p.Prime] (n : ℕ) (x : Sp ↥(intO ℂ_[p]) ⟶ Z.X) (y : Sp ℂ_[p] ⟶ Xo.XF c), 2 ≤ n → spMap (intO ℂ_[p]).subtype ≫ x = y ≫ Z.j → ∀ ch : Dw.La → TorsChar Z.t x (p ^ n), WeilLab Z (intO ℂ_[p]).subtype x y (p ^ n) ch → ∀ (g : ℕ) (e : Fin g → (Sp (DualNumber ↥(intO ℂ_[p])) ⟶ Z.t.G.left)) (h : Dw.La → Fin g → ↥(intO ℂ_[p])), IsTanBasis Z.t x e → (∀ a, DlogIs Z.t p n (ch a) e (h a)) → ∀ cf : Fin g → ℂ_[p], (cf ∈ latCo Z.t p (spMap (intO ℂ_[p]).subtype ≫ x) (fun i => spMap (dualMap (intO ℂ_[p]).subtype) ≫ e i) ↔ ∀ a, ‖∑ i, (h a i : ℂ_[p]) * cf i‖ ≤ 1) ∧ (cf ∈ latCo Z.t p (spMap (intO ℂ_[p]).subtype ≫ x) (fun i => spMap (dualMap (intO ℂ_[p]).subtype) ≫ e i) → ∀ i, ‖(p : ℂ_[p]) * cf i‖ ≤ 1) := by
-  intro E _ _ _ H Dw l Xo c Z _ hX p hp n x y hn hxy ch hW g e h he hD cf
-  classical
-  have hq : p ^ n ≠ 0 := pow_ne_zero _ hp.out.ne_zero
-  have hd : p ^ 2 ∣ p ^ n := pow_dvd_pow p hn
-  haveI := GlobalTheory.LatDRFree.intO_isLocalRing ℂ_[p]
-  haveI := GlobalTheory.TorsCharExt.intO_valuationRing ℂ_[p]
-  haveI := GlobalTheory.TorsCharExt.intO_isFractionRing ℂ_[p]
-  haveI : IsIntegrallyClosed ↥(intO ℂ_[p]) := inferInstanceAs (IsIntegrallyClosed ↥(GlobalTheory.TorsCharExt.intV ℂ_[p]))
-  have hζ : ∃ ζ : ℂ_[p], IsPrimitiveRoot ζ (p ^ n) := by
-    obtain ⟨lb, ζ, ⟨hζ, -⟩, -⟩ := hW
-    exact ⟨ζ, IsPrimitiveRoot.coe_units_iff.2 hζ⟩
-  obtain ⟨hfin, hind⟩ := GlobalTheory.T.integral_point_extension_split E H Z.X Z.t ℂ_[p] (y ≫ Z.j) (p ^ n) hq hζ
-    (GlobalTheory.HtGen.splitK_of_isAlgClosed Z.t _ hq) ↥(intO ℂ_[p]) x hxy
-  obtain ⟨-, hex, hag⟩ := hind p (RingHom.id _) x inferInstance (by rw [GlobalTheory.TorsCharExt.sp_id, Category.id_comp])
-  choose lab hlab using exists_label Z (intO ℂ_[p]).subtype_injective hq hW
-  obtain ⟨N, ⟨eqv⟩⟩ := Finite.exists_equiv_fin (GlobalTheory.HtGen.TorsK Z.t (y ≫ Z.j) (p ^ n) →* ℂ_[p]ˣ)
-  have heC := fun i => GlobalTheory.FactorDepth.isTanAtG_map Z.t (intO ℂ_[p]).subtype (he.1 i)
-  obtain ⟨w, -, hw⟩ := Guard.exists_comb heC cf
-  have hmem : cf ∈ latCo Z.t p (spMap (intO ℂ_[p]).subtype ≫ x) (fun i => spMap (dualMap (intO ℂ_[p]).subtype) ≫ e i) ↔
-      w ∈ latHT Z.t p (spMap (intO ℂ_[p]).subtype ≫ x) :=
-    ⟨fun ⟨w', h1, h2⟩ => Guard.comb_unique heC h2 hw ▸ h1, fun h1 => ⟨w, h1, hw⟩⟩
-  have key := fun a₀ : Dw.La =>
-    GlobalTheory.T.tangent_basis_torsion_chars E H Z.X Z.t hX p x g e he (N + 1)
-      (fun j => GlobalTheory.HTLevel.res hd (ch (Fin.cons (α := fun _ => Dw.La) a₀ (fun k => lab (eqv.symm k)) j)))
-      (fun j => h (Fin.cons (α := fun _ => Dw.La) a₀ (fun k => lab (eqv.symm k)) j))
-      (fun c' => by
-        obtain ⟨c'', hc''⟩ := GlobalTheory.T.torsionChar_extends_divisible_level E H Z.X Z.t ℂ_[p] x (p ^ 2) (p ^ n) hq hd c'
-        obtain ⟨χ, hχ⟩ := hex c''
-        refine ⟨(eqv χ).succ, fun B _ _ _ v hv => ?_⟩
-        have hv' : v ^ (p ^ n) = 1 := by
-          obtain ⟨k, hk⟩ := hd
-          rw [hk, pow_mul, hv, one_pow]
-        rw [← hc'' B v hv, hag χ c'' _ hχ (hlab χ) B v hv', Fin.cons_succ, Equiv.symm_apply_apply]
-        rfl)
-      (fun j => GlobalTheory.HTLevel.dlog_down hn _ _ (fun _ _ _ _ _ _ => rfl) he.1 (hD _)) cf w hw
-  rw [hmem]
-  exact ⟨⟨fun hL a => (key a).1.1 hL 0, fun hA => (key 0).1.2 fun j => hA _⟩, (key 0).2⟩

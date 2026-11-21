@@ -85,23 +85,6 @@ variable (R) in
 def AllRational (ph : Fin D.R.m → ℂ) : Prop :=
   ∀ (i : Fin D.R.m) (t : T0) (x₀ : A.fam.amb.FL i t), ∃ y, adForm R i y = ph i • R.thF i t (jVx R i t x₀)
 
-theorem exists_base_lift {F : Face D A} (hU : R.LUnif) (h5 : R.LTheta F) (hr : R.LRatTh F)
-    (hRk : Formalism.L2.Indef.Tree.RankRows ((R.toCx F).data F.cr false)) (i : Fin D.R.m) :
-    ∃ (x₀ : A.fam.amb.FL i A.μ0) (y : Fin (R.nW i) → D.what₂.LL),
-      (R.FW i).j (sg0 D A) y = R.thG i A.μ0 (R.jV i A.μ0 x₀) ∧ (R.FW i).j (sg0 D A) y ≠ 0 := by
-  refine Classical.byContradiction fun hn => ?_
-  have hd : 0 < Module.finrank D.what₂.LL (R.WL F false i) := hRk.1.trans_eq (hRk.2 i).symm
-  obtain ⟨y, hy⟩ : ∃ y, (GlobalTheory.OntoChain.thetaMat R F i A.μ0).mulVec y = fun _ => 1 :=
-    ((R.toCx F).liftMat_bij F.cr false (RealDat.kForm hU false) (RealDat.ewNorm false) (RealDat.nP_pos false) (h5 false)
-      (hr false) i A.μ0).2 _
-  have h1 := GlobalTheory.OntoChain.j_thetaMat h5 hr i A.μ0 y
-  refine hn ⟨(A.fam.L i A.μ0).toF (GlobalTheory.OntoChain.liftLvl F) (GlobalTheory.OntoChain.liftSub R F i A.μ0) y,
-    GlobalTheory.OntoChain.coordMap R F i ((GlobalTheory.OntoChain.thetaMat R F i A.μ0).mulVec y), h1, fun h0 => ?_⟩
-  have h2 : GlobalTheory.OntoChain.coordMap R F i ((GlobalTheory.OntoChain.thetaMat R F i A.μ0).mulVec y) = 0 :=
-    (injective_iff_map_eq_zero _).1 (j_injective hU i) _ h0
-  have h3 := (injective_iff_map_eq_zero _).1 (GlobalTheory.OntoChain.coordMap_injective (R := R) (F := F) i) _ h2
-  exact one_ne_zero (congrFun (hy.symm.trans h3) ⟨0, hd⟩)
-
 end Linear
 
 variable {T : CoreJ D} [Algebra T.Q.c.F D.what₂.LL] {R : RealDat D A T.Q.c.F}

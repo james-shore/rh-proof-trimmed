@@ -10,9 +10,6 @@ abbrev SchwartzJetSpace (V : Type) [NormedAddCommGroup V] [NormedSpace ℝ V] (N
 
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
-example (N : ℕ) : CompleteSpace (SchwartzJetSpace V N) := inferInstance
-example (N : ℕ) : NormedSpace ℂ (SchwartzJetSpace V N) := inferInstance
-
 lemma schwartzJet_norm_bound (K N : ℕ) (f : SchwartzMap V ℂ) (n : Fin (N + 1)) (x : V) :
     ‖((1 + ‖x‖) ^ K : ℝ) • iteratedFDeriv ℝ (n : ℕ) f x‖ ≤
       2 ^ K * (Finset.Iic (K, N)).sup (fun m => SchwartzMap.seminorm ℂ m.1 m.2) f := by
@@ -46,11 +43,6 @@ def schwartzJet (K N : ℕ) : SchwartzMap V ℂ →ₗ[ℂ] SchwartzJetSpace V N
 lemma schwartzJet_apply (K N : ℕ) (f : SchwartzMap V ℂ) (n : Fin (N + 1)) (x : V) :
     schwartzJet K N f n x = ((1 + ‖x‖) ^ K : ℝ) • iteratedFDeriv ℝ (n : ℕ) f x := rfl
 
-lemma norm_schwartzJet_le (K N : ℕ) (f : SchwartzMap V ℂ) :
-    ‖schwartzJet K N f‖ ≤ 2 ^ K * (Finset.Iic (K, N)).sup (fun m => SchwartzMap.seminorm ℂ m.1 m.2) f := by
-  refine (pi_norm_le_iff_of_nonneg (by positivity)).2 fun n => ?_
-  exact (BoundedContinuousFunction.norm_le (by positivity)).2 fun x => schwartzJet_norm_bound K N f n x
-
 lemma sup_seminorm_le_norm_schwartzJet (K N : ℕ) (f : SchwartzMap V ℂ) :
     (Finset.Iic (K, N)).sup (fun m => SchwartzMap.seminorm ℂ m.1 m.2) f ≤ ‖schwartzJet K N f‖ := by
   refine Seminorm.finset_sup_apply_le (norm_nonneg _) fun m hm => ?_
@@ -65,15 +57,6 @@ lemma sup_seminorm_le_norm_schwartzJet (K N : ℕ) (f : SchwartzMap V ℂ) :
         rw [schwartzJet_apply, norm_smul, Real.norm_eq_abs, abs_of_nonneg (by positivity)]
     _ ≤ ‖schwartzJet K N f ⟨m.2, hn⟩‖ := BoundedContinuousFunction.norm_coe_le_norm _ x
     _ ≤ ‖schwartzJet K N f‖ := norm_le_pi_norm _ _
-
-lemma continuous_schwartzJet (K N : ℕ) : Continuous (schwartzJet (V := V) K N) := by
-  refine (schwartz_withSeminorms ℂ V ℂ).continuous_normedSpace_rng _ (schwartzJet K N)
-    ⟨Finset.Iic (K, N), 2 ^ K, fun f => ?_⟩
-  have h := norm_schwartzJet_le K N f
-  refine h.trans (le_of_eq ?_)
-  rw [Seminorm.smul_apply, NNReal.smul_def]
-  simp only [NNReal.coe_pow, NNReal.coe_ofNat]
-  rfl
 
 lemma schwartzJet_injective (K N : ℕ) : Function.Injective (schwartzJet (V := V) K N) := by
   intro f g hfg
@@ -124,63 +107,6 @@ lemma exists_jet_factor (T : SchwartzMap V ℂ →L[ℂ] ℂ) :
   rw [LinearEquiv.ofInjective_apply] at this
   rw [this]
   simp [g0, e]
-
-theorem clm_integral_exchange {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
-    {W : Type} [NormedAddCommGroup W] [NormedSpace ℝ W] [FiniteDimensional ℝ W] [MeasurableSpace W] [BorelSpace W]
-    (μ : Measure W) (T : SchwartzMap V ℂ →L[ℂ] ℂ) (Φ : W → SchwartzMap V ℂ) (hΦc : Continuous Φ)
-    (hΦ : ∀ k n : ℕ, ∃ C : ℝ, ∀ w x, ‖x‖ ^ k * ‖iteratedFDeriv ℝ n (Φ w) x‖ ≤ C * (1 + ‖w‖) ^ n)
-    (φ : W → ℂ) (hφm : AEStronglyMeasurable φ μ) (hφ : ∀ n : ℕ, Integrable (fun w => (1 + ‖w‖) ^ n * ‖φ w‖) μ)
-    (h : SchwartzMap V ℂ) (hh : ∀ (n : ℕ) (x : V), iteratedFDeriv ℝ n h x = ∫ w, φ w • iteratedFDeriv ℝ n (Φ w) x ∂μ) :
-    T h = ∫ w, φ w * T (Φ w) ∂μ := by
-  obtain ⟨K, N, L, hL⟩ := exists_jet_factor T
-  haveI : ProperSpace W := FiniteDimensional.proper_real W
-  haveI : SecondCountableTopology W := secondCountable_of_proper
-  haveI : SecondCountableTopologyEither W (SchwartzJetSpace V N) := ⟨Or.inl ‹_›⟩
-  choose C hC using hΦ
-  set ι := schwartzJet (V := V) K N
-  set B : ℝ := ∑ m ∈ Finset.Iic (K, N), |C m.1 m.2|
-  have hB0 : 0 ≤ B := Finset.sum_nonneg fun _ _ => abs_nonneg _
-  have hjet : ∀ w, ‖ι (Φ w)‖ ≤ 2 ^ K * B * (1 + ‖w‖) ^ N := by
-    intro w
-    have h1w : (1 : ℝ) ≤ 1 + ‖w‖ := by linarith [norm_nonneg w]
-    refine (norm_schwartzJet_le K N (Φ w)).trans ?_
-    rw [mul_assoc]
-    gcongr
-    refine Seminorm.finset_sup_apply_le (by positivity) fun m hm => ?_
-    refine SchwartzMap.seminorm_le_bound ℂ m.1 m.2 (Φ w) (by positivity) fun x => ?_
-    refine (hC m.1 m.2 w x).trans ?_
-    have hm2 : m.2 ≤ N := (Finset.mem_Iic.1 hm).2
-    calc C m.1 m.2 * (1 + ‖w‖) ^ m.2 ≤ |C m.1 m.2| * (1 + ‖w‖) ^ N :=
-          mul_le_mul (le_abs_self _) (pow_le_pow_right₀ h1w hm2) (by positivity) (abs_nonneg _)
-      _ ≤ B * (1 + ‖w‖) ^ N := by
-          gcongr
-          exact Finset.single_le_sum (f := fun m : ℕ × ℕ => |C m.1 m.2|) (fun _ _ => abs_nonneg _) hm
-  have hιc : Continuous fun w => ι (Φ w) := (continuous_schwartzJet K N).comp hΦc
-  set F : W → SchwartzJetSpace V N := fun w => φ w • ι (Φ w) with hF
-  have hFint : Integrable F μ := by
-    refine Integrable.mono' ((hφ N).const_mul (2 ^ K * B)) (hφm.smul hιc.aestronglyMeasurable) ?_
-    refine Filter.Eventually.of_forall fun w => ?_
-    simp only [hF, norm_smul]
-    calc ‖φ w‖ * ‖ι (Φ w)‖ ≤ ‖φ w‖ * (2 ^ K * B * (1 + ‖w‖) ^ N) := by gcongr; exact hjet w
-      _ = 2 ^ K * B * ((1 + ‖w‖) ^ N * ‖φ w‖) := by ring
-  have hI : ι h = ∫ w, F w ∂μ := by
-    funext n
-    ext x : 1
-    let ev := (BoundedContinuousFunction.evalCLM ℂ x).comp
-      (ContinuousLinearMap.proj (R := ℂ) (φ := fun n : Fin (N + 1) => BoundedContinuousFunction V
-        (ContinuousMultilinearMap ℝ (fun _ : Fin (n : ℕ) => V) ℂ)) n)
-    have hev : ∀ y : SchwartzJetSpace V N, ev y = y n x := fun y => rfl
-    rw [show ((∫ w, F w ∂μ) n) x = ev (∫ w, F w ∂μ) from rfl,
-      ← ContinuousLinearMap.integral_comp_comm ev hFint]
-    simp only [hev, hF, schwartzJet_apply, ι, Pi.smul_apply, BoundedContinuousFunction.coe_smul]
-    rw [hh, ← integral_smul]
-    congr 1
-    funext w
-    exact smul_comm _ _ _
-  rw [hL h, hI, ← ContinuousLinearMap.integral_comp_comm L hFint]
-  congr 1
-  funext w
-  simp only [hF, map_smul, smul_eq_mul, hL]
 
 end
 

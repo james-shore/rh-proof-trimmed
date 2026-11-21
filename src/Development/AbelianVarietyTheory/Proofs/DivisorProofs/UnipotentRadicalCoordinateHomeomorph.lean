@@ -145,16 +145,6 @@ theorem fA_betaOf (hσ : ∀ e, σ (σ e) = e) (hJ₁ : ∀ i j, σ (J₁ j i) =
 
 end Plane
 
-example : Hyp (AlgHom.id ℚ ℚ) !![0, 1; 1, 0] (0 : Matrix (Fin 0) (Fin 0) ℚ)
-    (⟨![1, 0], ![0, 1], 0, 1⟩ : Plane ℚ 2 0) := by
-  refine ⟨fun e => rfl, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · intro i j; fin_cases i <;> fin_cases j <;> rfl
-  · simp [form, dotProduct, Matrix.mulVec, Fin.sum_univ_two]
-  · simp [form, dotProduct, Matrix.mulVec, Fin.sum_univ_two]
-  · simp [form, dotProduct, Matrix.mulVec, Fin.sum_univ_two]
-  · intro u; simp [form]
-  · ext i; exact i.elim0
-
 section UMat
 
 variable {σ : E →ₐ[F] E} {d b : ℕ} {J : Matrix (Fin d) (Fin d) E} {J₁ : Matrix (Fin b) (Fin b) E} {H : Plane E d b}

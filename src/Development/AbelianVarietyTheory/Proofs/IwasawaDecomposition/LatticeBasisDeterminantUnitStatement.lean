@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LatticeBasisDeterminantUnit
-import Mathlib
+
 open NumberField Matrix
 
 set_option maxHeartbeats 1000000 in

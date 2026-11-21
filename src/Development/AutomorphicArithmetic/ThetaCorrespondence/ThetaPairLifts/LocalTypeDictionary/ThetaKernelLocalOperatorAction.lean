@@ -1,7 +1,9 @@
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.DiscreteSpectrumResidualClassification
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaActionExists
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaActionExistsStatement
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.Divisors.SiegelWeilAnisotropicHermitian
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 
 section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.IndefR.Links
@@ -31,10 +33,8 @@ theorem theta_kernel_local_operators_act (_hP : _root_.GlobalTheory.FunPr.ThetaL
       fun φ₂ hφ₂ => acts_unique v _ hφ hφ₂.2 (GlobalTheory.VacBridge.rho_acts_locCo M.co B.ψ v u hu φ)⟩
 end GlobalTheory.ThK.LocalOps
 namespace GlobalTheory.ThK.LocalOps
-variable {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ]
 end GlobalTheory.ThK.LocalOps
 namespace GlobalTheory.ThK.LocalOps
-variable {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ]
 end GlobalTheory.ThK.LocalOps
 end
 end

@@ -27,8 +27,4 @@ theorem isLB_detOm_of_smooth {E : Type} [Field E] [NumberField E] [IsCMField E] 
   have hθ : GlobalTheory.Models.HasTheta Y.t.G Y.t.PP.L := GlobalTheory.T.hasFibrewiseNonvanishingThetaSection_of_smooth_model E H D hpq l Xo c Y hs
   exact GlobalTheory.FlagMod.isLB_detOm (GlobalTheory.CompHS.TorFlagEx.pushInvertible_of_hasTheta Y hθ)
 
-theorem isLB_detOm : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Level H} {Xo : Moduli D l} {c : Coeff l} (φ : InvFun (𝓞 E)) (Y : Model Xo c (RingHom.id c.F)) (BD : GlobalTheory.EffCartierData Y.X) (d : ℕ), 1 ≤ D.p + D.q → SmoothOfRelativeDimension D.dim (genStr Y) → FinalTheorems.Snc (genBdIdeal Y) → (∀ x ∈ BD.idealSheaf.support, x ∉ abLocus Y.t.G) → (∀ x ∈ genBd Y, GlobalTheory.MumfordChart.HasChartOf φ Y BD d x) → (GlobalTheory.FlagMod.detOm Y).IsLB := by
-  intro E _ _ _ H D l Xo c _ Y _ _ hpq hsm _ _ _
-  exact isLB_detOm_of_smooth Y hpq hsm
-
 end GlobalTheory.FanTheta

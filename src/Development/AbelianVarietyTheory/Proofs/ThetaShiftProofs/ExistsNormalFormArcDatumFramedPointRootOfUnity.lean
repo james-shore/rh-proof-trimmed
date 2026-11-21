@@ -64,21 +64,6 @@ theorem scale_over (s : S) : spMap (epsScaleR s) ≫ spMap (algebraMap S (DualNu
   congr 1
   ext r <;> simp [epsScaleR, TrivSqZeroExt.algebraMap_eq_inl]
 
-theorem eig_iff (w : epsR S ⟶ t'.G) (a : 𝓞 E) (s : S) :
-    (w.left ≫ m.φ) ≫ (Xo.univ.t.act.act a).left = spMap (epsMul s) ≫ w.left ≫ m.φ ↔
-      (w ≫ t'.act.act a).left = spMap (epsScaleR s) ≫ w.left := by
-  have hw : w.left ≫ t'.G.hom = spMap (algebraMap S (DualNumber S)) := Over.w w
-  have e : (w.left ≫ m.φ) ≫ (Xo.univ.t.act.act a).left = (w ≫ t'.act.act a).left ≫ m.φ := by
-    rw [Over.comp_left, Category.assoc, Category.assoc, m.act]
-  rw [e]
-  constructor
-  · intro h
-    apply m.cart.1.hom_ext
-    · rw [Category.assoc]; exact h
-    · rw [Over.w, Category.assoc, hw, scale_over]; rfl
-  · intro h
-    rw [h, Category.assoc]; rfl
-
 theorem exists_lift {T : Over (Sp S)} (v : T.left ⟶ Xo.univ.t.G.left) (hv : v ≫ Xo.univ.t.G.hom = T.hom ≫ x) :
     ∃ w : T ⟶ t'.G, w.left ≫ m.φ = v :=
   ⟨Over.homMk (m.cart.1.lift v T.hom hv) (m.cart.1.lift_snd _ _ _), m.cart.1.lift_fst _ _ _⟩

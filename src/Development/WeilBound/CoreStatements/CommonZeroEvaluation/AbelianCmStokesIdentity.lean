@@ -37,8 +37,7 @@ import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PTopNMixedExpand
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.POmNVbInt
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PStokesLimitTTop
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PMuMeasureLimit
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsStokesLimitTVbTrunc
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsStokesLimitTVbTail
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsStokesGeo
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PNbarChartSemipos
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PNbarSemipos
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PTpCuspIntegrable
@@ -62,6 +61,7 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.ModelPointsIntegrable
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.TopMixedLimitOfResolutionStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.StokesLimitStatementHoldsStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MeasureLimitStatementHoldsStatement
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField Matrix Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
 open GroundTheory.Heights₂.Heights.LowerBoundFree GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp MeasureTheory

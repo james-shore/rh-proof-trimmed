@@ -53,20 +53,7 @@ instance secondCountableTopology_sphere : SecondCountableTopology (OnePoint ℂ)
 abbrev famAtlas {M : Type} [TopologicalSpace M] {n : ℕ} (A : HolAtlas M n) : HolAtlas (M × OnePoint ℂ) (n + 1) :=
   prodAtlas A sphere
 
-def fib {M : Type} (t : OnePoint ℂ) (y : M) : M × OnePoint ℂ := (y, t)
-
 variable {M : Type} [TopologicalSpace M] {n r s : ℕ} {A : HolAtlas M n}
-
-theorem isHolo_fib (A : HolAtlas M n) (t : OnePoint ℂ) : (famAtlas A).IsHolo A (fib t) := by
-  refine ⟨continuous_id.prodMk continuous_const, fun j i => ?_⟩
-  have e : (famAtlas A).e i ∘ fib t ∘ (A.e j).symm =
-      fun v => appendV n 1 ((A.e i.1 ∘ (A.e j).symm) v, sphere.e i.2 t) := rfl
-  rw [e]
-  refine (appendV n 1).differentiable.comp_differentiableOn (DifferentiableOn.prodMk ?_ (differentiableOn_const _))
-  exact (A.holo j i.1).mono fun v hv => ⟨hv.1, hv.2.1⟩
-
-def IsInduced (T : HermSeq A r s) : Prop :=
-  ∀ a, ∀ y ∈ T.U a, T.sub a y = subGram (T.mid a y) ∧ T.quot a y = quotGram (T.mid a y)
 
 def bcFld (T : HermSeq A r s) : A.Fld := fun x =>
   (ofValues (extTrace (fun v => T.mid (T.cover x.pt).choose (x.ch.symm v)) x.crd) : Alt n)

@@ -1,16 +1,15 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.SiegelWeilAnisotropicHermitian
 import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RatStab
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SetIntegralEqZeroOfMulRight
-import Development.AutomorphicArithmetic.DivisorFrames.ThetaPairPlaneCompat
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdaptedEvaluationNonvanishing
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdaptedPlanePairThetaIntegralStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnipotentMovesYByIotaAndX
+
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
-open GlobalTheory.ConeSmallUnf
-
 section
 open GlobalTheory.UnipMass
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
@@ -89,52 +88,3 @@ private theorem thetaSum_smul {F : Type} [Field F] [NumberField F] {κ : Type} (
   simp only [thetaSum, Pi.smul_apply, smul_eq_mul]
   exact tsum_mul_left
 
-private theorem hTens_vmv {R A : Type} [CommRing R] [CommRing A] [Algebra R A] (c : A →ₐ[R] A) {α β : Type}
-    [Fintype α] [Fintype β] (JA : Matrix α α A) (JB : Matrix β β A) (p p' : α → A) (q q' : β → A) :
-    hTens c JA JB (Matrix.vecMulVec p q) (Matrix.vecMulVec p' q') =
-      (p ⬝ᵥ JA *ᵥ fun k => c (p' k)) * (q ⬝ᵥ JB *ᵥ fun l => c (q' l)) := by
-  calc hTens c JA JB (Matrix.vecMulVec p q) (Matrix.vecMulVec p' q')
-      = ∑ i, ∑ j, ∑ k, ∑ l, (p i * JA i k * c (p' k)) * (q j * JB j l * c (q' l)) := by
-        simp only [hTens, Matrix.vecMulVec_apply, map_mul]
-        exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ =>
-          Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => by ring
-    _ = _ := by
-        rw [dotProduct, dotProduct, Finset.sum_mul_sum]
-        refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-        simp only [Matrix.mulVec, dotProduct]
-        rw [Finset.mul_sum, Finset.mul_sum, Finset.sum_mul_sum]
-        exact Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => by ring
-
-theorem UpperTheory.pair_restricts_along_adapted_plane :
-    GlobalTheory.ThK.KP → ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
-                 (n d n₁ : ℕ) (X : Spc F E n) (W : Spc F E d) (X₁ : Spc F E n₁) (M : Model σ X W) (M₂ : Model σ X₁ W) (H : Plane E n n₁) (j₀ j₁ : ℕ)
-                 (χX χW : Chr F E) (om : Rep σ X W) (om₂ : Rep σ X₁ W) (r s r₁ s₁ r' s' : ℕ),
-                 IsPair B M χX χW om r s r' s' → IsPair B M₂ χX χW om₂ r₁ s₁ r' s' → H.IsAdapted σ B X X₁ j₀ j₁ →
-                 ∀ e₁ : Fn F n d →ₗ[ℂ] Fn F n₁ d, IsEv B M M₂ H.ι 1 {u | ∃ z, u = Matrix.vecMulVec (incV F H.x) z} e₁ →
-                 ∀ (d₁ : ℕ) (W₁ : Spc F E d₁) (H' : Plane E d d₁) (i₀ i₁ : ℕ) (M₃ : Model σ X₁ W₁), H'.IsAdapted σ B W W₁ i₀ i₁ →
-                 ∀ e₀ : Fn F n₁ d →ₗ[ℂ] Fn F n₁ d₁, IsEv B M₂ M₃ 1 H'.ι (iso0 n₁ H') e₀ → ∀ (ξ : Fin n₁ → E), ∀ u ∈ unip σ X H, ∀ Ψ ∈ schA F (Fin n × Fin d),
-                   thetaSum F (e₀ (M₂.co.rho B.ψ (Matrix.vecMulVec (incV F ξ) (incV F H'.y))
-                       (e₁ (M.co.rho B.ψ (Matrix.vecMulVec (incV F H.y) (incV F H'.x)) (om (u, 1) Ψ))))) =
-                     B.ψ (-GlobalTheory.IsoPhase.phase σ X H ξ u) * thetaSum F (e₀ (M₂.co.rho B.ψ (Matrix.vecMulVec (incV F ξ) (incV F H'.y))
-                       (e₁ (M.co.rho B.ψ (Matrix.vecMulVec (incV F H.y) (incV F H'.x)) Ψ)))) := by
-  intro hKP F E _ _ _ _ _ σ B n d n₁ X W X₁ M M₂ H j₀ j₁ χX χW om om₂ r s r₁ s₁ r' s' hP hP₂ hH e₁ he d₁ W₁ H' i₀ i₁ M₃ hH'
-    e₀ he₀ ξ u hu Ψ hΨ
-  have hstd : IsStd B.ψ := hP.base.std
-  have hσ : ∀ e, σ (σ e) = e := GlobalTheory.ThK.UnipDom.Inverse.sigma_sigma hP.base.cm
-  have hu' : u⁻¹ ∈ unip σ X H := inv_mem hu
-  rw [GlobalTheory.UnipCT.unip_eq] at hu'
-  obtain ⟨β, z, hv0⟩ := GlobalTheory.UnipLine.mulVec_y hH hP.herm u⁻¹ hu'.1
-  have hv : mat u⁻¹ *ᵥ incV F H.y = incV F H.y + incM F H.ι *ᵥ z + β • incV F H.x := by rw [hv0]; abel
-  have hm := UpperTheory.theta_pair_plane_compat hKP F E σ B n d n₁ X W X₁ M M₂ H j₀ j₁ χX χW om om₂ r s r₁ s₁ r' s' hP hP₂ hH e₁ he u hu z β hv
-    (incV F H'.x) Ψ hΨ
-  rw [hA_incV', hH'.xx, map_zero, mul_zero, map_zero, mul_zero, AddChar.map_zero_eq_one, one_smul] at hm
-  have hφs := he.maps _ (GlobalTheory.HeisSchA.rho_mem_schA M B.ψ hstd (Matrix.vecMulVec (incV F H.y) (incV F H'.x)) Ψ hΨ)
-  have hφ' := GlobalTheory.HeisSchA.rho_mem_schA M₂ B.ψ hstd (Matrix.vecMulVec (incV F ξ) (incV F H'.y)) _ hφs
-  have hyx : GlobalTheory.UnipMass.hA σ W.J (incV F H'.y) (incV F H'.x) = -1 := by
-    rw [hA_incV', GlobalTheory.IsoMove.form_y_x hσ hP.skew.skew hH', map_neg, map_one]
-  rw [hm, rho_comm, map_smul, he₀.inv _ ⟨z, rfl⟩ _ hφ', thetaSum_smul,
-    phase_eq F E σ B n n₁ X X₁ H j₀ j₁ hH u ξ z β hv, neg_neg, symp, hTens_vmv]
-  congr 3
-  change -1 * (GlobalTheory.UnipMass.hA σ X₁.J (incV F ξ) z * GlobalTheory.UnipMass.hA σ W.J (incV F H'.y) (incV F H'.x)) = _
-  rw [hyx]
-  ring

@@ -1,7 +1,64 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasChainW
+import Development.AbelianVarietyTheory.Definitions.Divisors.GlobalHeightBoundIffAtGoodPrimes
+import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FiniteTwistingNotIsGenerator
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdmEx
+import Development.AbelianVarietyTheory.Statements.HeightBoundStatement.HTBoundSt
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LineModel
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalSystemModelMap
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RingHomExtValuationSubring
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CorrespondenceDiagonal
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MultiplicationLatticeSecond
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFrameCover
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntegralFlagCellOfValuedFieldStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SmoothBaseAndNormalCoordinateRing
+import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsAffineLieBasisBaseChange
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.EigLatBasis
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CocycleTrivialOnProjectiveCover
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.MemRangeCompIffOfIsClosedImmersion
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineEigenframeNearImage
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsDiscreteValuationRingAndFiniteResidueFieldValu
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TangentCombinationEigenAction
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LetterConjugation
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteIntegralClosureOfEssFiniteTypeField
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsIsoNormalizationPullbackOfToIntegralClosure
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsProjOverCompFinite
+import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IsOpenOfMemIrreducibleComponentsOfFinite
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPluckerFlagEmbeddingOfProjectiveBaseStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FlagCellsGlueLocallyClosedPluckerProductStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompactNormalNoetherianOfFlagCellCoverStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PreimageIUnionOpensEqRangeFlagCellsStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemSpanOfPluckerProportional
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PluckerVectorBlockTriangularFrameChange
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PreModelChartFrame
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SInfMulNormPlk
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AffineOpenChartCompStructureEqSpMap
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyAdaptedOfIntStep
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdaptedNextStepType
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdaptedSubstepClosure
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyClosureOfEmbedding
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsProperAndExistsIsAmpleLB
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverCompOfIsClosedImmersion
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AtlasLocalRingPoints
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStalkFactor
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsNatDiagIffIsDiag
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFrameBaseChangeRingHom
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LineModelTrueOfFalse
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GrNormPush
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFlagFrame
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSectionOfIsIsoRestrict
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsProperToroidalModelStructureMap
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIdealSheafAwayFromP
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsTanBasisOfUniqueCombination
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsTrans
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AmpleOnAbelianBase
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.PadicValNatAbsNormEqZero
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TangentBasisOfSplitTorsion
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FrameCombinationCoeffUnique
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GradedLineBundleExists
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SuccessiveMinimaPositiveNorms
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ScaleZeroComp
 
 set_option autoImplicit false
 
@@ -36,39 +93,7 @@ def lnId (hp : p.Prime) (hW : (p : ℂ) ∈ W.nonunits) : ∀ l : Ln Dw, Pad.Gen
   | (false, st) => z.genId hp hW (Option.some_get st.2).symm
   | (true, st) => NModel.GenIso.dual (z.genId hp hW (Option.some_get st.2).symm)
 
-theorem lnLB_false (b : Bool) (st) : lnLB z b (false, st) = z.stepLB b st.1 := (z.stepLB_of_some _ _).symm
-
-theorem lnLB_true (b : Bool) (st) : lnLB z b (true, st) = (z.stepLB b st.1).dual :=
-  congrArg FinLB.dual (z.stepLB_of_some _ _).symm
-
-theorem vdiv_lnId_false (hp : p.Prime) (hW : (p : ℂ) ∈ W.nonunits) (d : ℕ) (st) {x : Letter Dw}
-    (h : letterOf Dw st.1 = some x) :
-    vdiv hp hW d _ _ (lnId z hp hW (false, st)) = vdiv hp hW d _ _ (z.genId hp hW h) := by
-  obtain rfl : (letterOf Dw st.1).get st.2 = x := Option.some.inj ((Option.some_get st.2).trans h)
-  rfl
-
-theorem vdiv_lnId_true (hp : p.Prime) (hW : (p : ℂ) ∈ W.nonunits) (d : ℕ) (st) {x : Letter Dw}
-    (h : letterOf Dw st.1 = some x) :
-    vdiv hp hW d _ _ (lnId z hp hW (true, st)) = -vdiv hp hW d _ _ (z.genId hp hW h) := by
-  rw [← vdiv_lnId_false z hp hW d st h]
-  exact vdiv_dual hp hW d _ _ _
-
 end Lines
-
-def PairSt : Prop := ∀ (D : D7) (O : Setup D), O.Core → ∀ (p : ℕ) [Fact p.Prime]
-  (W : Formalism.L2.Geo.PlL D p → ValuationSubring ℂ) (hW : ∀ la, (p : ℂ) ∈ (W la).nonunits),
-  (∀ la (x : D.what₂.LL), D.what₂.embLL x ∈ W la ↔ IsDedekindDomain.HeightOneSpectrum.valuation D.what₂.LL la.1 x ≤ 1) →
-  ∀ (z : ∀ la, AdmAt O.S O.κ (Fact.out : p.Prime) (hW la)) (Sx : Finset ℕ) (R : ℝ), 2 ≤ R →
-  ∀ (l : Ln O.S.Dw) (ν : Fin (dimFl D.what₂.Tau O.N) → Bool × Ln O.S.Dw),
-    ∑ c : O.s.Comp,
-      ((arIn O.s O.Φ O.met.hm).num c (lnSym (Function.update (ArIn.ind Sx) p false) (some R) l ::ₘ
-          Finset.univ.val.map fun i => lnSym (Function.update (ArIn.ind Sx) p (ν i).1) (some R) (ν i).2) -
-        (arIn O.s O.Φ O.met.hm).num c (lnSym (Function.update (ArIn.ind Sx) p true) (some R) l ::ₘ
-          Finset.univ.val.map fun i => lnSym (Function.update (ArIn.ind Sx) p (ν i).1) (some R) (ν i).2)) =
-      Real.log p * (letI := Formalism.L2.Geo.finPl D p; ∑ la, Formalism.L2.Geo.wtL D p la *
-        ((((ithOf Fact.out (hW la) (z la).Z (dimFl D.what₂.Tau O.N)).capDeg
-          (vdiv Fact.out (hW la) _ _ _ (lnId (z la) Fact.out (hW la) l))
-          (∏ i, (lnLB (z la) (ν i).1 (ν i).2).c1) : ℚ) : ℝ) / (cov (z la) : ℝ)))
 
 end GlobalTheory.PairTerm
 

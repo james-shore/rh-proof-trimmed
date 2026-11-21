@@ -1,102 +1,62 @@
-# riemann-hypothesis
+# rh-proof-trimmed
 
-[![checks](https://github.com/leanprover-community/riemann-hypothesis/actions/workflows/checks.yml/badge.svg)](https://github.com/leanprover-community/riemann-hypothesis/actions/workflows/checks.yml)
+The Lean 4 proof of RH and GRH for Dirichlet L-functions ([remark.pdf](https://alpo.ge/remark.pdf)), made smaller by
+mechanical steps only.
 
-A [Comparator](https://github.com/leanprover/comparator) setup and community build cache for the Lean formalization that
-claims a proof of the Riemann Hypothesis, and of GRH for Dirichlet L-functions, announced on
-2026-11-20 at <https://alpo.ge/remark.pdf>.
+- The five theorems in `src/Main.lean` and their statements are unchanged
+- No proof is written by hand or by a model
+- Each stage is one commit on top of
+  [leanprover-community/riemann-hypothesis](https://github.com/leanprover-community/riemann-hypothesis) at `8f558a88`
+- Each stage has a receipt in `cleaning/<stage>/`
 
-The submitted Lean source is unmodified. This repository adds Comparator files and cache
-infrastructure:
+## Stages
 
-| File | What it is |
-|---|---|
-| [`src/Challenge.lean`](src/Challenge.lean) | the five theorems, stated in a file that imports only Mathlib |
-| [`comparator.json`](comparator.json) | the Comparator config |
-| [`export-targets.txt`](export-targets.txt) | the declarations to export |
-| [`verification/`](verification/NOTES.md) | our notes, and the results once there are some |
-| [`scripts/`](scripts/) | public Lake cache configuration and reproducible bootstrap/publishing tools |
+| Stage | What | Files | Lines | Declarations | Compiles | Kernel-accepted | Same statements |
+|---|---|---|---|---|---|---|---|
+| Base | the source at `8f558a88` | 175,181 | 17,373,929 | 1,061,507 | yes (LC's CI) | | |
+| S1 | remove declarations the proof doesn't use | 152,371 | 14,611,339 | 864,715 | yes | running | running |
+| S2 | remove syntax Lean's own linters flag as unused | coming | | | | | |
+| S3 | keep one copy of each duplicate theorem or definition | coming | | | | | |
+| S4 | remove import lines each file doesn't need | coming | | | | | |
 
-## Using the build cache
+- Compiles means Lean 4.33.1 builds every module
+- Kernel-accepted means an independent kernel (nanoda) accepts the exported proof
+- Same statements means con-leche `--compare` accepts the export against the published challenge
+- Files and lines exclude `Challenge.lean`
 
-Fetch and restore Mathlib and this project's compiled modules:
+## Base
 
-```bash
-lake exe cache get
-lake build --no-build
+- `8f558a88` differs from the original archive (`8b83d5e7`) in 8 files under `src/`
+- 6 modules are deleted, and `Main.lean` and `Statements.lean` import less
+- LC's CI built the same `src/` in run 44928889426 (183,897 jobs, exit 0)
+
+## Regenerate a stage
+
+```
+python3 cleaning/transform/transform.py BASE/src DEST --keep keep.tsv --level L2g \
+  --lib-namespaces cleaning/transform/mathlib-namespaces.txt.gz [--statement-cone CONE.tsv --edits LIST.tsv …]
 ```
 
-The cache settings are in `lakefile.toml`; no user configuration is needed. The first command
-fetches both caches anonymously and extracts the oleans to `.lake/build`. It prefers a successful
-CI build matching the current clean source, configuration, dependency manifest and toolchain;
-documentation-only commits can reuse the same cache. Otherwise it tries the original published
-cache. The second command checks the default build targets without compiling them. The original
-project cache is 4.94 GB and contains portable Lean outputs and generated C. Subsequent ordinary
-builds compile changed modules and their dependents.
+- BASE is this repository at `8f558a88`
+- The last line printed is the tree fingerprint, which must match the receipt
+- Edit lists need `--statement-cone`, the table `data/statement-cone-with_definitions.tsv` from
+  [rh-proof-dependencies](https://github.com/james-shore/rh-proof-dependencies). No edit can touch it
+- The edit format is in `cleaning/transform/EDIT-LISTS.md`
 
-The community cache includes outputs from **untrusted pull requests and volunteer machines**.
-Download integrity checks do not verify proofs. Use an independent fresh build when you need
-to trust the result.
+## Layout
 
-The [cache notes](verification/CACHE.md) describe the pinned published archive, the cheaper
-bootstrap that reuses its proofs, and how to produce and publish future caches. For independent
-verification, follow the clean-build instructions below.
+- `src/` is the source after the latest stage
+- `cleaning/` has the transform, the keep list, the edit lists and the receipts
+- Everything else is the base, unchanged. Its README is `README-base.md`
 
-## What is claimed
+## Inputs
 
-| Theorem in `Main.lean` | Statement |
-|---|---|
-| `riemannHypothesis` | Mathlib's `RiemannHypothesis` |
-| `riemannZeta_eq_zero_re` | the same, written out |
-| `LFunction_ne_zero_of_half_lt_re` | L(χ, s) ≠ 0 for Re s > 1/2, for every modulus and every Dirichlet character, except the trivial character at s = 1 |
-| `LFunction_eq_zero_re` | every zero of L(χ, s) with 0 < Re s < 1 has Re s = 1/2 |
-| `LFunction_eq_zero_re_of_isPrimitive` | the same, for primitive characters |
+- Base `8f558a8848a80dac6851a00a95ca477ff403e922`
+- Lean v4.33.1 and Mathlib `0df444a360eaa60ab8c11dca51a86af692955474`
+- Used declarations from [rh-proof-dependencies](https://github.com/james-shore/rh-proof-dependencies)
+- `cleaning/transform/` follows [keithadler/rh-trim](https://github.com/keithadler/rh-trim) `tools/prune.py`
+  (Apache-2.0)
 
-## Checking it
+## Licence
 
-```bash
-export LEAN_ABORT_ON_PANIC=1   # as Comparator sets it: stop on an internal error, don't continue
-export LAKE_ARTIFACT_CACHE=false   # rebuild the submission even if cache-env.sh was sourced earlier
-export MATHLIB_CACHE_GET_URL=https://cache.mathlib.org/mathlib4   # Mathlib's current cache server
-
-# 1. Export the challenge. Clean clone at $CLEAN, Lean v4.33.1.
-cd "$CLEAN"
-lake exe mathlib/cache get
-lake build Challenge
-lake env lean4export Challenge -- $(cat export-targets.txt) > challenge.export
-
-# 2. Build the solution. Second clone, inside a sandbox with no network. Takes hours.
-lake exe mathlib/cache get      # before entering the sandbox
-lake build Main         # inside the sandbox
-
-# 3. Export the solution. Still inside the sandbox; only solution.export comes out.
-lake env lean4export Main -- $(cat "$CLEAN/export-targets.txt") > solution.export
-
-# 4. Judge. Lean v4.36.0, from an empty directory, with the config from the clean clone.
-lake comparator --config "$CLEAN/comparator.json" \
-  --challenge-from-export "$CLEAN/challenge.export" --solution-from-export solution.export
-```
-
-What to know before running it:
-
-- **Two Lean versions.** The project is pinned to Lean `v4.33.1`, and `lake comparator` exists
-  only from Lean 4.35. So the proof is built and exported with `v4.33.1` and judged with
-  `v4.36.0`. The exporter is [lean4export](https://github.com/leanprover/lean4export) at tag
-  `v4.33.0`, built with Lean `v4.33.1`.
-- **Challenge first.** Compiling the submission runs its code, so the challenge is exported
-  where none of that code has been compiled. CI does step 1 on every push and publishes the
-  result as the `challenge-export` artifact. Its sha256 is
-  `bd484ac9886a96f26b1d9a7a59ebd45b7a70d102c015d4f31f9302bbdd6ab2b9`.
-- **Not `lake exe cache get`.** In this repository that command also downloads prebuilt files
-  for the submission itself, and `lake build Main` then compiles nothing. Steps 1 and 2 use
-  `lake exe mathlib/cache get`, which fetches Mathlib only.
-- **Cost.** Hours on a large machine, about 100 GB of disk, and a lot of memory for step 4.
-
-The [notes](verification/NOTES.md) have the details: where the source came from, the Lean
-version and its known kernel fixes, the tools, the sandboxes, the test of these steps, and the
-limits of what a passing run shows.
-
-## License
-
-The submission belongs to its author and was published without a license. It is mirrored here
-unmodified, for verification only.
+[LICENSE.md](LICENSE.md)

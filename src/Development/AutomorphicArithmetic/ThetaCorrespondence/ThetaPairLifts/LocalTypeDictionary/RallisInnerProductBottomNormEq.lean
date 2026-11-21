@@ -16,10 +16,8 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Core.Rk.IP
 noncomputable section
 namespace GlobalTheory.BottomRallis
-variable {D : D7}
 end GlobalTheory.BottomRallis
 namespace GlobalTheory.BottomRallis
-variable {D : D7}
 end GlobalTheory.BottomRallis
 namespace GlobalTheory.BottomRallis
 variable {D : D7}

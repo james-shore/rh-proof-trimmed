@@ -279,9 +279,6 @@ theorem incM_mul {l m o : Type} [Fintype m] (A : Matrix l m E) (B : Matrix m o E
 theorem incM_one {m : Type} [Fintype m] [DecidableEq m] : incM F (1 : Matrix m m E) = 1 :=
   Matrix.map_one _ (map_zero _) (map_one _)
 
-theorem incM_inv_mul {m : Type} [Fintype m] [DecidableEq m] (b : GL m E) : incM F (b⁻¹).1 * incM F b.1 = 1 := by
-  rw [← incM_mul, ← Units.val_mul, inv_mul_cancel, Units.val_one, incM_one]
-
 theorem incM_mul_inv {m : Type} [Fintype m] [DecidableEq m] (b : GL m E) : incM F b.1 * incM F (b⁻¹).1 = 1 := by
   rw [← incM_mul, ← Units.val_mul, mul_inv_cancel, Units.val_one, incM_one]
 

@@ -82,11 +82,6 @@ theorem over_smul (h : V →ₗ⋆[K] V →ₗ[K] K) (𝔓 : Ideal (𝓞 K)) (g 
   · rintro ⟨y, hy, hxy⟩
     exact ⟨⟨y, h3 hy⟩, hy, Subtype.ext hxy⟩
 
-omit [NumberField K] in
-theorem over_smul_iff (h : V →ₗ⋆[K] V →ₗ[K] K) (𝔓 : Ideal (𝓞 K)) (g : isom h) (L M : Submodule (𝓞 K) V) :
-    Over h 𝔓 (g • L) (g • M) ↔ Over h 𝔓 L M :=
-  ⟨fun H => by simpa using over_smul h 𝔓 g⁻¹ _ _ H, over_smul h 𝔓 g L M⟩
-
 noncomputable def up (h : V →ₗ⋆[K] V →ₗ[K] K) (𝔓 : Ideal (𝓞 K)) (L : Submodule (𝓞 K) V) :
     Submodule (𝓞 K) V := sSup {M | Over h 𝔓 L M}
 

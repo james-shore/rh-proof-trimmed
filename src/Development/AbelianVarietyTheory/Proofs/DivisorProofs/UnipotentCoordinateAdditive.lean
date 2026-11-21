@@ -75,19 +75,3 @@ theorem unip_spec {d d₁ : ℕ} {W : Spc F E d} {H' : Plane E d d₁} {u : UA �
 
 end GlobalTheory.ThK.UnipDom.Additive
 
-open GlobalTheory.ThK.UnipDom.Additive in
-theorem GlobalTheory.ThK.UnipDom.coA_mul_of_mem_unip : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E) (d d₁ : ℕ) (W : Spc F E d) (W₁ : Spc F E d₁) (H' : Plane E d d₁) (r s i₀ i₁ : ℕ), IsCMExt F E σ → W.IsSkew σ B r s → H'.IsAdapted σ B W W₁ i₀ i₁ → ∀ u ∈ unip σ W H', ∀ v ∈ unip σ W H', coA σ W.J H' (u * v) = coA σ W.J H' u + coA σ W.J H' v := by
-  intro F E _ _ _ _ _ σ B d d₁ W W₁ H' r s i₀ i₁ _ _ hA u hu v hv
-  funext j
-  set e : Fin d → AE F E := incM F H'.ι *ᵥ Pi.single j 1 with he
-  have hval : ∀ c : AE F E, fA σ W.J (e + c • incV F H'.x) (incV F H'.y) = c := by
-    intro c
-    rw [fA_add_left, fA_smul_left, fA_incV, hA.xy, map_one, mul_one, he, single_eq_incV,
-      incM_mulVec_incV, fA_incV, (hA.orth _).2, map_zero, zero_add]
-  obtain ⟨a, ha⟩ := (unip_spec hu).2 (Pi.single j 1)
-  obtain ⟨b, hb⟩ := (unip_spec hv).2 (Pi.single j 1)
-  have hux := (unip_spec hu).1
-  have huv : mat (u * v) *ᵥ e = e + (a + b) • incV F H'.x := by
-    rw [mat_mul', ← Matrix.mulVec_mulVec, he, hb, Matrix.mulVec_add, Matrix.mulVec_smul, hux, ha, add_smul, add_assoc]
-  simp only [Pi.add_apply, coA]
-  rw [← he, huv, hval, ha, ← he, hval, hb, ← he, hval]

@@ -24,21 +24,7 @@ theorem coe_intLocIncl (v : HeightOneSpectrum (𝓞 F)) (x : 𝓞 E) :
 
 variable (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E)
 
-def stabOne (Λ : Submodule (𝓞 E) (Fin n → E)) (v : HeightOneSpectrum (𝓞 F)) : Set (GLoc σ J v) :=
-  {x | ((matHom _ σ J x : GL (Fin n) (Fv F v ⊗[F] E)) : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)).det = 1 ∧
-    x ∈ stabLoc σ J Λ v}
-
-def congRel (Λ : Submodule (𝓞 E) (Fin n → E)) (v : HeightOneSpectrum (𝓞 F)) (𝔞 : Ideal (𝓞 E))
-    (x y : stabOne σ J Λ v) : Prop :=
-  ∀ z ∈ latLoc F Λ v,
-    (((matHom _ σ J x.1 : GL (Fin n) (Fv F v ⊗[F] E)) : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) -
-      ((matHom _ σ J y.1 : GL (Fin n) (Fv F v ⊗[F] E)) : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E))) *ᵥ z ∈
-      latLoc F (𝔞 • Λ) v
-
 end General
-
-def suMat (S : Type) [CommRing S] (c : S →+* S) (r : ℕ) : Set (Matrix (Fin r) (Fin r) S) :=
-  {g | (g.map c)ᵀ * g = 1 ∧ g.det = 1}
 
 section CM
 
@@ -80,21 +66,6 @@ def intLocConj (v : HeightOneSpectrum (𝓞 (maximalRealSubfield E))) :
 theorem coe_intLocConj (v : HeightOneSpectrum (𝓞 (maximalRealSubfield E))) (z : intLoc (maximalRealSubfield E) E v) :
     ((intLocConj v z : intLoc (maximalRealSubfield E) E v) : Fv (maximalRealSubfield E) v ⊗[maximalRealSubfield E] E) =
       Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv (maximalRealSubfield E) v) (cj E) z := rfl
-
-theorem intLocConj_intLocIncl (v : HeightOneSpectrum (𝓞 (maximalRealSubfield E))) (x : 𝓞 E) :
-    intLocConj v (intLocIncl v x) = intLocIncl v (IsCMField.ringOfIntegersComplexConj E x) := by
-  apply Subtype.ext
-  rw [coe_intLocConj, coe_intLocIncl, coe_intLocIncl, IsCMField.coe_ringOfIntegersComplexConj]
-  rfl
-
-theorem intLocConj_intLocConj (v : HeightOneSpectrum (𝓞 (maximalRealSubfield E)))
-    (z : intLoc (maximalRealSubfield E) E v) : intLocConj v (intLocConj v z) = z := by
-  apply Subtype.ext
-  rw [coe_intLocConj, coe_intLocConj]
-  induction (z : Fv (maximalRealSubfield E) v ⊗[maximalRealSubfield E] E) using TensorProduct.induction_on with
-  | zero => simp
-  | tmul a x => simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
-  | add x y hx hy => rw [map_add, map_add, hx, hy]
 
 end CM
 

@@ -3,9 +3,12 @@ import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.Ps
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.DiscreteSeriesCharacter
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.AdmissibleCoefficientsAnalytic
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsAdmOnOfFiniteDimensional
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.StandardModuleConstituents
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteDimensionalInvariantSubspace
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmoothIntertwinerExtension
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.LanglandsClassification
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HarishChandraModulesOn
+import Formalism.RealPlaceAnalysis.StatementE
+import Formalism.RealPlaceAnalysis.StatementB
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.PolarJmConjTranspose
 
 noncomputable section
 
@@ -42,23 +45,6 @@ end Transport
 end GlobalTheory.StdMult
 
 namespace GlobalTheory.StdMult
-
-variable {n : ℕ} {ε : Fin n → Bool}
-
-section Equivalent
-
-variable {V V' : Type} [NormedAddCommGroup V] [InnerProductSpace ℂ V] [NormedAddCommGroup V']
-  [InnerProductSpace ℂ V']
-
-end Equivalent
-
-section Chains
-
-variable {H K : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [NormedAddCommGroup K]
-  [InnerProductSpace ℂ K] {ρ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)}
-  {π : Matrix (Fin n) (Fin n) ℂ → (K →L[ℂ] K)}
-
-end Chains
 
 end GlobalTheory.StdMult
 

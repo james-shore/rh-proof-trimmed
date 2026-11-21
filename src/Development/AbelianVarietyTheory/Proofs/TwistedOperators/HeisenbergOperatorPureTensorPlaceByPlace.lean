@@ -23,9 +23,6 @@ variable {D : D7} {S T : HSp D}
 theorem wAt_wAt (p : Place D) (w : WO S T) : wAt p (wAt p w) = wAt p w := by
   rw [wAt_eq_smul, wAt_eq_smul, smul_smul, (GlobalTheory.T.cmAdeleIdempotentOfPlace_properties D).1 p]
 
-theorem wAt_wAt_ne {p q : Place D} (h : p ≠ q) (w : WO S T) : wAt p (wAt q w) = 0 := by
-  rw [wAt_eq_smul, wAt_eq_smul, smul_smul, (GlobalTheory.T.cmAdeleIdempotentOfPlace_properties D).2.1 p q h, zero_smul]
-
 theorem wAt_off {P : Finset (Place D)} {w r : WO S T} (h : w = ∑ q ∈ P, wAt q w + r) {p : Place D} (hp : p ∉ P) :
     wAt p w = wAt p r := by
   have e : wAt p w = wAt p (∑ q ∈ P, wAt q w + r) := by rw [← h]

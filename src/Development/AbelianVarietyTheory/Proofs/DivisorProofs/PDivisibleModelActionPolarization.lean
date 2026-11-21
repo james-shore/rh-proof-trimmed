@@ -64,29 +64,4 @@ end GlobalTheory.GroupBplus.Aff
 
 namespace GlobalTheory.GroupBplus.Aff
 
-theorem induced_endo_compat : ∀ (p : ℕ) [Fact p.Prime] (R K : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [Field K] [IsAlgClosed K] [CharZero K] [Algebra R K] [IsFractionRing R K] (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G], IsSemiAbelian G → ∀ (G₀ : Over (Sp K)) [GrpObj G₀] [IsCommMonObj G₀] (F : G₀.left ⟶ G.left), IsGrpPullback G₀ G (spMap (algebraMap R K)) F → ∀ (GG : PDivGroup p R) (θ : TorsionMap G GG), IsModel K θ → ∀ (GG₀ : PDivGroup p K) (θ₀ : TorsionMap G₀ GG₀) (e : GG₀ ≅ GG.baseChange K), GenCompat F θ θ₀ e → (∀ (n : ℕ) (B : Type) [CommRing B] [Algebra K B], Function.Bijective (θ₀.pt n B)) → ∀ (f : G ⟶ G) (f₀ : G₀ ⟶ G₀) [IsMonHom f₀] (g : GG ⟶ GG) (g₀ : GG₀ ⟶ GG₀), f₀.left ≫ F = F ≫ f.left → θ.Intertwines f g → θ₀.Intertwines f₀ g₀ → g₀ ≫ e.hom = e.hom ≫ PDivGroup.baseChangeMap K g := by
-  intro p _ R K _ _ _ _ _ _ _ _ G _ _ _ G₀ _ _ F hF GG θ _ GG₀ θ₀ e hc hbij f f₀ _ g g₀ hfF hθ hθ₀
-  refine PDivGroup.baseChange_hom_ext fun n a => ?_
-  let A := GG₀.A n
-  letI : Algebra R A := ((algebraMap K A).comp (algebraMap R K)).toAlgebra
-  haveI : IsScalarTower R K A := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  obtain ⟨z', hz'⟩ := (hbij n A).2 (AlgHom.id K A)
-  have key : ∀ x y : A, θ₀.pt n A z' x = θ₀.pt n A z' y → x = y := fun x y h => by
-    rw [hz'] at h; exact h
-  apply key
-  let w' : Tors G₀ (p ^ n) A := ⟨z'.1 ≫ f₀, by rw [← MonObj.pow_comp, z'.2, MonObj.one_comp]⟩
-  let z := liftTors hF z'
-  let w := liftTors hF w'
-  have hw : w.1 = z.1 ≫ f := Over.OverMorphism.ext (by
-    simp only [w, z, liftTors_left, Over.comp_left, w']
-    rw [Category.assoc, hfF, ← Category.assoc])
-  have h1 : θ₀.pt n A z' (g₀.app n (e.hom.app n (1 ⊗ₜ a))) = θ₀.pt n A w' (e.hom.app n (1 ⊗ₜ a)) :=
-    (DFunLike.congr_fun (hθ₀ n A z' w' rfl) _).symm
-  have h2 : θ.pt n A w a = θ₀.pt n A w' (e.hom.app n (1 ⊗ₜ a)) := hc n A w w' rfl a
-  have h3 : θ.pt n A w a = θ.pt n A z (g.app n a) := DFunLike.congr_fun (hθ n A z w hw) a
-  have h4 : θ.pt n A z (g.app n a) = θ₀.pt n A z' (e.hom.app n (1 ⊗ₜ g.app n a)) := hc n A z z' rfl _
-  simp only [PDivGroup.comp_app, BialgHom.comp_apply, PDivGroup.baseChangeMap_app]
-  rw [h1, ← h2, h3, h4]
-  rfl
-
 end GlobalTheory.GroupBplus.Aff

@@ -17,20 +17,6 @@ namespace GlobalTheory.CompanionTheory.Ar.PB.WSq.FC.DensR
 
 variable {K : Type} {ι : K → Type}
 
-theorem orbit_symm {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') : SameOrbit z' z := by
-  obtain ⟨c, hc, rfl⟩ := h
-  refine ⟨fun k => (c k)⁻¹, fun k => inv_ne_zero (hc k), ?_⟩
-  funext p
-  simp [hc p.1]
-
-theorem orbit_trans {z z' z'' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') (h' : SameOrbit z' z'') :
-    SameOrbit z z'' := by
-  obtain ⟨c, hc, rfl⟩ := h
-  obtain ⟨c', hc', rfl⟩ := h'
-  refine ⟨fun k => c k * c' k, fun k => mul_ne_zero (hc k) (hc' k), ?_⟩
-  funext p
-  simp [mul_assoc]
-
 theorem orbit_basePart {σ : Type} (blk : σ → Option K) {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') :
     SameOrbit (basePart blk z) (basePart blk z') := by
   obtain ⟨c, hc, rfl⟩ := h

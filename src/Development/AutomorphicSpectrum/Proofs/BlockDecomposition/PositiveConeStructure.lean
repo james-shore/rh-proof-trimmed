@@ -158,9 +158,6 @@ theorem continuous_emb : Continuous (emb : UK n → G n) := by
 theorem val_mem (y : G n) : y.val ∈ GLs n :=
   ((Matrix.isUnit_iff_isUnit_det _).1 y.isUnit).ne_zero
 
-theorem isOpen_GLs : IsOpen (GLs n) :=
-  isOpen_ne.preimage (continuous_id.matrix_det)
-
 theorem contDiff_hOf : ContDiff ℝ ∞ (hOf (n := n)) := by
   unfold hOf
   refine ContDiff.sum fun p _ => ?_

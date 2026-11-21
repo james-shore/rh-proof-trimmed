@@ -10,8 +10,6 @@ open GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps 
 
 namespace GlobalTheory.DetInv.Intertwine
 
-variable {A : Type} [CommRing A] [IsDomain A] {h : ℕ}
-
 end GlobalTheory.DetInv.Intertwine
 
 namespace GlobalTheory.DetInv

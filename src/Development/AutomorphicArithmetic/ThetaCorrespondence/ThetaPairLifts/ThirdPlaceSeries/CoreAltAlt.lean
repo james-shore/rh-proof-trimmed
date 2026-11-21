@@ -1,5 +1,5 @@
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvariantFormBoundedCongruence
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CohomologicalCsdTempered
+import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CharacterChoiceData
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
 
@@ -10,15 +10,12 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 noncomputable section
 namespace GlobalTheory.VFormCls
-open Formalism.IndefR.Bridge
 end GlobalTheory.VFormCls
 namespace GlobalTheory.VFormCls
 end GlobalTheory.VFormCls
 namespace GlobalTheory.VFormCls
-open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.RecTie Formalism.IndefR.principalLevelFrame Formalism.L2.Theta
 end GlobalTheory.VFormCls
 namespace GlobalTheory.VFormCls
-open Formalism.IndefR Formalism.L2.Theta
 end GlobalTheory.VFormCls
 namespace GlobalTheory.VFormCls
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.RecTie Formalism.L2.Theta

@@ -205,13 +205,4 @@ end GlobalTheory.HomPull
 
 namespace GlobalTheory.HomPull
 
-variable {X Y : Scheme.{0}} (ρ : Y ⟶ X) (F : X.Modules) (N : Y.Modules)
-
-def pushHomIso : (Scheme.Modules.pushforward ρ).obj (homMod ((Scheme.Modules.pullback ρ).obj F) N) ≅
-    homMod F ((Scheme.Modules.pushforward ρ).obj N) :=
-  asIso (fwdHom ρ F N)
-
-theorem nonempty_pushforward_homMod_iso : ∀ (X Y : Scheme.{0}) (ρ : Y ⟶ X) (W : X.Modules) (N : Y.Modules), Nonempty ((Scheme.Modules.pushforward ρ).obj (homMod ((Scheme.Modules.pullback ρ).obj W) N) ≅ homMod W ((Scheme.Modules.pushforward ρ).obj N)) :=
-  fun _ _ ρ W N => ⟨pushHomIso ρ W N⟩
-
 end GlobalTheory.HomPull

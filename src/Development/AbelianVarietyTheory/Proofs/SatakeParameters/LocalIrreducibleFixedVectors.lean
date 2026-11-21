@@ -29,13 +29,6 @@ theorem exists_trivOutside_map_loc {L : Type} [Field L] [NumberField L] [IsCMFie
   ext i j
   simp
 
-def twist {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V] (ρ : Representation ℂ G V)
-    (θ : G → ℂ) (h1 : θ 1 = 1) (hm : ∀ a b, θ (a * b) = θ a * θ b) : Representation ℂ G V where
-  toFun g := (θ g)⁻¹ • ρ g
-  map_one' := by simp [h1]
-  map_mul' a b := by
-    rw [hm, map_mul, mul_inv, smul_mul_smul_comm]
-
 theorem exists_eigen_of_sum {G V W ι : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W] [Fintype ι]
     {ρ : Representation ℂ G V} (hρ : IsSmooth ρ) {K : Subgroup G} (hK : IsCompact (K : Set G))

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DrAtNonneg
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeVolSlopeOfTendsto
 
 set_option autoImplicit false
 
@@ -21,9 +21,5 @@ def drVia (la : AllWt.Weight S.Dw) (p : ℕ) [Fact p.Prime] {K : Type} [Field K]
       (spMap (φ.comp (Scheme.stalkClosedPointTo y).hom) ≫ stalkPt (Φ.C k).Y (below y) ≫ (Φ.C k).π ≫ genι s.T.Z)
       (fun τ i => spMap (dualMap (φ.comp (Scheme.stalkClosedPointTo y).hom)) ≫
         ((Φ.C k).gr_spec (below y)).choose_spec.choose.v τ i) p (a.1 p) a.2.2)
-
-theorem drVia_nonneg (la : AllWt.Weight S.Dw) (p : ℕ) [Fact p.Prime] {K : Type} [Field K] (y : Sp K ⟶ (Φ.C k).Y.X)
-    (φ : K →+* ℂ_[p]) (f : (Φ.C k).Y.Fn) : 0 ≤ drVia Φ k la p y φ f :=
-  mul_nonneg (norm_nonneg _) (Real.exp_pos _).le
 
 end GlobalTheory.CovHt.Link

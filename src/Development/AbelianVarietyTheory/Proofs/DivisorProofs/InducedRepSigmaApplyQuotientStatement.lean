@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InducedRepSigmaApplyQuotient
-import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemRelParabColEq
+
 open GlobalTheory.PRep GlobalTheory.SmGL Matrix GlobalTheory.CellDetFirst
 open scoped TensorProduct
 set_option maxHeartbeats 1000000 in

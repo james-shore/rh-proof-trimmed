@@ -54,10 +54,6 @@ theorem cT_mul (L : LocE F E) {m : ℕ} (A B : Matrix (Fin m) (Fin m) E) :
   ext a b
   simp only [cT, Matrix.mul_apply, map_sum, map_mul, mul_comm]
 
-theorem cT_cT (L : LocE F E) {m : ℕ} (A : Matrix (Fin m) (Fin m) E) : cT L (cT L A) = A := by
-  ext a b
-  exact L.cj_cj _
-
 theorem cT_one (L : LocE F E) {m : ℕ} : cT L (1 : Matrix (Fin m) (Fin m) E) = 1 := by
   ext a b
   simp only [cT, Matrix.one_apply, eq_comm (a := b)]

@@ -107,10 +107,4 @@ theorem elliptic_expansion {E : Type} [Field E] [NumberField E] {F : Subfield E}
   · rw [hsum, integral_finsetSum _ fun P _ => (hpol P).1, finsum_eq_sum_of_support_subset _ hsupp, hterm]
     exact Finset.sum_congr rfl fun P _ => (hpol P).2
 
-theorem ellipticPart : GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots.EllipticPart := by
-  intro D V lam S M T U μa μf μ fa ff h dta dtf dt ht
-  obtain ⟨-, -, -, -, hμ, ha, hf⟩ := h
-  exact elliptic_expansion (isCMExt_host D) (GlobalTheory.InertOfConj.unram D) (isHermND_gram V) (frameLat V) hμ ha.mem hf.isFinFamily
-    dta dtf dt ht _ rfl _ rfl
-
 end GlobalTheory.TrEllSum

@@ -35,6 +35,4 @@ def N1 (σ : E →ₐ[F] E) : Subgroup (AE F E)ˣ where
 
 theorem mem_normOneIdeles {σ : E →ₐ[F] E} {z : (AE F E)ˣ} : z ∈ N1 F E σ ↔ (z : AE F E) * cA σ (z : AE F E) = 1 := Iff.rfl
 
-example (σ : E →ₐ[F] E) : (1 : (AE F E)ˣ) ∈ N1 F E σ := (N1 F E σ).one_mem
-
 end GlobalTheory.NormOneIdele

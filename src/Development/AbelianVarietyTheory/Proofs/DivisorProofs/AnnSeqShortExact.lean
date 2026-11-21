@@ -46,37 +46,4 @@ instance epi_dualMap_ι (fl : Vert.Flag E N) (i : Fin (N + 1)) : Epi (dualMap (f
   epi_dualMap_f (S := .mk (fl.ι i) (cokernel.π _) (cokernel.condition _)) (r := i) (s := N - i)
     (shortExact_ι fl i) (fl.isVB i) (fl.isVB_cokernel i)
 
-abbrev annSeq (fl : Vert.Flag E N) (i : Fin (N + 1)) : ShortComplex X.Modules :=
-  .mk (kernel.ι (dualMap (fl.ι i))) (dualMap (fl.ι i)) (kernel.condition _)
-
-theorem annSeq_shortExact (fl : Vert.Flag E N) (i : Fin (N + 1)) : (annSeq fl i).ShortExact :=
-  { exact := ShortComplex.exact_of_f_is_kernel _ (kernelIsKernel _) }
-
-theorem kernel_ι_comp_dualMap (fl : Vert.Flag E N) (k : Fin N) :
-    kernel.ι (dualMap (fl.ι k.succ)) ≫ dualMap (fl.ι k.castSucc) = 0 := by
-  rw [← fl.step_ι k, dualMap_comp, kernel.condition_assoc, zero_comp]
-
-def dualFlag (fl : Vert.Flag E N) : Vert.Flag (dual E) N where
-  F j := kernel (dualMap (fl.ι j.rev))
-  ι j := kernel.ι _
-  isSubbundle j := isSubbundle_of_shortExact (annSeq_shortExact fl j.rev) (fl.isVB j.rev).dual
-  isVB j := by
-    refine isVB_X₁_of_shortExact X _ j (N - j) (annSeq_shortExact fl j.rev) ?_ ?_
-    · have := fl.isVB_self.dual
-      rwa [show (j : ℕ) + (N - j) = N by omega]
-    · have := (fl.isVB j.rev).dual
-      rwa [Fin.val_rev, show N + 1 - ((j : ℕ) + 1) = N - j by omega] at this
-  step j := kernel.lift _ (kernel.ι _) (by
-    rw [Fin.rev_castSucc, Fin.rev_succ]
-    exact kernel_ι_comp_dualMap fl j.rev)
-  step_ι j := kernel.lift_ι _ _ _
-  isIso_last := by
-    have hz : IsZero (dual (fl.F (Fin.last N).rev)) := by
-      refine isVB_zero_iff.1 ?_
-      have := (fl.isVB (Fin.last N).rev).dual
-      rw [Fin.rev_last] at this ⊢
-      simpa using this
-    rw [hz.eq_of_tgt (dualMap _) 0]
-    infer_instance
-
 end GlobalTheory.DualFlag

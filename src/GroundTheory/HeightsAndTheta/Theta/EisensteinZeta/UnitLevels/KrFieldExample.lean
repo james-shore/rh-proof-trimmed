@@ -6,21 +6,6 @@ namespace GroundTheory.Heights₂.Theta
 
 noncomputable section
 
-section Places
-
-variable (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-def IsUnramifiedAtFinitePlaces : Prop :=
-  ∀ P : Ideal (𝓞 E), P.IsPrime → P ≠ ⊥ → P.ramificationIdx (𝓞 F) = 1
-
-def IsInertIn (p : Ideal (𝓞 F)) : Prop :=
-  p.IsPrime ∧ p ≠ ⊥ ∧ (p.map (algebraMap (𝓞 F) (𝓞 E))).IsPrime
-
-def IsSplitIn (p : Ideal (𝓞 F)) : Prop :=
-  p.IsPrime ∧ p ≠ ⊥ ∧ (p.primesOver (𝓞 E)).ncard = 2
-
-end Places
-
 section Example
 
 open Complex

@@ -6,7 +6,8 @@ mechanical steps only.
 - The five theorems in `src/Main.lean` and their statements are unchanged
 - No proof is written by hand or by a model
 - Each stage is one commit on top of
-  [leanprover-community/riemann-hypothesis](https://github.com/leanprover-community/riemann-hypothesis) at `7da4577e`
+  [leanprover-community/riemann-hypothesis](https://github.com/leanprover-community/riemann-hypothesis) main
+- S1 is on main at `7da4577e` and S2 on main at `bdda2f0e`
 - Each stage has a receipt in `cleaning/<stage>/`
 - S1 is [PR #55](https://github.com/leanprover-community/riemann-hypothesis/pull/55) on leanprover-community/riemann-hypothesis
 
@@ -16,7 +17,7 @@ mechanical steps only.
 |---|---|---|---|---|---|---|---|---|
 | Base | the source at `7da4577e` | 164,463 | 16,588,671 | 1,024,669 | yes (leanprover-community's CI) | | | |
 | S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | yes | yes | 0 statements changed |
-| S2 | remove syntax Lean's own linters flag as unused | coming | | | | | | |
+| S2 | remove syntax Lean's own linters flag as unused | 150,632 | 14,453,805 | 858,404 | yes | running | running | running |
 | S3 | keep one copy of each duplicate theorem or definition | coming | | | | | | |
 | S4 | remove import lines each file doesn't need | coming | | | | | | |
 
@@ -32,6 +33,7 @@ mechanical steps only.
 - 10,724 modules are deleted, and 13 files have only their import lines changed
 - leanprover-community's CI built the same `src/` in run 44945214129 (173,179 jobs, exit 0)
 - S1 on the earlier base `8f558a88` (`d25d2b3c…`) is tag `s1-on-8f558a88`
+- S2 is on main at `bdda2f0e`, merged in before S2. It adds PR #57's edits to 5 files that S1 doesn't touch
 
 ## Regenerate a stage
 

@@ -40,9 +40,16 @@ Remove proof syntax that Lean's linters flag as unused.
 | Check | Result |
 |---|---|
 | Compiles | yes, Lean 4.33.1, 150,633 modules, 0 failures |
-| Kernel-accepted | running |
-| Same statements | running |
-| Term diff against S1 | running |
+| Kernel-accepted | yes, nanoda `0da9f98f`, 1,484,731 declarations, no typechecker errors, axioms `propext`, `Classical.choice`, `Quot.sound` |
+| Same statements | yes, con-leche `--compare` (`5dc36dc1`) against Sutherland's `challenge.ndjson` |
+| Export | sha256 `8d8336016a609818dc5a517e934a139cdafd8da29fb2a9af9f93423815913833`, 61,570,537,548 bytes |
+| Term diff against S1 | 0 statements changed, 17 proofs differ |
+
+- Against S1 no statement changed and nothing outside the project changed. 17 proofs differ
+- One declaration leaves the proof, `IsUnit.inv_mul_cancel_left`, which only a deleted `simp` argument named
+- 446 auxiliary names are added and 447 removed by renumbering. 895 are identical by content
+- Main's PR #57, merged before S2, changes 6 statements and 6 proofs in its own 5 files and in one place that uses
+  them, `LocDual.FinT.fg_Z1T`. These are counted apart and are not S2's
 
 ## Regenerate
 

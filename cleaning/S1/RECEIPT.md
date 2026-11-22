@@ -23,9 +23,13 @@ Remove declarations the proof doesn't use.
 | Check | Result |
 |---|---|
 | Compiles | yes, Lean 4.33.1, 150,633 modules, 0 failures |
-| Kernel-accepted | running |
-| Same statements | running |
+| Kernel-accepted | yes, nanoda `0da9f98f`, 1,484,733 declarations, no errors, axioms `propext`, `Classical.choice`, `Quot.sound` |
+| Same statements | yes, con-leche `--compare` (`5dc36dc1`) against Sutherland's `challenge.ndjson` |
+| Export | sha256 `5e48c576b4b83135fa3c959b93b585247955137b947e57b53497906709cbdcbb`, 61,570,596,150 bytes |
 | Term diff against the original | running |
+
+- Build time was measured for S1 on the original archive, on the same machine and settings as the original. 4.50 h
+  against 5.51 h wall, 710.0 against 872.8 CPU hours, 171 against 291 GB peak memory
 
 ## Regenerate
 

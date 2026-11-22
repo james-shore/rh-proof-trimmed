@@ -8,13 +8,14 @@ mechanical steps only.
 - Each stage is one commit on top of
   [leanprover-community/riemann-hypothesis](https://github.com/leanprover-community/riemann-hypothesis) at `7da4577e`
 - Each stage has a receipt in `cleaning/<stage>/`
+- S1 is [PR #55](https://github.com/leanprover-community/riemann-hypothesis/pull/55) on leanprover-community/riemann-hypothesis
 
 ## Stages
 
 | Stage | What | Files | Lines | Declarations | Compiles | Kernel-accepted | Same statements |
 |---|---|---|---|---|---|---|---|
 | Base | the source at `7da4577e` | 164,463 | 16,588,671 | 1,024,669 | yes (leanprover-community's CI) | | |
-| S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | running | running |
+| S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | yes | yes |
 | S2 | remove syntax Lean's own linters flag as unused | coming | | | | | |
 | S3 | keep one copy of each duplicate theorem or definition | coming | | | | | |
 | S4 | remove import lines each file doesn't need | coming | | | | | |

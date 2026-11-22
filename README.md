@@ -10,6 +10,7 @@ mechanical steps only.
 - S1 is on main at `7da4577e` and S2 on main at `bdda2f0e`
 - Each stage has a receipt in `cleaning/<stage>/`
 - S1 is [PR #55](https://github.com/leanprover-community/riemann-hypothesis/pull/55) on leanprover-community/riemann-hypothesis
+- S2 is [PR #67](https://github.com/leanprover-community/riemann-hypothesis/pull/67) on leanprover-community/riemann-hypothesis
 
 ## Stages
 

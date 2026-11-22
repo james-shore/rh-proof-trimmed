@@ -26,7 +26,16 @@ Remove declarations the proof doesn't use.
 | Kernel-accepted | yes, nanoda `0da9f98f`, 1,484,733 declarations, no errors, axioms `propext`, `Classical.choice`, `Quot.sound` |
 | Same statements | yes, con-leche `--compare` (`5dc36dc1`) against Sutherland's `challenge.ndjson` |
 | Export | sha256 `5e48c576b4b83135fa3c959b93b585247955137b947e57b53497906709cbdcbb`, 61,570,596,150 bytes |
-| Term diff against the original | running |
+| Term diff against the original | 0 statements changed, 1 proof differs |
+
+- Against the original archive no statement changed. Nothing outside the project changed
+- One proof differs, `withBot_eq_of_add_one`. The name is declared in two files with the same statement. PR #45 on
+  leanprover-community changed the import order so the other copy loads last, and this tree keeps that order
+- One helper declaration, `general_b_fact_ter_form.goal1`, is used only by the other copy's proof, so it leaves the
+  kernel closure. Its source is still in the tree
+- 704 auxiliary names are renumbered. Their content is identical
+- Against the base no statement or proof should change apart from auxiliary names. This is inferred from the import
+  order, since the base itself was not exported
 
 - Build time was measured for S1 on the original archive, on the same machine and settings as the original. 4.50 h
   against 5.51 h wall, 710.0 against 872.8 CPU hours, 171 against 291 GB peak memory

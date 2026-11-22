@@ -12,17 +12,18 @@ mechanical steps only.
 
 ## Stages
 
-| Stage | What | Files | Lines | Declarations | Compiles | Kernel-accepted | Same statements |
-|---|---|---|---|---|---|---|---|
-| Base | the source at `7da4577e` | 164,463 | 16,588,671 | 1,024,669 | yes (leanprover-community's CI) | | |
-| S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | yes | yes |
-| S2 | remove syntax Lean's own linters flag as unused | coming | | | | | |
-| S3 | keep one copy of each duplicate theorem or definition | coming | | | | | |
-| S4 | remove import lines each file doesn't need | coming | | | | | |
+| Stage | What | Files | Lines | Declarations | Compiles | Kernel-accepted | Same statements | Term diff |
+|---|---|---|---|---|---|---|---|---|
+| Base | the source at `7da4577e` | 164,463 | 16,588,671 | 1,024,669 | yes (leanprover-community's CI) | | | |
+| S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | yes | yes | 0 statements changed |
+| S2 | remove syntax Lean's own linters flag as unused | coming | | | | | | |
+| S3 | keep one copy of each duplicate theorem or definition | coming | | | | | | |
+| S4 | remove import lines each file doesn't need | coming | | | | | | |
 
 - Compiles means Lean 4.33.1 builds every module
 - Kernel-accepted means an independent kernel (nanoda) accepts the exported proof
 - Same statements means con-leche `--compare` accepts the export against the published challenge
+- Term diff compares each statement in the exported proof with the original archive's
 - Files and lines exclude `Challenge.lean`
 
 ## Base

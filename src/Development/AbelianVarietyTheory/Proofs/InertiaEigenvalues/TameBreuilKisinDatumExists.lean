@@ -49,17 +49,6 @@ noncomputable section
 
 namespace GlobalTheory.CocycleNat
 
-theorem exists_pow_smul_mem {l : ℕ} [hl : Fact l.Prime] {O K : Type} [CommRing O] [NormedField K] [Algebra O K]
-    [IsUnitBall O K] [NormedAlgebra ℚ_[l] K] {G : Type} [Group G] [TopologicalSpace G]
-    (T : LocLat G ℚ_[l] K O) (v : T.V) : ∃ n : ℕ, (l : K) ^ n • v ∈ T.L.T := by
-  first
-  | exact @_root_.GlobalTheory.NatCastNormLtOne.main
-  | exact _root_.GlobalTheory.NatCastNormLtOne.main
-  | (apply _root_.GlobalTheory.NatCastNormLtOne.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatCastNormLtOne.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatCastNormLtOne.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatCastNormLtOne.main ..)
-
 end GlobalTheory.CocycleNat
 
 noncomputable section
@@ -106,7 +95,7 @@ theorem main (l : ℕ) [Fact l.Prime] (a e : ℕ) [NeZero a] [NeZero e] (O K : T
     rwa [homW_phiW] at this
   · rw [hb, map_sub, N.1 σ ⟨F.app σ.1, hσ'⟩ rfl]
   · intro g n x' hx'
-    obtain ⟨N', hN'⟩ := exists_pow_smul_mem T₁ (c g)
+    obtain ⟨N', hN'⟩ := _root_.GlobalTheory.NatCastNormLtOne.main T₁ (c g)
     have hc2 := congrArg Φ (hcob g N' ⟨_, hN'⟩ rfl)
     rw [map_smul, map_sub, actB_map, hΦ, TensorProduct.map_tmul, LinearMap.id_apply] at hc2
     rw [← hΦ] at hc2

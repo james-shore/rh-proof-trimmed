@@ -76,7 +76,7 @@ theorem triv_step (hA : IsAbelianScheme G) (hL : L.IsLB) {T : Over S} (a c : T �
       ![1, (n : ℤ) - 1, -1, 1 - (n : ℤ), -(n : ℤ), (n : ℤ)]) := by
   induction n with
   | zero =>
-    have h := GlobalTheory.CubeTop.cubeTheorem S G hA L hL T 1 1 c
+    have h := _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds S G hA L hL T 1 1 c
     simp only [_root_.one_mul] at h
     obtain ⟨t, ht⟩ := h
     obtain ⟨u, hu, -⟩ := exists_gen hL (φ' := ![((a ^ 0) * c).left, c.left, (a ^ 0).left, (1 : T ⟶ G).left,
@@ -91,7 +91,7 @@ theorem triv_step (hA : IsAbelianScheme G) (hL : L.IsLB) {T : Over S} (a c : T �
     exact ⟨u, hu⟩
   | succ n ih =>
     obtain ⟨t, ht⟩ := ih
-    have h := GlobalTheory.CubeTop.cubeTheorem S G hA L hL T a (a ^ n) c
+    have h := _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds S G hA L hL T a (a ^ n) c
     rw [← pow_succ'] at h
     obtain ⟨q, hq⟩ := h
     obtain ⟨u, hu, -⟩ := exists_gen hL (φ' := ![(a ^ (n + 1) * c).left, c.left, (a ^ (n + 1)).left,

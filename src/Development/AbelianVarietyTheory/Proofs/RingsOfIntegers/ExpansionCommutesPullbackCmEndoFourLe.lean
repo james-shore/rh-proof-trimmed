@@ -125,7 +125,7 @@ theorem expands_pull_of_four_le : Laws → ∀ (V : Type) [CommRing V] [IsDomain
     (endK (t.act.act a)) hF u hu (P.U.SecK k) (fun s₀ => sp (Fp (Fx s₀))) (fun s₀ => s₀)
     (fun y J hJ => GlobalTheory.GenericGenerated.exists_secK_isUnit hLaws.ample V _ P.D P.A t.G P.U.toUnifPre k hk _ _ y J hJ)
     (fun i i' y J hJ => by
-      have e := GlobalTheory.T.mixed_cross_identity_genericFibre hLaws V E H t P a N hN hN0 k i _ _ _ (hFx i) (hsp _) (hFp _) k i' _ _ _ (hFx i') (hsp _)
+      have e := _root_.GlobalTheory.GenericCross.main hLaws V E H t P a N hN hN0 k i _ _ _ (hFx i) (hsp _) (hFp _) k i' _ _ _ (hFx i') (hsp _)
         (hFp _) 1 1 rfl y J hJ
       simpa only [pow_one] using e)
   obtain ⟨c₀, rfl⟩ := (GlobalTheory.unifPre_genericFibre_surjective_appTop_and_isIntegral hLaws.globalFns V _ P.D P.A t.G
@@ -141,7 +141,7 @@ theorem expands_pull_of_four_le : Laws → ∀ (V : Type) [CommRing V] [IsDomain
       rw [hb _ _ y J hJ, sval_pullMulSec _ _ u hu _ y hJ, Category.id_comp]
       exact hc s₀ y J hJ) unitK y J hJ'
     rw [hb _ _ y J hJ', sval_pullMulSec _ _ u hu _ y hJ', unitK_endK] at e₁
-    have e₂ := GlobalTheory.T.value_at_unitSection_genericFibre hLaws V E H t P a N hN hN0 k s₀ _ _ _ (hFx s₀) (hsp _) (hFp _) y J hJ'
+    have e₂ := _root_.GlobalTheory.GenericUnitValue.value_at_generic_unit hLaws V E H t P a N hN hN0 k s₀ _ _ _ (hFx s₀) (hsp _) (hFp _) y J hJ'
     have e₃ : val u unitK y J = val (L := P.U.LG.L) P.U.LG.rig (jK V) y J ^ (k * (N - 1)) := by
       have e := val_corr hJ' hn (𝟙 _)
       rw [val_pull hJ', val_pull hJ', Category.id_comp, Category.id_comp, val_pow] at e

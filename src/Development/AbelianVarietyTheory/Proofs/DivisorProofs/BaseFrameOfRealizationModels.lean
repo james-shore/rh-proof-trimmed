@@ -109,17 +109,6 @@ theorem conj_eq_of_path (hH : Hm.det ≠ 0) (hP : P.det ≠ 0) (ha : a.det ≠ 0
   have h3 := congrArg (P⁻¹ * ·) this
   simpa only [Matrix.nonsing_inv_mul_cancel_left _ _ hP.isUnit] using h3
 
-theorem refl_mem (hH : Hm.IsHermitian) (v : Fin n → ℂ) (z : ℂ)
-    (hz : star z + z + star z * z * (star v ⬝ᵥ Hm *ᵥ v) = 0) :
-    1 + z • (vecMulVec v (star v) * Hm) ∈ Formalism.QuantumDeterminants.UH Hm := by
-  first
-  | exact @_root_.GlobalTheory.UnitaryPerturbation.one_add_smul_mem_unitary
-  | exact _root_.GlobalTheory.UnitaryPerturbation.one_add_smul_mem_unitary
-  | (apply _root_.GlobalTheory.UnitaryPerturbation.one_add_smul_mem_unitary <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitaryPerturbation.one_add_smul_mem_unitary <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitaryPerturbation.one_add_smul_mem_unitary <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UnitaryPerturbation.one_add_smul_mem_unitary ..)
-
 theorem polar (x y : Fin n → ℂ) : vecMulVec x (star y) = (1 / 2 : ℂ) •
     ((vecMulVec (x + y) (star (x + y)) - vecMulVec x (star x) - vecMulVec y (star y)) +
       Complex.I • (vecMulVec (x + Complex.I • y) (star (x + Complex.I • y)) - vecMulVec x (star x) -
@@ -149,7 +138,7 @@ theorem conj_eq (hH : Hm.IsHermitian) (hd : Hm.det ≠ 0) (hP : P.det ≠ 0) (ha
     let z : ℝ → ℂ := fun s => 2 * Complex.I * s / (1 - Complex.I * s * q)
     have hz : Continuous z := Continuous.div₀ (by fun_prop) (by fun_prop) hden
     have := conj_eq_of_path hd hP ha hS h (fun s => 1 + z s • (vecMulVec v (star v) * Hm))
-      (continuous_const.add (hz.smul continuous_const)) (by simp [z]) fun s => refl_mem hH v _ (by
+      (continuous_const.add (hz.smul continuous_const)) (by simp [z]) fun s => _root_.GlobalTheory.UnitaryPerturbation.one_add_smul_mem_unitary hH v _ (by
         have e : star (z s) = -(2 * Complex.I * s) / (1 + Complex.I * s * q) := by simp [z]
         rw [hq, e]
         have := hden s
@@ -204,10 +193,7 @@ theorem nNeg_eq {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSModel V S) (ρ :
     exact (h2 a).symm
   rw [← h3, Fin.card_filter_val_lt, min_eq_right hp]
 
-theorem archM_mul (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (g g' : GA D V) :
-    archM V θ (g * g') = archM V θ g * archM V θ g' := by
-  unfold archM
-  rw [map_mul, Units.val_mul, Matrix.map_mul]
+alias archM_mul := _root_.GlobalTheory.PointAtPlace.archM_mul
 
 theorem archM_det (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (g : GA D V) :
     (archM V θ g).det ≠ 0 := by

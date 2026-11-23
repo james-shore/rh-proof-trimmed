@@ -80,7 +80,7 @@ theorem exBL_isLinked_alt : GlobalTheory.Published.GlobalArtinReciprocity → Gl
     GlobalTheory.Mem.HD.levelTied_of_levEx _ ((GlobalTheory.Mem.HD.levEx_of_over _ _ _ hO hP).2 _ _)
   have hD : β.D = q.w.D q.Z := congrArg Sigma.fst hq
   have hLT' : Formalism.L2.Host.LevelTied (q.w.D q.Z) := hD ▸ hLT
-  obtain ⟨R', hR'⟩ := _root_.GlobalTheory.T.exists_reciprocity_record_compatible hA hW hRay hL p K q hLT' (H.1 q) hE
+  obtain ⟨R', hR'⟩ := _root_.GlobalTheory.Mem.Top.Bl.WPt.exists_recPinE_alt hA hW hRay hL p K q hLT' (H.1 q) hE
   obtain ⟨R, he⟩ := _root_.GlobalTheory.Mem.Top.Bl.exists_bdRec_of_eq_alt hq R' c
   have hv : Val K.C K.cD K.ch β.O.L := β.p.pt_val β.val
   exact _root_.GlobalTheory.Mem.Top.Bl.exists_linked_of_eq_alt H.2 q R' hR' c R he β.sc hv ⟨(_, _), hv.Del_eq, hv.eta_eq⟩

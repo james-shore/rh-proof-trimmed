@@ -66,7 +66,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 namespace PositivityTheory.Rg.BcB.G3
 
 theorem param : Param :=
-  param_pf skewEx_pf (struct_pf factorField_pf) quadField_pf
+  _root_.PositivityTheory.Rg.BcB.G3.ParamP.param_main skewEx_pf (struct_pf factorField_pf) quadField_pf
     (locDict_pf clsNorm_pf clsOnto_pf clsEq_pf baseFrame_pf (inertBase_pf tensorCompl_pf) (splitSq_pf tensorCompl_pf)
       tensorCompl_pf) clsNorm_pf clsOnto_pf clsEq_pf locGood_pf
 

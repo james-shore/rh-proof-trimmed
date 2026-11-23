@@ -228,15 +228,15 @@ theorem exists_archInM (X : Data E r) (hr : 0 < r) (hp : X.p0 = 0) (hΨ : Nonemp
       have h2 := ReciprocityTheory.ChartRestriction.G.AR.Up.UpDivD.pnorm_sq X hx L (w k0)
       have h3 : phla X (2 • L - 0) x = 2 * phla X L x := by
         rw [sub_zero, ReciprocityTheory.ChartRestriction.G.AR.Up.UpDivD.phla_nsmul X hx 2 L]; norm_num
-      rw [← pow_left_inj₀ (GlobalTheory.FrameThetaCompare.pnorm_nonneg X _ _ x)
-        (pow_nonneg (GlobalTheory.FrameThetaCompare.pnorm_nonneg X _ _ x) 2) two_ne_zero, h1, ← pow_mul,
+      rw [← pow_left_inj₀ (_root_.ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.pnorm_nonneg X _ _ x)
+        (pow_nonneg (_root_.ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.pnorm_nonneg X _ _ x) 2) two_ne_zero, h1, ← pow_mul,
         show 2 * 2 = 2 * 2 from rfl, pow_mul, h2, h3, norm_pow]
       rw [show -(2 * phla X L x) = -phla X L x + -phla X L x by ring, Real.exp_add]
       ring
     have hbdd : X.IsBddSec (2 • L - 0) (fun x => w k0 x ^ 2) := by
       refine ⟨hs, C0 ^ 2, fun x hx => ?_⟩
       rw [hpn x hx]
-      exact pow_le_pow_left₀ (GlobalTheory.FrameThetaCompare.pnorm_nonneg X _ _ x) (hC0 x hx) 2
+      exact pow_le_pow_left₀ (_root_.ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.pnorm_nonneg X _ _ x) (hC0 x hx) 2
     exact ⟨⟨hbdd, fun ξ hξ => absurd hξ (hniso ξ)⟩, fun ξ hξ => absurd hξ (hniso ξ)⟩
   have hSD2 : IsStrictDom X (2 • L - 0) := by
     intro τ

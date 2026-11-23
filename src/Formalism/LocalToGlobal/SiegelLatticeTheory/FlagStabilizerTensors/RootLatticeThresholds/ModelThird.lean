@@ -61,8 +61,8 @@ theorem w_symm (x : Fin (r + 1)) : (W).symm x = W x := wPt_symm pN x
 
 def sw (q : Formalism.FourierDecayAlt.C2.Lstidx W) : Formalism.FourierDecayAlt.C2.Lstidx W :=
   ⟨(W q.1.2, W q.1.1), by
-    exact ⟨by simpa only [w_symm] using q.2.2,
-      by simpa only [w_symm, wPt_invol] using q.2.1⟩⟩
+    exact ⟨by simpa only [_root_.Formalism.MainNotions.BigCellDensity.wPt_symm] using q.2.2,
+      by simpa only [_root_.Formalism.MainNotions.BigCellDensity.wPt_symm, wPt_invol] using q.2.1⟩⟩
 
 variable (d : Fin (r + 1) → ℂ)
 
@@ -104,12 +104,12 @@ theorem low_R_mono (hd : ∀ a, d a ≠ 0) (x' : Formalism.FourierDecayAlt.C2.Ls
   rw [low_apply', low_apply']
   by_cases h1 : i = (wPt pN) b
   · subst h1
-    simp [wPt_invol, w_symm]
+    simp [wPt_invol, _root_.Formalism.MainNotions.BigCellDensity.wPt_symm]
   · have h1' : b ≠ (wPt pN) i := fun h => h1 (by rw [h, wPt_invol])
     rw [ite_eq_right h1, ite_eq_right h1', zero_add, zero_add]
     have key : ((wPt pN) b < i ∧ (wPt pN).symm i < (wPt pN).symm ((wPt pN) b)) ↔
         ((wPt pN) i < b ∧ (wPt pN).symm b < (wPt pN).symm ((wPt pN) i)) := by
-      rw [Equiv.symm_apply_apply, Equiv.symm_apply_apply, w_symm, w_symm]
+      rw [Equiv.symm_apply_apply, Equiv.symm_apply_apply, _root_.Formalism.MainNotions.BigCellDensity.wPt_symm, _root_.Formalism.MainNotions.BigCellDensity.wPt_symm]
       exact And.comm
     by_cases h2 : (wPt pN) b < i ∧ (wPt pN).symm i < (wPt pN).symm ((wPt pN) b)
     · have h3 := key.1 h2

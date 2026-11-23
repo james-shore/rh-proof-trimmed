@@ -211,8 +211,7 @@ theorem bsA_val_le (h t : φ.A) (i : ℕ) : (bsA h t).val ≤ (t + i • h).val 
   unfold bsVA
   exact Nat.sInf_le ⟨i, rfl⟩
 
-theorem ord_nsmul_A (h : φ.A) : φ.ord • h = 0 := by
-  exact ord_nsmul_eq_zero h
+alias ord_nsmul_A := _root_.Formalism.MainNotions.Inhab.ord_nsmul_eq_zero
 
 end BaseA
 

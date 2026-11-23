@@ -53,7 +53,7 @@ theorem nonCritical_localParam_of_full_dim (D : D7) (h4 : SumRepresentations.Arc
     (hA : w ∈ D.nd.Q i ∨ (w ∈ D.nd.S i ∧ (w ∈ placesOver D.host.E D.host.pde ∨
       (D.nd.l i = D.host.pde ∧ w ∈ placesOver D.host.E D.host.pde')))) (hd : D.naut.lpDim (D.naut.locV i P w) = D.R.nV) :
     Nc D.nd D.naut (D.naut.locV i P w) := by
-  obtain ⟨hχ, hDel⟩ := (GlobalTheory.T.tame_descent_conditions_every_localisation D i).1
+  obtain ⟨hχ, hDel⟩ := (_root_.GlobalTheory.TameDesign.main D i).1
   obtain ⟨m, p⟩ := h4.1 i P w hw (hA.imp id fun h => ⟨hDel, h.2⟩)
   refine ⟨fun σ hσ hW => ?_, m, fun γ hγ z hz => ?_⟩
   · have e : chi1 D.nd i σ = 1 := by

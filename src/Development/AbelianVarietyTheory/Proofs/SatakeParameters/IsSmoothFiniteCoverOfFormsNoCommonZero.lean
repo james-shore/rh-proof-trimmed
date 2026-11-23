@@ -136,15 +136,12 @@ theorem germ_appLE {Y : Scheme.{0}} (φ : X ⟶ Y) (U : Y.Opens) (W : X.Opens) (
       (X.presheaf.germ (φ ⁻¹ᵁ U) x (h hx)).hom ((φ.app U).hom s) := by
   rw [Scheme.Hom.appLE, CommRingCat.comp_apply, TopCat.Presheaf.germ_res_apply]
 
-theorem ratioSec_eq (i j : Fin (d + 1)) : XCover.ratioSec d i j = ratio ℂ d i j :=
-  (awayToSection_mk _ 1 _).trans (frac_eq (by ring))
-
 theorem rat_formMap [IsIntegral X] (j : Fin (d + 1)) (hg : genericPoint X ∈ fOpen ι (f 0)) :
     XCover.rat (formMap ι f hf p hcov) 0 j =
       (X.presheaf.germ (fOpen ι (f 0)) (genericPoint X) hg).hom (fRatio ι (f j) (f 0) (hf j) (hf 0)) := by
   have hmem : genericPoint X ∈ formMap ι f hf p hcov ⁻¹ᵁ XCover.chart d 0 :=
     (formMap_preimage ι f hf p hcov 0).ge hg
-  rw [XCover.rat, dite_eq_left hmem, ← pullRatio_formMap ι f hf p hcov 0 j, pullRatio, germ_appLE, ratioSec_eq]
+  rw [XCover.rat, dite_eq_left hmem, ← pullRatio_formMap ι f hf p hcov 0 j, pullRatio, germ_appLE, _root_.GlobalTheory.PD.XCover.Integ.ratioSec_eq_ratio]
 
 
 open XCover in
@@ -152,12 +149,12 @@ theorem exists_finCover_of_isFinite {X : Scheme.{0}} [IsIntegral X] (p : X ⟶ S
     [inst : Algebra ℂ X.functionField] (hinst : inst = ffAlg p) (φ : X ⟶ PSpace ℂ d) [IsFinite φ]
     (hφ : φ ≫ PSpace.str ℂ d = p) (hgen : ∀ i, genericPoint X ∈ φ ⁻¹ᵁ XCover.chart d i) :
     IsFinCover ℂ X.functionField (crd φ) ∧ IsAffCover p (fun i => φ ⁻¹ᵁ XCover.chart d i) (rB ℂ X.functionField (crd φ)) := by
-  have hrat := GlobalTheory.T.pulledBackProjCoordinateRatio_overlap_div d X φ
+  have hrat := _root_.GlobalTheory.PD.XCover.rat_overlap d X φ
   have h00 : rat φ 0 0 = 1 := by
     obtain ⟨h1, h2⟩ := hrat 0 0 0 (hgen 0) (hgen 0)
     rw [div_self h1] at h2
     exact h2
-  have hch := GlobalTheory.T.projective_chart_affine_cover d X φ
+  have hch := _root_.GlobalTheory.PD.XCover.preimage_chart_cover d X φ
   have hne : ∀ I : Finset (Fin (d + 1)), genericPoint X ∈ I.inf fun i => φ ⁻¹ᵁ XCover.chart d i := by
     intro I
     induction I using Finset.induction_on with
@@ -167,18 +164,18 @@ theorem exists_finCover_of_isFinite {X : Scheme.{0}} [IsIntegral X] (p : X ⟶ S
       ∃ f : Γ(X, I.inf fun i => φ ⁻¹ᵁ XCover.chart d i), (X.presheaf.germ _ (genericPoint X) (hne I)).hom f = y := by
     intro I hI y
     constructor
-    · exact GlobalTheory.T.chart_function_field_integral d X p hinst φ hφ hgen I hI (hne I) y
+    · exact _root_.GlobalTheory.PD.XCover.mem_germ_range_of_mem_rB d X p hinst φ hφ hgen I hI (hne I) y
     · rintro ⟨f, rfl⟩
-      exact GlobalTheory.T.genericGerm_chartInter_integral_coordinateRatios d X p hinst φ hφ hgen I hI (hne I) f
+      exact _root_.GlobalTheory.PD.XCover.germ_mem_rB d X p hinst φ hφ hgen I hI (hne I) f
   have h1 : crd φ 0 = 1 := Subtype.ext h00
   haveI : CharZero (fld φ) := charZero_of_injective_algebraMap (algebraMap ℂ (fld φ)).injective
   haveI : Smooth p := SmoothOfRelativeDimension.smooth d p
-  refine ⟨IsFinCover.of_charZero ⟨?_, ?_, ?_⟩ (GlobalTheory.T.finite_projection_function_field d X p hinst φ hφ hgen) ?_,
+  refine ⟨IsFinCover.of_charZero ⟨?_, ?_, ?_⟩ (_root_.GlobalTheory.PD.XCover.finiteDimensional_fld d X p hinst φ hφ hgen) ?_,
     ⟨?_, fun I hI => hch.2 I hI, hch.1, hne, hring⟩⟩
   · intro i h
     exact (hrat 0 i i (hgen 0) (hgen i)).1 (by simpa [crd_val] using congrArg (fun z : fld φ => (z : X.functionField)) h)
   · simp only [h1, div_one]
-    exact AlgebraicIndependent.of_comp (fld φ).val (GlobalTheory.T.algebraicIndependent_pulledBackProjCoordinateRatios d X p hinst φ hφ hgen)
+    exact AlgebraicIndependent.of_comp (fld φ).val (_root_.GlobalTheory.PD.XCover.algebraicIndependent_rat d X p hinst φ hφ hgen)
   · simp only [h1, div_one]
     rw [eq_top_iff]
     intro z _
@@ -193,7 +190,7 @@ theorem exists_finCover_of_isFinite {X : Scheme.{0}} [IsIntegral X] (p : X ⟶ S
     have : w = z := Subtype.ext hwz
     rwa [← this]
   · intro i
-    exact GlobalTheory.T.affine_germ_subalgebra_smooth X p hinst _ (hch.2 {i} (Finset.singleton_nonempty i)) (hne {i}) _
+    exact _root_.GlobalTheory.germImage_smooth X p hinst _ (hch.2 {i} (Finset.singleton_nonempty i)) (hne {i}) _
       (hring {i} (Finset.singleton_nonempty i))
   · subst hinst
     rfl

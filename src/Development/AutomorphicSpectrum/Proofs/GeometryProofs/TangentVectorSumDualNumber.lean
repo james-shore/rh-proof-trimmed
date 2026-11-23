@@ -180,7 +180,7 @@ theorem mul_left_eq : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] (U : G.left.O
     · rw [hχ]
       exact RingHom.congr_fun hfst s
     · have key := congrArg (Scheme.ΓSpecIso (CommRingCat.of (DualNumber C))).hom.hom
-        (GlobalTheory.T.tangent_section_additive S G C y v w hv hw U hv' hw' hvw h1 s)
+        (_root_.GlobalTheory.CompanionTheory.Ar.SqAdd.tan_mul_add S G C y v w hv hw U hv' hw' hvw h1 s)
       rw [map_add (f := _), map_add (f := _)] at key
       change ringOf (v * w).left hvw s + ringOf (1 : epsAt y ⟶ G).left h1 s =
         ringOf v.left hv' s + ringOf w.left hw' s at key

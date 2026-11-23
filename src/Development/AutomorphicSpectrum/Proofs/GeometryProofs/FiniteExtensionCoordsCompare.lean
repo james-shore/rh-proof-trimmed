@@ -103,13 +103,9 @@ theorem inChart_down {ξ : Spec (CommRingCat.of Ω) ⟶ X} {ξ' : Spec (CommRing
   rw [e]
   exact mul_mem (hd.2 j) hu.2.2
 
-theorem inChart_gen {ξ : Spec (CommRingCat.of Ω) ⟶ X} (hg : IsCptGen ξ) {ι : Type} {v : ι → Ω} {c : ι} (hc : v c ≠ 0) :
-    InChart ξ v c ⟨genPt ξ, specializes_rfl⟩ :=
-  ⟨hc, fun _ => SheetDecomposition.BBase.mem_regAt_gen hg _⟩
-
 theorem exists_mul_mem {ξ : Spec (CommRingCat.of Ω) ⟶ X} {κ : Type} {x : κ → Ω} (h : CoordTie ℤ ξ x) {c : κ}
     (hc : x c ≠ 0) (a : Ω) : ∃ t ∈ chRing ℤ x c, t ≠ 0 ∧ t * a ∈ chRing ℤ x c := by
-  obtain ⟨t, ht, hu, hta⟩ := (SheetDecomposition.regular_function_chart_adjoin X Ω ξ ℤ κ x h c ⟨genPt ξ, specializes_rfl⟩ (inChart_gen h.gen hc) a).1
+  obtain ⟨t, ht, hu, hta⟩ := (_root_.GlobalTheory.CompanionTheory.Ar.regAt_iff_exists_chart_fraction X Ω ξ ℤ κ x h c ⟨genPt ξ, specializes_rfl⟩ (_root_.GlobalTheory.CompanionTheory.Ar.ChartFin.inChart_genPt h.gen hc) a).1
     (SheetDecomposition.BBase.mem_regAt_gen h.gen a)
   exact ⟨t, ht, hu.1, hta⟩
 
@@ -261,7 +257,7 @@ theorem exists_normal_pModel [Finite κ] [Finite κ₃] (hs : ∀ c, s c = u₁ 
   have hR : ∀ a ∈ chRing ℤ s c, a ∈ regAt M.ξ p := chRing_le hs hc.1 _ k₁.2 k₂.2 k₃.2
   have hreg : regAt N.ξ q = regAt M.ξ p := by
     refine le_antisymm (fun a ha => ?_) (fun a ha => hctr.1 a ha)
-    obtain ⟨t, ht, hu, hta⟩ := (SheetDecomposition.regular_function_chart_adjoin N.X Ω N.ξ ℤ κ s N.tie c q hc a).1 ha
+    obtain ⟨t, ht, hu, hta⟩ := (_root_.GlobalTheory.CompanionTheory.Ar.regAt_iff_exists_chart_fraction N.X Ω N.ξ ℤ κ s N.tie c q hc a).1 ha
     have hup : unitAt M.ξ p t := hctr.2 t (hR t ht) hu
     have e : a = t⁻¹ * (t * a) := by rw [inv_mul_cancel_left₀ hu.1]
     rw [e]

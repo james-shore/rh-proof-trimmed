@@ -243,7 +243,7 @@ theorem core0 (D : D7) (t : Formalism.L2.Theta.GA D (D.sp.Y 0)) (PY : RowPsi (Yc
       ε₀ kv * ε₀ kv' = 0 ∧ ε₀ kv * conjAL D.host.E (ε₀ kv') = 0 := by
     intro kv kv' hne
     constructor <;>
-    · apply GlobalTheory.T.finiteAdelesCmField_eq_zero_of_components
+    · apply _root_.GlobalTheory.AL_eq_zero_of_compAt
       intro v
       rw [map_mul]
       by_cases hv : v = (sp kv).v
@@ -320,7 +320,7 @@ theorem core0 (D : D7) (t : Formalism.L2.Theta.GA D (D.sp.Y 0)) (PY : RowPsi (Yc
       (((x : GL (Fin D.R.r) (AL D.host.E)) : Matrix (Fin D.R.r) (Fin D.R.r) (AL D.host.E)) i j -
         (1 : Matrix (Fin D.R.r) (Fin D.R.r) (AL D.host.E)) i j) = 0 := by
     intro i j
-    apply GlobalTheory.T.finiteAdelesCmField_eq_zero_of_components
+    apply _root_.GlobalTheory.AL_eq_zero_of_compAt
     intro v
     rw [map_mul, map_sub, map_sub, map_one]
     by_cases hv : v = (sp kv).v

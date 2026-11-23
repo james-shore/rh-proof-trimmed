@@ -175,7 +175,7 @@ theorem exists_mv {I : TC B X} (hI : I.Ok) (hP : TC.Pins B X) {l : I.Laws} {Z : 
       rfl
     rw [e]
     exact R.k_T β P r j hr
-  obtain ⟨hkU, hkV, -, -⟩ := GlobalTheory.T.admissibleBasePoint_unitary_normalisesLevel B.sp.cm (B.R.N i) hB (A.kb i β) (diaT (Pr := B.primes X) u) (R.k_std β) k3
+  obtain ⟨hkU, hkV, -, -⟩ := _root_.GlobalTheory.Mem.Col2.ChEx.basePt_facts B.sp.cm (B.R.N i) hB (A.kb i β) (diaT (Pr := B.primes X) u) (R.k_std β) k3
   refine exists_basePt_on (A.K i hi β).lev (A.kb i β) ?_ (fun v => ?_) S hSf hST
   · rw [hgr]
     exact hkU

@@ -105,7 +105,7 @@ theorem expStar_image : ∀ (D : Formalism.BasicNotions.D7) (l : ℕ) [Fact l.Pr
         div_eq_one_iff_eq (zpow_pos hlr _).ne']
       congr 1
       ring
-    obtain ⟨lam, d, h1, h2, h3, h4⟩ := GlobalTheory.T.exists_cyclotomicFrobeniusTwistedValue_eq_pow_mul l (D.loc l) K s e hs.1 (algebraMap ℚ_[l] (Om l) κ * α)
+    obtain ⟨lam, d, h1, h2, h3, h4⟩ := _root_.GlobalTheory.ExpImage.exists_cycVal_eq_pow_mul l (D.loc l) K s e hs.1 (algebraMap ℚ_[l] (Om l) κ * α)
       (mul_mem (IntermediateField.algebraMap_mem _ _) hα) (by rw [norm_algebraMap_mul, hκ1, one_mul]; exact hα1)
     obtain ⟨z, hz, hE⟩ := H lam d h1 h2 h3
     refine ⟨z, hz, ?_⟩

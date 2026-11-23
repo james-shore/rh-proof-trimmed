@@ -109,12 +109,6 @@ namespace GlobalTheory.SW
 
 open Coef
 
-private theorem classSum_congr_of_eqOn_Vset {E : Type} [Field E] [NumberField E] [IsCMField E]
-    {n M : ℕ} {f g : Lt E n → ℂ} (h : ∀ Λ ∈ Vset E n M, f Λ = g Λ) :
-    classSum M f = classSum M g := by
-  unfold classSum
-  exact finsum_congr fun c => by rw [h _ (Quot.out c).2]
-
 theorem lattice_operator_coefficients : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (g : ℕ) (bas : (Fin g ⊕ Fin g → ℤ) ≃ₗ[ℤ] X.Λ) (idx : Fin g ≃ X.Ψ × Fin r) (n : ℕ), IsSympl X bas → Even n → ∀ (M : ℕ) (Δ : Subgroup (GL (Fin r) E)) (𝓛 : Set (Lt E r)) (Φ : Lt E r → Lt E n → TF n g) (μ : GL (Fin r) E → Lt E r → ℂ), 0 < M → IsSystem X bas idx M Δ 𝓛 Φ μ → ∃ (a θ : ℝ), 0 < a ∧ θ < 1 ∧ (∀ L ∈ 𝓛, classSum M (fun Λ => ip (Φ L Λ) (Φ L Λ)) = a ∧ Summable (fun L' : {L' // L' ∈ 𝓛 ∧ L' ≠ L} => ‖classSum M (fun Λ => ip (Φ L Λ) (Φ L'.1 Λ))‖) ∧ ∑' L' : {L' // L' ∈ 𝓛 ∧ L' ≠ L}, ‖classSum M (fun Λ => ip (Φ L Λ) (Φ L'.1 Λ))‖ ≤ θ * a) ∧ ∀ γ ∈ Δ, ∀ L ∈ 𝓛, ∀ L' ∈ 𝓛, classSum M (fun Λ => ip (Φ (mapL γ L) Λ) (Φ (mapL γ L') Λ)) * μ γ L * conj (μ γ L') = classSum M (fun Λ => ip (Φ L Λ) (Φ L' Λ)) := by
   intro E _ _ _ r X g bas idx n hs hn M Δ 𝓛 Φ μ hM hsys
   obtain ⟨m, hm, hconst, hbd⟩ := Coef.exists_mass (E := E) (n := n) hM
@@ -148,6 +142,6 @@ theorem lattice_operator_coefficients : ∀ (E : Type) [Field E] [NumberField E]
           (hsys.sb _ (hsys.stab γ hγ L' hL') Λ hΛ)]
       ring
     rw [mul_assoc, Coef.classSum_mul hM]
-    exact classSum_congr_of_eqOn_Vset fun Λ hΛ => (key Λ hΛ).symm
+    exact _root_.GlobalTheory.SW.Base.classSum_congr fun Λ hΛ => (key Λ hΛ).symm
 
 end GlobalTheory.SW

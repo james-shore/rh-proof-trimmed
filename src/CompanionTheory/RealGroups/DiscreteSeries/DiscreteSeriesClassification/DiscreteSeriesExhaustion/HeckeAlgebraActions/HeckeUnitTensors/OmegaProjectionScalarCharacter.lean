@@ -146,12 +146,7 @@ theorem omega_projection_scalar_character (hS : ScalChar X χ) (v : X.V) :
   congr 1
   unfold cn; push_cast; ring
 
-theorem tensVd_apply {M : Type*} [AddCommGroup M] [Module ℂ M] {n : ℕ} (E : Fin n → Fin n → Module.End ℂ M)
-    (a b : Fin n) (f : Fin n → M) (d : Fin n) :
-    ReciprocityTheory.ChartRestriction.DS.Lap.Capelli.tensVd E a b f d = E a b (f d) - if d = b then f a else 0 := by
-  simp only [ReciprocityTheory.ChartRestriction.DS.Lap.Capelli.tensVd, LinearMap.pi_apply, LinearMap.sub_apply, LinearMap.comp_apply,
-    LinearMap.proj_apply]
-  split_ifs <;> simp
+alias tensVd_apply := _root_.ReciprocityTheory.ChartRestriction.DS.Lap.Capelli.tensVd_apply'
 
 theorem tensE_single (a b d : Fin (m + 1)) (v : X.V) :
     tensE X a b (Pi.single d v) = Pi.single d (X.E a b v) + if b = d then Pi.single a v else 0 := by

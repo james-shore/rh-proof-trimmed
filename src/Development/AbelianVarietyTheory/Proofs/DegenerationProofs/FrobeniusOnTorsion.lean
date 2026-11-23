@@ -159,14 +159,7 @@ private theorem isMonHom_mul_degeneration {S : Scheme.{0}} {M G : Over S} [MonOb
   rw [Hom.mul_def]
   infer_instance
 
-theorem isMonHom_id_pow (G : Over S) [GrpObj G] [IsCommMonObj G] (n : ℕ) : IsMonHom ((𝟙 G) ^ n : G ⟶ G) := by
-  induction n with
-  | zero =>
-    rw [pow_zero, Hom.one_def]
-    infer_instance
-  | succ n ih =>
-    rw [pow_succ]
-    exact isMonHom_mul_degeneration _ _
+alias isMonHom_id_pow := _root_.GlobalTheory.SS.DivSemi.isMonHom_id_pow
 
 theorem norm_lt_of_normSq {β : ℂ} {Q : ℕ} (hQ : 2 ≤ Q) (h : Complex.normSq β = Q) : ‖β‖ < Q := by
   have h1 : ‖β‖ ^ 2 = (Q : ℝ) := by

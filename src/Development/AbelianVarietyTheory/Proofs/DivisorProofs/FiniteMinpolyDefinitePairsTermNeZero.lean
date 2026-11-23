@@ -72,9 +72,9 @@ theorem integral_of_term_ne_zero : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) 
   classical
   intro p _ G L f r K φ hr hf hφ
   letI : Inv (Set G.GAf) := Set.inv
-  obtain ⟨Ω, hΩc, hΩ⟩ := GlobalTheory.T.twistedHeckeTestFunction_support_compact p G L f hf
-  obtain ⟨D, hD, hDp⟩ := GlobalTheory.T.compact_conj_charpoly_bounded_denominators_awayP p G (Ω ∪ Ω⁻¹) (hΩc.union hΩc.inv)
-  obtain ⟨k, hk⟩ := GlobalTheory.T.twisted_orbit_norm_bounds p G r K φ hr hφ
+  obtain ⟨Ω, hΩc, hΩ⟩ := _root_.GlobalTheory.isTest_support_compact p G L f hf
+  obtain ⟨D, hD, hDp⟩ := _root_.GlobalTheory.AwayPDen.charpoly_den_bounded p G (Ω ∪ Ω⁻¹) (hΩc.union hΩc.inv)
+  obtain ⟨k, hk⟩ := _root_.GlobalTheory.AtPBd.main p G r K φ hr hφ
   have hp := (Fact.out : p.Prime)
   refine ⟨D * p ^ (2 * k * Module.finrank ℚ G.C), Nat.mul_pos hD (pow_pos hp.pos _), ?_⟩
   intro P hirr hP
@@ -94,12 +94,12 @@ theorem integral_of_term_ne_zero : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) 
         ((LinearMap.mulLeft ℚ (y0 : G.C)).charpoly.map (algebraMap ℚ (PadicAlgCl p))).IsRoot μ →
         ‖μ‖ ≤ (p : ℝ) ^ (2 * k) := fun μ hμ => by
       rw [show 2 * k = k + k by ring, pow_add]; exact hroots μ hμ
-    have h6 := GlobalTheory.T.padic_coeff_denominator_bound_of_bounded_roots p _ (LinearMap.charpoly_monic _) (2 * k) hroots'
+    have h6 := _root_.GlobalTheory.padic_denom_coeff_of_roots_bounded p _ (LinearMap.charpoly_monic _) (2 * k) hroots'
     rw [LinearMap.charpoly_natDegree] at h6
-    apply GlobalTheory.T.isIntegral_natCast_smul_of_mul_charpoly_coeff_int G.C
+    apply _root_.GlobalTheory.isIntegral_smul_of_charpoly_coeff_mul_int G.C
     intro i
     obtain ⟨kk, hkk⟩ := hAf i
-    exact GlobalTheory.T.den_bound_combine_padic_primeToP p D (2 * k * Module.finrank ℚ G.C) kk hp _ (h6 i) hkk
+    exact _root_.GlobalTheory.den_comb p D (2 * k * Module.finrank ℚ G.C) kk hp _ (h6 i) hkk
   rw [DPair.term] at hP
   split_ifs at hP with h
   swap
@@ -266,7 +266,7 @@ variable {p : ℕ} [Fact p.Prime]
 theorem finite_pol_int (G : HTGroup p) (N : ℕ) (hN : 0 < N) :
     {P0 : Polynomial G.F | ∃ P : DPair G, P.pol = P0 ∧
       IsIntegral ℤ ((N : ℤ) • (P.γ : G.C)) ∧ IsIntegral ℤ ((N : ℤ) • ((P.γ⁻¹ : G.Cˣ) : G.C))}.Finite := by
-  refine (GlobalTheory.T.finite_monic_of_roots_bdd_of_mul_isIntegral G.F G.n N N hN).subset ?_
+  refine (_root_.GlobalTheory.finite_monic_roots_bdd_mul_isIntegral G.F G.n N N hN).subset ?_
   rintro _ ⟨P, rfl, hI1, hI2⟩
   have hc0 : ((P.c : ℚ) : ℝ) ≠ 0 := by exact_mod_cast P.c.ne_zero
   have hint : ∀ (v : InfinitePlace G.F) (w : ℂ) (x : Fin G.n → ℂ), x ≠ 0 → G.psi v P.γ *ᵥ x = w • x →

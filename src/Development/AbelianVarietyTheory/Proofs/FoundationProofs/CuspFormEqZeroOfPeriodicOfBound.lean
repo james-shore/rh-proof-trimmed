@@ -139,7 +139,7 @@ theorem fourier_sub_eq : ∀ (U : ℂ → ℂ) (h : ℍ → ℂ) (w : ℕ) (T : 
         funext x
         rw [mul_pow]
         ring
-      rw [hfun, intervalIntegral.integral_const_mul, GlobalTheory.T.integral_conj_mul_exp_eq_conj_qExpansion_coeff h T n y hT hy0 hh hper hbdd]
+      rw [hfun, intervalIntegral.integral_const_mul, _root_.GlobalTheory.HeckeFamilyMatrices.Qc.conj_integral h T n y hT hy0 hh hper hbdd]
       ring
     rw [intervalIntegral.integral_congr inner, intervalIntegral.integral_const_mul]
 

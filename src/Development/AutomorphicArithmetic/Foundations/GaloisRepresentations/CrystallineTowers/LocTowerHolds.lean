@@ -56,7 +56,7 @@ namespace UpperTheory.Gal.Seam
 
 theorem hopEx_holds : HopEx := hopExS trivial
 
-theorem locTower_holds : LocTower := G3.locTower_of G3.vBcS_holds hopEx_holds niceBc
+theorem locTower_holds : LocTower := G3.locTower_of _root_.UpperTheory.Gal.G3.jVBcS hopEx_holds niceBc
 
 theorem pieceIn_holds : PieceIn := pieceInS G3.vInv_holds hopEx_holds
 

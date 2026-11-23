@@ -51,6 +51,8 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.LsDatumA
+import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.FirstProjConjApply
+import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ThetaModuleTransport.HeadColumnCoordinates.UnitaryGramLifts.SecondProjConjApply
 
 @[expose] public section
 
@@ -83,15 +85,6 @@ theorem nz2 {F : Type} [Field F] {B b t u : F} (hB : B ≠ 0) (ht : t ≠ 0) (hu
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
 variable {M : Model F E} {g : SplitG M.L} {r : ℕ}
-
-theorem firstProj_conj_algebra (x : E) : ph1 g (M.L.cj x) = ph2 g x := by
-  show (g.e (M.L.cj x)).1 = (g.e x).2
-  rw [g.e_cj]
-  rfl
-theorem secondProj_conj_algebra (x : E) : ph2 g (M.L.cj x) = ph1 g x := by
-  show (g.e (M.L.cj x)).2 = (g.e x).1
-  rw [g.e_cj]
-  rfl
 
 theorem scaleChoice_holds : ScaleChoiceP := by
   intro F _ _ _ E _ _ _ _ M g hs r T T' hT hq hT0 Zh₁ Zh₂ Z₁ Z₂ e₁ e₂ u₁ u₂ hrel
@@ -198,11 +191,11 @@ theorem scaleChoice_holds : ScaleChoiceP := by
       head_mul_dlast, map_mul, map_mul, firstProj_apply (g := g) α, secondProj_apply (g := g) α, hα]
     rw [hfk] at b5 b7
     exact ⟨nz1 hu₂.1 b5, nz2 hu₂.2 hT'ne hu0 b7⟩
-  · rw [zz_unit_iff hs, det_map_cj, head_map_cj, firstProj_conj_algebra, firstProj_conj_algebra, secondProj_conj_algebra, secondProj_conj_algebra, Matrix.det_mul, dlast_det,
+  · rw [zz_unit_iff hs, det_map_cj, head_map_cj, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.firstProj_conj_apply, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.firstProj_conj_apply, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.secondProj_conj_apply, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.secondProj_conj_apply, Matrix.det_mul, dlast_det,
       head_mul_dlast, map_mul, map_mul, firstProj_apply (g := g) α, secondProj_apply (g := g) α, hα]
     rw [hfk] at b2 b4
     exact ⟨nz2 hu₁.2 hTne hu0 b4, nz1 hu₁.1 b2⟩
-  · rw [zz_unit_iff hs, det_map_cj, head_map_cj, firstProj_conj_algebra, firstProj_conj_algebra, secondProj_conj_algebra, secondProj_conj_algebra, Matrix.det_mul, dlast_det,
+  · rw [zz_unit_iff hs, det_map_cj, head_map_cj, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.firstProj_conj_apply, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.firstProj_conj_apply, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.secondProj_conj_apply, _root_.Formalism.L2.SG.LocalCountModules.ThetaMbe0GWork.secondProj_conj_apply, Matrix.det_mul, dlast_det,
       head_mul_dlast, map_mul, map_mul, firstProj_apply (g := g) α, secondProj_apply (g := g) α, hα]
     rw [hfk] at b6 b8
     exact ⟨nz2 hu₂.2 hTne hu0 b8, nz1 hu₂.1 b6⟩

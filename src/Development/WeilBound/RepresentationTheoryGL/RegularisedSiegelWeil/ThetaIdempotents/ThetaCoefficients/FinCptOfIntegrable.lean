@@ -77,13 +77,6 @@ theorem archBump [IsTotallyReal F] {M n : ℕ} (C : Set (Fin n → Fin M → Ain
     Metric.closedBall_subset_closedBall (le_max_left ρ 1) (hρ ⟨Y, hY, rfl⟩)
   rw [β.one_of_mem_closedBall hm, Complex.ofReal_one]
 
-omit [NumberField F] [NumberField E] in
-theorem repr_natCast_mul' {d : ℕ} (b : Module.Basis (Fin d) F E) {R : Type} [CommRing R]
-    [Algebra F R] (N : ℕ) (y : R ⊗[F] E) (k : Fin d) :
-    (Algebra.TensorProduct.basis R b).repr ((N : R ⊗[F] E) * y) k =
-      (N : R) * (Algebra.TensorProduct.basis R b).repr y k := by
-  rw [← nsmul_eq_mul, map_nsmul, Finsupp.smul_apply, nsmul_eq_mul]
-
 theorem scaled_cpt_open {d n M : ℕ} (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F)) (N : ℕ)
     (hN : 0 < N) (hL : IsCompact (latV b v : Set (Fin n → Fin M → Fv F v ⊗[F] E)) ∧
       IsOpen (latV b v : Set (Fin n → Fin M → Fv F v ⊗[F] E))) :
@@ -132,7 +125,7 @@ theorem scaled_eq_lat {d n M : ℕ} (b : Module.Basis (Fin d) F E) (v : HeightOn
       rwa [← mul_assoc, hwN, one_mul] at this
     · exact fun h => mul_mem (natCast_mem _ N) h
   ext Y
-  simp only [Set.mem_ofPred_eq, latV, repr_natCast_mul', key]
+  simp only [Set.mem_ofPred_eq, latV, _root_.GlobalTheory.CompanionTheory.SW.Cpt.repr_natCast_mul, key]
 
 theorem finCpt_of_integrable (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (M : ℕ) (J : Matrix (Fin M) (Fin M) E)
     (hJ : IsHermND σ J) (n : ℕ) (h2n : 2 * n < M) (ν : Measure (Fin n → Fin M → AF F ⊗[F] E))

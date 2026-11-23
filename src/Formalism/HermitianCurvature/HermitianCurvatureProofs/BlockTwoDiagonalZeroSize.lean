@@ -236,17 +236,17 @@ variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
 
 theorem zj_apply_ll {p : ℕ} (a : Fin 1 → Fin p → ℂ) (b : Fin p → Fin 1 → ℂ) (H : Matrix (Fin p) (Fin p) ℂ)
     (C : Matrix (Fin 1) (Fin 1) ℂ) (i j : Fin p) : Zj a b H C (Fin.castAdd 1 i) (Fin.castAdd 1 j) = H i j := by
-  rw [Formalism.FourierDecayAlt.P.level_z_affine]
+  rw [_root_.Formalism.FourierDecayAlt.P.Ux4.ux_zjAffine]
   simp [blk2]
 
 theorem zj_apply_lr {p : ℕ} (a : Fin 1 → Fin p → ℂ) (b : Fin p → Fin 1 → ℂ) (H : Matrix (Fin p) (Fin p) ℂ)
     (C : Matrix (Fin 1) (Fin 1) ℂ) (i : Fin p) : Zj a b H C (Fin.castAdd 1 i) (Fin.natAdd p 0) = (H * Matrix.of b) i 0 := by
-  rw [Formalism.FourierDecayAlt.P.level_z_affine]
+  rw [_root_.Formalism.FourierDecayAlt.P.Ux4.ux_zjAffine]
   simp [blk2]
 
 theorem zj_apply_rl {p : ℕ} (a : Fin 1 → Fin p → ℂ) (b : Fin p → Fin 1 → ℂ) (H : Matrix (Fin p) (Fin p) ℂ)
     (C : Matrix (Fin 1) (Fin 1) ℂ) (j : Fin p) : Zj a b H C (Fin.natAdd p 0) (Fin.castAdd 1 j) = (Matrix.of a * H) 0 j := by
-  rw [Formalism.FourierDecayAlt.P.level_z_affine]
+  rw [_root_.Formalism.FourierDecayAlt.P.Ux4.ux_zjAffine]
   simp [blk2]
 
 theorem det_zj {p s : ℕ} (a : Fin s → Fin p → ℂ) (b : Fin p → Fin s → ℂ) (H : Matrix (Fin p) (Fin p) ℂ)
@@ -390,7 +390,7 @@ theorem contDiff_zj (p : ℕ) (C : Matrix (Fin 1) (Fin 1) ℂ) :
   have e : (fun q : G.Mat p × AB p => fun (i j : Fin (p + 1)) => Zj q.2.1 q.2.2 (Matrix.of q.1) C i j) = fun q =>
       fun (i j : Fin (p + 1)) => blk2 (Matrix.of q.1) (Matrix.of q.1 * Matrix.of q.2.2) (Matrix.of q.2.1 * Matrix.of q.1)
         (Matrix.of q.2.1 * Matrix.of q.1 * Matrix.of q.2.2 + C) i j := by
-    funext q; rw [Formalism.FourierDecayAlt.P.level_z_affine]
+    funext q; rw [_root_.Formalism.FourierDecayAlt.P.Ux4.ux_zjAffine]
   rw [e]
   refine contDiff_pi.2 fun i => contDiff_pi.2 fun j => ?_
   obtain ⟨i', rfl⟩ := finSumFinEquiv.surjective i

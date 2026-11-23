@@ -68,17 +68,14 @@ variable {σ : E →ₐ[F] E} {B : Base F E} {nS nT : ℕ} {JS : Matrix (Fin nS)
   {ξ₀ : E} {θ : InfinitePlace F → (Ainf F ⊗[F] E →+* ℂ)} {ι : (InfinitePlace F → ℂ) →+ AEF F E}
   {Λ : Submodule (𝓞 E) (Matrix (Fin nT) (Fin nS) E)} {hc : HeisClosedF σ JS JT ξ₀ B.ψ} {w : 𝓞 E} {lam : ℕ →* ℂ}
   {Om : GAF σ JS × GAF σ JT →* Module.End ℂ (thetaSubF σ JS JT ξ₀ B.ψ)}
-theorem sgsg_k (hB : _root_.UpperTheory.TP.W.GoodK σ B) (x : E) : σ (σ x) = x := by
-  let τ : E →+* ℂ := (IsAlgClosed.lift (M := ℂ) (R := ℚ) (S := E)).toRingHom
-  apply τ.injective
-  rw [hB.cm.2.2.2 τ, hB.cm.2.2.2 τ, star_star]
+alias sgsg_k := _root_.PositivityTheory.ThKW.TauSpanIdentities.sig_sig_k
 theorem mem_iff_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (hR : RatSD σ JS JT ξ₀ Λ)
     (hA : SelfDual (gamFF σ JS JT ξ₀ B.ψ) (latF F E nS nT Λ)) (y : Matrix (Fin nT) (Fin nS) E) :
     finRatF F y ∈ latF F E nS nT Λ ↔ y ∈ Λ :=
-  ⟨fun h => (hR y).2 fun M' hM' => (_root_.PositivityTheory.ThKW.gamQF_eq_one_iff'_k C y M').1 ((hA _).1 h _ (finRatF_mem_of hM')),
+  ⟨fun h => (hR y).2 fun M' hM' => (_root_.PositivityTheory.ThKW.TauSpanIdentities.gamQF_eq_one_iff'_k C y M').1 ((hA _).1 h _ (finRatF_mem_of hM')),
     finRatF_mem_of⟩
 theorem sdQ_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (hR : RatSD σ JS JT ξ₀ Λ) : SelfDual (gamQF σ JS JT ξ₀ B.ψ) Λ := fun x =>
-  (hR x).trans (forall₂_congr fun y _ => (_root_.PositivityTheory.ThKW.gamQF_eq_one_iff'_k C x y).symm)
+  (hR x).trans (forall₂_congr fun y _ => (_root_.PositivityTheory.ThKW.TauSpanIdentities.gamQF_eq_one_iff'_k C x y).symm)
 theorem norm_emb_eq_k (hB : _root_.UpperTheory.TP.W.GoodK σ B) (φ : E →+* ℂ) (x : E) :
     ∃ v : InfinitePlace F, ‖φ x‖ = ‖tauB B v x‖ := by
   have hcm := hB.cm
@@ -134,7 +131,7 @@ theorem idx_eq_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι)
     · ext x; exact hmem x
     · ext x
       show finRatF F x ∈ (latF F E nS nT Λ).map (rhoFF σ JS JT (g, h)) ↔ b * x * a ∈ Λ
-      rw [mem_map_rho, rhoFF_finRatF ha hb, hmem]
+      rw [mem_map_rho, _root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb, hmem]
   · intro z hz
     have hN := Nat.pos_of_ne_zero hfin
     obtain ⟨γ, hγ⟩ := lat_approx hG _ (incAF F E ((idx (latF F E nS nT Λ)
@@ -142,7 +139,7 @@ theorem idx_eq_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι)
     obtain ⟨u, hu, e⟩ : ∃ u ∈ latF F E nS nT Λ, z = finRatF F (idx (latF F E nS nT Λ)
         ((latF F E nS nT Λ).map (rhoFF σ JS JT (g⁻¹, h⁻¹))) • γ) +
         idx (latF F E nS nT Λ) ((latF F E nS nT Λ).map (rhoFF σ JS JT (g⁻¹, h⁻¹))) • u :=
-      ⟨_, hγ, by rw [map_nsmul, ← nsmul_add, add_sub_cancel, nsmul_inv_smul' (F := F) (E := E) hN]⟩
+      ⟨_, hγ, by rw [map_nsmul, ← nsmul_add, add_sub_cancel, _root_.PositivityTheory.ThKW.LatC.nsmul_inv_smul (F := F) (E := E) hN]⟩
     refine ⟨idx (latF F E nS nT Λ) ((latF F E nS nT Λ).map (rhoFF σ JS JT (g⁻¹, h⁻¹))) • γ, ?_, ?_⟩
     · show finRatF F _ ∈ (latF F E nS nT Λ).map (rhoFF σ JS JT (g, h))
       rw [eq_sub_of_add_eq e.symm]
@@ -219,9 +216,9 @@ theorem data_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (
     (fun x y => by
       show gamFF σ JS JT ξ₀ B.ψ (finRatF F (b * x * a)) (finRatF F (b * y * a)) =
         gamFF σ JS JT ξ₀ B.ψ (finRatF F x) (finRatF F y)
-      rw [← rhoFF_finRatF ha hb, ← rhoFF_finRatF ha hb]
+      rw [← _root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb, ← _root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb]
       unfold gamFF
-      rw [coe_rhoFF, coe_rhoFF, _root_.PositivityTheory.ThKW.symplOF_actOF_k C]) hbij.2 _ t t1 t2
+      rw [coe_rhoFF, coe_rhoFF, _root_.PositivityTheory.ThKW.TauSpanIdentities.symplOF_actOF_k C]) hbij.2 _ t t1 t2
   exact ⟨_, t, _, N, _, right_ne_zero_of_mul h0, left_ne_zero_of_mul h0, hN, t1, t2, g1, g2, m1 ▸ i1, m2 ▸ i2⟩
 end AutLatA
 end PositivityTheory.ThKW

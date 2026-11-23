@@ -56,12 +56,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open QuadraticAlgebra UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Loc
 
-private theorem inv_norm {O K : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field K] [Algebra O K] {Δ τ : K} (L : IsLoc O Δ)
-    {c : K} {d m : EL Δ τ} (h : IsDat c d m) : ∀ t ∈ NE τ, ∀ x : Kˣ,
-    lcount O c d (((t * x : Kˣ) : K) • m) = lcount O c d ((x : K) • m) := fun t ht x => by
-  rw [Units.val_mul, mul_smul]
-  exact lcountNorm O K Δ τ L c d _ (datSmul K Δ τ c d m h x) t ht
-
 theorem UpperTheory.V.Z.Sym.Loc.kapRam : UpperTheory.V.Z.Sym.Loc.KapRam := by
   intro O K _ _ _ _ _ Δ τ L c d m h hτ hodd
   obtain ⟨a, rfl⟩ := hτ
@@ -96,7 +90,7 @@ theorem UpperTheory.V.Z.Sym.Loc.kapRam : UpperTheory.V.Z.Sym.Loc.KapRam := by
   obtain ⟨ε, hε⟩ := ramUnit O K Δ L _ hreg hD
   have hinv : ∀ t ∈ NE (algebraMap O K a), ∀ x : Kˣ,
       lcount O c d (((t * x : Kˣ) : K) • m) = lcount O c d ((x : K) • m) :=
-    fun t ht x => inv_norm L h t ht x
+    fun t ht x => _root_.UpperTheory.V.Z.Sym.Loc.lcount_inv L h t ht x
   have hg : ((Units.map (algebraMap O K : O →* K) ε : Kˣ) : K) = algebraMap O K ε := rfl
   obtain ⟨_, h2', _⟩ := sumShift O K Δ _ L hreg (fun y : Kˣ => lcount O c d ((y : K) • m)) hinv
     (Units.map (algebraMap O K : O →* K) ε)

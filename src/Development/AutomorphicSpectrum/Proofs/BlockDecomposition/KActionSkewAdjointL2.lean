@@ -48,6 +48,7 @@ import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLoc
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryMemGLs
 
 @[expose] public section
 
@@ -125,7 +126,7 @@ variable [MeasurableSpace (Matrix.unitaryGroup (Fin n) ℂ)] [BorelSpace (Matrix
 omit [MeasurableSpace (Matrix.unitaryGroup (Fin n) ℂ)] [BorelSpace (Matrix.unitaryGroup (Fin n) ℂ)] in
 theorem cont_on_unit {f : Mat n → ℂ} (hf : ContinuousOn f (GLs n)) :
     Continuous fun k : Matrix.unitaryGroup (Fin n) ℂ => f k.1 :=
-  hf.comp_continuous continuous_subtype_val fun k => unit_mem k
+  hf.comp_continuous continuous_subtype_val fun k => _root_.GlobalTheory.CompanionTheory.RCalc.unitary_mem_GLs k
 
 theorem integrable_of_cont {f : Matrix.unitaryGroup (Fin n) ℂ → ℂ} (hf : Continuous f) : Integrable f κ :=
   hf.integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace f)
@@ -149,18 +150,18 @@ theorem GlobalTheory.CompanionTheory.ModelS.ipK_Kf_transpose : ∀ (n : ℕ) [Me
   have key : ∀ X : Mat n, Xᴴ = -X → (∫ k, conj (Rd X x.1 k.1) * y.1 k.1 ∂κ) + ∫ k, conj (x.1 k.1) * Rd X y.1 k.1 ∂κ = 0 := by
     intro X hX
     rw [← integral_add (i1 X) (i2 X), ← hI _ (conj_mul_smooth hx hy) X hX]
-    exact integral_congr_ae (Filter.Eventually.of_forall fun k => (Rd_conj_mul X hx hy (unit_mem k)).symm)
+    exact integral_congr_ae (Filter.Eventually.of_forall fun k => (Rd_conj_mul X hx hy (_root_.GlobalTheory.CompanionTheory.RCalc.unitary_mem_GLs k)).symm)
   have L : ipK κ (Kf a b x) y = (∫ k, conj (Rd (skA a b) x.1 k.1) * y.1 k.1 ∂κ) +
       Complex.I * ∫ k, conj (Rd (skB a b) x.1 k.1) * y.1 k.1 ∂κ := by
     rw [← integral_const_mul, ← integral_add (i1 _) ((i1 _).const_mul _)]
     refine integral_congr_ae (Filter.Eventually.of_forall fun k => ?_)
-    simp only [Kf_apply a b x (unit_mem k), map_sub, map_mul, Complex.conj_I]
+    simp only [Kf_apply a b x (_root_.GlobalTheory.CompanionTheory.RCalc.unitary_mem_GLs k), map_sub, map_mul, Complex.conj_I]
     ring
   have R : ipK κ x (Kf b a y) = -((∫ k, conj (x.1 k.1) * Rd (skA a b) y.1 k.1 ∂κ) +
       Complex.I * ∫ k, conj (x.1 k.1) * Rd (skB a b) y.1 k.1 ∂κ) := by
     rw [← integral_const_mul, ← integral_add (i2 _) ((i2 _).const_mul _), ← integral_neg]
     refine integral_congr_ae (Filter.Eventually.of_forall fun k => ?_)
-    simp only [Kf_apply_swap a b y (unit_mem k)]
+    simp only [Kf_apply_swap a b y (_root_.GlobalTheory.CompanionTheory.RCalc.unitary_mem_GLs k)]
     ring
   rw [L, R]
   linear_combination key _ (skA_skew a b) + Complex.I * key _ (skB_skew a b)

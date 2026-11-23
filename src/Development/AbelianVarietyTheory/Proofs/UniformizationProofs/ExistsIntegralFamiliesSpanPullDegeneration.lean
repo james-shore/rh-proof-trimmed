@@ -225,26 +225,7 @@ section Pull
 variable {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [IsDomain R'] {φ : R →+* R'} {D : DegPre R}
   {D' : DegPre R'}
 
-theorem famφB_comm (hD : IsPullDeg φ D D') (x : D'.X) (κ : Fin 4) :
-    D'.famφB x κ ≫ (hD.e.hom.left ≫ pullback.fst D.P.A.hom (specOf φ)) =
-      (hD.e.hom.left ≫ pullback.fst D.P.A.hom (specOf φ)) ≫ D.famφB (hD.xe x) κ := by
-  have gp := pull_grp hD
-  let U := pushPt gp.1.w (𝟙 D'.P.A)
-  have hU : U.left = hD.e.hom.left ≫ pullback.fst D.P.A.hom (specOf φ) := Category.id_comp _
-  have hw : (hD.e.hom.left ≫ pullback.fst D.P.A.hom (specOf φ)) ≫ D.P.A.hom = D'.P.A.hom ≫ specOf φ := gp.1.w
-  have h2 : (toUnit D'.P.A ≫ D'.c x).left ≫ (hD.e.hom.left ≫ pullback.fst D.P.A.hom (specOf φ)) =
-      (hD.e.hom.left ≫ pullback.fst D.P.A.hom (specOf φ)) ≫ (toUnit D.P.A ≫ D.c (hD.xe x)).left := by
-    show (D'.P.A.hom ≫ (D'.c x).left) ≫ _ = _ ≫ D.P.A.hom ≫ (D.c (hD.xe x)).left
-    rw [Category.assoc, hD.c_pr, ← Category.assoc, ← hw, Category.assoc]
-  fin_cases κ
-  · exact (Category.id_comp _).trans (Category.comp_id _).symm
-  · have e := gp.2 D'.P.A (𝟙 _) (toUnit _ ≫ D'.c x) (U ≫ 𝟙 _) (U ≫ toUnit _ ≫ D.c (hD.xe x))
-      (by rw [Category.comp_id]; rfl) (by rw [Over.comp_left, hU]; exact h2.symm)
-    rw [← MonObj.comp_mul, Over.comp_left, hU] at e
-    exact e.symm
-  · exact h2
-  · show (D'.P.A.hom ≫ eSec D'.P.A) ≫ _ = _ ≫ D.P.A.hom ≫ eSec D.P.A
-    rw [Category.assoc, hD.he, ← Category.assoc, ← hw, Category.assoc]
+alias famφB_comm := _root_.GlobalTheory.TwistLoc.fam_comm
 
 end Pull
 

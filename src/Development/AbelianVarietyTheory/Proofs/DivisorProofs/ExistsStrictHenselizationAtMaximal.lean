@@ -99,7 +99,7 @@ theorem GlobalTheory.HensMax.exists_strictHens_of_maximal : ∀ (B : Type) [Comm
       GlobalTheory.StrictHensUnion.indEtale_localization_of_etale B B P.primeCompl
     show GlobalTheory.IndefiniteRowSideFullHecke.ProjectiveSpaceOverSpec.IsIndEtale (algebraMap B S)
     rw [IsScalarTower.algebraMap_eq B (Localization.AtPrime P) S]
-    exact GlobalTheory.T.ind_etale_comp _ _ _ _ _ hBR hRS
+    exact _root_.GlobalTheory.IndEtaleComp.isIndEtale_comp _ _ _ _ _ hBR hRS
   · intro Q hQ
     obtain rfl : Q = maximalIdeal S := IsLocalRing.eq_maximalIdeal hQ
     refine ⟨?_, fun o => ?_⟩

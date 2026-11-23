@@ -85,14 +85,9 @@ theorem exists_cut (hm : ∀ g : G, Measurable fun y : Y => g • y) (u : Y → 
   rw [this, ← div_self (hspos y).ne']
   exact (hs y).hasSum.div_const _
 
-theorem cover (μ : Measure Y) (hP : Pres G μ) (b : Y → ℝ) (hb : IsCut G b) (S : Set Y)
-    (hS : MeasurableSet S) (hc : ∀ y : Y, ∃ g : G, g • y ∈ S) :
-    ∫⁻ y, ENNReal.ofReal (b y) ∂μ ≤ μ S :=
-  _root_.UpperTheory.Reformulated.B.Qf46.cover μ hP b hb S hS hc
-
 end UpperTheory.Esk.OrbitCoverLemmas
 
 theorem UpperTheory.Esk.orbit_cover_proof : UpperTheory.Esk.C2 := by
   intro G Y _ _ _ _
   exact ⟨fun hm u hu h0 hpos hs => UpperTheory.Esk.OrbitCoverLemmas.exists_cut hm u hu h0 hpos hs,
-    fun μ hP b hb S hS hc => UpperTheory.Esk.OrbitCoverLemmas.cover μ hP b hb S hS hc⟩
+    fun μ hP b hb S hS hc => _root_.UpperTheory.Reformulated.B.Qf46.cover μ hP b hb S hS hc⟩

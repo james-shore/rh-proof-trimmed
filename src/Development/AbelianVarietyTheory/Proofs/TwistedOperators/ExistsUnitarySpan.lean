@@ -55,21 +55,4 @@ open GlobalTheory.ArchRec
 
 namespace GlobalTheory.ArchRec.SpanMod
 
-variable {r s : ℕ}
-
-theorem exists_unitary_span (r s : ℕ) (W U I : Type) [AddCommGroup W] [Module ℂ W] [NormedAddCommGroup U]
-    [InnerProductSpace ℂ U] (a : Mat r s →ₗ[ℂ] Module.End ℂ W) (b : Mat r s → Module.End ℂ U)
-    (j : I → W →ₗ[ℂ] U) (ha : IsGK a) (hb : IsUAct b)
-    (hj : ∀ i, ∀ Z ∈ upq r s, ∀ P, j i (a Z P) = b Z (j i P)) :
-    ∃ (MM : UGKMod r s) (inc : MM.M.V →ₗ[ℂ] U), Function.Injective inc ∧
-      LinearMap.range inc = Submodule.span ℂ {y | ∃ i P, y = j i P} ∧
-      ∀ Z ∈ upq r s, ∀ y, inc (MM.M.act Z y) = b Z (inc y) := by
-  first
-  | exact @_root_.GlobalTheory.RealPartAdjointAction.main
-  | exact _root_.GlobalTheory.RealPartAdjointAction.main
-  | (apply _root_.GlobalTheory.RealPartAdjointAction.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RealPartAdjointAction.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RealPartAdjointAction.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RealPartAdjointAction.main ..)
-
 end GlobalTheory.ArchRec.SpanMod

@@ -57,42 +57,6 @@ namespace GlobalTheory.UpFromBessel
 
 variable {D : D7}
 
-theorem pair_self_ne_zero {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S T : HSp D}
-    (v : VolM D T.rank S.rank) {f₀ : WO S T → ℂ} (hf : IsThetaFunO ψ S T f₀) (hne : f₀ ≠ 0) :
-    thPair v.μ v.𝓕 f₀ f₀ ≠ 0 := by
-  obtain ⟨i1, i2, i3, i4, i5, -⟩ := GlobalTheory.MixModel.lattice_Mx D T.rank S.rank
-  haveI : BorelSpace (Mx D T.rank S.rank) := ⟨rfl⟩
-  haveI : DiscreteTopology (ratMx D T.rank S.rank) := i5
-  haveI : Countable (ratMx D T.rank S.rank) := TopologicalSpace.separableSpace_iff_countable.1 inferInstance
-  obtain ⟨hμ, hF, h1⟩ := v.covol
-  haveI := hμ
-  haveI : IsFiniteMeasure (v.μ.restrict v.𝓕) :=
-    ⟨by rw [Measure.restrict_apply_univ, h1]; exact ENNReal.one_lt_top⟩
-  obtain ⟨C, hC⟩ := GlobalTheory.OrientedHeis.theta_bounded hψ hf
-  have e : ∀ w, f₀ w * star (f₀ w) = ((‖f₀ w‖ ^ 2 : ℝ) : ℂ) := fun w => by
-    rw [Complex.star_def, Complex.mul_conj']; push_cast; rfl
-  have hint : Integrable (fun w => ‖f₀ w‖ ^ 2) (v.μ.restrict v.𝓕) :=
-    Integrable.of_bound (hf.cont.norm.pow 2).measurable.aestronglyMeasurable (C ^ 2)
-      (Filter.Eventually.of_forall fun w => by
-        rw [Real.norm_of_nonneg (by positivity)]
-        exact pow_le_pow_left₀ (norm_nonneg _) (hC w) 2)
-  intro h0
-  have h2 : (∫ w in v.𝓕, ‖f₀ w‖ ^ 2 ∂v.μ) = 0 := by
-    have : thPair v.μ v.𝓕 f₀ f₀ = ((∫ w in v.𝓕, ‖f₀ w‖ ^ 2 ∂v.μ : ℝ) : ℂ) := by
-      unfold thPair
-      simp_rw [e]
-      exact integral_ofReal
-    rw [this] at h0
-    exact_mod_cast h0
-  have h3 : ∫⁻ w in v.𝓕, ‖f₀ w‖ₑ ^ 2 ∂v.μ = 0 := by
-    have en : ∀ z : ℂ, ‖z‖ₑ ^ 2 = ENNReal.ofReal (‖z‖ ^ 2) := fun z => by
-      rw [ENNReal.ofReal_pow (norm_nonneg _), ofReal_norm_eq_enorm]
-    simp_rw [en]
-    rw [← ofReal_integral_eq_lintegral_ofReal hint (Filter.Eventually.of_forall fun w => by positivity), h2,
-      ENNReal.ofReal_zero]
-  exact hne (GlobalTheory.OrientedHeis.eq_zero_of_lintegral_eq_zero (ratMx D T.rank S.rank) v.μ v.𝓕 hF f₀ hf.cont
-    (fun γ hγ w => GlobalTheory.OrientedHeis.theta_norm_periodic hψ hf γ hγ w) h3)
-
 theorem per_smul {ρ : ℕ} (B : BesL D ρ) (ψ : AddChar (AF D.host.F) ℂ) (c : ℂ) (φ : GA D B.A → ℂ) (f : GA D B.V → ℂ) :
     B.per ψ (c • φ) f = c * B.per ψ φ f := by
   simp only [BesL.per, besPer, besFun, Pi.smul_apply, smul_eq_mul, mul_assoc, integral_const_mul]
@@ -115,6 +79,6 @@ theorem upFB : ∀ D : D7, UpFB D := by
     exact h2) _ hvac
   have hlink := GlobalTheory.T.besselHandedFunction_product_eq_coreLift_mul_pairing D ψ σ J B s vL χA χz omb omz hχ hb hz φ Ξ₁ Φ₀ Φ₀ hΞ hΦ hΦ
   simp only [hlink, per_smul] at hall
-  exact hper ((mul_eq_zero.1 hall).resolve_left (pair_self_ne_zero hψ vL hΦ hne))
+  exact hper ((mul_eq_zero.1 hall).resolve_left (_root_.GlobalTheory.Irr.thPair_self_ne_zero hψ vL hΦ hne))
 
 end GlobalTheory.UpFromBessel

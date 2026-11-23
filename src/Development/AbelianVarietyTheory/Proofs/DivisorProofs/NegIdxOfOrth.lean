@@ -48,6 +48,7 @@ import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimesUnder
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmall
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilDatumPowersUnramifiedEtaTilde
 
 @[expose] public section
 
@@ -90,7 +91,7 @@ theorem negIdx_of_orth {D : D7} {V₁ V₂ WW : HSp D} {p q : ℕ} (hr : V₁.ra
     · simp only [v, Matrix.of_apply, Matrix.fromBlocks_apply₂₁, Sum.elim_inl, Sum.elim_inr, Matrix.zero_apply]
       exact ho (V₁.frame j) (V₂.frame i)
     · simp only [v, HSpace.gram, Matrix.of_apply, Matrix.fromBlocks_apply₂₂, Sum.elim_inr]; exact e₂ _ _
-  have key := (GlobalTheory.SumSig.gram_family WW v).symm.trans hv
+  have key := (_root_.Formalism.BasicNotions.gram_family WW v).symm.trans hv
   set C := Matrix.of fun i k => WW.frame.repr (v k) i
   have hst : Function.Semiconj (tauE D τ) star star := fun a => D.sp.cm.cmUnram.2.1 _ a
   have hmap : (C.map (tauE D τ))ᴴ * gramAt D WW τ * C.map (tauE D τ) =
@@ -207,8 +208,8 @@ theorem chars {D : D7} {T : Type} {Lc : LevCh D T} {sc : GlobalTheory.ChiGrid.Co
   have hη : IsHeckeChar D Lc.eta := hL.eta.1
   have hμ : IsHeckeChar D (Lc.mu t (j + 1)) := GlobalTheory.HeckeCharsOfSquare.isHeckeChar_mul (hL.mu0 j).1 (hL.xi t).1
   have hχ : IsHeckeChar D (G.ch.chi (D.R.m - i)) := (G.ch.chi_eq (D.R.m - i) (by omega) (by omega)).1
-  have hα := GlobalTheory.HeckeCharsOfSquare.isHeckeChar_mul hμ (GlobalTheory.HeckeCharsOfSquare.isHeckeChar_pow hη (rankV D i j % 2))
-  have hβ := GlobalTheory.HeckeCharsOfSquare.isHeckeChar_mul hχ (GlobalTheory.HeckeCharsOfSquare.isHeckeChar_pow hη (rankV D i j % 2))
+  have hα := GlobalTheory.HeckeCharsOfSquare.isHeckeChar_mul hμ (_root_.GlobalTheory.WeilProduct.isHeckeChar_pow hη (rankV D i j % 2))
+  have hβ := GlobalTheory.HeckeCharsOfSquare.isHeckeChar_mul hχ (_root_.GlobalTheory.WeilProduct.isHeckeChar_pow hη (rankV D i j % 2))
   have e : rankV D (i + 1) (j + 1) = rankV D i j + D.R.t + sLen D := by simp only [rankV]; ring
   obtain ⟨a, ha⟩ := ht
   obtain ⟨b, hb⟩ := hs

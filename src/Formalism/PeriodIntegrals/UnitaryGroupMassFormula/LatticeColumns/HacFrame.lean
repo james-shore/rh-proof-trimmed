@@ -75,7 +75,7 @@ def lF : Idx D.R.rS D.R.k → FpX X p
 
 theorem hac_frame (hθ : IsSplitEquiv X p θ) (s t : Idx D.R.rS D.R.k) (hs : ¬ IsW s) (ht : ¬ IsW t) :
     aV X u p θ s ⬝ᵥ cV X u p θ t = if t = dlH s then lF X u p θ s else 0 := by
-  obtain ⟨hee, hff, hef, hez, hfz, hzz, -⟩ := MassDataIdxSteps.adq_std X u
+  obtain ⟨hee, hff, hef, hez, hfz, hzz, -⟩ := _root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u
   have hsw := MassDataMassesW.NRatW.hE_swap X
   rw [av_cv X u p θ hθ s t]
   rcases s with a | (i | ⟨⟩) | c
@@ -130,7 +130,7 @@ theorem lF_unit (hb : AdBridgeIso X.B.I) (hθ : IsSplitEquiv X p θ) (s : Idx D.
     have htau : adqTau X u p θ Q = lF X u p θ (Sum.inr (Sum.inl (Sum.inr ()))) := by
       unfold adqTau
       rw [adq_pairR X p θ Q hθ]
-      exact congrArg (fun x => (θ (inclR (FpX X p) x)).1) (MassDataIdxSteps.adq_std X u).2.2.2.2.2.1
+      exact congrArg (fun x => (θ (inclR (FpX X p) x)).1) (_root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u).2.2.2.2.2.1
     rw [htau] at h
     exact ⟨h.2, h.1⟩
   · simp [lF]

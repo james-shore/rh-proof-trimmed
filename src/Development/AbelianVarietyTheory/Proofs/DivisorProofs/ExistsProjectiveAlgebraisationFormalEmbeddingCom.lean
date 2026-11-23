@@ -60,7 +60,7 @@ theorem GlobalTheory.FormalAlg.exists_projective_of_formal_embedding : ∀ (R : 
     · exact hva
     · obtain ⟨j₀, hj, w, hw, hr⟩ := tower _ Y β hβ H v hH s hs e
       exact GlobalTheory.AbLaw.veryAmpleBy_of_isNilpotent _ _ _ (Ideal.Quotient.factor_surjective _)
-        (GlobalTheory.Degen.isNilpotent_ker_factor_pow I _)
+        (_root_.GlobalTheory.Degen.PolyStepLocal.nilpotent_ker I _)
         _ _ _ _ j₀ hj _ _ w n _ _ (hH _).1 (hH _).1 ((isGen_iff _).2 hw) hr hva
   have c₁ : ∀ e, β e ≫ (Y (e + 1)).hom ≫ thick V I (e + 1) = (Y e).hom ≫ thick V I e := fun e => by
     rw [← Category.assoc, (hβ e).w, Category.assoc, thickTrans_comp]

@@ -51,18 +51,15 @@ namespace GlobalTheory.CompanionTheory.Ar.Cusp.PeriodIso
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ} {Λ : Type} [AddCommGroup Λ] [Module (𝓞 E) Λ]
 
-theorem ip_add_left' (R : RiemLat E g Λ) (x x' y : Fin g → ℂ) : R.ip (x + x') y = R.ip x y + R.ip x' y := by
-  simp [RiemLat.ip, star_add, Matrix.mulVec_add, dotProduct_add]
+alias ip_add_left' := _root_.LevelTowerAlt.ip_add_left
 
-theorem ip_add_right' (R : RiemLat E g Λ) (x y y' : Fin g → ℂ) : R.ip x (y + y') = R.ip x y + R.ip x y' := by
-  simp [RiemLat.ip, add_dotProduct]
+alias ip_add_right' := _root_.LevelTowerAlt.ip_add_right
 
 theorem ip_smul_left' (R : RiemLat E g Λ) (c : ℂ) (x y : Fin g → ℂ) :
     R.ip (c • x) y = star c * R.ip x y := by
   simp [RiemLat.ip, star_smul, Matrix.mulVec_smul, dotProduct_smul]
 
-theorem ip_smul_right' (R : RiemLat E g Λ) (c : ℂ) (x y : Fin g → ℂ) : R.ip x (c • y) = c * R.ip x y := by
-  simp [RiemLat.ip, smul_dotProduct]
+alias ip_smul_right' := _root_.LevelTowerAlt.ip_smul_right
 
 theorem real_smul_eq' (r : ℝ) (x : Fin g → ℂ) : r • x = (r : ℂ) • x := by
   ext i

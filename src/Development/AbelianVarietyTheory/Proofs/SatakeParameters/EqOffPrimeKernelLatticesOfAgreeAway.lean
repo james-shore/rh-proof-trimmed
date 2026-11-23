@@ -72,7 +72,7 @@ theorem eqOff_kerN_of_sameAway : Sites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg 
   obtain ⟨⟨hr, -⟩, -, hKa, -⟩ := hD j hj La hLa
   obtain ⟨-, -, hKb, -⟩ := hD j hj Lb hLb
   rw [← hch] at hKb
-  have key := GlobalTheory.T.kernelLattice_eq_away_from_prime_of_agree_off_place D (D.R.N 0) (D.what₂.places.resChar w) (D.gat u w hg) (A0 J) J.one.int hSpl.1 v P hP (D.R.N j)
+  have key := _root_.GlobalTheory.TwV.Xc.eqOff_latK_of_sameOff D (D.R.N 0) (D.what₂.places.resChar w) (D.gat u w hg) (A0 J) J.one.int hSpl.1 v P hP (D.R.N j)
     (gramN D j hj) J.a ((J.St j hj).K (J.chart std j hj La)).lev.Lb ((J.St j hj).K (J.chart std j hj La)).lev.Lb_fin
     ((J.St j hj).K (J.chart std j hj La)).lev.Lb_span (J.pt std j hj La).1 (J.pt std j hj Lb).1 hoff
   exact eqOffPrime_of_heq_lattices_rank_eq hr hKa hKb key

@@ -71,8 +71,7 @@ open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 namespace GlobalTheory.SiegelNearby
 open GlobalTheory.ZM.SiegPull GlobalTheory.RigidTranslate
 
-theorem toUnit_left {S : Scheme.{0}} (T : Over S) : (toUnit T).left = T.hom :=
-  (Category.comp_id _).symm.trans (Over.w (toUnit T))
+alias toUnit_left := _root_.GlobalTheory.ObjPull.toUnit_left'
 
 theorem exists_polPB (hB : Out.PolBaseChangeSt) {S S' : Scheme.{0}} (P : Out.PolAV S) (f : S' ⟶ S) :
     ∃ (P' : Out.PolAV S') (φ : P'.A.left ⟶ P.A.left), PolPB P' P f φ := by

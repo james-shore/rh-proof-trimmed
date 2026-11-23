@@ -86,7 +86,7 @@ theorem one_tmul_mem_Bsup_of_mem_locBall
     (hiC : ∀ x, ‖iC x‖ ≤ 1 ↔ x ∈ (algebraMap (D.ntw.O i) (FractionRing (D.ntw.O i))).range)
     (f : NX.FmK S ((j : ℕ) + 1)) (hf : f ∈ locBall YS fw iC b j) :
     (show NX.Fm S i ((j : ℕ) + 1) b from (1 : NX.KB S i b) ⊗ₜ[S.Ks] f) ∈ NX.Bsup S i ((j : ℕ) + 1) b := by
-  obtain ⟨s, hs, hsM⟩ := GlobalTheory.supLattice_localisation_of_unitBall D.what₂.LL T0.Q.c.F _ _ _ (Rl.FW j)
+  obtain ⟨s, hs, hsM⟩ := _root_.GlobalTheory.DenominatorExistenceTwistedOperators.exists_smul_mem_supLattice D.what₂.LL T0.Q.c.F _ _ _ (Rl.FW j)
     (GlobalTheory.GoodLat.Obj.mkFull_of_tie fw j).2 (placeC YS iC b) (fw.e j (cuspOf YS fw j f))
     (nrm_le_one_of_mem_locBall YS fw iC b j hf)
   rw [e_cuspOf] at hsM

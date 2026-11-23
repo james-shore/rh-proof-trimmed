@@ -55,10 +55,6 @@ public import Mathlib.Analysis.SpecialFunctions.Exponential
 open NumberField Matrix GlobalTheory.CuspRep GlobalTheory.GKCoh UpperTheory.V.AlgRepEndIrreducible
 open scoped TensorProduct
 
-private theorem expSq {n : ℕ} (N : Matrix (Fin n) (Fin n) ℂ) (h : N * N = 0) :
-    NormedSpace.exp N = 1 + N :=
-  _root_.UpperTheory.Reformulated.B.Qf11.expSq N h
-
 theorem UpperTheory.V.AlgRepEndIrreducible.expGenC :
     ∀ (n : ℕ) (H : Submonoid (Matrix (Fin n) (Fin n) ℂ)), (∀ X : Matrix (Fin n) (Fin n) ℂ, NormedSpace.exp X ∈ H) →
       ∀ g : Matrix (Fin n) (Fin n) ℂ, g.det ≠ 0 → g ∈ H := by
@@ -77,7 +73,7 @@ theorem UpperTheory.V.AlgRepEndIrreducible.expGenC :
     exact (Complex.exp_log (hD' i)).symm
   · intro t
     have := hH (Matrix.single t.i t.j t.c)
-    rw [expSq _ (Matrix.single_mul_single_of_ne _ _ _ _ t.hij.symm _)] at this
+    rw [_root_.UpperTheory.Reformulated.B.Qf11.expSq _ (Matrix.single_mul_single_of_ne _ _ _ _ t.hij.symm _)] at this
     exact this
   · intro A B _ _ hA hB
     exact H.mul_mem hA hB

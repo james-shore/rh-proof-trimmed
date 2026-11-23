@@ -249,17 +249,6 @@ theorem contDiff_garding [CompleteSpace H] (hσ : IsURepOn (UJset ε) σ) (hφ :
   show x t * (y t * umat g) = umat g
   rw [← Matrix.mul_assoc, hxy, Matrix.one_mul]
 
-theorem isKTypeOf_map {Λ : Fin n → ℝ} {S : Submodule ℂ H} (hS : IsKTypeOf ε σ Λ S) (L : H →ₗ[ℂ] H)
-    (hL : ∀ k ∈ Formalism.REAL.Kset ε, ∀ w, σ k (L w) = L (σ k w)) {v : H} (hv : v ∈ S) (hLv : L v ≠ 0) :
-    IsKTypeOf ε σ Λ (S.map L) := by
-  first
-  | exact @_root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map
-  | exact _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map
-  | (apply _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map <;> assumption)
-  | (intros; apply _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map ..)
-
 theorem exists_smoothVec_lowKSub {lam : Fin n → ℝ} (hσ : IsDS ε lam σ) {P G : Matrix (Fin n) (Fin n) ℂ}
     (hP : IsUnit P) (h : Pᴴ * Formalism.REAL.Jm ε * P = G) :
     ∃ v ∈ lowKSub ε lam σ, v ≠ 0 ∧
@@ -274,7 +263,7 @@ theorem exists_smoothVec_lowKSub {lam : Fin n → ℝ} (hσ : IsDS ε lam σ) {P
   obtain ⟨U, hUn, hUs⟩ := mem_nhdsWithin_iff_exists_mem_nhds_inter.1 hnb
   obtain ⟨φ, hφ, hφc, hφU, hφ0, hφ1, hinv⟩ := exists_bump hUn
   have hne := garding_ne_zero hU hφ.continuous hφc hφ0 hφ1 hw fun g hg h0 => hUs ⟨hφU g h0, hg⟩
-  have hT := isKTypeOf_map hS (garding hU hφ.continuous hφc)
+  have hT := _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map hS (garding hU hφ.continuous hφc)
     (fun k hk w => garding_comm hU hφ.continuous hφc hinv hk w) hwS hne
   have hG : IsUnit G := by
     rw [← h]

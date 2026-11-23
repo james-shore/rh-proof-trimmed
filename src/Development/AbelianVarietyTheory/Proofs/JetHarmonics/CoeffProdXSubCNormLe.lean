@@ -93,7 +93,6 @@ theorem coeff_prod_X_sub_C_norm_le {K : Type} [NormedField K] [IsUltrametricDist
               apply pow_le_pow_of_le_one h0 h1
               omega
 
-theorem main : ∀ {K : Type} [inst : NormedField K] [IsUltrametricDist K] (θ : ℝ), (0 : ℝ) ≤ θ → θ ≤ (1 : ℝ) → ∀ (S : Finset K), (∀ x ∈ S, ‖x‖ ≤ θ) → ∀ (a : ℕ), ‖AddMonoidAlgebra.coeff (∏ x ∈ S, (Polynomial.X - (Polynomial.C : K → Polynomial K) x)) a‖ ≤ θ ^ (Finset.card S - a) :=
-  fun θ h0 h1 S hS a => coeff_prod_X_sub_C_norm_le θ h0 h1 S hS a
+alias main := _root_.GlobalTheory.RootProductCoeffBound.coeff_prod_X_sub_C_norm_le
 
 end GlobalTheory.RootProductCoeffBound

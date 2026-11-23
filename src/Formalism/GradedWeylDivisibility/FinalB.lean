@@ -54,13 +54,12 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.GradedWeylDivisibility
 
-theorem hwLine : HWLine := highest_weight_line
+alias hwLine := _root_.Formalism.GradedWeylDivisibility.highest_weight_line
 theorem hwLineTall : HWLineTall := highest_weight_line_tall
-theorem fockQPos : FockQPos := fischerInnerRatPos
+alias fockQPos := _root_.Formalism.GradedWeylDivisibility.fischerInnerRatPos
 theorem fockQBilin : FockQBilin := fischerInnerRatBilinear
 theorem fockQRowDivAdj : FockQRowDivAdj := fock_space_row_divided_adjoint
-theorem rowDivClosedGraded : RowDivClosedGraded := row_divided_closed_graded
-theorem hwInClosed : HWInClosed := hwInClosed_of hwLine rowDivClosedGraded
+theorem hwInClosed : HWInClosed := hwInClosed_of hwLine _root_.Formalism.GradedWeylDivisibility.row_divided_closed_graded
 theorem closedEqNabla : ClosedEqNabla := closedEqNabla_of hwInClosed fockQPos fockQBilin fockQRowDivAdj
 theorem weylEqNablaQ : WeylEqNablaQ := weylEqNablaQ_of closedEqNabla
 

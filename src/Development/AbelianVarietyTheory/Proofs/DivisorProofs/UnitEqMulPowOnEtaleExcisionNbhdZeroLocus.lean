@@ -72,7 +72,7 @@ theorem unit_eq_mul_qth_power_near_zeroLocus : ∀ (k B : Type) [Field k] [IsAlg
     refine ⟨-(algebraMap B A₂ x₁) * e + t, ?_⟩
     simp only [map_mul]
     linear_combination e * h1 + ht
-  have hA₂' : IsExcisionNbhd B (Localization.Away a) f := GlobalTheory.T.isExcisionNbhd_away_of_inverse_mod B A₂ f hA₂ a (algebraMap B A₂ y₁) hab
+  have hA₂' : IsExcisionNbhd B (Localization.Away a) f := _root_.GlobalTheory.EtC.isExcisionNbhd_away B A₂ f hA₂ a (algebraMap B A₂ y₁) hab
   have hdvd : ∀ z : A₂, z ∣ a → IsUnit (algebraMap A₂ (Localization.Away a) z) := fun z hz =>
     isUnit_of_dvd_unit (map_dvd _ hz) (IsLocalization.Away.algebraMap_isUnit a)
   have hgu := hdvd (algebraMap B A₂ g) ⟨algebraMap B A₂ n * algebraMap B A₂ d * e, by rw [ha]; simp only [map_mul]; ring⟩
@@ -83,7 +83,7 @@ theorem unit_eq_mul_qth_power_near_zeroLocus : ∀ (k B : Type) [Field k] [IsAlg
   have hεu : IsUnit (algebraMap A₂ (Localization.Away a) ε₀) := by
     rw [hε₀, map_mul, map_pow, map_mul]; exact hnu.mul ((hdu.mul heu).pow j)
   obtain ⟨x₂, y₂, h₂⟩ := hn.mul_right (hd.pow_right (n := j))
-  obtain ⟨r, hr⟩ := GlobalTheory.T.exists_pow_sub_mem_span_of_isUnit_mod k B (j + 1) hq f hf (n * d ^ j) y₂
+  obtain ⟨r, hr⟩ := _root_.GlobalTheory.exists_pow_sub_mem_span_of_isUnit_mod_of_isAlgClosed k B (j + 1) hq f hf (n * d ^ j) y₂
     (Ideal.mem_span_singleton.mpr ⟨-x₂, by linear_combination h₂⟩)
   have hcong : ε₀ - algebraMap B A₂ r ^ (j + 1) ∈ Ideal.span {algebraMap B A₂ f} := by
     have h1 : algebraMap B A₂ f ∣ algebraMap B A₂ (n * d ^ j - r ^ (j + 1)) :=
@@ -102,7 +102,7 @@ theorem unit_eq_mul_qth_power_near_zeroLocus : ∀ (k B : Type) [Field k] [IsAlg
     exact map_dvd _ (Ideal.mem_span_singleton.mp hcong)
   have hqu : IsUnit ((j + 1 : ℕ) : Localization.Away a) := by
     have := hq.map ((algebraMap B (Localization.Away a)).comp (algebraMap k B)); rwa [map_natCast] at this
-  obtain ⟨A₃, _, _, hA₃, x, hx⟩ := GlobalTheory.T.exists_excisionNbhd_with_root_of_isUnit (Localization.Away a) (algebraMap B (Localization.Away a) f)
+  obtain ⟨A₃, _, _, hA₃, x, hx⟩ := _root_.GlobalTheory.EtC.exists_excisionNbhd_adjoin_root (Localization.Away a) (algebraMap B (Localization.Away a) f)
     (j + 1) hqu _ _ hεu hcong'
   letI : Algebra B A₃ := RingHom.toAlgebra ((algebraMap (Localization.Away a) A₃).comp (algebraMap B (Localization.Away a)))
   letI : Algebra A₂ A₃ := RingHom.toAlgebra ((algebraMap (Localization.Away a) A₃).comp (algebraMap A₂ (Localization.Away a)))
@@ -111,7 +111,7 @@ theorem unit_eq_mul_qth_power_near_zeroLocus : ∀ (k B : Type) [Field k] [IsAlg
     show algebraMap (Localization.Away a) A₃ (algebraMap B (Localization.Away a) z) =
       algebraMap (Localization.Away a) A₃ (algebraMap A₂ (Localization.Away a) (algebraMap B A₂ z))
     rw [IsScalarTower.algebraMap_apply B A₂ (Localization.Away a) z])
-  refine ⟨A₃, inferInstance, inferInstance, inferInstance, t3, GlobalTheory.T.isExcisionNbhd_trans' B (Localization.Away a) A₃ f hA₂' hA₃, ?_, ?_⟩
+  refine ⟨A₃, inferInstance, inferInstance, inferInstance, t3, _root_.GlobalTheory.EtC.isExcisionNbhd_trans B (Localization.Away a) A₃ f hA₂' hA₃, ?_, ?_⟩
   · have : algebraMap B A₃ g = algebraMap (Localization.Away a) A₃
         (algebraMap A₂ (Localization.Away a) (algebraMap B A₂ g)) := by
       rw [← IsScalarTower.algebraMap_apply B A₂ (Localization.Away a)]; rfl

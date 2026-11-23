@@ -59,9 +59,6 @@ lemma sgn_mul_self {n : ℕ} (ε : Fin n → Bool) (a : Fin n) :
     (if ε a then (1 : ℂ) else -1) * (if ε a then (1 : ℂ) else -1) = 1 := by
   cases ε a <;> simp
 
-lemma jm_mul_jm {n : ℕ} (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 :=
-  Formalism.REAL.Jm_mul_self ε
-
 lemma jm_mul_apply {n : ℕ} (ε : Fin n → Bool) (k : Matrix (Fin n) (Fin n) ℂ) (a b : Fin n) :
     (Formalism.REAL.Jm ε * k) a b = (if ε a then (1 : ℂ) else -1) * k a b := by
   rw [jm_eq, Matrix.diagonal_mul]
@@ -103,10 +100,10 @@ theorem realK : PI.AdBridgeSteps.RealK := by
       _ = k * (kᴴ * Formalism.REAL.Jm ε * k) := by simp only [Matrix.mul_assoc]
       _ = k * Formalism.REAL.Jm ε := by rw [hk]
   · intro hc
-    calc kᴴ * k = kᴴ * k * (Formalism.REAL.Jm ε * Formalism.REAL.Jm ε) := by rw [jm_mul_jm, Matrix.mul_one]
+    calc kᴴ * k = kᴴ * k * (Formalism.REAL.Jm ε * Formalism.REAL.Jm ε) := by rw [_root_.Formalism.REAL.Jm_mul_self, Matrix.mul_one]
       _ = kᴴ * (k * Formalism.REAL.Jm ε) * Formalism.REAL.Jm ε := by simp only [Matrix.mul_assoc]
       _ = kᴴ * (Formalism.REAL.Jm ε * k) * Formalism.REAL.Jm ε := by rw [hc]
       _ = (kᴴ * Formalism.REAL.Jm ε * k) * Formalism.REAL.Jm ε := by simp only [Matrix.mul_assoc]
-      _ = 1 := by rw [hk, jm_mul_jm]
+      _ = 1 := by rw [hk, _root_.Formalism.REAL.Jm_mul_self]
 
 end PI.UnitaryGroupMassFormula.BridgeRealK

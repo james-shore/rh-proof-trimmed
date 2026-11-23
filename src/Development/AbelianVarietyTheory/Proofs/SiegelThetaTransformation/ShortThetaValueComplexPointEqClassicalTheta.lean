@@ -242,7 +242,7 @@ theorem GlobalTheory.Dict.shortValAt_eq_thP : Formalism.MainNotions.ModuliIntegr
     mk hmk hA Λ hΛ N hN Y hY a P hP wq β v0 h0
   subst hrpq
   have hLaws : Laws := firstFiveLaws.1
-  haveI := ShortValue.finite_levelQuotient Dw l
+  haveI := _root_.GlobalTheory.finite_levQ Dw l
   haveI := Fintype.ofFinite (LevQ Dw l)
   obtain ⟨hU, hT⟩ := unimod_trivAt hΛ
   have hodd : Odd N := hN.1

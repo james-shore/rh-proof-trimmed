@@ -59,16 +59,7 @@ namespace GlobalTheory.ValCmp
 
 open MvPolynomial Formalism.GradedWeylDivisibility Formalism.MainNotions.G
 
-theorem dualIso_det_genM_ne_zero (R : Type) [CommRing R] [Nontrivial R] (n : ℕ) : (genM R n).det ≠ 0 := by
-  intro h
-  have h1 := congrArg (MvPolynomial.eval fun v : Fin n × Fin n => (1 : Matrix (Fin n) (Fin n) R) v.1 v.2) h
-  rw [RingHom.map_det, map_zero] at h1
-  have h2 : (MvPolynomial.eval fun v : Fin n × Fin n => (1 : Matrix (Fin n) (Fin n) R) v.1 v.2).mapMatrix
-      (genM R n) = 1 := by
-    ext a b
-    simp [genM]
-  rw [h2, Matrix.det_one] at h1
-  exact one_ne_zero h1
+alias dualIso_det_genM_ne_zero := _root_.GlobalTheory.ValCmp.genM_det_ne_zero_of_nontrivial
 
 theorem dualIso_cofRel_unique {R : Type} [CommRing R] [IsDomain R] {m : ℕ} {ν : Fin (m + 1) → ℕ}
     {f g g' : MP R (m + 1)} (h : CofRel R m ν f g) (h' : CofRel R m ν f g') : g = g' :=
@@ -166,7 +157,7 @@ theorem dualIso_lattice (O Kf : Type) [CommRing O] [IsDomain O] [Field Kf] [Alge
     exact ⟨g, hg, (key f hf g hfg).symm⟩
   · rintro _ ⟨g, hg, rfl⟩
     obtain ⟨f, hf, hgf⟩ := hBA g hg
-    obtain ⟨ε, hε⟩ := GlobalTheory.T.cofactorTwistRelation_dualWeight_involutive O m (nuDual ν) (dualIso_nuDual_antitone hν) (dualIso_nuDual_last ν)
+    obtain ⟨ε, hε⟩ := _root_.GlobalTheory.ValCmp.Invol.cofRel_invol O m (nuDual ν) (dualIso_nuDual_antitone hν) (dualIso_nuDual_last ν)
     have h1 := hε g (hB hg) f hgf
     rw [dualIso_nuDual_nuDual hν hl] at h1
     have h2 := dualIso_cofRel_zsmul (ε : ℤ) h1
@@ -183,7 +174,7 @@ theorem exists_posOk_dual (O Kf : Type) [CommRing O] [IsDomain O] [Field Kf] [Al
   have hl' := dualIso_nuDual_last ν
   have hdd := dualIso_nuDual_nuDual hν hl
   refine ⟨Ψ, fun f hf h0 => ?_, ?_, fun h hh f hf => ?_, ?_, ?_⟩
-  · obtain ⟨ε, hε⟩ := GlobalTheory.T.cofactorTwistRelation_dualWeight_involutive Kf m ν hν hl
+  · obtain ⟨ε, hε⟩ := _root_.GlobalTheory.ValCmp.Invol.cofRel_invol Kf m ν hν hl
     have h1 := hε f hf _ (hΨ f hf)
     rw [h0] at h1
     have h2 : CofRel Kf m (nuDual ν) 0 0 := by simp [CofRel]

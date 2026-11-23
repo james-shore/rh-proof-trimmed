@@ -439,26 +439,12 @@ theorem exists_isUnit_det (n : ℕ) : ∃ r > 0, ∀ x : Matrix (Fin n) (Fin n) 
   obtain ⟨r, hr, hsub⟩ := exists_ballM_subset (v := v) (p := n) (q := n) hU
   exact ⟨r, hr, fun x hx => isUnit_of_norm_ne_zero v (hsub hx)⟩
 
-theorem exists_norm_lt_one : ∃ ϖ : Fv F v, 0 < ‖ϖ‖ ∧ ‖ϖ‖ < 1 := exists_norm_lt_one' v
-
 variable {v}
-
-theorem continuous_psiV {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) : Continuous (psiV F ψ v) := continuous_psiV' hψ
-theorem psiV_add (ψ : AddChar (AF F) ℂ) (x y : Fv F v) : psiV F ψ v (x + y) = psiV F ψ v x * psiV F ψ v y :=
-  psiV_add' ψ x y
-theorem psiV_zero (ψ : AddChar (AF F) ℂ) : psiV F ψ v 0 = 1 := psiV_zero' ψ
-theorem norm_psiV {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) (x : Fv F v) : ‖psiV F ψ v x‖ = 1 := norm_psiV' hψ x
-theorem exists_psiV_ne_one {σ : E →ₐ[F] E} (hcm : IsCMExt F E σ) {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) :
-    ∃ y, psiV F ψ v y ≠ 1 := exists_psiV_ne_one' hcm hψ
 
 theorem exists_psiV_small {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) :
     ∃ ε > 0, ∀ t : Fv F v, ‖t‖ ≤ ε → psiV F ψ v t = 1 :=
-  OswLocFin.no_small_subgroups (psiV F ψ v) (continuous_psiV hψ) (psiV_add ψ) (psiV_zero ψ) (norm_psiV hψ)
+  OswLocFin.no_small_subgroups (psiV F ψ v) (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.continuous_psiV' hψ) (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.psiV_add' ψ) (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.psiV_zero' ψ) (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.norm_psiV' hψ)
 
-theorem measurePreserving_of_addEquiv {G : Type*} [AddCommGroup G] [TopologicalSpace G] [IsTopologicalAddGroup G]
-    [LocallyCompactSpace G] [T2Space G] [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]
-    (μ : Measure G) [μ.IsAddHaarMeasure] (e : G ≃+ G) (he : Continuous e) (he' : Continuous e.symm)
-    (B : Set G) (hB : IsCompact B) (hB' : (interior B).Nonempty) (heB : e ⁻¹' B = B) :
-    MeasurePreserving e μ μ := OswLocFin.measurePreserving_of_addEquiv μ e he he' B hB hB' heB
+alias measurePreserving_of_addEquiv := _root_.PositivityTheory.SiegelWeilFormula.OswLocFin.measurePreserving_of_addEquiv
 
 end PositivityTheory.SiegelWeilFormula.SwLocFin

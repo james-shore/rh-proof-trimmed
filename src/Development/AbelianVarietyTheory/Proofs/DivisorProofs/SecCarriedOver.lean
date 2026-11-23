@@ -53,13 +53,6 @@ noncomputable section
 
 namespace GlobalTheory.Mum
 
-theorem gs_eq_map_gs {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (a : Γ(X, U)) :
-    gs f y U a = (f.stalkMap y).hom (gs (𝟙 X) (f y) U a) := by
-  rw [gs_eq f y U h, gs_eq (𝟙 X) (f y) U h]
-  have := congrArg (fun q => q.hom a) (f.germ_stalkMap U y h)
-  simp only [CommRingCat.hom_comp, RingHom.comp_apply] at this
-  exact this.symm
-
 def IsSecOver {X : Scheme.{0}} (L : LB X) (W : X.Opens) (s : ∀ k, Γ(X, W ⊓ L.U k)) : Prop :=
   ∀ (z : X) (k k' : L.ι), z ∈ W → z ∈ L.U k → z ∈ L.U k' →
     gs (𝟙 X) z (W ⊓ L.U k) (s k) =

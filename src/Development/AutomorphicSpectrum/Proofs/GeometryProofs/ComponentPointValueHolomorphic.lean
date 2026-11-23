@@ -187,7 +187,7 @@ theorem exists_local_eigenframes : ∀ (E : Type) [Field E] [NumberField E] [IsC
       rw [(hf₂ p₀ (hfib y₀ _) hp₂).2]
       exact Submodule.subset_span ⟨i, rfl⟩
     exact this.1
-  obtain ⟨R, _, x, _, F, _, _, MR, e, hpx, hxN, hext⟩ := GlobalTheory.T.local_lie_model_extends Y.X Y.t.G Z.Ω (Z.ξ₀ ≫ Y.j) Z.V Z.M p₀
+  obtain ⟨R, _, x, _, F, _, _, MR, e, hpx, hxN, hext⟩ := _root_.GlobalTheory.CompanionTheory.Ar.lieLat_germs_eq_sections Y.X Y.t.G Z.Ω (Z.ξ₀ ≫ Y.j) Z.V Z.M p₀
     (N₁ ⊓ N₂) (Fin D.p ⊕ Fin D.q) (Sum.elim c₁ c₂) ⟨hp₁, hp₂⟩ (by rintro (i | i); exacts [hc₁ i, hc₂ i])
   let W : (Xo.XF c).Opens := Y.j ⁻¹ᵁ x.opensRange
   have hW : y₀ (IsLocalRing.closedPoint ℂ) ∈ W := by

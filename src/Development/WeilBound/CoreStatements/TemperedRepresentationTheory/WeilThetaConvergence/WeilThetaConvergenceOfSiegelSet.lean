@@ -45,6 +45,6 @@ import Mathlib.Topology.Sheaves.Init
 namespace GlobalTheory.CompanionTheory.WTC
 
 theorem weilThetaConvergence_of_core (h : PositivityTheory.ThKR.SiegelCore) : GlobalTheory.Published.WeilThetaConvergence :=
-  GlobalTheory.T.theta_convergence_of_siegel_set (PositivityTheory.ThKR.siegel_of_core h)
+  _root_.GlobalTheory.CompanionTheory.WeilTheta.weilThetaConvergence_of_siegelSet (PositivityTheory.ThKR.siegel_of_core h)
 
 end GlobalTheory.CompanionTheory.WTC

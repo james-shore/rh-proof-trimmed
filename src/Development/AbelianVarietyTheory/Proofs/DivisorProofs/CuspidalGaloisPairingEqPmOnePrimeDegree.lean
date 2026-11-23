@@ -133,10 +133,10 @@ theorem hfree_J {K : Type} [Field K] [Finite K] (θ : AlgebraicClosure K →* �
         (2 ≤ p.1 ∨ ¬ p.2 ≡ 0 [MOD Nat.card K - 1]) := fun p' h' => hL p' (List.mem_cons_of_mem _ h')
     rw [J_cons]
     have hdeg : deg (p :: L) = p.1 + deg L := by simp [deg]
-    exact GlobalTheory.T.hyperplaneFixerSumVanishes_harishChandraInduction K p.1 (deg L) (deg (p :: L)) hdeg _ _
-      (GlobalTheory.T.cuspidalCharacterGL_isCharacter_norm_one_of_regular K θ hθ p.1 p.2 hp.1 hp.2.1).1
-      (GlobalTheory.T.isCharacter_harishChandraProductCuspidalGL_of_regular K θ hθ L (fun p' h' => ⟨(hL' p' h').1, (hL' p' h').2.1⟩) _ rfl)
-      (GlobalTheory.T.hyperplaneFixerSumVanishes_cuspidalCharacterGLFiniteField K θ hθ p.1 p.2 hp.2.2) (hfree_J θ hθ L hL')
+    exact _root_.GlobalTheory.Shin.FreeHc.hfree_hc K p.1 (deg L) (deg (p :: L)) hdeg _ _
+      (_root_.GlobalTheory.Shin.isChar_cusp_and_norm_of_reg K θ hθ p.1 p.2 hp.1 hp.2.1).1
+      (_root_.GlobalTheory.Shin.isChar_J_of_reg K θ hθ L (fun p' h' => ⟨(hL' p' h').1, (hL' p' h').2.1⟩) _ rfl)
+      (_root_.GlobalTheory.Shin.hFree_cusp K θ hθ p.1 p.2 hp.2.2) (hfree_J θ hθ L hL')
 
 end GlobalTheory.Shin.PairPM
 
@@ -160,13 +160,13 @@ theorem pairing_pm_one : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [
   have hR := reg_step_of_dvd q l m k hq hl0 hm hreg'
   have hLL : liftL q l [(n, k)] = (List.range l).map (fun i => (m, k * q ^ i)) := by
     simp [liftL, hn, Nat.mul_div_cancel_left _ hl0]
-  obtain ⟨hdeg, hmem⟩ := GlobalTheory.T.deg_liftL_and_reg_pow q l [(n, k)] hq hl0 (by
+  obtain ⟨hdeg, hmem⟩ := _root_.GlobalTheory.Shin.liftL_deg_reg q l [(n, k)] hq hl0 (by
     intro p hp
     rw [List.mem_singleton] at hp
     subst hp
     exact ⟨by rw [hn]; exact Nat.mul_pos hl0 hm, by rw [hn]; exact dvd_mul_right _ _, hreg⟩)
   have hdeg' : deg (liftL q l [(n, k)]) = n := by rw [hdeg]; simp [deg]
-  have hY := GlobalTheory.T.isCharacter_harishChandraProductCuspidalGL_of_regular F' θ hθ (liftL q l [(n, k)]) (fun p hp => by rw [hK]; exact hmem p hp) n hdeg'.symm
+  have hY := _root_.GlobalTheory.Shin.isChar_J_of_reg F' θ hθ (liftL q l [(n, k)]) (fun p hp => by rw [hK]; exact hmem p hp) n hdeg'.symm
   have hF := hfree_J θ hθ (liftL q l [(n, k)]) (by
     intro p hp
     refine ⟨(hmem p hp).1, by rw [hK]; exact (hmem p hp).2, ?_⟩
@@ -184,14 +184,14 @@ theorem pairing_pm_one : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [
   refine ⟨((-1 : ℤ) ^ (m - 1)) ^ l, ?_, ?_⟩
   · rw [← pow_mul]
     exact neg_one_pow_eq_or ℤ _
-  · rw [GlobalTheory.T.finsum_psiG_mul_star_eq_chG F' _ n _ hY hF]
+  · rw [_root_.GlobalTheory.psiG_pairing_eq_chG_pairing F' _ n _ hY hF]
     have hS : chG (fun P => ∏ t : F' ≃ₐ[F] F', rootSum θ k (P.map (t : F' →+* F'))) n =
         chG (fun P => ∏ j ∈ Finset.range l, rootSum θ (k * q ^ j) P) n := by
       funext x
       simp only [chG]
-      exact GlobalTheory.T.prod_rootPowerSum_map_galois_eq F F' θ k _
+      exact _root_.GlobalTheory.Shin.prod_rootSum_map_algEquiv F F' θ k _
     rw [hS]
-    have hZ := GlobalTheory.T.pairing_cuspidalCharacterGL_rootPowerSumCharacter F' θ m (fun i => k * q ^ i) ((-1) ^ (m - 1))
+    have hZ := _root_.GlobalTheory.Shin.pair_J_prod_rootSum F' θ m (fun i => k * q ^ i) ((-1) ^ (m - 1))
       (fun i => sum_cusp_eq_zero θ hθ m _ hm (by
         intro a
         rw [hK, ← pow_mul, ← pow_mul, mul_assoc, ← pow_add]

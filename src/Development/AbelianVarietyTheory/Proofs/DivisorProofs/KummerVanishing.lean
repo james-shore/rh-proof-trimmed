@@ -61,17 +61,11 @@ theorem uCoc_one (A B : Type) [CommRing A] [CommRing B] [Algebra A B] : UCoc A B
   unfold UCoc
   simp [Algebra.TensorProduct.one_def]
 
-theorem uCoc_mul {A B : Type} [CommRing A] [CommRing B] [Algebra A B] {u v : (B ⊗[A] B)ˣ}
-    (hu : UCoc A B u) (hv : UCoc A B v) : UCoc A B (u * v) := by
-  unfold UCoc at *
-  simp only [Units.val_mul, map_mul, hu, hv]
-  ring
-
 theorem uCoc_pow {A B : Type} [CommRing A] [CommRing B] [Algebra A B] {u : (B ⊗[A] B)ˣ}
     (hu : UCoc A B u) (n : ℕ) : UCoc A B (u ^ n) := by
   induction n with
   | zero => simpa using uCoc_one A B
-  | succ n ih => rw [pow_succ]; exact uCoc_mul ih hu
+  | succ n ih => rw [pow_succ]; exact _root_.GlobalTheory.PicCech.uCoc_mul ih hu
 
 theorem kummer_vanishing : B6h1 := by
   intro q _ A _ hq hu hp
@@ -86,12 +80,12 @@ theorem kummer_vanishing : B6h1 := by
     have : spMap (algebraMap A B) = sch.map h ≫ sch.map f := by
       rw [← sch.map_comp, hhf]; rfl
     rw [this, pull_comp, hx, map_zero]
-  obtain ⟨γ, hγ⟩ := GlobalTheory.T.etale_cocycle_coboundary_iff (ZMod q) (tw q 1) A
+  obtain ⟨γ, hγ⟩ := _root_.GlobalTheory.CechOne.cech1 (ZMod q) (tw q 1) A
   obtain ⟨hγ0, hγs, -, -⟩ := hγ B
   obtain ⟨u, rfl⟩ := hγs x hxB
   rw [hγ0]
 
-  obtain ⟨e, he⟩ := GlobalTheory.T.tateTwistOne_sections_eq_rootsOfUnity q
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.EtC.tw_one_mu q
   have hqB : IsUnit (q : (B : Type)) := by simpa using hq.map (algebraMap A B)
   have hqBB : IsUnit (q : B ⊗[A] B) := by simpa using hq.map (algebraMap A (B ⊗[A] B))
   have hqBBB : IsUnit (q : B ⊗[A] (B ⊗[A] B)) := by simpa using hq.map (algebraMap A (B ⊗[A] (B ⊗[A] B)))
@@ -108,7 +102,7 @@ theorem kummer_vanishing : B6h1 := by
     exact h4
 
   set U := ((Additive.toMul (e _ hqBB u.1) : rootsOfUnity q (B ⊗[A] B)) : (B ⊗[A] B)ˣ) with hUdef
-  obtain ⟨δ, hδ⟩ := GlobalTheory.T.pic_faithfullyFlat_descent_unitCocycles A
+  obtain ⟨δ, hδ⟩ := _root_.GlobalTheory.pic_cech_descent A
   obtain ⟨hmul, hone, -, -, -⟩ := hδ B
   have hδ1 : δ B 1 = 1 := by
     have := hmul 1 1 (uCoc_one A B) (uCoc_one A B)
@@ -129,8 +123,8 @@ theorem kummer_vanishing : B6h1 := by
     rw [map_pow, map_pow, ← hwU, mul_pow, hUq, one_mul]
   have hWq' : Units.map iL.toRingHom.toMonoidHom (w ^ q)⁻¹ = Units.map iR.toRingHom.toMonoidHom (w ^ q)⁻¹ := by
     rw [map_inv, map_inv, hWq]
-  obtain ⟨a, ha⟩ := GlobalTheory.T.exists_algebraMap_eq_of_faithfullyFlat_includeLeft_eq_includeRight A B ((w ^ q : (B : Type)ˣ) : (B : Type)) (by simpa [iL, iR] using congrArg Units.val hWq)
-  obtain ⟨a', ha'⟩ := GlobalTheory.T.exists_algebraMap_eq_of_faithfullyFlat_includeLeft_eq_includeRight A B (((w ^ q)⁻¹ : (B : Type)ˣ) : (B : Type)) (by simpa [iL, iR] using congrArg Units.val hWq')
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.EtC.exists_algebraMap_eq_of_includeLeft_eq_includeRight A B ((w ^ q : (B : Type)ˣ) : (B : Type)) (by simpa [iL, iR] using congrArg Units.val hWq)
+  obtain ⟨a', ha'⟩ := _root_.GlobalTheory.EtC.exists_algebraMap_eq_of_includeLeft_eq_includeRight A B (((w ^ q)⁻¹ : (B : Type)ˣ) : (B : Type)) (by simpa [iL, iR] using congrArg Units.val hWq')
   have haa : a * a' = 1 :=
     FaithfulSMul.algebraMap_injective A B (by rw [map_mul, ha, ha', Units.mul_inv, map_one])
   obtain ⟨v, hv⟩ := hu ⟨a, a', haa, by rw [mul_comm, haa]⟩

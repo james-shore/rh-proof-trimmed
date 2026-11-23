@@ -192,7 +192,7 @@ theorem isIntegral_mul_dual {E : Type} [Field E] [NumberField E] (δ : 𝓞 E) (
   classical
   have hbqω : ∀ i, integralBasis E i = algebraMap (𝓞 E) E (RingOfIntegers.basis E i) :=
     fun i => integralBasis_apply E i
-  refine _root_.dual_difference E _ (integralBasis E) (fun i => ?_) (fun x => ?_) _ hδ _
+  refine _root_.PI.UnitaryGroupMassFormula.TBIdemDen.dualDiff E _ (integralBasis E) (fun i => ?_) (fun x => ?_) _ hδ _
   · rw [hbqω]
     exact RingOfIntegers.isIntegral_coe _
   · refine ⟨fun i => (RingOfIntegers.basis E).repr x i, ?_⟩

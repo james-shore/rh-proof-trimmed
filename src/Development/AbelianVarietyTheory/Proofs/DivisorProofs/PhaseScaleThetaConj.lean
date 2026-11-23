@@ -146,7 +146,7 @@ theorem delAt_mem (C : Formalism.L2.Host.CharFrame D) (hval : Formalism.L2.Host.
     split_ifs
     exacts [⟨C.isDel'.fin, hval.del'⟩, ⟨C.isDel.fin, hval.del⟩]
   obtain ⟨⟨n, hn, ho⟩, hv⟩ := key
-  obtain ⟨y, hy⟩ := GlobalTheory.Adopt.heckeCharacter_finiteOrder_values_in_field D δc _ n _ (embLL0 D) h hn ho hv x
+  obtain ⟨y, hy⟩ := _root_.HeckeCharacterValueBounds.GlobalTheory.CompanionTheory.CharValues.main D δc _ n _ (embLL0 D) h hn ho hv x
   exact ⟨y, hy⟩
 
 section Main
@@ -203,7 +203,7 @@ theorem smallComb_of_ratScalar (hRF : GlobalTheory.NT.RayField) {F : Face D A3.A
   refine smallComb_of_small ((ph * c) • (ρ.B i j b).theta (ρ.om i j b 1) h) hinj (fun G => ?_) (fun P hP G hPG => ?_) hPl
   · have h3 : coefFn (embLL0 D) (ρ.B i j b).w.lam (G : Pol ↥D.LL0 D.what₂.Tau (Vc D j).rank) ∈
         (harm (Wc D j).rank (ρ.B i j b).w (ρ.B i j b).F.BS).map (harmFn (Wc D j).rank (ρ.B i j b).w (ρ.B i j b).F.BS) := by
-      rw [GlobalTheory.T.fockHarmonicValueSpace_map_eq_dualWeylModuleFunctions D _ _ _ _ hB.wt hm]
+      rw [_root_.GlobalTheory.ExportSeries.Onto.map_harm_eq D _ _ _ _ hB.wt hm]
       exact Submodule.subset_span ⟨GlobalTheory.CoefModel.mapVV (embLL0 D) _ G, (Scale.coefFn_map _ _ _).symm⟩
     exact h3
   · obtain ⟨G', hG', hPG'⟩ : ∃ G' : VV D.what₂.LL (FWT.lamV D j),

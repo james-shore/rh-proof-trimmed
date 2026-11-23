@@ -42,6 +42,9 @@ import Development.AbelianVarietyTheory.BlockTheory.PoincareCuspForms.TwoLevelLo
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsArchOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEqAtAllEmbeddings
 import Development.AbelianVarietyTheory.Definitions.ThetaValues.Generic
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ModuliUnivEtaKilled
+import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsFormExtendToAllLattices
+import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.LactMulFrame
 
 @[expose] public section
 
@@ -53,37 +56,7 @@ open ReciprocityTheory.ChartRestriction.G.PullbackSections.PfModelLatA GlobalThe
 
 namespace GlobalTheory.ShareOn
 
-theorem natCast_mem_half {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
-    (l : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Level H) : (l.M : 𝓞 E) ∈ l.Mb := by
-  have h2 : (l.M : 𝓞 E) ∈ Ideal.span {(l.M : 𝓞 E)} := Ideal.mem_span_singleton_self _
-  rw [← l.prod] at h2
-  exact Ideal.mul_le_left (I := l.Mb) (J := l.Mb.map (H.bar : 𝓞 E →+* 𝓞 E)) h2
-
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-section Cong
-
-variable {E : Type} [Field E] {r : ℕ} {Ψ : Finset (E →+* ℂ)}
-
-theorem lact_mul_lact (a b : GL (Fin r) E) (x : Frame Ψ r) : lact (a * b) x = lact a (lact b x) := by
-  funext τ
-  simp only [lact, Units.val_mul, Matrix.map_mul]
-  exact Matrix.mul_assoc _ _ _
-
-theorem lact_rmul_comm (a : GL (Fin r) E) (x b : Frame Ψ r) : lact a (rmul x b) = rmul (lact a x) b := by
-  funext τ
-  show (a : Matrix (Fin r) (Fin r) E).map τ.1 * (mat x τ * mat b τ) =
-    ((a : Matrix (Fin r) (Fin r) E).map τ.1 * mat x τ) * mat b τ
-  rw [Matrix.mul_assoc]
-
-theorem lact_one_frame (x : Frame Ψ r) : lact (1 : GL (Fin r) E) x = x := by
-  funext τ
-  simp only [lact, Units.val_one, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mul]
-  rfl
-
-end Cong
-
-
 
 theorem sub_mem_half_smul_latP : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts} {Y : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Y cX} {Csz : ℝ} (p : PtAt ex Csz), More p → ∀ (r : TwoRuns p.T p.P.Gp) (h : RunsOk (fw2 p) r), OwnPin r → ∀ (i : Fin D.R.m) (v : HeightOneSpectrum (𝓞 D.what₂.LL)), ∀ (k : (uAt r v i).Comp), ∀ γ ∈ ((uAt r v i).X k).Γ, ∀ w ∈ lattice₂ D ((uAt r v i).X k).Λ, Matrix.mulVec (γ : Matrix (Fin D.R.r) (Fin D.R.r) D.host.E) w - w ∈ p.T.Q.l.Mb • lattice₂ D ((uAt r v i).X k).Λ := by
   intro D L hT Gi Gl Kc Y cX ex Csz p _ r h _ i v k γ hγ w hw
@@ -100,10 +73,10 @@ theorem sub_mem_half_smul_latP : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies 
   have hmem : (η * γ)⁻¹ ∈ ((uAt r v i).X k).Γ := inv_mem (mul_mem hηΓ hγ)
   have hfix : lact (η * γ)⁻¹ (x0 k) = rmul (x0 k) b := by
     calc lact (η * γ)⁻¹ (x0 k) = lact (η * γ)⁻¹ (rmul (lact η (lact γ (x0 k))) b) := congrArg _ hx
-      _ = rmul (lact (η * γ)⁻¹ (lact η (lact γ (x0 k)))) b := lact_rmul_comm _ _ _
+      _ = rmul (lact (η * γ)⁻¹ (lact η (lact γ (x0 k)))) b := _root_.GlobalTheory.Dict.Extend.lact_rmul _ _ _
       _ = rmul (lact ((η * γ)⁻¹ * (η * γ)) (x0 k)) b := by
-        rw [lact_mul_lact ((η * γ)⁻¹) (η * γ), lact_mul_lact η γ]
-      _ = rmul (x0 k) b := by rw [inv_mul_cancel, lact_one_frame]
+        rw [_root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame ((η * γ)⁻¹) (η * γ), _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame η γ]
+      _ = rmul (x0 k) b := by rw [inv_mul_cancel, _root_.GlobalTheory.Dict.Extend.lact_one]
   have h1 := ((uAt r v i).X k).Γ_free _ hmem (x0 k) (hx0 k).1 b hb hfix
   have hγη : γ = η⁻¹ := by
     rw [inv_eq_one] at h1
@@ -134,7 +107,7 @@ theorem sub_mem_half_smul_latP : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies 
       rw [hz, smul_comm, smul_sub, ← Matrix.mulVec_smul, he, smul_smul, inv_mul_cancel₀ hM0, one_smul]
     rw [this]
     exact hy
-  have hMmem : ((r.used v).full.Q.l.M : 𝓞 D.host.E) ∈ (r.used v).full.Q.l.Mb := natCast_mem_half _
+  have hMmem : ((r.used v).full.Q.l.M : 𝓞 D.host.E) ∈ (r.used v).full.Q.l.Mb := _root_.GlobalTheory.LevelPoints.natCast_mem _
   have hfin : Matrix.mulVec (γ : Matrix (Fin D.R.r) (Fin D.R.r) D.host.E) w - w =
       ((r.used v).full.Q.l.M : 𝓞 D.host.E) • z := by
     rw [hz, ← algebraMap_smul D.host.E, smul_smul, map_natCast, mul_inv_cancel₀ hM0, one_smul]

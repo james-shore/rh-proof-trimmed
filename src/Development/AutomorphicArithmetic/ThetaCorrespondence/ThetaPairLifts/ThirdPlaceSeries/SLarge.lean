@@ -65,9 +65,9 @@ theorem large_of_large_rings_alt : GlobalTheory.TwSys.Cheb → ∀ (D : D7) (cf 
   have hConj := fun P₁ P₂ => (_root_.GlobalTheory.T.eventually_conjunction_mono_alt D cf jE A M C tp.tup P₁ P₂).1
   have hMono := fun P₁ P₂ => (_root_.GlobalTheory.T.eventually_conjunction_mono_alt D cf jE A M C tp.tup P₁ P₂).2.1
   have E1 : _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData A M C tp.tup SumRepresentations.hypO :=
-    _root_.GlobalTheory.T.side_eigen_rationality_alt hStd D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hStar hExp hSplit hCh
+    _root_.GlobalTheory.LargeO.evO_hypO_alt hStd D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hStar hExp hSplit hCh
   have E2 : _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData A M C tp.tup GlobalTheory.SplitCoef.OSplit := by
-    obtain ⟨big, hbig⟩ := _root_.GlobalTheory.T.side_multiplicity_cusp_alt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hStar hExp hSplit hCh
+    obtain ⟨big, hbig⟩ := _root_.GlobalTheory.OSplitBig.exists_big_oSplit_alt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hStar hExp hSplit hCh
     refine ⟨big, fun L hB => ?_⟩
     obtain ⟨Sp, ⟨hA⟩, -⟩ := hB
     exact hbig L Sp hA
@@ -76,7 +76,7 @@ theorem large_of_large_rings_alt : GlobalTheory.TwSys.Cheb → ∀ (D : D7) (cf 
   have E4 : _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData A M C tp.tup (fun D' => _root_.Formalism.MainNotions.SumRepresentations.provisionFortyOne D' ∧ AutomorphicSideWildInertia.ResidualIrreducibleGood D') :=
     hMono _ _ (fun D' h => h.2.1 h.1) (hConj _ _ E1 hO)
   have E5 : _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData A M C tp.tup TakenAll :=
-    _root_.GlobalTheory.T.side_eigen_hecke_match_alt hCheb hStd D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hStar hExp hSplit hCh hEx
+    _root_.GlobalTheory.CoefDuty.TakenLarge.evO_takenAll_alt hCheb hStd D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hStar hExp hSplit hCh hEx
       (hMono _ _ (fun D' h => ⟨h.1.1, h.2.1, h.2.2⟩) (hConj _ _ E4 (hConj _ _ E2 E3)))
   have EL : _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData A M C tp.tup Large :=
     hMono _ _ (fun D' h => ⟨h.1, h.2.1, h.2.2⟩) (hConj _ _ E1 (hConj _ _ E2 E5))
@@ -87,8 +87,8 @@ namespace GlobalTheory.StEta
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
 theorem sEta_alt_alt_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.PointStatement hL → _root_.GlobalTheory.HeightCounting.Up.EtaStatement' hL := by
   intro hP hL hPt
-  refine ((((((hPt.and (_root_.GlobalTheory.T.eventually_etaJ_eq_eta_of_levelC hP hL hPt)).and (_root_.GlobalTheory.T.star_mem_LL0_at_level_c hP hL)).and (_root_.GlobalTheory.T.eExp_integer_of_levelC hP hL)).and (_root_.GlobalTheory.T.places_over_pde_isSplitPl_of_levelC hP hL)).and (_root_.GlobalTheory.T.chebSplit_of_published_inputs_at_level_c hP hL)).and
-    (_root_.GlobalTheory.T.eventually_galoisRepsCusp_of_level_c hP hL)).trans (StepW.of_all ?_)
+  refine ((((((hPt.and (_root_.GlobalTheory.EtaMem.exists_etaJ_alt hP hL hPt)).and (_root_.GlobalTheory.HeightCounting.Up.fixedField_star_stable_of_third_jump_alt hP hL)).and (_root_.GlobalTheory.HeightCounting.Up.ramification_index_integral_of_third_jump_alt hP hL)).and (_root_.GlobalTheory.SplitPrimeAuxiliary.exists_auxiliary_prime_split_alt hP hL)).and (_root_.GlobalTheory.HeightCounting.Up.ChebAtThird.chebotarev_split_places_at_all_levels_alt hP hL)).and
+    (_root_.GlobalTheory.HeightCounting.Up.galoisRep_attached_to_cuspidal_all_levels_alt hP hL)).trans (StepW.of_all ?_)
   intro K B f T w _ _ H P x l hB
   obtain ⟨⟨⟨⟨⟨⟨h1, h2⟩, hst⟩, hex⟩, hsp⟩, hch⟩, h4⟩ := H
   have law := fun P₁ P₂ => _root_.GlobalTheory.CoefDuty.LargeRing.evO_laws_alt (Dof x) (cfOf x) l.a.jE l.a.A l.mt.M l.c.ch l.c.tp.tup P₁ P₂

@@ -111,8 +111,6 @@ theorem dy_y_local (h : PS R 1 d) (i : Fin d) :
   · intro h
     exact absurd (Finset.mem_univ i) h
 
-theorem cc_zero {n : ℕ} (i : Fin d) : constantCoeff ((0 : Pt R n d) i) = 0 := by simp
-
 theorem cc_ptPow {n p : ℕ} (hp : p ≠ 0) (j : Fin n) (i : Fin d) :
     constantCoeff (ptPow R d p j i : PS R n d) = 0 := by
   simp [ptPow, hp]
@@ -185,10 +183,10 @@ theorem inj3 {p : ℕ} (hp : p ≠ 0) {f g : PS R 3 d}
   exact expand_injective' hp (by rw [← key, ← key, h])
 
 theorem no_constant_evaluation_triple : NoConst (![0, pt R d 0, pt R d 1] : Fin 3 → Pt R 2 d) :=
-  noConst_three cc_zero (cc_pt 0) (cc_pt 1)
+  noConst_three _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_zero (cc_pt 0) (cc_pt 1)
 
 theorem noConst_0x : NoConst (![0, pt R d 0] : Fin 2 → Pt R 1 d) :=
-  noConst_two cc_zero (cc_pt 0)
+  noConst_two _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_zero (cc_pt 0)
 
 theorem pd_pt_ne {n : ℕ} {j j' : Fin n} {i i' : Fin d} (h : (j', i') ≠ (j, i)) :
     pderiv (j, i) (pt R d j' i' : PS R n d) = 0 :=
@@ -478,7 +476,7 @@ theorem inter2 (B : FB R d O) (m : ℕ) :
     have n1 : NoConst (![pt R d 1, pt R d 2] : Fin 2 → Pt R 3 d) := noConst_two (cc_pt 1) (cc_pt 2)
     have e1 : ev (n := 3) ![(0 : Pt R 3 d), pt R d 1, pt R d 2] B.ph2 = 1 := by
       have := congrArg (ev (n := 3) ![pt R d 1, pt R d 2]) B.cocycleRight_zero_fst
-      rw [GlobalTheory.DerivEndo.ev_ev n1 (noConst_three cc_zero (cc_pt 0) (cc_pt 1)), ev_one] at this
+      rw [GlobalTheory.DerivEndo.ev_ev n1 (noConst_three _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_zero (cc_pt 0) (cc_pt 1)), ev_one] at this
       refine Eq.trans ?_ this
       congr 1
       funext j i

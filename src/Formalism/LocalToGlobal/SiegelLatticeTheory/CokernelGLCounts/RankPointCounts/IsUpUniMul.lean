@@ -136,14 +136,14 @@ def stZ (Z L : Formalism.L2.SG.PairVal.MatR D) (hL : IsUnit L.det) : Subgroup (F
     · simp [zhatOM_zhatOM]
   mul_mem' := by
     rintro x y ⟨x', hx, hxl, bx, hbx, hxZ, hxp⟩ ⟨y', hy, hyl, by', hby, hyZ, hyp⟩
-    refine ⟨x' * y', ?_, ?_, by' * bx, isUpUni_mul hby hbx, ?_, fun p => ?_⟩
+    refine ⟨x' * y', ?_, ?_, by' * bx, _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul hby hbx, ?_, fun p => ?_⟩
     · rw [Units.val_mul, hx, hy, Units.val_mul]
       calc L⁻¹ * (x' : Formalism.L2.SG.PairVal.MatR D) * L * (L⁻¹ * (y' : Formalism.L2.SG.PairVal.MatR D) * L) =
           L⁻¹ * (x' : Formalism.L2.SG.PairVal.MatR D) * (L * L⁻¹) * (y' : Formalism.L2.SG.PairVal.MatR D) * L := by
             simp only [Matrix.mul_assoc]
         _ = _ := by rw [Matrix.mul_nonsing_inv L hL, Matrix.mul_one]; simp only [Matrix.mul_assoc]
     · rw [Units.val_mul]
-      exact isLoUni_mul hxl hyl
+      exact _root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul hxl hyl
     · rw [Units.val_mul]
       calc (x' : Formalism.L2.SG.PairVal.MatR D) * (y' : Formalism.L2.SG.PairVal.MatR D) * ZhatOM Z * (by' * bx) =
           (x' : Formalism.L2.SG.PairVal.MatR D) * ((y' : Formalism.L2.SG.PairVal.MatR D) * ZhatOM Z * by') * bx := by

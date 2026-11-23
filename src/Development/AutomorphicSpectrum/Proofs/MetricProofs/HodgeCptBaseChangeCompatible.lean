@@ -566,8 +566,8 @@ theorem hodgeCpt_pull_smooth : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       · intro e; apply a; apply i.injective; simpa using e
       · simpa using hreg p' _ b
       · simpa using hreg p' _ d
-  have hnoeth := (GlobalTheory.T.regAt_noetherian_model_noetherian A.X Ω A.ξ ℤ _ _ A.tie).1
-  have hnoeth' := (GlobalTheory.T.regAt_noetherian_model_noetherian Z Ω' ξ' ℤ _ _ htie).1
+  have hnoeth := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A.X Ω A.ξ ℤ _ _ A.tie).1
+  have hnoeth' := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie Z Ω' ξ' ℤ _ _ htie).1
   have hic : ∀ q : Cpt A.ξ, IsIntegrallyClosed (A.X.presheaf.stalk q.1) := fun q => (A.normal q.1).2
   have hic' : ∀ q : Cpt ξ', IsIntegrallyClosed (Z.presheaf.stalk q.1) := fun q => (hnorm q.1).2
   have htors : ∀ p ∈ S, FullTorsion t'.G ξ' (p ^ A.R p) := fun p hp =>
@@ -628,7 +628,7 @@ theorem hodgeCpt_pull_smooth : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       (∀ u ∈ A.M.omLat q, (p ^ A.R p) • u ∈ A.M.htOm A.t.PP.L (p ^ A.R p) q) := by
     intro p hp hpos
     have hN : 0 < p ^ A.R p := pow_pos (A.S_prime p hp).pos _
-    haveI : IsNoetherian A.X := ((GlobalTheory.T.regAt_noetherian_model_noetherian A.X Ω A.ξ ℤ _ _ A.tie).2 A.all).1
+    haveI : IsNoetherian A.X := ((_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A.X Ω A.ξ ℤ _ _ A.tie).2 A.all).1
     have hNc : GlobalTheory.CompanionTheory.Ar.Flat.NormalCpt A.ξ := GlobalTheory.CompanionTheory.Ar.XR.normalCpt_of_isCptGen hgen A.normal
     obtain ⟨s0, o, ⟨m0⟩⟩ := GlobalTheory.T.abelian_scheme_point_object E H D l Xo c _ _ Y A.X A.f A.t A.m Ω A.ξ x hx
     have hζ : ∃ ζ : Ω, IsPrimitiveRoot ζ (p ^ A.R p) :=

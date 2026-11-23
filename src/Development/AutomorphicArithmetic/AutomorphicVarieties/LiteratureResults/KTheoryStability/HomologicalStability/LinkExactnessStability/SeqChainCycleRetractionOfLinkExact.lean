@@ -233,7 +233,7 @@ theorem retract_step : ∀ (V : Type) (F : Set (List V)) (S : Set V), SubClosed 
 
       rw [map_add (f := _), map_sum, add_assoc, ← Finset.sum_add_distrib]
       congr 1
-      exact Finset.sum_congr rfl fun τ _ => GlobalTheory.T.seqChain_boundary_prefix_chain V τ (ys τ)
+      exact Finset.sum_congr rfl fun τ _ => _root_.GlobalTheory.SeqCx.bd_mapDomain_prepend V τ (ys τ)
     set g := bd V Cg + ∑ τ ∈ P, ((ys τ).sum fun w a =>
         a • Finsupp.mapDomain (fun σ => σ ++ w) (bd V (Finsupp.single τ 1))) with hg
     have hgmem : g ∈ Finsupp.supported ℤ ℤ {l | ∀ y ∈ l.drop k, y ∈ S} := by
@@ -295,7 +295,7 @@ theorem retract_step : ∀ (V : Type) (F : Set (List V)) (S : Set V), SubClosed 
 
       rw [map_sum]
       refine Finset.sum_congr rfl fun τ hτ => ?_
-      rw [LinearMap.map_smul, GlobalTheory.T.seqChain_boundary_prefix_chain, hzb τ hτ, smul_add, smul_smul, ← mul_pow]
+      rw [LinearMap.map_smul, _root_.GlobalTheory.SeqCx.bd_mapDomain_prepend, hzb τ hτ, smul_add, smul_smul, ← mul_pow]
       simp
     rw [hbdb, Finset.sum_add_distrib]
     have hrw : c - (∑ τ ∈ P, (-1 : ℤ) ^ τ.length • ((zf τ).sum fun w a =>
@@ -326,14 +326,3 @@ end GlobalTheory.SeqCx
 
 end
 
-section
-open GlobalTheory.SeqCx Matrix
-theorem _root_.GlobalTheory.T.seqChain_cycle_retraction_of_link_exact : ∀ (V : Type) (F : Set (List V)) (S : Set V), SubClosed F → ∀ (p k : ℕ), (∀ τ ∈ F, ∀ x, τ.getLast? = some x → x ∉ S → τ.length = k + 1 → τ.length ≤ p → ExactAt (linkIn F S τ) (p - τ.length)) → ∀ c ∈ chains {l ∈ F | ∀ y ∈ l.drop (k + 1), y ∈ S} p, bd V c = 0 → ∃ b ∈ chains F (p + 1), c - bd V b ∈ chains {l ∈ F | ∀ y ∈ l.drop k, y ∈ S} p := by
-  first
-  | exact @GlobalTheory.SeqCx.retract_step
-  | exact @GlobalTheory.SeqCx.drop_eraseIdx_sublist_drop
-  | exact @GlobalTheory.SeqCx.prepend_part_mem_supported
-  | exact @GlobalTheory.SeqCx.mapDomain_mem_supported_of_maps
-  | exact @GlobalTheory.SeqCx.bd_mem_supported_of_eraseIdx
-  | exact @GlobalTheory.SeqCx.mapDomain_prepend_apply'
-end

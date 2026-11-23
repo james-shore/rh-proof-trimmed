@@ -174,10 +174,10 @@ theorem hasDerivAt_inner_gauss : ∀ (P Q : ℕ) (F : Fock (Ix P Q)) (A : ℝ �
       rcases l with i | j
       · rw [derForm_X_inl]
         exact step A' x' (fun t => pair F (v t)) _ (fun t => x t (Sum.inl i)) (fun t j => A t i j) _ _ Sum.inr
-          (hx _) (hA i) (fun t => (GlobalTheory.T.gaussianVector_annihilator_equations P Q F _ _ _ (hv t)).1 i) _ (ih _ hβ c) h1
+          (hx _) (hA i) (fun t => (_root_.GlobalTheory.OscGauss.gauss_annihilator P Q F _ _ _ (hv t)).1 i) _ (ih _ hβ c) h1
       · rw [derForm_X_inr]
         exact step A' x' (fun t => pair F (v t)) _ (fun t => x t (Sum.inr j)) (fun t i => A t i j) _ _ Sum.inl
-          (hx _) (fun i => hA i j) (fun t => (GlobalTheory.T.gaussianVector_annihilator_equations P Q F _ _ _ (hv t)).2 j) _ (ih _ hβ c) h1
+          (hx _) (fun i => hA i j) (fun t => (_root_.GlobalTheory.OscGauss.gauss_annihilator P Q F _ _ _ (hv t)).2 j) _ (ih _ hβ c) h1
   induction f using MvPolynomial.induction_on' with
   | monomial α c => exact key _ α le_rfl c
   | add f g hf hg =>

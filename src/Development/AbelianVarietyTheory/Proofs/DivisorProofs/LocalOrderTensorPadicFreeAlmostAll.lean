@@ -63,7 +63,7 @@ namespace GlobalTheory.LocMatrix
 theorem tmul_smul_eq_cenMap_mul {F B : Type} [Field F] [NumberField F] [Ring B] [Algebra F B]
     [Algebra ℚ B] [IsScalarTower ℚ F B] (ℓ : ℕ) [Fact ℓ.Prime] (q : ℚ_[ℓ]) (c : F) (v : B) :
     q ⊗ₜ[ℚ] (c • v) = cenMap ℓ F B (q ⊗ₜ c) * ((1 : ℚ_[ℓ]) ⊗ₜ v) := by
-  rw [cenMap_tmul, Algebra.TensorProduct.tmul_mul_tmul, mul_one, Algebra.smul_def]
+  rw [_root_.GlobalTheory.CentralizerMapTensor.cenMap_tmul_eq, Algebra.TensorProduct.tmul_mul_tmul, mul_one, Algebra.smul_def]
 
 def combMap {F B : Type} [Field F] [NumberField F] [Ring B] [Algebra F B]
     [Algebra ℚ B] [IsScalarTower ℚ F B] (ℓ : ℕ) [Fact ℓ.Prime] {d : ℕ} (v : Fin d → B) :

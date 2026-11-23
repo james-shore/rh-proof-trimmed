@@ -82,13 +82,6 @@ theorem continuousAt_rowGL {a : ℕ} (ℓ : Fin a) :
 
 end Local
 
-theorem exists_exp_lt {c : WithZero (Multiplicative ℤ)} (hc : c ≠ 0) :
-    ∃ N : ℕ, WithZero.exp (-(N:ℤ)) < c := by
-  obtain ⟨k, rfl⟩ : ∃ k, c = WithZero.exp k := ⟨_, (WithZero.exp_log hc).symm⟩
-  refine ⟨(-k + 1).toNat, ?_⟩
-  rw [WithZero.exp_lt_exp]
-  omega
-
 variable {E : Type} [Field E] [NumberField E]
 
 theorem exists_nat_of_mem_nhds {a : ℕ} (ℓ : Fin a) (w : HeightOneSpectrum (𝓞 E))
@@ -102,7 +95,7 @@ theorem exists_nat_of_mem_nhds {a : ℕ} (ℓ : Fin a) (w : HeightOneSpectrum (�
     intro j
     obtain ⟨γ, hγ⟩ := Valued.mem_nhds.1 (ht j)
     have hc : MonoidWithZeroHom.ValueGroup₀.embedding γ.1 ≠ (0 : WithZero (Multiplicative ℤ)) := by simp
-    obtain ⟨N, hN⟩ := exists_exp_lt hc
+    obtain ⟨N, hN⟩ := _root_.GlobalTheory.Idele.exists_exp_neg_lt hc
     refine ⟨N, fun z hz => hγ ?_⟩
     simp only [Set.mem_setOf_eq, Valuation.restrict_lt_iff_lt_embedding]
     exact lt_of_le_of_lt hz hN

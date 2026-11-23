@@ -267,7 +267,7 @@ theorem mem_L2cusp_iff_isCuspAE : ∀ (D : D7) (V : HSp D) (μ : Measure (GA D V
   intro D V μ _ _ F
   refine ⟨fun h 𝔉 h𝔉 => constTermOn_ae_eq_zero (cocompact_flag D V 𝔉) (closure_mono ?_ h), fun h => ?_⟩
   · rintro F' ⟨φ, hφ, e⟩
-    exact ⟨φ, hφ.1, hφ.2.1, T.constantTermAlongFlag_eq_zero_of_cuspidal D V φ hφ 𝔉 h𝔉, e⟩
+    exact ⟨φ, hφ.1, hφ.2.1, _root_.GlobalTheory.Cusp.constTerm_eq_zero_of_mem_cuspCont D V φ hφ 𝔉 h𝔉, e⟩
   · refine mem_of_forall_Rop_mem (isSubrep_L2cusp V μ).1 fun f hf hs => ?_
     have hl := (leftInv_lift (Γ := GQ V) F).convR (μ := μ) f
     refine mem_L2cusp_of_ae_eq ⟨(AutomorphicL2Local.continuous_convR_lift _ _ μ f hf hs F).2, hl,

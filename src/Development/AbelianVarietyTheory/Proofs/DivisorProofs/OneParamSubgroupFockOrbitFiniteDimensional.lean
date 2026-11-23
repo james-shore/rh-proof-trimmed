@@ -145,7 +145,7 @@ theorem orbit_finiteDimensional : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) 
         rw [hA1, hBk]
         show ω (1, _) = ω ((GlobalTheory.Grid.ofSgn false M) 1, _)
         rw [map_one]
-      have key := hK 1 (GlobalTheory.Chain.RealIt.one_mem_Kset _) _ hk P
+      have key := hK 1 (_root_.GlobalTheory.SourceOperatorLemmas.one_mem_K _) _ hk P
       have hfock : fockF ψ θ false A B f P = GlobalTheory.ChainFr.ptF ψ θ (frSgn false A) B f P := rfl
       rw [hfock, hω1, key]
       refine Submodule.smul_mem _ _ ⟨_, (MvPolynomial.mem_restrictTotalDegree _ _ _).2

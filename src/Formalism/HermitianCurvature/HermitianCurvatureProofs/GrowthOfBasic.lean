@@ -353,12 +353,6 @@ theorem t_EtaZero : SqrtSumSqLeOneAddInvPowSix := by
 
 end Num3
 
-section Num4
-
-open Formalism.FourierDecayAlt.PB
-
-end Num4
-
 section Hil1
 
 open Formalism.FourierDecayAlt.PB Finset
@@ -715,37 +709,13 @@ theorem t_PairSplit : PairSplit := by
 
 end Hil5
 
-section Hil6
-
-open Formalism.FourierDecayAlt.PB
-
-end Hil6
-
 section LocA
 
 open Finset NumberField Formalism.FourierDecayAlt Formalism.FourierDecayAlt.PB
 open scoped ComplexOrder ComplexConjugate
 open Classical
 
-theorem psd_congr {α : Type} {Y : Finset α} {k k' : α → α → ℂ}
-    (h : ∀ x ∈ Y, ∀ y ∈ Y, k x y = k' x y) (hk : TB.PSDOn Y k) : TB.PSDOn Y k' := by
-  have e : (Matrix.of fun x y : Y => k' x y) = Matrix.of fun x y : Y => k x y := by
-    ext x y
-    simp only [Matrix.of_apply]
-    exact (h x x.2 y y.2).symm
-  show Matrix.PosSemidef (Matrix.of fun x y : Y => k' x y)
-  rw [e]
-  exact hk
-
-theorem psd_add {α : Type} {Y : Finset α} {k k' : α → α → ℂ}
-    (hk : TB.PSDOn Y k) (hk' : TB.PSDOn Y k') : TB.PSDOn Y (fun x y => k x y + k' x y) := by
-  have e : (Matrix.of fun x y : Y => k x y + k' x y) =
-      (Matrix.of fun x y : Y => k x y) + Matrix.of fun x y : Y => k' x y := by
-    ext x y
-    simp [Matrix.of_apply]
-  show Matrix.PosSemidef (Matrix.of fun x y : Y => k x y + k' x y)
-  rw [e]
-  exact Matrix.PosSemidef.add hk hk'
+alias psd_congr := _root_.Formalism.FourierDecayAlt.P.Jx7.psd_congr
 
 theorem psd_one (hS : J.SchurProduct) {α : Type} (Y : Finset α) : TB.PSDOn Y (fun _ _ => (1 : ℂ)) := by
   have h := hS α Empty Y (fun p => p.elim) (fun p => p.elim)
@@ -859,7 +829,7 @@ theorem outOk (hA : J.PSDAgree) (hA2 : A5.A2) (hLP : J.LocalPullback) (hPh : J.P
       intro x hx y hy
       simp only [hin, hS, if_true, hN x hx y hy]
     · by_cases hS : t ∈ S.L
-      · have := psd_add (psd_one hSch Y) key
+      · have := _root_.Formalism.FourierDecayAlt.P.Jx7.psd_add (psd_one hSch Y) key
         refine psd_congr ?_ this
         intro x hx y hy
         simp only [hin, hS, if_true, if_false, hN x hx y hy]
@@ -971,12 +941,12 @@ theorem t_PullLatticeOrdinary : PullLatticeOrdinary := by
     unfold S6.perLat
     rw [Formalism.FourierDecayAlt.P.localTwistedLattice E _ _ s P hP t, Formalism.FourierDecayAlt.P.localAwayFromLevel E g 1 ν P hP hgP,
       Formalism.FourierDecayAlt.P.localAwayFromLevel E g 2 ν P hP hgP]
-    exact ⟨fun h => h.1, fun h => ⟨h, key _ (Formalism.FourierDecayAlt.P.different_power_conj_stable E g 0 ν) t h⟩⟩
+    exact ⟨fun h => h.1, fun h => ⟨h, key _ (_root_.Formalism.FourierDecayAlt.P.S6x2.powConjStable E g 0 ν) t h⟩⟩
   have hLift : t ∈ S6.locAt E P (S6.liftLat E g ν s) ↔
       t ∈ S6.locAt E P (S6.zsub E (S6.idl E g 0 (-ν))) := by
     unfold S6.liftLat
     rw [Formalism.FourierDecayAlt.P.localTwistedLattice E _ _ s P hP t, Formalism.FourierDecayAlt.P.localAwayFromLevel E g (-1) (-ν) P hP hgP]
-    exact ⟨fun h => h.1, fun h => ⟨h, key _ (Formalism.FourierDecayAlt.P.different_power_conj_stable E g 0 (-ν)) t h⟩⟩
+    exact ⟨fun h => h.1, fun h => ⟨h, key _ (_root_.Formalism.FourierDecayAlt.P.S6x2.powConjStable E g 0 (-ν)) t h⟩⟩
   have hinv : ((u⁻¹ : Kˣ) : K) = σ ω⁻¹ := by
     by_cases hω0 : ω = 0
     · have h0 : (u : K) = 0 := by rw [hu, hω0, map_zero]
@@ -1208,19 +1178,5 @@ end From
 end Formalism.FourierDecayAlt.P.GrowthPolynomialOperator
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem equal_index : Formalism.FourierDecayAlt.PB.GramSumLeOfPosSemidef := GrowthPolynomialOperator.t_EqualIota
-
-theorem price_of_index : Formalism.FourierDecayAlt.PB.NormSqBoundOfEqualIota := GrowthPolynomialOperator.t_PriceOfIota
-
-theorem pair_split_alt : Formalism.FourierDecayAlt.PB.PairSplit := GrowthPolynomialOperator.t_PairSplit
-
-theorem subfamilyAlt : Formalism.FourierDecayAlt.PB.SubFamily := GrowthPolynomialOperator.t_SubFamily
-
-theorem loops_give_series : Formalism.FourierDecayAlt.PB.LoopsGiveRows := GrowthPolynomialOperator.t_LoopsGiveRows
-
-theorem pair_bound_abstract : Formalism.FourierDecayAlt.PB.PairBoundAbstract := GrowthPolynomialOperator.t_PairBoundAbstract
-
-theorem loops_joint : Formalism.FourierDecayAlt.PB.LoopsJoint := GrowthPolynomialOperator.t_LoopsJoint
 
 end Formalism.FourierDecayAlt.P

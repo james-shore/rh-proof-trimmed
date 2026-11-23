@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.CommGroupMulMulEqMulInvMulMulMul
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsoOverOfIsOpenImmersion
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBaseFrame
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LocallyQuasiFiniteOfTrivialOnFibres
 
 @[expose] public section
 
@@ -78,7 +79,7 @@ theorem chartPt_sub : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H 
   have := t.semi.separated
   have hut : ∀ a, IsTangent (u a) := GlobalTheory.T.isTangent_of_fibre_pullback_tangent_at_chart t U v hv x0 hU A m u hm hu
   let Ω : t.G.left.affineOpens :=
-    ⟨Ω₁.1 ⊓ Ω₂.1, GlobalTheory.T.isAffineOpen_inf_of_separated_over_affineOpen t.G.hom U Ω₁ Ω₂ (hΩ₁.trans (hW₀ _)) (hΩ₂.trans (hW₀ _))⟩
+    ⟨Ω₁.1 ⊓ Ω₂.1, _root_.GlobalTheory.SepAffInf.isAffineOpen_inf_of_le_preimage t.G.hom U Ω₁ Ω₂ (hΩ₁.trans (hW₀ _)) (hΩ₂.trans (hW₀ _))⟩
   have e₁ : Ω.1 ≤ Ω₁.1 := inf_le_left
   have e₂ : Ω.1 ≤ Ω₂.1 := inf_le_right
   have hxΩ : ⊤ ≤ x ⁻¹ᵁ (m ⁻¹ᵁ Ω.1) := fun p hp => ⟨(hxW hp).1.1, (hxW hp).2.1⟩
@@ -92,7 +93,7 @@ theorem chartPt_sub : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H 
   obtain rfl : l₂' = l₂ := (k₂.of_le (hfield i₂) e₂ hΩ₂ hx hxΩ hut).unique hm'.1 h₂
   have hwt : ∀ a, transl (baseMap K B) x (u a) = w a := fun a => (isTransl_transl _ x hx (u a)).unique (hw a)
   have hwx := fun a => (hw a).red (hut a)
-  have := isAffineHom_of_field x0
+  have := _root_.GlobalTheory.AmpleFibre.isAffineHom_of_field x0
   have : IsAffineHom m := MorphismProperty.of_isPullback (P := @IsAffineHom) hm.1.flip inferInstance
   obtain ⟨S, hS, hSx, hSv⟩ := GlobalTheory.T.exists_linearCombination_tangentVectors_affineOpen A.hom ⟨m ⁻¹ᵁ Ω.1, Ω.2.preimage m⟩ (baseMap K B) x hx hxΩ w
     (fun a => (hw a).w) hwx (fun a => ∑ b, baseMap K B ((Matrix.of fun a b => ev x0 U.1 hU (Θ a b)) a b) *

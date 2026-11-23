@@ -44,6 +44,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace CrystallineSemistableComparison.Close
 
-theorem cstSmooth_of_side (h : CrystallineSemistableComparison.Out.EtSideS) : CrystallineSemistableComparison.Out.CstSmooth := CrystallineSemistableComparison.Out.cstSmooth_of_side h
-
 end CrystallineSemistableComparison.Close

@@ -94,24 +94,13 @@ theorem hO_eq (S T : HSp D) (x y : WO S T) : hO S T x y = Matrix.trace (adjO T S
   conv_rhs => rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun c _ => Finset.sum_comm
 
-theorem hO_herm (S T : HSp D) (x y : WO S T) : cA D (hO S T x y) = hO S T y x := by
-  rw [hO_eq, hO_eq]
-  have e : cA D (Matrix.trace (adjO T S y * x)) = Matrix.trace (((adjO T S y * x).map (cA D))ᵀ) := by
-
-    rw [Matrix.trace_transpose]; simp only [Matrix.trace, Matrix.diag, map_sum, Matrix.map_apply]
-  rw [e, conjT_mul, adjO_eq, conjT_mul, conjT_mul, conjT_conjT, GlobalTheory.OrientedAdjoint.gram_conj, gramI_conj,
-    adjO_eq, Matrix.trace_mul_comm]
-  simp only [Matrix.mul_assoc]
-  rw [Matrix.trace_mul_comm]; simp only [Matrix.mul_assoc]
-  rw [Matrix.trace_mul_comm]; simp only [Matrix.mul_assoc]
-
 theorem hO_adj (S T : HSp D) (x y : WO T S) : hO S T (adjO S T x) (adjO S T y) = hO T S y x := by
   rw [hO_eq, hO_eq, adj_invol, Matrix.trace_mul_comm]
 
 theorem adj_sympl (S T : HSp D) (y y' : WO T S) :
     symplO S T (adjO S T y) (adjO S T y') = -symplO T S y y' := by
   unfold symplO
-  rw [hO_adj, ← hO_herm, ← GlobalTheory.DualPairCheck.trace_cA, map_mul, GlobalTheory.DualPairCheck.cA_cA,
+  rw [hO_adj, ← _root_.GlobalTheory.FinTranslate.hO_herm, ← GlobalTheory.DualPairCheck.trace_cA, map_mul, GlobalTheory.DualPairCheck.cA_cA,
     GlobalTheory.DualPairCheck.cA_incA, GlobalTheory.DualPairCheck.star_purely_imaginary_eq_neg, map_neg, neg_mul, map_neg]
 
 theorem symplOH_adj (S T : HSp D) (y y' : WO T S) :
@@ -124,9 +113,9 @@ namespace GlobalTheory.AdjLawPf
 
 variable {D : D7}
 
-theorem mt_mul (V : HSp D) (a b : GA D V) : mt V (a * b) = mt V a * mt V b := by simp [Formalism.L2.Theta.mt]
+alias mt_mul := _root_.GlobalTheory.BesselCompare.mt_mul
 
-theorem mt_one (V : HSp D) : mt V 1 = 1 := by simp [Formalism.L2.Theta.mt]
+alias mt_one := _root_.GlobalTheory.BesselCompare.mt_one
 
 theorem mt_mul_inv (V : HSp D) (g : GA D V) : mt V g * mt V g⁻¹ = 1 := by
   rw [← mt_mul, mul_inv_cancel, mt_one]

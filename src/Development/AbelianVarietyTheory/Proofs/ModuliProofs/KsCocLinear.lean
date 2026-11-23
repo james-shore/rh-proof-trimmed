@@ -54,13 +54,7 @@ open GlobalTheory.KS
 noncomputable section
 namespace GlobalTheory.KS.LinDir
 
-theorem pbT_id {Y : Scheme.{0}} {O : Y.Opens} (s : Γ(Y, O)) : pbT (𝟙 Y) s O = s := by
-  unfold pbT
-  rw [dite_eq_left (show O ≤ (𝟙 Y) ⁻¹ᵁ O from le_rfl)]
-  have : (𝟙 Y : Y ⟶ Y).appLE O O (show O ≤ (𝟙 Y) ⁻¹ᵁ O from le_rfl) = 𝟙 _ := by
-    change 𝟙 _ ≫ Y.presheaf.map (𝟙 (Opposite.op O)) = _
-    simp
-  rw [this]; rfl
+alias pbT_id := _root_.GlobalTheory.KS.InvField.pbT_id
 
 theorem constFn_lin {K : Type} [Field K] {Y : Scheme.{0}} (q : Y ⟶ Sp K) (O : Y.Opens) (c x y : K) :
     constFn q O (c * x + y) - constFn q O c * constFn q O x - constFn q O y = constFn q O 0 := by

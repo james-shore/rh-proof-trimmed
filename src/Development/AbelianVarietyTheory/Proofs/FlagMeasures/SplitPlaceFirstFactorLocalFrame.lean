@@ -87,7 +87,7 @@ theorem resChar_residue {R : Type} [CommRing R] [IsLocalRing R] (f : R → ℂ) 
 theorem afsplitIE_mem_OAd {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (v : HeightOneSpectrum (𝓞 F)) (x : E ⊗[F] v.adicCompletion F) (hx : x ∈ intV E v) :
     Formalism.UG.P.afsplitIE v x ∈ OAd F E := by
-  rw [(GlobalTheory.T.integralExtensionFiniteAdeles_basic_properties F E).1]
+  rw [(_root_.GlobalTheory.St.G.IntAd.integral_adeles_properties F E).1]
   intro w
   by_cases h : w = v
   · subst h; rw [Formalism.UG.P.afsplit_prV_IE]; exact hx
@@ -241,7 +241,7 @@ theorem local_frame_first_factor : ∀ (F E : Type) [Field F] [NumberField F] [F
     have hcol := fst_mulVec sp y b fr hfr
     generalize (fr⁻¹ * bc ((RingHom.fst _ _).comp sp.toRingHom) y * fr : GL (Fin n) (v.adicCompletion F)) = Mg at hMint hcol ⊢
     set M : Matrix (Fin n) (Fin n) (v.adicCompletion F) := (Mg : Matrix (Fin n) (Fin n) (v.adicCompletion F)) with hMdef
-    have hform1 := (GlobalTheory.T.split_place_lattice_components F E cm n J hJ hdet v sp hsig halg).2.2
+    have hform1 := (_root_.GlobalTheory.St.G.split_components F E cm n J hJ hdet v sp hsig halg).2.2
     have hdual1 : ∀ i l, (sp (hR cm.sig J (v.adicCompletion F) (bd i) (b l))).1 =
         (if i = l then 1 else 0) + (g : v.adicCompletion F) * (sp (s i l)).1 :=
       fun i l => fst_dual sp e he (i = l) _ _ g (hsd i l)

@@ -71,9 +71,7 @@ lemma length_quot_span (a : O) :
     Module.length O (O ⧸ Ideal.span ({a} : Set O)) = addVal O a :=
   Ring.ord_eq_addVal a
 
-lemma addVal_prod {ι : Type*} (s : Finset ι) (a : ι → O) :
-    addVal O (∏ i ∈ s, a i) = ∑ i ∈ s, addVal O (a i) := by
-  first | exact Bl.SecondBlockLemmaA.goal1 .. | (apply Bl.SecondBlockLemmaA.goal1 <;> assumption) | (intros; apply Bl.SecondBlockLemmaA.goal1 <;> assumption) | (apply @Bl.SecondBlockLemmaA.goal1 <;> assumption) | (intros; apply @Bl.SecondBlockLemmaA.goal1 <;> assumption) | (apply @Bl.SecondBlockLemmaA.goal1 <;> first | assumption | infer_instance) | exact @Bl.SecondBlockLemmaA.goal1 O ‹_› ‹_› ‹_› ι s a | exact @Bl.SecondBlockLemmaA.goal1 O ‹_› ‹_› ‹_› ι s | exact @Bl.SecondBlockLemmaA.goal1 O ‹_› ‹_› ‹_› ι | exact @Bl.SecondBlockLemmaA.goal1 O ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaA.goal1 O ‹_› ‹_› | exact @Bl.SecondBlockLemmaA.goal1 O ‹_› | exact @Bl.SecondBlockLemmaA.goal1 O
+alias addVal_prod := _root_.Bl.SecondBlockLemmaA.goal1
 
 lemma length_quot_eq_addVal_det {ι : Type} [Fintype ι] [DecidableEq ι]
     (N : Submodule O (ι → O)) (e : (ι → O) ≃ₗ[O] N) :

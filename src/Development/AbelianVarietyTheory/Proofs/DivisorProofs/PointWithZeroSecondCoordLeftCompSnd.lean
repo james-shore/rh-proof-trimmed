@@ -56,9 +56,6 @@ namespace GlobalTheory.PtExt.CupA
 
 variable {R : Type} [CommRing R] {A B : Over (Sp R)} [GrpObj A] [GrpObj B]
 
-theorem spOver_left {D D' : Type} [CommRing D] [Algebra R D] [CommRing D'] [Algebra R D'] (φ : D →ₐ[R] D') :
-    (spOver (R := R) φ).left = spMap (φ : D →+* D') := rfl
-
 theorem pointWithZeroSecondCoord_left_comp_fst {D : Type} [CommRing D] [Algebra R D] (x : Pt A D) :
     (pt0 B x).left ≫ (fst A B).left = x.left := by
   rw [← Over.comp_left]; unfold pt0; rw [lift_fst]
@@ -76,7 +73,7 @@ theorem pointWithZeroSecondCoord_left_comp_snd (v : epsR R ⟶ B) (hv : IsTangen
       spMap (TrivSqZeroExt.fstHom R D D : DualNumber D →+* D) ≫ spMap (EpsWeil.epsMap R D : DualNumber R →+* DualNumber D) ≫ v.left := by
   have h := congrArg (fun p : Pt (A ⊗ B) D ↦ (p ≫ snd A B).left)
     (ContrMor.spOver_fst_ptV v hv x).symm
-  simpa only [Over.comp_left, spOver_left, Category.assoc, ptV_snd] using h
+  simpa only [Over.comp_left, _root_.GlobalTheory.PDiv.spOver_left, Category.assoc, ptV_snd] using h
 
 theorem epsMap_fst {D : Type} [CommRing D] [Algebra R D] (c : DualNumber R) :
     (EpsWeil.epsMap R D c).fst = algebraMap R D c.fst := by

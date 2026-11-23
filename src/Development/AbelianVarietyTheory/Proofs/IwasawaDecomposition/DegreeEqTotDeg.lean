@@ -159,13 +159,6 @@ theorem badPrimes_finite₂ (P : Pre) {Ξ : Set (HChar P.host.E)} (h : Ξ.Finite
     · have : a ∈ Q.asIdeal.under (𝓞 P.host.F) := hQ ▸ ha
       exact this
 
-theorem mem_of_mem_divs {A : Type} [CommRing A] [IsDedekindDomain A] {a : A} {Q : HeightOneSpectrum A} (h : Q ∈ divs a) :
-    a ∈ Q.asIdeal := by
-  unfold divs at h
-  split_ifs at h with h1
-  · exact h1.mem_toFinset.1 h
-  · simp at h
-
 variable {B : Base} {X : PreX B.toPre}
 
 theorem rowSG_subset {I : ColIn B X} (h : I.Ok) (a : I.ι) :
@@ -177,7 +170,7 @@ theorem rowSG_subset {I : ColIn B X} (h : I.Ok) (a : I.ι) :
       rcases Finset.mem_union.1 hQ with h | h
       exacts [⟨0, h⟩, ⟨1, h⟩]
     refine Or.inl (Or.inr (Set.mem_iUnion.2 ⟨i, ?_⟩))
-    have := Q.asIdeal.mul_mem_left ((B.primes X).piG i) (mem_of_mem_divs hi)
+    have := Q.asIdeal.mul_mem_left ((B.primes X).piG i) (_root_.Formalism.L2.Col.decoFin_mem_of_mem_divs hi)
     rwa [B.primes_piG_norm X i] at this
   · unfold QE at hQ
     split_ifs at hQ with h1
@@ -193,7 +186,7 @@ theorem Sb_subset {I : ColIn B X} (h : I.Ok) (a : I.ι) (u : B.Word) :
   intro Q hQ
   rcases Finset.mem_union.1 hQ with hQ | hQ
   · refine Or.inl (Or.inl (Set.mem_iUnion.2 ⟨u, ?_⟩))
-    have := Q.asIdeal.mul_mem_right (B.fields.conjO ((B.primes X).piT u)) (mem_of_mem_divs hQ)
+    have := Q.asIdeal.mul_mem_right (B.fields.conjO ((B.primes X).piT u)) (_root_.Formalism.L2.Col.decoFin_mem_of_mem_divs hQ)
     rwa [B.primes_piT_norm X u] at this
   · exact rowSG_subset h a Q hQ
 

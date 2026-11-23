@@ -128,18 +128,18 @@ theorem actCompat_of_match (hL : Laws) (hL2 : Laws2) {E : Type} [Field E] [Numbe
   obtain ⟨ρW, hρW⟩ := (GlobalTheory.T.torusExtension_action_in_values hG _ _ C _ νW (𝓞 E)).1 oW.onB x
   obtain ⟨ρ', hρ'⟩ := (GlobalTheory.T.torusExtension_action_in_values hG _ _ C _ ν' (𝓞 E)).1 M.P.oD.onB x
   refine ⟨ρ, ρ', hρ, hρ', fun (y y' : A.N.A) => ?_⟩
-  obtain ⟨w', κ, hw', hκ⟩ := GlobalTheory.T.lineBundleIso_values_constant_of_same_cube_theta hL _ _ f DW a.D₀ C A.N _ A.be u νW A.ν φ w hp hw hA n hT.div (fun t => by
+  obtain ⟨w', κ, hw', hκ⟩ := _root_.GlobalTheory.IsoValConst.exists_iso_val_const hL _ _ f DW a.D₀ C A.N _ A.be u νW A.ν φ w hp hw hA n hT.div (fun t => by
     obtain ⟨s, h₁, h₂⟩ := hT.good t
     exact ⟨s, h₁, fun h => by rw [h, norm_zero] at h₂; exact zero_ne_one h₂⟩)
   have hTF : (TF (R := M.W) C).hom ≫ spMap f = (TF (R := O') C).hom := by
     have := congrArg (· ≫ a.D₀.P.A.hom) (hA 1)
     rwa [Category.assoc, hp.1.w, ← Category.assoc, Over.w, Over.w] at this
-  have e₁ := GlobalTheory.T.normalisedRosatiGenerator_values_move_along_iso hL _ _ DW a.D₀ C _ A.N νW A.ν (𝓞 E) oW.onB a.oa.onB _ w' (MonoidHom.id A.N.A) (fun _ => κ) hw'
+  have e₁ := _root_.GlobalTheory.RosMove.rosV_move hL _ _ DW a.D₀ C _ A.N νW A.ν (𝓞 E) oW.onB a.oa.onB _ w' (MonoidHom.id A.N.A) (fun _ => κ) hw'
     (by rw [Category.assoc, hp.1.w, ← hTF, ← Category.assoc, ← Category.assoc, Over.w, Over.w])
     (fun y => by rw [← Category.assoc, ← Over.comp_left, lift_snd]; exact hA y) (fun y => (hκ y).symm) eW x ρW ρ hρW hρ y y'
   have e₂ : ρ y y' = ρW y y' := mul_right_cancel₀ (by simp) e₁
   obtain ⟨Φ, w₂, wv, g₁, g₂, g₃, g₄, g₅⟩ := hg
-  have e₃ := GlobalTheory.T.normalisedRosatiGenerator_values_move_along_iso hL _ _ DW M.P.D.toPre C _ N' νW ν' (𝓞 E) oW.onB M.P.oD.onB _ w₂ J.φ.toMonoidHom wv g₂
+  have e₃ := _root_.GlobalTheory.RosMove.rosV_move hL _ _ DW M.P.D.toPre C _ N' νW ν' (𝓞 E) oW.onB M.P.oD.onB _ w₂ J.φ.toMonoidHom wv g₂
     (by rw [Over.w, Over.w]) (fun y => by rw [← Over.comp_left, ← Category.assoc, g₃, lift_snd]; rfl) g₄
     (fun x y => (congrArg J.φ (eW x y)).trans (hB x y)) x ρW ρ' hρW hρ' y y'
   have h0 : wv 1 ≠ 0 := by
@@ -220,13 +220,13 @@ theorem exists_has : HV → Laws6 → GlobalTheory.LN.UDvrSt → GlobalTheory.LN
       _ ≤ ‖(n : C)‖ * 1 := by gcongr
       _ = _ := mul_one _
   obtain ⟨N', ν', J, hJX, hlab, DW, _, oW, ψ, he', w, e', νW, hm, -, hA', hgeo⟩ :=
-    GlobalTheory.T.lift_valuation_integral_norm hV h6 hU hH hT hE hA E H D l Xo c W₀ Y O' b ϖ a hb C A u r o M (f.comp (φ.comp PowerSeries.C))
+    _root_.GlobalTheory.ModelData.data_of_model hV h6 hU hH hT hE hA E H D l Xo c W₀ Y O' b ϖ a hb C A u r o M (f.comp (φ.comp PowerSeries.C))
       (f (φ PowerSeries.X)) hint hr hu1 (by rw [hf, huv, hgam]) (fun x => (hf _).trans (hOC x).symm) n hn ho h1 fun j => by
       refine ⟨Units.ext ?_, fun p hp => ?_⟩
       · rw [hext.2.1 _ (pow_pos hn.pos j), (h₀ j).1]
         exact hAζ _ (pow_pos hn.pos j)
       · obtain ⟨s, hs⟩ := (hser _ ho.pow p hp).1
-        have hc := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL C _ o.P (𝟙 _) (n ^ j) ho.pow (Nat.cast_ne_zero.2 (pow_pos hn.pos j).ne') _
+        have hc := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL C _ o.P (𝟙 _) (n ^ j) ho.pow (Nat.cast_ne_zero.2 (pow_pos hn.pos j).ne') _
           (o.I.ev ((n ^ j) ^ 2)) fun x => (o.I.onto _ (pow_pos (pow_pos hn.pos j) 2) _).2 ⟨x, rfl⟩
         refine (hc.2.2.1 _).2 ((hc.2.1 1 _ _ ((hc.2.2.1 _).1 (hθ _ _ (h₀ j).2))).2 ⟨s⁻¹, funext fun x => ?_⟩)
         rw [Pi.smul_apply, hs, smul_eq_mul, Units.inv_mul_cancel_left]

@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.BHRSmulRight
 
 @[expose] public section
 
@@ -117,7 +118,7 @@ theorem isoW_gen {a : ℕ} (Y : TupV (E := E) v n a) (z : Fin a) (γ : Fv F v)
     Submodule.add_mem _ (hX.1 z) (PI.OmLocU.Orb.oSmul v Λ hL _ (oEv_neg v hgO) _ hw0L)
   have hXy : ∀ i, hR (Fv F v) σ J (X i) y = 0 := by
     intro i
-    rw [hy, hAddR, hSmulR, hXz, hXw0]
+    rw [hy, _root_.PI.OmLocU.UnN.hR_add_right', hSmulR, hXz, hXw0]
     split_ifs <;> ring
   have hyX : ∀ i, hR (Fv F v) σ J y (X i) = 0 := by
     intro i; rw [← hconj, hXy, map_zero]
@@ -125,11 +126,11 @@ theorem isoW_gen {a : ℕ} (Y : TupV (E := E) v n a) (z : Fin a) (γ : Fv F v)
   have hbO : b ∈ OEv (E := E) v := PI.OmLocU.hR_mem_oEv σ J v Λ hSD hw0L hw0L
   obtain ⟨β, hβ, hbβ⟩ := PI.OmLocU.NormOneUnitFixedPoints.fix_int_sc σ v hcm hbO (hconj w0 w0)
   have h1 : hR (Fv F v) σ J w0 y = 1 + (-g) * b := by
-    rw [hy, hAddR, hSmulR, hw0X, if_pos rfl]
+    rw [hy, _root_.PI.OmLocU.UnN.hR_add_right', hSmulR, hw0X, if_pos rfl]
   have h2 : hR (Fv F v) σ J y w0 = 1 + (-g) * b := by
     rw [← hconj, h1, map_add (f := _), map_one, map_mul, map_neg, hg, hsc, hconj]
   have h3 : hR (Fv F v) σ J y y = (-g) * (1 + (-g) * b) := by
-    rw [hy, hAddR, hSmulR, ← hy, hyX, h2, zero_add]
+    rw [hy, _root_.PI.OmLocU.UnN.hR_add_right', hSmulR, ← hy, hyX, h2, zero_add]
 
   obtain ⟨θ, hθO, hθ⟩ := PI.OmLocU.Red.trOnto_holds σ J ψ v hS hUn 1 (oEv_one v) (map_one _)
   have hinv : ∀ x, sigR (Fv F v) σ (sigR (Fv F v) σ x) = x := PI.OmLocU.Orb.sigR_invol σ v hcm
@@ -151,12 +152,12 @@ theorem isoW_gen {a : ℕ} (Y : TupV (E := E) v n a) (z : Fin a) (γ : Fv F v)
   have hwL : w ∈ latLoc (E := E) v Λ :=
     Submodule.add_mem _ hw0L (PI.OmLocU.Orb.oSmul v Λ hL _ htO _ hyL)
   have hXw : ∀ i, hR (Fv F v) σ J (X i) w = if i = z then 1 else 0 := by
-    intro i; rw [hw, hAddR, hSmulR, hXy, hXw0, mul_zero, add_zero]
+    intro i; rw [hw, _root_.PI.OmLocU.UnN.hR_add_right', hSmulR, hXy, hXw0, mul_zero, add_zero]
   have hwX : ∀ i, hR (Fv F v) σ J w (X i) = if i = z then 1 else 0 := by
-    intro i; rw [hw, hAddL, hSmulL, hyX, hw0X, mul_zero, add_zero]
+    intro i; rw [hw, _root_.PI.OmLocU.UnN.hR_add_left', _root_.PI.OmLocU.SdB.b_hR_smul_left, hyX, hw0X, mul_zero, add_zero]
   have E0 : hR (Fv F v) σ J w w = b + t * hR (Fv F v) σ J w0 y +
       (sigR (Fv F v) σ t * hR (Fv F v) σ J y w0 + sigR (Fv F v) σ t * (t * hR (Fv F v) σ J y y)) := by
-    rw [hw, hAddL, hAddR, hAddR, hSmulR, hSmulL, hSmulL, hSmulR]
+    rw [hw, _root_.PI.OmLocU.UnN.hR_add_left', _root_.PI.OmLocU.UnN.hR_add_right', _root_.PI.OmLocU.UnN.hR_add_right', hSmulR, _root_.PI.OmLocU.SdB.b_hR_smul_left, _root_.PI.OmLocU.SdB.b_hR_smul_left, hSmulR]
   have key : sc (E := E) v (β + (1 - γ * β) * s - γ * (1 - γ * β) * ν * s ^ 2) = 0 := by
     rw [hs]; simp [sc]
   have keyE : sc (E := E) v β + (1 - g * sc (E := E) v β) * sc (E := E) v s -

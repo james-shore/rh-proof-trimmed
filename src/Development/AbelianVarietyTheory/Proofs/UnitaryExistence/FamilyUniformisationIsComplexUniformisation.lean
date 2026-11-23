@@ -140,7 +140,7 @@ theorem isUnf_built : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] [NumberFi
   exact ⟨hM.rank, hM.type,
     cover_unfOf e F M un hun.1 (GlobalTheory.CoverFrame.coverTri E H Dw l Xo c σ g e F r M hσ hM hN),
     fibre_unfOf e F M un hun hM (GlobalTheory.FibreFlag.fibTri E H Dw l Xo c σ g e F r M hσ hM hN),
-    readSec_unfOf e F M un hun hM ((GlobalTheory.T.framedModuli_algebraicLaws_chart_weight_integrality hS E H Dw l Xo c).2.2.2.2.2.2 (CAt σ) hred),
+    readSec_unfOf e F M un hun hM ((_root_.GlobalTheory.Frames.algebraic_laws hS E H Dw l Xo c).2.2.2.2.2.2 (CAt σ) hred),
     g, e, F, id, M.φ, hM.ef, hun.1⟩
 
 end GlobalTheory.FrameUnif

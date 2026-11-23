@@ -132,11 +132,6 @@ theorem hasDerivAt_exp_entry (X : Matrix n n ℂ) (i j : n) :
   let L : Matrix n n ℂ →L[ℝ] ℂ := LinearMap.toContinuousLinearMap (Matrix.entryLinearMap ℝ ℂ i j)
   exact L.hasFDerivAt.comp_hasDerivAt (0 : ℝ) h
 
-theorem hasDerivAt_det_of_one (A : ℝ → Matrix n n ℂ) (A' : Matrix n n ℂ) (h0 : A 0 = 1)
-    (h : ∀ i j, HasDerivAt (fun t => A t i j) (A' i j) 0) :
-    HasDerivAt (fun t => (A t).det) A'.trace 0 := by
-  first | exact Bl.b110.goal1 .. | (apply Bl.b110.goal1 <;> assumption) | (intros; apply Bl.b110.goal1 <;> assumption) | (apply @Bl.b110.goal1 <;> assumption) | (intros; apply @Bl.b110.goal1 <;> assumption) | (apply @Bl.b110.goal1 <;> first | assumption | infer_instance) | exact @Bl.b110.goal1 n ‹_› ‹_› A A' h0 h | exact @Bl.b110.goal1 n ‹_› ‹_› A A' h0 | exact @Bl.b110.goal1 n ‹_› ‹_› A A' | exact @Bl.b110.goal1 n ‹_› ‹_› A | exact @Bl.b110.goal1 n ‹_› ‹_› | exact @Bl.b110.goal1 n ‹_› | exact @Bl.b110.goal1 n
-
 end DetExp
 
 theorem mul_hom_exp (φ : ℝ → ℂ) (c : ℂ) (hmul : ∀ s t, φ (s + t) = φ s * φ t) (h1 : φ 0 = 1)

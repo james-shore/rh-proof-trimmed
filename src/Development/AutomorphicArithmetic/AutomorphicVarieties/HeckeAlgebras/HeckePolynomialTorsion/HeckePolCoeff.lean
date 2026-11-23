@@ -116,9 +116,7 @@ theorem cont_map {O R R' Γ : Type} [CommRing O] [IsLocalRing O] [CommRing R] [A
     exact hy
   exact (hf N).comp (Ideal.quotientMap _ (φ : R →+* R') hle)
 
-theorem lc_of_open {Γ B : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group B] (χ : Γ →* B)
-    (h : IsOpen (χ.ker : Set Γ)) : IsLocallyConstant χ :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernel.lc_of_ker χ h
+alias lc_of_open := _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernel.lc_of_ker
 
 theorem red_eq {l : ℕ} [Fact l.Prime] {F : GFrame l} {O : Type} [CommRing O] [IsLocalRing O] [Algebra ℤ_[l] O] {n : ℕ}
     (r : Resid F O n) {R : Type} [CommRing R] [Algebra O R] [IsCO O R] (D : GDet n R F.G₀) (hD : D.IsCont (maximalIdeal R))

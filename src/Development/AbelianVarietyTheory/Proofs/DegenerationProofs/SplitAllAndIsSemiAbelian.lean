@@ -109,7 +109,7 @@ theorem splitAll_and_isSemiAbelian : ∀ (C : Core) (L : C.Law), C.HasTests → 
     have : IsAffineHom (pullback.fst ((Over.pullback t).obj C.GG).hom (Out.jK R)) :=
       isAffineHom_isStableUnderBaseChange.of_isPullback (IsPullback.of_hasPullback _ _).flip inferInstance
     obtain ⟨E, hE⟩ := exists_splitExt_of_split (FractionRing R) _ _ d _
-      (GlobalTheory.T.weightedProjectiveCharts_split_generic_point R ((Over.pullback t).obj C.GG) Ch d c Sg hd hS)
+      (_root_.GlobalTheory.ZJ.GenericSplit.split_generic R ((Over.pullback t).obj C.GG) Ch d c Sg hd hS)
     have : IsPreimmersion (Out.jK R) := IsPreimmersion.of_isLocalization (nonZeroDivisors R)
     obtain ⟨f, hf⟩ := exists_residue_factor (Out.jK R ≫ t) z (by
       rw [← ht]

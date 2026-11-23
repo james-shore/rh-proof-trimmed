@@ -146,4 +146,4 @@ theorem row_unit_condition : RowZUnit := by
 
 end PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowZUnitPf
 
-theorem PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.row_unit_condition : PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowZUnit := PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowZUnitPf.row_unit_condition
+alias PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.row_unit_condition := _root_.PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowZUnitPf.row_unit_condition

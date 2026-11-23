@@ -309,7 +309,7 @@ theorem thURel_of_tie {ρ : Setup X} (hρ : ρ.Good) {Y : NExp D.R D.host D.what
       refine Multiplicative.toAdd.injective ?_
       rw [coord_eq_delOf hU i M hclA' hwA τ,
         (GlobalTheory.GalChar.delOf_laws D.host X.cc (X.l i) M _).2.2.2 P hPw (N.plOm.1 P) (N.plOm.2 P) τ hτ]
-    have hart := GlobalTheory.T.artinMap_splitPlaceUniformiser_eq_frobenius_inv D N.Om (Multiplicative (ZMod (X.l i ^ M))) ρ.rc hρ.rc
+    have hart := _root_.GlobalTheory.SeriesTie.Recip.pull_locUnif D N.Om (Multiplicative (ZMod (X.l i ^ M))) ρ.rc hρ.rc
       (coord Y i (admissibleConjugatePairPlaces X i ((Q.erase P).erase Pb) M) M w.1) (isOpen_coord _ _ _ _ _) P (idemAt P) he ϖ hϖ1 hϖ2 x hx
       (N.plOm.1 P) (N.plOm.2 P) hunr σ hσ
     simp only [hδ, UnivTwist.delQ, MonoidHom.coe_mk, OneHom.coe_mk, toAdd_ofAdd]

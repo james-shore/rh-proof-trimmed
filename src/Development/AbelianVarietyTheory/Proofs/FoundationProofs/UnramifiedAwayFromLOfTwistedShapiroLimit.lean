@@ -93,7 +93,7 @@ theorem unr_of_twisted_limit : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field �
   have hρ' : mat (untwist W θ) = ρ := by
     funext s
     rw [mat_untwist, hWρ, smul_smul, Units.inv_mul, one_smul]
-  obtain ⟨B, hB, v, hv⟩ := GlobalTheory.T.shifted_cocycle_limit_integral l Ω (untwist W θ) c Y η y (continuous_untwist hW hθ)
+  obtain ⟨B, hB, v, hv⟩ := _root_.GlobalTheory.InertCoh.unr_of_limit_spec l Ω (untwist W θ) c Y η y (continuous_untwist hW hθ)
     (by rw [hρ']; exact hρ) hYc hYi (by rw [hρ']; exact hSh) hpush hη hlim q hq
   refine ⟨B, hB, ?_⟩
   by_cases h : ∀ s ∈ Ine (F := ℚ) B, θ s = 1

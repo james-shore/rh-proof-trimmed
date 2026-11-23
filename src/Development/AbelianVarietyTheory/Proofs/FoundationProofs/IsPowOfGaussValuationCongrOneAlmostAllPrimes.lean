@@ -179,12 +179,7 @@ def levK (X : Tower Ω ε) (M : ℕ) : IntermediateField Ω X.K where
   algebraMap_mem' c γ _ := AlgEquiv.commutes _ c
   inv_mem' x hx γ hγ := by rw [map_inv₀, hx γ hγ]
 
-theorem mem_levF (X : Tower Ω ε) (M : ℕ) (x : AlgebraicClosure X.K) :
-    x ∈ levF X M ↔ ∃ f, Lev X M f ∧ algebraMap X.K (AlgebraicClosure X.K) f = x := by
-  refine ⟨fun hx => ?_, fun hx => IntermediateField.subset_adjoin _ _ hx⟩
-  have : levF X M ≤ (levK X M).map (IsScalarTower.toAlgHom Ω X.K (AlgebraicClosure X.K)) :=
-    IntermediateField.adjoin_le_iff.2 fun z hz => hz
-  exact this hx
+alias mem_levF := _root_.GlobalTheory.KZ.ES.RootGal.mem_levF
 
 theorem normal_levF (X : Tower Ω ε) (M : ℕ) : Normal (levF X M) (AlgebraicClosure X.K) := by
   let A := IntermediateField.adjoin Ω {X.jK}

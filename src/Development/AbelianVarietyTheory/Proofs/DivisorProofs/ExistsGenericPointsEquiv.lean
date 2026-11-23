@@ -81,10 +81,6 @@ theorem unifPre_generic {R : Type} [CommRing R] [IsDomain R] {I : Ideal R} {D : 
     exact LBIso.chartPull (chartPullUnpull A.L _ hgi)
       (chartPullSame U.LG.L _ _ _ (𝟙 _) fun _ => (Category.id_comp _).symm) h1
 
-theorem spMap_comp_eq {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (a : B →+* C) (b : A →+* B) :
-    spMap (a.comp b) = spMap a ≫ spMap b := by
-  rw [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
-
 theorem weilIs_congr_base {S X : Scheme.{0}} (G : Over S) [GrpObj G] (L : LB G.left) (k : ℤ) {a b : X ⟶ S}
     (hab : a = b) (x y : Over.mk a ⟶ G) (x' y' : Over.mk b ⟶ G) (hx : x.left = x'.left) (hy : y.left = y'.left)
     (c : Γ(X, ⊤)ˣ) : WeilIs G L k x y c ↔ WeilIs G L k x' y' c := by

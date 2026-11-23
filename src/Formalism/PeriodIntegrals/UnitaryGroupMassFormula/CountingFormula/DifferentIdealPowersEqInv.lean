@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianLattices.HermitianLatticesProofs.LocBasic
 
 @[expose] public section
 
@@ -55,27 +56,13 @@ section Loc
 
 variable {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W]
 
-theorem le_locS (S : Submonoid R) (L : Submodule R W) : L ≤ Formalism.HermitianLatticesTheory.locS S L := fun x hx => ⟨1, S.one_mem, by simpa using hx⟩
-
-theorem locS_mono (S : Submonoid R) {L M : Submodule R W} (h : L ≤ M) :
-    Formalism.HermitianLatticesTheory.locS S L ≤ Formalism.HermitianLatticesTheory.locS S M := fun x ⟨s, hs, hx⟩ => ⟨s, hs, h hx⟩
-
-theorem locS_idem (S : Submonoid R) (L : Submodule R W) :
-    Formalism.HermitianLatticesTheory.locS S (Formalism.HermitianLatticesTheory.locS S L) = Formalism.HermitianLatticesTheory.locS S L := by
-  apply le_antisymm
-  · rintro x ⟨s, hs, t, ht, hx⟩
-    refine ⟨t * s, S.mul_mem ht hs, ?_⟩
-    rw [mul_smul]
-    exact hx
-  · exact le_locS S _
-
 theorem locS_eq_of (S : Submonoid R) {L M : Submodule R W} (h1 : L ≤ Formalism.HermitianLatticesTheory.locS S M)
     (h2 : M ≤ Formalism.HermitianLatticesTheory.locS S L) : Formalism.HermitianLatticesTheory.locS S L = Formalism.HermitianLatticesTheory.locS S M := by
   apply le_antisymm
-  · calc Formalism.HermitianLatticesTheory.locS S L ≤ Formalism.HermitianLatticesTheory.locS S (Formalism.HermitianLatticesTheory.locS S M) := locS_mono S h1
-      _ = Formalism.HermitianLatticesTheory.locS S M := locS_idem S M
-  · calc Formalism.HermitianLatticesTheory.locS S M ≤ Formalism.HermitianLatticesTheory.locS S (Formalism.HermitianLatticesTheory.locS S L) := locS_mono S h2
-      _ = Formalism.HermitianLatticesTheory.locS S L := locS_idem S L
+  · calc Formalism.HermitianLatticesTheory.locS S L ≤ Formalism.HermitianLatticesTheory.locS S (Formalism.HermitianLatticesTheory.locS S M) := _root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono S h1
+      _ = Formalism.HermitianLatticesTheory.locS S M := _root_.Formalism.HermitianLatticesTheory.locBasic_locS_idem S M
+  · calc Formalism.HermitianLatticesTheory.locS S M ≤ Formalism.HermitianLatticesTheory.locS S (Formalism.HermitianLatticesTheory.locS S L) := _root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono S h2
+      _ = Formalism.HermitianLatticesTheory.locS S L := _root_.Formalism.HermitianLatticesTheory.locBasic_locS_idem S L
 
 theorem iInf_localization_eq [IsDedekindDomain R] (hR : ¬ IsField R) (L : Submodule R W) :
     (⨅ P : HeightOneSpectrum R, haveI := P.isPrime; Formalism.HermitianLatticesTheory.localization₂ P.asIdeal L) = L := by
@@ -97,7 +84,7 @@ theorem iInf_localization_eq [IsDedekindDomain R] (hR : ¬ IsField R) (L : Submo
       exact Ring.isField_iff_maximal_bot.2 hM
     obtain ⟨s, hs, hsx⟩ := hx ⟨M, hM.isPrime, hM0⟩
     exact hs (hIM (by simpa [I] using hsx))
-  · exact le_iInf fun P => le_locS _ L
+  · exact le_iInf fun P => _root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ L
 
 end Loc
 
@@ -164,7 +151,7 @@ theorem loc_g (D : Formalism.BasicNotions.D7) {T T' : D.host.E} (F0 : FlagG (VS 
       Formalism.HermitianLatticesTheory.localization₂ P.asIdeal (pbLat (flagDifferenceVectors D F0 F') (Sum.elim (differentIdealPowers D) (differentIdealPowers D))) := by
   haveI := P.isPrime
   apply locS_eq_of
-  · refine (Submodule.span_le.mpr ?_).trans (le_locS _ _)
+  · refine (Submodule.span_le.mpr ?_).trans (_root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ _)
     rintro v (⟨a, rfl⟩ | ⟨b, rfl⟩)
     · have := mem_pb F0 F' (Sum.inl a) _ (one_mem_aa D a 1)
       simpa [flagDifferenceVectors] using this
@@ -261,11 +248,11 @@ theorem loc_ng (D : Formalism.BasicNotions.D7) {T T' : D.host.E} (F0 : FlagG (VS
   haveI := P.isPrime
   have hg := gS_ne_zero' D
   apply locS_eq_of
-  · exact (UUS_le_pb D F0 F').trans (le_locS _ _)
+  · exact (UUS_le_pb D F0 F').trans (_root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ _)
   · refine Submodule.span_le.mpr ?_
     rintro v ⟨i, c, hc, rfl⟩
     rcases i with a | b
-    · exact le_locS _ _ (mem_UUS_fvec D F0 F' a c hc).1
+    · exact _root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ _ (mem_UUS_fvec D F0 F' a c hc).1
     · refine ⟨((gS D : ℕ) : 𝓞 D.host.E), hP, ?_⟩
       have e : ((gS D : ℕ) : 𝓞 D.host.E) • (c • flagDifferenceVectors D F0 F' (Sum.inr b)) = c • F'.fl.fvec b - c • F0.fvec b := by
         rw [smul_O_E]

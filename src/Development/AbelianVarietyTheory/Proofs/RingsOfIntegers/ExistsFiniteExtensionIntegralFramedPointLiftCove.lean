@@ -100,10 +100,6 @@ theorem exists_finite_subfield {R F k : Type} [CommRing R] [Field F] [Field k] [
   rw [← hf, ← Spec.map_comp_assoc]
   rfl
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp only [spMap, ← Spec.map_comp]; rfl
-
 theorem epi_spMap {K k : Type} [Field K] [Field k] (f : K →+* k) : Epi (spMap f) := by
   have h1 : Flat (spMap f) := by
     let _ := f.toAlgebra
@@ -137,10 +133,10 @@ theorem exists_ext_lift_to_cover : ∀ (E : Type) [Field E] [NumberField E] [IsC
   haveI := epi_spMap (algebraMap K k)
   have hKk : (algebraMap K k).comp (algebraMap T.Fr K) = algebraMap T.Fr k := rfl
   have hq1 : q ≫ d.r = spMap (algebraMap T.Fr K) ≫ xOf y := by
-    rw [← cancel_epi (spMap (algebraMap K k)), ← Category.assoc, hq, hp1, ← Category.assoc, spMap_comp', hKk]
+    rw [← cancel_epi (spMap (algebraMap K k)), ← Category.assoc, hq, hp1, ← Category.assoc, _root_.GlobalTheory.TanMod.spMap_comp', hKk]
   have hq2 : q ≫ d.Xo₂.s = spMap ((algebraMap T.Fr K).comp
       ((io.comp j).comp (IntermediateField.inclusion d.c₂.le).toRingHom)) := by
-    rw [← cancel_epi (spMap (algebraMap K k)), ← Category.assoc, hq, hp2, spMap_comp']
+    rw [← cancel_epi (spMap (algebraMap K k)), ← Category.assoc, hq, hp2, _root_.GlobalTheory.TanMod.spMap_comp']
     rfl
   obtain ⟨T', iT, e, ψ, φ, he, hv, hψ, -, hfin⟩ := GlobalTheory.PlaceExtField.exists_cdvr_finite_extension T K
   have hψ' : ψ.toRingHom.comp (algebraMap T.Fr K) = iT := RingHom.ext hψ
@@ -154,9 +150,9 @@ theorem exists_ext_lift_to_cover : ∀ (E : Type) [Field E] [NumberField E] [IsC
   letI := io₂.toAlgebra
   obtain ⟨y₂, -, hy₂⟩ := (GlobalTheory.frames_lift_to_cover hL E H Dw l Xo c n d).1 T'.Fr hio y'.1
     (spMap ψ.toRingHom ≫ q)
-    (by rw [Category.assoc, hq1, ← Category.assoc, spMap_comp', hψ']; exact hx'.symm)
-    (by rw [Category.assoc, hq2, spMap_comp', ← RingHom.comp_assoc, hψ']; rfl)
+    (by rw [Category.assoc, hq1, ← Category.assoc, _root_.GlobalTheory.TanMod.spMap_comp', hψ']; exact hx'.symm)
+    (by rw [Category.assoc, hq2, _root_.GlobalTheory.TanMod.spMap_comp', ← RingHom.comp_assoc, hψ']; rfl)
   exact ⟨T', iT, e, y', io₂, ⟨y₂, GlobalTheory.Frames.allTest_of_secBaseChange hL.secBaseChange E H Dw d.l₂ d.Xo₂ d.c₂ _ y₂,
-    GlobalTheory.T.integral_of_framed_point_over_integral E H Dw l Xo c n d T' (iT.comp io) io₂ y' hio y₂ hy₂⟩, hy', hfin hT, hio, hy₂⟩
+    _root_.GlobalTheory.PlaceInt.integral_of_frOver E H Dw l Xo c n d T' (iT.comp io) io₂ y' hio y₂ hy₂⟩, hy', hfin hT, hio, hy₂⟩
 
 end GlobalTheory.CoverPoint

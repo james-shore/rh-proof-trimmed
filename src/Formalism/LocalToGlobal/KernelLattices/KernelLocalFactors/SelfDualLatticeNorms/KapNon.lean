@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThU
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 
 @[expose] public section
 
@@ -198,7 +199,7 @@ open Formalism.FrobeniusOrbits
 variable {R : Ranks} (H : Host R)
 
 theorem K_repr (k : H.K) : ∃ a b : ℚ, (k : H.E) = (a : H.E) + (b : H.E) * H.sqd := by
-  have hβ := bE_sq H
+  have hβ := _root_.Formalism.BasicNotions.Examples₂.bE_sq H
   refine K_induction H (p := fun x => ∃ a b : ℚ, x = (a : H.E) + (b : H.E) * H.sqd) ?_ ?_ ?_ ?_ ?_ k
   · exact ⟨0, 1, by simp⟩
   · intro r
@@ -273,7 +274,7 @@ theorem nonsplit_conj (p : ℕ) [Fact p.Prime] (hs : ¬ SplitK D p) (ι : ℂ �
   have e1 : ι (D.host.φ₀ (x : D.host.E)) = (a : ℂ_[p]) + b * ι (Complex.I * (Real.sqrt D.host.d : ℂ)) := by
     rw [hx, map_add (f := _), map_mul, phi_b, map_ratCast, map_ratCast, map_add (f := _), map_mul, map_ratCast, map_ratCast]
   have e2 : ι (D.host.φ₀ (D.host.conj (x : D.host.E))) = (a : ℂ_[p]) - b * ι (Complex.I * (Real.sqrt D.host.d : ℂ)) := by
-    rw [hx, map_add (f := _), map_mul, conj_b, map_ratCast, map_ratCast, mul_neg, ← sub_eq_add_neg, map_sub, map_mul, phi_b,
+    rw [hx, map_add (f := _), map_mul, _root_.Formalism.BasicNotions.Examples₂.conj_bE, map_ratCast, map_ratCast, mul_neg, ← sub_eq_add_neg, map_sub, map_mul, phi_b,
       map_ratCast, map_ratCast, map_sub, map_mul, map_ratCast, map_ratCast]
   rw [e1, e2]
   exact (core_rat p D.host.d D.host.hyp.2.1 hJ (norm_int_unit p) (norm_p_lt p) _ hr a b).symm
@@ -281,7 +282,7 @@ theorem nonsplit_conj (p : ℕ) [Fact p.Prime] (hs : ¬ SplitK D p) (ι : ℂ �
 theorem det_unit_nonsplit (p : ℕ) [Fact p.Prime] (hs : ¬ SplitK D p) (ι : ℂ ≃+* ℂ_[p]) (x : D.host.K)
     (h : D.host.φ₀ (x : D.host.E) * (starRingEnd ℂ) (D.host.φ₀ (x : D.host.E)) = 1) : ‖ι (D.host.φ₀ (x : D.host.E))‖ = 1 := by
   have h1 := nonsplit_conj p hs ι x
-  rw [phi_conj] at h1
+  rw [_root_.Formalism.BasicNotions.Examples₂.emb_conj] at h1
   have h2 : ‖ι (D.host.φ₀ (x : D.host.E))‖ * ‖ι ((starRingEnd ℂ) (D.host.φ₀ (x : D.host.E)))‖ = 1 := by
     rw [← norm_mul, ← map_mul, h, map_one, norm_one]
   rw [h1] at h2

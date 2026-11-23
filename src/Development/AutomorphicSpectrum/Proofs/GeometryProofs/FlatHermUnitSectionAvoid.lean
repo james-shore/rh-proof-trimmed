@@ -69,9 +69,9 @@ theorem PtOver.eventually_ptOver {K : Type} [Fintype K] {ι : K → Type} [∀ k
     have h0 : ((e a : ℕ) : ℝ) = ((e b : ℕ) : ℝ) := hab
     have : ((e a : ℕ)) = (e b : ℕ) := by exact_mod_cast h0
     exact e.injective (Fin.ext this)
-  obtain ⟨u, hu, -⟩ := GlobalTheory.T.exists_place_weight_conj_invariant K ι Ω F y φ t hO
+  obtain ⟨u, hu, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.exists_placeWeight K ι Ω F y φ t hO
   filter_upwards [hu.near σ z hz] with w hw hwP
-  obtain ⟨τ, hτ, -⟩ := GlobalTheory.T.complex_point_existsUnique_embedding K ι Ω F y φ hO w hwP
+  obtain ⟨τ, hτ, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.existsUnique_ptOver K ι Ω F y φ hO w hwP
   have h1 : u w = t τ := (hu.near τ w hτ).self_of_nhds
   have h2 : τ = σ := ht (h1.symm.trans hw)
   exact h2 ▸ hτ

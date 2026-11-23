@@ -59,14 +59,6 @@ noncomputable section
 namespace GlobalTheory.ConnUnit
 open GlobalTheory.KS
 
-theorem constFn_mul {R : Type} [CommRing R] {X : Scheme.{0}} (q : X ⟶ Sp R) (O : X.Opens) (a b : R) :
-    constFn q O (a * b) = constFn q O a * constFn q O b := by
-  simp only [constFn, map_mul]
-
-theorem constFn_eps_sq {k : Type} [Field k] {X : Scheme.{0}} (q : X ⟶ Sp (DualNumber k)) (O : X.Opens) :
-    constFn q O DualNumber.eps * constFn q O DualNumber.eps = 0 := by
-  rw [← constFn_mul, DualNumber.eps_mul_eps]; simp only [constFn, map_zero]
-
 theorem rsT_resG {Y : Scheme.{0}} {U V : Y.Opens} (h : V ≤ U) (x : Γ(Y, U)) {Q : Y.Opens} (hQ : Q ≤ V) :
     rsT (resG Y h x) Q = rsT x Q := by
   rw [← rsT_of_le h, rsT_rsT h hQ]
@@ -75,12 +67,6 @@ theorem rsT_app {Y Z : Scheme.{0}} (f : Z ⟶ Y) (U : Y.Opens) (x : Γ(Y, U)) {Q
     rsT ((f.app U).hom x) Q = pbT f x Q := by
   rw [rsT_of_le hQ, pbT_of_le f hQ]
   rfl
-
-theorem pbT_pbT {X Y Z : Scheme.{0}} (f : Z ⟶ Y) (g : Y ⟶ X) {O₀ : X.Opens} {O₁ : Y.Opens} {O₂ : Z.Opens}
-    (h₁ : O₁ ≤ g ⁻¹ᵁ O₀) (h₂ : O₂ ≤ f ⁻¹ᵁ O₁) (s : Γ(X, O₀)) :
-    pbT f (pbT g s O₁) O₂ = pbT (f ≫ g) s O₂ := by
-  rw [pbT_of_le g h₁, pbT_of_le f h₂, pbT_of_le (f ≫ g) (h₂.trans (f.preimage_mono h₁))]
-  exact congrArg (fun φ => φ.hom s) (Scheme.Hom.appLE_comp_appLE f g O₀ O₁ O₂ h₁ h₂)
 
 theorem constFn_top_appTop {R : Type} [CommRing R] {X : Scheme.{0}} (q : X ⟶ Sp R) (x : Γ(Sp R, ⊤)) :
     constFn q ⊤ ((Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom x) = q.appTop.hom x := by
@@ -99,7 +85,7 @@ theorem preimage_le_of_eps {k : Type} [Field k] {B X : Scheme.{0}} (q : B ⟶ Sp
   rw [pbT, dite_eq_right h, pbT_one π₂ le_rfl] at h1
   have hu : (1 + constFn q (π₂ ⁻¹ᵁ W) DualNumber.eps * e W 1) *
       (1 - constFn q (π₂ ⁻¹ᵁ W) DualNumber.eps * e W 1) = 1 := by
-    linear_combination (-(e W 1) ^ 2) * constFn_eps_sq q (π₂ ⁻¹ᵁ W)
+    linear_combination (-(e W 1) ^ 2) * _root_.GlobalTheory.KS.DerMorK.eps_sq q (π₂ ⁻¹ᵁ W)
   rw [← h1, zero_mul] at hu
   apply h
   intro y hy
@@ -161,7 +147,7 @@ theorem unit_mul_one_add_eps : ∀ (k : Type) [Field k] (R : Type) [CommRing R] 
     preimage_le_of_eps B'.hom π₁ π₂ (fun W f => pbT pr (ed W f) (π₂ ⁻¹ᵁ W)) hid
   have hpre : ∀ U, π₂ ⁻¹ᵁ U = pr ⁻¹ᵁ (m₀ ⁻¹ᵁ U) := fun U => by rw [← hpr]; rfl
   have hE2 : ∀ O : B'.left.Opens, constFn B'.hom O DualNumber.eps * constFn B'.hom O DualNumber.eps = 0 :=
-    fun O => constFn_eps_sq B'.hom O
+    fun O => _root_.GlobalTheory.KS.DerMorK.eps_sq B'.hom O
   have hchart : ∀ i, π₂ ⁻¹ᵁ V i ≤ ((P.L.pull π₂).div (P.L.pull π₁)).U (fun _ => jj i, fun _ => jj i) :=
     fun i y hy => ⟨Set.mem_iInter.2 fun _ => hVU i hy, Set.mem_iInter.2 fun _ => hVU i (hle _ hy)⟩
   have hcovB : (⊤ : B'.left.Opens) ≤ ⨆ i, π₂ ⁻¹ᵁ V i := by
@@ -200,7 +186,7 @@ theorem unit_mul_one_add_eps : ∀ (k : Type) [Field k] (R : Type) [CommRing R] 
     have rel := isGen_rel P.L π₁ π₂ w hw (jj i) (jj i') (π₂ ⁻¹ᵁ V i ⊓ π₂ ⁻¹ᵁ V i')
       (hQ1.trans (π₁.preimage_mono hVV)) (hQ2.trans (π₂.preimage_mono hVV))
     have h := hid (V i ⊓ V i') (rsT (P.L.g (jj i) (jj i')).val (V i ⊓ V i'))
-    rw [hcoc i i', pbT_mul, pbT_sub, pbT_pbT pr m₀ (m₀.preimage_mono hVV) (hpre _).le, hpr,
+    rw [hcoc i i', pbT_mul, pbT_sub, _root_.GlobalTheory.KS.InvField.pbT_pbT pr m₀ (m₀.preimage_mono hVV) (hpre _).le, hpr,
       pbT_rsT pr (m₀.preimage_mono inf_le_right) (hpre _).le, pbT_rsT pr (m₀.preimage_mono inf_le_left) (hpre _).le,
       pbT_rsT π₁ hVV (hle _), pbT_rsT π₂ hVV le_rfl] at h
     have hQeq : π₂ ⁻¹ᵁ (V i ⊓ V i') = π₂ ⁻¹ᵁ V i ⊓ π₂ ⁻¹ᵁ V i' := rfl

@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSpecializesIsLocalization
 
 @[expose] public section
 
@@ -70,27 +71,6 @@ theorem dim_closure_add_one_le {X : Scheme.{0}} {a b : X} (hab : a < b) :
   · have h1 : b ⤳ a := hab.le
     have h2 : a ⤳ x := specializes_iff_mem_closure.2 hx
     exact h1.trans h2
-
-theorem finite_notMem_coheight_le_one {X : Scheme.{0}} [IsIntegral X] [IsNoetherian X] (U : X.Opens)
-    (hU : (U : Set X).Nonempty) : {ξ : X | ξ ∉ U ∧ Order.coheight ξ ≤ 1}.Finite := by
-  obtain ⟨S, hS, hcl, hirr, hun⟩ :=
-    TopologicalSpace.NoetherianSpace.exists_finite_set_isClosed_irreducible U.isOpen.isClosed_compl
-  have hg : genericPoint X ∈ U := (genericPoint_specializes hU.some).mem_open U.isOpen hU.some_mem
-  refine (hS.biUnion (t := fun C => {κ | IsGenericPoint κ C}) fun C _ =>
-    Set.Subsingleton.finite fun _ h _ h' => h.eq h').subset ?_
-  rintro ξ ⟨hξ, h1⟩
-  obtain ⟨C, hC, hξC⟩ : ξ ∈ ⋃₀ S := hun ▸ hξ
-  obtain ⟨κ, hκ⟩ := QuasiSober.sober (hirr C hC) (hcl C hC)
-  have hκU : κ ∈ (U : Set X)ᶜ := hun ▸ ⟨C, hC, hκ.mem⟩
-  refine Set.mem_biUnion hC ?_
-  by_cases h : ξ ⤳ κ
-  · rwa [(h.antisymm (hκ.specializes hξC)).eq]
-  · have hlt : ξ < κ := lt_of_le_not_ge (hκ.specializes hξC) h
-    have hlt' : κ < genericPoint X := lt_of_le_not_ge (genericPoint_specializes κ)
-      fun h' => hκU (((genericPoint_specializes κ).antisymm h').eq ▸ hg)
-    have h2 := (add_le_add_left (le_add_self.trans (Order.coheight_add_one_le hlt')) 1).trans
-      ((Order.coheight_add_one_le hlt).trans h1)
-    exact absurd h2 (by decide)
 
 theorem isFinite_restrict_of_le {X Y : Scheme.{0}} (g : Y ⟶ X) {U V : X.Opens} (hVU : V ≤ U)
     [IsFinite (g ∣_ U)] : IsFinite (g ∣_ V) := by
@@ -160,7 +140,7 @@ theorem finite_near_coheight_one : ∀ (k : Type) [CommRing k] (X Y : Scheme.{0}
       rw [hη]
       intro hc
       exact hzne ((specializes_iff_mem_closure.2 hc).antisymm (genericPoint_specializes z)).eq
-    refine (finite_notMem_coheight_le_one U ⟨_, hU⟩).subset fun w hwz => ⟨fun hwU => ?_, (hw w hwz).le⟩
+    refine (_root_.GlobalTheory.ZH.finite_notMem_coheight_le_one U ⟨_, hU⟩).subset fun w hwz => ⟨fun hwU => ?_, (hw w hwz).le⟩
     have hwU' : g w ∈ (closure ({z} : Set X))ᶜ := hwU
     exact hwU' (by rw [show g w = z from hwz]; exact subset_closure rfl)
   have := GlobalTheory.SchemeWords.isProper_of_isProjOver hp.isProjOver

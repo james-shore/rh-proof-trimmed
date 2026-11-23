@@ -464,8 +464,6 @@ end Lines
 
 end UpperTheory.V.ZK.Trans
 
-theorem UpperTheory.V.ZK.sTrans :
-    UpperTheory.V.ZK.STrans :=
-  UpperTheory.V.ZK.Trans.main
+alias UpperTheory.V.ZK.sTrans := _root_.UpperTheory.V.ZK.Trans.main
 
 end

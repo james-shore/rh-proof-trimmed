@@ -85,18 +85,6 @@ theorem eichler_mem (w : ℕ) (f : ℍ → ℂ) (τ : ℍ) : eichler w f τ ∈ 
   refine Submodule.sum_mem _ fun j hj => mem_of_natDegree_le ?_
   exact (natDegree_C_mul_X_pow_le _ _).trans (Nat.lt_succ_iff.1 (Finset.mem_range.1 hj))
 
-theorem polySlash_mem (w : ℕ) (g : Matrix (Fin 2) (Fin 2) ℤ) (p : ℂ[X]) : slP w g p ∈ degreeLT ℂ (w + 1) := by
-  simp only [slP, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.toSpanSingleton_apply]
-  refine Submodule.sum_mem _ fun i hi => ?_
-  refine Submodule.smul_mem _ _ (mem_of_natDegree_le ?_)
-  have hi' : i ≤ w := Nat.lt_succ_iff.1 (Finset.mem_range.1 hi)
-  refine natDegree_mul_le.trans ?_
-  have h1 := (natDegree_pow_le (p := C ((g 0 0 : ℤ) : ℂ) * X + C ((g 0 1 : ℤ) : ℂ)) (n := i)).trans
-    (Nat.mul_le_mul_left i (natDegree_linear_le))
-  have h2 := (natDegree_pow_le (p := C ((g 1 0 : ℤ) : ℂ) * X + C ((g 1 1 : ℤ) : ℂ)) (n := w - i)).trans
-    (Nat.mul_le_mul_left (w - i) (natDegree_linear_le))
-  omega
-
 theorem hecke_eqv (Γ : Subgroup SL(2, ℤ)) (k : ℕ) (hk2 : 2 ≤ k) (f : ModularForm Γ (k : ℤ))
     {ι : Type} [Fintype ι] (δ : ι → Matrix (Fin 2) (Fin 2) ℤ) (hδ : ∀ i, 0 < (δ i).det)
     (hπ : ∀ γ : Γ, ∃ π : Equiv.Perm ι, ∀ i, ∃ γ' : Γ, δ i * mat γ = mat γ' * δ (π i)) :
@@ -109,7 +97,7 @@ theorem hecke_eqv (Γ : Subgroup SL(2, ℤ)) (k : ℕ) (hk2 : 2 ≤ k) (f : Modu
   set c : ι → ℂ[X] := fun i => slP w (δ i) (F (toGL (δ i) • UpperHalfPlane.I)) with hc
   set C := ∑ i, c i with hCdef
   have hC : -C ∈ degreeLT ℂ (w + 1) :=
-    Submodule.neg_mem _ (Submodule.sum_mem _ fun i _ => polySlash_mem _ _ _)
+    Submodule.neg_mem _ (Submodule.sum_mem _ fun i _ => _root_.GlobalTheory.HeckeFamilyMatrices.PerCoc.polySlash_mem_degreeLT _ _ _)
   refine ⟨⟨-C, hC⟩, ?_⟩
   funext γ
   have hγdet : (mat (γ : SL(2, ℤ))).det ≠ 0 := by simp [mat]
@@ -122,7 +110,7 @@ theorem hecke_eqv (Γ : Subgroup SL(2, ℤ)) (k : ℕ) (hk2 : 2 ≤ k) (f : Modu
       ∑ i, (slP w (δ i * mat γ) (F (toGL (δ i * mat γ) • UpperHalfPlane.I)) - slP w (mat γ) (c i)) := by
     simp only [per, hkF]
 
-    rw [GlobalTheory.T.eichlerIntegralFromI_finset_sum w _ (fun i => hfd.slash _ _), map_sum]
+    rw [_root_.GlobalTheory.EichlerSum.eichler_finset_sum w _ (fun i => hfd.slash _ _), map_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
     have h := GlobalTheory.T.eichlerIntegral_changeOfVariables_intMatrix_slash k hk2 ⇑f hfd (δ i) (hδ i) ((γ : SL(2, ℤ)) • UpperHalfPlane.I)
     rw [eq_sub_of_add_eq h.symm, map_sub, GlobalTheory.T.polyDegreeSlashAction_matrix_mul w (δ i) (mat γ) _ (eichler_mem _ _ _),

@@ -70,7 +70,7 @@ theorem functions_are_series : ∀ (p : ℕ) (k : Type) [CommRing k] (d : ℕ) (
         | inr i => simp [x₂, g, c.res n i]) s
     refine Eq.trans ?_ h
     rfl
-  · exact GlobalTheory.T.existsUnique_powerSeries_of_compatible_system k (Fin d) G.A c.x c.nil (fun n => (G.res n : G.A (n + 1) →ₐ[k] G.A n))
+  · exact _root_.GlobalTheory.Katz.existsUnique_evA_eq_of_presents k (Fin d) G.A c.x c.nil (fun n => (G.res n : G.A (n + 1) →ₐ[k] G.A n))
       (fun n i => c.res n i) c.presents b hb
 
 end GlobalTheory.Katz.Chart

@@ -52,10 +52,7 @@ namespace GlobalTheory.CompanionTheory.EisUnfold.Period
 
 variable {D : D7}
 
-theorem rat_sub' {m n : ℕ} (p p₀ : Matrix (Fin m) (Fin n) D.host.E) :
-    (rat (p - p₀) : Mx D m n) = rat p - rat p₀ := by
-  ext i j
-  simp [rat]
+alias rat_sub' := _root_.GlobalTheory.MixModel.rat_sub
 
 theorem psi_inner_rat {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) (V : HSp D) {s : ℕ}
     (q q₀ : Matrix (Fin V.rank) (Fin s) D.host.E) :

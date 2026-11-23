@@ -308,10 +308,6 @@ theorem piB_norm (hF : IsFrameJ ε e f wf z0) {T : ℝ} (hT : 0 < T) {u : Fin k 
   unfold piB
   exact hπ.2.2.1.2.1 _ (piB_mat_unitary hF hT hh) x
 
-theorem psiR_norm {n r' : ℕ} (ε : Fin n → Bool) (gg : ℕ) (e f : Fin r' → Fin n → ℂ) (z : Fin n → ℂ)
-    (g : Matrix (Fin n) (Fin n) ℂ) : ‖psiR ε gg e f z g‖ = 1 := by
-  exact Formalism.L2.SG.Pf.psiR_norm ε gg e f z g
-
 end Unit2
 
 section Inv
@@ -328,7 +324,7 @@ theorem loc_norm_inv {T : ℝ} (hT : 0 < T) {z : Fin (2 * r + k + 1) → ℂ} (h
     ‖W (s * y)‖ = ‖W y‖ := by
   unfold HNset at hs
   obtain ⟨h, hh, m, hm, hhm⟩ := hs
-  rw [hW s y h hh m hm hhm, norm_smul, psiR_norm, one_mul]
+  rw [hW s y h hh m hm hhm, norm_smul, _root_.Formalism.L2.SG.Pf.psiR_norm, one_mul]
   exact piB_norm hF hT hπ hh (W y)
 
 end Inv
@@ -337,16 +333,10 @@ section Assembly
 open Formalism.L2.SG.SplitPrimeNormLemmas Formalism.L2.SG.ConcreteSettingExists
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem mEqR (R : Ranks) : 2 * R.rS + 2 = R.m := by
-  obtain ⟨j, hj⟩ := R.m_even
-  have h2 := R.two_le_m
-  show 2 * (R.m / 2 - 1) + 2 = R.m
-  omega
-
 theorem lam_matchR (R : Ranks) (P : HCParam R) (i : Fin (2 * R.rS + R.k + 1)) (hr : 2 * R.rS + R.k + 1 = R.r) :
     lamS R P (Fin.cast hr i) =
-      lam48 R.k R.rS (fun i => (P.v i : ℝ)) (fun j => (P.b (Fin.cast (mEqR R) j) : ℝ)) i := by
-  have hm := mEqR R
+      lam48 R.k R.rS (fun i => (P.v i : ℝ)) (fun j => (P.b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two R) j) : ℝ)) i := by
+  have hm := _root_.Formalism.BasicNotions.Ranks.rS_two R
   have hk := R.m_add_three_le_k
   have hi := i.isLt
   unfold lamS lam48
@@ -354,7 +344,7 @@ theorem lam_matchR (R : Ranks) (P : HCParam R) (i : Fin (2 * R.rS + R.k + 1)) (h
   split_ifs with h1 h2 <;> first | rfl | (exfalso; omega)
 
 theorem interlace_of (R : Ranks) (P Q : HCParam R) (hv : Q.v = P.v) (hb : Q.b = P.b) :
-    InterlacingCondition R.k R.rS (fun i => (Q.u i : ℝ)) (fun i => (P.v i : ℝ)) (fun j => (P.b (Fin.cast (mEqR R) j) : ℝ)) := by
+    InterlacingCondition R.k R.rS (fun i => (Q.u i : ℝ)) (fun i => (P.v i : ℝ)) (fun j => (P.b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two R) j) : ℝ)) := by
   refine ⟨fun i => ⟨?_, ?_⟩, fun h => ?_⟩
   · have := Q.u_gt_v i
     rw [hv] at this
@@ -371,7 +361,7 @@ theorem interlace_of (R : Ranks) (P Q : HCParam R) (hv : Q.v = P.v) (hb : Q.b = 
     exact_mod_cast this
 
 theorem halfInt_of (R : Ranks) (P Q : HCParam R) :
-    HalfIntegralDifference R.k R.rS (fun i => (Q.u i : ℝ)) (fun i => (P.v i : ℝ)) (fun j => (P.b (Fin.cast (mEqR R) j) : ℝ)) := by
+    HalfIntegralDifference R.k R.rS (fun i => (Q.u i : ℝ)) (fun i => (P.v i : ℝ)) (fun j => (P.b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two R) j) : ℝ)) := by
   intro i s
   choose gv hgv using P.v_int
   choose gb hgb using P.b_int
@@ -383,7 +373,7 @@ theorem halfInt_of (R : Ranks) (P Q : HCParam R) :
     rw [ha, hgv]
     push_cast
     ring
-  · refine ⟨a + gb (Fin.cast (mEqR R) ⟨s.val - (R.k - 1), by have := s.isLt; omega⟩), ?_⟩
+  · refine ⟨a + gb (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two R) ⟨s.val - (R.k - 1), by have := s.isLt; omega⟩), ?_⟩
     simp only [ha, hgb]
     push_cast
     ring

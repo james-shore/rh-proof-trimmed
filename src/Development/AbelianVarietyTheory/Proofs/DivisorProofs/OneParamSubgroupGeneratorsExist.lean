@@ -70,16 +70,6 @@ theorem Jm_map_star (R S : ℕ) : (Jm R S).map star = Jm R S := by
 
 theorem Jm_mul_Jm (R S : ℕ) : Jm R S * Jm R S = 1 := Formalism.UG.P.Jpq_mul_self R S
 
-theorem gen_of_cont {n : Type} [Fintype n] [DecidableEq n] (N : ℝ → Matrix n n ℂ) (hc : Continuous N)
-    (h0 : N 0 = 1) (hm : ∀ s t, N (s + t) = N s * N t) : ∃ Y : Matrix n n ℂ, ∀ t : ℝ, N t = NormedSpace.exp (t • Y) :=
-  GlobalTheory.T.matrix_oneParameterGroup_eq_exp_of_continuous N hc h0 hm
-
-theorem cont_map {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
-    {β : Type} [Fintype β] [DecidableEq β] {J : Matrix β β (AE F E)} (γ : Multiplicative ℝ →* UG (cA σ) J)
-    (hγ : Continuous γ) (w : InfinitePlace F) (τ : EmbOver E w) :
-    Continuous (fun t : ℝ => ((γ (Multiplicative.ofAdd t)).1 : Matrix β β (AE F E)).map (piInf τ)) :=
-  GlobalTheory.T.continuous_unitaryOneParameter_realPlaceComponent γ hγ w τ
-
 theorem piInf_cA {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
     (h : IsCMExt F E σ) {w : InfinitePlace F} (τ : EmbOver E w) (x : AE F E) :
     piInf τ (cA σ x) = star (piInf τ x) := by
@@ -164,7 +154,7 @@ theorem genEx : GlobalTheory.RealLift.GenEx := by
   have hCN : ∀ w t, C w * N w t = M w t * C w := by
     intro w t; simp only [hN, ← Matrix.mul_assoc, hA', Matrix.one_mul]
   have hNc : ∀ w, Continuous (N w) := fun w =>
-    (continuous_const.matrix_mul (cont_map γ hγ.1 w (τ w))).matrix_mul continuous_const
+    (continuous_const.matrix_mul (_root_.GlobalTheory.ContMapReal.contmap γ hγ.1 w (τ w))).matrix_mul continuous_const
   have hN0 : ∀ w, N w 0 = 1 := by intro w; simp only [hN, hM0, Matrix.mul_one, hAC]
   have hNm : ∀ w s t, N w (s + t) = N w s * N w t := by
     intro w s t
@@ -172,7 +162,7 @@ theorem genEx : GlobalTheory.RealLift.GenEx := by
     calc A' w * (M w s * M w t) * C w = A' w * M w s * (C w * A' w) * M w t * C w := by
           rw [hA', Matrix.mul_one]; simp only [Matrix.mul_assoc]
       _ = _ := by simp only [Matrix.mul_assoc]
-  choose Y hY using fun w => gen_of_cont (N w) (hNc w) (hN0 w) (hNm w)
+  choose Y hY using fun w => _root_.GlobalTheory.OneParamMatrix.eq_exp_of_continuous_oneParameter (N w) (hNc w) (hN0 w) (hNm w)
   refine ⟨Y, fun w => mem_upq_of (Y w) fun t => ?_, fun t w => ?_⟩
   · rw [← hY w t, ← hF w]
     calc (N w t)ᵀ * ((C w)ᵀ * K w * (C w).map star) * (N w t).map star

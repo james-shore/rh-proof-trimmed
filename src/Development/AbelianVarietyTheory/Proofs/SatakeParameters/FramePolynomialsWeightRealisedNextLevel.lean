@@ -50,12 +50,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 namespace GlobalTheory.TwV.DelA
 
-theorem sgRev_mul_self_eq_one (n : ℕ) : sgRev n * sgRev n = 1 := by
-  unfold sgRev
-  rcases Int.units_eq_one_or (Equiv.Perm.sign (Fin.revPerm : Equiv.Perm (Fin n))) with h | h <;> rw [h] <;> norm_num
-
-theorem sgRev_ne_zero_of_sq (n : ℕ) : sgRev n ≠ 0 := fun h => by simpa [h] using sgRev_mul_self_eq_one n
-
 variable {p : ℕ} [Fact p.Prime] (X : Sys p) (D : D7) (pos : (Σ v : X.Pl, Fin (X.G.P.n' v)) ≃ D.what₂.Tau)
 
 theorem det_zT_of_odd {n : ℕ}
@@ -114,7 +108,7 @@ theorem realises_of_wtPol : ∀ {p : ℕ} [Fact p.Prime] (X : Sys p) (D : D7) (p
     · simp only [if_pos ho]
       rw [det_zT_of_odd X D pos f.1 τ ho, mul_zpow, inv_zpow']
       have hs : sgRev n ^ (wT X D pos j τ - cT1 X D pos j τ) * sgRev n ^ (-(wT X D pos j τ - cT1 X D pos j τ)) = 1 := by
-        rw [← zpow_add₀ (sgRev_ne_zero_of_sq n), add_neg_cancel, zpow_zero]
+        rw [← zpow_add₀ (_root_.GlobalTheory.TwV.DelA.sgRev_ne_zero n), add_neg_cancel, zpow_zero]
       have hdd : (f.1 τ).det ^ (-(wT X D pos j τ - cT1 X D pos j τ)) * (f.1 τ).det ^ (-(cT1 X D pos j τ)) =
           (f.1 τ).det ^ (-(wT X D pos j τ)) := by
         rw [← zpow_add₀ (hd τ)]; congr 1; ring

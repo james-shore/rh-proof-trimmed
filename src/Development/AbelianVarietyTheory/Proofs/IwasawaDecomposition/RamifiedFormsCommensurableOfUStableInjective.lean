@@ -65,7 +65,7 @@ theorem exists_nsmul_map_mem {K V W : Type*} [Field K] [NumberField K] [AddCommG
   classical
   obtain ⟨s, rfl⟩ := hA
   have h : ∀ x : W, ∃ n : ℕ, n ≠ 0 ∧ n • f x ∈ L := fun x =>
-    GlobalTheory.Mem.Full.exists_nsmul_mem_of_span L (f x) (by rw [hL]; trivial)
+    _root_.GlobalTheory.NatMulIntegerMultiple.main L (f x) (by rw [hL]; trivial)
   choose c hc0 hc using h
   refine ⟨∏ x ∈ s, c x, Finset.prod_ne_zero_iff.2 fun x _ => hc0 x, fun x hx => ?_⟩
   induction hx using Submodule.span_induction with

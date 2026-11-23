@@ -88,7 +88,7 @@ theorem aic_loc {R S : Type} [CommRing R] [CommRing S] [Algebra R S] (M : Submon
   rw [hc, map_zero] at key
   exact (hu.pow n).mul_right_eq_zero.1 key
 
-theorem StalkAICRing_of : LateralTheory.E.FibreEqvPf.StalkAICRing := by
+theorem StalkAICRing_of : _root_.LateralTheory.E.FibStalkPf.StalkAIC := by
   intro S hS x
   obtain ⟨U, hU, hxU, -⟩ := exists_isAffineOpen_mem_and_subset (x := x) (U := ⊤) trivial
   let _ := TopCat.Presheaf.algebra_section_stalk S.presheaf (⟨x, hxU⟩ : U)

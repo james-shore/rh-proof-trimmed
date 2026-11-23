@@ -59,11 +59,6 @@ open scoped CategoryTheory.Obj
 noncomputable section
 namespace GlobalTheory.CM.TenPair
 
-theorem spMap_comp_ringHom {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R')
-    (g : R' →+* R'') : spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]
-  rfl
-
 theorem mapRingHom_comp {K K' K'' : Type} [Field K] [Field K'] [Field K''] (f : K →+* K') (g : K' →+* K'') :
     (RingOfIntegers.mapRingHom g).comp (RingOfIntegers.mapRingHom f) = RingOfIntegers.mapRingHom (g.comp f) :=
   RingHom.ext fun _ => rfl
@@ -135,10 +130,10 @@ theorem exists_isTen_pair : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   have eA : spMap (RingOfIntegers.mapRingHom (IntermediateField.inclusion hk').toRingHom) ≫
       (spMap (RingOfIntegers.mapRingHom (IntermediateField.inclusion hk).toRingHom) ≫
         spMap (RingOfIntegers.mapRingHom j)) = spMap (RingOfIntegers.mapRingHom J) := by
-    rw [spMap_comp_ringHom, spMap_comp_ringHom, mapRingHom_comp, mapRingHom_comp]
+    rw [_root_.GlobalTheory.HomDescent.spMap_comp, _root_.GlobalTheory.HomDescent.spMap_comp, mapRingHom_comp, mapRingHom_comp]
   have eB : spMap (RingOfIntegers.mapRingHom (IntermediateField.inclusion hk').toRingHom) ≫
       spMap (RingOfIntegers.mapRingHom j₁) = spMap (RingOfIntegers.mapRingHom J) := by
-    rw [spMap_comp_ringHom, mapRingHom_comp]
+    rw [_root_.GlobalTheory.HomDescent.spMap_comp, mapRingHom_comp]
   exact ⟨k₂, inferInstance, inferInstance, J, ω₂, C₂, A₂, B₂, eA ▸ nA, eB ▸ nB, DA, DB, ha, hb, hDA, hDB,
     ⟨tA₂⟩, ⟨tB⟩⟩
 

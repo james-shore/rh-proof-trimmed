@@ -62,8 +62,8 @@ instance isAdicComplete_maximalIdeal (D : ℕ) :
     IsAdicComplete (maximalIdeal (MvPowerSeries (Fin D) ℂ)) (MvPowerSeries (Fin D) ℂ) := by
   have : IsPrecomplete (maximalIdeal ℂ) ℂ := by
     rw [IsLocalRing.maximalIdeal_eq_bot]; infer_instance
-  exact { toIsHausdorff := GlobalTheory.PsCNL.haus_of_noeth _
-          toIsPrecomplete := GlobalTheory.PsCNL.ps_isPrecomplete D }
+  exact { toIsHausdorff := _root_.GlobalTheory.NoetherianLocalHausdorff.noeth_local_hausdorff _
+          toIsPrecomplete := _root_.GlobalTheory.PowerSeriesIdealPowers.main D }
 
 theorem constantCoeff_eval (D : ℕ) (P : Polynomial (MvPowerSeries (Fin D) ℂ)) (x : MvPowerSeries (Fin D) ℂ) :
     MvPowerSeries.constantCoeff (P.eval x) =
@@ -85,7 +85,7 @@ theorem exists_lifts_of_separable : ∀ (D : ℕ) (P : Polynomial (MvPowerSeries
     have hQ0 : Q ≠ 0 := (hP.map φ).ne_zero
     have hroot : Q.eval c = 0 := (mem_roots hQ0).1 hc
     have h1 : P.eval (MvPowerSeries.C c) ∈ maximalIdeal (MvPowerSeries (Fin D) ℂ) := by
-      rw [GlobalTheory.PsCNL.mem_max_iff, constantCoeff_eval, MvPowerSeries.constantCoeff_C, ← hQ, hroot]
+      rw [_root_.GlobalTheory.MaximalIdealMembership.mem_maximalIdeal_iff, constantCoeff_eval, MvPowerSeries.constantCoeff_C, ← hQ, hroot]
       exact zero_mem _
     have hder : Q.derivative.eval c ≠ 0 := by
       have := hsep.eval₂_derivative_ne_zero (RingHom.id ℂ) (x := c) (by simpa [eval₂_id] using hroot)
@@ -97,7 +97,7 @@ theorem exists_lifts_of_separable : ∀ (D : ℕ) (P : Polynomial (MvPowerSeries
     obtain ⟨a, ha, hac⟩ := HenselianRing.is_henselian (I := maximalIdeal (MvPowerSeries (Fin D) ℂ)) P hP
       (MvPowerSeries.C c) h1 (h2.map _)
     refine ⟨a, ha, ?_⟩
-    rw [GlobalTheory.PsCNL.mem_max_iff, map_sub, MvPowerSeries.constantCoeff_C, IsLocalRing.maximalIdeal_eq_bot,
+    rw [_root_.GlobalTheory.MaximalIdealMembership.mem_maximalIdeal_iff, map_sub, MvPowerSeries.constantCoeff_C, IsLocalRing.maximalIdeal_eq_bot,
       Ideal.mem_bot, sub_eq_zero] at hac
     exact hac
   choose! θ hθ using lift

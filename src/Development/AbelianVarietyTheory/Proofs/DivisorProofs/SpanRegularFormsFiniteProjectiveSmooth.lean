@@ -63,8 +63,8 @@ theorem projective_exteriorPower_of_projective (R V : Type) [CommRing R] [AddCom
 
 theorem span_omB_comap_finite_projective : ∀ (k K : Type) [Field k] [Field K] [Algebra k K] (B : Subalgebra k K) [IsFractionRing B K] [Algebra.Smooth k B] (p : ℕ) (W : Type) [AddCommGroup W] [Module K W] [Module k W] [IsScalarTower k K W] (e : W →ₗ[K] DR k K), Function.Injective e → LinearMap.range e = ⋀[K]^p Ω[K⁄k] → Module.Finite B (Submodule.span B ((omB k K B p).comap (e.restrictScalars k) : Set W)) ∧ Module.Projective B (Submodule.span B ((omB k K B p).comap (e.restrictScalars k) : Set W)) := by
   intro k K _ _ _ B _ _ p W _ _ _ _ e he hr
-  obtain ⟨e', he', hre', -⟩ := GlobalTheory.T.kahlerFormsOverSubalgebra_eq_range_exteriorPower k K B p
-  have hom := fun a ha => ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K B p p).2.1 a ha)
+  obtain ⟨e', he', hre', -⟩ := _root_.GlobalTheory.PD.omB_eq_range_exteriorPower k K B p
+  have hom := fun a ha => ((_root_.GlobalTheory.PD.omB_alg k K B p p).2.1 a ha)
   let S : Submodule k W := (omB k K B p).comap (e.restrictScalars k)
   let T : Submodule B W :=
     { carrier := (S : Set W)

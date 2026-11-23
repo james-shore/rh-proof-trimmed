@@ -77,26 +77,6 @@ theorem abPart_principal (C : Flat.BdryChart Xo σ₀ n a) {z : Fin n → ℂ} (
   show Spec.map (CommRingCat.ofHom (r.comp f)) = _
   rw [CommRingCat.ofHom_comp, Spec.map_comp]
 
-theorem exists_seq_cover (h : a ≤ n) : ∃ ws : ℕ → Fin n → ℂ, (∀ k, ws k ∈ logCover h) ∧
-    Tendsto (fun k => expCover a (ws k)) atTop (𝓝 0) := by
-  refine ⟨fun m i => if (i : ℕ) < a then -((m : ℂ) + 1) else 0, fun m => ⟨fun i => ?_, fun i hi => ?_⟩, ?_⟩
-  · have hi : ((Fin.castLE h i : Fin n) : ℕ) < a := by simp
-    simp only [hi, ↓reduceIte, Complex.neg_re, Complex.add_re, Complex.natCast_re, Complex.one_re]
-    have : (0 : ℝ) ≤ m := Nat.cast_nonneg m
-    linarith
-  · have hi' : ¬ ((i : ℕ) < a) := by omega
-    simp [hi']
-  · rw [tendsto_pi_nhds]
-    intro i
-    by_cases hi : (i : ℕ) < a
-    · simp only [expCover, hi, ↓reduceIte, Pi.zero_apply]
-      rw [tendsto_zero_iff_norm_tendsto_zero]
-      simp only [Complex.norm_exp, Complex.neg_re, Complex.add_re, Complex.natCast_re, Complex.one_re]
-      exact Real.tendsto_exp_atBot.comp
-        (tendsto_neg_atTop_atBot.comp (tendsto_atTop_add_const_right _ 1 tendsto_natCast_atTop_atTop))
-    · simp only [expCover, hi, ↓reduceIte, Pi.zero_apply]
-      exact tendsto_const_nhds
-
 theorem periods_inj {g : ℕ} {Λ : Type} [AddCommGroup Λ] (L₀ : Flat.LogPeriods n a g Λ) {w : Fin n → ℂ}
     (hw : w ∈ logCover L₀.a_le) : Function.Injective (L₀.P w) := by
   intro x x' hxx
@@ -141,7 +121,7 @@ theorem centre_phi (C : Flat.BdryChart Xo σ₀ n a) {X : Scheme.{0}} {tt : SAB 
     rw [h00]; exact Metric.mem_ball_self hρ0
   have hol : Flat.IsHolPts (Metric.ball 0 ρ) C.ψ :=
     ⟨Metric.isOpen_ball, fun r => (C.hol.2 r).mono (Metric.ball_subset_ball hρ1)⟩
-  obtain ⟨ws, hws, hw0⟩ := exists_seq_cover L.a_le
+  obtain ⟨ws, hws, hw0⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.Frame.exists_seq L.a_le
   have hper : ∀ x : W, Tendsto (fun j => L.P (ws j) x) atTop (𝓝 (per x)) := fun x => by
     obtain ⟨h1, h2, h3⟩ := hs x
     have := h1.tendsto.comp hw0

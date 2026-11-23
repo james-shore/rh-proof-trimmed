@@ -99,7 +99,7 @@ theorem sign_char_trivial_on_congruence : ∀ (F : Type) [Field F] [NumberField 
   have h1 : g ⁻¹' t ∈ 𝓝 ((0, 0) : FiniteAdeleRing (𝓞 F) F × FiniteAdeleRing (𝓞 F) F) :=
     hg.continuousAt.preimage_mem_nhds (by rw [hg0]; exact ht)
   obtain ⟨u, hu, v, hv, huv⟩ := mem_nhds_prod_iff.1 h1
-  obtain ⟨N, hN, hNuv⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F (u ∩ v) (Filter.inter_mem hu hv)
+  obtain ⟨N, hN, hNuv⟩ := _root_.GlobalTheory.LocalNormBound.main F (u ∩ v) (Filter.inter_mem hu hv)
   refine ⟨N, hN, fun n hn hdvd b hb hb' => ?_⟩
   obtain ⟨q, rfl⟩ := hdvd
   obtain ⟨s, hs, hbs⟩ := hb

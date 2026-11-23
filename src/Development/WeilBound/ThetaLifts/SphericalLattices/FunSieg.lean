@@ -101,7 +101,7 @@ theorem siegSt : SiegSt := by
 
 end FunSieg
 
-theorem siegSt : SiegSt := FunSieg.siegSt
+alias siegSt := _root_.PositivityTheory.Sph.FunSieg.siegSt
 
 end PositivityTheory.Sph
 

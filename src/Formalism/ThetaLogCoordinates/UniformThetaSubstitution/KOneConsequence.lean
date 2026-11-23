@@ -57,26 +57,15 @@ namespace Formalism.InvariantFactorPaths.G7.Top
 
 open Formalism.InvariantFactorPaths.G7
 
-theorem e_one_identity : JetPairingHasseIdentity := e_one_identity_of
-theorem e_one_integral : HasseDerivIntegralHomogeneous := e_one_integral_of
-theorem e_one_vanish : HasseDerivProdVanish := e_one_vanish_of
-theorem minorHits : MinorHits := minor_hits
-theorem starArith : StarArith := gainFactorialInequality
-theorem chargeLemma : ChargeLemma := cyclicShiftLeast
-theorem entry_a_one_bound : ExcessGainBound := excessGainBound
-theorem bCore : BCore := cappedGainBound
-theorem hitsCapPos : HitsCapPos := HitsCapPos_of e_one_vanish minorHits
-theorem hitsColumnsPos : HitsColumnsPos := HitsColumnsPos_of e_one_vanish minorHits
-theorem hasseDegree : HasseDegree := hasseDerivSupport
-theorem minorProdDegree : MinorProdDegree := minorProdBlockDegree
-theorem termBound : TermBound := TermBound_of e_one_identity e_one_integral
-theorem hhDecomp : HhDecomp := decomposition_of_hh
+theorem hitsCapPos : HitsCapPos := HitsCapPos_of _root_.Formalism.InvariantFactorPaths.G7.e_one_vanish_of _root_.Formalism.InvariantFactorPaths.G7.minor_hits
+theorem hitsColumnsPos : HitsColumnsPos := HitsColumnsPos_of _root_.Formalism.InvariantFactorPaths.G7.e_one_vanish_of _root_.Formalism.InvariantFactorPaths.G7.minor_hits
+theorem termBound : TermBound := TermBound_of _root_.Formalism.InvariantFactorPaths.G7.e_one_identity_of _root_.Formalism.InvariantFactorPaths.G7.e_one_integral_of
 theorem entryStar : EntryStar :=
-  EntryStar_of termBound hhDecomp classSubst Formalism.DworkPowerSeriesWeights.jet_pair_linearity starArith hasseDegree
-    minorProdDegree
+  EntryStar_of termBound _root_.Formalism.InvariantFactorPaths.G7.decomposition_of_hh _root_.Formalism.InvariantFactorPaths.G7.class_substitution Formalism.DworkPowerSeriesWeights.jet_pair_linearity _root_.Formalism.InvariantFactorPaths.G7.gainFactorialInequality _root_.Formalism.InvariantFactorPaths.G7.hasseDerivSupport
+    _root_.Formalism.InvariantFactorPaths.G7.minorProdBlockDegree
 
-theorem entry_a_one : EntryExcessBound := entryExcessBound_of entryStar hitsCapPos entry_a_one_bound chargeLemma
+theorem entry_a_one : EntryExcessBound := entryExcessBound_of entryStar hitsCapPos _root_.Formalism.InvariantFactorPaths.G7.excessGainBound _root_.Formalism.InvariantFactorPaths.G7.cyclicShiftLeast
 theorem entry_a_two : EntryCappedBound := entryCappedBound_of entryStar hitsCapPos Formalism.GrowthSums.cappedGainSubLE
-theorem entryB : EntryB := EntryB_of entryStar hitsCapPos hitsColumnsPos bCore
+theorem entryB : EntryB := EntryB_of entryStar hitsCapPos hitsColumnsPos _root_.Formalism.InvariantFactorPaths.G7.cappedGainBound
 
 end Formalism.InvariantFactorPaths.G7.Top

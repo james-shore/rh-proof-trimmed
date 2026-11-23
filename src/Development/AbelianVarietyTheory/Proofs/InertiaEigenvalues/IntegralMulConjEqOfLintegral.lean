@@ -144,16 +144,11 @@ theorem secondCountable_GA : SecondCountableTopology (GA E a) := by
     MulOpposite.opHomeomorph.symm.secondCountableTopology
   exact Units.isEmbedding_embedProduct.secondCountableTopology
 
-theorem dot_algebraMap {ι : Type} [Fintype ι] (ξ c : ι → E) :
-    dot ξ (fun t => algebraMap E (Ad E) (c t)) = algebraMap E (Ad E) (∑ t, ξ t * c t) := by
-  set_option synthInstance.maxHeartbeats 100000 in
-    simp only [dot, map_sum, map_mul]
-
 theorem good_left_mirU (hψ : StdPsi ψ) {m : ℕ} {f : GA E a → ℂ} (hf : Good ψ m f) {γ : GL (Fin a) E}
     (hγ : γ ∈ mirU E a m) (g : GA E a) : f (ratGL E a γ * g) = f g := by
   obtain ⟨u, hu, g₀, hg₀, rfl, h1, -⟩ := exists_peel (Nat.le_succ m) hγ
   rw [map_mul, mul_assoc, invariant_colGen (ratGL E a) f (fun k hk y g => by
-    rw [ratGL_blkU, hf.law k hk, dot_algebraMap, hψ.rat, one_mul]) hu]
+    rw [ratGL_blkU, hf.law k hk, _root_.GlobalTheory.CuspGeneric.dot_rat, hψ.rat, one_mul]) hu]
   refine hf.left g₀ (fun i k h => ?_) g
   by_cases hk : m < (k : ℕ)
   · exact h1 i k hk

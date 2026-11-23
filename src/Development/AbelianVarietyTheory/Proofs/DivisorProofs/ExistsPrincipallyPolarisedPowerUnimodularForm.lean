@@ -77,7 +77,7 @@ theorem exists_pow_data_polAV : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
       fun x hx => (Out.powIsLimit Q.B r).uniq (Fan.mk T y) x fun u => hx u.as⟩
   have hB : ∀ (T : Over (Sp R)) (x x' y : T ⟶ c.A), bi hP (x * x') y = bi hP x y + bi hP x' y := fun T x x' y => by
     have e := (cls_eq_zero_iff (LB.isLB_linComb hP _ _)).2
-      (GlobalTheory.T.biadditive_of_trivial_on_axes hG (Sp R) c.A c.diag c.ab hD hamp c.P hP c.rig₁ c.rig₂ T x x' y).1
+      (_root_.GlobalTheory.Biadditive.biadditive_of_triv_axes hG (Sp R) c.A c.diag c.ab hD hamp c.P hP c.rig₁ c.rig₂ T x x' y).1
     rw [cls_linComb hP, Fin.sum_univ_three] at e
     simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val, one_smul, neg_smul] at e
     rw [← sub_eq_zero, ← e]
@@ -95,7 +95,7 @@ theorem exists_pow_data_polAV : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
             isLB := hLB
             rigid := rigidified_sharp hP pr W hpr hB
             sym := sym_sharp hP pr W hpr hB hs
-            ample := GlobalTheory.T.relAmple_formBundle_power_of_posDef hG 0 1 r R 1 (Sp R) (𝟙 _) c G pr W hpr hu hamp hpd
+            ample := _root_.GlobalTheory.PosDefAmple.relAmple_linComb_of_posDef hG 0 1 r R 1 (Sp R) (𝟙 _) c G pr W hpr hu hamp hpd
             ktriv := kTriv_sharp hP pr W hpr hB hs hu (GlobalTheory.Mum.PowPol.det_eq_one W hpd hdet)
               (fun T x hx => eq_one_of_lam Q.M.isLB Q.ktriv x hx) }, pr, hpr, ⟨Out.powIsLimit Q.B r⟩, ?_⟩
   refine lbIso_nested Q.M.isLB _ _ (fun uv : Fin r × Fin r => (lift (pr uv.1) (pr uv.2)).left) (fun uv => W uv.1 uv.2) _ _ ?_

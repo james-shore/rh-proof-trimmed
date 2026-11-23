@@ -65,7 +65,7 @@ theorem gelA_central : ∀ (n : ℕ) (V : Type) [NormedAddCommGroup V] [InnerPro
   delta gelA
   simp only [epow_eq_pow_of]
   rw [Finset.mul_sum, Finset.sum_mul, ← Finset.sum_sub_distrib]
-  simp only [GlobalTheory.SmoothForms.comm_pow_of_apply E hE, Finset.sum_sub_distrib, Finset.sum_ite_eq,
+  simp only [_root_.GlobalTheory.PowEntryCommutator.pow_entry_commutator E hE, Finset.sum_sub_distrib, Finset.sum_ite_eq,
     Finset.sum_ite_eq', Finset.mem_univ, ite_true, sub_self]
 
 end GlobalTheory.CompanionTheory.ModelS

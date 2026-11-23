@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.GrowthBounds.WittFrameLocaliserOrders
 
 @[expose] public section
 
@@ -349,20 +350,6 @@ theorem cc_p : WittVector.constantCoeff ((p : ℕ) : WF p n') = 0 := by
   rw [map_natCast]
   exact CharP.cast_eq_zero _ p
 
-private theorem dvd_of_cc_lemma_4 (x : WF p n') (hx : WittVector.constantCoeff x = 0) :
-    ∃ w : WF p n', x = (p : WF p n') * w := by
-  by_cases h0 : x = 0
-  · exact ⟨0, by rw [h0, mul_zero]⟩
-  obtain ⟨m, b, hb, hxb⟩ := WittVector.exists_eq_pow_p_mul x h0
-  cases m with
-  | zero =>
-    exfalso
-    rw [pow_zero, one_mul] at hxb
-    rw [hxb, WittVector.constantCoeff_apply] at hx
-    exact hb hx
-  | succ m =>
-    exact ⟨(p : WF p n') ^ m * b, by rw [hxb, pow_succ', mul_assoc]⟩
-
 private theorem cc_zero_lemma_3 (r : ℕ) (g g' : Matrix (Fin k) (Fin k) (WF p n')) (hg' : IsGLW g')
     (hpl : ratPlane p n' r g ≤ ratPlane p n' r g') (c i : Fin k) (hc : c.val < r) (hi : ¬ i.val < r) :
     WittVector.constantCoeff ((g⁻¹ * g') c i) = 0 := by
@@ -404,7 +391,7 @@ theorem tgt_le_of_plane (φ : WF p n' ≃+* W) (r : ℕ) (hpQ : (p : Qq) ≠ 0)
   have hZ : ∀ i c : Fin k, ¬ i.val < r → c.val < r →
       ∃ w : W, (Ngi φ g' * Ng φ g) i c = (p : W) * w := by
     intro i c hi hc
-    obtain ⟨w, hw⟩ := dvd_of_cc_lemma_4 _ (cc_zero_lemma_3 r g g' hg' hpl c i hc hi)
+    obtain ⟨w, hw⟩ := _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.witt_vector_constant_zero_dvd_p _ (cc_zero_lemma_3 r g g' hg' hpl c i hc hi)
     refine ⟨φ w, ?_⟩
     have hZe : (Ngi φ g' * Ng φ g) i c = φ ((g⁻¹ * g') c i) := by
 

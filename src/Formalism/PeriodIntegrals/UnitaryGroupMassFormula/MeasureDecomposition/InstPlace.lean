@@ -269,7 +269,7 @@ theorem placeDecomp_of (hE : InstExpFix) (hAB : InstAdaptBasis) : InstPlaceDecom
           rw [this]; exact hm2
       rw [hset]
       exact hemb.isCompact_preimage hcomp
-    · obtain ⟨U, hUo, h1U, hU⟩ := Formalism.REAL.ballOpen n R (by rw [hR]; linarith)
+    · obtain ⟨U, hUo, h1U, hU⟩ := _root_.Formalism.REAL.ball_open_holds n R (by rw [hR]; linarith)
       refine mem_interior.mpr ⟨(fun x : Formalism.REAL.UJ ε => Ai * Formalism.MainNotions.S.uMat x * A) ⁻¹' U, ?_, ?_, ?_⟩
       · intro x hx
         exact (hU _ hx).le

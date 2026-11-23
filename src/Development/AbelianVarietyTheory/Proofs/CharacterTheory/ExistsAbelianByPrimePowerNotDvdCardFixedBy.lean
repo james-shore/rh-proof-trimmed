@@ -55,8 +55,8 @@ theorem exists_abelianByPrimePower_not_dvd_card_fixedBy₂ :
     ∀ (G : Type) [Group G] [Finite G] (x : G) (p : ℕ), p.Prime →
       ∃ H : Subgroup G, AbByP H ∧ ¬ p ∣ Nat.card (MulAction.fixedBy (G ⧸ H) x) := by
   intro G _ _ x p hp
-  obtain ⟨k, hk⟩ := GlobalTheory.T.exists_coprime_orderOf_pow_prime_pow' G x p hp
-  obtain ⟨H, hCH, hnorm, hpow, hidx⟩ := GlobalTheory.T.exists_subgroup_ge_normalizing_not_dvd_relIndex G (Subgroup.zpowers (x ^ p ^ k)) p hp
+  obtain ⟨k, hk⟩ := _root_.GlobalTheory.exists_coprime_orderOf_pow_prime_pow G x p hp
+  obtain ⟨H, hCH, hnorm, hpow, hidx⟩ := _root_.GlobalTheory.exists_sylow_over_subgroup G (Subgroup.zpowers (x ^ p ^ k)) p hp
   have hN : ∀ g : G, g ∈ Subgroup.normalizer ((Subgroup.zpowers (x ^ p ^ k) : Subgroup G) : Set G) ↔
       ∀ d ∈ Subgroup.zpowers (x ^ p ^ k), g * d * g⁻¹ ∈ Subgroup.zpowers (x ^ p ^ k) := by
     intro g

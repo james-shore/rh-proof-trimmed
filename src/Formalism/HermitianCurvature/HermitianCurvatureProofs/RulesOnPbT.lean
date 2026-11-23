@@ -240,7 +240,7 @@ theorem nL_castM {r j : ℕ} (hj : j + 1 ≤ r) (a : Fin j → ℂ) :
 
 theorem nL_mem {r j : ℕ} (hj : j + 1 ≤ r) (a : Fin j → ℂ) : LevelPointCoordinates.nL k r j hj a ∈ Nset k r := by
   rw [nL_castM hj a]
-  exact PBH.castM_N _ (LeftFubiniLemmas.rn_nset _)
+  exact PBH.castM_N _ (_root_.Formalism.FourierDecayAlt.P.Ux3.rn_nset _)
 
 theorem psi_castM {j ρ r : ℕ} (e : j + ρ = r) (zj : Fin (2 * ρ + k + 1) → ℂ) (z : Fin (2 * r + k + 1) → ℂ)
     (hz : D.castV e (liftVec k j ρ zj) = z) (c : ℂ) (M : B.Mat k (j + ρ)) :

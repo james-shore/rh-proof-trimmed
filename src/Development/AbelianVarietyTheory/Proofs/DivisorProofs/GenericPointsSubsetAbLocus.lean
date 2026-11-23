@@ -95,7 +95,7 @@ theorem exists_gen_theta_generic {R : Type} [CommRing R] [IsDomain R] (G : Over 
   have hx : ∀ i, pushPt gp.1.w (x i) = U ≫ x3 G i := fun i => Over.OverMorphism.ext (gp.1.lift_fst _ _ _)
   let πA := pullback.fst G.hom j
   let pf := pullback.fst (G3 G).hom j
-  obtain ⟨t₀, ht₀⟩ := GlobalTheory.CubeTop.cubeTheorem _ A hAb (M.pull πA) (pull_isLB hM _) P (x 0) (x 1) (x 2)
+  obtain ⟨t₀, ht₀⟩ := _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds _ A hAb (M.pull πA) (pull_isLB hM _) P (x 0) (x 1) (x 2)
   obtain ⟨t₁, ht₁⟩ := CubeDescent.exists_gen_comp M πA _ _ t₀ ht₀
   let y : Fin 3 → (Over.mk (P.hom ≫ j) ⟶ G) := fun i => U ≫ x3 G i
   have key : ∀ z : P ⟶ A, z.left ≫ πA = (pushHom gp P z).left := fun z => rfl

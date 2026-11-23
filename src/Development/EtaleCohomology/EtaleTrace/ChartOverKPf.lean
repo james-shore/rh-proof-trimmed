@@ -49,18 +49,6 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 namespace LateralTheory.EtaleTrace.Cov
 
-theorem sect_eq_of_alg (X : Scheme.{0}) [IsIntegral X] (U : X.Opens) (s t : Γ(X, U))
-    (h : ∀ (y : X) (hy : y ∈ U), algebraMap (X.presheaf.stalk y) X.functionField (X.presheaf.germ U y hy s) =
-      algebraMap (X.presheaf.stalk y) X.functionField (X.presheaf.germ U y hy t)) : s = t := by
-  apply TopCat.Presheaf.section_ext X.sheaf
-  intro y hy
-  have : Nonempty U := ⟨⟨y, hy⟩⟩
-  have hst : s = t := by
-    apply Scheme.germToFunctionField_injective X U
-    have := h y hy
-    rwa [Scheme.algebraMap_germ_eq_germToFunctionField, Scheme.algebraMap_germ_eq_germToFunctionField] at this
-  rw [hst]
-
 theorem fromZero_eq_mk {k : Type} [Field k] {N : ℕ} (i : Fin (N + 1))
     (hx : (MvPolynomial.X i : MvPolynomial (Fin (N + 1)) k) ∈ homogeneousSubmodule (Fin (N + 1)) k 1) (c : k)
     (hg : (C c : MvPolynomial (Fin (N + 1)) k) ∈ homogeneousSubmodule (Fin (N + 1)) k (0 • 1)) :
@@ -87,7 +75,7 @@ theorem chart_key {k : Type} [Field k] {X : Scheme.{0}} [IsIntegral X] (p : X �
     (mem_homogeneousSubmodule _ _).2 (by simpa using isHomogeneous_C (Fin (N + 1)) c)
   have hsec : φ (HomogeneousLocalization.Away.mk _ hx 0 (C c) hg) =
       X.presheaf.map (homOfLE le_top : U ⟶ ⊤).op (p.appTop ((Scheme.ΓSpecIso (CommRingCat.of k)).inv c)) := by
-    apply sect_eq_of_alg X
+    apply _root_.LateralTheory.EtaleTrace.Cov.sect_ext X
     intro y hy
     rw [hφ, TopCat.Presheaf.germ_res_apply]
     have : Nonempty (⊤ : X.Opens) := ⟨⟨y, trivial⟩⟩

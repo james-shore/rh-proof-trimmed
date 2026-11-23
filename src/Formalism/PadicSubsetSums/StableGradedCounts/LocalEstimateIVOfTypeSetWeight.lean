@@ -60,45 +60,28 @@ import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.Algebra.BigOperators.Field
 public import Mathlib.Algebra.Order.Group.Indicator
+import Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.PermSubSumInv
 
 @[expose] public section
 
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
@@ -185,18 +168,12 @@ theorem comparison_transfer_holds : ComparisonTransfer := by
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 end
 
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
@@ -227,23 +204,14 @@ theorem share_from_count : ShareFromCount := by
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 end
 
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 open Finset Polynomial
 open scoped ComplexOrder
@@ -419,21 +387,15 @@ theorem subsum_bound : LemmaPSubSum := by
   apply Finset.card_le_card
   intro σ hσ
   simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hσ ⊢
-  obtain ⟨A, hA, hc⟩ := Formalism.GaloisIrreducibility.permSubSumInv (Fin N) σ a hσ
+  obtain ⟨A, hA, hc⟩ := _root_.Formalism.GaloisIrreducibility.permutation_subset_sum_invariant (Fin N) σ a hσ
   exact ⟨A, hc, hA⟩
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 end
 
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 open Finset Polynomial
 open scoped ComplexOrder
@@ -468,42 +430,18 @@ theorem of_mul_twistedIdem {G : Type} [Group G] [Fintype G] (J : Subgroup G) (χ
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 end
 
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 open Finset Polynomial
 open scoped ComplexOrder
@@ -674,50 +612,23 @@ theorem type_weight_exact : TypeWeightExact := by
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 end
 
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset Polynomial
-open scoped ComplexOrder
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 open Polynomial Formalism.GaloisIrreducibility
-
-theorem monicOf_monic' {K : Type} [Field K] {N : ℕ} (c : Fin N → K) : (monicOf c).Monic := by
-  exact Polynomial.monic_X_pow_add (Polynomial.degree_sum_fin_lt c)
 
 theorem sqMassLeOne_of (h : TypeSetWeight) : SqMassLeOne := by
   intro K _ _ M
@@ -731,7 +642,7 @@ theorem localEstimateIV_of (h : TypeSetWeight) (hP : LemmaPSubSum) (hD : Divisor
       (sqSet K N).filter (fun c => IsSubSum (degType (monicOf c)) a) := by
     apply Finset.filter_congr
     intro c _
-    exact hD K (monicOf c) a (monicOf_monic' c).ne_zero
+    exact hD K (monicOf c) a (_root_.Formalism.IrreducibleCountingLemmas.GaloisIrreducibility.monicOf_monic c).ne_zero
   rw [hfilt]
   refine le_trans (h K N (fun m => IsSubSum m a)) ?_
   have hP' := hP N a ha haN
@@ -768,7 +679,7 @@ theorem localEstimateV_of (h : TypeSetWeight) (hC : CycleProbSum) (hS : PrimeRec
       (sqSet K N).filter (fun c => ¬ ∃ p ∈ degType (monicOf c), p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N) := by
     apply Finset.filter_congr
     intro c _
-    rw [hiff _ (monicOf_monic' c).ne_zero]
+    rw [hiff _ (_root_.Formalism.IrreducibleCountingLemmas.GaloisIrreducibility.monicOf_monic c).ne_zero]
   rw [hfilt]
   have hT := h K N (fun m => ¬ ∃ p ∈ m, p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N)
   have hparts : ∀ σ : Equiv.Perm (Fin N), (∃ p ∈ σ.partition.parts, p.Prime ∧ N < 2 * p ∧ p + 3 ≤ N) ↔
@@ -817,14 +728,9 @@ theorem localEstimateV_of (h : TypeSetWeight) (hC : CycleProbSum) (hS : PrimeRec
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 end
 
-section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
-open Polynomial
-
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 open Finset Polynomial
 
@@ -1056,22 +962,12 @@ theorem divisor_square_weight_sum_le (hM : SqMassLeOne) (K : Type) [Field K] [Fi
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 end
 
-section
-open Finset
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
-section
-open Finset
-
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
-end
-
 section
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 

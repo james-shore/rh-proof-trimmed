@@ -74,7 +74,7 @@ theorem matchMono_of' (hψ : PsiPlaces) (hR : RealMatch) (hRc : RealConj) (hH : 
   refine ⟨d, bs, θ, l, εG, frG, aTau θ a, PG, lamS, L₁, L₂, fun X => φ (HMul.hMul (tupOf X) a.1), Φf, Φv,
     μ.map tupInv, lam.map hermTo, ψ, ?_, npow (absA D (Matrix.GeneralLinearGroup.det a)) ((V.rank : ℂ) - n), ?_, ?_⟩
   · constructor
-    · exact GlobalTheory.DefiniteQuotient.cmExt D
+    · exact _root_.Formalism.MainNotions.UnusedSlot34.isCMExt_D D
     · exact GlobalTheory.DefiniteQuotient.gram_hermND V
     · exact hrange.1
     · intro i j

@@ -186,7 +186,7 @@ theorem inter_isVBOn_char0 {E : Type} [Field E] [NumberField E] [IsCMField E] {H
       (Module.finrank Ω (eigSp ρ (cst.comp (labelEmb c s)))) (eigSp ρ (cst.comp (labelEmb c s))) := by
   classical
   haveI : Fintype (CMType H ⊕ CMType H) := Fintype.ofFinite _
-  have hl := GlobalTheory.T.label_embedding_injective E H l c
+  have hl := _root_.GlobalTheory.CompanionTheory.Ar.labels_all_once E H l c
   have hinj : Function.Injective fun s : CMType H ⊕ CMType H => cst.comp (labelEmb c s) := by
     intro s s' h
     exact hl.1 (RingHom.ext fun a => cst.injective (congrArg (fun φ : 𝓞 E →+* Ω => φ a) h))

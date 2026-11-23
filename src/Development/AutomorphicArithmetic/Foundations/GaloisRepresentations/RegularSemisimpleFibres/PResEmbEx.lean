@@ -50,10 +50,6 @@ open GroundTheory.Global GroundTheory.Global.SemiLocal UpperTheory.V.Published U
 open scoped Classical
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-private theorem res_algClosed {Ω : Type} [Field Ω] [IsAlgClosed Ω] (A : ValuationSubring Ω) :
-    IsAlgClosed (IsLocalRing.ResidueField A) :=
-  _root_.UpperTheory.Reformulated.B.Qk69.res_algClosed A
-
 private theorem res_surj {Ω : Type} [Field Ω] [CharZero Ω] (hΩ : ∀ x : Ω, IsAlgebraic ℤ x) (A : ValuationSubring Ω) {κ : Type} [Field κ]
     [IsAlgClosed κ] (p : ℕ) [Fact p.Prime] [CharP (IsLocalRing.ResidueField A) p]
     (e : κ →+* IsLocalRing.ResidueField A) : Function.Surjective e := by
@@ -95,7 +91,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.resEmbEx :
     ResEmbEx := by
   intro E Ω _ _ _ _ _ A v hv
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed E
-  haveI := res_algClosed A
+  haveI := _root_.UpperTheory.Reformulated.B.Qk69.res_algClosed A
   obtain ⟨e₀, he₀⟩ : ∃ e₀ : 𝓀[v.adicCompletion E] →+* IsLocalRing.ResidueField A,
       ∀ x, e₀ (DiscreteGroups.sglob.DzType.kappaP v x) = DiscreteGroups.sglob.DzType.kappaQ A x := by
     refine ⟨RingHom.liftOfSurjective _ (DiscreteGroups.sglob.DzType.kappa_surj_O v) ⟨DiscreteGroups.sglob.DzType.kappaQ A, fun x hx => ?_⟩,

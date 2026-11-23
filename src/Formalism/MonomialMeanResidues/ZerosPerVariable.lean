@@ -46,6 +46,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.HermiteSiegelSlopes
 
-theorem baseChange : BaseChange := base_change_slope
+alias baseChange := _root_.Formalism.HermiteSiegelSlopes.base_change_slope
 
 end Formalism.HermiteSiegelSlopes

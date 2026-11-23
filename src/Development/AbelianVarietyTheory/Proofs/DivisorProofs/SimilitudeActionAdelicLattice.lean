@@ -67,25 +67,16 @@ variable {p : ℕ} [Fact p.Prime]
 abbrev formAf (D : Datum p) : LinearMap.BilinForm (AfP p) (AfP p ⊗[ℚ] VQ D) :=
   (D.EF.baseChange ℚ).baseChange (AfP p)
 
-theorem lim (p : ℕ) [Fact p.Prime] (a : ℕ → ℤ)
-    (ha : ∀ n m : ℕ, 0 < n → 0 < m → (n * m).Coprime p → (n : ℤ) ∣ a (n * m) - a n) :
-    ∃ α : AfP p, IsIntAf α ∧ ∀ n : ℕ, 0 < n → n.Coprime p →
-      ∃ β : AfP p, IsIntAf β ∧ α = (a n : AfP p) + n • β := GlobalTheory.T.exists_integralAdeleLimit_compatibleIntSystem p a ha
+alias lim := _root_.GlobalTheory.CompatLim.exists_lim
 
-theorem zero (p : ℕ) [Fact p.Prime] (α : AfP p)
-    (h : ∀ n : ℕ, 0 < n → n.Coprime p → ∃ β : AfP p, IsIntAf β ∧ α = n • β) : α = 0 := GlobalTheory.T.finiteAdeleAwayFromP_eq_zero_of_divisible_coprime p α h
+alias zero := _root_.GlobalTheory.AfPZero.main
 
-theorem unit (p : ℕ) [Fact p.Prime] (c : AfP p) (u : ℕ → ℕ)
-    (h : ∀ n : ℕ, 0 < n → n.Coprime p → (u n).Coprime n ∧ ∃ β : AfP p, IsIntAf β ∧ c = (u n : AfP p) + n • β) :
-    ∃ c' : AfP p, c * c' = 1 := GlobalTheory.T.exists_inverse_adeleAwayFromP_of_unitCongruences p c u h
+alias unit := _root_.GlobalTheory.AfUnit.exists_mul_eq_one
 
 theorem modZero (D : Datum p) (z : AfP p ⊗[ℚ] VQ D)
-    (h : ∀ n : ℕ, 0 < n → n.Coprime p → ∃ w ∈ LaHat D, z = n • w) : z = 0 := GlobalTheory.T.eq_zero_of_divisible_in_lattice p D z h
+    (h : ∀ n : ℕ, 0 < n → n.Coprime p → ∃ w ∈ LaHat D, z = n • w) : z = 0 := _root_.GlobalTheory.LKGeo.eq_zero_of_forall_nsmul_laHat p D z h
 
-theorem modLim (D : Datum p) (g : ℕ → D.La →+ D.La)
-    (hg : ∀ n m : ℕ, 0 < n → 0 < m → (n * m).Coprime p → ∀ x, ∃ z, g (n * m) x = g n x + n • z) :
-    ∃ h₀ : Module.End (AfP p) (AfP p ⊗[ℚ] VQ D), (∀ v ∈ LaHat D, h₀ v ∈ LaHat D) ∧
-      ∀ n : ℕ, 0 < n → n.Coprime p → ∀ x, ∃ w ∈ LaHat D, h₀ (inAf D x) = inAf D (g n x) + n • w := GlobalTheory.T.exists_adelic_endomorphism_lattice p D g hg
+alias modLim := _root_.GlobalTheory.AdelicLimitCompactness.exists_adelic_limit
 
 theorem invSys (D : Datum p) (g : ℕ → D.La →+ D.La)
     (hg : ∀ n m : ℕ, 0 < n → 0 < m → (n * m).Coprime p → ∀ x, ∃ z, g (n * m) x = g n x + n • z)
@@ -94,22 +85,22 @@ theorem invSys (D : Datum p) (g : ℕ → D.La →+ D.La)
     ∃ g' : ℕ → D.La →+ D.La,
       (∀ n m : ℕ, 0 < n → 0 < m → (n * m).Coprime p → ∀ x, ∃ z, g' (n * m) x = g' n x + n • z) ∧
       (∀ n, 0 < n → n.Coprime p → ∀ x, ∃ z, g n (g' n x) = x + n • z) ∧
-      (∀ n, 0 < n → n.Coprime p → ∀ x, ∃ z, g' n (g n x) = x + n • z) := GlobalTheory.T.exists_compatible_inverseSystem_latticeMaps p D g hg hsurj hinj
+      (∀ n, 0 < n → n.Coprime p → ∀ x, ∃ z, g' n (g n x) = x + n • z) := _root_.GlobalTheory.InvSys.invSys p D g hg hsurj hinj
 
 theorem comm {D : Datum p} {G : HTGroup p} (L : Link D G) (A : Module.End (AfP p) (AfP p ⊗[ℚ] VQ D))
     (hA : ∀ b : D.O, A * (actQ D b).baseChange (AfP p) = (actQ D b).baseChange (AfP p) * A) :
-    ∃ y, actOn L.rep (AfP p) y = A := GlobalTheory.T.exists_groupAlgebra_action_of_commute_order p D G L A hA
+    ∃ y, actOn L.rep (AfP p) y = A := _root_.GlobalTheory.LKGeo.CommBC.exists_actOn_eq_of_commute p D G L A hA
 
-theorem inj {D : Datum p} {G : HTGroup p} (L : Link D G) : Function.Injective (actOn L.rep (AfP p)) := GlobalTheory.T.adelicGroupAlgebraAction_injective p D G L
+theorem inj {D : Datum p} {G : HTGroup p} (L : Link D G) : Function.Injective (actOn L.rep (AfP p)) := _root_.GlobalTheory.LKGeo.actOn_rep_afP_injective p D G L
 
-theorem nondeg (D : Datum p) (z : AfP p ⊗[ℚ] VQ D) (h : ∀ v, formAf D v z = 0) : z = 0 := GlobalTheory.T.eq_zero_of_pairing_vanishes p D z h
+theorem nondeg (D : Datum p) (z : AfP p ⊗[ℚ] VQ D) (h : ∀ v, formAf D v z = 0) : z = 0 := _root_.GlobalTheory.LKGeo.nondeg_afP p D z h
 
 theorem adjAf {D : Datum p} {G : HTGroup p} (L : Link D G) (x : AfP p ⊗[ℚ] G.C) (v w : AfP p ⊗[ℚ] VQ D) :
     formAf D (actOn L.rep (AfP p) x v) w =
-      formAf D v (actOn L.rep (AfP p) (starT G.star (AfP p) x).unop w) := GlobalTheory.T.pairing_adjoint_involution p D G L x v w
+      formAf D v (actOn L.rep (AfP p) (starT G.star (AfP p) x).unop w) := _root_.GlobalTheory.LKGeo.adj_actOn_afP p D G L x v w
 
 theorem formInt (D : Datum p) {v w : AfP p ⊗[ℚ] VQ D} (hv : v ∈ LaHat D) (hw : w ∈ LaHat D) :
-    IsIntAf (formAf D v w) := GlobalTheory.T.lattice_pairing_integral p D _ _ hv hw
+    IsIntAf (formAf D v w) := _root_.GlobalTheory.LKGeo.formInt_laHat p D _ _ hv hw
 
 theorem isInt_one : IsIntAf (1 : AfP p) := fun v => by rw [map_one]; exact one_mem _
 
@@ -130,16 +121,7 @@ theorem inAf_nsmul (D : Datum p) (n : ℕ) (x : D.La) : inAf D (n • x) = n •
 theorem inAf_mem (D : Datum p) (x : D.La) : inAf D x ∈ LaHat D :=
   AddSubgroup.subset_closure ⟨1, x, isInt_one, rfl⟩
 
-theorem smul_mem_laHat (D : Datum p) {a : AfP p} (ha : IsIntAf a) {v : AfP p ⊗[ℚ] VQ D} (hv : v ∈ LaHat D) :
-    a • v ∈ LaHat D := by
-  induction hv using AddSubgroup.closure_induction with
-  | mem z hz =>
-    obtain ⟨a', x, ha', rfl⟩ := hz
-    rw [TensorProduct.smul_tmul']
-    exact AddSubgroup.subset_closure ⟨a • a', x, isInt_mul ha ha', rfl⟩
-  | zero => rw [smul_zero]; exact zero_mem _
-  | add x y _ _ hx hy => rw [smul_add]; exact add_mem hx hy
-  | neg x _ hx => rw [smul_neg]; exact neg_mem hx
+alias smul_mem_laHat := _root_.GlobalTheory.AdelicLimitCompactness.smul_mem
 
 theorem span_inAf (D : Datum p) : Submodule.span (AfP p) (Set.range (inAf D)) = ⊤ := by
   rw [eq_top_iff]
@@ -209,8 +191,7 @@ theorem congOne_of (D : Datum p) (f : Module.End (AfP p) (AfP p ⊗[ℚ] VQ D)) 
     obtain ⟨w, hw, e⟩ := hx
     exact ⟨-w, neg_mem hw, by rw [map_neg, e, smul_neg, neg_add]⟩
 
-theorem isInt_add {a b : AfP p} (ha : IsIntAf a) (hb : IsIntAf b) : IsIntAf (a + b) := fun v => by
-  rw [map_add]; exact add_mem (ha v) (hb v)
+alias isInt_add := _root_.GlobalTheory.LKGeo.isIntAf_add
 
 theorem isInt_sub {a b : AfP p} (ha : IsIntAf a) (hb : IsIntAf b) : IsIntAf (a - b) := fun v => by
   rw [map_sub]; exact sub_mem (ha v) (hb v)

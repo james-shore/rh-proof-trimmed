@@ -57,7 +57,7 @@ theorem ex_ItY_holds : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheo
     R.ex_ItY := by
   intro hDS hHC D G _ _ Pl0 T A Ks _ _ _ R hL _ hM hH hW
   have hθ : IsInfFam R.θ := hM.inf
-  exact GlobalTheory.Chain.innerIntertwiners_of_pair D G Pl0 T A Ks R (GlobalTheory.T.exists_uniformRealThetaIntertwiner_chainStep hDS hHC D)
+  exact GlobalTheory.Chain.innerIntertwiners_of_pair D G Pl0 T A Ks R (_root_.GlobalTheory.Chain.ItPairObj.itPair_holds hDS hHC D)
     (GlobalTheory.Chain.ParOfNodeGap.chainPar_of_nodeGap D hH.nodeGap) hθ
     (GlobalTheory.Chain.StepVac.stepsOK D G Pl0 T A Ks R hL hθ hW.ωY hW.ωX hW.vY hW.vX)
 

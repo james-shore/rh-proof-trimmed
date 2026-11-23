@@ -206,29 +206,12 @@ section PsiTorsion
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
 
-theorem adic_torsion {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
-    (a : v.adicCompletion F) :
-    ∃ n : ℕ, 0 < n ∧ (n : v.adicCompletion F) * a ∈ v.adicCompletionIntegers F := by
-  obtain ⟨b, hb, hab⟩ := adicCompletion.mul_nonZeroDivisor_mem_adicCompletionIntegers v a
-  have hb0 : b ≠ 0 := nonZeroDivisors.ne_zero hb
-  obtain ⟨c, hc⟩ := Ideal.mem_span_singleton'.1 (Ideal.absNorm_mem (Ideal.span {b}))
-  have hn0 : Ideal.absNorm (Ideal.span {b}) ≠ 0 := by
-    rw [Ne, Ideal.absNorm_eq_zero_iff, Ideal.span_singleton_eq_bot]
-    exact hb0
-  refine ⟨Ideal.absNorm (Ideal.span {b}), Nat.pos_of_ne_zero hn0, ?_⟩
-  have e1 : ((Ideal.absNorm (Ideal.span {b}) : ℕ) : v.adicCompletion F) =
-      algebraMap (𝓞 F) (v.adicCompletion F) c * algebraMap (𝓞 F) (v.adicCompletion F) b := by
-    rw [← map_mul, hc, map_natCast]
-  rw [e1, mul_assoc, mul_comm (algebraMap _ _ b) a]
-  refine mul_mem ?_ hab
-  exact coe_mem_adicCompletionIntegers (K := F) v c
-
 theorem fa_torsion {F : Type} [Field F] [NumberField F] (a : FiniteAdeleRing (𝓞 F) F) :
     ∃ n : ℕ, 0 < n ∧ (n : FiniteAdeleRing (𝓞 F) F) * a ∈ Formalism.UG.intAd F := by
   classical
   have hfin : {v : HeightOneSpectrum (𝓞 F) | a v ∉ v.adicCompletionIntegers F}.Finite :=
     Filter.eventually_cofinite.1 a.2
-  choose m hm0 hm using fun v => adic_torsion v (a v)
+  choose m hm0 hm using fun v => _root_.PI.WAU.B.exists_nat_local v (a v)
   refine ⟨∏ v ∈ hfin.toFinset, m v, Finset.prod_pos fun v _ => hm0 v, fun w => ?_⟩
   show ((∏ v ∈ hfin.toFinset, m v : ℕ) : w.adicCompletion F) * a w ∈ _
   by_cases hw : w ∈ hfin.toFinset

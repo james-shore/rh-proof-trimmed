@@ -50,11 +50,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.WindowSums
 
-theorem arc_ZpowVal : ZpowVal := valuation_zpow_sub_one
 theorem arc_ValProd : ValProd := valProd_of valuation_zpow_sub_one
 theorem arc_KillerVal : KillerVal := killerVal_of valuation_zpow_sub_one
-theorem arc_KillerKills : KillerKills := annihilatorPoly_kills
-theorem arc_WindowSum : WindowSum := sum_padicValInt_le
-theorem arc_Lagrange : Lagrange := lagrange_annihilation
-
 end Formalism.WindowSums

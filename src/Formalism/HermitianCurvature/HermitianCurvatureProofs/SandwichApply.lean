@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.Hpart2EqZeroOfInLie
 
 @[expose] public section
 
@@ -53,9 +54,6 @@ noncomputable section
 namespace Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.P.LevelPointCoordinates
-
-theorem hpk_inv' (k r : ℕ) : (Hpk k r)⁻¹ = Hpk k r :=
-  Matrix.inv_eq_left_inv (Formalism.QuantumDeterminants.WeylGroupFacts.hpk_sq (k := k) (r := r))
 
 theorem sandwich_apply {N : ℕ} (H : Matrix (Fin N) (Fin N) ℂ) (u v p q : Fin N) :
     (H * Matrix.single u v (1 : ℂ) * H) p q = H p u * H v q := by
@@ -98,7 +96,7 @@ theorem hpartLevi : HpartLevi := by
   have hc2 : (starRingEnd ℂ) (1 / 2 : ℂ) = 1 / 2 := by
     rw [map_div₀, map_one, map_ofNat]
   refine ⟨?_, ?_, ?_, ?_⟩ <;> ext p q <;>
-    simp only [hpart1, hpart2, hpk_inv', Matrix.conjTranspose_single, star_one, Matrix.smul_apply,
+    simp only [hpart1, hpart2, _root_.Formalism.FourierDecayAlt.P.JFxE.Hinv, Matrix.conjTranspose_single, star_one, Matrix.smul_apply,
       Matrix.sub_apply, Matrix.add_apply, sandwich_apply, hpk_col_eI, hpk_row_eI, hpk_col_esI, hpk_row_esI] <;>
     simp only [levi, Matrix.of_apply, Matrix.single_apply, eI, esI, Fin.ext_iff, Fin.val_castLE, smul_eq_mul,
       Matrix.smul_apply] <;>

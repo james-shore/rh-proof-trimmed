@@ -551,20 +551,7 @@ theorem tors {R B B' S : Type} [CommRing R] [CommRing B] [CommRing B'] [CommRing
   obtain ⟨s, hs⟩ := (IsLocalizedModule.eq_zero_iff (nonZeroDivisors S) ι).1 h1
   exact ⟨s * r, by rw [mul_smul]; exact hs⟩
 
-theorem exists_dil (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] (π : R) (hπ : Irreducible π)
-    (B : Type) [CommRing B] [Algebra R B] [Algebra.FiniteType R B] [Module.Flat R B] (I : Ideal B) :
-    ∃ (B' : Type) (_ : CommRing B') (_ : Algebra R B') (φ : B →ₐ[R] B'), Algebra.FiniteType R B' ∧ Module.Flat R B' ∧
-      Function.Injective φ ∧ (∀ b' : B', ∃ (n : ℕ) (b : B), algebraMap R B' π ^ n * b' = φ b) ∧
-      (∀ x, algebraMap R B' π * x = 0 → x = 0) ∧ (∀ g ∈ I, ∃ b', algebraMap R B' π * b' = φ g) ∧
-      (∀ Q : B' → Prop, (∀ b, Q (φ b)) → (∀ g ∈ I, ∀ b', algebraMap R B' π * b' = φ g → Q b') →
-        (∀ x y, Q x → Q y → Q (x + y)) → (∀ x y, Q x → Q y → Q (x * y)) → ∀ x, Q x) := by
-  first
-  | exact @_root_.GlobalTheory.FiniteFieldCountEstimate.main
-  | exact _root_.GlobalTheory.FiniteFieldCountEstimate.main
-  | (apply _root_.GlobalTheory.FiniteFieldCountEstimate.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteFieldCountEstimate.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteFieldCountEstimate.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FiniteFieldCountEstimate.main ..)
+alias exists_dil := _root_.GlobalTheory.FiniteFieldCountEstimate.main
 
 theorem exists_ext {R B B' S : Type} [CommRing R] [CommRing B] [CommRing B'] [CommRing S] [Algebra R B] [Algebra R B']
     [Algebra R S] (φ : B →ₐ[R] B') (π : R) (I : Ideal B) (hinj : Function.Injective φ)

@@ -65,10 +65,10 @@ theorem exists_logRes_subsingleton_cohOn_one : GlobalTheory.Published.Principali
   have hpS : IsProjOver (strHom ℂ (X := X)) := by rwa [strHom_eq (f := p) fun _ => rfl]
   have hbig : IsBig ℂ H := IsAmpleLB.isBig ℂ X hpS H hH
   obtain ⟨Y, _, s, _, K, B, hlog, hZB, a, Fd, A, hA, hFd⟩ :=
-    GlobalTheory.T.exists_log_resolution_big_bundle hPr ℂ X p n hp hn η m G hη Z hZ H hH.isLB hbig
+    _root_.GlobalTheory.LogResBig.exists_logRes_smul_eq_ample_add_eff hPr ℂ X p n hp hn η m G hη Z hZ H hH.isLB hbig
   haveI : SmoothOfRelativeDimension n (s ≫ p) := hlog.smooth
   haveI : AlgebraicGeometry.IsNoetherian Y := isNoetherian_of_isProjOver hlog.proj
-  obtain ⟨F, hF, -⟩ := GlobalTheory.T.exists_rounded_down_divisor ℂ Y (s ≫ p) n hlog.proj (pullCart s G - m • K) m
+  obtain ⟨F, hF, -⟩ := _root_.GlobalTheory.exists_cartierDiv_mult_ediv ℂ Y (s ≫ p) n hlog.proj (pullCart s G - m • K) m
 
   obtain ⟨J, hJ⟩ := eventually_atTop.1
     (hH.eventually_isAmpleLB_tens_lbPow_succ (isLB_toLB (-G)))
@@ -88,7 +88,7 @@ theorem exists_logRes_subsingleton_cohOn_one : GlobalTheory.Published.Principali
     simp only [mul_one, one_smul, smul_smul]
     rw [show m * (J + 2) = m * (J + 1) + m by ring, add_smul]
     abel
-  obtain ⟨-, hloc⟩ := GlobalTheory.T.multiplier_vanishing_nef_twist_ample ℂ X p n hp η m G Y s K B F hη hm hlog hF (toLB N) H _
+  obtain ⟨-, hloc⟩ := _root_.GlobalTheory.vanishing_logRes_pushforward_and_local ℂ X p n hp η m G Y s K B F hη hm hlog hF (toLB N) H _
     (isLB_toLB N) hH.isLB 1 hTn one_pos hcls hH.isNef a Fd A hA hFd
   refine ⟨Y, inferInstance, inferInstance, s, inferInstance, K, B, F, N, hlog, hZB, hF,
     fun U hU => ?_⟩

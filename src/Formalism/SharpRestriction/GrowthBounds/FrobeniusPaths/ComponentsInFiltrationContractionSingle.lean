@@ -179,24 +179,11 @@ theorem twist_substitution_map {R R' : Type*} [CommRing R] [CommRing R'] (φ : R
     twistSub LL S j (MvPolynomial.map φ G) = MvPolynomial.map (laurentBaseChange φ n) (twistSub LL S j G) := by
   rw [twist_substitution_eq_action, twist_substitution_eq_action, twisted_action_of_map, map_twisted_action, map_twist_matrix, map_twist_matrix, laurent_map_comp_coefficient]
 
-theorem mem_support_degrees_iff {R : Type*} [CommRing R] {ι : Type*} {n : ℕ} (LL : Letters ι) (S : Set ι) (j : Fin n)
-    (G : MvPolynomial (ι × Fin n) R) (k : ℤ) :
-    k ∈ sDegs LL S j G ↔ ∃ m, ((twistSub LL S j G).coeff m).coeff k ≠ 0 := by
-  unfold sDegs
-  simp only [Finset.mem_biUnion, Finsupp.mem_support_iff, MvPolynomial.mem_support_iff]
-  constructor
-  · rintro ⟨m, _, h⟩; exact ⟨m, h⟩
-  · rintro ⟨m, h⟩
-    refine ⟨m, ?_, h⟩
-    intro h0
-    apply h
-    rw [h0]; simp
-
 theorem support_degrees_map_subset {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') {ι : Type*} {n : ℕ}
     (LL : Letters ι) (S : Set ι) (j : Fin n) (G : MvPolynomial (ι × Fin n) R) :
     sDegs LL S j (MvPolynomial.map φ G) ⊆ sDegs LL S j G := by
   intro k hk
-  rw [mem_support_degrees_iff] at hk ⊢
+  rw [_root_.Formalism.MainNotions.G.GLWeightTheory.flt_mem_sDegs] at hk ⊢
   obtain ⟨m, hm⟩ := hk
   refine ⟨m, fun h0 => hm ?_⟩
   rw [twist_substitution_map, MvPolynomial.coeff_map]
@@ -206,10 +193,10 @@ theorem support_degrees_map_subset {R R' : Type*} [CommRing R] [CommRing R'] (φ
 theorem support_degrees_add_subset {R : Type*} [CommRing R] {ι : Type*} {n : ℕ} (LL : Letters ι) (S : Set ι) (j : Fin n)
     (F G : MvPolynomial (ι × Fin n) R) {k : ℤ} (hk : k ∈ sDegs LL S j (F + G)) :
     k ∈ sDegs LL S j F ∨ k ∈ sDegs LL S j G := by
-  rw [mem_support_degrees_iff] at hk
+  rw [_root_.Formalism.MainNotions.G.GLWeightTheory.flt_mem_sDegs] at hk
   obtain ⟨m, hm⟩ := hk
   by_contra hcon
-  rw [not_or, mem_support_degrees_iff, mem_support_degrees_iff] at hcon
+  rw [not_or, _root_.Formalism.MainNotions.G.GLWeightTheory.flt_mem_sDegs, _root_.Formalism.MainNotions.G.GLWeightTheory.flt_mem_sDegs] at hcon
   push Not at hcon
   apply hm
   rw [map_add (f := _), MvPolynomial.coeff_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, hcon.1 m, hcon.2 m, add_zero]
@@ -217,7 +204,7 @@ theorem support_degrees_add_subset {R : Type*} [CommRing R] {ι : Type*} {n : �
 theorem support_degrees_smul_subset {R : Type*} [CommRing R] {ι : Type*} {n : ℕ} (LL : Letters ι) (S : Set ι) (j : Fin n)
     (a : R) (G : MvPolynomial (ι × Fin n) R) {k : ℤ} (hk : k ∈ sDegs LL S j (a • G)) :
     k ∈ sDegs LL S j G := by
-  rw [mem_support_degrees_iff] at hk ⊢
+  rw [_root_.Formalism.MainNotions.G.GLWeightTheory.flt_mem_sDegs] at hk ⊢
   obtain ⟨m, hm⟩ := hk
   refine ⟨m, fun h0 => hm ?_⟩
   rw [MvPolynomial.smul_eq_C_mul, map_mul, twist_substitution_eq_action, twisted_action_C, MvPolynomial.coeff_C_mul]
@@ -228,7 +215,7 @@ theorem support_degrees_smul_subset {R : Type*} [CommRing R] {ι : Type*} {n : �
 theorem support_degrees_zero {R : Type*} [CommRing R] {ι : Type*} {n : ℕ} (LL : Letters ι) (S : Set ι) (j : Fin n) :
     sDegs LL S j (0 : MvPolynomial (ι × Fin n) R) = ∅ := by
   ext k
-  rw [mem_support_degrees_iff]
+  rw [_root_.Formalism.MainNotions.G.GLWeightTheory.flt_mem_sDegs]
   simp
 
 theorem le_valuation_iff_support_degrees {R : Type*} [CommRing R] {ι : Type*} {n : ℕ} [NeZero n] (LL : Letters ι) (S : Set ι)

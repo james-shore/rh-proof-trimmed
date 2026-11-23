@@ -109,10 +109,10 @@ theorem semiHom_ev₂_pull2 : ∀ (p : ℕ) (k k' : Type) [CommRing k] [CommRing
     refine GlobalTheory.T.mvPowerSeries_algHom_ext_of_isNilpotent_X k (Fin d ⊕ Fin d) B _ _ (fun i => ?_) (fun i => ?_)
     · rw [AlgHom.comp_apply]
       change IsNilpotent (T (evA k (c.x₂ n) (c.nil₂ n) (X i)))
-      rw [GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate]; exact (c.nil₂ n i).map T
+      rw [_root_.GlobalTheory.Katz.evA_X]; exact (c.nil₂ n i).map T
     · rw [AlgHom.comp_apply, hL, hT, MvPowerSeries.map_X]
       change (s.app n).two (evA k (c.x₂ n) (c.nil₂ n) (X i)) = c'.ev₂ n (subst a (X i))
-      rw [GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate, subst_X hs]
+      rw [_root_.GlobalTheory.Katz.evA_X, subst_X hs]
       cases i with
       | inl j =>
         change (s.app n).two (c.x n j ⊗ₜ 1) = c'.ev₂ n (inL (φ j))

@@ -98,13 +98,13 @@ theorem tef_le : Tef (Z := Z) e f ≤ (Sx D x).toSubmodule.map (LinearMap.mulLef
   obtain ⟨s, hs, n, hn, rfl⟩ := Submodule.mem_sup.1 (z_le D hZ hx hχ hz)
   simp only [LinearMap.mulLeft_apply]
   have hfS : f ∈ Sx D x := pz_mem_S D hZ hx hχ hf
-  have hfC : f ∈ Cx Z x := z_le_cx hf.1
-  have heC : e ∈ Cx Z x := sx_le D he.1
+  have hfC : f ∈ _root_.PositivityTheory.RgUd.T.adj Z x := z_le_cx hf.1
+  have heC : e ∈ _root_.PositivityTheory.RgUd.T.adj Z x := sx_le D he.1
   have hs' : s ∈ Sx D x := (Subalgebra.mem_toSubmodule _).1 hs
   rw [mul_add, mul_add]
   refine Submodule.add_mem_sup (Submodule.mem_map.2 ⟨f * s, (Subalgebra.mem_toSubmodule _).2 ((Sx D x).mul_mem hfS hs'), rfl⟩) ?_
   rw [← mul_assoc]
-  exact nx_mul D hZ hx (e * f) ((Cx Z x).mul_mem heC hfC) n hn
+  exact nx_mul D hZ hx (e * f) ((_root_.PositivityTheory.RgUd.T.adj Z x).mul_mem heC hfC) n hn
 
 theorem dim_le : finrank k (Z.toSubmodule.map (LinearMap.mulLeft k f)) ≤
     finrank k ((Sx D x).toSubmodule.map (LinearMap.mulLeft k e)) := by

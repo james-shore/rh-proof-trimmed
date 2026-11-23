@@ -59,7 +59,7 @@ theorem count_kernel_nonzero : ∀ {κ κ' : Type} [Field κ] [Field κ'] [Algeb
   letI : Algebra κ' (κ ⊗[ℂ] κ') := Algebra.TensorProduct.rightAlgebra
   set J : Fin c → Ideal (κ ⊗[ℂ] κ') := fun i =>
     (RingHom.ker (Algebra.TensorProduct.productMap (ρ i) (AlgHom.id ℂ κ'))) ^ M with hJ
-  have hjet := fun i => GlobalTheory.T.finrank_graphJets_le_choose k M (ρ i) hz
+  have hjet := fun i => _root_.GlobalTheory.JetDim.jets_finrank_le k M (ρ i) hz
   haveI : ∀ i, Module.Finite κ' ((κ ⊗[ℂ] κ') ⧸ J i) := fun i => (hjet i).2
   let g : (Fin l → κ') →ₗ[κ'] (κ ⊗[ℂ] κ') := Fintype.linearCombination κ' (fun j => w j ⊗ₜ[ℂ] (1 : κ'))
   have hg : ∀ b, g b = ∑ j, w j ⊗ₜ[ℂ] b j := by

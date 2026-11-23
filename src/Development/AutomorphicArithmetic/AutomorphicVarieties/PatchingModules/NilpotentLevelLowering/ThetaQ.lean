@@ -96,10 +96,6 @@ private theorem comm_at {j j' : Fin q} (h : j ≠ j') (g : GLw n (w j)) (g' : GL
     Commute (ρ (atJ n w j g)) (ρ (atJ n w j' g')) :=
   (Pi.mulSingle_commute (f := fun j => GLw n (w j)) h g g').map ρ
 
-private theorem mem_UC (m : M) :
-    m ∈ fixd ρ (UC n w C) ↔ ∀ j, m ∈ fixd (ρ.comp (atJ n w j)) (iwC _ n (C j)) :=
-  by apply _root_.UpperTheory.Reformulated.B.Gr34.mem_UC <;> assumption
-
 private theorem one_place (j : Fin q) (hq : IsUnit (qj w j : A)) :
     ∃ θ : (Fin n → ((w j).adicCompletion L)ˣ) →* (Module.End A (fixd ρ (UC n w C)))ˣ, ∀ t, Dom t →
       ∀ m : fixd ρ (UC n w C), ((θ t : Module.End A (fixd ρ (UC n w C))) m : M) =
@@ -115,7 +111,7 @@ private theorem one_place (j : Fin q) (hq : IsUnit (qj w j : A)) :
   have hpres : ∀ x, ∀ m ∈ fixd ρ (UC n w C),
       dc (ρ.comp (atJ n w j)) (iwC _ n (C j)) (iwC _ n (C j)) x m ∈ fixd ρ (UC n w C) := by
     intro x m hm
-    rw [mem_UC] at hm ⊢
+    rw [_root_.UpperTheory.Reformulated.B.Gr34.mem_UC] at hm ⊢
     intro j'
     by_cases e : j' = j
     · subst e
@@ -131,21 +127,21 @@ private theorem one_place (j : Fin q) (hq : IsUnit (qj w j : A)) :
   have fmul : ∀ a b, Dom a → Dom b → f (a * b) = f a * f b := by
     intro a b ha hb
     ext m
-    have h1 := congrArg Subtype.val (LinearMap.congr_fun (hmul a b ha hb) ⟨m, (mem_UC ρ C _).1 m.2 j⟩)
+    have h1 := congrArg Subtype.val (LinearMap.congr_fun (hmul a b ha hb) ⟨m, (_root_.UpperTheory.Reformulated.B.Gr34.mem_UC ρ C _).1 m.2 j⟩)
     rw [Module.End.mul_apply, happ, happ, happ] at h1
     exact h1.symm
   have funit : ∀ a, Dom a → IsUnit (f a) := by
     intro a ha
     obtain ⟨hi, hs⟩ := (Module.End.isUnit_iff _).1 (hunit hq a ha)
     refine (Module.End.isUnit_iff _).2 ⟨fun m m' h => ?_, fun m => ?_⟩
-    · have := @hi ⟨m, (mem_UC ρ C _).1 m.2 j⟩ ⟨m', (mem_UC ρ C _).1 m'.2 j⟩ (Subtype.ext (by
+    · have := @hi ⟨m, (_root_.UpperTheory.Reformulated.B.Gr34.mem_UC ρ C _).1 m.2 j⟩ ⟨m', (_root_.UpperTheory.Reformulated.B.Gr34.mem_UC ρ C _).1 m'.2 j⟩ (Subtype.ext (by
         rw [happ, happ]; exact congrArg Subtype.val h))
       have h2 := congrArg Subtype.val this
       exact Subtype.ext h2
-    · obtain ⟨v, hv⟩ := hs ⟨m, (mem_UC ρ C _).1 m.2 j⟩
+    · obtain ⟨v, hv⟩ := hs ⟨m, (_root_.UpperTheory.Reformulated.B.Gr34.mem_UC ρ C _).1 m.2 j⟩
       have hv' := congrArg Subtype.val hv
       rw [happ] at hv'
-      refine ⟨⟨v, (mem_UC ρ C _).2 fun j' => ?_⟩, Subtype.ext hv'⟩
+      refine ⟨⟨v, (_root_.UpperTheory.Reformulated.B.Gr34.mem_UC ρ C _).2 fun j' => ?_⟩, Subtype.ext hv'⟩
       by_cases e : j' = j
       · subst e
         exact v.2
@@ -160,7 +156,7 @@ private theorem one_place (j : Fin q) (hq : IsUnit (qj w j : A)) :
           have h1 := LinearMap.congr_fun (hcomm j' e u (diagT _ (Fin n) a)).eq v
           rw [Module.End.mul_apply, Module.End.mul_apply, hv'] at h1
           rw [hv']
-          exact h1.symm.trans ((mem_UC ρ C _).1 m.2 j' u hu)))
+          exact h1.symm.trans ((_root_.UpperTheory.Reformulated.B.Gr34.mem_UC ρ C _).1 m.2 j' u hu)))
         exact congrArg Subtype.val this
   let P : Submonoid (Fin n → ((w j).adicCompletion L)ˣ) :=
     { carrier := {t | Dom t}

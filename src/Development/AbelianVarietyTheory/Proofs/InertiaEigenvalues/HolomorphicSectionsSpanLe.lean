@@ -98,7 +98,7 @@ theorem rd_prod {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (N : ℕ) (f : Fin (N +
     rdU U (∏ t, f t) = ∏ t, rdU U (f t) := by
   induction N with
   | zero => simp
-  | succ N ih => rw [Fin.prod_univ_castSucc, GlobalTheory.CuspAllEmb.rd_mul, ih, ← Fin.prod_univ_castSucc fun t => rdU U (f t)]
+  | succ N ih => rw [Fin.prod_univ_castSucc, _root_.GlobalTheory.AllWt.rdU_mul, ih, ← Fin.prod_univ_castSucc fun t => rdU U (f t)]
 
 theorem prod_mem_sec {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} (N : ℕ) (f : Fin (N + 1) → Rul Xo c)
     (hf : ∀ t, f t ∈ sec Xo c a n) : ∏ t, f t ∈ sec Xo c ((N + 1) • a) ((N + 1) * n) := by

@@ -211,7 +211,7 @@ theorem hecke_sections_triv : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Ty
     rw [GlobalTheory.CechPic.cls_linComb hL]
     simp [GlobalTheory.CechPic.pull_id]
   have hQ : (GlobalTheory.UPel.HT.Hecke.lbPow o.P (k ^ 2 / c)).IsLB := LB.isLB_linComb hP _ _
-  have hadd := (GlobalTheory.AbDual.additive_of_cube GlobalTheory.CubeTop.cubeTheorem o.ab o.ab hP o.rig₁ o.rig₂).1
+  have hadd := (GlobalTheory.AbDual.additive_of_cube _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds o.ab o.ab hP o.rig₁ o.rig₂).1
   have evcCls : ∀ {M : LB (o.A ⊗ o.A).left} (hM : M.IsLB) {Y : Over S} (a t : Y ⟶ o.A),
       GlobalTheory.AbDual.evc hM a t = GlobalTheory.CechPic.pull (lift a t).left (GlobalTheory.CechPic.cls M hM) := by
     intro M hM Y a t
@@ -248,7 +248,7 @@ theorem hecke_sections_triv : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Ty
       refine (GlobalTheory.CechPic.cls_eq_zero_iff hMk).1 ?_
       rw [clsPow hM k hMk, GlobalTheory.AbDual.cls_ev hQ, evcQ,
         smul_comm, htors, smul_zero]
-    obtain ⟨t, ht⟩ := GlobalTheory.T.rigidified_lineBundle_trivial_of_torsion_geometricFibres S o.A o.ab _ hM hrig k hunit hpowM hfib
+    obtain ⟨t, ht⟩ := _root_.GlobalTheory.RigTorsTriv.triv_of_geometricFibres S o.A o.ab _ hM hrig k hunit hpowM hfib
     exact (GlobalTheory.AbDual.triv_ev_iff hQ _ _).1 ⟨t, ht⟩
   have hsw : GlobalTheory.CechPic.cls o.P hP = GlobalTheory.CechPic.cls (GlobalTheory.AbDual.swap o.P) (pull_isLB hP _) :=
     (GlobalTheory.CechPic.cls_eq_iff _ _).2 o.symm

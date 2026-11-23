@@ -69,10 +69,6 @@ private theorem free_fin_transfer {S T N N' : Type} [CommRing S] [CommRing T] [A
   | add y z _ _ hy hz => exact Submodule.add_mem _ (hy trivial) (hz trivial)
   | smul a y _ hy => exact Submodule.smul_mem _ (τ a) (hy trivial)
 
-private theorem fin_of_hom {S R M : Type} [CommRing S] [CommRing R] [AddCommGroup M] [Module S M] [Module R M]
-    [Module.Finite S M] (f : S → R) (h : ∀ (a : S) (m : M), a • m = f a • m) : Module.Finite R M :=
-  _root_.UpperTheory.Reformulated.B.Qh10.fin_of_hom f h
-
 private theorem lamEmb_X (O O' : Type) [CommRing O] [CommRing O'] [Algebra O O'] (D : ℕ) (k : Fin D) :
     lamEmb O O' D (MvPowerSeries.X (.inr k)) = MvPowerSeries.X (.inr k) := by
   simp [lamEmb]
@@ -83,7 +79,7 @@ theorem UpperTheory.V.Pa.BC.base_bc :
   haveI := b.free
   haveI := b.fin
   haveI : IsNoetherianRing (abelian₂ O Empty D) := inferInstance
-  haveI : Module.Finite B b.M := fin_of_hom b.lam b.smul_lam
+  haveI : Module.Finite B b.M := _root_.UpperTheory.Reformulated.B.Qh10.fin_of_hom b.lam b.smul_lam
   obtain ⟨e, -, he⟩ := UpperTheory.V.Pa.BC.til_mod O O' (abelian₂ O Empty D) B b.lam b.M b.smul_lam
   let lam' : abelian₂ O' Unit D →ₐ[O'] Til O O' B := (Til.map O' b.lam).comp (τ.symm : abelian₂ O' Unit D →ₐ[O'] _)
   have hlam : ∀ a, lam' (τ a) = Til.map O' b.lam a := fun a => by simp [lam']

@@ -368,8 +368,6 @@ lemma tailPos_split (n : ℕ) (la : ℕ → ℤ) {u : ℕ} (hu : u < n) :
       omega
   rw [hs, Finset.sum_insert (by simp)]
 
-lemma drop_split (l : List ℕ) (u : ℕ) : (l.drop u).sum = l.getD u 0 + (l.drop (u + 1)).sum := list_sum_drop_eq_getD_add_sum_drop_succ l u
-
 lemma key (h31 : LogBinomialProperties) (h34 : LogBinomialDeficit) (k' K : ℕ) (la : ℕ → ℤ) (q : ℕ → Bool) (B : ℕ → ℕ) (n0 : ℕ)
     (hk : 1 ≤ k')
     (h1 : ∀ l, l < (lat q B n0).length → k' ≤ (lat q B n0).getD l 0)
@@ -705,7 +703,7 @@ theorem pathWeightBound_of :
     have hds : D.SPos (D.r - 1 - (i - 1 - D.n0)) (i - 1) =
         D.Bo i + D.SPos (D.r - 1 - (i - 1 - D.n0) + 1) (i - 1) := by
       unfold Formalism.InvariantFactorPaths.BranchingDimensions.Letters.SPos Formalism.InvariantFactorPaths.BranchingDimensions.Letters.Bo
-      exact Formalism.InvariantFactorPaths.BranchingDimensions.TTyp.drop_split _ _
+      exact _root_.Formalism.InvariantFactorPaths.BranchingDimensions.TTyp.list_sum_drop_eq_getD_add_sum_drop_succ _ _
     have hmx : (((max (Formalism.InvariantFactorPaths.BranchingDimensions.Letters.ent mu (i - 1) (D.r - 1)) 0 : ℤ)) : ℝ) ≤ (2 / 3) * (D.Bo i : ℝ) := by
       rw [max_eq_left hent0]
       exact hgt.le

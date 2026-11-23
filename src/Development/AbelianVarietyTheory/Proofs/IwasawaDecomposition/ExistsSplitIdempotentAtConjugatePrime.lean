@@ -47,6 +47,7 @@ import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
 import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.IndefiniteReal.RecTie
+import Formalism.LocalToGlobal.Columns.RecLevelHost
 
 @[expose] public section
 
@@ -62,7 +63,7 @@ theorem exists_isIdemAt_conjP : ∀ {D : D7} (Pb : Formalism.L2.DIV.Pl D.host.E)
     ∃ e : Formalism.L2.Theta.AE D, Formalism.L2.NTheta.IsIdemAt e (Formalism.L2.Col.conjPrime₂ Pb) := by
   intro D Pb Ut
   apply GlobalTheory.MovedIdem.exists_isIdemAt
-  rw [Formalism.L2.Col.conjIdeal_asIdeal, Formalism.L2.Col.conjPrime_conjPrime]
+  rw [Formalism.L2.Col.conjIdeal_asIdeal, _root_.Formalism.L2.Col.rlh_conjP_conjP]
   intro h
   exact Ut.hπP (h ▸ Ut.hπ)
 

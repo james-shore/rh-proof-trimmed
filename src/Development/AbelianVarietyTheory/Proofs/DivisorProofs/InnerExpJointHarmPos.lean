@@ -213,21 +213,14 @@ theorem Jm_mul_Jm (p q : ℕ) : Jm p q * Jm p q = 1 := by
 theorem Jm_ct (p q : ℕ) : (Jm p q)ᴴ = Jm p q := by
   simp [Formalism.BasicNotions.TH.Jm, Formalism.UG.Jpq, Matrix.fromBlocks_conjTranspose]
 
-theorem Jm_diag (p q : ℕ) :
-    Jm p q = Matrix.diagonal (Sum.elim (fun _ => (1 : ℂ)) (fun _ => -1)) := by
-  ext a b
-  rcases a with a | a <;> rcases b with b | b <;>
-    simp [Formalism.BasicNotions.TH.Jm, Formalism.UG.Jpq, Matrix.diagonal_apply, Matrix.one_apply]
-  split_ifs <;> simp
-
 theorem isPC_iff {p q : ℕ} (Z : Mat p q) : IsPC Z ↔ Jm p q * Z = -(Z * Jm p q) := by
-  rw [Jm_diag, ← Matrix.ext_iff]
+  rw [_root_.GlobalTheory.FockAdjLines.Jm_eq_diagonal, ← Matrix.ext_iff]
   refine forall₂_congr fun a b => ?_
   rcases a with a | a <;> rcases b with b | b <;>
     simp [Formalism.BasicNotions.TH.sameBlock, eq_neg_iff_add_eq_zero, neg_eq_iff_add_eq_zero]
 
 theorem isKC_of {p q : ℕ} (Z : Mat p q) (h : Jm p q * Z = Z * Jm p q) : IsKC Z := by
-  rw [Jm_diag, ← Matrix.ext_iff] at h
+  rw [_root_.GlobalTheory.FockAdjLines.Jm_eq_diagonal, ← Matrix.ext_iff] at h
   intro a b hab
   have := h a b
   rcases a with a | a <;> rcases b with b | b <;>

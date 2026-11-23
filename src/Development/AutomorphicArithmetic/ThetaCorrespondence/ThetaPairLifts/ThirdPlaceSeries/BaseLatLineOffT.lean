@@ -75,7 +75,7 @@ theorem baseLat_line_offT_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D
     simp only [Formalism.L2.Theta.mt, ← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one, Matrix.one_mulVec]
   rw [hinv] at key
   refine key.trans ?_
-  exact _root_.GlobalTheory.T.smul_frameVector_mem_latV_iff_mem_intAt W hW hr u f B k ι v' o n G pl hc0 hv0 hvt hso hgp hgr hbt hpt x hxg'
+  exact _root_.GlobalTheory.LineOffT.lat_zero_line_alt W hW hr u f B k ι v' o n G pl hc0 hv0 hvt hso hgp hgr hbt hpt x hxg'
     (fun h => hxt ((hvt.tP x).1 h)) u'' hxu c hc
 end GlobalTheory
 end

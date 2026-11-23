@@ -45,8 +45,4 @@ open GlobalTheory.CMVal (IsHeckeL)
 
 namespace GlobalTheory.NormBigProof
 
-theorem squareBottomHalfRankSum_le_halfRank (D : Formalism.BasicNotions.D7) (i j : ℕ) : h0 D i j ≤ halfRank D i j := by
-  unfold h0 halfRank botBig botSmall
-  exact Nat.div_le_div_right (Nat.add_le_add (Nat.sub_le _ _) (Nat.sub_le _ _))
-
 end GlobalTheory.NormBigProof

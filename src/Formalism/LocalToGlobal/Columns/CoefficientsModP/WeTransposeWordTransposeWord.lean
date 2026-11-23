@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.ClosedEqNabla
 
 @[expose] public section
 
@@ -65,8 +66,7 @@ namespace Formalism.L2.DIV
 
 open Formalism.GradedWeylDivisibility
 
-theorem we_intQ_apply (r n : ℕ) (P : MvPolynomial (Fin r × Fin n) ℤ) :
-    intQ r n P = MvPolynomial.map (Int.castRingHom ℚ) P := rfl
+alias we_intQ_apply := _root_.Formalism.CohomologicalDescent.LR.lre_intQ_apply
 
 theorem we_applyWord_mem (R : Type) [CommRing R] (r n : ℕ) (ν : Fin n → ℕ) (w : List (Fin r × Fin r × ℕ))
     (f : MvPolynomial (Fin r × Fin n) R) (hf : f ∈ dualWeyl R r n ν) : applyWord R w f ∈ dualWeyl R r n ν := by
@@ -199,12 +199,6 @@ theorem we_form_self_eq_zero (x : dualWeyl ℚ r n ν) (h : weForm hn ν x x = 0
 theorem we_form_nondeg : (weForm hn ν).Nondegenerate :=
   ⟨fun x hx => we_form_self_eq_zero hn ν x (hx x), fun x hx => we_form_self_eq_zero hn ν x (hx x)⟩
 
-theorem we_finiteDimensional (r n : ℕ) (ν : Fin n → ℕ) : FiniteDimensional ℚ (dualWeyl ℚ r n ν) := by
-  obtain ⟨b, hb, -⟩ := sSBasis ℚ r n ν
-  have : Finite (ssIdx r n ν) := (sSIdxFinite r n ν).to_subtype
-  rw [← hb.2.1]
-  exact FiniteDimensional.span_of_finite ℚ (Set.finite_range b)
-
 def weCut (r n : ℕ) (ν : Fin n → ℕ) (S : Submodule ℤ (MvPolynomial (Fin r × Fin n) ℚ)) :
     Submodule ℤ (dualWeyl ℚ r n ν) :=
   S.comap ((dualWeyl ℚ r n ν).subtype.restrictScalars ℤ)
@@ -294,7 +288,7 @@ end Double
 
 theorem weyl_eq_dual_nabla_holds : WeylEqDualNabla := by
   intro r n hn ν hν
-  have hfd := we_finiteDimensional r n ν
+  have hfd := _root_.Formalism.GradedWeylDivisibility.lclosedeq_fd r n ν
   have hdd := (Formalism.HermitianLatticesTheory.dualLattice ℤ ℚ (dualWeyl ℚ r n ν) (weForm hn ν) (we_form_symm hn ν) (we_form_nondeg hn ν)
     (fun z => ⟨z, by simp⟩) _ (we_weyl_lattice hn ν hν)).2.1
   refine we_cut_inj (ν := ν) (we_weyl_le hn ν hν) (fun x hx => hx.1) ?_

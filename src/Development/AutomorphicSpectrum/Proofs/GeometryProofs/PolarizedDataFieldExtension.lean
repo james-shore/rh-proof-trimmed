@@ -131,10 +131,7 @@ theorem hodge_congr {S : Scheme.{0}} {G : Over S} [GrpObj G] (Lb : LB G.left) {z
   obtain rfl : w = w' := Over.OverMorphism.ext hw
   exact hc
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (d : A →+* B) (c : B →+* C) :
-    spMap c ≫ spMap d = spMap (c.comp d) := by
-  simp only [spMap, ← Spec.map_comp]
-  rfl
+alias spMap_comp := _root_.GlobalTheory.spMap_comp_ring
 
 theorem dualMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (d : A →+* B) (c : B →+* C) :
     (dualMap c).comp (dualMap d) = dualMap (c.comp d) := by
@@ -144,10 +141,7 @@ theorem dualMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (d : 
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem exists_pull {S S' : Scheme.{0}} (f : S' ⟶ S) (t : SAB H S) : ∃ t' : SAB H S', Nonempty (SABMap t' t f) := by
-  obtain ⟨P, h⟩ := GlobalTheory.SabBaseChange.exists_prescribed f t
-  obtain ⟨c, s, a, p, m, -⟩ := GlobalTheory.SabBaseChange.exists_pullback_prescribed f t P h
-  exact ⟨_, ⟨m⟩⟩
+alias exists_pull := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab
 
 variable {L : Type} [Field L] [NumberField L] {L' : Type} [Field L'] [NumberField L'] [Algebra L L']
 

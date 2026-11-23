@@ -75,7 +75,7 @@ theorem nu_spec (g : LevelAut Dw l) :
   (GlobalTheory.CompLevelStab.mv_spec hpq hA Xo g).choose_spec.2
 
 theorem nu_mul (c : Coeff l) (g h : LevelAut Dw l) : (nu hpq hA Xo (g * h)).φ = (nu hpq hA Xo g).φ ≫ (nu hpq hA Xo h).φ := by
-  obtain ⟨μ, hμ, -⟩ := (GlobalTheory.T.framedPointMove_calculus E H Dw l Xo c).2.1 _ _ (nu hpq hA Xo g) (nu hpq hA Xo h)
+  obtain ⟨μ, hμ, -⟩ := (_root_.GlobalTheory.MoveCalc.frMove_calculus E H Dw l Xo c).2.1 _ _ (nu hpq hA Xo g) (nu hpq hA Xo h)
   have hg := nu_spec hpq hA Xo g
   have hh := nu_spec hpq hA Xo h
   have hc : IsLevMove (GlobalTheory.CompLevelStab.mv hpq hA Xo g ≫ GlobalTheory.CompLevelStab.mv hpq hA Xo h) μ (liftLa (g * h))

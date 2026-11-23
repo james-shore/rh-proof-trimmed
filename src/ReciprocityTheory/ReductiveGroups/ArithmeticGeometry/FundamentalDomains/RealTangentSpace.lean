@@ -207,14 +207,6 @@ theorem mem_Lat (hξ : X.IsIso ξ) {a : VT (X := X) z ξ} : a ∈ Lat z ξ hξ �
   show a ∈ (phi z ξ hξ).range ↔ _
   exact AddMonoidHom.mem_range
 
-private lemma Hf_smul_left_frame (y : Frame X.Ψ r) (σ : X.Ψ) (c : ℂ) (v w : Fin r → ℂ) :
-    X.Hf y σ (c • v) w = c * X.Hf y σ v w := by
-  have hp : X.ppos y σ (c • v) = c • X.ppos y σ v := by
-    simp only [Data.ppos, hermC_smul_left, Finset.smul_sum, smul_smul, mul_assoc, ← Finset.mul_sum]
-  rw [Data.Hf, Data.Hf, hp, ← hermC_smul_left]
-  congr 1
-  rw [smul_sub, smul_smul, smul_smul, mul_comm]
-
 theorem ucomp_line (hξ : X.IsIso ξ) (e : E) : X.ucomp z ξ (X.embV (e • ξ)) = 0 := by
   funext τ
   have hξ0 : Data.emb τ.1 ξ ≠ 0 := by
@@ -229,7 +221,7 @@ theorem ucomp_line (hξ : X.IsIso ξ) (e : E) : X.ucomp z ξ (X.embV (e • ξ))
   have hw : X.embV (e • ξ) τ = τ.1 e • Data.emb τ.1 ξ := by
     funext a
     simp [Data.embV, Data.emb]
-  simp only [Data.ucomp, Data.aproj, Data.lineV, Pi.sub_apply, Pi.zero_apply, hw, Hf_smul_left_frame,
+  simp only [Data.ucomp, Data.aproj, Data.lineV, Pi.sub_apply, Pi.zero_apply, hw, _root_.ReciprocityTheory.ChartRestriction.G.FD.UnipotentCoefficientShift.Hf_smul_left,
     mul_div_assoc, div_self hpos, mul_one, sub_self]
 
 theorem span_Lat (hD3 : IntegerApproximationCount (E := E)) (hξ : X.IsIso ξ) :

@@ -140,12 +140,12 @@ theorem env_isPO : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (B B'
     have := congrArg (fun h => Hom.f h a) h1
     exact this
   refine ⟨k', ⟨h1, fun m => ?_⟩⟩
-  have q1 := map_adI_pow En.inl (GlobalTheory.T.prism_hom_map_ideal_eq l _ B En.Q En.inl) m
-  have q2 := GlobalTheory.T.adicTopologicalBasis_basis_mod_pow B.A En.Q.A En.inl.f (adI B) (Digits l) En.tb m
+  have q1 := map_adI_pow En.inl (_root_.GlobalTheory.Prism.Rigid.map_I_eq l _ B En.Q En.inl) m
+  have q2 := _root_.GlobalTheory.BSP.TopBasis.basis_mod_pow B.A En.Q.A En.inl.f (adI B) (Digits l) En.tb m
   have q3 := exists_basis_quot_of_map_eq En.inl.f (adI B ^ m) (adI En.Q ^ m) q1 (adI_pow_le En.inl m) En.tb.b q2
   obtain ⟨b, hb⟩ := q3
-  have r1 := map_adI_pow En'.inl (GlobalTheory.T.prism_hom_map_ideal_eq l _ B' En'.Q En'.inl) m
-  have r2 := GlobalTheory.T.adicTopologicalBasis_basis_mod_pow B'.A En'.Q.A En'.inl.f (adI B') (Digits l) En'.tb m
+  have r1 := map_adI_pow En'.inl (_root_.GlobalTheory.Prism.Rigid.map_I_eq l _ B' En'.Q En'.inl) m
+  have r2 := _root_.GlobalTheory.BSP.TopBasis.basis_mod_pow B'.A En'.Q.A En'.inl.f (adI B') (Digits l) En'.tb m
   have r3 := exists_basis_quot_of_map_eq En'.inl.f (adI B' ^ m) (adI En'.Q ^ m) r1 (adI_pow_le En'.inl m) En'.tb.b r2
   obtain ⟨b', hb'⟩ := r3
   refine isPushout_of_bases (qmap En.inl m) (qmap k m) (qmap k' m) (qmap En'.inl m) ?_ b b' fun α => ?_

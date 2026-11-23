@@ -102,19 +102,15 @@ theorem wdCas : WDCas := by
     inner_smul_right, inner_self_eq_norm_sq_to_K] at h1
   push_cast at h1 h2 hSc ⊢
   linear_combination h1 - hSc - h2
-theorem rhoStd : RhoStd := half_sum_roots_standard
+alias rhoStd := _root_.Formalism.REAL.half_sum_roots_standard
 
-theorem omEigen : OmEigen := omega_eigenvalue_holds
-theorem uGap : UGap := unitary_spectral_gap
 theorem growthIter : GrowthIter := iteratedGrowthBound_holds
 theorem taylorRadius : TaylorRadius := taylorSummable_holds
-theorem casCentral : CasCentral := casimir_central_holds
+alias casCentral := _root_.Formalism.REAL.casimir_central_holds
 
 end Formalism.REAL
 
 namespace Formalism.REAL
-theorem epowCov : EpowCov := generatorPowCovariance_holds
-theorem etrCentral : EtrCentral := generatorTraceCentral_holds
 theorem diagChar : DiagChar := diagChar_of generatorPowDiagRecursion_holds
 end Formalism.REAL
 

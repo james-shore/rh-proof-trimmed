@@ -64,11 +64,11 @@ namespace UpperTheory.Gal.Int.Inp
 theorem pst : GlobalTheory.Published.DeRhamPotSemistable := GlobalTheory.deRham_potentiallySemistable
 
 theorem alg : GlobalTheory.Published.AlgebraicCharacterWD :=
-  UpperTheory.Lit.CharWD.algebraicCharacterWD GlobalTheory.globalArtinReciprocity_holds UpperTheory.Lit.heckeLAdicCharacterDeRham pst
+  UpperTheory.Lit.CharWD.algebraicCharacterWD _root_.CompanionTheory.FamInh.globalArtin _root_.HodgeLocalDeRhamField.HLdR.field_outright _root_.GlobalTheory.deRham_potentiallySemistable
 
 theorem crys : GlobalTheory.Published.HeckeLAdicCharacterCrystalline := by
-  have hD := UpperTheory.Lit.heckeLAdicCharacterDeRham
-  have hB := pst
+  have hD := _root_.HodgeLocalDeRhamField.HLdR.field_outright
+  have hB := _root_.GlobalTheory.deRham_potentiallySemistable
   have hW := alg
   intro E Ω _ _ _ _ _ l _ P AI hT ι art ha χ n μ h1 h2 h3 w A h O _ _ _ Bw hj hu
   obtain ⟨a, ha'⟩ := GlobalTheory.localArtinExists_holds E Ω A w h
@@ -91,6 +91,6 @@ theorem crys : GlobalTheory.Published.HeckeLAdicCharacterCrystalline := by
   exact (GlobalTheory.Published.CharCrysModel.isUnram_iff χ w).2 hu
 
 theorem hk : GlobalTheory.Published.HeckeLAdicCharacterAbove :=
-  GlobalTheory.HeckeAboveBridge.heckeLAdicCharacterAbove_of_potSemistable UpperTheory.Lit.heckeLAdicCharacterDeRham crys pst
+  GlobalTheory.HeckeAboveBridge.heckeLAdicCharacterAbove_of_potSemistable _root_.HodgeLocalDeRhamField.HLdR.field_outright crys _root_.GlobalTheory.deRham_potentiallySemistable
 
 end UpperTheory.Gal.Int.Inp

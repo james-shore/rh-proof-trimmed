@@ -101,11 +101,6 @@ theorem carr_of_inN {s : V ≃ₗ[K] V} {A : FlagD H r} (h : A.InN (s : V →ₗ
   | last => exact GlobalTheory.UnipStab.hermFlagUnipotent_anisotropic_vector_sub_mem h
   | cast b => exact h.2.2.1 b
 
-theorem flagFrameVector_mem_commonSubspace (A B : FlagD H r) (a : Fin (r + 1)) : A.e a ∈ V0 A B := by
-  induction a using Fin.lastCases with
-  | last => exact Submodule.mem_sup_right (Submodule.subset_span (Or.inl rfl))
-  | cast b => exact Submodule.mem_sup_left (Submodule.mem_sup_left (GlobalTheory.UnipStab.e_mem_X A b))
-
 end Carry
 
 section Main
@@ -140,7 +135,7 @@ theorem finrank_wt (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) {F G : F
   have h3 : N.Wt ⊔ F.X = LinearMap.range e ⊔ F.X := by
     apply le_antisymm
     · refine sup_le (fun x hx => (he.2 x).1 fun a => hlift.1 x hx _ ?_) le_sup_right
-      rw [hV]; exact flagFrameVector_mem_commonSubspace F G a
+      rw [hV]; exact _root_.GlobalTheory.DegAsm.DatMove.flag_vector_mem_base_lattice F G a
     · refine sup_le ?_ le_sup_right
       rintro _ ⟨w, rfl⟩
       obtain ⟨x, hx, hx'⟩ := hfull.2.2.2.2.2.2.2.1 (e w) fun a => by

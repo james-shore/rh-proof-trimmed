@@ -140,7 +140,7 @@ theorem cLawEx : CLawEx := by
     | tmul a x =>
       show Algebra.TensorProduct.map (AlgHom.id (AF F) (AF F)) σ
         (Algebra.TensorProduct.map (AlgHom.id (AF F) (AF F)) σ (a ⊗ₜ[F] x)) = a ⊗ₜ[F] x
-      rw [Algebra.TensorProduct.map_tmul, Algebra.TensorProduct.map_tmul, AlgHom.id_apply, AlgHom.id_apply, CL.sigma_sigma_cm d.cm]
+      rw [Algebra.TensorProduct.map_tmul, Algebra.TensorProduct.map_tmul, AlgHom.id_apply, AlgHom.id_apply, _root_.GlobalTheory.AdelicU.cm_conj_conj d.cm]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   have hcA_z : ∀ a : AF F, cA σ (a • δ') = -(e * (a • δ')) := by
     intro a

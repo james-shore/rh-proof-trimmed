@@ -88,11 +88,11 @@ theorem contractMixed : ContractMixedStatement :=
     pfIntZero pfVert
 
 theorem pfStep : Inter.PFStep.Statement :=
-  Inter.PFStep.proof (Inter.PFSecRed.proof (by intros; exact Targets.Multilin.full _ _) GlobalTheory.CompanionTheory.Ar.Giv.fibreDim) pfVert pfIntZero
-    Inter.PFHoriz.proof (Inter.PFFibreSum.proof GlobalTheory.CompanionTheory.Ar.Giv.fibreDim Inter.PFFibreBij.proof Inter.PFFibreMult.proof)
+  Inter.PFStep.proof (Inter.PFSecRed.proof (by intros; exact Targets.Multilin.full _ _) _root_.GroundTheory.Heights₂.Heights.ForSecondHalf.FibreDim.proof) pfVert pfIntZero
+    Inter.PFHoriz.proof (Inter.PFFibreSum.proof _root_.GroundTheory.Heights₂.Heights.ForSecondHalf.FibreDim.proof Inter.PFFibreBij.proof Inter.PFFibreMult.proof)
     imageArith contractMixed
 
 theorem projFormula : ReciprocityTheory.ChartRestriction.G.Geo.ArithIntersectionSystemStatement → PFStatement := fun h =>
-  Inter.PushforwardProjLineFlag.proof (GlobalTheory.T.generic_degree_of_arith_system h) pfStep
+  Inter.PushforwardProjLineFlag.proof (_root_.GlobalTheory.CompanionTheory.Ar.Giv.genDeg_of_system h) pfStep
 
 end GlobalTheory.CompanionTheory.Ar.Giv.ProjF

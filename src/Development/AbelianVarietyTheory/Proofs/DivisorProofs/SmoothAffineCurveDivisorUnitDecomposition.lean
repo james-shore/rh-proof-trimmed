@@ -233,7 +233,7 @@ theorem divisor_step : ∀ (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] [
   have hq0 : q ≠ 0 := by
     rintro rfl
     exact hqk (by simp)
-  have hdiv : ∀ c : ClassGroup B, ∃ d : ClassGroup B, d ^ q = c := GlobalTheory.T.classGroup_dedekind_algClosed_divisible k B q hqk
+  have hdiv : ∀ c : ClassGroup B, ∃ d : ClassGroup B, d ^ q = c := _root_.GlobalTheory.PicDiv.classGroup_divisible k B q hqk
   obtain ⟨g, n, t, w, N, hg0, hfg, hfn, hgw, hbd, hnd, hw⟩ := core q hq0 hdiv f b hf hb
   refine ⟨g, hg0, hfg, ?_⟩
   set L := Localization.Away (f * g)

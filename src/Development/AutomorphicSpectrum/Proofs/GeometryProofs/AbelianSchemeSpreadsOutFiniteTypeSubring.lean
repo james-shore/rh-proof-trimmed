@@ -92,7 +92,7 @@ theorem abelianScheme_descends_to_fg_subring : ∀ (R : Type) [CommRing R] (A : 
     GlobalTheory.smooth_grpScheme_descends_to_fg_subring R A F hA.smooth inferInstance inferInstance
   haveI : IsNoetherianRing k := Algebra.FiniteType.isNoetherianRing ℤ k
   have hφ' : IsGrpPullback A A₀ (spMap (algebraMap k R)) φ := hφ
-  obtain ⟨R₁, hR₁, pr₁⟩ := GlobalTheory.T.separated_properness_fg_subalgebra k R A₀.left A₀.hom sep₀ inferInstance qc₀
+  obtain ⟨R₁, hR₁, pr₁⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Approx.isProper_descends k R A₀.left A₀.hom sep₀ inferInstance qc₀
     (prop_snd_of_isPullback @IsProper hφ.1 hA.proper)
   obtain ⟨i₁, φ₁, h₁₀, h₁, -⟩ := GlobalTheory.T.abelianScheme_model_baseChange_subalgebra k R A A₀ φ hφ' R₁
   haveI : Algebra.FiniteType k R₁ := (Subalgebra.fg_iff_finiteType R₁).1 hR₁

@@ -95,21 +95,15 @@ theorem logM_strict : HasStrictFDerivAt (logM n) (ContinuousLinearMap.id ℝ _) 
 
 end Log
 
-private theorem Jm_mul_self_eq_one' (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  rw [Jm, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> simp
-
 theorem Jm_inv (ε : Fin n → Bool) : (Jm ε)⁻¹ = Jm ε := by
-  exact Matrix.inv_eq_left_inv (Jm_mul_self_eq_one' ε)
+  exact Matrix.inv_eq_left_inv (_root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self ε)
 
 theorem Jm_isUnit (ε : Fin n → Bool) : IsUnit (Jm ε) := by
-  exact ⟨⟨Jm ε, Jm ε, Jm_mul_self_eq_one' ε, Jm_mul_self_eq_one' ε⟩, rfl⟩
+  exact ⟨⟨Jm ε, Jm ε, _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self ε, _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self ε⟩, rfl⟩
 
 theorem conjT_of_inG {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (h : inG ε Y) :
     Yᴴ = Jm ε * (-Y) * (Jm ε)⁻¹ := by
-  have hJ := Jm_mul_self_eq_one' ε
+  have hJ := _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self ε
   have h' : Yᴴ * Jm ε + Jm ε * Y = 0 := h
   have h1 : Yᴴ * Jm ε = -(Jm ε * Y) := eq_neg_of_add_eq_zero_left h'
   rw [Jm_inv]
@@ -118,7 +112,7 @@ theorem conjT_of_inG {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (h :
 
 theorem exp_inUJ {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (h : inG ε Y) :
     inUJ ε (NormedSpace.exp Y) := by
-  have hJ := Jm_mul_self_eq_one' ε
+  have hJ := _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self ε
   show (NormedSpace.exp Y)ᴴ * Jm ε * NormedSpace.exp Y = Jm ε
   rw [← Matrix.exp_conjTranspose, conjT_of_inG h, Matrix.exp_conj _ _ (Jm_isUnit ε), Jm_inv,
     Matrix.mul_assoc (Jm ε * NormedSpace.exp (-Y)) (Jm ε) (Jm ε), hJ, Matrix.mul_one, Matrix.mul_assoc,
@@ -128,7 +122,7 @@ theorem exp_inUJ {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (h : inG
 theorem inG_of_exp {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (ℓ : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ)
     (hU : inUJ ε (NormedSpace.exp Y)) (h1 : ℓ (NormedSpace.exp Y) = Y)
     (h2 : ℓ (NormedSpace.exp (Jm ε * (-Yᴴ) * Jm ε)) = Jm ε * (-Yᴴ) * Jm ε) : inG ε Y := by
-  have hJ := Jm_mul_self_eq_one' ε
+  have hJ := _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self ε
   have hU' : (NormedSpace.exp Y)ᴴ * Jm ε * NormedSpace.exp Y = Jm ε := hU
   have hEE : NormedSpace.exp Y * NormedSpace.exp (-Y) = 1 := by
     rw [← Matrix.exp_add_of_commute _ _ (Commute.neg_right (Commute.refl Y)), add_neg_cancel,

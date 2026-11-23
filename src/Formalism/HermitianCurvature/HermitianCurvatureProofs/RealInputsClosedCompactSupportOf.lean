@@ -88,7 +88,7 @@ theorem jct_parts_loc_cpt (hPA : P5.ThmPActualCpt) (hRMF : JC.RadialModuleForm) 
     rintro v w ⟨w', rfl⟩
     exact le_trans (Finset.le_sup (f := fun u => (w'.1 u).length) (Finset.mem_univ v)) w'.2.2
   have hPos : C.ThmPPos S := by
-    refine positivity_of_module E Wp Wq S T f χ ν' m₀ top A₀ hB (fun v => ?_) htop
+    refine _root_.Formalism.FourierDecayAlt.P.Dx1.d_thmPPosOfModule E Wp Wq S T f χ ν' m₀ top A₀ hB (fun v => ?_) htop
     obtain ⟨KK, hKK, hmem⟩ := hMA hPA hRMF hPD hFS (Wp (S.pl v)) (Wq (S.pl v)) (D.parOf S v) (T v) (S.l + 1) S.Ntop
       (D.AdmAt S v) (P5.Auser (D.parOf S v) S.Ntop + 1) (P5.mmUser (D.parOf S v) S.Ntop) (by omega)
       (by change S.l + 1 ≤ S.G.k; omega) (hlen v) le_rfl
@@ -101,17 +101,17 @@ theorem jct_parts_loc_cpt (hPA : P5.ThmPActualCpt) (hRMF : JC.RadialModuleForm) 
     refine theorem_P_integral_of_places E Wp Wq S dl hPos hdl (fun i _ _ => ?_) hpl
     have hg : 0 < S.g := Nat.mul_pos hg1 hg2
     have hrd := jct_rd_pos E
-    rw [unipotent_dual_lattice_covolume E hU S.g _ 1 hg]
+    rw [_root_.Formalism.FourierDecayAlt.P.Dx2.NH.nhat E hU S.g _ 1 hg]
     positivity
   refine ⟨hPos, hGr, hInt, ?_, ?_, ?_, ?_⟩
   · exact plane_exponential_bound_of_places gram_positive_semidefinite words_pos_of_parts E Wp Wq S Lw hPos hGr hW hTW
-  · exact off_diagonal_lift_bound_of_places third_polynomial_prime_combine gram_positive_semidefinite words_pos_of_parts
+  · exact off_diagonal_lift_bound_of_places _root_.Formalism.FourierDecayAlt.P.SecondPolynomialClauses.third_polynomial_prime_combination gram_positive_semidefinite words_pos_of_parts
       E Wp Wq S Ll Ll' hPos hGr hLB hLT hTL
-  · exact corollary_T_of_sum_form blockEstimateOfCosetSum gram_positive_semidefinite words_pos_of_parts
+  · exact corollary_T_of_sum_form _root_.Formalism.FourierDecayAlt.P.BaseGramNonnegativity.estBlockOfSumForm_ok gram_positive_semidefinite words_pos_of_parts
       E Wp Wq S C₄ hPos hGr hSF
   · exact gram_proposition_of_places E Wp Wq S
       (fun v => PiLp 2 (fun _ : Fin (Module.finrank ℂ (Wq (S.pl v))) => Wp (S.pl v))) (JC.vecPlace S T f ν' m₀)
-      H Vt hVt (gram_at_built_place ptPerm_spec ptG_spec relevant_points_holds hMu
+      H Vt hVt (gram_at_built_place _root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec ptG_spec relevant_points_holds hMu
         orbital_integral_cutoff_scalar E Wp Wq S T f χ ν' m₀ top A₀ hg1 hg2 hB)
 
 end
@@ -126,7 +126,7 @@ noncomputable section
 
 theorem real_inputs_closed_compact_support_of : KB.ArchimedeanUniformConstantsCompactSupport := by
   intro hPA hRMF hPD hFS hMA hMu hLEM hLA hSL hMP hTP hBB Cb
-  obtain ⟨C₆, hC₆, hLE⟩ := lemma_E_of_model lemma_E_of_residue level_zero_holds good_of_admissible hLEM
+  obtain ⟨C₆, hC₆, hLE⟩ := lemma_E_of_model _root_.Formalism.FourierDecayAlt.P.Dx1.d_lemmaEOfRR0 level_zero_holds _root_.Formalism.FourierDecayAlt.P.Dx1.d_goodOfAdm hLEM
   obtain ⟨c1, hLA⟩ := hLA
   obtain ⟨c2, hSL⟩ := hSL
   obtain ⟨c7, hMP⟩ := hMP

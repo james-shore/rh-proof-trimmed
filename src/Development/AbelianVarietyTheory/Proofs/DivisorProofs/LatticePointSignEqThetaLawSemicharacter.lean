@@ -71,8 +71,6 @@ variable {D : D7}
 
 theorem semichar_value : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)) (ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)), IsStdChar D ψ (-1) → IsSelfDualC S ΛS → IsSelfDualC T ΛT → ∀ b : 𝓞 D.host.E, (b : D.host.E) + star (b : D.host.E) = 1 → ∃ χ : WO S T → ℂ, IsLatVac (heisO ψ S T) (latO S T (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E)) fun _ => True) χ ∧ ∀ l ∈ latO S T (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E)) (fun _ => True), χ l = ψ (symplOH S T (l.map fun z => incA D (b : D.host.E) * z) l) := GlobalTheory.T.exists_selfDualLattice_semicharacter_vacuum
 
-theorem psi_fin_rat : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ q : D.host.F, ψ (pairA D.host.F 0 (algebraMap D.host.F (Af D.host.F) q)) = Complex.exp (2 * Real.pi * Complex.I * ∑ τ, tauE D τ (q : D.host.E)) := GlobalTheory.T.stdChar_finiteAdele_rational_eq_exp_trace
-
 theorem trace_eq_add_star : ∀ {D : D7} (x : D.host.E), ((Algebra.trace D.host.F D.host.E x : D.host.F) : D.host.E) = x + star x := GlobalTheory.T.cmTrace_eq_add_star
 
 theorem hRat_frame : ∀ {D : D7} (S T : HSp D) (frS : GL (Fin S.rank) D.host.E) (frT : GL (Fin T.rank) D.host.E), Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) frS.1 * S.gram * frS.1 = 1 → Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) frT.1 * T.gram * frT.1 = 1 → ∀ v : Matrix (Fin T.rank) (Fin S.rank) D.host.E, GlobalTheory.LatVac.hRat S T v v = ∑ a, ∑ b, star (((frT⁻¹ : GL (Fin T.rank) D.host.E).1 * v * frS.1) a b) * ((frT⁻¹ : GL (Fin T.rank) D.host.E).1 * v * frS.1) a b := GlobalTheory.T.rationalHomHermitianTraceForm_self_eq_frame_normSum
@@ -136,7 +134,7 @@ theorem trace_val (n b : D.host.E) (hns : star n = n) (hbv : b = (1 + D.host.sqr
     ring
   have htr : ((Algebra.trace D.host.F D.host.E (D.host.xi0 * (b * n)) : D.host.F) : D.host.E) =
       -n / (Ideal.absNorm D.host.ccK : D.host.E) := by
-    rw [GlobalTheory.ThetaSignLat.trace_eq_add_star, star_mul', star_mul', hxstar, hbs, hns]
+    rw [_root_.GlobalTheory.TraceAddStar.trace_eq_add_star, star_mul', star_mul', hxstar, hbs, hns]
     have e : D.host.xi0 * (b * n) + -D.host.xi0 * ((1 - b) * n) =
         (D.host.xi0 * D.host.sqrtMinusD) * n := by rw [hbv]; ring
     rw [e, hxs]; ring
@@ -235,7 +233,7 @@ theorem sign_eq_alpha : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp
   have hs : symplOH S T (u.map fun z => incA D (b : D.host.E) * z) u = pairA D.host.F 0
       (algebraMap D.host.F (Af D.host.F) (1 / 2 * Algebra.trace D.host.F D.host.E (D.host.xi0 * ((b : D.host.E) * n)))) := by
     rw [hmap, hu', symplOH, GlobalTheory.LatVac.symplO_finTens, hRat_smul_left, hRat_neg_neg,
-      GlobalTheory.ThetaSignLat.hRat_frame S T frS frT hS hT v]
+      _root_.GlobalTheory.HRatFrame.hRat_frame S T frS frT hS hT v]
     refine Prod.ext (mul_zero _) ?_
     show algebraMap D.host.F (Af D.host.F) (1 / 2) * (1 * 1 * _) = _
     rw [one_mul, one_mul, ← RingHom.map_mul]
@@ -244,7 +242,7 @@ theorem sign_eq_alpha : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp
   have hq := trace_val n (b : D.host.E) hns hbv
   have hχu : χ u = Complex.exp (2 * Real.pi * Complex.I * ∑ τ, tauE D τ
       ((1 / 2 * Algebra.trace D.host.F D.host.E (D.host.xi0 * ((b : D.host.E) * n)) : D.host.F) : D.host.E)) := by
-    rw [hval u huL, hs, GlobalTheory.ThetaSignLat.psi_fin_rat ψ hψ]
+    rw [hval u huL, hs, _root_.GlobalTheory.PsiFinRat.psi_pairA_zero_algebraMap ψ hψ]
   obtain ⟨c, hc⟩ : ∃ c : ℂ, c = ∑ τ, tauE D τ n := ⟨_, rfl⟩
   have hsumq : ∑ τ, tauE D τ
       ((1 / 2 * Algebra.trace D.host.F D.host.E (D.host.xi0 * ((b : D.host.E) * n)) : D.host.F) : D.host.E) =

@@ -216,8 +216,8 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E
         rw [← hmemlat, ← hsat, Frames.sat, Submodule.mem_inf, Submodule.restrictScalars_mem, hmemlat, hME]
       refine ⟨fun i => ((hsub _).1 (Submodule.subset_span ⟨i, rfl⟩)).1, fun v h1 h2 => (hsub v).2 ⟨h1, h2⟩⟩
 
-  have hloc := GlobalTheory.T.generic_local_terms_selfDual_lattices M hM H r k P hdim hrel f f' hfN hf'N
-  have hmov := GlobalTheory.T.unitaryComplement_moves_hermitianTerms M hM H r k P hdim hrel f f' hfN hf'N
+  have hloc := _root_.GlobalTheory.HL.GenericTerm.generic_terms M hM H r k P hdim hrel f f' hfN hf'N
+  have hmov := _root_.GlobalTheory.HL.ComplMove.main M hM H r k P hdim hrel f f' hfN hf'N
 
   have hex0 : ∃ Λ : Submodule M.L.O V,
       LocNG.IsTermOver P d0 (⟨Λ, f, f', P.A.T, P.B.T⟩ : Term V M r) ∧
@@ -247,7 +247,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E
       ((hTC.1 d0 _ ht1).2.2.1 h) (by rw [ht1l]; exact hBB1)
     obtain ⟨n1, hn1, hn1f, -⟩ := ht1.2.2.1
     obtain ⟨n1', hn1', hn1f', -⟩ := ht1.2.2.2.1
-    obtain ⟨hSD, hFG, -, -⟩ := (GlobalTheory.T.generic_local_terms_selfDual_lattices M hM H r k P hdim hrel g1 g1' ⟨n1, hn1, hn1f⟩
+    obtain ⟨hSD, hFG, -, -⟩ := (_root_.GlobalTheory.HL.GenericTerm.generic_terms M hM H r k P hdim hrel g1 g1' ⟨n1, hn1, hn1f⟩
       ⟨n1', hn1', hn1f'⟩ Lam1).1.2 ⟨d0, ht1, hbb1⟩
     obtain ⟨d1, hd1, hbb1'⟩ := (hloc Lam1).1.1 ⟨hSD, hFG, hin, hbb⟩
     have hd10 : d1 = d0 := by

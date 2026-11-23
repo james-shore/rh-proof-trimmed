@@ -112,7 +112,7 @@ theorem read_in_field {Ω : Type} [Field Ω] [Algebra ℚ Ω] {σ : Type} (τ : 
   have hunit : IsUnit (aeval (fun q => π (X q)) F) := by
     rw [hau]
     exact IsUnit.mk0 _ (fun h => hFq ((hπ _).1 h))
-  obtain ⟨φ, hφ⟩ := GlobalTheory.CompanionTheory.Ar.Cmp.Kext.exists_algHom_adjoin_inv Ω σ τ F S E (fun q => π (X q)) hF hS
+  obtain ⟨φ, hφ⟩ := _root_.UpperTheory.Reformulated.B.Yde9.main Ω σ τ F S E (fun q => π (X q)) hF hS
     (fun G hG => by rw [hau]; exact (hπ _).2 (hker G hG)) hunit
   have hτS : ∀ q, τ q ∈ S := fun q => by
     rw [hS]

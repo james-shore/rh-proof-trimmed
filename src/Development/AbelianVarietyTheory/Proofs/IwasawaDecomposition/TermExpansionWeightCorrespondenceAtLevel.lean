@@ -62,16 +62,14 @@ noncomputable section
 
 namespace GlobalTheory.TermMatch
 
-theorem gs_sub' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (a b : Γ(X, U)) :
-    gs f y U (a - b) = gs f y U a - gs f y U b := by simp only [gs_eq f y U h, map_sub]
+alias gs_sub' := _root_.GlobalTheory.LBGerm.gs_sub
 
 theorem gs_sum' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) {κ : Type} (S : Finset κ)
     (a : κ → Γ(X, U)) : gs f y U (∑ i ∈ S, a i) = ∑ i ∈ S, gs f y U (a i) := by
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [gs_eq f y U h, map_sum]
 
-theorem gs_zero' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) : gs f y U 0 = 0 := by
-  simp only [gs_eq f y U h, map_zero]
+alias gs_zero' := _root_.GlobalTheory.LBGerm.gs_zero
 
 theorem exists_good_ext {X Z : Scheme.{0}} (L : LB X) (hL : L.IsLB) (z : Z) (c : (Z ⟶ X) → L.ι) :
     ∃ J, Good L z J ∧ ∀ ψ, ψ z ∈ L.U (c ψ) → J ψ = c ψ := by
@@ -102,7 +100,7 @@ theorem GlobalTheory.termMatch_at_level : ∀ (R : Type) [CommRing R] [IsDomain 
   intro R _ _ _ hCN G _ _ hSA D D' A A' U U' Φ w wL hw hwL hΦ hlev xe hM σ σ' f f' hE hE' hσ e Z r z J J'
     hJ hJ' α'
   classical
-  obtain ⟨S, hS⟩ := GlobalTheory.T.uniformisationExpansion_sums_eq_transport R hCN G hSA D D' A A' U U' Φ w wL hw hwL hΦ hlev xe hM σ σ' f f' hE hE' hσ e
+  obtain ⟨S, hS⟩ := _root_.GlobalTheory.expansion_sums_transport R hCN G hSA D D' A A' U U' Φ w wL hw hwL hΦ hlev xe hM σ σ' f f' hE hE' hσ e
   obtain ⟨h0, h0', -⟩ := hS Z r z J J' hJ hJ'
   by_cases hα : α' ∉ S
   · rw [h0 α' hα, h0' α' hα, zero_mul, mul_zero, zero_mul]

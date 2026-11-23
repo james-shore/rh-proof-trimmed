@@ -61,24 +61,6 @@ theorem eq_zero_at_off (P : Pl D → Prop) {a : AE D} (h1 : a ∈ idAt D P) (h2 
   rw [← (hA a).1 h1]
   exact (hO a).1 h2
 
-theorem mulVec_off {S : HSp D} {P : Pl D → Prop} {b : GA D S} (hb : b ∈ grpOff S P) {y : Fin S.rank → AE D}
-    (hy : ∀ i, y i ∈ idAt D P) : mt S b *ᵥ y = y := by
-  rw [grpOff, PlacesAdeles.mem_congGrp] at hb
-  have key : (mt S b - 1) *ᵥ y = 0 := by
-    funext i
-    simp only [Matrix.mulVec, dotProduct, Pi.zero_apply]
-    refine Finset.sum_eq_zero fun j _ => ?_
-    apply eq_zero_at_off P
-    · exact Ideal.mul_mem_left _ _ (hy j)
-    · exact Ideal.mul_mem_right _ _ (by simpa using hb i j)
-  rw [Matrix.sub_mulVec, sub_eq_zero, Matrix.one_mulVec] at key
-  exact key
-
-theorem moves_off {S : HSp D} {L : Lat S} {P : Pl D → Prop} {b : GA D S} (hb : b ∈ grpOff S P) :
-    Moves S b L L P := by
-  intro y hy
-  rw [mulVec_off hb hy]
-
 theorem moves_one {S : HSp D} {L : Lat S} {P : Pl D → Prop} : Moves S 1 L L P := by
   intro y _
   rw [PlacesAdeles.mt_one, Matrix.one_mulVec]
@@ -114,7 +96,7 @@ section Place
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
 theorem pr_off (q : SplitPt D k) {a : AE D} (ha : a ∈ idOff D (· = q.v)) : q.pr a = 0 := by
-  have h1 : q.e * a = 0 := eq_zero_at_off (· = q.v)
+  have h1 : q.e * a = 0 := _root_.GlobalTheory.FinPl.PlacesAdeles.eq_zero_of_at_off (· = q.v)
     (Ideal.mul_mem_right a _ (FrameLat.e_mem_idAt (p := q))) (Ideal.mul_mem_left _ q.e ha)
   have h2 : q.pr q.e = 1 := by rw [← FrameLat.sec_one (p := q), q.pr_sec]
   calc q.pr a = q.pr q.e * q.pr a := by rw [h2, one_mul]
@@ -178,7 +160,7 @@ theorem exists_of_local : ∀ {D : D7} (S : HSp D) (N : Lat S), IsSelfDualC S N 
         obtain ⟨j, rfl⟩ := (List.mem_ofFn' _ _).1 ha
         by_cases hji : j = i
         · subst hji; exact (hgK j).2
-        · exact moves_off (hoff i j hji)
+        · exact _root_.GlobalTheory.FinPl.PlacesAdeles.moves_off (hoff i j hji)
     intro y hy
     rw [hlat y hN.1, hlat _ hN.1]
     have hy' := PlacesAdeles.supp_mulVec S _ (List.ofFn g).prod hy

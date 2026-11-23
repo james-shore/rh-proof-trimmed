@@ -55,15 +55,7 @@ open scoped InnerProductSpace
 
 namespace GlobalTheory.AlgStep
 
-theorem sqrt_nsq_eq_norm {n : ℕ} (u : Fin n → ℝ) :
-    Real.sqrt (nsq u) = ‖(WithLp.toLp 2 u : EuclideanSpace ℝ (Fin n))‖ := by
-  rw [EuclideanSpace.norm_eq]
-  simp [nsq, dot, sq]
-
-theorem sqrt_nsq_add_le {n : ℕ} (u v : Fin n → ℝ) :
-    Real.sqrt (nsq (u + v)) ≤ Real.sqrt (nsq u) + Real.sqrt (nsq v) := by
-  simp only [sqrt_nsq_eq_norm, WithLp.toLp_add]
-  exact norm_add_le _ _
+alias sqrt_nsq_add_le := _root_.GlobalTheory.KTypeSteps.sqrt_nsq_add_le
 
 theorem nsq_nonneg' {n : ℕ} (u : Fin n → ℝ) : 0 ≤ nsq u := by
   unfold nsq dot

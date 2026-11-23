@@ -74,9 +74,6 @@ theorem pi_colEl_add (x y : Fin (m + 1) → k) (v : V) :
 theorem psi_mul_conj (c : Circle) : ((c : ℂ)) * starRingEnd ℂ (c : ℂ) = 1 := by
   rw [Complex.mul_conj, Complex.normSq_eq_norm_sq, Circle.norm_coe]; simp
 
-theorem conj_mul_psi (c : Circle) : starRingEnd ℂ (c : ℂ) * (c : ℂ) = 1 := by
-  rw [mul_comm, psi_mul_conj]
-
 theorem fp_add (ξ : Fin (m + 1) → k) (p : AddSubgroup (Fin (m + 1) → k) × Finset (Fin (m + 1) → k)) (x y : V) :
     fp ψ h π ξ p (x + y) = fp ψ h π ξ p x + fp ψ h π ξ p y := by
   unfold fp; rw [← smul_add, ← Finset.sum_add_distrib]; congr 1
@@ -107,7 +104,7 @@ theorem card_pos {ξ : Fin (m + 1) → k} {A : AddSubgroup (Fin (m + 1) → k)} 
 theorem collapse {X : Type} (T : Finset X) (hT : 0 < T.card) (f : X → Circle) (y : V) :
     ((T.card : ℂ)⁻¹) • ∑ t ∈ T, (starRingEnd ℂ ((f t : Circle) : ℂ)) • (((f t : Circle) : ℂ) • y) = y := by
   have e : ∀ t ∈ T, (starRingEnd ℂ ((f t : Circle) : ℂ)) • (((f t : Circle) : ℂ) • y) = y := fun t _ => by
-    rw [smul_smul, conj_mul_psi, one_smul]
+    rw [smul_smul, _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.conj_circle_mul_self, one_smul]
   have e2 : ∑ t ∈ T, (starRingEnd ℂ ((f t : Circle) : ℂ)) • (((f t : Circle) : ℂ) • y) = ∑ t ∈ T, y :=
     Finset.sum_congr rfl e
   rw [e2, Finset.sum_const, ← Nat.cast_smul_eq_nsmul ℂ T.card y, smul_smul,

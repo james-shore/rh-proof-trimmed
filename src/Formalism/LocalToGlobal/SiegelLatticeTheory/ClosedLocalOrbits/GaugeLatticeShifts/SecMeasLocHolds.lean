@@ -59,10 +59,6 @@ namespace Formalism.L2.SG.RealObj.InfCut.ProductExactness
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates
 
-private theorem SecMeasLoc_holds_lemma {n : ℕ} (ε : Fin n → Bool) (x y v : Fin n → ℂ) :
-    hJ ε (x - y) v = hJ ε x v - hJ ε y v := by
-  simp only [hJ, star_sub, sub_dotProduct]
-
 private theorem SecMeasLoc_holds_lemma_3 {n : ℕ} (ε : Fin n → Bool) (A B : Matrix (Fin n) (Fin n) ℂ)
     (hA : IsIsom ε A) (hB : IsIsom ε B) : IsIsom ε (A * B) := by
   intro x y
@@ -74,7 +70,7 @@ private theorem SecMeasLoc_holds_lemma_4 {n r : ℕ} (ε : Fin n → Bool) (e p 
     IsIsom ε (tvm ε (fun b => e b + s b • p b) (fun b => ((starRingEnd ℂ) (s b))⁻¹)) := by
   have hpe : ∀ a b, hJ ε (p a) (e b) = if a = b then 1 else 0 := by
     intro a b
-    rw [hJ_cj, hep b a]
+    rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_conj, hep b a]
     by_cases h : a = b
     · subst h; simp
     · simp [h, Ne.symm h]
@@ -98,7 +94,7 @@ private theorem SecMeasLoc_holds_lemma_5 {n r : ℕ} (ε : Fin n → Bool) (e p 
     tvm ε (fun b => e b + s b • p b) (fun b => ((starRingEnd ℂ) (s b))⁻¹) *ᵥ e a = -(s a • p a) := by
   have hpe : ∀ a b, hJ ε (p a) (e b) = if a = b then 1 else 0 := by
     intro a b
-    rw [hJ_cj, hep b a]
+    rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_conj, hep b a]
     by_cases h : a = b
     · subst h; simp
     · simp [h, Ne.symm h]
@@ -137,7 +133,7 @@ private theorem SecMeasLoc_holds_lemma_7 {n r : ℕ} (ε : Fin n → Bool) (e : 
       linear_combination h2
     · intro b
       have h0 : hJ ε (z' - (σ:ℂ) • z) (e b) = 0 := by
-        rw [SecMeasLoc_holds_lemma, hJ_smul_l, hJ_zero_of_cj ε (hez' b), hJ_zero_of_cj ε (hez b)]
+        rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left, hJ_smul_l, hJ_zero_of_cj ε (hez' b), hJ_zero_of_cj ε (hez b)]
         simp
       rw [tv_apply, h0]
       simp
@@ -149,7 +145,7 @@ private theorem SecMeasLoc_holds_lemma_7 {n r : ℕ} (ε : Fin n → Bool) (e : 
   by_cases hD : hJ ε (z' - (Real.sqrt (T' / T):ℂ) • z) z' = 0
   · apply key (-Real.sqrt (T' / T)) (by rw [neg_sq]; exact hs2) (neg_ne_zero.mpr hs0)
     intro hD'
-    rw [SecMeasLoc_holds_lemma, hJ_smul_l, Complex.conj_ofReal, hzz'] at hD hD'
+    rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left, hJ_smul_l, Complex.conj_ofReal, hzz'] at hD hD'
     push_cast at hD'
     have h3 : (2:ℂ) * -(T':ℂ) = 0 := by linear_combination hD + hD'
     have hT'c : (T':ℂ) ≠ 0 := by exact_mod_cast hT'.ne'
@@ -275,7 +271,7 @@ theorem SecMeasLoc_holds : SecMeasLoc := by
         exact h
       rw [hBe, hRc, tv_apply]
       have h0 : hJ ε ((σ:ℂ) • z - y c) (lamOf sc c b • p b) = 0 := by
-        rw [SecMeasLoc_holds_lemma]
+        rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left]
         simp only [y, hJ_add_l, hJ_smul_l, hJ_smul_r, hzp, hJ_zero_of_cj ε (hpw b)]
         simp
       rw [h0]
@@ -291,7 +287,7 @@ theorem SecMeasLoc_holds : SecMeasLoc := by
       by_cases hD : hJ ε ((σ:ℂ) • z - y c) ((σ:ℂ) • z) = 0
       · have hTc : (T:ℂ) ≠ 0 := by exact_mod_cast hT.ne'
         have e2 : hJ ε ((σ:ℂ) • z - y c) ((σ:ℂ) • z) = (σ:ℂ) * T * ((starRingEnd ℂ) (alOf T c) - σ) := by
-          rw [SecMeasLoc_holds_lemma]
+          rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left]
           simp only [y, hJ_add_l, hJ_smul_l, hJ_smul_r, hF.zz, hwz, Complex.conj_ofReal]
           ring
         have hca : (starRingEnd ℂ) (alOf T c) = σ := by

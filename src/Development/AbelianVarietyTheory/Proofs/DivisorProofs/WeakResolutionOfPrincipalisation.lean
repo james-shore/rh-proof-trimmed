@@ -62,11 +62,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 namespace GlobalTheory.WeakRes
 
-theorem isProjOver_comp_closed {R : Type} [CommRing R] {X X' : Scheme.{0}} (g : X' ⟶ X) [IsClosedImmersion g]
-    {f : X ⟶ Sp R} (hf : IsProjOver f) : IsProjOver (g ≫ f) := by
-  obtain ⟨M, k, hk, rfl⟩ := hf
-  exact ⟨M, g ≫ k, inferInstance, by simp⟩
-
 theorem isProjOver_seq {F : Type} [Field F] {Y Y' : Scheme.{0}} (f : Y ⟶ Sp F) {B : Set Y} {s : Y' ⟶ Y}
     (h : IsSmoothBlowupSeq f B s) (hf : IsProjOver f) : IsProjOver (s ≫ f) := by
   induction h with
@@ -75,7 +70,7 @@ theorem isProjOver_seq {F : Type} [Field F] {Y Y' : Scheme.{0}} (f : Y ⟶ Sp F)
     obtain ⟨X', b, hb', hproj, -⟩ := ProjBlowup.exists_blowup (s ≫ f) ih J
     obtain ⟨e, he, heb⟩ := ProjBlowup.exists_iso_of_blowup J π b hb hb'
     rw [← heb, Category.assoc]
-    exact isProjOver_comp_closed e hproj
+    exact _root_.GlobalTheory.ProjSpace.isProjOver_comp_of_isClosedImmersion e hproj
 
 
 attribute [local instance] MvPolynomial.gradedAlgebra in
@@ -104,7 +99,7 @@ theorem weak_resolution : GlobalTheory.Published.Principalisation → ∀ (F : T
     have hg : ∀ w, (j ≫ J.subschemeι ≫ s₁) w ∈ i.ker.support := fun w =>
       hJB (Scheme.IdealSheafData.range_subschemeι J ▸ Set.mem_range_self _)
     have : IsReduced W' := inferInstance
-    obtain ⟨h, hh⟩ := GlobalTheory.T.exists_lift_of_isReduced_of_mem_ker_support i (j ≫ J.subschemeι ≫ s₁) hg
+    obtain ⟨h, hh⟩ := _root_.GlobalTheory.lift_of_reduced_of_support i (j ≫ J.subschemeι ≫ s₁) hg
     have hw' : h w' = genericPoint W := by
       apply i.isEmbedding.injective
       rw [← Scheme.Hom.comp_apply, hh]
@@ -119,6 +114,6 @@ theorem weak_resolution : GlobalTheory.Published.Principalisation → ∀ (F : T
     refine ⟨W', h, U', hW', ?_, ?_, hU'ne, hU'iso⟩
     · rw [hq]; exact GlobalTheory.T.smoothOfRelativeDimension_of_integral_krullDim_eq F W' _ n inferInstance (hd.trans hdim)
     · rw [hq, ← Category.assoc]
-      exact isProjOver_comp_closed _ (isProjOver_seq f hseq₁ (ProjSpace.isProjOver_pspace_str F _))
+      exact _root_.GlobalTheory.ProjSpace.isProjOver_comp_of_isClosedImmersion _ (isProjOver_seq f hseq₁ (ProjSpace.isProjOver_pspace_str F _))
 
 end GlobalTheory.WeakRes

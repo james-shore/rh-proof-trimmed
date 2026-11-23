@@ -130,11 +130,6 @@ theorem rep_F (hσ : ∀ z, σ (σ z) = z) {J : Matrix (Fin n) (Fin n) E} (hJ : 
   rw [← Algebra.traceForm_apply, LinearMap.BilinForm.apply_toDual_symm_apply]
   simp [hσ]
 
-theorem invol (h : IsCMExt F E σ) (z : E) : σ (σ z) = z := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [h.2.2.2, h.2.2.2, star_star]
-
 theorem isIntegral_map {z : E} (h : IsIntegral ℤ z) : IsIntegral ℤ (σ z) := h.map (σ.toRingHom.toIntAlgHom)
 
 theorem frame_X {B : Base F E} {X : Spc F E n} {r s : ℕ} (hX : X.IsHerm σ B r s) :
@@ -146,7 +141,7 @@ theorem frame_X {B : Base F E} {X : Spc F E n} {r s : ℕ} (hX : X.IsHerm σ B r
     rw [show (X.J.map (B.emb w).1).det = (B.emb w).1 X.J.det from (RingHom.map_det _ _).symm, h0, map_zero]
   have : Module.Finite (𝓞 E) X.L := Module.Finite.iff_fg.mpr hX.lat.fg
   obtain ⟨N, e, g, he, hg, hs⟩ := exists_dual_frame (K := E) X.L fun z => by
-    obtain ⟨m, hm, h⟩ := GlobalTheory.LatOpenCpt.exists_zsmul_mem X.L hX.lat z
+    obtain ⟨m, hm, h⟩ := _root_.GlobalTheory.IntegerMultipleMembership.exists_int_smul_mem X.L hX.lat z
     exact ⟨m, Int.cast_ne_zero.2 hm, by rwa [Int.cast_smul_eq_zsmul]⟩
   choose x' hx' using fun i => rep_E (σ := σ) hJ (g i)
   refine ⟨N, e, x', he, fun i => (hX.dual _).2 fun x hx => ?_, fun i z => g i z, hx', hs⟩
@@ -157,7 +152,7 @@ theorem frame_X {B : Base F E} {X : Spc F E n} {r s : ℕ} (hX : X.IsHerm σ B r
 theorem frame_alt_alt {B : Base F E} {W : Spc F E d} {r s : ℕ} (hB : B.IsGood σ) (hW : W.IsSkew σ B r s) :
     ∃ (N : ℕ) (y y' : Fin N → Fin d → E), (∀ i, y i ∈ W.L) ∧ (∀ i, y' i ∈ W.L) ∧
       ∀ z, ∑ i, Algebra.trace F E (form σ W.J (y' i) z) • y i = z := by
-  have hσ := invol hB.cm
+  have hσ := _root_.GlobalTheory.AdelicU.cm_conj_conj hB.cm
   have hJ : W.J.det ≠ 0 := fun h0 => by
     obtain ⟨w⟩ : Nonempty (InfinitePlace F) := inferInstance
     refine GlobalTheory.WeilSchrodingerHerm.det_ne_zero_of_hasSig (hW.sig w) ?_
@@ -167,7 +162,7 @@ theorem frame_alt_alt {B : Base F E} {W : Spc F E d} {r s : ℕ} (hB : B.IsGood 
   have : Module.Finite (𝓞 F) W.L := Module.Finite.trans (𝓞 E) W.L
   have : Module.Finite (𝓞 F) (W.L.restrictScalars (𝓞 F)) := this
   obtain ⟨N, e, g, he, hg, hs⟩ := exists_dual_frame (K := F) (W.L.restrictScalars (𝓞 F)) fun z => by
-    obtain ⟨m, hm, h⟩ := GlobalTheory.LatOpenCpt.exists_zsmul_mem W.L hW.lat z
+    obtain ⟨m, hm, h⟩ := _root_.GlobalTheory.IntegerMultipleMembership.exists_int_smul_mem W.L hW.lat z
     exact ⟨m, Int.cast_ne_zero.2 hm, by rwa [Int.cast_smul_eq_zsmul]⟩
   choose y' hy' using fun i => rep_F hσ hJ (g i)
   refine ⟨N, e, y', he, fun i => (hW.dual _).2 fun x hx o => ?_, fun z => by simpa only [hy'] using hs z⟩

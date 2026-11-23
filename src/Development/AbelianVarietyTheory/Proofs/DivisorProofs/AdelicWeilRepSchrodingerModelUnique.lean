@@ -199,7 +199,7 @@ theorem member_unique (σ : E →ₐ[F] E) (hσ : IsCMExt F E σ) {a b : ℕ} (J
     refine Units.ext ?_
     rw [hcv, Units.val_one]
     exact mul_right_cancel₀ hl0 (by rw [one_mul]; exact e1.symm)
-  have hc1 := GlobalTheory.T.doubledUnitary_character_trivial_of_siegel F E σ hσ b JB ε hJ hdet c hcont hP
+  have hc1 := _root_.GlobalTheory.SiegelChar.eq_one_of_siegel F E σ hσ b JB ε hJ hdet c hcont hP
   have hcf1 : ∀ p, cf p = 1 := fun p => by
     rw [← hcv, hc1]; rfl
   intro g Φ hΦ

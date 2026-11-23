@@ -47,19 +47,10 @@ open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspR
 open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.R2.G
 open scoped Classical ENNReal nonZeroDivisors
 
-private theorem delta_ne {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    (D : Dat F E) : D.δ ≠ 0 := by
-  intro h0
-  have hθ : D.θ = 0 := by
-    have h := D.sq
-    rw [h0, map_zero] at h
-    exact pow_eq_zero_iff (two_ne_zero) |>.mp h
-  exact D.b.ne_zero 1 (by rw [D.b1, hθ])
-
 theorem UpperTheory.ConvolutionTheory.R2.G.goodLift :
     ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] (D : Dat F E) (W : Weil D) (M : Meas F) (π : TR.CuspSub F 2), ThetaLiftTrivialOrbitTermsVanish W M π → ∀ f ∈ π.V, ∀ φ ∈ Fock D.δ, Good D (lift W M f.1 φ) := by
   intro F E _ _ _ _ _ _ _ D W M π hN f hf φ hφ
-  have hδ : D.δ ≠ 0 := delta_ne D
+  have hδ : D.δ ≠ 0 := _root_.UpperTheory.ConvolutionTheory.R2.Dat.δ_ne_zero D
   have hex := fun h => UpperTheory.ConvolutionTheory.R2.G.expand1 F E D W M π f hf φ hφ h
   have hw := fun h => UpperTheory.ConvolutionTheory.R2.G.thetaFourierCoeff_zero_and_eq_shifted_whittaker F E D W M π f hf φ hφ h
   have ho : ∀ h, _ := fun h => UpperTheory.ConvolutionTheory.R2.G.orth F D.δ hδ 0 (Wx W M f.1 φ h)

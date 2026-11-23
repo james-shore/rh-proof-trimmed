@@ -69,7 +69,7 @@ theorem interPoly_rename_swap : ∀ (F : Type) [Field F] (Y : Var F) (W : Dbl Y)
   refine GlobalTheory.T.linearForm_antisymm_of_doublePoint_symmMultilinear κ a b hab (CartierDiv W.Z ⧸ N) Y.dim T' (fun σ y => hTs σ fun i => φ (y i))
     (fun x => π (D₁ x)) (fun x => π (D₂ x))
     (Y.interPoly gr) μ hμ (fun x ha hb => hφ (hx x ha hb)) (hφ ?_) (fun s => ?_) (fun s => ?_)
-    (fun k P hP hk => GlobalTheory.T.interPoly_eq_zero_of_isHomogeneous_ne_dim F Y κ gr k P hP hk) (fun s => ?_)
+    (fun k P hP hk => _root_.GlobalTheory.ProjVar.Var.interPoly_eq_zero_of_isHomogeneous F Y κ gr k P hP hk) (fun s => ?_)
   · simpa only [map_add (f := _), hπ] using hsum
   · exact (hT' (fun i => D₁ (s i))).trans
       (GlobalTheory.T.intersectionNumber_pullback_dimSuccDivisors_eq_zero F Y W hW W.p₁ _ (fun i => gr (s i)) fun i => h₁ (s i))
@@ -84,7 +84,7 @@ theorem interPoly_rename_swap : ∀ (F : Type) [Field F] (Y : Var F) (W : Dbl Y)
       · simp only [Fin.cons_zero, hΘ']
       · simp only [Fin.cons_succ, Function.comp_apply]
         cases s j <;> rfl
-    have r := GlobalTheory.T.doubleSpace_section_intersectionNumber_eq_base F Y W (Sum.elim D₁ D₂ ∘ s) (gr ∘ fun i => Sum.elim id id (s i)) fun i => by
+    have r := _root_.GlobalTheory.FlagPush.interNumRed_section F Y W (Sum.elim D₁ D₂ ∘ s) (gr ∘ fun i => Sum.elim id id (s i)) fun i => by
       simp only [Function.comp_apply]
       cases s i with
       | inl x => exact Or.inl (h₁ x)

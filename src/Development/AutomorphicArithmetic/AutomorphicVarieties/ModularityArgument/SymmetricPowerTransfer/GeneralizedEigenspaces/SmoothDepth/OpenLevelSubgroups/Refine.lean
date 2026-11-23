@@ -56,12 +56,6 @@ open UpperTheory.V.Z.Sym.Al
 
 namespace UpperTheory.V.Z.Sym.Al
 
-private theorem common_eig {ι M : Type} [AddCommGroup M] [Module ℂ M] [FiniteDimensional ℂ M]
-    (f : ι → Module.End ℂ M) (hc : ∀ i j, Commute (f i) (f j)) :
-    ∀ (n : ℕ) (W : Submodule ℂ M), Module.finrank ℂ W = n → W ≠ ⊥ → (∀ i, ∀ x ∈ W, f i x ∈ W) →
-      ∃ v ∈ W, v ≠ 0 ∧ ∀ i, ∃ c : ℂ, f i v = c • v :=
-  _root_.UpperTheory.Reformulated.B.ComplexCommonEigenvectorOfFinrankEq.common_eig f hc
-
 private theorem sdom_pair {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (t : kˣ) (ht : valuation k (t : k) < 1) : Sig.SDom ![t, t⁻¹] := by
   intro i j hij
@@ -192,7 +186,7 @@ theorem UpperTheory.V.Z.Sym.Al.refine :
     simpa using this)
   let ι : Type := Σ w : {w // w ∈ S}, {d : Fin 2 → (Kw w.1)ˣ // AlgebraTools.Dom d}
   let f : ι → Module.End ℂ (AF R (lev U S iw)) := fun i => u i.1.1 i.2.1
-  obtain ⟨v, hvE, hv0, hveig⟩ := common_eig f
+  obtain ⟨v, hvE, hv0, hveig⟩ := _root_.UpperTheory.Reformulated.B.ComplexCommonEigenvectorOfFinrankEq.common_eig f
     (fun i j => hcomm i.1.1 i.1.2 j.1.1 j.1.2 i.2.1 j.2.1 i.2.2 j.2.2) _ E rfl hE0
     (fun i x hx => (hmemE _).2 fun w hw t ht => by
       have hc := (hcomm i.1.1 i.1.2 w hw i.2.1 ![t, t⁻¹] i.2.2 (hpair w t ht)).eq

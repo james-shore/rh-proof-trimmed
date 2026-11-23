@@ -205,7 +205,7 @@ theorem root_haar (hk : 1 ≤ k) (L : LocBessel k r) (hc : L.c ≠ 0) {γ : Poin
     congr 3
     field_simp
   have h1 := (Formalism.MainNotions.BigCellDensity.rootHaar_gen { L with c := cStd } γ g (t • μR) rfl hrep hroot').1
-  have h2 := Formalism.MainNotions.BigCellDensity.isHaarOn_smul h1 (ENNReal.inv_ne_zero.2 ht1) (ENNReal.inv_ne_top.2 ht0)
+  have h2 := _root_.Formalism.MainNotions.BridgeLemma₃.hu_smul h1 (ENNReal.inv_ne_zero.2 ht1) (ENNReal.inv_ne_top.2 ht0)
   rw [smul_smul, ENNReal.inv_mul_cancel ht0 ht1, one_smul] at h2
   exact ⟨P.B5.haar_sigmaFinite h2, h2.ne_zero, h2.conc, h2.left⟩
 

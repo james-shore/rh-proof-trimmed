@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem tilt_divisibility : PI.ArtSch.TiltDiv := PI.ArtSch.tiltDiv_of_general

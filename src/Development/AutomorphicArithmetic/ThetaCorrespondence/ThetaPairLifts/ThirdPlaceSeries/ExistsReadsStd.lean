@@ -124,7 +124,7 @@ theorem exists_readsStd_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre}
     exact this
   · have hn : (a.G n).s + 1 + 1 = B.R.m := (a.G n).hs
     have hP : (a.pl n).1 ∈ (B.primes X).vGs := (hW.lev.2.1 _).1 (a.pl n).2
-    obtain ⟨h3, h4⟩ := _root_.GlobalTheory.T.true_geometry_commutation_twist_alt W hW u a ha ha' hc n
+    obtain ⟨h3, h4⟩ := _root_.GlobalTheory.LevelUnif.int_and_unif_alt W hW u a ha ha' hc n
     exact couplingCoset_sub_basePoint_integral_typePrime hI h.is hn (a.G n).S ((a.G n).q.pr.comp (incA (I.rec7 l Z))) ⟨(a.pl n).1, Finset.mem_union_left _ hP⟩ hP h3 h4 _
       (h.std _ (by omega) _) (hι' _ y hn).1 e he r
   · by_cases e : j + 1 = B.R.m

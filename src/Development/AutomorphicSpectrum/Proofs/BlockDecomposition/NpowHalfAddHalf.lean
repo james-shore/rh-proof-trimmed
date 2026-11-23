@@ -107,14 +107,11 @@ theorem hp_law {H : G D p → ℝ≥0} (hH : IsHt H) {q : G D p} (hq : q ∈ P D
 theorem hp_pos {H : G D p → ℝ≥0} (hH : IsHt H) (g : G D p) : 0 < hp H g :=
   pow_pos (by exact_mod_cast hH.2.1 g) _
 
-theorem exists_block {q : G D p} (hq : q ∈ P D p) : ∃ a : GL (Fin p) (AE D), blkA (mat q) = a.1 :=
-  ⟨GlobalTheory.StdUnn.HeightExists.leviBlock (D := D) (n := p) ⟨q, hq⟩, rfl⟩
-
 theorem isRho_iff_sec {H : G D p → ℝ≥0} (hH : IsHt H) (f : G D p → ℂ) : IsRho f ↔ Sec (P D p) (hp H) f := by
   constructor
   · rintro ⟨c, l⟩
     refine ⟨c, fun q hq g => ?_⟩
-    obtain ⟨a, ha⟩ := exists_block hq
+    obtain ⟨a, ha⟩ := _root_.GlobalTheory.StdUnn.LeftInvSect.exists_blkA hq
     rw [l q hq a ha g, hp_law hH hq ha g, npow_half_add_half]
     simp only [MonoidHom.one_apply, Circle.coe_one, one_mul]
     push_cast
@@ -140,7 +137,7 @@ theorem setC : HtExist → PositivityTheory.Rg.Rsw.Cell.SetC := by
   · refine ⟨GlobalTheory.StdUnn.HeightExists.isClosed_P, (hEx D p).2, ?_, hp_pos hI, ?_, ?_, ?_, ?_⟩
     · exact (NNReal.continuous_coe.comp hI.1).pow p
     · intro q hq g g'
-      obtain ⟨a, ha⟩ := exists_block hq
+      obtain ⟨a, ha⟩ := _root_.GlobalTheory.StdUnn.LeftInvSect.exists_blkA hq
       rw [hp_law hI hq ha g, hp_law hI hq ha g']
       ring
     · exact fun f f' hf hf' => hmu.add f f' ((hS f).2 hf) ((hS f').2 hf')

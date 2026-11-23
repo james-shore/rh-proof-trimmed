@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem PositivityTheory.v8.KStability.kStability : UpperTheory.V.Published.KStability :=
-  GlobalTheory.HomStab.kStability_main

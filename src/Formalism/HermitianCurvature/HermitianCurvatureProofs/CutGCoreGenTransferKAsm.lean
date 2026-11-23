@@ -151,7 +151,7 @@ theorem gauge_kappa_of_point_line : GTKapOfCut := by
     have hsum : (∑ σ, f σ • Qr σ) = Qr ρ := by
       simp [f, Finset.sum_ite_eq']
     rw [hsum] at hk
-    have hmem := Formalism.FourierDecayAlt.P.radical_reduction_mem Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hRB _
+    have hmem := _root_.Formalism.FourierDecayAlt.P.NFRadRedA.radRedMem Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hRB _
       ((d.κ f).1 ⟨Φ, hΦ⟩).2
     have h2 := hmem.2.1 (c0, ζ0) hq0
     simp only [NF.radR, Set.indicator_of_mem hq0] at h2

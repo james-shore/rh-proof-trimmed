@@ -852,9 +852,6 @@ theorem part_a [IsDomain O] (hR : Formalism.MainNotions.UnusedSlot80.ToolsR.Ring
   rw [hsum]
   exact inFr_add W hf₁' hf₂'
 
-theorem lE_add (a b : ℕ) : lE W (a + b) = lE W a * lE W b := by
-  unfold lE; rw [pow_add]
-
 theorem ppo_single_eval {e : ℕ} {k : ℤ} (hk : k ≠ 0) :
     (PPO W e {k}).eval 1 = ((((W.χΓ W.gam) ^ (k * (PD.p : ℤ) ^ e) : Oˣ) : O) - 1) *
       (-(((PD.p ^ e : ℕ) : O))) := by
@@ -964,7 +961,7 @@ theorem part_c [IsDomain O] (hR : Formalism.MainNotions.UnusedSlot80.ToolsR.Ring
         congr 1; ring
       refine ⟨M + (κ1 + m), ?_⟩
       rw [show lE W (M + (κ1 + m)) * h = lE W M * (lE W κ1 * y) by
-        rw [hy, show M + (κ1 + m) = (M + κ1) + m by ring, lE_add W (M + κ1) m, lE_add W M κ1]; ring, hw]
+        rw [hy, show M + (κ1 + m) = (M + κ1) + m by ring, _root_.Formalism.MainNotions.UnusedSlot80.KL.lE_add W (M + κ1) m, _root_.Formalism.MainNotions.UnusedSlot80.KL.lE_add W M κ1]; ring, hw]
       exact inFr_smul W (inFr_smul W hz _) _
   obtain ⟨m, hm⟩ := key (b + A.S) (by omega) le_rfl
   refine ⟨m + κ0, ((PD.p : ℕ) : O) ^ m * x0, ?_⟩

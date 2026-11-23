@@ -337,13 +337,13 @@ theorem Tens.cycle_loc_boundary {C J : Cx R} (a b : ℤ) [C.IsStrictlyGE a] [J.I
       exact this.symm
     have hexact : ∀ (U : Scheme.{0}) (b : Sec (C.X (w - n + 1)) U), Sec.map (C.d (w - n + 1) (w - n + 1 + 1)) b = 0 →
         Loc U fun V k => ∃ a : Sec (C.X (w - n)) V, Sec.map (C.d (w - n) (w - n + 1)) a = Sec.res k b :=
-      (GlobalTheory.T.etaleSheaf_shortComplex_exact_iff_locally R (C.sc' (w - n) (w - n + 1) (w - n + 1 + 1))).mp
+      (_root_.GlobalTheory.EtC.exactIff R (C.sc' (w - n) (w - n + 1) (w - n + 1 + 1))).mp
         ((C.exactAt_iff' (w - n) (w - n + 1) (w - n + 1 + 1) (by simp) (by simp)).mp (hC (w - n + 1)))
     have hloc : Loc U fun V k => LinearMap.rTensor _ ((C.d (w - n + 1) (w - n + 1 + 1)).hom.app (op V)).hom
         (TensorProduct.map ((C.X (w - n + 1)).obj.map k.op).hom ((J.X n).obj.map k.op).hom
           (x ⟨(w - n + 1, n), by simp only; omega⟩)) = 0 :=
       L_all _ _ fun V k => by rw [rTensor_res_comm, hedge, map_zero]
-    have hrow := GlobalTheory.T.tensor_flat_etaleSheaf_preserves_local_exactness R (J.X n) (hJ n) (C.d (w - n) (w - n + 1)) (C.d (w - n + 1) (w - n + 1 + 1))
+    have hrow := _root_.GlobalTheory.EtC.tensor_flat_loc_exact R (J.X n) (hJ n) (C.d (w - n) (w - n + 1)) (C.d (w - n + 1) (w - n + 1 + 1))
       (C.d_comp_d _ _ _) hexact U _ hloc
     apply L_trans
     refine L_mono _ _ _ hrow ?_
@@ -400,7 +400,7 @@ theorem acyclic_of_isTensor : ∀ (R : Type) [CommRing R] {C J T : Cx R} (a b : 
   intro R _ C J T a b _ _ τ hT hJ hC j
   obtain ⟨L_all, L_mono, -, -, L_trans, -, -⟩ := loc_calculus
   obtain ⟨w, rfl⟩ : ∃ w, j = w + 1 := ⟨j - 1, by ring⟩
-  rw [T.exactAt_iff' w (w + 1) (w + 1 + 1) (by simp) (by simp), GlobalTheory.T.etaleSheaf_shortComplex_exact_iff_locally]
+  rw [T.exactAt_iff' w (w + 1) (w + 1 + 1) (by simp) (by simp), _root_.GlobalTheory.EtC.exactIff]
   rintro U (z : Sec (T.X (w + 1)) U) (hz' : Sec.map (T.d (w + 1) (w + 1 + 1)) z = 0)
   apply L_trans
   refine L_mono _ _ _ (hT.1 U (w + 1) z) ?_

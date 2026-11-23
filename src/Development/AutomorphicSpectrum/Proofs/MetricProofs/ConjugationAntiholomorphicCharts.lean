@@ -147,7 +147,7 @@ theorem conj_analytic : ∀ {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fin
     hcs (((A.chart k).open_source.inter (hUo x₁)).mem_nhds (by
       change c ((A.chart j).symm w) ∈ _
       rw [hx₀, hx₁]; exact ⟨hw2', hUm x₁⟩))
-  refine GlobalTheory.T.analytic_of_immersion_composition (fun z => star (A.chart k (c ((A.chart j).symm z))))
+  refine _root_.GlobalTheory.CompanionTheory.Metric.Rigid.analyticAt_of_comp_immersion (fun z => star (A.chart k (c ((A.chart j).symm z))))
     (star ∘ (fun w' => affCoord p (lift x₁ ((A.chart k).symm w'))) ∘ star)
     (fun y => affCoord p (lift x₀ ((A.chart j).symm y))) w ?_ ?_ hHa hFc ?_
   · rw [hFw]; exact analyticAt_star_comp hψ

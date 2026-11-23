@@ -79,9 +79,7 @@ theorem trace_pos {h : V →ₗ⋆[K] V →ₗ[K] K} (hd : IsTotPosDef h) :
   rw [this] at hpos
   exact_mod_cast hpos
 
-theorem exists_smul_mem {Λ : Submodule (𝓞 K) V} (hΛ : Submodule.IsFullLattice K Λ) (v : V) :
-    ∃ r : 𝓞 K, r ≠ 0 ∧ r • v ∈ Λ :=
-  Bl.general_b_fact_second_form.goal1 hΛ v
+alias exists_smul_mem := _root_.Bl.general_b_fact_second_form.goal1
 
 scoped instance latAct (h : V →ₗ⋆[K] V →ₗ[K] K) :
     MulAction (Formalism.HermitianLatticesTheory.isom h) (Submodule (𝓞 K) V) where

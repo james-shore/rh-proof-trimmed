@@ -68,18 +68,7 @@ theorem psiK_continuous (A : Et F E) {ψ : AddChar F ℂ} (hψ : IsStdChar ψ) :
   have h1 : Continuous (Algebra.trace F A.K) := IsModuleTopology.continuous_of_linearMap _
   exact (DualLattice.stdChar_continuous hψ).comp h1
 
-theorem NL_continuous [Unram F E] (A : Et F E) : Continuous A.NL := by
-  obtain ⟨⟨b⟩, -⟩ := GlobalTheory.JR.Et.quadratic_structure F E A
-  have : A.NL = fun y => (Algebra.leftMulMatrix b y).det := by
-    funext y; exact Algebra.norm_eq_matrix_det b y
-  rw [this]
-  refine Continuous.matrix_det ?_
-  refine continuous_pi fun i => continuous_pi fun j => ?_
-  have hlin : Continuous (((b.coord i).comp (LinearMap.mulRight A.K (b j))).restrictScalars F) :=
-    IsModuleTopology.continuous_of_linearMap _
-  convert hlin using 1
-  funext y
-  simp [Algebra.leftMulMatrix_eq_repr_mul]
+alias NL_continuous := _root_.GlobalTheory.JR.EtMeas.continuous_NL
 
 end GlobalTheory.JR.Et
 

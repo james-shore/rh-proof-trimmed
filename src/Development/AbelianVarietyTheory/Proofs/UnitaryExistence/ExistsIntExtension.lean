@@ -95,16 +95,7 @@ theorem exists_int_extension {L V : Type} [AddCommGroup L] [AddCommGroup V] [Mod
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem exists_int_smul_mem {V : Type} [AddCommGroup V] [Module E V] [Module (𝓞 E) V]
-    [IsScalarTower (𝓞 E) E V] (Λ : Submodule (𝓞 E) V) (v : V)
-    (hv : v ∈ Submodule.span E (Λ : Set V)) : ∃ N : ℤ, N ≠ 0 ∧ (N : E) • v ∈ Λ := by
-  first
-  | exact @_root_.GlobalTheory.IntMulMem.exists_int_mul_mem
-  | exact _root_.GlobalTheory.IntMulMem.exists_int_mul_mem
-  | (apply _root_.GlobalTheory.IntMulMem.exists_int_mul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntMulMem.exists_int_mul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntMulMem.exists_int_mul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntMulMem.exists_int_mul_mem ..)
+alias exists_int_smul_mem := _root_.GlobalTheory.IntMulMem.exists_int_mul_mem
 
 variable [IsCMField E]
 

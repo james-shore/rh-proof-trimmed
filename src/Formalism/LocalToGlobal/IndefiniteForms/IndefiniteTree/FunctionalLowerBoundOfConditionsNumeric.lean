@@ -1019,7 +1019,7 @@ theorem functional_lower_bound_of_conditions [_root_.NumberField.IsTotallyComple
     have hμ : S.μ w = Bs.μ0 := by
       by_contra h; exact hw1 ((hH0.2 w).mpr h)
     simp only [hadef, hμ, hμ0, vw_one', hFPs w hw2, add_zero]
-  have hincl := PI.local_global_inclusion' K (Fin O.n → K) (S.RR.map ((Matrix.mulVecLin Ψ).restrictScalars (𝓞 K))) O.M
+  have hincl := _root_.PI.LocGlobInclWork.main K (Fin O.n → K) (S.RR.map ((Matrix.mulVecLin Ψ).restrictScalars (𝓞 K))) O.M
     T a (fun w _ => hloc w) (fun w hw => by
       refine le_trans (hloc w) (localization_mono _ ?_)
       rw [ha0 w hw, neg_zero, zpow_zero]

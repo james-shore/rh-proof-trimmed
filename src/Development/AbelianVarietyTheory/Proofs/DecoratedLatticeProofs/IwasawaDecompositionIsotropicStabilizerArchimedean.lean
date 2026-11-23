@@ -122,7 +122,7 @@ theorem local_at_arch {F E : Type} [Field F] [NumberField F] [Field E] [NumberFi
       b⁻¹ * k * b ∈ UJ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR w.Completion σ) (1 : Matrix (Fin n) (Fin n) _) ∧
       ∃ β : Matrix (Fin r) (Fin r) (TensorProduct F w.Completion E), (g * k⁻¹).1 * X = X * β := by
   obtain ⟨τ⟩ : Nonempty (EmbOver E w) := inferInstance
-  exact local_decomp _ (infEmb τ) (infEmb_bijective hc τ) (fun x => (infEmb_sigR hc τ x).symm) b ε hb X hX g hg
+  exact _root_.GlobalTheory.Core.Rk.IwArch.exists_compact_keep_cols _ (infEmb τ) (infEmb_bijective hc τ) (fun x => (infEmb_sigR hc τ x).symm) b ε hb X hX g hg
 
 theorem mem_stabArch_of {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E) (w : InfinitePlace F)
@@ -144,7 +144,7 @@ theorem iwasawa_stab_arch : ∀ (D : D7) (T T₀ : HSp D) (r : ℕ) (d : HypDec 
     have e : finHom T k = GlobalTheory.AdelicU.matHom (Af D.host.F) D.sp.cm.sig T.gram (projFin D.sp.cm.sig T.gram k) := rfl
     rw [e, hkf, map_one]
   refine ⟨y * k⁻¹, ?_, k, ?_, ?_, by group⟩
-  · refine mem_stab_of_arch d _ ?_ fun w => ?_
+  · refine _root_.GlobalTheory.Core.Rk.IwGlob.mem_stab_of_keeps d _ ?_ fun w => ?_
     · show finHom T (y * k⁻¹) = 1
       rw [map_mul, map_inv, hfk, inv_one, mul_one]
       exact hy

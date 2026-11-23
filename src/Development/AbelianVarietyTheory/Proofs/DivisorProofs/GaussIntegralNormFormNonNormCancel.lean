@@ -154,8 +154,8 @@ theorem gauss_cancel : ∀ (F : Type) [Field F] [CharZero F] [ValuativeRel F] [T
     congr 1
     by_cases hu : u ∈ (Units.map (Algebra.norm F : E →* F)).range
     · rw [hn1 _ _ hu, hn1 _ _ hu]
-    · have h1 := GlobalTheory.T.mul_mem_range_norm_of_not_mem F E c δ hE u t hu ht
-      have h2 := GlobalTheory.T.mul_mem_range_norm_of_not_mem F E c δ hE t t ht ht
+    · have h1 := _root_.GlobalTheory.KSp.NormIndex.mul_mem_range_norm F E c δ hE u t hu ht
+      have h2 := _root_.GlobalTheory.KSp.NormIndex.mul_mem_range_norm F E c δ hE t t ht ht
       have h3 := hn1 1 _ h1
       have h4 := hn1 t _ (mul_mem h1 (inv_mem h2))
       rw [mul_one] at h3

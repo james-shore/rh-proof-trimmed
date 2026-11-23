@@ -61,6 +61,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HyperbolicPlaceProducts.SubgroupIndexCounts.OmegaPow
 
 @[expose] public section
 
@@ -69,14 +70,14 @@ open scoped BigOperators ComplexConjugate
 
 namespace Formalism.HermitianLatticeCounting.P
 
-theorem submodule_automorphism_count : CardSubmodulesAndLinearEquivBounds := ⟨Formalism.SLP.Final.submoduleCountDed, Formalism.SLP.GlobalBoundRefinements.Final.autCount⟩
+theorem submodule_automorphism_count : CardSubmodulesAndLinearEquivBounds := ⟨_root_.Formalism.SLP.P.card_submodules_le_of_dedekind, _root_.Formalism.SLP.GlobalBoundRefinements.P.card_linearEquiv_le⟩
 
 theorem ideal_count_statement : CardSubmodulesOfIndexLePow := by
   intro E _ _ M _ _ _ _ k j hj hk
-  obtain ⟨hfin, hcard⟩ := Formalism.SLP.Final.submoduleIndexCountO E M j hj
+  obtain ⟨hfin, hcard⟩ := _root_.Formalism.SLP.P.card_submodules_of_index_le E M j hj
   refine ⟨hfin, ?_⟩
   have hd : 1 ≤ finrank ℚ E := Module.finrank_pos
-  have hom := Formalism.SLP.Final.omegaPow (finrank ℚ E) j hd hj
+  have hom := _root_.Formalism.SLP.P.pow_primeFactors_length_le (finrank ℚ E) j hd hj
   have hj1 : (1 : ℝ) ≤ j := by exact_mod_cast hj
   calc ((({N : Submodule (NumberField.RingOfIntegers E) M | N.toAddSubgroup.index = j}.ncard : ℕ)) : ℝ)
       ≤ ((finrank ℚ E ^ (Nat.primeFactorsList j).length *
@@ -455,7 +456,7 @@ theorem ideal_norm_le_count : IdealNormLeCount := by
     rw [← Set.ncard_eq_toFinset_card _ (Ideal.finite_setOf_absNorm_eq _)]
     have e1 : (({I : Ideal (𝓞 K) | Ideal.absNorm I = n}.ncard : ℕ) : ℝ) ≤ (d : ℝ) ^ (Nat.primeFactorsList n).length := by
       exact_mod_cast normCount_lemma K n hn1
-    have e2 := Formalism.SLP.Final.omegaPow d n hd hn1
+    have e2 := _root_.Formalism.SLP.P.pow_primeFactors_length_le d n hd hn1
     have e3 : (n : ℝ) ^ Real.logb 2 d ≤ x ^ Real.logb 2 d :=
       Real.rpow_le_rpow (by positivity) ((Nat.cast_le.2 hn2).trans (Nat.floor_le hx0.le)) hL
     linarith

@@ -155,7 +155,7 @@ theorem facts : ∃ N : ℕ, En.i d ∈ nonZeroDivisors En.Q ∧ ∀ (x : En.Q) 
     rw [← hI]; exact pow_mul_mem_of_pow_mul_mem B.I N hN
   have tb : TopBasis En.i (Ideal.span {(l : B.A)} ⊔ Ideal.span {d}) (Digits l) := by
     rw [← hI]; exact En.tb
-  exact ⟨N, GlobalTheory.T.regular_and_bounded_torsion_of_adicTopologicalBasis l B.A En.Q En.i d N (Digits l) hnz hb tb⟩
+  exact ⟨N, _root_.GlobalTheory.BSP.TopBasis.regular_and_torsion_bounded l B.A En.Q En.i d N (Digits l) hnz hb tb⟩
 
 def strQ : ↥(OL K) →+* En.Q ⧸ Ideal.span {En.i d} :=
   (Ideal.quotientMap (Ideal.span {En.i d}) En.i (le_comap_span En.i B.I d hI)).comp B.str
@@ -171,7 +171,7 @@ abbrev obj : Obj l ↥(OL K) where
   I := Ideal.span {En.i d}
   inv := invertible_span_singleton (facts hI En).choose_spec.1
   complete := by rw [← map_sup_span En.i B.I d hI]; exact En.tb.complete
-  l_mem := En.DQ.l_mem_of_isUnit hl.out.pos (by rw [← En.i_δ d]; exact (GlobalTheory.T.isUnit_delta_of_prism_ideal_eq_span l _ B d hI).map En.i)
+  l_mem := En.DQ.l_mem_of_isUnit hl.out.pos (by rw [← En.i_δ d]; exact (_root_.GlobalTheory.BSP.isUnit_δ_of_I_eq_span l _ B d hI).map En.i)
   bdd := ⟨(facts hI En).choose, quot_bdd_of_mem (En.i d) _ (facts hI En).choose_spec.2⟩
   str := strQ hI En
 
@@ -223,7 +223,7 @@ theorem univ (hF : IsFrame bk B d p) (g0 : Hom bk.prism (obj hF.1 En))
     (g : Hom bk.prism C) : ∃! h : Hom (obj hF.1 En) C, h.comp (inl hF.1 En) = f ∧ h.comp g0 = g := by
   have hdI : d ∈ B.I := by rw [hF.1]; exact Ideal.mem_span_singleton_self d
   have hCI : C.I = Ideal.span {f.f d} :=
-    (GlobalTheory.T.prism_hom_map_ideal_eq l _ B C f).symm.trans (map_eq_span f.f B.I d hF.1)
+    (_root_.GlobalTheory.Prism.Rigid.map_I_eq l _ B C f).symm.trans (map_eq_span f.f B.I d hF.1)
   have hnz : f.f d ∈ nonZeroDivisors C.A := by
     have h := C.inv; rw [hCI] at h; exact GlobalTheory.T.mem_nonZeroDivisors_of_invertible_span_singleton' _ _ h
   obtain ⟨hgδ, hgs⟩ := GlobalTheory.T.breuilKisinHom_image_X_delta_zero_lifts_uniformizer l K bk C g

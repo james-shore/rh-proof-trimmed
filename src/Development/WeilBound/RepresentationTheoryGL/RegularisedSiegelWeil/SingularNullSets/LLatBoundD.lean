@@ -46,6 +46,7 @@ import Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.SiegelWe
 import Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.CoefDataExists
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.BigCellDefs
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.ThetaOrbits
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EvalVAlgebraMapMem
 
 @[expose] public section
 
@@ -75,7 +76,7 @@ theorem exists_intOpen (V : HSp D) : ∃ U : Subgroup (GA D V), IsOpen (U : Set 
     intro A B hA hB i j
 
     rw [Matrix.mul_apply, map_sum]
-    exact sum_mem fun l _ => by rw [map_mul]; exact GlobalTheory.CompanionTheory.Ipf.Bdd.mul_mem_int (hA i l) (hB l j)
+    exact sum_mem fun l _ => by rw [map_mul]; exact _root_.GlobalTheory.IdemPrime.mul_mem_int (hA i l) (hB l j)
   have hone : ∀ i j, finPart D ((1 : Mx D V.rank V.rank) i j) ∈ intAE D := by
     intro i j
     rw [Matrix.one_apply]

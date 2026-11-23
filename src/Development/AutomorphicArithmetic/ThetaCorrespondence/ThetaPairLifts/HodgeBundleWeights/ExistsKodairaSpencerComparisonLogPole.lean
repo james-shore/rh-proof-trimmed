@@ -57,7 +57,7 @@ noncomputable section
 namespace GlobalTheory.LogPole
 theorem exists_kodaira_spencer_comparison_log_pole : _root_.GlobalTheory.CovTop.Hypotheses'' → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (TF : TorFlag Xo c), ∃ s : ℚ, s ≠ 0 ∧ KSCompare TF s := by
   intro PP E _ _ _ H Dw l Xo c TF
-  obtain ⟨s, hs0, hcore⟩ := _root_.GlobalTheory.T.cech_kodaira_spencer_class_constant PP
+  obtain ⟨s, hs0, hcore⟩ := _root_.GlobalTheory.CechKS.exists_constant_cech_kodaira_spencer_value PP
   refine ⟨s, hs0, ?_⟩
   intro U n e v hv D Θ hΘ K _ _ P hU hP y' hU' hy' hev
   obtain ⟨A, _, A', _, π, π', i, h, ψ, ub, hb, g, hπ, hπ', hi, hpol, hu, hbl, hrow, hA, hgA, hA', hgA', hL⟩ :=

@@ -44,18 +44,6 @@ section
 open MeasureTheory ValuativeRel Matrix
 noncomputable section
 namespace GlobalTheory.ArchTens.Unfold
-open GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.RootEx GlobalTheory.FunObj GlobalTheory.SumSize Formalism.BasicNotions
-section Integral
-variable {X : Type} [AddCommGroup X] [TopologicalSpace X] [IsTopologicalAddGroup X]
-end Integral
-section Local
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-end Local
-section Grid
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-variable {D : D7} (σ : D.what₂.LL →+* ℂ)
-variable [MeasurableSpace k] [BorelSpace k]
-end Grid
 end GlobalTheory.ArchTens.Unfold
 namespace GlobalTheory.ArchTens.Unfold
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
@@ -82,9 +70,3 @@ end GlobalTheory.ArchTens.Unfold
 end
 end
 
-section
-open GlobalTheory.SumSize GlobalTheory.RowClaim GlobalTheory.ArchTens
-
-theorem _root_.GlobalTheory.T.archimedean_tensor_factor_unfolding : _root_.GlobalTheory.FunPr.ThetaLocalInputs → BigC fun _ ch C _ => FlipAt ch (C / 2) → DatAt ch C := by
-  first | exact @_root_.GlobalTheory.ArchTens.Unfold.archimedean_tensor_unfold_datum | exact _root_.GlobalTheory.ArchTens.Unfold.archimedean_tensor_unfold_datum | (intros; apply _root_.GlobalTheory.ArchTens.Unfold.archimedean_tensor_unfold_datum <;> assumption)
-end

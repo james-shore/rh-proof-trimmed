@@ -103,7 +103,7 @@ theorem exists_cp_descent : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
   have k3 := key _ _ _ hf3 A3
   have k4 := key _ _ _ hf4 A4
 
-  obtain ⟨rig, hr, -⟩ := GlobalTheory.T.exists_transported_generator_descend_bijective_app hp hL P'.L.isLB M.π k0.1 (K := PUnit) (φ' := fun _ => eSec G')
+  obtain ⟨rig, hr, -⟩ := _root_.GlobalTheory.Mum.BijDescent.exists_descend_bij hp hL P'.L.isLB M.π k0.1 (K := PUnit) (φ' := fun _ => eSec G')
     (φ := fun _ => eSec G) (fun _ => (cubeMapOf h).e_comm) P'.L.rig P'.L.rigGen
 
   have hι : (ι[G']).left ≫ β = β ≫ (ι[G]).left := by
@@ -116,11 +116,11 @@ theorem exists_cp_descent : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
     fin_cases k
     · exact hι
     · exact (Category.id_comp _).trans (Category.comp_id _).symm
-  obtain ⟨s, hs, vs⟩ := GlobalTheory.T.exists_transported_generator_descend_bijective_app hp hL P'.L.isLB β k1.1 hc₂ P'.sym P'.sym_gen
+  obtain ⟨s, hs, vs⟩ := _root_.GlobalTheory.Mum.BijDescent.exists_descend_bij hp hL P'.L.isLB β k1.1 hc₂ P'.sym P'.sym_gen
 
   have hc : ∀ I : thK.{0}, thφ G' (x3 G') I ≫ β = (cubeMapOf h).F3 ≫ thφ G (x3 G) I :=
     fun I => (cubeMapOf h).psum_comm I.down
-  obtain ⟨t, ht, vt⟩ := GlobalTheory.T.exists_transported_generator_descend_bijective_app hp hL P'.L.isLB (cubeMapOf h).F3 k3.1 hc P'.c.t P'.c.isGen
+  obtain ⟨t, ht, vt⟩ := _root_.GlobalTheory.Mum.BijDescent.exists_descend_bij hp hL P'.L.isLB (cubeMapOf h).F3 k3.1 hc P'.c.t P'.c.isGen
   let L₁ : RigLB G := ⟨L, rig, hL, hr⟩
   let Wf : ∀ {T : Over M.S} (z : T.left), ((T.left ⟶ G.left) → L.ι) → ((T.left ⟶ G'.left) → P'.L.L.ι) →
       (T ⟶ G') → (T.left.presheaf.stalk z)ˣ := fun z I J x => gw w x.left z (I (x.left ≫ β)) (J x.left)
@@ -151,7 +151,7 @@ theorem exists_cp_descent : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
       simp only [ofMul_mul, ofMul_inv, inv_inv]
       abel
   subst hct
-  have symCub := GlobalTheory.T.cubeSymm_compat_descends_from_pushed_points h L₁ c s hs (fun U => (k3.1 U).1) k3.2 fun T z I hI x y u => by
+  have symCub := _root_.GlobalTheory.CubeSymDescent.of_push h L₁ c s hs (fun U => (k3.1 U).1) k3.2 fun T z I hI x y u => by
     obtain ⟨J, hJ⟩ := GlobalTheory.UU.exists_good_pt P'.L.isLB z
     refine GlobalTheory.UU.sym_cub_alg (MonoidHom.id _) (fun a => (Wf z I J a)⁻¹) (θ := cubV P'.c z J)
       (θ' := fun a b d => cubV c z I (pushHom h T a) (pushHom h T b) (pushHom h T d))

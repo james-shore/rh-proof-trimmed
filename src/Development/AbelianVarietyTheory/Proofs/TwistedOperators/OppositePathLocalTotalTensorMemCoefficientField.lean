@@ -135,7 +135,7 @@ theorem phiA_mem {A A' D : Type} [Fintype A] [DecidableEq A] [Fintype A'] [Decid
   · unfold fFun
     split_ifs with hX
     · exact F.mul_mem (F.mul_mem (hνF _) (apow_nat_half_mem F habs _ _))
-        (smallF_mem F hJo hJK σ ν hϖ he hν hram hνF habs c hΨ hΨF _)
+        (_root_.GlobalTheory.SmallFInF.smallF_mem F hJo hJK σ ν hϖ he hν hram hνF habs c hΨ hΨF _)
     · exact F.zero_mem
   · exact F.zero_mem
 
@@ -237,8 +237,8 @@ theorem Tflip_mem_range : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 
   have hchi : ∀ i, 1 ≤ i → i ≤ D.R.m → ∀ x, ((ch.G.ch.chiH i).loc w x : ℂ) ∈ K :=
     fun i a b x => hK _ (hF.chars.chi i a b w x)
   have habs : ∀ u : (Kw w)ˣ, apow u (1 / 2) ∈ K :=
-    GlobalTheory.TflipField.apow_half_mem K w (hK _ (hF.sqrt w (.inr ⟨t, hw⟩)))
-  have hψ := GlobalTheory.TflipField.psiAt_mem (W := ch.W) K (fun z hz => hK _ (hF.roots t w hw z hz)) h00.cond
+    _root_.GlobalTheory.HalfPowField.apow_half_mem_of_sqrt K w (hK _ (hF.sqrt w (.inr ⟨t, hw⟩)))
+  have hψ := _root_.GlobalTheory.FunObj.psiAt_mem_subfield_of_roots (W := ch.W) K (fun z hz => hK _ (hF.roots t w hw z hz)) h00.cond
   have hν : ∀ x ∈ flipOrder D.R.m, CondLE (unifAt w) (depthAt ch.G w) ((locGrid ch.G t w).nu x.1 x.2) ∧
       ¬ IsUnram ((locGrid ch.G t w).nu x.1 x.2) ∧ ∀ u, ((locGrid ch.G t w).nu x.1 x.2 u : ℂ) ∈ K := by
     intro x hx
@@ -249,7 +249,7 @@ theorem Tflip_mem_range : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 
     refine ⟨by rw [← e]; exact hs.condν, by rw [← e]; exact hs.ram, GlobalTheory.TflipField.nu_mem K t w hmu hxi hchi hi hj⟩
   have key := GlobalTheory.TflipField.flips_mem K h00.unif h00.cond h00.one_le habs hψ (flipOrder D.R.m)
     (givenStage t w ch.S.B Φ) hν (canFlip_flipOrder _).1 (fun X => GivenAdm.givenLevel_open hL hw X) hadm.tensor
-    (GlobalTheory.TflipField.givenStage_mem K ch.S.B t Φ w hmu hxi) z
+    (_root_.GlobalTheory.GivenField.tensor_givenStage_mem K ch.S.B t Φ w hmu hxi) z
   exact RingHom.mem_fieldRange.1 key
 
 end GlobalTheory.RowTest

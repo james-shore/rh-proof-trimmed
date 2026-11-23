@@ -93,7 +93,7 @@ theorem UpperTheory.Gal.TP.Sub.clSub_holds :
   have pM : IsPstAt P Bw ((rk1 μ).comp (Dec (F := E) A).subtype) :=
     hP l P AI hT E Ω A O Bw 1 _ (cμ.comp ci) d1
   have pT := hP l P AI hT E Ω A O Bw (a + 1) _ cS d2
-  have hw := GlobalTheory.T.weilDeligneParamAboveL_directSum_potSemistable l P AI hT ι E Ω A w O Bw h hj a 1 _ _ pS pM pT
+  have hw := _root_.GlobalTheory.Pst.SumParam.wdAt_sumRep l P AI hT ι E Ω A w O Bw h hj a 1 _ _ pS pM pT
   have hu := (GlobalTheory.PstLaws.unr_wdAt_iff Bw h hj P ι _ pT).2 c2
   rw [hw] at hu p2
   refine ⟨(GlobalTheory.PstLaws.unr_wdAt_iff Bw h hj P ι _ pS).1 ((hW E Ω A w h _ _).1 hu), dS,

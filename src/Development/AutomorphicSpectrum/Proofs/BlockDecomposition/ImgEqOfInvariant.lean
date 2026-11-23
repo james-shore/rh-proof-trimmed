@@ -235,14 +235,9 @@ section Lin
 
 variable {K V : Type} [Field K] [AddCommGroup V] [Module K V]
 
-theorem aeval_intertwine {M N : Type} [AddCommGroup M] [Module K M] [AddCommGroup N] [Module K N] (φ : M →ₗ[K] N)
-    (f : Module.End K M) (f' : Module.End K N) (h : ∀ x, φ (f x) = f' (φ x)) (p : K[X]) (x : M) :
-    φ (aeval f p x) = aeval f' p (φ x) :=
-  _root_.UpperTheory.Reformulated.B.AevalIntertwining.aeval_intertwine φ f f' h p x
-
 theorem aeval_restrict_coe (f : Module.End K V) (W : Submodule K V) (hW : ∀ x ∈ W, f x ∈ W) (p : K[X]) (w : W) :
     ((aeval (f.restrict hW : Module.End K W) p) w : V) = aeval f p (w : V) :=
-  (aeval_intertwine W.subtype (f.restrict hW) f (fun _ => rfl) p w)
+  (_root_.UpperTheory.Reformulated.B.AevalIntertwining.aeval_intertwine W.subtype (f.restrict hW) f (fun _ => rfl) p w)
 
 theorem aeval_mem (f : Module.End K V) (W : Submodule K V) (hW : ∀ x ∈ W, f x ∈ W) (p : K[X]) {w : V} (hw : w ∈ W) :
     aeval f p w ∈ W := by
@@ -252,7 +247,7 @@ theorem aeval_mem (f : Module.End K V) (W : Submodule K V) (hW : ∀ x ∈ W, f 
 
 theorem aeval_mapQ (f : Module.End K V) (W : Submodule K V) (hW : ∀ x ∈ W, f x ∈ W) (p : K[X]) (v : V) :
     aeval (W.mapQ W f (fun x hx => hW x hx) : Module.End K (V ⧸ W)) p (W.mkQ v) = W.mkQ (aeval f p v) :=
-  (aeval_intertwine W.mkQ f (W.mapQ W f (fun x hx => hW x hx)) (fun _ => rfl) p v).symm
+  (_root_.UpperTheory.Reformulated.B.AevalIntertwining.aeval_intertwine W.mkQ f (W.mapQ W f (fun x hx => hW x hx)) (fun _ => rfl) p v).symm
 
 theorem invariant_eq_ker [FiniteDimensional K V] (f : Module.End K V) (hs : Squarefree f.charpoly) (W : Submodule K V)
     (hW : ∀ x ∈ W, f x ∈ W) : ∃ a b : K[X], a * b = f.charpoly ∧ W = LinearMap.ker (aeval f a) := by
@@ -337,7 +332,7 @@ theorem exists_atoms [FiniteDimensional K V] (f : Module.End K V) (hs : Squarefr
     refine Disjoint.mono_right hle (disjoint_ker_aeval_of_isCoprime f ?_)
     exact IsCoprime.prod_right fun Q hQ =>
       hcop _ a.2.1 _ (Finset.mem_of_mem_erase hQ) (Finset.ne_of_mem_erase hQ).symm
-  · have h1 : aeval f a.1 (f x) = f (aeval f a.1 x) := (aeval_intertwine f f f (fun _ => rfl) a.1 x).symm
+  · have h1 : aeval f a.1 (f x) = f (aeval f a.1 x) := (_root_.UpperTheory.Reformulated.B.AevalIntertwining.aeval_intertwine f f f (fun _ => rfl) a.1 x).symm
     have h2 : aeval f a.1 x = 0 := hx
     show aeval f a.1 (f x) = 0
     rw [h1, h2, map_zero]

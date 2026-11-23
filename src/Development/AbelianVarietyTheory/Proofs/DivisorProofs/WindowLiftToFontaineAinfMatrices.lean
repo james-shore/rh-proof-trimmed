@@ -90,20 +90,6 @@ theorem c_cmpF : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed 
 
 theorem c_cmpG : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (v : Valuation C NNReal) (O : Type) [CommRing O] [Algebra O C] [Fact ¬IsUnit (p : O)] [IsAdicComplete (Ideal.span {(p : O)}) O] [IsDomain O], v.Integers O → ∀ (ε : PreTilt O p) (hε : IsPrimitiveSystem ε), ∀ F : BFrame ε, ∀ (d k h : ℕ) (U U' X : Matrix (Fin d ⊕ Fin k) (Fin d ⊕ Fin k) F.B) (u l : F.B) (Gm : Matrix (Fin h) (Fin d ⊕ Fin k) F.B) (W : Matrix (Fin d ⊕ Fin k) (Fin h) F.B), IsUnit U → IsNil F.θ F.σ (U.transpose⁻¹ * blk d k 1 (p : F.B)) → IsNil F.θ F.σ (U * blk d k (p : F.B) 1) → F.τ ∣ u - 1 → X * (U' * blk d k (p : F.B) 1) = U * blk d k (p : F.B) 1 * X.map F.σ → (∀ i j, F.τ ∣ X i j - (1 : Matrix (Fin d ⊕ Fin k) (Fin d ⊕ Fin k) F.B) i j) → F.σ l = u * l → F.τ ∣ l - 1 → U * blk d k (p : F.B) 1 * Gm.transpose.map F.σ = (p : F.B) • Gm.transpose → U' * blk d k (p : F.B) 1 * W.map F.σ = ((p : F.B) * u) • W → (∀ i m, F.τ ∣ W i m - Gm m i) → X * W = l • Gm.transpose := GlobalTheory.T.ainfFrame_solution_mul_congr_Gm_transpose
 
-theorem frob_phiInv {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] (a : Ainf p O) :
-    WittVector.frobenius (phiInv p O a) = a := by
-  ext n
-  rw [WittVector.coeff_frobenius_charP, phiInv, WittVector.map_coeff]
-  exact frobeniusEquiv_symm_pow_p _ p _
-
-theorem phiInv_frob {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] (a : Ainf p O) :
-    phiInv p O (WittVector.frobenius a) = a := by
-  ext n
-  rw [phiInv, WittVector.map_coeff, WittVector.coeff_frobenius_charP]
-  exact (_root_.frobeniusEquiv (PreTilt O p) p).symm_apply_apply _
-
 theorem blk_mul_blk {R : Type} [CommRing R] (d k : ℕ) (a b c e : R) :
     blk d k a b * blk d k c e = blk d k (a * c) (b * e) := by
   rw [blk, blk, blk, Matrix.diagonal_mul_diagonal]
@@ -118,9 +104,6 @@ theorem blk_same {R : Type} [CommRing R] (d k : ℕ) (a : R) :
   split_ifs with hij
   · subst hij; rcases i with i | i <;> simp
   · simp
-
-theorem blk_transpose {R : Type} [CommRing R] (d k : ℕ) (a b : R) :
-    (blk d k a b).transpose = blk d k a b := Matrix.diagonal_transpose _
 
 theorem blk_map {R S : Type} [CommRing R] [CommRing S] (f : R →+* S) (d k : ℕ) (a b : R) :
     (blk d k a b).map f = blk d k (f a) (f b) := by
@@ -168,7 +151,7 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
     have h2 := congrArg (algebraMap O C) h1
     rw [map_zero, map_natCast] at h2
     exact (Nat.cast_ne_zero.2 (Fact.out : p.Prime).ne_zero) h2.symm
-  obtain ⟨V, hV, hUV⟩ := c_lift p C v O hv ε hε F _ U hU
+  obtain ⟨V, hV, hUV⟩ := _root_.GlobalTheory.WinLift.exists_unit_lift_mod_tau p C v O hv ε hε F _ U hU
   obtain ⟨F0, F1, hF0⟩ : ∃ F0 F1 : Matrix (Fin d ⊕ Fin k) (Fin h) (Ainf p O),
       ∀ i m, Y i m = F.a (F0 i m) + F.τ * F.a (F1 i m) := by
     choose F0 F1 hF0 using fun i m => F.gen (Y i m)
@@ -209,12 +192,12 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
 
   have hF0μ : ∀ i m, Sandwich.mu ε ∣ (F0.map
       WittVector.frobenius - blk d k (p : Ainf p O) 1 * V.transpose * F0) i m := by
-    have := c_modtau p C v O hv ε hε F _ (Fin h) 1 (blk d k (p : F.B) 1 * U.transpose) 1
+    have := _root_.GlobalTheory.WinLift.mu_dvd_of_mod_tau p C v O hv ε hε F _ (Fin h) 1 (blk d k (p : F.B) 1 * U.transpose) 1
       (blk d k (p : Ainf p O) 1 * V.transpose) Y F0 hone hL hYF (by rw [Matrix.one_mul, hY])
     simpa only [Matrix.one_mul] using this
-  have hdivF := c_divF p C v O hv ε hε F d k h V F0 hV hF0μ (fun i m => by rw [hθY]; exact hYθ i m)
-  have hnilF := c_nilF p C v O hv ε hε F d k U V hU hV hUV hN2
-  choose Fw hFw1 hFw2 using fun m : Fin h => c_solve p C v O hv ε hε _
+  have hdivF := _root_.GlobalTheory.WinLift.frob_lift_dvd p C v O hv ε hε F d k h V F0 hV hF0μ (fun i m => by rw [hθY]; exact hYθ i m)
+  have hnilF := _root_.GlobalTheory.WinLift.NilF.isNil_frob p C v O hv ε hε F d k U V hU hV hUV hN2
+  choose Fw hFw1 hFw2 using fun m : Fin h => _root_.GlobalTheory.WTop.main p C v O hv ε hε _
     (V.transpose⁻¹ * blk d k 1 (WittVector.frobenius (xi ε))) (fun i => F0 i m) hnilF
     (fun i => hdivF i m)
 
@@ -238,11 +221,11 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
   let Ψ := (blk d k ξ' 1 * V.transpose).map (phiInv p O)
   let Ψ' := (V.transpose⁻¹ * blk d k 1 ξ').map (phiInv p O)
   have hfinj : ∀ x y : Ainf p O, WittVector.frobenius x = WittVector.frobenius y → x = y :=
-    fun x y hxy => by rw [← phiInv_frob x, hxy, phiInv_frob]
+    fun x y hxy => by rw [← _root_.GlobalTheory.Dieudonne.phiInv_frobenius x, hxy, _root_.GlobalTheory.Dieudonne.phiInv_frobenius]
   have hFaΨ : Fa = Ψ * Fa.map (phiInv p O) := by
     have : (Ψ * Fa.map (phiInv p O)).map WittVector.frobenius = Fa.map WittVector.frobenius := by
       rw [Matrix.map_mul, hφFa, Matrix.map_map, Matrix.map_map]
-      have h1 : (WittVector.frobenius ∘ phiInv p O) = id := funext frob_phiInv
+      have h1 : (WittVector.frobenius ∘ phiInv p O) = id := funext _root_.GlobalTheory.Dieudonne.frobenius_phiInv
       rw [h1, Matrix.map_id, Matrix.map_id]
     refine Matrix.ext fun i m => ?_
     exact (hfinj _ _ (congr_fun (congr_fun this i) m)).symm
@@ -254,18 +237,18 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
     rw [← Matrix.map_mul, e]
     refine Matrix.ext fun i j => ?_
     simp only [Matrix.map_apply, Matrix.smul_apply, Matrix.one_apply, smul_eq_mul]
-    split_ifs <;> simp [hξ', phiInv_frob]
+    split_ifs <;> simp [hξ', _root_.GlobalTheory.Dieudonne.phiInv_frobenius]
 
   have hG0μ : ∀ i m, Sandwich.mu ε ∣ (V * blk d k (p : Ainf p O) 1 * G0.map WittVector.frobenius -
       (p : Ainf p O) • G0) i m := by
-    have := c_modtau p C v O hv ε hε F _ (Fin h) (U * blk d k (p : F.B) 1)
+    have := _root_.GlobalTheory.WinLift.mu_dvd_of_mod_tau p C v O hv ε hε F _ (Fin h) (U * blk d k (p : F.B) 1)
       ((p : F.B) • (1 : Matrix (Fin d ⊕ Fin k) (Fin d ⊕ Fin k) F.B)) (V * blk d k (p : Ainf p O) 1)
       ((p : Ainf p O) • (1 : Matrix (Fin d ⊕ Fin k) (Fin d ⊕ Fin k) (Ainf p O))) Gm.transpose G0
       hR hpone (fun i m => hGG i m) (by rw [hG, Matrix.smul_mul, Matrix.one_mul])
     simpa only [Matrix.smul_mul, Matrix.one_mul] using this
-  have hdivG := c_divG p C v O hv ε hε F d k h V G0 hG0μ (fun j m => by rw [hθG]; exact hGθ m j)
-  have hnilG := c_nilG p C v O hv ε hε F d k U V hUV hN1
-  choose Gw hGw1 hGw2 using fun m : Fin h => c_solve p C v O hv ε hε _
+  have hdivG := _root_.GlobalTheory.WinLift.lift_solves_div_frob_xi_mu p C v O hv ε hε F d k h V G0 hG0μ (fun j m => by rw [hθG]; exact hGθ m j)
+  have hnilG := _root_.GlobalTheory.WinLift.isNil_V_blk_frob_xi p C v O hv ε hε F d k U V hUV hN1
+  choose Gw hGw1 hGw2 using fun m : Fin h => _root_.GlobalTheory.WTop.main p C v O hv ε hε _
     (V * blk d k ξ' 1) (fun i => G0 i m) hnilG (fun i => hdivG i m)
   let Ga : Matrix (Fin h) (Fin d ⊕ Fin k) (Ainf p O) := Matrix.of fun m i => Gw m i
   have hGaeq : ξ' • Ga.transpose = V * blk d k ξ' 1 * Ga.transpose.map WittVector.frobenius :=
@@ -274,7 +257,7 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
     have e : ξ' • Ga = Ga.map WittVector.frobenius * blk d k ξ' 1 * V.transpose := by
       have := congrArg Matrix.transpose hGaeq
       rw [Matrix.transpose_smul, Matrix.transpose_transpose, Matrix.transpose_mul,
-        Matrix.transpose_mul, blk_transpose, Matrix.transpose_map, Matrix.transpose_transpose,
+        Matrix.transpose_mul, _root_.GlobalTheory.CmpB.blk_transpose, Matrix.transpose_map, Matrix.transpose_transpose,
         ← Matrix.mul_assoc] at this
       exact this
     rw [Matrix.map_mul, hφFa, ← Matrix.mul_assoc, ← Matrix.mul_assoc, ← e, Matrix.smul_mul]
@@ -309,7 +292,7 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
       Matrix.ext fun i m => F.σ_a _
     rw [e1, hφFa, Matrix.map_mul, Matrix.map_mul, blk_map, haξ, map_one, Matrix.transpose_map]
     show _ = blk d k (p : F.B) 1 * (V.map F.a * blk d k u 1).transpose * Fa.map F.a
-    rw [Matrix.transpose_mul, blk_transpose, ← Matrix.mul_assoc (blk d k (p : F.B) 1), blk_mul_blk,
+    rw [Matrix.transpose_mul, _root_.GlobalTheory.CmpB.blk_transpose, ← Matrix.mul_assoc (blk d k (p : F.B) 1), blk_mul_blk,
       mul_one]
   have hZY : ∀ i m, F.τ ∣ Z i m - Y i m := by
     intro i m
@@ -317,7 +300,7 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
       simp only [Z, Fa, Matrix.map_apply, Matrix.of_apply, map_sub]; ring
     rw [e]
     exact dvd_sub (hdvdμ _ (hFw1 m i)) (hYF i m)
-  have hZ := c_cmpF p C v O hv ε hε F d k h U U' X Y Z hU' hn1' hn2' hX2 hX1 hY hZσ hZY
+  have hZ := _root_.GlobalTheory.CmpB.comparison p C v O hv ε hε F d k h U U' X Y Z hU' hn1' hn2' hX2 hX1 hY hZσ hZY
   let W := Ga.transpose.map F.a
   have hWσ : U' * blk d k (p : F.B) 1 * W.map F.σ = ((p : F.B) * u) • W := by
     have e1 : W.map F.σ = (Ga.transpose.map WittVector.frobenius).map F.a :=
@@ -337,7 +320,7 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
       simp only [W, Ga, Matrix.map_apply, Matrix.transpose_apply, Matrix.of_apply, map_sub]; ring
     rw [e]
     exact dvd_sub (hdvdμ _ (hGw1 m i)) (hGG i m)
-  have hXW := c_cmpG p C v O hv ε hε F d k h U U' X u l Gm W hU hN2 hN1 hτu hX2 hX1 hσl hτl hG hWσ hWG
+  have hXW := _root_.GlobalTheory.CmpG.comparison p C v O hv ε hε F d k h U U' X u l Gm W hU hN2 hN1 hτu hX2 hX1 hσl hτl hG hWσ hWG
   have hlμ : l * F.a (Sandwich.mu ε) = F.a (Sandwich.mu ε) := by
     obtain ⟨c, hc⟩ := hτl
     rw [← F.p_τ, sub_eq_iff_eq_add.1 hc]
@@ -351,7 +334,7 @@ theorem window_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
       Matrix.smul_mul, hGY, smul_smul, hlμ]
   have hGaFa : Ga * Fa = Sandwich.mu ε • (1 : Matrix (Fin h) (Fin h) (Ainf p O)) := by
     refine Matrix.ext fun i j => ?_
-    refine c_eig p C v O hv ε hε F _ _ ?_ ?_ ?_
+    refine _root_.GlobalTheory.WinLift.eigen_eq_of_frame_eq p C v O hv ε hε F _ _ ?_ ?_ ?_
     · have := congr_fun (congr_fun hφP i) j
       simpa only [Matrix.map_apply, Matrix.smul_apply, smul_eq_mul] using this
     · simp only [Matrix.smul_apply, Matrix.one_apply, smul_eq_mul]

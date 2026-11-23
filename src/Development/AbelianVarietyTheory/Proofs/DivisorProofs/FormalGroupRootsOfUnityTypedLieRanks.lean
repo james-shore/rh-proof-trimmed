@@ -131,7 +131,7 @@ theorem exists_orbit (X : ValExt T p) (hp : UnramIn E p) (τ : E →+* ℂ) :
     ∃ h : ℕ, 0 < h ∧ Nat.card (𝓞 E ⧸ primeBelow io X τ) = p ^ h ∧ ∃ lab : ZMod h → (E →+* ℂ), IsOrbit io X τ lab ∧
       (∀ s a, X.v (embX io X (lab s) a - embX io X τ a ^ p ^ s.val) < 1) ∧
       ∀ z : X.C, z ^ (p ^ h - 1) = 1 → ∃ a₀ : 𝓞 E, X.v (embX io X τ a₀ - z) < 1 := by
-  obtain ⟨-, h, h0, hc⟩ := GlobalTheory.T.primeBelowComplexEmbeddingLabel_isMaximal_card E H l c p T io X τ
+  obtain ⟨-, h, h0, hc⟩ := _root_.GlobalTheory.PrimePart.primeBelow_isMaximal_card E H l c p T io X τ
   haveI := charP_residueField_of_irreducible X
   obtain ⟨hon, F, Fp, Fs, Fi, Fk⟩ := GlobalTheory.T.ringHom_ker_eq_iff_frobeniusTwist (𝓞 E) _ p (red io X τ) h h0 (by rw [← primeBelow_eq_ker]; exact hc)
   obtain ⟨hi, hs⟩ := GlobalTheory.T.embeddingReducedResidueField_bijective_unramified E H l c p T io X hp
@@ -162,7 +162,7 @@ theorem exists_hom_of_approx [DecidableEq (Lt1 Dw)] {L : Matrix (Lt1 Dw) (Fin (c
       ((Matrix.of fun e ℓ => lieVec Ch X ℓ e) * Matrix.diagonal (fun ℓ : Lt1 Dw => t ℓ.1) * L) := by
   refine GlobalTheory.T.isIntegralLogHom_diagonal_of_limit X.C (vX_vp X) _ (fgl Ch X) (Lt1 Dw) _ L (fun e ℓ => isIntV_jX X _) hL hUL _ fun r => ?_
   obtain ⟨a, ha⟩ := ht r
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.integers_act_integralChart_eigenDirections E H Dw l Xo c p T io X y Ch a
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.ChartAct.isIntHom_actX_and_eigen E H Dw l Xo c p T io X y Ch a
   exact ⟨fun ℓ => embX io X ℓ.1 a, _, _, h1, h2, fun ℓ => ha ℓ.1⟩
 
 theorem typedPartAt (hp : UnramIn E p) (τ : E →+* ℂ) : TypedPartAt Ch X τ := by
@@ -208,7 +208,7 @@ theorem typedPartAt (hp : UnramIn E p) (τ : E →+* ℂ) : TypedPartAt Ch X τ 
   have hco : (1 : Matrix _ _ X.C) - U.submatrix id j * L.submatrix j id =
       U * Matrix.diagonal (fun ℓ : Lt1 Dw => 1 - t 1 ℓ.1) * L := by
     rw [hIP, ← Matrix.diagonal_sub, Matrix.diagonal_one, Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one, hUL]
-  obtain ⟨G', ⟨ι', hι⟩, ⟨π', hπ⟩⟩ := GlobalTheory.T.logarithmic_group_law_split_by_idempotent X.C (vX_vp X) _ _ (fgl Ch X) (U.submatrix id j) (L.submatrix j id)
+  obtain ⟨G', ⟨ι', hι⟩, ⟨π', hπ⟩⟩ := _root_.GlobalTheory.IdemImage.exists_image X.C (vX_vp X) _ _ (fgl Ch X) (U.submatrix id j) (L.submatrix j id)
     (fun a b => isIntV_jX X _) (fun a b => hL _ _) hPI
     (by rw [hIP]; exact exists_hom_of_approx Ch X hL hUL (t 1) (happ 1 (one_pow _)))
     (by

@@ -111,8 +111,8 @@ theorem exists_weilIs_heckeA : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
       unfold qc
       rw [hcls, map_nsmul, map_nsmul, map_nsmul]
       exact (congrArg _ (hB' T x y y')).trans (smul_add _ _ _)
-  obtain ⟨t₁, -⟩ := GlobalTheory.T.hecke_coefficients_congruence p D R b h u c k N hc hk hN hNp hdiv hlin hcomp hsim honto S s o g₁ hg₁
-  obtain ⟨-, t₂⟩ := GlobalTheory.T.hecke_coefficients_congruence p D R b h u c k N hc hk hN hNp hdiv hlin hcomp hsim honto S s o g₂ hg₂
+  obtain ⟨t₁, -⟩ := _root_.GlobalTheory.UPel.HT.HeckeAd.KerPol.hecke_sections_triv p D R b h u c k N hc hk hN hNp hdiv hlin hcomp hsim honto S s o g₁ hg₁
+  obtain ⟨-, t₂⟩ := _root_.GlobalTheory.UPel.HT.HeckeAd.KerPol.hecke_sections_triv p D R b h u c k N hc hk hN hNp hdiv hlin hcomp hsim honto S s o g₂ hg₂
   have hA2 : IsAbelianScheme (G2 o.A) := AbelianSchemeGerms.isAbelianScheme_tensor o.A o.A o.ab o.ab
   exact CommutatorPairing.exists_weilIs hG hA2 hQ
     (fun _ => ⟨⊤, trivial, exists_theta_left hQB (Out.overResι ⊤) g₁ t₁⟩)
@@ -159,7 +159,7 @@ theorem weilIs_heckeSubA_one : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
       (weilIs_heckeA_pow_eq_one (h (N * k)) c k N o g₁ hg₁ g₂ v hv) ?_
     intro K _ _ x β hx
     have hp := GlobalTheory.CommPairing.weilIs_pull (A := G2 o.A) GlobalTheory.globalFns_holds hA2 hQ (toUnit (Over.mk x)) hv
-    exact GlobalTheory.T.hecke_coefficients_congruence_scaled p D R b h u c k N hc hk hN hNp hdiv hlin hcomp hsim honto S s o g₁ hg₁ g₂ hg₂ K x β hx _ hp
+    exact _root_.GlobalTheory.UPel.HT.HeckeAd.weilIs_heckeSubA_geom p D R b h u c k N hc hk hN hNp hdiv hlin hcomp hsim honto S s o g₁ hg₁ g₂ hg₂ K x β hx _ hp
   subst h1
   exact hv
 

@@ -210,7 +210,7 @@ theorem kapOrb_unit_eq_kapSum : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
     have hΦ' : Φ c' = Quot.mk _ ⟨(hmod c'.rep hc').choose, hψ'.1⟩ := dif_pos hc'
     rw [hΦ, hΦ'] at h
     obtain ⟨v, hv⟩ := clEq.eqvGen_iff.1 (Quot.eqvGen_exact h)
-    obtain ⟨u, hu, hγu⟩ := GlobalTheory.T.hermitianModels_conj_unitary_of_norm_class K B n _ _ _ _ v ψ ψ' hψ hψ' hv
+    obtain ⟨u, hu, hγu⟩ := _root_.GlobalTheory.InertUnitOrb.conj_of_norm_class K B n _ _ _ _ v ψ ψ' hψ hψ' hv
     obtain ⟨g, rfl⟩ := pull u hu
     have hcomm : c.rep * g = g * c'.rep := by
       apply Subtype.ext

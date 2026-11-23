@@ -71,7 +71,7 @@ theorem σD_alg (g : GQ l) (b : BdRp l) :
     σD g (algebraMap (BdRp l) (BdR l) b) = algebraMap (BdRp l) (BdR l) (toBot g • b) :=
   galBdRField_algebraMap _ _
 
-theorem tQ_alg : tQ l = algebraMap (BdRp l) (BdR l) (tBdR l) := DeRhamTwist.Twist.tQ_eq
+alias tQ_alg := _root_.DeRhamTwist.Twist.tQ_eq
 
 theorem orbit_alg (y : PadicAlgCl l) : Continuous fun g : GQ l => g y := by
   refine continuous_iff_continuousAt.2 fun g₀ => tendsto_nhds_of_eventually_eq ?_

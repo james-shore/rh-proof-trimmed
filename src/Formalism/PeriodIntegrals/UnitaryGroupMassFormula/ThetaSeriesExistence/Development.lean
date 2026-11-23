@@ -106,7 +106,7 @@ theorem sigmaStarEx_of (hR : ReduceBasis) (hG : GenEq) (hL : LatExt) (hA : PI.Ar
 
 theorem sigmaStarEx_of_parts (ha : ThetaA) (hb : ThetaDerivNe) (hr : ReduceBasis)
     (hn : GenEqOf) (hl : LatExt) : PI.SigmaStarEx :=
-  sigmaStarEx_of hr (hn ha hb) hl area_lattice_formula
+  sigmaStarEx_of hr (hn ha hb) hl _root_.PI.AreaLatWork.areaLat
 
 end PI.SSE
 

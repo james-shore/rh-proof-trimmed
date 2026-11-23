@@ -64,7 +64,7 @@ theorem assemble : ∀ (R : Type) [CommRing R] {ι : Type} [Fintype ι] (L : ι 
     have h1 : |d j| ≤ ∑ k, |d k| := Finset.single_le_sum (f := fun k => |d k|) (fun k _ => abs_nonneg (d k)) (Finset.mem_univ j)
     have h2 := neg_abs_le (d j)
     omega
-  obtain ⟨D, f, hD, hDi, hs⟩ := GlobalTheory.T.exists_biproduct_chainMap_of_injective_family R L' C g (m₀ - ∑ k, |d k|) hm (fun j => hi j (hLi j))
+  obtain ⟨D, f, hD, hDi, hs⟩ := _root_.GlobalTheory.BiprodPush.biproduct_push R L' C g (m₀ - ∑ k, |d k|) hm (fun j => hi j (hLi j))
   refine ⟨D, f, _, hD, hDi, fun K n => ?_⟩
   obtain ⟨e', he'⟩ := hs K n
   refine ⟨(Equiv.piCongrRight fun j => e j K n).trans e', fun a => ?_⟩
@@ -76,7 +76,7 @@ theorem bijective_disc : ∀ (q : ℕ) [NeZero q] {ι : Type} [Fintype ι] (L : 
   obtain ⟨D, f, m, hD, hDi, he⟩ := assemble (ZMod q) L C d ψ m₀ hL hLi
   have hD' : D.IsStrictlyGE (min m m₀) := isStrictlyGE_of_ge D _ _ (min_le_left _ _)
   have hC' : C.IsStrictlyGE (min m m₀) := isStrictlyGE_of_ge C _ _ (min_le_right _ _)
-  obtain ⟨hKI, hcone⟩ := GlobalTheory.T.mappingCone_isKInjective_bijective_hypercohomology_iff (ZMod q) f (min m m₀) hD' hC' hDi hCi
+  obtain ⟨hKI, hcone⟩ := _root_.GlobalTheory.EtC.cone_kinj_and_bijective_iff (ZMod q) f (min m m₀) hD' hC' hDi hCi
   have key : ∀ K : Cx (ZMod q), (∀ n : ℤ, Function.Bijective fun a : ∀ j, CohomologyClass K (L j) (n - d j) =>
       ∑ j, cpost K (ψ j) (n - d j) n (by omega) (a j)) ↔ ∀ n, Subsingleton (CohomologyClass K (mappingCone f) n) := by
     intro K
@@ -88,8 +88,8 @@ theorem bijective_disc : ∀ (q : ℕ) [NeZero q] {ι : Type} [Fintype ι] (L : 
     rw [this]
     exact Function.Bijective.of_comp_iff _ e.bijective
   refine (key _).mpr ?_
-  exact GlobalTheory.T.subsingleton_hypercohomology_of_locallyExact_on_support (ZMod q) (disc.obj F) (mappingCone f) (fun U hU' n b hb =>
-    GlobalTheory.T.sectionsComplex_exact_etaleLocally_of_no_classes (ZMod q) (mappingCone f) U ((key _).mp (hU U (hF U hU'))) n b hb)
+  exact _root_.GlobalTheory.EtC.subsingleton_of_locExact_supp (ZMod q) (disc.obj F) (mappingCone f) (fun U hU' n b hb =>
+    _root_.GlobalTheory.EtC.sch_loc_exact (ZMod q) (mappingCone f) U ((key _).mp (hU U (hF U hU'))) n b hb)
 
 end GlobalTheory.EtC.DiscSupp
 

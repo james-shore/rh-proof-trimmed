@@ -83,10 +83,6 @@ theorem ringHom_aevalZ {σ A A' : Type*} [CommRing A] [CommRing A'] [Algebra ℤ
 section Val
 variable {Ω : Type} [Field Ω]
 
-theorem exists_ratio_mem (W : ValuationSubring Ω) {κ : Type*} [Finite κ] (x : κ → Ω)
-    (h : ∃ j, x j ≠ 0) : ∃ c, x c ≠ 0 ∧ ∀ j, x j / x c ∈ W :=
-  _root_.UpperTheory.Reformulated.B.ValuationSubringDominantCoordinate.main W x h
-
 theorem charZero_residue (W : ValuationSubring Ω) (hW : ∀ n : ℕ, n ≠ 0 → ((n : Ω))⁻¹ ∈ W)
     [CharZero Ω] : CharZero (IsLocalRing.ResidueField W) := by
   refine charZero_of_inj_zero fun n hn => ?_
@@ -270,7 +266,7 @@ theorem span_top [CharZero Ω] (k₀ : K) (hy : ∀ k, ∃ j, y ⟨k, j⟩ ≠ 0
       exact h3
     exact hAW h1
   have hblock : ∀ k, ∃ c : J k, y ⟨k, c⟩ ≠ 0 ∧ ∀ j, y ⟨k, j⟩ / y ⟨k, c⟩ ∈ W :=
-    fun k => exists_ratio_mem W _ (hy k)
+    fun k => _root_.UpperTheory.Reformulated.B.ValuationSubringDominantCoordinate.main W _ (hy k)
   choose c0 hc0 hcW0 using hblock
   classical
   let c : ∀ k, J k := Function.update c0 k₀ i

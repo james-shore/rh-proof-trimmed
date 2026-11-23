@@ -58,29 +58,9 @@ namespace UpperTheory.Gal.Ord.HasseL
 
 variable {p : ℕ} [Fact p.Prime]
 
-private theorem sub_dual (k : Type) [Field k] : Subsingleton (PrimeSpectrum (DualNumber k)) := by
-  have key : ∀ (P : PrimeSpectrum (DualNumber k)) (x : DualNumber k), x ∈ P.asIdeal ↔ x.fst = 0 := by
-    intro P x
-    have hε : (DualNumber.eps : DualNumber k) ∈ P.asIdeal :=
-      P.2.mem_of_pow_mem 2 (by rw [pow_two, DualNumber.eps_mul_eps]; exact P.asIdeal.zero_mem)
-    constructor
-    · intro hx
-      by_contra h0
-      have hu : IsUnit x := TrivSqZeroExt.isUnit_iff_isUnit_fst.2 (isUnit_iff_ne_zero.2 h0)
-      exact P.2.ne_top (Ideal.eq_top_of_isUnit_mem _ hx hu)
-    · intro h0
-      have e : x = (TrivSqZeroExt.inl x.snd : DualNumber k) * DualNumber.eps := by
-        apply TrivSqZeroExt.ext
-        · rw [TrivSqZeroExt.fst_mul, h0, DualNumber.fst_eps, mul_zero]
-        · simp only [TrivSqZeroExt.snd_mul, TrivSqZeroExt.fst_inl, TrivSqZeroExt.snd_inl, DualNumber.snd_eps, DualNumber.fst_eps]
-          simp
-      rw [e]
-      exact P.asIdeal.mul_mem_left _ hε
-  exact ⟨fun P Q => PrimeSpectrum.ext (Ideal.ext fun x => (key P x).trans (key Q x).symm)⟩
-
 private theorem cancel_sp {k T : Type} [Field k] [CommRing T] (j : DualNumber k →+* T) (hj : Function.Injective j)
     {Y : Scheme.{0}} {g₁ g₂ : Sp (DualNumber k) ⟶ Y} (e : spMap j ≫ g₁ = spMap j ≫ g₂) : g₁ = g₂ := by
-  haveI hs : Subsingleton (Sp (DualNumber k)) := sub_dual k
+  haveI hs : Subsingleton (Sp (DualNumber k)) := _root_.GlobalTheory.DualOpen.subsingleton_spectrum_dualNumber k
   haveI : Nontrivial T := hj.nontrivial
   obtain ⟨t⟩ : Nonempty (Sp T) := inferInstanceAs (Nonempty (PrimeSpectrum T))
   let x : Sp (DualNumber k) := spMap j t

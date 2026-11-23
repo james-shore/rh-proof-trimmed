@@ -203,14 +203,14 @@ theorem flagStatement_holds : FlagStatement := by
   have hbK : ∀ i : Fin n, b i ∉ flagSub b i := fun i =>
     b.linearIndependent.notMem_span_image (by simp)
   have hstep := fun i : Fin n =>
-    GlobalTheory.T.stable_hopf_order_subgroup_translation p C v R hv hp F f hf N AA hFS (flagSub b i) (b i) (hbK i)
+    _root_.PositivityTheory.HtPt.Rc.step p C v R hv hp F f hf N AA hFS (flagSub b i) (b i) (hbK i)
   choose S hSc hSF using fun i => (hstep i).1
   have hres : ∀ i : Fin n, stepOrder AA.carrier (flagSub b i) (b i) =
       stepOrderRes AA.carrier (flagSub b i) (b i) := fun i => (hstep i).2
   choose c hc0 hcX using fun (i : Fin n) (s : ℕ) =>
-    (GlobalTheory.T.character_ideal_principal_eigen p C v R hv hp F f hf (S i) (hSF i) (σ ^ p ^ s)).1
+    (_root_.GlobalTheory.CompanionTheory.Ar.GR.eig_rank_one p C v R hv hp F f hf (S i) (hSF i) (σ ^ p ^ s)).1
   have hom := fun i : Fin n =>
-    GlobalTheory.T.fundamental_ideal_frobenius_product p C v R hv hp F f hf (S i) (hSF i) σ hσ (c i) (hcX i)
+    _root_.GlobalTheory.CompanionTheory.Relay.fundamental_ideal_frobenius_product p C v R hv hp F f hf (S i) (hSF i) σ hσ (c i) (hcX i)
   choose δ hδ using fun (i : Fin n) (s : ℕ) => (hom i s).2.1
   have hδL : ∀ (i : Fin n) (s : ℕ), HasLen v R (OmType (S i).carrier (σ ^ p ^ (s + 1)))
       (v (algebraMap R C (δ i s))) := fun i s => (hom i s).2.2 _ (hδ i s)
@@ -226,7 +226,7 @@ theorem flagStatement_holds : FlagStatement := by
     show xIdeal (stepOrder AA.carrier (flagSub b i) (b i)) (σ ^ p ^ s) = _
     rw [← hSc i]
     exact hcX i s
-  obtain ⟨d, hdD, hdL⟩ := GlobalTheory.T.stable_hopf_order_fundamental_lengths p C v R hv hp F f hf N AA hFS σ hσ n b
+  obtain ⟨d, hdD, hdL⟩ := _root_.PositivityTheory.HtPt.Rb.flag_D p C v R hv hp F f hf N AA hFS σ hσ n b
   obtain ⟨cA, cN, cO, hcA, hcN, hcO, e1, e2⟩ := hT
   obtain ⟨hLex, hLprod⟩ := GlobalTheory.T.stable_hopf_order_fundamental_ideal p C v R hv hp F f hf N AA hFS σ hσ
   choose L hL0 hL using hLex
@@ -237,13 +237,13 @@ theorem flagStatement_holds : FlagStatement := by
         HasLen v R (OmType (stepOrder AA.carrier (flagSub b i) (b i)) χ) 1 := by
       intro i
       rw [← hSc i]
-      have hle := GlobalTheory.T.non_fundamental_eigen_le_square_augmentation p C v R hv hp F f hf (S i) (hSF i) χ hχ
+      have hle := _root_.GlobalTheory.CompanionTheory.Relay.non_fundamental_eigen_le_square_augmentation p C v R hv hp F f hf (S i) (hSF i) χ hχ
       haveI : Subsingleton (OmType (S i).carrier χ) := by
         refine Submodule.Quotient.subsingleton_iff.2 (eq_top_iff.2 ?_)
         intro x _
         exact hle x.2
       exact hasLen_subsingleton v R _
-    have h1 := GlobalTheory.T.stable_hopf_order_basis_lengths p C v R hv hp F f hf N AA hFS n b χ (fun _ => 1) (L χ) hsub (hL χ)
+    have h1 := _root_.PositivityTheory.HtPt.Rd.flag_om p C v R hv hp F f hf N AA hFS n b χ (fun _ => 1) (L χ) hsub (hL χ)
     exact le_antisymm (hasLen_le_one' hv (hL χ)) (by simpa using h1)
 
   have hcN0 : cN ≠ 0 := by
@@ -265,7 +265,7 @@ theorem flagStatement_holds : FlagStatement := by
   have hxD : ∀ (t : Fin n) (s : Fin f),
       v (algebraMap R C (c t s)) ≤ v (algebraMap R C (d t s)) := by
     intro t s
-    have h := GlobalTheory.T.stable_hopf_order_subgroup_generation p C v R hv hp F f hf N AA hFS (flagSub b t) (b t) (hbK t) (hG t)
+    have h := _root_.GlobalTheory.CompanionTheory.Ar.GR.idealX_le_idealD p C v R hv hp F f hf N AA hFS (flagSub b t) (b t) (hbK t) (hG t)
       (σ ^ p ^ (s : ℕ)) (hFp s)
     rw [hXc, hdD] at h
     exact v_le_of_span_le hv h
@@ -274,9 +274,9 @@ theorem flagStatement_holds : FlagStatement := by
   choose cs hcs using fun i : Fin n => hasColen_of_lat v (S i).lat
   have hcsq : ∀ i : Fin n, cs i ^ 2 =
       (∏ s : Fin f, v (algebraMap R C (c i s))) ^ (p ^ f * (p - 1)) := fun i =>
-    (GlobalTheory.T.fundamental_ideal_frobenius_valuation p C v R hv hp F f hf (S i) (hSF i) σ hσ (c i) (hcX i)).2 _ (hcs i)
+    (_root_.GlobalTheory.CompanionTheory.Relay.fundamental_ideal_frobenius_valuation p C v R hv hp F f hf (S i) (hSF i) σ hσ (c i) (hcX i)).2 _ (hcs i)
   have hcfl : cN ^ (p ^ f) = (∏ i, cs i) ^ Fintype.card N :=
-    GlobalTheory.T.stable_hopf_order_basis_ideals p C v R hv hp F f hf N AA hFS n b cs cN
+    _root_.PositivityTheory.HtPt.Rc.flag_colen p C v R hv hp F f hf N AA hFS n b cs cN
       (fun i => by rw [← hSc i]; exact hcs i) hcN
   have hxN : (∏ t, ∏ s : Fin f, v (algebraMap R C (c t s))) ^ (Fintype.card N * (p - 1)) =
       cN ^ 2 := by
@@ -313,7 +313,7 @@ theorem flagStatement_holds : FlagStatement := by
       rw [← pow_succ, ← hp1]
     exact (mul_right_cancel₀ hP (h2.trans hmul)).symm
   have hrle : ∀ s : Fin f, ∏ t, v (algebraMap R C (δ t s)) ≤ L (σ ^ p ^ ((s : ℕ) + 1)) :=
-    fun s => GlobalTheory.T.stable_hopf_order_basis_lengths p C v R hv hp F f hf N AA hFS n b (σ ^ p ^ ((s : ℕ) + 1))
+    fun s => _root_.PositivityTheory.HtPt.Rd.flag_om p C v R hv hp F f hf N AA hFS n b (σ ^ p ^ ((s : ℕ) + 1))
       (fun i => v (algebraMap R C (δ i s))) _ (fun i => hstepL i s) (hL _)
   have hrO : ∏ s : Fin f, L (σ ^ p ^ ((s : ℕ) + 1)) = cO := by
     have h1 := prod_fin_shift f (fun s => L (σ ^ p ^ s))
@@ -330,7 +330,7 @@ theorem flagStatement_holds : FlagStatement := by
   have hCD : ∀ (i : Fin n) (s : Fin f), Ideal.span {c i s} = Ideal.span {d i s} := by
     intro i s
     refine span_eq_of_le_of_v_eq hv (hc0 i s) ?_ (hDx i s).symm
-    have h := GlobalTheory.T.stable_hopf_order_subgroup_generation p C v R hv hp F f hf N AA hFS (flagSub b i) (b i) (hbK i) (hG i)
+    have h := _root_.GlobalTheory.CompanionTheory.Ar.GR.idealX_le_idealD p C v R hv hp F f hf N AA hFS (flagSub b i) (b i) (hbK i) (hG i)
       (σ ^ p ^ (s : ℕ)) (hFp s)
     rwa [hXc, hdD] at h
   have hD : ∀ (i : Fin n) (s : ℕ),
@@ -363,7 +363,7 @@ theorem flagStatement_holds : FlagStatement := by
   · rw [← hres i, ← hSc i]
     exact hcX i s
   · intro j s
-    exact GlobalTheory.T.stable_hopf_order_basis_colength p C v R hv hp F f hf N AA hFS n b (σ ^ p ^ (s + 1))
+    exact _root_.PositivityTheory.HtPt.Rd.gr_partial p C v R hv hp F f hf N AA hFS n b (σ ^ p ^ (s + 1))
       (fun i => v (algebraMap R C (δ i s))) (fun i => hstepL i s) (hall s) j
 
 end GlobalTheory.CompanionTheory.Ar.GR

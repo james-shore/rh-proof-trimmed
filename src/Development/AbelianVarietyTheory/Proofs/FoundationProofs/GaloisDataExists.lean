@@ -51,23 +51,10 @@ open scoped BigOperators
 
 namespace GlobalTheory.GalExist
 
-theorem exists_sum_of_mem_La (D : D7) (T : Tor D) {N N' : ℕ}
-    (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E))
-    (y : VC D N N') (hy : y ∈ La D T L L') :
-    ∃ (r : ℕ) (b : Fin r → Matrix (Fin N') (Fin N) D.host.E) (w : Fin r → ℂ),
-      (∀ j, b j ∈ YYl D L L') ∧ (∀ j, w j ∈ T.abelian₂) ∧ y = ∑ j, w j • embV D T (b j) := by
-  first
-  | exact @_root_.GlobalTheory.LatticeSumMembership.La_mem_sum
-  | exact _root_.GlobalTheory.LatticeSumMembership.La_mem_sum
-  | (apply _root_.GlobalTheory.LatticeSumMembership.La_mem_sum <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LatticeSumMembership.La_mem_sum <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LatticeSumMembership.La_mem_sum <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LatticeSumMembership.La_mem_sum ..)
-
 theorem galEx_of_galStar (D : D7) (hS : galStar D) : galEx D := by
   intro cc δ hc M ρ hK hD hM N N' L L' _ _ x n hx hn
   obtain ⟨m, hm, hmx⟩ := hx
-  obtain ⟨r, b, w, hb, hw, hsum⟩ := exists_sum_of_mem_La D _ L L' _ hmx
+  obtain ⟨r, b, w, hb, hw, hsum⟩ := _root_.GlobalTheory.LatticeSumMembership.La_mem_sum D _ L L' _ hmx
   obtain ⟨h1, -, -, -, -, h6, -⟩ := hS cc δ hc M ρ hK hD.2.1 hD.2.2
   have hm0 : (m : ℂ) ≠ 0 := by exact_mod_cast hm.ne'
   have hn0 : (n : ℂ) ≠ 0 := by exact_mod_cast hn.ne'

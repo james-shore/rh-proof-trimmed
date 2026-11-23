@@ -43,6 +43,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitHe
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhitGenOf
 import Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySchrodingerModel.LocalDefs
 import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.IsSingTest
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EventuallyAlgebraMapMemIntegers
 
 @[expose] public section
 
@@ -92,7 +93,7 @@ theorem psi_split (ψ : AddChar (AF F) ℂ) (hψ : IsCharAF F ψ) :
   classical
   obtain ⟨ξ, hξ⟩ := GlobalTheory.CompanionTheory.AdeleDual.exists_eq_adelicChar_mul ψ hψ.1 hψ.2.2.1
   have hfin : {v : HeightOneSpectrum (𝓞 F) | ¬ algebraMap F (Fv F v) ξ ∈ v.adicCompletionIntegers F}.Finite :=
-    Filter.eventually_cofinite.1 (GlobalTheory.CompanionTheory.SiegelND.Coef.Lim.ev_rat ξ)
+    Filter.eventually_cofinite.1 (_root_.GlobalTheory.AdelicU.eventually_algebraMap_mem_integers ξ)
   refine ⟨hfin.toFinset, fun S hS x hx => ?_⟩
   set xf : Af F := sndA F x with hxf
   set r : Af F := xf - ∑ v ∈ S, singleV F v (evalV F v xf) with hr

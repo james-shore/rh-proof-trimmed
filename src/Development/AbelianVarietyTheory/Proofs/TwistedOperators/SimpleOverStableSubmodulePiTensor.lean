@@ -159,7 +159,7 @@ theorem simpleOver_sum {α β : Type} (hα : PP α) (hβ : PP β) [DecidableEq (
     (fun b => hr _) (fun b => hs _) (fun b => hso _)
   have hT := GlobalTheory.T.simpleOverStableSubmodule_tensorPureKernelSpan (piOps (fun a => Op (.inl a))) (piOps (fun b => Op (.inr b)))
     (piKer (fun a => K (.inl a))) (piKer (fun b => K (.inr b))) hrl
-    (GlobalTheory.T.operatorStable_piTensorPureKernelSpan _ _ (fun a => hs _)) (GlobalTheory.T.operatorStable_piTensorPureKernelSpan _ _ (fun b => hs _)) hA hB
+    (_root_.GlobalTheory.TensHead.stab_piOps_piKer _ _ (fun a => hs _)) (_root_.GlobalTheory.TensHead.stab_piOps_piKer _ _ (fun b => hs _)) hA hB
   let e := (PiTensorProduct.tmulEquivDep ℂ N).symm
   refine simpleOver_of_equiv e _ _ _ _ ?_ ?_ hT
   · apply le_antisymm

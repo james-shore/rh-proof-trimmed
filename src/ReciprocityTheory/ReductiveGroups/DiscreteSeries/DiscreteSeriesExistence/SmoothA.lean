@@ -62,25 +62,9 @@ namespace ReciprocityTheory.ChartRestriction.DS
 namespace SmDerA
 
 variable {n : ℕ}
-theorem Jm_mul_Jm (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  first
-    | (unfold Jm
-       rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-       congr 1
-       funext a
-       split_ifs <;> norm_num)
-    | (ext i j
-       by_cases h : i = j <;> by_cases hε : ε i <;> simp [Jm, Matrix.one_apply, h, hε])
+alias Jm_mul_Jm := _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self
 
-theorem Jm_conjTranspose (ε : Fin n → Bool) : (Jm ε)ᴴ = Jm ε := by
-  first
-    | (unfold Jm
-       rw [Matrix.diagonal_conjTranspose]
-       congr 1
-       funext i
-       by_cases h : ε i = true <;> simp [h])
-    | (ext i j
-       by_cases h : i = j <;> by_cases hε : ε i <;> simp [Jm, Matrix.diagonal_apply, h, hε])
+alias Jm_conjTranspose := _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_conjTranspose
 
 private theorem Jm_mul_Jm_mulDiscreteSeriesExistence (ε : Fin n → Bool) (A : Matrix (Fin n) (Fin n) ℂ) :
     Jm ε * (Jm ε * A) = A := by

@@ -54,11 +54,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 namespace GlobalTheory.BCT.Regroup
 
-theorem finsum_classes {H : Type} [Group H] (a : H → ℂ) (ha : (Function.support a).Finite) :
-    ∑ᶠ γ, a γ = ∑ᶠ c : TwCl (MonoidHom.id H),
-      ∑ᶠ δ : H ⧸ twCent (MonoidHom.id H) c.rep, a (Quotient.out δ * c.rep * (Quotient.out δ)⁻¹) :=
-  GlobalTheory.T.finsum_eq_finsum_conjugacyClasses_centraliserCosets a ha
-
 theorem unfold {G H : Type} [Group G] [Group H] (ι : H →* G) (hι : Function.Injective ι) (Γ : Subgroup G)
     (hΓ : ∀ g, g ∈ Γ ↔ ∃ h, ι h = g) (T : Subgroup H) (Γ' : Subgroup G) (hΓ' : ∀ g, g ∈ Γ' ↔ ∃ t ∈ T, ι t = g)
     (K : Subgroup G) (u : G → ℂ) (hu : ∀ t ∈ T, ∀ k ∈ K, ∀ g, u (ι t * g * k) = u g)
@@ -134,7 +129,7 @@ theorem regroup_abstract {G H : Type} [Group G] [Group H] (ι : H →* G) (hι :
   have s1 : ∀ q : DoubleCoset.Quotient (Γ : Set G) (K : Set G),
       ∑ᶠ γ : H, Φ ((Quotient.out q)⁻¹ * ι γ * Quotient.out q) * ψ γ = ∑ᶠ c : TwCl (MonoidHom.id H), ψ c.rep * D q c := by
     intro q
-    rw [finsum_classes _ ((h4 (Quotient.out q)).subset fun γ hγ => left_ne_zero_of_mul hγ)]
+    rw [_root_.GlobalTheory.ConjRegroup.finsum_eq_finsum_classes _ ((h4 (Quotient.out q)).subset fun γ hγ => left_ne_zero_of_mul hγ)]
     refine finsum_congr fun c => ?_
     rw [hD, mul_finsum]
     refine finsum_congr fun δ => ?_
@@ -245,7 +240,7 @@ theorem chW_conj (lam : InfinitePlace E → DomWeight n) (a b : UE E n) :
 
 theorem kernSum_eq_finsum_classes : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ n : ℕ, 1 ≤ n → ∀ (S : Set (Pl E)), IsSection S → ∀ (lam : InfinitePlace E → DomWeight n) (K' : ∀ w : Pl E, Subgroup (UL n w)), IsLevelFam (fun w : Pl E => MonoidHom.id (UL n w)) (KL n) K' → ∀ f : ∀ w : Pl E, UL n w → ℂ, IsTest (KL n) K' f → (∃ w ∈ S, ∀ y, f w y ≠ 0 → y.1.val.charpoly.Separable) → kernSum S lam K' f = ∑ᶠ c : TwCl (MonoidHom.id (UE E n)), if c.rep.1.val.charpoly.Separable then chW lam c.rep.1.val.charpoly * clsSum S K' f c.rep else 0 := by
   intro E _ _ _ hU n hn S hS lam K' hK f hf hreg
-  obtain ⟨hmul, hinj, hmem⟩ := finPt_props E n
+  obtain ⟨hmul, hinj, hmem⟩ := _root_.GlobalTheory.BCT.FinPart.finPt_props E n
   let ι : UE E n →* finU (E := E) (n := n) := MonoidHom.mk' finPt hmul
   have key : ∑ᶠ q : DoubleCoset.Quotient (ratFinU E n : Set (finU (E := E) (n := n))) (globLev S K' : Set (finU (E := E) (n := n))),
       ((Nat.card (ratFinU E n ⊓ (globLev S K').map (MulAut.conj (Quotient.out q)).toMonoidHom : Subgroup (finU (E := E) (n := n))) :
@@ -258,8 +253,8 @@ theorem kernSum_eq_finsum_classes : ∀ (E : Type) [Field E] [NumberField E] [Is
           (globLev S K').map (MulAut.conj (Quotient.out q)).toMonoidHom : Subgroup (finU (E := E) (n := n))) : ℂ))⁻¹ *
         globFn S f ((Quotient.out q)⁻¹ * finPt c.rep * Quotient.out q) :=
     regroup_abstract ι hinj (ratFinU E n) hmem (globLev S K') (globFn S f) (fun γ => chW lam γ.1.val.charpoly)
-      (globFn_conj S K' f hf.1) (chW_conj lam) (finite_classes E hU n hn S hS K' hK) (finite_stab E hU n hn S hS K' hK)
-      (finite_supp E hU n hn S hS K' hK f hf)
+      (globFn_conj S K' f hf.1) (chW_conj lam) (_root_.GlobalTheory.BCT.finite_doubleCoset_globLev E hU n hn S hS K' hK) (_root_.GlobalTheory.BCT.finite_ratFinU_inf_conj_globLev E hU n hn S hS K' hK)
+      (_root_.GlobalTheory.BCT.SuppFin.suppFin E hU n hn S hS K' hK f hf)
   obtain ⟨w, hw, hsep⟩ := hreg
   unfold kernSum
   rw [key, mul_finsum]
@@ -271,7 +266,7 @@ theorem kernSum_eq_finsum_classes : ∀ (E : Type) [Field E] [NumberField E] [Is
         Set (finU (E := E) (n := n))) (globLev S K' : Set (finU (E := E) (n := n))),
         globFn S f ((Quotient.out q)⁻¹ * finPt c.rep * Quotient.out q) = 0 := fun q => by
       by_contra h
-      exact hc (separable_of_globFn_ne_zero E n S K' f hf w hw hsep _ _ h)
+      exact hc (_root_.GlobalTheory.BCT.regvan E n S K' f hf w hw hsep _ _ h)
     simp [h0]
 
 end GlobalTheory.BCT.Regroup

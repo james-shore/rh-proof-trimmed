@@ -77,10 +77,6 @@ theorem semiGenus_of (hG : SemiGenusLoc) : SemiGenus := by
   obtain ⟨γ, hγ, hγg⟩ := gl_of_isom g hg
   exact ⟨γ, hγ, loc_iff_of_isom g hm γ hγg⟩
 
-theorem algebraMap_ne_zero' {p : Ideal (𝓞 E)} (hp : p.IsPrime) {t : 𝓞 E}
-    (ht : t ∈ Formalism.HermitianLatticesTheory.hcompl (K := E) p) : algebraMap (𝓞 E) E t ≠ 0 :=
-  algebraMap_ne_zero_of_mem_hcompl hp ht
-
 theorem smul_eq_alg (t : 𝓞 E) (v : Fin n → E) : t • v = (algebraMap (𝓞 E) E t) • v := by
   rw [algebraMap_smul]
 
@@ -107,7 +103,7 @@ theorem semiGenusZ_of (hZ : SemiGenusZLoc) : SemiGenusZ := by
     intro N hN w hw
     obtain ⟨t, ht, htw⟩ := hw
     obtain ⟨u, huN, hus, hu0⟩ := hN _ htw
-    have ht0 := algebraMap_ne_zero' hpP ht
+    have ht0 := _root_.ReciprocityTheory.ChartRestriction.L3.WA.algebraMap_ne_zero_of_mem_hcompl hpP ht
     refine ⟨(algebraMap (𝓞 E) E t)⁻¹ • u, ⟨t, ht, ?_⟩, Submodule.smul_mem _ _ hus, fun a => ?_⟩
     · rw [smul_eq_alg, smul_smul, mul_inv_cancel₀ ht0, one_smul]; exact huN
     · have e : w - (algebraMap (𝓞 E) E t)⁻¹ • u = (algebraMap (𝓞 E) E t)⁻¹ • (t • w - u) := by
@@ -120,7 +116,7 @@ theorem semiGenusZ_of (hZ : SemiGenusZLoc) : SemiGenusZ := by
     obtain ⟨t, ht, htc⟩ := hc
     rw [smul_eq_alg, smul_smul] at htc
     obtain ⟨r, hr⟩ := hN _ htc
-    have ht0 := algebraMap_ne_zero' hpP ht
+    have ht0 := _root_.ReciprocityTheory.ChartRestriction.L3.WA.algebraMap_ne_zero_of_mem_hcompl hpP ht
     rw [mem_locRing, mem_locR_iff hpP]
     refine ⟨r, t, ht, ?_⟩
     rw [hr]; field_simp

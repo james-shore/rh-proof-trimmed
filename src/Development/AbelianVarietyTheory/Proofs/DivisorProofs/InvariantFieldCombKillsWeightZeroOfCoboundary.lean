@@ -71,7 +71,7 @@ theorem comb_kills_weight_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoc
     intro W s
     have h := GlobalTheory.Heat.LiePush.isInv_pbT (𝟙 Y.H) hdw (w := v) hinv e
       (PullbackSections.tanM_ext (by rw [GlobalTheory.Heat.LiePush.tv_pushL]; exact Category.comp_id _)) W s W le_rfl
-    simpa only [Over.id_left, GlobalTheory.Heat.LiePush.pbT_id] using h
+    simpa only [Over.id_left, _root_.GlobalTheory.KS.InvField.pbT_id] using h
   have hpull : ∀ (U : Q.P.A.left.Opens) (s : Γ(Q.P.A.left, U)) (W : Y.H.left.Opens), W ≤ Y.q.left ⁻¹ᵁ U →
       dw W (pbT Y.q.left s W) = pbT Y.q.left (δ U s) W := by
     intro U s W hW
@@ -89,7 +89,7 @@ theorem comb_kills_weight_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoc
     have h := GlobalTheory.Heat.LiePush.isInv_pbT (𝟙 Q.P.A) hδ (g := 0) (w := Fin.elim0) (d' := Fin.elim0)
       (fun a => a.elim0) Fin.elim0
       (by rw [hw0, map_zero]; simp) U s U le_rfl
-    simpa only [Over.id_left, GlobalTheory.Heat.LiePush.pbT_id, Finset.univ_eq_empty, Finset.sum_empty] using h
+    simpa only [Over.id_left, _root_.GlobalTheory.KS.InvField.pbT_id, Finset.univ_eq_empty, Finset.sum_empty] using h
   obtain ⟨g, hg⟩ := GlobalTheory.Heat.AbConst.exists_app_eq Y hf
   have hfg : f = pbT Y.q.left g (Y.q.left ⁻¹ᵁ V) := by
     rw [← hg, GlobalTheory.KS.pbT_of_le _ le_rfl, Scheme.Hom.app_eq_appLE]

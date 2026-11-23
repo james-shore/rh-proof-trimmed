@@ -65,9 +65,6 @@ section Charts
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
 
-theorem isLocalRing_regAt (p : Cpt ξ) : IsLocalRing (regAt ξ p) :=
-  IsLocalRing.of_surjective' (genMap ξ p).rangeRestrict (genMap ξ p).rangeRestrict_surjective
-
 theorem exists_unit_gen {B : Type} [Fintype B] (A : Subring Ω) [IsLocalRing A] (z : B → Ω) {f : Ω} (hf : f ≠ 0)
     (h : Submodule.span A (Set.range z) = Submodule.span A {f}) :
     ∃ l, z l ≠ 0 ∧ ∀ l', z l' / z l ∈ A := by
@@ -152,7 +149,7 @@ theorem exists_inChart_of_twist (hc : ∀ p : Cpt ξ, ∃ c, InChart ξ x c p)
     (hv : Λ.IsVB 1 ⊤) (p : Cpt ξ) : ∃ l, InChart ξ z l p := by
   obtain ⟨c, hcp⟩ := hc p
   obtain ⟨e, he, hL, -⟩ := Flat.exists_gen_of_isVB_one hv p
-  haveI := isLocalRing_regAt p
+  haveI := _root_.GlobalTheory.CompanionTheory.Ar.NormAt.isLocalRing_regAt p
   obtain ⟨l, hl0, hl⟩ := exists_unit_gen (regAt ξ p) _ he ((H c p hcp).symm.trans hL)
   have hx : (x c ^ d)⁻¹ ≠ 0 := inv_ne_zero (pow_ne_zero _ hcp.1)
   refine ⟨l, fun h0 => hl0 (by simp [h0]), fun l' => ?_⟩

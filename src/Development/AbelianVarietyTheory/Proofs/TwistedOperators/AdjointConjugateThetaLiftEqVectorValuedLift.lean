@@ -214,7 +214,7 @@ theorem adjoint_eq_upLift : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T
     refine (congrArg (fun x => c.ext (H.e x) h) hadj).trans ?_
     simp only [map_smul, Pi.smul_apply]
     exact congrArg _ ((congrArg (fun x => c.ext x h) hz).trans
-      (GlobalTheory.T.extend_restriction_finitePoints_eq c hc (R.βV i) (datV i R.Pg (R.Q A.μ0) R.triv m) hex.choose hlaw h))
+      (_root_.GlobalTheory.AdelicRestrict.ext_restrict c hc (R.βV i) (datV i R.Pg (R.Q A.μ0) R.triv m) hex.choose hlaw h))
   refine (congrArg (fun a => inner ℂ a w) e3).trans ?_
   refine (inner_smul_left _ _ _).trans ?_
   refine congrArg₂ (· * ·) hKc ?_

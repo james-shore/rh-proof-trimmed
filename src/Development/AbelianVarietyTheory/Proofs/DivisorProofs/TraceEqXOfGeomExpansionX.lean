@@ -395,7 +395,7 @@ theorem traceEqX_of_geomExpansionX : GeomExpansionX → TraceEqX := by
   unfold GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots.term
   congr 2
   refine finprod_congr fun v => ?_
-  exact (GlobalTheory.T.stableOrbitalIntegral_preserved_latticeIsometry D V V' _ P v (j v) (hj v) (μf v) (dtf _ P v) (ff v) (hRP.2.1 v) ((hdt _ P).2.1 v) ((gen _ hr).1 P v) ((hFin' P).2.1 v)).symm
+  exact (_root_.GlobalTheory.IsomPhi.phi_map D V V' _ P v (j v) (hj v) (μf v) (dtf _ P v) (ff v) (hRP.2.1 v) ((hdt _ P).2.1 v) ((gen _ hr).1 P v) ((hFin' P).2.1 v)).symm
 
 end GlobalTheory.PsCo.Pc
 

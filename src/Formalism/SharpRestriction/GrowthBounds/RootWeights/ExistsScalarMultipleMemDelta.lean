@@ -121,10 +121,6 @@ theorem nabla_finitely_generated [NeZero n] [CharZero (KK O)] [FiniteDimensional
     obtain ⟨c, hc⟩ := (mem_nabla_iff_coordinate_integral h1 h2 h3 _).1 hx u hu
     exact ⟨c, by simpa using hc⟩
 
-theorem exists_scalar_multiple_mem_delta {E : GLOps n (KK O) V} {lam : Fin n → ℤ} {v : V} (hI : IsIrrHW E lam v) (y : V) :
-    ∃ o : O, o ≠ 0 ∧ o • y ∈ Delta (O := O) E v := by
-  first | exact Bl.ClearingDenominators.goal1 .. | (apply Bl.ClearingDenominators.goal1 <;> assumption) | (intros; apply Bl.ClearingDenominators.goal1 <;> assumption) | (apply @Bl.ClearingDenominators.goal1 <;> assumption) | (intros; apply @Bl.ClearingDenominators.goal1 <;> assumption) | (apply @Bl.ClearingDenominators.goal1 <;> first | assumption | infer_instance)
-
 theorem nabla_to_delta_maps_span_top [NeZero n] [CharZero (KK O)] [FiniteDimensional (KK O) V] {E : GLOps n (KK O) V}
     {lam : Fin n → ℤ} {v : V} (hI : IsIrrHW E lam v)
     (hfg : (NablaSub (O := O) E lam v).FG) : MQ (K := KK O) (nablaToDeltaMaps (O := O) E lam v) = ⊤ := by
@@ -132,7 +128,7 @@ theorem nabla_to_delta_maps_span_top [NeZero n] [CharZero (KK O)] [FiniteDimensi
   rw [eq_top_iff]
   intro f _
   obtain ⟨G, hG⟩ := hfg
-  choose o ho ho' using exists_scalar_multiple_mem_delta (O := O) hI
+  choose o ho ho' using _root_.Bl.ClearingDenominators.goal1 (O := O) hI
   set c : O := ∏ g ∈ G, o (f g) with hc
   have hc0 : c ≠ 0 := prod_ne_zero_iff.2 fun g _ => ho _
   have hmem : c • f ∈ nablaToDeltaMaps (O := O) E lam v := by

@@ -147,12 +147,6 @@ end GlobalTheory.FieldPair.SpecTower
 
 namespace GlobalTheory.FieldPair.SpecTower
 
-theorem isFractionRing_of_isLocModel {k K : Type} [Field k] [Field K] {c : k →+* K}
-    {R : Subring K} (h : IsLocModel c R) : IsFractionRing R K :=
-  IsFractionRing.of_field R K fun z => by
-    obtain ⟨a, ha, b, hb, hb0, e⟩ := h.frac z
-    exact ⟨⟨a, ha⟩, ⟨b, hb⟩, eq_div_of_mul_eq hb0 e⟩
-
 theorem klt_tower_zero {K L : Type} [Field K] [Field L] (cK : ℂ →+* K) (cL : ℂ →+* L) (n : ℕ)
     (R : Subring K) (T : Subring L) (ι : R →+* T) (ψ : T →+* R) (τ : Fin 0 → T) (x : Fin n → R)
     (φ : R →₀ ℚ) (θ : T →₀ ℚ) (h : IsEtTower cK R cL T ι ψ τ)
@@ -163,8 +157,8 @@ theorem klt_tower_zero {K L : Type} [Field K] [Field L] (cK : ℂ →+* K) (cL :
       (Finsupp.mapDomain (fun g : R => (ι g : L)) φ + Finsupp.mapDomain (fun g : T => (g : L)) θ) := by
   have hb := h.bijective_of_zero
   have hιψ : ∀ t, ι (ψ t) = t := fun t => hb.1 (by rw [h.retr])
-  haveI := isFractionRing_of_isLocModel h.base
-  haveI := isFractionRing_of_isLocModel h.top
+  haveI := _root_.GlobalTheory.FieldPair.AdjUnit.isFractionRing h.base
+  haveI := _root_.GlobalTheory.FieldPair.AdjUnit.isFractionRing h.top
   let e0 : R ≃+* T := (RingEquiv.ofBijective ψ hb).symm
   have he0 : ∀ a, e0 a = ι a := fun a =>
     (RingEquiv.ofBijective ψ hb).symm_apply_eq.2 (h.retr a).symm
@@ -186,7 +180,7 @@ theorem klt_tower_zero {K L : Type} [Field K] [Field L] (cK : ℂ →+* K) (cL :
       refine ⟨(ψ ⟨y, hy⟩ : K), (ψ ⟨y, hy⟩).2, ?_⟩
       change e _ = y
       rw [he, hιψ]
-  have key := ((GlobalTheory.T.ringEquiv_transports_varietyPair_data cK cL e hc n (fun i => (x i : K)) R _ hx).2.2.1).1 hk
+  have key := ((_root_.GlobalTheory.FieldPair.transport_ringEquiv cK cL e hc n (fun i => (x i : K)) R _ hx).2.2.1).1 hk
   rw [hmap] at key
   have hx' : (⇑e ∘ fun i => (x i : K)) = fun i => (ι (x i) : L) := funext fun i => he (x i)
   have hD : Finsupp.mapDomain e (Finsupp.mapDomain (fun g : R => (g : K)) φ +

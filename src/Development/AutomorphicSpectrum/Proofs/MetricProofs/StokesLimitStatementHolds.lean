@@ -86,21 +86,6 @@ def ReHolAt (A : FinHolAtlas e X) (f : X → ℝ) (y₀ : X) : Prop :=
 theorem holoOn_mono {A : FinHolAtlas e X} {U V : Set X} {G : X → ℂ} (h : A.HoloOn U G) (hVU : V ⊆ U) :
     A.HoloOn V G := fun j u hu => h j u ⟨hu.1, hVU hu.2⟩
 
-theorem holoOn_continuousOn {A : FinHolAtlas e X} {W : Set X} {f : X → ℂ} (h : A.HoloOn W f) :
-    ContinuousOn f W := by
-  intro z hz
-  obtain ⟨j, hj⟩ := A.cover z
-  have h1 : (A.chart j).symm (A.chart j z) = z := (A.chart j).left_inv hj
-  have hu : A.chart j z ∈ (A.chart j).target ∩ (A.chart j).symm ⁻¹' W :=
-    ⟨(A.chart j).map_source hj, by rw [Set.mem_preimage, h1]; exact hz⟩
-  have hc : ContinuousAt (f ∘ (A.chart j).symm) (A.chart j z) := (h j _ hu).continuousAt
-  have hc2 : ContinuousAt ((f ∘ (A.chart j).symm) ∘ (A.chart j)) z :=
-    ContinuousAt.comp hc ((A.chart j).continuousAt hj)
-  have hev : ((f ∘ (A.chart j).symm) ∘ (A.chart j)) =ᶠ[𝓝 z] f := by
-    filter_upwards [(A.chart j).open_source.mem_nhds hj] with y hy
-    simp [(A.chart j).left_inv hy]
-  exact (hc2.congr hev).continuousWithinAt
-
 theorem ReHolAt.congr {A : FinHolAtlas e X} {f g : X → ℝ} {y₀ : X} (hg : ReHolAt A g y₀)
     (h : f =ᶠ[𝓝 y₀] g) : ReHolAt A f y₀ := by
   obtain ⟨W, hW, hy, G, hG, hWG⟩ := hg
@@ -150,7 +135,7 @@ theorem reHolAt_log_norm {A : FinHolAtlas e X} {W : Set X} {f : X → ℂ} {y₀
     ReHolAt A (fun y => Real.log ‖f y‖) y₀ := by
   have hS : IsOpen {w : ℂ | w / f y₀ ∈ Complex.slitPlane} :=
     Complex.isOpen_slitPlane.preimage (continuous_id.div_const _)
-  have hW' := (holoOn_continuousOn hf).isOpen_inter_preimage hW hS
+  have hW' := (_root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.holoOn_continuousOn hf).isOpen_inter_preimage hW hS
   refine ⟨_, hW', ⟨hy, ?_⟩, fun z => Complex.log (f z / f y₀) + (Real.log ‖f y₀‖ : ℂ),
     fun j u hu => ?_, fun z hz => ?_⟩
   · show f y₀ / f y₀ ∈ Complex.slitPlane
@@ -171,12 +156,9 @@ section Model
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P : Ideal (MRing ι)} {d : ℕ}
 
-def IsSecOn (M : CxModel P d) (U : Set M.Xc) (s : M.Xc → (Σ k, ι k) → ℂ) : Prop :=
-  (∀ y ∈ U, s y ∈ mcPts P ∧ M.proj (s y) = y) ∧ ∀ p, M.atlas.HoloOn U fun y => s y p
-
 theorem reHolAt_log_sections {M : CxModel P d} {U U' : Set M.Xc} {s s' : M.Xc → (Σ k, ι k) → ℂ}
-    {a : K → ℤ} {F : ((Σ k, ι k) → ℂ) → ℝ} (hU : IsOpen U) (hU' : IsOpen U') (hs : IsSecOn M U s)
-    (hs' : IsSecOn M U' s')
+    {a : K → ℤ} {F : ((Σ k, ι k) → ℂ) → ℝ} (hU : IsOpen U) (hU' : IsOpen U') (hs : _root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.IsSecOn M U s)
+    (hs' : _root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.IsSecOn M U' s')
     (hF : ∀ z ∈ mcPts P, ∀ c : K → ℂ, (∀ k, c k ≠ 0) → F (torusSmul c z) = (∏ k, ‖c k‖ ^ a k) * F z)
     (hpos : ∀ z ∈ mcPts P, 0 < F z) {y₀ : M.Xc} (hy : y₀ ∈ U) (hy' : y₀ ∈ U') :
     ReHolAt M.atlas (fun y => Real.log (F (s' y)) - Real.log (F (s y))) y₀ := by
@@ -195,7 +177,7 @@ theorem reHolAt_log_sections {M : CxModel P d} {U U' : Set M.Xc} {s s' : M.Xc �
       (reHolAt_log_norm hU (hs.2 _) hy (hi k))).const_mul _
   refine (ReHolAt.sum Finset.univ hR).congr ?_
   have hev : ∀ᶠ y in 𝓝 y₀, ∀ k, s y ⟨k, i k⟩ ≠ 0 := eventually_all.2 fun k =>
-    ((holoOn_continuousOn (hs.2 ⟨k, i k⟩)).continuousAt (hU.mem_nhds hy)).eventually_ne (hi k)
+    ((_root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.holoOn_continuousOn (hs.2 ⟨k, i k⟩)).continuousAt (hU.mem_nhds hy)).eventually_ne (hi k)
   filter_upwards [hU.mem_nhds hy, hU'.mem_nhds hy', hev] with y h1 h2 h3
   have hm := (hs.1 y h1).1
   have hm' := (hs'.1 y h2).1
@@ -216,12 +198,12 @@ variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
   {E : Ψ → Type} [∀ τ, AddCommGroup (E τ)] [∀ τ, Module Ω (E τ)]
 
 theorem reHolAt_log_vert (D : ComponentData II Ψ K ι Ω E) {p' : ℕ} (hp : p' ∈ D.S) {M : XModel D}
-    {U : Set M.Xc} {s : M.Xc → (Σ k, ι k) → ℂ} (hU : IsOpen U) (hs : IsSecOn M U s) {y₀ : M.Xc}
+    {U : Set M.Xc} {s : M.Xc → (Σ k, ι k) → ℂ} (hU : IsOpen U) (hs : _root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.IsSecOn M U s) {y₀ : M.Xc}
     (hy : y₀ ∈ U) : ReHolAt M.atlas (fun y => Real.log (D.vertFactor p' (s y))) y₀ := by
   obtain ⟨T, hTa, hT0, hTe⟩ :=
     GroundTheory.Heights₂.Heights.NineStatements.NbarLeviChartReg.vertFactor_local D hp (hs.1 y₀ hy).1
   obtain ⟨O, hOs, hOo, hzO⟩ := mem_nhds_iff.1 (hTa.eventually_analyticAt.and hTe)
-  have hsc : ContinuousOn s U := continuousOn_pi.2 fun p => holoOn_continuousOn (hs.2 p)
+  have hsc : ContinuousOn s U := continuousOn_pi.2 fun p => _root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.holoOn_continuousOn (hs.2 p)
   have hW := hsc.isOpen_inter_preimage hU hOo
   have hf : M.atlas.HoloOn (U ∩ s ⁻¹' O) (fun y => T (s y)) := by
     intro j u hu
@@ -377,8 +359,8 @@ theorem potential_nbarQ (X : ComponentSetting D O Lt) (Θ : LocPot X.M.Xc) (hs :
   have hΘy : y₀ ∈ Θ.U x := hy.1.1.2
   obtain ⟨U₁, hU₁, hy₁, hU₁s, s, hsm, hsH, G₁, hG₁, hr₁⟩ := X.S.th_ref x y₀ hth
   obtain ⟨U₂, hU₂, hy₂, hU₂s, s₂, hsm₂, hsH₂, G₂, hG₂, hr₂⟩ := hs x y₀ ⟨hΘy, Set.mem_univ _⟩
-  have hsec : IsSecOn X.M U₁ s := ⟨hsm, hsH⟩
-  have hsec₂ : IsSecOn X.M U₂ s₂ := ⟨hsm₂, hsH₂⟩
+  have hsec : _root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.IsSecOn X.M U₁ s := ⟨hsm, hsH⟩
+  have hsec₂ : _root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.DCont.IsSecOn X.M U₂ s₂ := ⟨hsm₂, hsH₂⟩
   have hA : ∀ z ∈ mcPts (mCoordIdeal D.y), ∀ c : K → ℂ, (∀ k, c k ≠ 0) →
       D.A'.h (torusSmul c z) = (∏ k, ‖c k‖ ^ D.a' k) * D.A'.h z := by
     intro z _ c hc

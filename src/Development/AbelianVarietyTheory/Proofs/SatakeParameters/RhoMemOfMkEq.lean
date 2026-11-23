@@ -60,23 +60,12 @@ open Formalism.UG
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem int_entry {m : ℕ} {h : GL (Fin m) L} (hh : h ∈ GLint (Fin m) (intL L)) (i j : Fin m) :
-    (h : Matrix (Fin m) (Fin m) L) i j ∈ intL L := by
-  obtain ⟨k, rfl⟩ := hh; simp [Formalism.UG.bc]
-
-theorem mul_mem_intMat {a b : ℕ} {h : GL (Fin a) L} (hh : h ∈ GLint (Fin a) (intL L)) {u : Matrix (Fin a) (Fin b) L}
-    (hu : u ∈ intMat L a b) : (h : Matrix (Fin a) (Fin a) L) * u ∈ intMat L a b := by
-  rw [mem_intMat] at hu ⊢
-  intro i j
-  rw [Matrix.mul_apply]
-  exact Subring.sum_mem _ fun k _ => Subring.mul_mem _ (int_entry hh i k) (hu k j)
-
 def lmulQ {a b : ℕ} (h : GL (Fin a) L) (hh : h ∈ GLint (Fin a) (intL L)) :
     Matrix (Fin a) (Fin b) L ⧸ intMat L a b →+ Matrix (Fin a) (Fin b) L ⧸ intMat L a b :=
   QuotientAddGroup.map _ _
     { toFun := fun x => (h : Matrix (Fin a) (Fin a) L) * x, map_zero' := Matrix.mul_zero _,
       map_add' := Matrix.mul_add _ }
-    (fun _ hu => mul_mem_intMat hh hu)
+    (fun _ hu => _root_.GlobalTheory.Hk3.HoweFix.mul_mem_intMat' hh hu)
 
 theorem lmulQ_mk {a b : ℕ} (h : GL (Fin a) L) (hh : h ∈ GLint (Fin a) (intL L)) (x : Matrix (Fin a) (Fin b) L) :
     lmulQ h hh (QuotientAddGroup.mk x) = QuotientAddGroup.mk ((h : Matrix (Fin a) (Fin a) L) * x) := rfl
@@ -87,11 +76,8 @@ theorem lmulQ_mul {a b : ℕ} (h h' : GL (Fin a) L) (hh : h ∈ GLint (Fin a) (i
   induction c using QuotientAddGroup.induction_on with
   | H x => simp only [lmulQ_mk, Units.val_mul, Matrix.mul_assoc]
 
-abbrev KT (σ : L →+* L) {a : ℕ} (J : Matrix (Fin a) (Fin a) L) : Subgroup (UJ σ J) :=
-  (GLint (Fin a) (intL L)).comap (UJ σ J).subtype
-
 def actQ (σ : L →+* L) {a b : ℕ} (J : Matrix (Fin a) (Fin a) L) :
-    MulAction (KT σ J) (Matrix (Fin a) (Fin b) L ⧸ intMat L a b) where
+    MulAction (_root_.GlobalTheory.Hk3.HoweFix.KInt σ J) (Matrix (Fin a) (Fin b) L ⧸ intMat L a b) where
   smul k c := lmulQ ((k : UJ σ J) : GL (Fin a) L) (Subgroup.mem_comap.1 k.2) c
   one_smul c := by
     induction c using QuotientAddGroup.induction_on with
@@ -135,17 +121,6 @@ theorem rho_mem_of_mk_eq (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ �
   rw [hc]
   exact Submodule.smul_mem _ _ (Submodule.subset_span rfl)
 
-theorem om_rho (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ ω) {s : M} (hs : GlobalTheory.Hk3.LocVac ρ s)
-    (h : UJ σ (JT : Matrix (Fin n') (Fin n') L)) (hh : (h : GL (Fin n') L) ∈ GLint (Fin n') (intL L))
-    (x : Matrix (Fin n') (Fin n) L) : ω (1, h) (ρ x s) = ρ (((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) s := by
-  have h1 := congrArg (fun T : Module.End ℂ M => T s) (hP.norm 1 h x)
-  have hfix := hP.fix 1 h (by simpa using (GLint (Fin n) (intL L)).one_mem) hh s hs
-  simp only [Module.End.mul_apply] at h1
-  rw [h1, hfix]
-  have h1' : (((1 : UJ σ (JS : Matrix (Fin n) (Fin n) L)) : GL (Fin n) L)⁻¹ : GL (Fin n) L) = 1 := by
-    rw [OneMemClass.coe_one, inv_one]
-  rw [h1', Units.val_one, Matrix.mul_one]
-
 theorem step (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ ω) (s : M) (hs0 : s ≠ 0) (hs : GlobalTheory.Hk3.LocVac ρ s)
     (hspan : Submodule.span ℂ (Set.range fun x => ρ x s) = ⊤) (x : Matrix (Fin n') (Fin n) L)
     (hfix : ∃ w : M, w ≠ 0 ∧ (∀ h : UJ σ (JT : Matrix (Fin n') (Fin n') L),
@@ -167,11 +142,11 @@ theorem step (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ ω) (s : M) (
     rw [QuotientAddGroup.eq, Matrix.mul_sub]
     have : -(((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x - ((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * l) +
         ((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x = ((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * l := by abel
-    rw [this]; exact mul_mem_intMat hh hl
+    rw [this]; exact _root_.GlobalTheory.Hk3.HoweFix.mul_mem_intMat' hh hl
   have hmem : ρ (((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) s ∈ Submodule.span ℂ {v : M | ∃ h : Formalism.UG.UJ σ (JT : Matrix (Fin n') (Fin n') L), (h : GL (Fin n') L) ∈ Formalism.UG.GLint (Fin n') (Formalism.UG.intL L) ∧
           v = ρ (((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) s} :=
     Submodule.subset_span ⟨h, hh, rfl⟩
-  exact (Submodule.span_singleton_le_iff_mem _ _).2 hmem (rho_mem_of_mk_eq hP hs hm)
+  exact (Submodule.span_singleton_le_iff_mem _ _).2 hmem (_root_.GlobalTheory.Hk3.HoweFix.rho_mem_span_of_mk_eq hP hs hm)
 
 end Data
 
@@ -192,12 +167,12 @@ theorem fixed_mem_span (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ ω)
   let V : (Matrix (Fin n') (Fin n) L ⧸ intMat L n' n) → Submodule ℂ M := fun c =>
     Submodule.span ℂ {w : M | ∃ x : Matrix (Fin n') (Fin n) L,
       (QuotientAddGroup.mk x : Matrix (Fin n') (Fin n) L ⧸ intMat L n' n) = c ∧ w = ρ x s}
-  let π : KT σ (JT : Matrix (Fin n') (Fin n') L) →* Module.End ℂ M :=
-    (ω.comp (MonoidHom.inr _ _)).comp (KT σ (JT : Matrix (Fin n') (Fin n') L)).subtype
+  let π : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L) →* Module.End ℂ M :=
+    (ω.comp (MonoidHom.inr _ _)).comp (_root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L)).subtype
   let μ : (Matrix (Fin n') (Fin n) L ⧸ intMat L n' n) → ℕ := fun c => latIdx (Quotient.out c)
   let S := Submodule.span ℂ (Set.range fun g : UJ σ (JS : Matrix (Fin n) (Fin n) L) => ω (g, 1) s)
   have hπ_apply : ∀ k v, π k v = ω (1, (k : UJ σ (JT : Matrix (Fin n') (Fin n') L))) v := fun _ _ => rfl
-  have hsmul : ∀ (k : KT σ (JT : Matrix (Fin n') (Fin n') L)) (x : Matrix (Fin n') (Fin n) L),
+  have hsmul : ∀ (k : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L)) (x : Matrix (Fin n') (Fin n) L),
       k • (QuotientAddGroup.mk x : Matrix (Fin n') (Fin n) L ⧸ intMat L n' n) =
         QuotientAddGroup.mk ((((k : UJ σ (JT : Matrix (Fin n') (Fin n') L)) : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) := fun _ _ => rfl
   have hμmk : ∀ x, μ (QuotientAddGroup.mk x) = latIdx x := by
@@ -224,14 +199,14 @@ theorem fixed_mem_span (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ ω)
     intro c
     induction c using QuotientAddGroup.induction_on with
     | H x => exact ⟨ρ x s, hVle x⟩
-  have hπ : ∀ (k : KT σ (JT : Matrix (Fin n') (Fin n') L)) c, (V c).map (π k) ≤ V (k • c) := by
+  have hπ : ∀ (k : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L)) c, (V c).map (π k) ≤ V (k • c) := by
     intro k c
     rw [Submodule.map_span]
     refine Submodule.span_le.2 ?_
     rintro _ ⟨_, ⟨x, rfl, rfl⟩, rfl⟩
-    rw [hπ_apply, om_rho hP hs _ (Subgroup.mem_comap.1 k.2), hsmul]
+    rw [hπ_apply, _root_.GlobalTheory.Hk3.HoweFix.om_rho' hP hs _ (Subgroup.mem_comap.1 k.2), hsmul]
     exact hmemV _
-  have hμ : ∀ (k : KT σ (JT : Matrix (Fin n') (Fin n') L)) c, μ (k • c) = μ c := by
+  have hμ : ∀ (k : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L)) c, μ (k • c) = μ c := by
     intro k c
     induction c using QuotientAddGroup.induction_on with
     | H x =>
@@ -250,13 +225,13 @@ theorem fixed_mem_span (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ ω)
       rw [e, map_mul, Module.End.mul_apply,
         hP.fix 1 _ (by simpa using (GLint (Fin n) (intL L)).one_mem) (Subgroup.mem_comap.1 k.2) s hs]
     exact hle hv
-  have hstep : ∀ c, (∃ w : M, w ≠ 0 ∧ (∀ k, π k w = w) ∧ w ∈ ⨆ k : KT σ (JT : Matrix (Fin n') (Fin n') L), V (k • c)) →
+  have hstep : ∀ c, (∃ w : M, w ≠ 0 ∧ (∀ k, π k w = w) ∧ w ∈ ⨆ k : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L), V (k • c)) →
       ∃ v ∈ S, ∃ u ∈ ⨆ (j) (_ : μ j < μ c), V j,
-        v - u ∈ (⨆ k : KT σ (JT : Matrix (Fin n') (Fin n') L), V (k • c)) ∧ v - u ≠ 0 := by
+        v - u ∈ (⨆ k : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L), V (k • c)) ∧ v - u ≠ 0 := by
     intro c hc
     induction c using QuotientAddGroup.induction_on with
     | H x =>
-      have horb1 : (⨆ k : KT σ (JT : Matrix (Fin n') (Fin n') L), V (k • QuotientAddGroup.mk x)) ≤
+      have horb1 : (⨆ k : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L), V (k • QuotientAddGroup.mk x)) ≤
           Submodule.span ℂ {v : M | ∃ h : Formalism.UG.UJ σ (JT : Matrix (Fin n') (Fin n') L), (h : GL (Fin n') L) ∈ Formalism.UG.GLint (Fin n') (Formalism.UG.intL L) ∧
           v = ρ (((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) s} := by
         refine iSup_le fun k => ?_
@@ -265,10 +240,10 @@ theorem fixed_mem_span (hP : GlobalTheory.Hk3.LocPair ϖ σ q δ JS JT ψ ρ ω)
         exact (Submodule.span_singleton_le_iff_mem _ _).2 (Submodule.subset_span ⟨k, Subgroup.mem_comap.1 k.2, rfl⟩)
       have horb2 : Submodule.span ℂ {v : M | ∃ h : Formalism.UG.UJ σ (JT : Matrix (Fin n') (Fin n') L), (h : GL (Fin n') L) ∈ Formalism.UG.GLint (Fin n') (Formalism.UG.intL L) ∧
           v = ρ (((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) s} ≤
-          (⨆ k : KT σ (JT : Matrix (Fin n') (Fin n') L), V (k • QuotientAddGroup.mk x)) := by
+          (⨆ k : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L), V (k • QuotientAddGroup.mk x)) := by
         refine Submodule.span_le.2 ?_
         rintro _ ⟨h, hh, rfl⟩
-        refine Submodule.mem_iSup_of_mem (⟨h, hh⟩ : KT σ (JT : Matrix (Fin n') (Fin n') L)) ?_
+        refine Submodule.mem_iSup_of_mem (⟨h, hh⟩ : _root_.GlobalTheory.Hk3.HoweFix.KInt σ (JT : Matrix (Fin n') (Fin n') L)) ?_
         rw [hsmul]
         exact hmemV _
       obtain ⟨w, hw0, hwf, hwm⟩ := hc

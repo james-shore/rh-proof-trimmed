@@ -218,6 +218,6 @@ theorem whitGenLowOf : WhitGenLowOf := by
 
 end PositivityTheory.SiegelWeilFormula.Gen.WL
 
-theorem PositivityTheory.SiegelWeilFormula.Gen.whitGenLowOf : PositivityTheory.SiegelWeilFormula.Gen.WhitGenLowOf := PositivityTheory.SiegelWeilFormula.Gen.WL.whitGenLowOf
+alias PositivityTheory.SiegelWeilFormula.Gen.whitGenLowOf := _root_.PositivityTheory.SiegelWeilFormula.Gen.WL.whitGenLowOf
 
 end

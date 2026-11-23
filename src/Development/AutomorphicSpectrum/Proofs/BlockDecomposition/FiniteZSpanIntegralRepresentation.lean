@@ -84,10 +84,10 @@ theorem exists_aeval_lapOp_eq_zero_of_finite (φ : Sm E a)
   set W := Submodule.span ℂ (Set.range fun k => cptRep E a k φ) with hWdef
   haveI : FiniteDimensional ℂ W := hk
   have hZ : Ω ∈ Zalg E a := by
-    rw [hΩ, GlobalTheory.T.omega_operator_eq_casimir_sum E a d b ε hε horth]
+    rw [hΩ, _root_.GlobalTheory.CompanionTheory.HCRep.TraceCas.omegaOp_eq_two_cas E a d b ε hε horth]
     refine Subalgebra.smul_mem _ (Subalgebra.sum_mem _ fun w _ => Subalgebra.add_mem _ ?_ ?_) _
-    · exact GlobalTheory.T.casimir_mem_center_enveloping E a _
-    · exact GlobalTheory.T.casimir_mem_center_enveloping E a _
+    · exact _root_.GlobalTheory.CompanionTheory.Inh.CapelliCasimir.cas_mem_Zalg E a _
+    · exact _root_.GlobalTheory.CompanionTheory.Inh.CapelliCasimir.cas_mem_Zalg E a _
   set Vz := Submodule.span ℂ ((fun z : Module.End ℂ (Sm E a) => z φ) '' Zalg E a) with hVz
   haveI : FiniteDimensional ℂ Vz := hz
   have hVs : ∀ w ∈ Vz, Ω w ∈ Vz := by
@@ -106,7 +106,7 @@ theorem exists_aeval_lapOp_eq_zero_of_finite (φ : Sm E a)
     · rintro _ ⟨k, rfl⟩
       have hcomm : ∀ m, cptRep E a k (Ω m) = Ω (cptRep E a k m) := fun m =>
         (congrArg (fun T : Module.End ℂ (Sm E a) => T m)
-          (GlobalTheory.T.omega_operator_commutes_infinite_gl E a d b ε hε horth (Unitary.toUnits k))).symm
+          (_root_.GlobalTheory.CompanionTheory.HCRep.omegaOp_comm_rt E a d b ε hε horth (Unitary.toUnits k))).symm
       have := AutomorphicForm.map_aeval_apply_of_intertwine (cptRep E a k) hcomm q φ
       rw [hq, map_zero] at this
       exact this.symm

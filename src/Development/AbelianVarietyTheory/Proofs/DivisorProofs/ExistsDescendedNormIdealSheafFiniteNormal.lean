@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsNatDiagIffIsDiag
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharZeroStalkImageOfGenericPoint
 
 @[expose] public section
 
@@ -85,7 +86,7 @@ theorem descendedIdealSheaf_exists : ∀ (Y Z : Scheme.{0}) (π : Y ⟶ Z) [IsFi
     rintro U _ hx ⟨y, rfl⟩
     exact ((genericPoint_specializes y).map π.continuous).mem_open U.isOpen hx
   refine ⟨Z.presheaf.stalk (GlobalTheory.NormSheafDescent.genPt π), Y.functionField, inferInstance, inferInstance,
-    inferInstance, hfd, GlobalTheory.T.charZero_stalk_imageOfGenericPoint Y Z π hchar hK, J, ?_, ?_⟩
+    inferInstance, hfd, _root_.GlobalTheory.NormSheafDescent.charZero_stalk_genPt Y Z π hchar hK, J, ?_, ?_⟩
   · intro x hx
     by_contra hne
     push_neg at hne
@@ -94,13 +95,13 @@ theorem descendedIdealSheaf_exists : ∀ (Y Z : Scheme.{0}) (π : Y ⟶ Z) [IsFi
     obtain ⟨_, ⟨U, hU, rfl⟩, hxU, hUsub⟩ := Z.isBasis_affineOpens.exists_subset_of_mem_open
       (show x ∈ (π '' (I.support : Set Y))ᶜ ∩ Set.range π from ⟨fun ⟨y, hy, e⟩ => hne y hy e, hxW⟩)
       (hS.isOpen_compl.inter hW)
-    have htop := GlobalTheory.T.normCoefficientIdealFamily_eq_top_of_disjoint Y Z π hK hfd I ⟨U, hU⟩ (fun y hy hyU => (hUsub hyU).1 ⟨y, hy, rfl⟩)
+    have htop := _root_.GlobalTheory.NormSheafDescent.famIdeal_eq_top_of_disjoint Y Z π hK hfd I ⟨U, hU⟩ (fun y hy hyU => (hUsub hyU).1 ⟨y, hy, rfl⟩)
     have hx' := (Scheme.IdealSheafData.mem_support_iff_of_mem (U := ⟨U, hU⟩) hxU).mp hx
     rw [hJ ⟨U, hU⟩ (fun z hz => (hUsub hz).2), htop] at hx'
     exact (Scheme.mem_zeroLocus_iff _ _ _).mp hx' 1 Submodule.mem_top (by simpa using hxU)
   · rintro U hUW ⟨x, hxU⟩
     have h := hgen U.1 x hxU (hUW hxU)
-    obtain ⟨hdom, hfr⟩ := GlobalTheory.T.sections_isFractionRing_stalk_imageOfGenericPoint Y Z π U.1 U.2 hUW h
+    obtain ⟨hdom, hfr⟩ := _root_.GlobalTheory.NormSheafDescent.sections_isDomain_isFractionRing_stalk Y Z π U.1 U.2 hUW h
     letI := GlobalTheory.NormSheafDescent.algAK π U.1 h
     letI := GlobalTheory.NormSheafDescent.algBL π U.1 h
     haveI : Nonempty (π ⁻¹ᵁ U.1) := ⟨⟨genericPoint Y, h⟩⟩

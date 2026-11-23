@@ -122,11 +122,6 @@ theorem exists_value_family {A : Type} [Finite A] {x : (Σ k, ι k) → Ω} {b :
     exact ⟨⟨d a, g a, h a, hg a, hh a, ValRing.aeval_ne_zero_of_notMem hb (hh a) (hn a), heq a, ht a, rfl⟩,
       d a, g a, h a, hg a, hh a, notMem_of_eval_ne_zero (hh a) (ht a), heq a⟩
 
-theorem ne_zero_of_X_notMem {t : (Σ k, ι k) → ℂ} {q : Σ k, ι k} (h : (X q : MRing ι) ∉ mCoordIdeal t) :
-    t q ≠ 0 := fun h0 => h (by
-  show mConeMap t (X q) = 0
-  rw [mConeMap, aeval_X, h0, map_zero, zero_mul])
-
 theorem X_notMem_of_ne_zero {t : (Σ k, ι k) → ℂ} {q : Σ k, ι k} (h0 : t q ≠ 0) :
     (X q : MRing ι) ∉ mCoordIdeal t := fun hm => by
   have h' : mConeMap t (X q) = 0 := hm
@@ -149,10 +144,7 @@ variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Φ : 
   {Ψ : Type} [Fintype Ψ] [DecidableEq Ψ] {N j : ℕ} {K' : Type} [Fintype K'] {ι' : K' → Type} [∀ k, Fintype (ι' k)]
   {Φ' : Type} [Field Φ'] {y' : (Σ k, ι' k) → Φ'}
 
-theorem basePart_orbit {σ : Type} (blk : σ → Option K) {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') :
-    SameOrbit (basePart blk z) (basePart blk z') := by
-  obtain ⟨c, hc, rfl⟩ := h
-  exact ⟨fun k => c k.1, fun k => hc k.1, rfl⟩
+alias basePart_orbit := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.sameOrbit_basePart
 
 theorem comp_orbit {L L' : Type} [Fintype L] [Fintype L'] {a : L → Type} {a' : L' → Type} [∀ k, Fintype (a k)]
     [∀ k, Fintype (a' k)] {κ : L → L'} {v : (Σ k, a k) → (Σ k, a' k)} (hv : IsBlockMap κ v)
@@ -191,7 +183,7 @@ theorem good_open (M : FlagModel y Ψ N j) (F : FrameData ι Ψ N M.Ω M.blk) {b
   obtain ⟨W₄, r₄, o₄, m₄, s₄, -, v₄⟩ := exists_value_family hb
     (fun p : {p : Ψ × Fin N // M.blk p = none} => (F.υ p.1)⁻¹) fun p => (hF.2.2 p.1 p.2).2.2
   refine ⟨W₁ ∩ W₂ ∩ (W₃ ∩ W₄) ∩ {t | ∀ k, t ⟨k, F.c k⟩ ≠ 0}, ?_, ⟨⟨⟨m₁, m₂⟩, m₃, m₄⟩,
-    fun k => ne_zero_of_X_notMem (hF.1 k)⟩, ?_, ?_⟩
+    fun k => _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.coord_ne (hF.1 k)⟩, ?_, ?_⟩
   · refine ((o₁.inter o₂).inter (o₃.inter o₄)).inter ?_
     rw [Set.setOf_forall]
     exact isOpen_iInter_of_finite fun k => isOpen_ne_fun (continuous_apply _) continuous_const
@@ -373,7 +365,7 @@ theorem lift_inverse : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fint
     rintro z'' ⟨hzU, hzp⟩ w ⟨hwU, hwp⟩ hI
     have hb'' := Q1 z'' hzp
     have hg'' := hW₂g _ hzU.1.2
-    obtain ⟨z₁, hz₁o, hz₁n⟩ := exists_normalised M' F' (z := z'') fun k => ne_zero_of_X_notMem (hg''.1 k)
+    obtain ⟨z₁, hz₁o, hz₁n⟩ := exists_normalised M' F' (z := z'') fun k => _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.coord_ne (hg''.1 k)
     have hz₁ : z₁ ∈ mcPts (mCoordIdeal y') := mem_mcPts_of_sameOrbit hP'.2.1.2.1 hz₁o hzp
     have ho₁ := basePart_orbit M'.blk hz₁o
     have ht := Q1 z₁ hz₁

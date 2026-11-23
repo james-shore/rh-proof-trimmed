@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsBlkCover
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Partition
 
 @[expose] public section
 
@@ -51,29 +52,6 @@ open GlobalTheory.CompanionTheory.Ar.PB.WSq GlobalTheory.CompanionTheory.Ar.PB.W
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.WSq.Sec.SncProd
-
-theorem compat_restr {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
-    (ψ : OpenPartialHomeomorph X (Fin e → ℂ)) (h : IsCompatChart A ψ) (V : Set X) (hV : IsOpen V) :
-    IsCompatChart A (ψ.restrOpen V hV) := by
-  intro j
-  refine ⟨?_, ?_⟩
-  · refine (h j).1.mono ?_
-    rintro z ⟨hz, hs⟩
-    refine ⟨hz, ?_⟩
-    have : (A.chart j).symm z ∈ ψ.source ∩ V := by
-      simpa [OpenPartialHomeomorph.restrOpen_source] using hs
-    exact this.1
-  · have hsymm : ((ψ.restrOpen V hV).symm : (Fin e → ℂ) → X) = ψ.symm := rfl
-    rw [hsymm]
-    refine (h j).2.mono ?_
-    rintro z ⟨hz, hs⟩
-    refine ⟨?_, hs⟩
-    have h1 : ψ.symm z ∈ ψ.source ∩ V := by
-      have := (ψ.restrOpen V hV).map_target hz
-      rwa [OpenPartialHomeomorph.restrOpen_source] at this
-    have h2 : ψ (ψ.symm z) = z := (ψ.restrOpen V hV).right_inv hz
-    rw [← h2]
-    exact ψ.map_source h1.1
 
 theorem holoOn_comp {e n : ℕ} {X Z : Type} [TopologicalSpace X] [TopologicalSpace Z] (A : FinHolAtlas e X)
     (B : FinHolAtlas n Z) (pr : X → Z) (hp : HoloMap A B pr) (S : Set Z) (g : Z → ℂ) (hg : B.HoloOn S g) :
@@ -142,7 +120,7 @@ theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι 
     have := hy.1
     rw [hsrc] at this
     exact this.2
-  refine ⟨ψ'.restrOpen (V x) hVo, compat_restr _ _ hψ'c _ hVo, ?_, ?_,
+  refine ⟨ψ'.restrOpen (V x) hVo, _root_.ReciprocityTheory.AnForm.M.pa_compat_restr _ _ hψ'c _ hVo, ?_, ?_,
     Fin.snoc (α := fun _ => Option (Fin e)) (fun k => (σb k).map (σ x)) (some (i₀ x)),
     snoc_inj σb (σ x) (i₀ x) hne hσi, ?_, fun y => ub (pr y) * u x y, ?_, ?_, ?_⟩
   · rw [hsrc'', hsrc]

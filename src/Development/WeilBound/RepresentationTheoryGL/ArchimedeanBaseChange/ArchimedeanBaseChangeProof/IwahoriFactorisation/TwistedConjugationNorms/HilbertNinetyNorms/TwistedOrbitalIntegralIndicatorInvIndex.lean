@@ -60,17 +60,6 @@ theorem avg_eq_of_rStab {H : Type} [Group H] (u : H → ℂ) (S : Subgroup H) (h
   subst hS
   rfl
 
-theorem avg_const_mul {H : Type} [Group H] (c : ℂ) (u : H → ℂ) : avg (fun k => c * u k) = c * avg u := by
-  by_cases hc : c = 0
-  · subst hc
-    simp only [zero_mul]
-    simp [avg]
-  · have hS : rStab (fun k => c * u k) = rStab u := Subgroup.ext fun k =>
-      show (∀ x, c * u (x * k) = c * u x) ↔ ∀ x, u (x * k) = u x from
-        forall_congr' fun x => mul_right_inj' hc
-    rw [avg_eq_of_rStab _ _ hS, avg, finsum_const_mul_eq]
-    ring
-
 theorem twisted_orbital_integral_proportional (θ : G →* G) (K : Subgroup G) (δ : G) (f₁ f₂ : G → ℂ) (c : ℂ)
     (h : ∀ p : G, f₁ (p⁻¹ * δ * θ p) = c * f₂ (p⁻¹ * δ * θ p)) : twOrb θ K δ f₁ = c * twOrb θ K δ f₂ := by
   unfold twOrb
@@ -78,7 +67,7 @@ theorem twisted_orbital_integral_proportional (θ : G →* G) (K : Subgroup G) (
   refine finsum_congr fun q => ?_
   have e : (fun k : K => f₁ ((Quotient.out q * k)⁻¹ * δ * θ (Quotient.out q * k))) =
       fun k : K => c * f₂ ((Quotient.out q * k)⁻¹ * δ * θ (Quotient.out q * k)) := funext fun k => h _
-  rw [e, avg_const_mul]
+  rw [e, _root_.GlobalTheory.BCT.StTwLevel.avg_const_mul]
   ring
 
 theorem twisted_orbital_integral_eq_zero_of_vanish (θ : G →* G) (K : Subgroup G) (δ : G) (f : G → ℂ) (h : ∀ p : G, f (p⁻¹ * δ * θ p) = 0) :

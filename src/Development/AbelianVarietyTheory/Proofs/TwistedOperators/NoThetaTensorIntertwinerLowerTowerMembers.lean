@@ -88,7 +88,7 @@ theorem tensNo_first (X : ProvA) (hD : DiscreteSeriesBlattner X) (h5 : admQ5 X)
       exact zero_ne_one hone
     obtain ⟨v, hv, hv0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hnb
     exact ⟨v, hv0, hv⟩
-  have hflow := GlobalTheory.T.degW_blattner_le_of_blattnerCone p q (X.ds p q lam).HK lam (cPair r s) θ hcone hsign
+  have hflow := _root_.GlobalTheory.FlowLemma.degW_blattner_le p q (X.ds p q lam).HK lam (cPair r s) θ hcone hsign
   obtain ⟨⟨μ, P, hPJ, hP1, hP2, -⟩, -⟩ :=
     GlobalTheory.T.exists_jointHarm_highestWeight_and_map_mem_genSub p q r s (X.ds p q lam).HK MM f hirr hadm hf hne (blattner lam) hex hflow
   have hbot := ((GlobalTheory.JointHarm.fock_polynomials X p q r s).2.2.2.2.1 (blattner lam) μ).2 (hno μ)

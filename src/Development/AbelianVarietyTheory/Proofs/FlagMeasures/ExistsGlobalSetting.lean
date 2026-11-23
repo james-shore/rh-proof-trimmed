@@ -63,7 +63,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem exists_transport {D : D7} (F : ∀ u, Formalism.L2.Forms.Forms0 D u)
     (X : HidaSetting D) (hK : X.LevelSubgroupCharacter) (hι : ∃ ιA, GlobalTheory.St.IsAdeleIso X ιA) (u : D.what₂.Word) :
     ∃ Tr : Transport X u (F u), LevelMatch X Tr hK := by
-  obtain ⟨wt, hw⟩ := GlobalTheory.St.WittT.wittExists D X u
+  obtain ⟨wt, hw⟩ := _root_.GlobalTheory.St.WittT.wittExists_holds D X u
   obtain ⟨ιA, hι⟩ := hι
   obtain ⟨g0, hg0⟩ := GlobalTheory.St.G.genusMatch_holds D F X u wt ιA hw hι
   obtain ⟨h0, hL, hKm⟩ := GlobalTheory.St.G.levelConj_holds D F X hK u wt ιA g0 hw hι hg0
@@ -81,7 +81,7 @@ theorem exists_setting (hSW : HeckeCharacterZeroLocus.SiegelWeilU.SiegelWeilUnit
         Formalism.L2.SG.LocVol.IsStdChar ψ ∧
         Formalism.L2.SG.MassDataConc.MeasCompatψ X ψ ∧ (∀ w, Formalism.L2.SG.LocVol.LocCompatX X ψ w) ∧
         ∀ hK : X.LevelSubgroupCharacter, ∀ u, ∃ Tr : Transport X u (F u), LevelMatch X Tr hK := by
-  have hB : BesselNVGap := Formalism.L2.SG.Closed.BesselNVGap_holds
+  have hB : BesselNVGap := _root_.Formalism.L2.SG.BesselDiscreteSeries.besselNVGap
   have hC : CoefWeightedLoc := Formalism.L2.SG.Closed.CoefWeightedLoc_holds
   let A := Formalism.L2.SG.InstExistsPf.instanceOfRecord D
   obtain ⟨L⟩ := GlobalTheory.St.Lat.latExists_of_forms0 D (F D.u₀)

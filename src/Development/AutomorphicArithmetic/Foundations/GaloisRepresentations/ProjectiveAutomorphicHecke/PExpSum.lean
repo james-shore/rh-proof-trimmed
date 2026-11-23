@@ -45,10 +45,6 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.Proje
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DefU Formalism.BasicNotions UpperTheory.Gal.CertificateRingHomMap
 open scoped Classical
 
-private theorem imag_of_sq {c : ℂ} {d : ℕ} (hd : 0 < d) (h : c ^ 2 = -(d : ℂ)) :
-    (starRingEnd ℂ) c = -c ∧ c ≠ 0 :=
-  _root_.UpperTheory.Reformulated.B.Qh67.imag_of_sq hd h
-
 private theorem sum_emb {E : Type} [Field E] [NumberField E]
     (hc : ∀ φ : E →+* ℂ, ComplexEmbedding.conjugate φ ≠ φ) (f : (E →+* ℂ) → ℤ) :
     ∑ φ, f φ = ∑ v : InfinitePlace E, (f v.embedding + f (ComplexEmbedding.conjugate v.embedding)) := by
@@ -73,13 +69,13 @@ theorem UpperTheory.Gal.CertificateRingHomMap.pExpSum_of :
   intro E _ _ _ n d x hd hx W m hm τ
   have hsq : ∀ φ : E →+* ℂ, (φ x) ^ 2 = -(d : ℂ) := fun φ => by
     rw [← map_pow, hx]; simp
-  have hτ0 : τ x ≠ 0 := (imag_of_sq hd (hsq τ)).2
+  have hτ0 : τ x ≠ 0 := (_root_.UpperTheory.Reformulated.B.Qh67.imag_of_sq hd (hsq τ)).2
   have hcj : ∀ φ : E →+* ℂ, ComplexEmbedding.conjugate φ x = -φ x := fun φ => by
-    rw [ComplexEmbedding.conjugate_coe_eq]; exact (imag_of_sq hd (hsq φ)).1
+    rw [ComplexEmbedding.conjugate_coe_eq]; exact (_root_.UpperTheory.Reformulated.B.Qh67.imag_of_sq hd (hsq φ)).1
   have hne : ∀ φ : E →+* ℂ, ComplexEmbedding.conjugate φ ≠ φ := fun φ h => by
     have h1 := hcj φ
     rw [h] at h1
-    have h2 : φ x ≠ 0 := (imag_of_sq hd (hsq φ)).2
+    have h2 : φ x ≠ 0 := (_root_.UpperTheory.Reformulated.B.Qh67.imag_of_sq hd (hsq φ)).2
     exact h2 (self_eq_neg.1 h1)
   have hpm : ∀ φ : E →+* ℂ, φ x = τ x ∨ φ x = -τ x := fun φ =>
     sq_eq_sq_iff_eq_or_eq_neg.1 ((hsq φ).trans (hsq τ).symm)

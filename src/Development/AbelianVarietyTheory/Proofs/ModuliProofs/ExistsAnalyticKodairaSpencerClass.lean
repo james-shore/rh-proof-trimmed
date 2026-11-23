@@ -55,14 +55,9 @@ open GlobalTheory.KS
 noncomputable section
 namespace GlobalTheory.KS.Exist
 
-theorem res_res {X : Scheme.{0}} {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (f : Γ(X, U)) :
-    resG X h' (resG X h f) = resG X (h'.trans h) f := by
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]; rfl
+alias res_res := _root_.GlobalTheory.KS.VertReg.resG_resG
 
-theorem res_const {R : Type} [CommRing R] {X : Scheme.{0}} (p : X ⟶ Sp R) {U V : X.Opens}
-    (h : V ≤ U) (a : R) : resG X h (constFn p U a) = constFn p V a :=
-  congrArg (fun φ => φ.hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom a))
-    (Scheme.Hom.appLE_map p (U := ⊤) (V := U) (fun _ _ => trivial) (homOfLE h).op)
+alias res_const := _root_.GlobalTheory.LocDerExt.res_const
 
 theorem const_zero {R : Type} [CommRing R] {X : Scheme.{0}} (p : X ⟶ Sp R) (U : X.Opens) :
     constFn p U 0 = 0 := by
@@ -99,8 +94,6 @@ theorem locDer_sub {R : Type} [CommRing R] {Y X : Scheme.{0}} {q : Y ⟶ Sp ℂ}
 variable {g : ℕ} {A₀ : Over (Sp ℂ)} [GrpObj A₀] {L₀ : LB A₀.left} (u : HolUnif A₀ L₀ g) {X : Scheme.{0}}
   (m : A₀.left ⟶ X)
 
-theorem ex_hom (z : Fin g → ℂ) : (u.ex z).left ≫ A₀.hom = 𝟙 _ := Over.w (u.ex z)
-
 theorem ex_per (l : u.Λ) (z : Fin g → ℂ) : u.ex (z + l) = u.ex z := by
   rw [u.ex_add, (u.ker l).2 l.2, _root_.mul_one]
 
@@ -125,12 +118,6 @@ theorem fn_diffAt {W : X.Opens} (f : Γ(X, W)) {z : Fin g → ℂ} (hz : z ∈ d
     DifferentiableAt ℂ (fn u m W f) z :=
   (fn_hol u m W f).differentiableAt ((dom_open u m W).mem_nhds hz)
 
-theorem fderiv_res {W W' : X.Opens} (h : W' ≤ W) (f : Γ(X, W)) {z : Fin g → ℂ}
-    (hz : z ∈ dom u m W') : fderiv ℂ (fn u m W' (resG X h f)) z = fderiv ℂ (fn u m W f) z := by
-  refine Filter.EventuallyEq.fderiv_eq ?_
-  filter_upwards [(dom_open u m W').mem_nhds hz] with y hy
-  exact valAt'_res _ h f hy
-
 theorem fderiv_per (l : u.Λ) (W : X.Opens) (f : Γ(X, W)) (z : Fin g → ℂ) :
     fderiv ℂ (fn u m W f) (z + l) = fderiv ℂ (fn u m W f) z := by
   rw [← fderiv_comp_add_right]
@@ -148,7 +135,7 @@ theorem ptDer_fderiv (z w : Fin g → ℂ) :
     have : fn u m W (f * f') = fn u m W f * fn u m W f' := funext fun y => valAt'_mul _ _ _ _
     rw [this, fderiv_mul (fn_diffAt u m f hW) (fn_diffAt u m f' hW)]; rfl
   · intro W W' h hW f
-    rw [fderiv_res u m h f hW]
+    rw [_root_.GlobalTheory.KS.fderiv_fn_resG u m h f hW]
 
 theorem fderiv_const_eq {R : Type} [CommRing R] {x₀ : R →+* ℂ} {p : X ⟶ Sp R} (hm : m ≫ p = A₀.hom ≫ spMap x₀)
     (r : R) (z w : Fin g → ℂ) : fderiv ℂ (fn u m ⊤ (constFn p ⊤ r)) z w = 0 := by
@@ -156,7 +143,7 @@ theorem fderiv_const_eq {R : Type} [CommRing R] {x₀ : R →+* ℂ} {p : X ⟶ 
       fun _ => valAt' (spMap x₀) ⊤ ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom r) := by
     funext y
     refine (valAt'_appLE _ p ⊤ ⊤ le_top _ le_top).trans ?_
-    rw [Category.assoc, hm, ← Category.assoc, ex_hom]
+    rw [Category.assoc, hm, ← Category.assoc, _root_.GlobalTheory.KS.VertFamily.ex_over]
     exact congrArg (fun x => valAt' x ⊤ _) (Category.id_comp _)
   rw [this]
   simp
@@ -190,7 +177,7 @@ theorem ptDer_ev (hd : LocDer A₀.hom p m D W₀ d) {z : Fin g → ℂ} (hz : z
 theorem ev_base (hd : LocDer A₀.hom p m D W₀ d) {z : Fin g → ℂ} (hz : z ∈ dom u m W₀) (r : R) :
     ev u m W₀ d z ⊤ (constFn p ⊤ r) = D r := by
   rw [ev_eq u m hd le_top le_rfl hz, res_const, hd.base _ le_rfl]
-  exact valAt'_constFn _ _ (ex_hom u z) _ _ hz
+  exact valAt'_constFn _ _ (_root_.GlobalTheory.KS.VertFamily.ex_over u z) _ _ hz
 
 theorem ev_hol (W : X.Opens) (f : Γ(X, W)) :
     DifferentiableOn ℂ (fun z => ev u m W₀ d z W f) (dom u m (W ⊓ W₀)) := val_hol u m _ _
@@ -231,7 +218,7 @@ theorem exists_ksRel : ∀ (P₀ : Out.PolAV (Sp ℂ)) (u : HolUnif P₀.A P₀.
     have h : z ∈ dom u m (W ⊓ (i.1 ⊓ j.1)) := (dom_inf u m).2 ⟨hW, (dom_inf u m).2 ⟨hi, hj⟩⟩
     rw [ev_eq u m (hd i) inf_le_left (inf_le_right.trans inf_le_left) h,
       ev_eq u m (hd j) inf_le_left (inf_le_right.trans inf_le_right) h, ← valAt'_sub,
-      hc i j _ inf_le_right _ z h, fderiv_res u m _ _ h]
+      hc i j _ inf_le_right _ z h, _root_.GlobalTheory.KS.fderiv_fn_resG u m _ _ h]
   have hco : ∀ i j k z, z ∈ dom u m i.1 → z ∈ dom u m j.1 → z ∈ dom u m k.1 → C i j z + C j k z = C i k z := by
     intro i j k z hi hj hk
     refine (GlobalTheory.T.existsUnique_uniformising_vector_vertical_tangent P₀ u Hm χ hu R x₀ X p m hp hm z _ (ptDer_fderiv u m z (C i k z))

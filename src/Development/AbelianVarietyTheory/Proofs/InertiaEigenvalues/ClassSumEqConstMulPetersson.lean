@@ -50,6 +50,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.RowsExhaust
+import Formalism.LocalToGlobal.IndefiniteReal.BridgeLemmas
 
 @[expose] public section
 
@@ -61,8 +62,6 @@ namespace GlobalTheory.ClassPet
 
 variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
 
-theorem umax_bounded : IsBounded (Umax L n) := GlobalTheory.CoefDuty.Model.isBounded_umax
-
 theorem congSub_bounded (N : ℕ) : IsBounded (congSub L n N) :=
   ⟨{1}, fun κ hκ => ⟨1, by simp, by simpa using hκ.1⟩⟩
 
@@ -72,12 +71,12 @@ theorem congSub_relIndex_le {N : ℕ} (hN : 0 < N) {J : Subgroup (GAf L n)} (hJ 
   exact relIndex_ne_zero_of_cover F (fun κ hκ => hF κ hκ) hle
 
 theorem congSub_relIndex_ne_zero {N : ℕ} (hN : 0 < N) : (congSub L n N).relIndex (Umax L n) ≠ 0 :=
-  congSub_relIndex_le hN umax_bounded (congSub_le_umax N)
+  congSub_relIndex_le hN _root_.GlobalTheory.CoefDuty.Model.isBounded_umax (congSub_le_umax N)
 
 theorem exists_reps_cong {N : ℕ} (hN : 0 < N) : ∃ T, IsClassReps (congSub L n N) T := by
   classical
   obtain ⟨T, hT⟩ := GlobalTheory.DefiniteClassFinite.exists_finset_double_cosets_Umax L n
-  obtain ⟨-, ⟨F, hF⟩, -⟩ := GlobalTheory.CongIndex.finite_index_conj L n (Umax L n) umax_bounded 1 N hN
+  obtain ⟨-, ⟨F, hF⟩, -⟩ := GlobalTheory.CongIndex.finite_index_conj L n (Umax L n) _root_.GlobalTheory.CoefDuty.Model.isBounded_umax 1 N hN
   refine GlobalTheory.CoefDuty.Model.exists_isClassReps _ (Finset.image₂ (· * ·) T F) (fun g => ?_)
   obtain ⟨γ, t, u, ht, hu, rfl⟩ := hT g
   obtain ⟨f, hf, hfu⟩ := hF u hu
@@ -271,9 +270,6 @@ namespace GlobalTheory.ClassPet
 
 variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
 
-theorem re_natInv_mul (m : ℕ) (z : ℂ) : (((m : ℂ))⁻¹ * z).re = ((m : ℝ))⁻¹ * z.re := by
-  rw [← Complex.ofReal_natCast, ← Complex.ofReal_inv, Complex.re_ofReal_mul]
-
 variable (a : NG.AlgWt L n) (β : a.W →ₗ⋆[ℂ] a.W →ₗ[ℂ] ℂ)
 
 theorem petN_conj (hβ : IsInvForm a β) (N : ℕ) (f f' : GAf L n → a.W) :
@@ -300,12 +296,12 @@ theorem petN_pos (hβ : IsInvForm a β) {N : ℕ} (hN : 0 < N) {f : GAf L n → 
     · simp [hs]
     · exact le_of_lt (hβ.2.1 _ hs)
   unfold petN classSum
-  rw [re_natInv_mul, Complex.re_sum]
+  rw [_root_.Formalism.IndefR.Bridge.re_natCast_inv_mul, Complex.re_sum]
   refine mul_pos (inv_pos.2 (Nat.cast_pos.2 (Nat.pos_of_ne_zero (congSub_relIndex_ne_zero hN)))) ?_
   refine Finset.sum_pos' (fun s _ => ?_) ⟨t, ht, ?_⟩
-  · rw [re_natInv_mul]
+  · rw [_root_.Formalism.IndefR.Bridge.re_natCast_inv_mul]
     exact mul_nonneg (inv_nonneg.2 (Nat.cast_nonneg _)) (hterm s)
-  · rw [re_natInv_mul]
+  · rw [_root_.Formalism.IndefR.Bridge.re_natCast_inv_mul]
     exact mul_pos (inv_pos.2 (Nat.cast_pos.2 (hcard t))) (hβ.2.1 _ hft)
 
 theorem mem_conj_iff (K : Subgroup (GAf L n)) (h x : GAf L n) :
@@ -392,7 +388,7 @@ theorem petForm_rt (hβ : IsInvForm a β) {f f' : GAf L n → a.W} (hf : f ∈ N
   have hN : 0 < lev f * lev f' := Nat.mul_pos p1 p2
   have j1 : InvAt (lev f * lev f') f := i1.mul_right _
   have j2 : InvAt (lev f * lev f') f' := i2.mul_left _
-  obtain ⟨⟨N', hN', hc⟩, -, -⟩ := GlobalTheory.CongIndex.finite_index_conj L n (Umax L n) umax_bounded h (lev f * lev f') hN
+  obtain ⟨⟨N', hN', hc⟩, -, -⟩ := GlobalTheory.CongIndex.finite_index_conj L n (Umax L n) _root_.GlobalTheory.CoefDuty.Model.isBounded_umax h (lev f * lev f') hN
   obtain ⟨hr1, k1⟩ := rt_mem a hf hN' j1 hc
   obtain ⟨hr2, k2⟩ := rt_mem a hf' hN' j2 hc
   rw [petForm_apply a β hβ hr1 hr2 hN' k1 k2, petForm_apply a β hβ hf hf' hN j1 j2]

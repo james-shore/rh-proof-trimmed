@@ -303,7 +303,7 @@ theorem restrict_ext_bijective : ∀ (R₀ R₁ : Type) [CommRing R₀] [CommRin
         fun i S' u hu ↦ h i S' u (unitE u _ hu)⟩
   have hsE := _root_.GlobalTheory.sep_of_factoring_cover (TenExt.tenExt R₁ (OAff s)) G HE hcovE
   have hgE := _root_.GlobalTheory.CatCoh.Desc.glue_comma_of_basis (TenExt.tenExt R₁ (OAff s)) G HE hcovE hdirE
-  have hvE := _root_.GlobalTheory.CatCoh.Desc.Basis.oneCocycle_vanishing_comma_of_basis (TenExt.tenExt R₁ (OAff s)) G HE hcovE hdirE
+  have hvE := _root_.GlobalTheory.CatCoh.Desc.Basis.oneCocycle_coboundary_comma_localBasis (TenExt.tenExt R₁ (OAff s)) G HE hcovE hdirE
   have hv2E := _root_.GlobalTheory.CatCoh.Desc.VandermondeTwoBasis.twoCocycle_coboundary_of_basisFunctor_alt (TenExt.tenExt R₁ (OAff s)) G HE hcovE hdirE
   have hs := sep_of_retract (ext R₁ (OAff s)) (TenExt.tenExt R₁ (OAff s)) G (incl R₁ (OAff s))
     (proj R₁ (OAff s)) (proj_incl R₁ (OAff s)) (incl_mp R₁ (OAff s)) hsE

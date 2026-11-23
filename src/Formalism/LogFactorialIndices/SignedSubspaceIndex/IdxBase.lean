@@ -129,9 +129,7 @@ section Sat
 variable {O K X : Type} [CommRing O] [IsDomain O] [Field K] [Algebra O K]
   [IsFractionRing O K] [AddCommGroup X] [Module K X] [Module O X] [IsScalarTower O K X]
 
-theorem exists_smul_mem_of_span (B : Submodule O X) (hB : Submodule.span K (B : Set X) = ⊤)
-    (x : X) : ∃ d : O, d ≠ 0 ∧ d • x ∈ B := by
-  first | exact Bl.general_b_fact_second''.goal1 .. | (apply Bl.general_b_fact_second''.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_second''.goal1 <;> assumption) | (apply @Bl.general_b_fact_second''.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_second''.goal1 <;> assumption) | (apply @Bl.general_b_fact_second''.goal1 <;> first | assumption | infer_instance) | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› B hB x | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› B hB | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› B | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X ‹_› | exact @Bl.general_b_fact_second''.goal1 O K X | exact @Bl.general_b_fact_second''.goal1 O K | exact @Bl.general_b_fact_second''.goal1 O
+alias exists_smul_mem_of_span := _root_.Bl.general_b_fact_second''.goal1
 
 theorem exists_smul_le (A B : Submodule O X) (hA : A.FG)
     (hB : Submodule.span K (B : Set X) = ⊤) : ∃ d : O, d ≠ 0 ∧ ∀ a ∈ A, d • a ∈ B := by
@@ -220,22 +218,5 @@ theorem lattice_index_add : IdxAdd := by
   rw [idx_eq_sub A C D hAC (fin A hA) (fin C hC), idx_eq_sub A B D hAB (fin A hA) (fin B hB),
     idx_eq_sub B C D hBC (fin B hB) (fin C hC)]
   ring
-
-theorem lattice_has_basis : LatBasis := by
-  intro O K X _ _ _ _ _ _ _ _ _ _ _ A hA
-  have : Submodule.IsFullLattice K A := { toIsLattice := Submodule.IsLattice.of_fg K hA.1, span_eq_top := hA.2 }
-  have := Submodule.IsLattice.finite K A
-  have := Submodule.IsLattice.free K A
-  let b := Module.Free.chooseBasis O A
-  let b' := b.extendOfIsFullLattice K
-  have hcard : Fintype.card (Module.Free.ChooseBasisIndex O A) = finrank K X :=
-    (Module.finrank_eq_card_basis b').symm
-  refine ⟨b'.reindex (Fintype.equivFinOfCardEq hcard), ?_⟩
-  rw [Module.Basis.range_reindex]
-  have hr : Set.range b' = A.subtype '' Set.range b := by
-    rw [← Set.range_comp]
-    ext x
-    simp [b']
-  rw [hr, Submodule.span_image, b.span_eq, Submodule.map_top, Submodule.range_subtype]
 
 end Formalism.LatticeIndexTer

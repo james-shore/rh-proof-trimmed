@@ -213,13 +213,6 @@ namespace GlobalTheory.PlaceRead
 variable {D : D7} {X : RealSide D} {X0 : BaseLevelRowSide D} {Y : GlobalTheory.Mem.R3.Read (A3 := X.A3) X.R.toRealDat X.F.lv2 X0} {S : NX.RatDat D.ntw}
   {YS : NX.NExpRealS X.R X.cG S} {Z : ExportTie YS X.geo.v₀} {c : NChoice D} {w : D.what₂.places.Pl} {j : Fin D.R.m}
 
-theorem levJ_congr {S T : HSp D} (B : Base S T) {ψ ψ' : Twist D Circle} (h : ψ'.Q = ψ.Q) : B.levJ ψ' = B.levJ ψ := by
-  obtain ⟨Q, a, b⟩ := ψ
-  obtain ⟨Q', a', b'⟩ := ψ'
-  dsimp only at h
-  subst h
-  rfl
-
 theorem span_translate (H : AtPlace Y Z c w j) {ι : KE c w →+* ℂ} (hι : ∀ x, ι (c.embW w x) = D.what₂.embLL x)
     {u : ∀ τ, lowT (X.R.MW j (sg0 D X.A3.A)) τ} (hu : IsLow X j u) {κ : ℂ} (hκ : κ ≠ 0) (hs : IsScale X.R X.geo.v₀ (baseOf Z c w j) κ)
     {z : GA D (Vc D j)} (hz : IsCentAt j (X.R.Q (Y.tupT (D.what₂.muTw w))) z) :
@@ -229,7 +222,7 @@ theorem span_translate (H : AtPlace Y Z c w j) {ι : KE c w →+* ℂ} (hι : �
   have hB := Z.good.base (c.twI w) j (c.sd w)
   obtain ⟨hg, ha, -⟩ := GlobalTheory.T.chosen_twist_via_embedding_good_conjugate D c w Z.ρ Z.good H.ok j ι
   have hle := intLL_le hι
-  obtain ⟨hN0, hNP, o, ho⟩ := GlobalTheory.T.isUnit_primeProduct_of_twistedPlaceTuple D X X0 Y S YS Z c w j H ι hι
+  obtain ⟨hN0, hNP, o, ho⟩ := _root_.GlobalTheory.PlaceUnit.tupPrime_isUnit D X X0 Y S YS Z c w j H ι hι
   have hNi : ((GlobalTheory.TwistField.tupPrime X.R.toRealDat (Y.tupT (D.what₂.muTw w)) : ℕ) : ℂ)⁻¹ ∈ ringOf ι := by
     refine ⟨((o⁻¹ : (c.Oe w)ˣ) : c.Oe w), ?_⟩
     refine (inv_eq_of_mul_eq_one_left ?_).symm
@@ -315,7 +308,7 @@ theorem expansion_eq (H : AtPlace Y Z c w j) {u : ∀ τ, lowT (X.R.MW j (sg0 D 
       Y.mj.eW j (D.what₂.thetaP (D.what₂.muTw w) (j.1 + 1) (D.what₂.jMt (D.what₂.muTw w) (j.1 + 1) x))) :
     κ • L (trOf H u κ z (D.what₂.jMt (D.what₂.muTw w) (j.1 + 1) x)) =
       ∑ k, (a₀⁻¹ * D.what₂.embLL (a k)) • evW YS X.geo.v₀ j (f k).val := by
-  have k1 := GlobalTheory.T.liftForm_at_evaluationVector_eq_realisationLift D X X0 Y S YS Z c w j H x hx
+  have k1 := _root_.GlobalTheory.PlaceLift.lift_read_at D X X0 Y S YS Z c w j H x hx
   have k0 : (fun τ => (u τ : ↥((X.R.MW j (sg0 D X.A3.A)).sm τ))) = X.geo.v₀ j (sg0 D X.A3.A) := funext hu
   have k3 : evW YS X.geo.v₀ j (∑ k, a k • (f k).val) = ∑ k, D.what₂.embLL (a k) • evW YS X.geo.v₀ j (f k).val := by
 
@@ -389,7 +382,5 @@ theorem mem_span_basis {L K V W I : Type} [Field L] [Field K] [AddCommGroup V] [
 end GlobalTheory.PlaceRead
 
 namespace GlobalTheory.PlaceRead
-
-open Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
 
 end GlobalTheory.PlaceRead

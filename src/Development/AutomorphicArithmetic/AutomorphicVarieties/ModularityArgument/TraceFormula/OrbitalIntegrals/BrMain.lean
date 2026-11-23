@@ -57,31 +57,25 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace UpperTheory.V.Z.Tf.Orb
 
-theorem twCentImg_holds : TwCentImg := twCentImg centComm_of
+theorem twCentImg_holds : TwCentImg := twCentImg _root_.UpperTheory.V.Z.Tf.Orb.centComm
 
-theorem quotAlong_holds : QuotAlong := quotAlong haarComm_of quotIndep_of
+theorem quotAlong_holds : QuotAlong := quotAlong _root_.UpperTheory.V.Z.Tf.Orb.haarComm _root_.UpperTheory.V.Z.Tf.Orb.quotIndep
 
-theorem inclClosed_holds : InclClosed := inclClosed extCont_of
+theorem inclClosed_holds : InclClosed := inclClosed _root_.UpperTheory.V.Z.Tf.Orb.extCont
 
-theorem geoOfMatch_holds : GeoOfMatch := geoOfMatch gLTop_of extCont_of centComm_of twCentImg_holds quotAlong_holds inclClosed_holds
+theorem geoOfMatch_holds : GeoOfMatch := geoOfMatch _root_.UpperTheory.V.Z.Tf.Orb.gLTop _root_.UpperTheory.V.Z.Tf.Orb.extCont _root_.UpperTheory.V.Z.Tf.Orb.centComm twCentImg_holds quotAlong_holds inclClosed_holds
 
-theorem quotReal_holds : QuotReal := quotReal
+alias unitSB_holds := _root_.UpperTheory.V.Z.Tf.Orb.unitSB
 
-theorem unitSB_holds : UnitSB := unitSB
+theorem unitMatch_holds : UnitMatch := unitMatch _root_.UpperTheory.V.Z.Tf.Orb.gLTop _root_.UpperTheory.V.Z.Tf.Orb.extCont _root_.UpperTheory.V.Z.Tf.Orb.centComm twCent_of _root_.UpperTheory.V.Z.Tf.Orb.haarComm _root_.UpperTheory.V.Z.Tf.Orb.quotReal unitSB_holds
 
-theorem unitMatch_holds : UnitMatch := unitMatch gLTop_of extCont_of centComm_of twCent_of haarComm_of quotReal_holds unitSB_holds
+alias placeData_holds := _root_.UpperTheory.V.Z.Tf.Orb.placeData
 
-theorem geoTransport_holds : GeoTransport := geoTransport
+theorem placeOfLocal_holds : PlaceOfLocal := placeOfLocal _root_.UpperTheory.V.Z.Tf.Orb.gLTop _root_.UpperTheory.V.Z.Tf.Orb.extCont _root_.UpperTheory.V.Z.Tf.Orb.centComm _root_.UpperTheory.V.Z.Tf.Orb.haarComm twCentImg_holds geoOfMatch_holds _root_.UpperTheory.V.Z.Tf.Orb.geoTransport _root_.UpperTheory.V.Z.Tf.Orb.alongIndep
 
-theorem alongIndep_holds : AlongIndep := alongIndep
+alias placeUniq_holds := _root_.UpperTheory.V.Z.Tf.Orb.placeUniq
 
-theorem placeData_holds : PlaceData := placeData
-
-theorem placeOfLocal_holds : PlaceOfLocal := placeOfLocal gLTop_of extCont_of centComm_of haarComm_of twCentImg_holds geoOfMatch_holds geoTransport_holds alongIndep_holds
-
-theorem placeUniq_holds : PlaceUniq := placeUniq
-
-theorem placeInt_holds : PlaceInt := placeInt
+alias placeInt_holds := _root_.UpperTheory.V.Z.Tf.Orb.placeInt
 
 theorem placeUnit_holds : PlaceUnit := placeUnit unitMatch_holds unitSB_holds placeData_holds placeOfLocal_holds placeInt_holds
 

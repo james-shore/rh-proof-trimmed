@@ -239,7 +239,7 @@ theorem cosetOf_holds : CosetOf := by
     have h0 : 0 < Complex.normSq (Dmin k r D.z D.z' γ ⟨r, by omega⟩) := by
       rw [hD]; exact Complex.normSq_pos.2 (prod_castLE_ne x hx _ _)
     nlinarith [hq.2]
-  obtain ⟨p, hp, q', hq', he⟩ := Formalism.FourierDecayAlt.Final.jf_psiOnto k r Wp Wq D γ hOm
+  obtain ⟨p, hp, q', hq', he⟩ := _root_.Formalism.FourierDecayAlt.P.psiOnto_true k r Wp Wq D γ hOm
   refine ⟨p, hp, ?_⟩
   have hcm : ∀ a : Fin r, cmin k r D.z D.z' γ a = q.1 a := by
     intro a
@@ -275,7 +275,7 @@ theorem ptEntry_ones (l : List ℂ) : ∀ a b : ℕ,
 
 theorem relDiag_holds : RelDiag := by
   intro k r Wp Wq _ _ _ _ D γ d hγ hd hZ
-  refine Formalism.FourierDecayAlt.Final.d_ptRelevant k r Wp Wq D ((List.ofFn d).map fun t => (1, t)) γ ⟨?_, ?_⟩ hγ ?_
+  refine _root_.Formalism.FourierDecayAlt.P.Dx1.Rel.ptRelevant k r Wp Wq D ((List.ofFn d).map fun t => (1, t)) γ ⟨?_, ?_⟩ hγ ?_
   · intro b hb
     simp only [List.mem_map, List.mem_ofFn] at hb
     obtain ⟨t, ⟨a, rfl⟩, rfl⟩ := hb

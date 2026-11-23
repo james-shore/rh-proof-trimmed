@@ -398,7 +398,7 @@ theorem smooth_frechet_rep (n : ℕ) (ε : Fin n → Bool) (E : Type) [NormedAdd
         (∀ (X : lie (Jm ε)) (v : Fam ε ρ) (l : List (lie (Jm ε))), (dπ (X : Mx n) v).1 l = v.1 (l ++ [X])) ∧
         ∀ v : Fam ε ρ, ‖v.1 []‖ ≤ p 0 v := by
   obtain ⟨d, b, φ, hb⟩ := exists_frame ε
-  refine ⟨GlobalTheory.T.isClosed_derivativeFamilies_moderateGrowth n ε E ρ h, sn ρ b, piOp h, dpiOp ε ρ, ⟨withSeminorms_sn hb, ?_, fun a ha c hc => ?_,
+  refine ⟨_root_.GlobalTheory.TypeSum.isClosed_fam n ε E ρ h, sn ρ b, piOp h, dpiOp ε ρ, ⟨withSeminorms_sn hb, ?_, fun a ha c hc => ?_,
     continuousOn_piOp h, fun X hX v => ?_, fun k => ?_⟩, fun g hg v l => by rw [piOp_eq h hg]; rfl,
     fun X v l => by rw [dpiOp_eq]; rfl, fun v => le_rfl⟩
   · exact ContinuousLinearMap.ext fun v => by rw [piOp_eq h (one_mem_UJ ε), act_one h _ rfl]; rfl

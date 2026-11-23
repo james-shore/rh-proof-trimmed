@@ -173,17 +173,3 @@ namespace GlobalTheory.StabSeq
 theorem stab_injective_range_eq : ∀ (R : Type) [CommRing R] (n p : ℕ) (h : p ≤ n), Function.Injective (stab R (n - p) n (Nat.sub_le n p)) ∧ (stab R (n - p) n (Nat.sub_le n p)).range = MulAction.stabilizer (GL (Fin n) R) (stdSeq R n p h) :=
   fun R _ n p h => ⟨stab_injective R _, range_eq R n p h⟩
 
-section
-open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab GlobalTheory.SeqCx UpperTheory.V.KL
-theorem _root_.GlobalTheory.T.stabilizer_stdSeq_iso_GL_of_complement : ∀ (R : Type) [CommRing R] (n p : ℕ) (h : p ≤ n), Function.Injective (stab R (n - p) n (Nat.sub_le n p)) ∧ (stab R (n - p) n (Nat.sub_le n p)).range = MulAction.stabilizer (GL (Fin n) R) (stdSeq R n p h) := by
-  first
-  | exact @GlobalTheory.StabSeq.stab_injective_range_eq
-  | exact @GlobalTheory.StabSeq.range_eq
-  | exact @GlobalTheory.StabSeq.isPad_of_mem
-  | exact @GlobalTheory.StabSeq.stdSeq_fixed_iff
-  | exact @GlobalTheory.StabSeq.isPad_stab
-  | exact @GlobalTheory.StabSeq.mem_range_of_isPad
-  | exact @GlobalTheory.StabSeq.padMat_of_isPad
-  | exact @GlobalTheory.StabSeq.stab_injective
-  | exact @GlobalTheory.StabSeq.padMat_castLE
-end

@@ -66,21 +66,9 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-theorem continuous_matrix_lower_left_block : Continuous (fun M : M2 n => M.toBlocks₂₁) := by
-  have : (fun M : M2 n => M.toBlocks₂₁) = fun M => M.submatrix Sum.inr Sum.inl := by funext M; rfl
-  rw [this]; exact continuous_id.matrix_submatrix _ _
+alias continuous_cayley_first_block := _root_.PositivityTheory.Rg.Sw.LVs.continuous_first_cayley_block_map
 
-theorem continuous_matrix_lower_right_block : Continuous (fun M : M2 n => M.toBlocks₂₂) := by
-  have : (fun M : M2 n => M.toBlocks₂₂) = fun M => M.submatrix Sum.inr Sum.inr := by funext M; rfl
-  rw [this]; exact continuous_id.matrix_submatrix _ _
-
-theorem continuous_cayley_first_block : Continuous (fun M : M2 n => u1 M) := by
-  unfold u1
-  exact ((continuous_const : Continuous fun _ : M2 n => Complex.I).smul continuous_matrix_lower_left_block).add continuous_matrix_lower_right_block
-
-theorem continuous_cayley_second_block : Continuous (fun M : M2 n => u2 M) := by
-  unfold u2
-  exact ((continuous_const : Continuous fun _ : M2 n => Complex.I).smul continuous_matrix_lower_left_block).neg.add continuous_matrix_lower_right_block
+alias continuous_cayley_second_block := _root_.PositivityTheory.Rg.Sw.LVs.continuous_second_cayley_block_map
 
 theorem isOpen_OmZ (hFz : FzHol) (Kg : Type) [TopologicalSpace Kg] [CompactSpace Kg] (ι : Kg → M2 n)
     (hι : Continuous ι) : IsOpen {x : M2 n | ∀ k, ι k * x ∈ DomZ n} :=

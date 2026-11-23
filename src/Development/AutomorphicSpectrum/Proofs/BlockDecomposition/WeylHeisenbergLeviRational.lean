@@ -86,9 +86,7 @@ theorem adj_map_incA {a b : ℕ} (x : Matrix (Fin a) (Fin b) D.host.E) :
   simp only [adj, cT, Matrix.transpose_apply, Matrix.map_apply, GlobalTheory.DualPairCheck.cA_incA]
   rfl
 
-theorem adj_zero {a b : ℕ} : adj (0 : Mx D a b) = 0 := by
-  ext i j
-  simp [adj]
+alias adj_zero := _root_.GlobalTheory.MixModel.adj_zero
 
 theorem mat_eq : ∀ {D : D7} {n ρ p : ℕ} (hn : ρ + p = n) (M : Maps D hn) (z : hermA D ρ) (ζ : Matrix (Fin ρ) (Fin ρ) D.host.E), ζ.map (incA D) = z.1 →
     ∀ (η : Matrix (Fin ρ) (Fin p) D.host.E) (γ : G D p) (a b c d : Matrix (Fin p) (Fin p) D.host.E), mat γ = (blk4 a b c d).map (incA D) →

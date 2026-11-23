@@ -79,7 +79,7 @@ theorem nuLocC_le_of_character_flags : ∀ (E : Type) [Field E] [NumberField E] 
   letI := H.starRing
   intro T io y Ch p _ X τO hty hun happ e k n a he ha hn len hlen hχ
   classical
-  obtain ⟨B, hF, hact, hg⟩ := GlobalTheory.T.exists_formalBiextension_integral_chart_valuedExtension E H Dw l Xo c T io y Ch p X
+  obtain ⟨B, hF, hact, hg⟩ := _root_.GlobalTheory.CharDepth.exists_formalBiext_valExt E H Dw l Xo c T io y Ch p X
   choose χ hχ1 hχ2 using hχ
   have hβ : Function.Injective (colP Dw hn) := fun p q h =>
     (Fintype.equivFin _).injective (Fin.castLE_injective hn h)
@@ -117,7 +117,7 @@ theorem nuLocC_le_of_character_flags : ∀ (E : Type) [Field E] [NumberField E] 
     (fun q j => X.ι (Ch.uvecT q j))
     (fun q a0 => by
       rw [hact]
-      exact (GlobalTheory.T.cmTypeDirections_eigenbasis_valuedIntegers E H Dw l Xo c T io y Ch p X τO hty q.1).1.1 q.2 a0)
+      exact (_root_.GlobalTheory.CharDepth.isEigBasis_valExt E H Dw l Xo c T io y Ch p X τO hty q.1).1.1 q.2 a0)
     hun happ ty (Crude.crP Dw.mult n X.O (colP Dw hn) (fun τ i => a (τ, i)))
     (fun mo hmo ℓ hℓ => by
       obtain ⟨i, hi⟩ := hsupp mo hmo ℓ hℓ
@@ -131,7 +131,7 @@ theorem nuLocC_le_of_character_flags : ∀ (E : Type) [Field E] [NumberField E] 
       · rw [h]
         exact hχ1 q.1 q.2)
     hne
-  refine GlobalTheory.T.chart_local_depth_le_of_valuedExtension_bound E H Dw l Xo c T io y Ch p X B hF hact e k n a he
+  refine _root_.GlobalTheory.CharDepth.nuLocC_le_of_value_extension E H Dw l Xo c T io y Ch p X B hF hact e k n a he
     (Crude.crP Dw.mult n X.O (colP Dw hn) (fun τ i => a (τ, i))) ?_ f _ ?_
   · rw [crP_map_ringHom, ← Crude.crP_map]
     exact (Crude.Pmin_mem Dw.mult n X.C (colP Dw hn) _ ⊤ _ _ (fun τ _ => conj_ne_self_of_CM τ) hβ ha).1

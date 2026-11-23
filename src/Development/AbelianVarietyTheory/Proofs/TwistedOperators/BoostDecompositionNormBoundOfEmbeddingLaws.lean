@@ -56,8 +56,6 @@ open GlobalTheory.SepReal
 
 namespace GlobalTheory.SepReal.BoostHilbertSchmidtTrace
 
-theorem house : ∀ (m : ℕ) (ε : Fin m → Bool) (z : Fin m) (u : Fin m → ℂ), ε z = true → (∀ i, ε i = false → u i = 0) → ∑ i, ‖u i‖ ^ 2 = 1 → ∃ k ∈ UJset ε, kᴴ * k = 1 ∧ ∀ i, k i z = u i := GlobalTheory.T.exists_unitary_positiveBlock_column_eq
-
 theorem boostMat : ∀ (m : ℕ) (ε : Fin m → Bool) (a b : Fin m → ℂ), (∀ i, ε i = false → a i = 0) → (∀ i, ε i = true → b i = 0) → ∑ i, ‖a i‖ ^ 2 = 1 + ∑ i, ‖b i‖ ^ 2 → ∃ A ∈ UJset ε, (∀ i, ∑ j, A i j * a j = (Real.sqrt (∑ j, ‖a j‖ ^ 2) : ℂ) * (a i + b i)) ∧ hsn A ^ 2 ≤ (m : ℝ) + 2 * ∑ i, ‖a i + b i‖ ^ 2 := GlobalTheory.T.exists_indefiniteUnitary_boost_hilbertSchmidt
 
 end GlobalTheory.SepReal.BoostHilbertSchmidtTrace
@@ -141,8 +139,8 @@ theorem transit {m : ℕ} (ε : Fin m → Bool) (z : Fin m) (hz : ε z = true) (
       ← Finset.mul_sum, ← hs, inv_pow]
     field_simp
   have hu0 : ∀ i, ε i = false → u i = 0 := fun i h => by simp [hu, ha0 i h]
-  obtain ⟨k, hk, hkU, hkz⟩ := house m ε z u hz hu0 hu1
-  obtain ⟨A, hA, hAa, hAn⟩ := boostMat m ε a b ha0 hb0 hn
+  obtain ⟨k, hk, hkU, hkz⟩ := _root_.GlobalTheory.Twist.Boost.exists_unitary_col m ε z u hz hu0 hu1
+  obtain ⟨A, hA, hAa, hAn⟩ := _root_.GlobalTheory.Boost.boost_exists m ε a b ha0 hb0 hn
   refine ⟨A * k, mul_mem hA hk, fun i => ?_, ?_⟩
   · rw [Matrix.mul_apply]
     simp only [hkz, hu]

@@ -114,7 +114,7 @@ theorem unif_clauses {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Geo
     Nonempty (SABMap G G (spMap (RingHom.id S.V))) ∧ (∀ χ, PsiUnitOn P.D.toPre χ (abLocus G.G)) ∧ P.TorsionIso := by
   have hprop : IsProper I.t'.G.hom :=
     MorphismProperty.of_isPullback (P := @IsProper) I.m1.cart.1 Xo.univ.proper
-  obtain ⟨ψ, -⟩ := GlobalTheory.semiAbelian_model_determined_by_generic_fibre E H S.V inferInstance G G I.t' hprop I.m2 I.m2
+  obtain ⟨ψ, -⟩ := _root_.GlobalTheory.ModelUniqueChecks.extV_holds E H S.V inferInstance G G I.t' hprop I.m2 I.m2
   let mI : SABMap G G (spMap (RingHom.id S.V)) := PullbackSections.sabMapCast ψ (by simp [spMap])
   obtain ⟨hLL, k2, k3, k4, k5⟩ := GlobalTheory.lawsAndExpansions
   have hA : AdmBase S.V (maximalIdeal S.V) := ⟨inferInstance, inferInstance, inferInstance, inferInstance⟩

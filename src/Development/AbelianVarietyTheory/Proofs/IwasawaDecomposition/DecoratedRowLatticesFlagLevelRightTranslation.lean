@@ -65,8 +65,8 @@ theorem deco_tie : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B px
         (((levEnv X.toD7.sp.X' L.βX (L.datXt t)).ch q : ℂˣ) : ℂ) := by
   intro X px I hX U L eG hI hV hL hG t q
   have hz := unitaryFiniteAdelicPointAsMatrix_mem_flagIwahori X I hI L hL t q
-  have hu := GlobalTheory.T.inv_reduction_mul_flagTranslation_mem_rowLevelGroup X px I U L eG hI hL hG t q hz
-  refine ⟨⟨_, hu⟩, fun h => ?_, GlobalTheory.T.rowLevelCharacter_translation_eq_flagCharacter X px I U L eG hI hV hL hG t q hz hu⟩
+  have hu := _root_.GlobalTheory.Mem.R3.RowDeco.inv_redG_mul_g0Hat_mem_grp X px I U L eG hI hL hG t q hz
+  refine ⟨⟨_, hu⟩, fun h => ?_, _root_.GlobalTheory.Mem.R3.RowChr.chr_eq_ch X px I U L eG hI hV hL hG t q hz hu⟩
   refine (decoAd_mul X I hI t h _ hz).trans ?_
   refine congrArg (fun a : Formalism.L2.Col.GLG (E := X.B.fields.E) (n := X.B.R.N X.B.R.m - 1) (SG := Formalism.L2.Col.rowSG (X.B.primes px) I.sel t.1) =>
     ((1 : Formalism.L2.Col.UF X.B.fields.E (X.B.R.N X.B.R.m - 1)), a) • RowAd.decoAd X I t h) ?_

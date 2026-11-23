@@ -76,11 +76,9 @@ open GlobalTheory.ZM
 noncomputable section
 namespace GlobalTheory.SiegelFromSharp
 
-theorem spMap_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R') (g : R' →+* R'') :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]; rfl
+alias spMap_comp := _root_.GlobalTheory.spMap_comp_ring
 
-theorem spMap_id (R : Type) [CommRing R] : spMap (RingHom.id R) = 𝟙 _ := Spec.map_id _
+alias spMap_id := _root_.GlobalTheory.ZM.FamilyScheme.spMap_id
 
 def restrictBase {h k : ℕ} {B B' : Type} [CommRing B] [CommRing B'] {ζ : B} {ζ' : B'} (j : B →+* B') (hj : j ζ = ζ')
     {S : Scheme.{0}} {s' : S ⟶ Sp B'} (c : SiegPre h k ζ' s') : SiegPre h k ζ (s' ≫ spMap j) where
@@ -146,7 +144,7 @@ theorem nonempty_siegelFamily (L1 : Out.Laws) (L2 : Out.Laws2)
   obtain ⟨hq, hflat, hred, htan⟩ := GlobalTheory.T.thetaClosureOpenFamily_qproj_flat_reduced_ext L1 L2 o g n N' J b em _ Mat κ F hodd
   obtain ⟨hqc, hft⟩ := finiteType_of_isQProjOver (hq.resolve_right (not_not.2 inferInstance))
   haveI : IsLocallyNoetherian F.U.toScheme := LocallyOfFiniteType.isLocallyNoetherian (F.U.ι ≫ F.Y.s)
-  obtain ⟨c, hc, hsharp⟩ := GlobalTheory.T.exists_eighthPower_principalSiegel_of_dense L1 L2 L3 h g W J a bas hW hbas hu _ o b em _ _ F.univ hk F.dense
+  obtain ⟨c, hc, hsharp⟩ := _root_.GlobalTheory.SharpFamily.exists_isSharp_of_dense L1 L2 L3 h g W J a bas hW hbas hu _ o b em _ _ F.univ hk F.dense
 
   have pull : ∀ (S : Scheme.{0}) (s : S ⟶ Sp o) (c' : SiegPre h (N' ^ 2) (b.ζ : o) s) (t : TObj g (N' ^ 2) J b s)
       (f : S ⟶ F.U.toScheme), c'.Principal → IsSharp W a bas t c' → (SiegPB c' c f ↔ TMap t F.univ f) := by
@@ -229,7 +227,7 @@ theorem exists_siegelFamily : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (
     change _ * (_ * W.transpose) = W.transpose
     rw [← Matrix.mul_assoc, hinv, Matrix.one_mul]
   have hu : ∀ u v, ∃ j, a j = Matrix.single u v 1 := fun u v => ⟨.inl (u, v), rfl⟩
-  obtain ⟨Mat, κ, hcl⟩ := GlobalTheory.T.isGoodThetaComplexClass_E8Sharp L1 L2 L3 L4 h _ W _ a _ _ bas hW hbas hw hw' hu
+  obtain ⟨Mat, κ, hcl⟩ := _root_.GlobalTheory.SharpGood.goodClass_sharpClass L1 L2 L3 L4 h _ W _ a _ _ bas hW hbas hw hw' hu
   obtain ⟨j₁, h₁⟩ := hcl n hn hodd
   obtain ⟨j₂, h₂⟩ := GlobalTheory.T.nonempty_thetaFamily_over_open_closure L1 L2 _ _ Mat κ n (.inr true) (.inr false) hn hodd
   obtain ⟨j₃, h₃⟩ := GlobalTheory.T.existsUnique_map_to_thetaFamily_openPart L1 L2 _ _ Mat κ n (.inr true) (.inr false) hn hodd

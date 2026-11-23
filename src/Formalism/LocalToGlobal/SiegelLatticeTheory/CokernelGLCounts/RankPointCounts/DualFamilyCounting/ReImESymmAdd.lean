@@ -191,17 +191,9 @@ theorem omg_int : IsIntegral ℤ (omg D) := by
     rw [algebraMap_int_eq, eq_intCast]
     linear_combination (1 / 4 : D.host.E) * h2 + (1 / 4 : D.host.E) * hk'
 
-private theorem embS_conj' (τ : D.what₂.Tau) (x : D.host.E) :
-    embS D τ (D.host.conj x) = (starRingEnd ℂ) (embS D τ x) := by
-  haveI := D.host.isCMField_hostE
-  rw [← Formalism.MainNotions.S.Inh.tie_star]
-  first
-    | exact (NumberField.IsCMField.isConj_complexConj D.host.E (embS D τ)).eq x
-    | exact NumberField.ComplexEmbedding.IsConj.eq (NumberField.IsCMField.isConj_complexConj D.host.E (embS D τ)) x
-
 theorem embS_add_conj (τ : D.what₂.Tau) (x : D.host.E) :
     embS D τ (x + D.host.conj x) = ((2 * (embS D τ x).re : ℝ) : ℂ) := by
-  rw [map_add (f := _), embS_conj', Complex.add_conj]
+  rw [map_add (f := _), _root_.Formalism.L2.SG.Pf.NcReal.JX.CovB.embS_conj, Complex.add_conj]
 
 theorem sqrtMinusD_int : IsIntegral ℤ (D.host.sqrtMinusD) := by
   have h : D.host.sqrtMinusD ^ 2 = -(D.host.d : D.host.E) := D.host.sqd_sq

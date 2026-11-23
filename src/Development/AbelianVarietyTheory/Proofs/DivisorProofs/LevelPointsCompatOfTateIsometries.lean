@@ -132,8 +132,8 @@ theorem GlobalTheory.LowDat.level_points_compat : ∀ {E : Type} [Field E] [Numb
   haveI : CharZero R := hR.2
   haveI : CharZero (FractionRing R) := charZero_of_injective_algebraMap (IsFractionRing.injective R _)
   haveI : CharZero F := charZero_of_injective_algebraMap (algebraMap (FractionRing R) F).injective
-  obtain ⟨J, hJζ, hJ⟩ := GlobalTheory.T.exists_tateIso_generic_abelian_of_uniformisation Dw R hR C.t C.P F I
-  obtain ⟨J', hJζ', hJ'⟩ := GlobalTheory.T.exists_tateIso_generic_abelian_of_uniformisation Dw R hR C.t C.P F' I'
+  obtain ⟨J, hJζ, hJ⟩ := _root_.GlobalTheory.LowDat.exists_tateIso_toA Dw R hR C.t C.P F I
+  obtain ⟨J', hJζ', hJ'⟩ := _root_.GlobalTheory.LowDat.exists_tateIso_toA Dw R hR C.t C.P F' I'
   obtain ⟨J₂, h₂⟩ := GlobalTheory.LowDat.exists_tateIso_ext Dw C.P.A _ σ.toRingHom _ _ (GlobalTheory.LowDat.spMap_comp_jFK σ) J
   have hM : 0 < l.M := by have := l.three_le; omega
   have hM' : 0 < l.M' := Nat.lcm_pos hM l.A_pos

@@ -75,8 +75,7 @@ theorem line_le {A : Submodule (𝓞 K) K} {v : V} {S : Submodule K V} (h : v �
   exact S.smul_mem t h
 
 omit [NumberField K] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] in
-theorem e_mem_X (F : FlagD H r) (a : Fin r) : F.e a.castSucc ∈ F.X :=
-  Submodule.subset_span ⟨a, a.2, rfl⟩
+alias e_mem_X := _root_.GlobalTheory.UnipStab.e_mem_X
 
 omit [NumberField K] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] in
 theorem lastVector_mem_jointSpan_left (F F' : FlagD H r) : F.z ∈ V0 F F' :=

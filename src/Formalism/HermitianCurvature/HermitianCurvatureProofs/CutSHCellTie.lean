@@ -88,4 +88,3 @@ theorem cell_compatibility : CellTie := by
 
 end Formalism.FourierDecayAlt.P.CutSH
 
-theorem Formalism.FourierDecayAlt.P.cell_compatibility_identity : Formalism.FourierDecayAlt.P.CutSH.CellTie := Formalism.FourierDecayAlt.P.CutSH.cell_compatibility

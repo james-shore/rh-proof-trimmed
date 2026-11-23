@@ -167,17 +167,13 @@ theorem sigmaOf_inj : Function.Injective H.sigmaOf := (H.gal).symm.injective
 
 theorem sigmaOf_surj : Function.Surjective H.sigmaOf := (H.gal).symm.surjective
 
-theorem cc_mul_cc (e : Formalism.HC.Frame) : e.cc * e.cc = 1 := e.cc_mul_cc
-
 theorem cc_pow (e : Formalism.HC.Frame) (m : ℕ) : e.cc ^ m = 1 ∨ e.cc ^ m = e.cc := by
   induction m with
   | zero => simp
-  | succ m ih => rcases ih with h | h <;> simp [pow_succ, h, cc_mul_cc]
-
-theorem cc_notMem (e : Formalism.HC.Frame) : e.cc ∉ e.Psi := e.cc_notMem_Psi
+  | succ m ih => rcases ih with h | h <;> simp [pow_succ, h, _root_.Formalism.HC.Frame.cc_mul_cc]
 
 theorem frob_eq_mul (h : R.MA) : ((c0, h) : R.GG) = (zPsi R.toFrame h : R.GG) * R.cc := by
-  rw [zPsi_eq, mul_assoc, cc_mul_cc, mul_one]
+  rw [zPsi_eq, mul_assoc, _root_.Formalism.HC.Frame.cc_mul_cc, mul_one]
 
 
 variable (H) in
@@ -210,7 +206,7 @@ theorem mem_plc_tw_cc (i : H.E →+* Qn p n) (g : R.GG) (x : 𝓞 H.E) :
 theorem conj_conj (x : 𝓞 H.E) : H.conj • H.conj • x = x := by
   have : H.conj * H.conj = 1 := by
     unfold Formalism.HC.HostRaw.conj
-    rw [← map_mul, cc_mul_cc, map_one]
+    rw [← map_mul, _root_.Formalism.HC.Frame.cc_mul_cc, map_one]
   rw [smul_smul, this, one_smul]
 
 theorem exists_real (x : 𝓞 H.E) (hx : H.conj • x = x) : ∃ z : 𝓞 H.F, algebraMap (𝓞 H.F) (𝓞 H.E) z = x := by
@@ -323,7 +319,7 @@ theorem place_injective : Function.Injective fun v : Fin (nOrb (zPsi R.toFrame h
       exact ⟨s, s + 1, by rw [hs, frob_eq_mul, mul_pow, pow_succ (R.cc)]; ac_rfl⟩
   intro v v' e
   obtain ⟨s, m, hs⟩ := key _ _ e.symm
-  have h1 : R.cc ^ m = 1 := (cc_pow R.toFrame m).resolve_right fun e' => cc_notMem R.toFrame (by
+  have h1 : R.cc ^ m = 1 := (cc_pow R.toFrame m).resolve_right fun e' => _root_.Formalism.HC.Frame.cc_notMem_Psi R.toFrame (by
     rw [e'] at hs
     rw [← inv_mul_eq_of_eq_mul hs]
     exact mul_mem (inv_mem (mul_mem (orbRep _ v).2 (pow_mem (zPsi R.toFrame h).2 s))) (orbRep _ v').2)
@@ -355,8 +351,8 @@ theorem place_surjective (w : HeightOneSpectrum (𝓞 H.F)) (hw : (p : 𝓞 H.F)
   obtain ⟨g₀, t, rfl⟩ : ∃ (g₀ : R.Psi) (t : ℕ), g = g₀ * R.cc ^ t := by
     by_cases hg : g ∈ R.Psi
     · exact ⟨⟨g, hg⟩, 0, by simp⟩
-    · exact ⟨⟨g * R.cc, (Subgroup.mul_mem_iff_of_index_two R.toFrame.index_Psi).2 (iff_of_false hg (cc_notMem _))⟩, 1,
-        by rw [pow_one, mul_assoc, cc_mul_cc, mul_one]⟩
+    · exact ⟨⟨g * R.cc, (Subgroup.mul_mem_iff_of_index_two R.toFrame.index_Psi).2 (iff_of_false hg (_root_.Formalism.HC.Frame.cc_notMem_Psi _))⟩, 1,
+        by rw [pow_one, mul_assoc, _root_.Formalism.HC.Frame.cc_mul_cc, mul_one]⟩
   obtain ⟨⟨v, s⟩, rfl⟩ := (posG (zPsi R.toFrame h)).surjective g₀
   refine ⟨v, ?_⟩
   rw [← hwg, twF_cc_pow, ← twF_cc_pow i ((posG (zPsi R.toFrame h) ⟨v, s⟩ : R.Psi) : R.GG) s.val, posG_apply, Subgroup.coe_mul, Subgroup.coe_pow, mul_assoc, ← mul_pow,

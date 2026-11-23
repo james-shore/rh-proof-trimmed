@@ -141,7 +141,7 @@ theorem meanP : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFiel
   haveI : LocallyCompactSpace (stabilizer₂ (AF F) σ J) := hPc.isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : SecondCountableTopology (stabilizer₂ (AF F) σ J) := TopologicalSpace.Subtype.secondCountableTopology _
   haveI : BorelSpace (stabilizer₂ (AF F) σ J) := Subtype.borelSpace _
-  obtain ⟨ι, π, hιc, hπc, hπι, hι1, hπ1, hK, hιact, hl⟩ := GlobalTheory.T.stabiliser_splitting_adelic F E σ hσ M J hJ
+  obtain ⟨ι, π, hιc, hπc, hπι, hι1, hπ1, hK, hιact, hl⟩ := _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.Unf.Struct.stab_structure F E σ hσ M J hJ
   obtain ⟨hc0, U, hU, hU1⟩ := rational_countable_discrete F E σ hσ (M + 2) _ hJb
   haveI hc₁ : Countable (HFinIn (AF F) σ J) := (rational_countable_discrete F E σ hσ M J hJ).1
   let Γ₁ : Subgroup (HA (AF F) σ J) := HFinIn (AF F) σ J
@@ -336,7 +336,7 @@ theorem unfold_frames : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
       change actW (AF F) σ _ g⁻¹ (actW (AF F) σ _ (u : HA (AF F) σ (hypOne J))⁻¹ (ratTup (AF F) X)) = _
       rw [hw, ratH_inv, actW_ratH']
     simp only [phiA, e]
-    exact GlobalTheory.T.frames_sum_invariant_under_stabiliser F E σ M J n w⁻¹ hw1 (fun X => Φ (actW (AF F) σ _ g⁻¹ (ratTup (AF F) X)))
+    exact _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.Unf.tsum_gact_framesOne F E σ M J n w⁻¹ hw1 (fun X => Φ (actW (AF F) σ _ g⁻¹ (ratTup (AF F) X)))
   have hΓ : ∀ u ∈ ratP (AF F) σ J, (stabilizer₂ (AF F) σ J).subtype u ∈ Γ := fun u hu => hu
   have hrinv : ∀ q, gact σ (rr q)⁻¹ (e0 E M) = q.1 := by
     intro q

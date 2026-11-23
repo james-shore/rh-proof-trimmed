@@ -865,7 +865,7 @@ theorem rows_sum (D : D7) (u : D.what₂.Word) (hp : (Tu D u).Prime) (h3 : 3 ≤
       (Submodule (𝓞 D.host.E) ((D.sp.X 0).V × D.host.E)) := actWE D
   have hT0 : ((Tu D u : ℕ) : D.host.E) ≠ 0 := Nat.cast_ne_zero.mpr hp.ne_zero
   have hz' : F0.z = (D.cOf u)⁻¹ • D.sp.zm := hz.trans rfl
-  have hlift := GlobalTheory.T.row_lattices_same_middle_conjugate_unipotent D u hp h3 hs F0 he hz
+  have hlift := _root_.GlobalTheory.LoopC.rowsLift D u hp h3 hs F0 he hz
   let p : Submodule (𝓞 D.host.E) ((D.sp.X 0).V × D.host.E) → LatW D := fun 𝓛 =>
     𝓛.comap ((LinearMap.inl D.host.E (D.sp.X 0).V D.host.E).restrictScalars (𝓞 D.host.E))
   have hp_eq : ∀ (g : Formalism.HermitianLatticesTheory.isom (D.sp.X 0).hT) 𝓛, p (g • 𝓛) = g • p 𝓛 := by
@@ -907,13 +907,13 @@ theorem rows_sum (D : D7) (u : D.what₂.Word) (hp : (Tu D u).Prime) (h3 : 3 ≤
     rintro _ ⟨Λ', hΛ', rfl⟩
     rw [hpL]
     obtain ⟨M, ⟨hMs, g, hg, hgM⟩, huniq⟩ :=
-      hreps.2 _ (GlobalTheory.T.rowBaseLattices_mem_same_hermitianGenus D u hp h3 hs F0 he hz Λ₀ hΛ₀ Λ' hΛ')
+      hreps.2 _ (_root_.GlobalTheory.LoopC.RowsGenus.main D u hp h3 hs F0 he hz Λ₀ hΛ₀ Λ' hΛ')
     refine ⟨M, ⟨hMs, ⟨g, hg⟩, hgM⟩, ?_⟩
     rintro M' ⟨hM's, g', hg'⟩
     exact huniq M' ⟨hM's, g'.1, g'.2, hg'⟩
   have hcount : ∀ M ∈ reps, {a | a ∈ 𝒜 ∧ p a = M}.ncard = (Tu D u - 1) ^ D.R.f := by
     intro M hM
-    exact GlobalTheory.T.card_middleLattices_over_genus_lattice D u hp h3 hs F0 he hz Λ₀ hΛ₀ M (hreps.1 M hM)
+    exact _root_.GlobalTheory.LoopC.GluingNum.gluingNum D u hp h3 hs F0 he hz Λ₀ hΛ₀ M (hreps.1 M hM)
   have hc : (Tu D u - 1) ^ D.R.f ≠ 0 := pow_ne_zero _ (by omega)
   have key := sum_over_fibres p hp_eq 𝒜 h𝒜 what₂ (latL D F0)
     (fun Λ hΛ => ⟨Λ, hrows.1 Λ hΛ, rfl⟩) hrow reps hreps' ((Tu D u - 1) ^ D.R.f) hc hcount N

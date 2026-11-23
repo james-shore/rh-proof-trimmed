@@ -97,31 +97,6 @@ theorem isPolyDeg_prod {ι : Type*} (s : Finset ι) (d : ι → ℕ) {P : ι →
   intro g
   simp [hP]
 
-private lemma isPolyDeg_const (c : ℂ) (a : ℕ) : U.IsPolyDeg (N := N) a (fun _ => c) :=
-  ⟨MvPolynomial.C c, by simp, fun g => by simp⟩
-
-private lemma exists_pow_mul_mul_mem_subring {a b : ℕ} {P Q : Matrix (Fin N) (Fin N) ℂ → ℂ} (hP : U.IsPolyDeg a P)
-    (hQ : U.IsPolyDeg b Q) : U.IsPolyDeg (a + b) (fun g => P g * Q g) := by
-  obtain ⟨p, hp, hPe⟩ := hP
-  obtain ⟨q, hq, hQe⟩ := hQ
-  exact ⟨p * q, (MvPolynomial.totalDegree_mul p q).trans (Nat.add_le_add hp hq), fun g => by simp [hPe, hQe]⟩
-
-private lemma exists_pow_mul_finset_sum_mem_subring {ι : Type*} (s : Finset ι) {a : ℕ} {P : ι → Matrix (Fin N) (Fin N) ℂ → ℂ}
-    (h : ∀ i ∈ s, U.IsPolyDeg a (P i)) : U.IsPolyDeg a (fun g => ∑ i ∈ s, P i g) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simpa using isPolyDeg_const (N := N) 0 a
-  | insert j s hj ih =>
-    have hj' := h j (Finset.mem_insert_self j s)
-    have hs := ih (fun i hi => h i (Finset.mem_insert_of_mem hi))
-    obtain ⟨p, hp, hPe⟩ := hj'
-    obtain ⟨q, hq, hQe⟩ := hs
-    refine ⟨p + q, (MvPolynomial.totalDegree_add p q).trans (max_le hp hq), fun g => ?_⟩
-    have e := hQe g
-    simp only at e
-    show ∑ i ∈ insert j s, P i g = _
-    rw [Finset.sum_insert hj, MvPolynomial.eval_add, ← hPe g, ← e]
-
 private lemma mono_lemma {a b : ℕ} {P : Matrix (Fin N) (Fin N) ℂ → ℂ} (h : U.IsPolyDeg a P) (hab : a ≤ b) :
     U.IsPolyDeg b P := by
   obtain ⟨q, hq, hP⟩ := h
@@ -136,7 +111,7 @@ theorem isPolyDeg_eval {σ : Type*} {a d : ℕ} (f : Matrix (Fin N) (Fin N) ℂ 
     funext g
     rw [MvPolynomial.eval_eq]
   rw [expand]
-  refine exists_pow_mul_finset_sum_mem_subring _ fun m hm => ?_
+  refine _root_.Formalism.FourierDecayAlt.P.PartialDerivativeAlgebra.pd_sum _ fun m hm => ?_
   have hdeg : (∑ i ∈ m.support, m i) * a ≤ d * a := by
     apply Nat.mul_le_mul_right
     exact (MvPolynomial.le_totalDegree hm).trans hq
@@ -144,7 +119,7 @@ theorem isPolyDeg_eval {σ : Type*} {a d : ℕ} (f : Matrix (Fin N) (Fin N) ℂ 
   have hprod : U.IsPolyDeg (∑ i ∈ m.support, m i * a) (fun g => ∏ i ∈ m.support, f g i ^ m i) :=
     isPolyDeg_prod m.support (fun i => m i * a) (fun i => isPolyDeg_pow (hf i) (m i))
   rw [Finset.sum_mul]
-  simpa using exists_pow_mul_mul_mem_subring (isPolyDeg_const (q.coeff m) 0) hprod
+  simpa using _root_.Formalism.FourierDecayAlt.P.PartialDerivativeAlgebra.pd_mul (_root_.Formalism.FourierDecayAlt.P.PartialDerivativeAlgebra.pd_const (q.coeff m) 0) hprod
 
 end GlobalTheory.WigSh.OmgContr
 

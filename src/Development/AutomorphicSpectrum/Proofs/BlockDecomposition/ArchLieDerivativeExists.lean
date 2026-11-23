@@ -114,10 +114,10 @@ theorem exists_aeval_lapOp_eq_zero (φ : Sm E a) (hA : IsAutForm φ) {d : ℕ}
   set W := Submodule.span ℂ (Set.range fun k => cptRep E a k φ) with hWdef
   haveI : FiniteDimensional ℂ W := hA.kfin
   have hZ : Ω ∈ Zalg E a := by
-    rw [hΩ, GlobalTheory.T.omega_operator_eq_casimir_sum  E a d b ε hε horth]
+    rw [hΩ, _root_.GlobalTheory.CompanionTheory.HCRep.TraceCas.omegaOp_eq_two_cas  E a d b ε hε horth]
     refine Subalgebra.smul_mem _ (Subalgebra.sum_mem _ fun w _ => Subalgebra.add_mem _ ?_ ?_) _
-    · exact GlobalTheory.T.casimir_mem_center_enveloping E a _
-    · exact GlobalTheory.T.casimir_mem_center_enveloping E a _
+    · exact _root_.GlobalTheory.CompanionTheory.Inh.CapelliCasimir.cas_mem_Zalg E a _
+    · exact _root_.GlobalTheory.CompanionTheory.Inh.CapelliCasimir.cas_mem_Zalg E a _
   set Vz := Submodule.span ℂ ((fun z : Module.End ℂ (Sm E a) => z φ) '' Zalg E a) with hVz
   haveI : FiniteDimensional ℂ Vz := hA.zfin
   have hVs : ∀ w ∈ Vz, Ω w ∈ Vz := by
@@ -136,7 +136,7 @@ theorem exists_aeval_lapOp_eq_zero (φ : Sm E a) (hA : IsAutForm φ) {d : ℕ}
     · rintro _ ⟨k, rfl⟩
       have hcomm : ∀ m, cptRep E a k (Ω m) = Ω (cptRep E a k m) := fun m =>
         (congrArg (fun T : Module.End ℂ (Sm E a) => T m)
-          (GlobalTheory.T.omega_operator_commutes_infinite_gl E a d b ε hε horth (Unitary.toUnits k))).symm
+          (_root_.GlobalTheory.CompanionTheory.HCRep.omegaOp_comm_rt E a d b ε hε horth (Unitary.toUnits k))).symm
       have := AutomorphicForm.map_aeval_apply_of_intertwine (cptRep E a k) hcomm q φ
       rw [hq, map_zero] at this
       exact this.symm
@@ -200,7 +200,7 @@ theorem uJ_eq_conv : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberFiel
   intro E _ _ _ a φ hs hA _ _ μ _ k J
   obtain ⟨d, b, ε, hε, horth, hskew⟩ := exists_archCartanBasis (K := E) (n := a)
   obtain ⟨P, hm, hd, hP⟩ := exists_aeval_lapOp_eq_zero φ hA b ε hε horth hskew
-  exact GlobalTheory.T.laplacian_monic_annihilator_measure E a (smL E a φ) d b P hm hd
+  exact _root_.GlobalTheory.CompanionTheory.HCRep.ConvLap.exists_conv_uJ_of_aeval_laplacian E a (smL E a φ) d b P hm hd
     (fun g => by rw [← sliceL_aeval_lapOp, hP, map_zero, map_zero]) μ k J
 
 end GlobalTheory.CompanionTheory.HCRep

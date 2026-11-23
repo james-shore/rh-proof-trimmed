@@ -110,7 +110,6 @@ theorem sameDiv_doubleCoset {n : ℕ} {O : Subring L}
         rw [e1, e2]; simp only [Matrix.mul_one, Matrix.mul_assoc]
     _ = _ := by simp only [Matrix.mul_assoc]
 
-theorem main : ∀ {L : Type} [inst : Field L] [inst_1 : Valued L (WithZero (Multiplicative ℤ))] {n : ℕ} {O : Subring L}, (∀ (x : L), (Valued.v : L → WithZero (Multiplicative ℤ)) x ≤ (1 : WithZero (Multiplicative ℤ)) → x ∈ O) → ∀ {d : List ℤ} {g s : GL (Fin n) L}, GlobalTheory.SphPar.HasDiv O d g → GlobalTheory.SphPar.HasDiv O d s → ∃ (a : ↥(Formalism.UG.GLint (Fin n) O)) (b : ↥(Formalism.UG.GLint (Fin n) O)), g = (↑a : GL (Fin n) L) * s * (↑b : GL (Fin n) L) :=
-  fun hO _ _ _ hg hs => sameDiv_doubleCoset hO hg hs
+alias main := _root_.GlobalTheory.DoubleCosetDivisors.sameDiv_doubleCoset
 
 end GlobalTheory.DoubleCosetDivisors

@@ -303,7 +303,7 @@ theorem UpperTheory.stdSeries_orbit_coordinate_change_of_odd_inert :
   have hiso : ∀ (n : ℕ) (x : MaximalUnramifiedExtension p), ‖(σ ^ n) x‖ = ‖x‖ := fun n x => by
     induction n with
     | zero => rfl
-    | succ n ih => rw [pow_succ', RingHom.coe_mul, Function.comp_apply, Formalism.L2.Th1.D.sigmaIsom (MaximalUnramifiedExtension p) p σ hσ, ih]
+    | succ n ih => rw [pow_succ', RingHom.coe_mul, Function.comp_apply, _root_.Formalism.L2.Th1.D.sigma_isometry (MaximalUnramifiedExtension p) p σ hσ, ih]
   refine ⟨fun k e => gam σ (nP D p) (posPl D p) (om e.1.2) (fun z => g z e.2.1 e.2.2 k) e.1.1.1,
     fun k e => ⟨?_, gam_fix hp (fun z => hg2 z _ _ _) (hfix _) _⟩, ?_, fun c G => ?_⟩
   · refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg zero_le_one fun m _ => ?_

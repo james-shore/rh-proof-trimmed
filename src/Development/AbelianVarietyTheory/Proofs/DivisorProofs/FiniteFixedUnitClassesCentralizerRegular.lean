@@ -75,7 +75,7 @@ theorem _root_.GlobalTheory.LKCx.ClsReg.finite_fixed_classes_regular : ∀ (p : 
   letI : CommRing Ec := { (inferInstance : Ring Ec) with mul_comm := hcomm }
   haveI : FiniteDimensional ℚ G.C := Module.Finite.trans G.F G.C
   haveI : FiniteDimensional ℚ Ec := inferInstance
-  haveI : IsReduced Ec := ⟨fun x ⟨k, hk⟩ => Subtype.ext (GlobalTheory.T.eq_zero_of_nilpotent_commute_separable_minpoly p G y₀ hsep hdeg x ((memE x).1 x.2) k
+  haveI : IsReduced Ec := ⟨fun x ⟨k, hk⟩ => Subtype.ext (_root_.GlobalTheory.LKCx.ClsReg.eq_zero_of_commute_of_pow_eq_zero p G y₀ hsep hdeg x ((memE x).1 x.2) k
     (by simpa using congrArg Subtype.val hk))⟩
 
   have sh_add : ∀ x y : G.C, sh G (x + y) = sh G x + sh G y := fun x y => by simp [sh]
@@ -164,7 +164,7 @@ theorem _root_.GlobalTheory.LKCx.ClsReg.finite_fixed_classes_regular : ∀ (p : 
     rw [τe_apply, τf_val]
     change (β : G.C) * (G.star (algebraMap G.F G.C jF)).unop * ((β⁻¹ : G.Cˣ) : G.C) = -algebraMap G.F G.C jF
     rw [G.star_F, hjFc, ← Algebra.commutes, mul_assoc, Units.mul_inv, mul_one, map_neg]
-  obtain ⟨A', hA'⟩ := GlobalTheory.T.finite_classes_fixedUnits_mod_rat_norms Ec τe τe_inv jE hjE hjτ S
+  obtain ⟨A', hA'⟩ := _root_.GlobalTheory.EtaleCls.classes_mod_rat_norms Ec τe τe_inv jE hjE hjτ S
   refine ⟨A'.image Subtype.val, ?_⟩
   intro a ha hac hafix hloc
 
@@ -183,7 +183,7 @@ theorem _root_.GlobalTheory.LKCx.ClsReg.finite_fixed_classes_regular : ∀ (p : 
     intro ℓ hℓ hℓS
     haveI : Fact ℓ.Prime := ⟨hℓ⟩
     obtain ⟨u, z, hzc, hz⟩ := hloc ℓ hℓS
-    obtain ⟨hinj, hsurj⟩ := GlobalTheory.T.tensor_centralizer_injective_commutant_eq ℚ_[ℓ] G.C (y₀ : G.C)
+    obtain ⟨hinj, hsurj⟩ := _root_.GlobalTheory.tensor_centralizer_flat ℚ_[ℓ] G.C (y₀ : G.C)
     set ι := Algebra.TensorProduct.map (AlgHom.id ℚ_[ℓ] ℚ_[ℓ]) Ec.val with hι
     have hinCy : inC G ℚ_[ℓ] (y₀ : G.C) = (1 : ℚ_[ℓ]) ⊗ₜ[ℚ] (y₀ : G.C) := rfl
     obtain ⟨w, hw⟩ := hsurj z (hinCy ▸ hzc)
@@ -212,7 +212,7 @@ theorem _root_.GlobalTheory.LKCx.ClsReg.finite_fixed_classes_regular : ∀ (p : 
       change inC G ℚ_[ℓ] (ua : G.C) = _
       rw [hz]
       simp only [mul_assoc]
-    obtain ⟨c, b, x, y, hc, hb, h1, h2, d, hd, hx, hy⟩ := GlobalTheory.T.exists_global_norm_approx_of_local_padic_norm Ec τe.toAlgHom ℓ a' u Z ha'u heq
+    obtain ⟨c, b, x, y, hc, hb, h1, h2, d, hd, hx, hy⟩ := _root_.GlobalTheory.LocalApprox.main Ec τe.toAlgHom ℓ a' u Z ha'u heq
     exact ⟨c, b, x, y, hc, hb, h1, h2, d, hd, hx, hy⟩
   obtain ⟨a₀, ha₀, r, e, hre⟩ := hA' a' ha'u ha'fix hloc'
   refine ⟨(a₀ : G.C), Finset.mem_image_of_mem _ ha₀, r, Units.map (Ec.val : Ec →* G.C) e, (memE _).1 (e : Ec).2, ?_⟩

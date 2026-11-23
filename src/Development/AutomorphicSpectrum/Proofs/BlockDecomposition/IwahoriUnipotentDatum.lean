@@ -133,14 +133,6 @@ theorem mul_antiJ (M : Matrix (Fin n) (Fin n) L) (i j : Fin n) :
     rw [antiJ_ne' hk, mul_zero]
   · simp
 
-theorem antiJ_mul_self : antiJ L n * antiJ L n = 1 := by
-  ext i j
-  rw [antiJ_mul, Matrix.one_apply]
-  by_cases h : i = j
-  · subst h
-    rw [antiJ_rev_self, if_pos rfl]
-  · rw [antiJ_ne (fun e => h (by simpa using e.symm)), if_neg h]
-
 theorem tau_eq (σ : L →+* L) (M : Matrix (Fin n) (Fin n) L) :
     tau σ M = antiJ L n * cT σ M * antiJ L n := by
   ext i j
@@ -176,7 +168,7 @@ theorem theta_val (σ : L →+* L) (g : GL (Fin n) L) :
 
 theorem mem_GU_iff [Valued L (WithZero (Multiplicative ℤ))] {σ : L →+* L} {g : GL (Fin n) L} :
     g ∈ GU σ n ↔ theta σ g = g := by
-  have hJ := antiJ_mul_self (L := L) (n := n)
+  have hJ := _root_.Formalism.UG.P.fIwasawa_antiJ_mul_antiJ (L := L) (n := n)
   have key : g ∈ GU σ n ↔ tau σ (g : Matrix (Fin n) (Fin n) L) * (g : Matrix (Fin n) (Fin n) L) = 1 := by
     show cT σ (g : Matrix (Fin n) (Fin n) L) * antiJ L n * (g : Matrix (Fin n) (Fin n) L) = antiJ L n ↔ _
     rw [tau_eq]

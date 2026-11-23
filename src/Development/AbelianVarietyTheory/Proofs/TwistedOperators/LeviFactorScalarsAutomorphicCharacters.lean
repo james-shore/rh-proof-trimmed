@@ -66,12 +66,6 @@ namespace GlobalTheory.LeviChar
 
 open GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition
 
-theorem detPow_pos' {D : D7} {r : ℕ} (a : GL (Fin r) (AE D)) (n : ℕ) : 0 < GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow a n := by
-  unfold GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow
-  apply Real.rpow_pos_of_pos
-  exact NNReal.coe_pos.2 (pos_iff_ne_zero.2
-    ((Group.isUnit (Matrix.GeneralLinearGroup.det a)).map (GlobalTheory.Doubling.absE D.host.F D.host.E)).ne_zero)
-
 theorem detPow_mul' {D : D7} {r : ℕ} (a b : GL (Fin r) (AE D)) (n : ℕ) :
     GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow (a * b) n = GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow a n * GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow b n := by
   unfold GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow
@@ -80,7 +74,7 @@ theorem detPow_mul' {D : D7} {r : ℕ} (a b : GL (Fin r) (AE D)) (n : ℕ) :
 theorem detPow_one' {D : D7} {r : ℕ} (n : ℕ) : GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow (1 : GL (Fin r) (AE D)) n = 1 := by
   have h := detPow_mul' (1 : GL (Fin r) (AE D)) 1 n
   rw [mul_one] at h
-  exact mul_left_cancel₀ (detPow_pos' 1 n).ne' (h.symm.trans (mul_one _).symm)
+  exact mul_left_cancel₀ (_root_.GlobalTheory.LeviScalar.detPow_pos 1 n).ne' (h.symm.trans (mul_one _).symm)
 
 theorem continuous_detPow' {D : D7} {r : ℕ} (n : ℕ) :
     Continuous fun a : GL (Fin r) (AE D) => GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow a n := by
@@ -122,7 +116,7 @@ theorem levi_scalars_autChar : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C : Matr
     (hsC a g') (hsB a g') 1
   choose c hc using hc
   set R := res V V' W C B μ₀ 𝓨₀ with hR
-  have dpos := fun a : GL (Fin r) (AE D) => detPow_pos' a W.rank
+  have dpos := fun a : GL (Fin r) (AE D) => _root_.GlobalTheory.LeviScalar.detPow_pos a W.rank
   have dmul := fun a b : GL (Fin r) (AE D) => detPow_mul' a b W.rank
   have d1 : GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow (1 : GL (Fin r) (AE D)) W.rank = 1 := detPow_one' W.rank
   have dcont : Continuous fun a : GL (Fin r) (AE D) => GlobalTheory.IndefiniteRowSideFullHecke.WittDecompositions.detPow a W.rank := continuous_detPow' W.rank

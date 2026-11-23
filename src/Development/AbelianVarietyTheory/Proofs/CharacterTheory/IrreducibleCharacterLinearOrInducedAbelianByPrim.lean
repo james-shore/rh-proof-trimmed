@@ -89,13 +89,13 @@ theorem irrChar_linear_or_induced : ∀ (L : Type) [Field L] [CharZero L] [IsAlg
   by_cases hR : ∃ T : Subgroup G, T ≠ ⊤ ∧ ∃ ψ : T → L, IsChar L L ψ ∧ χ = ind T ψ
   · exact Or.inr hR
   left
-  obtain ⟨hs1, hs2⟩ := GlobalTheory.T.idempotent_eq_one_and_character_eq_of_isIrreducible L G (Fin n → L) ρ hρ
+  obtain ⟨hs1, hs2⟩ := _root_.GlobalTheory.irreducible_idempotent_eq_one_and_character_eq_weight L G (Fin n → L) ρ hρ
   have hcomm : ∀ a b : G, ρ a * ρ b = ρ b * ρ a := by
     refine GlobalTheory.T.commute_image_abelianByPrimePower_of_normal_central G (Module.End L (Fin n → L)) ρ hG ?_
     intro B hB hBc
     obtain ⟨lam, v, hv, hlam⟩ := GlobalTheory.T.exists_character_eigenvector_of_commuting_representation L B (Fin n → L) (ρ.comp B.subtype)
       (fun a b => hBc a a.2 b b.2)
-    obtain ⟨e, he0, hee, heB, heT, heN⟩ := GlobalTheory.T.exists_weight_idempotent_of_eigenvector L G (Fin n → L) ρ B
+    obtain ⟨e, he0, hee, heB, heT, heN⟩ := _root_.GlobalTheory.exists_weight_idempotent L G (Fin n → L) ρ B
       (weightStabiliser B hB lam) lam v hB hv hlam (fun _ => Iff.rfl)
     obtain ⟨ψ, hψ, hind⟩ := GlobalTheory.T.character_eq_induced_of_imprimitivity_system L G (Fin n → L) ρ _ e hρ he0 hee heT heN
     have hT : weightStabiliser B hB lam = ⊤ := by

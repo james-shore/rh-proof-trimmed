@@ -81,21 +81,12 @@ private theorem UpperTheory.ConvolutionTheory.L1.matchInf_tens (R S : Type) [Com
     unfold UpperTheory.ConvolutionTheory.L1.Split.transfer UpperTheory.ConvolutionTheory.L1.Split.tens
     simp only [h1]
 
-private theorem UpperTheory.ConvolutionTheory.L1.t2Space_infiniteAdeleRing' (F : Type) [Field F] [NumberField F] : T2Space (InfiniteAdeleRing F) :=
-  inferInstanceAs (T2Space ((v : InfinitePlace F) → v.Completion))
-
-private theorem UpperTheory.ConvolutionTheory.L1.matchInf_sc (F : Type) [Field F] [NumberField F] :
-    SecondCountableTopology (InfiniteAdeleRing F) := by
-  haveI : ∀ v : InfinitePlace F, SecondCountableTopology v.Completion := fun v =>
-    (InfinitePlace.Completion.isometry_extensionEmbedding v).isEmbedding.secondCountableTopology
-  exact inferInstanceAs (SecondCountableTopology ((v : InfinitePlace F) → v.Completion))
-
 theorem UpperTheory.ConvolutionTheory.L1.matchInf :
     UpperTheory.ConvolutionTheory.L1.MatchInf := by
   intro F E _ _ _ _ _ σ m D n _ _ _ _ μE μF hE hF
-  haveI := UpperTheory.ConvolutionTheory.L1.t2Space_infiniteAdeleRing' F
-  haveI := UpperTheory.ConvolutionTheory.L1.t2Space_infiniteAdeleRing' E
-  haveI := UpperTheory.ConvolutionTheory.L1.matchInf_sc F
+  haveI := _root_.GlobalTheory.AdelicUnitaryTop.t2Space_infiniteAdeleRing_of_numberField_field F
+  haveI := _root_.GlobalTheory.AdelicUnitaryTop.t2Space_infiniteAdeleRing_of_numberField_field E
+  haveI := _root_.GlobalTheory.AdelicUnitaryTop.secondCountable_infiniteAdele F
   obtain ⟨c, hc, hμ, hM⟩ := UpperTheory.ConvolutionTheory.L1.matchSplit _ _ _ _ m D n μE μF hE hF (UpperTheory.ConvolutionTheory.L1.regOkPi.2.2 F n)
   exact ⟨c, hc, hμ, fun φ h1 h2 => (hM φ h1 h2).2.2,
     fun φ hφ => UpperTheory.ConvolutionTheory.L1.matchInf_tens _ _ _ _ m D n μF φ hφ⟩

@@ -123,24 +123,21 @@ private theorem eigWave {n : ℕ} (E : KMod n) (χ : Inf n) (f : Mat n → E.V) 
     rw [(hasDerivAt_cosh_smul' _ (f g) 0).deriv]
     simp
 
-private theorem val_mem_GLs' {n : ℕ} (y : G n) : y.val ∈ GLs n := by
-  exact ((UpperTheory.RealTr.basic n).2.1 _).2 y.isUnit
-
 private theorem integrable_ker {n : ℕ} [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure]
     (E : KMod n) (κ : Mat n → (E.V →L[ℂ] E.V)) (hc : ContinuousOn κ (GLs n))
     (hs : ∃ R, ∀ y ∈ GLs n, R < lg y → κ y = 0) (f : Mat n → E.V) (hf : ContinuousOn f (GLs n))
     (x : Mat n) (hx : x ∈ GLs n) : Integrable (fun y : G n => κ y.val (f (x * y.val))) μ := by
   obtain ⟨R, hR⟩ := hs
   have hcont : Continuous (fun y : G n => κ y.val (f (x * y.val))) := by
-    refine Continuous.clm_apply (hc.comp_continuous Units.continuous_val fun y => val_mem_GLs' y) ?_
+    refine Continuous.clm_apply (hc.comp_continuous Units.continuous_val fun y => _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val y) ?_
     refine hf.comp_continuous (continuous_const.mul Units.continuous_val) fun y => ?_
     show det (x * y.val) ≠ 0
     rw [det_mul]
-    exact mul_ne_zero hx (val_mem_GLs' y)
+    exact mul_ne_zero hx (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val y)
   refine hcont.integrable_of_hasCompactSupport (HasCompactSupport.intro (UpperTheory.RealTr.lgCpt n R) ?_)
   intro y hy
   simp only [Set.mem_setOf_eq, not_le] at hy
-  simp [hR _ (val_mem_GLs' y) hy]
+  simp [hR _ (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val y) hy]
 
 theorem UpperTheory.RealTr.actEig :
     ∀ (n : ℕ) [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure] (E : KMod n) (k : Mat n → (E.V →L[ℂ] E.V)) (val : Inf n → ℂ) (T : ℝ), IsMult μ E k val T →
@@ -167,7 +164,7 @@ theorem UpperTheory.RealTr.actEig :
     rw [e1]
     refine key.trans ((congrArg (fun F => zOp (w i) F x) e2).trans ?_)
     exact (UpperTheory.RealTr.zEig n E.V χ f hf1 he _).2 (w i) x hx
-  have hk' : ∀ y : G n, k y.val = ∑ i, c i • ks i y.val := fun y => hk _ (val_mem_GLs' y)
+  have hk' : ∀ y : G n, k y.val = ∑ i, c i • ks i y.val := fun y => hk _ (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val y)
   have hsum : act μ E k f x = ∑ i, c i • act μ E (ks i) f x := by
     simp only [act, hk', ContinuousLinearMap.sum_apply, ContinuousLinearMap.smul_apply]
     rw [integral_finsetSum]

@@ -74,9 +74,9 @@ theorem iInf_thGen_le_nuLocC : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     obtain ⟨v, hv⟩ := GlobalTheory.ValClosure.exists_valuation_closure T.V ϖ hϖ
     exact ⟨AlgebraicClosure T.Fr, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance,
       inferInstance, v, hv⟩
-  obtain ⟨TI⟩ := GlobalTheory.T.nonempty_tateIsometry_integralFramedPoint_chart E H Dw l Xo c T io y C P F
+  obtain ⟨TI⟩ := _root_.GlobalTheory.IntegralTate.nonempty_tateIso_of_intChart E H Dw l Xo c T io y C P F
   obtain ⟨D', A', G', _, _, pD, pA, pG, U', PU, _, oD', hx, hact, hθ⟩ :=
-    (GlobalTheory.T.exists_productData_copies_trivialisation_valuation E H Dw l Xo c T io y C P ϖ hϖ).2 n
+    (_root_.GlobalTheory.PowData.exists_powData E H Dw l Xo c T io y C P ϖ hϖ).2 n
   obtain ⟨θ, θα, hθ1, hθ2, hθ3⟩ := hθ F v hv Q hQ α l.M (by have := l.three_le; omega) hα
   have hcop : ∃ u u' : 𝓞 E, u * α + u' * star α = 1 := by
     have h1 := l.coprime
@@ -108,7 +108,7 @@ theorem iInf_thGen_le_nuLocC : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       (fun i => algebraMap T.Fr F (algebraMap T.V T.Fr (cf i))) (fun i => val_algebraMap_nonneg T v hvx _)
       (by rw [hmap]; exact hdeg) f hf ((vV T.V x0 : ℤ) : ℚ)
       (by rw [hmap, Nat.one_mul, hval]; exact hvx x0 hx0)
-  obtain ⟨g, hg, ε, hε, hgv⟩ := GlobalTheory.T.value_translate_pullback_eq_generator' E H Dw l Xo c nab hnab hth T io y C hTr P hP hy ϖ hϖ Q hQ F v hv n D' A' G'
+  obtain ⟨g, hg, ε, hε, hgv⟩ := _root_.GlobalTheory.value_translate_pullback_eq_generator E H Dw l Xo c nab hnab hth T io y C hTr P hP hy ϖ hϖ Q hQ F v hv n D' A' G'
     pD pA pG U' PU oD' hx hact α hα hMb θ θα hθ1 hθ2 hθ3 p w ζ x t₀ t σ' h h1 h2 h3 h4' h5 h6 h7 h8 h9 a (Qs i) (hQs i)
   rw [hgv] at hρ
   have hint : ∀ τ : E →+* ℂ, ∃ z : T.V, algebraMap T.V T.Fr z = io (embK c τ α) := fun τ => by

@@ -123,5 +123,5 @@ theorem GlobalTheory.HorFrame.exists_deform_of_comb : ∀ {E : Type} [Field E] [
   refine GlobalTheory.T.kodaira_spencer_tangent_vectors_lift (hKS K Q) (x := fun a => spMap ((dualMap ψ).comp (d a)) ≫ Q₀.x)
     (fun a => hTan _ (hθc1 a)) hKSa (hTan θ hθ1) m ?_
   intro O f h' hc
-  exact GlobalTheory.T.evalRingPoint_dualNumber_snd_linear_derivation Q₀.x ψ (fun a => (dualMap ψ).comp (d a)) θ m hθc1 hθ1
+  exact _root_.GlobalTheory.DualEval.evalPt_snd_sum Q₀.x ψ (fun a => (dualMap ψ).comp (d a)) θ m hθc1 hθ1
     (fun s => by rw [hθ2 s]; simp [dualMap]) O f h' hc

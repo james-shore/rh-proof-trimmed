@@ -194,7 +194,7 @@ theorem key_X {TA TB : E} (A : FlagG S r TA) (B : FlagG S r TB) (hdet : (Zhat A 
         simp [Fin.castSucc_ne_last]
       | zero => simp
       | add a b _ _ ha hb => rw [map_add (f := _), LinearMap.add_apply, ha, hb, add_zero]
-      | smul t y _ hy => rw [BwdNA.hT_smulL, hy, mul_zero]
+      | smul t y _ hy => rw [_root_.PI.ScalarPairDr.W.hT_smul_left, hy, mul_zero]
   have hΩz : S.hT Ω A.z = 1 := by
     rw [BwdNA.hsw S A.z Ω, ← fvec_last, hΩ.2]
     simp

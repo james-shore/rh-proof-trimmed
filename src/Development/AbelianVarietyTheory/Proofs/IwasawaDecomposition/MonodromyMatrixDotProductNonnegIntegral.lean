@@ -120,6 +120,6 @@ theorem monodromy_dotProduct_nonneg : ∀ (n a g : ℕ) (ha : a ≤ n) (ρ₁ : 
     apply DifferentiableOn.fun_sum
     intro l _
     exact (hent i l).mul_const _
-  exact_mod_cast GlobalTheory.T.periodic_left_halfPlane_shift_nonneg_of_im_pos (Real.log ρ₁) f (v ⬝ᵥ (B k *ᵥ v)) hdf hper him
+  exact_mod_cast _root_.GlobalTheory.periodic_strip_shift_nonneg (Real.log ρ₁) f (v ⬝ᵥ (B k *ᵥ v)) hdf hper him
 
 end GlobalTheory

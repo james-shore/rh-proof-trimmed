@@ -71,7 +71,7 @@ theorem gdat_eq_iff : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wh
       ∀ g, (Z.M p).split = some g → (y p).io = (locH Z p).iotaGraph g ⟨lattice₂ D Z.M p Λ, (FP p).A.f, (FP p).B.f, (FP p).A.T, (FP p).B.T⟩ := by
     intro Λ y hy p
     obtain ⟨τ, hτ, hlam⟩ := hy.2 p
-    have h1 := inner_of_term (locH Z p) D.R.rS (FP p) (y p) τ hτ
+    have h1 := _root_.GlobalTheory.InnerRead.datum_eq_Lset (locH Z p) D.R.rS (FP p) (y p) τ hτ
     refine ⟨h1.1.trans (congrArg (fun L => (locH Z p).Lset L (FP p).A.f) hlam),
       h1.2.trans (congrArg (fun L => (locH Z p).Lset L (FP p).B.f) hlam), fun g hg => ?_⟩
     have h2 := (hτ.2.2.2.2 g hg).2
@@ -88,13 +88,13 @@ theorem gdat_eq_iff : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wh
     funext p
     apply datum_ext
     · apply SetLike.coe_injective
-      exact (hL Λ₁ y₁ h₁ p).1.trans ((lset_eq_of_lsub_eq D Z p F (FP p).A (hB p).1 Λ₁ Λ₂ h₁.1 h₂.1 hF).trans (hL Λ₂ y₂ h₂ p).1.symm)
+      exact (hL Λ₁ y₁ h₁ p).1.trans ((_root_.GlobalTheory.Unfold.InnerLoc.lset_eq_of_lsub_eq D Z p F (FP p).A (hB p).1 Λ₁ Λ₂ h₁.1 h₂.1 hF).trans (hL Λ₂ y₂ h₂ p).1.symm)
     · apply SetLike.coe_injective
-      exact (hL Λ₁ y₁ h₁ p).2.1.trans ((lset_eq_of_lsub_eq D Z p F' (FP p).B (hB p).2.1 Λ₁ Λ₂ h₁.1 h₂.1 hF').trans (hL Λ₂ y₂ h₂ p).2.1.symm)
+      exact (hL Λ₁ y₁ h₁ p).2.1.trans ((_root_.GlobalTheory.Unfold.InnerLoc.lset_eq_of_lsub_eq D Z p F' (FP p).B (hB p).2.1 Λ₁ Λ₂ h₁.1 h₂.1 hF').trans (hL Λ₂ y₂ h₂ p).2.1.symm)
     · cases hs : (Z.M p).split with
       | none => exact ((y₁ p).io_L hs).trans ((y₂ p).io_L hs).symm
       | some g =>
-        exact ((hL Λ₁ y₁ h₁ p).2.2 g hs).trans ((iota_eq_of_graph_eq D Z FP _ _ F F' hB Λ₁ Λ₂ h₁.1 h₂.1 hF hF' hΓ p g hs).trans
+        exact ((hL Λ₁ y₁ h₁ p).2.2 g hs).trans ((_root_.GlobalTheory.IotaLocA.io_eq_of_graph D Z FP _ _ F F' hB Λ₁ Λ₂ h₁.1 h₂.1 hF hF' hΓ p g hs).trans
           ((hL Λ₂ y₂ h₂ p).2.2 g hs).symm)
   · intro hy
     subst hy
@@ -104,7 +104,7 @@ theorem gdat_eq_iff : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wh
     have hF' : Lsub Λ₁ F' = Lsub Λ₂ F' :=
       lsub_eq_of_lset_eq D Z F' (fun p => (FP p).B) (fun p => (hB p).2.1) Λ₁ Λ₂ h₁.1 h₂.1
         (fun p => (hL Λ₁ y₁ h₁ p).2.1.symm.trans (hL Λ₂ y₁ h₂ p).2.1)
-    have hΓ := graph_eq_of_iota_eq D Z FP _ _ F F' hB Λ₁ Λ₂ h₁.1 h₂.1 hF hF'
+    have hΓ := _root_.GlobalTheory.Unfold.IotaGlob.graph_eq_of_local_iota D Z FP _ _ F F' hB Λ₁ Λ₂ h₁.1 h₂.1 hF hF'
       (fun p g hs => ((hL Λ₁ y₁ h₁ p).2.2 g hs).symm.trans ((hL Λ₂ y₁ h₂ p).2.2 g hs))
     exact Prod.ext hF (Prod.ext hF' hΓ)
 

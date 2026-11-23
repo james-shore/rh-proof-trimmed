@@ -90,31 +90,13 @@ theorem resV_linSub_zero {σ κ R : Type} [Fintype σ] [Field R] (f : κ → σ)
 
 variable {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p])
 
-theorem lamC_of_mem {x : ℂ} (h : x ∈ TaylorLogMetric.Qbar) : TaylorLogMetric.lamC lam x = lam ⟨x, h⟩ := dif_pos h
-
-theorem lamC_mul {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ TaylorLogMetric.Qbar) :
-    TaylorLogMetric.lamC lam (x * y) = TaylorLogMetric.lamC lam x * TaylorLogMetric.lamC lam y := by
-  rw [lamC_of_mem lam hx, lamC_of_mem lam hy, lamC_of_mem lam (mul_mem hx hy), ← map_mul]; rfl
-
-theorem lamC_sum {κ : Type} (T : Finset κ) (f : κ → ℂ) (h : ∀ i ∈ T, f i ∈ TaylorLogMetric.Qbar) :
-    TaylorLogMetric.lamC lam (∑ i ∈ T, f i) = ∑ i ∈ T, TaylorLogMetric.lamC lam (f i) := by
-  classical
-  induction T using Finset.induction_on with
-  | empty => rw [Finset.sum_empty, Finset.sum_empty, lamC_of_mem lam (zero_mem _)]; exact map_zero lam
-  | insert i T hi ih =>
-    have hT : ∀ k ∈ T, f k ∈ TaylorLogMetric.Qbar := fun k hk => h k (Finset.mem_insert_of_mem hk)
-    have hfi : f i ∈ TaylorLogMetric.Qbar := h i (Finset.mem_insert_self i T)
-    rw [Finset.sum_insert hi, Finset.sum_insert hi, ← ih hT, lamC_of_mem lam hfi, lamC_of_mem lam (sum_mem hT),
-      lamC_of_mem lam (add_mem hfi (sum_mem hT)), ← map_add]
-    rfl
-
 theorem ratCast_mem (q : ℚ) : (q : ℂ) ∈ TaylorLogMetric.Qbar := by
   have : ((q : TaylorLogMetric.Qbar) : ℂ) = (q : ℂ) := by simp
   rw [← this]; exact Subtype.mem _
 
 theorem lamC_ratCast_mul (q : ℚ) {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) :
     TaylorLogMetric.lamC lam ((q : ℂ) * x) = (q : ℂ_[p]) * TaylorLogMetric.lamC lam x := by
-  rw [lamC_mul lam (ratCast_mem q) hx, lamC_of_mem lam (ratCast_mem q)]
+  rw [_root_.Formalism.L2.Ker.lamC_mul lam (ratCast_mem q) hx, _root_.Formalism.L2.Ker.lamC_of_mem lam (ratCast_mem q)]
   congr 1
   have : (⟨(q : ℂ), ratCast_mem q⟩ : TaylorLogMetric.Qbar) = (q : TaylorLogMetric.Qbar) := Subtype.ext (by simp)
   rw [this, map_ratCast]
@@ -223,7 +205,7 @@ theorem xiEx_theta_general : letI := fun D : D7 => D.host.cmStar; ∀ (D : D7) (
           Set (Matrix (Fin ((X.Pj (j + 1)).m + 1)) (Fin ((X.Pj j).m + 1)) (GL3Theta.EP D P))) 1 y)]
       simp only [hi]
       exact_mod_cast hy0
-    have hker := GlobalTheory.T.kernelTheta_relation_of_indicator_relation_split D cc δ B χ hcurve hdelta hδ hchi hLat hVec hEq hmod hmoves SS cl hcl hSS
+    have hker := _root_.GlobalTheory.KerRel.kerTh_relation_of_indicator D cc δ B χ hcurve hdelta hδ hchi hLat hVec hEq hmod hmoves SS cl hcl hSS
       ((X.Pj j).m + 1) ((X.Pj (j + 1)).m + 1) P hsplit hPS hPcS hcP hcPc (fd.kerN j La₀) (fd.kerN (j + 1) La₀')
       (xiM X fd Ξ₀ j La₀ La₀') hAdm0 hDat0 (↥s) (fun i => fd.kerN j i.1.1.1) (fun i => fd.kerN (j + 1) i.1.1.2)
       (fun i => ⟨(hOKi i.1).1, (hHi i.1).1, (hHi i.1).2.1⟩) (fun i => (cq i.1 : ℂ)) hind
@@ -314,8 +296,8 @@ theorem xiEx_theta_general : letI := fun D : D7 => D.host.cmStar; ∀ (D : D7) (
         have hT := hcoef i α
         have hchi : (Base.chiFac χ _ _ (fd.kerN j i.1.1) (fd.kerN (j + 1) i.1.2))⁻¹ ∈ TaylorLogMetric.Qbar := inv_mem hch
         rw [MvPowerSeries.coeff_smul, MvPowerSeries.coeff_smul, hcs, GlobalTheory.ThetaConj.taylor_mul D _ (hdiff i) α,
-          lamC_mul lam (mul_mem hs0 hchi) hT, lamC_mul lam hs0 hchi,
-          lamC_ratCast_mul lam _ (mul_mem hchi hT), lamC_mul lam hchi hT, hkkE i]
+          _root_.Formalism.L2.Ker.lamC_mul lam (mul_mem hs0 hchi) hT, _root_.Formalism.L2.Ker.lamC_mul lam hs0 hchi,
+          lamC_ratCast_mul lam _ (mul_mem hchi hT), _root_.Formalism.L2.Ker.lamC_mul lam hchi hT, hkkE i]
         rw [show pPow X j i.1.1 i.1.2 * (TaylorLogMetric.lamC lam (scal0 X fd χ muT j i.1.1 i.1.2) *
             TaylorLogMetric.lamC lam (Base.chiFac χ _ _ (fd.kerN j i.1.1) (fd.kerN (j + 1) i.1.2))⁻¹ *
             TaylorLogMetric.lamC lam (TaylorLogMetric.taylor D (kerTh B χ SS cl (fd.kerN j i.1.1) (fd.kerN (j + 1) i.1.2) (xiM X fd Ξ₀ j La₀ La₀')) α)) =
@@ -334,8 +316,8 @@ theorem xiEx_theta_general : letI := fun D : D7 => D.host.cmStar; ∀ (D : D7) (
         have h4 := zpow_ne_zero (hh * volE X v j La₀.2 La₀'.2) hp0C
         field_simp [hw i]
       rw [Finset.sum_congr rfl e1, ← Finset.mul_sum]
-      have hl0 : TaylorLogMetric.lamC lam 0 = 0 := by rw [lamC_of_mem lam (zero_mem _)]; exact map_zero lam
-      rw [← lamC_sum lam s _ (fun i _ => mul_mem (ratCast_mem _) (mul_mem (inv_mem (hOKi i).2.2.2.2.2.1) (hcoef i α))),
+      have hl0 : TaylorLogMetric.lamC lam 0 = 0 := by rw [_root_.Formalism.L2.Ker.lamC_of_mem lam (zero_mem _)]; exact map_zero lam
+      rw [← _root_.Formalism.L2.Ker.lamC_sum lam s _ (fun i _ => mul_mem (ratCast_mem _) (mul_mem (inv_mem (hOKi i).2.2.2.2.2.1) (hcoef i α))),
         hysum α, hl0, mul_zero]
     calc ∑ i ∈ s, cq i • (fun i : I a => (kk i.1.1 i.1.2)⁻¹ • K j i.1.1 i.1.2) i
         = ∑ i ∈ s, ((cq i : ℂ_[p]) * (E.iK (kk i.1.1 i.1.2))⁻¹) •
@@ -344,7 +326,7 @@ theorem xiEx_theta_general : letI := fun D : D7 => D.host.cmStar; ∀ (D : D7) (
       _ = resV (kapOf X pos j) (linSub (fun x y => c * subBG E pos fd j La₀ La₀' x y)
             (∑ i ∈ s, ((cq i : ℂ_[p]) * (E.iK (kk i.1.1 i.1.2))⁻¹) • G i)) := resV_linSub_sum _ _ _ _ _
       _ = 0 := by rw [hG0]; exact resV_linSub_zero _ _
-  have hex := fun a => GlobalTheory.exists_addMonoidHom_of_linear_relations
+  have hex := fun a => _root_.GlobalTheory.NormBoundTheorem.main
     (Matrix (Fin ((X.Pj (j + 1)).m + 1)) (Fin ((X.Pj j).m + 1)) (X.G.P.Qq v)) (I a) (MvPowerSeries (X.ZA j) ℂ_[p])
     (fun i => X.ind v j i.1.1.2 i.1.2.2) (fun i => (kk i.1.1 i.1.2)⁻¹ • K j i.1.1 i.1.2) (hrel a)
   refine ⟨fun a => (hex a).choose, u, u', hu, hu', fun La La' hLa hLa' => ?_⟩

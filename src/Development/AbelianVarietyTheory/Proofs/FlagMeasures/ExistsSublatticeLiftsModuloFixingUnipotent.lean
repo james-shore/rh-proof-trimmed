@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.MeasurePreservingPiCompProd
 
 @[expose] public section
 
@@ -145,7 +146,7 @@ theorem restrict_reps (hR : ¬ IsField R) {M : Type} [AddCommGroup M] [Module R 
   haveI : Module.Flat R M := inferInstance
   haveI : Module.FinitePresentation R M := Module.finitePresentation_of_finite R M
   haveI : Module.Projective R M := Module.Flat.projective_of_finitePresentation
-  have h := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.homRestrictIndex R M R N hR hfin
+  have h := _root_.Formalism.HermitianLatticeCounting.P.cardCokernelRestriction R M R N hR hfin
   rw [Module.finrank_self, pow_one] at h
   have hpos : 0 < Nat.card (M ⧸ N) := Nat.card_pos
   haveI : Finite ((N →ₗ[R] R) ⧸ LinearMap.range (LinearMap.lcomp R R N.subtype)) :=

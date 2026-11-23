@@ -268,15 +268,6 @@ theorem cusp_of_iter (Γ : Subgroup SL(2, ℤ)) (k : ℕ) (F : (ℍ → ℂ) →
   have : ⇑h = -((c - a) ^ n • ⇑f) := by rw [eq_neg_iff_add_eq_zero, add_comm, ← hh]
   rw [e, this, smul_neg, _root_.neg_smul, neg_neg, smul_smul, inv_mul_cancel₀ hne, one_smul]
 
-theorem DdF_eq (k : ℤ) (σ : SL(2, ℤ)) (f : ℍ → ℂ) : DdF k σ f = f ∣[k] σ := by
-  have : toGL (mat σ) = (σ : GL (Fin 2) ℝ) := by
-    have hd : ¬ (mat σ).det = 0 := by simp
-    rw [toGL, dite_eq_right hd]
-    ext i j
-    rfl
-  simp only [DdF, hkF, Finset.univ_unique, Finset.sum_singleton, this]
-  rfl
-
 theorem char_of_dia (N l k : ℕ) (χ : DirichletCharacter ℂ N) (σD : (ZMod N)ˣ → SL(2, ℤ))
     (hD : ∀ d : (ZMod N)ˣ, IsDiam N l (d : ZMod N) (σD d)) (f : CuspForm (Lev N l) (k : ℤ))
     (hf : ∀ d : (ZMod N)ˣ, DdF (k : ℤ) (σD d) ⇑f = χ (d : ZMod N) • ⇑f) (γ : SL(2, ℤ))
@@ -322,24 +313,12 @@ theorem char_of_dia (N l k : ℕ) (χ : DirichletCharacter ℂ N) (σD : (ZMod N
     SlashInvariantFormClass.slash_action_eq f _ (Subgroup.mem_map_of_mem _ hm)
   have : γ = (γ * (σD d)⁻¹) * σD d := by simp
   have h2 := hf d
-  rw [DdF_eq] at h2
+  rw [_root_.GlobalTheory.HeckeFamilyMatrices.SsD.DdF_eq] at h2
   calc ⇑f ∣[(k : ℤ)] γ = ⇑f ∣[(k : ℤ)] ((γ * (σD d)⁻¹) * σD d) := by rw [← this]
     _ = ⇑f ∣[(k : ℤ)] (σD d) := by rw [SlashAction.slash_mul, hinv]
     _ = _ := h2
 
-theorem gamma_le_lev (N l : ℕ) : CongruenceSubgroup.Gamma (N * l) ≤ Lev N l := by
-  intro γ hγ
-  rw [CongruenceSubgroup.Gamma_mem] at hγ
-  obtain ⟨h1, -, h3, h4⟩ := hγ
-  have c1 := fun (x : ℤ) => map_intCast (ZMod.castHom (dvd_mul_right N l) (ZMod N)) x
-  have c2 := fun (x : ℤ) => map_intCast (ZMod.castHom (dvd_mul_left l N) (ZMod l)) x
-  refine Subgroup.mem_inf.2 ⟨?_, ?_⟩
-  · rw [CongruenceSubgroup.Gamma1_mem]
-    refine ⟨?_, ?_, ?_⟩
-    · rw [← c1, h1, map_one]
-    · rw [← c1, h4, map_one]
-    · rw [← c1, h3, map_zero]
-  · rw [CongruenceSubgroup.Gamma0_mem, ← c2, h3, map_zero]
+alias gamma_le_lev := _root_.GlobalTheory.HeckeFamilyMatrices.EisT.gamma_le_lev
 
 theorem pres (N l : ℕ) (k : ℤ) (hN : 0 < N) (hl : l.Prime) :
     (∀ (q : ℕ) (σ : SL(2, ℤ)), q.Prime → ¬ q ∣ N * l → IsDiam N l (q : ZMod N) σ →
@@ -416,7 +395,7 @@ theorem GlobalTheory.HeckeFamilyMatrices.hecke_semisimple_at_newform : ∀ (k : 
     have h1 : 1 < N * l := by nlinarith [hl.two_le]
     have hm : q % (N * l) = 1 := by rw [hmod, Nat.mod_eq_of_lt h1]
     exact cusp_of_iter (Lev N l) k (TqF (k : ℤ) q (σT q)) _ (g.a q)
-      (GlobalTheory.HeckeFamilyMatrices.hecke_bound_main k g q hk hq (fun hd => hqn ((hd.trans hMN).mul_right l))).2
+      (_root_.GlobalTheory.HeckeFamilyMatrices.hecke_bound_ne k g q hk hq (fun hd => hqn ((hd.trans hMN).mul_right l))).2
       (GlobalTheory.HeckeFamilyMatrices.EisT.tq_sub_smul_cuspForm N l k hN hl hlN hk q (σT q) hq hm (hT q hq hqn)) n f
       ((keyT q hq hqn n).1 (zT q hq hqn)).1
   have eD1 : ∀ d : (ZMod N)ˣ, DdF (k : ℤ) (σD d) ⇑f' = g.χ (ZMod.castHom hMN (ZMod g.M) (d : ZMod N)) • ⇑f' := fun d => by

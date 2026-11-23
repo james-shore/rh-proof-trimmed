@@ -61,10 +61,10 @@ theorem frame_matrix_one_holds : Tail.FmOne := FA.fmOne_of intHint slots BlockFi
 
 theorem good_level_holds : GoodL :=
   goodLOf_holds RS.reading_split_holds frame_matrix_one_holds Tail.actHecke_holds BlockFiniteConvolution.locOk₀ conjFix_holds
-    (uSatOf_holds Eig.CSD.splitDict) ctHecke_holds
+    (uSatOf_holds _root_.GlobalTheory.CompanionTheory.SplitPlace.splitDict) ctHecke_holds
 
 theorem weight_limit_holds : WeightL :=
-  weightLOf_holds SpectralAccumulation.Trees.infTree gamma_zeta_nabla_cancel.regDom RS.joinInf_holds RS.treeInf_holds RS.weightJoin_holds
+  weightLOf_holds SpectralAccumulation.Trees.infTree gamma_zeta_nabla_cancel.regDom _root_.GlobalTheory.CompanionTheory.JoinInfProof.joinInf _root_.GlobalTheory.CompanionTheory.TreeInfSum.treeInf _root_.GlobalTheory.CompanionTheory.WeightJoin.main
 
 theorem frGood_of (h : LevRead) : FRGood := frGoodOf_holds good_level_holds h
 

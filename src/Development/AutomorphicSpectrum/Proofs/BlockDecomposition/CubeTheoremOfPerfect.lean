@@ -71,56 +71,6 @@ open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct
 open GlobalTheory.ZM GlobalTheory.AbLaw GlobalTheory.AbLaw.CubeGen GlobalTheory.Biadditive GlobalTheory.CubeNoeth GlobalTheory.CubeModel
 attribute [local instance] Over.cartesianMonoidalCategory
 
-section Fibres
-
-variable {X Y T : Scheme.{0}} {K : Type} [Fintype K] (L : LB X) (φ : K → (Y ⟶ X)) (ε : K → ℤ)
-
-theorem fibTriv_clopen (p : Y ⟶ T)
-    (h : ∀ (R : Type) [CommRing R] (j : Spec (CommRingCat.of R) ⟶ T), ∃ (W : Scheme.{0}) (q : W ⟶ Y)
-      (f : W ⟶ Spec (CommRingCat.of R)), IsPullback q f p j ∧
-      IsClosed {x : PrimeSpectrum R | ∃ (F : Type) (_ : Field F) (g : R →+* F) (Z : Scheme.{0}) (π : Z ⟶ W)
-        (f' : Z ⟶ Spec (CommRingCat.of F)), RingHom.ker g = x.asIdeal ∧
-        IsPullback π f' f (Spec.map (CommRingCat.ofHom g)) ∧
-        Triv ((LB.LinComb L (fun k => q ≫ φ k) ε).pull π)} ∧
-      ∀ (F : Type) [Field F] (g : R →+* F) (Z : Scheme.{0}) (π : Z ⟶ W) (f' : Z ⟶ Spec (CommRingCat.of F)),
-        IsPullback π f' f (Spec.map (CommRingCat.ofHom g)) → Triv ((LB.LinComb L (fun k => q ≫ φ k) ε).pull π) →
-        ∃ r : R, g r ≠ 0 ∧
-          Triv ((LB.LinComb L (fun k => q ≫ φ k) ε).pull (f ⁻¹ᵁ (PrimeSpectrum.basicOpen r)).ι)) :
-    fibTriv L φ ε p ⊆ locTriv L φ ε p ∧ IsClosed (fibTriv L φ ε p) := by
-  have chart : ∀ t : T, ∃ (R : Type) (_ : CommRing R)
-      (j : Spec (CommRingCat.of R) ⟶ T) (_ : IsOpenImmersion j)
-      (x : PrimeSpectrum R), j x = t := fun t => by
-    obtain ⟨_, ⟨U, hU, rfl⟩, ht, -⟩ := T.isBasis_affineOpens.exists_subset_of_mem_open (Set.mem_univ t) isOpen_univ
-    obtain ⟨x, hx⟩ := hU.range_fromSpec.ge ht
-    exact ⟨Γ(T, U), inferInstance, hU.fromSpec, hU.isOpenImmersion_fromSpec, x, hx⟩
-  constructor
-  · intro t ht
-    obtain ⟨R, _, j, _, x, rfl⟩ := chart t
-    obtain ⟨W, q, f, H, -, ho⟩ := h R j
-    obtain ⟨F, _, g, Z, π, f', hk, hp, ht⟩ := (mem_fibTriv_iff L φ ε H x).1 ht
-    obtain ⟨r, hr, hT⟩ := ho F g Z π f' hp ht
-    rw [triv_pull_comp_iff] at hT
-    have : IsOpenImmersion q := MorphismProperty.of_isPullback H.flip ‹_›
-    refine ⟨j ''ᵁ (PrimeSpectrum.basicOpen r), ⟨x, ?_, rfl⟩, ?_⟩
-    · show r ∉ x.asIdeal
-      rw [← hk]; exact hr
-    · have := hT.comp (IsOpenImmersion.lift ((f ⁻¹ᵁ (PrimeSpectrum.basicOpen r)).ι ≫ q)
-        (p ⁻¹ᵁ (j ''ᵁ (PrimeSpectrum.basicOpen r))).ι (by
-          rintro _ ⟨y, rfl⟩
-          obtain ⟨x', hx', e⟩ := y.2
-          obtain ⟨w, h₁, h₂⟩ := Scheme.exists_preimage_of_isPullback H y.1 x' e.symm
-          exact ⟨⟨w, (congrArg (· ∈ PrimeSpectrum.basicOpen r) h₂).mpr hx'⟩, h₁⟩))
-      exact (congrArg (TrivAt L φ ε) (IsOpenImmersion.lift_fac _ _ _)).mp this
-  · refine ⟨isOpen_iff_forall_mem_open.2 fun t ht => ?_⟩
-    obtain ⟨R, _, j, _, x, rfl⟩ := chart t
-    obtain ⟨W, q, f, H, hc, -⟩ := h R j
-    refine ⟨j '' _, ?_, j.isOpenEmbedding.isOpenMap _ hc.isOpen_compl, x,
-      fun hx => ht ((mem_fibTriv_iff L φ ε H x).2 hx), rfl⟩
-    rintro _ ⟨y, hy, rfl⟩ hy'
-    exact hy ((mem_fibTriv_iff L φ ε H y).1 hy')
-
-end Fibres
-
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A]
 
 theorem triv_of_faces (hP : GlobalTheory.SpreadingModels.PerfAll) (hG : Out.GlobalFnsSt) (hA : IsAbelianScheme A)
@@ -134,7 +84,7 @@ theorem triv_of_faces (hP : GlobalTheory.SpreadingModels.PerfAll) (hG : Out.Glob
     Triv (LB.LinComb M φ ε) := by
   have := hA.geomConnected
   have := hA.smooth
-  have H := fibTriv_clopen M φ ε (x3 A 2).left (fun R _ j => by
+  have H := _root_.GlobalTheory.AbLaw.CubeGen.fibTriv_clopen M φ ε (x3 A 2).left (fun R _ j => by
     obtain ⟨q, hq, q₀, q₁⟩ := exists_cube_chart A j
     have hB := isAb_baseChange hA (j ≫ A.hom)
     have one := one_left_fst (A := A) (j ≫ A.hom)

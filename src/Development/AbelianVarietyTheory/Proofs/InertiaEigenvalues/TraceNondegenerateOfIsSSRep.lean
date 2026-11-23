@@ -47,18 +47,6 @@ open Formalism.MainNotions.N
 
 namespace GlobalTheory.TraceSemisimple
 
-theorem trace_nondegenerate_of_isSSRep {Γ k : Type} [Group Γ] [Field k] [CharZero k] {n : ℕ}
-    (ρ : Γ →* GL (Fin n) k) (hρ : IsSSRep ρ) (x : Matrix (Fin n) (Fin n) k) (hx : x ∈ spanAlg ρ)
-    (htr : ∀ g, (x * ((ρ g : GL (Fin n) k) : Matrix (Fin n) (Fin n) k)).trace = 0) : x = 0 := by
-  first
-  | (rename_i h_2 h_3 h_4; revert Γ k h_2 h_3 h_4 n ρ hρ x hx htr; exact @_root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate)
-  | exact @_root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate
-  | exact _root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate
-  | (apply _root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate ..)
-
 theorem isSSRep_mapRep :
     ∀ (Γ k k' : Type) [Group Γ] [Field k] [Field k'] [CharZero k] (ι : k →+* k') (n : ℕ)
       (ρ : Γ →* GL (Fin n) k), IsSSRep ρ → IsSSRep (mapRep ι ρ) := by
@@ -97,7 +85,7 @@ theorem isSSRep_mapRep :
       exact hy (φ ∘ₗ LinearMap.mulLeft k c)
   have hzero : ∀ φ : k' →ₗ[k] k, x.map φ = 0 := by
     intro φ
-    refine trace_nondegenerate_of_isSSRep ρ hρ _ (hmem φ) fun g => ?_
+    refine _root_.GlobalTheory.SemisimpleTraceForm.trace_form_nondegenerate ρ hρ _ (hmem φ) fun g => ?_
     have := congrArg φ (htr g)
     rw [map_zero] at this
     rw [← this]

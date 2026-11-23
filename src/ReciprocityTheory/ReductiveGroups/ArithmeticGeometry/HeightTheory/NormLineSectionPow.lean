@@ -71,15 +71,15 @@ variable {K : Type} [Field K] [NumberField K] {ι : Type} [Fintype ι]
 def cardUX (D N n n' : ℕ) : ℕ :=
   (n + D + 1).choose (D + 1) * (n' + (D + 2) * (N + 1)).choose ((D + 2) * (N + 1))
 
-noncomputable def qnorm {D N : ℕ} (σ : K →+* ℂ) (F1 : MvPolynomial (UXVar D N) K) (n n' : ℕ)
-    (Q : MvPolynomial (UXVar D N) (𝓞 K)) : ℝ :=
-  ⨅ P : {P : MvPolynomial (UXVar D N) ℂ //
+noncomputable def qnorm {D N : ℕ} (σ : K →+* ℂ) (F1 : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) K) (n n' : ℕ)
+    (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) (𝓞 K)) : ℝ :=
+  ⨅ P : {P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ //
       XHom n (MvPolynomial.map σ F1 * P) ∧ UDegLE n' (MvPolynomial.map σ F1 * P)},
     ReciprocityTheory.MultiplicativeHeights.polyL2 (MvPolynomial.map (σ.comp (algebraMap (𝓞 K) K)) Q +
       MvPolynomial.map σ F1 * P.1)
 
-noncomputable abbrev mapK {D N : ℕ} (Q : MvPolynomial (UXVar D N) (𝓞 K)) :
-    MvPolynomial (UXVar D N) K :=
+noncomputable abbrev mapK {D N : ℕ} (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) (𝓞 K)) :
+    MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) K :=
   MvPolynomial.map (algebraMap (𝓞 K) K) Q
 
 namespace Data
@@ -94,30 +94,13 @@ theorem evc_eq (c : ι) : d.evc c = evW (R := K) (D := d.D) (fun j => d.w j c) :
   funext v
   cases v <;> rfl
 
-theorem w_eq_smul (hd : d.AxH 𝒜) (c : ι) (j : Fin (d.N + 1)) :
-    d.w j c = ratio (Ω := Ω c) (d.w j c) (d.w (d.jc c) c) • d.w (d.jc c) c := by
-  have hex : ∃ a : Ω c, d.w j c = a • d.w (d.jc c) c := by
-    have h1 := hd.finrank_one c d.wL
-    obtain ⟨a, ha⟩ := (finrank_eq_one_iff_of_nonzero' (⟨d.w (d.jc c) c, hd.w_mem _ _⟩ : 𝒜 c d.wL)
-      (fun h => hd.w_base c (congrArg Subtype.val h))).mp h1 ⟨d.w j c, hd.w_mem _ _⟩
-    exact ⟨a, (congrArg Subtype.val ha).symm⟩
-  unfold ratio
-  rw [dite_eq_left hex]
-  exact hex.choose_spec
+alias w_eq_smul := _root_.ReciprocityTheory.ChartRestriction.G.T0.Data.w_eq_scalarRatio_smul
 
 theorem lineSection_pow_mem (hd : d.AxH 𝒜) (c : ι) (k : ℕ) : d.w (d.jc c) c ^ k ∈ 𝒜 c (k • d.wL) := by
   haveI := hd.graded c
   exact SetLike.pow_mem_graded k (hd.w_mem (d.jc c) c)
 
-theorem lineSection_pow_ne (hd : d.AxH 𝒜) (c : ι) (k : ℕ) : d.w (d.jc c) c ^ k ≠ 0 := by
-  induction k with
-  | zero =>
-    haveI : Nontrivial (A c) := nontrivial_of_ne _ _ (hd.w_base c)
-    rw [pow_zero]
-    exact one_ne_zero
-  | succ k ih =>
-    rw [pow_succ]
-    exact hd.mul_ne_zero c (lineSection_pow_mem d hd c k) (hd.w_mem _ _) ih (hd.w_base c)
+alias lineSection_pow_ne := _root_.ReciprocityTheory.ChartRestriction.G.T0.Data.lineSection_pow_ne_zero
 
 theorem norm_lineSection_pow (hd : d.AxH 𝒜) (c : ι) (P : Ω c →+* ℂ) (k : ℕ) (hk : 1 ≤ k) :
     d.nrm c (k • d.wL) (d.w (d.jc c) c ^ k) P = d.nrm c d.wL (d.w (d.jc c) c) P ^ k := by
@@ -127,7 +110,7 @@ theorem norm_lineSection_pow (hd : d.AxH 𝒜) (c : ι) (P : Ω c →+* ℂ) (k 
     rw [succ_nsmul, pow_succ, pow_succ, hd.nrm_mul c P (lineSection_pow_mem d hd c k) (hd.w_mem _ _)
       (lineSection_pow_ne d hd c k) (hd.w_base c), ih]
 
-theorem map_evW_global (hd : d.AxH 𝒜) (c : ι) (Q : MvPolynomial (UXVar d.D d.N) (𝓞 K)) :
+theorem map_evW_global (hd : d.AxH 𝒜) (c : ι) (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) (𝓞 K)) :
     MvPolynomial.map (Pi.evalRingHom A c) (evW (R := 𝓞 K) (D := d.D) d.w Q) = d.evc c (mapK Q) := by
   haveI := hd.towerO c
   have key : (MvPolynomial.map (Pi.evalRingHom A c)).comp
@@ -157,10 +140,10 @@ theorem meanK_affine (a b : (K →+* ℂ) → ℝ) (u v e : ℝ) :
     Finset.sum_const, Finset.sum_const, Finset.card_univ, nsmul_eq_mul, nsmul_eq_mul]
   field_simp
 
-theorem up_cauchy (hd : d.AxH 𝒜) (hdel : 1 ≤ d.del) (c : ι) (F1 : MvPolynomial (UXVar d.D d.N) K)
+theorem up_cauchy (hd : d.AxH 𝒜) (hdel : 1 ≤ d.del) (c : ι) (F1 : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K)
     (deF : ℕ) (hxF : XHom deF F1)
-    (hker : ∀ (n : ℕ) (Q : MvPolynomial (UXVar d.D d.N) K), XHom n Q → (d.evc c Q = 0 ↔ F1 ∣ Q))
-    (Q : MvPolynomial (UXVar d.D d.N) (𝓞 K)) (hQx : XHom d.n96 (mapK Q))
+    (hker : ∀ (n : ℕ) (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K), XHom n Q → (d.evc c Q = 0 ↔ F1 ∣ Q))
+    (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) (𝓞 K)) (hQx : XHom d.n96 (mapK Q))
     (hQu : UDegLE d.n96' (mapK Q)) (hQ : ¬ F1 ∣ mapK Q) :
     ∃ g ∈ Submodule.span (𝓞 K)
         (Set.range fun s : Fin d.n96 → Fin (d.N + 1) => ∏ k, d.w (s k)), g c ≠ 0 ∧
@@ -183,13 +166,13 @@ theorem up_cauchy (hd : d.AxH 𝒜) (hdel : 1 ≤ d.del) (c : ι) (F1 : MvPolyno
   set y : Fin (d.N + 1) → Ω c := fun j => ratio (Ω := Ω c) (d.w j c) w0 with hy
   have hwy : (fun j => d.w j c) = fun j => algebraMap (Ω c) (A c) (y j) * w0 :=
     funext fun j => by rw [← Algebra.smul_def]; exact d.w_eq_smul hd c j
-  have hfac : ∀ (m : ℕ) (R : MvPolynomial (UXVar d.D d.N) K), XHom m R →
+  have hfac : ∀ (m : ℕ) (R : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K), XHom m R →
       d.evc c R = MvPolynomial.map (algebraMap (Ω c) (A c)) (evW (R := K) y R) *
         MvPolynomial.C (w0 ^ m) := by
     intro m R hR
     rw [d.evc_eq, hwy]
     exact evW_factor y w0 R hR
-  have hcoef : ∀ (m : ℕ) (R : MvPolynomial (UXVar d.D d.N) K), XHom m R → ∀ β,
+  have hcoef : ∀ (m : ℕ) (R : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K), XHom m R → ∀ β,
       AddMonoidAlgebra.coeff (d.evc c R) β = AddMonoidAlgebra.coeff (evW (R := K) y R) β • w0 ^ m := by
     intro m R hR β
     rw [hfac m R hR, mul_comm, MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map,
@@ -269,7 +252,7 @@ theorem up_cauchy (hd : d.AxH 𝒜) (hdel : 1 ≤ d.del) (c : ι) (F1 : MvPolyno
       rw [hgφ, hd.nrm_smul c P φ (d.lineSection_pow_mem hd c n) (d.lineSection_pow_ne hd c n) hφ,
         d.norm_lineSection_pow hd c P n hn1, ← map_evW_eq (P : Ω c →+* ℂ) sg hP, MvPolynomial.coeff_map]
 
-    have hQ' : ∀ P' : {P' : MvPolynomial (UXVar d.D d.N) ℂ //
+    have hQ' : ∀ P' : {P' : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) ℂ //
         XHom n (MvPolynomial.map sg F1 * P') ∧ UDegLE n' (MvPolynomial.map sg F1 * P')},
         d.nrm c (n • d.wL) (g c) P / Cst sg ≤
           ReciprocityTheory.MultiplicativeHeights.polyL2 (MvPolynomial.map (sg.comp (algebraMap (𝓞 K) K)) Q +
@@ -310,7 +293,7 @@ theorem up_cauchy (hd : d.AxH 𝒜) (hdel : 1 ≤ d.del) (c : ι) (F1 : MvPolyno
         _ ≤ ReciprocityTheory.MultiplicativeHeights.polyL2 R * Real.sqrt (cardUX d.D d.N n n') *
               (((d.N + 1 : ℕ) : ℝ) * Real.exp (S sg)) ^ n := by gcongr
         _ = _ := by ring
-    have hne : Nonempty {P' : MvPolynomial (UXVar d.D d.N) ℂ //
+    have hne : Nonempty {P' : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) ℂ //
         XHom n (MvPolynomial.map sg F1 * P') ∧ UDegLE n' (MvPolynomial.map sg F1 * P')} :=
       ⟨⟨0, by simp [XHom], by simp [UDegLE]⟩⟩
     have := le_ciInf hQ'

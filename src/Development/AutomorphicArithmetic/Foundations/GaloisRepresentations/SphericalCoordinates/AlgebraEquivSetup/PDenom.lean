@@ -71,7 +71,7 @@ private theorem hasDen_zero (D : Datum p) : HasDen D 0 := by
 
 private theorem hasDen_gen (D : Datum p) (a : AfP p) (x : D.La) :
     HasDen D (a ⊗ₜ[ℚ] ((1 : ℚ) ⊗ₜ[ℤ] x : VQ D)) := by
-  obtain ⟨j, hj0, hjp, hj⟩ := GlobalTheory.T.exists_coprime_nat_mul_finiteAdeleAwayP_integral p a
+  obtain ⟨j, hj0, hjp, hj⟩ := _root_.GlobalTheory.DenAway.exists_coprime_nat_adele p a
   refine ⟨j, hj0, hjp, ?_⟩
   rw [TensorProduct.smul_tmul', nsmul_eq_mul]
   unfold LaHat

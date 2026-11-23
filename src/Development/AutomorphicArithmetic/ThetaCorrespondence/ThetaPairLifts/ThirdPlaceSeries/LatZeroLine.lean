@@ -69,7 +69,7 @@ theorem lat_zero_line_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {G
   intro D L hT Gi Gl Kc Yd cX ex W hW hr u f B k _ _ _ _ ι v o n G pl hc _ _ sh _ _ hb hp x _ hx u'' hu'' a ha
   have hTp : (D.mem u'').A.T.Prime := (D.mem u'').A.T_prime
   have hcop : Nat.Coprime (Ideal.absNorm D.host.ccK) (D.mem u'').A.T := by
-    obtain ⟨P, hP⟩ := exists_place D.host.E hTp
+    obtain ⟨P, hP⟩ := _root_.GlobalTheory.CharVal.exists_over D.host.E hTp
     refine ((Nat.Prime.coprime_iff_not_dvd hTp).2 fun ⟨t, ht⟩ => hW.aa P (Or.inr (Or.inr ⟨u'', hP⟩)) ?_).symm
     rw [ht, Nat.cast_mul]
     exact Ideal.mul_mem_right _ _ hP

@@ -55,30 +55,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.RelPtLift
 
-section Uni
-
-variable {R : Type*} [CommRing R] {n : ℕ}
-
-theorem loUni_mul {l l' : Matrix (Fin n) (Fin n) R} (h : IsLoUni l) (h' : IsLoUni l') : IsLoUni (l * l') := by
-  first
-  | exact @_root_.GlobalTheory.LowerUnipotentMul.main
-  | exact _root_.GlobalTheory.LowerUnipotentMul.main
-  | (apply _root_.GlobalTheory.LowerUnipotentMul.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LowerUnipotentMul.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LowerUnipotentMul.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LowerUnipotentMul.main ..)
-
-theorem upUni_mul {l l' : Matrix (Fin n) (Fin n) R} (h : IsUpUni l) (h' : IsUpUni l') : IsUpUni (l * l') := by
-  first
-  | exact @_root_.GlobalTheory.UpperUnipotentProductFlagMeasures.upUni_mul
-  | exact _root_.GlobalTheory.UpperUnipotentProductFlagMeasures.upUni_mul
-  | (apply _root_.GlobalTheory.UpperUnipotentProductFlagMeasures.upUni_mul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UpperUnipotentProductFlagMeasures.upUni_mul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UpperUnipotentProductFlagMeasures.upUni_mul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UpperUnipotentProductFlagMeasures.upUni_mul ..)
-
-end Uni
-
 variable {k r : ℕ}
 
 def sgn (r : ℕ) : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ := Matrix.diagonal fun b => (-1 : ℂ) ^ (r - b.val)
@@ -115,10 +91,6 @@ theorem loUni_conjT {U : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hU0 : ∀ c b,
 theorem det_Hpk : IsUnit (Formalism.QuantumDeterminants.Hpk k r).det :=
   Matrix.isUnit_det_of_right_inverse (Formalism.QuantumDeterminants.hpkFacts k r).2.1
 
-theorem mem_UH_of_Sset {z : Fin (2 * r + k + 1) → ℂ} {a : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
-    (ha : a ∈ Formalism.QuantumDeterminants.Sset k r z) : a ∈ Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk k r) :=
-  Formalism.QuantumDeterminants.Sset_UH ha
-
 theorem zhat_dcoset {z z' : Fin (2 * r + k + 1) → ℂ} (hz : Formalism.QuantumDeterminants.inWb k r z) (hz' : Formalism.QuantumDeterminants.inWb k r z')
     {a a' : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ} (ha : a ∈ Formalism.QuantumDeterminants.Sset k r z)
     (ha' : a' ∈ Formalism.QuantumDeterminants.Sset k r z') (g : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) :
@@ -129,7 +101,7 @@ theorem zhat_dcoset {z z' : Fin (2 * r + k + 1) → ℂ} (hz : Formalism.Quantum
   obtain ⟨-, -, hinv'⟩ := Formalism.QuantumDeterminants.sGroup k r z' hz'
   obtain ⟨U, hU0, hU1, hF⟩ := Formalism.QuantumDeterminants.S_F hz (hinv a ha)
   obtain ⟨U', hU0', hU1', hF'⟩ := Formalism.QuantumDeterminants.S_F hz' (hinv' a' ha')
-  have hdet : IsUnit a.det := ((Formalism.QuantumDeterminants.uHGroup _ _ det_Hpk).2.2 a (mem_UH_of_Sset ha)).1
+  have hdet : IsUnit a.det := ((Formalism.QuantumDeterminants.uHGroup _ _ det_Hpk).2.2 a (_root_.Formalism.L2.SG.Pf.WFL.Sset_sub_UH ha)).1
   have hai : (a⁻¹)ᴴ * Formalism.QuantumDeterminants.Hpk k r * a⁻¹ = Formalism.QuantumDeterminants.Hpk k r := Formalism.QuantumDeterminants.Sset_UH (hinv a ha)
   have hHa : Formalism.QuantumDeterminants.Hpk k r * a = (a⁻¹)ᴴ * Formalism.QuantumDeterminants.Hpk k r := by
     calc Formalism.QuantumDeterminants.Hpk k r * a = (a⁻¹)ᴴ * Formalism.QuantumDeterminants.Hpk k r * a⁻¹ * a := by rw [hai]
@@ -154,12 +126,12 @@ theorem relPt_dcoset (D : D7) {z z' : Fin (2 * D.R.rS + D.R.k + 1) → ℂ} (hz 
   obtain ⟨hUH, ⟨L, V, hL, hV, hZ⟩, hGf⟩ := h
   obtain ⟨-, -, hinv'⟩ := Formalism.QuantumDeterminants.sGroup _ _ z' hz'
   have hG := Formalism.QuantumDeterminants.uHGroup _ _ (det_Hpk (k := D.R.k) (r := D.R.rS))
-  refine ⟨hG.2.1 _ (hG.2.1 _ (mem_UH_of_Sset ha) _ hUH) _ (mem_UH_of_Sset (hinv' a' ha')), ?_, ?_⟩
+  refine ⟨hG.2.1 _ (hG.2.1 _ (_root_.Formalism.L2.SG.Pf.WFL.Sset_sub_UH ha) _ hUH) _ (_root_.Formalism.L2.SG.Pf.WFL.Sset_sub_UH (hinv' a' ha')), ?_, ?_⟩
   · obtain ⟨U, U', hU0, hU1, hU0', hU1', he⟩ := zhat_dcoset hz hz' ha ha' γ
     have hZ' : Formalism.QuantumDeterminants.Zhat D.R.k D.R.rS z z' γ = L * ptMat p * V * sgn D.R.rS := by
       rw [← hZ, zhatO_eq, Matrix.mul_assoc, sgn_sq, Matrix.mul_one]
-    refine ⟨Uᴴ * L, V * (sgn D.R.rS * U' * sgn D.R.rS), loUni_mul (loUni_conjT hU0 hU1) hL,
-      upUni_mul hV (upUni_sgn_conj hU0' hU1'), ?_⟩
+    refine ⟨Uᴴ * L, V * (sgn D.R.rS * U' * sgn D.R.rS), _root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul (loUni_conjT hU0 hU1) hL,
+      _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul hV (upUni_sgn_conj hU0' hU1'), ?_⟩
     rw [zhatO_eq, he, hZ']
     simp only [Matrix.mul_assoc]
   · rw [Formalism.QuantumDeterminants.gInv _ _ z z' hz hz' a ha a'⁻¹ (hinv' a' ha') γ]

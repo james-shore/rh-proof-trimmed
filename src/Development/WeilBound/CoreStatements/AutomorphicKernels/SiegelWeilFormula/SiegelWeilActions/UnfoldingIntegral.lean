@@ -66,7 +66,7 @@ variable {nb : nA σ d.Y d.b → d.G} {uM : (Fin L.n → AE F E) → d.G} {nb' :
 
 set_option linter.style.haveILetI false
 
-def rationalCentreEquiv (L : LD d) : Crat L ≃ L.ratV × fA F where
+def rationalCentreEquiv (L : LD d) : _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L ≃ L.ratV × fA F where
   toFun c := (⟨c.1.1, c.2.1⟩, ⟨c.1.2, c.2.2⟩)
   invFun c := ⟨((c.1 : Fin L.n → AE F E), (c.2 : AF F)), c.1.2, c.2.2⟩
   left_inv _ := rfl
@@ -93,20 +93,20 @@ theorem unfolding_rational_point_change (h : Hyp L nb uM nb' w₁ cM δ) {s₁ :
   have e1 : L.j γ' * (sM R L b * (cM (u, a) * Y)) = (L.j γ' * (sM R L b * cM (u, a))) * Y := by simp only [mul_assoc]
   have e2 : ∀ c', cM (u₀, a₀) * (sM R L (Λ (b, u)).1 * cM c' * L.j γ' * Y) =
       (cM (u₀, a₀) * (sM R L (Λ (b, u)).1 * cM c')) * (L.j γ' * Y) := by intro c'; simp only [mul_assoc]
-  rw [e1, hΛ, e2, hZ, mul_assoc, section_w1_siegel_invariant h hf z]
+  rw [e1, hΛ, e2, hZ, mul_assoc, _root_.PositivityTheory.SiegelWeilFormula.Act.C5.section_w1_siegel_invariant_of_hyp h hf z]
   simp only [UnfoldingIntegralSum.sh, add_assoc]
 
 theorem unfqE (h : Hyp L nb uM nb' w₁ cM δ) {s₁ : ℂ} {f : d.G → ℂ} (hf : IsSec d.K d.χ s₁ f) (z : ℂ)
     {ν : Measure (Fin L.n → AE F E)} {𝓤 : Set (Fin L.n → AE F E)} (hU : L.UData uM ν 𝓤)
     {𝓐 : Set (AF F)} (h𝓐 : IsAddFundamentalDomain (fA F) 𝓐 (lamA F)) {γ' : G2 σ L.Y} (hγ : γ' ∈ rat2 σ L.Y) (Y : d.G) :
-    ∫⁻ p, ∑' c₀ : Crat L, ‖phz d f s₁ z (w₁ * (cM c₀.1 * (L.j γ' * (sM R L p.2.1 * (cM (p.1, p.2.2) * Y)))))‖ₑ
+    ∫⁻ p, ∑' c₀ : _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L, ‖phz d f s₁ z (w₁ * (cM c₀.1 * (L.j γ' * (sM R L p.2.1 * (cM (p.1, p.2.2) * Y)))))‖ₑ
         ∂((ν.restrict 𝓤).prod ((ν.restrict 𝓤).prod ((lamA F).restrict 𝓐))) =
       ∫⁻ c, ‖phz d f s₁ z (w₁ * (cM c * (L.j γ' * Y)))‖ₑ ∂(ν.prod (lamA F)) := by
   obtain ⟨-, hν, hU0, hU1⟩ := hU
   haveI := hν
   haveI := countable_ratV' L
-  obtain ⟨Λ, Q, hQ, hΛeq, hΛrat⟩ := j_conj (R := R) h γ'
-  obtain ⟨Z, hZ, -, hheis⟩ := Heisenberg₂ (R := R) h
+  obtain ⟨Λ, Q, hQ, hΛeq, hΛrat⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.j_conj' (R := R) h γ'
+  obtain ⟨Z, hZ, -, hheis⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.heis' (R := R) h
   have hg : Continuous fun c => phz d f s₁ z (w₁ * (cM c * (L.j γ' * Y))) :=
     (ComplexParameterFamilyContinuity.continuous_phz d hf.cont s₁ z).comp (continuous_const.mul ((continuous_cM h).mul continuous_const))
   rw [← UnfoldingIntegralSum.unf_lint hU0 hU1 (fd_prod hU0 hU0) h𝓐 Λ (hΛrat hγ) hQ.measurable hZ.measurable hg.measurable.enorm]
@@ -118,14 +118,14 @@ theorem unfqC (h : Hyp L nb uM nb' w₁ cM δ) {s₁ : ℂ} {f : d.G → ℂ} (h
     {ν : Measure (Fin L.n → AE F E)} {𝓤 : Set (Fin L.n → AE F E)} (hU : L.UData uM ν 𝓤)
     {𝓐 : Set (AF F)} (h𝓐 : IsAddFundamentalDomain (fA F) 𝓐 (lamA F)) {γ' : G2 σ L.Y} (hγ : γ' ∈ rat2 σ L.Y) (Y : d.G)
     (hfin : ∫⁻ c, ‖phz d f s₁ z (w₁ * (cM c * (L.j γ' * Y)))‖ₑ ∂(ν.prod (lamA F)) < ⊤) :
-    ∫ p, ∑' c₀ : Crat L, phz d f s₁ z (w₁ * (cM c₀.1 * (L.j γ' * (sM R L p.2.1 * (cM (p.1, p.2.2) * Y)))))
+    ∫ p, ∑' c₀ : _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L, phz d f s₁ z (w₁ * (cM c₀.1 * (L.j γ' * (sM R L p.2.1 * (cM (p.1, p.2.2) * Y)))))
         ∂((ν.restrict 𝓤).prod ((ν.restrict 𝓤).prod ((lamA F).restrict 𝓐))) =
       ∫ c, phz d f s₁ z (w₁ * (cM c * (L.j γ' * Y))) ∂(ν.prod (lamA F)) := by
   obtain ⟨-, hν, hU0, hU1⟩ := hU
   haveI := hν
   haveI := countable_ratV' L
-  obtain ⟨Λ, Q, hQ, hΛeq, hΛrat⟩ := j_conj (R := R) h γ'
-  obtain ⟨Z, hZ, -, hheis⟩ := Heisenberg₂ (R := R) h
+  obtain ⟨Λ, Q, hQ, hΛeq, hΛrat⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.j_conj' (R := R) h γ'
+  obtain ⟨Z, hZ, -, hheis⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.heis' (R := R) h
   have hg : Continuous fun c => phz d f s₁ z (w₁ * (cM c * (L.j γ' * Y))) :=
     (ComplexParameterFamilyContinuity.continuous_phz d hf.cont s₁ z).comp (continuous_const.mul ((continuous_cM h).mul continuous_const))
   rw [← UnfoldingIntegralSum.unf_int hU0 hU1 (fd_prod hU0 hU0) h𝓐 Λ (hΛrat hγ) hQ.measurable hZ.measurable hg.measurable hfin]

@@ -125,7 +125,7 @@ theorem growth_eq_top_self_intersection (hP : _root_.GlobalTheory.CovTop.Hypothe
       exact left_eq_add.1 this
     | succ m ih => rw [succ_nsmul, succ_nsmul, ← ih]; exact a _ _
   rw [← growth_vanishing hN _ _ (str₀ TF.X Z) _ (GlobalTheory.VarFlag.isVariety₀_flag _ _ _ _ _ _ TF Z hY.geo).2.1 hd _ hg _
-    (isLB_L₀ _ _ la) (_root_.GlobalTheory.T.base_weight_line_bundle_is_nef hP hN hL _ _ _ _ _ _ TF Z hY.geo la (gapGe_of_strictAnti hla)) _ _ hc
+    (isLB_L₀ _ _ la) (_root_.GlobalTheory.NefWt.weight_line_bundle_isNef hP hN hL _ _ _ _ _ _ TF Z hY.geo la (gapGe_of_strictAnti hla)) _ _ hc
     (fun m => vanBd TF.X Z (m • la)) fun _ _ => Iff.rfl, CompHt.growthOn]
   congr 1
   funext m

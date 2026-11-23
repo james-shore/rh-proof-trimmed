@@ -1576,8 +1576,6 @@ end Formalism.FourierDecayAlt.P.NFx4.NO
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem normal_form_order_zero_of_parts : Formalism.FourierDecayAlt.NF.NFOrder0OfParts := NFx4.NO.nFOrder0OfParts
-
 end Formalism.FourierDecayAlt.P
 
 end
@@ -1923,7 +1921,7 @@ theorem ssDown (hP : P.OK) (hS : Wd.IsStart d.QQ (M.qC P)) {l : ℕ} (hl : l ∈
     d.SS l * star (d.SS l) = d.κ fun ρ => ((M.NrmDown P l ρ : ℝ) : ℂ) := by
   refine ext_right hd fun ρ => ?_
   rw [kap_Pj]
-  have hNF := Formalism.FourierDecayAlt.P.nrmFacts_statement P hP l hl
+  have hNF := _root_.Formalism.FourierDecayAlt.P.Mx4.nrmFacts P hP l hl
   by_cases h : ∃ τ, M.Up P l τ ρ
   · obtain ⟨τ, hτ⟩ := h
     obtain ⟨Y, hY⟩ : ∃ Y : ℂ, Y = -(M.rho P ρ l : ℂ) := ⟨_, rfl⟩
@@ -2811,7 +2809,7 @@ theorem model_Pj_ne (ρ : M.Ty P) : Pj (M.kap P) ρ ≠ 0 := by
 
 theorem model_scalar (hP : P.OK) (ρ : M.Ty P) (u v : ℂ) :
     Cf ρ u v = (u - v) * M.xC P ρ u * M.xC P ρ v * (((2 * M.aC P ρ * P.TT : ℝ) : ℂ) + (1 + u + v) * (P.TT : ℂ)) := by
-  obtain ⟨L, hL⟩ := Formalism.FourierDecayAlt.P.level_exists_model P
+  obtain ⟨L, hL⟩ := _root_.Formalism.FourierDecayAlt.P.Mx2.levelExists P
   have hd := model_hyp P hP L hL
   have hQ : ∀ Y, (dM P L).QQ Y = M.QQr P Y := Formalism.FourierDecayAlt.P.model_is_normal_form P L hL
   have hND : ∀ m ∈ Icc 1 (P.k - 1), (dM P L).SS m * star ((dM P L).SS m) =
@@ -2939,6 +2937,6 @@ end
 namespace Formalism.FourierDecayAlt.P
 
 theorem normal_form_order_zero : Formalism.FourierDecayAlt.NF.NFOrder0 :=
-  normal_form_order_zero_of_parts multiplication_zeta_exists actual_zeta_smooth_alt
+  _root_.Formalism.FourierDecayAlt.P.NFx4.NO.nFOrder0OfParts multiplication_zeta_exists actual_zeta_smooth_alt
 
 end Formalism.FourierDecayAlt.P

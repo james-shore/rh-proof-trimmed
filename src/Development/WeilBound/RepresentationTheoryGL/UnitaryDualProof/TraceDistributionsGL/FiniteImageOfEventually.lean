@@ -76,17 +76,11 @@ def actP (g : GL (Fin (n + 1)) k) (p : Mx k n × Vc k n) : Mx k n × Vc k n :=
 theorem cj_apply (g : GL (Fin (n + 1)) k) (x : Mx k n) :
     cj g x = (g : Matrix (Fin (n + 1)) (Fin (n + 1)) k) * x * ((g⁻¹ : GL (Fin (n + 1)) k) : Matrix (Fin (n + 1)) (Fin (n + 1)) k) := rfl
 
-theorem cj_one (x : Mx k n) : cj (1 : GL (Fin (n + 1)) k) x = x := by
-  simp [cj_apply]
-
-theorem cj_mul (g h : GL (Fin (n + 1)) k) (x : Mx k n) : cj (g * h) x = cj g (cj h x) := by
-  simp only [cj_apply, _root_.mul_inv_rev, Units.val_mul, Matrix.mul_assoc]
-
 theorem polyAction_one₂ (p : Mx k n × Vc k n) : actP (1 : GL (Fin (n + 1)) k) p = p := by
-  simp [actP, cj_one]
+  simp [actP, _root_.PositivityTheory.RgUd.AB.Pf.cj_one]
 
 theorem polyAction_mul (g h : GL (Fin (n + 1)) k) (p : Mx k n × Vc k n) : actP (g * h) p = actP h (actP g p) := by
-  simp only [actP, _root_.mul_inv_rev, cj_mul, Units.val_mul, transpose_mul, mulVec_mulVec]
+  simp only [actP, _root_.mul_inv_rev, _root_.PositivityTheory.RgUd.AB.Pf.cj_mul, Units.val_mul, transpose_mul, mulVec_mulVec]
 
 theorem actP_inv_actP (g : GL (Fin (n + 1)) k) (p : Mx k n × Vc k n) : actP g⁻¹ (actP g p) = p := by
   rw [← polyAction_mul, mul_inv_cancel, polyAction_one₂]
@@ -134,8 +128,8 @@ theorem vecMul_eLast (M : Matrix (Fin (n + 1)) (Fin (n + 1)) k) : vecMul (eLast 
 def cjHomeo (g : GL (Fin (n + 1)) k) : Mx k n ≃ₜ Mx k n where
   toFun := cj g
   invFun := cj g⁻¹
-  left_inv x := by rw [← cj_mul, inv_mul_cancel, cj_one]
-  right_inv x := by rw [← cj_mul, mul_inv_cancel, cj_one]
+  left_inv x := by rw [← _root_.PositivityTheory.RgUd.AB.Pf.cj_mul, inv_mul_cancel, _root_.PositivityTheory.RgUd.AB.Pf.cj_one]
+  right_inv x := by rw [← _root_.PositivityTheory.RgUd.AB.Pf.cj_mul, mul_inv_cancel, _root_.PositivityTheory.RgUd.AB.Pf.cj_one]
   continuous_toFun := by
     unfold cj
     exact (continuous_const.matrix_mul continuous_id).matrix_mul continuous_const
@@ -181,7 +175,7 @@ theorem phi_eq_of_row {Λ : (Mx k n → ℂ) →ₗ[ℂ] ℂ} (hP : PInvX Λ) {F
   have e : ((fun y => F (y, w)) ∘ cj t⁻¹) ∘ cj (s * t⁻¹)⁻¹ = fun x => F (cj s⁻¹ x, w) := by
     funext x
     simp only [Function.comp_apply]
-    rw [← cj_mul]
+    rw [← _root_.PositivityTheory.RgUd.AB.Pf.cj_mul]
     congr 2
     group
   rw [e] at key
@@ -253,7 +247,7 @@ theorem phi_eventually_eq {Λ : (Mx k n → ℂ) →ₗ[ℂ] ℂ} (hP : PInvX Λ
     exact (hrow j).symm
   have := hW g hgW (cj s₀⁻¹ x, w₀)
   simp only [actP] at this
-  rw [_root_.mul_inv_rev, cj_mul, hwg]
+  rw [_root_.mul_inv_rev, _root_.PositivityTheory.RgUd.AB.Pf.cj_mul, hwg]
   exact this
 
 theorem phi_eq_zero_of_notMem {Λ : (Mx k n → ℂ) →ₗ[ℂ] ℂ} {F : Mx k n × Vc k n → ℂ} {w : Vc k n}
@@ -290,7 +284,7 @@ theorem exists_box_phi_smul {Λ : (Mx k n → ℂ) →ₗ[ℂ] ℂ} (hP : PInvX 
   congr 1
   funext x
   have hcj : cj (sc * t)⁻¹ x = cj t⁻¹ x := by
-    rw [_root_.mul_inv_rev, cj_mul]
+    rw [_root_.mul_inv_rev, _root_.PositivityTheory.RgUd.AB.Pf.cj_mul]
     congr 1
     ext a b
     simp [sc, cj_apply, Matrix.GeneralLinearGroup.scalar, Matrix.diagonal_mul, Matrix.mul_diagonal]

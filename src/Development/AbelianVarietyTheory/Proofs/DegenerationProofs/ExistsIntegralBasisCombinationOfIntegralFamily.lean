@@ -97,11 +97,11 @@ theorem exists_span_translates_of_eq_sq (h : Laws) (h₂ : Laws2) {V : Type} [Co
   subst hN
   obtain ⟨hL, h1, h2, h3', h4⟩ := laws_all h h₂
   obtain ⟨n, a, z, t, c', r, H, hs⟩ :=
-    (GlobalTheory.T.valuation_nonneg_iff_span_multiplicationTranslates hL h1 h2 h3' h4 V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ rig hw th' ϑ hϑ hP m hm hu h3 Φ).1 hΦ
+    (_root_.GlobalTheory.UT.nuGe_zero_iff_span_translates hL h1 h2 h3' h4 V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ rig hw th' ϑ hϑ hP m hm hu h3 Φ).1 hΦ
   refine ⟨n, a, z, t, r, fun i => ?_, hs⟩
   obtain ⟨ha, hz, hT, hE⟩ := H i
   exact ⟨ha, hz, hE, fun s₁ σ θ hs₁ hθ hσ =>
-    GlobalTheory.T.symmetricLift_normalisedPullback_theta_smul hL V A F rig hw.2.1 m hm th th' c hth s₁ σ (t i) (z i) θ (c' i) hz hs₁ hθ hσ hT⟩
+    _root_.GlobalTheory.TestFibre.act_normPull_smul hL V A F rig hw.2.1 m hm th th' c hth s₁ σ (t i) (z i) θ (c' i) hz hs₁ hθ hσ hT⟩
 
 theorem IsComb.of_eq_mul {R : Type} [CommRing R] [IsDomain R] {A : PolAV (Spec (CommRingCat.of (FractionRing R)))}
     {F : Type} [Field F] [Algebra (FractionRing R) F] {k : ℕ} {J : Type} [Fintype J] {s : J → SecA A F k} {b : J → F}
@@ -156,12 +156,12 @@ theorem exists_isComb_expands_of_nuGe_zero : Laws → Laws2 → UTorsSt → ∀ 
   have ht : ∀ i, IsComb u.A s (fun j => c⁻¹ * y₀ (algebraMap o S.R (S.ρ (g i) j ρ.i₀))) (t i) := by
     intro i
     obtain ⟨θ, hθ, hθa⟩ := hact (g i)
-    obtain ⟨σ, hσ, -⟩ := (GlobalTheory.T.fibreSection_linearComb_exists_unique_thetaAction u.V u.A (PadicAlgCl p) S.N S.J s (fun _ => 0)).2.2.2.1 θ (s ρ.i₀)
+    obtain ⟨σ, hσ, -⟩ := (_root_.GlobalTheory.secComb_thetaAct u.V u.A (PadicAlgCl p) S.N S.J s (fun _ => 0)).2.2.2.1 θ (s ρ.i₀)
     rw [hg] at hθ
     exact IsComb.of_eq_mul (hθa _ _ hσ) hc ((H i).2.2.2 _ σ θ hpull hθ hσ)
-  obtain ⟨σ, hσ⟩ := (GlobalTheory.T.fibreSection_linearComb_exists_unique_thetaAction u.V u.A (PadicAlgCl p) S.N (Fin n) t a).1
+  obtain ⟨σ, hσ⟩ := (_root_.GlobalTheory.secComb_thetaAct u.V u.A (PadicAlgCl p) S.N (Fin n) t a).1
   refine ⟨_, σ, fun j => ?_,
-    (GlobalTheory.T.fibreSection_linearComb_exists_unique_thetaAction u.V u.A (PadicAlgCl p) S.N S.J s (fun _ => 0)).2.2.2.2 (Fin n) _ t a σ ht hσ, ?_⟩
+    (_root_.GlobalTheory.secComb_thetaAct u.V u.A (PadicAlgCl p) S.N S.J s (fun _ => 0)).2.2.2.2 (Fin n) _ t a σ ht hσ, ?_⟩
   · rw [Finset.mul_sum]
     refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg zero_le_one fun i _ => ?_
     rw [← _root_.mul_assoc, mul_inv_cancel_left₀ hc, norm_mul]

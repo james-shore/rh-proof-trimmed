@@ -140,7 +140,7 @@ theorem cmp_bij : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] {X : Sche
       change g (ψ (MvPolynomial.X i)) = Ideal.Quotient.mk cL.D.J (f₁ (MvPolynomial.X i))
       rw [e1, e2, hg1]
       exact hcL i
-  obtain ⟨H, ⟨hH1, hH2⟩, -⟩ := GlobalTheory.T.etale_lifting_of_nil_ideal cL.D.J (GlobalTheory.CompanionTheory.ChartMaps.nil_J cL.D) _ _ ψ hψ f₁ g hc
+  obtain ⟨H, ⟨hH1, hH2⟩, -⟩ := _root_.GlobalTheory.CompanionTheory.EtNil.etLift_of_nil cL.D.J (GlobalTheory.CompanionTheory.ChartMaps.nil_J cL.D) _ _ ψ hψ f₁ g hc
   have hHi : ∀ a, H (cO.D.i a) = cL.D.i (Ideal.Quotient.mk _ a) := fun a => by
     have := RingHom.congr_fun hH1 (MvPolynomial.C a)
     simpa [ψ, f₁] using this
@@ -163,7 +163,7 @@ theorem cmp_bij : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] {X : Sche
   let mkG : cO.D.B →+* (GObj h cO.D m hT).B := Ideal.Quotient.mk (lm (l := l) cO.D m)
   have hV := inU_G h cO.D m hT cO.inV
   have hs : σ.φ.comp H = mkG := by
-    have uniq := GlobalTheory.T.etale_lifting_of_nil_ideal (GObj h cO.D m hT).J (GlobalTheory.CompanionTheory.ChartMaps.nil_J (GObj h cO.D m hT)) _ _ ψ hψ
+    have uniq := _root_.GlobalTheory.CompanionTheory.EtNil.etLift_of_nil (GObj h cO.D m hT).J (GlobalTheory.CompanionTheory.ChartMaps.nil_J (GObj h cO.D m hT)) _ _ ψ hψ
       (mkG.comp ψ) ((Ideal.Quotient.mk (GObj h cO.D m hT).J).comp mkG) rfl
     refine uniq.unique ⟨?_, ?_⟩ ⟨rfl, rfl⟩
     · refine MvPolynomial.ringHom_ext (fun a => ?_) (fun i => ?_)

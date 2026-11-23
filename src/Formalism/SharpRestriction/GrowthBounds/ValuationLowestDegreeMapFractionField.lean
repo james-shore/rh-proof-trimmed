@@ -1642,11 +1642,6 @@ theorem sat_words_top (O : Type) [CommRing O] (N r K : ℕ) (LL : Letters (Fin N
   rintro G ⟨a, b, rfl⟩
   exact h2 a b
 
-theorem sat_segE_injective {n' r : ℕ} [NeZero n'] (F : Frames n' r) (j : ℤ) : Function.Injective (segE F j) := by
-  intro a b h
-  unfold segE at h
-  exact ((F.letters j).orderIsoOfFin rfl).injective (Subtype.ext h)
-
 theorem space_statement_saturated (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     (hA2 : ∀ (N n : ℕ) [NeZero n] (LL : Letters (Fin N)) (B : Fin N → ℕ),
       LinearIndependent O (fun x : {x : PPath n N LL B × (ℤ → Finset (Fin n)) // IsSt x.1.mu x.2} =>
@@ -1683,7 +1678,7 @@ theorem space_statement_saturated (O : Type) [CommRing O] [IsDomain O] [IsDiscre
   have hg : Function.Injective (fun w : Fin (segN F j) × Fin (r + K) => (segE F j w.1, w.2)) := by
     intro x y h
     simp only [Prod.mk.injEq] at h
-    exact Prod.ext (sat_segE_injective F j h.1) h.2
+    exact Prod.ext (_root_.Formalism.MainNotions.G.Joints.StandardMonomialSpace.li_segE_injective F j h.1) h.2
   have hr : ∃ q, rename (fun w : Fin (segN F j) × Fin (r + K) => (segE F j w.1, w.2)) q = f := by
     refine sat_range _ hg f a ha ?_
     rw [h1] at haf
@@ -2634,15 +2629,12 @@ end Formalism.MainNotions.G.Joints.StandardMonomialSpace
 
 namespace Formalism.MainNotions.G.Joints
 
-theorem transport_statement_holds (D : Formalism.BasicNotions.D7) : Formalism.MainNotions.SelectionLemmas.TypeDecompositionsCommute D := StandardMonomialSpace.transport_statement_holds D
+alias transport_statement_holds := _root_.Formalism.MainNotions.G.Joints.StandardMonomialSpace.transport_statement_holds
 
-theorem valuation_transport_of_lemma (D : Formalism.BasicNotions.D7) (h : Formalism.MainNotions.CovariantDegrees.ValuationsAdditive D) : Formalism.MainNotions.SelectionLemmas.admB2 D := StandardMonomialSpace.valuation_transport_of_lemma D h
+alias valuation_transport_of_lemma := _root_.Formalism.MainNotions.G.Joints.StandardMonomialSpace.valuation_transport_of_lemma
 
-theorem space_statement_of_lemmas (D : Formalism.BasicNotions.D7) (hA2 : Formalism.MainNotions.CovariantDegrees.HyperplaneRank D) (hA3 : Formalism.MainNotions.CovariantDegrees.DefiniteRankOne D)
-    (hB1 : Formalism.MainNotions.CovariantDegrees.RotatedSumBound D) (hB3 : Formalism.MainNotions.CovariantDegrees.ConclusionB3 D) : Formalism.MainNotions.SelectionLemmas.NestedTypeBound D :=
-  StandardMonomialSpace.space_statement_of_lemmas D hA2 hA3 hB1 hB3
+alias space_statement_of_lemmas := _root_.Formalism.MainNotions.G.Joints.StandardMonomialSpace.space_statement_of_lemmas
 
-theorem space_criterion_of_standard_basis (D : Formalism.BasicNotions.D7) (hA3 : Formalism.MainNotions.CovariantDegrees.DefiniteRankOne D) : Formalism.MainNotions.SourceCleaning.SpaceCriterionModuloUniformiser D :=
-  StandardMonomialSpace.space_criterion_of_standard_basis D hA3
+alias space_criterion_of_standard_basis := _root_.Formalism.MainNotions.G.Joints.StandardMonomialSpace.space_criterion_of_standard_basis
 
 end Formalism.MainNotions.G.Joints

@@ -56,9 +56,9 @@ theorem exists_ringHom_zmod_prime_sq_isUnit_of_finiteType :
     ∀ (A : Type) [CommRing A] [IsDomain A] [CharZero A], Algebra.FiniteType ℤ A → ∀ a : A, a ≠ 0 → ∀ n : ℕ, ∃ p : ℕ, p.Prime ∧ n < p ∧ ∃ χ : A →+* ZMod (p ^ 2), IsUnit (χ a) := by
   intro A _ _ _ hA a ha n
   classical
-  obtain ⟨K, _, _, χ₀, hχ⟩ := GlobalTheory.T.finite_type_to_number_field A hA a ha
+  obtain ⟨K, _, _, χ₀, hχ⟩ := _root_.GlobalTheory.exists_numberField_point_ne_zero A hA a ha
   obtain ⟨s, hs⟩ := hA.out
-  obtain ⟨p, hp, hn, ⟨ψ⟩⟩ := GlobalTheory.T.number_field_to_mod_p_squared K (insert (χ₀ a)⁻¹ (s.image χ₀)) n
+  obtain ⟨p, hp, hn, ⟨ψ⟩⟩ := _root_.GlobalTheory.exists_prime_sq_ringHom_of_closure K (insert (χ₀ a)⁻¹ (s.image χ₀)) n
   set R := Subring.closure ((insert (χ₀ a)⁻¹ (s.image χ₀) : Finset K) : Set K) with hR
   have hmem : ∀ x : A, χ₀ x ∈ R := by
     intro x

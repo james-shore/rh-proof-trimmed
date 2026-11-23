@@ -122,8 +122,8 @@ theorem isExactTriple_of_isSESLat_gen {l : ℕ} [Fact l.Prime] {a : ℕ} [NeZero
     {T₀ T₁ T₂ : LocLat G ℚ_[l] K O} {I₀ : Ident t ϖ P₀ T₀} {I₁ : Ident t ϖ P₁ T₁} {I₂ : Ident t ϖ P₂ T₂}
     {f : LatHom T₀.L T₁.L} {g : LatHom T₁.L T₂.L} {F : BK.Hom P₀ P₁} {H : BK.Hom P₁ P₂}
     (hS : IsSESLat (Qp := ℚ_[l]) f g) (hF : IsMapOf I₀ I₁ f F) (hH : IsMapOf I₁ I₂ g H) : IsExactTriple F H := by
-  obtain ⟨⟨Z, hZ⟩, ⟨Yw, hYw⟩⟩ := GlobalTheory.T.phiModuleHom_shortExact_split_wittTilt_alt t ϖ hS hF hH
-  have hex := GlobalTheory.T.tame_setting_group_action_compat t ϖ hS hF hH
+  obtain ⟨⟨Z, hZ⟩, ⟨Yw, hYw⟩⟩ := _root_.GlobalTheory.phiModuleHom_shortExact_split_wittTilt t ϖ hS hF hH
+  have hex := _root_.GlobalTheory.BKReal.SESExact.homW_exact_middle t ϖ hS hF hH
   let φ : (ZMod a → A O K) →+* OW l O := (inclO l O).toRingHom.comp (ϖ.iTot t K).toRingHom
   have hφ : Function.Injective φ := inclO_injective.comp (ϖ.iTot_injective t K)
   let ψ : ZMod a → (ZMod a → A O K) →+* K⟦X⟧ := fun τ =>

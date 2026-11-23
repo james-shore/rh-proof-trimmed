@@ -344,7 +344,7 @@ theorem mean_thR_mul_conj : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   intro E _ _ _ r X g q0 hr bas idx n hs hn x₁ hx₁ x₂ hx₂ φ₁ φ₂ h₁ h₂
   obtain ⟨hsb, hdbl, -⟩ := GlobalTheory.SW.DblEx.dbl_spec E r X g bas idx n hs hn φ₁ φ₂ h₁ h₂
   obtain ⟨hty, hZ, hdet⟩ := GlobalTheory.SW.dblZ_mem_Hn E r X x₁ hx₁ x₂ hx₂
-  obtain ⟨-, -, hEF, hdense, -⟩ := GlobalTheory.T.realPeriodMap_homeomorph_riemannForm_density E r X g q0 hr bas idx n hs hn x₁ hx₁
+  obtain ⟨-, -, hEF, hdense, -⟩ := _root_.GlobalTheory.Ker.zR_laws E r X g q0 hr bas idx n hs hn x₁ hx₁
   have hsum := (GlobalTheory.SW.thH_summable_and_inj E X.Ψ hty n r _ hsb _ hZ).1
   obtain ⟨R, hR, hsupp, -⟩ := hsb
   obtain ⟨M, hM, hMΛ⟩ := exists_int_mem X
@@ -364,7 +364,7 @@ theorem mean_thR_mul_conj : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     intro w
     have e1 := hdbl x₁ hx₁ x₂ hx₂ (zR X idx x₁ (w + a)) (fun k i => conj (zR X idx x₂ (w + b) k i))
     simp only [conj_conj] at e1
-    have e2 := GlobalTheory.T.doubledGaussianKernel_diagonal_translation_invariant E r X g q0 hr bas idx n hs hn x₁ hx₁ x₂ hx₂ a b w
+    have e2 := _root_.GlobalTheory.Ker.Diag.kernel_diag E r X g q0 hr bas idx n hs hn x₁ hx₁ x₂ hx₂ a b w
     have e3 : thH X.Ψ ψ (dblZ X x₁ x₂)
         (dblz X idx x₁ x₂ (zR X idx x₁ (w + a)) (fun k i => conj (zR X idx x₂ (w + b) k i)))
         (dblz' X idx x₁ x₂ (zR X idx x₁ (w + a)) (fun k i => conj (zR X idx x₂ (w + b) k i))) =

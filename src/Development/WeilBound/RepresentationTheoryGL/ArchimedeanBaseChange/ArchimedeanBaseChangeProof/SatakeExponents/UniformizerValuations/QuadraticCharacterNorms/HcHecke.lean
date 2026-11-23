@@ -50,6 +50,7 @@ import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.Archim
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.FiniteDiscreteFamilies.PeakCone
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.JoinType
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.SetupEig
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AntitoneZeroOneEqOfSumEq
 
 @[expose] public section
 
@@ -83,7 +84,7 @@ theorem fok_unif {w : Pl E} {x : w.adicCompletion E} (hx : ordL x = 1) : IsUnifV
 theorem fok_ordL_det {w : Pl E} {p : ℕ} {κ : GLw p w} (hκ : κ ∈ KGL w (n := p)) :
     ordL ((GeneralLinearGroup.det κ : (w.adicCompletion E)ˣ) : w.adicCompletion E) = 0 := by
   have hv : Valued.v ((GeneralLinearGroup.det κ : (w.adicCompletion E)ˣ) : w.adicCompletion E) = 1 := by
-    rw [Matrix.GeneralLinearGroup.val_det_apply, GlobalTheory.GLintCover.det_v hκ]
+    rw [Matrix.GeneralLinearGroup.val_det_apply, _root_.GlobalTheory.valued_det_eq_one_of_glint hκ]
   have h1 : Valued.v ((GeneralLinearGroup.det κ : (w.adicCompletion E)ˣ) : w.adicCompletion E) ≠ 0 := by
     rw [hv]; exact one_ne_zero
   unfold ordL

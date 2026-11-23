@@ -66,12 +66,6 @@ theorem wh_sum (ψ : AddChar (ZMod g) ℂ) {n : ℕ} {ι : Type} (s : Finset ι)
   simp only [Finset.mul_sum]
   exact Finset.sum_comm
 
-theorem wh_const_mul (ψ : AddChar (ZMod g) ℂ) {n : ℕ} (c : ℂ) (f : Gn g n → ℂ) :
-    wh ψ (fun h => c * f h) = c * wh ψ f := by
-  unfold wh tr
-  rw [Finset.mul_sum]
-  exact Finset.sum_congr rfl fun _ _ => by ring
-
 theorem wh_gg_zero (ψ : AddChar (ZMod g) ℂ) : wh ψ (gg ψ 0) = 1 := by
   have hU : ∀ M : Mt g 0, IsUniUp M := fun M a => a.elim0
   have hgg : ∀ x : Gn g 0, gg ψ 0 x = 1 := by
@@ -96,9 +90,9 @@ theorem wh_hc (ψ : AddChar (ZMod g) ℂ) (hψ : ψ ≠ 1) (a b : ℕ) (α : Gn 
   unfold hc
   rw [GlobalTheory.GLq.WhMul.wh_hcT g ψ hψ a b (a + b) rfl _ (fun y x z => by simp only [hα x z])
     (fun x y z => by simp only [hβ y z])]
-  simp only [wh_const_mul]
+  simp only [_root_.GlobalTheory.GLm.GGSum.wh_mul_left]
   rw [show (fun x => α x * wh ψ β) = (fun x => wh ψ β * α x) from funext fun _ => mul_comm _ _,
-    wh_const_mul, mul_comm]
+    _root_.GlobalTheory.GLm.GGSum.wh_mul_left, mul_comm]
 
 end GlobalTheory.GLq.ExactMult
 

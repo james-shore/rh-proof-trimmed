@@ -58,22 +58,6 @@ noncomputable section
 
 namespace GlobalTheory.EvP
 
-theorem isAdicComplete_ring_of_module {O A : Type} [CommRing O] [CommRing A] [Algebra O A]
-    (p : ℕ) [h : IsAdicComplete (Ideal.span {(p : O)}) A] :
-    IsAdicComplete (Ideal.span {(p : A)}) A := by
-  have key : ∀ (n : ℕ) (x : A), x ∈ (Ideal.span {(p : A)} ^ n • ⊤ : Submodule A A) ↔
-      x ∈ (Ideal.span {(p : O)} ^ n • ⊤ : Submodule O A) := by
-    intro n x
-    rw [GlobalTheory.mem_span_singleton_pow_smul_top_iff_exists, GlobalTheory.mem_span_singleton_pow_smul_top_iff_exists]
-    simp [Algebra.smul_def]
-  exact
-    { haus' := fun x hx => IsHausdorff.haus h.toIsHausdorff x fun n =>
-        SModEq.sub_mem.2 ((key n _).1 (SModEq.sub_mem.1 (hx n)))
-      prec' := fun f hf => by
-        obtain ⟨L, hL⟩ := IsPrecomplete.prec h.toIsPrecomplete (f := f) fun {m n} hmn =>
-          SModEq.sub_mem.2 ((key _ _).1 (SModEq.sub_mem.1 (hf hmn)))
-        exact ⟨L, fun n => SModEq.sub_mem.2 ((key _ _).2 (SModEq.sub_mem.1 (hL n)))⟩ }
-
 theorem constantCoeff_nmul {O : Type} [CommRing O] {d : ℕ}
     (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) O) (hμ : ∀ j, constantCoeff (μ j) = 0) :
     ∀ (k : ℕ) (j : Fin d), constantCoeff (nmul μ k j) = 0 := by
@@ -97,7 +81,7 @@ theorem ev_subst_nmul_p : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsA
   haveI : IsAdicComplete (Ideal.span {(p : O)}) (G.A (n + 1)) :=
     GlobalTheory.isAdicComplete_of_finite_projective _ _
   haveI : IsAdicComplete (Ideal.span {(p : G.A (n + 1))}) (G.A (n + 1)) :=
-    isAdicComplete_ring_of_module (O := O) p
+    _root_.GlobalTheory.NMul.isAdicComplete_ring_of_module (O := O) p
   have hT := (GlobalTheory.CEval.continuous_eval p O (G.A (n + 1)) (Fin d) (c.x (n + 1)) (c.nil (n + 1))).2
     (c.ev (n + 1)) (c.isEval (n + 1))
   let E' : MvPowerSeries (Fin d) O →ₐ[O] G.A (n + 1) :=

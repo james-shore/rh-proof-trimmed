@@ -137,7 +137,7 @@ theorem bessel_ev_projector_value : Hyps → ∀ (k r : ℕ) (ε : Fin (2 * r + 
   have hcE := GlobalTheory.T.casimir_scalar_of_capelliDeterminant_eigenvalue _ _ E mu hn hEg hqE
   have hcF := fun t => GlobalTheory.T.casimir_scalar_of_capelliDeterminant_eigenvalue _ _ (F t) _ hn (hFg t)
     (GlobalTheory.T.quantum_determinant_eigenvalue hy k r ε _ (RI t) (hRI t) g⁻¹ (F t) hQ (hF t))
-  have hsp := fun t => GlobalTheory.T.splitCasimir_eigenvalue_on_dualTensor_summand _ _ _ E (F t) (io' t) mu t hcE (hcF t) (hcomm t)
+  have hsp := fun t => _root_.GlobalTheory.splitCas_on_summand _ _ _ E (F t) (io' t) mu t hcE (hcF t) (hcomm t)
   let L : R.smSub →ₗ[ℂ] Wp :=
     { toFun := fun v => l v
       map_add' := fun v w => hB.1 _ v.2 _ w.2

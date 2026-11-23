@@ -206,12 +206,6 @@ theorem herm_midVec (v : Fin (2 * r + k + 1) → ℂ) (w : Fin (k + 1) → ℂ) 
   · simp [midVec_out w hi]
   · simp only [Pi.star_apply, midVec_wI, Hpk_mulVec_wI]
 
-theorem herm_UH {n : ℕ} {G m : Matrix (Fin n) (Fin n) ℂ} (hm : m ∈ UH G) (v w : Fin n → ℂ) :
-    herm G (m *ᵥ v) (m *ᵥ w) = herm G v w := by
-  have h : mᴴ * G * m = G := hm
-  unfold herm
-  rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, h]
-
 theorem UH_mul {n : ℕ} {G g h : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ UH G) (hh : h ∈ UH G) : g * h ∈ UH G := by
   have h1 : gᴴ * G * g = G := hg
   have h2 : hᴴ * G * h = G := hh
@@ -232,10 +226,6 @@ theorem isUnit_det_of_UH {m : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ} (hm : m �
   refine isUnit_iff_ne_zero.2 fun e => h3 ?_
   rw [← h2, e, mul_zero]
 
-theorem eucl_eq_norm {n : ℕ} (v : Fin n → ℂ) : eucl v = ‖(WithLp.toLp 2 v : EuclideanSpace ℂ (Fin n))‖ := by
-  rw [EuclideanSpace.norm_eq]
-  simp [eucl, Complex.normSq_eq_norm_sq]
-
 theorem eucl_Hb (v : Fin (k + 1) → ℂ) : eucl (Hb k *ᵥ v) = eucl v := by
   unfold eucl Hb
   congr 1
@@ -244,7 +234,7 @@ theorem eucl_Hb (v : Fin (k + 1) → ℂ) : eucl (Hb k *ᵥ v) = eucl v := by
   split_ifs <;> simp
 
 theorem norm_herm_Hb_le (v w : Fin (k + 1) → ℂ) : ‖herm (Hb k) v w‖ ≤ eucl v * eucl w := by
-  rw [← eucl_Hb v, eucl_eq_norm, eucl_eq_norm, mul_comm]
+  rw [← eucl_Hb v, _root_.GlobalTheory.Amp.GramFlag.eucl_eq, _root_.GlobalTheory.Amp.GramFlag.eucl_eq, mul_comm]
   refine le_trans (le_of_eq ?_) (norm_inner_le_norm (𝕜 := ℂ) _ _)
   rw [EuclideanSpace.inner_toLp_toLp, dotProduct_comm]; rfl
 
@@ -261,7 +251,7 @@ theorem eucl_le_of_herm (v : Fin (k + 1) → ℂ) {M : ℝ} (hM : 0 ≤ M)
   rcases h0.eq_or_lt with e | hpos
   · rw [← e]; exact hM
   have h1 := h ((((eucl v)⁻¹ : ℝ) : ℂ) • (Hb k *ᵥ v)) (by
-    rw [eucl_eq_norm, WithLp.toLp_smul, norm_smul, ← eucl_eq_norm, eucl_Hb, Complex.norm_real,
+    rw [_root_.GlobalTheory.Amp.GramFlag.eucl_eq, WithLp.toLp_smul, norm_smul, ← _root_.GlobalTheory.Amp.GramFlag.eucl_eq, eucl_Hb, Complex.norm_real,
       Real.norm_of_nonneg (inv_nonneg.2 h0), inv_mul_cancel₀ hpos.ne'])
   have h2 : herm (Hb k) v ((((eucl v)⁻¹ : ℝ) : ℂ) • (Hb k *ᵥ v)) = ((eucl v : ℝ) : ℂ) := by
     have := herm_Hb_self v
@@ -457,7 +447,7 @@ theorem section_coord_le (k r j : ℕ) (hj : j ≤ r) (z z' : (Fin (2 * r + k + 
         rw [Pi.add_apply, Pi.add_apply, midVec_wI, yVec_out _ (by simp only [wI]; omega),
           xVec_out _ (by simp only [wI]; omega), zero_add, add_zero]
       rw [e] at this
-      rw [← herm_UH hm, Matrix.mulVec_mulVec, hmm, Matrix.one_mulVec]
+      rw [← _root_.GlobalTheory.Amp.NfComp.herm_iso hm, Matrix.mulVec_mulVec, hmm, Matrix.one_mulVec]
       simpa [herm, Matrix.mulVec_neg] using this
     · have : B b = 0 := by rw [hB]; exact dif_neg hb
       rw [this]
@@ -465,7 +455,7 @@ theorem section_coord_le (k r j : ℕ) (hj : j ≤ r) (z z' : (Fin (2 * r + k + 
   have k2' : ∀ b d, ‖herm (Hb k) (B b) (B d)‖ ≤ M ^ 2 := by
     intro b d
     have e : herm (Hb k) (B b) (B d) = herm (Hb k) (m⁻¹ *ᵥ B b) (m⁻¹ *ᵥ B d) := by
-      rw [← herm_UH hm (m⁻¹ *ᵥ B b), Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hmm, Matrix.one_mulVec, Matrix.one_mulVec]
+      rw [← _root_.GlobalTheory.Amp.NfComp.herm_iso hm (m⁻¹ *ᵥ B b), Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hmm, Matrix.one_mulVec, Matrix.one_mulVec]
     rw [e, sq]
     exact (norm_herm_Hb_le _ _).trans (mul_le_mul (k2 b) (k2 d) (Real.sqrt_nonneg _) (le_trans zero_le_one hM))
 

@@ -151,7 +151,7 @@ theorem seed_at_enl : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheor
     obtain ⟨x₁, hx₁, hx₁'⟩ := (mem_FO_assembled_iff (w'.st Z') _).1 hmem
     obtain ⟨y, hy⟩ := hCK x₁ hx₁
     exact ⟨y, by rw [hy]; exact hx₁'.symm⟩
-  exact GlobalTheory.T.exists_analyticData_kept_clauses_columnChoices (w'.st Z') w'.px w'.I hX' T' Wt' core'.Q.c.F h6 hfin hconj hok hrange' hsel hgrp hVals hHH hStd hStdX hPos hCK hCE hmu
+  exact _root_.GlobalTheory.Mem.R3.FrameCaseLifts.exists_realDat_keep (w'.st Z') w'.px w'.I hX' T' Wt' core'.Q.c.F h6 hfin hconj hok hrange' hsel hgrp hVals hHH hStd hStdX hPos hCK hCE hmu
 
 end GlobalTheory.Mem.R3.Rw
 

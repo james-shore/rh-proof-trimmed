@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtCoord
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogFormsEqChartForms
 
 @[expose] public section
 
@@ -335,19 +336,12 @@ theorem exists_baseForm_eq (p : ℕ) [Fact p.Prime] (X : Scheme.{0}) [IsIntegral
     isDivOfForm_canonical f d _ (L.om i) hω y hi _ hbf, hUu0, ?_⟩
   rw [hbf, map_smul, e0, smul_smul]
 
-private theorem dlog_mul_lemma_3 {K : Type} [Field K] (g h : Kˣ) : dlog (g * h) = dlog g + dlog h := by
-  have hg := g.ne_zero
-  have hh := h.ne_zero
-  simp only [dlog, dK, Units.val_mul, Units.val_inv_eq_inv_val, Derivation.leibniz, smul_add, smul_smul]
-  rw [show ((g : K) * h)⁻¹ * g = (h : K)⁻¹ by field_simp,
-    show ((g : K) * h)⁻¹ * h = (g : K)⁻¹ by field_simp, add_comm]
-
 private theorem dlog_prod_lemma_4 {K : Type} [Field K] {n : ℕ} (u : Kˣ) (x : Fin n → Kˣ) (J : Finset (Fin n))
     (m : Fin n → ℤ) : dlog (u * ∏ j ∈ J, x j ^ m j) = dlog u + ∑ j ∈ J, m j • dlog (x j) := by
   let φ : Kˣ →* Multiplicative Ω[K⁄ℤ] :=
     { toFun := fun g => Multiplicative.ofAdd (dlog g)
       map_one' := by simp [dlog, dK]
-      map_mul' := fun g h => by rw [dlog_mul_lemma_3]; rfl }
+      map_mul' := fun g h => by rw [_root_.GlobalTheory.LogDR.ChartStalk.dlog_mul]; rfl }
   have h := congrArg Multiplicative.toAdd (map_mul φ u (∏ j ∈ J, x j ^ m j))
   rw [map_prod] at h
   simpa only [map_zpow, toAdd_mul, toAdd_prod, toAdd_zpow, MonoidHom.coe_mk, OneHom.coe_mk,

@@ -81,11 +81,11 @@ theorem exists_tate : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
         IsPrimitiveRoot.of_map_of_injective (f := c.F.val.toRingHom) h₀ Subtype.val_injective
       have h₂ : IsPrimitiveRoot z l.A := IsPrimitiveRoot.of_map_of_injective (f := β) h₁ hβ
       have h₃ : IsPrimitiveRoot (g z) l.A := h₂.map_of_injective hginj
-      obtain ⟨ζ, e₁, e₂, e₃⟩ := GlobalTheory.T.exists_compatible_primitiveRoots_through (AlgebraicClosure (FractionRing T.V)) l.A (g z) l.A_pos h₃
+      obtain ⟨ζ, e₁, e₂, e₃⟩ := _root_.GlobalTheory.RootSystem.exists_compatible_roots_through (AlgebraicClosure (FractionRing T.V)) l.A (g z) l.A_pos h₃
       refine ⟨ζ, e₁, e₂, fun z' hz' => ?_⟩
       have : z' = z := hβ (Subtype.val_injective (hz'.trans hz.symm))
       rw [this]; exact e₃
-    · obtain ⟨ζ, e₁, e₂, -⟩ := GlobalTheory.T.exists_compatible_primitiveRoots_through (AlgebraicClosure (FractionRing T.V)) 1 1 one_pos IsPrimitiveRoot.one
+    · obtain ⟨ζ, e₁, e₂, -⟩ := _root_.GlobalTheory.RootSystem.exists_compatible_roots_through (AlgebraicClosure (FractionRing T.V)) 1 1 one_pos IsPrimitiveRoot.one
       exact ⟨ζ, e₁, e₂, fun z hz' => (hz ⟨z, hz'⟩).elim⟩
 
   obtain ⟨-, -, -, hF⟩ := hP

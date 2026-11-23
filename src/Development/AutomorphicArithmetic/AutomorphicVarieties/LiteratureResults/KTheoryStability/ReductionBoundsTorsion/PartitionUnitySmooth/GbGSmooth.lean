@@ -61,17 +61,6 @@ namespace PositivityTheory.KB.SmoothPartitionUnityBasic
 
 private def gb_g (s : ℝ) : ℝ := 1 / 2 + (s - 1 / 2) * Real.smoothTransition (2 * s - 1)
 
-private theorem actL_mul_apply_eq_actL_actL {L : Type} [Field L] [NumberField L] {N : ℕ} (g g' : Gp L N) (h : HS L N) :
-    actL (g * g') h = actL g (actL g' h) := by
-  show actM (g * g') h = actM g (actM g' h)
-  simp only [actM, LinearMap.coe_mk, AddHom.coe_mk]
-  unfold mkHS
-  apply Subtype.ext
-  funext w i j
-  simp only [mat, Pi.mul_apply, _root_.mul_inv_rev, Units.val_mul, Matrix.conjTranspose_mul, Matrix.of_apply]
-  rw [show ∀ X : Matrix (Fin N) (Fin N) ℂ, (of fun i j => X i j) = X from fun _ => rfl]
-  simp only [Matrix.mul_assoc]
-
 private theorem contDiff_gb_g_and_half_le_and_eq_of_one_le : ContDiff ℝ (↑(⊤ : ℕ∞)) gb_g ∧ (∀ s, 1 / 2 ≤ gb_g s) ∧ ∀ s, 1 ≤ s → gb_g s = s := by
   refine ⟨?_, fun s => ?_, fun s hs => ?_⟩
   · unfold gb_g
@@ -159,7 +148,7 @@ theorem pf_GBump : GBump := by
   have τmul : ∀ γ δ h, τ δ (τ γ h) = τ (γ * δ) h := by
     intro γ δ h
     simp only [hτ]
-    rw [← actL_mul_apply_eq_actL_actL, map_mul, _root_.mul_inv_rev]
+    rw [← _root_.PositivityTheory.KB.actL_mul, map_mul, _root_.mul_inv_rev]
   have Sinv : ∀ γ h, S (τ γ h) = S h := by
     intro γ h
     simp only [hS, τmul]

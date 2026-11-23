@@ -66,17 +66,6 @@ open GlobalTheory.Mum
 
 namespace GlobalTheory.MumCore
 
-theorem linComb_hom {S S' : Scheme.{0}} {A T : Over S} {A' T' : Over S'} [GrpObj A] [GrpObj A']
-    (f : (T ⟶ A) →* (T' ⟶ A')) {r : ℕ} (y : Fin r → (T ⟶ A)) (a : Fin r → ℕ) :
-    f (linComb y a) = linComb (fun i => f (y i)) a := by
-  have h := map_list_prod f (List.ofFn fun i => y i ^ a i)
-  rw [List.map_ofFn] at h
-  exact h.trans (congrArg List.prod (congrArg List.ofFn (funext fun i => map_pow f (y i) (a i))))
-
-theorem comp_linComb' {S : Scheme.{0}} {A T T' : Over S} [GrpObj A] (U : T' ⟶ T) {r : ℕ} (y : Fin r → (T ⟶ A))
-    (a : Fin r → ℕ) : U ≫ linComb y a = linComb (fun i => U ≫ y i) a :=
-  linComb_hom (MonoidHom.mk' (U ≫ ·) fun x y => MonObj.comp_mul U x y) y a
-
 theorem linComb_pow_eq_one {S : Scheme.{0}} {A T : Over S} [GrpObj A] [IsCommMonObj A] {r : ℕ} (y : Fin r → (T ⟶ A))
     (a : Fin r → ℕ) (M : ℕ) (h : ∀ i, y i ^ M = 1) : linComb y a ^ M = 1 := by
   unfold linComb
@@ -90,11 +79,9 @@ theorem push_linComb {S S' : Scheme.{0}} {G : Over S} {G' : Over S'} [GrpObj G] 
     (linComb x a).left ≫ φ = U ≫ (linComb y a).left := by
   let V : Over.mk (T.hom ≫ f) ⟶ T₀ := Over.homMk U hU
   have e : pushHom h T (linComb x a) = V ≫ linComb y a := by
-    rw [linComb_hom, comp_linComb']
+    rw [_root_.GlobalTheory.ThetaPtUp.map_linComb, _root_.GlobalTheory.DenseBasis.comp_linComb]
     exact congrArg (linComb · a) (funext fun i => Over.OverMorphism.ext (hxy i))
   exact congrArg (fun z => z.left) e
-
-theorem unitOn_zpow {R : Type} [CommRing R] (c : Rˣ) (e : ℤ) : unitOn (c ^ e) = unitOn c ^ e := map_zpow _ c e
 
 theorem final_pf : ∀ (F Ω : Type) [Field F] [Field Ω] (em : F →+* Ω) (A B : PolAV (Sp Ω)) (A₀ : PolAV (Sp F)) (σ : A.A ≅ B.A) (ψ : B.A.left ⟶ A₀.A.left), GlobalTheory.IsPolIso A B σ → IsGrpPullback B.A A₀.A (spMap em) ψ → LBIso B.L (A₀.L.pull ψ) → ∃ a : A.A.left ⟶ A₀.A.left, IsGrpPullback A.A A₀.A (spMap em) a ∧ LBIso A.L (A₀.L.pull a) := by
   intro F Ω _ _ em A B A₀ σ ψ hσ h hLB
@@ -130,8 +117,8 @@ theorem fibre_descends : ∀ (F Ω T : Type) [Field F] [IsAlgClosed F] [CharZero
   have hpair : ∀ i j, WeilIs P.A P.L (((n ^ J) ^ 2 : ℕ) : ℤ) (y₀ i) (y₀ j) (unitOn ζT ^ stdSymp A.g i j) := fun i j => by
     have := GlobalTheory.T.commutatorPairing_spread_points_eq_spread_root Ω T jT hinj A P φ hP hL ((n ^ J) ^ 2) (lev.pt i) (lev.pt j) (y₀ i) (y₀ j) (ζT ^ stdSymp A.g i j)
       (Nat.one_le_iff_ne_zero.2 hM0) (hy i) (hy j) (hyt i) (hyt j)
-      (by rw [map_zpow, hjζ, unitOn_zpow]; exact lev.pairing i j)
-    rwa [unitOn_zpow] at this
+      (by rw [map_zpow, hjζ, _root_.GlobalTheory.obbuild_unitOn_zpow]; exact lev.pairing i j)
+    rwa [_root_.GlobalTheory.obbuild_unitOn_zpow] at this
   let tR : T →+* F := t.toRingHom
   have htζ : Units.map tR.toMonoidHom ζT = ζ := by ext; simp [ζT, tR]
   let polPull {S : Scheme.{0}} (Q : PolAV S) {R : Type} [CommRing R] (f : Sp R ⟶ S) : PolAV (Sp R) := by

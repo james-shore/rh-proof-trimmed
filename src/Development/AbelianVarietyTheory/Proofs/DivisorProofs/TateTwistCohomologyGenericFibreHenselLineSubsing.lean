@@ -56,13 +56,13 @@ open scoped TensorProduct
 
 theorem unitsL : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [IsLocalRing T], AIC T → IsUnit (q : T) → ∀ (A : Type) [CommRing A] [Algebra (Polynomial T) A] [Algebra T A] [IsScalarTower T (Polynomial T) A], SH A → (∀ a : A, ∃ (E : Type) (_ : CommRing E) (_ : Algebra (Polynomial T) E) (_ : Algebra.Etale (Polynomial T) E) (φ : E →ₐ[Polynomial T] A), a ∈ φ.range) → ∀ u : (TensorProduct T (FractionRing T) A)ˣ, ∃ v : (TensorProduct T (FractionRing T) A)ˣ, v ^ q = u := by
   intro q _ T _ _ _ hT hq A _ _ _ _ hSH hA
-  obtain ⟨O, _, _, _, _, _, _, π, hπ, hO⟩ := GlobalTheory.T.surj_of_strictHenselisation_polynomial_alt T A hSH hA
-  exact GlobalTheory.T.henselian_directed_union_subalgebras q T hT hq O hO A π hπ
+  obtain ⟨O, _, _, _, _, _, _, π, hπ, hO⟩ := _root_.GlobalTheory.surj_of_strictHenselisation_polynomial T A hSH hA
+  exact _root_.GlobalTheory.QUnits.tensorFractionRing_units_pow_surj q T hT hq O hO A π hπ
 
 theorem picL : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [IsLocalRing T], AIC T → IsUnit (q : T) → ∀ (A : Type) [CommRing A] [Algebra (Polynomial T) A] [Algebra T A] [IsScalarTower T (Polynomial T) A], SH A → (∀ a : A, ∃ (E : Type) (_ : CommRing E) (_ : Algebra (Polynomial T) E) (_ : Algebra.Etale (Polynomial T) E) (φ : E →ₐ[Polynomial T] A), a ∈ φ.range) → ∀ c : CommRing.Pic (TensorProduct T (FractionRing T) A), c ^ q = 1 → c = 1 := by
   intro q _ T _ _ _ hT hq A _ _ _ _ hSH hA
-  obtain ⟨O, _, _, _, _, _, _, π, hπ, hO⟩ := GlobalTheory.T.surj_of_strictHenselisation_polynomial_alt T A hSH hA
-  exact GlobalTheory.T.pic_generic_fibre_quotient_strictHenselisation_no_torsion_alt q T hT hq O hO A π hπ
+  obtain ⟨O, _, _, _, _, _, _, π, hπ, hO⟩ := _root_.GlobalTheory.surj_of_strictHenselisation_polynomial T A hSH hA
+  exact _root_.GlobalTheory.pic_generic_fibre_quotient_strictHenselisation_no_torsion q T hT hq O hO A π hπ
 
 theorem exists_cyclotomic_root (q : ℕ) [NeZero q] (T B : Type) [CommRing T] [Nontrivial T] [CommRing B] [Algebra T B] (hT : AIC T) :
     ∃ ζ : B, Polynomial.aeval ζ (Polynomial.cyclotomic q ℤ) = 0 := by
@@ -81,9 +81,9 @@ theorem tateTwistCohomology_genericFibre_henselLine_subsingleton : ∀ (q : ℕ)
   have hqB : IsUnit (q : TensorProduct T (FractionRing T) A) := by
     simpa using hq.map (algebraMap T (TensorProduct T (FractionRing T) A))
   have hz := exists_cyclotomic_root q T (TensorProduct T (FractionRing T) A) hT
-  obtain ⟨e⟩ := GlobalTheory.T.tateTwistCohomology_spec_twist_independent q (TensorProduct T (FractionRing T) A) hqB hz 1 i 1
+  obtain ⟨e⟩ := _root_.GlobalTheory.EtC.untwist q (TensorProduct T (FractionRing T) A) hqB hz 1 i 1
   have h1 : Subsingleton (Ht q (sp (TensorProduct T (FractionRing T) A)) 1 1) :=
-    GlobalTheory.T.kummer_etale_vanishing q _ hqB (fun u => (unitsL q T hT hq A hSH hA u).imp fun _ h => h.symm) (picL q T hT hq A hSH hA)
+    _root_.GlobalTheory.EtC.kummer_vanishing q _ hqB (fun u => (unitsL q T hT hq A hSH hA u).imp fun _ h => h.symm) (picL q T hT hq A hSH hA)
   refine ⟨fun x y => e.injective ?_⟩
   exact Subsingleton.elim _ _
 

@@ -60,24 +60,13 @@ variable {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 I0 T : Type}
   (v₀ : ∀ (j : Fin D.R.m) (σ : D.what₂.LL →+* ℂ), (Rl.MW j σ).Vec)
   {ρ : Setup D.ntw} (hρ : ρ.Good) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool)
 
-theorem evK_eq_sum (t : NX.KB S i b ⊗[S.Ks] NX.FmK S ((j : ℕ) + 1)) :
-    ∃ (n : ℕ) (a : Fin n → NX.KB S i b) (x : Fin n → NX.FmK S ((j : ℕ) + 1)),
-      evK YS v₀ hρ i j b t = ∑ k, ρ.e i b (a k) • evW YS v₀ j (Subtype.val (x k)) := by
-  first
-  | exact @_root_.GlobalTheory.EvaluationSum.evK_eq_sum
-  | exact _root_.GlobalTheory.EvaluationSum.evK_eq_sum
-  | (apply _root_.GlobalTheory.EvaluationSum.evK_eq_sum <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EvaluationSum.evK_eq_sum <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EvaluationSum.evK_eq_sum <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EvaluationSum.evK_eq_sum ..)
-
 theorem mem_range_realRd_iff {ν : ℂ} (hν : ν ≠ 0) (g : GA D (Wc D j) → ℂ) :
     g ∈ Set.range (realRd YS v₀ hρ i j b ν) ↔
       ∃ (n : ℕ) (a : Fin n → NX.KB S i b) (x : Fin n → NX.FmK S ((j : ℕ) + 1)),
         ν • g = ∑ k, ρ.e i b (a k) • evW YS v₀ j (Subtype.val (x k)) := by
   constructor
   · rintro ⟨f, rfl⟩
-    obtain ⟨n, a, x, e⟩ := evK_eq_sum YS v₀ hρ i j b (YS.eF i _ b (Nat.le_add_left _ _) j.2 f)
+    obtain ⟨n, a, x, e⟩ := _root_.GlobalTheory.EvaluationSum.evK_eq_sum YS v₀ hρ i j b (YS.eF i _ b (Nat.le_add_left _ _) j.2 f)
     refine ⟨n, a, x, ?_⟩
     change ν • (ν⁻¹ • evK YS v₀ hρ i j b (YS.eF i _ b (Nat.le_add_left _ _) j.2 f)) = _
     rw [smul_inv_smul₀ hν, e]

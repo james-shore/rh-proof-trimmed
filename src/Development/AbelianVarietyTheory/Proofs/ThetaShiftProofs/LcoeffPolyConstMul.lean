@@ -158,7 +158,7 @@ theorem frameBound_of_cut (hL : Out.Laws) (hL2 : Out.Laws2) {l : Level H} {Xo : 
   intro F hF t ht Y hY hdet
   obtain ⟨φ, ψ, z₁, z₂, tγ, hφC, hφX, hψC, hψX, htγ, htγ', hm1, hm2, hb⟩ := hBc
   have hϖ : Dv.ϖ ≠ 0 := Dv.ϖ_irr.ne_zero
-  obtain ⟨hdomR, -, -, -, hdiv⟩ := GlobalTheory.T.arcLetterRingOverDVR_polynomial_denominators E H Dw Dv.Tv Dv.ϖ hϖ
+  obtain ⟨hdomR, -, -, -, hdiv⟩ := _root_.GlobalTheory.LetterDenom.main E H Dw Dv.Tv Dv.ϖ hϖ
   have hdom1 := GlobalTheory.ArcConst.isDomain Dw K₁
   have hdom2 := GlobalTheory.ArcConst.isDomain Dw Dv.Tv.Fr
   have hinj := GlobalTheory.ArcConst.algebraMap_injective Dw Dv.Tv.Fr
@@ -212,7 +212,7 @@ theorem frameBound_of_cut (hL : Out.Laws) (hL2 : Out.Laws2) {l : Level H} {Xo : 
     intro h0
     rw [h0, norm_zero] at hdet
     exact zero_ne_one hdet
-  obtain ⟨ev, hevC, hevX, hevf⟩ := GlobalTheory.T.exists_eval_arcLetterRingOverDVR_disc E H Dw Dv.Tv Dv.ϖ Z.K Dv.ιT hϖ Dv.norm_le t Y
+  obtain ⟨ev, hevC, hevX, hevf⟩ := _root_.GlobalTheory.LetterEval.exists_eval E H Dw Dv.Tv Dv.ϖ Z.K Dv.ιT hϖ Dv.norm_le t Y
     (Z.S_disc t ht).1 (Z.S_disc t ht).2 hdet0
   obtain ⟨hT, hS⟩ := hevf f N G P₂ hG hPG
   have hbd := hRec F hF t ht Y hY hdet ev hevC hevX

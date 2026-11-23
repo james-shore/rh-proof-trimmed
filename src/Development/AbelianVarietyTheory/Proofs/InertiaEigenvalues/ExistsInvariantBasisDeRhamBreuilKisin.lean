@@ -65,14 +65,6 @@ namespace GlobalTheory.BKLim.InvBasis
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem pD_alg_pt : ∀ (l : ℕ) [Fact l.Prime] (a : Formalism.Per.AinfP l), Formalism.Per.pD l a = algebraMap (Formalism.Per.BdRp l) (Formalism.Per.BdR l) (algebraMap (Formalism.Per.AinfP l) (Formalism.Per.BdRp l) a) :=
-  GlobalTheory.RingIface.pD_eq_alg
-
-theorem zD_alg_pt : ∀ (l : ℕ) [Fact l.Prime] (z : ℤ_[l]), Formalism.Per.zD l z = algebraMap (Formalism.Per.BdRp l) (Formalism.Per.BdR l) (algebraMap (Formalism.Per.AinfP l) (Formalism.Per.BdRp l) (algebraMap (Formalism.Per.Ainf l) (Formalism.Per.AinfP l) (Formalism.Per.zA l z))) :=
-  GlobalTheory.RingIface.zD_eq_alg
-
-theorem isUnit_gen_pt (l : ℕ) [Fact l.Prime] {a : Per.AinfP l} (h : Per.kerP l = Ideal.span {a}) : IsUnit (Per.pD l a) := GlobalTheory.RingIface.isUnit_of_generator l h
-
 theorem padicInt_hom_ext_pt (f g : ℤ_[l] →+* Per.Ainf l) : f = g := by
   ext1 z
   haveI : IsHausdorff (Ideal.span {((l : ℕ) : Per.Ainf l)}) (Per.Ainf l) := inferInstance
@@ -91,7 +83,7 @@ theorem padicInt_hom_ext_pt (f g : ℤ_[l] →+* Per.Ainf l) : f = g := by
 theorem zD_eq_pt (z : ℤ_[l]) :
     algebraMap (Per.BdRp l) (Per.BdR l) (aDp l (algebraMap ℤ_[l] (Ainf l) z)) = Per.zD l z := by
   have h : algebraMap ℤ_[l] (Ainf l) = Per.zA l := padicInt_hom_ext_pt _ _
-  rw [h, zD_alg_pt l z, aDp, RingHom.comp_apply]
+  rw [h, _root_.GlobalTheory.RingIface.zD_eq_alg l z, aDp, RingHom.comp_apply]
 
 theorem matrix_map_smul {R S : Type} [CommRing R] [CommRing S] {d : ℕ} (f : R →+* S) (r : R) (M : Matrix (Fin d) (Fin d) R) :
     (r • M).map f = f r • M.map f := by
@@ -120,8 +112,8 @@ theorem isUnit_Etau {K : FinExt l} {bk : BK K} {τ : Ainf l} (hτ : bk.IsPer τ)
   refine IsUnit.mul ?_ ?_
   · have hk : Per.kerP l = Ideal.span {algebraMap (Per.Ainf l) (Per.AinfP l) (bk.ev bk.E)} := by
       rw [GlobalTheory.Per.kerQ_eq_map_ker_theta, ← bk.span_ev, Ideal.map_span, Set.image_singleton]
-    have hu := isUnit_gen_pt l hk
-    rw [pD_alg_pt] at hu
+    have hu := _root_.GlobalTheory.RingIface.isUnit_of_generator l hk
+    rw [_root_.GlobalTheory.RingIface.pD_eq_alg] at hu
     rw [aDp, RingHom.comp_apply]
     exact hu
   · have h := GlobalTheory.T.theta_ainf_period_pow_ne_zero l K bk τ hτ 1

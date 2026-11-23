@@ -184,15 +184,6 @@ private theorem eq_of_posOf_eq_of_dist_lt {n' : ℕ} [NeZero n'] {x y : ℤ} (hx
     linarith
   · nlinarith
 
-private theorem fr_first_le_fr_of_valid {n' r : ℕ} [NeZero n'] {F : Frames n' r} {L₁ N₁ : ℕ}
-    (hV : F.Valid L₁ N₁) (j : ℤ) : ∀ k, k < r → F.fr j 0 ≤ F.fr j k := by
-  intro k
-  induction k with
-  | zero => intro _; exact le_rfl
-  | succ k ih =>
-    intro hk
-    exact le_trans (ih (by omega)) (le_of_lt (hV.2.2.1 j k hk))
-
 private theorem eq_of_posOf_eq_of_mem_letters_not_isW {n' r : ℕ} [NeZero n'] [NeZero r] {F : Frames n' r} {L₁ N₁ : ℕ}
     (hV : F.Valid L₁ N₁) {j1 j2 : ℕ} (hj1 : j1 < F.J) (hj2 : j2 < F.J) {x1 x2 : ℤ}
     (h1 : x1 ∈ F.letters (j1 : ℤ)) (h1' : ¬ F.IsW (j1 : ℤ) x1)
@@ -200,7 +191,7 @@ private theorem eq_of_posOf_eq_of_mem_letters_not_isW {n' r : ℕ} [NeZero n'] [
     (hp : posOf n' x1 = posOf n' x2) : j1 = j2 ∧ x1 = x2 := by
   have hr : 0 < r := Nat.pos_of_ne_zero (NeZero.ne r)
   have step : ∀ i : ℤ, F.fr i (r - 1) < F.fr (i + 1) (r - 1) := fun i =>
-    lt_of_lt_of_le (hV.2.2.2.1 i) (fr_first_le_fr_of_valid hV (i + 1) (r - 1) (by omega))
+    lt_of_lt_of_le (hV.2.2.2.1 i) (_root_.Formalism.MainNotions.SelectionLemmas.Pf.fr_zero_le hV (i + 1) (r - 1) (by omega))
   have hmono : StrictMono (fun i : ℤ => F.fr i (r - 1)) := strictMono_int_of_lt_succ step
   have hper : F.fr ((F.J : ℤ) - 1) (r - 1) = F.fr (-1) (r - 1) + n' := by
     have h := fr_period hV (-1) (r - 1) 1

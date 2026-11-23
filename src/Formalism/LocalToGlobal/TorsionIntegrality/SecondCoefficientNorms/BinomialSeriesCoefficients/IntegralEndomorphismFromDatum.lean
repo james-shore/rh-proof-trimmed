@@ -212,7 +212,7 @@ theorem integral_endomorphism_from_datum : EndIntFromDatum := by
   obtain ⟨hZ, hN, hw, hxs, hxP, hal, -, hr⟩ := hD
   have hal0 : al ≠ 0 := ne_zero_of_isEndoR hN
   obtain ⟨g, hg0, hvg⟩ := exists_mulBy_eq hL hal0
-  have hV := veluXFromZ K e l linv A c0 ι neg xP w xs al hL hX hZ hw
+  have hV := _root_.Formalism.L2.Th1.C.veluXOfSigma' K e l linv A c0 ι neg xP w xs al hL hX hZ hw
   rw [hvg] at hV
   have hg : IntPS R g :=
     velu_x_coordinate_integral K R A g ι xs xP al _ hA hxs hxP hr hal hal0 h2 hg0 hV

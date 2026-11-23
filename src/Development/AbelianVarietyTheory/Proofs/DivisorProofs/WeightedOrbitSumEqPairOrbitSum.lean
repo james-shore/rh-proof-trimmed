@@ -91,7 +91,7 @@ theorem inner_sum_eq (F : Y → Γ → ℂ)
     rw [hk] at e2
     rw [e1, e2]
   have hs : (Function.support (fun z : ConjSelf Γ => F y (val z))).Finite := hsupp
-  have key := GlobalTheory.T.finsum_orbits_inv_stabilizer_card_mass (K := MulAction.stabilizer Γ y) (Z := ConjSelf Γ)
+  have key := _root_.GlobalTheory.finsum_orbits_stabilizer_mass (K := MulAction.stabilizer Γ y) (Z := ConjSelf Γ)
     (fun z => F y (val z)) hinv hs
   refine Eq.trans ?_ key
   refine finsum_congr fun o' => ?_

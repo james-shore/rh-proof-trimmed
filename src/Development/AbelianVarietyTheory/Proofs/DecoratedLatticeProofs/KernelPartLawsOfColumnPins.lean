@@ -74,17 +74,17 @@ theorem clsKL_is : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} (I : TC B 
     · exact (GlobalTheory.T.chartLevels_reps_represent_unitaryDoubleCosets I hOk hPins l Z u a Ch₀ A hP.is j hj (ι j β)).1
     · exact (GlobalTheory.T.chartLevels_reps_represent_unitaryDoubleCosets I hOk hPins l Z u a Ch₀ A hP.is j hj (ι j β)).2.1
     · have hR := ((hP.ram j hj φ).1 hφ).1.1
-      exact (GlobalTheory.T.scalarForms_on_charts_of_trueColumnTuple I hOk hPins l Z u a Ch₀ A hP.is R.θ hX.inf j hj φ hR).1 c.1
+      exact (_root_.GlobalTheory.AdForm.rd_charts I hOk hPins l Z u a Ch₀ A hP.is R.θ hX.inf j hj φ hR).1 c.1
     · have hR := ((hP.ram j hj φ).1 hφ).1.1
       have hx1 := hX.xs j hj
-      have h2 := (GlobalTheory.T.scalarForms_on_charts_of_trueColumnTuple I hOk hPins l Z u a Ch₀ A hP.is R.θ hX.inf j hj φ hR).2 (ι j β) y γ hγ c k₁ hk κ
+      have h2 := (_root_.GlobalTheory.AdForm.rd_charts I hOk hPins l Z u a Ch₀ A hP.is R.θ hX.inf j hj φ hR).2 (ι j β) y γ hγ c k₁ hk κ
         ⟨y'.1, y'.2⟩ (fun τ => by
           show y'.1 τ = _
           rw [htr τ]
           simp only [RealD.r, inN, inB, infM, realOf, commOf, hx1.2.1, inv_one, one_mul, mul_one]
           rfl)
       exact (congrFun (hP.rdq j hj β φ y) _).trans h2
-  case real => exact GlobalTheory.T.livechart_kernelVectors_realPoints_detPowers I hOk hPins l Z u R g c₀ s J hX hS hx P t r a k tl Ch₀ A ι w hP
-  case kval => exact GlobalTheory.T.liveCharts_kernel_eq_classSum_jets I hOk hPins l Z u R g c₀ s J hX hS hx P t r a k tl Ch₀ A ι w hP
+  case real => exact _root_.GlobalTheory.KJRealLive.clsKL_real I hOk hPins l Z u R g c₀ s J hX hS hx P t r a k tl Ch₀ A ι w hP
+  case kval => exact _root_.GlobalTheory.AdForm.ClsKLive.kval I hOk hPins l Z u R g c₀ s J hX hS hx P t r a k tl Ch₀ A ι w hP
 
 end GlobalTheory.KerLaws

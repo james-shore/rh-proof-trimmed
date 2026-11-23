@@ -217,7 +217,7 @@ theorem word_apply {E : H →L[ℂ] H} (hA : IsAvg σ K E) (b : G → Hk K)
 
 theorem stTransfer : StTransfer := by
   intro G _ K M hK hPI H _ _ _ σ _ E hA g
-  obtain ⟨T, hT, -, -⟩ := GlobalTheory.T.hecke_operators_span_and_faithful G K hK
+  obtain ⟨T, hT, -, -⟩ := _root_.GlobalTheory.CompanionTheory.HeckeBasis.heckeBasis G K hK
   have hfin : ∀ x : G, (MulAction.orbit K (x : G ⧸ K)).Finite := hK
   let S : G → Finset (G ⧸ K) := fun x => (hfin x).toFinset
   have hS : ∀ x, (↑(S x) : Set (G ⧸ K)) = MulAction.orbit K (x : G ⧸ K) :=

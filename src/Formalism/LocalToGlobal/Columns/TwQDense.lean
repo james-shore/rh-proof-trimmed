@@ -102,7 +102,7 @@ theorem qsp_dense (D : 𝓞 F) (hD : D ≠ 0) (hDv : D ∈ v.asIdeal) (k : GL (F
 
   let kO : Matrix (Fin n) (Fin n) O := fun i j => ⟨_, hk i j⟩
   let kiO : Matrix (Fin n) (Fin n) O := fun i j => ⟨_, hk' i j⟩
-  let RO : Matrix (Fin n) (Fin n) O := fun i j => ⟨_, glo_algMap_int v (r i j)⟩
+  let RO : Matrix (Fin n) (Fin n) O := fun i j => ⟨_, _root_.Formalism.UG.P.levelaf_int_mem_v v (r i j)⟩
   have hkk : kO * kiO = 1 := by
     have h1 : (O.subtype).mapMatrix (kO * kiO) = (O.subtype).mapMatrix 1 := by
       rw [map_mul, map_one]

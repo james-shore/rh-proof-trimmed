@@ -118,7 +118,7 @@ theorem cuts_mir_of_res : ∀ {F : Type} [NormedField F] [ProperSpace F] [IsUltr
     exact hz ⟨h, hpc⟩
   obtain ⟨h₀, hh₀⟩ := hz
   have hzc : cell z (U : Set (GL (Fin (m + 2)) F)) = cell (cor h₀) U := (Red.cell_eq_of_mem hh₀).symm
-  obtain ⟨B, hBc, _, hUB, hcell⟩ := GlobalTheory.T.exists_blockGroup_unipotentDoubleCosetCell_blockDiag_iff U hUc hUo
+  obtain ⟨B, hBc, _, hUB, hcell⟩ := _root_.GlobalTheory.JSW.Cut.Block.exists_blocks_cell_cor_iff U hUc hUo
   let B' : Subgroup (GL (Fin (m + 1)) F) := U.comap cor
   have hB'o : IsOpen (B' : Set (GL (Fin (m + 1)) F)) := hUo.preimage continuous_cor
   have hB'B : B' ≤ B := fun b hb => hUB b hb
@@ -130,7 +130,7 @@ theorem cuts_mir_of_res : ∀ {F : Type} [NormedField F] [ProperSpace F] [IsUltr
     show mir 1 0 ∈ U
     rw [mir_one]
     exact one_mem _
-  obtain ⟨s, -, hsU, hsd⟩ := GlobalTheory.T.unipotentDoubleCosetCell_finite_disjoint_iUnion B B' hBc hB'o hB'B h₀
+  obtain ⟨s, -, hsU, hsd⟩ := _root_.GlobalTheory.JSW.Cut.cell_finite_disjoint_union B B' hBc hB'o hB'B h₀
   choose T hT using fun x : GL (Fin (m + 1)) F => H B' hB'c hB'o L hL x
   refine ⟨∑ x ∈ s, T x, fun f hf hfU => ?_⟩
   have hB'f : ∀ b ∈ B', ∀ g, f (g * cor b) = f g := fun b hb g => hfU _ hb g

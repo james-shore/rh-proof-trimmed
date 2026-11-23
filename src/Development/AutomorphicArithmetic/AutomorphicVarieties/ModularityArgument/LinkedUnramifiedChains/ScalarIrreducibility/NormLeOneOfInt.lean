@@ -55,7 +55,4 @@ namespace UpperTheory.V.J
 
 end UpperTheory.V.J
 
-theorem UpperTheory.V.J.coPt :
-    ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) [Fr.IsCoef l c.O] (R : Type) [CommRing R] [Algebra c.O R] [IsCO c.O R] (y : R →ₐ[c.O] Qbar l),
-        Module.Finite c.O y.range ∧ (∀ a, ‖y a‖ ≤ 1) ∧ ∀ a ∈ maximalIdeal R, ‖y a‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.CoPoint.coPt
+alias UpperTheory.V.J.coPt := _root_.UpperTheory.Reformulated.B.CoPoint.coPt

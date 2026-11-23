@@ -95,13 +95,13 @@ theorem subMap_finite (X : Scheme.{0}) (_hX : IsNoetherian X) (F : X.Opensᵒᵖ
     let N : Submodule Γ(X, X.basicOpen g) (F.obj (op (X.basicOpen g))) :=
       (Algebra.adjoin Γ(X, X.basicOpen g) ((F.map (homOfLE hj).op).hom '' T j)).toSubmodule
     have hN : N.FG := fg_adjoin_of_finite ((hT j).image _) (fun x _ ↦ hint _ hD x)
-    obtain ⟨E, hE⟩ := GlobalTheory.T.exists_finset_pow_mul_mem_span_of_fg_localizationAway (R := Γ(X, W)) (A := F.obj (op W)) (R' := Γ(X, X.basicOpen g))
+    obtain ⟨E, hE⟩ := _root_.GlobalTheory.fg_localizationAway_span_finset (R := Γ(X, W)) (A := F.obj (op W)) (R' := Γ(X, X.basicOpen g))
       (A' := F.obj (op (X.basicOpen g))) g N hN
     refine ⟨E, fun b hb ↦ hE b ?_⟩
     have := (mem_sub F α V T).mp hb j (X.basicOpen g) hD (X.basicOpen_le g) hj
     rw [gen_eq_adjoin] at this
     exact this
-  have hfg : S.toSubmodule.FG := GlobalTheory.T.submodule_fg_of_span_eq_top_of_locally_pow_mul_mem S.toSubmodule s hs hloc
+  have hfg : S.toSubmodule.FG := _root_.GlobalTheory.submodule_fg_of_locally_le_fg S.toSubmodule s hs hloc
   letI := (subMap F α V T W).toAlgebra
   have hfin : Module.Finite Γ(X, W) S.toSubmodule := Module.Finite.iff_fg.mpr hfg
   let e : S.toSubmodule ≃ₗ[Γ(X, W)] sub F α V T W :=

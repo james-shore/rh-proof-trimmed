@@ -77,7 +77,7 @@ theorem val_pow_of_ne {K : UQ} {a : K.E} (ha : a ≠ 0) (n : ℕ) : val K.O (a ^
 theorem eta_overExt : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsUnrExt K K' d φ → Odd d → ∀ (B : InvAlg K) (ψ : K'.E →+* B.A) (hψ : ∀ e, ψ (φ e) = algebraMap K.E B.A e) (hσ : ∀ e, B.σ (ψ e) = ψ (K'.c e)) (x : B.Aˣ), B.σ (x : B.A) = x → K'.eta ((overExt φ B ψ hψ hσ).gramDet (x : B.A)) = K.eta (B.gramDet (x : B.A)) := by
   intro K K' d φ hU hd B ψ hψ hσ x _
   have hd0 : 0 < d := hd.pos
-  obtain ⟨w, hw0, hwv⟩ := GlobalTheory.T.exists_basis_trace_involution_det_unit_unramified K K' d φ hU hd0
+  obtain ⟨w, hw0, hwv⟩ := _root_.GlobalTheory.UnitLemma.Unr.exists_basis_trace_conj_unit K K' d φ hU hd0
   letI : Algebra K.E K'.E := φ.toAlgebra
   haveI : Module.Finite K.E K'.E := Module.finite_of_finrank_pos (by rw [hU.2.2.2.2]; exact hd0)
   letI : Algebra K'.E B.A := ψ.toAlgebra

@@ -145,7 +145,7 @@ theorem mem_rel_of_isKFinVec : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A 
 
   let ρK : Khat A a →* Module.End ℂ (WO (dblSp A) B → ℂ) := om.comp ((MonoidHom.inl _ _).comp (Khat A a).subtype)
   obtain ⟨e, n, α, β, he, hβ, hker, hrep⟩ :=
-    UpperTheory.Lit.Rallis.T.exists_continuous_kernel_reproducing_finite_vector (Khat A a) νK (WO (dblSp A) B) ρK f ((hfinIff f).1 hfK) (orbCont f hf)
+    _root_.UpperTheory.Lit.Rallis.FinVecKernel.exists_reproducing_kernel (Khat A a) νK (WO (dblSp A) B) ρK f ((hfinIff f).1 hfK) (orbCont f hf)
   set P : (WO (dblSp A) B → ℂ) → WO (dblSp A) B → ℂ := fun h w => ∫ k, e k * orb h k w ∂νK with hPdef
   have hPf : P f = f := funext fun w => (hrep w).symm
 
@@ -157,7 +157,7 @@ theorem mem_rel_of_isKFinVec : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A 
         (∀ u, IsThetaFunO ψ (dblSp A) B u → ∀ x y, M u (x * y) = M (om (y, 1) u) x) →
         ∀ x, M (P h) x = ∫ k, e k * M h (x * k) ∂νK := by
     intro h hh hK
-    obtain ⟨h1, h2⟩ := UpperTheory.Lit.Rallis.T.weighted_integral_mem_span_of_finiteDimensional_orbit (Khat A a) νK _ (orb h) e he ((hfinIff h).1 hK) (orbCont h hh)
+    obtain ⟨h1, h2⟩ := _root_.UpperTheory.Lit.Rallis.weightedIntegral_mem_span_and_map_integral (Khat A a) νK _ (orb h) e he ((hfinIff h).1 hK) (orbCont h hh)
     refine ⟨h1, fun M hMa hMs hMt x => ?_⟩
     have := h2 (fun φ => M φ x)
       (fun u hu v hv => by simp only [hMa (thSpan h hh u hu) (thSpan h hh v hv), Pi.add_apply])
@@ -194,11 +194,11 @@ theorem mem_rel_of_isKFinVec : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A 
     refine Finset.sum_congr rfl fun i _ => ?_
     simp_rw [mul_assoc]
     rw [integral_const_mul, mul_comm]
-  obtain ⟨X₀, hX₀fin, hX₀⟩ := UpperTheory.Lit.Rallis.T.exists_finiteDimensional_space_of_siegelWeilSections D ψ A B χ om hom ν 𝓨 hν a hIw n α
+  obtain ⟨X₀, hX₀fin, hX₀⟩ := _root_.UpperTheory.Lit.Rallis.SWFinSpan.swSec_mem_finiteDimensional D ψ A B χ om hom ν 𝓨 hν a hIw n α
   have inX₀ : ∀ h, IsThetaFunO ψ (dblSp A) B h → IsKFinVec om (Khat A a) h → swSec A B om ν 𝓨 (P h) ∈ X₀ :=
     fun h hh hK => hX₀ _ (thP h hh hK) _ (hKer h hh hK)
 
-  obtain ⟨U, hUo, hfU, happ⟩ := UpperTheory.Lit.Rallis.T.thetaFun_approx_by_fockVectors_of_cartanInvolutions D ψ hom.std θ hθ (dblSp A) B μ 𝓕 hμ sS sB hsS hsB f hf
+  obtain ⟨U, hUo, hfU, happ⟩ := _root_.UpperTheory.Lit.Rallis.FockDensCart.fockDense_cart D ψ hom.std θ hθ (dblSp A) B μ 𝓕 hμ sS sB hsS hsB f hf
   choose g hgF hgU hgs using fun j : ℕ => happ j ((j : ℝ≥0∞)⁻¹) (ENNReal.inv_pos.2 (ENNReal.natCast_ne_top j))
   have hgK : ∀ j, IsKFinVec om (Khat A a) (g j) := fun j =>
     GlobalTheory.Core.Rk.IP.isKFinVec_of_isFockVec D ψ θ (dblSp A) B 1 χ om sS sB hom hθ hsS hsB (Khat A a)
@@ -282,30 +282,13 @@ theorem mem_rel_of_isKFinVec : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A 
     have hl := ENNReal.Tendsto.const_mul (hsob d) (Or.inr hK0t)
     rw [mul_zero] at hl
     exact tendsto_of_tendsto_of_tendsto_of_le_of_le tendsto_const_nhds hl (fun _ => zero_le) hbd
-  exact UpperTheory.Lit.Rallis.T.pointwise_limit_mem_graphRelation_of_finiteDimensional (GA D (dblSp A)) R hR X₀ hX₀fin (fun j => swSec A B om ν 𝓨 (P (g j))) (fun j => L (P (g j)))
+  exact _root_.UpperTheory.Lit.Rallis.graph_finDim_mem_of_pointwise_tendsto (GA D (dblSp A)) R hR X₀ hX₀fin (fun j => swSec A B om ν 𝓨 (P (g j))) (fun j => L (P (g j)))
     (swSec A B om ν 𝓨 f) (L f) (fun j => ⟨inX₀ _ (hgth j) (hgK j), inR j⟩)
-    (conv _ swAdd swSmul' swTr' (UpperTheory.Lit.Rallis.T.siegelWeilSection_bounded_by_sobolevSeminorm D ψ A B χ om hom θ hθ ν 𝓨 hν μ 𝓕 hμ))
+    (conv _ swAdd swSmul' swTr' (_root_.UpperTheory.Lit.Rallis.ThetaDens.swSec_sobBdd D ψ A B χ om hom θ hθ ν 𝓨 hν μ 𝓕 hμ))
     (conv L LAdd hLsmul LTr hLbdd)
 end UpperTheory.Lit.Rallis.FockFinite
 
 end
-end
-
-section
-open scoped ComplexConjugate Matrix NNReal ENNReal TensorProduct Classical
-open MeasureTheory NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.Eis GlobalTheory.MixModel GlobalTheory.RegSW GlobalTheory.RegSch
-open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift (RealMat IsFockVec)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero (swSec sZero IsKFinVec delta ThetaClause)
-open GlobalTheory.Core.Rk.SW (sch)
-open GlobalTheory.Mem.AutSpace (SmFun)
-open GlobalTheory.Size (sobO thetaLevel)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.ThetaDens
-
-theorem _root_.UpperTheory.Lit.Rallis.T.graphRelation_extends_from_fockVectors_to_kFinite : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A B : HSp D) (χ : (AE D)ˣ →* Circle) (om : GA D (dblSp A) × GA D B →* Module.End ℂ (WO (dblSp A) B → ℂ)), IsWeilDatumO ψ (dblSp A) B 1 χ om → ∀ θ : InfFam D, IsInfFam θ → ∀ (ν : Measure (WO A B)) (𝓨 : Set (WO A B)), IsCovolOne (ratL B A) ν 𝓨 → ∀ (μ : Measure (WO (dblSp A) B)) (𝓕 : Set (WO (dblSp A) B)), IsCovolOne (ratL B (dblSp A)) μ 𝓕 → ∀ a : GL (Fin A.rank) (AE D), IsMaj A a → HasIwasawa D.sp.cm.sig (dblSp A).gram (Khat A a) → ∀ (sS : RealMat (dblSp A)) (sB : RealMat B), (∀ τ, IsCartanInv (gramAt D (dblSp A) τ) (sS τ)) → (∀ τ, IsCartanInv (gramAt D B τ) (sB τ)) → (∀ k ∈ Khat A a, ∀ τ, compAt θ τ (Formalism.L2.Theta.mt (dblSp A) k) * sS τ = sS τ * compAt θ τ (Formalism.L2.Theta.mt (dblSp A) k)) → ∀ L : (WO (dblSp A) B → ℂ) → GA D (dblSp A) → ℂ, (∀ f f', IsThetaFunO ψ (dblSp A) B f → IsThetaFunO ψ (dblSp A) B f' → L (f + f') = L f + L f') → (∀ (c : ℂ) f, IsThetaFunO ψ (dblSp A) B f → L (c • f) = c • L f) → (∀ f, IsThetaFunO ψ (dblSp A) B f → ∀ x g, L (om (x, 1) f) g = L f (g * x)) → (SobBdd ψ θ μ 𝓕 fun f x => ‖L f x‖ₑ) → ∀ R : Submodule ℂ ((GA D (dblSp A) → ℂ) × (GA D (dblSp A) → ℂ)), (∀ E, (0, E) ∈ R → E = 0) → (∀ f, IsFockVec ψ θ (dblSp A) B sS sB f → (swSec A B om ν 𝓨 f, L f) ∈ R) → ∀ f, IsThetaFunO ψ (dblSp A) B f → IsKFinVec om (Khat A a) f → (swSec A B om ν 𝓨 f, L f) ∈ R := by
-  first | exact @UpperTheory.Lit.Rallis.FockFinite.mem_rel_of_isKFinVec | exact UpperTheory.Lit.Rallis.FockFinite.mem_rel_of_isKFinVec | (intros; apply UpperTheory.Lit.Rallis.FockFinite.mem_rel_of_isKFinVec <;> assumption)
 end
 
 section
@@ -422,7 +405,7 @@ theorem siegelWeil_kFin : GlobalTheory.Published.SiegelWeilUnitaryConvergent →
       Integrable (AutomorphicL2Unitary.descend (GQ B) fun h => thetaKO om g h f) (autMeasure B m) :=
     fun f hf g => GlobalTheory.WeilThetaInt.integrable_thetaKO hWc D A B m hm h1 (Or.inr hwitt) ψ χ om hW f hf g
 
-  have hint := UpperTheory.Lit.Rallis.T.absThetaIntegral_le_sobolevSeminorm D ψ (dblSp A) B 1 χ om hW θ hθ μ 𝓕 hμ m hm id (fun _ _ _ _ => rfl)
+  have hint := _root_.UpperTheory.Lit.Rallis.ThetaDens.sobBdd_absThetaInt D ψ (dblSp A) B 1 χ om hW θ hθ μ 𝓕 hμ m hm id (fun _ _ _ _ => rfl)
     (fun _ _ _ => rfl) (sobCont_id ψ θ μ 𝓕) (fun _ _ _ => rfl) (fun f hf => hi f hf 1)
   have hbdd : SobBdd ψ θ μ 𝓕 fun f x => ‖GlobalTheory.ThetaMean.thetaMean om m f x‖ₑ := by
     intro U hU K hK'
@@ -437,7 +420,7 @@ theorem siegelWeil_kFin : GlobalTheory.Published.SiegelWeilUnitaryConvergent →
       _ ≤ ‖((autMeasure B m).real Set.univ)⁻¹‖ₑ * (C * sobO ψ θ μ 𝓕 d f) := by
           gcongr; exact hC f hf x hx
       _ = _ := by rw [ENNReal.coe_mul, mul_assoc, enorm_eq_nnnorm]
-  have key := UpperTheory.Lit.Rallis.T.graphRelation_extends_from_fockVectors_to_kFinite D ψ A B χ om hW θ hθ ν 𝓨 hν μ 𝓕 hμ a ha hI _ (GlobalTheory.Doubling.frameInv θ B b) hsS hsB hcomm
+  have key := _root_.UpperTheory.Lit.Rallis.FockFinite.mem_rel_of_isKFinVec D ψ A B χ om hW θ hθ ν 𝓨 hν μ 𝓕 hμ a ha hI _ (GlobalTheory.Doubling.frameInv θ B b) hsS hsB hcomm
     (GlobalTheory.ThetaMean.thetaMean om m) (fun f f' hf hf' => thetaMean_add m hi f f' hf hf')
     (fun c f _ => thetaMean_smul m c f) (fun f _ x g => thetaMean_om m f x g) hbdd
     (valuePairs A a (sZero A B)) (valuePairs_graph a (sZero A B))
@@ -447,23 +430,6 @@ theorem siegelWeil_kFin : GlobalTheory.Published.SiegelWeilUnitaryConvergent →
 end UpperTheory.Lit.Rallis.SiegelWeilFinite
 
 end
-end
-
-section
-open scoped ComplexConjugate Matrix NNReal ENNReal TensorProduct Classical
-open MeasureTheory NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.Eis GlobalTheory.MixModel GlobalTheory.RegSW GlobalTheory.RegSch
-open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift (RealMat IsFockVec)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero (swSec sZero IsKFinVec delta ThetaClause)
-open GlobalTheory.Core.Rk.SW (sch)
-open GlobalTheory.Mem.AutSpace (SmFun)
-open GlobalTheory.Size (sobO thetaLevel)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.ThetaDens
-
-theorem _root_.UpperTheory.Lit.Rallis.T.siegelWeil_convergent_range_kFinite_thetaFun : GlobalTheory.Published.SiegelWeilUnitaryConvergent → GlobalTheory.Published.WeilThetaConvergence → ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A B : HSp D) (χ : (AE D)ˣ →* Circle) (om : GA D (dblSp A) × GA D B →* Module.End ℂ (WO (dblSp A) B → ℂ)), IsWeilDatumO ψ (dblSp A) B 1 χ om → A.rank < B.rank → B.rank ≤ 2 * A.rank → A.rank + Formalism.MainNotions.SchurIrreducible.wittIdx B < B.rank → ∀ a : GL (Fin A.rank) (AE D), IsMaj A a → HasIwasawa D.sp.cm.sig (dblSp A).gram (Khat A a) → ∀ θ : InfFam D, IsInfFam θ → ∀ (ν : Measure (WO A B)) (𝓨 : Set (WO A B)), IsCovolOne (ratL B A) ν 𝓨 → ∀ m : Measure (GA D B), m.IsHaarMeasure → ∀ f, IsThetaFunO ψ (dblSp A) B f → IsKFinVec om (Khat A a) f → EisValueAt A (flat A a (swSec A B om ν 𝓨 f) (sZero A B)) (sZero A B) (GlobalTheory.ThetaMean.thetaMean om m f) := by
-  first | exact @UpperTheory.Lit.Rallis.SiegelWeilFinite.siegelWeil_kFin | exact UpperTheory.Lit.Rallis.SiegelWeilFinite.siegelWeil_kFin | (intros; apply UpperTheory.Lit.Rallis.SiegelWeilFinite.siegelWeil_kFin <;> assumption)
 end
 
 section
@@ -549,7 +515,7 @@ theorem modGrowth_of_integrable (hW : IsWeilDatumO ψ S T χS χT om) {m : Measu
     GlobalTheory.Grow.ModGrowth S fun g => ∫ q, ‖descend (GQ T) (fun h => thetaKO om g h f) q‖ ∂autMeasure T m := by
   obtain ⟨θ, hθ⟩ := GlobalTheory.AdelicU.exists_isInfFam D
   obtain ⟨μ, 𝓕, hμ⟩ := GlobalTheory.Size.exists_isCovolOne S T
-  have hB := UpperTheory.Lit.Rallis.T.absThetaIntegral_le_sobolevSeminorm D ψ S T χS χT om hW θ hθ μ 𝓕 hμ m hm id (fun _ _ _ _ => rfl) (fun _ _ _ => rfl)
+  have hB := _root_.UpperTheory.Lit.Rallis.ThetaDens.sobBdd_absThetaInt D ψ S T χS χT om hW θ hθ μ 𝓕 hμ m hm id (fun _ _ _ _ => rfl) (fun _ _ _ => rfl)
     (sobCont_id ψ θ μ 𝓕) (fun _ _ _ => rfl) (fun f hf => hI f hf 1)
   obtain ⟨U, hU, hl⟩ := GlobalTheory.Size.isTheta_iff_level.1 hf
   obtain ⟨V, V', hV, -, hfix⟩ := GlobalTheory.Mem.ThetaLevel.exists_level D ψ hW.std S T om (GlobalTheory.Ker.isWeak_of_datum hW)
@@ -589,23 +555,6 @@ theorem absTheta_modGrowth : GlobalTheory.Published.WeilThetaConvergence → ∀
 end UpperTheory.Lit.Rallis.ThetaAbsGrowth
 
 end
-end
-
-section
-open scoped ComplexConjugate Matrix NNReal ENNReal TensorProduct Classical
-open MeasureTheory NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.Eis GlobalTheory.MixModel GlobalTheory.RegSW GlobalTheory.RegSch
-open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift (RealMat IsFockVec)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero (swSec sZero IsKFinVec delta ThetaClause)
-open GlobalTheory.Core.Rk.SW (sch)
-open GlobalTheory.Mem.AutSpace (SmFun)
-open GlobalTheory.Size (sobO thetaLevel)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.ThetaDens
-
-theorem _root_.UpperTheory.Lit.Rallis.T.doubledPair_absThetaIntegral_moderateGrowth : GlobalTheory.Published.WeilThetaConvergence → ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A B : HSp D) (χ : (AE D)ˣ →* Circle) (om : GA D (dblSp A) × GA D B →* Module.End ℂ (WO (dblSp A) B → ℂ)), IsWeilDatumO ψ (dblSp A) B 1 χ om → 1 ≤ A.rank → (Formalism.MainNotions.SchurIrreducible.wittIdx B = 0 ∨ A.rank + Formalism.MainNotions.SchurIrreducible.wittIdx B < B.rank) → ∀ m : Measure (GA D B), m.IsHaarMeasure → ∀ f, IsThetaFunO ψ (dblSp A) B f → GlobalTheory.Grow.ModGrowth (dblSp A) fun g => ∫ q, ‖descend (GQ B) (fun h => thetaKO om g h f) q‖ ∂autMeasure B m := by
-  first | exact @UpperTheory.Lit.Rallis.ThetaAbsGrowth.absTheta_modGrowth | exact UpperTheory.Lit.Rallis.ThetaAbsGrowth.absTheta_modGrowth | (intros; apply UpperTheory.Lit.Rallis.ThetaAbsGrowth.absTheta_modGrowth <;> assumption)
 end
 
 section
@@ -662,7 +611,7 @@ theorem normSq_thetaKO_modGrowth : GlobalTheory.Published.WeilThetaConvergence �
     simp only [GlobalTheory.AutomorphicL2Unitary.descend]
     exact (knorm g _).symm
   refine ⟨hL2, ?_⟩
-  obtain ⟨C₁, N, hC₁⟩ := UpperTheory.Lit.Rallis.T.doubledPair_absThetaIntegral_moderateGrowth hW D ψ A B χB omh homh hA hw mH hmH _ hφ
+  obtain ⟨C₁, N, hC₁⟩ := _root_.UpperTheory.Lit.Rallis.ThetaAbsGrowth.absTheta_modGrowth hW D ψ A B χB omh homh hA hw mH hmH _ hφ
   have hE : ∀ x, ∫ q, ‖descend (GQ B) (fun h => thetaKO omh x h (delta A B Φ Φ)) q‖ ∂autMeasure B mH ≤
       C₁ * GlobalTheory.Grow.height (dblSp A) x ^ N := by
     intro x
@@ -697,23 +646,6 @@ theorem normSq_thetaKO_modGrowth : GlobalTheory.Published.WeilThetaConvergence �
         rw [mul_pow, ← pow_mul]; ring
 
 end UpperTheory.Lit.Rallis.ThetaSq
-end
-
-section
-open scoped ComplexConjugate Matrix NNReal ENNReal TensorProduct Classical
-open MeasureTheory NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum
-open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.Eis GlobalTheory.MixModel GlobalTheory.RegSW GlobalTheory.RegSch
-open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift (RealMat IsFockVec)
-open GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero (swSec sZero IsKFinVec delta ThetaClause)
-open GlobalTheory.Core.Rk.SW (sch)
-open GlobalTheory.Mem.AutSpace (SmFun)
-open GlobalTheory.Size (sobO thetaLevel)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.ThetaDens
-
-theorem _root_.UpperTheory.Lit.Rallis.T.petersson_normSq_thetaKernel_moderateGrowth : GlobalTheory.Published.WeilThetaConvergence → ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A B : HSp D) (χA χB : (AE D)ˣ →* Circle) (om : GA D A × GA D B →* Module.End ℂ (WO A B → ℂ)) (omh : GA D (dblSp A) × GA D B →* Module.End ℂ (WO (dblSp A) B → ℂ)), IsWeilDatumO ψ A B χA χB om → IsWeilDatumO ψ (dblSp A) B 1 χB omh → ThetaClause ψ A B χB om omh → 1 ≤ A.rank → (Formalism.MainNotions.SchurIrreducible.wittIdx B = 0 ∨ A.rank + Formalism.MainNotions.SchurIrreducible.wittIdx B < B.rank) → ∀ mH : Measure (GA D B), mH.IsHaarMeasure → ∀ Φ, IsThetaFunO ψ A B Φ → (∀ g, MemL2Quotient (GQ B) mH fun h => thetaKO om g h Φ) ∧ GlobalTheory.Grow.ModGrowth A fun g => GlobalTheory.Cusp.petersson B mH (fun h => thetaKO om g h Φ) fun h => thetaKO om g h Φ := by
-  first | exact @UpperTheory.Lit.Rallis.ThetaSq.normSq_thetaKO_modGrowth | exact UpperTheory.Lit.Rallis.ThetaSq.normSq_thetaKO_modGrowth | (intros; apply UpperTheory.Lit.Rallis.ThetaSq.normSq_thetaKO_modGrowth <;> assumption)
 end
 
 section

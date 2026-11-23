@@ -65,16 +65,11 @@ open MeasureTheory
 
 namespace GlobalTheory.UnitaryBC
 
-theorem exists_finset_detecting_of_finiteDimensional {X : Type} (W : Submodule ℂ (X → ℂ))
-    [FiniteDimensional ℂ W] :
-    ∃ s : Finset X, ∀ v : W, (∀ x ∈ s, (v : X → ℂ) x = 0) → v = 0 := by
-  apply _root_.GlobalTheory.FinitePointsDetect.finite_points_detect
-
 theorem exists_interpolation_of_finiteDimensional {X : Type} (W : Submodule ℂ (X → ℂ))
     [FiniteDimensional ℂ W] :
     ∃ (s : Finset X) (w : s → X → ℂ), ∀ v ∈ W, ∀ y, v y = ∑ x : s, v x * w x y := by
   classical
-  obtain ⟨s, hs⟩ := exists_finset_detecting_of_finiteDimensional W
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.FinitePointsDetect.finite_points_detect W
   let r : W →ₗ[ℂ] (s → ℂ) := LinearMap.pi fun x : s => (LinearMap.proj (x : X)) ∘ₗ W.subtype
   have hr : LinearMap.ker r = ⊥ := by
     rw [LinearMap.ker_eq_bot']

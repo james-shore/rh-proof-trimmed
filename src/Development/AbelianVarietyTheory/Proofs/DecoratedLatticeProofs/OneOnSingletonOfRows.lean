@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.FamilyPacketOfEquivalentStatement
 
 @[expose] public section
 
@@ -59,13 +60,9 @@ theorem mR_eq_m (D : D7) : Formalism.L2.SG.RowsConc.mR D = (D.R.m : ℝ) := by
   unfold Formalism.L2.SG.RowsConc.mR
   rw [h]
 
-theorem log_b_eq (D : D7) (large₂ : SizeData₂ D) : Real.log large₂.sc.b = large₂.sc.L := by
-  unfold Formalism.BasicNotions.Scale.b
-  exact Real.log_exp _
-
 theorem gamB_eq_gamL (D : D7) (large₂ : SizeData₂ D) (C : ℝ) : gamB D large₂ C = gamL D large₂.sc.L C := by
   unfold gamB gamL
-  rw [mR_eq_m, log_b_eq]
+  rw [mR_eq_m, _root_.Formalism.MainNotions.BridgeLemma.d_log_b]
 
 theorem epsNG_le_gamL (D : D7) (large₂ : SizeData₂ D) (C : ℝ) : epsNG D large₂ C ≤ gamL D large₂.sc.L C := by
   unfold epsNG
@@ -73,7 +70,7 @@ theorem epsNG_le_gamL (D : D7) (large₂ : SizeData₂ D) (C : ℝ) : epsNG D la
     inv_le_one_of_one_le₀ (one_le_pow₀ (by norm_num))
   have h2 : Real.exp (C * Formalism.L2.SG.RowsConc.mR D ^ 5 * D.R.f * Real.log large₂.sc.b) = gamL D large₂.sc.L C := by
     unfold gamL
-    rw [mR_eq_m, log_b_eq]
+    rw [mR_eq_m, _root_.Formalism.MainNotions.BridgeLemma.d_log_b]
   rw [h2]
   exact mul_le_of_le_one_left (Real.exp_pos _).le h1
 

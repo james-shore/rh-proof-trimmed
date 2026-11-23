@@ -133,7 +133,7 @@ theorem iwasawa_adapted : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F �
   have e2 : fr τ * (infMat D.sp.cm.sig V.gram (θ τ) (g⁻¹ * b))⁻¹ =
       fr τ * (infMat D.sp.cm.sig V.gram (θ τ) b)⁻¹ * (1 + x τ * u τ + w τ * (x τ)ᴴ * gramAt D V τ) := by
     rw [e1, hg τ, ← Matrix.mul_assoc]
-  obtain ⟨k, S, hk⟩ := GlobalTheory.T.involution_stable_subspace_coordinate (ε τ) _ (hJ τ)
+  obtain ⟨k, S, hk⟩ := _root_.GlobalTheory.CompanionTheory.JStable.exists_KG_coordinate (ε τ) _ (hJ τ)
   refine ⟨k, S, ?_⟩
   beta_reduce
   rw [e2]

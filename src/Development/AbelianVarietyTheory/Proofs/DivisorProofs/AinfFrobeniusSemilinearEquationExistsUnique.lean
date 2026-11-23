@@ -101,10 +101,10 @@ theorem key (p : ℕ) [Fact p.Prime] (O : Type) [CommRing O] [Fact ¬IsUnit (p :
     (hN : ∀ j i, IsNilpotent (Ideal.Quotient.mk (Ideal.span {(p : O)}) (WittVector.fontaineTheta O p
       ((fun w : ι → Ainf p O => M.mulVec fun k => WittVector.frobenius (w k))^[N] (Pi.single j 1) i)))) :
     ∀ c : ι → Ainf p O, ∃! v : ι → Ainf p O, v - M.mulVec (fun k => WittVector.frobenius (v k)) = c := by
-  apply witt_solve p (PreTilt O p) ι M
-  apply perf_solve p (ModP O p) ι (M.map WittVector.constantCoeff)
+  apply _root_.GlobalTheory.wittSolve_unique p (PreTilt O p) ι M
+  apply _root_.GlobalTheory.perfection_frobenius_solve p (ModP O p) ι (M.map WittVector.constantCoeff)
   intro n
-  apply semilin_nil p (ModP O p) ι _ N
+  apply _root_.GlobalTheory.frobSemilinear_iterate_eq_zero p (ModP O p) ι _ N
   intro j i
   have e1 : (Pi.single j 1 : ι → ModP O p) =
       fun k => Perfection.coeff (ModP O p) p n ((Pi.single j 1 : ι → PreTilt O p) k) := by

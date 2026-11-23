@@ -137,7 +137,7 @@ theorem nq_onCut_pair (P : M.Par) (hOK : P.OK) (l : ℕ) (hl1 : 1 ≤ l) (hlk : 
       Pst P.k P.r lam c Y * Pst P.k P.r lam c (Y + 1) ≤
         b ^ (8 * P.r + 20) / (P.T * P.T') * (M.qC P (Y : ℂ)).re := by
   have hρ := interlaces_of_OK P hOK
-  have hq := Formalism.FourierDecayAlt.P.q_positive_interlacing P.k P.u P.u' P.lo l Y P.T P.T' hl1 hlk hρ hY hOK.T_pos hOK.T'_pos
+  have hq := _root_.Formalism.FourierDecayAlt.P.Interlace.qPositive P.k P.u P.u' P.lo l Y P.T P.T' hl1 hlk hρ hY hOK.T_pos hOK.T'_pos
   have hTT : 0 < P.T * P.T' := mul_pos hOK.T_pos hOK.T'_pos
   rw [qC_ofReal, Complex.ofReal_re]
   refine ⟨hq, ?_⟩

@@ -75,19 +75,13 @@ end GlobalTheory.RigHom
 
 namespace GlobalTheory.RigHom
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  show Spec.map _ ≫ Spec.map _ = Spec.map _
-  rw [← Spec.map_comp]
-  rfl
-
 theorem comp_eq_of_const : ∀ {R : Type} [CommRing R] [IsDomain R] (Q : DegPre R) {W₀ : Type} [CommRing W₀] (ιb : W₀ →+* R) (B₀ : Over (Sp W₀)) [GrpObj B₀] (β : Q.P.A.left ⟶ B₀.left), IsGrpPullback Q.P.A B₀ (spMap ιb) β → ∀ (k : Type) [Field k] (ρ : R →+* DualNumber k), ρ.comp ιb = GlobalTheory.RigChart.constHom (ρ.comp ιb) → ∀ (B' : Over (Sp (DualNumber k))) [GrpObj B'] (π₁ π₂ : B'.left ⟶ Q.P.A.left), IsGrpPullback B' Q.P.A (spMap ρ) π₁ → IsGrpPullback B' Q.P.A (spMap (GlobalTheory.RigChart.constHom ρ)) π₂ → (∀ (Z : Scheme.{0}) (x : Z ⟶ B'.left) (y : Z ⟶ Sp k), x ≫ B'.hom = y ≫ spMap (TrivSqZeroExt.fstHom k k k).toRingHom → x ≫ π₁ = x ≫ π₂) → π₁ ≫ β = π₂ ≫ β := by
   intro R _ _ Q W₀ _ ιb B₀ _ β hβ k _ ρ hρ B' _ π₁ π₂ h₁ h₂ h0
   have c₁ : IsGrpPullback B' B₀ (spMap (ρ.comp ιb)) (π₁ ≫ β) :=
-    (IsGrpPullback.comp h₁ hβ).congr (spMap_comp' ιb ρ) rfl
+    (IsGrpPullback.comp h₁ hβ).congr (_root_.GlobalTheory.spMap_comp_ring ιb ρ) rfl
   have c₂ : IsGrpPullback B' B₀ (spMap (ρ.comp ιb)) (π₂ ≫ β) := by
     refine (IsGrpPullback.comp h₂ hβ).congr ?_ rfl
-    rw [spMap_comp', hρ]
+    rw [_root_.GlobalTheory.spMap_comp_ring, hρ]
     rfl
   have hab : IsAbelianScheme B' := GlobalTheory.PolPull.isAbelianScheme_of_isGrpPullback Q.P.isAb h₁
   obtain ⟨e₁, he₁, f₁⟩ := grpPullback_iso c₁ (isGrpPullback_pullback B₀ (spMap (ρ.comp ιb)))
@@ -104,7 +98,7 @@ theorem comp_eq_of_const : ∀ {R : Type} [CommRing R] [IsDomain R] (Q : DegPre 
       pullback.fst B'.hom (spMap (Ideal.Quotient.mk I)) ≫ π₂ := by
     refine h0 _ _ (pullback.snd B'.hom (spMap (Ideal.Quotient.mk I)) ≫
       spMap ((Ideal.Quotient.mk I).comp (algebraMap k (DualNumber k)))) ?_
-    rw [pullback.condition, Category.assoc, spMap_comp']
+    rw [pullback.condition, Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
     congr 2
     exact mk_ker_fst_eq k
   have key : e₁.hom = e₂.hom := by

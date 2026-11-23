@@ -105,7 +105,7 @@ theorem sizeRows_at {D : D7} {L : SizeData₂ D} {Pm : ParameterChoice' D L} (Tp
         = L.sc.x * (L.etaSz * L.sc.X' * D.R.n) * Real.exp (L.sc.L * (4 / 5)) := by ring
       _ ≤ L.sc.x * Real.exp (L.sc.L / 5) * Real.exp (L.sc.L * (4 / 5)) := by gcongr
       _ = L.sc.x * L.sc.b := by rw [mul_assoc, e5]
-  · apply GlobalTheory.T.thickSet_density_le_inv_four_Lw
+  · apply _root_.GlobalTheory.thick_density_le
     have a1 : L.sc.x ^ (2 : ℝ) ≤ L.sc.x ^ (2 + 8 * L.sc.eps) :=
       Real.rpow_le_rpow_of_exponent_le hx1.le (by linarith)
     rw [Real.rpow_two] at a1

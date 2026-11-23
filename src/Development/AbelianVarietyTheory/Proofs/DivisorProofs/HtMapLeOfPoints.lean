@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.MeanHeightDescent.AverageDegreeBounds.DescentSlope
 
 @[expose] public section
 
@@ -154,7 +155,7 @@ theorem descent : ∀ (K V W : Type) [Field K] [NumberField K] [_root_.NumberFie
     exact_mod_cast hnorm v.embedding f
   have hmm : -(2 * Λ) ≤ muMinDef bn Xn Bn := by
     obtain ⟨s, hsB, hsn, hsp⟩ := hs
-    refine Formalism.ExtensionFiltration.spanMuMin K _ _ bn Xn hXn Bn Λ hBnfg hBn0
+    refine _root_.Formalism.ExtensionFiltration.span_min_slope K _ _ bn Xn hXn Bn Λ hBnfg hBn0
       ⟨⋃ i : Fin n, (fun y => (Pi.single i y : Fin n → W)) '' s, ?_, ?_, ?_⟩
     · intro x hx
       obtain ⟨i, y, hy, rfl⟩ := Set.mem_iUnion.1 hx
@@ -174,7 +175,7 @@ theorem descent : ∀ (K V W : Type) [Field K] [NumberField K] [_root_.NumberFie
       rw [Submodule.map_span] at h2
       exact Submodule.span_mono (Set.subset_iUnion
         (fun i : Fin n => (fun y => (Pi.single i y : Fin n → W)) '' s) i) h2
-  have hd := Formalism.ExtensionFiltration.descentSlope K V _ (Fin n → W) _ b X bn Xn hX hXn Φ A Bn hAfg hBnfg hA0 hΦinj hΦle
+  have hd := _root_.Formalism.ExtensionFiltration.descent_slope K V _ (Fin n → W) _ b X bn Xn hX hXn Φ A Bn hAfg hBnfg hA0 hΦinj hΦle
   rw [p2] at hd
   have hle : rkK A ≤ rkK Bn := by
     haveI : Module.Finite K (Fin n → W) := Module.Finite.of_basis bn

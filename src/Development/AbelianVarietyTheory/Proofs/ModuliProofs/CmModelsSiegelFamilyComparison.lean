@@ -84,12 +84,7 @@ theorem exists_section {S S' : Scheme.{0}} {f : S' ⟶ S} {t : SAB H S} {t' : SA
   ⟨Over.homMk (m.cart.1.lift x (𝟙 S') (hx.trans (Category.id_comp f).symm)) (m.cart.1.lift_snd _ _ _),
     m.cart.1.lift_fst _ _ _⟩
 
-theorem exists_cancel {S S' S'' : Scheme.{0}} {t : SAB H S} {t' : SAB H S'} {t'' : SAB H S''} {f : S' ⟶ S}
-    {h : S'' ⟶ S} (m : SABMap t' t f) (n : SABMap t'' t h) (g : S'' ⟶ S') (e : g ≫ f = h) :
-    ∃ m' : SABMap t'' t' g, m'.φ ≫ m.φ = n.φ := by
-  subst e
-  obtain ⟨m', hm⟩ := sabCancel pullCubCancel E H _ _ _ t t' t'' f g m n
-  exact ⟨m', hm.symm⟩
+alias exists_cancel := _root_.GlobalTheory.LevelCover.sab_cancel
 
 theorem isAbelianScheme_of_proper {S : Scheme.{0}} (t : SAB H S) (h : IsProper t.G.hom) : IsAbelianScheme t.G :=
   ⟨t.comm, t.semi.smooth, h, t.semi.geomConnected⟩

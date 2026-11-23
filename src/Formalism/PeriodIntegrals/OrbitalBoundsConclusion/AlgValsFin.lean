@@ -44,8 +44,5 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem algebraic_values_finite (L : Type) [Field L] [NumberField L] : PI.AlgValsFin.AlgValsFin L :=
-  PI.AlgValsFin.W.algValsFin_main L
-
 theorem algValsFin (L : Type) [Field L] [NumberField L] : PI.AlgValsFin.AlgValsFin L :=
-  algebraic_values_finite L
+  _root_.PI.AlgValsFin.W.algValsFin_main L

@@ -99,16 +99,7 @@ theorem comp_real : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : HSp D}
 
-theorem heisO_add' (u : WO S T) (f g : WO S T → ℂ) :
-    heisO ψ S T u (f + g) = heisO ψ S T u f + heisO ψ S T u g := by
-  funext x
-  simp only [heisO, Pi.add_apply]
-  ring
-
-theorem heisO_smul' (u : WO S T) (a : ℂ) (f : WO S T → ℂ) : heisO ψ S T u (a • f) = a • heisO ψ S T u f := by
-  funext x
-  simp only [heisO, Pi.smul_apply, smul_eq_mul]
-  ring
+alias heisO_smul' := _root_.GlobalTheory.ThetaAllChar.heisO_smul
 
 theorem vac_heisO_fin (hθ : IsInfFam θ)
     {J : D.what₂.Tau → Matrix (Fin T.rank) (Fin S.rank) ℂ → Matrix (Fin T.rank) (Fin S.rank) ℂ}
@@ -119,7 +110,7 @@ theorem vac_heisO_fin (hθ : IsInfFam θ)
   have h := hf τ z
   unfold annih at h ⊢
   rw [← GlobalTheory.Hk3.FiniteHeis.heisO_dRho ψ hθ hu, ← GlobalTheory.Hk3.FiniteHeis.heisO_dRho ψ hθ hu, ← heisO_smul',
-    ← heisO_add', h]
+    ← _root_.GlobalTheory.ThetaAllChar.heisO_add, h]
   funext x
   simp [heisO]
 
@@ -186,7 +177,7 @@ def vacSub (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ) (sS : D.what₂.Tau �
   carrier := {f | IsThetaFunO ψ S T f ∧ (∀ u ∈ U, u.map (infPart D) = 0 → heisO ψ S T u f = f) ∧
     ∀ τ, IsFockVacAt (heisO ψ S T) θ τ (cplxO (sS τ) (sT τ)) f}
   add_mem' := fun {f g} hf hg => ⟨GlobalTheory.WeilVacMove.isTheta_add hf.1 hg.1,
-    fun u hu h0 => by rw [heisO_add', hf.2.1 u hu h0, hg.2.1 u hu h0],
+    fun u hu h0 => by rw [_root_.GlobalTheory.ThetaAllChar.heisO_add, hf.2.1 u hu h0, hg.2.1 u hu h0],
     fun τ z => by rw [GlobalTheory.FockIndep.annih_add hψ hθ τ _ z hf.1 hg.1, hf.2.2 τ z, hg.2.2 τ z, add_zero]⟩
   zero_mem' := ⟨GlobalTheory.WeilVacMove.isTheta_zero, fun u _ _ => funext fun x => by simp [heisO],
     fun τ z => by
@@ -232,7 +223,7 @@ theorem irr_vac : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) 
     (∀ τ, IsFockVacAt (heisO ψ S T) θ τ (cplxO (sS τ) (sT τ)) e) →
     (∀ w : WO S T, w.map (infPart D) = 0 → thetaIP μ 𝓕 h (heisO ψ S T w e) = 0) → h = 0 ∨ e = 0 := by
   intro D ψ θ S T hψ hθ sS sT hcS hcT μ 𝓕 hcv h e hh he vh ve hw
-  refine irr_theta D ψ S T hψ μ 𝓕 hcv h e hh he fun w => ?_
+  refine _root_.GlobalTheory.ThetaIrred.orth_heis_translates D ψ S T hψ μ 𝓕 hcv h e hh he fun w => ?_
   set wr : WO S T := w.map fun z => GlobalTheory.SplitScalar.realIdem D * z with hwr
   set wf : WO S T := w - wr with hwf
   have hfin : wf.map (infPart D) = 0 := by
@@ -243,7 +234,7 @@ theorem irr_vac : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) 
     ext i j
     show finPart D (GlobalTheory.SplitScalar.realIdem D * w i j) = 0
     rw [RingHom.map_mul, GlobalTheory.SplitScalar.finPart_realIdem, zero_mul]
-  obtain ⟨κ, hκ⟩ := comp_real D ψ θ S T hψ hθ sS sT hcS hcT μ 𝓕 hcv wr hreal
+  obtain ⟨κ, hκ⟩ := _root_.GlobalTheory.RealVacScalar.compress_real D ψ θ S T hψ hθ sS sT hcS hcT μ 𝓕 hcv wr hreal
   have laws := GlobalTheory.HeisThetaLaws.heis_theta_laws D ψ hψ S T
   have hs : wr + wf = w := by rw [hwf]; abel
   have e1 : heisO ψ S T wr (heisO ψ S T wf e) = ψ (symplOH S T wr wf) • heisO ψ S T w e := by
@@ -300,7 +291,7 @@ theorem lev (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ)
       (mem_vacSub.1 hf).2.2 (mem_vacSub.1 hg).2.2 (mem_vacSub.1 hg').2.2
   have hCne : C ≠ ⊥ := fun h => hne ((Submodule.mem_bot ℂ).1 (h ▸ h₀))
   obtain ⟨c, e, heC, he0, hce⟩ :=
-    (fin_riesz_eigen (WO S T) C inferInstance (thetaIP μ 𝓕) Φ ipl ipr ips ipp Φl Φr).2 hCne
+    (_root_.GlobalTheory.riesz_and_eigenvector_of_sesq_on_fun_space (WO S T) C inferInstance (thetaIP μ 𝓕) Φ ipl ipr ips ipp Φl Φr).2 hCne
   set Ψ : (WO S T → ℂ) → (WO S T → ℂ) → ℂ := fun f g => Φ f g - c * thetaIP μ 𝓕 f g with hΨ
   have Ψl : ∀ (a : ℂ) (f f' g : WO S T → ℂ), f ∈ C → f' ∈ C → g ∈ C → Ψ (a • f + f') g = star a * Ψ f g + Ψ f' g :=
     fun a f f' g hf hf' hg => by
@@ -312,7 +303,7 @@ theorem lev (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ)
       simp only [hΨ]
       rw [Φr a f g g' hf hg hg', ipr a f g g' hf hg hg']
       ring
-  have hR := (fin_riesz_eigen (WO S T) C inferInstance (thetaIP μ 𝓕) Ψ ipl ipr ips ipp Ψl Ψr).1
+  have hR := (_root_.GlobalTheory.riesz_and_eigenvector_of_sesq_on_fun_space (WO S T) C inferInstance (thetaIP μ 𝓕) Ψ ipl ipr ips ipp Ψl Ψr).1
   obtain ⟨heT, heL, heV⟩ := mem_vacSub.1 heC
   have laws := GlobalTheory.HeisThetaLaws.heis_theta_laws D ψ hψ S T
   have key : ∀ f g : WO S T → ℂ, f ∈ C → g ∈ C → Ψ f g = 0 := by

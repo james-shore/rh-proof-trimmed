@@ -107,7 +107,7 @@ theorem thRule_lower : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     (RatData.exists_thetaVal_data E H Dw l Xo c T'.Fr y'.1).1 hrat (x b)
   have hev : iT (evI y f) = thExpr Xo c nab y'.1 P₁ F := by
     letI : Algebra T.Fr T'.Fr := iT.toAlgebra
-    exact GlobalTheory.T.thetaRule_value_integral_framed_point_extension_field E H Dw l Xo c nab hnab T io y T'.Fr φ hφ y'.1 hmap a n x P₁ hP₁ F hF f hf
+    exact _root_.GlobalTheory.PtTie.evI_eq_thExpr_ext E H Dw l Xo c nab hnab T io y T'.Fr φ hφ y'.1 hmap a n x P₁ hP₁ F hF f hf
   have ht : ∀ b, ∃ t' : ptO Xo (xOf y') ⟶ Xo.univ.t.G, t' ^ (l.M ^ 2) = 1 ∧
       IsUUOver Xo.univ.t.G Xo.univ.t.PP l.M (sOf1 y') 1 t' (F b) := by
     intro b
@@ -121,7 +121,7 @@ theorem thRule_lower : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
   choose t' ht1 ht2 using ht
   have hρ : ∀ k, (A : EReal) ≤ nuLocOf C' (vV T'.V (p : T'.Fr)).toNat k (MvPolynomial.map (iT.comp io) P₁) :=
     fun k => (hPB T' (iT.comp io) (r * e) ho' y' hfin C' k).1
-  have hb := GlobalTheory.T.harmonic_value_ge_local_depth_prime_to_p E H Dw l Xo c T' (iT.comp io) y' C' hgood nab hnab _ A a n he'pos P₁ hP₁ hρ l.M l.odd hu
+  have hb := _root_.GlobalTheory.RefSum.TermLoc.harmonic_value_ge_local_depth E H Dw l Xo c T' (iT.comp io) y' C' hgood nab hnab _ A a n he'pos P₁ hP₁ hρ l.M l.odd hu
     t' F (fun b => ⟨ht1 b, ht2 b⟩)
   have hh := (hv_linear E H Dw l Xo c hnab.1 nab hnab T'.Fr y'.1 n P₁).2.2 l.M F
   rw [← hh] at hb

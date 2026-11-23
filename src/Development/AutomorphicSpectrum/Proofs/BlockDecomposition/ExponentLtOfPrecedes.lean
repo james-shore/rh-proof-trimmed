@@ -73,7 +73,7 @@ theorem exponent_lseg (Δ : Segment k) (y : IrrGL (k := k)) (s e : ℝ) (t : kˣ
     (hL : IsLSeg Δ y.rep) (hc : Zl.ScalarBy Δ.first t c) (hcn : ‖c‖ = nabs k t ^ ((Δ.d : ℝ) * e))
     (hy : ∀ (t : kˣ) (c : ℂ), Zl.ScalarBy y t c → ‖c‖ = nabs k t ^ ((y.1 : ℝ) * s)) :
     s = e + ((Δ.len : ℝ) - 1) / 2 := by
-  have h1 := GlobalTheory.T.segment_rep_central_character k Δ y hL t c hc
+  have h1 := _root_.GlobalTheory.CompanionTheory.ZlScalar.scalarBy_lseg k Δ y hL t c hc
   have h2 := hy t _ h1
   have hdeg : y.1 = Δ.len * Δ.d := hL.deg_eq.symm
   have hα : 0 < nabs k t := nabs_pos' k t

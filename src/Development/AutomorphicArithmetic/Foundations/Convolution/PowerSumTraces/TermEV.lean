@@ -108,16 +108,7 @@ private theorem exists_enum {α : Type} (A : Finset α) :
   rintro ⟨i, rfl⟩
   exact (A.equivFin.symm i).2
 
-private theorem test_ind {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {J : Subgroup G} (hJ : CO J)
-    {χ : G → ℂ} (hχ : IsChr J χ) : Test ((J : Set G).indicator fun x => conj (χ x)) := by
-  refine ⟨(IsLocallyConstant.iff_eventually_eq _).2 fun x => ?_,
-    HasCompactSupport.intro hJ.1 fun x hx => Set.indicator_of_notMem hx _⟩
-  by_cases hx : x ∈ (J : Set G)
-  · filter_upwards [hJ.2.mem_nhds hx, (IsLocallyConstant.iff_eventually_eq _).1 hχ.1 x] with y hy hy2
-    rw [Set.indicator_of_mem hy, Set.indicator_of_mem hx, hy2]
-  · have hcl : IsClosed (J : Set G) := Subgroup.isClosed_of_isOpen J hJ.2
-    filter_upwards [hcl.isOpen_compl.mem_nhds hx] with y hy
-    rw [Set.indicator_of_notMem hy, Set.indicator_of_notMem hx]
+private alias test_ind := _root_.UpperTheory.ConvolutionTheory.L1.TY.test_ind
 
 private theorem ker_co {G : Type} [Group G] [TopologicalSpace G] {J : Subgroup G} {χ : G → ℂ} (hJ : CO J) (h : IsChr J χ) :
     CO (kerChr J χ h) := by
@@ -139,17 +130,11 @@ private theorem ker_inv {G : Type} [Group G] [TopologicalSpace G] {J : Subgroup 
 section Hil
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
-private theorem prj_mem' {V : Submodule ℂ H} (hV : IsClosed (V : Set H)) (v : H) : prj V v ∈ V := by
-  have hc : V.topologicalClosure = V := hV.submodule_topologicalClosure_eq
-  have h : prj V v ∈ V.topologicalClosure := Submodule.starProjection_apply_mem V.topologicalClosure v
-  rwa [hc] at h
+private alias prj_mem' := _root_.UpperTheory.ConvolutionTheory.L1.TY.prj_mem
 
-private theorem prj_self' {V : Submodule ℂ H} {v : H} (hv : v ∈ V) : prj V v = v :=
-  Submodule.starProjection_eq_self_iff.2 (Submodule.le_topologicalClosure V hv)
+private alias prj_self' := _root_.UpperTheory.ConvolutionTheory.L1.TY.prj_self
 
-private theorem mem_eigIn' {W : Submodule ℂ H} {A : H →L[ℂ] H} {x : ℝ} {v : H} :
-    v ∈ eigIn W A x ↔ v ∈ W ∧ A v = (x : ℂ) • v :=
-  Submodule.mem_inf.trans (and_congr_right fun _ => Module.End.mem_eigenspace_iff)
+private alias mem_eigIn' := _root_.UpperTheory.ConvolutionTheory.L1.TY.mem_eigIn
 
 private theorem trOn_congr {Y : Submodule ℂ H} (hY : IsClosed (Y : Set H)) {A B : H →L[ℂ] H} (h : ∀ v ∈ Y, A v = B v) :
     trOn Y A = trOn Y B := by
@@ -178,10 +163,6 @@ private theorem oloc_comm {w : Pl K} [MeasurableSpace (Gw n w)] {m : Measure (Gw
   simp only [ContinuousLinearMap.mul_apply] at this
   rw [this]
 
-private theorem mem_eigL' {w : Pl K} {J : Subgroup (Gw n w)} {χ : Gw n w → ℂ} {v : LL μ} :
-    v ∈ eigL μ w J χ ↔ ∀ x ∈ J, rhoL μ w x v = χ x • v := by
-  simp [eigL, Submodule.mem_iInf, LinearMap.mem_eqLocus]
-
 private theorem mem_fixL' {w : Pl K} {J : Subgroup (Gw n w)} {v : LL μ} :
     v ∈ fixL μ w J ↔ ∀ x ∈ J, rhoL μ w x v = v := by
   simp only [fixL, fixF, Submodule.mem_iInf, LinearMap.mem_eqLocus, ContinuousLinearMap.coe_coe, LinearMap.id_apply,
@@ -193,7 +174,7 @@ private theorem isClosed_fixL (w : Pl K) (J : Subgroup (Gw n w)) : IsClosed (fix
 
 private theorem eigL_comm {w : Pl K} {J : Subgroup (Gw n w)} {χ : Gw n w → ℂ} (O : LL μ →L[ℂ] LL μ)
     (h : ∀ g, Commute O (rhoL μ w g)) {v : LL μ} (hv : v ∈ eigL μ w J χ) : O v ∈ eigL μ w J χ := by
-  rw [mem_eigL'] at hv ⊢
+  rw [_root_.UpperTheory.ConvolutionTheory.L1.TY.mem_eigL] at hv ⊢
   intro x hx
   have := congrArg (fun S : LL μ →L[ℂ] LL μ => S v) (h x).eq
   simp only [ContinuousLinearMap.mul_apply] at this
@@ -224,8 +205,7 @@ end Ops
 section Loc
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {n : ℕ}
 
-private theorem under_over' {v : Pl F} (w : PlacesOver E v) : w.1.under (𝓞 F) = v :=
-  HeightOneSpectrum.ext w.2.over.symm
+private alias under_over' := _root_.UpperTheory.ConvolutionTheory.L1.TY.under_of_over
 
 private theorem cmp_surj {v : Pl F} (w : PlacesOver E v) (h : ∀ u : PlacesOver E v, u = w) :
     Function.Surjective (GM.cmp (n := n) w) := by

@@ -68,17 +68,6 @@ open NumberField IsDedekindDomain GlobalTheory.AdLat GlobalTheory.AdLat.Translat
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes (Af singleV)
 open scoped TensorProduct Matrix Classical
 
-theorem exists_mul_of_fg {O M : Type} [CommRing O] [AddCommGroup M] [Module O M] (P : Submonoid O)
-    {L L' : Submodule O M} (hL : L.FG) (h : ∀ v ∈ L, ∃ s ∈ P, s • v ∈ L') :
-    ∃ s ∈ P, ∀ v ∈ L, s • v ∈ L' := by
-  first
-  | exact @_root_.GlobalTheory.CommonSmulMembership.exists_common_smul_mem
-  | exact _root_.GlobalTheory.CommonSmulMembership.exists_common_smul_mem
-  | (apply _root_.GlobalTheory.CommonSmulMembership.exists_common_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonSmulMembership.exists_common_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonSmulMembership.exists_common_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CommonSmulMembership.exists_common_smul_mem ..)
-
 variable {F : Type} [Field F] [NumberField F]
 
 theorem mul_at (a b : Af F) (v : HeightOneSpectrum (𝓞 F)) : (a * b) v = a v * b v := rfl
@@ -181,7 +170,7 @@ theorem exists_mul (P : Submonoid (𝓞 F)) (I : Ideal (𝓞 F))
     (h : ∀ z ∈ hat F (L : Set (Fin n → E)), algebraMap (Af F) (RA F E) (idem I) • z ∈ hat F (Λ : Set (Fin n → E))) :
     ∃ s ∈ P, ∀ v ∈ L, algebraMap (𝓞 F) (𝓞 E) s • v ∈ Λ := by
   obtain ⟨h1, -, -, h4⟩ := GlobalTheory.AdLat.hat_rational_points_and_approx F E n Λ hΛ hs
-  obtain ⟨_, ⟨s, hs, rfl⟩, H⟩ := exists_mul_of_fg (P.map (algebraMap (𝓞 F) (𝓞 E))) (L' := Λ) hL fun x hx => by
+  obtain ⟨_, ⟨s, hs, rfl⟩, H⟩ := _root_.GlobalTheory.CommonSmulMembership.exists_common_smul_mem (P.map (algebraMap (𝓞 F) (𝓞 E))) (L' := Λ) hL fun x hx => by
     obtain ⟨d, hd, hx'⟩ := h4 (fv F x)
     obtain ⟨s, hs, hv⟩ := exists_clear P ((1 - idem I) * algebraMap F (Af F) (d : F)⁻¹) fun v => by
       by_cases hv : I ≤ v.asIdeal

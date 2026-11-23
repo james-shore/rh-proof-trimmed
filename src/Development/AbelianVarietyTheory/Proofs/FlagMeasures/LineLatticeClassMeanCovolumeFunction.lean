@@ -101,14 +101,7 @@ theorem lintegral_div_inv (κ : ℝ) (hκ : 0 < κ) (w : ℝ → ENNReal) :
     _ = w t * (ENNReal.ofReal t)⁻¹ := by
       rw [ENNReal.mul_inv_cancel hne ENNReal.ofReal_ne_top, one_mul]
 
-theorem measurable_detNorm (E : Type) [Field E] [NumberField E] (j : ℕ) :
-    Measurable (detNorm E j) := by
-  have hc : Continuous (fun x : InfinitePlace E → Fin j → Fin j → ℂ =>
-      ∏ w, ‖(Matrix.of (x w)).det‖ ^ 2) := by
-    refine continuous_finsetProd _ (fun w _ => ?_)
-    exact ((Continuous.matrix_det
-      (A := fun x : InfinitePlace E → Fin j → Fin j → ℂ => Matrix.of (x w)) (continuous_apply w)).norm).pow 2
-  exact hc.measurable
+alias measurable_detNorm := _root_.GlobalTheory.DetSlab.measurable_detNorm
 
 theorem ae_detNorm_pos (E : Type) [Field E] [NumberField E] (j : ℕ) (hj : 1 ≤ j) :
     ∀ᵐ g ∂(haarGL E j), 0 < detNorm E j g := by

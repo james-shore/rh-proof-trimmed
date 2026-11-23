@@ -75,9 +75,7 @@ theorem isDedFrac_of_isInc (l : Level H) (S A : ℕ) (hS : 0 < S) (hA : l.A = A)
   subst hA
   exact (GlobalTheory.BaseRing.isDedFrac_RZ E H l S 0 hS (by rw [h1, pow_zero])).2.2 β hβ
 
-theorem j_over {U : Scheme.{0}} {F O : Type} [Field F] [CommRing O] {c : U ⟶ Sp F} {t : SAB H U} {β : O →+* F}
-    (C : Cpt c t β) : C.j ≫ C.s = c ≫ spMap β := by
-  rw [Cpt.j, Category.assoc, pullback.condition, ← Category.assoc, C.jQ_over]
+alias j_over := _root_.GlobalTheory.Models.Cpt.openImmersion_comp_structure_eq_generic
 
 theorem div_mul_div {a b c : ℕ} (h : a ∣ b) (h' : b ∣ c) : c / b * (b / a) = c / a := by
   exact Nat.div_mul_div h' h
@@ -98,7 +96,7 @@ theorem exists_isTransition : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDis
     hR hR₂
   obtain ⟨b₁, r₁, ν₁, hb₁, hl₁, ⟨a₁⟩⟩ := hR
   obtain ⟨b₂, r₂, ν₂, hb₂, hl₂, ⟨a₂⟩⟩ := hR₂
-  obtain ⟨b₀, r₀, ν₀, hb₀, hl₀, ⟨a₀⟩⟩ := GlobalTheory.T.deeper_level_base_model_finite_over_shallower hext L₁ L₂ L₃ E H D Xo n N T hN l₀ l₀' B B' hn hNe d₀
+  obtain ⟨b₀, r₀, ν₀, hb₀, hl₀, ⟨a₀⟩⟩ := _root_.GlobalTheory.BaseTransition.baseModel_above hext L₁ L₂ L₃ E H D Xo n N T hN l₀ l₀' B B' hn hNe d₀
   obtain ⟨k, r, ν, hr, hk, hl, -⟩ :=
     GlobalTheory.LevelMapField.exists_levelMap L₁ L₂ L₃ E H D Xo hN l l₂ c₂ Y₂.oF Y₂.m0 d
 

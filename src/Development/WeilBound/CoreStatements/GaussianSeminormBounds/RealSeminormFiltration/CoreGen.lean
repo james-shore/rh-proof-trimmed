@@ -66,15 +66,6 @@ namespace PositivityTheory.KReal
 
 variable {p q r s : ℕ}
 
-theorem gen_minus_small {σ : Type} (A : Module.End ℂ (MvPolynomial σ ℂ)) {d : ℕ} (hd : d < 2)
-    {g : MvPolynomial σ ℂ} (hg : g ∈ homog σ d) : minusPart A g = 0 := by
-  unfold minusPart
-  have h : ∀ e : ℕ, homogeneousComponent e (A (homogeneousComponent (e + 2) g)) = 0 := by
-    intro e
-    rw [homogeneousComponent_of_mem hg, if_neg (by omega)]
-    simp
-  simp [h]
-
 theorem th_gen_harm (c τ : ℂ) (c0 : ℚ) (hc : c = c0) (N : Submodule ℂ (ThC p q r s c))
     (hH : (jHarm p q r s ⊓ polChi p q r s c).map (thMkC p q r s c) ≤ N)
     (hN : ∀ W, ∀ x ∈ N, thAct p q r s c τ W x ∈ N) : N = ⊤ := by
@@ -91,17 +82,17 @@ theorem th_gen_harm (c τ : ℂ) (c0 : ℚ) (hc : c = c0) (N : Submodule ℂ (Th
       intro g hg
       by_cases hd : d < 2
       · exact hharm d g hg (Submodule.subset_span
-          ⟨fun X _ => gen_minus_small _ hd hg, fun Y _ => gen_minus_small _ hd hg⟩)
+          ⟨fun X _ => _root_.PositivityTheory.KReal.minusPart_small _ hd hg, fun Y _ => _root_.PositivityTheory.KReal.minusPart_small _ hd hg⟩)
       · obtain ⟨e, rfl⟩ : ∃ e, d = e + 2 := ⟨d - 2, by omega⟩
         have hmin : ∀ (A : Module.End ℂ (Pol p q r s)), ∀ Q ∈ homog (Ix p q × Ix r s) e,
             thMkC p q r s c (minusPart A Q) ∈ N := by
           intro A Q hQ
           by_cases he : e < 2
-          · rw [gen_minus_small A he hQ, map_zero]; exact N.zero_mem
+          · rw [_root_.PositivityTheory.KReal.minusPart_small A he hQ, map_zero]; exact N.zero_mem
           · obtain ⟨e', rfl⟩ : ∃ e', e = e' + 2 := ⟨e - 2, by omega⟩
             rw [PI.FHS.minusPart_of_mem hQ]
             exact ih e' (by omega) _ (homogeneousComponent_mem e' _)
-        have hs := harmonicSplitting_holds p q r s true true rfl e
+        have hs := _root_.PI.FHS.harmSplit p q r s true true rfl e
         rw [hs] at hg
         obtain ⟨y, hy, z, hz, rfl⟩ := Submodule.mem_sup.1 hg
         rw [map_add (f := _)]

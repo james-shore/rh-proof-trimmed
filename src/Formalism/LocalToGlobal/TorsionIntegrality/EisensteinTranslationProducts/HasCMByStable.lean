@@ -46,12 +46,9 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.F
 
-theorem hasCMByStable : HasCMByStable := has_cm_stable
-theorem hasCMByScale : HasCMByScale := has_cm_scale
-theorem cmPairHasCMBy : CmPairHasCMBy := cm_pair_has_cm
-theorem jInvScale : JInvScale := j_invariant_scale
-theorem seriesScale : SeriesScale := series_scale
-theorem sigmaScale : SigmaScale := sigma_scale'
+alias hasCMByStable := _root_.Formalism.L2.Th1.F.has_cm_stable
+alias hasCMByScale := _root_.Formalism.L2.Th1.F.has_cm_scale
+alias jInvScale := _root_.Formalism.L2.Th1.F.j_invariant_scale
 theorem seriesMap : SeriesMap := series_map
 
 end Formalism.L2.Th1.F

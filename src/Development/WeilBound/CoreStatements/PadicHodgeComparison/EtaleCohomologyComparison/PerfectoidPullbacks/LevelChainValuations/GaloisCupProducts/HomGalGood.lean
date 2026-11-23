@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DividedPowerReduction.ReductionChangeLevel
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MuBNat
 
 @[expose] public section
 
@@ -101,9 +102,9 @@ theorem homGal_good_of_galRed (hr : GalRed hL g M s rH) : (homGal hL g M s hQ rH
     o := hL.σB_K g
     tS := fun n j x => ((M.galH false j (IntermediateField.fixingSubgroupEquiv K g)).comm n x).symm
     r := hr
-    red := fun n j z => nmHM_redM _ l s none n j z
+    red := fun n j z => _root_.GlobalTheory.CompanionTheory.RedPull.nmHM_redM _ l s none n j z
     b := nmHO_nmGB_bMap hL g M s hQ
-    μ := fun j v => (nm_muB (nmGB hL g M) (Category.id_comp _) 1 s (hL.σB_K g) j v).trans
+    μ := fun j v => (_root_.GlobalTheory.CompanionTheory.MuNat.muB_nat (nmGB hL g M) (Category.id_comp _) 1 s (hL.σB_K g) j v).trans
       (congrArg _ (pullR_id' M.q j v)) }
 
 end

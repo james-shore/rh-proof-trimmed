@@ -124,7 +124,7 @@ namespace GlobalTheory.AnPer
 
 theorem period_unique : PUniq := by
   intro I _ g Λ _ F B _ X s _ σ u c per per' h h'
-  exact GlobalTheory.T.periodClass_injective_of_rich_charts (MaxCharts.charts u) (MaxCharts.rich u) per per'
+  exact _root_.GlobalTheory.AnPer.Charts.perCl_injective (MaxCharts.charts u) (MaxCharts.rich u) per per'
     ((h _ _ (MaxCharts.isFor u)).symm.trans (h' _ _ (MaxCharts.isFor u)))
 
 end GlobalTheory.AnPer

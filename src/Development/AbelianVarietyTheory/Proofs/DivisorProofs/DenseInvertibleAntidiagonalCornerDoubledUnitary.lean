@@ -145,14 +145,14 @@ theorem dense : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFiel
   intro F E _ _ _ _ _ σ hσ n J ε hJ hdet g
   letI : Invertible (2 : F) := invertibleOfNonzero two_ne_zero
   letI : Invertible (2 : AE F E) := (Invertible.map (algebraMap F (AE F E)) (2 : F)).copy 2 (map_ofNat (algebraMap F (AE F E)) 2).symm
-  obtain ⟨q, hq, hlim⟩ := approx F E σ (dbl (incM F J)) g
+  obtain ⟨q, hq, hlim⟩ := _root_.GlobalTheory.UnitaryCutoff.exists_approx F E σ (dbl (incM F J)) g
   refine mem_closure_of_tendsto hlim (Eventually.of_forall fun S => ?_)
   have he : algebraMap (AF F) (AE F E) (GlobalTheory.LocalGlobalChar.eps S) * algebraMap (AF F) (AE F E) (GlobalTheory.LocalGlobalChar.eps S)
       = algebraMap (AF F) (AE F E) (GlobalTheory.LocalGlobalChar.eps S) := by
     rw [← map_mul, GlobalTheory.LocalGlobalChar.eps_mul_self]
   have hce : cA σ (algebraMap (AF F) (AE F E) (GlobalTheory.LocalGlobalChar.eps S)) =
       algebraMap (AF F) (AE F E) (GlobalTheory.LocalGlobalChar.eps S) := (cA σ).commutes _
-  have hav := avoid F E S
+  have hav := _root_.GlobalTheory.DenseAvoid.exists_unit_eval F E S
 
   have hNtN : Matrix.fromCols (1 : Matrix (Fin n) (Fin n) (AE F E)) (-1 : Matrix (Fin n) (Fin n) (AE F E)) *
       Matrix.fromRows (1 : Matrix (Fin n) (Fin n) (AE F E)) (-1 : Matrix (Fin n) (Fin n) (AE F E)) =
@@ -169,7 +169,7 @@ theorem dense : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFiel
       ← Matrix.fromBlocks_one, Matrix.fromBlocks_smul]
     simp [two_smul]
 
-  obtain ⟨x₀, hx₀⟩ := exists_corner (F := F) _ he hav
+  obtain ⟨x₀, hx₀⟩ := _root_.GlobalTheory.exists_corner_unit_of_right_inverse (F := F) _ he hav
     (Matrix.fromCols (1 : Matrix (Fin n) (Fin n) (AE F E)) (-1 : Matrix (Fin n) (Fin n) (AE F E)) * g.1.1 *
       Matrix.fromRows (1 : Matrix (Fin n) (Fin n) (AE F E)) (-1 : Matrix (Fin n) (Fin n) (AE F E)))
     (Matrix.fromCols (1 : Matrix (Fin n) (Fin n) (AE F E)) (-1 : Matrix (Fin n) (Fin n) (AE F E)) * g.1.1 *
@@ -222,7 +222,7 @@ theorem dense : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFiel
   have hJdet : IsUnit (incM F J).det := by
     have h := (isUnit_iff_ne_zero.mpr hdet).map (inclR (F := F) (AF F))
     rwa [RingHom.map_det] at h
-  obtain ⟨x, hxV, hx⟩ := descend (F := F) (cA σ).toRingHom hc2 hcF _ hav _ hρu hcρ (incM F J) ε hJm hJdet _ _ x₀ hx₀
+  obtain ⟨x, hxV, hx⟩ := _root_.GlobalTheory.exists_conj_skew_det_unit_of_avoidance (F := F) (cA σ).toRingHom hc2 hcF _ hav _ hρu hcρ (incM F J) ε hJm hJdet _ _ x₀ hx₀
 
   have hxV' : (algebraMap (AF F) (AE F E) (GlobalTheory.LocalGlobalChar.eps S) • x)ᵀ * incM F J +
       incM F J * (algebraMap (AF F) (AE F E) (GlobalTheory.LocalGlobalChar.eps S) • x).map (cA σ) = 0 := by

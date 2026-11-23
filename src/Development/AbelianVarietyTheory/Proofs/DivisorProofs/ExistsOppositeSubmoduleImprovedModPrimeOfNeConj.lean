@@ -110,7 +110,7 @@ theorem exists_improves_of_ne_conj : ∀ {E : Type} [Field E] [NumberField E] [I
     obtain ⟨_, ⟨z, hz, rfl⟩, hz'⟩ := SetLike.not_le_iff_exists.1 hZ
     obtain ⟨ℓ, hℓ⟩ := GlobalTheory.LowFilt.exists_linear_theta_factor D Z' θ s (fun h0 => hs (h0 ▸ zero_mem _)) hgen z
     have h0 : ζ ℓ - H.bar s • z = 0 := h.symm.eq_zero (sub_mem (hζZ ℓ) (Z.smul_mem _ hz)) fun x hx => by
-      rw [ef_swap, map_sub, hζ ℓ ⟨x, hx⟩, hℓ ⟨x, hx⟩]; simp
+      rw [_root_.GlobalTheory.SimLift.form_skew, map_sub, hζ ℓ ⟨x, hx⟩, hℓ ⟨x, hx⟩]; simp
     refine ⟨ℓ, fun hh => hz' ?_⟩
     rw [sub_eq_zero.1 h0, map_smul] at hh
     exact mem_of_smul_mem_of_not_mem h𝔭 _ hs' hh

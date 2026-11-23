@@ -56,10 +56,7 @@ open scoped Classical
 
 variable {g : ℕ} [Fact g.Prime]
 
-theorem coe_toG {n : ℕ} {M : Mt g n} (h : IsUnit M) : ((toG M : Gn g n) : Mt g n) = M := by
-  unfold toG
-  rw [dif_pos h]
-  rfl
+alias coe_toG := _root_.GlobalTheory.GLm.ParBasic.toG_val
 
 theorem toG_coe {n : ℕ} (x : Gn g n) : toG (x : Mt g n) = x := by
   unfold toG
@@ -257,12 +254,6 @@ theorem card_inR (i n : ℕ) (hi : i ≤ n) :
   simp only [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
   ring
 
-theorem isUniUp_one (n : ℕ) : IsUniUp (1 : Mt g n) := by
-  intro a b
-  refine ⟨fun hab => Matrix.one_apply_ne (ne_of_lt hab).symm, fun hab => ?_⟩
-  subst hab
-  exact Matrix.one_apply_eq a
-
 theorem stages (ψ : AddChar (ZMod g) ℂ) (i n : ℕ) (hi : i ≤ n) (ρ : Gn g i → ℂ) (hρ : IsClass ρ)
     (h : Gn g n) :
     ((Finset.univ.filter fun p : Gn g n => InR i (p : Mt g n)).card : ℂ)⁻¹ *
@@ -277,7 +268,7 @@ theorem stages (ψ : AddChar (ZMod g) ℂ) (i n : ℕ) (hi : i ≤ n) (ρ : Gn g
     rw [Nat.cast_ne_zero]
     refine Finset.card_ne_zero_of_mem (a := 1) (Finset.mem_filter.2 ⟨Finset.mem_univ _, ?_⟩)
     rw [Units.val_one]
-    exact isUniUp_one _
+    exact _root_.GlobalTheory.GLm.ParBasic.isUniUp_one _
   have hg : (g : ℂ) ≠ 0 := Nat.cast_ne_zero.2 (Fact.out : g.Prime).ne_zero
   have hGi : (Fintype.card (Gn g i) : ℂ) ≠ 0 := Nat.cast_ne_zero.2 Fintype.card_ne_zero
   have hgg : ∀ x : Gn g (n - i), ∑ w : Gn g (n - i), fU ψ (w⁻¹ * x * w) =

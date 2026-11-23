@@ -64,29 +64,16 @@ namespace GlobalTheory.KZ.H3.KumPot
 
 variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ}
 
-theorem cast_of_dvd {d M : ℕ} (h : d ∣ M) {x y : ℤ} (hxy : (x : ZMod M) = y) : (x : ZMod d) = y :=
-  (ZMod.intCast_eq_intCast_iff _ _ _).2
-    (Int.ModEq.of_dvd (Int.natCast_dvd_natCast.2 h) ((ZMod.intCast_eq_intCast_iff _ _ _).1 hxy))
-
-theorem gamma_le {d M : ℕ} (h : d ∣ M) : CongruenceSubgroup.Gamma M ≤ CongruenceSubgroup.Gamma d := by
-  intro γ hγ
-  obtain ⟨a, b, c, e⟩ := CongruenceSubgroup.Gamma_mem.1 hγ
-  refine CongruenceSubgroup.Gamma_mem.2 ⟨?_, ?_, ?_, ?_⟩
-  · simpa using cast_of_dvd h (x := γ 0 0) (y := 1) (by simpa using a)
-  · simpa using cast_of_dvd h (x := γ 0 1) (y := 0) (by simpa using b)
-  · simpa using cast_of_dvd h (x := γ 1 0) (y := 0) (by simpa using c)
-  · simpa using cast_of_dvd h (x := γ 1 1) (y := 1) (by simpa using e)
-
 theorem gamma_le_gam {N l M : ℕ} (hN : N ∣ M) (hl : l ∣ M) : CongruenceSubgroup.Gamma M ≤ Gam N l := by
   intro γ hγ
-  obtain ⟨a, -, c, e⟩ := CongruenceSubgroup.Gamma_mem.1 (gamma_le hN hγ)
-  obtain ⟨-, -, c', -⟩ := CongruenceSubgroup.Gamma_mem.1 (gamma_le hl hγ)
+  obtain ⟨a, -, c, e⟩ := CongruenceSubgroup.Gamma_mem.1 (_root_.GlobalTheory.KZ.H3.gamma_le_of_dvd hN hγ)
+  obtain ⟨-, -, c', -⟩ := CongruenceSubgroup.Gamma_mem.1 (_root_.GlobalTheory.KZ.H3.gamma_le_of_dvd hl hγ)
   exact ⟨(CongruenceSubgroup.Gamma1_mem N γ).2 ⟨a, e, c⟩, CongruenceSubgroup.Gamma0_mem.2 c'⟩
 
 theorem polySlash_eq_self_of_mem_Gamma (l n : ℕ) {δ : SL(2, ℤ)} (hδ : δ ∈ CongruenceSubgroup.Gamma (l ^ n))
     (p : MvPolynomial (Fin 2) (ZMod (l ^ n))) : slP (δ : Matrix (Fin 2) (Fin 2) ℤ) p = p := by
   obtain ⟨a, b, c, e⟩ := CongruenceSubgroup.Gamma_mem.1 hδ
-  rw [GlobalTheory.KZ.SlPLaws.polySlash_congr _ 1 p, GlobalTheory.KZ.SlPLaws.polySlash_one']
+  rw [GlobalTheory.KZ.SlPLaws.polySlash_congr _ 1 p, _root_.GlobalTheory.KZ.Betti.polySlash_one]
   intro i j
   fin_cases i <;> fin_cases j <;> simp [a, b, c, e]
 
@@ -127,7 +114,7 @@ theorem bset_rel (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] [IsAlgClosed Ω] (hJ
   · have hsum := kum_sum X l n (Finset.univ : Finset (Fin (w + 1))) (fun (i : Fin (w + 1)) => (u 0 ^ (i : ℕ) * u 1 ^ (w - (i : ℕ))) • c i)
       (fun (i : Fin (w + 1)) δ => PadicInt.toZModPow n (u 0 ^ (i : ℕ) * u 1 ^ (w - (i : ℕ))) *
         AddMonoidAlgebra.coeff (Φ n δ) (Finsupp.single 0 (i : ℕ) + Finsupp.single 1 (w - (i : ℕ))))
-      (fun i _ => GlobalTheory.T.isKummerCharacterAtLevel_padicInt_smul Ω ε X l n _ _ _ (hK n i))
+      (fun i _ => _root_.GlobalTheory.KZ.H3.kum_smul Ω ε X l n _ _ _ (hK n i))
     rw [← hbc u] at hsum
     convert hsum using 1
     funext δ
@@ -142,8 +129,8 @@ theorem bset_rel (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] [IsAlgClosed Ω] (hJ
     refine ⟨N * l ^ (n + 1) * M1, by positivity, fun δ hδ τ hτ => ?_⟩
     have hδG : δ ∈ Gam N l := gamma_le_gam (l := l) ⟨l ^ (n + 1) * M1, by ring⟩
       ⟨N * l ^ n * M1, by ring⟩ hδ
-    have hδn : δ ∈ CongruenceSubgroup.Gamma (l ^ n) := gamma_le ⟨N * l * M1, by ring⟩ hδ
-    have hδ1 : δ ∈ CongruenceSubgroup.Gamma M1 := gamma_le ⟨N * l ^ (n + 1), by ring⟩ hδ
+    have hδn : δ ∈ CongruenceSubgroup.Gamma (l ^ n) := _root_.GlobalTheory.KZ.H3.gamma_le_of_dvd ⟨N * l * M1, by ring⟩ hδ
+    have hδ1 : δ ∈ CongruenceSubgroup.Gamma M1 := _root_.GlobalTheory.KZ.H3.gamma_le_of_dvd ⟨N * l ^ (n + 1), by ring⟩ hδ
     have e1 := hFz δ hδG τ hτ
     have e2 : MvPolynomial.map (PadicInt.toZModPow n) (z δ) = Φ n δ := hM1' δ hδ1
     have e3 : MvPolynomial.map (PadicInt.toZModPow n) (F (mob (ofSL δ) τ)) =

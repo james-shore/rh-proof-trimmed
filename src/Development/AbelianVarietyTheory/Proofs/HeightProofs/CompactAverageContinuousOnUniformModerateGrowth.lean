@@ -166,7 +166,7 @@ theorem continuousOn_and_umg_kAvg : ∀ (n : ℕ) (ε : Fin n → Bool) (f : Glo
     refine Finset.measurable_sum _ fun J _ => Measurable.mul ?_ ?_
     · exact Finset.measurable_prod _ fun j _ =>
         Complex.measurable_ofReal.comp (hcc _ _ (hl _ (List.get_mem l j))).measurable
-    · exact GlobalTheory.T.measurable_derFam_comp_continuous_of_mem_UJset n ε F hFd hF0c _ (hbw J) (↥(KG ε)) (fun k => z * toMK k)
+    · exact _root_.GlobalTheory.TypeSum.measurable_derFam_comp n ε F hFd hF0c _ (hbw J) (↥(KG ε)) (fun k => z * toMK k)
         (continuous_const.matrix_mul (continuous_toMK ε)) fun k => mul_mem_UJ hz (hK k)
   obtain ⟨hA, hB⟩ := GlobalTheory.T.avg_derFam_growth_alt n ε N F hFd hUb hMs e he
   refine ⟨N, _, fun y hy => ?_, hA, hB⟩

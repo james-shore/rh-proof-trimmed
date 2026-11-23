@@ -218,7 +218,7 @@ theorem mInt_combLine_expand {P J : Ideal (MRing ι)} {e : ℕ} (R : AnLogRes P 
     show Real.log (∏ a, (L a).h _ ^ n i a) = ∑ a, (n i a : ℝ) * Real.log ((L a).h _)
     rw [Real.log_prod fun a _ => (zpow_pos ((L a).pos _ hm) _).ne']
     exact Finset.sum_congr rfl fun a _ => Real.log_zpow _ _
-  rw [h1, (GlobalTheory.T.monge_ampere_integral_multilinear_expansion e R.X R.A σ Set.univ (fun a => potOf R (L a)) (fun j a => (n j a : ℝ))
+  rw [h1, (_root_.GlobalTheory.CompanionTheory.Ar.PB.mInt_sumPot_expand e R.X R.A σ Set.univ (fun a => potOf R (L a)) (fun j a => (n j a : ℝ))
     (fun _ => 1) (fun j => by simp) (fun a x _ => isC2At_of_isPotential _ (hP a) x)
     (fun w => mIntegrableCont _ _ (fun i => hP _) _ continuous_const)).2]
 
@@ -341,7 +341,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Plug.growth_le_vol_deg : GlobalTheory.Co
   obtain ⟨-, -, wtn, wtc, -, wtd, -, wtw, -⟩ := wt
   have hW : Top.WeightHyp T.j (reW u) 1 := by rw [hjp]; exact wtw hp hq hu
   obtain ⟨k₀, R₀, f, -, -, hfs, hfi, hft⟩ :=
-    GlobalTheory.T.generic_frame_component_bound hG E H Dw l Xo c h Y T o B (κ Z) Fr Z Rd II u 1 hII hT1 hW hB'
+    _root_.GlobalTheory.CompanionTheory.Ar.Plug.exists_small_basis hG E H Dw l Xo c h Y T o B (κ Z) Fr Z Rd II u 1 hII hT1 hW hB'
 
   have hinj : ∀ (G : WTZ E), G = (G.1, 0) → ∀ v ∈ GlobalTheory.AllWt.cuspOn U Z G, evL h Z v = 0 → v = 0 := by
     intro G hG0 v hv h0
@@ -379,7 +379,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Plug.growth_le_vol_deg : GlobalTheory.Co
       (reW u) hdom W hW hPW
     rw [geomDeg_combLine_one hIn M (nOf u) W hW]
     simpa only [wtc] using h1
-  obtain ⟨hfin, hlim⟩ := GlobalTheory.T.section_count_tendsto_geomDeg hRR hG II hII M.K M.ι M.Ω M.y _ (Top.combLine (M.line 1) (nOf u)) hD M.arith
+  obtain ⟨hfin, hlim⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.nefCount hRR hG II hII M.K M.ι M.Ω M.y _ (Top.combLine (M.line 1) (nOf u)) hD M.arith
     M.birational hsm hnef
   have hgeo : geomDeg (mCoordIdeal M.y) (Top.combLine (M.line 1) (nOf u)) (Top.dimFl (CMType H) (Dw.p + Dw.q)) =
       M.δ * (T.vol (κ Z) * Top.flagDeg (reW u)) := by
@@ -407,7 +407,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Plug.growth_le_vol_deg : GlobalTheory.Co
     · exact Prod.ext rfl (by simp [GlobalTheory.AllWt.wtOf_snd])
     · intro v hv i
       rw [wtn τ] at hv
-      obtain ⟨N, hN, hs⟩ := GlobalTheory.T.uniform_norm_section_count hG E H Dw l Xo c r U h e hL x hx Y T o B (κ Z) Fr Z Rd (τ • u) v hv
+      obtain ⟨N, hN, hs⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.cusp_mem_chartLatNm hG E H Dw l Xo c r U h e hL x hx Y T o B (κ Z) Fr Z Rd (τ • u) v hv
       refine ⟨N, hN, ?_⟩
       have hs' : (N : M.Ω) * (gauge Rd (τ • u) * Rd.φ (evC h Z v)) ∈ chartLatNm M.y (degOf M u) τ :=
         chartLatNm_smul_one (by rw [← degOf_nsmul]; exact hs)

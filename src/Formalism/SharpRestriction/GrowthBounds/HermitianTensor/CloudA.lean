@@ -66,7 +66,7 @@ theorem cloudOne_of (h : ContractionStandardLattice) : CloudOne := by
   have hlo0 : (lam - wtPQ (mm + 1) P Q) 0 = (ccl : ℤ) := by
     rw [lo_val mm ccl P Q lam h0 hl, ite_eq_left rfl]
   have hloL : (lam - wtPQ (mm + 1) P Q) (Fin.last (mm + 1)) = -(ccl : ℤ) := by
-    rw [lo_val mm ccl P Q lam h0 hl, ite_eq_right (caLast_ne_zero mm), ite_eq_left rfl]
+    rw [lo_val mm ccl P Q lam h0 hl, ite_eq_right (_root_.Formalism.MainNotions.flipOneThree.Pf.last_ne_zero' mm), ite_eq_left rfl]
   have hloL' : dualWt (lam - wtPQ (mm + 1) P Q) (Fin.last (mm + 1)) = -(ccl : ℤ) := by
     unfold dualWt
     rw [Fin.rev_last, hlo0]
@@ -116,7 +116,7 @@ theorem cloudOne_of (h : ContractionStandardLattice) : CloudOne := by
         rw [Matrix.det_mul]
         exact hg.mul (lb_D_det _ 1 c hc)
       have hzR : Row0 (hw R.Kf (le_refl (mm + 1 + 1)) (nuOf (wtPQ (mm + 1) (2 * ccl) (2 * ccl)))) (2 * ccl + 2 * ccl) := by
-        have h5 := highest_weight_first_entry (K := R.Kf) (mm + 1) _ (nuOf_anti _ hzeA)
+        have h5 := highest_weight_first_entry (K := R.Kf) (mm + 1) _ (_root_.Formalism.MainNotions.G.LatticeSystems.kp_nuOf_antitone _ hzeA)
         have h6 : nuOf (wtPQ (mm + 1) (2 * ccl) (2 * ccl)) 0 = 2 * ccl + 2 * ccl := by
           unfold nuOf
           rw [wtPQ_zero, wtPQ_last]
@@ -125,7 +125,7 @@ theorem cloudOne_of (h : ContractionStandardLattice) : CloudOne := by
       have hcz := core_id g hg c hc (2 * ccl) (2 * ccl) _ hzR
       refine ⟨?_, ?_, ?_, ?_⟩
       · rw [mem_invariant_sections_iff_integral hinj _ _ hzeA _ hgD, wtPQ_last, hcz]
-        exact hw_int _ _ (nuOf_anti _ hzeA)
+        exact hw_int _ _ (_root_.Formalism.MainNotions.G.LatticeSystems.kp_nuOf_antitone _ hzeA)
       · rintro ⟨z', hz', he⟩
         have h7 := (mem_invariant_sections_iff_integral hinj _ _ hzeA _ hgD z').1 hz'
         rw [wtPQ_last] at h7

@@ -200,25 +200,23 @@ theorem radR_kap [FiniteDimensional ℂ Wp] (P : M.Par) (Bs : B.RealPlaceData P.
   refine Finset.sum_congr rfl fun ρ _ => ?_
   rw [hcoef ρ, mul_smul]
 
-def dl {P : M.Par} (ρ : M.Ty P) : M.Ty P → ℂ := fun ρ' => if ρ' = ρ then 1 else 0
-
 theorem radR_kap_dl [FiniteDimensional ℂ Wp] (P : M.Par) (Bs : B.RealPlaceData P.k P.r Wp Wq)
     (X : Q.ActualOps P.k P.r Bs.z Bs.z' Bs.π Bs.π') (d : Q.NFData P (Q.Pr (Q.RadSp P.k P.r Bs.z Bs.z' Bs.π Bs.π')))
     (hH : GTHyp P Bs X d) (e : M.Ty P → ℂ → (Wq →L[ℂ] Wp)) (he : IsFrameB P Bs e) (hk : KapF P Bs d e)
     (ρ : M.Ty P) (Φ : Q.RadSp P.k P.r Bs.z Bs.z' Bs.π Bs.π') (q : (Fin P.r → ℂ) × ℂ)
     (hq : q ∈ NF.QR P.k P.r Bs.z Bs.z') :
-    NF.radR P.k P.r Bs.z Bs.z' Bs.μsec ((d.κ (dl ρ)).1 Φ : Q.Fn P.k P.r (Wq →L[ℂ] Wp)) q =
+    NF.radR P.k P.r Bs.z Bs.z' Bs.μsec ((d.κ (_root_.Formalism.FourierDecayAlt.P.NFx4.SX.dl ρ)).1 Φ : Q.Fn P.k P.r (Wq →L[ℂ] Wp)) q =
       Lp e ρ q.2 (NF.radR P.k P.r Bs.z Bs.z' Bs.μsec (Φ : Q.Fn P.k P.r (Wq →L[ℂ] Wp)) q) := by
   rw [radR_kap P Bs X d hH e he hk _ Φ q hq, Finset.sum_eq_single ρ]
-  · simp [dl, Lp_apply]
-  · intro b _ hb; simp [dl, hb]
+  · simp [_root_.Formalism.FourierDecayAlt.P.NFx4.SX.dl, Lp_apply]
+  · intro b _ hb; simp [_root_.Formalism.FourierDecayAlt.P.NFx4.SX.dl, hb]
   · intro h; exact absurd (Finset.mem_univ ρ) h
 
 theorem radDZ_kap_left [FiniteDimensional ℂ Wp] (P : M.Par) (Bs : B.RealPlaceData P.k P.r Wp Wq)
     (X : Q.ActualOps P.k P.r Bs.z Bs.z' Bs.π Bs.π') (d : Q.NFData P (Q.Pr (Q.RadSp P.k P.r Bs.z Bs.z' Bs.π Bs.π')))
     (hH : GTHyp P Bs X d) (e : M.Ty P → ℂ → (Wq →L[ℂ] Wp)) (he : IsFrameB P Bs e) (hk : KapF P Bs d e)
     (ρ : M.Ty P) {T : Module.End ℂ (Q.RadSp P.k P.r Bs.z Bs.z' Bs.π Bs.π')} (hT : RadDZ P Bs T) :
-    RadDZ P Bs ((d.κ (dl ρ)).1 * T) :=
+    RadDZ P Bs ((d.κ (_root_.Formalism.FourierDecayAlt.P.NFx4.SX.dl ρ)).1 * T) :=
   radDZ_comp_left hT (Lp e ρ) (Lp_smooth P Bs hH.1 he ρ) fun Φ q hq => by
     rw [Module.End.mul_apply, radR_kap_dl P Bs X d hH e he hk ρ _ q hq]
 

@@ -71,27 +71,9 @@ lemma nhds_zero_isCountablyGenerated : (𝓝 (0 : F)).IsCountablyGenerated := by
   have := countable_valueGroupWithZero F
   exact (IsValuativeTopology.hasBasis_nhds_zero' F).isCountablyGenerated
 
-lemma sigmaCompactSpace : SigmaCompactSpace F := by
-  have := countable_valueGroupWithZero F
-  refine SigmaCompactSpace.of_countable
-    (Set.range fun γ : ValueGroupWithZero F => {x : F | valuation F x ≤ γ})
-    (Set.countable_range _) ?_ ?_
-  · rintro _ ⟨γ, rfl⟩
-    exact IsNonarchimedeanLocalField.isCompact_closedBall F γ
-  · ext x
-    simp only [Set.sUnion_range, Set.mem_iUnion, Set.mem_ofPred_eq, Set.mem_univ, iff_true]
-    exact ⟨_, le_rfl⟩
-
-lemma metrizableSpace : TopologicalSpace.MetrizableSpace F := by
-  let := IsTopologicalAddGroup.rightUniformSpace F
-  have := isUniformAddGroup_of_addCommGroup (G := F)
-  have := nhds_zero_isCountablyGenerated F
-  have := IsUniformAddGroup.uniformity_countably_generated (α := F)
-  exact UniformSpace.metrizableSpace
-
 lemma secondCountableTopology : SecondCountableTopology F := by
-  have := sigmaCompactSpace F
-  have := metrizableSpace F
+  have := _root_.GroundTheory.Automorphic.Measures.sigmaCompactSpace F
+  have := _root_.GroundTheory.Automorphic.Measures.metrizableSpace F
   infer_instance
 
 end LocalField

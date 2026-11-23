@@ -57,22 +57,6 @@ noncomputable section
 
 namespace GlobalTheory.InertUnitOrb.LatOnto
 
-open GlobalTheory.InertUnitOrb.ModelOfN
-
-theorem exists_orthonormal_mem {K : UQ} (n : ℕ) : ∀ (V : Type) [AddCommGroup V] [Module K.E V] [Module K.O V]
-    [IsScalarTower K.O K.E V] [FiniteDimensional K.E V] (h : V → V → K.E),
-    (∀ y y' z, h (y + y') z = h y z + h y' z) → (∀ (a : K.E) y z, h (a • y) z = a * h y z) →
-    (∀ y z, h z y = K.c (h y z)) → Module.finrank K.E V = n → ∀ L : Submodule K.O V, L.FG →
-    Submodule.span K.E (L : Set V) = ⊤ → (∀ y, y ∈ L ↔ ∀ z ∈ L, h y z ∈ (algebraMap K.O K.E).range) →
-    ∃ v : Fin n → V, (∀ i, v i ∈ L) ∧ ∀ i j, h (v i) (v j) = if i = j then 1 else 0 := by
-  first
-  | exact @_root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal
-  | exact _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal
-  | (apply _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal <;> assumption)
-  | (intros; apply _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal ..)
-
 end GlobalTheory.InertUnitOrb.LatOnto
 
 namespace GlobalTheory.InertUnitOrb.LatOnto
@@ -94,7 +78,7 @@ theorem exists_unitLat_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     congr 1
     ring
   have hn : Module.finrank K.E B.A = n := by rw [ψ.finrank_eq, Module.finrank_fin_fun]
-  obtain ⟨v, hvL, hv⟩ := exists_orthonormal_mem n B.A (B.herm x) hadd hsmul hsym hn L hLat.1 hLat.2 hdual
+  obtain ⟨v, hvL, hv⟩ := _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal n B.A (B.herm x) hadd hsmul hsym hn L hLat.1 hLat.2 hdual
   obtain ⟨b, hb⟩ := exists_basis_of_orthonormal (B.herm x) hadd hsmul hn v hv
   let P : Matrix (Fin n) (Fin n) K.E := Matrix.of fun i j => ψ (v j) i
   let Pc : Matrix (Fin n) (Fin n) K.E := Formalism.UG.cT (K.c : K.E →+* K.E) P

@@ -74,7 +74,7 @@ theorem exists_hodge_at_embedding : ∀ (l : ℕ) [Fact l.Prime] (K L : FinExt l
   obtain ⟨m, d, k, hA⟩ := GlobalTheory.DRFil.exists_adapted (P.PD K) (GlobalTheory.DRFil.isField_dR T) R
     (GlobalTheory.DRFil.filSpans T K L R hDR) τ
   obtain ⟨K', hKK', hK'⟩ := exists_ext_fixing l K L σ
-  obtain ⟨e, he1, he0⟩ := GlobalTheory.T.exists_bdR_element_normalized_killing_phi_kernel l P σ L a
+  obtain ⟨e, he1, he0⟩ := _root_.GlobalTheory.HodgeAt.exists_idem_phiS_ker l P σ L a
   have hid := phiS_idem l P K L τ σ hσ
   set w : Fin m → Fin a → P.R.BdR := fun i => PhiS P σ L a (d i) with hw
   have hfil : ∀ i j, w i j ∈ (P.PD K).Fil (k i) := fun i j =>
@@ -118,7 +118,7 @@ theorem exists_hodge_at_embedding : ∀ (l : ℕ) [Fact l.Prime] (K L : FinExt l
     exact h1.symm
   have hma := GlobalTheory.T.card_eq_of_linIndep_spanning_deRham l P AI T a m w hind (fun j => (hspan j).imp fun u hu => hu.2)
   subst hma
-  obtain ⟨H, hH⟩ := GlobalTheory.T.hodge_basis_of_adapted_invariant_family l P AI T C hC ξ hξ K K' m _ w k hfil hspan hinv
+  obtain ⟨H, hH⟩ := _root_.GlobalTheory.HodgeAt.hodge_of_adapted l P AI T C hC ξ hξ K K' m _ w k hfil hspan hinv
   exact ⟨K', H, hKK', fun n => by rw [hH n, hA.multV_eq]⟩
 
 end GlobalTheory.HodgeAt

@@ -116,7 +116,7 @@ theorem meas_densF' (X : Data E r) (x' : Frame X.Ψ r) :
   unfold densF
   refine Finset.measurable_prod _ fun τ _ => Finset.measurable_prod _ fun i _ => ?_
   have hc : Measurable fun z : V (nd X) => ‖dmin X.Gm (cpt X x' z) τ i.castSucc‖ ^ 2 :=
-    (((cont_dmin X τ _).comp (cont_cpt' X x')).norm.pow 2).measurable
+    (((_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.ExtFPf.cont_dmin X τ _).comp (cont_cpt' X x')).norm.pow 2).measurable
   have e : (fun z : V (nd X) => ‖dmin X.Gm (cpt X x' z) τ i.castSucc‖ ^ (-2 : ℤ)) =
       fun z => (‖dmin X.Gm (cpt X x' z) τ i.castSucc‖ ^ 2)⁻¹ := by
     funext z; rw [zpow_neg, zpow_ofNat]

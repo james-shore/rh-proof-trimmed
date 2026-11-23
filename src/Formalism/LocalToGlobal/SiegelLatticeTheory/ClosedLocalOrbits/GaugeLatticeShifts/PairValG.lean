@@ -58,7 +58,7 @@ theorem gval_eq_G (hrows : IsRowReps D F0 what₂) {t : Term D u u' F0 what₂}
     {F' : LFlag (D.sp.Y 0) D.R.rS (((D.mem u').A.T : ℕ) : D.host.E)} (hrep : Rep t.lam (lf D F0) (PD D t.lam (lf D F0) u') t.cls F') :
     Gval (lf D F0) F' = t.G := by
   obtain ⟨h, hmk⟩ := hrep
-  have hGF := (Formalism.L2.SG.Closed.TermFun_holds D u u' F0 t.lam (hrows.1 t.lam t.mem)).1
+  have hGF := (_root_.term_function_const D u u' F0 t.lam (hrows.1 t.lam t.mem)).1
   change _ = Gt t.lam (lf D F0) (PD D t.lam (lf D F0) u') t.cls
   rw [← hmk]
   exact (Gt_mk hGF ⟨F', h⟩).symm

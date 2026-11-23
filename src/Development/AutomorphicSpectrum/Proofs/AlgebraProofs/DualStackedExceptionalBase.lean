@@ -256,7 +256,7 @@ theorem exc_base : DualStackedExcBase.Statement := by
   intro K _ _ i F F' T _ _ b b' a hi hlt hcov hab k _ ρ π y₀ m g α M hco
   refine sup_le ?_ ?_
   · intro f hf
-    obtain ⟨s, G, rfl, hG⟩ := graph_bihomog K i F F' T b b' a hab f hf
+    obtain ⟨s, G, rfl, hG⟩ := _root_.GroundTheory.Heights₂.Heights.DualStackedGraphBihomog.proof K i F F' T b b' a hab f hf
 
     rw [linPrime, RingHom.mem_ker, map_sum]
     exact Finset.sum_eq_zero fun p hp => lead_of_coords hco (hG p hp).1 (hG p hp).2

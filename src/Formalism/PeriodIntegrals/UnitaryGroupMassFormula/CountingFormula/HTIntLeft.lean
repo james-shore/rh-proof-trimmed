@@ -39,6 +39,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.EichESymmApply
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.WeightPositive
 
 @[expose] public section
 
@@ -83,14 +85,6 @@ theorem hT_int_left (D : Formalism.BasicNotions.D7) (n : ℤ) (x y : (VS D).V) :
     (VS D).hT ((n : D.host.E) • x) y = (n : D.host.E) * (VS D).hT x y := by
   rw [LinearMap.map_smulₛₗ₂, smul_eq_mul, starRingEnd_apply, star_intCast]
 
-private theorem hT_isIntegral_of_mem_unimodular (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (VS D).V}
-    (hU : Formalism.HermitianLatticesTheory.IsUnimodular (VS D).hT Λ) {y v : (VS D).V} (hy : y ∈ Λ) (hv : v ∈ Λ) :
-    ∃ o : 𝓞 D.host.E, algebraMap (𝓞 D.host.E) D.host.E o = (VS D).hT y v := by
-  have h : Formalism.E.hdual (VS D).hT Λ = Λ := hU
-  have hv' : v ∈ Formalism.E.hdual (VS D).hT Λ := by rw [h]; exact hv
-  simp only [Formalism.E.hdual, Submodule.mem_iInf, Submodule.mem_comap, LinearMap.restrictScalars_apply] at hv'
-  exact Submodule.mem_one.mp (hv' y hy)
-
 theorem pW_lat (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (VS D).V}
     (hU : Formalism.HermitianLatticesTheory.IsUnimodular (VS D).hT Λ) (heΛ : ∀ a, D.sp.hypE a ∈ Λ) (d : ℤ)
     (hdF : ∀ a, (d : D.host.E) • D.sp.hypF a ∈ Λ)
@@ -108,7 +102,7 @@ theorem pW_lat (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (
   refine Λ.add_mem (Λ.sub_mem (Λ.sub_mem ?_ ?_) ?_) ?_
   · rw [pow_two, mul_smul]; exact hint d (hint d hv)
   · refine Λ.sum_mem (fun a _ => ?_)
-    obtain ⟨o, ho⟩ := hT_isIntegral_of_mem_unimodular D hU (hdF a) hv
+    obtain ⟨o, ho⟩ := _root_.PI.UnitaryGroupMassFormula.CntFormula.unimod_int D hU (hdF a) hv
     have heq : (d : D.host.E) ^ 2 • ((VS D).hT (D.sp.hypF a) v • D.sp.hypE a) =
         algebraMap (𝓞 D.host.E) D.host.E ((d : 𝓞 D.host.E) * o) • D.sp.hypE a := by
       simp only [smul_smul]
@@ -117,7 +111,7 @@ theorem pW_lat (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (
       ring
     rw [heq]; exact hsm _ (heΛ a)
   · refine Λ.sum_mem (fun a _ => ?_)
-    obtain ⟨o, ho⟩ := hT_isIntegral_of_mem_unimodular D hU (heΛ a) hv
+    obtain ⟨o, ho⟩ := _root_.PI.UnitaryGroupMassFormula.CntFormula.unimod_int D hU (heΛ a) hv
     have heq : (d : D.host.E) ^ 2 • ((VS D).hT (D.sp.hypE a) v • D.sp.hypF a) =
         algebraMap (𝓞 D.host.E) D.host.E ((d : 𝓞 D.host.E) * o) • ((d : D.host.E) • D.sp.hypF a) := by
       simp only [smul_smul]
@@ -125,7 +119,7 @@ theorem pW_lat (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (
       congr 1
       ring
     rw [heq]; exact hsm _ (hdF a)
-  · obtain ⟨o, ho⟩ := hT_isIntegral_of_mem_unimodular D hU hdz hv
+  · obtain ⟨o, ho⟩ := _root_.PI.UnitaryGroupMassFormula.CntFormula.unimod_int D hU hdz hv
     have hc : (VS D).hT (((d : D.host.E) * (D.sp.T : D.host.E)⁻¹) • D.sp.zm) v =
         (d : D.host.E) * (D.sp.T : D.host.E)⁻¹ * (VS D).hT D.sp.zm v := by
       rw [LinearMap.map_smulₛₗ₂, smul_eq_mul]
@@ -169,14 +163,6 @@ def tv (D : Formalism.BasicNotions.D7) (Z : MatZ D) (R : Matrix (Fin (D.R.rS + 1
     (x : (Fin D.R.rS → (VS D).V) × (VS D).V) (b : Fin (D.R.rS + 1)) : (VS D).V :=
   ∑ b', Pm D Z R b' b • pWf D x b'
 
-private theorem hT_swap_eq_star' (D : Formalism.BasicNotions.D7) (p q : (VS D).V) :
-    (VS D).hT q p = star ((VS D).hT p q) := by
-  first
-  | exact ((VS D).herm p q).symm
-  | exact ((VS D).herm.eq p q).symm
-  | simpa using ((VS D).herm p q).symm
-  | simpa using ((VS D).herm.eq p q).symm
-
 private theorem pW_add' (D : Formalism.BasicNotions.D7) (u v : (VS D).V) : pW D (u + v) = pW D u + pW D v := by
   unfold pW
   simp only [map_add (f := _), add_smul, Finset.sum_add_distrib, add_div]
@@ -196,7 +182,7 @@ private theorem hT_pW_self_of_hT_hypE_eq_zero (D : Formalism.BasicNotions.D7) (w
     (VS D).hT (pW D w) (pW D w) = (VS D).hT w w +
       (D.sp.T : D.host.E) * star ((VS D).hT D.sp.zm w / (D.sp.T : D.host.E)) *
         ((VS D).hT D.sp.zm w / (D.sp.T : D.host.E)) := by
-  have hs : ∀ p q : (VS D).V, (VS D).hT q p = star ((VS D).hT p q) := fun p q => hT_swap_eq_star' D p q
+  have hs : ∀ p q : (VS D).V, (VS D).hT q p = star ((VS D).hT p q) := fun p q => _root_.PI.UnitaryGroupMassFormula.CntFormula.hswap D p q
   have hee : ∀ a a', (VS D).hT (D.sp.hypE a) (D.sp.hypE a') = 0 := D.sp.hyp_ee
   have hze : ∀ a, (VS D).hT D.sp.zm (D.sp.hypE a) = 0 := fun a => (D.sp.hyp_orthz a).1
   have hez : ∀ a, (VS D).hT (D.sp.hypE a) D.sp.zm = 0 := fun a => by rw [hs, hze, star_zero]

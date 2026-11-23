@@ -64,19 +64,6 @@ section
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {Ψ : Type} [Fintype Ψ] {j j' n g : ℕ} {Λ : Type}
   [AddCommGroup Λ] [Module (𝓞 E) Λ] {F : UnivFam E Ψ j j' n g Λ} (C : LatEmb F)
 
-theorem stdZ_perExt_vec (R : RiemLat E g Λ) (x : Λ) : C.perExt R (C.vec x) = R.P x := by
-  let v : Λ →+ (Ψ → Fin (j + j') → ℂ) := AddMonoidHom.mk' C.vec fun a b => by
-    funext τ i
-    simp [LatEmb.vec]
-  have h : ((C.perExt R).toAddMonoidHom.comp v).toIntLinearMap = R.P.toIntLinearMap := by
-    refine C.lam.ext fun k => ?_
-    have e : C.vec (C.lam k) = C.bas k := by
-      funext τ i
-      exact (C.bas_eq k τ i).symm
-    show C.perExt R (C.vec (C.lam k)) = R.P (C.lam k)
-    rw [e, LatEmb.perExt, Module.Basis.constr_basis]
-  exact LinearMap.congr_fun h x
-
 theorem stdZ_sgU (τ : Ψ) {A A' : Matrix (Fin (j + j')) (Sg j j') ℂ} (hA : Aᴴ * C.sgr τ * A = sgI j j')
     (hA' : A'ᴴ * C.sgr τ * A' = sgI j j') : IsSgU (C.cinv A τ * A') := by
   have h1 := (GlobalTheory.T.adapted_frame_inverse_properties E Ψ j j' n g Λ F C τ A hA).2.1
@@ -185,10 +172,10 @@ theorem stdZ : StdZ := by
     simp only [a, ai]
     rw [← Matrix.map_mul, Units.mul_inv, Matrix.map_one _ (map_zero _) (map_one _)]
   have hia : ∀ τ, ai τ * a τ = 1 := fun τ => mul_eq_one_comm.1 (hai τ)
-  obtain ⟨R', h1, -, h3, h4⟩ := GlobalTheory.T.exists_translated_riemann_lattice E Ψ j j' n g Λ F C (F.R t) a ai (F.form_eq t) hai hu
+  obtain ⟨R', h1, -, h3, h4⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.Rotate.rotate_exists E Ψ j j' n g Λ F C (F.R t) a ai (F.form_eq t) hai hu
   have h5 := h4 A hA
   have hP : ∀ x, R'.P (δ x) = (F.R t).P x := fun x => by
-    rw [h3, ← stdZ_perExt_vec C (F.R t) x]
+    rw [h3, ← _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.AdaptedLen.perExt_vec C (F.R t) x]
     congr 1
     funext τ
     have hv : C.vec (δ x) τ = a τ *ᵥ C.vec x τ := by
@@ -215,7 +202,7 @@ theorem stdZ : StdZ := by
   · intro h
     obtain ⟨t'', ht'', hA''⟩ := stdZ_reach C _ h5.unit
     obtain rfl : t'' = t' := hinj ht'' ht' ((hZeq t'' ht'' _ hA'').trans h.symm)
-    obtain ⟨k, hk⟩ := GlobalTheory.T.adapted_frame_determines_lattice E Ψ j j' n g Λ F C R' (F.R t'') _ (h1.trans (F.form_eq t)) (F.form_eq _) h5 hA''
+    obtain ⟨k, hk⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.adapted_eqvBy E Ψ j j' n g Λ F C R' (F.R t'') _ (h1.trans (F.form_eq t)) (F.form_eq _) h5 hA''
     exact ⟨k, fun x => (hk (δ x)).trans (congrArg k (hP x))⟩
 
 end SheetDecomposition

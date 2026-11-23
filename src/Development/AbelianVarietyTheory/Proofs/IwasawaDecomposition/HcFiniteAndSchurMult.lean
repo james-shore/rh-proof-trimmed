@@ -230,7 +230,7 @@ theorem schurMult (hP : GlobalTheory.Published.CuspRapidDecay) (μ : Measure (GA
     SchurMult θ M J χ μ 𝓕 := by
   intro hθ hμ h𝓕 T hT T' hT'
   rw [GlobalTheory.MultMem.mem_mult_iff] at hT hT'
-  obtain ⟨c, hc⟩ := GlobalTheory.T.exists_eq_const_mul_prod_inner_of_slotwise' D.what₂.Tau (fun τ => M.sm τ) (fun v v' => ∫ g in 𝓕, star (T v g) * T' v' g ∂μ)
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.exists_eq_const_mul_prod_inner_of_positionwise D.what₂.Tau (fun τ => M.sm τ) (fun v v' => ∫ g in 𝓕, star (T v g) * T' v' g ∂μ)
     fun τ v v' => schur_multMap hP hθ hμ h𝓕 hT hT' τ v v'
   exact ⟨c, fun v v' => ⟨GlobalTheory.CuspDecay.integrableOn_star_mul hP GlobalTheory.Mem.VolFin.finVol hθ μ 𝓕 hμ h𝓕 (hT.aut v)
     (hT'.aut v') (hT'.cusp v'), hc v v'⟩⟩

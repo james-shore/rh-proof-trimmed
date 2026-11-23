@@ -123,8 +123,8 @@ theorem UpperTheory.V.Z.Mult.stableGA :
   obtain ⟨μ₂, hμ₂⟩ := haarEx E 0
   obtain ⟨D, -, hD⟩ := hG E n hn μ₁ μ₂
   obtain ⟨A⟩ := arEx E n 0 l₁ l₂ D
-  obtain ⟨u₁, hu₁⟩ := PositivityTheory.Rg.BcB.G8.translation_existence_holds E n
-  obtain ⟨u₂, hu₂⟩ := PositivityTheory.Rg.BcB.G8.translation_existence_holds E 0
+  obtain ⟨u₁, hu₁⟩ := _root_.GlobalTheory.CompanionTheory.LocalThetaTranslation.translEx E n
+  obtain ⟨u₂, hu₂⟩ := _root_.GlobalTheory.CompanionTheory.LocalThetaTranslation.translEx E 0
   obtain ⟨κ, hκ, hell⟩ := cmbEll E hE n 0 l₁ l₂ D A μ₁ μ₂ hμ₁ hμ₂
   obtain ⟨c₁, hc₁, hl⟩ := hPi E hE n hn l₁ l₂ D A u₁ u₂ hu₁
   refine ⟨c₁ / ‖2 * κ‖, div_pos hc₁ (norm_pos_iff.2 (mul_ne_zero two_ne_zero hκ)),

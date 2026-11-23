@@ -63,22 +63,11 @@ namespace GlobalTheory.CompactHowe.Contraction
 
 open MvPolynomial ReciprocityTheory.PGsh
 
-theorem mem_iff {k : ℕ} (g : Matrix (Fin k) (Fin k) ℂ) : g ∈ UJset (allPos k) ↔ gᴴ * g = 1 := by
-  have h : Formalism.REAL.Jm (allPos k) = 1 := by simp [Formalism.REAL.Jm, allPos]
-  show gᴴ * Formalism.REAL.Jm (allPos k) * g = Formalism.REAL.Jm (allPos k) ↔ _
-  rw [h, Matrix.mul_one]
+alias mem_iff := _root_.GlobalTheory.ConjTwist.mem_U_iff
 
-theorem map_star_map_star {k : ℕ} (g : Matrix (Fin k) (Fin k) ℂ) : (g.map star).map star = g := by
-  ext i j; simp
+alias map_star_map_star := _root_.GlobalTheory.ConjugateType.map_star_star
 
-theorem map_star_mem {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : g ∈ UJset (allPos k)) :
-    g.map star ∈ UJset (allPos k) := by
-  rw [mem_iff] at hg ⊢
-  ext i j
-  have := congrArg star (congrFun (congrFun hg i) j)
-  simp only [Matrix.mul_apply, star_sum, star_mul', Matrix.conjTranspose_apply, Matrix.map_apply] at this ⊢
-  rw [this]
-  by_cases h : i = j <;> simp [Matrix.one_apply, h]
+alias map_star_mem := _root_.GlobalTheory.ConjTwist.map_star_mem
 
 theorem inv_transpose {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : g ∈ UJset (allPos k)) :
     (g⁻¹)ᵀ = g.map star := by
@@ -116,18 +105,6 @@ theorem fischer_swap (P Q : MvPolynomial (Fin N × Fin n) ℂ) :
   unfold fw
   rw [Finsupp.prod_mapDomain_index_inj hinj]
 
-theorem subst2_row (h : Matrix (Fin N) (Fin N) ℂ) (P : MvPolynomial (Fin N × Fin n) ℂ) :
-    subst2 h 1 P = rowSubst h P := by
-  have key : subst2 h (1 : Matrix (Fin n) (Fin n) ℂ) = rowSubst h := by
-    refine algHom_ext fun p => ?_
-    rw [subst2_X, rowSubst_X]
-    refine Finset.sum_congr rfl fun k _ => ?_
-    rw [Finset.sum_eq_single p.2]
-    · simp
-    · intro l _ hl; simp [Matrix.one_apply_ne hl]
-    · simp
-  rw [key]
-
 theorem subst2_col (g : Matrix (Fin n) (Fin n) ℂ) (P : MvPolynomial (Fin N × Fin n) ℂ) :
     rename Prod.swap (subst2 1 g P) = rowSubst g (rename Prod.swap P) := by
   have key : (rename Prod.swap).comp (subst2 (1 : Matrix (Fin N) (Fin N) ℂ) g) =
@@ -145,7 +122,7 @@ theorem fischer_subst2 (h : Matrix (Fin N) (Fin N) ℂ) (g : Matrix (Fin n) (Fin
     fischer (subst2 h g P) Q = fischer P (subst2 hᴴ gᴴ Q) := by
   have h1 : subst2 h g P = subst2 h 1 (subst2 1 g P) := by rw [subst2_mul]; simp
   have h2 : subst2 hᴴ gᴴ Q = subst2 1 gᴴ (subst2 hᴴ 1 Q) := by rw [subst2_mul]; simp
-  rw [h1, h2, subst2_row, fischer_rowSubst, ← subst2_row, ← fischer_swap, subst2_col,
+  rw [h1, h2, _root_.GlobalTheory.CompactHoweJoint.subst2_one_right, fischer_rowSubst, ← _root_.GlobalTheory.CompactHoweJoint.subst2_one_right, ← fischer_swap, subst2_col,
     fischer_rowSubst, ← subst2_col, fischer_swap]
 
 theorem fischer_subst2_unitary {h : Matrix (Fin N) (Fin N) ℂ} {g : Matrix (Fin n) (Fin n) ℂ}

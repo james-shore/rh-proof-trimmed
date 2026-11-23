@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.AutomorphicSpectrum.Proofs.TwistedProofs.MemIntROfFinPart
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EvalVAlgebraMapMem
 
 @[expose] public section
 
@@ -58,10 +59,6 @@ open GlobalTheory.RegSch (ikS projS Lvl)
 namespace PositivityTheory.Rg.Rsw.L.LLatBound
 
 variable {D : D7}
-
-theorem mtL_mul (V : HSp D) (g h : GA D V) : mt V (g * h) = mt V g * mt V h := rfl
-
-theorem mtL_one (V : HSp D) : mt V 1 = 1 := rfl
 
 theorem finPart_mtL {V : HSp D} {a : GA D V} (ha : a ∈ GinfC V) : (mt V a).map (finPart D) = 1 := by
   have h0 : finHom V a = 1 := ha
@@ -108,7 +105,7 @@ theorem gen_bound_col {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (n : ℕ) 
   set B : D.what₂.Tau → Matrix (Fin V.rank) (Fin V.rank) ℂ := fun τ => compAt θ τ (mt V (a * y)) with hBdef
   have hB : ∀ τ, ‖(B τ).det‖ = 1 := fun τ => GlobalTheory.CompanionTheory.Ipf.Bdd.norm_det_compAt hθ τ V (a * y)
   have hmt : mt V (k * a * y) = mt V k * mt V (a * y) := by
-    rw [mul_assoc, mtL_mul]
+    rw [mul_assoc, _root_.GlobalTheory.BesselCompare.mt_mul]
 
   have hinf : ∀ x : Matrix (Fin V.rank) (Fin n) D.host.E,
       (fun τ i j => compAt θ τ (mm (mt V (k * a * y)) (rat x)) i j) = fun τ => B τ * x.map (tauE D τ) := by
@@ -130,16 +127,16 @@ theorem gen_bound_col {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (n : ℕ) 
   set Kf : Matrix (Fin V.rank) (Fin V.rank) (Af D.host.F ⊗[D.host.F] D.host.E) := (mt V k).map (finPart D) with hKf
   set Ki : Matrix (Fin V.rank) (Fin V.rank) (Af D.host.F ⊗[D.host.F] D.host.E) := (mt V k⁻¹).map (finPart D) with hKi
   have hYY : Yi * Yf = 1 := by
-    rw [hYi, hYf, ← Matrix.map_mul, ← mtL_mul, inv_mul_cancel, mtL_one]
+    rw [hYi, hYf, ← Matrix.map_mul, ← _root_.GlobalTheory.BesselCompare.mt_mul, inv_mul_cancel, _root_.GlobalTheory.BesselCompare.mt_one]
     exact Matrix.map_one _ (map_zero _) (map_one _)
   have hKK : Ki * Kf = 1 := by
-    rw [hKi, hKf, ← Matrix.map_mul, ← mtL_mul, inv_mul_cancel, mtL_one]
+    rw [hKi, hKf, ← Matrix.map_mul, ← _root_.GlobalTheory.BesselCompare.mt_mul, inv_mul_cancel, _root_.GlobalTheory.BesselCompare.mt_one]
     exact Matrix.map_one _ (map_zero _) (map_one _)
   have hfin : ∀ x : Matrix (Fin V.rank) (Fin n) D.host.E,
       (mm (mt V (k * a * y)) (rat x)).map (finPart D) = Kf * Yf * x.map (fun c => finPart D (incA D c)) := by
     intro x
     have : (mt V (a * y)).map (finPart D) = Yf := by
-      rw [mtL_mul, Matrix.map_mul, finPart_mtL ha, Matrix.one_mul]
+      rw [_root_.GlobalTheory.BesselCompare.mt_mul, Matrix.map_mul, finPart_mtL ha, Matrix.one_mul]
     show (mt V (k * a * y) * rat x).map (finPart D) = _
     rw [Matrix.map_mul, hmt, Matrix.map_mul, this]
     rfl
@@ -168,7 +165,7 @@ theorem gen_bound_col {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (n : ℕ) 
       ring
     rw [e]
     refine sum_mem fun l _ => sum_mem fun m _ => ?_
-    exact GlobalTheory.CompanionTheory.Ipf.Bdd.mul_mem_int (hMy (i, l)) (GlobalTheory.CompanionTheory.Ipf.Bdd.mul_mem_int (hki l m) (hNK Z hZK m j))
+    exact _root_.GlobalTheory.IdemPrime.mul_mem_int (hMy (i, l)) (_root_.GlobalTheory.IdemPrime.mul_mem_int (hki l m) (hNK Z hZK m j))
 
   set S₁ : Set (Matrix (Fin V.rank) (Fin n) D.host.E) := {x | x.rank = V.rank} with hS₁
   set S₂ : Set (Matrix (Fin V.rank) (Fin n) D.host.E) :=

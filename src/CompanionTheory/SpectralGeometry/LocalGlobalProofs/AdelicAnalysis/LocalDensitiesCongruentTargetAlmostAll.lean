@@ -71,7 +71,7 @@ theorem map_eq_self {V : Type} [AddCommGroup V] [TopologicalSpace V] [LocallyCom
     (hLn : L.Nonempty) (heL : ∀ x ∈ L, e x ∈ L) (hfL : ∀ x ∈ L, f x ∈ L) : μ.map e = μ := by
   let e' : V ≃+ V :=
     { toFun := e, invFun := f, left_inv := hfe, right_inv := hef, map_add' := he }
-  exact (GlobalTheory.T.map_addHaar_addEquiv_eq_smul_and_eq_of_compact_open V V μ μ e' hec hfc).2 L L hLc hLo hLn
+  exact (_root_.GlobalTheory.CompanionTheory.SW.HaarTransport.map_addEquiv_haar V V μ μ e' hec hfc).2 L L hLc hLo hLn
     (fun x => ⟨fun h => by simpa [e', hfe] using hfL _ h, heL x⟩) rfl
 
 theorem mul_entry_mem {K : Type} [CommRing K] (O : Subring K) {n : ℕ}
@@ -128,7 +128,7 @@ theorem mass_eq_of_integral (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M : ℕ
   haveI := hν n
   obtain ⟨-, hcomp, hone, hherm, -⟩ := GlobalTheory.T.gram_right_action_identities F E σ hCM M J hJ (Fv F v) n
   obtain ⟨hLc, hLo, hL0, -⟩ := GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hCM d b n M v
-  obtain ⟨hLc', hLo', hL0', -⟩ := GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hCM d b n n v
+  obtain ⟨hLc', hLo', hL0', -⟩ := _root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hCM d b n n v
   have hrm : ∀ (h : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)), (∀ i j, h i j ∈ O) →
       ∀ X ∈ latV (M := M) (n := n) b v, rmul (Fv F v) X h ∈ latV (M := M) (n := n) b v := by
     intro h hh X hX a i

@@ -57,12 +57,6 @@ open Matrix
 
 variable {n : Type*} [Fintype n] [DecidableEq n] {G : Type*} [Group G]
 
-private theorem burnside_end {K V : Type*} [Field K] [IsAlgClosed K] [AddCommGroup V] [Module K V]
-    [FiniteDimensional K V] (S : Subalgebra K (Module.End K V))
-    (hirr : ∀ N : Submodule K V, (∀ f ∈ S, ∀ v ∈ N, f v ∈ N) → N = ⊥ ∨ N = ⊤)
-    (f : Module.End K V) : f ∈ S :=
-  _root_.UpperTheory.Reformulated.B.Qj3.burnside_end S hirr f
-
 theorem span_eq_top_of_irreducible {K : Type*} [Field K] [IsAlgClosed K] (ρ : G →* Matrix n n K)
     (hirr : ∀ N : Submodule K (n → K), (∀ g, ∀ v ∈ N, ρ g *ᵥ v ∈ N) → N = ⊥ ∨ N = ⊤) :
     Submodule.span K (Set.range ρ) = ⊤ := by
@@ -78,7 +72,7 @@ theorem span_eq_top_of_irreducible {K : Type*} [Field K] [IsAlgClosed K] (ρ : G
   let e : Matrix n n K ≃ₐ[K] Module.End K (n → K) := Matrix.toLinAlgEquiv'
   rw [eq_top_iff, ← hT]
   intro m _
-  have h := burnside_end (T.map e.toAlgHom) (fun N hN => hirr N fun g v hv =>
+  have h := _root_.UpperTheory.Reformulated.B.Qj3.burnside_end (T.map e.toAlgHom) (fun N hN => hirr N fun g v hv =>
     hN (e (ρ g)) ⟨ρ g, Algebra.subset_adjoin ⟨g, rfl⟩, rfl⟩ v hv) (e m)
   obtain ⟨m', hm', h'⟩ := h
   have : m' = m := e.injective h'

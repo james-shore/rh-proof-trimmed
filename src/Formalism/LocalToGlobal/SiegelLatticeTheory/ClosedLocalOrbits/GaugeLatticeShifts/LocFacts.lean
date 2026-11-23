@@ -159,7 +159,7 @@ theorem locSatC_of_stmt (h : PI.LocLatSat.Stmt) (Z : LocDat D) : LocSatC D Z := 
 end LocFacts
 
 theorem locSatC_holds (D : D7) (Z : LocDat D) : LocSatC D Z :=
-  LocFacts.locSatC_of_stmt inf_eq_inter_span Z
+  LocFacts.locSatC_of_stmt _root_.PI.LocLatSat.UnitaryGroupMassFormula.locLatSat Z
 
 theorem locEqC_of (h : PI.LocLatEq.Stmt) (D : D7) (Z : LocDat D) : LocEqC D Z :=
   LocFacts.locEqC_of_stmt h Z
@@ -175,19 +175,6 @@ section Diff
 attribute [local instance] LocCP.factRes
 
 variable (p : PlF D)
-
-theorem lf_psiE_one (z : (D.s.atP p).Ep) (hz : ‖LocCP.trQ p z‖ ≤ 1) : (D.s.atP p).psiE z = 1 := by
-  obtain ⟨a, ⟨n, hden⟩, hle, heq⟩ := (D.s.atP p).psiE_def z
-  change ‖LocCP.trQ p z - (a : ℚ_[Loc.resChar p])‖ ≤ 1 at hle
-  have ha : ‖((a : ℚ) : ℚ_[Loc.resChar p])‖ ≤ 1 := by
-    have e : ((a : ℚ) : ℚ_[Loc.resChar p]) = LocCP.trQ p z + -(LocCP.trQ p z - (a : ℚ_[Loc.resChar p])) := by ring
-    rw [e]
-    refine (Padic.nonarchimedean _ _).trans (max_le hz ?_)
-    rw [norm_neg]; exact hle
-  have h1 := LocCP.den_one_of (Loc.resChar p) a n hden ha
-  have ha' : ((a.num : ℚ) : ℂ) = (a : ℂ) := by rw [Rat.coe_int_num_of_den_eq_one h1]
-  rw [heq, ← ha', Rat.cast_intCast, mul_comm]
-  exact Complex.exp_int_mul_two_pi_mul_I a.num
 
 theorem lf_tr_th : Algebra.trace (D.s.atP p).Fp (D.s.atP p).Ep (LocCP.th p) = 0 := by
   haveI : Module.Free (D.s.atP p).Fp (D.s.atP p).Ep := (D.s.atP p).free
@@ -267,7 +254,7 @@ theorem lf_dual_le (Z : LocDat D) (z : (D.s.atP p).Fp)
     rw [map_mul]
     linear_combination (-(algebraMap (D.s.atP p).Fp (D.s.atP p).Ep z * y)) * h1
   rw [e]
-  apply lf_psiE_one
+  apply _root_.Formalism.L2.SG.Pf.LocCP.psiE_of_norm
   rw [lf_trQ_mul, mul_comm]
   rw [hO] at hy
   exact hz _ (lf_tr_mem p _ (neg_mem hy))
@@ -666,7 +653,7 @@ theorem locDiffC_holds (D : D7) (Z : LocDat D) : LocDiffC D Z := locDiffC_of dua
 theorem locEqC_holds (D : D7) (Z : LocDat D) : LocEqC D Z := locEqC_of eq_iff_locallyEq D Z
 
 theorem bbTie_holds (D : D7) (Z : LocDat D) : BBTie D Z :=
-  bbTie_of Z (locEqC_holds D Z) (locSatC_holds D Z) (locDiffC_holds D Z)
+  _root_.Formalism.L2.SG.Pf.BBTie.bbTie_core Z (locEqC_holds D Z) (locSatC_holds D Z) (locDiffC_holds D Z)
 
 theorem frameGenLoc_holds (D : D7) (Z : LocDat D) {u u' : D.what₂.Word}
     (F0 : FlagG (VS D) D.R.rS ((Tu D u : ℕ) : D.host.E))

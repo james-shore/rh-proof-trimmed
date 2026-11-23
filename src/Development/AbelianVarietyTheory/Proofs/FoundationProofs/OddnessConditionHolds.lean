@@ -409,9 +409,7 @@ theorem Om_sum {e0 : VC D N N' → ℂ} (W : WeilO D cc δ N N' e0) (g : GA D N)
   congr 1
   simp
 
-theorem moves_one (D : D7) (N : ℕ) : Moves D ((1 : GA D N) : GL (Fin N) (AE D)) (stdL D N) := by
-  obtain ⟨Lt, h, h1, -⟩ := exists_lattice_of_adelic_point D N
-  rw [← h1]; exact (h 1).1
+alias moves_one := _root_.GlobalTheory.InertSign.moves_one
 
 theorem sd_of_moves {g : GA D N} {L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)}
     (hL : Moves D (g : GL (Fin N) (AE D)) L) : SD D L := by

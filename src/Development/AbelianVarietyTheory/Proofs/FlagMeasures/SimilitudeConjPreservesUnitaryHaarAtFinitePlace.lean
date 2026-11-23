@@ -286,11 +286,6 @@ theorem gramR_mv (u : Matrix (Fin a) (Fin a) (R ⊗[F] E)) (X : Fin a → Fin n 
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun d _ => by ring
 
-theorem gramR_ratTup (X : Fin a → Fin n → E) :
-    gramR R σ J (ratTup (F := F) R X) = (gramE σ J X).map (inclR R) := by
-  ext i j
-  simp [gramR, gramE, hE, hR, Formalism.UG.hform, ratTup, JR, sigR, inclR, Matrix.map_apply, mul_assoc]
-
 theorem gramR_smul [TopologicalSpace R] (g : HA R σ J) (X : Fin a → Fin n → R ⊗[F] E) :
     gramR R σ J (g • X) = gramR R σ J X := by
   ext i j
@@ -319,7 +314,7 @@ theorem conj_preserves_haar : ∀ (F E : Type) [Field F] [NumberField F] [Field 
   set x0 := ratTup (F := F) (Fv F v) (F0 P) with hx0def
   set S := hermOf (Fv F v) σ (gramE σ J (F0 P)) hT with hS
   have hgram : gramR (Fv F v) σ J x0 = (S : Matrix (Fin (r + 1)) (Fin (r + 1)) (Fv F v ⊗[F] E)) :=
-    gramR_ratTup (Fv F v) σ J (F0 P)
+    _root_.GlobalTheory.LocalWittND.gramR_ratTup (Fv F v) σ J (F0 P)
   obtain ⟨co, -, hco⟩ := GlobalTheory.UnitriangularCoeff.exists_coeff F E σ hCM n J hJ v r P T hP
   let u : Matrix (Fin (r + 1)) (Fin (r + 1)) (Fv F v ⊗[F] E) := fun a b =>
     if a = b then 1 else if h : a < b then co ⟨s, hs⟩ ⟨(a, b), h⟩ else 0

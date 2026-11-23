@@ -110,11 +110,6 @@ theorem mem_fixed_iff {G : Type} [Group G] (ρ : Representation ℂ G V) (K : Su
   · intro h k
     simpa using h k k.2
 
-theorem orbit_finite {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    (ρ : Representation ℂ G V) (K : Subgroup G) (hK : IsCompact (K : Set G)) (w : V)
-    (hS : IsOpen {g : G | ρ g w = w}) : {x : V | ∃ k ∈ K, ρ k w = x}.Finite :=
-  _root_.UpperTheory.Reformulated.B.Qf32.orbit_finite ρ K hK w hS
-
 theorem orthogonal_of_fixed {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     (ρ : Representation ℂ G V) (B : V →ₗ[ℂ] V →ₗ⋆[ℂ] ℂ)
     (hi : ∀ g v w, B (ρ g v) (ρ g w) = B v w) (K : Subgroup G) (hK : IsCompact (K : Set G))
@@ -122,7 +117,7 @@ theorem orthogonal_of_fixed {G : Type} [Group G] [TopologicalSpace G] [IsTopolog
     (huW : ∀ s ∈ W.toSubmodule ⊓ fixed ρ K, B u s = 0)
     (w : V) (hw : w ∈ W.toSubmodule) (hS : IsOpen {g : G | ρ g w = w}) : B u w = 0 := by
   classical
-  have hO := orbit_finite ρ K hK w hS
+  have hO := _root_.UpperTheory.Reformulated.B.Qf32.orbit_finite ρ K hK w hS
   set O : Finset V := hO.toFinset with hOdef
   have hmem : ∀ x, x ∈ O ↔ ∃ k ∈ K, ρ k w = x := fun x => by simp [hOdef]
   have hinv : ∀ k ∈ K, ∀ x, ρ k⁻¹ (ρ k x) = x := fun k _ x => by

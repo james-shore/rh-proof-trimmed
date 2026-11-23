@@ -95,7 +95,7 @@ theorem hsGrowth_exp_radius : ∀ (D e δ : ℕ) (N : ℕ → ℝ → ℕ) (κ t
     · rw [add_comm, Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt hs]
   have hlow : Tendsto (fun m : ℕ => ((δ * (m / e - c (m % e) + D).choose D : ℕ) : ℝ) / (m : ℝ) ^ D)
       atTop (𝓝 L) := by
-    refine GlobalTheory.T.tendsto_div_pow_of_choose_bounds D e δ (fun m => δ * (m / e - c (m % e) + D).choose D) he ?_
+    refine _root_.GlobalTheory.tendsto_rank_div_pow_of_choose_bounds D e δ (fun m => δ * (m / e - c (m % e) + D).choose D) he ?_
     intro s hs
     refine ⟨c s, 0, fun q => ⟨?_, ?_⟩⟩
     · obtain ⟨h1, h2⟩ := hdiv (q + c s) s hs
@@ -105,7 +105,7 @@ theorem hsGrowth_exp_radius : ∀ (D e δ : ℕ) (N : ℕ → ℝ → ℕ) (κ t
       exact Nat.mul_le_mul_left _ (Nat.choose_le_choose _ (by omega))
   have hup : Tendsto (fun m : ℕ => ((δ * (m / e + c' (m % e) + D).choose D : ℕ) : ℝ) / (m : ℝ) ^ D)
       atTop (𝓝 L) := by
-    refine GlobalTheory.T.tendsto_div_pow_of_choose_bounds D e δ (fun m => δ * (m / e + c' (m % e) + D).choose D) he ?_
+    refine _root_.GlobalTheory.tendsto_rank_div_pow_of_choose_bounds D e δ (fun m => δ * (m / e + c' (m % e) + D).choose D) he ?_
     intro s hs
     refine ⟨0, c' s, fun q => ⟨?_, ?_⟩⟩
     · obtain ⟨h1, h2⟩ := hdiv q s hs

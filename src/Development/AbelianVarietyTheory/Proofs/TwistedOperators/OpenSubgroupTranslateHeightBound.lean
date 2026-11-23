@@ -207,8 +207,8 @@ theorem levelheight : ∀ (D : D7) (V W : HSp D) (r : ℕ) (P : Matrix (Fin r) (
   obtain ⟨CV, hCV, hcV⟩ := GlobalTheory.Grow.height_comparison V hθ
   obtain ⟨CW, hCW, hcW⟩ := GlobalTheory.Grow.height_comparison W hθ
   obtain ⟨M₀, hM₀, hsub⟩ := openSubY D V W U hU
-  obtain ⟨c, hc0, hc⟩ := exists_denom_mul D
-  obtain ⟨dx, hdx, hx⟩ := exists_denom_integral D
+  obtain ⟨c, hc0, hc⟩ := _root_.GlobalTheory.CoordDenom.finCoord_mul_denom D
+  obtain ⟨dx, hdx, hx⟩ := _root_.GlobalTheory.DenInt.exists_den D
   obtain ⟨dP, hdP, hP⟩ := GlobalTheory.HolDict.ShortVec.exists_common_denom (intRing D.host.F)
     (fun q : Fin r × Fin V.rank × Fin (Module.finrank D.host.F D.host.E) =>
       finCoord D ((1 : Af D.host.F) ⊗ₜ[D.host.F] P q.1 q.2.1) q.2.2)

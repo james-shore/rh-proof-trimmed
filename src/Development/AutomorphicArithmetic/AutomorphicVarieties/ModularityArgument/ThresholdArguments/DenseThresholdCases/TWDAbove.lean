@@ -142,9 +142,9 @@ theorem UpperTheory.V.Af.weil_deligne_above_of_printed_results :
     · have hc : Continuous fun g : ↥(Dec (F := F) A) =>
           ((r.comp (Dec (F := F) A).subtype g : GL (Fin n) (Om l)) : Matrix (Fin n) (Fin n) (Om l)) :=
         Units.continuous_val.comp (hr.comp continuous_subtype_val)
-      have hp' := GlobalTheory.T.isPotSemistable_independent_of_inducingEmbedding l _ _ (Loc.tiedP l) F Ω A O O' Bw Bw' hj hj' n _ hc hp
+      have hp' := _root_.GlobalTheory.Pst.PstBridge.isPstAt_indep_bridge l _ _ (Loc.tiedP l) F Ω A O O' Bw Bw' hj hj' n _ hc hp
       have h1 := (GlobalTheory.PstLaws.wdParameterAt_monodromy_zero_iff_potCrystalline Bw' h hj' (Loc.PP l) ι _ hp').2 hpc
-      rw [← GlobalTheory.T.weilDeligneParamAbove_l_independent_localEmbedding l _ _ (Loc.tiedP l) ι F Ω A w O O' Bw Bw' h hj hj' n _ hc hp hp', e] at h1
+      rw [← _root_.GlobalTheory.Pst.BridgeParam.wdAt_indep_bridge l _ _ (Loc.tiedP l) ι F Ω A w O O' Bw Bw' h hj hj' n _ hc hp hp', e] at h1
       exact (mono0_wdPst ι Bw h hj hV).1 h1
   obtain ⟨b₀, hb₀⟩ := T
   obtain ⟨b, hb⟩ := UpperTheory.tridiagonal_weil_deligne _ ↥(Ine (F := F) A) n ((wdRho (Loc.PP l) ι Bw h hj ρ).comp (ineIncl h))

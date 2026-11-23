@@ -41,6 +41,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace GlobalTheory.CompanionTheory.LeviMatchingWords
 
-theorem matchLMWordSOf : PositivityTheory.Rg.BcB.F.MLM.MatchLMWordSOf := GlobalTheory.CompanionTheory.MatchWordS.matchLMWordSOf
+alias matchLMWordSOf := _root_.GlobalTheory.CompanionTheory.MatchWordS.matchLMWordSOf
 
 end GlobalTheory.CompanionTheory.LeviMatchingWords

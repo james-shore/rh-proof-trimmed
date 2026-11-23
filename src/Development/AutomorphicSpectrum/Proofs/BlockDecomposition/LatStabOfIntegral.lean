@@ -190,7 +190,7 @@ theorem prim_local : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
     apply τ.injective
     rw [h.2.2.2, h.2.2.2, star_star]
   have I := GlobalTheory.CompanionTheory.SW.GoodInt.rational_integral_units F E σ h d b
-  have hH := (GlobalTheory.T.hyperbolic_sum_nondegenerate_frame F E σ h M J hJ).1
+  have hH := (_root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.hypOne_isHermND_and_e0_mem F E σ h M J hJ).1
   have hdet : IsUnit J.det := isUnit_iff_ne_zero.2 hJ.2
   filter_upwards [GlobalTheory.CompanionTheory.SW.GoodRing.good_ring F E σ h d b, GlobalTheory.T.local_order_two_primes_almost_all F E σ h d b,
     GlobalTheory.T.local_order_volume_almost_all F E σ h (M + 2) (hypOne J) hH (by omega) d b,

@@ -130,15 +130,15 @@ theorem ptH_comp_hMap_splitD : ∀ (R : Type) [CommRing R] (n p q : ℕ) (h : p 
       Finsupp.mapDomain (fun z => g • z) (Finsupp.mapRange id rfl (Finsupp.single (f x) a))
     rw [Finsupp.mapRange_id, Finsupp.mapDomain_single]
   unfold splitD
-  rw [(GlobalTheory.T.hMap_sum_zsmul_add ℤ _ _ _ q).2.2.2 _ Finset.univ, Preadditive.comp_sum]
+  rw [(_root_.GlobalTheory.HomStab.hMap_additive ℤ _ _ _ q).2.2.2 _ Finset.univ, Preadditive.comp_sum]
   rw [Finset.sum_congr rfl (g := fun i : Fin (p + 1) => ((-1 : ℤ) ^ (i : ℕ)) •
       (grpHMap (stab R (n - (p + 1)) (n - p) (by omega)) q ≫
         ptH (k := ℤ) (stab R (n - p) n (Nat.sub_le _ _)) (stdSeq R n p (by omega)) h₀ q)) ?_]
   · rw [← Finset.sum_smul, altSum_neg_one]
     split_ifs <;> simp
   · intro i _
-    rw [(GlobalTheory.T.hMap_sum_zsmul_add ℤ _ _ _ q).2.2.1, Preadditive.comp_zsmul]
-    obtain ⟨g, hg, hc⟩ := GlobalTheory.T.face_stdSeq_GL_conjugate_commuting_stab R n p h i
+    rw [(_root_.GlobalTheory.HomStab.hMap_additive ℤ _ _ _ q).2.2.1, Preadditive.comp_zsmul]
+    obtain ⟨g, hg, hc⟩ := _root_.GlobalTheory.HomStab.exists_perm_face_stdSeq R n p h i
     have hface := hpoint _ _ _ _ _ (stab R (n - p) n (Nat.sub_le _ _))
       (stab R (n - (p + 1)) n (Nat.sub_le _ _)) (stab R (n - (p + 1)) (n - p) (by omega))
       _ h₁ _ h₀ (face R n p i) (face_smul R n p i) g hσ hg hc q
@@ -146,11 +146,3 @@ theorem ptH_comp_hMap_splitD : ∀ (R : Type) [CommRing R] (n p q : ℕ) (h : p 
 
 end GlobalTheory.HomStab
 
-section
-open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab GlobalTheory.SeqCx UpperTheory.V.KL
-theorem _root_.GlobalTheory.T.standardSeqPoint_comp_splitSeqDifferential : ∀ (R : Type) [CommRing R] (n p q : ℕ) (h : p + 1 ≤ n) (h₁ : ∀ x, stab R (n - (p + 1)) n (Nat.sub_le _ _) x • stdSeq R n (p + 1) h = stdSeq R n (p + 1) h) (h₀ : ∀ x, stab R (n - p) n (Nat.sub_le _ _) x • stdSeq R n p (by omega) = stdSeq R n p (by omega)), ptH (k := ℤ) (stab R (n - (p + 1)) n (Nat.sub_le _ _)) (stdSeq R n (p + 1) h) h₁ q ≫ hMap (splitD R n p) q = if Even p then grpHMap (stab R (n - (p + 1)) (n - p) (by omega)) q ≫ ptH (k := ℤ) (stab R (n - p) n (Nat.sub_le _ _)) (stdSeq R n p (by omega)) h₀ q else 0 := by
-  first
-  | exact @GlobalTheory.HomStab.ptH_comp_hMap_splitD
-  | exact @GlobalTheory.HomStab.stab_comp_stab
-  | exact @GlobalTheory.HomStab.altSum_neg_one
-end

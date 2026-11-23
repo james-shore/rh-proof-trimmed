@@ -105,8 +105,7 @@ theorem poly_bound (P : PX m n) : ∃ C : ℝ, ∃ k : ℕ, 0 ≤ C ∧ ∀ x, �
     exact mul_le_mul (hb x) ((norm_ept_le x i).trans (le_add_of_nonneg_left zero_le_one)) (norm_nonneg _)
       (mul_nonneg h0 (pow_nonneg (by positivity) _))
 
-theorem sq_norm_le_sum (x : Fin m → Fin n → ℂ) : ‖x‖ ^ 2 ≤ ∑ a, ∑ j, ‖x a j‖ ^ 2 :=
-  _root_.UpperTheory.Reformulated.B.Yhb3.main x
+alias sq_norm_le_sum := _root_.UpperTheory.Reformulated.B.Yhb3.main
 
 theorem decay (k : ℕ) (κ : ℝ) (hκ : 0 < κ) (r : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ s : ℝ, 0 ≤ s → (1 + s) ^ k * Real.exp (-(κ * s ^ 2)) ≤ C * (1 + s) ^ (-r) := by

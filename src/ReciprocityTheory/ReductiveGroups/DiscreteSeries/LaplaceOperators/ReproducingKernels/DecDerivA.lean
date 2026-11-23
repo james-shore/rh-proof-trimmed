@@ -131,14 +131,7 @@ theorem eight_lt_of {ε : Fin n → Bool} {h : ℝ} (hN : hNeed ε < h) : 8 * (n
   have : 0 ≤ Real.sqrt (2 * (min (pOf ε) (qOf ε) : ℝ)) := Real.sqrt_nonneg _
   nlinarith
 
-lemma inUJ_mul {ε : Fin n → Bool} {a b : Matrix (Fin n) (Fin n) ℂ} (ha : a ∈ UJset ε) (hb : b ∈ UJset ε) :
-    a * b ∈ UJset ε := by
-  have ha' : aᴴ * Jm ε * a = Jm ε := ha
-  have hb' : bᴴ * Jm ε * b = Jm ε := hb
-  show (a * b)ᴴ * Jm ε * (a * b) = Jm ε
-  rw [Matrix.conjTranspose_mul]
-  calc bᴴ * aᴴ * Jm ε * (a * b) = bᴴ * (aᴴ * Jm ε * a) * b := by simp only [Matrix.mul_assoc]
-    _ = Jm ε := by rw [ha', hb']
+alias inUJ_mul := _root_.ReciprocityTheory.ChartRestriction.DS.mul_mem_unitaryJ
 
 lemma umat_mem {ε : Fin n → Bool} (y : Formalism.REAL.UJ ε) : Formalism.MainNotions.S.umat y ∈ UJset ε := y.2
 

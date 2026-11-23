@@ -87,18 +87,6 @@ theorem isGenSec_of_isSecBasis {S : Scheme.{0}} (P : PolAV S) {T : Over S} {th :
   obtain ⟨r, hr, -⟩ := h s
   exact ⟨r 0, fun j => (hr j).trans (Fin.sum_univ_one _)⟩
 
-theorem appTop_injective {Y Y' : Scheme.{0}} [IsIntegral Y] (h : Y' ⟶ Y) [IsOpenImmersion h] [Nonempty Y'] :
-    Function.Injective h.appTop.hom := by
-  have : Nonempty (h ''ᵁ ⊤) := by
-    obtain ⟨y⟩ := ‹Nonempty Y'›
-    exact ⟨⟨h y, y, trivial, rfl⟩⟩
-  intro a b e
-  apply map_injective_of_isIntegral Y (homOfLE (le_top : h ''ᵁ ⊤ ≤ ⊤))
-  have e₁ := h.app_appIso_inv (⊤ : Y.Opens)
-  have k := fun x => congrArg (fun q => q.hom x) e₁
-  simp only [CommRingCat.hom_comp, RingHom.comp_apply] at k
-  exact (k a).symm.trans ((congrArg _ e).trans (k b))
-
 theorem isUnit_of_basicOpen_eq_top {Y : Scheme.{0}} (a : Γ(Y, ⊤)) (h : Y.basicOpen a = ⊤) :
     IsUnit a := by
   have key : ∀ (g : Opposite.op (⊤ : Y.Opens) ⟶ Opposite.op (Y.basicOpen a)) (g' : Opposite.op (Y.basicOpen a) ⟶ Opposite.op ⊤),
@@ -158,7 +146,7 @@ theorem linearIndependent_of_span (hS : SecBaseChangeAnySt) {R : Type} [CommRing
   have : Nonempty (overRes W).left := ⟨⟨p, hp⟩⟩
   have : IsOpenImmersion (overResι W).left := inferInstanceAs (IsOpenImmersion W.ι)
   let σ := (overResι W).left.appTop.hom
-  have hσ : Function.Injective σ := appTop_injective (overResι W).left
+  have hσ : Function.Injective σ := _root_.GlobalTheory.NormalCubeExt.appTop_injective (overResι W).left
   have hnt : Nontrivial Γ((overRes W).left, ⊤) :=
     ⟨⟨1, 0, fun e => one_ne_zero (hσ ((map_one σ).trans (e.trans (map_zero σ).symm)))⟩⟩
   have hfu : IsUnit (σ f) := isUnit_of_basicOpen_eq_top _ (by

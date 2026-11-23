@@ -289,9 +289,6 @@ theorem psiG_zero {F : Type} [Field F] (S : F[X] → ℂ) (x : GL (Fin 0) F) : p
     rw [Subsingleton.elim v 0]; exact W.1.zero_mem
   rw [hc, finsum_of_isEmpty, sub_zero]
 
-theorem gal_id {F : Type} [Field F] (n : ℕ) (y : GL (Fin n) F) : gal (RingHom.id F) n y = y := by
-  ext i j; simp [gal]
-
 theorem sum_hc_cusp {F : Type} [Field F] [Finite F] (θ : AlgebraicClosure F →* ℂ) (S : F[X] → ℂ)
     (hS : S 1 = 0) (n k a : ℕ) (ha : a < n) :
     ∑ᶠ x : GL (Fin n) F, hc a (n - a) (psiG S a) (fun _ => 1) n x * star (cusp θ n k x) = 0 := by
@@ -300,7 +297,7 @@ theorem sum_hc_cusp {F : Type} [Field F] [Finite F] (θ : AlgebraicClosure F →
       intro x; simp [hc, hcTw, psiG_zero, hS]
     simp only [Nat.sub_zero, h0, zero_mul, finsum_zero]
   haveI := Fintype.ofFinite (GL (Fin n) F)
-  have hcl := (GlobalTheory.T.twistedHarishChandraInductionGL_isTwistedClassFunction F (RingHom.id F) 0 0 n (fun _ => 1) (fun _ => 1)).2.2 (rootSum θ k)
+  have hcl := (_root_.GlobalTheory.Shin.twisted_class_main F (RingHom.id F) 0 0 n (fun _ => 1) (fun _ => 1)).2.2 (rootSum θ k)
   have hR := (GlobalTheory.CuspGL.rootSum_isAdditive_and_pow_X_sub_one F θ k).1
   have key : ∀ y : GL (Fin n) F, ∑ x : GL (Fin n) F, (if InPar a (y⁻¹ * x * y) then
       psiG S a (tlG a (y⁻¹ * x * y)) * 1 else 0) * star (cusp θ n k x) = 0 := by
@@ -323,7 +320,7 @@ theorem sum_hc_cusp {F : Type} [Field F] [Finite F] (θ : AlgebraicClosure F →
   have hx : ∀ x : GL (Fin n) F, hc a (n - a) (psiG S a) (fun _ => 1) n x =
       (Nat.card {p : GL (Fin n) F // InPar a p} : ℂ)⁻¹ * ∑ y : GL (Fin n) F,
         (if InPar a (y⁻¹ * x * y) then psiG S a (tlG a (y⁻¹ * x * y)) * 1 else 0) := by
-    intro x; simp only [hc, hcTw, gal_id, finsum_eq_sum_of_fintype]
+    intro x; simp only [hc, hcTw, _root_.GlobalTheory.Shin.gal_id_eq, finsum_eq_sum_of_fintype]
   simp_rw [hx, Finset.mul_sum, Finset.sum_mul]
   rw [Finset.sum_comm]
   refine Finset.sum_eq_zero fun y _ => ?_
@@ -346,5 +343,5 @@ theorem GlobalTheory.Shin.sum_psiG_mul_star_cusp_eq : ∀ (F : Type) [Field F] [
     intro a ha
     have := GlobalTheory.Shin.PrimOrth.sum_hc_cusp θ S hS n k a (Finset.mem_range.1 ha)
     rwa [finsum_eq_sum_of_fintype] at this
-  simp_rw [GlobalTheory.T.primitiveFunctionCharpolyGL_harishChandra_recursion F S n, sub_mul, Finset.sum_sub_distrib, Finset.sum_mul]
+  simp_rw [_root_.GlobalTheory.ShinPsiRec.psiG_eq_chG_sub_hc F S n, sub_mul, Finset.sum_sub_distrib, Finset.sum_mul]
   rw [Finset.sum_comm (s := Finset.univ), Finset.sum_eq_zero hz, sub_zero]

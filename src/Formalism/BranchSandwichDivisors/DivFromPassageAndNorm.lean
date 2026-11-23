@@ -53,18 +53,12 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.BranchingDeterminantCap
 
-theorem mapMu : MapMu := map_slope_mu
-theorem scaleSandwich : ScaleSandwich := scale_sandwich_bound
-theorem orthSum : OrthSum := orthogonal_sum_slope
-theorem powMu : PowMu := power_slope_mu
-theorem orthSandwich : OrthSandwich := orthogonal_sandwich_bound
-theorem transferPart : TransferPart := transferPart_of mapMu powMu
-theorem transferMuMax : TransferMuMax := transferMuMax_of scaleSandwich orthSum powMu
-theorem transferDeg : TransferDeg := degreeTransferBound
+alias orthSum := _root_.Formalism.BranchingDeterminantCap.orthogonal_sum_slope
+theorem transferPart : TransferPart := transferPart_of _root_.Formalism.BranchingDeterminantCap.map_slope_mu _root_.Formalism.BranchingDeterminantCap.power_slope_mu
+theorem transferMuMax : TransferMuMax := transferMuMax_of _root_.Formalism.BranchingDeterminantCap.scale_sandwich_bound orthSum _root_.Formalism.BranchingDeterminantCap.power_slope_mu
 theorem interlaceIdent : InterlaceIdent := interlaceIdentities
-theorem capConst : CapConst := capacity_constant_bound
-theorem weylDimBound : WeylDimBound := weyl_dimension_bound
-theorem branchMap : BranchMap := branch_map_formula
-theorem xiNorm : XiNorm := xi_norm_bound
+alias capConst := _root_.Formalism.BranchingDeterminantCap.capacity_constant_bound
+alias weylDimBound := _root_.Formalism.BranchingDeterminantCap.weyl_dimension_bound
+alias xiNorm := _root_.Formalism.BranchingDeterminantCap.xi_norm_bound
 
 end Formalism.BranchingDeterminantCap

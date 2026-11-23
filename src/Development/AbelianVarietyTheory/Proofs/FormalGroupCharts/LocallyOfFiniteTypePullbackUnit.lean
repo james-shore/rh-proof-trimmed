@@ -100,7 +100,7 @@ theorem exists_pow_le_span_sup_pow_succ : ∀ (k : Type) [Field k] (G : Over (Sp
   have h1f : (1 : Chart.sp (R₀ := k) k ⟶ G) ≫ f = toUnit _ ≫ η[G] := by
     rw [Hom.one_def, Category.assoc, hf]
   obtain ⟨A, _, _, aug, M, io, hM, hio, hU⟩ :=
-    GlobalTheory.T.exists_universal_thickening_of_finite_points k (pullback f η[G]) hfinK (pullback.lift 1 (toUnit _) h1f)
+    _root_.GlobalTheory.IsolPt.exists_universal_thickening k (pullback f η[G]) hfinK (pullback.lift 1 (toUnit _) h1f)
   refine ⟨M + 1, ?_⟩
   obtain ⟨hex, -, hfp, -, -⟩ := repSt_of_jetAlgSt jetAlg k G d x hx (Fin 1 × Fin d)
   obtain ⟨y, hy, -⟩ := hex (pt k (n := 1) d 0) (ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gp_pt 0)

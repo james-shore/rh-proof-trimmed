@@ -73,7 +73,7 @@ private def sumD {A B C : PSh} (a : A ⟶ C) (b : B ⟶ C) : sumP A B ⟶ C wher
 private theorem map_comp_gen (R : Type) [CommRing R] {P C : PSh} (c : P ⟶ C) {M : Shv R}
     (p : (free R).obj C ⟶ M) (T : Scheme.{0}) (x : P.obj (op T)) :
     Sec.map ((free R).map c ≫ p) (freeGen R P T x) = Sec.map p (freeGen R C T (c.app (op T) x)) := by
-  have h4 := (GlobalTheory.T.free_sections_ext_res_map R P M).2.2.2 C c T x
+  have h4 := (_root_.GlobalTheory.EtC.free_hom_sections R P M).2.2.2 C c T x
   show Sec.map p (Sec.map ((free R).map c) (freeGen R P T x)) = _
   rw [h4]
 
@@ -82,7 +82,7 @@ private theorem epi_desc (R : Type) [CommRing R] {A B C : PSh} (a : A ⟶ C) (b 
       (∃ x, a.app (op W) x = C.map k.op y) ∨ (∃ x, b.app (op W) x = C.map k.op y)) :
     Epi (biprod.desc ((free R).map a) ((free R).map b)) := by
   haveI : Epi ((free R).map (sumD a b)) := by
-    refine (GlobalTheory.T.freeEtaleModuleSheaf_map_mono_epi_iso R (sumD a b)).2.1 fun T y => ?_
+    refine (_root_.GlobalTheory.EtC.free_map_mono_epi_iso R (sumD a b)).2.1 fun T y => ?_
     obtain ⟨S, hS, hP⟩ := h T y
     refine ⟨S, hS, fun W k hk => ?_⟩
     rcases hP W k hk with ⟨x, hx⟩ | ⟨x, hx⟩
@@ -95,7 +95,7 @@ private theorem epi_desc (R : Type) [CommRing R] {A B C : PSh} (a : A ⟶ C) (b 
   have h2 : (free R).map b ≫ p = (free R).map b ≫ q := by
     simpa using biprod.inr ≫= hpq
   apply (cancel_epi ((free R).map (sumD a b))).1
-  apply (GlobalTheory.T.free_sections_ext_res_map R (sumP A B) M).2.1
+  apply (_root_.GlobalTheory.EtC.free_hom_sections R (sumP A B) M).2.1
   intro T x
   rw [map_comp_gen, map_comp_gen]
   cases x with

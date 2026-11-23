@@ -94,9 +94,6 @@ theorem ε_mulVec {l : ℕ} [Fact l.Prime] {K : FinExt l} {bk : BK K} {d : ℕ} 
     (S.ε f g).mulVec ((S.ε g h).mulVec v) = (S.ε f h).mulVec v := by
   rw [Matrix.mulVec_mulVec, S.ε_trans]
 
-theorem hom_comp_assoc {l : ℕ} {R : Type} [CommRing R] {X Y Z W : Obj l R} (p : Hom Z W) (q : Hom Y Z)
-    (r : Hom X Y) : (p.comp q).comp r = p.comp (q.comp r) := Hom.ext' rfl
-
 end GlobalTheory.BSP.EvalEx
 
 namespace GlobalTheory.BSP
@@ -164,10 +161,10 @@ theorem exists_eval : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (d
     obtain ⟨Q₁, a₁, h₁, hcomm, -, hinj⟩ := hp
     apply hinj
     have e1 := congrFun (hvv Q' (c.comp a) (c.comp g) Q₁ h₁ a₁ hcomm x) i
-    have e2 := congrFun (hvv Q a g Q₁ (h₁.comp c) a₁ (hcomm.trans (EvalEx.hom_comp_assoc h₁ c a).symm) x) i
+    have e2 := congrFun (hvv Q a g Q₁ (h₁.comp c) a₁ (hcomm.trans (_root_.GlobalTheory.BSP.LevH.hom_comp_assoc h₁ c a).symm) x) i
     have e3 : (h₁.comp c).f ((vv Q a g) x i) = h₁.f (c.f ((vv Q a g) x i)) := rfl
     refine e1.trans (Eq.trans ?_ (e3 ▸ e2).symm)
     exact congrArg (fun φ => (S.ε φ (a₁.comp f)).mulVec (fun j => a₁.f (u x j)) i)
-      (EvalEx.hom_comp_assoc h₁ c g).symm
+      (_root_.GlobalTheory.BSP.LevH.hom_comp_assoc h₁ c g).symm
 
 end GlobalTheory.BSP

@@ -83,12 +83,8 @@ theorem holoOn_prod {U : Set X} {ι : Type} (s : Finset ι) {f : ι → X → �
     have h1 := holoOn_mul A (hf i (Finset.mem_insert_self i s)) (ih fun k hk => hf k (Finset.mem_insert_of_mem hk))
     simpa only [Finset.prod_insert hi] using h1
 
-theorem holo_continuousAt {U : Set X} {f : X → ℂ} (hf : A.HoloOn U f) {x : X} (hx : x ∈ U) :
-    ContinuousAt f x :=
-  PositivityTheory.Xgp.c_bm_exists_frames.continuousAt_of_holoOn A hf hx
-
 theorem holo_continuousOn {U : Set X} {f : X → ℂ} (hf : A.HoloOn U f) : ContinuousOn f U :=
-  fun _ hx => (holo_continuousAt A hf hx).continuousWithinAt
+  fun _ hx => (_root_.PositivityTheory.Xgp.c_bm_exists_frames.continuousAt_of_holoOn A hf hx).continuousWithinAt
 
 theorem holoOn_coord {ψ : OpenPartialHomeomorph X (Fin e → ℂ)} (hψ : IsCompatChart A ψ) (i : Fin e) :
     A.HoloOn ψ.source (fun y => ψ y i) := fun j z hz =>

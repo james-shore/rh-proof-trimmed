@@ -60,7 +60,7 @@ theorem exists_uniformised_chart : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : �
   intro D T h j hj la y
   letI := T.Q.H.starRing
   obtain ⟨q, S, io, e, ho, z, hz, eta, heta, rfl⟩ := y
-  obtain ⟨S', io', z', r, hz', hr, hU, φ, hv, hm⟩ := GlobalTheory.T.exists_extension_all_models_uniformized _ _ _ _ (T.Q.Xo j) T.Q.c S io z hz
+  obtain ⟨S', io', z', r, hz', hr, hU, φ, hv, hm⟩ := _root_.GlobalTheory.IntegralPull.exists_ext_all_models_uniformised _ _ _ _ (T.Q.Xo j) T.Q.c S io z hz
   letI := io.toAlgebra
   let ψ : S.Fr →+* S'.Fr := letI := io'.toAlgebra; φ.toRingHom
   have hio : io' = ψ.comp io := by
@@ -76,7 +76,7 @@ theorem exists_uniformised_chart : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : �
     obtain rfl := GlobalTheory.PowGerm.starSt _ T.Q.H inst hn.1
     exact hn
   have hev : ∀ w : WeightFamilies.Wt D j, ∀ f ∈ T.th j w, ψ (evI z f) = evI z' f := fun w f hf =>
-    GlobalTheory.T.thetaRule_integralPoint_value_baseChange _ _ _ _ (T.Q.Xo j) T.Q.c (T.nab j) hnab S S' io io' z z' φ hm _ _ f hf
+    _root_.GlobalTheory.ThetaRuleValue.evI_baseChange _ _ _ _ (T.Q.Xo j) T.Q.c (T.nab j) hnab S S' io io' z z' φ hm _ _ f hf
   have hx : letI := io'.toAlgebra; z'.1.x = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap ψ ≫ z.1.x := hm.1
   have hu : letI := io'.toAlgebra
       ∀ τ i, z'.1.u τ i = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (Formalism.L2.Pj.dualMap ψ) ≫ z.1.u τ i := hm.2.1

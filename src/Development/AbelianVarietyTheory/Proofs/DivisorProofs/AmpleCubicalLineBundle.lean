@@ -67,7 +67,7 @@ open GlobalTheory.CechPic GlobalTheory.TripleExt
 theorem cubeCls_eq_zero {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonObj A] (hA : IsAbelianScheme A)
     (c : Pic A.left) : cubeCls (x3 A) c = 0 := by
   obtain ⟨L, hL, rfl⟩ := cls_surj c
-  have h := GlobalTheory.CubeTop.cubeTheorem S A hA L hL (G3 A) (x3 A 0) (x3 A 1) (x3 A 2)
+  have h := _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds S A hA L hL (G3 A) (x3 A 0) (x3 A 1) (x3 A 2)
   have h₀ := (cls_eq_zero_iff (LB.isLB_linComb hL _ _)).2 h
   rw [cls_linComb hL, Fin.sum_univ_eight] at h₀
   have e : x3 A = ![x3 A 0, x3 A 1, x3 A 2] := by

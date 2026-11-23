@@ -70,7 +70,7 @@ theorem dvd_mod_E : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (s :
   have hqO : ((q : ↥K.1) : Om l) = ((r : ↥K.1) : Om l) / (l : Om l) ^ n := by
     rw [hq]; push_cast; rfl
   have hq1 : ‖((q : ↥K.1) : Om l)‖ ≤ 1 := by
-    rw [hqO, norm_div, norm_pow, GlobalTheory.UnrWitt.norm_l_Om]
+    rw [hqO, norm_div, norm_pow, _root_.GlobalTheory.UnramValue.norm_l]
     rw [div_le_one (by positivity)]
     exact hnorm
   let r' : ↥(OL K) := ⟨q, GlobalTheory.UnrWitt.mem_OL_of_norm_le K q hq1⟩

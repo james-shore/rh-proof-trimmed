@@ -179,7 +179,7 @@ theorem isLevDatum_kerDat (hL : R.toLevCh.Is A.μ0) {ξ χ ξR Q ω φ} (hK : Ke
     have hN' := GlobalTheory.T.adjointFrameMatrix_integral_of_conjugate_half D _ _ _ _ _ _ hsV hsW hfV hfW _ e he hP2 u hu hue
     have hfr : frMapAdj (Vc D j) (Wc D j) (R.βV j) (R.βW j) (t + N • u) =
         frMapAdj (Vc D j) (Wc D j) (R.βV j) (R.βW j) t + N • frMapAdj (Vc D j) (Wc D j) (R.βV j) (R.βW j) u := by
-      rw [GlobalTheory.RefDatumLev.frMapAdj_add', GlobalTheory.RefDatumLev.frMapAdj_nsmul']
+      rw [_root_.GlobalTheory.PlaceVec.frMapAdj_add, GlobalTheory.RefDatumLev.frMapAdj_nsmul']
     have hKu : IsHalf (cA D e) (N • u) := fun a b => by
       rw [Matrix.smul_apply, nsmul_eq_mul, mul_left_comm, hue a b]
     have hhalf' : IsHalf (cA D e) (t + N • u) ↔ IsHalf (cA D e) t := by
@@ -194,7 +194,7 @@ theorem isLevDatum_kerDat (hL : R.toLevCh.Is A.μ0) {ξ χ ξR Q ω φ} (hK : Ke
     rw [hfr]
     by_cases hc : IsHalf (cA D e) t ∧ IsIntM (frMapAdj (Vc D j) (Wc D j) (R.βV j) (R.βW j) t)
     · rw [if_pos ⟨hhalf'.2 hc.1, (GlobalTheory.RefDatumLev.isIntM_add_nsmul_iff hN' _).2 hc.2⟩, if_pos hc]
-      refine congrArg₂ (· * ·) (GlobalTheory.RefDatumLev.omegaK_congr _ fun PP hPP =>
+      refine congrArg₂ (· * ·) (_root_.GlobalTheory.PlaceVec.omegaK_congr _ fun PP hPP =>
         GlobalTheory.RefDatumLev.redM_add_nsmul PP hc.2 hN' _ (hN PP (Or.inl hPP))) ?_
       have h : ∀ PP ∈ Q, redM PP (frMapAdj (Vc D j) (Wc D j) (R.βV j) (R.βW j) t +
           N • frMapAdj (Vc D j) (Wc D j) (R.βV j) (R.βW j) u) = redM PP (frMapAdj (Vc D j) (Wc D j) (R.βV j) (R.βW j) t) :=

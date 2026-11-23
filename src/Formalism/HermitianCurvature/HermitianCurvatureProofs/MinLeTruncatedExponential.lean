@@ -420,4 +420,4 @@ end Formalism.FourierDecayAlt.P.TBBx1
 theorem Formalism.FourierDecayAlt.P.lemma_s_induction_base : Formalism.FourierDecayAlt.TBB.StepOne := Formalism.FourierDecayAlt.P.TBBx1.stepOne
 theorem Formalism.FourierDecayAlt.P.lemma_s_induction_up : Formalism.FourierDecayAlt.TBB.StepUp := Formalism.FourierDecayAlt.P.TBBx1.stepUp
 theorem Formalism.FourierDecayAlt.P.lemma_s_of_parts : Formalism.FourierDecayAlt.TBB.LemmaSOfSteps := Formalism.FourierDecayAlt.P.TBBx1.lemmaSOfSteps
-theorem Formalism.FourierDecayAlt.P.corSOfLemmaS_statement : Formalism.FourierDecayAlt.TBB.CorSOfLemmaS := Formalism.FourierDecayAlt.P.TBBx1.corSOfLemmaS
+alias Formalism.FourierDecayAlt.P.corSOfLemmaS_statement := _root_.Formalism.FourierDecayAlt.P.TBBx1.corSOfLemmaS

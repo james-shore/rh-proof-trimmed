@@ -280,7 +280,7 @@ theorem mem_span (kS : S.SigOK) (kT : T.SigOK) (hS : ∀ τ, IsCartanInv (gramAt
   let e : M := ⟨f₀, hM⟩
   have hsq : ∀ x a : WO S T, ψ (symplOH S T x a) ^ 2 = ψ (symplO S T x a) := fun x a => by
     rw [sq, ← AddChar.map_add_eq_mul, GlobalTheory.SplitScalar.symplOH_add_self]
-  have key := GlobalTheory.T.mem_span_heisenberg_translates_of_vacuum (finPts S T) M (fun x y => ψ (symplOH S T x y)) ρ (Λ.addSubgroupOf (finPts S T)) e
+  have key := _root_.GlobalTheory.HeisVacuum.mem_span_translates_vacuum (finPts S T) M (fun x y => ψ (symplOH S T x y)) ρ (Λ.addSubgroupOf (finPts S T)) e
     (fun x y z => by
       rw [← AddChar.map_add_eq_mul, ← GlobalTheory.SplitScalar.symplOH_add_left]; rfl)
     (fun x y z => by

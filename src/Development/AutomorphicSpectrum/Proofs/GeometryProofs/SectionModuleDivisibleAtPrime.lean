@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Spread
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LeWchartOne
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.LevelFrameOfLaws
 
 @[expose] public section
 
@@ -109,10 +110,6 @@ theorem isUnit_cst_of_notMem (p : X ⟶ Sp R) (x : X) {r : R} (hx : r ∉ (p x).
   rw [cst, gs_eq p x ⊤ (show p x ∈ (⊤ : (Sp R).Opens) from trivial)]
   exact hu
 
-theorem cst_mul (p : X ⟶ Sp R) (x : X) (a b : R) : cst p x (a * b) = cst p x a * cst p x b := by
-  simp only [cst, map_mul]
-  exact gs_mul p x ⊤ trivial _ _
-
 theorem exists_smul_eq_smul : ∀ (R : Type) [CommRing R] [IsDomain R] (X : Scheme.{0}) (p : X ⟶ Sp R) [Smooth p] (M : LB X) (b : Sp R), b.asIdeal.IsMaximal → ∀ u : SecMod p M, (∀ y : X, p y = b → y ∉ Out.nonzeroLocus (M := M) u) → ∀ c e : R, e ≠ 0 → (∀ π ∈ b.asIdeal, e ∣ c * π) → ∃ u' : SecMod p M, e • u' = c • u := by
   intro R _ _ X p _ M b hb u hu c e he hdiv
   have key : ∀ j, ∀ x ∈ M.U j, cst p x e ∣ gs (𝟙 X) x (M.U j) (LB.Sec.f (c • u : SecMod p M) j) := by
@@ -166,7 +163,7 @@ theorem exists_smul_eq_smul : ∀ (R : Type) [CommRing R] [IsDomain R] (X : Sche
       have hunit := isUnit_cst_of_notMem p x hπx
       obtain ⟨t, ht⟩ := hdiv π hπ
       have h1 : cst p x e ∣ cst p x c * cst p x π := by
-        rw [← cst_mul, ht, cst_mul]
+        rw [← _root_.ReciprocityTheory.ChartRestriction.G.H1.cst_mul, ht, _root_.ReciprocityTheory.ChartRestriction.G.H1.cst_mul]
         exact dvd_mul_right _ _
       exact ((hunit.dvd_mul_right).1 h1).mul_right _
   obtain ⟨s', hs'⟩ := exists_div_sec p he (show LB.Sec M from (c • u : SecMod p M)) key

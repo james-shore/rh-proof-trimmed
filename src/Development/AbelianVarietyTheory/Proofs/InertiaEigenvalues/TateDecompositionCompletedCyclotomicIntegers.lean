@@ -107,9 +107,7 @@ theorem exists_level (K : FinExt l) {x : Om l} (hx : x ∈ Kinf K) : ∃ i, x �
   rw [IntermediateField.coe_iSup_of_directed hd] at h3
   simpa using h3
 
-theorem exists_prim (i : ℕ) : ∃ ζ : Om l, IsPrimitiveRoot ζ (l ^ i) := by
-  haveI : NeZero (l ^ i) := ⟨pow_ne_zero _ (Fact.out : l.Prime).ne_zero⟩
-  exact HasEnoughRootsOfUnity.exists_primitiveRoot (Om l) (l ^ i)
+alias exists_prim := _root_.GlobalTheory.Cyc.exists_primRoot_pow
 
 theorem root_mem_subC (K : FinExt l) {i : ℕ} {ξ : PadicComplex l} (h : ξ ^ (l ^ i) = 1) :
     ξ ∈ subC (Ks K i) := by

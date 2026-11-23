@@ -57,21 +57,6 @@ namespace MatrixActionAdditive
 
 variable {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
-theorem actM_single {M : Type*} [AddCommGroup M] [Module ℂ M] (E : Fin n → Fin n → Module.End ℂ M) (a b : Fin n) :
-    actM E (Matrix.single a b 1) = E a b := by
-  delta actM
-  simp [Matrix.single_apply, ite_and, Finset.sum_ite_eq]
-
-theorem actM_add' {M : Type*} [AddCommGroup M] [Module ℂ M] (E : Fin n → Fin n → Module.End ℂ M)
-    (X Y : Matrix (Fin n) (Fin n) ℂ) : actM E (X + Y) = actM E X + actM E Y := by
-  delta actM
-  simp [add_smul, Finset.sum_add_distrib]
-
-theorem actM_smul' {M : Type*} [AddCommGroup M] [Module ℂ M] (E : Fin n → Fin n → Module.End ℂ M) (c : ℂ)
-    (X : Matrix (Fin n) (Fin n) ℂ) : actM E (c • X) = c • actM E X := by
-  delta actM
-  simp [Finset.smul_sum, smul_smul]
-
 theorem dS_eq_dRep (σ : Mx n → (H →L[ℂ] H)) (X : Mx n) (v : H) : dS σ X v = dRep σ X v := by
   have h : ∀ t : ℝ, ((t : ℂ) • X) = t • X := fun t => by
     ext i j
@@ -86,7 +71,7 @@ theorem key {ε : Fin n → Bool} {σ : Mx n → (H →L[ℂ] H)} (hσ : IsURepO
   have hX := ReciprocityTheory.ChartRestriction.DS.S7.ccb_cpart_sum ε (single a b 1)
   have h1 : E a b = actM E (ReciprocityTheory.ChartRestriction.DS.S7.cpart1 ε (single a b 1))
       + Complex.I • actM E (ReciprocityTheory.ChartRestriction.DS.S7.cpart2 ε (single a b 1)) := by
-    rw [← actM_single E a b, ← actM_smul', ← actM_add', hX]
+    rw [← _root_.ReciprocityTheory.ChartRestriction.DS.SmDerA.actM_single E a b, ← _root_.ReciprocityTheory.ChartRestriction.DS.SmDerA.actM_smul, ← _root_.ReciprocityTheory.ChartRestriction.DS.SmDerA.actM_add, hX]
   rw [h1]
   simp only [LinearMap.add_apply, LinearMap.smul_apply, Submodule.coe_add, Submodule.coe_smul]
   rw [hE _ (ReciprocityTheory.ChartRestriction.DS.S7.ccb_inG_cpart1 ε _) v, hE _ (ReciprocityTheory.ChartRestriction.DS.S7.ccb_inG_cpart2 ε _) v,

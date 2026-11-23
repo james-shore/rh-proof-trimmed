@@ -84,7 +84,7 @@ theorem UpperTheory.Gal.Join.expSub :
     have hj := (GlobalTheory.T.bernstein_zelevinsky_finiteness k).2.1 (Fin n) (Fin n) (fun _ => Unit) (points (Fin n)) V π hsm
       (hasFiniteLength_of_isIrreducible hirr)
     exact (hasFiniteLength_comp_iff _ _ (leviTorus k (Fin n)).surjective).mpr hj
-  obtain ⟨ψ, l, hl0, hl, hψω⟩ := GlobalTheory.T.exists_torusEigenform_of_compactTorus_eigenvector k n _ (jacB π) y ω hJs hlen hωs hy0
+  obtain ⟨ψ, l, hl0, hl, hψω⟩ := _root_.GlobalTheory.TorusEigenform.main k n _ (jacB π) y ω hJs hlen hωs hy0
     (fun t _ => by rw [hy t, hωμ])
   have hψs : ∀ i, IsSmoothChar (ψ i) := fun i =>
     GlobalTheory.TameIwahori.isSmoothChar_of_eq_on_units (hωs i) (hψω i)

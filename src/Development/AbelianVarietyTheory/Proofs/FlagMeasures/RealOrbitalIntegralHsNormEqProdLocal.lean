@@ -70,11 +70,6 @@ namespace GlobalTheory.OrbQuotProd
 
 open Formalism.L2.SG.RealObj Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates
 
-theorem norm_rankOneInnerOperator {V V' : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V] [NormedAddCommGroup V']
-    [InnerProductSpace ℂ V'] (a : V) (b : V') : ‖Formalism.L2.SG.TermOp.rk1 a b‖ = ‖a‖ * ‖b‖ := by
-  unfold Formalism.L2.SG.TermOp.rk1
-  rw [ContinuousLinearMap.norm_smulRight_apply, innerSL_apply_norm, mul_comm]
-
 theorem continuous_rankOneOperator {Y V V' : Type*} [TopologicalSpace Y] [NormedAddCommGroup V] [InnerProductSpace ℂ V]
     [NormedAddCommGroup V'] [InnerProductSpace ℂ V'] {f : Y → V} {g : Y → V'} (hf : Continuous f)
     (hg : Continuous g) : Continuous fun y => Formalism.L2.SG.TermOp.rk1 (f y) (g y) := by
@@ -251,7 +246,7 @@ theorem oo_quot : ∀ (D : D7) (X : HidaSetting D) (u u' : D.what₂.Word) (γ :
   have hψi : ∀ v, ∀ s ∈ R v, ∀ x, ψ v (s * x) = ψ v x := fun v s hs x => hinv v s hs x
   have hΦr : ∀ x, ‖Φ x‖ = ∏ v, ‖ψ v (x v)‖ := by
     intro x
-    simp only [Φ, ψ, norm_rankOneInnerOperator, X.Wu_tens, Formalism.L2.SG.RealObj.RankOneTensors.norm_tens (X.tensU u) (X.tensU_inner u),
+    simp only [Φ, ψ, _root_.Formalism.L2.SG.RealObj.RankOneTensors.norm_rankOneInnerOperator, X.Wu_tens, Formalism.L2.SG.RealObj.RankOneTensors.norm_tens (X.tensU u) (X.tensU_inner u),
       Formalism.L2.SG.RealObj.RankOneTensors.norm_tens (X.tensU u') (X.tensU_inner u'), ← Finset.prod_mul_distrib]
     rfl
   have hΦn : ∀ x, ‖Φ x‖ₑ = ∏ v, ‖ψ v (x v)‖ₑ := by

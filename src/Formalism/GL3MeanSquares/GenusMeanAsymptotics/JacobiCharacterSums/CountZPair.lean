@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.LGrowth
 
 @[expose] public section
 
@@ -124,26 +125,9 @@ private lemma sum_range_modulus_shift_eq_zero_of_ne_one {Q : ℕ} [NeZero Q] (ψ
     _ = ∑ x : ZMod Q, ψ x := Equiv.sum_comp (Equiv.addLeft (M : ZMod Q)) ψ
     _ = 0 := MulChar.sum_eq_zero_of_ne_one hψ
 
-private lemma norm_charSum_range_le_modulus_of_ne_one {Q : ℕ} [NeZero Q] (ψ : DirichletCharacter ℂ Q) (hψ : ψ ≠ 1) (M : ℕ) :
-    ‖∑ n ∈ Finset.range M, ψ (n : ZMod Q)‖ ≤ (Q : ℝ) := by
-  have hQ : 0 < Q := NeZero.pos Q
-  refine Nat.strong_induction_on M ?_
-  intro M ih
-  by_cases hM : M < Q
-  · calc ‖∑ n ∈ Finset.range M, ψ (n : ZMod Q)‖
-          ≤ ∑ n ∈ Finset.range M, ‖ψ (n : ZMod Q)‖ := norm_sum_le _ _
-      _ ≤ ∑ n ∈ Finset.range M, (1 : ℝ) :=
-          Finset.sum_le_sum fun n _ => DirichletCharacter.norm_le_one ψ _
-      _ = M := by simp
-      _ ≤ Q := by exact_mod_cast hM.le
-  · obtain ⟨K, hK⟩ : ∃ K, M = K + Q := ⟨M - Q, by omega⟩
-    subst hK
-    rw [Finset.sum_range_add, sum_range_modulus_shift_eq_zero_of_ne_one ψ hψ K, add_zero]
-    exact ih K (by omega)
-
 theorem pair_sum_bound : PairSum := by
   intro p p' hp hp' hne M
-  have h := norm_charSum_range_le_modulus_of_ne_one (mulLevel p p') (mulLevel_ne_one p p' hp hp' hne) M
+  have h := _root_.Formalism.ZeroFreeDirichlet.norm_character_sum_range_le (mulLevel p p') (mulLevel_ne_one p p' hp hp' hne) M
   simpa only [mulLevel_apply] using h
 
 end Formalism.HermitianLattices.Ext.PrimitiveCharacterCasts.ZD

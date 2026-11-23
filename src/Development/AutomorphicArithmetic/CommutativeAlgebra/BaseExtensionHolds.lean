@@ -105,10 +105,6 @@ private theorem card_res :
   (card_quot_of _ (res_surj w) w.asIdeal (fun a => by
     rw [RingHom.comp_apply, IsLocalRing.residue_eq_zero_iff, iota_mem_max])).symm
 
-private theorem card_pow (q : ℕ) (hq : q.Prime) (h : (q : 𝓞 E) ∈ w.asIdeal) :
-    ∃ f : ℕ, Nat.card (𝓞 E ⧸ w.asIdeal) = q ^ f :=
-  by apply _root_.UpperTheory.Reformulated.B.Qi54.card_pow <;> assumption
-
 end Local
 
 theorem baseExtension_holds : Gal.Int.Geo.BaseEx := by
@@ -123,7 +119,7 @@ theorem baseExtension_holds : Gal.Int.Geo.BaseEx := by
   have hqm : (q : 𝓞 E) ∈ w.asIdeal := by
     have h := (hpl' (q : 𝓞 D.F)).1 (hu (ES.p_mem_uIdeal D r))
     rwa [map_natCast] at h
-  obtain ⟨f, hf⟩ := card_pow w q hq hqm
+  obtain ⟨f, hf⟩ := _root_.UpperTheory.Reformulated.B.Qi54.card_pow w q hq hqm
   have hnw : Ideal.absNorm w.asIdeal = q ^ f := by
     rw [Ideal.absNorm_apply, Submodule.cardQuot_apply, hf]
   have hroot : D.ω ^ 2 - (D.tr : 𝓞 D.F) * D.ω + (D.nm : 𝓞 D.F) = 0 := by

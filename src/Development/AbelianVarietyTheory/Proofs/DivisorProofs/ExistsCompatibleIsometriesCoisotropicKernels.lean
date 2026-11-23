@@ -156,7 +156,7 @@ theorem exists_compatible_isometries : ∀ {E : Type} [Field E] [NumberField E] 
     exact hZ₀.2 n _ hn this
   have hrk : Module.finrank (𝓞 E) Z = Module.finrank (𝓞 E) X := by
     rw [← hrk₀]; exact (g₀.submoduleMap Z₀).finrank_eq.symm
-  obtain ⟨FinalForm, hop⟩ := GlobalTheory.T.exists_oppositeIsotropicPair D Z hZ
+  obtain ⟨FinalForm, hop⟩ := _root_.GlobalTheory.LowFilt.Opp.exists_opp D Z hZ
   have hbase : KerIs D (y N) Z N := by
     intro a
     have h1 := hk₀ (g₀.symm a)

@@ -219,8 +219,8 @@ theorem fib_V_htDual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [I
     MC ρC s
   have hξ : IsCptGen Or.𝔐.ξ := Or.𝔐.tie.gen
   have hsm : Smooth Or.𝔐.t.G.hom := Or.𝔐.t.semi.smooth
-  have hF := GlobalTheory.T.root_origin_frame_nonarchimedean E H Dw l Xo c O β Y SS RM Sys Fx Or Fr A p z ev hz hv hG la T io e y evT zT t hI zV hR
-  obtain ⟨σ, hσ, hσ'⟩ := GlobalTheory.T.root_origin_frame_archimedean E H Dw l Xo c O β Y SS RM Sys Fx Or Fr A p z ev hz hv hG la T io e y evT zT t hI
+  have hF := _root_.GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.inFibre_point E H Dw l Xo c O β Y SS RM Sys Fx Or Fr A p z ev hz hv hG la T io e y evT zT t hI zV hR
+  obtain ⟨σ, hσ, hσ'⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.sigma_exists E H Dw l Xo c O β Y SS RM Sys Fx Or Fr A p z ev hz hv hG la T io e y evT zT t hI
     zV hR s
   have hla : (p : 𝓞 c.F) ∈ la.asIdeal := hI.1
   have ho : OverLa la T.V io e := hI.2.1

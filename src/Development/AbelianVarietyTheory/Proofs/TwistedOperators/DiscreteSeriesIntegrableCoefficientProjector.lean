@@ -69,33 +69,21 @@ theorem mem_upq_of_skew {X : Mat p q} (hK : IsKC X) (hs : Xᴴ = -X) : X ∈ upq
   rw [hs, jm_eq, ← Matrix.fromBlocks_toBlocks X, h12, h21]
   simp [Matrix.fromBlocks_neg, Matrix.fromBlocks_multiply, Matrix.fromBlocks_add]
 
-theorem isKC_Eab' {a b : Ix p q} (h : sameBlock a b) : IsKC (Eab a b) := by
-  intro x y hxy
-  by_contra hne
-  have : a = x ∧ b = y := by
-    by_contra hh
-    exact hne (by simp [Eab, hh])
-  obtain ⟨rfl, rfl⟩ := this
-  exact hxy h
-
 theorem sameBlock_symm {a b : Ix p q} (h : sameBlock a b) : sameBlock b a := by
   cases a <;> cases b <;> simp_all [sameBlock]
 
 variable {T : GrpData p q}
 
-theorem inner_pi (U : URep T) (g : T.G) (x y : U.H) : inner ℂ (U.π g x) (U.π g y) = inner ℂ x y :=
-  (LinearIsometry.mk (U.π g).toLinearMap (U.isom g)).inner_map_map x y
-
 theorem skew (D : DSRep T) {X : Mat p q} (hX : X ∈ upq p q) (v w : D.HK.V) :
     inner ℂ (D.ι v) (D.ι (D.HK.act X w)) + inner ℂ (D.ι (D.HK.act X v)) (D.ι w) = 0 := by
   have h := (D.der X hX v).inner ℂ (D.der X hX w)
-  simp only [inner_pi, zero_smul, T.expt_zero, map_one, ContinuousLinearMap.one_apply] at h
+  simp only [_root_.GlobalTheory.FockTensor.inner_pi_pi, zero_smul, T.expt_zero, map_one, ContinuousLinearMap.one_apply] at h
   exact h.unique (hasDerivAt_const _ _)
 
 theorem adj_Eab (D : DSRep T) {a b : Ix p q} (h : sameBlock a b) (v w : D.HK.V) :
     inner ℂ (D.ι (D.HK.act (Eab a b) v)) (D.ι w) = inner ℂ (D.ι v) (D.ι (D.HK.act (Eab b a) w)) := by
-  have k1 := isKC_Eab' h
-  have k2 := isKC_Eab' (sameBlock_symm h)
+  have k1 := _root_.GlobalTheory.FockTensor.isKC_Eab h
+  have k2 := _root_.GlobalTheory.FockTensor.isKC_Eab (sameBlock_symm h)
   have h1 := skew D (X := Eab a b - Eab b a) (mem_upq_of_skew
     (fun x y hxy => by simp [k1 x y hxy, k2 x y hxy]) (by simp [Eab, Matrix.conjTranspose_single])) v w
   have h2 := skew D (X := Complex.I • (Eab a b + Eab b a)) (mem_upq_of_skew
@@ -274,9 +262,7 @@ theorem secondCountable_grp (T : GrpData p q) : SecondCountableTopology T.G := b
   haveI : SecondCountableTopology ℂˣ := Units.isEmbedding_embedProduct.secondCountableTopology
   exact T.emb.secondCountableTopology
 
-theorem continuous_eFun (D : DSRep T) (v : D.HK.V) : Continuous (eFun D v) := by
-  unfold eFun mcoef
-  exact continuous_const.mul (continuous_const.inner (D.U.cont _)).star
+alias continuous_eFun := _root_.GlobalTheory.CoefProjector.continuous_eFun
 
 theorem integrable_eFun (X : ProvA) (h2 : DiscreteSeriesPositivity X) (h6 : CoverHaarIntegration X) (lam : Ix p q → ℚ) (hl : IsParam lam)
     (h : ℝ) (hg : GapGe lam h) (hh : rangeOfSeventhSum p q ≤ h) (v : (X.ds p q lam).HK.V)

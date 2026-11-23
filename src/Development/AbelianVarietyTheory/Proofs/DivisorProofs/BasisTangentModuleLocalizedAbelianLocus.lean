@@ -161,8 +161,8 @@ theorem isTranslate_push {X X' : Scheme.{0}} {t : SAB H X} {t' : SAB H X'} {j : 
   · show 𝟙 _ ≫ g'.left ≫ m.φ = _
     rw [Category.id_comp, h₁, Category.assoc]
   · show 𝟙 _ ≫ v'.left ≫ m.φ = _
-    rw [Category.id_comp, h₂, Category.assoc, huu, ← Category.assoc, GlobalTheory.TransLift.spMap_comp'',
-      GlobalTheory.TransLift.dualMap_comp'']
+    rw [Category.id_comp, h₂, Category.assoc, huu, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring,
+      _root_.GlobalTheory.Frames.Glue.dual_comp]
   · rw [← MonObj.comp_mul, ← map_mul]
     show 𝟙 _ ≫ (g' * v').left ≫ m.φ = _
     rw [Category.id_comp, h₃]
@@ -261,10 +261,10 @@ theorem exists_dlog_add_coboundary_affine : ∀ (E : Type) [Field E] [NumberFiel
     rw [← GlobalTheory.KSOpen.valR_comp_appLE g₀ mm.φ hpi hO₀, ← GlobalTheory.KSOpen.valR_comp_appLE w mm.φ hpi hw₀]
     have hTr : IsTr t.G ((φ.comp ψ.toRingHom).comp ρ) (g₀ ≫ mm.φ) (v' a) (w ≫ mm.φ) := by
       obtain ⟨g', v'', h₁, h₂, h₃⟩ := isTranslate_push mm ψ.toRingHom _ (v a) (hvv a) φ g₀ w hT
-      exact ⟨g', v'', h₁, by rw [h₂, ← Category.assoc, GlobalTheory.TransLift.spMap_comp'', GlobalTheory.TransLift.dualMap_comp''], h₃⟩
+      exact ⟨g', v'', h₁, by rw [h₂, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.Frames.Glue.dual_comp], h₃⟩
     have hgg : (g₀ ≫ mm.φ) ≫ t.G.hom = spMap ((φ.comp ψ.toRingHom).comp ρ) := by
       rw [Category.assoc, sq, ← Category.assoc, hg, Category.assoc, hch, ← hcU, Category.comp_id, ← Category.assoc,
-        GlobalTheory.TransLift.spMap_comp'', GlobalTheory.TransLift.spMap_comp'']
+        _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring]
     exact ((hinv a).2 S _ (g₀ ≫ mm.φ) (w ≫ mm.φ) _ f₁ hgg (fun p hp => hpi (hO₀ hp)) hTr).symm
   have hF2 : ∀ a (O : t'.G.left.Opens) (h : O ≤ t'.G.hom ⁻¹ᵁ U'.1) (r : Γ(Sp Γ(Sp R, U.1), U'.1)),
       δ a O ((t'.G.hom.appLE U'.1 O h).hom r) = 0 := by
@@ -288,7 +288,7 @@ theorem exists_dlog_add_coboundary_affine : ∀ (E : Type) [Field E] [NumberFiel
       obtain ⟨g', v'', h₁, -, h₃⟩ := hw
       rw [← h₃, Over.w (g' * v'')]
       show spMap _ ≫ y ≫ t'.G.hom = _
-      rw [hg, ← Category.assoc, GlobalTheory.TransLift.spMap_comp'']
+      rw [hg, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
     rw [hwb, GlobalTheory.LogKSBal.valR_chart]
     simp [valR, TrivSqZeroExt.algebraMap_eq_inl]
   obtain ⟨θ, h, hid⟩ := GlobalTheory.T.cechCocycle_eq_coboundary_add_logDerivatives_affine E H _ t' hP hA hK U' n v hvt hvb δ (fun a => ⟨fun O _ => (hδF a).1 O le_top,

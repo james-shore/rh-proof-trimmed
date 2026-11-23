@@ -186,7 +186,7 @@ theorem maDens_cons_add {m : ℕ} (f g : (Fin (m + 1) → ℂ) → ℝ) (φ : Fi
     ReciprocityTheory.AnForm.maDens (Fin.cons (fun w => f w + g w) φ) z =
       ReciprocityTheory.AnForm.maDens (Fin.cons f φ) z + ReciprocityTheory.AnForm.maDens (Fin.cons g φ) z := by
   unfold ReciprocityTheory.AnForm.maDens
-  rw [hessC_fam_cons, hessC_fam_cons, hessC_fam_cons, ReciprocityTheory.AnForm.A.hessC_add f g z hf hg,
+  rw [hessC_fam_cons, hessC_fam_cons, hessC_fam_cons, _root_.ReciprocityTheory.AnForm.A.TraceConjugationCover.complexHessian_add_of_contDiffAt f g z hf hg,
     ReciprocityTheory.AnForm.A.mdisc_cons_eq_sum, ReciprocityTheory.AnForm.A.mdisc_cons_eq_sum,
     ReciprocityTheory.AnForm.A.mdisc_cons_eq_sum]
   simp only [Matrix.add_apply, add_mul, Finset.sum_add_distrib, Complex.add_re]

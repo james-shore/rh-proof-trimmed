@@ -104,7 +104,7 @@ theorem exists_adapted_rational_symplectic_basis : ∀ (g r r₀ : ℕ) (M : Mat
   have hcqV : ∀ m, cq m ∈ V := fun m => Submodule.subset_span ⟨m, rfl⟩
   have hV : ∀ v : Fin r → ℚ, (∀ w ∈ V, v ⬝ᵥ Mq *ᵥ w = 0) → v ∈ V := by
     intro v hv
-    apply GlobalTheory.T.rat_mem_span_of_real_mem_span_fin r₀ r (fun i j => (c i j : ℚ)) v
+    apply _root_.GlobalTheory.rat_mem_span_of_real_mem_span r₀ r (fun i j => (c i j : ℚ)) v
     have hfun : (fun i j => (((c i j : ℚ)) : ℝ)) = fun i j => (c i j : ℝ) := by
       funext i j; simp
     rw [hfun]
@@ -146,7 +146,7 @@ theorem exists_adapted_rational_symplectic_basis : ∀ (g r r₀ : ℕ) (M : Mat
     · obtain ⟨x, hx⟩ := GlobalTheory.T.exists_dotProduct_mulVec_eq_of_linearIndependent' r g Mq ε hdq hεind (fun i => if i = j then 1 else 0)
       exact ⟨x, fun h => absurd h hj, hx⟩
   choose ψ hψV hψε using hψ
-  obtain ⟨φ, hφiso, hφε, hφψ⟩ := GlobalTheory.T.exists_isotropic_dual_of_skew_matrix' r g Mq ε ψ hskq hεiso (fun i j => hψε j i)
+  obtain ⟨φ, hφiso, hφε, hφψ⟩ := _root_.GlobalTheory.exists_isotropic_dual_of_skew_matrix r g Mq ε ψ hskq hεiso (fun i j => hψε j i)
   have hspanV : Submodule.span ℚ (Set.range ε) ≤ V :=
     Submodule.span_le.mpr (by rintro _ ⟨i, rfl⟩; exact hεV i)
   have hφV : ∀ j : Fin g, rk ≤ j.val → φ j ∈ V := fun j hj => by

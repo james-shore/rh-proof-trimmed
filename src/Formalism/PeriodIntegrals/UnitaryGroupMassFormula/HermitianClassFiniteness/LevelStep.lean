@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.LevelSubgroupFiniteAdelicStandard
 
 @[expose] public section
 
@@ -80,7 +81,7 @@ theorem levelStep : LevelStep := by
   ·
     rw [Subgroup.inf_relIndex_left, stdLevel, Subgroup.relIndex_subgroupOf]
     swap
-    · rw [Formalism.UG.Final.LevelAfLStd I.F I.E (Fin k) I.cm.sig J']; exact inf_le_left
+    · rw [_root_.Formalism.UG.P.level_subgroup_finite_adelic_standard I.F I.E (Fin k) I.cm.sig J']; exact inf_le_left
     have : Finite (tensInt (F := I.F) (FiniteAdeleRing (𝓞 I.F) I.F) (intOE I.E) (intAd I.F) ⧸
         Ideal.span {cD}) := levelaf_finite_quot D hD cD rfl
     have h0 := levelaf_princ_relIndex_ne_zero (n := Fin k)
@@ -88,7 +89,7 @@ theorem levelStep : LevelStep := by
     have hle : levelAfL I.cm.sig J' (stdLat (n := Fin k) (A := I.E) (𝓞 I.E)) ≤
         (bc (n := Fin k) (tensInt (F := I.F) (FiniteAdeleRing (𝓞 I.F) I.F) (intOE I.E)
           (intAd I.F)).subtype).range := by
-      rw [Formalism.UG.Final.LevelAfLStd I.F I.E (Fin k) I.cm.sig J', levelAf, level]
+      rw [_root_.Formalism.UG.P.level_subgroup_finite_adelic_standard I.F I.E (Fin k) I.cm.sig J', levelAf, level]
       refine inf_le_right.trans ?_
       rw [Formalism.UG.Final.StabStd _ _ (Fin k) Subtype.val_injective]
       exact le_refl _

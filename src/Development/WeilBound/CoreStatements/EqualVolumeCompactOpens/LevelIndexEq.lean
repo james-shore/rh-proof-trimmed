@@ -50,7 +50,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.EqVol
 
-theorem indexEq : IndexEq := indexEq_of (coSA saOpen) divisible
+theorem indexEq : IndexEq := indexEq_of (coSA _root_.GroundTheory.Heights₂.Heights.StrongApprox.SAOpenHolds.full) divisible
 
 theorem levelIndexEq : LevelIndexEq :=
   levelIndexEq_of indexEq (levelCO hatCompactOpen) levelConj (levelRat hatRat)

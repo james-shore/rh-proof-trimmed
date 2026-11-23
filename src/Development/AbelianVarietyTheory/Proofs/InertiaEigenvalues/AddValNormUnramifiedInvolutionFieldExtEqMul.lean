@@ -112,7 +112,7 @@ end Gen
 theorem norm_integral (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E) (hφ : IsUnrExt K K' d φ) (hd : 0 < d) (z : K'.O) :
     ∃ a : K.O, algebraMap K.O K.E a = @Algebra.norm K.E K'.E _ _ φ.toAlgebra (algebraMap K'.O K'.E z) := by
   letI : Algebra K.E K'.E := φ.toAlgebra
-  obtain ⟨w, hw⟩ := GlobalTheory.T.exists_integral_basis_unramifiedInvolutionExt K K' d φ hφ hd
+  obtain ⟨w, hw⟩ := _root_.GlobalTheory.UnitLemma.Unr.IntBasis.intBasis K K' d φ hφ hd
   have hwj : ∀ j, ∃ c : K'.O, algebraMap K'.O K'.E c = w j := by
     intro j
     refine (hw (w j)).2 fun k => ?_

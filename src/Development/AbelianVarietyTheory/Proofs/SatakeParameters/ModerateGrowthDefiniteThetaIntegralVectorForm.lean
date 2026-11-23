@@ -63,7 +63,7 @@ theorem modGrowth_thetaIntegral : ∀ {D : D7} (ψ : AddChar (Formalism.MainNoti
     (∀ x, IsThetaFunO ψ V W (L x)) → ∀ u : GA D V → X, Continuous u → (∀ γ ∈ GQ V, ∀ h, u (γ * h) = u h) →
     GlobalTheory.Grow.ModGrowth W (fun g => ∫ h in 𝓕, thetaKO om h g (L (u h)) ∂ν) := by
   intro D ψ V W χS χT om hom hV ν 𝓕 hν h𝓕 X _ _ _ L hL u hu hinv
-  obtain ⟨K, hK, hcov⟩ := GlobalTheory.definite_unitary_cocompact V hV
+  obtain ⟨K, hK, hcov⟩ := _root_.GlobalTheory.DefiniteQuotient.exists_compact V hV
   obtain ⟨H, hH⟩ := GlobalTheory.Grow.exists_height_le_of_isCompact V hK
   let b := Module.finBasis ℂ X
   have hgr := fun k => GlobalTheory.Core.Rk.ThetaGrowthBoth.thetaKO_modGrowth₂ D ψ V W χS χT om hom (L (b k)) (hL _)

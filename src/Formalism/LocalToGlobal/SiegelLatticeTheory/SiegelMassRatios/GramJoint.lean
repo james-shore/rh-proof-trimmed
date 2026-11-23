@@ -179,7 +179,7 @@ theorem gramBlocks : GramBlocks := by
 theorem gramDetFlag : GramDetFlag := by
   intro E _ _ _ S r T T' F F'
   rw [gramBlocks E S r T T' F F']
-  have h := Formalism.HermitianLatticeCounting.Final.LocalIntegralStructure.gramDetGen E r (Zhat F F')ᴴ (Zhat F F') T T'
+  have h := _root_.Formalism.HermitianLatticeCounting.P.gram_determinant_general E r (Zhat F F')ᴴ (Zhat F F') T T'
   unfold TF
   rw [h, Matrix.det_conjTranspose, ← Matrix.conjTranspose_submatrix, Matrix.det_conjTranspose,
     gflag_eq_gmat]
@@ -197,7 +197,7 @@ theorem gramIndep : GramIndep := by
       ext i j; rfl
     rw [this, Matrix.det_transpose]
     exact hdet
-  have h := Formalism.HermitianLatticeCounting.Final.LocalIntegralStructure.gramNondeg E S.V (Fin (r + 1) ⊕ Fin (r + 1)) (starRingEnd E) S.hT.flip
+  have h := _root_.Formalism.HermitianLatticeCounting.P.gram_matrix_nondegenerate E S.V (Fin (r + 1) ⊕ Fin (r + 1)) (starRingEnd E) S.hT.flip
     (pairVec F F') hB
   refine ⟨h.1, ?_⟩
   have hl : LinearIndependent E (Sum.elim F.fvec F'.fvec) := h.1

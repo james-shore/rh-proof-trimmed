@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalEulerCharacteristic.WorkMultl
 
 @[expose] public section
 
@@ -59,51 +60,6 @@ namespace PositivityTheory.Lit1.GEN.W_killed_b
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
 
-theorem ratio_shortExact_prime (ℓ : ℕ) [Fact ℓ.Prime] (K : FiniteSubfield) (S : Set (HeightOneSpectrum (𝓞 K.1)))
-    (hS : S.Finite) (hSℓ : ∀ v : HeightOneSpectrum (𝓞 K.1), ((ℓ : ℕ) : 𝓞 K.1) ∈ v.asIdeal → v ∈ S)
-    (ιr : ∀ v : {v : InfinitePlace K.1 // v.IsReal}, ℚ̄ →ₐ[K.1] AlgebraicClosure v.1.Completion)
-    (T : ShortComplex (Rep.{0} (ULift.{0} ℤ) (galUnramifiedOutside K.1 ℚ̄ S)))
-    (hT : T.ShortExact) [IsDiscreteRep T.X₁] [IsDiscreteRep T.X₂] [IsDiscreteRep T.X₃] [Finite T.X₂]
-    (hℓ : ∃ r : ℕ, ∀ m : T.X₂, (ℓ ^ r) • m = 0) :
-    haveI : Finite S := hS
-    gsEulerRatio S T.X₂ ιr = gsEulerRatio S T.X₁ ιr * gsEulerRatio S T.X₃ ιr := by
-  haveI : Finite S := hS
-  haveI : Fintype S := Fintype.ofFinite S
-  have hp : ℓ.Prime := Fact.out
-  haveI : Nonempty S := nonempty_of_natCast_mem_of_ne_one (N := ℓ) S hp.one_lt.ne' hSℓ
-  obtain ⟨r, hr⟩ := hℓ
-  have hinj : Function.Injective T.f.hom := (Rep.mono_iff_injective _).1 hT.mono_f
-  have hsurj : Function.Surjective T.g.hom := (Rep.epi_iff_surjective _).1 hT.epi_g
-  haveI : Finite T.X₁ := Finite.of_injective _ hinj
-  haveI : Finite T.X₃ := Finite.of_surjective _ hsurj
-  haveI : NeZero (ℓ ^ r) := ⟨pow_ne_zero _ hp.ne_zero⟩
-  have hSN : ∀ v : HeightOneSpectrum (𝓞 K.1), (((ℓ ^ r : ℕ)) : 𝓞 K.1) ∈ v.asIdeal → v ∈ S := by
-    intro v hv
-    apply hSℓ v
-    rw [Nat.cast_pow] at hv
-    exact v.isPrime.mem_of_pow_mem r hv
-  let ιs : ∀ v : S, AlgebraicClosure ℚ →ₐ[K.1]
-      AlgebraicClosure ((v : HeightOneSpectrum (𝓞 K.1)).adicCompletion K.1) := fun v =>
-    (nonempty_algHom_of_isSepClosed : Nonempty (AlgebraicClosure ℚ →ₐ[K.1]
-      AlgebraicClosure ((v : HeightOneSpectrum (𝓞 K.1)).adicCompletion K.1))).some
-  have h1 : ∀ m : T.X₁, (ℓ ^ r) • m = 0 := fun m => hinj (by
-    rw [map_nsmul, hr, map_zero])
-  have hA := bijective_gsRealRes (S := S) (ιr := ιr) (ιs := ιs) (hS := hSN) (M := T.X₁) (hM := h1)
-    (r := 3) le_rfl
-  have hB := bijective_gsRealRes (S := S) (ιr := ιr) (ιs := ιs) (hS := hSN) (M := T.X₂) (hM := hr)
-    (r := 3) le_rfl
-  have hpg : IsPGroup ℓ (Multiplicative T.X₂) := fun g => ⟨r, by
-    show Multiplicative.toAdd (g ^ (ℓ ^ r)) = Multiplicative.toAdd 1
-    rw [toAdd_pow]; exact hr _⟩
-  obtain ⟨n, hn⟩ := hpg.exists_card_eq
-  have hn2 : Nat.card T.X₂ = ℓ ^ n := by rw [← hn]; rfl
-  have hn' : ∀ v : HeightOneSpectrum (𝓞 K.1), ((Nat.card T.X₂ : ℕ) : 𝓞 K.1) ∈ v.asIdeal → v ∈ S := by
-    intro v hv
-    apply hSℓ v
-    rw [hn2, Nat.cast_pow] at hv
-    exact v.isPrime.mem_of_pow_mem n hv
-  exact gsEulerRatio_shortExact_of_bijective S ιr hT hn' hA hB
-
 theorem ratio_shortExact_prime_card (ℓ : ℕ) [Fact ℓ.Prime] (K : FiniteSubfield) (S : Set (HeightOneSpectrum (𝓞 K.1)))
     (hS : S.Finite) (hSℓ : ∀ v : HeightOneSpectrum (𝓞 K.1), ((ℓ : ℕ) : 𝓞 K.1) ∈ v.asIdeal → v ∈ S)
     (ιr : ∀ v : {v : InfinitePlace K.1 // v.IsReal}, ℚ̄ →ₐ[K.1] AlgebraicClosure v.1.Completion)
@@ -113,7 +69,7 @@ theorem ratio_shortExact_prime_card (ℓ : ℕ) [Fact ℓ.Prime] (K : FiniteSubf
     haveI : Finite S := hS
     gsEulerRatio S T.X₂ ιr = gsEulerRatio S T.X₁ ιr * gsEulerRatio S T.X₃ ιr := by
   obtain ⟨n, hn⟩ := hc
-  exact ratio_shortExact_prime ℓ K S hS hSℓ ιr T hT ⟨n, fun m => by rw [← hn]; exact card_nsmul_eq_zero'⟩
+  exact _root_.PositivityTheory.Lit1.GEN.W_multl.ratio_shortExact_l ℓ K S hS hSℓ ιr T hT ⟨n, fun m => by rw [← hn]; exact card_nsmul_eq_zero'⟩
 
 noncomputable def coindStagesEquiv {k G : Type} [CommRing k] [Group G] (U W : Subgroup G) (hUW : U ≤ W)
     (A : Rep.{0} k G) :

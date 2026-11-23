@@ -62,14 +62,6 @@ namespace GlobalTheory.LastRed
 
 variable {D : D7}
 
-theorem sympl_zero_l (S T : HSp D) (x : WO S T) : symplOH S T 0 x = 0 := by
-  simp [symplOH, symplO, hO]
-
-theorem sympl_zero_r (S T : HSp D) (x : WO S T) : symplOH S T x 0 = 0 := by
-  simp [symplOH, symplO, hO]
-
-
-
 theorem biTheta_of_maps {ψ : AddChar (AF D.host.F) ℂ} {V₀ A S X T : HSp D} (a : WO A S →+ WO V₀ S) (b : WO S X →+ WO V₀ S)
     (p : WO S X →+ WO S T) (ca : Continuous a) (cb : Continuous b) (cp : Continuous p)
     (ra : ∀ γ, ∃ γ', a (ratW S A γ) = ratW S V₀ γ') (rb : ∀ γ, ∃ γ', b (ratW X S γ) = ratW S V₀ γ')
@@ -101,7 +93,7 @@ theorem biTheta_of_maps {ψ : AddChar (AF D.host.F) ℂ} {V₀ A S X T : HSp D} 
   · intro γ u v
     obtain ⟨γ', e⟩ := ra γ
     have h := hs (ratW S A γ) 0 u v
-    simp only [map_zero, add_zero, sympl_zero_l, zero_add] at h
+    simp only [map_zero, add_zero, _root_.GlobalTheory.MixModel.symplOH_zero_left, zero_add] at h
     show Φ (p v) * Ξ (a (ratW S A γ + u) + b v) = _ * (Φ (p v) * Ξ (a u + b v))
     rw [map_add (f := _), add_assoc, ← h, e, hΞ.quasi]
     ring
@@ -109,7 +101,7 @@ theorem biTheta_of_maps {ψ : AddChar (AF D.host.F) ℂ} {V₀ A S X T : HSp D} 
     obtain ⟨γ', e⟩ := rb γ
     obtain ⟨γ'', e'⟩ := rp γ
     have h := hs 0 (ratW X S γ) u v
-    simp only [map_zero, sympl_zero_l, zero_add] at h
+    simp only [map_zero, _root_.GlobalTheory.MixModel.symplOH_zero_left, zero_add] at h
     show Φ (p (ratW X S γ + v)) * Ξ (a u + b (ratW X S γ + v)) = _ * (Φ (p v) * Ξ (a u + b v))
     rw [map_add (f := _), map_add (f := _), add_left_comm, ← h, e, e', hΞ.quasi, hΦ.quasi, neg_add, AddChar.map_add_eq_mul]
     ring
@@ -117,7 +109,7 @@ theorem biTheta_of_maps {ψ : AddChar (AF D.host.F) ℂ} {V₀ A S X T : HSp D} 
     refine ⟨U.comap a, hU.preimage ca, fun x hx h0 v => funext fun u => ?_⟩
     have e := congrFun (k (a x) hx (ia x h0)) (a u + b v)
     have h := hs u v x 0
-    simp only [map_zero, add_zero, sympl_zero_r, zero_add] at h
+    simp only [map_zero, add_zero, _root_.GlobalTheory.MixModel.symplOH_zero_right, zero_add] at h
     simp only [heisO] at e ⊢
     rw [← h, map_add (f := _), add_right_comm, mul_left_comm, e]
   · obtain ⟨U, hU, k⟩ := hΞ.level
@@ -126,7 +118,7 @@ theorem biTheta_of_maps {ψ : AddChar (AF D.host.F) ℂ} {V₀ A S X T : HSp D} 
     have e := congrFun (k (b x) hx.1 (ib x h0)) (a u + b v)
     have e' := congrFun (k' (p x) hx.2 (ip x h0)) (p v)
     have h := hs u v 0 x
-    simp only [map_zero, sympl_zero_r, zero_add] at h
+    simp only [map_zero, _root_.GlobalTheory.MixModel.symplOH_zero_right, zero_add] at h
     simp only [heisO] at e e' ⊢
     rw [← h, map_add p, map_add b, ← add_assoc, AddChar.map_add_eq_mul, mul_mul_mul_comm, e, e']
 

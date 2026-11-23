@@ -69,10 +69,6 @@ theorem hk_val_one {P : HeightOneSpectrum (𝓞 E)} {a : E} (h : OneAt P a) : P.
   have h1 : P.valuation E (a - 1) < P.valuation E (1 : E) := by rw [map_one]; exact h
   rw [Valuation.map_add_eq_of_lt_left _ h1, map_one]
 
-theorem hk_valued (P : HeightOneSpectrum (𝓞 E)) (a : Eˣ) :
-    Valued.v ((atFin P a : (P.adicCompletion E)ˣ) : P.adicCompletion E) = P.valuation E (a : E) :=
-  HeightOneSpectrum.valuedAdicCompletion_eq_valuation' P (a : E)
-
 theorem hk_valued_sub (P : HeightOneSpectrum (𝓞 E)) (a : Eˣ) :
     Valued.v (((atFin P a : (P.adicCompletion E)ˣ) : P.adicCompletion E) - 1) = P.valuation E ((a : E) - 1) := by
   have e : ((atFin P a : (P.adicCompletion E)ˣ) : P.adicCompletion E) - 1 = (((a : E) - 1 : E) : P.adicCompletion E) := by
@@ -84,20 +80,20 @@ theorem hk_valued_sub (P : HeightOneSpectrum (𝓞 E)) (a : Eˣ) :
 theorem hk_tame (χ : HChar E) {P : HeightOneSpectrum (𝓞 E)} (h : χ.TameAt P) (a : Eˣ) (ha : OneAt P (a : E)) : χ.locK P a = 1 := by
   refine h (atFin P a) ?_ ?_
   · show Valued.v _ = 1
-    rw [hk_valued, hk_val_one ha]
+    rw [_root_.PI.HeckeProdW.valued_atFin, hk_val_one ha]
   · rw [hk_valued_sub]
     exact hk_le_exp ha
 
 theorem hk_unr (χ : HChar E) {P : HeightOneSpectrum (𝓞 E)} (h : χ.UnrAt P) (a : Eˣ) (ha : P.valuation E (a : E) = 1) : χ.locK P a = 1 := by
   refine h (atFin P a) ?_
   show Valued.v _ = 1
-  rw [hk_valued, ha]
+  rw [_root_.PI.HeckeProdW.valued_atFin, ha]
 
 theorem hk_unif (χ : HChar E) {P : HeightOneSpectrum (𝓞 E)} (h : χ.UnrAt P) (a : Eˣ) (ha : P.valuation E (a : E) = WithZero.exp (-1 : ℤ)) :
     χ.locK P a = χ.val P := by
   refine χ.val_eq h (atFin P a) ?_
   show Valued.v _ = _
-  rw [hk_valued, ha]
+  rw [_root_.PI.HeckeProdW.valued_atFin, ha]
 
 theorem hecke_character_local_behaviour : HLoc := fun _ _ _ χ _ =>
   ⟨fun h a ha => hk_tame χ h a ha, fun h a ha => hk_unr χ h a ha, fun h a ha => hk_unif χ h a ha⟩

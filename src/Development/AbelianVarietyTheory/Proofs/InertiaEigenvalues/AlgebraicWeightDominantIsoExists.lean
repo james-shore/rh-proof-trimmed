@@ -155,18 +155,6 @@ theorem exists_joint_beig [Nonempty κ] {Φ : (ι → GL (Fin n) ℂ) → Matrix
       rw [Function.update_of_ne hne]
       exact ⟨hw.1, hwS τ hτ⟩
 
-theorem joint_upper {Φ : (ι → GL (Fin n) ℂ) → Matrix κ κ ℂ} (hone : Φ 1 = 1) (hmul : ∀ g h, Φ (g * h) = Φ g * Φ h)
-    {v : κ → ℂ} {lam : ι → Fin n → ℤ} (hv : ∀ τ, IsBEig (fun B => Φ (Pi.mulSingle τ B)) v (lam τ))
-    (g : ι → GL (Fin n) ℂ) (hg : ∀ τ, (g τ).val.BlockTriangular id) :
-    Φ g *ᵥ v = (∏ τ, ∏ i, ((g τ).val i i) ^ (lam τ i)) • v := by
-  first
-  | exact @_root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul
-  | exact _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul
-  | (apply _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul ..)
-
 def trGL (B : GL (Fin n) ℂ) : GL (Fin n) ℂ :=
   ⟨B.valᵀ, (B⁻¹).valᵀ, by rw [← Matrix.transpose_mul, ← Units.val_mul, inv_mul_cancel, Units.val_one, Matrix.transpose_one],
     by rw [← Matrix.transpose_mul, ← Units.val_mul, mul_inv_cancel, Units.val_one, Matrix.transpose_one]⟩
@@ -213,7 +201,7 @@ theorem exists_covec [Nonempty κ] {Φ : (ι → GL (Fin n) ℂ) → Matrix κ �
     exact isPolyRep_tr (hpoly τ)
   obtain ⟨u, lam, hu0, hu⟩ := exists_joint_beig h2 h3
   refine ⟨u, hu0, fun l hl => ?_⟩
-  have h := joint_upper h1 h2 hu (fun τ => trGL (l τ)) (fun τ i j hij => (hl τ).1 j i hij)
+  have h := _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul h1 h2 hu (fun τ => trGL (l τ)) (fun τ i j hij => (hl τ).1 j i hij)
   have hd : ∀ τ i, (trGL (l τ)).val i i = 1 := fun τ i => (hl τ).2 i
   simp only [Φt, trGL_trGL, hd, _root_.one_zpow, Finset.prod_const_one, one_smul, Matrix.mulVec_transpose] at h
   exact h
@@ -467,7 +455,7 @@ theorem iso_of_hwAt (a a' : AlgWt L n) (lam : ι → Fin n → ℤ) (ha : ∀ τ
       rw [ptOf_mul emb hinj hcm hall, h2 _ _ (isUPt_ptOf emb hinj hcm hall g) (isUPt_ptOf emb hinj hcm hall h)]
     have hpoly : ∀ τ, IsPolyRep fun B => evM P (upt (ptOf emb (Pi.mulSingle τ B))) := fun τ => by
       simp only [ptOf_single emb hinj hcm hall]
-      exact GlobalTheory.T.isPolynomialRepGLComplex_algebraicWeight_evalPoint L n c κ b P hP' (emb τ)
+      exact _root_.GlobalTheory.AlgWtHW.isPolyRep_evPt L n c κ b P hP' (emb τ)
     obtain ⟨v, mu, hv0, hv⟩ := exists_joint_beig (Φ := fun g => evM P (upt (ptOf emb g))) hmul hpoly
     obtain ⟨u, hu0, hu⟩ := exists_covec (Φ := fun g => evM P (upt (ptOf emb g))) hone hmul hpoly
     have hmu : mu = lam := by
@@ -479,7 +467,7 @@ theorem iso_of_hwAt (a a' : AlgWt L n) (lam : ι → Fin n → ℤ) (ha : ∀ τ
     subst hmu
     refine ⟨κ, inferInstance, inferInstance, b, fun g => evM P (upt (ptOf emb g)), u, v, hmul,
       continuous_ptOf emb hinj hcm hall P, fun x hx w => ?_, hu0, hv0, hu,
-      joint_upper (Φ := fun g => evM P (upt (ptOf emb g))) hone hmul hv, fun γ => ?_⟩
+      _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul (Φ := fun g => evM P (upt (ptOf emb g))) hone hmul hv, fun γ => ?_⟩
     · refine Submodule.span_mono ?_ (span_ratPt_orbit L n c κ b P hP' x hx w)
       rintro _ ⟨γ₀, hγ, rfl⟩
       exact ⟨mtwEmb emb γ₀, by simp only [ptOf_rat emb hinj hcm hall γ₀ hγ]⟩
@@ -517,7 +505,7 @@ theorem exists_equiv_VV : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L]
   choose mu hmu using fun τ => (GlobalTheory.T.algWeight_highestWeight_exists_unique_antitone L n a (mtwConj emb τ)).1.exists
   let lam : ι → DomWeight n := fun τ => ⟨mu τ, (GlobalTheory.T.algWeight_highestWeight_exists_unique_antitone L n a (mtwConj emb τ)).2 _ (hmu τ)⟩
   have hirr : TenIrr (mtwConj (mtwConj emb)) lam :=
-    tenIrr_of' highest_weight_fixed_exists highest_weight_fixed_line _ (mtwConj_injective _ hinj') (mtwConj_cm _ hcm') lam
+    tenIrr_of' _root_.PI.HwFix.UnitaryGroupMassFormula.hwFixedEx_main _root_.PI.HwFix.Line.hwFixedLine_main _ (mtwConj_injective _ hinj') (mtwConj_cm _ hcm') lam
   obtain ⟨T, hT⟩ := iso_of_hwAt (mtwConj emb) hinj' hcm' hall' a (tenWt (mtwConj emb) lam hirr) mu hmu
     (fun τ => tenWt_hwAt (mtwConj emb) hinj' hcm' lam hirr τ)
   refine ⟨lam, T, fun γ γ₀ hγ x => ?_⟩

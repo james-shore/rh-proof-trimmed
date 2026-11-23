@@ -132,7 +132,7 @@ theorem torsLevel_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     fun P h => Classical.choose (Classical.choose_spec (hlift P h)).2
   have hcl : ∀ P h, ValAt (pullG TF Z φ) l.M ℓ (etaSecL TF Z φ ℓ hℓ) (PT P h (IsLocalRing.closedPoint K)) (cl P h) :=
     fun P h => Classical.choose_spec (Classical.choose_spec (hlift P h)).2
-  have hun := GlobalTheory.T.levelSection_injective_at_geometricPoint TF Z φ ℓ hℓ
+  have hun := _root_.GlobalTheory.TorsSpec.etaSecL_injective_at TF Z φ ℓ hℓ
   refine ⟨fun P => if h : IsTorsI I (pullAct TF Z φ) P then cl P h else 0, ?_, ?_, ?_, ?_⟩
   · intro P Q hP hQ
     have hPQ : IsTorsI I (pullAct TF Z φ) (P * Q) := fun a ha => by

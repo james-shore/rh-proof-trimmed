@@ -128,37 +128,17 @@ noncomputable def intR (F : IntermediateField ℚ_[l] (Om l)) : Subring (PadicCo
   zero_mem' := ⟨(mem_fld F _).1 (zero_mem _), by simp⟩
   neg_mem' := fun {a} ha => ⟨(mem_fld F _).1 (neg_mem ((mem_fld F _).2 ha.1)), by simpa using ha.2⟩
 
-theorem Ks_le_Kinf (K : FinExt l) (j : ℕ) : Ks K j ≤ Kinf K :=
-  sup_le_sup_left (IntermediateField.adjoin.mono ℚ_[l] _ _ fun (x : Om l) hx =>
-    (show ∃ j : ℕ, x ^ (l ^ j) = 1 from ⟨j, hx⟩)) _
-
 theorem add_mem_Ohat (K : FinExt l) (j : ℕ) {y x : PadicComplex l} (hy : y ∈ intC (Ks K j))
     (hx : x ∈ Ohat K) : y + x ∈ Ohat K := by
   have hy' : y ∈ (intR (Kinf K)).topologicalClosure :=
     (intR (Kinf K)).le_topologicalClosure
-      (show y ∈ intC (Kinf K) from ⟨Set.image_mono (Ks_le_Kinf K j) hy.1, hy.2⟩)
+      (show y ∈ intC (Kinf K) from ⟨Set.image_mono (_root_.GlobalTheory.Cyc.AlmostTrace.Ks_le_Kinf K j) hy.1, hy.2⟩)
   have hx' : x ∈ (intR (Kinf K)).topologicalClosure := hx
   exact add_mem hy' hx'
-
-theorem root_mem_inC (K : FinExt l) {j : ℕ} (hj : 1 ≤ j) {ζ : PadicComplex l}
-    (h : IsPrimitiveRoot ζ l) : ζ ∈ inC (Ks K j) := by
-  haveI : NeZero l := ⟨hl.1.ne_zero⟩
-  obtain ⟨η, hη⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot (Om l) l
-  have hη' := hη.map_of_injective (algebraMap (Om l) (PadicComplex l)).injective
-  obtain ⟨k, -, hk⟩ := hη'.eq_pow_of_pow_eq_one h.pow_eq_one
-  refine ⟨η ^ k, ?_, ?_⟩
-  · refine pow_mem (?_ : η ∈ Ks K j) k
-    refine (le_sup_right : _ ≤ Ks K j) (IntermediateField.subset_adjoin _ _ ?_)
-    exact (hη.pow_eq_one_iff_dvd _).2 (dvd_pow_self l (by omega))
-  · simp only [PadicComplex.coe_eq, map_pow]
-    exact hk
 
 theorem algebraMap_mem (F : IntermediateField ℚ_[l] (Om l)) (t : ℚ_[l]) (ht : ‖t‖ ≤ 1) :
     algebraMap ℚ_[l] (PadicComplex l) t ∈ intR F :=
   ⟨⟨algebraMap ℚ_[l] (Om l) _, F.algebraMap_mem _, rfl⟩, by rwa [norm_algebraMap']⟩
-
-theorem norm_l : ‖(l : PadicComplex l)‖ = (l : ℝ)⁻¹ := by
-  rw [← map_natCast (algebraMap ℚ_[l] (PadicComplex l)), norm_algebraMap', Padic.norm_p]
 
 theorem quot_mem (K : FinExt l) {j : ℕ} (hj : 1 ≤ j) {ζ : PadicComplex l}
     (h : IsPrimitiveRoot ζ l) {N : ℕ} (hN : 1 ≤ N) :
@@ -168,8 +148,8 @@ theorem quot_mem (K : FinExt l) {j : ℕ} (hj : 1 ≤ j) {ζ : PadicComplex l}
   have hz := GlobalTheory.Cyc.norm_primitiveRoot_sub_one l 1 le_rfl ζ (by rwa [pow_one])
   have hz0 : ζ - 1 ≠ 0 := sub_ne_zero.2 (h.ne_one hl.1.one_lt)
   refine ⟨(mem_fld _ _).1 (div_mem (pow_mem (natCast_mem _ _) _)
-    (sub_mem ((mem_fld _ _).2 (root_mem_inC K hj h)) (one_mem _))), ?_⟩
-  rw [norm_div, div_le_one (norm_pos_iff.2 hz0), norm_pow, norm_l, hz]
+    (sub_mem ((mem_fld _ _).2 (_root_.GlobalTheory.CycEigen.root_mem_inC K hj h)) (one_mem _))), ?_⟩
+  rw [norm_div, div_le_one (norm_pos_iff.2 hz0), norm_pow, _root_.GlobalTheory.Cyc.TateS.norm_l, hz]
   calc ((l : ℝ)⁻¹) ^ N ≤ ((l : ℝ)⁻¹) ^ 1 :=
         pow_le_pow_of_le_one (by positivity) (inv_le_one_of_one_le₀ h1.le) hN
     _ = (l : ℝ) ^ (-1 : ℝ) := by rw [pow_one, Real.rpow_neg_one]
@@ -204,13 +184,7 @@ theorem norm_prod_chi {χ : GQ l →* ℚ_[l]ˣ} {K : FinExt l} {j : ℕ} (hj : 
     GlobalTheory.Cyc.LiftExp.norm_zpow_sub_one l j hj _ hg.2 _ hne, inv_pow, ← zpow_natCast, ← zpow_neg]
   push_cast; rfl
 
-theorem act_fix {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} (hact : IsActC act)
-    {F : IntermediateField ℚ_[l] (Om l)} {g : GQ l} (hg : g ∈ F.fixingSubgroup)
-    {y : PadicComplex l} (hy : y ∈ inC F) : act g y = y := by
-  obtain ⟨x, hx, rfl⟩ := hy
-  have := (IntermediateField.mem_fixingSubgroup_iff F g).1 hg x hx
-  simp only []
-  rw [hact.1, this]
+alias act_fix := _root_.GlobalTheory.CycEigen.act_inC
 
 theorem twAct_add (act : GQ l →* (PadicComplex l ≃+* PadicComplex l)) (χ : GQ l →* ℚ_[l]ˣ) (i : ℤ)
     {r : ℕ} (U : GQ l → Matrix (Fin r) (Fin r) (PadicComplex l)) (g : GQ l)

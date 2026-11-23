@@ -410,7 +410,7 @@ theorem local_coords : ∀ (p : ℕ) [Fact p.Prime] (Ωl : Type) [Field Ωl] [Al
     rw [hU r, hS r _ fun k hk => by simp [hk]]
     simp
   rw [← hcU] at e0
-  have hxe := (GlobalTheory.T.evalSeriesAndDeriv_unique_of_coefficients p Ω hc T (m + 1) ψ hψ _ _ _ _ _ hx e0).1
+  have hxe := (_root_.GlobalTheory.EvUniq.ev_unique p Ω hc T (m + 1) ψ hψ _ _ _ _ _ hx e0).1
   set w0 : On p (m + 1) := ∑ i : Fin (p ^ (m + 1)), ∑ j : Fin (p ^ (m + 1)),
     algebraMap (O0 p) (On p (m + 1)) (a i j) * xn p (m + 1) ^ (i : ℕ) * yn p (m + 1) ^ (j : ℕ) with hw0
   have hw : ι w0 = x := by

@@ -100,8 +100,8 @@ theorem core_data_of_point (hD : GlobalTheory.Published.DiscreteSeriesCover) (hH
       ∃ (k : Type) (_ : Field k) (_ : ValuativeRel k) (_ : TopologicalSpace k) (_ : IsNonarchimedeanLocalField k) (ι : Type)
         (o : GlobalTheory.SeeSaw.TDat (commOf (_root_.GlobalTheory.Fam.pk_z W) u (mkGeo m b)) k ι), PreT v o ∧ o.ζ₀ = a.ζ₀ ∧ R k ι o.p o.β o.Q) :
     ∃ A : _root_.GlobalTheory.Fam.GeometricFamily W u, A.Is ∧ A.c₀ = c₀ ∧ _root_.GlobalTheory.GeoExists.geometricDatumOfFamily A = a ∧ Framed A.d.B ∧ R A.k A.ι A.o.p A.o.β A.o.Q := by
-  obtain ⟨y, Bt, h0, hτ, hlev, had, hfr, -, hz⟩ := _root_.GlobalTheory.T.line_vector_bessel_existence_alt W u hPk a hline hn
-  obtain ⟨m, hm₀, hlast⟩ := _root_.GlobalTheory.T.exists_yMeas_geoMeas_volLast W u hPk a y (fun _ => 1) hx
+  obtain ⟨y, Bt, h0, hτ, hlev, had, hfr, -, hz⟩ := _root_.GlobalTheory.Fam.RatDec.exists_yRat_alt W u hPk a hline hn
+  obtain ⟨m, hm₀, hlast⟩ := _root_.GlobalTheory.MeasCommon.measures_common_alt W u hPk a y (fun _ => 1) hx
   have hc₀ := _root_.GlobalTheory.Fam.commOf_is_of_geoMeas_of_coords_is hD hH W u hPk _ hm₀ hx
   obtain ⟨tP, htP⟩ := exists_places D _ hT0
   obtain ⟨gP, hgP⟩ : ∃ s : Finset (GlobalTheory.FinPl.Pl D), ∀ p, p ∈ s ↔ ∃ PP ∈ (_root_.GlobalTheory.Fam.pk_z W).Pg, p = (_root_.IsDedekindDomain.HeightOneSpectrum.under (𝓞 D.host.F) PP) :=
@@ -118,13 +118,13 @@ theorem core_data_of_point (hD : GlobalTheory.Published.DiscreteSeriesCover) (hH
       op := fun _ => ⟨0, Fin.elim0, Fin.elim0⟩ }
   obtain ⟨k, _, _, _, _, ι, o, hP, hζ, hR⟩ := hpre y m _ v₀ hLT htP rfl hτ
   choose l hlX hlT using hloc
-  obtain ⟨S, hS⟩ := _root_.GlobalTheory.T.exists_symData_symRead_at_type_places W u hPk hTy a fun PP => l PP.1 (Or.inl PP.2)
+  obtain ⟨S, hS⟩ := _root_.GlobalTheory.SymReadEx.exists_symData_symRead W u hPk hTy a fun PP => l PP.1 (Or.inl PP.2)
   obtain ⟨bas, hb1, hb2⟩ : ∃ bas : ∀ PP h j c, j + c = (l PP h).s + 1 → GL (XIx (Fin D.R.k) (Fin D.R.t) j ⊕ Fin c) (l PP h).k,
       (∀ PP h, PP ∉ (_root_.GlobalTheory.Fam.pk_z W).Pg → bas PP h = fun _ _ _ => 1) ∧
       ∀ PP : (_root_.GlobalTheory.Fam.pk_z W).Pg, bas PP.1 (Or.inl PP.2) = fun j c hc => ((S PP).T (Fin D.R.t)).bas j c hc :=
     ⟨fun PP h => if hp : PP ∈ (_root_.GlobalTheory.Fam.pk_z W).Pg then fun j c hc => ((S ⟨PP, hp⟩).T (Fin D.R.t)).bas j c hc else fun _ _ _ => 1,
       fun PP h hp => dite_eq_right hp, fun PP => dite_eq_left PP.2⟩
-  obtain ⟨N, b, dT, M, β₀, hsh, hb, hN, hY⟩ := _root_.GlobalTheory.T.local_component_vector_relation_alt W u hPk a y m _ k ι v₀ o l bas hc₀ hτ hn rfl rfl hζ hsd hgP htP hP
+  obtain ⟨N, b, dT, M, β₀, hsh, hb, hN, hY⟩ := _root_.GlobalTheory.Fam.lattices_frames_basePoints_exist_alt W u hPk a y m _ k ι v₀ o l bas hc₀ hτ hn rfl rfl hζ hsd hgP htP hP
     (fun n h x hx => horth n h x fun h' => hx ((htP x).2 h')) fun PP h hp j c hc => by rw [hb1 PP h hp]
   have hm := _root_.GlobalTheory.GeoExists.meas_upd_alt hm₀ b
   have hc := _root_.GlobalTheory.Fam.commOf_is_of_geoMeas_of_coords_is hD hH W u hPk _ hm hx
@@ -133,14 +133,14 @@ theorem core_data_of_point (hD : GlobalTheory.Published.DiscreteSeriesCover) (hH
     { gP := gP, tP := tP, N := N, NT := a.LT, b := b, bT := a.bT, Ψ := 0, ΨT := fun _ _ => 0, τ := y.τ, JG := fun _ => ⊥,
       eG := 0, eGT := fun _ _ => 0, dG := 0, cG := 0, RamAd := o.Ram, Sad := fun _ => id, dT := dT,
       op := fun _ => ⟨0, Fin.elim0, Fin.elim0⟩ }
-  obtain ⟨Ψ, ΨT, hΨ, hΨT, htie⟩ := _root_.GlobalTheory.T.local_component_places_characterized_alt W u hPk a y m b v₁ hc rfl rfl hgP hTy (fun j => (hb j).1) hbT' hsd
+  obtain ⟨Ψ, ΨT, hΨ, hΨT, htie⟩ := _root_.GlobalTheory.CommonVac.exists_common_vacua_alt W u hPk a y m b v₁ hc rfl rfl hgP hTy (fun j => (hb j).1) hbT' hsd
     (fun P => by rw [hbT, hLT]; exact moves_one _ _ _) hN rfl rfl htP
   have hYG : ∀ PP : (_root_.GlobalTheory.Fam.pk_z W).Pg, LocY (l PP.1 (Or.inl PP.2)) y N (_root_.GlobalTheory.Fam.pk_z W).βY b fun j c hc => ((S PP).T (Fin D.R.t)).bas j c hc :=
     fun PP => hb2 PP ▸ (hY PP.1 (Or.inl PP.2)).some
   obtain ⟨JG, eG, eGT, dG, n, G, pl, hG, hat, hrd, hstd⟩ := _root_.GlobalTheory.LevPin.exists_levelData_alt W u hPk a y m b { v₁ with Ψ := Ψ, ΨT := ΨT } hc rfl rfl hgP
     hTy _ S hS hYG fun PP => ⟨hlX _ _, hlT _ _⟩
   let v : VCom (commOf (_root_.GlobalTheory.Fam.pk_z W) u (mkGeo m b)) := { v₁ with Ψ := Ψ, ΨT := ΨT, JG := JG, eG := eG, eGT := eGT, dG := dG }
-  choose Q hQ using fun PP (h : _root_.GlobalTheory.Fam.QAllAlt W PP) => _root_.GlobalTheory.T.local_component_at_split_place_alt W u hPk a y m b v hc rfl rfl PP h (l PP (Or.inr h))
+  choose Q hQ using fun PP (h : _root_.GlobalTheory.Fam.QAllAlt W PP) => _root_.GlobalTheory.QGeoAt.geo_of_frames_alt W u hPk a y m b v hc rfl rfl PP h (l PP (Or.inr h))
     (hb1 PP (Or.inr h) (hQG PP h) ▸ (hY PP (Or.inr h)).some) (hlX _ _) (hlT _ _)
   have hv : v.Is :=
     ⟨hdisj, fun j hj => (hN j hj).1, hsd, fun j => (hb j).1, hbT', hΨ, hΨT, GlobalTheory.FixLev.fixLev_compact_open D _ v n G hG, hat,
@@ -165,7 +165,7 @@ end Gen
 
 theorem exists_geoAll_alt : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.StrongApproxSU → ∀ {B : GlobalTheory.Mem.Base} {X : GlobalTheory.Mem.PreX B.toPre} {I : TC B X} {l : I.Laws} {Z : TC.Later B (I.cols l)} {L : SizeData₂ (I.rec7 l Z)} {hT : GatTies (I.rec7 l Z)} {Gi : Formalism.MainNotions.G.Inst (I.rec7 l Z) L} {Gl : Formalism.MainNotions.G.LatInst (I.rec7 l Z)} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX (I.rec7 l Z)} {cX : ExtraC} {ex : Extra (I.rec7 l Z) L hT Gi Gl Kc Yd cX} (W : _root_.GlobalTheory.MiS.RealPackAlt ex), _root_.GlobalTheory.Fam.AllFamilyConditions W → ∀ u : B.Word, ∃ a : _root_.GlobalTheory.Fam.GeometricFamily W u, a.Is ∧ a.True ∧ (∀ r s, (a.g.oT B.R.m rfl).iA r s = if r.val = s.val then 1 else 0) ∧ GlobalTheory.MiTop.Framed a.d.B := by
   intro hD hH hS B X I l Z L hT Gi Gl Kc Yd cX ex W hW u
-  obtain ⟨a, c₀, hx, hpin, hbT, hiA, hLT, hline, hn, hemb, hz, horth, hloc⟩ := _root_.GlobalTheory.T.all_true_family_geometry_alt hS W hW u
+  obtain ⟨a, c₀, hx, hpin, hbT, hiA, hLT, hline, hn, hemb, hz, horth, hloc⟩ := _root_.GlobalTheory.XGeoStd.exists_xgeo_alt hS W hW u
   obtain ⟨jj, hjj⟩ := hW.tq.top1 u
   have hPr := (base_fields_primes_ok B X).2.1
   obtain ⟨A, hA, rfl, rfl, hfr, hR⟩ := _root_.GlobalTheory.GeoExists.core_data_of_point (W := W) (u := u) hD hH hW.pk hW.lev.1 (hPr.T_prime u).ne_zero
@@ -173,7 +173,7 @@ theorem exists_geoAll_alt : GlobalTheory.Published.DiscreteSeriesCover → Globa
     (fun PP ⟨t, ht⟩ hP => TC.Q_notMem_of_ok hW.tr.ok _ PP ((hW.tq.Q t PP).1 ht) ((hW.lev.2.1 PP).1 hP))
     jj hjj a c₀ hx hbT hLT hline hn (fun n h x _ => horth n h x) hloc
     (fun k _ _ _ _ ι p β Q => GlobalTheory.AdForm.StdT I l Z u p β Q fun j => (a.x j).L)
-    fun y m b v h1 h2 h3 h4 => _root_.GlobalTheory.T.all_true_family_geometry_column_alt W hW u (mkGeo m b) c₀ v a.ζ₀ hpin h1 h2 hline hz hemb
+    fun y m b v h1 h2 h3 h4 => _root_.GlobalTheory.LevPrimeData.data_preT_alt W hW u (mkGeo m b) c₀ v a.ζ₀ hpin h1 h2 hline hz hemb
       (fun x _ => let ⟨LZ, _, ho⟩ := horth _ rfl x; ⟨LZ, hLT ▸ ho⟩) (by rw [h3]; exact h4)
   exact ⟨A, hA, ⟨hpin, hR, hemb, hz⟩, hiA, hfr⟩
 end GlobalTheory.GeoExists

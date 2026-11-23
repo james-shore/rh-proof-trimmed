@@ -137,7 +137,7 @@ theorem schurW : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A
     refine hU a0 ((hK a0).2 ?_)
     have e : (finHom D.sp.X').rangeRestrict a0 = 1 := Subtype.ext ha0
     exact e ▸ J.one_mem
-  have hS := fun c => GlobalTheory.T.schur_orthogonality_subgroup_measure_one (R.νX t) Ω hΩo.measurableSet hΩ1 R.cX.ρ hc.2.1 hmeas hirr a a'
+  have hS := fun c => _root_.GlobalTheory.SchurOrthOnSubgroup.schur_orthogonality (R.νX t) Ω hΩo.measurableSet hΩ1 R.cX.ρ hc.2.1 hmeas hirr a a'
     ((R.HX t).e h ((R.B.R t).pres.y c)) ((R.HX t).e h' ((R.B.R t).pres.y c))
   have huniq : ∀ x : GA D D.sp.X', ∃! i, ∃ γ ∈ GQ D.sp.X', ∃ k ∈ Ω, x = γ * y' i * k := by
     intro x

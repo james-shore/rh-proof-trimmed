@@ -62,6 +62,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCRing
 
 @[expose] public section
 
@@ -232,10 +233,6 @@ theorem frame_transfer {E : Type} [Field E] [NumberField E] [IsCMField E] {H : H
     obtain rfl : (fun k => M.pt (u k)) = v := funext hu
     exact ⟨_, (key u).2 h, fun i => (hM _).symm⟩
 
-theorem exists_sab {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {S S' : Scheme.{0}} (f : S' ⟶ S)
-    (t : SAB H S) : ∃ t' : SAB H S', Nonempty (SABMap t' t f) := by
-  exact GlobalTheory.ModFam.exists_sabPull f t
-
 theorem exists_point {X : Scheme.{0}} {F : Type} [Field F] (s : X ⟶ Sp F) [LocallyOfFiniteType s] (U : Set X)
     (hU : IsOpen U) (hne : U.Nonempty) : ∃ (L : Type) (_ : Field L) (β : F →+* L) (y : Sp L ⟶ X),
       β.Finite ∧ y ≫ s = spMap β ∧ Set.range y ⊆ U := by
@@ -388,9 +385,9 @@ theorem line_function_norm_zero_away : ∀ (E : Type) [Field E] [NumberField E] 
   haveI := c.fin
   haveI : NumberField c.F := { }
   obtain ⟨K, _, _, β, y, v, w, hfr⟩ := exists_framed Xo c U τ hτ hU hne
-  obtain ⟨tK, ⟨m⟩⟩ := LinePointFrame.exists_sab (under y) Xo.univ.t
+  obtain ⟨tK, ⟨m⟩⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (under y) Xo.univ.t
   have hprop : IsProper tK.G.hom := MorphismProperty.of_isPullback (P := @IsProper) m.cart.1 Xo.univ.proper
-  obtain ⟨n₀, hn₀, T, f, hf, ⟨m₀⟩⟩ := GlobalTheory.CompanionTheory.Ar.Flat.abelianTriple_spreads_out E H K tK hprop
+  obtain ⟨n₀, hn₀, T, f, hf, ⟨m₀⟩⟩ := _root_.PositivityTheory.Xgn.abelian_scheme_spreads_over_localization E H K tK hprop
   obtain ⟨Z₁, hZ₁, H₁⟩ := intFrame m f m₀ _ v hfr.2.2.1
   obtain ⟨Z₂, hZ₂, H₂⟩ := intFrame m f m₀ _ w hfr.2.2.2
   have hφ0 : φ K y v w ≠ 0 := hφ.ne K β y v w hfr
@@ -417,7 +414,7 @@ theorem line_function_norm_zero_away : ∀ (E : Type) [Field E] [NumberField E] 
   have hσV : ∀ (σ : 𝓞 E →+* K) (x : 𝓞 E), σ x ∈ V.toSubring := fun σ x =>
     hOV ⟨σ x, (RingOfIntegers.isIntegral x).map σ.toIntAlgHom⟩
   let r : Localization.Away n₀ →+* V := f.codRestrict V.toSubring hfV
-  obtain ⟨TV, ⟨mV⟩⟩ := LinePointFrame.exists_sab (spMap r) T
+  obtain ⟨TV, ⟨mV⟩⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap r) T
   obtain ⟨m', hm'⟩ := exists_cancel (spMap (algebraMap V K)) (h := spMap f) (by rw [← Spec.map_comp]; rfl) mV m₀
   have key := ht V K j β y v w TV tK m m' hrange hj hfr
     (H₁ V r (RingHom.codRestrict (β.comp (tauIn c τ)) V.toSubring (hσV _)) TV mV m' Subtype.val_injective

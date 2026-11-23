@@ -198,8 +198,8 @@ theorem expand : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base 
   have hinj : Function.Injective E.h := fun a b h => hsm (by simpa only [hEh] using h)
   obtain ⟨β₀, hβ₀⟩ := ThetaSum.exists_gen_pow T.U.LG T.U.cubG T.U.symG T.U.symG_gen m E.aG hEG
   obtain ⟨β, hβ, hβ'⟩ := PullExp.exists_normalised T.U.LG.isLB E.aG _ _ β₀ hβ₀
-  obtain ⟨κ₀, hκ₀, hrel⟩ := GlobalTheory.T.descent_powerIso_endomorphism_abelianPart_uniformization hL W (maximalIdeal W) hI T.D' T.A T.G hG T.U E (m ^ 2) 1 β hβ hβ'
-  obtain ⟨σ₃, f₃, p₁, p₂, p₃, p₄⟩ := GlobalTheory.T.pullback_section_endomorphism_expansion W (maximalIdeal W) T.D' T.A T.G T.U.toUnifPre E hinj (m ^ 2) 1 β hβ κ₀
+  obtain ⟨κ₀, hκ₀, hrel⟩ := _root_.GlobalTheory.UT.PullDescent.main hL W (maximalIdeal W) hI T.D' T.A T.G hG T.U E (m ^ 2) 1 β hβ hβ'
+  obtain ⟨σ₃, f₃, p₁, p₂, p₃, p₄⟩ := _root_.GlobalTheory.PullInt.main W (maximalIdeal W) T.D' T.A T.G T.U.toUnifPre E hinj (m ^ 2) 1 β hβ κ₀
     hκ₀.1 hrel σ' f' hσ'
   have hf : f₃ = f'' := funext fun b => ReciprocityTheory.ChartRestriction.G.DVR.SecOps.sec_ext (sec_ext_val T.D'.toPre.P.isLB fun y J hJ => by
     by_cases hb : b ∈ Set.range E.h

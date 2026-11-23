@@ -160,12 +160,12 @@ theorem flag_smooth : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (Co
     (fun s j l => hle s (hM s j l)) (fun s l j => hle s (hN s l j)) hNM hβ0 hβJ
   obtain ⟨hgA, hAeq⟩ := GlobalTheory.T.chart_frame_matrix_regular Ω E κ x S r n m φ c M T c₀ J g₀ hx0 hg₀R hg₀0 hφ hβ0
   obtain ⟨U₀, hU₀, hU₀m⟩ := isPiece_chart hT hx0
-  obtain ⟨U₁, hU₁, hU₁m⟩ := GlobalTheory.T.piece_localization_at_element X Ω ξ U₀ _ g₀ hT.gen hU₀ hg₀R hg₀0
+  obtain ⟨U₁, hU₁, hU₁m⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.exists_basicOpen_piece X Ω ξ U₀ _ g₀ hT.gen hU₀ hg₀R hg₀0
   obtain ⟨W₀, hW₀, hW₀m⟩ := isPiece_chart (coordTie_int_inst _ hT') hy0
   have hig0 : algebraMap Ω (GenField Ω r) g₀ ≠ 0 := by simpa using hg₀0
-  obtain ⟨W₁, hW₁, hW₁m⟩ := GlobalTheory.T.piece_localization_at_element X' _ ξ' W₀ _ _ hT'.gen hW₀ hgA hig0
+  obtain ⟨W₁, hW₁, hW₁m⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.exists_basicOpen_piece X' _ ξ' W₀ _ _ hT'.gen hW₀ hgA hig0
   rw [hAeq] at hW₁
-  obtain ⟨W₂, hW₂, hW₂m⟩ := GlobalTheory.T.piece_localization_at_element X' _ ξ' W₁ _ t hT'.gen hW₁ htR ht0
+  obtain ⟨W₂, hW₂, hW₂m⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.exists_basicOpen_piece X' _ ξ' W₁ _ t hT'.gen hW₁ htR ht0
   refine ⟨U₁, W₂, R, _, hmap, hU₁, hW₂, ?_, ?_, hsm⟩
   · intro q' hq'
     let Q' : Cpt ξ' := ⟨q', hall' q'⟩

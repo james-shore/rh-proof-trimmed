@@ -105,9 +105,6 @@ namespace GlobalTheory.EntryBridge
 section Arith
 variable {E : Type} [Field E] [NumberField E] {P : HeightOneSpectrum (𝓞 E)} {q : ℕ}
 
-theorem reduction_one' (P : HeightOneSpectrum (𝓞 E)) : redP P (1 : E) = 1 := by
-  simpa using reduction_coe P (1 : 𝓞 E)
-
 theorem reduction_natCast_eq_zero (hq : ((q : ℕ) : 𝓞 E) ∈ P.asIdeal) : redP P (q : E) = 0 := by
   have := reduction_coe P ((q : ℕ) : 𝓞 E)
   simp only [map_natCast] at this
@@ -136,7 +133,7 @@ theorem valuation_one₂ (hq : ((q : ℕ) : 𝓞 E) ∈ P.asIdeal) (hu : ((q : �
     LocE.vP P q (1 : E) = 0 := by
   have hq0 : (q : E) ≠ 0 := q_ne_zero hu
   have hI : IntAt P (1 : E) := ChainCounts.intAt_one P
-  have hU : IsUnit (redP P (1 : E)) := by rw [reduction_one']; exact isUnit_one
+  have hU : IsUnit (redP P (1 : E)) := by rw [_root_.GlobalTheory.SymBridge.PhiAgreeProof.reduction_one']; exact isUnit_one
   have hex : ∃ z : ℤ, IsUnit (redP P ((1 : E) / (q : E) ^ z)) := ⟨0, by rwa [zpow_zero, div_one]⟩
   have hspec : IsUnit (redP P ((1 : E) / (q : E) ^ LocE.vP P q (1 : E))) := by
     unfold LocE.vP
@@ -162,10 +159,10 @@ theorem locChar_one {K : Type} [Field K] (hq : ((q : ℕ) : 𝓞 E) ∈ P.asIdea
     (cq : K) (χ : (𝓞 E ⧸ P.asIdeal)ˣ →* Kˣ) : LocE.locChar q cq χ (1 : E) = 1 := by
   unfold LocE.locChar
   rw [valuation_one₂ hq hu, zpow_zero, zpow_zero, one_mul, div_one]
-  have hU : IsUnit (redP P (1 : E)) := by rw [reduction_one']; exact isUnit_one
+  have hU : IsUnit (redP P (1 : E)) := by rw [_root_.GlobalTheory.SymBridge.PhiAgreeProof.reduction_one']; exact isUnit_one
   unfold LocE.unitV
   rw [dite_eq_left hU]
-  have : hU.unit = 1 := Units.ext (by simp [reduction_one'])
+  have : hU.unit = 1 := Units.ext (by simp [_root_.GlobalTheory.SymBridge.PhiAgreeProof.reduction_one'])
   rw [this, map_one, Units.val_one]
 
 end Arith

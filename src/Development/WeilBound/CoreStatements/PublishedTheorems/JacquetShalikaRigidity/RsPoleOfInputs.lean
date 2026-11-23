@@ -123,10 +123,10 @@ theorem rsPole_of_inputs (eJS2G0 : jumpWindows.G0) (eCAUCHY : CAUCHY) (eJS2S1 : 
   have hMOD1 : ColumnConjugationMeasure := algebraic_modulus_one_of_finiteOrder_char hMOD0 hK5e
   have hN0 : N0 := mem_unipotent_fixer_of
   have hN1 : N1 := monic_polynomial_is_matrix_charpoly hD0 hMOD1
-  have hN2 : N2 := nm_agrees_with_twisted_norm_sigmaGL hD0 eJS2G0
+  have hN2 : N2 := _root_.GlobalTheory.CompanionTheory.UnipotentNormalizer.main hD0 eJS2G0
   have hN3 : N3 := galois_fixed_adelic_matrices_descend hD0 hN0 hN1
   have hN4a : CosetIntegralParabolic := coset_integration_of hN0 hN1 hN3
-  have hN4b : OneMoreAdelicColumn := one_more_column_of hD0 hN0 hN1 hN3 hMOD1
+  have hN4b : OneMoreAdelicColumn := _root_.GlobalTheory.CompanionTheory.RS.ColN.one_more_column hD0 hN0 hN1 hN3 hMOD1
   have hW0 : W0 := fundamental_domain_of hQ1 hD0 hN3
   have hV1 : V1 := volume_shell_of hQ1 hQ2 hD0 hN3 hW0
   have hP0 : P0 := poisson_base_holds
@@ -169,7 +169,7 @@ theorem rsPole_of_inputs (eJS2G0 : jumpWindows.G0) (eCAUCHY : CAUCHY) (eJS2S1 : 
   have hKU : KU := ku_of eJS2G5 hD0
   have hKLt1 : KLt1 := kernel_less_first_of eJS2G0 eJS2G5 hD0 hP2 hC0 hK1 hK5e hK5a hK5b hK5c hK6 hK7 hK8 hK8a hKU
   have hKLt2 : KLt2 := kernel_less_second_of hD0 hN0 hH0 hG5t hK1 hK5e hK5a hK5b hK5c hK6
-  have hK11 : LastRowCutoff := last_row_cutoff_of eJS2S4 eJS2S8 eJS2G0
+  have hK11 : LastRowCutoff := _root_.GlobalTheory.CompanionTheory.CutOff.exists_cut eJS2S4 eJS2S8 eJS2G0
   have hK12 : PoissonCutoffFormula := poisson_cutoff_of hD0 hMOD0 hN0 hH0 hG3t hK1
   have hKEq1 : KEq1 := kernel_equality_first_of eJS2G0 eJS2G5 hD0 hN0 hP2 hP3 hC0 hG5t hK1 hK7 hK8 hK8a hKU
   have hKEq2 : KEq2 := kernel_equality_second_of hD0 hN0 hH0 hG4t hG5t hK12

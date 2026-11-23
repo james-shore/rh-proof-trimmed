@@ -391,7 +391,7 @@ theorem specialise_generic_solution_hasse : ∀ (k A : Type) [Field k] [IsAlgClo
   have hjet : ∀ i, ∃ Q : Ideal A, Q.IsMaximal ∧ (∀ u, u ∈ Q ↔ Δ' i 0 u = 0) ∧
       ∀ f : A, (∀ l < N, Δ' i l f = 0) → f ∈ Q ^ N := by
     intro i
-    apply GlobalTheory.T.exists_maximal_mem_pow_of_hasse_vanishing k A N (Δ' i) hN
+    apply _root_.GlobalTheory.hasseJet_vanishing_mem_pow k A N (Δ' i) hN
     · rw [hΔ' i 0 hN0, h01 i, hone]
     · intro l hl u w
 
@@ -592,7 +592,7 @@ theorem pic_divisible : ∀ (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] 
   rcases Nat.lt_or_ge q 2 with h1 | h2
   · have : q = 1 := by omega
     subst this; exact ⟨c, pow_one c⟩
-  obtain ⟨y, hfin, hred⟩ := GlobalTheory.T.exists_separable_normalization_reduced_fibers k B hfield
+  obtain ⟨y, hfin, hred⟩ := _root_.GlobalTheory.exists_separable_normalisation_reduced_fibres k B hfield
   letI : Algebra k[X] B := (Polynomial.aeval y).toRingHom.toAlgebra
   have hmap : ∀ p : k[X], algebraMap k[X] B p = Polynomial.aeval y p := fun p => rfl
   haveI : IsScalarTower k k[X] B := IsScalarTower.of_algebraMap_eq (fun c => by

@@ -197,7 +197,7 @@ theorem gramWindow2_proved : GramWindow2 := by
     intro j a b
     rw [hAq, binMatK_eval_nat]
     simp only [hMdef, PadicInt.coe_sum, PadicInt.coe_mul, PadicInt.coe_natCast, hczc]
-  choose U V d hU hV hfac using fun j => Formalism.GM.Top.smithZp p n (M j)
+  choose U V d hU hV hfac using fun j => _root_.Formalism.GM.smith_form_p_adic_integers p n (M j)
 
   have hpt : ∀ j ∈ Finset.range Y0,
       (Formalism.GM.M.bad p (Ψ j) (Submodule.span ℤ_[p] (Set.range e)) k : ℝ) ≤

@@ -51,6 +51,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.
 import Development.AbelianVarietyTheory.Definitions.Jets.ExistsSecTieFOfTies
 import Development.AbelianVarietyTheory.Definitions.PlaceAdaptation.AdaptStd
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.ChartChg
+import Formalism.LocalToGlobal.ProjectiveLattices.ReadAlg
 
 @[expose] public section
 
@@ -64,18 +65,6 @@ open GlobalTheory.PlaceInt
 
 namespace GlobalTheory.CoverRoot
 
-theorem eq_zero_of_complex {K : Type} [Field K] (σ : K →+* ℂ) (p : TRing K) (r : p.R)
-    (h : ∀ χ : p.R →ₐ[K] CAt σ, χ r = 0) : r = 0 := by
-  refine ReciprocityTheory.ChartRestriction.G.TB.detAlg_holds K p.n p.I p.rad r fun L _ _ _ ψ => ?_
-  letI : Algebra K ℂ := σ.toAlgebra
-  let e : L →ₐ[K] ℂ := (by
-    refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
-    solve_by_elim* (maxDepth := 2) only [*,
-      @_root_.DivisionSemiring.to_moduleIsTorsionFree,
-      @_root_.Algebra.IsIntegral.isAlgebraic, @_root_.inferInstance])
-  have h2 : e (ψ r) = 0 := h (e.comp ψ)
-  exact (map_eq_zero_iff e e.injective).mp h2
-
 theorem value_pow_eq_one : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (n : ℕ) (d : DeltaDat Xo c n) (Cls : Type) [CommGroup Cls] [Finite Cls] (δ : Cls →* d.c₂.Fˣ) (gdet : FrPt d.Xo₂ d.c₂ (CAt d.c₂.F.val.toRingHom) → Cls), CMP Xo c d _ Cls δ gdet false → ∃ m₀ : ℕ, 0 < m₀ ∧ ∀ (k : Type) [Field k] [Algebra d.c₂.F k] (y₂ : FrPt d.Xo₂ d.c₂ k), evR d.Xo₂ d.c₂ d.cδ y₂ ^ m₀ = 1 := by
   intro E _ _ _ H Dw l Xo c n d Cls _ _ δ gdet h
   have hL : Laws := GlobalTheory.firstFiveLaws.1
@@ -84,7 +73,7 @@ theorem value_pow_eq_one : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   refine ⟨Nat.card Cls, Nat.card_pos, fun k _ _ y₂ => ?_⟩
   obtain ⟨p, φ, y', hy⟩ := GlobalTheory.Frames.allTest_of_secBaseChange hL.secBaseChange E H Dw d.l₂ d.Xo₂ d.c₂ k y₂
   have key : d.cδ p y' ^ Nat.card Cls - 1 = 0 := by
-    refine eq_zero_of_complex d.c₂.F.val.toRingHom p _ fun χ => ?_
+    refine _root_.Formalism.L2.Pj.eq_zero_of_cpts d.c₂.F.val.toRingHom p _ fun χ => ?_
     obtain ⟨z, hz⟩ := GlobalTheory.FramedBaseChange.exists_frMap hL E H Dw d.l₂ d.Xo₂ d.c₂ _ _ χ y'
     have e1 : evR d.Xo₂ d.c₂ d.cδ z = χ (d.cδ p y') :=
       ReciprocityTheory.ChartRestriction.G.PullbackSections.evalAt_eq_of _ _ hWD d.cδ hnat p χ y' z hz

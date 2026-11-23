@@ -341,8 +341,8 @@ theorem cell_of_at {u u' : D.what₂.Word} {F0 : FlagG (VS D) D.R.rS ((Tu D u : 
     {w : Point D.host.E (D.R.rS + 1)} (hat : AtPt Λ (lf D F0) (PD D Λ (lf D F0) u') (mk Λ (lf D F0) _ x) w) :
     IsInCell (ZhatOM (ZhatL (lf D F0) x.1)) w := by
   obtain ⟨F', ⟨h, hmk⟩, -, hcell⟩ := hat
-  have hTF := Formalism.L2.SG.Closed.TermFun_holds D u u' F0 Λ (hrows.1 Λ hΛ)
-  have hEq := Formalism.L2.SG.Closed.TermEqIff_holds D u u' F0 Λ (hrows.1 Λ hΛ)
+  have hTF := _root_.term_function_const D u u' F0 Λ (hrows.1 Λ hΛ)
+  have hEq := _root_.term_eq_iff_relation D u u' F0 Λ (hrows.1 Λ hΛ)
   have hrel := (hEq ⟨F', h⟩ x).1 hmk
   exact (hTF.2.1 ⟨F', h⟩ x hrel w).1 hcell
 

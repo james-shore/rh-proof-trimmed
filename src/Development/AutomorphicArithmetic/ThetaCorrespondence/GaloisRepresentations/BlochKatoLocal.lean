@@ -41,4 +41,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem UpperTheory.Lit.blochKatoLocal : GlobalTheory.Published.BlochKatoLocal := GlobalTheory.CompanionTheory.Hypotheses₂.BK.blochKatoLocal

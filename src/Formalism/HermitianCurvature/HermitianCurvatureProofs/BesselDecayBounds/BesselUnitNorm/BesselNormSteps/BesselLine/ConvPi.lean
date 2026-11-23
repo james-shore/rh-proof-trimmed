@@ -306,11 +306,6 @@ theorem piAll : PiAll := by
     rw [hea]
     exact hiso _ hua x
 
-theorem frame_block {z : Fin (2 * r + k + 1) → ℂ} {g : Mx k r} (hT : 0 < Tz k r z) (hg : IsFrameW k r z g)
-    {a : Mx k r} (ha : a ∈ UWset k r z) :
-    ub (g⁻¹ * a * g) ∈ UJset (allPos k) ∧ a = g * blockW k r (ub (g⁻¹ * a * g)) * g⁻¹ := by
-  exact ub_conj_mem_UJset_and_eq_blockW hT hg ha
-
 theorem piContAll : ∀ (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (u : Fin k → ℝ)
     (Wp : Type) [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] (π : Mx k r → (Wp →L[ℂ] Wp)),
     inWb k r z → 0 < Tz k r z → IsHCTypeW k r z u π → ∀ x : Wp, ContinuousOn (fun g => π g x) (UWset k r z) := by
@@ -322,12 +317,12 @@ theorem piContAll : ∀ (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (u : Fin k
     exact ((continuous_const.matrix_mul continuous_id).matrix_mul continuous_const).matrix_elem
       (eB k r m) (eB k r m')
   have hmaps : Set.MapsTo (fun a : Mx k r => ub (g⁻¹ * a * g)) (UWset k r z) (UJset (allPos k)) :=
-    fun a ha => (frame_block hT hg ha).1
+    fun a ha => (_root_.PI.WBL.Cv.ub_conj_mem_UJset_and_eq_blockW hT hg ha).1
   have h1 : ContinuousOn (fun a => π (g * blockW k r (ub (g⁻¹ * a * g)) * g⁻¹) x) (UWset k r z) :=
     (hcont x).comp hF.continuousOn hmaps
   refine h1.congr fun a ha => ?_
   simp only
-  rw [← (frame_block hT hg ha).2]
+  rw [← (_root_.PI.WBL.Cv.ub_conj_mem_UJset_and_eq_blockW hT hg ha).2]
 
 end PiRep
 

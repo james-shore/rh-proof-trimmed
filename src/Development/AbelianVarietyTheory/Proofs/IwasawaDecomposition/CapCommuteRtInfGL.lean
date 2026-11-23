@@ -55,17 +55,6 @@ section Algebra
 
 variable {A : Type} [Ring A] [Algebra ℂ A]
 
-theorem qdet_ad {n : ℕ} (E : Fin n → Fin n → A) (hE : GlRel E) (P Q : Matrix (Fin n) (Fin n) ℂ)
-    (hQP : Q * P = 1) (u : ℂ) :
-    qdet (fun a b => ∑ c, ∑ d, (P c a * Q b d) • E c d) u = qdet E u := by
-  first
-  | exact @_root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj
-  | exact _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj
-  | (apply _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj ..)
-
 theorem qdet_semiconj {n : ℕ} (E E' : Fin n → Fin n → A) (R : A) (h : ∀ a b, R * E a b = E' a b * R) (u : ℂ) :
     R * qdet E u = qdet E' u * R := by
   have hp : ∀ {t : ℕ} (x y : Fin t → A), (∀ k, R * x k = y k * R) →
@@ -158,7 +147,7 @@ theorem cap_commute_rt_infGL : ∀ (E : Type) [Field E] [NumberField E] [_root_.
   have h := qdet_semiconj _ _ _ (rt_Eop y τ) (u + ((a : ℂ) - 1) / 2)
   have hQP : ((y⁻¹).val.map (coord τ)) * (y.val.map (coord τ)) = 1 := by
     rw [← Matrix.map_mul, Units.inv_mul]; simp
-  have h2 := qdet_ad _ (glRel_Eop τ) _ _ hQP (u + ((a : ℂ) - 1) / 2)
+  have h2 := _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj _ (glRel_Eop τ) _ _ hQP (u + ((a : ℂ) - 1) / 2)
   simp only [Matrix.map_apply] at h2
   rw [h2] at h
   exact h.symm

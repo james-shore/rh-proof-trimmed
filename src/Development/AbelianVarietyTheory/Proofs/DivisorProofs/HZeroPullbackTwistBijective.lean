@@ -54,15 +54,12 @@ namespace GlobalTheory.EtC.ConnectedGlobalSections
 
 variable {q : ℕ} [NeZero q] {i : ℤ}
 
-theorem res_comp {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (y : Sec F U) :
-    Sec.res (k ≫ g) y = Sec.res k (Sec.res g y) := by
-  simp [Sec.res]
+alias res_comp := _root_.GlobalTheory.TwSec.res_comp
 
-theorem res_nsmul {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (n : ℕ) (t : Sec F U) :
-    Sec.res g (n • t) = n • Sec.res g t := map_nsmul ((F.obj.map g.op).hom) n t
+alias res_nsmul := _root_.GlobalTheory.TwSec.res_nsmul
 
 theorem res_twGen {V U : Scheme.{0}} (g : V ⟶ U) (ζ : Prim q Γ(U, ⊤)) :
-    Sec.res g (twGen i ζ) = twGen i (ζ.map g.appTop.hom) := (GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.2.1 V U g ζ
+    Sec.res g (twGen i ζ) = twGen i (ζ.map g.appTop.hom) := (_root_.GlobalTheory.EtC.twist_sections q i).2.2.2.1 V U g ζ
 
 theorem prim_map_comp {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (ζ : Prim q Γ(U, ⊤)) :
     (ζ.map g.appTop.hom).map k.appTop.hom = ζ.map (k ≫ g).appTop.hom := by
@@ -81,7 +78,7 @@ theorem scalar_eq {U : Scheme.{0}} [Nonempty U] (ζ : Prim q Γ(U, ⊤)) (c d : 
     rw [nsmul_eq_up, nsmul_eq_up, ZMod.natCast_zmod_val, ZMod.natCast_zmod_val] at h
     have : (ULift.up (c - d) : ULift.{1} (ZMod q)) = ULift.up c - ULift.up d := rfl
     rw [this, sub_smul, h, sub_self]
-  have hd := (GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.1 U ζ _ h0
+  have hd := (_root_.GlobalTheory.EtC.twist_sections q i).2.2.1 U ζ _ h0
   have hv : (c - d).val = 0 := Nat.eq_zero_of_dvd_of_lt hd (ZMod.val_lt _)
   exact sub_eq_zero.1 ((ZMod.val_eq_zero _).1 hv)
 
@@ -100,7 +97,7 @@ theorem sec_eq_nsmul (X : Scheme.{0}) [Nonempty X] (hX : ∀ s : Set X, IsClopen
     simp only [P] at h ⊢
     rw [res_comp, h, res_nsmul, res_twGen, prim_map_comp]
   have hloc := (loc_iff_etale_affine_points X (fun V g => ∃ c, P V g c)
-    (fun V W g k ⟨c, h⟩ => ⟨c, hstab c V W g k h⟩)).1 ((GlobalTheory.T.tateTwist_sections_locally_generated q i).2.1 X ζ y)
+    (fun V W g k ⟨c, h⟩ => ⟨c, hstab c V W g k h⟩)).1 ((_root_.GlobalTheory.EtC.twist_sections q i).2.1 X ζ y)
   let S : ZMod q → Set X := fun c =>
     {x | ∃ (V : Scheme.{0}) (g : V ⟶ X), IsAffine V ∧ Etale g ∧ x ∈ Set.range g ∧ P V g c.val}
   have hopen : ∀ c, IsOpen (S c) := by
@@ -192,7 +189,7 @@ theorem GlobalTheory.EtC.h_zero_pull_bijective : ∀ (q : ℕ) [NeZero q] (A A' 
       obtain ⟨c, rfl⟩ := sec_eq_nsmul _ (clopen_of_idem A hidA) ζ y
       have h0 : c • twGen i (ζ.map g.appTop.hom) = 0 := by
         rw [← res_twGen, ← res_nsmul]; exact hy
-      obtain ⟨k, rfl⟩ := (GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.1 _ _ _ h0
+      obtain ⟨k, rfl⟩ := (_root_.GlobalTheory.EtC.twist_sections q i).2.2.1 _ _ _ h0
       exact q_nsmul _ k
     · intro y
       obtain ⟨c, rfl⟩ := sec_eq_nsmul _ (clopen_of_idem A' hidA') (ζ.map g.appTop.hom) y

@@ -105,22 +105,6 @@ theorem sameBlock_trans {E : Type} [CommRing E] (bs : List (Eˣ × ℕ+)) :
     · omega
     · exact Or.inr ⟨⟨h1.2, h2.2⟩, ih _ _ _ h1' h2'⟩
 
-theorem isUni_mul {E : Type} [CommRing E] {N : ℕ} {s u : Matrix (Fin N) (Fin N) E}
-    (hs : IsUni s) (hu : IsUni u) : IsUni (s * u) := by
-  refine ⟨fun i j hij => ?_, fun i => ?_⟩
-  · rw [Matrix.mul_apply]
-    refine Finset.sum_eq_zero fun l _ => ?_
-    rcases lt_or_ge l i with h | h
-    · rw [hs.1 i l h, zero_mul]
-    · rw [hu.1 l j (hij.trans_le h), mul_zero]
-  · rw [Matrix.mul_apply, Finset.sum_eq_single i]
-    · rw [hs.2, hu.2, one_mul]
-    · intro l _ hl
-      rcases lt_or_gt_of_ne hl with h | h
-      · rw [hs.1 i l h, zero_mul]
-      · rw [hu.1 l i h, mul_zero]
-    · simp
-
 theorem apply_frame {E V : Type} [CommRing E] [AddCommGroup V] [Module E V] {N : ℕ}
     (g : V ≃ₗ[E] V) (f : Fin N → V) (s u : Matrix (Fin N) (Fin N) E)
     (hs : ∀ j, g (f j) = ∑ i, s i j • f i) (j : Fin N) :
@@ -202,10 +186,10 @@ theorem sumCls_le_encard : ∀ {F : Type} [Field F] [ValuativeRel F] [Topologica
   refine tsum_le_encard S.St S.K0 (fun _ h => h.1.1) S.IsIntCls _ S.wC fun C hC => ?_
   have hC' := hC
   obtain ⟨⟨n, hn, n', hn', rfl⟩, -⟩ := hC'
-  obtain ⟨h, hh, hle, u, hu, hub, e⟩ := GlobalTheory.T.latticeStabilizer_inf_le_conj_normalisingSubgroup L r k S n hn
+  obtain ⟨h, hh, hle, u, hu, hub, e⟩ := _root_.GlobalTheory.HL.StabConj.main L r k S n hn
   obtain ⟨u', hu', e'⟩ := (FrameOnto.unipotent_onto L r k S).2.1 (h⁻¹ * n')
     (S.N'.mul_mem (S.St.inv_mem hh).2 hn')
-  refine ⟨h⁻¹, inv_mem hh, (((GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).2 _ hC.1).2.2.2 _ (inv_mem hh)).symm, ?_, ?_⟩
+  refine ⟨h⁻¹, inv_mem hh, (((_root_.GlobalTheory.HL.volSt L r k S).2 _ hC.1).2.2.2 _ (inv_mem hh)).symm, ?_, ?_⟩
   · rintro g ⟨g1, g2⟩
     have h1 : h * g * h⁻¹ ∈ MulAut.conj h • S.K0 := by
       refine hle ⟨S.St.mul_mem (S.St.mul_mem hh g1) (S.St.inv_mem hh), stab_le S _ (fun b => n' (S.f' b)) ?_⟩
@@ -215,7 +199,7 @@ theorem sumCls_le_encard : ∀ {F : Type} [Field F] [ValuativeRel F] [Topologica
   · intro g hg
     obtain ⟨s, s', hs, hs', hi, hb, d, d'⟩ := matrix_of_mem S hg
     refine ⟨isIntCls_smul S hg.1.1 (isIntCls_smul S (S.St.inv_mem hh) hC), s * u, s' * u',
-      isUni_mul hs hu, isUni_mul hs' hu', fun i j hij => ?_, ?_⟩
+      _root_.GlobalTheory.HL.FrameStabLat.uni_mul hs hu, _root_.GlobalTheory.HL.FrameStabLat.uni_mul hs' hu', fun i j hij => ?_, ?_⟩
     · rw [Matrix.mul_apply]
       refine Subring.sum_mem _ fun l _ => ?_
       cases hl : sameBlock S.w.blocks i l

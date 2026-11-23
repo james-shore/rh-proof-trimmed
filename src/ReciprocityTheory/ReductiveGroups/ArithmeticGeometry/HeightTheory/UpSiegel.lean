@@ -66,10 +66,10 @@ namespace Data
 
 variable (d : Data K ι Ω WT A)
 
-theorem up_siegel (hd : d.AxH 𝒜) (F1 : MvPolynomial (UXVar d.D d.N) K) (deF : ℕ)
+theorem up_siegel (hd : d.AxH 𝒜) (F1 : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K) (deF : ℕ)
     (h1 : 1 ≤ deF) (hle : deF ≤ d.del) (hirr : Irreducible F1) (hx : XHom deF F1)
     (hu : UDegLE ((d.D + 1) * d.del) F1) (hpos : 0 < hT F1) :
-    ∃ Q : MvPolynomial (UXVar d.D d.N) (𝓞 K), XHom d.n96 (mapK Q) ∧ UDegLE d.n96' (mapK Q) ∧
+    ∃ Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) (𝓞 K), XHom d.n96 (mapK Q) ∧ UDegLE d.n96' (mapK Q) ∧
       ¬ F1 ∣ mapK Q ∧
       meanK (fun σ => Real.log (qnorm σ F1 d.n96 d.n96' Q)) ≤
         -(d.n96 * hT F1 / ((d.D + 2) * deF)) +
@@ -117,9 +117,9 @@ theorem up_siegel (hd : d.AxH 𝒜) (F1 : MvPolynomial (UXVar d.D d.N) K) (deF :
     rw [card_upMono, card_upMono]; exact hups_cardUX_lt _ _ _ _ _ _ h1 hdn
   obtain ⟨q, hqnot, hmean⟩ := mink_sat K _ _ b hbli hbL hk
   set e := (upMono d.D d.N d.n96 d.n96').equivFin with he
-  obtain ⟨Q, hQ⟩ : ∃ Q : MvPolynomial (UXVar d.D d.N) (𝓞 K),
-      Q = ∑ i, MvPolynomial.monomial (e.symm i : UXVar d.D d.N →₀ ℕ) (q i) := ⟨_, rfl⟩
-  have hQc : ∀ i, Q.coeff (e.symm i : UXVar d.D d.N →₀ ℕ) = q i := fun i => by
+  obtain ⟨Q, hQ⟩ : ∃ Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) (𝓞 K),
+      Q = ∑ i, MvPolynomial.monomial (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N →₀ ℕ) (q i) := ⟨_, rfl⟩
+  have hQc : ∀ i, Q.coeff (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N →₀ ℕ) = q i := fun i => by
     rw [hQ, MvPolynomial.coeff_sum, Fintype.sum_eq_single i]
     · simp
     · intro j hj
@@ -139,7 +139,7 @@ theorem up_siegel (hd : d.AxH 𝒜) (F1 : MvPolynomial (UXVar d.D d.N) K) (deF :
   have hQx : XHom d.n96 (mapK Q) := fun s hs => (mem_upMono.1 (hQKs hs)).1
   have hQu : UDegLE d.n96' (mapK Q) := fun s hs => (mem_upMono.1 (hQKs hs)).2
   have hqQ : (fun i => ((q i : 𝓞 K) : K)) =
-      fun i => ((Q.coeff (e.symm i : UXVar d.D d.N →₀ ℕ) : 𝓞 K) : K) :=
+      fun i => ((Q.coeff (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N →₀ ℕ) : 𝓞 K) : K) :=
     funext fun i => by rw [hQc]
   refine ⟨Q, hQx, hQu, ?_, ?_⟩
   · rintro ⟨P, hP⟩

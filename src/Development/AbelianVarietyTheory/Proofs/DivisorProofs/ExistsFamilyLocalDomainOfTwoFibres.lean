@@ -70,15 +70,10 @@ namespace GlobalTheory.MBLow.TwoFibres
 
 open GlobalTheory.ZM
 
-theorem unitS_spMap_eq {o R : Type} [CommRing o] [CommRing R] (β : o →+* R) (u : oˣ) :
-    unitS (spMap β) u = unitOn (Units.map β.toMonoidHom u) := by
-  apply Units.ext
-  exact (congrArg (fun q => q.hom (u : o)) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom β))).symm
-
 theorem unitS_spMap_comp {o R R' : Type} [CommRing o] [CommRing R] [CommRing R'] (β : o →+* R) (i : R →+* R')
     (u : oˣ) : unitS (spMap i ≫ spMap β) u = unitOn (Units.map (i.comp β).toMonoidHom u) := by
-  rw [SpreadLevel.unitS_comp, unitS_spMap_eq β]
-  exact (unitS_spMap_eq i _).trans (congrArg unitOn (Units.ext rfl))
+  rw [SpreadLevel.unitS_comp, _root_.GlobalTheory.LevelCover.unitS_spMap β]
+  exact (_root_.GlobalTheory.LevelCover.unitS_spMap i _).trans (congrArg unitOn (Units.ext rfl))
 
 def ofLevel {o : Type} [CommRing o] {g k : ℕ} (hk : 0 < k) (b : TBase o k) {K : Type} [Field K] [IsAlgClosed K]
     (s : Sp K ⟶ Sp o) (P : PolAV (Sp K)) (hg : P.g = g) {ze : Γ(Sp K, ⊤)ˣ} (l : Level P k ze)

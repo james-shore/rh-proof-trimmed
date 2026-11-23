@@ -93,21 +93,7 @@ theorem finrank_op (n : ℕ) :
 
 variable (I : AutInst)
 
-theorem comap_bijective :
-    Function.Bijective (fun w : InfinitePlace I.E => w.comap (algebraMap I.F I.E)) := by
-  have key : ∀ w : InfinitePlace I.E, w = InfinitePlace.mk (I.φ (w.comap (algebraMap I.F I.E))) := by
-    intro w
-    rcases GlobalTheory.Count.Test.embedding_cases I w with h | h
-    · rw [← h, InfinitePlace.mk_embedding]
-    · rw [← InfinitePlace.mk_conjugate_eq, ← h, InfinitePlace.mk_embedding]
-  refine ⟨fun w w' h => ?_, InfinitePlace.comap_surjective⟩
-  rw [key w, key w']
-  exact congrArg (fun v => InfinitePlace.mk (I.φ v)) h
-
-theorem card_places : Fintype.card (InfinitePlace I.F) = I.f := by
-  have hR := I.cm.totReal
-  rw [InfinitePlace.card_eq_nrRealPlaces_add_nrComplexPlaces, AutInst.f, IsTotallyReal.finrank,
-    IsTotallyReal.nrComplexPlaces_eq_zero, add_zero]
+alias card_places := _root_.GlobalTheory.Count.FrameMajorant.card_places
 
 theorem opNormAt_eq (x y : I.GA) (δ : Matrix (Fin I.n) (Fin I.n) I.E) (w : InfinitePlace I.E) :
     opNormAt (bas I) (frm I y) (bas I) (frm I x) w (Matrix.toLin' δ) =
@@ -196,11 +182,11 @@ theorem separated (hn : 1 ≤ I.n) (x y a b : I.GA) (ha : a ∈ I.GFset) (hb : b
       exact (Submodule.eq_bot_iff _).1 h0 _ ⟨z, hz, rfl⟩)
   rw [(GlobalTheory.T.orthogonal_canonicalFiltration_steps_autPoint I y).2.1 hn, div_inv_eq_mul] at h
   have e1 : (nPl I.E : ℝ) = Fintype.card (InfinitePlace I.F) := by
-    rw [nPl, Fintype.card_of_bijective (comap_bijective I)]
+    rw [nPl, Fintype.card_of_bijective (_root_.GlobalTheory.Count.FrameMajorant.comap_bijective I)]
   have e2 : ∏ w, opNormAt (bas I) (frm I y) (bas I) (frm I x) w
       (Matrix.toLin' ((γ : Matrix (Fin I.n) (Fin I.n) I.E) - η)) =
       ∏ v, ‖op (uMat ((x⁻¹ * a * y).1 v)) - op (uMat ((x⁻¹ * b * y).1 v))‖ := by
-    refine Fintype.prod_bijective _ (comap_bijective I) _ _ fun w => ?_
+    refine Fintype.prod_bijective _ (_root_.GlobalTheory.Count.FrameMajorant.comap_bijective I) _ _ fun w => ?_
     rw [opNormAt_eq, uMat_eq I x y a γ _ (hγ1 _), uMat_eq I x y b η _ (hη1 _), op, op, op, ← map_sub, ← map_sub,
       Matrix.map_sub _ (map_sub _), Matrix.mul_sub, Matrix.sub_mul]
   rw [e1, e2] at h

@@ -58,17 +58,17 @@ variable {R : Type} [CommRing R]
 
 theorem cpull_comp_fun {K L M : Cx R} (a : K ⟶ L) (b : L ⟶ M) (I : Cx R) (n : ℤ) :
     ⇑(cpull (a ≫ b) I n) = ⇑(cpull a I n) ∘ ⇑(cpull b I n) :=
-  funext fun x => (GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R).2.1 a b I n x
+  funext fun x => (_root_.GlobalTheory.EtC.ZcFun.main R).2.1 a b I n x
 
 theorem cpull_bij_of_heq {K L : Cx R} (e : HomotopyEquiv K L) (I : Cx R) (n : ℤ) :
     Function.Bijective (cpull e.hom I n) := by
-  obtain ⟨hid, -, -, -, hhom⟩ := GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R
+  obtain ⟨hid, -, -, -, hhom⟩ := _root_.GlobalTheory.EtC.ZcFun.main R
   have h1 := (hhom _ _ ⟨e.homotopyHomInvId⟩ I n).1
   have h2 := (hhom _ _ ⟨e.homotopyInvHomId⟩ I n).1
   have l1 : ∀ y, cpull e.hom I n (cpull e.inv I n y) = y := fun y => by
-    rw [← (GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R).2.1 e.hom e.inv I n y, h1]; exact (hid _ _ _ _).1
+    rw [← (_root_.GlobalTheory.EtC.ZcFun.main R).2.1 e.hom e.inv I n y, h1]; exact (hid _ _ _ _).1
   have l2 : ∀ x, cpull e.inv I n (cpull e.hom I n x) = x := fun x => by
-    rw [← (GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R).2.1 e.inv e.hom I n x, h2]; exact (hid _ _ _ _).1
+    rw [← (_root_.GlobalTheory.EtC.ZcFun.main R).2.1 e.inv e.hom I n x, h2]; exact (hid _ _ _ _).1
   exact ⟨Function.LeftInverse.injective l2, Function.RightInverse.surjective l1⟩
 
 theorem cpull_bij_of_iso {K L : Cx R} (f : K ⟶ L) [IsIso f] (I : Cx R) (n : ℤ) :
@@ -81,12 +81,12 @@ end GlobalTheory.EtC.LevelCmp
 open GlobalTheory.EtC.LevelCmp in
 theorem GlobalTheory.EtC.levelwise_eqv : GlobalTheory.EtC.A3 := by
   intro R _ E E' f F hlev
-  obtain ⟨hle, hnat, -⟩ := GlobalTheory.T.chains_map_and_d_eq_sum_neg_one_pow_smul_delta R
+  obtain ⟨hle, hnat, -⟩ := _root_.GlobalTheory.EtC.chains_basic R
   obtain ⟨e, -, he⟩ := GlobalTheory.T.exists_natural_homotopyEquiv_chains_constant_presheaf R
   obtain ⟨-, hinj, hge, -⟩ := GlobalTheory.T.chosenInjectiveResolution_etaleSheaf_properties R F
   haveI := hle E; haveI := hle E'; haveI := hge
   intro n
-  refine GlobalTheory.T.hypercohomologyPullback_bijective_of_termwise_bijective R (res R F) hinj ((chains R).map f) ?_ n
+  refine _root_.GlobalTheory.LevelCx.main R (res R F) hinj ((chains R).map f) ?_ n
   intro p k
   rcases le_or_gt p 0 with hp | hp
   · obtain ⟨m, rfl⟩ : ∃ m : ℕ, p = -(m : ℤ) := ⟨(-p).toNat, by omega⟩

@@ -86,13 +86,13 @@ theorem exists_unitOn_diag_bounded : ∀ (ι : Type) [Fintype ι] [DecidableEq �
       have := hxU x (Finset.mem_singleton_self x)
       rw [h, Submodule.mem_bot] at this
       exact hx this
-    obtain ⟨ω, v, -, hv, hcv⟩ := (GlobalTheory.T.blockDiagonalFibreCasimir_eigen_nonneg_real_unitary ι M s F U hU).2 hne
+    obtain ⟨ω, v, -, hv, hcv⟩ := (_root_.GlobalTheory.HoweR.cas_diag_unitOn ι M s F U hU).2 hne
     exact ⟨ω, v, hv, hcv⟩
   have hSbdd : BddBelow S := by
     refine ⟨0, fun ω' hω' => ?_⟩
     obtain ⟨v, hv, hcv⟩ := hω'
     obtain ⟨U, hvU, hU⟩ := hL {v}
-    have := (GlobalTheory.T.blockDiagonalFibreCasimir_eigen_nonneg_real_unitary ι M s F U hU).1 (ω' : ℂ) v (hvU v (Finset.mem_singleton_self v)) hv hcv
+    have := (_root_.GlobalTheory.HoweR.cas_diag_unitOn ι M s F U hU).1 (ω' : ℂ) v (hvU v (Finset.mem_singleton_self v)) hv hcv
     simpa using this.2
   obtain ⟨ω, ⟨v, hv, hcv⟩, hωlt⟩ := exists_lt_of_csInf_lt hSne (lt_add_one (sInf S))
   have hω : ∀ (ω' : ℝ) (w : M), w ≠ 0 → cas s F w = (ω' : ℂ) • w → ω < ω' + 1 := fun ω' w hw hcw => by

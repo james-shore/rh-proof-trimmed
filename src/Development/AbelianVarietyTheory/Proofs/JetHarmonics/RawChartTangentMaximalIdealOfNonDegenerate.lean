@@ -109,13 +109,6 @@ theorem mm_subst {σ τ : Type} {a : σ → MvPowerSeries τ C} (ha : MvPowerSer
   | zero => rw [pow_zero]; exact intS_one
   | succ k ih => rw [pow_succ]; exact intS_mul ih (hi s)
 
-theorem intS_X' {τ : Type} (s : τ) : IntS V (MvPowerSeries.X s : MvPowerSeries τ C) := by
-  intro e
-  rw [MvPowerSeries.coeff_X]
-  split_ifs
-  · exact VF.Ge.one
-  · exact VF.Ge.zero 0
-
 theorem intS_add' {τ : Type} {F G : MvPowerSeries τ C} (hF : IntS V F) (hG : IntS V G) : IntS V (F + G) := fun e => by
   rw [map_add (f := _)]; exact (hF e).add (hG e)
 
@@ -129,13 +122,6 @@ section Chart
 
 variable {d : ℕ} {I : Fin 2 → Type} [∀ g, Fintype (I g)] {κ : Type} [Fintype κ] {Y : RawChart C d I κ}
 
-theorem formalAdd_const (H : RLaw Y V) {τ : Type} {a b : κ → MvPowerSeries τ C}
-    (ha : ∀ i, MvPowerSeries.constantCoeff (a i) = 0) (hb : ∀ i, MvPowerSeries.constantCoeff (b i) = 0) (i : κ) :
-    MvPowerSeries.constantCoeff (addP Y a b i) = 0 :=
-  constantCoeff_subst_zero (fun x => by
-    rw [map_add (f := _), constantCoeff_subst_zero ha (lg_const H x), constantCoeff_subst_zero hb (lg_const H x), add_zero])
-    (H.exc i)
-
 theorem cob_root (H : RLaw Y V) {c : MvPowerSeries (Fin 2 × κ) C} (hc : IntS V c) {b : MvPowerSeries κ C}
     (hb : IntS V b) (hd : ∀ i μ, V.MM (MvPowerSeries.coeff μ (MvPowerSeries.pderiv (R := C) i b)))
     (h : ∀ μ, V.MM (MvPowerSeries.coeff μ (c ^ V.l + cob Y b))) :
@@ -146,9 +132,9 @@ theorem cob_root (H : RLaw Y V) {c : MvPowerSeries (Fin 2 × κ) C} (hc : IntS V
   have s0 := MvPowerSeries.hasSubst_of_constantCoeff_zero (gp_const (C := C) (κ := κ) (0 : Fin 2))
   have s1 := MvPowerSeries.hasSubst_of_constantCoeff_zero (gp_const (C := C) (κ := κ) (1 : Fin 2))
   have sa := MvPowerSeries.hasSubst_of_constantCoeff_zero
-    (formalAdd_const H (gp_const (C := C) (κ := κ) (0 : Fin 2)) (gp_const (1 : Fin 2)))
-  have i0 : ∀ s, IntS V (gp C κ (0 : Fin 2) s) := fun s => intS_X' _
-  have i1 : ∀ s, IntS V (gp C κ (1 : Fin 2) s) := fun s => intS_X' _
+    (_root_.GlobalTheory.RowVal.EndCalc.formalAdd_constantCoeff H (gp_const (C := C) (κ := κ) (0 : Fin 2)) (gp_const (1 : Fin 2)))
+  have i0 : ∀ s, IntS V (gp C κ (0 : Fin 2) s) := fun s => _root_.GlobalTheory.RowVal.intS_X _
+  have i1 : ∀ s, IntS V (gp C κ (1 : Fin 2) s) := fun s => _root_.GlobalTheory.RowVal.intS_X _
   have hA := intS_subst sa H.addInt hb'
   have hB := intS_subst s0 i0 hb'
   have hD := intS_subst s1 i1 hb'

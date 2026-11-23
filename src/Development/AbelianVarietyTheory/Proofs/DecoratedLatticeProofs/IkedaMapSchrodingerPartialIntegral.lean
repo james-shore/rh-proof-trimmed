@@ -95,11 +95,6 @@ open GlobalTheory.Core.Rk.SWLaw (zeroSp dblDec)
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ}
 
-theorem trace_incA (x : D.host.E) : Algebra.trace (AF D.host.F) (AE D) (incA D x) =
-    algebraMap D.host.F (AF D.host.F) (Algebra.trace D.host.F D.host.E x) := by
-  show Algebra.trace (AF D.host.F) (AE D) ((1 : AF D.host.F) ⊗ₜ[D.host.F] x) = _
-  rw [Algebra.trace_apply, Algebra.trace_apply, ← Algebra.baseChange_lmul, LinearMap.trace_baseChange]
-
 theorem trace_rat {ρ : ℕ} (M : Matrix (Fin ρ) (Fin ρ) D.host.E) : (rat M : Mx D ρ ρ).trace = incA D M.trace := by
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [Matrix.trace, Matrix.diag, rat, Matrix.map_apply, map_sum]
@@ -112,7 +107,7 @@ theorem chi_add {k ρ : ℕ} (M : Matrix (Fin k) (Fin ρ) D.host.E) (z z' : Mx D
   simp only [chi, adj_add, Matrix.add_mul, Matrix.trace_add, mul_add, map_add (f := _), AddChar.map_add_eq_mul]
 
 theorem chi_rat (hψ : IsCharAF D.host.F ψ) {k ρ : ℕ} (M γ : Matrix (Fin k) (Fin ρ) D.host.E) : chi ψ M (rat γ) = 1 := by
-  rw [chi, ← rat_conjTranspose, ← rat_mul, trace_rat, ← map_mul, trace_incA]
+  rw [chi, ← rat_conjTranspose, ← rat_mul, trace_rat, ← map_mul, _root_.GlobalTheory.BesselChar.trace_incA]
   exact hψ.2.2.1 _
 
 theorem exists_chi_ne (hψ : IsCharAF D.host.F ψ) {k ρ : ℕ} {M : Matrix (Fin k) (Fin ρ) D.host.E} (hM : M ≠ 0) :
@@ -132,7 +127,7 @@ theorem exists_chi_ne (hψ : IsCharAF D.host.F ψ) {k ρ : ℕ} {M : Matrix (Fin
     conv_rhs => rw [← e0, map_mul, map_mul]
     ring
   rw [chi, adj_adj, Matrix.trace_single_mul, smul_eq_mul, show (rat M : Mx D k ρ) i j = incA D (M i j) from rfl, e,
-    map_smul, trace_incA, hz, map_one, smul_eq_mul, mul_one]
+    map_smul, _root_.GlobalTheory.BesselChar.trace_incA, hz, map_one, smul_eq_mul, mul_one]
   exact ha
 
 theorem integral_chi (hψ : IsCharAF D.host.F ψ) {k ρ : ℕ} (M : Matrix (Fin k) (Fin ρ) D.host.E) {μ : Measure (Mx D k ρ)}

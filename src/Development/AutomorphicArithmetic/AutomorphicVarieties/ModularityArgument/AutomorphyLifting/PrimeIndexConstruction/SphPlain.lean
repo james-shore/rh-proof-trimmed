@@ -129,11 +129,11 @@ theorem plainTor_of_sph {E : Type} [Field E] [NumberField E] {N : ℕ} (hN : 1 �
     rw [h1 i, Segment.deg] at h2
     exact Nat.eq_one_of_mul_eq_one_right h2
   have hG : GlobalTheory.Published.GeometricLemma :=
-    GlobalTheory.geometricLemma_of_filtration GlobalTheory.Laid.bzfin_holds GlobalTheory.geometricLemmaFiltration_holds
+    GlobalTheory.geometricLemma_of_filtration _root_.GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness _root_.CompanionTheory.Geo.geometricLemmaFiltration
   have hs2 : HasSupport σ.ρ (∑ i, (Δ i).ms) :=
     GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_of_isSubquotient_prodIrr (fun i => (hL i).hasSupport) σ.irred hsub
   have he : ∑ i, (Δ i).ms = chars ξ hξ :=
-    GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_unique hG GlobalTheory.Laid.bzfin_holds hs2
+    GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_unique hG _root_.GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness hs2
       (hs.of_equiv (IrrGL.equivOf σ.ρ σ.smooth σ.irred).symm)
   refine ⟨chars ξ hξ, hs, fun z hz => ?_, fun a ha b hb e => ?_⟩
   · obtain ⟨j, -, rfl⟩ := Multiset.mem_map.1 hz

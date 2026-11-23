@@ -107,21 +107,12 @@ theorem eq_zero_of_mul_invariant {X : Type} [TopologicalSpace X] (l : (X → ℂ
   obtain ⟨U, -, hU, h'⟩ := key
   exact h' φ hφ hU
 
-theorem eq_one_of_forall_pow_near {z : ℂ} (h : ∀ n : ℕ, ‖z ^ n - 1‖ < 1 / 2) : z = 1 := by
-  first
-  | exact @_root_.GlobalTheory.PowerTwoNormLowerBound.main
-  | exact _root_.GlobalTheory.PowerTwoNormLowerBound.main
-  | (apply _root_.GlobalTheory.PowerTwoNormLowerBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerTwoNormLowerBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerTwoNormLowerBound.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerTwoNormLowerBound.main ..)
-
 theorem isLocallyConstant_addChar {V : Type} [AddCommGroup V] [TopologicalSpace V] [NonarchimedeanAddGroup V]
     (ψ : AddChar V ℂ) (hψ : Continuous ψ) : IsLocallyConstant ψ := by
   have h0 : {x | ‖ψ x - 1‖ < 1 / 2} ∈ 𝓝 (0 : V) :=
     (isOpen_lt (by fun_prop) continuous_const).mem_nhds (by simp)
   obtain ⟨K, hK⟩ := NonarchimedeanAddGroup.is_nonarchimedean _ h0
-  have h1 : ∀ x ∈ K, ψ x = 1 := fun x hx => eq_one_of_forall_pow_near fun n => by
+  have h1 : ∀ x ∈ K, ψ x = 1 := fun x hx => _root_.GlobalTheory.PowerTwoNormLowerBound.main fun n => by
     rw [← AddChar.map_nsmul_eq_pow]
     exact hK (nsmul_mem hx n)
   refine (IsLocallyConstant.iff_eventually_eq _).mpr fun x => ?_

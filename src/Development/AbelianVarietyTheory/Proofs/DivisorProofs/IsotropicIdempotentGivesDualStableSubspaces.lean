@@ -100,11 +100,6 @@ theorem hT_toLin (V : HSp D) (M N : Matrix (Fin V.rank) (Fin V.rank) D.host.E) (
         (V.frame.repr a) (V.frame.repr b) := by
   rw [hT_eq_hform, Matrix.repr_toLin, Matrix.repr_toLin, hform_mulVec]
 
-theorem gram_herm (V : HSp D) : cT (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram = V.gram := by
-  refine Matrix.ext fun i j => ?_
-  show star (V.hT (V.frame j) (V.frame i)) = V.hT (V.frame i) (V.frame j)
-  exact V.herm.eq (V.frame j) (V.frame i)
-
 theorem idem_isotropic_pair : ∀ {D : D7} {V : HSp D} (γ : GF V) (ε : Matrix (Fin V.rank) (Fin V.rank) D.host.E), ε ∈ GlobalTheory.IndefiniteRowSideFullHecke.CentralizerTensorForms.genAlg γ.1.1 → ε * ε = ε → ε ≠ 0 → Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) ε * V.gram * ε = 0 → ∃ X X' : Submodule D.host.E V.V, X ≠ ⊥ ∧ X ≤ GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.perp V X ∧ X' ≤ GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.perp V X' ∧ (∀ x ∈ X, GlobalTheory.Cusp.ratAct D.sp.cm V γ x ∈ X) ∧ (∀ x ∈ X', GlobalTheory.Cusp.ratAct D.sp.cm V γ x ∈ X') ∧ (∀ x ∈ X, (∀ y ∈ X', V.hD x y = 0) → x = 0) ∧ (∀ y ∈ X', (∀ x ∈ X, V.hD x y = 0) → y = 0) := by
   intro D V γ ε hmem hidem hne hiso
   set σ := (D.sp.cm.sig : D.host.E →+* D.host.E) with hσ
@@ -125,7 +120,7 @@ theorem idem_isotropic_pair : ∀ {D : D7} {V : HSp D} (γ : GF V) (ε : Matrix 
   have hσσ : ∀ e, σ (σ e) = e := fun e => star_star e
   have cTcT : ∀ M : Matrix (Fin V.rank) (Fin V.rank) D.host.E, cT σ (cT σ M) = M := by
     intro M; ext i j; simp [cT, hσσ]
-  have herm : cT σ J = J := gram_herm V
+  have herm : cT σ J = J := _root_.GlobalTheory.AutFunCounterexample.gram_herm V
   have hR' : cT σ ε' * J = J * ε := by
     have h := congrArg (cT σ) hR
     rw [cT_mul, cT_mul, herm, cTcT] at h

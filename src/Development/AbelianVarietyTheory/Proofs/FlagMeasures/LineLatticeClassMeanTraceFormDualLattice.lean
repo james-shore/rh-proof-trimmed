@@ -152,7 +152,7 @@ theorem measurePreserving_mul_left (γ : MatInf E j) (hγ : 0 < detNorm E j γ) 
   · intro x hx
     have hx' : 0 < detNorm E j x := hx
     have hdet : L.det = detNorm E j γ ^ j := by
-      rw [ContinuousLinearMap.det, LinearMap.coe_toContinuousLinearMap, GlobalTheory.T.det_matrix_sandwich_linear_map _ _ _ _ _ fun _ _ => rfl]
+      rw [ContinuousLinearMap.det, LinearMap.coe_toContinuousLinearMap, _root_.GlobalTheory.DeterminantRealSandwich.det_real_family _ _ _ _ _ fun _ _ => rfl]
       simp [detNorm, Finset.prod_pow]
     have hm := detNorm_mul E j γ x
     rw [hdet]
@@ -207,7 +207,7 @@ theorem measurePreserving_invT :
       change |LinearMap.det ((transp (InfinitePlace E) j).comp
         (sandwich (fun w => -(Matrix.of (x w))⁻¹) fun w => (Matrix.of (x w))⁻¹))| = _
       rw [LinearMap.det_comp, abs_mul, abs_det_transp,
-        one_mul, GlobalTheory.T.det_matrix_sandwich_linear_map _ _ _ _ _ fun _ _ => rfl, abs_of_nonneg (Finset.prod_nonneg fun _ _ => by positivity)]
+        one_mul, _root_.GlobalTheory.DeterminantRealSandwich.det_real_family _ _ _ _ _ fun _ _ => rfl, abs_of_nonneg (Finset.prod_nonneg fun _ _ => by positivity)]
       simp [detNorm, Finset.prod_pow, Matrix.det_neg, Finset.prod_mul_distrib, mul_pow]
     have hm := detNorm_invT E j x
     rw [hdet]

@@ -719,15 +719,10 @@ end PI.WFJM
 
 namespace PI.FJM
 
-theorem jointHarmonicsIffLaplacians : FormJ := by
-  exact PI.WFJM.jointHarmonicsIffLaplacians
-theorem leftDiagonalActionFormula : FormWt1 := by
-  exact PI.WFJM.leftDiagonalActionFormula
-theorem rightDiagonalActionFormula : FormWt2 := by
-  exact PI.WFJM.rightDiagonalActionFormula
-theorem leftOffDiagonalActionFormula : FormRaise1 := by
-  exact PI.WFJM.leftOffDiagonalActionFormula
-theorem rightOffDiagonalActionFormula : FormRaise2 := by
-  exact PI.WFJM.rightOffDiagonalActionFormula
+alias jointHarmonicsIffLaplacians := _root_.PI.WFJM.jointHarmonicsIffLaplacians
+alias leftDiagonalActionFormula := _root_.PI.WFJM.leftDiagonalActionFormula
+alias rightDiagonalActionFormula := _root_.PI.WFJM.rightDiagonalActionFormula
+alias leftOffDiagonalActionFormula := _root_.PI.WFJM.leftOffDiagonalActionFormula
+alias rightOffDiagonalActionFormula := _root_.PI.WFJM.rightOffDiagonalActionFormula
 
 end PI.FJM

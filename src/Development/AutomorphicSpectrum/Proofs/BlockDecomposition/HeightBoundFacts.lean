@@ -70,12 +70,9 @@ theorem sum_single_one : ∑ a : Fin n, (Matrix.single a a (1 : ℂ) : Mat n) = 
   · rw [Matrix.one_apply_ne h]
     refine Finset.sum_eq_zero fun x _ => if_neg fun hx => h (hx.1.symm.trans hx.2)
 
-theorem sqrt_two_inv_sq : ((Real.sqrt 2 : ℝ) : ℂ)⁻¹ * ((Real.sqrt 2 : ℝ) : ℂ)⁻¹ = 1 / 2 :=
-  GlobalTheory.CompanionTheory.TopClass.sqrt_two_inv_sq
-
 theorem hb_mul_self (a b : Fin n) :
     (hb (a, b) : Mat n) * hb (a, b) = (1 / 2 : ℂ) • (Matrix.single a a 1 + Matrix.single b b 1) := by
-  have hs := sqrt_two_inv_sq
+  have hs := _root_.GlobalTheory.CompanionTheory.TopClass.sqrt_two_inv_sq
   by_cases h : a = b
   · subst h
     have : (hb (a, a) : Mat n) = Matrix.single a a 1 := by simp [hb]

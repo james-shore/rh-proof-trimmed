@@ -55,7 +55,7 @@ noncomputable section
 
 theorem GlobalTheory.Poinc.Sep.twistSum_translate : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (Fin 8) ℤ) (Z : Scheme.{0}) (i : F.X ⟶ Z) (X₁ : Setup F W i) (z₁ : X₁.M.Z) (act : Matrix (Fin 8) (Fin 8) ℤ → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)) (x₀ : X₁.S.Gam), X₁.M.Div X₁.S.th x₀ z₁ → ∃ (sg : ℤˣ) (eps : X₁.S.Gam → X₁.S.Gam → ℕ), ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (ev : X₁.M.Z.presheaf.stalk z₁ →+* V) (X : Type) [AddCommGroup X] (m : ℕ) (t : Fin m → V) (δ : Fin m → LinearMap.BilinForm ℤ X) (𝔪 : UMem X₁ z₁ act V ev X t δ) (C : Type) (lab : C → X₁.S.Gam), (∀ c, lab c ∈ X₁.S.HH X₁.M z₁) → ∀ T : (Fin 8 → X) → C → V, 𝔪.Terms x₀ lab T → ∀ (c : C), ∀ τ ∈ X₁.S.TT X₁.M z₁, ∀ zt h : X₁.M.Z.presheaf.stalk z₁, X₁.M.stalkHom z₁ zt = algebraMap X₁.o₁ X₁.Ω₁ (X₁.S.ζ ^ (X₁.S.r * X₁.S.N)) → X₁.M.stalkHom z₁ h = algebraMap X₁.o₁ X₁.Ω₁ (X₁.S.ζ ^ eps (lab c) τ) * X₁.S.th (lab c + τ) / X₁.S.th x₀ → ∀ wt : (Fin 8 → X) → ZMod (X₁.S.r * X₁.S.N), (∀ a mu, 𝔪.YY a mu → wt mu = (sg : ℤ) • eStd X₁.S.g _ τ a) → SumI (maximalIdeal V) (fun mu => ev zt ^ (wt mu).val * T mu c) (ev h) := by
   intro g n F W Z i X₁ z₁ act x₀ hdiv
-  obtain ⟨sg, hsg, hweil⟩ := GlobalTheory.T.exists_thetaTwistedSum_sign_everyMember g n F W Z i X₁ z₁ act x₀ hdiv
+  obtain ⟨sg, hsg, hweil⟩ := _root_.GlobalTheory.Poinc.Sep.twistAtEach_exists g n F W Z i X₁ z₁ act x₀ hdiv
   classical
   let Wit : X₁.S.Gam → X₁.S.Gam → ℕ → Prop := fun a τ e =>
     ∃ (V : Type) (_ : CommRing V) (_ : IsDomain V) (_ : IsLocalRing V) (ev : X₁.M.Z.presheaf.stalk z₁ →+* V)
@@ -71,7 +71,7 @@ theorem GlobalTheory.Poinc.Sep.twistSum_translate : ∀ (g n : ℕ) (F : SFam g 
   · beta_reduce at hh
     rw [dite_eq_left hW] at hh
     obtain ⟨V₁, _, _, _, ev₁, Y₁, _, m₁, t₁, δ₁, 𝔪₁, C₁, lab₁, hlab₁, T₁, hT₁, c₁, hc₁, hts, r, hr, hr0⟩ := hW.choose_spec
-    have key := GlobalTheory.T.twistedThetaSum_zeta_exponent_independent_member g n F W Z i X₁ z₁ act x₀ hdiv sg hsg hweil V₁ ev₁ Y₁ m₁ t₁ δ₁ 𝔪₁ C₁ lab₁ hlab₁ T₁ hT₁ c₁
+    have key := _root_.GlobalTheory.Poinc.Sep.twistSum_indep g n F W Z i X₁ z₁ act x₀ hdiv sg hsg hweil V₁ ev₁ Y₁ m₁ t₁ δ₁ 𝔪₁ C₁ lab₁ hlab₁ T₁ hT₁ c₁
       V ev X m t δ 𝔪 C lab hlab T hT c hc₁ τ hτ _ e₂ hts he₂ ⟨r, hr, hr0⟩
     exact key zt h hzt hh wt hwt
   · beta_reduce at hh

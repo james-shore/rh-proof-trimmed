@@ -46,6 +46,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PropEOfAdmissible
 
 @[expose] public section
 
@@ -74,23 +75,9 @@ theorem conj_int (H : Host R) (x : 𝓞 H.E) : ∃ y : 𝓞 H.E, (y : H.E) = H.c
 theorem isConjPl_symm {w w' : PlE H} (h : IsConjPl H w w') : IsConjPl H w' w :=
   fun x y hy => (h y x (by rw [hy, conj_conj])).symm
 
-theorem isConjPl_unique {w w' w'' : PlE H} (h : IsConjPl H w w') (h' : IsConjPl H w w'') : w' = w'' := by
-  apply HeightOneSpectrum.ext
-  ext y
-  obtain ⟨x, hx⟩ := conj_int H y
-  have : (y : H.E) = H.conj (x : H.E) := by rw [hx, conj_conj]
-  exact (h x y this).symm.trans (h' x y this)
-
 end Places
 
 variable {D : Formalism.BasicNotions.D7} {N : NData D.R D.host D.what₂} {X : NTw D.R D.host D.what₂ D.LL0 N}
-
-theorem over_of_over {P P' v : PlE D.host} (h : Over P v) (h' : Over P' v) : Over P P' := by
-  rcases h with rfl | h <;> rcases h' with rfl | h'
-  · exact Or.inl rfl
-  · exact Or.inr (isConjPl_symm h')
-  · exact Or.inr h
-  · exact Or.inl (isConjPl_unique (isConjPl_symm h') (isConjPl_symm h))
 
 theorem exists_isQ {ι : Type} [Fintype ι] (P : ι → PlE D.host) :
     ∃ Q : Finset (PlE D.host), IsQ P Q ∧ Q.card ≤ 2 * Fintype.card ι := by
@@ -99,7 +86,7 @@ theorem exists_isQ {ι : Type} [Fintype ι] (P : ι → PlE D.host) :
     intro q
     by_cases h : ∃ v, IsConjPl D.host (P q) v
     · obtain ⟨v, hv⟩ := h
-      exact ⟨v, fun w => ⟨fun hw => ⟨isConjPl_unique hw hv, hv⟩, fun hw => hw.1 ▸ hw.2⟩⟩
+      exact ⟨v, fun w => ⟨fun hw => ⟨_root_.GlobalTheory.ToricFactor.isConjPl_unique hw hv, hv⟩, fun hw => hw.1 ▸ hw.2⟩⟩
     · exact ⟨P q, fun w => ⟨fun hw => absurd ⟨w, hw⟩ h, fun hw => hw.1 ▸ hw.2⟩⟩
   choose c hc using this
   refine ⟨Finset.univ.image P ∪ (Finset.univ.filter fun q => IsConjPl D.host (P q) (c q)).image c, fun v => ?_, ?_⟩
@@ -122,7 +109,7 @@ theorem conjCl_of_isQ {ι : Type} {P : ι → PlE D.host} {Q : Finset (PlE D.hos
   intro v hv v' h
   obtain ⟨q, hq⟩ := (hQ v).1 hv
   refine (hQ v').2 ⟨q, ?_⟩
-  exact over_of_over hq (Or.inr (isConjPl_symm h))
+  exact _root_.GlobalTheory.ToricFactor.over_over hq (Or.inr (isConjPl_symm h))
 
 theorem l_ne_zero_Ok (i : X.Tw) (k : ℕ) : ((X.l i : ℕ) : X.Ok i k) ≠ 0 ∧ ((X.l i : ℕ) : X.O i) ≠ 0 ∧
     ((X.l i : ℕ) : X.O0 i) ≠ 0 := by
@@ -250,7 +237,7 @@ theorem exists_ine {i : X.Tw} {M : ℕ} (hM : 1 ≤ M) {A0 : Finset (PlE D.host)
   haveI : Fact (1 < X.l i ^ M) := ⟨Nat.one_lt_pow (by omega) hl.one_lt⟩
   rw [hψ, Finset.prod_eq_single q, h1, toAdd_ofAdd, ZMod.val_one, pow_one]
   · intro q' _ hq'
-    rw [(h.2.2 q').2.2.2.1 v (fun hv' => hq' (h.2.1 q' q (over_of_over hv' hv))) A hA σ hσ]
+    rw [(h.2.2 q').2.2.2.1 v (fun hv' => hq' (h.2.1 q' q (_root_.GlobalTheory.ToricFactor.over_over hv' hv))) A hA σ hσ]
     simp
   · simp
 

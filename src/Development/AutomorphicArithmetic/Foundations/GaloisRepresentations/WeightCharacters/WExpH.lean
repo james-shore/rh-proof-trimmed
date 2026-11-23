@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DualWeylModuleTensorCoefficientUniversal
 
 @[expose] public section
 
@@ -95,6 +96,6 @@ theorem UpperTheory.Gal.Wt.wExp_h : ExpBasic → SqExp → TorFacts → WExp := 
     change Φ _ ∈ ExpLe d ⊓ ExpGe (-d)
     rw [e3]
     exact h
-  have h0 := (GlobalTheory.T.dualWeylModule_tensor_coefficient_universal (InfinitePlace E) a W (W.Sp ⧸ N) 0).unique (y₁ := N.mkQ) (y₂ := 0)
+  have h0 := (_root_.GlobalTheory.CoefIrred.vv_universal (InfinitePlace E) a W (W.Sp ⧸ N) 0).unique (y₁ := N.mkQ) (y₂ := 0)
     (fun u => (Submodule.Quotient.mk_eq_zero N).2 (hN u)) (fun u => rfl)
   exact (Submodule.Quotient.mk_eq_zero N).1 (LinearMap.congr_fun h0 v)

@@ -67,11 +67,6 @@ section Orbits
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
-theorem orbit_basePart {σ : Type} (blk : σ → Option K) {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') :
-    SameOrbit (basePart blk z) (basePart blk z') := by
-  obtain ⟨c, hc, rfl⟩ := h
-  exact ⟨fun k => c k.1, fun k => hc k.1, rfl⟩
-
 theorem orbit_fstPt {k₀ : K} {z z' : (Σ o : Option K, ι (o.getD k₀)) → ℂ} (h : SameOrbit z z') :
     SameOrbit (fstPt k₀ z) (fstPt k₀ z') := by
   obtain ⟨c, hc, rfl⟩ := h
@@ -148,7 +143,7 @@ theorem vector_of_chart : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, F
   have hz := RW.mem x x (RW.mem_U x)
   have hbase : SameOrbit (basePart M.blk (fstPt k₀ (RW.lift x x)))
       (BM.Rb.lift (FA.pr (q 0 x)) (FA.pr (q 0 x))) := by
-    have e1 := orbit_basePart M.blk (h0 x x₀ hx₀)
+    have e1 := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.sameOrbit_basePart M.blk (h0 x x₀ hx₀)
     have e2 := FA.pr_eq x₀
     rw [hx₀] at e2
     exact orbit_trans (orbit_symm e1) e2

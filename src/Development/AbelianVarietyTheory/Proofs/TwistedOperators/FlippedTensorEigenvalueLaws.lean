@@ -93,7 +93,7 @@ theorem flips_law {ψ : AddChar k Circle} {ϖ : kˣ} {e : ℕ} (hϖ : IsUnif ϖ)
     have hg0 := hg x List.mem_cons_self
     obtain ⟨i, j⟩ := x
     obtain ⟨γ, J, T⟩ := St
-    obtain ⟨l₁, l₂, hγ, hfl⟩ := GlobalTheory.FlipAdm.exists_split hT.path hp
+    obtain ⟨l₁, l₂, hγ, hfl⟩ := _root_.GlobalTheory.SplitFlip.flipPath_split hT.path hp
     have hTt := hT.tensor
     simp only at hγ hfl hlaw hTt hν0 hg0 hJ
     change Γ.pathAct .one (flipPath i j γ) g (Γ.flipTensor .one ψ ϖ e i j J T) = c • Γ.flipTensor .one ψ ϖ e i j J T

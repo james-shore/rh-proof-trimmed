@@ -66,17 +66,6 @@ namespace UpperTheory.Kd.L
 section Helpers
 variable {Ω : Type} [Field Ω] [Algebra ℚ Ω]
 
-private theorem cg_mul {A : ValuationSubring Ω} {l n : ℕ} {x y : Ω} (a : Ω) (ha : a ∈ A) (h : CgA A l n x y) :
-    CgA A l n (a * x) (a * y) := by
-  obtain ⟨z, hz, e⟩ := h
-  exact ⟨a * z, A.mul_mem _ _ ha hz, by rw [← mul_sub, e]; ring⟩
-
-private theorem cg_trans {A : ValuationSubring Ω} {l n : ℕ} {x y u : Ω} (h : CgA A l n x y) (h' : CgA A l n y u) :
-    CgA A l n x u := by
-  obtain ⟨z, hz, e⟩ := h
-  obtain ⟨z', hz', e'⟩ := h'
-  exact ⟨z + z', A.add_mem _ _ hz hz', by rw [mul_add, ← e, ← e']; ring⟩
-
 private theorem lp_mem (A : ValuationSubring Ω) (l k : ℕ) : (l : Ω) ^ k ∈ A := pow_mem (natCast_mem A l) k
 
 private theorem inv_nat_mem {A : ValuationSubring Ω} {l D : ℕ} (hp : l.Prime) (hl : (l : Ω) ∈ A.nonunits) (hD : ¬ l ∣ D) :
@@ -292,8 +281,8 @@ private theorem final_step {A : ValuationSubring Ω} {l n c cc e c₀ m : ℕ} {
     (h0 : CgA A l n a Ψ) (h1 : CgA A l n ((l : Ω) ^ c * ((l : Ω) ^ cc * Ψ)) (D + (l : Ω) ^ c * ((l : Ω) ^ (cc + c₀) * F0 * tt)))
     (hF : F0 = κ * (l : Ω) ^ m * T + (l : Ω) ^ n * E) (hE : E ∈ A) (htt : tt ∈ A) :
     CgA A l n ((l : Ω) ^ (c + cc + e) * a) ((l : Ω) ^ (c + cc + e) * ((l : Ω) ^ c₀ * κ * tt * (l : Ω) ^ m * T) + (l : Ω) ^ e * D) := by
-  have s1 := cg_mul ((l : Ω) ^ (c + cc + e)) (lp_mem A l _) h0
-  have s2 := cg_mul ((l : Ω) ^ e) (lp_mem A l _) h1
+  have s1 := _root_.GlobalTheory.Glue.CorShap.cg_mul ((l : Ω) ^ (c + cc + e)) (lp_mem A l _) h0
+  have s2 := _root_.GlobalTheory.Glue.CorShap.cg_mul ((l : Ω) ^ e) (lp_mem A l _) h1
   have s3 : CgA A l n ((l : Ω) ^ e * (D + (l : Ω) ^ c * ((l : Ω) ^ (cc + c₀) * F0 * tt)))
       ((l : Ω) ^ (c + cc + e) * ((l : Ω) ^ c₀ * κ * tt * (l : Ω) ^ m * T) + (l : Ω) ^ e * D) := by
     refine ⟨(l : Ω) ^ e * (l : Ω) ^ c * (l : Ω) ^ (cc + c₀) * E * tt,
@@ -304,7 +293,7 @@ private theorem final_step {A : ValuationSubring Ω} {l n c cc e c₀ m : ℕ} {
   have e1 : (l : Ω) ^ (c + cc + e) * Ψ = (l : Ω) ^ e * ((l : Ω) ^ c * ((l : Ω) ^ cc * Ψ)) := by
     simp only [pow_add]; ring
   rw [e1] at s1
-  exact cg_trans s1 (cg_trans s2 s3)
+  exact _root_.GlobalTheory.Glue.CorShap.cg_trans s1 (_root_.GlobalTheory.Glue.CorShap.cg_trans s2 s3)
 
 end Th
 end UpperTheory.Kd.L
@@ -320,7 +309,7 @@ theorem UpperTheory.Kd.L.law :
   obtain ⟨κ, hκ, L₀, har⟩ := arith l N w hw.pos
   obtain ⟨c₂, hsm⟩ := small l w L₀
   obtain ⟨cc, hmk⟩ := mackey l
-  obtain ⟨c, hcor⟩ := GlobalTheory.T.corestriction_cyclotomic_shapiro_normalisedTrace l hl2
+  obtain ⟨c, hcor⟩ := _root_.GlobalTheory.Glue.CorShap.cores_law l hl2
   obtain ⟨v, hv⟩ := exists_kappa l hp κ
   refine ⟨c + cc + (L₀ + c₂ + v), κ, hκ, ?_⟩
   intro Ω _ _ _ _ ε X c' d gm P A hl x m n c₀ hm hmn bB hbB y
@@ -354,7 +343,7 @@ theorem UpperTheory.Kd.L.law :
     (fun s u r => A.mul_mem _ _ (lp_mem A l cc) (thb_coeff (hΦ s _).1 r))
     (fun s t hs ht u r => by
       have h := hcoc χ hχ s t hs (u * zh) _ _ _ (hΦ (s * t) _).1 (hΦ s _).1 (hΦ t (u * zh * (χ s)⁻¹)).1 r
-      have h' := cg_mul ((l : Ω) ^ cc) (lp_mem A l cc) h
+      have h' := _root_.GlobalTheory.Glue.CorShap.cg_mul ((l : Ω) ^ cc) (lp_mem A l cc) h
       rw [mul_add] at h'
       simp only [map_mul, map_pow, map_natCast]
       rwa [show u * (χ s)⁻¹ * zh = u * zh * (χ s)⁻¹ from mul_right_comm _ _ _])

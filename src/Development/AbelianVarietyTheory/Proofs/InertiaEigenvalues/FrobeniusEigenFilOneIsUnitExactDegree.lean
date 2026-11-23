@@ -161,7 +161,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (C : GlobalTheory.MemLoc.Core l) (n 
   haveI : IsDomain (Per.BdR l) := (BdRField.bdR_isField l).2.2.1.isDomain
   refine abstract C.ι (ULaws.u_laws l C).2.2.2.1 (Per.φB l) (fun a y => y ∈ Per.FilD l a) h1 hmul
     (l : Per.Bcris l) (algebraMap (Per.Acris l) (Per.Bcris l) C.t) hlu htu ?_ ?_ ?_ ?_ n hn x hx hx0 hx1 hj0
-  · rw [fund_phiB_alg, TPhi.t_phi l C, map_mul, map_natCast]
+  · rw [_root_.GlobalTheory.CrisMaps.φB_phiA, TPhi.t_phi l C, map_mul, map_natCast]
   · intro h
     rw [C.ι_j] at h
     exact ht2 ((hP 2 _).1 h)

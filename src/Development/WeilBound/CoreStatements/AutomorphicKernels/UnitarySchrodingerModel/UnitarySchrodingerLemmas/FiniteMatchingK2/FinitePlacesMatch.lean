@@ -52,9 +52,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.PfSWUS.KFinMatch
 
-theorem adj_one_k {D : D7} {n : ℕ} : adj (1 : Mx D n n) = 1 := by
-  show ((1 : Matrix (Fin n) (Fin n) (AE D)).map (cA D))ᵀ = 1
-  rw [Matrix.map_one (cA D) (map_zero (cA D)) (map_one (cA D)), Matrix.transpose_one]
+alias adj_one_k := _root_.GlobalTheory.MixModel.adj_one
 
 
 

@@ -74,14 +74,6 @@ section Lattices
 
 variable {E : Type} [Field E] [NumberField E] {r : ℕ}
 
-theorem full_stdL (E : Type) [Field E] [NumberField E] (r : ℕ) :
-    (stdL E r).FG ∧ Submodule.span E (stdL E r : Set (Fin r → E)) = ⊤ := by
-  refine ⟨Submodule.fg_span (Set.finite_range _), ?_⟩
-  rw [eq_top_iff, ← (Pi.basisFun E (Fin r)).span_eq]
-  refine Submodule.span_mono ?_
-  rintro _ ⟨a, rfl⟩
-  exact Submodule.subset_span ⟨a, by simp⟩
-
 theorem full_smul {L : Lt E r} (hL : L.FG ∧ Submodule.span E (L : Set (Fin r → E)) = ⊤)
     {𝔠 : Ideal (𝓞 E)} (h : 𝔠 ≠ ⊥) :
     (𝔠 • L).FG ∧ Submodule.span E ((𝔠 • L : Lt E r) : Set (Fin r → E)) = ⊤ := by
@@ -199,7 +191,7 @@ theorem om_Th_phi : ∀ (D : D7) (S T : HSp D) (C : Ctx S T), ∀ om : GA D S ×
   intro D S T C om hom Lv hn M hw hM0 hM v₀ hv₀ B hB
   have hx : C.xB B ∈ C.X.dom := ((GlobalTheory.T.thetaKernel_orthonormalFrame_inDomain_periodLinear D S T C).2 B hB).2.1
   obtain ⟨hX, -, -, hl, -, hd, -⟩ := level_laws D.host.E T.rank C.X C.g C.bas C.idx S.rank C.sympl C.even Lv hn
-  have hS := full_stdL D.host.E S.rank
+  have hS := _root_.GlobalTheory.ThetaSpace.stdL_full D.host.E S.rank
   have hSV := Base.stdL_mem_Vset (E := D.host.E) S.rank M
   have hX0 : C.X.Λ.FG ∧ _ := ⟨hX.1.1, (hl _ hX).2.1⟩
   have hone : IsMov (fmtC S 1) (stdL D.host.E S.rank) (stdL D.host.E S.rank) := by

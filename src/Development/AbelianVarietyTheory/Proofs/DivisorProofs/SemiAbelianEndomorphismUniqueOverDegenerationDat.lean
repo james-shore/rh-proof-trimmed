@@ -121,7 +121,7 @@ theorem irreducible_of_smooth : ∀ (R : Type) [CommRing R] [IsDomain R] (G : Ov
 theorem eq_of_stalk {R : Type} [CommRing R] [IsDomain R] (G : Over (Sp R)) [Smooth G.hom]
     [IsSeparated G.hom] [GeometricallyConnected G.hom] (b b' : G ⟶ G) (x : G.left)
     (h : G.left.fromSpecStalk x ≫ b.left = G.left.fromSpecStalk x ≫ b'.left) : b = b' := by
-  have : IrreducibleSpace G.left := irreducible_of_smooth R G inferInstance inferInstance ⟨x⟩
+  have : IrreducibleSpace G.left := _root_.GlobalTheory.irreducibleSpace_of_smooth_of_geometricallyConnected_domain R G inferInstance inferInstance ⟨x⟩
   have : IsReduced G.left := GlobalTheory.isReduced_of_smooth_of_isReduced G.hom
   have : IsDominant (G.left.fromSpecStalk x) := by
     refine ⟨?_⟩
@@ -152,6 +152,6 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], AdmBase
       show ((η[G]).left ≫ G.hom) (closedPoint R : (𝟙_ (Over (Sp R))).left) = _
       rw [hw]
       rfl
-    exact eq_of_stalk G b b' _ (stalk_eq_of_thick R G inferInstance b b' hbb _ hx)
+    exact eq_of_stalk G b b' _ (_root_.GlobalTheory.ThickStalkEq.fromSpecStalk_comp_eq R G inferInstance b b' hbb _ hx)
 
 end GlobalTheory.MumUniq

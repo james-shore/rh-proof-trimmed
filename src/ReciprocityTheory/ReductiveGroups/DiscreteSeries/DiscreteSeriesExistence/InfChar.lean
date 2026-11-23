@@ -253,13 +253,6 @@ def IcxGood (ε : Fin n → Bool) (φ : E →L[ℂ] ℂ) (x : smD ε (rreg ε)) 
 
 variable {φ : E →L[ℂ] ℂ}
 
-private theorem toL2_congr_of_inUJ_eq {F G : Matrix (Fin n) (Fin n) ℂ → ℂ} (h : ∀ g, inUJ ε g → F g = G g) :
-    toL2 ε F = toL2 ε G := by
-  have hfg : (fun y : Formalism.REAL.UJ ε => F (Formalism.MainNotions.S.umat y)) = fun y => G (Formalism.MainNotions.S.umat y) :=
-    funext fun y => h _ y.2
-  unfold toL2
-  rw [hfg]
-
 private theorem toL2_zero' : toL2 ε (fun _ : Matrix (Fin n) (Fin n) ℂ => (0 : ℂ)) = 0 := by
   simp only [toL2]
   rw [dif_pos (show MemLp (fun _ : Formalism.REAL.UJ ε => (0 : ℂ)) 2 (Formalism.REAL.muG ε) from MemLp.zero)]
@@ -286,7 +279,7 @@ theorem icxGood_congr {x x' : smD ε (rreg ε)} {Φ Φ' : Matrix (Fin n) (Fin n)
     obtain ⟨U, F, hU, hgU, hF, hE⟩ := h1 g₀ hg₀
     exact ⟨U, F, hU, hgU, hF, fun g hg hgJ => by rw [← hΦ g hgJ]; exact hE g hg hgJ⟩
   · rw [h3]
-    exact toL2_congr_of_inUJ_eq (fun g hg => by simp only [hΦ g hg])
+    exact _root_.ReciprocityTheory.ChartRestriction.DS.toL2_congr_of_forall_inUJ_eq (fun g hg => by simp only [hΦ g hg])
 
 theorem icxGood_zero : IcxGood ε φ 0 (fun _ => (0 : E)) := by
   unfold IcxGood
@@ -454,7 +447,7 @@ theorem icx_val {x y : smD ε (rreg ε)} {Φ Φ₀ : Matrix (Fin n) (Fin n) ℂ 
   obtain ⟨_, _, h3⟩ := hy
   apply Subtype.ext
   rw [Submodule.coe_smul, h3, hx,
-    toL2_congr_of_inUJ_eq (F := fun g => φ (Φ g)) (G := fun g => c * φ (Φ₀ g)) (fun g hg => by simp [hΦ g hg])]
+    _root_.ReciprocityTheory.ChartRestriction.DS.toL2_congr_of_forall_inUJ_eq (F := fun g => φ (Φ g)) (G := fun g => c * φ (Φ₀ g)) (fun g hg => by simp [hΦ g hg])]
   exact toL2_const_mul (fun g => φ (Φ₀ g)) c
 
 end Good

@@ -129,11 +129,11 @@ theorem exists_cpt_of_genericPoint : ∀ (E : Type) [Field E] [NumberField E] [I
   have hgen : IsCptGen (Ω := Y.X.residueField e) (Y.X.fromSpecResidueField e) :=
     isCptGen_of_maximal Y.X (fun x => (Y.normal x).1) e hmax
   have hj : e ∈ Set.range Y.j :=
-    GlobalTheory.T.generic_points_in_generic_fibre E H D l Xo c (𝓞 c.F) _ Y inferInstance hfrac he
+    _root_.PositivityTheory.HtPt.Ml.generic_points_range E H D l Xo c (𝓞 c.F) _ Y inferInstance hfrac he
   have hr : Set.range (Y.X.fromSpecResidueField e) ⊆ Set.range Y.j := by
     rw [Scheme.range_fromSpecResidueField]
     exact Set.singleton_subset_iff.2 hj
-  obtain ⟨y, hy⟩ := GlobalTheory.T.field_point_lifts_generic_fibre E H D l Xo c (𝓞 c.F) _ Y hfrac (Y.X.residueField e)
+  obtain ⟨y, hy⟩ := _root_.PositivityTheory.HtPt.Ml.lift_generic_point E H D l Xo c (𝓞 c.F) _ Y hfrac (Y.X.residueField e)
     (Y.X.fromSpecResidueField e) hr
   have hch : CharZero (Y.X.residueField e) := by
     let φ : c.F →+* Y.X.residueField e :=

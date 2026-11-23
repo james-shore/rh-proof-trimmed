@@ -63,12 +63,12 @@ theorem stepX_isIo_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi :
   have hcH : _root_.GlobalTheory.BaseChain.inverseLevelCardinality W ≠ ⊤ := by
     simp [_root_.GlobalTheory.BaseChain.inverseLevelCardinality]
   refine ⟨fun F φ v g => ?_, fun F φ v g => ?_⟩
-  · have h1 := _root_.GlobalTheory.T.top_step_vector_property_alt W hP j h _ ((hf.row W.P.A3.A.μ0).vT j h) F φ v g
+  · have h1 := _root_.GlobalTheory.BaseChain.lastStep_integrableOn_alt W hP j h _ ((hf.row W.P.A3.A.μ0).vT j h) F φ v g
     unfold IntegrableOn at h1 ⊢
     change Integrable _ ((_root_.GlobalTheory.BaseChain.inverseLevelCardinality W • (_root_.GlobalTheory.Fam.pk_z W).νX W.P.A3.A.μ0).restrict ((_root_.GlobalTheory.Fam.pk_z W).fdX W.P.A3.A.μ0))
     rw [Measure.restrict_smul]
     exact h1.smul_measure hcH
-  · obtain ⟨h', -, hL⟩ := _root_.GlobalTheory.T.extra_column_range_membership_alt W u hP f.g W.P.A3.A.μ0 j h F
+  · obtain ⟨h', -, hL⟩ := _root_.GlobalTheory.TopStep.ioXT_levelP_alt W u hP f.g W.P.A3.A.μ0 j h F
     obtain ⟨h'', he⟩ := (hf.row W.P.A3.A.μ0).ioT j h F
     have e1 := congrFun (hL _ ((hf.row W.P.A3.A.μ0).vT j h) φ v) g
     have key : ∀ X : ℂ, (_root_.GlobalTheory.BaseChain.inverseLevelCardinality W).toReal • ((Nat.card (_root_.GlobalTheory.Fam.complexLevelStructure W).H : ℂ) * X) = X := by

@@ -70,17 +70,6 @@ theorem le_exp_neg_one_of_lt_one {g : WithZero (Multiplicative ℤ)} (hy : g < 1
     rw [WithZero.exp_le_exp]
     omega
 
-theorem val_pow_sub_pow_le {K Γ : Type*} [Field K] [LinearOrderedCommGroupWithZero Γ]
-    (w : Valuation K Γ) {a b : K} (ha : w a ≤ 1) (hb : w b ≤ 1) (m : ℕ) :
-    w (a ^ m - b ^ m) ≤ w (a - b) := by
-  first
-  | exact @_root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le
-  | exact _root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le
-  | (apply _root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le ..)
-
 theorem val_pow_sub_one_le {K : Type*} [Field K] (w : Valuation K (WithZero (Multiplicative ℤ)))
     {u : K} (hu : w u ≤ 1) (hu1 : w (u - 1) < 1) {q : ℕ} (hq : w (q : K) < 1) :
     w (u ^ q - 1) ≤ w (u - 1) * WithZero.exp (-1 : ℤ) := by
@@ -90,7 +79,7 @@ theorem val_pow_sub_one_le {K : Type*} [Field K] (w : Valuation K (WithZero (Mul
     simp
   rw [e]
   refine Valuation.map_add_lt _ hq (Valuation.map_sum_lt _ one_ne_zero fun i _ => ?_)
-  exact (val_pow_sub_pow_le w hu (map_one w).le i).trans_lt hu1
+  exact (_root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le w hu (map_one w).le i).trans_lt hu1
 
 theorem val_pow_pow_sub_one_le {K : Type*} [Field K] (w : Valuation K (WithZero (Multiplicative ℤ)))
     {u : K} (hu : w u ≤ 1) (hu1 : w (u - 1) < 1) {q : ℕ} (hq : w (q : K) < 1) (n : ℕ) :
@@ -100,7 +89,7 @@ theorem val_pow_pow_sub_one_le {K : Type*} [Field K] (w : Valuation K (WithZero 
   | succ n ih =>
     have h1 : w (u ^ (q ^ n)) ≤ 1 := by rw [map_pow]; exact pow_le_one' hu _
     have h2 : w (u ^ (q ^ n) - 1) < 1 := by
-      have := val_pow_sub_pow_le w hu (map_one w).le (q ^ n)
+      have := _root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le w hu (map_one w).le (q ^ n)
       rw [one_pow] at this
       exact this.trans_lt hu1
     rw [pow_succ, pow_mul]
@@ -153,7 +142,7 @@ theorem valued_pow_sub_one_lt_one {x : v.adicCompletion L} (hx : Valued.v x = 1)
   rw [← valued_algebraMap_lt_one, map_sub, map_pow, map_one] at hmem
   rw [← sub_add_sub_cancel _
     (algebraMap (𝓞 L) (v.adicCompletion L) y ^ (Ideal.absNorm v.asIdeal - 1))]
-  exact Valuation.map_add_lt _ ((val_pow_sub_pow_le _ hx.le hy1.le _).trans_lt hy) hmem
+  exact Valuation.map_add_lt _ ((_root_.GlobalTheory.ValuationPowSubPow.valuation_pow_sub_pow_le _ hx.le hy1.le _).trans_lt hy) hmem
 
 theorem mem_maximalIdeal_iff (a : v.adicCompletionIntegers L) :
     a ∈ maximalIdeal (v.adicCompletionIntegers L) ↔ Valued.v (a : v.adicCompletion L) < 1 := by

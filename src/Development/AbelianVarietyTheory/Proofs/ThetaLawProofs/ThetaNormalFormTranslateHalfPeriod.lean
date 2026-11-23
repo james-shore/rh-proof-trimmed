@@ -170,11 +170,6 @@ theorem stalkMap_gs {Z : Scheme.{0}} (r : Z ⟶ Y) (q : Y ⟶ X) (z : Z) (W : X.
   rw [gs_eq q (r z) W h, gs_eq (r ≫ q) z W h]
   exact Scheme.Hom.germ_stalkMap_apply r (q ⁻¹ᵁ W) z h _
 
-theorem valAt'_ne (x : Sp ℂ ⟶ X) {U : X.Opens} (h : ⊤ ≤ x ⁻¹ᵁ U) (f : Γ(X, U)ˣ) : valAt' x U f.val ≠ 0 := fun h0 => by
-  have := gm_eq_toStalk x U h f
-  rw [h0, map_zero] at this
-  exact Units.ne_zero _ this
-
 theorem val_zpow_eq {W : ((Sp ℂ).presheaf.stalk pt)ˣ} {c : ℂ} (h : W.val = toStalk c) (k : ℤ) :
     (W ^ k).val = toStalk (c ^ k) := by
   have hc : c ≠ 0 := fun h0 => W.ne_zero (by rw [h, h0, map_zero])
@@ -197,7 +192,7 @@ theorem gw_eq_toStalk (w : LB.Iso L' (L.pull F)) {y : Sp ℂ ⟶ Y} {j : L.ι} {
   gm_eq_toStalk y _ (le_isoChart hj hk) _
 
 theorem isoVal_ne (w : LB.Iso L' (L.pull F)) {y : Sp ℂ ⟶ Y} {j : L.ι} {k : L'.ι} (hj : ⊤ ≤ (y ≫ F) ⁻¹ᵁ L.U j)
-    (hk : ⊤ ≤ y ⁻¹ᵁ L'.U k) : isoVal w y j k ≠ 0 := valAt'_ne y (le_isoChart hj hk) _
+    (hk : ⊤ ≤ y ⁻¹ᵁ L'.U k) : isoVal w y j k ≠ 0 := _root_.GlobalTheory.valAt'_unit_ne_zero y (le_isoChart hj hk) _
 
 theorem isoVal_trans {w : LB.Iso L' (L.pull F)} (hw : w.IsGen) {y : Sp ℂ ⟶ Y} {j j' : L.ι} {k k' : L'.ι}
     (hj : ⊤ ≤ (y ≫ F) ⁻¹ᵁ L.U j) (hj' : ⊤ ≤ (y ≫ F) ⁻¹ᵁ L.U j') (hk : ⊤ ≤ y ⁻¹ᵁ L'.U k) (hk' : ⊤ ≤ y ⁻¹ᵁ L'.U k') :

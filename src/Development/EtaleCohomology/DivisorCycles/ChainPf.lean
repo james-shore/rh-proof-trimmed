@@ -113,4 +113,3 @@ theorem chain_of : Chain := by
 
 end LateralTheory.DivDb.ChainPf
 
-theorem LateralTheory.DivDb.Chain_of : LateralTheory.DivDb.Chain := LateralTheory.DivDb.ChainPf.chain_of

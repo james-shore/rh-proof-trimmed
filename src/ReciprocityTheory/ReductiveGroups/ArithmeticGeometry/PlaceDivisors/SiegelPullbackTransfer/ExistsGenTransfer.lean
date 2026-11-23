@@ -149,8 +149,7 @@ theorem germ_pull (L : LB X) (a : Y ⟶ X) (i j : PUnit.{1} → L.ι) (y : Y)
   rw [pull_g_lemma_6 L a i j]
   exact gU_res _ y hy _
 
-theorem pull_inf_le (L : LB X) (a : Y ⟶ X) (i j : PUnit.{1} → L.ι) :
-    (L.pull a).U i ⊓ (L.pull a).U j ≤ a ⁻¹ᵁ (L.U (i PUnit.unit) ⊓ L.U (j PUnit.unit)) := fun y hy => ⟨(mem_wchart_pu L a i y).1 hy.1, (mem_wchart_pu L a j y).1 hy.2⟩
+alias pull_inf_le := _root_.ReciprocityTheory.ChartRestriction.G.Pdiv.PullbackComparison.pull_le_lemma_5
 
 theorem pull_g_eq (L : LB X) (a : Y ⟶ X) (i j : PUnit.{1} → L.ι) :
     (L.pull a).g i j = res (pull_inf_le L a i j) (pullU a _ (L.g (i PUnit.unit) (j PUnit.unit))) := pull_g_lemma_6 L a i j

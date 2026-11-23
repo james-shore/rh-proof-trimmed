@@ -468,7 +468,7 @@ theorem stepE_num (δ : Code N) {Nc lam0 C0 ce Ch Sw C1 : ℝ} (H : N.NumFacts �
       have : N.sc.b ≤ N.sc.x * N.sc.b := by nlinarith
       nlinarith
     linarith
-  obtain ⟨eE, dd, h1, h2, h3, h4⟩ := Formalism.DivisionValues.rowsStepEOrigin (Fin N.R.m) (RPl N.R) N.topsPl (N.R.k - 2) N.R.t
+  obtain ⟨eE, dd, h1, h2, h3, h4⟩ := _root_.Formalism.DivisionValues.young_diagram_step_origin (Fin N.R.m) (RPl N.R) N.topsPl (N.R.k - 2) N.R.t
     (fun j => j.1 + 1) (fun j => N.sN (j.1 + 1)) (fun ρ => ⌊N.aT ρ.2⌋.toNat) (fun ρ => ⌊N.bT ρ.2⌋.toNat)
     (fun j ρ => N.wN (j.1 + 1) ρ)
     (fun ρ i => ((N.uW δ ρ ⟨i.1, by have := i.2; omega⟩ : ℚ) : ℝ)) (fun ρ i => ((N.sigPar ρ i.1 : ℚ) : ℝ))
@@ -491,7 +491,7 @@ theorem stepE_num (δ : Code N) {Nc lam0 C0 ce Ch Sw C1 : ℝ} (H : N.NumFacts �
       have e : ρ = (false, ρ.2) := Prod.ext hρ'.1 rfl
       rw [e]
       exact this)
-    (fun j ρ => N.hookLower_of Formalism.DivisionValues.rowsHook (j.1 + 1) (by omega) (by omega) ρ)
+    (fun j ρ => N.hookLower_of _root_.Formalism.DivisionValues.young_diagram_hook (j.1 + 1) (by omega) (by omega) ρ)
     (fun j ρ => N.nuRows_split δ j.1 ρ)
     (fun j ρ => N.apRows_split j.1 ρ)
     (fun j ρ i => by

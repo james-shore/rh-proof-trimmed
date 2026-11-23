@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinPartMulIncAMem
 
 @[expose] public section
 
@@ -100,7 +101,7 @@ theorem unram_at_gen {A : Type} [CommGroup A] {χ : (AE D)ˣ →* A} {Q S' : Fin
     fun z a b => by
       have : z = idemAt P * z + 1 - idemAt P := by linear_combination a
       rw [this, RingHom.map_sub, RingHom.map_add (f := _), RingHom.map_one]
-      exact sub_mem (add_mem b (GlobalTheory.SplitDivisors.one_mem_int D)) (finPart_idem_mem he)
+      exact sub_mem (add_mem b (_root_.GlobalTheory.HeckeConj.one_mem_intAE D)) (_root_.GlobalTheory.HeckeDetChar.finPart_mem he)
   have hinf : infPart D (y : AE D) = 1 := by
     have h0 : infPart D (idemAt P) = 0 := GlobalTheory.StepVec.infPart_idemAt he
     have : (y : AE D) = idemAt P * (y : AE D) + (1 - idemAt P) := by linear_combination h1

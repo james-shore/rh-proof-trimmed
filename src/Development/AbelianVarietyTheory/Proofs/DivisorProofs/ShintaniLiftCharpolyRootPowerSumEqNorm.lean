@@ -70,7 +70,7 @@ theorem charpoly_of_isConj {K : Type} [Field K] {n : ℕ} {a b : GL (Fin n) K} (
 
 theorem shLift_chG_rootSum : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [Finite F'] (s : F' ≃ₐ[F] F'), (∀ t : F' ≃ₐ[F] F', t ∈ Subgroup.zpowers s) → ∀ (ι : AlgebraicClosure F →ₐ[F] AlgebraicClosure F') (θ : AlgebraicClosure F' →* ℂ) (k n : ℕ) (δ : GL (Fin n) F'), shLift s (chG (rootSum (pullθ ι θ) k) n) δ = chG (rootSum θ k) n (nrm s δ) := by
   intro F F' _ _ _ _ s hs ι θ k n δ
-  have hex : ∃ γ, IsNorm s δ γ := GlobalTheory.T.every_element_is_norm F F' s hs n δ
+  have hex : ∃ γ, IsNorm s δ γ := _root_.GlobalTheory.Shin.exists_isNorm F F' s hs n δ
   unfold shLift
   rw [dite_eq_left hex]
   generalize hex.choose = γ, hex.choose_spec = hγ

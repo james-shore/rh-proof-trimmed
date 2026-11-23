@@ -755,7 +755,7 @@ theorem splitsCompl_of_equiv {E E' : Type} [Field E] [NumberField E] [Field E'] 
     rwa [map_natCast, Ideal.map_pow] at this
 
 theorem rowsTieP_of {D : D7} (T : Formalism.L2.SG.SpectralTiesReal.STies D) : CountE.RowsTieP CountE.PLev D T.X.B := by
-  have hK := Formalism.L2.SG.Closed.level_subgroup_is_group T.X
+  have hK := _root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary T.X
   have hKL := Formalism.L2.SG.Closed.level_subgroup_properties T.X
   have hcl := Formalism.L2.SG.PoincareInHH.Cut.level_subgroup_isClopen T.X hK hKL
   refine ⟨(Formalism.MainNotions.S.Inh.aut_rowsTie_iff D T.X.B).2 ⟨⟨T.X.pl, T.autTie⟩, fun h => ?_⟩,

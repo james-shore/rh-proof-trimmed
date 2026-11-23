@@ -161,11 +161,11 @@ theorem GlobalTheory.EtC.gmPhi_surjective_of_noetherian : ∀ (q : ℕ) [NeZero 
     GlobalTheory.SHColim.strictlyHenselian_isColimit q A ⟨hH, hsep⟩ hq
   have hqL : IsUnit (q : LaurentPolynomial A) := by
     simpa using hq.map (LaurentPolynomial.C : A →+* LaurentPolynomial A)
-  obtain ⟨j, y, hy⟩ := (GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity q (D ⋙ laurentFunctor) _ (isColimit_laurent hc) 1 i).1 x hqL
+  obtain ⟨j, y, hy⟩ := (_root_.GlobalTheory.EtC.pairingProperties q (D ⋙ laurentFunctor) _ (isColimit_laurent hc) 1 i).1 x hqL
   obtain ⟨B, _, _, s, hs⟩ := hst j
   haveI := hl j
   haveI : IsNoetherianRing (D.obj j) := GlobalTheory.StalkNoeth.isNoetherianRing_of_isStalk B (D.obj j) s hs
   obtain ⟨b, hb⟩ := hN (D.obj j) hs.1 (hqj j) i y
-  have hn := gmPhi_nat GlobalTheory.T.cup_chern_kummer_pullback_naturality q (A := D.obj j) (B := A) (ι.app j).hom (hqj j) i b
+  have hn := gmPhi_nat _root_.GlobalTheory.EtC.a6nat_holds q (A := D.obj j) (B := A) (ι.app j).hom (hqj j) i b
   rw [hb] at hn
   exact ⟨_, hn.symm.trans hy⟩

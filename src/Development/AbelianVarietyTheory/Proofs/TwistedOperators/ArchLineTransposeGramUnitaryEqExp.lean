@@ -144,7 +144,7 @@ theorem line_eq_expInf : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (X : 
       (GlobalTheory.Mem.VolExists.infEmb_continuous (hθ τ))).congr fun t => ?_
     rw [hmat]
     rfl
-  choose Y hY hYe using fun τ => GlobalTheory.T.oneParamUnitaryMatrix_eq_exp_lieAlgebra (gramAt D X τ) (fun t => infMat D.sp.cm.sig X.gram (θ τ) (g t)) (hu τ)
+  choose Y hY hYe using fun τ => _root_.GlobalTheory.OneParamUnitary.oneParam_eq_exp_lieU (gramAt D X τ) (fun t => infMat D.sp.cm.sig X.gram (θ τ) (g t)) (hu τ)
     (by rw [g0]; simp [infMat, HA.mat]; exact Matrix.map_one _ (by simp) (by simp))
     (fun s t => by rw [hmul]; exact R.2.2.2.1 _ _ _)
     (fun t => GlobalTheory.FockCompare.RealAction.infMat_mem_UH hθ X (g t) τ)

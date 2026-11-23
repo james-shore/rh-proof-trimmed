@@ -105,7 +105,7 @@ theorem resEta_of_isWeilSch {D : D7} {n : ℕ} (hn : 0 < n) {V : HSp D} {ψ : Ad
       by_cases hi : i = i₀
       · subst hi
         simp only [if_true, Function.update_self]
-        exact GlobalTheory.HermTransversal.cA_algebraMap _
+        exact _root_.GlobalTheory.IdemSupport.cA_algebraMap _
       · simp [Function.update_of_ne hi]
     · simp [hij, Ne.symm hij]
   have e1 : dg t * dg t⁻¹ = 1 := by rw [hmul, mul_inv_cancel, hone]

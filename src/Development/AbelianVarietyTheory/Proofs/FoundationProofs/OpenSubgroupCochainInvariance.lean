@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CupProductCoboundaryMod
 
 @[expose] public section
 
@@ -96,16 +97,7 @@ theorem eps_one : eps l (1 : G ℚ Ω) = 1 := by
 theorem pow_pos' (n : ℕ) : 0 < ‖((l : ℕ) : Qbar l) ^ n‖ :=
   norm_pos_iff.mpr (pow_ne_zero _ (Nat.cast_ne_zero.mpr (Fact.out : l.Prime).ne_zero))
 
-private theorem continuous_eps' : Continuous (fun s : G ℚ Ω => eps l s) := by
-  have h : (fun s : G ℚ Ω => eps l s) =
-      fun s => algebraMap ℚ_[l] (Qbar l) ((ReciprocityTheory.Gal.cycZ ℚ Ω l s : ℤ_[l]) : ℚ_[l]) := by
-    funext s
-    exact eps_eq_algebraMap_cycZ s
-  rw [h]
-  have h1 : Continuous fun s : G ℚ Ω => ((ReciprocityTheory.Gal.cycZ ℚ Ω l s : ℤ_[l]ˣ) : ℤ_[l]) :=
-    Units.continuous_val.comp (ReciprocityTheory.Gal.continuous_cycZ ℚ Ω l)
-  have h2 : Continuous fun z : ℤ_[l] => (z : ℚ_[l]) := continuous_subtype_val
-  exact (continuous_algebraMap ℚ_[l] (Qbar l)).comp (h2.comp h1)
+private alias continuous_eps' := _root_.GlobalTheory.Ord2.CupCob.eps_cont
 
 theorem ev_cg {X : Type} [TopologicalSpace X] {n : ℕ} {f g : X → Qbar l} (hf : Continuous f) (hg : Continuous g)
     {x : X} (h : f x = g x) : ∀ᶠ y in 𝓝 x, Cg n (f y) (g y) := by

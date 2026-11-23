@@ -57,24 +57,6 @@ noncomputable section
 
 namespace Formalism.GradedWeylDivisibility
 
-private lemma fockQ_eq_sum_coeff_mul_factorial_of_support_subset {σ : Type*} (f g : MvPolynomial σ ℚ) (S : Finset (σ →₀ ℕ))
-    (hS : f.support ⊆ S) :
-    fockQ f g = ∑ m ∈ S, f.coeff m * g.coeff m * ((∏ k ∈ m.support, (m k).factorial : ℕ) : ℚ) := by
-  unfold fockQ
-  apply Finset.sum_subset hS
-  intro m _ hm
-  have h0 : f.coeff m = 0 := by
-    by_contra hne
-    exact hm (MvPolynomial.mem_support_iff.mpr hne)
-  rw [h0]
-  ring
-
-private lemma fockQ_comm' {σ : Type*} (f g : MvPolynomial σ ℚ) : fockQ f g = fockQ g f := by
-  classical
-  rw [fockQ_eq_sum_coeff_mul_factorial_of_support_subset f g (f.support ∪ g.support) Finset.subset_union_left,
-    fockQ_eq_sum_coeff_mul_factorial_of_support_subset g f (f.support ∪ g.support) Finset.subset_union_right]
-  exact Finset.sum_congr rfl (fun m _ => by ring)
-
 private lemma fockQ_finset_sum_right {σ ι : Type*} (f : MvPolynomial σ ℚ) (s : Finset ι)
     (G : ι → MvPolynomial σ ℚ) : fockQ f (∑ i ∈ s, G i) = ∑ i ∈ s, fockQ f (G i) := by
   unfold fockQ
@@ -85,10 +67,6 @@ private lemma fockQ_add_right' {σ : Type*} (f g₁ g₂ : MvPolynomial σ ℚ) 
     fockQ f (g₁ + g₂) = fockQ f g₁ + fockQ f g₂ := by
   unfold fockQ
   simp only [MvPolynomial.coeff_add, mul_add, add_mul, Finset.sum_add_distrib]
-
-private lemma fockQ_add_left {σ : Type*} (f₁ f₂ g : MvPolynomial σ ℚ) :
-    fockQ (f₁ + f₂) g = fockQ f₁ g + fockQ f₂ g := by
-  rw [fockQ_comm', fockQ_add_right', fockQ_comm' g, fockQ_comm' g]
 
 private lemma fockQ_C_mul_right {σ : Type*} (f g : MvPolynomial σ ℚ) (a : ℚ) :
     fockQ f (C a * g) = a * fockQ f g := by
@@ -103,7 +81,7 @@ private lemma fockQ_monomial_monomial {σ : Type*} [DecidableEq σ] (s t : σ �
   by_cases ha : a = 0
   · subst ha
     simp [fockQ]
-  · rw [fockQ_eq_sum_coeff_mul_factorial_of_support_subset _ _ {s} (by rw [MvPolynomial.support_monomial, if_neg ha]),
+  · rw [_root_.Formalism.GradedWeylDivisibility.lfockq_eq_sum _ _ {s} (by rw [MvPolynomial.support_monomial, if_neg ha]),
       Finset.sum_singleton, MvPolynomial.coeff_monomial, MvPolynomial.coeff_monomial, if_pos rfl]
     by_cases hst : s = t
     · subst hst
@@ -172,12 +150,12 @@ private lemma fockQ_X_mul_left_eq_pderiv_right {σ : Type*} [DecidableEq σ] (v 
     induction Q using MvPolynomial.induction_on' with
     | monomial t b => exact fockQ_X_mul_monomial_eq_pderiv_monomial v s t a b
     | add q₁ q₂ h₁ h₂ => rw [map_add (f := _), fockQ_add_right', fockQ_add_right', h₁, h₂]
-  | add p₁ p₂ h₁ h₂ => rw [mul_add, fockQ_add_left, fockQ_add_left, h₁, h₂]
+  | add p₁ p₂ h₁ h₂ => rw [mul_add, _root_.Formalism.GradedWeylDivisibility.lfockq_add_left, _root_.Formalism.GradedWeylDivisibility.lfockq_add_left, h₁, h₂]
 
 private lemma fockQ_C_left_eq_mul_coeff_zero {σ : Type*} (a : ℚ) (Q : MvPolynomial σ ℚ) :
     fockQ (C a) Q = a * Q.coeff 0 := by
   classical
-  rw [fockQ_eq_sum_coeff_mul_factorial_of_support_subset _ _ {0} (by
+  rw [_root_.Formalism.GradedWeylDivisibility.lfockq_eq_sum _ _ {0} (by
     rw [MvPolynomial.C_apply, MvPolynomial.support_monomial]
     split_ifs <;> simp), Finset.sum_singleton]
   simp [MvPolynomial.coeff_C]
@@ -251,18 +229,18 @@ theorem fock_space_row_action : FockQRowAct := by
   | C a =>
     have hC : rowAct ℚ g (C a : MvPolynomial (Fin r × Fin n) ℚ) = C a := by simp [rowAct]
     rw [hC, fockQ_C_left_eq_mul_coeff_zero, fockQ_C_left_eq_mul_coeff_zero, coeff_zero_rowAct_eq]
-  | add p q hp hq => rw [map_add (f := _), fockQ_add_left, fockQ_add_left, hp, hq]
+  | add p q hp hq => rw [map_add (f := _), _root_.Formalism.GradedWeylDivisibility.lfockq_add_left, _root_.Formalism.GradedWeylDivisibility.lfockq_add_left, hp, hq]
   | mul_X p v hp =>
     rw [map_mul, rowAct_X_eq_sum_C_mul_X]
     have e5 : rowAct ℚ g p * ∑ b : Fin r, C (g v.1 b) * X (b, v.2) =
         ∑ b : Fin r, C (g v.1 b) * (X (b, v.2) * rowAct ℚ g p) := by
       rw [Finset.mul_sum]
       exact Finset.sum_congr rfl (fun b _ => by ring)
-    rw [e5, fockQ_comm', fockQ_finset_sum_right]
+    rw [e5, _root_.Formalism.GradedWeylDivisibility.lfockq_symm, fockQ_finset_sum_right]
     have e6 : ∀ b : Fin r, fockQ Q (C (g v.1 b) * (X (b, v.2) * rowAct ℚ g p)) =
         g v.1 b * fockQ p (rowAct ℚ g.transpose (pderiv (b, v.2) Q)) := by
       intro b
-      rw [fockQ_C_mul_right, fockQ_comm', fockQ_X_mul_left_eq_pderiv_right, hp]
+      rw [fockQ_C_mul_right, _root_.Formalism.GradedWeylDivisibility.lfockq_symm, fockQ_X_mul_left_eq_pderiv_right, hp]
     rw [Finset.sum_congr rfl (fun b _ => e6 b), mul_comm p (X v), fockQ_X_mul_left_eq_pderiv_right, pderiv_rowAct_eq_sum_C_mul_rowAct_pderiv, fockQ_finset_sum_right]
     refine Finset.sum_congr rfl (fun c _ => ?_)
     rw [fockQ_C_mul_right, Matrix.transpose_apply]

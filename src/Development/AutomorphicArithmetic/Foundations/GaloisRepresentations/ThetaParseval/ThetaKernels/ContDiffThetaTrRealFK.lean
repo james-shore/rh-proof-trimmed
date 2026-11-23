@@ -233,7 +233,7 @@ theorem contDiff_thetaTr_realF_k : ∀ (F E : Type) [Field F] [NumberField F] [F
     · have e : (fun t => GlobalTheory.WeilSchrodinger.thetaTr F co ψ (GlobalTheory.WeilM.pureA F f g) (w + L t)) =
           fun t => ∑' x, term x t := funext fun t => tsum_congr fun x => hid x t
       rw [e]
-      exact GlobalTheory.T.contDiff_tsum_of_summable_iteratedFDeriv_bounds term hsmooth hbd
+      exact _root_.GlobalTheory.contDiff_tsum_of_locally_summable_bounds term hsmooth hbd
   | zero =>
     intro w
     simp only [GlobalTheory.WeilSchrodinger.thetaTr, rho_zero, Pi.zero_apply]

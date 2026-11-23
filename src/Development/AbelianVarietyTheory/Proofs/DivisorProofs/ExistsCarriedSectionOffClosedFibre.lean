@@ -76,7 +76,7 @@ theorem exists_secOver_of_gen {X : Scheme.{0}} (L : LB X) (W : X.Opens) (g : W.t
   have v : ∀ (z : W.toScheme) (k : L.ι), W.ι z ∈ L.U k →
       (W.ι.stalkMap z).hom (gs (𝟙 X) (W.ι z) (W ⊓ L.U k) (s k)) =
         (gm (𝟙 _) z ((L.pull W.ι).U (fun _ => k)) (t.s (fun _ => k))).val := fun z k hk => by
-    rw [← gs_eq_map_gs W.ι z _ (show W.ι z ∈ W ⊓ L.U k from ⟨z.2, hk⟩), ← hs _ (𝟙 _) z k hk, Category.id_comp]
+    rw [← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gs_stalkMap W.ι z _ (show W.ι z ∈ W ⊓ L.U k from ⟨z.2, hk⟩), ← hs _ (𝟙 _) z k hk, Category.id_comp]
   refine ⟨s, fun z k k' hz hk hk' => ?_, fun z k hz hk => ?_, fun f w hf H z j k hz hfz hk hj => ?_⟩
   · obtain ⟨z, rfl⟩ : ∃ z' : W.toScheme, W.ι z' = z := ⟨⟨z, hz⟩, rfl⟩
     apply inj z
@@ -96,7 +96,7 @@ theorem exists_secOver_of_gen {X : Scheme.{0}} (L : LB X) (W : X.Opens) (g : W.t
       rw [← Scheme.Hom.comp_apply, hr]; exact hj
     have e := congrArg Units.val (H _ (𝟙 _) (f.resLE W W hf) z j k hr hj' hk)
     rw [← hs _ _ z j hj', hr, Category.id_comp, Units.val_mul] at e
-    rw [map_mul, v z k hk, ← CubeCarried.gs_comp W.ι f z (W ⊓ L.U j) ⟨hfz, hj⟩, e]
+    rw [map_mul, v z k hk, ← _root_.GlobalTheory.OneBasis.ThMove.gs_comp W.ι f z (W ⊓ L.U j) ⟨hfz, hj⟩, e]
     exact congrArg₂ (· * ·) (gm_val_map W.ι z ((L.pull f).U (fun _ => j) ⊓ L.U k) ⟨mem_pull.2 hj, hk⟩ _) rfl
 
 

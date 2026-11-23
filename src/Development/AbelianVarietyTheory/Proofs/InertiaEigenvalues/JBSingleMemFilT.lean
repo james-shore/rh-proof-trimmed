@@ -62,13 +62,9 @@ section Rings
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem ι_aB (C : GlobalTheory.MemLoc.Core l) (w : Per.Ainf l) :
-    C.ι (Per.aB l w) = algebraMap (Per.BdRp l) (Per.BdR l) (GlobalTheory.MemLoc.aDp l w) :=
-  GlobalTheory.MemLoc.ULaws.iota_aB C w
-
 private theorem aB_alg (C : GlobalTheory.MemLoc.Core l) (w : Per.Ainf l) :
     algebraMap (Per.Acris l) (Per.Bcris l) (algebraMap (Per.Ainf l) (Per.Acris l) w) = Per.aB l w :=
-  GlobalTheory.MemLoc.ULaws.iota_injective C (by rw [C.ι_j, GlobalTheory.MemLoc.TFil.j_alg C.j_cris, ι_aB])
+  GlobalTheory.MemLoc.ULaws.iota_injective C (by rw [C.ι_j, GlobalTheory.MemLoc.TFil.j_alg C.j_cris, _root_.GlobalTheory.MemLoc.ULaws.iota_aB])
 
 private theorem toB_tmul (C : GlobalTheory.MemLoc.Core l) {O : Type} [CommRing O] [Algebra ℤ_[l] O] (o : O)
     (w : Per.Ainf l) : toB l O (o ⊗ₜ[ℤ_[l]] w) = o ⊗ₜ[ℤ_[l]] Per.aB l w :=
@@ -99,7 +95,7 @@ theorem smul_TWincl_mem_filT (C : GlobalTheory.MemLoc.Core l) (T : LocLat G ℚ_
         rw [toB_tmul C o w, Algebra.TensorProduct.tmul_mul_tmul, one_mul, TensorProduct.smul_tmul', smul_eq_mul, mul_one]
       rw [e, ← smul_tmul']
       refine Submodule.smul_mem _ o (Submodule.subset_span ⟨d * Per.aB l w, x, ?_, rfl⟩)
-      rw [map_mul, ι_aB, mul_comm, ← Algebra.smul_def]
+      rw [map_mul, _root_.GlobalTheory.MemLoc.ULaws.iota_aB, mul_comm, ← Algebra.smul_def]
       exact Submodule.smul_mem _ _ hd
     | add c c' hc hc' => rw [map_add (f := _), mul_add, add_tmul]; exact add_mem hc hc'
   | add z z' hz hz' => rw [map_add (f := _), smul_add]; exact add_mem hz hz'
@@ -158,7 +154,7 @@ theorem GlobalTheory.BKGal.XiPole.jB_single_mem_filT : ∀ (l : ℕ) [Fact l.Pri
     IsUnit.unit_spec _
   have hιμ : C.ι (Per.aB l (muOf ε)) = (U : Per.BdR l) *
       algebraMap (Per.BdRp l) (Per.BdR l) (GlobalTheory.MemLoc.aDp l (GlobalTheory.MemLoc.TiedUnif.piOne ε)) := by
-    rw [ι_aB, hUval, ← map_mul, ← map_mul]
+    rw [_root_.GlobalTheory.MemLoc.ULaws.iota_aB, hUval, ← map_mul, ← map_mul]
     exact congrArg _ (congrArg _ (GlobalTheory.MemLoc.TiedUnif.mu_eq ε))
   have h1 : C.ι d * (C.ι (Per.aB l (muOf ε))) ^ η = 1 := by
     rw [← map_pow, ← map_mul, ← map_pow, hdm, map_one]

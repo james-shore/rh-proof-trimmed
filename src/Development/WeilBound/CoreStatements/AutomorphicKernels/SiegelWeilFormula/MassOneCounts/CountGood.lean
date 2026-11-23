@@ -252,7 +252,7 @@ theorem count_good (F E : Type) [Field F] [NumberField F] [Field E] [NumberField
       rw [← hBO]
       have h := map_quad (phi (v := v)) BO w
       exact congrArg (fun t => (2 : Fv F v)⁻¹ * t) h
-    rw [e1, ← hhalfr, ← map_mul, res_eq_iff, e2, form_res σ hCM J hJ d b B hBt v hfix htr hR1 hRmul hRsig hv2' hjI
+    rw [e1, ← hhalfr, ← map_mul, res_eq_iff, e2, _root_.PositivityTheory.SiegelWeilFormula.Densx.form_res σ hCM J hJ d b B hBt v hfix htr hR1 hRmul hRsig hv2' hjI
       ϖ hϖ0 hϖ1 hϖd w s, Ideal.Quotient.eq, hlev]
     simp only [φ, jS, tS, AddSubgroupClass.coe_sub, MulMemClass.coe_mul, hsig]
   have hbr := card_bridge ϖS _ ha φ hφ hker

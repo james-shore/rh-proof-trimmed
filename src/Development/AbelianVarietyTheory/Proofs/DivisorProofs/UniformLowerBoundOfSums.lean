@@ -34,6 +34,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.MeanHeightDescent.AverageDegreeBounds.CovolumeFullAssemblyHolds
 
 @[expose] public section
 
@@ -60,7 +61,7 @@ theorem core (ι : Type) [Finite ι] [Nonempty ι] (T D A cs X cc z ρ R Bn δ' 
   rw [finsum_eq_sum_of_fintype] at h5
   rw [finsum_eq_sum_of_fintype, finsum_eq_sum_of_fintype] at h11
   rw [Nat.card_eq_fintype_card] at h5
-  have := Formalism.ExtensionFiltration.mean_height_sum_bound ι T D A cs X cc z ρ R 0 Bn δ' h sl δ dc degc 0 0 (4 * ((3 * C1 + C2 + 4) * E)) 0 0 0
+  have := _root_.Formalism.ExtensionFiltration.mean_height_sum_bound_holds ι T D A cs X cc z ρ R 0 Bn δ' h sl δ dc degc 0 0 (4 * ((3 * C1 + C2 + 4) * E)) 0 0 0
     (C1 * E) (C1 * E) mu hD hT hA hcs hX hcc hz0 hz1 hρ0 hρ1 hR le_rfl hBn hδ h1 h2 h3 h4 h5
     (fun c => by simpa using h6 c) (by linarith) (by linarith) (by linarith) (by linarith)
   linarith

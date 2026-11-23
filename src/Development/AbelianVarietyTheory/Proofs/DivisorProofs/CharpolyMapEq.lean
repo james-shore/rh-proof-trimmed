@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegAevalEqProdAroots
 
 @[expose] public section
 
@@ -146,7 +147,7 @@ theorem charpoly_map_eq : ∀ (p : ℕ) [Fact p.Prime] (T : Theory p) (k : Type)
       have hQ : (charpoly f).map (Int.castRingHom ℚ_[p]) =
           ((charpoly f).map (Int.castRingHom ℚ)).map (algebraMap ℚ ℚ_[p]) := by
         rw [Polynomial.map_map]; congr 1 <;> exact RingHom.ext_int _ _
-      have h2 := GlobalTheory.T.deg_aeval_end_eq_prod_aroots k A f (PadicAlgCl p) R
+      have h2 := _root_.GlobalTheory.AV.AbVar.deg_aeval_eq_prod_aroots k A f (PadicAlgCl p) R
       rw [hQ, Polynomial.aroots_map]
       erw [← h2]
       rw [PadicAlgCl.norm_extends, map_natCast, ← map_natCast (algebraMap ℚ_[p] (PadicAlgCl p)), PadicAlgCl.norm_extends]

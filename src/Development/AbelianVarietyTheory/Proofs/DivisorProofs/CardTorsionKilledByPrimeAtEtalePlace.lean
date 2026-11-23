@@ -72,8 +72,8 @@ theorem card_ker_elt {p : ℕ} [Fact p.Prime] {D : Datum p} {R : Type} [CommRing
     rcases (Nat.dvd_prime hℓ).1 hd with h1 | h1
     · exact CharP.ringChar_ne_one (R := k) h1
     · omega
-  exact GlobalTheory.T.abelianScheme_card_kernel_eq_norm_pow S o.A o.ab D.F (o.act.toF D) k x (D.m * D.n) ℓ hℓ hℓk (GlobalTheory.T.exists_level_structure_on_torsion p D R b N S s o k x ℓ hℓ hℓp) c hc
-    (GlobalTheory.T.harrisTaylor_tangent_injective_away_from_etalePlace p D R b N w0 hw S s o k x c hc hcw)
+  exact _root_.GlobalTheory.AVCount.card_ker_eq_norm_pow S o.A o.ab D.F (o.act.toF D) k x (D.m * D.n) ℓ hℓ hℓk (_root_.GlobalTheory.QuotientCardinalityFinrank.torsion_points_free p D R b N S s o k x ℓ hℓ hℓp) c hc
+    (_root_.GlobalTheory.UPel.HT.EtLev.TanInj.tan_eq_one_of_notMem p D R b N w0 hw S s o k x c hc hcw)
 
 theorem card_ker_place : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] (b : Base D R) (N : ℕ)
     (w0 : Ideal (𝓞 D.F)), IsEtPlace b w0 → ∀ (S : Scheme.{0}) (s : S ⟶ Sp R) (o : Obj b N s) (k : Type) [Field k]
@@ -129,7 +129,7 @@ theorem card_ker_place : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [
       exact hc
     have hmem : ((n : ℕ) : 𝓞 D.F) ∈ Ideal.span {c} := Ideal.absNorm_mem _
     obtain ⟨c', hc'⟩ := Ideal.mem_span_singleton'.mp hmem
-    obtain ⟨g', hg'⟩ := GlobalTheory.T.exists_pow_eq_point_of_isAbelianScheme S o.A o.ab k x n hn0 g.toMul
+    obtain ⟨g', hg'⟩ := _root_.GlobalTheory.AbDivPt.exists_pow_eq_of_isAlgClosed S o.A o.ab k x n hn0 g.toMul
     refine ⟨c' • Additive.ofMul g', ?_⟩
     show c • c' • Additive.ofMul g' = g
     rw [smul_smul, mul_comm, hc', Nat.cast_smul_eq_nsmul, ← ofMul_pow, hg']
@@ -206,7 +206,7 @@ theorem card_ker_place : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [
       (Submodule.torsionBySet (𝓞 D.F) (Additive (Over.mk x ⟶ o.A)) (w0 : Set (𝓞 D.F))) with hh'
   have hT1 : Nat.card (Submodule.torsionBySet (𝓞 D.F) (Additive (Over.mk x ⟶ o.A)) (w0 : Set (𝓞 D.F))) =
       Nat.card (𝓞 D.F ⧸ w0) ^ h' := Module.natCard_eq_pow_finrank
-  have hall := GlobalTheory.T.card_torsionBySet_pow_of_divisible_numberField D.F _ w0 h' hmax hne hdiv hT1 H
+  have hall := _root_.GlobalTheory.torsion_pow_card D.F _ w0 h' hmax hne hdiv hT1 H
   rw [hTH] at hall
   have he : H * (D.m * D.n) = H * h' := Nat.pow_right_injective hq hall
   have he' : h' = D.m * D.n := (Nat.eq_of_mul_eq_mul_left hH0 he).symm

@@ -77,12 +77,9 @@ theorem exists_isTorus (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFra
   obtain ⟨a, h1, h2, h3, h4⟩ := exists_torus h hJ hW
   exact ⟨a, ⟨h1, h2, h3, fun t => (h4 t).1, fun t => (h4 t).2.1, fun t => (h4 t).2.2⟩⟩
 
-theorem mul_mem_minPar {p q : GAd σ J} (hp : p ∈ minPar σ J X) (hq : q ∈ minPar σ J X) : p * q ∈ minPar σ J X :=
-  mul_mem_minimal_parabolic hp hq
+alias mul_mem_minPar := _root_.PositivityTheory.ThKR.mul_mem_minimal_parabolic
 
-theorem inv_mem_minPar (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) {p : GAd σ J}
-    (hp : p ∈ minPar σ J X) : p⁻¹ ∈ minPar σ J X :=
-  inv_mem_minimal_parabolic h hJ hW hp
+alias inv_mem_minPar := _root_.PositivityTheory.ThKR.inv_mem_minimal_parabolic
 
 
 variable (X) in
@@ -92,9 +89,7 @@ def minParSub (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X
   mul_mem' := mul_mem_minPar
   inv_mem' := inv_mem_minPar h hJ hW
 
-theorem isClosed_minPar (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) :
-    IsClosed (minPar σ J X) :=
-  isClosed_minimal_parabolic h hJ hW
+alias isClosed_minPar := _root_.PositivityTheory.ThKR.isClosed_minimal_parabolic
 
 theorem minParOne_subset : minParOne σ J X ⊆ minPar σ J X := fun _ ⟨B, hB, e, _⟩ => ⟨B, hB, e⟩
 

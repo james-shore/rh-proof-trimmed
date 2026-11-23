@@ -61,7 +61,6 @@ theorem det_mul_expand {R : Type} [CommRing R] {i N : ℕ} (A : Matrix (Fin i) (
   rw [MultilinearMap.map_smul_univ, smul_eq_mul]
   rfl
 
-theorem main : ∀ {R : Type} [inst : CommRing R] {i N : ℕ} (A : Matrix (Fin i) (Fin N) R) (B : Matrix (Fin N) (Fin i) R), Matrix.det (A * B) = ∑ f : Fin i → Fin N, (∏ a : Fin i, A a (f a)) * Matrix.det (Matrix.submatrix B f id) :=
-  fun A B => det_mul_expand A B
+alias main := _root_.GlobalTheory.DeterminantProductExpansion.det_mul_expand
 
 end GlobalTheory.DeterminantProductExpansion

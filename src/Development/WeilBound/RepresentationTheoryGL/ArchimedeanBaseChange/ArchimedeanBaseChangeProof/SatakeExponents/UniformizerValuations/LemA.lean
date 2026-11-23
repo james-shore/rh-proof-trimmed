@@ -41,6 +41,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace PositivityTheory.Rg.BcB.F.Inert
 
-theorem lem_b : SatUniq := satUniq
-
 end PositivityTheory.Rg.BcB.F.Inert

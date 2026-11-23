@@ -90,7 +90,7 @@ theorem isIntegral_of_residues {O : Type} [CommRing O] [Algebra O A] {y : A}
   let ψ : A ≃ₐ[O] (∀ I : MaximalSpectrum A, A ⧸ I.asIdeal) :=
     (IsArtinianRing.equivPi A).restrictScalars O
   refine (isIntegral_algHom_iff ψ.toAlgHom ψ.injective).1 ?_
-  refine GlobalTheory.UnitLemma.PrincipalLat.isIntegral_pi' _ fun I => ?_
+  refine _root_.GlobalTheory.IntegralPi.isIntegral_pi _ fun I => ?_
   have : ψ.toAlgHom y I = Ideal.Quotient.mk I.asIdeal y := IsArtinianRing.equivPi_apply A y I
   rw [this]
   exact h I

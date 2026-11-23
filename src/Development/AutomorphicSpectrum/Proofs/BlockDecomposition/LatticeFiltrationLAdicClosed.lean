@@ -65,10 +65,6 @@ theorem dpE_eq (i : ℕ) : Lat.dpE f ξ l M i =
     (((i.factorial : ℚ))⁻¹ * (((l : ℚ) ^ M)⁻¹) ^ i) • f ξ ^ i := by
   simp only [Lat.dpE, Lat.η, smul_pow, smul_smul]
 
-theorem dpE_mem {r i : ℕ} (h : r ≤ i) : Lat.dpE f ξ l M i ∈ Ideal.span {f ξ ^ r} := by
-  rw [dpE_eq, Algebra.smul_def, Ideal.mem_span_singleton]
-  exact Dvd.dvd.mul_left (pow_dvd_pow _ h) _
-
 theorem mul_dpE (hl : l ≠ 0) (r : ℕ) : f ξ * Lat.dpE f ξ l M r =
     f ((l : W) ^ M * ((r + 1 : ℕ) : W)) * Lat.dpE f ξ l M (r + 1) := by
   have hl' : (l : ℚ) ≠ 0 := Nat.cast_ne_zero.2 hl
@@ -109,7 +105,7 @@ theorem T_mem_span {r : ℕ} {b : B} (hb : b ∈ T f ξ l M r) : b ∈ Ideal.spa
   induction hb using AddSubgroup.closure_induction with
   | mem x hx =>
     obtain ⟨w, i, hi, rfl⟩ := hx
-    exact Ideal.mul_mem_left _ _ (dpE_mem f ξ l M hi)
+    exact Ideal.mul_mem_left _ _ (_root_.GlobalTheory.CompanionTheory.LatPdpEq.dpE_mem_span f ξ l M hi)
   | zero => exact zero_mem _
   | add x y _ _ hx hy => exact add_mem hx hy
   | neg x _ hx => exact neg_mem hx

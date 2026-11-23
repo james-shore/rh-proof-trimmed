@@ -76,12 +76,6 @@ theorem qp_isUnit (W : LocWach PD LL O v n) (hπu : IsUnit (algebraMap (LetA O n
   rw [e]
   exact u.isUnit.mul hj
 
-theorem letE_mul_self (i : ZMod n) : (letE i : LetA O n) * letE i = letE i := by
-  funext j
-  by_cases hj : j = i
-  · subst hj; simp [letE]
-  · simp [letE, Pi.single_apply, hj]
-
 theorem letter_of_qp_pow_mem (W : LocWach PD LL O v n)
     (hqu : IsUnit (algebraMap (LetA O n) W.EE (qp W))) (T : LocLat G Qp LL O) (i : ZMod n) (Y : ℕ)
     (y : W.DD T) (hy : qp W ^ Y • y ∈ W.Nl T i) :
@@ -91,7 +85,7 @@ theorem letter_of_qp_pow_mem (W : LocWach PD LL O v n)
   have hqYu : IsUnit (algebraMap (LetA O n) W.EE (qp W ^ Y)) := by
     rw [map_pow]; exact hqu.pow _
   refine ⟨Formalism.MainNotions.UnusedSlot35.DssRec.smul_inj (E := W.EE) _ hqYu ?_, ?_⟩
-  · rw [smul_smul, mul_comm, ← smul_smul, ← hm'', smul_smul, letE_mul_self]
+  · rw [smul_smul, mul_comm, ← smul_smul, ← hm'', smul_smul, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
   · rw [← hm'']; exact (W.N T).smul_mem _ hm
 
 theorem mem_Nl_of (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (i : ZMod n) (a : LetA O n)

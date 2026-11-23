@@ -76,10 +76,7 @@ open Formalism.UG
 
 variable {A : Type} [CommRing A]
 
-theorem cT_mul' (σ : A →+* A) {a b c : Type} [Fintype b] (M : Matrix a b A) (N : Matrix b c A) :
-    cT σ (M * N) = cT σ N * cT σ M := by
-  unfold cT
-  rw [Matrix.map_mul, Matrix.transpose_mul]
+alias cT_mul' := _root_.Formalism.UG.cT_mul
 
 theorem cT_one' (σ : A →+* A) {a : Type} [DecidableEq a] : cT σ (1 : Matrix a a A) = 1 := by
   unfold cT

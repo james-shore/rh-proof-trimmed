@@ -57,14 +57,7 @@ namespace PositivityTheory.Rg.BcB.F.Tail.PSc
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {a b : ℕ}
 
-theorem mem_fixed_iff' {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V] {ρ : Representation ℂ G V}
-    {U : Subgroup G} {v : V} : v ∈ fixed ρ U ↔ ∀ u ∈ U, ρ u v = v := by
-  constructor
-  · intro hv u hu
-    have := hv ⟨u, hu⟩
-    simpa using this
-  · intro hv u
-    simpa using hv u u.2
+alias mem_fixed_iff' := _root_.GlobalTheory.LGrp.mem_fixed
 
 theorem actP_eq_sum (w : Pl E) (U : Subgroup (GLw a w × GLw b w)) (hUo : IsOpen (U : Set (GLw a w × GLw b w)))
     (G : H E a b → ℂ) (hG : G ∈ fixed (pairRt a b w) U) (u : GLw a w × GLw b w → ℂ) (hu : HasCompactSupport u)

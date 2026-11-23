@@ -71,7 +71,7 @@ theorem exists_inertDatum_of_isInertAt (E : Type) [Field E] [NumberField E] [IsC
   have hunder : Pp.under (𝓞 (maximalRealSubfield E)) = v := rfl
   obtain ⟨c, hc, -⟩ := GlobalTheory.LFun.InertChart.existsUnique_isConjAt
     (IsCMField.complexConj E).toAlgHom hw hunder
-  obtain ⟨ϖ, hU⟩ := GlobalTheory.LFun.InertChart.exists_isUnramInv (GlobalTheory.InertDatumExist.isCMExt E) hw hc
+  obtain ⟨ϖ, hU⟩ := GlobalTheory.LFun.InertChart.exists_isUnramInv (_root_.GlobalTheory.AdelicU.isCMExt_of_isCMField E) hw hc
   obtain ⟨k, hk, hke⟩ := GlobalTheory.LFun.InertChart.exists_congr_antiJ (n := n) hU (B := 1) (one_mem _)
     (by simp [Formalism.UG.cT, Matrix.map_one])
   have hO : Formalism.UG.Ov E Pp = Formalism.UG.intL (Pp.adicCompletion E) := Subring.ext fun _ => Iff.rfl

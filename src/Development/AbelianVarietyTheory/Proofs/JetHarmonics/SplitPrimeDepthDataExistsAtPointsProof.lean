@@ -86,7 +86,7 @@ theorem pkgSplit : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartRestric
     (by rw [hVl]; intro h; exact h2 (h ▸ N.H.two_mem_small)) (GlobalTheory.QuadTrace.cmHost_idempotent_trace_eq_one E H hstar) lv.M (hunit _ hM)
   have hunr : ¬ (V.l : ℤ) ∣ NumberField.discr E :=
     hpl.unr V.l V.l_prime (by rw [hVl]; exact h2) (by rw [hVl]; exact hq') (by rw [hVl]; exact hd')
-  obtain ⟨d, _, pos, Z, hZ, hne, hbij, hfr⟩ := GlobalTheory.T.cmType_frobenius_orbits_label_at_split_prime E H lv c N pl hpl la T io C V ι hι hVl hMM
+  obtain ⟨d, _, pos, Z, hZ, hne, hbij, hfr⟩ := _root_.GlobalTheory.LabSplit.labelling_split E H lv c N pl hpl la T io C V ι hι hVl hMM
     (by rw [hVl]; exact hsp) j
   have hpsi : ∀ z, InPsi H (pl z) := fun z => (hpl.psi _).2 ⟨z, rfl⟩
   have hmk := N.R.m_add_three_le_k

@@ -337,11 +337,11 @@ theorem sum_add_conj_eq_trace (H : Host E) (a : 𝓞 E) :
   refine Finset.sum_nbij' ComplexEmbedding.conjugate ComplexEmbedding.conjugate ?_ ?_ ?_ ?_ ?_
   · intro τ hτ
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hτ ⊢
-    rw [ComplexEmbedding.conjugate_coe_eq, conj_embedding_rt, hτ]
+    rw [ComplexEmbedding.conjugate_coe_eq, _root_.UpperTheory.Reformulated.B.Gc4.conj_embedding_rt, hτ]
     exact h0
   · intro τ hτ
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hτ ⊢
-    rw [ComplexEmbedding.conjugate_coe_eq, conj_embedding_rt, hsq τ hτ, neg_neg]
+    rw [ComplexEmbedding.conjugate_coe_eq, _root_.UpperTheory.Reformulated.B.Gc4.conj_embedding_rt, hsq τ hτ, neg_neg]
   · intro τ _; exact star_star τ
   · intro τ _; exact star_star τ
   · intro τ _; rfl

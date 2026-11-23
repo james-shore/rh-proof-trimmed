@@ -79,7 +79,7 @@ theorem UpperTheory.V.Z.Sym.Glob.gqS :
     · intro v jv hjv
       have hgv : HasTr ((ι γ).1 v) (cv v τ) := htr γ v hγ
       have hrv := cv_reg hreg v
-      obtain ⟨z, hz⟩ := zEx hrv
+      obtain ⟨z, hz⟩ := _root_.UpperTheory.V.Z.Sym.Loc.exists_unit_one_add_generator hrv
       refine ⟨emb_comm hjv, ?_⟩
       by_cases hv : v ∈ D.Sg
       · have hS := hD.sig v hv

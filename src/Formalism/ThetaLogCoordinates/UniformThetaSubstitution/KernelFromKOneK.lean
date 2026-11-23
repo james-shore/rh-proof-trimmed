@@ -45,8 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.InvariantFactorPaths.G7.Top
 
-open Formalism.InvariantFactorPaths.G7
-
-theorem kernel_from_k_one_k : KernelBoundsGeneric := kernel_bounds_generic
-
 end Formalism.InvariantFactorPaths.G7.Top

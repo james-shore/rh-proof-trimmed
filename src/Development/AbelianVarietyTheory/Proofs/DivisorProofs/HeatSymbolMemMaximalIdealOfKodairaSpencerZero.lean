@@ -80,7 +80,7 @@ theorem exists_basis_isKS_symbol : ∀ (E : Type) [Field E] [NumberField E] [IsC
     have := congrArg (MvPowerSeries.coeff (Finsupp.single (Sum.inl i) 1)) h
     simp [MvPowerSeries.coeff_X] at this
   choose v' hv' using fun a => GlobalTheory.ChartKSBracket.tanPt E H (ChartRing k m d) t P Y (vY a)
-  obtain ⟨b, hbv⟩ := GlobalTheory.T.uniformisedTangentBasis_of_raynaudBasis E H (ChartRing k m d) t P Y n vY v' hv'
+  obtain ⟨b, hbv⟩ := _root_.GlobalTheory.TanRay.tanBasis_of_isPointOf E H (ChartRing k m d) t P Y n vY v' hv'
   have hx : spMap (Scheme.ΓSpecIso (CommRingCat.of (ChartRing k m d))).inv.hom ≫ 𝟙 (Sp (ChartRing k m d)) =
       chart (⟨⊤, isAffineOpen_top _⟩ : (Sp (ChartRing k m d)).affineOpens) := by
     rw [Category.comp_id, chart, IsAffineOpen.fromSpec_top, Scheme.isoSpec_Spec_inv]
@@ -98,7 +98,7 @@ theorem exists_basis_isKS_symbol : ∀ (E : Type) [Field E] [NumberField E] [IsC
     revert h
     rw [← hD']
     intro h hb hdef
-    exact GlobalTheory.T.kodairaSpencer_of_commuting_heat_operators_raynaud E H (ChartRing k m d) t P m (bdParam k m d) gam hmon hne hab Y n vY dd hdd v' hv' D' h hb hdef
+    exact _root_.GlobalTheory.KBracket.isKS_of_heat E H (ChartRing k m d) t P m (bdParam k m d) gam hmon hne hab Y n vY dd hdd v' hv' D' h hb hdef
 
 
 

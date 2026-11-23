@@ -64,9 +64,6 @@ theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →
     spMap g ≫ spMap f = spMap (g.comp f) := by
   simp only [spMap, ← Spec.map_comp]; rfl
 
-theorem sp_id (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 (Sp A) := by
-  simp only [spMap]; exact Spec.map_id _
-
 theorem sp_inj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g := by
   have := Spec.map_injective h
   exact congrArg CommRingCat.Hom.hom this
@@ -170,12 +167,12 @@ theorem pt_lifts (d : Derivation R (Sec A.hom U.1) M) : Lifts A.hom (affPt A.hom
   · rw [pt, ← Category.assoc, sp_comp]
     have : (TrivSqZeroExt.fstHom (Sec A.hom U.1) (Sec A.hom U.1) M).toRingHom.comp (derHom d) = RingHom.id _ := by
       ext b; simp
-    rw [this, sp_id, Category.id_comp]
+    rw [this, _root_.GlobalTheory.Cris.spMap_id, Category.id_comp]
 
 theorem lifts_pt (z : Sp (TrivSqZeroExt (Sec A.hom U.1) M) ⟶ A.left) (hz : Lifts A.hom (affPt A.hom U) z) :
     ∃ d : Derivation R (Sec A.hom U.1) M, pt A U d = z := by
-  obtain ⟨c, ⟨hc1, hc2⟩, -⟩ := GlobalTheory.T.existsUnique_ringHom_of_sqZeroExt_point_affine R A.left A.hom U (Sec A.hom U.1) M (RingHom.id _) z
-    (by rw [sp_id, Category.id_comp]; exact hz.2)
+  obtain ⟨c, ⟨hc1, hc2⟩, -⟩ := _root_.GlobalTheory.AbTan.exists_unique_ringHom_of_sqZero R A.left A.hom U (Sec A.hom U.1) M (RingHom.id _) z
+    (by rw [_root_.GlobalTheory.Cris.spMap_id, Category.id_comp]; exact hz.2)
   have h2 : c.comp (algebraMap R (Sec A.hom U.1)) =
       (TrivSqZeroExt.inlHom (Sec A.hom U.1) M).comp (algebraMap R (Sec A.hom U.1)) := by
     apply sp_inj
@@ -188,8 +185,8 @@ theorem lifts_pt (z : Sp (TrivSqZeroExt (Sec A.hom U.1) M) ⟶ A.left) (hz : Lif
   rw [pt, derHom_derOf, hc1]
 
 theorem pt_inj (d d' : Derivation R (Sec A.hom U.1) M) (h : pt A U d = pt A U d') : d = d' := by
-  obtain ⟨c, -, hc⟩ := GlobalTheory.T.existsUnique_ringHom_of_sqZeroExt_point_affine R A.left A.hom U (Sec A.hom U.1) M (RingHom.id _) (pt A U d)
-    (by rw [sp_id, Category.id_comp]; exact (pt_lifts A U d).2)
+  obtain ⟨c, -, hc⟩ := _root_.GlobalTheory.AbTan.exists_unique_ringHom_of_sqZero R A.left A.hom U (Sec A.hom U.1) M (RingHom.id _) (pt A U d)
+    (by rw [_root_.GlobalTheory.Cris.spMap_id, Category.id_comp]; exact (pt_lifts A U d).2)
   have e1 := hc (derHom d) ⟨rfl, fun b ↦ derHom_fst d b⟩
   have e2 := hc (derHom d') ⟨h.symm, fun b ↦ derHom_fst d' b⟩
   ext b
@@ -254,7 +251,7 @@ theorem key (ψ : Ω[Sec A.hom U.1⁄R] →ₗ[Sec A.hom U.1] M) :
     apply back_eq U hb _ hl
     have hid : spMap ((AlgHom.id R (Sec A.hom U.1) : Sec A.hom U.1 →+* Sec A.hom U.1)) ≫ affPt A.hom U =
         affPt A.hom U := by
-      rw [show ((AlgHom.id R (Sec A.hom U.1) : Sec A.hom U.1 →+* Sec A.hom U.1)) = RingHom.id _ from rfl, sp_id,
+      rw [show ((AlgHom.id R (Sec A.hom U.1) : Sec A.hom U.1 →+* Sec A.hom U.1)) = RingHom.id _ from rfl, _root_.GlobalTheory.Cris.spMap_id,
         Category.id_comp]
     rw [hid] at hnat
     rw [hnat, hτz0, hpt]

@@ -289,7 +289,7 @@ theorem liftModelSt_of (G : GlobalFamilyData (xplus X E hM) ka wL wF) (la : Heig
     hd := hdL (hsW hw)
     hd_zero := hdL_zero (hsW hw)
     hd_ι := hdW_ι (hsW hw)
-    hd_mul := hdW_mul (hsW hw)
+    hd_mul := _root_.Formalism.L2.Pj.hdL_mul (hsW hw)
     ev := evL (hsW hw)
     ev_ι := evW_ι (hsW hw)
     RG := RGW hw
@@ -298,8 +298,8 @@ theorem liftModelSt_of (G : GlobalFamilyData (xplus X E hM) ka wL wF) (la : Heig
     e' := (ιW (hsW hw) (FP : Lw (xplus X E hM) la G.w) * ↑uFQ.unit⁻¹) * g0L hw g0
     e'_hd := fun β hβ => by
       rw [hs_eq]
-      exact hd_mul_const (hdW_mul _) (hd_mul_const (hdW_mul _) (hconst p hpc)
-        (hd_inv_const (hdL_zero _) (hdW_mul _) uQ (hconst q hqc))) (hconst _ fun β hβ => hasseRp_emb _ _ hβ _) β hβ
+      exact hd_mul_const (_root_.Formalism.L2.Pj.hdL_mul _) (hd_mul_const (_root_.Formalism.L2.Pj.hdL_mul _) (hconst p hpc)
+        (hd_inv_const (hdL_zero _) (_root_.Formalism.L2.Pj.hdL_mul _) uQ (hconst q hqc))) (hconst _ fun β hβ => hasseRp_emb _ _ hβ _) β hβ
     e'_int := fun ζ => by
       rw [hs_eq, map_mul, map_mul, evL_inv, evW_ι, evW_ι, evW_ι, SecPt.lift_alg, SecPt.lift_alg, SecPt.lift_alg]
       obtain ⟨h1, h2, h3⟩ := hpq ζ

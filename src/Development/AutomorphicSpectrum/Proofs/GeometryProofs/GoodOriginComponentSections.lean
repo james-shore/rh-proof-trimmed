@@ -164,13 +164,6 @@ theorem exOf_root (u : GlobalTheory.AllWt.Weight Dw) (r : RootIx Dw) :
       omega)
     simp [HodgeCpt.rootSgn, h, this]
 
-theorem zpow_sum_exp {G I : Type} [CommGroup G] (g : G) (s : Finset I) (f : I → ℤ) :
-    g ^ (∑ i ∈ s, f i) = ∏ i ∈ s, g ^ f i := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert i s hi ih => rw [Finset.sum_insert hi, Finset.prod_insert hi, zpow_add, ih]
-
 theorem unit_calc {G K : Type} [CommGroup G] [Fintype K] (tt ph : Ix Dw → G) (u : GlobalTheory.AllWt.Weight Dw)
     (v ee : RootIx Dw → G) (yy : K → G) (xd : RootIx Dw → K → ℤ) (a : K → ℤ)
     (hw : GlobalTheory.AllWt.exOf Dw u 0 none = 0)
@@ -193,7 +186,7 @@ theorem unit_calc {G K : Type} [CommGroup G] [Fintype K] (tt ph : Ix Dw → G) (
     simp only [ha, ← Finset.prod_zpow]
     rw [Finset.prod_comm]
     refine Finset.prod_congr rfl fun k _ => ?_
-    rw [← Finset.sum_neg_distrib, zpow_sum_exp]
+    rw [← Finset.sum_neg_distrib, _root_.GlobalTheory.SharpFamRel.zpow_finsetSum]
     refine Finset.prod_congr rfl fun r _ => ?_
     rw [← zpow_mul]
     congr 1
@@ -228,7 +221,7 @@ theorem mem_val_of_chart (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
     exact ⟨c' k, (Finset.prod_ne_zero_iff.1 hc'.1) k (Finset.mem_univ k)⟩
   obtain ⟨cc, h1, h2⟩ := exists_chart RM.y V hy
   have hVψ : ∀ x, (φ.comp C.R.val) x ∈ V := fun x => hV x
-  choose v hv using GlobalTheory.T.root_origin_generic_frame_relay E H Dw l Xo c Y S RM Sys Fx Or Fr h C V (φ.comp C.R.val) z _ hψ hd hVψ cc h1 h2
+  choose v hv using _root_.GlobalTheory.CompanionTheory.Ar.Plug.KeyRootZ.diag_root_line E H Dw l Xo c Y S RM Sys Fx Or Fr h C V (φ.comp C.R.val) z _ hψ hd hVψ cc h1 h2
   let yy : RM.K → (RM.Ω)ˣ := fun k => Units.mk0 _ (h1 k)
   let ee : RootIx Dw → (RM.Ω)ˣ := fun r => Units.mk0 _ (Or.lines r).1
   let ph : Ix Dw → (RM.Ω)ˣ := fun i => Units.map (φ : Om C.Z →* RM.Ω) (C.t i)
@@ -416,7 +409,7 @@ theorem bir_of_origin (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Re
     ∃ (a : WZ E) (N : ℕ) (g : Fin (N + 1) → Rul Xo c), (∀ j, g j ∈ GlobalTheory.CompanionTheory.Ar.Rec.secZ Xo c a) ∧ BirOn h Z g := by
   classical
   letI := Small.cstAlg Or
-  obtain ⟨φ, P, t, hP, hbor, hrk⟩ := GlobalTheory.T.comp_laws_root_model_relay E H Dw l Xo c r U h e hC Y S RM Sys Fx Or Fr Z hb
+  obtain ⟨φ, P, t, hP, hbor, hrk⟩ := _root_.ModelDimension.component_laws_unif_frame E H Dw l Xo c r U h e hC Y S RM Sys Fx Or Fr Z hb
   have hφs : Function.Surjective φ := surjective_of_finrank_one φ.toRingHom (hrk.trans hd1)
   have hgs : Function.Surjective Or.g := surjective_of_finrank_one _ (Or.g_deg.trans hd1)
   obtain ⟨n₀, N₀, hn₀, hN₀, hs0, hs0m⟩ := GlobalTheory.CompanionTheory.Ar.Small.OriginEps.section_on_model E H Dw l Xo c (𝓞 c.F) _ Y S RM Sys

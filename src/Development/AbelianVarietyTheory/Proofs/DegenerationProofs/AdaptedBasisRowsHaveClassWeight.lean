@@ -169,7 +169,7 @@ theorem act_of_class (hL : LL) (hA : AdmBase R I) (hG : IsSemiAbelian G) (U : Un
     SecM.ofSec A.A t' = kf R F (τ (Multiplicative.ofAdd c)).val • SecM.ofSec A.A t := by
   obtain ⟨w, hw⟩ := (GlobalTheory.UT.SymFrame.main hL R I hA D F N hN q).1
   obtain ⟨e, he⟩ := GlobalTheory.exists_linearEquiv_expandsF hL.1.globalFns U F hN.pos w₀ hw₀
-  have hΦ := GlobalTheory.T.symmetricLift_oddOrder_acts_as_expansionOperator hL R I hA D A G hG U F N hN q x hx θ hθ w₀ hw₀ w hw t t' s (e t') hs ((he _ _).2 rfl) ha
+  have hΦ := _root_.GlobalTheory.UT.symLift_acts_as_phi hL R I hA D A G hG U F N hN q x hx θ hθ w₀ hw₀ w hw t t' s (e t') hs ((he _ _).2 rfl) ha
   have h₁ := ((TorusWeight.torus_weight hL R I hA D A G hG U F N hN q τ hy hτ w hw).2 _ _).1 hΦ
   have h₂ : e t' = (τ (Multiplicative.ofAdd c)).val • s := fam_ext fun α j => by
     refine (h₁ α j).trans ?_
@@ -198,9 +198,9 @@ theorem exists_torus_point (hL : LL) (hT : UTorsSt) {o Ω : Type} [CommRing o] [
   have hN₂ := S.N_ge
   have : NeZero S.N := ⟨by omega⟩
   have : NeZero (S.r * S.N) := ⟨Nat.mul_ne_zero (by omega) (by omega)⟩
-  obtain ⟨x, hx, hadd, -, honto⟩ := GlobalTheory.T.uniformised_model_labelled_torsion_points o Ω S ρ p y₀ u
+  obtain ⟨x, hx, hadd, -, honto⟩ := _root_.GlobalTheory.ZH.utest_torsion_points o Ω S ρ p y₀ u
   let y : o →+* PadicAlgCl p := y₀.comp (algebraMap o S.R)
-  obtain ⟨pk, τ, hy, hτ, hq, hval⟩ := GlobalTheory.T.exists_torus_torsionPoint_standardAlternatingForm hL hT o Ω S ρ p y₀ u l x hx hadd honto a.1 a.2
+  obtain ⟨pk, τ, hy, hτ, hq, hval⟩ := _root_.GlobalTheory.ZH.PerpCharacter.exists_torus_point_eStd hL hT o Ω S ρ p y₀ u l x hx hadd honto a.1 a.2
   have hζ : y S.ζN ^ S.N = 1 := by
     have h : IsPrimitiveRoot S.ζN S.N := S.prim.pow (pow_pos (NeZero.pos _) 2) (by ring)
     rw [← map_pow, h.pow_eq_one, map_one]
@@ -243,8 +243,8 @@ theorem row_weight : GlobalTheory.UT.LL → UTorsSt → ∀ (o Ω : Type) [CommR
   obtain ⟨w, hw⟩ := u.lb
   obtain ⟨w₀, hw₀⟩ := u.U.toUnifPre.ext
   choose s hs using fun j => exists_moved u hw (ρ.s j)
-  obtain ⟨t, e, ht, he, hcrd⟩ := GlobalTheory.T.exists_generic_sections_from_integral_model hL o Ω S ρ p y₀ u S.N S.J σ f hB.2.2.2.1 hB.2.2.2.2.1 w₀ hw₀
-  obtain ⟨c, hc⟩ := GlobalTheory.T.abelianSections_proportional_of_coordinates hL.1.globalFns u.V u.A (PadicAlgCl p) S.N S.J S.J t s
+  obtain ⟨t, e, ht, he, hcrd⟩ := _root_.GlobalTheory.ZH.IntegralCarry.exists_carry hL o Ω S ρ p y₀ u S.N S.J σ f hB.2.2.2.1 hB.2.2.2.2.1 w₀ hw₀
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.ZH.SecProp.proportional_of_crd hL.1.globalFns u.V u.A (PadicAlgCl p) S.N S.J S.J t s
     (b.map (algebraMap _ (PadicAlgCl p))) fun z => by
       obtain ⟨a, rfl⟩ : ∃ a : u.PtC, z = a ≫ u.U.gen.hom := ⟨z ≫ u.U.gen.inv, by simp⟩
       obtain ⟨v, hv⟩ := ((CrdCalc.crd_calculus _ (LPow u.A.A u.A.L (S.N : ℤ) (TFK (R := u.V) (PadicAlgCl p))) _ s
@@ -254,7 +254,7 @@ theorem row_weight : GlobalTheory.UT.LL → UTorsSt → ∀ (o Ω : Type) [CommR
   let y : o →+* PadicAlgCl p := y₀.comp (algebraMap o S.R)
   refine proj_mulVec S l.isoFree _ y _ fun a => ?_
   obtain ⟨q, x, τ, hq₀, hτ, hτN, hq, hx, hwt⟩ := exists_torus_point hL hT l a
-  obtain ⟨θ, hθ, hact⟩ := GlobalTheory.T.exists_symmetricLift_action_geometricFibre o Ω S ρ p y₀ u w hw s hs a.1 _ hx (hq w₀ hw₀).1
+  obtain ⟨θ, hθ, hact⟩ := _root_.GlobalTheory.ZH.ClassWeight.exists_symLift_act o Ω S ρ p y₀ u w hw s hs a.1 _ hx (hq w₀ hw₀).1
   obtain ⟨E, hE, -⟩ := GlobalTheory.thetaGrp_acts_linearly hL.1.globalFns _ u.A (S.N : ℤ) (TFK (R := u.V) (PadicAlgCl p))
   have h₁ : ∀ j, E θ (SecM.ofSec u.A.A (s j)) =
       ∑ m, kf u.V (PadicAlgCl p) (y (S.ρ a m j)) • SecM.ofSec u.A.A (s m) := fun j =>
@@ -266,7 +266,7 @@ theorem row_weight : GlobalTheory.UT.LL → UTorsSt → ∀ (o Ω : Type) [CommR
       ((hE _ _ _).2 rfl)
     exact h₃.trans (congrArg (fun z => kf u.V (PadicAlgCl p) z • SecM.ofSec u.A.A (t i)) (hwt (cls i)))
   exact mulVec_eq_of_eigen (kf u.V (PadicAlgCl p)) (kf_bijective _ _).1 (E θ).toLinearMap
-    (GlobalTheory.T.linearIndependent_thetaBasis_geometric_fibre hL o Ω S ρ p y₀ u w hw s hs) ((S.ρ a).map y) h₁ h₂ (hc i)
+    (_root_.GlobalTheory.ZH.FibreIndep.linearIndependent_moved hL o Ω S ρ p y₀ u w hw s hs) ((S.ρ a).map y) h₁ h₂ (hc i)
 
 end GlobalTheory.ZH.ClassWeight
 end

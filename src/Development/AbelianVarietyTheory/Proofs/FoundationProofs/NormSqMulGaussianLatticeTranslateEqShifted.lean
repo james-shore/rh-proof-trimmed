@@ -344,7 +344,7 @@ theorem exists_vacuum : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), Cr
       (LaB D (tor0 D cc δ) b₀) (La0 D (tor0 D cc δ) N N')
       (pullB D (tor0 D cc δ) b₀ (GL3Theta.th0 (lamOf D cc δ) t0)) z) := ⟨b₀, κ, hb₀, hκ, rfl⟩
   refine ⟨_, ⟨smul_mem_ThSp D _ _ κ _ u1,
-    (GlobalTheory.T.thetaTaylorCoeffs_algebraic_at_complexMultiplication D cc δ hC t0 ht N N' _ _ (hSD N) (hSD N') hN _ hE).1, ?_, hE, ?_⟩, ?_⟩
+    (_root_.GlobalTheory.ThetaAlgebraic.taylor_algebraic D cc δ hC t0 ht N N' _ _ (hSD N) (hSD N') hN _ hE).1, ?_, hE, ?_⟩, ?_⟩
   · rw [normSq_smul D _ _ κ hκn, u2]
     refine normSq_pullB D cc δ hC b₀ hb₀ _ fun ω hω z => ?_
     obtain ⟨m, -, hm⟩ := hth ω hω

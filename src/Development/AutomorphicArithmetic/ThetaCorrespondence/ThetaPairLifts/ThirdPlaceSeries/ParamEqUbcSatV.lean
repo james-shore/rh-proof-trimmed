@@ -56,7 +56,7 @@ theorem GlobalTheory.StrInert.param_eq_ubc_satV_alt : GlobalTheory.Published.Aut
   intro hA hL D P X hX h41 h7 htie i hμ j hj x hx f hf y hy hy0 h hh s B hs hB w hw hin P' hP'
   have hv := GlobalTheory.StrInert.not_mem_badPl X.R (X.tupT (D.nd.mu i)) w hw hin
   have hns := GlobalTheory.StrInert.not_isSplitPl_of_inert D w hin
-  obtain ⟨P₀, hP₀, α₀, hsat, hev⟩ := _root_.GlobalTheory.T.theta_eigen_compatibility_ninth_alt hA hL D P X hX h41 h7 htie i hμ j hj x hx f hf y hy hy0 h hh s hs w hw hin
+  obtain ⟨P₀, hP₀, α₀, hsat, hev⟩ := _root_.GlobalTheory.InertEigSat.eig_eq_satU_alt hA hL D P X hX h41 h7 htie i hμ j hj x hx f hf y hy hy0 h hh s hs w hw hin
   have hBw := hB _ hv w rfl
   rcases hBw with ⟨hsp, -⟩ | ⟨-, τ, ϖ, α, hU, hτ, hBeq, hc⟩
   · exact absurd hsp (GlobalTheory.LFun.not_isSplit_of_isInertAt hin)

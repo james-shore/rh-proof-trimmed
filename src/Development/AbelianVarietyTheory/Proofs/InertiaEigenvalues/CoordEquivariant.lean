@@ -67,10 +67,6 @@ theorem algebraMap_eq (q : ℚ_[l]) :
     algebraMap ℚ_[l] (PadicComplex l) q = ((algebraMap ℚ_[l] (Om l) q : Om l) : PadicComplex l) :=
   IsScalarTower.algebraMap_apply ℚ_[l] (Om l) (PadicComplex l) q
 
-theorem act_zC {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} (ha : IsActC act)
-    (g : GQ l) (z : ℤ_[l]) : act g (zC z) = zC z := by
-  rw [zC, algebraMap_eq, ha.1, AlgEquiv.commutes]
-
 theorem norm_l_lt : ‖(l : PadicComplex l)‖ < 1 := by
   have h : (l : PadicComplex l) = algebraMap ℚ_[l] (PadicComplex l) (l : ℚ_[l]) := (map_natCast _ _).symm
   rw [h, algebraMap_eq, PadicComplex.norm_extends, PadicAlgCl.norm_extends]
@@ -265,7 +261,7 @@ theorem coord_equivariant {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)
       conv_lhs => rw [← b.sum_repr t, map_sum, map_sum, Finsupp.finsetSum_apply]
       simp only [map_smul, Finsupp.smul_apply, smul_eq_mul, mul_comm]
     simp only [TensorProduct.map_tmul, hΨ, twAct, Pi.smul_apply, smul_eq_mul, Matrix.mulVec,
-      dotProduct, map_mul, act_zC ha, hM, hs, h1, zC_sum, zC_mul, Finset.sum_mul, Finset.mul_sum]
+      dotProduct, map_mul, _root_.GlobalTheory.Cyc.Decomp.act_zC ha, hM, hs, h1, zC_sum, zC_mul, Finset.sum_mul, Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => by ring
 
 theorem rI_eq (l m : ℕ) (J : Finset ℤ) (i : ℤ) :
@@ -314,9 +310,9 @@ theorem torsion_killed : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (
     ⟨le_trans h.1 hsm, fun h2 => le_trans (h.2.1 h2) hsm⟩
   have h1 := (GlobalTheory.T.exists_continuous_galoisLatticeMatrix_integral l K LL T).1
   refine h1.elim fun d h1 => h1.elim fun M h1 => h1.elim fun A hM => ?_
-  have h2 := GlobalTheory.T.exists_decompletion_frame_of_lattice D HW F l K s LL h T M0 h0 hW d M A hM
+  have h2 := _root_.GlobalTheory.Cyc.Decomp.exists_decompletion D HW F l K s LL h T M0 h0 hW d M A hM
   refine h2.elim fun Dm h2 => h2.elim fun U h2 => h2.elim fun g hD => ?_
-  have h3 := GlobalTheory.T.exists_hodgeTateBasis_of_crystalline_over_Ks D HW F h7 l K s LL h T hW.1 d M A hM _ hsm
+  have h3 := _root_.GlobalTheory.HTBasisEx.exists_htBasis D HW F h7 l K s LL h T hW.1 d M A hM _ hsm
   refine Exists.elim hM fun b hb => ?_
   exact @of_basis l _ (D.loc l) (D.locA l) K _ _ (zlMod LL T) _ hlev
     ((actTZ LL T).comp (Subgroup.inclusion hle)) i _ h3.1 d M U b

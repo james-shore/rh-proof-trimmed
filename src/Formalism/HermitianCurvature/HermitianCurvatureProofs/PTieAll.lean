@@ -46,6 +46,6 @@ import Mathlib.Topology.Sheaves.Init
 namespace Formalism.FourierDecayAlt.P
 
 theorem ptie_levTransportHer_of_sliceStep (hS : Formalism.FourierDecayAlt.P.PTie.SliceStepHer) : Formalism.FourierDecayAlt.P.PTie.LevTransportHer :=
-  ptie_levTransportHer_of jacquet_scaling hS
+  _root_.Formalism.FourierDecayAlt.P.PTieH.levTransportHer_of _root_.Formalism.FourierDecayAlt.P.PTieJ.jfScale hS
 
 end Formalism.FourierDecayAlt.P

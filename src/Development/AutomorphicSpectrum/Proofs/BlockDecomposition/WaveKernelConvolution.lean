@@ -62,10 +62,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace GlobalTheory.CompanionTheory.WaveMult
 
-theorem isOpen_GLs_kerconv (n : ℕ) : IsOpen (GLs n) := by
-  have hc : Continuous fun g : Mat n => g.det := Continuous.matrix_det continuous_id
-  exact isOpen_ne.preimage hc
-
 theorem mul_unitary_mem_GLs_kerconv {n : ℕ} {y : Mat n} (hy : y ∈ GLs n)
     (k₂ : Matrix.unitaryGroup (Fin n) ℂ) : y * k₂.1 ∈ GLs n := by
   have h1 : y.det ≠ 0 := hy
@@ -112,7 +108,7 @@ theorem conv_eq_of_isKer : LgFacts → Unimod → RCalc → WaveSpeed → WaveEx
     have := hK.2.2.1 y hy 1 k₂
     simpa using this
   have hceq := conv_right_equivariant hLg n μ E k k' rk rk' hk'eq
-  have key := hKU n μ E (fun y => conv μ E k k' y - K y) (GLs n) (isOpen_GLs_kerconv n) subset_rfl
+  have key := hKU n μ E (fun y => conv μ E k k' y - K y) (GLs n) (_root_.GlobalTheory.CompanionTheory.WaveMult.ZOpAvg.isOpen_invertible_matrices n) subset_rfl
     (fun y hy k₂ => mul_unitary_mem_GLs_kerconv hy k₂) (rc.1.sub rK.1)
     (fun y hy k₂ => by
       simp only [hceq y hy k₂, hKeq y hy k₂]

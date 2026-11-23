@@ -66,7 +66,7 @@ theorem exists_cls_of_irreducible : ∀ (F E : Type) [Field F] [NumberField F] [
   refine ⟨GlobalTheory.T.unitaryRationalDiagonalHom_bijective F E σ n J, ?_⟩
   intro γ hirr
   have hm : Formalism.UG.cT (σ : E →+* E) γ.1.1 * J * γ.1.1 = J := γ.2
-  have hs := GlobalTheory.T.charpoly_unitary_eq_conjugateReciprocal F E σ n J hJ.2 γ
+  have hs := _root_.GlobalTheory.TrEll.charpoly_eq_sharp F E σ n J hJ.2 γ
   have hdet : γ.1.1.det ≠ 0 := ((Matrix.isUnit_iff_isUnit_det _).mp γ.1.isUnit).ne_zero
   have h0 : eval 0 γ.1.1.charpoly ≠ 0 := by
     rw [← coeff_zero_eq_eval_zero]

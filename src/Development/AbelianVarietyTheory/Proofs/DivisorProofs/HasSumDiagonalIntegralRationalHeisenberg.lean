@@ -67,7 +67,7 @@ theorem glue_integral : ∃ c₀ : ℝ, 0 < c₀ ∧ ∀ H : (κ → AF F) → �
     ∫ p, H (GlobalTheory.DiagForm.glue p) ∂(GlobalTheory.DiagForm.mu F κ) = c₀ * ∫ t, H t ∂(adeleMeasurePi F) := GlobalTheory.T.integral_diagonalCoords_eq_pos_mul_adeleHaar F κ
 
 theorem shift_mem {φ : (κ ⊕ κ → AF F) → ℂ} (hφ : φ ∈ schA F (κ ⊕ κ)) (u : κ → AF F) :
-    (fun t : κ → AF F => φ (Sum.elim (t + u) t)) ∈ schwartzBruhatPi (K := F) (ι := κ) := GlobalTheory.T.adelicSchwartz_restrict_translated_diagonal_mem F κ φ hφ u
+    (fun t : κ → AF F => φ (Sum.elim (t + u) t)) ∈ schwartzBruhatPi (K := F) (ι := κ) := _root_.GlobalTheory.DiagShift.shift_mem_schwartzBruhatPi F κ φ hφ u
 
 theorem schA_le (ι : Type) [Fintype ι] : schA F ι ≤ schwartzBruhatPi (K := F) (ι := ι) := by
   refine Submodule.span_le.mpr ?_

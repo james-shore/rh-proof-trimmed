@@ -45,6 +45,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalRingCardinality.Params
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ProdFactorialSupportSubSingle
 
 @[expose] public section
 
@@ -54,20 +55,10 @@ namespace PI.GTS
 
 open Formalism.BasicNotions MvPolynomial
 
-private theorem fockF_eq_sum_lemma {σ : Type*} (f g : MvPolynomial σ ℂ) (S : Finset (σ →₀ ℕ))
-    (hS : f.support ⊆ S) :
-    Formalism.REAL.fockF f g =
-      ∑ m ∈ S, f.coeff m * star (g.coeff m) * ((∏ k ∈ m.support, (m k).factorial : ℕ) : ℂ) := by
-  unfold Formalism.REAL.fockF
-  apply Finset.sum_subset hS
-  intro m _ hm
-  have h0 : f.coeff m = 0 := by simpa [MvPolynomial.mem_support_iff] using hm
-  simp [h0]
-
 theorem fockF_smul_self {σ : Type*} (c : ℂ) (f : MvPolynomial σ ℂ) :
     Formalism.REAL.fockF (c • f) (c • f) = (c * star c) * Formalism.REAL.fockF f f := by
-  rw [fockF_eq_sum_lemma (c • f) _ f.support MvPolynomial.support_smul,
-    fockF_eq_sum_lemma f f f.support subset_rfl, Finset.mul_sum]
+  rw [_root_.Formalism.REAL.fischerInner_eq_sum_of_subset (c • f) _ f.support MvPolynomial.support_smul,
+    _root_.Formalism.REAL.fischerInner_eq_sum_of_subset f f f.support subset_rfl, Finset.mul_sum]
   refine Finset.sum_congr rfl fun m _ => ?_
   simp only [MvPolynomial.coeff_smul, smul_eq_mul, star_mul']
   ring

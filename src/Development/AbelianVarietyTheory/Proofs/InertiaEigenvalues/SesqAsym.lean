@@ -72,7 +72,7 @@ theorem sesq_asym : ∀ (K : UQ) (B : InvAlg K), B.g * B.σ B.g = 1 → B.P.Sepa
     rw [hu_def, map_mul, hσε]
     calc ε * B.g * (ε * B.σ B.g) = (ε * ε) * (B.g * B.σ B.g) := by ring
       _ = 1 := by rw [hεε, hg, one_mul]
-  refine ⟨GlobalTheory.T.exists_unit_sigma_eq_mul_invAlg K B u hu, ?_⟩
+  refine ⟨_root_.GlobalTheory.UnitLemma.HilbertNinety.exists_unit_sigma K B u hu, ?_⟩
   intro s hadd hlin hnd hsym
   have hvu : B.σ u * u = 1 := by rw [mul_comm]; exact hu
 

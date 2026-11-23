@@ -73,7 +73,7 @@ theorem omega_value (hD : DVRHyp v p) (h1 : 1 ≤ C0) (D : TwistData K) (hV : D.
     vge v (D.c + D.n0 v - 2 * D.kapD p - D.Dm p C0)
       (D.abelian₂ p F (dg gm (Pj (dg gp Z))) - D.abelian₂ p F Z) := by
   have key : ∀ W, D.abelian₂ p F W = fock F (dg D.ga (D.ph p W)) := fun W => by
-    simp only [TwistData.abelian₂, gaAct_eq_dg]
+    simp only [TwistData.abelian₂, _root_.Formalism.MainNotions.PlaneGram.TwistData.gaAct_eq]
   have hLsum : ∀ (s : Finset D.EM) (f : D.EM → MvPolynomial (D.ML × Fin D.r) K),
       D.abelian₂ p F (∑ i ∈ s, f i) = ∑ i ∈ s, D.abelian₂ p F (f i) := by
     intro s f
@@ -137,7 +137,7 @@ theorem omega_value (hD : DVRHyp v p) (h1 : 1 ≤ C0) (D : TwistData K) (hV : D.
   have hgm' : vge v 0 (gm ζ) := by
     have h3 : gm ζ = (gm ζ - (D.gaP p gam ζ)⁻¹) + (D.gaP p gam ζ)⁻¹ := by ring
     rw [h3]
-    refine vge_add' v (vge_mono' v (by positivity) hc2) ?_
+    refine _root_.Formalism.MainNotions.PlaneGram.vge_add v (vge_mono' v (by positivity) hc2) ?_
     rw [vge_zero_iff v, AddValuation.map_inv, hgaP, neg_zero]
   have hsplit : gp ζ * gm ζ - 1 =
       (gp ζ - D.gaP p gam ζ) * gm ζ + D.gaP p gam ζ * (gm ζ - (D.gaP p gam ζ)⁻¹) := by
@@ -145,14 +145,14 @@ theorem omega_value (hD : DVRHyp v p) (h1 : 1 ≤ C0) (D : TwistData K) (hV : D.
     ring
   have t2 : vge v (D.c : ℝ) (gp ζ * gm ζ - 1) := by
     rw [hsplit]
-    refine vge_add' v ?_ ?_
+    refine _root_.Formalism.MainNotions.PlaneGram.vge_add v ?_ ?_
     · simpa using vge_mul' v hc1 hgm'
     · simpa using vge_mul' v hgaP' hc2
   have hΛ := TwistData.vge_Lam_monomial (D := D) hD hV hF0 hgood
   have t3 := vge_mul' v t2 hΛ
   have t3' : vge v (D.c + D.n0 v - 2 * D.kapD p - D.Dm p C0)
       ((gp ζ * gm ζ - 1) * D.abelian₂ p F (monomial ζ (1 : K))) := vge_mono' v (by linarith) t3
-  simpa using vge_mul' v hZζ (vge_add' v t1 t3')
+  simpa using vge_mul' v hZζ (_root_.Formalism.MainNotions.PlaneGram.vge_add v t1 t3')
 
 theorem stepDEF_of (h1 : 1 ≤ C0) (hDIG : DIG K v p) (hG : StepG K v p) (hP : StepP K v p C0)
     (hE : StepE K v p) : StepDEF K v p C0 := by

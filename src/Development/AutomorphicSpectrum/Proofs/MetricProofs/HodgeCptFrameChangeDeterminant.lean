@@ -56,11 +56,6 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.PB GlobalTh
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX.Graph
 
-theorem det_mul_expand {R : Type} [CommRing R] {r n : ℕ} (B : Matrix (Fin r) (Fin n) R)
-    (C : Matrix (Fin n) (Fin r) R) :
-    (B * C).det = ∑ f : Fin r → Fin n, (∏ i, B i (f i)) * (C.submatrix f id).det :=
-  _root_.UpperTheory.Reformulated.B.Ygb2.main B C
-
 section Point
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
@@ -138,7 +133,7 @@ theorem exists_inChart_minors (hg : IsCptGen ξ) {κ : Type} (x : κ → Ω) (L 
     rwa [Matrix.det_mul, Matrix.det_transpose, Matrix.det_smul, Fintype.card_fin] at this
   have hdreg : ∀ J : Fin r → Fin n, (C.submatrix J id).det ∈ regAt ξ p := fun J =>
     det_mem_subring _ fun i a => hCr _ _
-  have hsum := det_mul_expand B C
+  have hsum := _root_.UpperTheory.Reformulated.B.Ygb2.main B C
   rw [hBC, Matrix.det_one] at hsum
   obtain ⟨J, -, hu⟩ := exists_unitAt_of_sum hg p Finset.univ
     (fun f : Fin r → Fin n => (∏ i, B i (f i)) * (C.submatrix f id).det)

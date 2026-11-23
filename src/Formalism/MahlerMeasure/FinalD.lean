@@ -50,7 +50,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.GM.Top
 open Formalism.GM
-theorem smithZp : SmithZp := smith_form_p_adic_integers
 theorem lieMat : LieMat := lieMat_of mahler_binomial_unit_ball
 theorem lieRoots : LieRoots := lieRoots_of gauss_norm_multiplicative
 theorem valuation_window_lower_bound : ValuationWindowLowerBound := by

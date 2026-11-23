@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockPolynomialSpaceEqFockImageOfArchLaws
 
 @[expose] public section
 
@@ -122,11 +123,6 @@ theorem exp_conj_rect {β ι : Type} [Fintype β] [DecidableEq β] [Fintype ι] 
   open scoped Norms.Operator in
   exact (NormedSpace.map_exp f hf Y).symm
 
-theorem atPl_zero {ι : Type} [Fintype ι] [DecidableEq ι] {V : ι → Type} [∀ i, AddCommGroup (V i)]
-    [∀ i, Module ℂ (V i)] (w : ι) : atPl (V := V) w 0 = 0 := by
-  unfold atPl
-  exact (PiTensorProduct.mapMultilinear ℂ V V).map_update_zero (fun i => (LinearMap.id : V i →ₗ[ℂ] V i)) w
-
 theorem sumPl_single {ι : Type} [Fintype ι] [DecidableEq ι] {V : Type} [AddCommGroup V] [Module ℂ V] {κ : Type}
     [Fintype κ] (act : Matrix κ κ ℂ →ₗ[ℂ] Module.End ℂ V) (c : ι → ℂ) (w : ι) (Y : Matrix κ κ ℂ) :
     sumPl (V := fun _ : ι => V) (fun w' => act ((Pi.single w Y : ι → Matrix κ κ ℂ) w') +
@@ -137,7 +133,7 @@ theorem sumPl_single {ι : Type} [Fintype ι] [DecidableEq ι] {V : Type} [AddCo
   · simp
   · intro w' _ hw'
     simp only [Pi.single_eq_of_ne hw', map_zero, Matrix.trace_zero, mul_zero, zero_smul, add_zero]
-    exact atPl_zero w'
+    exact _root_.GlobalTheory.RealLift.PolRangePf.atPl_zero' w'
   · intro h; exact absurd (Finset.mem_univ w) h
 
 theorem exists_line_upq {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]

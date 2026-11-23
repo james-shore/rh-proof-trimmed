@@ -246,7 +246,7 @@ theorem inf_ft (h4 : S4) (h8 : S8) {ψ : AddChar (Ad E) ℂ} (hψ : StdPsi ψ) {
   obtain ⟨β, hβ, hψβ⟩ := GlobalTheory.T.archimedean_character_real_pairing (E := E) (k := k) h8 hψ
   haveI := GlobalTheory.T.infinite_vector_measure_isAddHaar E k
   set F : (Fin k → Cinf E) → XB E k := fun x => (b x : ℂ) • Rt E k (infGL E k (rowGL x))⁻¹ φ with hF
-  have hFs : ContDiff ℝ ∞ F := GlobalTheory.T.smooth_cutoff_translate_contDiff hφ hb hu
+  have hFs : ContDiff ℝ ∞ F := _root_.GlobalTheory.CompanionTheory.CutOff.contDiff_cut_orbit hφ hb hu
   have hFc : HasCompactSupport F := by
     refine HasCompactSupport.mono hc fun x hx h0 => hx ?_
     simp only [hF]
@@ -428,7 +428,7 @@ theorem cut_of (h0 : PositivityTheory.jumpWindows.G0) (h4 : S4) (h8 : S8) (hk : 
       exact map_zero _
     rw [etaOf, e, hbz, zero_mul]
   ·
-    have hF := (GlobalTheory.T.smooth_cutoff_translate_contDiff hφ hb hbu).continuous
+    have hF := (_root_.GlobalTheory.CompanionTheory.CutOff.contDiff_cut_orbit hφ hb hbu).continuous
     have e : (fun y : Fin k → Ad E => ((etaOf b (latS S B : Set (Af E)) y : ℝ) : ℂ) • Rt E k (sOf S y)⁻¹ φ) =
         fun y => ((((boxL (latS S B : Set (Af E)) (eRow (Af E) k)).indicator (fun _ => (1 : ℝ))
             fun i => pFin E (y i) : ℝ)) : ℂ) •
@@ -504,7 +504,7 @@ theorem cut_of (h0 : PositivityTheory.jumpWindows.G0) (h4 : S4) (h8 : S8) (hk : 
       · by_cases e : v = w
         · subst e; rw [pLoc_sLoc_self]; exact h2 hv
         · rw [pLoc_sLoc_ne e]; exact zero_mem _
-    obtain ⟨C₁, hC₁, hann⟩ := GlobalTheory.T.annihilator_adelic_lattice_compact hψ S hS (latS S B : Set (Af E))
+    obtain ⟨C₁, hC₁, hann⟩ := _root_.GlobalTheory.CompanionTheory.AnnLattice.exists_isCompact_annihilator hψ S hS (latS S B : Set (Af E))
       (fun w hw t ht => hsl w t (fun _ => ht) (fun h => absurd h hw))
       (fun w hw => ⟨_, (hBo w hw).mem_nhds (zero_mem (B w)), fun t ht =>
         hsl w t (fun h => absurd hw h) (fun _ => ht)⟩)
@@ -520,7 +520,7 @@ theorem cut_of (h0 : PositivityTheory.jumpWindows.G0) (h4 : S4) (h8 : S8) (hk : 
         ψ (sFin E (∑ i, f i * zf i))
     have key : ∫ y, (etaOf b (latS S B : Set (Af E)) y : ℂ) * φ (g * (sOf S y)⁻¹) * ψ (∑ i, y i * z i)
         ∂vecMeasure E (Fin k) = (∫ x, A x ∂nuInf E k) * ∫ f, Bf f ∂nuFin E k := by
-      rw [← GlobalTheory.T.adelic_vector_integral_product A Bf]
+      rw [← _root_.GlobalTheory.CompanionTheory.CutOff.Split.integral_split A Bf]
       refine integral_congr_ae (Filter.Eventually.of_forall fun y => ?_)
       have hψs : ψ (∑ i, y i * z i) = ψ (sInf E (∑ i, pInf E (y i) * zi i)) * ψ (sFin E (∑ i, pFin E (y i) * zf i)) := by
         have e1 : pInf E (∑ i, y i * z i) = ∑ i, pInf E (y i) * zi i := by

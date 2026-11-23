@@ -58,17 +58,6 @@ noncomputable section
 
 namespace GlobalTheory.PlaceMatch
 
-theorem mem_GfC_of_suppAt' {D : D7} {e : Formalism.L2.Theta.AE D} (he : IsSplitIdem D e) {V : HSp D} {g : GA D V}
-    (hg : Formalism.L2.Theta.SuppAt e V g) : g ∈ GfC V := by
-  obtain ⟨-, -, v, ε, ⟨α, rfl, -⟩, h⟩ := he
-  have h0 : infPart D (e + cA D e) = 0 := by
-    rw [h]; exact TensorProduct.zero_tmul _ _
-  refine Units.ext (Matrix.ext fun i j => ?_)
-  have := congrArg (infPart D) (hg i j)
-  rw [map_mul, h0, zero_mul, Matrix.sub_apply, map_sub, eq_comm, sub_eq_zero] at this
-  refine Eq.trans this ?_
-  by_cases hij : i = j <;> simp [Matrix.one_apply, hij]
-
 theorem suppAt_conj' {D : D7} {e : Formalism.L2.Theta.AE D} {V : HSp D} {g : GA D V} (hg : Formalism.L2.Theta.SuppAt e V g) (t : GA D V) :
     Formalism.L2.Theta.SuppAt e V (t⁻¹ * g * t) := by
   apply GlobalTheory.LocGrp.suppAt_of_sandwich hg (mt V t⁻¹) (mt V t)

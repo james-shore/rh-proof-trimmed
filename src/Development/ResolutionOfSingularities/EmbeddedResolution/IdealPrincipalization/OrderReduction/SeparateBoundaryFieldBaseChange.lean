@@ -79,18 +79,6 @@ theorem MarkedIdealWithBoundary.length_boundary_baseChange (S : MarkedIdealWithB
 
 namespace BoundaryLoopFieldBaseChange
 
-private theorem lt_length_nil_append_boundary (S : MarkedIdealWithBoundary.{u})
-    (s : MarkedBlowupSequenceData S.structMap S.ideal S.mult S.boundary) (j : ℕ)
-    (hj : j < S.boundary.length) :
-    j < (([] : List (s.obj s.length).IdealSheafData) ++ (s.boundary s.length).drop 0).length := by
-  have h : (s.boundary s.length).length = S.boundary.length + s.length :=
-    s.boundary_length s.length le_rfl
-  have h2 : (([] : List (s.obj s.length).IdealSheafData) ++ (s.boundary s.length).drop 0).length
-      = S.boundary.length + s.length := by
-    simp [h]
-  rw [h2]
-  omega
-
 private theorem nonempty_strictPullback_of_length_eq_zero {X' X : Scheme.{u}} (g : X' ⟶ X)
     (t : SequenceOfBlowups X') (s : SequenceOfBlowups X) (ht : t.length = 0) (hs : s.length = 0) :
     Nonempty (StrictPullbackBlowupSeq g t s) :=
@@ -331,8 +319,8 @@ private theorem nonempty_strictPullbackBlowupSeq_separateBoundary
       hV hO hdimS L f hV' hO' hdimS' hbc _ _ hftS hftT D [] [] rfl 0 j
       (BoundarySeparationBaseChange.isAdmissible_derivedTriple_nil hstar S hV _ hftS)
       (BoundarySeparationBaseChange.isAdmissible_derivedTriple_nil hstar (S.baseChange L f) hV' _ hftT)
-      (lt_length_nil_append_boundary S _ j (by omega))
-      (lt_length_nil_append_boundary (S.baseChange L f) _ j
+      (_root_.FunctorialResolution.EmbeddedResolution.BoundarySeparationBaseChange.lt_length_nil_append_boundary_drop_zero S _ j (by omega))
+      (_root_.FunctorialResolution.EmbeddedResolution.BoundarySeparationBaseChange.lt_length_nil_append_boundary_drop_zero (S.baseChange L f) _ j
         (by rw [MarkedIdealWithBoundary.length_boundary_baseChange]; omega))
       (BoundarySeparationBaseChange.orderAtLeastLocus_inter_support_eq_empty_of_mem_take_zero S _) (BoundarySeparationBaseChange.orderAtLeastLocus_inter_support_eq_empty_of_mem_take_zero (S.baseChange L f) _)
 

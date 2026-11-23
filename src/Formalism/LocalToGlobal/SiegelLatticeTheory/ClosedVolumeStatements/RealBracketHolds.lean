@@ -48,15 +48,12 @@ import Mathlib.Topology.Sheaves.Init
 namespace Formalism.L2.SG.Closed
 
 theorem AprimeInf_holds [hG : Fact PI.AprimeInfW.GaugeVolUD] : Formalism.L2.SG.Pf.NcReal.AprimeInf :=
-  PI.AprimeInfAsm.aprime_infinite_real Formalism.L2.SG.Pf.MassDataX.hinfCompact_holds hG.out
-
-variable [Fact Formalism.L2.SG.Pf.WB.RhsWLim] in
-theorem JacGauge_holds : Formalism.L2.SG.Pf.JacGauge := Formalism.L2.SG.Pf.jacGauge
+  _root_.PI.AprimeInfAsm.aprimeInf_of_hinfCompact Formalism.L2.SG.Pf.MassDataX.hinfCompact_holds hG.out
 
 open Formalism.L2.SG.Pf Formalism.L2.SG.Pf.NcReal in
 variable [Fact PI.AprimeInfW.GaugeVolUD] [Fact Formalism.L2.SG.Pf.WB.RhsWLim] in
 theorem RealBracket_holds (hC : Formalism.L2.SG.Pf.NcReal.JX.CovolRef) : Formalism.L2.SG.Pf.NcReal.RealBracket :=
-  Formalism.L2.SG.Pf.NcReal.JX.realBracket_of_jac JacGauge_holds hC AprimeInf_holds
+  Formalism.L2.SG.Pf.NcReal.JX.realBracket_of_jac _root_.Formalism.L2.SG.Pf.jacGauge hC AprimeInf_holds
     (fun n ε => Formalism.MainNotions.S.Gauge.gauge_density_exists n ε)
 
 end Formalism.L2.SG.Closed

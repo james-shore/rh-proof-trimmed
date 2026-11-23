@@ -45,6 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PI
 
-theorem local_global_inclusion' : PI.LocGlobIncl := PI.LocGlobInclWork.main
-
 end PI

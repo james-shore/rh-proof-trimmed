@@ -60,7 +60,7 @@ theorem Setup.isNoetherianRing_stalk {g n : ℕ} {F : SFam g n (zetaAway n)} {W 
 theorem four_of_classical : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (Fin 8) ℤ) (Z : Scheme.{0}) (i : F.X ⟶ Z) (X₁ : Setup F W i), ∀ (p : ℕ) [Fact p.Prime] (z₁ : X₁.M.Z) (Φ : FPre (id : ℤ → ℤ) g p (X₁.M.Z.presheaf.stalk z₁)), PosW W → (∀ y, ∃ c : CTrait X₁ p z₁, (∀ a, Φ.ev y a = c.val a) ∧ ∃ e : Φ.X y ≃ₗ[ℤ] c.T.D.toPre.X, ∀ a b, Φ.sc y * Φ.β y a b = c.sc * c.T.β (e a) (e b)) → Φ.Four W (X₁.S.r * X₁.S.N) := by
   intro g n F W Z i X₁ p _ z₁ Φ hW h y₀ N₀
   obtain ⟨N, hN, hd, k, Q, t, B, _, _, _, _, _, 𝔷, hinj, hfix, hmax, hk, hu, ht, hc⟩ :=
-    GlobalTheory.T.thetaFourier_classSums_deeper_finite_extension g n F W Z i X₁ p z₁ Φ h y₀ (N₀ + 1)
+    _root_.GlobalTheory.Poinc.classSums_deeper g n F W Z i X₁ p z₁ Φ h y₀ (N₀ + 1)
   have := X₁.normal.isDomain_stalk z₁
   have := X₁.normal.isIntegrallyClosed_stalk z₁
   have := X₁.isNoetherianRing_stalk z₁

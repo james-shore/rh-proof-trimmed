@@ -124,7 +124,7 @@ theorem kapSharp_eq_kap : (GlobalTheory.Published.DiscreteSeriesCover ∧ Global
     (GlobalTheory.Mem.R3.drows_pos D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hL)
     (fun σ => Finset.prod_pos (GlobalTheory.Mem.R3.LamPos.lambdaPrime_basis_row_type_pos_at_reference D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hL hI σ))
     (fun σ => (iiStar_apply_eq (RowSide.sharp D) (D.what₂.onb σ)).trans
-      (GlobalTheory.T.iotaProjectionAdjoint_basisRow_eigenvalue hC D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hL hI σ))
+      (_root_.GlobalTheory.KapRec.Eigen.eigen hC D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hL hI σ))
 
 end GlobalTheory.KapRec
 end

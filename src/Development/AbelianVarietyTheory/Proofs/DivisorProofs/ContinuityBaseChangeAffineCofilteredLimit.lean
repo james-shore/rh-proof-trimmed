@@ -70,7 +70,7 @@ theorem contCone_bc_affine : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F
     change IsAffine (pullback (G.obj i).hom r)
     haveI := hG i
     exact isAffine_of_isAffineHom (pullback.snd (G.obj i).hom r)
-  have h1 : ContCone R F (sch.mapCone (P.mapCone c)) := GlobalTheory.T.cohomologyContinuous_cofiltered_affine_limit R F hF I (G ⋙ P) (P.mapCone c) hlim haff
+  have h1 : ContCone R F (sch.mapCone (P.mapCone c)) := _root_.GlobalTheory.EtC.contCone_of_affine_limit R F hF I (G ⋙ P) (P.mapCone c) hlim haff
   let α : (G ⋙ P) ⋙ sch ⟶ G ⋙ bc (sch.map r) :=
     { app := fun i => e.hom.app (G.obj i)
       naturality := fun i j f => e.hom.naturality (G.map f) }

@@ -220,24 +220,10 @@ theorem LdV_cf {Φ Φ' : Mat k r → ℂ} (hΦ' : TG Φ') {Y : Mat k r} (hY : in
   simp only [inner_zero_right, zero_add, cf, mc, Matrix.neg_mul]
   rfl
 
-private theorem hs_lemma_0 {𝔸 : Type*} [NormedRing 𝔸] [NormedAlgebra ℂ 𝔸] [FiniteDimensional ℂ 𝔸]
-    {H A B : 𝔸} (h : H * A = B * H) : H * NormedSpace.exp A = NormedSpace.exp B * H := by
-  haveI : CompleteSpace 𝔸 := FiniteDimensional.complete ℂ 𝔸
-  have hA := NormedSpace.exp_series_hasSum_exp' (𝕂 := ℂ) A
-  have hB := NormedSpace.exp_series_hasSum_exp' (𝕂 := ℂ) B
-  refine (hA.mul_left H).unique ?_
-  convert hB.mul_right H using 1
-  funext n
-  have hp : H * A ^ n = B ^ n * H := by
-    induction n with
-    | zero => simp
-    | succ n ih => rw [pow_succ, pow_succ, ← mul_assoc, ih, mul_assoc, h, ← mul_assoc]
-  rw [mul_smul_comm, smul_mul_assoc, hp]
-
 private theorem H_exp_lemma {n : Type*} [Fintype n] [DecidableEq n] {H A B : Matrix n n ℂ}
     (h : H * A = B * H) :
     H * NormedSpace.exp A = NormedSpace.exp B * H := by
-  exact @hs_lemma_0 (Matrix n n ℂ) Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra _ H A B h
+  exact @_root_.ReciprocityTheory.ChartRestriction.DS.Mult1.SmoothA.semiExp_lemma_7 (Matrix n n ℂ) Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra _ H A B h
 
 private theorem exp_UH_lemma_2 {H Y : Mat k r} (hY : Yᴴ * H + H * Y = 0) (s : ℝ) :
     (NormedSpace.exp ((s : ℂ) • Y))ᴴ * H * NormedSpace.exp ((s : ℂ) • Y) = H := by

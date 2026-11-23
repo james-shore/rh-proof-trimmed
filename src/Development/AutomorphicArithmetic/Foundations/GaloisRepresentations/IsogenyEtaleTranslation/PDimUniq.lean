@@ -72,19 +72,9 @@ private lemma exists_nontrivial_away {S : Type} [CommRing S] [Nontrivial S] (s :
   obtain ⟨k, hk⟩ := h1
   simp at hk
 
-private lemma relDim_eq {X Y : Scheme.{0}} (f : X ⟶ Y) {m n : ℕ} (hm : SmoothOfRelativeDimension m f)
-    (hn : SmoothOfRelativeDimension n f) (x : X) : m = n := by
-  obtain ⟨U, hU, V, hV, hx, e, hmU⟩ := hm.exists_isStandardSmoothOfRelativeDimension x
-  obtain ⟨s, hs, hst⟩ := HasRingHomProperty.appLE (@SmoothOfRelativeDimension n) f hn ⟨U, hU⟩ ⟨V, hV⟩ e
-  haveI : Nonempty V := ⟨⟨x, hx⟩⟩
-  obtain ⟨t, ht, hnt⟩ := exists_nontrivial_away s hs
-  have hm' := (RingHom.isStandardSmoothOfRelativeDimension_stableUnderCompositionWithLocalizationAway m).2
-    (Localization.Away t) t _ hmU
-  exact relDim_eq_of_ringHom _ hm' (hst t ht)
-
 theorem dimUniq_of : DimUniq := by
   intro Z s d d' hd hd' hZ
   obtain ⟨z⟩ := hZ
-  exact relDim_eq s hd hd' z
+  exact _root_.ReciprocityTheory.ChartRestriction.G.H1.dim_unique s hd hd' z
 
 end UpperTheory.Gal.FixZ

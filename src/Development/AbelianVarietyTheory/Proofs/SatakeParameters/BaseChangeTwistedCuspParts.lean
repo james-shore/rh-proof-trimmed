@@ -53,12 +53,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 namespace GlobalTheory.EigStrCalc
 
-theorem odd_rank (R : Ranks) : Odd R.r := by
-  obtain ⟨a, ha⟩ := R.k_even
-  obtain ⟨b, hb⟩ := R.m_even
-  have h2 := R.two_le_m
-  exact ⟨a + b - 1, by simp only [Ranks.r]; omega⟩
-
 theorem isSplitPl_of_under (D : D7) (w : HeightOneSpectrum (𝓞 D.host.E))
     (h : Formalism.MainNotions.SchurIrreducible.IsSplit (E := D.host.E) (w.under (𝓞 D.host.F))) : IsSplitPl D.host w := by
   obtain ⟨P, Q, hPQ, hP, hQ⟩ := h

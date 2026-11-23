@@ -53,8 +53,8 @@ noncomputable section
 namespace GlobalTheory.RowEx
 theorem twisted_constant_existence : GlobalTheory.Published.HoweDualityReal → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.SquareSt.WeilConvergence → GlobalTheory.SquareSt.LocalMatching → GlobalTheory.SquareSt.ThetaIntegralsAgree → ConstEx := by
   intro hw hm h1 h2 h3 h4 h5
-  obtain ⟨C1, H1⟩ := _root_.GlobalTheory.T.regularized_integral_small_constant h1 h2 h3 h4 h5
-  obtain ⟨C2, H2⟩ := _root_.GlobalTheory.T.twisted_square_identity hw h1 h2 hm h3 h4 h5
+  obtain ⟨C1, H1⟩ := _root_.GlobalTheory.SmallConst.regularizedIntegral_const_of_small h1 h2 h3 h4 h5
+  obtain ⟨C2, H2⟩ := _root_.GlobalTheory.SquareIdent.square_identity_of_matching hw h1 h2 hm h3 h4 h5
   refine ⟨max C1 C2, fun ε CF hCF => ?_⟩
   obtain ⟨x1, K1⟩ := H1 ε CF (le_trans (le_max_left _ _) hCF)
   obtain ⟨x2, K2⟩ := H2 ε CF (le_trans (le_max_right _ _) hCF)

@@ -63,7 +63,7 @@ private theorem qcqs_id (X : Scheme.{0}) : QcqsOver (𝟙 (sch.obj X)) := by
 private theorem qcqs_cech {Y X : Scheme.{0}} (f : Y ⟶ X) [IsProper f] :
     QcqsOver (cechAug f ≫ 𝟙 (sch.obj X)) := by
   intro k
-  obtain ⟨Z, π, e, hπ, he⟩ := GlobalTheory.T.exists_representable_cech_level_of_stable @IsProper Y X f inferInstance k
+  obtain ⟨Z, π, e, hπ, he⟩ := _root_.GlobalTheory.EtC.cech_level_representable @IsProper Y X f inferInstance k
   haveI := hπ
   refine ⟨Z, π ≫ f, e, inferInstance, inferInstance, ?_⟩
   simpa using he
@@ -71,8 +71,8 @@ private theorem qcqs_cech {Y X : Scheme.{0}} (f : Y ⟶ X) [IsProper f] :
 private theorem stalk_eqv (R : Type) [CommRing R] (F : Shv R) {Y X T : Scheme.{0}} (f : Y ⟶ X) (s : T ⟶ X)
     (h : Eqv R (cechAug (pullback.snd f s)) F) :
     Eqv R ((bcMap (cechAug f) (𝟙 (sch.obj X))).app (Over.mk s)) F := by
-  obtain ⟨hiso, hcomp, -, -⟩ := GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F
-  obtain ⟨m, hpb, -⟩ := GlobalTheory.T.etaleCechNerve_baseChange_isPullback Y X (pullback f s) T (pullback.fst f s) (pullback.snd f s) f s
+  obtain ⟨hiso, hcomp, -, -⟩ := _root_.GlobalTheory.EtC.eqv_basic R F
+  obtain ⟨m, hpb, -⟩ := _root_.GlobalTheory.cech_baseChange Y X (pullback f s) T (pullback.fst f s) (pullback.snd f s) f s
     (IsPullback.of_hasPullback f s)
   have hpb' : IsPullback m (cechAug (pullback.snd f s)) (cechAug f ≫ 𝟙 (sch.obj X)) (sch.map s) := by
     rw [Category.comp_id]

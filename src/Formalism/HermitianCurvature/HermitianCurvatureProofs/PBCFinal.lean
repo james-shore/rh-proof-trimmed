@@ -75,7 +75,7 @@ theorem gsup_succ (S : C.HidaSetting E Wp Wq) (hpos : C.ThmPPos S) (hI : KB.IntA
     (hRB : (∏ _v : Fin S.f, KB.dlB S b n) * (∏ v, Cs * (1 + (R * thr S b n v / S.g) ^ 2)) / R ^ (2 * S.f) ≤
       B ^ S.f * S.base.vol b n) :
     ∃ P, 0 ≤ P ∧ P ≤ B ^ S.f * S.base.vol b n * P' ∧ GSup S ε b n P := by
-  obtain ⟨i1, i2, hcov, -⟩ := pbc_lstdFacts S.f R hR
+  obtain ⟨i1, i2, hcov, -⟩ := _root_.Formalism.FourierDecayAlt.P.PBC.Lat.lstdFacts S.f R hR
   have := i1; have := i2
   have hg' : (0 : ℝ) < S.g := by exact_mod_cast hg
   have hL0 : ∀ v, 0 ≤ Λ b (n - 1) v := fun v => (hΛt v).1
@@ -270,8 +270,8 @@ theorem sumFormConcrete_of (S : C.HidaSetting E Wp Wq) (hg1 : 0 < S.G.g1) (hg2 :
 end setting
 
 theorem sumFormOfLoc : KB.SumFormOfLoc := by
-  obtain ⟨Cs, hCs1, hCs⟩ := pbc_lstdSum
-  obtain ⟨B, hB1, hSzAll⟩ := pbc_sizesSup Cs hCs1
+  obtain ⟨Cs, hCs1, hCs⟩ := _root_.Formalism.FourierDecayAlt.P.PBC.Lat.lstdSum
+  obtain ⟨B, hB1, hSzAll⟩ := _root_.Formalism.FourierDecayAlt.P.PBC.Lat.sizesSup Cs hCs1
   obtain ⟨A, hA1, hBLall⟩ := pbc_blockLatV
   refine ⟨max A B, le_max_of_le_left hA1, ?_⟩
   intro E _ _ _ Wp Wq _ _ _ _ S X Λ hg1 hg2 hU hpos hG hI hW hXt hL hΛt hthr hGL
@@ -285,7 +285,5 @@ end
 end Formalism.FourierDecayAlt.P.PBC
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem sum_form_of_local_statements : Formalism.FourierDecayAlt.KB.SumFormOfLoc := PBC.sumFormOfLoc
 
 end Formalism.FourierDecayAlt.P

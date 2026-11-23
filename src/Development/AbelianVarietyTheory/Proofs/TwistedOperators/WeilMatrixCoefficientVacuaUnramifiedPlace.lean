@@ -77,9 +77,6 @@ namespace GlobalTheory.VacCoef
 theorem frameLat_eq_latFrame {D : D7} (V : HSp D) : frameLat V = GlobalTheory.PlaceModel.latFrame V := by
   ext y; rw [mem_frameLat, GlobalTheory.PlaceModel.mem_latFrame]
 
-theorem isSelfDualC_frameLat {D : D7} (V : HSp D) : IsSelfDualC V (frameLat V) := by
-  rw [frameLat_eq_latFrame]; exact GlobalTheory.PlaceModel.isSelfDualC_latFrame V
-
 theorem isUnram_host (D : D7) (v : HeightOneSpectrum (𝓞 D.host.F)) : Formalism.MainNotions.SchurIrreducible.IsUnram (E := D.host.E) v := by
   have hu : Algebra.Unramified (𝓞 D.host.F) (𝓞 D.host.E) := by
     haveI := D.host.isCMField_hostE
@@ -129,8 +126,8 @@ theorem locChar_eq {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} {χS 
       ((locChar χS w' (Matrix.GeneralLinearGroup.det (locMat D.sp.cm.sig T.gram h' a)) : ℂˣ) : ℂ) := by
   obtain ⟨f, f0, hf⟩ := GlobalTheory.FinWeilForm.exists_theta hom.std S T
   let g : GlobalTheory.FinWeilO.thetaSub ψ S T := ⟨f, hf⟩
-  have e1 := (GlobalTheory.T.weilDatum_at_place_eq_latticeIntertwiner_mul_det_char D ψ S T χS χT om hom hom.std lam w₀ Om hL hlam hsq v w h a g).1 hs
-  have e2 := (GlobalTheory.T.weilDatum_at_place_eq_latticeIntertwiner_mul_det_char D ψ S T χS χT om hom hom.std lam w₀ Om hL hlam hsq v w' h' a g).1 hs
+  have e1 := (_root_.GlobalTheory.WeilAtPlace.weilDatum_at_place D ψ S T χS χT om hom hom.std lam w₀ Om hL hlam hsq v w h a g).1 hs
+  have e2 := (_root_.GlobalTheory.WeilAtPlace.weilDatum_at_place D ψ S T χS χT om hom hom.std lam w₀ Om hL hlam hsq v w' h' a g).1 hs
   have hne : (Om (1, embV T v a) g : WO S T → ℂ) ≠ 0 := by
     intro h0
     have h3 : Om (1, embV T v a)⁻¹ (Om (1, embV T v a) g) = g := by
@@ -157,7 +154,7 @@ theorem vac_coef : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (
   classical
   have hψ := hom.std
   obtain ⟨lam, hlam, hsq⟩ := GlobalTheory.FinWeil.exists_goodNorm D
-  obtain ⟨w₀, Om, hL⟩ := GlobalTheory.FinWeilO.exists_isLatRep hψ (isSelfDualC_frameLat S) (isSelfDualC_frameLat T) hlam
+  obtain ⟨w₀, Om, hL⟩ := GlobalTheory.FinWeilO.exists_isLatRep hψ (_root_.GlobalTheory.WeilAtPlace.isSelfDualC_frameLat S) (_root_.GlobalTheory.WeilAtPlace.isSelfDualC_frameLat T) hlam
   obtain ⟨w₁, hw₁, hin₁⟩ := exists_place D v
   let I : Gv T v → ℕ := fun a => GlobalTheory.FinWeil.idx (GlobalTheory.FinWeilO.latF S T (frameLat S) (frameLat T))
     ((GlobalTheory.FinWeilO.latF S T (frameLat S) (frameLat T)).map (GlobalTheory.FinWeilO.rhoF S T (1, embV T v a)))
@@ -171,7 +168,7 @@ theorem vac_coef : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (
       rw [locChar_eq hom lam w₀ Om hL hlam hsq hs hw₁ h]
       exact detval D T χS v w h (hunr w h).1 e he ϖ hϖ d t ht k₁ hk₁ k₂ hk₂
     have hI : I (e.symm (k₁ * t * k₂)) = qV D.host.E w ^ (S.rank * (∑ i, |d i|).toNat) :=
-      GlobalTheory.T.index_movedHomLattice_splitPlaceChart D S T v w h hs e he ϖ hϖ d t ht k₁ hk₁ k₂ hk₂
+      _root_.GlobalTheory.SplitIdx.index_moved_split D S T v w h hs e he ϖ hϖ d t ht k₁ hk₁ k₂ hk₂
     show ν _ * (lam (I _))⁻¹ = _
     rw [hν, hI, lamsplit D lam hsq v w h hs]
     congr 1
@@ -191,7 +188,7 @@ theorem vac_coef : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (
     have hI : I (e.symm (k₁ * t * k₂)) = qV D.host.E w ^ (S.rank * (∑ i, max (d i) 0).toNat) :=
       GlobalTheory.T.index_moved_homLattice_inertPlace D S T v w h hw c ϖ e hϖ he d t ht k₁ hk₁ k₂ hk₂
     have hval := val_inert D χS S.rank hom.resS v w hw (hunr w h).1
-    have hq := laminert D lam hlam v w hw
+    have hq := _root_.GlobalTheory.LamInert.lam_qV_inert D lam hlam v w hw
     show ν _ * (lam (I _))⁻¹ = _
     rw [hν, hI, map_pow, hq, hval, one_mul]
     have hs0 : 0 ≤ ∑ i, max (d i) 0 := Finset.sum_nonneg fun i _ => le_max_right _ _

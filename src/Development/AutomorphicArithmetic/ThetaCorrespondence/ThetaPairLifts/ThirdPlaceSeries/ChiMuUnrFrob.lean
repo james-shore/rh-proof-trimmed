@@ -53,9 +53,9 @@ theorem GlobalTheory.AutPart.chiMu_unr_frob_alt : ∀ (hArt : GlobalTheory.Publi
   have e : (A.chr.e1 (D.naut.tw μ D.naut.etaTinv)).1 = tp.tup (X.nd.mu i) j * cf.eta⁻¹ := by
     rw [A.chr.tw, hμ j hj, A.chr.etaTinv]
   have hU : (A.chr.e1 (D.naut.tw μ D.naut.etaTinv)).1.UnrAt w := by
-    rw [e]; exact _root_.GlobalTheory.T.galois_family_conductor_bound_alt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMI hstar hE hsp hCh big X T Sp i j hj w hw
+    rw [e]; exact _root_.GlobalTheory.HeightCounting.tupEtaInv_unrAt_splitOut_alt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMI hstar hE hsp hCh big X T Sp i j hj w hw
   have hu : D.naut.unr (D.naut.locG (D.naut.tw μ D.naut.etaTinv) w) := (A.chr.unr_iff _ w).2 hU
   refine ⟨hu, fun B σ hB hσ => ?_⟩
   rw [D.naut.frobEig_tw _ _ hu, A.chr.frob _ w hU, e, Multiset.map_singleton, Multiset.singleton_inj]
-  exact (_root_.GlobalTheory.T.galois_family_places_over_real_alt hArt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMI hstar hE hsp hCh big X T Sp i j hj (_root_.GlobalTheory.T.galois_family_residual_image_alt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMI hstar hE hsp hCh hψ big X T Sp i j hj) w hw B σ hB hσ).symm
+  exact (_root_.GlobalTheory.ChiMuArtin.chiMu_frob_all_alt hArt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMI hstar hE hsp hCh big X T Sp i j hj (_root_.GlobalTheory.ChiOneRead.chiOne_read_alt D cf jE A low Pq S hL eig θ Bs M C tp hCS hMI hstar hE hsp hCh hψ big X T Sp i j hj) w hw B σ hB hσ).symm
 end

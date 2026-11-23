@@ -78,7 +78,7 @@ def postZ (z : Module.End ℂ (Sm E a)) (hz : z ∈ Zalg E a) : Module.End ℂ (
     have hT : T.1 ∈ maps L (spanK E a φ) (spanK_stable φ) ∧
         ∀ z ∈ Zalg E a, z φ = 0 → ∀ w, z (T.1 w) = 0 := T.2
     show _ ∧ _
-    refine ⟨GlobalTheory.T.centre_comp_mem_kinfEquivariantAutomorphicMaps E a L (spanK E a φ) (spanK_stable φ) T.1 hT.1 z hz, fun z' hz' h0 w => ?_⟩
+    refine ⟨_root_.GlobalTheory.AutGrowth.comp_mem_maps E a L (spanK E a φ) (spanK_stable φ) T.1 hT.1 z hz, fun z' hz' h0 w => ?_⟩
     show z' (z (T.1 w)) = 0
     rw [← Module.End.mul_apply, ← (Zalg_commute hz hz').eq, Module.End.mul_apply, hT.2 z' hz' h0 w, map_zero]⟩
   map_add' T T' := by ext; simp

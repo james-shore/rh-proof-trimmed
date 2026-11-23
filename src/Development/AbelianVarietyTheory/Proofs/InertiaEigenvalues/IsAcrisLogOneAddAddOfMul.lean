@@ -69,7 +69,7 @@ theorem defect_mem {R : Type} [CommRing R] (S : Subring R) (a b : R)
     have hd : Finsupp.single 0 (d 0) + Finsupp.single 1 (d 1) = d := by
       ext x; fin_cases x <;> simp
     by_cases h : d 0 + d 1 < n
-    · have := GlobalTheory.T.coeff_logDefect_eq_zero_of_add_lt n (d 0) (d 1) h
+    · have := _root_.GlobalTheory.LogU.logDefect_coeff_eq_zero n (d 0) (d 1) h
       rw [hd] at this
       exact ⟨0, by rw [this]; simp⟩
     · obtain ⟨D, hD⟩ := GlobalTheory.T.factorialTruncatedLogAdditivityDefect_coeff_dvd n (d 0) (d 1) (by omega)

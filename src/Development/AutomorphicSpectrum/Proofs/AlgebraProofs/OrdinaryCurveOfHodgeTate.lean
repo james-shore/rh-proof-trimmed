@@ -188,7 +188,7 @@ theorem reindex {p : ℕ} [Fact p.Prime] {C : Type} [Field C] [IsAlgClosed C] [C
   have hkill : ∀ x : Nb p 1, p • x = 0 := fun x => by
     ext i
     simp
-  obtain ⟨e, he⟩ := GlobalTheory.T.order_p_squared_extremal_colength p C v R hs.integers hlt (Nb p 1) hkill hcard H.AA cN hN hcN hfar
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.CompanionTheory.Ar.GR.OrdSplit.ord_split p C v R hs.integers hlt (Nb p 1) hkill hcard H.AA cN hN hcN hfar
   refine ⟨fun x => pt (e x), isTorsPts_comp hpt e, ?_⟩
   rw [torsFun_comp, ← hH, he]
 
@@ -200,7 +200,7 @@ theorem ordinaryCurve_of_hodgeTate : HodgeTateDatumStatement → OrdinaryCurveSt
   intro hht p _ C _ _ _ v R _ _ hv hlt hc
   obtain ⟨f⟩ := OrdCurve.nonempty_padicInt_hom p R hc
   letI : Algebra ℤ_[p] R := f.toAlgebra
-  obtain ⟨P, z, hg, hz, hk⟩ := GlobalTheory.T.polarised_abelian_variety_p_torsion p C v R hv hlt hc
+  obtain ⟨P, z, hg, hz, hk⟩ := _root_.GlobalTheory.CompanionTheory.Ar.GR.exists_ord_point p C v R hv hlt hc
   obtain ⟨⟨T⟩, cp, hs, H, pt, hpt, hH⟩ := hht p C v R hv hlt hc P
   obtain ⟨pt', h1, h2⟩ := OrdCurve.reindex GlobalTheory.T.polarised_augmentation_theorem hlt hs T P.g hg H pt hpt (hH T) hz hk
   exact ⟨P.A, P.grp, P.L, P.isAb, P.isLB, P.ample, T, pt', h1, h2⟩

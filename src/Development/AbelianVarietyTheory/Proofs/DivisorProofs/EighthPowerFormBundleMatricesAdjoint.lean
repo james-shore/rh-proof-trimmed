@@ -95,10 +95,6 @@ variable {S : Scheme.{0}} {G G' T : Over S} [GrpObj G] [GrpObj G'] [IsCommMonObj
   {L : LB G.left} (hL : L.IsLB) (hΘ : ∃ t : LB.Gen (Theta G L), t.IsGen)
 include hΘ
 
-theorem lam_mul_right' (x y z : T ⟶ G) :
-    lam (cls L hL) x (y * z) = lam (cls L hL) x y + lam (cls L hL) x z := by
-  rw [lam_comm, lam_mul_left hL hΘ, lam_comm, lam_comm _ z]
-
 def lamHom (z : T ⟶ G) : (T ⟶ G) →* Multiplicative (Pic T.left) where
   toFun x := Multiplicative.ofAdd (lam (cls L hL) x z)
   map_one' := by rw [lam_one_left]; rfl
@@ -134,7 +130,7 @@ theorem lam_lam (p q : G' ⟶ G) [IsMonHom p] [IsMonHom q] (u v : T ⟶ G') :
     lam_pull_of (1 : G' ⟶ G) _ u v (by rw [MonObj.comp_one, MonObj.comp_one, MonObj.comp_one, _root_.mul_one])
       (MonObj.comp_one _)]
   rw [MonObj.comp_mul, MonObj.comp_mul, MonObj.comp_one, MonObj.comp_one, lam_one_left,
-    lam_mul_left hL hΘ, lam_mul_right' hL hΘ, lam_mul_right' hL hΘ]
+    lam_mul_left hL hΘ, _root_.GlobalTheory.HermTensorLB.lam_mul_right hL hΘ, _root_.GlobalTheory.HermTensorLB.lam_mul_right hL hΘ]
   abel
 
 end Bilinear

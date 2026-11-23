@@ -166,8 +166,8 @@ theorem exists_char_lift : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [Is
   obtain ⟨hchi, hdl⟩ := hch i
   have hFHG : FH p Gl.F := hGl ▸ GlobalTheory.T.multiplicativeFormalGroupLawPower_pTorsion_finiteFree p C v O hv r
   rw [← hGl] at hJ hchi
-  obtain ⟨instF, hsF, h0F, hkF⟩ := GlobalTheory.T.exists_addCommMonoid_algHom_powerSeries_fgLaw p C v O hv d F
-  obtain ⟨instG, hsG, h0G, hkG⟩ := GlobalTheory.T.exists_addCommMonoid_algHom_powerSeries_fgLaw p C v O hv r Gl
+  obtain ⟨instF, hsF, h0F, hkF⟩ := _root_.GlobalTheory.FormalPts.points_addCommMonoid p C v O hv d F
+  obtain ⟨instG, hsG, h0G, hkG⟩ := _root_.GlobalTheory.FormalPts.points_addCommMonoid p C v O hv r Gl
   obtain ⟨hchain, -, -⟩ := GlobalTheory.ChF.chain_rule_lin O r d J hJ.1
   have hsurj := GlobalTheory.ChF.sub_surjective_of_lin_leftInverse O d r J A' hJ.1 hA
   let j : (PS O 1 r →ₐ[O] O) →+ (PS O 1 d →ₐ[O] O) :=

@@ -164,16 +164,10 @@ theorem thR_smul {E : Type} [Field E] [NumberField E] [IsCMField E] {r g n : ℕ
   simp only [GlobalTheory.Ker.thR, thA, SW.thS, show ∀ y, (a • φ) y = a * φ y from fun _ => rfl, _root_.mul_assoc, tsum_mul_left]
   ring
 
-theorem hostHalfRoot_add_conj_eq_one {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Geo.Tor.Host E) :
-    (H.w0 : E) + cc (H.w0 : E) = 1 := by
-  have := congrArg (algebraMap (𝓞 E) E) (PullbackSections.CVA.cmHostUnit_add_conj_eq_one H)
-  rw [map_add (f := _), map_one] at this
-  exact (congrArg _ (H.bar_eq _).symm).trans this
-
 theorem isRelTraceOneIdempotentModTwo_hostElement {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Geo.Tor.Host E) :
     GlobalTheory.Ker.IdemTwo (H.w0 : E) := by
   obtain ⟨k, hk⟩ : ∃ k, H.d = 16 * k + 7 := ⟨H.d / 16, by have := H.d_mod; omega⟩
-  have h1 := hostHalfRoot_add_conj_eq_one H
+  have h1 := _root_.GlobalTheory.Dict.ThRead.cmHost_idempotent_trace_eq_one H
   have h2 : 2 * (H.w0 : E) = 1 + (H.rt : E) := by
     have := congrArg (algebraMap (𝓞 E) E) H.two_weight_eq_one_add_root
     rwa [map_mul, map_add, map_one, map_ofNat] at this
@@ -259,7 +253,7 @@ theorem exists_const (U : Unf Xo c σ r) (hσ : GoodEmb c σ) (hU : IsUnf U) (hr
         A.Reads 1 (ptC U k ⟨x, hx⟩).s th → ∀ p : GlobalTheory.Ker.WR (U.X k) n,
           GlobalTheory.Ker.gaussR (U.X k) bas' idx' x (GlobalTheory.Ker.zR (U.X k) idx' x p) * ∏ b, th (GlobalTheory.Ker.zR (U.X k) idx' x p b) =
             GlobalTheory.Ker.thR (U.X k) bas idx φ x p := by
-  obtain ⟨v, hv⟩ := (TensVac.vacua _ _ _ _ bas idx n hs hn _ H.w0.isIntegral_coe (hostHalfRoot_add_conj_eq_one H) _ hsd 1 _
+  obtain ⟨v, hv⟩ := (TensVac.vacua _ _ _ _ bas idx n hs hn _ H.w0.isIntegral_coe (_root_.GlobalTheory.Dict.ThRead.cmHost_idempotent_trace_eq_one H) _ hsd 1 _
     (Base.stdL_mem_Vset n 1)).1
   obtain ⟨C, hC⟩ := exists_const_ortho D H Dw l Xo c σ r U hσ hU hr1 hA k t ht n hn g bas idx e hs hm v hv
   refine ⟨C • v, TensVac.sb_smul _ hv.1, fun x hx ho g' bas' idx' e' hs' hm' A th hth p => ?_⟩
@@ -322,7 +316,7 @@ theorem exists_frConst {hr : T.rank = r} {ψ : AddChar (AF D.host.F) ℂ} {θ : 
     obtain ⟨L₀, a₀, m₀, l₀⟩ := hlat (γ₀ * h₀)
     have hv := GlobalTheory.WeilVacMove.isVacO_om D ψ θ S T χS χT om hW hS.2.1 (fun _ => 1) (fun _ => 1) _ _ _ _ _ _ 1 (γ₀ * h₀)
       (fun τ => by rw [Matrix.one_mul, Matrix.mul_one]) (hF _).2.1 l₀ f₀ hf
-    obtain ⟨a, ha, hval⟩ := VacUnit.vac_eq_unit_mul D S T r g₀ hr ψ θ _ eT bas₀ idx₀ hS _ H.w0.isIntegral_coe (hostHalfRoot_add_conj_eq_one H)
+    obtain ⟨a, ha, hval⟩ := VacUnit.vac_eq_unit_mul D S T r g₀ hr ψ θ _ eT bas₀ idx₀ hS _ H.w0.isIntegral_coe (_root_.GlobalTheory.Dict.ThRead.cmHost_idempotent_trace_eq_one H)
       (isRelTraceOneIdempotentModTwo_hostElement H) _ (hF (γ₀ * h₀)).1 L₀ _ hsd (hL₀ ▸ a₀) _ hv th₀
       (isTheta1_of_reads_generator _ H Dw l Xo c r g₀ _ bas₀ idx₀ e₀ _ _ _ A₀ hs₀ hx₀ hsd th₀ hr₀) hmean
     obtain ⟨φ, hφ, hall⟩ := exists_const U hσ hU hr1 hA k (ht k) hsd hS.2.2.2.1 bas₀ idx₀ e₀ hs₀ hm₀

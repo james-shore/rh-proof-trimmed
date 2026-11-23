@@ -79,7 +79,7 @@ theorem thRestricted_of (hA : ∀ p, Agree δ M p) (hrows : IsRowReps D F0 what�
     have hn : nrep γ = some hex.choose := dif_pos hex
     obtain ⟨hRep, -, hL, hU, e⟩ := hex.choose_spec
     obtain ⟨F₁, hR₁, -, hc₁⟩ := hat
-    have hw : w = hex.choose.1 := pt_eq_of_cells cell_point_uniqueness (Formalism.L2.SG.Closed.TermFun_holds D u u') hrows γ
+    have hw : w = hex.choose.1 := pt_eq_of_cells cell_point_uniqueness (_root_.term_function_const D u u') hrows γ
       hR₁ hRep hc₁ ⟨_, _, hL, hU, e⟩
     unfold ptT
     rw [hn]
@@ -99,7 +99,7 @@ theorem thRestricted_of (hA : ∀ p, Agree δ M p) (hrows : IsRowReps D F0 what�
   rw [hpt]
   have hmem : CntLocal.ZZP (M := M) δ u u' p (zT γ) * LsDatumB.sgnP p ∈ x0L M δ (D.mem u).A.T (D.mem u').A.T p w := by
     rw [← htup]
-    exact ⟨1, 1, one_intLow p, one_intUp p, by rw [Matrix.one_mul, Matrix.mul_one]⟩
+    exact ⟨1, 1, _root_.Formalism.L2.SG.Pf.PCount.intLow_one p, _root_.Formalism.L2.SG.Pf.PCount.intUp_one p, by rw [Matrix.one_mul, Matrix.mul_one]⟩
   obtain ⟨l, ρ, hl, hρ, he⟩ := hmem
   have hZZ : CntLocal.ZZP (M := M) δ u u' p (zT γ) =
       l * modMat δ (D.mem u).A.T (D.mem u').A.T p w * ρ * LsDatumB.sgnP p := by

@@ -87,7 +87,7 @@ theorem exists_isPIsog_pull {c : ℕ} {T Y : Scheme.{0}} {s₁ : T ⟶ Sp R} {s 
     ∃ ψ₁ : o₁.A ⟶ o₁'.A, m.φ ≫ ψ.left = ψ₁.left ≫ m'.φ ∧ IsPIsog c o₁ o₁' ψ₁ := by
   obtain ⟨ψ', hq⟩ := h.exists_quasiInv
   obtain ⟨B₁, _, _, θ, ψ₁, ψ₁', _, hpb, hq₁, h1, h2⟩ :=
-    GlobalTheory.T.quasiInverseIsogenyPair_baseChange_grpPullback T Y t o.A o'.A c ψ ψ' o₁.A m.φ o'.ab hq m.cart
+    _root_.GlobalTheory.UPel.HT.ES.pullQuasiInv T Y t o.A o'.A c ψ ψ' o₁.A m.φ o'.ab hq m.cart
   obtain ⟨e, he, heθ⟩ := grpPullback_iso hpb m'.cart
   have hψ : m.φ ≫ ψ.left = (ψ₁ ≫ e.hom).left ≫ m'.φ := by
     rw [h1, ← heθ, Over.comp_left, Category.assoc]
@@ -167,7 +167,7 @@ theorem UpperTheory.exists_isPIsog_isTj_of_section_repData :
   obtain ⟨ψ'', hsq, hiso⟩ := exists_isPIsog_pull m' m'' Rd.isog
   refine ⟨o'', ψ'', hiso, ?_, fun T a => ?_⟩
   · exact (tjAt_id_iff r w j o o'' ψ'').1
-      ((GlobalTheory.T.harrisTaylorType_iff_pulledBack_identity p D R b N _ _ _ _ _ o Rd.o₀ m' o''.A Rd.o'.A m''.φ ψ'' Rd.ψ r w j m''.cart hsq).1
+      ((_root_.GlobalTheory.UPel.HT.ES.tjAt_iff_tjAt_pull p D R b N _ _ _ _ _ o Rd.o₀ m' o''.A Rd.o'.A m''.φ ψ'' Rd.ψ r w j m''.cart hsq).1
         fun k _ _ _ x _ => Rd.tj k x)
   · refine ⟨pushHom m'.cart T a, ?_, comp_eq_one_iff m'.cart m''.cart hsq.symm a, fun v => ?_⟩
     · change (a.left ≫ m'.φ) ≫ Rd.m₀.φ = a.left

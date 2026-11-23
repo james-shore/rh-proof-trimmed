@@ -121,7 +121,7 @@ theorem vanish (h : C1 K.Oc)
     (v2 : ∀ k k' (e : K.le 0 k' k), h _ _ (ptHom (K.triv k') e) = 0)
     (v3 : ∀ k, h _ _ (jet0 k) = h _ _ (jet1 k)) (T T' : K.Obj) (φ : T ⟶ T') (hφ : φ.deg = 0) :
     h T T' φ = 0 := by
-  have hm := GlobalTheory.T.cochain_eq_of_same_degree_chartMorphism K h 0 (fun k T χ hχ ↦ by
+  have hm := _root_.GlobalTheory.AnPer.Charts.cochain_eq_ptHom K h 0 (fun k T χ hχ ↦ by
     rw [hc _ _ _ (jet0 k) χ rfl hχ, hc _ _ _ (jet1 k) χ rfl hχ, v3 k])
   have v5 : ∀ (k : K.K) (T : K.Obj) (f : K.triv k ⟶ T), f.deg = 0 → h _ _ f = 0 := by
     intro k T f hd
@@ -145,7 +145,7 @@ theorem jetDiff_sh (h : C1 K.Oc)
     (hc : ∀ (T T' T'' : K.Obj) (φ : T ⟶ T') (ψ : T' ⟶ T''), φ.deg = 0 → ψ.deg = 0 →
       h T T'' (φ ≫ ψ) = ψ.φ (h T T' φ) + h T' T'' ψ) (k k' : K.K) (e : K.le 0 k' k) (i : Fin g) :
     (jetDiff h k').snd i - K.sh e ((jetDiff h k).snd i) = dw i (trans0 h k k' e) := by
-  obtain ⟨χ, hχ, h0, h1, hx⟩ := GlobalTheory.T.exists_jet_morphism_extending_translation K e
+  obtain ⟨χ, hχ, h0, h1, hx⟩ := _root_.GlobalTheory.AnPer.Charts.jet_sh K e
   have c0 := hc _ _ _ (jet0 k) χ rfl hχ
   have c1 := hc _ _ _ (jet1 k) χ rfl hχ
   rw [h0] at c0

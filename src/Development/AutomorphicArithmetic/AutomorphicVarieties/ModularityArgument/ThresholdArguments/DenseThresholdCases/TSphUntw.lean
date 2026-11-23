@@ -102,7 +102,7 @@ theorem sphUntw_alt : _root_.UpperTheory.V.Z.Desc.W.SphUntwAlt := by
   have hGG : Good (IrrGL.of τ'.ρ τ'.smooth τ'.irred) ∧ Good (IrrGL.of τ.ρ τ.smooth τ.irred) := by
     rcases Nat.eq_zero_or_pos n with rfl | hn
     · exact ⟨good_zero τ', good_zero τ⟩
-    · obtain ⟨ξ, hξ, -, hs, -⟩ := GlobalTheory.T.supercuspidal_support_characters K n hn w τ' B hB
+    · obtain ⟨ξ, hξ, -, hs, -⟩ := _root_.GlobalTheory.SatSupp.hasSupport_of_hasSatGL K n hn w τ' B hB
       have h1 := GlobalTheory.RoadU.CharTwist.hasSupport_rep_tw hs _ hχ.inv
       rw [GlobalTheory.RoadU.CharTwist.chars_tw, ← ex'] at h1
       exact ⟨good_chars ξ hξ hs, good_chars _ _ h1⟩

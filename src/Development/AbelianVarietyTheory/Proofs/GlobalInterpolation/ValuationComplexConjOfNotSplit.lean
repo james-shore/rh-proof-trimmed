@@ -42,17 +42,13 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 @[expose] public section
 
 open NumberField IsDedekindDomain GlobalTheory.UnitaryBC
 
 namespace GlobalTheory.SplitOfSquare
-
-private theorem valued_v_algebraMap_adicCompletion_foundation {F : Type} [Field F] [NumberField F]
-    (u : HeightOneSpectrum (𝓞 F)) (x : F) :
-    Valued.v (algebraMap F (u.adicCompletion F) x) = u.valuation F x :=
-  u.valuedAdicCompletion_eq_valuation' x
 
 theorem exists_valuation_lt_one {F : Type} [Field F] [NumberField F] (u : HeightOneSpectrum (𝓞 F)) (a : F) (ha : a ≠ 0)
     (h : IsSquare (algebraMap F (u.adicCompletion F) a)) : ∃ c : F, u.valuation F (1 / 4 - c ^ 2 * a) < 1 := by
@@ -72,7 +68,7 @@ theorem exists_valuation_lt_one {F : Type} [Field F] [NumberField F] (u : Height
   set h2 : u.adicCompletion F := algebraMap F (u.adicCompletion F) 2⁻¹ with hh2
   set p : u.adicCompletion F := algebraMap F (u.adicCompletion F) π with hp
   have hp0 : p ≠ 0 := (map_ne_zero _).mpr hπ0
-  have hvp : Valued.v p < 1 := by rw [hp, valued_v_algebraMap_adicCompletion_foundation]; exact hπ1
+  have hvp : Valued.v p < 1 := by rw [hp, _root_.Formalism.UG.P.levelaf_valued_algebraMap]; exact hπ1
   have hI := Valued.isOpen_integer (u.adicCompletion F)
   have hcont : Continuous (fun y : u.adicCompletion F => (y * s - h2) * p⁻¹) :=
     ((continuous_id.mul continuous_const).sub continuous_const).mul continuous_const
@@ -98,7 +94,7 @@ theorem exists_valuation_lt_one {F : Type} [Field F] [NumberField F] (u : Height
     rw [e1, map_sub, map_mul, map_mul, map_pow, hs, ← hh2]
     rw [hz_def]
     linear_combination (h2 - y * s) * hhalf
-  rw [← valued_v_algebraMap_adicCompletion_foundation, hkey]
+  rw [← _root_.Formalism.UG.P.levelaf_valued_algebraMap, hkey]
   have h1z : Valued.v (1 + z) ≤ 1 := by
     calc Valued.v (1 + z) ≤ max (Valued.v (1 : u.adicCompletion F)) (Valued.v z) :=
           Valuation.map_add _ _ _

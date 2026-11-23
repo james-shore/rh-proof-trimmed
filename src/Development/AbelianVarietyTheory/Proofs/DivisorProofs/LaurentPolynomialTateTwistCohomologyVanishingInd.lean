@@ -60,10 +60,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite Simplicial GlobalTheory.Et
 
 namespace GlobalTheory.EtC.GmStep
 
-theorem pull_cast {q : ℕ} {E E' : Spc} (f : E ⟶ E') {n i n' i' : ℤ} (hn : n = n') (hi : i = i') (x : Ht q E' n i) :
-    pull _ f _ _ (Ht.cast hn hi x) = Ht.cast hn hi (pull _ f _ _ x) := by
-  subst hn; subst hi; rfl
-
 theorem cechC_face (A A' : Type) [CommRing A] [CommRing A'] [Algebra A A'] {R : Type} [CommRing R] (F : Shv R) (s : ℤ)
     (k : ℕ) (j : Fin (k + 2)) (y : H R (disc.obj ((cech (baseHom A A')).obj (op ⦋k⦌))) F s) :
     pull R (disc.map ((cechC A A').app (op ⦋k + 1⦌))) F s (pull R (disc.map ((cech (baseHom A A')).δ j)) F s y) =
@@ -87,8 +83,8 @@ theorem rowExact_base (q : ℕ) [NeZero q] (A : Type) [CommRing A] (hA : SH A) (
   have hint : (algebraMap A A').IsIntegral := fun x => Algebra.IsIntegral.isIntegral x
   obtain ⟨hI, hS⟩ := spec_integral_surj (algebraMap A A') hint hker
   have hB := @GlobalTheory.EtC.b4 q _ _ (baseHom A A') hI hS (isUnit_gamma q A hq) j
-  refine GlobalTheory.T.simplicialSpectralRowExact_zero_of_acyclic (ZMod q) (tw q j) _ (fun k s hs => GlobalTheory.T.cech_cohomology_vanishes_positive q A hA hq A' inferInstance k s j hs) (fun m hm => ?_) p
-  haveI : Subsingleton (H (ZMod q) (sch.obj (Spec (CommRingCat.of A))) (tw q j) m) := GlobalTheory.T.strictlyHenselianLocalRing_acyclic_every_sheaf (ZMod q) A hA (tw q j) m hm
+  refine _root_.GlobalTheory.EtC.GmStep.rowExact_zero_of_acyclic (ZMod q) (tw q j) _ (fun k s hs => _root_.GlobalTheory.EtC.GmStep.cech_level_acyc q A hA hq A' inferInstance k s j hs) (fun m hm => ?_) p
+  haveI : Subsingleton (H (ZMod q) (sch.obj (Spec (CommRingCat.of A))) (tw q j) m) := _root_.GlobalTheory.EtC.b2 (ZMod q) A hA (tw q j) m hm
   exact ⟨fun a b => by
     obtain ⟨a', rfl⟩ := (hB m).2 a
     obtain ⟨b', rfl⟩ := (hB m).2 b
@@ -101,7 +97,7 @@ theorem gm_vanishing_step : ∀ (q : ℕ) [NeZero q] (n : ℤ), 2 ≤ n → (∀
   intro q _ n hn IH A _ _ hA hq i
   suffices h : ∀ x : Ht q (sp (LaurentPolynomial A)) n i, x = 0 from ⟨fun x y => by rw [h x, h y]⟩
   intro x
-  obtain ⟨A', _, _, hfin, hker, hx⟩ := GlobalTheory.T.laurent_cohomology_finite_killing q A hA hq n i hn x
+  obtain ⟨A', _, _, hfin, hker, hx⟩ := _root_.GlobalTheory.EtC.GmKill.main q A hA hq n i hn x
   haveI := hfin
   have hint : (algebraMap A A').IsIntegral := fun x => Algebra.IsIntegral.isIntegral x
   obtain ⟨hI', hS'⟩ := spec_integral_surj _ (laurentMap_isIntegral _ hint) (laurentMap_ker _ hker)
@@ -110,8 +106,8 @@ theorem gm_vanishing_step : ∀ (q : ℕ) [NeZero q] (n : ℤ), 2 ≤ n → (∀
   obtain ⟨N, rfl⟩ : ∃ N : ℕ, n = N := ⟨n.toNat, by omega⟩
   apply (hB N).1
   rw [map_zero]
-  obtain ⟨Δ, hΔ0, hΔ⟩ := GlobalTheory.T.exists_cechNerve_diagonal_iso_zero_over_base (laurentHom A A')
-  refine GlobalTheory.T.etaleSpaceCohomology_eq_zero_of_simplicialRowExact (ZMod q) (tw q i) (cech (laurentHom A A')) (yoneda.obj _) Δ hΔ0 N _ ?_ ?_
+  obtain ⟨Δ, hΔ0, hΔ⟩ := _root_.GlobalTheory.EtC.GmStep.cechDiag_spec (laurentHom A A')
+  refine _root_.GlobalTheory.EtC.vanish_of_rowExact (ZMod q) (tw q i) (cech (laurentHom A A')) (yoneda.obj _) Δ hΔ0 N _ ?_ ?_
   · exact (pull_comp (ZMod q) Δ (cechAug (laurentHom A A')) (tw q i) N x).symm.trans
       ((congrArg (fun g => pull (ZMod q) g (tw q i) N x) hΔ).trans hx)
   · intro p hp
@@ -119,16 +115,16 @@ theorem gm_vanishing_step : ∀ (q : ℕ) [NeZero q] (n : ℤ), 2 ≤ n → (∀
         2 ≤ (N : ℤ) - ((p + 1 : ℕ) : ℤ)) with h0 | h1 | h2
     · rw [h0]
       exact rowExact_transfer (fun k => pull _ (disc.map ((cechC A A').app (op ⦋k⦌))) (tw q i) 0)
-        (fun k => GlobalTheory.T.laurentCechNerve_pullback_bijective_degree_zero q A hA hq A' hfin k i) (fun k j y => cechC_face A A' _ _ k j y) p
+        (fun k => _root_.GlobalTheory.EtC.GmStep.LevelZero.cechC_pull_bijective q A hA hq A' hfin k i) (fun k j y => cechC_face A A' _ _ k j y) p
         (rowExact_base q A hA hq A' hker i p)
     · rw [h1]
-      refine rowExact_transfer (fun k => rowOne A A' q i k) (fun k => GlobalTheory.T.cech_degree_zero_bijective q A hA hq A' hfin k i) (fun k j y => ?_) p
+      refine rowExact_transfer (fun k => rowOne A A' q i k) (fun k => _root_.GlobalTheory.EtC.GmStep.LevelOne.rowOne_bijective q A hA hq A' hfin k i) (fun k j y => ?_) p
         (rowExact_base q A hA hq A' hker (i - 1) p)
       simp only [rowOne, AddMonoidHom.coe_mk, ZeroHom.coe_mk]
-      rw [pull_cast, (GlobalTheory.T.cup_chern_kummer_pullback_naturality q).1, cechC_face,
+      rw [_root_.GlobalTheory.EtC.GmStep.LevelOne.pull_cast, (_root_.GlobalTheory.EtC.a6nat_holds q).1, cechC_face,
         ← pull_comp (ZMod q) (disc.map ((cech (laurentHom A A')).δ j)) (augK A A' k), aug_face]
     · intro y _
-      haveI := GlobalTheory.T.laurentCechNerve_level_cohomology_subsingleton q N IH A hA hq A' hfin (p + 1) _ i h2 (by omega)
+      haveI := _root_.GlobalTheory.EtC.GmStep.level_vanish q N IH A hA hq A' hfin (p + 1) _ i h2 (by omega)
       exact ⟨0, by rw [map_zero]; exact Subsingleton.elim _ _⟩
 
 end GlobalTheory.EtC.GmStep

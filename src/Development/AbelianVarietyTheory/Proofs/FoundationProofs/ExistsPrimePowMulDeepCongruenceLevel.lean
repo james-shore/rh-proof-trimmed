@@ -64,10 +64,6 @@ namespace GlobalTheory.DeepLevel
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem norm_natCast_l : ‖((l : ℕ) : PadicAlgCl l)‖ = (l : ℝ)⁻¹ := by
-  have : ((l : ℕ) : PadicAlgCl l) = algebraMap ℚ_[l] (PadicAlgCl l) (l : ℚ_[l]) := by simp
-  rw [this, norm_algebraMap', Padic.norm_p]
-
 theorem eO_toNat_pos (c : Coef l) : 1 ≤ (UpperTheory.V.Base.eO l c.O).toNat := by
   obtain ⟨-, -, -, -, -, he0, -, hev, -⟩ := UpperTheory.V.Base.dvrFacts l c.O
   have hl0 : ((l : ℕ) : c.O) ≠ 0 := by
@@ -112,7 +108,7 @@ theorem norm_le_iff_dvd (c : Coef l) (x : c.O) (k : ℕ) :
     have hq0 : (0 : ℝ) < (l : ℝ)⁻¹ := by
       have := (Fact.out : l.Prime).pos; positivity
     have hq1 : (l : ℝ)⁻¹ < 1 := inv_lt_one_of_one_lt₀ (by exact_mod_cast (Fact.out : l.Prime).one_lt)
-    rw [norm_pow, norm_natCast_l] at hx
+    rw [norm_pow, _root_.GlobalTheory.CycTrace.norm_l] at hx
     have h2 : ‖(x : PadicAlgCl l)‖ ^ e ≤ ((l : ℝ)⁻¹ ^ k) ^ e := pow_le_pow_left₀ (norm_nonneg _) hx e
     rw [h, ← pow_mul] at h2
     have h3 : k * e ≤ v := (pow_le_pow_iff_right_of_lt_one₀ hq0 hq1).1 h2

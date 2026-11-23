@@ -51,21 +51,12 @@ noncomputable section
 
 namespace GlobalTheory.UCanon.BaseSch
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
-
-theorem spMap_injective {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) :
-    f = g := by
-  have := congrArg CommRingCat.Hom.hom (Spec.map_injective h)
-  simpa using this
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
 theorem lowMap_eq {l : Geo.Tor.Level H} (c : Coeff l) {A : Type} [CommRing A] (b : c.F →+* A) :
     lowMap c b = spMap b ≫ lowMap c (RingHom.id c.F) := by
   simp only [lowMap, RingHom.id_comp]
-  rw [← spMap_comp']
+  rw [← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
 
 theorem objMap_congr {D : Datum H} {l : Geo.Tor.Level H} {S S' : Scheme.{0}} {s : S ⟶ Sp (KA l)}
     {s' : S' ⟶ Sp (KA l)} {o : Obj D l (baseKA l) s} {o' : Obj D l (baseKA l) s'} {f f' : S' ⟶ S} (h : f = f')
@@ -165,8 +156,8 @@ theorem of_homScheme (D' : Datum H) {l : Geo.Tor.Level H} (c : Coeff l) (X : Typ
     rw [hq]
     simpa [hθ₀, spMap] using Scheme.Spec_stalkClosedPointTo_fromSpecStalk v
   have hθb : θ₀.comp b = bV := by
-    apply spMap_injective
-    rw [spMap_comp', ← hqb, ← Category.assoc, hθq, hvg]
+    apply _root_.GlobalTheory.ZM.DenseFib.spMap_inj
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← hqb, ← Category.assoc, hθq, hvg]
   obtain ⟨m0', hm0'⟩ := objMap_congr hθq.symm m0
   obtain ⟨n, hn⟩ := ((obj_pull_comp_cancel (D := D') (l := LowDat.lowLevel l)).2 _ _ _ oC o o' q (spMap θ₀) mq).2 m0'
   have hmono : ∀ {T : Scheme.{0}} (a₁ a₂ : T ⟶ Sp (Cs.presheaf.stalk (v (closedPoint V)))), a₁ ≫ q = a₂ ≫ q → a₁ = a₂ :=
@@ -187,25 +178,25 @@ theorem of_homScheme (D' : Datum H) {l : Geo.Tor.Level H} (c : Coeff l) (X : Typ
     obtain ⟨k₁, hk₁⟩ := ((obj_pull_comp_cancel (D := D') (l := LowDat.lowLevel l)).2 _ _ _ oC o o'' q (spMap f₁) mq).1 m₁
     obtain ⟨k₂, hk₂⟩ := ((obj_pull_comp_cancel (D := D') (l := LowDat.lowLevel l)).2 _ _ _ oC o o'' q (spMap f₂) mq).1 m₂
     have hg : ∀ f : Cs.presheaf.stalk (v (closedPoint V)) →+* A, (spMap f ≫ q) ≫ g = spMap (f.comp b) := fun f => by
-      rw [Category.assoc, hqb, spMap_comp']
+      rw [Category.assoc, hqb, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     have e := huniq A (spMap f₁ ≫ q) (spMap f₂ ≫ q) (by rw [hg, hg, hf]) _ o'' k₁ k₂ z
       (by rw [lowMap_eq c (f₁.comp b), ← hg, Category.assoc])
       (fun y => by rw [hk₁, ← Category.assoc, hz₁, Category.assoc, hx₀, Category.assoc])
       (fun y => by rw [hk₂, ← Category.assoc, hz₂, Category.assoc, hx₀, Category.assoc])
-    exact spMap_injective (hmono _ _ e)
+    exact _root_.GlobalTheory.ZM.DenseFib.spMap_inj (hmono _ _ e)
   · intro k _ f o'' m₁ m₂ z hz₁ hz₂ _
     obtain ⟨k₁, hk₁⟩ := ((obj_pull_comp_cancel (D := D') (l := LowDat.lowLevel l)).2 _ _ _ oC o o'' q (spMap f) mq).1 m₁
     obtain ⟨k₂, hk₂⟩ := ((obj_pull_comp_cancel (D := D') (l := LowDat.lowLevel l)).2 _ _ _ oC o o'' q
       (spMap (GlobalTheory.RigChart.constHom f)) mq).1 m₂
     have hc : spMap (GlobalTheory.RigChart.constHom f) ≫ q = constPt (spMap f ≫ q) := by
-      simp only [constPt, GlobalTheory.RigChart.constHom, spMap_comp', Category.assoc]
+      simp only [constPt, GlobalTheory.RigChart.constHom, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc]
     obtain ⟨k₂', hk₂'⟩ := objMap_congr hc k₂
     have e := heps k (spMap f ≫ q) _ o'' k₁ k₂' z
-      (by rw [lowMap_eq c (f.comp b), spMap_comp', ← hqb]; simp only [Category.assoc])
+      (by rw [lowMap_eq c (f.comp b), _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← hqb]; simp only [Category.assoc])
       (fun y => by rw [hk₁, ← Category.assoc, hz₁, Category.assoc, hx₀, Category.assoc])
       (fun y => by rw [hk₂', hk₂, ← Category.assoc, hz₂, Category.assoc, hx₀, ← Category.assoc, hc])
     rw [← hc] at e
-    exact spMap_injective (hmono _ _ e)
+    exact _root_.GlobalTheory.ZM.DenseFib.spMap_inj (hmono _ _ e)
 
 end GlobalTheory.UCanon.BaseSch
 

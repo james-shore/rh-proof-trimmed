@@ -100,7 +100,7 @@ theorem bound_on_cube (n : ℕ) (Q : Set (Idx n → ℝ)) (hQc : IsCompact Q) (h
 
 theorem sobG : PositivityTheory.RgBcC.SobG := by
   intro n _ _ μ _
-  obtain ⟨hGo, hcm, hcm0, hsm⟩ := GlobalTheory.T.chart_and_right_words_smooth n
+  obtain ⟨hGo, hcm, hcm0, hsm⟩ := _root_.GlobalTheory.CompanionTheory.SobGL.Smooth.smooth_all n
   set U0 : Set (Idx n → ℝ) := {t | 1 + cm t ∈ GLs n} with hU0def
   have hU0 : IsOpen U0 := hGo.preimage (continuous_const.add hcm)
   have h0 : (0 : Idx n → ℝ) ∈ U0 := by
@@ -128,7 +128,7 @@ theorem sobG : PositivityTheory.RgBcC.SobG := by
   have hKsub : (fun t => 1 + cm t) '' Q ⊆ GLs n := by
     rintro _ ⟨t, ht, rfl⟩
     exact hQG t ht
-  obtain ⟨hlg, hlgc⟩ := GlobalTheory.T.length_continuous_proper_sublevel n
+  obtain ⟨hlg, hlgc⟩ := _root_.GlobalTheory.CompanionTheory.SobGL.lg_continuousOn_and_isCompact n
   obtain ⟨r, hr⟩ := hK.exists_bound_of_continuousOn (hlg.mono hKsub)
   set S : Set (G n) := {y | lg (y : Mat n) ≤ r} with hSdef
   have hSc : IsCompact S := hlgc r

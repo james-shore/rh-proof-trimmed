@@ -92,13 +92,6 @@ theorem lc_translate {Γ A : Type} [Group Γ] [Ring A] [Module ℤ_[l] A] [SMulC
   rw [this, ← Finsupp.apply_linearCombination]
   rfl
 
-theorem tup_mul {Γ : Type} [Group Γ] {a m : ℕ} (ρs : Fin m → (Γ →* GL (Fin a) (Om l))) (g h : Γ) :
-    tup ρs (g * h) = tup ρs g * tup ρs h := by
-  funext k; simp [tup, map_mul, Units.val_mul]
-
-theorem tup_one {Γ : Type} [Group Γ] {a m : ℕ} (ρs : Fin m → (Γ →* GL (Fin a) (Om l))) : tup ρs 1 = 1 := by
-  funext k; simp [tup]
-
 theorem coordsB {Γ : Type} [Group Γ] {a d : ℕ} {ρ : Γ →* GL (Fin d) ℤ_[l]} {r : Γ →* GL (Fin a) (Om l)}
     {b : Fin d → Matrix (Fin a) (Fin a) (Om l)} {e : Fin d → ℤ_[l]} (hR : Reads ρ r b e) (f : Γ →₀ ℤ_[l]) :
     Finsupp.linearCombination ℤ_[l] (fun h => ((r h : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l))) f =
@@ -130,22 +123,22 @@ theorem coordsB {Γ : Type} [Group Γ] {a d : ℕ} {ρ : Γ →* GL (Fin d) ℤ_
 
 theorem layer : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ] [TopologicalSpace Γ] (a : ℕ) (r : Γ →* GL (Fin a) (Om l)) (d : ℕ) (ρ : Γ →* GL (Fin d) ℤ_[l]) (b : Fin d → Matrix (Fin a) (Fin a) (Om l)) (e : Fin d → ℤ_[l]), Reads ρ r b e → LinearIndependent ℚ_[l] b → (∀ i, ∃ f : Γ →₀ ℤ_[l], b i = f.sum fun h c => zOm l c • ((r h : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l))) → ∀ c : ℕ, (∀ (n : ℕ) (f : Γ →₀ ℤ_[l]), (∀ g, ‖((f.sum fun h c => zOm l c • ((r h : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l))) * ((r g : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l))).trace‖ ≤ ((l : ℝ)⁻¹) ^ (n + c)) → ∃ f' : Γ →₀ ℤ_[l], (f.sum fun h c => zOm l c • ((r h : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l))) = (l : Om l) ^ n • (f'.sum fun h c => zOm l c • ((r h : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l)))) → ∀ (n N : ℕ), n ≤ N → (∀ w : Fin d → ℤ_[l], ‖((l : Om l) ^ N • ∑ i, zOm l (w i) • b i).trace‖ ≤ ((l : ℝ) ^ n)⁻¹) → ∀ (m : ℕ) (ρs : Fin m → (Γ →* GL (Fin a) (Om l))) (L : Fin m → FinExt l) (t : Fin m → Finset (Matrix (Fin a) (Fin a) (Om l))), (∀ k, Continuous (ρs k)) → (∀ k g i j, ((ρs k g : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l)) i j ∈ (L k).1) → (∀ k, ∀ x ∈ t k, ∀ i j, x i j ∈ (L k).1) → (∀ k (x : Matrix (Fin a) (Fin a) (Om l)), (∀ i j, x i j ∈ (L k).1) → x ∈ Submodule.span ℚ_[l] (t k : Set (Matrix (Fin a) (Fin a) (Om l)))) → (∀ k, ∃ c' : Matrix (Fin a) (Fin a) (Om l) → ℤ_[l], ∑ y ∈ t k, zOm l (c' y) • y = 1) → (∀ k g, ∀ x ∈ t k, ∃ c' : Matrix (Fin a) (Fin a) (Om l) → ℤ_[l], ((ρs k g : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l)) * x = ∑ y ∈ t k, zOm l (c' y) • y) → ∀ cs : Fin m → Om l, (∀ g, ‖trc r g - ∑ k, cs k * trc (ρs k) g‖ ≤ ((l : ℝ)⁻¹) ^ (N + c)) → ∃ M₀ : ℕ, ∀ M, M₀ ≤ M → ∃ (d' : ℕ) (ρ' : Γ →* GL (Fin d') ℤ_[l]) (bb : Fin d' → Fin m → Matrix (Fin a) (Fin a) (Om l)) (e' : Fin d' → ℤ_[l]) (P : Matrix (Fin d) (Fin d') ℤ_[l]), Continuous ρ' ∧ (∀ s k i j, bb s k i j ∈ (L k).1) ∧ LinearIndependent ℚ_[l] bb ∧ (∀ x : Fin m → Matrix (Fin a) (Fin a) (Om l), (∀ k i j, x k i j ∈ (L k).1) → x ∈ Submodule.span ℚ_[l] (Set.range bb)) ∧ (∀ k, Reads ρ' (ρs k) (fun s => bb s k) e') ∧ (∀ s, bb s ∈ GlobalTheory.TraceConjugationCover.latT ρs t M) ∧ (∀ x ∈ GlobalTheory.TraceConjugationCover.latT ρs t M, ∃ z : Fin d' → ℤ_[l], x = ∑ s, zOm l (z s) • bb s) ∧ GlobalTheory.TraceConjugationCover.Carries r b ρs t M bb P N ∧ Onto (fun g => ((ρ g : GL (Fin d) ℤ_[l]) : Matrix (Fin d) (Fin d) ℤ_[l])) (fun g => ((ρ' g : GL (Fin d') ℤ_[l]) : Matrix (Fin d') (Fin d') ℤ_[l])) P n ∧ (∀ i, (l : ℤ_[l]) ^ n ∣ (P *ᵥ e' - e) i) ∧ ∀ s, ‖(∑ i, zOm l (P i s) • b i).trace - ∑ k, cs k * (bb s k).trace‖ ≤ ((l : ℝ) ^ n)⁻¹ := by
   intro l _ Γ _ _ a r d ρ b e hR hind hspan c hlow n N hnN hN m ρs L t hcont hρL htL hLspan hone hstab cs happ
-  obtain ⟨u, hu⟩ := GlobalTheory.T.galoisRepTuple_span_saturation_bound l Γ a m ρs t hone hstab
-  obtain ⟨M₁, hM₁⟩ := GlobalTheory.T.trace_estimate_scaledProductSpanLattice l Γ a r m ρs t c N n cs hnN happ
+  obtain ⟨u, hu⟩ := _root_.GlobalTheory.CovSat.satA l Γ a m ρs t hone hstab
+  obtain ⟨M₁, hM₁⟩ := _root_.GlobalTheory.trace_estimate_latL l Γ a r m ρs t c N n cs hnN happ
   refine ⟨max (N + u) M₁, fun M hM => ?_⟩
   have hMu : N + u ≤ M := le_trans (le_max_left _ _) hM
   have hM1 : M₁ ≤ M := le_trans (le_max_right _ _) hM
-  obtain ⟨hstL, hstT⟩ := GlobalTheory.T.scaledProductSpanLattice_stable_galoisRepTuple l Γ a m ρs t M hstab
-  obtain ⟨hentT, hspT⟩ := GlobalTheory.T.scaledProductSpanLattice_entries_and_span l Γ a m ρs L t M hρL htL hLspan
-  obtain ⟨d', bb, hbbind, hbbmem, hbbco⟩ := GlobalTheory.T.scaledProductSpanLattice_exists_padic_basis l Γ a m ρs t M hone hstab
-  obtain ⟨ρ', hρ'c, hact⟩ := GlobalTheory.T.continuous_rep_of_matrixTuple_padic_basis l Γ a m ρs (latT ρs t M) d' bb hcont hbbind hbbmem hbbco hstT
+  obtain ⟨hstL, hstT⟩ := _root_.GlobalTheory.TraceConjugationCover.stabE l Γ a m ρs t M hstab
+  obtain ⟨hentT, hspT⟩ := _root_.GlobalTheory.TraceConjugationCover.latT_entries_and_span l Γ a m ρs L t M hρL htL hLspan
+  obtain ⟨d', bb, hbbind, hbbmem, hbbco⟩ := _root_.GlobalTheory.TraceConjugationCover.latT_basis l Γ a m ρs t M hone hstab
+  obtain ⟨ρ', hρ'c, hact⟩ := _root_.GlobalTheory.CovRep.rep_of_basis l Γ a m ρs (latT ρs t M) d' bb hcont hbbind hbbmem hbbco hstT
   have hW : ∀ H : Γ →₀ ℤ_[l], Finsupp.linearCombination ℤ_[l] (tup ρs) H ∈ latL t M →
       ∃ w : Fin d → ℤ_[l], Finsupp.linearCombination ℤ_[l] (fun h => ((r h : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l))) H = (l : Om l) ^ N • ∑ i, w i • b i := by
     intro H hH
     rw [← sumZ] at hH
     obtain ⟨H', hH'⟩ := hu N M hMu H hH
     rw [sumZ, sumZ, lpow_smul] at hH'
-    obtain ⟨f', hf'⟩ := GlobalTheory.T.galoisRepTuple_relation_mem_pow_span l Γ a r m ρs c N cs hlow happ (H - (l : ℤ_[l]) ^ N • H') (by
+    obtain ⟨f', hf'⟩ := _root_.GlobalTheory.CovKer.kerB l Γ a r m ρs c N cs hlow happ (H - (l : ℤ_[l]) ^ N • H') (by
       rw [sumZ, map_sub, map_smul, hH', sub_self])
     rw [sumZ, sumZ, map_sub, map_smul, lpow_smul] at hf'
     refine ⟨fun i => (f' + H').sum fun h c => c * ∑ j, ((ρ h : GL (Fin d) ℤ_[l]) : Matrix (Fin d) (Fin d) ℤ_[l]) i j * e j, ?_⟩
@@ -182,7 +175,7 @@ theorem layer : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ] [Topological
     rw [hPz, ← hw, map_sub]
     abel
 
-  have h1T : (1 : Fin m → Matrix (Fin a) (Fin a) (Om l)) ∈ latT ρs t M := by rw [← tup_one ρs]; exact tup_mem_latT ρs t M 1
+  have h1T : (1 : Fin m → Matrix (Fin a) (Fin a) (Om l)) ∈ latT ρs t M := by rw [← _root_.GlobalTheory.CovRep.tup_one ρs]; exact tup_mem_latT ρs t M 1
   obtain ⟨e', he'⟩ := hbbco 1 h1T
   have hrb : ∀ g (v : Fin d → ℤ_[l]), ((r g : GL (Fin a) (Om l)) : Matrix (Fin a) (Fin a) (Om l)) * ∑ s, v s • b s =
       ∑ i, (((ρ g : GL (Fin d) ℤ_[l]) : Matrix (Fin d) (Fin d) ℤ_[l]) *ᵥ v) i • b i := by
@@ -219,7 +212,7 @@ theorem layer : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ] [Topological
       rw [sumZ_fin] at hz
       obtain ⟨w, hw⟩ := hCar (fun s => ((ρ' g : GL (Fin d') ℤ_[l]) : Matrix (Fin d') (Fin d') ℤ_[l]) s j)
         ((F j).mapDomain (g * ·)) (tup ρs g * y j) (hstL g _ (hy j)) (by
-          rw [← hz, lc_translate _ (tup_mul ρs) g, hFy j, mul_add])
+          rw [← hz, lc_translate _ (_root_.GlobalTheory.CovRep.tup_mul ρs) g, hFy j, mul_add])
       rw [lc_translate _ hrmul g, ← hP j, hrb, lpow_smul, Finset.smul_sum, ← Finset.sum_add_distrib] at hw
       simp only [smul_smul, ← add_smul] at hw
       have := congrFun (coord_unique hind hw) i
@@ -253,7 +246,7 @@ theorem layer : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ] [Topological
       exact Dvd.dvd.mul_right (pow_dvd_pow _ hnN) _
   · intro i
     obtain ⟨w, hw⟩ := hCar e' (Finsupp.single 1 1) 0 (Submodule.zero_mem _) (by
-      rw [add_zero, Finsupp.linearCombination_single, one_smul, tup_one, he', sumZ_fin])
+      rw [add_zero, Finsupp.linearCombination_single, one_smul, _root_.GlobalTheory.CovRep.tup_one, he', sumZ_fin])
     rw [Finsupp.linearCombination_single, one_smul, map_one, Units.val_one, ← hR.one, sumZ_fin, lpow_smul,
       Finset.smul_sum, ← Finset.sum_add_distrib] at hw
     simp only [smul_smul, ← add_smul] at hw

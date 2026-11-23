@@ -67,7 +67,7 @@ theorem surjective_pow_of_isAbelianScheme :
   haveI : ConnectedSpace (Sp K) := inferInstanceAs (ConnectedSpace (Spec (CommRingCat.of K)))
   have hw : ((𝟙 A) ^ n : A ⟶ A).left ≫ A.hom = A.hom := Over.w _
   haveI : Flat ((𝟙 A) ^ n : A ⟶ A).left :=
-    GlobalTheory.CompanionTheory.Ar.BT.flat_mul_semiAbelian (Sp K) A (GlobalTheory.isSemiAbelian_of_isAbelianScheme A hA) n
+    _root_.PositivityTheory.HtPt.Twhopf.mul_flat (Sp K) A (GlobalTheory.isSemiAbelian_of_isAbelianScheme A hA) n
       (Nat.one_le_iff_ne_zero.mpr hn)
   haveI : LocallyOfFiniteType ((𝟙 A) ^ n : A ⟶ A).left :=
     HasRingHomProperty.of_comp (fun _ _ h => RingHom.FiniteType.of_comp_finiteType h)

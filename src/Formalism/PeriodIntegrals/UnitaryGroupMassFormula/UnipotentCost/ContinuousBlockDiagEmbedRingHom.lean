@@ -105,18 +105,10 @@ theorem conj_exp {m : ℕ} (n X : Matrix (Fin m) (Fin m) ℂ) (hn : n * n⁻¹ =
     n⁻¹ * NormedSpace.exp X * n = NormedSpace.exp (n⁻¹ * X * n) :=
   (Matrix.exp_conj' n X ((Matrix.isUnit_iff_isUnit_det n).2 (Matrix.isUnit_det_of_right_inverse hn))).symm
 
-private lemma Rn_mul_inv' (x : RC k j ρ) : Rn k j ρ x * (Rn k j ρ x)⁻¹ = 1 := by
-  apply Matrix.mul_nonsing_inv
-  have h0 : (Matrix.fromCols (0 : Matrix (Fin j) (Fin j) ℂ) (0 : Matrix (Fin j) (Fin (2 * ρ + k + 1)) ℂ)) = 0 := by
-    ext a b; rcases b with b | b <;> rfl
-  simp only [Rn, blk3, Matrix.det_reindex_self]
-  rw [h0, Matrix.det_fromBlocks_zero₂₁, Matrix.det_fromBlocks_zero₂₁]
-  simp
-
 theorem conj_letter (x : RC k j ρ) (Y : B.Mat k ρ) (c : ℂ) :
     (Rn k j ρ x)⁻¹ * embG k j ρ (NormedSpace.exp (c • Y)) * Rn k j ρ x =
       NormedSpace.exp (c • cj k j ρ x Y) := by
-  rw [embG_exp, blockDiag3_smul_middle, conj_exp _ _ (Rn_mul_inv' x), Matrix.mul_smul, Matrix.smul_mul]
+  rw [embG_exp, blockDiag3_smul_middle, conj_exp _ _ (_root_.Formalism.FourierDecayAlt.P.Ux4.Rn_mul_inv x), Matrix.mul_smul, Matrix.smul_mul]
   rfl
 
 end words

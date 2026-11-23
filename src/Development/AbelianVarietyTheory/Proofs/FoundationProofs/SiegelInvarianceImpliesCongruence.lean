@@ -128,9 +128,6 @@ theorem hasQ_expo (c M a b : ℕ) (hM : 0 < M) (ha : a < M) (hadm : admitted c !
   · rw [tc_zero]
     exact unitPart_zero_ne hc hM ha (pow_ne_zero _ hζ0) hne
 
-theorem ee_add (x y : ℂ) : ee (x + y) = ee x * ee y := by
-  rw [ee, ee, ee, ← Complex.exp_add]; ring_nf
-
 theorem hasQ_shift {M : ℕ} {f : ℍ → ℂ} {α : ℕ → ℂ} (h : HasQ M f α) (d : ℕ) :
     HasQ M (fun τ => f τ * ee (((d : ℂ) / M) * (τ : ℂ))) (fun n => if d ≤ n then α (n - d) else 0) := by
   intro τ
@@ -166,7 +163,7 @@ theorem exp_siegel_ord {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ
         fun τ => f τ * ee (-((v : ℂ) / M) * (τ : ℂ)) := by
     intro u v d hd
     funext τ
-    rw [mul_assoc, ← ee_add]
+    rw [mul_assoc, ← _root_.GlobalTheory.Sieg.Model.ee_add]
     congr 2
     have hd' : (d : ℂ) = (u : ℂ) - v := by exact_mod_cast hd
     rw [hd']; ring

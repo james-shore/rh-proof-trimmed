@@ -83,7 +83,7 @@ theorem exists_lift : ∀ (K : Type) [Field K] [IsAlgClosed K] (V : Type) [CommR
     have h1 : (1 : R₁) ∈ I := h ▸ Submodule.mem_top
     rw [hI, RingHom.mem_ker, map_one] at h1
     exact one_ne_zero h1
-  have hIc : IsAdicComplete I R₁ := GlobalTheory.T.isAdicComplete_of_le_of_isNoetherianRing' R₁ I (maximalIdeal R₁) (le_maximalIdeal hItop) hc
+  have hIc : IsAdicComplete I R₁ := _root_.GlobalTheory.isAdicComplete_of_le_of_isNoetherianRing R₁ I (maximalIdeal R₁) (le_maximalIdeal hItop) hc
   have hne : ∀ e : ℕ, I ^ (e + 1) ≠ ⊤ := fun e h =>
     hItop (top_le_iff.1 (h ▸ Ideal.pow_le_self (Nat.succ_ne_zero e)))
   haveI hnt : ∀ e : ℕ, Nontrivial (R₁ ⧸ I ^ (e + 1)) := fun e => Ideal.Quotient.nontrivial_iff.2 (hne e)
@@ -159,7 +159,7 @@ theorem exists_lift : ∀ (K : Type) [Field K] [IsAlgClosed K] (V : Type) [CommR
     GlobalTheory.KTrivJacobson.kTriv_of_quotient R₁ (I ^ (0 + 1)) hJ B hB M hM haM Y₀ (b 0) (hb 0) _ hL₀ (hiso 0) hK₀
   have hPf := GlobalTheory.AbDual.isPerfect_lam hM hK
   have hr : Out.Rigidified B M := GlobalTheory.LB.exists_isGen_of_isLocalRing (R := R₁) (pull_isLB hM _)
-  have hΘ := GlobalTheory.HodgeWeil.triv_theta GlobalTheory.CubeTop.cubeTheorem hB hM
+  have hΘ := GlobalTheory.HodgeWeil.triv_theta _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hB hM
   have w : (φ ≫ b 0) ≫ B.hom = A.hom ≫ spMap π := hi.1.w
   have sq := GlobalTheory.LamPull.exists_isSquare w
   have hlamA : (abelian₂ A L).IsLB := LB.isLB_linComb hL _ _

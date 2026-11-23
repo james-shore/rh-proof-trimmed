@@ -65,10 +65,6 @@ def UnitTriv (D : D7) (χ : (AE D)ˣ →* Circle) (S : Finset (Pl D)) : Prop :=
     (∀ v ∉ S, cv D v (u : AE D) ∈ intLoc D.host.F D.host.E v ∧
       cv D v ((u⁻¹ : (AE D)ˣ) : AE D) ∈ intLoc D.host.F D.host.E v) → χ u = 1 ∧ absA D u = 1
 
-theorem cA_cA (z : AE D) : cA D (cA D z) = z := by
-  have := congrFun (congrFun (adj_adj (D := D) (Matrix.of fun (_ : Fin 1) (_ : Fin 1) => z)) 0) 0
-  simpa [adj] using this
-
 theorem det_mem_intLoc {v : Pl D} {M : Matrix (Fin n) (Fin n) (Fv D.host.F v ⊗[D.host.F] D.host.E)}
     (h : ∀ i j, M i j ∈ intLoc D.host.F D.host.E v) : M.det ∈ intLoc D.host.F D.host.E v := by
   let M' : Matrix (Fin n) (Fin n) (intLoc D.host.F D.host.E v) := fun i j => ⟨M i j, h i j⟩
@@ -96,7 +92,7 @@ theorem fixM (V : HSp D) {ψ : AddChar (AF D.host.F) ℂ} {χ : (AE D)ˣ →* Ci
   have hrr : ∀ i j, (a⁻¹).1 i j = cA D (mat g (finSumFinEquiv (Sum.inr j)) (finSumFinEquiv (Sum.inr i))) := fun i j => by
     rw [ha, block_matrix_apply_inr_inr_alt]
     show _ = cA D (cA D ((a⁻¹).1 i j))
-    rw [cA_cA]
+    rw [_root_.Formalism.L2.Theta.cA_cA]
   have hinf : ∀ w i j, compInf D.host.F D.host.E w (a.1 i j) = (1 : Matrix (Fin n) (Fin n) _) i j := fun w i j => by
     rw [hll, LFixTh.kOff_inf hg, one_ll]
   have hat : ∀ v ∈ S, ∀ i j, cv D v (a.1 i j) = (1 : Matrix (Fin n) (Fin n) _) i j := fun v hv i j => by

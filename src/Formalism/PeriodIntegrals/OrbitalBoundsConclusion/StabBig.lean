@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem stabilizer_large : PI.StabBig := PI.StabBigW.stabBig

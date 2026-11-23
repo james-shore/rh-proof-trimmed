@@ -62,13 +62,13 @@ theorem depthZero_tame_alt : _root_.GlobalTheory.NRows.ThetaLocalInputsAlt → G
     (D : D7) (P : _root_.GlobalTheory.NPin.CharacterChoiceData hL D), (∀ i : D.nd.Loc, Nonempty (RowMod D P.rep (D.nd.j i))) → LabAll D P.T → ChiTOk D P.cf →
     DepthZ D := by
   intro hP hS hL D P hrow hlab hchi
-  obtain ⟨S, hT, hLaws, -⟩ := _root_.GlobalTheory.T.exists_true_reading_with_laws_suppLaws hP.fin hL D P hrow
+  obtain ⟨S, hT, hLaws, -⟩ := _root_.GlobalTheory.TrueReading.exists_true_reading_alt hP.fin hL D P hrow
   have hfix : ∀ (i : D.nd.Loc) (PI : D.naut.AV i) (k : Fin 2) (v : D.nd.PlG k),
       TameLP D (D.naut.locV i PI (D.naut.plGw k v)) := by
     intro i PI k v
     have hw := GlobalTheory.FixedPlaceSplit.isSplitPl_plGw D k v
     have htame := _root_.GlobalTheory.PendOf.isTame_reading_mu_at_split_plGw hL D P S hT i k v hw
-    have hTB := _root_.GlobalTheory.T.type_block_of_tame_at_split_place hL D P S hT i _ hw ⟨k, D.naut.plGw_over k v⟩ htame
+    have hTB := _root_.GlobalTheory.TypeBlockPf.main_alt_alt hL D P S hT i _ hw ⟨k, D.naut.plGw_over k v⟩ htame
     obtain ⟨x, hx0, hx⟩ := hTB.2 PI
     have hfixd : x ∈ GlobalTheory.PRep.fixed ((S i _ hw).rep PI).π
         (GlobalTheory.SplitWeil.KOne ((D.naut.plGw k v).adicCompletion D.host.E) (Fin (D.R.r + D.R.t))) := by
@@ -84,7 +84,7 @@ theorem depthZero_tame_alt : _root_.GlobalTheory.NRows.ThetaLocalInputsAlt → G
   intro i PI k w hw
   obtain ⟨v, rfl | hc⟩ := GlobalTheory.TypePlaceCover.place_cover D k w hw
   · exact hfix i PI k v
-  · exact ((_root_.GlobalTheory.T.conjDual_of_labAll hP hL D P hlab) i PI k v w hc).2.1 (hfix i PI k v)
+  · exact ((_root_.GlobalTheory.ConjPlaceDual.depthZero_tame_alt hP hL D P hlab) i PI k v w hc).2.1 (hfix i PI k v)
 end GlobalTheory.DepthZeroTame
 end
 end

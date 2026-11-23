@@ -45,7 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace GlobalTheory
 
-theorem capelliDiscreteSeriesInfChar : PI.DSInfCharCap.DSInfCharCap :=
-  CompanionTheory.D.DSIC.discrete_series_infinitesimal_character
-
 end GlobalTheory

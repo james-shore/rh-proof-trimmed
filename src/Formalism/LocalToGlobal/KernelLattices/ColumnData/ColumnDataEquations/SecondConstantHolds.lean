@@ -55,9 +55,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : Car}
 
-theorem star_sqrt_neg (x : D.host.E) (n : ℕ) (hn : 0 < n) (hx : x ^ 2 = -(n : D.host.E)) : star x = -x :=
-  _root_.UpperTheory.Reformulated.B.StarSqrtNeg.star_sqrt_neg x n hn hx
-
 theorem isIntegral_sqrt (x : D.host.E) (n : ℕ) (hx : x ^ 2 = -(n : D.host.E)) : IsIntegral ℤ x := by
   refine ⟨Polynomial.X ^ 2 + Polynomial.C (n : ℤ), Polynomial.monic_X_pow_add_C _ two_ne_zero, ?_⟩
   simp [hx]
@@ -79,8 +76,8 @@ theorem negOneNorm (D : Car) : NegOneNorm D := by
   obtain ⟨b, hbb⟩ : ∃ b : D.host.E, b = D.host.sqd := ⟨_, rfl⟩
   rw [← haa] at ha
   rw [← hbb] at hb
-  have hsa := star_sqrt_neg a _ hq.pos ha
-  have hsb := star_sqrt_neg b _ hd.pos hb
+  have hsa := _root_.UpperTheory.Reformulated.B.StarSqrtNeg.star_sqrt_neg a _ hq.pos ha
+  have hsb := _root_.UpperTheory.Reformulated.B.StarSqrtNeg.star_sqrt_neg b _ hd.pos hb
   have hint : IsIntegral ℤ (((α : D.host.E) + β * a) * ((γ : D.host.E) + δ * b)) :=
     ((isIntegral_int α).add ((isIntegral_int β).mul (isIntegral_sqrt a _ ha))).mul
       ((isIntegral_int γ).add ((isIntegral_int δ).mul (isIntegral_sqrt b _ hb)))

@@ -165,16 +165,6 @@ theorem HasGram_eq_zero {N : (K →+* ℂ) → V → ℝ} (h : HasGram N) (v : I
   have := congrFun h3 i
   simpa [Formalism.HermitianLatticesTheory.vecAt] using this
 
-theorem exists_smul_mem_of_mem_span [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] {L : Submodule (𝓞 K) V} {x : V}
-    (hx : x ∈ Submodule.span K (L : Set V)) : ∃ a : 𝓞 K, a ≠ 0 ∧ a • x ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem
-  | exact _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem
-  | (apply _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem ..)
-
 theorem fg_of_injective [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] [Module (𝓞 K) W] [IsScalarTower (𝓞 K) K W]
     (φ : W →ₗ[K] V) (hφ : Function.Injective φ) {L : Submodule (𝓞 K) V} {L' : Submodule (𝓞 K) W}
     (hL : ∀ f ∈ L', φ f ∈ L) (hfg : L.FG) : L'.FG := by
@@ -191,7 +181,7 @@ theorem span_eq_top_of_injective [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V
   rw [eq_top_iff]
   intro f _
   have hf : φ f ∈ Submodule.span K (L : Set V) := hsp ▸ Submodule.mem_top
-  obtain ⟨a, ha, hm⟩ := exists_smul_mem_of_mem_span hf
+  obtain ⟨a, ha, hm⟩ := _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem hf
   have h1 : a • f ∈ L' := hL _ (by rwa [LinearMap.map_smul_of_tower])
   have hA : algebraMap (𝓞 K) K a ≠ 0 := fun h => ha (IsFractionRing.injective (𝓞 K) K (h.trans (map_zero _).symm))
   have e : f = (algebraMap (𝓞 K) K a)⁻¹ • (a • f) := by

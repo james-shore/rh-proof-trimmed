@@ -71,7 +71,7 @@ theorem normSq_thetaLocalDatum_at_twistPlace_alt : ∀ (D : D7) (ψ : AddChar (A
   have hν : ν.IsAddHaarMeasure := inferInstance
   obtain ⟨hv0, hvT, hiso⟩ := GlobalTheory.PlaceIsometry.placeModel_isometry D ψ θ S T sS sT ΛS ΛT f₀ m X hB hcov v e he.1
     T.rank S.rank (GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.mapCo φ S T (frCo φ βS) (frCo φ βT)) hco Tm hTm ν hν
-  obtain ⟨hip, hSB⟩ := GlobalTheory.T.split_weil_phi_inner_product D PP v φ hP S.rank T.rank r hrS hrT ξ mu hmu ν hν
+  obtain ⟨hip, hSB⟩ := _root_.GlobalTheory.NrmVol.phiQ_ip D PP v φ hP S.rank T.rank r hrS hrT ξ mu hmu ν hν
 
   obtain ⟨⟨a0, ha0, -, hmax, himg⟩, -⟩ :=
     GlobalTheory.SplitLatticeHalves.splitLattice D S T ΛS ΛT βS βT hB.2.2.1 hB.2.2.2.1 hfS hfT v φ e he

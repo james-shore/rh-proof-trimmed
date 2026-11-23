@@ -92,7 +92,7 @@ theorem labels_lift : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (F
     rw [hq₁y, hq₁y'] at this
     exact this
   · intro a μ hμ
-    obtain ⟨pk, x, hx, hxa⟩ := GlobalTheory.T.exists_thetaTorsion_preimage_uniformised_model _ _ _ ρ' p y₀ u a
+    obtain ⟨pk, x, hx, hxa⟩ := _root_.GlobalTheory.Poinc.exists_qkPt_of_utest _ _ _ ρ' p y₀ u a
     have h1 := l.yy_eq a pk x hx hxa
     have h2 := hyy a pk.y h1
     have hL₁pos : 1 ≤ L₁ := by
@@ -112,7 +112,7 @@ theorem labels_lift : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (F
     have hdpos : 1 ≤ L₂ / L₁ := by
       rw [Nat.one_le_div_iff (by omega)]
       exact Nat.le_of_dvd (by omega) hdvd
-    obtain ⟨pk', hpk'y, hpk'⟩ := GlobalTheory.T.exists_levelPoint_rescale_same_torsionPoint _ _ _ ρ' p y₀ u L₁ L₂ (L₂ / L₁) pk x hL₁pos hdpos
+    obtain ⟨pk', hpk'y, hpk'⟩ := _root_.GlobalTheory.QLevelRescale.exists_qkPt_rescale _ _ _ ρ' p y₀ u L₁ L₂ (L₂ / L₁) pk x hL₁pos hdpos
       (Nat.div_mul_cancel hdvd).symm hx
     obtain ⟨pk₂, hpk₂y, hpk₂⟩ := hbw L₂ pk' x hL₂pos hpk'
     have h3 := (htor (T.symm x) a).2 (by simpa using hxa)

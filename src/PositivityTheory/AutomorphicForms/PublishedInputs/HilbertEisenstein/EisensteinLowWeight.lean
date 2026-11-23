@@ -389,27 +389,10 @@ theorem norm_infEq (w : InfinitePlace F) (r : ℝ) :
   rw [← dist_zero_right, ← Real.norm_eq_abs, ← dist_zero_right, ← h0]
   exact h
 
-theorem ideleModule_infId (u : (UpperTheory.V.TR.Rinf F)ˣ) :
-    (IdeleGroup.ideleModule F (UpperTheory.V.TR.infId F u) : ℝ) = ∏ w, |u.val w| := by
-  rw [ideleModule_eq]
-  have h1 : ((UpperTheory.V.TR.infId F u : Ideles F) : Ad F).1 = UpperTheory.V.TR.infEq F u.val := by
-    show (1 : InfiniteAdeleRing F) - UpperTheory.V.TR.infEq F 1 + UpperTheory.V.TR.infEq F u.val = _
-    simp
-  have h2 : ((UpperTheory.V.TR.infId F u : Ideles F) : Ad F).2 = 1 := by
-    show (1 : Af F) - 0 + 0 = 1
-    simp
-  rw [h1, h2]
-  have h3 : ∏ᶠ v : HeightOneSpectrum (𝓞 F), ‖(1 : Af F) v‖ = 1 :=
-    finprod_eq_one_of_forall_eq_one fun v => by simp
-  rw [h3, mul_one]
-  refine Finset.prod_congr rfl fun w _ => ?_
-  rw [(IsTotallyReal.isReal w).mult_eq_one, pow_one]
-  exact norm_infEq w (u.val w)
-
 theorem absD_mul_infGL (g : GA F 2) (y : GL (Fin 2) (UpperTheory.V.TR.Rinf F)) :
     absD (g * UpperTheory.V.TR.infGL F 2 y) = absD g * ∏ w, |(Matrix.GeneralLinearGroup.det y).val w| := by
   unfold absD
-  rw [map_mul, UpperTheory.V.TR.det_infGL, map_mul, Positive.val_mul, ideleModule_infId]
+  rw [map_mul, UpperTheory.V.TR.det_infGL, map_mul, Positive.val_mul, _root_.UpperTheory.HilbertEisensteinWeightOne.EisensteinSmoothness.ideleModule_infId]
 
 theorem det_kA (v : InfinitePlace F) (s : ℝ) : ∏ w, |(Matrix.GeneralLinearGroup.det (kA v s)).val w| = 1 := by
   refine Finset.prod_eq_one fun w _ => ?_

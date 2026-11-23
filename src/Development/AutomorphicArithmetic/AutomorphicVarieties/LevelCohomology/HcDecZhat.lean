@@ -65,14 +65,6 @@ section SlopeTestRemainingChoices
 
 open Formalism.GaloisCohomology UpperTheory.V.Base
 
-private theorem dz_locConst {Γ A : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group A] (ψ : Γ →* A)
-    (h : IsOpen (ψ.ker : Set Γ)) : IsLocallyConstant ψ :=
-  _root_.UpperTheory.Reformulated.B.DerivativeLocallyConstant.dz_locConst ψ h
-
-private theorem dz_exists_prime (v : HeightOneSpectrum (𝓞 ℚ)) (n : ℕ) (hn : n ≠ 0) (h : (n : 𝓞 ℚ) ∈ v.asIdeal) :
-    ∃ p : ℕ, p.Prime ∧ p ∣ n ∧ (p : 𝓞 ℚ) ∈ v.asIdeal :=
-  _root_.UpperTheory.Reformulated.B.Qk11.dz_exists_prime v n hn h
-
 private theorem dz_not_both (v : HeightOneSpectrum (𝓞 ℚ)) {a b : ℕ} (hab : a.Coprime b) (ha : (a : 𝓞 ℚ) ∈ v.asIdeal)
     (hb : (b : 𝓞 ℚ) ∈ v.asIdeal) : False := by
   obtain ⟨x, y, h⟩ : IsCoprime (a : 𝓞 ℚ) (b : 𝓞 ℚ) := hab.cast
@@ -137,7 +129,7 @@ private theorem dz_frob (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure �
       have h1 : Ideal.absNorm v.asIdeal ≠ 1 := fun h => v.isPrime.ne_top (Ideal.absNorm_eq_one_iff.1 h)
       omega
     have hqv : ((normV v : ℕ) : 𝓞 ℚ) ∈ v.asIdeal := hq ▸ Ideal.absNorm_mem _
-    obtain ⟨p, hp, hpq, hpv⟩ := dz_exists_prime v _ (by omega) hqv
+    obtain ⟨p, hp, hpq, hpv⟩ := _root_.UpperTheory.Reformulated.B.Qk11.dz_exists_prime v _ (by omega) hqv
     haveI : Fact p.Prime := ⟨hp⟩
     have h1 : 1 < normV v ^ n := Nat.one_lt_pow hn.ne' hq1
     obtain ⟨m, hm⟩ : ∃ m, m + 1 = normV v ^ n := ⟨normV v ^ n - 1, by omega⟩
@@ -174,7 +166,7 @@ private theorem dz_frob (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure �
       exact ⟨k, rfl⟩
     have hc : Nat.card (Subgroup.zpowers (Chr.cls ℚ Ω m γ)) = n := by rw [Nat.card_zpowers, hord]
     have hf1 : ∀ s : Dec (F := ℚ) A, Chr.cls ℚ Ω m s = 1 → f s = 1 := fun s hs => Subtype.ext hs
-    refine ⟨(zmodMulEquivOfGenerator hg hc).symm.toMonoidHom.comp f, dz_locConst _ ?_, fun s hs => ?_, ?_⟩
+    refine ⟨(zmodMulEquivOfGenerator hg hc).symm.toMonoidHom.comp f, _root_.UpperTheory.Reformulated.B.DerivativeLocallyConstant.dz_locConst _ ?_, fun s hs => ?_, ?_⟩
     · refine Subgroup.isOpen_mono (H₁ := (Chr.cls ℚ Ω m).ker.subgroupOf _) (fun s hs => ?_)
         (hopen.preimage continuous_subtype_val)
       rw [MonoidHom.mem_ker, MonoidHom.comp_apply, hf1 s hs, map_one]

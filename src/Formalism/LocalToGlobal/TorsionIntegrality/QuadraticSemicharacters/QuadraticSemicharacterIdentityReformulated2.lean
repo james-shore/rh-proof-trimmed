@@ -55,48 +55,35 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.H
 
-theorem opUMul : OpUMul := heisenbergMul
-theorem opUComm : OpUComm := heisenbergComm
-theorem opUIsom : OpUIsom := heisenbergIsometry
-theorem pullOpU : PullOpU := precompHeisenberg
-theorem semiCharBasic : SemiCharBasic := semicharacterBasic
-theorem semiHom : SemiHom := semicharacterHom
-theorem opUAnalytic : OpUAnalytic := heisenbergAnalytic
-theorem matHBasic : MatHBasic := matrixFormBasic
-theorem stdHBasic : StdHBasic := standardFormBasic
-theorem opUStd : OpUStd := heisenbergStandard
-theorem opUBlk4 : OpUBlk4 := heisenbergFourfold
-
+alias opUMul := _root_.Formalism.L2.Th1.H.heisenbergMul
+alias opUComm := _root_.Formalism.L2.Th1.H.heisenbergComm
+alias pullOpU := _root_.Formalism.L2.Th1.H.precompHeisenberg
+alias semiCharBasic := _root_.Formalism.L2.Th1.H.semicharacterBasic
+alias semiHom := _root_.Formalism.L2.Th1.H.semicharacterHom
+alias opUAnalytic := _root_.Formalism.L2.Th1.H.heisenbergAnalytic
+alias stdHBasic := _root_.Formalism.L2.Th1.H.standardFormBasic
+alias opUStd := _root_.Formalism.L2.Th1.H.heisenbergStandard
 theorem interClass : InterClass := InterClass_of semiHom
-theorem repsExist : RepsExist := cosetRepsExist
+alias repsExist := _root_.Formalism.L2.Th1.H.cosetRepsExist
 theorem interReps : InterReps := InterReps_of semiHom
 theorem interFixed : InterFixed := InterFixed_of semiHom
 theorem interTh : InterTh := InterTh_of semiHom opUAnalytic
-theorem thIsom : ThIsom := ThIsom_of opUIsom
-theorem charSum : CharSum := characterSum
-theorem indexEq : IndexEq := IndexEq_of charSum repsExist
+theorem thIsom : ThIsom := ThIsom_of _root_.Formalism.L2.Th1.H.heisenbergIsometry
+theorem indexEq : IndexEq := IndexEq_of _root_.Formalism.L2.Th1.H.characterSum repsExist
 theorem interInv : InterInv := InterInv_of opUComm interReps interFixed repsExist
 theorem lineTransport : LineTransport := LineTransport_of interInv interTh
 
-theorem stdSelfDual : StdSelfDual := StdSelfDual_proof
-theorem stdSemiChar : StdSemiChar := StdSemiChar_proof
-theorem product_theta_mem' : ProductThetaMem := product_theta_mem
-theorem thStd : ThStd := ThStd_proof
-theorem tens4Mem : Tens4Mem := fourfoldTensorMem
-theorem fourthRoot : FourthRoot := fourth_root
-theorem alphaQSemi : AlphaQSemi := quadMultiplierSemicharacter
+alias product_theta_mem' := _root_.Formalism.L2.Th1.H.product_theta_mem
 theorem alphaQRules : AlphaQRules := quadMultiplierRules
 theorem thetaVector : ThetaVector :=
-  ThetaVector_of lineTransport thStd product_theta_mem' stdSelfDual stdSemiChar thIsom fourthRoot
+  ThetaVector_of lineTransport _root_.Formalism.L2.Th1.H.ThStd_proof product_theta_mem' _root_.Formalism.L2.Th1.H.StdSelfDual_proof _root_.Formalism.L2.Th1.H.StdSemiChar_proof thIsom _root_.Formalism.L2.Th1.H.fourth_root
 
-theorem lineUnique : LineUnique := lineUnique'
-theorem taylorLine : TaylorLine := taylorLine'
-theorem taylorMvLinear : TaylorMvLinear := TaylorMvLinear_of lineUnique taylorLine
-theorem taylorMvMul : TaylorMvMul := TaylorMvMul_of lineUnique taylorLine
-theorem taylorMvComp : TaylorMvComp := TaylorMvComp_of lineUnique taylorLine
-theorem taylorMvProd : TaylorMvProd := TaylorMvProd_of lineUnique taylorLine
-theorem taylorMvTens4 : TaylorMvTens4 := TaylorMvTens4_of lineUnique taylorLine
-theorem taylorMvInj : TaylorMvInj := TaylorMvInj_of lineUnique taylorLine
+theorem taylorMvLinear : TaylorMvLinear := TaylorMvLinear_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
+theorem taylorMvMul : TaylorMvMul := TaylorMvMul_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
+theorem taylorMvComp : TaylorMvComp := TaylorMvComp_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
+theorem taylorMvProd : TaylorMvProd := TaylorMvProd_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
+theorem taylorMvTens4 : TaylorMvTens4 := TaylorMvTens4_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
+theorem taylorMvInj : TaylorMvInj := TaylorMvInj_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
 
 theorem quadraticSemicharacter_identity_reformulated₂ : quadraticSemicharacterIdentityReformulated₂ := quadraticSemicharacters_of_productThetaMem product_theta_mem'
 theorem quadraticSemicharacters_fact : quadraticSemicharacterIdentity :=

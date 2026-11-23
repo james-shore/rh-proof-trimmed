@@ -106,7 +106,7 @@ theorem re_fix_of_row {D : D7} (X : HidaSetting D) {f : X.B.I.GA → ℂ} (hf : 
     X.B.Re (star (hm.toLp f)) = star (hm.toLp f) := by
   have hs : MemLp (fun x => star (f x)) 2 (muX X) := hm.star
   rw [star_toLp_eq X hm hs]
-  have hK := Formalism.L2.SG.Closed.level_subgroup_is_group X
+  have hK := _root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X
   have hKL := Formalism.L2.SG.Closed.level_subgroup_properties X
   have hKM : MeasurableSet X.K2 := (Formalism.L2.SG.PoincareInHH.Cut.level_subgroup_isClopen X hK hKL).isOpen.measurableSet
   have hvol : (X.B.μf X.K2).toReal ≠ 0 := ENNReal.toReal_ne_zero.2 ⟨hKL.2.2.1.ne', hKL.2.2.2.ne⟩

@@ -167,6 +167,4 @@ theorem classSec : LateralTheory.E.LocSecPfB.ClassSec := by
   exact ((LateralTheory.E.LeafLocPf.secCx F X).homologyIsoSc' (n - 1) n (n + 1) (by simp) (by simp) ≪≫
     (S X F n).moduleCatHomologyIso).toLinearEquiv.toAddEquiv.symm
 
-theorem ClassSec_of : LateralTheory.E.LocSecPfB.ClassSec := classSec
-
 end LateralTheory.E.ClassSecPf

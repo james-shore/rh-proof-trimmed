@@ -55,6 +55,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnitaryOnTheta
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FinTensMemLatO
+import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ThetaInnerProductEqRealTorusMean
 
 @[expose] public section
 
@@ -203,9 +204,6 @@ theorem inc_smul_finW (s : D.host.E) (y : Matrix (Fin S.rank) (Fin T.rank) D.hos
   change ((1 : AF D.host.F) ⊗ₜ[D.host.F] s) * (pairA D.host.F 0 1 ⊗ₜ[D.host.F] y k a) = _
   rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul]
   rfl
-
-theorem finW_nsmul (n : ℕ) (y : Matrix (Fin S.rank) (Fin T.rank) D.host.E) : finW S T (n • y) = n • finW S T y := by
-  rw [← Nat.cast_smul_eq_nsmul D.host.E, ← inc_smul_finW, map_natCast, Nat.cast_smul_eq_nsmul]
 
 theorem finW_mem {L : Lt D.host.E T.rank} {y : Matrix (Fin S.rank) (Fin T.rank) D.host.E} (hy : ∀ b, y b ∈ L) :
     finW S T y ∈ hatA S T (tens (stdL D.host.E S.rank) L) := colM_mem fun b => LevEig.toAf_mem (hy b)
@@ -370,7 +368,7 @@ theorem heis_root (C : Ctx S T) {H : ReciprocityTheory.ChartRestriction.G.Geo.To
     exact colM_mem fun b => root_cong hι hm (ha b) (ha₀ b) ((ea₀ b).trans (ea b).symm) (ya b) (ya₀ b)
   have f2 : ∀ n : ℕ, (∀ b, (n : 𝓞 D.host.E) • q b = 0) →
       n • finW S T (Y q) ∈ hatA S T (tens (stdL D.host.E S.rank) (latG T g)) := fun n hn => by
-    rw [← finW_nsmul]
+    rw [← _root_.GlobalTheory.Ker.TorusMean.finW_nsmul]
     exact finW_mem fun b => nsmul_root_mem hmk (ha b) (ya b) (by rw [ea b]; exact hn b)
   have hMb : (l.M : 𝓞 D.host.E) ∈ l.Mb := by
     have hMM : (l.M : 𝓞 D.host.E) ∈ l.Mb * Mfr l := l.prod.ge (Ideal.subset_span rfl)
@@ -408,12 +406,12 @@ theorem heis_root (C : Ctx S T) {H : ReciprocityTheory.ChartRestriction.G.Geo.To
       incA D (s : D.host.E) • actO S T h g (finW S T (Y₀ q)) = (2 * l.M) • u := fun s hs => by
     obtain ⟨u, hu, eu⟩ := hj₀ _ (le_max_right _ _) s hs
     refine ⟨_, m2 _ (finW_mem hu), ?_⟩
-    rw [← actO_smul, inc_smul_finW, eu, finW_nsmul]
+    rw [← actO_smul, inc_smul_finW, eu, _root_.GlobalTheory.Ker.TorusMean.finW_nsmul]
     exact map_nsmul (TensLatMove.actHom S T h g) _ _
   have g2 : ∀ s ∈ l.Mb ^ max j j₀, ∃ u ∈ hatA S T (tens (stdL D.host.E S.rank) (latG T g)),
       incA D (s : D.host.E) • finW S T (Y q) = (2 * N) • u := fun s hs => by
     obtain ⟨u, hu, eu⟩ := hj _ (le_max_left _ _) s hs
-    exact ⟨_, finW_mem hu, by rw [inc_smul_finW, eu, finW_nsmul]⟩
+    exact ⟨_, finW_mem hu, by rw [inc_smul_finW, eu, _root_.GlobalTheory.Ker.TorusMean.finW_nsmul]⟩
   have hbar : cA D (incA D (t : D.host.E)) = incA D (H.bar t : D.host.E) := by rw [H.bar_eq]; rfl
   refine heis_congr (σ := incA D (s : D.host.E)) (τ := incA D (t : D.host.E)) (k := k) (M := l.M)
     (char_hatA C hΛ hL) hf ?_ (fun u hu => (smul_mem_of_int hΛ ?_ hu).1) f5 (nsmul_mem_of_le hk' f3) ?_ ?_ ?_ ?_

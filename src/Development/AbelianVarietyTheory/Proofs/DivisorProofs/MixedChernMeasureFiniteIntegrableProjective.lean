@@ -73,7 +73,7 @@ theorem finite_and_intg : GlobalTheory.Published.Principalisation → ∀ (F : T
   have key : ∀ f : CxPts p σ → ℝ, Continuous f → Intg L f := by
     intro f hf
     have hf' : Continuous (fun y => f (ptMap π rfl σ y)) := hf.comp (PtsOver.continuous_map _ _ _)
-    have h1 := (GlobalTheory.T.mixedChernIntegral_eq_mongeAmpereIntegral_compact F Y (π ≫ p) σ D R.finAtlas R.isAlgAtlas_finAtlas
+    have h1 := (_root_.GlobalTheory.Mix.int_eq_mInt F Y (π ≫ p) σ D R.finAtlas R.isAlgAtlas_finAtlas
       (fun i => (L i).pull π rfl) _ hf'.measurable).1
     have hI := h1.2 (mIntegrableCont _ _ (fun i => Weight.isPotential_locPot
       ((Weight.isCInf_iff_isSmooth R).1 ((L i).pull π rfl).cInf)) _ hf')

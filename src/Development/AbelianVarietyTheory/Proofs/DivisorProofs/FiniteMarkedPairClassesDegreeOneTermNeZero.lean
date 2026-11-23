@@ -171,9 +171,9 @@ theorem root_norm_le' : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (β y : G.C
 theorem integral_of_term_ne_zero' : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L : G.Level) (f : G.GAf → ℂ) (r : ℕ) (K : Subgroup (Gr G r)) (φ : Gr G r → ℂ), 0 < r → IsTest (MonoidHom.id _) L.K.toSubgroup L.K.toSubgroup f → IsTest (sigG G r) (KHT p G.m G.n r G.Fw) K φ → ∃ N : ℕ, 0 < N ∧ ∀ P : Pair G, (∃ μ, P.Mark μ) → P.term L.K.toSubgroup f r K φ ≠ 0 → IsIntegral ℤ ((N : ℤ) • (P.γ : G.C)) ∧ IsIntegral ℤ ((N : ℤ) • ((P.γ⁻¹ : G.Cˣ) : G.C)) := open scoped Pointwise in by
   classical
   intro p _ G L f r K φ hr hf hφ
-  obtain ⟨Ω, hΩc, hΩ⟩ := GlobalTheory.T.twistedHeckeTestFunction_support_compact p G L f hf
-  obtain ⟨D, hD, hDp⟩ := GlobalTheory.T.compact_conj_charpoly_bounded_denominators_awayP p G (Ω ∪ (fun g => g⁻¹) '' Ω) (hΩc.union (hΩc.image continuous_inv))
-  obtain ⟨k, hk⟩ := GlobalTheory.T.twisted_orbit_norm_bounds p G r K φ hr hφ
+  obtain ⟨Ω, hΩc, hΩ⟩ := _root_.GlobalTheory.isTest_support_compact p G L f hf
+  obtain ⟨D, hD, hDp⟩ := _root_.GlobalTheory.AwayPDen.charpoly_den_bounded p G (Ω ∪ (fun g => g⁻¹) '' Ω) (hΩc.union (hΩc.image continuous_inv))
+  obtain ⟨k, hk⟩ := _root_.GlobalTheory.AtPBd.main p G r K φ hr hφ
   have hp := (Fact.out : p.Prime)
   refine ⟨D * p ^ (2 * k * Module.finrank ℚ G.C), Nat.mul_pos hD (pow_pos hp.pos _), ?_⟩
   intro P _ hP
@@ -193,12 +193,12 @@ theorem integral_of_term_ne_zero' : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p)
         ((LinearMap.mulLeft ℚ (y0 : G.C)).charpoly.map (algebraMap ℚ (PadicAlgCl p))).IsRoot μ →
         ‖μ‖ ≤ (p : ℝ) ^ (2 * k) := fun μ hμ => by
       rw [show 2 * k = k + k by ring, pow_add]; exact hroots μ hμ
-    have h6 := GlobalTheory.T.padic_coeff_denominator_bound_of_bounded_roots p _ (LinearMap.charpoly_monic _) (2 * k) hroots'
+    have h6 := _root_.GlobalTheory.padic_denom_coeff_of_roots_bounded p _ (LinearMap.charpoly_monic _) (2 * k) hroots'
     rw [LinearMap.charpoly_natDegree] at h6
-    apply GlobalTheory.T.isIntegral_natCast_smul_of_mul_charpoly_coeff_int G.C
+    apply _root_.GlobalTheory.isIntegral_smul_of_charpoly_coeff_mul_int G.C
     intro i
     obtain ⟨kk, hkk⟩ := hAf i
-    exact GlobalTheory.T.den_bound_combine_padic_primeToP p D (2 * k * Module.finrank ℚ G.C) kk hp _ (h6 i) hkk
+    exact _root_.GlobalTheory.den_comb p D (2 * k * Module.finrank ℚ G.C) kk hp _ (h6 i) hkk
 
   rw [Pair.term] at hP
   split_ifs at hP with h
@@ -255,7 +255,7 @@ theorem finite_pol_marked' : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p), G.a =
     {P0 : Polynomial G.F | ∃ P : Pair G, (∃ μ, P.Mark μ) ∧ P.pol = P0 ∧
       IsIntegral ℤ ((N : ℤ) • (P.γ : G.C)) ∧ IsIntegral ℤ ((N : ℤ) • ((P.γ⁻¹ : G.Cˣ) : G.C))}.Finite := by
   intro p _ G hG N hN
-  refine (GlobalTheory.T.finite_monic_of_roots_bdd_of_mul_isIntegral G.F G.n N N hN).subset ?_
+  refine (_root_.GlobalTheory.finite_monic_roots_bdd_mul_isIntegral G.F G.n N N hN).subset ?_
   rintro _ ⟨P, ⟨μ, v₀, hv₀, x₀, hx₀, hpos⟩, rfl, hI1, hI2⟩
   have hc0 : ((P.c : ℚ) : ℝ) ≠ 0 := by exact_mod_cast P.c.ne_zero
   have hnorm : ∀ (v : InfinitePlace G.F) (w : ℂ) (x : Fin G.n → ℂ), x ≠ 0 → G.psi v P.γ *ᵥ x = w • x →
@@ -265,7 +265,7 @@ theorem finite_pol_marked' : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p), G.a =
     obtain ⟨Z, hZ⟩ := GlobalTheory.T.similitudePair_gram_inv_congruent p G P v
     have hsig := G.sig v
     have hn := G.n_pos
-    refine GlobalTheory.T.eigenvalue_normSq_of_similitude_hermitian_signature G.n (G.gram v) _ (G.psi v P.γ) (G.gram_herm v) Z ((P.c : ℚ) : ℝ) ?_ ?_ hZ hc0 ?_ ?_
+    refine _root_.GlobalTheory.eig_norm_sq_of_similitude G.n (G.gram v) _ (G.psi v P.γ) (G.gram_herm v) Z ((P.c : ℚ) : ℝ) ?_ ?_ hZ hc0 ?_ ?_
       w x hx hwx
     · rcases hsig with h | h <;> omega
     · rcases hsig with h | h <;> omega
@@ -306,7 +306,7 @@ theorem finite_pol_marked' : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p), G.a =
   have hkey : ∀ (v : InfinitePlace G.F) (w : ℂ), P.pol.eval₂ v.embedding w = 0 →
       ‖w‖ ≤ N ∧ IsIntegral ℤ ((N : ℂ) * w) := by
     intro v w hw
-    obtain ⟨x, hx, hwx⟩ := GlobalTheory.T.exists_eigenvector_of_minpoly_root_hermitianPsi p G P v w hw
+    obtain ⟨x, hx, hwx⟩ := _root_.GlobalTheory.LKMid.roots_eig p G P v w hw
     obtain ⟨h2, h3⟩ := hint v w x hx hwx
     exact ⟨norm_le_of_isIntegral_inv w P.c N hN (hnorm v w x hx hwx) hc0 h3, h2⟩
   refine ⟨minpoly.monic (Algebra.IsIntegral.isIntegral _), P.reg.1, ?_⟩
@@ -330,7 +330,7 @@ theorem finite_cls_term_one_a_one : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p)
   intro p _ G ha L f hf hreg K' f' hf'
   obtain ⟨N, hN, hb⟩ := integral_of_term_ne_zero' p G L f 1 K' f' one_pos hf hf'
   have hS := finite_pol_marked' p G ha N hN
-  refine (hS.biUnion (fun P0 _ => GlobalTheory.T.finite_kottwitz_classes_per_minpoly_a_eq_one p G ha L f hf hreg K' f' hf' P0)).subset ?_
+  refine (hS.biUnion (fun P0 _ => _root_.GlobalTheory.LKCx.PeriodicClassFixedPoints.finite_classes_of_pol_a_one p G ha L f hf hreg K' f' hf' P0)).subset ?_
   rintro q ⟨hm, ht⟩
   obtain ⟨h1, h2⟩ := hb (Quot.out q) hm ht
   exact Set.mem_biUnion (x := (Quot.out q).pol) ⟨Quot.out q, hm, rfl, h1, h2⟩ ⟨rfl, hm, ht⟩

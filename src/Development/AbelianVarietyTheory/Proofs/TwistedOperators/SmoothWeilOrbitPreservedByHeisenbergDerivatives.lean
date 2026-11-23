@@ -101,7 +101,7 @@ theorem orbit_heis : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Numbe
     funext fun p => hrel p.1 p.2
   refine ⟨?_, ?_⟩
   · rw [hfun]
-    exact GlobalTheory.T.contDiff_heisenbergArchimedeanDiffOperator_family (fun t => T t f) (fun t => (archCo G.M.co (u * (mat (γ (Multiplicative.ofAdd t)))ᵀ)).1)
+    exact _root_.GlobalTheory.HeisOrbit.dOp_contDiff_family (fun t => T t f) (fun t => (archCo G.M.co (u * (mat (γ (Multiplicative.ofAdd t)))ᵀ)).1)
       (fun t => (archCo G.M.co (u * (mat (γ (Multiplicative.ofAdd t)))ᵀ)).2) hsm hφ.fst hφ.snd
   have hT0 : T 0 f = f := by
     have h1 : om (1, γ (Multiplicative.ofAdd 0)) = 1 := by

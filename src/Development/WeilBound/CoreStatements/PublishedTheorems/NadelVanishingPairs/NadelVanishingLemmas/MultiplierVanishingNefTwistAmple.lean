@@ -78,7 +78,7 @@ theorem GlobalTheory.vanishing_logRes_pushforward_and_local : ∀ (k : Type) [Fi
       ∀ i, 0 < i → Subsingleton (coh (twist (twist (GlobalTheory.structureModule Y) (toLB (-F))) (N'.pull s)) i) := by
     intro N' T' hN' hT' e i hi
     obtain ⟨Q, hQ, eQ⟩ := cls_surj (CechPic.pull s (cls N' hN') - toPic F)
-    have h := GlobalTheory.T.multiplier_vanishing_nef_twist k X p n hp η m G Y s K B F hη hm hres hF N' M T' hN' hM r hT' hr e hMnef
+    have h := _root_.GlobalTheory.Discrepancy.vanishing_logRes_floor k X p n hp η m G Y s K B F hη hm hres hF N' M T' hN' hM r hT' hr e hMnef
       a Fd A hA hAF Q hQ eQ i hi
     obtain ⟨iso⟩ := nonempty_twist_twist_iso_of_cls_eq (GlobalTheory.structureModule Y) hA0 (pull_isLB hN' s) hQ
       (by rw [eQ, cls_pull hN' s, ← toPic_apply, map_neg]; abel)
@@ -103,7 +103,7 @@ theorem GlobalTheory.vanishing_logRes_pushforward_and_local : ∀ (k : Type) [Fi
   have : (GlobalTheory.structureModule Y).IsQuasicoherent := inferInstance
   have := Twist.isQuasicoherent_twist (F := GlobalTheory.structureModule Y) hA0
   have := Twist.isQuasicoherent_twist (F := twist (GlobalTheory.structureModule Y) (toLB (-F))) (pull_isLB hN s)
-  have hdown := GlobalTheory.T.pushforward_cohomology_affine X Y s _ H hH hev
+  have hdown := _root_.GlobalTheory.passage_down_of_twist_vanishing X Y s _ H hH hev
   refine ⟨fun i hi => ?_, hdown.2⟩
   obtain ⟨e⟩ := hdown.1 i
   have h0 := key N T hN hT hcl i hi

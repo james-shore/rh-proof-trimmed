@@ -245,9 +245,6 @@ theorem mapHyp_of (hR : Ring9 W) (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ_[PD.p] →+* O) 
 
 namespace Assemble
 
-theorem finrank_one (hKb : Function.Bijective (algebraMap K₀ K)) : Module.finrank K₀ K = 1 :=
-  (AlgEquiv.ofBijective (Algebra.ofId K₀ K) hKb).toLinearEquiv.finrank_eq.symm.trans (Module.finrank_self K₀)
-
 theorem pow_unif [IsDomain O] [IsDiscreteValuationRing O] {ϖ : O} (hϖ : Irreducible ϖ)
     (hℓm : ((PD.p : ℕ) : O) ∈ IsLocalRing.maximalIdeal O) :
     ∃ (N : ℕ) (u : O), ((PD.p : ℕ) : O) ^ N = ϖ * u := by
@@ -292,7 +289,7 @@ theorem lvHyp_holds' (Lb : LevB W) (hR : Ring9 W) (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ
     LvHyp Lb hR uZ ιZ C c ell Λ κ (lamOf C c ell e) :=
   lvHyp_holds Lb hR uZ ιZ C c ell Λ κ e lev_Γ levB_Γ levN_eq (W.gamK_eq_one hs1 (by omega)) hs1 hP5 hT hJl
     valRing (hv_holds W valRing.2.2)
-    (hω_holds (card_DelF hs1 (by omega) (Assemble.finrank_one hKb) h9) valRing.1 ιZ)
+    (hω_holds (card_DelF hs1 (by omega) (_root_.Formalism.MainNotions.UnusedSlot80.SatW.finrank_one_of_bij' hKb) h9) valRing.1 ιZ)
     (huZ_holds hutie valRing.2.2) m hm hκ
 
 theorem levSteps_of_jumps' [IsDomain O] [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
@@ -341,7 +338,7 @@ theorem levSteps_of_jumps' [IsDomain O] [IsDiscreteValuationRing O] [IsAdicCompl
     (hjumps : ∀ s < ell, Formalism.ExponentWindows.G.Jumps (kind s) G₀ Sz η (b s) (FilD W T c s)) :
     LevSteps Hy ϖ j M g G₀ Sz η kind b e := by
   have hℓ2 : PD.p ≠ 2 := by omega
-  have hK1 := Assemble.finrank_one hKb
+  have hK1 := _root_.Formalism.MainNotions.UnusedSlot80.SatW.finrank_one_of_bij' hKb
   have hmod : Formalism.MainNotions.DeltaInvariantLattices.wachModuleOverLetters W T W.π₀ := ((h9 hs1 hℓ2).2.2 hK1).2
   have R := ringSteps_of Hy ((baseIdOf hR).Bs.ff' ell j M g) kind b η ϖ hϖ hℓ2 hℓm n hn hroot (Assemble.firstGeometricCondition_of_properties hR) G2 hφ hρζ
     huZv hutie hom'

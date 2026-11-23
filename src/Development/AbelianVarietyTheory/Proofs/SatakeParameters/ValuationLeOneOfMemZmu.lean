@@ -154,11 +154,6 @@ section Datum
 variable {X : Fields} {Pr : Primes X} {sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)} {S : Set ℕ}
   {mu : Tup X.F X.E X.K S} {cst : LocCst X (rowSG Pr sel mu)}
 
-theorem g_mem_of_mem_vG (hPr : Pr.Ok) {i : Fin 2} {P : HeightOneSpectrum (𝓞 X.E)} (h : P ∈ Pr.vG i) :
-    ((Pr.g i : ℕ) : 𝓞 X.E) ∈ P.asIdeal := by
-  rw [← hPr.piG_norm i]
-  exact P.asIdeal.mul_mem_left _ (mem_divs h)
-
 theorem vG_subset (i : Fin 2) : Pr.vG i ⊆ Pr.vGs := by
   classical
   fin_cases i
@@ -198,7 +193,7 @@ theorem datumAt_prod (hPr : Pr.Ok) (hc : cst.Ok) (u : Pr.Word) (i : Fin 2) (w : 
       refine exists_of_mem_mulLat (Dvd.intro _ rfl) hz' ?_
       rw [Finset.mem_sdiff]
       refine ⟨Finset.mem_union_left _ Q.2, fun h => ?_⟩
-      exact natCast_notMem_of_ne (hPr.T_prime u) (hPr.g_prime i) (hPr.T_ne_g u i) _ (g_mem_of_mem_vG hPr h)
+      exact natCast_notMem_of_ne (hPr.T_prime u) (hPr.g_prime i) (hPr.T_ne_g u i) _ (_root_.Formalism.L2.Col.Primes.Ok.g_mem hPr h)
         (T_mem_of_piT_mem hPr u (mem_divs Q.2))
     · refine Finset.prod_congr rfl fun P _ => ?_
       by_cases h0 : P.1 ∈ Pr.vG i

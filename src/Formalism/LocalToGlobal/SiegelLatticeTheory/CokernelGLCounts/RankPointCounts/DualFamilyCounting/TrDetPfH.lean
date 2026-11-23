@@ -82,9 +82,9 @@ theorem eq_zero_of_trB {x : (VS D).V} (hx : x ∈ X.Lb)
     rwa [← algebraMap_smul D.host.E o y, LinearMap.map_smul, smul_eq_mul, mul_comm] at h2
   have hxW := (mem_Wb X).1 (Lb_le_alt X hx)
   have he : ∀ c, (VS D).hT x (X.eX c) = 0 := fun c => by
-    rw [herm_swap (X.eX c) x, (hxW c).1, star_zero]
+    rw [_root_.Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex.h_symm (X.eX c) x, (hxW c).1, star_zero]
   have hf : ∀ c, (VS D).hT x (X.fY c) = 0 := fun c => by
-    rw [herm_swap (X.fY c) x, (hxW c).2, star_zero]
+    rw [_root_.Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex.h_symm (X.fY c) x, (hxW c).2, star_zero]
   have h2 : ∀ y ∈ (VS D).L0, (VS D).hT x y = 0 := by
     intro y hy
     obtain ⟨α, β, l, hl, rfl⟩ := decomp X hy

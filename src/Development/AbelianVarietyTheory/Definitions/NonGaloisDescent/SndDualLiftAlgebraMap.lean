@@ -128,15 +128,6 @@ theorem SameJets.toCompl_ι (H : SameJets ι s) (g : A') :
 
 variable {k : Type} [CommRing k] [Algebra k A'] (I : Ideal A') (D : Derivation k A' A')
 
-theorem derivation_mem_pow (n : ℕ) {x : A'} (hx : x ∈ I ^ (n + 1)) : D x ∈ I ^ n := by
-  first
-  | exact @_root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow
-  | exact _root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow
-  | (apply _root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow ..)
-
 theorem evalₐ_of_succ {x : AdicCompletion I A'} {n : ℕ} {r : A'}
     (h : AdicCompletion.evalₐ I (n + 1) x = Ideal.Quotient.mk _ r) :
     AdicCompletion.evalₐ I n x = Ideal.Quotient.mk _ r := by
@@ -152,7 +143,7 @@ def cauchyDer (c : AdicCompletion.AdicCauchySequence I A') :
     have h := AdicCompletion.Ideal.mk_eq_mk I (Nat.succ_le_succ hmn) c
     rw [Ideal.Quotient.eq] at h
     rw [SModEq.sub_mem, ← map_sub]
-    have := derivation_mem_pow I D m ((Ideal.neg_mem_iff _).2 h)
+    have := _root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow I D m ((Ideal.neg_mem_iff _).2 h)
     simpa using this⟩
 
 def complDerFun (x : AdicCompletion I A') : AdicCompletion I A' :=
@@ -164,7 +155,7 @@ theorem evalₐ_complDerFun {x : AdicCompletion I A'} {n : ℕ} {r : A'}
   rw [← (AdicCompletion.mk_surjective I A' x).choose_spec, AdicCompletion.evalₐ_mk,
     Ideal.Quotient.eq] at h
   rw [complDerFun, AdicCompletion.evalₐ_mk, Ideal.Quotient.eq]
-  exact map_sub D _ _ ▸ derivation_mem_pow I D n h
+  exact map_sub D _ _ ▸ _root_.GlobalTheory.DerivationPowerIdeal.derivation_mem_pow I D n h
 
 theorem complDerFun_mul (x y : AdicCompletion I A') :
     complDerFun I D (x * y) = x * complDerFun I D y + y * complDerFun I D x := by

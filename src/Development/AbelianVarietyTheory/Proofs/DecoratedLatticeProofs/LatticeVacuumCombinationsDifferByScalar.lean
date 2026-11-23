@@ -65,11 +65,6 @@ namespace GlobalTheory.VacScalar
 
 open GlobalTheory.FinPl
 
-theorem psi_ne {A : Type} [AddGroup A] (ψ : AddChar A ℂ) (a : A) : ψ a ≠ 0 := fun h => by
-  have := AddChar.map_add_eq_mul ψ a (-a)
-  rw [h, zero_mul, add_neg_cancel, AddChar.map_zero_eq_one] at this
-  exact one_ne_zero this
-
 theorem psi_neg {A : Type} [AddGroup A] (ψ : AddChar A ℂ) (a : A) : ψ (-a) = (ψ a)⁻¹ := by
   exact eq_inv_of_mul_eq_one_left (by rw [← AddChar.map_add_eq_mul, neg_add_cancel, AddChar.map_zero_eq_one])
 
@@ -128,7 +123,7 @@ theorem eig_ne (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) {m : WO S T} {f : 
     (h : heisO ψ S T m f = c • f) (hf : f ≠ 0) : c ≠ 0 := fun hc => hf (by
   have h1 := heisO_inv ψ S T m f
   rw [h, hc, zero_smul, heisO_zero_fun] at h1
-  exact (smul_eq_zero.1 h1.symm).resolve_left (psi_ne _ _))
+  exact (smul_eq_zero.1 h1.symm).resolve_left (_root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero _ _))
 
 theorem symplOH_eq (S T : HSp D) (m y : WO S T) :
     symplOH S T m y = symplO S T m y + symplOH S T y m := by
@@ -164,7 +159,7 @@ theorem vac_eigen (ψ : AddChar (AF D.host.F) ℂ) (hψ : IsStdChar D ψ (-1)) (
       add_mem' := by
         rintro a b ⟨ca, ha⟩ ⟨cb, hb⟩
         refine ⟨(ψ (symplOH S T a b))⁻¹ * (ca * cb), fun f hf => ?_⟩
-        have hk := psi_ne ψ (symplOH S T a b)
+        have hk := _root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero ψ (symplOH S T a b)
         calc heisO ψ S T (a + b) f = (ψ (symplOH S T a b))⁻¹ • (ψ (symplOH S T a b) • heisO ψ S T (a + b) f) := by
               rw [smul_smul, inv_mul_cancel₀ hk, one_smul]
           _ = _ := by
@@ -177,7 +172,7 @@ theorem vac_eigen (ψ : AddChar (AF D.host.F) ℂ) (hψ : IsStdChar D ψ (-1)) (
           have hf0 : f = 0 := by
             have h := heisO_inv ψ S T a f
             rw [ha f hf, hc, zero_smul, heisO_zero_fun] at h
-            exact (smul_eq_zero.1 h.symm).resolve_left (psi_ne _ _)
+            exact (smul_eq_zero.1 h.symm).resolve_left (_root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero _ _)
           subst hf0
           rw [heisO_zero_fun, smul_zero]
         · refine ⟨ca⁻¹ * ψ (symplOH S T (-a) a), fun f hf => ?_⟩
@@ -294,7 +289,7 @@ theorem class_mem (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (Λ : AddSubgro
       simp only [l] at h1
       have h2 := mul_right_cancel₀ (hq0 m hm) h1
       rw [symplO_split S T m (Quotient.out (mk (y i))) (Quotient.out (mk (y i'))), AddChar.map_add_eq_mul] at h2
-      exact mul_left_cancel₀ (psi_ne ψ _) (h2.trans (mul_one _).symm)
+      exact mul_left_cancel₀ (_root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero ψ _) (h2.trans (mul_one _).symm)
     have hmk : mk (Quotient.out (mk (y i))) = mk (Quotient.out (mk (y i'))) := by
       rw [QuotientAddGroup.eq]
       have := Λ.neg_mem (hann _ hP hd)
@@ -325,7 +320,7 @@ theorem class_line (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (Λ : AddSubgr
   rw [hq _ hm, GlobalTheory.LatVac.heisO_smul, add_sub_cancel] at h
   rw [Submodule.mem_span_singleton]
   refine ⟨(ψ (symplOH S T (y i) (y j - y i)))⁻¹ * q (y j - y i), ?_⟩
-  rw [mul_smul, h, smul_smul, inv_mul_cancel₀ (psi_ne _ _), one_smul]
+  rw [mul_smul, h, smul_smul, inv_mul_cancel₀ (_root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero _ _), one_smul]
 
 end GlobalTheory.VacScalar
 
@@ -409,7 +404,7 @@ theorem main : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (M N 
     rwa [← hκ, smul_smul, inv_mul_cancel₀ hκ0, one_smul] at this
   have hg0U : g₀ ∈ U := by
     have := U.smul_mem (ψ (symplOH S T (-i) i))⁻¹ (hU (-i) (hPneg _ (ho' i hi)) _ hyU)
-    rwa [heisO_inv, smul_smul, inv_mul_cancel₀ (psi_ne _ _), one_smul] at this
+    rwa [heisO_inv, smul_smul, inv_mul_cancel₀ (_root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero _ _), one_smul] at this
 
   have hFU : comb ψ S T o g₀ ∈ U := by
     rw [hcomb]

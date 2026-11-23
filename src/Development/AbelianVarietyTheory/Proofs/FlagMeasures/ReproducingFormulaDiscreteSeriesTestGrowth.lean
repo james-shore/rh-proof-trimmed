@@ -61,19 +61,13 @@ open scoped InnerProductSpace ComplexOrder ContDiff
 
 namespace GlobalTheory.Reproducing
 
-theorem two_mul_rank_le {n : ℕ} (ε : Fin n → Bool) : 2 * rkR ε ≤ n := by
-  have h := Finset.card_filter_add_card_filter_not (s := (univ : Finset (Fin n))) (fun a => ε a = true)
-  simp only [Bool.not_eq_true, Finset.card_univ, Fintype.card_fin] at h
-  unfold rkR
-  omega
-
 theorem weight_condition (B : RowsAut) (h s : ℝ) (hn : 1 ≤ B.I.n) (hb : HBig B 40 h)
     (hs : s ≤ 2 * (B.I.n : ℝ) ^ 2) (v : InfinitePlace B.I.F) :
     rkR (B.I.ε v) = 0 ∨ 8 * Real.sqrt (rkR (B.I.ε v)) * (s + 4 * B.I.n * rkR (B.I.ε v)) < h := by
   rcases Nat.eq_zero_or_pos (rkR (B.I.ε v)) with h0 | h0
   · exact Or.inl h0
   right
-  have h1 : (2 : ℝ) * rkR (B.I.ε v) ≤ B.I.n := by exact_mod_cast two_mul_rank_le _
+  have h1 : (2 : ℝ) * rkR (B.I.ε v) ≤ B.I.n := by exact_mod_cast _root_.GlobalTheory.KernelExpansion.two_mul_rank_le _
   have h2 : 0 < Real.sqrt (rkR (B.I.ε v)) := Real.sqrt_pos.2 (by exact_mod_cast h0)
   have h3 : (1 : ℝ) ≤ B.I.n := by exact_mod_cast hn
   have h4 := hb v

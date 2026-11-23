@@ -57,9 +57,7 @@ open GlobalTheory.KZ GlobalTheory.Sieg
 
 namespace GlobalTheory.KZ.SiegelSL
 
-theorem isOpen_Hs : IsOpen Hs := by
-  show IsOpen {z : ℂ | 0 < z.im}
-  exact isOpen_lt continuous_const Complex.continuous_im
+alias isOpen_Hs := _root_.GlobalTheory.KZ.SiegelModel.isOpen_Hs
 
 theorem neBot_Hs : (Filter.codiscreteWithin Hs).NeBot := by
   rw [Filter.neBot_iff]
@@ -82,13 +80,6 @@ theorem germ_eq_of_eqOn {φ ψ : ℂ → ℂ} (h : ∀ z ∈ Hs, φ z = ψ z) : 
   filter_upwards [Filter.self_mem_codiscreteWithin Hs] with z hz
   exact h z hz
 
-theorem sgC_coe (c : ℕ) (x : Fin 2 → ℚ) (τ : ℍ) : sgC c x τ = sg c x τ := by
-  simp [sgC, UpperHalfPlane.ofComplex_apply]
-
-theorem mob_ofSL (γ : SL(2, ℤ)) (τ : ℍ) : mob (ofSL γ) τ = ((γ • τ : ℍ) : ℂ) := by
-  rw [UpperHalfPlane.coe_specialLinearGroup_apply]
-  simp [mob, ent, ofSL]
-
 theorem an_injective {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (T : Tower Ω ε) :
     Function.Injective T.an := by
   have := neBot_Hs
@@ -109,6 +100,6 @@ theorem sl_siegel : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure �
   apply germ_eq_of_eqOn
   intro z hz
   have hτ : ((⟨z, hz⟩ : ℍ) : ℂ) = z := rfl
-  rw [← hτ, mob_ofSL, sgC_coe, sgC_coe, GlobalTheory.T.siegel_function_transformation c x γ _ hx]
+  rw [← hτ, _root_.GlobalTheory.KZ.SiegelModel.mob_ofSL, _root_.GlobalTheory.KZ.SiegelModel.sgC_coe, _root_.GlobalTheory.KZ.SiegelModel.sgC_coe, _root_.GlobalTheory.Sieg.sg_smul c x γ _ hx]
 
 end GlobalTheory.KZ.SiegelSL

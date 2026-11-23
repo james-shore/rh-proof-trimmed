@@ -128,9 +128,6 @@ end Abstract
 
 open NumberField GlobalTheory.InertCompare
 
-theorem orderOf_iotaH (φ : Formalism.HC.Frame) (t : φ.A) : orderOf (φ.iota t) = addOrderOf t :=
-  orderOf_ofAdd_eq_addOrderOf t
-
 theorem eTau_tauPl (D : D7) (z : Bool × HH D) : ((D.eTau (tauPl D z) : D.R.Psi) : D.R.GG) = plGG D z := by
   unfold tauPl
   rw [Equiv.apply_symm_apply]
@@ -152,7 +149,7 @@ theorem orbit_positions (D : D7) (u : D.what₂.Word) (w : D.what₂.places.Pl)
   obtain ⟨φ, hφ, hstep⟩ := exists_frob_step D _ hc P
   obtain ⟨h2, hq, hd⟩ := ne_of_inert D _ hc
   have hn : (D.gat u w hg).P.n' v = addOrderOf (hP D (D.what₂.places.resChar w)) := by
-    rw [hT.gat_n u w hg v P φ hφ, galE_frob_snd D _ h2 hq hd P φ hφ, orderOf_iotaH]
+    rw [hT.gat_n u w hg v P φ hφ, galE_frob_snd D _ h2 hq hd P φ hφ, _root_.Formalism.HC.Frame.orderOf_iota]
   have hpos : 0 < (D.gat u w hg).P.n' v := by rw [hn]; exact addOrderOf_pos _
   obtain ⟨z, hz⟩ := (tauPl_bijective D).2 (hT.gat_pos u w hg ⟨v, ⟨0, hpos⟩⟩)
   refine ⟨hn, z, ?_⟩

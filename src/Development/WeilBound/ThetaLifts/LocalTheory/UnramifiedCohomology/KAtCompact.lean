@@ -81,14 +81,14 @@ theorem push {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T
 
 namespace Tp
 
-theorem ae_ring : IsTopologicalRing (AE F E) := IsModuleTopology.isTopologicalRing (AF F) _
-theorem ae_smul : ContinuousSMul (AF F) (AE F E) := IsModuleTopology.toContinuousSMul (AF F) _
+alias ae_ring := _root_.PositivityTheory.ThK.kc_ring
+alias ae_smul := _root_.PositivityTheory.ThK.kc_smul
 theorem ae_top : T2Space (AE F E) ∧ LocallyCompactSpace (AE F E) ∧ SecondCountableTopology (AE F E) := by
   haveI := GlobalTheory.AdelicUnitaryTop.t2Space_adeleRing_numberField F
   haveI := GlobalTheory.AdelicUnitaryTop.secondCountable_adele F
   obtain ⟨e⟩ := GlobalTheory.AdelicUnitaryTop.nonempty_homeomorph (F := F) (E := E) (AF F)
   exact ⟨e.isEmbedding.t2Space, e.isClosedEmbedding.locallyCompactSpace, e.secondCountableTopology⟩
-theorem ae_t2 : T2Space (AE F E) := ae_top.1
+alias ae_t2 := _root_.PositivityTheory.ThK.adele_t2Space
 theorem ae_lc : LocallyCompactSpace (AE F E) := ae_top.2.1
 theorem ae_sc : SecondCountableTopology (AE F E) := ae_top.2.2
 

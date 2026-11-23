@@ -69,9 +69,6 @@ theorem kmap_eq_self (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (φ : X.K ≃+* 
   rw [h2, LinearMap.baseChange_id, AdicCompletion.map_id]
   rfl
 
-theorem mob_one' (z : ℂ) : mob 1 z = z := by
-  simp [mob, ent]
-
 section Main
 
 variable (X : Tower Ω ε) (l : ℕ) [Fact l.Prime]
@@ -106,7 +103,7 @@ theorem rel_act (m : Matrix (Fin 2) (Fin 2) ℤ) {b : X.Fn l} {F : ℂ → MvPol
   · exact (GlobalTheory.T.r1_smul_and_kmap_of_r1_linear_laws Ω ε X l).2.2.2 m _ _ hm (h _)
   · have h1 : toGQ m = 1 := by unfold toGQ; rw [dite_eq_right hm]
     rw [h1, kmap_eq_self X l _ (fun f => X.sl_one f)]
-    simp only [mob_one']
+    simp only [_root_.GlobalTheory.KZ.MobLaws.mob_one]
     exact h _
 
 theorem rel_sum {ι : Type} (s : Finset ι) (m : ι → Matrix (Fin 2) (Fin 2) ℤ) {b : X.Fn l}

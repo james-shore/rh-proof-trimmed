@@ -141,7 +141,7 @@ theorem gFun_eq_eisSum : ∀ (F : Type) [Field F] [NumberField F] [NumberField.I
     have hb : c.out.1 ≠ 0 := c.out.2.2
     obtain ⟨hfs, hP⟩ := GlobalTheory.T.heckeWeightTwo_poisson_summation_fractionalIdeal F 𝔞 σ hσ z hz c.out.1 hb
     simp_rw [eisTerm_eq_kFac]
-    rw [tsum_mul_left, hP.tsum_eq, split_zero _ _ hfs, fTerm_zero GlobalTheory.T.heckePhiFourierTransform_zero_eq σ hz hb]
+    rw [tsum_mul_left, hP.tsum_eq, split_zero _ _ hfs, fTerm_zero _root_.GlobalTheory.HeckeTwo.hTrans_zero_eq σ hz hb]
     ring
   have hz2 := GlobalTheory.T.hasSum_abs_norm_cpow_unitClasses_partialZeta F 𝔟 Zb hZ (1 + 2 * σ) (by simp; linarith)
   rw [show -(1 + 2 * σ) = -1 - 2 * σ by ring] at hz2

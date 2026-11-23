@@ -65,19 +65,6 @@ namespace GlobalTheory.Phase.WeilPV
 
 variable {κ ι : Type} [Fintype κ] [Fintype ι] [DecidableEq ι]
 
-theorem trans_unique {σ : Matrix (ι ⊕ ι) (ι ⊕ ι) ℚ} (hσ : σ ∈ Matrix.symplecticGroup ι ℚ)
-    {φ ψ ψ' : Matrix κ ι ℚ → ℂ} (h1 : IsSB ψ) (h2 : IsSB ψ') (t1 : TransS σ φ ψ)
-    (t2 : TransS σ φ ψ') : ψ = ψ' := by
-  obtain ⟨hd, hs, -⟩ := GlobalTheory.SiegelAction.symplectic_action ι σ hσ _ (I_mem_siegel (ι := ι))
-  refine GlobalTheory.SW.eq_of_thS_eq κ ι ψ ψ' h1 h2 _ hs fun ζ => ?_
-  have e1 := t1 _ I_mem_siegel (fun k => ζ k ᵥ* spDen σ (I • 1))
-  have e2 := t2 _ I_mem_siegel (fun k => ζ k ᵥ* spDen σ (I • 1))
-  have e := e1.trans e2.symm
-  simp only [Matrix.vecMul_vecMul, Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.2 hd),
-    Matrix.vecMul_one] at e
-  exact e
-
-
 omit [DecidableEq ι] in
 theorem thS_smul (c : ℂ) (φ : Matrix κ ι ℚ → ℂ) (τ : Matrix ι ι ℂ) (ζ : κ → ι → ℂ) :
     thS (c • φ) τ ζ = c * thS φ τ ζ := by
@@ -138,7 +125,7 @@ theorem vac_trans {σ : Matrix (ι ⊕ ι) (ι ⊕ ι) ℚ} (hσ : σ ∈ Matrix
   · intro y hy
     have t1 := trans_smul (ε (T.symm y)) (hT φ ψ h.sb hψ t (T.symm y))
     rw [h.fix _ ((mem _).1 hy), T.apply_symm_apply] at t1
-    exact trans_unique hσ (sb_smul _ (GlobalTheory.SW.heisS_laws _ _ _ _ ψ hψ).1) hψ t1 t
+    exact _root_.GlobalTheory.Phase.transS_unique hσ (sb_smul _ (GlobalTheory.SW.heisS_laws _ _ _ _ ψ hψ).1) hψ t1 t
 
 
 omit [DecidableEq ι] in
@@ -172,7 +159,7 @@ theorem pv_mul (he : Even (Fintype.card κ)) {σ σ' : Matrix (ι ⊕ ι) (ι �
   obtain ⟨s1, t1, -⟩ := hw φ (pv_sb h)
   obtain ⟨s2, t2, -⟩ := hw' (w φ) s1
   have t3 := GlobalTheory.SW.transS_comp κ ι σ σ' hσ hσ' _ _ _ t1 t2
-  rw [trans_unique (mul_mem hσ' hσ) hψ s2 t t3]
+  rw [_root_.GlobalTheory.Phase.transS_unique (mul_mem hσ' hσ) hψ s2 t t3]
   exact H' _ _ s2 t2 (H _ _ s1 t1 h)
 
 theorem pv_of_transS : ∀ (κ ι : Type) [Fintype κ] [Fintype ι] [DecidableEq ι], Even (Fintype.card κ) → ∀ σ ∈ Matrix.symplecticGroup ι ℚ, ∀ φ ψ : Matrix κ ι ℚ → ℂ, IsSB ψ → TransS σ φ ψ → PV φ → PV ψ := by

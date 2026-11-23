@@ -112,7 +112,7 @@ theorem conj_stdMaxRad_le (F : Type) [Field F] {r a b : ℕ} (h : a + b = r) (P 
     have := mem_conjBy.1 (hP hx')
     rw [mem_conjBy]
     simpa [mul_assoc] using this
-  have hc := GlobalTheory.T.mem_stdMaxParabolic_of_blockParabolic_le_conj F h d hd _ h1
+  have hc := _root_.GlobalTheory.ParabConj.mem_stdMaxParab_of_le_conjBy F h d hd _ h1
   have h2 : parab F (stdBlocks d hd) ≤ stdMaxParab F h := by
     intro x hx
     have := mem_conjBy.1 (h1 hx)

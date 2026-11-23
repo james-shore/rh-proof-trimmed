@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LatDict
 
 @[expose] public section
 
@@ -100,11 +101,6 @@ theorem cY_mem_latS (X : HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsP
     GlobalTheory.Core.SBesEx.cY X h z ∈ latS D ↔ z ∈ (VS D).L0 := by
   rw [mem_latS X h hId, cY_eq_basY, LinearEquiv.symm_apply_apply]
 
-theorem hT_swap (x y : (VS D).V) : (VS D).hT y x = star ((VS D).hT x y) := by
-  have := (VS D).herm.eq x y
-  rw [← this]
-  rfl
-
 end GlobalTheory.Core.Mi.LatMatch
 
 namespace GlobalTheory.Core.Mi.LatMatch
@@ -120,7 +116,7 @@ theorem hT_fY_mem (X : HidaSetting D) (i : Fin D.R.rS) {Y : (VS D).V} (hY : Y �
     · refine Submodule.span_le.2 ?_
       rintro _ ⟨a, x, hx, rfl⟩
       show (VS D).hT (X.fY i) (x • X.eX a) ∈ (aaD D i : Submodule (𝓞 D.host.E) D.host.E)
-      rw [map_smul, smul_eq_mul, hT_swap, X.ef]
+      rw [map_smul, smul_eq_mul, _root_.Formalism.L2.SG.Pf.LatDict.hT_herm, X.ef]
       by_cases hai : a = i
       · subst hai; simpa using hx
       · simp [hai]
@@ -163,7 +159,7 @@ theorem smul_eX_mem_iff (X : HidaSetting D) (i : Fin D.R.rS) (c : D.host.E) :
   constructor
   · intro hc
     have := hT_fY_mem X i hc
-    rwa [map_smul, smul_eq_mul, hT_swap, X.ef, if_pos rfl, star_one, mul_one] at this
+    rwa [map_smul, smul_eq_mul, _root_.Formalism.L2.SG.Pf.LatDict.hT_herm, X.ef, if_pos rfl, star_one, mul_one] at this
   · intro hc
     rw [X.Lam_split]
     exact Submodule.mem_sup_left (Submodule.mem_sup_left (Submodule.subset_span ⟨i, c, hc, rfl⟩))

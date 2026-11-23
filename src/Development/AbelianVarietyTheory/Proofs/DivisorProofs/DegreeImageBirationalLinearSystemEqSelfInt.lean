@@ -88,7 +88,7 @@ theorem ringKrullDim_of_birational {k : Type} [Field k] (S : LinSys k) (h : S.Is
 
 theorem finrank_quotientPiece_le_lineBundleSections {k : Type} [Field k] (S : LinSys k) (h : S.IsVariety) (m : ℕ) :
     Module.finrank k (quotPiece S.imageIdeal (m : ℤ)) ≤ lbH0 k (lbPow S.L m) :=
-  GlobalTheory.T.quotient_piece_finrank_le_h0 k S h m
+  _root_.GlobalTheory.Adelic.LinSys.finrank_quotient_piece_le_sections k S h m
 
 theorem rankGrowth_lineBundleSections_le_image_forms {k : Type} [Field k] [CharZero k] (S : LinSys k) (h : S.IsVariety) (hb : S.BasePointFree)
     (hB : S.Birational) :

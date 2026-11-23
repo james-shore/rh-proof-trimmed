@@ -92,9 +92,7 @@ theorem hasTh_cast {N' : ℕ} {b : TBase o (N' ^ 2)} {s s₁ : S ⟶ Sp o} (t : 
     {R : Type} [CommRing R] (x : Sp R ⟶ S) (v : Ix g (N' ^ 2) → R) : (cast t h).HasTh x v ↔ t.HasTh x v := by
   subst h; exact Iff.rfl
 
-theorem exists_spMap {R R' : Type} [CommRing R] [CommRing R'] (x : Sp R' ⟶ Sp R) : ∃ φ : R →+* R', x = spMap φ := by
-  refine ⟨(Spec.preimage x).hom, ?_⟩
-  simp [spMap]
+alias exists_spMap := _root_.GlobalTheory.ZM.RepMap.exists_spMap
 
 theorem fromC_of_tmap {em : o →+* ℂ} {C : TObj g k J b (spMap em) → Prop} {K : Type} [Field K] {s' : Sp K ⟶ Sp o}
     {t' : TObj g k J b s'} {s : S ⟶ Sp o} {t : TObj g k J b s} {z : Sp K ⟶ S} (h : FromC em C t' (𝟙 _))
@@ -466,7 +464,7 @@ theorem Covered.hasTh_iff (h : Covered Mat κ univ) (h₁ : Out.Laws) (h₂ : Ou
         exact hf (hM.isPrime.mem_of_pow_mem n hn)
       exact (IsLocalization.isPrime_of_isPrime_disjoint (Submonoid.powers f) (Localization.Away f) M
         hM.isPrime hdis).ne_top h2
-    refine GlobalTheory.T.isSectionCoordinateVector_of_locally_on_ring _ Y.de _ Y.th R (z ≫ U.ι) v Y.isLB hspan (fun p => ?_)
+    refine _root_.GlobalTheory.ZM.secCoord_of_locally _ Y.de _ Y.th R (z ≫ U.ι) v Y.isLB hspan (fun p => ?_)
     obtain ⟨f, hf, hsc⟩ := loc p
     refine ⟨Localization.Away f, inferInstance, algebraMap R (Localization.Away f), ?_, ?_, hsc⟩
     · first

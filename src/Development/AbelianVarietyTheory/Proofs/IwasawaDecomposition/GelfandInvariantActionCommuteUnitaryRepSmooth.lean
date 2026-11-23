@@ -59,11 +59,6 @@ def RealLin (G : Matrix (Fin n) (Fin n) ℂ) (π : Matrix (Fin n) (Fin n) ℂ �
   (∀ X ∈ lieG G, ∀ Y ∈ lieG G, dRep π (X + Y) w = dRep π X w + dRep π Y w) ∧
     ∀ (a : ℝ), ∀ X ∈ lieG G, dRep π (a • X) w = (a : ℂ) • dRep π X w
 
-theorem lie_smul (a : ℝ) {X : Matrix (Fin n) (Fin n) ℂ} (hX : X ∈ lieG G) : a • X ∈ lieG G := by
-  have h : Xᴴ * G + G * X = 0 := hX
-  show _ + _ = 0
-  rw [conjTranspose_smul, Matrix.smul_mul, Matrix.mul_smul, star_trivial, ← smul_add, h, smul_zero]
-
 theorem conjG_add (Z W : Matrix (Fin n) (Fin n) ℂ) : conjG G (Z + W) = conjG G Z + conjG G W := by
   simp only [conjG, conjTranspose_add, Matrix.mul_add, Matrix.add_mul, neg_add]
 
@@ -103,7 +98,7 @@ theorem dRepC_smul_left (hG : IsUnit G) (hh : Gᴴ = G) {w : H} (hl : RealLin G 
     · linear_combination (-(b : ℂ) / 2) * hI
     · linear_combination (-(b : ℂ) / 2) * hI
   unfold dRepC
-  rw [e1, e2, hl.1 _ (lie_smul _ h1) _ (lie_smul _ h2), hl.1 _ (lie_smul _ h1) _ (lie_smul _ h2),
+  rw [e1, e2, hl.1 _ (_root_.GlobalTheory.SmVecLinear.lieG_smul _ h1) _ (_root_.GlobalTheory.SmVecLinear.lieG_smul _ h2), hl.1 _ (_root_.GlobalTheory.SmVecLinear.lieG_smul _ h1) _ (_root_.GlobalTheory.SmVecLinear.lieG_smul _ h2),
     hl.2 _ _ h1, hl.2 _ _ h1, hl.2 _ _ h2, hl.2 _ _ h2]
   push_cast
   match_scalars

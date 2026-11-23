@@ -56,7 +56,7 @@ namespace GlobalTheory.EtC.GenFibreLine
 
 theorem genericFibre_subsingleton : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [IsLocalRing T], AIC T → IsUnit (q : T) → ∀ (A : Type) [CommRing A] [Algebra (Polynomial T) A] [Algebra T A] [IsScalarTower T (Polynomial T) A], SH A → GlobalTheory.IndefiniteRowSideFullHecke.ProjectiveSpaceOverSpec.IsIndEtale (algebraMap (Polynomial T) A) → ∀ n i : ℤ, 2 ≤ n → Subsingleton (Ht q (sp (TensorProduct T (FractionRing T) A)) n i) := by
   intro q _ T _ _ _ hA hq A _ _ _ _ _ hind n i hn
-  haveI : IsAlgClosed (FractionRing T) := GlobalTheory.isAlgClosed_fractionRing_of_AIC T hA
+  haveI : IsAlgClosed (FractionRing T) := _root_.GlobalTheory.FractionRingRootRange.isAlgClosed_fractionRing T hA
   have hqK : IsUnit (q : FractionRing T) := by simpa using hq.map (algebraMap T (FractionRing T))
   have h2 := GlobalTheory.isIndEtale_tensorProduct_left (Polynomial T) A
     (TensorProduct T (Polynomial T) (FractionRing T)) hind
@@ -77,13 +77,13 @@ theorem genericFibre_subsingleton : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRin
   suffices h0 : ∀ x : Ht q (sp (TensorProduct T (FractionRing T) A)) n i, x = 0 from
     ⟨fun x y => by rw [h0 x, h0 y]⟩
   intro x
-  obtain ⟨j, z, hz⟩ := (GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity q D c hc n i).1 x hqA
+  obtain ⟨j, z, hz⟩ := (_root_.GlobalTheory.EtC.pairingProperties q D c hc n i).1 x hqA
   let g : TensorProduct T (Polynomial T) (FractionRing T) →+* D.obj j := (t.app j).hom
   letI : Algebra (Polynomial (FractionRing T)) (D.obj j) := (g.comp eK.toRingHom).toAlgebra
   haveI : Algebra.Etale (Polynomial (FractionRing T)) (D.obj j) := by
     rw [← RingHom.etale_algebraMap]
     exact RingHom.Etale.stableUnderComposition _ _ (RingHom.Etale.of_bijective eK.bijective) (hst j).1
-  haveI := GlobalTheory.T.tateTwistCohomology_subsingleton_etale_over_polynomial_algClosed q (FractionRing T) (D.obj j) hqK n i hn
+  haveI := _root_.GlobalTheory.EtAlgCD.etale_polynomial_cd_le_one q (FractionRing T) (D.obj j) hqK n i hn
   rw [← hz, Subsingleton.elim z 0, map_zero]
 
 end GlobalTheory.EtC.GenFibreLine

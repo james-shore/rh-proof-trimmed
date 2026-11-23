@@ -101,27 +101,6 @@ theorem contDiff_A (X : Matrix (Fin m) (Fin m) ℂ) :
       (contDiff_id.smul contDiff_const)
   exact (LinearMap.toContinuousLinearMap Lm).contDiff.comp hexp
 
-theorem hasDerivAt_entry (X : Matrix (Fin m) (Fin m) ℂ) (a c : Fin m) :
-    HasDerivAt (fun t : ℝ => (NormedSpace.exp ((t : ℂ) • X)) a c) (X a c) 0 := by
-  letI : NormedAddCommGroup (Matrix (Fin m) (Fin m) ℂ) := Matrix.linftyOpNormedAddCommGroup
-  letI : NormedSpace ℝ (Matrix (Fin m) (Fin m) ℂ) := Matrix.linftyOpNormedSpace
-  letI : NormedRing (Matrix (Fin m) (Fin m) ℂ) := Matrix.linftyOpNormedRing
-  letI : NormedAlgebra ℝ (Matrix (Fin m) (Fin m) ℂ) := Matrix.linftyOpNormedAlgebra
-  let ent : Matrix (Fin m) (Fin m) ℂ →ₗ[ℝ] ℂ :=
-    { toFun := fun M => M a c, map_add' := fun _ _ => rfl, map_smul' := fun _ _ => rfl }
-  have h := (hasDerivAt_exp_smul_const (𝕂 := ℝ) X (0 : ℝ))
-  have h2 := (LinearMap.toContinuousLinearMap ent).hasFDerivAt.comp_hasDerivAt (0 : ℝ) h
-  have e : (fun t : ℝ => (NormedSpace.exp ((t : ℂ) • X)) a c) =
-      (LinearMap.toContinuousLinearMap ent) ∘ (fun u : ℝ => NormedSpace.exp (u • X)) := by
-    funext t; simp only [Function.comp_apply, Complex.coe_smul]; rfl
-  have h3 : HasDerivAt (fun t : ℝ => (NormedSpace.exp ((t : ℂ) • X)) a c)
-      ((LinearMap.toContinuousLinearMap ent) (NormedSpace.exp ((0 : ℝ) • X) * X)) 0 := by
-    rw [e]; exact h2
-  have h4 : (LinearMap.toContinuousLinearMap ent) (NormedSpace.exp ((0 : ℝ) • X) * X) = X a c := by
-    rw [zero_smul, NormedSpace.exp_zero, one_mul]; rfl
-  rw [h4] at h3
-  exact h3
-
 theorem exists_gs (c : ℝ) (hc : 0 < c) : ∃ g : SchwartzMap (Fin m → Fin n → ℂ) ℂ, ∀ u, g u = gs c u := by
   obtain ⟨g0, hg0⟩ := GlobalTheory.CompanionTheory.PolyGaussSchwartz.exists_gauss (m := m) (n := n)
   set s : ℝ := Real.sqrt (c / (2 * Real.pi)) with hs

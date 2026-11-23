@@ -79,6 +79,6 @@ theorem GlobalTheory.LKGeo.eq_zero_of_forall_nsmul_laHat : ∀ (p : ℕ) [Fact p
   let bA := Algebra.TensorProduct.basis (AfP p) (Algebra.TensorProduct.basis ℚ b)
   refine bA.ext_elem fun i => ?_
   rw [map_zero, Finsupp.zero_apply]
-  refine GlobalTheory.T.finiteAdeleAwayFromP_eq_zero_of_divisible_coprime p (bA.repr z i) fun n hn hc => ?_
+  refine _root_.GlobalTheory.AfPZero.main p (bA.repr z i) fun n hn hc => ?_
   obtain ⟨w, hw, rfl⟩ := hz n hn hc
   exact ⟨bA.repr w i, repr_isIntAf D b w hw i, by rw [map_nsmul, Finsupp.smul_apply]⟩

@@ -45,6 +45,7 @@ import Formalism.LocalToGlobal.InertKernelTheory.DefsRepComb
 import Formalism.LocalToGlobal.KernelLattices.XiIndCClass
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.IsOrthCo
 import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.DescentCore
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThIndep
 
 @[expose] public section
 
@@ -54,12 +55,6 @@ open Formalism.L2.Th1.H Formalism.L2.KerInert.RepComb
 noncomputable section
 
 namespace GlobalTheory.CommonScale
-
-theorem conj_star (D : D7) (x : D.host.E) : (letI := D.host.cmStar; star x) = D.host.conj x := by
-  apply D.host.φ₀.injective
-  have := D.host.isCMField_hostE
-  exact (IsCMField.complexEmbedding_complexConj _ D.host.φ₀ x).trans
-    (D.host.conjE_apply D.host.φ₀ x).symm
 
 theorem coprime_of_ne {R : Type} [CommRing R] {P Q : Ideal R} (hP : P.IsMaximal) (hQ : Q.IsMaximal)
     (h : P ≠ Q) : IsCoprime P Q := by
@@ -111,7 +106,7 @@ theorem scale : letI := fun D : D7 => D.host.cmStar; ∀ (D : D7) (P : HeightOne
   have hxQ : ∀ Q : HeightOneSpectrum (𝓞 D.host.E), j ∈ Q.asIdeal → x ∉ Q.asIdeal := fun Q hj' hx' =>
     Q.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 (by rw [← hxj]; exact Q.asIdeal.add_mem hx' hj'))
   have hy : ((Formalism.L2.Col.cO D.host.E x : 𝓞 D.host.E) : D.host.E) = D.host.conj (x : D.host.E) :=
-    conj_star D (x : D.host.E)
+    _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.star_conj D (x : D.host.E)
   refine ⟨x * Formalism.L2.Col.cO D.host.E x, ?_, ?_, ?_⟩
   · obtain ⟨t, ht⟩ := Ideal.mem_span_singleton.1 hjcl
     have hx1 : x = 1 - (cl : 𝓞 D.host.E) * t := by rw [← ht, ← hxj]; ring

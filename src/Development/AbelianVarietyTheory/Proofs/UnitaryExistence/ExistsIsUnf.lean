@@ -100,7 +100,7 @@ theorem exists_isUnf : N1c → GlobalTheory.Published.HasseNormSt → Out.SecBas
   obtain ⟨Gm, φ, hφ⟩ :=
     GlobalTheory.exists_herm_coord_of_datum E H Dw (-ξ₀) hcc' (neg_ne_zero.2 hne) (Dw.p + Dw.q) rfl
   obtain ⟨U, hU, -⟩ :=
-    GlobalTheory.T.exists_frameUniformisation_prescribedSpace h1 h2 h3 h4 E H Dw l Xo c σ (Dw.p + Dw.q) ξ₀ Gm φ hpq hσ hcc him hφ
+    _root_.GlobalTheory.FrameUnif.exists_unf_of_space h1 h2 h3 h4 E H Dw l Xo c σ (Dw.p + Dw.q) ξ₀ Gm φ hpq hσ hcc him hφ
   exact ⟨U, hU⟩
 
 end GlobalTheory.IsUnfEx

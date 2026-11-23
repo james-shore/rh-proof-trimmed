@@ -74,7 +74,7 @@ theorem one_sub_two_div_le_mass_true :
   refine le_trans ?_ hsum
   rcases Nat.eq_zero_or_pos N with rfl | hN
   · have h1 : (1 : (ZMod g)[X]) ∈ sqSet g 0 :=
-      (GlobalTheory.T.mem_monicSquarefreeUnitConstPolys_iff_monic_squarefree g 0 1).2 ⟨monic_one, natDegree_one, squarefree_one, by simp⟩
+      (_root_.GlobalTheory.BadShare.mem_sqSet_iff g 0 1).2 ⟨monic_one, natDegree_one, squarefree_one, by simp⟩
     have hc : (1 : ℝ) ≤ ((sqSet g 0).card : ℝ) := by
       exact_mod_cast Finset.card_pos.2 ⟨_, h1⟩
     have : (0 : ℝ) ≤ 2 / (g : ℝ) := by positivity

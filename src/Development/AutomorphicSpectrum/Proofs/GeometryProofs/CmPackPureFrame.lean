@@ -115,7 +115,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.cm_pack_pure_frame : ∀ (E : 
       exact Over.OverMorphism.ext ((htu _ h1).trans (htu _ (hder _)).symm)
     have ev : v' = fun a => M.pt ((Z b).z • T a) := funext e
     subst ev
-    rw [((GlobalTheory.CompanionTheory.Ar.Fl.Bridge.comb_eig_frame _ ℂ _ _ _ M).2 (𝓞 E) Xo.univ.t.act ρ _ hact).2 n fun a => (Z b).z • T a]
+    rw [((_root_.PositivityTheory.Xgf.lie_model_eigenvectors_action _ ℂ _ _ _ M).2 (𝓞 E) Xo.univ.t.act ρ _ hact).2 n fun a => (Z b).z • T a]
     refine ⟨hT.units_smul fun _ => Units.mk0 _ hz, ?_⟩
     have hsp : Submodule.span ℂ (Set.range fun a => (Z b).z • T a) = Submodule.span ℂ (Set.range T) := by
       apply le_antisymm
@@ -129,7 +129,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.cm_pack_pure_frame : ∀ (E : 
     ext w
     rw [hspan, GlobalTheory.CompanionTheory.Ar.Fl.mem_eigSp_iff_tyPart_eq_self ty σ ρ hρ _ (fun a => rfl) w]
   have hpq : D.p + D.q = (FU.Di i).p + (FU.Di i).q := by rw [(FU.sig i).1, (FU.sig i).2]
-  obtain ⟨⟨hl1, hs1⟩, hl2, hs2⟩ := GlobalTheory.CompanionTheory.Ar.Fl.tyPart_pure_family_bases E H (FU.Di i) g ty P hP D.p D.q x τ hty hpq hτ hx hli
+  obtain ⟨⟨hl1, hs1⟩, hl2, hs2⟩ := _root_.PositivityTheory.Xgf.pure_type_projection_independent E H (FU.Di i) g ty P hP D.p D.q x τ hty hpq hτ hx hli
   refine ⟨?_, fun v w hvw => ⟨X.hy, le_refl _, ?_, ?_⟩⟩
   · obtain ⟨M, ρ, lam, -, -, -, -, -, hcm⟩ := GlobalTheory.T.cm_lie_model_action E H D l Xo c g ty FU i Z P hP X
     exact ⟨fun a => M.pt (HT.eigProj ρ (X.β.comp (tauE c τ)) (lam true ⟨x (.inl a), hx.1 a⟩)),

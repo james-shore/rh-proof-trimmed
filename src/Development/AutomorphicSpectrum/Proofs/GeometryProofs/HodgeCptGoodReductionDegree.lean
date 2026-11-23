@@ -167,8 +167,8 @@ theorem exists_genericFlag : Out.WeilSt → ∀ (E : Type) [Field E] [NumberFiel
   obtain ⟨cst₀, y₁, h₁, h₂, h₃⟩ := GlobalTheory.T.exists_constants_generic_point E H D l Xo c Y S Ω' Unit (fun _ => κ₃) y' 𝔐 (spMap i ≫ y₀) hy'
   obtain ⟨Li₀, _, _, M₀, j, V₀, cb, hj, hsm, hV₀, hcb, hli, hspan⟩ := GlobalTheory.T.constants_compatible_generic E H D l Xo c Y S Ω' Unit
     (fun _ => κ₃) y' 𝔐 (spMap i ≫ y₀) cst₀ y₁ hy' h₁ h₂ h₃
-  have hfin := GlobalTheory.T.finrank_adjoin_vars_field 𝔐.Ω₀ Ω A.fn (GenIx (labelRk D)) d hcov.1 hcov.2
-  obtain ⟨hsp, hgen⟩ := GlobalTheory.T.generic_flag_field_change 𝔐.Ω₀ Ω A.fn _ (labelRk D) d hcov.1 hfin Li₀ 𝔐.Li j V₀ cb hcb hsm hli
+  have hfin := _root_.GlobalTheory.CompanionTheory.FieldDeg.finrank_adjoin_vars 𝔐.Ω₀ Ω A.fn (GenIx (labelRk D)) d hcov.1 hcov.2
+  obtain ⟨hsp, hgen⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.GenericColumns.isGenericFlag_columns 𝔐.Ω₀ Ω A.fn _ (labelRk D) d hcov.1 hfin Li₀ 𝔐.Li j V₀ cb hcb hsm hli
   refine ⟨Ω', inferInstance, inferInstance, i, Unit, inferInstance, fun _ => κ₃, inferInstance, y', 𝔐,
     e.hom ≫ f₃ ≫ f₂, _, Li₀, _, _, M₀, j, V₀, hd', hf', hR, fun p hp => ⟨?_, hHT' p hp⟩,
     fun s => (hsp s).trans (hspan s), hj, hV₀, hgen⟩

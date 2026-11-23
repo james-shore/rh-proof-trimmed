@@ -122,13 +122,6 @@ theorem coeff_sqAct_diag {k : Type} [Field k] {r : ℕ} (lam : DomWeight r) (t :
   rw [MvPolynomial.coeff_smul, e1, rowAct_diagonal, coeff_aeval_scale, prod_rowDeg (fun a => (t a : k)), smul_eq_mul,
     Units.val_zpow_eq_zpow_val, e2]
 
-theorem weight_rowW_apply {r c : ℕ} (m : Fin r × Fin c →₀ ℕ) (a : Fin r) :
-    Finsupp.weight (Formalism.GradedWeylDivisibility.rowW r c) m a = Formalism.GradedWeylDivisibility.rowDeg m a := by
-  classical
-  rw [Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by simp), Finset.sum_apply,
-    Fintype.sum_prod_type, Formalism.GradedWeylDivisibility.rowDeg, Finset.sum_comm]
-  simp [Formalism.GradedWeylDivisibility.rowW, Pi.single_apply]
-
 theorem weightLine : ∀ (k : Type) [Field k] [CharZero k] (N : ℕ) (lam : DomWeight N)
     (f : MvPolynomial (Fin N × Fin N) k), f ∈ nablaSq k N lam →
     (∀ t : Fin N → kˣ, sqAct k N lam (diagGL k N t) f = ((∏ a, t a ^ lam.w a : kˣ) : k) • f) →
@@ -138,7 +131,7 @@ theorem weightLine : ∀ (k : Type) [Field k] [CharZero k] (N : ℕ) (lam : DomW
   have hhom : MvPolynomial.IsWeightedHomogeneous (Formalism.GradedWeylDivisibility.rowW N N) f lam.natW := by
     intro m hm
     funext a
-    rw [weight_rowW_apply]
+    rw [_root_.Formalism.GradedWeylDivisibility.ldrow_weight_rowW]
     let u2 : kˣ := Units.mk0 2 two_ne_zero
     let t : Fin N → kˣ := Pi.mulSingle a u2
     have hpn : ∀ n : Fin N → ℕ, ∏ b, ((t b : kˣ) : k) ^ n b = 2 ^ n a := by

@@ -91,7 +91,7 @@ theorem hsn_mul_le {n : ℕ} (X Y : Matrix (Fin n) (Fin n) ℂ) : hsn (X * Y) �
 theorem one_le_prod_tauE (D : D7) {y : D.host.E} (hy : y ≠ 0) (hi : IsIntegral ℤ y) : 1 ≤ ∏ τ, ‖tauE D τ y‖ := by
   have hnorm : ∏ τ, ‖tauE D τ y‖ ^ 2 = |((Algebra.norm ℚ y : ℚ) : ℝ)| := by
     rw [← Rat.cast_abs, ← NumberField.InfinitePlace.prod_eq_abs_norm]
-    refine (Fintype.prod_bijective _ (GlobalTheory.LevelSeries.mk_tauE_bij D) _ _ (fun τ => ?_))
+    refine (Fintype.prod_bijective _ (_root_.GlobalTheory.CMTypePlaces.mk_tauE_bijective D) _ _ (fun τ => ?_))
     rw [NumberField.InfinitePlace.mult, if_neg (GlobalTheory.LevelSeries.mk_tauE_complex D τ)]
     rfl
   have h1 : (1 : ℝ) ≤ |((Algebra.norm ℚ y : ℚ) : ℝ)| := by
@@ -167,8 +167,8 @@ theorem exists_den (D : D7) (V : HSp D) (Λ : Lat V) (hΛ : IsSelfDualC V Λ) (c
       ∀ γ : GA D V, Lev.finE V (c * γ * g) ∈ congLev D.sp.cm V.gram Λ ⊤ →
         ∀ δ : GL (Fin V.rank) D.host.E, Formalism.UG.bc (inclR (AF D.host.F)) δ = matHom V γ →
           ∀ i j, IsIntegral ℤ ((m : D.host.E) * (δ : Matrix (Fin V.rank) (Fin V.rank) D.host.E) i j) := by
-  obtain ⟨b, hb0, hb⟩ := level_den D V Λ hΛ
-  obtain ⟨C, A, hg⟩ := point_den D V
+  obtain ⟨b, hb0, hb⟩ := _root_.GlobalTheory.LevelDenom.exists_denom_congLev D V Λ hΛ
+  obtain ⟨C, A, hg⟩ := _root_.GlobalTheory.PointDenom.exists_denom_le_height_pow D V
   obtain ⟨dc, hdc0, -, hdc⟩ := hg c⁻¹
   refine ⟨(dc : ℝ) * b * C, A, fun g => ?_⟩
   obtain ⟨dg, hdg0, hdgH, hdg⟩ := hg g⁻¹
@@ -235,10 +235,10 @@ theorem poincare_count : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (V : 
       ∑ γ ∈ s, ∏ τ, ((1 + hsn (GlobalTheory.SepPer.cmp θ τ (c * (γ : GA D V) * g))) ^ (2 * V.rank ^ 2 + 1))⁻¹ ≤
         C * height V g ^ A := by
   intro D θ hθ V Λ hΛ c
-  haveI : Nonempty D.what₂.Tau := ⟨((GlobalTheory.LevelSeries.mk_tauE_bij D).2 (Classical.arbitrary _)).choose⟩
+  haveI : Nonempty D.what₂.Tau := ⟨((_root_.GlobalTheory.CMTypePlaces.mk_tauE_bijective D).2 (Classical.arbitrary _)).choose⟩
   obtain ⟨C3, A3, h3⟩ := exists_den D V Λ hΛ c
   obtain ⟨C4, hC4, h4⟩ := hsn_cmp_le hθ V
-  obtain ⟨C5, hC5, h5⟩ := sum_sep_le D.what₂.Tau V.rank
+  obtain ⟨C5, hC5, h5⟩ := _root_.GlobalTheory.SepSum.sum_weights_le_of_separated D.what₂.Tau V.rank
   set N := 2 * V.rank ^ 2 + 1 with hN
   set f := Fintype.card D.what₂.Tau with hf
   set Kc : ℝ := ∑ τ, hsn (cmp θ τ c⁻¹) with hKc

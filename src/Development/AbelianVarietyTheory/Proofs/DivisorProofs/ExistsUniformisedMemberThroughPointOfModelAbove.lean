@@ -55,10 +55,6 @@ noncomputable section
 
 namespace GlobalTheory.Poinc.Sep.Cmp.Thru
 
-theorem spMap_spMap {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R' →+* R'') (g : R →+* R') :
-    spMap f ≫ spMap g = spMap (f.comp g) := by
-  rw [← Spec.map_comp]; rfl
-
 theorem spMap_stalkHom {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] (M : RatModel o Ω) (z : M.Z) :
     spMap (M.stalkHom z) ≫ M.Z.fromSpecStalk z = M.pt := by
   have h1 := Scheme.Spec_stalkClosedPointTo_fromSpecStalk (R := CommRingCat.of Ω) M.pt
@@ -104,7 +100,7 @@ theorem exists_cdvr_thru {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] [I
   refine ⟨V₀, inferInstance, inferInstance, hdvr, φ₀, emb, hcpl, hchar, hl, ?_⟩
   rw [← spMap_stalkHom, ← Category.assoc, ← Category.assoc]
   congr 1
-  rw [show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, spMap_spMap, spMap_spMap]
+  rw [show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, _root_.Formalism.L2.Pj.spMap_comp_ring, _root_.Formalism.L2.Pj.spMap_comp_ring]
   congr 1
   ext r
   exact (hemb r).symm
@@ -131,10 +127,10 @@ theorem exists_uMem_thru : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matr
   let ψ : Y.Z.presheaf.stalk y →+* T.V := f.comp φ₀
   let ev : X₁.M.Z.presheaf.stalk (πY y) →+* T.V := ψ.comp s
   have hξ : (spMap ψ ≫ Y.Z.fromSpecStalk y) ≫ πY = spMap ev ≫ X₁.M.Z.fromSpecStalk (πY y) := by
-    rw [Category.assoc, ← hs, ← Category.assoc, spMap_spMap]
+    rw [Category.assoc, ← hs, ← Category.assoc, _root_.Formalism.L2.Pj.spMap_comp_ring]
   have hkey : jK T.V ≫ spMap ψ = spMap fK ≫ jK V₀ ≫ spMap φ₀ := by
     rw [show jK T.V = spMap (algebraMap T.V (FractionRing T.V)) from rfl,
-      show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, spMap_spMap, spMap_spMap, spMap_spMap]
+      show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, _root_.Formalism.L2.Pj.spMap_comp_ring, _root_.Formalism.L2.Pj.spMap_comp_ring, _root_.Formalism.L2.Pj.spMap_comp_ring]
     congr 1
     ext a
     simp only [RingHom.comp_apply]

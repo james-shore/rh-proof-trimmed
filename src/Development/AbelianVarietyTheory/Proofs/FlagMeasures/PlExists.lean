@@ -56,7 +56,7 @@ theorem plExists : PlExists := by
   refine ⟨Cb, ?_⟩
   intro Wp Wq _ _ _ _ _ _ P Bs ν' m₀ l0 hl1 hl2 hk hW hW' hN hF hP
 
-  obtain ⟨T, hz, hz', hπ, hπ', hTn⟩ := Formalism.FourierDecayAlt.P.exists_normalized_tower P.k P.r Wp Wq Bs
+  obtain ⟨T, hz, hz', hπ, hπ', hTn⟩ := _root_.Formalism.FourierDecayAlt.P.HaarMassHermitianCurvature.towerAt P.k P.r Wp Wq Bs
   have ez : (T.bs 0).z = Bs.z := hz
   have ez' : (T.bs 0).z' = Bs.z' := hz'
   have eπ : (T.bs 0).π = Bs.π := hπ

@@ -62,7 +62,7 @@ theorem trDR_isTrDR_unique : ∀ (k K L : Type) [Field k] [CharZero k] [Field K]
     [Algebra K L] [IsScalarTower k K L] [FiniteDimensional K L],
     IsTrDR k K L (trDR k K L) ∧ ∀ T, IsTrDR k K L T → T = trDR k K L := by
   intro k K L _ _ _ _ _ _ _ _ _
-  obtain ⟨hspan, hind⟩ := GlobalTheory.T.mapDR_span_and_linearIndependent_baseChange k K L
+  obtain ⟨hspan, hind⟩ := _root_.GlobalTheory.W1.Base.forms_baseChange k K L
   have uniq : ∀ T T' : DR k L →ₗ[k] DR k K, IsTrDR k K L T → IsTrDR k K L T' → T = T' := by
     intro T T' hT hT'
     refine LinearMap.ext fun y => ?_

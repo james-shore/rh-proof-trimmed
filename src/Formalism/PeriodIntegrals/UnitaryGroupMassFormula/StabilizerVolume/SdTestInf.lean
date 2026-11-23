@@ -64,9 +64,7 @@ namespace SdTestInfW
 
 open MeasureTheory Complex Filter Topology
 
-theorem char_real (f : ℝ → ℂ) (hc : Continuous f) (hadd : ∀ s t, f (s + t) = f s * f t)
-    (hn : ∀ s, ‖f s‖ = 1) : ∃ b : ℝ, ∀ s : ℝ, f s = exp (↑(b * s) * I) := by
-  first | exact Bl.FunctionAtZero.goal1 .. | (apply Bl.FunctionAtZero.goal1 <;> assumption) | (intros; apply Bl.FunctionAtZero.goal1 <;> assumption)
+alias char_real := _root_.Bl.FunctionAtZero.goal1
 
 theorem freq_unique {u v : ℝ} (h : ∀ s : ℝ, exp (↑(u * s) * I) = exp (↑(v * s) * I)) : u = v := by
   by_contra huv

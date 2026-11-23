@@ -162,9 +162,6 @@ theorem conj_ip (R : RiemLat E g Λ) (x y : Fin g → ℂ) : starRingEnd ℂ (R.
   rw [starRingEnd_apply, ← Matrix.star_dotProduct_star, Matrix.star_mulVec, star_star, R.herm.eq,
     ← Matrix.dotProduct_mulVec]
 
-theorem ip_add_left (R : RiemLat E g Λ) (x y z : Fin g → ℂ) : R.ip (x + y) z = R.ip x z + R.ip y z := by
-  simp only [RiemLat.ip, star_add, Matrix.mulVec_add, dotProduct_add]
-
 theorem ip_smul_left (R : RiemLat E g Λ) (x y : Fin g → ℂ) (r : ℂ) :
     R.ip (r • x) y = starRingEnd ℂ r * R.ip x y := by
   simp only [RiemLat.ip, star_smul, Matrix.mulVec_smul, dotProduct_smul, smul_eq_mul, starRingEnd_apply]
@@ -186,7 +183,7 @@ theorem ip_self_definite (R : RiemLat E g Λ) (x : Fin g → ℂ) (h : R.ip x x 
   inner x y := R.ip x y
   conj_inner_symm x y := conj_ip R x y
   re_inner_nonneg x := ip_self_nonneg R x
-  add_left x y z := ip_add_left R x y z
+  add_left x y z := _root_.LevelTowerAlt.ip_add_left R x y z
   smul_left x y r := ip_smul_left R x y r
   definite x h := ip_self_definite R x h
 
@@ -246,24 +243,15 @@ theorem exists_mul_eq_int {a : 𝓞 E} (ha : a ≠ 0) : ∃ (c : 𝓞 E) (N : �
     exact ha
   exact_mod_cast this
 
-theorem ringHom_injective (s : 𝓞 E →+* ℂ) : Function.Injective s := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
-  intro a ha
-  by_contra h
-  obtain ⟨c, N, hN, hc⟩ := exists_mul_eq_int h
-  have h2 := congrArg s hc
-  rw [map_mul, ha, mul_zero, map_intCast] at h2
-  exact hN (by exact_mod_cast h2.symm)
-
 theorem comp_bijective : Function.Bijective (fun s : E →+* ℂ => s.comp (algebraMap (𝓞 E) E)) := by
   constructor
   · intro s s' h
     exact IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 E)) h
   · intro s
-    refine ⟨IsFractionRing.lift (K := E) (ringHom_injective s), ?_⟩
-    show (IsFractionRing.lift (K := E) (ringHom_injective s)).comp (algebraMap (𝓞 E) E) = s
+    refine ⟨IsFractionRing.lift (K := E) (_root_.LevelTowerAlt.emb_inj s), ?_⟩
+    show (IsFractionRing.lift (K := E) (_root_.LevelTowerAlt.emb_inj s)).comp (algebraMap (𝓞 E) E) = s
     refine RingHom.ext fun a => ?_
-    exact IsFractionRing.lift_algebraMap (K := E) (ringHom_injective s) a
+    exact IsFractionRing.lift_algebraMap (K := E) (_root_.LevelTowerAlt.emb_inj s) a
 
 variable [IsCMField E]
 

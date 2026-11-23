@@ -162,7 +162,7 @@ theorem slope_good_ge : ∀ (K V : Type) [Field K] [NumberField K] [_root_.Numbe
     intro x y
     simp only [(hG v).2]
     exact hpyth v.embedding x y
-  obtain ⟨hrkadd, hcut, hmaj⟩ := Formalism.ExtensionFiltration.goodBadCut K V (Fin n) b X hX e g L hLfg hg hee hsa hint
+  obtain ⟨hrkadd, hcut, hmaj⟩ := _root_.Formalism.ExtensionFiltration.good_bad_split K V (Fin n) b X hX e g L hLfg hg hee hsa hint
   have hM0 : M ≠ ⊥ := fun h => hL0 (le_bot_iff.mp (h ▸ hLM))
   rw [slope_sq_eq hG hLfg] at hmin ⊢
   rw [slope_sq_eq hG hRfg]

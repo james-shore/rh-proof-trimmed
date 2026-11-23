@@ -69,7 +69,7 @@ theorem hodgeLineBundle_rationally_linear : _root_.GlobalTheory.CovTop.Published
       rintro _ _ _ _ rfl; rfl
     exact key _ _ _ _ (congrArg (LL₀ TF.X Z) (GlobalTheory.HodgeLin.exOf_hodgeWt Dw)).symm
   · intro I g hI' hMb Γ _ _ ι ρ hU hAct X' _ φ ℓ ρ' hN hP' hO hj heq
-    obtain ⟨G', _, ψ, act', m, hE⟩ := _root_.GlobalTheory.T.equivariant_linearization_pullback_compat hP E H Dw l Xo c TF Z hpq hA hF I g hI' hMb Γ ι ρ hU hAct X' φ ℓ ρ' hN hP' hO hj heq
+    obtain ⟨G', _, ψ, act', m, hE⟩ := _root_.GlobalTheory.EqvAct.equivariant_linearization_pullback hP E H Dw l Xo c TF Z hpq hA hF I g hI' hMb Γ ι ρ hU hAct X' φ ℓ ρ' hN hP' hO hj heq
     obtain ⟨v, hv⟩ := GlobalTheory.GenInterior.exists_j₀_eq_genericPoint E H Dw l Xo c TF Z
     have hd : IsDominant φ := ⟨by
       refine dense_iff_closure_eq.2 (Set.eq_univ_of_univ_subset ?_)

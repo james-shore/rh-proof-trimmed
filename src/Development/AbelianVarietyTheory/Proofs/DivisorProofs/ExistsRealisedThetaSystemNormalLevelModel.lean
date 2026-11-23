@@ -140,12 +140,6 @@ def lowerLev {h M N d : ℕ} {B : Type} [CommRing B] {ζ' ζ : B} {S : Scheme.{0
   geom K _ _ x β z hx hz := (SiegLower.lower C hM h0 (RingHom.id B) hζ).geom K x β z
     (by rw [show spMap (RingHom.id B) = 𝟙 _ from Spec.map_id _, Category.comp_id]; exact hx) hz
 
-theorem lev_zero {h M : ℕ} {B : Type} [CommRing B] {ζ : B} {S : Scheme.{0}} {s : S ⟶ Sp B}
-    (C : SiegPre h M ζ s) : C.lev 0 = 1 := by
-  have e := C.lev_add 0 0
-  rw [add_zero] at e
-  exact (mul_eq_left.1 e.symm)
-
 theorem exists_sharp_cover (g n k : ℕ) (F : SFam g n (zetaAway n)) (F' : SFam g (n * k) (zetaAway (n * k)))
     (κ : cycAway n →+* cycAway (n * k)) (q : F'.X ⟶ F.X) (hn : 0 < n) (hk3 : 3 ≤ k) (hko : Odd k)
     (hζ : κ (zetaAway n) = zetaAway (n * k) ^ k) (hqs : q ≫ F.s = F'.s ≫ spMap κ)
@@ -171,13 +165,13 @@ theorem exists_sharp_cover (g n k : ℕ) (F : SFam g n (zetaAway n)) (F' : SFam 
   haveI := F'.smooth
   haveI : Smooth F'.s := SmoothOfRelativeDimension.smooth (g * (g + 1) / 2) F'.s
   haveI : IsLocallyNoetherian F'.X := LocallyOfFiniteType.isLocallyNoetherian F'.s
-  obtain ⟨t, ht, hp⟩ := GlobalTheory.exists_isSharp_and_prim L₁ L₂ Moduli.cube_of_isLB g (8 * g) W J a w w' bas hW hb hw hw'
+  obtain ⟨t, ht, hp⟩ := GlobalTheory.exists_isSharp_and_prim L₁ L₂ _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen g (8 * g) W J a w w' bas hW hb hw hw'
     hs k (cycAway (n * k)) b F'.X F'.s c (rootBase_pow hn.ne' hk) hko hc hd
   have h00 : SiegLev.SRel c F.univ 0 0 q := by
     obtain ⟨φ, hφ, hsq, hlev⟩ := hq
     refine ⟨φ, hφ, hsq, fun x => ?_⟩
     have e := hlev 0
-    rw [lev_zero, lev_zero, one_pow, pow_one] at e
+    rw [_root_.GlobalTheory.SiegAct.lev_zero, _root_.GlobalTheory.SiegAct.lev_zero, one_pow, pow_one] at e
     rw [pow_zero, pow_zero]
     exact e
   refine ⟨b, c, t, ht, h00, hp, ?_⟩
@@ -308,7 +302,7 @@ theorem exists_sys_levModel : ∀ (ℓ : ℕ), ℓ.Prime → Odd ℓ → ∀ j�
     rw [← Category.assoc, ef1]
     exact hstalk
   haveI : NeZero ((ℓ ^ j) ^ 2) := ⟨by positivity⟩
-  have hfinv := finite_ratios_of_finite_fibres _ Ω R' F.X x' _ v hR'fg hfrac' hstalk' (fun K _ _ cc => by
+  have hfinv := _root_.GlobalTheory.LevelFinite.finite_ratio_field _ Ω R' F.X x' _ v hR'fg hfrac' hstalk' (fun K _ _ cc => by
     refine ((hj₁ j hjj₁ n (n * (ℓ ^ j) ^ 2) (by omega) (by positivity) F b F'.X F'.s q c _ a t' h00 hsh K).1 cc).subset ?_
     rintro Y ⟨σ, hσ, u, hu, hv⟩
     refine ⟨spMap σ ≫ spMap i₁ ≫ y, by rw [← hσ]; simp only [x', Category.assoc], ?_⟩

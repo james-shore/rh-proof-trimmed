@@ -141,7 +141,7 @@ theorem stIwahori : StIwahori := by
     simpa [A, B, Module.End.mul_apply] using this
   · intro u t hu0 hm h1 ht
     have hT := fun i => tor_piece (δ := δ) hh hδ0 hF ht i
-    have key := GlobalTheory.T.torus_conjugation_preserves_congruence wt P hP _ hJ (congJ_smul hΛ π) (t.toLinearMap) (t.symm.toLinearMap) (tau s u)
+    have key := _root_.GlobalTheory.CompanionTheory.Iwahori.TorusConj.conj_congruence wt P hP _ hJ (congJ_smul hΛ π) (t.toLinearMap) (t.symm.toLinearMap) (tau s u)
       (tau_ne hu0) (by ext y; simp [Module.End.mul_apply]) (by ext y; simp [Module.End.mul_apply])
       (fun i => (hT i).1) (fun i => (hT i).2)
       (tau_mono hs hu0 hm h1) a b ha hb hup hlo.1

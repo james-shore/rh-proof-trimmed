@@ -72,7 +72,7 @@ theorem linkIn_exactAt_of_coord_one : ∀ (R : Type) [CommRing R] (s n : ℕ), L
     p + s + τ.length ≤ n + 2 →
     ExactAt (linkIn (uniM R (ℕ →₀ R)) (low R (n + 1) ∪ aff R (n + 1) j) τ) p := by
   intro R _ s n h j hj τ hτ v hv hvn p hp
-  have hsub : SubClosed (uniM R (ℕ →₀ R)) := (T.subClosed_and_perm_and_linearEquiv_invariant_uniM R (ℕ →₀ R)).1
+  have hsub : SubClosed (uniM R (ℕ →₀ R)) := (_root_.GlobalTheory.UniSeqBasic.main R (ℕ →₀ R)).1
   have hlenpos := List.length_pos_of_mem hv
   apply exactAt_of_links (ℕ →₀ R) _ (low R n ∪ aff R n j)
   · intro l hl l' hl'
@@ -95,7 +95,7 @@ theorem linkIn_exactAt_of_coord_one : ∀ (R : Type) [CommRing R] (s n : ℕ), L
         · rw [← List.append_assoc]
           exact h2
     rw [heq]
-    obtain ⟨τ', hτ', hl', heq'⟩ := T.linkIn_uniM_eq_shorter_of_form_eq_one R (ℕ →₀ R) (Finsupp.lapply n) (low R n ∪ aff R n j)
+    obtain ⟨τ', hτ', hl', heq'⟩ := _root_.GlobalTheory.SeqCx.linkIn_uniM_eq_of_form R (ℕ →₀ R) (Finsupp.lapply n) (low R n ∪ aff R n j)
       (coord_vanish_low_aff R n j hj) (τ ++ τ1) hτ1.2 v (List.mem_append_left _ hv)
       (by rw [Finsupp.lapply_apply]; exact hvn)
     rw [heq']
@@ -104,11 +104,3 @@ theorem linkIn_exactAt_of_coord_one : ∀ (R : Type) [CommRing R] (s n : ℕ), L
 
 end GlobalTheory.SeqCx
 
-section
-open GlobalTheory.SeqCx Matrix
-theorem _root_.GlobalTheory.T.exactAt_link_succ_union_translate_of_coord_one : ∀ (R : Type) [CommRing R] (s n : ℕ), LinkExactAff R s n → ∀ j : ℕ, n + 1 ≤ j → ∀ τ ∈ uniM R (ℕ →₀ R), ∀ v ∈ τ, v n = 1 → ∀ p : ℕ, p + s + τ.length ≤ n + 2 → ExactAt (linkIn (uniM R (ℕ →₀ R)) (low R (n + 1) ∪ aff R (n + 1) j) τ) p := by
-  first
-  | exact @GlobalTheory.SeqCx.linkIn_exactAt_of_coord_one
-  | exact @GlobalTheory.SeqCx.coord_vanish_low_aff
-  | exact @GlobalTheory.SeqCx.low_aff_subset_succ
-end

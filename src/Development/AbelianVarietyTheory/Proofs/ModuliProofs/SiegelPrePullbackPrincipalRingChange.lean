@@ -54,10 +54,7 @@ namespace GlobalTheory.SiegelRingChange
 
 variable {h k : ℕ} {B B' : Type} [CommRing B] [CommRing B'] {ζ : B} {ζ' : B'} {S : Scheme.{0}}
 
-theorem spMap_comp' {R₁ R₂ R₃ : Type} [CommRing R₁] [CommRing R₂] [CommRing R₃] (a : R₁ →+* R₂) (b : R₂ →+* R₃) :
-    spMap (b.comp a) = spMap b ≫ spMap a := by
-  simp only [spMap, ← Spec.map_comp]
-  rfl
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem exists_spMap {R₁ R₂ : Type} [CommRing R₁] [CommRing R₂] (x : Sp R₂ ⟶ Sp R₁) :
     ∃ a : R₁ →+* R₂, spMap a = x := by

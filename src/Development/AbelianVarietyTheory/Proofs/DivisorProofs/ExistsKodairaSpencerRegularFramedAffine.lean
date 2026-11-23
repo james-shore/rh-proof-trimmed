@@ -122,7 +122,7 @@ theorem exists_der_res {X : Scheme.{0}} (U W : X.affineOpens) (hW : W.1 ≤ U.1)
   letI : Algebra Γ(X, U.1) Γ(X, W.1) := ρ.toAlgebra
   have h1 : IsOpenImmersion (chart W) := W.2.isOpenImmersion_fromSpec
   have e : Spec.map (CommRingCat.ofHom (algebraMap Γ(X, U.1) Γ(X, W.1))) ≫ chart U = chart W :=
-    GlobalTheory.LogKSDiv.GenChange.chart_res U W hW
+    _root_.GlobalTheory.LogKSLoc.spMap_res_chart U W hW
   have : IsOpenImmersion (Spec.map (CommRingCat.ofHom (algebraMap Γ(X, U.1) Γ(X, W.1))) ≫ chart U) := e ▸ h1
   have : IsOpenImmersion (chart U) := U.2.isOpenImmersion_fromSpec
   have : IsOpenImmersion (Spec.map (CommRingCat.ofHom (algebraMap Γ(X, U.1) Γ(X, W.1)))) :=

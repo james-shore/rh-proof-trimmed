@@ -74,14 +74,14 @@ theorem isLifted_of_sncCharts : ∀ (p : ℕ) [Fact p.Prime] (Y X : Scheme.{0}) 
   have hη : ∀ i, π (genericPoint X) ∈ (C i).U := fun i => hU i (hgen i)
   let πK : Y.presheaf.stalk (π (genericPoint X)) →+* X.functionField := (π.stalkMap (genericPoint X)).hom
   have hflat : IsFlatLift p πK :=
-    GlobalTheory.T.etale_coordinates_flat_lift p Y X q f π hpb (C i₁).U (C i₁).t (C i₁).affine (C i₁).etale (genericPoint X) (hη i₁)
+    _root_.GlobalTheory.DI.isFlatLift_stalkMap_of_isEtCoord p Y X q f π hpb (C i₁).U (C i₁).t (C i₁).affine (C i₁).etale (genericPoint X) (hη i₁)
   have hpK : (p : X.functionField) = 0 := by
     have h0 := (hflat.ker (p : Y.presheaf.stalk (π (genericPoint X)))).2 ⟨1, by ring⟩
     simpa using h0
   haveI : CharP X.functionField p := (CharP.charP_iff_prime_eq_zero Fact.out).2 hpK
   have hpp := logLift_pp_zero p πK hflat
   choose F hF1 hF2 hF3 using fun i =>
-    GlobalTheory.T.exists_frobenius_lift_stalk p q (C i).U (C i).t (C i).affine (C i).etale (π (genericPoint X)) (hη i)
+    _root_.GlobalTheory.DI.exists_frobLift_stalk_of_etCoord p q (C i).U (C i).t (C i).affine (C i).etale (π (genericPoint X)) (hη i)
 
   have hlift : ∀ i l, πK ((Y.presheaf.germ (C i).U (π (genericPoint X)) (hη i)).hom ((C i).t l)) =
       (x i l : X.functionField) := by
@@ -100,8 +100,8 @@ theorem isLifted_of_sncCharts : ∀ (p : ℕ) [Fact p.Prime] (Y X : Scheme.{0}) 
     exact ⟨z, hz, fun i hi => absurd hi (Finset.notMem_empty i)⟩
   have hsp : π (genericPoint X) ⤳ π y :=
     ((genericPoint_spec X).specializes (Set.mem_univ y)).map π.continuous
-  have hsurj := (GlobalTheory.T.mod_p_squared_stalk_surjective p Y X q f π hpb y).1
-  have hloc := GlobalTheory.T.local_ring_image_stalk_map π y hsp hsurj
+  have hsurj := (_root_.GlobalTheory.DI.StalkKer.stalkMap_surjective_ker p Y X q f π hpb y).1
+  have hloc := _root_.GlobalTheory.DI.mem_locRing_iff_exists_stalkIm π y hsp hsurj
   set At := stalkIm hsp with hAt
   have hmap : (locRing y : Set X.functionField) = (At.map πK : Set X.functionField) := by
     ext c
@@ -122,7 +122,7 @@ theorem isLifted_of_sncCharts : ∀ (p : ℕ) [Fact p.Prime] (Y X : Scheme.{0}) 
     intro j hj
     obtain ⟨c, hc⟩ := hJ i₀ j hj
     refine ⟨_, hlift i₀ j, fun i hi => ?_⟩
-    obtain ⟨v, hv⟩ := GlobalTheory.T.snc_chart_equations_differ_unit q L σ hL (C i₀) (C i) (π y) (hU i₀ (hyt i₀ hi₀)) (hU i (hyt i hi)) c
+    obtain ⟨v, hv⟩ := _root_.GlobalTheory.LogPair.sncChart_germ_eqn_unit q L σ hL (C i₀) (C i) (π y) (hU i₀ (hyt i₀ hi₀)) (hU i (hyt i hi)) c
     rw [hc] at hv
     change (Y.presheaf.germ (C i₀).U (π y) (hU i₀ (hyt i₀ hi₀))).hom ((C i₀).t j) = _ at hv
     have hv' := congrArg (Y.presheaf.stalkSpecializes hsp).hom hv
@@ -150,7 +150,7 @@ theorem isLifted_of_sncCharts : ∀ (p : ℕ) [Fact p.Prime] (Y X : Scheme.{0}) 
       · show F i ((Y.presheaf.germ (C i).U (π (genericPoint X)) (hη i)).hom 1) = _
         simp
       · exact hF2 i l
-    obtain ⟨w, hwA, hw⟩ := GlobalTheory.T.frobenius_lift_unit_times_coord p At (F i) sv sv' _ hpp hsv'A hvv (hstab i hi sv hsvA) (hkey ((C i).e c))
+    obtain ⟨w, hwA, hw⟩ := _root_.GlobalTheory.DI.unit_mul_logarithmic_lift p At (F i) sv sv' _ hpp hsv'A hvv (hstab i hi sv hsvA) (hkey ((C i).e c))
     refine ⟨w, Subring.mem_map.2 ⟨w, hwA, rfl⟩, ?_⟩
     rw [hv2]
     exact hw

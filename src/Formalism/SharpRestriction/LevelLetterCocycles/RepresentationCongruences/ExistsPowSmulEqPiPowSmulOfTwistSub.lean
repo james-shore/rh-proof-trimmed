@@ -169,7 +169,7 @@ theorem exists_pow_smul_eq_pi_pow_smul_of_twist_sub (T : LocLat G Qp LL O) (hC :
           Formalism.MainNotions.ArcLiftingSetup.lA W ^ k • ((g₀ * (1 + W.π₀ * h)) • W.γ T E) := by
         rw [← hkx, Formalism.MainNotions.UnusedSlot80.Relay2.γ_lsmul, ← hγg]
         congr 1
-        exact Formalism.MainNotions.LiftingTheory.frame_γD_smul W T W.gam g₀ E
+        exact _root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear W T W.gam g₀ E
       rw [hγx] at h1x
       have hR : W.π₀ ^ R = W.π₀ ^ r * W.π₀ * W.π₀ ^ (R - (r + 1)) := by
         rw [← pow_succ, ← pow_add]; congr 1; omega

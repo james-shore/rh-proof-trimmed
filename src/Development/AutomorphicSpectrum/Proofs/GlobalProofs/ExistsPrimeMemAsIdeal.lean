@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.Transport
+import Formalism.LocalRingCardinality.SpanPowerMembership.Places
 
 @[expose] public section
 
@@ -56,7 +57,7 @@ namespace GlobalTheory.CompanionTheory.Hypotheses₂
 
 theorem exists_prime_mem_asIdeal {F : Type} [Field F] [NumberField F]
     (v : HeightOneSpectrum (𝓞 F)) : ∃ p : ℕ, p.Prime ∧ ((p : ℕ) : 𝓞 F) ∈ v.asIdeal :=
-  _root_.Bl.FirstLemmaD.goal1 v
+  _root_.Formalism.BasicNotions.Examples₂.PlacesToy.exists_prime_mem v
 
 theorem finCd2_GK (p : ℕ) [Fact p.Prime] (K : IntermediateField ℚ_[p] (PadicAlgCl p))
     (hK : FiniteDimensional ℚ_[p] K) (R : Type) [CommRing R] (M : Type) [AddCommGroup M]

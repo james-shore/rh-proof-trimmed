@@ -55,27 +55,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Cusp.Corr
 
 open ReciprocityTheory.AnForm.A (IsPsh)
 
-theorem psh_add {d : ℕ} {U : Set (Fin d → ℂ)} {φ ψ : (Fin d → ℂ) → ℝ} (hφ : IsPsh U φ) (hψ : IsPsh U ψ) :
-    IsPsh U (fun z => φ z + ψ z) := by
-  refine ⟨hφ.1.add hψ.1, fun z w hd => ?_⟩
-  obtain ⟨h1, h2⟩ := hφ.2 z w hd
-  obtain ⟨h3, h4⟩ := hψ.2 z w hd
-  refine ⟨h1.add h3, ?_⟩
-  rw [Real.circleAverage_fun_add h1 h3]
-  exact add_le_add h2 h4
-
-theorem psh_const {d : ℕ} (U : Set (Fin d → ℂ)) (c : ℝ) : IsPsh U (fun _ => c) := by
-  refine ⟨upperSemicontinuousOn_const, fun z w _ => ⟨circleIntegrable_const c 0 1, ?_⟩⟩
-  rw [Real.circleAverage_const]
-
-theorem psh_sum {d : ℕ} {U : Set (Fin d → ℂ)} {ι : Type} (S : Finset ι) {f : ι → (Fin d → ℂ) → ℝ}
-    (h : ∀ i ∈ S, IsPsh U (f i)) : IsPsh U (fun z => ∑ i ∈ S, f i z) := by
-  classical
-  induction S using Finset.induction_on with
-  | empty => simpa using psh_const U 0
-  | insert a S ha ih =>
-    simp only [Finset.sum_insert ha]
-    exact psh_add (h a (Finset.mem_insert_self a S)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+alias psh_sum := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.PhiI.isPsh_sum
 
 theorem psh_congr {d : ℕ} {U : Set (Fin d → ℂ)} {φ ψ : (Fin d → ℂ) → ℝ} (h : ∀ z ∈ U, φ z = ψ z)
     (hφ : IsPsh U φ) : IsPsh U ψ := by

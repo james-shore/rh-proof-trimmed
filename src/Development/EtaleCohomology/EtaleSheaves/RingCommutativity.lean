@@ -45,6 +45,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace LateralTheory.E.RingCommutativity
 
-theorem goal_of : LateralTheory.E.CupProductRingLaws.LeafRingComm := LateralTheory.Fix.CupProductTensor.ringComm'
+alias goal_of := _root_.LateralTheory.Fix.CupProductTensor.ringComm'
 
 end LateralTheory.E.RingCommutativity

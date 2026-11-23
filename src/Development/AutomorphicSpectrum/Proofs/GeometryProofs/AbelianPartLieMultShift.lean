@@ -81,7 +81,7 @@ theorem lieMult_abPart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   haveI := P.τ.i_hom
   haveI := P.e_hom
   haveI heinv : IsMonHom P.e.inv := inferInstance
-  obtain ⟨m, hm⟩ := GlobalTheory.T.torus_extension_module_structure L P.tK.G P.τ (𝓞 E) P.tK.act (fun a => by
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.CompanionTheory.TorusAct.exists_module_diagAct L P.tK.G P.τ (𝓞 E) P.tK.act (fun a => by
     haveI := P.tB.act.hom a
     refine ⟨P.e.hom ≫ P.tB.act.act a ≫ P.e.inv, inferInstance, ?_⟩
     refine (cancel_mono P.e.hom).1 ?_
@@ -101,7 +101,7 @@ theorem lieMult_abPart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     P.tB.act.one P.tB.act.mul P.tB.act.add
   obtain ⟨f, hf, -⟩ := lieModel_exists_unique_diff _ _ _ k (spMap g) _ _ M₁ M₂ P.τ.i
   obtain ⟨h, hh, -⟩ := lieModel_exists_unique_diff _ _ _ k (spMap g) _ _ M₂ M₃ (P.τ.q ≫ P.e.hom)
-  obtain ⟨hker, hsurj⟩ := GlobalTheory.T.torus_extension_tangent_exact L P.tK.G P.τ k g
+  obtain ⟨hker, hsurj⟩ := _root_.GlobalTheory.CompanionTheory.Ar.LieExact.lie_exact_field L P.tK.G P.τ k g
   haveI hmono : Mono P.τ.i := ⟨fun a b hab => P.τ.isKernel.hom_ext hab (toUnit_unique _ _)⟩
   have finj : Function.Injective f := fun a b hab => M₁.inj ((cancel_mono P.τ.i).1 (by
     rw [← hf, ← hf, hab]))
@@ -136,7 +136,7 @@ theorem lieMult_abPart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   have eqh : ∀ a c, h (ρ₂ a c) = ρ₃ a (h c) := fun a c => M₃.inj (by
     rw [hh, hρ₃ a (h c), hρ₂ a c, hh, Category.assoc, Category.assoc, Category.assoc]
     exact congrArg (M₂.pt c ≫ ·) (P.act a))
-  obtain ⟨bas⟩ := GlobalTheory.T.eigenspace_basis_exists E P.τ.X k τ
+  obtain ⟨bas⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HT.LatMult.nonempty_basis_eigenHom E P.τ.X k τ
   obtain ⟨b₁, hb₁, hb₁'⟩ := (lieMult_iff_family M₁ D ρ₁ hρ₁ τ _).1
     ((GlobalTheory.Diag.lieMult_iff (spMap g) τ _).2 ⟨bas⟩)
   obtain ⟨b₂, hb₂, hb₂'⟩ := (lieMult_iff_family M₂ P.tK.act ρ₂ hρ₂ τ n).1 hn

@@ -70,13 +70,13 @@ theorem exists_liftSide : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn
         (fun k => IsLabElt (Vc X.toD7 i) (k.1.1 : PlI X.B px).1 (labIn (Vc X.toD7 i).rank k.2))
         fun k => IsLocElt (Vc X.toD7 i) (k.1.1 : PlI X.B px).1)) ∧ BrgStdV X I hX U Xg tr L i (cV i) (fun t φ => (s t).pres.extL φ) := by
   intro X px I hX U Xg tr L eG hI hV hL hG cV i c0L hcV hmap hin hβ hg _
-  obtain ⟨c, hc, hP⟩ := GlobalTheory.T.exists_common_coefficientMap_liftPresentation X px I hX U Xg tr L eG hI hV hL hG cV i c0L hcV hmap hin hβ hg
+  obtain ⟨c, hc, hP⟩ := _root_.GlobalTheory.Mem.R3.LiftPresStd.exists_oneCoef_presStd X px I hX U Xg tr L eG hI hV hL hG cV i c0L hcV hmap hin hβ hg
   choose P hR hco hC using hP
-  have hF : ∀ t, FrameOK X I U i t 1 1 := fun t => GlobalTheory.T.identity_integralUnitaryFrameCoordinates_of_unitGram X px I U i t hg
-  choose a ha using fun t => GlobalTheory.T.exists_finiteGroupAction_liftForms_rightTranslation X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
-  have hk := fun t => GlobalTheory.T.splitHecke_operators_lifts_doubleCoset X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
-  have hki := fun t => GlobalTheory.T.exists_inertHecke_doubleCosetOperators_lifts X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
+  have hF : ∀ t, FrameOK X I U i t 1 1 := fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.frameOK_one_of_gram_eq_one X px I U i t hg
+  choose a ha using fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.ActQ.exists_actTie X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
+  have hk := fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.SplitTie.split_tie X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
+  have hki := fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.InertTie.exists_inertTie X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
   exact ⟨fun t => Bridge.SideRealG.mk (P t) (a t) (Classical.choice (hk t)), fun t => ⟨ha t, hC t, hki t⟩,
-    GlobalTheory.T.standardLiftReading_of_decoratedLatticePresentations X px I hX U Xg tr L eG hI hV hL hG cV i hβ hg c hc P hR hco⟩
+    _root_.GlobalTheory.Mem.R3.LiftBrg.brgStdV_of_readsStd_one X px I hX U Xg tr L eG hI hV hL hG cV i hβ hg c hc P hR hco⟩
 
 end GlobalTheory.Mem.R3.LiftBrg

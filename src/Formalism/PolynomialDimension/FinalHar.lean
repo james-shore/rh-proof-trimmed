@@ -47,12 +47,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.CountingSumsFrames.Top
 
-theorem slTwo : Formalism.CountingSumsFrames.SlTwo := Formalism.CountingSumsFrames.slTwoCommutator_holds
 theorem harProj : Formalism.CountingSumsFrames.HarProj := Formalism.CountingSumsFrames.harmonicProjection_holds
 theorem levelProj : Formalism.CountingSumsFrames.LevelProj := Formalism.CountingSumsFrames.isotypicProjection_holds
-theorem gaussProj : Formalism.CountingSumsFrames.GaussProj := Formalism.CountingSumsFrames.gaussLatticeProjection_holds
-theorem gaussLemmaH : Formalism.CountingSumsFrames.GaussLemmaH := Formalism.CountingSumsFrames.gaussLemmaPairing_holds
-theorem levelLattice : Formalism.CountingSumsFrames.LevelLattice := Formalism.CountingSumsFrames.isotypicLattice_holds
-theorem harQuot : Formalism.CountingSumsFrames.HarQuot := Formalism.CountingSumsFrames.harmonicQuotient_holds
-
 end Formalism.CountingSumsFrames.Top

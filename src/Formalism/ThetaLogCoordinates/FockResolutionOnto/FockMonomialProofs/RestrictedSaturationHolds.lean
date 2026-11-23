@@ -123,7 +123,7 @@ theorem sat_main {s : ℕ} (LL : Letters (K + 1)) {q : ℕ} (J : Fin q → ℕ) 
           Finsupp.notMem_support_iff.mp hla]
     have h1 := hQ3 x hxi hxW
     rw [hQx, hD] at h1
-    have h2 := Formalism.InvariantFactorPaths.PW.Top.weylInt p _ (s + 1) G _ _ (4 * LL.total) L la _
+    have h2 := _root_.Formalism.InvariantFactorPaths.PW.weyl_integral_holds p _ (s + 1) G _ _ (4 * LL.total) L la _
       (Submodule.smul_mem _ _ (hf la)) h1
     rw [hD] at h2
     refine span_le_restrictedLattice raising_divided_integral derivative_divided_integral LL hv J M c k0 hk0 hc hmin G hE _ ?_ h2

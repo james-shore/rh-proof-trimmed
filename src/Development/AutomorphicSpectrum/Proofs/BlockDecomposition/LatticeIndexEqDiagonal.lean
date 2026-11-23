@@ -47,6 +47,7 @@ import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.Archim
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.ReadSplit
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.IsTransl
 import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.IsSliceMap
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasSatakeGLOfIsSatVecGL
 
 @[expose] public section
 
@@ -127,22 +128,11 @@ theorem mem_latD {ϖ : w.adicCompletion E} {a b i j : ℕ} {W : Matrix (Fin a) (
     W ∈ latD ϖ a b i j ↔
       ∀ (r : Fin a) (s : Fin b), (if (r : ℕ) < i ∧ j ≤ (s : ℕ) then ϖ * W r s else W r s) ∈ Ov E w := Iff.rfl
 
-theorem unif_mem {ϖ : w.adicCompletion E} (h : IsUnifV E w ϖ) : ϖ ∈ Ov E w := by
-  have : Valued.v ϖ ≤ 1 := by
-    rw [h]
-    exact_mod_cast (by decide : (Multiplicative.ofAdd (-1 : ℤ)) ≤ 1)
-  exact (HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).2 this
-
-theorem unif_ne {ϖ : w.adicCompletion E} (h : IsUnifV E w ϖ) : ϖ ≠ 0 := by
-  intro h0
-  rw [IsUnifV, h0, map_zero] at h
-  exact WithZero.zero_ne_coe h
-
 theorem diag_iff_latD {ϖ : w.adicCompletion E} (hϖ : IsUnifV E w ϖ) {a b : ℕ} (i j : ℕ)
     (W : Matrix (Fin a) (Fin b) (w.adicCompletion E)) :
     (IsInt w (diagJ a ϖ i * W) ∧ IsInt w (ϖ • (W * diagJ b ϖ⁻¹ j))) ↔ W ∈ latD ϖ a b i j := by
-  have hm := unif_mem hϖ
-  have h0 := unif_ne hϖ
+  have hm := _root_.GlobalTheory.LFun.mem_Ov_of_isUnifV hϖ
+  have h0 := _root_.GlobalTheory.LFun.SatCompare.ne_zero_of_isUnifV hϖ
   have hc : ∀ x : w.adicCompletion E, ϖ * (x * ϖ⁻¹) = x := fun x => by field_simp
   rw [mem_latD]
   constructor
@@ -206,7 +196,7 @@ theorem mem_latM_iff {ϖ : w.adicCompletion E} (hϖ : IsUnifV E w ϖ) {a b i j :
   have hpp : p.val * (p⁻¹).val = 1 := by rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
   have hqq : q.val * (q⁻¹).val = 1 := by rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
   have hkk : k₂.val * (k₂⁻¹).val = 1 := by rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
-  have hD := diagJ_mul_inv (unif_ne hϖ) b j
+  have hD := diagJ_mul_inv (_root_.GlobalTheory.LFun.SatCompare.ne_zero_of_isUnifV hϖ) b j
   have f₁ : m.1.val * X = k₁.val * (diagJ a ϖ i * W) * q.val := by
     calc m.1.val * X = k₁.val * diagJ a ϖ i * (p.val * (p⁻¹).val) * W * q.val := by
           rw [e₁, hX]; simp only [Matrix.mul_assoc]

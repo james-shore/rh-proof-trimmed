@@ -110,7 +110,7 @@ theorem bideterminant_span_holds : PI.RW.BideterminantSpan := by
     rw [h0]
     exact Submodule.zero_mem _
 
-theorem dual_weyl_weights_bounded : Formalism.MainNotions.TestSideCounting.RestWt := rowWtSpan_of bidetMem bideterminant_span_holds
+theorem dual_weyl_weights_bounded : Formalism.MainNotions.TestSideCounting.RestWt := _root_.PI.RWS.rowWtSpan_of_bideterminant bidetMem bideterminant_span_holds
 
 theorem letter_operators_holds : Formalism.MainNotions.TestSideCounting.RestTheta := row_letter_rule
 
@@ -118,12 +118,10 @@ theorem onePos_of_OB (hOB : Formalism.MainNotions.TestSideCounting.OpBound) : Fo
   Formalism.MainNotions.TestSideCounting.onePos_of_opBound hOB letter_operators_holds dual_weyl_weights_bounded
 
 theorem tensor_operators_of_one_position (h : Formalism.MainNotions.TestSideCounting.OnePos) : Formalism.MainNotions.TestSideCounting.TenOp :=
-  adjointTensorOfSingle_valid Formalism.L2.G.Model.TS.Top.fockRBlock h
+  adjointTensorOfSingle_valid _root_.Formalism.L2.G.Model.TS.fock_pairing_block h
 
 theorem tenOp_of_OB (hOB : Formalism.MainNotions.TestSideCounting.OpBound) : Formalism.MainNotions.TestSideCounting.TenOp := tensor_operators_of_one_position (onePos_of_OB hOB)
 
-theorem operator_weight_bound_holds : Formalism.MainNotions.TestSideCounting.OpBound := operator_words_bound
-
-theorem tensor_operators_holds : Formalism.MainNotions.TestSideCounting.TenOp := tenOp_of_OB operator_weight_bound_holds
+theorem tensor_operators_holds : Formalism.MainNotions.TestSideCounting.TenOp := tenOp_of_OB _root_.operator_words_bound
 
 end Formalism.MainNotions.TestSideWords

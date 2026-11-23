@@ -56,16 +56,6 @@ namespace GlobalTheory.KS.VertFamily
 
 variable {g : ℕ} {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} (u : HolUnif A L g)
 
-private theorem valAt'_add' {X : Scheme.{0}} (y : Sp ℂ ⟶ X) (W : X.Opens) (f f' : Γ(X, W)) :
-    valAt' y W (f + f') = valAt' y W f + valAt' y W f' := by
-  unfold valAt' valAt
-  split_ifs <;> simp
-
-private theorem valAt'_mul_of_top_le_preimage_open {X : Scheme.{0}} (y : Sp ℂ ⟶ X) (W : X.Opens) (f f' : Γ(X, W)) :
-    valAt' y W (f * f') = valAt' y W f * valAt' y W f' := by
-  unfold valAt' valAt
-  split_ifs <;> simp
-
 private theorem valAt'_resG {X : Scheme.{0}} (y : Sp ℂ ⟶ X) {W W' : X.Opens} (hle : W' ≤ W)
     (h : ⊤ ≤ y ⁻¹ᵁ W') (f : Γ(X, W)) : valAt' y W' (resG X hle f) = valAt' y W f := by
   have hW : ⊤ ≤ y ⁻¹ᵁ W := fun x hx => hle (h hx)
@@ -108,14 +98,14 @@ theorem ptDer_fderiv (z w : Fin g → ℂ) :
     have e : (fun z' => valAt' (u.ex z').left O (f + f')) =
         (fun z' => valAt' (u.ex z').left O f) + fun z' => valAt' (u.ex z').left O f' := by
       funext z'
-      exact valAt'_add' _ _ _ _
+      exact _root_.GlobalTheory.valAt'_add _ _ _ _
     rw [e, fderiv_add (differentiableAt_val u z O f h) (differentiableAt_val u z O f' h)]
     rfl
   · intro O h f f'
     have e : (fun z' => valAt' (u.ex z').left O (f * f')) =
         (fun z' => valAt' (u.ex z').left O f) * fun z' => valAt' (u.ex z').left O f' := by
       funext z'
-      exact valAt'_mul_of_top_le_preimage_open _ _ _ _
+      exact _root_.GlobalTheory.valAt'_mul _ _ _ _
     rw [e, fderiv_mul (differentiableAt_val u z O f h) (differentiableAt_val u z O f' h)]
     simp only [add_apply, smul_apply, smul_eq_mul]
   · intro O O' hle h f

@@ -59,6 +59,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersecti
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MixedFieldContraction.GenericFibreKerTarget
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.IsFieldIntersection
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.RationalSections.IsRatSectionOn
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.MemMCoordIdealOfAevalEqZero
 
 @[expose] public section
 
@@ -67,21 +68,6 @@ open MvPolynomial MeasureTheory Filter Topology ReciprocityTheory.AnForm Recipro
 namespace PositivityTheory.Xgp.birat
 
 variable {K : Type} {ι : K → Type} [∀ k, Fintype (ι k)]
-
-theorem hom_mul {f g : ReciprocityTheory.ChartRestriction.G.Geo.MRing ι} {a b : K → ℕ} (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f a)
-    (hg : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g b) : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (f * g) (a + b) := by
-  classical
-  intro m hm k
-  obtain ⟨m₁, h₁, m₂, h₂, rfl⟩ := Finset.mem_add.1 (support_mul f g hm)
-  simp only [Finsupp.add_apply, Finset.sum_add_distrib, hf m₁ h₁ k, hg m₂ h₂ k, Pi.add_apply]
-
-theorem hom_add {f g : ReciprocityTheory.ChartRestriction.G.Geo.MRing ι} {a : K → ℕ} (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f a)
-    (hg : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g a) : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (f + g) a := by
-  classical
-  intro m hm k
-  rcases Finset.mem_union.1 (support_add hm) with h | h
-  · exact hf m h k
-  · exact hg m h k
 
 theorem hom_neg {f : ReciprocityTheory.ChartRestriction.G.Geo.MRing ι} {a : K → ℕ} (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f a) :
     ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (-f) a := by
@@ -126,7 +112,7 @@ theorem ratio {Ω : Type} [Field Ω] (r : (Σ k, ι k) → Ω) (c : ∀ k, ι k)
   | add x y _ _ hx hy =>
     obtain ⟨d, g, h, a1, a2, a3, a4⟩ := hx
     obtain ⟨d', g', h', b1, b2, b3, b4⟩ := hy
-    refine ⟨d + d', g * h' + h * g', h * h', hom_add (hom_mul a1 b2) (hom_mul a2 b1), hom_mul a2 b2, ?_, ?_⟩
+    refine ⟨d + d', g * h' + h * g', h * h', _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_add (_root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul a1 b2) (_root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul a2 b1), _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul a2 b2, ?_, ?_⟩
     · rw [map_mul]; exact mul_ne_zero a3 b3
     · rw [map_add (f := _), map_mul, map_mul, map_mul, a4, b4]; ring
   | neg x _ hx =>
@@ -140,7 +126,7 @@ theorem ratio {Ω : Type} [Field Ω] (r : (Σ k, ι k) → Ω) (c : ∀ k, ι k)
   | mul x y _ _ hx hy =>
     obtain ⟨d, g, h, a1, a2, a3, a4⟩ := hx
     obtain ⟨d', g', h', b1, b2, b3, b4⟩ := hy
-    refine ⟨d + d', g * g', h * h', hom_mul a1 b1, hom_mul a2 b2, ?_, ?_⟩
+    refine ⟨d + d', g * g', h * h', _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul a1 b1, _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul a2 b2, ?_, ?_⟩
     · rw [map_mul]; exact mul_ne_zero a3 b3
     · rw [map_mul, map_mul, a4, b4]; ring
 

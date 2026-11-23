@@ -107,16 +107,13 @@ theorem iota_surjective_spec :
 theorem epsMul_fst {A : Type} [CommRing A] (c : A) (a : DualNumber A) : (epsMul c a).fst = a.fst := by
   simp [epsMul]
 
-theorem epsMul_snd {A : Type} [CommRing A] (c : A) (a : DualNumber A) : (epsMul c a).snd = c * a.snd := by
-  simp [epsMul]
+alias epsMul_snd := _root_.GlobalTheory.CompanionTheory.Ar.LieTangent.epsMul_snd
 
 theorem dualMap_fst {A A' : Type} [CommRing A] [CommRing A'] (f : A →+* A') (a : DualNumber A) :
     (dualMap f a).fst = f a.fst := by
   simp [dualMap]
 
-theorem dualMap_snd {A A' : Type} [CommRing A] [CommRing A'] (f : A →+* A') (a : DualNumber A) :
-    (dualMap f a).snd = f a.snd := by
-  simp [dualMap]
+alias dualMap_snd := _root_.GlobalTheory.CompanionTheory.Ar.LieTangent.dualMap_snd
 
 theorem iota_comp_map (q : V) :
     iota.comp (TrivSqZeroExt.map (LinearMap.toSpanSingleton R V q)).toRingHom =

@@ -174,11 +174,6 @@ variable {σ : E →ₐ[F] E} {M n d : ℕ} {J : Matrix (Fin M) (Fin M) E} {T : 
   {bs : Module.Basis (Fin d) F E} {v : HeightOneSpectrum (𝓞 F)} {ψv : Fv F v → ℂ} {S : Subring (Fv F v ⊗[F] E)}
   {σS : S →+* S} {ϖ : Fv F v} {ε : ℤ}
 
-theorem mem_S_iff (hG : GoodLoc σ J T bs v ψv S σS ϖ ε) (z : Fv F v ⊗[F] E) :
-    z ∈ S ↔ ∀ j, (Algebra.TensorProduct.basis (Fv F v) bs).repr z j ∈ v.adicCompletionIntegers F := by
-  have : z ∈ (S : Set (Fv F v ⊗[F] E)) ↔ z ∈ Rv bs v := by rw [hG.carrier]
-  exact this
-
 theorem isOpen_scaled (hG : GoodLoc σ J T bs v ψv S σS ϖ ε) (c : Fv F v) :
     IsOpen {z : Fv F v ⊗[F] E | c • z ∈ S} := by
   haveI : IsModuleTopology (Fv F v) (Fv F v ⊗[F] E) := ⟨rfl⟩
@@ -186,7 +181,7 @@ theorem isOpen_scaled (hG : GoodLoc σ J T bs v ψv S σS ϖ ε) (c : Fv F v) :
   have e : {z : Fv F v ⊗[F] E | c • z ∈ S} =
       ⋂ j, (fun z => c * (Algebra.TensorProduct.basis (Fv F v) bs).coord j z) ⁻¹' (v.adicCompletionIntegers F : Set (Fv F v)) := by
     ext z
-    simp [mem_S_iff hG]
+    simp [_root_.GlobalTheory.CompanionTheory.GunrVol.mem_S_iff hG]
   rw [e]
   refine isOpen_iInter_of_finite fun j => hO.preimage ?_
   exact continuous_const.mul (IsModuleTopology.continuous_of_linearMap _)
@@ -196,9 +191,9 @@ theorem range_emb (hG : GoodLoc σ J T bs v ψv S σS ϖ ε) :
   ext Y
   constructor
   · rintro ⟨x, rfl⟩ a i
-    exact (mem_S_iff hG _).1 (x i a).2
+    exact (_root_.GlobalTheory.CompanionTheory.GunrVol.mem_S_iff hG _).1 (x i a).2
   · intro hY
-    refine ⟨Matrix.of fun i a => ⟨Y a i, (mem_S_iff hG _).2 (hY a i)⟩, ?_⟩
+    refine ⟨Matrix.of fun i a => ⟨Y a i, (_root_.GlobalTheory.CompanionTheory.GunrVol.mem_S_iff hG _).2 (hY a i)⟩, ?_⟩
     funext a i
     rfl
 

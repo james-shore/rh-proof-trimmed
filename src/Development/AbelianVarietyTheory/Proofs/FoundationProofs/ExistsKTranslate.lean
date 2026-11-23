@@ -122,9 +122,7 @@ theorem kStable_of_units {N : Submodule ℂ V}
     (h : ∀ a b, sameBlock a b → ∀ x ∈ N, act (Eab a b) x ∈ N) : KStable act N :=
   fun _ hZ x hx => GlobalTheory.TensorHW.kc_ind act N x (fun a b hab => h a b hab x hx) hZ
 
-theorem equiv_sameBlock : Equivalence (sameBlock : Ix p q → Ix p q → Prop) :=
-  ⟨sameBlock_self, by rintro (a | a) (b | b) h <;> simp_all [sameBlock],
-    by rintro (a | a) (b | b) (c | c) h h' <;> simp_all [sameBlock]⟩
+alias equiv_sameBlock := _root_.GlobalTheory.LowestType.same_equiv
 
 end Gen
 
@@ -394,8 +392,8 @@ theorem exists_lowest (F : FockData T0 T1 T2) (hn : p + q < n) (ap : Fin p → �
         exact (hcomm _ _ _).trans (by rw [hx'.1 a, map_smul])
       · rw [he]
         exact (hcomm _ _ _).trans (by rw [hx'.2 a b hab, map_zero])) h
-  obtain ⟨μ, e, heW, he0, heh⟩ := GlobalTheory.T.exists_highestWeight_vector_of_KStable p q M W hW2 hW3 fun h => hv0 (by simpa [h] using hW1)
-  have hμ : μ = wtK n ap am := GlobalTheory.T.harmonic_highestWeight_eq_lowestKTypeHighestWeight p q n hn ap am μ (i e)
+  obtain ⟨μ, e, heW, he0, heh⟩ := _root_.GlobalTheory.ExistsHW.exists_highestWeight p q M W hW2 hW3 fun h => hv0 (by simpa [h] using hW1)
+  have hμ : μ = wtK n ap am := _root_.GlobalTheory.HarmonicShape.weight_eq_wtK p q n hn ap am μ (i e)
     ⟨(map_ne_zero_iff i hi).2 he0, (hw_iff hi he).1 heh⟩ (hW2' e heW)
     fun a b => (zero_iff hi he).1 (hWk e heW a b)
   subst hμ

@@ -60,10 +60,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Poinc.Sep.Twist
 
-theorem spMap_comp_spMap {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (b : R →+* R') (a : R' →+* R'') :
-    spMap a ≫ spMap b = spMap (a.comp b) := by
-  rw [← Spec.map_comp]; rfl
-
 theorem twist_fibre_iso : ∀ (V₁ : Type) [CommRing V₁] (X : Over (Sp V₁)) [GrpObj X] (L : LB X.left), L.IsLB →
   ∀ (K : Type) [Field K]
   (ev : V₁ →+* K) (σ : K ≃+* K) (K₀ : Type) [Field K₀] (e : K₀ →+* K), σ.toRingHom.comp e = e →
@@ -79,8 +75,8 @@ theorem twist_fibre_iso : ∀ (V₁ : Type) [CommRing V₁] (X : Over (Sp V₁))
       q ≫ pullback.snd X.hom (spMap ev) = 𝟙 _ →
       q ≫ f ≫ pullback.fst X.hom (spMap (σ.toRingHom.comp ev)) = spMap σ.toRingHom ≫ q ≫ pullback.fst X.hom (spMap ev) := by
   intro V₁ _ X _ L hL K _ ev σ K₀ _ e hσe Z _ LZ hLZ ψ hψ H1 Y _ L₀ hL₀ φ hφ H2
-  have hs : spMap σ.toRingHom ≫ spMap e = spMap e := by rw [spMap_comp_spMap, hσe]
-  have hev : spMap σ.toRingHom ≫ spMap ev = spMap (σ.toRingHom.comp ev) := spMap_comp_spMap _ _
+  have hs : spMap σ.toRingHom ≫ spMap e = spMap e := by rw [_root_.GlobalTheory.spMap_comp_ring, hσe]
+  have hev : spMap σ.toRingHom ≫ spMap ev = spMap (σ.toRingHom.comp ev) := _root_.GlobalTheory.spMap_comp_ring _ _
   have hX := isGrpPullback_pullback X (spMap ev)
   have hXσ := isGrpPullback_pullback X (spMap (σ.toRingHom.comp ev))
   have hχ := hψ.comp hφ

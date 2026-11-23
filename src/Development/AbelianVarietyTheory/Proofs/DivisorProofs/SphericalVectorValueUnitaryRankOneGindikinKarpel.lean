@@ -119,12 +119,9 @@ theorem transv_mem_GLint {n : ℕ} (i j : Fin n) (hij : i ≠ j) {c : L} (hc : V
 theorem ordL_neg (x : L) : ordL (-x) = ordL x := by
   simp only [ordL, Valuation.map_neg]
 
-theorem ordL_one' : ordL (1 : L) = 0 :=
-  P.fIwasawa_ordL_unit 1 1 (by rw [map_one]) (by rw [map_one]) (mul_one 1)
-
 theorem ordL_inv {x : L} (hx : x ≠ 0) : ordL x⁻¹ = -ordL x := by
   have h := P.fIwasawa_ordL_mul x x⁻¹ hx (inv_ne_zero hx)
-  rw [mul_inv_cancel₀ hx, ordL_one'] at h
+  rw [mul_inv_cancel₀ hx, _root_.Formalism.UG.P.fSatake_ord_one] at h
   omega
 
 theorem ordL_monomial_entry {n : ℕ} {t : Equiv.Perm (Fin n)} {Y : GL (Fin n) L} (hY : IsWeylRep t Y)
@@ -143,7 +140,7 @@ theorem chiDeltaU_one (σ : L →+* L) (n m q : ℕ) (α : Fin m → ℂ) : chiD
   unfold chiDeltaU
   refine Finset.prod_eq_one fun i _ => ?_
   split_ifs
-  · simp [ordL_one']
+  · simp [_root_.Formalism.UG.P.fSatake_ord_one]
   · rfl
 
 end GlobalTheory.GKUnitaryRankOne

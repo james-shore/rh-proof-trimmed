@@ -114,10 +114,10 @@ theorem nuLocC_le {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E
   obtain ⟨BT', hF', hA', hP1', hP2', hSy', hAd', hK'⟩ := GlobalTheory.integralChart_formalBiext E H Dw l Xo c T io y C'
   obtain ⟨hFK, hActK, hG, hGc⟩ := hK T.Fr
   obtain ⟨hFK', hActK', hG', hGc'⟩ := hK' T.Fr
-  rw [GlobalTheory.T.localChartDepth_eq_integralBiextDepth E H Dw l Xo c T io y C BT hFK hActK e k a n,
-    GlobalTheory.T.localChartDepth_eq_integralBiextDepth E H Dw l Xo c T io y C' BT' hFK' hActK' e k a n]
-  obtain ⟨nm, hnm⟩ := GlobalTheory.T.exists_iso_integralModels_matching_lieBases E H Dw l Xo c T io _ C.I C'.I
-  have hsurj := GlobalTheory.T.surjective_appTop_integralModel_square E H Dw l Xo c T io _ C'.I
+  rw [_root_.GlobalTheory.ChartCmp.nuLocC_eq_nuAlg E H Dw l Xo c T io y C BT hFK hActK e k a n,
+    _root_.GlobalTheory.ChartCmp.nuLocC_eq_nuAlg E H Dw l Xo c T io y C' BT' hFK' hActK' e k a n]
+  obtain ⟨nm, hnm⟩ := _root_.GlobalTheory.ChartCmp.intData_models_iso E H Dw l Xo c T io _ C.I C'.I
+  have hsurj := _root_.GlobalTheory.ModelSquareFunctions.surjective_appTop_square E H Dw l Xo c T io _ C'.I
   have hU := GlobalTheory.PowGerm.univSt_holds E H Dw l Xo c T io y
   have e1 : MvPowerSeries.map (algebraMap T.Fr T.Fr) C.ch.h = C.ch.h := by
     ext

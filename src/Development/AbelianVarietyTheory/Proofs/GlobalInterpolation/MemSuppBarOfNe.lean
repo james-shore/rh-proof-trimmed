@@ -69,10 +69,6 @@ variable {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p])
 
 theorem lamC_of_mem {x : ℂ} (h : x ∈ TaylorLogMetric.Qbar) : TaylorLogMetric.lamC lam x = lam ⟨x, h⟩ := dif_pos h
 
-theorem lamC_mul {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ TaylorLogMetric.Qbar) :
-    TaylorLogMetric.lamC lam (x * y) = TaylorLogMetric.lamC lam x * TaylorLogMetric.lamC lam y := by
-  rw [lamC_of_mem lam hx, lamC_of_mem lam hy, lamC_of_mem lam (mul_mem hx hy), ← map_mul]; rfl
-
 theorem lamC_zpow {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (n : ℤ) : TaylorLogMetric.lamC lam (x ^ n) = TaylorLogMetric.lamC lam x ^ n := by
   rw [lamC_of_mem lam hx, lamC_of_mem lam (zpow_mem hx n), ← map_zpow₀]; rfl
 
@@ -165,7 +161,7 @@ theorem assemble {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_
     have hq : ∑ j ∈ J, jetC A.cD (A.thInd S N N' c (x + j)) m ∈ TaylorLogMetric.Qbar := by
       have := mul_mem hχ (hlam (∑ j ∈ J, A.jetK S N N' c (x + j) m)).1
       rwa [e, mul_inv_cancel_left₀ hχ0] at this
-    rw [map_mul, ← (hlam (∑ j ∈ J, A.jetK S N N' c (x + j) m)).2, e, lamC_mul lam (inv_mem hχ) hq, mul_assoc]
+    rw [map_mul, ← (hlam (∑ j ∈ J, A.jetK S N N' c (x + j) m)).2, e, _root_.GlobalTheory.MomT.UnitTr.lamC_mul_of_mem lam (inv_mem hχ) hq, mul_assoc]
 
 end Asm
 

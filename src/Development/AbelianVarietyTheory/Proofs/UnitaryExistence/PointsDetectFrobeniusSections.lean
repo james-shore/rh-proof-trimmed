@@ -103,7 +103,7 @@ theorem ptsDetect_framed : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   intro E _ _ _ H Dw l Xo c a n
   have hS : Out.SecBaseChangeSt := GlobalTheory.firstFiveLaws.1.secBaseChange
   exact GeometricValues.ptsDetect_of (K := c.F) (fun S _ _ => FrPt Xo c S) (fun φ y z => FrMap φ y z)
-    (fun t y y' => FrBor t y y') (GlobalTheory.T.framedModuli_algebraicLaws_chart_weight_integrality hS E H Dw l Xo c).2.2.1
+    (fun t y y' => FrBor t y y') (_root_.GlobalTheory.Frames.algebraic_laws hS E H Dw l Xo c).2.2.1
     (fun S _ _ T _ _ φ y => GlobalTheory.Frames.FramedBaseChange.exists_frMap hS E H Dw l Xo c S T φ y) (ex Dw a n)
 
 end GlobalTheory.Frames

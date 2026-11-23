@@ -111,17 +111,6 @@ theorem homLat_fg {K : Type} [Field K] [NumberField K] {a b : ℕ}
   rintro _ ⟨y, hy, rfl⟩ x _
   exact hy x (Submodule.subset_span x.2)
 
-theorem exists_smul_mem {K : Type} [Field K] [NumberField K] {b : ℕ}
-    (B : Submodule (𝓞 K) (Fin b → K)) (hBs : Submodule.span K (B : Set (Fin b → K)) = ⊤)
-    (v : Fin b → K) : ∃ d : 𝓞 K, d ≠ 0 ∧ d • v ∈ B := by
-  first
-  | exact @_root_.GlobalTheory.FiniteSumFlagMeasures.main
-  | exact _root_.GlobalTheory.FiniteSumFlagMeasures.main
-  | (apply _root_.GlobalTheory.FiniteSumFlagMeasures.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteSumFlagMeasures.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteSumFlagMeasures.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FiniteSumFlagMeasures.main ..)
-
 theorem homLat_span {K : Type} [Field K] [NumberField K] {a b : ℕ}
     (A : Submodule (𝓞 K) (Fin a → K)) (B : Submodule (𝓞 K) (Fin b → K)) (hA : A.FG)
     (hBs : Submodule.span K (B : Set (Fin b → K)) = ⊤) :
@@ -130,7 +119,7 @@ theorem homLat_span {K : Type} [Field K] [NumberField K] {a b : ℕ}
   obtain ⟨s, rfl⟩ := hA
   rw [eq_top_iff]
   intro y _
-  choose d hd0 hd using fun x : Fin a → K => exists_smul_mem B hBs (toMat y *ᵥ x)
+  choose d hd0 hd using fun x : Fin a → K => _root_.GlobalTheory.FiniteSumFlagMeasures.main B hBs (toMat y *ᵥ x)
   have hD : ∏ x ∈ s, d x ≠ 0 := Finset.prod_ne_zero_iff.2 fun x _ => hd0 x
   have hmem : (∏ x ∈ s, d x) • y ∈ homLat (Submodule.span (𝓞 K) (s : Set (Fin a → K))) B := by
     intro x hx

@@ -112,8 +112,8 @@ theorem exists_norm_form : LL → TwistBCSpanStatement → TWM.VRatioGtStatement
   rw [← eG] at hg
   haveI := E.homG
   obtain ⟨β, hβ, nβ⟩ := exists_norm_three U.LG E.aG N hg
-  obtain ⟨κ, hκ, -⟩ := GlobalTheory.T.descent_powerIso_endomorphism_abelianPart_uniformization hL R I hI D A G hG U E N 1 β hβ nβ
-  have key := GlobalTheory.T.psi_comp_endomorphism_eq_pow_of_pullback_iso hL h1 h2 h3 h4 R I hI D A G hG U (AlgebraicClosure (FractionRing R)) E E'
+  obtain ⟨κ, hκ, -⟩ := _root_.GlobalTheory.UT.PullDescent.main hL R I hI D A G hG U E N 1 β hβ nβ
+  have key := _root_.GlobalTheory.UT.PsiPull.psi_pull hL h1 h2 h3 h4 R I hI D A G hG U (AlgebraicClosure (FractionRing R)) E E'
     (by rw [eG, eG']; exact hadj a)
     (fun x y e => star_smul_injective a N hN hN1 (by rw [← eh, ← eh]; exact e)) N hN1
     (fun y => by rw [eh, eh', star_star, smul_smul, mul_comm, hN, Nat.cast_smul_eq_nsmul])

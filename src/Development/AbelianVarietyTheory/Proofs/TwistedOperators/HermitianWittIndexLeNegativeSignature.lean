@@ -61,17 +61,11 @@ namespace GlobalTheory.WittSig
 open Matrix
 open scoped ComplexOrder
 
-theorem cT_conj_eq {m k : Type} (M : Matrix m k ℂ) : Formalism.UG.cT (starRingEnd ℂ) M = Mᴴ := by
-  ext i j; simp [Formalism.UG.cT, conjTranspose_apply]
-
-theorem Jpq_conjTranspose (q p : ℕ) : (Formalism.UG.Jpq q p)ᴴ = Formalism.UG.Jpq q p := by
-  simp [Formalism.UG.Jpq, fromBlocks_conjTranspose]
-
 theorem le_of_isotropic {n : Type} [Fintype n] [DecidableEq n] {q p r : ℕ} (J : Matrix n n ℂ)
     (hS : Formalism.UG.HasSignature J q p) (X Y : Matrix n (Fin r) ℂ) (hxx : Xᴴ * J * X = 0)
     (hxy : Xᴴ * J * Y = 1) : r ≤ p := by
   obtain ⟨e, P, hP⟩ := hS
-  rw [cT_conj_eq] at hP
+  rw [_root_.Formalism.UG.P.cT_conj_eq] at hP
   set Q : Matrix (Fin q ⊕ Fin p) (Fin q ⊕ Fin p) ℂ := (↑(P⁻¹) : Matrix (Fin q ⊕ Fin p) (Fin q ⊕ Fin p) ℂ) with hQdef
   have hPQ : (P : Matrix _ _ ℂ) * Q = 1 := by simp [Q]
   have hJ : J.reindex e e = Qᴴ * Formalism.UG.Jpq q p * Q := by
@@ -98,7 +92,7 @@ theorem le_of_isotropic {n : Type} [Fintype n] [DecidableEq n] {q p r : ℕ} (J 
     have h := key X Y
     rw [hxy, ← hZdef, ← hWdef] at h
     have h2 := congrArg conjTranspose h
-    simpa [conjTranspose_mul, Jpq_conjTranspose, Matrix.mul_assoc] using h2
+    simpa [conjTranspose_mul, _root_.GlobalTheory.FockCompare.CartanRel.J_conjTranspose, Matrix.mul_assoc] using h2
   let L : (Fin r → ℂ) →ₗ[ℂ] (Fin p → ℂ) := (Z.submatrix Sum.inr id).mulVecLin
   have hinj : Function.Injective L := by
     rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']

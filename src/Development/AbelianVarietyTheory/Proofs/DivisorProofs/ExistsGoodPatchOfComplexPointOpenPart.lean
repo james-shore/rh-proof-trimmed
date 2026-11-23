@@ -114,7 +114,7 @@ theorem exists_goodPatch_of_mem : ∀ {F : Type} [Field F] {σ : F →+* ℂ} {X
       filter_upwards [(hcurv a b i j).norm.eventually (gt_mem_nhds (lt_add_one _))] with z hz
       exact hz.le.trans ((le_refl _).trans (by linarith [hP2 a b i j]))
     filter_upwards [ch.e.open_source.mem_nhds hc, (isOpen_ptsIn (p := X.str) (σ := σ) O).mem_nhds hy,
-      GlobalTheory.T.adaptedFrame_eventually_near_complexPoint E hA, e1, e2] with z h₁ h₂ h₃ h₄ h₅
+      _root_.GlobalTheory.GoodTop.frame_eventually E hA, e1, e2] with z h₁ h₂ h₃ h₄ h₅
     exact ⟨h₁, h₂, h₃, h₄, h₅⟩
   refine ⟨ch.e, ∅, A, interior T, C, mem_interior_iff_mem_nhds.2 hT, ?_⟩
   have hsub : ∀ z ∈ interior T, z ∈ T := fun z hz => interior_subset hz

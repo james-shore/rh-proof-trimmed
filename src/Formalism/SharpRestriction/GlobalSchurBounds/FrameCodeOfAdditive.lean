@@ -72,9 +72,7 @@ section Shares
 
 variable {D : D7} {L : SizeData₂ D}
 
-theorem logWeight_nonneg (w : D.what₂.places.Pl) : 0 ≤ SizeData₂.lwP w := by
-  unfold SizeData₂.lwP lw
-  exact div_nonneg (Real.log_natCast_nonneg _) (Nat.cast_nonneg _)
+alias logWeight_nonneg := _root_.Formalism.MainNotions.J.logWeight_nonneg
 
 theorem kapv_nonneg (X : G.Inst D L) (K : G.Consts) (hK : K.Nonneg) (hI : G.KapIDef X K) (a b : G.HH D → ℤ) (p : ℕ)
     (t0 : G.HH D) : 0 ≤ G.kapv X K a b p t0 := by

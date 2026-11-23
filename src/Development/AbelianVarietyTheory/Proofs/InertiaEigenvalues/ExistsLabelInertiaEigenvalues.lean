@@ -66,15 +66,6 @@ theorem charpoly_pow_of_prod {K ι : Type} [Field K] [IsAlgClosed K] {r : ℕ} (
     Multiset.map_map, Multiset.map_map]
   rfl
 
-theorem teich_zero {g : ℕ} [Fact g.Prime] (t : Formalism.CyclotomicNorms.Fbar g →* ℂ)
-    (ht : ∀ x y, x ≠ 0 → y ≠ 0 → t x = t y → x = y) : t 0 = 0 := by
-  classical
-  obtain ⟨x, hx⟩ := Infinite.exists_notMem_finset ({0, 1} : Finset (Formalism.CyclotomicNorms.Fbar g))
-  simp only [Finset.mem_insert, Finset.mem_singleton, not_or] at hx
-  by_contra h0
-  have h1 : t 0 * t x = t 0 * t 1 := by rw [← map_mul, ← map_mul, zero_mul, zero_mul]
-  exact hx.2 (ht x 1 hx.1 one_ne_zero (mul_left_cancel₀ h0 h1))
-
 end Alg
 
 section Local
@@ -197,7 +188,7 @@ theorem main : ∀ D : D7, IneRep D → LabDepth D → LabGen D → ∃ Ω : Tam
       rw [← hρP ⟨γ k w, hγw.1⟩]
       rw [show ((⟨γ k w, hγw.1⟩ : ↥(Ine (F := D.host.E) (D.nd.plOm.1 w))) : GE D.nd) = γ k w from rfl, hlabγ]
       have := Multiset.dvd_prod (Multiset.mem_map_of_mem (fun x => X - C (D.ntypes.teichC k x)) hx)
-      simpa [teich_zero (D.ntypes.teichC k) (D.ntypes.teichC_inj k)] using this
+      simpa [_root_.GlobalTheory.TameLabels.teich_zero (D.ntypes.teichC k) (D.ntypes.teichC_inj k)] using this
     rw [X_dvd_iff] at hdvd
     have hdet := Matrix.isUnits_det_units (ρ ⟨γ k w, hγw.1⟩)
     rw [Matrix.det_eq_sign_charpoly_coeff, hdvd, mul_zero] at hdet

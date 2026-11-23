@@ -126,7 +126,7 @@ theorem aeval_eq_zero_of_common_zero (hf : IsChowForm I D d f) {Ω : Type} [Fiel
 theorem exists_common_zero (hf : IsChowForm I D d f) {Ω : Type} [Field Ω] [Algebra F Ω] [IsAlgClosed Ω]
     (u : Fin (D + 1) × Fin N → Ω) (hu : aeval u f = 0) :
     ∃ y : Fin N → Ω, y ≠ 0 ∧ (∀ g ∈ I, aeval y g = 0) ∧ ∀ i, ∑ j, u (i, j) * y j = 0 := by
-  obtain ⟨w, hw⟩ := GlobalTheory.T.polynomial_solvability_transfer_algClosed_fields F _ _ (Ideal.span {f}) (incIdeal (D + 1) I) (fun v hv => by
+  obtain ⟨w, hw⟩ := _root_.GlobalTheory.PointTransfer.solvable_transfer F _ _ (Ideal.span {f}) (incIdeal (D + 1) I) (fun v hv => by
     obtain ⟨y, hy, h1, h2⟩ := (hf.zero_iff v).1 (hv f (Ideal.subset_span rfl))
     obtain ⟨z, hz⟩ := exists_dual hy
     exact ⟨Sum.elim y z, (forall_incIdeal_iff I _).2 ⟨h1, h2, hz⟩⟩) Ω u

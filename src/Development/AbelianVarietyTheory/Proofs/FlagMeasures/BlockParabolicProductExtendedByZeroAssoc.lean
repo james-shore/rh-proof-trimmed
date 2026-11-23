@@ -63,10 +63,7 @@ theorem toG_coe {n : ℕ} (x : Gn g n) : toG (x : Mt g n) = x := by
   rw [dite_eq_left (Units.isUnit x)]
   exact Units.ext (IsUnit.unit_spec _)
 
-theorem coe_toG {n : ℕ} {M : Mt g n} (h : IsUnit M) : ((toG M : Gn g n) : Mt g n) = M := by
-  unfold toG
-  rw [dite_eq_left h]
-  exact IsUnit.unit_spec h
+alias coe_toG := _root_.GlobalTheory.GLm.ParBasic.toG_val
 
 theorem toG_mul {n : ℕ} {M N : Mt g n} (h : IsUnit M) (h' : IsUnit N) : toG (M * N) = toG M * toG N := by
   apply Units.ext

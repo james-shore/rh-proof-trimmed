@@ -77,7 +77,7 @@ theorem seesaw_first_reduction : _root_.GlobalTheory.FunPr.ThetaLocalInputs → 
               GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.stepFac Bs (GlobalTheory.SqStep.chs G i j μ₀) e₁ e₂ s 𝔟 𝔠 (-(e : ℤ)) * c t := by
   intro hP hK hM
   obtain ⟨e₁, e₂, s, hSB⟩ := hK.2.1
-  refine gbig_three_is (_root_.GlobalTheory.T.quadratic_tower_step_stage_induction hP hK hM) (_root_.GlobalTheory.T.tower_stage_successor_coefficients_alt hP hK hM) (_root_.GlobalTheory.T.exists_factor_of_isStageC hP hK hM) ?_
+  refine gbig_three_is (_root_.GlobalTheory.SqStepK.PiLocalization₂.quadratic_tower_step_base_stage hP hK hM) (_root_.GlobalTheory.HermitianSkewAdaptation.tower_stage_successor_relation_alt hP hK hM) (_root_.GlobalTheory.StageFactor.theta_tower_stage_norm_factorization hP hK hM) ?_
   intro D T Lc sc G μ₀ C x b hL hy hd hf W S hψ hN i j p q A A' WW X lam e hX hF he
   obtain ⟨B', WW₁, Y, hY, hst⟩ := hy W S hψ hN i j p q A A' WW X hX
   obtain ⟨c, hc⟩ := hf W S hψ hN i j p q A B' WW₁ Y hY

@@ -86,27 +86,9 @@ theorem exists_reps {G : Type*} [Group G] (H U : Subgroup G) [U.FiniteIndex] :
     obtain ⟨q, -, rfl⟩ := Finset.mem_image.1 hs
     rw [(key q).1 hs']
 
-theorem sum_shift {G M : Type*} [Group G] [AddCommMonoid M] (H V : Subgroup G) (S : Finset G)
-    (hS : ∀ s ∈ S, s ∈ H) (hS' : ∀ h ∈ H, ∃! s, s ∈ S ∧ s⁻¹ * h ∈ V) (f : G → M)
-    (hf : ∀ g, ∀ v ∈ H, v ∈ V → f (g * v) = f g) (h : G) (hh : h ∈ H) :
-    ∑ s ∈ S, f (h * s) = ∑ s ∈ S, f s := by
-  first
-  | exact @_root_.GlobalTheory.TranslateSum.sum_translate_eq
-  | exact _root_.GlobalTheory.TranslateSum.sum_translate_eq
-  | (apply _root_.GlobalTheory.TranslateSum.sum_translate_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TranslateSum.sum_translate_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TranslateSum.sum_translate_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TranslateSum.sum_translate_eq ..)
+alias sum_shift := _root_.GlobalTheory.TranslateSum.sum_translate_eq
 
-theorem norm_pow_sub_pow_le {C : Type*} [NormedField C] [IsUltrametricDist C] {x y : C}
-    (hx : ‖x‖ ≤ 1) (hy : ‖y‖ ≤ 1) (n : ℕ) : ‖x ^ n - y ^ n‖ ≤ ‖x - y‖ := by
-  first
-  | exact @_root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le
-  | exact _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le
-  | (apply _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le ..)
+alias norm_pow_sub_pow_le := _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le
 
 variable {l : ℕ} [Fact l.Prime]
 
@@ -170,7 +152,7 @@ theorem rel_trace (hn : ∀ (g : GQ l) (x : Om l), ‖g x‖ = ‖x‖) (K : Fin
       ⟨hp, by simp⟩ ⟨hq, ?_⟩
     have he' : p.1 * p.2 = q.1 * q.2 := he
     rw [he']; simp
-  obtain ⟨e, heL, he1, he⟩ := GlobalTheory.T.cyclotomicTower_trace_almost_surjective l K (L ⊔ E)
+  obtain ⟨e, heL, he1, he⟩ := _root_.GlobalTheory.Cyc.trace_almost_onto l K (L ⊔ E)
     ((S ×ˢ T).image fun p => p.1 * p.2) (hKL.trans le_sup_left) hst'
     (by
       intro s hs
@@ -411,7 +393,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) 
   obtain ⟨r, hr0, hr1, hroot⟩ := approx_root hn K L S hKL hst hS hS'
   obtain ⟨a, ha, hra, ha1⟩ := exists_near_one K (max r (l : ℝ)⁻¹) (le_max_of_le_left hr0)
     (max_lt hr1 (inv_lt_one_of_one_lt₀ hl))
-  obtain ⟨b0, hb0L, hb01, hb0⟩ := GlobalTheory.T.cyclotomicTower_trace_almost_surjective l K L S hKL hst hS hS' a ha ha1
+  obtain ⟨b0, hb0L, hb01, hb0⟩ := _root_.GlobalTheory.Cyc.trace_almost_onto l K L S hKL hst hS hS' a ha ha1
   let X := {c : Om l // ‖c‖ ≤ 1 ∧ ∀ n ∈ L.fixingSubgroup, n c = c}
   have hstep : ∀ b : X, ∃ c : X, ‖c.1 ^ l - b.1‖ ≤ r := fun b => by
     obtain ⟨c, hc, hc'⟩ := hroot b.1 b.2.1 b.2.2

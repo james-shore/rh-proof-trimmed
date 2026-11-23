@@ -84,7 +84,7 @@ theorem series_differentiable : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   set u : modUnits (lattice c y) → ℝ := fun q => ∑ j, C j * N q * ‖ContinuousLinearMap.proj (R := ℂ) (φ := fun _ : I => ℂ) j‖ with hu
   have hus : Summable u := summable_sum fun j _ => ((hNs.mul_left (C j)).mul_right _)
   have hder : ∀ q w, w ∈ U → HasFDerivAt (fun w : I → ℂ => dTerm φ (2 * s) m w q.1.out) (f' q w) w :=
-    fun q w hw => GlobalTheory.T.hasFDerivAt_deformedProductDerivativeTerm E I φ (2 * s) m q.1.out (hne q) w (hUpd w hw)
+    fun q w hw => _root_.GlobalTheory.DeformedSum.hasFDerivAt_dTerm E I φ (2 * s) m q.1.out (hne q) w (hUpd w hw)
   have hbd : ∀ q w, w ∈ U → ‖f' q w‖ ≤ u q := by
     intro q w hw
     refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun j _ => ?_)

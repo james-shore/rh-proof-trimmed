@@ -72,7 +72,7 @@ theorem regular_subspace_vacuum_at : _root_.GlobalTheory.FunPr.ThetaLocalInputs 
   obtain ⟨b', hb'⟩ := exists_isSplitBasis t G.V'.L hT.base.cm
   obtain ⟨c, hc⟩ := exists_isSplitBasis t G.W.L hT.base.cm
   obtain ⟨b₁, -, ι', hι', hvac'⟩ :=
-    _root_.GlobalTheory.T.splitPlace_sphericalVector_indicator_value hP F E σ B _ _ _ _ _ _ _ om' _ _ _ _ (GlobalTheory.ThKConst.isPair_small hT) v t b' c hb' hc
+    _root_.GlobalTheory.SplitBarVac.conjLinearFunctional_sphericalVector_indicator hP F E σ B _ _ _ _ _ _ _ om' _ _ _ _ (GlobalTheory.ThKConst.isPair_small hT) v t b' c hb' hc
   let Q : GL (Fin a') (Fv F v) := Matrix.GeneralLinearGroup.mkOfDetNeZero b₁.valᵀ (by
     rw [Matrix.det_transpose]; exact b₁.isUnit.map Matrix.detMonoidHom |>.ne_zero)
   let Λ : Submodule 𝒪[Fv F v] (Fin (a + a') → Fv F v) :=

@@ -58,9 +58,9 @@ theorem GlobalTheory.LevProd.level_eq_up_inf_alt : ∀ {B : GlobalTheory.Mem.Bas
   have hle : ∀ t (J : _root_.GlobalTheory.Fam.QuadraticExtensionData a t), J.Reads → ∀ (α : J.Ch j) t' (J' : _root_.GlobalTheory.Fam.QuadraticExtensionData a t'), J'.Reads → ∀ (α' : J'.Ch j),
       _root_.GlobalTheory.LevProd.relaxedLevelSubgroup J j hj α ≤ _root_.GlobalTheory.LevProd.relaxedLevelSubgroup J' j hj α' := by
     intro t J hJ α t' J' hJ' α' x hx
-    refine Subgroup.mem_inf.2 ⟨Subgroup.mem_inf.2 ⟨_root_.GlobalTheory.T.true_geometry_lattice_index_value_alt W hW u a ha hT' j hj t J hJ α t' J' hJ' α' x hx, ?_⟩, ?_⟩
+    refine Subgroup.mem_inf.2 ⟨Subgroup.mem_inf.2 ⟨_root_.GlobalTheory.LevProd.Supp.relax_mem_sup_alt W hW u a ha hT' j hj t J hJ α t' J' hJ' α' x hx, ?_⟩, ?_⟩
     · exact (Subgroup.mem_inf.1 (Subgroup.mem_inf.1 hx).1).2
-    · exact (Subgroup.mem_pi _).2 fun i _ => _root_.GlobalTheory.T.true_geometry_lattice_index_step_alt W hW u a ha hT' j hj t J hJ α t' J' hJ' x hx i
+    · exact (Subgroup.mem_pi _).2 fun i _ => _root_.GlobalTheory.LevProd.relax_phi_mem_KO_alt W hW u a ha hT' j hj t J hJ α t' J' hJ' x hx i
   have hUp : _root_.GlobalTheory.LevProd.upperLevelSubgroup a j hj = _root_.GlobalTheory.LevProd.relaxedLevelSubgroup J j hj α := by
     have hex : ∃ t, ∃ J : _root_.GlobalTheory.Fam.QuadraticExtensionData a t, J.Reads ∧ Nonempty (J.Ch j) := ⟨t, J, hJ, ⟨α⟩⟩
     unfold _root_.GlobalTheory.LevProd.upperLevelSubgroup
@@ -71,18 +71,18 @@ theorem GlobalTheory.LevProd.level_eq_up_inf_alt : ∀ {B : GlobalTheory.Mem.Bas
     unfold GlobalTheory.FinPl.grpAt GlobalTheory.FinPl.congGrp; exact MonoidHom.normal_ker _
   constructor
   · intro hg
-    have hf := _root_.GlobalTheory.T.true_geometry_lattice_measure_value_alt W hW u a ha hT' j hj t J hJ α g hg
+    have hf := _root_.GlobalTheory.LevProd.phi_mem_H_alt W hW u a ha hT' j hj t J hJ α g hg
     refine ⟨Subgroup.mem_inf.2 ⟨Subgroup.mem_inf.2 ⟨Subgroup.mem_sup_left hg, ?_⟩, ?_⟩, hf⟩
     · exact ((hJ.is.U j (by omega) _ g).1 hg).1
-    · exact (Subgroup.mem_pi _).2 fun i _ => _root_.GlobalTheory.T.true_geometry_lattice_measure_step_alt W hW u a ha hT' j hj t J hJ α i (hf i)
+    · exact (Subgroup.mem_pi _).2 fun i _ => _root_.GlobalTheory.LevProd.H_le_KO_alt W hW u a ha hT' j hj t J hJ α i (hf i)
   · rintro ⟨hr, hH⟩
     have hs := (Subgroup.mem_inf.1 (Subgroup.mem_inf.1 hr).1).1
     have : g ∈ ((J.A.U j (J.ι j α) : Set (GA (I.rec7 l Z) ((I.rec7 l Z).sp.X j))) * (GlobalTheory.FinPl.grpAt ((I.rec7 l Z).sp.X j) (_root_.GlobalTheory.LevProd.quadraticTwistAtPlace J) : Set (GA (I.rec7 l Z) ((I.rec7 l Z).sp.X j)))) := by
       rw [← Subgroup.mul_normal]; exact hs
     obtain ⟨x, hx, n, hn, rfl⟩ := this
     have hn' : n ∈ J.A.U j (J.ι j α) := by
-      refine _root_.GlobalTheory.T.true_geometry_lattice_conjugate_alt W hW u a ha hT' j hj t J hJ α n hn fun i => ?_
-      have h1 := _root_.GlobalTheory.T.true_geometry_lattice_measure_value_alt W hW u a ha hT' j hj t J hJ α x hx i
+      refine _root_.GlobalTheory.LevProd.Bwd.mem_level_alt W hW u a ha hT' j hj t J hJ α n hn fun i => ?_
+      have h1 := _root_.GlobalTheory.LevProd.phi_mem_H_alt W hW u a ha hT' j hj t J hJ α x hx i
       have h2 := hH i
       rw [map_mul, Pi.mul_apply] at h2
       simpa using (Subgroup.mul_mem_cancel_left _ h1).1 h2

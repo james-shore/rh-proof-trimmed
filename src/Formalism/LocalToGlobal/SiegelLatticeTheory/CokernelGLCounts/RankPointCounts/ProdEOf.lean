@@ -243,8 +243,8 @@ theorem mem_CZ_glob (hA : ∀ p, Agree δ M p) (L U : Formalism.L2.SG.PairVal.Ma
     exact ⟨hl, hρ⟩
   · intro hp
     set a'm := L * gm * L⁻¹ with ha'm
-    have ha'lo : IsLoUni a'm := ZsVolGrp.isLoUni_mul (ZsVolGrp.isLoUni_mul hL ha) hLi.1
-    have hb'up : IsUpUni (U⁻¹ * b * U) := ZsVolGrp.isUpUni_mul (ZsVolGrp.isUpUni_mul hUi.1 hb) hU
+    have ha'lo : IsLoUni a'm := _root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul (_root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul hL ha) hLi.1
+    have hb'up : IsUpUni (U⁻¹ * b * U) := _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul (_root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul hUi.1 hb) hU
     have hginv : ((((g : Formalism.L2.SG.PairVal.GLR D))⁻¹ : Formalism.L2.SG.PairVal.GLR D) : Formalism.L2.SG.PairVal.MatR D) * gm = 1 := by
       rw [hgm, ← Units.val_mul, inv_mul_cancel, Units.val_one]
     have hginv' : gm * ((((g : Formalism.L2.SG.PairVal.GLR D))⁻¹ : Formalism.L2.SG.PairVal.GLR D) : Formalism.L2.SG.PairVal.MatR D) = 1 := by
@@ -292,8 +292,8 @@ theorem cz_le (L U : Formalism.L2.SG.PairVal.MatR D) (hL : IsLoUni L) (hU : IsUp
   rw [Subgroup.closure_le]
   intro a ha
   obtain ⟨a', ha'eq, ha'lo, b', hb'up, hZ', -⟩ := ha
-  refine ⟨?_, U * b' * U⁻¹, ZsVolGrp.isUpUni_mul (ZsVolGrp.isUpUni_mul hU hb'up) hUi.1, ?_⟩
-  · rw [ha'eq]; exact ZsVolGrp.isLoUni_mul (ZsVolGrp.isLoUni_mul hLi.1 ha'lo) hL
+  refine ⟨?_, U * b' * U⁻¹, _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul (_root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul hU hb'up) hUi.1, ?_⟩
+  · rw [ha'eq]; exact _root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul (_root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul hLi.1 ha'lo) hL
   · rw [ha'eq]
     rw [hZ] at hZ'
     calc L⁻¹ * (a' : Formalism.L2.SG.PairVal.MatR D) * L * ptMat w * (U * b' * U⁻¹)

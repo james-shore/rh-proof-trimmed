@@ -400,7 +400,7 @@ theorem form_scalar (h : IsCMExt F E σ) (M : Model σ X W) (ψ : AddChar (AF F)
   have c1 := GlobalTheory.T.local_character_norm_one_unit F E σ h χW v (t.comp σ) z z1 (by rw [comp_conj_conj h]; exact z2)
   rw [show Units.map (piW (t.comp σ)).toMonoidHom z = y from Units.ext z3] at c1
   obtain ⟨n1, n2⟩ := GlobalTheory.T.local_norm_unramified_factorization F E σ h v t z z1
-  have c2 := GlobalTheory.T.distribHaarChar_supportedIdele_eq_localAbsValue F v (Units.map (Algebra.norm (AF F) : AE F E →* AF F) z) n1
+  have c2 := _root_.GlobalTheory.ModuLocal.distribHaarChar_eq_nabs_of_at F v (Units.map (Algebra.norm (AF F) : AE F E →* AF F) z) n1
   rw [show Units.map (evFin F v : AF F →* Fv F v) (Units.map (Algebra.norm (AF F) : AE F E →* AF F) z) = y from
     Units.ext (by rw [← z3, ← one_mul (piW (t.comp σ) _), ← z2]; exact n2)] at c2
   rw [c1, ← c2]

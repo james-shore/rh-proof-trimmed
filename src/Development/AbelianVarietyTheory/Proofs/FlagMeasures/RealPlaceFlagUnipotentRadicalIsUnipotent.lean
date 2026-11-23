@@ -53,20 +53,8 @@ open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj.InfCut.JacobianCoordina
 
 variable {n r : ℕ}
 
-theorem hJ_sub_right (ε : Fin n → Bool) (x y w : Fin n → ℂ) : hJ ε x (y - w) = hJ ε x y - hJ ε x w := by
-  unfold hJ; rw [mulVec_sub, dotProduct_sub]
-
-theorem hJ_sub_left (ε : Fin n → Bool) (x y w : Fin n → ℂ) : hJ ε (x - y) w = hJ ε x w - hJ ε y w := by
-  unfold hJ; rw [star_sub, sub_dotProduct]
-
-theorem hJ_add_left (ε : Fin n → Bool) (x y w : Fin n → ℂ) : hJ ε (x + y) w = hJ ε x w + hJ ε y w := by
-  unfold hJ; rw [star_add, add_dotProduct]
-
 theorem hJ_smul_left (ε : Fin n → Bool) (c : ℂ) (x w : Fin n → ℂ) : hJ ε (c • x) w = star c * hJ ε x w := by
   unfold hJ; rw [star_smul, smul_dotProduct, smul_eq_mul]
-
-theorem hJ_zero_left' (ε : Fin n → Bool) (w : Fin n → ℂ) : hJ ε 0 w = 0 := by
-  unfold hJ; simp
 
 theorem orth_span (ε : Fin n → Bool) (e : Fin r → Fin n → ℂ) (b : ℕ) (w : Fin n → ℂ)
     (hw : ∀ c : Fin r, c.1 < b → hJ ε (e c) w = 0) : ∀ v ∈ spanLt e b, hJ ε v w = 0 := by
@@ -75,8 +63,8 @@ theorem orth_span (ε : Fin n → Bool) (e : Fin r → Fin n → ℂ) (b : ℕ) 
   | mem y hy =>
     obtain ⟨c, hc, rfl⟩ := hy
     exact hw c hc
-  | zero => exact hJ_zero_left' ε w
-  | add x y _ _ hx hy => rw [hJ_add_left, hx, hy, add_zero]
+  | zero => exact _root_.Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.hJ_zero_left ε w
+  | add x y _ _ hx hy => rw [_root_.Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.hJ_add_left, hx, hy, add_zero]
   | smul c x _ hx => rw [hJ_smul_left, hx, mul_zero]
 
 theorem spanLt_zero (e : Fin r → Fin n → ℂ) : spanLt e 0 = ⊥ := by
@@ -121,7 +109,7 @@ theorem nilp (ε : Fin n → Bool) (e : Fin r → Fin n → ℂ) (z : Fin n → 
       have := hiso (Formalism.MainNotions.S.uMat g⁻¹ *ᵥ e b) w
       rw [mulVec_mulVec, hGG', one_mulVec] at this
       exact this
-    rw [sub_mulVec, one_mulVec, hJ_sub_right, h1, sub_mulVec, one_mulVec, hJ_sub_left]
+    rw [sub_mulVec, one_mulVec, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, h1, sub_mulVec, one_mulVec, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left]
 
   have step1 : ∀ k, ∀ x, ∀ b : Fin r, b.1 < k → hJ ε (e b) ((G - 1) ^ k *ᵥ x) = 0 := by
     intro k

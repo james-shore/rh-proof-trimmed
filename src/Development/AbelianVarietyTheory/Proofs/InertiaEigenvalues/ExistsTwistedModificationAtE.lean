@@ -134,7 +134,7 @@ theorem exists_twisted_modification : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l
     rw [hQ₀]; exact hinv g
   have hρ : ∀ g : ↥(GK K), ((ρ g).map (zOm l)).map ((algebraMap (Per.BdRp l) (Per.BdR l)).comp C.o) =
       (ρ g).map (Per.zD l) := by
-    intro g; ext i j; simp [zOm, GlobalTheory.RingIface.zD_alg, C.o_sec.z, aDp]
+    intro g; ext i j; simp [zOm, _root_.GlobalTheory.RingIface.zD_eq_alg, C.o_sec.z, aDp]
   have hinvQ : ∀ g : ↥(GK K), (ρ g).map (Per.zD l) * H.Q.map (Per.σD (g : GQ l)) = H.Q := fun g => by
     rw [← hρ g]; exact H.inv g g.2
 
@@ -303,7 +303,7 @@ theorem exists_twisted_modification : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l
         (fun _ _ => (N : ℤ)) hU hDm (fun _ _ _ => by push_cast; omega) r t
     exact GlobalTheory.BKModif.mulFil hmul hanti _ _ (fun _ _ => (N : ℤ)) (fun _ _ => 0) (fun _ _ => (N : ℤ)) h1
       (fun _ _ => hφ0 _) (fun _ _ _ => by simp) r j
-  · have hl0 := GlobalTheory.BKModif.l_ne_zero bk
+  · have hl0 := _root_.GlobalTheory.BSP.LocalizedLatticeBasis.l_ne_zero bk
     have hΛ'Λ : Λ' * Λ = ((l : bk.S) ^ (2 * k)) • (1 : Matrix (Fin d) (Fin d) bk.S) :=
       GlobalTheory.BKModif.mul_comm_of_scalar Λ Λ' _ (pow_ne_zero _ hl0) hΛΛ
     have hA'A : Λ'.map ((aDp l).comp bk.ev) * Λ.map ((aDp l).comp bk.ev) =

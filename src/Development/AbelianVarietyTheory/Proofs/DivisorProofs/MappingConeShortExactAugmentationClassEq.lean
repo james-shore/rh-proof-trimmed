@@ -96,7 +96,7 @@ theorem cpull_single_injective {X Y : Shv R} (g : X ⟶ Y) [Epi g] (I : Cx R) [I
 
 theorem mk_ofHom_eq_of_homotopy {K L : Cx R} (f g : K ⟶ L) (h : Homotopy f g) :
     CohomologyClass.mk (Cocycle.ofHom f) = CohomologyClass.mk (Cocycle.ofHom g) := by
-  have e := congrArg (fun φ => φ (CohomologyClass.mk (Cocycle.ofHom (𝟙 L)))) ((GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R).2.2.2.2 f g ⟨h⟩ L 0).1
+  have e := congrArg (fun φ => φ (CohomologyClass.mk (Cocycle.ofHom (𝟙 L)))) ((_root_.GlobalTheory.EtC.ZcFun.main R).2.2.2.2 f g ⟨h⟩ L 0).1
   simpa only [← mk_ofHom_comp, Category.comp_id] using e
 
 end GlobalTheory.EtC.ConeClass
@@ -119,7 +119,7 @@ theorem cone_class_eq : ∀ (R : Type) [CommRing R] (S : ShortComplex (Shv R)), 
   haveI : (res R S.X₃).IsKInjective := inferInstanceAs ((injectiveResolution S.X₃).cochainComplex.IsKInjective)
   haveI : (res R S.X₃).IsStrictlyGE 0 := inferInstanceAs ((injectiveResolution S.X₃).cochainComplex.IsStrictlyGE 0)
   haveI : Epi S.g := hS.epi_g
-  have hbij := GlobalTheory.T.hypercohomologyPullback_bijective_of_quasiIso R (mappingCone.descShortComplex (S.map (CochainComplex.singleFunctor (Shv R) 0))) (res R S.X₃) 0
+  have hbij := _root_.GlobalTheory.EtC.cpull_bijective_of_quasiIso R (mappingCone.descShortComplex (S.map (CochainComplex.singleFunctor (Shv R) 0))) (res R S.X₃) 0
   obtain ⟨c, hc'⟩ := hbij.2 (CohomologyClass.mk (Cocycle.ofHom
     (mappingCone.map _ (resMap R S.f) (resAug S.X₁) (resAug S.X₂) hc ≫ e.hom)))
   refine (mk_ofHom_comp _ _).trans (Eq.trans ?_ hc')
@@ -150,7 +150,7 @@ theorem cone_class_eq : ∀ (R : Type) [CommRing R] (S : ShortComplex (Shv R)), 
   have hB2 : cpull (mappingCone.inr (S.map (CochainComplex.singleFunctor (Shv R) 0)).f) (res R S.X₃) 0
           (cpull (mappingCone.descShortComplex (S.map (CochainComplex.singleFunctor (Shv R) 0))) (res R S.X₃) 0 c) =
       cpull ((CochainComplex.singleFunctor (Shv R) 0).map S.g) (res R S.X₃) 0 c := by
-    rw [← (GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R).2.1, mappingCone.inr_descShortComplex]
+    rw [← (_root_.GlobalTheory.EtC.ZcFun.main R).2.1, mappingCone.inr_descShortComplex]
     rfl
   have hC : (CohomologyClass.mk (Cocycle.ofHom (resAug S.X₂ ≫ mappingCone.inr (resMap R S.f) ≫ e.hom)) :
         CohomologyClass (sgl S.X₂) (res R S.X₃) 0) =

@@ -52,20 +52,11 @@ open ValuativeRel
 
 namespace GlobalTheory.StairFrameFJ
 
-private theorem isIntegral_sqrtMinusD' (D : D7) : IsIntegral ℤ D.host.sqrtMinusD := by
-  refine IsIntegral.of_pow (n := 2) two_pos ?_
-  have hsq : D.host.sqrtMinusD ^ 2 = -(D.host.d : D.host.E) := by
-    unfold Host.sqrtMinusD
-    exact D.host.sqd_sq
-  rw [hsq]
-  refine IsIntegral.neg ?_
-  simpa using (isIntegral_algebraMap (R := ℤ) (A := D.host.E) (x := (D.host.d : ℤ)))
-
 theorem isIntegral_inv_neg_xi0 (D : D7) : IsIntegral ℤ (-D.host.xi0)⁻¹ := by
 
   unfold Host.xi0
   rw [neg_div, neg_neg, one_div, inv_inv]
-  refine IsIntegral.mul ?_ (isIntegral_sqrtMinusD' D)
+  refine IsIntegral.mul ?_ (_root_.Formalism.L2.Pj.sqrtMinusD_isIntegral D)
   simpa using (isIntegral_algebraMap (R := ℤ) (A := D.host.E) (x := ((Ideal.absNorm D.host.ccK : ℕ) : ℤ)))
 
 private theorem mem_integer_of_isIntegral_int {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]

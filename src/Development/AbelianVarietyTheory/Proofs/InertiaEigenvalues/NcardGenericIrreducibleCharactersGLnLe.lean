@@ -55,9 +55,7 @@ open scoped Classical
 
 namespace GlobalTheory.GLq.GenericCount
 
-theorem isChar_of_isIrr {G : Type} [Group G] {χ : G → ℂ} (h : IsIrr χ) : IsChar χ := by
-  obtain ⟨V, -, hV⟩ := h
-  exact ⟨V, hV⟩
+alias isChar_of_isIrr := _root_.GlobalTheory.CharDec.isChar_of_isIrr
 
 theorem ip_comm {G : Type} [Group G] [Fintype G] (α β : G → ℂ) : ip α β = ip β α := by
   unfold ip
@@ -71,14 +69,7 @@ theorem tr_finset_sum {G : Type} [Group G] [Fintype G] (a : MonoidAlgebra ℂ G)
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun ρ _ => Finset.sum_congr rfl fun x _ => by ring
 
-theorem gg_isClass {g : ℕ} [Fact g.Prime] (ψ : AddChar (ZMod g) ℂ) (n : ℕ) : IsClass (gg ψ n) := by
-  intro x z
-  simp only [gg]
-  congr 1
-  symm
-  refine Fintype.sum_equiv (Equiv.mulLeft z) _ _ (fun y => ?_)
-  have h : (z * y)⁻¹ * (z * x * z⁻¹) * (z * y) = y⁻¹ * x * y := by group
-  simp only [Equiv.coe_mulLeft, h]
+alias gg_isClass := _root_.GlobalTheory.GLm.GGSum.gg_class
 
 end GlobalTheory.GLq.GenericCount
 
@@ -89,7 +80,7 @@ open GlobalTheory.GLq.GenericCount in
 theorem card_generic_irr_le : ∀ (g : ℕ) [Fact g.Prime] (ψ : AddChar (ZMod g) ℂ), ψ ≠ 1 → ∀ n : ℕ, 0 < n →
     Set.ncard {ρ : Gn g n → ℂ | IsIrr ρ ∧ wh ψ ρ ≠ 0} ≤ g ^ n - g ^ (n - 1) := by
   intro g _ ψ hψ n hn
-  obtain ⟨hfin, -⟩ := GlobalTheory.T.finite_irrCharacters_and_finsum_centralIdempotents_eq_one (Gn g n)
+  obtain ⟨hfin, -⟩ := _root_.GlobalTheory.GLq.irr_finite_and_finsum_zOf_eq_one (Gn g n)
   set S := hfin.toFinset with hS
   have hmemS : ∀ ρ, ρ ∈ S ↔ IsIrr ρ := fun ρ => by rw [hS, Set.Finite.mem_toFinset]; rfl
   have hnorm := GlobalTheory.T.gelfandGraevCharacterGLn_norm_and_reciprocity g ψ hψ n hn

@@ -67,7 +67,7 @@ theorem lintegral_image_prod_Ico_of_invariant {X Z : Type*} [TopologicalSpace X]
 
 theorem lintegral_productDomain_norm_sq : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ), 0 < a → ∀ (μ : Measure (GA E a)) [μ.IsHaarMeasure] (ν : Measure (normOneGL (K := E) (n := a))) [ν.IsHaarMeasure] (c : ENNReal), Measure.map (fun p : normOneGL (K := E) (n := a) × ℝ => splitCentre E a p.2 * (p.1 : GA E a)) (ν.prod volume) = c • μ → ∀ φ : GA E a → ℂ, Continuous φ → (∀ t g, φ (splitCentre E a t * g) = φ g) → ∫⁻ g in ((fun p : normOneGL (K := E) (n := a) × ℝ => splitCentre E a p.2 * (p.1 : GA E a)) '' (RightCosetSpace.fundamentalDomain (rationalGLOne (K := E) (n := a)) ×ˢ Set.Ico (0 : ℝ) 1)), ‖φ g‖ₑ ^ 2 ∂(c • μ) = ∫⁻ x in RightCosetSpace.fundamentalDomain (rationalGLOne (K := E) (n := a)), ‖φ (x : GA E a)‖ₑ ^ 2 ∂ν := by
   intro E _ _ _ a ha μ _ ν _ c hmap φ hc hinv
-  obtain ⟨e, he⟩ := GlobalTheory.T.adelic_GL_norm_one_split E a ha
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.CompanionTheory.SplitHomeo.exists_homeomorph E a ha
   have hF : (fun p : normOneGL (K := E) (n := a) × ℝ => splitCentre E a p.2 * (p.1 : GA E a)) = ⇑e :=
     funext fun p => (he p.1 p.2).symm
   rw [hF] at hmap

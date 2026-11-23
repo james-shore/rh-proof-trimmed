@@ -61,22 +61,6 @@ noncomputable section
 
 namespace GlobalTheory.FrobPowDefect
 
-theorem adicComplete_ring {O A : Type} [CommRing O] [CommRing A] [Algebra O A]
-    (p : ℕ) [h : IsAdicComplete (Ideal.span {(p : O)}) A] :
-    IsAdicComplete (Ideal.span {(p : A)}) A := by
-  have key : ∀ (n : ℕ) (x : A), x ∈ (Ideal.span {(p : A)} ^ n • ⊤ : Submodule A A) ↔
-      x ∈ (Ideal.span {(p : O)} ^ n • ⊤ : Submodule O A) := by
-    intro n x
-    rw [GlobalTheory.mem_span_singleton_pow_smul_top_iff_exists, GlobalTheory.mem_span_singleton_pow_smul_top_iff_exists]
-    simp [Algebra.smul_def]
-  exact
-    { haus' := fun x hx => IsHausdorff.haus h.toIsHausdorff x fun n =>
-        SModEq.sub_mem.2 ((key n _).1 (SModEq.sub_mem.1 (hx n)))
-      prec' := fun f hf => by
-        obtain ⟨L, hL⟩ := IsPrecomplete.prec h.toIsPrecomplete (f := f) fun {m n} hmn =>
-          SModEq.sub_mem.2 ((key _ _).1 (SModEq.sub_mem.1 (hf hmn)))
-        exact ⟨L, fun n => SModEq.sub_mem.2 ((key _ _).2 (SModEq.sub_mem.1 (hL n)))⟩ }
-
 theorem pow_sub_expand_mem (p : ℕ) [Fact p.Prime] {B : Type} [CommRing B] (t : B →+* B)
     (ht : ∀ b, (p : B) ∣ t b - b ^ p) (hu : ¬IsUnit (p : B)) {τ : Type} (w : MvPowerSeries τ B)
     (α : τ →₀ ℕ) :
@@ -120,7 +104,7 @@ theorem ev_one_subst_nmul (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
     c.ev 1 (subst (nmul c.μ p) s) = 0 := by
   haveI : IsAdicComplete (Ideal.span {(p : O)}) (G.A 1) :=
     GlobalTheory.isAdicComplete_of_finite_projective _ _
-  haveI : IsAdicComplete (Ideal.span {(p : G.A 1)}) (G.A 1) := adicComplete_ring (O := O) p
+  haveI : IsAdicComplete (Ideal.span {(p : G.A 1)}) (G.A 1) := _root_.GlobalTheory.NMul.isAdicComplete_ring_of_module (O := O) p
   have hT := (GlobalTheory.CEval.continuous_eval p O (G.A 1) (Fin d) (c.x 1) (c.nil 1)).2
     (c.ev 1) (c.isEval 1)
   let E' : MvPowerSeries (Fin d) O →ₐ[O] G.A 1 :=

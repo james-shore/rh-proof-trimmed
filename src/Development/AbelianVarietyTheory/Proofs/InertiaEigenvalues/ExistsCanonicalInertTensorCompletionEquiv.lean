@@ -64,7 +64,7 @@ theorem exists_canonical_equiv : ∀ (L : Type) [Field L] [NumberField L] [IsCMF
     rwa [hunder] at h
   obtain ⟨c, hc, -⟩ := GlobalTheory.LFun.InertChart.existsUnique_isConjAt
     (IsCMField.complexConj L).toAlgHom hw hunder
-  obtain ⟨ϖ', hU'⟩ := GlobalTheory.LFun.InertChart.exists_isUnramInv (GlobalTheory.InertDatumExist.isCMExt L) hw hc
+  obtain ⟨ϖ', hU'⟩ := GlobalTheory.LFun.InertChart.exists_isUnramInv (_root_.GlobalTheory.AdelicU.isCMExt_of_isCMField L) hw hc
   have hsc : Dv.σw = c := by
     apply DFunLike.coe_injective
     refine GlobalTheory.UnramCompletion.ringHom_ext_of_continuous w

@@ -57,14 +57,6 @@ section Generic
 
 variable {G : Type} [Group G]
 
-theorem exists_fixed_of_contract [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
-    {K S : Set G} (hK : IsCompact K) (hSK : S ⊆ K) (h1 : (1 : G) ∈ S) {Ψ φ : G → G}
-    (hΨ : Continuous Ψ) (hΨS : ∀ x ∈ S, Ψ x ∈ S) (hφS : ∀ x ∈ S, φ x ∈ S)
-    (hid : ∀ x y, (Ψ x)⁻¹ * Ψ y = φ (x⁻¹ * y)) {l : ℕ} (hl : 0 < l)
-    (hc : ∀ U : Set G, IsOpen U → (1 : G) ∈ U → ∃ m₀ : ℕ, ∀ m ≥ m₀, ∀ x ∈ S, φ^[l * m] x ∈ U) :
-    ∃ v ∈ K, Ψ v = v :=
-  _root_.UpperTheory.Reformulated.B.Ydb1.main hK hSK h1 hΨ hΨS hφS hid hl hc
-
 theorem tnorm_zero (θ : MulAut G) (x : G) : tnorm θ 0 x = 1 := by
   simp [tnorm]
 
@@ -228,7 +220,7 @@ theorem exists_twist_of_contract [TopologicalSpace G] [IsTopologicalGroup G] [T2
       group
     rw [e]
     exact hj _ (hdom p _ hy)
-  obtain ⟨v, hvJ, hv⟩ := exists_fixed_of_contract (K := (J : Set G))
+  obtain ⟨v, hvJ, hv⟩ := _root_.UpperTheory.Reformulated.B.Ydb1.main (K := (J : Set G))
     (S := ((J ⊓ L : Subgroup G) : Set G)) hJ (fun x hx => hx.1) (J ⊓ L).one_mem hΨc hΨS hφS hid hl hc
   refine ⟨v, hvJ, ?_⟩
   have hθv : θ v = τ⁻¹ * (a⁻¹ * (t⁻¹ * v * t)) * τ := by

@@ -93,9 +93,7 @@ theorem finQ_int {y : AE D} (h : toEAf D y ∈ Formalism.L2.Herm.intAf D.host.F 
 def rho (P : Formalism.L2.DIV.Pl D.host.E) : OhE D →+* Formalism.L2.DIV.kP P :=
   (Formalism.L2.DIV.resS D.host.F P).comp ((toE D).restrict _ _ fun y hy => (toE_int_iff y).2 hy)
 
-theorem inc_int (b : 𝓞 D.host.E) : inc D (b : D.host.E) ∈ OhE D := by
-  rw [← toE_int_iff, ← finQ_incA, toE_finQ]
-  exact (Formalism.L2.DIV.oToS D.host.F D.host.E b).2
+alias inc_int := _root_.GlobalTheory.NormSum.MovedTheta.inc_int
 
 theorem rho_inc (P : Formalism.L2.DIV.Pl D.host.E) (b : 𝓞 D.host.E) :
     rho P ⟨inc D (b : D.host.E), inc_int b⟩ = Ideal.Quotient.mk P.asIdeal b := by
@@ -138,15 +136,7 @@ theorem hat_of_rho (P : Formalism.L2.DIV.Pl D.host.E) {x : Formalism.MainNotions
   rw [e]
   exact add_mem (AddSubgroup.subset_closure ⟨b, h0, 1, one_mem _, (mul_one _).symm⟩) hN
 
-theorem hat_mul {I J : Ideal (𝓞 D.host.E)} {x y : Formalism.MainNotions.StandardLatticesGL3.AE D} (hx : x ∈ hatId D I) (hy : y ∈ hatId D J) :
-    x * y ∈ hatId D (I * J) := by
-  first
-  | exact @_root_.GlobalTheory.HatProductMembership.mul_mem_hat_mul
-  | exact _root_.GlobalTheory.HatProductMembership.mul_mem_hat_mul
-  | (apply _root_.GlobalTheory.HatProductMembership.mul_mem_hat_mul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.HatProductMembership.mul_mem_hat_mul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.HatProductMembership.mul_mem_hat_mul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.HatProductMembership.mul_mem_hat_mul ..)
+alias hat_mul := _root_.GlobalTheory.HatProductMembership.mul_mem_hat_mul
 
 theorem idem_hat_pow {I : Ideal (𝓞 D.host.E)} {x : Formalism.MainNotions.StandardLatticesGL3.AE D} (hO : x ∈ OhE D) (hxx : x * x = x)
     (hx : x ∈ hatId D I) (n : ℕ) : x ∈ hatId D (I ^ n) := by

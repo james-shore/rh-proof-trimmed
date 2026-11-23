@@ -200,7 +200,7 @@ theorem logCanonicalCut_lowers_centre_dimension : GlobalTheory.Published.Princip
       _ ≤ _ := mul_le_mul_of_nonneg_left hmixQ (by positivity)
 
   have hDq : IsQCart (qWeil D₀ m') := ⟨m', D₀, hm', hD₀, rfl⟩
-  obtain ⟨B, δ₀, hδ₀, -, hBnum, hOff, hnk, hsep⟩ := GlobalTheory.T.exists_divisor_nonKlt_points_numerically_multiple hPr X p n hp hn Δ m G A'
+  obtain ⟨B, δ₀, hδ₀, -, hBnum, hOff, hnk, hsep⟩ := _root_.GlobalTheory.AmpleStep.exists_divisor hPr X p n hp hn Δ m G A'
     (qWeil D₀ m') {x} z e h hΔ hklt hm hG hA'amp hDq
     (fun y hy => by rw [Finset.mem_singleton] at hy; subst hy; exact ⟨hx, hzx⟩) he hdim hcen hh hcard
 

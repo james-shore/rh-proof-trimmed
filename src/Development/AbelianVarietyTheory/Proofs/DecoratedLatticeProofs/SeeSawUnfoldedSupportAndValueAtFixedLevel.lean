@@ -79,7 +79,7 @@ theorem gsupp1_all (D : D7) : GlobalTheory.LocMod.GSupp1 D :=
 
 theorem gLaws : ∀ (D : D7) (c : Comm D) (v : VCom c) (n : ℕ) (G : Fin n → GLoc v), c.Is → v.Is → GPin G → ∃ a : ℕ → ℂ, (∀ j, a j ≠ 0) ∧ ∀ t : Tup c, t.Is → WeilOK (t := t) v → (∀ i, (G i).Chars t) → GSupp (t := t) (v.withCG a) ∧ GValue (t := t) (v.withCG a) := by
   intro D c v n G hc hv hG
-  obtain ⟨a, ha, hval⟩ := GlobalTheory.T.seeSaw_unfoldedValue_commonConstants_fixedLevel D c v n G hc hv hG
+  obtain ⟨a, ha, hval⟩ := _root_.GlobalTheory.SeeSaw.GValAll.gValue_common D c v n G hc hv hG
   refine ⟨a, ha, fun t ht hW hch => ⟨?_, hval t ht hW⟩⟩
   have hs : GSupp (t := t) v :=
     GlobalTheory.T.seeSaw_unfoldedSupport_fixedLevelPlaces D c v n G hc hv hG (gsupp1_all D) (gsupp2_all D) (GlobalTheory.T.flatThetaMaps_converge_thetaFunctions D) t ht hch

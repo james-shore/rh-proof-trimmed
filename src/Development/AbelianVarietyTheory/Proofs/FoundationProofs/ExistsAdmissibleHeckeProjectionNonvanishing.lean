@@ -165,7 +165,7 @@ theorem exists_admissible_hecke_projection_nonvanishing_alt : ∀ {Ω : Type} [F
       ((l : ℕ) : Qbar l) ^ a * pr0 (bs p.1) p.2)
     (fun y hy => by
       obtain ⟨p, -, rfl⟩ := Finset.mem_image.1 hy
-      exact (GlobalTheory.PowerSeriesEvalAlgCl.isIntegral_iff_norm_le_one _).2 (hsmall p))
+      exact (_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).2 (hsmall p))
 
   obtain ⟨pr, hpr⟩ : ∃ pr : X.Fn l → Fin 2 → Qbar l, ∀ b, pr b = ((l : ℕ) : Qbar l) ^ a • pr0 b := ⟨_, fun _ => rfl⟩
   have hadd : ∀ b b', pr (b + b') = pr b + pr b' := by

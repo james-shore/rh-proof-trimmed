@@ -96,13 +96,6 @@ theorem fst_eq {k : Type} [CommRing k] [Algebra c.F k] {yy : Sp k ⟶ Xo'.XF c'}
   rw [← Category.assoc, h]
   exact pullback.lift_fst _ _ _
 
-theorem spMap_comp_eq {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (φ : A →+* B) (ψ : B →+* C) :
-    spMap ψ ≫ spMap φ = spMap (ψ.comp φ) := by
-  simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
-theorem eq_of_spMap_eq {A B : Type} [CommRing A] [CommRing B] {φ ψ : A →+* B} (h : spMap φ = spMap ψ) : φ = ψ :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
-
 theorem openImmersion_comp_structure_eq_generic : Y.j ≫ Y.s = pullback.snd _ _ ≫ spMap (algebraMap (𝓞 c'.F) c'.F) := by
   show (Y.jQ ≫ pullback.fst _ _) ≫ Y.s = _
   rw [Category.assoc, pullback.condition, ← Category.assoc Y.jQ, Y.jQ_over]
@@ -120,10 +113,10 @@ theorem comp_eq_of_lift {hle : c.F ≤ c'.F} (hr : r ≫ pullback.snd _ _ = pull
       φ.comp (b.comp (inclO hle)) = (algebraMap c.F k).comp (algebraMap (𝓞 c.F) c.F) := by
   obtain ⟨io, hio⟩ : ∃ io : c'.F →+* k, spMap io = yy ≫ pullback.snd _ _ :=
     ⟨(Spec.preimage (yy ≫ pullback.snd _ _)).hom, by simp [spMap]⟩
-  have e1 : φ.comp b = io.comp (algebraMap (𝓞 c'.F) c'.F) := eq_of_spMap_eq (by
-    rw [← spMap_comp_eq, ← spMap_comp_eq, hio, ← hb, ← Category.assoc, ← h, Category.assoc, openImmersion_comp_structure_eq_generic, Category.assoc])
-  have e2 : algebraMap c.F k = io.comp (IntermediateField.inclusion hle).toRingHom := eq_of_spMap_eq (by
-    rw [← spMap_comp_eq, hio, Category.assoc, ← hr, ← Category.assoc, h', GlobalTheory.AllWt.ptF, pullback.lift_snd])
+  have e1 : φ.comp b = io.comp (algebraMap (𝓞 c'.F) c'.F) := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by
+    rw [← _root_.GlobalTheory.spMap_comp_ring, ← _root_.GlobalTheory.spMap_comp_ring, hio, ← hb, ← Category.assoc, ← h, Category.assoc, openImmersion_comp_structure_eq_generic, Category.assoc])
+  have e2 : algebraMap c.F k = io.comp (IntermediateField.inclusion hle).toRingHom := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by
+    rw [← _root_.GlobalTheory.spMap_comp_ring, hio, Category.assoc, ← hr, ← Category.assoc, h', GlobalTheory.AllWt.ptF, pullback.lift_snd])
   refine ⟨io, e1, ?_⟩
   rw [← RingHom.comp_assoc, e1, e2]
   rfl
@@ -211,7 +204,7 @@ theorem exists_lift_frPt {hle : c.F ≤ c'.F} (hr : r ≫ pullback.snd _ _ = pul
   have := isPreimmersion_fst Y
   have := Y.jQ_open
   let z₁ : Sp L ⟶ pullback Y.s (spMap (algebraMap (𝓞 c'.F) c'.F)) := pullback.lift z (spMap io) (by
-    rw [hz, spMap_comp_eq, hio])
+    rw [hz, _root_.GlobalTheory.spMap_comp_ring, hio])
   have h1 : z₁ ≫ pullback.fst _ _ = z := pullback.lift_fst _ _ _
   have h2 : Y.jQ q = z₁ p₀ := by
     apply (pullback.fst Y.s (spMap (algebraMap (𝓞 c'.F) c'.F))).isEmbedding.injective
@@ -223,9 +216,9 @@ theorem exists_lift_frPt {hle : c.F ≤ c'.F} (hr : r ≫ pullback.snd _ _ = pul
   let yy := IsOpenImmersion.lift Y.jQ z₁ hrg
   have h3 : yy ≫ Y.jQ = z₁ := IsOpenImmersion.lift_fac _ _ _
   have h4 : (yy ≫ r) ≫ pullback.snd _ _ = spMap (algebraMap c.F L) := by
-    rw [Category.assoc, hr, ← Y.jQ_over, ← Category.assoc, ← Category.assoc, h3, pullback.lift_snd, spMap_comp_eq, hio']
+    rw [Category.assoc, hr, ← Y.jQ_over, ← Category.assoc, ← Category.assoc, h3, pullback.lift_snd, _root_.GlobalTheory.spMap_comp_ring, hio']
   obtain ⟨y, hy⟩ := GlobalTheory.FlagTan.exists_frPt (c := c) ((yy ≫ r) ≫ pullback.fst _ _) (by
-    rw [Category.assoc, pullback.condition, ← Category.assoc, h4, sOf, spMap_comp_eq])
+    rw [Category.assoc, pullback.condition, ← Category.assoc, h4, sOf, _root_.GlobalTheory.spMap_comp_ring])
   have h5 : GlobalTheory.AllWt.ptF y = yy ≫ r := by
     apply pullback.hom_ext
     · rw [GlobalTheory.AllWt.ptF, pullback.lift_fst, hy]
@@ -352,7 +345,7 @@ theorem value_map {R : Type} [CommRing R] {ξ : Sp R ⟶ Y.X} {g : ℕ}
   have hpt : GlobalTheory.AllWt.ptF y' = spMap ι.toRingHom ≫ GlobalTheory.AllWt.ptF y := by
     apply pullback.hom_ext
     · rw [Category.assoc, GlobalTheory.AllWt.ptF, GlobalTheory.AllWt.ptF, pullback.lift_fst, pullback.lift_fst, hm.1]
-    · rw [Category.assoc, GlobalTheory.AllWt.ptF, GlobalTheory.AllWt.ptF, pullback.lift_snd, pullback.lift_snd, spMap_comp_eq]
+    · rw [Category.assoc, GlobalTheory.AllWt.ptF, GlobalTheory.AllWt.ptF, pullback.lift_snd, pullback.lift_snd, _root_.GlobalTheory.spMap_comp_ring]
       congr 1
       exact ι.comp_algebraMap.symm
   have hzz : zz = spMap ι.toRingHom ≫ yy := by
@@ -611,7 +604,7 @@ theorem exists_local {hle : c.F ≤ c'.F} (hr : r ≫ pullback.snd _ _ = pullbac
   let ι₀ : L →+* k := IsLocalization.lift (M := (RingHom.ker ψ).primeCompl) (g := ψ) fun y => Ne.isUnit y.2
   have hι₀ : ι₀.comp (algebraMap R L) = ψ := IsLocalization.lift_comp _
   obtain ⟨yy, y, hy, hyr, hyZ⟩ := exists_lift_frPt Y r hr Z (spMap (algebraMap R L) ≫ ξ)
-    (by rw [Category.assoc, hb, spMap_comp_eq]) hu halg (by
+    (by rw [Category.assoc, hb, _root_.GlobalTheory.spMap_comp_ring]) hu halg (by
       let s₀ : Sp k := (⟨⊥, Ideal.isPrime_bot⟩ : PrimeSpectrum k)
       refine ⟨zz s₀, ?_, ?_⟩
       · rw [← Scheme.Hom.comp_apply, hzr]
@@ -669,7 +662,7 @@ theorem chart_bound {hle : c.F ≤ c'.F} (hr : r ≫ pullback.snd _ _ = pullback
       (algebraMap c.F k).comp (algebraMap (𝓞 c.F) c.F) = ψ.comp (b.comp (inclO hle)) →
       ∃ (yy : Sp k ⟶ Xo'.XF c') (y : FrPt Xo c k), yy ≫ Y.j = spMap ψ ≫ ξ ∧ yy ≫ r = GlobalTheory.AllWt.ptF y ∧ LiesOn Z y :=
     fun k _ _ ψ hψ hk => exists_lift_frPt Y r hr Z (spMap ψ ≫ ξ) (b := ψ.comp b)
-      (by rw [Category.assoc, hb, spMap_comp_eq])
+      (by rw [Category.assoc, hb, _root_.GlobalTheory.spMap_comp_ring])
       (fun a ha => Ne.isUnit ((map_ne_zero_iff _ hψ).2 ((map_ne_zero_iff _ hbinj).2 ha))) hk (by
       obtain ⟨q, hqZ, hq⟩ := hq
       refine ⟨q, hqZ, hq.trans ((bot_map hψ ξ).symm.trans (congrArg _ ?_))⟩
@@ -707,7 +700,7 @@ theorem chart_bound {hle : c.F ≤ c'.F} (hr : r ≫ pullback.snd _ _ = pullback
     obtain ⟨zz, z, hz, hzr, hzZ⟩ := hgen T.Fr ((algebraMap T.V T.Fr).comp α)
       ((IsFractionRing.injective T.V T.Fr).comp hα) (RingHom.ext hio)
     obtain ⟨y₀, hy₀⟩ := exists_intFr_lift Y r ν T io (spMap α ≫ ξ) zz z
-      (by rw [hz, ← Category.assoc, spMap_comp_eq]) hzr
+      (by rw [hz, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]) hzr
     have h1 : zz ≫ r = GlobalTheory.AllWt.ptF y₀.1 := hzr.trans hy₀.symm
     have h2 : LiesOn Z y₀.1 := fun s => hy₀ ▸ hzZ s
     obtain ⟨M₁, C₁, h₁⟩ := hint T io y₀ α zz hz h1 σ₁
@@ -817,7 +810,7 @@ theorem exists_denom (hpq : 1 ≤ Dw.p + Dw.q) (hA : l.A = 1) (Z : Comp Xo c)
     refine ⟨U, m, hxU, hm, fun T io y₀ yt yy h1 h1' h2 h3 => ?_⟩
     obtain ⟨φ, rfl⟩ := GlobalTheory.localSpec_fac_of_closedPoint_mem_range T.V Y.X Γ(Y.X, U) hU.fromSpec yt inferInstance
       (by rw [hU.range_fromSpec]; exact h2)
-    exact h T io y₀ φ yy (by rw [h1, ← Category.assoc, spMap_comp_eq]) h1' h3
+    exact h T io y₀ φ yy (by rw [h1, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]) h1' h3
   choose V m hV hm hloc using loc
   obtain ⟨S, hS⟩ := isCompact_univ.elim_finite_subcover (fun x => (V x : Set Y.X)) (fun x => (V x).isOpen)
     fun x _ => Set.mem_iUnion.2 ⟨x, hV x⟩
@@ -832,7 +825,7 @@ theorem exists_denom (hpq : 1 ≤ Dw.p + Dw.q) (hA : l.A = 1) (Z : Comp Xo c)
   letI := io.toAlgebra
   have cond : (spMap (algebraMap T.Fr L₀) ≫ GlobalTheory.AllWt.ptF y₀.1) ≫ pullback.snd _ _ =
       spMap io' ≫ spMap (IntermediateField.inclusion hle).toRingHom := by
-    rw [Category.assoc, GlobalTheory.AllWt.ptF, pullback.lift_snd, spMap_comp_eq, spMap_comp_eq]
+    rw [Category.assoc, GlobalTheory.AllWt.ptF, pullback.lift_snd, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring]
     exact congrArg spMap hio'.symm
   obtain ⟨L, _, _, _, x', hx'⟩ := GlobalTheory.LevelLift.exists_point_finite_surjective _ hfin hsurj L₀ (pullback.lift _ _ cond)
   letI : Algebra T.Fr L := ((algebraMap L₀ L).comp (algebraMap T.Fr L₀)).toAlgebra
@@ -845,14 +838,14 @@ theorem exists_denom (hpq : 1 ≤ Dw.p + Dw.q) (hA : l.A = 1) (Z : Comp Xo c)
   have hx1 : x' ≫ r = spMap (algebraMap T.Fr L) ≫ GlobalTheory.AllWt.ptF y₀.1 := by
     have h := congrArg (· ≫ pullback.fst _ _) hx'
     simp only [Category.assoc, pullback.lift_fst] at h
-    rw [h, ← Category.assoc, spMap_comp_eq]
+    rw [h, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
   have hc : ψ.toRingHom.comp (algebraMap T.Fr L) = iT := RingHom.ext fun a => hψ a
   have hpt : GlobalTheory.AllWt.ptF y₁.1 = spMap iT ≫ GlobalTheory.AllWt.ptF y₀.1 := by
     apply pullback.hom_ext
     · rw [Category.assoc, GlobalTheory.AllWt.ptF, GlobalTheory.AllWt.ptF, pullback.lift_fst, pullback.lift_fst, hm₁.1, hι]
-    · rw [Category.assoc, GlobalTheory.AllWt.ptF, GlobalTheory.AllWt.ptF, pullback.lift_snd, pullback.lift_snd, spMap_comp_eq]
+    · rw [Category.assoc, GlobalTheory.AllWt.ptF, GlobalTheory.AllWt.ptF, pullback.lift_snd, pullback.lift_snd, _root_.GlobalTheory.spMap_comp_ring]
   have hyr : (spMap ψ.toRingHom ≫ x') ≫ r = GlobalTheory.AllWt.ptF y₁.1 := by
-    rw [Category.assoc, hx1, ← Category.assoc, spMap_comp_eq, hc, hpt]
+    rw [Category.assoc, hx1, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, hc, hpt]
   obtain ⟨io₂, hio₂⟩ : ∃ io₂ : c'.F →+* T'.Fr, spMap io₂ = (spMap ψ.toRingHom ≫ x') ≫ pullback.snd _ _ :=
     ⟨(Spec.preimage ((spMap ψ.toRingHom ≫ x') ≫ pullback.snd _ _)).hom, by simp [spMap]⟩
   obtain ⟨b, hb⟩ : ∃ b : 𝓞 c'.F →+* T'.V, (algebraMap T'.V T'.Fr).comp b = io₂.comp (algebraMap (𝓞 c'.F) c'.F) := by
@@ -872,7 +865,7 @@ theorem exists_denom (hpq : 1 ≤ Dw.p + Dw.q) (hA : l.A = 1) (Z : Comp Xo c)
     exact congrArg Subtype.val (eq.apply_symm_apply _)
   obtain ⟨yt, h1, -⟩ := extPt Y T' b (spMap ψ.toRingHom ≫ x') (by
     show _ = spMap (algebraMap T'.V T'.Fr) ≫ spMap b
-    rw [openImmersion_comp_structure_eq_generic, ← Category.assoc, ← hio₂, spMap_comp_eq, spMap_comp_eq, hb])
+    rw [openImmersion_comp_structure_eq_generic, ← Category.assoc, ← hio₂, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring, hb])
   obtain ⟨x, hx, hxV⟩ := Set.mem_iUnion₂.1 (hS (Set.mem_univ (yt (IsLocalRing.closedPoint T'.V))))
   obtain ⟨s, hs⟩ := hloc x T' _ y₁ yt _ h1.symm hyr hxV (fun p => by
     rw [hpt, Scheme.Hom.comp_apply]

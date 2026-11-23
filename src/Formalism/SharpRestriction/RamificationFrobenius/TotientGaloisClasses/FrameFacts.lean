@@ -63,13 +63,9 @@ open Formalism.FrobeniusOrbits
 
 variable (φ : Frame)
 
-private theorem natCard_A_eq_ord : Nat.card φ.A = φ.ord := by
-  show Nat.card (Fin φ.ord) = φ.ord
-  rw [Nat.card_eq_fintype_card, Fintype.card_fin]
-
 theorem natCard_MA : Nat.card φ.MA = φ.ord := by
   rw [Nat.card_congr (Multiplicative.ofAdd (α := φ.A)).symm]
-  exact natCard_A_eq_ord φ
+  exact _root_.Formalism.HC.Frame.natCard_A φ
 
 private theorem natCard_int_units_eq_two : Nat.card ℤˣ = 2 := by
   first
@@ -77,14 +73,8 @@ private theorem natCard_int_units_eq_two : Nat.card ℤˣ = 2 := by
   | (rw [Nat.card_eq_fintype_card]; decide)
   | simp
 
-private theorem natCard_GG_eq_four_mul_ord : Nat.card φ.GG = 4 * φ.ord := by
-  have h3 : Nat.card φ.GG = Nat.card ℤˣ * Nat.card ℤˣ * Nat.card φ.MA := by
-    rw [Nat.card_prod, Nat.card_prod]
-  rw [natCard_int_units_eq_two, φ.natCard_MA] at h3
-  omega
-
 theorem card_GG [Fintype φ.GG] : Fintype.card φ.GG = 4 * φ.ord := by
-  rw [← Nat.card_eq_fintype_card, natCard_GG_eq_four_mul_ord]
+  rw [← Nat.card_eq_fintype_card, _root_.Formalism.HC.Frame.natCard_GG]
 
 theorem chC_apply (g : φ.GG) : ((φ.chC g : ℂˣ) : ℂ) = (((g.1.2 : ℤˣ) : ℤ) : ℂ) := rfl
 
@@ -95,7 +85,7 @@ theorem index_Psi : φ.Psi.index = 2 := by
 
 theorem natCard_Psi : Nat.card φ.Psi = 2 * φ.ord := by
   have h := φ.Psi.card_mul_index
-  rw [φ.index_Psi, natCard_GG_eq_four_mul_ord] at h
+  rw [φ.index_Psi, _root_.Formalism.HC.Frame.natCard_GG] at h
   omega
 
 private theorem int_units_neg_one_ne_one : (-1 : ℤˣ) ≠ 1 := by
@@ -137,7 +127,7 @@ theorem orderOf_cc : orderOf φ.cc = 2 := by
   exact orderOf_eq_prime (by rw [pow_two]; exact φ.cc_mul_cc) φ.cc_ne_one
 
 theorem hostGroup : Nat.card φ.GG = 4 * φ.ord ∧ φ.Psi.index = 2 ∧ φ.cc ∉ φ.Psi ∧ φ.sg ∈ φ.Psi ∧
-    orderOf φ.cc = 2 := ⟨by rw [natCard_GG_eq_four_mul_ord], φ.index_Psi, φ.cc_notMem_Psi, φ.sg_mem_Psi, φ.orderOf_cc⟩
+    orderOf φ.cc = 2 := ⟨by rw [_root_.Formalism.HC.Frame.natCard_GG], φ.index_Psi, φ.cc_notMem_Psi, φ.sg_mem_Psi, φ.orderOf_cc⟩
 
 theorem iota_injective : Function.Injective φ.iota := fun _ _ h => Multiplicative.ofAdd.injective h
 
@@ -198,18 +188,14 @@ theorem hH_surj : Function.Surjective φ.hH := by
   obtain ⟨t, ht⟩ := φ.projection_surjective_field (Additive.ofMul y)
   exact ⟨φ.iota t, congrArg Additive.toMul ht⟩
 
-private theorem ord_pos' : 0 < φ.ord := by
-  rw [← natCard_A_eq_ord]
-  exact Nat.card_pos
-
 theorem two_pow_dvd_ord : 2 ^ φ.e ∣ φ.ord := by
   have := Subgroup.card_dvd_of_surjective (f := φ.hH) φ.hH_surj
   rwa [Formalism.FrobeniusOrbits.Group.card_H, φ.natCard_MA] at this
 
-theorem two_pow_le_ord : 2 ^ φ.e ≤ φ.ord := Nat.le_of_dvd (ord_pos' φ) φ.two_pow_dvd_ord
+theorem two_pow_le_ord : 2 ^ φ.e ≤ φ.ord := Nat.le_of_dvd (_root_.Formalism.HC.Frame.ord_pos φ) φ.two_pow_dvd_ord
 
 theorem addOrderOf_dvd_ord (t : φ.A) : addOrderOf t ∣ φ.ord := by
-  rw [← natCard_A_eq_ord]
+  rw [← _root_.Formalism.HC.Frame.natCard_A]
   exact addOrderOf_dvd_natCard t
 
 theorem n0_pos : 0 < φ.n0 := addOrderOf_pos φ.a0
@@ -218,13 +204,13 @@ theorem cyclic_order_dvd_exponent : φ.n0 ∣ φ.ord := φ.addOrderOf_dvd_ord φ
 
 theorem exponent_eq_index_mul_cyclic_order : φ.ord = φ.o * φ.n0 := (Nat.div_mul_cancel φ.cyclic_order_dvd_exponent).symm
 
-theorem o_pos : 0 < φ.o := Nat.div_pos (Nat.le_of_dvd (ord_pos' φ) φ.cyclic_order_dvd_exponent) φ.n0_pos
+theorem o_pos : 0 < φ.o := Nat.div_pos (Nat.le_of_dvd (_root_.Formalism.HC.Frame.ord_pos φ) φ.cyclic_order_dvd_exponent) φ.n0_pos
 
 theorem natCard_cyclic_subgroup : Nat.card φ.A0 = φ.n0 := Nat.card_zmultiples φ.a0
 
 theorem index_A0_eq_o : φ.A0.index = φ.o := by
   have h := φ.A0.card_mul_index
-  rw [φ.natCard_cyclic_subgroup, natCard_A_eq_ord, φ.exponent_eq_index_mul_cyclic_order] at h
+  rw [φ.natCard_cyclic_subgroup, _root_.Formalism.HC.Frame.natCard_A, φ.exponent_eq_index_mul_cyclic_order] at h
   exact Nat.eq_of_mul_eq_mul_left φ.n0_pos (h.trans (mul_comm _ _))
 
 theorem eq_zero_of_mem_cyclic_of_projection {t : φ.A} (ht : t ∈ φ.A0) (h0 : φ.h t = 0) : t = 0 := by
@@ -260,7 +246,7 @@ theorem cyclic_order_dvd_two_pow : φ.n0 ∣ 2 ^ φ.e := by
 
 theorem cyclic_order_le_two_pow : φ.n0 ≤ 2 ^ φ.e := Nat.le_of_dvd (by positivity) φ.cyclic_order_dvd_two_pow
 
-theorem cyclic_order_le_exponent : φ.n0 ≤ φ.ord := Nat.le_of_dvd (ord_pos' φ) φ.cyclic_order_dvd_exponent
+theorem cyclic_order_le_exponent : φ.n0 ≤ φ.ord := Nat.le_of_dvd (_root_.Formalism.HC.Frame.ord_pos φ) φ.cyclic_order_dvd_exponent
 
 theorem ord_le_o_mul_two_pow : φ.ord ≤ φ.o * 2 ^ φ.e := by
   rw [φ.exponent_eq_index_mul_cyclic_order]

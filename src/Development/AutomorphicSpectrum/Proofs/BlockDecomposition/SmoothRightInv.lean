@@ -117,7 +117,7 @@ theorem exists_level {n : ℕ} {Z : Type} (Zs : Set Z) (hZ : Zs.Finite) (U : Z �
       (∀ κ ∈ KO k (Fin n), ∀ b ∈ K₁, κ * b * κ⁻¹ ∈ K₁) ∧ ∀ z ∈ Zs, ∀ p ∈ Bgrp n c K₁ hK, p ∈ U z := by
   have hI : (⋂ z ∈ Zs, U z) ∈ 𝓝 (1 : Mir k n) := (Filter.biInter_mem hZ).2 fun z _ => hU z
   obtain ⟨c, A, hA, hcA⟩ := exists_latt_nhds hI
-  obtain ⟨K₁, hK, hopen, hsub, hidx, hnorm⟩ := GlobalTheory.T.exists_normal_open_subgroup_compact k n _ (Filter.inter_mem hA hA')
+  obtain ⟨K₁, hK, hopen, hsub, hidx, hnorm⟩ := _root_.GlobalTheory.CompanionTheory.OpenCore.exists_open_normal_subgroup_KO k n _ (Filter.inter_mem hA hA')
   refine ⟨c, K₁, hK, hopen, fun x hx => (hsub hx).2, hidx, hnorm, ?_⟩
   rintro z hz _ ⟨y, hy, b, hb, rfl⟩
   exact Set.mem_iInter₂.1 (hcA y hy b (hsub hb).1) z hz

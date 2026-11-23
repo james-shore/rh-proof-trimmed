@@ -44,10 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace UpperTheory.Gal.InertialTypesAlt.G
 
-theorem varTrace_holds : VarTrace := varTrace
-
-theorem varEx_holds : VarEx := varEx
-
-theorem normInt_holds : NormInt := normInt
-
 end UpperTheory.Gal.InertialTypesAlt.G

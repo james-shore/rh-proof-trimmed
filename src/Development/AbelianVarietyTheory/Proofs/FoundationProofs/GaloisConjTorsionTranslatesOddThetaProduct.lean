@@ -58,11 +58,7 @@ open scoped BigOperators
 
 namespace GlobalTheory.ProdThetaConj
 
-theorem ee_add (a b : ℝ) : ee (a + b) = ee a * ee b := by
-  simp only [ee, ← Complex.exp_add]
-  congr 1
-  push_cast
-  ring
+alias ee_add := _root_.GlobalTheory.WeilPairingGalois.ee_add
 
 theorem ee_sum {κ : Type*} [Fintype κ] (a : κ → ℝ) : ee (∑ j, a j) = ∏ j, ee (a j) := by
   simp only [ee, ← Complex.exp_sum]

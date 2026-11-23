@@ -73,7 +73,7 @@ theorem GlobalTheory.EigInert.eigen_at_inert_alt : GlobalTheory.Published.Automo
   have hns : ¬ Formalism.BasicNotions.IsSplitPl D.host Pp := GlobalTheory.T.not_isSplitPlace_of_inert_over_realSubfield D Pp hin
   obtain ⟨v, Dv, hov⟩ := GlobalTheory.T.exists_inertLocalDatum_at_inertPlace D hA.hF Pp hin
   have hfix := _root_.GlobalTheory.T.operator_eigen_good_place_first_alt hAF hL D P X hA h41 h7 htl i hμ j hj h hops Pp hG hin v hov
-  obtain ⟨h0, hh0, htr⟩ := _root_.GlobalTheory.T.operator_eigen_good_place_second_alt hAF hL D P X hA h41 h7 htl i hμ j hj h hops Pp hG hin d hd v Dv hov
+  obtain ⟨h0, hh0, htr⟩ := _root_.GlobalTheory.InertTransport.main_alt_alt hAF hL D P X hA h41 h7 htl i hμ j hj h hops Pp hG hin d hd v Dv hov
   obtain ⟨C, a, xs, hC⟩ := GlobalTheory.EigInert.heckeFunI_umax_sum Dv h0 hh0
   let c : ℂ := if hP : ∃ P0 : D.naut.AV i, D.naut.ptV i P0 = some x then
     Formalism.UG.SatU Dv.ϖ (Formalism.UG.qV (maximalRealSubfield D.host.E) v) h0 (_root_.GlobalTheory.EigInert.exists_satAt_of_nonsplit_over hL D P i hP.choose v Pp hov hns Dv).choose else 0

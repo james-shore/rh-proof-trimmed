@@ -69,21 +69,6 @@ theorem schA_line (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] 
       HasDerivAt (fun s : ℝ => g (x + fun i => infAd F (s • v i))) (dD F v g (x + fun i => infAd F (t • v i))) t :=
   GlobalTheory.T.adelicSchwartz_continuous_hasDerivAt_archimedeanLine F κ
 
-theorem slice_le {G : Type} [AddCommGroup G] [TopologicalSpace G] [IsTopologicalAddGroup G] [MeasurableSpace G]
-    [BorelSpace G] (μ : Measure G) [μ.IsAddLeftInvariant] {N : ℕ} (ι : (Fin N → ℝ) →+ G) (π : G →+ (Fin N → ℝ))
-    (hι : Continuous ι) (hπ : Continuous π) (hπι : ∀ t, π (ι t) = t) (U : Set G)
-    (hU : MeasurableSet {w | w - ι (π w) ∈ U})
-    (hfin : ∀ A : Set (Fin N → ℝ), IsCompact A → μ (π ⁻¹' A ∩ {w | w - ι (π w) ∈ U}) ≠ ⊤)
-    (φ : G → ℝ≥0∞) (hφ : Measurable φ) (hper : ∀ w, ∀ u ∈ U, φ (w + u) = φ w) (y : G) :
-    μ (π ⁻¹' cube N ∩ {w | w - ι (π w) ∈ U}) * ∫⁻ t in cube N, φ (y + ι t) ≤ ∫⁻ w, φ w ∂μ :=
-  GlobalTheory.T.lintegral_unitCube_translates_slabPeriodic_le μ ι π hι hπ hπι U hU hfin φ hφ hper y
-
-theorem slab_top (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] :
-    (∀ m : ℕ, 0 < m → IsOpen (slab F κ m)) ∧ ∀ (μ : @Measure (κ → AF F) (borel _)),
-      @Measure.IsAddHaarMeasure _ _ _ (borel _) μ → 0 < μ (archOut F κ ⁻¹' cube (dimA F κ) ∩ slab F κ 1) ∧
-        ∀ A : Set (Fin (dimA F κ) → ℝ), IsCompact A → μ (archOut F κ ⁻¹' A ∩ slab F κ 1) ≠ ⊤ :=
-  GlobalTheory.T.archimedeanSlab_open_unitCube_haar_pos_finite F κ
-
 theorem slab_cover (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] :
     ∃ c : ℕ, ∀ m : ℕ, 0 < m → slab F κ m ⊆ slab F κ 1 ∧ ∃ R : Finset (κ → AF F), R.card ≤ m ^ c ∧
       (∀ r ∈ R, arch F r = 0) ∧ ∀ w ∈ slab F κ 1, ∃ r ∈ R, w - r ∈ slab F κ m :=
@@ -140,19 +125,19 @@ theorem sobolev_schA {f : (κ → AF F) → ℂ} (hf : f ∈ schA F κ) (x : κ 
   · exact key
   · rintro p u ⟨w, h1, h2, rfl⟩
     have hmem := wordD_mem hf w
-    refine ⟨(schA_line F κ _ hmem).1, fun j => ⟨wordD F (ubasis F κ j :: w) f,
+    refine ⟨(_root_.GlobalTheory.ArchDecay.SchLine.schline F κ _ hmem).1, fun j => ⟨wordD F (ubasis F κ j :: w) f,
       ⟨_, by simpa using h1, ?_, rfl⟩, fun y => ?_⟩⟩
     · intro v hv
       rcases List.mem_cons.1 hv with rfl | hv
       · exact ⟨j, rfl⟩
       · exact h2 v hv
-    · have hd := (schA_line F κ _ hmem).2 (ubasis F κ j) y
+    · have hd := (_root_.GlobalTheory.ArchDecay.SchLine.schline F κ _ hmem).2 (ubasis F κ j) y
       have hc : Continuous fun s : ℝ => y + fun i => infAd F (s • ubasis F κ j i) :=
         continuous_const.add (continuous_pi fun i => (continuous_infAd F).comp (continuous_id.smul continuous_const))
       have := GlobalTheory.sobolev_endpoint_one_variable ℂ (fun s => wordD F w f (y + fun i => infAd F (s • ubasis F κ j i)))
         (fun s => dD F (ubasis F κ j) (wordD F w f) (y + fun i => infAd F (s • ubasis F κ j i))) 1 one_pos
         (fun t _ => hd t)
-        (((schA_line F κ _ (wordD_mem hf (ubasis F κ j :: w))).1.comp hc).continuousOn)
+        (((_root_.GlobalTheory.ArchDecay.SchLine.schline F κ _ (wordD_mem hf (ubasis F κ j :: w))).1.comp hc).continuousOn)
       simp only [archIn_single, wordD_cons]
       simpa [infAd_zero, ← Pi.zero_def] using this
   · rintro u ⟨w, h1, h2, rfl⟩
@@ -176,9 +161,9 @@ theorem cube_bound (μ : @Measure (κ → AF F) (borel _)) (hμ : @Measure.IsAdd
   letI : MeasurableSpace (κ → AF F) := borel _
   haveI : BorelSpace (κ → AF F) := ⟨rfl⟩
   haveI := hμ
-  obtain ⟨hopen, hμ1⟩ := slab_top F κ
+  obtain ⟨hopen, hμ1⟩ := _root_.GlobalTheory.ArchDecay.slab_open_cube_pos_finite F κ
   obtain ⟨h0, hfin1⟩ := hμ1 μ hμ
-  obtain ⟨c, hc⟩ := slab_cover F κ
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.ArchDecay.slab_subset_and_cover F κ
   have hQc : IsCompact (cube (dimA F κ)) := isCompact_univ_pi fun _ => isCompact_Icc
   have hc₁ : μ (archOut F κ ⁻¹' cube (dimA F κ) ∩ slab F κ 1) ≠ ⊤ := hfin1 _ hQc
   refine ⟨(μ (archOut F κ ⁻¹' cube (dimA F κ) ∩ slab F κ 1)).toReal⁻¹, c, by positivity,
@@ -200,7 +185,7 @@ theorem cube_bound (μ : @Measure (κ → AF F) (borel _)) (hμ : @Measure.IsAdd
           rw [Set.image_add_left, measure_preimage_add]
       _ = R.card * μ (archOut F κ ⁻¹' cube (dimA F κ) ∩ slab F κ m) := by rw [Finset.sum_const, nsmul_eq_mul]
       _ ≤ _ := by gcongr; exact_mod_cast hRc
-  have hS := slice_le μ (archIn F κ) (archOut F κ) (continuous_archIn F κ) (continuous_archOut F κ)
+  have hS := _root_.GlobalTheory.ArchDecay.lintegral_cube_slab_le μ (archIn F κ) (archOut F κ) (continuous_archIn F κ) (continuous_archOut F κ)
     (archOut_archIn F κ) (perSet F κ m) (hopen m hm).measurableSet
     (fun A hA => ne_top_of_le_ne_top (hfin1 A hA) (measure_mono (Set.inter_subset_inter_right _ hsub)))
     (fun w => ‖φ w‖ₑ ^ 2) (hφ.measurable.enorm.pow_const 2)
@@ -234,7 +219,7 @@ theorem sobolev_per : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fint
   obtain ⟨C₀, c, -, hb⟩ := cube_bound μ hμ
   refine ⟨dimA F κ, 4 ^ dimA F κ * C₀, c, fun m hm f hf hper b hb0 hw x => ?_⟩
   have := sobolev_schA hf x (C₀ * m ^ c * b) fun w hl hv =>
-    hb m hm _ (schA_line F κ _ (wordD_mem hf w)).1 (per_wordD hper w) b hb0
+    hb m hm _ (_root_.GlobalTheory.ArchDecay.SchLine.schline F κ _ (wordD_mem hf w)).1 (per_wordD hper w) b hb0
       (hw w hl fun v hv' => by obtain ⟨j, rfl⟩ := hv v hv'; rw [norm_ubasis]) x
   calc _ ≤ _ := this
     _ = _ := by ring

@@ -73,7 +73,6 @@ theorem span_one_tmul_eq_top {R M : Type} [CommRing R] [IsLocalRing R] [AddCommG
     exact N.smul_mem a h1
   | add x y hx hy => exact add_mem hx hy
 
-theorem main : ∀ {R M : Type} [inst : CommRing R] [inst_1 : IsLocalRing R] [inst_2 : AddCommGroup M] [inst_3 : Module R M] {ι : Type} (f : ι → M), Submodule.span R (Set.range f) = ⊤ → Submodule.span (IsLocalRing.ResidueField R) (Set.range fun (i : ι) ↦ (1 : IsLocalRing.ResidueField R) ⊗ₜ[R] f i) = ⊤ :=
-  fun f hf => span_one_tmul_eq_top f hf
+alias main := _root_.GlobalTheory.TensorUnitSpanTop.span_one_tmul_eq_top
 
 end GlobalTheory.TensorUnitSpanTop

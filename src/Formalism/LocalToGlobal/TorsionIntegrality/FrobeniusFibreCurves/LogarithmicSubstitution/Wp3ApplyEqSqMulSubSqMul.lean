@@ -64,7 +64,7 @@ theorem tau_derivative_rule_holds : TauRule := by
   set U : MvPowerSeries (Fin 2) K := 1 - MvPowerSeries.X 0 ^ 2 * MvPowerSeries.X 1 ^ 2 * dq P with hU
   have hU1 : MvPowerSeries.constantCoeff U = 1 := by simp [hU]
   have hW : wpDiff P = (MvPowerSeries.X 0 ^ 2 - MvPowerSeries.X 1 ^ 2) * U :=
-    Formalism.L2.Th1.B.Add0.wpDiff_eq dqRule hP.2.1
+    Formalism.L2.Th1.B.Add0.wpDiff_eq _root_.Formalism.L2.Th1.B.difference_quotient_rule_holds hP.2.1
   have hL : par0 (sigS P) = fLog U := addSigmaLog K g2 g3 P hP
   have e0 := mul_pd_fLog (0 : Fin 2) hU1
   have e1 := mul_pd_fLog (1 : Fin 2) hU1
@@ -206,7 +206,7 @@ theorem curve_eq {g2 g3 : K} {P : PowerSeries K} (hP : IsWp g2 g3 P) (j : Fin 3)
 theorem X_mul_dYt {g2 g3 : K} {P : PowerSeries K} (hP : IsWp g2 g3 P) (j : Fin 3) :
     MvPowerSeries.X j * dYt P j =
       6 * Xt P j ^ 2 - MvPowerSeries.C (g2 / 2) * MvPowerSeries.X j ^ 4 + 3 * Yt P j := by
-  have h' := congrArg (PowerSeries.substAlgHom (R := K) (PowerSeries.HasSubst.X (S := K) (τ := Fin 3) j)) (wpReduced K g2 g3 P hP).2
+  have h' := congrArg (PowerSeries.substAlgHom (R := K) (PowerSeries.HasSubst.X (S := K) (τ := Fin 3) j)) (_root_.Formalism.L2.Th1.B.weierstrassReducedEquations K g2 g3 P hP).2
   simp only [map_add (f := _), map_sub, map_mul, map_pow, map_neg, map_ofNat, map_one, PowerSeries.coe_substAlgHom,
     PowerSeries.subst_X (R := K) (PowerSeries.HasSubst.X (S := K) j), PowerSeries.subst_C] at h'
   simp only [dYt, Xt, Yt, Formalism.InvariantFactorPaths.G7.at1]

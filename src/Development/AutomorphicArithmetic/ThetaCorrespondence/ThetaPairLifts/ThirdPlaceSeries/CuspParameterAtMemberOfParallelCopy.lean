@@ -78,7 +78,7 @@ theorem good_cusp_param_of_definite_heq_locR (hN : _root_.GlobalTheory.HeightCou
     have := hLoc σ w hw hk
     rw [e0] at this
     exact this
-  have hG := _root_.GlobalTheory.T.cuspParam_of_definite_liftAll D A.row hLaws hconds hEFK hCM hDef hLift' hLoc'
+  have hG := _root_.GlobalTheory.ParAsm.goodRowCuspParam_of_lift_alt D A.row hLaws hconds hEFK hCM hDef hLift' hLoc'
   intro j h1 h2 σ hσ hg
   obtain ⟨π, hπ⟩ := hG j h1 h2 σ hσ hg
   refine ⟨π, hπ.1, hπ.2.1, fun w hw => ?_, hπ.2.2.2⟩
@@ -90,7 +90,7 @@ open GlobalTheory.HeightCounting.Up.ParCopy in
 theorem cuspParameter_at_member_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.MemberAtLayerPoint hL (fun _ _ _ _ w Z _ _ _ _ _ c =>
     ∀ Rw : RowSide (w.D Z), HEq Rw.locR c.a.nt.A.row.locR → GlobalTheory.IndefiniteRowSideFullHecke.CMTypeEmbeddings.GoodRowCuspParam (w.D Z) Rw) := by
   intro hN hL
-  have hlift := _root_.GlobalTheory.T.liftAll_of_parIn_of_mtInput hN hL
+  have hlift := _root_.GlobalTheory.LiftRef.baseChange_local_compatible_all_places_alt hN hL
   have hloc := _root_.GlobalTheory.T.local_component_of_par_in_third_layer hN hL
   have hsz := GlobalTheory.T.eventually_sizes_congruences_hostFacts_columnChoices
   refine EvG.imp ((hlift.inter hloc).inter hsz) fun K _ _ _ _ H => ?_

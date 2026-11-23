@@ -68,14 +68,6 @@ theorem measurable_detNorm : Measurable (detNorm E j) := by
     exact continuous_apply w
   exact h.measurable
 
-theorem ae_detNorm_pos (hj : 1 ≤ j) : ∀ᵐ g ∂(haarGL E j), 0 < detNorm E j g := by
-  unfold haarGL
-  refine (ae_withDensity_iff (((measurable_detNorm E j).inv.pow_const j).ennreal_ofReal)).2
-    (Filter.Eventually.of_forall fun g hg => ?_)
-  have h0 : 0 ≤ detNorm E j g := by unfold detNorm; positivity
-  refine lt_of_le_of_ne h0 fun h => hg ?_
-  simp [← h, show j ≠ 0 by omega]
-
 theorem latMean_congr (hj : 1 ≤ j) {F G : Submodule ℤ (VecInf E j) → ENNReal}
     (h : ∀ Λ : Submodule (𝓞 E) (Fin j → E), Submodule.IsFullLattice E Λ → ∀ g, 0 < detNorm E j g →
       F (latAt E j Λ g) = G (latAt E j Λ g)) : latMean E j F = latMean E j G := by
@@ -83,7 +75,7 @@ theorem latMean_congr (hj : 1 ≤ j) {F G : Submodule ℤ (VecInf E j) → ENNRe
   refine tsum_congr fun c => ?_
   congr 1
   refine withDensity_congr_ae ?_
-  filter_upwards [ae_detNorm_pos E j hj] with g hg using h _ (Quot.out c).2 g hg
+  filter_upwards [_root_.GlobalTheory.FlagBase.MeanCov.ae_detNorm_pos E j hj] with g hg using h _ (Quot.out c).2 g hg
 
 theorem latMean_add (hE : IsTotallyComplex E) (hj : 1 ≤ j) {F G : Submodule ℤ (VecInf E j) → ENNReal}
     (hF : ∀ Λ : Submodule (𝓞 E) (Fin j → E), Submodule.IsFullLattice E Λ →
@@ -97,7 +89,7 @@ theorem latMean_add (hE : IsTotallyComplex E) (hj : 1 ≤ j) {F G : Submodule �
   obtain ⟨Λ, hΛ⟩ := Quot.out c
   obtain ⟨D, hD, hDP, -, -, H⟩ := GlobalTheory.T.exists_scalarStable_latticeAutomorphismFundamentalDomain E hE j Λ hΛ
   have hP : MeasurableSet {g | 0 < detNorm E j g} := measurableSet_lt measurable_const (measurable_detNorm E j)
-  rw [Measure.restrict_eq_self_of_ae_mem (s := {g | 0 < detNorm E j g}) (ae_detNorm_pos E j hj)] at H
+  rw [Measure.restrict_eq_self_of_ae_mem (s := {g | 0 < detNorm E j g}) (_root_.GlobalTheory.FlagBase.MeanCov.ae_detNorm_pos E j hj)] at H
   have hinv : ∀ γ ∈ autGL E j Λ, ∀ g ∈ {g | 0 < detNorm E j g}, γ * g ∈ {g | 0 < detNorm E j g} := by
     rintro γ ⟨c, -, hc⟩ g hg
     simp only [Set.mem_setOf_eq, detNorm] at hg ⊢
@@ -137,7 +129,7 @@ theorem measurable_weight_mul_sum (hE : IsTotallyComplex E) (w : ℝ → ENNReal
     (hw : Measurable w) (hΦ : Measurable Φ) (Λ : Submodule (𝓞 E) (Fin j → E)) (hΛ : Submodule.IsFullLattice E Λ) :
     Measurable (fun g : MatInf E j => {g | 0 < detNorm E j g}.indicator (fun g => w (covAt E j (latAt E j Λ g)) *
       ∑' x : {x : VecInf E j // x ∈ latAt E j Λ g ∧ x ≠ 0}, Φ x.1) g) := by
-  obtain ⟨h1, h2, -⟩ := GlobalTheory.T.measurable_translatedLattice_functions E hE j w Φ hw hΦ Λ hΛ
+  obtain ⟨h1, h2, -⟩ := _root_.GlobalTheory.LatMeasurable.measurable_latFun E hE j w Φ hw hΦ Λ hΛ
   convert h1.mul h2 using 2 with g
   by_cases hg : g ∈ {g | 0 < detNorm E j g} <;> simp [hg]
 
@@ -159,7 +151,7 @@ theorem measurable_gauss : Measurable fun x => ENNReal.ofReal (gaussV E j x) := 
   fun_prop
 
 theorem lintegral_gauss : ∫⁻ x, ENNReal.ofReal (gaussV E j x) = 1 := by
-  have h := (GlobalTheory.T.poisson_summation_infinitePlaceGaussian_lattice E j (Submodule.span ℤ (Set.range (Module.finBasis ℝ (VecInf E j))))
+  have h := (_root_.GlobalTheory.FlagBase.poisson_gaussV E j (Submodule.span ℤ (Set.range (Module.finBasis ℝ (VecInf E j))))
     inferInstance).2.2.2
   have hi : Integrable (gaussV E j) := by
     by_contra hn
@@ -172,7 +164,7 @@ theorem poisson_ne_zero (L : Submodule ℤ (VecInf E j)) [DiscreteTopology L] (h
     1 + ∑' x : {x : VecInf E j // x ∈ L ∧ x ≠ 0}, ENNReal.ofReal (gaussV E j x.1) =
       ENNReal.ofReal (covAt E j L)⁻¹ *
         (1 + ∑' x : {x : VecInf E j // x ∈ dualAt E j L ∧ x ≠ 0}, ENNReal.ofReal (gaussV E j x.1)) := by
-  obtain ⟨h1, h2, h3, -⟩ := GlobalTheory.T.poisson_summation_infinitePlaceGaussian_lattice E j L hL
+  obtain ⟨h1, h2, h3, -⟩ := _root_.GlobalTheory.FlagBase.poisson_gaussV E j L hL
   have h0 : ENNReal.ofReal (gaussV E j 0) = 1 := by simp [gaussV]
   have hc : 0 ≤ (covAt E j L)⁻¹ := inv_nonneg.2 (by unfold covAt ZLattice.covolume; exact ENNReal.toReal_nonneg)
   rw [← h0, ← tsum_eq_zero_add E j L fun x => ENNReal.ofReal (gaussV E j x),
@@ -310,7 +302,7 @@ theorem glVol_step : ∀ (E : Type) [Field E] [NumberField E], IsTotallyComplex 
     (F := fun L => (Set.Ioi (1 : ℝ)).indicator (fun t => ENNReal.ofReal (t⁻¹ - t⁻¹ ^ 2)) (covAt E j L))
     (G := fun L => (Set.Ioi (1 : ℝ)).indicator (fun t => ENNReal.ofReal t⁻¹) (covAt E j L) *
       ∑' x : {x : VecInf E j // x ∈ L ∧ x ≠ 0}, ENNReal.ofReal (gaussV E j x.1))
-    (fun Λ hΛ => (GlobalTheory.T.measurable_translatedLattice_functions E hE j _ _ m1 mg Λ hΛ).1) (measurable_weight_mul_sum E j hE _ _ m2 mg)
+    (fun Λ hΛ => (_root_.GlobalTheory.LatMeasurable.measurable_latFun E hE j _ _ m1 mg Λ hΛ).1) (measurable_weight_mul_sum E j hE _ _ m2 mg)
   rw [e1, e2, lintegral_diff, lintegral_cube, lintegral_gauss] at e5
   rw [e3, lintegral_unit, lintegral_gauss] at e4
   rw [latMean_congr E j hj1 (G := fun L => (Set.Ioo (0 : ℝ) 1).indicator (fun t => ENNReal.ofReal (t ^ 2))

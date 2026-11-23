@@ -64,14 +64,6 @@ section General
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {n c : ℕ}
 
-omit [StarRing E] in
-theorem intV_eN (P : HeightOneSpectrum (𝓞 E)) (N s : ℕ) : IntV P (Loc.eN E N s) := by
-  intro l
-  unfold Loc.eN
-  split_ifs
-  · exact intAt_one P
-  · exact IndefiniteRowSideFullHecke.SourceLatticeInvariance.intAt_zero P
-
 theorem read_bounds (P : HeightOneSpectrum (𝓞 E)) (j : ℕ) (h ρ : (Fin (n + c) → E) ≃ₗ[E] (Fin (n + c) → E))
     (e : Fin c → ℤ) (z : Fin n → E) (hρ : ρ ∈ Loc.R1 E n c) (h1 : IntHom P h.symm.toLinearMap)
     (h2 : IntHom P (((qOf P : E) ^ j) • h.toLinearMap)) (hL : (ρ * h) '' {v | IntV P v} = nfLat P n c e z) :
@@ -96,11 +88,11 @@ theorem read_bounds (P : HeightOneSpectrum (𝓞 E)) (j : ℕ) (h ρ : (Fin (n +
     have := nonneg_of_intAt_zpow h4
     omega
   · have hc : 1 ≤ c := by have := i.2; omega
-    obtain ⟨u, hu, h'⟩ := (coords_of_mem hc (hmem _ (intV_eN P (n + c) (n + i.1)))).1 i
+    obtain ⟨u, hu, h'⟩ := (coords_of_mem hc (hmem _ (_root_.GlobalTheory.QNormal.intV_eN P (n + c) (n + i.1)))).1 i
     refine le_of_zpow_eq hu ?_
     rw [← h', ← atN_natAdd (ρ _) i, atN_of_R1cond hρ.1 (eN_mem_Ufl (by omega)), atN_natAdd]
     simp [Loc.eN]
-  · have h3 := (coords_of_mem hc (hmem _ (intV_eN P (n + c) n))).2 a
+  · have h3 := (coords_of_mem hc (hmem _ (_root_.GlobalTheory.QNormal.intV_eN P (n + c) n))).2 a
     have h4 : Loc.eN E (n + c) n (Fin.castAdd c a) = 0 := by
       unfold Loc.eN
       rw [if_neg (by have := a.2; simp; omega)]

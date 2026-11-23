@@ -76,7 +76,7 @@ def Good (a : Arrow T) (f : Sch G a) : Prop :=
 theorem step {a : Arrow T} {f : Sch G a} (hg : Good W M a f) {F : Fn G a.src} (hF : IsInvCont a.src F) :
     LiftConv W M a f F ∧ IsInvCont a.tgt (liftA W M a f F) := by
   obtain ⟨hK, hinv, hpos, hH, hfd⟩ := hg
-  obtain ⟨C, hC, hcov⟩ := GlobalTheory.definite_unitary_cocompact _ hpos
+  obtain ⟨C, hC, hcov⟩ := _root_.GlobalTheory.DefiniteQuotient.exists_compact _ hpos
   obtain ⟨_, _, _, _, _, _, _⟩ := GlobalTheory.Mem.AdelicGroupTop.adelic_unitary_topology D (G.V a.src)
   obtain ⟨_, _, _, _, _, _, _⟩ := GlobalTheory.Mem.AdelicGroupTop.adelic_unitary_topology D (G.V a.tgt)
   have hl : ∀ γ ∈ GQ (G.V a.src), ∀ g h, W.kerA a f (γ * g) h = W.kerA a f g h := fun γ hγ g h => by

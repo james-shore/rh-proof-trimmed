@@ -294,7 +294,7 @@ theorem step (C : LocCmpT l P AI H F) (h : Good K s LL) (T : Lt K LL) (i : Let K
   have hbdd : ∃ m : ℤ, ∀ j < m, Ex C h T i ζ y z j = 0 := by
     obtain ⟨m, hm⟩ := (C.C K s LL h).tie.levB_supp T i ζ ⟨_, hz⟩
     exact ⟨m, fun j hj => by rw [Ex_eq C h T i ζ y z hz]; exact hm j hj⟩
-  obtain ⟨-, -, h3, h4⟩ := GlobalTheory.T.powerSeriesTwistedScaling_triangular_laurent w
+  obtain ⟨-, -, h3, h4⟩ := _root_.GlobalTheory.NL.Twist.tri w
     (algebraMap ↥(OL LL) ↥LL.1 ((H.W K s LL h).χΓ (H.W K s LL h).gam : ↥(OL LL)))
     (SubF H h T i τ) (SubF_mono H h T i τ) y (Ex C h T i ζ y z) hbdd (hE z hz) k hk
   refine ⟨fun j hj => ?_, fun hd => ?_⟩
@@ -327,7 +327,7 @@ theorem annihilate : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : 
   classical
   intro D HW F Cm l _ K s LL h W T hT y hy Fs hFs x hx
   have hx' : W.Q ^ y • x ∈ W.N T := by simpa [invN, smulA] using hx
-  obtain ⟨hγ, hgam⟩ := GlobalTheory.T.wachN_invQPow_gamma_stable D HW F Cm l K s LL h T hT y
+  obtain ⟨hγ, hgam⟩ := _root_.GlobalTheory.NL.GamQ.gam_Q_pow D HW F Cm l K s LL h T hT y
   let S : W.DD T → Prop := fun z => W.Q ^ y • z ∈ W.N T
   let op : (↥(OL LL))ˣ → W.DD T → W.DD T := fun d z => W.γ T z - (d : ↥(OL LL)) • z
   let Pf : Finset (↥(OL LL))ˣ → W.DD T → W.DD T := fun A z =>
@@ -345,7 +345,7 @@ theorem annihilate : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : 
       rw [hP (insert d A) d z (Finset.mem_insert_self d A), Finset.erase_insert hd]
       exact ih _ (hS d z hz)
   have hQ : S (Pf Fs x) := hSA Fs x hx'
-  refine (GlobalTheory.T.mem_wachN_iff_expansion D HW F Cm l K s LL h T hT y (Pf Fs x) hQ).2 ?_
+  refine (_root_.GlobalTheory.NL.WachModulePoleQuotient.mem_N_iff_expansion D HW F Cm l K s LL h T hT y (Pf Fs x) hQ).2 ?_
   intro i ζ hζ
   obtain ⟨τ, hτ⟩ := (GlobalTheory.NL.Points.points D HW l K s LL h).1 i ζ hζ
   obtain ⟨w, hw0, hw⟩ := hgam i ζ hζ

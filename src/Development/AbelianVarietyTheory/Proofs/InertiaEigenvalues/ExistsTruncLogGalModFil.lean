@@ -66,7 +66,7 @@ theorem exists_truncLog_gal_mod_fil : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l
   intro l _ K bk C c hc m
   obtain ⟨M, q, hq1, hq2⟩ := GlobalTheory.T.exists_approx_root_eisenstein_away_prime l K bk m
   obtain ⟨N, r, hr⟩ := GlobalTheory.T.exists_mul_sub_prime_pow_dvd_E_pow l K bk M m q hq1
-  obtain ⟨d, hd⟩ := GlobalTheory.RingBasics.exists_pow_div_factorial l m
+  obtain ⟨d, hd⟩ := _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow l m
   set w₀ : bk.S := ((l : bk.S) ^ M * X - q) * r with hw₀
   have hE : bk.E ∣ w₀ := by
     have e1 : (l : bk.S) ^ M * X - q = -(q - (l : bk.S) ^ M * X) := by ring
@@ -124,7 +124,7 @@ theorem exists_truncLog_gal_mod_fil : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l
     rw [map_sub, map_mul, map_pow, map_natCast] at this
     exact sub_eq_zero.1 this
   have hσq : fσ q = f q := by
-    have h := GlobalTheory.T.eisensteinApproxRoot_galois_sub_mem_bdRFil l K bk m M q hq1 hq2 g
+    have h := _root_.GlobalTheory.BSP.approxRoot_gal_sub_mem_fil l K bk m M q hq1 hq2 g
     rw [GlobalTheory.RingIface.mem_filtration_iff_mem_kerTheta_pow, hev, map_sub, map_sub] at h
     exact sub_eq_zero.1 h
   have hlamN : (l : R) ^ N * lam ^ N = 1 := by rw [← mul_pow, hlam, one_pow]
@@ -132,7 +132,7 @@ theorem exists_truncLog_gal_mod_fil : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l
     have hu : IsUnit (f q) := isUnit_iff_exists_inv.2 ⟨f r * lam ^ N, by rw [← mul_assoc, hfr, hlamN]⟩
     apply hu.mul_left_cancel
     rw [← hσq, hfσr, hσq, hfr]
-  obtain ⟨e, hxe, he1, hlog⟩ := GlobalTheory.T.galois_factor_tilt_log_bdRPlus l C bk.flat (g : GQ l) (c g) (hc g)
+  obtain ⟨e, hxe, he1, hlog⟩ := _root_.GlobalTheory.InertiaEigenvalues.TiltGalLog.gal_factor_log l C bk.flat (g : GQ l) (c g) (hc g)
   set τ : R := qm (ι (Per.tm e)) with hτ
   have hσX : fσ X = f X * τ := by
     change qm (ι (Per.σA (g : GQ l) (bk.ev X))) = qm (ι (bk.ev X)) * qm (ι (Per.tm e))

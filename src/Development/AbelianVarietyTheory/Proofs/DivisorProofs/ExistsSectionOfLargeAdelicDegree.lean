@@ -68,17 +68,12 @@ theorem val_le_exp_of_ord (v : Place k F) (x : F) (d : ℤ) (hd : 0 ≤ d) (h : 
   · rw [← WithZero.exp_log hx, WithZero.exp_le_exp]
     unfold ord at h; omega
 
-theorem val_algebraMap_le_one (v : Place k F) (c : k) : v.1 (algebraMap k F c) ≤ 1 := by
-  by_cases hc : c = 0
-  · simp [hc]
-  · exact (v.2.2 c hc).le
-
 theorem val_comb_le (v : Place k F) {m : ℕ} (f : Fin m → F) (c : Fin m → k)
     (B : WithZero (Multiplicative ℤ)) (h : ∀ j, v.1 (f j) ≤ B) : v.1 (∑ j, c j • f j) ≤ B := by
   apply v.1.map_sum_le
   intro j _
   rw [Algebra.smul_def, map_mul]
-  calc v.1 (algebraMap k F (c j)) * v.1 (f j) ≤ 1 * B := mul_le_mul' (val_algebraMap_le_one v _) (h j)
+  calc v.1 (algebraMap k F (c j)) * v.1 (f j) ≤ 1 * B := mul_le_mul' (_root_.GlobalTheory.Nef.place_le_one_const v _) (h j)
     _ = B := one_mul B
 
 theorem val_mulVec_le_one (v : Place k F) {n : ℕ} (M : Matrix (Fin n) (Fin n) F)

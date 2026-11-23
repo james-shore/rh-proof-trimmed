@@ -66,12 +66,12 @@ theorem crisSurj : CrisSurj l := fun n => ((RL.base_acr (base l) isBase_base).2 
 def thP : period_ring_base.Plus l →+* ℂ_[l] where
   toFun x := period_ring_base.th l x.1
   map_one' := by
-    have h := th_alg (l := l) 1
+    have h := _root_.period_ring_base.BaseB.th_alg (l := l) 1
     rw [map_one, map_one] at h
     exact h
   map_mul' x y := (period_ring_base.base l).th_mul _ x.2 _ y.2
   map_zero' := by
-    have h := th_alg (l := l) 0
+    have h := _root_.period_ring_base.BaseB.th_alg (l := l) 0
     rw [map_zero, map_zero] at h
     exact h
   map_add' x y := (period_ring_base.base l).th_add _ x.2 _ y.2
@@ -85,8 +85,8 @@ theorem br (ht : TFil l) (hs : CrisSurj l) : Br (per l K) (cb K ht hs) (RingHom.
   exact {
     et := rfl
     t_ne := DeRhamTwist.Twist.tQ_ne
-    θ_i x := ⟨⟨_, ⟨ACris.iota ℂ_[l] l x, rfl⟩⟩, rfl, th_alg _⟩
-    θ_o k := ⟨⟨_, ⟨algClToBdR l k.1, rfl⟩⟩, rfl, (th_alg _).trans (θD_algCl l k.1)⟩
+    θ_i x := ⟨⟨_, ⟨ACris.iota ℂ_[l] l x, rfl⟩⟩, rfl, _root_.period_ring_base.BaseB.th_alg _⟩
+    θ_o k := ⟨⟨_, ⟨algClToBdR l k.1, rfl⟩⟩, rfl, (_root_.period_ring_base.BaseB.th_alg _).trans (θD_algCl l k.1)⟩
     ker x := ((period_ring_base.base l).th_zero x.1 x.2).trans
       ⟨fun ⟨y, hy, e⟩ => ⟨⟨y, hy⟩, e⟩, fun ⟨y, e⟩ => ⟨y.1, y.2, e⟩⟩
     θ_σ g x :=

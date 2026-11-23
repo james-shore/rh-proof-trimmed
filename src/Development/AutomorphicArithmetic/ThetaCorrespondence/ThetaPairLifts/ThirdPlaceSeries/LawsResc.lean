@@ -62,9 +62,9 @@ theorem GlobalTheory.QColLaws.laws_resc_alt : GlobalTheory.Published.DiscreteSer
   intro hDS hHC B X I l Z L hT Gi Gl Kc Yd cX ex W hW u a ha _haT row col hr hc t F w₀ s hs hPin hQ
   letI := a.fld; letI := a.val; letI := a.top; haveI := a.loc
   have hsh := ha.shape
-  have hIs := _root_.GlobalTheory.T.famCh_is_and_tuples_is_of_colOK hDS hHC W u hW.pk (a.fam row col) hr
-  have hweil := _root_.GlobalTheory.T.weilOK_of_rank_one_gram' W u hW.pk (a.fam row col) a.v hr hc (ha.tie row col).1
+  have hIs := _root_.GlobalTheory.Fam.IsFam.main_alt_alt hDS hHC W u hW.pk (a.fam row col) hr
+  have hweil := _root_.GlobalTheory.FamChars.weilOK_of_rank_one_gram W u hW.pk (a.fam row col) a.v hr hc (ha.tie row col).1
     (fun j h => ⟨hsh.pre.line.1, hsh.pre.tau j h⟩) t w₀ hQ
-  exact GlobalTheory.T.seeSawTwistPlaceLaws_of_rootOfUnityRescaling _ (a.fam row col).c a.v ((a.fam row col).t t) (GlobalTheory.QTw.resc w₀ s) hIs.1 (hIs.2 hc t) ha.vis hweil.1
+  exact _root_.GlobalTheory.QTw.laws_of_pin_resc _ (a.fam row col).c a.v ((a.fam row col).t t) (GlobalTheory.QTw.resc w₀ s) hIs.1 (hIs.2 hc t) ha.vis hweil.1
     ⟨w₀, s, hs, ⟨F, hPin⟩, rfl⟩
 end

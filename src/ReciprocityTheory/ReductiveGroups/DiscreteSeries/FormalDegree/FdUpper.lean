@@ -161,7 +161,7 @@ theorem formal_degree_limsup_upper_bound {ε : Fin n → Bool} {lam : Fin n → 
     have hc : Continuous (fun y : PCoord ε → ℂ => (((Real.sqrt ((t + T : ℕ) : ℝ))⁻¹ : ℝ) : ℂ) • y) :=
       continuous_const_smul _
     exact (Real.continuous_exp.comp (continuous_const.mul ((continuous_potential_pmat _).comp hc))).mul
-      ((jac_continuous ε).comp hc)
+      ((_root_.ReciprocityTheory.ChartRestriction.DS.pb_jac_continuous ε).comp hc)
   have hint := ((fdU_integrable_prod_exp (ε := ε)
     (c := (Real.sqrt ((16 * n * q0 ε + 1 : ℕ) : ℝ) / Real.sqrt (2 * (q0 ε : ℝ)) / 8 -
           |(n : ℝ) - 1| * Real.sqrt (2 * (q0 ε : ℝ)) / Real.sqrt ((16 * n * q0 ε + 1 : ℕ) : ℝ)) /

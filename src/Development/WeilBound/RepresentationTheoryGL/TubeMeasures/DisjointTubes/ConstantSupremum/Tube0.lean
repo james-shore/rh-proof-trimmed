@@ -39,4 +39,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-theorem MainStatements.Tam.Plug.tube0 : MainStatements.Tam.VolSt → MainStatements.Tam.StabSt → MainStatements.Tam.IdxSt → MainStatements.Tam.TubeSt := MainStatements.Tam.tube

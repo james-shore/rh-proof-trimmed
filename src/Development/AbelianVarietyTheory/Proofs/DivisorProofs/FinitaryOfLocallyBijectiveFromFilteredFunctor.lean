@@ -58,27 +58,7 @@ namespace GlobalTheory.EtC.FinitaryOfLocBij
 
 variable {R : Type} [CommRing R]
 
-lemma etale_inr {A B C P : CommRingCat.{0}} {g : A ⟶ B} {f : A ⟶ C} {inl : B ⟶ P}
-    {inr : C ⟶ P} (sq : IsPushout g f inl inr) (hg : g.hom.Etale) : inr.hom.Etale := by
-  have : (RingHom.toMorphismProperty @RingHom.Etale).IsStableUnderCobaseChange :=
-    RingHom.isStableUnderCobaseChange_toMorphismProperty_iff.2 RingHom.Etale.isStableUnderBaseChange
-  exact MorphismProperty.of_isPushout (P := RingHom.toMorphismProperty @RingHom.Etale) sq.flip hg
-
-lemma cover_inr {ι : Type} {A C : CommRingCat.{0}} {B P : ι → CommRingCat.{0}}
-    (g : ∀ i, A ⟶ B i) (f : A ⟶ C) (inl : ∀ i, B i ⟶ P i) (inr : ∀ i, C ⟶ P i)
-    (sq : ∀ i, IsPushout (g i) f (inl i) (inr i))
-    (hcov : ∀ p : Spec A, ∃ i v, Spec.map (g i) v = p) :
-    ∀ p : Spec C, ∃ i v, Spec.map (inr i) v = p := by
-  intro p
-  obtain ⟨i, v, hv⟩ := hcov (Spec.map f p)
-  obtain ⟨z, hz⟩ := GlobalTheory.EtaleCoverDescent.exists_point_of_isPushout (sq i).flip p v hv.symm
-  exact ⟨i, z, hz⟩
-
-lemma eta_map {M : CommRingCat.{0} ⥤ ModuleCat.{1} (ULift.{1} R)} {F : Shv R}
-    (η : M ⟶ onRings F) {A B : CommRingCat.{0}} (f : A ⟶ B) (x : M.obj A) :
-    ((onRings F).map f).hom ((η.app A).hom x) = (η.app B).hom ((M.map f).hom x) := by
-  change (η.app A ≫ (onRings F).map f).hom x = (M.map f ≫ η.app B).hom x
-  rw [η.naturality]
+alias cover_inr := _root_.GlobalTheory.EtC.FilteredSections.cover_of_isPushout
 
 lemma map_comp_apply (N : CommRingCat.{0} ⥤ ModuleCat.{1} (ULift.{1} R)) {A B C : CommRingCat.{0}}
     (f : A ⟶ B) (g : B ⟶ C) (x : N.obj A) :
@@ -186,7 +166,7 @@ theorem surj (M : CommRingCat.{0} ⥤ ModuleCat.{1} (ULift.{1} R)) (F : Shv R) (
   have hs : ∀ i, ((onRings F).map ((ιB i).app K)).hom (s i) = ((onRings F).map (g i)).hom x := by
     intro i
     simp only [s]
-    rw [eta_map, ← map_comp_apply, cocone_nat, hn]
+    rw [_root_.GlobalTheory.EtC.FilteredSections.map_eta, ← map_comp_apply, cocone_nat, hn]
     exact hm i
   let Kp : Under K.right → Under j := fun L => Under.mk (K.hom ≫ L.hom)
   let φ : ∀ L : Under K.right, K ⟶ Kp L := fun L => Under.homMk L.hom
@@ -250,7 +230,7 @@ theorem surj (M : CommRingCat.{0} ⥤ ModuleCat.{1} (ULift.{1} R)) (F : Shv R) (
     (hLc (Finset.mem_image_of_mem (fun p : ι × ι => L0 p.1 p.2) (Finset.mem_univ (a, b)))).some
   let e' : ∀ i, D.obj Lc.right ⟶ (D' i).obj (Kp Lc) := fun i => (u i).app (Kp Lc)
   obtain ⟨y, hy⟩ := glue F e'
-    (fun i => etale_inr (hpush i (Kp Lc)).1 (hsq i).1)
+    (fun i => _root_.GlobalTheory.EtC.FilteredSections.etale_of_isPushout (hpush i (Kp Lc)).1 (hsq i).1)
     (cover_inr g' (D.map (Kp Lc).hom) (fun i => (v i).app (Kp Lc)) e'
       (fun i => (hpush i _).1) hcov')
     (s' Lc) (fun a b => hL0 a b Lc (ψ a b))
@@ -268,7 +248,7 @@ namespace GlobalTheory.EtC.FinitaryOfLocBij
 
 theorem finitary_of_locally_bijective : ∀ (R : Type) [CommRing R] (M : CommRingCat.{0} ⥤ ModuleCat.{1} (ULift.{1} R)) (F : Shv R) (η : M ⟶ onRings F), PreservesFilteredColimitsOfSize.{0, 0} M → (∀ (A : CommRingCat.{0}) (x : (onRings F).obj A), ∃ (ι : Type) (_ : Finite ι) (B : ι → CommRingCat.{0}) (g : ∀ i, A ⟶ B i) (m : ∀ i, M.obj (B i)), (∀ i, (g i).hom.Etale) ∧ (∀ p : Spec A, ∃ i v, Spec.map (g i) v = p) ∧ ∀ i, (η.app (B i)).hom (m i) = ((onRings F).map (g i)).hom x) → (∀ (A : CommRingCat.{0}) (m : M.obj A), (η.app A).hom m = 0 → ∃ (ι : Type) (_ : Finite ι) (B : ι → CommRingCat.{0}) (g : ∀ i, A ⟶ B i), (∀ i, (g i).hom.Etale) ∧ (∀ p : Spec A, ∃ i v, Spec.map (g i) v = p) ∧ ∀ i, (M.map (g i)).hom m = 0) → Finitary F := by
   intro R _ M F η hM hloc hker
-  have hinj := GlobalTheory.T.sheafSection_eq_zero_at_stage_of_filtered_colimit R M F η hM hloc hker
+  have hinj := _root_.GlobalTheory.EtC.FilteredSections.eq_zero_at_stage_of_map_colimit_eq_zero R M F η hM hloc hker
   show PreservesFilteredColimitsOfSize.{0, 0} (onRings F)
   refine (GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_modules_iff_elements _ (onRings F)).2.2 ?_
   intro J _ _ D c hc

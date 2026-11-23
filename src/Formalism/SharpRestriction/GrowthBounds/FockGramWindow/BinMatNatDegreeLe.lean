@@ -100,7 +100,7 @@ theorem lead_bound (p : ℕ) [hp : Fact p.Prime] (n J : ℕ) (c : Fin n → Fin 
       -Real.logb p ‖(binMatK ℚ_[p] J c).det.leadingCoeff‖ +
         ((binMatK ℚ_[p] J c).det.natDegree : ℝ) / ((p : ℝ) - 1) ≤ (n : ℝ) * (R + Λ) := by
   have hJ0 : ((J.factorial : ℚ_[p])) ≠ 0 := by exact_mod_cast J.factorial_ne_zero
-  obtain ⟨h1, h2⟩ := Formalism.CountingSumsFrames.Top.detLeadDiag ℚ_[p] n J (binMatK ℚ_[p] J c) (fun a => d a * ((J.factorial : ℚ_[p]))⁻¹)
+  obtain ⟨h1, h2⟩ := _root_.Formalism.CountingSumsFrames.det_leading_diagonal ℚ_[p] n J (binMatK ℚ_[p] J c) (fun a => d a * ((J.factorial : ℚ_[p]))⁻¹)
     (binMat_natDegree_le ℚ_[p] J c) (fun a b => by
       rw [binMat_coeff_top, hc]; split_ifs <;> simp)
   have hne : ∏ a, d a * ((J.factorial : ℚ_[p]))⁻¹ ≠ 0 :=

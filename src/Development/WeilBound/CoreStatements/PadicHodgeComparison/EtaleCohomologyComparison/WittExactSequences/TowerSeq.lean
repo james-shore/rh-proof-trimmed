@@ -71,22 +71,22 @@ theorem St.next (p : ℕ) [Fact p.Prime] {A : Type} [CommRing A] {r : ℕ → A}
     (fun k => by rw [← map_pow, hr k])
   letI : Algebra A B := ((algebraMap s.G B).comp (algebraMap A s.G)).toAlgebra
   haveI : IsScalarTower A s.G B := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  exact ⟨⟨B, hB, Leaf.cov_comp p A s.G B r hA s.pf hr s.cov hc⟩, IsScalarTower.toAlgHom A s.G B, h1, h2, h3⟩
+  exact ⟨⟨B, hB, _root_.GlobalTheory.CompanionTheory.CovComp.cov_comp p A s.G B r hA s.pf hr s.cov hc⟩, IsScalarTower.toAlgHom A s.G B, h1, h2, h3⟩
 
 theorem tower_seq : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ → A), Pf p A → IsRt p r → ∃ (G : ℕ → Type) (_ : ∀ n, CommRing (G n)) (_ : ∀ n, Algebra A (G n)) (f : ∀ n, G n →ₐ[A] G (n + 1)), (∀ n, Pf p (G n) ∧ Cov p r (G n) ∧ AICm (f n : G n →+* G (n + 1)) ∧ VALm (algebraMap A (G n) (r 0)) (f n : G n →+* G (n + 1)) ∧ Splits p (algebraMap A (G n) (r 0)) (f n : G n →+* G (n + 1))) ∧ Function.Bijective (algebraMap A (G 0)) := by
   intro p _ A _ r hA hr
   choose nx f h using St.next p hA hr
-  let s : ℕ → St p r := fun n => Nat.rec ⟨A, hA, (Leaf.cov_mono p A r).1⟩ (fun _ t => nx t) n
+  let s : ℕ → St p r := fun n => Nat.rec ⟨A, hA, (_root_.GlobalTheory.CompanionTheory.CovMono.cov_mono p A r).1⟩ (fun _ t => nx t) n
   exact ⟨fun n => (s n).G, fun n => (s n).ring, fun n => (s n).alg, fun n => f (s n),
     fun n => ⟨(s n).pf, (s n).cov, h (s n)⟩, Function.bijective_id⟩
 
 theorem cov_tower : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ → A), Pf p A → IsRt p r → ∃ (B : Type) (_ : CommRing B) (_ : Algebra A B), Pf p B ∧ Cov p r B ∧ AIC B ∧ VAL (algebraMap A B (r 0)) ∧ Splits p (r 0) (algebraMap A B) := by
   intro p _ A _ r hA hr
   obtain ⟨G, _, _, f, h, h0⟩ := tower_seq p A r hA hr
-  obtain ⟨L, _, _, ι, hι⟩ := Leaf.colim_ex A G f
-  have hp := Leaf.colim_pf p A G f L ι hι
-  have ht := Leaf.colim_test A (r 0) G f L ι hι (fun n => (h n).2.2.1) (fun n => (h n).2.2.2.1)
-  refine ⟨L, inferInstance, inferInstance, hp.1 fun n => (h n).1, Leaf.cov_cmp p A L r fun m n a c hs => ?_, ht.1, ht.2, ?_⟩
+  obtain ⟨L, _, _, ι, hι⟩ := _root_.GlobalTheory.CompanionTheory.ColimEx.exists_isColim A G f
+  have hp := _root_.GlobalTheory.CompanionTheory.colim_pf p A G f L ι hι
+  have ht := _root_.GlobalTheory.CompanionTheory.Colim.aic_val_of_isColim A (r 0) G f L ι hι (fun n => (h n).2.2.1) (fun n => (h n).2.2.2.1)
+  refine ⟨L, inferInstance, inferInstance, hp.1 fun n => (h n).1, _root_.GlobalTheory.CompanionTheory.CovCmp.cov_of_solv p A L r fun m n a c hs => ?_, ht.1, ht.2, ?_⟩
   · obtain ⟨N, hN⟩ := hp.2 m n a c hs
     exact ⟨G N, inferInstance, inferInstance, (h N).2.1, hN⟩
   · intro T _ x hT h1 h2

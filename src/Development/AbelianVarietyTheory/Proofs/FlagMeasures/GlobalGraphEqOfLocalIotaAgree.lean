@@ -62,13 +62,11 @@ theorem mem_localLattice_inf_of_mem_span : ∀ (D : D7) (Z : LocDat D) (p : PlF 
   have e := Formalism.L2.SG.Pf.locSatC_holds D Z p Λ U h.fg
   exact (Set.ext_iff.1 e y).2 ⟨hy, hs⟩
 
-theorem O_eq {D : D7} (Z : LocDat D) (p : PlF D) : (Z.M p).L.O = (D.s.atP p).O := (Z.agree p).2.2.2.1
-
 theorem gS_unit : ∀ (D : D7) (Z : LocDat D) (p : PlF D), (Z.M p).split = none →
     ∃ u ∈ (Z.M p).L.O, u * ((gS D : ℕ) : (D.s.atP p).Ep) = 1 := by
   intro D Z p hs
   refine ⟨(D.s.atP p).ιE (uP p : D.host.E), ?_, ?_⟩
-  · rw [O_eq Z p]; exact Formalism.L2.SG.Pf.LocFacts.unitPart_mem₂ p
+  · rw [_root_.Formalism.L2.SG.Pf.LocFacts.lf_hO Z p]; exact Formalism.L2.SG.Pf.LocFacts.unitPart_mem₂ p
   · rw [mul_comm, ← map_natCast (D.s.atP p).ιE]
     exact Formalism.L2.SG.Pf.StabIntSh.gS_mul_uP Z.δ Z.M Z.agree p hs
 
@@ -82,8 +80,8 @@ theorem gS_split : ∀ (D : D7) (Z : LocDat D) (p : PlF D) (g : Loc.SplitG (Z.M 
   rw [hs, hs'] at hagree
   have hq : g.q = sg.q := hagree.2
   refine ⟨(D.s.atP p).ιE ((Formalism.MainNotions.BridgeLemma.oth p : ℕ) : D.host.E), ?_, (D.s.atP p).ιE (uP p : D.host.E), ?_, ?_, ?_⟩
-  · rw [O_eq Z p, map_natCast]; exact natCast_mem _ _
-  · rw [O_eq Z p]; exact Formalism.L2.SG.Pf.LocFacts.unitPart_mem₂ p
+  · rw [_root_.Formalism.L2.SG.Pf.LocFacts.lf_hO Z p, map_natCast]; exact natCast_mem _ _
+  · rw [_root_.Formalism.L2.SG.Pf.LocFacts.lf_hO Z p]; exact Formalism.L2.SG.Pf.LocFacts.unitPart_mem₂ p
   · rw [hq, sg.q_eq, ← Formalism.MainNotions.BridgeLemma.gpart_mul_oth p, Formalism.MainNotions.BridgeLemma.gpart_some p sg hs']
     simp only [Nat.cast_mul, map_natCast]
     rw [← map_natCast (algebraMap (D.s.atP p).Fp (D.s.atP p).Ep), mul_comm]

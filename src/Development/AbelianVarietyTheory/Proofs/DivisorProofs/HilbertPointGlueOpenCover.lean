@@ -132,7 +132,7 @@ theorem HPt.exists_glue : ∀ {S Z : Scheme.{0}} (z : Z ⟶ S) (r : ℕ) (Y : Sc
       rw [← Scheme.IdealSheafData.comap_comp, ← hb]
     rw [e1, e2, H']
     rfl
-  obtain ⟨I, hI⟩ := GlobalTheory.T.exists_idealSheafData_glue_of_openImmersions GlobalTheory.T.exists_idealSheafData_of_compatible_ideals (ι := 𝒰.I₀) (fun i : 𝒰.I₀ => pullback z (x i).1) e he hcov (fun i : 𝒰.I₀ => (x i).2.1) hK
+  obtain ⟨I, hI⟩ := _root_.GlobalTheory.IdealGlue.idealSheaf_glue_of_openImmersions _root_.GlobalTheory.AffineIdealGlue.exists_idealSheafData_of_compatible (ι := 𝒰.I₀) (fun i : 𝒰.I₀ => pullback z (x i).1) e he hcov (fun i : 𝒰.I₀ => (x i).2.1) hK
   have hfr : IsFinFlatRk (I.subschemeι ≫ pullback.snd z f) r := by
     refine isFinFlatRk_of_cover _ 𝒰 r fun i => ⟨(I.comap (e i)).subscheme, _, _,
       (isPullback_comap I (e i)).flip.paste_vert (hP i), ?_⟩

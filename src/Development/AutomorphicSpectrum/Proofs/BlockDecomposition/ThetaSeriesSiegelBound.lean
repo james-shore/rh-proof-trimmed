@@ -98,16 +98,6 @@ theorem schwartz_col_bound {T : Type} [Fintype T] {M n : ℕ} (f : SchwartzMap (
 
 variable {D : D7}
 
-theorem mt_mul_inv (V : HSp D) (y : GA D V) :
-    (HMul.hMul (Formalism.L2.Theta.mt V y) (Formalism.L2.Theta.mt V y⁻¹) : Matrix (Fin V.rank) (Fin V.rank) (AE D)) = 1 := by
-  have h : (Formalism.L2.Theta.matHom V y) * (Formalism.L2.Theta.matHom V y⁻¹) = 1 := by
-    rw [← map_mul, mul_inv_cancel, map_one]
-  exact congrArg Units.val h
-
-theorem compAt_mul' (θ : InfFam D) (τ : D.what₂.Tau) {k m n : ℕ} (x : Mx D k m) (y : Mx D m n) :
-    compAt θ τ (HMul.hMul x y : Mx D k n) = HMul.hMul (compAt θ τ x) (compAt θ τ y) :=
-  Matrix.map_mul (f := (θ τ).comp (infPart D))
-
 theorem real_compare {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (n : ℕ) (C₁ : Set (GA D V)) (hC₁ : IsCompact C₁) :
     ∃ P : ℝ, 1 ≤ P ∧ ∀ y ∈ C₁, ∀ x : Mx D V.rank n,
       ‖(fun τ i j => compAt θ τ x i j : D.what₂.Tau → Fin V.rank → Fin n → ℂ)‖ ≤
@@ -123,7 +113,7 @@ theorem real_compare {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (n : ℕ) (
     fun τ i j => compAt θ τ (HMul.hMul (Formalism.L2.Theta.mt V y⁻¹) x : Mx D V.rank n) i j with hu
   have hx : ∀ τ, compAt θ τ x = HMul.hMul (compAt θ τ (Formalism.L2.Theta.mt V y))
       (compAt θ τ (HMul.hMul (Formalism.L2.Theta.mt V y⁻¹) x : Mx D V.rank n)) := fun τ => by
-    rw [← compAt_mul', ← Matrix.mul_assoc, mt_mul_inv, Matrix.one_mul]
+    rw [← _root_.GlobalTheory.WeilVacMove.compAt_mul, ← Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.one_mul]
   have hN : 0 ≤ (1 + V.rank * |R|) * ‖u‖ := by positivity
   refine (pi_norm_le_iff_of_nonneg hN).2 fun τ => (pi_norm_le_iff_of_nonneg hN).2 fun i =>
     (pi_norm_le_iff_of_nonneg hN).2 fun j => ?_
@@ -174,7 +164,7 @@ theorem finite_compare (V : HSp D) (n : ℕ)
         ⟨hy, subset_tsupport _ hne⟩, ?_⟩, rfl⟩⟩
   funext i j
   have e : (HMul.hMul (Formalism.L2.Theta.mt V y) (HMul.hMul (Formalism.L2.Theta.mt V y⁻¹) x : Mx D V.rank n) : Mx D V.rank n) = x := by
-    rw [← Matrix.mul_assoc, mt_mul_inv, Matrix.one_mul]
+    rw [← Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.one_mul]
   have e2 := congrFun (congrFun e i) j
   rw [Matrix.mul_apply] at e2
   show ∑ k, finPart D (Formalism.L2.Theta.mt V y i k) * finPart D _ = _

@@ -58,7 +58,7 @@ namespace Formalism.L2.SG.Pf.admitted
 theorem hcMultDS : Formalism.MainNotions.BridgeCPX.HCMultDS :=
   hcMultDS_of_all c0 c1 c2 c3 c4 c5 c6 c7
 
-theorem hcAdmDS : Formalism.MainNotions.BridgeCPX.HCAdmDS := hcAdmDS_of hcMultDS
+theorem hcAdmDS : Formalism.MainNotions.BridgeCPX.HCAdmDS := _root_.Formalism.MainNotions.BridgeCPX.HCAdmDS_of_mult hcMultDS
 
 theorem kFinSmooth : Formalism.MainNotions.LowestKTypeMultiplicity.KFinSmooth := kFinSmooth_of hcMultDS
 

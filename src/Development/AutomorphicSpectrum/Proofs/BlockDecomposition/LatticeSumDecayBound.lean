@@ -125,10 +125,6 @@ theorem one_dim (b : ℝ) (hb : 0 < b) :
       rw [two_mul, ← add_assoc, ENNReal.ofReal_add (by positivity) hb.le,
         ENNReal.ofReal_add (by norm_num) hb.le, ENNReal.ofReal_one]
 
-theorem multi_dim {P : Type} [Fintype P] (g : P → ℤ → ℝ≥0∞) :
-    ∑' x : P → ℤ, ∏ p, g p (x p) ≤ ∏ p, ∑' n, g p n :=
-  _root_.UpperTheory.Reformulated.B.MultiDimensional.multi_dim g
-
 theorem tsum_le_prod_of_injOn {S P : Type} [Fintype P] (m : S → P → ℤ) (b : P → ℝ)
     (hb : ∀ p, 0 < b p) (h : S → ℝ≥0∞) (hinj : Set.InjOn m {ξ | h ξ ≠ 0})
     (hh : ∀ ξ, h ξ ≤ ∏ p, ENNReal.ofReal (((1 + |(m ξ p : ℝ)| / b p) ^ 2)⁻¹)) :
@@ -144,7 +140,7 @@ theorem tsum_le_prod_of_injOn {S P : Type} [Fintype P] (m : S → P → ℤ) (b 
         ENNReal.tsum_le_tsum fun ξ => hh ξ
     _ ≤ ∑' x : P → ℤ, ∏ p, g p (x p) :=
         (by refine' _root_.le_trans _ (_root_.tsum_comp_le_tsum_of_injective hinj' _); exact _root_.le_rfl)
-    _ ≤ ∏ p, ∑' n, g p n := multi_dim g
+    _ ≤ ∏ p, ∑' n, g p n := _root_.UpperTheory.Reformulated.B.MultiDimensional.multi_dim g
     _ ≤ ∏ p, ENNReal.ofReal (1 + 2 * b p) :=
         Finset.prod_le_prod' fun p _ => one_dim (b p) (hb p)
 

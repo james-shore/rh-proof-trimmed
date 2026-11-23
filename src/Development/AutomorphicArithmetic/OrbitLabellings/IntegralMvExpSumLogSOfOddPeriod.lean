@@ -58,6 +58,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.ScalingSwapLemmas
 
 @[expose] public section
 
@@ -291,7 +292,7 @@ private theorem diagJ (K0 K : Type) [NormedField K0] [IsUltrametricDist K0] [Cha
         MvPowerSeries.subst_X hs]
       simp only [hL0, map_logS]
     · rw [map_zero, Pair.subst_zero' hs]
-  · have hm := (Formalism.InvariantFactorPaths.G7.Top.mapSimeq K0 K (Lt × β) j hj).1 _ _ hsim
+  · have hm := (_root_.Formalism.InvariantFactorPaths.G7.mapSimeq_statement K0 K (Lt × β) j hj).1 _ _ hsim
     have e1 : map j (∑ ρ, PowerSeries.subst (x ρ) ph)
         = ∑ ρ, PowerSeries.subst (map j (x ρ)) (PowerSeries.map j ph) := by
 

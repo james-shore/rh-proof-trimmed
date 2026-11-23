@@ -51,6 +51,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ChartNonempty
 
 @[expose] public section
 
@@ -92,11 +93,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdForm.StabTrans
 open Formalism.L2.Theta
-
-theorem finM_mul' {D : Formalism.BasicNotions.D7} (V : Formalism.BasicNotions.TH.HSp D) {n : ℕ} (hn : V.rank = n) (g h : GA D V) :
-    finM V hn (g * h) = finM V hn g * finM V hn h := by
-  subst hn
-  exact GlobalTheory.AdForm.RdLaw.finM_mul V g h
 
 theorem rTrans_mul {G : Type} [Monoid G] (a b : G) (F : G → ℂ) : rTrans (a * b) F = rTrans a (rTrans b F) := by
   funext x
@@ -231,7 +227,7 @@ theorem GlobalTheory.AdForm.trans_stab : ∀ {B : Base} {X : PreX B.toPre} (I : 
     erw [Units.val_mul, Units.val_mul] at hyv
     have hk : kA * g' = P * g' * κ' := by rw [hdec, mul_assoc, ← hcomm g' hg', ← mul_assoc]
     have e2 := congrArg (finM ((I.rec7 l Z).sp.X j) (rankN (I.rec7 l Z) j hj)) hk
-    simp only [StabTrans.finM_mul'] at e2 ⊢
+    simp only [_root_.GlobalTheory.AdForm.Model.finM_mul] at e2 ⊢
     conv_lhs => rw [hhe.2, hyv, ← hhe.2]
     erw [← hkAe]
     simp only [Matrix.mul_assoc] at e2 ⊢

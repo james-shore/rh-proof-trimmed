@@ -572,10 +572,8 @@ end Formalism.HermitianLattices.P.PsiZeroIntegral
 
 namespace Formalism.HermitianLattices.GL2a2
 
-theorem log_deriv_series : Formalism.HermitianLattices.GL2a2.LogDerivSeries := by
-  exact Formalism.HermitianLattices.P.PsiZeroIntegral.logDerivSeries_main
+alias log_deriv_series := _root_.Formalism.HermitianLattices.P.PsiZeroIntegral.logDerivSeries_main
 
-theorem psi_zero_integral_constant : Formalism.HermitianLattices.GL2a2.PsiZeroConst := by
-  exact Formalism.HermitianLattices.P.PsiZeroIntegral.psiZeroConst_main
+alias psi_zero_integral_constant := _root_.Formalism.HermitianLattices.P.PsiZeroIntegral.psiZeroConst_main
 
 end Formalism.HermitianLattices.GL2a2

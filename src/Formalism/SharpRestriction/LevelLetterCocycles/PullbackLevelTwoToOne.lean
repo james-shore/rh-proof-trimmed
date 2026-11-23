@@ -68,7 +68,7 @@ theorem lemGAla_dl_smul (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) {i : ZM
     (ha : a ∈ W.AΔ) {x : W.DD T} (hx : Formalism.MainNotions.CrystallineLiftingInputs.DL W T i x) : Formalism.MainNotions.CrystallineLiftingInputs.DL W T i (a • x) := by
   refine ⟨?_, fun δ hδ => ?_⟩
   · rw [smul_smul, mul_comm, ← smul_smul, hx.1]
-  · rw [Formalism.MainNotions.LiftingTheory.wmap_γD_smul, ha δ hδ, hx.2 δ hδ]
+  · rw [_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear, ha δ hδ, hx.2 δ hδ]
 
 theorem lemGAla_dl_φpow (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) {i : ZMod n} {x : W.DD T}
     (hx : Formalism.MainNotions.CrystallineLiftingInputs.DL W T i x) (k : ℕ) :
@@ -300,7 +300,7 @@ theorem lemGA_la_of [NeZero n] (W : LocWach PD LL O v n) (hT2 : Formalism.MainNo
   refine ⟨la, hla, hDLi, hpull, z, hzN, ⟨hcancel _ _ ?_, fun δ hδ => hcancel _ _ ?_⟩, ?_⟩
   · rw [smul_smul, mul_comm, ← smul_smul, hz_eq, hwDL.1]
   · calc a • W.γD T₂ δ z = W.γA δ a • W.γD T₂ δ z := by rw [haΔ δ hδ]
-      _ = W.γD T₂ δ (a • z) := (Formalism.MainNotions.LiftingTheory.wmap_γD_smul W T₂ δ a z).symm
+      _ = W.γD T₂ δ (a • z) := (_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear W T₂ δ a z).symm
       _ = a • z := by rw [hz_eq, hwDL.2 δ hδ]
   · rw [← hw_def, ← hz_eq]
 

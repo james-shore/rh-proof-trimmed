@@ -204,7 +204,7 @@ private theorem is_eig_sys_sig_ev_of_eig_occ {cf : CharFrame D} {Rw low Pq S hL 
   obtain ⟨h1, h2⟩ := D.ntw.jS_range i s
   obtain ⟨hiso, hgood, -⟩ := Bs.rhoS i s
   obtain ⟨x, hxg, hx0, hxe⟩ := hOcc _ h1 h2 _ hiso hgood
-  obtain ⟨Φ, hΦ0, hΦs, hΦT⟩ := GlobalTheory.T.exists_descent_map_nonzero_of_small_field_form D S _ (hKs _ h1 h2) i (D.ntw.side i s) x hx0
+  obtain ⟨Φ, hΦ0, hΦs, hΦT⟩ := _root_.GlobalTheory.exists_desc_of_isKsForm D S _ (hKs _ h1 h2) i (D.ntw.side i s) x hx0
   set e := Bs.eF i (D.ntw.jS i s) (D.ntw.side i s) h1 h2 with he
   have hact : ∀ g : G0g D.nd, e (D.nexp.actG i _ _ g (e.symm (Φ x))) = Φ (actL D S (D.ntw.jS i s) g x) := fun g => by
     rw [Bs.act i _ _ h1 h2 g, e.apply_symm_apply]

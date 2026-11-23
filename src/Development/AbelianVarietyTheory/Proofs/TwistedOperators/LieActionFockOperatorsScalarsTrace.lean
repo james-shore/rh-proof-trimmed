@@ -81,7 +81,7 @@ theorem signBlockDeterminant_one {n : ℕ} (ε : Fin n → Bool) (e : Bool) : si
 
 theorem hasDerivAt_signBlockDeterminant_exp_smul {n : ℕ} (ε : Fin n → Bool) (e : Bool) (Y : Matrix (Fin n) (Fin n) ℂ) :
     HasDerivAt (fun t : ℝ => signBlockDeterminant ε e (NormedSpace.exp (t • Y))) (∑ j, if ε j = e then Y j j else 0) 0 := by
-  have h := GlobalTheory.HolDS.DerPt.hasDerivAt_det_of_one
+  have h := _root_.GlobalTheory.DetDerivativeAtOne.hasDerivAt_det_of_one
     (fun t : ℝ => (NormedSpace.exp (t • Y)).submatrix (Subtype.val : {a // ε a = e} → Fin n) Subtype.val)
     (Y.submatrix Subtype.val Subtype.val)
     (by simp only [zero_smul, NormedSpace.exp_zero]; exact Matrix.submatrix_one _ Subtype.val_injective)
@@ -116,8 +116,6 @@ variable {D : D7}
 
 variable {a b : ℕ} (τ : D.what₂.Tau) (ε : Fin a → Bool) (ε' : Fin b → Bool)
 
-theorem sgn_sq (e : Bool) : sgn e * sgn e = 1 := by cases e <;> simp [sgn]
-
 theorem cc_rai_low (i i' : Fin b) (j j' : Fin a) :
     MvPolynomial.constantCoeff ((raiO τ ε ε' i j * lowO τ ε ε' i' j') (1 : PolF D b a)) =
       if i = i' ∧ j = j' ∧ ε' i ≠ ε j then -1 else 0 := by
@@ -137,7 +135,7 @@ theorem cc_rai_low (i i' : Fin b) (j j' : Fin a) :
       simp [raiO, h2, MvPolynomial.smul_eq_C_mul]
     · by_cases h3 : i = i' ∧ j = j'
       · obtain ⟨rfl, rfl⟩ := h3
-        simp [raiO, h2, MvPolynomial.smul_eq_C_mul, MvPolynomial.pderiv_X_self, sgn_sq]
+        simp [raiO, h2, MvPolynomial.smul_eq_C_mul, MvPolynomial.pderiv_X_self, _root_.GlobalTheory.LieFock.sgn_mul_self]
       · have : (τ, i, j) ≠ (τ, i', j') := fun h => h3 (by simpa using h)
         simp [raiO, h2, MvPolynomial.smul_eq_C_mul, MvPolynomial.pderiv_X_of_ne this.symm]
         tauto
@@ -739,8 +737,7 @@ theorem elt_one (hθ : IsInfFam θ) {U : HSp D} (C : Fr U) (τ : D.what₂.Tau) 
   rw [Fr.elt, Matrix.mul_one, Matrix.nonsing_inv_mul _ ((Matrix.isUnit_iff_isUnit_det _).1 (C.fr_unit τ)),
     GlobalTheory.PointAtPlaceHom.atTau_one hθ]
 
-theorem one_mem_K {n : ℕ} (ε : Fin n → Bool) : (1 : Matrix (Fin n) (Fin n) ℂ) ∈ Formalism.REAL.Kset ε :=
-  ⟨one_mem _, by rw [Matrix.one_mul, Matrix.mul_one]⟩
+alias one_mem_K := _root_.GlobalTheory.Dec.FormF.one_K
 
 theorem lieFockAll : ∀ D : D7, GlobalTheory.ChainFr.LieFockAll D := by
   intro D V W A B θ ψ χS χT ω f τ aS aT hθ hω hS hT hf

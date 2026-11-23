@@ -646,7 +646,7 @@ namespace Formalism.L2.SG.Pf
 
 theorem multiplicity_G_exists : Formalism.L2.SG.MExistsCut.MGExists := by
   intro I μf _ _ r
-  exact ⟨Formalism.L2.SG.Closed.AdBridgeIso_holds I, Meas.mG I _ μf r, Meas.mG_norm I _ μf r, rfl, rfl, rfl⟩
+  exact ⟨_root_.Formalism.L2.SG.Pf.adelic_isomorphism_exists I, Meas.mG I _ μf r, Meas.mG_norm I _ μf r, rfl, rfl, rfl⟩
 
 end Formalism.L2.SG.Pf
 

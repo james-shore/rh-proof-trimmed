@@ -101,13 +101,13 @@ theorem genRep : GlobalTheory.FunPr.Hypotheses₂ → DerEx → VacLine →
   have h1m : At (evI F) (((1 : UG (cA σ) JB).1 : Matrix β β (AE F E)) - 1) := fun u _ => by simp
   have hact1 : ∀ x : Matrix α β (AE F E), actB (cA σ) (1 : UG (cA σ) JB) x = x := fun x => by simp [actB]
   refine ⟨ω₀, c₀, fun g hg => ⟨hgen g, fun w φ hφ => ?_, fun μ hμ φ hφ =>
-    GlobalTheory.T.weil_operator_unitary_adelic_L2 F κ (ρ g).toLinearMap (ω₀ g) (hω g) (hR g hg).2 μ hμ φ hφ⟩, fun l hl φ hφ => ?_, ?_⟩
+    _root_.GlobalTheory.ArchimedeanL2.lintegral_arch_eq F κ (ρ g).toLinearMap (ω₀ g) (hω g) (hR g hg).2 μ hμ φ hφ⟩, fun l hl φ hφ => ?_, ?_⟩
   · unfold schA at hφ
     induction hφ using Submodule.span_induction with
     | mem x hx =>
       obtain ⟨f, h, hh, rfl⟩ := hx
-      obtain ⟨u, H, hu, hsplit⟩ := GlobalTheory.T.heisenbergRho_split_archimedean_finite F E σ α β κ ψ JA JB d w
-      obtain ⟨f₁, hf₁⟩ := GlobalTheory.T.heisenbergRho_archimedean_adelicPureTensor F E σ α β κ ψ JA JB d hψ u hu f
+      obtain ⟨u, H, hu, hsplit⟩ := _root_.GlobalTheory.HeisSplit.rho_split F E σ α β κ ψ JA JB d w
+      obtain ⟨f₁, hf₁⟩ := _root_.GlobalTheory.ArchHeisPure.rho_pureA F E σ α β κ ψ JA JB d hψ u hu f
       have e1 : d.rho ψ w (pureA F f h) = pureA F f₁ (H h) := by
         have := hsplit 1 h1m f f₁ h (by simpa only [hact1] using hf₁)
         simpa only [hact1] using this

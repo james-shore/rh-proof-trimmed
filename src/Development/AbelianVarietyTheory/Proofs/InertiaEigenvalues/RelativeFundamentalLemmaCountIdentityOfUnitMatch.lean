@@ -326,7 +326,7 @@ theorem orbU_eq {φ : K.E ≃+* E} (hs : ∀ y, φ (K.c y) = star (φ y))
   classical
   letI := M.mU
   haveI := M.bU
-  haveI := (GlobalTheory.T.unitaryGroup_positiveCharacter_trivial_and_unimodular F E _).2 M
+  haveI := (_root_.GlobalTheory.JR.UnitChar.posChar_trivial_and_unimodular F E _).2 M
   haveI : IsUltrametricDist E := Unram.ultraE F
   have hm : ∀ (γ : Matrix.unitaryGroup (Fin (finrank K.E B.A)) E) i j, φ ((toGLU φ γ).val i j) = γ.1 i j :=
     fun γ i j => φ.apply_symm_apply _

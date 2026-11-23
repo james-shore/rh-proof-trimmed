@@ -69,16 +69,16 @@ theorem aug_comm {Y Y' X : Scheme.{0}} (f : Y ⟶ X) (g : Y' ⟶ X) (u : yoneda.
 
 theorem cont (R : Type) [CommRing R] (F : Shv R) (hF : Finitary F) (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω]
     [Algebra.IsAlgebraic K Ω] : ContCone R F (cechCone K Ω) := by
-  obtain ⟨hc⟩ := GlobalTheory.T.isColimit_finiteSubextensionRingCocone K Ω
-  obtain ⟨hl⟩ := GlobalTheory.T.isLimit_finiteSubextensionSpecArrowCone K Ω hc
-  refine GlobalTheory.T.isCohomologyContinuousOnCone_of_levelwise R F _ _ _ (fun k => ?_)
-  obtain ⟨hk⟩ := GlobalTheory.T.cechNerve_level_preserves_cofiltered_limit _ _ _ hl (fun _ _ _ => show IsIso (𝟙 _) from inferInstance)
+  obtain ⟨hc⟩ := _root_.GlobalTheory.SepCech.ringCocone_isColimit K Ω
+  obtain ⟨hl⟩ := _root_.GlobalTheory.SepCech.isLimit_leftFunc_arrCone K Ω hc
+  refine _root_.GlobalTheory.EtC.contCone_of_levelwise R F _ _ _ (fun k => ?_)
+  obtain ⟨hk⟩ := _root_.GlobalTheory.cech_level_limit _ _ _ hl (fun _ _ _ => show IsIso (𝟙 _) from inferInstance)
     (fun _ => show IsIso (𝟙 _) from inferInstance) k
-  refine GlobalTheory.T.continuity_cofiltered_limit_represented_affine R F hF _ _ _ hk (fun L => ?_) ?_
-  · obtain ⟨Z, π, e, hπ, -⟩ := GlobalTheory.T.exists_representable_cech_level_of_stable @IsAffineHom _ _ (Spec.map (CommRingCat.ofHom (algebraMap K L.unop.1))) inferInstance k
+  refine _root_.GlobalTheory.contCone_of_represented R F hF _ _ _ hk (fun L => ?_) ?_
+  · obtain ⟨Z, π, e, hπ, -⟩ := _root_.GlobalTheory.EtC.cech_level_representable @IsAffineHom _ _ (Spec.map (CommRingCat.ofHom (algebraMap K L.unop.1))) inferInstance k
     haveI := hπ
     exact ⟨Z, isAffine_of_isAffineHom π, ⟨e⟩⟩
-  · obtain ⟨Z, π, e, -, -⟩ := GlobalTheory.T.exists_representable_cech_level_of_stable @IsAffineHom _ _ (Spec.map (CommRingCat.ofHom (algebraMap K Ω))) inferInstance k
+  · obtain ⟨Z, π, e, -, -⟩ := _root_.GlobalTheory.EtC.cech_level_representable @IsAffineHom _ _ (Spec.map (CommRingCat.ofHom (algebraMap K Ω))) inferInstance k
     exact ⟨Z, ⟨e⟩⟩
 
 theorem cechAug_sepClosure_eqv : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω]

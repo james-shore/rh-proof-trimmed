@@ -62,7 +62,7 @@ theorem im_pair (a b : ℂ) (m n p q : ℤ) :
 
 theorem area_eq_holds : AreaEq := by
   intro L
-  have hpos : 0 < F.area L := F.areaPos L
+  have hpos : 0 < F.area L := _root_.Formalism.L2.Th1.F.areaPos_thm L
   unfold TaylorLogMetric.area
   apply IsLeast.csInf_eq
   refine ⟨⟨hpos, L.ω₁, L.ω₁_mem_lattice, L.ω₂, L.ω₂_mem_lattice, rfl⟩, ?_⟩

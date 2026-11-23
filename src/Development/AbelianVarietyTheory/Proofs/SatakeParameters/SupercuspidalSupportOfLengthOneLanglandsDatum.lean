@@ -45,6 +45,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.Exists
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
 import Formalism.ConjugateSelfDual.Statement
 import ReciprocityTheory.GaloisValuations.GlobalA
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SegmentRepJacquetWordMultiplicity
 
 @[expose] public section
 
@@ -73,15 +74,6 @@ theorem eq_of_isCosocle_prodIrr_one (ρ x : IrrGL (k := k)) (y : Fin 1 → IrrGL
   have e1 := (IrrGL.of_eq_of (hs := c.rep.smooth) (hi := c.rep.irr) (hs' := r.rep.smooth) (hi' := r.rep.irr)).2 ⟨φ⟩
   exact (IrrGL.of_rep (⟨m, c⟩ : IrrGL (k := k))).symm.trans (e1.trans (IrrGL.of_rep (⟨m, r⟩ : IrrGL (k := k))))
 
-theorem eq_first_of_isLSeg {Δ : Segment k} (hl : Δ.len = 1) {x : IrrGL (k := k)} (h : IsLSeg Δ x.rep) : x = Δ.first := by
-  have e : Δ = Segment.single Δ.first Δ.isCusp_first := Segment.ext_first rfl hl
-  rw [e] at h
-  obtain ⟨hd, hc⟩ := h
-  refine eq_of_isCosocle_prodIrr_one Δ.first x _ (fun a => ?_) hd hc
-  rw [Fin.fin_one_eq_zero a]
-  simp [Segment.term, Segment.single, Segment.ofFirst]
-  rfl
-
 theorem hasSupport_first_of_isL_len_one : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (c : ℕ) (Δ : Fin c → Segment k) (x : IrrGL (k := k)), (∀ i, (Δ i).len = 1) →
     IsL ((List.ofFn Δ : List (Segment k)) : Multiset (Segment k)) x.rep →
@@ -93,7 +85,7 @@ theorem hasSupport_first_of_isL_len_one : ∀ (k : Type) [Field k] [ValuativeRel
       hmap ▸ Multiset.mem_map_of_mem _ (Finset.mem_univ_val i)
     obtain ⟨j, hj⟩ := List.mem_ofFn.1 (Multiset.mem_coe.1 hm)
     rw [← hj]; exact hl j
-  have hyf : y = fun i => (Δ' i).first := funext fun i => eq_first_of_isLSeg (hl' i) (hy i)
+  have hyf : y = fun i => (Δ' i).first := funext fun i => _root_.GlobalTheory.CompanionTheory.FineL.eq_first_of_len_one (hl' i) (hy i)
   subst hyf
   have hs := hasSupport_of_isSubquotient hcos.1 (fun i => (Δ' i).isCusp_first) hcos.isSubquotient
   have e : (Finset.univ.val.map fun i => (Δ' i).first) = Finset.univ.val.map fun i => (Δ i).first := by

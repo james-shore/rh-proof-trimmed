@@ -56,10 +56,8 @@ variable {R L}
 variable {nb : nA σ d.Y d.b → d.G} {uM : (Fin L.n → AE F E) → d.G} {nb' : nA σ L.Y L.b → G2 σ L.Y} {w₁ : d.G}
   {cM : (Fin L.n → AE F E) × AF F → d.G} {δ : E}
 
-abbrev Crat (L : LD d) : Type := {c : (Fin L.n → AE F E) × AF F // c.1 ∈ L.ratV ∧ c.2 ∈ (algebraMap F (AF F)).range}
-
 theorem non_lagrangian_cosets_bijection (h : Hyp L nb uM nb' w₁ cM δ) :
-    ∃ e : (Σ _ : Cs L.sd, Crat L) ≃ {q : Cs d // ¬ LagrangianCondition L (rep q)}, ∀ x, ∃ p ∈ par2 σ d.Y, p ∈ rat2 σ d.Y ∧
+    ∃ e : (Σ _ : Cs L.sd, _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L) ≃ {q : Cs d // ¬ LagrangianCondition L (rep q)}, ∀ x, ∃ p ∈ par2 σ d.Y, p ∈ rat2 σ d.Y ∧
       rep (e x).1 = p * (w₁ * (cM x.2.1 * L.j (rep x.1))) := by
   exact C6.non_lagrangian_cosets_bijection_rank ⟨h.nb, h.uM, h.nb', h.wr, h.wf, h.cf, h.δ0⟩
 

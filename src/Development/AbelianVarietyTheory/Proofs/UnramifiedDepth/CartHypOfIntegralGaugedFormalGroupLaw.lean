@@ -63,7 +63,7 @@ theorem cartHyp_of_rlaw : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZero 
   have hh := hL.axes 0
   refine
     { zero := X.zero_mem hlg0 hh V g
-      add := X.add_mem V g (GlobalTheory.T.addCurveStable_of_integralGaugedFormalGroupLaw C V d I κ X hL) hL.uint
+      add := X.add_mem V g (_root_.GlobalTheory.RowLaw.addCvSt_of_rlaw C V d I κ X hL) hL.uint
       neg := X.neg_mem V g hL.odd
       teich := X.teich_mem V g
       Vm := X.V_mem V g

@@ -39,4 +39,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-theorem PositivityTheory.Rg.Bc.ArchbcB.B.archimedean_base_change_fourth : PositivityTheory.Rg.Bc.ArchbcB.B.M4 := PositivityTheory.Rg.Bc.ArchbcB.B.M4.m4
+alias PositivityTheory.Rg.Bc.ArchbcB.B.archimedean_base_change_fourth := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.m4

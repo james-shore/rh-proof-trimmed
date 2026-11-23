@@ -65,11 +65,6 @@ open Matrix
 
 variable {R : Type} [CommRing R] {n : ℕ}
 
-private theorem blk4_mul_blk4 (A B C E A' B' C' E' : Matrix (Fin n) (Fin n) R) :
-    blk4 A B C E * blk4 A' B' C' E' =
-      blk4 (A * A' + B * C') (A * B' + B * E') (C * A' + E * C') (C * B' + E * E') := by
-  simp only [blk4, Matrix.submatrix_mul_equiv, Matrix.fromBlocks_multiply]
-
 private theorem cj_one' (s : R →+* R) : cj s (1 : Matrix (Fin n) (Fin n) R) = 1 := by
   unfold cj
   rw [Matrix.map_one _ (map_zero s) (map_one s), Matrix.transpose_one]
@@ -93,13 +88,13 @@ theorem fact_alg (s : R →+* R) (a β c u ui : Matrix (Fin n) (Fin n) R) (hu1 :
   · rw [cj_mul, hc, mul_assoc, hcu', mul_one]
   · have e1 : β * ui * u = β := by rw [mul_assoc, hu2, mul_one]
     have e2 : u * (ui * c) = c := by rw [← mul_assoc, hu1, one_mul]
-    rw [blk4_mul_blk4, blk4_mul_blk4]
+    rw [_root_.PositivityTheory.Rg.Rsw.L.LGenK.submatrix_fromBlocks_mul, _root_.PositivityTheory.Rg.Rsw.L.LGenK.submatrix_fromBlocks_mul]
     simp only [mul_zero, zero_mul, add_zero, zero_add, one_mul, mul_one]
     rw [e1, e2, mul_assoc β ui c, sub_add_cancel]
 
 theorem block_matrix_mul_upper_unipotent (a b c d X : Matrix (Fin n) (Fin n) R) :
     blk4 a b c d * blk4 1 X 0 1 = blk4 a (a * X + b) c (d + c * X) := by
-  rw [blk4_mul_blk4]
+  rw [_root_.PositivityTheory.Rg.Rsw.L.LGenK.submatrix_fromBlocks_mul]
   simp only [mul_one, mul_zero, add_zero, zero_add]
   rw [add_comm (a * X) b, add_comm (c * X) d]
 

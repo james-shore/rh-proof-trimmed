@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem stdCharTR : PI.StdCharTR.Target :=
-  PI.StdCharTRWork.stdCharTR_main

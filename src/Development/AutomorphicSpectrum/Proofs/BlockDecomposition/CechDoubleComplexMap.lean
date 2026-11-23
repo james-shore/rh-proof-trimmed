@@ -45,6 +45,7 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.CoeEqAlgebraM
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsDPMorphismBot
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.GlobalDifferentialForms.FormCos
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.HodgeC
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IndexZeroForallOfExtend
 
 @[expose] public section
 
@@ -97,10 +98,6 @@ def dblHom (m : CH.Mor F F' (RingHom.id R)) (τ : ι' → ι) (hτ : ∀ α T, U
     exact congrArg _ (nerveM_face m τ hτ p q k x)
   cv p q x := (nerveM m τ hτ p).d_pullC q x
 
-theorem cls_eq_of_eq {K : Cx.{1} R} {n : ℕ} {a b : K.X n} (h : a = b) (ha : K.d n a = 0) (hb : K.d n b = 0) :
-    K.cls a ha = K.cls b hb := by
-  subst h; rfl
-
 theorem dblHom_sgl {K L : DCx.{1} R} (φ : DCx.Hom K L (RingHom.id R)) (a b : ℕ) (y : K.X a b) (p q : ℕ) :
     φ.f p q (K.sgl a b y p q) = L.sgl a b (φ.f a b y) p q := by
   by_cases h : p = a ∧ q = b
@@ -124,9 +121,9 @@ theorem dbl_mor : ∀ {R : Type} [CommRing R] {C C' : Type 1} [Category.{0} C] [
   intro R _ C C' _ _ F F' ι ι' U U' hU hU' m τ hτ
   refine ⟨dblHom m τ hτ, fun n x => ?_, fun p q x i => ?_⟩
   · obtain ⟨a, ha, rfl⟩ := (P.cls_surj (CH.cx F) n).1 x
-    refine cls_eq_of_eq (Subtype.ext (funext fun p => funext fun q => ?_)) _ _
+    refine _root_.GlobalTheory.CompanionTheory.LocGrInd.cls_congr (Subtype.ext (funext fun p => funext fun q => ?_)) _ _
     exact dblHom_sgl (dblHom m τ hτ) 0 n _ p q
   · obtain ⟨a, ha, rfl⟩ := (P.cls_surj ((dbl U hU F).col p) q).1 x
-    exact cls_eq_of_eq rfl _ _
+    exact _root_.GlobalTheory.CompanionTheory.LocGrInd.cls_congr rfl _ _
 
 end GlobalTheory.CompanionTheory.CechSerre

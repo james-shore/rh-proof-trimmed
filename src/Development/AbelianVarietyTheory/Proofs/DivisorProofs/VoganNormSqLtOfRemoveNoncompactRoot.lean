@@ -40,6 +40,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.DiscreteSeriesCharacters.CapelliDeterminantBlockProduct
 public import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.EigenspaceCyclicDensity.LowKMultOneP
+import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.IndOfNot
 
 @[expose] public section
 
@@ -64,7 +65,7 @@ theorem vNormSq_lt_of_root :
   let i : CompanionTheory.D.DSIC.NC ε := ⟨(a, b), ha, hb⟩
   have hne : ({i} : Finset (CompanionTheory.D.DSIC.NC ε)) ≠ CompanionTheory.D.DSIC.A1 ε := by
     rw [hA1]; exact Finset.singleton_ne_empty i
-  have h := CompanionTheory.D.DSIC.hNormLt n ε lam hanti {i} hne
+  have h := _root_.GlobalTheory.CompanionTheory.DSNormLt.normLt n ε lam hanti {i} hne
   have hgam : CompanionTheory.D.DSIC.gam ε lam = lowK ε lam := by
     funext c
     simp [CompanionTheory.D.DSIC.gam, hA1, CompanionTheory.D.DSIC.wtA]

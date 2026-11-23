@@ -173,20 +173,6 @@ theorem log_expPhi_act (G : FGLaw S d) (uvec : Lt1 Dw → Fin d → S) (ε : Pt 
     | exact MvPowerSeries.hasSubst_of_constantCoeff_nilpotent (fun s => by rw [ha s]; exact IsNilpotent.zero)
   rw [← MvPowerSeries.subst_comp_subst_apply hE ha', log_expPhi G uvec ε hinv i]
 
-theorem germCompOne_identityPoint_left (φ : Pt S 1 d) : comp1 φ (pt S (n := 1) d 0) = φ := by
-  funext i
-  change MvPowerSeries.subst (fun p : Fin 1 × Fin d => (![pt S (n := 1) d 0] p.1 p.2 : MvPowerSeries (Fin 1 × Fin d) S)) (φ i) = φ i
-  have hX : (fun p : Fin 1 × Fin d => (![pt S (n := 1) d 0] p.1 p.2 : MvPowerSeries (Fin 1 × Fin d) S)) = MvPowerSeries.X := by
-    funext p
-    rcases p with ⟨a, c⟩
-    rw [Subsingleton.elim a 0]
-    rfl
-  rw [hX]
-  first
-  | exact congrFun MvPowerSeries.subst_self _
-  | (rw [MvPowerSeries.subst_self]; rfl)
-  | (rw [← MvPowerSeries.map_algebraMap_eq_subst_X]; simp)
-
 theorem subst_lg (G : FGLaw S d) {τ : Type} (Bφ : Fin 2 × Fin d → MvPowerSeries τ S)
     (hB : ∀ p, MvPowerSeries.constantCoeff (Bφ p) = 0) (j : Fin 2) (i : Fin d) :
     MvPowerSeries.subst Bφ (lg G j i) = MvPowerSeries.subst (fun p : Fin 1 × Fin d => Bφ (j, p.2)) (logOf G i) := by
@@ -241,7 +227,7 @@ theorem compL_diagL {O : Type} [CommRing O] [StarRing O] (B : FB S d O) (w0 : O)
     rcases p with ⟨j, c⟩
     fin_cases j
     · simp [ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ.pt]
-    · simp [germCompOne_identityPoint_left, B.A.const]
+    · simp [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.composition_identity_point_right, B.A.const]
   have hV : MvPowerSeries.HasSubst (fun p : Fin 2 × Fin d => (![pt S d 0, comp1 (B.A.act w0) (pt S d 0)] : Fin 2 → Pt S 1 d) p.1 p.2) := by
     first
     | exact MvPowerSeries.HasSubst.of_constantCoeff_zero hV0
@@ -256,7 +242,7 @@ theorem compL_diagL {O : Type} [CommRing O] [StarRing O] (B : FB S d O) (w0 : O)
   simp only [MvPowerSeries.coe_substAlgHom]
   refine Finset.sum_congr rfl (fun i _ => Finset.sum_congr rfl (fun l _ => ?_))
   rw [subst_lg B.G (fun p : Fin 2 × Fin d => (![pt S d 0, comp1 (B.A.act w0) (pt S d 0)] : Fin 2 → Pt S 1 d) p.1 p.2) hV0 0 i, subst_lg B.G (fun p : Fin 2 × Fin d => (![pt S d 0, comp1 (B.A.act w0) (pt S d 0)] : Fin 2 → Pt S 1 d) p.1 p.2) hV0 1 l]
-  simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, germCompOne_identityPoint_left]
+  simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, _root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.composition_identity_point_right]
   have hP0 : ∀ p : Fin 1 × Fin d, MvPowerSeries.constantCoeff (pt S (n := 1) d 0 p.2) = 0 := by
     intro p
     simp [ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ.pt]

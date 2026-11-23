@@ -75,8 +75,8 @@ theorem core : LL → ∀ (R : Type) [CommRing R] [IsDomain R] [CharZero R] (I :
     fun α p Z r z J hJ =>
       (sval_sum' (π := D₁.toPre.P.A.hom) hJ _ _ _).trans (Finset.sum_congr rfl fun ν _ =>
         (sval_smul' (π := D₁.toPre.P.A.hom) hJ _ _ _).trans (congrArg _ (hn ν α p Z r z J hJ)))
-  obtain ⟨τ, hτ, hv⟩ := GlobalTheory.T.exists_mixed_bundle_frame_from_part_frames R D₁.toPre D₂.toPre F b α j j' g _ hg.1 w w' hw hw'
-  refine GlobalTheory.T.adicSum_sections_pullbacks_value_abelianPart R I hR D₁ F _ (JN D₁.toPre D₂.toPre) (jn_isLB D₁.toPre D₂.toPre) _ (mixφ D₁.toPre D₂.toPre b α)
+  obtain ⟨τ, hτ, hv⟩ := _root_.GlobalTheory.Mum.Two.Mix.exists_frame_hom R D₁.toPre D₂.toPre F b α j j' g _ hg.1 w w' hw hw'
+  refine _root_.GlobalTheory.SecAdicSumAny.sumF_of_sum_on_thickenings_any R I hR D₁ F _ (JN D₁.toPre D₂.toPre) (jn_isLB D₁.toPre D₂.toPre) _ (mixφ D₁.toPre D₂.toPre b α)
     (MixedConv.mixε j j') _ (m α) (0 : SecOver D₁.toPre.P.A.hom _) (fun e => ?_) g.b τ hτ _ 0 fun z J hJ => ⟨fun p => ?_, ?_⟩
   · obtain ⟨S, hS⟩ := GlobalTheory.T.integral_relation_kills_mixed_section_sums_level R I D₁ D₂ A₁ A₂ G₁ G₂ U₁ U₂ a b h hLin.2.2.1 u (fun χ => (hu χ).2) j j' e N ρ σ σ' f f' (fun ν => hE ν e)
       (fun ν => hE' ν e) hrel m hm α
@@ -92,7 +92,7 @@ theorem core : LL → ∀ (R : Type) [CommRing R] [IsDomain R] [CharZero R] (I :
       rw [Over.w g.b]
       refine (constVal_specMap (jFK (R := R) F) _ z _).trans ?_
       exact (congrArg (fun q => constVal q z _) (Category.id_comp _).symm).trans (constVal_specMap (𝟙 _) _ z _)
-    have e₁ := GlobalTheory.T.mixed_section_value_product_expansion_terms R D₁.toPre D₂.toPre F b h g g' hg j j' w w' χ δ (u χ) (hu χ).1 (f ν χ) (f' ν δ) _ _ (hx ν χ) (hx' ν δ) z J hJ
+    have e₁ := _root_.GlobalTheory.Mum.Two.Mix.val_mixed_eval R D₁.toPre D₂.toPre F b h g g' hg j j' w w' χ δ (u χ) (hu χ).1 (f ν χ) (f' ν δ) _ _ (hx ν χ) (hx' ν δ) z J hJ
     have e₂ := hv z J hJ
     dsimp only at hp
     subst hp

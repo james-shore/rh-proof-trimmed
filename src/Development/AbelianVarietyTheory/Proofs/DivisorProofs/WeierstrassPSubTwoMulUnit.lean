@@ -93,7 +93,7 @@ theorem weierstrassP_sub_two_mul_unit : ∀ (L : PeriodPair) (β u : ℂ) (V : V
   refine ⟨h2z, ?_⟩
   have e1 : 2 * z - z = z := by ring
   have e2 : 2 * z + z = 3 * z := by ring
-  have hd := GlobalTheory.T.weierstrassP_sub_sq_mul_add_sub_eq_neg_deriv_mul L (2 * z) z h2z hz (by rw [e1]; exact hz) (by rw [e2]; exact h3z)
+  have hd := _root_.GlobalTheory.weierstrassP_add_sub_weierstrassP_sub L (2 * z) z h2z hz (by rw [e1]; exact hz) (by rw [e2]; exact h3z)
   rw [e1, e2] at hd
   have d1 := GlobalTheory.T.valuation_derivWeierstrassP_oddTorsion L β u V N hβ hβim hu hN hodd z hz hNz
   have d2 := GlobalTheory.T.valuation_derivWeierstrassP_oddTorsion L β u V N hβ hβim hu hN hodd (2 * z) h2z hN2z

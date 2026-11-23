@@ -85,7 +85,7 @@ theorem rho_mono (M : Model l K) (m : ℕ) {s s' : ℕ} (h : s ≤ s') (hG : (ch
     (homS (hS.lev m) M h (qb_le (hS.lev m) M s) (qb_le (hS.lev m) M s')
       (rHof (dOf S hS hC m) (hcOf S hS hC m) M s) (rHof (dOf S hS hC m) (hcOf S hS hC m) M s'))
     hG' hG (homS_good_of_inclHM _ _ _ _ _ _ _ (rHof_incl_pf S hS hC M m h)) x f hf
-  have e : (homS (hS.lev m) M h (qb_le (hS.lev m) M s) (qb_le (hS.lev m) M s')
+  have e : (homS (hS.lev m) M h (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf (hS.lev m) M s) (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf (hS.lev m) M s')
       (rHof (dOf S hS hC m) (hcOf S hS hC m) M s) (rHof (dOf S hS hC m) (hcOf S hS hC m) M s')).tr j f = f := by
     ext φ
     rfl
@@ -102,10 +102,10 @@ theorem rho_uniq_pf : ∀ {M : Model l K} (a : (dat Amp).Ch M), M.Sm → ∀ j m
 theorem rho_ex_pf : ∀ {M : Model l K} (a : (dat Amp).Ch M), M.Sm → ∀ j m x, ∃ f, rhoK S hS hC a j m x f := by
   intro M a hM j m x
   obtain ⟨s₁, hg⟩ := chK_good S hS hC M hM m
-  obtain ⟨f, hf⟩ := GlobalTheory.T.exists_realization_of_compatible (chK S hS hC M m s₁) (hg s₁ le_rfl) (show (M.HS false j).lim from x).1
+  obtain ⟨f, hf⟩ := _root_.GlobalTheory.CompanionTheory.KapRho.exists_rho (chK S hS hC M m s₁) (hg s₁ le_rfl) (show (M.HS false j).lim from x).1
     (fun n => (show (M.HS false j).lim from x).2 n)
   refine ⟨f, hM, s₁, fun s hs => ?_⟩
-  obtain ⟨g, hgs⟩ := GlobalTheory.T.exists_realization_of_compatible (chK S hS hC M m s) (hg s hs) (show (M.HS false j).lim from x).1
+  obtain ⟨g, hgs⟩ := _root_.GlobalTheory.CompanionTheory.KapRho.exists_rho (chK S hS hC M m s) (hg s hs) (show (M.HS false j).lim from x).1
     (fun n => (show (M.HS false j).lim from x).2 n)
   have e : g = f := GlobalTheory.T.realization_unique _ (hg s₁ le_rfl) _ g f (rho_mono S hS hC M m hs (hg s₁ le_rfl) (hg s hs) _ g hgs) hf
   rwa [e] at hgs

@@ -293,7 +293,7 @@ theorem levelL_of_fix (hΛ : ∀ x, x ∈ Λ ↔ ∀ y ∈ Λ, IsIntegral ℤ (h
         apply mul_right_cancel₀ hp
         rw [← hk, smul_eq_mul]; push_cast; ring
       exact_mod_cast this
-    have h2 := Model.cc_integral (discr_mul_integral _ key)
+    have h2 := _root_.GlobalTheory.SW.Base.isIntegral_cc (discr_mul_integral _ key)
     convert h2 using 1
     rw [Model.herm_one, Model.herm_one, cc_mul, cc_mul, cc_nat, cc_nat, cc_sum, Finset.mul_sum,
       Finset.mul_sum]

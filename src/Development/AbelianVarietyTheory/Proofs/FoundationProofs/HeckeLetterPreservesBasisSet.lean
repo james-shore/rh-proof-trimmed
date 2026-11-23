@@ -94,9 +94,7 @@ theorem act_act (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (m m' : Matrix (Fin 2
   ext f
   simp [X.sl_mul]
 
-theorem polAct (X : Tower Ω ε) (l w : ℕ) [Fact l.Prime] (m : Matrix (Fin 2) (Fin 2) ℤ)
-    (hA : ∀ a ∈ X.A l, X.kmap l (X.sl (toGQ m)).toRingEquiv a ∈ X.A l) :
-    ∀ b ∈ X.Pol l w, X.act l m b ∈ X.Pol l w := GlobalTheory.T.intMatrixAction_mem_homogeneousPolyFunctions X l w m hA
+alias polAct := _root_.GlobalTheory.KZ.PolAct.act_mem_pol
 
 theorem coset (q : ℕ) (hq : q.Prime) (m : Matrix (Fin 2) (Fin 2) ℤ) (hm : m.det = q) :
     (∃ g : Matrix (Fin 2) (Fin 2) ℤ, g * !![(q : ℤ), 0; 0, 1] = m) ∨
@@ -405,7 +403,7 @@ theorem op_BSet (X : Tower Ω ε) [Fact l.Prime]
     have hqN : Nat.Coprime q N := (Nat.Prime.coprime_iff_not_dvd hq).mpr (fun h => hqd (dvd_mul_of_dvd_left h l))
     have hql' : Nat.Coprime q l := (Nat.Prime.coprime_iff_not_dvd hq).mpr (fun h => hqd (Dvd.dvd.mul_left h N))
     have hql : IsCoprime (q : ℤ) (l : ℤ) := Nat.isCoprime_iff_coprime.mpr hql'
-    have hσ := sgD_spec N l q hl hN hNl hqN
+    have hσ := _root_.GlobalTheory.KZ.isDiam_sgD_of_prime N l q hl hN hNl hqN
     show X.heckeT N l q b ∈ X.BSet N l w
     refine ⟨?_, ?_⟩
     · rw [heckeT_eq]; exact Pol_sum X l w _ _ (fun o _ => polAct X l w _ (hA _) b hb.1)
@@ -422,7 +420,7 @@ theorem op_BSet (X : Tower Ω ε) [Fact l.Prime]
       exact sum_act_inv X l N (repU l) (fun j => by simp [repU, Matrix.det_fin_two]; exact hl.pos) γ
         (map_U hl γ hγ) (fun j j' h H => Fin.ext (dis_A j j' j.2 j'.2 _ H)) b hb.2
   | D d =>
-    have hσ := sgD_spec N l d hl hN hNl hT
+    have hσ := _root_.GlobalTheory.KZ.isDiam_sgD_of_prime N l d hl hN hNl hT
     show X.act l (sgD N l d : Matrix (Fin 2) (Fin 2) ℤ) b ∈ X.BSet N l w
     refine ⟨polAct X l w _ (hA _) b hb.1, ?_⟩
     intro γ hγ

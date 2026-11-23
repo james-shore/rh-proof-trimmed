@@ -74,9 +74,6 @@ theorem bd_sub (a : Fin N → F) (ξ' ξ : Fin N → F) (u : Fin N → AF F) :
   simp only [Bd, rat, Pi.sub_apply, map_sub, ← Finset.sum_neg_distrib, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun l _ => by ring
 
-theorem bd_zero (a : Fin N → F) (u : Fin N → AF F) : Bd (AF F) a u (rat 0) = 0 := by
-  simp [Bd, rat]
-
 theorem continuous_bd (a : Fin N → F) (ξ : Fin N → F) :
     Continuous fun u : Fin N → AF F => Bd (AF F) a u (rat ξ) := by
   unfold Bd
@@ -146,7 +143,7 @@ theorem fourier_series : ∀ (F : Type) [Field F] [NumberField F] (N : ℕ) (ψ 
       rw [integral_const_mul]
       split_ifs with h
       · subst h
-        simp only [sub_self, bd_zero, AddChar.map_zero_eq_one]
+        simp only [sub_self, _root_.GlobalTheory.SWQ.FZero.Bd_rat_zero, AddChar.map_zero_eq_one]
         simp [integral_const, measureReal_def, hmass]
       · rw [GlobalTheory.T.integral_adelicVectors_character_orthogonality F N ψ lam ν a hC D hD hD1 (ξ' - ξ) (sub_ne_zero.mpr h), mul_zero]
     simp_rw [hval]

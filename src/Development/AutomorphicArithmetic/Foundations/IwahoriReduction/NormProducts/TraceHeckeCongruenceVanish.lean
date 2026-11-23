@@ -60,13 +60,6 @@ namespace UpperTheory.Kd.K4.LiftH
 
 variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ}
 
-private theorem toGQ_sl (γ : SL(2, ℤ)) : toGQ (γ : Matrix (Fin 2) (Fin 2) ℤ) = ofSL γ := by
-  have h : 0 < (γ : Matrix (Fin 2) (Fin 2) ℤ).det := by simp
-  unfold toGQ
-  rw [dite_eq_left h]
-  ext i j
-  simp [ofSL]
-
 private theorem ev_smul (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (n : ℕ) (s : ℤ_[l]) (hs : PadicInt.toZModPow n s = 0)
     (y : X.Khat l) : AdicCompletion.eval (idl l) (X.Kl l) n (s • y) = 0 := by
   rw [map_smul]
@@ -97,7 +90,7 @@ private theorem tr_z_eq_transfer (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (w n
   rw [Finset.sum_apply, Finset.sum_apply, ← Finset.sum_add_distrib, map_sum]
   refine Finset.sum_eq_zero fun i _ => ?_
   simp only [Tower.act, LinearMap.coe_mk, AddHom.coe_mk, sec, map_smul]
-  rw [toGQ_sl, toGQ_sl, map_mul ofSL, Tower.sl_mul_toRingEquiv, ← Tower.kmap_kmap, ← add_smul]
+  rw [_root_.GlobalTheory.KZ.Betti.toGQ_sl, _root_.GlobalTheory.KZ.Betti.toGQ_sl, map_mul ofSL, Tower.sl_mul_toRingEquiv, ← Tower.kmap_kmap, ← add_smul]
   apply ev_smul
   rw [Matrix.SpecialLinearGroup.coe_mul, mZl_mul, ← Matrix.mulVec_mulVec]
   generalize mZl l (γ i : Matrix (Fin 2) (Fin 2) ℤ) *ᵥ u = v

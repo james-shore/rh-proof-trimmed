@@ -204,36 +204,11 @@ theorem discN_top (h : V →ₗ⋆[K] V →ₗ[K] K) (L : Submodule (𝓞 K) V) 
   rw [AddSubgroup.relIndex_comap, AddSubgroup.map_comap_eq_self_of_surjective (fun y => ⟨⟨y, trivial⟩, rfl⟩)]
   rfl
 
-theorem isIntLat_latIn (h : V →ₗ⋆[K] V →ₗ[K] K) {L : Submodule (𝓞 K) V} (hL : IsIntLat h L)
-    (U : Submodule K V) : IsIntLat (hRes h U) (latIn U L) := by
-  haveI : Submodule.IsLattice K (latIn U L) := by
-    apply Submodule.IsLattice.of_fg K
-    apply Submodule.fg_of_fg_map_injective (U.subtype.restrictScalars (𝓞 K)) U.injective_subtype
-    exact hL.1.fg.of_le (Submodule.map_comap_le _ _)
-  refine ⟨⟨?_⟩, fun x hx y hy => hL.2 x hx y hy⟩
-  refine eq_top_iff.mpr fun x _ => ?_
-  obtain ⟨a, hax⟩ := multiple_mem_span_of_mem_localization_span (nonZeroDivisors (𝓞 K)) K _ (x : V)
-    (show (x : V) ∈ Submodule.span K (L : Set V) by rw [hL.1.span_eq_top]; trivial)
-  rw [Submodule.span_eq] at hax
-  have ha' : algebraMap (𝓞 K) K a ≠ 0 := by simpa using nonZeroDivisors.coe_ne_zero a
-  rw [← Submodule.smul_mem_iff _ ha', algebraMap_smul]
-  exact Submodule.subset_span hax
-
-omit [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] in
-theorem pd_nondeg (h : V →ₗ⋆[K] V →ₗ[K] K) (hp : PD h) : h.Nondegenerate := by
-  obtain ⟨τ⟩ : Nonempty (K →+* ℂ) := inferInstance
-  constructor <;>
-  · intro x hx
-    by_contra h0
-    have := hp τ x h0
-    rw [hx x] at this
-    simp at this
-
 theorem discN_res_ne_zero [FiniteDimensional K V] (hK : IsCMUnram K) (h : V →ₗ⋆[K] V →ₗ[K] K)
     (hs : h.IsSymm) (hp : PD h) {L : Submodule (𝓞 K) V} (hL : IsIntLat h L) (U : Submodule K V) :
     discN (hRes h U) (latIn U L) ≠ 0 :=
   (GlobalTheory.Mass.DiscOrder.main K U (hRes h U) hK ⟨fun x y => hs.eq (x : V) (y : V)⟩
-    (pd_nondeg _ fun τ x hx => hp τ (x : V) (fun e => hx (Subtype.ext e))) _ (isIntLat_latIn h hL U)).1
+    (_root_.GlobalTheory.Mass.PrimDisc.nondeg _ fun τ x hx => hp τ (x : V) (fun e => hx (Subtype.ext e))) _ (_root_.GlobalTheory.Mass.PrimMean.isIntLat_latIn h hL U)).1
 
 theorem of_equiv (h : V →ₗ⋆[K] V →ₗ[K] K) (L : Submodule (𝓞 K) V) (T : ℕ)
     (e : (↥(Formalism.HermitianLatticesTheory.dual h L) ⧸ L.comap (Formalism.HermitianLatticesTheory.dual h L).subtype) ≃ₗ[𝓞 K] (𝓞 K ⧸ Ideal.span {(T : 𝓞 K)})) :
@@ -371,7 +346,7 @@ theorem main : MinkowskiBound → GlobalTheory.Mass.MaxMass → Formalism.Hermit
   have hSC := GlobalTheory.T.mean_primitiveSublattices_genus_definiteLattice hMax hSi K V H hK hO hv hpd hk T L₀ Mb hT hTP hL₀ he hMb D₀ hD₀
   obtain ⟨e⟩ := he
   have hs := flip_isSymm H
-  have hnd := pd_nondeg _ hpd
+  have hnd := _root_.GlobalTheory.Mass.PrimDisc.nondeg _ hpd
   obtain ⟨hd, t, ht, htM⟩ := of_equiv _ L₀ T e
   rw [(GlobalTheory.rootDiscr_ge_three_halves_of_totallyComplex K hK.1).1] at hd
   obtain ⟨hmass, hm0, -⟩ := GlobalTheory.T.hermitianGenusMass_eq_orbitStabilizerMass K V H.B.flip hK hs hpd L₀ hL₀.1

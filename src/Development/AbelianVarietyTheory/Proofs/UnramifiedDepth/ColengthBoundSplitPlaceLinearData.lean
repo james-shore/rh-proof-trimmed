@@ -130,8 +130,8 @@ theorem colength_bound_linDat : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C
       hL.eqB hL.eqA ((algebraMap O C).comp τ)).1
     rw [h1] at h2
     exact le_of_le_of_eq (Nat.le_add_left _ _) h2.symm
-  obtain ⟨cw, hcw, hcwb⟩ := GlobalTheory.T.abelianPart_cokernel_length_le p C v O hv OE cp hU g H hL.noPad.1 hL.noPad.2 w t rm hrm
-  obtain ⟨h, ψ, hh, hψ, f, hf⟩ := GlobalTheory.T.exists_abelian_torus_generators_at_place p C v O hv OE cp hU g H d r m A B ρG N s hL w t α b hb rp rm W hW hrm
+  obtain ⟨cw, hcw, hcwb⟩ := _root_.GlobalTheory.ChF.abelian_coker_bound p C v O hv OE cp hU g H hL.noPad.1 hL.noPad.2 w t rm hrm
+  obtain ⟨h, ψ, hh, hψ, f, hf⟩ := _root_.GlobalTheory.ChF.GenAtPlace.exists_generators p C v O hv OE cp hU g H d r m A B ρG N s hL w t α b hb rp rm W hW hrm
   obtain ⟨hinj, hvd0, hD⟩ := GlobalTheory.PowerBasisDiscr.discr_power_basis p C v O hv OE w t vd hvd α b hb
   obtain ⟨hex, hmono, hfp⟩ := GlobalTheory.ChF.hasLen_exists_mono_fp C v O hv
   have hres := fun j => GlobalTheory.ChF.eigB_res_surjective C v O hv OE d rp ρG _ (W j) (hW j)

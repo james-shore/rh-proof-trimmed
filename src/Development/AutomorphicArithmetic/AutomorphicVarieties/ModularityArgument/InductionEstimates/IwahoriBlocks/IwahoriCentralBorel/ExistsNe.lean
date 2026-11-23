@@ -239,7 +239,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.xOcc :
   haveI : T2Space (G1 K 2) := by
     set_option synthInstance.maxHeartbeats 100000 in
       infer_instance
-  obtain ⟨hmem, hmem2⟩ := xMem μ τ κ p hp
+  obtain ⟨hmem, hmem2⟩ := _root_.UpperTheory.Reformulated.B.Gul4.xMem μ τ κ p hp
   have hstab := hmem2 hτ w ι hw hι
   obtain ⟨J, hJi, hJ1, hJ2, hJ3⟩ := exists_injection_into_l2_cusp μ τ κ p hτ hp (im w)
   obtain ⟨φ, hφ, hφ0⟩ := (Submodule.ne_bot_iff _).1 hX

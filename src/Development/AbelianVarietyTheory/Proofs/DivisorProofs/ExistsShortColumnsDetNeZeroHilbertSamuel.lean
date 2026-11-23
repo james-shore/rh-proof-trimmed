@@ -156,14 +156,14 @@ theorem exists_cols : ∀ (F A : Type) [Field F] [NumberField F] [AddCommGroup A
       (q.2.1.degree = S.T → ∀ r, β r ≠ Fin.last S.D) ∧
       ∀ (M : Type) [Monoid M] (f : Fin (S.D + 1) → M), (List.ofFn fun r => f (β r)).prod =
         (List.ofFn fun i : Fin S.D => f i.castSucc ^ q.2.1 i).prod * f (Fin.last S.D) ^ (S.T - q.2.1.degree) :=
-    fun q => GlobalTheory.T.exists_block_word_of_type_prod S.D S.T q.2.1 (by have h1 := q.2.2; have h2 := q.1.2; omega)
+    fun q => _root_.GlobalTheory.HSShort.words_of_type S.D S.T q.2.1 (by have h1 := q.2.2; have h2 := q.1.2; omega)
   choose βX hβX1 hβX2 hβX3 using hwX
   have hwD : ∀ α : MonoDeg (Fin S.D) (S.T - S.D), ∃ β : Fin (S.T - S.D) → Fin (S.D + 1),
       (∀ i : Fin S.D, (Finset.univ.filter fun r => β r = i.castSucc).card = α.1 i) ∧
       (α.1.degree = S.T - S.D → ∀ r, β r ≠ Fin.last S.D) ∧
       ∀ (M : Type) [Monoid M] (f : Fin (S.D + 1) → M), (List.ofFn fun r => f (β r)).prod =
         (List.ofFn fun i : Fin S.D => f i.castSucc ^ α.1 i).prod * f (Fin.last S.D) ^ (S.T - S.D - α.1.degree) :=
-    fun α => GlobalTheory.T.exists_block_word_of_type_prod S.D (S.T - S.D) α.1 (le_of_eq α.2)
+    fun α => _root_.GlobalTheory.HSShort.words_of_type S.D (S.T - S.D) α.1 (le_of_eq α.2)
   choose βD hβD1 hβD2 hβD3 using hwD
   let s' : Fin S.D → Fin S.N → E := fun i k => algebraMap F E (s i k)
   let g : MonoDeg (Fin S.D) (S.T - S.D) × Fin rD → A' := fun p => pw Φ.mul s' p.1.1 (Φ.ι (bD p.2))
@@ -235,7 +235,7 @@ theorem exists_cols : ∀ (F A : Type) [Field F] [NumberField F] [AddCommGroup A
       · rw [if_pos (congrArg Subtype.val h), if_pos h]; rfl
       · rw [if_neg (fun h' => h (Subtype.ext h')), if_neg h]
     rw [heq]
-    exact GlobalTheory.T.det_blockSymbolMatrix_ne_zero' E _ δ _ _ _ hl hσ0
+    exact _root_.GlobalTheory.det_blockSymbolMatrix_ne_zero E _ δ _ _ _ hl hσ0
   have hrspec : ∀ k : J, ∃ k', e1 (Sum.inr k') = k.1 := fun k => hrange k.1 (Finset.mem_filter.1 k.2).2
   choose f hf using hrspec
   have hfinj : Function.Injective f := fun k1 k2 h => Subtype.ext (by rw [← hf k1, ← hf k2, h])
@@ -263,7 +263,7 @@ theorem exists_cols : ∀ (F A : Type) [Field F] [NumberField F] [AddCommGroup A
     intro k
     rw [← span_basis F E A A' Φ.ι (S.V S.T) rT bT]
     exact (hc' (col' k) (join s' l)).1
-  obtain ⟨K, hK, hindK⟩ := GlobalTheory.T.exists_independent_completion E A' d' rT v _ hind' hw hmemT
+  obtain ⟨K, hK, hindK⟩ := _root_.GlobalTheory.exchange_independent_completion E A' d' rT v _ hind' hw hmemT
   have hrT : rT = d := by simpa using Fintype.card_congr (bT.indexEquiv b)
   have hZ : Fintype.card (Fin d' ⊕ K) = d := by
     rw [Fintype.card_sum, Fintype.card_fin, Fintype.card_coe, hK, hrT]

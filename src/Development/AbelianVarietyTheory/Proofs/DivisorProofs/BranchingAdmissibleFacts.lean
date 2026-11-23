@@ -110,7 +110,7 @@ theorem rCap_top {lam : Fin n → ℕ} {d : ℕ} (G : BP K n) (hG : G ∈ bmW K 
   have hA := (bm_eig lam d G (bmK_mem_alt.1 hG).1 (bmK_mem_alt.1 hG).2 β hβ hmax).1
   refine ⟨hA, fun u => ?_⟩
   obtain ⟨b, rfl, hb, ha⟩ := branchingAdmissible_facts hA
-  obtain ⟨f, hf, e⟩ := GlobalTheory.T.lastRow_top_component_dualWeyl_eq_monomial_mul K n lam G (bmK_mem_alt.1 hG).1 b hb hmax
+  obtain ⟨f, hf, e⟩ := _root_.GlobalTheory.BrCompare.zcomp_top_eq_zmon_mul_emb K n lam G (bmK_mem_alt.1 hG).1 b hb hmax
   rw [e, rCap_lead, capDet_dualWeyl ha u hf, map_smul, mul_smul_comm, bmChi]
   simp only [Nat.cast_sub (hb _)]
 
@@ -295,7 +295,7 @@ theorem psi_eq_zero {lam sg : Fin n → ℕ} (hI : Interlace (lamZ lam) (fun i =
     have hmax' : ∀ β', zcomp K n β' y ≠ 0 → omg β' ≤ omg β := fun β' h => hmax β' (Finset.mem_filter.2 ⟨hsub _ h, h⟩)
     by_cases hb : β = fun s => ((lam s - sg s : ℕ) : ℤ)
     · subst hb
-      obtain ⟨f, hf, e⟩ := GlobalTheory.T.lastRow_top_component_dualWeyl_eq_monomial_mul K n lam y (bmK_mem_alt.1 hy).1 (fun s => lam s - sg s) (fun s => Nat.sub_le _ _) hmax'
+      obtain ⟨f, hf, e⟩ := _root_.GlobalTheory.BrCompare.zcomp_top_eq_zmon_mul_emb K n lam y (bmK_mem_alt.1 hy).1 (fun s => lam s - sg s) (fun s => Nat.sub_le _ _) hmax'
       simp only [Nat.sub_sub_self (hIL _).1] at hf
       have hfw : IsWeightedHomogeneous (rowW n n) f sg := (rowWeight_iff _ _).2 fun s => by
         refine lead_inj (fun s => lam s - sg s) ?_

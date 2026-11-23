@@ -186,8 +186,8 @@ theorem not_in_kernel_of_multiplier_torsion (h1 : TwoTorsionKernelUnique) (h2 : 
   have hIM : Formalism.L2.Th1.A.IntModel W := ⟨a1, a2, a3, a4, a6⟩
   have hsub := Formalism.ELL.formal_group_points_subgroup.{0} ℂ_[2] W hM hΔ
   have htor := Formalism.ELL.formal_group_points_no_torsion.{0} ℂ_[2] W hM hΔ
-  have hadd := Formalism.L2.Th1.E.ptWAdd 2 L ι W hU
-  have hzero := Formalism.L2.Th1.E.ptWZero 2 L ι W hU
+  have hadd := _root_.Formalism.L2.Th1.E.analytic_point_map_add 2 L ι W hU
+  have hzero := _root_.Formalism.L2.Th1.E.analytic_point_eq_zero_iff 2 L ι W hU
   have hnsmul : ∀ (n : ℕ) (t : ℂ), π ((n : ℂ) * t) = n • π t := by
     intro n t
     induction n with

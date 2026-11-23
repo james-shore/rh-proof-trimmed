@@ -297,48 +297,6 @@ theorem continuous_eA [IsTotallyReal F] : Continuous (eA F E) := by
       exact continuous_const
   exact (continuous_algebraMap (AF F) (AF F ⊗[F] E)).comp h1
 
-theorem torus_unique (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) {t : Fin r → ℝ} {a b : GAd σ J}
-    (ha : IsTorusElt σ J X Y t a) (hb : IsTorusElt σ J X Y t b) : a = b := by
-  let P : Matrix (Fin n) (Fin n) E := 1 - X * (cT (σ : E →+* E) Y * J) - Y * (cT (σ : E →+* E) X * J)
-  have yx : cT (σ : E →+* E) Y * J * X = 1 :=
-    (show Sieg.Fr (σ : E →+* E) J X Y from ⟨sigma_sigma h, Matrix.ext fun i j => hJ.1 i j, hW.xx, hW.yy, hW.xy⟩).yx
-  have hPX : cT (σ : E →+* E) X * J * P = 0 := by
-    simp only [P]
-    rw [Matrix.mul_sub, Matrix.mul_sub, Matrix.mul_one, ← Matrix.mul_assoc, ← Matrix.mul_assoc _ Y, hW.xx, hW.xy,
-      Matrix.zero_mul, Matrix.one_mul, sub_zero, sub_self]
-  have hPY : cT (σ : E →+* E) Y * J * P = 0 := by
-    simp only [P]
-    rw [Matrix.mul_sub, Matrix.mul_sub, Matrix.mul_one, ← Matrix.mul_assoc, ← Matrix.mul_assoc _ Y, yx, hW.yy,
-      Matrix.zero_mul, Matrix.one_mul, sub_zero, sub_self]
-  refine ext_inf_fin σ J (GInf_ext σ J fun w => ?_) (by rw [mem_infPts.1 ha.1, mem_infPts.1 hb.1])
-  simp only [projInfArch_projInf]
-  obtain ⟨τ⟩ : Nonempty (EmbOver E w) := inferInstance
-  have key : ∀ y : GArch σ J w, archMat σ J τ y * X.map τ.1 = X.map τ.1 * diagonal (fun i => (t i : ℂ)) →
-      archMat σ J τ y * Y.map τ.1 = Y.map τ.1 * diagonal (fun i => (t i : ℂ)⁻¹) →
-      (∀ z : Fin n → E, (cT (σ : E →+* E) X * J) *ᵥ z = 0 → (cT (σ : E →+* E) Y * J) *ᵥ z = 0 →
-        archMat σ J τ y *ᵥ (fun i => τ.1 (z i)) = fun i => τ.1 (z i)) →
-      archMat σ J τ y = X.map τ.1 * diagonal (fun i => (t i : ℂ)) * (cT (σ : E →+* E) Y * J).map τ.1 +
-        Y.map τ.1 * diagonal (fun i => (t i : ℂ)⁻¹) * (cT (σ : E →+* E) X * J).map τ.1 + P.map τ.1 := by
-    intro y h1 h2 h3
-    have e1 : (1 : Matrix (Fin n) (Fin n) ℂ) = X.map τ.1 * (cT (σ : E →+* E) Y * J).map τ.1 +
-        Y.map τ.1 * (cT (σ : E →+* E) X * J).map τ.1 + P.map τ.1 := by
-      rw [← Matrix.map_mul, ← Matrix.map_mul, ← Matrix.map_add _ (map_add _), ← Matrix.map_add _ (map_add _)]
-      have : X * (cT (σ : E →+* E) Y * J) + Y * (cT (σ : E →+* E) X * J) + P = 1 := by simp only [P]; abel
-      rw [this, Matrix.map_one _ (map_zero _) (map_one _)]
-    have e2 : archMat σ J τ y * P.map τ.1 = P.map τ.1 := by
-      ext i j
-      exact congrFun (h3 (fun k => P k j) (funext fun k => congrFun (congrFun hPX k) j)
-        (funext fun k => congrFun (congrFun hPY k) j)) i
-    calc archMat σ J τ y = archMat σ J τ y * 1 := (Matrix.mul_one _).symm
-      _ = _ := by
-        conv_lhs => rw [e1]
-        rw [Matrix.mul_add, Matrix.mul_add, ← Matrix.mul_assoc, ← Matrix.mul_assoc, h1, h2, e2]
-  obtain ⟨a1, a2, a3⟩ := ha.2 w τ
-  obtain ⟨b1, b2, b3⟩ := hb.2 w τ
-  apply (archEquiv J h τ).injective
-  refine Subtype.ext (Units.ext ?_)
-  rw [← archMat_eq_archEquiv J h, ← archMat_eq_archEquiv J h, key _ a1 a2 a3, key _ b1 b2 b3]
-
 theorem torus_mat (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) {a : (Fin r → ℝ) → GAd σ J}
     (ha : IsTorus σ J X Y a) (s : Fin r → ℝ) :
     (matHom _ σ J (a s)).1 = ∑ α, eA F E (Real.exp (dl s α)) • Pj σ J X Y α := by
@@ -471,7 +429,7 @@ theorem conj_compact : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   have htpos := ht.1
   let s : Fin r → ℝ := fun i => Real.log (t i)
   have hst : (fun i => Real.exp (s i)) = t := funext fun i => Real.exp_log (htpos i)
-  have hbs : b = a s := torus_unique h hJ hW hb (by simpa only [hst] using ha.tor s)
+  have hbs : b = a s := _root_.PositivityTheory.ThKEst.Sieg.isTorusElt_unique h hJ hW hb (by simpa only [hst] using ha.tor s)
   subst hbs
   have hsc : (fun i => Real.exp (s i)) ∈ cone r c := by rwa [hst]
   have mem : ∀ q ∈ Ω ∪ Ω⁻¹, q ∈ minPar σ J X → (matHom _ σ J ((a s)⁻¹ * q * a s)).1 ∈ K := fun q hq hq' => by

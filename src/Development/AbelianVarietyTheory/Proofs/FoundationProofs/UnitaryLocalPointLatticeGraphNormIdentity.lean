@@ -168,9 +168,9 @@ theorem graphNormFinite : GraphNormFinite := by
     refine ⟨exists_isElemDiv _, ?_, ?_⟩
     · intro d hd
       rw [hgr]
-      exact GlobalTheory.T.doublingNorm_det_splitPlace_lattice_intersection F E σ h n J hJ L v hSD τ β hβ g _ hlat d hd
+      exact _root_.GlobalTheory.SplitInterDet.absEv_det_split F E σ h n J hJ L v hSD τ β hβ g _ hlat d hd
     · obtain ⟨d, hd⟩ := exists_isElemDiv (splitEquivIn h hJ τ β g)
-      rw [hgr, GlobalTheory.T.doublingNorm_det_splitPlace_lattice_intersection F E σ h n J hJ L v hSD τ β hβ g _ hlat d hd]
+      rw [hgr, _root_.GlobalTheory.SplitInterDet.absEv_det_split F E σ h n J hJ L v hSD τ β hβ g _ hlat d hd]
       exact Finset.prod_le_one₀ (fun _ _ => by positivity) (fun i _ => min_self_inv_le_one _)
   · intro P hP g
     obtain ⟨p, k, hk, hpk⟩ := GlobalTheory.T.graph_element_iwasawa_inert_place F E σ h n J hJ L v hSD P hP g

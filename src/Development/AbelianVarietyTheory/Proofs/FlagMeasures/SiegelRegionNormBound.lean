@@ -139,16 +139,6 @@ theorem det_loUni {n : ℕ} {A : Matrix (Fin n) (Fin n) ℂ} (hA : IsLoUni A) : 
   have h2 := congrArg star this
   rwa [star_star, star_one] at h2
 
-theorem norm_mul_apply_le {n : ℕ} (A B : Matrix (Fin n) (Fin n) ℂ) (a b : ℝ)
-    (hA : ∀ i j, ‖A i j‖ ≤ a) (hB : ∀ i j, ‖B i j‖ ≤ b) (i j : Fin n) : ‖(A * B) i j‖ ≤ n * (a * b) := by
-  first
-  | exact @_root_.GlobalTheory.LatticeFactsFlagMeasures.main
-  | exact _root_.GlobalTheory.LatticeFactsFlagMeasures.main
-  | (apply _root_.GlobalTheory.LatticeFactsFlagMeasures.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LatticeFactsFlagMeasures.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LatticeFactsFlagMeasures.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LatticeFactsFlagMeasures.main ..)
-
 theorem uni_bound (m : ℕ) (B0 δ : ℝ) (hB0 : 1 ≤ B0) (hδ : 0 < δ) (hδ1 : δ ≤ 1) :
     ∃ K : ℝ, ∀ (Z P Q : Matrix (Fin (m + 1)) (Fin (m + 1)) ℂ) (B : ℝ), IsUpUni P → IsUpUni Q → 1 ≤ B →
       (∀ i j, ‖Z i j‖ ≤ B) → (∀ i j, ‖(Pᴴ * Z * Q) i j‖ ≤ B0) → (∀ l, δ ≤ ‖mnr Z l‖) →
@@ -181,10 +171,10 @@ theorem uni_bound (m : ℕ) (B0 δ : ℝ) (hB0 : 1 ≤ B0) (hδ : 0 < δ) (hδ1 
   intro i j
   rw [ek]
   constructor
-  · have := norm_mul_apply_le (Pᴴ * L) L⁻¹ _ _ (fun i j => (H0 i j).1) (fun i j => (H1 i j).2.2.1) j i
+  · have := _root_.GlobalTheory.LatticeFactsFlagMeasures.main (Pᴴ * L) L⁻¹ _ _ (fun i j => (H0 i j).1) (fun i j => (H1 i j).2.2.1) j i
     rw [← eP] at this
     simpa using this
-  · have := norm_mul_apply_le U⁻¹ (U * Q) _ _ (fun i j => (H1 i j).2.2.2) (fun i j => (H0 i j).2.1) i j
+  · have := _root_.GlobalTheory.LatticeFactsFlagMeasures.main U⁻¹ (U * Q) _ _ (fun i j => (H1 i j).2.2.2) (fun i j => (H0 i j).2.1) i j
     rw [← eQ, mul_comm (c * _) _] at this
     exact this
 

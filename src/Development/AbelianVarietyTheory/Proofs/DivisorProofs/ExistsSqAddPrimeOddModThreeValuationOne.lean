@@ -78,7 +78,7 @@ theorem exists_sq_add_prime_odd_mod_three_unit :
       generalize Nat.gcd (2 ^ 2 + p) (4 ^ 2 + p) = g at hg1 hg2 h12 hle
       norm_num at hg1 hg2
       interval_cases g <;> omega
-    rcases GlobalTheory.T.valuation_natCast_eq_one_or_of_coprime V _ _ hcop with hv | hv
+    rcases _root_.GlobalTheory.CMModel.valuation_natCast_eq_one_of_coprime V _ _ hcop with hv | hv
     · exact ⟨2, 2 ^ 2 + p, rfl, by rw [Nat.odd_iff]; omega, by omega, by exact_mod_cast hv⟩
     · exact ⟨4, 4 ^ 2 + p, rfl, by rw [Nat.odd_iff]; omega, by omega, by exact_mod_cast hv⟩
   · have hcop : Nat.Coprime (0 ^ 2 + p) (6 ^ 2 + p) := by
@@ -93,7 +93,7 @@ theorem exists_sq_add_prime_odd_mod_three_unit :
       generalize Nat.gcd (0 ^ 2 + p) (6 ^ 2 + p) = g at hg1 hg2 h36 hle
       norm_num at hg1 hg2
       interval_cases g <;> omega
-    rcases GlobalTheory.T.valuation_natCast_eq_one_or_of_coprime V _ _ hcop with hv | hv
+    rcases _root_.GlobalTheory.CMModel.valuation_natCast_eq_one_of_coprime V _ _ hcop with hv | hv
     · exact ⟨0, 0 ^ 2 + p, rfl, by rw [Nat.odd_iff]; omega, by omega, by exact_mod_cast hv⟩
     · exact ⟨6, 6 ^ 2 + p, rfl, by rw [Nat.odd_iff]; omega, by omega, by exact_mod_cast hv⟩
 

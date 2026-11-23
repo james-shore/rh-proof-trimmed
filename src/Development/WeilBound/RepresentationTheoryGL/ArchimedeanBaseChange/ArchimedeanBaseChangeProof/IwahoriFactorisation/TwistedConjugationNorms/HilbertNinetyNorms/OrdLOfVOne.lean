@@ -69,7 +69,7 @@ theorem TO_diagT (w : Pl E) (a : ℕ) (g : GLw a w) (hg : g ∈ TO a w) :
   · rw [diagonal_apply_ne _ hij, h0 i j hij]
 
 theorem ordL_of_v_one {w : Pl E} {x : w.adicCompletion E} (hx : Valued.v x = 1) : ordL x = 0 := by
-  rw [ordL_eq_neg_log', hx, ← WithZero.exp_zero, WithZero.log_exp, neg_zero]
+  rw [_root_.GlobalTheory.LGrp.ordL_eq, hx, ← WithZero.exp_zero, WithZero.log_exp, neg_zero]
 
 def nEnt (w : Pl E) (ϖ : (w.adicCompletion E)ˣ) {a : ℕ} (y : Fin a → ℤ) (d : Fin a → (w.adicCompletion E)ˣ)
     (i : Fin a) : (w.adicCompletion E)ˣ :=
@@ -89,11 +89,11 @@ theorem ordL_nEnt (hU : Unr E) (w : Pl E) (ϖ : (w.adicCompletion E)ˣ) (hϖ : I
   have hP : ∀ j, ordL (((ϖ ^ y j : (w.adicCompletion E)ˣ)) : w.adicCompletion E) = y j := fun j => by
     rw [ordL_zpow_units, hϖ.1, mul_one]
   simp only [nEnt, Units.val_mul, Units.val_inv_eq_inv_val, cjU_val]
-  rw [ordL_mul'' (mul_ne_zero (Units.ne_zero _) (Units.ne_zero _))
+  rw [_root_.Formalism.UG.P.fSatake_ord_mul (mul_ne_zero (Units.ne_zero _) (Units.ne_zero _))
       (inv_ne_zero ((_root_.map_ne_zero _).2 (mul_ne_zero (Units.ne_zero _) (Units.ne_zero _)))),
-    ordL_mul'' (Units.ne_zero _) (Units.ne_zero _),
+    _root_.Formalism.UG.P.fSatake_ord_mul (Units.ne_zero _) (Units.ne_zero _),
     ordL_inv'' ((_root_.map_ne_zero _).2 (mul_ne_zero (Units.ne_zero _) (Units.ne_zero _))), ordL_cj hU,
-    ordL_mul'' (Units.ne_zero _) (Units.ne_zero _), hP, hP, ordL_of_v_one (hd i), ordL_of_v_one (hd i.rev), nv]
+    _root_.Formalism.UG.P.fSatake_ord_mul (Units.ne_zero _) (Units.ne_zero _), hP, hP, ordL_of_v_one (hd i), ordL_of_v_one (hd i.rev), nv]
   ring
 
 theorem unq_diag (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ)

@@ -49,6 +49,7 @@ import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.LtCNeZer
 import Formalism.SharpRestriction.GrowthBounds.ChartComparison.NrmAMemAdForms
 import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ToLEInvApply
 import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.CoeffProdRename
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThIndep
 
 @[expose] public section
 
@@ -59,18 +60,12 @@ noncomputable section
 
 namespace GlobalTheory.TwV
 
-theorem star_eq_hostConj (D : D7) (x : D.host.E) : star x = D.host.conj x := by
-  haveI : IsCMField D.host.E := D.host.isCMField_hostE
-  apply D.host.φ₀.injective
-  exact (IsCMField.complexEmbedding_complexConj D.host.E D.host.φ₀ x).trans
-    (D.host.conjE_apply D.host.φ₀ x).symm
-
 theorem stdH_adj (D : D7) {N N' : ℕ} (A : Matrix (Fin N') (Fin N) D.host.E) (x : Fin N → D.host.E)
     (y : Fin N' → D.host.E) :
     stdH D.host.E N x ((A.map D.host.conj)ᵀ *ᵥ y) = stdH D.host.E N' (A *ᵥ x) y := by
   unfold stdH
 
-  simp only [star_eq_hostConj, Matrix.mulVec, dotProduct, Matrix.transpose_apply, Matrix.map_apply, map_sum,
+  simp only [_root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.star_conj, Matrix.mulVec, dotProduct, Matrix.transpose_apply, Matrix.map_apply, map_sum,
   map_mul, Finset.mul_sum, Finset.sum_mul]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_

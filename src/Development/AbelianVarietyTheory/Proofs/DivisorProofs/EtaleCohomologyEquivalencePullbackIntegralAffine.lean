@@ -55,7 +55,7 @@ theorem eqv_pullback_integral_affine : ∀ (R : Type) [CommRing R] (F : Shv R) (
     ∀ (Z Z' : Scheme.{0}) (h : Z ⟶ Spec (CommRingCat.of A)) (h' : Z' ⟶ Spec (CommRingCat.of C)) (φ : Z' ⟶ Z),
     IsIntegralHom h → IsPullback φ h' h (Spec.map (CommRingCat.ofHom (algebraMap A C))) → Eqv R (sch.map φ) F := by
   intro R _ F A C _ _ _ hB Z Z' h h' φ hh hP
-  have E := GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F
+  have E := _root_.GlobalTheory.EtC.eqv_basic R F
   haveI : IsAffine Z := isAffine_of_isAffineHom h
 
   set f : CommRingCat.of A ⟶ Γ(Z, ⊤) := Spec.preimage (Z.isoSpec.inv ≫ h) with hf

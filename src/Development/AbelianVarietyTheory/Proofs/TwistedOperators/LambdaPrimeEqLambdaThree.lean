@@ -179,16 +179,6 @@ theorem ext_pre (R : RealDat D A Ks) (F : Face D A) (tupT : D.what₂.Tup → T)
     (Submodule.inclusion inf_le_left f)
   exact congrArg Subtype.val h
 
-theorem lift_postOn' {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSModel V S)
-    (L : (GA D V → ℂ) →ₗ[ℂ] (GA D V → ℂ)) (X : MMap M) :
-    PiTensorProduct.lift (postOn M L X) = L ∘ₗ PiTensorProduct.lift X := by
-  apply PiTensorProduct.ext
-  apply MultilinearMap.ext
-  intro v
-  simp [postOn]
-
-
-
 theorem thetaP_read (R : RealDat D A Ks) (F : Face D A) (tupT : D.what₂.Tup → T) (hm : 0 < D.R.m)
     (hTop : TopMultH R) (hinj : ∀ i t, Function.Injective (R.extV i t)) (hlev : R.toLevCh.Is A.μ0) (hgrp : R.IsGrp F)
     (hM : R.IsModels) (hE : R.IsThP) (IL : LiftIds (toLiftReal R F tupT hm hTop hinj))
@@ -222,7 +212,7 @@ theorem thetaP_read (R : RealDat D A Ks) (F : Face D A) (tupT : D.what₂.Tup �
   have hUw : PiTensorProduct.lift U = w' := LinearEquiv.apply_symm_apply _ w'
   refine hth.trans ?_
   change R.eWf i (sg0 D A) ∘ₗ w' = _
-  rw [← hUw, sub_eq_zero.1 hw0, ← lift_postOn', ← hE.thG i (tupT μ) z]
+  rw [← hUw, sub_eq_zero.1 hw0, ← _root_.GlobalTheory.ThetaFireLift.lift_postOn, ← hE.thG i (tupT μ) z]
 
 end Read
 
@@ -306,8 +296,6 @@ theorem adjoint_mem_base_level : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {
 end GlobalTheory.LamPrimeTransport
 
 namespace GlobalTheory.LamPrimeTransport
-
-open Formalism.IndefR.RecTie
 
 end GlobalTheory.LamPrimeTransport
 

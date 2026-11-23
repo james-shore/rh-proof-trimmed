@@ -67,16 +67,12 @@ noncomputable section
 
 namespace GlobalTheory.CharPSpec
 
-theorem spMap_comp_eq' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] {f : A →+* B} {g : B →+* C}
-    {h : A →+* C} (e : g.comp f = h) : spMap g ≫ spMap f = spMap h := by
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp, e]
-
 theorem exists_charP_specialization : ∀ (k : Type) [Field k] [IsAlgClosed k] [CharZero k] (G : Over (Sp k)) [GrpObj G], GlobalTheory.SS.SmConn G → ∀ g : ℕ, SmoothOfRelativeDimension g G.hom → ∀ m : ℕ, 1 ≤ m → ∀ s : Finset (𝟙_ (Over (Sp k)) ⟶ G), (∀ x ∈ s, x ^ m = 1) → ∀ (P : Polynomial k), P ≠ 0 → ∀ (u : Sp (Localization.Away P) ⟶ G.left) (a b : Localization.Away P →ₐ[k] k), u ≫ G.hom = spMap (algebraMap k (Localization.Away P)) → spMap a.toRingHom ≫ u ≠ spMap b.toRingHom ≫ u → ∃ (k' : Type) (_ : Field k') (_ : IsAlgClosed k') (p : ℕ) (_ : Fact p.Prime) (_ : CharP k' p) (G' : Over (Sp k')) (_ : GrpObj G'), GlobalTheory.SS.SmConn G' ∧ SmoothOfRelativeDimension g G'.hom ∧ (m : k') ≠ 0 ∧ (∃ s' : Finset (𝟙_ (Over (Sp k')) ⟶ G'), (∀ x ∈ s', x ^ m = 1) ∧ s'.card = s.card) ∧ ∃ (P' : Polynomial k') (_ : P' ≠ 0) (u' : Sp (Localization.Away P') ⟶ G'.left) (a' b' : Localization.Away P' →ₐ[k'] k'), u' ≫ G'.hom = spMap (algebraMap k' (Localization.Away P')) ∧ spMap a'.toRingHom ≫ u' ≠ spMap b'.toRingHom ≫ u' := by
   intro k _ _ _ G _ hG g hg m hm s hs P hP u a b hu hab
   classical
   have hm0 : (m : k) ≠ 0 := Nat.cast_ne_zero.mpr (by omega)
   obtain ⟨R, G₁, _, hfg, hmR, hcomm, hsm, hsep, hqc, hgc, hrd, ⟨s₁, hcard, hs₁, hdist⟩, P₁, hP₁, u₁, α, β, hα, hβ,
-    hu₁, hαβ⟩ := GlobalTheory.T.exists_fg_subring_descent_group_sections_curve k G hG g hg m hm hm0 s hs P hP u a b hu hab
+    hu₁, hαβ⟩ := _root_.GlobalTheory.SpreadCurve.group_sections_curve_descend k G hG g hg m hm hm0 s hs P hP u a b hu hab
   haveI : Algebra.FiniteType ℤ R := hfg
   haveI : IsNoetherianRing R := Algebra.FiniteType.isNoetherianRing ℤ R
   have hinj : Function.Injective R.subtype := Subtype.val_injective
@@ -95,7 +91,7 @@ theorem exists_charP_specialization : ∀ (k : Type) [Field k] [IsAlgClosed k] [
   have hsec : ∀ (c₀ : R) (hc₀ : IsUnit (Polynomial.evalRingHom c₀ P₁)),
       spMap (IsLocalization.Away.lift (S := Localization.Away P₁) P₁ hc₀) ≫ u₁ ≫ G₁.hom = 𝟙 _ := by
     intro c₀ hc₀
-    rw [hu₁, spMap_comp_eq' (h := RingHom.id R)]
+    rw [hu₁, _root_.GlobalTheory.ModelDescent.spMap_comp_eq (h := RingHom.id R)]
     · show Spec.map (CommRingCat.ofHom (RingHom.id R)) = _
       rw [CommRingCat.ofHom_id, Spec.map_id]
     · ext r
@@ -162,7 +158,7 @@ theorem exists_charP_specialization : ∀ (k : Type) [Field k] [IsAlgClosed k] [
       simp only [GlobalTheory.IsogRed.sec_left] at e
       exact H₃ _ ψ u3 x.left (Finset.mem_image_of_mem _ hx) y.left (Finset.mem_image_of_mem _ hy)
         (fun h => hne (Over.OverMorphism.ext h)) e
-  · exact GlobalTheory.T.curve_baseChange_two_distinct_points_of_field R _ ψ G₁ P₁ u₁ α β hα hβ hu₁ u5
+  · exact _root_.GlobalTheory.curve_baseChange_two_points R _ ψ G₁ P₁ u₁ α β hα hβ hu₁ u5
       (H₄ _ ψ u4 _ (Finset.mem_insert_self _ _) _ (Finset.mem_insert_of_mem (Finset.mem_singleton_self _))
         (fun h => hαβ (by rw [h])))
 

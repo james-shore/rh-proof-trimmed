@@ -67,20 +67,6 @@ theorem qsp_exists_pi (P : Pl E) (hP : conjPrime₂ P ≠ P) : ∃ ϖ : 𝓞 E, 
   exact ⟨s, hs, fun h => hns ((mem_conjP P s).2 h)⟩
 
 
-include hc in
-theorem qsp_norm_mem (a : 𝓞 E) : ∃ b : 𝓞 F, algebraMap (𝓞 F) (𝓞 E) b = a * cO E a := by
-  have h1 : star (algebraMap (𝓞 E) E (a * cO E a)) = algebraMap (𝓞 E) E (a * cO E a) := by
-    rw [map_mul, algebraMap_cO, star_mul', star_star, mul_comm]
-  obtain ⟨x, hx⟩ := (hc.fixed _).1 h1
-  have hi : IsIntegral ℤ x := by
-    have h2 : IsIntegral ℤ (algebraMap F E x) := by rw [hx]; exact RingOfIntegers.isIntegral_coe _
-    exact (isIntegral_algebraMap_iff ).1 h2
-  obtain ⟨b, hb⟩ : ∃ b : 𝓞 F, algebraMap (𝓞 F) F b = x := ⟨⟨x, hi⟩, rfl⟩
-  refine ⟨b, ?_⟩
-  apply RingOfIntegers.ext
-  change algebraMap (𝓞 E) E (algebraMap (𝓞 F) (𝓞 E) b) = algebraMap (𝓞 E) E (a * cO E a)
-  rw [← hx, ← hb, ← IsScalarTower.algebraMap_apply, ← IsScalarTower.algebraMap_apply]
-
 theorem qsp_isOver (P : Pl E) : IsOver (underPl F P) P := rfl
 
 
@@ -89,7 +75,7 @@ theorem qsp_exists (P : Pl E) (hP : conjPrime₂ P ≠ P) :
     ∃ ϖ : 𝓞 E, ϖ ∈ P.asIdeal ∧ cO E ϖ ∉ P.asIdeal ∧ Nonempty (Formalism.MainNotions.Gaps.LG.SplitAt hc.sig (underPl F P) (ϖ : E)) := by
   obtain ⟨ϖ, hϖ, hcϖ⟩ := qsp_exists_pi P hP
   obtain ⟨t, ht⟩ := gls_trace_mem hc ϖ
-  obtain ⟨N, hN⟩ := qsp_norm_mem hc ϖ
+  obtain ⟨N, hN⟩ := _root_.Formalism.L2.Col.rll_norm_mem hc ϖ
   have hsig : ∀ x : E, hc.sig x = star x := fun _ => rfl
   have hsig0 : hc.sig (ϖ : E) = ((cO E ϖ : 𝓞 E) : E) := by rw [hsig]; exact (algebraMap_cO ϖ).symm
   have hN' : algebraMap F E (N : F) = (ϖ : E) * hc.sig (ϖ : E) := by

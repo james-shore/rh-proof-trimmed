@@ -76,12 +76,6 @@ theorem idAt_mono {P Q : Pl D → Prop} (h : ∀ v, P v → Q v) {a : AE D} (ha 
   rw [mem_supportedOnPlacesIdeal_iff_components_zero_elsewhere] at ha ⊢
   exact ⟨ha.1, fun w hw => ha.2 w (fun hp => hw (h w hp))⟩
 
-theorem mulVec_mem' {I : Ideal (AE D)} {m n : ℕ} (A : Matrix (Fin m) (Fin n) (AE D)) {y : Fin n → AE D}
-    (hy : ∀ i, y i ∈ I) : ∀ i, (A *ᵥ y) i ∈ I := by
-  intro i
-  simp only [Matrix.mulVec, dotProduct]
-  exact Ideal.sum_mem _ fun j _ => I.mul_mem_left _ (hy j)
-
 theorem mulVec_fix {V : HSp D} {e : AE D} {ε : AF D.host.F} {u v : Pl D} (hε : IsPlaceIdem D u ε)
     (he : e + cA D e = algebraMap (AF D.host.F) (AE D) ε) {h : GA D V} (hs : SuppAt e V h) (huv : v ≠ u)
     {y : Fin V.rank → AE D} (hy : ∀ l, y l ∈ idAt D (· = v)) : mt V h *ᵥ y = y := by
@@ -133,27 +127,13 @@ theorem xi_ne (q : SplitPt D k) : (GlobalTheory.LocMod.ofSplit q).xi ≠ 0 := by
   rw [h0, zero_mul] at h1
   exact zero_ne_one h1
 
-theorem latV_iff_hat' (S : HSp D) (L : Lat S) (P : Pl D → Prop) (y : Fin S.rank → AE D) (hy : ∀ i, y i ∈ idAt D P) :
-    y ∈ latV S L P ↔ (fun i => Formalism.IndefR.Lev.swapAE D (finPart D (y i))) ∈ GlobalTheory.IndefiniteRowSideFullHecke.FlatSpaceComponents.hat L :=
-  ⟨GlobalTheory.T.latticeCompletionAtPlaces_mem_completedHermitianLattice D S L P y, GlobalTheory.T.mem_latticeCompletionAtPlaces_of_finPart_mem_hatLattice D S L P y hy⟩
-
-theorem finE_mulVec' (S : HSp D) (x : GA D S) (y : Fin S.rank → AE D) :
-    (fun i => Formalism.IndefR.Lev.swapAE D (finPart D ((mt S x *ᵥ y) i))) =
-      (Formalism.IndefR.Lev.finE S x).val *ᵥ (fun i => Formalism.IndefR.Lev.swapAE D (finPart D (y i))) := by
-  have h : ((Formalism.IndefR.Lev.finE S x).val) = (mt S x).map ((Formalism.IndefR.Lev.swapAE D).comp (finPart D)) := by
-    ext i j
-    rfl
-  rw [h]
-  ext i
-  exact RingHom.map_mulVec ((Formalism.IndefR.Lev.swapAE D).comp (finPart D)) (mt S x) y i
-
 theorem exists_base (V : HSp D) (Λ L₀ : Lat V) (hΛ : IsSelfDualC V Λ) (hL₀ : IsSelfDualC V L₀) :
     ∃ t₀ ∈ GfC V, ∀ P, Moves V t₀ Λ L₀ P := by
   obtain ⟨t₀, ht₀, htr⟩ := (GlobalTheory.AdIsom.adelicIsometries D).2.2.1 V V (LinearEquiv.refl _ _) (fun _ _ => rfl) Λ L₀ hΛ hL₀
     ∅ (by intro w hw; simp at hw) 0 (fun _ => 0) (fun _ => 0) (by simp) (by simp)
   rw [LinearEquiv.refl_toLinearMap, GlobalTheory.AdIsomCorrection.mA_id, Matrix.mul_one] at htr
   refine ⟨t₀, ht₀, fun P y hy => ?_⟩
-  rw [latV_iff_hat' V Λ P y hy, latV_iff_hat' V L₀ P _ (mulVec_mem' _ hy), finE_mulVec']
+  rw [_root_.GlobalTheory.FinPl.GlobImage.latV_iff_hat V Λ P y hy, _root_.GlobalTheory.FinPl.GlobImage.latV_iff_hat V L₀ P _ (_root_.GlobalTheory.FinPl.GlobImage.mulVec_mem _ hy), _root_.GlobalTheory.FinPl.GlobImage.finE_mulVec]
   exact htr.2.1 _
 
 variable {J : Type} [Fintype J] {kk : J → Type} [∀ i, Field (kk i)] [∀ i, ValuativeRel (kk i)]
@@ -198,7 +178,7 @@ theorem GlobalTheory.FinPl.BasePoint.exists_move : ∀ (D : D7) (V : HSp D) (Λ 
   intro v hv
   ext y
   by_cases hy : ∀ l, y l ∈ idAt D (· = v)
-  · have hz : ∀ l, (mt V t₀⁻¹ *ᵥ y) l ∈ idAt D (· = v) := mulVec_mem' _ hy
+  · have hz : ∀ l, (mt V t₀⁻¹ *ᵥ y) l ∈ idAt D (· = v) := _root_.GlobalTheory.FinPl.GlobImage.mulVec_mem _ hy
     have h1 : mt V t₀ *ᵥ (mt V t₀⁻¹ *ᵥ y) = y := by
       rw [Matrix.mulVec_mulVec, ← mt_mul, mul_inv_cancel, mt_one, Matrix.one_mulVec]
     have h2 : mt V (g * t₀) *ᵥ (mt V t₀⁻¹ *ᵥ y) = y := by

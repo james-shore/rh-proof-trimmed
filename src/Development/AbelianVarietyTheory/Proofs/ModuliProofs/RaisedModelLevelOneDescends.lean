@@ -89,10 +89,6 @@ theorem isDedFrac_of_isInc (l : Level H) (S A : ℕ) (hS : 0 < S) (hA : l.A = A)
   subst hA
   exact (GlobalTheory.T.cmModelCoefficientSubring_dedekind_compatible_embedding E H l S 0 hS (by rw [h1, pow_zero])).2.2 β hβ
 
-theorem Cpt_j_over {U : Scheme.{0}} {F O : Type} [Field F] [CommRing O] {c : U ⟶ Sp F} {t : SAB H U} {β : O →+* F}
-    (C : Cpt c t β) : C.j ≫ C.s = c ≫ spMap β := by
-  rw [Cpt.j, Category.assoc, pullback.condition, ← Category.assoc, C.jQ_over]
-
 theorem levComp_comp {D : Datum H} {l l' : Level H} {B B' B'' : Type} [CommRing B] [CommRing B'] [CommRing B'']
     {b : Base l B} {b' : Base l' B'} {b'' : Base l' B''} {S S' S'' : Scheme.{0}} {s : S ⟶ Sp B} {s' : S' ⟶ Sp B'}
     {s'' : S'' ⟶ Sp B''} {o'' : Obj D l' b'' s''} {o' : Obj D l' b' s'} {o : Obj D l b s} {r : S' ⟶ S} {g : S'' ⟶ S'}
@@ -109,7 +105,7 @@ theorem levComp_comp {D : Datum H} {l l' : Level H} {B B' B'' : Type} [CommRing 
 theorem descends_of_raises : Out.Laws → Out.Laws2 → Out.Laws3 → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (Xo : ∀ l : Level H, Moduli D l) (n N : ℕ) (T : Top Xo n N), ToroidalLevelCompatibility (H := H) (D := D) → ∀ (l₀ : Level H) (B : BaseModel T l₀) (l : Level H) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model (Xo l) c β), 0 < n → l₀.Dvd l → l.A = 1 → IsDedFrac β → Raises B Y → Y.Descends := by
   intro h1 h2 h3 E _ _ _ H D Xo n N T hN l₀ B l c O _ β Y hn hd hA hβ hR
   obtain ⟨b, r, ν, hb, hlev, ⟨a⟩⟩ := hR
-  obtain ⟨k, r₁, ν₁, hr₁, hk, hlev₁, hfin, -⟩ := GlobalTheory.T.exists_finite_etale_surjective_levelMap E H D Xo hN l₀ l hd
+  obtain ⟨k, r₁, ν₁, hr₁, hk, hlev₁, hfin, -⟩ := _root_.GlobalTheory.LevelMap.exists_levelMap E H D Xo hN l₀ l hd
   have hS : 0 < n * l₀.M := Nat.mul_pos hn (lt_of_lt_of_le (by norm_num) l₀.three_le)
   have hD₀ : IsDedFrac B.β := isDedFrac_of_isInc l₀ _ 1 hS B.A_one rfl _ B.β_inc
   have hD₁ : IsDedFrac (k.comp B.β) :=
@@ -128,8 +124,8 @@ theorem descends_of_raises : Out.Laws → Out.Laws2 → Out.Laws3 → ∀ (E : T
   obtain ⟨ν₂, hν₂⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ ν₁ Y.m0.toSABMap
   have hover : r ≫ (Xo l₀).s = (pullback.fst _ _ ≫ r₁) ≫ (Xo l₀).s := by
     have := mono_spMap_of_isDedFrac hD₀
-    rw [← cancel_mono (spMap B.β), Category.assoc, ← Cpt_j_over B.C, ← Category.assoc, ← a.j_comm, Category.assoc,
-      a.π_over, ← Category.assoc, Cpt_j_over, Category.assoc, ← spMap_comp, hbβ, spMap_comp, spMap_comp,
+    rw [← cancel_mono (spMap B.β), Category.assoc, ← _root_.GlobalTheory.Models.Cpt.openImmersion_comp_structure_eq_generic B.C, ← Category.assoc, ← a.j_comm, Category.assoc,
+      a.π_over, ← Category.assoc, _root_.GlobalTheory.Models.Cpt.openImmersion_comp_structure_eq_generic, Category.assoc, ← spMap_comp, hbβ, spMap_comp, spMap_comp,
       Category.assoc, Category.assoc, reassoc_of% hr₁, pullback.condition_assoc]
   obtain ⟨e₁, e₂⟩ := GlobalTheory.LevUniq.map_to_univ_unique h1 h2 h3 E H D l₀ l (Xo l₀) _ _ _ _ Y.oF r _ ν ν₂ hred hover hlev
     (levComp_comp Y.m0 hlev₁ ν₂ hν₂)

@@ -45,8 +45,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Et.D3
 
-theorem a0 : LateralTheory.E.EtaleChapterDThree := LateralTheory.Fin.EtaleChapterDThree.intersectionNumber_baseChange
-
-theorem intersectionNumber_baseChange : LateralTheory.E.EtaleChapterDThree := a0
+alias intersectionNumber_baseChange := _root_.LateralTheory.E.t_D3Cut.goal
 
 end UpperTheory.Et.D3

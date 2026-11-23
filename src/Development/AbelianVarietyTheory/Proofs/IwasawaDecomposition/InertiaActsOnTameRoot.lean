@@ -125,9 +125,6 @@ def primeOf {L : Type} [Field L] [NumberField L] [Algebra L Ω] (A : ValuationSu
 theorem mem_primeOf {L : Type} [Field L] [NumberField L] [Algebra L Ω] {A : ValuationSubring Ω} {x : 𝓞 L} :
     x ∈ primeOf (L := L) A ↔ A.valuation (algebraMap L Ω (x : L)) < 1 := Iff.rfl
 
-theorem den : ∀ {L Ω : Type} [Field L] [NumberField L] [Field Ω] [Algebra L Ω] (A : ValuationSubring Ω) (x : L), A.valuation (algebraMap L Ω x) ≤ 1 → ∃ s t : 𝓞 L, A.valuation (algebraMap L Ω (s : L)) = 1 ∧ (s : L) * x = t :=
-  _root_.GlobalTheory.DenominatorExists.exists_denominator
-
 instance isPrime_primeOf {L : Type} [Field L] [NumberField L] [Algebra L Ω] (A : ValuationSubring Ω) :
     (primeOf (L := L) A).IsPrime where
   ne_top' h := by
@@ -161,7 +158,7 @@ theorem inert_val_of_le {E L : Type} [Field E] [NumberField E] [Field L] [Number
     {A : ValuationSubring Ω} {τ : L ≃ₐ[E] L} (hτ : τ ∈ inertiaGroup E L (primeOf (L := L) A)) (x : L)
     (hx : A.valuation (algebraMap L Ω x) ≤ 1) :
     A.valuation (algebraMap L Ω (τ x) - algebraMap L Ω x) < 1 := by
-  obtain ⟨s, t, hs1, e⟩ := den A x hx
+  obtain ⟨s, t, hs1, e⟩ := _root_.GlobalTheory.DenominatorExists.exists_denominator A x hx
   have hs := inert_val hτ s
   have ht := inert_val hτ t
   have hτs : A.valuation (algebraMap L Ω (τ s)) = 1 := by

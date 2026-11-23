@@ -89,7 +89,7 @@ theorem holUpTo_of_lowKilled : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (B : C.B
     have e1 := xB_mvB_mul C B hB a (torProd C.θ T B s) (fun τ => diagonal fun c => cexp ((t τ c : ℂ) * I)) fun ρ => ?_
     · erw [← e1]
       rw [hF _ (mul_mem ha hk), hF a ha, ← mul_assoc,
-      apply_mul_torProd C.θ T B _ φ htor, apply_mul_torProd C.θ T B _ _ (GlobalTheory.T.realPlaceDeterminantPower_mul_compactTorusElement D S T C B hB m)]
+      apply_mul_torProd C.θ T B _ φ htor, apply_mul_torProd C.θ T B _ _ (_root_.GlobalTheory.AdSpan.DetTor.detPow_mul_torAt D S T C B hB m)]
       have hb : (bchar la fun τ => (diagonal fun c => cexp ((t τ c : ℂ) * I) : Matrix (Fin T.rank) (Fin T.rank) ℂ)) =
           cexp (((∑ ρ, ∑ c, ((la (C.m.e ρ) c : ℝ)) * t (C.m.e ρ) c : ℝ) : ℂ) * I) := by
         unfold bchar
@@ -123,7 +123,7 @@ theorem holUpTo_of_lowKilled : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (B : C.B
       simp only [s]; push_cast; ring_nf)
   have hQ : ∀ a ∈ GinfC T, Q (C.xB (C.mvB a B)) = φ (g * a) / detPow C.θ T m a := fun a ha => by
     rw [Q1 _ (U1 a), hF a ha]
-  refine ⟨Q, GlobalTheory.T.differentiableOn_frames_of_killedNilpotentDerivative _ _ C.X la Q Q2 fun y hy => ?_, Q2, fun a ha => ?_⟩
+  refine ⟨Q, _root_.GlobalTheory.HolRead.Holo.differentiableOn_of_killed _ _ C.X la Q Q2 fun y hy => ?_, Q2, fun a ha => ?_⟩
   swap
   · rw [hQ a ha]; field_simp [dNe a]
   obtain ⟨a, ha, rfl⟩ := U2 y hy

@@ -79,7 +79,7 @@ theorem int_iso_of_localTateDuality (hT : Formalism.GaloisCohomology.LocalTateDu
       exact congrArg D.ε (i.symm_apply_apply g)
     rw [e] at h2
     exact ⟨a, h1, h2⟩
-  obtain ⟨hcpt, hopen, hbasis⟩ := GlobalTheory.T.dualLattice_compact_powSmul_nhds_basis D hO.compact hF.emb hD.lat hD.perf hD.t2' ϖ hϖ
+  obtain ⟨hcpt, hopen, hbasis⟩ := _root_.GlobalTheory.LocDualTop.dualLat_compact_powSub_nhds D hO.compact hF.emb hD.lat hD.perf hD.t2' ϖ hϖ
   haveI := hcpt
   let X : ℕ → Type := fun k => G → ↥D.T' ⧸ powSub (M := ↥D.T') ϖ (r + k)
   let Y : ∀ k, Set (X k) := fun k => {z | z ∈ Z1 (quotRep D.ρTl' ϖ (r + k)) ∧
@@ -88,7 +88,7 @@ theorem int_iso_of_localTateDuality (hT : Formalism.GaloisCohomology.LocalTateDu
   let f : ∀ k, X (k + 1) → X k := fun k z g =>
     Submodule.factor (powSub_anti (M := ↥D.T') ϖ (hle k)) (z g)
   have hfin : ∀ k, (Y k).Finite := fun k =>
-    (GlobalTheory.T.finite_cocycles_quotient_pow_smul_of_isOpen hT hK hO.p_mem i D.ρTl' (sub_contAction D.contT' _ D.stT') ϖ hϖ hopen (r + k)).subset
+    (_root_.GlobalTheory.LocDualInt.finite_cocycles_quotient_pow_smul_module hT hK hO.p_mem i D.ρTl' (sub_contAction D.contT' _ D.stT') ϖ hϖ hopen (r + k)).subset
       (fun z hz => hz.1)
   have hne : ∀ k, (Y k).Nonempty := fun k => by
     obtain ⟨z, hz, hz'⟩ := GlobalTheory.T.exists_cocycle_cup_not_coboundary_finiteLevel hT hK hO.ring hO.compact hO.t2 hO.adic hO.p_mem hO.p_ne hF.emb i D
@@ -122,7 +122,7 @@ theorem int_iso_of_localTateDuality (hT : Formalism.GaloisCohomology.LocalTateDu
       rfl
     rw [e1, (hs k).2]
     exact (mk_qlift (s k g)).symm
-  obtain ⟨e, he, hew⟩ := GlobalTheory.T.exists_continuous_cocycle_lift_of_compatible' D.ρTl' ϖ r hopen hbasis w hwZ hstep
+  obtain ⟨e, he, hew⟩ := _root_.GlobalTheory.CocycleLimit.exists_continuous_cocycle_lift_of_compatible D.ρTl' ϖ r hopen hbasis w hwZ hstep
   have h1 := hx (Submodule.Quotient.mk ⟨e, he⟩)
   have h2 : ((cupCocycleZ1Z1 D.ρA D.ρTl' (twist D.ε (KO O)) (pairKO D.bT D.T) (pairKO_cont D.bT D.contbT D.T) D.pairKO_equiv (sub_contAction D.contT' _ D.stT') c ⟨e, he⟩) : G × G → KO O) ∈ B2 (twist D.ε (KO O)) := by
     have h3 : D.inv (Submodule.Quotient.mk (cupCocycleZ1Z1 D.ρA D.ρTl' (twist D.ε (KO O)) (pairKO D.bT D.T) (pairKO_cont D.bT D.contbT D.T) D.pairKO_equiv (sub_contAction D.contT' _ D.stT') c ⟨e, he⟩)) = D.inv 0 := by

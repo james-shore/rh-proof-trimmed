@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -84,8 +85,8 @@ theorem emb_mulVec_alt (a : Matrix (Fin n) (Fin n) ℂ) :
 
 theorem frame : PositivityTheory.RgHe.Frame := by
   intro n ε d ε' d' e hF hinj hW
-  obtain ⟨hs1, hs2⟩ := GlobalTheory.T.interlacing_signature_parity n ε d ε' d' e hF hinj hW
-  obtain ⟨ps1, ps2⟩ := GlobalTheory.T.partial_fraction_coefficient_signs d d' hinj
+  obtain ⟨hs1, hs2⟩ := _root_.GlobalTheory.CompanionTheory.RgHeFrame.SignWord.heSign n ε d ε' d' e hF hinj hW
+  obtain ⟨ps1, ps2⟩ := _root_.GlobalTheory.CompanionTheory.RgHeSign.pfSign d d' hinj
   have hD : ∀ i, 0 < (if ε i then (1 : ℝ) else -1) * pfD d d' i := fun i => by
     have h := ps1 i
     by_cases hi : ε i = true
@@ -122,7 +123,7 @@ theorem frame : PositivityTheory.RgHe.Frame := by
     rw [hinv]; rfl
   refine ⟨gu, fun Y => ?_, ?_⟩
   · rw [hgu, hgu']
-    exact GlobalTheory.T.trace_diagonal_block_conjugate_formula n e d d' g X hdet hXg hblk Y
+    exact _root_.GlobalTheory.CompanionTheory.RgHeFrame.trace_diagonal_block_conjugate n e d d' g X hdet hXg hblk Y
   · set D : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ := diagonal fun i => ((d i : ℝ) : ℂ) with hDd
     have hX : X = g * D * g⁻¹ := by
       rw [hXg.symm, Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hdet, Matrix.mul_one]
@@ -134,7 +135,7 @@ theorem frame : PositivityTheory.RgHe.Frame := by
       rw [hX] at hA
       exact GlobalTheory.T.commutant_annihilating_vector_zero g _ v hdet hdi (fun i => by rw [hinv]; exact hβ i) A hA hAv
     obtain ⟨c, hc, hAc⟩ := GlobalTheory.T.commutator_coercive_on_annihilator X v hcyc
-    refine ⟨c * hs g * hs g⁻¹ + 1, by have := hs_nonneg' g; have := hs_nonneg' g⁻¹; positivity, fun h => ?_⟩
+    refine ⟨c * hs g * hs g⁻¹ + 1, by have := _root_.Formalism.REAL.frobenius_nonneg_matrix g; have := _root_.Formalism.REAL.frobenius_nonneg_matrix g⁻¹; positivity, fun h => ?_⟩
     set B := emb e (um h) with hB
     set B' := emb e (um h⁻¹) with hB'
     have hBB : B * B' = 1 := by
@@ -165,7 +166,7 @@ theorem frame : PositivityTheory.RgHe.Frame := by
       refine (GlobalTheory.T.hilbert_schmidt_norm_submultiplicative _ _).trans (mul_le_mul_of_nonneg_right (GlobalTheory.T.hilbert_schmidt_norm_submultiplicative _ _) (hs_nonneg' _))
     have i3 : hs (um h - 1) = hs (B - 1) := (hs_emb_sub (e := e) (um h)).symm
     rw [i3]
-    have := hs_nonneg' B; have := hs_nonneg' δ; have := hs_nonneg' g; have := hs_nonneg' g⁻¹
+    have := _root_.Formalism.REAL.frobenius_nonneg_matrix B; have := _root_.Formalism.REAL.frobenius_nonneg_matrix δ; have := _root_.Formalism.REAL.frobenius_nonneg_matrix g; have := _root_.Formalism.REAL.frobenius_nonneg_matrix g⁻¹
     calc hs (B - 1) ≤ c * (hs B * (hs g * hs δ * hs g⁻¹)) := i1.trans (mul_le_mul_of_nonneg_left i2 hc.le)
       _ = (c * hs g * hs g⁻¹) * hs B * hs δ := by ring
       _ ≤ (c * hs g * hs g⁻¹ + 1) * hs B * hs δ := by gcongr; linarith

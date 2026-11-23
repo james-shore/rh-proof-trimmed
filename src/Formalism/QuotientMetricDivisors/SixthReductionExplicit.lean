@@ -48,6 +48,4 @@ open NumberField
 
 namespace Formalism.DivisionValues
 
-theorem divIneqRecord : DivIneqRecord := divisor_inequality_explicit
-
 end Formalism.DivisionValues

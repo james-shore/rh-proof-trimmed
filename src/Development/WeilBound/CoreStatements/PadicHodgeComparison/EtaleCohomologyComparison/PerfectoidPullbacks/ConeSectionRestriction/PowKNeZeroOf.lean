@@ -76,12 +76,8 @@ theorem d_resB {R : Type} [CommRing R] {C : Type 1} [Category.{0} C] (A : C ⥤ 
     CH.d _ j (resB A h b) = resB A h (CH.d _ j b) :=
   (CH.Mor.restrict (CH.modF (U.ι ⋙ A)) (ObjectProperty.ιOfLE h)).d_pullC j b
 
-theorem dpow_mem_pdP' {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) (n : ℕ) {x : B} (hx : x ∈ J) :
-    δ.dpow n x ∈ pdP δ n :=
-  Ideal.subset_span ⟨[(n, x)], by simpa using hx, by simp, by simp⟩
-
 theorem mem_pdP_one {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) {x : B} (hx : x ∈ J) : x ∈ pdP δ 1 := by
-  have := dpow_mem_pdP' δ 1 hx
+  have := _root_.GlobalTheory.CompanionTheory.DPFil.dpow_mem_pdP δ 1 hx
   rwa [δ.dpow_one hx] at this
 
 theorem plogK_mem' {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) (s : ℕ) {x : B} (hx : x ∈ J) :
@@ -100,13 +96,13 @@ theorem g_rel {K : Type} [Field K] {X : Scheme.{0}} {N n e : ℕ} (i : X ⟶ PSp
     (i.appLE (Proj.basicOpen (MvPolynomial.homogeneousSubmodule (Fin (N + 1)) K) (y b)) V (hVb b)).hom (yQ y hy a b)
     with hAdef
   have hA : ∀ a b c : Fin (n + 2), A a b * A b c = A a c := fun a b c =>
-    (yQ_mul i y hy a b c V (hVb a) (hVb b) (hVb c)).1
-  have hA1 : ∀ a, A a a = 1 := fun a => (yQ_mul i y hy a a a V (hVb a) (hVb a) (hVb a)).2
+    (_root_.GlobalTheory.CompanionTheory.ConeYq.yQ_mul_yQ i y hy a b c V (hVb a) (hVb b) (hVb c)).1
+  have hA1 : ∀ a, A a a = 1 := fun a => (_root_.GlobalTheory.CompanionTheory.ConeYq.yQ_mul_yQ i y hy a a a V (hVb a) (hVb a) (hVb a)).2
   have htA : ∀ k : Fin (n + 1), ((t k : Γ(X, V)ˣ) : Γ(X, V)) = A k.succ 0 := fun k => ht k
   have hinv : ∀ k : Fin (n + 1), A 0 k.succ = (((t k)⁻¹ : Γ(X, V)ˣ) : Γ(X, V)) := fun k =>
     Units.eq_inv_of_mul_eq_one_left (by rw [htA, hA, hA1])
   have e0 : rs hVW ((i.appLE _ W (hW k.succ)).hom (yQ y hy k.castSucc k.succ)) = A k.castSucc k.succ :=
-    rs_appLE i _ hVW (hW k.succ) (yQ y hy k.castSucc k.succ)
+    _root_.GlobalTheory.CompanionTheory.ConeRs.rs_appLE_apply i _ hVW (hW k.succ) (yQ y hy k.castSucc k.succ)
   rw [e0]
   by_cases hk : (k : ℕ) = 0
   · have hk0 : k = 0 := Fin.ext hk
@@ -122,14 +118,14 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
     {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of K)) [ConnectedSpace X] (d : ℕ) [SmoothOfRelativeDimension d q] (D : E.LineData X) (hD : IsTautologicalLine q D) (c : HdR q 2)
     (hc : IsFirstChernDeRham q D c) : powK q c d ≠ 0 := by
   rcases d with _ | n
-  · exact oneK_ne_zero q inferInstance
+  · exact _root_.GlobalTheory.CompanionTheory.ConeOne.oneK_ne_zero q inferInstance
   · intro h0
     obtain ⟨N, i, hci, hiq, hO⟩ := hD
     obtain ⟨e, he, y, hy, hcov, haff, V, hV, cc, hdom, htc, ht, halg, B, hBr, hBi, hBt, hBfg, hBint, hBle, hBfr⟩ :=
       hG q n N i hci hiq
     let _ : Algebra K Γ(X, V) := (strV q V).toAlgebra
     have _ := hdom
-    obtain ⟨Dv, hDv⟩ := GlobalTheory.T.exists_dual_derivations_of_coords q V (n + 1) cc
+    obtain ⟨Dv, hDv⟩ := _root_.GlobalTheory.CompanionTheory.ConeDerivs.exists_dual_derivations q V (n + 1) cc
 
     have hsQ : ∀ T : (wU q i y (n + 2)).FullSubcategory, T.obj.pdPow (n + 2) = ⊥ := fun T => by
       obtain ⟨k, hk, -⟩ := T.property
@@ -137,7 +133,7 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
     have hVQ : ∀ T : (wU q i y (n + 2)).FullSubcategory, ∃ (V : X.Opens) (σ : (V : Scheme.{0}) ⟶ D.Y),
         σ ≫ D.f = V.ι ∧ InU V ((wU q i y (n + 2)).ι.obj T) := fun T => by
       obtain ⟨k, -, W, ⟨j, rfl⟩, hW⟩ := T.property
-      obtain ⟨σ, hσ⟩ := wch_mem D N i hO j
+      obtain ⟨σ, hσ⟩ := _root_.GlobalTheory.CompanionTheory.ConeWchMem.main D N i hO j
       exact ⟨wch i j, σ, hσ, fun x hx => (hW hx).2⟩
     let Λ : CLiftK (wU q i y (n + 2)).ι D :=
       (GlobalTheory.T.exists_cone_lift q D (n + 2)).some.precomp (ObjectProperty.ιOfLE (wU_le q D i y (n + 2) hO))
@@ -156,19 +152,19 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
         Subsingleton (HU (sq (thFil (smFun X q) r) (thFil (smFun X q) (r + 1))) (KS q (n + 2) {⨅ k ∈ S, uy i y k}) j) →
         Subsingleton (HU (gr (Φ := thP (smFun X q)) (thFil (smFun X q)) r) (capS W S) j) := by
       intro S hS r j hsub
-      obtain ⟨h, hbij⟩ := zar_capS q i y (n + 2) S hS r (r + 1) j
+      obtain ⟨h, hbij⟩ := _root_.GlobalTheory.CompanionTheory.ConeZarCap.main q i y (n + 2) S hS r (r + 1) j
       exact hbij.2.subsingleton
     have : Smooth q := SmoothOfRelativeDimension.smooth (n + 1) q
     have hvan2 : ∀ S : Finset (Fin (n + 2)), S.Nonempty → ∀ (r : ℤ) (j : ℕ), (n : ℤ) + 1 < r →
         Subsingleton (HU (gr (Φ := thP (smFun X q)) (thFil (smFun X q)) r) (capS W S) j) := by
       intro S hS r j hr
       refine hvanS S hS r j ?_
-      exact gr_top_van q (n + 1) _ (haff S hS) (n + 2) r j (by exact_mod_cast hr)
+      exact _root_.GlobalTheory.CompanionTheory.GrTop.grTop_main q (n + 1) _ (haff S hS) (n + 2) r j (by exact_mod_cast hr)
     have hvan1 : ∀ S : Finset (Fin (n + 2)), S.Nonempty → ∀ (r : ℤ) (j : ℕ), (j : ℤ) ≠ r →
         Subsingleton (HU (gr (Φ := thP (smFun X q)) (thFil (smFun X q)) r) (capS W S) j) := by
       intro S hS r j hjr
       rcases lt_or_ge r 0 with hr | hr
-      · exact gr_neg_van _ _ r hr j
+      · exact _root_.GlobalTheory.CompanionTheory.Cone.HU_gr_neg _ _ r hr j
       rcases le_or_gt r ((n : ℤ) + 1) with hr' | hr'
       · refine hvanS S hS r j ?_
         obtain ⟨m, rfl⟩ := Int.eq_ofNat_of_zero_le hr
@@ -184,7 +180,7 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
       intro h
       have hsm : cupPowC ((wU q i y (n + 2)).ι ⋙ thA (smFun X q)) (e • zK Λ (n + 2)) (n + 1) =
           ((e : K) ^ (n + 1)) • cupPowC ((wU q i y (n + 2)).ι ⋙ thA (smFun X q)) (zK Λ (n + 2)) (n + 1) := by
-        rw [← Nat.cast_smul_eq_nsmul K, cupPowC_smul]
+        rw [← Nat.cast_smul_eq_nsmul K, _root_.GlobalTheory.CompanionTheory.ConePow.cupPowC_smul]
       have hB := ((CrystallineSemistableComparison.P.cls_surj _ _).2.1 _ hzp).1 hzp0
       refine ((CrystallineSemistableComparison.P.cls_surj _ _).2.1 _ h).2 ?_
       exact hsm ▸ Submodule.smul_mem _ _ hB
@@ -203,25 +199,25 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
         Rep ((thFil (smFun X q) ((n : ℤ) + 1)).res (capS W Finset.univ).ι)
           ((thFil (smFun X q) ((n : ℤ) + 1 + 1)).res (capS W Finset.univ).ι)
           (cupListC ((capS W Finset.univ).ι ⋙ (thP (smFun X q)).A) ℓ) c0 := by
-      have := rep_cupList (sP (capS W Finset.univ)) (sFil (capS W Finset.univ)) (isFil _) ℓ hℓcoc hℓ1
+      have := _root_.GlobalTheory.CompanionTheory.ConeRepCup.exists_rep (sP (capS W Finset.univ)) (sFil (capS W Finset.univ)) (_root_.GlobalTheory.CompanionTheory.DPFil.isFil_sFil _) ℓ hℓcoc hℓ1
       rw [Nat.cast_succ] at this
       exact this
     obtain ⟨c0, hc0⟩ := hc0'
-    obtain ⟨ω, f, hf, hdf, hrep⟩ := cech_top_rel (thP (smFun X q)) (thFil (smFun X q)) (isFil_th _) (n + 2) n W hsU
-      (wK_rel q i y (n + 2)) hvan1 hvan2 (e • zK Λ (n + 2)) hze hz1 b hb1 hb hzero c0 hc0
+    obtain ⟨ω, f, hf, hdf, hrep⟩ := _root_.GlobalTheory.CompanionTheory.ConeZig.cech_top_cup_power (thP (smFun X q)) (thFil (smFun X q)) (_root_.GlobalTheory.CompanionTheory.DPFil.isFil_thFil _) (n + 2) n W hsU
+      (_root_.GlobalTheory.CompanionTheory.ConeSite.wK_rel q i y (n + 2)) hvan1 hvan2 (e • zK Λ (n + 2)) hze hz1 b hb1 hb hzero c0 hc0
     have key : ∃ (x : Fin (n + 2) → Γ(X, V)) (η : Fin (n + 1) → Γ(X, V)),
         (∀ j, x j ∈ jacS (B (Finset.univ.erase j)) Dv id) ∧ (∀ k, η k ∈ jacS (B Finset.univ) Dv (Fin.succAbove k)) ∧
         ((((∏ k, (ht k).unit)⁻¹ : Γ(X, V)ˣ) : Γ(X, V)) =
           ∑ j, x j + ∑ k : Fin (n + 1), (-1 : Γ(X, V)) ^ (k : ℕ) * Dv k (η k)) := by
-      have hKG : KH.LocGr := CrystallineSemistableComparison.Pb.loc_gr
-      have hKP : KH.PolyTf := CrystallineSemistableComparison.Pb.poly_tf
+      have hKG : KH.LocGr := _root_.GlobalTheory.CompanionTheory.LocGrInd.loc_gr
+      have hKP : KH.PolyTf := _root_.CrystallineSemistableComparison.Pb.Site.poly_tf'
       have hKA : KH.GrAff := CrystallineSemistableComparison.Pb.gr_aff
       have hV' : ∀ S : Finset (Fin (n + 2)), V ≤ ⨅ k ∈ S, uy i y k := fun S => le_biInf_of_le hV S
       have hUk : ∀ k, (⨅ k ∈ (Finset.univ : Finset (Fin (n + 2))), uy i y k) ≤ uy i y k := fun k =>
         biInf_le _ (Finset.mem_univ k)
       let g : Fin (n + 1) → Γ(X, ⨅ k ∈ (Finset.univ : Finset (Fin (n + 2))), uy i y k) := fun k =>
         (i.appLE _ _ (hUk k.succ)).hom (yQ y hy k.castSucc k.succ)
-      have hg : ∀ k, IsUnit (g k) := fun k => yQ_unit i y hy _ _ _ (hUk _) (hUk _)
+      have hg : ∀ k, IsUnit (g k) := fun k => _root_.GlobalTheory.CompanionTheory.ConeUnit.yQ_appLE_isUnit i y hy _ _ _ (hUk _) (hUk _)
       choose ĝ0 hĝ0 hĝd using hdiff
       let ĝ : Fin (n + 1) → ∀ T : (capS W Finset.univ).FullSubcategory, T.obj.B := fun k T =>
         ĝ0 k.castSucc k.succ ⟨T.obj, fun α _ => T.property α (Finset.mem_univ α)⟩
@@ -229,9 +225,9 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
           Ideal.Quotient.mk _ (ĝ k T) = ev T.obj h (g k) := fun k T h => by
         have h1 : InU (uy i y k.succ) T.obj := inU_mono q (hUk k.succ) h
         have e1 := hĝ0 k.castSucc k.succ ⟨T.obj, fun α _ => T.property α (Finset.mem_univ α)⟩ h1
-        have e2 := rs_appLE i (Proj.basicOpen (MvPolynomial.homogeneousSubmodule (Fin (N + 1)) K) (y k.succ))
+        have e2 := _root_.GlobalTheory.CompanionTheory.ConeRs.rs_appLE_apply i (Proj.basicOpen (MvPolynomial.homogeneousSubmodule (Fin (N + 1)) K) (y k.succ))
           (hUk k.succ) le_rfl (yQ y hy k.castSucc k.succ)
-        have e3 := ev_rs T.obj (hUk k.succ) h h1
+        have e3 := _root_.GlobalTheory.CompanionTheory.ConeEval.ev_rs_eq T.obj (hUk k.succ) h h1
           ((i.appLE (Proj.basicOpen (MvPolynomial.homogeneousSubmodule (Fin (N + 1)) K) (y k.succ)) (uy i y k.succ)
             le_rfl).hom (yQ y hy k.castSucc k.succ))
         refine e1.trans (e3.symm.trans ?_)
@@ -240,7 +236,7 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
         congrArg (resB (thA (smFun X q))
           (fun T h α _ => h α (Finset.mem_univ α) : capS W Finset.univ ≤ capS W {k.castSucc, k.succ})) (hĝd k.castSucc k.succ)
       rw [hℓeq] at hc0
-      obtain ⟨x, η, hx, hη, heq⟩ := cone_transfer hKG hKP hKA q n i y haff V hV' cc Dv hDv g hg ĝ hĝ c0 hc0 ω f hf hdf hrep
+      obtain ⟨x, η, hx, hη, heq⟩ := _root_.GlobalTheory.CompanionTheory.ConeTransfer.main hKG hKP hKA q n i y haff V hV' cc Dv hDv g hg ĝ hĝ c0 hc0 ω f hf hdf hrep
       let tu : Fin (n + 1) → Γ(X, V)ˣ := fun k => (ht k).unit
       let g' : Fin (n + 1) → Γ(X, V) := fun k => if h : (k : ℕ) = 0 then (((tu 0)⁻¹ : Γ(X, V)ˣ) : Γ(X, V)) else
         (tu ⟨k - 1, by omega⟩ : Γ(X, V)) * (((tu k)⁻¹ : Γ(X, V)ˣ) : Γ(X, V))
@@ -257,9 +253,9 @@ theorem powK_ne_zero_of (hG : LocalCohomologySetup.GeoSetupP) (hR : LocalCohomol
       have hne : ∀ j : Fin (n + 2), (Finset.univ.erase j).Nonempty := fun j =>
         ⟨j.succAbove 0, Finset.mem_erase.2 ⟨Fin.succAbove_ne j 0, Finset.mem_univ _⟩⟩
       have hxm : ∀ j, x j ∈ jacS (B (Finset.univ.erase j)) Dv id := fun j =>
-        jacSpan_le (hV' _) (B _) (hBr _ (hne j)) Dv id (hx j)
+        _root_.GlobalTheory.CompanionTheory.Cone.jacSpan_le_jacS (hV' _) (B _) (hBr _ (hne j)) Dv id (hx j)
       have hηm : ∀ k, η k ∈ jacS (B Finset.univ) Dv (Fin.succAbove k) := fun k =>
-        jacSpan_le (hV' _) (B _) (hBr _ Finset.univ_nonempty) Dv _ (hη k)
+        _root_.GlobalTheory.CompanionTheory.Cone.jacSpan_le_jacS (hV' _) (B _) (hBr _ Finset.univ_nonempty) Dv _ (hη k)
       have hneg : (∃ (x : Fin (n + 2) → Γ(X, V)) (η : Fin (n + 1) → Γ(X, V)),
           (∀ j, x j ∈ jacS (B (Finset.univ.erase j)) Dv id) ∧ (∀ k, η k ∈ jacS (B Finset.univ) Dv (Fin.succAbove k)) ∧
           (-(((∏ k, (ht k).unit)⁻¹ : Γ(X, V)ˣ) : Γ(X, V)) =

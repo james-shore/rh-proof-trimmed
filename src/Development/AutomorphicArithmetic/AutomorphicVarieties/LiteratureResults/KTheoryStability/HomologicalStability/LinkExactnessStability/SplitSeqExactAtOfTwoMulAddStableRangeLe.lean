@@ -68,19 +68,19 @@ theorem splitAcyclic_step (R : Type) [CommRing R] (s : ℕ) (hs : StableRangeLe 
     (ih : ∀ n' < n, ∀ p' : ℕ, 2 * p' + s + 1 ≤ n' → ExactAt (splitSeq R n') p') (p : ℕ)
     (hp : 2 * p + s + 1 ≤ n) : ExactAt (splitSeq R n) p := by
   intro c hc hbdc
-  obtain ⟨hhh, hvv, hhv⟩ := GlobalTheory.T.pairSeqDoubleComplex_boundary_relations ((Fin n → R) × (Fin n → R)) (Fin n → R)
-  obtain ⟨hmh, hmv, h0⟩ := GlobalTheory.T.pairSeqBoundaries_lower_bidegree_of_subClosed _ _ (splitPairs R n) (GlobalTheory.T.subClosed2_splitPairs R n)
+  obtain ⟨hhh, hvv, hhv⟩ := _root_.GlobalTheory.SeqCx.dbl_bd ((Fin n → R) × (Fin n → R)) (Fin n → R)
+  obtain ⟨hmh, hmv, h0⟩ := _root_.GlobalTheory.SeqCx.bd_chains2 _ _ (splitPairs R n) (_root_.GlobalTheory.SeqCx.splitPairs_subClosed2 R n)
   have hnil : ([] : List (Fin n → R)) ∈ uniSeq R n :=
     ⟨fun i => absurd i.2 (by simp), fun i => absurd i.2 (by simp)⟩
   have hc' : c ∈ chains {l | (l, ([] : List (Fin n → R))) ∈ splitPairs R n} p := by
     refine Finsupp.supported_mono ?_ hc
     rintro l ⟨hl, hlen⟩
     exact ⟨⟨hl, hnil, by simp⟩, hlen⟩
-  obtain ⟨he, hhe, hve⟩ := GlobalTheory.T.pair_nil_hbd_vbd_eq_zero_of_cycle _ _ (splitPairs R n) p c hc' hbdc
+  obtain ⟨he, hhe, hve⟩ := _root_.GlobalTheory.SeqCx.cycle_pair_empty _ _ (splitPairs R n) p c hc' hbdc
   have hcol : ∀ a b, a + b = p → ∀ x ∈ chains2 (splitPairs R n) a b,
       vbd _ _ x = 0 → ∃ y ∈ chains2 (splitPairs R n) a (b + 1), vbd _ _ y = x := by
     intro a b hab x hx hvx
-    refine GlobalTheory.T.pairSeqVerticalCycle_is_boundary_of_slices_exact _ _ _ a b ?_ x hx hvx
+    refine _root_.GlobalTheory.SeqCx.vertical_exact_of_columns _ _ _ a b ?_ x hx hvx
     rintro l hl ⟨w, hw⟩
     have hls : l ∈ splitSeq R n := hw.1
     have hset : {w | (l, w) ∈ splitPairs R n} =
@@ -88,12 +88,12 @@ theorem splitAcyclic_step (R : Type) [CommRing R] (s : ℕ) (hs : StableRangeLe 
       ext w
       exact ⟨fun h => ⟨h.2.1, h.2.2⟩, fun h => ⟨hls, h.1, h.2⟩⟩
     rw [hset]
-    exact GlobalTheory.T.exactAt_uniSeq_orthogonal_splitSeq_of_exactAt_uniSeq R s hs n (n - a) b l hls (by omega) (by omega)
-      (GlobalTheory.T.unimodularSeqComplex_exactAt_of_add_stableRank_le R s hs (n - a) b (by omega))
+    exact _root_.GlobalTheory.SeqCx.exactAt_uniSeq_killed_by_split R s hs n (n - a) b l hls (by omega) (by omega)
+      (_root_.GlobalTheory.uniSeq_exactAt_of_stableRangeLe R s hs (n - a) b (by omega))
   have hrow : ∀ a b, a + b = p + 1 → 2 ≤ b → ∀ x ∈ chains2 (splitPairs R n) a b,
       hbd _ _ x = 0 → ∃ y ∈ chains2 (splitPairs R n) (a + 1) b, hbd _ _ y = x := by
     intro a b hab hb x hx hhx
-    refine GlobalTheory.T.pairSeqHorizontalCycle_is_boundary_of_slices_exact _ _ _ a b ?_ x hx hhx
+    refine _root_.GlobalTheory.SeqCx.dblRow_exact _ _ _ a b ?_ x hx hhx
     rintro w hw ⟨l, hl⟩
     have hwu : w ∈ uniSeq R n := hl.2.1
     have hset : {l | (l, w) ∈ splitPairs R n} =
@@ -101,10 +101,10 @@ theorem splitAcyclic_step (R : Type) [CommRing R] (s : ℕ) (hs : StableRangeLe 
       ext σ
       exact ⟨fun h => ⟨h.1, h.2.2⟩, fun h => ⟨h.1, hwu, h.2⟩⟩
     rw [hset]
-    exact GlobalTheory.T.splitSeq_forms_kill_uniSeq_exactAt R s hs n ih a w hwu (by omega) (by omega)
+    exact _root_.GlobalTheory.SeqCx.exactAt_split_kill_uni R s hs n ih a w hwu (by omega) (by omega)
   obtain ⟨z, hz, hhz, hvz⟩ := GlobalTheory.zigzag_double_complex _ (chains2 (splitPairs R n)) (hbd _ _) (vbd _ _) p
     hhh hhv hmh hmv h0 hcol hrow hvv _ he hhe hve
-  refine GlobalTheory.T.exists_bd_of_vbd_eq_of_oneTerm_cycle _ _ (splitPairs R n) (splitSeq R n) p ?_ z hz hhz c hvz
+  refine _root_.GlobalTheory.SeqCx.OneTermEnd.bd_of_oneTerm_cycle _ _ (splitPairs R n) (splitSeq R n) p ?_ z hz hhz c hvz
   rintro u ⟨l, hl⟩ c' hc' hbc'
   have hu : [u] ∈ uniSeq R n := hl.2.1
   have hset : {l | (l, [u]) ∈ splitPairs R n} =
@@ -112,7 +112,7 @@ theorem splitAcyclic_step (R : Type) [CommRing R] (s : ℕ) (hs : StableRangeLe 
     ext σ
     exact ⟨fun h => ⟨h.1, h.2.2⟩, fun h => ⟨h.1, hu, h.2⟩⟩
   rw [hset] at hc'
-  exact GlobalTheory.T.exists_bd_of_cycle_forms_kill_unimodular_vector R s hs n ih p u hu hp c' hc' hbc'
+  exact _root_.GlobalTheory.SeqCx.cycle_formsKill_bound_splitSeq R s hs n ih p u hu hp c' hc' hbc'
 
 theorem exactAt_splitSeq_of_stableRange : ∀ (R : Type) [CommRing R] (s : ℕ), StableRangeLe R s →
     ∀ n p : ℕ, 2 * p + s + 1 ≤ n → ExactAt (splitSeq R n) p := by
@@ -122,10 +122,3 @@ theorem exactAt_splitSeq_of_stableRange : ∀ (R : Type) [CommRing R] (s : ℕ),
 
 end GlobalTheory.SeqCx
 
-section
-open GlobalTheory.SeqCx Matrix UpperTheory.V.KL
-theorem _root_.GlobalTheory.T.splitSeq_exactAt_of_two_mul_add_stableRange_le : ∀ (R : Type) [CommRing R] (s : ℕ), StableRangeLe R s → ∀ n p : ℕ, 2 * p + s + 1 ≤ n → ExactAt (splitSeq R n) p := by
-  first
-  | exact @GlobalTheory.SeqCx.exactAt_splitSeq_of_stableRange
-  | exact @GlobalTheory.SeqCx.splitAcyclic_step
-end

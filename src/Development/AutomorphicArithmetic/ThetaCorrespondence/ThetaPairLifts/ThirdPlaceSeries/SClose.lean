@@ -69,7 +69,7 @@ theorem a_close_main : _root_.GlobalTheory.RowsAClose.mainTheorem := by
     simp [Set.Finite.mem_toFinset]⟩
   have haut := _root_.GlobalTheory.AutomorphismSplitting.tieAut_and_split_alt hP.fin hL D P
   have htie0 : Formalism.MainNotions.SumRepresentations.tie0 D :=
-    ⟨GlobalTheory.RowTieLP.main D P.T, haut.1, _root_.GlobalTheory.T.tieGal_of_jumpsCard_of_deRhamPotSemistable hP.berger hL D P hJ⟩
+    ⟨GlobalTheory.RowTieLP.main D P.T, haut.1, _root_.GlobalTheory.TieGalAssembly.tieGal_of_jumpsCard_alt hP.berger hL D P hJ⟩
   have ha2 : _root_.Formalism.MainNotions.SumRepresentations.adm2_alt D := _root_.UpperTheory.GalS.galClose_alt hP hL D P
   have ha7 : _root_.Formalism.MainNotions.SumRepresentations.adm7_alt D := _root_.UpperTheory.GalN.allCuspidalOpenBound_of_cuspU_character_choice hP.fin hP.gal hL D P
   refine ⟨hlab.1, GlobalTheory.RowClose.heckeSplitOne_of_charTied D P.cf P.C P.tp P.chr, htie0, ha2, han1, han2, ha5, ha7,

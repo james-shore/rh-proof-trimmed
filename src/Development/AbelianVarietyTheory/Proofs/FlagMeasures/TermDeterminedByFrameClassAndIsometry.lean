@@ -76,9 +76,6 @@ theorem fix_X {F : FlagD H r} (a : V →ₗ[K] V) (ha : ∀ c, a (F.e c) = F.e c
   | add y z _ _ h1 h2 => rw [map_add (f := _), h1, h2]
   | smul c y _ h1 => rw [map_smul, h1]
 
-theorem B_sw {x y : V} (h : H.B x y = 0) : H.B y x = 0 := by
-  rw [← H.herm, h, star_zero]
-
 theorem isotropicSpan_first_le_framePairSpace {F G : FlagD H r} {x : V} (hx : x ∈ F.X) : x ∈ V0 F G :=
   Submodule.mem_sup_left (Submodule.mem_sup_left hx)
 
@@ -173,12 +170,12 @@ theorem core (F G₁ G₂ : FlagD H r) (γ n n' a : V ≃ₗ[K] V)
     exact Submodule.sub_mem _ (Submodule.sub_mem _ hy₁p (hnsX _ hy₂p)) (hnsP p (fun b => hp _))
   have hdP : ∀ u ∈ V0 F G₁, H.B u d = 0 := by
     intro u hu
-    have h1 : H.B u y₁ = 0 := B_sw ((mem_perp_iff H _ _).1 hy₁ u hu)
+    have h1 : H.B u y₁ = 0 := _root_.GlobalTheory.DegAsm.FrameMove.swap_zero ((mem_perp_iff H _ _).1 hy₁ u hu)
     have h2 : H.B u (n.symm y₂) = 0 := by
       have := hn u (n.symm y₂)
       rw [LinearEquiv.apply_symm_apply] at this
       rw [← this]
-      exact B_sw ((mem_perp_iff H _ _).1 hy₂ _ (hnV0 u hu))
+      exact _root_.GlobalTheory.DegAsm.FrameMove.swap_zero ((mem_perp_iff H _ _).1 hy₂ _ (hnV0 u hu))
     rw [hd, map_sub, h1, h2, sub_zero]
   have hdG := hI d hdX hdP
   rw [hX₁] at hdG
@@ -210,19 +207,9 @@ theorem fixedFrameOfWord_isotropicSpan_eq (u : D.what₂.Word) : (F0 X u).X = Xs
   congr 1
   ext x; simp
 
-theorem Ft_e' {Y : Full X} {u : D.what₂.Word} (t : GT Y u) (a : Fin (D.R.rS + 1)) :
-    (Ft t).e a = t.lin ((F0 X u).e a) := by
-  have hi : t.lin ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := t.rep.2.2.1
-  show (mapLF t.lin (lf D (X.Fu u))).fl.fvec a = t.lin ((lf D (X.Fu u)).fl.fvec a)
-  unfold mapLF
-  simp only [dif_pos hi]
-  refine Fin.lastCases ?_ (fun i => ?_) a
-  · simp only [FlagG.fvec, Fin.snoc_last, mapFlag]
-  · simp only [FlagG.fvec, Fin.snoc_castSucc, mapFlag]
-
 theorem orth_of (u : D.what₂.Word) {x : (VS D).V} (h : ∀ b : Fin D.R.rS, (HV D).B ((F0 X u).e b.castSucc) x = 0) :
     x ∈ orth (VS D) (Xsp (lf D (X.Fu u))) := by
-  rw [Formalism.MainNotions.BridgeLemma₂.c3eqv_mem_orth]
+  rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth]
   intro v hv
   rw [← fixedFrameOfWord_isotropicSpan_eq] at hv
   unfold Formalism.HermitianLatticeCounting.S6.FlagD.X Formalism.HermitianLatticeCounting.S6.FlagD.Xa at hv
@@ -235,7 +222,7 @@ theorem orth_of (u : D.what₂.Word) {x : (VS D).V} (h : ∀ b : Fin D.R.rS, (HV
 theorem of_orth (u : D.what₂.Word) {x : (VS D).V} (h : x ∈ orth (VS D) (Xsp (lf D (X.Fu u)))) :
     ∀ b : Fin D.R.rS, (HV D).B ((F0 X u).e b.castSucc) x = 0 := by
   intro b
-  rw [Formalism.MainNotions.BridgeLemma₂.c3eqv_mem_orth] at h
+  rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth] at h
   have hb : (F0 X u).e b.castSucc ∈ Xsp (lf D (X.Fu u)) := by
     rw [← fixedFrameOfWord_isotropicSpan_eq]; exact Submodule.subset_span ⟨b, b.2, rfl⟩
   exact p_symm_zero (VS D) (h _ hb)
@@ -276,7 +263,7 @@ theorem injC : InjC := by
     intro x hx; rw [hXF]; exact hn'L.2.2 x (orth_of u hx)
   have hn : ∀ x y, (HV D).B (n x) (n y) = (HV D).B x y := fun x y => hnL.1.1 y x
   have hG₂ : ∀ c, (Ft t₂).e c = n (t₁.lin (a (n' ((F0 X u).e c)))) := by
-    intro c; rw [Ft_e', hlin]; rfl
+    intro c; rw [_root_.GlobalTheory.TypeAsm.FibProof.Ft_e, hlin]; rfl
   have hemb : ∀ w : W, ∀ c, (HV D).B ((F0 X u).e c) (W.subtype w) = 0 :=
     fun w => (hEmb.2 _).2 (Submodule.mem_sup_left ⟨w, rfl⟩)
   have hkey : ∀ w : W, a (w : (VS D).V) - w ∈ (F0 X u).X := by
@@ -285,7 +272,7 @@ theorem injC : InjC := by
     obtain ⟨y₂, hy₂, hy₂p, hy₂v⟩ := hH₂ w
     have hy₂v' : y₂ - n (t₁.lin (a (n' (W.subtype w)))) ∈ (Ft t₂).X := by
       rw [hlin] at hy₂v; exact hy₂v
-    exact core (F0 X u) (Ft t₁) (Ft t₂) t₁.lin n n' a (Ft_e' t₁) hG₂ hn hnX hnP hnsX hnsP hn'X hn'P hn'sX
+    exact core (F0 X u) (Ft t₁) (Ft t₂) t₁.lin n n' a (_root_.GlobalTheory.TypeAsm.FibProof.Ft_e t₁) hG₂ hn hnX hnP hnsX hnsP hn'X hn'P hn'sX
       ha_fix hI (hemb w) (hemb (h w)) hy₁ hy₁p hy₁v hy₂ hy₂p hy₂v'
 
   have hafX : ∀ x ∈ (F0 X u).X, a x = x := fun x hx => fix_X (a : (VS D).V →ₗ[D.host.E] (VS D).V) ha_fix hx
@@ -303,15 +290,15 @@ theorem injC : InjC := by
       set x' := x - c • F.z
       have hx'c : ∀ k, (HV D).B (F.e k) x' = 0 := by
         intro k
-        refine B_sw ?_
+        refine _root_.GlobalTheory.DegAsm.FrameMove.swap_zero ?_
         refine Fin.lastCases ?_ (fun b => ?_) k
         · change (HV D).B x' F.z = 0
           simp only [x', c, map_sub, map_smul, LinearMap.sub_apply, LinearMap.smul_apply, smul_eq_mul]
           field_simp
           ring
         · simp only [x', map_sub, map_smul, LinearMap.sub_apply, LinearMap.smul_apply, smul_eq_mul]
-          have hz0 : (HV D).B F.z (F.e b.castSucc) = 0 := B_sw (F.zperp b)
-          rw [B_sw (hxP b), hz0]
+          have hz0 : (HV D).B F.z (F.e b.castSucc) = 0 := _root_.GlobalTheory.DegAsm.FrameMove.swap_zero (F.zperp b)
+          rw [_root_.GlobalTheory.DegAsm.FrameMove.swap_zero (hxP b), hz0]
           simp
       obtain ⟨y, hy, x0, hx0, hyx⟩ := Submodule.mem_sup.1 ((hEmb.2 x').1 hx'c)
       obtain ⟨w, rfl⟩ := hy

@@ -128,7 +128,7 @@ theorem levi_ball (X : Data E r) {x : Frame X.Ψ r} (hx : IsOrth X x) (hr : 0 < 
     have := congrArg (gram τ.1 X.Gm) hm
     rw [FrameDegreeData.gram_mul, FrameDegreeData.gram_mul, hx τ, ho τ] at this
     exact this.symm
-  obtain ⟨hd, hoff⟩ := GlobalTheory.T.upperTriangular_near_unitDiagonal_of_twistedGram_near r (fun a => sgn X.p0 a) (mat b τ) ‖z‖
+  obtain ⟨hd, hoff⟩ := _root_.GlobalTheory.upperTriangular_near_diag_of_gram_near r (fun a => sgn X.p0 a) (mat b τ) ‖z‖
     (fun a => by unfold sgn; split_ifs <;> simp) (norm_nonneg _) hδ (hb τ).2 (fun a c => by
       have := GlobalTheory.GramChartNear.gw_sub_jd_le E r X z τ a c (by linarith)
       rw [← hG] at this

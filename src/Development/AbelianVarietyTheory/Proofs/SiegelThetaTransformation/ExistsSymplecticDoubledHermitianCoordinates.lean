@@ -57,17 +57,9 @@ namespace GlobalTheory.SW.DblLat
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r g : ℕ} (X : Data E r)
 
-theorem cc_cc (a : E) : cc (cc a) = a := by
-  unfold cc
-  exact IsCMField.complexConj_apply_apply E a
+alias cc_cc := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_cc
 
-theorem cc_mul (a b : E) : cc (a * b) = cc a * cc b := by
-  unfold cc
-  exact map_mul _ a b
-
-theorem trace_cc (a : E) : Algebra.trace ℚ E (cc a) = Algebra.trace ℚ E a := by
-  unfold cc
-  exact Algebra.trace_eq_of_algEquiv ((IsCMField.complexConj E).restrictScalars ℚ) a
+alias cc_mul := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_mul
 
 theorem sum_trace {ι : Type} [Fintype ι] (B : Module.Basis ι ℚ E) (b d : E) :
     ∑ j, Algebra.trace ℚ E (b * cc (B j)) * B.repr d j = Algebra.trace ℚ E (b * cc d) := by
@@ -178,7 +170,7 @@ theorem dbl_lat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : �
       unfold cc; exact map_sum _ _ _
     have hsw : (crdMap X bas u).2 ⬝ᵥ (crdMap X bas v).1 =
         Algebra.trace ℚ E (∑ a, cc (dv X bas v (Sum.inr a)) * dv X bas u (Sum.inl a)) := by
-      rw [dotProduct_comm, crdMap_pair, ← trace_cc, hsum]
+      rw [dotProduct_comm, crdMap_pair, ← _root_.GlobalTheory.trace_cc, hsum]
       simp only [cc_mul, cc_cc]
     rw [crdMap_pair, hsw, ← map_sub]
     unfold dv

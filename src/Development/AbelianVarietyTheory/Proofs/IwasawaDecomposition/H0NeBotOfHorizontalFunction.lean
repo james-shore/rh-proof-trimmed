@@ -182,7 +182,7 @@ theorem exists_extension (R : AnRead p σ' d) (π : Y ⟶ gen Z)
     (hφ0 _ (hTN z hz)).trans (inner_iff (ha z hz.1))
   have hB' : IsOpen {b ∈ B | φ (a (c.e.symm b)).1 ≠ 0} :=
     hφB.continuousOn.isOpen_inter_preimage hB isOpen_ne
-  obtain ⟨u, hu, he⟩ := GlobalTheory.T.riemann_extension_of_log_growth _ B _ (fun b => h (a (c.e.symm b))) hB hφB
+  obtain ⟨u, hu, he⟩ := _root_.GlobalTheory.LogExt.riemann_extension_log _ B _ (fun b => h (a (c.e.symm b))) hB hφB
     (hh _ _ _ hB' (hfam hB' (sep_subset _ _)) fun b hb => (hφ0 _ (hTN _ hb.1.2)).1 hb.2)
     (fun b hb => by
       have hs := c.e.map_target hb.1

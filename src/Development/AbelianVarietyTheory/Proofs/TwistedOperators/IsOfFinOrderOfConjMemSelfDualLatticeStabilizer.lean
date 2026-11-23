@@ -124,7 +124,7 @@ theorem isOfFinOrder_of_conjIn_mem_St :
     · obtain ⟨a, ha, hsign⟩ := hneg z hz
       rw [hann z hzL, ← map_zero (algebraMap F E)] at ha
       exact (lt_irrefl (0 : ℝ)) (by simpa [(algebraMap F E).injective ha] using hsign)
-  have hfin := Formalism.UG.Final.AdelicStabFiniteL F E (Fin n) hc.sig J (cm_comp hc) hU.herm hU.unit hU.tdef L
+  have hfin := _root_.Formalism.UG.P.adelic_stabilizer_finite_lattice_holds F E (Fin n) hc.sig J (cm_comp hc) hU.herm hU.unit hU.tdef L
     (Module.Finite.iff_fg.2 hU.lat.fg) hspan x
   have hb := base_level_eq_adelic_level F E hc n J L β hβ
   let H : Subgroup (UR hc J) :=

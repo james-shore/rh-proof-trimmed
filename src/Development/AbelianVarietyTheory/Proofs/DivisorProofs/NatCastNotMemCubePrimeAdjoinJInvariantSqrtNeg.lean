@@ -55,7 +55,7 @@ theorem natCast_notMem_pow_three_of_quadratic (p : ℕ) (K : Type) [Field K] [Nu
   intro hw
   have := isTotallyComplex_of_sq_eq_neg hp.pos hx
   obtain ⟨⟨⟨hfin, -, hun⟩, -⟩, -⟩ :=
-    GlobalTheory.Laid.hcfj_holds K h2 L₀ ((isIntegersLattice_iff hp.pos h2 hx L₀).mp hL)
+    _root_.GlobalTheory.CompanionTheory.Hypotheses₂.hilbertClassFieldJ K h2 L₀ ((isIntegersLattice_iff hp.pos h2 hx L₀).mp hL)
   have : NumberField K⟮(latticeCurve L₀).j⟯ := NumberField.of_module_finite K _
   have hle : ℚ⟮(latticeCurve L₀).j⟯ ≤
       (K⟮(latticeCurve L₀).j⟯.toSubfield.toIntermediateField fun q =>

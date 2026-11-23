@@ -40,6 +40,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.GaussianProducts.ExistsRowSec
 import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.CharacterNorms.ThInf
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CapCommuteRtInfGL
 
 @[expose] public section
 
@@ -48,23 +49,6 @@ open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspR
 open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.RankTwoDescent UpperTheory.ConvolutionTheory.RankTwoDescent.TA
 open UpperTheory.ConvolutionTheory.R2.G (FS2 nE)
 open scoped Classical
-
-private theorem rt_infGL_lie {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
-    (y : GL (Fin a) (Cinf E)) (X : Matrix (Fin a) (Fin a) (Cinf E)) :
-    rt E a (infGL E a y) * lie E a (toL X) =
-      lie E a (toL (y.val * X * (y⁻¹).val)) * rt E a (infGL E a y) := by
-  refine LinearMap.ext fun φ => Subtype.ext <| funext fun g => ?_
-  change fderiv ℝ (chart φ.1 (g * infGL E a y)) (oneL E a) (toL X) =
-    fderiv ℝ (chart (fun x => φ.1 (x * infGL E a y)) g) (oneL E a) (toL (y.val * X * (y⁻¹).val))
-  have hd : DifferentiableAt ℝ (chart φ.1 g) (toL y.val) :=
-    (contDiffAt_chart φ.2 g (val_mem_invSet y)).differentiableAt (by simp)
-  have e1 : lmul (toL y.val) (oneL E a) = toL y.val := mul_one y.val
-  have e2 : rmul (toL y.val) (oneL E a) = toL y.val := one_mul y.val
-  rw [chart_mul, chart_rt_inf, fderiv_comp _ (by rw [e1]; exact hd) (lmul (toL y.val)).differentiableAt,
-    fderiv_comp _ (by rw [e2]; exact hd) (rmul (toL y.val)).differentiableAt, e1, e2,
-    ContinuousLinearMap.fderiv, ContinuousLinearMap.fderiv]
-  exact congrArg (fun Z => fderiv ℝ (chart φ.1 g) (toL y.val) (toL Z))
-    (Units.inv_mul_cancel_right (y.val * X) y).symm
 
 private theorem lie_rt_eq {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
     (X : Matrix (Fin a) (Fin a) (Cinf E)) (h : GL (Fin a) (A E)) :
@@ -75,7 +59,7 @@ private theorem lie_rt_eq {E : Type} [Field E] [NumberField E] [_root_.NumberFie
   refine ⟨toL ((y⁻¹).val * X * y.val), ?_⟩
   have e : y.val * ((y⁻¹).val * X * y.val) * (y⁻¹).val = X := by
     simp [Matrix.mul_assoc]
-  have key := rt_infGL_lie y ((y⁻¹).val * X * y.val)
+  have key := _root_.GlobalTheory.CapAdInv.rt_lie y ((y⁻¹).val * X * y.val)
   rw [e] at key
   conv_lhs => rw [hh, map_mul, ← mul_assoc, ← key, mul_assoc, lie_rt_fin, ← mul_assoc]
   rw [← map_mul, ← hh]

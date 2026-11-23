@@ -58,19 +58,6 @@ namespace GlobalTheory.ZH
 
 namespace ModHilb
 
-theorem finrank_span_reduction_le {O K I A B : Type} [CommRing O] [IsDomain O] [ValuationRing O] [Field K]
-    [Algebra O K] [IsFractionRing O K] [Finite I] (f : I → A → K) (g : I → B → IsLocalRing.ResidueField O)
-    (h : ∀ b : B, ∃ (a : A) (w : I → O), ∀ i, f i a = algebraMap O K (w i) ∧ g i b = IsLocalRing.residue O (w i)) :
-    Module.finrank (IsLocalRing.ResidueField O) (Submodule.span (IsLocalRing.ResidueField O) (Set.range g)) ≤
-      Module.finrank K (Submodule.span K (Set.range f)) := by
-  first
-  | exact @_root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le
-  | exact _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le
-  | (apply _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le ..)
-
 theorem hilb_eq_finrank_span {k J : Type} [Field k] [Finite J] (C : Set (J → k)) (d : ℕ) :
     hilb C d = Module.finrank k (Submodule.span k (Set.range
       fun (m : {m : J →₀ ℕ // m.degree = d}) (v : C) => m.1.prod fun j n => v.1 j ^ n)) := by
@@ -101,7 +88,7 @@ theorem hilb_reduction_le : (∀ (O K J : Type) [CommRing O] [IsDomain O] [Valua
   rw [hilb_eq_finrank_span, hilb_eq_finrank_span]
   haveI : Finite {m : J →₀ ℕ // m.degree = d} :=
     (Finsupp.finite_of_degree_eq d).to_subtype
-  apply finrank_span_reduction_le
+  apply _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le
   rintro ⟨v', hv'⟩
   obtain ⟨w, hw, rfl⟩ := h v' hv'
   refine ⟨⟨_, hw⟩, fun m => m.1.prod fun j n => w j ^ n, fun m => ⟨?_, ?_⟩⟩

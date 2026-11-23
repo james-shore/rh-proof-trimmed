@@ -229,12 +229,6 @@ theorem qProd_holds : QProd σ J ψ v := by
 
 theorem qSplit_holds : QSplit σ J ψ v := qSplit_of σ J ψ v (qProd_holds σ J ψ v)
 
-private theorem sigma_sigma_eq_of_isCMExt (h : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨-, -, -, hc⟩ := h
-  let τ : E →+* ℂ := (Classical.arbitrary (NumberField.InfinitePlace E)).embedding
-  apply τ.injective
-  rw [hc, hc, star_star]
-
 theorem resAlg_of' (hQ : ResQ σ J ψ v) (hE : EtaLink σ J ψ v) : ResAlg σ J ψ v := by
   intro hS hU ϖ hϖ
   have hcm : IsCMExt F E σ := hS.1
@@ -263,7 +257,7 @@ theorem resAlg_of' (hQ : ResQ σ J ψ v) (hE : EtaLink σ J ψ v) : ResAlg σ J 
       simp only [sigQ, Ideal.quotientMap_mk]
       congr 1
       apply RingOfIntegers.ext
-      exact sigma_sigma_eq_of_isCMExt σ hcm (y : E)
+      exact _root_.PI.OmLocU.Orb.sigma_invol σ hcm (y : E)
     have hfixc : ∀ c, sigQ σ v (algebraMap (𝓞 F ⧸ v.asIdeal) (QE (E := E) v) c) =
         algebraMap (𝓞 F ⧸ v.asIdeal) (QE (E := E) v) c := by
       intro c

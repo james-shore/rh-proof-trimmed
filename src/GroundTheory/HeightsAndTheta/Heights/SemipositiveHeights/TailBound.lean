@@ -99,7 +99,7 @@ theorem RegSection.full : RegSection.Statement :=
     (BdNormCont.proof ChartCont.proof BdEqHolo.proof)
     (BdComparison.proof ChartCont.proof BddOnInner.proof)
 
-theorem TailShift.full : TailShift.Statement := TailShift.proof
+alias TailShift.full := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.TailShift.proof
 
 theorem LemmaETailLog.of_lemmaETailMass (h : LemmaETailMass.Statement) : LemmaETailLog.Statement :=
   LemmaETailLog.proof h TailLogOfMass.proof

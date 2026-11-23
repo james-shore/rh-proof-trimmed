@@ -65,10 +65,6 @@ def chartPullCompOf {X Y Y' : Scheme.{0}} (L : LB X) (g : Y ⟶ X) (h : Y' ⟶ Y
     refine Eq.trans ?_ (gm_pull_g L g h y J J' hj₁ hj₁').symm
     rw [Category.id_comp]
 
-theorem spMap_comp_ringHom {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap, ← Spec.map_comp]
-
 theorem descAt_of_isPullDeg : ∀ (V V₁ : Type) [CommRing V] [IsDomain V] [CommRing V₁] [IsDomain V₁] (ρ : V →+* V₁)
     (Q : DegPre V) (D : DegPre V₁), IsPullDeg ρ Q D → D.P.g = Q.P.g ∧ ∀ (K : Type) [Field K] (ev : V₁ →+* K)
     (k₀ : Subfield K), DescAt D ev k₀ → DescAt Q (ev.comp ρ) k₀ := by
@@ -86,10 +82,10 @@ theorem descAt_of_isPullDeg : ∀ (V V₁ : Type) [CommRing V] [IsDomain V] [Com
   obtain ⟨w', hw'⟩ := hL
   refine ⟨B₀, i₁, i₂, M₀, fun a => c₀ (p.xe.symm a), B', i₃, π₁ ≫ (p.e.hom.left ≫ pullback.fst Q.P.A.hom (specOf ρ)),
     π₀, w', fun a => c' (p.xe.symm a), hab, hM, ?_, h₀, hw', fun a => ⟨(hc _).1, ?_, (hc _).2.2⟩⟩
-  · exact (h₁.comp gp).congr (spMap_comp_ringHom ρ ev).symm rfl
+  · exact (h₁.comp gp).congr (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp ρ ev).symm rfl
   · have e₁ := (hc (p.xe.symm a)).2.1
     have e₂ := p.c_pr (p.xe.symm a)
     rw [AddEquiv.apply_symm_apply] at e₂
-    rw [← Category.assoc, e₁, Category.assoc, e₂, ← Category.assoc, spMap_comp_ringHom]
+    rw [← Category.assoc, e₁, Category.assoc, e₂, ← Category.assoc, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
 
 end GlobalTheory.USep

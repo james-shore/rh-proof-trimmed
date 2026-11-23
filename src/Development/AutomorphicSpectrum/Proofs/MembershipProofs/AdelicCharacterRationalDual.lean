@@ -126,7 +126,7 @@ def levelSub (F : Type) [Field F] [NumberField F] (κ : Type) (N : ℕ) : AddSub
 theorem levelSub_isOpen (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] {N : ℕ} (hN : 0 < N) :
     IsOpen (levelSub F κ N : Set (κ → FiniteAdeleRing (𝓞 F) F)) := by
   refine AddSubgroup.isOpen_of_mem_nhds (g := 0) _ ?_
-  have h := GlobalTheory.AdLat.OpenLat.nsmul_integral_mem_nhds F N hN
+  have h := _root_.GlobalTheory.IntegralNeighbourhoodZero.nsmul_integral_mem_nhds_zero F N hN
   refine Filter.mem_of_superset (set_pi_mem_nhds Set.finite_univ fun i _ => h) fun x hx i => ?_
   exact hx i (Set.mem_univ i)
 
@@ -179,7 +179,7 @@ theorem levelSub_basis (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype
     ∃ N : ℕ, 0 < N ∧ (levelSub F κ N : Set (κ → FiniteAdeleRing (𝓞 F) F)) ⊆ W := by
   rw [nhds_pi, Filter.mem_pi] at hW
   obtain ⟨I, -, t, ht, hsub⟩ := hW
-  choose M hM hMt using fun i => GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F (t i) (ht i)
+  choose M hM hMt using fun i => _root_.GlobalTheory.LocalNormBound.main F (t i) (ht i)
   refine ⟨∏ i, M i, Finset.prod_pos fun i _ => hM i, fun x hx => hsub fun i _ => ?_⟩
   obtain ⟨u, hu, e⟩ := hx i
   rw [e, ← Finset.mul_prod_erase _ _ (Finset.mem_univ i), mul_smul]
@@ -291,16 +291,6 @@ theorem exists_rat_modulation : ∀ (F : Type) [Field F] [NumberField F] (ψ : A
   congr 1
   push_cast
   ring
-
-theorem pureA_algebraMap' (F : Type) [Field F] [NumberField F] {κ : Type} (f : (κ → mixedEmbedding.mixedSpace F) → ℂ)
-    (g : (κ → FiniteAdeleRing (𝓞 F) F) → ℂ) (ξ : κ → F) :
-    pureA F f g (fun i => algebraMap F (AdeleRing (𝓞 F) F) (ξ i)) =
-      f (fun i => mixedEmbedding F (ξ i)) * g (fun i => algebraMap F (FiniteAdeleRing (𝓞 F) F) (ξ i)) := by
-  unfold pureA
-  congr 2
-  funext i
-  rw [InfiniteAdeleRing.mixedEmbedding_eq_algebraMap_comp]
-  rfl
 
 theorem int_of_integral (F : Type) [Field F] [NumberField F] (x : F)
     (hx : ∀ v, (algebraMap F (FiniteAdeleRing (𝓞 F) F) x) v ∈ HeightOneSpectrum.adicCompletionIntegers F v) :
@@ -478,9 +468,9 @@ theorem level_zero (hψ : Continuous ψ) (h1 : ψ ≠ 1) (hn : ∀ x, ‖ψ x‖
     exact congrArg (fun z => ω.repr z j) h2
   rw [← hinj.tsum_eq]
   · refine tsum_congr fun m => ?_
-    rw [pureA_algebraMap', hB, cosetInd_apply, if_pos ((inCoset_rat_iff F hN _).2 ⟨_, rfl⟩), mul_one]
+    rw [_root_.GlobalTheory.CompanionTheory.ThetaAdm.pureA_rat, hB, cosetInd_apply, if_pos ((inCoset_rat_iff F hN _).2 ⟨_, rfl⟩), mul_one]
   · intro ξ hξ
-    rw [Function.mem_support, pureA_algebraMap', cosetInd_apply] at hξ
+    rw [Function.mem_support, _root_.GlobalTheory.CompanionTheory.ThetaAdm.pureA_rat, cosetInd_apply] at hξ
     by_cases h : InCoset F N 0 (fun i => algebraMap F _ (ξ i))
     · obtain ⟨a, rfl⟩ := (inCoset_rat_iff F hN _).1 h
       refine ⟨fun p => ω.repr (a p.1) p.2, ?_⟩
@@ -526,7 +516,7 @@ end Level
 theorem theta_unique : ∀ (F : Type) [Field F] [NumberField F] [LocallyCompactSpace (AdeleRing (𝓞 F) F)] [Invertible (2 : AdeleRing (𝓞 F) F)] (κ : Type) [Fintype κ] (ψ : AddChar (AdeleRing (𝓞 F) F) ℂ), Continuous ψ → ψ ≠ 1 → (∀ a : F, ψ (algebraMap F (AdeleRing (𝓞 F) F) a) = 1) → ∀ l ∈ (adeleClass F).adm κ, (∀ (w : (κ → F) × (κ → F)), ∀ Φ ∈ schA F κ, l (schr ψ (fun i => algebraMap F (AdeleRing (𝓞 F) F) (w.1 i), fun i => algebraMap F (AdeleRing (𝓞 F) F) (w.2 i)) Φ) = l Φ) → ∃ a : ℂ, ∀ Φ ∈ schA F κ, l Φ = a * thetaSum F Φ := by
   intro F _ _ _ _ κ _ ψ hψ h1 hF l hl hinv
   classical
-  have hn := (GlobalTheory.CompanionTheory.AdeleAnn.unitary_and_annihilator_eq F ψ hψ h1 hF).1
+  have hn := (_root_.UpperTheory.Reformulated.B.UnitaryAnnihilator.unitary_and_annihilator_eq F ψ hψ h1 hF).1
   have htr : ∀ d : κ → F, ∀ Φ ∈ schA F κ,
       l (fun x => Φ (x + fun i => algebraMap F (AdeleRing (𝓞 F) F) (d i))) = l Φ := fun d Φ hΦ => by
     rw [← hinv (d, 0) Φ hΦ]

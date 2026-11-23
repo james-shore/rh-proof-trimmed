@@ -154,7 +154,7 @@ theorem mk_eq_zero_of_rational (hT : LocalTateDuality) {F Ω : Type} [Field F] [
       obtain ⟨n, hn⟩ := GlobalTheory.BlochKatoIntegralScalars.exists_pow_mul_mem_OL Bw.LL (fun (_ : Unit) (_ : Fin 1) => x)
         continuous_const
       exact ⟨n, hr ▸ ⟨⟨_, hn () 0⟩, rfl⟩⟩) β z f hf hz
-  refine GlobalTheory.T.mu_cocycle_coboundary_lift hT F Ω l A v hA n w a ha fun g h => ?_
+  refine _root_.GlobalTheory.MuTowerInj.mk_eq_zero_of_coboundary hT F Ω l A v hA n w a ha fun g h => ?_
   rw [hw]
   exact e g h
 

@@ -101,7 +101,7 @@ theorem eps_pow : (DualNumber.eps : DualNumber Ω) ^ p = 0 :=
 theorem eq_one_of_torus (h : IsTorExt s s' G B X τ io) {g : Fam s G} (hg : IsAlpha p s G g)
     (h1 : τ _ (g (DualNumber Ω) DualNumber.eps) = 1) : g (DualNumber Ω) DualNumber.eps = 1 := by
   classical
-  have h2 := GlobalTheory.T.eq_one_of_tangent_vector_eq_one Ω p S' s' B _ (hg.map h) h1
+  have h2 := _root_.GlobalTheory.AlphaPair.IsAlpha.eq_one_of_tangent Ω p S' s' B _ (hg.map h) h1
   have h3 : ∀ (A : Type) [CommRing A] [Algebra Ω A] (a : A), ∃ χ, a ^ p = 0 → io A χ = g A a := fun A _ _ a => by
     by_cases ha : a ^ p = 0
     · obtain ⟨χ, hχ⟩ := (h.2.2.2.1 A _).1 (h2 A a ha)

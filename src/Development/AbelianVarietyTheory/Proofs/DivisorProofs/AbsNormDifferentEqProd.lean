@@ -62,10 +62,6 @@ namespace GlobalTheory.HeckeEpsAbs
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem norm_gaussSumAt_sq (χ : HChar E) (w : HeightOneSpectrum (𝓞 E)) (a : ℕ) (c : Eˣ) (ha : a ≠ 0) (hχ : ExpAt χ w a)
-    (hu : IsUnitary χ) (hc : w.valuation E (c : E) = WithZero.exp (-((a + diffExp w : ℕ) : ℤ))) :
-    ‖gaussSumAt χ w a c‖ ^ 2 = (Ideal.absNorm w.asIdeal : ℝ) ^ a := GlobalTheory.T.heckeLocalGaussSum_norm_sq_eq_absNorm_pow χ w a c ha hχ hu hc
-
 theorem norm_locK {χ : HChar E} (hu : IsUnitary χ) (w : HeightOneSpectrum (𝓞 E)) (x : Eˣ) :
     ‖((χ.locK w x : ℂˣ) : ℂ)‖ = 1 := hu _
 
@@ -105,7 +101,7 @@ theorem norm_locEps_half {χ : HChar E} (hu : IsUnitary χ) {w : HeightOneSpectr
       ((Ideal.absNorm w.asIdeal : ℕ) : ℝ) ^ ((k : ℝ) / 2) := by
     split_ifs with h
     · simp [h]
-    · have := norm_gaussSumAt_sq χ w k _ h hk hu (valuation_unif_pow w _)
+    · have := _root_.GlobalTheory.GaussMod.gaussSumAt_normSq χ w k _ h hk hu (valuation_unif_pow w _)
       rw [← Real.sqrt_sq (norm_nonneg _), this, Real.sqrt_eq_rpow, ← Real.rpow_natCast, ← Real.rpow_mul hNpos.le]
       ring_nf
   rw [locEps, norm_mul, norm_mul, norm_mul, norm_locK hu, hG, Complex.norm_natCast_cpow_of_pos (absNorm_pos w),

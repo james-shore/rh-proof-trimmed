@@ -54,7 +54,7 @@ open PositivityTheory.RgBcC PositivityTheory.RgBcC.LfSt
 
 theorem kChain (hH : HbFacts) (hF : FrameDer) : KChain :=
   kChain_of KcInv.kcSmooth KcInv.coneGL
-    (KcHalf1.halfOne_of hH hF (fun n => KcHalf2.isOpen_cone (n := n) hH) KbDer.derOne)
+    (KcHalf1.halfOne_of hH hF (fun n => _root_.PositivityTheory.KcHalf2₂.isOpen_cone_of_hbFacts (n := n) hH) KbDer.derOne)
     (KcHalf2.halfTwo_of hH hF KbFr.frComm KbDer2.derTwo (KcDual.dualSum hH))
 
 end PositivityTheory.RgBcC.LfSt.Kchain

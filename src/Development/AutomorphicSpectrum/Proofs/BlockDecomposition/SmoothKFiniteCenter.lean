@@ -272,7 +272,7 @@ theorem moderate_growth : ∀ (E : Type) [Field E] [NumberField E] [_root_.Numbe
     intro y
     obtain ⟨x, hx⟩ : ∃ x, x = g * infGL E a y := ⟨_, rfl⟩
     rw [← hx, hI]
-    refine GlobalTheory.T.fundamental_domain_integral_count_bound (latticeGL E a) μ _ hF _ (hMm x) _ hfm
+    refine _root_.GlobalTheory.CompanionTheory.Growth.lintegral_le_mul_of_encard_le (latticeGL E a) μ _ hF _ (hMm x) _ hfm
       (fun γ hγ z => congrArg (fun u : ℂ => ‖u‖ₑ ^ 2) (hli γ hγ z)) _ fun z => ?_
     obtain ⟨hfin, -⟩ := hC y
     rw [← hx] at hfin

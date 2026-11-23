@@ -146,7 +146,7 @@ theorem ok_laws (l : ℕ) [Fact l.Prime] (K₀ L : Loc.FinExt l) (k : ℕ) :
           ∃ d : ↥(clC l (Kt l K₀ L)), d ≠ 0 ∧
           x * algebraMap _ (FractionRing ↥(clC l (Kt l K₀ L ⊔ muK l k))) (algebraMap _ ↥(clC l (Kt l K₀ L ⊔ muK l k)) d) =
             algebraMap _ (FractionRing ↥(clC l (Kt l K₀ L ⊔ muK l k))) (Polynomial.aeval (z : ↥(clC l (Kt l K₀ L ⊔ muK l k))) p) :=
-  GlobalTheory.T.finite_primitive_root_of_clC_le l K₀ L k _
+  _root_.GlobalTheory.CycLayers.finite_primitive_root l K₀ L k _
 
 theorem hc_at {E : Type} [Field E] [NumberField E] (χ : HChar E) (h : Formalism.L2.NC.HC E)
     (hh : h.χ = (χ : Ideles E →* ℂˣ)) (v : HeightOneSpectrum (𝓞 E)) :
@@ -190,7 +190,7 @@ theorem vals_zero {E : Type} [Field E] [NumberField E] {K : Type} [Field K] (ε 
     ∀ᶠ v in Filter.cofinite, χH.At v (((χ.val v : ℂˣ) : ℂ) * (Real.sqrt (normV v) : ℂ) ^ (0 : ℤ)) ∧
       ∃ y : K, ε y = ((χ.val v : ℂˣ) : ℂ)⁻¹ := by
   filter_upwards [unr_ae χ] with v hu
-  refine ⟨by simpa using (hc_at χ χH hH v).1 hu, ?_⟩
+  refine ⟨by simpa using (_root_.GlobalTheory.HeckeUnifVal.at_val_and_unr_iff χ χH hH v).1 hu, ?_⟩
   obtain ⟨y, hy⟩ := hv v hu
   exact ⟨y⁻¹, by rw [map_inv₀, hy]; simp [HChar.valTw]⟩
 
@@ -231,19 +231,9 @@ end GlobalTheory.TwRing
 namespace GlobalTheory.TwRing
 open GlobalTheory.GalChar Neutral.B1 ReciprocityTheory.Neutral.Bridge.HCFR GlobalTheory.HeckeGal
 
-theorem exists_padicBaseField_integral_places (D : D7) : ∃ c0 : Big D, ∀ (l : ℕ) [Fact l.Prime] (j : ↥D.LL0 →+* PadicAlgCl l),
-    (∀ x, j x ∈ (c0 l j).1) ∧ muK l 1 ≤ (c0 l j).1 ∧
-    ∀ K0 : Loc.FinExt l, (c0 l j).1 ≤ K0.1 → ∀ w ∈ placesOver D.host.E l,
-      ∃ Bw : LocBridge l D.host.E D.nd.Om (Dec (F := D.host.E) (D.nd.plOm.1 w)) ↥(Loc.OL K0),
-        ∀ x, x ∈ D.nd.plOm.1 w ↔ ‖Bw.j x‖ ≤ 1 :=
-  GlobalTheory.T.exists_coefficientField_lower_bounds D
-
-
-
-
 theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : ∀ (D : D7) (cf : CharFrame D) (J : ∀ (l : ℕ) [Fact l.Prime] (w : HeightOneSpectrum (𝓞 ↥D.LL0)), ((l : ℕ) : 𝓞 ↥D.LL0) ∈ w.asIdeal → (↥D.LL0 →+* PadicAlgCl l)), (∀ (l : ℕ) [Fact l.Prime] w h (x : 𝓞 ↥D.LL0), x ∈ w.asIdeal ↔ ‖J l w h x‖ < 1) → ValLL0 D cf → (∀ x : D.LL0, star (x : D.what₂.LL) ∈ D.LL0) → (∀ j g, ∃ z : ℤ, eExp D j g = z) → ∃ c0 : Big D, ∀ (b0 b1 : Big D) (Sx : Finset (PlE D.host)), (∀ (l : ℕ) [Fact l.Prime] j, (c0 l j).1 ≤ (b0 l j).1) → ∃ (T : TwR D.LL0 D.nd) (Sp : RingSpec D cf b0 b1 Sx T), ∀ i, Sp.j0 i = J (T.l i) (Sp.eTw i) (Sp.pl_emb i).1 ∧ Sp.K0 i = b0 (T.l i) (Sp.j0 i) ∧ Sp.Lw i = b1 (T.l i) (Sp.j0 i) := by
   intro D cf J hJ hV hstar hE
-  obtain ⟨c0, hc0⟩ := exists_padicBaseField_integral_places D
+  obtain ⟨c0, hc0⟩ := _root_.GlobalTheory.CoeffFieldLower.exists_low D
   refine ⟨c0, fun b0 b1 Sx hb => ?_⟩
   choose lw hlw using fun w : HeightOneSpectrum (𝓞 ↥D.LL0) => exists_prime_mem ↥D.LL0 w
   haveI hF : ∀ w, Fact (lw w).Prime := fun w => ⟨(hlw w).1⟩
@@ -262,7 +252,7 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
   haveI hdvrO : ∀ w, IsDiscreteValuationRing ↥(clC (lw w) (Kt (lw w) (K0 w) (Lw w))) := fun w => (hclc0 w).fst
   haveI hdvrOk : ∀ w k, IsDiscreteValuationRing ↥(clC (lw w) (Kt (lw w) (K0 w) (Lw w) ⊔ muK (lw w) k)) :=
     fun w k => (hclc w k).fst
-  choose toO htoO using fun w => exists_toClC (lw w) (K0 w) (Lw w)
+  choose toO htoO using fun w => _root_.GlobalTheory.HeightCounting.ToClC.exists_toClC (lw w) (K0 w) (Lw w)
   choose cc hcc using GlobalTheory.MemN.exists_isCMConjOm_nData D.R D.host D.what₂ D.nd
 
   obtain ⟨art, ha⟩ := hA D.host.E D.nd.Om
@@ -290,7 +280,7 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
     simp [κ, emb0, jK]
   have hcard : ∀ w, Cardinal.aleph0 < Cardinal.mk (PadicAlgCl (lw w)) := fun w => by
     rw [card_padicAlgCl, Cardinal.mk_complex]; exact Cardinal.aleph0_lt_continuum
-  choose ι hι using fun w => exists_ringEquiv_over ↥D.LL0 (PadicAlgCl (lw w)) ℂ (j0 w) (embLL0 D)
+  choose ι hι using fun w => _root_.GlobalTheory.AlgClosedIsoOverNumberField.exists_ringEquiv_comp_eq ↥D.LL0 (PadicAlgCl (lw w)) ℂ (j0 w) (embLL0 D)
     ((card_padicAlgCl (lw w))) (hcard w)
   have hf : ∀ w x, ι w (κ w (emb0 w x)) = embLL0 D x := fun w x => by rw [hκemb, hι]
   have hf' : ∀ w x, ι w (κ w (emb0b w x)) = starRingEnd ℂ (embLL0 D x) := fun w x => by
@@ -424,12 +414,12 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
       res := res
       res_art := hRCG.2.2.2.2.2.2 }
 
-  choose eO0 heO0 using fun w => exists_equiv_intOf (lw w) (K0 w)
+  choose eO0 heO0 using fun w => _root_.GlobalTheory.IntOfFinExt.exists_ringEquiv_intOf (lw w) (K0 w)
   choose br hbr using fun w (v : PlE D.host) (hv : v ∈ placesOver D.host.E (lw w)) =>
     (hc0 (lw w) (j0 w)).2.2 (K0 w) (hb _ _) v hv
   have hcardC : ∀ w, Cardinal.aleph0 < Cardinal.mk ℂ_[lw w] := fun w => by
     rw [card_padicComplex, Cardinal.mk_complex]; exact Cardinal.aleph0_lt_continuum
-  choose ι' hι' using fun w => exists_ringEquiv_over ↥D.LL0 ℂ_[lw w] ℂ
+  choose ι' hι' using fun w => _root_.GlobalTheory.AlgClosedIsoOverNumberField.exists_ringEquiv_comp_eq ↥D.LL0 ℂ_[lw w] ℂ
     ((algebraMap (PadicAlgCl (lw w)) ℂ_[lw w]).comp (j0 w)) (embLL0 D) (card_padicComplex (lw w)) (hcardC w)
   let toHC : HChar D.host.E → Formalism.L2.NC.HC D.host.E := fun χ => ⟨χ.1, χ.2.1, χ.2.2⟩
   let mu0H : ℕ → Formalism.L2.NC.HC D.host.E := fun n =>
@@ -468,8 +458,8 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
         constructor
         · intro hx
           let z : ↥(K0 w).1 := ⟨j0 w x, hj0K w x⟩
-          have hz : z ∈ Loc.OL (K0 w) := (mem_OL_iff _ _ z).2 hx.le
-          refine ⟨⟨z, hz⟩, (mem_maximalIdeal_OL_iff (lw w) (K0 w) _).2 hx, ?_⟩
+          have hz : z ∈ Loc.OL (K0 w) := (_root_.GlobalTheory.IntNormFinExt.mem_OL_iff_norm_le_one _ _ z).2 hx.le
+          refine ⟨⟨z, hz⟩, (_root_.GlobalTheory.IntMaxFinExt.mem_maximalIdeal_iff_norm_lt_one (lw w) (K0 w) _).2 hx, ?_⟩
           apply (φ w).injective
           rw [hφalg, hemb0]
           rfl
@@ -477,7 +467,7 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
           have e2 : ((φ w (algebraMap _ _ y) : ↥(K0 w).1) : PadicAlgCl (lw w)) = ((φ w (emb0 w x) : ↥(K0 w).1) : PadicAlgCl (lw w)) :=
             congrArg (fun t => ((φ w t : ↥(K0 w).1) : PadicAlgCl (lw w))) e
           rw [hφalg, hemb0] at e2
-          rw [(mem_maximalIdeal_OL_iff (lw w) (K0 w) _)] at hy
+          rw [(_root_.GlobalTheory.IntMaxFinExt.mem_maximalIdeal_iff_norm_lt_one (lw w) (K0 w) _)] at hy
           rw [← show ((jK w x : ↥(K0 w).1) : PadicAlgCl (lw w)) = j0 w x from rfl, ← e2]
           exact hy⟩
       K0 := K0
@@ -525,7 +515,7 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
         show Formalism.L2.NC.Read D.nd.plOm.1 (chi1 s (j'.1 + 1) b) _ (if b then emb0 s else emb0b s) (embLL0 D) (mu0H (j'.1 + 1) * delH s * etaH⁻¹) _
         rw [hmu0H]
         refine read_of_isGal ha hn D.nd.plOm.1 D.nd.plOm.2 _ (embLL0 D) ?_ _ _
-          (vals_block (embLL0 D) _ _ ((almostIn_of_valuesIn (hV.mu0 j')).mul (almostIn_of_valuesIn (hdel s))) hV.eta
+          (_root_.GlobalTheory.BlockVal.block_val_ae (embLL0 D) _ _ ((almostIn_of_valuesIn (hV.mu0 j')).mul (almostIn_of_valuesIn (hdel s))) hV.eta
             (GlobalTheory.TameLabels.odd_r D.R) _ _ rfl rfl)
         intro x
         cases b
@@ -537,8 +527,8 @@ theorem exists_ringSpec (hA : GlobalTheory.Published.GlobalArtinReciprocity) : �
         show mapO s ((if b then emb0 s else emb0b s) x) = _
         rw [← h]
         exact IsLocalization.map_eq _ _
-      etaT_unr := fun P => ((hc_at cf.eta etaH rfl P).2).1 (cf.isEta.unr P)
-      etaT_inf := eta_unitArg D.host cf.eta cf.isEta etaH rfl
+      etaT_unr := fun P => ((_root_.GlobalTheory.HeckeUnifVal.at_val_and_unr_iff cf.eta etaH rfl P).2).1 (cf.isEta.unr P)
+      etaT_inf := _root_.GlobalTheory.EtaUnitArg.etaT_isUnitArg D.host cf.eta cf.isEta etaH rfl
       eta_eq := fun x => rfl
       ringSpec_normalisedCharacter_eq := fun j x => by rw [hmu0H]
       del_eq := fun s x => rfl

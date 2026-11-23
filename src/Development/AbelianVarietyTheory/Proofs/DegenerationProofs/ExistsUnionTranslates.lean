@@ -125,32 +125,10 @@ theorem ext_apply {M : Model R A} {N : Model R A'} {f : A ⟶ A'} {U : M.Y.left.
   rw [← a, Category.assoc, h.2, ← Category.assoc, b]
 
 set_option backward.isDefEq.respectTransparency false in
-theorem prod_j_fst (M : Model R A) (N : Model R A') :
-    (M.prod N).j ≫ (fst M.Y N.Y).left = (fst A A').left ≫ M.j := by
-  have h : (M.prod N).e.inv ≫ (Over.pullback (spMap (algebraMap R K))).map (fst M.Y N.Y) = fst A A' ≫ M.e.inv := by
-    simp [Model.prod]
-  have h2 := congrArg (fun x => x.left ≫ pullback.fst M.Y.hom (spMap (algebraMap R K))) h
-  have hn : ((Over.pullback (spMap (algebraMap R K))).map (fst M.Y N.Y)).left ≫
-      pullback.fst M.Y.hom (spMap (algebraMap R K)) =
-      pullback.fst (M.Y ⊗ N.Y).hom (spMap (algebraMap R K)) ≫ (fst M.Y N.Y).left := by
-    simp
-  simp only [Over.comp_left, Category.assoc] at h2
-  rw [hn] at h2
-  simpa [Model.j, Model.prod, Category.assoc] using h2
+alias prod_j_fst := _root_.GlobalTheory.SS.GI.prod_j_fst
 
 set_option backward.isDefEq.respectTransparency false in
-theorem prod_j_snd (M : Model R A) (N : Model R A') :
-    (M.prod N).j ≫ (snd M.Y N.Y).left = (snd A A').left ≫ N.j := by
-  have h : (M.prod N).e.inv ≫ (Over.pullback (spMap (algebraMap R K))).map (snd M.Y N.Y) = snd A A' ≫ N.e.inv := by
-    simp [Model.prod]
-  have h2 := congrArg (fun x => x.left ≫ pullback.fst N.Y.hom (spMap (algebraMap R K))) h
-  have hn : ((Over.pullback (spMap (algebraMap R K))).map (snd M.Y N.Y)).left ≫
-      pullback.fst N.Y.hom (spMap (algebraMap R K)) =
-      pullback.fst (M.Y ⊗ N.Y).hom (spMap (algebraMap R K)) ≫ (snd M.Y N.Y).left := by
-    simp
-  simp only [Over.comp_left, Category.assoc] at h2
-  rw [hn] at h2
-  simpa [Model.j, Model.prod, Category.assoc] using h2
+alias prod_j_snd := _root_.GlobalTheory.SS.GI.prod_j_snd
 
 theorem twist_j (M : Model R A) (f : A ≅ A') : f.hom.left ≫ (M.twist f).j = M.j := by
   simp only [Model.j, Model.twist, Iso.trans_inv, Over.comp_left, Category.assoc]

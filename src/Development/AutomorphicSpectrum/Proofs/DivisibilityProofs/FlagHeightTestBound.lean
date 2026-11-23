@@ -163,15 +163,9 @@ theorem hR_monomial (II : IntersectionSystem) (m : Ψ × Fin N →₀ ℕ) (c : 
     simp [smul_monomial]
   rw [h, map_smul, hR, Module.Basis.constr_basis, smul_eq_mul]
 
-theorem hhFl_monomial (II : IntersectionSystem) (m : Ψ × Fin N →₀ ℕ) (c : ℝ) :
-    hhFl Ψ N II (monomial m c) = c * ((-1) ^ m.degree * GroundTheory.Heights₂.Heights.LowerBoundFree.hFlMono Ψ N II m) := by
-  have h : (monomial m c : RP Ψ N) = c • basisMonomials (Ψ × Fin N) ℝ m := by
-    simp [smul_monomial]
-  rw [h, map_smul, hhFl, Module.Basis.constr_basis, smul_eq_mul]
-
 theorem hhFl_eq (II : IntersectionSystem) (F : RP Ψ N) : hhFl Ψ N II F = hR Ψ N II (negX F) := by
   induction F using MvPolynomial.induction_on' with
-  | monomial u c => rw [negX_monomial, hhFl_monomial, hR_monomial]; ring
+  | monomial u c => rw [negX_monomial, _root_.GlobalTheory.CompanionTheory.Ar.Top.HhModel.hhFl_monomial, hR_monomial]; ring
   | add p q hp hq => rw [map_add (f := _), map_add (f := _), map_add (f := _), hp, hq]
 
 theorem hFl_eq (II : IntersectionSystem) (G : GroundTheory.Heights₂.Heights.LowerBoundFree.RootPoly Ψ N) :
@@ -278,15 +272,6 @@ theorem muR_homog (j : ℕ) : (muR j : RP Ψ N).IsHomogeneous 1 := by
   rw [muR_eq]
   exact IsHomogeneous.sum _ _ _ fun τ _ => IsHomogeneous.sum _ _ _ fun i _ => isHomogeneous_X _ _
 
-theorem muSmall_homog (j : ℕ) : (muSmall j : RP Ψ N).IsHomogeneous 1 := by
-  by_cases h : N - j ≤ j
-  · rw [muSmall_of_le h]; exact muR_homog j
-  · rw [muSmall, if_neg h]
-    refine IsHomogeneous.neg ?_
-    refine IsHomogeneous.sum _ _ _ fun τ _ => IsHomogeneous.sum _ _ _ fun i _ => ?_
-    rw [pow_one]
-    exact isHomogeneous_X _ _
-
 theorem fibClass_homog (j : ℕ) : ∃ d, (fibClass j : RP Ψ N).IsHomogeneous d := by
   refine ⟨_, IsHomogeneous.prod _ _ _ fun τ _ => IsHomogeneous.prod _ _ (fun _ => 1) fun ab _ => ?_⟩
   exact (isHomogeneous_X _ _).sub (isHomogeneous_X _ _)
@@ -364,7 +349,7 @@ theorem degree_count {j d : ℕ} (hn : dimX Ψ N j ≠ 0)
     rw [testPoly, pow_succ', mul_assoc]
     exact mul_ne_zero hM h0
   have h2 : (testPoly j : RP Ψ N).IsHomogeneous (1 * (dimX Ψ N j + 1) + d) :=
-    ((muSmall_homog j).pow _).mul hf
+    ((_root_.RootFieldNumerics.TF.mu_homog' j).pow _).mul hf
   have := h2.inj_right hT hT0
   omega
 
@@ -388,7 +373,7 @@ theorem hhFl_test (II : IntersectionSystem) {j d : ℕ}
       refine IsHomogeneous.mul ?_ hf
       refine IsHomogeneous.sum _ _ _ fun i hi => ?_
       have hi' := Finset.mem_range.mp hi
-      have := ((muR_homog (Ψ := Ψ) (N := N) j).pow i).mul ((muSmall_homog (Ψ := Ψ) (N := N) j).pow (dimX Ψ N j + 1 - 1 - i))
+      have := ((muR_homog (Ψ := Ψ) (N := N) j).pow i).mul ((_root_.RootFieldNumerics.TF.mu_homog' (Ψ := Ψ) (N := N) j).pow (dimX Ψ N j + 1 - 1 - i))
       have e3 : 1 * i + 1 * (dimX Ψ N j + 1 - 1 - i) = dimX Ψ N j := by omega
       rwa [e3] at this
 

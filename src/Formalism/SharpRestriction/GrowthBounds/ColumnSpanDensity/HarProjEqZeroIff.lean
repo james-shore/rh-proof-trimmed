@@ -61,21 +61,11 @@ namespace Formalism.MainNotions.flipOneThree.Pf
 
 open Formalism.CountingSumsFrames MvPolynomial
 
-theorem smul_mem_latOf {K : Type} [Field K] {k : ℕ} (R : Subring K) (g : GL (Fin k) K) {c : K} (hc : c ∈ R)
-    {f : PolXY K k} (hf : f ∈ latOf g (GaussLat R)) : c • f ∈ latOf g (GaussLat R) := by
-  simp only [Formalism.CountingSumsFrames.latOf, Set.mem_image] at hf ⊢
-  obtain ⟨h, hh, rfl⟩ := hf
-  refine ⟨c • h, ?_, map_smul (Formalism.CountingSumsFrames.glAct g) c h⟩
-  show ∀ m, AddMonoidAlgebra.coeff (c • h) m ∈ R
-  intro m
-  rw [MvPolynomial.coeff_smul, smul_eq_mul]
-  exact R.mul_mem hc (hh m)
-
 theorem harProj_eq_zero_iff {K : Type} [Field K] [CharZero K] {k : ℕ} (hk : 1 ≤ k) (p : ℕ) (hp : p.Prime)
     (Ov : ValuationSubring K) (hloc : PLocal Ov.toSubring p) {a b : ℕ} {f : PolXY K k} (hf : f ∈ PolAB K k a b) :
     harProj K k a b f = 0 ↔ ∃ G ∈ PolAB K k (a - 1) (b - 1), f = hXY K k * G := by
   have HP : Formalism.CountingSumsFrames.HarProj := Formalism.CountingSumsFrames.Top.harProj
-  have HQ : Formalism.CountingSumsFrames.HarQuot := Formalism.CountingSumsFrames.Top.harQuot
+  have HQ : Formalism.CountingSumsFrames.HarQuot := _root_.Formalism.CountingSumsFrames.harmonicQuotient_holds
   obtain ⟨hf1, g, hg, hfg⟩ := (HP K k a b hk).1 f hf
   constructor
   · intro h0
@@ -88,21 +78,6 @@ theorem harProj_eq_zero_iff {K : Type} [Field K] [CharZero K] {k : ℕ} (hk : 1 
 
 private theorem mem_PolAB_iff_xDeg_yDeg {K : Type} [Field K] {k A B : ℕ} {f : Formalism.CountingSumsFrames.PolXY K k} :
     f ∈ Formalism.CountingSumsFrames.PolAB K k A B ↔ ∀ m ∈ f.support, Formalism.CountingSumsFrames.xDeg m = A ∧ Formalism.CountingSumsFrames.yDeg m = B := Iff.rfl
-
-private theorem mul_mem_PolAB_add {K : Type} [Field K] {k A B C E : ℕ} {f g : Formalism.CountingSumsFrames.PolXY K k}
-    (hf : f ∈ Formalism.CountingSumsFrames.PolAB K k A B) (hg : g ∈ Formalism.CountingSumsFrames.PolAB K k C E) :
-    f * g ∈ Formalism.CountingSumsFrames.PolAB K k (A + C) (B + E) := by
-  classical
-  rw [mem_PolAB_iff_xDeg_yDeg] at hf hg ⊢
-  intro m hm
-  obtain ⟨a, ha, b, hb, rfl⟩ := Finset.mem_add.1 (MvPolynomial.support_mul f g hm)
-  obtain ⟨h1, h2⟩ := hf a ha
-  obtain ⟨h3, h4⟩ := hg b hb
-  constructor
-  · simp only [Formalism.CountingSumsFrames.xDeg, Finsupp.add_apply, Finset.sum_add_distrib] at h1 h3 ⊢
-    rw [h1, h3]
-  · simp only [Formalism.CountingSumsFrames.yDeg, Finsupp.add_apply, Finset.sum_add_distrib] at h2 h4 ⊢
-    rw [h2, h4]
 
 private theorem X_inl_mem_PolAB_one_zero {K : Type} [Field K] {k : ℕ} (i : Fin k) :
     (X (Sum.inl i) : Formalism.CountingSumsFrames.PolXY K k) ∈ Formalism.CountingSumsFrames.PolAB K k 1 0 := by
@@ -120,11 +95,6 @@ private theorem X_inr_mem_PolAB_zero_one {K : Type} [Field K] {k : ℕ} (i : Fin
   subst hm
   simp [Formalism.CountingSumsFrames.xDeg, Formalism.CountingSumsFrames.yDeg, Finsupp.single_apply]
 
-private theorem hXY_mem_PolAB_one_one {K : Type} [Field K] {k : ℕ} : Formalism.CountingSumsFrames.hXY K k ∈ Formalism.CountingSumsFrames.PolAB K k 1 1 := by
-  unfold Formalism.CountingSumsFrames.hXY
-  refine Submodule.sum_mem _ (fun i _ => ?_)
-  exact mul_mem_PolAB_add (X_inl_mem_PolAB_one_zero (K := K) i) (X_inr_mem_PolAB_zero_one i)
-
 private theorem hXY_pow_mem_PolAB {K : Type} [Field K] {k : ℕ} (j : ℕ) :
     Formalism.CountingSumsFrames.hXY K k ^ j ∈ Formalism.CountingSumsFrames.PolAB K k j j := by
   induction j with
@@ -137,7 +107,7 @@ private theorem hXY_pow_mem_PolAB {K : Type} [Field K] {k : ℕ} (j : ℕ) :
     · exact (hm rfl).elim
   | succ n ih =>
     rw [pow_succ]
-    exact mul_mem_PolAB_add ih hXY_mem_PolAB_one_one
+    exact _root_.Formalism.CountingSumsFrames.Har4.mul_mem_PolAB ih _root_.Formalism.CountingSumsFrames.Har4.hXY_mem_PolAB
 
 theorem oneTop_abs (K : Type) [Field K] [CharZero K] (k P Q p : ℕ) (hk : 1 ≤ k) (hp : p.Prime)
     (Ov : ValuationSubring K) (hloc : PLocal Ov.toSubring p)
@@ -158,10 +128,10 @@ theorem oneTop_abs (K : Type) [Field K] [CharZero K] (k P Q p : ℕ) (hk : 1 ≤
   classical
   have HP : Formalism.CountingSumsFrames.HarProj := Formalism.CountingSumsFrames.Top.harProj
   have IP : Formalism.CountingSumsFrames.LevelProj := Formalism.CountingSumsFrames.Top.levelProj
-  have GP : Formalism.CountingSumsFrames.GaussProj := Formalism.CountingSumsFrames.Top.gaussProj
-  have GLP : Formalism.CountingSumsFrames.GaussLemmaH := Formalism.CountingSumsFrames.Top.gaussLemmaH
-  have IL : Formalism.CountingSumsFrames.LevelLattice := Formalism.CountingSumsFrames.Top.levelLattice
-  have SC : Formalism.CountingSumsFrames.SlTwo := Formalism.CountingSumsFrames.Top.slTwo
+  have GP : Formalism.CountingSumsFrames.GaussProj := _root_.Formalism.CountingSumsFrames.gaussLatticeProjection_holds
+  have GLP : Formalism.CountingSumsFrames.GaussLemmaH := _root_.Formalism.CountingSumsFrames.Har4.gaussLemmaPairing_holds
+  have IL : Formalism.CountingSumsFrames.LevelLattice := _root_.Formalism.CountingSumsFrames.Har4.isotypicLattice_holds
+  have SC : Formalism.CountingSumsFrames.SlTwo := _root_.Formalism.CountingSumsFrames.slTwoCommutator_holds
   have hpair : Formalism.CountingSumsFrames.hXY K k ≠ 0 := by
     intro h0
     have h1 : (1 : Formalism.CountingSumsFrames.PolXY K k) ∈ Formalism.CountingSumsFrames.PolAB K k 0 0 := by
@@ -197,7 +167,7 @@ theorem oneTop_abs (K : Type) [Field K] [CharZero K] (k P Q p : ℕ) (hk : 1 ≤
   have hEmem : ∀ j, j ≤ min P Q → ∀ f : Formalism.CountingSumsFrames.PolAB K k (P - j) (Q - j),
       Formalism.CountingSumsFrames.hXY K k ^ j * Formalism.CountingSumsFrames.harProj K k (P - j) (Q - j) f ∈ Formalism.CountingSumsFrames.PolAB K k P Q := by
     intro j hj f
-    have h := mul_mem_PolAB_add (hXY_pow_mem_PolAB (K := K) (k := k) j)
+    have h := _root_.Formalism.CountingSumsFrames.Har4.mul_mem_PolAB (hXY_pow_mem_PolAB (K := K) (k := k) j)
       (hle _ _ ((HP K k (P - j) (Q - j) hk).1 f f.2).1)
     rwa [Nat.add_sub_of_le (hjP j hj), Nat.add_sub_of_le (hjQ j hj)] at h
   let E : ∀ j, j ≤ min P Q → Formalism.CountingSumsFrames.PolAB K k (P - j) (Q - j) →ₗ[K] V2 := fun j hj =>
@@ -266,7 +236,7 @@ theorem oneTop_abs (K : Type) [Field K] [CharZero K] (k P Q p : ℕ) (hk : 1 ≤
       have hL : ((p : K) ^ ((k + 1) * Nat.log p (P + Q + k))) •
           Formalism.CountingSumsFrames.harProj K k (P - j) (Q - j) f ∈ Formalism.CountingSumsFrames.latOf g (Formalism.CountingSumsFrames.GaussLat Ov.toSubring) := by
         have h0 := ((GP K k (P - j) (Q - j) p Ov.toSubring g hk hp hloc f f.2).1 hf).1
-        have h1 := smul_mem_latOf Ov.toSubring g
+        have h1 := _root_.Formalism.CountingSumsFrames.Har4.smul_mem_latOf_gauss Ov.toSubring g
           (pow_mem (natCast_mem Ov.toSubring p)
             ((k + 1) * Nat.log p (P + Q + k) - (k + 1) * Nat.log p (P - j + (Q - j) + k))) h0
         rwa [smul_smul, ← pow_add, Nat.sub_add_cancel he] at h1

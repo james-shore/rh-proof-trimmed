@@ -47,6 +47,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAHOfIsFactorAH
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsHolFormConst
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.AppellHumbertTrivialOfNowhereVanishing
 
 @[expose] public section
 
@@ -75,18 +76,9 @@ def imForm {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) : LinearMap.BilinForm ℝ
 theorem imForm_apply {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (y w : Fin g → ℂ) :
     imForm Hm y w = (hermForm Hm y w).im := rfl
 
-private theorem hermForm_swap_eq_star_of_isHermitian {g : ℕ} {Hm : Matrix (Fin g) (Fin g) ℂ} (hH : Hm.IsHermitian)
-    (y w : Fin g → ℂ) : hermForm Hm w y = star (hermForm Hm y w) := by
-  simp only [hermForm, dotProduct, Matrix.mulVec, star_sum, star_mul', star_star, Pi.star_apply,
-    Finset.mul_sum]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  rw [hH.apply]
-  ring
-
 theorem imForm_swap {g : ℕ} {Hm : Matrix (Fin g) (Fin g) ℂ} (hH : Hm.IsHermitian) (y w : Fin g → ℂ) :
     imForm Hm w y = - imForm Hm y w := by
-  rw [imForm_apply, imForm_apply, hermForm_swap_eq_star_of_isHermitian hH y w]
+  rw [imForm_apply, imForm_apply, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_swap hH y w]
   exact Complex.conj_im _
 
 theorem imForm_I {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (y : Fin g → ℂ) :

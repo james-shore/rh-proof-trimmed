@@ -69,7 +69,7 @@ theorem thetaMap_surjective : GlobalTheory.Published.WeilRepresentationUnitaryPa
     ⟨hH.ok.ok2.conj, hH.ok.ok2.irr, hH.ok.ok2.lifts i t⟩
   have hp : Formalism.DivisionValues.IsOrthProj (lH D A3.A F.P0 F.ψ0 i t) (lZ0 D A3.A F.P0 F.ψ0 (A3.fam3.toSub2 (zsOf R F)) i t)
       (lPrj D A3.A F.P0 F.ψ0 (A3.fam3.toSub2 (zsOf R F)) i t) := BlockDat.lf_l_proj hB
-  obtain ⟨hTh, hθ⟩ := GlobalTheory.T.liftCuspFormSpace_thetaMap_eq_data D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH
+  obtain ⟨hTh, hθ⟩ := _root_.GlobalTheory.Mem.ThRead.thDef3_thTheta D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH
   rw [← LinearMap.range_eq_top, eq_top_iff, ← hTh.span i, Submodule.span_le]
   rintro _ ⟨k, rfl⟩
   obtain ⟨z, hz⟩ := hb.2 (Pi.single k 1)

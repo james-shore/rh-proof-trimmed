@@ -546,7 +546,7 @@ theorem cp_eq (a : Fin d → R) (ha : ∀ i j, a i * a j = 0) : cp g a ha = hm (
 
 theorem jet_inj (hs : ∀ a : 𝓞 E, star a = H.bar a) (a : Fin d → Jet k Unit 1) (ha : ∀ i j, a i * a j = 0)
     (h0 : ∀ i, (jetAug : Jet k Unit 1 →ₐ[k] k) (a i) = 0) (h : cp g a ha = 1) : a = 0 := by
-  have h3 := ((GlobalTheory.CompanionTheory.Ar.GermUniv.germ_chart_universal E H hs _ t k _ d g).2 Unit 1 1 (MonObj.comp_one _)).unique
+  have h3 := ((_root_.PositivityTheory.HtPt.Cd.germ_univ E H hs _ t k _ d g).2 Unit 1 1 (MonObj.comp_one _)).unique
     (y₁ := th1 k 0 a ha) (y₂ := th1 k 0 0 (by simp))
     ⟨fun q => by rw [first_jet_mk, MvPolynomial.aeval_X, h0], h.symm.trans (cp_eq g a ha)⟩
     ⟨fun q => by rw [first_jet_mk, MvPolynomial.aeval_X]; exact map_zero _, (first_jet_zero g 0 _ _ rfl).symm⟩

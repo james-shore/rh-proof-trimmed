@@ -50,6 +50,4 @@ namespace CrystallineSemistableComparison
 
 theorem comp : ModelComponents := fun l _ K _ ↦ ⟨compSm l K, compGood l K⟩
 
-theorem geo : GeometricGenericComponents := geoMain
-
 end CrystallineSemistableComparison

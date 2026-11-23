@@ -64,11 +64,6 @@ lemma maj_zero {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) : X.maj x τ 0 
   rw [X.Hf_eq_jp, hermC_zero_right] at h
   exact_mod_cast h.symm
 
-lemma maj_nonneg {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (v : Fin r → ℂ) : 0 ≤ X.maj x τ v := by
-  by_cases hv : v = 0
-  · rw [hv, maj_zero X hx]
-  · exact (X.maj_pos hx τ hv).le
-
 lemma maj_split {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (a : ℂ) (e u : Fin r → ℂ)
     (h : X.Hf x τ u e = 0) : X.maj x τ (u + a • e) = X.maj x τ u + ‖a‖ ^ 2 * X.maj x τ e := by
   have h' : X.Hf x τ e u = 0 := by rw [majForm_conj X hx, h, map_zero]
@@ -92,21 +87,6 @@ lemma majForm_perp {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (v : Fin r 
     exact_mod_cast (X.maj_pos hx τ he).ne'
   rw [majForm_sub_smul, div_mul_cancel₀ _ h0, sub_self]
 
-lemma majForm_cs {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (v w : Fin r → ℂ) :
-    ‖X.Hf x τ v w‖ ^ 2 ≤ X.maj x τ v * X.maj x τ w := by
-  by_cases hw : w = 0
-  · rw [hw, maj_zero X hx, X.Hf_eq_jp, hermC_zero_right]
-    simp
-  have hp := X.maj_pos hx τ hw
-  have h1 := maj_split X hx τ (X.Hf x τ v w / X.Hf x τ w w) w _ (majForm_perp X hx τ v hw)
-  rw [sub_add_cancel] at h1
-  have h2 := maj_nonneg X hx τ (v - (X.Hf x τ v w / X.Hf x τ w w) • w)
-  have h3 : ‖X.Hf x τ v w / X.Hf x τ w w‖ ^ 2 * X.maj x τ w * X.maj x τ w = ‖X.Hf x τ v w‖ ^ 2 := by
-    rw [norm_div, X.Hf_self hx τ w, Complex.norm_real, Real.norm_of_nonneg hp.le]
-    field_simp
-  rw [← h3]
-  exact mul_le_mul_of_nonneg_right (by linarith) hp.le
-
 lemma maj_jp {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (v : Fin r → ℂ) :
     X.maj x τ (X.jp x τ v) = X.maj x τ v := by
   have h1 := X.Hf_self hx τ (X.jp x τ v)
@@ -116,7 +96,7 @@ lemma maj_jp {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (v : Fin r → �
 
 lemma herm_cs {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (v w : Fin r → ℂ) :
     ‖hermC τ.1 X.Gm v w‖ ^ 2 ≤ X.maj x τ v * X.maj x τ w := by
-  have h := majForm_cs X hx τ (X.jp x τ v) w
+  have h := _root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantConjugateTransfer.cs X hx τ (X.jp x τ v) w
   rwa [X.Hf_eq_jp, X.jp_jp hx, maj_jp X hx] at h
 
 lemma maj_flow {ξ : Fin r → E} (hξ : X.IsIso ξ) {x : Frame X.Ψ r} (hx : x ∈ X.dom) (s : X.Ψ → ℂ)
@@ -155,6 +135,6 @@ namespace GlobalTheory.CuspFrom
 
 theorem flowMajSt_holds : FlowMajSt := fun _ _ _ _ _ X =>
   ⟨fun _ hξ _ hx s hxs τ v hv => FlowMaj.maj_flow X hξ hx s hxs τ v hv,
-    fun _ hx τ v w => ⟨FlowMaj.herm_cs X hx τ v w, FlowMaj.majForm_cs X hx τ v w⟩⟩
+    fun _ hx τ v w => ⟨FlowMaj.herm_cs X hx τ v w, _root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantConjugateTransfer.cs X hx τ v w⟩⟩
 
 end GlobalTheory.CuspFrom

@@ -169,7 +169,7 @@ theorem log_norm_cp {Ω : Type} [Field Ω] (R : Subring Ω) (p : Nat.Primes) (f 
         rwa [orderOf_eq_prime hpow h1] at this
       have e : f ⟨ζ - 1, hκ⟩ = f ⟨ζ, hζR⟩ - 1 := by
         rw [← map_one f, ← map_sub]; rfl
-      rw [e, GlobalTheory.T.norm_primitiveRoot_primePow_sub_one_padicComplex p 1 le_rfl _ hprim]
+      rw [e, _root_.GlobalTheory.Cyc.norm_primitiveRoot_sub_one p 1 le_rfl _ hprim]
       congr 1
       simp [neg_div]
   have hpos : 0 < ‖f ⟨κ, hκ⟩‖ := key ▸ Real.rpow_pos_of_pos (by positivity) _
@@ -200,8 +200,8 @@ theorem coeff_order {A B : Lat ξ E} {p q : ℕ} {a : ⋀[Ω]^p E} {b : ⋀[Ω]^
     {bq : Fin q → E} (hp : A.IsFrameAt bp x) (hq : B.IsFrameAt bq x) {α β : Ω} (hα : α ≠ 0) (hβ : β ≠ 0)
     (ea : a = α • exteriorPower.ιMulti Ω p bp) (eb : b = β • exteriorPower.ιMulti Ω q bq) {σ ϖ : Ω} {m : ℕ} {k : ℤ}
     (h : OrderAt (lineLat A B p q a b) σ ϖ m k x) : unitAt ξ x ((σ * α / β) ^ m / ϖ ^ k) := by
-  obtain ⟨wp, np⟩ := GlobalTheory.T.wedge_lattice_generator X Ω ξ E A p bp x hp
-  obtain ⟨wq, nq⟩ := GlobalTheory.T.wedge_lattice_generator X Ω ξ E B q bq x hq
+  obtain ⟨wp, np⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_eq_span_ιMulti X Ω ξ E A p bp x hp
+  obtain ⟨wq, nq⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_eq_span_ιMulti X Ω ξ E B q bq x hq
   have hL : lineLat A B p q a b x = Submodule.span (regAt ξ x) {β / α} := by
     refine le_antisymm (Submodule.span_le.2 ?_) (Submodule.span_le.2 ?_)
     · rintro _ ⟨f, ⟨α', β', hα', hβ', h1, h2, h3⟩, rfl⟩

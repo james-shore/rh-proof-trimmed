@@ -68,7 +68,7 @@ theorem card_sha2_mul_card_local_h2 : ∀ (F Ω : Type) [Field F] [NumberField F
   have htopc : Nat.card ↥(⊤ : Submodule (ZMod (l ^ r)) (Module.Dual (ZMod (l ^ r)) ↥(H0 (twDual μ ρ)))) =
       Nat.card (Module.Dual (ZMod (l ^ r)) ↥(H0 (twDual μ ρ))) :=
     Nat.card_congr Submodule.topEquiv.toEquiv
-  have hD := GlobalTheory.CompanionTheory.ZModDual.nat_card_dual_eq (l ^ r) ↥(H0 (twDual μ ρ))
+  have hD := _root_.GlobalTheory.ZModDual.card_dual_eq (l ^ r) ↥(H0 (twDual μ ρ))
   rw [hsha, h2, hker, htop, htopc, hD, h1]
   ring
 

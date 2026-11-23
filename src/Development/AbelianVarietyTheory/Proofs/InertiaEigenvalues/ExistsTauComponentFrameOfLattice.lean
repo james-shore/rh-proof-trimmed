@@ -139,12 +139,6 @@ theorem exists_undo (K LL : FinExt l) (τ : ↥K.1 →ₐ[ℚ_[l]] ↥LL.1) :
   rw [AlgEquiv.symm_apply_eq]
   exact (τ.liftNormal_commutes (Om l) x).symm
 
-theorem Ks_mono (K : FinExt l) {s m : ℕ} (hm : s ≤ m) : Ks K s ≤ Ks K m := by
-  refine sup_le_sup_left (IntermediateField.adjoin.mono _ _ _ fun x hx => ?_) _
-  obtain ⟨n, rfl⟩ := Nat.exists_eq_add_of_le hm
-  change x ^ (l ^ (s + n)) = 1
-  rw [pow_add, pow_mul, show x ^ l ^ s = 1 from hx, one_pow]
-
 theorem rat_mem_subC (F : IntermediateField ℚ_[l] (Om l)) (c : ℚ_[l]) :
     algebraMap ℚ_[l] (PadicComplex l) c ∈ subC F :=
   ⟨algebraMap ℚ_[l] (Om l) c, F.algebraMap_mem c,
@@ -296,7 +290,7 @@ theorem exists_tau_frame : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc)
   obtain ⟨Θ⟩ := GlobalTheory.ThetaTie.nonempty_thetaL D l
   obtain ⟨Dm, U, g, hD, hA⟩ := GlobalTheory.Cyc.Decomp.exists_decompletion D HW F l K s LL h T M0 h0 hW d M A hM
   have hKm : K.1 ≤ Ks K (mN l s (M0 + h0)) :=
-    h.2.2.1.trans (Ks_mono K (by unfold mN; omega))
+    h.2.2.1.trans (_root_.GlobalTheory.TateDecomp.Ks_mono K (by unfold mN; omega))
   exact frame_of_dec (D.loc l) (D.locA l) Θ K LL _ hKm (h7 l K) T τ
     (GlobalTheory.Cyc.CrysDeRham.isDR_of_isCrysOn D HW h7 l K s LL h T hW.1) M A hM Dm U g hD hA
 

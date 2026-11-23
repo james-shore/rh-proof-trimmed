@@ -66,7 +66,7 @@ theorem volU_density (μ : Measure (UNgrp N)) [μ.IsHaarMeasure] [IsProbabilityM
       μ {k : UNgrp N | ∃ x ∈ B, toM k = NormedSpace.exp (skMat x)} ≤ ENNReal.ofReal ((1 + η) / volU N) * volume B ∧
         ENNReal.ofReal ((1 - η) / volU N) * volume B ≤ μ {k : UNgrp N | ∃ x ∈ B, toM k = NormedSpace.exp (skMat x)} := by
   obtain ⟨C, -, hC⟩ := qr_lintegral μ
-  have hCV : C = volU N := qr_const μ C hC
+  have hCV : C = volU N := _root_.ReciprocityTheory.ChartRestriction.DS.gaussE_qr_const μ C hC
   subst hCV
   have hV := volU_pos' N
   obtain ⟨ε, hε0, hε1, hkey⟩ : ∃ ε : ℝ, 0 < ε ∧ ε < 1 ∧ (1 - ε) * (1 + η) = 1 + ε :=
@@ -105,14 +105,14 @@ theorem volU_density (μ : Measure (UNgrp N)) [μ.IsHaarMeasure] [IsProbabilityM
     by_cases hk : k ∈ volUSet B
     · rw [Set.indicator_of_mem hk, hIdef,
         ← Set.inter_eq_left.2 hE'pos, ← setLIntegral_indicator Metric.isOpen_ball.measurableSet]
-      refine setLIntegral_congr_fun volU_measurableSet_triPos (fun t ht => ?_)
+      refine setLIntegral_congr_fun _root_.ReciprocityTheory.ChartRestriction.DS.PositiveTriangularSet.ms_triPos (fun t ht => ?_)
       by_cases ht' : t ∈ Metric.ball (volUOne N) ρ
       · rw [Set.indicator_of_mem ((hmem k t ht).2 ⟨hk, ht'⟩), Set.indicator_of_mem ht', Pi.one_apply,
           one_mul]
       · rw [Set.indicator_of_notMem (fun h => ht' ((hmem k t ht).1 h).2), Set.indicator_of_notMem ht',
           zero_mul]
     · rw [Set.indicator_of_notMem hk]
-      rw [setLIntegral_congr_fun volU_measurableSet_triPos (g := fun _ => 0) (fun t ht => by
+      rw [setLIntegral_congr_fun _root_.ReciprocityTheory.ChartRestriction.DS.PositiveTriangularSet.ms_triPos (g := fun _ => 0) (fun t ht => by
         simp only
         rw [Set.indicator_of_notMem (fun h => hk ((hmem k t ht).1 h).1), zero_mul])]
       simp

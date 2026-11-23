@@ -181,7 +181,7 @@ theorem existsUnique_selfDual (B : V → V → ℂ)
       have : {x | ‖B x y - 1‖ < 1 / 2} ∈ 𝓝 (0 : V) :=
         (isOpen_lt ((hBc y).sub continuous_const).norm continuous_const).mem_nhds (by simp [h0])
       filter_upwards [hU.eventually_subset this] with k hk
-      refine (hN k y).2 fun x hx => GlobalTheory.CharConductor.eq_one_of_pow_near_one fun n => ?_
+      refine (hN k y).2 fun x hx => _root_.GlobalTheory.IterationConvergence.main fun n => ?_
       have e : B x y ^ n = B (n • x) y := by
         induction n with
         | zero => simp [h0]
@@ -242,7 +242,7 @@ theorem existsUnique_of_bilin (ψ : AddChar (Fv F v) ℂ) (hψ : Continuous ψ) 
   letI : NontriviallyNormedField (Fv F v) :=
     Valued.toNontriviallyNormedField (Fv F v) (WithZero (Multiplicative ℤ))
   haveI : IsUltrametricDist (Fv F v) := inferInstance
-  obtain ⟨n, hc⟩ := GlobalTheory.CharConductor.exists_exponent_of_valued ψ hψ hne
+  obtain ⟨n, hc⟩ := _root_.GlobalTheory.CharacterConductorBall.exists_conductor ψ hψ hne
   obtain ⟨c, hcv⟩ := HeightOneSpectrum.valuedAdicCompletion_surjective F v (WithZero.exp n)
   have hc0 : c ≠ 0 := by
     rintro rfl

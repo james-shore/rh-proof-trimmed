@@ -50,4 +50,4 @@ import Mathlib.Topology.Sheaves.Init
 theorem fold_dc_unfold : PI.FoldDCUnfold.FoldDCUnfold :=
   PI.FoldDCUnfold.W.foldDCUnfold_of PI.FoldDCUnfold.W.translation_exists
     PI.FoldDCUnfold.W.translation_independent PI.FoldDCUnfold.W.translation_product
-    PI.FoldDCUnfold.W.double_coset_translation lintegralTransversalSum
+    PI.FoldDCUnfold.W.double_coset_translation _root_.PI.FoldUnfold.UnitaryGroupMassFormula.foldUnfold_main

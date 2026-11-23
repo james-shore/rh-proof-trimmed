@@ -101,7 +101,7 @@ theorem cocycle_mem_coboundaries_of_tate_orthogonal' : Formalism.GaloisCohomolog
   haveI := hDom; haveI := hDVR; haveI := hFrac; haveI := htr
   haveI : IsTopologicalAddGroup A'.V := IsModuleTopology.topologicalAddGroup LL A'.V
   obtain ⟨L1, hL1⟩ := exists_unitLattice P K LL O hO
-  obtain ⟨LA, LA', hLL', -⟩ := GlobalTheory.T.exists_mutuallyDual_stable_lattices l P K LL O hO A A' m hm
+  obtain ⟨LA, LA', hLL', -⟩ := _root_.GlobalTheory.StableDual.stable_dual_lattices l P K LL O hO A A' m hm
   have hT'open : IsOpen (LA'.T : Set A'.V) := Formalism.MainNotions.BlochKatoDuality.Br.lat_open hopen LA'.T LA'.fg LA'.span
   have hL1open : IsOpen (L1.T : Set LL) := by
     rw [hL1]
@@ -177,7 +177,7 @@ theorem cocycle_mem_coboundaries_of_tate_orthogonal' : Formalism.GaloisCohomolog
   have hl : ((l : ℕ) : O) ∉ nonunits O → False := by
     intro hu
     have hu' : IsUnit ((l : ℕ) : O) := by simpa [mem_nonunits_iff] using hu
-    have hc := (GlobalTheory.GoodCoeff.good_coeff_integers l LL O hO).2.2.2
+    have hc := (_root_.GlobalTheory.PowerImageOpen.main l LL O hO).2.2.2
     have htop : Ideal.span {((l : ℕ) : O)} = ⊤ := Ideal.span_singleton_eq_top.2 hu'
     have h10 : (1 : O) = 0 := by
       apply hc.toIsHausdorff.haus 1

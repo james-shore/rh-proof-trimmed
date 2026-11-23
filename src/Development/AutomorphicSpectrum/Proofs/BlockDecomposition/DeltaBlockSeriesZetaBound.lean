@@ -154,7 +154,7 @@ theorem sum_delta_le : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   have hδ' : (0 : ℝ) < delta c := by exact_mod_cast Nat.pos_of_ne_zero hδ
   have hN' : (0 : ℝ) < Ideal.absNorm (tor c u) := by exact_mod_cast Nat.pos_of_ne_zero hN
   have hs0 : 0 < s := by linarith
-  obtain ⟨hsum, hzeta⟩ := GlobalTheory.T.torsion_norm_zeta_bound F 1 (intVec F 1) (isLat_intVec 1) (2 * s - 1) (by linarith)
+  obtain ⟨hsum, hzeta⟩ := _root_.GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.HS.sum_torsion F 1 (intVec F 1) (isLat_intVec 1) (2 * s - 1) (by linarith)
   have hexp : (((1 : ℕ) : ℝ) + (2 * s - 1)) = 2 * s := by
     push_cast
     ring

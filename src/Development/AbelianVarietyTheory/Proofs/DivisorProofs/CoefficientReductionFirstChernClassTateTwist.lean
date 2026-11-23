@@ -76,11 +76,6 @@ theorem face_zero {E : Spc} {U : Scheme.{0}} (x : Sx E 2 U) : x.face 0 = x.sub 1
   unfold Sx.face Sx.sub SimplicialObject.δ
   rw [delta_zero_eq]
 
-theorem sub_res {E : Spc} {N : ℕ} {V U : Scheme.{0}} (g : V ⟶ U) (x : Sx E N U) (j l : ℕ) (h : j + l ≤ N) :
-    (x.res g).sub j l h = (x.sub j l h).res g := by
-  unfold Sx.sub Sx.res
-  exact NatTrans.naturality_apply (E.map (SimplexCategory.subinterval j l h).op) g.op x
-
 open GlobalTheory.EtC.PicSpec
 
 theorem corrFam_nat (Q q : ℕ) [NeZero Q] (hqQ : q ∣ Q) {E : Spc} (hE : Inv Q E) (L : E ⟶ ofCat (glCat 1)) (p : ℕ) (s : ℤ)
@@ -93,7 +88,7 @@ theorem corrFam_nat (Q q : ℕ) [NeZero Q] (hqQ : q ∣ Q) {E : Spc} (hE : Inv Q
   | 1 =>
     obtain rfl : s = 0 := by omega
     rw [corrFam_one, corrFam_one, lineUnit_res,
-      GlobalTheory.T.kummerReductionChernDefectSection_res Q q hqQ U _ (hE U ⟨x.face 0⟩) V g]
+      _root_.GlobalTheory.EtC.RedChern.defectSec_res Q q hqQ U _ (hE U ⟨x.face 0⟩) V g]
   | p + 2 =>
     rw [corrFam_add_two, corrFam_add_two]
     exact map_zero (((res _ (tw q 1)).X s).obj.map g.op).hom
@@ -112,10 +107,10 @@ theorem coefficientReduction_firstChernClass_tateTwist : ∀ (Q q : ℕ) [NeZero
     exact isUnit_of_mul_isUnit_left this
   obtain ⟨γ, hγ, hγ0, hγ1, hγ2⟩ := (GlobalTheory.T.firstChernClassTateTwist_cocycle_unique_natural_additive Q).1 L hE
   obtain ⟨γ', hγ', hγ0', hγ1', hγ2'⟩ := (GlobalTheory.T.firstChernClassTateTwist_cocycle_unique_natural_additive q).1 L hUnit
-  obtain ⟨β, hβ⟩ := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap _ _ (redMap Q q 1)).1 E 2 γ
+  obtain ⟨β, hβ⟩ := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec _ _ (redMap Q q 1)).1 E 2 γ
   have hred : red Q q E 2 1 (c1 Q L) = CohomologyClass.mk β := by
     rw [← hγ]
-    exact (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap _ _ (redMap Q q 1)).2 E 2 γ β hβ
+    exact (_root_.GlobalTheory.EtC.SemiMap.op_image_spec _ _ (redMap Q q 1)).2 E 2 γ β hβ
   rw [hred, ← hγ']
   obtain ⟨α, hα⟩ := GlobalTheory.T.exists_cochain_ev_eq_of_natural' (ZMod q) (corrFam Q q L) (corrFam_nat Q q hqQ hE L)
   rw [← sub_eq_zero, ← CohomologyClass.mk_sub, CohomologyClass.mk_eq_zero_iff, mem_coboundaries_iff _ 1 (by norm_num)]
@@ -132,7 +127,7 @@ theorem coefficientReduction_firstChernClass_tateTwist : ∀ (Q q : ℕ) [NeZero
     have key := (GlobalTheory.T.etaleCochainEvalOnSimplex_differential_values (ZMod q) (by norm_num) α U).2 0 0 1 (by simp) ht x
     rw [key]
     simp only [hα, corrFam_zero, smul_zero, Finset.sum_const_zero, add_zero, corrFam_one]
-    refine (GlobalTheory.T.reducedChernCocycle_deg_one_sub_eq_differential Q q hqQ U (lineUnit L x) (hE U ⟨x.face 0⟩) _ _ (fun V g v hv => ?_) (fun V g w hw => ?_)).symm
+    refine (_root_.GlobalTheory.EtC.RedChern.red_chern_deg_one Q q hqQ U (lineUnit L x) (hE U ⟨x.face 0⟩) _ _ (fun V g v hv => ?_) (fun V g w hw => ?_)).symm
     · rw [(GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod Q)).2.1 γ.1 1 1 _ V U g x]
       exact hγ1 V (x.res g) v (by simpa only [lineUnit_res] using hv)
     · rw [(GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q)).2.1 γ'.1 1 1 _ V U g x]
@@ -147,11 +142,11 @@ theorem coefficientReduction_firstChernClass_tateTwist : ∀ (Q q : ℕ) [NeZero
     simp only [Fin.val_zero, Fin.val_one, Fin.val_two, pow_zero, pow_one, one_smul, neg_smul, Int.reduceNeg]
     rw [Int.negOnePow_even 2 (by decide), one_smul, mul_comm (lineUnit L _) (lineUnit L _), ← sub_eq_add_neg]
     norm_num
-    refine (GlobalTheory.T.reducedChernCocycle_deg_two_sub_eq_defects Q q hqQ U _ _ (hE U ⟨(x.face 0).face 0⟩) _ _ (fun V g v w hv hw => ?_) (fun V g v w hv hw => ?_)).symm
+    refine (_root_.GlobalTheory.RedChern.redMap_cocycle_sub_eq_defects Q q hqQ U _ _ (hE U ⟨(x.face 0).face 0⟩) _ _ (fun V g v w hv hw => ?_) (fun V g v w hv hw => ?_)).symm
     · rw [(GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod Q)).2.1 γ.1 2 0 _ V U g x]
-      exact hγ2 V (x.res g) v w (by rw [sub_res, lineUnit_res]; exact hv) (by rw [sub_res, lineUnit_res]; exact hw)
+      exact hγ2 V (x.res g) v w (by rw [_root_.GlobalTheory.EtC.CupSpec.sub_res, lineUnit_res]; exact hv) (by rw [_root_.GlobalTheory.EtC.CupSpec.sub_res, lineUnit_res]; exact hw)
     · rw [(GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q)).2.1 γ'.1 2 0 _ V U g x]
-      exact hγ2' V (x.res g) v w (by rw [sub_res, lineUnit_res]; exact hv) (by rw [sub_res, lineUnit_res]; exact hw)
+      exact hγ2' V (x.res g) v w (by rw [_root_.GlobalTheory.EtC.CupSpec.sub_res, lineUnit_res]; exact hv) (by rw [_root_.GlobalTheory.EtC.CupSpec.sub_res, lineUnit_res]; exact hw)
   | p + 3 =>
     have hZ := res_isZero (tw q 1) t (by omega)
     exact (sec_eq_zero hZ _).trans (sec_eq_zero hZ _).symm

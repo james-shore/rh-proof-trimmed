@@ -126,7 +126,7 @@ theorem eventually_not_mem_saturation : ∀ (E : Type) [Field E] [NumberField E]
     ∀ᶠ y' in 𝓝 y, ¬ ∃ γ ∈ X.Γ, ∃ b ∈ Bor X.Ψ r, ∃ z : V (nd X), ‖z‖ ≤ ρ ∧
       y' = lact γ (rmul (cpt X x z) b) := by
   intro E _ _ _ r X x ρ hΩ y hy hny
-  have hcpt : Continuous (cpt X x) := (GlobalTheory.InterpCompare.differentiable_chart X x).continuous
+  have hcpt : Continuous (cpt X x) := (_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.IW.cpt_diff X x).continuous
   have hK : IsCompact (Metric.closedBall (0 : V (nd X)) ρ) := isCompact_closedBall 0 ρ
   have key : ∀ z ∈ Metric.closedBall (0 : V (nd X)) ρ, ∀ᶠ p : Frame X.Ψ r × V (nd X) in 𝓝 (y, z),
       ∀ γ ∈ X.Γ, ∀ b ∈ Bor X.Ψ r, p.1 ≠ lact γ (rmul (cpt X x p.2) b) := by

@@ -80,9 +80,7 @@ theorem countable_gen {o K : Type} [CommRing o] [Field K] (β : o →+* K) (s : 
   refine (Subfield.cardinalMk_closure_le_max _).trans ?_
   exact max_le (Cardinal.mk_le_aleph0_iff.2 hc.to_subtype) le_rfl
 
-theorem spMap_subtype {K : Type} [Field K] {K₀ K₁ : Subfield K} (h : K₀ ≤ K₁) :
-    spMap K₁.subtype ≫ spMap (Subfield.inclusion h) = spMap K₀.subtype := by
-  rw [← Spec.map_comp]; rfl
+alias spMap_subtype := _root_.GlobalTheory.GrpDescent.spMap_subtype
 
 theorem isProper_of_isProjOver {R : Type} [CommRing R] {X : Scheme.{0}} {f : X ⟶ Sp R} (h : IsProjOver f) :
     IsProper f := by

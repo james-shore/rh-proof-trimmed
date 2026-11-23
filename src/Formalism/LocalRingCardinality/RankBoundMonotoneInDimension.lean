@@ -66,6 +66,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.DualWeylModuleStable
 
 @[expose] public section
 
@@ -520,9 +521,6 @@ open Formalism.FrobeniusOrbits Formalism.TwoAdicCyclotomicDecomposition
 theorem orderOf_unit_class_eq_two_pow (e : ℕ) : orderOf (hcl e (u5 (e + 2))) = 2 ^ e :=
   (Formalism.FrobeniusOrbits.Final.host_field.2.1 e).2.2.2.2.2.2.2.1
 
-theorem card_HGrp (e : ℕ) : Nat.card (HGrp e) = 2 ^ e :=
-  (Formalism.FrobeniusOrbits.Final.host_field.2.1 e).2.2.2.2.2.2.1
-
 theorem iotaH_add (e : ℕ) (i j : ZMod (2 ^ e)) : iotaH e (i + j) = iotaH e i * iotaH e j := by
   simp only [iotaH]
   rw [← pow_add, ZMod.val_add]
@@ -546,7 +544,7 @@ theorem iotaH_bijective (e : ℕ) : Function.Bijective (iotaH e) := by
     simp only [iotaH] at hij
     rw [pow_inj_mod, orderOf_unit_class_eq_two_pow e, Nat.mod_eq_of_lt (ZMod.val_lt i), Nat.mod_eq_of_lt (ZMod.val_lt j)] at hij
     exact ZMod.val_injective _ hij
-  exact inj.bijective_of_nat_card_le (by rw [card_HGrp, Nat.card_zmod])
+  exact inj.bijective_of_nat_card_le (by rw [_root_.Formalism.FrobeniusOrbits.Group.card_H, Nat.card_zmod])
 
 theorem factIota : FactIota := fun e => ⟨iotaH_bijective e, iotaH_add e, iotaH_one e⟩
 
@@ -948,7 +946,7 @@ theorem bridge_round_square_holds : bridge_round_square := by
 
 theorem factSqActMul : FactSqActMul := by
   intro R _ N lam g h f
-  have hmul := Formalism.UG.Final.DwActMul R N N
+  have hmul := _root_.Formalism.UG.P.dual_weyl_action_mul R N N
   refine ⟨?_, ?_⟩
   · unfold sqAct
     rw [rowAct_tr_eq, rowAct_tr_eq, rowAct_tr_eq, invTr_mul, (hmul _ _).1, AlgHom.comp_apply,
@@ -999,7 +997,7 @@ theorem factNormFockUnitary : FactNormFockUnitary := by
       Matrix.star_eq_conjTranspose, Matrix.conjTranspose_conjTranspose]
   unfold Formalism.UG.dwAct
   rw [Formalism.GradedWeylDivisibility.fockRowAdj, hinv]
-  have h1 := Formalism.UG.Final.DwActMul ℂ N N g⁻¹ g
+  have h1 := _root_.Formalism.UG.P.dual_weyl_action_mul ℂ N N g⁻¹ g
   have key : Formalism.UG.dwAct ℂ N N g⁻¹ (Formalism.UG.dwAct ℂ N N g h) = h := by
     rw [← AlgHom.comp_apply, ← h1.1, inv_mul_cancel, h1.2, AlgHom.id_apply]
   simpa [Formalism.UG.dwAct] using congrArg (Formalism.REAL.fockF f) key

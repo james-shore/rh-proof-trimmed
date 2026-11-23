@@ -134,7 +134,7 @@ lemma vol_sign (n : ℕ) (ε : Fin n → Bool) (s : Bool) : ∃ C : ℝ, 0 ≤ C
     simp only [Set.mem_iUnion]
     refine ⟨x, hx, ?_⟩
     show hs (uMat ((τ x)⁻¹ * g)) ≤ _
-    refine (GlobalTheory.T.hilbertSchmidt_inUJ_le_of_sign_columns n ε s _ ((τ x)⁻¹ * g).2).trans ?_
+    refine (_root_.GlobalTheory.hs_le_of_cols n ε s _ ((τ x)⁻¹ * g).2).trans ?_
     gcongr
     calc ∑ i, ∑ j ∈ univ.filter (fun j => ε j = s), ‖uMat ((τ x)⁻¹ * g) i j‖ ^ 2
         ≤ ∑ _i : Fin n, ∑ _j ∈ univ.filter (fun j => ε j = s), ((1 : ℝ) + n) ^ 2 := by

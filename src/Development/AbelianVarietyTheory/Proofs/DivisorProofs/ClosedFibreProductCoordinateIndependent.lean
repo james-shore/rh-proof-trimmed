@@ -58,20 +58,20 @@ theorem specMap_contravariant_comp_ringHom {A B C : Type} [CommRing A] [CommRing
 
 theorem Near.closed_product_unique : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (M : Modif R) (G' : Over M.S) [GrpObj G'] (E : Emb M.π G') (N : Near M.π G') (fU : N.U.left ⟶ PSpace R E.N) (l : pullback N.U.hom M.π ⟶ E.H.toScheme), l ≫ E.H.ι = N.u → l ≫ E.f = pullback.fst _ _ ≫ fU → Surjective M.π → ∀ (Ω : Type) [Field Ω] (κ : ResidueField R →+* Ω) (s s' : Sp Ω ⟶ M.S) (a b c c' : Sp Ω ⟶ N.U.left) (x y : Over.mk s ⟶ G') (x' y' : Over.mk s' ⟶ G'), s ≫ M.π = spMap (κ.comp (residue R)) → s' ≫ M.π = spMap (κ.comp (residue R)) → N.Pt s a x.left → N.Pt s b y.left → N.Pt s c (x * y).left → N.Pt s' a x'.left → N.Pt s' b y'.left → N.Pt s' c' (x' * y').left → c = c' := by
   intro R _ _ _ M G' _ E N fU l hl1 hl2 hsurj Ω _ κ s s' a b c c' x y x' y' hs hs' ha hb hc ha' hb' hc'
-  obtain ⟨Ω₁, _, io₁, ca, cb, hca, hcb, hcc⟩ := GlobalTheory.T.closedFibre_embedding_mul_image_eq_of_field_point R M G' E N fU l hl1 hl2 Ω κ s a b c x y hs ha hb hc
+  obtain ⟨Ω₁, _, io₁, ca, cb, hca, hcb, hcc⟩ := _root_.GlobalTheory.Mum.closed_product_image R M G' E N fU l hl1 hl2 Ω κ s a b c x y hs ha hb hc
   obtain ⟨Ω₂, _, io₂, ca', cb', hca', hcb', hcc'⟩ :=
     GlobalTheory.T.closedFibre_embedding_mul_image_eq_of_field_point R M G' E N fU l hl1 hl2 Ω κ s' a b c' x' y' hs' ha' hb' hc'
   obtain ⟨Ω₃, _, j₁, j₂, hj⟩ := GlobalTheory.T.exists_common_field_extension' Ω Ω₁ Ω₂ io₁ io₂
   have : Mono E.j := by haveI := E.imm; infer_instance
 
   let g₁ : Over.mk (spMap ((j₁.comp io₁).comp κ)) ⟶ Over.mk (spMap (io₁.comp κ)) :=
-    Over.homMk (spMap j₁) (by simp only [Over.mk_hom, specMap_contravariant_comp_ringHom])
+    Over.homMk (spMap j₁) (by simp only [Over.mk_hom, _root_.GlobalTheory.spMap_comp_ring])
   let g₂ : Over.mk (spMap ((j₁.comp io₁).comp κ)) ⟶ Over.mk (spMap (io₂.comp κ)) :=
-    Over.homMk (spMap j₂) (by simp only [Over.mk_hom, specMap_contravariant_comp_ringHom, hj])
+    Over.homMk (spMap j₂) (by simp only [Over.mk_hom, _root_.GlobalTheory.spMap_comp_ring, hj])
   have hg₁ : g₁.left = spMap j₁ := rfl
   have hg₂ : g₂.left = spMap j₂ := rfl
-  have e₁ : spMap j₁ ≫ spMap io₁ = spMap (j₁.comp io₁) := specMap_contravariant_comp_ringHom _ _
-  have e₂ : spMap j₂ ≫ spMap io₂ = spMap (j₁.comp io₁) := by rw [specMap_contravariant_comp_ringHom, hj]
+  have e₁ : spMap j₁ ≫ spMap io₁ = spMap (j₁.comp io₁) := _root_.GlobalTheory.spMap_comp_ring _ _
+  have e₂ : spMap j₂ ≫ spMap io₂ = spMap (j₁.comp io₁) := by rw [_root_.GlobalTheory.spMap_comp_ring, hj]
   have hA : g₁ ≫ ca = g₂ ≫ ca' := by
     ext1
     rw [← cancel_mono E.j]
@@ -101,6 +101,6 @@ theorem Near.closed_product_unique : ∀ (R : Type) [CommRing R] [IsDomain R] [I
   have key := GlobalTheory.T.closedFibre_fieldPoints_injective_projective_map R M G' E N fU l hl1 hl2 hsurj Ω₃ ((j₁.comp io₁).comp κ) (spMap (j₁.comp io₁) ≫ c)
     (spMap (j₁.comp io₁) ≫ c') (hco c (hlies s c _ hs hc)) (hco c' (hlies s' c' _ hs' hc'))
     (by simpa only [Category.assoc] using hfU)
-  exact GlobalTheory.T.spMap_field_ext_cancel Ω Ω₃ (j₁.comp io₁) N.U.left c c' key
+  exact _root_.GlobalTheory.Mum.spMap_field_cancel Ω Ω₃ (j₁.comp io₁) N.U.left c c' key
 
 end GlobalTheory.Mum

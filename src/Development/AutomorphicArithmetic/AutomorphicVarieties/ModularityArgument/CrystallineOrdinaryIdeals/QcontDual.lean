@@ -60,16 +60,9 @@ variable {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] [IsDiscre
   [Algebra ℤ_[l] O] [Module.Finite ℤ_[l] O] [IsAdicComplete (maximalIdeal O) O] (D : Dat3 l O) (U : _root_.UpperTheory.V.U3.Univ (_root_.UpperTheory.V.U3.GCond.noCondition O D.η D.Ψ))
 
 omit [Module.Finite ℤ_[l] O] [IsAdicComplete (maximalIdeal O) O] [CharZero O] in
-theorem push_base (E : Type) [Field E] [Algebra O E] {x : U.R →ₐ[O] O} (hx : IsBase D.η D.Ψ U.r.hom x) :
-    push ((Algebra.ofId O E).comp x) U.r.hom = D.rz E := by
-  unfold Dat3.rz
-  rw [← show push x U.r.hom = r0 D.η D.Ψ from hx]
-  rfl
+alias push_base := _root_.GlobalTheory.OrdLoc.OrdinaryEmbeddings.push_base
 
-theorem cont_push (B : Type) [CommRing B] [Algebra ℚ_[l] B] [Module.Finite ℚ_[l] B] [Algebra O B]
-    [Algebra ℤ_[l] B] [IsScalarTower ℤ_[l] O B] [IsScalarTower ℤ_[l] ℚ_[l] B] (f : U.R →ₐ[O] B) (a b : Fin 3) :
-    QCont l fun g => (push f U.r.hom g).mat a b :=
-  (ptCont (l := l) U.R B f).1 (GQ l) (fun g => (U.r.hom g).mat a b) (U.r.cont a b)
+alias cont_push := _root_.GlobalTheory.OrdLoc.OrdinaryEmbeddings.cont_push
 
 omit [IsDomain O] in
 theorem qcont_dual {X E : Type} [TopologicalSpace X] [Field E] [Algebra ℚ_[l] E]

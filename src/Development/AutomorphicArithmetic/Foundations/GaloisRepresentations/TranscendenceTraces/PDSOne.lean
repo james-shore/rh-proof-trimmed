@@ -50,7 +50,7 @@ theorem UpperTheory.Gal.TranscendenceTraces.dSOne_of :
     LocFinSec → DSOne := by
   intro hL R _ Z S p _ T hT U u b hb
   obtain ⟨-, hmono, -, -, -, -, -⟩ := GlobalTheory.T.etaleLocal_property_calculus_rules
-  have h1 := (GlobalTheory.T.etaleSheaf_shortComplex_exact_iff_locally R T).1 hT (pullback p u) b hb
+  have h1 := (_root_.GlobalTheory.EtC.exactIff R T).1 hT (pullback p u) b hb
   have h2 := hL R T.f (pullback.snd p u) b h1
   apply hmono _ _ _ h2
   intro U' g hg

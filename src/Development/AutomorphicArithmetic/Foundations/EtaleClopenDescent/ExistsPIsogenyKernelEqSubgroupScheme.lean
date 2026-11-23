@@ -60,7 +60,7 @@ namespace UpperTheory.QO
 private theorem main' : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] [IsNoetherianRing R] (b : Base D R) (N : ℕ), 3 ≤ N → N.Coprime p → IsUnit ((p : ℕ) : R) → D.m = 1 → ∀ (r : ℤ) (w : Ideal (𝓞 D.F)) (j c : ℕ), w.IsMaximal → uIdeal D r ≤ w → j ≤ D.n → (∃ e : ℕ, c = p ^ e ∧ (0 < j → 0 < e)) → ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (s : S ⟶ Sp R) (o : Obj b N s) (K : Over S) [GrpObj K] (i : K ⟶ o.A), IsMonHom i → Mono i → IsFinite K.hom → Etale K.hom → (∀ (T : Over S) (x : T ⟶ o.A), InSub i x → KilledBy o w x) → (∀ a : D.O, ∃ g : K ⟶ K, g ≫ i = i ≫ o.act.act a) → IsIsogDeg (toUnit K) (Ideal.absNorm w ^ j) → ∃ (o' : Obj b N s) (ψ : o.A ⟶ o'.A), IsPIsog c o o' ψ ∧ IsTj r w j o o' ψ ∧ ∀ (T : Over S) (x : T ⟶ o.A), (x ≫ ψ = 1 ∧ ∃ e : ℕ, KilledBy o (uIdeal D r ^ e) x) ↔ InSub i x := by
   intro p _ D R _ _ b N h3 hcop hp hm r w j c hw hle hj hc S _ s o K _ i hi hmono hfin het hkill hstab hdeg
   obtain ⟨Y, o₀, m₀, o', ψ, hYf, hYe, his, htj, hu⟩ :=
-    GlobalTheory.T.harrisTaylor_typeTj_isogenies_representable p D R b N h3 hcop hp r w j c hw hle hj hc hm S s o
+    _root_.GlobalTheory.UPel.HT.ES.IsogRep.exists_rep p D R b N h3 hcop hp r w j c hw hle hj hc hm S s o
   let Rd : RepData b N r w j c s o := ⟨Y, o₀, m₀, o', ψ, hYf, hYe, his, htj, hu⟩
   let Sd : SubData w j o := ⟨K, i, hi, hmono, hfin, het, hkill, hstab, hdeg⟩
   obtain ⟨W, hWo, hWc, hWat, hWgeo⟩ := UpperTheory.exists_clopen_subgroup_locus p D R b N r w j c hp hw hle hc S s o Rd Sd

@@ -57,14 +57,14 @@ theorem main : ∀ (R : Type) [CommRing R] (n : ℕ), (∀ p, splitD R n (p + 1)
     (ExactAt (splitSeq R n) 0 → Function.Surjective (splitD R n 0).hom) ∧
     ∀ p, ExactAt (splitSeq R n) (p + 1) → Function.Exact (splitD R n (p + 1)).hom (splitD R n p).hom := by
   intro R _ n
-  have key := T.splitSet_permRep_chains_iso_splitSeq_chains R n
+  have key := _root_.GlobalTheory.HomStab.splitSet_chains_incl R n
   have hzero : ∀ p (x : SplitSet R n (p + 1 + 1) →₀ ℤ),
       (splitD R n p).hom ((splitD R n (p + 1)).hom x) = 0 := by
     intro p x
     apply (key p).1
     have h1 := (key p).2.2 ((splitD R n (p + 1)).hom x)
     have h2 := (key (p + 1)).2.2 x
-    rw [h2, T.seqChain_boundary_comp_boundary_apply] at h1
+    rw [h2, _root_.GlobalTheory.SeqCx.bd_bd] at h1
     exact h1.trans (Finsupp.mapDomain_zero
       (f := (Subtype.val : SplitSet R n p → List ((Fin n → R) × (Fin n → R)))) (M := ℤ)).symm
   refine ⟨fun p => ?_, fun h0 => ?_, fun p hp => ?_⟩
@@ -115,9 +115,3 @@ theorem main : ∀ (R : Type) [CommRing R] (n : ℕ), (∀ p, splitD R n (p + 1)
 
 end GlobalTheory.HomStab.SplitEx
 
-section
-open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab GlobalTheory.SeqCx UpperTheory.V.KL
-theorem _root_.GlobalTheory.T.splitSequence_rep_complex_exact : ∀ (R : Type) [CommRing R] (n : ℕ), (∀ p, splitD R n (p + 1) ≫ splitD R n p = 0) ∧ (ExactAt (splitSeq R n) 0 → Function.Surjective (splitD R n 0).hom) ∧ ∀ p, ExactAt (splitSeq R n) (p + 1) → Function.Exact (splitD R n (p + 1)).hom (splitD R n p).hom := by
-  first
-  | exact @GlobalTheory.HomStab.SplitEx.main
-end

@@ -97,7 +97,7 @@ theorem int_moved (q : SplitPt D k) {PP : Formalism.L2.DIV.Pl D.host.E} (hq : Fo
       ∀ i, (((Matrix.GeneralLinearGroup.map π β)⁻¹).val *ᵥ y) i ∈ 𝒪[k] := fun y => by
     have h3 : (fun i => q.sec (y i)) ∈ latV V Λ (· = q.v) ↔
         (fun i => toEAf D (q.sec (y i))) ∈ Formalism.L2.Herm.hatL (F := D.host.F) Λ :=
-      ⟨GlobalTheory.T.latticeCompletionAtPlaces_mem_completedHermitianLattice D V Λ _ _, GlobalTheory.T.mem_latticeCompletionAtPlaces_of_finPart_mem_hatLattice D V Λ _ _ fun i => sec_mem_idAt q _⟩
+      ⟨_root_.GlobalTheory.LatVHat.latV_mem_hatL D V Λ _ _, _root_.GlobalTheory.HatLatV.mem_latV_of_hatL D V Λ _ _ fun i => sec_mem_idAt q _⟩
     rw [h3, hβ]
     refine forall_congr' fun i => ?_
     have h4 : ∀ j, (1 - toEAf D q.e) * toEAf D (q.sec (y j)) = 0 := fun j => by

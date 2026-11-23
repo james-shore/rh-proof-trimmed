@@ -58,11 +58,11 @@ theorem tameSum_of_inputs_alt : ∀ D : D7, WildOne D →
   obtain ⟨x, hx⟩ := hx
   obtain ⟨π, rfl⟩ := hc
   obtain ⟨h1, h2⟩ := hP i x π hx
-  refine ⟨_root_.GlobalTheory.T.tame_fixed_of_l_ne_g D hW hG hF i π ρ h1 h2 hfull hρ k hk, fun w hw ht => ?_⟩
+  refine ⟨_root_.GlobalTheory.TypeLeaf.tame_fixed_of_type_alt D hW hG hF i π ρ h1 h2 hfull hρ k hk, fun w hw ht => ?_⟩
   obtain ⟨v, hv | hv⟩ := GlobalTheory.TypePlaceCover.place_cover D k w hw
   · subst hv
-    exact _root_.GlobalTheory.T.tame_any_at_pl_gw D hG hF i π ρ h1 h2 hfull hρ k hk v
-  · exact _root_.GlobalTheory.T.tame_any_at_conj_of_frobenius_dense D hW hχ hG hF i π ρ h1 h2 hfull hρ k hk v w hv ht
+    exact _root_.GlobalTheory.TypeLeaf.tameAnyAt_fixed_alt_alt D hG hF i π ρ h1 h2 hfull hρ k hk v
+  · exact _root_.GlobalTheory.TypeLeaf.ConjPlace.tame_any_at_of_is_conj_pl_tame_gen D hW hχ hG hF i π ρ h1 h2 hfull hρ k hk v w hv ht
 end GlobalTheory.TypeLeaf
 end
 end

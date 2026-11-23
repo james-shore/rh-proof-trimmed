@@ -68,14 +68,6 @@ theorem toGL_mat (γ : SL(2, ℤ)) : toGL (mat γ) = Matrix.SpecialLinearGroup.m
   ext i j
   simp [mat, Matrix.SpecialLinearGroup.mapGL]
 
-theorem toGL_mul (A B : Matrix (Fin 2) (Fin 2) ℤ) (hA : A.det ≠ 0) (hB : B.det ≠ 0) :
-    toGL (A * B) = toGL A * toGL B := by
-  have hAB : (A * B).det ≠ 0 := by rw [Matrix.det_mul]; exact mul_ne_zero hA hB
-  unfold toGL
-  rw [dite_eq_right hA, dite_eq_right hB, dite_eq_right hAB]
-  ext i j
-  simp [Matrix.mul_apply]
-
 theorem det_toGL (A : Matrix (Fin 2) (Fin 2) ℤ) (hA : A.det ≠ 0) :
     ((toGL A).det : ℝ) = (A.det : ℝ) := by
   unfold toGL
@@ -168,10 +160,10 @@ theorem ul_slash_dg (N : ℕ) (k : ℤ) (l : ℕ) (hl : 0 < l) (f : CuspForm (Co
     have hS : (!![(l : ℤ), 0; 0, (l : ℤ)]).det ≠ 0 := by
       rw [Matrix.det_fin_two_of]; nlinarith
     have hT : (!![1, (j : ℤ); 0, 1]).det ≠ 0 := by rw [Matrix.det_fin_two_of]; norm_num
-    rw [← SlashAction.slash_mul, ← toGL_mul _ _ hD hU]
+    rw [← SlashAction.slash_mul, ← _root_.GlobalTheory.SlashUpperTriangularMatrices.toGL_mul _ _ hD hU]
     have e : dg (l : ℤ) 1 * ulFam l j = !![(l : ℤ), 0; 0, (l : ℤ)] * !![1, (j : ℤ); 0, 1] := by
       ext a b; fin_cases a <;> fin_cases b <;> simp [dg, ulFam, Matrix.mul_apply, Fin.sum_univ_two]
-    rw [e, toGL_mul _ _ hS hT, SlashAction.slash_mul, slash_scalar k l hl,
+    rw [e, _root_.GlobalTheory.SlashUpperTriangularMatrices.toGL_mul _ _ hS hT, SlashAction.slash_mul, slash_scalar k l hl,
       slash_smul_toGL k _ (by rw [Matrix.det_fin_two_of]; norm_num), slash_T_cusp]
   rw [Finset.sum_congr rfl (fun j _ => key j), Finset.sum_const, Finset.card_univ, Fintype.card_fin,
     ← Nat.cast_smul_eq_nsmul ℂ, smul_smul]
@@ -197,7 +189,7 @@ theorem tq_eq (N : ℕ) (k : ℤ) (l : ℕ) (hl : 0 < l) (s : SL(2, ℤ)) (χ : 
     have hs1 : s ∈ CongruenceSubgroup.Gamma0 N := by simpa using hs.1
     have hsd : (mat s).det ≠ 0 := by simp [mat]
     have hD : (dg (l : ℤ) 1).det ≠ 0 := by rw [det_dg]; omega
-    rw [e, toGL_mul _ _ hsd hD, SlashAction.slash_mul, toGL_mat]
+    rw [e, _root_.GlobalTheory.SlashUpperTriangularMatrices.toGL_mul _ _ hsd hD, SlashAction.slash_mul, toGL_mat]
     have h2 : f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ s) = χ (l : ZMod N) • f := by
       have := hf s hs1
       rw [hs.2] at this

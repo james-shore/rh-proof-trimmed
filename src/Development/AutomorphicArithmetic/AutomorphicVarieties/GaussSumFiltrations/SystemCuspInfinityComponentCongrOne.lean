@@ -107,7 +107,7 @@ theorem cusp_inf_one : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F
     exact even_iff_two_dvd.2 ((even_iff_two_dvd.1 this).trans hk)
   have R := fun (g : Hn F → ℂ) => GlobalTheory.HilbertThetaSeries.RatSlash.rat_slash F k g
   have hrhom : ∀ v (x : F), rhom x v = reAt v x := (R f).1
-  obtain ⟨-, hdel⟩ := GlobalTheory.T.exists_different_generator_totallyPositive_translate F p hpp
+  obtain ⟨-, hdel⟩ := _root_.GlobalTheory.HilbertThetaSeries.del_exists_and_move F p hpp
   obtain ⟨ξ, hξTP, hξy⟩ := hdel δ hδ y
   set ξa : (Af F)ˣ := Units.map (algebraMap F (Af F)).toMonoidHom ξ with hξa
   set γ₁ : GL (Fin 2) F := γ * (aff ξ 0)⁻¹ with hγ₁
@@ -123,7 +123,7 @@ theorem cusp_inf_one : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F
     have h2 := hγ v
     rw [h1, ← hrhom, map_mul, Pi.mul_apply, hrhom, hrhom] at h2
     exact (mul_pos_iff_of_pos_right (hξTP v)).1 h2
-  obtain ⟨-, -, hgp⟩ := GlobalTheory.T.exists_inG_scalar_mul_and_abs_norm_det_mul_absF_eq F p δ hδ
+  obtain ⟨-, -, hgp⟩ := _root_.GlobalTheory.HilbertThetaSeries.CmpP.compare_at_p F p δ hδ
   obtain ⟨η, r, hInG, hr0, hrn, hnorm⟩ := hgp (ξa * y) y' z γ₁ u hξy hy' hTP₁ hu hmat₁
   set γ₂ : GL (Fin 2) F := Matrix.GeneralLinearGroup.scalar (Fin 2) η * γ₁ with hγ₂
   set G : Hn F → ℂ := sl0 k (toInf γ₂) f with hGdef
@@ -181,13 +181,13 @@ theorem cusp_inf_one : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F
 
   obtain ⟨a, ha, hb⟩ := hG
   have S1 : Small ι (p : ℝ)⁻¹ (H - 1) := by
-    have hq := GlobalTheory.T.hasQExpansion_affineTranslate_coeff F k (G - 1) a ξ 0 hξTP ha
+    have hq := _root_.GlobalTheory.HilbertThetaSeries.QAff.hasQ_aff F k (G - 1) a ξ 0 hξTP ha
     have hH1 : sl0 k (toInf (aff ξ 0)) (G - 1) = H - 1 := by
       rw [hHdef, weightSlash_hilbertAffine_apply, weightSlash_hilbertAffine_apply]; funext w; simp
     rw [hH1] at hq
     refine ⟨_, hq, fun x => ?_⟩
     simpa [et] using hb (x / ξ)
-  have Q := GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι
+  have Q := _root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι
   have hc : ‖ι.symm c‖ = 1 := by
     rw [hcdef, map_pow, map_ratCast, norm_pow, norm_qbar_rat, hrn, one_pow]
   have hc1 : ‖ι.symm (c - 1)‖ ≤ (p : ℝ)⁻¹ := by
@@ -210,5 +210,3 @@ end GlobalTheory.HilbertThetaSeries.CuspOne
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.system_cusp_infinity_component_congr_one : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ), p ≠ 2 → ∀ δ : F, IsDel p δ → ∀ (k : ℕ), p - 1 ∣ k → ∀ (Ψ : GL (Fin 2) (Af F) → Hn F → ℂ), Sys k Ψ → ∀ (y y' z : (Af F)ˣ) (f : Hn F → ℂ), AtP p δ y' → (∀ γ, InG p δ γ → Small ι (p : ℝ)⁻¹ (sl0 k (toInf γ) f - 1)) → ∀ (γ : GL (Fin 2) F) (u : GL (Fin 2) (Af F)), TP γ.val.det → u ∈ KLev F 2 1 → toFin γ * aff y 0 = Matrix.GeneralLinearGroup.scalar (Fin 2) z * aff y' 0 * u → Ψ (aff y 0) = sl k (toInf γ) (((absF y' ^ ((k : ℝ) / 2) : ℝ) : ℂ) • f) → Small ι (p : ℝ)⁻¹ ((((absF y ^ ((k : ℝ) / 2) : ℝ) : ℂ))⁻¹ • Ψ (aff y 0) - 1) := by
-  first | exact @GlobalTheory.HilbertThetaSeries.CuspOne.cusp_inf_one | exact GlobalTheory.HilbertThetaSeries.CuspOne.cusp_inf_one | (intros; apply GlobalTheory.HilbertThetaSeries.CuspOne.cusp_inf_one <;> assumption)

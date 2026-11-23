@@ -77,8 +77,7 @@ theorem exists_frMap (φ : S →ₐ[c.F] T) (y : FrPt Xo c S) : ∃ z, FrMap φ 
 theorem frMap_unique {φ : S →ₐ[c.F] T} {y : FrPt Xo c S} {z z' : FrPt Xo c T} (h : FrMap φ y z) (h' : FrMap φ y z') :
     z = z' := (frMap_unique_refl_iff E H Dw l Xo c S T φ y).1 z z' h h'
 
-theorem frMap_id (y : FrPt Xo c S) : FrMap (AlgHom.id c.F S) y y :=
-  (frMap_unique_refl_iff E H Dw l Xo c S S (AlgHom.id c.F S) y).2.1
+alias frMap_id := _root_.GlobalTheory.FramedBaseChange.refl
 
 theorem frMap_comp {U : Type} [CommRing U] [Algebra c.F U] {φ : S →ₐ[c.F] T} {ψ : T →ₐ[c.F] U} {χ : S →ₐ[c.F] U}
     {y : FrPt Xo c S} {z : FrPt Xo c T} {w : FrPt Xo c U} (h : FrMap φ y z) (h' : FrMap ψ z w)

@@ -105,7 +105,7 @@ theorem repRatio_eq_zero (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (h
     (h𝔭 : 𝔭.IsMaximal) {n : 𝓞 F} (hn : n ≠ 0) (hx : h S.x₀ S.x₀ = algebraMap F K (n : F))
     (hE : ¬ ∃ M₂ : Submodule (𝓞 K) V, Submodule.IsFullLattice K M₂ ∧ Formalism.HermitianLatticesTheory.IsIntegralLat h M₂ ∧
       S.x₀ ∈ locF 𝔭 M₂) : repRatio h L 𝔭 n = 0 := by
-  obtain ⟨s, hsr⟩ := exists_locReps hK hF hs hd S hL hLi h𝔭
+  obtain ⟨s, hsr⟩ := _root_.Formalism.HermitianLattices.Ext.L3.BrB.exists_locReps' hK hF hs hd S hL hLi h𝔭
   obtain ⟨R, hR⟩ := exists_mReps hK hF hs hd S hL hLi h𝔭 hn hx hsr
   have hR0 : R = ∅ := by
     rw [Finset.eq_empty_iff_forall_notMem]
@@ -132,8 +132,8 @@ theorem liRatio : LIRatio := by
   by_cases hE : ∃ M₂ : Submodule (𝓞 K) V, Submodule.IsFullLattice K M₂ ∧
       Formalism.HermitianLatticesTheory.IsIntegralLat h M₂ ∧ S.x₀ ∈ locF 𝔭 M₂
   · obtain ⟨M₂, hM₂, hM₂i, hx₂⟩ := hE
-    obtain ⟨s, hsr⟩ := exists_locReps hK hF hs hd S hL hLi h𝔭
-    obtain ⟨s₀, hsr₀⟩ := exists_locReps hK hF hs hd S hL₀ hL₀i h𝔭
+    obtain ⟨s, hsr⟩ := _root_.Formalism.HermitianLattices.Ext.L3.BrB.exists_locReps' hK hF hs hd S hL hLi h𝔭
+    obtain ⟨s₀, hsr₀⟩ := _root_.Formalism.HermitianLattices.Ext.L3.BrB.exists_locReps' hK hF hs hd S hL₀ hL₀i h𝔭
     obtain ⟨J, hJ, hJ₀⟩ := ((main_term hK hF hs hd S hL hLi hM₂ hM₂i h𝔭 hn hx hx₂ hsr).and
       (main_term hK hF hs hd S hL₀ hL₀i hM₂ hM₂i h𝔭 hn hx hx₂ hsr₀)).exists
     obtain ⟨k, ⟨hk, hk₀⟩, hk1, hk2⟩ := ((hJ.and hJ₀).and

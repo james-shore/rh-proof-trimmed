@@ -205,7 +205,7 @@ theorem thetaCFun_one_div (w : InfinitePlace k) {F : (ι → 𝔸[k]) → ℂ}
     thetaCFun w F ω (1 / x) =
       ((1 : ℂ) * ((x ^ (Fintype.card ι : ℝ) : ℝ) : ℂ)) • thetaCFun w (adelicFourierPi k F) ω x := by
   have hx0 : (0 : ℝ) < x := hx
-  have h := GlobalTheory.CompanionTheory.AdelicThetaSeries.Hd.thetaCInt_inv w hF ω ⟨x, hx0⟩
+  have h := _root_.GlobalTheory.CompanionTheory.AdelicThetaSeries.Hd.theta_integral_functional_equation w hF ω ⟨x, hx0⟩
   rw [← eq_inv_of_mul_eq_one_left hω] at h
   rw [thetaCFun_of_pos w _ ω (one_div_pos.2 hx0), thetaCFun_of_pos w _ ω hx0, Real.rpow_natCast]
   have e : (⟨1 / x, one_div_pos.2 hx0⟩ : {r : ℝ // 0 < r}) = (⟨x, hx0⟩ : {r : ℝ // 0 < r})⁻¹ := by

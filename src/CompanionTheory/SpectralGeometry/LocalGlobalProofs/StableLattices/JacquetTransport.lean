@@ -172,7 +172,7 @@ theorem block_raise (hS : StepChar) (hT : TensDecomp) (P Q : GMod n) (d : Fin 3 
     have := (stdBlocks d h).injective hab
     simpa using this
   let M : GMod (d k) := restrMod P ι hι (leviSub P d h χ L)
-    (fun a b x hx => GlobalTheory.T.levi_subspace_invariant_under_blocks P d h χ L _ _ (by rw [hblk, hblk]) x hx)
+    (fun a b x hx => _root_.GlobalTheory.CompanionTheory.RgTransport.leviSub_stable P d h χ L _ _ (by rw [hblk, hblk]) x hx)
   have hc : Fintype.card {t // L t = k} = d k := by rw [Fintype.card_subtype]; exact hL k
   let e' : Fin (d k) ≃ {t // L t = k} := (Fintype.equivFinOfCardEq hc).symm
   let c : ℂ := (modExp (fun i => Fin (d i)) k : ℂ) / 2
@@ -304,7 +304,7 @@ theorem dualL_pow (V : Type) [AddCommGroup V] [Module ℂ V] (x : Module.End ℂ
 
 theorem qdet_tr (Y : GMod n) {m : ℕ} (ι : Fin m → Fin n) (hι : Function.Injective ι) (u : ℂ) :
     qdet (fun a b => (trMod Y).E (ι a) (ι b)) u = (qdet (fun a b => Y.E (ι a) (ι b)) u).dualMap :=
-  GlobalTheory.T.quantum_determinant_anti_homomorphism (dualL Y.V) (dualL_one _) (dualL_mul _) (fun a b => Y.E (ι a) (ι b)) (glRel_inj Y.gl hι) u
+  _root_.GlobalTheory.CompanionTheory.RgTransport.qdet_anti (dualL Y.V) (dualL_one _) (dualL_mul _) (fun a b => Y.E (ι a) (ι b)) (glRel_inj Y.gl hι) u
 
 theorem Qd_tr (Y : GMod n) (d : Fin 3 → ℕ) (h : ∑ i, d i = n) (i : Fin 3) (c : ℂ) :
     Qd (trMod Y) d h i c = (Qd Y d h i c).dualMap :=
@@ -433,7 +433,7 @@ theorem sub_raise (hS : StepChar) (hT : TensDecomp) (Y Y' : GMod n) (d : Fin 3 �
     rw [hy2, ← map_smul, ← sub_eq_zero, ← map_sub, sqMk_zero] at this
     rw [← hy1]
     exact this
-  · have hQ := GlobalTheory.T.quantum_determinant_block_eigenvalue (sqMod Y' T1 T2 hT1 hT2) d h _ hwk (fun i c => plab (χ + Pi.single r 1) L i c) hwq c
+  · have hQ := _root_.GlobalTheory.CompanionTheory.RgTransport.qdet_eigen_of_killed (sqMod Y' T1 T2 hT1 hT2) d h _ hwk (fun i c => plab (χ + Pi.single r 1) L i c) hwq c
     rw [prod_plab] at hQ
     have hc1 := hasChar_sub (trMod Y') T1 (fun a b φ hφ => hT1 b a φ hφ) (hasChar_tr Y' hchar)
     have hc2 : HasChar (sqMod Y' T1 T2 hT1 hT2) χ'' := hasChar_quo _ _ _ hc1

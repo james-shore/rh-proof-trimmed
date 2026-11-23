@@ -73,18 +73,10 @@ theorem isBaseChange_of_dual {R B M N : Type} [CommRing R] [CommRing B] [Algebra
     exact hdd.comp (Module.bijective_dual_eval B _)
   exact IsBaseChange.of_equiv (LinearEquiv.ofBijective F hb) hF
 
-theorem smooth_sec {R : Type} [CommRing R] {X : Scheme.{0}} (s : X ⟶ Sp R) (hs : Smooth s)
-    (U : X.affineOpens) : Algebra.Smooth R (Sec s U.1) := by
-  have h1 : RingHom.Smooth (s.appLE ⊤ U.1 le_top).hom :=
-    HasRingHomProperty.appLE @Smooth s hs ⟨⊤, isAffineOpen_top _⟩ U le_top
-  have h2 : RingHom.Smooth (secMap s U.1).hom :=
-    RingHom.Smooth.respectsIso.2 _ (Scheme.ΓSpecIso (CommRingCat.of R)).symm.commRingCatIsoToRingEquiv h1
-  exact h2
-
 theorem par : CrystallineSmoothLift → AbelianHodgeDeRham → ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → Par A.hom := by
   intro H H' R _ A _ g hA hg U
   have hs : Smooth A.hom := SmoothOfRelativeDimension.smooth g A.hom
-  have := smooth_sec A.hom hs U.unop
+  have := _root_.GlobalTheory.PtVanish.sec_smooth A.hom hs U.unop
   obtain ⟨-, -, ⟨h1, h2, -⟩, -⟩ := H' R A g hA hg
   exact isBaseChange_of_dual _ (GlobalTheory.T.exists_unique_vectorField_of_globalOneForm_values H H' R A g hA hg U)
 

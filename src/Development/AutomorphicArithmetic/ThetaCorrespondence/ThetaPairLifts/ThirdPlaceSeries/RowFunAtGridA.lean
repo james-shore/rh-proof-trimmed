@@ -58,7 +58,7 @@ theorem rowFun_at_gridA_alt : GlobalTheory.Published.DiscreteSeriesCover → Glo
   intro hDS hHC hCR hCW hRay hFun
   obtain ⟨CF0, hCF⟩ := _root_.GlobalTheory.Fc.Ind.evWC_fun_of_fun0Fit_alt @GlobalTheory.BigTop.Fun.Fld hFun
   refine ⟨CF0, fun CF hle hL N S Γ hN o => ?_⟩
-  have hA := _root_.GlobalTheory.T.geometric_condition_large_grid_alt hRay hL CF N S Γ hN o.hDivG o.tie
+  have hA := _root_.GlobalTheory.Mem.LiteralAutomorphy.rowGeo_at_gridA_alt hRay hL CF N S Γ hN o.hDivG o.tie
   obtain ⟨R, hR, h⟩ := RowL.and (RowL.and (RowL.and o.hPA o.hDivG) o.good) hA
   refine ⟨R, hR, h.imp fun 𝒜 σ hsel H => ?_⟩
   obtain ⟨⟨⟨hpa, hdv⟩, hgd⟩, hgeo⟩ := H

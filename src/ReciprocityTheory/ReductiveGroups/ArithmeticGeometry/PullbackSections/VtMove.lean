@@ -127,20 +127,6 @@ theorem negT_push : (negT A T).left ≫ (psiO hp τ hτ).left = (psiO hp τ hτ)
     rw [reassoc_of% hA2, hG2]
     exact snd_inv_push hp τ hτ
 
-section Pmaps
-
-variable {X X' Y Y' : Scheme.{0}} {L : LB X} {L' : LB X'} {F : X' ⟶ X}
-
-theorem val_pmaps (w : LB.Iso L' (L.pull F)) {K : Type} [Fintype K] {φ' : K → (Y' ⟶ X')} {φ : K → (Y ⟶ X)}
-    {ε : K → ℤ} {a : LB.Gen (LB.LinComb L' φ' ε)} {t : LB.Gen (LB.LinComb L φ ε)} {h : Y' ⟶ Y}
-    (hc : ∀ k, φ' k ≫ F = h ≫ φ k) (hm : PMaps w φ' φ ε a t h) {Z : Scheme.{0}} (r : Z ⟶ Y') (z : Z)
-    (J₀ : (Z ⟶ X) → L.ι) (J : (Z ⟶ X') → L'.ι) (hJ₀ : Good L z J₀) (hJ : Good L' z J) :
-    val t (r ≫ h) z J₀ =
-      (∏ k, gw w (r ≫ φ' k) z (J₀ ((r ≫ φ' k) ≫ F)) (J (r ≫ φ' k)) ^ ε k) * val a r z J := by
-  exact ReciprocityTheory.ChartRestriction.G.PullbackSections.MixEnd.val_pmaps' w hc hm r z J₀ J hJ₀ hJ
-
-end Pmaps
-
 section Pts
 
 def Uτ : Over.mk (T.hom ≫ f) ⟶ T₀ := Over.homMk τ hτ
@@ -270,7 +256,7 @@ theorem twist_move (hL₁ : L₁.IsLB) (w : LB.Iso L₁ (L₀.pull φ))
   have e1 : (r ≫ (psiO hp τ hτ).left) ≫ ψG.left = (r ≫ ψA.left) ≫ (psiO hp τ hτ).left := by
     rw [Category.assoc, ← hψ, Category.assoc]
   have t1 := hs Z (r ≫ ψA.left) z J₀ J hJ₀ hJ
-  have t2 := val_pmaps w hc hαm r z J₀ J hJ₀ hJ
+  have t2 := _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.MixEnd.val_pmaps' w hc hαm r z J₀ J hJ₀ hJ
   have e3 : (r ≫ ψA.left) ≫ (snd T A).left = r ≫ mA.left := by rw [Category.assoc, e2]
   rw [e1, t1, e3] at t0
   rw [t2] at t0

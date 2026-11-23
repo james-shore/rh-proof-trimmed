@@ -45,4 +45,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem symDist_of : PI.ExpTri → PI.SymDist := PI.SymDistWork.symDist_of

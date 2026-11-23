@@ -60,7 +60,7 @@ theorem etale_cohomology_vanishing_negative_degree_zero : A9 := by
       apply (GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R).2.2.1 α 0
       intro p s h U x
       have hs : s < 0 := by omega
-      haveI := ((GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness R F U).2.2.2 s hs)
+      haveI := ((_root_.GlobalTheory.EtC.resSec R F U).2.2.2 s hs)
       exact Subsingleton.elim _ _
     refine ⟨fun a b => ?_⟩
     obtain ⟨a, rfl⟩ := a.mk_surjective

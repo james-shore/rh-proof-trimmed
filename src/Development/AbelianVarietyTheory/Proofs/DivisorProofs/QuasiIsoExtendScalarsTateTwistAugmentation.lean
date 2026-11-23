@@ -71,13 +71,13 @@ theorem flatS_cone (Q : ℕ) [NeZero Q] (F : Shv (ZMod Q)) (hF : FlatS F) (n : �
     FlatS ((mappingCone (resAug F)).X n) := by
   obtain ⟨hiso, hzero⟩ := GlobalTheory.T.isLocallyFlatEtaleSheaf_iso_and_zero (ZMod Q)
   refine hiso (HomologicalComplex.homotopyCofiber.XIsoBiprod (resAug F) n (n + 1) rfl).symm
-    (GlobalTheory.T.isLocallyFlatEtaleSheaf_biprod _ _ _ ?_ ?_)
+    (_root_.GlobalTheory.EtC.flatS_biprod _ _ _ ?_ ?_)
   · by_cases h : n + 1 = 0
     · exact hiso (HomologicalComplex.singleObjXIsoOfEq (ComplexShape.up ℤ) 0 F (n + 1) h).symm hF
     · exact hzero _ (HomologicalComplex.isZero_single_obj_X _ _ _ _ h)
   · have : Injective ((res (ZMod Q) F).X n) :=
       (inferInstance : Injective ((injectiveResolution F).cochainComplex.X n))
-    exact (GlobalTheory.T.flat_sections_of_injective_zmodEtaleSheaf Q _).2
+    exact (_root_.GlobalTheory.EtC.InjFlat.flat_of_injective Q _).2
 
 theorem quasiIso_extAug : ∀ (Q q : ℕ) [NeZero Q] (hq : q ∣ Q) (i : ℤ),
     QuasiIso (extAug (ZMod.castHom hq (ZMod q)) (tw Q i)) := by

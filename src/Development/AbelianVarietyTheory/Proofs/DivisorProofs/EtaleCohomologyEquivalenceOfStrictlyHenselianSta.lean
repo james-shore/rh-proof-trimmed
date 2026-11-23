@@ -81,10 +81,10 @@ end GlobalTheory.EtC.LocGlob
 open GlobalTheory.EtC.LocGlob in
 theorem GlobalTheory.EtC.loc_glob_classes : ∀ (R : Type) [CommRing R] (F : Shv R) (S : Scheme.{0}) (E E' : Spc) (α : E ⟶ E') (p : E' ⟶ sch.obj S), Finitary F → QcqsOver (α ≫ p) → QcqsOver p → (∀ (O : Type) [CommRing O] (s : Spec (CommRingCat.of O) ⟶ S), IsStalk O s → Eqv R ((bcMap α p).app (Over.mk s)) F) → ∀ (U : Over S), Etale U.hom → ∀ n : ℤ, (∀ x : H R ((bc (α ≫ p)).obj U) F n, ∃ (V : Over S) (h : V ⟶ U) (y : H R ((bc p).obj V) F n), Etale V.hom ∧ Surjective h.left ∧ pull R ((bcMap α p).app V) F n y = pull R ((bc (α ≫ p)).map h) F n x) ∧ ∀ y : H R ((bc p).obj U) F n, pull R ((bcMap α p).app U) F n y = 0 → ∃ (V : Over S) (h : V ⟶ U), Etale V.hom ∧ Surjective h.left ∧ pull R ((bc p).map h) F n y = 0 := by
   intro R _ F S E E' α p hF hq1 hq2 hEqv U hU n
-  have cont1 := GlobalTheory.T.finitarySheaf_continuous_baseChange_levelwiseQcqs R F hF S E (α ≫ p) hq1
-  have cont2 := GlobalTheory.T.finitarySheaf_continuous_baseChange_levelwiseQcqs R F hF S E' p hq2
-  choose O instO s g hs v hv using GlobalTheory.T.exists_strictlyHenselianEtaleStalk_over_point S U hU
-  have loc := fun u => @GlobalTheory.T.etaleSpaceCohomology_stalk_local_classes R _ F S _ _ (bcMap α p) cont1 cont2 (O u) (instO u) (s u) (hs u)
+  have cont1 := _root_.GlobalTheory.EtC.contCone_bc_qcqsOver R F hF S E (α ≫ p) hq1
+  have cont2 := _root_.GlobalTheory.EtC.contCone_bc_qcqsOver R F hF S E' p hq2
+  choose O instO s g hs v hv using _root_.GlobalTheory.EtC.exists_isStalk_over_point S U hU
+  have loc := fun u => @_root_.GlobalTheory.EtC.stalk_local_classes R _ F S _ _ (bcMap α p) cont1 cont2 (O u) (instO u) (s u) (hs u)
     (@hEqv (O u) (instO u) (s u) (hs u)) U hU (g u) n
   have surjOf : ∀ (V : U.left → Over S) (g' : ∀ u, Over.mk (s u) ⟶ V u) (h : ∀ u, V u ⟶ U),
       (∀ u, g' u ≫ h u = g u) → Surjective (cdesc V h).left := by
@@ -93,9 +93,9 @@ theorem GlobalTheory.EtC.loc_glob_classes : ∀ (R : Type) [CommRing R] (F : Shv
     rw [← Scheme.Hom.comp_apply, ← Over.comp_left, Category.assoc, cι_cdesc, hg, hv]
   refine ⟨fun x => ?_, fun y hy => ?_⟩
   · choose V g' h y hV hg hy using fun u => (loc u).1 x
-    obtain ⟨Y, hY⟩ := (GlobalTheory.T.etaleSpaceCohomology_baseChange_coprod_bijective R F S E' p (cop V) U.left V (cι V) (cop_isColimit V) n).2 y
+    obtain ⟨Y, hY⟩ := (_root_.GlobalTheory.EtC.BcCoprod.main R F S E' p (cop V) U.left V (cι V) (cop_isColimit V) n).2 y
     refine ⟨cop V, cdesc V h, Y, cop_etale V hV, surjOf V g' h hg, ?_⟩
-    apply (GlobalTheory.T.etaleSpaceCohomology_baseChange_coprod_bijective R F S E (α ≫ p) (cop V) U.left V (cι V) (cop_isColimit V) n).1
+    apply (_root_.GlobalTheory.EtC.BcCoprod.main R F S E (α ≫ p) (cop V) U.left V (cι V) (cop_isColimit V) n).1
     funext u
     simp only
     have hYu : pull R ((bc p).map (cι V u)) F n Y = y u := congrFun hY u
@@ -103,7 +103,7 @@ theorem GlobalTheory.EtC.loc_glob_classes : ∀ (R : Type) [CommRing R] (F : Shv
       hYu, hy u]
   · choose V g' h hV hg hy0 using fun u => (loc u).2 y hy
     refine ⟨cop V, cdesc V h, cop_etale V hV, surjOf V g' h hg, ?_⟩
-    apply (GlobalTheory.T.etaleSpaceCohomology_baseChange_coprod_bijective R F S E' p (cop V) U.left V (cι V) (cop_isColimit V) n).1
+    apply (_root_.GlobalTheory.EtC.BcCoprod.main R F S E' p (cop V) U.left V (cι V) (cop_isColimit V) n).1
     funext u
     simp only [map_zero]
     rw [← pull_comp, ← Functor.map_comp, cι_cdesc, hy0 u]

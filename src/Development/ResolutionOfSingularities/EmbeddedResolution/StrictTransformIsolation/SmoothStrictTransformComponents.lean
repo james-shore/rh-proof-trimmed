@@ -198,7 +198,7 @@ private theorem smooth_strictTransformι_comp_schemeAtToSpec
       have hrange2 : Set.range ⇑(Scheme.IdealSheafData.vanishingIdeal
           (⟨pre, hsuppcl⟩ : TopologicalSpace.Closeds ↥(U.toScheme))).subschemeι.base
             = pre := by
-        rw [FunctorialResolution.EmbeddedResolution.range_base_subschemeι,
+        rw [_root_.AlgebraicGeometry.Scheme.IdealSheafData.range_subschemeι,
           AlgebraicGeometry.Scheme.IdealSheafData.coe_support_vanishingIdeal]
         rfl
       have : AlgebraicGeometry.IsReduced
@@ -368,8 +368,8 @@ theorem smooth_vanishingIdeal_image_comp_chartLevelStructureMorphism
               TopologicalSpace.Closeds
                 ↥((D.toEmbeddedBlowupSequence
                   (canonicalPrincipalization hres hrad)).schemeAt t))).subschemeι.base := by
-    rw [Scheme.Hom.range_comp_base, FunctorialResolution.EmbeddedResolution.range_base_subschemeι,
-      FunctorialResolution.EmbeddedResolution.range_base_subschemeι,
+    rw [Scheme.Hom.range_comp_base, _root_.AlgebraicGeometry.Scheme.IdealSheafData.range_subschemeι,
+      _root_.AlgebraicGeometry.Scheme.IdealSheafData.range_subschemeι,
       AlgebraicGeometry.Scheme.IdealSheafData.coe_support_vanishingIdeal,
       AlgebraicGeometry.Scheme.IdealSheafData.coe_support_vanishingIdeal]
     rfl

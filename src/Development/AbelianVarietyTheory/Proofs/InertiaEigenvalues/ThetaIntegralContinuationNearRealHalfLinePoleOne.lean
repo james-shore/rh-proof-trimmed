@@ -64,27 +64,6 @@ noncomputable section
 namespace GlobalTheory.RSThetaCont
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
 
-theorem mem_bddForms_of_mspanR {π : CuspSub E a} {ω : HChar E} (hω : ω.IsUnitary) (hπ : π.HasCentChar ω) {φ : Sm E a}
-    (hφ : φ ∈ π.V ∨ φ.1 ∈ GlobalTheory.JSW.mspanR π) : φ.1 ∈ GlobalTheory.Petersson.bddForms E a ω := by
-  have hc0 := CuspSub.hasCentral_iff.2 hπ
-  have hu : π.IsUnitary := ⟨ω, hω, hc0⟩
-  have hR : φ.1 ∈ GlobalTheory.JSW.mspanR π := hφ.elim (fun h => GlobalTheory.JSW.mem_mspanR_of_mem h) id
-  obtain ⟨ψ, hψ, h⟩ := GlobalTheory.JSW.mspanR_words GlobalTheory.CuspOrth.cuspFormsBounded hu φ.1 hR
-  have h0 := (h []).2
-  rw [GlobalTheory.JSW.word_nil, hψ] at h0
-  have hR' : φ.1 ∈ GlobalTheory.JSW.rspan π := (GlobalTheory.JSW.rspan_eq_mspanR π).symm ▸ hR
-  have hZ : GlobalTheory.JSW.rspan π ≤ GlobalTheory.JSW.Central.centralFns E a ω := by
-    refine GlobalTheory.JSW.rspan_le (fun ψ hψ z g => hc0.apply hψ z g) (fun F hF h z g => ?_) fun F hF X _ ν _ k γ _ z g => ?_
-    · change F (GeneralLinearGroup.scalar (Fin a) z * g * h) = _ * F (g * h)
-      rw [mul_assoc]; exact hF z _
-    · change GlobalTheory.JSW.kerInf ν k γ F (GeneralLinearGroup.scalar (Fin a) z * g) = _ * GlobalTheory.JSW.kerInf ν k γ F g
-      simp only [GlobalTheory.JSW.kerInf, mul_assoc]
-      rw [← integral_const_mul]
-      congr 1
-      funext x
-      rw [hF z]; ring
-  exact ⟨h0.cont, GlobalTheory.JSW.rspan_left π hR', hZ hR', h0.bdd⟩
-
 theorem resFn_props {ω ω' : HChar E} (hω : ω.IsUnitary) (hω' : ω'.IsUnitary) {φ φ' : Sm E a}
     (h : φ.1 ∈ GlobalTheory.Petersson.bddForms E a ω) (h' : φ'.1 ∈ GlobalTheory.Petersson.bddForms E a ω')
     {ℓ : Fin a} {Φ : (Fin a → Cinf E) → ℂ} (hΦ : GlobalTheory.CuspQuot.IsTest (GlobalTheory.RSTheta.rowSet E ℓ) Φ)
@@ -102,7 +81,7 @@ theorem isFundamentalDomain_shell (ha : 0 < a) (μ : Measure (GA E a)) [μ.IsHaa
     (h𝓕 : IsFundamentalDomain (ratGL E a).range 𝓕 μ) :
     IsFundamentalDomain (latticeGL E a) (𝓕 ∩ {g | Real.exp (-((a : ℝ) * (Module.finrank ℚ E : ℝ))) <
       (ideleModule E (GeneralLinearGroup.det g) : ℝ) ∧ (ideleModule E (GeneralLinearGroup.det g) : ℝ) ≤ 1}) μ := by
-  exact GlobalTheory.T.isFundamentalDomain_det_shell_latticeGL E a ha μ 𝓕 h𝓕
+  exact _root_.GlobalTheory.ShellFD.isFundamentalDomain_shell E a ha μ 𝓕 h𝓕
 
 theorem differentiable_setIntegral_cpow (μ : Measure (GA E a)) {S : Set (GA E a)} (hSm : NullMeasurableSet S μ) (hS : μ S < ⊤) {c : ℝ} (hc : 0 < c)
     (hδ : ∀ g ∈ S, c ≤ (ideleModule E (GeneralLinearGroup.det g) : ℝ) ∧ (ideleModule E (GeneralLinearGroup.det g) : ℝ) ≤ 1)
@@ -120,7 +99,7 @@ theorem integral_low_geometric (ha : 0 < a) (μ : Measure (GA E a)) [μ.IsHaarMe
           (ideleModule E (GeneralLinearGroup.det g) : ℝ) ∧ (ideleModule E (GeneralLinearGroup.det g) : ℝ) ≤ 1},
         F g * ((ideleModule E (GeneralLinearGroup.det g) : ℝ) : ℂ) ^ (s - 1) ∂μ) /
       (1 - starRingEnd ℂ χ * Complex.exp (-((((a : ℝ) * (Module.finrank ℚ E : ℝ) : ℝ) : ℂ) * (s - 1)))) := by
-  exact GlobalTheory.T.integral_det_le_one_eq_geometric_series_shells E a ha μ 𝓕 h𝓕 F hF C hC hrat χ hχ hz s hs
+  exact _root_.GlobalTheory.RSThetaGeom.integral_low_geometric E a ha μ 𝓕 h𝓕 F hF C hC hrat χ hχ hz s hs
 
 theorem exists_analytic_ratio {L : ℝ} (hL : 0 < L) (χ : ℂ) (hχ : ‖χ‖ = 1) : ∃ h : ℂ → ℂ,
     (∀ x : ℝ, 0 < x → AnalyticAt ℂ h (x : ℂ)) ∧
@@ -149,8 +128,8 @@ theorem theta_integral_continuation : ∀ (E : Type) [Field E] [NumberField E] [
   refine ⟨c, hc0, ?_⟩
   intro π π' ω ω' hω hω' hπ hπ' φ φ' hφ hφ'
   have ha : 0 < a := ℓ.pos
-  have hb := mem_bddForms_of_mspanR hω hπ hφ
-  have hb' := mem_bddForms_of_mspanR hω' hπ' hφ'
+  have hb := _root_.GlobalTheory.RSThetaLimR.mem_bddForms hω hπ hφ
+  have hb' := _root_.GlobalTheory.RSThetaLimR.mem_bddForms hω' hπ' hφ'
   have hu : π.IsUnitary := ⟨ω, hω, CuspSub.hasCentral_iff.2 hπ⟩
   have hu' : π'.IsUnitary := ⟨ω', hω', CuspSub.hasCentral_iff.2 hπ'⟩
   have hT : GlobalTheory.CuspQuot.IsTest (GlobalTheory.RSTheta.rowSet E ℓ) Φ := ⟨hΦ, hcs, hs⟩

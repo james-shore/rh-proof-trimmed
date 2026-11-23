@@ -242,7 +242,7 @@ theorem interlace_weights (S : Sizes) (Q : Entries S) (hQ : Q.Good) (lam : DomWe
     (h1 : ∀ i, lam.w i = hw Q.bigPar i) (h2 : ∀ i, mu.w i = hw Q.smallPar i) :
     Formalism.MainNotions.PrimeDegreeVariant.Interlace S.nC_succ lam mu := by
   intro i
-  obtain ⟨hl, hI⟩ := GlobalTheory.T.strictInterlace_ganGrossPrasad_big_small S Q hQ
+  obtain ⟨hl, hI⟩ := _root_.GlobalTheory.StrictInterlace.interlace_big_small S Q hQ
   have hi : i.1 < Q.smallPar.length := by rw [length_small]; exact i.2
   have hi' : i.1 + 1 < Q.bigPar.length := by omega
   obtain ⟨a1, a2⟩ := hI i hi hi'
@@ -289,7 +289,7 @@ theorem nC_lt (S : Sizes) (j : ℕ) : S.nC j < S.nC (j + 1) := by
 
 theorem oneLine : OneLine := by
   intro ι _ _ S P hP
-  choose lam hl0 hl1 hl using fun τ => GlobalTheory.T.exists_ganGrossPrasad_row_weights S (P τ) (hP τ)
+  choose lam hl0 hl1 hl using fun τ => _root_.GlobalTheory.OneFunctional.RowWeights.exists_row_weights S (P τ) (hP τ)
   choose kap hk0 hk1 hk using fun τ => GlobalTheory.T.exists_ganGrossPrasad_column_weights S (P τ) (hP τ)
   obtain ⟨p, ps, pe, pk⟩ := GlobalTheory.T.contracts_tensorProduct_chain S.m (fun j => UG ι (S.nR j)) (fun j => Pol ι (S.nR j.castSucc) (S.nR j.succ)) _
     (fun j => fock _ _ (fun τ => (P τ).e j - (S.nR j.succ / 2 : ℕ)) (fun τ => -(P τ).e j + (S.nR j.castSucc / 2 : ℕ)))
@@ -317,7 +317,7 @@ theorem oneLine : OneLine := by
   have h1 : Module.finrank ℂ (invFun (omRep P)) =
       Module.finrank ℂ (invFun ((piTprod (rowFock P)).tprod ((piTprod (colFock P)).tprod (Representation.tprod c d)))) :=
     ((Iso.refl _).tprod ((Iso.refl _).tprod (j1.tprod j2))).finrank_invFun
-  have h2 := GlobalTheory.T.tensor_representation_intertwiner_compat (Gc ι S) _ _ _ _ _ _ (piTprod (rowFock P)) (piTprod (colFock P)) c d (x.comp r) (y.comp r) p q ps qs
+  have h2 := _root_.GlobalTheory.OneFunctional.finrank_invFun_two_contractions (Gc ι S) _ _ _ _ _ _ (piTprod (rowFock P)) (piTprod (colFock P)) c d (x.comp r) (y.comp r) p q ps qs
     (fun g u w => (pe (rowComp S g) u w).trans (by rw [hlast]; rfl)) (fun g u w => qe g.2 u w)
     (fun l hl => pk l fun g hg u w => by
       have e : rowComp S ((fun j => g j.castSucc, 1) : Gc ι S) = g := by

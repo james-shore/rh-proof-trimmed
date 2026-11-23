@@ -214,8 +214,8 @@ theorem exists_localizing_weight : ∀ {F : Type} [Field F] [NumberField F] {κ 
   obtain ⟨hΨc, KΨ, hKΨ, hΨK⟩ := continuous_and_compact_finite_support Ψ hΨ
   obtain ⟨U, V, hU, hV, hyU, hyV, hbox⟩ := exists_box_nhds O y hO hyO
   obtain ⟨A, sf, cf, hA, hyA, hsf, hAinv, hAV, hfK⟩ :=
-    exists_finite_indicator_poly v ψ hψ hnt (KΦ ∪ KΨ) (hKΦ.union hKΨ) y V hV hyV
-  obtain ⟨β, hβc, hβ01, hβy, hβU, sa, ca, C, hsa, hCb, hlim⟩ := exists_arch_bump_poly ψ hψ U y hU hyU
+    _root_.GlobalTheory.OffVTrig.exists_offV_indicator_poly v ψ hψ hnt (KΦ ∪ KΨ) (hKΦ.union hKΨ) y V hV hyV
+  obtain ⟨β, hβc, hβ01, hβy, hβU, sa, ca, C, hsa, hCb, hlim⟩ := _root_.GlobalTheory.ArchTrigBump.arch_bump_trig ψ hψ U y hU hyU
   have hmul : ∀ (b b' : κ → AF F) (x : κ → AF F), ψ (x ⬝ᵥ (b + b')) = ψ (x ⬝ᵥ b) * ψ (x ⬝ᵥ b') :=
     fun b b' x => by rw [dotProduct_add, AddChar.map_add_eq_mul]
   choose s c hs hsc using fun n => exists_trig_prod (fun b x => ψ (x ⬝ᵥ b)) hmul sf (sa n) cf (ca n)

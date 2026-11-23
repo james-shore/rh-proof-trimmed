@@ -153,7 +153,7 @@ theorem modulus_conj_flow : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
   have hJ0 : cT (σ : E →+* E) J₀⁻¹ = J₀⁻¹ := GlobalTheory.SphEis.UnipCrd.cT_inv_herm σ J₀ hF.herm₀
   have hpx : ∀ x y : Matrix (Fin (r + 1)) (Fin m) (AF F ⊗[F] E),
       cT (sigR (AF F) σ) (x * GlobalTheory.SphEis.plus σ J₀ y) = y * GlobalTheory.SphEis.plus σ J₀ x := fun x y => by
-    simp only [GlobalTheory.SphEis.plus, GlobalTheory.SphEis.crdLaw_cT_mul, GlobalTheory.SphEis.UnipCrd.cT_cT σ h, GlobalTheory.SphEis.UnipCrd.cT_adMat, hJ0,
+    simp only [GlobalTheory.SphEis.plus, _root_.Formalism.UG.cT_mul, GlobalTheory.SphEis.UnipCrd.cT_cT σ h, GlobalTheory.SphEis.UnipCrd.cT_adMat, hJ0,
       Matrix.mul_assoc]
   set hf2 : AF F ⊗[F] E := inclR (F := F) (AF F) (2⁻¹ : E) with hhf2
   have hh : hf2 + hf2 = 1 := by
@@ -171,7 +171,7 @@ theorem modulus_conj_flow : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
         ((s : Matrix (Fin (r + 1)) (Fin (r + 1)) (AF F ⊗[F] E)) + cT (sigR (AF F) σ) s) +
           (1 - (hf2 + hf2)) • (x * GlobalTheory.SphEis.plus σ J₀ x) by rw [sub_smul, one_smul, add_smul]; abel, hs, hh, sub_self, zero_smul, add_zero]
 
-  obtain ⟨φ, hφc, hφ⟩ := GlobalTheory.T.exists_continuous_chart_isotropicUnipotentRadical F E σ n J (r + 1) m X Y Z J₀ hF
+  obtain ⟨φ, hφc, hφ⟩ := _root_.GlobalTheory.ResidueEisenstein.ChartU.chart F E σ n J (r + 1) m X Y Z J₀ hF
   have hφmem : ∀ p, φ p ∈ unipRad σ J X := by
     rintro ⟨x, s⟩
     obtain ⟨u, hu, hcu⟩ := GlobalTheory.SphEis.UnipCrd.exists_unipRad_crd F E σ n J (r + 1) m X Y Z J₀ hF x _ (hcond x s)
@@ -331,7 +331,7 @@ theorem modulus_conj_flow : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
     have e3 : sA a * GlobalTheory.SphEis.plus σ J₀ (sA a) =
         ((l : AF F ⊗[F] E) * sigR (AF F) σ (l : AF F ⊗[F] E)) • (a * GlobalTheory.SphEis.plus σ J₀ a) := by
       rw [hsA]
-      simp only [GlobalTheory.SphEis.plus, cTsmul, GlobalTheory.SphEis.crdLaw_cT_mul, Matrix.smul_mul, Matrix.mul_smul, smul_smul,
+      simp only [GlobalTheory.SphEis.plus, cTsmul, _root_.Formalism.UG.cT_mul, Matrix.smul_mul, Matrix.mul_smul, smul_smul,
         Matrix.mul_assoc, hδJ']
       rw [mul_comm (sigR (AF F) σ (l : AF F ⊗[F] E))]
     rw [e3, hsC] at h2

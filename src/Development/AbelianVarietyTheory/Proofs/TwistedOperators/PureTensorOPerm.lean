@@ -146,7 +146,7 @@ theorem kernel_row : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : T
     · exact hY
     · exact GlobalTheory.SDFrameLattice.isSelfDualC_of_isSDFrame D _ _ _ 1 (hG.spaces.vert k 0 hk (Nat.zero_le _)).frame
   have hfin : GlobalTheory.Grid.IsFinVec R.ψ R.θ true (G.V ((i : ℕ) + 1) 0) (G.V i 0) (G.vC i c) :=
-    GlobalTheory.T.isFiniteDatum_of_homLatticeCoset_selfDual c (hG.arrows.X i 0 hi (Nat.zero_le _)).vac (sd _ hi) (sd _ hi.le) hG.chars.places.idem
+    _root_.GlobalTheory.Grid.isFinVec_of_isCosetVec c (hG.arrows.X i 0 hi (Nat.zero_le _)).vac (sd _ hi) (sd _ hi.le) hG.chars.places.idem
       (G.toPlaceDat.ideal_ne_bot _) (hG.data i hi c)
   refine ⟨G.vC i c, hfin, ?_⟩
   have n1 := hsp.vert ((i : ℕ) + 1) 0 hi (Nat.zero_le _)

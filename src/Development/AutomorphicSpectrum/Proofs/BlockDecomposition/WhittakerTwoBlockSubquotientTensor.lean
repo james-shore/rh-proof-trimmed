@@ -106,7 +106,7 @@ theorem exists_constituent_of_whit2 : ∀ (k : Type) [Field k] [ValuativeRel k] 
   refine ⟨s, (IsSubquotient.of_surjective Φ.toIntertwiningMap Φ.surjective).trans hq, ?_⟩
   rcases GlobalTheory.T.irreducible_subquotient_of_extension _ _ _ (whit2 ψ d J) S.ρ _ _ (whitImg_mono ψ d J hT'lt.le) S.irr hT with h | h
   · exact absurd hT'lt (hmin T' h)
-  · obtain ⟨e⟩ := GlobalTheory.T.subquotient_equiv_of_irreducible_image _ _ _ _ (s 0).ρ _ S.ρ (s 0).irr S.irr hspan h
+  · obtain ⟨e⟩ := _root_.GlobalTheory.CompanionTheory.IsoSub.equiv_of_isSubquotient _ _ _ _ (s 0).ρ _ S.ρ (s 0).irr S.irr hspan h
     exact ⟨e.symm⟩
 
 end GlobalTheory.CompanionTheory.BZNuPair

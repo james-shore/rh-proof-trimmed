@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.HermitianTraceFormVanishing
 
 @[expose] public section
 
@@ -198,19 +199,6 @@ theorem exists_herm_ne (hr : 0 < r) : ∃ x ∈ X.L', ∃ y ∈ X.L', herm X.Gm 
   haveI : Nonempty (Fin r) := ⟨⟨0, hr⟩⟩
   exact X.Gm_det (by rw [hG]; exact Matrix.det_zero)
 
-private theorem herm_smul_left_eq_mul (G : Matrix (Fin r) (Fin r) E) (c : E) (x y : Fin r → E) :
-    herm G (c • x) y = c * herm G x y := by
-  simp only [herm, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring
-
-private theorem herm_smul_right_fundamental_domains (G : Matrix (Fin r) (Fin r) E) (c : E) (x y : Fin r → E) :
-    herm G x (c • y) = cc c * herm G x y := by
-  have hcc_mul : ∀ a b : E, cc (a * b) = cc a * cc b := fun a b => by
-    unfold cc
-    exact map_mul _ a b
-  simp only [herm, Pi.smul_apply, smul_eq_mul, hcc_mul, Finset.mul_sum]
-  exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring
-
 theorem trace_int (hr : 0 < r) (c : 𝓞 E) :
     ∃ m : ℤ, Algebra.trace ℚ E ((X.NC : E) ^ 2 * X.ξ0 * c) = m := by
   classical
@@ -236,7 +224,7 @@ theorem trace_int (hr : 0 < r) (c : 𝓞 E) :
     intro t ht x hx
     apply X.L'_dual
     intro y hy
-    rw [herm_smul_left_eq_mul]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left]
     obtain ⟨c, hc, hce⟩ := hgen_mem x hx y hy
     have h1 := (FractionalIdeal.mem_inv_iff hJf0).mp ht _ (hmemJf c hc)
     obtain ⟨d, hd⟩ := (FractionalIdeal.mem_one_iff _).mp h1
@@ -248,7 +236,7 @@ theorem trace_int (hr : 0 < r) (c : 𝓞 E) :
     induction hc using Submodule.span_induction with
     | mem c hc =>
       obtain ⟨x, hx, y, hy, hce⟩ := hc
-      rw [hce, ← herm_smul_left_eq_mul]
+      rw [hce, ← _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left]
       obtain ⟨c', hc', hce'⟩ := hgen_mem _ (hinv t ht x hx) y hy
       rw [← hce']
       exact hmemJf c' hc'
@@ -288,7 +276,7 @@ theorem trace_int (hr : 0 < r) (c : 𝓞 E) :
       obtain ⟨k, hk⟩ := X.EF_int _ (X.NC_sub _ hax) _ (X.NC_sub _ hy)
       refine ⟨-k, ?_⟩
       unfold EFf at hk
-      rw [herm_smul_left_eq_mul, herm_smul_right_fundamental_domains, herm_smul_left_eq_mul, hccNC] at hk
+      rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_right, _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left, hccNC] at hk
       have h2 : (X.NC : E) ^ 2 * X.ξ0 * ((a : E) * (c : E)) =
           -(-X.ξ0 * ((X.NC : E) * ((X.NC : E) * ((a : E) * herm X.Gm x y)))) := by
         rw [hce]

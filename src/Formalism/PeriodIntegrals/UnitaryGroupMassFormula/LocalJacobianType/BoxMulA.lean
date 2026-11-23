@@ -97,43 +97,6 @@ theorem q_ne_zero : Ideal.absNorm v.asIdeal ≠ 0 := by
   intro h
   exact v.ne_bot (Ideal.absNorm_eq_zero_iff.mp h)
 
-theorem mem_max_iff (x : v.adicCompletionIntegers F) :
-    x ∈ IsLocalRing.maximalIdeal (v.adicCompletionIntegers F) ↔ Valued.v (x : Fv F v) < 1 := by
-  rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
-  have hx1 : Valued.v (x : Fv F v) ≤ 1 := x.2
-  constructor
-  · intro hx
-    refine lt_of_le_of_ne hx1 (fun h1 => hx ?_)
-    have hx0 : (x : Fv F v) ≠ 0 := by
-      intro h0
-      rw [h0, map_zero] at h1
-      exact zero_ne_one h1
-    have hinv : Valued.v ((x : Fv F v)⁻¹) ≤ 1 := by
-      rw [map_inv₀, h1, inv_one]
-    have hmul : x * ⟨(x : Fv F v)⁻¹, hinv⟩ = 1 := by
-      apply Subtype.ext
-      change (x : Fv F v) * (x : Fv F v)⁻¹ = 1
-      exact mul_inv_cancel₀ hx0
-    exact ⟨⟨x, ⟨(x : Fv F v)⁻¹, hinv⟩, hmul, by rw [mul_comm]; exact hmul⟩, rfl⟩
-  · intro hlt hu
-    obtain ⟨y, hy⟩ := hu.exists_right_inv
-    have h2 : (x : Fv F v) * (y : Fv F v) = 1 := congrArg Subtype.val hy
-    have hy1 : Valued.v (y : Fv F v) ≤ 1 := y.2
-    have h3 : Valued.v (x : Fv F v) * Valued.v (y : Fv F v) = 1 := by
-      rw [← map_mul, h2, map_one]
-    have h4 : Valued.v (x : Fv F v) * Valued.v (y : Fv F v) < 1 :=
-      calc Valued.v (x : Fv F v) * Valued.v (y : Fv F v) ≤ Valued.v (x : Fv F v) * 1 :=
-            by
-              first
-              | gcongr
-              | exact mul_le_mul_of_nonneg_left hy1 zero_le'
-              | exact mul_le_mul_right' hy1 _
-              | exact mul_le_mul_left hy1 _
-        _ = Valued.v (x : Fv F v) := mul_one _
-        _ < 1 := hlt
-    rw [h3] at h4
-    exact lt_irrefl _ h4
-
 theorem lt_one_iff (ϖ : Fv F v) (hϖ : Valued.v ϖ = WithZero.exp (-1 : ℤ)) (y : Fv F v) :
     Valued.v y < 1 ↔ Valued.v (ϖ⁻¹ * y) ≤ 1 := by
   rw [map_mul, map_inv₀, hϖ]
@@ -198,7 +161,7 @@ theorem measure_Ov [MeasurableSpace (Fv F v)] [BorelSpace (Fv F v)] (μ : Measur
   have hHset : (H : Set O') = Subtype.val ⁻¹' Mv v ϖ := by
     ext x
     show x ∈ IsLocalRing.maximalIdeal O' ↔ _
-    rw [mem_max_iff, lt_one_iff v ϖ hϖ]
+    rw [_root_.ReciprocityTheory.Aut.mem_maxIdeal_iff, lt_one_iff v ϖ hϖ]
     rfl
   have hH : MeasurableSet (H : Set O') := by
     rw [hHset]; exact measurable_subtype_coe (isOpen_Mv v ϖ).measurableSet

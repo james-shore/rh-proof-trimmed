@@ -75,10 +75,10 @@ theorem frame_isDR : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (τ
     ext a b
     exact hi.ext _
   set H := s.F.map ((toDisc l (X : bk.S) bk.ρ₀).comp C) * V.map Ψ with hH
-  have hHu : IsUnit H := GlobalTheory.T.semistablePeriod_frame_frobenius_isUnit_disc l K bk τ d ρ s Ψ Z hΨ hZ
+  have hHu : IsUnit H := _root_.GlobalTheory.BKLim.wseed_F_frob_XZ_isUnit l K bk τ d ρ s Ψ Z hΨ hZ
   intro m
-  exact GlobalTheory.T.exists_beta_of_disc_cocycle_alt l K bk d s.N s.κ (fun g => (F.ε g).map WittVector.frobenius) H i hi hHu s.log
-    (fun g G hG => GlobalTheory.T.semistablePeriod_frameCocycle_frobenius_twist_on_disc l K bk τ d ρ s g G Φ i Ψ V (F.ε g) hG hΦ hi hΨ
-      (GlobalTheory.T.semistablePeriod_cocycle_frobenius_relation_on_disc l K bk τ hτ d ρ hρ s g G Φ hG hΦ) (by rw [hVi]; exact hκ g G i hG hi)) m
+  exact _root_.GlobalTheory.BKLim.exists_beta_of_disc_cocycle l K bk d s.N s.κ (fun g => (F.ε g).map WittVector.frobenius) H i hi hHu s.log
+    (fun g G hG => _root_.GlobalTheory.BKLim.FrobTwistKappa.main l K bk τ d ρ s g G Φ i Ψ V (F.ε g) hG hΦ hi hΨ
+      (_root_.GlobalTheory.BKLim.KappaFrob.main l K bk τ hτ d ρ hρ s g G Φ hG hΦ) (by rw [hVi]; exact hκ g G i hG hi)) m
 
 end GlobalTheory.BKLim.WDR

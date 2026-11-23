@@ -244,7 +244,7 @@ theorem exists_frameShift_of_valued_points : ReciprocityTheory.ChartRestriction.
     beta_reduce
     rw [exZ_wtZ, dite_eq_left ⟨hv, ho⟩]
   · intro Z
-    obtain ⟨S, hS0, hS⟩ := GlobalTheory.T.genericFrame_integral_off_finitelyMany_functions hT E H Dw l Xo c hL.bc Y h Z
+    obtain ⟨S, hS0, hS⟩ := _root_.GlobalTheory.Reg.GenInt.genFr_integral hT E H Dw l Xo c hL.bc Y h Z
     refine ⟨S, hS0, fun v hv ho hs => ?_⟩
     letI := ((ψ Z v hv ho).comp (algebraMap c.F (Om Z))).toAlgebra
     have hint := hS (T Z v hv ho) _ (algOf (ψ Z v hv ho)) (fun s hs' => by

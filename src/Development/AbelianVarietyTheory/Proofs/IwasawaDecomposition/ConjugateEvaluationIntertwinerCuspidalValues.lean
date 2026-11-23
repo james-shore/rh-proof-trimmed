@@ -117,7 +117,7 @@ theorem conjMap_isCuspFun : GlobalTheory.Dec.DSInfChar → GlobalTheory.Publishe
       (Formalism.MainNotions.S.lowKSub (X.B.I.ε v) (X.B.lam v) (X.B.σ v)) := fun v =>
     GlobalTheory.Jet.MultGap.isKTypeOf_lowKSub _ _ _ _ _ (hd v).1 (hd v).2.1 fun a b hab =>
       (GlobalTheory.Dec.ProjCuspGap.two_mul_lt _ _ (hb v) (GlobalTheory.Dec.ProjCuspGap.rank_pos_of_ne _ hab)).trans_le (hgap v a b hab)
-  have hL2 := ((GlobalTheory.Dec.CuspAllKType.cusp_all X.B X.dv _ hd hK (GlobalTheory.PinScale.one_le_g X) hb hl hH Φ hΦ).2
+  have hL2 := ((GlobalTheory.Dec.CuspAllKType.cusp_all X.B X.dv _ hd hK (_root_.Formalism.L2.SG.PoincareInHH.Cut.one_le_g X) hb hl hH Φ hΦ).2
     (X.B.tens (GlobalTheory.ConjRowMult.vecC X (MP R) c u))).1
   have hψc := GlobalTheory.ConjRowMultCusp.isCuspFn_of_contRep X hψ hL2
   have hY := GlobalTheory.ConjRowMultCusp.isCuspFun_of_isCuspFn_iota D X.B.I h X.B.μf ψ hψ.1 hψ.2.1 hψc

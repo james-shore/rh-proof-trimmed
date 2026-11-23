@@ -99,8 +99,8 @@ theorem away_of_pos_pair : Sites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H
       congrArg (fun z : (sysS H X std).Lt j × (sysS H X std).Lt (j + 1) => z.2.2) haw
     have hA : SameAway (hT := hT) (H := H) (X := X) std v j La Lb := ⟨h1, h3, e1, e2⟩
     have hA' : SameAway (hT := hT) (H := H) (X := X) std v (j + 1) La' Lb' := ⟨h2, h4, e3, e4⟩
-    refine ⟨GlobalTheory.T.eqOffPrime_kernelLattices_of_agreeAway S hDict hSpl v P hPof j hj.le La Lb hA, GlobalTheory.T.eqOffPrime_kernelLattices_of_agreeAway S hDict hSpl v P hPof (j + 1) hj La' Lb' hA', ?_, ?_,
-      GlobalTheory.T.movedDatum_eq_of_latticeTuples_agreeAway S hDict hSpl v j hj La Lb La' Lb' hA hA', GlobalTheory.T.kernelSite_scalars_agree_awayFromPlace S hDict hSpl hPair v π hU j hj x y hx hy La Lb La' Lb' hA hA'⟩
+    refine ⟨_root_.GlobalTheory.TwV.Xc.eqOff_kerN_of_sameAway S hDict hSpl v P hPof j hj.le La Lb hA, _root_.GlobalTheory.TwV.Xc.eqOff_kerN_of_sameAway S hDict hSpl v P hPof (j + 1) hj La' Lb' hA', ?_, ?_,
+      _root_.GlobalTheory.TwV.Xc.xiM_eq_of_sameAway S hDict hSpl v j hj La Lb La' Lb' hA hA', _root_.GlobalTheory.TwV.Xc.AwayId.scal_away S hDict hSpl hPair v π hU j hj x y hx hy La Lb La' Lb' hA hA'⟩
     · have hLb : Lb = (La.1, Lb.2) := Prod.ext e1.symm rfl
       rw [hLb]
       exact GlobalTheory.T.latticeTuple_frameMatrices_eq_of_same_component S hDict hSpl j La.1 La.2 Lb.2

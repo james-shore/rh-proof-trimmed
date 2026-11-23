@@ -61,12 +61,12 @@ theorem c_comp_inv (V : Type) [CommRing V] [IsDomain V] (D : DegPre V) (χ : D.X
   rw [← Over.comp_left]
   congr 1
   have h : D.c χ * D.c (-χ) = 1 := by
-    rw [← GlobalTheory.Poinc.ThetaOne.c_zero D, ← add_neg_cancel χ, D.c_add]; rfl
+    rw [← _root_.GlobalTheory.IndivisibleSection.c_zero_eq_one D, ← add_neg_cancel χ, D.c_add]; rfl
   exact (eq_inv_of_mul_eq_one_right h).symm
 
 theorem c_eq_eta (V : Type) [CommRing V] [IsDomain V] (D : DegPre V) (χ : D.X) :
     (D.c (χ + -χ)).left = (η[D.P.A]).left := by
-  rw [add_neg_cancel, GlobalTheory.Poinc.ThetaOne.c_zero, ← SymFrame.eta_eq]
+  rw [add_neg_cancel, _root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, ← SymFrame.eta_eq]
 
 
 open GlobalTheory.IntPointFn in
@@ -85,7 +85,7 @@ theorem fn_of_theta_sq : ∀ (V : Type) [CommRing V] [IsDomain V] (D : DegPre V)
             (val τ r z J)⁻¹ * (rigV D r z J ^ 2)⁻¹).val := by
   intro V _ _ D θ b χ t ht χt hχt τ hτ
   have hL := D.P.isLB
-  have e0 : (D.c 0).left = (η[D.P.A]).left := by rw [GlobalTheory.Poinc.ThetaOne.c_zero, ← SymFrame.eta_eq]
+  have e0 : (D.c 0).left = (η[D.P.A]).left := by rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, ← SymFrame.eta_eq]
   have e1 := c_comp_inv V D χ
   have e2 := c_eq_eta V D χ
   have e4 : (b * D.c χ).left = (D.c χ * b).left := by rw [_root_.mul_comm]

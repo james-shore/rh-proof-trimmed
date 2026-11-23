@@ -191,7 +191,7 @@ theorem exists_isFrame : ∀ (n n₀ a : ℕ) (j : Fin a → ℕ) (ε : Fin n �
     have := congrArg Matrix.det hHJH
     rw [Matrix.det_mul, Matrix.det_mul, hH, zero_mul, zero_mul] at this
     exact hdetJ₀ this.symm
-  obtain ⟨s, hsh, hss⟩ := GlobalTheory.T.exists_hermitian_sqrt_in_signedUnitaryGroup n₀ ε₀ D hdet (by rw [hD]; exact hHJH)
+  obtain ⟨s, hsh, hss⟩ := _root_.GlobalTheory.LeviIso.exists_hermitian_sqrt_mem_UJ n₀ ε₀ D hdet (by rw [hD]; exact hHJH)
   rw [hD] at hss
   obtain ⟨S, hS⟩ : ∃ S, S = uMat s := ⟨_, rfl⟩
   obtain ⟨S', hS'⟩ : ∃ S' : Matrix (Fin n₀) (Fin n₀) ℂ,

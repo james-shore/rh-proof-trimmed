@@ -89,7 +89,7 @@ theorem approxRoot_fix_tower : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field �
     exact this
 
   set θ := v (T.ζ 1 - 1) with hθ
-  have hz1 := GlobalTheory.T.valuation_tower_zeta_sub_one p Ω hp2 T v hp1 1 le_rfl
+  have hz1 := _root_.GlobalTheory.K5.ZetaNonvanishing₂.valuation_zeta_sub_one p Ω hp2 T v hp1 1 le_rfl
   have hθ1 : θ < 1 := hz1.1
   let good : Ω → Prop := fun x => ∃ w ∈ F, v (x - w ^ p) ≤ θ * v x
 
@@ -126,7 +126,7 @@ theorem approxRoot_fix_tower : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field �
     intro n hn
     have hmem : T.ζ n - 1 ∈ B :=
       Subalgebra.sub_mem _ (Algebra.subset_adjoin (Or.inl ⟨n, rfl⟩)) (Subalgebra.one_mem _)
-    exact hgoodB _ hmem (GlobalTheory.T.valuation_tower_zeta_sub_one p Ω hp2 T v hp1 n hn).2
+    exact hgoodB _ hmem (_root_.GlobalTheory.K5.ZetaNonvanishing₂.valuation_zeta_sub_one p Ω hp2 T v hp1 n hn).2
 
   have hB : ∀ b ∈ B, good b := by
     intro b hb

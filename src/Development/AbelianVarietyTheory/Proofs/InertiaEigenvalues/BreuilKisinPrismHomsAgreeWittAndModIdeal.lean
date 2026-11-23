@@ -132,7 +132,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (B : Obj 
     | smul c x _ hx =>
       rw [Algebra.smul_def, map_mul, map_mul, hx]
       exact congrArg (· * φ2 x) (RingHom.congr_fun hz c)
-  · rw [← GlobalTheory.T.prism_hom_map_ideal_eq l _ bk.prism B f]
+  · rw [← _root_.GlobalTheory.Prism.Rigid.map_I_eq l _ bk.prism B f]
     change Ideal.map f.f (Ideal.span ({bk.E} : Set bk.prism.A)) = _
     rw [Ideal.map_span]
     exact congrArg Ideal.span (Set.image_singleton (f := f.f) (a := bk.E))

@@ -401,38 +401,35 @@ open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.Arithm
 variable {D : D7} (P : G0g D.nd) (ψ : ∀ kv : (Σ k : Fin 2, D.nd.PlG k), AddChar (ZMod (D.host.g kv.1)) ℂ)
   (p : (Σ k : Fin 2, D.nd.PlG k) → Prop)
 
-abbrev cj (γ : G0g D.nd) (kv : Σ k : Fin 2, D.nd.PlG k) : Matrix (Fin D.R.r) (Fin D.R.r) (ZMod (D.host.g kv.1)) :=
-  (((P kv)⁻¹ * γ kv * P kv : GL (Fin D.R.r) (ZMod (D.host.g kv.1))) : Matrix (Fin D.R.r) (Fin D.R.r) (ZMod (D.host.g kv.1)))
-
-theorem cj_mul (a b : G0g D.nd) (kv : Σ k : Fin 2, D.nd.PlG k) : cj P (a * b) kv = cj P a kv * cj P b kv := by
-  simp only [cj, Pi.mul_apply]
+theorem cj_mul (a b : G0g D.nd) (kv : Σ k : Fin 2, D.nd.PlG k) : _root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P (a * b) kv = _root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P a kv * _root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P b kv := by
+  simp only [_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM, Pi.mul_apply]
   rw [← Units.val_mul]
   congr 1
   group
 
-theorem cj_one (kv : Σ k : Fin 2, D.nd.PlG k) : cj P 1 kv = 1 := by
-  simp [cj]
+theorem cj_one (kv : Σ k : Fin 2, D.nd.PlG k) : _root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P 1 kv = 1 := by
+  simp [_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM]
 
 def Uj : Subgroup (Sub p : Subgroup (G0g D.nd)) where
-  carrier := {a | ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (cj P (a : G0g D.nd) kv)}
+  carrier := {a | ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P (a : G0g D.nd) kv)}
   one_mem' := fun kv _ => by
-    show PJ D.R.k (D.R.m / 2 - 1) (cj P 1 kv)
+    show PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P 1 kv)
     rw [cj_one]; exact jPred_one _ _
   mul_mem' := fun {a b} ha hb kv hk => by
-    show PJ D.R.k (D.R.m / 2 - 1) (cj P ((a : G0g D.nd) * (b : G0g D.nd)) kv)
+    show PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P ((a : G0g D.nd) * (b : G0g D.nd)) kv)
     rw [cj_mul]; exact Formalism.L2.SG.AllRowsOf.J_mul (ha kv hk) (hb kv hk)
   inv_mem' := fun {a} ha kv hk => by
-    show PJ D.R.k (D.R.m / 2 - 1) (cj P ((a : G0g D.nd)⁻¹) kv)
+    show PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P ((a : G0g D.nd)⁻¹) kv)
     have h := PJ_inv ((P kv)⁻¹ * (a : G0g D.nd) kv * P kv) (ha kv hk)
-    unfold cj
+    unfold _root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM
     convert h using 2
     simp only [Pi.inv_apply]
     group
 
-def chij (a : G0g D.nd) : ℂ := ∏ kv, if p kv then ψ kv (phiJ D.R.k (D.R.m / 2 - 1) (cj P a kv)) else 1
+def chij (a : G0g D.nd) : ℂ := ∏ kv, if p kv then ψ kv (phiJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P a kv)) else 1
 
-theorem chij_mul (a b : G0g D.nd) (ha : ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (cj P a kv))
-    (hb : ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (cj P b kv)) :
+theorem chij_mul (a b : G0g D.nd) (ha : ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P a kv))
+    (hb : ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P b kv)) :
     chij P ψ p (a * b) = chij P ψ p a * chij P ψ p b := by
   unfold chij
   rw [← Finset.prod_mul_distrib]
@@ -462,13 +459,13 @@ theorem res_Ep_coeff (a : Sub p) :
     (res (Sub p) (Ep P ψ p)).coeff a = if a ∈ Uj P p then (chij P ψ p a)⁻¹ * cjc p else 0 := by
   rw [res_coeff, Ep, pA_coeff]
   split_ifs with hU
-  · have hU' : ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (cj P (a : G0g D.nd) kv) := hU
+  · have hU' : ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P (a : G0g D.nd) kv) := hU
     rw [chij, cjc, ← Finset.prod_inv_distrib, ← Finset.prod_mul_distrib]
     refine Finset.prod_congr rfl fun kv _ => ?_
     by_cases hp : p kv
     · rw [if_pos hp, if_pos hp, if_pos hp, Fv_coeff, if_pos (hU' kv hp), div_eq_mul_inv]
     · rw [if_neg hp, if_neg hp, if_neg hp, a.2 kv hp, MonoidAlgebra.coeff_one_one, inv_one, one_mul]
-  · have hU' : ¬ ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (cj P (a : G0g D.nd) kv) := hU
+  · have hU' : ¬ ∀ kv, p kv → PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P (a : G0g D.nd) kv) := hU
     push_neg at hU'
     obtain ⟨kv, hp, hJ⟩ := hU'
     refine Finset.prod_eq_zero (Finset.mem_univ kv) ?_
@@ -701,8 +698,8 @@ theorem isCountIdem_cyl (k : Fin 2) (S : Set (Tup D k)) :
         intro kv
         by_cases hk : kv.1 = k
         · have h1 : γ kv = 1 := proj_mem pj _ kv (by simp [pj, hk])
-          show PJ D.R.k (D.R.m / 2 - 1) (cj P γ kv)
-          have h2 : cj P γ kv = 1 := by unfold cj; rw [h1]; simp
+          show PJ D.R.k (D.R.m / 2 - 1) (_root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P γ kv)
+          have h2 : _root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM P γ kv = 1 := by unfold _root_.Formalism.L2.SG.Pf.AllRowsKpp.cjM; rw [h1]; simp
           rw [h2]; exact jPred_one _ _
         · exact hU kv hk
       have hy : ((sec hS γ : KSub X.B.I) : X.B.I.Gf) ∈ X.K2 := (hmem (sec hS γ)).2 (by rw [rho_sec]; exact hJ)

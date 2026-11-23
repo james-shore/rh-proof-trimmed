@@ -142,12 +142,12 @@ theorem exists_degData_of_thetaNZ : Laws → Laws2 → Ega → ∀ (R : Type) [C
   obtain ⟨ga, a, hS⟩ := exists_psiScal R E
   obtain ⟨th, hth, hmul⟩ := GlobalTheory.T.exists_thetaSection_nonzeroFibres_localRing h₂.secTwist R D
   obtain ⟨q, hq⟩ := hmul (f 0)
-  choose b hb using fun χ : D.X => GlobalTheory.T.exists_twistedSection_thetaTranslate_coef R D th hmul χ (ga χ) (hS χ).1 (f χ)
+  choose b hb using fun χ : D.X => _root_.GlobalTheory.PsiCoef.exists_coef R D th hmul χ (ga χ) (hS χ).1 (f χ)
   have hab : ∀ χ, algebraMap R (FractionRing R) q * (a χ).val = algebraMap R (FractionRing R) (b χ) := fun χ =>
-    GlobalTheory.T.psiScalar_eq_expansionCoef_ratio R E ga a f th hS hrelE hth χ q (b χ) hq (hb χ)
+    _root_.GlobalTheory.psiScal_eq_ratio R E ga a f th hS hrelE hth χ q (b χ) hq (hb χ)
   have hbI : ∀ χ : D.X, χ ≠ 0 → b χ ∈ I := fun χ hχ => by
     obtain ⟨x, rfl⟩ := C.xe.surjective χ
-    obtain ⟨m, hm₁, hm₂⟩ := GlobalTheory.T.psiScalar_mem_of_psi_mem_ideal R V φ E D'.toPre C.β C.v C.xe C.pbB C.v_gen C.c_pr gam hgam hpsi ga a hS x _
+    obtain ⟨m, hm₁, hm₂⟩ := _root_.GlobalTheory.PsiRing.scalar_mem_of_psiIn R V φ E D'.toPre C.β C.v C.xe C.pbB C.v_gen C.c_pr gam hgam hpsi ga a hS x _
       (D'.psi_pos x fun h0 => hχ (by rw [h0, map_zero])) _ q (hab _)
     refine hI.le (Ideal.mem_comap.2 ?_)
     exact (congrArg (· ∈ IsLocalRing.maximalIdeal V) hm₂).mpr (Ideal.mul_mem_left _ _ hm₁)
@@ -167,7 +167,7 @@ theorem exists_degData_of_thetaNZ : Laws → Laws2 → Ega → ∀ (R : Type) [C
       refine (congrArg (_ * ·) (hab χ).symm).trans ?_
       rw [← _root_.mul_assoc, ← map_mul, Units.inv_mul, map_one, _root_.one_mul]⟩
   refine ⟨psi, h, ⟨E, hev, hbi, fun χ hχ => hin χ I (hbI χ hχ), fun n => ?_⟩, hD, rfl, hD₁, hD₂, hD₃⟩
-  obtain ⟨s, hs⟩ := GlobalTheory.T.expansionCoef_mem_adic_pow R I hP.ne_top D A G U σ f th hf hth n
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.PsiRing.coef_mem_pow R I hP.ne_top D A G U σ f th hf hth n
   refine s.finite_toSet.subset fun χ hχ => ?_
   by_contra hn
   exact hχ (hin χ _ (Ideal.pow_le_pow_right (Nat.le_succ n) (hs χ hn _ _ (hb χ))))

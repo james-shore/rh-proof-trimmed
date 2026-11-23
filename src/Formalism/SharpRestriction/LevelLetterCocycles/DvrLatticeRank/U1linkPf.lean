@@ -82,7 +82,7 @@ theorem u1link_pf : FirstFrameOfModels := by
   have hT := UniversalLiftFrames.embeddings_card_le_degree D HW K LL hG c
   have hτs := hT.choose_spec.1
   have hcard := hT.choose_spec.2
-  have hB := UniversalLiftFrames.universal_lift_basis D HW F Cm hA hl K LL hG π' E hp9 T₂ hc2 c
+  have hB := _root_.Formalism.MainNotions.N.Ln34.UniversalLiftFrames.u1r2_basis D HW F Cm hA hl K LL hG π' E hp9 T₂ hc2 c
   have hrep := hB.choose_spec.choose_spec.choose_spec.choose
   have hbrep := hB.choose_spec.choose_spec.choose_spec.choose_spec
   refine UniversalLiftFrames.universal_lift_frame (W := (HW l).W K 1 LL hG) (PD := (D.loc l).PD K) (GenPf.isDVR (D.loc l) LL)
@@ -99,13 +99,13 @@ theorem u1link_pf : FirstFrameOfModels := by
   · exact fun τ ζ hpt => (UniversalLiftFrames.universal_lift_valuation D HW F Cm hA hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt).2
   · exact fun τ ζ ζ' hpt hpt' k => UniversalLiftFrames.universal_lift_valuation_points D HW F Cm hA hl K LL hG π' E hp9 T₂ hc2 c τ ζ ζ' hpt hpt'
       (hB.choose_spec.choose_spec.choose k) (hrep k)
-  · exact fun τ ζ hpt hup => ((UniversalLiftFrames.universal_lift_filtration D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
+  · exact fun τ ζ hpt hup => ((_root_.Formalism.MainNotions.N.Ln34.UniversalFiltration.universal_filtration_holds D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
       hB.choose hB.choose_spec.choose hB.choose_spec.choose_spec.choose hrep hbrep S η m (up τ) (b τ) (hj2 τ) (hηb τ) (hm τ)).1 hup).1
-  · exact fun τ ζ hpt hup => ((UniversalLiftFrames.universal_lift_filtration D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
+  · exact fun τ ζ hpt hup => ((_root_.Formalism.MainNotions.N.Ln34.UniversalFiltration.universal_filtration_holds D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
       hB.choose hB.choose_spec.choose hB.choose_spec.choose_spec.choose hrep hbrep S η m (up τ) (b τ) (hj2 τ) (hηb τ) (hm τ)).1 hup).2
-  · exact fun τ ζ hpt hup => ((UniversalLiftFrames.universal_lift_filtration D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
+  · exact fun τ ζ hpt hup => ((_root_.Formalism.MainNotions.N.Ln34.UniversalFiltration.universal_filtration_holds D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
       hB.choose hB.choose_spec.choose hB.choose_spec.choose_spec.choose hrep hbrep S η m (up τ) (b τ) (hj2 τ) (hηb τ) (hm τ)).2 hup).1
-  · exact fun τ ζ hpt hup => ((UniversalLiftFrames.universal_lift_filtration D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
+  · exact fun τ ζ hpt hup => ((_root_.Formalism.MainNotions.N.Ln34.UniversalFiltration.universal_filtration_holds D HW F Cm hA hdR hDi hl K LL hG π' E hp9 T₂ hc2 c τ ζ hpt
       hB.choose hB.choose_spec.choose hB.choose_spec.choose_spec.choose hrep hbrep S η m (up τ) (b τ) (hj2 τ) (hηb τ) (hm τ)).2 hup).2
 
 end Formalism.MainNotions.N.Ln34

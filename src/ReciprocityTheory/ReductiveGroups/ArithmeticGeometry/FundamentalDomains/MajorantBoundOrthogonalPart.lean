@@ -106,14 +106,14 @@ lemma majorant_bound_orthogonal_part (ξ : Fin r → E) (x : Frame X.Ψ r) (hx :
     · by_cases h : τ' = τ
       · subst h
         simp [u, hw1]
-      · simp [u, h, hC_zero_left]
+      · simp [u, h, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_zero_left]
     · by_cases h : τ' = τ
       · subst h
         have hsm : hermC τ'.1 X.Gm (X.Jz x u τ') (emb τ'.1 ξ) =
             I * hermC τ'.1 X.Gm (X.Jp x τ' w) (emb τ'.1 ξ) := by
           simp [Data.Jz, Data.Jp, u, hermC, Finset.mul_sum, mul_assoc]
         rw [hsm, X.Jp_adj hx τ' w (emb τ'.1 ξ), hw2, mul_zero]
-      · simp [Data.Jz, u, h, X.ppos_zero, hC_zero_left]
+      · simp [Data.Jz, u, h, X.ppos_zero, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_zero_left]
   have hmain := hδ u hu τ
   simpa [u] using hmain
 
@@ -236,7 +236,7 @@ theorem unipotent_majorant_bound_data : ReducedFrameDomainCovering (E := E) := b
       obtain ⟨v, hv0, hv⟩ := Matrix.exists_mulVec_eq_zero_iff.2 hdet
       apply hv0
       have horth : ∀ w, hermC τ.1 X.Gm v w = 0 := fun w => by
-        rw [← hU τ v w, hv, hC_zero_left]
+        rw [← hU τ v w, hv, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_zero_left]
       have hvm : Matrix.vecMul v (X.Gm.map τ.1) = 0 := by
         funext b
         have h1 := horth (Pi.single b 1)
@@ -310,7 +310,5 @@ theorem unipotent_majorant_bound_data : ReducedFrameDomainCovering (E := E) := b
       (fun w hw1 hw2 => X.majorant_bound_orthogonal_part ξ x hx δ κ hδ τ w hw1 hw2) v
 
 end Data
-
-theorem unipotent_majorant_bound : ReducedFrameDomainCovering (E := E) := Data.unipotent_majorant_bound_data
 
 end ReciprocityTheory.ChartRestriction.G.FD

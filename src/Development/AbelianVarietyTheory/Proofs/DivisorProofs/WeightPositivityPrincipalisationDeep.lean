@@ -110,21 +110,6 @@ theorem val_eq_stalk {k K : Type} [CommRing k] [Field K] {Y : Scheme.{0}} {p : Y
   rw [H0.val_apply, H0.germ_apply]
   exact (stalkClosedPointTo_ger x _ _ _ (memInf hy hj)).symm
 
-theorem gapGe_std (Dw : Datum H) : GapGe 1 (GlobalTheory.CompHt.stdWt (Psi H) (Dw.p + Dw.q) : AllWt.Weight Dw) := by
-  intro τ k hk
-  simp only [gap, dif_pos hk, GlobalTheory.CompHt.stdWt]
-  push_cast
-  omega
-
-theorem gapGe_sub_std (m : ℕ) (b : AllWt.Weight Dw) (h : GapGe (m : ℤ) b) :
-    GapGe 0 (b - m • (GlobalTheory.CompHt.stdWt (Psi H) (Dw.p + Dw.q) : AllWt.Weight Dw)) := by
-  intro τ k hk
-  have h1 := h τ k hk
-  simp only [gap, dif_pos hk, Pi.sub_apply, Pi.smul_apply, GlobalTheory.CompHt.stdWt] at h1 ⊢
-  rw [nsmul_eq_mul, nsmul_eq_mul]
-  push_cast
-  linarith
-
 theorem cls_nsmul {Y : Scheme.{0}} {Λ : Type} [AddCommGroup Λ] {B : Λ → LB Y} (C : Common B) (n : ℕ) (a : Λ) :
     cls (B (n • a)) (C.isLB (n • a)) = n • cls (B a) (C.isLB a) :=
   map_nsmul (AddMonoidHom.mk' (fun a => cls (B a) (C.isLB a)) (cls_common_add C)) n a

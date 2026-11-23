@@ -74,7 +74,7 @@ theorem termMap_term {A A' : Cube.{0} ι R} {B B' : Cube.{0} κ S} (ψ : Cube.Pu
 
 theorem term_mem_ker {A : Cube.{0} ι R} {B : Cube.{0} κ S} (ψ : Cube.PullHom σ τ A B) (p : ℕ)
     (x : LinearMap.ker (Cube.d A p)) : ψ.term p x.1 ∈ LinearMap.ker (Cube.d B p) := by
-  rw [LinearMap.mem_ker, ← GlobalTheory.T.moduleCubePullHom_term_comm_cechDifferential ψ p x.1, x.2, map_zero]
+  rw [LinearMap.mem_ker, ← _root_.GlobalTheory.Cube.PullHom.term_d ψ p x.1, x.2, map_zero]
 
 theorem cechClass_eq {A : Cube.{0} ι R} {B : Cube.{0} κ S} (ψ : Cube.PullHom σ τ A B) (p : ℕ)
     (x x₂ : LinearMap.ker (Cube.d A (p + 1))) (y y₂ : LinearMap.ker (Cube.d B (p + 1)))
@@ -90,7 +90,7 @@ theorem cechClass_eq {A : Cube.{0} ι R} {B : Cube.{0} κ S} (ψ : Cube.PullHom 
   | succ p =>
     obtain ⟨z, hz⟩ := (cechClass_succ_eq_zero_iff A p _).1 h
     refine (cechClass_succ_eq_zero_iff B p _).2 ⟨ψ.term (p + 1) z, ?_⟩
-    rw [← GlobalTheory.T.moduleCubePullHom_term_comm_cechDifferential ψ (p + 1) z, hz, Submodule.coe_sub, Submodule.coe_sub, hy, hy₂, map_sub]
+    rw [← _root_.GlobalTheory.Cube.PullHom.term_d ψ (p + 1) z, hz, Submodule.coe_sub, Submodule.coe_sub, hy, hy₂, map_sub]
 
 theorem cechClass_δ {S₀ : ShortComplex (Cube.{0} ι R)} {S₁ : ShortComplex (Cube.{0} κ S)}
     (hS₀ : (S₀.map (cechFunctor ι R)).ShortExact) (hS₁ : (S₁.map (cechFunctor κ S)).ShortExact)
@@ -110,7 +110,7 @@ theorem cechClass_δ {S₀ : ShortComplex (Cube.{0} ι R)} {S₁ : ShortComplex 
     δ_cechClass hS₁ p y₃ (ψ₂.term _ x₂) _ ?_ ?_⟩
   · rw [termMap_term ψ₂ ψ₃ S₀.g S₁.g hg, h₂, hy]
   · show Cube.termMap S₁.f _ (ψ₁.term _ x₁.1) = Cube.d S₁.X₂ (p + 1) (ψ₂.term (p + 1) x₂)
-    rw [termMap_term ψ₁ ψ₂ S₀.f S₁.f hf, h₁, GlobalTheory.T.moduleCubePullHom_term_comm_cechDifferential]
+    rw [termMap_term ψ₁ ψ₂ S₀.f S₁.f hf, h₁, _root_.GlobalTheory.Cube.PullHom.term_d]
 
 end Cube.PullHom
 
@@ -172,7 +172,7 @@ theorem cechAbHEquivH'_pull {T T' : TopCat.{0}} (f : T' ⟶ T) {ι κ : Type} [L
       cechAbHEquivH' hc' hG n (cechClass _ n y) =
         SheafPull.pull f φ n (homOfLE hV) (cechAbHEquivH' hc hF n (cechClass _ n x)) := by
   induction n with
-  | zero => exact fun φ hF hG x y h => GlobalTheory.T.cechComparison_degreeZero_alternatingPullback f τ hτ hc hc' hV φ hF hG x y h
+  | zero => exact fun φ hF hG x y h => _root_.GlobalTheory.cechAbPull_degZero f τ hτ hc hc' hV φ hF hG x y h
   | succ n ih =>
     intro F G φ hF hG x y hy
     have hSF := Flasque.injectiveShortComplex_shortExact F
@@ -189,7 +189,7 @@ theorem cechAbHEquivH'_pull {T T' : TopCat.{0}} (f : T' ⟶ T) {ι κ : Type} [L
     let y₃ : LinearMap.ker (Cube.d (cechAbCube (Flasque.injectiveShortComplex G).X₃.obj V' U')
         (n + 1)) :=
       ⟨(cechAbPull f τ hτ (G := (Flasque.injectiveShortComplex G).X₃) ψ.τ₃).term (n + 1) x₃.1, by
-        rw [LinearMap.mem_ker, ← GlobalTheory.T.moduleCubePullHom_term_comm_cechDifferential, x₃.2, map_zero]⟩
+        rw [LinearMap.mem_ker, ← _root_.GlobalTheory.Cube.PullHom.term_d, x₃.2, map_zero]⟩
     obtain ⟨x₁, y₁, hy₁, hx₁, hy₁'⟩ := cechAbPull_δ f τ hτ hSF hSG hF hG ψ n x₃ y₃ rfl
     have hxy : cechClass _ (n + 1) y = cechClass _ (n + 1) y₁ :=
       Cube.PullHom.cechClass_eq _ (n + 1) x x₁ y y₁ hy hy₁ (hc₃.symm.trans hx₁)

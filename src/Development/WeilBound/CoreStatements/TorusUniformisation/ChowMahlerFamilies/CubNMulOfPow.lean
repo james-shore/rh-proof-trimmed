@@ -91,21 +91,6 @@ theorem cubN_mul_of_pow (h : IsCub θ) (N M : ℕ) {x : A} (hx : x ^ N = 1) (y :
     exact Finset.prod_eq_one fun i _ => by rw [one_pow, _root_.one_mul, h.face]
   rw [e, _root_.one_mul]
 
-private theorem cubN_eq_theta_pow_mul_cubN_one (h : IsCub θ) (k : ℕ) (a x z : A) :
-    cubN θ k a x z = θ a (x ^ k) z * cubN θ k 1 x z := by
-  induction k with
-  | zero =>
-    have e : θ a 1 z = 1 := by rw [h.s01, h.face]
-    simp [cubN, e]
-  | succ k ih =>
-    rw [cubN_succ_chow_mahler_families k a, cubN_succ_chow_mahler_families k 1, ih, _root_.one_mul]
-    have c := h.coc a (x ^ k) x z
-    rw [← pow_succ] at c
-    calc θ a (x ^ k) z * cubN θ k 1 x z * θ (a * x ^ k) x z
-        = cubN θ k 1 x z * (θ (a * x ^ k) x z * θ a (x ^ k) z) := by ac_rfl
-      _ = cubN θ k 1 x z * (θ a (x ^ (k + 1)) z * θ (x ^ k) x z) := by rw [c]
-      _ = _ := by ac_rfl
-
 private theorem theta_pow_mul_prod_range_eq_prod (h : IsCub θ) (a x y : A) (M : ℕ) :
     θ a x (y ^ M) * ∏ j ∈ Finset.range M, θ (y ^ j) x y = ∏ j ∈ Finset.range M, θ (a * y ^ j) x y := by
   induction M with
@@ -138,7 +123,7 @@ theorem cubN_pow (h : IsCub θ) (N M : ℕ) {x : A} (hx : x ^ N = 1) (y : A) :
     show cubN θ N 1 x y ^ M = ∏ _j ∈ Finset.range M, cubN θ N 1 x y by
       rw [Finset.prod_const, Finset.card_range]]
   refine Finset.prod_congr rfl fun j _ => ?_
-  have e := cubN_eq_theta_pow_mul_cubN_one h N (y ^ j) x y
+  have e := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsCub.N_split h N (y ^ j) x y
   rw [hx, h.s01 (y ^ j) 1 y, h.face, _root_.one_mul] at e
   rw [← e]
   unfold cubN

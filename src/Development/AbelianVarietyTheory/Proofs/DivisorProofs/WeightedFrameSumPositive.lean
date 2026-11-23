@@ -63,26 +63,11 @@ open Classical
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-theorem pnorm_nonneg₀ {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ) (y : Frame X.Ψ r) :
-    0 ≤ X.pnorm la P y := by
-  unfold Data.pnorm; positivity
+alias pnorm_nonneg₀ := _root_.ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.pnorm_nonneg
 
-theorem pnorm_lact_eq {r : ℕ} (X : Data E r) {la : Wt X.Ψ r} {P : Frame X.Ψ r → ℂ} (hP : X.IsSec la P)
-    {γ : GL (Fin r) E} (hγ : γ ∈ X.Γ) {y : Frame X.Ψ r} (hy : y ∈ X.dom) :
-    X.pnorm la P (lact γ y) = X.pnorm la P y := by
-  have hχ : ‖X.χ la γ‖ = 1 := by
-    obtain ⟨n, hn, h⟩ := X.χ_fin la
-    have := congrArg norm (h γ hγ)
-    rw [norm_pow, norm_one] at this
-    exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hn.ne').1 this
-  unfold Data.pnorm dmin
-  simp only [GlobalTheory.MajInv.gram_lact X (X.Γ_stab γ hγ)]
-  rw [hP.2.2 γ hγ _ hy, norm_mul, hχ, one_mul]
+alias pnorm_lact_eq := _root_.GlobalTheory.PeterssonCompare.pnorm_lact
 
-theorem pnorm_piecewise_eq {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ) {y : Frame X.Ψ r}
-    (hy : y ∈ X.dom) : X.pnorm la (X.dom.piecewise P 0) y = X.pnorm la P y := by
-  unfold Data.pnorm
-  rw [Set.piecewise_eq_of_mem _ _ _ hy]
+alias pnorm_piecewise_eq := _root_.GlobalTheory.SupLoc.pnorm_piecewise
 
 theorem epStar_eq_epsLev (d M : ℕ) (w M' k0 : ℝ) (hk : M' * k0 = 2 * (M : ℝ) * Real.sqrt d) :
     epStar M' (fdeg E) w k0 = epsLev E d M w := by
@@ -129,7 +114,7 @@ theorem GlobalTheory.supPet_principal : GlobalTheory.UCls.MassBound → GlobalTh
     unfold Formalism.BasicNotions.Ranks.r
     omega
   have hcusp := abelian₂.holSub_SS siegelSpaceAlgebra_holds (U σ).X la hP
-  have hdat := fun k => GlobalTheory.T.exists_selfDual_data_transvection_principal_level D j H Dw l Xo c U dict hLw σ hσ k
+  have hdat := fun k => _root_.GlobalTheory.LevGeo.exists_dataX_transv D j H Dw l Xo c U dict hLw σ hσ k
   choose Xx hXx hg hΛ hL' M' hM' hk hT using hdat
   have hfs : ∀ k, ∃ x0, IsOrth ((U σ).X k) x0 ∧ ∃ FF, IsFundSet ((U σ).X k) x0 FF := fun k => by
     obtain ⟨x0, ho, FF, hF, -⟩ := GlobalTheory.DriftCovolume.finMu_unconditional D.R.r ((U σ).X k)
@@ -156,7 +141,7 @@ theorem GlobalTheory.supPet_principal : GlobalTheory.UCls.MassBound → GlobalTh
     simp only [hΦdef]
     rw [pnorm_piecewise_eq _ _ _ hu, pnorm_piecewise_eq _ _ _ hu',
       FrameDegreeData.pnorm_rmul ((U σ).X k) (la k) (P k) (hsec k).2.1 u hu b hb]
-  obtain ⟨hS0, hStop, hΦeq⟩ := GlobalTheory.T.adelicProbability_eq_normalised_fundamentalSets D j H Dw l Xo c U dict hLw σ hσ x0 FF (fun k => ⟨ho k, hF k⟩)
+  obtain ⟨hS0, hStop, hΦeq⟩ := _root_.GlobalTheory.LevGeo.adelicProb_mul_volFund D j H Dw l Xo c U dict hLw σ hσ x0 FF (fun k => ⟨ho k, hF k⟩)
   have heq := hΦeq Φ hΦm hΦΓ hΦB
   have hms := GlobalTheory.T.framed_dictionary_bound hMB hTB D j H Dw l Xo c U dict hLw σ hσ x0 FF (fun k => ⟨ho k, hF k⟩)
 

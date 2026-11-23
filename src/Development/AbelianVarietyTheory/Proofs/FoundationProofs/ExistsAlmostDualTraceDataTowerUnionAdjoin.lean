@@ -204,11 +204,11 @@ theorem exists_trData_towerAlg : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field
   · intro x hx
     apply Subtype.ext
     simp only [Subalgebra.coe_mul, hpcoe, AddSubmonoidClass.coe_finsetSum, htr]
-    exact GlobalTheory.T.sum_mul_cosetRepresentativeTrace_eq Ω v _ U n _ _ _ hsep' _ hx
+    exact _root_.GlobalTheory.AlmostEt.sum_mul_cosetTrace_eq Ω v _ U n _ _ _ hsep' _ hx
   · intro x hx
     apply Subtype.ext
     simp only [Subalgebra.coe_mul, hpcoe, AddSubmonoidClass.coe_finsetSum, htr]
-    exact GlobalTheory.T.sum_mul_cosetRepresentativeTrace_eq Ω v _ U n _ _ _ hsw _ hx
+    exact _root_.GlobalTheory.AlmostEt.sum_mul_cosetTrace_eq Ω v _ U n _ _ _ hsw _ hx
   · apply Subtype.ext
     simp only [Subalgebra.coe_mul, hpcoe, AddSubmonoidClass.coe_finsetSum]
     simpa using hsep'.sum_in 1 (one_mem _)

@@ -156,7 +156,7 @@ theorem act_eq (D : D7) (ε : Bool) (M X : HSp D) (A : GlobalTheory.ChainFr.Fr M
       simp only [Bool.false_eq_true, if_false]
       push_cast
       module
-    · have h1 := GlobalTheory.T.fockSourceGlActionSymmetrised_opposite_signs (D := D) τ (fun _ : Fin M.rank => !true) (B.ε τ) (Zf.map (starRingEnd ℂ))
+    · have h1 := _root_.GlobalTheory.FockOpp.fockS_of_opposite (D := D) τ (fun _ : Fin M.rank => !true) (B.ε τ) (Zf.map (starRingEnd ℂ))
         (fun i j => by simp [hB τ i])
       rw [h1]
       have hY : (Zf.map (starRingEnd ℂ)).transpose = -S := by

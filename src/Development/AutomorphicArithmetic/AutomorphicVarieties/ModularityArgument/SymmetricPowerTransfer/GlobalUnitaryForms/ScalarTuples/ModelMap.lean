@@ -396,5 +396,4 @@ private theorem model_map_exists : ModelMap := by
 
 end UpperTheory.V.Z.Sym.Glob
 
-theorem UpperTheory.V.Z.Sym.Glob.modelMap :
-    UpperTheory.V.Z.Sym.Glob.ModelMap := UpperTheory.V.Z.Sym.Glob.model_map_exists
+alias UpperTheory.V.Z.Sym.Glob.modelMap := _root_.UpperTheory.V.Z.Sym.Glob.model_map_exists

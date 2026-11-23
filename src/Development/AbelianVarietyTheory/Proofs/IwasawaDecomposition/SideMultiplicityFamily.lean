@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.EqOfLeOfAbsNormEq
 
 @[expose] public section
 
@@ -103,14 +104,8 @@ end NC
 section Conj
 variable {R : Ranks}
 
-theorem conj_conj' (H : Host R) (x : H.E) : H.conj (H.conj x) = x := by
-  let φ : H.E →+* ℂ := Classical.choice inferInstance
-  apply φ.injective
-  have h := fun y => H.conjE_apply φ y
-  exact (h _).trans ((congrArg (starRingEnd ℂ) (h x)).trans (Complex.conj_conj _))
-
 theorem isConjPl_symm' {H : Host R} {P P' : PlE H} (h : IsConjPl H P P') : IsConjPl H P' P := fun x y e =>
-  (h y x (by rw [e, conj_conj'])).symm
+  (h y x (by rw [e, _root_.Formalism.MainNotions.UnusedSlot33.HK.conj_conj])).symm
 
 end Conj
 

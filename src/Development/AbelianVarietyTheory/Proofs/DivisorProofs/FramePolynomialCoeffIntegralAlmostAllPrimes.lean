@@ -80,7 +80,7 @@ theorem coeff_valuation_le_one_almost_all : ∀ (E : Type) [Field E] [NumberFiel
         ∀ μ, p.valuation z.K (AddMonoidAlgebra.coeff G μ) ≤ 1 := by
   intro E _ _ _ H Dw l Xo c _ z f La hz e k he
   classical
-  obtain ⟨S₁, hS₁⟩ := GlobalTheory.T.cmPoint_eigenbasis_change_det_integral_almost_all_primes E H Dw l Xo c z f La hz
+  obtain ⟨S₁, hS₁⟩ := _root_.GlobalTheory.DetInt.det_integral E H Dw l Xo c z f La hz
   have hfin : (⋃ j, {p : IsDedekindDomain.HeightOneSpectrum (𝓞 z.K) |
       FractionalIdeal.count z.K p (z.ℓ j).I ≠ 0}).Finite :=
     Set.finite_iUnion fun j => Filter.eventually_cofinite.1 (FractionalIdeal.finite_factors (z.ℓ j).I)
@@ -97,13 +97,13 @@ theorem coeff_valuation_le_one_almost_all : ∀ (E : Type) [Field E] [NumberFiel
   let φ : z.K →ₐ[c.F] T.Fr := { iK with commutes' := fun _ => rfl }
   obtain ⟨yT, hyT⟩ := GlobalTheory.Frames.FramedBaseChange.exists_frMap GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c _ _ φ z.y
   have hyx : yT.x = spMap iK ≫ z.x := by rw [hyT.1, hz.2.2.2.1]
-  obtain ⟨g, hg, hgL⟩ := (GlobalTheory.T.exists_integralEigenbasis_of_frame_at_localModel E H Dw l Xo c T io M.G.t M.t'.t _ M.m1 M.m2 yT hyx).1
-  obtain ⟨s, hsS⟩ := GlobalTheory.T.exists_unit_integral_generator_principal_local_model E H Dw l Xo c T io M.G M.t'.t _ M.m1 M.m2 yT hyx
+  obtain ⟨g, hg, hgL⟩ := (_root_.GlobalTheory.LamT.lieInt_exists_and_change E H Dw l Xo c T io M.G.t M.t'.t _ M.m1 M.m2 yT hyx).1
+  obtain ⟨s, hsS⟩ := _root_.GlobalTheory.LamT.LocSec.exists_unit_secInt E H Dw l Xo c T io M.G M.t'.t _ M.m1 M.m2 yT hyx
   obtain ⟨y', hy', -⟩ := GlobalTheory.Frames.existsUnique_frChg E H Dw l Xo c T.Fr yT g s hg
   have hL := hgL _ _ hy'
   have hS := hsS _ _ hy'
   have hinv : ∀ b j i, (g b)⁻¹ j i ∈ Set.range (algebraMap T.V T.Fr) := fun b j i => by
-    have := GlobalTheory.T.lieLetter_integral_in_integral_eigenbasis E H Dw l Xo c z f La hz p T iK M hiK φ yT y' g s rfl hyT hy' hg hL b j i 1 (hgen _)
+    have := _root_.GlobalTheory.LamT.LetterInt.letter_integral_in_eigenbasis E H Dw l Xo c z f La hz p T iK M hiK φ yT y' g s rfl hyT hy' hg hL b j i 1 (hgen _)
     rwa [map_one, _root_.one_mul] at this
   have hR : ∀ x : T.Fr, x ∈ Set.range (algebraMap T.V T.Fr) ↔ x ∈ (algebraMap T.V T.Fr).range :=
     fun x => (RingHom.mem_range).symm
@@ -126,7 +126,7 @@ theorem coeff_valuation_le_one_almost_all : ∀ (E : Type) [Field E] [NumberFiel
     exact Subring.mul_mem _ hall (Subring.prod_mem _ fun b' _ => hdetinv b')
   have hτ : (∏ b, (g b).det ^ k b) ∈ (algebraMap T.V T.Fr).range :=
     Subring.prod_mem _ fun b _ => Subring.pow_mem _ (hdet b) _
-  obtain ⟨w, hw⟩ := GlobalTheory.T.framePolynomial_coeff_bounded_by_determinants E H Dw l Xo c z f La hz e k he p T iK hT hiK M φ yT y' g s rfl hyT hy' s.ne_zero hg hL
+  obtain ⟨w, hw⟩ := _root_.GlobalTheory.FrameCoeffLoc.coeff_mul_prod_mem_det E H Dw l Xo c z f La hz e k he p T iK hT hiK M φ yT y' g s rfl hyT hy' s.ne_zero hg hL
     hS (fun _ _ => 1) (fun b j i => by rw [_root_.one_mul]; exact hinv b j i) F hF hv G
     (fun y' Y hY hch => hG y' Y 1 hY (by rw [Units.val_one]; exact hch)) μ
   simp only [one_pow, Finset.prod_const_one, _root_.mul_one] at hw

@@ -60,7 +60,7 @@ theorem GlobalTheory.EtC.cone_kinj_and_bijective_iff : ∀ (R : Type) [CommRing 
     haveI : (mappingCone f).IsStrictlyGE (m - 1) := CochainComplex.isStrictlyGE_mappingCone f m m (m - 1) (by omega)
     exact isKInjective_of_injective _ (m - 1)
   · intro K
-    have ex := fun n => GlobalTheory.T.hypercohomology_mappingCone_second_variable_exact R K f n
+    have ex := fun n => _root_.GlobalTheory.EtC.coneSeqTgt_exact R K f n
     constructor
     · intro hb n
       refine ⟨fun x y => ?_⟩

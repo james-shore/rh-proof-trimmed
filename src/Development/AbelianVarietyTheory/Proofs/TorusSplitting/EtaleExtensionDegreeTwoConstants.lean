@@ -62,7 +62,7 @@ theorem etEx_deg_two : ∀ (D : D7) (T : Top D) (h : LawsP T) (large₂ : SizeDa
     unfold WeightFamilies.PPv
     rw [Real.rpow_two]
   rw [hP]
-  refine GlobalTheory.T.exists_cuspForm_four_clauses_explicitConstant D T h DF q R0 _ _ hrun (fun j hj => ?_) (by positivity)
+  refine _root_.GlobalTheory.EtaAn.exists_form_four_clauses D T h DF q R0 _ _ hrun (fun j hj => ?_) (by positivity)
   rw [min_self]
   have hN := GlobalTheory.T.log_card_components_le_of_rows_bound D T h large₂ hrows j hj T.σ₀ T.good_σ₀
   obtain ⟨hL, lr, lρ, lf, -, hf⟩ := hrows

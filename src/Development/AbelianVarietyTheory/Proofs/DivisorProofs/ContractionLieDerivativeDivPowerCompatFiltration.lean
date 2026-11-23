@@ -112,11 +112,8 @@ theorem lie_mem_rel (hv : ∀ n, ∀ a ∈ J, v (δ.dpow (n + 1) a) = δ.dpow n 
   rw [lie_apply']
   exact add_mem (dDR_mem_rel R δ (ctr_mem_rel δ v hv hx)) (ctr_mem_rel δ v hv (dDR_mem_rel R δ hx))
 
-theorem fil_succ_le' (n : ℕ) : fil δ (n + 1) ≤ fil δ n :=
-  Ideal.span_mono fun _ ⟨l, h1, h2, h3⟩ ↦ ⟨l, h1, by omega, h3⟩
-
 theorem filDR_succ_le' (n : ℕ) : filDR R δ (n + 1) ≤ filDR R δ n :=
-  sup_le_sup_right (Ideal.span_mono (Set.image_mono (fil_succ_le' δ n))) _
+  sup_le_sup_right (Ideal.span_mono (Set.image_mono (_root_.GlobalTheory.DerFil.fil_succ_le δ n))) _
 
 theorem rel_le_filDR' (n : ℕ) : rel R δ ≤ filDR R δ n := le_sup_right
 

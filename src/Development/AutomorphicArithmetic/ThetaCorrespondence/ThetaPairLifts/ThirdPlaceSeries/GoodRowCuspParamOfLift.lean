@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTupleAlt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StrictHenselianAcyclic
+import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.IrreducibilityOfTheoremThree
 
 @[expose] public section
 
@@ -54,8 +55,8 @@ theorem goodRowCuspParam_of_lift_alt : ∀ (D : D7) (Rw : RowSide D), _root_.Glo
     GlobalTheory.IndefiniteRowSideFullHecke.CMTypeEmbeddings.GoodRowCuspParam D Rw := by
   intro D Rw hL h45 hEFK hCM hdef hLift hLoc j hj1 hj2 σ hiso hgood
   obtain ⟨π, μ, hπ⟩ := hLift j hj1 hj2 σ hiso
-  obtain ⟨Pa, hPa⟩ := h45 hEFK hCM j hj1 hj2 (one_le_nV D) (hdef j hj1 hj2) π hπ.sph
-  have hmu := _root_.GlobalTheory.T.trivial_piece_mem_base_change D Rw hL j σ π μ Pa hπ (hLoc σ) hPa
-  exact _root_.GlobalTheory.T.exists_isCuspParam_of_bc_good_index D Rw hL j σ π μ Pa hπ (hLoc σ) hPa hmu hgood
+  obtain ⟨Pa, hPa⟩ := h45 hEFK hCM j hj1 hj2 (_root_.Formalism.MainNotions.N.nV_pos D) (hdef j hj1 hj2) π hπ.sph
+  have hmu := _root_.GlobalTheory.MuBlockLoc.mu_block_mem_alt D Rw hL j σ π μ Pa hπ (hLoc σ) hPa
+  exact _root_.GlobalTheory.RowCuspFromLift.exists_isCuspParam_of_liftAt_good_index D Rw hL j σ π μ Pa hπ (hLoc σ) hPa hmu hgood
 end GlobalTheory.ParAsm
 end

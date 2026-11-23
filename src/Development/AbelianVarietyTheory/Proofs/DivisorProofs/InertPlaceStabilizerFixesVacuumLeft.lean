@@ -179,7 +179,7 @@ theorem vac_fixed_left : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   obtain ⟨S, hS⟩ := GlobalTheory.T.weilRepresentationLocality_unitaryGroupV' B G X om om' hTr v k hk.1
   obtain ⟨hφ₁, hact⟩ := hS _ hSB
   have h1 := acts_vacCond_of_mem_KAt_left F E σ B a a' G X om om' hTr v θ hθ k hk _ hSB _ hφ₁ hact hvac
-  obtain ⟨c, hc'⟩ := GlobalTheory.T.inertPlace_schwartzBruhat_vacuumCondition_eq_smul F E σ B a a' G X om om' hTr v w hw θ hθ hvac _ hφ₁ h1
+  obtain ⟨c, hc'⟩ := _root_.GlobalTheory.VacUniqInert.vac_unique F E σ B a a' G X om om' hTr v w hw θ hθ hvac _ hφ₁ h1
   rw [hc'] at hact
   have hc := GlobalTheory.T.inertPlace_latticeStabilizer_vacuumScalar_eq_one F E σ B a a' G X om om' hTr v w hw hv k hk c hact
   rwa [hc, one_smul] at hact

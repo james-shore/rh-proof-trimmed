@@ -216,7 +216,7 @@ theorem ontoCZ_holds : Formalism.L2.SG.Pf.ZsVolAct.OntoCZ M δ u u' F0 what₂ :
   obtain ⟨_, ⟨_, _, hLift, hConv⟩, hXF⟩ := hΛ
   obtain ⟨⟨⟨hLift', _, hFOK⟩, e'⟩, hAdm, _, _, _⟩ := hN
   obtain ⟨p'', e''⟩ := hr''
-  obtain ⟨n, hn, m, hm, hfr, -⟩ := (Formalism.L2.SG.Closed.TermEqIff_holds D u u' F0 γ.lam (hR.1 γ.lam γ.mem)
+  obtain ⟨n, hn, m, hm, hfr, -⟩ := (_root_.term_eq_iff_relation D u u' F0 γ.lam (hR.1 γ.lam γ.mem)
     ⟨F', ⟨hLift', ‹_›, hFOK⟩⟩ ⟨F'', p''⟩).1 (e'.trans e''.symm)
   have hν : n⁻¹ ∈ NLam γ.lam (lf D F0) := Formalism.L2.SG.Pf.nlamPf_inv hn
   have hf'' : ∀ b, F''.fl.fvec b = (n⁻¹)⁻¹ (m (F'.fl.fvec b)) := fun b => by rw [inv_inv]; exact hfr b

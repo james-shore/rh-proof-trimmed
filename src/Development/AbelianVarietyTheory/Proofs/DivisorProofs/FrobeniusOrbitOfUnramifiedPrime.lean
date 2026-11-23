@@ -194,20 +194,6 @@ theorem pow_char_sqrt {k : Type} [Field k] (p : ℕ) [Fact p.Prime] [CharP k p] 
 section
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E)
 
-theorem emb_rt_sq (σ : E →+* ℂ) : σ (H.rt : E) ^ 2 = -(H.d : ℂ) := by
-  have := congrArg (σ.comp (algebraMap (𝓞 E) E)) H.rt_sq
-  rw [map_pow, map_neg, map_natCast] at this
-  exact this
-
-theorem conj_rt (σ : E →+* ℂ) : ComplexEmbedding.conjugate σ (H.rt : E) = -σ (H.rt : E) := by
-  first
-  | exact @_root_.GlobalTheory.ConjugateNegativeSquare.conjugate_rt
-  | exact _root_.GlobalTheory.ConjugateNegativeSquare.conjugate_rt
-  | (apply _root_.GlobalTheory.ConjugateNegativeSquare.conjugate_rt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ConjugateNegativeSquare.conjugate_rt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ConjugateNegativeSquare.conjugate_rt <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ConjugateNegativeSquare.conjugate_rt ..)
-
 theorem cm_generator_sq_quadratic_eq : ∃ m : 𝓞 E, H.w0 ^ 2 = H.w0 - 2 * m := by
   obtain ⟨n, hn⟩ : ∃ n, H.d + 1 = 8 * n := ⟨(H.d + 1) / 8, by have := H.d_mod; omega⟩
   refine ⟨n, ?_⟩
@@ -223,7 +209,7 @@ theorem frob_rt {k : Type} [Field k] (p : ℕ) [Fact p.Prime] [CharP k p] (ψ : 
     (h : ∀ a, ψ σ' a = ψ σ a ^ p) :
     (SplitInK H p → σ' (H.rt : E) = σ (H.rt : E)) ∧ (InertInK H p → σ' (H.rt : E) = -σ (H.rt : E)) := by
   have hor : σ' (H.rt : E) = σ (H.rt : E) ∨ σ' (H.rt : E) = -σ (H.rt : E) :=
-    sq_eq_sq_iff_eq_or_eq_neg.1 (by rw [emb_rt_sq, emb_rt_sq])
+    sq_eq_sq_iff_eq_or_eq_neg.1 (by rw [_root_.GlobalTheory.OneSpace.emb_rt_sq, _root_.GlobalTheory.OneSpace.emb_rt_sq])
   have hr : ψ σ H.rt ^ 2 = -(H.d : k) := by rw [← map_pow, H.rt_sq, map_neg, map_natCast]
   constructor
   · intro hs
@@ -314,7 +300,7 @@ theorem frobOnType_and_orbit : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     · unfold InPsi
       rw [h1 hs]
     · unfold InPsi
-      rw [h2 hi, conj_rt]
+      rw [h2 hi, _root_.GlobalTheory.ConjugateNegativeSquare.conjugate_rt]
   have hinj : Function.Injective ψ :=
     injective_of_det p hdisc X.ints.hom_inj (IsLocalRing.residue X.O) (algebraMap c.F ℂ) (X.ιF.comp io)
       (embK c) (embK_coe c) t ht

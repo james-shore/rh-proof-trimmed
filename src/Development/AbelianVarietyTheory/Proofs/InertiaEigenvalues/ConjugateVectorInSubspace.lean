@@ -200,7 +200,7 @@ theorem typeVec_rows {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type}
   have hj := fun k v => loc_piece π (s k v) (hs k v) (τ k v) (hτ k v) (I.i k v) (I.cont k v)
   choose j hjc hjP using hj
   have hinj := GlobalTheory.PlaceInj.splitPlace_v_injective D s hs
-  obtain ⟨c, hA, hKc⟩ := GlobalTheory.T.rowsAtLevels_fixed_principalCongruence_typePlaces R F cG Y hP s j hs hjc
+  obtain ⟨c, hA, hKc⟩ := _root_.GlobalTheory.RowLevConj.rows_fixed R F cG Y hP s j hs hjc
   obtain ⟨ρM, hρM⟩ := GlobalTheory.TypeAct.exists_rep D s j hinj _ ((principalLevelFrame.actM Y.PY (R.MY 0)).comp (MulAut.conj c).toMonoidHom)
   obtain ⟨ρV, hρV⟩ := GlobalTheory.TypeAct.exists_rep D s j hinj _ (rtHom D.host.E D.R.r)
   obtain ⟨b, hb⟩ := principalLevelFrame.rowRepR_occ R.θ (Y.eFT σ)
@@ -213,7 +213,7 @@ theorem typeVec_rows {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type}
   have hMult : Tm ∈ Mult.Mult R.θ (R.MY 0) (levS _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b)))
       (levChi _ (R.βY 0) (R.dat0 (R.toRealDat.levR F.lv2 b))) := (Submodule.mem_inf.1 hG).1
   have hK := hKc b Tm hMult
-  have he := GlobalTheory.T.goodProjector_eq_goodIdempotent_typePlaces R F cG Y hP s j hs hjc c hA ρM hρM b Tm hK hG
+  have he := _root_.GlobalTheory.RowGood.good_idem_fix_conj R F cG Y hP s j hs hjc c hA ρM hρM b Tm hK hG
   obtain ⟨q, hq0, hq⟩ := detect_conj (principalLevelFrame.actM Y.PY (R.MY 0)) (principalLevelFrame.Minf R.θ Y.PY (R.MY 0))
     (principalLevelFrame.FinTyp.conjT π) c Tm hN hT0
 
@@ -225,7 +225,7 @@ theorem typeVec_rows {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type}
         ((ρV (GlobalTheory.GoodTypes.facHom D k v m) z' : KFix D s j (rtHom D.host.E D.R.r)) : GAf D.host.E D.R.r → ℂ) =
           q (ρM (GlobalTheory.GoodTypes.facHom D k v m) z) := by
     intro k v m z hz
-    obtain ⟨y, rfl⟩ := GlobalTheory.GLp.reduction_GL_surjective (D.host.g k) D.R.r m
+    obtain ⟨y, rfl⟩ := _root_.GlobalTheory.GLp.red_surjective (D.host.g k) D.R.r m
     obtain ⟨x, hx1, hx2⟩ := GlobalTheory.SplitSec.exists_trivOutside_loc D.host.E D.R.r (s k v)
       (Matrix.GeneralLinearGroup.map (j k v).toRingHom (GlobalTheory.GLp.inc _ _ y))
     have hl : IsLiftAt (s k v) (j k v) y x := ⟨hx1, hx2⟩
@@ -273,7 +273,7 @@ theorem typeVec_rows {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type}
       exact e1.symm
     · have hzf : conjL (z : GAf D.host.E D.R.r → ℂ) ∈ π.S := hz
       have hy0 : GlobalTheory.GLp.red (D.host.g k) D.R.r (Function.invFun (GlobalTheory.GLp.red (D.host.g k) D.R.r) h) = h :=
-        Function.invFun_eq (GlobalTheory.GLp.reduction_GL_surjective (D.host.g k) D.R.r h)
+        Function.invFun_eq (_root_.GlobalTheory.GLp.red_surjective (D.host.g k) D.R.r h)
       obtain ⟨x, hl⟩ : ∃ x, IsLiftAt (s k v) (j k v) (Function.invFun (GlobalTheory.GLp.red (D.host.g k) D.R.r) h) x :=
         GlobalTheory.SplitSec.exists_trivOutside_loc D.host.E D.R.r (s k v) _
       have eV := hρV k v _ x hl z

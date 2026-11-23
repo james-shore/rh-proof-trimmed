@@ -78,7 +78,7 @@ theorem exists_theta {A : Type} [CommRing A] [Algebra K A] (C : ChartRings K A n
   choose θ hθ bc using key
   refine ⟨θ, hθ, ?_, bc⟩
   intro S T h y
-  have := GlobalTheory.T.chart_base_change_map_unique C ((C.res h).comp (θ S)) ((θ T).comp (incl (cone_mono h)))
+  have := _root_.GlobalTheory.CompanionTheory.SurjectionOntoH4.ThetaUnique.theta_unique C ((C.res h).comp (θ S)) ((θ T).comp (incl (cone_mono h)))
     (fun b => by rw [AlgHom.comp_apply, hθ, res_toR]) (fun b => by rw [AlgHom.comp_apply, incl_poly h, hθ]) (θ T) (hθ T) (bc T)
   exact DFunLike.congr_fun this y
 
@@ -100,7 +100,7 @@ theorem model_ex (a : ℕ) : ExP (fun S : Finset (Fin d) => relOm K (I0 n K S) a
     (fun S => ((omMap (K := K) (incl (le_top : (cone S : AddSubmonoid (Gam n d)) ≤ ⊤)) a).toAddMonoidHom).comp
       (relOm K (I0 n K S) a).subtype.toAddMonoidHom) ?_ ?_ ?_
   · intro S x y hxy
-    exact Subtype.ext (GlobalTheory.T.cone_forms_map_injective S a hxy)
+    exact Subtype.ext (_root_.GlobalTheory.CompanionTheory.SurjectionOntoH4.OmlInj.omMap_incl_injective S a hxy)
   · intro S S' h x
     change omMap _ a (omMap _ a (x : Om K (R0 K n d S) a)) = omMap _ a (x : Om K (R0 K n d S) a)
     rw [omMap_comp, incl_comp]
@@ -121,7 +121,7 @@ theorem model_ex (a : ℕ) : ExP (fun S : Finset (Fin d) => relOm K (I0 n K S) a
       induction hw using Submodule.span_induction with
       | mem w hw =>
         obtain ⟨g, D, h1, h2, rfl⟩ := hw
-        obtain ⟨ω, hω, e⟩ := GlobalTheory.T.monomial_form_in_relative_image (K := K) S a g D h1 h2
+        obtain ⟨ω, hω, e⟩ := _root_.GlobalTheory.CompanionTheory.SurjectionOntoH4.RelSup.relForm_of_good (K := K) S a g D h1 h2
         exact ⟨⟨ω, hω⟩, e⟩
       | zero => exact ⟨0, by simp⟩
       | add x y _ _ hx hy =>

@@ -163,7 +163,7 @@ theorem UpperTheory.Gal.productCup_of_system.goodZ_of :
   have hrB : ∀ I J : Finset (Fin (d + 1)), I.Nonempty → I ⊆ J → rB ℂ K (xv x) I ≤ rB ℂ K (xv x) J := by
     intro I J hI hIJ
     obtain ⟨i, hi⟩ := hI
-    exact (GlobalTheory.T.finite_cover_ring_localization_chart ℂ F K d (xv x) hx I i hi).1 J hIJ
+    exact (_root_.GlobalTheory.PD.rB_mono_loc ℂ F K d (xv x) hx I i hi).1 J hIJ
   have hx0 : ∀ i, xv x i ≠ 0 := fun i => (x i).ne_zero
   refine ⟨⟨?_, ?_, ?_, ?_, ?_⟩, ⟨?_, ?_, ?_, ?_, ?_⟩, ?_⟩
   · intro I I' J J' hI hJ hII hJJ

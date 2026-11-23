@@ -53,13 +53,12 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.F
 
-theorem ellipticEntire : EllipticEntire := elliptic_entire_const
-theorem ellipticNoPole : EllipticNoPole := elliptic_no_pole_const
+alias ellipticNoPole := _root_.Formalism.L2.Th1.F.elliptic_no_pole_const
 theorem ellipticOnePole : EllipticOnePole :=
-  ellipticOnePole_of ellipticNoPole ellipticEntire zetaQuasi legendre
+  ellipticOnePole_of ellipticNoPole _root_.Formalism.L2.Th1.F.elliptic_entire_const zetaQuasi legendre
 theorem sigmaOrder : SigmaOrder := sigmaOrder_of sigmaEntire sigmaZero sigmaSimple
 theorem sigmaAdd : SigmaAdd :=
-  sigmaAdd_of ellipticNoPole sigmaEntire sigmaOdd sigmaZero sigmaSimple sigmaQuasi sigmaOrder
+  sigmaAdd_of ellipticNoPole sigmaEntire _root_.Formalism.L2.Th1.F.sigma_odd sigmaZero sigmaSimple sigmaQuasi sigmaOrder
 theorem sgStarAdd : SgStarAdd := sgStarAdd_of sigmaAdd
 theorem pInjective : PInjective := pInjective_of sigmaAdd sigmaZero
 theorem sigmaDouble : SigmaDouble := sigmaDouble_of sigmaAdd sigmaEntire sigmaSimple
@@ -67,7 +66,7 @@ theorem pDerivZero : PDerivZero := pDerivZero_of sigmaDouble sigmaZero
 theorem discNeZero : DiscNeZero := discNeZero_of pDerivZero pInjective
 theorem zetaAdd : ZetaAdd := zetaAdd_of sigmaAdd sigmaLogDeriv sigmaZero
 theorem sigmaThree : SigmaThree :=
-  sigmaThree_of ellipticOnePole sigmaOrder sigmaQuasi sigmaZero sigmaEntire sigmaOdd sigmaSimple sigmaAdd
+  sigmaThree_of ellipticOnePole sigmaOrder sigmaQuasi sigmaZero sigmaEntire _root_.Formalism.L2.Th1.F.sigma_odd sigmaSimple sigmaAdd
 theorem sgStarThree : SgStarThree := sgStarThree_of sigmaThree
 theorem thetaLine : ThetaLine := thetaLine_of ellipticOnePole sgStarQuasi sgStarBasic
 

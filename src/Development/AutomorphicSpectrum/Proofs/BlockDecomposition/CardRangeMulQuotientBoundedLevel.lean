@@ -57,11 +57,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SiegLoc.Scaled
 
-theorem sum_comp_surj {A B : Type} [AddCommGroup A] [AddCommGroup B] [Fintype A] [Fintype B]
-    (π : A →+ B) (hπ : Function.Surjective π) (G : B → ℂ) :
-    (Fintype.card B : ℂ) * ∑ a, G (π a) = (Fintype.card A : ℂ) * ∑ b, G b :=
-  _root_.UpperTheory.Reformulated.B.Rd1.sum_comp_surj π hπ G
-
 variable {R : Type} [CommRing R]
 
 theorem fixed_decomp {σ : R →+* R} {ϖ : R} {q : ℕ} {ε : ℤ} (hR : IsUnrQuad R σ ϖ q ε)
@@ -199,7 +194,7 @@ theorem gauss_image_level : ∀ (R : Type) [CommRing R] (σ : R →+* R) (ϖ : R
         congr 2
         ring
       rw [Finset.sum_congr rfl (fun w _ => hF w)]
-      have h2 := sum_comp_surj π hπ G
+      have h2 := _root_.UpperTheory.Reformulated.B.Rd1.sum_comp_surj π hπ G
       have h3 : ∑ v, G v = ((ε : ℂ) * q) ^ e := H e (a * c) hacf hac
       rw [h3, hcard, hcard] at h2
       push_cast at h2

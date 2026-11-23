@@ -43,5 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem Formalism.FourierDecayAlt.P.capelli_rho_commute : Formalism.FourierDecayAlt.JF.CVRho := by
-  exact Formalism.FourierDecayAlt.P.JFxE.cVRho
+alias Formalism.FourierDecayAlt.P.capelli_rho_commute := _root_.Formalism.FourierDecayAlt.P.JFxE.cVRho

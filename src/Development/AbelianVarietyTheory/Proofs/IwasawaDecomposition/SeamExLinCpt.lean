@@ -52,23 +52,13 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Mem.SJ
 
-theorem seamEx_lin_cpt {K E : Type} [Field K] [AddCommGroup E] [Module ℂ E] (σ : K →+* ℂ) {n : ℕ}
-    (j : (Fin n → K) →ₛₗ[σ] E) (x : Fin n → K) :
-    lin (fun k => j (Pi.single k 1)) (cpt σ x) = j x := by
-  have hx : x = ∑ k, x k • (Pi.single k 1 : Fin n → K) := by
-    funext i
-    simp [Finset.sum_apply, Pi.single_apply]
-  conv_rhs => rw [hx]
-
-  simp only [lin, cpt, Fintype.linearCombination_apply, map_sum, LinearMap.map_smulₛₗ]
-
 theorem seamEx_coords {K V E ι : Type} [Field K] [AddCommGroup V] [Module K V] [AddCommGroup E] [Module ℂ E]
     (σ : K →+* ℂ) {n : ℕ} (j : V →ₛₗ[σ] E) (b : Module.Basis ι K V) (e : (Fin n → K) ≃ₗ[K] V)
     (hb : LinearIndependent ℂ (fun i => j (b i)) ∧ Submodule.span ℂ (Set.range (fun i => j (b i))) = ⊤) :
     ∃ c : E ≃ₗ[ℂ] (Fin n → ℂ), ∀ x, c.symm (cpt σ x) = j (e x) := by
   let g : (Fin n → K) →ₛₗ[σ] E := j.comp e.toLinearMap
   let f : (Fin n → ℂ) →ₗ[ℂ] E := lin (fun k => g (Pi.single k 1))
-  have hf : ∀ x, f (cpt σ x) = j (e x) := fun x => seamEx_lin_cpt σ g x
+  have hf : ∀ x, f (cpt σ x) = j (e x) := fun x => _root_.GlobalTheory.Mem.SJ.lin_cpt_semilinear σ g x
   have hsurj : Function.Surjective f := by
     rw [← LinearMap.range_eq_top, eq_top_iff, ← hb.2, Submodule.span_le]
     rintro _ ⟨i, rfl⟩
@@ -95,7 +85,7 @@ theorem seam_nonempty (D : D7) (Bs : DefBase D.what₂.LL) (A : DefAmb Bs) (X : 
                 map_add' := fun F G => ?_
                 map_smul' := fun a F => ?_ }
             cφ_eq := hφ
-            cF_eq := fun y => seamEx_lin_cpt _ _ y
+            cF_eq := fun y => _root_.GlobalTheory.Mem.SJ.lin_cpt_semilinear _ _ y
             eR_eq := fun y => ?_ }⟩
   · rw [← map_add (f := _)]
     congr 1

@@ -74,13 +74,6 @@ def MeasP : Prop :=
         ((locS hB u u' τ).Φ (trG (C.Q τ) (C.Qi τ) ((gamW X u u' w) (vOf X τ)) * Matrix.of x)))
       ((νl w (vOf X τ)).map (Formalism.L2.SG.Pf.LocJEq.Smap C τ ((gamW X u u' w) (vOf X τ))))
 
-private theorem hsNormSq_real_smul' {Wp Wq : Type*} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-    [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] (c : ℂ) (A : Wq →L[ℂ] Wp) :
-    Formalism.MainNotions.S.hsNormSq (c • A) = Complex.normSq c * Formalism.MainNotions.S.hsNormSq A := by
-  unfold Formalism.MainNotions.S.hsNormSq Formalism.MainNotions.S.hsInner
-  simp only [ContinuousLinearMap.smul_apply, inner_smul_left, inner_smul_right, ← Finset.mul_sum]
-  rw [← mul_assoc, Complex.mul_conj, Complex.re_ofReal_mul]
-
 theorem locNormPK_of (hU : LocUniqP u u' C hB νl) (hM : MeasP u u' C hB νl) (hK : 0 < K0 Y u u' C hB)
     (hW : Formalism.L2.SG.Pf.OOCore3.WinK large₂ C1 (K0 Y u u' C hB)) : Formalism.L2.SG.Pf.OOCore3.LocNormPK Y u u' C hB large₂ C1 νl := by
   intro w hrow hrep
@@ -97,7 +90,7 @@ theorem locNormPK_of (hU : LocUniqP u u' C hB νl) (hM : MeasP u u' C hB νl) (h
     intro τ
     rw [hU w hrow hrep τ]
     exact (congrArg Formalism.MainNotions.S.hsNormSq (Formalism.L2.SG.Pf.LocJEq.locJ_map_eq (C := C) (hB := hB) u u' τ _ _
-      (hM w τ))).trans (hsNormSq_real_smul' _ _)
+      (hM w τ))).trans (_root_.Formalism.L2.SG.Pf.LTL.hsNormSq_smul _ _)
   unfold Formalism.L2.SG.Pf.JointAmplitudePoints.localAmplitudeProduct
   simp only [hfac, Finset.prod_mul_distrib]
   rw [← Equiv.prod_comp X.pl.symm]

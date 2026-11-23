@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Degenerations.PullChartIsLB
+import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.IsVVGenOfIsThetaFamily
 
 @[expose] public section
 
@@ -76,8 +77,6 @@ section Basis
 
 variable {S : Scheme.{0}} {P : PolAV S} {M : ℕ} {ze : Γ(S, ⊤)ˣ} (lev : Level P M ze) {g : ℕ} (hg : P.g = g)
 
-theorem basis_pow (i : Fin (2 * g)) : levelBasis lev hg i ^ M = 1 := lev.torsion _
-
 theorem basis_indep (K : Type) [Field K] [IsAlgClosed K] (s : Spec (CommRingCat.of K) ⟶ S)
     (c c' : Fin (2 * g) → Fin M)
     (h : linComb (fun i => (Over.homMk s (by simp) : Over.mk s ⟶ baseOver S) ≫ levelBasis lev hg i)
@@ -91,10 +90,6 @@ theorem basis_span (K : Type) [Field K] [IsAlgClosed K] (s : Spec (CommRingCat.o
       linComb (fun i => (Over.homMk s (by simp) : Over.mk s ⟶ baseOver S) ≫ levelBasis lev hg i)
         (fun i => (c i : ℕ)) = y := by
   subst hg; exact lev.span K s y hy
-
-theorem basis_pairing (i j : Fin (2 * g)) :
-    WeilIs P.A P.L M (levelBasis lev hg i) (levelBasis lev hg j) (ze ^ stdSymp g i j) := by
-  subst hg; exact lev.pairing i j
 
 end Basis
 
@@ -113,7 +108,7 @@ theorem exists_level (hL : Laws) {S : Scheme.{0}} [IsLocallyNoetherian S] {P P' 
   obtain ⟨x, hx⟩ : ∃ x : Fin (2 * P.g) → (baseOver S ⟶ P.A), ∀ i, x i ≫ φ.hom = levelBasis lev' hg' i :=
     ⟨fun i => levelBasis lev' hg' i ≫ φ.inv, fun i => by simp⟩
   have ht : ∀ i, x i ^ M = 1 := fun i => by
-    rw [← comp_pow_eq_one_iff φ, hx]; exact basis_pow lev' hg' i
+    rw [← comp_pow_eq_one_iff φ, hx]; exact _root_.GlobalTheory.ThetaCoord.levelBasis_pow lev' hg' i
   have hc : ∀ {T : Over S} (h : T ⟶ baseOver S) (a : Fin (2 * P.g) → ℕ),
       linComb (fun i => h ≫ x i) a ≫ φ.hom = linComb (fun i => h ≫ levelBasis lev' hg' i) a := fun h a => by
     rw [ThetaPtDet.linComb_comp]
@@ -123,7 +118,7 @@ theorem exists_level (hL : Laws) {S : Scheme.{0}} [IsLocallyNoetherian S] {P P' 
   · obtain ⟨c, e⟩ := basis_span lev' hg' K s (y ≫ φ.hom) ((comp_pow_eq_one_iff φ y M).2 hy)
     exact ⟨c, (cancel_mono φ.hom).1 ((hc _ _).trans e)⟩
   · rw [← weilIs_iso_iff hL.globalFns hL.cube P P' φ w hw M _ _ (ht i) (ht j), hx, hx]
-    exact basis_pairing lev' hg' i j
+    exact _root_.GlobalTheory.ThetaCoord.weilIs_levelBasis lev' hg' i j
 
 end GlobalTheory.LevelPullIso
 

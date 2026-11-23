@@ -83,7 +83,7 @@ theorem projLine_map_const : ∀ (k : Type) [Field k] [IsAlgClosed k] (B : Over 
   let g₁ := famMap B f₁ h1 L ti
   have hc := GlobalTheory.T.projectiveLine_chart_families_agree_on_overlap B f₀ f₁ h0 h1 h01 L t ti hti
   let V : Set (Sp L) := {τ | ∀ x : Sp (Polynomial L), spMap (algebraMap L (Polynomial L)) x = τ → g₀ x ∈ W ∧ g₁ x ∈ W}
-  have hV : IsOpen V := GlobalTheory.T.isOpen_setOf_fibre_charts_mem L _ g₀ g₁ hc W
+  have hV : IsOpen V := _root_.GlobalTheory.isOpen_setOf_charts_mem L _ g₀ g₁ hc W
 
   have hfib : ∀ (χ : L →ₐ[k] k) (x' : Sp (Polynomial k)),
       spMap (algebraMap L (Polynomial L)) (spMap (Polynomial.mapRingHom (χ : L →+* k)) x') = spMap χ.toRingHom pt := by

@@ -168,7 +168,7 @@ theorem isSolvable_of_abelian_tower {M : IntermediateField ℚ_[p] (PadicAlgCl p
     refine (Subgroup.commutator_mono h1 h1).trans ?_
     rw [Subgroup.commutator_le]
     intro g₁ hg₁ g₂ hg₂
-    rw [← range_resGK hM.le] at hg₁ hg₂
+    rw [← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction hM.le] at hg₁ hg₂
     obtain ⟨a, rfl⟩ := hg₁
     obtain ⟨b, rfl⟩ := hg₂
     have h3 : ⁅a, b⁆ ∈ subG p M L :=

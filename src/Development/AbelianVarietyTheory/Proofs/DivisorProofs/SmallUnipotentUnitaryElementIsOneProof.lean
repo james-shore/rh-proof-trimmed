@@ -56,6 +56,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolum
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OrthoStatementPf
 public import ReciprocityTheory.SemistableReduction.ShareBallA
 public import ReciprocityTheory.SemistableReduction.Unipotent
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.PerpLatticeTransfer
 
 @[expose] public section
 
@@ -67,16 +68,6 @@ noncomputable section
 namespace GlobalTheory.SmallElement
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
-
-theorem span_L' {r : ℕ} (X : DataX E r) :
-    Submodule.span E (X.L' : Set (Fin r → E)) = ⊤ := by
-  rw [eq_top_iff, ← X.Λ_span, Submodule.span_le]
-  intro x hx
-  have h1 := X.NA_sub x hx
-  have hNA : (X.NA : E) ≠ 0 := by exact_mod_cast X.NA_pos.ne'
-  have e : x = (X.NA : E)⁻¹ • ((X.NA : E) • x) := by rw [smul_smul, inv_mul_cancel₀ hNA, one_smul]
-  rw [e]
-  exact Submodule.smul_mem _ _ (Submodule.subset_span h1)
 
 theorem trace_sub_mem {r : ℕ} (X : DataX E r) (g : ℕ) (hg : IndefiniteRowSideFullHecke.SmallUnipotentElements.IsTotallySplitPrime E g)
     (δ : GL (Fin r) E) (hδ : IsUStab X.Gm X.L' δ)
@@ -92,7 +83,7 @@ theorem trace_sub_mem {r : ℕ} (X : DataX E r) (g : ℕ) (hg : IndefiniteRowSid
   have hP : ∀ P ∈ (Ideal.span {(g : ℤ)}).primesOver (𝓞 E), ∃ z ∈ P, ((z : 𝓞 E) : E) = N.trace :=
     fun P hP => by
       obtain ⟨k, hk⟩ := hu P hP
-      exact GlobalTheory.trace_mem_prime_of_pow_mulVec_mem_smul E r X.L' N P k X.L'_fg (span_L' X) hP.1 hN hk
+      exact GlobalTheory.trace_mem_prime_of_pow_mulVec_mem_smul E r X.L' N P k X.L'_fg (_root_.ReciprocityTheory.ChartRestriction.G.FD.PerpLatticeTransfer.span_L' X) hP.1 hN hk
   have hne : ((Ideal.span {(g : ℤ)}).primesOver (𝓞 E)).Nonempty := by
     apply Set.nonempty_of_ncard_ne_zero
     rw [hg.2]

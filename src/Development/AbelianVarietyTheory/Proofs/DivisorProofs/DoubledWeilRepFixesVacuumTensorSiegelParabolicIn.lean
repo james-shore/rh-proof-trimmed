@@ -69,7 +69,7 @@ theorem parD_fix : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
   set Ψ := tens (evFin F v) (G.M'.vac v) R with hΨdef
   have hΨ : Ψ ∈ schA F _ := hRv.2
   have hΦ : GlobalTheory.InertDbl.dblFun Ψ ∈ schA F _ :=
-    GlobalTheory.SchwartzBox.boxFun_mem_schA F _ _ Ψ hΨ _ (GlobalTheory.star_mem_schA_main _ Ψ hΨ)
+    GlobalTheory.SchwartzBox.boxFun_mem_schA F _ _ Ψ hΨ _ (_root_.GlobalTheory.ConjSch.star_mem_schA _ Ψ hΨ)
   have hV := hTr.geo.hM'.vac v
   obtain ⟨y, hy⟩ : ∃ y, G.M'.vac v y ≠ 0 := by
     by_contra h

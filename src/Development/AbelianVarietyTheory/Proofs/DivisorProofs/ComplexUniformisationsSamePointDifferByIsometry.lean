@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FamilyUnifExpUnique
 
 @[expose] public section
 
@@ -67,24 +68,6 @@ theorem exists_linMap_of_periods {O : Type} [Ring O] {bar : O → O} {g : ℕ} (
   · intro a x
     apply hinj
     rw [RingHom.id_apply, hP', hf, hf, hP, hc]
-
-theorem int_eq_of_exp_eq (m n : ℤ)
-    (H : ∀ k : ℕ, 0 < k → Complex.exp (-(2 * Real.pi * Complex.I) * (m : ℂ) / k) =
-      Complex.exp (-(2 * Real.pi * Complex.I) * (n : ℂ) / k)) : m = n := by
-  set k : ℕ := (n - m).natAbs + 1 with hkdef
-  have hk : 0 < k := Nat.succ_pos _
-  obtain ⟨j, hj⟩ := Complex.exp_eq_exp_iff_exists_int.mp (H k hk)
-  have hpi : (2 * Real.pi * Complex.I : ℂ) ≠ 0 := by
-    simp [Real.pi_ne_zero, Complex.I_ne_zero]
-  have hkc : (k : ℂ) ≠ 0 := by exact_mod_cast hk.ne'
-  have E : ((n - m : ℤ) : ℂ) = ((j * k : ℤ) : ℂ) := by
-    push_cast
-    field_simp at hj
-    linear_combination hj
-  have E' : n - m = j * k := by exact_mod_cast E
-  have hd : (k : ℤ) ∣ n - m := ⟨j, by rw [E', mul_comm]⟩
-  have h0 : n - m = 0 := Int.eq_zero_of_dvd_of_natAbs_lt_natAbs hd (by rw [Int.natAbs_natCast]; omega)
-  omega
 
 theorem unifAt_cmp : ∀ (O : Type) [Ring O] (bar : O → O) (g : ℕ) (ρ : O →+* Matrix (Fin g) (Fin g) ℂ) (R : Type) [CommRing R] (σ : R →+* ℂ) (Λ : Type) (F : Fam R O Λ g) (N : ℕ) (D' D'' : PLat O bar) (t : Λ → D'.La) (t' : Λ → D''.La) P P' (y : Sp ℂ ⟶ F.X) e e', 0 < N → UnifAt F σ ρ N D' t P y e → UnifAt F σ ρ N D'' t' P' y e' → ∃ (w : D'.La ≃ₗ[O] D''.La) (h : (Fin g → ℂ) ≃ₗ[ℂ] (Fin g → ℂ)), IsMarkedIsom N D' D'' t t' w ∧ (∀ x, P' (w x) = h (P x)) ∧ ∀ z, e' (h z) = e z := by
   intro O _ bar g ρ R _ σ Λ F N D' D'' t t' P P' y e e' hN U1 U2
@@ -127,7 +110,7 @@ theorem unifAt_cmp : ∀ (O : Type) [Ring O] (bar : O → O) (g : ℕ) (ρ : O �
   have hw : ∀ x, P' (w x) = h (P x) := hw₁
   refine ⟨w, h, ⟨?_, ?_⟩, hw, hh⟩
   · intro x x'
-    refine (int_eq_of_exp_eq _ _ fun k hk => ?_)
+    refine (_root_.GlobalTheory.ExpUniqFamily.int_eq_of_exp _ _ fun k hk => ?_)
     have H1 := hweil1 k x x' (Units.mk0 _ (Complex.exp_ne_zero _)) hk rfl
     have H2 := hweil2 k (w x) (w x') (Units.mk0 _ (Complex.exp_ne_zero _)) hk rfl
     rw [hw, hw, ← LinearEquiv.map_smul, ← LinearEquiv.map_smul, hh, hh] at H2

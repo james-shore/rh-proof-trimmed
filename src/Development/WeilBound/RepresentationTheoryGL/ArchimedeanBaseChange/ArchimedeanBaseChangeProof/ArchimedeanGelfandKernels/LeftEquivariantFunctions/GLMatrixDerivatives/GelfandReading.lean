@@ -73,8 +73,7 @@ def coordsL (n : ℕ) : Mat n →L[ℝ] (Fin n × Fin n → ℝ) :=
 
 theorem coordsL_apply (A : Mat n) : coordsL n A = coords A := rfl
 
-theorem isOpen_GLs : IsOpen (GLs n) :=
-  isOpen_compl_singleton.preimage (continuous_id.matrix_det)
+alias isOpen_GLs := _root_.GlobalTheory.CompanionTheory.LengthGL.isOpen_GLs
 
 theorem eq_of_mul_conj {Z : Type} {F : Mat n → Z}
     (hFk : ∀ x ∈ GLs n, ∀ k : Matrix.unitaryGroup (Fin n) ℂ, F (x * k.1) = F x)

@@ -68,10 +68,7 @@ theorem cast_nsmul {q : ℕ} {E : Spc} {n i n' i' : ℤ} (hn : n = n') (hi : i =
     (k • x).cast hn hi = k • x.cast hn hi := by
   subst hn; subst hi; rfl
 
-theorem inv_sp (q : ℕ) (A : Type) [CommRing A] (hq : IsUnit (q : A)) : Inv q (sp A) := fun U ⟨x⟩ => by
-  have h := (hq.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom).map
-    (show U ⟶ Spec (CommRingCat.of A) from x).appTop.hom
-  simpa only [map_natCast] using h
+alias inv_sp := _root_.GlobalTheory.EtC.KumSurj.inv_sp
 
 theorem dvd_of_T_eq_pow {T : Type} [CommRing T] [IsDomain T] (q n : ℕ) (w : LaurentPolynomial T)
     (hw : (LaurentPolynomial.T (n : ℤ) : LaurentPolynomial T) = w ^ q) : q ∣ n := by
@@ -89,7 +86,7 @@ theorem dvd_of_T_eq_pow {T : Type} [CommRing T] [IsDomain T] (q n : ℕ) (w : La
 theorem kum_pow (q : ℕ) [NeZero q] {X : Scheme.{0}} (hX : IsUnit (q : Γ(X, ⊤))) (u : (Γ(X, ⊤))ˣ) (m : ℕ) :
     kum q (u ^ m) = m • kum q u := by
   have hadd : ∀ u v : (Γ(X, ⊤))ˣ, IsUnit (q : Γ(X, ⊤)) → kum q (u * v) = kum q u + kum q v ∧ kum q (u ^ q) = 0 :=
-    fun u v h => (GlobalTheory.T.chernClass_kummerClass_additive q).2 u v h
+    fun u v h => (_root_.GlobalTheory.EtC.a6add_holds q).2 u v h
   have h1 : kum q (1 : (Γ(X, ⊤))ˣ) = 0 := by
     have h := (hadd 1 1 hX).1
     rw [mul_one] at h
@@ -111,7 +108,7 @@ theorem eq_zero_of_cup_kum (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomai
     (hq : IsUnit (q : T)) (b : Ht q (sp T) 0 0)
     (hb : cup q (pull _ (spMap (LaurentPolynomial.C : T →+* LaurentPolynomial T)) (tw q 0) 0 b) (kum q (laurentVar T)) = 0) :
     b = 0 := by
-  obtain ⟨e⟩ := GlobalTheory.T.nonempty_ht_zero_addEquiv_zmod_of_sh q T (GlobalTheory.GenusTwoPureComparison.Cmp.sh_of_aic hT) hq 0
+  obtain ⟨e⟩ := _root_.GlobalTheory.EtC.tateTwistCohomology_zero_strictlyHenselian_equiv q T (GlobalTheory.GenusTwoPureComparison.Cmp.sh_of_aic hT) hq 0
   have hrep : ∀ x : Ht q (sp T) 0 0, x = (e x).val • e.symm 1 := fun x => by
     apply e.injective
     rw [map_nsmul, AddEquiv.apply_symm_apply, nsmul_one, ZMod.natCast_zmod_val]
@@ -123,8 +120,8 @@ theorem eq_zero_of_cup_kum (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomai
     intro m x
     rw [map_nsmul, map_nsmul, AddMonoidHom.nsmul_apply]
   have hone : pull _ (spMap (LaurentPolynomial.C : T →+* LaurentPolynomial T)) (tw q 0) 0 (one q (sp T)) =
-      one q (sp (LaurentPolynomial T)) := (GlobalTheory.T.cup_chern_kummer_pullback_naturality q).2.1 _ (inv_sp q T hq)
-  have hunit := (GlobalTheory.T.cupProduct_gradedCommRingAxioms_hold q (sp (LaurentPolynomial T))).1 (inv_sp q _ hqL) (kum q (laurentVar T))
+      one q (sp (LaurentPolynomial T)) := (_root_.GlobalTheory.EtC.a6nat_holds q).2.1 _ (inv_sp q T hq)
+  have hunit := (_root_.GlobalTheory.EtC.a6ring_holds q (sp (LaurentPolynomial T))).1 (inv_sp q _ hqL) (kum q (laurentVar T))
   have h1 := hκ (e (one q (sp T))).val (e.symm 1)
   rw [← hrep, hone, hunit] at h1
   have h2 := hκ (e b).val (e.symm 1)
@@ -133,7 +130,7 @@ theorem eq_zero_of_cup_kum (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomai
     rw [h1, smul_smul, mul_comm, ← smul_smul, ← h2, smul_zero]
   rw [← cast_nsmul, cast_eq_zero_iff] at h3
   have h5 : kum q (laurentVar T ^ (e b).val) = 0 := by rw [kum_pow q hqΓ, h3]
-  obtain ⟨v, hv⟩ := GlobalTheory.T.eq_pow_of_kummerClassOfUnit_eq_zero q (LaurentPolynomial T) hqL _ h5
+  obtain ⟨v, hv⟩ := _root_.GlobalTheory.EtC.eq_pow_of_kum_eq_zero q (LaurentPolynomial T) hqL _ h5
   have h6 := congrArg (fun u : (Γ(Spec (CommRingCat.of (LaurentPolynomial T)), ⊤))ˣ =>
     (Scheme.ΓSpecIso (CommRingCat.of (LaurentPolynomial T))).hom.hom (u : Γ(Spec (CommRingCat.of (LaurentPolynomial T)), ⊤))) hv
   simp only [Units.val_pow_eq_pow_val, map_pow] at h6
@@ -159,16 +156,13 @@ theorem main : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [Is
     have hτ : τ a = 0 := by
       apply eq_zero_of_cup_kum q T hT hq
       show cup q (pull _ _ _ 0 ((cup q (rootClass (0 - (i - 1)) ζ) a).cast (zero_add 0) (by ring))) (kum q (laurentVar T)) = 0
-      rw [GmPhiNat.pull_cast, Untwist.cup_cast_left, cast_eq_zero_iff, (GlobalTheory.T.cup_chern_kummer_pullback_naturality q).1,
-        (GlobalTheory.T.cupProduct_gradedCommRingAxioms_hold q _).2.1, cast_eq_zero_iff, ha, map_zero]
+      rw [GmPhiNat.pull_cast, Untwist.cup_cast_left, cast_eq_zero_iff, (_root_.GlobalTheory.EtC.a6nat_holds q).1,
+        (_root_.GlobalTheory.EtC.a6ring_holds q _).2.1, cast_eq_zero_iff, ha, map_zero]
     exact τ.map_eq_zero_iff.1 hτ
-  obtain ⟨e0⟩ := GlobalTheory.T.nonempty_ht_zero_addEquiv_zmod_of_sh q T (GlobalTheory.GenusTwoPureComparison.Cmp.sh_of_aic hT) hq (i - 1)
-  obtain ⟨e1⟩ := (GlobalTheory.T.tateTwistCohomology_laurent_absIntClosedLocalDomain q T hT hq 1 i).2
+  obtain ⟨e0⟩ := _root_.GlobalTheory.EtC.tateTwistCohomology_zero_strictlyHenselian_equiv q T (GlobalTheory.GenusTwoPureComparison.Cmp.sh_of_aic hT) hq (i - 1)
+  obtain ⟨e1⟩ := (_root_.GlobalTheory.EtC.GmAic.main q T hT hq 1 i).2
   haveI : Finite (Ht q (sp (LaurentPolynomial T)) 1 i) := Finite.of_equiv _ e1.symm.toEquiv
   exact hinj.bijective_of_nat_card_le (by rw [Nat.card_congr e0.toEquiv, Nat.card_congr e1.toEquiv])
 
 end GlobalTheory.EtC.GmAicDeg1
 
-theorem GlobalTheory.EtC.gmPhi_bijective_of_aic : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [IsLocalRing T],
-    AIC T → IsUnit (q : T) → ∀ i : ℤ, Function.Bijective (gmPhi q T i) :=
-  GlobalTheory.EtC.GmAicDeg1.main

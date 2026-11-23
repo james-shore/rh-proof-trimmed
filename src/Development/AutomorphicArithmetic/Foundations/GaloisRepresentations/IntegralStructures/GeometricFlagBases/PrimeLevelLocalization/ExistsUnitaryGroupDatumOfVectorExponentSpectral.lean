@@ -51,6 +51,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.PRootsAlg
 
 @[expose] public section
 
@@ -74,6 +75,6 @@ theorem congOf_holds : CongOf := congOf_of levBasic_holds tjOK_holds tjIdx_holds
 
 theorem exists_unitaryGroupDatum_of_vector_exponent_spectral (h1 : VecEx) (h2 : ExpOf) (h3 : SpecTop) : PlanEx :=
   planEx_of ⟨frameEx_holds, h1, h3, h2, sides_holds, levBasic_holds, memEx_holds, siteTriv_holds, siteEx_holds, goodOf_holds,
-    congOf_holds, datEx_holds, CertificateRingHomMap.rootsAlg_holds, satCard, intCof_holds⟩
+    congOf_holds, datEx_holds, _root_.UpperTheory.Gal.CertificateRingHomMap.pRootsAlg_of, satCard, intCof_holds⟩
 
 end UpperTheory.Gal.Int.Geo.Pl

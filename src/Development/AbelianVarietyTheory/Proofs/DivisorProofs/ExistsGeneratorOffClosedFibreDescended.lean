@@ -201,7 +201,7 @@ theorem exists_gen_off_closed : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
     · exact ⟨_, by simp [cubeTen], hb⟩
     · exact ⟨_, by simp [cubeTen], hc⟩
     · exact ⟨_, by simp [cubeTen], inv _ _ (mul _ _ _ _ hb hc)⟩
-  have := GlobalTheory.T.exists_generator_of_theoremOfCube_ten_points M.S G' P' θ G' (𝟙 G') a' b' c' (β ⁻¹ᵁ V) (by
+  have := _root_.GlobalTheory.Mum.exists_gen_of_cubeTen M.S G' P' θ G' (𝟙 G') a' b' c' (β ⁻¹ᵁ V) (by
     intro f' hf' g hg
     obtain ⟨f, hf, e⟩ := hten f' hf'
     have h2 : f.left (β g) ∈ farSet β θ := Set.mem_iInter₂.1 hg f hf

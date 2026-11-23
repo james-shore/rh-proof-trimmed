@@ -53,10 +53,8 @@ variable (l : ℕ) [Fact l.Prime]
 theorem main : Main l := main_of (D.out l)
 
 theorem compat : Compat l :=
-  ⟨P.cp_red, P.cp_gal, P.cp_phi, P.cp_pull, P.cp_cmp, P.cp_cup, P.cp_one, P.cp_red_fil, P.cp_smul_fil⟩
+  ⟨_root_.GlobalTheory.CompanionTheory.BetaRed.beta_red, _root_.GlobalTheory.CompanionTheory.BetaGal.β_gal, _root_.GlobalTheory.CompanionTheory.CrysPhi.phi_beta, _root_.GlobalTheory.CompanionTheory.BetaPull.beta_pull, _root_.GlobalTheory.CompanionTheory.BetaCmp.β_cmp, _root_.GlobalTheory.CompanionTheory.CupBeta.beta_cup, _root_.GlobalTheory.CompanionTheory.CrisOne.β_one, _root_.GlobalTheory.CompanionTheory.CrisFil.red_fil, _root_.GlobalTheory.CompanionTheory.BetaFil.smul_fil⟩
 
-theorem compatH : CompatH l := ⟨P.ch_gal, P.ch_phi, P.ch_pull, P.ch_cup, P.ch_one, P.ch_cmp⟩
-
-theorem firstChern_compatible_l : FirstChernCompatible l := P.firstChern_compatible l
+theorem compatH : CompatH l := ⟨_root_.GlobalTheory.CompanionTheory.CrisTransition.redHc_galHc, _root_.GlobalTheory.CompanionTheory.CrisFrob.red_phi_le, _root_.GlobalTheory.CompanionTheory.CrisTransition.redHc_pullHc, _root_.GlobalTheory.CompanionTheory.CupTrans.redHc_cup, _root_.GlobalTheory.CompanionTheory.CrisUnit.redHc_oneH, _root_.GlobalTheory.CompanionTheory.CrisCmp.red_cmp⟩
 
 end CrystallineSemistableComparison.B

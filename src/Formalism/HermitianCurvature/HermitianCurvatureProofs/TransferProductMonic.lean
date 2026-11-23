@@ -74,4 +74,3 @@ theorem selfDualG_holds : SelfDualG := by
 
 end Formalism.FourierDecayAlt.P.Misc
 
-theorem Formalism.FourierDecayAlt.P.self_dual_gamma : Formalism.FourierDecayAlt.I.SelfDualG := Formalism.FourierDecayAlt.P.Misc.selfDualG_holds

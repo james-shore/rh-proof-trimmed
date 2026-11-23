@@ -98,7 +98,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) 
   haveI := (P.PD K).finK₀
   haveI : NeZero (Module.finrank ℚ_[l] ↥(K0 K)) := ⟨Module.finrank_pos.ne'⟩
   obtain ⟨u, hu, huniq⟩ := GlobalTheory.UnramIdem.exists_prod_hom l P K s LL hG Γ.emb Γ.emb_bij
-  have he := εroot_sub_not_unit AI s
+  have he := _root_.GlobalTheory.Cyc.εroot_sub_one_not_unit AI s
   haveI := (GlobalTheory.HWL.TensorWitt.main l LL).2.2.2.2 _ he
   obtain ⟨io, hπ, hc⟩ := let_exists
     ((1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] (WittVector.teichmuller l (AI.εroot s) - 1) : RA LL) u

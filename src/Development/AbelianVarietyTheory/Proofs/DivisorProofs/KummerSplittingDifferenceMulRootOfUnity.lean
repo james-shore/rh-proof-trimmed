@@ -61,17 +61,6 @@ theorem unitSec_res_kd {V U : Scheme.{0}} (g : V ⟶ U) (u : (Γ(U, ⊤))ˣ) :
     ((toSheafify Scheme.etaleTopology (Scheme.Γ ⋙ unitsF)).naturality g.op)
   exact this.symm
 
-theorem Sec.res_map_kd {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
-    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  have := congrArg (fun f => f.hom x) (φ.hom.naturality g.op)
-  exact this.symm
-
-theorem Sec.map_add_kd {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (x y : Sec F U) :
-    Sec.map φ (x + y) = Sec.map φ x + Sec.map φ y := map_add _ x y
-
-theorem Sec.res_sub_kd {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (x y : Sec F U) :
-    Sec.res g (x - y) = Sec.res g x - Sec.res g y := map_sub _ x y
-
 theorem Prim.pow_eq_one_kd {q : ℕ} {A : Type} [CommRing A] (ζ : Prim q A) : ζ.1 ^ q = 1 := by
   obtain ⟨g, hg⟩ := Polynomial.cyclotomic.dvd_X_pow_sub_one q ℤ
   have h := congrArg (Polynomial.aeval ζ.1) hg
@@ -86,7 +75,7 @@ theorem kumDiff_res (q : ℕ) (φ : Gm ⟶ (res ℤ ((restr (Int.castRingHom (ZM
     {V U : Scheme.{0}} (g : V ⟶ U) (hq : IsUnit (q : Γ(U, ⊤))) (v : (Γ(U, ⊤))ˣ) :
     Sec.res g (kumDiff q φ U v) = kumDiff q φ V (Units.map g.appTop.hom.toMonoidHom v) := by
   unfold kumDiff
-  rw [Sec.res_sub_kd, Sec.res_map_kd, unitSec_res_kd, (restrMap (Int.castRingHom (ZMod q)) (tw q 1)).nat g 0,
+  rw [_root_.GlobalTheory.EtC.KummerSplit.res_sub, _root_.GlobalTheory.EtC.CupSpec.map_res, unitSec_res_kd, (restrMap (Int.castRingHom (ZMod q)) (tw q 1)).nat g 0,
     (kumT_spec q).1 V U g v hq]
 
 theorem kumDiff_mul_root (q : ℕ) (κ : (restr (Int.castRingHom (ZMod q))).obj (tw q 1) ⟶ Gm)
@@ -103,7 +92,7 @@ theorem kumDiff_mul_root (q : ℕ) (κ : (restr (Int.castRingHom (ZMod q))).obj 
     rw [← hκ V ζ z hz, ← hφ]; rfl
   have h2 := (kumT_spec q).2 V ζ w (z * w) (by rw [Units.val_mul, hz])
   have h3 := restrMap_spec (Int.castRingHom (ZMod q)) (tw q 1) V (twGen 1 ζ)
-  rw [unitSec_mul_kd, Sec.map_add_kd, h2, map_add (f := _), h1]
+  rw [unitSec_mul_kd, _root_.GlobalTheory.EtC.TensQis.sm_madd, h2, map_add (f := _), h1]
   unfold resGen
   rw [h3]
   abel
@@ -133,7 +122,7 @@ theorem kumDiff_mul_rootOfUnity : ∀ (q : ℕ) [NeZero q] (κ : (restr (Int.cas
         Sec.map φ (unitSec v) - (restrMap (Int.castRingHom (ZMod q)) (tw q 1)).app U 0 (kumT q U v) := by
   intro q _ κ hκ φ hφ U hq v ω hω
   change kumDiff q φ U (ω * v) = kumDiff q φ U v
-  obtain ⟨S, hS, hP⟩ := GlobalTheory.T.rootOfUnity_etaleLocally_pow_primitiveRoot q U hq ω hω
+  obtain ⟨S, hS, hP⟩ := _root_.GlobalTheory.EtC.RootLoc.root_loc_pow_prim q U hq ω hω
   refine Sheaf.isSeparated _ U S hS _ _ ?_
   intro V g hg
   obtain ⟨ζ, a, ha⟩ := hP V g hg

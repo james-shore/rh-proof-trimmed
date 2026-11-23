@@ -200,7 +200,7 @@ theorem isUnit_diagSer {V : Type} [CommRing V] {d : ℕ} {O : Type} [CommRing O]
   have e₀ : MvPowerSeries.constantCoeff ε = 1 := by
     rw [← GaugeAdjoint.constantCoeff_ev (a := ![0, pt V (n := 1) d 0]) (fun j i => by fin_cases j <;> simp [pt]) ε,
       h.ax0, map_one]
-  have c : comp1 (B'.A.act w0) (pt V (n := 1) d 0) = B'.A.act w0 := funext fun i => LinkSec.ev_pt_one _
+  have c : comp1 (B'.A.act w0) (pt V (n := 1) d 0) = B'.A.act w0 := funext fun i => _root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_ev_pt_self _
   rw [MvPowerSeries.isUnit_iff_constantCoeff, diagSer, c, GaugeAdjoint.constantCoeff_ev (fun j i => ?_) ε, e₀]
   · exact isUnit_one
   · fin_cases j

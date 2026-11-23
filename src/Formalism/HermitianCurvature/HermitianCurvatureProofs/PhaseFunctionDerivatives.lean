@@ -760,7 +760,7 @@ end Formalism.FourierDecayAlt.P.PhaseFunctionDerivatives
 namespace Formalism.FourierDecayAlt.P
 
 theorem amplitude_continuous_at_critical : Formalism.FourierDecayAlt.G.AmpCritContinuous :=
-  PhaseFunctionDerivatives.d_ampCrit_of cofactor_lower_bound_radius det_matrix_xy
+  PhaseFunctionDerivatives.d_ampCrit_of cofactor_lower_bound_radius _root_.Formalism.FourierDecayAlt.P.CuspidalIrreducibleSubrep.detMXY
 
 end Formalism.FourierDecayAlt.P
 

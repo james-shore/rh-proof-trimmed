@@ -154,24 +154,6 @@ private theorem wd_apply_congr_of_eventuallyEq {j : Fin n} {f g : V n → ℂ} {
   unfold wd
   rw [h.fderiv_eq]
 
-private theorem wdb_differentiableAt_of_contDiffAt_two {k : Fin n} {U : V n → ℂ} {x : V n} (hU : ContDiffAt ℝ 2 U x) :
-    DifferentiableAt ℝ (wdb n k U) x := by
-  have h1 : ContDiffAt ℝ 1 (fderiv ℝ U) x :=
-    hU.fderiv_right (by first | norm_num | rfl | simp)
-  have h2 : DifferentiableAt ℝ (fderiv ℝ U) x := h1.differentiableAt one_ne_zero
-  unfold wdb
-  have h3 : DifferentiableAt ℝ (fun y => fderiv ℝ U y (bas n k)) x :=
-    h2.clm_apply (differentiableAt_const _)
-  have h4 : DifferentiableAt ℝ (fun y => fderiv ℝ U y (Complex.I • bas n k)) x :=
-    h2.clm_apply (differentiableAt_const _)
-  have h5 : DifferentiableAt ℝ (fun y => fderiv ℝ U y (bas n k) +
-      Complex.I * fderiv ℝ U y (Complex.I • bas n k)) x := h3.add (h4.const_mul Complex.I)
-  first
-  | fun_prop
-  | exact h5.div_const (2 : ℂ)
-  | exact (h5.mul_const ((2 : ℂ)⁻¹)).congr_of_eventuallyEq
-      (Filter.Eventually.of_forall fun y => div_eq_mul_inv _ _)
-
 theorem leviV_ofReal_sum {m : ℕ} {u : Fin m → V n → ℝ} {x : V n}
     (hu : ∀ i, ContDiffAt ℝ 2 (u i) x) (ξ : Fin n → ℂ) :
     leviV n (fun y => ((∑ i, u i y : ℝ) : ℂ)) x ξ = ∑ i, leviV n (fun y => (u i y : ℂ)) x ξ := by
@@ -193,7 +175,7 @@ theorem leviV_ofReal_sum {m : ℕ} {u : Fin m → V n → ℝ} {x : V n}
   have hterm : ∀ j k, wd n j (wdb n k (fun y => ((∑ i, u i y : ℝ) : ℂ))) x =
       ∑ i, wd n j (wdb n k (fun y => ((u i y : ℝ) : ℂ))) x := by
     intro j k
-    rw [hfun, wd_apply_congr_of_eventuallyEq (hwdb k), wd_wdb_finset_sum fun i => wdb_differentiableAt_of_contDiffAt_two (hU i)]
+    rw [hfun, wd_apply_congr_of_eventuallyEq (hwdb k), wd_wdb_finset_sum fun i => _root_.ReciprocityTheory.L2DbarEstimates.differentiableAt_wdb (hU i)]
   unfold leviV
   simp only [hterm, Finset.sum_mul]
   conv_rhs => rw [Finset.sum_comm]

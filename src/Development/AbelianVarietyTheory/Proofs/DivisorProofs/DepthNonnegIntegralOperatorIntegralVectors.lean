@@ -190,7 +190,7 @@ theorem mvIsInt_X {σ : Type} (s : σ) : MvIsInt v (X s : MvPowerSeries σ C) :=
 theorem hurInt_subst_expOf {d : ℕ} (G : LogFGL v d) {f : MvPowerSeries (Fin d) C}
     (hf : MvIsInt v f) : HurInt v (subst (expOf G) f) := by
   classical
-  obtain ⟨D, hD, hJ⟩ := GlobalTheory.T.exists_integral_invariant_derivation_log C v d G
+  obtain ⟨D, hD, hJ⟩ := _root_.GlobalTheory.LogJacobian.exists_integral_invariant_derivation C v d G
   have hS : HasSubst (expOf G) := hasSubst_of_constantCoeff_zero (isExp_expOf G).1
   suffices h : ∀ n, ∀ α : Fin d →₀ ℕ, ∑ i, α i = n → ∀ f : MvPowerSeries (Fin d) C,
       MvIsInt v f → (mfact α : C) * coeff α (subst (expOf G) f) ∈ intSub v from

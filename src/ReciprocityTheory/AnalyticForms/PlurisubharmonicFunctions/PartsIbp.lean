@@ -261,16 +261,16 @@ theorem mulVec_one_sub_idempotent_of_split_sum_identity : PartsStatement := by
       simp only [cplx, Complex.re_ofReal_mul]; ring
     · have hyK : y ∉ tsupport v := fun h => hy (hKU h)
       have h1 : maDens (Fin.cons v φ) y = 0 := by
-        rw [maDens_cons_eq, mixedDisc_cons_eq_sum, hessC_eq_hessMat, (hout y hyK).2.2]; simp
+        rw [maDens_cons_eq, _root_.ReciprocityTheory.AnForm.A.mdisc_cons_eq_sum, hessC_eq_hessMat, (hout y hyK).2.2]; simp
       have h2 : ∀ j k, dz j (dzb k (cplx v)) y = 0 :=
         fun j k => dz_of_eventually_zero ((hout y hyK).2.1 k)
       simp [h1, h2]
   have e3 : ∀ y, gradDens φ v w y =
       c * (∑ j, ∑ k, dz j (cplx v) y * dzb k (cplx w) y * hessCof φ y j k).re := by
-    intro y; simp only [gradDens, mixedDisc_cons_eq_sum]; rfl
+    intro y; simp only [gradDens, _root_.ReciprocityTheory.AnForm.A.mdisc_cons_eq_sum]; rfl
   have e4 : ∀ y, gradDens φ w v y =
       c * (∑ j, ∑ k, dz j (cplx w) y * dzb k (cplx v) y * hessCof φ y j k).re := by
-    intro y; simp only [gradDens, mixedDisc_cons_eq_sum]; rfl
+    intro y; simp only [gradDens, _root_.ReciprocityTheory.AnForm.A.mdisc_cons_eq_sum]; rfl
   have hgz : ∀ y ∉ U, gradDens φ v w y = 0 := by
     intro y hy
     rw [e3]

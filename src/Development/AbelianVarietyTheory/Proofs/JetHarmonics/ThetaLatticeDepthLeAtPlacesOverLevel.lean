@@ -161,7 +161,7 @@ theorem depth_le_over_level : (∀ (p : ℕ) [Fact p.Prime], Pdiv.ChartF.HTFSt p
   intro hHT D T h j hj hinj EX w c hO hR la i hg y
   letI := T.Q.H.starRing
   obtain ⟨hlast, hn, hDg, hc0, hc⟩ := hR
-  obtain ⟨S, io, e, ho, z, hz, hl, C, Pu, hC, hPu, hval⟩ := GlobalTheory.T.exists_uniformisedModel_integralChart_at_point D T h j hj la y
+  obtain ⟨S, io, e, ho, z, hz, hl, C, Pu, hC, hPu, hval⟩ := _root_.GlobalTheory.UnifPoint.exists_uniformised_chart D T h j hj la y
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible S.V
   obtain ⟨⟨Q, hQ⟩, -⟩ := GlobalTheory.PowData.exists_powData _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c S io z C Pu ϖ hϖ
   obtain ⟨r, Φ, M0, ⟨hΦ, b, hb1, hb2⟩, hr, hM0, hjm, hΦe⟩ :=
@@ -202,7 +202,7 @@ theorem depth_le_over_level : (∀ (p : ℕ) [Fact p.Prime], Pdiv.ChartF.HTFSt p
     by_cases hlt : j < D.R.m
     · exact lt_of_le_of_lt (mul_le_mul_of_nonneg_left hM0 (Nat.cast_nonneg _)) (hc hlt i').1
     · rw [(hjm (not_lt.1 hlt)).1, mul_zero]; exact hg'
-  have hA := GlobalTheory.T.theta_generators_least_value_over_level_prime hHT _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c (T.nab j) hnab (h.thTot j hj) S io z C hC
+  have hA := _root_.GlobalTheory.LevelPrimePoint.least_value_le hHT _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c (T.nab j) hnab (h.thTot j hj) S io z C hC
     Pu hPu hz ϖ hϖ Q hQ Φ M0 r b hΦ hb1 hb2 (D.host.g i) (D.host.g i') (D.host.g_prime i) (D.host.g_prime i') hne hMg
     (piBarO EX i) (piBarO EX i') (hst i).2 (hst i').2 hMb' hsp.1 hsp.2 hnu (wtA w) w.n e
     (wtA_antitone w) (by rw [hpq]; exact hnr) (by omega) ho.1

@@ -58,7 +58,7 @@ open Formalism.L2.DIV Formalism.L2.Rows
 theorem majAt_frm {K : Type} [Field K] [NumberField K] [StarRing K] [IsTotallyComplex K] {n : ℕ}
     (H : Matrix (Fin n) (Fin n) K) (v : InfinitePlace K) (h : PosAt H v) (x y : Fin n → K) :
     Formalism.HermitianLatticesTheory.majAt (Pi.basisFun K (Fin n)) (frm H) v x y = hAt H v x y := by
-  have hp := GlobalTheory.T.posDef_map_embedding_of_positiveAtPlace H v h
+  have hp := _root_.GlobalTheory.AmbTiePosDef.posDef_map_of_posAt H v h
   rw [majAt_eq, frm_of_posDef H v hp, (frameOfSpec _ _ hp).2]
   simp only [hAt, dotProduct, Matrix.mulVec, Matrix.map_apply, Finset.mul_sum, Pi.star_apply, mul_assoc]
 

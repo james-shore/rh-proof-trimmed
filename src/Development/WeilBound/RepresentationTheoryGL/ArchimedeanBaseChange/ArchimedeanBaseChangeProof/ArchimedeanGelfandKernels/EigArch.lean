@@ -44,7 +44,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.Rg.BcB.CG
 
-theorem valCont_holds : ValCont := valCont
+alias valCont_holds := _root_.PositivityTheory.Rg.BcB.CG.valCont
 
 theorem actVal_holds : ActVal := actVal_of PositivityTheory.RgBcC.wave_existence_speed_multiplicity.2.2.2
 

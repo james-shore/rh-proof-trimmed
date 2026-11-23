@@ -493,8 +493,8 @@ theorem omPlus_of (hd : KDecomp) (ho : KOrth) (hk : KCasSpan) (hca : CasArr) (ha
   let c : ι → ℝ := fun p => (ckv ε (LamOf ε lam + root p.1.1 p.1.2) - n - ckv ε (LamOf ε lam)) / 2
   have hcge : ∀ p : ι, g - 2 * n ≤ c p := by
     intro p
-    have h1 := omEigen n ε lam p.1.1 p.1.2 (ne_of_lt p.2.1)
-    have h2 := uGap n ε lam g p.1.1 p.1.2 p.2.1 p.2.2 (hgap _ _ p.2.1 p.2.2)
+    have h1 := _root_.Formalism.REAL.omega_eigenvalue_holds n ε lam p.1.1 p.1.2 (ne_of_lt p.2.1)
+    have h2 := _root_.Formalism.REAL.unitary_spectral_gap n ε lam g p.1.1 p.1.2 p.2.1 p.2.2 (hgap _ _ p.2.1 p.2.2)
     simp only [c, ckv, LamOf]
     linarith
   have hWeig : ∀ p : ι, ∀ G ∈ W p, OmS ε E (0 : Fin 1) G = (c p : ℂ) • G := by

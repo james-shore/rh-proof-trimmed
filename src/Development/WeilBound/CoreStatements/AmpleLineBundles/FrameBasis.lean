@@ -162,7 +162,7 @@ theorem frame_basis [IsCommMonObj G] [Smooth G.hom] (hξ : IsCptGen ξ) (M : Lie
     (hB : M.lat.IsFrameAt B ⟨centre z, h⟩) {V : Type} [AddCommGroup V] [Module ℂ V] (Mz : LieModel G z V) :
     ∃ β : Module.Basis (Fin r) ℂ V, (∀ i u, M.ValAt z (B i) (Mz.pt u) ↔ u = β i) ∧
       ∀ e u, M.ValAt z e (Mz.pt u) → ∀ i, ValAt ξ z (B.repr e i) (β.repr u i) := by
-  obtain ⟨ev, hev, hsm, hsp⟩ := lat_val X G Ω ξ Li M ℂ z h V Mz hξ inferInstance
+  obtain ⟨ev, hev, hsm, hsp⟩ := _root_.GlobalTheory.CompanionTheory.Ar.lieLat_val X G Ω ξ Li M ℂ z h V Mz hξ inferInstance
   have hmem : ∀ i, B i ∈ M.lat ⟨centre z, h⟩ := fun i => by
     rw [hB.2]; exact Submodule.subset_span ⟨i, rfl⟩
   let b : Fin r → V := fun i => ev ⟨B i, hmem i⟩

@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModJInt
+import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.RedModel
 
 @[expose] public section
 
@@ -65,14 +66,6 @@ theorem norm_divisor_twelve_power_eq_one (h5 : 5 ≤ p) {N k : ℕ} (hN : N ∣ 
   have h12 : p ∣ 12 := hp.dvd_of_dvd_pow (h.trans hN)
   have hle : p ≤ 12 := Nat.le_of_dvd (by norm_num) h12
   interval_cases p <;> first | omega | exact absurd hp (by norm_num)
-
-theorem norm_twelve_cubed_eq_one_of_five_le_prime (h5 : 5 ≤ p) : ‖(1728 : ℂ_[p])‖ = 1 := by
-  have := norm_divisor_twelve_power_eq_one p h5 (N := 1728) (k := 3) (by norm_num)
-  simpa using this
-
-theorem norm_27 (h5 : 5 ≤ p) : ‖(27 : ℂ_[p])‖ = 1 := by
-  have := norm_divisor_twelve_power_eq_one p h5 (N := 27) (k := 3) (by norm_num)
-  simpa using this
 
 end GM
 
@@ -106,7 +99,7 @@ theorem good_model_exists_all_primes : GoodModelAll := by
   have ha3 : ‖ι a‖ ^ 3 ≤ 1 := by
     have h := congrArg ι hj
     rw [map_mul, map_pow, map_ofNat] at h
-    rw [← h, norm_mul, GM.norm_twelve_cubed_eq_one_of_five_le_prime p h5, one_mul, norm_pow] at hJ
+    rw [← h, norm_mul, _root_.ReciprocityTheory.ChartRestriction.L1.norm_1728_eq_one p h5, one_mul, norm_pow] at hJ
     exact hJ
   have ha1 : ‖ι a‖ ≤ 1 := (pow_le_one_iff_of_nonneg (norm_nonneg _) (by norm_num)).1 ha3
   have hb2 : ‖ι b‖ ^ 2 ≤ 1 := by
@@ -115,7 +108,7 @@ theorem good_model_exists_all_primes : GoodModelAll := by
       rw [map_sub, map_mul, map_pow, map_pow, map_ofNat, map_one] at h
       linear_combination -h
     have h' := congrArg norm h
-    rw [norm_mul, GM.norm_27 p h5, one_mul, norm_pow] at h'
+    rw [norm_mul, _root_.ReciprocityTheory.ChartRestriction.L1.norm_twentySeven_padicComplex_eq_one p h5, one_mul, norm_pow] at h'
     rw [h', sub_eq_add_neg]
     refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le ?_ (by simp))
     rw [norm_pow]; exact ha3

@@ -216,14 +216,14 @@ open Lev TensVac Supp
 
 theorem phi_overlap_eq_zero : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (g : ℕ) (bas : (Fin g ⊕ Fin g → ℤ) ≃ₗ[ℤ] X.Λ) (idx : Fin g ≃ X.Ψ × Fin r) (n : ℕ), IsSympl X bas → Even n → ∀ (D : Level X) (hn : r ≤ n) (M : ℕ), 0 < M → (M : 𝓞 E) ∈ D.𝔪 → ∀ v₀ : Lt E r → TF n g, (∀ L ∈ D.lats, IsVac X bas D.w (tens (stdL E n) (D.sh L)) (v₀ L)) → ∀ γ, IsUn X γ → γ ∉ D.grp → ∀ L ∈ D.lats, ∀ L' ∈ D.lats, ∀ Λ ∈ Vset E n M, ip (D.phi bas hn v₀ L Λ) (wG X bas idx γ (D.phi bas hn v₀ L' Λ)) = 0 := by
   intro E _ _ _ r X g bas idx n hs he D hn M hM0 hM v₀ hv₀ γ hγ hγ' L hL L' hL' Λ hΛ
-  obtain ⟨hsb, hv, H, -⟩ := GlobalTheory.T.levelTestFunction_finite_sum_equivariant E r X g bas idx n hs he D hn M hM0 hM v₀ hv₀ L hL Λ hΛ
-  obtain ⟨hsb', hv', -⟩ := GlobalTheory.T.levelTestFunction_finite_sum_equivariant E r X g bas idx n hs he D hn M hM0 hM v₀ hv₀ L' hL' Λ hΛ
+  obtain ⟨hsb, hv, H, -⟩ := _root_.GlobalTheory.SW.RecSum.phi_sum_equivariant E r X g bas idx n hs he D hn M hM0 hM v₀ hv₀ L hL Λ hΛ
+  obtain ⟨hsb', hv', -⟩ := _root_.GlobalTheory.SW.RecSum.phi_sum_equivariant E r X g bas idx n hs he D hn M hM0 hM v₀ hv₀ L' hL' Λ hΛ
   obtain ⟨s, -, hs1, e, e'⟩ := H L' hL'
   generalize unitv (projA X bas D.w (tens Λ (D.sh L)) (v₀ L)) = v at hv e
   generalize unitv (projA X bas D.w (tens Λ (D.sh L')) (v₀ L')) = v' at hv' e'
   have good (L) (hL : SelfD X L) : Good X D.w (tens Λ L) := by
     obtain ⟨h1, h2, h3, -⟩ :=
-      GlobalTheory.T.tensorLattice_selfDual_semicharacter_index E r X g bas idx n hs he D.w D.w_int D.w_tr L hL M Λ hΛ
+      _root_.GlobalTheory.SW.TensLat.tens_selfDual_semichar_index E r X g bas idx n hs he D.w D.w_int D.w_tr L hL M Λ hΛ
     exact ⟨h1, h2, h3⟩
   have hA := good _ (selfD_idq D.ne_bot D.proper D.cop hL.1)
   have hA' := good _ (selfD_mapL hγ (selfD_idq D.ne_bot D.proper D.cop hL'.1))

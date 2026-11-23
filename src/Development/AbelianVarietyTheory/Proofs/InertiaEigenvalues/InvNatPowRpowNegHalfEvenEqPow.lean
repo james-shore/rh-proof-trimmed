@@ -60,6 +60,7 @@ import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SplitLinearModelNorm
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RestrictHalfApply
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsDetInt
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinPartMulIncAMem
 
 @[expose] public section
 
@@ -337,12 +338,6 @@ variable {D : D7} {S T : HSp D}
 open GlobalTheory.SplitHecke
 open Classical
 
-theorem finPart_idem_mem {e : AE D} {P : Pl D.host.E} (he : IsIdemAt e P) : finPart D e ∈ intAE D := by
-  by_contra hc
-  have := (he.2 1 one_ne_zero).2 (by
-    rwa [show ((1 : 𝓞 D.host.E) : D.host.E) = 1 from rfl, inv_one, RingHom.map_one, mul_one])
-  exact P.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 this)
-
 theorem unram_at {χ : (AE D)ˣ →* Circle} {Q S' : Finset (Pl D.host.E)} (hχ : UnramOutside χ Q) (hS : SplitSet S')
     (hQ : Q ⊆ S') {P : Pl D.host.E} (hP : P ∈ S') (hn : P ∉ Q) (y : (AE D)ˣ)
     (h1 : (1 - idemAt P) * (y : AE D) = 1 - idemAt P) (h2 : finPart D (idemAt P * (y : AE D)) ∈ intAE D)
@@ -354,7 +349,7 @@ theorem unram_at {χ : (AE D)ˣ →* Circle} {Q S' : Finset (Pl D.host.E)} (hχ 
     fun z a b => by
       have : z = idemAt P * z + 1 - idemAt P := by linear_combination a
       rw [this, RingHom.map_sub, RingHom.map_add (f := _), RingHom.map_one]
-      exact sub_mem (add_mem b (GlobalTheory.SplitDivisors.one_mem_int D)) (finPart_idem_mem he)
+      exact sub_mem (add_mem b (_root_.GlobalTheory.HeckeConj.one_mem_intAE D)) (_root_.GlobalTheory.HeckeDetChar.finPart_mem he)
   have hinf : infPart D (y : AE D) = 1 := by
     have h0 : infPart D (idemAt P) = 0 := GlobalTheory.StepVec.infPart_idemAt he
     have : (y : AE D) = idemAt P * (y : AE D) + (1 - idemAt P) := by linear_combination h1

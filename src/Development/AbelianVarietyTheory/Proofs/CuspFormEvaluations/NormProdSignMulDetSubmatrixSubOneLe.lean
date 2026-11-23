@@ -66,16 +66,6 @@ open Matrix hiding gram
 
 namespace GlobalTheory
 
-theorem norm_multisetProd_sub_one_le_exp (s : Multiset ℂ) {t : ℝ} (ht : 0 ≤ t)
-    (hs : ∀ μ ∈ s, ‖μ - 1‖ ≤ t) : ‖s.prod - 1‖ ≤ Real.exp (s.card * t) - 1 := by
-  first
-  | exact @_root_.GlobalTheory.CuspFormEvaluationComplement.main
-  | exact _root_.GlobalTheory.CuspFormEvaluationComplement.main
-  | (apply _root_.GlobalTheory.CuspFormEvaluationComplement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CuspFormEvaluationComplement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CuspFormEvaluationComplement.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CuspFormEvaluationComplement.main ..)
-
 theorem norm_det_one_add_sub_one_le_exp {n : Type*} [Fintype n] [DecidableEq n]
     (M : Matrix n n ℂ) {ε : ℝ} (hε : 0 ≤ ε) (hM : ∀ a b, ‖M a b‖ ≤ ε) :
     ‖(1 + M).det - 1‖ ≤ Real.exp (Fintype.card n * (Fintype.card n * ε)) - 1 := by
@@ -99,7 +89,7 @@ theorem norm_det_one_add_sub_one_le_exp {n : Type*} [Fintype n] [DecidableEq n]
   have hc : (1 + M).charpoly.roots.card = Fintype.card n := by
     rw [← charpoly_natDegree_eq_dim (1 + M)]
     exact (IsAlgClosed.splits _).natDegree_eq_card_roots.symm
-  have h := norm_multisetProd_sub_one_le_exp _ (by positivity) hs
+  have h := _root_.GlobalTheory.CuspFormEvaluationComplement.main _ (by positivity) hs
   rwa [← det_eq_prod_roots_charpoly, hc] at h
 
 theorem norm_gram_sign_sub_le {r : ℕ} (j : Fin r → ℂ) (hj : ∀ a, ‖j a‖ = 1)
@@ -321,7 +311,7 @@ theorem pnorm_near_half_max {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame
     exact ⟨h1, s, hs.trans (by rw [← hL]; nlinarith), hs' P⟩
   have hexp : ∀ s : ℝ, |s| ≤ 0.09 → 0.91 ≤ Real.exp s := fun s hs => by
     linarith [Real.add_one_le_exp s, (abs_le.1 hs).1]
-  have hsch := schwarz_ball_bound (Frame X.Ψ r) (fun z => P (rmul x (I + z))) δ (2.1 * S) hδ0
+  have hsch := _root_.PI.UnitaryGroupMassFormula.TBNum.schwarzBall (Frame X.Ψ r) (fun z => P (rmul x (I + z))) δ (2.1 * S) hδ0
     (hP.comp (differentiable_rmul_add x I).differentiableOn fun z hz =>
       (key z (mem_ball_zero_iff.1 hz).le).1)
     (fun z hz => by

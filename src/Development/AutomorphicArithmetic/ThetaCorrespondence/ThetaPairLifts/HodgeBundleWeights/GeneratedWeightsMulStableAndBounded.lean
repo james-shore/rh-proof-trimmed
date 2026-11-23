@@ -65,7 +65,7 @@ theorem generated_weights_mul_stable_and_bounded : _root_.GlobalTheory.CovTop.Hy
             (h.data f₁ f₂ th k).Sec (i + 1)) =
           (h.data f₁ f₂ th k).mulW i (f₁.b.equivFun w') (h.equivV f₁ f₂ th k hi.le f') := by
     intro i hi w' f'
-    have hx := _root_.GlobalTheory.T.cuspidal_sections_mul_mem D T j Y e o hG hE Z P.u₁ (P.wt i) w' f' hPr
+    have hx := _root_.GlobalTheory.HSApp.cusp_form_section_mul D T j Y e o hG hE Z P.u₁ (P.wt i) w' f' hPr
     obtain ⟨g, hg, hgl⟩ := hx
     have hy := tr _ _ (P.u₁_add_wt i) g
     obtain ⟨g', hg', hgl'⟩ := hy

@@ -141,7 +141,7 @@ theorem norm_toDisc_hf_le {K : FinExt l} (bk : BK K) (B : Obj l ↥(OL K)) (f g 
       (bk.str.apply_symm_apply _).symm
     exact Ideal.Quotient.eq.1 ((g.f_str _ _ hs).trans (f.f_str _ _ hs).symm)
   have hI : B.I = Ideal.span {BK.hf f bk.E} := by
-    rw [← GlobalTheory.T.prism_hom_map_ideal_eq l ↥(OL K) bk.prism B f]
+    rw [← _root_.GlobalTheory.Prism.Rigid.map_I_eq l ↥(OL K) bk.prism B f]
     show (Ideal.span {bk.E}).map (BK.hf f) = _
     rw [Ideal.map_span, Set.image_singleton]
   rw [hI, Ideal.mem_span_singleton] at hmem

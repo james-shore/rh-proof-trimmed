@@ -116,10 +116,6 @@ theorem appLE_top_top {X Y : Scheme.{0}} (f : X ⟶ Y) (e : (⊤ : X.Opens) ≤ 
   rw [Scheme.Hom.appTop, Scheme.Hom.app_eq_appLE]
   rfl
 
-theorem appLE_congr {X Y : Scheme.{0}} {f g : X ⟶ Y} (hfg : f = g) (U : Y.Opens) (V : X.Opens)
-    (e₁ : V ≤ f ⁻¹ᵁ U) (e₂ : V ≤ g ⁻¹ᵁ U) : f.appLE U V e₁ = g.appLE U V e₂ := by
-  subst hfg; rfl
-
 end GlobalTheory.ConstDescent
 
 namespace GlobalTheory.ConstDescent
@@ -171,7 +167,7 @@ theorem mem_range_of_pullback_eq {K L : Type} [Field K] [Field L] (ψ : K →+* 
       e.appLE U ⊤ heU ≫ (Scheme.ΓSpecIso B).hom ≫
         CommRingCat.ofHom Algebra.TensorProduct.includeLeftRingHom ≫ (Scheme.ΓSpecIso Z).inv := by
     refine (Scheme.Hom.comp_appLE k _ U ⊤ hk).symm.trans ?_
-    refine (appLE_congr hk1 U ⊤ _ heU').trans ?_
+    refine (_root_.GlobalTheory.SS.FrobField.appLE_congr_hom hk1 U ⊤ _ heU').trans ?_
     refine (Scheme.Hom.appLE_comp_appLE a e U ⊤ ⊤ heU (fun _ _ => trivial)).symm.trans ?_
     congr 1
     refine (appLE_top_top a _).trans ?_

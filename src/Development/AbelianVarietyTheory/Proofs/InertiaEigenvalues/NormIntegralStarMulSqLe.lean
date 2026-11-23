@@ -67,12 +67,6 @@ open GlobalTheory.RawLift
 
 namespace GlobalTheory.RawLiftTrans
 
-theorem norm_integral_star_mul_sq_le {X : Type} [MeasurableSpace X] (μ : Measure X) (f h : X → ℂ)
-    (hf : AEStronglyMeasurable f μ) (hh : AEStronglyMeasurable h μ)
-    (hf2 : Integrable (fun x => star (f x) * f x) μ) (hh2 : Integrable (fun x => star (h x) * h x) μ) :
-    ‖∫ x, star (f x) * h x ∂μ‖ ^ 2 ≤ (∫ x, star (f x) * f x ∂μ).re * (∫ x, star (h x) * h x ∂μ).re :=
-  GlobalTheory.T.norm_integral_star_mul_sq_le_mul μ f h hf hh hf2 hh2
-
 theorem exists_cosetRep_levG {D : D7} (V : HSp D) (β : GL (Fin V.rank) (Formalism.IndefR.Lev.EAf D)) (L : LevDat D.host.E ℂ V.rank)
     (v : HeightOneSpectrum (𝓞 D.host.F)) (f : AE D) (hf : IsFinIdem D v f) (α : GA D V) (hα : SuppF V f α) :
     ∃ C : Finset (GA D V), (∀ γ ∈ C, SuppF V f γ) ∧ IsCosetRep V {k | k ∈ levG V β L ∧ SuppF V f k} α C :=
@@ -158,7 +152,7 @@ theorem exists_ip {F : Face D A} (hL : Laws R F) (hLP : LevProd R i) {γ : GA D 
     {T T' : MMap (R.MW i (sg0 D A))} (hT : T ∈ R.Wall i (sg0 D A)) (hT' : T' ∈ R.Wall i (sg0 D A)) :
     ∃ c, IsMultIP (R.MW i (sg0 D A)) (R.νW i) (R.fdW i) T (heckeOn (R.MW i (sg0 D A)) {γ} T') c := by
   have hHW := hL.models.HW i (sg0 D A)
-  obtain ⟨C, hCne, hCk, hCW⟩ := exists_doubleCoset_sum hLP γ hγ
+  obtain ⟨C, hCne, hCk, hCW⟩ := _root_.GlobalTheory.TransSum.heckeOn_doubleCoset_mem_wall hLP γ hγ
   obtain ⟨x, rfl⟩ : T ∈ LinearMap.range (R.HW i (sg0 D A)).e := by rw [hHW.2.1]; exact hT
   obtain ⟨y, hy⟩ : heckeOn (R.MW i (sg0 D A)) C T' ∈ LinearMap.range (R.HW i (sg0 D A)).e := by
     rw [hHW.2.1]; exact hCW T' hT'
@@ -192,7 +186,7 @@ theorem transLaws_of {F : Face D A} (hL : Laws R F) (hLP : LevProd R i) : TransL
   have hfin : ∀ k ∈ levW R i, k ∈ GfC (Wc D i) := fun k hk => hLP.1 hk
   have ha : ∀ v f, IsFinIdem D v f → ∀ α, SuppF (Wc D i) f α → ∃ C : Finset (GA D (Wc D i)),
       (∀ γ ∈ C, SuppF (Wc D i) f γ) ∧ IsCosetRep (Wc D i) {k | k ∈ levW R i ∧ SuppF (Wc D i) f k} α C :=
-    fun v f hf α hα => exists_cosetRep_levG _ _ _ v f hf α hα
+    fun v f hf α hα => _root_.GlobalTheory.LocalRepsFin.exists_isCosetRep_finIdem _ _ _ v f hf α hα
   have h1 : ∀ x y, trPair R i 1 x y = ⟪x, y⟫_ℂ := fun x y => by
     unfold trPair; rw [hecke_one]; exact (hHW.2.2 x y).symm
   by_cases hv : ∃ v0 : (R.MW i (sg0 D A)).Vec,
@@ -236,7 +230,7 @@ theorem transLaws_of {F : Face D A} (hL : Laws R F) (hLP : LevProd R i) : TransL
         ∀ γ ∈ GfC (Wc D i), ∀ x, trPair R i γ x y' = ∑ δ ∈ C, trPair R i (γ * δ) x y := by
     intro v f hf α hα C hC hR y
     obtain ⟨y', hy'⟩ : heckeOn (R.MW i (sg0 D A)) C (e y) ∈ LinearMap.range e := by
-      rw [he, hHW.2.1]; exact heckeOn_mem_wall hLP v f hf α hα C hC hR _ (hW y)
+      rw [he, hHW.2.1]; exact _root_.GlobalTheory.LocalHeckeLevel.heckeOn_mem_wall hLP v f hf α hα C hC hR _ (hW y)
     refine ⟨y', hy', fun γ hγ x => ?_⟩
     have hCf : ∀ δ ∈ C, δ ∈ GfC (Wc D i) := fun δ hδ => (hR.1 δ hδ).1
     rw [htp γ hγ, Finset.sum_congr rfl fun δ hδ => htp (γ * δ) (mul_mem hγ (hCf δ hδ)) x y, ← Finset.sum_div,
@@ -281,7 +275,7 @@ theorem transLaws_of {F : Face D A} (hL : Laws R F) (hLP : LevProd R i) : TransL
   have hab : ∀ x y, ‖∫ g in R.fdW i, star (e x v0 g) * e y v0 (g * γ) ∂(R.νW i)‖ ^ 2 ≤
       ‖∫ g in R.fdW i, star (e x v0 g) * e x v0 g ∂(R.νW i)‖ * ‖∫ g in R.fdW i, star (e y v0 g) * e y v0 g ∂(R.νW i)‖ := by
     intro x y
-    have hcs' := norm_integral_star_mul_sq_le ((R.νW i).restrict (R.fdW i)) (e x v0) (fun g => e y v0 (g * γ))
+    have hcs' := _root_.GlobalTheory.norm_integral_star_mul_sq_le ((R.νW i).restrict (R.fdW i)) (e x v0) (fun g => e y v0 (g * γ))
       (cont (hW x) v0).aestronglyMeasurable ((cont (hW y) v0).comp (continuous_mul_const γ)).aestronglyMeasurable
       (sq_int hL (hW x) v0) (sq_int_tr hL (hW y) v0 γ)
     have hsh := shift hL (fun g => star (e y v0 g) * e y v0 g)

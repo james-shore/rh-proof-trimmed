@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CmFiniteAdeleStrongApproxModAdelicIdeal
 
 @[expose] public section
 
@@ -71,25 +72,9 @@ theorem eps_dvd_nat (D : D7) (P : ℕ → Prop) (n : ℕ) (hn : n ≠ 0) (h : �
     push_cast
     ring
 
-theorem exists_denom (D : D7) (y : AE D) : ∃ n : ℕ, 0 < n ∧ (n : AE D) * y ∈ OhE D := by
-  obtain ⟨d, hd0, hd⟩ := levelaf_denom (F := ℚ) y
-  obtain ⟨z, rfl⟩ : ∃ z : ℤ, d = z := ⟨Rat.ringOfIntegersEquiv d, by
-    apply Rat.ringOfIntegersEquiv.injective; simp⟩
-  have hz : z.natAbs ≠ 0 := by rintro h; apply hd0; simp [Int.natAbs_eq_zero.1 h]
-  have hC : levelafC (F := ℚ) D.host.E (z : 𝓞 ℚ) = (z : AE D) := by
-    rw [levelafC, map_intCast]
-    exact map_intCast (Algebra.TensorProduct.includeRight : _ →ₐ[ℚ] AE D) z
-  refine ⟨z.natAbs, Nat.pos_of_ne_zero hz, ?_⟩
-  rw [hC] at hd
-  rcases Int.natAbs_eq z with e | e
-  · rw [e] at hd; simpa [OhE] using hd
-  · rw [e] at hd
-    have := neg_mem hd
-    simpa [OhE] using this
-
 theorem exists_denom_zeroAt (D : D7) (y : AE D) :
     ∃ n : ℕ, 0 < n ∧ (n : AE D) * y ∈ OhE D ∧ ∀ q : ℕ, q.Prime → q ∣ n → ¬ ZeroAt D q y := by
-  have hex := exists_denom D y
+  have hex := _root_.GlobalTheory.AdelicApprox.exists_denom D y
   obtain ⟨h0, h1⟩ := Nat.find_spec hex
   refine ⟨Nat.find hex, h0, h1, fun q hq hd hz => ?_⟩
   obtain ⟨m, hm, hc, s, hs, e⟩ := hz 0

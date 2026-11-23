@@ -76,9 +76,7 @@ theorem proj_val (e : A) (he : e * e = e) (x : Aˣ) : (proj e he x : A) = e * x 
 theorem proj_inv (e : A) (he : e * e = e) (x : Aˣ) :
     (((proj e he x)⁻¹ : Aˣ) : A) = e * ((x⁻¹ : Aˣ) : A) + (1 - e) := rfl
 
-theorem exists_prime_mem (P : Ideal A) (hP : P.IsPrime) (n : ℕ) (hn : n ≠ 0) (h : (n : A) ∈ P) :
-    ∃ q : ℕ, q.Prime ∧ (q : A) ∈ P :=
-  _root_.GlobalTheory.PrimeNatCastMembership.exists_prime_natCast_mem P hP n hn h
+alias exists_prime_mem := _root_.GlobalTheory.PrimeNatCastMembership.exists_prime_natCast_mem
 
 variable (S : Subring A)
 

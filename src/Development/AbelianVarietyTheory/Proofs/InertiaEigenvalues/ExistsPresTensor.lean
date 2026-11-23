@@ -234,7 +234,7 @@ theorem IsRed.φ_κ [NeZero n] {lam : O} {κ : k⸨X⸩ →+* Rk} (h : IsRed E �
   refine laurent_ext (f := (φ : Rk →+* Rk).comp κ) (g := κ.comp (GlobalTheory.IndefiniteRowSideFullHecke.OnePlusPowerCharacters.phiPi k l)) (fun b => ?_) c
   obtain ⟨b, rfl⟩ := PowerSeries.map_surjective _ h.res_surj b
   change φ (κ _) = κ (GlobalTheory.IndefiniteRowSideFullHecke.OnePlusPowerCharacters.phiPi k l _)
-  rw [← GlobalTheory.T.reduction_cyclotomic_endo_eq_frobenius_laurent l O k W.φ₀ (by rw [W.φ₀_X, W.q₀_def, hp]), h.κ_const, h.κ_const, φ_rE hO hφ]; rfl
+  rw [← _root_.GlobalTheory.RedPhiProof.red_phi l O k W.φ₀ (by rw [W.φ₀_X, W.q₀_def, hp]), h.κ_const, h.κ_const, φ_rE hO hφ]; rfl
 
 theorem IsRed.exists_isDel [NeZero n] {lam : O} {κ : k⸨X⸩ →+* Rk} (h : IsRed E ρ (k := k) lam κ)
     (hO : Function.Injective (algebraMap O LL)) {a : G → (Rk →ₐ[k] Rk)}
@@ -244,7 +244,7 @@ theorem IsRed.exists_isDel [NeZero n] {lam : O} {κ : k⸨X⸩ →+* Rk} (h : Is
     (he : ∀ δ b, PowerSeries.map (algebraMap O k) (W.γ₀ δ.1 b) =
       GlobalTheory.IndefiniteRowSideFullHecke.OnePlusPowerCharacters.deltaPi k l (e δ).1 (PowerSeries.map (algebraMap O k) b))
     (hc : ((W.DelF.card : ℕ) : k) ≠ 0) : ∃ σ, IsDel E ρ κ a (ι : k⸨X⸩ →+* k⸨X⸩) σ := by
-  obtain ⟨σ, s1, s2, s3⟩ := GlobalTheory.T.teichmuller_roots_act_faithfully_laurent l k R ι hι
+  obtain ⟨σ, s1, s2, s3⟩ := _root_.GlobalTheory.DeltaInv.main l k R ι hι
   refine ⟨fun δ => σ (e δ), ha, a_eps hO ha, fun g δ hg c => ?_, s2.comp e.injective, fun c => ?_, hc⟩
   · refine laurent_ext (f := (a g : Rk →+* Rk).comp κ) (g := κ.comp (σ (e δ))) (fun b => ?_) c
     obtain ⟨b, rfl⟩ := PowerSeries.map_surjective _ h.res_surj b
@@ -300,7 +300,7 @@ theorem exists_frames [IsDomain O] [IsPrincipalIdealRing O] {lam : O} {κ : k⸨
   · obtain ⟨T₀, q₀, h₀⟩ := hA
     obtain ⟨T', f, hf⟩ := (GlobalTheory.T.kernel_inverse_fibreProduct_lattices lam h.lam_ne ((h.res_ker lam).2 dvd_rfl)).1 T₀ A q₀ h₀
     obtain ⟨β, h1, h2⟩ := GlobalTheory.T.exists_frame_of_torsion_invariants W E ρ lam κ a ι σ h hd T₀ A q₀ h₀ i
-      (GlobalTheory.T.finrank_and_kernel_of_letter_image_tensor W E ρ lam κ h T₀ A.m q₀ h₀.1 T' f hf i).1
+      (_root_.GlobalTheory.RedDim.dim_ker W E ρ lam κ h T₀ A.m q₀ h₀.1 T' f hf i).1
     refine ⟨β, fun T q hq => ⟨h1, fun y => (h2 y).trans ⟨?_, ?_⟩⟩⟩
     · rintro ⟨x, rfl⟩
       obtain ⟨x', hx'⟩ := h.push hm hd.card_ne h₀ hq (g := LinearMap.id) (fun _ _ => rfl) x
@@ -456,7 +456,7 @@ theorem exists_pres [IsDomain O] [IsPrincipalIdealRing O] [NeZero n] (hO : Funct
 
           rw [hy, map_sum, map_sum]
           exact Finset.sum_congr rfl fun i _ => by rw [hact T A q hq, hact T A q hq, hg, hg₀] }
-  obtain ⟨F, F1, F2, F3, F4, F5⟩ := GlobalTheory.T.exists_exact_functor_phiGamma_of_frames R _ φ a g₀ _ _ _ hfr
+  obtain ⟨F, F1, F2, F3, F4, F5⟩ := _root_.GlobalTheory.RedFun.exists_dfun_of_frames R _ φ a g₀ _ _ _ hfr
   have hj : ∀ (T : LocLat G Qp LL O) (A : Ob k G) (q : ↥T.L.T →ₗ[O] (Fin A.m → k)) (i : ZMod n'),
       ∃ j : ↥(DΔ W T) →+ Vc k A.m, Onto T A q →
         ∀ x, β₀ A (τ i) (j x) = eps E ρ (τ i) • J E ρ T q x := by
@@ -499,7 +499,7 @@ theorem exists_pres [IsDomain O] [IsPrincipalIdealRing O] [NeZero n] (hO : Funct
     constructor
     · obtain ⟨s, hs⟩ := (GlobalTheory.T.kernel_inverse_fibreProduct_lattices (G := G) (Qp := Qp) lam h.lam_ne hlam).2.1 T T' f hf (fun z hz =>
         (hk (lam • ⟨z, hz⟩)).1 (by rw [map_smul, ← algebraMap_smul k lam, hlam, zero_smul]))
-      exact (GlobalTheory.T.finrank_and_kernel_of_letter_image_tensor W E ρ lam κ h T A.m q hq.1 T' f hk (τ i)).2 s hs x
+      exact (_root_.GlobalTheory.RedDim.dim_ker W E ρ lam κ h T A.m q hq.1 T' f hk (τ i)).2 s hs x
     · rintro ⟨y, hy⟩
       have h1 := J_map E ρ f (0 : ↥T'.L.T →ₗ[O] (Fin A.m → k)) q 0
         (fun z z' e => (hk z').2 ⟨z, z.2, e.symm⟩) y

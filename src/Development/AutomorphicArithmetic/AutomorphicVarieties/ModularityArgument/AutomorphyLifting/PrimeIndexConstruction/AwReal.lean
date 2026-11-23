@@ -64,6 +64,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Algebra.MvPolynomial
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousCharpolyCoeffOfMatrix
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ValSubLtIff
 
 @[expose] public section
 
@@ -72,17 +74,6 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
   UpperTheory.V.Z.Gam UpperTheory.V.Z.Win GroundTheory.Global.SemiLocal
 
 namespace UpperTheory.V.Z.Win.Birth.RealAlgebraicWindow
-
-private theorem coeffCont {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] (n i : ℕ) :
-    Continuous fun M : Matrix (Fin n) (Fin n) K => M.charpoly.coeff i := by
-  have h : (fun M : Matrix (Fin n) (Fin n) K => M.charpoly.coeff i) =
-      fun M => MvPolynomial.eval (fun ij : Fin n × Fin n => M ij.1 ij.2)
-        ((Matrix.charpoly.univ K (Fin n)).coeff i) := by
-    funext M
-    exact (Matrix.charpoly.univ_coeff_eval₂Hom (Fin n) (RingHom.id K) (fun ij : Fin n × Fin n => M ij.1 ij.2) i).symm
-  rw [h]
-  exact (MvPolynomial.continuous_eval _).comp
-    (continuous_pi fun ij => (continuous_apply ij.2).comp (continuous_apply ij.1))
 
 private theorem isoFrob : IsoOfFrob := by
   intro F Ω _ _ _ _ _ l _ ι n r r' hr hr' hs hs' hw
@@ -93,9 +84,9 @@ private theorem isoFrob : IsoOfFrob := by
     intro g
     ext i
     have h1 : Continuous fun g : G F Ω => (r g⁻¹ : Matrix (Fin n) (Fin n) (Qbar l)).charpoly.coeff i :=
-      (coeffCont n i).comp (Units.continuous_val.comp (hr.comp continuous_inv))
+      (_root_.GlobalTheory.TypeLeaf.continuous_charpoly_coeff_of_matrix n i).comp (Units.continuous_val.comp (hr.comp continuous_inv))
     have h2 : Continuous fun g : G F Ω => (r' g⁻¹ : Matrix (Fin n) (Fin n) (Qbar l)).charpoly.coeff i :=
-      (coeffCont n i).comp (Units.continuous_val.comp (hr'.comp continuous_inv))
+      (_root_.GlobalTheory.TypeLeaf.continuous_charpoly_coeff_of_matrix n i).comp (Units.continuous_val.comp (hr'.comp continuous_inv))
     refine congrFun (Continuous.ext_on hD h1 h2 ?_) g
     rintro σ ⟨v, hv, -, A, hA, hσ⟩
     obtain ⟨B, hB, hB'⟩ := not_not.1 hv
@@ -107,15 +98,6 @@ private theorem isoFrob : IsoOfFrob := by
 
 private theorem noTw : NoTwist :=
   UpperTheory.baseChange_noSelfTwist_of_frobenius_sign_irreducible isoFrob UpperTheory.frobenius_eigenvalues_twist UpperTheory.exists_quadratic_sign_character UpperTheory.frobenius_sign_compatibility UpperTheory.schur_twist_holds UpperTheory.galoisRep_irreducibility_criterion
-
-private theorem normUnder {K K' : Type} [Field K] [NumberField K] [Field K'] [NumberField K'] [Algebra K K']
-    (w : HeightOneSpectrum (𝓞 K')) : normV w = normV (w.under (𝓞 K)) ^ w.asIdeal.inertiaDeg (𝓞 K) := by
-  have : w.asIdeal.LiesOver (w.under (𝓞 K)).asIdeal := ⟨rfl⟩
-  have := w.isMaximal
-  have := (w.under (𝓞 K)).isMaximal
-  simp only [normV, ← Submodule.cardQuot_apply, ← Ideal.absNorm_apply]
-  rw [← Ideal.absNorm_relNorm (𝓞 K) (𝓞 K') w.asIdeal,
-    Ideal.relNorm_eq_pow_of_isMaximal w.asIdeal (w.under (𝓞 K)).asIdeal, map_pow]
 
 private theorem satEq (n q : ℕ) (B : Multiset ℂˣ) :
     algSat n q B = B.map fun α : ℂˣ => (((q : ℝ) ^ (((n : ℝ) - 1) / 2) : ℝ) : ℂ) * (α : ℂ) := by
@@ -143,7 +125,7 @@ private theorem underTendsto {K K' : Type} [Field K] [NumberField K] [Field K'] 
 
 private theorem selfTw : Sd.SelfTwGal := by
   intro F Ω _ _ _ _ _ l _ ι n r sat hu hc hatt η m hm hη hη1 hT
-  obtain ⟨art, ha⟩ := GlobalTheory.globalArtinReciprocity_holds F Ω
+  obtain ⟨art, ha⟩ := _root_.CompanionTheory.FamInh.globalArtin F Ω
   obtain ⟨δ, hδc, hL⟩ := ha.exists_isLAdicOf ι (isAlgPos_zero_of_orderDvd (χ := η) hm hη)
   have hpow : δ ^ m = 1 := hL.pow_eq_one ha.quot.surjective hη
   have hE : ∀ v, η.UnrAt v → CharEig ι δ v (η.val v : ℂˣ) := fun v hv A hA =>
@@ -177,7 +159,7 @@ private theorem selfTw : Sd.SelfTwGal := by
     haveI : IsAlgClosure E Ω := ⟨IsAlgClosure.isAlgClosed F, inferInstance⟩
     have hw : ∀ᶠ w : HeightOneSpectrum (𝓞 E) in Filter.cofinite, CharEig ι (δ.comp (res F Ω E)) w 1 := by
       filter_upwards [hN.2.2, (underTendsto (K := F) (K' := E)).eventually hT] with w h1 h2
-      have hf := normUnder (K := F) w
+      have hf := _root_.GlobalTheory.DelEps.WeilRes.normV_eq_pow (K := F) w
       have h3 := (UpperTheory.frobenius_power_compatibility F E Ω l ι w _ hf).2 δ _ (hE _ h2.1)
       rwa [← Units.val_pow_eq_pow_val, h1 _ hf, Units.val_one] at h3
     have key := GlobalTheory.Published.ChebotarevDegreeOne.eq_of_frob (F := E) (Ω := Ω) GlobalTheory.Published.chebotarevDegreeOne'
@@ -211,12 +193,12 @@ private theorem upCycle : Sd.UpCyc := by
       rw [CG.HasInfChar.infChar_eq (π := CG.mk P) (hinf τ _ hm)]
       exact h
     · filter_upwards [hbc, (underTendsto (K := F) (K' := E)).eventually hatt.2] with w h1 h2
-      obtain ⟨B, hB, hPw⟩ := h1 _ (normUnder (K := F) w)
+      obtain ⟨B, hB, hPw⟩ := h1 _ (_root_.GlobalTheory.DelEps.WeilRes.normV_eq_pow (K := F) w)
       obtain ⟨B', hB', hF⟩ := h2
       obtain rfl := hB.unique hB'
       refine ⟨_, hPw, ?_⟩
-      have h3 := (UpperTheory.frobenius_power_compatibility F E Ω l ι w _ (normUnder (K := F) w)).1 n r _ hF
-      rw [← satPow, ← normUnder] at h3
+      have h3 := (UpperTheory.frobenius_power_compatibility F E Ω l ι w _ (_root_.GlobalTheory.DelEps.WeilRes.normV_eq_pow (K := F) w)).1 n r _ hF
+      rw [← satPow, ← _root_.GlobalTheory.DelEps.WeilRes.normV_eq_pow] at h3
       exact h3
 
 private theorem quadGalois (K L : Type) [Field K] [NumberField K] [Field L] [NumberField L] [Algebra K L]

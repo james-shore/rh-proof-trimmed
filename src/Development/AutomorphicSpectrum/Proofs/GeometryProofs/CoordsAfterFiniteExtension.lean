@@ -194,15 +194,6 @@ end GlobalTheory.CompanionTheory.Ar.ChangeModel
 
 namespace GlobalTheory.CompanionTheory.Ar.ChangeModel
 
-theorem dominates_comp {X₁ X₂ X₃ : Scheme.{0}} {Ω₁ Ω₂ Ω₃ : Type} [Field Ω₁] [Field Ω₂] [Field Ω₃]
-    {ξ₁ : Spec (CommRingCat.of Ω₁) ⟶ X₁} {ξ₂ : Spec (CommRingCat.of Ω₂) ⟶ X₂} {ξ₃ : Spec (CommRingCat.of Ω₃) ⟶ X₃}
-    {f : X₂ ⟶ X₁} {g : X₃ ⟶ X₂} {i : Ω₁ →+* Ω₂} {j : Ω₂ →+* Ω₃}
-    (hf : GlobalTheory.CompanionTheory.Ar.Dominates ξ₂ ξ₁ f i) (hg : GlobalTheory.CompanionTheory.Ar.Dominates ξ₃ ξ₂ g j) :
-    GlobalTheory.CompanionTheory.Ar.Dominates ξ₃ ξ₁ (g ≫ f) (j.comp i) := by
-  unfold GlobalTheory.CompanionTheory.Ar.Dominates at *
-  rw [← Category.assoc, hg, Category.assoc, hf, ← Category.assoc, ← Spec.map_comp]
-  rfl
-
 theorem closure_eq_top_of_basis {Ω₁ Ω : Type} [Field Ω₁] [Field Ω] (i : Ω₁ →+* Ω)
     (hfin : letI := i.toAlgebra; FiniteDimensional Ω₁ Ω) :
     ∃ (n : ℕ) (w : Option (Fin n) → Ω), w none ≠ 0 ∧
@@ -283,7 +274,7 @@ theorem exists_normal_model : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResK
     { X := M₃.X, ξ := M₃.ξ, s := M₃.s, hover := M₃.hover, all := M₃.all, tie := ht' },
     f₃ ≫ f₂ ≫ f₁, fun a b e => ?_, fun k a => heq (.inl (.inl k)) a, ?_, hN, hsm'⟩
   · simpa using hinj e
-  · have h1 := dominates_comp (dominates_comp hf₁ hf₂) hf₃'
+  · have h1 := _root_.PositivityTheory.HtPt.Mb.dom_comp (_root_.PositivityTheory.HtPt.Mb.dom_comp hf₁ hf₂) hf₃'
     exact h1
 
 end GlobalTheory.CompanionTheory.Ar.ChangeModel

@@ -255,8 +255,8 @@ theorem img_bar_ne_top : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] 
   obtain ⟨w2, hw2⟩ := GlobalTheory.ModuliGenus.exists_eq_nsmul_of_dvd D hp0 m fun c => by
     obtain ⟨zc, hzc, mc, hmc, bc, hbc, rfl⟩ := h.exists_decomp c
     have h1 := ha mc (hL (Submodule.mem_map_of_mem hmc))
-    have e1 : D.EF z mc = 0 := by rw [ef_swap, hmc.1 z hz, neg_zero]
-    have e2 : D.EF b' mc = 0 := by rw [ef_swap, hmc.2 b' hb', neg_zero]
+    have e1 : D.EF z mc = 0 := by rw [_root_.GlobalTheory.SimLift.form_skew, hmc.1 z hz, neg_zero]
+    have e2 : D.EF b' mc = 0 := by rw [_root_.GlobalTheory.SimLift.form_skew, hmc.2 b' hb', neg_zero]
     rw [map_add (f := _), map_add (f := _), LinearMap.add_apply, LinearMap.add_apply, e1, e2, zero_add, add_zero] at h1
     rwa [map_add, map_add, hm.1 zc hzc, hm.2 bc hbc, zero_add, add_zero]
   have hzm : z + m = p • (w1 + w2) := by rw [hw1, hw2, smul_add]

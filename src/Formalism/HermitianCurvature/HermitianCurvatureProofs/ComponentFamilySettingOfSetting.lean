@@ -1379,8 +1379,7 @@ namespace Formalism.FourierDecayAlt.P.Dx1.Rel
 noncomputable section
 open Classical
 
-theorem ptSize_cons (s : ℕ) (t : ℂ) (rest : C.LPt) : ptSize ((s, t) :: rest) = s + ptSize rest := by
-  simp only [ptSize, List.map_cons, List.sum_cons]
+alias ptSize_cons := _root_.Formalism.FourierDecayAlt.P.Dx1.ptSize_cons
 
 theorem partner_spec : ∀ (p : C.LPt) (a : ℕ), a < ptSize p →
     ptPartner p a < ptSize p ∧ ptPartner p (ptPartner p a) = a ∧
@@ -1783,20 +1782,9 @@ end
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem ptPerm_spec : Formalism.FourierDecayAlt.D.PtPermSpec := by
-  exact Dx1.d_ptPermSpec
-theorem ptG_spec : Formalism.FourierDecayAlt.D.PtGSpec := by
-  exact Dx1.ptGSpec
-theorem relevant_points_holds : Formalism.FourierDecayAlt.D.PtRelevant := by
-  exact Dx1.Rel.ptRelevant
-theorem good_of_admissible : Formalism.FourierDecayAlt.D.GoodOfAdm := by
-  exact Dx1.d_goodOfAdm
-theorem level_zero_holds : Formalism.FourierDecayAlt.D.LevelZero := by
-  exact Dx1.LZ.levelZero
-theorem lemma_E_of_residue : Formalism.FourierDecayAlt.D.LemmaEOfRR0 := by
-  exact Dx1.d_lemmaEOfRR0
-theorem positivity_of_module : Formalism.FourierDecayAlt.D.ThmPPosOfModule := by
-  exact Dx1.d_thmPPosOfModule
+alias ptG_spec := _root_.Formalism.FourierDecayAlt.P.Dx1.ptGSpec
+alias relevant_points_holds := _root_.Formalism.FourierDecayAlt.P.Dx1.Rel.ptRelevant
+alias level_zero_holds := _root_.Formalism.FourierDecayAlt.P.Dx1.LZ.levelZero
 theorem module_of_words : Formalism.FourierDecayAlt.D.ModuleOfWdOn := by
   exact Dx1.d_moduleOfWdOn
 

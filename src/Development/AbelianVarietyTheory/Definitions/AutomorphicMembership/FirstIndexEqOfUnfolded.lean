@@ -314,11 +314,7 @@ def hodgeC (t : Tau) : ℝ := Real.pi * X.c (ι t)
 theorem hodgeC_pos (t : Tau) : 0 < hodgeC X ι t :=
   mul_pos Real.pi_pos (mul_pos two_pos (norm_pos_iff.2 ((map_ne_zero _).2 X.ξ0_ne)))
 
-theorem psi_nonempty : Nonempty X.Ψ := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  by_cases h : τ ∈ X.Ψ
-  · exact ⟨⟨τ, h⟩⟩
-  · exact ⟨⟨ComplexEmbedding.conjugate τ, by_contra fun h' => h ((X.cmType τ).2 h')⟩⟩
+alias psi_nonempty := _root_.GlobalTheory.LineHeight.nonempty_cmType
 
 theorem sum_nonempty {r j : ℕ} (hj : j ≤ r) (hr : 0 < r) : Nonempty (Fin j ⊕ Fin (r - j)) := ⟨idx hj ⟨0, hr⟩⟩
 

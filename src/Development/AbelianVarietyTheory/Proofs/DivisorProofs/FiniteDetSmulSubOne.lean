@@ -211,8 +211,7 @@ theorem exists_isRat {V : HSp D} {g : GA D V} (hg : g ∈ GQ V) : ∃ a, IsRat V
   obtain ⟨a, -, ha⟩ := hg
   exact ⟨a.1, (congrArg Units.val ha).symm⟩
 
-theorem mt_unitary (V : HSp D) (g : GA D V) :
-    ((Formalism.L2.Theta.mt V g).map (cA D))ᵀ * V.gram.map (incA D) * Formalism.L2.Theta.mt V g = V.gram.map (incA D) := g.2
+alias mt_unitary := _root_.Formalism.L2.Theta.mt_rel
 
 theorem IsRat.unitary {V : HSp D} {g : GA D V} {a} (h : IsRat V g a) : aᴴ * V.gram * a = V.gram := by
   have e := mt_unitary V g

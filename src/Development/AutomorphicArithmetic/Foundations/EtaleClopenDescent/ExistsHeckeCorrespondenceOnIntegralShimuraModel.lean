@@ -57,17 +57,6 @@ namespace UpperTheory.Cb.isogenyLiftUniqueness
 
 variable {p : ℕ} [Fact p.Prime] {D : Datum p} {R R' : Type} [CommRing R] [CommRing R'] {N : ℕ} {S : Scheme.{0}}
 
-private theorem sp_surj {A B : Type} [CommRing A] [CommRing B] (u : Sp B ⟶ Sp A) :
-    ∃ β : A →+* B, u = spMap β :=
-  ⟨(Spec.preimage u).hom, by simp [spMap]⟩
-
-private theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
-private theorem sp_inj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
-
 private def baseMap (b : Base D R) (φ : R →+* R') (hp : IsUnit ((p : ℕ) : R')) : Base D R' where
   unit k hk := by
     have h := (b.unit k hk).map φ
@@ -107,20 +96,20 @@ private def toR {t : S ⟶ Sp R'} {s : S ⟶ Sp R} (h : t ≫ spMap φ = s) (o :
   kerP := o.kerP
   rosati := o.rosati
   lie R₁ _ β x hx v hv := by
-    obtain ⟨β', hβ'⟩ := sp_surj (x ≫ t)
-    obtain rfl : β = β'.comp φ := sp_inj (by rw [← hx, ← h, ← Category.assoc, hβ', sp_comp])
+    obtain ⟨β', hβ'⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (x ≫ t)
+    obtain rfl : β = β'.comp φ := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by rw [← hx, ← h, ← Category.assoc, hβ', _root_.GlobalTheory.spMap_comp_ring])
     exact o.lie R₁ β' x hβ' v hv
   lieRank k _ _ x β hx i := by
-    obtain ⟨β', hβ'⟩ := sp_surj (x ≫ t)
-    obtain rfl : β = β'.comp φ := sp_inj (by rw [← hx, ← h, ← Category.assoc, hβ', sp_comp])
+    obtain ⟨β', hβ'⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (x ≫ t)
+    obtain rfl : β = β'.comp φ := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by rw [← hx, ← h, ← Category.assoc, hβ', _root_.GlobalTheory.spMap_comp_ring])
     exact o.lieRank k x β' hβ' i
   eta := o.eta
   eta_add := o.eta_add
   eta_lin := o.eta_lin
   eta_ker := o.eta_ker
   geom k _ _ x β hx := by
-    obtain ⟨β', hβ'⟩ := sp_surj (x ≫ t)
-    obtain rfl : β = β'.comp φ := sp_inj (by rw [← hx, ← h, ← Category.assoc, hβ', sp_comp])
+    obtain ⟨β', hβ'⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (x ≫ t)
+    obtain rfl : β = β'.comp φ := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by rw [← hx, ← h, ← Category.assoc, hβ', _root_.GlobalTheory.spMap_comp_ring])
     exact o.geom k x β' hβ'
 
 private def ofR {t : S ⟶ Sp R'} {s : S ⟶ Sp R} (h : t ≫ spMap φ = s) (o : Obj b N s) :
@@ -136,13 +125,13 @@ private def ofR {t : S ⟶ Sp R'} {s : S ⟶ Sp R} (h : t ≫ spMap φ = s) (o :
   ample := o.ample
   kerP := o.kerP
   rosati := o.rosati
-  lie R₁ _ β x hx v hv := o.lie R₁ (β.comp φ) x (by rw [← h, ← Category.assoc, hx, sp_comp]) v hv
-  lieRank k _ _ x β hx i := o.lieRank k x (β.comp φ) (by rw [← h, ← Category.assoc, hx, sp_comp]) i
+  lie R₁ _ β x hx v hv := o.lie R₁ (β.comp φ) x (by rw [← h, ← Category.assoc, hx, _root_.GlobalTheory.spMap_comp_ring]) v hv
+  lieRank k _ _ x β hx i := o.lieRank k x (β.comp φ) (by rw [← h, ← Category.assoc, hx, _root_.GlobalTheory.spMap_comp_ring]) i
   eta := o.eta
   eta_add := o.eta_add
   eta_lin := o.eta_lin
   eta_ker := o.eta_ker
-  geom k _ _ x β hx := o.geom k x (β.comp φ) (by rw [← h, ← Category.assoc, hx, sp_comp])
+  geom k _ _ x β hx := o.geom k x (β.comp φ) (by rw [← h, ← Category.assoc, hx, _root_.GlobalTheory.spMap_comp_ring])
 
 local macro "cp " m:term:max : term =>
   `(⟨($m).φ, ($m).φ₂, ($m).cart, ($m).sq, ($m).act, ($m).pol, ($m).eta⟩)

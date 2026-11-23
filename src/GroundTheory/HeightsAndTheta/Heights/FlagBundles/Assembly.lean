@@ -58,20 +58,16 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.FlagBundles
 
-theorem GKernelIdentity.full : GKernelIdentity.Statement :=
-  GKernelIdentity.proof
+alias GKernelIdentity.full := _root_.GroundTheory.Heights₂.Heights.FlagBundles.GKernelIdentity.proof
 
-theorem ZonalKernel.full : ZonalKernel.Statement :=
-  ZonalKernel.proof
+alias ZonalKernel.full := _root_.GroundTheory.Heights₂.Heights.FlagBundles.ZonalKernel.proof
 
-theorem SphereLongitudeCoordinates.full : SphereLongitudeCoordinates.Statement :=
-  SphereLongitudeCoordinates.proof
+alias SphereLongitudeCoordinates.full := _root_.GroundTheory.Heights₂.Heights.FlagBundles.SphereLongitudeCoordinates.proof
 
 theorem ZonalHeightReduction.full : ZonalHeightReduction.Statement :=
   ZonalHeightReduction.proof SphereLongitudeCoordinates.full ZonalKernel.full
 
-theorem ZonalKernelPairing.full : ZonalKernelPairing.Statement :=
-  ZonalKernelPairing.proof
+alias ZonalKernelPairing.full := _root_.GroundTheory.Heights₂.Heights.FlagBundles.ZonalKernelPairing.proof
 
 theorem ZonalBilinearFormula.full : ZonalBilinearFormula.Statement :=
   ZonalBilinearFormula.proof ZonalHeightReduction.full ZonalKernelPairing.full

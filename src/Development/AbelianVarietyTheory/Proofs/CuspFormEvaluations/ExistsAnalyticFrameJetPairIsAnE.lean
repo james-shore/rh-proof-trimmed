@@ -54,7 +54,7 @@ theorem jetMap_psum {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host
     (Λ : Fin n → (Fin n → Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ)) (hx : ∀ i, Φ.toAnFr.JetMap m (xs i).left (Λ i))
     (I : Finset (Fin n)) :
     Φ.toAnFr.JetMap m (psum Xo.univ.t.G xs I).left (∑ i ∈ I, Λ i) := by
-  obtain ⟨-, h1, hmul, -⟩ := GlobalTheory.T.cmFrame_jetPoints_are_exponential_jets E H Dw l Xo c y g ty el Φ n m
+  obtain ⟨-, h1, hmul, -⟩ := _root_.GlobalTheory.AnVal.jetPts_jetMap E H Dw l Xo c y g ty el Φ n m
   have key : ∀ L : List (Fin n), Φ.toAnFr.JetMap m
       (L.foldr (fun k acc => padd Xo.univ.t.G (xs k) acc) (pzero Xo.univ.t.G (jO y g m n))).left
       (L.map Λ).sum := by
@@ -79,7 +79,7 @@ theorem exists_isAnE : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
       (cφ ![jpt y g Φ.jx m (0 : Fin 2), jpt y g Φ.jx m (1 : Fin 2)]) (cε 2) (psumL 2 g) ?_
     intro I
     refine jetMap_psum Φ 2 m _ (fun i => LinearMap.proj i) ?_ I.down
-    have h0 := (GlobalTheory.T.cmFrame_jetPoints_are_exponential_jets E H Dw l Xo c y g ty el Φ 2 m).1
+    have h0 := (_root_.GlobalTheory.AnVal.jetPts_jetMap E H Dw l Xo c y g ty el Φ 2 m).1
     intro i
     fin_cases i
     · exact h0 0

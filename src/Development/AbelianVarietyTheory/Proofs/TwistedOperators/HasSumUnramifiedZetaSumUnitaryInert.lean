@@ -239,7 +239,7 @@ theorem hasSum_zetaSum_inert : ∀ (L : Type) [Field L] [Valued L (WithZero (Mul
       (closedForm q r (varX q r (χ ϖu) ((t : ℂ) / 2)) (varY q (χ ϖu) ((t : ℂ) / 2)) α) := by
     rw [← hval, hci]; exact hsw.hasSum
 
-  have hsφ := GlobalTheory.T.summable_norm_coset_out' _ μ (KU σ r) hKo hμK φ hright hintφ
+  have hsφ := _root_.GlobalTheory.summable_norm_coset_out _ μ (KU σ r) hKo hμK φ hright hintφ
   have hsψ : Summable (fun a : GU σ r ⧸ KU σ r => φ a.out * ℓ (ρ a.out x)) := by
     refine Summable.of_norm_bounded (hsφ.mul_left C) fun a => ?_
     rw [norm_mul, mul_comm]

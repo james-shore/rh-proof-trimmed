@@ -54,14 +54,9 @@ namespace GlobalTheory.FlatTransLaw
 
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem e_mul_ι (p : Place D k) (x : k) : p.e * p.ι x = p.ι x := by
-  have h := p.ι_π (p.ι x)
-  rw [p.π_ι] at h
-  exact h.symm
-
 theorem ι_mul (p : Place D k) (x : k) (z : AE D) : p.ι x * z = p.ι (x * p.π z) := by
   have h := p.ι_π (p.ι x * z)
-  rw [map_mul, p.π_ι, ← mul_assoc, e_mul_ι] at h
+  rw [map_mul, p.π_ι, ← mul_assoc, _root_.GlobalTheory.LocMod.Witness.e_ι] at h
   exact h.symm
 
 theorem infPart_e (p : Place D k) : infPart D p.e = 0 := by
@@ -74,7 +69,7 @@ theorem infPart_e (p : Place D k) : infPart D p.e = 0 := by
 
 theorem ι_mem (p : Place D k) (x : k) : p.ι x ∈ GlobalTheory.FinPl.idAt D (fun _ => True) := by
   refine Ideal.mem_inf.2 ⟨?_, Ideal.mem_iInf.2 fun w => absurd trivial w.2⟩
-  rw [RingHom.mem_ker, ← e_mul_ι, map_mul, infPart_e, zero_mul]
+  rw [RingHom.mem_ker, ← _root_.GlobalTheory.LocMod.Witness.e_ι, map_mul, infPart_e, zero_mul]
 
 section Frames
 variable {Y Y' : Type} [Fintype Y] [DecidableEq Y] [Fintype Y'] [DecidableEq Y']
@@ -122,12 +117,6 @@ theorem row_coord (p : Place D k) {N m m' : ℕ} (F : Frame k N Y) (j : Y) (c : 
   exact Finset.sum_congr rfl fun t _ => by rw [h]; ring
 
 end Frames
-
-theorem symplO_skew (S T : HSp D) (x y : WO S T) : symplO S T y x = -symplO S T x y := by
-  have h2 : ∀ x y : WO S T, symplO S T x y = 2 * symplOH S T x y := fun x y => by
-    rw [symplOH, ← mul_assoc, ← map_ofNat (algebraMap D.host.F (AF D.host.F)) 2, ← map_mul]
-    norm_num
-  rw [h2, h2, symplOH_skew, mul_neg]
 
 section Ch
 variable {n n' : Type} [DecidableEq n] [DecidableEq n'] {c : ℕ}
@@ -444,7 +433,7 @@ theorem flatBF_trans : ∀ (D : D7), FlatLaw D → GlobalTheory.FinPl.FlatLaws D
         omega
       · exact ⟨l, rfl, Nat.lt_of_succ_lt_succ hfree⟩
       · exact ⟨l, rfl, hq' j rfl ▸ hfree⟩
-    rw [up_eq_incX p hB hJ l hl q hq' a, hF.iso _ (hTm.theta Φ) _ (mxAt_sand p _ _ _ _ _), symplO_skew,
+    rw [up_eq_incX p hB hJ l hl q hq' a, hF.iso _ (hTm.theta Φ) _ (mxAt_sand p _ _ _ _ _), _root_.GlobalTheory.SplitScalar.symplO_skew,
       HypDec.symplO_incX_incAdj, trace_iso p hB hJ l hl q hq', LinearMap.map_neg, neg_neg, hψ]
     rfl
 

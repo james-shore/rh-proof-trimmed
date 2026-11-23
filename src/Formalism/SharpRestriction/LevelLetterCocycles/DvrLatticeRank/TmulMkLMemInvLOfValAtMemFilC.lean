@@ -112,9 +112,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ}
     (W : LocWach PD LL O v n)
 
-theorem letE_mem (c : ZMod n) : (letE c : LetA O n) ∈ W.AΔ :=
-  fun δ _ => Formalism.MainNotions.LiftingTheory.wmap_γA_letE W δ c
-
 theorem algE_smul (o : O) (a : LetA O n) :
     algebraMap (LetA O n) W.EE (o • a) = o • algebraMap (LetA O n) W.EE a := by
   rw [Algebra.smul_def, Algebra.smul_def, map_mul, ← IsScalarTower.algebraMap_apply]
@@ -181,7 +178,7 @@ theorem tmul_mkL_mem_InvL_of_valAt_mem_filC (Pt : ZMod n → LL → (K →ₐ[Qp
     rw [← mul_assoc, mul_comm (algebraMap (LetA O n) W.EE (Eπ ^ h')), mul_assoc, hΛ, ← map_mul, hea]
   have hγe : W.γE W.gamK (algebraMap (LetA O n) W.EE (letE c)) = algebraMap (LetA O n) W.EE (letE c) := by
     rw [show W.γE W.gamK (algebraMap (LetA O n) W.EE (letE c)) =
-      algebraMap (LetA O n) W.EE (W.γA W.gamK (letE c)) from W.γE_ext _ _, Formalism.MainNotions.LiftingTheory.wmap_γA_letE]
+      algebraMap (LetA O n) W.EE (W.γA W.gamK (letE c)) from W.γE_ext _ _, _root_.Formalism.MainNotions.LiftingTheory.gammaA_letter_idempotent]
   have hegf : algebraMap (LetA O n) W.EE (letE c) * (W.γE W.gamK f - f) = W.γE W.gamK f - f := by
     rw [mul_sub, hef]
     congr 1

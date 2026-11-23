@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.RestrictsSelf
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalPairSubGeneric
 
 @[expose] public section
 
@@ -112,7 +113,7 @@ theorem exponents_of_genericUnitary (hGU : GlobalTheory.Published.GenericUnitary
     obtain ⟨z, hz⟩ := Multiset.card_eq_one.1 (by simp [Segment.ms, hlen] : Multiset.card (Δ i).ms = 1)
     rw [hz] at hfirst ⊢
     rw [Multiset.mem_singleton.1 hfirst]
-  have hδ : δ i = (Δ i).first := GlobalTheory.DZeroDegOne.eq_of_hasSupport_singleton (hms ▸ (hΔ i).hasSupport)
+  have hδ : δ i = (Δ i).first := _root_.GlobalTheory.CompanionTheory.CuspPairSub.eq_of_hasSupport_singleton (hms ▸ (hΔ i).hasSupport)
   obtain ⟨y, hy, hyc⟩ := Multiset.mem_map.1 hi
   rw [hms, Multiset.mem_singleton] at hy
   subst hy
@@ -143,7 +144,7 @@ theorem GlobalTheory.RoadU.window : UpperTheory.Gal.ToralGalois.Inq → ∀ (E :
   set c : ℂ := (((wt : ℝ) / 2 : ℝ) : ℂ) with hc
   let ξ' : Fin n → ((w.adicCompletion E)ˣ →* ℂˣ) := fun j => ξ j * absPow (w.adicCompletion E) c
   have hξ' : ∀ j, IsSmoothChar (ξ' j) := fun j => (hξ j).mul (isSmoothChar_absPow _)
-  have hT := GlobalTheory.T.supercuspidalSupport_twist_nu_characters (w.adicCompletion E) (algNorm σ) n ξ ξ' hξ hξ' c (fun _ => rfl)
+  have hT := _root_.GlobalTheory.RoadU.TwistSupp.supp_nu_chars (w.adicCompletion E) (algNorm σ) n ξ ξ' hξ hξ' c (fun _ => rfl)
   have hg : IsGeneric ((algNorm σ).nu c).rep := by
     refine GlobalTheory.GalCut.AwayMono.isGeneric_nu (GlobalTheory.GalCut.AwayMono.isGeneric_nu ?_ _) _
     exact (isGeneric_congr (IrrGL.equivOf σ.ρ σ.smooth σ.irred)).1

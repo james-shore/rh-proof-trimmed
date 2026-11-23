@@ -118,7 +118,7 @@ theorem GlobalTheory.BKLim.beta_bdd_denominators : ∀ (l : ℕ) [Fact l.Prime] 
         rw [smul_smul, ← pow_add, Nat.sub_add_cancel hS, pow_one]
         exact hβ.1 p q
       · obtain ⟨γ, hγ⟩ := ih hi0 (by omega)
-        obtain ⟨δ, hδ1, hδ2⟩ := GlobalTheory.T.breuilKisin_beta_next_coeff_theta_mem l K bk N d ρ F g w hw m k β hβ i (k - S i) him γ hγ
+        obtain ⟨δ, hδ1, hδ2⟩ := _root_.GlobalTheory.BKLim.beta_step l K bk N d ρ F g w hw m k β hβ i (k - S i) him γ hγ
         have hAi : A i = a ⟨i, hi0⟩ := dif_pos hi0
         have hS1 : S (i + 1) ≤ k := le_trans (hSm _ _ him) hk
         have hle : a ⟨i, hi0⟩ ≤ k - S i := by rw [hSs] at hS1; omega
@@ -141,7 +141,7 @@ theorem GlobalTheory.BKLim.beta_bdd_denominators : ∀ (l : ℕ) [Fact l.Prime] 
         exact dvd_add (hδ1 p q) (dvd_mul_right _ _)
   obtain ⟨γ, hγ⟩ := key m hm le_rfl
   refine ⟨γ, ?_⟩
-  have := GlobalTheory.T.breuilKisin_isBeta_sub_of_lpow_smul l K bk N d ρ F m k (k - S m) β γ hβ hm (Nat.sub_le k (S m)) hγ
+  have := _root_.GlobalTheory.BKLim.BetaDiv.isBeta_div l K bk N d ρ F m k (k - S m) β γ hβ hm (Nat.sub_le k (S m)) hγ
   rwa [Nat.sub_sub_self hk] at this
 
 end

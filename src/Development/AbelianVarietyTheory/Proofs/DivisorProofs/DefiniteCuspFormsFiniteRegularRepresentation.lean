@@ -55,7 +55,7 @@ namespace GlobalTheory.ShareOn.Definite
 theorem free_of_definite : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.IndefiniteRowSideFullHecke.SmallUnipotentElements.BalancedPointStatement E → GlobalTheory.IndefiniteRowSideFullHecke.SmallUnipotentElements.SmallElementStatement E → ∀ (r : ℕ) (U C : Type) [Group U] [MulAction U C] (M : TwoLevels E r U C), (M.p0 = 0 ∨ M.p0 = r) → LevelHyp M → ∀ (u : U) (c : C), u • c = c → u = 1 := by
   intro E _ _ _ hbal hsmall r U C _ _ M hdef hlev u c huc
   obtain ⟨g, hsplit, hg, hunip⟩ := hlev
-  obtain ⟨Γo, hst, hun, hmem⟩ := GlobalTheory.T.exists_upperArithmeticGroup_unipotentUnitary E r U C M c g hunip
+  obtain ⟨Γo, hst, hun, hmem⟩ := _root_.GlobalTheory.UpperArith.upper_subgroup E r U C M c g hunip
   obtain ⟨x, hx, hnc, -⟩ := hbal r (M.comp c)
   have h1 : M.tr u c = 1 :=
     hsmall r (M.comp c) g (GlobalTheory.T.isTotallySplitRationalPrime_of_splitsCompletely E g hsplit) hg Γo hst hun x hx hnc (M.tr u c) (hmem u huc)

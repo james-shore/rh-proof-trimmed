@@ -45,6 +45,7 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DivisionOfDet
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.PolyApproxZeroPadic
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TripleAtt
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.ZetaCharacterDivisibility.InsideRefl
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsNormalisedThetaSub
 
 @[expose] public section
 
@@ -84,7 +85,7 @@ private theorem continuous_scal (a : ℕ) :
   exact Continuous.units_map _ h
 
 private theorem continuous_quo : Continuous (quo E) :=
-  continuous_id.div' (Continuous.units_map _ GlobalTheory.BCT.GlobLev.continuous_conj_ad)
+  continuous_id.div' (Continuous.units_map _ _root_.GlobalTheory.ThetaPull.continuous_conjAd)
 
 private theorem ratGL_scalar (a : ℕ) (k : Eˣ) :
     ratGL E a (Matrix.GeneralLinearGroup.scalar (Fin a) k) =

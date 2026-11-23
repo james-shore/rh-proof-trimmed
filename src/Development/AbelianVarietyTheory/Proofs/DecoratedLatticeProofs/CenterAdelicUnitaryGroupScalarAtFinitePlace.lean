@@ -60,6 +60,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.IndefiniteReal.PartsOrth
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowsJoinPinned
 import Formalism.QuotientMetricDivisors.Statement
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIsDetRoot
 
 @[expose] public section
 
@@ -264,24 +265,11 @@ section Main
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU
 
-theorem exists_sig_ne {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E]
-    (cm : CMData F E) : ∃ a : E, cm.sig a ≠ a := by
-  by_contra h
-  push_neg at h
-  have hall : ∀ a : E, a ∈ (algebraMap F E).range := fun a => (cm.fixed a).1 (h a)
-  have htop : (⊥ : Subalgebra F E) = ⊤ := by
-    refine eq_top_iff.2 fun a _ => ?_
-    obtain ⟨b, rfl⟩ := hall a
-    exact Subalgebra.algebraMap_mem _ b
-  have := Subalgebra.bot_eq_top_iff_finrank_eq_one.1 htop
-  rw [cm.deg2] at this
-  exact absurd this (by norm_num)
-
 theorem scalar_at_finite_place : ∀ (D : D7) (V : Formalism.BasicNotions.TH.HSp D) (z : GA D V), z ∈ Subgroup.center (GA D V) → ∀ v : IsDedekindDomain.HeightOneSpectrum (𝓞 D.host.F), ∃ ζ : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Fv D.host.F v ⊗[D.host.F] D.host.E, (GlobalTheory.AdelicU.matHom (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Fv D.host.F v) D.sp.cm.sig V.gram (GlobalTheory.AdelicU.proj D.sp.cm.sig V.gram v z)).val = ζ • (1 : Matrix (Fin V.rank) (Fin V.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Fv D.host.F v ⊗[D.host.F] D.host.E)) := by
   intro D V z hz v
   have hND := GlobalTheory.Mem.VolExists.isHermND D.sp.cm V
   have hσσ : ∀ x, (D.sp.cm.sig : D.host.E →+* D.host.E) (D.sp.cm.sig x) = x := fun x => star_star x
-  obtain ⟨a, ha⟩ := exists_sig_ne D.sp.cm
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.RecDict.cmData_sig_ne_id D.sp.cm
   have hJh : cT (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram = V.gram := by
     exact Matrix.ext fun i j => hND.1 i j
   refine scalar_of_comm (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram (inclR (Fv D.host.F v)) _ hσσ

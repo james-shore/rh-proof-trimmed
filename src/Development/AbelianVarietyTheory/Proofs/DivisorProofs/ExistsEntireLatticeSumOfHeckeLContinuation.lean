@@ -466,7 +466,7 @@ theorem exists_isLatSum : (∀ (E : Type) [Field E] [NumberField E] [IsCMField E
     have h2 := QuotientGroup.eq.1 h
     rw [show (P (A q) * y⁻¹)⁻¹ * (P (A q') * y⁻¹) = P (A q' * (A q)⁻¹) by
       rw [map_mul, map_inv]; simp [mul_comm, mul_left_comm, mul_assoc]] at h2
-    obtain ⟨u, hu⟩ := GlobalTheory.T.cmRingClassOrder_units_eq_maxRealSubfield_units E 𝔣 c h𝔣 hd _ (A q' * (A q)⁻¹).ne_zero (hO _ h2.1) (by
+    obtain ⟨u, hu⟩ := _root_.GlobalTheory.CMVal.OrderUnits.orderC_units E 𝔣 c h𝔣 hd _ (A q' * (A q)⁻¹).ne_zero (hO _ h2.1) (by
       rw [← Units.val_inv_eq_inv_val]
       exact hO _ (by rw [map_inv]; exact h2.2))
     refine Subtype.ext ?_

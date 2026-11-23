@@ -87,7 +87,7 @@ theorem app_surjective_of_factor {R F : Type} [CommRing R] [Field F] {c₀ : R �
   have hbsec : θ b ∈ Sec D₁ k := by
     rw [hspan k]
     exact subset_spanBy _ _ ⟨b, hb, rfl⟩
-  obtain ⟨n, hn⟩ := GlobalTheory.T.exists_mul_pow_mem_cartierMultiple_of_regular_locus Y D₁ k (θ b) hbsec _ hreg
+  obtain ⟨n, hn⟩ := _root_.GlobalTheory.Desc.exists_mul_pow_mem_sec Y D₁ k (θ b) hbsec _ hreg
   rw [hspan] at hn
   obtain ⟨M, r, t, ht, hsum⟩ := hn
   choose u hu hut using ht

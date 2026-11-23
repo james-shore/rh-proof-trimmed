@@ -75,7 +75,7 @@ scoped instance instAct : MulSemiringAction (Ω ≃ₐ[k] Ω) (Ω ⊗[k] R) :=
     smul_one := fun σ => by rw [smul_eq_act, map_one]
     smul_mul := fun σ x y => by rw [smul_eq_act, smul_eq_act, smul_eq_act, map_mul] }
 
-theorem smul_def (σ : Ω ≃ₐ[k] Ω) (x : Ω ⊗[k] R) : σ • x = act R σ x := smul_eq_act R σ x
+alias smul_def := _root_.CrystallineSemistableComparison.GeoA.smul_eq_act
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
 

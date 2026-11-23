@@ -59,32 +59,12 @@ theorem valR_def' {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) (U :
     valR x U f = (Scheme.ΓSpecIso (CommRingCat.of A)).hom.hom ((x.appLE U ⊤ h).hom f) := by
   unfold valR; rw [dite_eq_left h]
 
-theorem valR_mul' {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) (U : X.Opens)
-    (h : ⊤ ≤ x ⁻¹ᵁ U) (f g : Γ(X, U)) :
-    valR x U (f * g) = valR x U f * valR x U g := by
-  simp only [valR_def' x U h, map_mul]
-
-theorem valR_map' {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) {U V : X.Opens} (e : V ≤ U)
-    (h : ⊤ ≤ x ⁻¹ᵁ V) (f : Γ(X, U)) :
-    valR x V ((X.presheaf.map (homOfLE e).op).hom f) = valR x U f := by
-  have hU : ⊤ ≤ x ⁻¹ᵁ U := h.trans (x.preimage_mono e)
-  rw [valR_def' x V h, valR_def' x U hU]
-  have := Scheme.Hom.map_appLE x h (homOfLE e).op
-  change (Scheme.ΓSpecIso (CommRingCat.of A)).hom.hom
-    ((X.presheaf.map (homOfLE e).op ≫ x.appLE V ⊤ h).hom f) = _
-  rw [this]
-
 theorem valR_id_app {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) (U : X.Opens)
     (h : ⊤ ≤ x ⁻¹ᵁ ((𝟙 X) ⁻¹ᵁ U)) (f : Γ(X, U)) :
     valR x ((𝟙 X) ⁻¹ᵁ U) ((Scheme.Hom.app (𝟙 X) U).hom f) = valR x U f := by
   have hU : ⊤ ≤ x ⁻¹ᵁ U := h
   rw [valR_def' x _ h, valR_def' x U hU]
   congr 1
-
-theorem valR_pow' {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) (U : X.Opens)
-    (h : ⊤ ≤ x ⁻¹ᵁ U) (f : Γ(X, U)) (n : ℕ) :
-    valR x U (f ^ n) = valR x U f ^ n := by
-  simp only [valR_def' x U h, map_pow]
 
 theorem secM_valR_transition : ∀ (X : Scheme.{0}) (L : LB X) (k : ℕ) (σ : SecM (𝟙 X) L k) (F : Type) [Field F] (ξ : Sp F ⟶ X) (j j' : L.ι), ⊤ ≤ ξ ⁻¹ᵁ L.U j → ⊤ ≤ ξ ⁻¹ᵁ L.U j' → valR ξ _ (σ.f fun _ => j) = valR ξ (L.U j ⊓ L.U j') (L.g j j').val ^ k * valR ξ _ (σ.f fun _ => j') := by
   intro X L k σ F _ ξ j j' hj hj'
@@ -106,7 +86,7 @@ theorem secM_valR_transition : ∀ (X : Scheme.{0}) (L : LB X) (k : ℕ) (σ : S
     rfl
   have hc := σ.compat (fun _ => j) (fun _ => j')
   have := congrArg (valR ξ _) hc
-  rw [valR_map' _ _ h1, valR_mul' _ _ h1, valR_map' _ _ h1] at this
-  rw [this, hg, valR_pow' _ _ h1, valR_map' _ _ h1, valR_id_app _ _ h2]
+  rw [_root_.GlobalTheory.Points.valR_res _ _ h1, _root_.GlobalTheory.Points.valR_mul _ _ h1, _root_.GlobalTheory.Points.valR_res _ _ h1] at this
+  rw [this, hg, _root_.GlobalTheory.Points.valR_pow _ _ h1, _root_.GlobalTheory.Points.valR_res _ _ h1, valR_id_app _ _ h2]
 
 end GlobalTheory.SecValLC

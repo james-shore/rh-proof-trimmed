@@ -53,16 +53,7 @@ namespace GlobalTheory.UnitarySemisimple
 
 variable {H W : Type} [Group H] [AddCommGroup W] [Module ℂ W]
 
-theorem exists_orth_proj (B : W →ₗ⋆[ℂ] W →ₗ[ℂ] ℂ) (hdef : ∀ v, B v v = 0 → v = 0)
-    (M : Submodule ℂ W) [FiniteDimensional ℂ M] (v : W) :
-    ∃ m ∈ M, ∀ z ∈ M, B z (v - m) = 0 := by
-  first
-  | exact @_root_.GlobalTheory.OrthogonalProjection.exists_orth_proj
-  | exact _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj
-  | (apply _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OrthogonalProjection.exists_orth_proj <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj ..)
+alias exists_orth_proj := _root_.GlobalTheory.OrthogonalProjection.exists_orthogonal_projection_finite
 
 theorem rho_inv_rho (ρ : Representation ℂ H W) (g : H) (u : W) : ρ g⁻¹ (ρ g u) = u := by
   rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]

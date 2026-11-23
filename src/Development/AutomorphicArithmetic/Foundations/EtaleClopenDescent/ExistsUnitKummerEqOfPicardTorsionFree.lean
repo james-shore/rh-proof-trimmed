@@ -72,63 +72,20 @@ abbrev II (q : ℕ) [NeZero q] : Cx (ZMod q) := res _ (tw q 1)
 
 abbrev JJ : Cx ℤ := res ℤ Gm
 
-private theorem sec_nat {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U)
-    (x : Sec F U) : Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) :=
-  (congrArg (fun f => ModuleCat.Hom.hom f x) (φ.hom.naturality g.op)).symm
+private alias sec_res_id := _root_.GlobalTheory.EtC.ClsSpec.res_id
 
-private theorem sec_res_id {R : Type} [CommRing R] {F : Shv R} {U : Scheme.{0}} (x : Sec F U) :
-    Sec.res (𝟙 U) x = x := by
-  simp [Sec.res]
+private alias sm_zero := _root_.GlobalTheory.EtC.ClsSpec.smap_zero
 
-private theorem sec_res_comp {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U)
-    (x : Sec F U) : Sec.res (k ≫ g) x = Sec.res k (Sec.res g x) := by
-  simp [Sec.res]
-
-private theorem sm_add {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (a b : Sec F U) :
-    Sec.map φ (a + b) = Sec.map φ a + Sec.map φ b := map_add (φ.hom.app (op U)).hom a b
-
-private theorem sm_sub {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (a b : Sec F U) :
-    Sec.map φ (a - b) = Sec.map φ a - Sec.map φ b := map_sub (φ.hom.app (op U)).hom a b
-
-private theorem sm_zero {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} :
-    Sec.map φ (0 : Sec F U) = 0 := map_zero (φ.hom.app (op U)).hom
-
-private theorem sm_nsmul {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (n : ℕ) (a : Sec F U) :
-    Sec.map φ (n • a) = n • Sec.map φ a := map_nsmul (φ.hom.app (op U)).hom n a
-
-private theorem sr_add {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (a b : Sec F U) :
-    Sec.res g (a + b) = Sec.res g a + Sec.res g b := map_add (F.obj.map g.op).hom a b
-
-private theorem sr_nsmul {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (n : ℕ) (a : Sec F U) :
-    Sec.res g (n • a) = n • Sec.res g a := map_nsmul (F.obj.map g.op).hom n a
-
-private theorem unitSec_res {V U : Scheme.{0}} (g : V ⟶ U) (u : (Γ(U, ⊤))ˣ) :
-    Sec.res g (unitSec u) = unitSec (Units.map g.appTop.hom.toMonoidHom u) :=
-  (congrArg (fun f => ModuleCat.Hom.hom f (ULift.up (Additive.ofMul u)))
-    ((toSheafify Scheme.etaleTopology (Scheme.Γ ⋙ unitsF)).naturality g.op)).symm
-
-private theorem unitSec_mul {U : Scheme.{0}} (u v : (Γ(U, ⊤))ˣ) : unitSec (u * v) = unitSec u + unitSec v :=
-  map_add ((toSheafify Scheme.etaleTopology (Scheme.Γ ⋙ unitsF)).app (op U)).hom
-    (ULift.up (Additive.ofMul u)) (ULift.up (Additive.ofMul v))
-
-private theorem unitSec_one {U : Scheme.{0}} : unitSec (1 : (Γ(U, ⊤))ˣ) = 0 := by
-  have h := unitSec_mul (1 : (Γ(U, ⊤))ˣ) 1
-  rw [mul_one] at h
-  exact left_eq_add.mp h
-
-private theorem unitSec_pow {U : Scheme.{0}} (v : (Γ(U, ⊤))ˣ) (n : ℕ) : unitSec (v ^ n) = n • unitSec v := by
-  induction n with
-  | zero => simpa using unitSec_one
-  | succ n ih => rw [pow_succ, unitSec_mul, ih, succ_nsmul]
+private alias sm_nsmul := _root_.GlobalTheory.EtC.ClsSpec.smap_nsmul
 
 private theorem unitSec_loc {U : Scheme.{0}} (u u' : (Γ(U, ⊤))ˣ) (h : unitSec u = unitSec u') :
     Loc U fun _ g => Units.map g.appTop.hom.toMonoidHom u = Units.map g.appTop.hom.toMonoidHom u' := by
   have h0 : unitSec (u * u'⁻¹) = 0 := by
     have h1 : unitSec (u'⁻¹) + unitSec u' = 0 := by
-      rw [← unitSec_mul, inv_mul_cancel, unitSec_one]
-    rw [unitSec_mul, h, add_comm]
+      rw [← _root_.GlobalTheory.EtC.KummerSeq.unitSec_mul, inv_mul_cancel, _root_.UpperTheory.PicD.unitSec_one]
+    rw [_root_.GlobalTheory.EtC.KummerSeq.unitSec_mul, h, add_comm]
     exact h1
-  have h2 := (GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 U (ULift.up (Additive.ofMul (u * u'⁻¹))) h0
+  have h2 := (_root_.GlobalTheory.EtC.toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 U (ULift.up (Additive.ofMul (u * u'⁻¹))) h0
   refine GlobalTheory.T.etaleLocal_property_calculus_rules.2.1 U _ _ h2 ?_
   intro V g hg
   have h3 : Units.map g.appTop.hom.toMonoidHom (u * u'⁻¹) = 1 :=
@@ -155,7 +112,7 @@ private theorem rho_ex (q : ℕ) [NeZero q] (κ : RT q ⟶ Gm) :
     ((restrMap (Int.castRingHom (ZMod q)) (tw q 1)).app U s), ?_, ?_, ?_⟩
   · intro V U g s a
     change Sec.res g (Sec.map ((resMap ℤ κ).f s) _) = Sec.map ((resMap ℤ κ).f s) _
-    rw [sec_nat, SemiMap.nat]
+    rw [_root_.GlobalTheory.EtC.CupSpec.map_res, SemiMap.nat]
   · intro U s t a
     change Sec.map _ (Sec.map ((resMap ℤ κ).f s) _) = Sec.map ((resMap ℤ κ).f t) _
     rw [← SemiMap.comm]
@@ -216,12 +173,12 @@ variable {q : ℕ} [NeZero q] {X : Scheme.{0}}
 include ρnat ρd in
 private theorem good_ex (hz : Sec.map ((II q).d 1 2) z = 0) (hw : Sec.map (JJ.d 0 1) w = ρ X 1 z) :
     Loc X fun V g => ∃ Y, Good q ρ z w V g Y := by
-  have h0 := (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness (ZMod q) (tw q 1) X).2.2.1 0 1 2 (by norm_num) (by norm_num) z (by norm_num) hz
+  have h0 := (_root_.GlobalTheory.EtC.resSec (ZMod q) (tw q 1) X).2.2.1 0 1 2 (by norm_num) (by norm_num) z (by norm_num) hz
   refine GlobalTheory.T.etaleLocal_property_calculus_rules.2.1 X _ _ h0 ?_
   rintro V g ⟨y, hy⟩
   have he : Sec.map (JJ.d 0 1) (Sec.res g w - ρ V 0 y) = 0 := by
-    rw [sm_sub, ← sec_nat, hw, ρd, hy, ρnat, sub_self]
-  obtain ⟨a, ha⟩ := ((GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ Gm V).1 _).1 he
+    rw [_root_.GlobalTheory.EtC.KummerSplit.smap_sub, ← _root_.GlobalTheory.EtC.CupSpec.map_res, hw, ρd, hy, ρnat, sub_self]
+  obtain ⟨a, ha⟩ := ((_root_.GlobalTheory.EtC.resSec ℤ Gm V).1 _).1 he
   obtain ⟨v, rfl⟩ := UpperTheory.exists_unit_eq_multiplicativeGroup_section V a
   exact ⟨_, y, v, hy, by rw [ha]; abel, rfl⟩
 
@@ -231,9 +188,9 @@ private theorem good_res (hq : IsUnit (q : Γ(X, ⊤))) {V W : Scheme.{0}} (g : 
   obtain ⟨y, v, h1, h2, rfl⟩ := h
   have hqV : IsUnit (q : Γ(V, ⊤)) := by simpa using hq.map g.appTop.hom
   refine ⟨Sec.res k y, Units.map k.appTop.hom.toMonoidHom v, ?_, ?_, ?_⟩
-  · rw [← sec_nat, h1, sec_res_comp]
-  · rw [← ρnat, ← unitSec_res, ← sec_nat, ← sr_add, h2, sec_res_comp]
-  · rw [sr_add, (GlobalTheory.T.isKummerTorsorSplitting_kummerTorsorSplitting q).1 W V k v hqV]
+  · rw [← _root_.GlobalTheory.EtC.CupSpec.map_res, h1, _root_.GlobalTheory.TwSec.res_comp]
+  · rw [← ρnat, ← _root_.UpperTheory.PicD.unitSec_res, ← _root_.GlobalTheory.EtC.CupSpec.map_res, ← _root_.GlobalTheory.TwSec.res_add, h2, _root_.GlobalTheory.TwSec.res_comp]
+  · rw [_root_.GlobalTheory.TwSec.res_add, (_root_.GlobalTheory.EtC.KummerSplit.isKum_kumT q).1 W V k v hqV]
 
 private theorem good_unique (κ : RT q ⟶ Gm)
     (hκ : ∀ (U : Scheme.{0}) (ζ : Prim q Γ(U, ⊤)) (u : (Γ(U, ⊤))ˣ), (u : Γ(U, ⊤)) = ζ.1 →
@@ -245,14 +202,14 @@ private theorem good_unique (κ : RT q ⟶ Gm)
   obtain ⟨y, v, h1, h2, rfl⟩ := h
   obtain ⟨y', v', h1', h2', rfl⟩ := h'
   have hqV : IsUnit (q : Γ(V, ⊤)) := by simpa using hq.map g.appTop.hom
-  have hd : Sec.map ((II q).d 0 1) (y - y') = 0 := by rw [sm_sub, h1, h1', sub_self]
-  obtain ⟨s, hs⟩ := ((GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness (ZMod q) (tw q 1) V).1 _).1 hd
+  have hd : Sec.map ((II q).d 0 1) (y - y') = 0 := by rw [_root_.GlobalTheory.EtC.KummerSplit.smap_sub, h1, h1', sub_self]
+  obtain ⟨s, hs⟩ := ((_root_.GlobalTheory.EtC.resSec (ZMod q) (tw q 1) V).1 _).1 hd
   have hρ : Sec.map (resι ℤ Gm) (Sec.map κ (show Sec (RT q) V from s) + unitSec v) =
       Sec.map (resι ℤ Gm) (unitSec v') := by
     have h5 := ρι V s
     rw [hs, map_sub] at h5
-    rw [sm_add, ← h5, sub_add_eq_add_sub, h2.trans h2'.symm, add_sub_cancel_left]
-  have hk := (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ Gm V).2.1 hρ
+    rw [_root_.GlobalTheory.EtC.ClsSpec.smap_add, ← h5, sub_add_eq_add_sub, h2.trans h2'.symm, add_sub_cancel_left]
+  have hk := (_root_.GlobalTheory.EtC.resSec ℤ Gm V).2.1 hρ
   have := UpperTheory.kummerMap_add_of_unitSec_add q κ hκ V hqV v v' s hk
   rw [this, hs]
   abel
@@ -289,8 +246,8 @@ private theorem glue (κ : RT q ⟶ Gm)
   intro V g hg
   obtain ⟨y, v, h1, h2, h3⟩ := hs V g hg
   have hq1 : unitSec (v ^ q) = unitSec (Units.map g.appTop.hom.toMonoidHom u) := by
-    apply (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ Gm V).2.1
-    rw [← unitSec_res, ← sec_nat, hu, unitSec_pow, sm_nsmul, sr_nsmul, ← h2, smul_add, ← map_nsmul (ρ V 0),
+    apply (_root_.GlobalTheory.EtC.resSec ℤ Gm V).2.1
+    rw [← _root_.UpperTheory.PicD.unitSec_res, ← _root_.GlobalTheory.EtC.CupSpec.map_res, hu, _root_.GlobalTheory.EtC.KummerSeq.unitSec_pow, sm_nsmul, _root_.GlobalTheory.TwSec.res_nsmul, ← h2, smul_add, ← map_nsmul (ρ V 0),
       q_smul_zero, map_zero, zero_add]
   refine GlobalTheory.T.etaleLocal_property_calculus_rules.2.1 V _ _ (unitSec_loc _ _ hq1) ?_
   intro W k hk
@@ -304,8 +261,8 @@ private theorem glue (κ : RT q ⟶ Gm)
   have hv : (Units.map k.appTop.hom.toMonoidHom v) ^ q = Units.map (k ≫ g).appTop.hom.toMonoidHom u := by
     rw [hc, ← hk, map_pow]
   have hY' : Sec.res (k ≫ g) Y = Sec.res k y + kumT q W (Units.map k.appTop.hom.toMonoidHom v) := by
-    rw [sec_res_comp, hY V g hg, h3, sr_add, (GlobalTheory.T.isKummerTorsorSplitting_kummerTorsorSplitting q).1 W V k v hqV]
-  rw [sec_nat, hY', sm_add, ← hzu W (k ≫ g) _ hv, sr_add, ← sec_nat, h1, sec_res_comp, sec_res_comp]
+    rw [_root_.GlobalTheory.TwSec.res_comp, hY V g hg, h3, _root_.GlobalTheory.TwSec.res_add, (_root_.GlobalTheory.EtC.KummerSplit.isKum_kumT q).1 W V k v hqV]
+  rw [_root_.GlobalTheory.EtC.CupSpec.map_res, hY', _root_.GlobalTheory.EtC.ClsSpec.smap_add, ← hzu W (k ≫ g) _ hv, _root_.GlobalTheory.TwSec.res_add, ← _root_.GlobalTheory.EtC.CupSpec.map_res, h1, _root_.GlobalTheory.TwSec.res_comp, _root_.GlobalTheory.TwSec.res_comp]
 
 end
 
@@ -315,7 +272,7 @@ open UpperTheory.Kum1 in
 theorem UpperTheory.Cb.exists_unit_kummer_eq_of_picard_torsionFree :
     ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A], IsUnit (q : A) → (∀ c : CommRing.Pic A, c ^ q = 1 → c = 1) → ∀ x : Ht q (sp A) 1 1, ∃ u : (Γ(Spec (CommRingCat.of A), ⊤))ˣ, kum q u = x := by
   intro q _ A _ hq hpic x
-  obtain ⟨κ, -, -, hκ, -, -⟩ := GlobalTheory.T.kummer_sequence_etale_tateTwist q
+  obtain ⟨κ, -, -, hκ, -, -⟩ := _root_.GlobalTheory.EtC.kummer_sequence q
   obtain ⟨ρ, ρnat, ρd, ρι⟩ := rho_ex q κ
   have hqX : IsUnit (q : Γ(Spec (CommRingCat.of A), ⊤)) := by
     simpa using hq.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom
@@ -343,7 +300,7 @@ theorem UpperTheory.Cb.exists_unit_kummer_eq_of_picard_torsionFree :
   obtain ⟨w, hw⟩ := ((T2.2 α').2).1 hc
   rw [hid] at hw
   have hqw : Sec.map (JJ.d 0 1) (q • w) = 0 := by rw [sm_nsmul, hw, hqz']
-  obtain ⟨b, hb⟩ := ((GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ Gm _).1 (q • w)).1 hqw
+  obtain ⟨b, hb⟩ := ((_root_.GlobalTheory.EtC.resSec ℤ Gm _).1 (q • w)).1 hqw
   obtain ⟨u, rfl⟩ := UpperTheory.exists_unit_eq_multiplicativeGroup_section _ b
   have K := GlobalTheory.T.kummerClassOfUnit_cocycle_natural_additive q
   obtain ⟨γ, hγ, -, hγ2⟩ := K.1 _ u hqX

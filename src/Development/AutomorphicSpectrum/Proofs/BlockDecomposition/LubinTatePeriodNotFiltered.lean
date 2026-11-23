@@ -102,7 +102,7 @@ theorem exact_degrees_of_product : ∀ {l : ℕ} [Fact l.Prime] (K : FinExt l) (
     (fun σ => Algebra.norm ℚ_[l] ((χ ⟨res σ, hres σ⟩ : (↥K.1)ˣ) : ↥K.1))
     (fun σ => by
       rw [← hTu']
-      exact GlobalTheory.T.galois_action_period_product K χ t s hs ht (res σ) (hres σ) fun μ x => hresv σ ⟨μ x, hμL μ x⟩)
+      exact _root_.GlobalTheory.CompanionTheory.LTPer.actB_prod_periods K χ t s hs ht (res σ) (hres σ) fun μ x => hresv σ ⟨μ x, hμL μ x⟩)
     (fun σ hσ => (hN (res σ) (hres σ) hσ).trans (hcyc σ))
   subst hn
   intro μ

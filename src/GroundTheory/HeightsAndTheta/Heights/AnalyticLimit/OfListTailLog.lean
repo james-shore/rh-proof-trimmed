@@ -58,17 +58,15 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.AnalyticLimit
 
-theorem GreenMassStep.full : GreenMassStep.Statement := GreenMassStep.proof
+alias GreenMassStep.full := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.GreenMassStep.proof
 
-theorem GreenMassReplace.full : GreenMassReplace.Statement := GreenMassReplace.proof
+alias GreenMassReplace.full := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.GreenMassReplace.proof
 
-theorem GreenMassError.full : GreenMassError.Statement := GreenMassError.proof
+alias GreenMassError.full := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.GreenMassError.proof
 
 theorem UniformIntegrability.full : UniformIntegrability.Statement :=
   UniformIntegrability.of_greenMass GreenMassStep.full GreenMassReplace.full GreenMassError.full
 
-theorem ListTailLog.of_lemmaE (hE : LemmaETailLog.Statement) (hM : ListMono.Statement)
-    (hC : RegSection.Statement) (hS : TailShift.Statement) : ListTailLog.Statement :=
-  ListTailLog.proof hE hM hC hS
+alias ListTailLog.of_lemmaE := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.ListTailLog.proof
 
 end GroundTheory.Heights₂.Heights.AnalyticLimit

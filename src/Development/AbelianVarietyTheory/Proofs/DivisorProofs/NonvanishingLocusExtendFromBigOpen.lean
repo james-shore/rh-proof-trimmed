@@ -64,7 +64,7 @@ theorem extend_isLocus_of_big_open : ∀ (X : Scheme.{0}) [IsLocallyNoetherian X
     have := congrArg (fun U : W.toScheme.Opens => (⟨x, hx⟩ : W.toScheme) ∈ U) h1
     exact Iff.of_eq this
   refine ⟨L, hL, t, rfl, ?_⟩
-  exact GlobalTheory.T.eq_of_isAffineOpen_of_ringKrullDim_le_one' X hX V (ReciprocityTheory.ChartRestriction.G.Out.nonzeroLocus t) hV (fun x hx => (key x (hVW hx)).2 hx)
+  exact _root_.GlobalTheory.eq_of_isAffineOpen_of_ringKrullDim_le_one X hX V (ReciprocityTheory.ChartRestriction.G.Out.nonzeroLocus t) hV (fun x hx => (key x (hVW hx)).2 hx)
     (fun z hz hz1 => (key z (hW z hz1)).1 hz)
 
 end GlobalTheory

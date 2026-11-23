@@ -82,7 +82,7 @@ theorem exists_good_model : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKSt
   have hcomp : joinVec y y₂ ∘ joinInl ι (fun _ : Unit => Fin M) = y := hj.2.2.1
   have hblocks := join_blocks y y₂ hV.2.1.2.2 ⟨i₀, hi₀⟩
   have harith : IsArithVar (mCoordIdeal (joinVec y y₂)) (e + 1) := by
-    refine GlobalTheory.T.isArithVar_of_block_algebraic K ι (K ⊕ Unit) (joinIdx ι fun _ : Unit => Fin M) Sum.inl
+    refine _root_.GlobalTheory.CompanionTheory.Ar.Cmp.isArithVar_of_isAlgebraic_image K ι (K ⊕ Unit) (joinIdx ι fun _ : Unit => Fin M) Sum.inl
       (joinInl ι fun _ : Unit => Fin M) Ω (joinVec y y₂) (e + 1) hb₁ hblocks ?_ ?_
     · rw [hcomp]; exact hV
     · rw [hcomp, hfield]

@@ -210,7 +210,7 @@ theorem exists_sheets (h1 : HolNull) (h2 : ChartMeets) (h3 : RootBranches) (h4 :
     fun k m i t => by
       by_cases ht : t ∈ Wk k m
       · exact ((hc _ (hWs k m ht).2).2.1 _ (((hθ k m t ht).2 _).2 ⟨i, rfl⟩)).imp fun _ h _ => h
-      · obtain ⟨w₀, hw₀⟩ := GlobalTheory.T.multiprojective_points_nonempty K J Ω Dc.y fun k => by
+      · obtain ⟨w₀, hw₀⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovGraph.mcPts_mCoordIdeal_nonempty K J Ω Dc.y fun k => by
           obtain ⟨c', hc'⟩ := Or.𝔐.tie.cover ⟨genPt Or.𝔐.ξ, specializes_rfl⟩
           exact ⟨c' k, Finset.prod_ne_zero_iff.1 hc'.1 k (Finset.mem_univ k)⟩
         exact (exists_pt Or.𝔐 hw₀).imp fun _ _ h => absurd h ht
@@ -254,7 +254,7 @@ theorem exists_sheets (h1 : HolNull) (h2 : ChartMeets) (h3 : RootBranches) (h4 :
     obtain ⟨i, rfl⟩ := ((hθ k m t₃ (disjointed_subset _ _ hm)).2 x).1 hx
     exact ⟨k, m, i, t₃, ⟨ht₃, hm⟩, sat_of_coords Or.𝔐 cx (hζ t ht)⟩
   obtain ⟨k₀, m₀, i₀, t₀, ht₀⟩ : ∃ k m, ∃ _ : Fin Or.deg, ∃ t, t ∈ FF k ∩ disjointed (Wk k) m := by
-    obtain ⟨w₀, hw₀⟩ := GlobalTheory.T.multiprojective_points_nonempty K J Ω Dc.y fun k => by
+    obtain ⟨w₀, hw₀⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovGraph.mcPts_mCoordIdeal_nonempty K J Ω Dc.y fun k => by
       obtain ⟨c', hc'⟩ := Or.𝔐.tie.cover ⟨genPt Or.𝔐.ξ, specializes_rfl⟩
       exact ⟨c' k, Finset.prod_ne_zero_iff.1 hc'.1 k (Finset.mem_univ k)⟩
     obtain ⟨b, -⟩ := Dc.chart_cover w₀ hw₀

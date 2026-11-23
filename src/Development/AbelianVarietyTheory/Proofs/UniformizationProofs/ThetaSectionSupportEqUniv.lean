@@ -65,7 +65,7 @@ theorem theta_support_eq_univ : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A}
   have hpull := GlobalTheory.UU.PullSec.pullEx V hV D A G U (Kbar V) (𝟙_ _) (toUnit _) 1
   obtain ⟨th, hth, -⟩ := hpull.1 θ
   obtain ⟨s₀, hs₀, -⟩ := hpull.2 f
-  have hone := (GlobalTheory.T.expF_of_theta_degree_one h1 h2 V hV D A G U θ f hθ th s₀ hth hs₀).2.2
+  have hone := (_root_.GlobalTheory.UU.OneDim.expF_one_dim h1 h2 V hV D A G U θ f hθ th s₀ hth hs₀).2.2
   have hne : ({α | ∃ j, (f α).f j ≠ 0} : Set D.X).Nonempty := by
     obtain ⟨mu, t, s, hts, j, hj⟩ := (hw 1 le_rfl).2.1 0
     obtain ⟨c, hc⟩ := hone t s hts

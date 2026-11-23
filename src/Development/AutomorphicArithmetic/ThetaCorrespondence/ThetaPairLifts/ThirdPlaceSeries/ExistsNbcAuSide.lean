@@ -86,7 +86,7 @@ theorem unr_locOf_of_sphAt (π : NG.AutRep D.host.E D.R.nV) (s : SplitPlace D.ho
     D.naut.unr (_root_.GlobalTheory.AutQuot.locOf_alt hL D T (clsA π).rep s.w) := by
   obtain ⟨x, hx⟩ := locAt_of_split π s
   rw [_root_.GlobalTheory.AutQuot.locOf_eq_alt hL D T hx, T.unr, Equiv.apply_symm_apply]
-  exact _root_.GlobalTheory.T.locRecT_unr_of_sphAt hL D π s x hx hs
+  exact _root_.GlobalTheory.SphLoc.main_alt_alt hL D π s x hx hs
 theorem f_locPol_alt (π : NG.AutRep D.host.E D.R.nV) (s : SplitPlace D.host.E) (w : PlE D.host)
     (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)) (hc : IsConjPl D.host w s.w) (hu : IsUnif D.host.E s.v ϖ)
     (J : Subgroup (GAf D.host.E D.R.nV)) (hJ : ∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax D.host.E D.R.nV))
@@ -96,8 +96,8 @@ theorem f_locPol_alt (π : NG.AutRep D.host.E D.R.nV) (s : SplitPlace D.host.E) 
     X ^ D.R.nV + ∑ k ∈ Finset.Icc 1 D.R.nV,
         Polynomial.C ((-1 : ℂ) ^ k * ((normV w : ℕ) : ℂ) ^ (k * (k - 1) / 2) * c k) * X ^ (D.R.nV - k) =
       galPol D.naut (D.naut.lpTw (_root_.GlobalTheory.AutQuot.locOf_alt hL D T (clsA π).rep w) ((1 - (D.R.nV : ℝ)) / 2)) := by
-  obtain ⟨x, hx⟩ := GlobalTheory.T.exists_localComponent_conj_splitPlace D π s w hc
-  obtain ⟨hun, hpol⟩ := _root_.GlobalTheory.T.spherical_vector_fixed_local_alt hL D π s w ϖ hc hu J hJ f hf hf0 hfix c hc' x hx
+  obtain ⟨x, hx⟩ := _root_.GlobalTheory.AutQuot.conjLoc D π s w hc
+  obtain ⟨hun, hpol⟩ := _root_.GlobalTheory.HeckeFrob.locPol_eq_alt hL D π s w ϖ hc hu J hJ f hf hf0 hfix c hc' x hx
   rw [_root_.GlobalTheory.AutQuot.locOf_eq_alt hL D T hx]
   have hu2 : D.naut.unr (D.naut.lpTw ((T.e w).symm (_root_.GlobalTheory.CuspRep.ParLawsT.locRecT hL (D.nd.plOm.2 w) x))
       ((1 - (D.R.nV : ℝ)) / 2)) := by

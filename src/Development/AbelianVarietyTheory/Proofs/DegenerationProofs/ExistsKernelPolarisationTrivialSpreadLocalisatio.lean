@@ -75,7 +75,7 @@ theorem exists_kTriv : GlobalFnsSt → ∀ (R K : Type) [CommRing R] [IsDomain R
       rw [hsec]
       exact (inferInstance : IsClosedImmersion (𝟙 (Sp R)))
     exact IsClosedImmersion.of_comp e.left H.hom
-  obtain ⟨a, ha, key⟩ := GlobalTheory.T.closed_immersion_generic_unit_locus R K _ _ e.left H.hom hcl inferInstance inferInstance (fun B _ y t hy => by
+  obtain ⟨a, ha, key⟩ := _root_.GlobalTheory.GenSpread.ClosedFac.exists_lift R K _ _ e.left H.hom hcl inferInstance inferInstance (fun B _ y t hy => by
     have hdi : (y ≫ j.left) ≫ G.hom = t ≫ spMap (algebraMap R K) := by
       rw [Category.assoc, Over.w j, hy]
     let x : Over.mk t ⟶ A := Over.homMk (h.1.lift _ _ hdi) (h.1.lift_snd _ _ _)

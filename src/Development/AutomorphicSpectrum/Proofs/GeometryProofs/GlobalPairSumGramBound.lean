@@ -132,7 +132,7 @@ theorem core {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D 
         (fun k => ((bb k : ↥(𝔐.Vgen a ⊔ 𝔐.Vgen b)) : 𝔐.Li)) (HodgeMetric.periodGram L U u) := by
   classical
   have hsm : Smooth 𝔐.t.G.hom := 𝔐.t.semi.smooth
-  obtain ⟨W, hW, v, hq, htan, hval⟩ := GlobalTheory.T.lattice_tangent_vectors_affine_open 𝔐.X 𝔐.t.G Ω 𝔐.ξ 𝔐.Li 𝔐.M ⟨centre (p 0), h0⟩ N
+  obtain ⟨W, hW, v, hq, htan, hval⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeMetric.FrameExt.exists_affine_frame 𝔐.X 𝔐.t.G Ω 𝔐.ξ 𝔐.Li 𝔐.M ⟨centre (p 0), h0⟩ N
     (fun k => ((bb k : ↥(𝔐.Vgen a ⊔ 𝔐.Vgen b)) : 𝔐.Li)) 𝔐.tie.gen
     (GlobalTheory.T.hodge_generated_sum_specialization E H D l Xo c Y S Ω K J y 𝔐 a b N bb (p 0) h0 hfr)
   have hW0 : ⊤ ≤ p 0 ⁻¹ᵁ W := fun x _ => by
@@ -205,10 +205,7 @@ theorem recentre_mul {n : ℕ} (t₀ : Fin n → ℂ) (ρ₀ ρ₁ : ℝ) (π : 
   funext i
   simp [HodgeMetric.recentre, _root_.mul_assoc]
 
-theorem star_mem_ball' {n : ℕ} {u : Fin n → ℂ} (hu : u ∈ Metric.ball (0 : Fin n → ℂ) 1) :
-    star u ∈ Metric.ball (0 : Fin n → ℂ) 1 := by
-  rw [mem_ball_zero_iff] at hu ⊢
-  rwa [norm_star]
+alias star_mem_ball' := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ConjPeriods.star_mem_ball
 
 theorem star_mem_punct' {n a : ℕ} {u : Fin n → ℂ} (hu : u ∈ Flat.punct n a 1) :
     star u ∈ Flat.punct n a 1 :=
@@ -310,7 +307,7 @@ theorem exists_isFramePeriods : Top.Given → ∀ (E : Type) [Field E] [NumberFi
   have hhol : IsHolTo (Metric.ball 0 1) p := GlobalTheory.T.holomorphic_coords_of_generic_point 𝔐.X Ω 𝔐.ξ K J y htie hall n _ w p Metric.isOpen_ball hw hp
   haveI : FiniteDimensional ℚ c.F := c.fin
   haveI : NumberField c.F := ⟨⟩
-  obtain ⟨τ, hτ⟩ := GlobalTheory.T.holomorphic_disc_over_number_field_ring c.F 𝔐.X (𝔐.f ≫ Y.s) n p hhol
+  obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ConstEmbedding.exists_embedding c.F 𝔐.X (𝔐.f ≫ Y.s) n p hhol
   have hint : ∀ u ∈ Flat.punct n a₀ 1, 𝔐.Interior (p u) := fun u hu => by
     have h1 := (hgeo ρ₀ hρ₀ le_rfl u hu.1).2.2
     have h2 := hBd (p u) (w u) (hp u hu.1)

@@ -61,20 +61,6 @@ section Move
 
 variable {S : Scheme.{0}} {R R' : Type} [CommRing R] [CommRing R']
 
-theorem tan_up {G : Over S} [GrpObj G] (φ : R →+* R') (x : Sp R ⟶ S) (x' : Sp R' ⟶ S)
-    (h : Spec.map (CommRingCat.ofHom φ) ≫ x = x') (v : epsAt x ⟶ G) (hv : IsTanAt G x v) :
-    IsTanAt G x' (LieCarrier.epsHom φ x x' h ≫ v) := by
-  let u : Over.mk x' ⟶ Over.mk x := Over.homMk (Spec.map (CommRingCat.ofHom φ)) h
-  have e : (LieEx.zsec x' : _ ⟶ LieEx.ob x' R') ≫ LieCarrier.epsHom φ x x' h = u ≫ LieEx.zsec x := by
-    apply Over.OverMorphism.ext
-    show Spec.map _ ≫ Spec.map _ = Spec.map _ ≫ Spec.map _
-    rw [← Spec.map_comp, ← Spec.map_comp, ← CommRingCat.ofHom_comp, ← CommRingCat.ofHom_comp]
-    congr 2
-    refine RingHom.ext fun a => ?_
-    simp [dualMap]
-  refine (LieEx.isTanAt_iff x' G _).2 ?_
-  rw [← Category.assoc, e, Category.assoc, (LieEx.isTanAt_iff x G _).1 hv, MonObj.comp_one]
-
 variable {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {ξ : Sp Ω ⟶ X} {ξ' : Sp Ω' ⟶ X'} {f : X' ⟶ X}
   {i : Ω →+* Ω'} {G : Over X} {G' : Over X'} [GrpObj G] [GrpObj G'] {φ : G'.left ⟶ G.left}
   {V V' : Type} [AddCommGroup V] [Module Ω V] [AddCommGroup V'] [Module Ω' V']
@@ -85,7 +71,7 @@ theorem exists_hom (hd : GlobalTheory.CompanionTheory.Ar.Dominates ξ' ξ f i) (
   have hx : Spec.map (CommRingCat.ofHom i) ≫ ξ = ξ' ≫ f := hd.symm
   let P := LieMove.pushModel hG M'
   have ex : ∀ e, ∃ e', P.pt e' = LieCarrier.epsHom i ξ (ξ' ≫ f) hx ≫ M.pt e :=
-    fun e => P.onto _ (tan_up i ξ (ξ' ≫ f) hx _ (M.tan e))
+    fun e => P.onto _ (_root_.GlobalTheory.CompanionTheory.Ar.LiePull.tan_pull i ξ (ξ' ≫ f) hx _ (M.tan e))
   choose j hj using ex
   refine ⟨AddMonoidHom.mk' j fun a b => P.inj ?_, fun e => congrArg (fun z => z.left) (hj e)⟩
   rw [P.add, hj, hj, hj, M.add, MonObj.comp_mul]

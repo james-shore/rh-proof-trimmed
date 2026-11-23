@@ -84,7 +84,7 @@ theorem hessC_finset_sum {D : ℕ} {α : Type*} (s : Finset α) (f : α → (Fin
     simp [hessC]
   | insert a s ha ih =>
     simp only [Finset.sum_insert ha]
-    rw [ReciprocityTheory.AnForm.A.hessC_add (f a) (fun w => ∑ b ∈ s, f b w) z (hf a (Finset.mem_insert_self a s))
+    rw [_root_.ReciprocityTheory.AnForm.A.TraceConjugationCover.complexHessian_add_of_contDiffAt (f a) (fun w => ∑ b ∈ s, f b w) z (hf a (Finset.mem_insert_self a s))
       (ContDiffAt.sum fun b hb => hf b (Finset.mem_insert_of_mem hb)),
       ih fun b hb => hf b (Finset.mem_insert_of_mem hb)]
 
@@ -95,7 +95,7 @@ theorem hessC_add_sum_log {D : ℕ} {α : Type*} (s : Finset α) (φ : (Fin D �
   have hc : ∀ a, ContDiffAt ℝ 2 (fun w => c a * Real.log ‖g a w‖) z := fun a =>
     contDiffAt_const.mul ((((hg a).contDiffAt (n := 2)).restrict_scalars ℝ).norm ℝ (hz a) |>.log
       (norm_ne_zero_iff.2 (hz a)))
-  rw [ReciprocityTheory.AnForm.A.hessC_add _ _ z hφ (ContDiffAt.sum fun a _ => hc a),
+  rw [_root_.ReciprocityTheory.AnForm.A.TraceConjugationCover.complexHessian_add_of_contDiffAt _ _ z hφ (ContDiffAt.sum fun a _ => hc a),
     hessC_finset_sum s _ z fun a _ => hc a]
   simp [ReciprocityTheory.AnForm.M.hessC_const_mul', ReciprocityTheory.AnForm.A.hessC_log_norm _ z (hg _) (hz _)]
 

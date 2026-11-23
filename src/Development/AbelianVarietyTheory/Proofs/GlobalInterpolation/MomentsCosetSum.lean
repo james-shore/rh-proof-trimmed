@@ -177,9 +177,7 @@ section Size
 
 variable {p : ℕ} [Fact p.Prime]
 
-theorem lamC_mul (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ TaylorLogMetric.Qbar) :
-    TaylorLogMetric.lamC lam (x * y) = TaylorLogMetric.lamC lam x * TaylorLogMetric.lamC lam y := by
-  simp only [TaylorLogMetric.lamC, dif_pos hx, dif_pos hy, dif_pos (mul_mem hx hy), ← map_mul]; rfl
+alias lamC_mul := _root_.GlobalTheory.MomT.UnitTr.lamC_mul_of_mem
 
 theorem lamC_sum (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {κ : Type} (s : Finset κ) (f : κ → ℂ) (h : ∀ i ∈ s, f i ∈ TaylorLogMetric.Qbar) :
     TaylorLogMetric.lamC lam (∑ i ∈ s, f i) = ∑ i ∈ s, TaylorLogMetric.lamC lam (f i) := by
@@ -383,11 +381,11 @@ theorem prodsum (e e'' : VCx X.Tau a b → ℂ) (c : ℂ) (M B' B₁ B₂ : AddS
   rw [(GlobalTheory.T.addSubgroup_reps_existence_card_sum (HomE X.E a b)).2.2.1 ℂ M B' B₁ B₂ R R₁ R₂ (fun y => Wx A y e z) l1 l2 hs hu hR hR₁ hR₂
     (fun y hy l hl hl' => by
       show Wx A (y + l) e z = Wx A y e z
-      rw [← Wx_add A (hB y hy l hl'), hfix l hl])]
+      rw [← _root_.GlobalTheory.MomT.ThShape.Wx_mul A (hB y hy l hl'), hfix l hl])]
   refine Finset.sum_congr rfl fun y₂ h₂ => ?_
   rw [← Wx_mul, ← funext he, Wx_sum']
   refine Finset.sum_congr rfl fun y₁ h₁ => ?_
-  rw [Wx_add A (hB _ (l2 (hR₂.1 _ h₂)) _ (l1 (hR₁.1 _ h₁))), add_comm]
+  rw [_root_.GlobalTheory.MomT.ThShape.Wx_mul A (hB _ (l2 (hR₂.1 _ h₂)) _ (l1 (hR₁.1 _ h₁))), add_comm]
 
 theorem coc_nsmul (n : ℕ) (x y : HomE X.E a b) : coc A ((n : X.E) • x) y = n * coc A x y := by
   have h4 := (GlobalTheory.T.weylHeisenbergOperator_calculus_rational X A a b).2.2.2.1
@@ -482,7 +480,7 @@ theorem moments_coset_sum : ∀ (X : Fields) (A : Amb X) (a b : ℕ) (S SG : Fin
     have hjA : j ∈ halfAO S M (cA * (p * g)) := by
       obtain ⟨y, hy, rfl⟩ := hJ.1 j hj
       exact (b4 y hy.1).2.1
-    rw [Wx_add A (b7 _ (neg_mem ht₀) _ (neg_mem hjA)), ← neg_add]
+    rw [_root_.GlobalTheory.MomT.ThShape.Wx_mul A (b7 _ (neg_mem ht₀) _ (neg_mem hjA)), ← neg_add]
     refine hth _ (add_mem hx ?_) _ (add_mem ht₀ hjA) (by simpa using ht₀') R hR
     exact Submodule.smul_mem _ (cA : 𝓞 X.E) (b4 j (hCM (hJ.1 j hj))).1
   have hsmooth : ∀ j ∈ J, ∀ k : ℕ, ContDiff ℂ k (A.thInd S N N' (p * g) (x + j)) := by
@@ -520,7 +518,7 @@ theorem moments_coset_sum : ∀ (X : Fields) (A : Amb X) (a b : ℕ) (S SG : Fin
       refine sm B σ (hb _ (neg_mem hγt)) ?_
       push_cast; rw [hpE]; module
     obtain ⟨k, hk⟩ := b6 _ e0 y (l0 (l2 (hR₂.1 y hy)))
-    rw [coc_nsmul] at hk
+    rw [_root_.GlobalTheory.MomT.UnitTr.coc_nat_left] at hk
     have hne : ((g * p * (cA * g) : ℕ) : ℝ) ≠ 0 := by
       have := hp.pos
       positivity

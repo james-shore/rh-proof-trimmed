@@ -82,10 +82,6 @@ theorem proper_pull {K W L : Type} [Field K] [CommRing W] [Field L] [Algebra K L
   have : IsIso e.hom.left := inferInstanceAs (IsIso ((Over.forget _).map e.hom))
   infer_instance
 
-theorem spMap_comp {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (f : R →+* S) (g : S →+* T) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
-
 theorem eq_one_of_lieMult_zero {S : Scheme.{0}} {O : Type} [CommRing O] {G : Over S} [GrpObj G] (a : OAct O G)
     {k : Type} [Field k] (t : Sp k ⟶ S) (τ : O →+* k) (h : LieMult a t τ 0) (w : epsPt t ⟶ G)
     (hw : IsLieEigen a t τ w) : w = 1 := by
@@ -212,15 +208,15 @@ theorem potGood_of_lieMult_zero : ∀ (V K : Type) [CommRing V] [IsDomain V] [Is
   let aG : OAct (𝓞 F) G := ⟨actG, g1, g2, g3, g4⟩
   obtain ⟨g', hg'⟩ := lift_ext V K W L Ω hc hfin g
   have e1 := GlobalTheory.LiePull.lieMult_pull (𝓞 F) _ _ A _ _ (pullback.fst _ _) act aL hAL hLc Ω (spMap g') σ 0
-  have hx : spMap g' ≫ spMap (algebraMap K L) = spMap g := by rw [← hg', spMap_comp]
+  have hx : spMap g' ≫ spMap (algebraMap K L) = spMap g := by rw [← hg', _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
   have e2 := GlobalTheory.LiePull.lieMult_pull (𝓞 F) _ _ G _ _ φ aG aL hφ hGc Ω (spMap g') σ 0
   have hG0 : LieMult aG (spMap (g'.comp (algebraMap W L))) σ 0 := by
-    rw [spMap_comp]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     exact e2.1 (e1.2 (hx ▸ hL))
   haveI : CharZero Ω := charZero_of_injective_ringHom g.injective
   have hinj : Function.Injective (g'.comp (algebraMap W L)) :=
     g'.injective.comp (IsFractionRing.injective W L)
-  exact GlobalTheory.T.isAbelianScheme_semiAbelian_dvr_noSpecialTorus W L G hsemi (proper_pull A G hM hA) E
+  exact _root_.GlobalTheory.ToricRankZero.isAbelianScheme_of_finrank_eq_zero W L G hsemi (proper_pull A G hM hA) E
     (finrank_zero W G hsemi F aG Ω _ hinj σ hG0 E)
 
 end GlobalTheory.PotGoodLie

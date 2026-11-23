@@ -74,8 +74,6 @@ variable {n d n₁ d₁ m : ℕ} {B : Base F E} {X : Spc F E n} {W : Spc F E d} 
 variable {H : Plane E n n₁} {H' : Plane E d d₁} {M : Model σ X W} {χX χW : Chr F E} {om : Rep σ X W} {r s r' s' i₀ i₁ j₀ j₁ : ℕ}
   {μ : Measure (unip σ W H')} {𝓕 : Set (unip σ W H')} {M₁ : Model σ X W₁} {e₀ : Fn F n d →ₗ[ℂ] Fn F n d₁}
 
-theorem countable_E : Countable E := (Module.finBasis ℚ E).equivFun.injective.countable
-
 theorem pair_low (hP : PairEx) (hL : Low) (hp : IsPair B M χX χW om r s r' s') (hH' : H'.IsAdapted σ B W W₁ i₀ i₁)
     (hM₁ : M₁.IsGood B.ψ) : ∃ om₁, IsPair B M₁ χX χW om₁ r s (r' - 1) (s' - 1) :=
   (hP F E σ B hp.base n d₁ X W₁ r s _ _ hp.herm ((hL F E σ B d d₁ W W₁ H' i₀ i₁ r' s' hp.base hH').2 hp.skew).2.2).2 χX χW hp.hX hp.hW
@@ -98,7 +96,7 @@ theorem sum0 (hS : Slice) (hA : EvAdm) (hm : MeanOK σ W H' μ 𝓕) (hp : IsPai
     (hC : ∀ Φ ∈ schA F _, HasSum (fun t => C * thetaSum F (e₀ (M.co.rho B.ψ (incM F (vL n H'.y t)) Φ))) (thetaSum F Φ)) {Φ}
     (hΦ : Φ ∈ schA F (Fin n × Fin d)) :
     HasSum (fun x => C * ∫ u in 𝓕, tm B M om H' e₀ (vecMulVec x H'.y) Φ u ∂μ) (∫ u in 𝓕, thetaSum F (om (1, u.1) Φ) ∂μ) := by
-  have := countable_E (E := E)
+  have := _root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.countableE (E := E)
   obtain ⟨m, b, z, hP⟩ := pol0 (F := F) (herm_det hp.herm) h'
   obtain ⟨β, h1, h2⟩ := slice_unif hS hp.base hp.good hM₁ he hP.toDual hΦ
   simp only [← integral_const_mul]
@@ -134,7 +132,7 @@ theorem constant_term_cone_integral_eq (hA : EvAdm) (hm : MeanOK σ W H' μ 𝓕
     (hc : c ≠ 0) (hC : ∀ Φ ∈ schA F _, HasSum (fun t => C * thetaSum F (eX (M₁.co.rho B.ψ (incM F (vR d₁ H.y t)) Φ))) (thetaSum F Φ))
     (hce : ∀ Φ ∈ schA F _, eX (e₀ Φ) = c • e Φ) {Φ} (hΦ : Φ ∈ schA F (Fin n × Fin d)) :
     ∫ u in 𝓕, tm B M om H' e₀ (vecMulVec H.x H'.y) Φ u ∂μ = C * c * thetaSum F (e (M.co.rho B.ψ (shiftA H H' 1) Φ)) := by
-  have := countable_E (E := E)
+  have := _root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.countableE (E := E)
   have hψ := hp.base.std
   have hi : ∀ u ∈ unip σ W H', ∀ Φ ∈ schA F (Fin n × Fin d), e (om (1, u) Φ) = e Φ := fun u hu Φ hΦ =>
     smul_right_injective _ hc (by simp only [← hce _ hΦ, ← hce _ (om_mem hp _ hΦ), hi₀ u hu Φ hΦ])

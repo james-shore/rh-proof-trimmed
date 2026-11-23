@@ -63,7 +63,7 @@ theorem HodgeCpt.Flag.exists_recoord_rootLines : ∀ (E : Type) [Field E] [Numbe
   have hgr : ∀ s i, ((𝔐.V s).gr (Fl.b s) i).IsVBOn Set.univ 1 ⊤ := fun s i =>
     (Lat.IsFlagVBOn.isVBOn_gr_inter _ _ _ _ _ _ _ (Fl.b s) (hlin s) (Fl.sub s)).2.1 i
   have hroot : ∀ r, (Fl.rootLat r).IsVB 1 ⊤ := fun r =>
-    (GlobalTheory.T.lattice_tensor_power_line_bundle _ _ _ Unit _ Set.univ (fun _ => hgr _ _) _).1
+    (_root_.GlobalTheory.CompanionTheory.Ar.LatTens.tens_isVBOn _ _ _ Unit _ Set.univ (fun _ => hgr _ _) _).1
   obtain ⟨K', fK, J', fJ, y', κ, v, hκ, hv, tie', h⟩ :=
     GlobalTheory.T.exists_block_refinement_lines 𝔐.X Ω 𝔐.ξ K J y (CMType H × Fin (D.p + D.q)) Fl.rootLat 𝔐.tie hroot
   choose xdeg e hdeg using h

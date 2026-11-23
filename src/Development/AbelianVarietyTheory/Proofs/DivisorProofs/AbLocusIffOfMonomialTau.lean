@@ -123,5 +123,5 @@ theorem GlobalTheory.Mum.abLocus_iff_of_monomialTau : ∀ (R : Type) [CommRing R
       (Ideal.pow_mem_of_mem _ hk _ hnk)
   · intro hnot
     let W : (Sp R').Opens := ⟨{x | ∏ k, r k ∉ x.asIdeal}, (PrimeSpectrum.basicOpen (∏ k, r k)).isOpen⟩
-    exact GlobalTheory.Mum.UnifFibre.fibres_abelian_of_psiUnitOn R' ⟨admissibleBase_of_completeNormalLocalCharZero hR', hR'.2.2.2⟩ D A G' hG' U W
+    exact _root_.GlobalTheory.Mum.PsiUnitAb.subset_abLocus_of_psiUnitOn R' ⟨admissibleBase_of_completeNormalLocalCharZero hR', hR'.2.2.2⟩ D A G' hG' U W
       (fun y => hmon.psiUnitOn y fun x hx => hx) hnot

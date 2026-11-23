@@ -54,6 +54,7 @@ import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.ChiLIntegrable
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.KloostermanDensityOfParts
 
 @[expose] public section
 
@@ -90,14 +91,9 @@ theorem ptMatN_one (ζ : ℂ) : D.ptMatN [(1, ζ)] (0 + 1) = Matrix.of fun _ _ =
 theorem ptMatN_append_head (h : C.LPt) (ζ : ℂ) (R : ℕ) (hR : D.ptSize h = R) :
     D.ptMatN (h ++ [(1, ζ)]) R = D.ptMatN h R := by
   ext a b
-  simp only [D.ptMatN, ptEntry_append, hR, a.isLt, b.isLt, and_self, if_true]
+  simp only [D.ptMatN, _root_.Formalism.FourierDecayAlt.P.PBJ.Asm.ptEntry_append, hR, a.isLt, b.isLt, and_self, if_true]
 
-theorem isLocPt_app (h : C.LPt) (R : ℕ) (hh : D.IsLocPt h R) (ζ : ℂ) (hζ : ζ ≠ 0) :
-    D.IsLocPt (h ++ [(1, ζ)]) (R + 1) := by
-  refine ⟨fun b hb => ?_, CompactCoefficientAppend.ptSize_app h R hh ζ⟩
-  rcases List.mem_append.1 hb with hb | hb
-  · exact hh.1 b hb
-  · simp at hb; subst hb; exact ⟨le_refl _, hζ⟩
+alias isLocPt_app := _root_.Formalism.FourierDecayAlt.P.PBI.isLocPt_app
 
 theorem Tz_lift (R : ℕ) (v : Fin (2 * 0 + k + 1) → ℂ) : Tz k (R + 0) (liftVec k R 0 v) = Tz k 0 v := by
   unfold Tz; rw [herm_lift]
@@ -159,14 +155,14 @@ theorem vecV_append_singleton_eq_vecV_sliceAt (k R ρ : ℕ) (hρ : ρ = 0) (e :
   obtain ⟨γ0, hγ0G, hZ0, hD0⟩ := exists_frame_level_zero rfl S0 ν'r m₀r hF0 ζ hζT0
   rw [vector_level_zero_eq_jacquet rfl S0 ν'r m₀r hF0 _ ζ hζT0 γ0 hγ0G hZ0 hD0, jacquet_integral_level_zero rfl S0 hN0 _ γ0]
   have hZ0' : Zhat k 0 S0.z S0.z' γ0 = Matrix.of fun _ _ => ζ := by rw [hZ0, ptMatN_one]
-  have hγG : U.mMap k R 0 Z γ0 ∈ B.GV k R := (Formalism.FourierDecayAlt.P.slice_membership k R 0).1 Z γ0 hZu.ne_zero hγ0G
+  have hγG : U.mMap k R 0 Z γ0 ∈ B.GV k R := (_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k R 0).1 Z γ0 hZu.ne_zero hγ0G
   have hZhat : Zhat k R S.z S.z' (U.mMap k R 0 Z γ0) = D.ptMatN (h ++ [(1, ζ)]) (R + 1) := by
     have h1 := zhat_mMap (j := R) S.z S.z' S.z_mem S.z'_mem Z γ0
     refine h1.trans ?_
     rw [hzS, hzS', lowV_liftVec, lowV_liftVec, hZ0', ptMatN_append_one h ζ R hh.2, hZh]
   have hDγ : D.IsDFrame S ν' m₀ (U.mMap k R 0 Z γ0) := by
     rw [hνS, hmS]
-    exact dFrame_mMap S S0 hzS hzS' ν'r m₀r Z hZu γ0 (gv_unit hγ0G) ζ hζ hZ0' hD0
+    exact dFrame_mMap S S0 hzS hzS' ν'r m₀r Z hZu γ0 (_root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ0G) ζ hζ hZ0' hD0
   have hpos : 0 < D.ptG (Tz k R S.z * Tz k R S.z') R (h ++ [(1, ζ)]) := by
     rw [hG]; exact mul_pos hdetpos (by linarith)
   rw [Formalism.FourierDecayAlt.P.isotropic_vectors_linear_indep k R Wp Wq S ν' m₀ F _ hq _ hFb hpos hγG hZhat hDγ]
@@ -193,7 +189,7 @@ theorem vecV_append_singleton_eq_vecV_sliceAt (k R ρ : ℕ) (hρ : ρ = 0) (e :
   have hlev : ∀ x : Mt k 0, Matrix.of (levMt R 0 e x) = ιLev k R 0 (Matrix.of x) := by
     intro x; simp only [levMt, Equiv.apply_symm_apply]; exact Dx2.MN.castM_rfl _
   simp only [Prod.map_apply, conjL_apply, hlev, midB_lev]
-  have hy2u : IsUnit (Matrix.of y2).det := gv_unit hy.2.1
+  have hy2u : IsUnit (Matrix.of y2).det := _root_.PI.StabPairsW.isUnit_det_of_mem_GV hy.2.1
   rw [← lev_inv _ hy2u, hπ (Matrix.of y1), hπ' (Matrix.of y2)⁻¹, Dx2.MN.castM_rfl, Dx2.MN.castM_rfl]
   congr 2
 

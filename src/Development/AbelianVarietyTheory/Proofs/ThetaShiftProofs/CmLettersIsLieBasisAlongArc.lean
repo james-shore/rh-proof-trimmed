@@ -125,7 +125,7 @@ theorem isPull_smulPt_split (hG : GlobalFnsSt) {O : Type} [CommRing O] [StarRing
   have e := smulPt_pull hG oa a (epsScale t) hν
   rw [smulPt_split hG oa hs, hw] at e
   have e₁ := isPull_comp (hs.2.2 _ _ (epsScale r) w) e
-  obtain ⟨g, hg⟩ := ConstLie.exists_isPull (epsScale r) ν
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.ConstLie.exists_isPullGt (epsScale r) ν
   have e₂ := isPull_comp hν hg
   have c : epsScale r ≫ epsScale t = epsScale t ≫ epsScale r := by
     simpa only [Category.comp_id] using (epsScale_mul_assoc r t (𝟙 _)).trans

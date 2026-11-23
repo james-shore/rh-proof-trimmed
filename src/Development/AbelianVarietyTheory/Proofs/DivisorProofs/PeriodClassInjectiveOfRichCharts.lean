@@ -70,7 +70,7 @@ theorem perCl_injective (K : Charts F) (hK : K.Rich) (per per' : Λ →+ Hol F.V
     have := hd T T' φ
     simp only [hφ, map_zero, sub_zero] at this
     exact sub_eq_zero.1 this
-  obtain ⟨p, hp⟩ := GlobalTheory.T.exists_holomorphic_param_of_degZero_compatible K hK G h0
+  obtain ⟨p, hp⟩ := _root_.GlobalTheory.AnPer.Charts.exists_param_of_deg_zero K hK G h0
 
   have hv : ∀ (T T' : K.Obj) (φ : T ⟶ T'), algebraMap (Hol F.V) T'.C (per φ.deg - per' φ.deg) = 0 := by
     intro T T' φ

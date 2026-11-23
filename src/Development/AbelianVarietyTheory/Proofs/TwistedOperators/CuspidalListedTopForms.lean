@@ -46,6 +46,7 @@ import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RangeSndRel
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiscreteSeriesModelUnitaryIrreducibleOrthonormal
 
 @[expose] public section
 
@@ -93,7 +94,7 @@ theorem isTypeAt_of_finSum (θ : InfFam D) (V : HSp D) (τ : D.what₂.Tau) {S :
   · refine summable_of_ne_finset_zero (s := Finset.range n) fun i hi => ?_
     have : ¬ i < n := by simpa using hi
     simp [CC, dif_neg this]
-  · simp [hD.2.2.1.2.1 _ (GlobalTheory.TypeAtCompare.conj_mem hP hJ hg) w]
+  · simp [hD.2.2.1.2.1 _ (_root_.GlobalTheory.HolDict.ModelRep.conj_mem hP hJ hg) w]
   · rw [hφ g hg]
     convert hasSum_sum_of_ne_finset_zero (s := Finset.range n)
       (f := fun i => ll i (σ (P * g * P⁻¹) (vv i))) (fun i hi => by

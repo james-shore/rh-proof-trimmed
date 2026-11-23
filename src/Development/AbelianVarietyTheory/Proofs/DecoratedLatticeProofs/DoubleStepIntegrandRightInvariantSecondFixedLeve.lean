@@ -52,13 +52,6 @@ open GlobalTheory.DStepCell
 
 namespace GlobalTheory.DStepLev
 
-theorem comm_inf_fin {D : D7} (V : HSp D) {a b : GA D V} (ha : a ∈ GinfC V) (hb : b ∈ GfC V) : a * b = b * a := by
-  have ha' : finHom V a = 1 := ha
-  have hb' : infHom V b = 1 := hb
-  have h := GlobalTheory.LevelCut.eq_one_of_parts V (a * b * (b * a)⁻¹)
-    (show infHom V _ = 1 by simp [hb']) (show finHom V _ = 1 by simp [ha'])
-  exact mul_inv_eq_one.mp h
-
 theorem per_hand_mul {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {σ : ℕ} {B : BesLev D (σ + 1)} {J : JacLev D (σ + 1)}
     {B' : BesLev D σ} (s₁ : StepBF ψ B J) (s₂ : StepFB ψ J B') (l : Link B B'.L B'.ζ) (vL : VolM D B'.L.rank J.W₀.rank)
     (Φ₁ : WO B.V J.W → ℂ) (Φ₂ : WO J.W B'.V → ℂ) (φ : GA D B.A → ℂ) (g : GA D B.V) (q₁ : GA D J.W) (q₂ k : GA D B'.V)
@@ -101,7 +94,7 @@ theorem integ_mul_level : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w 
     (fun p hp => Finset.disjoint_left.1 hF.disjG hp) _ (hF.atQ (j + 1)).1 Ψ₂ hΨ₂)
   have hkf : k ∈ GfC _ := GlobalTheory.LevelCut.mem_GfC_of_grpAt _ _ k ((hv.JG _ hlt).1 hk)
   have hr : rTrans (q₂ * k) f = s • rTrans q₂ f := by
-    rw [hf]; exact rTrans_eigen a _ k q₂ _ s (comm_inf_fin _ ha hkf) (h3 G x)
+    rw [hf]; exact rTrans_eigen a _ k q₂ _ s (_root_.GlobalTheory.PointAtPlaceHom.comm_of_mem _ ha hkf) (h3 G x)
   rw [← (ht.sFB j σ h).1] at hom
   unfold integ
   refine Finset.sum_congr rfl fun α _ => Finset.sum_congr rfl fun g _ => ?_

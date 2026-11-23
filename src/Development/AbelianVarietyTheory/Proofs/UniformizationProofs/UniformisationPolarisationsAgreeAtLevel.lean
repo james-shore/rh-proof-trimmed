@@ -244,7 +244,7 @@ theorem polarisations_agree_at_level : GlobalFnsSt → ∀ (R : Type) [CommRing 
   intro hG R _ _ _ I hI D D' A A' G _ _ hS U U' wL he hwL hrig e β hβ hq
   obtain ⟨u, hu, hu'⟩ := LevelComparison.exists_comparison D.toPre.P.isLB D'.toPre.P.isLB U.LG.isLB U'.LG.isLB
     (U.w_gen e) (U'.w_gen e) hwL
-  have inv := GlobalTheory.T.genMaps_linCombIso_of_semiAbelian hG R I hI D D' A A' G hS U U' wL he hwL hrig
+  have inv := _root_.GlobalTheory.comparison_torus_invariant hG R I hI D D' A A' G hS U U' wL he hwL hrig
     (rigidified_iso_respects_cube_and_symmetry hG R I hI D D' A A' G hS U U' wL he hwL hrig) e β hβ hq u hu hu'
   haveI := (U'.gt e).q_flat
   haveI := (U'.gt e).q_surj

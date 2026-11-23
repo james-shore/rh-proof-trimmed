@@ -36,6 +36,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.OperatorEigenGoodPlaceSecond
 
 @[expose] public section
 
@@ -70,22 +71,10 @@ theorem fn_add {D : D7} {cf : CharFrame D} {nch : NChoice D} {tp : TupTied D cf 
     X.fn hμ j (x + y) = X.fn hμ j x + X.fn hμ j y := by
   unfold GlobalTheory.NJoin.RealAt.fn; simp; rfl
 
-theorem rep_mem {D : D7} (V : Formalism.BasicNotions.TH.HSp D) (Pp : HeightOneSpectrum (𝓞 D.host.E)) (d : List ℤ)
-    {γ : Formalism.L2.Theta.GA D V} (hγ : γ ∈ GlobalTheory.Hk3.rep V Pp d) : γ ∈ Formalism.L2.Theta.GfC V := by
-  unfold GlobalTheory.Hk3.rep at hγ
-  split_ifs at hγ with hl
-  · obtain ⟨_, _, _, _, _, _, _, _, _, _, _, _, _, _, hR⟩ := hl.choose_spec
-    exact (hR.1 γ hγ).1
-  · simp at hγ
-
 theorem twist_eq {G H W : Type*} [Group G] [Group H] [AddCommGroup W] [Module ℂ W] (ρ : G →* Module.End ℂ W)
     (rr : G →* H) (F : H → W) (g γ : G) (h1 : ρ γ⁻¹ = 1) :
     ρ (g * γ)⁻¹ (F (rr (g * γ))) = ρ g⁻¹ (F (rr g * rr γ)) := by
   rw [mul_inv_rev, map_mul, map_mul, h1, one_mul]
-
-theorem sum_single_one {W : Type*} [AddCommGroup W] [Module ℂ W] (d : List ℤ) (S : List ℤ → W) :
-    (Finsupp.single d (1 : ℂ)).sum (fun d z => z • S d) = S d := by
-  rw [Finsupp.sum_single_index (h := fun d (z : ℂ) => z • S d) (zero_smul ℂ _), one_smul]
 
 theorem transport {D : D7} {cf : CharFrame D} {nch : NChoice D} {tp : TupTied D cf nch} (X : GlobalTheory.NJoin.RealAt D cf nch tp)
     (j : Fin D.R.m) (t : X.T) (h : DIV.Pl D.host.E → (List ℤ →₀ ℂ) → Module.End ℂ (X.R.HV j t).H)
@@ -103,7 +92,7 @@ theorem transport {D : D7} {cf : CharFrame D} {nch : NChoice D} {tp : TupTied D 
         (Formalism.L2.Theta.finHom (Formalism.IndefR.Links.Vc D j)).rangeRestrict γ)) := by
     intro γ hγ
     exact twist_eq (X.R.cV j).ρ (Formalism.L2.Theta.finHom (Formalism.IndefR.Links.Vc D j)).rangeRestrict ((X.R.HV j t).e y) g γ
-      (hcv γ⁻¹ (inv_mem (rep_mem _ Pp d hγ)))
+      (hcv γ⁻¹ (inv_mem (_root_.GlobalTheory.InertTransport.rep_mem _ Pp d hγ)))
   have e2 : X.R.extV j t (h Pp (Finsupp.single d 1) y) g =
       ∑ γ ∈ GlobalTheory.Hk3.rep (Formalism.IndefR.Links.Vc D j) Pp d, X.R.extV j t y (g * γ) := by
     refine Eq.trans ?_ (Finset.sum_congr rfl e3).symm
@@ -112,7 +101,7 @@ theorem transport {D : D7} {cf : CharFrame D} {nch : NChoice D} {tp : TupTied D 
     refine Eq.trans (congrArg ((X.R.cV j).ρ g⁻¹) (congrFun (hh Pp hG (Finsupp.single d 1) y)
       ((Formalism.L2.Theta.finHom (Formalism.IndefR.Links.Vc D j)).rangeRestrict g))) ?_
     unfold GlobalTheory.Hk3.hkF
-    exact (congrArg ((X.R.cV j).ρ g⁻¹) (sum_single_one d _)).trans (map_sum ((X.R.cV j).ρ g⁻¹) _ _)
+    exact (congrArg ((X.R.cV j).ρ g⁻¹) (_root_.GlobalTheory.InertTransport.sum_single_one d _)).trans (map_sum ((X.R.cV j).ρ g⁻¹) _ _)
   exact e2.trans ((hc g).trans e1.symm)
 
 theorem eig_zero {D : D7} {cf : CharFrame D} {nch : NChoice D} {tp : TupTied D cf nch} (X : GlobalTheory.NJoin.RealAt D cf nch tp)

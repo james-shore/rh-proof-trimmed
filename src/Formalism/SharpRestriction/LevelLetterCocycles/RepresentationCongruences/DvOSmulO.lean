@@ -125,7 +125,7 @@ theorem coef_fil (hinj : Function.Injective (algebraMap O LL)) {T : LocLat G Qp 
   have := Fact.mk PD.hp
   obtain ⟨hfr, κ, I, g, c₀, α, hmon, hsum⟩ := hf
   have hXu : IsUnit (algebraMap (LetA O n) W.EE (Br.cst X)) := Br.qA_eq ▸ hq
-  have hPu : IsUnit (algebraMap (LetA O n) W.EE (Br.cst (Br.P.p 1))) := (ps_cst Br 1) ▸ hp
+  have hPu : IsUnit (algebraMap (LetA O n) W.EE (Br.cst (Br.P.p 1))) := (_root_.Formalism.MainNotions.N.FrobeniusPowerSeries.PhiBridge.ps_eq Br 1) ▸ hp
   have hcu : ∀ i j : ℕ, IsUnit (algebraMap (LetA O n) W.EE (Br.cst (X ^ i * Br.P.p 1 ^ j))) := by
     intro i j; rw [Br.cst_mul, Br.cst_pow, Br.cst_pow, map_mul, map_pow, map_pow]
     exact (hXu.pow i).mul (hPu.pow j)

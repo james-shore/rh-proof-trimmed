@@ -86,7 +86,7 @@ private theorem symplO_sum_wAt_left (P : Finset (Place D)) (x y : WO S T) :
   induction P using Finset.cons_induction with
   | empty => rw [Finset.sum_empty, Finset.sum_empty, GlobalTheory.SplitScalar.symplO_zero_left]
   | cons a s ha ih =>
-    rw [Finset.sum_cons, Finset.sum_cons, GlobalTheory.LatVac.symplO_add_left, ih, ← symplO_wAt, wAt_wAt]
+    rw [Finset.sum_cons, Finset.sum_cons, GlobalTheory.LatVac.symplO_add_left, ih, ← symplO_wAt, _root_.GlobalTheory.PlaceStable.wAt_wAt]
 
 private theorem wAt_add' (p : Place D) (x y : WO S T) : wAt p (x + y) = wAt p x + wAt p y := by
   rw [wAt_eq_smul, wAt_eq_smul, wAt_eq_smul, smul_add]

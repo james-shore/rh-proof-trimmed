@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SplitLastBlockActX
 
 @[expose] public section
 
@@ -84,9 +85,6 @@ section Basic
 
 variable {K : Type} [Field K]
 
-theorem fockB_symm {σ : Type} (f g : MvPolynomial σ K) : fockB f g = fockB g f :=
-  @fockSHerm K _ starRingOfComm _ g f
-
 theorem fockB_X_mul {σ : Type} (v : σ) (f g : MvPolynomial σ K) : fockB (X v * f) g = fockB f (pderiv v g) := by
   classical
   exact @fockL_X_pderiv K _ starRingOfComm σ _ v f g
@@ -96,7 +94,7 @@ theorem fockB_rowE {r m : ℕ} (a b : Fin r) (f g : MvPolynomial (Fin r × Fin m
 
   rw [rowE_apply, rowE_apply, ← fockBL_apply, ← fockBL_apply, map_sum, map_sum, LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun s _ => ?_
-  rw [fockBL_apply, fockBL_apply, fockB_X_mul, fockB_symm f, fockB_X_mul, fockB_symm]
+  rw [fockBL_apply, fockBL_apply, fockB_X_mul, _root_.GlobalTheory.BranchFormula.fockB_comm f, fockB_X_mul, _root_.GlobalTheory.BranchFormula.fockB_comm]
 
 theorem rE_rel (n m : ℕ) (i j k l : Fin n) :
     rE K n m i j * rE K n m k l - rE K n m k l * rE K n m i j =

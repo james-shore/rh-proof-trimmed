@@ -184,7 +184,7 @@ theorem l2_extension_of_etale_coordinates : ∀ (n : ℕ) (Y : Type) [Topologica
       refine Measurable.ennreal_ofReal ?_
       exact ((measurable_const.div (measurable_const.add ((hψm'.const_mul δ).pow_const 2))).mul
         hNm).mul hψm'.neg.exp
-    obtain ⟨T0, hT0⟩ := GlobalTheory.T.lintegral_sublevel_tail_le_of_finite Y A.mu
+    obtain ⟨T0, hT0⟩ := _root_.GlobalTheory.lintegral_sublevel_tail_le Y A.mu
       (fun y => ENNReal.ofReal (1 / (1 + (δ * psi A L s y) ^ 2) *
         A.nsq (A.kap + E) h y * Real.exp (-psi A L s y)))
       (fun y => δ * psi A L s y) (hψm'.const_mul δ) hfin hggm

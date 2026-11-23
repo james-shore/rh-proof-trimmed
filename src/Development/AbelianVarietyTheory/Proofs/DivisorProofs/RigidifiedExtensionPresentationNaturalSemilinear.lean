@@ -66,6 +66,6 @@ theorem GlobalTheory.Katz.rig_pull_natural_semi : ∀ (p : ℕ) (k k' : Type) [C
     simp only [map_smulₛₗ, SemiBialgHom.cot_d]
     have hd : ∀ i, dUnit (R := k') (s.app n (c.x n i)) = ∑ l, lin (φ i) l • dUnit (R := k') (c'.x n l) := fun i => by
       rw [← hφ n i]
-      exact (GlobalTheory.T.counit_cotangentClass_powerSeriesEvalAtNilpotent k' e (G'.A n) (c'.x n) (c'.nil n) (c'.aug n) (φ i)).2
+      exact (_root_.GlobalTheory.Katz.counit_dUnit_evA k' e (G'.A n) (c'.x n) (c'.nil n) (c'.aug n) (φ i)).2
     simp only [hd, Finset.smul_sum, smul_smul, pullLin, Finset.sum_smul]
     exact Finset.sum_comm

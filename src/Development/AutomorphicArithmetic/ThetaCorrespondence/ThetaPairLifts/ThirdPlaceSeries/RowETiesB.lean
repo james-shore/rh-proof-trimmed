@@ -61,7 +61,7 @@ theorem rowE_tiesB_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperTheo
     have hu := GlobalTheory.T.seriesUpdate_preserves_parameterFreeConditions_rayFields _ _ (_root_.GlobalTheory.PlugPt.sideOfWeightedPoint ν p) p.O.ex.errX p.O.ex.xd kap lam err
     show (sidePt b').Ties p.O.ex.errX p.O.ex.xd ∧ (sidePt b').Rays
     rw [hs]
-    exact ⟨hu.1 (_root_.GlobalTheory.T.side_weight_ties_err_of_ray_field_core_slot hR hL 𝒮 ν hC K p), hu.2 (_root_.GlobalTheory.T.side_weight_rays_of_ray_rec' hL 𝒮 ν K p hr)⟩
+    exact ⟨hu.1 (_root_.GlobalTheory.PlugPt.side_weight_ties_of_ray_field hR hL 𝒮 ν hC K p), hu.2 (_root_.GlobalTheory.Plug.RaysW.rays_of_rayRec_alt hL 𝒮 ν K p hr)⟩
   have hb : F ⟨β.D, β.O, b⟩ := (congrArg F heq).mpr hp
   exact hb hray
 end GlobalTheory.PlugPt

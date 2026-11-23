@@ -81,7 +81,7 @@ theorem exists_etaOK : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (hj : In
     have b0 := what₂.2.2.2.2.1 0
     have b1 := what₂.2.2.2.2.1 1
     linarith [what₂.1]
-  obtain ⟨i, hi, η, ha, hb, hc, hd⟩ := GlobalTheory.T.etaleExtension_degreeTwo_constants D T h large₂ what₂ _ _ _ hrun hq1 hlog j hj.1 hjm
+  obtain ⟨i, hi, η, ha, hb, hc, hd⟩ := _root_.GlobalTheory.EtaAn.etEx_deg_two D T h large₂ what₂ _ _ _ hrun hq1 hlog j hj.1 hjm
   exact ⟨i, η, hi, ha, hb, hc, hd, ((GlobalTheory.EtaInt.etVal_integral D T h j hj i η).2.2 hb).2⟩
 
 end GlobalTheory.EtaBoundForm

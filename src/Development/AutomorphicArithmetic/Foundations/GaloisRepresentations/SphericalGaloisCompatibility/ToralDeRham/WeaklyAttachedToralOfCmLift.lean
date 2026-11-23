@@ -72,8 +72,8 @@ theorem exists_cm_lift_fix_charKer : UpperTheory.Gal.ToralGalois.Inq → ∀ (Ω
     ext x
     rw [← hv x, Ideal.under, Ideal.mem_comap, ← hu, IsScalarTower.algebraMap_apply K L Ω]
     rfl
-  obtain ⟨N₀, hN₀o, hN₀⟩ := GlobalTheory.T.exists_open_galoisSubgroup_trace_ne_zero Ω E l n hn r hr.1
-  obtain ⟨M₀, _, _, _, _, _, _, _, hsd₀, hfix₀, hfixR₀⟩ := GlobalTheory.T.exists_solvable_cm_extension_split_place Ω E A w h N₀ hN₀o
+  obtain ⟨N₀, hN₀o, hN₀⟩ := _root_.GlobalTheory.AboveL.exists_open_trace_ne_zero Ω E l n hn r hr.1
+  obtain ⟨M₀, _, _, _, _, _, _, _, hsd₀, hfix₀, hfixR₀⟩ := _root_.GlobalTheory.AboveL.exists_cm_solvable_split Ω E A w h N₀ hN₀o
   obtain ⟨π₀, χ₀, hπ₀, hl₀⟩ := GlobalTheory.T.exists_cuspidal_charLift_of_solvable_cmExtension hI Ω E M₀ l ι n hn π χ hπ r hr N₀ hN₀ hsd₀
   obtain ⟨v₀, h₀, -⟩ := GlobalTheory.T.exists_isPlaceOver_finiteExtension_of_isPlaceOver E M₀ Ω A w h
   haveI : v₀.asIdeal.LiesOver w.asIdeal := lies h h₀
@@ -87,18 +87,18 @@ theorem exists_cm_lift_fix_charKer : UpperTheory.Gal.ToralGalois.Inq → ∀ (Ω
     have : t = g := Subtype.ext (AlgEquiv.ext fun z => ht z)
     subst this
     exact fun h0 => hg (hd.2 h0)
-  obtain ⟨V, hVo, hVc, hgV, hVine⟩ := GlobalTheory.T.exists_open_subgroup_weilElement_characterKernel Ω M₀ v₀ A h₀ n (fun j => (ξ j).comp (GlobalTheory.BCChar.normU w v₀))
+  obtain ⟨V, hVo, hVc, hgV, hVine⟩ := _root_.GlobalTheory.RoadU.exists_open_sub_charKer Ω M₀ v₀ A h₀ n (fun j => (ξ j).comp (GlobalTheory.BCChar.normU w v₀))
     (fun j => GlobalTheory.BCChar.isSmoothChar_comp_normU w v₀ (hξ j)) a₀ ha₀ g₀ hdeg₀
   have hr₀ : Weak π₀ ι (r.comp (UpperTheory.V.Af.Bc.res E Ω M₀)) := GlobalTheory.T.weaklyAttachedGaloisRepresentation_baseChange_restrict E M₀ Ω l ι n π π₀ hl₀.1 r hr
   obtain ⟨N₁, hN₁o, hN₁⟩ := GlobalTheory.T.exists_open_galoisSubgroup_trace_ne_zero Ω M₀ l n hn _ hr₀.1
-  obtain ⟨M₁, _, _, _, _, _, _, _, hsd₁, hV₁⟩ := GlobalTheory.T.exists_solvable_cm_extension_abelianCompletion Ω M₀ A v₀ h₀ hfixR₀ V hVo hVc N₁ hN₁o
-  obtain ⟨P, χ₁, hP, hl₁⟩ := GlobalTheory.T.exists_cuspidal_charLift_of_solvable_cmExtension hI Ω M₀ M₁ l ι n hn π₀ χ₀ hπ₀ _ hr₀ N₁ hN₁ hsd₁
+  obtain ⟨M₁, _, _, _, _, _, _, _, hsd₁, hV₁⟩ := _root_.GlobalTheory.AboveL.exists_cm_solvDisj_dec_eq Ω M₀ A v₀ h₀ hfixR₀ V hVo hVc N₁ hN₁o
+  obtain ⟨P, χ₁, hP, hl₁⟩ := _root_.GalTw.GlobalTheory.RoadU.upWeak hI Ω M₀ M₁ l ι n hn π₀ χ₀ hπ₀ _ hr₀ N₁ hN₁ hsd₁
   letI : Algebra E M₁ := ((algebraMap M₀ M₁).comp (algebraMap E M₀)).toAlgebra
   haveI : IsScalarTower E M₀ M₁ := IsScalarTower.of_algebraMap_eq fun _ => rfl
   haveI : IsScalarTower E M₁ Ω := IsScalarTower.of_algebraMap_eq fun z => by
     rw [RingHom.algebraMap_toAlgebra, RingHom.comp_apply, ← IsScalarTower.algebraMap_apply M₀ M₁ Ω,
       ← IsScalarTower.algebraMap_apply E M₀ Ω]
-  have hl : CharLift π P := GlobalTheory.T.cuspRep_characterSupportLift_trans_tower E M₀ M₁ n π π₀ P hl₀ hl₁
+  have hl : CharLift π P := _root_.GlobalTheory.RoadU.charLift_trans E M₀ M₁ n π π₀ P hl₀ hl₁
   have hg₁fix : ∀ z : M₁, (g : G E Ω) (algebraMap M₁ Ω z) = algebraMap M₁ Ω z :=
     (hV₁ ⟨(g₀ : G M₀ Ω), Weil_le_Dec h₀ g₀.2⟩).2 hgV
   refine ⟨M₁, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance,
@@ -121,7 +121,7 @@ theorem exists_cm_lift_fix_charKer : UpperTheory.Gal.ToralGalois.Inq → ∀ (Ω
   have h1 := hVine ⟨_, ht₀i⟩ _ hinV rfl j
   have h2 : ineIncl h₀ ⟨_, ht₀i⟩ = t₀ := Subtype.ext rfl
   rw [h2] at h1
-  have h3 := GlobalTheory.T.localArtin_comp_norm_compat E M₀ Ω A w v₀ h h₀ a a₀ ha ha₀ t t₀ (fun z => rfl)
+  have h3 := _root_.GlobalTheory.ArtinNormU.localArtin_normU E M₀ Ω A w v₀ h h₀ a a₀ ha ha₀ t t₀ (fun z => rfl)
   rw [h3]
   simpa using h1
 

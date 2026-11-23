@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.TateUnramifiedOfTorsionUnramified
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FrobeniusOnTorsion
 
 @[expose] public section
 
@@ -56,12 +57,6 @@ open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheor
 attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AV.AbVar.DegPrime
-
-theorem pow_comp_mon {S : Scheme.{0}} {G H Z : Over S} [GrpObj G] [GrpObj H] (φ : G ⟶ H) [IsMonHom φ]
-    (x : Z ⟶ G) (n : ℕ) : (x ^ n) ≫ φ = (x ≫ φ) ^ n := by
-  induction n with
-  | zero => simp [pow_zero, MonObj.one_comp]
-  | succ n ih => rw [pow_succ, pow_succ, MonObj.mul_comp, ih]
 
 theorem pow_prime_pow {K : Type} [Field K] (l : ℕ) {A B : AbVar K} (f : A ⟶ B)
     (hf : ∀ x : A.Pt, x ^ l = 1 → x ≫ f.hom = 1 → x = 1) :
@@ -74,7 +69,7 @@ theorem pow_prime_pow {K : Type} [Field K] (l : ℕ) {A B : AbVar K} (f : A ⟶ 
     apply ih x _ hxf
     apply hf (x ^ (l ^ b))
     · rw [← pow_mul, ← pow_succ]; exact hx
-    · rw [pow_comp_mon, hxf, one_pow]
+    · rw [_root_.GlobalTheory.SS.FrobTorsion.pow_comp', hxf, one_pow]
 
 end GlobalTheory.AV.AbVar.DegPrime
 
@@ -98,7 +93,7 @@ theorem GlobalTheory.AV.AbVar.not_dvd_deg_of_no_torsion_in_kernel : ∀ (K : Typ
     have h1 : (x ^ m) ^ (l ^ b) = 1 := by
       rw [← pow_mul, mul_comm, ← hNm]; exact hkill T x hx
     have h2 : (x ^ m) ≫ h.hom = 1 := by
-      rw [GlobalTheory.AV.AbVar.DegPrime.pow_comp_mon, hx, one_pow]
+      rw [_root_.GlobalTheory.SS.FrobTorsion.pow_comp', hx, one_pow]
     simpa using hpts T (x ^ m) h1 h2
   have hB := B.smooth
   have hA := A.smooth

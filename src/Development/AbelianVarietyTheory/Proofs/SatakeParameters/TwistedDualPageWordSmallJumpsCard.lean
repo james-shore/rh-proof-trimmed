@@ -53,7 +53,7 @@ theorem twistedDualPageWord_small_jumps_card : ∀ {D : D7} (L : SizeData₂ D) 
   have hcount : ∀ i, (((pageWord L j ε τ φ).J2 i).filter
       fun u : ℤ => |u| ≤ (etaHat L : ℤ)).card = D.R.m := by
     intro i
-    refine GlobalTheory.T.card_filter_abs_le_jT2_eq_rank (hcAt D (letter τ φ i)) j (pos ε (letter τ φ i)) L.etaSz ?_ ?_ (hbox i)
+    refine _root_.GlobalTheory.HTW.card_small_twistedDualJumps_eq_rank (hcAt D (letter τ φ i)) j (pos ε (letter τ φ i)) L.etaSz ?_ ?_ (hbox i)
     · intro a
       have h := (L.cloud_v (D.eTau.symm ⟨plc (letter τ φ i), plc_mem _⟩) a).1
       exact_mod_cast h

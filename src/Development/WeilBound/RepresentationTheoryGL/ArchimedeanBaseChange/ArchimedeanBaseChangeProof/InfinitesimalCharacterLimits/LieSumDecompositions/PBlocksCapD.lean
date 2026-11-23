@@ -96,7 +96,7 @@ theorem decomp_G (G : Sm E (r + s))
     rw [tensOp_sum, tensOp_sum, tensOp_sum, tensOp_sum]
     funext p
     refine Finset.sum_congr rfl fun i _ => ?_
-    rw [← Module.End.mul_apply, (GlobalTheory.LeviGL.ZGood.zalg_commute (haZ τ j) (haZ τ' l)).eq, Module.End.mul_apply]
+    rw [← Module.End.mul_apply, (_root_.GlobalTheory.QuantumMinorCharts.commute_of_mem_Zalg (haZ τ j) (haZ τ' l)).eq, Module.End.mul_apply]
   have hAB : ∀ τ j τ' l, ∀ w ∈ tens2 (zspan b) (zspan q), AA τ j (BB τ' l w) = BB τ' l (AA τ j w) := by
     intro τ j τ' l w hw
     obtain ⟨n, ψ₁, ψ₂, -, -, rfl⟩ := tensor_pair_finite_sum hw
@@ -112,7 +112,7 @@ theorem decomp_G (G : Sm E (r + s))
     rw [tensOp_sum, tensOp_sum, tensOp_sum, tensOp_sum]
     funext p
     refine Finset.sum_congr rfl fun i _ => ?_
-    rw [← Module.End.mul_apply (fb τ j), (GlobalTheory.LeviGL.ZGood.zalg_commute (hbZ τ j) (hbZ τ' l)).eq, Module.End.mul_apply]
+    rw [← Module.End.mul_apply (fb τ j), (_root_.GlobalTheory.QuantumMinorCharts.commute_of_mem_Zalg (hbZ τ j) (hbZ τ' l)).eq, Module.End.mul_apply]
   have hA1 : ∀ τ, ∀ w ∈ tens2 (zspan b) (zspan q), AA τ r w = w := by
     intro τ w hw
     obtain ⟨n, ψ₁, ψ₂, -, -, rfl⟩ := tensor_pair_finite_sum hw

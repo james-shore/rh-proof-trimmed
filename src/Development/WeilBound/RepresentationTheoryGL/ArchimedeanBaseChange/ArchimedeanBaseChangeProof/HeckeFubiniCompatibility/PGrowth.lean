@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import GroundTheory.AutomorphicForms.HilbertSchmidt
 
 @[expose] public section
 
@@ -502,15 +503,6 @@ open scoped ENNReal Pointwise
 
 attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
 
-theorem amgm (p q : ℝ≥0∞) : p * q ≤ p ^ 2 + q ^ 2 := by
-  rcases le_total p q with h | h
-  · calc p * q ≤ q * q := mul_le_mul_left h q
-      _ = q ^ 2 := (sq q).symm
-      _ ≤ _ := le_add_self
-  · calc p * q ≤ p * p := mul_le_mul_right h p
-      _ = p ^ 2 := (sq p).symm
-      _ ≤ _ := le_self_add
-
 theorem inv_pow_sq (w : ℝ) (M : ℕ) : ((w ^ M)⁻¹) ^ 2 = w ^ (-(2 * M : ℤ)) := by
   rw [_root_.zpow_neg, show (2 * (M : ℤ)) = ((M * 2 : ℕ) : ℤ) by push_cast; ring, zpow_natCast, pow_mul, inv_pow]
 
@@ -671,7 +663,7 @@ theorem growth_main (hS : SizeBasic) (a b : ℕ) (D : Dom E a b) (ι : Type) [Fi
       have hPu : P y * u ^ 2 ≤ Nb * Ub := mul_le_mul' (hPN.trans (hN x)) hu2
       calc P y * ‖f j y‖ₑ = (P y * u) * (‖f j y‖ₑ * v) := by
             rw [mul_mul_mul_comm, huv, mul_one]
-        _ ≤ (P y * u) ^ 2 + (‖f j y‖ₑ * v) ^ 2 := amgm _ _
+        _ ≤ (P y * u) ^ 2 + (‖f j y‖ₑ * v) ^ 2 := _root_.GroundTheory.Automorphic.ennreal_mul_le_sq_add_sq _ _
         _ = P y * (P y * u ^ 2) + v ^ 2 * ‖f j y‖ₑ ^ 2 := by ring
         _ ≤ P y * (Nb * Ub) + ENNReal.ofReal (wt y ^ (-(2 * M : ℤ))) * ‖f j y‖ₑ ^ 2 := by
             rw [hv2]

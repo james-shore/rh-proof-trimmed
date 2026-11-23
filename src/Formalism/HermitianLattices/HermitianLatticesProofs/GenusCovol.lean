@@ -73,12 +73,6 @@ variable {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W]
 theorem genusCovol_mem_locS (S : Submonoid R) (L : Submodule R W) (x : W) :
     x ∈ locS S L ↔ ∃ s ∈ S, s • x ∈ L := Iff.rfl
 
-theorem genusCovol_le_locS (S : Submonoid R) (L : Submodule R W) : L ≤ locS S L :=
-  fun x hx => ⟨1, S.one_mem, by simpa using hx⟩
-
-theorem genusCovol_locS_mono (S : Submonoid R) {L M : Submodule R W} (h : L ≤ M) :
-    locS S L ≤ locS S M := fun _ ⟨s, hs, hx⟩ => ⟨s, hs, h hx⟩
-
 theorem genusCovol_locS_idem (S : Submonoid R) (L : Submodule R W) :
     locS S (locS S L) ≤ locS S L := by
   rintro x ⟨s, hs, t, ht, hx⟩
@@ -173,15 +167,15 @@ theorem genusCovol_ri_peel (S : Submonoid R) {X Y : Submodule R W} (hXY : X ≤ 
       (locS S X).toAddSubgroup.relIndex (locS S Y).toAddSubgroup := by
   have e : locS S Y = locS S X ⊔ Y :=
     le_antisymm (by rw [sup_comm]; exact genusCovol_claimA S hfin)
-      (sup_le (genusCovol_locS_mono S hXY) (genusCovol_le_locS S Y))
+      (sup_le (_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono S hXY) (_root_.Formalism.HermitianLatticesTheory.locBasic_le_locS S Y))
   rw [e, Submodule.sup_toAddSubgroup, AddSubgroup.relIndex_sup_left,
     ← AddSubgroup.inf_relIndex_right (locS S X).toAddSubgroup, inf_comm]
   rfl
 
 theorem genusCovol_loc_eq_of_le_of_le (S : Submonoid R) {X Z : Submodule R W} (h1 : X ≤ Z)
     (h2 : Z ≤ locS S X) : locS S Z = locS S X :=
-  le_antisymm ((genusCovol_locS_mono S h2).trans (genusCovol_locS_idem S X))
-    (genusCovol_locS_mono S h1)
+  le_antisymm ((_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono S h2).trans (genusCovol_locS_idem S X))
+    (_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono S h1)
 
 theorem genusCovol_lemmaS : ∀ (n : ℕ) (X Y X' Y' : Submodule R W), X ≤ Y → X' ≤ Y' →
     X.toAddSubgroup.relIndex Y.toAddSubgroup = n → n ≠ 0 →
@@ -202,11 +196,11 @@ theorem genusCovol_lemmaS : ∀ (n : ℕ) (X Y X' Y' : Submodule R W), X ≤ Y �
       intro P _
       obtain ⟨f, _, hfX, hfY⟩ := hloc P
       have hYX : locS P.primeCompl Y ≤ locS P.primeCompl X :=
-        (genusCovol_locS_mono _ (hall P)).trans (genusCovol_locS_idem _ X)
+        (_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono _ (hall P)).trans (genusCovol_locS_idem _ X)
       have : (locS P.primeCompl Y').toAddSubgroup ≤ (locS P.primeCompl X').toAddSubgroup := by
         rw [← hfX, ← hfY]
         exact AddSubgroup.map_mono ((Submodule.toAddSubgroup_le _ _).mpr hYX)
-      exact (genusCovol_le_locS _ Y').trans ((Submodule.toAddSubgroup_le _ _).mp this)
+      exact (_root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ Y').trans ((Submodule.toAddSubgroup_le _ _).mp this)
     rw [← hn, AddSubgroup.relIndex_eq_one.mpr ((Submodule.toAddSubgroup_le _ _).mpr h1),
       AddSubgroup.relIndex_eq_one.mpr ((Submodule.toAddSubgroup_le _ _).mpr h1')]
   · push Not at hall
@@ -214,8 +208,8 @@ theorem genusCovol_lemmaS : ∀ (n : ℕ) (X Y X' Y' : Submodule R W), X ≤ Y �
     obtain ⟨f, hfi, hfX, hfY⟩ := hloc P
     set Z := Y ⊓ locS P.primeCompl X with hZ
     set Z' := Y' ⊓ locS P.primeCompl X' with hZ'
-    have hXZ : X ≤ Z := le_inf hXY (genusCovol_le_locS _ X)
-    have hXZ' : X' ≤ Z' := le_inf hXY' (genusCovol_le_locS _ X')
+    have hXZ : X ≤ Z := le_inf hXY (_root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ X)
+    have hXZ' : X' ≤ Z' := le_inf hXY' (_root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ X')
     have hm := AddSubgroup.relIndex_mul_relIndex _ _ _ ((Submodule.toAddSubgroup_le _ _).mpr hXZ)
       ((Submodule.toAddSubgroup_le _ _).mpr (inf_le_left : Z ≤ Y))
     have hm' := AddSubgroup.relIndex_mul_relIndex _ _ _ ((Submodule.toAddSubgroup_le _ _).mpr hXZ')
@@ -251,9 +245,9 @@ theorem genusCovol_lemmaS : ∀ (n : ℕ) (X Y X' Y' : Submodule R W), X ≤ Y �
             hQ ((Ideal.IsMaximal.eq_of_le inferInstance (Ideal.IsMaximal.ne_top inferInstance) h).symm)
           obtain ⟨a, haP, haQ⟩ := Set.not_subset.mp hPQ
           have e1 : locS Q.primeCompl Z = locS Q.primeCompl Y :=
-            le_antisymm (genusCovol_locS_mono _ inf_le_left) (genusCovol_claimB P Q haP haQ hfin)
+            le_antisymm (_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono _ inf_le_left) (genusCovol_claimB P Q haP haQ hfin)
           have e2 : locS Q.primeCompl Z' = locS Q.primeCompl Y' :=
-            le_antisymm (genusCovol_locS_mono _ inf_le_left) (genusCovol_claimB P Q haP haQ hfin')
+            le_antisymm (_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono _ inf_le_left) (genusCovol_claimB P Q haP haQ hfin')
           exact ⟨g, hgi, hgX, by rw [e1, e2, hgY]⟩)
     rw [← hm', hIH, hp', ← hp, hm, hn]
 
@@ -290,8 +284,8 @@ def genusCovol_tdual (h : V →ₗ⋆[K] V →ₗ[K] K) (L : Submodule (𝓞 K) 
 
 theorem genusCovol_locS_locS {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W]
     {S T : Submonoid R} (hST : S ≤ T) (Z : Submodule R W) : locS T (locS S Z) = locS T Z :=
-  le_antisymm ((genusCovol_locS_mono T (locBasic_locS_le_of_le hST Z)).trans
-    (genusCovol_locS_idem T Z)) (genusCovol_locS_mono T (genusCovol_le_locS S Z))
+  le_antisymm ((_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono T (locBasic_locS_le_of_le hST Z)).trans
+    (genusCovol_locS_idem T Z)) (_root_.Formalism.HermitianLatticesTheory.locBasic_locS_mono T (_root_.Formalism.HermitianLatticesTheory.locBasic_le_locS S Z))
 
 theorem gmap_locS_comm (g : V ≃ₗ[K] V) (S : Submonoid (𝓞 K)) (Z : Submodule (𝓞 K) V) :
     gmap g (locS S Z) = locS S (gmap g Z) := by
@@ -596,10 +590,10 @@ theorem genusCovol_local (h : V →ₗ⋆[K] V →ₗ[K] K) (L M : Submodule (�
     rw [hgL]
     exact genusCovol_locS_locS hle M
   · apply le_antisymm
-    · exact genus_covolume_local_dual_le h g hg P L M hMfg (hgL ▸ genusCovol_le_locS _ M)
+    · exact genus_covolume_local_dual_le h g hg P L M hMfg (hgL ▸ _root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ M)
     · have hL' : L ≤ gmap g⁻¹ (loc (K := K) P M) := by
         rw [← hgL, genusBasic_gmap_inv]
-        exact genusCovol_le_locS _ L
+        exact _root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ L
       have := genus_covolume_local_dual_le h g⁻¹ ((isom h).inv_mem hg) P M L hLfg hL'
       have h2 := Submodule.map_mono (f := ((g : V →ₗ[K] V).restrictScalars (𝓞 K))) this
       change gmap g (gmap g⁻¹ _) ≤ gmap g _ at h2

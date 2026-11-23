@@ -173,15 +173,6 @@ private theorem exists_bound_unitriangular_of_ldu_bounded {n : ℕ} (d : Fin n �
   obtain ⟨C, -, hC⟩ := key n
   exact ⟨C, fun L V hL1 hL2 hV1 hV2 hN i j => (hC L V hL1 hL2 hV1 hV2 hN j j.isLt i).1⟩
 
-private theorem wP_mul_wP_symm_eq_one {p : ℕ} (σ : Equiv.Perm (Fin p)) : U.wP σ * U.wP σ.symm = 1 := by
-  ext a b
-  rw [Matrix.mul_apply]
-  simp only [U.wP, Matrix.of_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ,
-    if_true, Equiv.symm_apply_eq, Matrix.one_apply]
-  by_cases hab : a = b
-  · subst hab; simp
-  · simp [hab, Ne.symm hab]
-
 private theorem lhOf_mul_hMat_eq_wP_mul_lowW_mul_diagonal (h : C.LPt) (v : PBQ.XH h) :
     LeftFubiniLemmas.lhOf (D.ptPerm h) v * U.hMat (D.ptPerm h) (D.ptDiag h) =
       U.wP (D.ptPerm h) * (U.lowW (D.ptPerm h) v * Matrix.diagonal (D.ptDiag h)) := by
@@ -205,7 +196,7 @@ private theorem det_lhOf_mul_hMat_ptPerm_ne_zero (h : C.LPt) (hh1 : ∀ b ∈ h,
     (LeftFubiniLemmas.lhOf (D.ptPerm h) v * U.hMat (D.ptPerm h) (D.ptDiag h)).det ≠ 0 := by
   rw [lhOf_mul_hMat_eq_wP_mul_lowW_mul_diagonal, Matrix.det_mul, Matrix.det_mul, Matrix.det_diagonal]
   have hwdet : (U.wP (D.ptPerm h)).det ≠ 0 := by
-    have hd := congrArg Matrix.det (wP_mul_wP_symm_eq_one (D.ptPerm h))
+    have hd := congrArg Matrix.det (_root_.Formalism.FourierDecayAlt.P.Ux2.permutationMatrix_mul_symm (D.ptPerm h))
     rw [Matrix.det_mul, Matrix.det_one] at hd
     exact left_ne_zero_of_mul_eq_one hd
   have hbt : (U.lowW (D.ptPerm h) v).BlockTriangular OrderDual.toDual := by

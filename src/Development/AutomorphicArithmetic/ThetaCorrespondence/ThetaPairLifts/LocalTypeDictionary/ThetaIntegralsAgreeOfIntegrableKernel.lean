@@ -83,7 +83,7 @@ theorem thetaIntegral_eq_zero_of_finiteRelation (hP : _root_.GlobalTheory.FunPr.
   rw [finRel, Submodule.mem_span_set'] at hrel
   obtain ⟨n, c, g, hsum⟩ := hrel
   choose u hu Ψi hΨi hg using fun i => (g i).2
-  obtain ⟨z, hzG, hz0, hz⟩ := _root_.GlobalTheory.T.twist_regulariser_isGood hP hK D ψ θ hθ W W₁ X A₁ B α β hT ν₁ 𝓕₁ hν₁ ωB hw n Ψi u hΨi hu
+  obtain ⟨z, hzG, hz0, hz⟩ := _root_.GlobalTheory.RegGood.regulariser_isGood hP hK D ψ θ hθ W W₁ X A₁ B α β hT ν₁ 𝓕₁ hν₁ ωB hw n Ψi u hΨi hu
   have hX : ∀ i, ModInt θ ωB ν₁ 𝓕₁ (wop ωB z (Ψi i)) ∧
       ∃ u' ∈ GfC W₁, wop ωB z (ωB (u i, 1) (Ψi i)) = ωB (u', 1) (wop ωB z (Ψi i)) := fun i => hz i
   choose u' hu' hcomm using fun i => (hX i).2
@@ -117,7 +117,7 @@ theorem thetaIntegrals_agree_of_integrable_kernel : _root_.GlobalTheory.FunPr.Th
       (∀ h, MeasureTheory.IntegrableOn (fun g => thetaKO ωB g h Φ') 𝓕₁ ν₁) → p Φ = p' Φ' →
       GlobalTheory.SquareComm.thetaInt ωA ν 𝓕 Φ = c • GlobalTheory.SquareComm.thetaInt ωB ν₁ 𝓕₁ Φ' := by
   intro hP hK hL D ψ θ hψ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB Pi rf rl p p' hM
-  obtain ⟨c, hc0, hc⟩ := _root_.GlobalTheory.T.twisted_square_theta_integrals_eq hP hK hL D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁
+  obtain ⟨c, hc0, hc⟩ := _root_.GlobalTheory.SquareAgree.twisted_theta_integrals_agree hP hK hL D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁
     ωA ωB Pi rf rl p p' hM
   refine ⟨c, hc0, fun Φ hΦ Φ' hΦ' hint hp => ?_⟩
   obtain ⟨Φ₀, -, hrel, ⟨N, C, hmod⟩, hI⟩ := hc Φ' hΦ'

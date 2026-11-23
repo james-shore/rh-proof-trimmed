@@ -64,15 +64,15 @@ theorem vanishing_below (q : ℕ) [NeZero q] (k : ℕ) :
     rcases lt_or_eq_of_le (show m ≤ 2 + (k : ℤ) by omega) with h | h
     · exact ih A hA hq m i h2 h
     · subst h
-      exact GlobalTheory.T.laurentPolynomial_tateTwistCohomology_vanishing_inductive q (2 + k) (by omega) ih A hA hq i
+      exact _root_.GlobalTheory.EtC.GmStep.gm_vanishing_step q (2 + k) (by omega) ih A hA hq i
 
 theorem laurent_cohomology (q : ℕ) [NeZero q] (A : Type) [CommRing A] (hA : SH A) (hq : IsUnit (q : A))
     (n i : ℤ) :
     (2 ≤ n → Subsingleton (Ht q (sp (LaurentPolynomial A)) n i)) ∧
       Nonempty (Ht q (sp (LaurentPolynomial A)) 1 i ≃+ ZMod q) := by
-  refine ⟨fun hn => GlobalTheory.T.laurentCohomology_vanishing_of_noetherian_henselian q (fun B _ _ hB hqB m j hm =>
+  refine ⟨fun hn => _root_.GlobalTheory.EtC.laurent_vanishing_of_noetherian q (fun B _ _ hB hqB m j hm =>
     vanishing_below q m.toNat B hB hqB m j hm (by omega)) A hA hq n i hn, ?_⟩
-  obtain ⟨e⟩ := GlobalTheory.T.nonempty_ht_zero_addEquiv_zmod_of_sh q A hA hq (i - 1)
-  exact ⟨(AddEquiv.ofBijective (gmPhi q A i) (GlobalTheory.T.laurentKummerCupProduct_bijective_strictlyHenselian q A hA hq i)).symm.trans e⟩
+  obtain ⟨e⟩ := _root_.GlobalTheory.EtC.tateTwistCohomology_zero_strictlyHenselian_equiv q A hA hq (i - 1)
+  exact ⟨(AddEquiv.ofBijective (gmPhi q A i) (_root_.GlobalTheory.EtC.gmPhi_bijective q A hA hq i)).symm.trans e⟩
 
 end GlobalTheory.LaurentCohomologyVanishing

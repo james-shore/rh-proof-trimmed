@@ -120,9 +120,9 @@ theorem commensurable_prod (K₁ : Subgroup G₁) (K₂ : Subgroup G₂)
   rw [GlobalTheory.LKCountPoint.prod_map_conj]
   refine ⟨?_, ?_⟩
   · apply Subgroup.isFiniteRelIndex_iff_relIndex_ne_zero.mpr
-    rw [GlobalTheory.LKCountPoint.relIndex_prod]; exact mul_ne_zero (h₁ x.1).1.relIndex_ne_zero (h₂ x.2).1.relIndex_ne_zero
+    rw [_root_.GlobalTheory.BCT.OrbProd.relIndex_prod_prod]; exact mul_ne_zero (h₁ x.1).1.relIndex_ne_zero (h₂ x.2).1.relIndex_ne_zero
   · apply Subgroup.isFiniteRelIndex_iff_relIndex_ne_zero.mpr
-    rw [GlobalTheory.LKCountPoint.relIndex_prod]; exact mul_ne_zero (h₁ x.1).2.relIndex_ne_zero (h₂ x.2).2.relIndex_ne_zero
+    rw [_root_.GlobalTheory.BCT.OrbProd.relIndex_prod_prod]; exact mul_ne_zero (h₁ x.1).2.relIndex_ne_zero (h₂ x.2).2.relIndex_ne_zero
 
 end Prod
 
@@ -220,7 +220,7 @@ theorem core_count_of_commensurable (Γ' T K : Subgroup G) (F : G → ℂ) (hΓT
   have hvol : ∀ y, vol (T ⊓ K) (T ⊓ K.map (MulAut.conj y).toMonoidHom) ≠ 0 := fun y => by
     unfold vol; exact div_ne_zero (by exact_mod_cast hri1 y) (by exact_mod_cast hri2 y)
   refine ⟨?_, ?_⟩
-  · rw [GlobalTheory.LKCountPoint.fold_sum Γ' T K F hΓT hF hfin hsupp, mul_finsum]
+  · rw [_root_.GlobalTheory.finsum_fold_intermediate Γ' T K F hΓT hF hfin hsupp, mul_finsum]
     refine finsum_congr fun y => ?_
     have hv' : ((vol (T ⊓ K) (T ⊓ K.map (MulAut.conj (Quotient.out y)).toMonoidHom) : ℚ) : ℂ) ≠ 0 := by
       exact_mod_cast hvol (Quotient.out y)
@@ -230,7 +230,7 @@ theorem core_count_of_commensurable (Γ' T K : Subgroup G) (F : G → ℂ) (hΓT
   · rintro ⟨q₀, hq₀⟩ t ht
     have hmC : massC Γ' T (T ⊓ K) ≠ 0 := by
       rw [← hmc (Quotient.out q₀)]
-      exact mul_ne_zero (GlobalTheory.LKCountPoint.massC_ne_zero_of_ne Γ' T K F hΓT hF hfin hsupp _ hq₀) (hvol _)
+      exact mul_ne_zero (_root_.GlobalTheory.massC_ne_zero_of_support Γ' T K F hΓT hF hfin hsupp _ hq₀) (hvol _)
     refine GlobalTheory.LKCount.vol_conj_eq_one_of_massC_ne_zero Γ' T (T ⊓ K) t ht inf_le_left ?_ ?_ hfinC ?_ hmC
     · rw [GlobalTheory.LKCountPoint.map_conj_inf_of_mem ht K]; exact hri1 t
     · rw [GlobalTheory.LKCountPoint.map_conj_inf_of_mem ht K]; exact hri2 t

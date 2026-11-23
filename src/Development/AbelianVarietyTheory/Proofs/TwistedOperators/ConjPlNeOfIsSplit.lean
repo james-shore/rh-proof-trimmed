@@ -59,25 +59,9 @@ namespace GlobalTheory.ChainTw.ParInv
 
 variable {D : D7}
 
-theorem conjP_eq_conjPl' (P : HeightOneSpectrum (𝓞 D.host.E)) : Formalism.L2.Col.conjPrime₂ P = Formalism.DivisionValues.conjPl P := by
-  apply HeightOneSpectrum.ext
-  ext x
-  show Formalism.L2.Col.cO _ x ∈ P.asIdeal ↔ x ∈ Ideal.map (Formalism.DivisionValues.cO D.host.E) P.asIdeal
-  rw [← Ideal.comap_symm, Ideal.mem_comap]
-  have : (Formalism.DivisionValues.cO D.host.E).symm x = Formalism.L2.Col.cO _ x := by
-    apply RingOfIntegers.ext
-    simp [Formalism.DivisionValues.cO, Formalism.L2.Col.cO]
-    rfl
-  rw [this]
+alias under_conjPl := _root_.GlobalTheory.ChainInv.under_conjPl
 
-theorem under_conjPl (w : HeightOneSpectrum (𝓞 D.host.E)) :
-    (Formalism.DivisionValues.conjPl w).under (𝓞 D.host.F) = w.under (𝓞 D.host.F) := by
-  rw [← conjP_eq_conjPl', GlobalTheory.GridPlaces.under_conjP]
-
-theorem absNorm_conjPl' (P : HeightOneSpectrum (𝓞 D.host.E)) :
-    Ideal.absNorm (Formalism.DivisionValues.conjPl P).asIdeal = Ideal.absNorm P.asIdeal := by
-  rw [Ideal.absNorm_apply, Ideal.absNorm_apply, Submodule.cardQuot_apply, Submodule.cardQuot_apply]
-  exact (Nat.card_congr (Ideal.quotientEquiv P.asIdeal (Formalism.DivisionValues.conjPl P).asIdeal (Formalism.DivisionValues.cO D.host.E) rfl).toEquiv).symm
+alias absNorm_conjPl' := _root_.GlobalTheory.ChainInv.absNorm_conjPl
 
 theorem conjPl_ne_of_isSplit (w : HeightOneSpectrum (𝓞 D.host.E))
     (hv : Formalism.MainNotions.SchurIrreducible.IsSplit (E := D.host.E) (w.under (𝓞 D.host.F))) : Formalism.DivisionValues.conjPl w ≠ w := by
@@ -88,7 +72,7 @@ theorem conjPl_ne_of_isSplit (w : HeightOneSpectrum (𝓞 D.host.E))
     intro R hR
     rcases GlobalTheory.GridPlaces.eq_or_eq_conjP (P := w) (Q := R) (HeightOneSpectrum.ext hR) with h | h
     · exact h
-    · rw [h, conjP_eq_conjPl', hc]
+    · rw [h, _root_.GlobalTheory.ChainInv.conjP_eq_conjPl, hc]
   exact hPQ ((key P hP).trans (key Q hQ).symm)
 
 end GlobalTheory.ChainTw.ParInv

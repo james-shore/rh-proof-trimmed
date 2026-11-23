@@ -65,6 +65,6 @@ theorem powLocal : LateralTheory.E.LeafUnitSecPf.Indep.LeafPowLocal := by
   exact ⟨S, hS, hP⟩
 
 theorem LeafUnitSec_of : LateralTheory.E.LeafOneExistsPf.LeafUnitSec :=
-  LateralTheory.E.LeafUnitSecPf.Indep.LeafUnitSec_of LateralTheory.E.LeafPrimCoverPf.LeafPrimCover_of powLocal
+  LateralTheory.E.LeafUnitSecPf.Indep.LeafUnitSec_of _root_.LateralTheory.E.LeafPrimCoverPf.leafPrimCover_pf powLocal
 
 end LateralTheory.E.UnitSections

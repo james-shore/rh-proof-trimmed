@@ -358,13 +358,6 @@ theorem isHolTo_of_open {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {X
     exact this
   exact key U (i.preimage_image_eq U) f
 
-theorem exists_under {x : CxPts (genStr Z) σ} (hx : Inner x) : ∃ y : Sp ℂ ⟶ Xo.XF c, y ≫ Z.jQ = x.1 := by
-  have := Z.jQ_open
-  refine ⟨IsOpenImmersion.lift Z.jQ x.1 ?_, IsOpenImmersion.lift_fac _ _ _⟩
-  rintro _ ⟨p, rfl⟩
-  obtain rfl : p = IsLocalRing.closedPoint ℂ := Subsingleton.elim (α := PrimeSpectrum ℂ) _ _
-  exact not_not.1 hx
-
 theorem pt_mem (h : IsLogChart k ch ex lam ρ) {s : Fin n → ℂ} (hs : s ∈ logDom n k) :
     logExp k s ∈ ch.target ∧ ch.symm (logExp k s) ∈ ch.source ∧ Inner (ch.symm (logExp k s)) := by
   have ht : logExp k s ∈ ch.target := h.1.1 ▸ logExp_mem hs
@@ -393,10 +386,10 @@ def Marks (s : Fin n → ℂ) (i : Fin Fu.n) (T : (Fu.Di i).La ≃+ (Fin r → �
 theorem exists_local (Fu : Fam Xo c σ e) (h : IsLogChart k ch ex lam ρ) {s₁ : Fin n → ℂ} (hs₁ : s₁ ∈ logDom n k) :
     ∃ i T, ∀ᶠ s in 𝓝 s₁, Marks Fu k ch ex lam s i T := by
   have := Z.jQ_open
-  obtain ⟨y₁, -⟩ := exists_under (pt_mem h hs₁).2.2
+  obtain ⟨y₁, -⟩ := _root_.GlobalTheory.ShFam.Hor.Inner.exists_lift (pt_mem h hs₁).2.2
   have hy : ∀ s, ∃ y : Sp ℂ ⟶ Xo.XF c, s ∈ logDom n k → y ≫ Z.jQ = (ch.symm (logExp k s)).1 := fun s => by
     by_cases hs : s ∈ logDom n k
-    · exact (exists_under (pt_mem h hs).2.2).imp fun _ h _ => h
+    · exact (_root_.GlobalTheory.ShFam.Hor.Inner.exists_lift (pt_mem h hs).2.2).imp fun _ h _ => h
     · exact ⟨y₁, fun h => (hs h).elim⟩
   choose y hy using hy
   have holy : IsHolTo (logDom n k) y := isHolTo_of_open Z.jQ (isHolTo_of_holAt isOpen_logDom fun s hs =>

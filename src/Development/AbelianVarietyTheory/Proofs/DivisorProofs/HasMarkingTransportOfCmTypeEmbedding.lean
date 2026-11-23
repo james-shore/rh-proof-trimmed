@@ -84,12 +84,7 @@ theorem exists_equiv_of_lattices {La : Type} [AddCommGroup La] {g : ℕ} (P P' :
     rfl
   exact ⟨φ, fun a => LinearMap.congr_fun key a⟩
 
-theorem ex_eq_iff {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g) (z w : Fin g → ℂ) :
-    u.ex z = u.ex w ↔ z - w ∈ u.Λ := by
-  have := u.ex_add (z - w) w
-  rw [sub_add_cancel] at this
-  rw [← u.ker, this]
-  exact mul_eq_right
+alias ex_eq_iff := _root_.GlobalTheory.SharpPeriods.ex_eq_iff
 
 def imHerm {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) : (Fin g → ℂ) →ₗ[ℝ] (Fin g → ℂ) →ₗ[ℝ] ℝ :=
   LinearMap.mk₂ ℝ (fun z w => (herm Hm z w).im)

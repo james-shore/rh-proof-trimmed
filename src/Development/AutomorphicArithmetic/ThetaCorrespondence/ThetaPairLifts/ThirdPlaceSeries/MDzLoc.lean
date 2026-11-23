@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalLanglandsTransport
 
 @[expose] public section
 
@@ -64,7 +65,7 @@ theorem main_m_alt : GlobalTheory.Published.BernsteinZelevinskyFiniteness → Gl
   have h0 : fixed π.toIrrRep.ρ (KOne (w.adicCompletion D.host.E) (Fin n)) ≠ ⊥ :=
     (Submodule.ne_bot_iff _).2 ⟨v, hv, hv0⟩
   have h1 := fixed_ne_bot_of_equiv (equivRep π.toIrrRep) h0
-  obtain ⟨m, b, hb, hb'⟩ := haveI := UpperTheory.One.M.charZero_compl w; _root_.UpperTheory.One.M.LawsM.depth H (cls π.toIrrRep) (UpperTheory.One.M.good_of_fixed hq _ h1) h1
+  obtain ⟨m, b, hb, hb'⟩ := haveI := _root_.GlobalTheory.LocLanglands.FieldCompat.charZero_compl w; _root_.UpperTheory.One.M.LawsM.depth H (cls π.toIrrRep) (UpperTheory.One.M.good_of_fixed hq _ h1) h1
   have hd := H.dim (cls π.toIrrRep)
   have hI : σ ∈ Ine (F := D.host.E) (D.nd.plOm.1 w) := GlobalTheory.TameGenPowers.wild_mem_Ine hσ
   have hW : Formalism.MainNotions.BlochKatoReduction.IsWild (D.nd.plOm.1 w)

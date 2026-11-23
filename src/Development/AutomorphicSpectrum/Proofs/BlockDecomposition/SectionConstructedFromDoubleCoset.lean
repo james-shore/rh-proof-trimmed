@@ -52,11 +52,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.BZRes
 
-theorem exists_nhds_one_tube {G : Type} [Group G] [TopologicalSpace G] {C : Set G} (hC : IsCompact C)
-    {n : Set (G × G)} (hn : IsOpen n) (h : ∀ c ∈ C, (c, (1 : G)) ∈ n) :
-    ∃ O ∈ 𝓝 (1 : G), ∀ c ∈ C, ∀ u ∈ O, (c, u) ∈ n :=
-  _root_.UpperTheory.Reformulated.B.Ylb7.main hC hn h
-
 theorem finite_image_of_rightInvariant {P : Type} [Group P] [TopologicalSpace P] [IsTopologicalGroup P] {W : Type}
     (φ : P → W) (K' : Subgroup P) (hK' : IsOpen (K' : Set P)) (hinv : ∀ (p : P), ∀ κ ∈ K', φ (p * κ) = φ p)
     {C : Set P} (hC : IsCompact C) : (φ '' C).Finite := by
@@ -108,12 +103,12 @@ theorem exists_openSubgroup_consistent {G : Type} [Group G] [TopologicalSpace G]
       exact K'.one_mem
     exact this
   have hC' : IsCompact ((Subtype.val : P → G) '' C) := hC.image continuous_subtype_val
-  obtain ⟨OP, hOP, hOPc⟩ := exists_nhds_one_tube hC' (n := {z : G × G | z.1⁻¹ * z.2 * z.1 ∈ U})
+  obtain ⟨OP, hOP, hOPc⟩ := _root_.UpperTheory.Reformulated.B.Ylb7.main hC' (n := {z : G × G | z.1⁻¹ * z.2 * z.1 ∈ U})
     (hU.preimage (by fun_prop)) (by
       rintro _ ⟨c, -, rfl⟩
       simpa using h1U)
   obtain ⟨O, hO, hOs⟩ := hL UQ (hUQ.mem_nhds h1UQ) OP hOP
-  obtain ⟨O₁, hO₁, hO₁c⟩ := exists_nhds_one_tube hC'
+  obtain ⟨O₁, hO₁, hO₁c⟩ := _root_.UpperTheory.Reformulated.B.Ylb7.main hC'
     (n := {z : G × G | z.1 * z.2 * z.1⁻¹ ∈ interior O ∧ x * z.1 * z.2 ∈ Y})
     ((isOpen_interior.preimage (by fun_prop)).inter (hY.preimage (by fun_prop))) (by
       rintro _ ⟨c, hc, rfl⟩

@@ -53,6 +53,8 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.Analysis.InnerProductSpace.ProdL2
+import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCyc
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.CoeffXMulPderivSelf
 
 @[expose] public section
 
@@ -182,13 +184,6 @@ theorem casK_intertw {V : Type} [AddCommGroup V] [Module ℂ V] {ρ : Ix r s →
     rw [h a b hab, h b a (sameBlock_symm' hab)]
   · simp
 
-private theorem sameBlock_trans_real_seminorm_filtration {r s : ℕ} {a b c : Ix r s} (h1 : sameBlock a b) (h2 : sameBlock b c) :
-    sameBlock a c :=
-  (CasGl.sb_iff _ _).2 (((CasGl.sb_iff _ _).1 h1).trans ((CasGl.sb_iff _ _).1 h2))
-
-private theorem sameBlock_refl_real_seminorm_filtration {r s : ℕ} (a : Ix r s) : sameBlock a a :=
-  (CasGl.sb_iff _ _).2 rfl
-
 private theorem posC_props_and_sameBlock_trichotomy {r s : ℕ} (a b : Ix r s) :
     (posC a b → sameBlock a b) ∧ (posC a b → a ≠ b) ∧ (posC a b → ¬ posC b a) ∧
       (sameBlock a b → a = b ∨ posC a b ∨ posC b a) := by
@@ -247,11 +242,11 @@ theorem local_of (act : Mat r s →ₗ[ℂ] Module.End ℂ M) (hL : IsLie act) (
         refine B.sub_mem ?_ ?_
         · split_ifs with h1
           · subst h1
-            exact hx.2 c b (sameBlock_trans_real_seminorm_filtration hcd hab')
+            exact hx.2 c b (_root_.PositivityTheory.KReal.sb_trans hcd hab')
           · simp
         · split_ifs with h1
           · subst h1
-            exact hx.2 a d (sameBlock_trans_real_seminorm_filtration hab' hcd)
+            exact hx.2 a d (_root_.PositivityTheory.KReal.sb_trans hab' hcd)
           · simp
     intro a b hab x hx
     exact ((mem' x).1 (hle hx)).2 a b hab
@@ -359,7 +354,7 @@ theorem local_of (act : Mat r s →ₗ[ℂ] Module.End ℂ M) (hL : IsLie act) (
       · subst h
         rw [if_pos rfl, if_pos rfl, hY]
         dsimp only
-        rw [if_pos (sameBlock_trans_real_seminorm_filtration hab hcd)]
+        rw [if_pos (_root_.PositivityTheory.KReal.sb_trans hab hcd)]
       · rw [if_neg h, if_neg h, zero_mul]
     have t4 : ∀ a b, sameBlock a b → (if d = a then ρ c b else 0) * ρ b a = if a = d then X b else 0 := by
       intro a b hab
@@ -367,7 +362,7 @@ theorem local_of (act : Mat r s →ₗ[ℂ] Module.End ℂ M) (hL : IsLie act) (
       · subst h
         rw [if_pos rfl, if_pos rfl, hX]
         dsimp only
-        rw [if_pos (sameBlock_trans_real_seminorm_filtration hcd hab)]
+        rw [if_pos (_root_.PositivityTheory.KReal.sb_trans hcd hab)]
       · rw [if_neg (Ne.symm h), if_neg h, zero_mul]
     have n1 : ∀ a b, ¬ sameBlock a b → (if a = c then X b else 0) = 0 := by
       intro a b hab
@@ -383,7 +378,7 @@ theorem local_of (act : Mat r s →ₗ[ℂ] Module.End ℂ M) (hL : IsLie act) (
       · subst h
         rw [if_pos rfl, hX]
         dsimp only
-        rw [if_neg (fun h' => hab (sameBlock_trans_real_seminorm_filtration (hsym hcd) h'))]
+        rw [if_neg (fun h' => hab (_root_.PositivityTheory.KReal.sb_trans (hsym hcd) h'))]
       · rw [if_neg h]
     have n3 : ∀ a b, ¬ sameBlock a b → (if b = c then Y a else 0) = 0 := by
       intro a b hab
@@ -391,7 +386,7 @@ theorem local_of (act : Mat r s →ₗ[ℂ] Module.End ℂ M) (hL : IsLie act) (
       · subst h
         rw [if_pos rfl, hY]
         dsimp only
-        rw [if_neg (fun h' => hab (sameBlock_trans_real_seminorm_filtration h' (hsym hcd)))]
+        rw [if_neg (fun h' => hab (_root_.PositivityTheory.KReal.sb_trans h' (hsym hcd)))]
       · rw [if_neg h]
     have n4 : ∀ a b, ¬ sameBlock a b → (if b = d then Y a else 0) = 0 := by
       intro a b hab
@@ -444,7 +439,7 @@ theorem local_of (act : Mat r s →ₗ[ℂ] Module.End ℂ M) (hL : IsLie act) (
         · rw [hw.2 b a h, map_zero, if_neg (fun h' => (posC_props_and_sameBlock_trichotomy b a).2.1 h h'.symm),
             if_neg ((posC_props_and_sameBlock_trichotomy b a).2.2.1 h)]
           simp
-      · rw [if_neg hsb, if_neg (fun (h' : a = b) => hsb (h' ▸ sameBlock_refl_real_seminorm_filtration a)),
+      · rw [if_neg hsb, if_neg (fun (h' : a = b) => hsb (h' ▸ _root_.PI.FockOneDegW.HwC.sameBlock_refl' a)),
           if_neg (fun h' => hsb ((posC_props_and_sameBlock_trichotomy a b).1 h'))]
         simp
     have hq : (∑ a, ∑ b, ((if a = b then La a ^ 2 else 0) + (if posC a b then La a - La b else 0) : ℚ))

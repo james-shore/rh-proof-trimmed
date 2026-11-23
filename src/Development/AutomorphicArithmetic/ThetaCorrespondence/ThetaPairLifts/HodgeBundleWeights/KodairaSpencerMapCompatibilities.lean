@@ -71,7 +71,7 @@ theorem kodaira_spencer_map_properties : _root_.GlobalTheory.CovTop.Hypotheses''
   intro PP E _ _ _ H Dw l Xo c TF U δ K _ _ P hU y' hU' hs hev
   have hred : spMap (GlobalTheory.FlagTan.red c K).toRingHom ≫ y' = frX P := by
     apply GlobalTheory.FlagMod.xF_ext (Y := TF.Y)
-    · rw [Category.assoc, hs, spMap_comp_spMap]
+    · rw [Category.assoc, hs, _root_.GlobalTheory.spMap_comp_ring]
       congr 1
     · exact GlobalTheory.FlagMod.frX_snd P
     · have h1 : ⊤ ≤ (spMap (GlobalTheory.FlagTan.red c K).toRingHom ≫ (y' ≫ TF.Y.j)) ⁻¹ᵁ U.1 :=
@@ -84,7 +84,7 @@ theorem kodaira_spencer_map_properties : _root_.GlobalTheory.CovTop.Hypotheses''
       simp [GlobalTheory.FlagTan.red]
   have hx : GlobalTheory.FlagTan.IsTanX P (y' ≫ pullback.fst _ _) := by
     refine ⟨?_, ?_⟩
-    · rw [Category.assoc, pullback.condition, ← Category.assoc, hs, spMap_comp_spMap]
+    · rw [Category.assoc, pullback.condition, ← Category.assoc, hs, _root_.GlobalTheory.spMap_comp_ring]
       rfl
     · rw [← Category.assoc, hred, GlobalTheory.FlagMod.frX_fst]
   have P5 := PP.p5
@@ -101,8 +101,8 @@ theorem kodaira_spencer_map_properties : _root_.GlobalTheory.CovTop.Hypotheses''
   have hA' := GlobalTheory.PolPull.isAbelianScheme_of_isGrpPullback hUn hπ'
   have gA' := (smoothOfRelativeDimension_isStableUnderBaseChange _).of_isPullback hπ'.1 hg
   have : IsCommMonObj A := hA.comm
-  obtain ⟨a', ha'⟩ := GlobalTheory.T.exists_ringAction_of_isGrpPullback Xo.univ.t.act hπ'
-  obtain ⟨a, ha⟩ := GlobalTheory.T.exists_ringAction_of_isGrpPullback Xo.univ.t.act hπ
+  obtain ⟨a', ha'⟩ := _root_.GlobalTheory.OActPull.exists_oAct_of_isGrpPullback Xo.univ.t.act hπ'
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.OActPull.exists_oAct_of_isGrpPullback Xo.univ.t.act hπ
   have hc : ∀ z, (a.act z).left ≫ j = j ≫ (a'.act z).left := fun z => by
     apply hπ'.1.hom_ext
     · rw [Category.assoc, Category.assoc, ha' z, ← Category.assoc j π', ← ha z]

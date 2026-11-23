@@ -143,6 +143,6 @@ theorem exists_linearisation_isotropic : ∀ (S : Scheme.{0}) (A : Over S) [GrpO
     (fun a c => by simp only [hm1, transl_mul', Over.comp_left])
     (fun a c => by simp only [hm2, transl_mul', Over.comp_left])
     v₁ v₂ hv₁ hv₂ cv₁ cv₂
-    (fun a b => GlobalTheory.T.translation_isos_commute_of_commutatorPairing_one S (G2 A) (AbelianSchemeGerms.isAbelianScheme_tensor A A hA hA) _ hQ _ _ (v₁ a) (v₂ b) (hv₁ a) (hv₂ b) (hW a a.2 b b.2))
+    (fun a b => _root_.GlobalTheory.UPel.HT.Hecke.gen_commute_of_weilIs S (G2 A) (AbelianSchemeGerms.isAbelianScheme_tensor A A hA hA) _ hQ _ _ (v₁ a) (v₂ b) (hv₁ a) (hv₂ b) (hW a a.2 b b.2))
 
 end GlobalTheory.IsoLin

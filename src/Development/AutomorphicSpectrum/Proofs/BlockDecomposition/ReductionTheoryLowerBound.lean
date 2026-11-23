@@ -291,7 +291,7 @@ theorem simple_bound : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     calc K * ε ^ d ≤ K * ε := mul_le_mul_of_nonneg_left h1 hK.le
       _ = K / (K + 1) := by rw [hεdef]; ring
       _ < 1 := by rw [div_lt_one (by positivity)]; linarith
-  obtain ⟨N, hN1, hN⟩ := GlobalTheory.T.adelic_tensor_rational_approximation F E ε hε
+  obtain ⟨N, hN1, hN⟩ := _root_.GlobalTheory.CompanionTheory.RedCov.Simple.Dirichlet.dirichlet F E ε hε
   have hN0 : (0 : ℝ) < N := by exact_mod_cast hN1
   refine ⟨(K + 1) * N, by positivity, ?_⟩
   intro ω hω s κ hκ e he hNM j' hj'

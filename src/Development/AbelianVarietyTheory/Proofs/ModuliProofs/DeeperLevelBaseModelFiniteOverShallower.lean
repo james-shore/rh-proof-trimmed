@@ -197,8 +197,8 @@ theorem baseModel_above : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDiscret
     by rw [B.A_eq, B'.A_eq]⟩
   have hdB : l₀.Dvd B.l₁ := ⟨by rw [B.M_eq], by rw [B.Mb_eq], by rw [B.A_one]; exact one_dvd _⟩
   have hdB' : l₀'.Dvd B'.l₁ := ⟨by rw [B'.M_eq], by rw [B'.Mb_eq], by rw [B'.A_one]; exact one_dvd _⟩
-  obtain ⟨k, r, ν, hr, hk, hlev, -⟩ := GlobalTheory.T.exists_finite_etale_surjective_levelMap E H D Xo hN l₀ l₀' hd
-  obtain ⟨k₁, r₁, ν₁, hr₁, hk₁, hlev₁, -⟩ := GlobalTheory.T.exists_finite_etale_surjective_levelMap E H D Xo hN B.l₁ B'.l₁ hd₁
+  obtain ⟨k, r, ν, hr, hk, hlev, -⟩ := _root_.GlobalTheory.LevelMap.exists_levelMap E H D Xo hN l₀ l₀' hd
+  obtain ⟨k₁, r₁, ν₁, hr₁, hk₁, hlev₁, -⟩ := _root_.GlobalTheory.LevelMap.exists_levelMap E H D Xo hN B.l₁ B'.l₁ hd₁
   have dO := (ded l₀ _ e 1 B.A_one hS (one_dvd _)).2 B.β B.β_inc
   obtain ⟨ft', dO'⟩ := ded l₀' _ e 1 B'.A_one hS' (one_dvd _)
   replace dO' := dO' B'.β B'.β_inc

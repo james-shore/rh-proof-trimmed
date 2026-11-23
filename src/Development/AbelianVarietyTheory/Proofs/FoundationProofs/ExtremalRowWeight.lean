@@ -114,7 +114,7 @@ theorem fock_extremal (hla : Antitone la) {f : Pol N ℂ} (hf : f ∈ nabla la �
   have hw' := weightedHomogeneousComponent_isWeightedHomogeneous (w := rowW N N) μ f
   by_cases hμ : μ = la
   · subst hμ
-    conv_lhs => rw [GlobalTheory.T.dualWeyl_eq_evalAt_one_smul_extremal_of_rowWeight ℂ N μ hla _ hmem hw']
+    conv_lhs => rw [_root_.GlobalTheory.DualWeyl.eq_evalAt_one_smul_extremal_of_rowWeight ℂ N μ hla _ hmem hw']
     rw [fock_smul_left]
   · rw [evalAt_one_of_ne hμ hmem hw', zero_mul]
     exact Formalism.GradedWeylDivisibility.fockWeightOrth _ _ _ μ la _ _ hμ hw' (extremal_rowWeight hla)

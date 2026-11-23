@@ -295,7 +295,7 @@ theorem frame_om {X : Scheme.{0}} {Ω : Type} [Field Ω] [CharZero Ω] {ξ : Sp 
     (s : CMType H ⊕ CMType H) : ∃ (r : ℕ) (g : Fin r → Module.Dual Ω (eigSp ρ (cst.comp (labelEmb c s)))),
       (M.omLat.map (eigSp ρ (cst.comp (labelEmb c s))).dualRestrict).IsFrameAt g q := by
   classical
-  obtain ⟨hinj, hcard⟩ := GlobalTheory.T.label_embedding_injective E H l c
+  obtain ⟨hinj, hcard⟩ := _root_.GlobalTheory.CompanionTheory.Ar.labels_all_once E H l c
   have hσ : Function.Injective fun s : CMType H ⊕ CMType H => cst.comp (labelEmb c s) := fun s s' h =>
     hinj (RingHom.ext fun a => cst.injective (RingHom.congr_fun h a))
   have hlat := (GlobalTheory.T.lie_omega_lattice_vector_bundle X Ω ξ t.G Li M hg t.semi.smooth).1
@@ -383,7 +383,7 @@ theorem exists_hodgeCpt_htFree : Out.WeilSt → ∀ (E : Type) [Field E] [Number
   have hy' : M'.ξ ≫ g ≫ f₁ = y₀ ≫ Y.j := by rw [← Category.assoc, hg, hy₀]
   have hcst' : M'.ξ ≫ (g ≫ f₁) ≫ Y.s = spMap (cst.comp (algebraMap (𝓞 c.F) c.F)) := by
     rw [← Category.assoc, hy', Category.assoc, hcst]
-  haveI : IsNoetherian M'.X := ((GlobalTheory.T.regAt_noetherian_model_noetherian _ Ω M'.ξ ℤ _ _ M'.tie).2 M'.all).1
+  haveI : IsNoetherian M'.X := ((_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie _ Ω M'.ξ ℤ _ _ M'.tie).2 M'.all).1
   have htw' := fun p hp => tors_weil hW m hy' (hpos p hp) (hT p hp) (hζ p hp)
   have hpull : ∀ p ∈ S, N'.htOm t'.PP.L (p ^ R p) =
       (N₁.htOm t₁.PP.L (p ^ R p)).pull M'.ξ g (AddMonoidHom.id _) := fun p hp => by

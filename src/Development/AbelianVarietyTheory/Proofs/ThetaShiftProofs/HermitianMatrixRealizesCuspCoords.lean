@@ -58,16 +58,6 @@ namespace GlobalTheory.HermExpo
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r ρ : ℕ}
 
-theorem sum_re_eq_trace (X : Data E r) (x : E) :
-    ∑ τ : X.Ψ, (τ.1 (x + cc x)).re = ((Algebra.trace ℚ E x : ℚ) : ℝ) := by
-  first
-  | exact @_root_.GlobalTheory.TraceRealPartConjugateSum.sum_re_add_conj
-  | exact _root_.GlobalTheory.TraceRealPartConjugateSum.sum_re_add_conj
-  | (apply _root_.GlobalTheory.TraceRealPartConjugateSum.sum_re_add_conj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceRealPartConjugateSum.sum_re_add_conj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceRealPartConjugateSum.sum_re_add_conj <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TraceRealPartConjugateSum.sum_re_add_conj ..)
-
 theorem kappa_ne (X : Data E r) : X.κ0 ≠ 0 := by
   have := X.ξ0_ne
   rcases X.κ0_xi with h | h <;> rw [h] <;> simpa using this
@@ -132,7 +122,7 @@ theorem exists_herm_phase (E : Type) [Field E] [NumberField E] [IsCMField E] (r 
       refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
       ring
     unfold phZ prE
-    rw [hx, sum_re_eq_trace, ← hc, hf]
+    rw [hx, _root_.GlobalTheory.TraceRealPartConjugateSum.sum_re_add_conj, ← hc, hf]
     simp
 
 end GlobalTheory.HermExpo

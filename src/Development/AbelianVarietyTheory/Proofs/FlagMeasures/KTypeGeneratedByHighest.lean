@@ -334,16 +334,9 @@ theorem group_zero (hσ : IsURepOn (UJset ε) σ) (Z : Matrix (Fin n) (Fin n) �
   rw [Complex.ofReal_zero, zero_smul, NormedSpace.exp_zero, hσ.1.1]
   rfl
 
-private theorem Jm_mul_JmFlagMeasures (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  simp only [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal]
-  rw [← Matrix.diagonal_one]
-  congr 1
-  funext a
-  split <;> norm_num
-
 private theorem inUJ_exp_smul_of_inG {Z : Matrix (Fin n) (Fin n) ℂ} (hZ : inG ε Z) (t : ℝ) :
     Formalism.REAL.inUJ ε (NormedSpace.exp ((t : ℂ) • Z)) := by
-  have hJJ := Jm_mul_JmFlagMeasures ε
+  have hJJ := _root_.Formalism.REAL.Jm_mul_self ε
   have hst : star (t : ℂ) = t := by simp
   have hAg : ((t : ℂ) • Z)ᴴ * Formalism.REAL.Jm ε + Formalism.REAL.Jm ε * ((t : ℂ) • Z) = 0 := by
     have hZ' : Zᴴ * Formalism.REAL.Jm ε + Formalism.REAL.Jm ε * Z = 0 := hZ

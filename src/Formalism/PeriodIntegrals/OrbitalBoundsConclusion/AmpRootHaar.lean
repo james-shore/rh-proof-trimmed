@@ -41,4 +41,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem amplifier_root_haar : PI.AmpRootH.RootHaar := PI.AmpRootHaarW.rootHaar_main

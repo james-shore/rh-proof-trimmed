@@ -61,8 +61,6 @@ variable {n : ℕ}
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
-theorem hLoc_nonneg' (g : GR n) : 0 ≤ hLoc g := by unfold hLoc; positivity
-
 theorem hLoc_pos' (g : GR n) : 0 < hLoc g := Vac.hLoc_pos detU1 g
 
 theorem hLoc_slit (g : GR n) : ((hLoc g : ℝ) : ℂ) ∈ Complex.slitPlane :=
@@ -177,7 +175,7 @@ theorem term_rep (hD : HD m n e G Pp Γ ι s₀ Ht f U d Ê t) (w : ℂ) (g : G)
   have e1 : ((q.out : Γ) : G) * (g * ι v) = x₀ * ι (y₀ * v) := by rw [← mul_assoc, hxy, map_mul, mul_assoc]
   show ((Ht (((q.out : Γ) : G) * (g * ι v)) : ℝ) : ℂ) ^ w * f (((q.out : Γ) : G) * (g * ι v)) = _
   rw [e1, (hp (y₀ * v)).1, (hp (y₀ * v)).2, phi, Complex.ofReal_mul,
-    Complex.mul_cpow_ofReal_nonneg hr.le (hLoc_nonneg' _)]
+    Complex.mul_cpow_ofReal_nonneg hr.le (_root_.PositivityTheory.Rg.Sw.AbsSt.Vac.hLoc_nonneg _)]
   ring
 
 theorem conv_far (hD : HD m n e G Pp Γ ι s₀ Ht f U d Ê t) (ν : Measure (GR n)) [ν.IsHaarMeasure]

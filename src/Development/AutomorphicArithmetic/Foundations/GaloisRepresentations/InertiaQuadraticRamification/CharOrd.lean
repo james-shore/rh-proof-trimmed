@@ -46,13 +46,9 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.HeckeGal GlobalTheory.CuspRep UpperTheory.V.Published
 open UpperTheory.Gal.UnramifiedFromSplittingCriterion
 
-private theorem exists_injective_char (p : ℕ) [Fact p.Prime] :
-    ∃ lam0 : (ZMod p)ˣ →* ℂˣ, Function.Injective lam0 :=
-  _root_.UpperTheory.Reformulated.B.ExistsInjectiveCharacter.exists_injective_char p
-
 theorem UpperTheory.Gal.UnramifiedFromSplittingCriterion.charOrd : CharOrd := by
   intro p _ ℓ k a hℓ hdvd
-  obtain ⟨lam0, hinj⟩ := exists_injective_char p
+  obtain ⟨lam0, hinj⟩ := _root_.UpperTheory.Reformulated.B.ExistsInjectiveCharacter.exists_injective_char p
   have hm0 : 0 < orderOf (a ^ 2) := orderOf_pos _
   have h2m : orderOf a ∣ 2 * orderOf (a ^ 2) := by
     apply orderOf_dvd_of_pow_eq_one

@@ -73,8 +73,6 @@ theorem ex_eq_iff (z w : Fin g → ℂ) : u.ex z = u.ex w ↔ z - w ∈ u.Λ := 
   rw [e]
   exact mul_eq_right
 
-theorem ex_zero' : u.ex 0 = 1 := (u.ker 0).2 u.Λ.zero_mem
-
 theorem lin_ext {F G : (Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ)} (h : ∀ z, u.ex (F z) = u.ex (G z)) : F = G := by
   haveI := u.discrete
   have hc : Continuous fun z => (⟨F z - G z, (ex_eq_iff u _ _).1 (h z)⟩ : u.Λ) :=
@@ -110,7 +108,7 @@ theorem exists_lift_points (r : Out.RingAct A O) (F : O →+* Module.End ℂ (Fi
     exact (mul_eq_left (a := c 0) (b := c 0)).1 this.symm
   let S : Submodule O (X × (Fin g → ℂ)) :=
     { carrier := {p | u.ex p.2 = c p.1}
-      zero_mem' := (ex_zero' u).trans c0.symm
+      zero_mem' := (_root_.GlobalTheory.CubeValues.ex_zero u).trans c0.symm
       add_mem' := fun {p q} hp hq => by
         change u.ex (p.2 + q.2) = c (p.1 + q.1)
         rw [u.ex_add, hadd, hp, hq]; rfl
@@ -176,7 +174,7 @@ theorem isLift_tau (hc : ∀ x, u.ex (ct x) = D.c x) (a b : D.X) :
   · exact jFK_comp_xK hc _
   · exact jFK_comp_xK hc _
   · change _ ≫ _ ≫ _ = (u.ex 0).left
-    rw [← Category.assoc, jFK_comp_toUnit, ex_zero', Hom.one_def]
+    rw [← Category.assoc, jFK_comp_toUnit, _root_.GlobalTheory.CubeValues.ex_zero, Hom.one_def]
     simp [eSec]
 
 variable {Hm : Matrix (Fin g) (Fin g) ℂ} {χ : u.Λ → ℂ}

@@ -225,6 +225,4 @@ end PositivityTheory.RgBcC.Cxd2.Der
 
 namespace PositivityTheory.RgBcC.Cxd2
 
-theorem atDer : AtDer := Der.atDer'
-
 end PositivityTheory.RgBcC.Cxd2

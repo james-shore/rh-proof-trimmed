@@ -58,5 +58,5 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.regFn :
   intro E _ _ _ n w τ B h
   obtain ⟨ϖ, hϖ⟩ := exists_unit_ordL_eq_one w
   obtain ⟨x, hx, htr⟩ := UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.dcosTr E n w ϖ hϖ τ h.1
-  obtain ⟨hL, hS⟩ := UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.dcosSep E n w ϖ hϖ x hx
+  obtain ⟨hL, hS⟩ := _root_.UpperTheory.Reformulated.B.DoubleCosetSeparation.dcosSep E n w ϖ hϖ x hx
   exact ⟨_, hL, htr, hS⟩

@@ -173,7 +173,7 @@ end Loc
 
 theorem unlFull : UnlFull := by
   intro k _ _ _ _ _ n V _ _ π ω hω hs hu
-  obtain ⟨hi, hq⟩ := (UpperTheory.Gal.LocD.ofSupport_holds k n V π ω hω).1 hs
+  obtain ⟨hi, hq⟩ := (_root_.UpperTheory.Gal.LocD.ofSupport k n V π ω hω).1 hs
   obtain ⟨E⟩ := hq.nonempty_equiv hi (prinSeries_irreducible ω hω (ne_mul_absPow ω hω hu))
   exact ⟨E.symm⟩
 

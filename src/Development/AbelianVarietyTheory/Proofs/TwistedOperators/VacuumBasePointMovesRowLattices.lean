@@ -57,11 +57,6 @@ namespace GlobalTheory.BaseTiltMove
 
 variable {D : D7}
 
-theorem incA_inj : Function.Injective (incA D) := by
-  haveI : Nontrivial (AF D.host.F) :=
-    (NumberField.AdeleRing.algebraMap_injective (NumberField.RingOfIntegers D.host.F) D.host.F).nontrivial
-  exact Algebra.TensorProduct.includeRight_injective (algebraMap D.host.F (AF D.host.F)).injective
-
 theorem incA_apply (e : D.host.E) : incA D e = (1 : AF D.host.F) ⊗ₜ[D.host.F] e := rfl
 
 theorem mulVec_latV_of_rat (S : HSp D) (γ : Matrix (Fin S.rank) (Fin S.rank) D.host.E) (L M : Lat S)
@@ -147,9 +142,9 @@ theorem tilt_cols {j : ℕ} (hj : j < D.R.m) (hodd : Odd j) {δ : GA D (G.V (.gr
     obtain ⟨a, ha⟩ := D.R.m_even; obtain ⟨b, hb⟩ := hodd; exact ⟨(D.R.m - 1 - j) / 2, by omega⟩
   obtain ⟨h0, he, he'⟩ := hδ.2.2 σ hj hσ
   rw [hγ, ← Matrix.map_mul] at h0 he he'
-  have h0 := Matrix.map_injective incA_inj h0
-  have he := Matrix.map_injective incA_inj he
-  have he' := Matrix.map_injective incA_inj he'
+  have h0 := Matrix.map_injective _root_.GlobalTheory.MixModel.incA_injective h0
+  have he := Matrix.map_injective _root_.GlobalTheory.MixModel.incA_injective he
+  have he' := Matrix.map_injective _root_.GlobalTheory.MixModel.incA_injective he'
   refine ⟨h0, Matrix.ext fun k p => ?_⟩
   rw [Matrix.mul_diagonal]
   by_cases hp : 2 * p.1 < D.R.m - 1 - j

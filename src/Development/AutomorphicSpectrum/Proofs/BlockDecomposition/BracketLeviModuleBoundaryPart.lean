@@ -263,18 +263,14 @@ section Ops
 
 variable (E1 E2 : Fin n → Fin n → Module.End ℂ V)
 
-theorem aa (i j : Lt n) : (annq i * annq j + annq j * annq i : Module.End ℂ (Cq n V)) = 0 := annq_annq i j
-theorem cc (i j : Lt n) : (creq i * creq j + creq j * creq i : Module.End ℂ (Cq n V)) = 0 := creq_creq i j
-theorem ac (i j : Lt n) : (annq i * creq j + creq j * annq i : Module.End ℂ (Cq n V)) = if i = j then 1 else 0 :=
-  annq_creq i j
-
+alias cc := _root_.GlobalTheory.CompanionTheory.PairMult.LeviQ.creq_creq
 theorem lFq_eq (s : Bool) (p q : Fin n) :
     lFq E1 E2 s p q = liftq n (Ts E1 E2 s p q) + Dm annq creq (Mt s p q) := by
   rw [lFq, adLq_eq]
 
 theorem br_L_ann (s : Bool) (p q : Fin n) (m : Lt n) :
     br (lFq E1 E2 s p q) (annq m) = -∑ i, Mt s p q i m • annq i := by
-  rw [lFq_eq, br_add_left, br_lift_annq, zero_add, dm_a aa ac]
+  rw [lFq_eq, br_add_left, br_lift_annq, zero_add, dm_a _root_.GlobalTheory.CompanionTheory.PairMult.LeviQ.annq_annq _root_.GlobalTheory.CompanionTheory.PairMult.LeviQ.annq_creq]
 
 theorem br_dm_lift (A : Lt n → Lt n → ℂ) (T : Module.End ℂ V) :
     br (Dm annq creq A) (liftq n T : Module.End ℂ (Cq n V)) = 0 := by
@@ -310,7 +306,7 @@ theorem bracket_levi_cubicBoundaryPart (s : Bool) (p q : Fin n) :
       smul_zero, Finset.sum_const_zero]
   rw [h0, zero_add]
   unfold cubicBoundaryPart
-  have hW := fun l1 l2 l3 => bracket_wedge_formula (R := Module.End ℂ (Cq n V)) (ι := Lt n) (a := annq) (c := creq) aa cc ac (Mt s p q) l1 l2 l3
+  have hW := fun l1 l2 l3 => bracket_wedge_formula (R := Module.End ℂ (Cq n V)) (ι := Lt n) (a := annq) (c := creq) _root_.GlobalTheory.CompanionTheory.PairMult.LeviQ.annq_annq cc _root_.GlobalTheory.CompanionTheory.PairMult.LeviQ.annq_creq (Mt s p q) l1 l2 l3
   simp only [br_sum_right, br_smul_right, hW]
   exact GlobalTheory.CompanionTheory.RealMult.TorC.reindex (R := Module.End ℂ (Cq n V)) (fun i j k => creq k * annq j * annq i) Sq (Mt s p q)
 
@@ -503,7 +499,7 @@ theorem dm_comm_apply {lev : Fin n → ℕ} (hm : Monotone lev) {x : Cq n V} (hx
     br (Dm annq creq (Mt s p q)) (Dm annq creq (Mt t r v) : Module.End ℂ (Cq n V)) x =
       (if q = r then Dm annq creq (Mt (s == t) p v) x else 0) -
         (if v = p then (Dm annq creq (Mt (s == t) r q) : Module.End ℂ (Cq n V)) x else 0) := by
-  rw [br_dm_gen (R := Module.End ℂ (Cq n V)) aa cc ac]
+  rw [br_dm_gen (R := Module.End ℂ (Cq n V)) _root_.GlobalTheory.CompanionTheory.PairMult.LeviQ.annq_annq cc _root_.GlobalTheory.CompanionTheory.PairMult.LeviQ.annq_creq]
   have t1 : ∀ i l : Lt n,
       ((∑ m, Mt t r v i m * Mt s p q m l) - ∑ m, Mt s p q i m * Mt t r v m l) • creq l (annq i x) =
       ((if q = r then Mt (s == t) p v i l else 0) - (if v = p then Mt (s == t) r q i l else 0)) • creq l (annq i x) := by

@@ -63,14 +63,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdForm.StdSteps
 
-theorem even_N (R : Ranks) (j : ℕ) : Even (R.N j) :=
-  R.k_even.add (R.t_odd.add_one.mul_left j)
-
-theorem N_lt_succ (R : Ranks) (j : ℕ) : R.N j < R.N (j + 1) := by
-  unfold Ranks.N
-  rw [Nat.add_mul]
-  omega
-
 theorem realPlace_cmTrace_zero_element_eq_I_mul_abs (D : D7) (h : D.host.ccK = ⊤) (τ : D.what₂.Tau) :
     tauE D τ D.host.xi0 = Complex.I * ((Real.sqrt D.host.d)⁻¹ : ℝ) := by
   have h1 : tauE D τ D.host.sqrtMinusD = Complex.I * (Real.sqrt D.host.d : ℂ) :=

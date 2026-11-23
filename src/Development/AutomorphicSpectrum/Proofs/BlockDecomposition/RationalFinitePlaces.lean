@@ -96,23 +96,16 @@ theorem selberg {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 abbrev gam1 (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (δ : GL (Fin n) E) : Subgroup (GL (Fin n) (Af E)) :=
   (ratF E n).range ⊓ twCent (thF E n) (ratF E n δ)
 
-theorem algebraMap_inj (E : Type) [Field E] [NumberField E] : Function.Injective (algebraMap E (Af E)) := by
-  haveI : Nontrivial (Af E) := by
-    obtain ⟨P, hP⟩ := Ideal.exists_maximal (𝓞 E)
-    exact (Formalism.UG.evalV E ⟨P, hP.isPrime,
-      Ring.ne_bot_of_isMaximal_of_not_isField hP (RingOfIntegers.not_isField E)⟩).toRingHom.domain_nontrivial
-  exact (algebraMap E (Af E)).injective
-
 theorem ratF_injective (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) :
     Function.Injective (ratF E n) := by
   intro a b h
-  refine Units.ext (Matrix.ext fun i j => algebraMap_inj E ?_)
+  refine Units.ext (Matrix.ext fun i j => _root_.GlobalTheory.CompanionTheory.DefiniteTransport.algebraMap_injective E ?_)
   exact congrArg (fun g : GL (Fin n) (Af E) => g.val i j) h
 
 theorem ratF_mem_UJ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (H : Matrix (Fin n) (Fin n) E)
     (γ : GL (Fin n) E) : ratF E n γ ∈ UJ (conjFin (IsCMField.complexConj E).toRingEquiv) (H.map (algebraMap E (Af E))) ↔
       γ ∈ UJ (IsCMField.complexConj E).toRingEquiv.toRingHom H := by
-  have hi := algebraMap_inj E
+  have hi := _root_.GlobalTheory.CompanionTheory.DefiniteTransport.algebraMap_injective E
   have hv : (ratF E n γ).val = γ.val.map (algebraMap E (Af E)) := rfl
   have hcT : cT (conjFin (IsCMField.complexConj E).toRingEquiv) (γ.val.map (algebraMap E (Af E))) =
       (cT (IsCMField.complexConj E).toRingEquiv.toRingHom γ.val).map (algebraMap E (Af E)) := by

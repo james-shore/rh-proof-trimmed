@@ -56,11 +56,11 @@ namespace GlobalTheory.CompanionTheory.Ar.Plug
 theorem deepStR_of_volume : GlobalTheory.CompanionTheory.Ar.Pub.NefRR → Top.Given → ArithIntersectionSystemStatement → BirationalPullbackPushforwardFormula → Top.GoodTowerExistsX →
     Top.VolumeTheoremX → DeepStR := by
   intro hN hG hA hG6 hTw hV
-  obtain ⟨C, hC0, hC⟩ := GlobalTheory.T.abelian_cm_comp_laws_bound hN hG hA hG6 hTw hV
+  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.top_meanAll hN hG hA hG6 hTw hV
   refine ⟨C, hC0, ?_⟩
   intro D T hT hmk j hj1 hjm Y e o hY hcard
-  obtain ⟨⟨h, e', hCL⟩, hgood, hq, hpq, hf, hrd, hL⟩ := GlobalTheory.T.good_datum_parameters hG D T hT j hj1 hjm Y e o hY
-  haveI := GlobalTheory.CompanionTheory.Ar.Rec.field_of_datum_abelian D
+  obtain ⟨⟨h, e', hCL⟩, hgood, hq, hpq, hf, hrd, hL⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.vs_laws hG D T hT j hj1 hjm Y e o hY
+  haveI := _root_.GlobalTheory.FlatRow.isAbelianGalois_host D
   have hm2 := D.R.two_le_m
   have h2m : 2 * D.R.m ≤ D.R.m ^ 2 := by nlinarith
   have hr : D.R.r = D.R.k + D.R.m - 1 := rfl

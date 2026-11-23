@@ -69,16 +69,11 @@ theorem isUnit_det {g : Mat k r} (hg : g ∈ GG k r) : IsUnit g.det := by
   have h0 : opn (0 : Mat k r) = 0 := by simp [opn]
   linarith [h1.1, h1.2]
 
-theorem continuousOn_matInv : ContinuousOn (fun g : Mat k r => g⁻¹) (GG k r) := by
-  intro g hg
-  refine (continuousAt_matrix_inv g ?_).continuousWithinAt
-  rw [Ring.inverse_eq_inv']
-  exact continuousAt_inv₀ (isUnit_det hg).ne_zero
+alias continuousOn_matInv := _root_.GlobalTheory.SgInf.BeForm.continuousOn_inv
 
-theorem continuous_of : Continuous fun x : Mt k r => (Matrix.of x : Mat k r) := continuous_id
+alias continuous_of := _root_.GlobalTheory.SgInf.BeForm.continuous_of
 
-theorem haar_ae {S : Set (Mat k r)} {μ : Measure (Mt k r)} (h : IsHaarOn S μ) :
-    ∀ᵐ x ∂μ, (Matrix.of x : Mat k r) ∈ S := ae_iff.2 h.2.2.1
+alias haar_ae := _root_.GlobalTheory.SgInf.BeForm.ae_mem
 
 theorem aesm_of_continuousOn {X E : Type*} [TopologicalSpace X] [MeasurableSpace X]
     [OpensMeasurableSpace X] [SecondCountableTopology X] [NormedAddCommGroup E] {μ : Measure X}

@@ -84,4 +84,3 @@ theorem dual_third_group_integral : Formalism.FourierDecayAlt.L.DualLatticeInclu
 
 end Formalism.FourierDecayAlt.P.Dual
 
-theorem Formalism.FourierDecayAlt.P.dual_third_group_holds : Formalism.FourierDecayAlt.L.DualLatticeInclusion := Formalism.FourierDecayAlt.P.Dual.dual_third_group_integral

@@ -59,17 +59,6 @@ namespace GlobalTheory.Published.Amb
 
 variable {k : Type} [CommRing k] {X : Scheme.{0}}
 
-private theorem comb_isometric_of_isometric {p : X ⟶ Sp k} {ι : Type} [Fintype ι] {L L' : ι → HermLB p}
-    (hL : ∀ j, (L j).Isometric (L' j)) (n : ι → ℤ) : (comb L n).Isometric (comb L' n) := by
-  unfold comb
-  induction (Finset.univ : Finset ι).toList with
-  | nil => exact HermLB.Isometric.refl _
-  | cons i l ih =>
-    simp only [List.foldr_cons]
-    refine HermLB.Isometric.tens ?_ ih
-    unfold zp
-    exact HermLB.Isometric.tens (HermLB.Isometric.pow (hL i) _) (HermLB.Isometric.dual (HermLB.Isometric.pow (hL i) _))
-
 theorem mixOn_congr [IsIntegral X] [IsLocallyNoetherian X] {p : X ⟶ Sp k} {D : ℕ} (hX : IsArithVar p D) {ι : Type}
     [Fintype ι] {M M' : HermLB p} {L L' : ι → HermLB p} (hM : M.Isometric M') (hL : ∀ j, (L j).Isometric (L' j))
     (H : MixOn p D ι M L) : MixOn p D ι M' L' := by
@@ -80,8 +69,8 @@ theorem mixOn_congr [IsIntegral X] [IsLocallyNoetherian X] {p : X ⟶ Sp k} {D :
     | none => exact HermLB.Isometric.symm hM
     | some j => exact HermLB.Isometric.symm (hL j)
   have hΦ' : IsArFun (fun o : Option ι => o.elim M L) D Φ :=
-    ⟨fun n' => HermLB.Isometric.isSelfInter hX (comb_isometric_of_isometric hfam n') (hΦ.1 n'), hΦ.2⟩
-  have hcomb : (comb L' n).Isometric (comb L n) := comb_isometric_of_isometric (fun j => HermLB.Isometric.symm (hL j)) n
+    ⟨fun n' => HermLB.Isometric.isSelfInter hX (_root_.GlobalTheory.ArInt.isometric_comb_congr hfam n') (hΦ.1 n'), hΦ.2⟩
+  have hcomb : (comb L' n).Isometric (comb L n) := _root_.GlobalTheory.ArInt.isometric_comb_congr (fun j => HermLB.Isometric.symm (hL j)) n
   have hh' : (comb L n).IsArithHeight h := HermLB.Isometric.isArithHeight hX hcomb hh
   obtain ⟨r0, hr0, hdiv, hlog⟩ := HermLB.Isometric.exists_isRatSec (HermLB.Isometric.symm hM) hr
   obtain ⟨hint, heq⟩ := H Φ hΦ' n h hh' r0 hr0

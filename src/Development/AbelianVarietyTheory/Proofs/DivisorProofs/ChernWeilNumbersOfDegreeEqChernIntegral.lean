@@ -62,7 +62,7 @@ open scoped Matrix ContDiff ComplexOrder
 theorem GlobalTheory.ChernCalc.chernWeilNumbers_of_chernDegreeComplex :
     GlobalTheory.Published.ChernDegreeComplex → GlobalTheory.Published.ChernWeilNumbers := by
   intro h F _ σ X Y ι _ m E E' φ f gr hR hG H hH R
-  have hD : GlobalTheory.Published.ChernDegree := GlobalTheory.T.degreeEqChernFormIntegral_of_complex_case h
+  have hD : GlobalTheory.Published.ChernDegree := _root_.GlobalTheory.ChernDegreeBaseChange.chernDegree_of_complex h
   have hf : f ≫ X.str = Y.str := hR.hom.inducedModelMorphism_comp_structureMap
   have hform := GlobalTheory.T.isForm_evalRealPoly_chernForms_flaggedMetric F σ X ι m 0 E H (isMetricFr_of_isMetricOn hH) R
   have hM := GlobalTheory.T.isFlaggedBundleMetric_pullGram_refinement F σ X Y ι m E E' φ f hf hR H hH

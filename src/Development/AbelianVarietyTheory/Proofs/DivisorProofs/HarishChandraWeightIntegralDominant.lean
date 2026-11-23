@@ -82,18 +82,13 @@ theorem card_split (ε : Fin n → Bool) (a : Fin n) :
     simp
   rw [h, card_union_of_disjoint d2, card_union_of_disjoint d1, card_singleton]
 
-theorem p_add_q (ε : Fin n → Bool) : pOf ε + qOf ε = n := by
-  delta pOf qOf
-  have := card_filter_add_card_filter_not (s := (univ : Finset (Fin n))) (fun a => ε a = true)
-  simpa using this
-
 theorem gaW_eq (ε : Fin n → Bool) (lam : Fin n → ℝ) (m : Fin n → ℤ)
     (hm : ∀ a, lam a + ((n : ℝ) - 1) / 2 = m a) (a : Fin n) :
     gaW ε lam a = ((m a - (if ε a then 0 else (pOf ε : ℤ)) - ReciprocityTheory.ChartRestriction.TR.Weyl.rhoK ε a : ℤ) : ℝ) := by
   have hcR : ((univ.filter fun b => a < b ∧ ε b = ε a).card : ℝ) +
       ((univ.filter fun b => b < a ∧ ε b = ε a).card : ℝ) + 1 =
       ((univ.filter fun b => ε b = ε a).card : ℝ) := by exact_mod_cast card_split ε a
-  have hpqR : (pOf ε : ℝ) + qOf ε = n := by exact_mod_cast p_add_q ε
+  have hpqR : (pOf ε : ℝ) + qOf ε = n := by exact_mod_cast _root_.ReciprocityTheory.ChartRestriction.DS.carU_pOf_add_qOf ε
   have hma := hm a
   delta gaW rhoC rhoHol ReciprocityTheory.ChartRestriction.TR.Weyl.rhoK
   simp only [Pi.add_apply, Pi.sub_apply]

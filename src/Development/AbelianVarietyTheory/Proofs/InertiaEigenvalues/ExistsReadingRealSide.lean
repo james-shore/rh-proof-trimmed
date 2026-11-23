@@ -240,7 +240,7 @@ theorem levMatch (hA : GlobalTheory.Published.GlobalArtinReciprocity) : ∀ (D :
   · intro PP hPP u hu z hz
     rw [← hQ] at hPP
     have hl : ((D.ntw.l i : ℕ) : 𝓞 D.host.E) ∉ PP.asIdeal := (hAd.1 PP (mem_half.1 hPP).1).2
-    have := GlobalTheory.T.residue_character_artin_tame_galois_eq_tame_value hA D ρ.rc hρ.rc _ (ρ.eOk i b k) ψ hT.2.2.1 PP _ hl (fun _ _ σ _ => hAd.2.2.2.2.1 σ) (hg.split.isIdemAt hPP) _
+    have := _root_.GlobalTheory.TameResRead.res_zpow_eq_tameVal hA D ρ.rc hρ.rc _ (ρ.eOk i b k) ψ hT.2.2.1 PP _ hl (fun _ _ σ _ => hAd.2.2.2.2.1 σ) (hg.split.isIdemAt hPP) _
       (hg.res PP hPP) 1 u hu z hz
     rw [zpow_one] at this
     rw [Bs.exp.sgnT_one]
@@ -265,7 +265,7 @@ theorem levMatch (hA : GlobalTheory.Published.GlobalArtinReciprocity) : ∀ (D :
         convert D.ntw.delta_open i using 1
         ext g
         simp [MonoidHom.mem_ker]
-      have := GlobalTheory.T.residue_character_artin_tame_galois_eq_tame_value hA D ρ.rc hρ.rc _ _ (D.ntw.delta i)⁻¹ hk PP 15 h15
+      have := _root_.GlobalTheory.TameResRead.res_zpow_eq_tameVal hA D ρ.rc hρ.rc _ _ (D.ntw.delta i)⁻¹ hk PP 15 h15
         (fun A hA σ hσ => ⟨1, by rw [pow_one, MonoidHom.inv_apply, inv_pow, hord A hA σ hσ, inv_one]⟩) hid _ hres (-1) u hu z hz
       have e1 : NX.tameVal (D.ntw.delta i)⁻¹ PP (-1) u = (NX.tameVal (D.ntw.delta i) PP (-1) u)⁻¹ := by
         unfold NX.tameVal
@@ -274,7 +274,7 @@ theorem levMatch (hA : GlobalTheory.Published.GlobalArtinReciprocity) : ∀ (D :
         · exact inv_one.symm
       rw [e1, zpow_neg_one, map_units_inv, inv_inj] at this
       exact this
-    · have := GlobalTheory.T.residue_character_artin_tame_galois_eq_tame_value hA D ρ.rc hρ.rc _ _ (D.ntw.delta i) (D.ntw.delta_open i) PP 15 h15
+    · have := _root_.GlobalTheory.TameResRead.res_zpow_eq_tameVal hA D ρ.rc hρ.rc _ _ (D.ntw.delta i) (D.ntw.delta_open i) PP 15 h15
         (fun A hA σ hσ => ⟨1, by rw [pow_one, hord A hA σ hσ]⟩) hid _ hres 1 u hu z hz
       rw [zpow_one] at this
       exact this

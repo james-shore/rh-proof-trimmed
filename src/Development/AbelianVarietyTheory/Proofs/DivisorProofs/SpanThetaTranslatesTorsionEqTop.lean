@@ -110,7 +110,7 @@ theorem span_eq_top : ∀ (K : Type) [Field K] [IsAlgClosed K] [CharZero K] (x :
     obtain ⟨θ₂, hp₂, hv₂⟩ := hmul θ (U i)
     obtain ⟨k, hk⟩ := hpt (θ.pt * pt i) (by rw [mul_pow, hθ, ← (hUt i).1.pt_eq, hker, _root_.mul_one])
     obtain ⟨-, α', s₁', hα', -, htw', ha'⟩ := hUt k
-    obtain ⟨c, hc⟩ := GlobalTheory.T.exists_smul_of_twistedPullbacks_sameBundle K x.P m (by omega) th α' α s₁' s₁ hα' hα htw' htw
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.TwistRatio.exists_smul_of_isTwistPull K x.P m (by omega) th α' α s₁' s₁ hα' hα htw' htw
     obtain ⟨d, hd⟩ := hrat (U k) θ₂ (by rw [hp₂, (hUt k).1.pt_eq, (hUt i).1.pt_eq, hk])
     have e : f θ (SecMod.mk _ (t i)) = f θ₂ (SecMod.mk _ s₁) := by
       rw [← hf _ _ _ ha]

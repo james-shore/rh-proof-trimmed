@@ -136,10 +136,6 @@ theorem coprime_condN_of_splitK {p : ℕ} (hp : p.Prime) (h : H.cls p = .splitK)
 theorem coprime_QSq_of_splitK {p : ℕ} (hp : p.Prime) (h : H.cls p = .splitK) : Nat.Coprime p (H.QS * H.q) :=
   (coprime_condN_of_splitK H hp h).coprime_dvd_right (dvd_mul_right _ _)
 
-theorem exists_prime_of_different_le (v : HeightOneSpectrum (𝓞 H.F)) (hle : differentIdeal ℤ (𝓞 H.F) ≤ v.asIdeal) :
-    ∃ p : ℕ, p.Prime ∧ p ∣ H.QS * H.q * H.d ∧ (p : 𝓞 H.F) ∈ v.asIdeal :=
-  by apply _root_.UpperTheory.Reformulated.B.Qj12.exists_prime_of_different_le <;> assumption
-
 end UpperTheory.Ram.Fun
 
 end

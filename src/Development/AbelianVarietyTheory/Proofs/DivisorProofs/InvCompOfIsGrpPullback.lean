@@ -53,10 +53,4 @@ noncomputable section
 
 namespace GlobalTheory.SymSpread
 
-theorem inv_comp_of_isGrpPullback {S S' : Scheme.{0}} {G : Over S} {G' : Over S'} [GrpObj G] [GrpObj G']
-    {f : S' ⟶ S} {φ : G'.left ⟶ G.left} (h : IsGrpPullback G' G f φ) :
-    (GrpObj.inv : G' ⟶ G').left ≫ φ = φ ≫ (GrpObj.inv : G ⟶ G).left := by
-  have e := congrArg (fun q => q.left) (map_inv (pushHom h G') (𝟙 G'))
-  simpa [pushHom, pushPt, Hom.inv_def] using e
-
 end GlobalTheory.SymSpread

@@ -99,7 +99,7 @@ theorem cok (hA : A11) (E : Spc) (i : ℤ) (hB : ∀ b, BockData l b E i)
     rw [(@hA (l ^ (k + (a + 1))) (l ^ (k + a)) _ (pow_dvd_pow l (by omega)) E).2.2.2 (l ^ k)
       (pow_dvd_pow l (by omega)) n i w.1]
     exact w.2⟩
-  obtain ⟨s, hs⟩ := KerPf.seqSec S t
+  obtain ⟨s, hs⟩ := _root_.UpperTheory.Reformulated.B.DYra4.main S t
   let x : Hl l E n i := ⟨fun j => red (l ^ (k + j)) (l ^ j) E n i (s j).1, fun j => by
     have A := (@hA (l ^ (k + (j + 1))) (l ^ (j + 1)) _ (pow_dvd_pow l (by omega)) E).2.2.2 (l ^ j)
       (pow_dvd_pow l (by omega)) n i (s (j + 1)).1

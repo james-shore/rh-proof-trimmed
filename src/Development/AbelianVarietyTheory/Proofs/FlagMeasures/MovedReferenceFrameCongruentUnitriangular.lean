@@ -121,7 +121,7 @@ theorem loc_cong : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what�
   have hpos : 0 < gS D := by
     unfold gS
     exact Nat.mul_pos (D.host.g_prime 0).pos (D.host.g_prime 1).pos
-  obtain ⟨ξ, hu1, hu2, hPP⟩ := GlobalTheory.T.exists_global_unitriangular_of_local_congruence (placesOf (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D)) _ D.R.rS (c.lat (ρ * n) t₀.lam) hfg
+  obtain ⟨ξ, hu1, hu2, hPP⟩ := _root_.GlobalTheory.HL.LocCongApprox.loc_cong_approx (placesOf (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D)) _ D.R.rS (c.lat (ρ * n) t₀.lam) hfg
     (gS D) hpos (below D P)
     (fun b => c.e ((ρ * n) (frame (lf D (X.Fu u)) b)))
     (fun b => c.e ((ρ * n) (frame (mapLF (n⁻¹ * t₀.lin * m) (lf D (X.Fu u'))) b))) ξp hξO hξ1 hξ2

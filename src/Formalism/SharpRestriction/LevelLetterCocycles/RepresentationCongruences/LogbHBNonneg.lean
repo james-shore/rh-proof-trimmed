@@ -128,10 +128,6 @@ theorem one_le_Sg {n : ℕ} (l b w S η : ℕ) (size : ZMod n → ℕ) (hl : 2 �
   have c : (0 : ℝ) ≤ ((w : ℝ) + S + η) / l := by positivity
   linarith
 
-theorem logb_hB_nonneg {n : ℕ} (l b w S η : ℕ) (size : ZMod n → ℕ) (hl : 2 ≤ l) :
-    0 ≤ Real.logb l (2 * (Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size : ℝ)) := by
-  exact logb_two_mul_hB_nonneg l b w S η size hl
-
 theorem logb_le_Sg {n : ℕ} (l b w S η : ℕ) (size : ZMod n → ℕ) :
     3 * Real.logb l (2 * (Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size : ℝ)) + 3 ≤ 3 * Sg l b w S η size := by
   unfold Sg
@@ -225,7 +221,7 @@ theorem sumAltW [Fintype (K →ₐ[Qp] LL)] [NeZero n] [FiniteDimensional Qp LL]
   refine ⟨rr + 2 * (arcOf b w S η up size).σ PD.p + E, Z, ?_, ?_, hZf, hZe⟩
   ·
     have hlg := logb_le_Sg PD.p b w S η size
-    have hlg0 := logb_hB_nonneg PD.p b w S η size (by omega)
+    have hlg0 := _root_.Formalism.MainNotions.N.Ln17.logb_two_mul_hB_nonneg PD.p b w S η size (by omega)
     have hκ : (κ : ℝ) ≤ 13 * S + 3 * Real.logb PD.p (2 * (Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size : ℝ)) + 3 := by
       have h0 : 0 ≤ 13 * (S : ℝ) + 3 * Real.logb PD.p (2 * (Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size : ℝ)) + 3 := by
         have := Nat.cast_nonneg (α := ℝ) S; linarith
@@ -331,7 +327,7 @@ theorem sumOneW [Fintype (K →ₐ[Qp] LL)] [NeZero n] [FiniteDimensional Qp LL]
   obtain ⟨Z, hZc, hZf, hZe⟩ := cocycle_classes_exponent f (rr + 2 * (arcOf b w S η up size).σ PD.p + E) _ hZH1' hsp
   refine ⟨rr + 2 * (arcOf b w S η up size).σ PD.p + E, Z, ?_, ?_, hZf, hZe⟩
   ·
-    have hlg0 := logb_hB_nonneg PD.p b w S η size (by omega)
+    have hlg0 := _root_.Formalism.MainNotions.N.Ln17.logb_two_mul_hB_nonneg PD.p b w S η size (by omega)
     have hR1 : (1 : ℝ) ≤ R := by exact_mod_cast hR
     have hκ : (κ : ℝ) ≤ 3 * (R : ℝ) ^ 2 * ((S : ℝ) + 1 +
         Real.logb PD.p (2 * (Formalism.MainNotions.TruncatedSeriesCountingBounds.hB b w S η size : ℝ))) := by

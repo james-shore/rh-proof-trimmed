@@ -55,7 +55,7 @@ namespace GlobalTheory.RowSphSmall
 theorem spherical_localComponent_of_small_prime_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, OverRows fun _ _ _ _ w Z _ _ z _ Y =>
     ∀ Rw, _root_.GlobalTheory.HeightCounting.Up.ParityConditions hL (w.st Z).toD7 (TC.cf w.I w.l Z) (repOf Y) Rw → ∀ σ, RowLoc (w.st Z).toD7 Rw σ := by
   intro hP hL
-  refine EvG.imp (_root_.GlobalTheory.T.exists_spherical_loc_comp_at_split_place_off_g hP) fun K _ _ _ _ hK => large₂.imp hK fun B f T _ H => ?_
+  refine EvG.imp (_root_.GlobalTheory.RowSphOff.spherical_localComponent_away_from_level_alt hP) fun K _ _ _ _ hK => large₂.imp hK fun B f T _ H => ?_
   intro hKP w hpin Z Wt hX z p0 Y hH hEx hGeo hGrp hGA Rw hPar σ w' hsplit hoff
   have H' := H hKP w hpin Z Wt hX z p0 Y hH hEx hGeo hGrp hGA σ
   obtain ⟨s, rfl⟩ := GlobalTheory.OffBad.splitPlace_of_isSplitPl _ w' hsplit

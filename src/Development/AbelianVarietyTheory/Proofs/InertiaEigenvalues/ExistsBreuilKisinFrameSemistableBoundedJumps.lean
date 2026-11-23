@@ -157,7 +157,7 @@ theorem GlobalTheory.BKLim.exists_frame_sst : ∀ (l : ℕ) [Fact l.Prime] (K : 
   obtain ⟨C, hC⟩ := GlobalTheory.MemLoc.FitsEx.exists_fits l P AI T
   have hinv := GlobalTheory.MemLoc.fits_inv l P AI T C hC
   have hdr : IsDR (P.PD K) (qRep ρ) := GlobalTheory.sst_isDR l P AI T K _ (qRep ρ) hsst
-  obtain ⟨H, hH⟩ := GlobalTheory.T.exists_hodge_basis_deRham_lattice l K P AI T C hC (bk.ev bk.E) bk.span_ev d ρ hdr
+  obtain ⟨H, hH⟩ := _root_.GlobalTheory.HodgeEx.exists_hodge l K P AI T C hC (bk.ev bk.E) bk.span_ev d ρ hdr
   have hHN := hH N hjump
   have hunit : ∀ g, IsUnit ((ρ g).val) := fun g => (ρ g).isUnit
   obtain ⟨s, hs⟩ : ∃ s : WSeed bk d (fun g => (ρ g).val) τ, IsCrys (P.PD K) (qRep ρ) → ∀ g, s.κ g = 1 := by
@@ -170,8 +170,8 @@ theorem GlobalTheory.BKLim.exists_frame_sst : ∀ (l : ℕ) [Fact l.Prime] (K : 
       obtain ⟨s⟩ := GlobalTheory.T.semistableSeed_of_acris_periods l K bk C τ hτ d (fun g => (ρ g).val) N' c₁ c₂ c₃ k₀ F F' X X' Z Z' κ
         ⟨h1, h2, h3, h4, h5, h6, h7, h8, h9⟩
       exact ⟨s, fun h => absurd h hc⟩
-  obtain ⟨N', F, hFdr, hFcr⟩ := GlobalTheory.T.exists_breuilKisinFrame_semistablePeriods l K bk τ hτ d _ hunit s
-  obtain ⟨F₀, -, hε⟩ := GlobalTheory.T.exists_breuilKisin_frame_height_of_jumps_le l K bk τ hτ C hinv.2 N' N d _ F hFdr H hHN
+  obtain ⟨N', F, hFdr, hFcr⟩ := _root_.GlobalTheory.semistablePeriodFrame l K bk τ hτ d _ hunit s
+  obtain ⟨F₀, -, hε⟩ := _root_.GlobalTheory.BKLim.Lower.exists_frame_of_jumps_le l K bk τ hτ C hinv.2 N' N d _ F hFdr H hHN
   refine ⟨F₀, ?_, fun hc => ?_⟩
   · unfold Frame.IsDR Frame.IsBeta at hFdr ⊢
     rw [hε]; exact hFdr

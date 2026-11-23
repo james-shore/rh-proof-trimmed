@@ -125,7 +125,7 @@ theorem finite_ell_bounded : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     split_ifs
     · exact h1.le
     · rw [h2, one_pow]
-  obtain ⟨D, hD0, hD⟩ := GlobalTheory.T.exists_common_denominator_of_valuation_le_cofinite E β hβ1
+  obtain ⟨D, hD0, hD⟩ := _root_.GlobalTheory.ValBoundDenom.exists_common_denominator_of_valuation_le E β hβ1
   have hD0' : (D : E) ≠ 0 := by exact_mod_cast hD0
   set r : ℕ → ℝ := fun i => (∑ τ : E →+* ℂ, ‖τ (D : E)‖) * n.choose i with hr
   set X : Fin (n + 1) → Set E := fun i => {x | IsIntegral ℤ x ∧ ∀ φ : E →+* ℂ, ‖φ x‖ ≤ r i} with hXd

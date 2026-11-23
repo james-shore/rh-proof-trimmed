@@ -55,29 +55,15 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.LeafHens
-theorem henselization_compatible_maps_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafComp := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafComp_of
-theorem henselization_inverse_limit_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafInv := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafInv_of
-theorem standard_etale_simple_root_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafRootStd := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafRootStd_of
-theorem henselian_simple_root_lift_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafRootHens := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafRootHens_of
 theorem henselization_simple_root_lift_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafRoot := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafRoot_of <;> first | exact standard_etale_simple_root_of_henselization | exact henselian_simple_root_lift_of_henselization
-theorem henselization_supremum_neighborhood_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafSup := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafSup_of
+  apply LateralTheory.CohomologicalPurity.Hz.LeafRoot_of <;> first | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafRootStd_of | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafRootHens_of
 theorem henselization_coequalizer_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafCoeq := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafCoeq_of <;> first | exact henselization_inverse_limit_of_henselization | exact henselization_compatible_maps_of_henselization
+  apply LateralTheory.CohomologicalPurity.Hz.LeafCoeq_of <;> first | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafInv_of | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafComp_of
 theorem henselization_diagonal_section_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafDiag := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafDiag_of <;> first | exact henselization_compatible_maps_of_henselization | exact henselization_supremum_neighborhood_of_henselization | exact henselization_coequalizer_of_henselization
-theorem henselization_etale_neighborhood_stage_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafStage := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafStage_of
+  apply LateralTheory.CohomologicalPurity.Hz.LeafDiag_of <;> first | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafComp_of | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafSup_of | exact henselization_coequalizer_of_henselization
 theorem henselization_colimit_henselian_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafColHens := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafColHens_of <;> first | exact henselization_etale_neighborhood_stage_of_henselization | exact henselization_inverse_limit_of_henselization | exact henselization_simple_root_lift_of_henselization
-theorem henselization_colimit_universal_of_henselization : LateralTheory.CohomologicalPurity.Hz.LeafColUniv := by
-  apply LateralTheory.CohomologicalPurity.Hz.LeafColUniv_of
+  apply LateralTheory.CohomologicalPurity.Hz.LeafColHens_of <;> first | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafStage_of | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafInv_of | exact henselization_simple_root_lift_of_henselization
 theorem etale_purity_henselian_local_of_henselization : LateralTheory.CohomologicalPurity.LeafHens := by
-  apply LateralTheory.CohomologicalPurity.Hz.goal_of <;> first | exact henselization_compatible_maps_of_henselization | exact henselization_inverse_limit_of_henselization | exact henselization_simple_root_lift_of_henselization | exact henselization_supremum_neighborhood_of_henselization | exact henselization_coequalizer_of_henselization | exact henselization_diagonal_section_of_henselization | exact henselization_etale_neighborhood_stage_of_henselization | exact henselization_colimit_henselian_of_henselization | exact henselization_colimit_universal_of_henselization
-theorem intersectionNumber_baseChange : LateralTheory.CohomologicalPurity.LeafHens := etale_purity_henselian_local_of_henselization
+  apply LateralTheory.CohomologicalPurity.Hz.goal_of <;> first | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafComp_of | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafInv_of | exact henselization_simple_root_lift_of_henselization | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafSup_of | exact henselization_coequalizer_of_henselization | exact henselization_diagonal_section_of_henselization | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafStage_of | exact henselization_colimit_henselian_of_henselization | exact _root_.LateralTheory.CohomologicalPurity.Hz.LeafColUniv_of
+alias intersectionNumber_baseChange := _root_.LateralTheory.Fin.LeafHens.etale_purity_henselian_local_of_henselization
 end LateralTheory.Fin.LeafHens

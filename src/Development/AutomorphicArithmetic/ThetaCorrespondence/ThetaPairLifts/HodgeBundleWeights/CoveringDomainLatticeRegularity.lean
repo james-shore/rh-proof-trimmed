@@ -78,7 +78,7 @@ theorem weight_lattice_fg_on_domain : _root_.GlobalTheory.CovTop.PublishedHodgeB
   intro hP D T j Y e o hG hE hp hq la hA hb hfd
   letI := T.Q.H.starRing
   refine GlobalTheory.fg_of_integral_functionals Y.d.c₂.F (Y.V (wtOf _ la 0)) _ fun x hx => ?_
-  obtain ⟨z, La, y, hz, hyx, hne⟩ := _root_.GlobalTheory.T.cmPoint_detects_dominant_covering hP D T j Y e o hG hE hp hq la hA hb (fun _ => rfl) x.1 x.2
+  obtain ⟨z, La, y, hz, hyx, hne⟩ := _root_.GlobalTheory.CovDetectDom.exists_cmPoint_frame_ne_zero_of_dominant hP D T j Y e o hG hE hp hq la hA hb (fun _ => rfl) x.1 x.2
     (fun h => hx (Subtype.ext h))
   obtain ⟨N, hN, hint⟩ := GlobalTheory.T.exists_frame_denominator_dominant_weight_cm _ _ _ _ _ _ z _ La hz y hyx hp hq la hA hb
   refine ⟨z.K, inferInstance, inferInstance, inferInstance,
@@ -96,8 +96,8 @@ theorem weight_lattice_span_on_domain : _root_.GlobalTheory.CovTop.PublishedHodg
     Submodule.span Y.d.c₂.F (GlobalTheory.AllWt.latW Y.U (wtOf _ la 0) : Set (Y.V (wtOf _ la 0))) = ⊤ := by
   intro hP D T j Y e o hY hE hp hq la hA hb
   refine eq_top_iff.2 fun f _ => ?_
-  obtain ⟨k, a, n, g, h, t, hdom, hn, hmem, ht, hgh, hh⟩ := _root_.GlobalTheory.T.weight_match_pow_mul_cuspidal hP D T j Y e o hY hE hp hq la hA hb f.1 f.2
-  obtain ⟨s, hs, hsv⟩ := _root_.GlobalTheory.T.divisor_multiple_nonneg_eventually hP D T j Y e o hY hE a n hdom hn _ hmem
+  obtain ⟨k, a, n, g, h, t, hdom, hn, hmem, ht, hgh, hh⟩ := _root_.GlobalTheory.WtMatchBar.exists_pow_mul_mem_cuspForms_of_weight_match hP D T j Y e o hY hE hp hq la hA hb f.1 f.2
+  obtain ⟨s, hs, hsv⟩ := _root_.GlobalTheory.LargeAll.exists_smul_nonneg_of_large hP D T j Y e o hY hE a n hdom hn _ hmem
   have key : ∀ la', ∀ v ∈ valSet Y.d.Xo₂ Y.d.c₂ (algCls Y.d.Xo₂ Y.d.c₂) la',
       0 ≤ v ((s * t) • ((f : Rul Y.d.Xo₂ Y.d.c₂) ^ (k + 1))) := by
     intro la' v hv
@@ -126,17 +126,3 @@ end GlobalTheory.CovTop.GoodDom
 end
 end
 
-section
-open CategoryTheory AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Theta
-open GlobalTheory GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.HSApp GlobalTheory.DegVal GlobalTheory.DegCmp
-open GlobalTheory.AllWt (Psi wtOf cuspOn cuspW latOn latW normOn petOn GoodOn GoodW rankOn degOn rankW)
-open GlobalTheory.CompHt (hodgeWt)
-open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pull KeepsCusp)
-open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
-open GlobalTheory.BadCount
-open scoped TensorProduct
-
-theorem _root_.GlobalTheory.T.covering_domain_lattice_regularity : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (D : D7) (T : CoreJ D), LawsJ T → ∀ j : ℕ, 1 ≤ (T.Q.Dw j).p → 1 ≤ (T.Q.Dw j).q → 2 < Module.finrank ℚ D.host.E / 2 → InR D j → ∀ (Y : Deep T.toCore j) (e : ℕ) (o : ℝ), Y.Good e o → ∀ la : AllWt.Weight (T.Q.Dw j), (∀ τ, Antitone (la τ)) → (∀ τ, 1 ≤ gap (la τ) ((T.Q.Dw j).p - 1)) → Y.GoodAt (wtOf _ la 0) ∧ ∀ Z, GoodOn Y.U (xiR D) (fun _ => D.sp.W j) Y.dict Z (wtOf _ la 0) := by
-  first | exact @_root_.GlobalTheory.CovTop.GoodDom.covering_regular_at_domain | exact _root_.GlobalTheory.CovTop.GoodDom.covering_regular_at_domain | (intros; apply _root_.GlobalTheory.CovTop.GoodDom.covering_regular_at_domain <;> assumption)
-end

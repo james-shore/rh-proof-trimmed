@@ -116,7 +116,7 @@ theorem valPart_mem : GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, MetE
     simp only [LinearMap.sub_apply, LinearMap.comp_apply, LinearMap.smul_apply]
     rw [sub_eq_zero]
     exact heig P d R hR
-  have hx0 := GlobalTheory.T.thetaChainStage_cuspFormMap_eq_zero_of_value_zero D hMet c hc j hj s hs x w hw0 hx
+  have hx0 := _root_.GlobalTheory.ChainOnto.val_eq_zero_imp D hMet c hc j hj s hs x w hw0 hx
   have h3 : PiTensorProduct.lift (heckeOn s.M R T - conj (a P d) • T) = 0 := congrArg Subtype.val hx0
   have h4 : heckeOn s.M R T - conj (a P d) • T = 0 := by
     have h := congrArg PiTensorProduct.lift.symm h3

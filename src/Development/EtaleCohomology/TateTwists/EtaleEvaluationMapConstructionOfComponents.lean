@@ -44,7 +44,5 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.EtaleCochainExistsOfNaturalEvaluation
-theorem etale_evaluation_map_construction_of_components : LateralTheory.EtaleFoundations.EtaleCochainExistsOfNaturalEvaluation := by
-  apply LateralTheory.EtaleFoundations.etale_chain_cochain_exists_of_eval_data
-theorem intersectionNumber_baseChange : LateralTheory.EtaleFoundations.EtaleCochainExistsOfNaturalEvaluation := etale_evaluation_map_construction_of_components
+alias intersectionNumber_baseChange := _root_.LateralTheory.EtaleFoundations.etale_chain_cochain_exists_of_eval_data
 end LateralTheory.Fin.EtaleCochainExistsOfNaturalEvaluation

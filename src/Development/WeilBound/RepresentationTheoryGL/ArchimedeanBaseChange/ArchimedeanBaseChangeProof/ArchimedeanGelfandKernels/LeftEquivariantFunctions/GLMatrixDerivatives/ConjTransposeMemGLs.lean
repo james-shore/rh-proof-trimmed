@@ -81,9 +81,6 @@ theorem conjTranspose_mem_GLs {x : Mat n} (hx : x ∈ GLs n) : xᴴ ∈ GLs n :=
 theorem tw_mem {x d : Mat n} (hx : x ∈ GLs n) (hd : d ∈ GLs n) : x⁻¹ * d * xᴴ⁻¹ ∈ GLs n :=
   mem_GLs_mul (mem_GLs_mul (inv_mem_GLs hx) hd) (inv_mem_GLs (conjTranspose_mem_GLs hx))
 
-theorem val_mem (x : G n) : (x : Mat n) ∈ GLs n :=
-  ((Matrix.isUnit_iff_isUnit_det _).mp (Units.isUnit x)).ne_zero
-
 theorem tw_val (x d : G n) : ((tw x d : G n) : Mat n) = (x : Mat n)⁻¹ * d * (x : Mat n)ᴴ⁻¹ := by
   simp only [tw, th, Units.val_mul, Matrix.coe_units_inv, Units.coe_star, Matrix.star_eq_conjTranspose]
 
@@ -110,7 +107,7 @@ theorem sigma_mem {σ : (Fin n × Fin n → ℝ) → Mat n} (hσ2 : ∀ v ∈ co
 theorem end1 : End1 := by
   intro n lam E Fr ε ι S Γ T hCx _ _ μ _ σ c hσ hσ2 hform k hk hkeq hkΓ d R hR
   set Fm : Mat n → ℂ := fun y => trL E.V (k (y⁻¹ * d.val * yᴴ⁻¹) * T) with hFm
-  have hdG := val_mem d
+  have hdG := _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val d
   have harg : ContinuousOn (fun y : Mat n => y⁻¹ * d.val * yᴴ⁻¹) (GLs n) :=
     (contOn_inv.mul continuousOn_const).mul
       (contOn_inv.comp (continuous_id.matrix_conjTranspose).continuousOn fun y hy => conjTranspose_mem_GLs hy)
@@ -156,17 +153,17 @@ theorem end1 : End1 := by
       _ = trL E.V (k ((σ v)⁻¹ * d.val * (σ v)ᴴ⁻¹) * T) := by
           rw [mul_assoc _ (Fr (σ v)⁻¹), h1, mul_one, hkΓ _ hw, mul_assoc (k _) Γ Γ, hCx.Γsq, mul_one]
   have hcontTw : Continuous (fun x : G n => (x : Mat n)⁻¹ * d.val * (x : Mat n)ᴴ⁻¹) :=
-    ((contOn_inv.comp_continuous Units.continuous_val val_mem).mul continuous_const).mul
-      (contOn_inv.comp_continuous (Units.continuous_val.matrix_conjTranspose) fun x => conjTranspose_mem_GLs (val_mem x))
+    ((contOn_inv.comp_continuous Units.continuous_val _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val).mul continuous_const).mul
+      (contOn_inv.comp_continuous (Units.continuous_val.matrix_conjTranspose) fun x => conjTranspose_mem_GLs (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val x))
   have hphi : (fun x : G n => phiOf E T k (tw x d)) = fun x : G n => Fm (x : Mat n) := by
     funext x
     simp only [phiOf, hFm, trL_apply, tw_val]
   have hcont : Continuous (fun x : G n => Fm (x : Mat n)) :=
-    (trL_cont E.V).comp ((hk.comp_continuous hcontTw fun x => tw_mem (val_mem x) hdG).mul continuous_const)
+    (trL_cont E.V).comp ((hk.comp_continuous hcontTw fun x => tw_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val x) hdG).mul continuous_const)
   have hcs : HasCompactSupport (fun x : G n => Fm (x : Mat n)) := by
     refine HasCompactSupport.intro (GlobalTheory.T.length_function_compact n R) fun x hx => ?_
     simp only [Set.mem_ofPred_eq, not_le] at hx
-    simp only [hFm, hR _ (val_mem x) hx, zero_mul, map_zero]
+    simp only [hFm, hR _ (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val x) hx, zero_mul, map_zero]
   refine ⟨hphi ▸ hcont.integrable_of_hasCompactSupport hcs, ?_⟩
   rw [hphi, hform Fm hFmcont hFmsupp hFmK, ← integral_const_mul]
   refine setIntegral_congr_fun (GlobalTheory.T.positive_cone_structure n).1.measurableSet (fun v hv => ?_)

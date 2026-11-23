@@ -51,6 +51,7 @@ public import Mathlib.Analysis.Calculus.ContDiff.Basic
 public import Mathlib.Analysis.Calculus.ContDiff.Comp
 public import Mathlib.Analysis.Calculus.ContDiff.Operations
 public import Mathlib.Analysis.Calculus.FDeriv.Mul
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PhiFacts
 
 @[expose] public section
 
@@ -73,20 +74,7 @@ def smoothS (n : ℕ) : Submodule ℂ (Matrix (Fin n) (Fin n) ℂ → ℂ) where
   zero_mem' := contDiffOn_const
   smul_mem' c _ hF := hF.const_smul c
 
-private theorem isOpen_OmegaSet' : IsOpen (OmegaSet n) := by
-  show IsOpen {z : Matrix (Fin n) (Fin n) ℂ | ∀ i : Fin n, lead ((i : ℕ) + 1) z ≠ 0}
-  rw [Set.setOf_forall]
-  refine isOpen_iInter_of_finite fun i => isOpen_ne_fun ?_ continuous_const
-  show Continuous fun z : Matrix (Fin n) (Fin n) ℂ => lead ((i : ℕ) + 1) z
-  by_cases h : (i : ℕ) + 1 ≤ n
-  · have e : (fun z : Matrix (Fin n) (Fin n) ℂ => lead ((i : ℕ) + 1) z) =
-        fun z => (z.submatrix (Fin.castLE h) (Fin.castLE h)).det := funext fun z => dif_pos h
-    rw [e]
-    exact (continuous_id.matrix_submatrix _ _).matrix_det
-  · have e : (fun z : Matrix (Fin n) (Fin n) ℂ => lead ((i : ℕ) + 1) z) = fun _ => 0 :=
-      funext fun z => dif_neg h
-    rw [e]
-    exact continuous_const
+private alias isOpen_OmegaSet' := _root_.ReciprocityTheory.ChartRestriction.DS.S7.isOpen_omega
 
 theorem lhol_congr {X : Matrix (Fin n) (Fin n) ℂ} {G H : Matrix (Fin n) (Fin n) ℂ → ℂ}
     (h : Set.EqOn G H (OmegaSet n)) {z : Matrix (Fin n) (Fin n) ℂ} (hz : z ∈ OmegaSet n) :

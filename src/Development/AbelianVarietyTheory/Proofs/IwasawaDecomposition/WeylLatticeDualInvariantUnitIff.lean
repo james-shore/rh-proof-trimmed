@@ -99,7 +99,7 @@ theorem rowSub_expand (p : ℕ) [Fact p.Prime] {N : ℕ} (ν : Fin N → ℕ)
     show _ = MvPolynomial.map _ (Formalism.GradedWeylDivisibility.applyWord ℤ w (Formalism.GradedWeylDivisibility.hw ℤ le_rfl ν))
     rw [← Formalism.GradedWeylDivisibility.lclosedeq_applyWord_map, Formalism.GradedWeylDivisibility.lclosedeq_hw_map]
 
-  rw [h1, ← eval_rowAct, ← hgO, ← GlobalTheory.WeylRowAll.map_rowAct, ← hc, Finsupp.sum, map_sum, map_sum]
+  rw [h1, ← eval_rowAct, ← hgO, ← _root_.Formalism.UG.P.wlocal_map_rowAct, ← hc, Finsupp.sum, map_sum, map_sum]
   refine Finset.sum_congr rfl fun w _ => ?_
   rw [MvPolynomial.smul_eq_C_mul, map_mul, MvPolynomial.map_C, MvPolynomial.eval_mul,
     MvPolynomial.eval_C, hterm]

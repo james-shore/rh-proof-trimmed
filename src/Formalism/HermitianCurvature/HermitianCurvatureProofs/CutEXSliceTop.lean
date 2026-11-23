@@ -137,24 +137,6 @@ theorem slice_gen (P : M.Par) (p : KB.Pl P Wp Wq) (G : B.Mat P.k P.r → (Wq →
     simp only [PBQ.ellH, ContinuousLinearMap.smul_apply, ContinuousLinearMap.id_apply]
     exact H1e
 
-theorem om_zero {k ρ : ℕ} (hρ : ρ = 0) (z z' : Fin (2 * ρ + k + 1) → ℂ) (γ : B.Mat k ρ) (hγ : γ ∈ B.GV k ρ)
-    (hG : 0 < Q.GGl k ρ z z' γ) : γ ∈ JF.Om k ρ z z' := by
-  subst hρ
-  have h0 : ∀ (hl : 0 < 0 + 2), Dmin k 0 z z' γ ⟨0, hl⟩ = 1 := by
-    intro hl
-    simp [Dmin]
-  have h1 : Dmin k 0 z z' γ (Fin.last (0 + 1)) = Q.zetaL k 0 z z' (Fin.last 0) γ := by
-    rw [PBI.zetaL_eq_zhat]
-    simp [Dmin, Matrix.det_unique]
-  refine ⟨hγ, ?_, ?_⟩
-  · intro l hl
-    have hl0 : l = ⟨0, by omega⟩ := Fin.ext (by simpa using hl)
-    rw [hl0, h0]
-    exact one_ne_zero
-  · unfold Gf
-    rw [h1, h0]
-    simpa [Q.GGl] using hG
-
 end top
 
 end Formalism.FourierDecayAlt.P.CutEXSlice
@@ -172,7 +154,7 @@ theorem sliceTop_pos (Wp Wq : Type) [NormedAddCommGroup Wp] [InnerProductSpace �
       B.JF (p.T.bs P.r) (D.castF (by rw [hh.2]) (D.sliceAt P.k P.r p.T.base.z p.T.base.z' G h)) γ =
         ∫ v, PBQ.ellH h v (CutEX.pbTop p G (PBQ.zxH h P.r hh.2 v) γ) := by
   have hOm : γ ∈ JF.Om P.k (P.r - P.r) (p.T.bs P.r).z (p.T.bs P.r).z' :=
-    om_zero (Nat.sub_self _) _ _ γ hγ hGG
+    _root_.Formalism.FourierDecayAlt.P.CutEXSl0.om_zero (Nat.sub_self _) _ _ γ hγ hGG
   obtain ⟨R, hR⟩ := hG.1.2.1
   exact slice_gen P p G hG.1.1 R hR h P.r le_rfl hh hr γ hOm
 

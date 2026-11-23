@@ -77,8 +77,7 @@ lemma ev_two (L : PeriodPair) {z : ℂ} (h2 : 2 * z ∉ L.lattice) :
     L.isClosed_lattice.isOpen_compl.preimage (continuous_const.mul continuous_id)
   exact ho.mem_nhds h2
 
-lemma ev_self (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) : ∀ᶠ z' in 𝓝 z, z' ∉ L.lattice :=
-  L.isClosed_lattice.isOpen_compl.mem_nhds hz
+alias ev_self := _root_.Formalism.L2.Th1.F.PDeriv.eventually_notMem
 
 lemma derivWeierstrassP_ne_zero (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) (h2 : 2 * z ∉ L.lattice) :
     L.derivWeierstrassP z ≠ 0 := by

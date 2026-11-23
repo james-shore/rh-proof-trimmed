@@ -56,13 +56,13 @@ theorem evA_subst_and_map : ∀ (k : Type) [CommRing k] (σ : Type) [Finite σ] 
     have key : evA k y hy = φ.comp (substAlgHom hs) := by
       refine GlobalTheory.T.mvPowerSeries_algHom_ext_of_isNilpotent_X k σ A _ _ (fun i => ?_) (fun i => ?_)
       · rw [GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k σ A y hy i]; exact hy i
-      · rw [GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k σ A y hy i, AlgHom.comp_apply, coe_substAlgHom, subst_X hs, hφa]
+      · rw [_root_.GlobalTheory.Katz.evA_X k σ A y hy i, AlgHom.comp_apply, coe_substAlgHom, subst_X hs, hφa]
     rw [key, AlgHom.comp_apply, coe_substAlgHom]
   · intro B _ _ g x hx y hy hg f
     have key : evA k y hy = g.comp (evA k x hx) := by
       refine GlobalTheory.T.mvPowerSeries_algHom_ext_of_isNilpotent_X k σ B _ _ (fun i => ?_) (fun i => ?_)
       · rw [GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k σ B y hy i]; exact hy i
-      · rw [GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k σ B y hy i, AlgHom.comp_apply, GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k σ A x hx i, hg]
+      · rw [_root_.GlobalTheory.Katz.evA_X k σ B y hy i, AlgHom.comp_apply, _root_.GlobalTheory.Katz.evA_X k σ A x hx i, hg]
     rw [key, AlgHom.comp_apply]
 
 end GlobalTheory

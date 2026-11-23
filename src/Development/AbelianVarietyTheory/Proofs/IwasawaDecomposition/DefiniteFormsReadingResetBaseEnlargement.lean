@@ -206,7 +206,7 @@ theorem stage {B' : Base} {f' : Fr B'.toPre} {T' : TwDat B'} {w' : ColW B' f' T'
     ⟨⟨h4.mu0, h4.eta, h4.xi, h4.xi_inj, h4.xi_base, h4.xi_fin, h4.xi_triv, h4.xi_tame, h4.Pg, h4.Q_pl,
       h4.Q_off, h4.Q_de, h4.Q_ram, h4.chi, h4.xiR, hY, h4.βX, hV', hW⟩, hLev.C, hLev.xiH, hLev.Pg, hLev.Q, hLev.beta⟩
   have h0 := hK.2.2.2.2.2.1
-  refine (GlobalTheory.T.exists_adelicReading_definiteForms_given_coefficients (w'.st Z') w'.px w'.I hX' (usedOf w'.I T' Wt') Xg tr (newL R.toLevCh ΛY ΛV ΛW βY βW) R.eG w'.ok hval hL1 hK.2.1
+  refine (_root_.GlobalTheory.Mem.R3.BrgAt.exists_brgL_at (w'.st Z') w'.px w'.I hX' (usedOf w'.I T' Wt') Xg tr (newL R.toLevCh ΛY ΛV ΛW βY βW) R.eG w'.ok hval hL1 hK.2.1
     hLev.beta.2 hLev.beta.1 hXl hV R.θ h0.inf R.MX cV c0L h1 h2 h3).elim fun cX h => h.elim fun pl h => h.elim fun Sb h =>
       h.elim fun Bd h => h.elim fun plI h => h.elim fun SF h => h.elim fun prX h => ?_
   have hc := newR_clauses R (face0 (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) cG ΛY ΛV ΛW βY βW cX cV pl Sb Bd plI SF prX hL1.is h0
@@ -214,7 +214,7 @@ theorem stage {B' : Base} {f' : Fr B'.toPre} {T' : TwDat B'} {w' : ColW B' f' T'
   refine ⟨cX, pl, Sb, Bd, plI, SF, prX, ⟨hL1, hK.2.1, hK.2.2.1, hK.2.2.2.1, hK.2.2.2.2.1, hc.1, hc.2.1, hc.2.2.1, hc.2.2.2.1, hc.2.2.2.2,
     h.2.2.2.2.1, h.2.2.2.2.2.1⟩, h.2.2.2.1.sb, fun i t ok φ g => ?_⟩
   refine (vv_cast_map (LiftBrg.rkEq (w'.st Z') i) (B'.wts.lamV ((i : ℕ) + 1))
-      (fun τ => Bridge.lamLdef (D := (w'.st Z').toD7) (Vc (w'.st Z').toD7 i).rank ((i : ℕ) + 1) τ) (GlobalTheory.T.baseWeight_eq_forcedLiftWeight (w'.st Z') i) B'.embLL
+      (fun τ => Bridge.lamLdef (D := (w'.st Z').toD7) (Vc (w'.st Z').toD7 i).rank ((i : ℕ) + 1) τ) (_root_.GlobalTheory.Mem.LiftWt.lamV_eq_lamLdef (w'.st Z') i) B'.embLL
       (φ.1 (LiftBrg.ptL (w'.st Z') w'.I (usedOf w'.I T' Wt') i t 1 1 g))).elim fun v' hv => ?_
   exact ⟨v', h.2.2.2.2.2.2 i t φ g v' hv.1, hv.2⟩
 
@@ -315,7 +315,7 @@ theorem reset_side : ∀ {B B' : Base} {f : Fr B.toPre} {f' : Fr B'.toPre} {T : 
     ∀ {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks (w'.st Z').toD7.what₂.LL] {Xg : Finset (Gc B' w'.px → B'.LL)} {tr : TrI B' w'.px} (R : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks) (cG : G0 R.Pg (w'.st Z').toD7.R.r ≃* G0g (w'.st Z').toD7.nd), Kept T' w' Z' hX' Wt' R cG →
     ∃ (R₁ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks) (cG₁ : G0 R₁.Pg (w'.st Z').toD7.R.r ≃* G0g (w'.st Z').toD7.nd), Kept T' w' Z' hX' Wt' R₁ cG₁ ∧ RSideA z Wt' R₁ := by
   intro B B' f f' T T' w w' Z Z' hX hX' Wt Wt' z hE hf hp hS hV hXl hval Ks _ _ _ Xg tr R cG hK
-  refine (GlobalTheory.T.enlargedBase_coefficientSpaces_isometric_maps (w' := w') (Z' := Z') (hX' := hX') (Wt' := Wt') z hE hf hp hS).elim fun cV h => h.elim fun c0L hc => ?_
+  refine (_root_.GlobalTheory.Mem.RsCoef.rs_coef (w' := w') (Z' := Z') (hX' := hX') (Wt' := Wt') z hE hf hp hS).elim fun cV h => h.elim fun c0L hc => ?_
   refine (frames_enl w' Z' z hE.1 hf hp).elim fun ΛY h => h.elim fun ΛV h => h.elim fun ΛW h => h.elim fun βY h => h.elim fun βW hF => ?_
   have hPg := hF.2.2.2.2.1 R.Pg hK.1.Pg
   refine (stage hV hXl hval R cG hK ΛY ΛV ΛW βY βW hF.2.1 (fun i => (hK.1.beta.1 i).symm ▸ hF.2.2.1 i) hF.2.2.2.1 hPg.1 cV c0L

@@ -131,13 +131,8 @@ section Dual
 variable {F : Type u} [Field F] {E E' E'' : WeierstrassCurve F} [E.IsElliptic] [E'.IsElliptic]
   [E''.IsElliptic]
 
-theorem isogeny_degree_pos (φ : Isogeny E E') : 0 < φ.degree := by
-  classical
-  rw [← degree_isogBaseChange (Ω := AlgebraicClosure F)]
-  exact Isogeny.degree_pos _
-
 theorem isogeny_degree_ne_zero (φ : Isogeny E E') : (φ.degree : ℤ) ≠ 0 :=
-  Nat.cast_ne_zero.mpr (isogeny_degree_pos φ).ne'
+  Nat.cast_ne_zero.mpr (_root_.GroundTheory.Arith.Abelian.Isogeny.degree_pos φ).ne'
 
 theorem mulIsogeny_eq_dual_comp_isogBaseChange [DecidableEq (AlgebraicClosure F)] (φ : Isogeny E E') :
     mulIsogeny (E.baseChange (AlgebraicClosure F)) φ.degree (isogeny_degree_ne_zero φ) =

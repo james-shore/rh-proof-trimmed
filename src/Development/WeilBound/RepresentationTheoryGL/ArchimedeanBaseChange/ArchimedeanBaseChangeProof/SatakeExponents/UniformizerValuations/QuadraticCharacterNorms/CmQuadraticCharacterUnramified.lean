@@ -48,22 +48,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 namespace PositivityTheory.Rg.BcB.F.Fok
 
-theorem quadChar_unrAt (E : Type) [Field E] [NumberField E] [IsCMField E]
-    (w : HeightOneSpectrum (𝓞 E)) (hw : Algebra.IsUnramifiedAt (𝓞 (maximalRealSubfield E)) w.asIdeal) :
-    (GlobalTheory.GalOfCusp.quadChar E).UnrAt (w.under (𝓞 (maximalRealSubfield E))) := by
-  have h2 : Module.finrank (maximalRealSubfield E) E = 2 := Algebra.IsQuadraticExtension.finrank_eq_two _ _
-  have hu : Formalism.MainNotions.SchurIrreducible.IsUnram (E := E) (w.under (𝓞 (maximalRealSubfield E))) := by
-    by_cases hs : Formalism.MainNotions.SchurIrreducible.IsSplit (E := E) (w.under (𝓞 (maximalRealSubfield E)))
-    · exact GlobalTheory.LFun.isUnram_of_isSplit h2 hs
-    · refine GlobalTheory.LFun.isUnram_iff.2 fun u hu => ?_
-      obtain rfl := GlobalTheory.LFun.eq_of_not_isSplit hs hu rfl
-      have := u.isPrime
-      exact Algebra.isUnramifiedAt_iff_of_isDedekindDomain.1 hw
-  intro x hx
-  have hn := GlobalTheory.LFun.mem_normGroup_of_isUnram h2 hu hx
-  change Units.map _ (GlobalTheory.IdeleNormChar.normSign E (Neutral.B1.localIdele _ _ x)) = 1
-  rw [GlobalTheory.LFun.normSign_localIdele, GlobalTheory.QuadSymbol.eta_eq_one_iff.2 hn, map_one]
-
 theorem cm_quadratic_character_unramified : type_of% GlobalTheory.T.quadratic_character_trivial_unit_ideles := by
   intro E _ _ _ hU b hb
   have hs : ∀ v : HeightOneSpectrum (𝓞 (maximalRealSubfield E)), ∃ w : HeightOneSpectrum (𝓞 E),
@@ -78,6 +62,6 @@ theorem cm_quadratic_character_unramified : type_of% GlobalTheory.T.quadratic_ch
   rw [GlobalTheory.Mem.Chr.finPartI_snd] at hx
   have hxu : Valued.v (x : v.adicCompletion (maximalRealSubfield E)) = 1 := by rw [hx]; exact hb v
   obtain ⟨w, rfl⟩ := hs v
-  exact quadChar_unrAt E w (hU w) x hxu
+  exact _root_.GlobalTheory.QuadCharUnr.quadChar_unrAt_of_isUnramifiedAt E w (hU w) x hxu
 
 end PositivityTheory.Rg.BcB.F.Fok

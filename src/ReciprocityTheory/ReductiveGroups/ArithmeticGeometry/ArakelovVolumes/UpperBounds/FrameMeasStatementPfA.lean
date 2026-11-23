@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.IsStrictDom
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FourierCoefficientDomain
 
 @[expose] public section
 
@@ -92,11 +93,8 @@ private theorem continuous_gram_comp {α : Type*} [TopologicalSpace α] (τ : E 
   exact (((continuous_apply i).comp ((continuous_apply a).comp hf)).mul continuous_const).mul
     (Complex.continuous_conj.comp ((continuous_apply j).comp ((continuous_apply b).comp hf)))
 
-theorem cont_gram (τ : X.Ψ) : Continuous fun y : Frame X.Ψ r => gram τ.1 X.Gm (mat y τ) := by
-  exact continuous_gram_comp τ.1 X.Gm (cont_mat X τ)
-
 theorem cont_uOf (τ : X.Ψ) : Continuous fun y : X.dom => uOf X y.1 τ := by
-  have hg : Continuous fun y : X.dom => gram τ.1 X.Gm (mat y.1 τ) := (cont_gram X τ).comp continuous_subtype_val
+  have hg : Continuous fun y : X.dom => gram τ.1 X.Gm (mat y.1 τ) := (_root_.ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.cont_gram X τ).comp continuous_subtype_val
   exact cont_uMat hg fun y c => blk_det X y.2 τ c
 
 theorem cont_dOf (τ : X.Ψ) (k : Fin r) : Continuous fun y : X.dom => dOf X y.1 τ k := by

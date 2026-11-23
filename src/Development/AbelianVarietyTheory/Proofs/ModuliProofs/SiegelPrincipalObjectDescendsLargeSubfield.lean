@@ -165,7 +165,7 @@ theorem siegPre_descends : ∀ (h M : ℕ) (o : Type) [CommRing o] (ζ : o) (K :
   obtain ⟨⟨⟨hsA, hsG⟩, hsL⟩, hsP⟩ := hF
   have h' : K' ≤ K₁ := sup_le hK (Subfield.closure_le.2 hsA)
   let j := spMap (Subfield.inclusion h')
-  have hj : spMap K₁.subtype ≫ j = spMap K'.subtype := spMap_subtype_inclusion h'
+  have hj : spMap K₁.subtype ≫ j = spMap K'.subtype := _root_.GlobalTheory.GrpDescent.spMap_subtype h'
   let A₁ : Over (Sp K₁) := Over.mk (pullback.snd p' j)
   let φ₁ : A₁.left ⟶ A'.left := pullback.fst p' j
   have hpb₁ : IsPullback φ₁ A₁.hom A'.hom j := IsPullback.of_hasPullback p' j

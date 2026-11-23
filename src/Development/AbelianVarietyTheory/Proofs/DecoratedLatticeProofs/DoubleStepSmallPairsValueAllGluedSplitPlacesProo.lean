@@ -87,7 +87,7 @@ end GlobalTheory.FinPl.VertexAllProof
 open GlobalTheory.FinPl.VertexAllProof in
 theorem GlobalTheory.FinPl.vertexAll : ∀ D : D7, GlobalTheory.FinPl.VertexAll D := by
   intro D k _ _ _ _ ι p I P hPl q ψ χ hχ hc
-  have hvg := fun i => GlobalTheory.T.gluedPlace_doubleStep_exact_signed_constant D k (p i) q ψ (χ i) (hχ i) (hc i)
+  have hvg := fun i => _root_.GlobalTheory.FinPl.VertexExactCount.vertexExact D k (p i) q ψ (χ i) (hχ i) (hc i)
   refine ⟨fun i => (hvg i).choose, fun i => (hvg i).choose_spec.1, ?_⟩
   intro n n' n'' _ _ _ _ _ _
   have hrc := fun i => (hvg i).choose_spec.2 n n' n''

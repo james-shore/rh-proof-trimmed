@@ -56,14 +56,6 @@ namespace GlobalTheory.AddCharProduct
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem main_prime_pow (h2 : Module.finrank F E = 2) {sig : E →ₐ[F] E}
-    (A : ∀ p : HeightOneSpectrum (𝓞 F), LocAt F E sig p) {l : ℕ} (hl : l.Prime) (y : E)
-    (hy : IsIntegral ℤ y) (k : ℕ) :
-    (Function.mulSupport fun p => (A p).psiE ((A p).ιE (y / (l : E) ^ k))).Finite ∧
-      ∏ᶠ p, (A p).psiE ((A p).ιE (y / (l : E) ^ k)) =
-        Complex.exp (2 * Real.pi * Complex.I * (((Algebra.trace ℚ E (y / (l : E) ^ k) : ℚ) : ℂ))) :=
-  _root_.GlobalTheory.ResidueCharacterDense.prod_psi h2 A hl y hy k
-
 theorem finprod_psiE_eq_exp_trace : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E], Formalism.BasicNotions.CMData F E → ∀ (sig : E →ₐ[F] E), (∀ x, sig x = star x) → ∀ (A : ∀ p : HeightOneSpectrum (𝓞 F), LocAt F E sig p), ∀ x : E, (Function.mulSupport fun p => (A p).psiE ((A p).ιE x)).Finite ∧ ∏ᶠ p, (A p).psiE ((A p).ιE x) = Complex.exp (2 * Real.pi * Complex.I * (((Algebra.trace ℚ E x : ℚ) : ℂ))) := by
   intro F E _ _ _ _ _ _ hc sig _ A x
   let P : E → Prop := fun x => (Function.mulSupport fun p => (A p).psiE ((A p).ιE x)).Finite ∧
@@ -84,12 +76,12 @@ theorem finprod_psiE_eq_exp_trace : ∀ {F E : Type} [Field F] [NumberField F] [
     induction N using Nat.recOnPosPrimePosCoprime with
     | prime_pow l k hl _ =>
       intro _ y hy
-      have := main_prime_pow hc.deg2 A hl y hy k
+      have := _root_.GlobalTheory.ResidueCharacterDense.prod_psi hc.deg2 A hl y hy k
       simpa only [Nat.cast_pow] using this
     | zero => intro h; exact absurd rfl h
     | one =>
       intro _ y hy
-      have := main_prime_pow hc.deg2 A Nat.prime_two y hy 0
+      have := _root_.GlobalTheory.ResidueCharacterDense.prod_psi hc.deg2 A Nat.prime_two y hy 0
       simpa only [pow_zero, Nat.cast_one] using this
     | coprime a b ha hb hab iha ihb =>
       intro _ y hy

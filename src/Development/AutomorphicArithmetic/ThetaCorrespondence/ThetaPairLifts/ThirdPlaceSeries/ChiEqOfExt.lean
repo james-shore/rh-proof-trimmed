@@ -75,7 +75,7 @@ theorem GlobalTheory.ChiExtend.chi_eq_of_ext_alt : HeckeStdPlain → ∀ (D : D7
   have hfin : (placesOver D.host.E (L₀.lay.fixZ.nd.l i₀) ∪ ((L₀.lay.fixZ.nd.S i₀ : Set (PlE D.host)) ∪
       (L₀.lay.fixZ.nd.Q i₀ : Set (PlE D.host))) ∪ ((L₁.lay.fixZ.nd.S i₁ : Set (PlE D.host)) ∪
       (L₁.lay.fixZ.nd.Q i₁ : Set (PlE D.host)))).Finite :=
-    ((placesOver_finite' _ _ hl₀).union ((Finset.finite_toSet _).union (Finset.finite_toSet _))).union
+    ((_root_.Formalism.MainNotions.placesOver_finite_av _ _ hl₀).union ((Finset.finite_toSet _).union (Finset.finite_toSet _))).union
       ((Finset.finite_toSet _).union (Finset.finite_toSet _))
   have hout : ∀ w ∉ hfin.toFinset, IsSplitPl D.host w →
       SplitOut L₀.lay.fixZ.nd i₀ w ∧ SplitOut L₁.lay.fixZ.nd i₁ w := by

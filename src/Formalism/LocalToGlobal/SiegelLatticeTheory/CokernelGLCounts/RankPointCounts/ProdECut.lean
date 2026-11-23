@@ -77,9 +77,9 @@ def StP (p : PlF D) : Subgroup (GLp p × (GLp p)ᵐᵒᵖ) where
     rintro x y ⟨hx1, hx2, hx3⟩ ⟨hy1, hy2, hy3⟩
     refine ⟨?_, ?_, ?_⟩
     · show IsLoUni ((x.1 * y.1 : GLp p) : MP p)
-      rw [Units.val_mul]; exact ZsVolGrp.isLoUni_mul hx1 hy1
+      rw [Units.val_mul]; exact _root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul hx1 hy1
     · show IsUpUni (((x.2 * y.2).unop : GLp p) : MP p)
-      rw [MulOpposite.unop_mul, Units.val_mul]; exact ZsVolGrp.isUpUni_mul hy2 hx2
+      rw [MulOpposite.unop_mul, Units.val_mul]; exact _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul hy2 hx2
     · show ((x.1 * y.1 : GLp p) : MP p) * _ * (((x.2 * y.2).unop : GLp p) : MP p) = _
       rw [MulOpposite.unop_mul, Units.val_mul, Units.val_mul]
       calc (x.1 : MP p) * (y.1 : MP p) * Y0 M δ u u' w p *

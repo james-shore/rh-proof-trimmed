@@ -184,7 +184,7 @@ theorem inId_of_kill (hψ : IsStdChar D ψ (-1)) (hcc : D.host.ccK = ⊤) (gS : 
     refine FractionalIdeal.mul_induction_on hr (fun s hs m hm => ?_) fun x y hx hy => ?_
     · obtain ⟨m, hm', rfl⟩ := (FractionalIdeal.mem_coeIdeal _).1 hm
       have e1 : star (s * algebraMap (𝓞 D.host.E) D.host.E m) = ((D.host.conj • m : 𝓞 D.host.E) : D.host.E) * star s := by
-        rw [star_mul, star_eq (algebraMap (𝓞 D.host.E) D.host.E m)]
+        rw [star_mul, _root_.Formalism.L2.Herm.star_conj (algebraMap (𝓞 D.host.E) D.host.E m)]
         rfl
       rw [e1, RingHom.map_mul (incA D), mul_assoc]
       exact inId_mul (mem_conj_smul.1 hm') (h1 s hs)
@@ -194,7 +194,7 @@ theorem inId_of_kill (hψ : IsStdChar D ψ (-1)) (hcc : D.host.ccK = ⊤) (gS : 
   have h3 := h2 _ (FractionalIdeal.mem_coeIdeal_of_mem _ (Ideal.smul_mem_pointwise_smul D.host.conj _ _ ha))
   have e2 : star (algebraMap (𝓞 D.host.E) D.host.E (D.host.conj • a)) = (a : D.host.E) := by
     change star (D.host.conj (a : D.host.E)) = _
-    rw [← star_eq, star_star]
+    rw [← _root_.Formalism.L2.Herm.star_conj, star_star]
   have e3 : t i j = incA D (b : D.host.E) * t i j + incA D (a : D.host.E) * t i j := by
     have : (b : D.host.E) + (a : D.host.E) = 1 := by exact_mod_cast congrArg (algebraMap (𝓞 D.host.E) D.host.E) hab
     rw [← add_mul, ← RingHom.map_add (f := _), this, RingHom.map_one, one_mul]

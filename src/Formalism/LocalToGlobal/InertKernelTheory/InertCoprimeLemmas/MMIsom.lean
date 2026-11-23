@@ -56,6 +56,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.OrthogonalGaussModels.OneLetterGaussTranslateOfCmCase
 
 @[expose] public section
 
@@ -118,7 +119,7 @@ theorem isomStd_frames (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (B : Bas
     have i1 := hS0.idx₁
     have i2 := hS0.idx₂
     have hsd := Kap.kap_selfDual_lamM Bc hcc hδ
-    have hst := Kap.kap_stable_lamM Bc b₀ (Kap.kap_odd hcm)
+    have hst := Kap.kap_stable_lamM Bc b₀ (_root_.Formalism.L2.Th1.Top.HAux.odd_b hcm)
     have hiso := hS.isom
     have hidx' := hidx
     rw [hL] at iso i1 i2 hsd hiso hidx'
@@ -266,7 +267,7 @@ theorem frameONB_of (hLB : LocBasisMM) (hRC : RatCoord) (hFC : FixConj) : FrameO
     rw [hF.2 i' τ w, hc w i' τ, map_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
     rw [map_mul, iota_lamC lam ι hι (JetIntegrality.test_vector_mem_schwartz_bruhat (D := D) _),
-      iota_lamC lam ι hι (AlgP.embT_mem_Qbar (D := D) τ _), ← htE', mul_comm]
+      iota_lamC lam ι hι (_root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.RestC.emb_mem (D := D) τ _), ← htE', mul_comm]
 
   have hcross : ∀ (x : Fin 4 × D.what₂.Tau) (i' : Fin 4) (τ : D.what₂.Tau),
       ∑ m, Bb τ m * (Cm * scᵀ) (i', m) x = if i' = x.1 then B' τ x.2 else 0 := by

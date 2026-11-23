@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsBlockMatrixTwoByTwoFinEq
 
 @[expose] public section
 
@@ -71,16 +72,13 @@ theorem cT_bl {K : Type} [Field K] (σ : K →+* K) (hn : r + t = n) (a : Matrix
   rw [block_map]
   simp only [PositivityTheory.Rg.Rsw.bl, Matrix.transpose_submatrix, Matrix.fromBlocks_transpose]
 
-theorem cT_zero {K : Type} [Field K] (σ : K →+* K) {a b : ℕ} : cT σ (0 : Matrix (Fin a) (Fin b) K) = 0 := by
-  simp [cT]
-
 theorem first_block_hermitian_idempotent {K : Type} [Field K] (σ : K →+* K) (hn : r + t = n) :
     bl hn (1 : Matrix (Fin r) (Fin r) K) 0 0 0 * bl hn 1 0 0 0 = bl hn 1 0 0 0 ∧
       cT σ (bl hn (1 : Matrix (Fin r) (Fin r) K) 0 0 0) = bl hn 1 0 0 0 := by
   refine ⟨?_, ?_⟩
   · rw [block_mul₂]
     simp
-  · simp only [cT_bl, cT_one, cT_zero]
+  · simp only [cT_bl, cT_one, _root_.GlobalTheory.CompanionTheory.BruhatCell.cT_zero]
 
 theorem second_block_hermitian_idempotent {K : Type} [Field K] (σ : K →+* K) (hn : r + t = n) :
     bl hn (0 : Matrix (Fin r) (Fin r) K) 0 0 1 * bl hn 0 0 0 1 = bl hn 0 0 0 1 ∧
@@ -88,7 +86,7 @@ theorem second_block_hermitian_idempotent {K : Type} [Field K] (σ : K →+* K) 
   refine ⟨?_, ?_⟩
   · rw [block_mul₂]
     simp
-  · simp only [cT_bl, cT_one, cT_zero]
+  · simp only [cT_bl, cT_one, _root_.GlobalTheory.CompanionTheory.BruhatCell.cT_zero]
 
 theorem Pm_map {K : Type} [Field K] (σ : K →+* K) (hn : r + t = n) : (Pm K hn).map σ = Pm K hn := by
   rw [Pm, ← Matrix.submatrix_map, Matrix.map_one _ (map_zero σ) (map_one σ)]
@@ -131,7 +129,7 @@ theorem gQ_unit {K : Type} [Field K] (σ : K →+* K) (hn : r + t = n) :
     simp only [T_mul_Pm, Matrix.zero_mul, Matrix.mul_zero, add_zero, zero_add, GlobalTheory.CompanionTheory.EisCovar.block_matrix_one]
   refine ⟨Matrix.isUnit_det_of_right_inverse hinv, ?_⟩
   unfold PositivityTheory.GramSchwartzFunctions.EC.IsUnitary PositivityTheory.GramSchwartzFunctions.EC.Jm
-  rw [cT_blk4, cT_PmT, cT_zero]
+  rw [cT_blk4, cT_PmT, _root_.GlobalTheory.CompanionTheory.BruhatCell.cT_zero]
   simp only [GlobalTheory.CompanionTheory.EisCovar.submatrix_fromBlocks_mul, Matrix.zero_mul, Matrix.mul_zero, add_zero, zero_add, Matrix.mul_one,
     Matrix.mul_neg, Matrix.neg_mul, Pm_mul_alt, Matrix.one_mul, neg_zero]
 

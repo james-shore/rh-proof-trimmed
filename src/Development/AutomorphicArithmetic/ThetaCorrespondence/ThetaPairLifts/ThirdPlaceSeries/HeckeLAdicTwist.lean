@@ -65,7 +65,7 @@ theorem heckeLAdicTwist_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL �
   set ν := GlobalTheory.HeckeGal.Model.absPow D.host.E s
   have hν := GlobalTheory.HeckeGal.Model.absPow_isAbsPow D.host.E s
   have hinf : ∀ τ, D.naut.infG χ τ = {expo ψ τ} := fun τ => by
-    rw [P.cg.inf, CGu.infChar, _root_.GlobalTheory.T.cusp_rep_one_eq_of_character_choice hF hL D P χ, CG.infChar_ofChar]
+    rw [P.cg.inf, CGu.infChar, _root_.GlobalTheory.RankOneChar.cg_eq_ofChar_alt hF hL D P χ, CG.infChar_ofChar]
   have hexpo : ∀ τ, expo (ψ * ν) τ = expo ψ τ + s := fun τ => by
     have h := (CG.hasInfChar_ofChar ψ τ).twist ν
     rw [CG.twist_ofChar, Multiset.map_singleton] at h
@@ -82,7 +82,7 @@ theorem heckeLAdicTwist_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL �
   obtain ⟨μ, hμc, hμ⟩ := ha.exists_isLAdicOf (D.naut.iotaQC i) hAlg
   have hpar : ∀ (w : PlE D.host) (u : ℝ), P.T.e w (D.naut.lpTw (D.naut.locG χ w) u) =
       (_root_.GlobalTheory.CuspRep.ParLawsT.locParT hL (CG.ofChar ψ) (D.nd.plOm.2 w)).lpTw u := fun w u => by
-    rw [P.T.tw, P.cg.loc, ← _root_.GlobalTheory.T.cusp_rep_one_eq_of_character_choice hF hL D P χ]
+    rw [P.T.tw, P.cg.loc, ← _root_.GlobalTheory.RankOneChar.cg_eq_ofChar_alt hF hL D P χ]
     rfl
   have htw : ∀ w : PlE D.host, _root_.GlobalTheory.CuspRep.ParLawsT.locParT hL (CG.ofChar (ψ * ν)) (D.nd.plOm.2 w) =
       (_root_.GlobalTheory.CuspRep.ParLawsT.locParT hL (CG.ofChar ψ) (D.nd.plOm.2 w)).lpTw s := fun w => by
@@ -94,12 +94,12 @@ theorem heckeLAdicTwist_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL �
   · have hl : (((D.nd.l i : ℕ)) : 𝓞 D.host.E) ∉ w.asIdeal := hw
     rw [(P.wdOf i 1 (rk1 μ) w).1]
     refine (P.T.e w).injective ?_
-    rw [P.wd.away _ _ (rk1 μ) w hl, _root_.GlobalTheory.T.weil_deligne_rank_one_local_param' hL D.host.E D.nd.Om _ _ art ha _ n μ hμc hμ _ w (D.nd.plOm.2 w) hl, htw, hpar]
+    rw [P.wd.away _ _ (rk1 μ) w hl, _root_.GlobalTheory.AwayLGC.weil_deligne_rank_one_eq_local_alt hL D.host.E D.nd.Om _ _ art ha _ n μ hμc hμ _ w (D.nd.plOm.2 w) hl, htw, hpar]
   · have hab := fun (O : Type) [CommRing O] [Algebra ℤ_[D.nd.l i] O] [TopologicalSpace O]
         (Bw : LocBridge (D.nd.l i) D.host.E D.nd.Om (Dec (F := D.host.E) (D.nd.plOm.1 w)) O) (hj : Induces Bw) =>
       (GlobalTheory.Published.heckeLAdicCharacterAbove_iff.1 hCh) D.host.E D.nd.Om (D.nd.l i) (D.loc _) (D.locA _) ⟨D.locT _⟩
         (D.naut.iotaQC i) art ha (ψ * ν) n μ hAlg hμc hμ w (D.nd.plOm.1 w) (D.nd.plOm.2 w) O Bw hj
-    obtain ⟨hdR, hJ⟩ := GlobalTheory.T.deRham_jumps_of_continuous_lAdic_char D P.T P.wd (D.nd.l i) (D.naut.iotaQC i) μ hμc
+    obtain ⟨hdR, hJ⟩ := _root_.GlobalTheory.CharAboveRead.deRham_and_jumps_rankOne_lAdic_character D P.T P.wd (D.nd.l i) (D.naut.iotaQC i) μ hμc
       (fun τ => {-n ((D.naut.iotaQC i).toRingHom.comp τ)}) w hw
       (fun O _ _ _ Bw hj => ⟨(hab O Bw hj).1, (hab O Bw hj).2.2.2⟩)
     refine ⟨(P.wdOf i 1 (rk1 μ) w).2.2.2.1.2 hdR, ?_, fun τ hτ => ?_⟩

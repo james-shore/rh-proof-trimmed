@@ -52,22 +52,12 @@ open NumberField Matrix ReciprocityTheory.ChartRestriction.G.FD
 
 namespace GlobalTheory.BlockTransporter
 
-theorem exists_unitary_mul_upper {n : ℕ} (y : Matrix (Fin n) (Fin n) ℂ) :
-    ∃ u ∈ Matrix.unitaryGroup (Fin n) ℂ, ∃ t : Matrix (Fin n) (Fin n) ℂ, t.BlockTriangular id ∧ y = u * t := by
-  first
-  | exact @_root_.GlobalTheory.UnitaryUpperTriangular.exists_unitary_mul_upperTriangular
-  | exact _root_.GlobalTheory.UnitaryUpperTriangular.exists_unitary_mul_upperTriangular
-  | (apply _root_.GlobalTheory.UnitaryUpperTriangular.exists_unitary_mul_upperTriangular <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitaryUpperTriangular.exists_unitary_mul_upperTriangular <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitaryUpperTriangular.exists_unitary_mul_upperTriangular <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UnitaryUpperTriangular.exists_unitary_mul_upperTriangular ..)
-
 theorem exists_unitary_block {r p : ℕ} (B : Matrix (Fin r) (Fin r) ℂ) (hB : B.det ≠ 0)
     (h0 : ∀ a c : Fin r, (c : ℕ) < p → ¬ (a : ℕ) < p → B a c = 0) :
     ∃ u t : Matrix (Fin r) (Fin r) ℂ, u ∈ Matrix.unitaryGroup (Fin r) ℂ ∧
       (∀ a c : Fin r, (c : ℕ) < p → ¬ (a : ℕ) < p → u a c = 0) ∧
       t.det ≠ 0 ∧ (∀ a c : Fin r, c < a → t a c = 0) ∧ B = u * t := by
-  obtain ⟨u, hu, t, ht, e⟩ := exists_unitary_mul_upper B
+  obtain ⟨u, hu, t, ht, e⟩ := _root_.GlobalTheory.UnitaryUpperTriangular.exists_unitary_mul_upperTriangular B
   have hud : u.det ≠ 0 := by
     intro h
     have := congrArg Matrix.det (Matrix.mem_unitaryGroup_iff'.1 hu)
@@ -122,12 +112,6 @@ theorem isCompact_unitBlock (X : Data E r) : IsCompact (unitBlock X) := by
     refine pi_norm_le_iff_of_nonneg zero_le_one |>.2 fun c => ?_
     exact entry_norm_bound_of_unitary (hu τ).1 a c
 
-theorem continuous_rmul (X : Data E r) : Continuous fun p : Frame X.Ψ r × Frame X.Ψ r => rmul p.1 p.2 := by
-  refine continuous_pi fun τ => ?_
-  have h1 : Continuous fun p : Frame X.Ψ r × Frame X.Ψ r => mat p.1 τ := (continuous_apply τ).comp continuous_fst
-  have h2 : Continuous fun p : Frame X.Ψ r × Frame X.Ψ r => mat p.2 τ := (continuous_apply τ).comp continuous_snd
-  exact h1.matrix_mul h2
-
 end GlobalTheory.BlockTransporter
 
 namespace GlobalTheory.BlockTransporter
@@ -140,7 +124,7 @@ theorem finite_blockTransporter : ∀ (E : Type) [Field E] [NumberField E] [IsCM
       ReciprocityTheory.ChartRestriction.G.FD.lact γ x = ReciprocityTheory.ChartRestriction.G.FD.rmul y b}.Finite := by
   intro E _ _ _ r X K hK hKd
   set K' := (fun p : Frame X.Ψ r × Frame X.Ψ r => rmul p.1 p.2) '' (K ×ˢ unitBlock X) with hK'
-  have hK'c : IsCompact K' := (hK.prod (isCompact_unitBlock X)).image (continuous_rmul X)
+  have hK'c : IsCompact K' := (hK.prod (isCompact_unitBlock X)).image (_root_.GlobalTheory.UnitaryInvMeasure.continuous_rmul X)
   have hK'd : K' ⊆ X.dom := by
     rintro _ ⟨⟨y, u⟩, ⟨hy, hu⟩, rfl⟩
     refine GlobalTheory.PointOfFrames.rmul_mem_dom X (hKd hy) u (fun τ h => ?_) (fun τ => (hu τ).2)

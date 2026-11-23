@@ -56,12 +56,6 @@ namespace LocF
 
 variable {q : ℕ} {F : Type} [Field F] {Lc : LocF q F} {n : ℕ}
 
-theorem uext_mem_std (x : Fin n → Lc.K) : x ∈ Lc.std n ↔ ∀ a, x a ∈ Lc.O := by
-  simp only [std, Submodule.mem_pi, Set.mem_univ, true_imp_iff, Submodule.mem_one]
-  refine forall_congr' fun a => ⟨?_, fun h => ⟨⟨x a, h⟩, rfl⟩⟩
-  rintro ⟨y, hy⟩
-  rw [← hy]; exact y.2
-
 theorem uext_ker {Λ : Submodule Lc.O (Fin n → Lc.K)} {h : GL (Fin n) Lc.K} (hh : Lc.IsFrame n h Λ)
     {V : Type*} [AddCommGroup V] [Module F V] (hV : Module.finrank F V = n) (π : (Fin n → Lc.K) → V)
     (hadd : ∀ x ∈ Λ, ∀ y ∈ Λ, π (x + y) = π x + π y)
@@ -71,7 +65,7 @@ theorem uext_ker {Λ : Submodule Lc.O (Fin n → Lc.K)} {h : GL (Fin n) Lc.K} (h
   let π' : Λ →+ V := AddMonoidHom.mk' (fun x => π x) (fun x y => hadd x x.2 y y.2)
   have hb : ∀ a : Fin n, Matrix.mulVec (h : Matrix (Fin n) (Fin n) Lc.K) (Pi.single a 1) ∈ Λ := by
     intro a
-    rw [hh, uext_mem_std]
+    rw [hh, _root_.GlobalTheory.LvT.LocF.incf_mem_std]
     intro b
     by_cases hab : b = a
     · subst hab; simp
@@ -84,7 +78,7 @@ theorem uext_ker {Λ : Submodule Lc.O (Fin n → Lc.K)} {h : GL (Fin n) Lc.K} (h
     have e1 : Matrix.mulVec (h : Matrix (Fin n) (Fin n) Lc.K)
         (Matrix.mulVec ((h⁻¹ : GL (Fin n) Lc.K) : Matrix (Fin n) (Fin n) Lc.K) x) = x := by
       rw [Matrix.mulVec_mulVec, ← Units.val_mul, mul_inv_cancel, Units.val_one, Matrix.one_mulVec]
-    have e2 := (uext_mem_std _).1 ((hh _).1 (e1.symm ▸ hx))
+    have e2 := (_root_.GlobalTheory.LvT.LocF.incf_mem_std _).1 ((hh _).1 (e1.symm ▸ hx))
     let z : Fin n → Lc.O := fun a => ⟨_, e2 a⟩
     have e0 : x = Matrix.mulVec (h : Matrix (Fin n) (Fin n) Lc.K) (fun a => (z a : Lc.K)) := e1.symm
     refine ⟨z, e0, ?_⟩
@@ -111,7 +105,7 @@ theorem uext_ker {Λ : Submodule Lc.O (Fin n → Lc.K)} {h : GL (Fin n) Lc.K} (h
     · simp [hV]
   obtain ⟨z, hz1, hz2⟩ := key x hx
   have hz3 := Fintype.linearIndependent_iff.1 hli (fun a => Lc.res (z a)) (by rw [← hz2, h0])
-  rw [hz1, ← Matrix.mulVec_smul, hh, uext_mem_std]
+  rw [hz1, ← Matrix.mulVec_smul, hh, _root_.GlobalTheory.LvT.LocF.incf_mem_std]
   intro a
   obtain ⟨y, hy⟩ := (Lc.res_ker _).1 (hz3 a)
   simp only [Pi.smul_apply, smul_eq_mul]

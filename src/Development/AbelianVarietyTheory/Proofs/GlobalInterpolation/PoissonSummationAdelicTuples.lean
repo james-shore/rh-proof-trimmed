@@ -68,13 +68,9 @@ variable {F : Type} [Field F] [NumberField F] {N : ℕ}
 theorem rat_add (ξ η : Fin N → F) : (rat (ξ + η) : Fin N → AF F) = rat ξ + rat η := by
   funext l; simp [rat]
 
-theorem rat_neg (ξ : Fin N → F) : (rat (-ξ) : Fin N → AF F) = -rat ξ := by
-  funext l; simp [rat]
+alias rat_neg := _root_.GlobalTheory.SWQ.FZero.rat_neg
 
-theorem Bd_add_left (a : Fin N → F) (u v w : Fin N → AF F) :
-    Bd (AF F) a (u + v) w = Bd (AF F) a u w + Bd (AF F) a v w := by
-  simp only [Bd, ← Finset.sum_add_distrib]
-  exact Finset.sum_congr rfl fun l _ => by simp only [Pi.add_apply]; ring
+alias Bd_add_left := _root_.GlobalTheory.SWQ.FZero.Bd_add_left
 
 theorem Bd_neg_right (a : Fin N → F) (u w : Fin N → AF F) :
     Bd (AF F) a u (-w) = -Bd (AF F) a u w := by
@@ -84,15 +80,9 @@ theorem Bd_neg_right (a : Fin N → F) (u w : Fin N → AF F) :
 theorem Bd_zero_left (a : Fin N → F) (w : Fin N → AF F) : Bd (AF F) a 0 w = 0 := by
   simp [Bd]
 
-theorem Bd_rat (a : Fin N → F) (ξ η : Fin N → F) :
-    Bd (AF F) a (rat ξ) (rat η) = algebraMap F (AF F) (Bd F a ξ η) := by
-  set_option synthInstance.maxHeartbeats 100000 in
-    simp [Bd, rat, map_sum, map_mul]
+alias Bd_rat := _root_.GlobalTheory.SWQ.Bd_rat_rat
 
-theorem continuous_Bd_right (a : Fin N → F) (w : Fin N → AF F) :
-    Continuous fun u : Fin N → AF F => Bd (AF F) a u w := by
-  unfold Bd
-  exact continuous_finsetSum _ fun l _ => (continuous_const.mul (continuous_apply l)).mul continuous_const
+alias continuous_Bd_right := _root_.GlobalTheory.SWQ.FZero.cont_Bd
 
 end GlobalTheory.SWQ.PoissonSum
 

@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MemRootsBarXSubC
 
 @[expose] public section
 
@@ -57,18 +58,11 @@ open scoped Classical
 
 variable {g : ℕ} [Fact g.Prime]
 
-theorem toG_coe {n : ℕ} (x : Gn g n) : toG (x : Mt g n) = x := by
-  unfold toG
-  rw [dif_pos x.isUnit]
-  exact Units.ext rfl
+alias toG_coe := _root_.GlobalTheory.GLm.Cell.toG_coe
 
 theorem br_zero_eq {a : ℕ} (M : Mt g a) : br 0 a M = M := by
   funext i j
   simp only [br, entN, zero_add, i.isLt, j.isLt, and_self, dif_pos]
-
-theorem tl_self_eq {a : ℕ} (M : Mt g a) : tl a M = M := by
-  funext i j
-  simp only [tl, entN, i.isLt, j.isLt, and_self, dif_pos]
 
 theorem inPar_zero' {n : ℕ} (M : Mt g n) : InPar 0 M := fun _ _ hj _ => absurd hj (Nat.not_lt_zero _)
 
@@ -123,7 +117,7 @@ theorem res_right_zero (n b : ℕ) (hb : b = 0) (χ : Gn g n → ℂ) (y₁ : Gn
   have hy : ∀ x : Gn g n, (InPar n (x : Mt g n) ∧ tl n (x : Mt g n) = (y₁ : Mt g n) ∧
       br n 0 (x : Mt g n) = (y₂ : Mt g 0)) ↔ x = y₁ := by
     intro x
-    rw [tl_self_eq, Units.val_inj]
+    rw [_root_.GlobalTheory.GLq.Model.tl_self, Units.val_inj]
     exact ⟨fun h => h.2.1, fun h => ⟨inPar_self' _, h, Subsingleton.elim _ _⟩⟩
   simp only [hy, mul_zero, pow_zero, inv_one, one_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
 

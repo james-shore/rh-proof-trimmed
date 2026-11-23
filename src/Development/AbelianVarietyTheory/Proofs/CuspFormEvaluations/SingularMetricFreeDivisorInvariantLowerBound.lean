@@ -81,16 +81,12 @@ theorem Wfree_of_notMem {x : Frame X.Ψ r} (hx : x ∉ X.dom) : Wfree Xa Fl G n 
   unfold Wfree
   rw [if_neg hx]
 
-private lemma sum_norm_sq_pos_of_exists_ne_zero {N : ℕ} {a : Fin N → ℂ} (h : ∃ k, a k ≠ 0) : 0 < ∑ k, ‖a k‖ ^ 2 := by
-  obtain ⟨k, hk⟩ := h
-  exact Finset.sum_pos' (fun i _ => by positivity) ⟨k, Finset.mem_univ _, pow_pos (norm_pos_iff.mpr hk) 2⟩
-
 theorem Wfree_eq_exp {x : Frame X.Ψ r} (hx : x ∈ X.dom) (hs : ∃ k, Fl.s k x ≠ 0) :
     Wfree Xa Fl G n x = ENNReal.ofReal (Real.exp (-(phla X G x +
       (1 / 2) * Real.log (∑ k, ‖Xa.w k x‖ ^ 2) +
       ((n : ℝ) - 1 / 2) * Real.log (∑ k, ‖Fl.s k x‖ ^ 2)))) := by
-  have hA : 0 < ∑ k, ‖Xa.w k x‖ ^ 2 := sum_norm_sq_pos_of_exists_ne_zero (Xa.w_nz x hx)
-  have hB : 0 < ∑ k, ‖Fl.s k x‖ ^ 2 := sum_norm_sq_pos_of_exists_ne_zero hs
+  have hA : 0 < ∑ k, ‖Xa.w k x‖ ^ 2 := _root_.GlobalTheory.Up.sum_normSq_pos (Xa.w_nz x hx)
+  have hB : 0 < ∑ k, ‖Fl.s k x‖ ^ 2 := _root_.GlobalTheory.Up.sum_normSq_pos hs
   have key : Real.exp (-(phla X G x + (1 / 2) * Real.log (∑ k, ‖Xa.w k x‖ ^ 2) +
       ((n : ℝ) - 1 / 2) * Real.log (∑ k, ‖Fl.s k x‖ ^ 2))) =
       Real.exp (-phla X G x) * (∑ k, ‖Xa.w k x‖ ^ 2) ^ (-(1 / 2 : ℝ)) *

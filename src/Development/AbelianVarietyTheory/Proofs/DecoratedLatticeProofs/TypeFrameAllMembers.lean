@@ -144,30 +144,6 @@ theorem three_L_le {s : Scale} {R : Ranks} (h : RankVal s R) (he : s.eps < 1 / 5
   show 3 * s.x ^ s.eps ≤ (R.m : ℝ) - 1
   nlinarith
 
-theorem Dstar_eq_mass (K : Ctx) (X : Stages) (hO : K.Over X.B.toPre)
-    (hd : ∀ τ, X.S.dsig τ = Vol.trueDsig X.B.R (X.B.hc τ)) :
-    X.toD7.what₂.Dstar = StandardLattice.massI X.toD7 X.toD7.R.r * StandardLattice.idxSig X.toD7 (X.toD7.host.g 0) (X.toD7.host.g 1) *
-      ∏ τ, X.toD7.dsig τ := by
-  have e : X.toD7.what₂.Dstar = X.B.Dstar := (X.toD7.Dstar_eq X.toD7.u₀).symm.trans (X.C.A_Dstar _)
-  rw [e, hO.sizes.2]
-  unfold DsPre
-  congr 1
-  exact Finset.prod_congr rfl fun τ _ => (hd τ).symm
-
-theorem admissible_ranks_of_mass_formula (D : D7) (Lv : LevelData D) (C : Formalism.L2.Forms.ColsTiedSym D)
-    (hD : D.what₂.Dstar = StandardLattice.massI D D.R.r * StandardLattice.idxSig D (D.host.g 0) (D.host.g 1) * ∏ τ, D.dsig τ) :
-    LocalBesselAndTopKernel.FamilyMidVolume D := by
-  have h4 := Formalism.MainNotions.StandardLattice.HarishChandraReduction.rankFormula_of_classNumber D Lv (GlobalTheory.ColClassNumber.classNumber_all D Lv)
-  intro V _ _ _ _ h L _
-  refine ⟨fun hL u => ?_, fun hL => ?_⟩
-  · have e := h4 (GlobalTheory.first_type_prime_large_of_record D) (Formalism.MainNotions.Ext.Lw.splitsF_g_all D) u
-      (Formalism.MainNotions.Ext.Lw.splitsF_T_all D u) (Formalism.MainNotions.Ext.Lw.mu0Tie_of_sym C u)
-    have em : Formalism.HermitianLatticesTheory.mass h L = StandardLattice.massI D D.R.k := Formalism.MainNotions.J.mass_ortho_eq hL (Formalism.MainNotions.J.std_ortho D.host.E D.R.k)
-    rw [em, ← Formalism.MainNotions.J.idxColTie_holds D]
-    exact e
-  · have em : Formalism.HermitianLatticesTheory.mass h L = StandardLattice.massI D D.R.r := Formalism.MainNotions.J.mass_ortho_eq hL (Formalism.MainNotions.J.std_ortho D.host.E D.R.r)
-    rw [em, ← Formalism.MainNotions.J.idxRowTie_holds D, hD]
-
 variable (hL : GlobalTheory.Published.LocalLanglandsGL) (p : Bl.Prm hL)
 
 end GlobalTheory.Fam.MemberFrame

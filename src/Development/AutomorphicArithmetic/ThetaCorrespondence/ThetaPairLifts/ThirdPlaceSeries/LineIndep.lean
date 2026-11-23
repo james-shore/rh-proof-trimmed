@@ -131,7 +131,7 @@ theorem single_alt (W : _root_.GlobalTheory.MiS.RealPackAlt ex) (hW : _root_.Glo
     rw [map_mul, (G i).sc_unit, (G i).sc_unit, one_mul] at this
     exact this.symm
   obtain ⟨σ, -, hM⟩ := hR.frame i 0 ((G i).s + 1) (Nat.zero_add _)
-  obtain ⟨hsd, hfr⟩ := _root_.GlobalTheory.T.selfDual_and_frame_of_pkHyp W hW 0 (by omega)
+  obtain ⟨hsd, hfr⟩ := _root_.GlobalTheory.Fam.sdY_frames_alt W hW 0 (by omega)
   have hs0 : s ≠ 0 := by rcases hs with rfl | rfl <;> simp
   have H := line_bes (G i).q hq (f.c.B 0 _ h₀) ((_root_.GlobalTheory.Fam.pk_z W).ΛY 0) ((_root_.GlobalTheory.Fam.pk_z W).βY 0) hfr hsd (f.g.b 0) _ _ _
     (fun h0 => by simpa [h0] using (G i).sc_unit 0) ((G i).bes 0 _ h₀ _ (Nat.zero_add _)) _ (G i).S.ϖ

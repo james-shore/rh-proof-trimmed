@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LatticeDualPairingCyclotomic
 
 @[expose] public section
 
@@ -122,7 +123,7 @@ theorem ker_red_gen (L : Lattice (O := O) ρ) (hρ : ∀ m, Continuous fun g => 
         Submodule.Quotient.mk (evT L g d) at h1
       rw [show actQ L _ hI g (Submodule.Quotient.mk x) = Submodule.Quotient.mk (actT L g x) from rfl,
         ← Submodule.Quotient.mk_sub, Submodule.Quotient.eq] at h1
-      rw [← GlobalTheory.RedLocConst.mem_span_smul_top', ← neg_sub]
+      rw [← _root_.GlobalTheory.TateOrth.mem_span_smul_top, ← neg_sub]
       exact neg_mem h1
     choose t ht using hg
     let cx : ↥(latticeCocycles L) := ⟨_, cob_mem_Z1T L hρ x⟩
@@ -173,7 +174,7 @@ theorem redT_mem_Z1Q_of_ne (l : ℕ) [Fact l.Prime] (K : FinExt l) (LL : Type) [
   have hmem : ∀ x : ↥LA.T, x ∈ (Ideal.span {b} • ⊤ : Submodule O ↥LA.T) ↔
       (x : A.V) ∈ (fun v : A.V => c • v) '' (LA.T : Set A.V) := by
     intro x
-    rw [GlobalTheory.RedLocConst.mem_span_smul_top']
+    rw [_root_.GlobalTheory.TateOrth.mem_span_smul_top]
     constructor
     · rintro ⟨y, rfl⟩
       refine ⟨y, y.2, ?_⟩

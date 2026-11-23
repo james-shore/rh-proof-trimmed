@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.UwClosedSubgroup
 
 @[expose] public section
 
@@ -50,11 +51,6 @@ noncomputable section
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 
 namespace Formalism.FourierDecayAlt.P.CutMK
-
-theorem psi_cast {k a b : ℕ} (e : a = b) (v : Fin (2 * a + k + 1) → ℂ) (c : ℂ) (g : B.Mat k a) :
-    psi k b (D.castV e v) c (D.castM e g) = psi k a v c g := by
-  subst e
-  rw [Formalism.FourierDecayAlt.P.Dx2.Tower.castV_rfl, Formalism.FourierDecayAlt.P.Dx2.MN.castM_rfl]
 
 theorem top_construction : TopMk := by
   intro hC Wp Wq _ _ _ _ _ _ P p
@@ -82,7 +78,7 @@ theorem top_construction : TopMk := by
       intro u
       unfold CutEX.psiU
       rw [hz]
-      exact psi_cast e0 _ _ _
+      exact _root_.Formalism.FourierDecayAlt.P.PBH.psi_castM e0 _ _ _
     have key := hC P.k P.r (P.r - P.r) P.r Wp Wq e0 hρ (p.T.bs P.r) p.T.base (p.T.z'_lev P.r hr)
       (p.T.π'_lev P.r hr) (hT P.r hr).1 (hT P.r hr).2.1 (Formalism.FourierDecayAlt.P.PBM.tower_haarW' p.T hT P.r hr e0)
       (hT P.r hr).2.2 (hT 0 (Nat.zero_le _)).2.2 b b β Φ hbs.continuous hbc hbs.continuous hbc Z hZ

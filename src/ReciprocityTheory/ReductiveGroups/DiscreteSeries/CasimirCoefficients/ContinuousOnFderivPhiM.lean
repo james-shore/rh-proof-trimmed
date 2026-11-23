@@ -113,14 +113,7 @@ lemma contDiffAt_phiM (μ : Fin n → ℤ) {z : Matrix (Fin n) (Fin n) ℂ} (hz 
   | exact contDiffAt_prod fun i _ => InfKA.contDiffAt_zpow (contDiff_lead _).contDiffAt (hz i) _
   | exact contDiffAt_finset_prod fun i _ => InfKA.contDiffAt_zpow (contDiff_lead _).contDiffAt (hz i) _
 
-lemma isOpen_omega' : IsOpen (OmegaSet n) := by
-  have e : OmegaSet n = ⋂ i : Fin n, {z | lead ((i : ℕ) + 1) z ≠ 0} := by
-    ext z
-    simp [OmegaSet]
-  rw [e]
-  first
-  | exact isOpen_iInter_of_finite fun i => isOpen_ne_fun (contDiff_lead _).continuous continuous_const
-  | exact isOpen_iInter fun i => isOpen_ne_fun (contDiff_lead _).continuous continuous_const
+alias isOpen_omega' := _root_.ReciprocityTheory.ChartRestriction.DS.S7.isOpen_omega
 
 lemma continuousOn_fderiv_phiM (μ : Fin n → ℤ) : ContinuousOn (fderiv ℂ (PhiM μ)) (OmegaSet n) := by
   exact ContDiffOn.continuousOn_fderiv_of_isOpen

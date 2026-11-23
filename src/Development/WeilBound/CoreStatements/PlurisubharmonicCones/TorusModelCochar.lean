@@ -75,18 +75,6 @@ theorem pull_inj {S S' : Scheme.{0}} {G : Over S} {G' : Over S'} [GrpObj G] [Grp
     (e : v.left ≫ φ = v'.left ≫ φ) : v = v' :=
   Over.OverMorphism.ext (h.1.hom_ext e (by rw [Over.w, Over.w]))
 
-theorem isGrpPullback_iso {S : Scheme.{0}} {A B : Over S} [GrpObj A] [GrpObj B] (e : A ≅ B) [IsMonHom e.hom] :
-    IsGrpPullback A B (𝟙 S) e.hom.left := by
-  refine ⟨?_, fun T x y x₀ y₀ hx hy => ?_⟩
-  · haveI : IsIso e.hom.left := ((Over.forget S).mapIso e).isIso_hom
-    exact IsPullback.of_horiz_isIso ⟨by simp⟩
-  · have e₁ : (x * y) ≫ e.hom = (x ≫ e.hom) * (y ≫ e.hom) := by
-      first | exact Hom.mul_comp _ _ _ | exact MonObj.mul_comp _ _ _ | exact CategoryTheory.Hom.mul_comp _ _ _
-    have : (x * y).left ≫ e.hom.left = ((x ≫ e.hom) * (y ≫ e.hom)).left := by
-      rw [← e₁]; rfl
-    rw [this]
-    exact mul_left_congr (Category.comp_id _) _ _ _ _ hx hy
-
 variable {L : Type} [Field L] [NumberField L]
 
 theorem exists_generic {X : Scheme.{0}} (G : Over X) [GrpObj G] [IsCommMonObj G] [Smooth G.hom] (z : Sp (𝓞 L) ⟶ X)
@@ -239,7 +227,7 @@ theorem exists_lin {Ψ : Type} {X : Scheme.{0}} (t : SAB H X) (z : Sp (𝓞 L) �
   have hjρ : ∀ a x, j (ρ₀ a x) = ρ a (j x) := fun a x => MV.inj (pull_inj P.m.cart (by
     rw [hj', hρ₀ a x, hρ a (j x), Over.comp_left, Over.comp_left, Category.assoc, P.m.act a, ← Category.assoc,
       ← Category.assoc, hj']))
-  obtain ⟨md, hmd⟩ := GlobalTheory.T.torus_extension_module_structure L P.tK.G P.τ (𝓞 E) P.tK.act (fun a => by
+  obtain ⟨md, hmd⟩ := _root_.GlobalTheory.CompanionTheory.TorusAct.exists_module_diagAct L P.tK.G P.τ (𝓞 E) P.tK.act (fun a => by
     haveI := P.tB.act.hom a
     refine ⟨P.e.hom ≫ P.tB.act.act a ≫ P.e.inv, inferInstance, ?_⟩
     refine (cancel_mono P.e.hom).1 ?_
@@ -252,9 +240,9 @@ theorem exists_lin {Ψ : Type} {X : Scheme.{0}} (t : SAB H X) (z : Sp (𝓞 L) �
   have hκ : ∀ δ, MV.pt (κ δ) = MT.pt ((Int.castAddHom L).comp δ) ≫ P.τ.i := fun δ => hiL _
   let bs := Module.finBasis ℤ (P.τ.X →+ ℤ)
   have hφ' : IsGrpPullback P.τ.B t'.G (spMap (algebraMap (𝓞 L) L)) (P.e.hom.left ≫ m'.φ) := by
-    have := (isGrpPullback_iso P.e).comp m'.cart
+    have := (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.isGrpPullback_of_iso P.e).comp m'.cart
     simpa using this
-  obtain ⟨ε, f, hε, hf, hli, hker, hsur⟩ := GlobalTheory.T.semi_abelian_pullback_torus_extension X t.G t.semi L z P.tK.G P.m.φ P.τ t'.G _ t'.semi P.m.cart hφ'
+  obtain ⟨ε, f, hε, hf, hli, hker, hsur⟩ := _root_.GlobalTheory.CompanionTheory.Ar.TopPt.main X t.G t.semi L z P.tK.G P.m.φ P.τ t'.G _ t'.semi P.m.cart hφ'
     MT hMT V₀ B.carrier M₀ MB _ bs
   have hjε : (fun i => j (ε i)) = fun i => κ (bs i) := funext fun i => MV.inj (pull_inj P.m.cart (by
     rw [hj', hκ]

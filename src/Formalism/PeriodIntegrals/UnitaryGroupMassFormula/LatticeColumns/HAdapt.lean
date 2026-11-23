@@ -138,10 +138,6 @@ section Red
 
 variable {O K : Type} [CommRing O] [CommRing K] {r k : ℕ}
 
-private theorem coe_glRed {ι' R S : Type} [Fintype ι'] [DecidableEq ι'] [CommRing R] [CommRing S]
-    (π : R →+* S) (M : GL ι' R) :
-    ((MassDataIdxRed.glRed π M : GL ι' S) : Matrix ι' ι' S) = (M : Matrix ι' ι' R).map π := rfl
-
 private theorem coe_hEmbGL {A : Type} [CommRing A] (g : GL (Fin k) A) :
     ((hEmbGL (A := A) r k g : GL (Idx r k) A) : Matrix (Idx r k) (Idx r k) A) =
       hEmb r (g : Matrix (Fin k) (Fin k) A) := rfl
@@ -160,7 +156,7 @@ theorem mem_range_hEmbGL_map (ι : O →+* K) (hι : Function.Injective ι) (M :
     M ∈ (hEmbGL (A := O) r k).range ↔ MassDataIdxRed.glRed ι M ∈ (hEmbGL (A := K) r k).range := by
   constructor
   · rintro ⟨g, rfl⟩
-    exact ⟨MassDataIdxRed.glRed ι g, Units.ext (by simp only [coe_glRed, coe_hEmbGL, hEmb_map'])⟩
+    exact ⟨MassDataIdxRed.glRed ι g, Units.ext (by simp only [_root_.MassDataIdxRed.glRed_coe, coe_hEmbGL, hEmb_map'])⟩
   · rintro ⟨g, hg⟩
     have key : ∀ N : GL (Idx r k) O,
         (∃ g' : GL (Fin k) K, hEmbGL (A := K) r k g' = MassDataIdxRed.glRed ι N) →
@@ -168,7 +164,7 @@ theorem mem_range_hEmbGL_map (ι : O →+* K) (hι : Function.Injective ι) (M :
           (N : Matrix (Idx r k) (Idx r k) O) := by
       rintro N ⟨g', hg'⟩
       have hN : (N : Matrix (Idx r k) (Idx r k) O).map ι = hEmb r (g' : Matrix (Fin k) (Fin k) K) := by
-        rw [← coe_glRed, ← hg', coe_hEmbGL]
+        rw [← _root_.MassDataIdxRed.glRed_coe, ← hg', coe_hEmbGL]
       have hb : (Matrix.of fun i j => (N : Matrix (Idx r k) (Idx r k) O) (wI i) (wI j)).map ι =
           (g' : Matrix (Fin k) (Fin k) K) := by
         ext i j

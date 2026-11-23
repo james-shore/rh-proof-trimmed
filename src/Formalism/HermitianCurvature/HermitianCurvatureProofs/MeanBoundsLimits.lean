@@ -179,7 +179,7 @@ theorem meanSplit_ok : MeanSplit := by
     ring
   · intro S c hS
     have hS' : ∀ σ ∈ S, σ ∈ Λ := hS
-    have hpd := Formalism.FourierDecayAlt.P.mean_matrix_posDef Λ H LIM hM.1.1 hM.1.2.1
+    have hpd := _root_.Formalism.FourierDecayAlt.P.E2.mpd Λ H LIM hM.1.1 hM.1.2.1
       (fun g hg hpos => (hM.1.2.2.1 g hg hpos).1) hM.1.2.2.2.2 (fun x => r x) B (fun x => hpr x)
       (S.subtype (fun x => x ∈ Λ)) (fun σ => c σ)
     have eq : (∑ σ ∈ S, ∑ σ' ∈ S, (LIM fun x : Λ => inner ℂ (r x) (r ((x : V f) + (σ - σ')))) *
@@ -198,5 +198,4 @@ theorem meanSplit_ok : MeanSplit := by
 
 end Formalism.FourierDecayAlt.P.MeanBoundsLimits
 
-theorem Formalism.FourierDecayAlt.P.mean_bound_estimate : Formalism.FourierDecayAlt.crystallineComparison.MeanBound := Formalism.FourierDecayAlt.P.MeanBoundsLimits.meanBound_ok
-theorem Formalism.FourierDecayAlt.P.mean_split_identity : Formalism.FourierDecayAlt.crystallineComparison.MeanSplit := Formalism.FourierDecayAlt.P.MeanBoundsLimits.meanSplit_ok
+alias Formalism.FourierDecayAlt.P.mean_bound_estimate := _root_.Formalism.FourierDecayAlt.P.MeanBoundsLimits.meanBound_ok

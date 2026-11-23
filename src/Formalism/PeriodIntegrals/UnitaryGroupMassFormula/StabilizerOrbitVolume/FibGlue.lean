@@ -177,10 +177,6 @@ theorem dens_unique {g1 g2 : X → ℝ} (h1 : Continuous g1) (h2 : Continuous g2
     rw [integral_sub (h2.continuousOn.integrableOn_compact hS) (h1.continuousOn.integrableOn_compact hS), h S hS, sub_self]
   linarith
 
-theorem dens_nonneg {g : X → ℝ} (hg : Continuous g)
-    (h : ∀ S, IsCompact S → 0 ≤ ∫ b in S, g b ∂ν) (b0 : X) : 0 ≤ g b0 := by
-  exact nonneg_of_setIntegral_compact_nonneg hg h b0
-
 variable [IsFiniteMeasureOnCompacts μ] [OpensMeasurableSpace V]
 
 theorem isCc_add {φ ψ : V → ℝ} (hφ : IsCcOn U φ) (hψ : IsCcOn U ψ) : IsCcOn U (φ + ψ) := by
@@ -229,7 +225,7 @@ theorem G_nonneg (hD : DensAll μ f ι ν U) {φ : V → ℝ} (hφ : IsCcOn U φ
     0 ≤ G hD φ := by
   intro b
   have hs := G_spec hD hφ
-  refine dens_nonneg (ν := ν) hs.1 (fun S hS => ?_) b
+  refine _root_.PI.VolStabSW.Glue.nonneg_of_setIntegral_compact_nonneg (ν := ν) hs.1 (fun S hS => ?_) b
   rw [← hs.2 S hS]
   exact integral_nonneg (fun v => h0 v)
 

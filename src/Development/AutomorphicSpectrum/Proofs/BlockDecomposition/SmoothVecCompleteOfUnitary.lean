@@ -98,7 +98,7 @@ theorem smoothVec_complete_of_unitary (n : ℕ) (ε : Fin n → Bool) (H : Type)
     exact (norm_Dw_le_sobNorm σ List.mem_cons_self _).trans_lt (hK k hk m hm)
   choose v hv using fun l => cauchySeq_tendsto_of_complete (hcau l)
   have hvF : v ∈ Fam ε σ :=
-    (GlobalTheory.T.isClosed_derivativeFamilies_moderateGrowth n ε H σ hρ).mem_of_tendsto (tendsto_pi_nhds.2 hv) (Eventually.of_forall hU)
+    (_root_.GlobalTheory.TypeSum.isClosed_fam n ε H σ hρ).mem_of_tendsto (tendsto_pi_nhds.2 hv) (Eventually.of_forall hU)
   obtain ⟨hs, hd⟩ := GlobalTheory.SobUnif.fam_smooth hσ hvF
   refine ⟨v [], hs, fun S hS => tendsto_sobNorm_zero S fun l hl => ?_⟩
   obtain ⟨l', rfl⟩ := GlobalTheory.SobUnif.exists_lift l (hS l hl)

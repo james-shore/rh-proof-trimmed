@@ -122,20 +122,11 @@ theorem gram_det_ne {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSMod
     exact zero_ne_one this
   exact mul_ne_zero (mul_ne_zero (star_ne_zero.2 h1) h2) h1
 
-section Exp
-
-attribute [local instance] Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
-
-theorem exp_cont {n : ℕ} (X : Matrix (Fin n) (Fin n) ℂ) : Continuous fun t : ℝ => NormedSpace.exp (t • X) :=
-  NormedSpace.exp_continuous.comp (continuous_id.smul continuous_const)
-
-end Exp
-
 variable {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar}
 
 theorem cont_rep_exp (M : DSModel V S) (τ : D.what₂.Tau) {X : Matrix (Fin V.rank) (Fin V.rank) ℂ}
     (hX : X ∈ lieAt V τ) (x : M.H τ) : Continuous fun t : ℝ => M.rep τ (NormedSpace.exp (t • X)) x :=
-  ((GlobalTheory.HolDict.ModelRep.model_rep D V S M τ).2.1.2.2 x).comp_continuous (exp_cont X)
+  ((GlobalTheory.HolDict.ModelRep.model_rep D V S M τ).2.1.2.2 x).comp_continuous (_root_.Formalism.IndefR.SchurOrthogonalityAlt.expS_continuous X)
     (fun t => SchurOrthogonalityAlt.gp_exp_mem τ hX t)
 
 theorem inner_rep_exp (M : DSModel V S) (τ : D.what₂.Tau) {X : Matrix (Fin V.rank) (Fin V.rank) ℂ}
@@ -204,7 +195,7 @@ theorem exists_adj {L L' E F : Type} [AddCommGroup L] [Module ℂ L] [AddCommGro
 
 theorem adj_locIt : ∀ (D : D7) (V W : HSp D) (S S' : D.what₂.Tau → SPar) (M : DSModel V S) (M' : DSModel W S') (τ : D.what₂.Tau) (aS aT : ℚ) (A : LPol W.rank V.rank →ₗ[ℂ] M'.H τ →ₗ[ℂ] M.H τ), LocIt M M' τ aS aT A → ∃ A' : LPol V.rank W.rank →ₗ[ℂ] M.H τ →ₗ[ℂ] M'.H τ, LocIt M' M τ aT aS A' := by
   intro D V W S S' M M' τ aS aT A hA
-  obtain ⟨j, hjc, hj⟩ := GlobalTheory.T.fock_sign_transpose_exchanges_local_gl_actions V.rank W.rank (M.ε τ) (M'.ε τ)
+  obtain ⟨j, hjc, hj⟩ := _root_.GlobalTheory.Chain.RealIt.SwapFock.locS_locT_exchange V.rank W.rank (M.ε τ) (M'.ε τ)
   obtain ⟨A', hA'⟩ := exists_adj A j hjc hA.adj
   haveI := (GlobalTheory.HolDict.ModelRep.model_rep D V S M τ).1
   haveI := (GlobalTheory.HolDict.ModelRep.model_rep D W S' M' τ).1

@@ -52,16 +52,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.Cyc
 
 namespace GlobalTheory.InertFix
 
-theorem eq_one_of_pow_eq_one {K : Type*} [NormedField K] [IsUltrametricDist K] (m : ℕ)
-    (hm : ‖(m : K)‖ = 1) (u : K) (hu : u ^ m = 1) (h1 : ‖u - 1‖ < 1) : u = 1 := by
-  first
-  | exact @_root_.GlobalTheory.PowerEqOneClose.eq_one_of_pow_eq_one
-  | exact _root_.GlobalTheory.PowerEqOneClose.eq_one_of_pow_eq_one
-  | (apply _root_.GlobalTheory.PowerEqOneClose.eq_one_of_pow_eq_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerEqOneClose.eq_one_of_pow_eq_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerEqOneClose.eq_one_of_pow_eq_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerEqOneClose.eq_one_of_pow_eq_one ..)
-
 theorem inertia_fix : ∀ (l : ℕ) [Fact l.Prime] (n : ℕ), 0 < n → ∀ σ : GQ l,
     (∀ x : Om l, ‖x‖ ≤ 1 → ‖σ x - x‖ < 1) → ∀ x : Om l, x ^ l ^ n = x → σ x = x := by
   intro l hl n hn σ hσ x hx
@@ -83,7 +73,7 @@ theorem inertia_fix : ∀ (l : ℕ) [Fact l.Prime] (n : ℕ), 0 < n → ∀ σ :
     rw [← map_natCast (algebraMap ℚ_[l] (PadicAlgCl l)), PadicAlgCl.norm_extends]
     exact Padic.norm_natCast_eq_one_iff.2 hcop
   have hu : σ x / x = 1 := by
-    refine eq_one_of_pow_eq_one m hmn _ ?_ ?_
+    refine _root_.GlobalTheory.PowerEqOneClose.eq_one_of_pow_eq_one m hmn _ ?_ ?_
     · rw [div_pow, ← map_pow, hxm, map_one, div_one]
     · have e : σ x / x - 1 = (σ x - x) / x := by field_simp
       rw [e, norm_div, hnx, div_one]

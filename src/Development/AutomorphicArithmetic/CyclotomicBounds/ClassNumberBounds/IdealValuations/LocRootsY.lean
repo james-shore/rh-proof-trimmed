@@ -179,8 +179,4 @@ theorem exists_pow_of_aut (g : Gal(PadicAlgCl l/ℚ_[l])) {m : ℕ} (hm : ¬ l �
   refine norm_aut_and_roots.2 m _ _ hm (by rw [← map_pow, h, map_one]) ?_ h1
   rw [← pow_mul, mul_comm, pow_mul, h, one_pow]
 
-theorem exists_root_congr {x : PadicAlgCl l} (hx : ‖x‖ = 1) :
-    ∃ (m : ℕ) (ζ : PadicAlgCl l), ¬ l ∣ m ∧ ζ ^ m = 1 ∧ ‖x - ζ‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.ExistsRootCongruence.exists_root_congr hx
-
 end KStar.IdealValuations

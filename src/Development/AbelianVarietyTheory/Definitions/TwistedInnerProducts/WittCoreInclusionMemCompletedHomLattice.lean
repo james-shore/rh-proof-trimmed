@@ -82,12 +82,6 @@ namespace GlobalTheory.AscFinWit
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {P : GlobalTheory.FinPl.Pl D → Prop}
 
-section Frames
-
-variable {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc)
-
-end Frames
-
 theorem mxAt_mul {l m n : ℕ} (A : Mx D l m) {u : Mx D m n} (hu : MxAt P u) : MxAt P (A ⬝ u) := fun i j => by
   rw [Matrix.mul_apply]
   exact Ideal.sum_mem _ fun k _ => Ideal.mul_mem_left _ _ (hu k j)
@@ -260,10 +254,6 @@ section Sympl
 
 variable {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (T : HSp D)
 
-theorem symplO_extX (a : Mx D T.rank ρ) (u : WO S T) : symplO S T (d.extX T a) u = symplO S T (d.extX T a) (d.extY T (u ⬝ d.jY)) := by
-  simp only [symplO_eq, d.hO_coordS, HypDec.extX_apply, HypDec.extY_apply, Matrix.mul_assoc, d.pX_jX, d.pX_j0, d.pX_jY, d.pY_jX,
-    d.pY_j0, d.pY_jY, Matrix.mul_zero, Matrix.mul_one, hO_eq_trace S₀, pairS, trace_zero]
-
 theorem symplO_extY (a : Mx D T.rank ρ) (u : WO S T) : symplO S T (d.extY T a) u = symplO S T (d.extY T a) (d.extX T (u ⬝ d.jX)) := by
   simp only [symplO_eq, d.hO_coordS, HypDec.extX_apply, HypDec.extY_apply, Matrix.mul_assoc, d.pX_jX, d.pX_j0, d.pX_jY, d.pY_jX,
     d.pY_j0, d.pY_jY, Matrix.mul_zero, Matrix.mul_one, hO_eq_trace S₀, pairS, trace_zero]
@@ -317,7 +307,7 @@ theorem dualX (hψ : IsStdChar D ψ (-1)) {a : Mx D T.rank ρ} (ha : MxAt P a) :
     d.extX T a ∈ latO S T (splitL d L₀ 𝔟 : Set _) (LT : Set _) P ↔
       ∀ a', d.extY T a' ∈ latO S T (splitL d L₀ 𝔟 : Set _) (LT : Set _) P → ψ (symplO S T (d.extX T a) (d.extY T a')) = 1 := by
   refine (GlobalTheory.SelfDualAt.latO_ann_at D ψ hψ S T _ LT hS hT P _ (mxAt_mul' ha d.pX)).trans ?_
-  exact ⟨fun h _ ha' => h _ ha', fun h u hu => (congrArg ψ (symplO_extX d T a u)).trans (h _ (srcY hS hT hu))⟩
+  exact ⟨fun h _ ha' => h _ ha', fun h u hu => (congrArg ψ (_root_.GlobalTheory.MixHalf.symplO_extX d T a u)).trans (h _ (srcY hS hT hu))⟩
 
 theorem dualY (hψ : IsStdChar D ψ (-1)) {a' : Mx D T.rank ρ} (ha : MxAt P a') :
     d.extY T a' ∈ latO S T (splitL d L₀ 𝔟 : Set _) (LT : Set _) P ↔

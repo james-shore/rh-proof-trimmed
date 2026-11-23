@@ -55,8 +55,8 @@ theorem wachModule_consequences_poleQuotient : ∀ (D : Formalism.BasicNotions.D
   unfold gammaSemisimpleQuotientGlobal gammaSemisimpleLocal GammaSemisimpleQuotient
   intro l _ K s LL h T hT y hy
   classical
-  have hfr := GlobalTheory.T.wachModule_inverseQuotient_free_finite_crystalline D HW F l K s LL h T hT y
-  have hJ := GlobalTheory.T.crystallineLattice_hodgeTateJumps_finite D HW l K s LL h T hT
+  have hfr := _root_.GlobalTheory.NL.QuoFree.quo_free_finite D HW F l K s LL h T hT y
+  have hJ := _root_.GlobalTheory.NL.JumpsFinite.jumps_finite D HW l K s LL h T hT
   let Fs : Finset (↥(OL LL))ˣ := (hJ.toFinset ×ˢ Finset.Icc 1 y).image
     (fun p : ℤ × ℕ => uU ((HW l).W K s LL h) ^ (-(p.1 + (p.2 : ℤ))))
   have hmem : ∀ c, c ∈ Fs ↔ ∃ a ∈ Jumps (PD := (D.loc l).PD K) T, ∃ j : ℕ, 1 ≤ j ∧ j ≤ y ∧
@@ -73,11 +73,11 @@ theorem wachModule_consequences_poleQuotient : ∀ (D : Formalism.BasicNotions.D
   · ext c
     exact hmem c
   · intro x hx
-    exact GlobalTheory.T.prod_gamma_sub_jump_units_annihilates_quotient D HW F Cm l K s LL h T hT y hy Fs
+    exact _root_.GlobalTheory.NL.KillLevels.annihilate D HW F Cm l K s LL h T hT y hy Fs
       (fun a ha j h1 h2 => (hmem _).2 ⟨a, ha, j, h1, h2, rfl⟩) x hx
   · intro c hc
     obtain ⟨a, ha, j, h1, h2, rfl⟩ := (hmem c).1 hc
-    obtain ⟨x, hx, hxN, hγ⟩ := GlobalTheory.T.gamma_eigenvalue_on_wachLattice_qPower_quotient D HW F Cm l K s LL h T hT y hy a ha j h1 h2
+    obtain ⟨x, hx, hxN, hγ⟩ := _root_.GlobalTheory.NL.IntegralScalarUnits.occ D HW F Cm l K s LL h T hT y hy a ha j h1 h2
     exact ⟨x, hx, hxN, hγ⟩
 
 end GlobalTheory.NL.WachModulePoleQuotient

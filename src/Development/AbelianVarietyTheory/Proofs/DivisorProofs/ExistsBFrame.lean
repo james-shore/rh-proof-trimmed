@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FontaineXiPowSaturatedQuotientComplete
 
 @[expose] public section
 
@@ -95,11 +96,6 @@ theorem sat (hv : v.Integers O) (b : O) (h : (p : O) * b = 0) : b = 0 := by
     Function.Injective.isDomain (algebraMap O C) hv.hom_inj
   exact (mul_eq_zero.1 h).resolve_left hp
 
-theorem smod_iff {R : Type} [CommRing R] (q : R) (n : ℕ) (x y : R) :
-    x ≡ y [SMOD (Ideal.span {q}) ^ n • (⊤ : Submodule R R)] ↔ q ^ n ∣ x - y := by
-  rw [SModEq.sub_mem, Ideal.span_singleton_pow, smul_eq_mul, Ideal.mul_top,
-    Ideal.mem_span_singleton]
-
 theorem lim_series (u0 : Ainf p O) (u : ℕ → Ainf p O) : ∃ L : Ainf p O, ∀ n,
     (p : Ainf p O) ^ n ∣ (u0 + ∑ k ∈ Finset.range n, (p : Ainf p O) ^ k * u k) - L := by
   haveI : IsAdicComplete (Ideal.span {(p : Ainf p O)}) (Ainf p O) :=
@@ -107,14 +103,14 @@ theorem lim_series (u0 : Ainf p O) (u : ℕ → Ainf p O) : ∃ L : Ainf p O, �
   obtain ⟨L, hL⟩ := IsPrecomplete.prec' (I := Ideal.span {(p : Ainf p O)})
     (fun N => u0 + ∑ k ∈ Finset.range N, (p : Ainf p O) ^ k * u k) (by
       intro m n hmn
-      rw [smod_iff, ← dvd_neg, neg_sub]
+      rw [_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff, ← dvd_neg, neg_sub]
       induction n, hmn using Nat.le_induction with
       | base => simp
       | succ n hmn ih =>
         rw [Finset.sum_range_succ, show ∀ s t w : Ainf p O, u0 + (s + t) - w = (u0 + s - w) + t
           from fun _ _ _ => by ring]
         exact dvd_add ih (Dvd.dvd.mul_right (pow_dvd_pow _ hmn) _))
-  exact ⟨L, fun n => (smod_iff _ _ _ _).1 (hL n)⟩
+  exact ⟨L, fun n => (_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff _ _ _ _).1 (hL n)⟩
 
 theorem complete (hv : v.Integers O) (hε : IsPrimitiveSystem ε) :
     IsAdicComplete (Ideal.span {(p : BR ε)}) (BR ε) := by
@@ -122,7 +118,7 @@ theorem complete (hv : v.Integers O) (hε : IsPrimitiveSystem ε) :
     WittVector.isAdicCompleteIdealSpanP
   refine { haus' := ?_, prec' := ?_ }
   · intro x hx
-    have hx' : ∀ n, (p : BR ε) ^ n ∣ x := fun n => by simpa using (smod_iff _ n x 0).1 (hx n)
+    have hx' : ∀ n, (p : BR ε) ^ n ∣ x := fun n => by simpa using (_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff _ n x 0).1 (hx n)
     obtain ⟨u, w, rfl⟩ := gen ε x
     refine eq_zero_of_dvd hv hε u w (GlobalTheory.MuDivides.dvd_of_step (p : Ainf p O) (mu ε ^ 2)
       (fun z => ∀ n, ∃ s t, z = (p : Ainf p O) ^ n * s + mu ε ^ 2 * t) ?_ _ ?_)
@@ -142,7 +138,7 @@ theorem complete (hv : v.Integers O) (hε : IsPrimitiveSystem ε) :
       exact ⟨p * s' + mu ε * t', e, by linear_combination he⟩
   · intro f hf
     have hstep : ∀ n, ∃ c, f (n + 1) - f n = (p : BR ε) ^ n * c := fun n => by
-      obtain ⟨c, hc⟩ := (smod_iff _ n (f n) (f (n + 1))).1 (hf (Nat.le_succ n))
+      obtain ⟨c, hc⟩ := (_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff _ n (f n) (f (n + 1))).1 (hf (Nat.le_succ n))
       exact ⟨-c, by linear_combination -hc⟩
     choose c hc using hstep
     choose u w huw using fun n => gen ε (c n)
@@ -159,7 +155,7 @@ theorem complete (hv : v.Integers O) (hε : IsPrimitiveSystem ε) :
         rw [huw N] at this
         simp only [Finset.sum_range_succ, map_add (f := _), map_mul, map_pow, map_natCast] at ih ⊢
         linear_combination this + ih
-    refine ⟨a ε LX + τ ε * a ε LY, fun n => (smod_iff _ _ _ _).2 ?_⟩
+    refine ⟨a ε LX + τ ε * a ε LY, fun n => (_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff _ _ _ _).2 ?_⟩
     obtain ⟨e1, he1⟩ := hX n
     obtain ⟨e2, he2⟩ := hY n
     refine ⟨a ε e1 + τ ε * a ε e2, ?_⟩

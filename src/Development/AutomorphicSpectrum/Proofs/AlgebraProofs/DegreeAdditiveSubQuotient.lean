@@ -106,7 +106,7 @@ theorem deg_eq_subDeg_add_deg_quot : ∀ (K : Type) [Field K] (C : ACurve K) (V 
   intro K _ C V _ _ _ L W hL
   rcases isEmpty_or_nonempty C.I with hI | ⟨⟨i₀⟩⟩
   · simp [subDeg, deg, finsum_of_isEmpty]
-  have hex := fun i => (hL.1 i).elim fun b hb => GlobalTheory.T.lattice_basis_adapted_to_subspace K C V i _ b (L i) W hb
+  have hex := fun i => (hL.1 i).elim fun b hb => _root_.GlobalTheory.CompanionTheory.Ar.Crv.LatAdapted.exists_adapted K C V i _ b (L i) W hb
   choose bW bQ b hb hbW hbQ h1 h2 using hex
   obtain ⟨hS, hQ⟩ := GlobalTheory.T.sub_and_quotient_bundles K C V L W hL
   obtain ⟨-, eL⟩ := GlobalTheory.T.bundle_degree_eq_sum_valuations K C V L _ (b i₀) b hL hb

@@ -132,7 +132,7 @@ theorem core : Core := by
   haveI : IsAdicComplete (maximalIdeal O) O := IsCoef.complete (l := l)
   haveI : Finite (ResidueField O) := IsCoef.finite (l := l)
   have hn : 1 ≤ n := (x 0).x.a_pos.trans (x 0).x.a_le
-  obtain ⟨Λ⟩ := s4 l L G0 T hP
+  obtain ⟨Λ⟩ := _root_.UpperTheory.V.Pa.selmer_cocycles_limit_and_descent_properties l L G0 T hP
   obtain ⟨W⟩ := rrEx l L G0 T Λ n O r B u J D A
   obtain ⟨m⟩ := rmapsEx l L G0 T Λ n O r B u J D A W hA
   obtain ⟨⟨hco, hfree, hfin, hadj⟩, -⟩ := spoCo l L G0 T Λ n O r B u J D A hA

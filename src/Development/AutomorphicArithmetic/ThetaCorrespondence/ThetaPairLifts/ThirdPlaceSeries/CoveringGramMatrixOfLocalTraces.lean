@@ -51,14 +51,8 @@ namespace GlobalTheory.CovTop
 theorem covering_gram_matrix_of_local_traces_alt (_h : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems) : _root_.GlobalTheory.CovTop.GramCondition :=
   ⟨1, one_pos, fun _ _ _ => ⟨⟨0, fun _ => 0, fun _ => 0, fun _ => 0⟩, fun _ _ _ _ =>
     ⟨0, le_rfl, 0, fun _ _ _ _ p hp i =>
-      ⟨_root_.GlobalTheory.T.row_norm_has_gram_of_conditions p hp.1 hp.2 i, _root_.GlobalTheory.T.row_lattice_fg_of_conditions p hp.1 hp.2 i, _root_.GlobalTheory.T.row_good_lattice_ne_bot_of_conditions p hp.1 hp.2 i, _root_.GlobalTheory.T.row_good_weight_dictionary_of_conditions p hp.1 hp.2 i⟩⟩⟩⟩
+      ⟨_root_.GlobalTheory.CovTop.GramPt.hasGram_at_alt p hp.1 hp.2 i, _root_.GlobalTheory.CovTop.latAll_fg_at_alt p hp.1 hp.2 i, _root_.GlobalTheory.CovTop.good_lattice_ne_bot_at_point p hp.1 hp.2 i, _root_.GlobalTheory.CovTop.goodW_at_alt p hp.1 hp.2 i⟩⟩⟩⟩
 end GlobalTheory.CovTop
 end
-end
-section
-open GlobalTheory.CovTop GlobalTheory.BigTop
-
-theorem _root_.GlobalTheory.T.covering_gram_of_prints : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → _root_.GlobalTheory.CovTop.GramCondition := by
-  first | exact @_root_.GlobalTheory.CovTop.covering_gram_matrix_of_local_traces_alt | exact _root_.GlobalTheory.CovTop.covering_gram_matrix_of_local_traces_alt | (intros; apply _root_.GlobalTheory.CovTop.covering_gram_matrix_of_local_traces_alt <;> assumption)
 end
 end

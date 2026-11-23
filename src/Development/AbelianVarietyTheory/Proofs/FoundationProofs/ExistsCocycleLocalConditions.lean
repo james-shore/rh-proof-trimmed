@@ -52,15 +52,6 @@ namespace GlobalTheory.Ord2.Unbounded
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem norm_le_one_of_mem (c : Coef l) {x : Qbar l} (hx : x ∈ c.O) : ‖x‖ ≤ 1 := by
-  first
-  | exact @_root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem
-  | exact _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem
-  | (apply _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem ..)
-
 theorem mulVec_mem (c : Coef l) {M : Matrix (Fin 2) (Fin 2) (Qbar l)} {x : Fin 2 → Qbar l}
     (hM : ∀ i j, M i j ∈ c.O) (hx : ∀ j, x j ∈ c.O) (i : Fin 2) : (M *ᵥ x) i ∈ c.O := by
   simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
@@ -124,7 +115,7 @@ theorem divSel_unbounded : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [
       rw [e]
       exact inv_mul_sub_mem c n (hz a i) c.O.zero_mem (hker a ha i)
     · obtain ⟨B, hB, hcob⟩ := hine q hq hl
-      obtain ⟨x, hx, hxs⟩ := GlobalTheory.T.coboundary_inertia_independent l Ω W c n z q B B' hW hcoc hB hB' hcob
+      obtain ⟨x, hx, hxs⟩ := _root_.GlobalTheory.Ord2.CobConj.cob_conj l Ω W c n z q B B' hW hcoc hB hB' hcob
       refine ⟨L⁻¹ • x, ⟨n, fun i => ?_⟩, fun s hs i => ?_⟩
       · rw [Pi.smul_apply, smul_eq_mul, ← mul_assoc, ← hL, mul_inv_cancel₀ hL0, one_mul]; exact hx i
       · have e : ζ s i - (mat W s *ᵥ (L⁻¹ • x) - L⁻¹ • x) i = L⁻¹ * (z s i - (mat W s *ᵥ x - x) i) := by
@@ -159,7 +150,7 @@ theorem divSel_unbounded : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [
         rw [mul_sub L, mul_sub L, mul_left_comm L, mul_inv_cancel_left₀ hL0]
       unfold Cg
       rw [e, norm_mul]
-      exact mul_le_of_le_one_right (norm_nonneg _) (norm_le_one_of_mem c (hy' s i)))
+      exact mul_le_of_le_one_right (norm_nonneg _) (_root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem c (hy' s i)))
   have hf : (fun s => ((l : ℕ) : Qbar l) ^ r • (fun s => ((l : ℕ) : Qbar l) ^ m • z s) s) =
       fun s => ((l : ℕ) : Qbar l) ^ (m + r) • z s := by
     funext s; rw [smul_smul, ← pow_add, add_comm]

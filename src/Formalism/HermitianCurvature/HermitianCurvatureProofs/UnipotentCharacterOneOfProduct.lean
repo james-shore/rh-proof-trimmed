@@ -94,7 +94,7 @@ theorem fibInt_left (Bs : B.RealPlaceData k r Wp Wq) {μ0 μ0' : Measure (Mt k r
     (hμ0 : B.IsHaarOn (C2.N0set k r Bs.z) μ0) (hμ0' : B.IsHaarOn (C2.N0set k r Bs.z') μ0')
     (F : B.Mat k r → (Wq →L[ℂ] Wp)) (g : B.Mat k r) {n1 : B.Mat k r} (hn1 : n1 ∈ C2.N0set k r Bs.z) :
     PBI.fibInt Bs μ0 μ0' F (n1⁻¹ * g) = PBI.fibInt Bs μ0 μ0' F g := by
-  have hdet : IsUnit n1.det := Formalism.FourierDecayAlt.P.StabilizerDisintegration.A.isUnit_N hn1.1
+  have hdet : IsUnit n1.det := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hn1.1
   haveI := Formalism.FourierDecayAlt.P.B7.sf Bs.haarW
   haveI := Formalism.FourierDecayAlt.P.B7.sf Bs.haarW'
   haveI := Formalism.FourierDecayAlt.P.B7.sf hμ0
@@ -124,7 +124,7 @@ theorem fibInt_right (Bs : B.RealPlaceData k r Wp Wq) {μ0 μ0' : Measure (Mt k 
     (hμ0 : B.IsHaarOn (C2.N0set k r Bs.z) μ0) (hμ0' : B.IsHaarOn (C2.N0set k r Bs.z') μ0')
     (F : B.Mat k r → (Wq →L[ℂ] Wp)) (g : B.Mat k r) {n1 : B.Mat k r} (hn1 : n1 ∈ C2.N0set k r Bs.z') :
     PBI.fibInt Bs μ0 μ0' F (g * n1) = PBI.fibInt Bs μ0 μ0' F g := by
-  have hdet : IsUnit n1.det := Formalism.FourierDecayAlt.P.StabilizerDisintegration.A.isUnit_N hn1.1
+  have hdet : IsUnit n1.det := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hn1.1
   haveI := Formalism.FourierDecayAlt.P.B7.sf Bs.haarW
   haveI := Formalism.FourierDecayAlt.P.B7.sf Bs.haarW'
   haveI := Formalism.FourierDecayAlt.P.B7.sf hμ0
@@ -171,7 +171,7 @@ theorem conj_fix {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {v : Mat
       ∀ b, (C2.tauM k r z v * n * (C2.tauM k r z v)⁻¹) *ᵥ fvec k r z b = fvec k r z b := by
   set τ := C2.tauM k r z v with hτdef
   have hτN : τ ∈ Nset k r := Formalism.FourierDecayAlt.P.StabilizerDisintegration.A.tau_N hz hv
-  have hτdet : IsUnit τ.det := Formalism.FourierDecayAlt.P.StabilizerDisintegration.A.isUnit_N hτN
+  have hτdet : IsUnit τ.det := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hτN
   refine ⟨Formalism.QuantumDeterminants.WeylGroupFacts.mem_n_mul (Formalism.QuantumDeterminants.WeylGroupFacts.mem_n_mul hτN hn) (Formalism.QuantumDeterminants.WeylGroupFacts.mem_n_inv hτN), ?_⟩
 
   have h1W : (1 : B.Mat k r) ∈ UWset k r z := by
@@ -230,8 +230,8 @@ theorem fib_indep (ν' : Fin (2 * r + k + 1) → ℂ) (m₀ : B.Mat k r) (hbase 
   set τ' := C2.tauM k r S.z' u' with hτ'_def
   have hτN : τ ∈ Nset k r := A.tau_N hz hv
   have hτN' : τ' ∈ Nset k r := A.tau_N hz' hu'
-  have uτ := A.isUnit_N hτN
-  have uτ' := A.isUnit_N hτN'
+  have uτ := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hτN
+  have uτ' := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hτN'
   have hGG := Formalism.FourierDecayAlt.P.unitary_group_closed k r
   have hg1 : τ⁻¹ * γ0 * τ' ∈ B.GV k r :=
     hGG.mul_mem _ (hGG.mul_mem _ (hGG.inv_mem _ hτN.1) _ hγe) _ hτN'.1
@@ -244,7 +244,7 @@ theorem fib_indep (ν' : Fin (2 * r + k + 1) → ℂ) (m₀ : B.Mat k r) (hbase 
   have hpos1 : 0 < Gf k r S.z S.z' (τ⁻¹ * γ0 * τ') := by
     rw [PBI.gf_eq_gPoly, hZ1]
     rw [PBI.gf_eq_gPoly] at hpos0
-    obtain ⟨h1, h2⟩ := Formalism.FourierDecayAlt.P.StabilizerDisintegration.minorsLU r vᴴ (Zhat k r S.z S.z' γ0) u' (A.UT_star hv) hu'
+    obtain ⟨h1, h2⟩ := Formalism.FourierDecayAlt.P.StabilizerDisintegration.minorsLU r vᴴ (Zhat k r S.z S.z' γ0) u' (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_conjT hv) hu'
     unfold PBI.gPoly at hpos0 ⊢
     rw [h1, h2]; exact hpos0
   obtain ⟨s, hs, s', hs', hgs⟩ := Formalism.FourierDecayAlt.P.fibre_orbit_description k r S.z S.z' ⟨S.k_pos, hz, hz'⟩ _ hg1 g2 hg2
@@ -257,7 +257,7 @@ theorem fib_indep (ν' : Fin (2 * r + k + 1) → ℂ) (m₀ : B.Mat k r) (hbase 
   obtain ⟨hnB'', hfB''⟩ := conj_fix hz' hu' hnB huB
   have uhA : IsUnit hA.det := Dx2.OrbJ.isUnit_of_G hhA.1
   have uhB : IsUnit hB.det := Dx2.OrbJ.isUnit_of_G hhB.1
-  have unA : IsUnit nA.det := A.isUnit_N hnA
+  have unA : IsUnit nA.det := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hnA
 
   have cA : hA⁻¹ * τ⁻¹ = τ⁻¹ * hA⁻¹ := by
     have := A.tau_comm hhA v

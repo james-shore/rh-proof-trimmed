@@ -50,6 +50,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Topology.Algebra.MvPolynomial
 import Mathlib.Topology.Sheaves.Init
+import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.Descent.NilpotentPowers.IsNilpotentPowSub
 
 @[expose] public section
 
@@ -83,21 +84,6 @@ theorem isClosed_charpoly_eq {N : ℕ} (c : k[X]) : IsClosed {A : Matrix (Fin N)
   simp only [hc]
   exact isClosed_eq ((MvPolynomial.continuous_eval _).comp
     (continuous_pi fun p => continuous_id.matrix_elem p.1 p.2)) continuous_const
-
-theorem conj_mem_Bz {n : ℕ} {Z : Subalgebra k (Matrix (Fin n) (Fin n) k)} {g : GL (Fin n) k} (hg : g ∈ Gz Z)
-    {x : Matrix (Fin n) (Fin n) k} (hx : x ∈ Bz Z) : g.val * x * g⁻¹.val ∈ Bz Z := by
-  have hg' : ∀ a ∈ Z, a * g.val = g.val * a := hg
-  have hx' : ∀ a ∈ Z, a * x = x * a := hx
-  show ∀ a ∈ Z, a * (g.val * x * g⁻¹.val) = g.val * x * g⁻¹.val * a
-  intro a ha
-  have hi : a * g⁻¹.val = g⁻¹.val * a := by
-    have e := congrArg (fun m => g⁻¹.val * m * g⁻¹.val) (hg' a ha)
-    simp only [mul_assoc, Units.mul_inv, mul_one, Units.inv_mul_cancel_left] at e
-    exact e.symm
-  calc a * (g.val * x * g⁻¹.val) = a * g.val * x * g⁻¹.val := by simp only [mul_assoc]
-    _ = g.val * (a * x) * g⁻¹.val := by rw [hg' a ha]; simp only [mul_assoc]
-    _ = g.val * x * (a * g⁻¹.val) := by rw [hx' a ha]; simp only [mul_assoc]
-    _ = g.val * x * g⁻¹.val * a := by rw [hi]; simp only [mul_assoc]
 
 theorem pullPieces : PullPieces k := by
   unfold PullPieces
@@ -148,7 +134,7 @@ theorem pullPieces : PullPieces k := by
       have hφ : φ (g.val * x * g⁻¹.val) = g'.val * φ x * g'⁻¹.val := by
         rw [map_mul, map_mul]
         rfl
-      refine (memG _ _).2 ⟨conj_mem_Bz hg hxB, ?_, ?_, ?_⟩
+      refine (memG _ _).2 ⟨_root_.PositivityTheory.RgUd.T.Desc.Asm.conj_mem_Bz hg hxB, ?_, ?_, ?_⟩
       · rw [Matrix.coe_units_inv, Matrix.charpoly_units_conj]
         exact hxc
       · show (φ (g.val * x * g⁻¹.val)).charpoly = _

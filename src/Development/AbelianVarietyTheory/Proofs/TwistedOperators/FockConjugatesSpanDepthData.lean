@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Bool
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsWeilDatumConjNegHermitianSpaces
 
 @[expose] public section
 
@@ -64,9 +65,6 @@ variable {D : D7}
 
 open GlobalTheory.IndefiniteRowSideFullHecke.ConjugateAdjointDagger (cj)
 
-theorem cj_cj {X : Type} (f : X → ℂ) : cj id (cj id f) = f := by
-  funext x; simp [GlobalTheory.IndefiniteRowSideFullHecke.ConjugateAdjointDagger.cj]
-
 theorem cj_eq_star {X : Type} (f : X → ℂ) : cj id f = star f := by
   funext x; simp [GlobalTheory.IndefiniteRowSideFullHecke.ConjugateAdjointDagger.cj, Complex.star_def]
 
@@ -82,14 +80,14 @@ def conjFun {S T : HSp D} (ℓ : (WO S T → ℂ) → ℂ) : (WO (negSp S) T →
 theorem theta_cj {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S T : HSp D} (f : WO (negSp S) T → ℂ)
     (hf : IsThetaFunO ψ (negSp S) T f) : IsThetaFunO ψ S T (cj id f : WO S T → ℂ) := by
   have h := (((GlobalTheory.CjNeg.theta_heis_neg D ψ hψ S T).1 (cj id f : WO S T → ℂ)).2).1
-  rw [cj_cj] at h
+  rw [_root_.GlobalTheory.ConjWeil.cj_id_cj_id] at h
   exact h hf
 
 theorem cj_heisO {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S T : HSp D} (w : WO S T)
     (f : WO (negSp S) T → ℂ) : (cj id (heisO ψ (negSp S) T w f) : WO S T → ℂ) = heisO ψ S T w (cj id f) := by
   have h := ((GlobalTheory.CjNeg.theta_heis_neg D ψ hψ S T).2 w (cj id f : WO S T → ℂ)).2
-  rw [cj_cj] at h
-  rw [h, cj_cj]
+  rw [_root_.GlobalTheory.ConjWeil.cj_id_cj_id] at h
+  rw [h, _root_.GlobalTheory.ConjWeil.cj_id_cj_id]
 
 theorem tame_conjFun {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S T : HSp D} {ℓ : (WO S T → ℂ) → ℂ}
     (h : Tame ψ S T ℓ) : Tame ψ (negSp S) T (conjFun ℓ) := by
@@ -199,25 +197,11 @@ theorem eInf_mul_self : Eqv.eInf D * Eqv.eInf D = Eqv.eInf D :=
 theorem eFin_mul_self : Eqv.eFin D * Eqv.eFin D = Eqv.eFin D :=
   Prod.ext (show (0 : Ainf D.host.F) * 0 = 0 from mul_zero _) (show (1 : Af D.host.F) * 1 = 1 from mul_one _)
 
-theorem infPart_latO' {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {LT : Set (Fin T.rank → D.host.E)} {u : WO S T}
-    (hu : u ∈ latO S T LS LT fun _ => True) : u.map (infPart D) = 0 := by
-  ext i j
-  rw [Matrix.map_apply, Matrix.zero_apply]
-  unfold latO at hu
-  refine AddSubgroup.closure_induction (p := fun u _ => infPart D (u i j) = 0) ?_ ?_ ?_ ?_ hu
-  · rintro w ⟨α, -, -, a, -, s, -, t, -, rfl⟩
-    rw [Matrix.of_apply]
-    exact (show infPart D (pairA D.host.F 0 α ⊗ₜ[D.host.F] (a * t i * ∑ k, star (s k) * S.gram k j)) =
-      (0 : Ainf D.host.F) ⊗ₜ[D.host.F] (a * t i * ∑ k, star (s k) * S.gram k j) from rfl).trans (TensorProduct.zero_tmul _ _)
-  · simp
-  · intro x y _ _ hx hy; rw [Matrix.add_apply, RingHom.map_add (f := _), hx, hy, add_zero]
-  · intro x _ hx; rw [Matrix.neg_apply, RingHom.map_neg, hx, neg_zero]
-
 section
 variable {T : Type} {L : LevCh D T} {sc : Consts}
 
 theorem depLat_fin {G : GridData L sc} (p : Pair T) {u : WO (G.pS p) (G.pT p)} (hu : u ∈ depLat G p) :
-    u.map (infPart D) = 0 := infPart_latO' hu.1
+    u.map (infPart D) = 0 := _root_.GlobalTheory.SplitScalar.latO_fin hu.1
 
 theorem latRow_fin {G : GridData L sc} (i : ℕ) : ∀ u ∈ latRow G i, Eqv.eFin D • u = u := fun u hu =>
   (Eqv.wo_fin_iff u).1 (depLat_fin (.chi i 0) hu)

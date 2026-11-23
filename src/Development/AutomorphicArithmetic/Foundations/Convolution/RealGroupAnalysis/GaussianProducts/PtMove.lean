@@ -75,17 +75,8 @@ private theorem coe_al {F E : Type} [Field F] [NumberField F] [Field E] [NumberF
 private theorem vcD {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) (x : G1 F) :
     (gl (cD t x)).val = !![x 0 0, x 0 1 * ((t⁻¹ : (A F)ˣ) : A F); (t : A F) * x 1 0, x 1 1] := rfl
 
-private theorem vgl {F : Type} [Field F] [NumberField F] (x : G1 F) : (gl x).val = x.1 := rfl
-
 private theorem vmD {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) :
     (gl (mD t)).val = !![(t : A F), 0; 0, ((t⁻¹ : (A F)ˣ) : A F)] := rfl
-
-private theorem cD_dM {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) (x : G1 F) :
-    gl (cD t x) * dM t = dM t * gl x := by
-  refine Units.ext ?_
-  rw [Units.val_mul, Units.val_mul, vcD, vgl]
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [dM, Matrix.mul_apply, Fin.sum_univ_two, mul_assoc] <;> ring
 
 private theorem dM_mD {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) : dM t * gl (mD t) = aE t := by
   refine Units.ext ?_
@@ -95,7 +86,7 @@ private theorem dM_mD {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) : dM t 
 
 private theorem pt_move {F : Type} [Field F] [NumberField F] (t n : (A F)ˣ) (g : G1 F) :
     gl (cD t (mD t * g)) * dM (t * n) = aE t * (gl g * dM n) := by
-  rw [UpperTheory.ConvolutionTheory.R2.dM_mul, ← mul_assoc, cD_dM, gl_mul, ← mul_assoc (dM t), dM_mD, mul_assoc]
+  rw [UpperTheory.ConvolutionTheory.R2.dM_mul, ← mul_assoc, _root_.UpperTheory.ConvolutionTheory.R2.M.gl_cD, gl_mul, ← mul_assoc (dM t), dM_mD, mul_assoc]
 
 theorem UpperTheory.ConvolutionTheory.R2.G.wxPt :
     ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] (D : Dat F E) (W : Weil D) (ξ : Fin 2 → F), ξ ≠ 0 → ∃ t : Fˣ, ∀ f : GL (Fin 2) (A F) → ℂ, Pp.Lf f → ∀ φ h g,

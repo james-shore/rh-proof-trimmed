@@ -253,7 +253,5 @@ end Formalism.DegreeFormula.PPowSum
 
 namespace Formalism.DegreeFormula
 
-theorem degreePowerSumMulEqZero : DegFlPowerSum := PPowSum.degFlPowerSum
-theorem degreeEsymmMulEqZero : DegFlEsymm := PPowSum.degFlEsymm
-
+alias degreePowerSumMulEqZero := _root_.Formalism.DegreeFormula.PPowSum.degFlPowerSum
 end Formalism.DegreeFormula

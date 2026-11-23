@@ -61,9 +61,9 @@ theorem zint_eq_mul_partialL_smooth : ∀ (E : Type) [Field E] [NumberField E] [
   set_option synthInstance.maxHeartbeats 200000 in
   intro E _ _ _ a σ σ' ha hσ hσ' T hTs hψ hT hT'
   obtain ⟨m, rfl⟩ : ∃ m, a = m + 1 := ⟨a - 1, by omega⟩
-  obtain ⟨α, _ℓ, _Φ, _J, _η, π, ω, _φ, hα, hπ, hω, hωc, _h1, _h2, _h3, _h4, _h5, _h6, _h7, hZ⟩ := GlobalTheory.T.unfolded_theta_integral_eq_mul_schur_euler_product E (m + 1) σ ha hσ T hT
+  obtain ⟨α, _ℓ, _Φ, _J, _η, π, ω, _φ, hα, hπ, hω, hωc, _h1, _h2, _h3, _h4, _h5, _h6, _h7, hZ⟩ := _root_.GlobalTheory.RSEulerId.thetaZ_eq_mul_eulD E (m + 1) σ ha hσ T hT
   obtain ⟨α', _ℓ', _Φ', _J', _η', π', ω', _φ', hα', hπ', hω', hωc', _h1', _h2', _h3', _h4', _h5', _h6', _h7', hZ'⟩ :=
-    GlobalTheory.T.unfolded_theta_integral_eq_mul_schur_euler_product E (m + 1) σ' ha hσ' T hT'
+    _root_.GlobalTheory.RSEulerId.thetaZ_eq_mul_eulD E (m + 1) σ' ha hσ' T hT'
   subst hπ hπ'
   obtain ⟨μ₀, hμ₀, 𝓕₁, h𝓕₁⟩ : ∃ (μ : Measure (GA E (m + 1))) (_ : μ.IsHaarMeasure) (𝓕 : Set (GA E (m + 1))),
       IsFundamentalDomain (ratGL E (m + 1)).range 𝓕 μ := by
@@ -98,7 +98,7 @@ theorem zint_eq_mul_partialL_smooth : ∀ (E : Type) [Field E] [NumberField E] [
     rw [hs ⟨w, hw⟩]; exact hsatσ π w (hT w hw)
   have hsat' : ∀ w ∉ T, HasSatGL w (π'.locRep w) (Finset.univ.val.map (αe' w)) := fun w hw => by
     rw [hs' ⟨w, hw⟩]; exact hsatσ π' w (hT' w hw)
-  obtain ⟨b, hb1, hbN, hbC, hbF⟩ := GlobalTheory.T.exists_bump_shintani_alt E m T hψ
+  obtain ⟨b, hb1, hbN, hbC, hbF⟩ := _root_.GlobalTheory.JSW.BumpShintani.exists_bump_shintani E m T hψ
   obtain ⟨φ, hφR, hU, hK, hW⟩ := hbF π αe hsat
   obtain ⟨φ', hφR', hU', hK', hW'⟩ := hbF π' αe' hsat'
   obtain ⟨hφ0, hφ0', N, Φ, hN, hΦc, hΦs, hΦr, hΦp, hC2⟩ := GlobalTheory.ZEul.unfolded_bump_eq E m T hTs hψ b hb1 hbN hbC π π' ω ω' hω hω' hωc hωc' αe αe'
@@ -112,7 +112,7 @@ theorem zint_eq_mul_partialL_smooth : ∀ (E : Type) [Field E] [NumberField E] [
   obtain ⟨𝓕₀, h𝓕₀⟩ := GlobalTheory.ZEul.exists_fundamentalDomain_NE E (m + 1) μ
   obtain ⟨c, hc, hC1⟩ := GlobalTheory.T.polarisedThetaIntegral_unfold_whittaker E m μ
   obtain ⟨f, t, hfm, htm, hf0, hfi, hfpos, hR, hid⟩ := hC2 μ 𝓕₀ h𝓕₀
-  obtain ⟨hdiff, hreal⟩ := GlobalTheory.T.exp_integral_differentiable_real_re_pos (μ.restrict 𝓕₀) f t hfm htm hf0 hfi hR
+  obtain ⟨hdiff, hreal⟩ := _root_.GlobalTheory.exp_integral_entire_real_pos (μ.restrict 𝓕₀) f t hfm htm hf0 hfi hR
   refine ⟨fun s => (c : ℂ) * ∫ g in 𝓕₀, (f g : ℂ) * Complex.exp (s * t g) ∂μ, (differentiable_const _).mul hdiff, ?_, ?_⟩
   · intro x
     obtain ⟨him, hre⟩ := hreal x

@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 @[expose] public section
 
@@ -54,7 +55,7 @@ theorem mem_pow_of_psiAt_trivial {E : Type} [Field E] [NumberField E] (w : Heigh
   have hc0 : w.valuation E (c : E) ≠ 0 := by rw [hc]; exact WithZero.exp_ne_zero
   have hδ1 : w.valuation E (δ : E) ≤ 1 := w.valuation_le_one δ
   have hvt : Valued.v t ≤ WithZero.exp (((a + diffExp w : ℕ) : ℤ)) := by
-    rw [ht, valued_algebraMap, map_div₀, hc, div_le_iff₀ (zero_lt_iff.2 WithZero.exp_ne_zero), ← WithZero.exp_add]
+    rw [ht, _root_.Formalism.UG.P.levelaf_valued_algebraMap, map_div₀, hc, div_le_iff₀ (zero_lt_iff.2 WithZero.exp_ne_zero), ← WithZero.exp_add]
     simpa using hδ1
   have key : ∀ s ∈ w.adicCompletionIntegers E, psiAt w (t * s) = 1 := by
     intro s hs
@@ -77,7 +78,7 @@ theorem mem_pow_of_psiAt_trivial {E : Type} [Field E] [NumberField E] (w : Heigh
       _ ≤ WithZero.exp (diffExp w : ℤ) := by
           rw [← WithZero.exp_zero, WithZero.exp_le_exp]; omega
   have hvt' := (psiAt_conductor w t).1 key
-  rw [ht, valued_algebraMap, map_div₀, hc, div_le_iff₀ (zero_lt_iff.2 WithZero.exp_ne_zero), ← WithZero.exp_add] at hvt'
+  rw [ht, _root_.Formalism.UG.P.levelaf_valued_algebraMap, map_div₀, hc, div_le_iff₀ (zero_lt_iff.2 WithZero.exp_ne_zero), ← WithZero.exp_add] at hvt'
   have h2 : w.valuation E (δ : E) ≤ WithZero.exp (-(a : ℤ)) := by
     refine hvt'.trans (le_of_eq ?_)
     congr 1

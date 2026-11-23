@@ -94,7 +94,7 @@ theorem ex_good_of_ex_csd : AutomorphicFormsFiniteGL → Ex .csd → Ex .good :=
     rw [HChar.inf_inv, Units.val_inv_eq_inv_val, hκ k, ← Finset.prod_inv_distrib]
     exact Finset.prod_congr rfl fun φ _ => (zpow_neg _ _).symm
   obtain ⟨art, hart, hμ⟩ := (GlobalArtinReciprocity.heckeLAdicCharacter_and_principalIdealSt
-    GlobalTheory.globalArtinReciprocity_holds).1 E Ω
+    _root_.CompanionTheory.FamInh.globalArtin).1 E Ω
   obtain ⟨μ, ⟨hμc, hμ⟩, -⟩ := hμ l ι κ⁻¹ (-m) (isAlgPos_of_isAlg hκi)
   refine ⟨UpperTheory.V.Af.tw r' μ, continuous_tw_of_continuous hr'c hμc, ?_⟩
   have h := UpperTheory.V.Af.Cq.attTwist E Ω l ι a r' (π.twist κ) hr' art κ⁻¹ (-m) μ hart hμ

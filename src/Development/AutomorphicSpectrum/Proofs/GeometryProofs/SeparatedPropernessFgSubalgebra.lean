@@ -108,7 +108,7 @@ theorem isProper_descends (k V : Type) [CommRing k] [IsNoetherianRing k] [CommRi
       IsProper (pullback.snd (π i ≫ p) (spMap (algebraMap k R))) := by
     intro i
     have := (hπ i).1
-    exact GlobalTheory.T.properness_descends_fg_subalgebra k V (Y i) (π i ≫ p) (hπ i).2 (isProper_snd_comp (π i) p _)
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Approx.exists_fg_isProper_of_isQProjOver k V (Y i) (π i ≫ p) (hπ i).2 (isProper_snd_comp (π i) p _)
   choose Ri hRfg hRp using hi
   let R : Subalgebra k V := Finset.univ.sup Ri
   have hFG : R.FG :=
@@ -126,7 +126,7 @@ theorem isProper_descends (k V : Type) [CommRing k] [IsNoetherianRing k] [CommRi
     have := hRp i
     rw [hmap i]
     exact isProper_snd_of_comp _ _ _
-  refine GlobalTheory.T.proper_of_proper_cover (pullback p (spMap (algebraMap k R))) (Sp R)
+  refine _root_.GlobalTheory.CompanionTheory.Ar.Approx.isProper_of_finite_cover (pullback p (spMap (algebraMap k R))) (Sp R)
     (pullback.snd p (spMap (algebraMap k R))) n
     (fun i => pullback (π i ≫ p) (spMap (algebraMap k R)))
     (fun i => baseMap (π i) p (spMap (algebraMap k R))) inferInstance inferInstance ?_ ?_

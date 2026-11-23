@@ -153,7 +153,7 @@ theorem locOpEx_of_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (hA
     intro y c hc hy
     obtain ⟨y', x, hx, hy', hrel⟩ := R.nbar_conj' w hw₀ y c hc hy
     have hW3 := R.step_comp w hsch (R.step_comp w hsch hW hW) hW
-    exact R.ok_of_conj w hT hW3 hW (R.stepN w hT y' x hx hy') hrel (_root_.PositivityTheory.SiegelWeilFormula.RD_k.w_four hw₀)
+    exact R.ok_of_conj w hT hW3 hW (R.stepN w hT y' x hx hy') hrel (_root_.PositivityTheory.SiegelWeilFormula.RD_k.w_four_pf hw₀)
   obtain ⟨y1, y2, y3, y4, hy, ⟨t, ht⟩, ⟨c, hc, hc2⟩, ⟨a, ha, ha2⟩, ⟨b, hb, hb2⟩⟩ := PositivityTheory.Rg.Sw.Glob.decomp d.n y
   rw [hy]
   exact R.ok_mul w hsch (R.ok_mul w hsch (R.ok_mul w hsch (okN y1 _ (herm_smul_one' t) ht) (okB y2 c hc hc2))

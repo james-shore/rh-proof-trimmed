@@ -98,32 +98,9 @@ section Grp
 
 variable {n : ℕ}
 
-theorem conj_mem {ε : Fin n → Bool} {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Formalism.REAL.Kset ε) :
-    k.map star ∈ Formalism.REAL.Kset ε := by
-  obtain ⟨hu, hc⟩ := hk
-  have hJ : (Formalism.REAL.Jm ε).map star = Formalism.REAL.Jm ε := by
-    ext a b
-    simp only [Formalism.REAL.Jm, Matrix.map_apply, Matrix.diagonal_apply]
-    split_ifs <;> simp
-  have e : ∀ M : Matrix (Fin n) (Fin n) ℂ, M.map star = M.map (starRingEnd ℂ) := fun M => rfl
-  refine ⟨?_, ?_⟩
-  · rw [Matrix.mem_unitaryGroup_iff] at hu ⊢
-    ext i j
-    have h2 := congrArg star (congrFun (congrFun hu i) j)
-    simp only [Matrix.mul_apply, Matrix.star_apply, Matrix.map_apply, star_sum, star_mul', star_star,
-      Matrix.one_apply] at h2 ⊢
-    rw [h2]
-    split_ifs <;> simp
-  · rw [← hJ]
-    simp only [e]
-    rw [← Matrix.map_mul, ← Matrix.map_mul, hc]
+alias conj_mem := _root_.GlobalTheory.Dec.FormF.K_star
 
-theorem mem_KC {ε : Fin n → Bool} {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Formalism.REAL.Kset ε) :
-    k ∈ GlobalTheory.Dec.KC ε := by
-  obtain ⟨hu, hc⟩ := hk
-  exact ⟨⟨Unitary.toUnits ⟨k, hu⟩, rfl⟩, hc⟩
-
-theorem one_mem_K {ε : Fin n → Bool} : (1 : Matrix (Fin n) (Fin n) ℂ) ∈ Formalism.REAL.Kset ε := ⟨one_mem _, by simp⟩
+alias one_mem_K := _root_.GlobalTheory.Dec.TauExt.one_mem_K
 
 variable {ι : Type} {P : Type} [AddCommGroup P] [Module ℂ P] {ε : ι → Fin n → Bool}
 
@@ -152,8 +129,8 @@ theorem commute_away {B : P →ₗ⋆[ℂ] P →ₗ[ℂ] ℂ} {ϖ : (ι → Matr
     (hX : X ∈ Submodule.span ℂ ((fun g => ϖ (Pi.mulSingle τ g)) '' Formalism.REAL.Kset (ε τ))) :
     Commute (ϖ g) X := by
   refine commute_span (fun k hk => ?_) hX
-  have hs : ∀ ρ, (Pi.mulSingle τ k : ι → Matrix (Fin n) (Fin n) ℂ) ρ ∈ GlobalTheory.Dec.KC (ε ρ) := fun ρ => mem_KC (single_mem hk ρ)
-  have hg' : ∀ ρ, g ρ ∈ GlobalTheory.Dec.KC (ε ρ) := fun ρ => mem_KC (hg ρ)
+  have hs : ∀ ρ, (Pi.mulSingle τ k : ι → Matrix (Fin n) (Fin n) ℂ) ρ ∈ GlobalTheory.Dec.KC (ε ρ) := fun ρ => _root_.GlobalTheory.Dec.FormF.K_KC (single_mem hk ρ)
+  have hg' : ∀ ρ, g ρ ∈ GlobalTheory.Dec.KC (ε ρ) := fun ρ => _root_.GlobalTheory.Dec.FormF.K_KC (hg ρ)
   have hcomm : g * Pi.mulSingle τ k = Pi.mulSingle τ k * g := by
     funext ρ
     by_cases hρ : ρ = τ
@@ -208,7 +185,7 @@ theorem core [Fintype ι] {B : P →ₗ⋆[ℂ] P →ₗ[ℂ] ℂ} {ϖ : (ι →
         have hc := commute_away h hgs (by simp [ha]) (hU a (v a))
         rw [Finset.noncommProd_insert_of_notMem _ _ _ _ ha, Module.End.mul_apply, ih,
           ← Module.End.mul_apply, ← hc.eq, Module.End.mul_apply, hv a, ← Module.End.mul_apply,
-          ← h.2.2.1 _ _ (fun ρ => mem_KC (hgs ρ)) (fun ρ => mem_KC (single_mem (hg a) ρ))]
+          ← h.2.2.1 _ _ (fun ρ => _root_.GlobalTheory.Dec.FormF.K_KC (hgs ρ)) (fun ρ => _root_.GlobalTheory.Dec.FormF.K_KC (single_mem (hg a) ρ))]
         congr 2
         funext ρ
         by_cases hρ : ρ = a

@@ -203,7 +203,7 @@ theorem isVac_of_good {σ : E →ₐ[F] E} {n d : ℕ} {X : Spc F E n} {Y : Spc 
   refine ⟨indicator_mem_SB v, fun h => ?_, θ, hθ, fun γ hγ => ?_⟩
   · have := congrFun h 0
     simp [Set.indicator, zero_mem] at this
-  · obtain ⟨h1, h3⟩ := GlobalTheory.T.coords_and_symplectic_integral_on_placeLattice σ X.J Y.J (θ : E) v M.co.e.toLinearMap T₀ yf zf hyz hc hs γ (hgen hγ)
+  · obtain ⟨h1, h3⟩ := _root_.GlobalTheory.LatticeAtPlace.coords_symp_integral σ X.J Y.J (θ : E) v M.co.e.toLinearMap T₀ yf zf hyz hc hs γ (hgen hγ)
     exact acts_indicator ψ v hψ h2 (M.co.e γ) h1 _ h3
 
 end GlobalTheory.StdVacuum
@@ -260,7 +260,7 @@ theorem GlobalTheory.StdVacuum.eventually_isVac_indicator : ∀ {F E : Type} [Fi
     have hint : ∀ a : F, ∀ᶠ v in Filter.cofinite,
         algebraMap F (Fv F v) a ∈ (v : HeightOneSpectrum (𝓞 F)).adicCompletionIntegers F :=
       fun a => (algebraMap F (FiniteAdeleRing (𝓞 F) F) a).2
-    refine (GlobalTheory.T.localAddCharComponent_trivial_integers_eventually B.ψ hB.std.1).and ((hint _).and (((Filter.eventually_all_finite hT₀).2
+    refine (_root_.GlobalTheory.psiLoc_eventually_trivial_integers B.ψ hB.std.1).and ((hint _).and (((Filter.eventually_all_finite hT₀).2
       fun t _ => Filter.eventually_all.2 fun k => (hint _).and (hint _)).and ?_))
     exact (Filter.eventually_all_finite hT₀).2 fun t _ => (Filter.eventually_all_finite hT₀).2 fun t' _ => hint _
   filter_upwards [hV] with v hv

@@ -53,10 +53,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC UpperTheory.Gal.TranscendenceTraces
 
-private theorem ring_sec (Ω C : Type) [Field Ω] [IsAlgClosed Ω] [CommRing C] [Nontrivial C] (φ : Ω →+* C)
-    (h : φ.FiniteType) : ∃ ρ : C →+* Ω, ρ.comp φ = RingHom.id Ω :=
-  _root_.UpperTheory.Reformulated.B.Qh66.ring_sec Ω C φ h
-
 private theorem etale_sec (Ω : Type) [Field Ω] [IsAlgClosed Ω] {V : Scheme.{0}} [IsAffine V] (g : V ⟶ gp Ω) [Etale g]
     [Nonempty V] : ∃ σ : gp Ω ⟶ V, σ ≫ g = 𝟙 _ := by
   have hl : LocallyOfFiniteType g := inferInstance
@@ -68,7 +64,7 @@ private theorem etale_sec (Ω : Type) [Field Ω] [IsAlgClosed Ω] {V : Scheme.{0
   have hft' : (e.inv ≫ g.appTop).hom.FiniteType := by
     rw [CommRingCat.hom_comp]
     exact RingHom.FiniteType.comp hft (RingHom.FiniteType.of_surjective _ (ConcreteCategory.bijective_of_isIso e.inv).2)
-  obtain ⟨ρ, hρ⟩ := ring_sec Ω Γ(V, ⊤) (e.inv ≫ g.appTop).hom hft'
+  obtain ⟨ρ, hρ⟩ := _root_.UpperTheory.Reformulated.B.Qh66.ring_sec Ω Γ(V, ⊤) (e.inv ≫ g.appTop).hom hft'
   refine ⟨Spec.map (CommRingCat.ofHom ρ) ≫ V.isoSpec.inv, ?_⟩
   have he : (gp Ω).isoSpec.hom ≫ Spec.map e.inv = 𝟙 _ := by
     rw [Scheme.isoSpec_Spec_hom, ← Spec.map_comp]
@@ -84,7 +80,7 @@ private theorem etale_sec (Ω : Type) [Field Ω] [IsAlgClosed Ω] {V : Scheme.{0
 
 private theorem loc_gp (Ω : Type) [Field Ω] [IsAlgClosed Ω] (P : ∀ V : Scheme.{0}, (V ⟶ gp Ω) → Prop)
     (hP : ∀ (V W : Scheme.{0}) (g : V ⟶ gp Ω) (k : W ⟶ V), P V g → P W (k ≫ g)) (h : Loc (gp Ω) P) : P (gp Ω) (𝟙 _) := by
-  obtain ⟨V, g, hV, hg, ⟨v, -⟩, hPg⟩ := (GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover (gp Ω) P hP).1 h (IsLocalRing.closedPoint Ω)
+  obtain ⟨V, g, hV, hg, ⟨v, -⟩, hPg⟩ := (_root_.GlobalTheory.EtC.loc_iff_etale_affine_points (gp Ω) P hP).1 h (IsLocalRing.closedPoint Ω)
   haveI : Nonempty V := ⟨v⟩
   obtain ⟨σ, hσ⟩ := etale_sec Ω g
   simpa [hσ] using hP _ _ g σ hPg

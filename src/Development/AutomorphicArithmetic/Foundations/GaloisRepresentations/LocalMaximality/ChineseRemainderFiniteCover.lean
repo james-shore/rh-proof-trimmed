@@ -54,10 +54,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open KaehlerDifferential GlobalTheory.CechDR GlobalTheory.PD GlobalTheory.WH GlobalTheory.W1 UpperTheory.Gal.productCup_of_system
 open scoped TensorProduct
 
-private theorem exists_of_li {Q ι : Type} [AddCommGroup Q] [Module ℂ Q] [Finite ι] (f : ι → Q →ₗ[ℂ] ℂ)
-    (h : LinearIndependent ℂ f) (v : ι → ℂ) : ∃ q, ∀ i, f i q = v i :=
-  _root_.UpperTheory.Reformulated.B.Qe54.exists_of_li f h v
-
 private theorem chineseRemainder_finiteCover {F K : Type} [Field F] [Field K] [Algebra ℂ F] [Algebra ℂ K] [Algebra F K]
     [IsScalarTower ℂ F K] {d : ℕ} (x : Fin (d + 1) → F) (hc : IsFinCover ℂ K x) :
     Finite (fib ℂ K x) ∧ ∀ v : fib ℂ K x → ℂ, ∃ h : rB ℂ K x {0}, ∀ e, e.1 h = v e := by
@@ -66,7 +62,7 @@ private theorem chineseRemainder_finiteCover {F K : Type} [Field F] [Field K] [A
     let I : Ideal (rB ℂ K x {0}) :=
       Ideal.span (Set.range fun j : Fin d => (⟨_, tco_mem ℂ K x j⟩ : rB ℂ K x {0}))
     let mk : rB ℂ K x {0} →ₐ[ℂ] (rB ℂ K x {0} ⧸ I) := Ideal.Quotient.mkₐ ℂ I
-    have hfin := (GlobalTheory.T.finite_cover_chart_smooth_normal ℂ F K d x hc {0} (Finset.singleton_nonempty 0)).1
+    have hfin := (_root_.GlobalTheory.PD.rB_finite_frac_smooth ℂ F K d x hc {0} (Finset.singleton_nonempty 0)).1
     have hmem : ∀ y (hy : y ∈ rA ℂ x {0}), algebraMap F K y ∈ rB ℂ K x {0} := fun y hy =>
       (integralClosure (rA ℂ x {0}) K).algebraMap_mem ⟨y, hy⟩
     have hA : ∀ y (hy : y ∈ rA ℂ x {0}), ∃ c : ℂ,
@@ -154,7 +150,7 @@ private theorem chineseRemainder_finiteCover {F K : Type} [Field F] [Field K] [A
       (linearIndependent_algHom_toLinearMap' ℂ (rB ℂ K x {0} ⧸ I) ℂ).comp L hinj
     have hF : Finite (fib ℂ K x) := li.finite
     refine ⟨hF, fun v => ?_⟩
-    obtain ⟨q, hq⟩ := exists_of_li _ li v
+    obtain ⟨q, hq⟩ := _root_.UpperTheory.Reformulated.B.Qe54.exists_of_li _ li v
     obtain ⟨b, rfl⟩ := Ideal.Quotient.mk_surjective q
     refine ⟨b, fun e => ?_⟩
     rw [← hq e, ← hL]

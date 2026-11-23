@@ -101,7 +101,7 @@ theorem exists_away_basis (S T K L : Type) [CommRing S] [CommRing T] [Field K] [
   haveI : IsDomain T := (IsFractionRing.injective T L).isDomain (algebraMap T L)
   haveI : IsFractionRing T' L :=
     IsFractionRing.isFractionRing_of_isDomain_of_isLocalization (Submonoid.powers g) T' L
-  have hm : Module.finrank L (KaehlerDifferential K L) = m := GlobalTheory.T.kaehler_finrank_fraction_field S T' K L m w hli' hsp'
+  have hm : Module.finrank L (KaehlerDifferential K L) = m := _root_.GlobalTheory.CompanionTheory.Ggeo.finrank_kaehler_fractionRing_eq_of_basis S T' K L m w hli' hsp'
   obtain rfl : r = m := hr.symm.trans hm
   obtain ⟨h1, h2⟩ := GlobalTheory.T.kaehler_basis_tower_alt ℚ S T' e r z w hli hsp hli' hsp'
   exact ⟨_, fun i => by rw [Fin.append_left]; rfl, h1, h2⟩
@@ -140,7 +140,7 @@ theorem local_step : ∀ (Ω₀ Ω : Type) [Field Ω₀] [Field Ω] [CharZero Ω
   letI : Algebra (Algebra.adjoin ℚ (Set.range r₁)) T := (Subalgebra.inclusion hle₁).toRingHom.toAlgebra
   have hne₁ : h₁ ≠ 0 := fun h0 => hh₁P (h0 ▸ P.zero_mem)
   haveI : IsLocalization.Away h₁ T :=
-    GlobalTheory.T.adjoin_inverse_is_localization_away Ω _ T (Set.range r₁) rfl h₁ hne₁ (by rw [hT, hh₁]) hle₁
+    _root_.GlobalTheory.CompanionTheory.Ggeo.adjoin_inv_isLocalization_away Ω _ T (Set.range r₁) rfl h₁ hne₁ (by rw [hT, hh₁]) hle₁
   have hdisj : Disjoint ((Submonoid.powers h₁ : Submonoid (Algebra.adjoin ℚ (Set.range r₁))) :
       Set (Algebra.adjoin ℚ (Set.range r₁))) (↑P : Set (Algebra.adjoin ℚ (Set.range r₁))) := by
     rwa [Ideal.disjoint_powers_iff_notMem_of_isPrime]
@@ -198,7 +198,7 @@ theorem local_step : ∀ (Ω₀ Ω : Type) [Field Ω₀] [Field Ω] [CharZero Ω
       rw [SetLike.mem_coe, this]
       exact S'.mul_mem htS' (S'.pow_mem (hle' h₁.2) _)
   letI : Algebra T S' := (Subalgebra.inclusion hTS').toRingHom.toAlgebra
-  haveI : IsLocalization.Away g S' := GlobalTheory.T.adjoin_inverse_is_localization_away Ω T S' (T : Set Ω) (Algebra.adjoin_eq T).symm g hg0 hEq hTS'
+  haveI : IsLocalization.Away g S' := _root_.GlobalTheory.CompanionTheory.Ggeo.adjoin_inv_isLocalization_away Ω T S' (T : Set Ω) (Algebra.adjoin_eq T).symm g hg0 hEq hTS'
   haveI : IsScalarTower T S' Ω := .of_algebraMap_eq fun _ => rfl
   obtain ⟨hsm', z', hz', hli', hsp'⟩ := Hg S'
   refine ⟨hsm', z', n, by omega, hli', hsp', ?_⟩

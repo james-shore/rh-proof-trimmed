@@ -206,7 +206,7 @@ theorem _root_.GlobalTheory.EtC.excisionConeMap_quasiIso : ∀ (R : Type) [CommR
     congrArg (fun g => (CommRingCat.ofHom g).op) (awayMap_comp_algebraMap (algebraMap A A') f).symm⟩
   let Y : CommRingCat.{0}ᵒᵖ ⥤ PSh := Scheme.Spec ⋙ yoneda
   let F := Y ⋙ free R
-  have hS := GlobalTheory.T.freeEtaleSheaf_excision_shortExact R A A' f ⟨h.2.1, h.2.2⟩
+  have hS := _root_.GlobalTheory.EtC.MVFree.shortExact R A A' f ⟨h.2.1, h.2.2⟩
   have : Mono (F.map u) := mono_free_away R A f
   exact cone_qis_of_natural_homotopyEquiv F (Y ⋙ disc ⋙ chains R) u' u a b sq
     hS (fun X => e (Y.obj X)) (fun g => he (Y.map g))

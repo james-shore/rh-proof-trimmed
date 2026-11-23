@@ -85,11 +85,6 @@ theorem nonempty_ringHom_complex (K : Type) [Field K] [CharZero K] [Countable K]
     (hL ▸ Cardinal.aleph0_lt_continuum) (Cardinal.eq.1 (hL.trans Cardinal.mk_complex.symm))
   exact ⟨e.toRingHom.comp j⟩
 
-theorem g_eq_of_keyPB {R R' : Type} [CommRing R] [CommRing R'] {x' : KeyIn R'} {x : KeyIn R} {f : R →+* R'}
-    (h : KeyPB x' x f) : x'.P.g = x.P.g := by
-  obtain ⟨_, _, _, hg, _⟩ := h
-  exact hg
-
 def NormalValue (g n : ℕ) (κ : ∀ (K : Type) [Field K] [CharZero K], KeyIn K → Kˣ) : Prop :=
   ∀ (x : KeyIn ℂ) (τ Mx : Matrix (Fin x.P.g) (Fin x.P.g) ℂ) (a b : Fin x.P.g → ℂ) (c₀ : ℂ), x.P.g = g →
     charHalf x.P.g a b → c₀ ≠ 0 → Mx.det ≠ 0 → NormalAt x τ Mx a b c₀ → (κ ℂ x : ℂ) = (Mx.det ^ 4 / c₀ ^ 8) ^ n
@@ -99,10 +94,10 @@ theorem pow_eq_pow (hU : ThetaUnifAV) (hD : KeyDesc) {g n n' M M' : ℕ}
     (hn : NormalValue g n κ) (hn' : NormalValue g n' κ') (K : Type) [Field K] [CharZero K] (x : KeyIn K)
     (hx : x.P.g = g) : (κ K x : K) ^ n' = (κ' K x : K) ^ n := by
   obtain ⟨K₀, x₀, hK₀, hx₀⟩ := hD K x
-  have hg₀ : x₀.P.g = g := (g_eq_of_keyPB hx₀).symm.trans hx
+  have hg₀ : x₀.P.g = g := (_root_.GlobalTheory.KeyGalDesc.g_eq hx₀).symm.trans hx
   obtain ⟨σ⟩ := nonempty_ringHom_complex K₀
   obtain ⟨y, hy⟩ := exists_keyPB_ring x₀ σ
-  have hgy : y.P.g = g := (g_eq_of_keyPB hy).trans hg₀
+  have hgy : y.P.g = g := (_root_.GlobalTheory.KeyGalDesc.g_eq hy).trans hg₀
   obtain ⟨⟨τ, Mx, a, b, c, hab, hc, hM, hN⟩, -⟩ := KeyNormalExists.exists_normalAt hU y
   have e : (κ ℂ y : ℂ) ^ n' = (κ' ℂ y : ℂ) ^ n := by
     rw [hn y τ Mx a b c hgy hab hc hM hN, hn' y τ Mx a b c hgy hab hc hM hN, ← pow_mul, ← pow_mul, Nat.mul_comm]
@@ -150,22 +145,22 @@ theorem keyRule_of_kaSt : Out.Laws → ThetaUnifAV → Key.Chi.InversionStatemen
     exact (hκ P.g h₁).2.1.1 K P hg rig hr th hth v hv th' hth' v' hv' a Mx rfl
   · intro K K' _ _ _ _ f x x' hg h
     dsimp only
-    rw [show κ x'.P.g K' x' = κ x.P.g K' x' by rw [g_eq_of_keyPB h]]
+    rw [show κ x'.P.g K' x' = κ x.P.g K' x' by rw [_root_.GlobalTheory.KeyGalDesc.g_eq h]]
     exact (hκ _ hg).2.1.2.1 K K' f x x' rfl h
   · intro R K _ _ _ _ _ _ _ x xK hg h
     dsimp only
-    rw [show κ xK.P.g K xK = κ x.P.g K xK by rw [g_eq_of_keyPB h]]
+    rw [show κ xK.P.g K xK = κ x.P.g K xK by rw [_root_.GlobalTheory.KeyGalDesc.g_eq h]]
     obtain ⟨-, h₁, h₂⟩ := hκ _ hg
     by_cases hu : IsUnit (M x.P.g : R)
     · obtain ⟨u, hu₁, hu₂⟩ := h₁.2.2.1 R K x xK rfl hu h
       refine ⟨u, hu₁, fun k _ _ r xk hr hk => ?_⟩
-      rw [show κ xk.P.g k xk = κ x.P.g k xk by rw [g_eq_of_keyPB hk]]
+      rw [show κ xk.P.g k xk = κ x.P.g k xk by rw [_root_.GlobalTheory.KeyGalDesc.g_eq hk]]
       exact hu₂ k r xk hr hk
     · obtain ⟨p, hp, hpu⟩ := exists_prime_of_not_isUnit (hM _) hu
       obtain ⟨n', M', κ', hn', -, h'⟩ := hall x.P.g p hp
       obtain ⟨hpM, h₁', h₂'⟩ := h' hg
       obtain ⟨u, hu₁, -⟩ := h₁'.2.2.1 R K x xK rfl (hpu _ hpM) h
-      have e := pow_eq_pow hU hD h₁ h₁' h₂ h₂' K xK (g_eq_of_keyPB h)
+      have e := pow_eq_pow hU hD h₁ h₁' h₂ h₂' K xK (_root_.GlobalTheory.KeyGalDesc.g_eq h)
       rw [hu₁, ← map_pow, ← Units.val_pow_eq_pow_val u] at e
       obtain ⟨w, hw⟩ := exists_unit_of_pow hn' e
       exact ⟨w, hw, fun k _ _ r xk hr _ => absurd (isUnit_of_surjective hr (hM _)) hu⟩

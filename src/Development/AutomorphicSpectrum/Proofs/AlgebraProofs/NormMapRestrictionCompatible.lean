@@ -79,36 +79,28 @@ theorem exists_finFree_app_of_finitePresentation {x : X} {U : X.Opens} (hx : x �
   · exact H (isPushout_app π hV0 (hV0.basicOpen r) (X.basicOpen_le r))
       (RingedSpace.isUnit_res_basicOpen _ r)
 
-abbrev FreeOpen (V : X.Opens) : Type := {W : X.Opens // IsAffineOpen W ∧ W ≤ V ∧ FinFree (π.app W).hom}
-
-theorem le_iSup_freeOpen (V : X.Opens) : V ≤ ⨆ W : FreeOpen π V, W.1 := by
+theorem le_iSup_freeOpen (V : X.Opens) : V ≤ ⨆ W : _root_.GlobalTheory.FlatNorm.FreeOpen π V, W.1 := by
   intro x hx
   obtain ⟨W, hW, hxW, hWV, hF⟩ := exists_finFree_app_of_finitePresentation π hx
   exact Opens.mem_iSup.mpr ⟨⟨W, hW, hWV, hF⟩, hxW⟩
 
 theorem ext_freeOpen {V : X.Opens} {a b : Γ(X, V)}
-    (h : ∀ W : FreeOpen π V, resG X W.2.2.1 a = resG X W.2.2.1 b) : a = b := by
+    (h : ∀ W : _root_.GlobalTheory.FlatNorm.FreeOpen π V, resG X W.2.2.1 a = resG X W.2.2.1 b) : a = b := by
   refine TopCat.Presheaf.section_ext X.sheaf V a b fun x hx => ?_
   obtain ⟨W, hxW⟩ := Opens.mem_iSup.mp (le_iSup_freeOpen π V hx)
   have e := congrArg (X.presheaf.germ W.1 x hxW).hom (h W)
   simp [resG] at e
   exact e
 
-omit [Flat π] [LocallyOfFinitePresentation π] in
-theorem resG_nm {V W : X.Opens} (hV : IsAffineOpen V) (hW : IsAffineOpen W) (h : W ≤ V)
-    (hF : FinFree (π.app V).hom) (b : Γ(Y, π ⁻¹ᵁ V)) :
-    resG X h (nm (π.app V).hom b) = nm (π.app W).hom (resG Y (π.preimage_mono h) b) := by
-  exact (nm_of_isPushout (isPushout_app π hV hW h) hF b).symm
-
-private theorem resG_nm_app_eq_nm_app_of_le_freeOpen {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) (k : FreeOpen π V) {W' : X.Opens}
+private theorem resG_nm_app_eq_nm_app_of_le_freeOpen {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) (k : _root_.GlobalTheory.FlatNorm.FreeOpen π V) {W' : X.Opens}
     (hW' : IsAffineOpen W') (h : W' ≤ k.1) :
     resG X h (nm (π.app k.1).hom (resG Y (π.preimage_mono k.2.2.1) b)) =
       nm (π.app W').hom (resG Y (π.preimage_mono (h.trans k.2.2.1)) b) := by
-  rw [resG_nm π k.2.1 hW' h k.2.2.2, resG_resG]
+  rw [_root_.GlobalTheory.FlatNorm.resG_nm π k.2.1 hW' h k.2.2.2, resG_resG]
 
-theorem exists_normFun (V : X.Opens) (b : Γ(Y, π ⁻¹ᵁ V)) : ∃ a : Γ(X, V), ∀ W : FreeOpen π V,
+theorem exists_normFun (V : X.Opens) (b : Γ(Y, π ⁻¹ᵁ V)) : ∃ a : Γ(X, V), ∀ W : _root_.GlobalTheory.FlatNorm.FreeOpen π V,
     resG X W.2.2.1 a = nm (π.app W.1).hom (resG Y (π.preimage_mono W.2.2.1) b) := by
-  refine exists_fun_of_cover (fun k : FreeOpen π V => k.1) (fun k => k.2.2.1) (le_iSup_freeOpen π V)
+  refine exists_fun_of_cover (fun k : _root_.GlobalTheory.FlatNorm.FreeOpen π V => k.1) (fun k => k.2.2.1) (le_iSup_freeOpen π V)
     (fun k => nm (π.app k.1).hom (resG Y (π.preimage_mono k.2.2.1) b)) fun k l => ?_
   refine ext_freeOpen π fun W' => ?_
   rw [resG_resG, resG_resG, resG_nm_app_eq_nm_app_of_le_freeOpen π b k W'.2.1, resG_nm_app_eq_nm_app_of_le_freeOpen π b l W'.2.1]
@@ -121,7 +113,7 @@ def normFun (V : X.Opens) : Γ(Y, π ⁻¹ᵁ V) →* Γ(X, V) where
     rw [(exists_normFun π V _).choose_spec W, map_mul, map_mul, map_mul,
       (exists_normFun π V a).choose_spec W, (exists_normFun π V b).choose_spec W]
 
-theorem resG_normFun_free {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) (W : FreeOpen π V) :
+theorem resG_normFun_free {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) (W : _root_.GlobalTheory.FlatNorm.FreeOpen π V) :
     resG X W.2.2.1 (normFun π V b) = nm (π.app W.1).hom (resG Y (π.preimage_mono W.2.2.1) b) := by
   exact (exists_normFun π V b).choose_spec W
 
@@ -154,7 +146,7 @@ theorem mem_basicOpen_normFun {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) {x : X} (
     obtain ⟨W'', hW'', hxW'', hle, hF''⟩ := exists_finFree_app_of_finitePresentation π hx'
     have hW''W : W'' ≤ W := hle.trans (X.basicOpen_le _)
     have hu := isUnit_resG_of_le_basicOpen' hW''W _ hle
-    rw [resG_nm π hW hW'' hW''W hF, resG_resG] at hu
+    rw [_root_.GlobalTheory.FlatNorm.resG_nm π hW hW'' hW''W hF, resG_resG] at hu
     have hu' := isUnit_of_nm hF'' hu
     have hy'' : y ∈ Y.basicOpen (resG Y (π.preimage_mono (hW''W.trans hWV)) b) := by
       rw [Y.basicOpen_of_isUnit hu']
@@ -178,7 +170,7 @@ theorem mem_basicOpen_normFun {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) {x : X} (
     have hu := isUnit_resG_of_le_basicOpen' (π.preimage_mono hW''W) (resG Y (π.preimage_mono hWV) b)
       ((π.preimage_mono (hle.trans inf_le_right)).trans hV')
     have hu2 := hu.map (nm (π.app W'').hom)
-    rw [← resG_nm π hW hW'' hW''W hF] at hu2
+    rw [← _root_.GlobalTheory.FlatNorm.resG_nm π hW hW'' hW''W hF] at hu2
     have h3 : x ∈ X.basicOpen (resG X hW''W (nm (π.app W).hom (resG Y (π.preimage_mono hWV) b))) := by
       rw [X.basicOpen_of_isUnit hu2]
       exact hxW''

@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.GhostFrobenius
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.NatCastMulCoeffOfPderivEq
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MvPowerSeriesEvalTruncSubstEqSum
 
 @[expose] public section
 
@@ -55,21 +56,6 @@ set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.QLog.SqZero
-
-theorem mvPolynomialEval_truncFinsupp_eq_sum_coeff_mul_prod {R σ : Type} [CommRing R] [Fintype σ] [DecidableEq σ] (w : σ → R)
-    (n : σ →₀ ℕ) (f : MvPowerSeries σ R) :
-    MvPolynomial.eval w (trunc' R n f) = ∑ β ∈ Finset.Iic n, coeff β f * ∏ i ∈ β.support, w i ^ β i := by
-  have hsub : (trunc' R n f).support ⊆ Finset.Iic n := by
-    intro m hm
-    rw [MvPolynomial.mem_support_iff, coeff_trunc'] at hm
-    split_ifs at hm with h
-    · exact Finset.mem_Iic.mpr h
-    · exact absurd rfl hm
-  rw [MvPolynomial.eval_eq, Finset.sum_subset hsub]
-  · refine Finset.sum_congr rfl fun m hm => ?_
-    rw [coeff_trunc', if_pos (Finset.mem_Iic.mp hm)]
-  · intro m _ hm
-    rw [MvPolynomial.notMem_support_iff.mp hm, zero_mul]
 
 theorem hasVal_log_of_mul_self_eq_zero :
     ∀ (B Q : Type) [CommRing B] [CommRing Q] [Algebra B Q] [Algebra ℚ Q] (p : ℕ) (x : B), x * x = 0 → HasVal p (fun _ : Unit => x) (PowerSeries.log Q : MvPowerSeries Unit Q) (algebraMap B Q x) := by
@@ -82,7 +68,7 @@ theorem hasVal_log_of_mul_self_eq_zero :
     rw [PowerSeries.coeff_def (by rfl)]
   intro m
   refine ⟨1, fun N' hN' => ⟨0, ?_⟩⟩
-  rw [mul_zero, map_zero, sub_eq_zero, mvPolynomialEval_truncFinsupp_eq_sum_coeff_mul_prod]
+  rw [mul_zero, map_zero, sub_eq_zero, _root_.GlobalTheory.DivSub.eval_trunc'_eq_sum]
   rw [Finset.sum_eq_single (Finsupp.single () 1)]
   · rw [hcoeff]
     simp [PowerSeries.coeff_log, hy]

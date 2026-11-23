@@ -89,7 +89,7 @@ private theorem isOpen_cut (Z : Finset (Pl E)) (L : ∀ w : Pl E, Subgroup (GLw 
     ext g
     simp [Subgroup.mem_iInf, Subgroup.mem_inf, Subgroup.mem_comap]
   rw [e]
-  refine (PositivityTheory.Rg.BcB.G8.Fin.kfOC_holds E n).1.inter (isOpen_biInter_finset fun w _ => ?_)
+  refine (_root_.GlobalTheory.CompanionTheory.IntegralPoints.kfOC E n).1.inter (isOpen_biInter_finset fun w _ => ?_)
   exact ((hL w).preimage (Slots.continuous_loc n w)).inter
     ((hL w).preimage ((Slots.continuous_loc n w).comp continuous_thF'))
 

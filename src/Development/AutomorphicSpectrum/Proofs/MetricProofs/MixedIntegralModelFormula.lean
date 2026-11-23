@@ -101,7 +101,7 @@ theorem push_chart_integrals : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀
   refine ⟨(GlobalTheory.T.measurable_fibre_count_of_local_diffeo M.atlas Φ (modelQ M Q) _ G₀ hS hq hfin hsm hm).congr (e1.mono fun y hy => hy.symm),
     fun Pt => ?_, fun hI => ?_⟩
   · rw [lintegral_congr_ae (e2.mono fun y hy => congrArg ENNReal.ofReal hy)]
-    exact GlobalTheory.T.finite_fibres_of_analytic_local_diffeo M.atlas Φ (modelQ M Q) _ G₀ hS hq hfin hsm hm Pt
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Giv.Push.lintegral_absFibre_eq M.atlas Φ (modelQ M Q) _ G₀ hS hq hfin hsm hm Pt
   · obtain ⟨h1, h2⟩ := GlobalTheory.T.integral_fibre_sum_change_of_variables M.atlas Φ (modelQ M Q) _ G₀ hS hq hfin hsm hI
     refine ⟨h1.congr (e1.mono fun y hy => hy.symm), ?_⟩
     rw [h2]

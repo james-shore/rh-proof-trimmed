@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -51,9 +52,6 @@ def EntryBd {n : ℕ} (f : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n)
 
 variable {n : ℕ} {f : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ}
 
-theorem hs_nonneg (g : Matrix (Fin n) (Fin n) ℂ) : 0 ≤ Formalism.REAL.hs g := by
-  unfold Formalism.REAL.hs; positivity
-
 theorem entryBd_id : EntryBd (fun g : Matrix (Fin n) (Fin n) ℂ => g) := by
   refine ⟨1, fun g i j => ?_⟩
   have h1 : ‖g i j‖ ^ 2 ≤ Formalism.REAL.hs g := by
@@ -61,7 +59,7 @@ theorem entryBd_id : EntryBd (fun g : Matrix (Fin n) (Fin n) ℂ => g) := by
     refine le_trans ?_ (Finset.single_le_sum (f := fun i => ∑ j, ‖g i j‖ ^ 2)
       (fun _ _ => by positivity) (Finset.mem_univ i))
     exact Finset.single_le_sum (f := fun j => ‖g i j‖ ^ 2) (fun _ _ => by positivity) (Finset.mem_univ j)
-  nlinarith [sq_nonneg (‖g i j‖ - 1), hs_nonneg g]
+  nlinarith [sq_nonneg (‖g i j‖ - 1), _root_.Formalism.REAL.frobenius_nonneg_matrix g]
 
 theorem EntryBd.conjTranspose (h : EntryBd f) : EntryBd fun g => (f g)ᴴ := by
   obtain ⟨c, hc⟩ := h
@@ -70,7 +68,7 @@ theorem EntryBd.conjTranspose (h : EntryBd f) : EntryBd fun g => (f g)ᴴ := by
 theorem EntryBd.const_mul (h : EntryBd f) (P : Matrix (Fin n) (Fin n) ℂ) : EntryBd fun g => P * f g := by
   obtain ⟨c, hc⟩ := h
   refine ⟨(∑ i, ∑ k, ‖P i k‖) * |c|, fun g i j => ?_⟩
-  have h0 := hs_nonneg g
+  have h0 := _root_.Formalism.REAL.frobenius_nonneg_matrix g
   show ‖(P * f g) i j‖ ≤ _
   rw [Matrix.mul_apply]
   calc _ ≤ ∑ k, ‖P i k‖ * (|c| * (1 + Formalism.REAL.hs g)) := by
@@ -109,7 +107,7 @@ theorem height_elt_le : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (V : H
   have hu := frame_mem A τ hg
   have s1 := GlobalTheory.PointAtPlaceHom.atTau_spec hθ V τ hu
   have s2 := GlobalTheory.PointAtPlaceHom.isAtTau_inv V τ hu s1
-  have h0 := hs_nonneg g
+  have h0 := _root_.Formalism.REAL.frobenius_nonneg_matrix g
   refine (hd _ s1.1).trans ?_
   rw [← mul_pow]
   refine pow_le_pow_left₀ (by unfold normInf; positivity) ?_ d

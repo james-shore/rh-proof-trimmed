@@ -112,12 +112,6 @@ def restr {k : ℕ} (f : Fin (k + 1) → Fin (k + 1) → ℕ) : Fin k → Fin k 
 def UU (k : ℕ) (μ : Fin (k + 1) → ℤ) : Type :=
   {g : Fin k → Fin k → ℕ // Intl g ∧ (fun t => ((∑ a, g a t : ℕ) : ℤ)) ∈ gtBox μ}
 
-theorem mem_gtBox' {n : ℕ} (μ : Fin (n + 1) → ℤ) (κ : Fin n → ℤ) :
-    κ ∈ gtBox μ ↔ ∀ i, μ i.succ ≤ κ i ∧ κ i ≤ μ i.castSucc := by
-  rw [show gtBox μ = Fintype.piFinset fun i => Finset.Icc (μ i.succ) (μ i.castSucc) from rfl,
-    Fintype.mem_piFinset]
-  simp only [Finset.mem_Icc]
-
 theorem restr_mem {k : ℕ} (μ : Fin (k + 1) → ℤ) (f : SSZ (k + 1) μ) :
     Intl (restr f.1) ∧ (fun t => ((∑ a, restr f.1 a t : ℕ) : ℤ)) ∈ gtBox μ := by
   constructor
@@ -125,7 +119,7 @@ theorem restr_mem {k : ℕ} (μ : Fin (k + 1) → ℤ) (f : SSZ (k + 1) μ) :
     have := f.2.1 l.castSucc j.castSucc (by simpa using hlj) a.castSucc
     rw [sum_le_castSucc, sum_lt_castSucc] at this
     exact this
-  · rw [mem_gtBox']
+  · rw [_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Pieri.mem_gtBox]
     intro i
     have hs1 := f.2.2 i.castSucc
     have hs2 := f.2.2 i.succ
@@ -196,7 +190,7 @@ theorem ext_sum {k : ℕ} (μ : Fin (k + 1) → ℤ) (hμ : 0 ≤ μ (Fin.last k
   | cast t =>
     rw [Fin.sum_univ_castSucc]
     simp only [ext_cc, ext_lc]
-    have hb : ((∑ b, g.1 b t : ℕ) : ℤ) ≤ μ t.castSucc := ((mem_gtBox' μ _).1 g.2.2 t).2
+    have hb : ((∑ b, g.1 b t : ℕ) : ℤ) ≤ μ t.castSucc := ((_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Pieri.mem_gtBox μ _).1 g.2.2 t).2
     have hnn : 0 ≤ μ t.castSucc - ((∑ b, g.1 b t : ℕ) : ℤ) := by linarith
     rw [Nat.cast_add, Int.toNat_of_nonneg hnn]
     ring
@@ -211,7 +205,7 @@ theorem ext_intl {k : ℕ} (μ : Fin (k + 1) → ℤ) (hμ : 0 ≤ μ (Fin.last 
     simp only [ext_cc]
     have hj : j = l'.succ := Fin.ext (by rw [Fin.val_succ, hlj, Fin.coe_castSucc])
     have h1 := ext_sum μ hμ g j
-    have h2 : μ j ≤ ((∑ b, g.1 b l' : ℕ) : ℤ) := by rw [hj]; exact ((mem_gtBox' μ _).1 g.2.2 l').1
+    have h2 : μ j ≤ ((∑ b, g.1 b l' : ℕ) : ℤ) := by rw [hj]; exact ((_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Pieri.mem_gtBox μ _).1 g.2.2 l').1
     have h3 : ((∑ b, ext μ g.1 b j : ℕ) : ℤ) ≤ ((∑ b, g.1 b l' : ℕ) : ℤ) := by rw [h1]; exact h2
     exact_mod_cast h3
   | cast a =>
@@ -276,7 +270,7 @@ theorem card_SSZ : ∀ (k : ℕ) (κ : Fin k → ℤ), (∀ t, 0 ≤ κ t) → N
     simp only [dGT]
     rw [← Finset.sum_coe_sort (gtBox μ)]
     refine Finset.sum_congr rfl (fun κ _ => ih κ.1 (fun t => ?_))
-    have h1 := ((mem_gtBox' μ κ.1).1 κ.2 t).1
+    have h1 := ((_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Pieri.mem_gtBox μ κ.1).1 κ.2 t).1
     have h2 := hμ t.succ
     linarith
 
@@ -419,11 +413,11 @@ theorem gl_branching_dimension (D : Formalism.BasicNotions.D7) : Formalism.MainN
   refine Finset.sum_nbij' (fun mu t => ((mu t : ℕ) : ℤ)) (fun κ t => (κ t).toNat) ?_ ?_ ?_ ?_ ?_
   · intro mu hmu
     rw [Finset.mem_filter] at hmu
-    rw [mem_gtBox']
+    rw [_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Pieri.mem_gtBox]
     intro i
     exact ⟨Nat.cast_le.mpr (hmu.2 i).1, Nat.cast_le.mpr (hmu.2 i).2⟩
   · intro κ hκ
-    rw [mem_gtBox'] at hκ
+    rw [_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Pieri.mem_gtBox] at hκ
     rw [Finset.mem_filter, Fintype.mem_piFinset]
     refine ⟨fun i => ?_, fun i => ?_⟩
     · have h1 := hκ i
@@ -438,7 +432,7 @@ theorem gl_branching_dimension (D : Formalism.BasicNotions.D7) : Formalism.MainN
     funext t
     simp
   · intro κ hκ
-    rw [mem_gtBox'] at hκ
+    rw [_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Pieri.mem_gtBox] at hκ
     funext t
     have h1 := (hκ t).1
     try dsimp only at h1 ⊢

@@ -134,10 +134,6 @@ def RatVanish : Prop :=
 
 section Main
 
-theorem lin_bound {ι : Type*} [Fintype ι] [DecidableEq ι] (L : Matrix ι ι ℂ →ₗ[ℂ] ℂ) :
-    ∃ K : ℝ, 0 ≤ K ∧ ∀ (B : Matrix ι ι ℂ) (C : ℝ), (∀ i j, ‖B i j‖ ≤ C) → ‖L B‖ ≤ K * C := by
-  first | exact UpperTheory.Reformulated.B.Qj19.lin_bound .. | (apply UpperTheory.Reformulated.B.Qj19.lin_bound <;> assumption) | (intros; apply UpperTheory.Reformulated.B.Qj19.lin_bound <;> assumption) | (apply @UpperTheory.Reformulated.B.Qj19.lin_bound <;> assumption) | (intros; apply @UpperTheory.Reformulated.B.Qj19.lin_bound <;> assumption) | (apply @UpperTheory.Reformulated.B.Qj19.lin_bound <;> first | assumption | infer_instance) | exact @UpperTheory.Reformulated.B.Qj19.lin_bound ι ‹_› ‹_› L | exact @UpperTheory.Reformulated.B.Qj19.lin_bound ι ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qj19.lin_bound ι ‹_› | exact @UpperTheory.Reformulated.B.Qj19.lin_bound ι
-
 theorem eq_zero_of_nat_mul_le {x K : ℝ} (h : ∀ m : ℕ, 1 ≤ m → |(m : ℝ) * x| ≤ K) : x = 0 := by
   by_contra hx
   have hpos : 0 < |x| := abs_pos.2 hx
@@ -204,7 +200,7 @@ theorem relCharC_of (h3 : LamPat2) (h4 : RatVanish) : RelCharC := by
   obtain ⟨C, hC⟩ := ratApprox_holds D X M hMU 1 le_rfl 1 le_rfl
   have hvan : ∀ v, (Λ v (P v)).re = 0 := by
     intro v
-    obtain ⟨K, hK0, hK⟩ := lin_bound (Λ v)
+    obtain ⟨K, hK0, hK⟩ := _root_.UpperTheory.Reformulated.B.Qj19.lin_bound (Λ v)
     refine eq_zero_of_nat_mul_le (K := K * C) fun m hm => ?_
     have hmP : ∀ w, ((m : ℂ) • P w)ᴴ * JBv X w = -(JBv X w * ((m : ℂ) • P w)) := by
       intro w

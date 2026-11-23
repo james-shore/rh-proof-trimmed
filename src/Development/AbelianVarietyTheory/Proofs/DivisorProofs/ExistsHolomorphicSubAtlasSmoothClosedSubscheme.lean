@@ -82,7 +82,7 @@ theorem exists_subAtlas : ∀ (k : Type) [CommRing k] (X Y : Scheme.{0}) (p : X 
   have hv' : Continuous fun y => v (ptMap π hπ σ y) := hv.comp hc
   have hP (i : Fin e) : IsPotential A' ((L i).pull π hπ).φ.locPot :=
     Weight.isPotential_locPot ((Weight.isCInf_iff_isSmooth _).1 ((L i).pull π hπ).cInf)
-  obtain ⟨h₁, h₂⟩ := GlobalTheory.T.mixedChernIntegral_eq_mongeAmpereIntegral_compact k Y q σ e A' hA' (fun i => (L i).pull π hπ) _ hv'.measurable
+  obtain ⟨h₁, h₂⟩ := _root_.GlobalTheory.Mix.int_eq_mInt k Y q σ e A' hA' (fun i => (L i).pull π hπ) _ hv'.measurable
   rw [h₂ (h₁.2 (mIntegrableCont _ _ hP _ hv')),
     GlobalTheory.Adopt.mongeAmpereIntegral_invariant_homeomorph_transport e _ _ A' h _ _
       (fun i => isPotentialPullback A _ _ hB _ ((hsm i).isPotential hA))

@@ -103,7 +103,7 @@ theorem GlobalTheory.BKLim.adaptedBasis_theta_and_poles : ∀ (l : ℕ) [Fact l.
 
   have hstar : aDp l (bk.ev bk.E) ^ H.q • (Y.map (aDp l) * (F.A.map bk.ev).map (aDp l) * B * c.map C.o) =
       (aDp l (bk.ev bk.E) * aDp l τ) ^ N • (H.V * Matrix.diagonal (fun j => aDp l (bk.ev bk.E) ^ H.p j)) := by
-    refine GlobalTheory.T.transport_matrix_identity_injective_ringHom (algebraMap (Per.BdRp l) (Per.BdR l)) hι d N H.q H.p _ _ Q H.Q _ B _ H.V ?_ H.Q_eq ?_
+    refine _root_.GlobalTheory.transport_matrix_identity_star_alg (algebraMap (Per.BdRp l) (Per.BdR l)) hι d N H.q H.p _ _ Q H.Q _ B _ H.V ?_ H.Q_eq ?_
     · rw [← Matrix.map_mul, ← map_mul]; exact hQ
     · rw [hQH]; rfl
 
@@ -128,8 +128,8 @@ theorem GlobalTheory.BKLim.adaptedBasis_theta_and_poles : ∀ (l : ℕ) [Fact l.
 
   have h4 : ∀ (g : ↥(GK K)) (i j : Fin d), Per.σC (g : GQ l) (Per.θD l (V₀ i j)) = Per.θD l (V₀ i j) := by
     intro g i j
-    obtain ⟨k, s, hs⟩ := GlobalTheory.T.approx_bdRPlus_fil_matrix_mul l K bk (N + H.p j + 1) d ((F.A.map bk.ev).map (aDp l) * B) (c.map C.o)
-      (GlobalTheory.T.approx_bdRPlus_fil_matrix_mul l K bk (N + H.p j + 1) d ((F.A.map bk.ev).map (aDp l)) B
+    obtain ⟨k, s, hs⟩ := _root_.GlobalTheory.use₁₀ l K bk (N + H.p j + 1) d ((F.A.map bk.ev).map (aDp l) * B) (c.map C.o)
+      (_root_.GlobalTheory.use₁₀ l K bk (N + H.p j + 1) d ((F.A.map bk.ev).map (aDp l)) B
         ⟨0, F.A, fun i j => by rw [pow_zero, one_mul, Matrix.map_apply, Matrix.map_apply, sub_self]; exact zero_mem _⟩
         (hBl (N + H.p j + 1)))
       (GlobalTheory.T.exists_wittPowerSeries_approx_matrix_bdRPlus l K bk C d c hc (N + H.p j + 1))
@@ -145,13 +145,13 @@ theorem GlobalTheory.BKLim.adaptedBasis_theta_and_poles : ∀ (l : ℕ) [Fact l.
     exact hm
   refine ⟨fun g z hz => ?_, fun N₀ hN₀ hp => ?_⟩
   · obtain ⟨w, hw, hzw⟩ := hz
-    have hG1 := GlobalTheory.T.galois_tauPow_frame_ainf l K bk τ N d ρ F Y hY g
-    have hG2 := GlobalTheory.T.hodgeAdaptedBasis_galois_action_bdRPlus l K bk C d ρ H g w hw
+    have hG1 := _root_.GlobalTheory.BKLim.gal_tauPow_frame l K bk τ N d ρ F Y hY g
+    have hG2 := _root_.GlobalTheory.BKLim.GalAdapted.gal_V l K bk C d ρ H g w hw
     have hb : Per.θD l (aDp l (Per.σA (g : GQ l) τ)) ≠ 0 := by
       rw [← GlobalTheory.MemLoc.ActLaws.σDp_aDp, (GlobalTheory.MemLoc.thetaD_props l).2.2.2.2]
       intro h0
       exact hθt ((Per.σC (g : GQ l)).injective (h0.trans (map_zero _).symm))
-    refine GlobalTheory.T.hodgeTate_operator_of_galois_relations d N H.q H.p (Per.θD l (aDp l τ)) (Per.θD l (aDp l (Per.σA (g : GQ l) τ))) z (Per.θD l (aDp l w))
+    refine _root_.GlobalTheory.ht_operator_of_galois_relations d N H.q H.p (Per.θD l (aDp l τ)) (Per.θD l (aDp l (Per.σA (g : GQ l) τ))) z (Per.θD l (aDp l w))
       _ (Y'.map ((Per.θD l).comp (aDp l))) _ (V₀.map (Per.θD l)) _ (((ρ g).map ((aDp l).comp (Per.zA l))).map (Per.θD l))
       ((Y.map (Per.σA (g : GQ l))).map ((Per.θD l).comp (aDp l))) ((H.V.map (Per.σDp (g : GQ l))).map (Per.θD l))
       hθt hb hzw ?_ ?_ ?_ ?_ ?_

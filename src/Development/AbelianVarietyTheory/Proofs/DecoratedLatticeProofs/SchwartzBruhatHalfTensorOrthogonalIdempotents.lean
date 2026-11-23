@@ -41,6 +41,7 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MidChart
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FunKilled
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.NotMemSpanOfCommute
 
 @[expose] public section
 
@@ -53,14 +54,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 
 namespace GlobalTheory.FinPl.PutIn
-
-theorem isHalf_nsmul {D : D7} {m n : ℕ} {e : AE D} {x : Mx D m n} (hx : IsHalf e x) (k : ℕ) : IsHalf e (k • x) := by
-  intro i j
-  rw [Matrix.smul_apply, nsmul_eq_mul, mul_left_comm, hx i j]
-
-theorem isHalf_smul_idem {D : D7} {m n : ℕ} {b : AE D} (hbb : b * b = b) (x : Mx D m n) : IsHalf b (b • x) := by
-  intro i j
-  rw [Matrix.smul_apply, smul_eq_mul, ← mul_assoc, hbb]
 
 theorem isHalf_sub_smul {D : D7} {m n : ℕ} {a b : AE D} (hab : a * b = 0) {u : Mx D m n} (hu : IsHalf (a + b) u) :
     IsHalf a (u - b • u) := by
@@ -98,8 +91,8 @@ theorem isSBHalf_tens : ∀ (D : D7) (S T : HSp D) (a b : AE D) (Λ : AddSubgrou
       simp only [Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, nsmul_eq_mul]
       push_cast; ring
     rw [tens_apply, tens_apply, e1, e2,
-      hΦi _ (Λ.nsmul_mem hu1 kΨ) (isHalf_nsmul (isHalf_sub_smul hab hhu) kΨ),
-      hΨi _ (Λ.nsmul_mem hu2 kΦ) (isHalf_nsmul (isHalf_smul_idem hbb u) kΦ)]
+      hΦi _ (Λ.nsmul_mem hu1 kΨ) (_root_.GlobalTheory.SplitScalar.isHalf_nsmul (isHalf_sub_smul hab hhu) kΨ),
+      hΨi _ (Λ.nsmul_mem hu2 kΦ) (_root_.GlobalTheory.SplitScalar.isHalf_nsmul (_root_.GlobalTheory.SplitScalar.isHalf_smul hbb u) kΦ)]
   · intro t ht
     rw [tens_apply] at ht
     have h1 := hΦb _ (left_ne_zero_of_mul ht)

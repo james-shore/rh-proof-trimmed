@@ -112,7 +112,7 @@ theorem natDegree_minpoly_eq : ∀ (F C : Type) [Field F] [Ring C] [Algebra F C]
     have h2 := congrArg e h
     rw [map_mul, map_mul, e.apply_symm_apply, e.apply_symm_apply] at h2
     exact h2
-  have hdegN := GlobalTheory.T.natDegree_minpoly_eq_of_separable_commutant_comm K k N (by rw [hmN]; exact hxsep) hNcomm
+  have hdegN := _root_.GlobalTheory.RegCommutant.natDegree_minpoly_eq_of_commutant_comm K k N (by rw [hmN]; exact hxsep) hNcomm
   have hxk : (minpoly K x).natDegree = k := by rw [← hmN]; exact hdegN
   rw [← hxk]
   exact le_antisymm hge hle

@@ -102,7 +102,7 @@ theorem abelian_coker_bound : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] 
         rw [(hstar τ.1 w.e).1, hbar, this]⟩
       left_inv := fun τ => Subtype.ext (hcc τ.1)
       right_inv := fun τ => Subtype.ext (hcc τ.1) }
-  have hd := GlobalTheory.T.range_idempotent_rank_sum_eigenspaceDim p C v O hv OE g H.ρL w.bar hb w.n (t.trans s)
+  have hd := _root_.GlobalTheory.ChF.range_idempotent_equiv_sum_eigDim p C v O hv OE g H.ρL w.bar hb w.n (t.trans s)
   obtain ⟨cw, hcw⟩ : ∃ x, HasLen v O (htCoker H w.e w.bar) x :=
     lenEx C v O hv g H.Ht (H.ρL w.e) ((H.ρ w.bar).map (algebraMap ℤ_[p] O))
   refine ⟨cw, hcw, ?_⟩

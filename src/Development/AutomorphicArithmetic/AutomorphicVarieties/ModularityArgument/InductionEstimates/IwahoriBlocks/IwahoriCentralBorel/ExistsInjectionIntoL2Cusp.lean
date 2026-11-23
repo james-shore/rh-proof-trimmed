@@ -386,7 +386,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.exists_i
       ∀ U, Lev U → (∀ v, InH μ τ κ p S v → v ∈ fixF μ (levOn S U) → ∃ φ, J φ = v ∧ FixF (levOn S U) φ.1) ∧
         ∃ E : Submodule ℂ (G1 K 2 → ℂ), FiniteDimensional ℂ E ∧ ∀ φ ∈ Xs μ τ κ p S, FixF (levOn S U) φ → φ ∈ E := by
   intro K _ _ _ μ _ τ κ p hτ hp S
-  have hmem := (xMem μ τ κ p hp).1 S
+  have hmem := (_root_.UpperTheory.Reformulated.B.Gul4.xMem μ τ κ p hp).1 S
   have hll := levLaws (K := K) 2 S
   have hac : Continuous (arc1 : archCompact K 2 → G1 K 2) := hll.2.2.2.1
   have hcp : CompactSpace (archCompact K 2) := hll.2.2.2.2.1

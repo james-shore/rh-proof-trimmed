@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 
 @[expose] public section
 
@@ -59,17 +60,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 
 variable {D : D7}
 
-theorem idem_orth {v w : HeightOneSpectrum (𝓞 D.host.F)} {ε ε' : AF D.host.F}
-    (h : IsPlaceIdem D v ε) (h' : IsPlaceIdem D w ε') (hv : v ≠ w) : ε * ε' = 0 := by
-  obtain ⟨α, rfl, h1, h0⟩ := h
-  obtain ⟨α', rfl, k1, k0⟩ := h'
-  refine Prod.ext (mul_zero _) (FiniteAdeleRing.ext _ fun u => ?_)
-  change α u * α' u = 0
-  by_cases hu : u = v
-  · subst hu
-    exact (congrArg (α u * ·) (k0 u hv)).trans (mul_zero _)
-  · exact (congrArg (· * α' u) (h0 u hu)).trans (zero_mul _)
-
 theorem cut_mul_cut {R n : Type} [CommRing R] [Fintype n] [DecidableEq n] {e f : R} (h : e * f = 0) (A : Matrix n n R) :
     (e • A + (1 - e • (1 : Matrix n n R))) * (f • A + (1 - f • (1 : Matrix n n R))) =
       (e + f) • A + (1 - (e + f) • (1 : Matrix n n R)) := by
@@ -77,11 +67,6 @@ theorem cut_mul_cut {R n : Type} [CommRing R] [Fintype n] [DecidableEq n] {e f :
   simp only [add_mul, mul_add, sub_mul, mul_sub, smul_mul_assoc, mul_smul_comm, one_mul, mul_one, smul_smul, smul_sub, smul_add,
     h, h', zero_smul, add_smul]
   abel
-
-theorem mt_mul (V : HSp D) (x y : GA D V) :
-    Formalism.L2.Theta.mt V (x * y) = Formalism.L2.Theta.mt V x * Formalism.L2.Theta.mt V y := by
-  unfold Formalism.L2.Theta.mt
-  rw [map_mul, Units.val_mul]
 
 theorem mt_prod (V : HSp D) (g : GA D V) (ε : HeightOneSpectrum (𝓞 D.host.F) → AF D.host.F)
     (hε : ∀ v, IsPlaceIdem D v (ε v)) (L : List (HeightOneSpectrum (𝓞 D.host.F))) (hL : L.Nodup) :
@@ -98,8 +83,8 @@ theorem mt_prod (V : HSp D) (g : GA D V) (ε : HeightOneSpectrum (𝓞 D.host.F)
       rw [← List.sum_map_mul_left]
       refine List.sum_eq_zero fun x hx => ?_
       obtain ⟨w, hw, rfl⟩ := List.mem_map.1 hx
-      exact idem_orth (hε v) (hε w) fun e => hL.1 (e ▸ hw)
-    rw [List.map_cons, List.prod_cons, mt_mul, GlobalTheory.VacStab.mt_locPart V (hε v), ih hL.2, List.map_cons, List.sum_cons,
+      exact _root_.GlobalTheory.PlaceDatum.placeIdem_mul (hε v) (hε w) fun e => hL.1 (e ▸ hw)
+    rw [List.map_cons, List.prod_cons, _root_.GlobalTheory.BesselCompare.mt_mul, GlobalTheory.VacStab.mt_locPart V (hε v), ih hL.2, List.map_cons, List.sum_cons,
       RingHom.map_add]
     exact cut_mul_cut (by rw [← RingHom.map_mul, h0, RingHom.map_zero]) _
 

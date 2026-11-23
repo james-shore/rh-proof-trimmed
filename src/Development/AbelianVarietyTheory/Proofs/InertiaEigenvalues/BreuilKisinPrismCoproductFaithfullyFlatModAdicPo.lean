@@ -53,7 +53,7 @@ namespace GlobalTheory.BSP.EnvFF
 theorem adI_map {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] {B B' : Obj l R} (f : Hom B B') (m : ℕ) :
     (adI B ^ m).map f.f = adI B' ^ m := by
   rw [Ideal.map_pow, adI, adI, Ideal.map_sup, Ideal.map_span, Set.image_singleton, map_natCast,
-    GlobalTheory.T.prism_hom_map_ideal_eq l R B B' f]
+    _root_.GlobalTheory.Prism.Rigid.map_I_eq l R B B' f]
 
 theorem ff_of_basis {R S : Type} [CommRing R] [CommRing S] (g : R →+* S) (ι : Type) [Nonempty ι]
     (h : letI := g.toAlgebra; Nonempty (Module.Basis ι R S)) : g.FaithfullyFlat := by
@@ -77,7 +77,7 @@ theorem GlobalTheory.BSP.envFF : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk
     RingHom.FaithfullyFlat.of_bijective (Ideal.quotEquivOfEq hJ).bijective
   have h1 : (Ideal.quotientMap ((adI B ^ m).map En.inl.f) En.inl.f Ideal.le_comap_map).FaithfullyFlat := by
     haveI : Nonempty (Digits l) := ⟨⟨0, fun _ => (Fact.out : l.Prime).pos⟩⟩
-    obtain ⟨b, -⟩ := GlobalTheory.T.adicTopologicalBasis_basis_mod_pow B.A En.Q.A En.inl.f (adI B) (Digits l) En.tb m
+    obtain ⟨b, -⟩ := _root_.GlobalTheory.BSP.TopBasis.basis_mod_pow B.A En.Q.A En.inl.f (adI B) (Digits l) En.tb m
     exact ff_of_basis _ (Digits l) ⟨b⟩
   rw [e]
   exact RingHom.FaithfullyFlat.stableUnderComposition _ _ h1 h2

@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem witt_unramified : PI.WittUnram :=
-  PI.WittUnramWork.wittUnram_main

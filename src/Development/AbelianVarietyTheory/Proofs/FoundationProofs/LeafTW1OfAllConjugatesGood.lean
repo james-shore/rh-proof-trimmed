@@ -175,13 +175,11 @@ theorem relLength_read (h : Induces emb v) (rd : V →ₛₗ[emb] W) {ι : Type}
 
 variable [StarRing K]
 
-theorem plc_eq_prW (v : HeightOneSpectrum (𝓞 K)) : plc v = prW v := eq_prW_of_mem v (plc_prime v) (plc_mem v)
-
 theorem addVal_plc (v : HeightOneSpectrum (𝓞 K)) :
     (((IsDiscreteValuationRing.addVal (Ow v) ((plc v : ℕ) : Ow v)).toNat : ℕ) : ℤ) = ramw v := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible (Ow v)
   obtain ⟨u, hu⟩ := prW_eq_unit_mul_pow v hπ
-  rw [plc_eq_prW, IsDiscreteValuationRing.addVal_def _ u hπ _ hu, ENat.toNat_natCast]
+  rw [_root_.Formalism.L2.DIV.lf_plc_eq_prW, IsDiscreteValuationRing.addVal_def _ u hπ _ hu, ENat.toNat_natCast]
   exact Formalism.L2.DIV.lf_eW_eq_ramw v
 
 omit [StarRing K] in
@@ -388,7 +386,7 @@ theorem induces_embW (c : NChoice D) (w : D.what₂.places.Pl) : Induces (c.embW
 
 theorem l_eq_plc (c : NChoice D) (v : HeightOneSpectrum (𝓞 D.what₂.LL)) :
     D.ntw.l (c.twI (D.plEq.symm v)) = Formalism.EigenvalueLevelCeiling.plc v := by
-  rw [c.twI_l, ← Formalism.L2.Col.prW_D, Equiv.apply_symm_apply, plc_eq_prW]
+  rw [c.twI_l, ← Formalism.L2.Col.prW_D, Equiv.apply_symm_apply, _root_.Formalism.L2.DIV.lf_plc_eq_prW]
 
 def chosenChar (c : NChoice D) (w : D.what₂.places.Pl) : G D.host.E D.nd.Om →* (D.ntw.Ok (c.twI w) (c.k' w))ˣ :=
   (c.psi' w).comp (D.ntw.art (c.twI w) (c.Q w))

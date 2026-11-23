@@ -115,7 +115,7 @@ theorem dat_saturated_of_untw : GlobalTheory.Published.GreenCuspidal → DatExS 
   refine ⟨Z, pin.hX, z', hG2, hGT, hGA, hKap, hFine', ?_, ?_, ?_⟩
   · intro v' hv'
     rcases (Dat.mem_auxiliaryPlaces_iff_three_parts z' _ v').1 hv' with h | h
-    · obtain ⟨v, hB⟩ := Untw.exists_below_of_range (w₀.D Z₀) (w.D Z) hE.2.2.2 v'
+    · obtain ⟨v, hB⟩ := _root_.GlobalTheory.PrimeBelow.exists_below (w₀.D Z₀) (w.D Z) hE.2.2.2 v'
       have hv : v ∈ z₀.W1 (fun _ _ => 0) := (hExt.W1 v v' hB).2 ((Dat.mem_auxiliaryPlaces_iff_three_parts z' _ v').2 (Or.inl h))
       have hr : B.places.resChar v' = B₀.places.resChar v := Untw.resChar_of_below hB
       have hm : B₀.places.resChar v ∈ (T.pl : Set ℕ) := hW₀ v hv
@@ -127,7 +127,7 @@ theorem dat_saturated_of_untw : GlobalTheory.Published.GreenCuspidal → DatExS 
     exact e.trans rfl
   · intro v₁ v₂ hov hv₁
     rcases (Dat.mem_auxiliaryPlaces_iff_three_parts z' _ v₁).1 hv₁ with h | h
-    · obtain ⟨v, hB⟩ := Untw.exists_below_of_range (w₀.D Z₀) (w.D Z) hE.2.2.2 v₁
+    · obtain ⟨v, hB⟩ := _root_.GlobalTheory.PrimeBelow.exists_below (w₀.D Z₀) (w.D Z) hE.2.2.2 v₁
       have hv : v ∈ z₀.W1 (fun _ _ => 0) := (hExt.W1 v v₁ hB).2 ((Dat.mem_auxiliaryPlaces_iff_three_parts z' _ v₁).2 (Or.inl h))
       have hB₂ := GlobalTheory.T.placesOverFixedField_same_coefficient_place (w₀.D Z₀) (w.D Z) hsub v v₁ v₂ hov hB
       have hv₂ := (hExt.W1 v v₂ hB₂).1 hv

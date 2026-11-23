@@ -105,7 +105,7 @@ theorem adjM_coord (S B : HSp D) (y : Matrix (Fin S.rank) (Fin B.rank) (AE D)) :
     adjM S B (HMul.hMul yᵀ (incM S.gram) : Matrix (Fin B.rank) (Fin S.rank) (AE D)) = GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.mulG B (y.map (cA D)) := by
   have e0 : ((incM S.gram).map (cA D))ᵀ = incM S.gram := by
     ext a b
-    exact congrArg (incA D) (GlobalTheory.TripleSpace.star_gram S b a)
+    exact congrArg (incA D) (_root_.GlobalTheory.DualPairCheck.gram_star S b a)
   have e1 : (S.gram⁻¹).map (incA D) * incM S.gram = 1 := by
     show (S.gram⁻¹).map (incA D) * S.gram.map (incA D) = 1
     rw [← Matrix.map_mul, Matrix.nonsing_inv_mul _ (Ne.isUnit (GlobalTheory.RouteCoords.gram_det_ne S)),

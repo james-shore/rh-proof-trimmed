@@ -50,22 +50,6 @@ noncomputable section
 
 namespace Formalism.MainNotions.flipTwoThree
 
-section PA
-open Formalism.BasicNotions NumberField Finset
-
-section Use
-
-open Formalism.HermitianLattices.TraceIntegrality Formalism.LogVandermondeBounds.flipTwoThree
-
-end Use
-
-end PA
-
-section PB
-open Formalism.BasicNotions NumberField Finset
-
-end PB
-
 section PC
 open Formalism.BasicNotions NumberField Finset
 
@@ -144,26 +128,6 @@ theorem b_Tu_pos (D : D7) (u : D.what₂.Word) : (0 : ℝ) < (Tu D u : ℝ) := b
 
 end PC
 
-section PD
-open Formalism.BasicNotions NumberField Finset
-
-end PD
-
-section PE
-open Formalism.BasicNotions NumberField Finset
-
-end PE
-
-section PF
-open Formalism.BasicNotions NumberField Finset
-
-end PF
-
-section PG
-open Formalism.BasicNotions NumberField Finset
-
-end PG
-
 section PH
 open Formalism.BasicNotions NumberField Finset
 
@@ -186,11 +150,6 @@ theorem b_finrank_host (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := by
   ring
 
 end PI
-
-section Z2
-open Formalism.BasicNotions
-
-end Z2
 
 section Z56a
 open Formalism.BasicNotions NumberField
@@ -250,12 +209,6 @@ theorem lamCol_stepB (D : D7) (u : D.what₂.Word) (τ : D.what₂.Tau) (i : ℕ
   push_cast
   linarith
 
-theorem mem_tops (D : D7) (τ : D.what₂.Tau) : τ ∈ tops D ↔ IsTop D τ := by
-  exact b_mem_tops D τ
-
-theorem tops_card (D : D7) : (tops D).card = D.host.TT.card := by
-  exact b_card_tops D
-
 theorem col_setup (D : D7) (u : D.what₂.Word) (Cn x b L b' Sc eta K : ℝ) (hK1 : 1 ≤ K) (hKC : Cn ≤ K)
     (hN : Nums D (Tu D u) (D.host.g 0) (D.host.g 1) Cn x b L b' Sc eta) (hW : Wts D u Cn x b b' Sc eta) :
     ∃ (κ : ℕ) (lam : D.what₂.Tau → Fin (κ + 1 + 1) → ℤ),
@@ -309,7 +262,7 @@ theorem col_setup (D : D7) (u : D.what₂.Word) (Cn x b L b' Sc eta K : ℝ) (hK
   have htop : ∀ τ ∈ tops D, ((wt (lam τ) : ℝ) ≤ aT D u τ + (((κ + 1 : ℕ) : ℝ) + 1) * (K * Sc)) ∧
       ((wt (plus (lam τ)) : ℝ) ≤ aT D u τ + (((κ + 1 : ℕ) : ℝ) + 1) * (bT D u τ + K * Sc)) := by
     intro τ hτ
-    obtain ⟨-, -, hb1, -, hmid⟩ := (hW τ).2.1 ((mem_tops D τ).1 hτ)
+    obtain ⟨-, -, hb1, -, hmid⟩ := (hW τ).2.1 ((_root_.Formalism.MainNotions.flipTwoThree.b_mem_tops D τ).1 hτ)
     rw [hlk τ] at hb1
     have hbt : (0 : ℤ) ≤ -lam τ (Fin.last (κ + 1)) := by
       have : (0 : ℝ) ≤ ((-lam τ (Fin.last (κ + 1)) : ℤ) : ℝ) := by push_cast; linarith
@@ -340,14 +293,14 @@ theorem col_setup (D : D7) (u : D.what₂.Word) (Cn x b L b' Sc eta K : ℝ) (hK
     · nlinarith [mul_le_mul_of_nonneg_left hfl hκ0]
   have hnt : ∀ τ, τ ∉ tops D → ∀ i : Fin (κ + 1 + 1), 0 ≤ (lam τ i : ℝ) ∧ (lam τ i : ℝ) ≤ Cn * Sc := by
     intro τ hτ i
-    have := (hW τ).2.2.1 (fun h => hτ ((mem_tops D τ).2 h)) i (by have := i.2; omega)
+    have := (hW τ).2.2.1 (fun h => hτ ((_root_.Formalism.MainNotions.flipTwoThree.b_mem_tops D τ).2 h)) i (by have := i.2; omega)
     rwa [hl τ i] at this
   have hCS : Cn * Sc ≤ K * Sc := mul_le_mul_of_nonneg_right hKC (by linarith)
   have hKS0 : 0 ≤ K * Sc := by positivity
   refine ⟨κ, lam, hκ, hanti, hwt, hwtp, hp1, hlk, ?_, fun τ hτ => (htop τ hτ).1, fun τ hτ => (htop τ hτ).2,
     ?_, ?_, ?_⟩
   · intro τ hτ
-    obtain ⟨t1, t2, t3, t4, -⟩ := (hW τ).2.1 ((mem_tops D τ).1 hτ)
+    obtain ⟨t1, t2, t3, t4, -⟩ := (hW τ).2.1 ((_root_.Formalism.MainNotions.flipTwoThree.b_mem_tops D τ).1 hτ)
     exact ⟨t1, t2, t3, t4.le⟩
   · intro τ hτ
     have h1 : (wt (plus (lam τ)) : ℝ) ≤ ∑ _i : Fin (κ + 1 + 1), K * Sc := by
@@ -481,7 +434,7 @@ theorem ramifiedLattice_of_chain_estimates (Cn : ℝ) : ∃ C : ℝ, ∀ (D : D7
     (fun τ => by ring) (fun τ => le_rfl)
     (fun τ => by have : 0 ≤ δ / (Fintype.card D.what₂.Tau : ℝ) := by positivity
                  linarith)
-  rw [← hkR, hf, tops_card] at key
+  rw [← hkR, hf, _root_.Formalism.MainNotions.flipTwoThree.b_card_tops] at key
   refine le_trans ?_ key
   have hlk0 : 0 ≤ Real.log (D.R.k : ℝ) := Real.log_natCast_nonneg _
   have hlT0 : 0 ≤ lT := Real.log_natCast_nonneg _
@@ -589,7 +542,7 @@ theorem classMap_estimate_of_partial (Cn C5 : ℝ) : ∃ C : ℝ, ∀ (D : D7) (
       rw [hlk τ] at h1 ⊢
       rw [abs_of_nonpos (by linarith)])
     hn1 hn3 ⟨(), by rw [div_le_iff₀ hK'0]; linarith⟩ (fun _ => le_rfl)
-  rw [← hkR, hf, tops_card, div_le_iff₀ hK'0] at key
+  rw [← hkR, hf, _root_.Formalism.MainNotions.flipTwoThree.b_card_tops, div_le_iff₀ hK'0] at key
   have ar := arith6 C K (D.host.TT.card : ℝ) (x * b) (Real.log ((D.R.k : ℝ) * D.host.v)) D.R.f D.R.k b' Sc lT L hK1
     (by positivity) (by positivity) hlkv (by positivity) (by positivity) (by linarith) (by linarith) hlT0 (by linarith)
   have := le_trans key (mul_le_mul_of_nonneg_right ar hK'0.le)
@@ -616,68 +569,6 @@ theorem familySlopeMax_of_open {eps : ℝ} (Fm : Formalism.MainNotions.FamP eps)
 
 end Z56
 
-section Ms
-open Formalism.BasicNotions NumberField
-
-end Ms
-
-section Z1a
-open Formalism.BasicNotions NumberField
-
-end Z1a
-
-section Z1b
-open Formalism.BasicNotions NumberField
-
-end Z1b
-
-section continuousCocycles
-open Formalism.BasicNotions NumberField
-
-end continuousCocycles
-
-section JI
-open Formalism.BasicNotions NumberField
-
-end JI
-
-section JG
-open MeasureTheory
-
-end JG
-
-section GrowthPolynomialOperator
-open MeasureTheory Complex
-
-end GrowthPolynomialOperator
-
-section HilbertSchmidtNorm
-open MeasureTheory Complex
-
-variable {ι : Type} [Fintype ι]
-
-end HilbertSchmidtNorm
-
-section PB3
-open MeasureTheory Complex
-
-end PB3
-
-section Z1d
-open Formalism.BasicNotions
-
-end Z1d
-
-section UF
-open Formalism.BasicNotions NumberField MeasureTheory
-
-end UF
-
-section MV1
-open Formalism.BasicNotions NumberField MeasureTheory Complex
-
-end MV1
-
 section MV2
 open Formalism.BasicNotions NumberField MeasureTheory Complex
 
@@ -685,15 +576,5 @@ def rho (D : D7) (i : ℕ) (s : D.what₂.LL →+* ℂ) (w : Gx D i → ℂ) : �
   2 ^ Fintype.card (Gx D i) * Real.exp (-(2 * Real.pi) * Hq D i s w)
 
 end MV2
-
-section crystallineCocycles
-open Formalism.BasicNotions
-
-end crystallineCocycles
-
-section PJ
-open Formalism.BasicNotions NumberField
-
-end PJ
 
 end Formalism.MainNotions.flipTwoThree

@@ -60,7 +60,7 @@ theorem exists_quotient_finite :
   have hflat : Flat H.hom := inferInstance
   obtain ⟨B', inst, q, -, hB, hq, hqfin, -, hqsurj, -, hsq⟩ :=
     AbQuotientAny.exists_quotient_abelianScheme K A.X H i A.ab hi hmono hfin hflat
-  obtain ⟨g, hg⟩ := GlobalTheory.T.abelianScheme_field_smoothOfRelativeDimension_exists K B' hB
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.AV.exists_smoothOfRelativeDimension_of_isAbelianScheme K B' hB
   let B : AbVar K := ⟨B', hB, g, hg⟩
   refine ⟨B, Hom.mk (B := B) q, ⟨hqfin, hqsurj⟩, fun T x => ⟨fun hx => ?_, ?_⟩⟩
   · have e : x ≫ q = (1 : T ⟶ A.X) ≫ q := by

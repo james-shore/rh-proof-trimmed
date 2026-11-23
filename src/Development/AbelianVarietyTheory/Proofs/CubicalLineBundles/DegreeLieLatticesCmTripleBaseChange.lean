@@ -93,7 +93,7 @@ theorem isCoord_over (hξ : IsGrpPullback P'.A P.A (spMap (RingOfIntegers.mapRin
   obtain ⟨x', hx', -⟩ := existsUnique_isVecOver fib.2.1.1 u'
   have h₁ : IsVecOver (j.comp (algebraMap (𝓞 K) K)) (ψ ≫ F.φ) u x' := by
     rw [w, ← algebraMap_comp_mapRingHom]
-    exact vec_comp hu hx'
+    exact _root_.GlobalTheory.CM.EllComp.isVecOver_comp hu hx'
   have h₂ : IsVecOver j ψ x x' := (PolFibre.vec_iff F.fib.2.1.1 hψ.1.w hx).2 h₁
   have h₃ : IsLieComb (fun i => j (c i)) v' x' := Chart.comb_baseChange j hψ hc hv h₂
   exact ⟨hu.isTangent hξ ht, x', hx', h₃⟩
@@ -237,7 +237,7 @@ theorem form_single_eq (hU : ThetaUnifAV) (hψ : IsPolFibre j F.P₀ (withDim Q 
   obtain ⟨A, κ, x, u, Hm, χ, W, h₁, h₂, h₃, h₄⟩ := H (s.comp j)
   obtain ⟨A', κ', x', u', Hm', χ', W', h₁', h₂', h₃', h₄'⟩ := H' s
   rw [h₄, h₄', LieMetric.hermForm_eq hU h₁ (PolFibre.comp hψ h₁') h₂ h₂' F.basis.1 h₃
-    fun i => ⟨vec_comp (hv i) (h₃' i).1, (h₃' i).2⟩]
+    fun i => ⟨_root_.GlobalTheory.CM.EllComp.isVecOver_comp (hv i) (h₃' i).1, (h₃' i).2⟩]
 
 theorem deg_eq_of_isPolFibre (hU : ThetaUnifAV) (hL : Out.Laws) (hξ : IsPolFibre (RingOfIntegers.mapRingHom j) P P' ξ)
     (F : GenFib P) (F' : GenFib P') (h : HermFam K (Fin F.P₀.g → K)) (h' : HermFam K' (Fin F'.P₀.g → K'))

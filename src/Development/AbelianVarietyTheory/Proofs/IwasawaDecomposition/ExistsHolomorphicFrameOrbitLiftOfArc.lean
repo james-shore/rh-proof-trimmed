@@ -217,7 +217,7 @@ theorem exists_adp_global (y : ℂ → FrPt Xo c (CAt σ)) (T : ℝ) (hper : ∀
     GlobalTheory.T.exists_const_substitution_of_holomorphic_families' _ (Lev (F.Di k) l) g (fun δ a => δ.1 a) U (fun w a => s w a) (fun w a => s' w a) h1 h2.isPreconnected h3
       (fun a z hz => ((h4 z hz).2 a).differentiableWithinAt) (fun a z hz => ((h5 z hz).2 a).differentiableWithinAt)
       fun w hw => (h4 w hw).1.exists_lev (h5 w hw).1
-  obtain ⟨P, hP⟩ := GlobalTheory.T.germSections_halfPlane_global_section _ (fun w (s : ℂ → ((F.Di k).La →+ (Fin g → ℂ))) =>
+  obtain ⟨P, hP⟩ := _root_.GlobalTheory.germSections_halfPlane_global _ (fun w (s : ℂ → ((F.Di k).La →+ (Fin g → ℂ))) =>
       Adp F (y w) k (s w) ∧ ∀ a, DifferentiableAt ℂ (fun b => s b a) w) T
     (fun w s s' h h' => ⟨h.self_of_nhds ▸ h'.1, fun a =>
       (h'.2 a).congr_of_eventuallyEq (h.mono fun z hz => by simp only [hz])⟩) hidx

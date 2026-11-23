@@ -79,6 +79,4 @@ theorem decEx2_of (h1 : DecLe) (h2 : FlipDS) (h3 : FlipDec) : DecEx2 := by
 
 theorem decomposition_existence_holds : DecEx2 := decEx2_of decomposition_le_holds flip_discrete_series_holds flip_decomposition_holds
 
-theorem walk : StepL → StepM → Base → Occ := occurrence_of_walk
-
 end PositivityTheory.RgHe.Dec

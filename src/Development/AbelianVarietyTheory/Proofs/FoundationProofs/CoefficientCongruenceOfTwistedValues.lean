@@ -48,18 +48,9 @@ namespace GlobalTheory.KZ.CoefVal
 
 variable {l : ℕ} [Fact l.Prime]
 
-private theorem norm_le_one_of_int' (x : PadicAlgCl l) (hx : IsIntegral ℤ_[l] x) : ‖x‖ ≤ 1 := by
-  first
-  | exact @_root_.GlobalTheory.IntegralNormAlgebraMap.norm_le_one_of_isIntegral
-  | exact _root_.GlobalTheory.IntegralNormAlgebraMap.norm_le_one_of_isIntegral
-  | (apply _root_.GlobalTheory.IntegralNormAlgebraMap.norm_le_one_of_isIntegral <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralNormAlgebraMap.norm_le_one_of_isIntegral <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralNormAlgebraMap.norm_le_one_of_isIntegral <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralNormAlgebraMap.norm_le_one_of_isIntegral ..)
-
 theorem norm_le_one_of_mem (c : Coef l) {x : PadicAlgCl l} (hx : x ∈ c.O) : ‖x‖ ≤ 1 := by
   haveI := c.fin
-  exact norm_le_one_of_int' x ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) (⟨x, hx⟩ : c.O)).map c.O.val)
+  exact _root_.GlobalTheory.IntegralNormAlgebraMap.norm_le_one_of_isIntegral x ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) (⟨x, hx⟩ : c.O)).map c.O.val)
 
 theorem norm_unit (c : Coef l) (u : c.Oˣ) : ‖((u : c.O) : PadicAlgCl l)‖ = 1 := by
   have h1 : ‖((u : c.O) : PadicAlgCl l)‖ * ‖(((u⁻¹ : c.Oˣ) : c.O) : PadicAlgCl l)‖ = 1 := by
@@ -70,9 +61,6 @@ theorem norm_unit (c : Coef l) (u : c.Oˣ) : ‖((u : c.O) : PadicAlgCl l)‖ = 
   have h5 := norm_nonneg (((u⁻¹ : c.Oˣ) : c.O) : PadicAlgCl l)
   refine le_antisymm h2 ?_
   nlinarith
-
-theorem norm_l : ‖((l : ℕ) : PadicAlgCl l)‖ = (l : ℝ)⁻¹ := by
-  rw [← map_natCast (algebraMap ℚ_[l] (PadicAlgCl l)), norm_algebraMap', Padic.norm_p]
 
 theorem exists_unif (c : Coef l) : ∃ ϖ : PadicAlgCl l, ∃ s : ℕ, 0 < s ∧ ‖((l : ℕ) : PadicAlgCl l)‖ = ‖ϖ‖ ^ s ∧
     ∀ x ∈ c.O, x = 0 ∨ ∃ j : ℕ, ‖x‖ = ‖ϖ‖ ^ j := by
@@ -98,7 +86,7 @@ theorem exists_unif (c : Coef l) : ∃ ϖ : PadicAlgCl l, ∃ s : ℕ, 0 < s ∧
   refine ⟨ϖ, n, ?_, hnorm, ?_⟩
   · rcases Nat.eq_zero_or_pos n with h | h
     · exfalso
-      rw [h, pow_zero, norm_l] at hnorm
+      rw [h, pow_zero, _root_.GlobalTheory.CycTrace.norm_l] at hnorm
       linarith
     · exact h
   · intro x hx
@@ -153,8 +141,8 @@ theorem coeff_cg_of_values : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) (F : Powe
   set q := ‖ϖ‖ with hq
   have hlpos : (0 : ℝ) < (l : ℝ)⁻¹ := by have := hlP.pos; positivity
   have hlone : (l : ℝ)⁻¹ < 1 := inv_lt_one_of_one_lt₀ (by exact_mod_cast hlP.one_lt)
-  have hl0 : 0 < q ^ s := by rw [← hls, norm_l]; exact hlpos
-  have hl1 : q ^ s < 1 := by rw [← hls, norm_l]; exact hlone
+  have hl0 : 0 < q ^ s := by rw [← hls, _root_.GlobalTheory.CycTrace.norm_l]; exact hlpos
+  have hl1 : q ^ s < 1 := by rw [← hls, _root_.GlobalTheory.CycTrace.norm_l]; exact hlone
   have hq0 : 0 < q := by
     by_contra hc
     push_neg at hc

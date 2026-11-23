@@ -117,7 +117,7 @@ theorem sz_sup : ∀ (F F' : IntermediateField ℚ ℂ) (a b a' b' : ℝ), Sz F 
     linarith
   · letI : Algebra F ↥(F ⊔ F') := (IntermediateField.inclusion le_sup_left).toRingHom.toAlgebra
     letI : Algebra F' ↥(F ⊔ F') := (IntermediateField.inclusion le_sup_right).toRingHom.toAlgebra
-    have h := log_discr_div_le F F' ↥(F ⊔ F') (GlobalTheory.T.map_different_le_different_sup_intermediateField F F')
+    have h := log_discr_div_le F F' ↥(F ⊔ F') (_root_.GlobalTheory.DiffBaseChange.map_different_le_sup F F')
     exact h.trans (add_le_add hb hb')
 
 end GlobalTheory.FieldSize

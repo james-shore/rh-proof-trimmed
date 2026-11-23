@@ -55,7 +55,7 @@ theorem twisted_lift_from_base_field : _root_.GlobalTheory.FunPr.ThetaLocalInput
     ThetaConv ch.W ch.M ch.ρ (ch.Phi a) (ch.form u) ∧
       IsAutFun (ch.G.V (.grid D.R.m 0)) (thetaChi ch.W ch.M ch.ρ (ch.Phi a) (ch.form u)) := by
   intro hP hL D large₂ Γ _ _ Pl0 T A Ks _ _ _ R F hS ch hb CF hs a u
-  obtain ⟨G', hG', hM⟩ := _root_.GlobalTheory.T.twist_row_lift_exists hP large₂ hS ch hb CF hs
+  obtain ⟨G', hG', hM⟩ := _root_.GlobalTheory.RowLift.exists_row_lift_matching hP large₂ hS ch hb CF hs
   have hC : GlobalTheory.IndefiniteRowSideFullHecke.CuspAlongSmoothLifts.CuspAlong G' :=
     hL D (GlobalTheory.RowSizes.sizes_of_sizeRows large₂ hS.size) Γ Pl0 T A Ks R G' (rowBase_of_core hS.core) hG'
   let C : ∀ i, Set (Fn ch.G (.grid i 0)) := fun i =>

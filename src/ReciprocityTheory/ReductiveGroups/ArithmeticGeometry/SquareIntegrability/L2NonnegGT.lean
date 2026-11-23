@@ -83,7 +83,7 @@ theorem zeroMode [IsCMField E] {X : PT E} {DF : ℕ} {P : Par X DF} {I : Submodu
         (Col.ob (IR I)).toBasis.det a ≠ 0 ∧
         |(Col.ob (IR I)).toBasis.det a| * (2 : ℝ) ^ (-(Module.finrank ℝ (IR I) : ℝ) / 2) *
           (Col.YB hI hP 1).l2 1 β ≤ X.l2 1 s :=
-  ⟨ZM.zmB hI s, zm_mem hI hP hs, fun w T M hT hM => zm_pt hI hP hs w T M hT hM, ZM.Ib hI,
+  ⟨ZM.zmB hI s, _root_.ReciprocityTheory.ChartRestriction.G.I2.zeroMode_mem_sections hI hP hs, fun w T M hT hM => _root_.ReciprocityTheory.ChartRestriction.G.I2.zeroMode_pointwise_bound hI hP hs w T M hT hM, ZM.Ib hI,
     ZM.Ib_mem hI, ZM.Ib_det_ne hI, zm_norm hI hP hs⟩
 
 theorem tof_yb_sup [IsCMField E] {X : PT E} {DF : ℕ} {P : Par X DF} {I : Submodule ℤ (Vsp X.dim)}

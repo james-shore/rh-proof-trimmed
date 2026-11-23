@@ -67,7 +67,7 @@ theorem topCoeff_real_smul {n : ℕ} (r : ℝ) (P : MvPolynomial (Fin n × Fin n
 theorem topCoeff_chern_eq_sum_rep : ∀ (ι : Type) [Fintype ι] (m : ι → ℕ) (n : ℕ) (R : MvPolynomial (ι × ℕ) ℝ), ∃ (J : Type) (_ : Fintype J) (ρ : J → PolyRep m) (a : J → ℝ), ∀ A : Mat m (MvPolynomial (Fin n × Fin n) ℂ), (∀ τ i j, (A τ i j).IsHomogeneous 1) → topCoeff (aeval (fun x : ι × ℕ => (Matrix.charpolyRev (-A x.1)).coeff x.2) R) = ∑ j, (a j : ℂ) * topCoeff ((Matrix.charpolyRev (-(ρ j).lie A)).coeff n) := by
   intro ι _ m n R
   classical
-  have hmem := GlobalTheory.T.aeval_weightedHomogeneous_chern_mem_chernCoefficientSpan m n (MvPolynomial (Fin n × Fin n) ℂ)
+  have hmem := _root_.GlobalTheory.GoodMetric.ChernSpan.aeval_chern_mem_reach m n (MvPolynomial (Fin n × Fin n) ℂ)
     (weightedHomogeneousComponent (Prod.snd : ι × ℕ → ℕ) n R)
     (weightedHomogeneousComponent_isWeightedHomogeneous _ _)
   obtain ⟨k, f, g, hfg⟩ := Submodule.mem_span_set'.1 hmem

@@ -108,7 +108,7 @@ theorem lsd_pos : ∀ (D : D7) (S : Finset (HeightOneSpectrum (𝓞 D.host.F))) 
       refine isPosReal_eulerFac ?_ (star_npow _ _) (hlt w hw)
       have hs' : star (val μ w)⁻¹ = (val μ w)⁻¹ := by
         rw [star_inv, star_eq_inv (norm_val μ w), inv_inv, eq_inv_iff_mul_eq_one, ← sq,
-          GlobalTheory.T.sq_value_eq_one_at_inert_place_of_restrictsToQuadratic _ _ _ hc μ 0 hb' _ w hi (hun w hw)]
+          _root_.GlobalTheory.LFun.val_sq_eq_one_of_isInertAt _ _ _ hc μ 0 hb' _ w hi (hun w hw)]
       have hBw := (hst w (hnot w hw)).2 (by rw [hw]; exact hv)
       conv_rhs => rw [twist, ← hBw]
       simp only [twist, Pi.inv_apply, hs', Multiset.map_map, Function.comp_def, star_mul']

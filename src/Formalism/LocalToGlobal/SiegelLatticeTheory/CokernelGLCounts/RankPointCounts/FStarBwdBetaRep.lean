@@ -68,7 +68,7 @@ theorem repG_holds : RepG u u' F0 what₂ := by
   obtain ⟨⟨hPD, hmk⟩, -⟩ := hex.choose_spec
   refine ⟨⟨hex.choose.2.1, hPD⟩, hrep.symm, hmk, ?_⟩
   have hrow := hC.2.1.1 γ.lam γ.mem
-  have hEq := Formalism.L2.SG.Closed.TermEqIff_holds D u u' F0 γ.lam hrow
+  have hEq := _root_.term_eq_iff_relation D u u' F0 γ.lam hrow
   have hrel := (hEq ⟨hex.choose.2.1, hPD⟩ (Quot.out γ.cls)).1 (hmk.trans (Quot.out_eq γ.cls).symm)
   have e := Formalism.L2.SG.Pf.g_value_function _ _ _ _ _ hrel
   exact fun h0 => hG (e.symm.trans h0)

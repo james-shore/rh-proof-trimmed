@@ -73,8 +73,6 @@ theorem im_quad (W : Matrix (Fin n) (Fin n) ℂ) (y : Fin n → ℂ) :
   norm_num
   ring
 
-theorem coercive_of_pos {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
-    (Q : V →L[ℝ] V →L[ℝ] ℂ) (h : ∀ x, x ≠ 0 → 0 < (Q x x).re) : ∃ κ, 0 < κ ∧ ∀ x, κ * ‖x‖ ^ 2 ≤ (Q x x).re :=
-  _root_.UpperTheory.Reformulated.B.P6.r24a.PositivityTheory.Rg.Sw.Glob.GCSchH.coercive_of_pos Q h
+alias coercive_of_pos := _root_.UpperTheory.Reformulated.B.P6.r24a.PositivityTheory.Rg.Sw.Glob.GCSchH.coercive_of_pos
 
 end PositivityTheory.Rg.Sw.Glob.GCSchH

@@ -83,11 +83,6 @@ theorem op_constFn_mul {vv : Fin n → TanM (𝟙 (Sp R)) G} {dd : Fin n → Fld
 
 variable {X Y Z : Scheme.{0}}
 
-theorem gs_rsT (r : Z ⟶ Y) (z : Z) {U V : Y.Opens} (hle : V ≤ U) (h : r z ∈ V) (a : Γ(Y, U)) :
-    gs r z V (rsT a V) = gs r z U a := by
-  rw [GlobalTheory.KS.rsT_of_le hle]
-  exact gs_res r z hle h a
-
 theorem gs_constFn_of_mem (p : Y ⟶ Sp R) (r : Z ⟶ Y) (z : Z) {V : Y.Opens} (h : r z ∈ V) (e : R) :
     gs r z V (constFn p V e) = gs (r ≫ p) z ⊤ ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom e) := by
   rw [← GlobalTheory.HeatTermLin.gs_constFn, ← resG_constFn p (le_top : V ≤ ⊤)]
@@ -109,9 +104,9 @@ theorem heat_const_mul : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre R)
       (fun _ _ _ => rfl) (fun _ => h.le i hy)
     have e := hτ _ (𝟙 _) y I hI
     rw [sval_of τ _ y I (fun _ => h.j i) (fun _ => eI ()), sval_of τu _ y I (fun _ => h.j i) (fun _ => eI ())] at e
-    refine (gs_rsT (𝟙 _) y (hle i) hy _).trans (e.trans (Eq.symm ?_))
+    refine (_root_.GlobalTheory.KS.DlogPol.gs_rsT (𝟙 _) y (hle i) hy _).trans (e.trans (Eq.symm ?_))
     exact (gs_mul (𝟙 _) y _ hy _ _).trans (congrArg₂ (· * ·) (gs_constFn_of_mem _ _ y hy c)
-      (gs_rsT (𝟙 _) y (hle i) hy _))
+      (_root_.GlobalTheory.KS.DlogPol.gs_rsT (𝟙 _) y (hle i) hy _))
   have s₂ : ∀ i, rsT (τ'.f fun _ => h.j i) (h.W i) = constFn Y.H.hom (h.W i) c * rsT (τu'.f fun _ => h.j i) (h.W i) +
       constFn Y.H.hom (h.W i) (2 * (k : R) * D c) * rsT (τu.f fun _ => h.j i) (h.W i) := by
     intro i
@@ -121,7 +116,7 @@ theorem heat_const_mul : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre R)
   have t : ∀ s : SecM Y.q.left Q.P.L k, sval s r z J =
       (trF (K := Fin 1) (fun _ => Y.q.left) (fun _ => (k : ℤ)) r z (fun _ => J (r ≫ Y.q.left)) (fun _ => h.j i)).val *
         gs r z (h.W i) (rsT (s.f fun _ => h.j i) (h.W i)) := fun s =>
-    (sec_trans s r z (hJ.mem _ r) (hle i hi)).trans (congrArg _ (gs_rsT r z (hle i) hi _).symm)
+    (sec_trans s r z (hJ.mem _ r) (hle i hi)).trans (congrArg _ (_root_.GlobalTheory.KS.DlogPol.gs_rsT r z (hle i) hi _).symm)
   rw [t τ', t τu', t τu, s₂ i, gs_add r z _ hi, gs_mul r z _ hi, gs_mul r z _ hi, gs_constFn_of_mem _ r z hi,
     gs_constFn_of_mem _ r z hi]
   ring

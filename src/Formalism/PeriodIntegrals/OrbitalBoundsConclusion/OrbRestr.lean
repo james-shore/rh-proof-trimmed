@@ -41,5 +41,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem PI.OrbRestr : ∀ (D : Formalism.BasicNotions.D7) (E : PI.OrbJet.Ent D), PI.OrbJet.OrbitRestriction E :=
-  PI.OrbJet.OrbW.orbitRestriction
+alias PI.OrbRestr := _root_.PI.OrbJet.OrbW.orbitRestriction

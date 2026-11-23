@@ -171,7 +171,7 @@ theorem eigF_value_ne_zero : ∀ (l : ℕ) [Fact l.Prime] (ι : PadicAlgCl l ≃
   obtain ⟨c₁, hE, hlat⟩ := GlobalTheory.T.eisenstein_latticeFunction_isModularFormCoeffSeq (e + 1) (N * l) 1 (fun _ => 1) (ch φ⁻¹) (fun _ => 1) φ (by omega) hNl one_pos
     hat0 (fun _ => rfl)
     (fun d hd => by
-      have hu : IsUnit (d : ZMod (N * l)) := zv_unit_of_isCoprime (by simpa using hd)
+      have hu : IsUnit (d : ZMod (N * l)) := _root_.GlobalTheory.DepletedValue.isUnit_of_isCoprime (by simpa using hd)
       refine ⟨fun y => ?_, fun x => by ring⟩
       unfold ch
       rw [map_mul, ← mul_assoc, mul_comm (φ⁻¹ _), mul_assoc, zv_inv_mul φ hu, mul_one])
@@ -200,8 +200,8 @@ theorem eigF_value_ne_zero : ∀ (l : ℕ) [Fact l.Prime] (ι : PadicAlgCl l ≃
     have hd'' : IsCoprime d (l : ℤ) := by
       have : IsCoprime d ((N : ℤ) * (l : ℤ)) := by simpa using hd
       exact this.of_mul_right_right
-    have uN := zv_unit_of_isCoprime hd'
-    have ul := zv_unit_of_isCoprime hd''
+    have uN := _root_.GlobalTheory.DepletedValue.isUnit_of_isCoprime hd'
+    have ul := _root_.GlobalTheory.DepletedValue.isUnit_of_isCoprime hd''
     have e1 := hφ d
     unfold ch at e1 ⊢
     rw [MulChar.mul_apply] at e1

@@ -56,7 +56,7 @@ theorem exists_unlinked_isL : ∀ (k : Type) [Field k] [ValuativeRel k] [Topolog
       IsL ((List.ofFn Δ : List (Segment k)) : Multiset (Segment k)) x.rep := by
   intro k _ _ _ _ _ x hg
   obtain ⟨c, Δ, y, hd, hun, hL, ⟨e⟩⟩ :=
-    GlobalTheory.genericUnlinkedGL_outright k x.1 _ x.rep x.2.rep.smooth x.2.rep.irr hg
+    _root_.GlobalTheory.RgGu.Holds.genericUnlinkedGL_holds k x.1 _ x.rep x.2.rep.smooth x.2.rep.irr hg
   refine ⟨c, Δ, hun, c, y, hd, ⟨Δ, ⟨?_, ?_⟩, hL⟩, (isCosocle_self x.2.rep.irr).of_equiv (.refl _) e⟩
   · exact Fin.univ_val_map Δ
   · intro i j hij hP

@@ -67,8 +67,8 @@ theorem finCovol_leviOne_last : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
   set G₁ := ((absE F E).comp (Matrix.GeneralLinearGroup.det : GL (Fin (r + 1)) (AF F ⊗[F] E) →* (AF F ⊗[F] E)ˣ)).ker
   set ΓA := (ratPts σ J).subgroupOf A
   set ΓG := (bc (inclR (F := F) (AF F)) : GL (Fin (r + 1)) E →* GL (Fin (r + 1)) (AF F ⊗[F] E)).range.subgroupOf G₁
-  obtain ⟨hlc, hsc, hdisc, hfinGL⟩ := GlobalTheory.T.normOneAdelicGL_locallyCompact_discrete_finiteCovolume F E σ hcm (r + 1)
-  obtain ⟨φ, hφ⟩ := GlobalTheory.T.standardParabolicLeviNormOne_lastColumn_prodEquiv F E σ n J r m X Y Z J₀ hF
+  obtain ⟨hlc, hsc, hdisc, hfinGL⟩ := _root_.GlobalTheory.GLOneVol.glOne_finvol F E σ hcm (r + 1)
+  obtain ⟨φ, hφ⟩ := _root_.GlobalTheory.SphEis.LeviLast.leviOne_last_prod F E σ n J r m X Y Z J₀ hF
   have hclA : IsClosed (A : Set (GAd σ J)) :=
     (isClosed_eq (GlobalTheory.StdPar.continuous_mat.matrix_mul continuous_const) continuous_const).inter
       (isClosed_eq (GlobalTheory.StdPar.continuous_mat.matrix_mul continuous_const) continuous_const)

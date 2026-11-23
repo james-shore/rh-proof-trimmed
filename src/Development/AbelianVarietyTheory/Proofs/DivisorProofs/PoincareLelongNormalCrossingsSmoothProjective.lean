@@ -114,7 +114,7 @@ theorem poincareLelong_snc : ∀ (F : Type) [Field F] (X : Scheme.{0}) [IsIntegr
     · exact SameForm.refl _ _
   have e₃ : Mix.int (Fin.cons M L : Fin (e + 1) → MLine p σ) (fun y => u y / 2) =
       mInt A (Fin.cons M.φ.locPot fun i => (L i).φ.locPot) fun y => u y / 2 := by
-    have h := GlobalTheory.T.mixedChernIntegral_eq_mongeAmpereIntegral_compact F X p σ _ A hA (Fin.cons M L : Fin (e + 1) → MLine p σ) _ hvc.measurable
+    have h := _root_.GlobalTheory.Mix.int_eq_mInt F X p σ _ A hA (Fin.cons M L : Fin (e + 1) → MLine p σ) _ hvc.measurable
     rw [h.2 (h.1.2 (mIntegrableCont A _ (fun i => pot _) _ hvc))]
     congr 1
     exact funext fun i => Fin.cases rfl (fun _ => rfl) i

@@ -52,13 +52,10 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights
 
-theorem SphereMeanLinear.full : SphereMeanLinear.Statement := sphereMeanLinear
+alias SphereMeanLinear.full := _root_.GroundTheory.Heights₂.Heights.sphereMeanLinear
 
 theorem ChowHeightMul.full : ChowHeightMul.Statement := chowHeightMul_of_mahlerMul mahlerMul
 
-theorem ChowHeightRecursion.of_leaves (hV : ChowFormSectionVertical.Statement)
-    (hA : MahlerSection.Statement) (hB : ChowFormBaseChange.Statement)
-    (hAv : BaseChangeAvoid.Statement) : ChowHeightRecursion.Statement :=
-  ChowHeightRecursion.proof hV hA hB hAv
+alias ChowHeightRecursion.of_leaves := _root_.GroundTheory.Heights₂.Heights.ChowHeightRecursion.proof
 
 end GroundTheory.Heights₂.Heights

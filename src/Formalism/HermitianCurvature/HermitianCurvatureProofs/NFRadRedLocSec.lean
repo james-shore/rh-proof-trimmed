@@ -649,7 +649,4 @@ end Formalism.FourierDecayAlt.P.NFRadRedLocSec
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem local_smooth_section : NFRadRedS.LocSec := by
-  exact NFRadRedLocSec.locSec
-
 end Formalism.FourierDecayAlt.P

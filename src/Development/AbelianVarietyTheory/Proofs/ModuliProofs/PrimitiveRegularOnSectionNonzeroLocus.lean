@@ -96,10 +96,6 @@ private theorem valAt'_mul_of_whole_le_preimage {Y : Scheme.{0}} (y : Sp ℂ ⟶
     (f f' : Γ(Y, W)) : valAt' y W (f * f') = valAt' y W f * valAt' y W f' := by
   simp only [valAt'_eq_ΓSpecIso_appLE y hW, map_mul]
 
-private theorem valAt'_pow_of_whole_le_preimage {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {W : Y.Opens} (hW : ⊤ ≤ y ⁻¹ᵁ W)
-    (f : Γ(Y, W)) (m : ℕ) : valAt' y W (f ^ m) = valAt' y W f ^ m := by
-  simp only [valAt'_eq_ΓSpecIso_appLE y hW, map_pow]
-
 private theorem top_le_comap_basicOpen_of_valAt'_ne_zero {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {W : Y.Opens} (hW : ⊤ ≤ y ⁻¹ᵁ W)
     (f : Γ(Y, W)) (hf : valAt' y W f ≠ 0) : ⊤ ≤ y ⁻¹ᵁ Y.basicOpen f := by
   rw [valAt'_eq_ΓSpecIso_appLE y hW] at hf
@@ -165,7 +161,7 @@ theorem local_extension (u : HolUnif A L g) (hL : L.IsLB) {I : Type} (O : I → 
       top_le_comap_basicOpen_of_valAt'_ne_zero _ hz sV (by rw [hs]; exact mul_ne_zero hz0 (pow_ne_zero _ hfr))
     have hc' := hc i i' z (hzD.trans fun q hq => hD hq)
     have key := congrArg (valAt' (u.ex z).left (A.left.basicOpen sV)) ha
-    rw [valAt'_mul_of_whole_le_preimage _ hzD, valAt'_pow_of_whole_le_preimage _ hzD] at key
+    rw [valAt'_mul_of_whole_le_preimage _ hzD, _root_.GlobalTheory.valAt'_pow _ hzD] at key
     simp only [TopCat.Presheaf.restrictOpen, TopCat.Presheaf.restrict] at key
     rw [valAt'_presheaf_map_of_le_of_whole_le_preimage _ _ hzD, valAt'_presheaf_map_of_le_of_whole_le_preimage _ _ hzD, valAt'_presheaf_map_of_le_of_whole_le_preimage _ _ hzD, hs, hc'] at key
     beta_reduce
@@ -201,42 +197,17 @@ theorem entire_extension (u : HolUnif A L g) [CompactSpace A.left] (f θ : (Fin 
   · rw [h0, zero_pow (Nat.succ_ne_zero _), zero_pow (Nat.sub_ne_zero_of_lt hN), zero_mul, zero_mul]
   · rw [← hQ x w hw h0, ← _root_.mul_assoc, ← _root_.pow_add, Nat.sub_add_cancel hN.le]
 
-private theorem valAt'_eq_ΓSpecIso_appLE_of_whole_le_preimage {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {W : Y.Opens} (hW : ⊤ ≤ y ⁻¹ᵁ W) (f : Γ(Y, W)) :
-    valAt' y W f = (Scheme.ΓSpecIso (CommRingCat.of ℂ)).hom.hom ((y.appLE W ⊤ hW).hom f) := by
-  unfold valAt' valAt
-  rw [dite_eq_left hW]
+private alias valAt'_presheaf_map_of_le_of_whole_le_preimage' := _root_.GlobalTheory.PrimitiveRegular.valAt'_presheaf_map_of_le_of_whole_le_preimage
 
-private theorem valAt'_presheaf_map_of_le_of_whole_le_preimage' {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {V W : Y.Opens} (hVW : V ≤ W)
-    (hV : ⊤ ≤ y ⁻¹ᵁ V) (f : Γ(Y, W)) :
-    valAt' y V ((Y.presheaf.map (homOfLE hVW).op).hom f) = valAt' y W f := by
-  rw [valAt'_eq_ΓSpecIso_appLE_of_whole_le_preimage y hV, valAt'_eq_ΓSpecIso_appLE_of_whole_le_preimage y (hV.trans fun q hq => hVW hq)]
-  congr 1
-  rw [← CommRingCat.comp_apply, Scheme.Hom.map_appLE]
-
-private theorem valAt'_mul_of_top_le_preimage_open {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {W : Y.Opens} (hW : ⊤ ≤ y ⁻¹ᵁ W)
-    (f f' : Γ(Y, W)) : valAt' y W (f * f') = valAt' y W f * valAt' y W f' := by
-  simp only [valAt'_eq_ΓSpecIso_appLE_of_whole_le_preimage y hW, map_mul]
+private alias valAt'_mul_of_top_le_preimage_open := _root_.GlobalTheory.PrimitiveRegular.valAt'_mul_of_whole_le_preimage
 
 private theorem valAt'_pow_of_whole_le_preimage' {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {W : Y.Opens} (hW : ⊤ ≤ y ⁻¹ᵁ W)
     (f : Γ(Y, W)) (m : ℕ) : valAt' y W (f ^ m) = valAt' y W f ^ m := by
-  simp only [valAt'_eq_ΓSpecIso_appLE_of_whole_le_preimage y hW, map_pow]
+  simp only [_root_.GlobalTheory.PrimitiveRegular.valAt'_eq_ΓSpecIso_appLE y hW, map_pow]
 
-private theorem point_mem_basicOpen_of_valAt'_ne_zero {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {W : Y.Opens} (hW : ⊤ ≤ y ⁻¹ᵁ W)
-    (f : Γ(Y, W)) (hf : valAt' y W f ≠ 0) : ⊤ ≤ y ⁻¹ᵁ Y.basicOpen f := by
-  rw [valAt'_eq_ΓSpecIso_appLE_of_whole_le_preimage y hW] at hf
-  have hu : IsUnit ((y.appLE W ⊤ hW).hom f) := by
-    have h2 := (IsUnit.mk0 _ hf).map (Scheme.ΓSpecIso (CommRingCat.of ℂ)).inv.hom
-    simpa using h2
-  have h3 : (Sp ℂ).basicOpen ((y.appLE W ⊤ hW).hom f) = ⊤ := Scheme.basicOpen_of_isUnit _ hu
-  have h4 : (Sp ℂ).basicOpen ((y.appLE W ⊤ hW).hom f) ≤ y ⁻¹ᵁ Y.basicOpen f := by
-    rw [Scheme.preimage_basicOpen]
-    rw [Scheme.Hom.appLE, CommRingCat.comp_apply, Scheme.basicOpen_res]
-    exact inf_le_right
-  exact h3.symm.le.trans h4
+private alias point_mem_basicOpen_of_valAt'_ne_zero := _root_.GlobalTheory.PrimitiveRegular.top_le_comap_basicOpen_of_valAt'_ne_zero
 
-private theorem valAt'_one_of_whole_le_preimage {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) {W : Y.Opens} (hW : ⊤ ≤ y ⁻¹ᵁ W) :
-    valAt' y W 1 = 1 := by
-  simp only [valAt'_eq_ΓSpecIso_appLE_of_whole_le_preimage y hW, map_one]
+private alias valAt'_one_of_whole_le_preimage := _root_.GlobalTheory.valAt'_one
 
 end GlobalTheory.PrimitiveRegular
 

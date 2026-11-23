@@ -82,7 +82,7 @@ theorem conj_single_comm {n : ℕ} (Q : Matrix (Fin n) (Fin n) ℂ) (hQ : IsUnit
 
 theorem smooth_gl_module : PI.KFinSmooth → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bool) (mu : Fin (2 * r + k + 1) → ℝ) (R : Rep k r), R.IsDG ε mu → ∀ Q : Mx k r, IsUnit Q → ∃ E : (Fin (2 * r + k + 1) → Fin (2 * r + k + 1) → Module.End ℂ R.smSub), R.IsE Q E ∧ Formalism.REAL.GlRel E := by
   intro hK k r ε mu R hR Q hQ
-  obtain ⟨hsm, hlinv, hlinY, -, hcomm, -⟩ := Gp91.GlobalTheory.T.complexifiedDerivedAction_lieHom_gramAdjoint hK k r ε mu R hR
+  obtain ⟨hsm, hlinv, hlinY, -, hcomm, -⟩ := _root_.Gp91.GlobalTheory.ComplexifiedAction.complexified_action hK k r ε mu R hR
   have hzero : ∀ Y : Mx k r, R.dC Y 0 = 0 := by
     intro Y
     have h := hlinv Y 1 0 R.smSub.zero_mem 0 R.smSub.zero_mem

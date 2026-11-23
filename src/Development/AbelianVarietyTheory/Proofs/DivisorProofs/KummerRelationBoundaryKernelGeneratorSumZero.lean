@@ -60,9 +60,9 @@ theorem res_resGen_of_pow (q : ℕ) [NeZero q] {W V : Scheme.{0}} (k : W ⟶ V) 
     Sec.res k (resGen 1 ξ) = (a : ZMod q).val • resGen 1 (ζ.map k.appTop.hom) := by
   have e1 : Sec.res k (resGen 1 ξ) = resGen 1 (ξ.map k.appTop.hom) := by
     unfold resGen
-    rw [sec_res_map, (GlobalTheory.T.tateTwist_sections_locally_generated q 1).2.2.2.1]
+    rw [sec_res_map, (_root_.GlobalTheory.EtC.twist_sections q 1).2.2.2.1]
   rw [e1]
-  have e2 := (GlobalTheory.T.tateTwist_sections_locally_generated q 1).2.2.2.2.1 W (ζ.map k.appTop.hom) (ξ.map k.appTop.hom) a h
+  have e2 := (_root_.GlobalTheory.EtC.twist_sections q 1).2.2.2.2.1 W (ζ.map k.appTop.hom) (ξ.map k.appTop.hom) a h
   simp only [zpow_one] at e2
   unfold resGen
   rw [e2]
@@ -86,7 +86,7 @@ theorem relation_kernel (q : ℕ) [NeZero q] (V : Scheme.{0}) (c : (tripP q).obj
     rw [← Finsupp.linearCombination_apply, hd_def, map_finsuppSum, ← hc]
     refine Finsupp.sum_congr fun x _ => ?_
     rw [map_sub, Finsupp.linearCombination_single, Finsupp.linearCombination_single, smul_sub]
-  have hloc := (GlobalTheory.T.freeEtaleSheaf_section_locally_finite_combination (ZMod q) unitsP V).2 d hd
+  have hloc := (_root_.GlobalTheory.EtC.free_sec_loc (ZMod q) unitsP V).2 d hd
   by_cases hc0 : c = 0
   · simp [hc0]
   obtain ⟨x₀, -⟩ := Finsupp.support_nonempty_iff.2 hc0
@@ -115,7 +115,7 @@ theorem relation_kernel (q : ℕ) [NeZero q] (V : Scheme.{0}) (c : (tripP q).obj
     refine Finset.sum_congr rfl fun x hx => ?_
     rw [res_resGen_of_pow q k (tripP.get x₀).root _ (a ⟨x, hx⟩) (ha ⟨x, hx⟩), ← hax x hx, mul_smul,
       Nat.cast_smul_eq_nsmul]
-  have halg := GlobalTheory.T.primitiveRoot_free_action_finsupp_sum q Γ(W, ⊤) ((tripP.get x₀).root.map k.appTop.hom) ((tripP q).obj (op V)) c.support
+  have halg := _root_.GlobalTheory.EtC.FreeActSum.free_act_sum q Γ(W, ⊤) ((tripP.get x₀).root.map k.appTop.hom) ((tripP q).obj (op V)) c.support
     (fun x => c x) a'
     (fun x => Units.map k.appTop.hom.toMonoidHom (tripP.get x).src)
     (fun x => Units.map k.appTop.hom.toMonoidHom (tripP.get x).tgt) ?_ ?_

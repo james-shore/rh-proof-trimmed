@@ -455,14 +455,14 @@ theorem part_five_family_of_mass_volume (eps C0 CY : ℝ) (heps : 0 < eps) :
       have hdim := dim_weyl_pos_of_strictAnti _ (column_param_strictAnti D u ρ)
       have hV : 0 < vand (uColR D u ρ) := by
         unfold dimV at hdim
-        exact (div_pos_iff_of_pos_right (facProd_pos' _)).1 hdim
+        exact (div_pos_iff_of_pos_right (_root_.Formalism.MainNotions.StandardLattice.factorial_product_pos _)).1 hdim
       have e1 : Real.log (D.dsig ρ * facProd D.R.r / vand (uColR D u ρ)) =
           (Real.log (D.dsig ρ) - Real.log (dimV (uColR D u ρ))) +
             (Real.log (facProd D.R.r) - Real.log (facProd D.R.k)) := by
         unfold dimV
-        rw [Real.log_div (mul_pos (D.dsig_pos ρ) (facProd_pos' _)).ne' hV.ne',
-          Real.log_mul (D.dsig_pos ρ).ne' (facProd_pos' _).ne',
-          Real.log_div hV.ne' (facProd_pos' _).ne']
+        rw [Real.log_div (mul_pos (D.dsig_pos ρ) (_root_.Formalism.MainNotions.StandardLattice.factorial_product_pos _)).ne' hV.ne',
+          Real.log_mul (D.dsig_pos ρ).ne' (_root_.Formalism.MainNotions.StandardLattice.factorial_product_pos _).ne',
+          Real.log_div hV.ne' (_root_.Formalism.MainNotions.StandardLattice.factorial_product_pos _).ne']
         ring
       rw [e1]
       have a := place_dimension_upper_bound D sc C0 Δ w hB h3 hgap u ρ

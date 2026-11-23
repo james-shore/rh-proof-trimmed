@@ -57,17 +57,9 @@ section Adic
 
 variable {R : Type*} [CommRing R]
 
-theorem smodEq_span_pow_iff (π x y : R) (n : ℕ) :
-    x ≡ y [SMOD (Ideal.span {π} ^ n • (⊤ : Submodule R R))] ↔ π ^ n ∣ x - y := by
-  rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
-
 theorem eq_zero_of_forall_pow_dvd {π x : R} (h : IsHausdorff (Ideal.span {π}) R)
     (hx : ∀ n : ℕ, π ^ n ∣ x) : x = 0 :=
-  h.haus x fun n => (smodEq_span_pow_iff π x 0 n).2 (by simpa using hx n)
-
-theorem exists_limit_of_pow_dvd {π : R} (h : IsPrecomplete (Ideal.span {π}) R) (f : ℕ → R)
-    (hf : ∀ n : ℕ, π ^ n ∣ f (n + 1) - f n) : ∃ L, ∀ n : ℕ, π ^ n ∣ f n - L :=
-  _root_.UpperTheory.Reformulated.B.Yra6.main h f hf
+  h.haus x fun n => (_root_.GroundTheory.PAdicHodge.smodEq_span_singleton_pow_iff π x 0 n).2 (by simpa using hx n)
 
 theorem pow_pow_of_compatible {M : Type*} [Monoid M] {l : ℕ} {v : ℕ → M}
     (hv : ∀ i, v (i + 1) ^ l = v i) (i j : ℕ) : v (i + j) ^ l ^ j = v i := by
@@ -90,7 +82,7 @@ theorem sub_pow_pow (x y : A.A) (j : ℕ) : (x - y) ^ l ^ j = x ^ l ^ j - y ^ l 
 theorem exists_limit_pow (b : ℕ → A.A) (hb : ∀ j, A.pi ∣ b (j + 1) ^ l - b j) (i : ℕ) :
     ∃ L, ∀ n : ℕ, A.pi ^ n ∣ b (i + n) ^ l ^ n - L := by
   have hl : 1 < l := (Fact.out : l.Prime).one_lt
-  refine exists_limit_of_pow_dvd (π := A.pi) A.compl.toIsPrecomplete
+  refine _root_.UpperTheory.Reformulated.B.Yra6.main (π := A.pi) A.compl.toIsPrecomplete
     (fun n => b (i + n) ^ l ^ n) fun n => ?_
   have e : b (i + (n + 1)) ^ l ^ (n + 1) - b (i + n) ^ l ^ n
       = (b (i + n + 1) ^ l - b (i + n)) ^ l ^ n := by

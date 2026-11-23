@@ -76,7 +76,7 @@ theorem triv_isPath {S : Scheme.{0}} (G : Over S) [GrpObj G] {R : Type} [CommRin
     have : (CommRingCat.ofHom (PowerSeries.C (R := R)) ≫ CommRingCat.ofHom (PowerSeries.rescale c)) = CommRingCat.ofHom (PowerSeries.C (R := R)) := by
       ext x n; simp only [CommRingCat.hom_comp, CommRingCat.hom_ofHom, RingHom.coe_comp, Function.comp_apply, PowerSeries.coeff_rescale, PowerSeries.coeff_C]
       split_ifs with h <;> simp [h]
-    rw [this, Category.assoc, Category.assoc, unitSec_comp_sqr]
+    rw [this, Category.assoc, Category.assoc, _root_.GlobalTheory.Nef.unitSec_sqr]
 
 theorem eq_unitSec_of_sqr_eq {S : Scheme.{0}} (G : Over S) [GrpObj G] {R : Type} [CommRing R] (z : Sp R ⟶ G.left)
     (hz : z ≫ sqr G = z) : z = (z ≫ G.hom) ≫ unitSec G := by

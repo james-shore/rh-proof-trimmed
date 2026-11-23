@@ -49,9 +49,9 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.DensityConst
 namespace Formalism.FourierDecayAlt.P
 
 theorem phi_zero_hermitian_curvature : Formalism.FourierDecayAlt.KB.PhiZero :=
-  phi_zero_of_parts pbi_sectionExists_proof fibre_integral_smooth fibre_integral_cells
+  phi_zero_of_parts pbi_sectionExists_proof _root_.Formalism.FourierDecayAlt.P.SmoothExtensionClosedSet.fibIntSmooth fibre_integral_cells
 
 theorem density_constant : Formalism.FourierDecayAlt.KB.DensC :=
-  pb_densC_of phi_zero_hermitian_curvature vector_vanishes_big_cell
+  pb_densC_of phi_zero_hermitian_curvature _root_.Formalism.FourierDecayAlt.P.PBM.bigCellVan
 
 end Formalism.FourierDecayAlt.P

@@ -74,7 +74,6 @@ theorem finrank_eq_of_nondegenerate {LL : Type} [Field LL] {V V' : Type} [AddCom
   have eb : Module.finrank LL (V →ₗ[LL] LL) = Module.finrank LL V := Subspace.dual_finrank_eq
   omega
 
-theorem main : ∀ {LL : Type} [inst : Field LL] {V V' : Type} [inst_1 : AddCommGroup V] [inst_2 : Module LL V] [FiniteDimensional LL V] [inst_4 : AddCommGroup V'] [inst_5 : Module LL V'] [FiniteDimensional LL V'] (P : V →ₗ[LL] V' →ₗ[LL] LL), (∀ (x : V), (∀ (y : V'), ((P : V → V' →ₗ[LL] LL) x : V' → LL) y = (0 : LL)) → x = (0 : V)) → (∀ (y : V'), (∀ (x : V), ((P : V → V' →ₗ[LL] LL) x : V' → LL) y = (0 : LL)) → y = (0 : V')) → Module.finrank LL V = Module.finrank LL V' :=
-  fun P h1 h2 => finrank_eq_of_nondegenerate P h1 h2
+alias main := _root_.GlobalTheory.NondegenerateFinrank.finrank_eq_of_nondegenerate
 
 end GlobalTheory.NondegenerateFinrank

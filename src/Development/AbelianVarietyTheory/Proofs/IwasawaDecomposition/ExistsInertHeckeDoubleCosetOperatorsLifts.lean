@@ -96,7 +96,7 @@ theorem exists_inertTie : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn
   classical
   have hN := fun (q : ↑((famR X I hX U Xg tr).okI t) × List ℕ)
       (hq : Formalism.L2.Col.InertTypeOk (Vc X.toD7 i).rank q.2) =>
-    GlobalTheory.T.inertNeighbours_lifts_doubleCoset_translates X px I hX U Xg tr L eG hI hV hL hG cV i t A k hF q hq
+    _root_.GlobalTheory.InertNbr.inert_neighbours X px I hX U Xg tr L eG hI hV hL hG cV i t A k hF q hq
   exact ⟨{
     hx := fun q => if hq : Formalism.L2.Col.InertTypeOk (Vc X.toD7 i).rank q.2 then (hN q hq).choose else 1
     hA := fun q => if hq : Formalism.L2.Col.InertTypeOk (Vc X.toD7 i).rank q.2 then (hN q hq).choose_spec.choose else ∅
@@ -106,7 +106,7 @@ theorem exists_inertTie : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn
     hA_loc := fun q hq => by
       simp only [dif_pos hq]
       exact (hN q hq).choose_spec.choose_spec.2.1
-    chi_loc := fun q _ j hj => GlobalTheory.T.levelChar_eq_one_inert_prime_off_level X px I hX U Xg tr L eG hI hV hL hG cV i t q j hj
+    chi_loc := fun q _ j hj => _root_.GlobalTheory.Mem.R3.LiftInertChi.levChi_eq_one_of_isLocElt X px I hX U Xg tr L eG hI hV hL hG cV i t q j hj
     hDC := fun q hq => by
       simp only [dif_pos hq]
       exact (hN q hq).choose_spec.choose_spec.2.2.1

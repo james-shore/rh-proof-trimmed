@@ -201,7 +201,7 @@ theorem term_eq_of_rel : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P Q : Pai
     P.Rel Q → Q.term Kf f r K φ = P.term Kf f r K φ := by
   intro p _ G P Q Kf f r K φ hr hf hφ hPQ
   obtain ⟨y, s, hs, hβ, hγ⟩ := hPQ
-  have hc : Q.c = P.c := (GlobalTheory.T.related_pairs_same_polarization p G P Q ⟨y, s, hs, hβ, hγ⟩).2
+  have hc : Q.c = P.c := (_root_.GlobalTheory.LKMid.Pair.rel_pol_c p G P Q ⟨y, s, hs, hβ, hγ⟩).2
   have hat : Q.atP = locC G (y, 1) * P.atP * (locC G (y, 1))⁻¹ := by
     have := locC_conj y (P.γ, P.c)
     simp only [Pair.atP, hγ, hc]
@@ -215,8 +215,8 @@ theorem term_eq_of_rel : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P Q : Pai
   · obtain ⟨⟨δ, z⟩, hδ⟩ := hP
     obtain ⟨x, t, hx⟩ := P.trivAf
     have hx' := triv_rel P Q y s hs.ne' hβ x t hx
-    rw [GlobalTheory.T.kottwitzPair_term_eq_pointSum_any_trivialisation p G P Kf f r K φ hr hf hφ x t hx δ z hδ,
-      GlobalTheory.T.kottwitzPair_term_eq_pointSum_any_trivialisation p G Q Kf f r K φ hr hf hφ _ _ hx' δ _ (hnrm δ z hδ)]
+    rw [_root_.GlobalTheory.LKMid.Pair.term_eq_termAt p G P Kf f r K φ hr hf hφ x t hx δ z hδ,
+      _root_.GlobalTheory.LKMid.Pair.term_eq_termAt p G Q Kf f r K φ hr hf hφ _ _ hx' δ _ (hnrm δ z hδ)]
     let e : P.cent ≃* Q.cent := ((cj y).subgroupMap P.cent).trans
       (MulEquiv.subgroupCongr (cent_map P Q y s hs.ne' hβ hγ))
     have he : ∀ v : P.cent, ((e v : Q.cent) : G.Cˣ × ℚˣ) = cj y v := fun v => rfl
@@ -240,7 +240,7 @@ theorem term_eq_of_rel : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P Q : Pai
       exact Prod.ext hγ hc
     unfold termAt
     have hS' : Q.toAf _ _ hx' (e P.self) = P.toAf x t hx P.self := by rw [← hA]; rfl
-    rw [hS, ← GlobalTheory.T.kottwitzIsogenyClassPointSum_comp_mulEquiv e, hS', hA, hQr]
+    rw [hS, ← _root_.GlobalTheory.pointSum_comp_mulEquiv e, hS', hA, hQr]
   · have hQ : ¬ ∃ dz : Gr G r × Gr G r, IsNrm G r Q.atP dz.1 dz.2 := by
       rintro ⟨⟨δ, z⟩, h⟩
       apply hP

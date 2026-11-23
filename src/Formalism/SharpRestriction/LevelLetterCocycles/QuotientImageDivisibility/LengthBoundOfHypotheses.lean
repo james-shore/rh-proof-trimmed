@@ -147,11 +147,6 @@ theorem ndl_osmul (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) {i : ZMod n} 
   · rw [osmul_comm W T, (NDl_DL W T hx).1]
   · rw [map_smul, (NDl_DL W T hx).2 δ hδ]
 
-theorem frobenius_sq_letter_shift (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (c : ZMod n) {y : W.DD T}
-    (hy : y ∈ Formalism.MainNotions.RamifiedCoefficientChains.S9.NDl W T (c - 1 - 1 - 1)) :
-    φVB PD (LL := LL) (V := T.V) (φVB PD (LL := LL) (V := T.V) (Formalism.MainNotions.ArcLiftingSetup.cmpD W T y)) ∈
-      DcrisL PD T.ρ (W.emb (c - 1)) := frobenius_sq_comparison_letter W T c hy
-
 variable (W : LocWach PD LL O v n)
 
 theorem length_bound_of_hypotheses [NeZero n] (h3 : Formalism.MainNotions.DeltaInvariantLattices.P3W W) (h5 : Formalism.MainNotions.DeltaInvariantLattices.P5W W)
@@ -334,7 +329,7 @@ theorem length_bound_of_hypotheses [NeZero n] (h3 : Formalism.MainNotions.DeltaI
     have hy0N := NDl_N W T₂ hy0
     refine ⟨φVB PD (LL := LL) (V := T₂.V) (φVB PD (LL := LL) (V := T₂.V) (Formalism.MainNotions.ArcLiftingSetup.cmpD W T₂ y0)),
       ⟨Formalism.MainNotions.ArcLiftingSetup.cmpD W T₂ y0, ⟨y0, hy0N, NDl_DL W T₂ hy0,
-        Formalism.MainNotions.UnusedSlot80.ArcF.cmpD_of_mem W T₂ hy0N⟩, rfl⟩, hCD (frobenius_sq_letter_shift W T₂ c hy0), ?_⟩
+        Formalism.MainNotions.UnusedSlot80.ArcF.cmpD_of_mem W T₂ hy0N⟩, rfl⟩, hCD (_root_.Formalism.MainNotions.N.Pv.LocalLengthBound.frobenius_sq_comparison_letter W T₂ c hy0), ?_⟩
     have hcm : Formalism.MainNotions.ArcLiftingSetup.cmpD W T₂ (((PD.p : ℕ) : O) ^ S • x) =
         (PD.p : LL) ^ S • Formalism.MainNotions.ArcLiftingSetup.cmpD W T₂ x := by
       rw [cmpD_osmul W T₂ _ (NDl_N W T₂ hx), map_pow, map_natCast]

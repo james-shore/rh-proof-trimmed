@@ -90,7 +90,7 @@ theorem product_scaling_jets : ProdScaleJets := by
   have hB : ∀ a : K, a ∈ Formalism.G.unitBall K ↔ ‖a‖ ≤ 1 := fun a => Iff.rfl
   refine (Formalism.L2.Th1.G.jetsInNorm K n _).mpr ?_
   rw [linSub_scl]
-  obtain ⟨hC, -, hadd, -, hmul⟩ := Formalism.L2.Th1.G.jetsRing K (Formalism.G.unitBall K) n
+  obtain ⟨hC, -, hadd, -, hmul⟩ := _root_.Formalism.L2.Th1.G.jets_ring_holds K (Formalism.G.unitBall K) n
 
   have hfac : ∀ k i, JetsIn (Formalism.G.unitBall K)
       (MvPowerSeries.rescale (fun _ => c) (at1 i (H k i) : MvPowerSeries n K)) := by
@@ -133,7 +133,7 @@ theorem product_scaling_jets : ProdScaleJets := by
   · intro k _
     rw [map_mul, map_prod]
     exact hmul _ _ (hCr k)
-      (Formalism.L2.Th1.G.HurwitzJetIntegrality.jetsIn_prod Formalism.L2.Th1.G.jetsRing _ _ _ fun i _ => hfac k i)
+      (Formalism.L2.Th1.G.HurwitzJetIntegrality.jetsIn_prod _root_.Formalism.L2.Th1.G.jets_ring_holds _ _ _ fun i _ => hfac k i)
 
 theorem linear_scaling_jets : LinScale := by
   intro K _ n m _ _ _ _ c A f

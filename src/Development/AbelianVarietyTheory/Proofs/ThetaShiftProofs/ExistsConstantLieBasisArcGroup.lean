@@ -112,20 +112,8 @@ theorem exists_isAdd (g g' : GtPt D T) : ∃ g'', g.IsAdd g' g'' := by
   exact ⟨g'', (TorusModel.isAdd_iff _ _ _).2 ⟨hb, fun χ y J hJ =>
     (congrArg₂ (· * ·) ((hv χ _ _ y J hJ).trans (vv χ y J hJ)) rfl).trans (inv_mul_cancel_right _ _)⟩⟩
 
-theorem exists_isPull (k : T' ⟶ T) (g : GtPt D T) : ∃ g' : GtPt D T', GtPt.IsPull k.left g g' := by
-  have vv : ∀ χ y J, Good D.P.L y J → val (LB.pullGen D.P.L _ _ (g.s χ) k.left) (𝟙 T'.left) y J =
-      val (g.s χ) k.left y J := fun χ y J hJ => by rw [val_pull hJ, Category.id_comp]
-  obtain ⟨g', hb, hv⟩ := exists_pt (k ≫ g.b) (fun χ => LB.pullGen D.P.L _ _ (g.s χ) k.left)
-    (fun χ => pullGen_isGen _ _ _ _ (g.isGen _) _)
-    (fun χ U _ h => (FormalPoint.prod_gtφT k g.b χ h).trans (prod_pt _ χ h).symm)
-    (fun y J hJ => (vv 0 y J hJ).trans ((val_corr hJ g.s_zero _).trans (val_one _)))
-    (fun χ χ' y J hJ => by
-      rw [vv _ y J hJ, vv _ y J hJ, vv _ y J hJ]
-      exact FormalPoint.val_s_add g k hJ χ χ')
-  exact ⟨g', (isPull_iff _ _ _).2 ⟨hb, fun χ y J hJ => (hv χ _ _ y J hJ).trans (vv χ y J hJ)⟩⟩
-
 theorem exists_gtComb {m : ℕ} (cf : Fin m → R) (e : Fin m → GtPt D (epsR R)) : ∃ ν, ArcQ.GtComb cf e ν := by
-  choose u hu using fun i => exists_isPull (T' := epsR R) (T := epsR R)
+  choose u hu using fun i => _root_.GlobalTheory.ConstLie.exists_isPullGt (T' := epsR R) (T := epsR R)
     (Over.homMk (spMap (epsScaleR (cf i))) (LieCombBaseChange.epsScale_over _)) (e i)
   obtain ⟨o, ho⟩ := FormalValue.exists_isZero D (epsR R)
   choose add hadd using exists_isAdd (D := D) (T := epsR R)

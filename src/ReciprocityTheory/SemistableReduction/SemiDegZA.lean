@@ -124,11 +124,6 @@ theorem latDeg_L_nonneg (hS : SelfDualIndexStatement) {K : Type} [Field K] [Numb
     push_cast at h2
     linarith
 
-theorem clear_denom {K : Type} [Field K] [NumberField K] {r : ℕ}
-    (L : Submodule (𝓞 K) (Fin r → K)) (v : Fin r → K)
-    (hv : v ∈ Submodule.span K (L : Set (Fin r → K))) : ∃ a : 𝓞 K, a ≠ 0 ∧ a • v ∈ L := by
-  first | exact Bl.general_b_fact_second_alt.goal1 .. | (apply Bl.general_b_fact_second_alt.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_second_alt.goal1 <;> assumption)
-
 theorem kBasis_card {K : Type} [Field K] [NumberField K] {r k : ℕ}
     (L : Submodule (𝓞 K) (Fin r → K)) (hL : IsLattice L) (b : Fin k → Fin r → K)
     (hb : IsKBasisIn L b) : k = r := by
@@ -176,7 +171,7 @@ theorem semiPoint_of (hW : WittBasisStatement) (hB : LatDegBasisStatement)
   have hg0 := g_ne_zero S m g haniso
   have hsp : ∀ v : Fin r → K, ∃ a : 𝓞 K, a ≠ 0 ∧ a • v ∈ Lp := by
     intro v
-    obtain ⟨a, ha, hav⟩ := clear_denom L (P *ᵥ v) (by rw [hL.2]; exact Submodule.mem_top)
+    obtain ⟨a, ha, hav⟩ := _root_.Bl.general_b_fact_second_alt.goal1 L (P *ᵥ v) (by rw [hL.2]; exact Submodule.mem_top)
     refine ⟨a, ha, ⟨a • (P *ᵥ v), hav, ?_⟩⟩
     rw [map_smul, matLin_apply, Matrix.mulVec_mulVec, hQdef, Matrix.nonsing_inv_mul P hPu,
       Matrix.one_mulVec]

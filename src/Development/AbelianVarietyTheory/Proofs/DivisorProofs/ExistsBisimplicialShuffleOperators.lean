@@ -57,18 +57,6 @@ noncomputable section
 
 namespace GlobalTheory.EZ.Shuf
 
-theorem bop_comp {n m p q r s : ℕ} (α : SimplexCategory.mk p ⟶ SimplexCategory.mk n)
-    (β : SimplexCategory.mk q ⟶ SimplexCategory.mk m) (α' : SimplexCategory.mk r ⟶ SimplexCategory.mk p)
-    (β' : SimplexCategory.mk s ⟶ SimplexCategory.mk q) :
-    bop α β ≫ bop α' β' = bop (α' ≫ α) (β' ≫ β) := by
-  have := Free.single_comp_single (R := ℤ) (C := SimplexCategoryᵒᵖ × SimplexCategoryᵒᵖ)
-    (show (op (SimplexCategory.mk n), op (SimplexCategory.mk m)) ⟶
-      (op (SimplexCategory.mk p), op (SimplexCategory.mk q)) from (α.op, β.op))
-    (show (op (SimplexCategory.mk p), op (SimplexCategory.mk q)) ⟶
-      (op (SimplexCategory.mk r), op (SimplexCategory.mk s)) from (α'.op, β'.op)) 1 1
-  simp only [mul_one] at this
-  exact this
-
 theorem bop_id (n m : ℕ) : bop (𝟙 (SimplexCategory.mk n)) (𝟙 (SimplexCategory.mk m)) = 𝟙 (bo n m) := rfl
 
 theorem idc_self (n : ℕ) : idc n n = 𝟙 _ := by
@@ -130,7 +118,7 @@ theorem dH_comp_dH (a b x y c d : ℕ) : dH a b x y ≫ dH x y c d = 0 := by
     · obtain ⟨rfl, rfl⟩ := h1
       obtain ⟨rfl, rfl⟩ := h2
       rw [if_pos ⟨rfl, rfl⟩, if_pos ⟨rfl, rfl⟩, Preadditive.sum_comp]
-      simp only [Preadditive.comp_sum, Preadditive.zsmul_comp, Preadditive.comp_zsmul, bop_comp, smul_smul]
+      simp only [Preadditive.comp_sum, Preadditive.zsmul_comp, Preadditive.comp_zsmul, _root_.GlobalTheory.EZ.Cone.bop_comp, smul_smul]
       have := alt_double_sum c (fun α => bop α (idc b b ≫ idc b b))
       simpa only [mul_comm] using this
     · rw [if_neg h2, comp_zero]
@@ -143,7 +131,7 @@ theorem dV_comp_dV (a b x y c d : ℕ) : dV a b x y ≫ dV x y c d = 0 := by
     · obtain ⟨rfl, rfl⟩ := h1
       obtain ⟨rfl, rfl⟩ := h2
       rw [if_pos ⟨rfl, rfl⟩, if_pos ⟨rfl, rfl⟩, Preadditive.sum_comp]
-      simp only [Preadditive.comp_sum, Preadditive.zsmul_comp, Preadditive.comp_zsmul, bop_comp, smul_smul]
+      simp only [Preadditive.comp_sum, Preadditive.zsmul_comp, Preadditive.comp_zsmul, _root_.GlobalTheory.EZ.Cone.bop_comp, smul_smul]
       have := alt_double_sum d (fun β => bop (idc a a ≫ idc a a) β)
       simpa only [mul_comm] using this
     · rw [if_neg h2, comp_zero]
@@ -154,7 +142,7 @@ theorem dH_comp_dV (c d : ℕ) :
   unfold dH dV
   rw [if_pos ⟨rfl, rfl⟩, if_pos ⟨rfl, rfl⟩, if_pos ⟨rfl, rfl⟩, if_pos ⟨rfl, rfl⟩,
     Preadditive.sum_comp, Preadditive.sum_comp]
-  simp only [Preadditive.comp_sum, Preadditive.zsmul_comp, Preadditive.comp_zsmul, bop_comp, smul_smul,
+  simp only [Preadditive.comp_sum, Preadditive.zsmul_comp, Preadditive.comp_zsmul, _root_.GlobalTheory.EZ.Cone.bop_comp, smul_smul,
     idc_self, Category.id_comp, Category.comp_id]
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by rw [mul_comm]
@@ -210,7 +198,7 @@ theorem shufRec_succ (cone : ∀ a b n : ℕ, (bo a b ⟶ bo n n) →+ (bo a b �
 theorem exists_shuffle : ∃ G : ∀ a b n : ℕ, bo a b ⟶ bo n n, G 0 0 0 = 𝟙 (bo 0 0) ∧
     ∀ a b n : ℕ, a + b = n + 1 → G a b (n + 1) ≫ dD (n + 1) n =
       ∑ x ∈ Finset.HasAntidiagonal.antidiagonal n, dT a b x.1 x.2 ≫ G x.1 x.2 n := by
-  obtain ⟨cone, ε, hε, h0, hs⟩ := GlobalTheory.T.cone_contracting_homotopy
+  obtain ⟨cone, ε, hε, h0, hs⟩ := _root_.GlobalTheory.EZ.Cone.coneContraction
   have hid : shufRec cone 0 0 0 = 𝟙 (bo 0 0) := by
     rw [shufRec_zero]
     rw [idO, if_pos ⟨rfl, rfl⟩, idc_self]

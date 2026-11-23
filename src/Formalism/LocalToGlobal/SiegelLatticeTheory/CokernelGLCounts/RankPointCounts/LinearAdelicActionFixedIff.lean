@@ -153,7 +153,7 @@ theorem prF_eq (t : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF
 
 theorem kset_iff (x : I.Gf) : x ∈ I.Kset ↔
     ∀ v : HeightOneSpectrum (𝓞 I.F), compV v (psi0 I x) ∈ Kloc v (I.L : Set (Fin I.n → I.E)) := by
-  obtain ⟨e, he⟩ := Formalism.L2.SG.Closed.AdBridgeIso_holds I
+  obtain ⟨e, he⟩ := _root_.Formalism.L2.SG.Pf.adelic_isomorphism_exists I
   have hfin : I.fmat x = ofHAFin I (e (1, x)) := (he (1, x)).2
   have key := adelic_compact_finite_places I (e (1, x))
   have hm : Formalism.UG.bc (prF I)

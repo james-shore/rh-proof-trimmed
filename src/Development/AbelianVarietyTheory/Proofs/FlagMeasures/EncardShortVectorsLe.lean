@@ -88,7 +88,7 @@ theorem finrank_le_trace_of_integral {K : Type} [Field K] [NumberField K] (z : �
     have h3 : (0 : ℤ) < Algebra.norm ℤ z := by exact_mod_cast hP
     have h4 : (1 : ℤ) ≤ Algebra.norm ℤ z := h3
     exact_mod_cast h4
-  have hL := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.traceLower (K →ₐ[ℚ] ℂ) (fun τ => (τ (z : K)).re)
+  have hL := _root_.Formalism.HermitianLatticeCounting.P.traceLowerBound (K →ₐ[ℚ] ℂ) (fun τ => (τ (z : K)).re)
     (fun τ => (hpos τ).le) hN1
   simpa only [AlgHom.card] using hL
 
@@ -222,7 +222,7 @@ theorem encard_shortVectors_le : ∀ (K V : Type) [Field K] [NumberField K] [Sta
     rw [e]
     calc Real.sqrt D ≤ Real.sqrt (‖ι x‖ ^ 2) := Real.sqrt_le_sqrt (hlong x hx hx0)
       _ = ‖ι x‖ := Real.sqrt_sq (norm_nonneg _)
-  obtain ⟨hfin, hcount⟩ := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.packing Es Λ (Real.sqrt D) (Real.sqrt (D * B))
+  obtain ⟨hfin, hcount⟩ := _root_.Formalism.HermitianLatticeCounting.P.packing_bound Es Λ (Real.sqrt D) (Real.sqrt (D * B))
     hl0 (Real.sqrt_nonneg _) hmin
   have hratio : 2 * Real.sqrt (D * B) / Real.sqrt D = 2 * Real.sqrt B := by
     rw [Real.sqrt_mul hD0.le, mul_div_assoc, mul_div_cancel_left₀ _ hl0.ne']

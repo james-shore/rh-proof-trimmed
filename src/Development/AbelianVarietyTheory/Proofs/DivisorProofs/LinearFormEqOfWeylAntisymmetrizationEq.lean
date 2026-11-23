@@ -62,7 +62,7 @@ theorem linForm_eq_of_antisymm_eq : ∀ (ι : Type) [Fintype ι] (m : ι → ℕ
 
     simp only [GlobalTheory.GoodMetric.antisymm, map_sum, map_zsmul]
     rw [Finset.sum_congr rfl (fun w _ => by
-      rw [GlobalTheory.T.linearForm_alternating_of_adjacent_swap_blocks ι m L hL w P, zsmul_eq_mul, ← mul_assoc, sq, one_mul])]
+      rw [_root_.GlobalTheory.FlagPush.alternating_of_adjacent_swap ι m L hL w P, zsmul_eq_mul, ← mul_assoc, sq, one_mul])]
     rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
   have hc : (Fintype.card (∀ τ, Equiv.Perm (Fin (m τ))) : ℝ) ≠ 0 := by
     exact_mod_cast (Fintype.card_pos (α := ∀ τ, Equiv.Perm (Fin (m τ)))).ne'

@@ -65,7 +65,7 @@ theorem vanish (hT : TameQuotient) (_hl : 0 < nu X i) {M : ℕ} {L : Subgroup (G
   obtain ⟨h0, -, hn, -, hd, hσ, hγ, hdγ⟩ := hp
   have h8 : normV p % (2 * X.l i ^ (nu X i + 1)) = 1 :=
     KStar.Tree.mod_two_mul_pow_of_le (X.lPrime i).out (by omega) hn
-  exact (GlobalTheory.T.tame_relation_cocycle_squareZero_inertia hT D.host.E N.Om (X.l i) (N.plOm.1 p) p (N.plOm.2 p)
+  exact (_root_.GlobalTheory.TameRelation.tame_relation hT D.host.E N.Om (X.l i) (N.plOm.1 p) p (N.plOm.2 p)
     (fun h => h0 p (Or.inl rfl) (X.twistExcludedPlaces_contains_residueChar i h)) (nu X i + 1) h8 M d γ σ (by omega) hd hγ hdγ hσ R W ρ 0 0 h4 (mul_zero _)
     (fun τ hτ m => by rw [mul_zero, zero_smul, add_zero]; exact hρ τ (Ine_le_Dec _ hτ) m)
     (fun m => by rw [zero_smul, add_zero]; exact hρ σ hσ.1 m) z).2 rfl hz

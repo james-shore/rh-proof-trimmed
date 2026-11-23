@@ -58,11 +58,11 @@ theorem colChi_mul_prod_lam_alt : ∀ {B : GlobalTheory.Mem.Base} {X : GlobalThe
         valuation (a.G i).k (((x i : GL (Fin (I.rec7 l Z).R.k ⊕ Fin ((a.G i).s + 1)) (a.G i).k)).val p q - (ofSplit (a.G i).q).pr (z : (I.rec7 l Z).host.E)) < 1) ∧
       (((_root_.GlobalTheory.MiTop.formsAtZero W u).cls0.lev.chi ⟨_, hy⟩ : ℂˣ) : ℂ) * ∏ i, (((a.G i).S.P.lam (x i) : ℂˣ) : ℂ) = 1 := by
   intro B X I l Z L hT Gi Gl Kc Yd cX ex W hA u a ha haT row col hc κ hκ y hy hU
-  have hm := (_root_.GlobalTheory.T.true_geometry_local_data_alt W hA u a ha haT row col hc κ hκ y hy).1 hU
+  have hm := (_root_.GlobalTheory.FamTrace.levTrace_mem_alt W hA u a ha haT row col hc κ hκ y hy).1 hU
   obtain ⟨hg, -⟩ := _root_.GlobalTheory.FamTraceChi.rChi_eq_lvP_chi_of_mem W hm
   choose x hx using ((ha.tie row col).2.lev _).1.1 hg
   refine ⟨x, hx, ?_⟩
-  rw [Finset.prod_congr rfl (fun i _ => _root_.GlobalTheory.T.true_geometry_final_scalar_alt W hA u a ha haT row col hc κ hκ y hy hU i (x i) (hx i))]
+  rw [Finset.prod_congr rfl (fun i _ => _root_.GlobalTheory.FamTraceChiCol.lam_eq_colLam_alt W hA u a ha haT row col hc κ hκ y hy hU i (x i) (hx i))]
   exact _root_.GlobalTheory.T.true_geometry_class_relation_alt W hA u a ⟨_, hU⟩
 end GlobalTheory.FamTraceChiCol
 end

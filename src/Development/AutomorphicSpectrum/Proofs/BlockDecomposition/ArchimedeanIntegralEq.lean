@@ -114,7 +114,7 @@ theorem ae_cover {X : Scheme.{0}} [IsIntegral X] (i : X ⟶ MP ℤ m n) [IsClose
         have hex : ∃ z, Over i y z := ⟨z, hy⟩
         simp only [liftOf, dif_pos hex]
         exact hex.choose_spec
-      have ho : SameOrbit (liftOf i y) z := (GlobalTheory.T.points_eq_iff_same_torus_orbit m n X i y y _ _ hl hy).1 rfl
+      have ho : SameOrbit (liftOf i y) z := (_root_.GlobalTheory.CompanionTheory.MixZ.Orbit.eq_iff_sameOrbit m n X i y y _ _ hl hy).1 rfl
       rw [projCoord, ratios_eq_of_sameOrbit Ψ ho h0, ratios_of_proj Ψ hzv]
 
 theorem exists_form_chart {X : Scheme.{0}} [IsIntegral X] (i : X ⟶ MP ℤ m n) [IsClosedImmersion i]
@@ -143,7 +143,7 @@ theorem archIntEq_of_integrable : ArchIntegrableOn → ArchIntEq := by
   have hPp : (ptIdeal (i (genericPoint X))).IsPrime := hP.2.1.1
   have hex : ∃ Ψ : LinProj n D, IsGoodProj (ptIdeal (i (genericPoint X))) Ψ :=
     ReciprocityTheory.ChartRestriction.G.Geo.goodProjExists _ _ _ D hP
-  haveI hsc : SecondCountableTopology (GlobalTheory.CxPts (i ≫ mpStr ℤ m n) σ₀) := GlobalTheory.T.complex_points_second_countable m n X i D hX
+  haveI hsc : SecondCountableTopology (GlobalTheory.CxPts (i ≫ mpStr ℤ m n) σ₀) := _root_.GlobalTheory.CompanionTheory.MixZ.ArchEq.secondCountable_cxPts m n X i D hX
   unfold ptsIntegral
   rw [dif_pos hex]
   set Ψ : LinProj n D := hex.choose with hΨdef
@@ -233,7 +233,7 @@ theorem archIntEq_of_integrable : ArchIntegrableOn → ArchIntEq := by
       ∃ y, Over i y z ∧ y ∈ ⋃ l, S l := fun z hz hzv => by
     rw [hSU]
     exact h1 z hz hzv
-  have h4 := GlobalTheory.T.sheet_integral_projection_formula m n X i D Ψ N hP hΨ e Γ S hpc hSs hSd v h3
+  have h4 := _root_.GlobalTheory.CompanionTheory.MixZ.ArchEq.finsum_fibre_eq m n X i D Ψ N hP hΨ e Γ S hpc hSs hSd v h3
     (fun w => sheetDensity (ptIdeal (i (genericPoint X))) Ψ (pot fun _ : Fin D => B) (logNormRat A f g) v w)
     (fun l => F ((e l).symm v) * ρ l v) (fun l hl => by
       obtain ⟨y, hyS, rfl⟩ := hl

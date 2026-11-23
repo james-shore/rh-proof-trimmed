@@ -128,7 +128,7 @@ theorem lowestKType_casimir_cone (n : ℕ) : ∀ (ε : Fin n → Bool) (lam : Fi
   have hwt2 : ∀ a, eMM μ a a (θ x c) =
       (((kirrWt ν l - lowK ε lam + (lam + rho n)) a : ℝ) : ℂ) • θ x c := by
     intro a
-    have h1 := congrFun (sθ_sA ε E V hVst (eMM μ) hEM (phiMM μ) (lam + rho n) (lowK ε lam) hwt
+    have h1 := congrFun (_root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.KernelRelationLemmas.sθ_sA ε E V hVst (eMM μ) hEM (phiMM μ) (lam + rho n) (lowK ε lam) hwt
       (submoduleEvaluationFunctional V (ι.symm T.w)) hℓ a x) c
     have h2 := congrFun (congrArg θ (word_isWeightVector hA hu.1 l hl a)) c
     rw [← hxd, Cone.compactWordAction, LinearMap.sub_apply, map_sub, map_smul, Pi.sub_apply, h1, Cone.sθ_sC,

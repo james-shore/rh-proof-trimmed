@@ -68,10 +68,6 @@ section SlopeTestRemainingChoices
 
 variable {N : Type*} [AddCommGroup N] [Module ℂ N]
 
-theorem generatedSub_stable (E : Fin n → Fin n → Module.End ℂ N) (V : Submodule ℂ N) (a b : Fin n) {v : N}
-    (hv : v ∈ genSub E V) : E a b v ∈ genSub E V :=
-  Submodule.mem_sInf.2 fun T hT => hT.2 a b v (Submodule.mem_sInf.1 hv T hT)
-
 theorem casimir_scalar_on_generated {E : Fin n → Fin n → Module.End ℂ N} (hE : IsGlRep E) {V : Submodule ℂ N} {c : ℂ}
     (hc : ∀ v ∈ V, casimir E v = c • v) : ∀ v ∈ genSub E V, casimir E v = c • v := by
   let T : Submodule ℂ N := LinearMap.ker (casimir E - c • (1 : Module.End ℂ N))
@@ -134,7 +130,7 @@ theorem ker_D_eq_kLowSpan {H : Type} [NormedAddCommGroup H] [InnerProductSpace �
   obtain ⟨⟨hzK', hzT⟩, hzP⟩ := hzL
   have hzK := (mem_highestWeightSub_iff _ _ _ z).1 hzK'
   have hVk : IsKStableSub ε E V := hV.2.1
-  have hGk : IsKStableSub ε E (genSub E V) := fun a b _ v hv => generatedSub_stable E V a b hv
+  have hGk : IsKStableSub ε E (genSub E V) := fun a b _ v hv => _root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.vc_genSub_stable E V a b hv
   have hVG : V ≤ genSub E V := fun v hv => Submodule.mem_sInf.2 fun T hT => hT.1 hv
   have hK : ∀ a b c d, ε a = ε b → ε c = ε d →
       diagE ε (eT E) cpT cmT a b * diagE ε (eT E) cpT cmT c d -

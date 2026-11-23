@@ -107,11 +107,11 @@ theorem om_pureTensorO_onb : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ :
     cS cT k hk k' hk' (fun τ => by rw [Matrix.one_mul, Matrix.mul_one])
     (fun τ => by rw [Matrix.one_mul, Matrix.mul_one]) xr yr hxr hyr f hf hv
   have expT : ∀ τ, HasInfExp D (μ * (η ^ T.rank)⁻¹) τ ((e τ - mT : ℤ) : ℚ) := fun τ => by
-    have h1 := GlobalTheory.OneMapRef.RealMove.hasInfExp_twist (he τ) (hη.2.2.2 τ) T.rank
+    have h1 := _root_.GlobalTheory.VacuumCharacter.hasInfExp_twist (he τ) (hη.2.2.2 τ) T.rank
     convert h1 using 1
     rw [hmT]; push_cast; ring
   have expS : ∀ τ, HasInfExp D (μ * (η ^ S.rank)⁻¹) τ ((e τ - mS : ℤ) : ℚ) := fun τ => by
-    have h1 := GlobalTheory.OneMapRef.RealMove.hasInfExp_twist (he τ) (hη.2.2.2 τ) S.rank
+    have h1 := _root_.GlobalTheory.VacuumCharacter.hasInfExp_twist (he τ) (hη.2.2.2 τ) S.rank
     convert h1 using 1
     rw [hmS]; push_cast; ring
   have vx := hxv _ (fun τ => e τ - mT) expT

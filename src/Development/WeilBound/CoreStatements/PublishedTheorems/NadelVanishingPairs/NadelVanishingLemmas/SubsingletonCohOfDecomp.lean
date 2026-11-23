@@ -126,7 +126,7 @@ theorem subsingleton_coh_of_decomp : ∀ (p : ℕ) [Fact p.Prime] (X : Scheme.{0
     p ^ e • (M - canonical f d) - ∑ c, (p ^ e * b c / r) • E c - ∑ c, E c
   let R : Fin r → CartierDiv X := fun j =>
     (j : ℕ) • (M - canonical f d) - ∑ c, ((j : ℕ) * b c / r) • E c - ∑ c, E c
-  obtain ⟨q₀, hq₀⟩ := GlobalTheory.T.serre_vanishing_snc_atlas (ZMod p) X f hproj E 𝒜 H r R hH
+  obtain ⟨q₀, hq₀⟩ := _root_.GlobalTheory.LogDR.exists_cechZero_cechFam_nsmul_add (ZMod p) X f hproj E 𝒜 H r R hH
   have hp1 : 1 < p := (Fact.out : p.Prime).one_lt
   have hpow : q₀ * r ≤ p ^ (q₀ * r) := by
     have := Nat.lt_pow_self hp1 (n := q₀ * r)
@@ -137,17 +137,17 @@ theorem subsingleton_coh_of_decomp : ∀ (p : ℕ) [Fact p.Prime] (X : Scheme.{0
   have hG : G (q₀ * r) = (p ^ (q₀ * r) / r) • H + R ⟨p ^ (q₀ * r) % r, Nat.mod_lt _ hr⟩ :=
     twist_split E M (canonical f d) H r b hr key _
   have hrec : ∀ e, ∃ ρ : C → ℕ, (∀ c, ρ c < p) ∧ G (e + 1) = p • G e + ∑ c, ρ c • E c :=
-    GlobalTheory.T.frobenius_twist_divisor_recursion X p E M (canonical f d) r b (by omega) hr
+    _root_.GlobalTheory.rounded_multiples_step X p E M (canonical f d) r b (by omega) hr
   have hvan : ∀ a b' : ℕ, d < a + b' → DI.CechZero (cechFam 𝒜 (G (q₀ * r)) a) b' := by
     intro a b' hab
     rcases Nat.eq_zero_or_pos b' with rfl | hb'
     · exact cechZero_of_forall_eq_zero _ (cechFam_eq_zero 𝒜 _ (by omega)) 0
     · rw [hG]; exact hq₀ _ hQ _ a b' hb'
-  have h0 := GlobalTheory.T.cech_vanishing_frobenius_descent p X E 𝒜 G hdec hrec (q₀ * r) hvan d q (by omega)
+  have h0 := _root_.GlobalTheory.LogDR.descend_vanishing p X E 𝒜 G hdec hrec (q₀ * r) hvan d q (by omega)
   have hG0 : G 0 = M - canonical f d - ∑ c, E c := by
     simp only [G, pow_zero, one_smul, one_mul, Nat.div_eq_of_lt (hb _), zero_smul,
       Finset.sum_const_zero, sub_zero]
-  obtain ⟨ω₀, hω₀, htop⟩ := GlobalTheory.T.top_log_forms_canonical_generator p X f d E 𝒜
+  obtain ⟨ω₀, hω₀, htop⟩ := _root_.GlobalTheory.LogDR.logAt_top_eq_canonical p X f d E 𝒜
   let φ : X.functionField →ₗ[X.functionField] abelian₂ X.functionField :=
     LinearMap.toSpanSingleton _ _ ω₀
   have hφ : Function.Injective φ := fun c c' h => smul_left_injective _ hω₀ h
@@ -162,9 +162,9 @@ theorem subsingleton_coh_of_decomp : ∀ (p : ℕ) [Fact p.Prime] (X : Scheme.{0
     · rintro ⟨c, hc, rfl⟩
       exact ⟨c, CartierDiv.mem_secOn.1 hc y rfl, rfl⟩
   obtain ⟨L0⟩ := nonempty_latModel_of_presents X M (toLB M) _ (presents_toLB M)
-  obtain ⟨L1⟩ := (GlobalTheory.T.lattice_model_unique_injective X _ (LB.toMod (toLB M)) (LB.toMod (toLB M)) φ hφ L0).1
+  obtain ⟨L1⟩ := (_root_.GlobalTheory.LogDR.latModel_map_and_unique X _ (LB.toMod (toLB M)) (LB.toMod (toLB M)) φ hφ L0).1
   haveI := LB.isQuasicoherent_toMod (presents_toLB M).isLB
-  refine (GlobalTheory.T.cech_lattice_cohomology_vanish X _ (LB.toMod (toLB M)) 𝒜.U L1 𝒜.affine 𝒜.gen 𝒜.cover q hq).1 ?_
+  refine (_root_.GlobalTheory.cechZero_latSec_iff_subsingleton_coh X _ (LB.toMod (toLB M)) 𝒜.U L1 𝒜.affine 𝒜.gen 𝒜.cover q hq).1 ?_
   have hfam : cechFam 𝒜 (G 0) d = fun s =>
       latSec (fun y => ((M.secOn {y}).toAddSubgroup).map φ.toAddMonoidHom) (inter 𝒜.U s) := by
     funext s; simp only [cechFam, logSec]; rw [hlat]

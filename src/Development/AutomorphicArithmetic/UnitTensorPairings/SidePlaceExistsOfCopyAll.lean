@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.LocalRingCardinality.Lemmas
 
 @[expose] public section
 
@@ -60,14 +61,6 @@ private theorem under_le_one {K L : Type} [Field K] [NumberField K] [Field L] [N
   · have h := HeightOneSpectrum.valuation_liesOver L (w.under (𝓞 K)) w x
     change _ ↔ w.valuation L (algebraMap K L x) < 1
     rw [← h, pow_lt_one_iff he]
-
-private theorem val_nonneg_iff (D : D7) (w : D.what₂.places.Pl) (x : D.what₂.LL) :
-    0 ≤ D.what₂.places.val w x ↔ (D.plEq w).valuation D.what₂.LL x ≤ 1 := by
-  by_cases hx : x = 0
-  · subst hx; simp
-  · have h0 : (D.plEq w).valuation D.what₂.LL x ≠ 0 := (Valuation.ne_zero_iff _).2 hx
-    rw [D.val_eq w x hx, ← WithTop.coe_zero, WithTop.coe_le_coe, vAdd, neg_nonneg,
-      WithZero.log_le_iff_le_exp h0, WithZero.exp_zero]
 
 private theorem val_resChar_lt (D : D7) (w : D.what₂.places.Pl) :
     (D.plEq w).valuation D.what₂.LL (D.what₂.places.resChar w : D.what₂.LL) < 1 := by
@@ -99,7 +92,7 @@ private theorem exists_under {D D' : D7} (ι : D.what₂.LL →+* D'.what₂.LL)
   · have a := (h2 _).1 (val_resChar_lt D w)
     rw [map_natCast] at a
     exact prime_eq_of_lt _ (D.what₂.places.resChar_prime w) (D'.what₂.places.resChar_prime w') a (val_resChar_lt D' w')
-  · rw [val_nonneg_iff, val_nonneg_iff, h1]
+  · rw [_root_.Formalism.BasicNotions.D7.val_nonneg_iff, _root_.Formalism.BasicNotions.D7.val_nonneg_iff, h1]
 
 theorem UpperTheory.sidePlace_exists_of_copyAll :
     ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0}, CopyAll D D' ι e → (∀ w : D.what₂.places.Pl, ∃ i, D.ntw.l i = D.what₂.places.resChar w ∧ GlobalTheory.HeightCounting.SidePl D w i true) → ∀ w : D'.what₂.places.Pl, ∃ i, D'.ntw.l i = D'.what₂.places.resChar w ∧ GlobalTheory.HeightCounting.SidePl D' w i true := by

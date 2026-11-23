@@ -67,6 +67,6 @@ theorem exists_simpLab_refinement : ∀ (E : Type) [Field E] [NumberField E] [Is
         exact GlobalTheory.T.barycentricSubdivision_star_step_cells E H q ψ lab φ _ hD hψ hT hlT hlab hφT hφ
   obtain ⟨φ, hφT, hφ⟩ := key N
   rw [Nat.sub_self] at hφ
-  exact ⟨φ, lab, hφ.1, hφT, hlT, GlobalTheory.T.simplicialLabelling_of_barycentricStage_zero _ H.bar q ψ lab φ hlab hφ, hφ.2.1⟩
+  exact ⟨φ, lab, hφ.1, hφT, hlT, _root_.GlobalTheory.PolFan.BaryFin.simpLab_of_isBaryStage_zero _ H.bar q ψ lab φ hlab hφ, hφ.2.1⟩
 
 end GlobalTheory.PolFan

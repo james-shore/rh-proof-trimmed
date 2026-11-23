@@ -209,7 +209,7 @@ theorem zg_formula_let : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (
     have hcs : CompactSpace ↥W.GKs := isCompact_iff_compactSpace.1 hcl.isCompact
     have hl1 (g : ↥W.GKs) : lam g = 1 ↔ W.resΓ (g : ↥(GK K)) = 1 := hl1' g
     have hg₀γ : W.resΓ (g₀ : ↥(GK K)) = W.gam := (hlg g₀).mp hg₀
-    have htop := GlobalTheory.T.etaleComparison_pi_wachLattice_closed_weak D HW F l K s LL h T hT
+    have htop := _root_.GlobalTheory.WeakClosed.jD_piN_closed D HW F l K s LL h T hT
     rcases htop with ⟨τ, hT2, hTG, hact, hemb, hclo⟩
     letI := τ
     letI : Algebra ↥(OL LL) (RW LL) := inferInstance

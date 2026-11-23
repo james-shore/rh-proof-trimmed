@@ -97,7 +97,7 @@ theorem locPrincipal_locally_const {k A : Type} [Field k] [CommRing A] [IsDomain
     rw [hWO] at this
     exact this
   have e : ∀ R : PrimeSpectrum (A ⧸ I), LocPrincipal I (PrimeSpectrum.comap (Ideal.Quotient.mk I) R).asIdeal ↔ Module.rankAtStalk (R := A ⧸ I) I.Cotangent R = 1 :=
-    fun R => ⟨GlobalTheory.T.conormal_rank_one_of_locally_principal I R, GlobalTheory.T.locally_principal_of_conormal_rank_one I R⟩
+    fun R => ⟨_root_.GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver.rankAtStalk_cotangent_eq_one I R, _root_.GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver.locPrincipal_of_rankAtStalk_eq_one I R⟩
   rw [← hQ, ← hP0, e, e, hQO]
 
 theorem fromSpec_mem_basicOpen_iff {X : Scheme.{0}} (U : X.affineOpens) (q : PrimeSpectrum Γ(X, U.1))
@@ -126,7 +126,7 @@ theorem isClosed_cartAt : ∀ {k : Type} [Field k] {X : Scheme.{0}} (g : X ⟶ S
     let U' : X.affineOpens := ⟨U, hU⟩
     have hne : Nonempty U := ⟨⟨x, hxU⟩⟩
     have hdom : IsDomain Γ(X, U'.1) := inferInstanceAs (IsDomain Γ(X, U))
-    obtain ⟨φ, hφ, hI⟩ := GlobalTheory.T.exists_smooth_affine_presentation_pair g Z U' hg hZ
+    obtain ⟨φ, hφ, hI⟩ := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Charts.smooth_affine_chart g Z U' hg hZ
     have hrange : ∀ y ∈ U, ∃ q, U'.2.fromSpec q = y := by
       intro y hy
       have : y ∈ Set.range U'.2.fromSpec := by rw [U'.2.range_fromSpec]; exact hy

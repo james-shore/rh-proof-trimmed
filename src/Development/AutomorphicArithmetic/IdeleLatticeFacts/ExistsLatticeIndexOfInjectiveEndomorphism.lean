@@ -79,11 +79,6 @@ variable {E V : Type} [Field E] [NumberField E] {P : HeightOneSpectrum (𝓞 E)}
   [Module (P.adicCompletion E) V] [Module (P.adicCompletionIntegers E) V]
   [IsScalarTower (P.adicCompletionIntegers E) (P.adicCompletion E) V]
 
-private theorem one_lt_norm (P : HeightOneSpectrum (𝓞 E)) : 1 < Ideal.absNorm P.asIdeal := by
-  have h0 : Ideal.absNorm P.asIdeal ≠ 0 := fun h => P.ne_bot (Ideal.absNorm_eq_zero_iff.mp h)
-  have h1 : Ideal.absNorm P.asIdeal ≠ 1 := fun h => P.isPrime.ne_top (Ideal.absNorm_eq_one_iff.mp h)
-  omega
-
 private theorem norm_eq_zpow {x : P.adicCompletion E} (hx : x ≠ 0) :
     ‖x‖ = (Ideal.absNorm P.asIdeal : ℝ) ^ (Valued.v x).log := by
   rw [← GroundTheory.Global.normalizedAbv_apply]
@@ -139,7 +134,7 @@ private theorem relIndex_eq_inv_norm_det_basis_change {m : ℕ} (a c : Module.Ba
 
 private theorem exists_nat_pow_eq_of_real_eq_zpow_absNorm (r : ℕ) (k : ℤ) (h : (r : ℝ) = (Ideal.absNorm P.asIdeal : ℝ) ^ k) :
     ∃ n : ℕ, r = Ideal.absNorm P.asIdeal ^ n := by
-  have hN : (1 : ℝ) < Ideal.absNorm P.asIdeal := by exact_mod_cast one_lt_norm P
+  have hN : (1 : ℝ) < Ideal.absNorm P.asIdeal := by exact_mod_cast _root_.GlobalTheory.LFun.one_lt_absNorm P
   have hpos : (0 : ℝ) < (Ideal.absNorm P.asIdeal : ℝ) ^ k := zpow_pos (by linarith) k
   have hr : 1 ≤ r := by
     rcases Nat.eq_zero_or_pos r with h0 | h0
@@ -271,7 +266,7 @@ private theorem main (L : Submodule (P.adicCompletionIntegers E) V)
     exact (LinearEquiv.isUnit_det' Te).ne_zero
   have hd2 : LinearMap.det ((t.equiv c (Equiv.refl _)).toLinearMap) ≠ 0 :=
     (LinearEquiv.isUnit_det' _).ne_zero
-  have hN : (1 : ℝ) < Ideal.absNorm P.asIdeal := by exact_mod_cast one_lt_norm P
+  have hN : (1 : ℝ) < Ideal.absNorm P.asIdeal := by exact_mod_cast _root_.GlobalTheory.LFun.one_lt_absNorm P
   have hnorm : ‖LinearMap.det T‖ = (Ideal.absNorm P.asIdeal : ℝ) ^ ((i : ℤ) - j) := by
     have n1 : ‖LinearMap.det ((a.equiv c (Equiv.refl _)).toLinearMap)‖ =
         ‖LinearMap.det ((t.equiv c (Equiv.refl _)).toLinearMap)‖ * ‖LinearMap.det T‖ := by

@@ -108,7 +108,7 @@ theorem integrableOn_corrC : ∀ {n : ℕ} {r : Type} [Fintype r] [DecidableEq r
     exact (GlobalTheory.T.continuousAt_transgressionTopCoeffComplex hρv ((hG₀ v hvU).1.of_le (WithTop.coe_le_coe.2 le_top)) (hG₀ v hvU).2
       ((hG₁ v hv).1.of_le (WithTop.coe_le_coe.2 le_top)) (hG₁ v hv).2).continuousWithinAt
   · intro v hv hvK
-    apply GlobalTheory.T.transgressionTopCoeffComplex_eq_zero_of_cutoff_zero
+    apply _root_.GlobalTheory.GoodTop.corrC_eq_zero_of_eventuallyEq_zero
     have : U \ K ∈ 𝓝 v := (hU.sdiff hK.isClosed).mem_nhds ⟨hv.1, hvK⟩
     filter_upwards [this] with x hx
     exact hρK x hx.1 hx.2

@@ -46,11 +46,6 @@ open GlobalTheory.SplitPts (conjE)
 open GroundTheory.Global.AdeleBaseChange (finiteAdeleMap)
 open UpperTheory.Gal.CertificateRingHomMap UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂
 
-private theorem val_two (K : Type) [Field K] [NumberField K] (hK : Module.finrank ℚ K ≤ 2)
-    (P Q : HeightOneSpectrum (𝓞 K)) (hne : P ≠ Q) (h : P.asIdeal.under ℤ = Q.asIdeal.under ℤ) :
-    Valued.v ((Ideal.absNorm P.asIdeal : ℕ) : P.adicCompletion K) = WithZero.exp (-1 : ℤ) :=
-  _root_.UpperTheory.Reformulated.B.UnipotentFundamentalDomain.val_two K hK P Q hne h
-
 private theorem finrank_Kx_le {E : Type} [Field E] [NumberField E] (d : ℕ) (x : E)
     (hx : x ^ 2 = -(d : E)) : Module.finrank ℚ (Kx x) ≤ 2 := by
   have hi : IsIntegral ℚ x := Algebra.IsIntegral.isIntegral x
@@ -100,4 +95,4 @@ theorem UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.kPlace :
   intro E _ _ _ d x _ hx
   refine ⟨sameK_iff x, fun w hw => ?_⟩
   rw [sameK_iff] at hw
-  exact val_two (Kx x) (finrank_Kx_le d x hx) _ _ (Ne.symm hw) (under_int_cj (Kx x) w)
+  exact _root_.UpperTheory.Reformulated.B.UnipotentFundamentalDomain.val_two (Kx x) (finrank_Kx_le d x hx) _ _ (Ne.symm hw) (under_int_cj (Kx x) w)

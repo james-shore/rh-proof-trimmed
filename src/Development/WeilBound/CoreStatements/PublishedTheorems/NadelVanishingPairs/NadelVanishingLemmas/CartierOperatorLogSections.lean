@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogFormsEqChartForms
 
 @[expose] public section
 
@@ -124,38 +125,17 @@ private theorem spanForms_le_of_mem_closure_smul {K : Type} [Field K] (M : Set K
   rintro _ ⟨c, hc, v, hv, rfl⟩
   exact key a c hc v (fun i => hH _ (hv i))
 
-private theorem dlog_mul' {K : Type} [Field K] (u v : Kˣ) : dlog (u * v) = dlog u + dlog v := by
-  simp only [dlog, dK, Units.val_mul, Derivation.leibniz, smul_add, smul_smul]
-  rw [add_comm]
-  congr 1 <;> congr 1 <;> simp only [Units.val_inv_eq_inv_val, Units.val_mul, mul_inv_rev] <;> field_simp
-
-private theorem dlog_one' {K : Type} [Field K] : dlog (1 : Kˣ) = 0 := by
-  simp [dlog, dK]
-
 private theorem dlog_pow' {K : Type} [Field K] (u : Kˣ) (k : ℕ) : dlog (u ^ k) = k • dlog u := by
   induction k with
-  | zero => simp [dlog_one']
-  | succ k ih => rw [pow_succ, dlog_mul', ih, succ_nsmul]
-
-private theorem dlog_inv' {K : Type} [Field K] (u : Kˣ) : dlog u⁻¹ = - dlog u := by
-  have h := dlog_mul' u u⁻¹
-  rw [mul_inv_cancel, dlog_one'] at h
-  exact (neg_eq_of_add_eq_zero_right h.symm).symm
-
-private theorem dlog_zpow' {K : Type} [Field K] (u : Kˣ) (m : ℤ) : dlog (u ^ m) = m • dlog u := by
-  cases m with
-  | ofNat k => rw [Int.ofNat_eq_coe, zpow_natCast, dlog_pow', natCast_zsmul]
-  | negSucc k => rw [zpow_negSucc, dlog_inv', dlog_pow', negSucc_zsmul]
+  | zero => simp [_root_.GlobalTheory.LogDR.StabD.dlog_one]
+  | succ k ih => rw [pow_succ, _root_.GlobalTheory.LogDR.ChartStalk.dlog_mul, ih, succ_nsmul]
 
 private theorem dlog_prod_zpow {K : Type} [Field K] {n : ℕ} (s : Finset (Fin n)) (x : Fin n → Kˣ) (m : Fin n → ℤ) :
     dlog (∏ j ∈ s, x j ^ m j) = ∑ j ∈ s, m j • dlog (x j) := by
   classical
   induction s using Finset.induction_on with
-  | empty => simp [dlog_one']
-  | insert a s ha ih => rw [Finset.prod_insert ha, Finset.sum_insert ha, dlog_mul', dlog_zpow', ih]
-
-private theorem dK_units_eq_smul_dlog {K : Type} [Field K] (u : Kˣ) : dK (u : K) = (u : K) • dlog u := by
-  simp [dlog, smul_smul]
+  | empty => simp [_root_.GlobalTheory.LogDR.StabD.dlog_one]
+  | insert a s ha ih => rw [Finset.prod_insert ha, Finset.sum_insert ha, _root_.GlobalTheory.LogDR.ChartStalk.dlog_mul, _root_.GlobalTheory.LogDR.ChartStalk.dlog_zpow, ih]
 
 private theorem logUnit_of_unitAt {X : Scheme.{0}} [IsIntegral X] (Z : Set X) {y : X}
     {g : X.functionFieldˣ} (h : UnitAt y (g : X.functionField)) : LogUnit Z y g := by
@@ -168,11 +148,11 @@ private theorem exists_unitAt_dK_eq_smul_dlog_of_regAt {X : Scheme.{0}} [IsInteg
   obtain ⟨s, rfl⟩ := ha
   rcases IsLocalRing.isUnit_or_isUnit_one_sub_self s with hs | hs
   · refine ⟨(hs.map (algebraMap _ X.functionField)).unit, ⟨s, hs, rfl⟩, _, ⟨s, rfl⟩, ?_⟩
-    have h := dK_units_eq_smul_dlog (hs.map (algebraMap _ X.functionField)).unit
+    have h := _root_.GlobalTheory.LogDR.StabD.dK_unit (hs.map (algebraMap _ X.functionField)).unit
     rw [IsUnit.unit_spec] at h
     exact h
   · refine ⟨(hs.map (algebraMap _ X.functionField)).unit, ⟨1 - s, hs, rfl⟩, _, ⟨-(1 - s), rfl⟩, ?_⟩
-    have h := dK_units_eq_smul_dlog (hs.map (algebraMap _ X.functionField)).unit
+    have h := _root_.GlobalTheory.LogDR.StabD.dK_unit (hs.map (algebraMap _ X.functionField)).unit
     rw [IsUnit.unit_spec] at h
     rw [map_neg, neg_smul, ← h]
     simp [dK, map_sub]
@@ -200,13 +180,13 @@ private theorem logAt_le_chartForms_of_isLogChart {X : Scheme.{0}} [IsIntegral X
     intro k b hb
     by_cases hk : k ∈ J
     · have h1 : dK (x k : X.functionField) = (x k : X.functionField) • frame x J k := by
-        rw [frame, if_pos hk, dK_units_eq_smul_dlog]
+        rw [frame, if_pos hk, _root_.GlobalTheory.LogDR.StabD.dK_unit]
       rw [h1, smul_smul]
       exact hfr k _ ((locRing y).mul_mem hb (hch.mem k))
     · have h1 : dK (x k : X.functionField) = frame x J k := by rw [frame, if_neg hk]
       rw [h1]
       exact hfr k b hb
-  rw [dlog_mul', dlog_prod_zpow]
+  rw [_root_.GlobalTheory.LogDR.ChartStalk.dlog_mul, dlog_prod_zpow]
   refine add_mem ?_ (sum_mem fun k hk => zsmul_mem ?_ _)
   · obtain ⟨a1, _, ha1⟩ := hu.inv
     obtain ⟨a0, _, ha0⟩ := hu

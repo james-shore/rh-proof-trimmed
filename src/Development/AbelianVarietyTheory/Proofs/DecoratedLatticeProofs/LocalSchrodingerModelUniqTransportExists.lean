@@ -153,7 +153,7 @@ theorem localModel_uniq_transport_exist : ∀ (D : D7) (k : Type) [Field k] [Val
           have := congrArg Subtype.val h
           simpa only [AddSubgroup.coe_nsmul] using this
         rw [← GlobalTheory.PlaceModel.inv_smul_nsmul S T hn z.1, h', GlobalTheory.PlaceModel.inv_smul_nsmul S T hn])
-      (fun x hx => GlobalTheory.T.matrix_integral_of_addChar_trace_dual k Y Y' ψk hcont hne x fun b hb => by
+      (fun x hx => _root_.GlobalTheory.CharDualMat.integral_of_dual k Y Y' ψk hcont hne x fun b hb => by
         obtain ⟨y, hy, hyb⟩ := hsurj b
         have key : ∀ t, χ t ⟨y, (GlobalTheory.PlaceModel.isHalf_iff S T).1 hy⟩ = ((ψk (∑ r, ∑ q, b r q * t r q) : Circle) : ℂ) := by
           intro t
@@ -166,7 +166,7 @@ theorem localModel_uniq_transport_exist : ∀ (D : D7) (k : Type) [Field k] [Val
       (WO S T → ℂ) (fun x => GlobalTheory.PlaceModel.heisL S T ψ (p.up FS FT x)) (fun z => GlobalTheory.PlaceModel.heisL S T ψ z.1)
       (fun x x' f => by
         rw [GlobalTheory.PlaceModel.heisL_half S T ψ hce _ ((GlobalTheory.PlaceModel.isHalf_iff S T).1 (hup x).1) _
-          ((GlobalTheory.PlaceModel.isHalf_iff S T).1 (hup x').1), upAdd])
+          ((GlobalTheory.PlaceModel.isHalf_iff S T).1 (hup x').1), _root_.GlobalTheory.LocMod.Witness.up_add])
       (fun z z' f => by
         rw [GlobalTheory.PlaceModel.heisL_half S T ψ hcce _ z.2 _ z'.2]
         rfl)

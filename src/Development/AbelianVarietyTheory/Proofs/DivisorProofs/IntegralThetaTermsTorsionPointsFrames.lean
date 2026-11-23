@@ -169,7 +169,7 @@ theorem GlobalTheory.Poinc.Sep.FrameInt.integral_terms : ∀ (m : ℕ), Odd m �
     exact mul_left_cancel₀ (mul_ne_zero hlam0 hν0) this
   refine ⟨b, t, f c₁ * ↑(hc₁.unit⁻¹), hcov, htg, ?_, ?_⟩
   · intro c κ hκ Z r z' J' hJ'
-    refine GlobalTheory.T.integralFrame_identity_of_genericPoint V₁ D (m ^ 2) (b c) (hbN c) (t c) (htg c) κ hκ (fun y I hI => ?_) Z r z' J' hJ'
+    refine _root_.GlobalTheory.Poinc.Sep.FrameInt.kap_of_generic V₁ D (m ^ 2) (b c) (hbN c) (t c) (htg c) κ hκ (fun y I hI => ?_) Z r z' J' hJ'
     rw [htv c y I hI]
     have := (hw c).2 κ hκ y I hI
     rwa [show (g c).b.left = (toUnit (TF (R := V₁) (FractionRing V₁))).left ≫ (b c).left from

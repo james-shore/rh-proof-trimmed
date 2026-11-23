@@ -82,24 +82,12 @@ theorem finite_between {R V : Type} [CommRing R] [AddCommGroup V] [Module R V] (
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 
-theorem exists_pow_smul_mem (L : LocE F E) {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ) (p : L.O)
-    (hp : (p : E) = algebraMap F E (ϖ : F)) {n : ℕ}
-    {Λ : Submodule L.O (Fin n → E)} (hΛ : IsLat L Λ) (v : Fin n → E) :
-    ∃ j : ℕ, p ^ j • v ∈ Λ := by
-  first
-  | exact @_root_.GlobalTheory.PowMulMemOrder.main
-  | exact _root_.GlobalTheory.PowMulMemOrder.main
-  | (apply _root_.GlobalTheory.PowMulMemOrder.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowMulMemOrder.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowMulMemOrder.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowMulMemOrder.main ..)
-
 theorem exists_pow_smul_le (L : LocE F E) {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ) (p : L.O)
     (hp : (p : E) = algebraMap F E (ϖ : F)) {n : ℕ}
     {Λ Λ' : Submodule L.O (Fin n → E)} (hΛ : IsLat L Λ) (hΛ' : Λ'.FG) :
     ∃ j : ℕ, ∀ v ∈ Λ', p ^ j • v ∈ Λ := by
   obtain ⟨s, rfl⟩ := hΛ'
-  choose f hf using exists_pow_smul_mem L hϖ p hp hΛ
+  choose f hf using _root_.GlobalTheory.PowMulMemOrder.main L hϖ p hp hΛ
   refine ⟨s.sup f, fun v hv => ?_⟩
   have : Submodule.span L.O (s : Set (Fin n → E)) ≤
       Λ.comap (LinearMap.lsmul L.O (Fin n → E) (p ^ s.sup f)) := by

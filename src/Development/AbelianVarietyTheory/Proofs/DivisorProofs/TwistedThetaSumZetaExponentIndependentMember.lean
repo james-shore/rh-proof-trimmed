@@ -165,7 +165,7 @@ theorem twistSum_indep : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix
   intro g n F W Z i X₁ z₁ act x₀ hdiv sg hsg hpin V₁ _ _ _ ev₁ Y₁ _ m₁ t₁ δ₁ 𝔪₁ C₁ lab₁ hlab₁ T₁ hT₁ c₁
     V₂ _ _ _ ev₂ Y₂ _ m₂ t₂ δ₂ 𝔪₂ C₂ lab₂ hlab₂ T₂ hT₂ c₂ hlab τ hτ e₁ e₂ hS₁ _ hr'
   obtain ⟨r, hr, hr0⟩ := hr'
-  obtain ⟨ε₁, ε₂, h1, h2, haff⟩ := GlobalTheory.T.twistedSum_exponents_affine_two_members g n F W Z i X₁ z₁ act x₀ hdiv sg hsg hpin V₁ ev₁ Y₁ m₁ t₁ δ₁ 𝔪₁ V₂ ev₂ Y₂ m₂ t₂ δ₂ 𝔪₂
+  obtain ⟨ε₁, ε₂, h1, h2, haff⟩ := _root_.GlobalTheory.Poinc.Sep.twistSum_exp_affine g n F W Z i X₁ z₁ act x₀ hdiv sg hsg hpin V₁ ev₁ Y₁ m₁ t₁ δ₁ 𝔪₁ V₂ ev₂ Y₂ m₂ t₂ δ₂ 𝔪₂
 
   have hφ : ∀ b ∈ X₁.S.HH X₁.M z₁, X₁.S.ζ ^ ε₁ b τ = X₁.S.ζ ^ ε₂ b τ := by
     obtain ⟨κ, h, hκ⟩ := haff τ hτ

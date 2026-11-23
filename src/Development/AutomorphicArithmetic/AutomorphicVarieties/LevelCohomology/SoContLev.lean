@@ -54,10 +54,6 @@ import Mathlib.Topology.Algebra.Group.Units
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.X
 
-private theorem locConst {Γ A : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group A] (ψ : Γ →* A)
-    (h : IsOpen (ψ.ker : Set Γ)) : IsLocallyConstant ψ :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantMaps.locConst ψ h
-
 private theorem dvd_pow_l (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [Algebra ℤ_[l] O] [Module.Finite ℤ_[l] O] (a : O) (ha : a ≠ 0) : ∃ N : ℕ, a ∣ (l : O) ^ N := by
   obtain ⟨-, -, -, -, -, h0, -, hval, -⟩ := dvrFacts l O
@@ -96,7 +92,7 @@ theorem UpperTheory.V.X.So.contLev :
     exact dvd_mul_right _ _
   have h1 := (locConst_smul l O M N m hm).comp_continuous
     (f := fun g => ((cycZ k Ω l g ^ n : ℤ_[l]ˣ) : ℤ_[l])) (Units.continuous_val.comp (hc.zpow n))
-  have h2 := ((locConst ψ hψ).prodMk h1).comp fun p : Oˣ × M => (p.1 : O) • p.2
+  have h2 := ((_root_.UpperTheory.Reformulated.B.LocallyConstantFunctions.locConst ψ hψ).prodMk h1).comp fun p : Oˣ × M => (p.1 : O) • p.2
   refine h2.continuous.congr fun g => ?_
   show (ψ g : O) • (algebraMap ℤ_[l] O ((cycZ k Ω l g ^ n : ℤ_[l]ˣ) : ℤ_[l]) • m) = ρ g m
   have e' : chiO k Ω l O g ^ n = Units.map (algebraMap ℤ_[l] O).toMonoidHom (cycZ k Ω l g ^ n) :=

@@ -136,7 +136,7 @@ theorem massCAll_of (hE2 : PositivityTheory.PfSWUS.HMass.OneVecBinaryMass) (hO :
     haveI hlf := (GlobalTheory.T.gram_fiber_measure_locallyFinite_and_ne_zero_of_isOpen F E σ hCM (n + 1) J hJ (Fv F v) hloc (n + 1) _ _ (m v) hW hH (hm v)
       (hermOf (Fv F v) σ T hT)).1
     rw [Measure.smul_apply, ENNReal.smul_def, smul_eq_mul]
-    exact ENNReal.mul_lt_top ENNReal.coe_lt_top (GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hCM d b (n + 1) (n + 1) v).1.measure_lt_top
+    exact ENNReal.mul_lt_top ENNReal.coe_lt_top (_root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hCM d b (n + 1) (n + 1) v).1.measure_lt_top
   · obtain ⟨C, hC⟩ := mass_good_eq hE2 hO hCM n J hJ T hT hdet d b
     refine Summable.of_norm_bounded_eventually
       (g := fun v : HeightOneSpectrum (𝓞 F) => C * (1 / (Ideal.absNorm v.asIdeal : ℝ) ^ 2))

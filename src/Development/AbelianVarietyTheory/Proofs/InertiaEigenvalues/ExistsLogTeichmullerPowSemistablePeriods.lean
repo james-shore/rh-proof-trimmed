@@ -133,13 +133,13 @@ theorem exists_log_flat_pow_Bst : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (b
     have := hr 0
     rw [lRoot_zero, map_natCast] at this
     exact this.trans (SubringClass.coe_natCast _ _).symm)
-  obtain ⟨x, hxu, hx⟩ := GlobalTheory.T.tilt_uniformizer_pow_eq_mul_unit l K bk ϖ hϖ
-  obtain ⟨cπ, hcπ, hfix⟩ := GlobalTheory.T.exists_kummer_cocycle_tilt_uniformizer l K bk C
-  obtain ⟨bx, hφ, hgal⟩ := GlobalTheory.T.exists_teichmuller_log_unit_bcris l C x hxu
+  obtain ⟨x, hxu, hx⟩ := _root_.GlobalTheory.TiltDiv.flat_pow_natDegree_eq_mul_unit l K bk ϖ hϖ
+  obtain ⟨cπ, hcπ, hfix⟩ := _root_.GlobalTheory.FlatKummer.exists_kummer_flat l K bk C
+  obtain ⟨bx, hφ, hgal⟩ := _root_.GlobalTheory.LogU.exists_log_unit l C x hxu
   have hϖ0 : ϖ.untilt ≠ 0 := by
     rw [hϖ]; exact_mod_cast (Fact.out : l.Prime).ne_zero
   refine ⟨T.eB.symm bx, fun g => (bk.Ep.natDegree : ℤ_[l]) * cπ g, ⟨fun g => ?_, ?_⟩,
-    fun g hg => by simp [hfix g hg], GlobalTheory.T.exists_truncLog_gal_mod_filP l K bk C cπ hcπ⟩
+    fun g hg => by simp [hfix g hg], _root_.GlobalTheory.BSP.BK.exists_truncLog_gal_mod_fil l K bk C cπ hcπ⟩
   · have hx' := rootT_cocycle_of_pow_eq_mul l C (g : GQ l) bk.flat ϖ x bk.Ep.natDegree (cπ g) (kummer P g) hx hϖ0 (hcπ g)
       (rootT_σF_tilt_l l P C hF.ζ ϖ hr g)
     have h1 := hgal (g : GQ l) _ hx'

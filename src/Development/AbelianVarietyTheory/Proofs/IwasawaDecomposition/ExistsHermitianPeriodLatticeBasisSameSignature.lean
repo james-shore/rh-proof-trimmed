@@ -49,16 +49,6 @@ open scoped Matrix CategoryTheory.Obj Topology
 
 namespace GlobalTheory.ShFam.Hor.PerBasis
 
-theorem mult_conj_add_mult {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
-    (D : Datum H) (τ : E →+* ℂ) : D.mult (conjEmb τ) + D.mult τ = D.p + D.q := by
-  first
-  | exact @_root_.GlobalTheory.ConjugateMultiplicity.target
-  | exact _root_.GlobalTheory.ConjugateMultiplicity.target
-  | (apply _root_.GlobalTheory.ConjugateMultiplicity.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ConjugateMultiplicity.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ConjugateMultiplicity.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ConjugateMultiplicity.target ..)
-
 theorem exists_indep {E : Type} [Field E] [NumberField E] (M : Type) [AddCommGroup M] [Module (𝓞 E) M]
     [Module.Finite (𝓞 E) M] (J : Type) [Fintype J] (hJ : Fintype.card J = Module.finrank (𝓞 E) M) :
     ∃ x : J → M, LinearIndependent (𝓞 E) x ∧
@@ -108,7 +98,7 @@ theorem exists_isPerBasis : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   intro E _ _ _ H Dw Di τ ⟨hp, hq⟩
   have := Di.fin
   obtain ⟨x, hx, hsp⟩ := exists_indep (E := E) Di.La (Idx Dw τ) (by
-    rw [Fintype.card_sum, Fintype.card_fin, Fintype.card_fin, mult_conj_add_mult, Di.rank, hp, hq])
+    rw [Fintype.card_sum, Fintype.card_fin, Fintype.card_fin, _root_.GlobalTheory.ConjugateMultiplicity.target, Di.rank, hp, hq])
   have hrep : ∀ k k', ∃ h : E, ∀ a : 𝓞 E,
       ((Di.EF (a • x k) (x k') : ℤ) : ℚ) = Algebra.trace ℚ E ((a : E) * h) := fun k k' =>
     exists_trace_rep (AddMonoidHom.toIntLinearMap

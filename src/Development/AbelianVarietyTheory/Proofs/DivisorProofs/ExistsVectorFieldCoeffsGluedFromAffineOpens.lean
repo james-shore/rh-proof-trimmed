@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasRigidChart
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalModelStructureMap
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.TangentBijectionOfValues
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ConstThickeningFieldStructure
 
 @[expose] public section
 
@@ -57,13 +58,6 @@ open GlobalTheory.TangentOrigin
 noncomputable section
 
 namespace GlobalTheory.VertCoeffGlue
-
-theorem affine_cover {X : Scheme.{0}} (O : X.Opens) :
-    O ≤ ⨆ l : {V : X.Opens // IsAffineOpen V ∧ V ≤ O}, l.1 := by
-  intro x hx
-  obtain ⟨_, ⟨U, hU, rfl⟩, hxU, hle⟩ :=
-    X.isBasis_affineOpens.exists_subset_of_mem_open (show x ∈ (O : Set X) from hx) O.isOpen
-  exact TopologicalSpace.Opens.mem_iSup.2 ⟨⟨U, hU, fun y hy => hle hy⟩, hxU⟩
 
 theorem exists_coeff : ∀ {X : Scheme.{0}} {n : ℕ} (W : X.Opens) (δ : Fld X) (dd : Fin n → Fld X), IsField W δ → (∀ a, IsField ⊤ (dd a)) →
     (∀ V V' : X.Opens, IsAffineOpen V → IsAffineOpen V' → V ≤ W → V' ≤ V →
@@ -92,10 +86,10 @@ theorem exists_coeff : ∀ {X : Scheme.{0}} {n : ℕ} (W : X.Opens) (δ : Fld X)
       rw [GlobalTheory.KS.rsT_mul]
     · exact hl l j.1 h j.2.2
   have glue : ∀ a, ∃ s : Γ(X, W), ∀ j : J, rsT s j.1 = c j a := fun a => by
-    refine GlobalTheory.KS.exists_rsT_eq (fun j : J => j.1) (fun j => j.2.2) (affine_cover W) (fun j => c j a)
+    refine GlobalTheory.KS.exists_rsT_eq (fun j : J => j.1) (fun j => j.2.2) (_root_.GlobalTheory.ConstThickening.le_iSup_affine W) (fun j => c j a)
       fun j k => ?_
     refine GlobalTheory.KS.eq_of_rsT_eq (fun l : {V : X.Opens // IsAffineOpen V ∧ V ≤ j.1 ⊓ k.1} => l.1)
-      (fun l => l.2.2) (affine_cover _) _ _ fun l => ?_
+      (fun l => l.2.2) (_root_.GlobalTheory.ConstThickening.le_iSup_affine _) _ _ fun l => ?_
     have hj : l.1 ≤ j.1 := l.2.2.trans inf_le_left
     have hk : l.1 ≤ k.1 := l.2.2.trans inf_le_right
     rw [GlobalTheory.KS.rsT_rsT inf_le_left l.2.2, GlobalTheory.KS.rsT_rsT inf_le_right l.2.2,
@@ -103,7 +97,7 @@ theorem exists_coeff : ∀ {X : Scheme.{0}} {n : ℕ} (W : X.Opens) (δ : Fld X)
   choose s hs using glue
   refine ⟨s, fun O hO f => ?_⟩
   refine GlobalTheory.KS.eq_of_rsT_eq (fun l : {V : X.Opens // IsAffineOpen V ∧ V ≤ O} => l.1) (fun l => l.2.2)
-    (affine_cover O) _ _ fun l => ?_
+    (_root_.GlobalTheory.ConstThickening.le_iSup_affine O) _ _ fun l => ?_
   rw [hl ⟨l.1, l.2.1, l.2.2.trans hO⟩ O l.2.2 hO f, GlobalTheory.KS.rsT_sum]
   refine Finset.sum_congr rfl fun a _ => ?_
   rw [GlobalTheory.KS.rsT_mul, GlobalTheory.KS.rsT_rsT hO l.2.2, hs a ⟨l.1, l.2.1, l.2.2.trans hO⟩]

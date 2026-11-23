@@ -73,37 +73,26 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Gal.W2.Seed
 
-theorem BarEx_holds : BarEx := pBarEx
-theorem CEx_holds : CEx := pCEx
+alias BarEx_holds := _root_.UpperTheory.Gal.W2.Seed.pBarEx
+alias CEx_holds := _root_.UpperTheory.Gal.W2.Seed.pCEx
 theorem CodiffGen_holds : CodiffGen := pCodiffGen
-theorem DeltaEx_holds : DeltaEx := pDeltaEx
-theorem DiagTrace_holds : DiagTrace := pDiagTrace
-theorem FormOKSt_holds : FormOKSt := pFormOKSt
-theorem FormPerfSt_holds : FormPerfSt := pFormPerfSt
-theorem HdSign_holds : HdSign := pHdSign
+alias DeltaEx_holds := _root_.UpperTheory.Gal.W2.Seed.pDeltaEx
 theorem IdemEx_holds : IdemEx := pIdemEx
-theorem LiftEx_holds : LiftEx := pLiftEx
-theorem OrbEx_holds : OrbEx := pOrbEx
 theorem PerfCof_holds : PerfCof := pPerfCof
 theorem PerfOf_holds : PerfOf := pPerfOf
 theorem QuadEx_holds : QuadEx := pQuadEx
-theorem RepAdj_holds : RepAdj := pRepAdj
-theorem RepEx_holds : RepEx := pRepEx
-theorem RepLaws_holds : RepLaws := pRepLaws
 theorem SetupBasic_holds : SetupBasic := pSetupBasic
-theorem TraceType_holds : TraceType := pTraceType
-theorem UEx_holds : UEx := pUEx
 theorem UnitMod_holds : UnitMod := pUnitMod
 theorem CodiffUnit_holds : CodiffUnit := pCodiffUnit UnitMod_holds
-theorem FormCoord_holds : FormCoord := pFormCoord TraceType_holds
-theorem KqEx_holds : KqEx := pKqEx TraceType_holds
-theorem Orient_holds : Orient := pOrient TraceType_holds HdSign_holds
-theorem RealIso_holds : RealIso := pRealIso TraceType_holds
-theorem SigSt_holds : SigSt := pSigSt HdSign_holds
-theorem AtPEx_holds : AtPEx := pAtPEx KqEx_holds UEx_holds OrbEx_holds LiftEx_holds
-theorem DomSt_holds : DomSt := pDomSt TraceType_holds RealIso_holds FormCoord_holds HdSign_holds DiagTrace_holds
+theorem FormCoord_holds : FormCoord := pFormCoord _root_.UpperTheory.Gal.W2.Seed.pTraceType
+theorem KqEx_holds : KqEx := pKqEx _root_.UpperTheory.Gal.W2.Seed.pTraceType
+theorem Orient_holds : Orient := pOrient _root_.UpperTheory.Gal.W2.Seed.pTraceType _root_.UpperTheory.Gal.W2.Seed.pHdSign
+theorem RealIso_holds : RealIso := pRealIso _root_.UpperTheory.Gal.W2.Seed.pTraceType
+theorem SigSt_holds : SigSt := pSigSt _root_.UpperTheory.Gal.W2.Seed.pHdSign
+theorem AtPEx_holds : AtPEx := pAtPEx KqEx_holds _root_.UpperTheory.Gal.W2.Seed.pUEx _root_.UpperTheory.Gal.W2.Seed.pOrbEx _root_.UpperTheory.Gal.W2.Seed.pLiftEx
+theorem DomSt_holds : DomSt := pDomSt _root_.UpperTheory.Gal.W2.Seed.pTraceType RealIso_holds FormCoord_holds _root_.UpperTheory.Gal.W2.Seed.pHdSign _root_.UpperTheory.Gal.W2.Seed.pDiagTrace
 theorem PosGen_holds : PosGen := pPosGen CodiffUnit_holds
 theorem RealGen_holds : RealGen := pRealGen CodiffGen_holds CodiffUnit_holds
-theorem SetupEx_holds : SetupEx := pSetupEx FormOKSt_holds FormPerfSt_holds SigSt_holds DomSt_holds AtPEx_holds RepEx_holds RepLaws_holds RepAdj_holds Orient_holds
+theorem SetupEx_holds : SetupEx := pSetupEx _root_.UpperTheory.Gal.W2.Seed.pFormOKSt _root_.UpperTheory.Gal.W2.Seed.pFormPerfSt SigSt_holds DomSt_holds AtPEx_holds _root_.UpperTheory.Gal.W2.Seed.pRepEx _root_.UpperTheory.Gal.W2.Seed.pRepLaws _root_.UpperTheory.Gal.W2.Seed.pRepAdj Orient_holds
 
 end UpperTheory.Gal.W2.Seed

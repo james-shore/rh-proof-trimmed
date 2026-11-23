@@ -84,15 +84,7 @@ theorem isEnum_unique {n : ℕ} {S : SPar} {l l' : Fin n → ℝ} {e e' : Fin n 
   have : l' b = l' a := by rw [hq', hb, ← hq, hl]
   rw [← he, ha'.injective this]
 
-theorem OrthFr.dets {n : ℕ} {Hm x : Mt n} {q : ℕ} (h : OrthFr Hm q x) : x.det ≠ 0 ∧ Hm.det ≠ 0 := by
-  have h1 := congrArg Matrix.det h.2
-  rw [det_mul, det_mul, det_diagonal] at h1
-  have h2 : (∏ a : Fin n, -((ReciprocityTheory.ChartRestriction.G.FD.sgn q (a : ℕ) : ℝ) : ℂ)) ≠ 0 := by
-    refine Finset.prod_ne_zero_iff.2 fun a _ => ?_
-    unfold ReciprocityTheory.ChartRestriction.G.FD.sgn
-    split_ifs <;> simp
-  rw [← h1] at h2
-  exact ⟨right_ne_zero_of_mul h2, right_ne_zero_of_mul (left_ne_zero_of_mul h2)⟩
+alias OrthFr.dets := _root_.GlobalTheory.HolDict.FrameDom.det_ne_of_orth
 
 end GlobalTheory.HolDict
 
@@ -105,17 +97,6 @@ theorem uh_det_isUnit (hH : Hm.det ≠ 0) {g : Mt n} (hg : g ∈ Formalism.Quant
   have h1 : (gᴴ * Hm * g).det = Hm.det := congrArg Matrix.det hg
   rw [det_mul] at h1
   exact isUnit_iff_ne_zero.2 (right_ne_zero_of_mul (h1 ▸ hH))
-
-theorem uh_one : (1 : Mt n) ∈ Formalism.QuantumDeterminants.UH Hm := by
-  simp [Formalism.QuantumDeterminants.UH]
-
-theorem uh_mul {a b : Mt n} (ha : a ∈ Formalism.QuantumDeterminants.UH Hm) (hb : b ∈ Formalism.QuantumDeterminants.UH Hm) : a * b ∈ Formalism.QuantumDeterminants.UH Hm := by
-  have ha' : aᴴ * Hm * a = Hm := ha
-  have hb' : bᴴ * Hm * b = Hm := hb
-  show (a * b)ᴴ * Hm * (a * b) = Hm
-  calc (a * b)ᴴ * Hm * (a * b) = bᴴ * (aᴴ * Hm * a) * b := by
-        rw [conjTranspose_mul]; simp only [Matrix.mul_assoc]
-    _ = Hm := by rw [ha', hb']
 
 theorem uh_inv (hH : Hm.det ≠ 0) {g : Mt n} (hg : g ∈ Formalism.QuantumDeterminants.UH Hm) : g⁻¹ ∈ Formalism.QuantumDeterminants.UH Hm := by
   have h1 := mul_nonsing_inv g (uh_det_isUnit hH hg)
@@ -205,7 +186,7 @@ theorem HolFn.conj (hH : ∀ τ, (Hm τ).det ≠ 0) {g : ι → Mt n} (hg : g �
     funext τ
     exact (Matrix.mul_assoc (g τ) (Matrix.of (y τ)) (b τ)).symm
   · simp only []
-    rw [hP _ fun τ => uh_mul (uh_mul (hg τ) (hu τ)) (uh_inv (hH τ) (hg τ))]
+    rw [hP _ fun τ => _root_.GlobalTheory.HolDict.HolOf.uh_mul (_root_.GlobalTheory.HolDict.HolOf.uh_mul (hg τ) (hu τ)) (uh_inv (hH τ) (hg τ))]
     congr 1
     funext τ
     show (g τ * u τ * (g τ)⁻¹ * x' τ : Mt n) = g τ * (u τ * x τ)
@@ -215,8 +196,8 @@ end
 
 def uhGrp {n : ℕ} (Hm : Mt n) (hH : Hm.det ≠ 0) : Subgroup (Mt n)ˣ where
   carrier := {g | (g : Mt n) ∈ Formalism.QuantumDeterminants.UH Hm}
-  mul_mem' ha hb := uh_mul ha hb
-  one_mem' := uh_one
+  mul_mem' ha hb := _root_.GlobalTheory.HolDict.HolOf.uh_mul ha hb
+  one_mem' := _root_.GlobalTheory.UnitarySmVec.one_mem
   inv_mem' {g} hg := by
     show ((g⁻¹ : (Mt n)ˣ) : Mt n) ∈ Formalism.QuantumDeterminants.UH Hm
     rw [Matrix.coe_units_inv]
@@ -312,7 +293,7 @@ theorem exists_equiv_of_holFn {n : ℕ} {ι : Type} [Fintype ι] {Hm : ι → Mt
   have one' : ∀ τ, ⟪v' τ, σ' τ (g τ * 1 * (g τ)⁻¹) (v' τ)⟫_ℂ = 1 := fun τ => by
     rw [Matrix.mul_one, Matrix.mul_nonsing_inv _ (hgu τ), (h' τ).1.1, ContinuousLinearMap.one_apply,
       inner_self_eq_norm_sq_to_K, hv']; simp
-  have key := GlobalTheory.T.holomorphicType_eq_zero_of_torus_law_at_one n ι Hm q x w ho _ (hf.sub (hf'.conj hH hg hx)) (by
+  have key := _root_.GlobalTheory.HolDict.Uniq.eq_zero_of_torus_law n ι Hm q x w ho _ (hf.sub (hf'.conj hH hg hx)) (by
     intro u hu s
     have e1 : ∀ τ, ⟪v τ, σ τ ((torEl x s * u) τ) (v τ)⟫_ℂ =
         (∏ a, Complex.exp ((s τ a : ℂ) * Complex.I) ^ w τ a) * ⟪v τ, σ τ (u τ) (v τ)⟫_ℂ := fun τ => by
@@ -325,7 +306,7 @@ theorem exists_equiv_of_holFn {n : ℕ} {ι : Type} [Fintype ι] {Hm : ι → Mt
       have e : g τ * (torEl x s * u) τ * (g τ)⁻¹ = torEl x' s τ * (g τ * u τ * (g τ)⁻¹) := by
         simp only [Pi.mul_apply, torEl, hx τ, Matrix.mul_inv_rev, Matrix.mul_assoc,
           Matrix.nonsing_inv_mul_cancel_left _ _ (hgu τ)]
-      rw [e, (h' τ).1.2 _ hm _ (uh_mul (uh_mul (hg τ) (hu τ)) (hgi τ)), ContinuousLinearMap.comp_apply]
+      rw [e, (h' τ).1.2 _ hm _ (_root_.GlobalTheory.HolDict.HolOf.uh_mul (_root_.GlobalTheory.HolDict.HolOf.uh_mul (hg τ) (hu τ)) (hgi τ)), ContinuousLinearMap.comp_apply]
       exact inner_eigen_of_norm _ ((h' τ).2.1 _ hm) (hv' τ) (ht' s τ) _
     simp only [e1, e2, Finset.prod_mul_distrib, torCh, mul_sub]) (by
     simp only [Pi.one_apply, one, one', Finset.prod_const_one, sub_self])
@@ -336,13 +317,13 @@ theorem exists_equiv_of_holFn {n : ℕ} {ι : Type} [Fintype ι] {Hm : ι → Mt
   have hu : Function.update (1 : ι → Mt n) τ a ∈ UG Hm := fun ρ => by
     by_cases hρ : ρ = τ
     · subst hρ; rw [Function.update_self]; exact ha
-    · rw [Function.update_of_ne hρ]; exact uh_one
+    · rw [Function.update_of_ne hρ]; exact _root_.GlobalTheory.UnitarySmVec.one_mem
   have k := sub_eq_zero.1 (key _ hu)
   simp only [] at k
   rw [Finset.prod_eq_single τ (fun ρ _ hρ => by rw [Function.update_of_ne hρ]; exact one ρ) (by simp),
     Finset.prod_eq_single τ (fun ρ _ hρ => by rw [Function.update_of_ne hρ]; exact one' ρ) (by simp),
     Function.update_self] at k
-  rw [k, (h' τ).1.2 _ (uh_mul (hg τ) ha) _ (hgi τ), (h' τ).1.2 _ (hg τ) _ ha,
+  rw [k, (h' τ).1.2 _ (_root_.GlobalTheory.HolDict.HolOf.uh_mul (hg τ) ha) _ (hgi τ), (h' τ).1.2 _ (hg τ) _ ha,
     ← (LinearMap.norm_map_iff_inner_map_map (σ' τ (g τ))).1 ((h' τ).2.1 _ (hg τ)) (σ' τ (g τ)⁻¹ (v' τ)),
     ← ContinuousLinearMap.comp_apply (σ' τ (g τ)) (σ' τ (g τ)⁻¹), ← (h' τ).1.2 _ (hg τ) _ (hgi τ),
     Matrix.mul_nonsing_inv _ (hgu τ), (h' τ).1.1]

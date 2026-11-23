@@ -111,7 +111,7 @@ theorem om_compact (C : GlobalTheory.Ker.Ctx S T) {χS χT η : (AE D)ˣ →* Ci
   congr 1
   obtain ⟨m, hm⟩ := C.even
   have e1 := hv₀ (η * (η ^ (S.rank + 1))⁻¹) (fun _ => -(m : ℤ)) fun τ => by
-    have := GlobalTheory.OneMapRef.RealMove.hasInfExp_twist (hη.2.2.2 τ) (hη.2.2.2 τ) (S.rank + 1)
+    have := _root_.GlobalTheory.VacuumCharacter.hasInfExp_twist (hη.2.2.2 τ) (hη.2.2.2 τ) (S.rank + 1)
     convert this using 1
     rw [hm]
     push_cast
@@ -123,7 +123,7 @@ theorem om_compact (C : GlobalTheory.Ker.Ctx S T) {χS χT η : (AE D)ˣ →* Ci
   rw [e2, Circle.coe_mul, e1, mul_assoc, ← Finset.prod_mul_distrib, vacChar]
   congr 1
   refine Finset.prod_congr rfl fun τ _ => ?_
-  obtain ⟨p, -, hd⟩ := GlobalTheory.OneMapRef.RealMove.detPlus_one (n := S.rank) (s τ) (hs τ).1
+  obtain ⟨p, -, hd⟩ := _root_.GlobalTheory.VacuumCharacter.detPlus_one (n := S.rank) (s τ) (hs τ).1
   obtain ⟨d1, d2⟩ := hd (compAt C.θ τ (Formalism.L2.Theta.mt S 1⁻¹)) (compAt C.θ τ (Formalism.L2.Theta.mt T k)) (hc τ)
   have e3 : (compAt C.θ τ (Formalism.L2.Theta.mt S 1⁻¹)).det = 1 := by
     rw [GlobalTheory.OneMapRef.RealMove.det_compAt, inv_one]

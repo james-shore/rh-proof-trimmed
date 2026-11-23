@@ -242,7 +242,7 @@ theorem lintegral_dict {Comp : Type} [Fintype Comp] (X : Comp → Data E r) {G :
     rw [← hψ' k, h]
     simp [Matrix.mul_nonsing_inv _ (hyu k τ)]
   · intro k k'
-    obtain ⟨e, α, u, he, hα, hαα, h⟩ := GlobalTheory.T.exists_measurePreserving_frameChange_proportional_hermitian E r (X k) (X k') (y k) (y k') (hΨ k k').1 (hΨ k k').2 (hy k)
+    obtain ⟨e, α, u, he, hα, hαα, h⟩ := _root_.GlobalTheory.PeterssonFrameChange.frame_change E r (X k) (X k') (y k) (y k') (hΨ k k').1 (hΨ k k').2 (hy k)
       (hy k') fun τ => by
         have hτ : τ.1 ∈ (X k').Ψ := (hΨ k k').1 ▸ τ.2
         refine ⟨t k' ⟨τ.1, hτ⟩ / t k τ, div_ne_zero (ht0 _ _) (ht0 _ _), ?_⟩

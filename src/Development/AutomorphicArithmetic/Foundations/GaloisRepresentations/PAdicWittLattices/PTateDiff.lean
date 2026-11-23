@@ -61,7 +61,7 @@ theorem UpperTheory.Gal.G3.pTateDiff :
     (fun n q q' z z' h h' => GlobalTheory.weilIs_unique_fieldPoint S o.A _ (LB.isLB_pull o.isLB _) k t n q q' z z' h h')
     (GenCmp.tateRestrict J) (GenCmp.tateRestrict I)
     (fun y => (hJ y).symm.trans (hI y))
-  obtain ⟨u, hu, hh⟩ := GlobalTheory.T.similitude_action_adelic_lattice p D G L N.1 hN hNp g
+  obtain ⟨u, hu, hh⟩ := _root_.GlobalTheory.AdelicSim.exists_mem_KN p D G L N.1 hN hNp g
   refine ⟨u, hu, fun n hn hc x y => ?_⟩
   have e₁ : I.ev n x = J.ev n (g.g n x) := hg n hn hc x
   have e₂ : ∀ a b : D.La, J.ev n a = J.ev n b ↔ ∃ z, a = b + n • z := fun a b =>

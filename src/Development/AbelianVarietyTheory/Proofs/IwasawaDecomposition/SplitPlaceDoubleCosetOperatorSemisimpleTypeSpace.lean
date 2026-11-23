@@ -92,7 +92,7 @@ theorem rt_mem_all {a : NG.AlgWt L n} (h : GAf L n) {f : GAf L n → a.W} (hf : 
     NG.rt L n h f ∈ NG.AFall L n a.ρ := by
   obtain ⟨N, hN, h2⟩ := hf.2
   obtain ⟨⟨N', hN', hc⟩, -, -⟩ :=
-    GlobalTheory.CongIndex.finite_index_conj L n (Umax L n) GlobalTheory.ClassPet.umax_bounded h N hN
+    GlobalTheory.CongIndex.finite_index_conj L n (Umax L n) _root_.GlobalTheory.CoefDuty.Model.isBounded_umax h N hN
   exact (GlobalTheory.ClassPet.rt_mem a hf hN' h2 hc).1
 
 def sph (a : NG.AlgWt L n) (v : HeightOneSpectrum (𝓞 L⁺)) : Submodule ℂ (GAf L n → a.W) where

@@ -86,7 +86,7 @@ theorem finite_thData {g n : ℕ} (hn : 2 ≤ n) (F : SFam g n (zetaAway n)) (W 
     Set.Finite {y : Sp K ⟶ F.X | ThData F W y h (ℓ ^ j) ze v} := by
   by_cases hne : ∃ y₀ : Sp K ⟶ F.X, ThData F W y₀ h (ℓ ^ j) ze v
   · obtain ⟨y₀, Q₀, hg₀, lev₀, -, hθ₀⟩ := hne
-    refine (finite_sharp g n hn F W hW K Q₀).subset ?_
+    refine (_root_.GlobalTheory.SharpFiniteTh.finite_sharpOver g n hn F W hW K Q₀).subset ?_
     rintro y ⟨Q, hg, lev, hS, hθ⟩
     have hN' : ℓ ^ j = ℓ ^ (j - 4) * (ℓ ^ 2) ^ 2 := by
       rw [← pow_mul, ← pow_add]; congr 1; omega
@@ -104,7 +104,7 @@ theorem finite_fibres : ∀ (ℓ : ℕ), ℓ.Prime → Odd ℓ → ∀ (g : ℕ)
   have hj4 : 4 ≤ j := by omega
   have hbig : ((ℓ ^ 2) ^ 2) ^ (8 * g) * (8 * g).factorial < ℓ ^ j :=
     lt_of_lt_of_le (by omega : ((ℓ ^ 2) ^ 2) ^ (8 * g) * (8 * g).factorial < j) (Nat.lt_pow_self hℓ.one_lt).le
-  obtain ⟨β0, -⟩ := GlobalTheory.ThetaQuasiFinite.exists_spMap (x ≫ F.s)
+  obtain ⟨β0, -⟩ := _root_.GlobalTheory.ZM.DenseFib.exists_spMap (x ≫ F.s)
   have hm0 : ((ℓ ^ j : ℕ) : K) ≠ 0 := by
     have := hmu.map β0
     rw [map_natCast] at this

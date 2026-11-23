@@ -57,7 +57,7 @@ private lemma cover_loc (A C : Type) [CommRing A] [CommRing C] [Algebra A C]
     [Module.FaithfullyFlat A C] [Algebra.Etale A C] :
     Loc (Spec (CommRingCat.of A)) (fun V g => ∃ h : V ⟶ Spec (CommRingCat.of C),
       h ≫ Spec.map (CommRingCat.ofHom (algebraMap A C)) = g) := by
-  rw [GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover]
+  rw [_root_.GlobalTheory.EtC.loc_iff_etale_affine_points]
   · intro x
     have hff : (CommRingCat.ofHom (algebraMap A C)).hom.FaithfullyFlat :=
       RingHom.faithfullyFlat_algebraMap_iff.mpr inferInstance

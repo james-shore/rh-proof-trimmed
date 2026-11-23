@@ -205,11 +205,9 @@ theorem spMap_four {A B C D F : Type} [CommRing A] [CommRing B] [CommRing C] [Co
     spMap d ≫ spMap c ≫ spMap b ≫ spMap a = spMap ((d.comp (c.comp b)).comp a) := by
   simp only [spMap, ← Spec.map_comp]; rfl
 
-theorem rho_val (l : Level H) : ((baseKA l).ρ : ℂ) = H.rt0 := by simp [baseKA]
-
 theorem rho_eq (l : Level H) (c : Coeff l) :
     (IntermediateField.inclusion (ka_le l c)) (baseKA (lowLevel l)).ρ = (IntermediateField.inclusion c.le) (baseKA l).ρ :=
-  Subtype.ext (by simp only [IntermediateField.coe_inclusion, rho_val])
+  Subtype.ext (by simp only [IntermediateField.coe_inclusion, _root_.GlobalTheory.coe_baseKA_rho])
 
 def lowF (C : UChart.Fam Xo c R) (F : Type) [Field F] [Algebra (FractionRing R) F] : KA (lowLevel l) →+* F :=
   (toF C F).comp (IntermediateField.inclusion (ka_le l c)).toRingHom
@@ -291,7 +289,7 @@ theorem b_eq_of_level (hR : GlobalTheory.Mum.Base R) (C : UChart.Fam Xo c R)
   have hT := GlobalTheory.FlatTors.torsionIso_holds E H R _ hR.1 C.t C.P
   obtain ⟨f, f₁, -, f₃, -⟩ := hT F l.M' hM
   obtain ⟨f', f₁', -, f₃', -⟩ := hT F' l.M' hM
-  have hx := GlobalTheory.T.levelPoints_compat_of_tateIsometries Xo c R hR C tK m1 m2 F F' σ I I' h h' a _ _ ((f₁ _ _).2 rfl) ((f₁' _ _).2 rfl)
+  have hx := _root_.GlobalTheory.LowDat.level_points_compat Xo c R hR C tK m1 m2 F F' σ I I' h h' a _ _ ((f₁ _ _).2 rfl) ((f₁' _ _).2 rfl)
   rw [(f₃ _ _).2 e, (f₃' _ _).2 e'] at hx
   obtain ⟨r, hr, -⟩ := GlobalTheory.TorusExt.existsUnique_qkExt C.P.D.tau_bimult σ.toRingHom (RingHom.ext σ.commutes) q
   have h₁ := (GlobalTheory.TorsionExt.qkToAkU_iff_of_qkExt GlobalTheory.firstFiveLaws R _ hR.1 C.P.D C.P.A C.t.G C.t.semi C.P.U F F' σ
@@ -305,16 +303,6 @@ section Main
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem ev_nsmul {D : Datum H} {k : Type} [Field k] {Q : Type} [Group Q] {act : 𝓞 E → Q → Q}
-    {e : ℕ → Q → Q → kˣ → Prop} (I : TateIso D k Q act e) (n m : ℕ) (v : D.La) : I.ev n (m • v) = I.ev n v ^ m := by
-  induction m with
-  | zero =>
-    rw [zero_smul, pow_zero]
-    have h := I.add n 0 0
-    rw [add_zero] at h
-    exact mul_eq_left.1 h.symm
-  | succ m ih => rw [succ_nsmul, I.add, ih, pow_succ]
-
 theorem ev_eta {D : Datum H} (l : Level H) {k : Type} [Field k] {Q : Type} [Group Q] {act : 𝓞 E → Q → Q}
     {e : ℕ → Q → Q → kˣ → Prop} (I : TateIso D k Q act e) {fm em : 𝓞 E} (hfm : fm ∈ l.Mb)
     (hfe : fm + em = 1) {m : ℕ} (hk : l.M' = l.M * m) {w : D.La}
@@ -326,18 +314,13 @@ theorem ev_eta {D : Datum H} (l : Level H) {k : Type} [Field k] {Q : Type} [Grou
     simp only [lowLevel] at this
     rw [hk, h, mul_zero] at this
     exact lt_irrefl 0 this
-  rw [ev_nsmul, hk, I.tower _ _ hM hm]
+  rw [_root_.GlobalTheory.Ex.AllLevels.ev_nsmul, hk, I.tower _ _ hM hm]
   obtain ⟨c', hc'⟩ := GlobalTheory.CM.RationalTorsion.exists_eq_nsmul D l l.prod hfm hw
   have h1 : w = em • w + l.M • c' := by rw [← hc', ← add_smul, add_comm, hfe, one_smul]
   conv_rhs => rw [h1]
   exact (GlobalTheory.CM.RationalTorsion.ev_add_smul I hM _ _).symm
 
 theorem zeta_val (l : Level H) : ((baseKA l).ζ : ℂ) = zeta l.A := by simp [baseKA]
-
-theorem toUnit_left {S : Scheme.{0}} (T : Over S) : (toUnit T).left = T.hom :=
-  (Category.comp_id _).symm.trans (Over.w (toUnit T))
-
-
 
 theorem exists_lowObj : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H} (Xo : Moduli Dw l)
   (c : Coeff l) (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], GlobalTheory.Mum.Base R → ∀ (C : GlobalTheory.UChart.Fam Xo c R)
@@ -376,7 +359,7 @@ theorem exists_lowObj : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
       (I : TateIsoQ Dw C.P.D.toPre C.P.oD F), FiltGraded C Z F I → ∀ n, 0 < n → ∀ a : perp Dw Z,
       ∃ q : QkPt C.P.D.toPre F n, QkPt.Equiv _ F (I.ev n a) q ∧ q.y = 0 :=
     fun F _ _ I h n hn a => (h n hn a).2 ⟨a, a.2, 0, by simp⟩
-  obtain ⟨J0, hJ0ζ, hJ0b⟩ := GlobalTheory.T.exists_gradedTateIso_lowerDatum Dw D' Z f hlow R hR C.t C.P F0 hg I0 (hy F0 I0 hG0)
+  obtain ⟨J0, hJ0ζ, hJ0b⟩ := _root_.GlobalTheory.LowDat.GradedTate.exists_gradedTateIso Dw D' Z f hlow R hR C.t C.P F0 hg I0 (hy F0 I0 hG0)
   have hM : 0 < l.M' := (lowLevel l).A_pos
   have hunit : IsUnit (l.M' : R) := by
     simpa using (isUnit_iff_ne_zero.2 (Nat.cast_ne_zero.2 hM.ne') : IsUnit ((l.M' : ℕ) : c.F)).map C.b
@@ -434,7 +417,7 @@ theorem exists_lowObj : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
   refine ⟨o', 𝟙 _, GlobalTheory.SiegLower.isGrpPullback_id _, fun x => (Category.comp_id _).trans (Category.id_comp _).symm,
     GlobalTheory.SiegLower.lbIso_pull_id C.P.D.toPre.P.isLB, ?_⟩
   intro F _ _ _ I hX hG
-  obtain ⟨J, hJζ, hJb⟩ := GlobalTheory.T.exists_gradedTateIso_lowerDatum Dw D' Z f hlow R hR C.t C.P F hg I (hy F I hG)
+  obtain ⟨J, hJζ, hJb⟩ := _root_.GlobalTheory.LowDat.GradedTate.exists_gradedTateIso Dw D' Z f hlow R hR C.t C.P F hg I (hy F I hG)
   have key : ∀ w, toUnit _ ≫ sA w = J.ev l.M' w := by
     intro w
     obtain ⟨a, rfl⟩ := hlow.1 w
@@ -444,7 +427,7 @@ theorem exists_lowObj : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
     have e1 := b_eq_of_level hR C tK m1 m2 σ I0 I hX0 hX a q0 q h01 hq1 h02 hq2
     rw [hJb l.M' hM a q hq1 hq2, hJ0b l.M' hM a q0 h01 h02] at e1
     apply Over.OverMorphism.ext
-    rw [Over.comp_left, e1, ← hsA (f a), Over.comp_left, ← Category.assoc, toUnit_left, toUnit_left]
+    rw [Over.comp_left, e1, ← hsA (f a), Over.comp_left, ← Category.assoc, _root_.GlobalTheory.ObjPull.toUnit_left', _root_.GlobalTheory.ObjPull.toUnit_left']
     have e : spMap σ.toRingHom ≫ jFK (R := R) F0 = jFK (R := R) F := by
       rw [← Spec.map_comp]
       exact congrArg (fun g => Spec.map (CommRingCat.ofHom g)) (RingHom.ext fun r => σ.commutes r)

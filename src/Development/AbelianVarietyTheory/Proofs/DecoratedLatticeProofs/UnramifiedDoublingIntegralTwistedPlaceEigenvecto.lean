@@ -136,14 +136,6 @@ theorem sumAbs_elim {A D : Type} [Fintype A] [Fintype D] (e : D → ℤ) :
     sumAbs (Sum.elim (0 : A → ℤ) e) = sumAbs e := by
   simp [sumAbs, Fintype.sum_sum_type]
 
-theorem det_torusElt {n : Type} [Fintype n] [DecidableEq n] (ϖ : kˣ) (e : n → ℤ) :
-    GeneralLinearGroup.det (torusElt k n ϖ e) = ϖ ^ ∑ i, e i := by
-  ext
-  rw [GeneralLinearGroup.val_det_apply, val_torusElt, det_diagonal]
-  induction (Finset.univ : Finset n) using Finset.induction_on with
-  | empty => simp
-  | insert i s hi ih => rw [Finset.prod_insert hi, Finset.sum_insert hi, _root_.zpow_add, Units.val_mul, ih, Units.val_zpow_eq_zpow_val ϖ (e i)]
-
 theorem zonalInt_one {N : ℕ} [MeasurableSpace (GL (Fin N) k)] [BorelSpace (GL (Fin N) k)] (μK : Measure (GL (Fin N) k))
     (hμK : μK (KO k (Fin N)) = 1) {γ : Fin N → ℂ} {ψ : GL (Fin N) k → ℂ} (hψ : IsBorelSph k γ ψ) :
     zonalInt μK ψ 1 = 1 := by
@@ -200,7 +192,7 @@ theorem lower_eigen : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
     (((resCard k : ℝ) ^ (-(r : ℝ) / 2 * (sumAbs e : ℝ)) : ℝ) : ℂ) * zonalInt μK ψ (torusElt k (Fin (l * t)) ϖ e) * ℓ x := by
   intro k _ _ _ _ ϖ hϖ r l t ξ μ₀ hξt hξr hμ₀ B α hαB H hH _ μK ψ hψ V _ _ π x ℓ hx hℓ e
   classical
-  have hH' := hgt_lower k (Fin r) (Blocks l t) ϖ H hH
+  have hH' := _root_.GlobalTheory.ParHecke.isHgt_lower k (Fin r) (Blocks l t) ϖ H hH
   set H' : GL (Blocks l t) k → ℝ := fun m => H (emb₂ k (Equiv.refl (Fin r ⊕ Blocks l t)) (1, m)) with hH'def
   set f : GL (Blocks l t) k → ℂ := fun m => (((ξ (GeneralLinearGroup.det m))⁻¹ : ℂˣ) : ℂ) *
     ℓ (π (emb₂ k (Equiv.refl (Fin r ⊕ Blocks l t)) (1, m)) x) / ((Real.sqrt (H' m) : ℝ) : ℂ) ^ Fintype.card (Fin r)
@@ -208,7 +200,7 @@ theorem lower_eigen : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
   obtain ⟨hfK, hfH⟩ := GlobalTheory.T.lowerBlockCoefficient_isSphericalHeckeEigen k (Fin r) (Blocks l t) ϖ hϖ ξ hξt hξr V π B x ℓ hx hℓ H' hH' f (fun m => rfl)
   set f₂ : GL (Fin (l * t)) k → ℂ := fun m => (((μ₀ (GeneralLinearGroup.det m))⁻¹ : ℂˣ) : ℂ) *
     f (GlobalTheory.ChainStepSupp.reGL k (blkEquiv l t) m) with hf₂def
-  obtain ⟨hf₂K, hf₂H⟩ := twist_transport k (Blocks l t) (l * t) (blkEquiv l t) ϖ hϖ μ₀ hμ₀
+  obtain ⟨hf₂K, hf₂H⟩ := _root_.GlobalTheory.TwistRenumber.twist_renumber k (Blocks l t) (l * t) (blkEquiv l t) ϖ hϖ μ₀ hμ₀
     (B.map (· * (ξ ϖ)⁻¹)) f hfK hfH f₂ (fun m => rfl)
   have hα : Finset.univ.val.map α = (B.map (· * (ξ ϖ)⁻¹)).map (· * (μ₀ ϖ)⁻¹) := by
     rw [hαB, Multiset.map_map]
@@ -216,7 +208,7 @@ theorem lower_eigen : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
     funext x
     simp only [Function.comp_apply, MonoidHom.mul_apply, _root_.mul_inv_rev]
     ac_rfl
-  have hz := hψ f₂ hf₂K (fun s R hR m => by rw [hf₂H s R hR m, hα, genVal_map_mul _ _ _ _ _ (μ₀ ϖ)⁻¹])
+  have hz := hψ f₂ hf₂K (fun s R hR m => by rw [hf₂H s R hR m, hα, _root_.GlobalTheory.ParHecke.genVal_map_mul _ _ _ _ _ (μ₀ ϖ)⁻¹])
   have hval := hz (torusElt k (Fin (l * t)) ϖ e)
 
   have hq : (0:ℝ) < resCard k := by exact_mod_cast (zero_lt_one.trans (one_lt_resCard k))
@@ -240,7 +232,7 @@ theorem lower_eigen : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
       ((((ξ ϖ : ℂˣ) : ℂ) ^ (∑ i, e i))⁻¹ * ℓ (π (mtor ϖ (e ∘ (blkEquiv l t).symm)) x) /
         (((resCard k : ℝ) ^ (-(r : ℝ) / 2 * (sumAbs e : ℝ)) : ℝ) : ℂ)) := by
     simp only [hf₂def, hfdef]
-    rw [GlobalTheory.ChainStepSupp.reGL_torusElt, GlobalTheory.ChainStepSupp.emb₂_one_torusElt, hS, det_torusElt, det_torusElt, hsum]
+    rw [GlobalTheory.ChainStepSupp.reGL_torusElt, GlobalTheory.ChainStepSupp.emb₂_one_torusElt, hS, _root_.GlobalTheory.TwistRenumber.det_torusElt_eq, _root_.GlobalTheory.TwistRenumber.det_torusElt_eq, hsum]
     simp [map_zpow, Units.val_zpow_eq_zpow_val]
   have key := hval'.symm.trans (hval.trans (by rw [hf₂1]))
   have hA : ((μ₀ ϖ : ℂˣ) : ℂ) ≠ 0 := Units.ne_zero _
@@ -271,7 +263,7 @@ theorem local_zeta_twisted : GlobalTheory.Published.UnramifiedDoublingGL → ∀
   obtain ⟨hvol, hdisj⟩ := GlobalTheory.T.twistedPlace_doubleCoset_volume_and_disjoint k ϖ hϖ r l t m hm μK hμK
   have hceq : c = fun g => ip ν (om (μ₀ * ξ) g (1 : GL (Fin r ⊕ Blocks (l + 1) t) k) (datum ξ)) (datum ξ) :=
     funext hc
-  obtain ⟨hcBi, hcSupp, hcVal⟩ := GlobalTheory.T.weilRep_chainStep_matrixCoefficient_twisted k ν hν ϖ hϖ r t l ξ μ₀ hξu hξt hμ₀ hμ₀u
+  obtain ⟨hcBi, hcSupp, hcVal⟩ := _root_.GlobalTheory.ChainStepCoef.coef k ν hν ϖ hϖ r t l ξ μ₀ hξu hξt hμ₀ hμ₀u
   rw [← hceq] at hcBi hcSupp
   beta_reduce at hcVal
   have hq : (0:ℝ) < resCard k := by exact_mod_cast (zero_lt_one.trans (one_lt_resCard k))
@@ -343,7 +335,7 @@ theorem local_zeta_twisted : GlobalTheory.Published.UnramifiedDoublingGL → ∀
     · simp only [not_exists] at hg
       have hc0 : c g = 0 := by
         by_contra hne
-        obtain ⟨e, he, hge⟩ := GlobalTheory.T.support_parahoricBiTransforming_doubleCosets k ϖ hϖ r l t ξ hξt hξr c hcBi hcSupp g hne
+        obtain ⟨e, he, hge⟩ := _root_.GlobalTheory.ChainStepSupp.support_dcell k ϖ hϖ r l t ξ hξt hξr c hcBi hcSupp g hne
         exact hg ⟨e, he⟩ hge
       rw [cellFun_of_notMem w hg, hc0]; simp
   · intro g hgJ
@@ -416,7 +408,7 @@ theorem local_zeta_twisted : GlobalTheory.Published.UnramifiedDoublingGL → ∀
       refine hsum.congr fun e => ?_
       change _ = m.real (dcell ϖ (e.1 ∘ (blkEquiv l t).symm)) * _
       rw [← hterm e, norm_mul, Complex.norm_real, Real.norm_of_nonneg measureReal_nonneg]
-    obtain ⟨hInt, hHas, -⟩ := GlobalTheory.integral_biInvariant_hasSum_doubleCoset (GL (Fin r ⊕ Blocks l t) k) m
+    obtain ⟨hInt, hHas, -⟩ := _root_.GlobalTheory.TwistedOperatorMainTheorem.main_thm (GL (Fin r ⊕ Blocks l t) k) m
       (parahoric k (Fin r) (Blocks l t)) GlobalTheory.ParHecke.Model.isOpen_parahoric GlobalTheory.ParHecke.Model.isCompact_parahoric
       {e : Fin (l * t) → ℤ // Antitone e} (fun e => mtor ϖ (e.1 ∘ (blkEquiv l t).symm)) hdisj F hFbi hsupp hsumm
     refine ⟨hInt, ?_⟩

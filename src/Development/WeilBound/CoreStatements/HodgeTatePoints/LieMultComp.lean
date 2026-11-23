@@ -120,10 +120,6 @@ theorem exists_type (Q : PairHost H H') {V Ω : Type} [CommRing V] [Field Ω] [I
   rw [h₁]
   exact ((sq_eq_sq_iff_eq_or_eq_neg.1 ((sq τ).trans (sq τ₀).symm)).resolve_left e).symm
 
-theorem exists_pull {S S' : Scheme.{0}} (f : S' ⟶ S) (t : SAB H S) : ∃ t' : SAB H S', Nonempty (SABMap t' t f) := by
-  obtain ⟨_, _, _, _, _, m, -⟩ := sabPull Out.CubePf.cubePull f t
-  exact ⟨_, ⟨m⟩⟩
-
 theorem key_isUnit {κ : KeyRule} (hκ : IsKeyRule κ) (hpow : ∀ (K : Type) [Field K] [CharZero K] (x y : KeyIn K) (j : ℕ),
       GlobalTheory.KeyPow.IsKeyPow y x j → κ K y = κ K x ^ j)
     {V K : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [Field K] [CharZero K] [Algebra V K]
@@ -136,9 +132,9 @@ theorem key_isUnit {κ : KeyRule} (hκ : IsKeyRule κ) (hpow : ∀ (K : Type) [F
   let Ω := AlgebraicClosure K
   let i := algebraMap K Ω
   obtain ⟨ρ, p, q, hρ, hty⟩ := exists_type Q (i.comp (algebraMap V K)) T s hs₂ hw₂
-  obtain ⟨tK, ⟨mK⟩⟩ := exists_pull (spMap (algebraMap V K)) T
+  obtain ⟨tK, ⟨mK⟩⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap (algebraMap V K)) T
   obtain ⟨TK, rfl, hgK⟩ := exists_pat_of_isFibreOf mK hy₂
-  obtain ⟨tΩ, ⟨mΩ⟩⟩ := exists_pull (spMap i) TK.t
+  obtain ⟨tΩ, ⟨mΩ⟩⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap i) TK.t
   obtain ⟨⟨TΩ, rfl, hgΩ⟩, hL⟩ := GlobalTheory.CM.PAT.exists_of_sabMap E' H' _ _ _ TK tΩ mΩ
   have lK : ∀ τ N, LieMult T.act (spMap (i.comp (algebraMap V K))) τ N → LieMult TK.t.act (spMap i) τ N := fun τ N h =>
     (GlobalTheory.LiePull.lieMult_pull _ _ _ _ _ _ _ T.act TK.t.act mK.cart mK.act Ω (spMap i) τ N).2 (by rwa [← spMap_comp])
@@ -155,8 +151,8 @@ theorem key_isUnit {κ : KeyRule} (hκ : IsKeyRule κ) (hpow : ∀ (K : Type) [F
   obtain ⟨T₀, g, j, _, hgj⟩ := exists_cdvr (V := V) (K := K) (K' := K')
   have : CharZero T₀.Fr := charZero_of_injective_algebraMap (IsFractionRing.injective T₀.V T₀.Fr)
   let j₀ : K →+* T₀.Fr := j.comp (algebraMap K K')
-  obtain ⟨G, ⟨mG⟩⟩ := exists_pull (spMap g) T
-  obtain ⟨t'', ⟨m₃⟩⟩ := exists_pull (spMap j) t'
+  obtain ⟨G, ⟨mG⟩⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap g) T
+  obtain ⟨t'', ⟨m₃⟩⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap j) t'
   obtain ⟨n₁, -⟩ := sabComp pullCubComp E' H' _ _ _ _ _ _ _ _ m₂ m₃
   obtain ⟨n₂, -⟩ := sabComp pullCubComp E' H' _ _ _ _ _ _ _ _ m₁ m₃
   obtain ⟨n₃, -⟩ := sabComp pullCubComp E' H' _ _ _ _ _ _ _ _ mK n₂

@@ -72,7 +72,7 @@ theorem inter_top_pos : ∀ (K : Type) [Field K] (A : AbVar K) (c : Pic A.X.left
   have e : Fin A.dim ≃ J := (Fintype.equivFinOfCardEq hJ).symm
   have h1 : inter A (fun _ : J => cls L hL) = inter A (fun _ : Fin A.dim => cls L hL) :=
     (inter_comp_equiv A e (fun _ : J => cls L hL)).symm
-  rw [h1, GlobalTheory.T.abelianVariety_intersection_eq_lineBundleIntersection K A (Fin A.dim) (fun _ => L) (fun _ => hL)]
+  rw [h1, _root_.GlobalTheory.AV.AbVar.inter_cls_eq_interNum K A (Fin A.dim) (fun _ => L) (fun _ => hL)]
   letI := A.algΓ
   obtain ⟨hI, -, -⟩ := GlobalTheory.AV.AbVar.isIntegral_isLocallyNoetherian_compactSpace K A
   obtain ⟨hs, hp⟩ := GlobalTheory.AV.AbVarProj.strHom_eq_and_isProjOver K A

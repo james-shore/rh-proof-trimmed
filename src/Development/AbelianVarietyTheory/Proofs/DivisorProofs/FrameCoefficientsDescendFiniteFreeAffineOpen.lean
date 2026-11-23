@@ -83,9 +83,6 @@ theorem exists_basis (ρ₁ : R →+* R₁) {d : ℕ} (b : Fin d → R₁)
   rw [← hs]
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨l, rfl⟩)
 
-theorem gs_zero0 {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) : gs f y U 0 = 0 := by
-  unfold gs; split_ifs <;> simp
-
 variable {X Z : Scheme.{0}}
 
 theorem aff_coeff (ρ₁ : R →+* R₁) {d : ℕ} (b : Fin d → R₁)
@@ -166,7 +163,7 @@ theorem inj_gen (ρ₁ : R →+* R₁) {d : ℕ} (b : Fin d → R₁)
   intro x hx
   obtain ⟨V, hV, hxV, hVU⟩ := exists_aff U x hx
   have h0 := (aff_coeff ρ₁ b hb H hV).2 (fun l => GlobalTheory.AbLaw.rs X hVU (a l)) (fn_ext fun z hz => by
-    rw [gs_comb_pt b p q V z hz, gs_zero0]
+    rw [gs_comb_pt b p q V z hz, _root_.GlobalTheory.UU.SchurComp.gs_zero]
     refine Eq.trans (Finset.sum_congr rfl fun l _ => ?_) (h z (hVU hz))
     rw [gs_res q z hVU hz])
   have e := congrFun h0 l
@@ -174,7 +171,7 @@ theorem inj_gen (ρ₁ : R →+* R₁) {d : ℕ} (b : Fin d → R₁)
   simp only [Pi.zero_apply] at e
   rw [← e2]
   erw [e]
-  rw [gs_zero0, gs_zero0]
+  rw [_root_.GlobalTheory.UU.SchurComp.gs_zero, _root_.GlobalTheory.UU.SchurComp.gs_zero]
 
 theorem surj_gen (ρ₁ : R →+* R₁) {d : ℕ} (b : Fin d → R₁)
     (hb : ∀ r : R₁, ∃! c : Fin d → R, r = ∑ l, ρ₁ (c l) * b l)
@@ -241,7 +238,7 @@ theorem main_gen (ρ₁ : R →+* R₁) {d : ℕ} (b : Fin d → R₁)
     (fun l => GlobalTheory.AbLaw.rs X inf_le_left (a k l) -
       GlobalTheory.AbLaw.rs X (inf_le_inf hV hW) (L.g k k').val * GlobalTheory.AbLaw.rs X inf_le_right (a k' l)) (fun z hz => ?_) l
   · have e := congrArg (gs (𝟙 X) x _) h0
-    rw [GlobalTheory.FlatSec.gs_diff hV hW (a k l) (a k' l) (𝟙 X) x ⟨⟨hx, hk⟩, ⟨hx, hk'⟩⟩, gs_zero0] at e
+    rw [GlobalTheory.FlatSec.gs_diff hV hW (a k l) (a k' l) (𝟙 X) x ⟨⟨hx, hk⟩, ⟨hx, hk'⟩⟩, _root_.GlobalTheory.UU.SchurComp.gs_zero] at e
     exact sub_eq_zero.1 e
   · have e1 : ∀ l, gs q z _ (GlobalTheory.AbLaw.rs X inf_le_left (a k l) -
         GlobalTheory.AbLaw.rs X (inf_le_inf hV hW) (L.g k k').val * GlobalTheory.AbLaw.rs X inf_le_right (a k' l)) =

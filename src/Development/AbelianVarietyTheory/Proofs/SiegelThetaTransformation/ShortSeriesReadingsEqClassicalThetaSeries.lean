@@ -72,11 +72,6 @@ namespace GlobalTheory.Dict.ReadAll
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r g n : ℕ}
 
-theorem isSB_smul' (a : ℂ) {φ : TF n g} (h : IsSB φ) : IsSB (a • φ) := by
-  obtain ⟨R, hR, hsupp, hper⟩ := h
-  refine ⟨R, hR, fun x hx => hsupp x fun h0 => hx (by simp [h0]), fun x y hy => ?_⟩
-  simp only [Pi.smul_apply, hper x y hy]
-
 theorem isSB_finsum {J : Sort*} {f : J → TF n g} (h : ∀ i, IsSB (f i)) : IsSB (∑ᶠ i, f i) := by
   rw [finsum_def']
   split_ifs with hfin
@@ -93,11 +88,11 @@ theorem isSB_phiF {X : Data E r} {bas : (Fin g ⊕ Fin g → ℤ) ≃ₗ[ℤ] X.
     fun y φ hφ => ((heisG_laws E r X g bas idx n hs he).2.2.2 y φ hφ).1
   have hP : IsSB (projA X bas D.w (tens Λ (D.sh L)) (v₀ L)) := by
     unfold projA
-    refine isSB_smul' _ (isSB_finsum fun ψ => isSB_finsum fun hψ => ?_)
+    refine _root_.GlobalTheory.Dict.ShortVal.isSB_smul _ (isSB_finsum fun ψ => isSB_finsum fun hψ => ?_)
     obtain ⟨y, -, rfl⟩ := hψ
-    exact isSB_smul' _ (hH y _ hv)
+    exact _root_.GlobalTheory.Dict.ShortVal.isSB_smul _ (hH y _ hv)
   unfold phiF unitv
-  exact isSB_finsum fun c => isSB_smul' _ (hH _ _ (isSB_smul' _ hP))
+  exact isSB_finsum fun c => _root_.GlobalTheory.Dict.ShortVal.isSB_smul _ (hH _ _ (_root_.GlobalTheory.Dict.ShortVal.isSB_smul _ hP))
 
 theorem perFr_cast {X' X : Data E r} (h : SameSp X' X) (x : Frame X'.Ψ r) (v : Fin r → E) (τ : E →+* ℂ)
     (i : ℕ) : Formalism.L2.PjFree.perFr X' x v τ i = Formalism.L2.PjFree.perFr X (castFr h.psi x) v τ i := by

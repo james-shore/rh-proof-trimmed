@@ -82,11 +82,11 @@ theorem core_gen (hK : GlobalTheory.Published.NadelVanishingAndNonKltDivisor) (h
   letI := algebraΓOfHom q
   intro K N N' B hN hN' hB m x hx hNn hNb hN'n hm hpos hBc
   have hm1 : 1 ≤ m := by omega
-  obtain ⟨N₀, h₀, hc₀, hn₀, hb₀⟩ := GlobalTheory.T.exists_nef_big_of_class_eq_smul_add_smul hNN ℂ X q hq N N' hN hN' (2 * m - 1) 2 hNn hNb hN'n (by omega)
-  obtain ⟨m', D₀, U, hm', hD₀, hcur, hxU, hklt, hnk⟩ := GlobalTheory.T.exists_isolated_nonKlt_divisor_smooth_projective hK.2 X q D hq hD N₀ 2 x two_pos hn₀ hb₀ hx
+  obtain ⟨N₀, h₀, hc₀, hn₀, hb₀⟩ := _root_.GlobalTheory.nef_big_of_cls_eq_smul_add_smul hNN ℂ X q hq N N' hN hN' (2 * m - 1) 2 hNn hNb hN'n (by omega)
+  obtain ⟨m', D₀, U, hm', hD₀, hcur, hxU, hklt, hnk⟩ := _root_.GlobalTheory.KollarApp.isolatedNonKlt_smooth hK.2 X q D hq hD N₀ 2 x two_pos hn₀ hb₀ hx
     (fun Z e hZ hxZ he hdim => by
       have h1 := hpos Z e hZ hxZ he hdim
-      have h2 := GlobalTheory.T.pow_mul_intersection_le_of_nef_class_on_closed hNN ℂ X q hq N N' N₀ hN hN' h₀ (2 * m - 1) 2 Z e hNn hN'n hc₀ hdim
+      have h2 := _root_.GlobalTheory.mixExp_interNumRed hNN ℂ X q hq N N' N₀ hN hN' h₀ (2 * m - 1) 2 Z e hNn hN'n hc₀ hdim
       have h3 : ((2 * m - 1 : ℕ) : ℤ) ^ e ≤ interNumRed ℂ Z (fun _ : Fin e => N₀) := by
         have : (0 : ℤ) ≤ ((2 * m - 1 : ℕ) : ℤ) ^ e := by positivity
         nlinarith
@@ -99,10 +99,10 @@ theorem core_gen (hK : GlobalTheory.Published.NadelVanishingAndNonKltDivisor) (h
       rw [lt_div_iff₀ (by positivity), ← mul_pow]
       push_cast at h4 h3' ⊢
       linarith)
-  obtain ⟨J, hJ, hvan⟩ := GlobalTheory.T.nadel_vanishing_canonical_add_boundary hK.1 X q D hq K B N hB D₀ m' 2 hm' two_pos hD₀ hNn hNb
+  obtain ⟨J, hJ, hvan⟩ := _root_.GlobalTheory.NadelApp.nadel_canonical_add hK.1 X q D hq K B N hB D₀ m' 2 hm' two_pos hD₀ hNn hNb
     (fun C hC => by
-      have e1 := GlobalTheory.T.intersectionNumber_curve_of_class_eq_smul_add ℂ X q hq B N N' hB hN hN' m 1 C hC (by rw [hBc, one_smul])
-      have e2 := GlobalTheory.T.intersectionNumber_curve_of_class_eq_smul_add ℂ X q hq N₀ N N' h₀ hN hN' (2 * m - 1) 2 C hC hc₀
+      have e1 := _root_.GlobalTheory.interNumRed_of_cls_eq_nsmul_add ℂ X q hq B N N' hB hN hN' m 1 C hC (by rw [hBc, one_smul])
+      have e2 := _root_.GlobalTheory.interNumRed_of_cls_eq_nsmul_add ℂ X q hq N₀ N N' h₀ hN hN' (2 * m - 1) 2 C hC hc₀
       have e3 := hcur C hC
       rw [e3, e1, e2]
       have : ((2 * m - 1 : ℕ) : ℚ) = 2 * m - 1 := by
@@ -140,12 +140,12 @@ theorem effective_generation : GlobalTheory.Published.NadelVanishingAndNonKltDiv
   obtain ⟨x, hxc, hyx, hxU⟩ := GlobalTheory.T.exists_closedPoint_specializes_in_open_of_finiteType ℂ _ q (π ⁻¹ᵁ nonzeroLocus s₁) y' hy
   have hAx : AmpleAt (N₁.pull π) x := GlobalTheory.T.ampleModuloEffectiveAwayFromPoint_pull_affine Y _ π N₁ h₁ x ⟨m₁, A, s₁, hm₁, hA, hAa, hxU⟩
   have hNnC := GlobalTheory.T.isNefLineBundle_baseChange_field_extension hNN F ℂ Y _ p q π H hproj N hNn
-  have hN'nC := GlobalTheory.T.isNefLineBundle_baseChange_field_extension hNN F ℂ Y _ p q π H hproj N' hN'n
-  have hN₂C := GlobalTheory.T.isNefLineBundle_baseChange_field_extension hNN F ℂ Y _ p q π H hproj N₂ hN₂
+  have hN'nC := _root_.GlobalTheory.NefFieldExt.isNef_baseChange hNN F ℂ Y _ p q π H hproj N' hN'n
+  have hN₂C := _root_.GlobalTheory.NefFieldExt.isNef_baseChange hNN F ℂ Y _ p q π H hproj N₂ hN₂
   have hc : a • cls (N.pull π) (pull_isLB hN π) = cls (N₁.pull π) (pull_isLB h₁ π) + cls (N₂.pull π) (pull_isLB h₂ π) := by
     rw [cls_pull hN, cls_pull h₁, cls_pull h₂, ← map_nsmul, hcls, map_add (f := _)]
-  have hbig := GlobalTheory.T.isBigLineBundle_of_smul_class_eq_ampleAt_add_nef hNN ℂ _ q hqp (N.pull π) (N₁.pull π) (N₂.pull π) _ _ _ a x hNnC ha hc hAx hN₂C
-  have hpos := GlobalTheory.T.one_le_intersectionNumber_subvariety_through_positive hNN ℂ _ q hqp (N.pull π) (N₁.pull π) (N₂.pull π) _ _ _ a x hNnC ha hc hAx hN₂C
+  have hbig := _root_.GlobalTheory.isBig_of_smul_cls_eq_add_ampleAt hNN ℂ _ q hqp (N.pull π) (N₁.pull π) (N₂.pull π) _ _ _ a x hNnC ha hc hAx hN₂C
+  have hpos := _root_.GlobalTheory.PosThrough.one_le_interNumRed hNN ℂ _ q hqp (N.pull π) (N₁.pull π) (N₂.pull π) _ _ _ a x hNnC ha hc hAx hN₂C
   have hcB : cls (B.pull π) (pull_isLB hB π) = m • cls (N.pull π) (pull_isLB hN π) + cls (N'.pull π) (pull_isLB hN' π) := by
     rw [cls_pull hB, cls_pull hN, cls_pull hN', hBc, map_add (f := _), map_nsmul]
   obtain ⟨s, hs⟩ := core_gen hK hNN _ q D hqp hD1 (CanonLB.baseChange H K) (N.pull π) (N'.pull π) (B.pull π)

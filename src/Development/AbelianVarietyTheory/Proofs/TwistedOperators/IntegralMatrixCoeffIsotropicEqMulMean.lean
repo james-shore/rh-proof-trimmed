@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsSelfDualCLatFrame
 
 @[expose] public section
 
@@ -61,16 +62,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.IsoMean
 
-private lemma symplO_eq_symplOH_add_symplOH {D : D7} (V W : HSp D) (x y : WO V W) :
-    symplO V W x y = symplOH V W x y + symplOH V W x y := by
-  unfold symplOH
-  rw [← add_mul, ← map_add (f := _), add_halves, map_one, one_mul]
-
-private lemma symplOH_swap' {D : D7} (V W : HSp D) (x y : WO V W) :
-    symplOH V W y x = -symplOH V W x y := by
-  unfold symplOH
-  rw [GlobalTheory.OrientedHeis.symplO_skew, mul_neg]
-
 theorem heisO_rat_add {D : D7} (V W : HSp D) (ψ : AddChar (AF D.host.F) ℂ) (G : WO V W → ℂ)
     (hG : IsThetaFunO ψ V W G) (γ₁ : Matrix (Fin W.rank) (Fin V.rank) D.host.E) (ξ u : WO V W)
     (h : symplO V W (ratW W V γ₁) ξ = 0) :
@@ -80,48 +71,17 @@ theorem heisO_rat_add {D : D7} (V W : HSp D) (ψ : AddChar (AF D.host.F) ℂ) (G
     unfold symplOH
     rw [h, mul_zero]
   simp only [heisO]
-  rw [show u + (ratW W V γ₁ + ξ) = ratW W V γ₁ + (u + ξ) by abel, hq, symplO_eq_symplOH_add_symplOH,
+  rw [show u + (ratW W V γ₁ + ξ) = ratW W V γ₁ + (u + ξ) by abel, hq, _root_.GlobalTheory.IsoMean.symplO_eq_add,
     GlobalTheory.OrientedHeis.symplOH_add_right, GlobalTheory.OrientedHeis.symplOH_add_right, h0,
-    symplOH_swap' V W u (ratW W V γ₁), add_zero, neg_neg, ← mul_assoc, ← mul_assoc,
+    _root_.GlobalTheory.MixModel.symplOH_skew V W u (ratW W V γ₁), add_zero, neg_neg, ← mul_assoc, ← mul_assoc,
     ← AddChar.map_add_eq_mul, ← AddChar.map_add_eq_mul]
   congr 2
   abel
-
-private lemma symplO_add_left_twisted_operators {D : D7} (V W : HSp D) (x x' y : WO V W) :
-    symplO V W (x + x') y = symplO V W x y + symplO V W x' y := by
-  rw [symplO_eq_symplOH_add_symplOH V W (x + x') y, symplO_eq_symplOH_add_symplOH V W x y, symplO_eq_symplOH_add_symplOH V W x' y,
-    GlobalTheory.OrientedHeis.symplOH_add_left]
-  abel
-
-private lemma symplO_add_right_twisted_operators {D : D7} (V W : HSp D) (x y y' : WO V W) :
-    symplO V W x (y + y') = symplO V W x y + symplO V W x y' := by
-  rw [symplO_eq_symplOH_add_symplOH V W x (y + y'), symplO_eq_symplOH_add_symplOH V W x y, symplO_eq_symplOH_add_symplOH V W x y',
-    GlobalTheory.OrientedHeis.symplOH_add_right]
-  abel
-
-private lemma symplO_zero_left_twisted_operators {D : D7} (V W : HSp D) (y : WO V W) : symplO V W 0 y = 0 := by
-  rw [symplO_eq_symplOH_add_symplOH, GlobalTheory.MixModel.symplOH_zero_left, add_zero]
-
-private lemma symplO_zero_right_twisted_operators {D : D7} (V W : HSp D) (x : WO V W) : symplO V W x 0 = 0 := by
-  rw [symplO_eq_symplOH_add_symplOH, GlobalTheory.MixModel.symplOH_zero_right, add_zero]
-
-private lemma continuous_emb_twisted_operators {D : D7} (V W : HSp D) {a b : ℕ} (P : Matrix (Fin W.rank) (Fin a) D.host.E)
-    (Q : Matrix (Fin b) (Fin V.rank) D.host.E) : Continuous (emb V W P Q) :=
-  by
-    unfold emb
-    fun_prop
 
 private lemma emb_rat_eq_ratW_mul {D : D7} (V W : HSp D) {a b : ℕ} (P : Matrix (Fin W.rank) (Fin a) D.host.E)
     (Q : Matrix (Fin b) (Fin V.rank) D.host.E) (r : Matrix (Fin a) (Fin b) D.host.E) :
     emb V W P Q (GlobalTheory.MixModel.rat r) = ratW W V (P * r * Q) := by
   simp [emb, GlobalTheory.MixModel.ratW_eq, GlobalTheory.MixModel.rat, Matrix.map_mul]
-
-private lemma continuous_symplO_comp {D : D7} (V W : HSp D) {X : Type} [TopologicalSpace X] {x y : X → WO V W}
-    (hx : Continuous x) (hy : Continuous y) : Continuous fun t => symplO V W (x t) (y t) := by
-  simp only [symplO_eq_symplOH_add_symplOH]
-  exact (GlobalTheory.OrientedHeis.continuous_symplOH hx hy).add (GlobalTheory.OrientedHeis.continuous_symplOH hx hy)
-
-
 
 theorem integral_coef_eq_mul_meanX : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P : Matrix (Fin W.rank) (Fin a) D.host.E) (Q : Matrix (Fin b) (Fin V.rank) D.host.E), P.rank = a → Q.rank = b → (∀ y y' : Mx D a b, symplO V W (GlobalTheory.IsoMean.emb V W P Q y) (GlobalTheory.IsoMean.emb V W P Q y') = 0) → ∀ (k : ℕ) (B : Fin k → Matrix (Fin W.rank) (Fin V.rank) D.host.E), (∀ (z : Mx D 1 k) (y : Mx D a b), symplO V W (GlobalTheory.IsoMean.cplx V W B z) (GlobalTheory.IsoMean.emb V W P Q y) = 0) → (∀ x : WO V W, (∀ y : Mx D a b, symplO V W x (GlobalTheory.IsoMean.emb V W P Q y) = 0) → ∃ (z : Mx D 1 k) (y : Mx D a b), x = GlobalTheory.IsoMean.cplx V W B z + GlobalTheory.IsoMean.emb V W P Q y) → (∀ (z : Mx D 1 k) (y : Mx D a b), GlobalTheory.IsoMean.cplx V W B z + GlobalTheory.IsoMean.emb V W P Q y = 0 → z = 0 ∧ y = 0) → (∀ (z : Mx D 1 k) (y : Mx D a b), GlobalTheory.IsoMean.cplx V W B z + GlobalTheory.IsoMean.emb V W P Q y ∈ ratL W V → z ∈ GlobalTheory.MixModel.ratMx D 1 k ∧ y ∈ GlobalTheory.MixModel.ratMx D a b) → ∀ (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (μ : Measure (Mx D a b)) (𝓨 : Set (Mx D a b)), IsCovolOne (GlobalTheory.MixModel.ratMx D a b) μ 𝓨 → ∀ (η : Measure (Mx D 1 k)) (𝓩 : Set (Mx D 1 k)), η.IsAddHaarMeasure → IsAddFundamentalDomain (GlobalTheory.MixModel.ratMx D 1 k) 𝓩 η → ∀ (ν : Measure (WO V W)) (𝓕 : Set (WO V W)), ν.IsAddHaarMeasure → IsAddFundamentalDomain (ratL W V) 𝓕 ν → (∀ G G' : WO V W → ℂ, IsThetaFunO ψ V W G → IsThetaFunO ψ V W G' → Integrable (fun y => ∫ u in 𝓕, heisO ψ V W (GlobalTheory.IsoMean.emb V W P Q y) G u * star (G' u) ∂ν) μ) → ∃ κ : ℂ, κ ≠ 0 ∧ ∀ G G' : WO V W → ℂ, IsThetaFunO ψ V W G → IsThetaFunO ψ V W G' → ∫ y, (∫ u in 𝓕, heisO ψ V W (GlobalTheory.IsoMean.emb V W P Q y) G u * star (G' u) ∂ν) ∂μ = κ * ∫ z in 𝓩, GlobalTheory.IsoMean.meanX V W P Q μ 𝓨 G (GlobalTheory.IsoMean.cplx V W B z) * star (GlobalTheory.IsoMean.meanX V W P Q μ 𝓨 G' (GlobalTheory.IsoMean.cplx V W B z)) ∂η := by
   intro D V W a b P Q hP hQ hiso k B hZX hperp hdir hrat ψ hψ μ 𝓨 hμ η 𝓩 hη h𝓩 ν 𝓕 hν h𝓕 hint
@@ -135,8 +95,8 @@ theorem integral_coef_eq_mul_meanX : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P :
   have := hDisc
   obtain ⟨P', Q', hc1, hc2, hc3, hc4⟩ := GlobalTheory.T.exists_rational_dual_complement_sandwich D V W a b P Q hP hQ ψ hψ
   have hψc : IsCharAF D.host.F ψ := hψ.1
-  have hcX := continuous_emb_twisted_operators V W P Q
-  have hcX' := continuous_emb_twisted_operators V W P' Q'
+  have hcX := _root_.GlobalTheory.IsoMeanSmear.continuous_emb V W P Q
+  have hcX' := _root_.GlobalTheory.IsoMeanSmear.continuous_emb V W P' Q'
 
   have hratX : ∀ (P₁ : Matrix (Fin W.rank) (Fin a) D.host.E) (Q₁ : Matrix (Fin b) (Fin V.rank) D.host.E),
       ∀ r ∈ GlobalTheory.MixModel.ratMx D a b, emb V W P₁ Q₁ r ∈ ratL W V := by
@@ -162,7 +122,7 @@ theorem integral_coef_eq_mul_meanX : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P :
     have hs : ∀ y', symplO V W (emb V W P' Q' s) (emb V W P Q y') = 0 := by
       intro y'
       have h1 := congrArg (fun w => symplO V W w (emb V W P Q y')) h0
-      simp only [symplO_add_left_twisted_operators, hZX, hiso, add_zero, symplO_zero_left_twisted_operators] at h1
+      simp only [_root_.GlobalTheory.LatVac.symplO_add_left, hZX, hiso, add_zero, _root_.GlobalTheory.SplitScalar.symplO_zero_left] at h1
       exact h1
     obtain rfl := hc2 s hs
     rw [emb_zero, zero_add] at h0
@@ -175,7 +135,7 @@ theorem integral_coef_eq_mul_meanX : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P :
       have hs : s ∈ GlobalTheory.MixModel.ratMx D a b := by
         refine (hc3 s).1 fun γ hγ => ?_
         have h1 := ((GlobalTheory.RatAnnih.ratL_annihilator D ψ hψ V W _).2 hw) _ (hratX P Q γ hγ)
-        simpa only [symplO_add_left_twisted_operators, hZX, hiso, add_zero] using h1
+        simpa only [_root_.GlobalTheory.LatVac.symplO_add_left, hZX, hiso, add_zero] using h1
       refine ⟨hs, hrat z y ?_⟩
       have h2 := (ratL W V).sub_mem hw (hratX P' Q' s hs)
       rwa [add_assoc, add_sub_cancel_left] at h2
@@ -231,28 +191,28 @@ theorem integral_coef_eq_mul_meanX : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P :
       rw [show (γ +ᵥ ξ : Mx D a b) = (γ : Mx D a b) + ξ from rfl, emb_add, hγr,
         heisO_rat_add V W ψ G hG (P * γ₀ * Q) _ u (by rw [← hγr]; exact hiso _ _), mul_assoc]
     have hφc : Continuous fun u => ψ (symplO V W u (emb V W P Q γ)) :=
-      hψc.1.comp (continuous_symplO_comp V W continuous_id continuous_const)
+      hψc.1.comp (_root_.GlobalTheory.SplitScalar.continuous_symplO V W continuous_id continuous_const)
     simp_rw [e1]
     rw [hTfub _ hφc (fun u => (hψc.2.1 _).le)]
     have h3 := hκ (fun u => ψ (symplO V W u (emb V W P Q γ)) *
         ∫ ξ in 𝓨, heisO ψ V W (emb V W P Q ξ) G u * star (G' u) ∂μ) (hφc.mul hTc) (by
       intro δ hδ u
-      rw [symplO_add_left_twisted_operators, AddChar.map_add_eq_mul,
+      rw [_root_.GlobalTheory.LatVac.symplO_add_left, AddChar.map_add_eq_mul,
         (GlobalTheory.RatAnnih.ratL_annihilator D ψ hψ V W δ).2 hδ _ (hratX P Q γ γ.2), one_mul, hTper δ hδ u])
     beta_reduce at h3
     rw [h3]
     congr 1
     refine congrArg (fun F : Mx D a b → ℂ => ∫ s in 𝓨, F s ∂μ) (funext fun s => ?_)
-    simp only [symplO_add_left_twisted_operators, hZX, hiso, add_zero]
+    simp only [_root_.GlobalTheory.LatVac.symplO_add_left, hZX, hiso, add_zero]
     simp_rw [MeasureTheory.integral_const_mul]
   have hκne : (κ : ℂ) ≠ 0 := by exact_mod_cast hκ0.ne'
   have hsum := (summable_mul_left_iff hκne).1 (by simpa only [hterm] using hHS.summable)
   have hF := GlobalTheory.T.fourierInversion_zero_compactQuotient_summable (Mx D a b) (GlobalTheory.MixModel.ratMx D a b) K hK hKc (↥(GlobalTheory.MixModel.ratMx D a b))
     (fun γ s => ψ (symplO V W (emb V W P' Q' s) (emb V W P Q γ)))
-    (fun γ => hψc.1.comp (continuous_symplO_comp V W hcX' continuous_const))
-    (by intro γ x y; simp only [emb_add, symplO_add_left_twisted_operators, AddChar.map_add_eq_mul])
-    (by intro γ δ x; simp only [AddSubgroup.coe_add, emb_add, symplO_add_right_twisted_operators, AddChar.map_add_eq_mul])
-    (by intro x; simp only [ZeroMemClass.coe_zero, emb_zero, symplO_zero_right_twisted_operators, AddChar.map_zero_eq_one])
+    (fun γ => hψc.1.comp (_root_.GlobalTheory.SplitScalar.continuous_symplO V W hcX' continuous_const))
+    (by intro γ x y; simp only [emb_add, _root_.GlobalTheory.LatVac.symplO_add_left, AddChar.map_add_eq_mul])
+    (by intro γ δ x; simp only [AddSubgroup.coe_add, emb_add, _root_.GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul])
+    (by intro x; simp only [ZeroMemClass.coe_zero, emb_zero, _root_.GlobalTheory.PlaceModel.symplO_zero_right, AddChar.map_zero_eq_one])
     (fun γ x => hψc.2.1 _)
     (fun x => ⟨fun h => (hc3 x).1 fun γ hγ => h ⟨γ, hγ⟩, fun h γ => (hc3 x).2 h γ γ.2⟩)
     (fun γ h => Subtype.ext (hc4 γ γ.2 h)) μ 𝓨 hμH hμF hμ1 _ hΦc hΦper hsum
@@ -267,7 +227,7 @@ theorem integral_coef_eq_mul_meanX : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P :
     intro y ξ
     have h0 : symplOH V W (cplx V W B z + emb V W P Q y) (emb V W P Q ξ) = 0 := by
       unfold symplOH
-      rw [symplO_add_left_twisted_operators, hZX, hiso, add_zero, mul_zero]
+      rw [_root_.GlobalTheory.LatVac.symplO_add_left, hZX, hiso, add_zero, mul_zero]
     simp only [heisO, h0, AddChar.map_zero_eq_one, one_mul]
     congr 1
     abel

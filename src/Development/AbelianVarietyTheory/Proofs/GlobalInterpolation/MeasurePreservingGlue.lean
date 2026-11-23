@@ -255,7 +255,7 @@ theorem exists_chart (j : Fin P ⊕ Fin Q) : ∃ fib : ℝ → Measure (Perpendi
     symm
     rw [lintegral_lintegral_swap]
     · refine lintegral_congr fun y => Eq.symm ?_
-      rw [GlobalTheory.T.lintegral_complex_eq_polar_sqrt ε (c y) hε
+      rw [_root_.GlobalTheory.lintegral_complex_eq_lintegral_sqrt_mul_exp ε (c y) hε
         (fun z => ENNReal.ofReal (rho j (glue j (z, y))) * φ (glue j (z, y)))
         (hG.comp ((continuous_glue j).measurable.comp measurable_prodMk_right))
         (by simp [rho, glue_self])]
@@ -341,7 +341,7 @@ theorem fib_eq {fib fib' : ℝ → Measure (PerpendicularEmbedding.Sp P Q)} {β 
     (h : PerpendicularEmbedding.IsDxDq fib) (h' : ActionCoordinates.IsDxDq β fib') : fib' β = fib β := by
   obtain ⟨U, B, hU, hB, hβB, h'⟩ := h'
   rw [qf_eq] at h'
-  refine GlobalTheory.T.isFibreFamily_eq_at_continuity_point (PerpendicularEmbedding.dx P Q) PerpendicularEmbedding.qf {x | x ≠ 0} U {x | x ≠ 0} B Set.univ fib' fib β
+  refine _root_.GlobalTheory.IsFibreFamily_eq_at (PerpendicularEmbedding.dx P Q) PerpendicularEmbedding.qf {x | x ≠ 0} U {x | x ≠ 0} B Set.univ fib' fib β
     continuous_qf.measurable isOpen_ne hU subset_rfl ?_ hB isOpen_univ hβB trivial h' h
   rintro x hx rfl
   exact hβ (by simpa [qf_zero] using hx.symm)

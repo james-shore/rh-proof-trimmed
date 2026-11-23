@@ -63,11 +63,7 @@ variable {K : Type u} [NormedField K] [IsUltrametricDist K]
 def Bd {τ : Type w} (C : ℝ) (F : MvPowerSeries τ K) : Prop :=
   ∀ d, ‖MvPowerSeries.coeff d F‖ ≤ C
 
-lemma norm_add_le_of {a b : K} {C : ℝ} (ha : ‖a‖ ≤ C) (hb : ‖b‖ ≤ C) : ‖a + b‖ ≤ C :=
-  (IsUltrametricDist.norm_add_le_max a b).trans (max_le ha hb)
-
-lemma norm_sub_le_of {a b : K} {C : ℝ} (ha : ‖a‖ ≤ C) (hb : ‖b‖ ≤ C) : ‖a - b‖ ≤ C := by
-  rw [sub_eq_add_neg]; exact norm_add_le_of ha (by simpa using hb)
+alias norm_sub_le_of := _root_.Formalism.LT.InverseIntegralClassesKeyFacts.norm_sub_le_of
 
 lemma norm_finsum_le {α : Type v} {g : α → K} {C : ℝ} (hC : 0 ≤ C) (hg : ∀ n, ‖g n‖ ≤ C) :
     ‖∑ᶠ n, g n‖ ≤ C := by
@@ -215,7 +211,7 @@ theorem main (hC : Formalism.FG.CoeffBoundV.{u, v, v}) : Formalism.FG.FunEqSubst
   intro d
 
   rw [map_add (f := _), MvPowerSeries.coeff_smul, map_sum]
-  refine norm_add_le_of (hgI d) ?_
+  refine _root_.Formalism.LT.InverseIntegralClassesKeyFacts.norm_add_le_of (hgI d) ?_
   rw [norm_mul, norm_inv]
   have hsum : ‖∑ k, MvPowerSeries.coeff d (M j k • (MvPowerSeries.subst αq
       (MvPowerSeries.map σ (f k)) - MvPowerSeries.subst β (MvPowerSeries.map σ (f k))))‖ ≤
@@ -230,9 +226,5 @@ theorem main (hC : Formalism.FG.CoeffBoundV.{u, v, v}) : Formalism.FG.FunEqSubst
 
 end Formalism.FG.KeyVAux
 
-theorem Formalism.FG.FunEqSubstV_of (hC : Formalism.FG.CoeffBoundV.{u, v, v}) :
-    Formalism.FG.FunEqSubstV.{u, v, w} :=
-  Formalism.FG.KeyVAux.main hC
-
 theorem Formalism.FG.functional_equation_subst_vector : Formalism.FG.FunEqSubstV.{u, v, w} :=
-  Formalism.FG.FunEqSubstV_of Formalism.FG.coeff_bound_vector.{u, v, v}
+  _root_.Formalism.FG.KeyVAux.main Formalism.FG.coeff_bound_vector.{u, v, v}

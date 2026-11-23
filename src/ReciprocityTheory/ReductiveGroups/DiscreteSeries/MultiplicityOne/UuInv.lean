@@ -64,32 +64,12 @@ open Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.Fourier
 
 variable {k r : ℕ} {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [FiniteDimensional ℂ Wp]
 
-private theorem hpk_sq_lemma : Hpk k r * Hpk k r = 1 := by
-  ext i j
-  rw [Matrix.mul_apply, Matrix.one_apply]
-  have hi := i.isLt
-  have hj := j.isLt
-  let l : Fin (2 * r + k + 1) :=
-    ⟨if r ≤ i.val ∧ i.val ≤ r + k then i.val else 2 * r + k - i.val, by split_ifs <;> omega⟩
-  rw [Finset.sum_eq_single l]
-  · simp only [Hpk, l, Fin.ext_iff, Fin.val_mk]
-    split_ifs <;> first | (exfalso; omega) | norm_num
-  · intro b _ hb
-    have hb' : b.val ≠ l.val := fun h => hb (Fin.ext h)
-    simp only [l, Fin.val_mk] at hb'
-    have hbl := b.isLt
-    apply mul_eq_zero_of_left
-    simp only [Hpk, Fin.ext_iff]
-    split_ifs at hb' ⊢ <;> first | (exfalso; omega) | rfl
-  · intro h
-    exact absurd (Finset.mem_univ l) h
-
 lemma uu_inv {z : Fin (2 * r + k + 1) → ℂ} {γ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ} {u : Mat k r}
     (hu : u ∈ UUset k r z γ) : u⁻¹ ∈ UUset k r z γ := by
   simp only [UUset, UWset, UH, Set.mem_setOf_eq] at hu ⊢
   obtain ⟨⟨hH, hb, hz⟩, hw⟩ := hu
   have hdH : (Hpk k r).det ≠ 0 := by
-    have h := congrArg Matrix.det (hpk_sq_lemma (k := k) (r := r))
+    have h := congrArg Matrix.det (_root_.ReciprocityTheory.ChartRestriction.DS.Mult1.SymA.hpk_sq (k := k) (r := r))
     rw [Matrix.det_mul, Matrix.det_one] at h
     exact left_ne_zero_of_mul_eq_one h
   have hdu : IsUnit u.det := by

@@ -64,11 +64,6 @@ def Coeq : Prop := ∀ (A B C : CommRingCat.{0}) (Ω : Type) [Field Ω] (ι : A 
   ∃ (E : CommRingCat.{0}) (gE : A ⟶ E) (φE : E →+* Ω) (w : C ⟶ E), Et gE ∧ φE.comp gE.hom = ι ∧
     gC ≫ w = gE ∧ φE.comp w.hom = φC ∧ u ≫ w = v ≫ w
 
-theorem et_comp {A B C : CommRingCat.{0}} {f : A ⟶ B} {g : B ⟶ C} (hf : Et f) (hg : Et g) : Et (f ≫ g) := by
-  change (f ≫ g).hom.Etale
-  rw [CommRingCat.hom_comp]
-  exact RingHom.Etale.stableUnderComposition _ _ hf hg
-
 theorem et_id (A : CommRingCat.{0}) : Et (𝟙 A) := by
   change (𝟙 A : A ⟶ A).hom.Etale
   rw [CommRingCat.hom_id]
@@ -161,7 +156,7 @@ theorem Sys2_of (hM : Model) (hP : Pair) (hC : Coeq) : LateralTheory.E.AbsorbPf.
     have hφB' : φB.comp g'.hom = X.φ := hφB
     have hφ' : φB.comp (tM X.n ≫ g').hom = ι := by
       rw [CommRingCat.hom_comp, ← RingHom.comp_assoc, hφB', X.hφ]
-    obtain ⟨Y, e, he, heφ⟩ := into B (tM X.n ≫ g') (et_comp (hEt _) hg') φB hφ'
+    obtain ⟨Y, e, he, heφ⟩ := into B (tM X.n ≫ g') (_root_.LateralTheory.E.ColimPf.et_comp (hEt _) hg') φB hφ'
     refine ⟨Y, (⟨g' ≫ e.hom, by rw [← Category.assoc, he], ?_⟩ : Hm X Y), e.hom, rfl⟩
     rw [CommRingCat.hom_comp, ← RingHom.comp_assoc, heφ, hφB']
 

@@ -68,11 +68,6 @@ theorem finite_cosets {I : Subgroup G} (ho : IsOpen (I : Set G)) {D : Set G} (hD
   have h : IsCompact ((QuotientGroup.mk : G → G ⧸ I) '' D) := hD.image QuotientGroup.continuous_mk
   exact h.finite_of_discrete.subset fun q hq => ⟨q.out, hq, QuotientGroup.out_eq' q⟩
 
-theorem measure_eq_card_mul [MeasurableSpace G] [BorelSpace G] (μ : Measure G) [μ.IsMulLeftInvariant]
-    {I : Subgroup G} (ho : IsOpen (I : Set G)) {D : Set G} (hD : ∀ g ∈ D, ∀ i ∈ I, g * i ∈ D)
-    (S : Finset (G ⧸ I)) (hS : ∀ q, q ∈ S ↔ q.out ∈ D) : μ D = S.card * μ I :=
-  _root_.UpperTheory.Reformulated.B.Yla7.main μ ho hD S hS
-
 end Abstract
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n : ℕ}
@@ -100,7 +95,7 @@ theorem card_cosets {t : Fin n → kˣ} (ht : Contracts t) (S : Finset (GL (Fin 
     hc.locallyCompactSpace_of_mem_nhds_of_group (ho.mem_nhds (one_mem _))
   let μ : Measure (GL (Fin n) k) := Measure.haar
   have h1 := measure_iwahoriCoset μ ht
-  have h2 := measure_eq_card_mul μ ho (fun g hg i hi => iwahoriCoset_mul hg hi) S hS
+  have h2 := _root_.UpperTheory.Reformulated.B.Yla7.main μ ho (fun g hg i hi => iwahoriCoset_mul hg hi) S hS
   have h3 : μ.real (iwahoriCoset t) = S.card * μ.real (iwahori k (Fin n) : Set (GL (Fin n) k)) := by
     rw [measureReal_def, measureReal_def, h2, ENNReal.toReal_mul, ENNReal.toReal_natCast]
   have h4 : μ.real (iwahori k (Fin n) : Set (GL (Fin n) k)) ≠ 0 := by

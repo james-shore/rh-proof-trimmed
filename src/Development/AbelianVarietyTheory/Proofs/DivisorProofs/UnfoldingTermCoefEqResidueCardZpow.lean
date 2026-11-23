@@ -68,7 +68,7 @@ def volDiag : (n ⊕ Fin c → kˣ) →* ℚ where
     have h : diagGL (1 : n ⊕ Fin c → kˣ) = 1 := Units.ext (by simp [diagGL_val])
     rw [h, map_one]
     exact (congrArg invVol (Subgroup.map_id _)).trans invVol_KO
-  map_mul' := GlobalTheory.T.inverseUnipotentVolume_conj_diagonalUnitsGL_mul
+  map_mul' := _root_.GlobalTheory.FunObj.invVol_conj_diagGL_mul
 
 omit [IsNonarchimedeanLocalField k] [ValuativeRel k] [TopologicalSpace k] in
 theorem prod_zpow_eq {ι : Type} (s : Finset ι) (q : ℚ) (hq : q ≠ 0) (g : ι → ℤ) :

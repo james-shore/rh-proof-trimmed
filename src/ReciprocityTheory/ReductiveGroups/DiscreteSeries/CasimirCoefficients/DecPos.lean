@@ -70,15 +70,11 @@ variable {ε : Fin n → Bool} {Λ : Fin n → ℝ}
 
 private abbrev dpP (T : KType ε Λ) (k : KG ε) : T.V →L[ℂ] T.V := T.op k * projW T * T.op k⁻¹
 
-private lemma dp_op_inv (T : KType ε Λ) (k : KG ε) :
-    T.op k⁻¹ = ContinuousLinearMap.adjoint (T.op k) := by
-  exact op_inv_eq_adjoint T k
-
 private lemma dpP_apply (T : KType ε Λ) (k : KG ε) (v : T.V) :
     dpP T k v = ⟪T.op k T.w, v⟫_ℂ • T.op k T.w := by
   show T.op k (projW T (T.op k⁻¹ v)) = _
   unfold projW
-  rw [ContinuousLinearMap.smulRight_apply, map_smul, dp_op_inv]
+  rw [ContinuousLinearMap.smulRight_apply, map_smul, _root_.ReciprocityTheory.ChartRestriction.DS.S7.op_inv_eq_adjoint]
   congr 1
   exact ContinuousLinearMap.adjoint_inner_right _ _ _
 

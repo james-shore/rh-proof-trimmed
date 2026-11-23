@@ -83,7 +83,7 @@ theorem tools_holds_k : _root_.UpperTheory.TP.Tools_k :=
     dbl := _root_.GlobalTheory.ThK.Dbl.dblX_k
     stab2 := _root_.GlobalTheory.ThK.Dbl.stab2Cpt_k
     cpt := _root_.GlobalTheory.ThK.Dbl.cptAll_of_k PositivityTheory.ThKEst.grpTop_of _root_.PositivityTheory.ThKEst.epsOf_of_k
-      (PositivityTheory.ThKEst.siegelAll_of UpperTheory.Lit.siegelSetUnitary_of_core) PositivityTheory.ThKEst.finVolU PositivityTheory.ThKF.unimodularity_holds
+      (PositivityTheory.ThKEst.siegelAll_of _root_.GlobalTheory.CompanionTheory.SiegelRed.siegelSetUnitary) PositivityTheory.ThKEst.finVolU PositivityTheory.ThKF.unimodularity_holds
     basic := _root_.PositivityTheory.ThKF0.thetaBasic_k
     polSch := _root_.GlobalTheory.ThK.Dbl.polSch_k
     unfold0 := _root_.GlobalTheory.ThK.Dbl.unfold0_k

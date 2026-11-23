@@ -73,9 +73,9 @@ theorem torsor_trivial : ∀ (T O : Type) [CommRing T] [IsDomain T] [CommRing O]
       (Pi.algHom (Localization (Algebra.algebraMapSubmonoid O (nonZeroDivisors T))) (fun _ : Multiplicative (ZMod q) => D) (fun g => (act g).toAlgHom))) →
     Nonempty (D →ₐ[(Localization (Algebra.algebraMapSubmonoid O (nonZeroDivisors T)))] (Localization (Algebra.algebraMapSubmonoid O (nonZeroDivisors T)))) := by
   intro T O _ _ _ _ _ _ _ hA P _ φ hφ hsh q hq hu D _ _ hfin hproj hff act hbij
-  have hO : KeyOrigin := GlobalTheory.T.torsor_trivial_strict_henselisation_origin
+  have hO : KeyOrigin := _root_.GlobalTheory.KeyOriginCut.keyOrigin
   have hAll : KeyAll :=
-    GlobalTheory.T.torsorTrivialGenericFibre_of_strictHenselClosedFibre (keyLocal_of (GlobalTheory.T.torsorTrivialClosedPoints_of_origin_closedFibre hO) (GlobalTheory.T.keyGeneric_of_keyClosedPts' (GlobalTheory.T.torsorTrivialClosedPoints_of_origin_closedFibre hO)))
+    _root_.GlobalTheory.LocAcyc.keyAll_of_keyLocal (keyLocal_of (_root_.GlobalTheory.LocAcyc.Translate.keyClosedPts_of_keyOrigin hO) (_root_.GlobalTheory.LocAcyc.keyGeneric_of_keyClosedPts (_root_.GlobalTheory.LocAcyc.Translate.keyClosedPts_of_keyOrigin hO)))
   exact hAll T O hA P φ hφ hsh q hq hu D hfin hproj hff act hbij
 
 end GlobalTheory.LocAcyc

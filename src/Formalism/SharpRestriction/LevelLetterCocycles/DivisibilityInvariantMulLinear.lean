@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.WindowSums.AnnihilatorPolynomials.EvalOneSmulDecomposition
 
 @[expose] public section
 
@@ -290,10 +291,6 @@ end Kap
 
 theorem content_divisibility_clause (D : Formalism.BasicNotions.D7) : adm9 D := content_divisibility
 
-theorem killerVal_holds : Formalism.WindowSums.KillerVal := Formalism.WindowSums.arc_KillerVal
-
-theorem killerKills_holds : Formalism.WindowSums.KillerKills := Formalism.WindowSums.arc_KillerKills
-
 theorem killerKap_of_le {C : ℝ} (hC : 8 ≤ C) : KillerKap C := by
   intro l hl hl5 G S h ell ro a hGh hh ha
   have h8 := killerKap_holds l hl hl5 G S h ell ro a hGh hh ha
@@ -306,7 +303,7 @@ theorem killerKap_of_le {C : ℝ} (hC : 8 ≤ C) : KillerKap C := by
 
 theorem lemma_M_prime_hypothesis (D : Formalism.BasicNotions.D7) (HW : Formalism.BasicNotions.HWOf D.loc) (F : Formalism.BasicNotions.FonOf D.loc D.locA HW) {C : ℝ} (hC : 8 ≤ C) (hLev : KillerLevL D.loc D.locA HW F)
     (hMod : KillerModL D.loc D.locA HW F) : adm8 D HW F C :=
-  ⟨killerVal_holds, killerKills_holds, hLev, hMod, killerKap_of_le hC⟩
+  ⟨_root_.Formalism.WindowSums.arc_KillerVal, _root_.Formalism.WindowSums.annihilatorPoly_kills, hLev, hMod, killerKap_of_le hC⟩
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc
 

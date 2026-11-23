@@ -120,13 +120,13 @@ theorem lieValAt_base (M : LieModel G ξ E) (hξ : IsCptGen ξ) {R R' : Type} [C
     rw [hb]
     have e : (genMap ξ ⟨_, h2⟩).comp (X.presheaf.stalkSpecializes c).hom = genMap ξ ⟨_, h1⟩ :=
       RingHom.ext fun s => genMap_specializes ⟨_, h1⟩ h2 c s
-    rw [hv.2, ← Category.assoc, spec_dualMap, e]
+    rw [hv.2, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_dual_comp, e]
   · change _ = _ ≫ (b.left ≫ v.left)
     rw [hb]
     have e : (Scheme.stalkClosedPointTo (spMap φ ≫ z)).hom.comp (X.presheaf.stalkSpecializes c).hom =
         φ.comp (Scheme.stalkClosedPointTo z).hom :=
       RingHom.ext fun s => congrArg (fun g => g.hom s) (stalk_base φ z)
-    rw [hw, hw0, ← Category.assoc, ← Category.assoc, spec_dualMap, spec_dualMap, e]
+    rw [hw, hw0, ← Category.assoc, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_dual_comp, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_dual_comp, e]
 
 omit [GrpObj G] [Module Ω E] in
 theorem exists_transport {S : Scheme.{0}} {G : Over S} [GrpObj G] {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R')

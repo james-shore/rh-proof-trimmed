@@ -162,7 +162,7 @@ theorem integrable_fibSF_and_integral : ∀ (F E : Type) [Field F] [NumberField 
     rintro _ ⟨q, ⟨-, hq⟩, rfl⟩
     exact (GlobalTheory.T.linearIndependent_unitary_action_iff F E R σ (M + 1) (n + 1) (blockOne (algebraMap F E t) J) q.1⁻¹ q.2).2
       (hfree hq)
-  obtain ⟨C₂, hC₂c, hC₂f, hC₂⟩ := GlobalTheory.T.compact_free_set_projects_compact (R ⊗[F] E) M n _ hQc hQf
+  obtain ⟨C₂, hC₂c, hC₂f, hC₂⟩ := _root_.GlobalTheory.CompanionTheory.SW.StageF.Tails.exists_compact_tails (R ⊗[F] E) M n _ hQc hQf
   have hν : m' S' C₂ < ⊤ := by
     obtain ⟨k, hk⟩ := hbd₂ C₂ {S'} hC₂c hC₂f isCompact_singleton
     exact (hk S' rfl).trans_lt ENNReal.coe_lt_top

@@ -209,7 +209,7 @@ private theorem boundary_getElem_eq_iteratedStrictTransform {k : Type u} [Field 
     (hn' : n < (u.boundary i).length) :
     (u.boundary i)[n]'hn' = u.iteratedStrictTransform i (E[n]'hn) := by
   have h1 : u.boundary i = E.map (u.iteratedStrictTransform i) ++ u.boundaryFrom ([] : List X.IdealSheafData) i := by
-    rw [← MarkedBlowupSequenceData.toBlowupSequenceData_boundary_eq u i hi]
+    rw [← _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toBlowupSequenceData_boundary_eq_boundary_of_le u i hi]
     exact BlowupSequenceData.boundary_eq_map_iteratedStrictTransform_append u.toBlowupSequenceData E i
   have h2 : n < (E.map (u.iteratedStrictTransform i) ++ u.boundaryFrom ([] : List X.IdealSheafData) i).length := by
     rw [← h1]

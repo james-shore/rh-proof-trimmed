@@ -68,30 +68,11 @@ theorem finPart_pure (α : Af D.host.F) (e : D.host.E) :
   rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.map_tmul]
   rfl
 
-theorem infPart_pure (α : Af D.host.F) (e : D.host.E) :
-    infPart D ((pairA D.host.F 0 α) ⊗ₜ[D.host.F] e) = 0 := by
-  unfold infPart
-  rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.map_tmul]
-  have : fstA D.host.F (pairA D.host.F 0 α) = 0 := rfl
-  rw [this, TensorProduct.zero_tmul]
-
 theorem compFin_pure (w : Pl D) (α : Af D.host.F) (e : D.host.E) :
     GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter.compFin D w (α ⊗ₜ[D.host.F] e) = (evalV D.host.F w α) ⊗ₜ[D.host.F] e := by
   unfold GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter.compFin
   rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.map_tmul]
   rfl
-
-theorem compAt_pure (w : Pl D) (α : Af D.host.F) (e : D.host.E) :
-    compAt D w ((pairA D.host.F 0 α) ⊗ₜ[D.host.F] e) = (evalV D.host.F w α) ⊗ₜ[D.host.F] e := by
-  unfold compAt
-  rw [RingHom.comp_apply, finPart_pure, compFin_pure]
-
-theorem pure_mem (P : Pl D → Prop) (α : Af D.host.F) (hα : ∀ v, ¬ P v → evalV D.host.F v α = 0) (e : D.host.E) :
-    (pairA D.host.F 0 α) ⊗ₜ[D.host.F] e ∈ idAt D P := by
-  refine Ideal.mem_inf.2 ⟨?_, ?_⟩
-  · rw [RingHom.mem_ker, infPart_pure]
-  · refine (Submodule.mem_iInf _).2 fun w => ?_
-    rw [RingHom.mem_ker, compAt_pure, hα w.1 w.2, TensorProduct.zero_tmul]
 
 theorem latV_supp : ∀ (D : D7) (S : HSp D) (M : Lat S) (P : Pl D → Prop) (y : Fin S.rank → AE D),
     y ∈ latV S M P → ∀ i, y i ∈ idAt D P := by
@@ -99,18 +80,17 @@ theorem latV_supp : ∀ (D : D7) (S : HSp D) (M : Lat S) (P : Pl D → Prop) (y 
   induction hy using AddSubgroup.closure_induction with
   | mem z hz =>
     obtain ⟨α, -, hα, a, ha, x, -, rfl⟩ := hz
-    exact fun i => pure_mem P α hα _
+    exact fun i => _root_.GlobalTheory.FinPlLoc.pair_mem_idAt P α hα _
   | zero => exact fun i => (idAt D P).zero_mem
   | add a b _ _ ha hb => exact fun i => (idAt D P).add_mem (ha i) (hb i)
   | neg a _ ha => exact fun i => (idAt D P).neg_mem (ha i)
 
-theorem latV_toHat : ∀ (D : D7) (S : HSp D) (L : Lat S) (P : Pl D → Prop) (y : Fin S.rank → AE D), y ∈ latV S L P → (fun i => Formalism.IndefR.Lev.swapAE D (finPart D (y i))) ∈ Formalism.L2.Herm.hatL (F := D.host.F) L := GlobalTheory.T.latticeCompletionAtPlaces_mem_completedHermitianLattice
 theorem latV_ofHat : ∀ (D : D7) (S : HSp D) (L : Lat S) (P : Pl D → Prop) (y : Fin S.rank → AE D), (∀ i, y i ∈ idAt D P) → (fun i => Formalism.IndefR.Lev.swapAE D (finPart D (y i))) ∈ Formalism.L2.Herm.hatL (F := D.host.F) L → y ∈ latV S L P := GlobalTheory.T.mem_latticeCompletionAtPlaces_of_finPart_mem_hatLattice
 theorem finRep : ∀ (D : D7) (S : HSp D) (g : GA D S), ∃ x ∈ GfC S, ∀ (P : Pl D → Prop) (y : Fin S.rank → AE D), (∀ i, y i ∈ idAt D P) → mt S g *ᵥ y = mt S x *ᵥ y := GlobalTheory.T.exists_finiteComponent_unitary_acting_on_finiteSupported
 
 theorem latV_iff_hat (S : HSp D) (L : Lat S) (P : Pl D → Prop) (y : Fin S.rank → AE D) (hy : ∀ i, y i ∈ idAt D P) :
     y ∈ latV S L P ↔ (fun i => Formalism.IndefR.Lev.swapAE D (finPart D (y i))) ∈ GlobalTheory.IndefiniteRowSideFullHecke.FlatSpaceComponents.hat L :=
-  ⟨latV_toHat D S L P y, latV_ofHat D S L P y hy⟩
+  ⟨_root_.GlobalTheory.LatVHat.latV_mem_hatL D S L P y, _root_.GlobalTheory.HatLatV.mem_latV_of_hatL D S L P y hy⟩
 
 theorem finE_mulVec (S : HSp D) (x : GA D S) (y : Fin S.rank → AE D) :
     (fun i => Formalism.IndefR.Lev.swapAE D (finPart D ((mt S x *ᵥ y) i))) =
@@ -125,7 +105,7 @@ theorem finE_mulVec (S : HSp D) (x : GA D S) (y : Fin S.rank → AE D) :
 
 theorem image_moves (S : HSp D) (L : Lat S) (hL : IsSelfDualC S L) (g : GA D S) :
     ∃ M : Lat S, IsSelfDualC S M ∧ ∀ P : Pl D → Prop, Moves S g L M P := by
-  obtain ⟨x, hx, hgx⟩ := finRep D S g
+  obtain ⟨x, hx, hgx⟩ := _root_.GlobalTheory.GlobFin.fin_rep D S g
   have hI := GlobalTheory.AdIsomImage.imageSt D S L hL x hx
   obtain ⟨⟨M, hMl, hM⟩, hsd⟩ := hI
   refine ⟨M, hsd M hMl hM, fun P y hy => ?_⟩

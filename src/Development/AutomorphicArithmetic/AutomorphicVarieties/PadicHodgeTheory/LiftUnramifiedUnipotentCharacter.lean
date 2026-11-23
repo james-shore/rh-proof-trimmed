@@ -55,10 +55,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc UpperTheory.V.Loc
 
-private theorem ul_exp_onto {A : Type} [CommRing A] [Algebra ℚ A] {n : A} (hn : IsNilpotent n) :
-    ∃ x, IsNilpotent x ∧ IsNilpotent.exp x = 1 + n :=
-  _root_.UpperTheory.Reformulated.B.UnipotentExponentialSurjective.ul_exp_onto hn
-
 private theorem t2Space_finite_padic_module {l : ℕ} [Fact l.Prime] {V : Type} [AddCommGroup V] [Module ℚ_[l] V]
     [Module.Finite ℚ_[l] V] [TopologicalSpace V] [IsModuleTopology ℚ_[l] V] : T2Space V := by
   haveI : IsTopologicalAddGroup V := IsModuleTopology.topologicalAddGroup ℚ_[l] V
@@ -81,7 +77,7 @@ theorem UpperTheory.lift_unramified_unipotent_character :
   haveI : ContinuousSMul ℚ_[l] B' := IsModuleTopology.toContinuousSMul ℚ_[l] B'
   haveI : T2Space B' := t2Space_finite_padic_module (l := l)
   obtain ⟨σ, hσ⟩ := (iqBasic v).2.2.2.1
-  obtain ⟨x', hx', he'⟩ := ul_exp_onto (hn' σ)
+  obtain ⟨x', hx', he'⟩ := _root_.UpperTheory.Reformulated.B.UnipotentExponentialSurjective.ul_exp_onto (hn' σ)
   obtain ⟨x, rfl⟩ := hp x'
   have hx : IsNilpotent x := by
     obtain ⟨k, hk⟩ := hx'

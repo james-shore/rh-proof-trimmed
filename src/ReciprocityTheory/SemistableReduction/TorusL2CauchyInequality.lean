@@ -54,7 +54,7 @@ namespace ReciprocityTheory.MultiplicativeHeights.Closed
 
 open ReciprocityTheory.MultiplicativeHeights
 
-theorem sphereLinLog : SphereLinLogStatement := sjCore_holds
+alias sphereLinLog := _root_.ReciprocityTheory.MultiplicativeHeights.sjCore_holds
 
 theorem sj : SJStatement := sj_holds sphereLinLog
 

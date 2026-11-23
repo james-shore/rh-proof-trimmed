@@ -56,28 +56,6 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.MemLoc
 
-theorem exists_pow_eq_one_algClosure_coprime (l : ℕ) [Fact l.Prime] (a : AlgebraicClosure (ZMod l))
-    (ha : a ≠ 0) : ∃ m : ℕ, 0 < m ∧ ¬ l ∣ m ∧ a ^ m = 1 := by
-  have hint : IsIntegral (ZMod l) a := Algebra.IsIntegral.isIntegral a
-  let K := IntermediateField.adjoin (ZMod l) ({a} : Set (AlgebraicClosure (ZMod l)))
-  haveI : FiniteDimensional (ZMod l) K := IntermediateField.adjoin.finiteDimensional hint
-  haveI : Finite K := Module.finite_of_finite (ZMod l)
-  letI : Fintype K := Fintype.ofFinite K
-  let b : K := ⟨a, IntermediateField.mem_adjoin_simple_self _ a⟩
-  have hb : b ≠ 0 := fun h => ha (congrArg Subtype.val h)
-  have h1 : 1 < Fintype.card K := Fintype.one_lt_card
-  refine ⟨Fintype.card K - 1, by omega, ?_, ?_⟩
-  · intro hd
-    have h0 : ((Fintype.card K - 1 : ℕ) : K) = 0 := by
-      obtain ⟨c, hc⟩ := hd
-      have hl : ((l : ℕ) : K) = 0 := by
-        rw [← map_natCast (algebraMap (ZMod l) K), ZMod.natCast_self, map_zero]
-      rw [hc, Nat.cast_mul, hl, zero_mul]
-    rw [Nat.cast_sub h1.le, FiniteField.cast_card_eq_zero] at h0
-    simp at h0
-  · have := congrArg Subtype.val (FiniteField.pow_card_sub_one_eq_one b hb)
-    simpa [b] using this
-
 theorem exists_unit_frobenius_eq_mul (l : ℕ) [Fact l.Prime] (k : Type) [Field k] [CharP k l] [IsAlgClosed k]
     (u : WittVector l k) (hu : IsUnit u) :
     ∃ w : WittVector l k, IsUnit w ∧ WittVector.frobenius w = u * w := by
@@ -120,8 +98,8 @@ theorem exists_unramified_period : ∀ (l : ℕ) [Fact l.Prime] (F : GQ l), (∀
     intro g n hn hg a
     by_cases ha : a = 0
     · rw [ha, map_zero, map_zero, zero_pow hn]
-    · obtain ⟨m, hm, hl, ham⟩ := exists_pow_eq_one_algClosure_coprime l a ha
-      exact GlobalTheory.T.tilt_galois_action_root_of_unity_coprime l (f a) m n g hm hl (by rw [← map_pow, ham, map_one])
+    · obtain ⟨m, hm, hl, ham⟩ := _root_.GlobalTheory.ProofStatement.main l a ha
+      exact _root_.GlobalTheory.MemLoc.σF_root_of_unity l (f a) m n g hm hl (by rw [← map_pow, ham, map_one])
         fun x hx => hg x m hm hl hx
   have hφA : Per.φA l (WittVector.map f w₀) = Per.zA l u * WittVector.map f w₀ := by
     rw [← hfu, ← map_mul, ← hφ]

@@ -105,7 +105,7 @@ theorem pairForm_alt : GlobalTheory.Published.DiscreteSeriesClassification → G
       · rw [h0]
         exact (smul_zero (1 : ℂ)).symm
       · obtain ⟨F, h1, h2, -⟩ := hF ⟨W.Q.Rl.HE.e e, he⟩
-        exact absurd (_root_.GlobalTheory.T.unit_vector_rows_conjugate_alt hDS hCusp W hB v₀ v hv hv₀ (_root_.GlobalTheory.MiTop.rowFormOfVector W e) (hM e he) h0 F h1 h2) hl
+        exact absurd (_root_.GlobalTheory.MiTop.unit_vector_line_conjugate_alt hDS hCusp W hB v₀ v hv hv₀ (_root_.GlobalTheory.MiTop.rowFormOfVector W e) (hM e he) h0 F h1 h2) hl
   obtain ⟨l, hl0, hl⟩ := key
   refine ⟨starRingEnd ℂ (W.Q.uS * (W.Q.κS : ℂ)) * l, mul_ne_zero ?_ hl0, ?_⟩
   · have hu : W.Q.uS ≠ 0 := by

@@ -152,7 +152,7 @@ theorem main : ∀ (I : AutInst) (x : I.GA) (R : Submodule (𝓞 I.E) (Fin I.n �
     unfold perpIn
     rw [Submodule.span_le]
     exact fun y hy => hy.1
-  have hfg : (lamX I x).FG := (GlobalTheory.T.autPointLatticeIntersection_selfDual_properties I x).2.1
+  have hfg : (lamX I x).FG := (_root_.GlobalTheory.PointLattice.lamX_selfDual I x).2.1
   have hsat' : IsSat (Formalism.HermitianLatticesTheory.realize (bas I) (frm I x)) (perpIn I x R) R := by
     refine ⟨hiso, ?_, ?_⟩
     · rintro _ ⟨y, hy, rfl⟩

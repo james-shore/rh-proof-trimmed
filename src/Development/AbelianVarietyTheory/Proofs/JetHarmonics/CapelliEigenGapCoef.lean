@@ -61,8 +61,8 @@ theorem eigDec_of_isKFinCoefT : Hyps → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 
   obtain ⟨s, hs⟩ := (GlobalTheory.isCoef_of_translate_smul_exists hsm k r ε mu R Wp Wq (fun _ => 0) (fun _ => 0) hDS).1 f hf
   obtain ⟨h1, h2⟩ := GlobalTheory.isCoef_ckOn_inCC H k r ε mu h R Wp Wq (fun _ => 0) (fun _ => 0) f s hDS hgap hok hs
   refine ⟨h1, h2, fun y g hg => ?_⟩
-  have hE := GlobalTheory.T.capelli_eigenvalue_kFinite_discreteSeries_coeff hsm H.2.2.1 k r ε mu R.H R.σ Wp Wq hDS.1 hDS.2 f hf (y : ℂ) g hg
-  rw [(GlobalTheory.T.centredCapelliOperator_forms_agree k r _ (y : ℂ) f).1, hE]
+  have hE := _root_.GlobalTheory.CapelliEigenvalue.capEig hsm H.2.2.1 k r ε mu R.H R.σ Wp Wq hDS.1 hDS.2 f hf (y : ℂ) g hg
+  rw [(_root_.GlobalTheory.ThA.centredCapelli_forms_agree k r _ (y : ℂ) f).1, hE]
   simp only [Formalism.QuantumDeterminants.capP, Complex.ofReal_prod, Complex.ofReal_add]
 
 end GlobalTheory

@@ -43,6 +43,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.MainNotions.S.Lem
 
-theorem orbRStabBig : Formalism.MainNotions.S.OrbRStabBig := stabilizer_large
+theorem orbRStabBig : Formalism.MainNotions.S.OrbRStabBig := _root_.PI.StabBigW.stabBig
 
 end Formalism.MainNotions.S.Lem

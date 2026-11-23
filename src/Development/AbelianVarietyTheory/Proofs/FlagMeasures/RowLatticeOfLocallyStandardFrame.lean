@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.CuspSpanNormBounds.CayleyDegreeNondegeneracy.LiftsConjugateUnderStabilizer
 
 @[expose] public section
 
@@ -111,12 +112,6 @@ theorem iso_X {D : D7} {T : D.host.E} (G : FlagG (VS D) D.R.rS T) :
   | add u v _ _ hu hv => simp [hu, hv]
   | smul c u _ hu => simp [hu]
 
-theorem xa_last {D : D7} {T : D.host.E} (G : FlagG (VS D) D.R.rS T) : G.Xa D.R.rS = G.X := by
-  unfold FlagG.Xa FlagG.X
-  congr 1
-  ext v
-  simp
-
 theorem lsub_eq {D : D7} {T T' : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) (F' : LFlag (D.sp.Y 0) D.R.rS T')
     (h : F.fl.X = F'.fl.X) (Λ : LV D) : Lsub Λ F = Lsub Λ F' := by
   simp only [Lsub, Lrep, Xsp, h]
@@ -162,7 +157,7 @@ theorem row_lattice_of_local_standard : ∀ (D : D7) (Tn : ℕ), Tn ≠ 0 → �
   rw [hga a]
   induction a using Fin.lastCases with
   | last =>
-    simp only [FlagG.fvec, Fin.snoc_last, Fin.val_last, hGz, xa_last]
+    simp only [FlagG.fvec, Fin.snoc_last, Fin.val_last, hGz, _root_.Formalism.MainNotions.BridgeLemma₂.partial_isotropic_top]
     simpa using hx
   | cast b =>
     simp only [FlagG.fvec, Fin.snoc_castSucc, Fin.val_castSucc, hGe]

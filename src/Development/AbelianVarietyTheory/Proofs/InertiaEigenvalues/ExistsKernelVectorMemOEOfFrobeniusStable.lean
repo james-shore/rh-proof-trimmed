@@ -134,11 +134,11 @@ namespace GlobalTheory.BSP
 open KernelDescent in
 theorem exists_ker_vector_mem_OE : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (d : ℕ) (Y A : Matrix (Fin d) (Fin d) (Cb l)), A.det ≠ 0 → (∀ i j, A i j ∈ bk.OE.map (WittVector.constantCoeff (p := l) (R := Cb l))) → Y.map (frobenius (Cb l) l) = Y * A → (∀ g : ↥(GK K), bk.FixFlat g → ∃ R : Matrix (Fin d) (Fin d) (Cb l), IsUnit R ∧ R * Y.map (autCb l (galTilt l (g : GQ l))) = Y) → Y.det = 0 → ∃ v : Fin d → Cb l, v ≠ 0 ∧ (∀ i, v i ∈ bk.OE.map (WittVector.constantCoeff (p := l) (R := Cb l))) ∧ Y.mulVec v = 0 := by
   intro l _ K bk d Y A hA hAm hY hg hdet
-  obtain ⟨I, Q, Λ, h₀, hQ, h₁, h₂, hΛ⟩ := GlobalTheory.T.echelon_projector_kernel_frobenius l (Cb l) d Y A hA hY
+  obtain ⟨I, Q, Λ, h₀, hQ, h₁, h₂, hΛ⟩ := _root_.GlobalTheory.echelon_projector_frobenius l (Cb l) d Y A hA hY
   have hQA : Q * (A * Q.map (frobenius (Cb l) l)) = A * Q.map (frobenius (Cb l) l) := by
     refine mul_eq_of_ker Y Q _ hQ ?_
     rw [← Matrix.mul_assoc, ← hY, ← Matrix.map_mul, h₀, Matrix.map_zero _ (map_zero _)]
-  have hmem := GlobalTheory.T.tilt_invariant_mem_reduction_of_frobenius_equation l K bk (Fin d × Fin d) (fun j => Q j.1 j.2) (fun g hgf j => by
+  have hmem := _root_.GlobalTheory.BSP.TwoCopy.mem_reduction_of_invariant l K bk (Fin d × Fin d) (fun j => Q j.1 j.2) (fun g hgf j => by
     obtain ⟨R, -, hR⟩ := hg g hgf
     have := invariant I Y Q R h₀ hQ h₁ h₂ (autCb l (galTilt l (g : GQ l)) : Cb l →+* Cb l) hR
     exact congrFun (congrFun this j.1) j.2) (fun T _ i₁ i₂ h =>

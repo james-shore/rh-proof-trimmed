@@ -80,7 +80,7 @@ theorem map_eq_charpoly_vmap : ∀ (K : Type) [Field K] (l : ℕ) [Fact l.Prime]
   have hpoly : ∀ (n : ℕ) (u : Fin n → Polynomial ℤ), ∃ Φ : MvPolynomial (Fin n) ℚ, Φ.IsHomogeneous (2 * A.dim) ∧
       ∀ m : Fin n → ℤ, MvPolynomial.eval (fun i => (m i : ℚ)) Φ = δ (∑ i, m i • u i) := by
     intro n u
-    obtain ⟨Φ, hΦ, hΦe⟩ := GlobalTheory.T.homDegree_integerCombination_isHomogeneous K A A rfl n (fun i => (Polynomial.aeval f (u i)).asHom)
+    obtain ⟨Φ, hΦ, hΦe⟩ := _root_.GlobalTheory.AV.AbVar.deg_isHomogeneousPoly K A A rfl n (fun i => (Polynomial.aeval f (u i)).asHom)
     refine ⟨Φ, hΦ, fun m => ?_⟩
     rw [hΦe m]
     have hz (k : ℤ) (g : End A) : (k • g).asHom = k • g.asHom :=
@@ -91,7 +91,7 @@ theorem map_eq_charpoly_vmap : ∀ (K : Type) [Field K] (l : ℕ) [Fact l.Prime]
     intro n
     rw [hP n]
     simp only [δ, map_sub, map_intCast, Polynomial.aeval_X, eq_intCast]
-  have hroots := GlobalTheory.T.multiplicative_polynomialFunction_eq_normForm (PadicAlgCl l) A.dim δ P hmul hpoly hPm hPd hPn
+  have hroots := _root_.GlobalTheory.MulPolyNorm.eq_prod_aroots (PadicAlgCl l) A.dim δ P hmul hpoly hPm hPd hPn
   apply GlobalTheory.PadicRootNorm.eq_of_norm_prod_aeval_eq l
   · exact hPm.map _
   · exact LinearMap.charpoly_monic _
@@ -102,7 +102,7 @@ theorem map_eq_charpoly_vmap : ∀ (K : Type) [Field K] (l : ℕ) [Fact l.Prime]
       congr 2
     rw [h1]
     refine (congrArg norm (hroots F)).symm.trans ?_
-    have h2 := GlobalTheory.T.det_aeval_eq_prod_aroots_charpoly' ℚ_[l] (PadicAlgCl l) (Vl l A) (vmap l f.asHom) (F.map (algebraMap ℤ ℚ_[l]))
+    have h2 := _root_.GlobalTheory.det_aeval_eq_prod_aroots_charpoly ℚ_[l] (PadicAlgCl l) (Vl l A) (vmap l f.asHom) (F.map (algebraMap ℤ ℚ_[l]))
     simp only [Polynomial.aeval_map_algebraMap] at h2
     rw [← h2]
     let t : End A →+* Module.End ℤ_[l] (Tl l A) :=

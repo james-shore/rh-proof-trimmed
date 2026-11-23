@@ -82,36 +82,33 @@ theorem adq_pairM (hθ : IsSplitEquiv X p θ) (v w : Fin X.B.I.n → TpX X p) :
       crd2 X p θ Q v ⬝ᵥ crd1 X p θ Q w := by
   rw [pair1 X p θ Q hθ, pair1 X p θ Q hθ, adq_hR]
 
-theorem adq_std : (frameOf X u).IsStd X.B.I.cm.sig X.B.I.J (((D.mem u).A.T : ℕ) : X.B.I.F) :=
-  MassDataLevelSSteps.FrameW.frameOf_isStd X u
-
 theorem adq_ee (u : D.what₂.Word) (hθ : IsSplitEquiv X p θ) (b a : Fin D.R.rS) :
     crd2 X p θ Q (adqE X p b) ⬝ᵥ crd1 X p θ Q (adqE X p a) = 0 := by
-  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX b)) (crdOf X.B.I X.ιE X.bas (X.eX a)) = 0 := (adq_std X u).1 b a
+  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX b)) (crdOf X.B.I X.ιE X.bas (X.eX a)) = 0 := (_root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u).1 b a
   rw [adq_pairR X p θ Q hθ, h]
   simp
 
 theorem adq_ef (u : D.what₂.Word) (hθ : IsSplitEquiv X p θ) (b a : Fin D.R.rS) :
     crd2 X p θ Q (adqE X p b) ⬝ᵥ crd1 X p θ Q (adqF X p a) = if b = a then 1 else 0 := by
-  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX b)) (crdOf X.B.I X.ιE X.bas (X.fY a)) = if b = a then 1 else 0 := (adq_std X u).2.2.1 b a
+  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX b)) (crdOf X.B.I X.ιE X.bas (X.fY a)) = if b = a then 1 else 0 := (_root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u).2.2.1 b a
   rw [adq_pairR X p θ Q hθ, h]
   split_ifs <;> simp
 
 theorem adq_ez (hθ : IsSplitEquiv X p θ) (b : Fin D.R.rS) :
     crd2 X p θ Q (adqE X p b) ⬝ᵥ crd1 X p θ Q (adqZ X u p) = 0 := by
-  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX b)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0 := (adq_std X u).2.2.2.1 b
+  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX b)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0 := (_root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u).2.2.2.1 b
   rw [adq_pairR X p θ Q hθ, h]
   simp
 
 theorem adq_ze (hθ : IsSplitEquiv X p θ) (a : Fin D.R.rS) :
     crd2 X p θ Q (adqZ X u p) ⬝ᵥ crd1 X p θ Q (adqE X p a) = 0 := by
-  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX a)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0 := (adq_std X u).2.2.2.1 a
+  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.eX a)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0 := (_root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u).2.2.2.1 a
   rw [adq_pairR X p θ Q hθ, MassDataMassesW.NRatW.hE_swap X, h]
   simp
 
 theorem adq_zf (hθ : IsSplitEquiv X p θ) (a : Fin D.R.rS) :
     crd2 X p θ Q (adqZ X u p) ⬝ᵥ crd1 X p θ Q (adqF X p a) = 0 := by
-  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.fY a)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0 := (adq_std X u).2.2.2.2.1 a
+  have h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas (X.fY a)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0 := (_root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u).2.2.2.2.1 a
   rw [adq_pairR X p θ Q hθ, MassDataMassesW.NRatW.hE_swap X, h]
   simp
 

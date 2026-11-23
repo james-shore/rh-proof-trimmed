@@ -94,16 +94,13 @@ theorem hom_hom (t : kˣ) (p : Sp k n) : hom t⁻¹ (hom t p) = p := by
   refine Prod.ext ?_ rfl
   simp [hom, smul_smul]
 
-theorem continuous_hom (t : kˣ) : Continuous (hom (n := n) t) :=
-  (continuous_fst.const_smul (t : k)).prodMk continuous_snd
-
 def homH (t : kˣ) : Sp k n ≃ₜ Sp k n where
   toFun := hom t
   invFun := hom t⁻¹
   left_inv p := hom_hom t p
   right_inv p := by simpa using hom_hom t⁻¹ p
-  continuous_toFun := continuous_hom t
-  continuous_invFun := continuous_hom t⁻¹
+  continuous_toFun := _root_.PositivityTheory.RgUd.TP.Nil.Orb.continuous_hom t
+  continuous_invFun := _root_.PositivityTheory.RgUd.TP.Nil.Orb.continuous_hom t⁻¹
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem hom_act (t : kˣ) (g : GL (Fin n) k) (p : Sp k n) : hom t (act g p) = act g (hom t p) := by
@@ -111,24 +108,20 @@ theorem hom_act (t : kˣ) (g : GL (Fin n) k) (p : Sp k n) : hom t (act g p) = ac
   refine Prod.ext ?_ rfl
   simp only [mul_smul_comm, smul_mul_assoc]
 
-theorem comp_hom_mem (t : kˣ) {f : Sp k n → ℂ} (hf : f ∈ supportedIn (UU : Set (Sp k n))) :
-    (fun p => f (hom t p)) ∈ supportedIn (UU : Set (Sp k n)) :=
-  comp_mem_supportedIn (homH t) hf
-
 theorem invU_pullH (t : kˣ) {ξ : (Sp k n → ℂ) →ₗ[ℂ] ℂ} (hξ : InvU Z ξ) : InvU Z (pullH t ξ) := by
   intro g hg f hf
   show ξ (fun p => f (act g (hom t p))) = ξ (fun p => f (hom t p))
   have e : (fun p => f (act g (hom t p))) = fun p => (fun q => f (hom t q)) (act g p) := by
     funext p; show f (act g (hom t p)) = f (hom t (act g p)); rw [hom_act]
   rw [e]
-  exact hξ g hg _ (comp_hom_mem t hf)
+  exact hξ g hg _ (_root_.PositivityTheory.RgUd.TP.Nil.Orb.comp_hom_mem t hf)
 
 theorem invU_sub_smul {ξ η : (Sp k n → ℂ) →ₗ[ℂ] ℂ} (h1 : InvU Z ξ) (h2 : InvU Z η) (a : ℂ) : InvU Z (ξ - a • η) := by
   intro g hg f hf
   simp [h1 g hg f hf, h2 g hg f hf]
 
 theorem kills_pullH (t : kˣ) {ξ : (Sp k n → ℂ) →ₗ[ℂ] ℂ} (hξ : Kills ξ UU) : Kills (pullH t ξ) UU :=
-  fun f hf => hξ _ (comp_hom_mem t hf)
+  fun f hf => hξ _ (_root_.PositivityTheory.RgUd.TP.Nil.Orb.comp_hom_mem t hf)
 
 theorem kills_aevalH (t : kˣ) {ξ : (Sp k n → ℂ) →ₗ[ℂ] ℂ} (hξ : Kills ξ UU) (Q : ℂ[X]) :
     Kills (aeval (pullH (n := n) t) Q ξ) UU := by

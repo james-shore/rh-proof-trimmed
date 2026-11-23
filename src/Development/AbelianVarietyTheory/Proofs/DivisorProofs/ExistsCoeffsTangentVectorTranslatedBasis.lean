@@ -112,7 +112,7 @@ theorem exists_coeffs_translate : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     refine Over.OverMorphism.ext ?_
     change spMap (dualMap ρ) ≫ (u a).left = spMap (epsMul (ρ (c a))) ≫ (v'' a).left
     rw [hu a, hv'' a]
-    simp only [← Category.assoc, GlobalTheory.KSLin.spMap_comp_spMap]
+    simp only [← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
     congr 2
     refine RingHom.ext fun z => ?_
     ext <;> simp [epsMul, dualMap]

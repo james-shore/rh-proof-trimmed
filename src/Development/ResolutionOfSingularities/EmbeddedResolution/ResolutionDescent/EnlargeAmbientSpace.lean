@@ -75,7 +75,7 @@ def enlargeAmbient (G : EmbeddingDatum k Y p) (A' : Scheme.{u}) [AlgebraicGeomet
 
 private theorem imageIdealSheaf_ker_eq_ker_comp {Yc A A' : Scheme.{u}} (e : Yc ⟶ A)
     [AlgebraicGeometry.IsClosedImmersion e] (σ : A ⟶ A') :
-    imageIdealSheaf σ (Scheme.Hom.ker e) = Scheme.Hom.ker (e ≫ σ) :=
+    _root_.FunctorialResolution.Blowup.schemeImageIdeal σ (Scheme.Hom.ker e) = Scheme.Hom.ker (e ≫ σ) :=
   (Scheme.Hom.ker_comp e σ).symm
 
 theorem isPushforwardBlowupSeq_ambientBlowups_enlargeAmbient [AlgebraicGeometry.IsAffine Y]
@@ -91,9 +91,9 @@ theorem isPushforwardBlowupSeq_ambientBlowups_enlargeAmbient [AlgebraicGeometry.
     (c : ℕ) (hc : 1 ≤ c) (hcodim : HasEtaleCoordCodim q τ c) :
     IsPushforwardBlowupSeq τ (G.toEmbeddedBlowupSequence Alg).ambientSeq
       ((G.enlargeAmbient A' q τ hτ hker hsnc).toEmbeddedBlowupSequence Alg).ambientSeq := by
-  have himg : imageIdealSheaf τ (Scheme.Hom.ker G.emb) = Scheme.Hom.ker (G.emb ≫ τ) :=
+  have himg : _root_.FunctorialResolution.Blowup.schemeImageIdeal τ (Scheme.Hom.ker G.emb) = Scheme.Hom.ker (G.emb ≫ τ) :=
     imageIdealSheaf_ker_eq_ker_comp G.emb τ
-  have hJ : NonzeroOnComponents (imageIdealSheaf τ (Scheme.Hom.ker G.emb)) := by
+  have hJ : NonzeroOnComponents (_root_.FunctorialResolution.Blowup.schemeImageIdeal τ (Scheme.Hom.ker G.emb)) := by
     rw [himg]; exact hker
   have key : ∀ (J : A'.IdealSheafData) (hJ' : NonzeroOnComponents J),
       J = Scheme.Hom.ker (G.emb ≫ τ) →

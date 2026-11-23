@@ -74,7 +74,7 @@ theorem exists_homogeneous_correction_succ : ∀ (R : Type) [CommRing R] [IsNoet
     · exact hva
     · obtain ⟨j₀, hj, w, hw, hr⟩ := tower I Y β hβ H v hH s hs e
       exact GlobalTheory.AbLaw.veryAmpleBy_of_isNilpotent _ _ _ (Ideal.Quotient.factor_surjective _)
-        (GlobalTheory.Degen.isNilpotent_ker_factor_pow I _)
+        (_root_.GlobalTheory.Degen.PolyStepLocal.nilpotent_ker I _)
         _ _ _ _ j₀ hj _ _ w n _ _ (hH _).1 (hH _).1 ((isGen_iff _).2 hw) hr hva
   have hVAR : ∀ e, VeryAmpleBy ((Y e).hom ≫ thick R I e) (H e) (s e) := fun e =>
     veryAmpleBy_comp_quotient _ _ _ _ (hVA e)

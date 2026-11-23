@@ -67,25 +67,6 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 theorem blockConst_deMul {r : ℕ} (X : Data E r) (s : ℕ) : GlobalTheory.Up.BlockConst X (deMul X.Ψ r X.p0 s) :=
   fun _ _ _ h => if_congr h rfl rfl
 
-theorem gapsPairing_deMul {r : ℕ} (X : Data E r) (h0 : 0 < X.p0) (h1 : X.p0 < r) {s : ℕ} (hs : Even s) :
-    GlobalTheory.IndefiniteRowSideFullHecke.SpanSubtraction.GapsPairing X (deMul X.Ψ r X.p0 s - kapW X) ((s : ℝ) - 2 * r + 2) := by
-  obtain ⟨k, rfl⟩ := hs
-  have hk : (k + k) / 2 = k := by omega
-  intro τ
-  refine ⟨fun i j hj hp => ?_, fun i0 i1 h0' h1' => ?_⟩
-  · have e : ((j : ℕ) < X.p0 ↔ (i : ℕ) < X.p0) := by omega
-    have hj' : ((j : ℕ) : ℤ) = (i : ℕ) + 1 := by exact_mod_cast hj
-    simp only [Pi.sub_apply, deMul, kapW, hj']
-    by_cases hi : (i : ℕ) < X.p0
-    · rw [if_pos (e.2 hi), if_pos hi]; omega
-    · rw [if_neg (mt e.1 hi), if_neg hi]; omega
-  · simp only [Pi.sub_apply, deMul, kapW, h0', h1', hk]
-    rw [if_pos h0, if_neg (by omega)]
-    have hr : ((r - 1 : ℕ) : ℤ) = (r : ℤ) - 1 := by omega
-    rw [hr]
-    push_cast
-    linarith
-
 theorem large : ∀ (r : ℕ) (X : Data E r) (G : Subgroup (GL (Fin r) E)) (x0 : Frame X.Ψ r), IsOrth X x0 →
     GlobalTheory.Up.FreeBall X G x0 (1 / (49 * (r : ℝ) ^ 2)) → 0 < X.p0 → X.p0 < r → 4 ≤ X.p0 * (r - X.p0) →
     ∀ s : ℕ, Even s → 2 * r + 50 * r ^ 2 * (X.Ψ.card * (X.p0 * (r - X.p0))) + 1 ≤ s →
@@ -113,7 +94,7 @@ theorem large : ∀ (r : ℕ) (X : Data E r) (G : Subgroup (GL (Fin r) E)) (x0 :
   have hq1 : (GlobalTheory.Up.dimX X : ℝ) / (1 / (49 * (r : ℝ) ^ 2)) = 49 * (r : ℝ) ^ 2 * GlobalTheory.Up.dimX X := by
     field_simp
   have hcurv := (GlobalTheory.DivisionVolume.margin_iff h0 h1 (deMul X.Ψ r X.p0 s) ((s : ℝ) - 2 * r + 2)).2
-    (gapsPairing_deMul X h0 h1 hs) x0 hx0
+    (_root_.GlobalTheory.Up.OrbitInterpSmall.gapsPairing_deMul' X h0 h1 hs) x0 hx0
   have hs2 : 1 ≤ s / 2 := by obtain ⟨k, rfl⟩ := hs; omega
   refine hOI r X G x0 _ _ (4 * (X.Ψ.card : ℝ) * (r : ℝ) ^ 2 + 1) ((s : ℝ) - 2 * r + 2)
     (GlobalTheory.ClosedDiscontinuity.propDisc_closed r X) hx0 hd hρ hFB (blockConst_deMul X s) (by linarith)

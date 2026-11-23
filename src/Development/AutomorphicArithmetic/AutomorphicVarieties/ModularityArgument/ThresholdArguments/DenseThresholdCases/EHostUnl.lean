@@ -55,6 +55,7 @@ import Mathlib.Topology.Algebra.ProperAction.Basic
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Connected.Separation
 import Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.OrdZero
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsTerMore
 
 @[expose] public section
 
@@ -91,11 +92,7 @@ private theorem conj_left {G R : Type} [Group G] [CommRing R] (r : G →* GG (m 
     SemidirectProduct.left_inl, SemidirectProduct.right_inl, sgnAct_one, SemidirectProduct.mul_right,
     SemidirectProduct.right_inl, hg, mul_one, sgnAct_one]
 open Matrix in
-private theorem matIrr_conj {G R : Type} [Group G] [CommRing R] {m : ℕ} {U : Subgroup G}
-    {a a' : G → Matrix (Fin m) (Fin m) R} (h : GL (Fin m) R)
-    (e : ∀ g ∈ U, a g = ((h⁻¹ : GL (Fin m) R) : Matrix (Fin m) (Fin m) R) * a' g * h) (H : MatIrr U a) :
-    MatIrr U a' :=
-  _root_.UpperTheory.Reformulated.B.Ua5.matIrr_conj h e H
+private alias matIrr_conj := _root_.UpperTheory.Reformulated.B.G5.matIrr_conj
 private theorem val_of_even {Ω : Type} [Field Ω] (B : ValuationSubring Ω) {M : ℕ} (hM : Even M)
     (h : B.valuation ((4 : ℕ) : Ω) < 1) : B.valuation (M : Ω) < 1 := by
   obtain ⟨m, rfl⟩ := hM.two_dvd

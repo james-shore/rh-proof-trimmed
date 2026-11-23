@@ -189,12 +189,12 @@ theorem left_lev (hI : I.Ok) (hP : TC.Pins B X) (l : I.Laws) (Z : TC.Later B (I.
     eU ▸ (((A.K 0 (Nat.zero_le _) (A.chOf 0 c)).lev.U_eq x).1 hx).1
   constructor
   · intro hx
-    obtain ⟨h, h1, h2, q, hq⟩ := GlobalTheory.T.stepZero_approximation_twistPrimes I hI hP l Z u a Ch A hA (A.chOf 0 c) hβ ⟨c, rfl⟩ x (hUl x hx)
+    obtain ⟨h, h1, h2, q, hq⟩ := _root_.GlobalTheory.ApproxZero.approx_zero I hI hP l Z u a Ch A hA (A.chOf 0 c) hβ ⟨c, rfl⟩ x (hUl x hx)
     have e := (rat _ q hq).1 (mul_mem hx h1)
     have e2 := mul_mem e (inv_mem h2)
     rwa [mul_inv_cancel_right] at e2
   · intro hx
-    obtain ⟨h, h1, h2, q, hq⟩ := GlobalTheory.T.stepZero_approximation_twistPrimes I hI hP l Z u a Ch A hA (A.chOf 0 c) hβ ⟨c, rfl⟩ x (levU_le_UAd _ _ _ _ _ hx)
+    obtain ⟨h, h1, h2, q, hq⟩ := _root_.GlobalTheory.ApproxZero.approx_zero I hI hP l Z u a Ch A hA (A.chOf 0 c) hβ ⟨c, rfl⟩ x (levU_le_UAd _ _ _ _ _ hx)
     have e := (rat _ q hq).2 (mul_mem hx h2)
     have e2 := mul_mem e (inv_mem h1)
     rw [show x = x * h * h⁻¹ from (mul_inv_cancel_right x h).symm]

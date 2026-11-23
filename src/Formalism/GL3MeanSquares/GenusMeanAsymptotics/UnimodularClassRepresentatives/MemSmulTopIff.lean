@@ -221,7 +221,7 @@ theorem cnt_tube_eq {h : V →ₗ⋆[K] V →ₗ[K] K} {A₀ : Submodule (𝓞 K
   · intro c _ y hy z hz
     rw [mem_tube_bot] at hy ⊢
     rw [add_sub_right_comm]
-    exact add_mem hy (pow_smul_anti 𝔭 A hJk hz)
+    exact add_mem hy (_root_.Formalism.HermitianLattices.Ext.L3.D2.smul_anti 𝔭 A hJk hz)
   · intro c _ c' _ hne
     rw [Set.disjoint_left]
     intro y hy hy'
@@ -289,18 +289,18 @@ theorem cnt_tube_refine (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF
     obtain ⟨x', hx'A, hx', hx'y⟩ := hc₀ k (by omega) y hy hyn
     have hcA := hC hc
     have h1 : x' - c x ∈ ((extP K 𝔭) ^ J • A : Submodule (𝓞 K) V) := by
-      have := add_mem (pow_smul_anti 𝔭 A (show J ≤ k - c₀ by omega) hx'y) hyc
+      have := add_mem (_root_.Formalism.HermitianLattices.Ext.L3.D2.smul_anti 𝔭 A (show J ≤ k - c₀ by omega) hx'y) hyc
       rwa [sub_add_sub_cancel] at this
     obtain ⟨γ, hγ1, hγ2, hγ3⟩ := exists_isom_congr hK hF hs hd hA₀.toIsLattice hA₀i h𝔭 hn
       (DA.apply_mem hcA.2 hxA) hx'A (by rw [hcA.1, hx]) hx' hJ h1
     refine ⟨γ * c, mul_mem (hΓ γ hγ1 hγ2) hc, ?_⟩
     rw [LinearEquiv.mul_apply, hγ3, ← neg_sub]
     apply neg_mem
-    have h2 := pow_smul_anti 𝔭 A (show J₂ + r ≤ k - c₀ by omega) hx'y
+    have h2 := _root_.Formalism.HermitianLattices.Ext.L3.D2.smul_anti 𝔭 A (show J₂ + r ≤ k - c₀ by omega) hx'y
     rw [pow_add, mul_smul] at h2
     exact Submodule.smul_mono le_rfl hr h2
   · rintro ⟨c, hc, hyc⟩
-    exact ⟨c, hc, pow_smul_anti 𝔭 A hJ₂ (Submodule.smul_mono le_rfl hBA hyc)⟩
+    exact ⟨c, hc, _root_.Formalism.HermitianLattices.Ext.L3.D2.smul_anti 𝔭 A hJ₂ (Submodule.smul_mono le_rfl hBA hyc)⟩
 
 theorem pair (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF : IsFixF K F)
     {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h.IsSymm) (hd : IsTotPosDef h)
@@ -374,12 +374,12 @@ theorem pair (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF : IsFixF K
     refine ⟨g, hg, ?_⟩
     rw [add_sub_right_comm]
     refine add_mem hy ?_
-    have h2 := pow_smul_anti 𝔭 A hrk hz
+    have h2 := _root_.Formalism.HermitianLattices.Ext.L3.D2.smul_anti 𝔭 A hrk hz
     rw [pow_add, mul_smul] at h2
     exact Submodule.smul_mono le_rfl hr h2
   have hle : ∀ (A : Submodule (𝓞 K) V) (r : ℕ), ((extP K 𝔭) ^ r • A : Submodule (𝓞 K) V) ≤ B →
       r ≤ k → ((extP K 𝔭) ^ k • A : Submodule (𝓞 K) V) ≤ B :=
-    fun A r hr hrk => (pow_smul_anti 𝔭 A hrk).trans hr
+    fun A r hr hrk => (_root_.Formalism.HermitianLattices.Ext.L3.D2.smul_anti 𝔭 A hrk).trans hr
   have hfinB := finite_quot_inf hM₁.toIsLattice hM₂.toIsLattice h𝔭 k
   have s₁ := cnt_sub hF (h := h) h𝔭 hlA₁ hlB (GoodPrimeTerms.isIntegralAt_locF h𝔭.isPrime hF hM₁i) inf_le_left
     (hle A₁ r₁ hr₁' (by omega)) hfinB n hΩB (hst A₁ r₁ hr₁' (by omega))

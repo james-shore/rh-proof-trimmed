@@ -379,7 +379,7 @@ theorem germ_mean_property : PropGMean := by
     filter_upwards [hne0, hne (X σ)] with y hy1 hy2
     simp only [Function.comp_apply, hr, ha, hu, hXadd, inner_sub_left]
     rw [← inner_aL_aL hGD hy1 hy2, ← inner_uL_aL hGD hy1 hy2]
-  obtain ⟨hsplit, hpd⟩ := Formalism.FourierDecayAlt.P.mean_split_identity 1 Λs.toAddSubgroup LIM (Lp H 2 (volume : Measure ℂ)) a r
+  obtain ⟨hsplit, hpd⟩ := _root_.Formalism.FourierDecayAlt.P.MeanBoundsLimits.meanSplit_ok 1 Λs.toAddSubgroup LIM (Lp H 2 (volume : Measure ℂ)) a r
     Nh' (√SS + √B') hLIM hbnd hAA hAR hRA
   set A0 : V 1 → ℂ := fun σ => LIM (fun x : Λs.toAddSubgroup => ⟪r x, r ((x : V 1) + σ)⟫_ℂ) with hA0
 

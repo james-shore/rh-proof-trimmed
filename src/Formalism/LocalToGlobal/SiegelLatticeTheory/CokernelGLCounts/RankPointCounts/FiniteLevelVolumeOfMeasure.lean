@@ -67,7 +67,7 @@ theorem finiteLevelVolume_of_measure (hM : X.MeasTie hb) : FiniteLevelVolumeEqua
 theorem mem_rr_iff (x : X.B.I.GA) :
     x ∈ Formalism.MainNotions.LeviCoordinates.rr_GF X.B.I ↔
       toHA X.B.I hb x ∈ HFinIn (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF X.B.I.F) X.B.I.cm.sig X.B.I.J := by
-  have hGF := Formalism.L2.SG.Closed.AdBridgeGF_holds X.B.I (toHA X.B.I hb) (toHA_isBridge X.B.I hb)
+  have hGF := _root_.Formalism.L2.SG.AdBridge.adBridgeGF_main X.B.I (toHA X.B.I hb) (toHA_isBridge X.B.I hb)
   have hrat : ∀ h : HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF X.B.I.F) X.B.I.cm.sig X.B.I.J,
       h ∈ ratHA X.B.I ↔ h ∈ HFinIn (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF X.B.I.F) X.B.I.cm.sig X.B.I.J := fun h => Iff.rfl
   rw [← hrat, ← hGF, Formalism.MainNotions.LeviCoordinates.rr_mem_GF]

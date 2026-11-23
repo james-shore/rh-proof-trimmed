@@ -84,7 +84,7 @@ theorem deg_pow_finrank_eq_natAbs_norm_pow : ∀ (K : Type) [Field K] (B : AbVar
     have h1 : deg (ψ c).asHom = 1 := Nat.eq_one_of_mul_eq_one_left hd
     rw [h1, hB, mul_zero, pow_zero, one_pow]
   · classical
-    obtain ⟨k, hk, hPQ⟩ := charpoly_eq_minpoly_pow B hB ψ c
+    obtain ⟨k, hk, hPQ⟩ := _root_.GlobalTheory.CharpolyMinpolyPower.charpoly_eq_minpoly_pow B hB ψ c
     obtain ⟨⟨-, hd, -⟩, -⟩ := isCharpoly_charpoly_unique K B (ψ c)
     have hxint : IsIntegral ℚ (c : F) := Algebra.IsIntegral.isIntegral _
     have hdeg : k * Module.finrank ℚ ℚ⟮(c : F)⟯ = 2 * B.dim := by

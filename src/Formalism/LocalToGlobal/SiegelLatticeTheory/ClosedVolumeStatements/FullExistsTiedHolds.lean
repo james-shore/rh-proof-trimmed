@@ -60,27 +60,25 @@ open Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting 
 
 namespace Formalism.L2.SG.Closed
 
-theorem FinLeviC_holds : Formalism.L2.SG.Pf.FinLeviC := Formalism.L2.SG.Pf.FinLeviPf.finLeviC_holds
-
-theorem FoldOKC_outright : FoldOKC := FoldOKC_holds FinLeviC_holds
+theorem FoldOKC_outright : FoldOKC := FoldOKC_holds _root_.Formalism.L2.SG.Pf.FinLeviPf.finLeviC_holds
 
 theorem OOLintSumC_holds : Formalism.L2.SG.Pf.OOLintSumC :=
   Formalism.L2.SG.Pf.ooLintSumC_holds_slab Formalism.L2.SG.Pf.SlabMajPt.pointwise_majorant_by_columns Formalism.L2.SG.Pf.SlabCount.countC_holds
 
-theorem OOIntAllC_outright : OOIntAllC := OOIntAllC_holds OOLintSumC_holds
+theorem OOIntAllC_outright : OOIntAllC := _root_.Formalism.L2.SG.Pf.ooIntAllC_holds_of OOLintSumC_holds
 
-theorem AbsConvC_outright : AbsConvC := AbsConvC_holds OOLintSumC_holds
+theorem AbsConvC_outright : AbsConvC := _root_.Formalism.L2.SG.Pf.absConvC_holds_of OOLintSumC_holds
 
 theorem KppOffC_holds : Formalism.L2.SG.RowsConc.KppOffC :=
-  Formalism.L2.SG.FixedDecomposition.kppOffC_of_steps0 FoldOKC_outright FundExistsC_holds OOIntAllC_outright LemmaVC_holds
-    (Formalism.L2.SG.FixedDecomposition.covariantRepZero_of_lemmaV AvgCore_holds Formalism.L2.SG.Pf.ginfUnimod_holds Formalism.L2.SG.Pf.nLamNinf_holds
-      ChiTrivialC_holds Formalism.L2.SG.Pf.psiInfChar_holds Formalism.L2.SG.Pf.rClosedC_holds Formalism.L2.SG.Pf.roDiscreteC_holds
+  Formalism.L2.SG.FixedDecomposition.kppOffC_of_steps0 FoldOKC_outright _root_.Formalism.L2.SG.Pf.fundExistsC_holds OOIntAllC_outright LemmaVC_holds
+    (Formalism.L2.SG.FixedDecomposition.covariantRepZero_of_lemmaV _root_.Formalism.L2.SG.TermOp.Vanish.avgCore Formalism.L2.SG.Pf.ginfUnimod_holds Formalism.L2.SG.Pf.nLamNinf_holds
+      _root_.Formalism.L2.SG.Pf.chiTrivialC_outright Formalism.L2.SG.Pf.psiInfChar_holds Formalism.L2.SG.Pf.rClosedC_holds Formalism.L2.SG.Pf.roDiscreteC_holds
       Formalism.L2.SG.TermOp.Vanish.rational_cocompact_holds)
     schurNFC
 
 theorem LocHaarC_holds : Formalism.L2.SG.Pf.LocCP.LocHaarC := by
   intro D _ p
-  obtain ⟨μ, h1, h2, h3⟩ := local_haar_real_real _ _ _ _ (D.s.atP p) (Formalism.L2.SG.Pf.LocCP.reduced p)
+  obtain ⟨μ, h1, h2, h3⟩ := _root_.PI.LocHaarRRW.target _ _ _ _ (D.s.atP p) (Formalism.L2.SG.Pf.LocCP.reduced p)
   refine ⟨μ, h1, h2, ?_⟩
   have hR : Formalism.L2.SG.Pf.LocCP.RR p = PI.LocHaarRR.RR (D.s.atP p) := by
     unfold Formalism.L2.SG.Pf.LocCP.RR PI.LocHaarRR.RR

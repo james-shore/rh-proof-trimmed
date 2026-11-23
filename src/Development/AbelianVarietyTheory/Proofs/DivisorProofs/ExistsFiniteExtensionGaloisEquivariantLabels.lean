@@ -59,7 +59,7 @@ theorem exists_finExt_galEqN : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocal
   have hU₁ : UniTrait D₁.toPre A := by
     obtain ⟨W, i1, i2, i3, φ, G', i4, i5, D', A', U', hD, a, i6, em, hW, hφ, hloc, hG, hF, -, -⟩ := hOT
     exact ⟨W, i1, i2, i3, φ, G', i4, i5, D', A', U', hD, a, hW, hφ, hloc, hG, hF⟩
-  obtain ⟨R₂, _, _, _, ρ₂, D₂, A₂, hρ₂, hP₂, hS₂, hU₂, hRat⟩ := GlobalTheory.T.exists_finite_ext_rational_torsion_uniformised_trait R hR D n hn ho hu R₁ ρ D₁ A hρ hP hS hU₁
+  obtain ⟨R₂, _, _, _, ρ₂, D₂, A₂, hρ₂, hP₂, hS₂, hU₂, hRat⟩ := _root_.GlobalTheory.Mum.Enlarge.exists_rational_ext R hR D n hn ho hu R₁ ρ D₁ A hρ hP hS hU₁
   have hB₂ : Base R₂ := by
     have := hR.2
     exact ⟨hρ₂.1, charZero_of_injective_ringHom hρ₂.2.1⟩

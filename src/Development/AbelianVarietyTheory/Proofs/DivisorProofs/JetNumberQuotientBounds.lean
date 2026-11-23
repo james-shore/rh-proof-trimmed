@@ -101,7 +101,7 @@ theorem jet_real {f m r t b g dF R : ℝ} (hf0 : 0 ≤ f) (hm0 : 0 ≤ m) (hr0 :
     have h5 : b * b * (3 * b ^ 4) = 3 * b ^ 6 := by ring
     linarith
 
-theorem finrank_host (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := D.host.finrank_E'
+alias finrank_host := _root_.Formalism.MainNotions.StandardLattice.finrank_host
 
 theorem jetNum_of_sizes {D : D7} {L : SizeData₂ D} (S : SizesAt L) {dF : ℕ}
     (hd : (dF : ℝ) ≤ D.R.f * D.R.r * (2 * (2 * L.sc.b) + 1)) : JetNum D dF (1 / 2500) := by
@@ -163,13 +163,9 @@ section Cols
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
 
-theorem mult_add_mult_conj (D : Datum H) (τ : E →+* ℂ) :
-    D.mult τ + D.mult (ReciprocityTheory.ChartRestriction.G.Geo.Tor.conjEmb τ) = D.p + D.q :=
-  _root_.GlobalTheory.ConjugateMultiplicitySum.mult_add_mult_conj D τ
-
 theorem two_mul_rank_le_nCol (Dw : Datum H) : 2 * (Dw.p + Dw.q) ≤ nCol Dw := by
   obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  have h := mult_add_mult_conj Dw τ
+  have h := _root_.GlobalTheory.ConjugateMultiplicitySum.mult_add_mult_conj Dw τ
   have hle : ∀ σ, Dw.mult σ ≤ Fintype.card (Lt1 Dw) := fun σ => by
     have := Fintype.card_le_of_injective (fun i : Fin (Dw.mult σ) => (⟨σ, i⟩ : Lt1 Dw))
       (@sigma_mk_injective _ (fun τ => Fin (Dw.mult τ)) σ)

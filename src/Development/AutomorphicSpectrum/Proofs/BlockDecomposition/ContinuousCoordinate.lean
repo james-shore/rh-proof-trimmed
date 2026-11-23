@@ -35,6 +35,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinGLMemOfPow
 
 @[expose] public section
 
@@ -98,13 +99,8 @@ variable [_root_.NumberField.IsTotallyComplex E]
 theorem continuous_sInf : Continuous (sInf E) :=
   ((continuous_infEq E).prodMk continuous_const : Continuous fun x : Cinf E => ((infEq E x, 0) : InfiniteAdeleRing E × Af E))
 
-theorem continuous_pInf : Continuous (pInf E) :=
-  continuous_pi fun w =>
-    (InfinitePlace.Completion.isometryEquivComplexOfIsComplex (IsTotallyComplex.isComplex w)).continuous.comp
-      ((continuous_apply w).comp continuous_fst)
-
 theorem continuous_coordinate (v : InfinitePlace E) : Continuous (cV v : Ad E → ℂ) :=
-  (continuous_apply v).comp continuous_pInf
+  (continuous_apply v).comp _root_.GlobalTheory.CuspRep.RankOne.continuous_pInf
 
 theorem map_cV (v : InfinitePlace E) (g : GA E a) :
     GeneralLinearGroup.map (cV v) g =

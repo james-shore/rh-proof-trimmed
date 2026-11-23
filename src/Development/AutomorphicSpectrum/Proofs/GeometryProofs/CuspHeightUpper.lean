@@ -214,7 +214,7 @@ theorem htU_of_given : Top.Given → Fl.FlatDegree → ∃ Ch : ℝ, ∀ (E : Ty
     subst hk'
     exact ⟨qq, h1, h2⟩
   choose qq hqq1 hqq2 using hk
-  obtain ⟨x, hx, hht⟩ := GlobalTheory.T.cusp_intersection_height hG E H D Xo l c Y II K J Ω W Dc Hd S₀ Or B L z Pa V MV A
+  obtain ⟨x, hx, hht⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.PtHt.g_height hG E H D Xo l c Y II K J Ω W Dc Hd S₀ Or B L z Pa V MV A
     (fun p => e (w p)) r (Dc.j' - r) v qq hAdm.2.1 hco hlin hv (fun τ => ⟨hqq2 τ, hqq1 τ⟩)
   have hu4 := hU4 E H D Xo l c Y II K J Ω W Dc Hd S₀ Or B₁ B L z Pa V MV A r (Dc.j' - r) v qq hAdm hB hlin hBq
     hrj hv (fun τ => ⟨hqq2 τ, hqq1 τ⟩)

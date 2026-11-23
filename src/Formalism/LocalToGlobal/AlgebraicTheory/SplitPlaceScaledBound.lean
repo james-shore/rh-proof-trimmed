@@ -42,12 +42,13 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.EigenFrames.EigenPf
+import Formalism.LocalToGlobal.AlgebraicTheory.AlgebraicTheoryProofs.ScalarConst
 
 @[expose] public section
 
 namespace Formalism.L2.AlgTh
 
-theorem xiConn : XiConn := xiConn_of etLoc scalarConst xiSwap
+theorem xiConn : XiConn := xiConn_of etLoc _root_.Formalism.L2.AlgTh.scalar_constant_value _root_.Formalism.L2.AlgTh.xi_swap
 theorem split_place_scaled_bound : SelfDualLatticeThetaPadicIntegrality := split_bound_of_xi_lemmas xiEt xiConn
 theorem eigenFrameDual : EigenFrameDual := eigenFrameDual_of ReciprocityTheory.EigenFramesTheory.eigenFrameDual
 theorem kerFrame : KerFrame := kerFrame_of eigenFrameDual

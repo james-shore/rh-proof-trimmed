@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfAeFundamentalDomain
 
 @[expose] public section
 
@@ -95,11 +96,11 @@ theorem hwInf : PositivityTheory.PfSWUS.SwFockk.HWInf := by
     have e : compAt θ τ (mat w * mat (nb b)) = compAt θ τ (mat m * mat u * mat k) := by
       have := congrArg (fun g => compAt θ τ (mat g)) hwk
       exact this
-    rw [compAt_mul, compAt_mul, compAt_mul, hw, hnb b, hm, hu] at e
-    simp only [component_block_matrix, compAt_zero, compAt_one, compAt_neg, GlobalTheory.VacKInf.LeviFix.compAt_adj' hθ] at e
+    rw [_root_.GlobalTheory.WeilVacMove.compAt_mul, _root_.GlobalTheory.WeilVacMove.compAt_mul, _root_.GlobalTheory.WeilVacMove.compAt_mul, hw, hnb b, hm, hu] at e
+    simp only [component_block_matrix, compAt_zero, _root_.GlobalTheory.WeilVacMove.compAt_one, compAt_neg, GlobalTheory.VacKInf.LeviFix.compAt_adj' hθ] at e
     refine local_det (compAt θ τ a.1) (compAt θ τ (a⁻¹).1) (compAt θ τ b.1) (compAt θ τ b0) (compAt θ τ (mat k))
       (compAt_K_unitary θ hθ n k hk τ) ?_ ?_ e
-    · rw [← compAt_mul, ← Units.val_mul, mul_inv_cancel, Units.val_one, compAt_one]
+    · rw [← _root_.GlobalTheory.WeilVacMove.compAt_mul, ← Units.val_mul, mul_inv_cancel, Units.val_one, _root_.GlobalTheory.WeilVacMove.compAt_one]
     · have hb : adj b.1 = b.1 := b.2
       rw [← GlobalTheory.VacKInf.LeviFix.compAt_adj' hθ, hb]
   rw [prod_absEw hθ]

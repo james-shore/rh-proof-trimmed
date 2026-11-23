@@ -49,15 +49,6 @@ noncomputable section
 
 namespace GlobalTheory.CocycleChar
 
-theorem pow_near_one {z : ℂ} (h : ∀ n : ℕ, ‖z ^ n - 1‖ < 1 / 2) : z = 1 := by
-  first
-  | exact @_root_.GlobalTheory.InductiveNormBound.main
-  | exact _root_.GlobalTheory.InductiveNormBound.main
-  | (apply _root_.GlobalTheory.InductiveNormBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.InductiveNormBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.InductiveNormBound.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.InductiveNormBound.main ..)
-
 theorem cocycle_char_trivial_near_zero :
     ∀ {A V : Type} [AddCommGroup A] [TopologicalSpace A] [IsTopologicalAddGroup A] [CompactSpace A]
     [NonarchimedeanAddGroup A] [AddCommGroup V] [TopologicalSpace V] [T2Space V] (lam : A →+ V), Continuous lam →
@@ -81,7 +72,7 @@ theorem cocycle_char_trivial_near_zero :
       rw [succ_nsmul, hmul, ih, hεN _ (hK₀ h1).1 _ (hK₀ ha).1, pow_succ, mul_one]
   have hK₀one : ∀ a ∈ K₀, χ a = 1 := by
     intro a ha
-    refine pow_near_one fun n => ?_
+    refine _root_.GlobalTheory.InductiveNormBound.main fun n => ?_
     rw [← hpow a ha n]
     exact (hK₀ (K₀.toAddSubgroup.nsmul_mem ha n)).2
 

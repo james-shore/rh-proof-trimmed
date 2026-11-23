@@ -64,10 +64,6 @@ variable {D : D7} {a b : ℕ} (τ : D.what₂.Tau) (ε : Fin a → Bool) (ε' : 
 theorem fockT_zero : GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT τ ε ε' (0 : Matrix (Fin b) (Fin b) ℂ) = 0 := by
   simp [GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT]
 
-theorem fockT_add (Y Y' : Matrix (Fin b) (Fin b) ℂ) :
-    GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT τ ε ε' (Y + Y') = GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT τ ε ε' Y + GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT τ ε ε' Y' := by
-  simp only [GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT, Matrix.add_apply, add_smul, Finset.sum_add_distrib]
-
 theorem fockT_smul (c : ℂ) (Y : Matrix (Fin b) (Fin b) ℂ) :
     GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT τ ε ε' (c • Y) = c • GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT τ ε ε' Y := by
   simp only [GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.fockT, Matrix.smul_apply, smul_eq_mul, mul_smul, Finset.smul_sum]
@@ -128,7 +124,7 @@ theorem howe_irr : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) 
     | zero =>
       rw [fockT_zero, LinearMap.zero_comp]; exact M.zero_mem
     | add x y _ _ hx hy =>
-      rw [fockT_add, LinearMap.add_comp]; exact M.add_mem hx hy
+      rw [_root_.GlobalTheory.LieScalar.fockT_add, LinearMap.add_comp]; exact M.add_mem hx hy
     | smul c x _ hx =>
       rw [fockT_smul, LinearMap.smul_comp]; exact M.smul_mem c hx
   exact GlobalTheory.T.howeDuality_compactPair_polynomialFock_allRealPlaces D (Vc D i).rank (Wc D i).rank w BS ↥(GinfC (Vc D i)) r hU hsurj (R.cV i).W ρ' hirr M

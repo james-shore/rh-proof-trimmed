@@ -274,13 +274,6 @@ theorem Xi_mono (D : D7) (u : D.what₂.Word) (HH C C' : ℝ) (s : ℕ) (hH : 1 
       (by positivity) (by positivity)⟩
   · exact ⟨le_rfl, le_rfl⟩
 
-theorem one_le_sizeZ (D : D7) (b C : ℝ) (Z : GramM D) : 1 ≤ sizeZ D b C Z := by
-  unfold sizeZ
-  have key : ∀ {ι : Type} (s : Finset ι) (f : ι → ℝ), (∀ i ∈ s, 1 ≤ f i) → 1 ≤ ∏ i ∈ s, f i := by
-    intro ι s f h
-    exact Finset.prod_induction f (fun x => 1 ≤ x) (fun a b ha hb => one_le_mul_of_one_le_of_one_le ha hb) le_rfl h
-  exact key _ _ fun τ _ => key _ _ fun l _ => le_max_left _ _
-
 theorem rpow_le_HHZ (D : D7) (b C x : ℝ) (hb : 1 ≤ b) (hC : 1 ≤ C) (hx : x ≤ C * (D.R.m : ℝ) ^ 2 * D.R.f)
     (Z : GramM D) : b ^ x ≤ HHZ D b C Z := by
   have hm : (1 : ℝ) ≤ D.R.m := by have := D.R.two_le_m; exact_mod_cast (by omega : 1 ≤ D.R.m)
@@ -288,7 +281,7 @@ theorem rpow_le_HHZ (D : D7) (b C x : ℝ) (hb : 1 ≤ b) (hC : 1 ≤ C) (hx : x
   calc b ^ x ≤ b ^ (C * (D.R.m : ℝ) ^ 2 * D.R.f) := Real.rpow_le_rpow_of_exponent_le hb hx
     _ ≤ (b ^ (C * (D.R.m : ℝ) ^ 2 * D.R.f)) ^ (C * (D.R.m : ℝ)) :=
       Real.self_le_rpow_of_one_le h1 (one_le_mul_of_one_le_of_one_le hC hm)
-    _ ≤ _ := le_mul_of_one_le_right (by positivity) (one_le_pow₀ (one_le_sizeZ D b C Z))
+    _ ≤ _ := le_mul_of_one_le_right (by positivity) (one_le_pow₀ (_root_.GlobalTheory.LoopC.TermsOver.one_le_sizeZ D b C Z))
 
 theorem main : ∀ Cg cb Cu cT CT C0 A Ad C₁ : ℝ, 0 ≤ C₁ → ∃ C₀ : ℝ, ∀ C ≥ C₀, ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (C' Cl : ℝ), 1 ≤ Cl → Formalism.MainNotions.S.UnitaryVolumeMass.stLem3L0 D u → Formalism.MainNotions.S.UnitaryVolumeMass.congruence_at_split_frobenius_holds D large₂ u u' C' Cl Cg cb Cu cT CT C0 A C₁ → Formalism.MainNotions.S.UnitaryVolumeMass.MeanFlagPairCount D large₂ u u' C' Cl Cg cb Cu cT CT C0 A Ad C := by
   intro Cg cb Cu cT CT C0 A Ad C₁ hC₁

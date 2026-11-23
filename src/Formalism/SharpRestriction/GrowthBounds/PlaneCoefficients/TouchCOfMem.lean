@@ -65,12 +65,6 @@ private theorem X_mul_monomialPlaneCoefficients {σ R : Type} [CommSemiring R] (
     (X w : MvPolynomial σ R) * monomial mo c = monomial (Finsupp.single w 1 + mo) c := by
   rw [monomial_single_add, pow_one]
 
-private theorem liftMon_apply_liftVar (mo : TL J Dt.nL r × Fin r →₀ ℕ) (w : TL J Dt.nL r × Fin r) :
-    liftMon Dt mo (Dt.liftVar w) = mo w / Pof Dt w := by
-  unfold liftMon
-  rw [Finsupp.mapDomain_apply_of_injective (liftVar_inj Dt)]
-  simp [liftE, Finsupp.onFinset_apply]
-
 private theorem liftMon_eq_add_single_of_eq_off (mo mo' : TL J Dt.nL r × Fin r →₀ ℕ) (v : TL J Dt.nL r × Fin r) (d : ℕ)
     (h1 : ∀ w, w ≠ v → mo' w = mo w) (h2 : mo' v / Pof Dt v = mo v / Pof Dt v + d) :
     liftMon Dt mo' = liftMon Dt mo + Finsupp.single (Dt.liftVar v) d := by
@@ -185,7 +179,7 @@ theorem Fdig_der_inl (j0 : ZMod J) (l : Fin (Dt.nL j0)) (a0 : Fin r) (rho : (ZMo
     rw [pderiv_monomial, Fdig_mono, Fdig_mono]
     by_cases hd : Dt.digOK rho mo
     · rw [if_pos ((digOK_iff_of_eq_off_inl Dt j0 l a0 rho mo _ e1).2 hd), if_pos hd, pderiv_monomial,
-        liftMon_apply_liftVar, Pof_inl, Nat.div_one]
+        _root_.Formalism.MainNotions.PairMembershipBlocks.liftMon_w, Pof_inl, Nat.div_one]
       rcases Nat.eq_zero_or_pos (mo (⟨j0, Sum.inl l⟩, a0)) with h0 | h0
       · simp [h0]
       · congr 1
@@ -301,7 +295,7 @@ theorem Fdig_der_lt (h : rho ((j0, m0), a0) + 1 < Dt.P j0 m0) (H : MvPolynomial 
           have hL := liftMon_eq_add_single_of_eq_off Dt (mo - Finsupp.single ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) 1) mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) 0 (fun w hw => (e1 w hw).symm)
             (by rw [hv1, Pof_inr, k3, add_zero])
           rw [Finsupp.single_zero, add_zero] at hL
-          rw [if_pos (hd.2 hd'), if_pos hd', pderiv_monomial, liftMon_apply_liftVar, Pof_inr, ← hL, X_mul_monomialPlaneCoefficients]
+          rw [if_pos (hd.2 hd'), if_pos hd', pderiv_monomial, _root_.Formalism.MainNotions.PairMembershipBlocks.liftMon_w, Pof_inr, ← hL, X_mul_monomialPlaneCoefficients]
           have hc : ((rho ((j0, m0), a0) + 1 : ℕ) : KK O) + ((Dt.P j0 m0 : ℕ) : KK O) *
               ((mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) / Dt.P j0 m0 : ℕ) : KK O) = ((mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) : ℕ) : KK O) := by
             rw [← Nat.cast_mul, ← Nat.cast_add, ← hk, Nat.mod_add_div]
@@ -309,7 +303,7 @@ theorem Fdig_der_lt (h : rho ((j0, m0), a0) + 1 < Dt.P j0 m0) (H : MvPolynomial 
           · rw [hq] at hc ⊢
             simp only [Nat.cast_zero, mul_zero, map_zero, smul_zero, add_zero, smul_monomial] at hc ⊢
             rw [smul_eq_mul, ← hc, mul_comm]
-          · have hLv : liftMon Dt mo (Dt.liftVar ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) = mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) / Dt.P j0 m0 := by rw [liftMon_apply_liftVar, Pof_inr]
+          · have hLv : liftMon Dt mo (Dt.liftVar ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) = mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) / Dt.P j0 m0 := by rw [_root_.Formalism.MainNotions.PairMembershipBlocks.liftMon_w, Pof_inr]
             have hs : Finsupp.single (Dt.liftVar ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) 1 + (liftMon Dt mo - Finsupp.single (Dt.liftVar ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) 1) = liftMon Dt mo := by
               ext w
               simp only [Finsupp.add_apply, Finsupp.tsub_apply, Finsupp.single_apply]
@@ -350,7 +344,7 @@ theorem Fdig_der_eq (h : rho ((j0, m0), a0) + 1 = Dt.P j0 m0) (H : MvPolynomial 
     rw [pderiv_monomial, Fdig_mono, Fdig_mono]
     rcases Nat.eq_zero_or_pos (mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) with ha | ha
     · by_cases hd' : Dt.digOK (Function.update rho ((j0, m0), a0) 0) mo
-      · rw [if_pos hd', pderiv_monomial, liftMon_apply_liftVar, Pof_inr, ha]
+      · rw [if_pos hd', pderiv_monomial, _root_.Formalism.MainNotions.PairMembershipBlocks.liftMon_w, Pof_inr, ha]
         simp
       · rw [if_neg hd', ha]
         simp
@@ -379,7 +373,7 @@ theorem Fdig_der_eq (h : rho ((j0, m0), a0) + 1 = Dt.P j0 m0) (H : MvPolynomial 
             have := Nat.mod_add_div (mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) (Dt.P j0 m0)
             rw [k2, zero_add] at this
             exact this
-          rw [if_pos (hd.2 hd'), if_pos hd', pderiv_monomial, liftMon_apply_liftVar, Pof_inr, hL, add_tsub_cancel_right,
+          rw [if_pos (hd.2 hd'), if_pos hd', pderiv_monomial, _root_.Formalism.MainNotions.PairMembershipBlocks.liftMon_w, Pof_inr, hL, add_tsub_cancel_right,
             smul_monomial, smul_eq_mul, ← hc]
           congr 1
           ring

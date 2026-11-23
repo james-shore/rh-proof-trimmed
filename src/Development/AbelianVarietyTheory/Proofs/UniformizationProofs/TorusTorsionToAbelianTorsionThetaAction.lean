@@ -183,7 +183,7 @@ theorem main : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A} {_} _ _ U => ∀
     have o1 : x o = 1 := (add o o o).2.2 ho
     exact Subtype.ext (pull_eq_of_isAdd ((add (i g) o (i g)).1.1 (by rw [o1, _root_.mul_one]))
       ((add (i g) o (i g')).1.1 (by rw [o1, _root_.mul_one, e₃])) (ip g) (ip g'))
-  · refine GlobalTheory.T.torsionTranslation_acts_on_expansions hL hL2 V hV D A G U W hW (Kbar V) φ N hN (x (i g)) (i g) g.1 _ ?_ (hx _) (ip g) ?_
+  · refine _root_.GlobalTheory.UU.Transl.main hL hL2 V hV D A G U W hW (Kbar V) φ N hN (x (i g)) (i g) g.1 _ ?_ (hx _) (ip g) ?_
     · obtain ⟨o, ⟨gs, h₀, hs, rfl⟩, ho⟩ := ih g
       have key : ∀ n (hn : n < N + 1), x (gs ⟨n, hn⟩) = x (i g) ^ n := by
         intro n

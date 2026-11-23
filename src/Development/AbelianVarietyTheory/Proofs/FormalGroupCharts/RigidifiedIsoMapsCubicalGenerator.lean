@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBLocal
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PullCub
 
 @[expose] public section
 
@@ -60,14 +61,10 @@ noncomputable section
 
 namespace GlobalTheory.RigCub
 
-theorem cover_of_isLB {X : Scheme.{0}} {L : LB X} (hL : L.IsLB) (x : X) : ∃ i, x ∈ L.U i := by
-  have h : x ∈ (⨆ i, L.U i) := by rw [hL.cover]; trivial
-  exact TopologicalSpace.Opens.mem_iSup.1 h
-
 theorem div_cover {X : Scheme.{0}} {M L : LB X} (hM : M.IsLB) (hL : L.IsLB) (x : X) :
     ∃ p, x ∈ (LB.div M L).U p := by
-  obtain ⟨i, hi⟩ := cover_of_isLB hM x
-  obtain ⟨j, hj⟩ := cover_of_isLB hL x
+  obtain ⟨i, hi⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_chart hM x
+  obtain ⟨j, hj⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_chart hL x
   exact ⟨(i, j), hi, hj⟩
 
 theorem unit_eq_one_of_local {X : Scheme.{0}} {κ : Type} (V : κ → X.Opens) (hcov : ∀ x : X, ∃ i, x ∈ V i)
@@ -122,8 +119,8 @@ theorem rigIso_eq (hGF : GlobalFnsSt) {S S' : Scheme.{0}} {t' : SAB H S'} {t : S
     rw [ReciprocityTheory.ChartRestriction.G.DVR.pullU_res] at e5
     exact (ReciprocityTheory.ChartRestriction.G.DVR.res_res' _ _ _).symm.trans e5
   have hv1 := unit_eq_one_of_local _ (fun y => by
-      obtain ⟨p1, hp1⟩ := cover_of_isLB hB y
-      obtain ⟨p2, hp2⟩ := cover_of_isLB hA y
+      obtain ⟨p1, hp1⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_chart hB y
+      obtain ⟨p2, hp2⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_chart hA y
       exact ⟨(p1, p2), hp1, hp2⟩) (pullU (eSec t'.G) ⊤ u : Γ((𝟙_ (Over S')).left, ⊤)ˣ) hloc
   exact congrArg Units.val hv1
 

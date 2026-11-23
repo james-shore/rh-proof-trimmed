@@ -134,7 +134,7 @@ private theorem piece_inv_lemma {g : GL (Fin N) k} (hg : g ∈ Gz Z) {x : Matrix
   unfold cj
   obtain ⟨hB, hχ, ht⟩ := hx
   refine ⟨PositivityTheory.RgUd.T.Desc.Asm.conj_mem_Bz hg hB, ?_, ?_⟩
-  · rw [PositivityTheory.RgUd.TP.Desc.Piece.PTop.aeval_conj, hχ, mul_zero, zero_mul]
+  · rw [_root_.PositivityTheory.RgUd.T.Desc.Asm.aeval_conj, hχ, mul_zero, zero_mul]
   · rw [← ht]
     funext t
     simp only [typ]

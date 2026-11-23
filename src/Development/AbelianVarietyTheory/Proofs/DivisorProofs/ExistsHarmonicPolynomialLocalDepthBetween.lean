@@ -99,10 +99,10 @@ theorem GlobalTheory.RefSum.GlobalPoly.exists_polyBetween : ∀ (D : D7) (H : Re
   intro p hp la a ha n hn A B hNu
   obtain ⟨N, hN⟩ := exists_nat_gt (B + ∑ q ∈ D.host.condN.primeFactors,
     1 * D.host.vdH q * ((Formalism.L2.Pj.DF Dw a : ℕ) : ℝ) / 2)
-  obtain ⟨P₁, hP₁, hglob⟩ := GlobalTheory.T.exists_global_harmonic_congr_column_polynomial D.host.E H Dw l Xo c p la a ha n hn N
+  obtain ⟨P₁, hP₁, hglob⟩ := _root_.GlobalTheory.RefGlob.exists_harmA_congr_polyT D.host.E H Dw l Xo c p la a ha n hn N
   refine ⟨P₁, hP₁, fun T io e ho y hy Ch k => ?_⟩
   obtain ⟨Bc, R, hcols, hR, heq⟩ := hglob T io e ho
-  have hchoice := GlobalTheory.T.columnPolynomial_localDepth_eq_placeDepth D.host.E H Dw l Xo c p la T io e ho y Ch (gap Dw a) n Bc hcols k
+  have hchoice := _root_.GlobalTheory.ColDepth.nuLocOf_eq_nuP D.host.E H Dw l Xo c p la T io e ho y Ch (gap Dw a) n Bc hcols k
   have hv : 0 < vV T.V (p : T.Fr) := by
     rw [← map_natCast io p, ho.2]
     exact mul_pos (by exact_mod_cast ho.1) (GlobalTheory.RefSum.GlobalPoly.vLa_pos_of_mem la.1 hp.out.ne_zero la.2)
@@ -111,7 +111,7 @@ theorem GlobalTheory.RefSum.GlobalPoly.exists_polyBetween : ∀ (D : D7) (H : Re
   have hch := GlobalTheory.PlaceInt.HostChart.chBound_host D H Dw l Xo c (fun _ => rfl) T io y Ch _ he a n
     (Formalism.L2.Pj.DF Dw a) le_rfl
   have hNu' := hNu T io e ho y
-  have hpert := GlobalTheory.T.localDepth_stable_under_prime_pow_perturbation D.host.E H Dw l Xo c p T io y Ch _ he hve a n N k _ B (polyT Bc (gap Dw a)) R hch hR
+  have hpert := _root_.GlobalTheory.nuLocOf_pert D.host.E H Dw l Xo c p T io y Ch _ he hve a n N k _ B (polyT Bc (gap Dw a)) R hch hR
     (hchoice.trans_le (hNu'.2 hy)) (by
       refine lt_of_le_of_lt (add_le_add le_rfl (Finset.sum_le_sum fun q hq => ?_)) hN
       have hqp : q.Prime := Nat.prime_of_mem_primeFactors hq

@@ -116,19 +116,10 @@ theorem inner_product_mul_eq_pairing (V : HSp D) (b₀ : HermE D r) (hb : b₀.1
   simp only [ip, pr, yv, mm, adj_mul]
   rw [← Matrix.mul_assoc (b₀.1.map (incA D)), h1, Matrix.one_mul, Matrix.mul_assoc]
 
-theorem conj_psi {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) (u : AF D.host.F) : conj (ψ u) = ψ (-u) := by
-  have h1 : ψ u * conj (ψ u) = 1 := by
-    rw [Complex.mul_conj, Complex.normSq_eq_norm_sq, hψ.2.1 u]
-    simp
-  have h2 : ψ u * ψ (-u) = 1 := by
-    rw [← AddChar.map_add_eq_mul, add_neg_cancel, AddChar.map_zero_eq_one]
-  have h0 : ψ u ≠ 0 := fun h => by simp [h] at h1
-  exact mul_left_cancel₀ h0 (h1.trans h2.symm)
-
 theorem character_quadratic_form_identity (V : HSp D) {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) (b₀ : HermE D r) (b : hermA D t)
     (z : Mx D V.rank r × Mx D V.rank t) :
     pch ψ b.1 (ip V z.2 z.2) * conj (ψ (halfTr (Matrix.trace (mm b.1 (pr b₀ (yv V b₀ z) (yv V b₀ z)))))) = pch ψ b.1 (qv V b₀ z) := by
-  rw [conj_psi hψ]
+  rw [_root_.GlobalTheory.CompanionTheory.RCellInv.conj_char hψ]
   simp only [pch, qv, mm]
   rw [← AddChar.map_add_eq_mul, Matrix.mul_sub, Matrix.trace_sub]
   congr 1
@@ -194,7 +185,7 @@ theorem integrable_fib (hP : PartFT) {hn : r + t = n} (M : Maps D hn) (m : Meas 
   have hcΦ : Continuous fun z : Mx D V.rank r × Mx D V.rank t => Φ.1 (jn hn z.1 z.2) :=
     (GlobalTheory.RegSch.CentreWeilComm.continuous_of_mem hθ Φ).comp (c_jn_cont hn)
   have hIF : Integrable (fun z : Mx D V.rank r × Mx D V.rank t => F.1 (jn hn z.1 z.2)) (fib.prod μt) := by
-    refine (integrable_prod_iff hcF.aestronglyMeasurable).2 ⟨ae_of_all _ fun x => integrable_schwartz_slice hθ hn μt F x, ?_⟩
+    refine (integrable_prod_iff hcF.aestronglyMeasurable).2 ⟨ae_of_all _ fun x => _root_.GlobalTheory.CompanionTheory.ColSlice.integrable_slice hθ hn μt F x, ?_⟩
     refine (hint.re).congr (ae_of_all _ fun x => ?_)
     have e1 : ∀ v, ‖F.1 (jn hn x v)‖ = (F.1 (jn hn x v)).re := by
       intro v
@@ -205,7 +196,7 @@ theorem integrable_fib (hP : PartFT) {hn : r + t = n} (M : Maps D hn) (m : Meas 
     simp only [e1]
     show (RCLike.re ((ω (M.emb w) F).1 (jn hn x 0))) = _
     rw [← hm x]
-    exact (integral_re (integrable_schwartz_slice hθ hn μt F x)).symm
+    exact (integral_re (_root_.GlobalTheory.CompanionTheory.ColSlice.integrable_slice hθ hn μt F x)).symm
   exact hIF.mono hcΦ.aestronglyMeasurable (ae_of_all _ fun z =>
     (hF _).2.trans ((le_abs_self _).trans (Complex.abs_re_le_norm _)))
 

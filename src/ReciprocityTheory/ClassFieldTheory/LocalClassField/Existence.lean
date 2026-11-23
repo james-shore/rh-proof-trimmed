@@ -67,17 +67,9 @@ variable (p : ℕ) [Fact p.Prime] (K L : IntermediateField ℚ_[p] (PadicAlgCl p
 
 variable {p K L}
 
-theorem card_char_torsion {n : ℕ} (hn : 0 < n) (hμ : ∀ ζ : PadicAlgCl p, ζ ^ n = 1 → ζ ∈ K) :
-    Nat.card {χ : charGrp (GK p K) // n • χ = 0} = (powMonoidHom n : Kˣ →* Kˣ).range.index :=
-  card_character_n_torsion hn hμ
-
 theorem exists_maxExp (hK : FiniteDimensional ℚ_[p] K) {n : ℕ} (hn : 0 < n) (hfin : Finite {χ : charGrp (GK p K) // n • χ = 0}) :
     ∃ L : IntermediateField ℚ_[p] (PadicAlgCl p), IsAbLK p K L ∧ ∀ χ : charGrp (GK p K), TrivOn p K L χ ↔ n • χ = 0 :=
   exists_maximal_exponent_abelian_extension hK hfin
-
-theorem maxExp_stable {K₀ : IntermediateField ℚ_[p] (PadicAlgCl p)} (h₀ : K₀ ≤ K) (hK₀ : ∀ (σ : GK p K₀), ∀ x ∈ K, σ x ∈ K) {n : ℕ}
-    (hL : IsAbLK p K L) (hL' : ∀ χ : charGrp (GK p K), TrivOn p K L χ ↔ n • χ = 0) (σ : GK p K₀) (x : PadicAlgCl p)
-    (hx : x ∈ L) : σ x ∈ L := maximal_exponent_extension_stable h₀ hK₀ hL hL' σ x hx
 
 theorem normGrp_maxExp (hK : FiniteDimensional ℚ_[p] K) {n : ℕ} (hn : 0 < n) (hμ : ∀ ζ : PadicAlgCl p, ζ ^ n = 1 → ζ ∈ K)
     (hL : IsAbLK p K L) (hL' : ∀ χ : charGrp (GK p K), TrivOn p K L χ ↔ n • χ = 0) :
@@ -90,62 +82,47 @@ theorem normGrp_maxExp (hK : FiniteDimensional ℚ_[p] K) {n : ℕ} (hn : 0 < n)
       exact map_zero χ.1
     exact (h1.mem_subG_iff hK hL).1 (subG p K L).one_mem
   have hidx : (normGrp p K L).index = (powMonoidHom n : Kˣ →* Kˣ).range.index := by
-    rw [index_normGrp hK hL, ← card_trivOn hL, ← card_char_torsion hn hμ]
+    rw [index_normGrp hK hL, ← card_trivOn hL, ← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.card_character_n_torsion hn hμ]
     exact Nat.card_congr (Equiv.subtypeEquivRight hL')
-  have hfi := finiteIndex_range_pow hK hn
+  have hfi := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.finiteIndex_range_pow' hK hn
   have h2 := Subgroup.relIndex_mul_index hle
   rw [hidx] at h2
   have h3 : (powMonoidHom n : Kˣ →* Kˣ).range.relIndex (normGrp p K L) = 1 :=
     Nat.eq_of_mul_eq_mul_right (Nat.pos_of_ne_zero hfi.index_ne_zero) (by rw [h2, one_mul])
   exact le_antisymm (Subgroup.relIndex_eq_one.1 h3) hle
 
-theorem isAbLK_cyclotomic (hK : FiniteDimensional ℚ_[p] K) {n : ℕ} (hn : 0 < n) :
-    IsAbLK p K (K ⊔ IntermediateField.adjoin ℚ_[p] {ζ : PadicAlgCl p | ζ ^ n = 1}) := isAbelian_cyclotomic_extension hK hn
-
-theorem isSolvable_of_ab_of_ab {M : IntermediateField ℚ_[p] (PadicAlgCl p)} (hM : IsAbLK p K M) (hL : IsAbLK p M L) [(subG p K L).Normal] :
-    Group.IsSolvable (GalLK p K L) := isSolvable_of_abelian_tower hM hL
-
-theorem exists_unit_ofK (x : KbarMult p) (hx : x ∈ multOf p K) : ∃ u : Kˣ, ofK p K (Additive.ofMul u) = x :=
-  ⟨unitOf p K ⟨x, hx⟩, Units.ext rfl⟩
-
-theorem ofK_injective' : Injective (ofK p K) := by
-  intro a b hab
-  have h1 : Units.map (algebraMap K (PadicAlgCl p) : K →* PadicAlgCl p) a.toMul =
-      Units.map (algebraMap K (PadicAlgCl p) : K →* PadicAlgCl p) b.toMul := hab
-  exact Units.map_injective (algebraMap K (PadicAlgCl p)).injective h1
-
 theorem exists_normGrp_le_pow (hK : FiniteDimensional ℚ_[p] K) {n : ℕ} (hn : 0 < n) :
     ∃ E : IntermediateField ℚ_[p] (PadicAlgCl p), IsAbLK p K E ∧ normGrp p K E ≤ (powMonoidHom n : Kˣ →* Kˣ).range := by
   obtain ⟨M, hMdef⟩ : ∃ M, M = K ⊔ IntermediateField.adjoin ℚ_[p] {ζ : PadicAlgCl p | ζ ^ n = 1} := ⟨_, rfl⟩
-  have hM : IsAbLK p K M := hMdef ▸ isAbLK_cyclotomic hK hn
+  have hM : IsAbLK p K M := hMdef ▸ _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.isAbelian_cyclotomic_extension hK hn
   have hμ : ∀ ζ : PadicAlgCl p, ζ ^ n = 1 → ζ ∈ M := fun ζ hζ => by
     rw [hMdef]
     exact (le_sup_right : _ ≤ K ⊔ _) (IntermediateField.subset_adjoin _ _ hζ)
   have hfinM := hM.fin
   have hfin : Finite {χ : charGrp (GK p M) // n • χ = 0} := by
     apply Nat.finite_of_card_ne_zero
-    rw [card_char_torsion hn hμ]
-    exact (finiteIndex_range_pow hfinM hn).index_ne_zero
+    rw [_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.card_character_n_torsion hn hμ]
+    exact (_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.finiteIndex_range_pow' hfinM hn).index_ne_zero
   obtain ⟨L, hL, hL'⟩ := exists_maxExp hfinM hn hfin
   have hMst : ∀ (σ : GK p K), ∀ x ∈ M, σ x ∈ M := (subG_normal_iff hM.le).1 hM.normal
-  have hst : ∀ (σ : GK p K), ∀ x ∈ L, σ x ∈ L := fun σ x hx => maxExp_stable hM.le hMst hL hL' σ x hx
+  have hst : ∀ (σ : GK p K), ∀ x ∈ L, σ x ∈ L := fun σ x hx => _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.maximal_exponent_extension_stable hM.le hMst hL hL' σ x hx
   have : (subG p K L).Normal := subG_normal_of_stable hst
   have hKL : K ≤ L := hM.le.trans hL.le
-  have hsol := isSolvable_of_ab_of_ab hM hL
+  have hsol := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.isSolvable_of_abelian_tower hM hL
   obtain ⟨E, hE, hEL, hE'⟩ := exists_maxAb hL.fin hKL
   refine ⟨E, hE, ?_⟩
   rw [← normGrp_eq_of_soluble hK hL.fin hKL hsol hE hEL hE']
   intro x hx
   obtain ⟨y, hy, hxy⟩ := (mem_normGrp_iff p K L x).1 hx
-  rw [← normHom_trans hL.fin hM.le hL.le y hy] at hxy
-  obtain ⟨z, hz⟩ := exists_unit_ofK _ (normHom_mem hL.fin hL.le y hy)
+  rw [← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_comp_normHom_of_le hL.fin hM.le hL.le y hy] at hxy
+  obtain ⟨z, hz⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq _ (normHom_mem hL.fin hL.le y hy)
   have hzN : z ∈ normGrp p M L := (mem_normGrp_iff p M L z).2 ⟨y, hy, hz.symm⟩
   rw [normGrp_maxExp hfinM hn hμ hL hL'] at hzN
   obtain ⟨w, rfl⟩ := hzN
-  obtain ⟨u, hu⟩ := exists_unit_ofK (K := K) _ (normHom_mem hfinM hM.le _ (ofK_mem p M (Additive.ofMul w)))
+  obtain ⟨u, hu⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq (K := K) _ (normHom_mem hfinM hM.le _ (ofK_mem p M (Additive.ofMul w)))
   refine ⟨u, ?_⟩
   apply Additive.ofMul.injective
-  apply ofK_injective' (K := K)
+  apply _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.ofK_injective (K := K)
   rw [← hxy, ← hz]
   show ofK p K (n • Additive.ofMul u) = normHom p K M (ofK p M (n • Additive.ofMul w))
   rw [map_nsmul, map_nsmul, map_nsmul, hu]

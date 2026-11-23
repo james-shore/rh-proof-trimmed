@@ -54,7 +54,7 @@ theorem exists_isSplit_period : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   intro E _ _ _ H D l Xo σ g ty F _ _ hty _ hc i
   have hp : (F.Di i).p = D.p := (F.sig i).1
   have hq : (F.Di i).q = D.q := (F.sig i).2
-  refine GlobalTheory.T.exists_splitPureTypePeriod_of_signatureSplit E H (F.Di i) g ty (by rw [hp, hq]; exact hty) ?_
+  refine _root_.GlobalTheory.CompRat.exists_isSplit_of_splitLat E H (F.Di i) g ty (by rw [hp, hq]; exact hty) ?_
   by_cases h0 : D.p = 0 ∨ D.q = 0
   · exact GlobalTheory.T.hermitianLatticeSignatureSplit_of_definite E H (F.Di i) (by rw [hp, hq]; exact h0)
   · have h1 : D.p ≠ 0 := fun h => h0 (Or.inl h)

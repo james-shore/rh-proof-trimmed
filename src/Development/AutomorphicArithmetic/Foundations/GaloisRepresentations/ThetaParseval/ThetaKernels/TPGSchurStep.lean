@@ -113,7 +113,7 @@ private theorem assemble_pk {H A V : Type} [Group H] [TopologicalSpace H] [IsTop
     { toFun := fun b => pet μ 𝓕 u (f b)
       map_add' := fun a b => by rw [map_add (f := _)]; exact addR _ _ _ (hfc a) (hfc b) huc (hfl a) (hfl b) hul
       map_smul' := fun c a => by rw [map_smul]; exact smR _ _ _ }
-  obtain ⟨u₀, hu₀⟩ := UpperTheory.riesz_representation_sesquilinear B hh hp L
+  obtain ⟨u₀, hu₀⟩ := _root_.UpperTheory.Reformulated.B.Qh51.riesz_representation_sesquilinear B hh hp L
   have hL : ∀ b, pet μ 𝓕 u (f b) = B u₀ b := hu₀
   have key : ∀ x, pet μ 𝓕 (fun y => u (y * ι x)) (f x₀) = B (π x u₀) x₀ := fun x => by
     have e1 := (P (fun y => u (y * ι x)) (f x₀) (huc.comp (continuous_mul_const _)) (hfc x₀)
@@ -131,7 +131,7 @@ private theorem assemble_pk {H A V : Type} [Group H] [TopologicalSpace H] [IsTop
       { toFun := fun a => B a b
         map_add' := fun a a' => by simp
         map_smul' := fun c a => by simp }
-    refine UpperTheory.measurable_of_separating_functionals l (fun a h => hf0 a (funext h)) (fun g => π g a) (fun y => ?_) Lb
+    refine _root_.UpperTheory.Reformulated.B.Qk65.measurable_of_separating_functionals l (fun a h => hf0 a (funext h)) (fun g => π g a) (fun y => ?_) Lb
     show Measurable fun g => f (π g a) y
     simp only [hfr]
     exact (hfc a).measurable.comp (measurable_const_mul y |>.comp hι)

@@ -164,10 +164,6 @@ theorem two_unit_VA {ϖ : L} {σ : L →+* L} {q : ℕ} (hU : Formalism.UG.IsUnr
     | simpa using valuation_two_eq_one_of_unramInv_odd hU hq
     | exact_mod_cast valuation_two_eq_one_of_unramInv_odd hU hq
 
-theorem two_val {ϖ : L} {σ : L →+* L} {q : ℕ} (hU : Formalism.UG.IsUnramInv ϖ σ q) (hq : Odd q) :
-    Valued.v (2 : L) = 1 := by
-  exact valuation_two_eq_one_of_unramInv_odd hU hq
-
 theorem normSurj [CompleteSpace L] (hF : FinNormSurj) (hS : HenselSqrt) {ϖ : L} {σ : L →+* L} {q : ℕ}
     (hU : Formalism.UG.IsUnramInv ϖ σ q) (hq : Odd q) (c : VA L) (hcσ : sigA σ hU.2.1 c = c) (hc : IsUnit c) :
     ∃ t : VA L, sigA σ hU.2.1 t * t = c := by
@@ -217,7 +213,7 @@ theorem normSurj [CompleteSpace L] (hF : FinNormSurj) (hS : HenselSqrt) {ϖ : L}
       rw [neg_sub, sub_mul, mul_inv_cancel₀ ha0]
     rw [h1, map_mul, map_inv₀, hav, inv_one, mul_one, Valuation.map_neg]
     exact hdiff'
-  have h2v : Valued.v (2 : L) = 1 := two_val hU hq
+  have h2v : Valued.v (2 : L) = 1 := _root_.Formalism.IndefR.LocBrg.valuation_two_eq_one_of_unramInv_odd hU hq
   obtain ⟨s, hss, hs1⟩ := hS L h2v _ hu1
   have hσc : σ (c : L) = c := congrArg Subtype.val hcσ
   have hσu : σ ((c : L) * (σ (y : L) * (y : L))⁻¹) = (c : L) * (σ (y : L) * (y : L))⁻¹ := by
@@ -260,9 +256,5 @@ theorem normSurj [CompleteSpace L] (hF : FinNormSurj) (hS : HenselSqrt) {ϖ : L}
     ring
 
 end Norm
-
-section Final
-
-end Final
 
 end Formalism.IndefR.LocBrg

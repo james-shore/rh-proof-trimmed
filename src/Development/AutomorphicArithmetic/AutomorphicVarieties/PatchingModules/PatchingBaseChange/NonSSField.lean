@@ -114,7 +114,7 @@ theorem UpperTheory.V.Pa.BC.nonSS_field :
     rw [RingHom.ker_comp_of_injective _ (IsFractionRing.injective _ _), Ideal.mk_ker]
   have hk : RingHom.ker (f.comp φ) = RingHom.ker (f'.comp φ') := by
     rw [← RingHom.comap_ker, ← RingHom.comap_ker, hf, hf', hc]
-  obtain ⟨K, _, j₁, j₂, hj⟩ := UpperTheory.V.Pa.BC.common_field R κ _ _ _ hk
+  obtain ⟨K, _, j₁, j₂, hj⟩ := _root_.UpperTheory.Reformulated.B.Qe15.common_field R κ _ _ _ hk
   refine ⟨K, inferInstance, j₂.comp f', ?_, ?_⟩
   · rw [RingHom.ker_comp_of_injective _ j₂.injective, hf']
   · intro hss

@@ -58,11 +58,7 @@ noncomputable section
 
 namespace UpperTheory.ConvolutionTheory.R2.Ff.TubeLevelLattice
 
-private theorem tube {G X : Type*} [Group G] [TopologicalSpace G] [ContinuousInv G] [TopologicalSpace X]
-    (T : G → X → X) (hT : Continuous fun p : G × X => T p.1 p.2) (h1 : ∀ w, T 1 w = w)
-    (hinv : ∀ k w, T k⁻¹ (T k w) = w) {g : X → ℂ} (hg : IsLocallyConstant g) (hc : HasCompactSupport g) :
-    ∀ᶠ k in 𝓝 (1 : G), ∀ w, g (T k w) = g w :=
-  _root_.UpperTheory.Reformulated.B.Qi19.tube T hT h1 hinv hg hc
+private alias tube := _root_.UpperTheory.Reformulated.B.Qi19.tube
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 

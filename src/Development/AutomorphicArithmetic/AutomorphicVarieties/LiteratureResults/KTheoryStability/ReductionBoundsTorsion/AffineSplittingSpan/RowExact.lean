@@ -78,19 +78,19 @@ theorem dh_add {a b : ℕ} (F G : Bi P Q (a + 1) b) : dh (F + G) = dh F + dh G :
 
 theorem dh_sub {a b : ℕ} (F G : Bi P Q (a + 1) b) : dh (F - G) = dh F - dh G := by
   funext x y
-  exact congrFun (dc_sub (fun x' => F x' y) (fun x' => G x' y)) x
+  exact congrFun (_root_.PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_sub (fun x' => F x' y) (fun x' => G x' y)) x
 
 theorem dh_smul {a b : ℕ} (r : ℝ) (F : Bi P Q (a + 1) b) : dh (r • F) = r • dh F := by
   funext x y
-  exact congrFun (dc_smul r (fun x' => F x' y)) x
+  exact congrFun (_root_.PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_smul r (fun x' => F x' y)) x
 
 theorem dv_sub {a b : ℕ} (F G : Bi P Q a (b + 1)) : dv (F - G) = dv F - dv G := by
   funext x y
-  exact congrFun (dc_sub (F x) (G x)) y
+  exact congrFun (_root_.PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_sub (F x) (G x)) y
 
 theorem dv_smul {a b : ℕ} (r : ℝ) (F : Bi P Q a (b + 1)) : dv (r • F) = r • dv F := by
   funext x y
-  exact congrFun (dc_smul r (F x)) y
+  exact congrFun (_root_.PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_smul r (F x)) y
 
 section Inv
 

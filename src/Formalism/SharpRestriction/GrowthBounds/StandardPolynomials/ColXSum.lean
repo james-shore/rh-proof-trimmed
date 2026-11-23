@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
+import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.DividedPowerZeroOfGlActionZero
 
 @[expose] public section
 
@@ -58,12 +59,6 @@ section General
 
 variable {N K : ℕ}
 
-theorem abs_le_colT (ka : Fin (N + 1) → Fin K → ℤ) (i : Fin (N + 1)) (a : Fin K) :
-    |ka i a| ≤ ∑ i, ∑ m, |ka i m| :=
-  le_trans (Finset.single_le_sum (f := fun m => |ka i m|) (fun _ _ => abs_nonneg _) (Finset.mem_univ a))
-    (Finset.single_le_sum (f := fun i => ∑ m, |ka i m|) (fun _ _ => Finset.sum_nonneg fun _ _ => abs_nonneg _)
-      (Finset.mem_univ i))
-
 theorem mem_colRange_iff (ka : Fin (N + 1) → Fin K → ℤ) (c : ℤ) :
     c ∈ colRange ka ↔ -(∑ i, ∑ m, |ka i m|) ≤ c ∧ c ≤ ∑ i, ∑ m, |ka i m| := by
   unfold colRange
@@ -72,8 +67,8 @@ theorem mem_colRange_iff (ka : Fin (N + 1) → Fin K → ℤ) (c : ℤ) :
 theorem mem_colRange_of (ka : Fin (N + 1) → Fin K → ℤ) (i i' : Fin (N + 1)) (a : Fin K) (c : ℤ)
     (h1 : ka i a < c) (h2 : c ≤ ka i' a) : c ∈ colRange ka := by
   rw [mem_colRange_iff]
-  have e1 := abs_le.1 (abs_le_colT ka i a)
-  have e2 := abs_le.1 (abs_le_colT ka i' a)
+  have e1 := abs_le.1 (_root_.Formalism.MainNotions.LemmaBAlt.abs_entry_le_total ka i a)
+  have e2 := abs_le.1 (_root_.Formalism.MainNotions.LemmaBAlt.abs_entry_le_total ka i' a)
   constructor <;> omega
 
 variable {vecc : Fin N → Bool} {B : Fin N → ℕ} {ka : Fin (N + 1) → Fin K → ℤ} {nu : ℕ → ℤ}
@@ -128,7 +123,7 @@ theorem colH_above (ka : Fin (N + 1) → Fin K → ℤ) (c : ℤ) (hc : ∑ i, �
   unfold colH
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
   intro m _ hle
-  have := (abs_le.1 (abs_le_colT ka i m)).2
+  have := (abs_le.1 (_root_.Formalism.MainNotions.LemmaBAlt.abs_entry_le_total ka i m)).2
   omega
 
 theorem Kcol_above (R : Type) [CommRing R] (ka : Fin (N + 1) → Fin K → ℤ) (c : ℤ) (hc : ∑ i, ∑ m, |ka i m| < c)

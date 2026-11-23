@@ -56,18 +56,7 @@ open scoped ContDiff Topology
 
 namespace GlobalTheory.GardingVec
 
-theorem contDiff_setIntegral_nat {X P E : Type} [TopologicalSpace X] [T2Space X] [MeasurableSpace X] [BorelSpace X]
-    [NormedAddCommGroup P] [NormedSpace ℝ P] [FiniteDimensional ℝ P] [NormedAddCommGroup E] [NormedSpace ℝ E]
-    (μ : Measure X) [IsFiniteMeasureOnCompacts μ] {K : Set X} (hK : IsCompact K) {a : X → E} (ha : Continuous a)
-    (m : ℕ) : ∀ {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F] (Ψ : P × E → F),
-      ContDiff ℝ ∞ Ψ → ContDiff ℝ m fun p => ∫ x in K, Ψ (p, a x) ∂μ := by
-  first
-  | exact @_root_.GlobalTheory.SetIntegralSmoothness.contDiff_setIntegral
-  | exact _root_.GlobalTheory.SetIntegralSmoothness.contDiff_setIntegral
-  | (apply _root_.GlobalTheory.SetIntegralSmoothness.contDiff_setIntegral <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SetIntegralSmoothness.contDiff_setIntegral <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SetIntegralSmoothness.contDiff_setIntegral <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SetIntegralSmoothness.contDiff_setIntegral ..)
+alias contDiff_setIntegral_nat := _root_.GlobalTheory.SetIntegralSmoothness.contDiff_setIntegral
 
 section
 attribute [local instance] Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

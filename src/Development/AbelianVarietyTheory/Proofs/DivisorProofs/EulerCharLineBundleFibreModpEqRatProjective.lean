@@ -132,7 +132,7 @@ theorem altSum (C : CochainComplex (ModuleCat.{0} ℤ) ℕ) (p : ℕ) [Fact p.Pr
   have h2 : ∀ n ∈ Finset.range m, (-1 : ℤ) ^ n * (Module.finrank ℚ ((((ModuleCat.extendScalars
       (Int.castRingHom ℚ)).mapHomologicalComplex (ComplexShape.up ℕ)).obj C).homology n) : ℤ) =
       (-1 : ℤ) ^ n * r n := fun n _ => by
-    rw [GlobalTheory.T.finrank_rat_homology_eq_finrank_int C n (hfin n)]
+    rw [_root_.GlobalTheory.RatHomology.finrank_rat_homology C n (hfin n)]
   rw [Finset.sum_congr rfl h1, Finset.sum_congr rfl h2, alternating_sum_range_telescoping_identity]
   have h0 : a 0 = r 0 := by
     simp only [a, r]

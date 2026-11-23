@@ -110,8 +110,7 @@ private theorem pairing2 {F Ω k : Type} [Field F] [Field Ω] [Algebra F Ω] [Fi
   have hd : (((Matrix.GeneralLinearGroup.det.comp r).comp (resG F F Ω) s : kˣ) : k) = (r s).val.det := rfl
   rw [hd, Units.val_mul, ← Matrix.smul_mul, ← hp]
   simp only [Matrix.mul_assoc, e']
-private theorem tf (L Ω : Type) [Field L] [Field Ω] [Algebra L Ω] : Module.IsTorsionFree L Ω :=
-  DivisionSemiring.to_moduleIsTorsionFree
+private alias tf := _root_.GlobalTheory.GalChar.isTorsionFree_field
 attribute [local instance] tf
 private theorem algClosure_up (L Ω : Type) [Field L] [CharZero L] [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] [Algebra L Ω] :
     IsAlgClosure L Ω :=

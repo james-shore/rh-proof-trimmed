@@ -68,9 +68,7 @@ theorem adj_adj {n : ℕ} (M : Matrix (Fin n) (Fin n) D.host.E) : adj D (adj D M
   refine Matrix.ext fun i j => ?_
   simp [adj, conj_conj]
 
-theorem moves_one (D : D7) (N : ℕ) : Moves D ((1 : GA D N) : GL (Fin N) (AE D)) (stdL D N) := by
-  obtain ⟨Lt, h1, h2, -⟩ := exists_lattice_of_adelic_point D N
-  rw [← h2]; exact (h1 _).1
+alias moves_one := _root_.GlobalTheory.ThetaStab.moves_one
 
 theorem sd_of_moves {g : GA D N} {L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)}
     (h : Moves D (g : GL (Fin N) (AE D)) L) : SD D L := by

@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeGram
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 
 @[expose] public section
 
@@ -124,23 +125,11 @@ theorem eigSp_baseChange {E : Type} [Field E] [NumberField E] {O R M W : Type} [
     intro a
     rw [h, hz, map_smul, RingHom.comp_apply, algebraMap_smul]
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]
-  rfl
-
 theorem spDual_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap (dualMap (g.comp f)) = spMap (dualMap g) ≫ spMap (dualMap f) := by
-  rw [← spMap_comp]
+  rw [← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
   congr 1
   exact RingHom.ext fun a => TrivSqZeroExt.ext (by simp [dualMap]) (by simp [dualMap])
-
-theorem spDual_alg {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) :
-    spMap (dualMap f) ≫ spMap (algebraMap A (DualNumber A)) = spMap (algebraMap B (DualNumber B)) ≫ spMap f := by
-  rw [← spMap_comp, ← spMap_comp]
-  congr 1
-  exact RingHom.ext fun a => TrivSqZeroExt.ext (by simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl])
-    (by simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl])
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
@@ -151,7 +140,7 @@ theorem left_eq_of_cart {S S' : Scheme.{0}} {t : SAB H S} {t' : SAB H S'} {f : S
   refine m.cart.1.hom_ext (h.trans (Category.assoc _ _ _).symm) ?_
   have h1 : v'.left ≫ t'.G.hom = spMap (algebraMap B (DualNumber B)) ≫ x' := Over.w v'
   have h2 : v.left ≫ t'.G.hom = spMap (algebraMap A (DualNumber A)) ≫ x := Over.w v
-  rw [h1, Category.assoc, h2, ← Category.assoc, spDual_alg, hx, Category.assoc]
+  rw [h1, Category.assoc, h2, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_dual_alg, hx, Category.assoc]
 
 theorem push_model {S S' : Scheme.{0}} {t : SAB H S} {t' : SAB H S'} {f : S' ⟶ S} (m : SABMap t' t f)
     {R : Type} [CommRing R] {x' : Sp R ⟶ S'} {x : Sp R ⟶ S} (hx : x = x' ≫ f) {W : Type} [AddCommGroup W] [Module R W]

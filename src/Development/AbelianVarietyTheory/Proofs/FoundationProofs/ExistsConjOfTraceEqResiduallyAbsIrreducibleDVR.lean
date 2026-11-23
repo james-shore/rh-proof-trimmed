@@ -129,19 +129,6 @@ theorem exists_conj_of_surjective {O A : Type} [CommRing O] [IsLocalRing O] [Rin
   rw [map_smul, Matrix.smul_apply, smul_eq_mul, mul_comm]
   rfl
 
-theorem span_eq_top_of_residue {O ι : Type} [CommRing O] [IsLocalRing O] {a : ℕ}
-    (M : ι → Matrix (Fin a) (Fin a) O)
-    (h : Submodule.span (IsLocalRing.ResidueField O)
-      (Set.range fun g => (M g).map (IsLocalRing.residue O)) = ⊤) :
-    Submodule.span O (Set.range M) = ⊤ := by
-  first
-  | exact @_root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top
-  | exact _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top
-  | (apply _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top ..)
-
 theorem exists_conj_of_trace_eq_local {O : Type} [CommRing O] [IsLocalRing O] {Γ : Type} [Group Γ]
     {a : ℕ} (ρ ρ' : Γ →* GL (Fin a) O)
     (h : Formalism.MainNotions.N.AbsIrrSub (Formalism.MainNotions.N.mapRep (IsLocalRing.residue O) ρ) ⊤)
@@ -152,7 +139,7 @@ theorem exists_conj_of_trace_eq_local {O : Type} [CommRing O] [IsLocalRing O] {�
   have hspan : Submodule.span O
       (Set.range fun g => ((ρ g : GL (Fin a) O) : Matrix (Fin a) (Fin a) O)) = ⊤ :=
     by
-    refine span_eq_top_of_residue _ ?_
+    refine _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top _ ?_
     have h0 := GlobalTheory.BurnsideField.span_mat_eq_top_of_absIrrSub _ h
     have h1 : GlobalTheory.IndefiniteRowSideFullHecke.CongruenceModuleMatrices.mat (Formalism.MainNotions.N.mapRep (IsLocalRing.residue O) ρ) = fun g =>
         ((ρ g : GL (Fin a) O) : Matrix (Fin a) (Fin a) O).map (IsLocalRing.residue O) := by

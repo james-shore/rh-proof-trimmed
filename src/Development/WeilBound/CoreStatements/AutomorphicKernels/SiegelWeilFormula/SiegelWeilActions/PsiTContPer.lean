@@ -72,7 +72,7 @@ theorem cont_E {s₁ z : ℂ} {f : d.G → ℂ} (hf : IsSec d.K d.χ s₁ f)
       ‖GlobalTheory.Eis.term (par2 σ d.Y) (rat2 σ d.Y) (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) * f x) g q‖ ≤ u q)
     {nb' : nA σ L.Y L.b → G2 σ L.Y} (hnb' : IsNMap L.b nb') (x : d.G) :
     Continuous fun β' : nA σ L.Y L.b => ∑' q' : Cs L.sd, phz d f s₁ z (L.j (rep q' * nb' β') * x) := by
-  obtain ⟨e, he⟩ := cos_bij L
+  obtain ⟨e, he⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C4.cos_bij_pf L
   have hphz : Continuous (phz d f s₁ z) := by
     rw [phz_eq_flat]
     exact continuous_flat hf.cont (kunf.continuous_a d) (kunf.a_pos d) z
@@ -129,7 +129,7 @@ theorem firstEq_of : AbsConv → FirstEq := by
   have hz₁ : t₁ < z.re := lt_of_le_of_lt (le_max_left _ _) hz
   have hz₂ : t₂ < z.re := lt_of_le_of_lt (le_max_right _ _) hz
   obtain ⟨hint, hsum⟩ := ht₁ z hz₁ nb lam 𝓖 hc hGc uM ν 𝓤 hU hUc T x
-  obtain ⟨e, he'⟩ := cos_bij L
+  obtain ⟨e, he'⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C4.cos_bij_pf L
   haveI : IsFiniteMeasure (lam.restrict 𝓖) := ⟨by rw [Measure.restrict_apply_univ, hc.2.2.2]; exact ENNReal.one_lt_top⟩
   haveI : IsFiniteMeasure (ν.restrict 𝓤) := ⟨by rw [Measure.restrict_apply_univ, hU.2.2.2]; exact ENNReal.one_lt_top⟩
   set ψT : nA σ L.Y L.b → ℂ := fun β' => d.B.ψ (-(Algebra.trace (AF F) (AE F E) (Matrix.trace (T'.1.1 * β'.1))))
@@ -139,7 +139,7 @@ theorem firstEq_of : AbsConv → FirstEq := by
       kq L f s₁ z nb T uM (rep (e q').1) x pr = H q' (prj L pr.2) := by
     rintro q' ⟨u, β⟩
     obtain ⟨p₀, hp₀, hr₀, hrep⟩ := he' q'
-    obtain ⟨p₁, t, hp₁, hdet, hid⟩ := key_id L hc.1 hc'.1 hU (rep q') β u x
+    obtain ⟨p₁, t, hp₁, hdet, hid⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C4.key_id_pf L hc.1 hc'.1 hU (rep q') β u x
     simp only [kq, hH, hψT]
     rw [hrep, mul_assoc, phz_rat hf z hp₀ hr₀, hid, phz_par hf z hp₁ hdet, tr_sub L hT β]
   have hν1 : (ν.restrict 𝓤).real Set.univ = 1 := by

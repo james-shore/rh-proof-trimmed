@@ -101,7 +101,7 @@ theorem J1at_mul (hL : B.LatAll) (hTL : Tr0L D B.tor) {N N' : ℕ} (hN : Even N)
   letI := D.host.cmStar
   intro γ₁ γ₂ h1 h2
   have hθ : B.thZero N N' ∈ TaylorLogMetric.Th D B.tor (StandardLatticesGL3.stdL D N) (StandardLatticesGL3.stdL D N') :=
-    mem_ThSp_of' D B.tor _ _ h0
+    _root_.Formalism.L2.Ker.Cd.mem_ThSp_of D B.tor _ _ h0
   have hsd2 : SD D (SDLat.smulLat (γ₂ : Matrix (Fin N) (Fin N) D.host.E) (StandardLatticesGL3.stdL D N)) :=
     smulSD D N _ γ₂ (sd0 N)
   obtain ⟨-, hI⟩ := pullIop_of hL N N' (StandardLatticesGL3.stdL D N)
@@ -129,7 +129,7 @@ theorem J2at_mul (hL : B.LatAll) (hTR : Tr0R D B.tor) {N N' : ℕ} (hN : Even N)
   letI := D.host.cmStar
   intro γ₁ γ₂ h1 h2
   have hθ : B.thZero N N' ∈ TaylorLogMetric.Th D B.tor (StandardLatticesGL3.stdL D N) (StandardLatticesGL3.stdL D N') :=
-    mem_ThSp_of' D B.tor _ _ h0
+    _root_.Formalism.L2.Ker.Cd.mem_ThSp_of D B.tor _ _ h0
   have hsd2 : SD D (SDLat.smulLat (γ₂ : Matrix (Fin N') (Fin N') D.host.E) (StandardLatticesGL3.stdL D N')) :=
     smulSD D N' _ γ₂ (sd0 N')
   obtain ⟨-, hI⟩ := pullIop_of hL N N' (StandardLatticesGL3.stdL D N) (StandardLatticesGL3.stdL D N) (StandardLatticesGL3.stdL D N')

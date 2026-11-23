@@ -170,10 +170,7 @@ theorem top_is_tau_one_place (D : D7) (τ : D.what₂.Tau) (h : IsTop D τ) :
   obtain ⟨t0, ht0, ht0e⟩ := Finset.mem_image.mp h
   exact ⟨⟨t0, ht0⟩, ht0e.symm⟩
 
-theorem five_le_k (R : Ranks) : 5 ≤ R.k := by
-  have h1 := R.m_add_three_le_k
-  have h2 := R.two_le_m
-  omega
+alias five_le_k := _root_.Formalism.BasicNotions.Ranks.k_ge
 
 theorem lamCol_real (D : D7) (u : D.what₂.Word) (τ : D.what₂.Tau) (i : ℕ) (hi : i < D.R.k) :
     ((lamCol D u τ i : ℚ) : ℝ) = (((D.hcW u τ).u ⟨i, hi⟩ : ℚ) : ℝ) - (((D.R.k : ℝ) - 1) / 2 - i) := by

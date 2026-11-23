@@ -123,15 +123,15 @@ theorem GlobalTheory.HTGlue.exists_glue : ∀ (p : ℕ) [Fact p.Prime] (D : Glob
     congr 1
   have hsurε : Function.Surjective (TrivSqZeroExt.fstHom k k k).toRingHom :=
     fun a => ⟨TrivSqZeroExt.inl a, rfl⟩
-  have hAdmissible := fun j => GlobalTheory.T.harrisTaylor_lift_hodge_summand_admissible_stable
+  have hAdmissible := fun j => _root_.GlobalTheory.HTDeform.liftFil_isCompl_red_stable
     p D R b N (DualNumber k) k (TrivSqZeroExt.fstHom k k k).toRingHom
     hsurε (GlobalTheory.FODef.sqZero k k) ((algebraMap k (TrivSqZeroExt k k)).comp tk)
     (spMap (algebraMap k (DualNumber k)) ≫ t) t o₀ (o' j) (m' j) hsε hs₀
-  have hDirectionIso := fun j => GlobalTheory.T.harrisTaylor_lift_hodge_summand_isotropic
+  have hDirectionIso := fun j => _root_.GlobalTheory.HTLiftIso.liftFil_isotropic
     p D R b N (DualNumber k) k (TrivSqZeroExt.fstHom k k k).toRingHom
     hsurε (GlobalTheory.FODef.sqZero k k) ((algebraMap k (TrivSqZeroExt k k)).comp tk)
     (spMap (algebraMap k (DualNumber k)) ≫ t) t o₀ (o' j) (m' j) hsε hs₀
-  have hDirectionLie := fun j => GlobalTheory.T.harrisTaylor_lift_hodge_summand_crystalline_lie
+  have hDirectionLie := fun j => _root_.GlobalTheory.HTLiftLie.lie_liftFil
     p D R b N (DualNumber k) k (TrivSqZeroExt.fstHom k k k).toRingHom
     hsurε (GlobalTheory.FODef.sqZero k k) ((algebraMap k (TrivSqZeroExt k k)).comp tk)
     (spMap (algebraMap k (DualNumber k)) ≫ t) t o₀ (o' j) (m' j) hsε hs₀
@@ -140,18 +140,18 @@ theorem GlobalTheory.HTGlue.exists_glue : ∀ (p : ℕ) [Fact p.Prime] (D : Glob
   have hCompl (j : Fin d) := (hAdmissible j).1
   have hRed (j : Fin d) := (hAdmissible j).2.1
   have hStable (j : Fin d) := (hAdmissible j).2.2
-  have hGluedCompl := GlobalTheory.T.exists_isCompl_crystalGluedHodgeGraphFiltration p D R b N k tk t o₀ ht d f
-  have hGluedRed := GlobalTheory.T.mem_hodgeFiltration_iff_reduction_gluedFiltration p D R b N k tk t o₀ ht d f
+  have hGluedCompl := _root_.GlobalTheory.HTGlue.exists_isCompl_glueFil p D R b N k tk t o₀ ht d f
+  have hGluedRed := _root_.GlobalTheory.HTGlue.mem_fil_iff_exists_glueFil p D R b N k tk t o₀ ht d f
   -- Match the filtration hypotheses without unfolding the crystalline modules.
-  have hGluedStable := GlobalTheory.T.crystalGluedHodgeGraph_order_stable_of_directions p D R b N k tk t o₀ ht d f
+  have hGluedStable := _root_.GlobalTheory.HTGlueOStab.glueFil_stable p D R b N k tk t o₀ ht d f
     (fun j => liftFil (divided₂ (GlobalTheory.FODef.sqZero k k)) (m' j).cart)
     (by with_reducible exact hCompl) (by with_reducible exact hRed)
     (by with_reducible exact hmem) (by with_reducible exact hStable)
-  have hGluedIso := GlobalTheory.T.crystalGluedHodgeGraph_isotropic_of_directions p D R b N k tk t o₀ ht d f
+  have hGluedIso := _root_.GlobalTheory.HTGlueIso.glueFil_isotropic p D R b N k tk t o₀ ht d f
     (fun j => liftFil (divided₂ (GlobalTheory.FODef.sqZero k k)) (m' j).cart)
     (by with_reducible exact hCompl) (by with_reducible exact hRed)
     (by with_reducible exact hmem) (by with_reducible exact hStable) (by with_reducible exact hDirectionIso)
-  have hGluedLie := GlobalTheory.T.crystalGluedHodgeGraph_lie_condition_of_directions p D R b N k tk t o₀ ht d hd f
+  have hGluedLie := _root_.GlobalTheory.HTGlueLie.lie_glueFil p D R b N k tk t o₀ ht d hd f
     (fun j => liftFil (divided₂ (GlobalTheory.FODef.sqZero k k)) (m' j).cart)
     (by with_reducible exact hCompl) (by with_reducible exact hRed)
     (by with_reducible exact hmem) (by with_reducible exact hStable) (by with_reducible exact hDirectionLie)

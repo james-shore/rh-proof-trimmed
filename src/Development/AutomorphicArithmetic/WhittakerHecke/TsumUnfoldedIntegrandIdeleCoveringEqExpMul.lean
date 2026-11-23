@@ -61,10 +61,6 @@ private theorem ab_inv' (a : (A ℚ)ˣ) : ab a⁻¹ = (ab a)⁻¹ := by simp [ab
 private theorem ab_diag' (α : ℚˣ) : ab (IdeleGroup.diagonal ℚ α) = 1 := by
   simp [ab, IdeleGroup.ideleModule_diagonal]
 
-private theorem cpow_exp (x : ℝ) (w : ℂ) : ((Real.exp x : ℝ) : ℂ) ^ w = Complex.exp ((x : ℂ) * w) := by
-  have h : ((Real.exp x : ℝ) : ℂ) ≠ 0 := by exact_mod_cast (Real.exp_pos x).ne'
-  rw [Complex.cpow_def_of_ne_zero h, ← Complex.ofReal_log (Real.exp_pos x).le, Real.log_exp]
-
 private theorem modid (t r : ℝ) (hr : 0 < r) (s : ℂ) :
     Complex.exp (2 * s * t) * ((((Real.exp t * r⁻¹)⁻¹ ^ 2 : ℝ)) : ℂ) =
       ((Real.exp t * Real.exp t * (r⁻¹ * r⁻¹) : ℝ) : ℂ) ^ (s - 1) * (r : ℂ) ^ (2 * s) := by
@@ -78,7 +74,7 @@ private theorem modid (t r : ℝ) (hr : 0 < r) (s : ℂ) :
     rw [← Real.exp_neg, ← Real.exp_add, ← Real.exp_add, ← Real.exp_add]
     congr 1
     ring
-  rw [h1, h2, cpow_exp, cpow_exp, ← Complex.exp_add, Complex.ofReal_exp, ← Complex.exp_add]
+  rw [h1, h2, _root_.GroundTheory.Global.ofReal_exp_cpow, _root_.GroundTheory.Global.ofReal_exp_cpow, ← Complex.exp_add, Complex.ofReal_exp, ← Complex.exp_add]
   congr 1
   push_cast
   ring

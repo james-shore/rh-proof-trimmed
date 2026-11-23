@@ -151,7 +151,7 @@ theorem norm_sum_pow_le : ∀ (l : ℕ) [Fact l.Prime] (γ : GQ l), γ ∈ (Maxi
         (hpow _) n (by omega) z hz
       rwa [show k + (n + 1) - n = k + 1 by omega] at this
     have hyn : ‖y‖ ≤ ρ * ‖x‖ :=
-      (GlobalTheory.T.norm_sum_pow_apply_le_and_norm_pow_prime_sub_le l σ (fixedAdd (H (n + 1))) ρ hρ0 hρ1.le
+      (_root_.GlobalTheory.MemLoc.norm_geom_sum_galois_le l σ (fixedAdd (H (n + 1))) ρ hρ0 hρ1.le
         (fun z hz => apply_mem_fixedAdd (hN _) σ hz) hmove x hxS).1.trans
         (mul_le_mul_of_nonneg_right hmax (norm_nonneg _))
     have hsum : ∑ i ∈ Finset.range (l ^ (n + 1)), (γ ^ i) x

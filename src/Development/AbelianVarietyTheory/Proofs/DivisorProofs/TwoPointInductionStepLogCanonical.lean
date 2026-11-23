@@ -168,7 +168,7 @@ theorem twoPoint_step : GlobalTheory.Published.Principalisation → GlobalTheory
       have hw'N := hbig w' (i' + 1) (Or.inl hw'x) h1e' hdw'
       have hnum := two_mul_lt_pow_mul_of_le _ (h (i' + 1)) (h (i' + 1) + ε) _ (i' + 1) (by positivity)
         (hpos _) (by linarith) hw'N
-      obtain ⟨D', d', hd'0, hd'le, hD', hfin⟩ := GlobalTheory.T.lc_cut_two_closed_points_one_centre hP hNV hNef X p n hp hn Δ m G N D d
+      obtain ⟨D', d', hd'0, hd'le, hD', hfin⟩ := _root_.GlobalTheory.PairStep.logCanonicalCut_two_points hP hNV hNef X p n hp hn Δ m G N D d
         (h (i' + 1) + ε) x x' w' i' hΔ hklt hm hG hN hD hd hx hx' hlcx hlx' hw'x hw'x' (Or.inr hw')
         hdw' (by linarith [hpos (i' + 1)]) hnum.1
       exact ⟨i', D', d', by omega, hd'0, hd'le, hD', hfin⟩
@@ -198,14 +198,14 @@ theorem twoPoint_step : GlobalTheory.Published.Principalisation → GlobalTheory
       have hnum := two_mul_lt_pow_mul_of_le _ (h (i + 1)) (h (i + 1) + ε - b) _ (i + 1) (by positivity)
         (hpos _) (by linarith) hwN
       obtain ⟨hlcx2, -, -⟩ := hcut'
-      obtain ⟨D', d', hd'0, hd'le, hD', hcutD', hnkD'⟩ := GlobalTheory.T.exists_lc_cut_point_of_not_lc_other hP hNV hNef X p n hp hn Δ m G
+      obtain ⟨D', d', hd'0, hd'le, hD', hcutD', hnkD'⟩ := _root_.GlobalTheory.PairStep.exists_lcCut_of_not_lcAt hP hNV hNef X p n hp hn Δ m G
         N (D + A) (d + b) (h (i + 1) + ε - b) x x' w i hΔ hklt hm hG hN hDA (by linarith) hx hlcx2
         hnlc hwx hw2 hdw (by linarith [hpos (i + 1)]) hnum.2
       exact ⟨i, D', d', by omega, hd'0, by linarith, hD', Or.inl ⟨hcutD', hnkD'⟩⟩
   ·
     have hnum := two_mul_lt_pow_mul_of_le _ (h (i + 1)) (h (i + 1) + ε) _ (i + 1) (by positivity)
       (hpos _) (by linarith) hwN
-    obtain ⟨D', d', hd'0, hd'le, hD', hcutD', hnkD'⟩ := GlobalTheory.T.exists_lc_cut_point_of_not_lc_other hP hNV hNef X p n hp hn Δ m G
+    obtain ⟨D', d', hd'0, hd'le, hD', hcutD', hnkD'⟩ := _root_.GlobalTheory.PairStep.exists_lcCut_of_not_lcAt hP hNV hNef X p n hp hn Δ m G
       N D d (h (i + 1) + ε) x x' w i hΔ hklt hm hG hN hD hd hx hlcx hlx' hwx hw hdw
       (by linarith [hpos (i + 1)]) hnum.2
     exact ⟨i, D', d', by omega, hd'0, hd'le, hD', Or.inl ⟨hcutD', hnkD'⟩⟩

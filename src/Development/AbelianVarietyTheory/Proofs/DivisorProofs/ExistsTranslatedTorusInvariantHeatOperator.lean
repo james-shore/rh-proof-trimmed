@@ -101,9 +101,9 @@ theorem GlobalTheory.HeatTrans.exists_heat_translate : ∀ (R : Type) [CommRing 
     have hOO : O₁ ≤ T ⁻¹ᵁ (S ⁻¹ᵁ O₁) := (hpre' O₁).ge
     rw [op_conjF Y.H dd hTS hST hT hdd h.Θ h.u (h.d i) (h.p i) (h.p' i) k hOi,
       op_conjF Y.H dd hTS hST hT hdd h.Θ h.u (h.d i') (h.p i') (h.p' i') k hOi',
-      GlobalTheory.KS.pbT_mul, pbT_pow S le_rfl _ _, pbT_pbT S (T ≫ Y.q.left) hg' le_rfl]
+      GlobalTheory.KS.pbT_mul, pbT_pow S le_rfl _ _, _root_.GlobalTheory.KS.InvField.pbT_pbT S (T ≫ Y.q.left) hg' le_rfl]
     have hSTq : S ≫ T ≫ Y.q.left = Y.q.left := by rw [← Category.assoc, hST, Category.id_comp]
-    rw [hSTq, h.glue k i i' _ hSO, GlobalTheory.KS.pbT_mul, pbT_pow T hOO, pbT_pbT T Y.q.left hg hOO]
+    rw [hSTq, h.glue k i i' _ hSO, GlobalTheory.KS.pbT_mul, pbT_pow T hOO, _root_.GlobalTheory.KS.InvField.pbT_pbT T Y.q.left hg hOO]
   · intro i
     obtain ⟨⟨V, hV⟩, hp, hp', hd⟩ := hB i
     refine ⟨?_, GlobalTheory.T.isRaynaudTorusWeight_pullback_pointTranslation R Q O oa Y x 0 _ _ le_rfl _ hp, GlobalTheory.T.isRaynaudTorusWeight_pullback_pointTranslation R Q O oa Y x 0 _ _ le_rfl _ hp', ?_⟩
@@ -124,6 +124,6 @@ theorem GlobalTheory.HeatTrans.exists_heat_translate : ∀ (R : Type) [CommRing 
       (pbT T (h.p' i) (T ⁻¹ᵁ h.W i)) k (T ⁻¹ᵁ h.W i) (rsT (σ.f fun _ => h.j i) (T ⁻¹ᵁ h.W i))
     rw [GlobalTheory.T.chartFunction_rel_of_translate_section_values R Q O oa Y x k σ' τ' hσ' (h.j i) (h.W i) (h.le i), GlobalTheory.T.chartFunction_rel_of_translate_section_values R Q O oa Y x k σ τ hσ (h.j i) (h.W i) (h.le i),
       op_conjF Y.H dd hTS hST hT hdd h.Θ h.u (h.d i) (h.p i) (h.p' i) k (le_rfl : T ⁻¹ᵁ h.W i ≤ T ⁻¹ᵁ h.W i),
-      pbT_pbT S T le_rfl le_rfl, hST, pbT_id hW,
+      _root_.GlobalTheory.KS.InvField.pbT_pbT S T le_rfl le_rfl, hST, pbT_id hW,
       op_rsT Y.H dd (fun a => (hinv a).1) h.Θ h.u (h.d i) (h.lift i).1 (h.p i) (h.p' i) k hW le_rfl,
       GlobalTheory.KS.pbT_rsT T hW (hpre' _).ge, hA i]

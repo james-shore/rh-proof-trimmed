@@ -150,7 +150,7 @@ theorem cm3 : CM3 := by
     have := norm_natCast_eq_one (K := MaximalUnramifiedExtension l) l 2 hlK
       ((Nat.coprime_primes Nat.prime_two (Fact.out)).2 (by omega))
     simpa using this
-  have hInt : IntLog f e := GlobalTheory.T.isIntegralHondaLogarithmPair_shortWeierstrass (MaximalUnramifiedExtension l) a2 a3 h2 hg2n hg3n
+  have hInt : IntLog f e := _root_.GlobalTheory.Honda.intLog_shortW (MaximalUnramifiedExtension l) a2 a3 h2 hg2n hg3n
 
   obtain ⟨hωK, hσω⟩ := Formalism.L2.Th1.D.sqrtKur d hsq hd l hl5 hinert ι
   set w : MaximalUnramifiedExtension l := ⟨ι (omegaK d), hωK⟩ with hw
@@ -188,7 +188,7 @@ theorem cm3 : CM3 := by
     obtain ⟨L', -, hL2, hL3, -, -⟩ := GlobalTheory.T.exists_homothetic_periodPair_lattice L (ι.symm lam) hc
     have e2 : ι L'.g₂ = g2 := by rw [hL2, map_mul, map_pow, RingEquiv.apply_symm_apply, hg2]
     have e3 : ι L'.g₃ = g3 := by rw [hL3, map_mul, map_pow, RingEquiv.apply_symm_apply, hg3]
-    obtain ⟨n, hn, h1⟩ := GlobalTheory.T.formalGroup_height_le_two_good_reduction L' l hl5 ι (by rw [e2]; exact hg2n) (by rw [e3]; exact hg3n)
+    obtain ⟨n, hn, h1⟩ := _root_.GlobalTheory.HeightTwo.height_le_two L' l hl5 ι (by rw [e2]; exact hg2n) (by rw [e3]; exact hg3n)
       (by rw [e2, e3]; exact hdisc)
     refine ⟨n, hn, ?_⟩
     rw [← hnφ, ← coeff_map, hmapMul, map_natCast]

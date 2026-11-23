@@ -73,10 +73,6 @@ open GlobalTheory.CompanionTheory.SiegelND.Integ.Weyl GlobalTheory.CompanionTheo
 
 namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Weyl.RatMem
 
-theorem exists_nat_mul_mem (F : Type) [Field F] [NumberField F] (x : F) :
-    ∃ m : ℕ, 0 < m ∧ ∃ r : 𝓞 F, (r : F) = (m : F) * x :=
-  _root_.UpperTheory.Reformulated.B.ExistsNatMulMem.exists_nat_mul_mem F x
-
 theorem repr_inclR {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {d : ℕ}
     (b : Module.Basis (Fin d) F E) (x : E) (k : Fin d) :
     (Algebra.TensorProduct.basis (Af F) b).repr (inclR (Af F) x) k
@@ -100,7 +96,7 @@ theorem exists_clear_family {F E : Type} [Field F] [NumberField F] [Field E] [Nu
   classical
   let B := RingOfIntegers.basis E
   choose m hm hr using fun p : ι × Module.Free.ChooseBasisIndex ℤ (𝓞 E) × Fin d =>
-    exists_nat_mul_mem F (b.repr (e p.1 * (B p.2.1 : E)) p.2.2)
+    _root_.UpperTheory.Reformulated.B.ExistsNatMulMem.exists_nat_mul_mem F (b.repr (e p.1 * (B p.2.1 : E)) p.2.2)
   refine ⟨∏ p, m p, Finset.prod_pos fun p _ => hm p, fun t o k => ?_⟩
   set D : ℕ := ∏ p, m p with hDdef
   have hterm : ∀ l, ∃ r : 𝓞 F, (r : F) = b.repr ((D : E) * (e t * (B l : E))) k := by

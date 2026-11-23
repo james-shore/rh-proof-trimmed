@@ -50,11 +50,6 @@ import Development.EtaleCohomology.EtaleSheaves.H0TwistOverClosedField
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC LateralTheory.E.E4
 
-private lemma exists_local_generator {B : Type} [CommRing B] [IsDedekindDomain B]
-    (I : Ideal B) (p : Ideal B) [hp : p.IsPrime] :
-    ∃ π ∈ I, ∃ s, s ∉ p ∧ ∀ x ∈ I, s * x ∈ Ideal.span {π} :=
-  _root_.UpperTheory.Reformulated.B.ExistsLocalGenerator.exists_local_generator I p
-
 theorem UpperTheory.dedekind_spec_open_isAffine :
     ∀ (B : Type) [CommRing B] [IsDedekindDomain B] (W : (Spec (CommRingCat.of B)).Opens), IsAffineOpen W := by
   intro B _ _ W
@@ -73,7 +68,7 @@ theorem UpperTheory.dedekind_spec_open_isAffine :
     rwa [basicOpen_eq_of_affine] at h
   have hmain : IsAffineHom W.ι := by
     refine isAffineHom_of_forall_exists_isAffineOpen _ fun x => ?_
-    obtain ⟨π, hπ, s, hs, hsI⟩ := @exists_local_generator B _ _ I x.asIdeal x.isPrime
+    obtain ⟨π, hπ, s, hs, hsI⟩ := @_root_.UpperTheory.Reformulated.B.ExistsLocalGenerator.exists_local_generator B _ _ I x.asIdeal x.isPrime
     refine ⟨D s, hs, hbasic s, ?_⟩
     have hEq : W ⊓ D s = D (s * π) := by
       ext q

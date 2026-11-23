@@ -91,7 +91,7 @@ theorem exists_intg_polynomial_level (K : Type) [NormedField K] [IsUltrametricDi
     rw [ZMod.val_add, ← pow_add, ← pow_eq_pow_mod _ hζ]
   have hcard : (Finset.univ.image x).card = Fintype.card (ZMod (p ^ n)) := by
     rw [Finset.card_image_of_injective _ hinj, Finset.card_univ]
-  obtain ⟨g, hg, hgx⟩ := GlobalTheory.T.exists_integral_poly_of_character' K (ZMod (p ^ n)) x (fun i => ζ ^ i.val) hinj hχ (by
+  obtain ⟨g, hg, hgx⟩ := _root_.GlobalTheory.ConvSer.exists_integral_poly_of_character K (ZMod (p ^ n)) x (fun i => ζ ^ i.val) hinj hχ (by
     intro k
     have hc := GlobalTheory.T.exists_integral_coeff_interpolation_bivariate_series K (Finset.univ.image x) (F.toPowerSeries ^ (k : ℕ))
       (by

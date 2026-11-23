@@ -112,7 +112,7 @@ theorem term_of_rel (hM : M.OK) (hk : Module.finrank E V = k + 2 * r + 1)
     ∃ τ, Formalism.MainNotions.S.LocNG.IsTermOver P d' τ := by
   obtain ⟨g, hg, hm⟩ := h
   obtain ⟨τ, hτ⟩ := ht
-  exact ⟨_, (GlobalTheory.T.unitaryComplement_moves_local_terms_with_data M hM H r k P hk hR g hg d d' τ hτ hm).1⟩
+  exact ⟨_, (_root_.GlobalTheory.HL.LocalMove.main M hM H r k P hk hR g hg d d' τ hτ hm).1⟩
 
 end Loc
 

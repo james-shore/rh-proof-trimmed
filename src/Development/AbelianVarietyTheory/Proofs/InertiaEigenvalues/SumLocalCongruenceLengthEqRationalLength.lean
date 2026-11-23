@@ -220,11 +220,11 @@ theorem sum_etaLoc_eq_etaRat : ∀ (D : D7) (M : MtFam D) (T : NormalizedLocalCo
     GlobalTheory.T.fg_inf_sup_of_isCompl' D.what₂.LL _ (lat D (D.what₂.muTw w) j) U U' hlatFG hc
   have hlowle : low D (D.what₂.muTw w) j ≤ up D (D.what₂.muTw w) j :=
     le_inf inf_le_right (inf_le_left.trans le_sup_left)
-  have hlen := GlobalTheory.T.normalizedLength_latticeQuotient_baseChange_eq D.what₂.LL (T.B.Oc j w) (T.B.ec j w) _ (T.B.V j w) (T.B.iV j w) _ b hb.1 hint
+  have hlen := _root_.GlobalTheory.LatLenExt.lenUnit_span_eq_lenUW D.what₂.LL (T.B.Oc j w) (T.B.ec j w) _ (T.B.V j w) (T.B.iV j w) _ b hb.1 hint
     (D.plEq w) (D.what₂.places.resChar w) (D.what₂.places.resChar_prime w) hlw hunit
     (up D (D.what₂.muTw w) j) (low D (D.what₂.muTw w) j) hupFG hlowle
   have hlatC : Submodule.span (T.B.Oc j w) (T.B.iV j w '' (lat D (D.what₂.muTw w) j : Set _)) = latC T.B j w :=
-    GlobalTheory.T.span_image_semilinear_lattice_eq D.what₂.LL (T.B.Oc j w) (T.B.ec j w) _ (T.B.V j w) (T.B.iV j w) hint _
+    _root_.GlobalTheory.span_image_span_eq_of_integral D.what₂.LL (T.B.Oc j w) (T.B.ec j w) _ (T.B.V j w) (T.B.iV j w) hint _
   have hglob : etaRat D (D.what₂.muTw w) j w =
       ((qLen (G'.restrictScalars (T.B.Oc j w)) (latC T.B j w) (B'.restrictScalars (T.B.Oc j w))).toNat : ℚ) /
       ((Module.length (T.B.Oc j w) (T.B.Oc j w ⧸ Ideal.span {((D.what₂.places.resChar w : ℕ) : T.B.Oc j w)})).toNat : ℚ) := by

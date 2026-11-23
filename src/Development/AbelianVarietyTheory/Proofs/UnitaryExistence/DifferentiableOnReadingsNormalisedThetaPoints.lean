@@ -169,7 +169,7 @@ theorem differentiableOn_rdU : Out.SecBaseChangeSt → Out.SecTwistSt → ∀ (E
     have hred : IsReduced (CAt σ) := by
       show IsReduced ℂ
       infer_instance
-    have hev := (GlobalTheory.T.framedModuli_algebraicLaws_chart_weight_integrality hbc E H Dw l Xo c).2.2.2.2.2.2 (CAt σ) hred a n f hf _ _ _ hbor
+    have hev := (_root_.GlobalTheory.Frames.algebraic_laws hbc E H Dw l Xo c).2.2.2.2.2.2 (CAt σ) hred a n f hf _ _ _ hbor
     rw [hev, wchar_gen]
     have e1 : toC ((t₀ : CAt σ) ^ n * evR Xo c f (y (T.co.symm x))) =
         κ ^ n * toC (evR Xo c f (y (T.co.symm x))) := rfl

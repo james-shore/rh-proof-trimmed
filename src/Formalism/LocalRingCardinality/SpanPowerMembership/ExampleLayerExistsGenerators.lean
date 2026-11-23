@@ -70,7 +70,7 @@ instance instFinitePsi (φ : Formalism.HC.Frame) : Finite ↥(φ.Psi) := inferIn
 
 instance instFintypePsi (φ : Formalism.HC.Frame) : Fintype ↥(φ.Psi) := Fintype.ofFinite _
 
-theorem natCard_Psi (φ : Formalism.HC.Frame) : Nat.card ↥(φ.Psi) = 2 * φ.ord := φ.natCard_Psi
+alias natCard_Psi := _root_.Formalism.HC.Frame.natCard_Psi
 
 theorem card_Psi (φ : Formalism.HC.Frame) : Fintype.card ↥(φ.Psi) = 2 * φ.ord := by
   rw [← Nat.card_eq_fintype_card]

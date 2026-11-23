@@ -53,6 +53,6 @@ namespace Formalism.FN
 
 theorem minkowskiIIUpper : MinkowskiIIUpper :=
   minkowskiIIUpper_of (minkCore_of partialBoxVolumeMonotoneStep partialBoxVolumeScaling) existsSuccessiveMinimaVectors
-    existsAdaptedBasis
+    _root_.Formalism.FN.AdaptedBasisExistence.adapted_basis_exists
 
 end Formalism.FN

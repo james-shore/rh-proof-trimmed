@@ -154,7 +154,7 @@ theorem familyExistsPos_holds : GlobalTheory.CompanionTheory.Ar.HT.FarguesHodgeT
       exact hBase c' h
     · intro c' h C _ _ _ _ RC hRC χ hχ
       rw [hpos c' h]
-      exact GlobalTheory.T.ordinary_curve_hodge_prime hF hQ hZ hH hOrd E H D l Xo c O₀ β Y S Ω K J y 𝔐 d ha hpq p hpS hfree h2 hdisc b hb φ hφ A m hm O t₀ Sg e φ' F pq sc w σ hO hS G c' h (P c' h) (i c') (hi c' h) (hBase c' h) C RC hRC χ hχ
+      exact _root_.GlobalTheory.CompanionTheory.Ar.Num.FamEx.TestPt.testFacts hF hQ hZ hH hOrd E H D l Xo c O₀ β Y S Ω K J y 𝔐 d ha hpq p hpS hfree h2 hdisc b hb φ hφ A m hm O t₀ Sg e φ' F pq sc w σ hO hS G c' h (P c' h) (i c') (hi c' h) (hBase c' h) C RC hRC χ hχ
   · intro c' h τ
     rw [hpos c' h]
     exact ⟨rfl, rfl, rfl, rfl⟩

@@ -844,24 +844,10 @@ theorem isGL_sgn (p : PlF D) : IsGL (M p).R (LsDatumB.sgnP p) := by
     · exact Subring.zero_mem _
   exact ⟨hint, LsDatumB.sgnP p, hint, permSign_mul_self₂ p⟩
 
-theorem one_intLow (p : PlF D) : TieN.IntLow (M p) (1 : LsDatumB.MatP D p) :=
-  ⟨fun a => Matrix.one_apply_eq a, fun a b h => Matrix.one_apply_ne (ne_of_lt h),
-    fun a b => by rw [Matrix.one_apply]; split_ifs; exacts [Subring.one_mem _, Subring.zero_mem _]⟩
-
-theorem one_intUp (p : PlF D) : TieN.IntUp (M p) (1 : LsDatumB.MatP D p) :=
-  ⟨fun a => Matrix.one_apply_eq a, fun a b h => Matrix.one_apply_ne (ne_of_gt h),
-    fun a b => by rw [Matrix.one_apply]; split_ifs; exacts [Subring.one_mem _, Subring.zero_mem _]⟩
-
 end Restr
 
 end Formalism.L2.SG.Pf.LocUnramB
 
 namespace Formalism.L2.SG.Pf
-
-theorem locUnram_holds {D : Formalism.BasicNotions.D7} {δ : ∀ p : Formalism.MainNotions.S.LocalSplitGroups.PlF D, (D.s.atP p).Fp}
-    {M : ∀ p : Formalism.MainNotions.S.LocalSplitGroups.PlF D, Formalism.MainNotions.S.Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep}
-    (hA : ∀ p, Formalism.MainNotions.S.LocalSplitGroups.Agree δ M p) (u u' : D.what₂.Word) :
-    Formalism.L2.SG.LsDatumB.LocUnram M δ u u' (LocModel.thTriv M) :=
-  LocUnramB.locUnram_triv hA u u'
 
 end Formalism.L2.SG.Pf

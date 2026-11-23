@@ -61,13 +61,13 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Model
 
-theorem BlowUpChart.full : BlowUpChart.Statement := BlowUpChart.proof
+alias BlowUpChart.full := _root_.GroundTheory.Heights₂.Heights.Model.BlowUpChart.proof
 
-theorem FiniteIntegralClosure.full : FiniteIntegralClosure.Statement := FiniteIntegralClosure.proof
+alias FiniteIntegralClosure.full := _root_.GroundTheory.Heights₂.Heights.Model.FiniteIntegralClosure.proof
 
-theorem MertensUpper.full : MertensUpper.Statement := MertensUpper.proof
+alias MertensUpper.full := _root_.GroundTheory.Heights₂.Heights.Model.MertensUpper.proof
 
-theorem TorsionFreeQuotientLength.full : TorsionFreeQuotientLength.Statement := TorsionFreeQuotientLength.proof
+alias TorsionFreeQuotientLength.full := _root_.GroundTheory.Heights₂.Heights.Model.TorsionFreeQuotientLength.proof
 
 theorem KrullAkizukiQuotientLength.full : KrullAkizukiQuotientLength.Statement :=
   KrullAkizukiQuotientLength.proof TorsionFreeQuotientLength.full

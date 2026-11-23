@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.SiegelPullbackTransfer.AdelicGL2ExtOfLocalComponents
 
 @[expose] public section
 
@@ -83,10 +84,6 @@ lemma toV_snd : toV fU fV A BU qU ≫ pullback.snd A.hom fV =
     pullback.snd _ _ ≫ pullback.snd _ _ := pullback.lift_snd _ _ _
 
 variable (H : Over S) [GrpObj A] [GrpObj H] (i : H ⟶ A)
-
-lemma map_left_fst {T : Scheme.{0}} (f : T ⟶ S) {X Y : Over S} (a : X ⟶ Y) :
-    ((Over.pullback f).map a).left ≫ pullback.fst Y.hom f = pullback.fst X.hom f ≫ a.left :=
-  pullback.lift_fst _ _ _
 
 lemma toV_comp_eq [Flat qU.left] [Surjective qU.left] [QuasiCompact qU.left]
     (hU : IsPullback ((fst ((Over.pullback fU).obj H) ((Over.pullback fU).obj A) ≫ (Over.pullback fU).map i) *
@@ -139,9 +136,9 @@ lemma toV_comp_eq [Flat qU.left] [Surjective qU.left] [QuasiCompact qU.left]
   let y0 : Over.mk (yv ≫ pullback.fst A.hom fU ≫ A.hom) ⟶ A :=
     Over.homMk (yv ≫ pullback.fst A.hom fU) (Category.assoc _ _ _)
   have mU := GlobalTheory.TorusToProper.mul_left_fst fU A (s ≫ (Over.pullback fU).map i) yv' x0 y0
-    (by rw [Over.comp_left, Category.assoc, map_left_fst]; rfl) rfl
+    (by rw [Over.comp_left, Category.assoc, _root_.ReciprocityTheory.ChartRestriction.G.Pdiv.PullbackComparison.pullback_map_left_fst']; rfl) rfl
   have mV := GlobalTheory.TorusToProper.mul_left_fst fV A (s' ≫ (Over.pullback fV).map i) zv x0 y0
-    (by rw [Over.comp_left, Category.assoc, map_left_fst]; simp only [x0, s', Over.homMk_left]; rw [pullback.lift_fst_assoc, Category.assoc]) (by simp [y0, zv, hyv_def, Category.assoc, toV_fst])
+    (by rw [Over.comp_left, Category.assoc, _root_.ReciprocityTheory.ChartRestriction.G.Pdiv.PullbackComparison.pullback_map_left_fst']; simp only [x0, s', Over.homMk_left]; rw [pullback.lift_fst_assoc, Category.assoc]) (by simp [y0, zv, hyv_def, Category.assoc, toV_fst])
   have key : zu = (s' ≫ (Over.pullback fV).map i) * zv := by
     apply Over.OverMorphism.ext
     apply pullback.hom_ext

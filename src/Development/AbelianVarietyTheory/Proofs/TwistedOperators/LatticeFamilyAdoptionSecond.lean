@@ -299,17 +299,6 @@ variable {LL Oe K'' V T : Type} [Field LL] [NumberField LL] [AddCommGroup V] [Mo
   [IsScalarTower (𝓞 LL) LL V] [CommRing Oe] [IsDomain Oe] [Field K''] [Algebra Oe K''] [IsFractionRing Oe K'']
   [AddCommGroup T] [Module K'' T] [Module Oe T] [IsScalarTower Oe K'' T]
 
-theorem exists_smul_mem (M : Submodule Oe T) {x : T} (hx : x ∈ Submodule.span K'' (M : Set T)) :
-    ∃ c : Oe, c ≠ 0 ∧ c • x ∈ M := by
-  first
-  | (rename_i h_3 h_4 h_5 h_6 h_7 h_8 h_9 h_10 h_11; revert Oe K'' T h_3 h_4 h_5 h_6 h_7 h_8 h_9 h_10 h_11 M x hx; exact @_root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span)
-  | exact @_root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span
-  | exact _root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span
-  | (apply _root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span ..)
-
 theorem isLatIn_span (σ : LL →+* K'') (hint : ∀ a : 𝓞 LL, ∃ r : Oe, σ (a : LL) = algebraMap Oe K'' r)
     (eM : V →ₛₗ[σ] T) (L : Submodule (𝓞 LL) V) (hFG : L.FG) (hsp : Submodule.span LL (L : Set V) = ⊤)
     (VV : Submodule K'' T) (hVV : Submodule.span K'' (Set.range eM) = VV) :
@@ -352,7 +341,7 @@ theorem isLatIn_span (σ : LL →+* K'') (hint : ∀ a : 𝓞 LL, ∃ r : Oe, σ
       | smul a x _ hx => rw [map_smulₛₗ]; exact Submodule.smul_mem _ _ hx
     have hx' : x ∈ VV := hx
     rw [← hVV] at hx'
-    exact exists_smul_mem _ (Submodule.span_le.2 hle hx')
+    exact _root_.GlobalTheory.SmulMemOfMemSpanExists.exists_smul_mem_of_mem_span _ (Submodule.span_le.2 hle hx')
 
 end Lat
 
@@ -743,10 +732,3 @@ end
 end
 
 end GroupAverageFixedPoints
-section
-open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Formalism.L2 Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Cx Formalism.IndefR.FWT Formalism.IndefR.NX Formalism.L2.Pj
-open Formalism.L2.Rows
-open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-end

@@ -92,7 +92,7 @@ theorem exists_local_basis {F : Type} [Field F] [NumberField F] (p : HeightOneSp
     (fun ki : Fin M × Fin (Module.finrank F C) => B.equivFun ⟨g ki.1, hg ki.1⟩ ki.2)
   have hvle : ∀ s : 𝓞 F, p.valuation F (algebraMap (𝓞 F) F s) ≤ 1 := fun s => by
     rw [HeightOneSpectrum.valuation_of_algebraMap]; exact p.intValuation_le_one s
-  obtain ⟨m, b, hbM, hbsp, hbli⟩ := GlobalTheory.T.exists_basis_bounded_module_valuationRing_pi p _ S (by show Int (e 0); rw [map_zero]; exact h0)
+  obtain ⟨m, b, hbM, hbsp, hbli⟩ := _root_.GlobalTheory.locBasis_of_bounded p _ S (by show Int (e 0); rw [map_zero]; exact h0)
     (fun x hx y hy => by show Int (e (x + y)); rw [map_add (f := _)]; exact hadd _ _ hx hy)
     (fun a ha x hx => by show Int (e (a • x)); rw [map_smul]; exact hsmul _ _ ha hx)
     (fun i => by show Int (e _); rw [hsingle]; exact hκ i)
@@ -206,7 +206,7 @@ theorem intForm_descent_below (l e : ℕ) (hl : l.Prime) : ∃ c₀ : ℕ, ∀ (
       simp only [y, hcc, Finset.smul_sum, smul_smul, map_sum, Finset.sum_smul, map_mul, hσ₂]
     exact Finset.sum_comm
   have hφ' : (∑ k, C.σ₂ (y k) • T.phiJ j T.σ₀ (wtA w) (β k)) ∈ C.intForms (wtA w) w.n {la} := hsum ▸ hφ
-  obtain ⟨N, hN⟩ := GlobalTheory.T.traceCombination_coverForm_integral_over_prime D T hL j hj T.σ₀ hσ _ _ hD hspan hK C hU hP la p hp m β hβs
+  obtain ⟨N, hN⟩ := _root_.GlobalTheory.TraceIdem.trace_comb_integral D T hL j hj T.σ₀ hσ _ _ hD hspan hK C hU hP la p hp m β hβs
     (fun k => (hval _).1 (hβ k).2) y hφ'
   have hdiff : ∀ k, ∀ d ∈ differentIdeal (𝓞 T.Q.c.F) (𝓞 C.d.c₂.F),
       la.valuation C.d.c₂.F (y k * (d : C.d.c₂.F)) ≤ 1 := fun k =>

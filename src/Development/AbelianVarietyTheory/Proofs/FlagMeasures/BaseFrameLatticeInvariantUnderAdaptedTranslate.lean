@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -56,12 +57,6 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : �
 def Hom {T T' : E} (φ : S.V ≃ₗ[E] S.V) (A : LFlag S r T) (B : LFlag S r T') : Prop :=
   ∀ a : Fin (r + 1), φ (frame A a) - frame B a ∈ Xflag B a.val
 
-theorem frame_castSucc {T : E} (A : LFlag S r T) (i : Fin r) : frame A i.castSucc = A.fl.e i := by
-  simp [frame, FlagG.fvec, Fin.snoc_castSucc]
-
-theorem frame_last {T : E} (A : LFlag S r T) : frame A (Fin.last r) = A.fl.z := by
-  simp [frame, FlagG.fvec, Fin.snoc_last]
-
 theorem xflag_mono {T : E} (A : LFlag S r T) {i j : ℕ} (h : i ≤ j) : Xflag A i ≤ Xflag A j := by
   exact Submodule.span_mono (Set.image_mono (fun k hk => lt_of_lt_of_le hk h))
 
@@ -74,7 +69,7 @@ theorem Hom.map_mem {T T' : E} {φ : S.V ≃ₗ[E] S.V} {A : LFlag S r T} {B : L
     apply Submodule.span_le.mpr
     rintro y ⟨i, hi, rfl⟩
     have h1 := h i.castSucc
-    rw [frame_castSucc, frame_castSucc] at h1
+    rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_frame_castSucc, _root_.Formalism.MainNotions.LatticeGluingRadicals.a_frame_castSucc] at h1
     have h2 : φ (A.fl.e i) = (φ (A.fl.e i) - B.fl.e i) + B.fl.e i := by abel
     show φ (A.fl.e i) ∈ Xflag B j
     rw [h2]
@@ -113,42 +108,23 @@ theorem Hom.inv {T : E} {φ : S.V ≃ₗ[E] S.V} {A : LFlag S r T} (h : Hom φ A
   rw [e1]
   exact Submodule.neg_mem _ (hW _ _ (h a))
 
-theorem xflag_r {T : E} (A : LFlag S r T) : Xflag A r = Xsp A := by
-  show Submodule.span E (A.fl.e '' {i | i.1 < r}) = Submodule.span E (Set.range A.fl.e)
-  congr 1
-  rw [← Set.image_univ]
-  congr 1
-  ext i; simp
-
-theorem z_mem_orth {T : E} (A : LFlag S r T) : A.fl.z ∈ orth S (Xsp A) := by
-  have hle : Xsp A ≤ LinearMap.ker (S.hT.flip A.fl.z) := by
-    apply Submodule.span_le.mpr
-    rintro y ⟨i, rfl⟩
-    show S.hT.flip A.fl.z (A.fl.e i) = 0
-    rw [LinearMap.flip_apply]; exact A.fl.z_orth i
-  simp only [orth, Submodule.mem_iInf, LinearMap.mem_ker]
-  intro x hx
-  have := hle hx
-  rw [LinearMap.mem_ker, LinearMap.flip_apply] at this
-  exact this
-
 theorem Hom.of_nlam {T : E} {Λ : Submodule (𝓞 E) S.V} {n : S.V ≃ₗ[E] S.V} {A : LFlag S r T}
     (h : n ∈ NLam Λ A) : Hom n A A := by
   obtain ⟨-, h2, h3⟩ := h
   intro a
   induction a using Fin.lastCases with
   | last =>
-    rw [frame_last, Fin.val_last, xflag_r]
-    exact h3 _ (z_mem_orth A)
+    rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_frame_last, Fin.val_last, _root_.Formalism.MainNotions.LatticeGluingRadicals.c_Xflag_r]
+    exact h3 _ (_root_.Formalism.L2.SG.FourParts.z_mem_orth A)
   | cast i =>
-    rw [frame_castSucc, Fin.val_castSucc]
+    rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_frame_castSucc, Fin.val_castSucc]
     exact h2 i.1 _ (e_mem_xflag A i (Nat.lt_succ_self _))
 
 theorem frame_mapLF {T : E} {γ : S.V ≃ₗ[E] S.V} (hγ : γ ∈ Formalism.HermitianLatticesTheory.isom S.hT) (A : LFlag S r T) (a : Fin (r + 1)) :
     frame (mapLF γ A) a = γ (frame A a) := by
   induction a using Fin.lastCases with
-  | last => simp [mapLF, hγ, frame_last, mapFlag]
-  | cast i => simp [mapLF, hγ, frame_castSucc, mapFlag]
+  | last => simp [mapLF, hγ, _root_.Formalism.MainNotions.LatticeGluingRadicals.a_frame_last, mapFlag]
+  | cast i => simp [mapLF, hγ, _root_.Formalism.MainNotions.LatticeGluingRadicals.a_frame_castSucc, mapFlag]
 
 theorem Hom.of_mapLF {T : E} {γ : S.V ≃ₗ[E] S.V} (hγ : γ ∈ Formalism.HermitianLatticesTheory.isom S.hT) (A : LFlag S r T) :
     Hom γ A (mapLF γ A) := by

@@ -70,13 +70,9 @@ theorem normK_ne_zero (D : D7) : ((Ideal.absNorm D.host.ccK : ℕ) : D.host.E) �
   rw [Nat.cast_ne_zero, Ne, Ideal.absNorm_eq_zero_iff]
   exact D.host.ccK_ne_bot
 
-theorem exists_smul_mem_base_lattice_alt (D : D7) (j : ℕ) (y : (D.sp.W j).V) :
-    ∃ s ∈ (𝓞 D.host.E)⁰, s • y ∈ (D.sp.W j).L0 :=
-  _root_.UpperTheory.Reformulated.B.EmbeddingTypes.exists_smul_mem_base_lattice_alt D j y
-
 theorem exists_smul_mem_latW (D : D7) (j : ℕ) (y : (D.sp.W j).V) :
     ∃ s ∈ (𝓞 D.host.E)⁰, s • y ∈ latW D j := by
-  obtain ⟨s, hs, hsy⟩ := exists_smul_mem_base_lattice_alt D j y
+  obtain ⟨s, hs, hsy⟩ := _root_.UpperTheory.Reformulated.B.EmbeddingTypes.exists_smul_mem_base_lattice_alt D j y
   set n : 𝓞 D.host.E := ((Ideal.absNorm D.host.ccK : ℕ) : 𝓞 D.host.E)
   have hn : algebraMap (𝓞 D.host.E) D.host.E n = ((Ideal.absNorm D.host.ccK : ℕ) : D.host.E) := by
     simp [n]

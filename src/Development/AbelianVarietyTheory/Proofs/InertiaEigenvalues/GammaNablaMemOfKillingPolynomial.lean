@@ -49,16 +49,6 @@ open GlobalTheory.PhiGam GlobalTheory.AdmLoc GlobalTheory.Models
 open scoped LaurentSeries PowerSeries
 namespace GlobalTheory.GenKernelFit
 
-theorem aeval_mem {k U : Type} [Field k] [AddCommGroup U] [Module k U] (T : Module.End k U) (Q : Submodule k U)
-    (hQ : ∀ y ∈ Q, T y ∈ Q) (p : Polynomial k) : ∀ y ∈ Q, Polynomial.aeval T p y ∈ Q := by
-  first
-  | exact @_root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main
-  | exact _root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main
-  | (apply _root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main ..)
-
 theorem apply_mem {k U : Type} [Field k] [AddCommGroup U] [Module k U] (T : Module.End k U) (Q : Submodule k U)
     (hQ : ∀ y ∈ Q, T y ∈ Q) (f : Polynomial k) (hf : f.eval 0 ≠ 0) (x : U)
     (h1 : T (Polynomial.aeval T f x) ∈ Q) (j : ℕ) (h2 : (T ^ j) x ∈ Q) : T x ∈ Q := by
@@ -75,7 +65,7 @@ theorem apply_mem {k U : Type} [Field k] [AddCommGroup U] [Module k U] (T : Modu
     simpa only [map_add (f := _), map_mul, map_pow, Polynomial.aeval_X, LinearMap.add_apply, Module.End.mul_apply]
       using this
   rw [e2]
-  exact Q.add_mem (aeval_mem T Q hQ a _ h1) (aeval_mem T Q hQ b _ (hQ _ h2))
+  exact Q.add_mem (_root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main T Q hQ a _ h1) (_root_.GlobalTheory.PowerMembershipInertiaEigenvalues.main T Q hQ b _ (hQ _ h2))
 
 theorem nab_mem_of_ePoly : ∀ {k : Type} [Field k] {l n m : ℕ} [Fact l.Prime] [CharP k l] [NeZero n] {R : RingPG k l} (D : ModPG R n (Vc k m)) (i : ZMod n) (N : Submodule k⟦X⟧ (Vc k m)) (s : ℤ), CondC (D.γ i) N → EPoly (D.γ i) N s → ∀ x ∈ N, (∃ j : ℕ, ((nab (D.γ i)) ^ j) x ∈ sh s N) → nab (D.γ i) x ∈ sh s N := by
   intro k _ l n m _ _ _ R D i N s hC hE x hx hj

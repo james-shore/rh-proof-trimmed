@@ -69,10 +69,6 @@ theorem pbT_id_le {X : Scheme.{0}} {O₀ O : X.Opens} (h : O ≤ O₀) (s : Γ(X
   rw [pbT, rsT, dite_eq_left (show O ≤ (𝟙 X : X ⟶ X) ⁻¹ᵁ O₀ from h), dite_eq_left h]
   rfl
 
-theorem constFn_zero_fn {R : Type} [CommRing R] {X : Scheme.{0}} (q : X ⟶ Sp R) (O : X.Opens) :
-    constFn q O 0 = 0 := by
-  rw [constFn, map_zero, map_zero]
-
 theorem id_app_apply {X : Scheme.{0}} (O : X.Opens) (s : Γ(X, O)) : ((𝟙 X : X ⟶ X).app O).hom s = s := by
   simp only [Scheme.Hom.id_app]
   rfl
@@ -134,7 +130,7 @@ theorem main : ∀ (K : Type) [Field K] [CharZero K] (P₀ : Out.PolAV (Sp K)) (
     rfl
   · intro k k' O hO f
     rw [id_app_apply]
-    simp only [Matrix.zero_apply, constFn_zero_fn, zero_mul, Finset.sum_const_zero, sub_self]
+    simp only [Matrix.zero_apply, _root_.GlobalTheory.KS.InvField.constFn_zero, zero_mul, Finset.sum_const_zero, sub_self]
     rfl
 
 end GlobalTheory.KSZeroDer

@@ -72,8 +72,8 @@ theorem GlobalTheory.LKCx.minpoly_of_regAf_of_fixL : ∀ (p : ℕ) [Fact p.Prime
   have hsim := GlobalTheory.LKCx.grp_similitude_herm p G v β y
   have hs : (0 : ℝ) < ((((y : G.Cˣ × ℚˣ).2 : ℚˣ) : ℚ) : ℝ) := by exact_mod_cast y.2.2
   obtain ⟨c0, hc0⟩ := hfix
-  obtain ⟨H, hH, hHM⟩ := GlobalTheory.T.similitude_signature_one_preserves_posDef_form G.n (G.gram v) (herm G v β) (toV G v β y : Matrix (Fin G.n) (Fin G.n) ℂ)
+  obtain ⟨H, hH, hHM⟩ := _root_.GlobalTheory.similitude_preserves_posDef G.n (G.gram v) (herm G v β) (toV G v β y : Matrix (Fin G.n) (Fin G.n) ℂ)
     (G.gram_herm v) Z _ (G.gram_det v) hv hZ hs (by rw [Complex.ofReal_ratCast]; exact hsim) z.1 c0 z.2 hc0
-  have hsq := GlobalTheory.T.aeval_eq_zero_of_sq_eq_zero_of_posDef_similitude G.n H _ _ hH hs hHM
-  have hsep := GlobalTheory.T.minpoly_separable_of_no_sq_zero_polynomial_image G.F G.C G.n v.embedding (G.psi v) G.n_pos (G.psi_F v) _ hsq
-  exact ⟨GlobalTheory.T.natDegree_minpoly_eq_deg_centralSimple_commCentraliser G.F G.C G.n G.rankC _ hsep hcomm, hsep⟩
+  have hsq := _root_.GlobalTheory.aeval_eq_zero_of_mul_self_eq_zero_of_similitude G.n H _ _ hH hs hHM
+  have hsep := _root_.GlobalTheory.LKCx.minpoly_separable_of_sq_zero_free G.F G.C G.n v.embedding (G.psi v) G.n_pos (G.psi_F v) _ hsq
+  exact ⟨_root_.GlobalTheory.RegDeg.natDegree_minpoly_eq G.F G.C G.n G.rankC _ hsep hcomm, hsep⟩

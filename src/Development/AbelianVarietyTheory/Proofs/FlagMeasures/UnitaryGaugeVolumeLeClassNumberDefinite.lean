@@ -241,10 +241,6 @@ theorem covol_le {r : ℕ} (h : HasSig I r 0) (μf : Measure I.Gf) [SigmaFinite 
         rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
         ring
 
-theorem volU_pos (i : ℕ) : 0 < volU i := by
-  unfold volU sphV
-  exact mul_pos (Finset.prod_pos fun l _ => by positivity) (by positivity)
-
 theorem gauge_local (N : ℕ) (ε : Fin N → Bool) (hε : ε = allPos N) (c : ℝ) (hc : IsGauge ε c) :
     0 ≤ c ∧ ENNReal.ofReal c * Formalism.REAL.muG ε Set.univ = ENNReal.ofReal (volU N) := by
   subst hε
@@ -255,7 +251,7 @@ theorem gauge_local (N : ℕ) (ε : Fin N → Bool) (hε : ε = allPos N) (c : �
   have hc0 : 0 < c := by
     by_contra hle
     push_neg at hle
-    nlinarith [volU_pos N]
+    nlinarith [_root_.GlobalTheory.UnitaryVolume.volU_pos N]
   refine ⟨hc0.le, ?_⟩
   rw [← ENNReal.ofReal_toReal hlt.ne, ← ENNReal.ofReal_mul hc0.le, h1]
 
@@ -271,12 +267,12 @@ theorem gaugeVol_le : ∀ (I : AutInst) (r : ℕ), HasSig I r 0 → ∀ (c : Inf
       ENNReal.ofReal (c v) * Formalism.REAL.muG (I.ε v) Set.univ = ENNReal.ofReal (volU I.n) :=
     fun v => gauge_local I.n (I.ε v) (eps_eq I h v) (c v) (hc v)
   have hV : ENNReal.ofReal (volU I.n ^ I.f) ≠ 0 :=
-    (ENNReal.ofReal_pos.2 (pow_pos (volU_pos _) _)).ne'
+    (ENNReal.ofReal_pos.2 (pow_pos (_root_.GlobalTheory.UnitaryVolume.volU_pos _) _)).ne'
   have hprod : ENNReal.ofReal (∏ v, c v) * ∏ v, Formalism.REAL.muG (I.ε v) Set.univ =
       ENNReal.ofReal (volU I.n ^ I.f) := by
     rw [ENNReal.ofReal_prod_of_nonneg (fun v _ => (hloc v).1), ← Finset.prod_mul_distrib,
       Finset.prod_congr rfl (fun v _ => (hloc v).2), Finset.prod_const, Finset.card_univ, card_places,
-      ENNReal.ofReal_pow (volU_pos _).le]
+      ENNReal.ofReal_pow (_root_.GlobalTheory.UnitaryVolume.volU_pos _).le]
   by_cases hfin : Finite (Quot (Isom I.E I.n))
   · haveI := Fintype.ofFinite (Quot (Isom I.E I.n))
     have hcv := covol_le I h μf

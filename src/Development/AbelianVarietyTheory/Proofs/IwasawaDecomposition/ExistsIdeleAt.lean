@@ -91,70 +91,7 @@ theorem det_idem_kron {m n : ℕ} (P : Matrix (Fin m) (Fin m) ℂ) (hP : P * P =
   rw [e, Matrix.det_one_add_mul_comm, e2, Matrix.det_kronecker]
   simp
 
-theorem detPlus_one {m n : ℕ} (s : Matrix (Fin m) (Fin m) ℂ) (hs : s * s = 1) :
-    ∃ p : ℕ, s.trace = 2 * p - m ∧ ∀ (a : Matrix (Fin n) (Fin n) ℂ) (b : Matrix (Fin m) (Fin m) ℂ), s * b = b * s →
-      GlobalTheory.WeilParts.detPlus 1 s a b = ((1 / 2 : ℂ) • (1 + s) * b + (1 / 2 : ℂ) • (1 - s)).det ^ n * a.det ^ p ∧
-      b.det = ((1 / 2 : ℂ) • (1 + s) * b + (1 / 2 : ℂ) • (1 - s)).det *
-        ((1 / 2 : ℂ) • (1 - s) * b + (1 / 2 : ℂ) • (1 + s)).det := by
-  obtain ⟨P, hPd⟩ : ∃ P, P = (1 / 2 : ℂ) • (1 + s) := ⟨_, rfl⟩
-  have hQ : (1 / 2 : ℂ) • (1 - s) = 1 - P := by rw [hPd]; module
-  have hP : P * P = P := by
-    rw [hPd, Matrix.smul_mul, Matrix.mul_smul, add_mul, mul_add, mul_add, hs, one_mul, mul_one, one_mul]; module
-  obtain ⟨p, hp, hd⟩ := det_idem_kron (n := n) P hP
-  refine ⟨p, ?_, fun a b hb => ?_⟩
-  · rw [hPd, Matrix.trace_smul, Matrix.trace_add, Matrix.trace_one, Fintype.card_fin, smul_eq_mul] at hp
-    linear_combination 2 * hp
-  have hc : P * b = b * P := by
-    rw [hPd, Matrix.smul_mul, Matrix.mul_smul, add_mul, mul_add, hb, one_mul, mul_one]
-  have hc2 : P * b * P = P * b := by rw [mul_assoc, ← hc, ← mul_assoc, hP]
-  rw [← hPd, hQ]
-  constructor
-  · have e1 : (1 / 2 : ℂ) • ((1 + s ⊗ₖ (1 : Matrix (Fin n) (Fin n) ℂ)ᵀ) * (b ⊗ₖ aᵀ)) +
-        (1 / 2 : ℂ) • (1 - s ⊗ₖ (1 : Matrix (Fin n) (Fin n) ℂ)ᵀ) =
-        (P * b) ⊗ₖ aᵀ + (1 - P) ⊗ₖ (1 : Matrix (Fin n) (Fin n) ℂ) := by
-      rw [← hQ, hPd, Matrix.transpose_one, add_mul, ← Matrix.mul_kronecker_mul, Matrix.smul_mul, add_mul, one_mul, one_mul,
-        one_mul, ← Matrix.one_kronecker_one]
-      ext ⟨i, j⟩ ⟨k, l⟩
-      simp only [Matrix.add_apply, Matrix.kroneckerMap_apply, Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul]
-      ring
-    have e2 : (P * b) ⊗ₖ aᵀ + (1 - P) ⊗ₖ (1 : Matrix (Fin n) (Fin n) ℂ) =
-        ((P * b + (1 - P)) ⊗ₖ (1 : Matrix (Fin n) (Fin n) ℂ)) *
-          (P ⊗ₖ aᵀ + (1 - P) ⊗ₖ (1 : Matrix (Fin n) (Fin n) ℂ)) := by
-      have f1 : (P * b + (1 - P)) * P = P * b := by rw [add_mul, hc2, sub_mul, one_mul, hP, sub_self, add_zero]
-      have f2 : (P * b + (1 - P)) * (1 - P) = 1 - P := by rw [mul_sub, f1, mul_one]; abel
-      rw [mul_add, ← Matrix.mul_kronecker_mul, ← Matrix.mul_kronecker_mul, f1, f2, one_mul, one_mul]
-    unfold GlobalTheory.WeilParts.detPlus
-    rw [e1, e2, Matrix.det_mul, hd, Matrix.det_kronecker]
-    simp
-  · rw [← Matrix.det_mul]
-    congr 1
-    have f3 : P * b * ((1 - P) * b) = 0 := by
-      rw [← mul_assoc, mul_sub, mul_one, hc2, sub_self, zero_mul]
-    have f4 : (1 - P) * ((1 - P) * b) = (1 - P) * b := by
-      rw [← mul_assoc, sub_mul, mul_sub, mul_sub, hP]; simp
-    have f5 : (1 - P) * P = 0 := by rw [sub_mul, hP, one_mul, sub_self]
-    rw [add_mul, mul_add, mul_add, f3, f4, f5, hc2, sub_mul]; simp
-
 variable {D : D7}
-
-theorem hasInfExp_twist {χ η : (AE D)ˣ →* Circle} {τ : D.what₂.Tau} {a : ℚ} (hχ : HasInfExp D χ τ a)
-    (hη : HasInfExp D η τ (1 / 2)) (k : ℕ) : HasInfExp D (χ * (η ^ k)⁻¹) τ (a - k / 2) := by
-  obtain ⟨n, hn, h0, h⟩ := hχ
-  obtain ⟨n', hn', -, h'⟩ := hη
-  have e : n' = 1 := by
-    have : (n' : ℚ) = 1 := by rw [hn']; norm_num
-    exact_mod_cast this
-  subst e
-  refine ⟨n - k, by push_cast; rw [hn]; ring, h0, fun θ hθ x h1 h2 => ?_⟩
-  have hne : θ τ (infPart D (x : AE D)) / (‖θ τ (infPart D (x : AE D))‖ : ℂ) ≠ 0 := by
-    have := h' θ hθ x h1 h2
-    rw [zpow_one] at this
-    rw [← this]; exact Circle.coe_ne_zero _
-  rw [zpow_sub₀ hne, ← h θ hθ x h1 h2, zpow_natCast]
-  have := h' θ hθ x h1 h2
-  rw [zpow_one] at this
-  rw [← this]
-  simp [div_eq_mul_inv]
 
 theorem adele_ext {θ : InfFam D} (hθ : IsInfFam θ) {x y : AE D} (h1 : finPart D x = finPart D y)
     (h2 : ∀ τ, θ τ (infPart D x) = θ τ (infPart D y)) : x = y := by

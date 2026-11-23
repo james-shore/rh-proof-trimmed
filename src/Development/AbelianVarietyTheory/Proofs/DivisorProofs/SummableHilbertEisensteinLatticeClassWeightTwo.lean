@@ -61,7 +61,7 @@ theorem GlobalTheory.HeckeTwo.summable_eisClass_two : ∀ (F : Type) [Field F] [
   have hp : c.out.1 ≠ 0 := c.out.2.2.2
   have e : |((Algebra.norm ℚ (GlobalTheory.GaussExt.gEmb F c.out.1) : ℚ) : ℝ)| =
       ∏ τ : F →+* ℝ, ((τ c.out.1.1) ^ 2 + (τ c.out.1.2) ^ 2) := by
-    rw [GlobalTheory.T.algebraNorm_rat_gaussianExtensionOfPair F c.out.1.1 c.out.1.2]
+    rw [_root_.GlobalTheory.GaussExt.norm_gEmb F c.out.1.1 c.out.1.2]
     exact abs_of_nonneg (Finset.prod_nonneg fun τ _ => by positivity)
   rw [e]
   exact hC _ hp

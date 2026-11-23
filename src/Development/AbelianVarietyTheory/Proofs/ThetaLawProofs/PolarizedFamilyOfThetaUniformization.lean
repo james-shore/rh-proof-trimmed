@@ -119,7 +119,7 @@ theorem exists_translate (hL : Out.Laws) {h k : ℕ} {o : Type} [CommRing o] {ζ
   obtain ⟨e, he, -, hl⟩ := (sqOf_calculus h k o ζ S (Sp ℂ) (Sp ℂ) s c (x ≫ f)).2.1 P₁ P _ _ h₁ hP
   obtain ⟨t₁, ht₁, hi⟩ := GlobalTheory.T.exists_twoTorsion_translate_same_lambdaBundle hL ℂ P₁ P e he hl
   obtain ⟨t, ht, hy⟩ := hT ℂ _ (pushHom hπ.1 _ t₁) (by rw [← map_pow, ht₁, map_one])
-  obtain ⟨Q', e', he', hg', hl', hi'⟩ := GlobalTheory.T.exists_rigidTranslate_principalPolarisation_order_two hL R Q t ht
+  obtain ⟨Q', e', he', hg', hl', hi'⟩ := _root_.GlobalTheory.RigidTranslate.exists_rigid_translate hL R Q t ht
   have hy' : t₁.left ≫ π = x ≫ t.left := by
     refine (congrArg (fun q => q.left) hy).trans ?_
     refine congrArg (· ≫ t.left) ?_
@@ -180,8 +180,7 @@ theorem exists_affine {K : Type} [CommRing K] {X : Scheme.{0}} (s : X ⟶ Sp K) 
   · exact (congrArg (· ≫ hV.fromSpec) (Spec.map_preimage _)).trans (IsOpenImmersion.lift_fac _ _ _)
   · exact (congrArg (· ≫ hV.fromSpec) (Spec.map_preimage _)).trans (IsOpenImmersion.lift_fac _ _ _)
 
-theorem spMap_inj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
+alias spMap_inj := _root_.GlobalTheory.ZM.DenseFib.spMap_inj
 
 end GlobalTheory.KeyFam.PolFamPf
 

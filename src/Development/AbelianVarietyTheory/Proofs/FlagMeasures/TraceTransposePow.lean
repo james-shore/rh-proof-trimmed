@@ -76,7 +76,7 @@ private lemma matrix_of_pow_succ_apply_sub_nsmul_add_trace {n : ℕ} {V : Type} 
   have h1 : ∀ c, E c a * Formalism.REAL.epow E j b c = Formalism.REAL.epow E j b c * E c a +
       ((if a = b then Formalism.REAL.epow E j c c else 0) - Formalism.REAL.epow E j b a) := by
     intro c
-    have := Formalism.REAL.epowCov (Module.End ℂ V) n E hE j b c c a
+    have := _root_.Formalism.REAL.generatorPowCovariance_holds (Module.End ℂ V) n E hE j b c c a
     rw [if_pos rfl] at this
     rw [← this]
     abel

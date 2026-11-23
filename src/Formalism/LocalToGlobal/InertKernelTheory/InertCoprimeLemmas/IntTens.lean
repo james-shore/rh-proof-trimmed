@@ -686,8 +686,6 @@ end Formalism.L2.KerInert.IntTens
 
 namespace Formalism.L2.KerInert
 
-theorem taylor_product_over_blocks : TaylorProductOverBlocks := IntTens.taylor_product_blocks_factorization
-
-theorem tensor_matrix_units_fact : TensFact := IntTens.tensFact_of taylor_product_over_blocks
+theorem tensor_matrix_units_fact : TensFact := IntTens.tensFact_of _root_.Formalism.L2.KerInert.IntTens.taylor_product_blocks_factorization
 
 end Formalism.L2.KerInert

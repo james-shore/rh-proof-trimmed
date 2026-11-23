@@ -90,13 +90,6 @@ theorem extL_is (hL : R.toLevCh.Is A.μ0) (hV : ∀ n, TwLev R (V.xiH n) (V.xi n
     βV := hL.βV
     βW := hL.βW }
 
-theorem Q_base (hL : R.toLevCh.Is A.μ0) : R.Q A.μ0 = ∅ :=
-  Finset.eq_empty_of_forall_notMem fun PP hP => (hL.Q_ram A.μ0 PP).2 (Or.inl hP) (by
-    show (R.xiH A.μ0).UnrAt PP
-    rw [hL.xi_base]
-    exact fun _ _ => rfl)
-
-
 open Formalism.L2.Host Formalism.L2.Col GlobalTheory.RationalValues in
 theorem xiR_mem (hL : R.toLevCh.Is A.μ0) (hF : R.IsFam) {χ xi Q xiR} (h : TwLev R χ xi Q xiR) :
     ∀ PP ∈ Q, ∀ x, ((xiR PP x : ℂˣ) : ℂ) ∈ D.what₂.embLL.fieldRange := by
@@ -154,7 +147,7 @@ theorem okOf_subset (hL : R.toLevCh.Is A.μ0) (hF : R.IsFam) (n : N) : okOf R V 
   obtain ⟨g, c, c', ht⟩ := hF.tie
   intro P hP
   refine (ht.ok A.μ0 P).2 ?_
-  rw [Q_base hL, Finset.coe_empty, Set.union_empty]
+  rw [_root_.GlobalTheory.LiftLower.Q_base hL, Finset.coe_empty, Set.union_empty]
   exact ⟨hP.1, fun h => hP.2.1 (Or.inl h), fun w hw => hP.2.2 w (Or.inl hw)⟩
 
 theorem sep_new (hL' : (extL R.toLevCh V).Is (.inl A.μ0)) (n : N) : ∀ PP ∈ R.Pg, ∀ PP' ∈ V.Q n,
@@ -180,7 +173,7 @@ theorem exists_sideX (hS : SideLev) {F : Face D A} (hC : GlobalTheory.Hk3.Core R
   obtain ⟨g, c, c', ht⟩ := hC.fam.tie
   have key := hS D G D.sp.X' R.βX R.ΛX hC.lev.βX (R.datXt A.μ0) (V.Q n) ((extL R.toLevCh V).datXt (.inr n)).xq Pl0 R.pl (A.ok A.μ0)
     (okOf R V n) ((R.Sb : Set (Pl D.host.E)) ∪ (V.Q n : Set (Pl D.host.E)))
-    (by show R.Q A.μ0 ⊆ _; rw [Q_base hC.lev]; exact Finset.empty_subset _) (okOf_subset hC.lev hC.fam n) (sep_new hL' n)
+    (by show R.Q A.μ0 ⊆ _; rw [_root_.GlobalTheory.LiftLower.Q_base hC.lev]; exact Finset.empty_subset _) (okOf_subset hC.lev hC.fam n) (sep_new hL' n)
     (fun P hP => hP) (fun PP h => h.elim (fun h => Or.inl (hC.fam.Sb h)) Or.inr)
     (fun j hj PP hP x => hχ ⟨j, hj⟩ PP hP x)
     (fun PP hP x => by
@@ -211,7 +204,7 @@ theorem exists_sideV (hS : SideLev) {F : Face D A} (hC : GlobalTheory.Hk3.Core R
   obtain ⟨g, c, c', ht⟩ := hC.fam.tie
   have key := hS D G (Vc D i) (R.βV i) (R.ΛV i) (hC.lev.βV i) (R.datVt i A.μ0) (V.Q n) ((extL R.toLevCh V).datVt i (.inr n)).xq Pl0 R.pl
     (A.ok A.μ0) (okOf R V n) ((R.Sb : Set (Pl D.host.E)) ∪ (V.Q n : Set (Pl D.host.E)))
-    (by show R.Q A.μ0 ⊆ _; rw [Q_base hC.lev]; exact Finset.empty_subset _) (okOf_subset hC.lev hC.fam n) (sep_new hL' n)
+    (by show R.Q A.μ0 ⊆ _; rw [_root_.GlobalTheory.LiftLower.Q_base hC.lev]; exact Finset.empty_subset _) (okOf_subset hC.lev hC.fam n) (sep_new hL' n)
     (fun P hP => hP) (fun PP h => h.elim (fun h => Or.inl (hC.fam.Sb h)) Or.inr)
     (fun j _ PP hP x => by
       have e : (R.datVt i A.μ0).cg (j + 1) PP x = (R.chi ((i : ℕ) + 1) PP x)⁻¹ := rfl

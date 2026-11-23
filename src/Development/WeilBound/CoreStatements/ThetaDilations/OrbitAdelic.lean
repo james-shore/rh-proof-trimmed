@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.AdelicHaarMeasureScaling
 
 @[expose] public section
 
@@ -53,8 +54,6 @@ noncomputable section
 namespace PositivityTheory.PlacePermOperatorBicommutantSpan
 
 variable {F : Type} [Field F] [NumberField F] {ι : Type} [Fintype ι]
-
-theorem oh_mul {x y : A F} (hx : x ∈ Oh F) (hy : y ∈ Oh F) : x * y ∈ Oh F := fun v => mul_mem (hx v) (hy v)
 
 theorem oh_nat (N : ℕ) : (N : A F) ∈ Oh F := by
   induction N with
@@ -103,10 +102,10 @@ theorem orbit_adelic [MeasurableSpace (A F)] {ψ : AddChar (A F) ℂ} {h : A F} 
     ⟨⟨L'.zero_mem, (perpG hD L).zero_mem⟩, (perpG hD L₂).zero_mem⟩)
   refine orbit_bd H (Oh F) (co_LN hN) (fun a ha x hx i => ?_) hφ fun x hx y hy => funext fun u => ?_
   · obtain ⟨y, hy, e⟩ := hx i
-    exact ⟨a * y, oh_mul ha hy, by rw [Pi.smul_apply, e, smul_eq_mul, mul_left_comm]⟩
+    exact ⟨a * y, _root_.GlobalTheory.CompanionTheory.SW.Core.Scale.mul_mem_Oh ha hy, by rw [Pi.smul_apply, e, smul_eq_mul, mul_left_comm]⟩
   · have h1 : chiB ψ B (h • x) y = 1 := (hsub hy).2 _ (hK ⟨x, fun i => by
       obtain ⟨z, hz, e⟩ := hx i
-      exact ⟨N * z, oh_mul (oh_nat N) hz, by rw [e, Nat.cast_one, one_mul]⟩, rfl⟩)
+      exact ⟨N * z, _root_.GlobalTheory.CompanionTheory.SW.Core.Scale.mul_mem_Oh (oh_nat N) hz, by rw [e, Nat.cast_one, one_mul]⟩, rfl⟩)
     rw [chiB, smul_dotProduct, smul_eq_mul] at h1
     rw [Heisenberg₂, hinv u x (hsub hx).1.1, AddChar.map_add_eq_mul, h1, mul_one]
     by_cases hu : u ∈ L

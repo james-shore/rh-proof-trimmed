@@ -74,8 +74,8 @@ theorem isWt_secRatio : ∀ (R : Type) [CommRing R] [IsDomain R] (D : DegPre R) 
       (gm t.left z ⊤ (charUnit (Sp R) D.X α)).val * sval τ g.left z J := by
     rw [h Z _ z J hJ, h Z g z J hJ, hq, hi α Z t g z J hJ, Units.val_mul, mul_left_comm]
   have hz : g.left z ∈ nonzeroLocus τ₀ := hg (Set.mem_univ z)
-  have hu : IsUnit (sval τ₀ g.left z J) := (TermLocus.isUnit_sval_iff τ₀ _ z hJ).2 hz
-  have hz' : ((t ≫ i) * g).left z ∈ nonzeroLocus τ₀ := (TermLocus.isUnit_sval_iff τ₀ _ z hJ).1 (e₀ ▸ hu)
+  have hu : IsUnit (sval τ₀ g.left z J) := (_root_.GlobalTheory.Ex.OneGen.isUnit_sval_iff τ₀ _ z hJ).2 hz
+  have hz' : ((t ≫ i) * g).left z ∈ nonzeroLocus τ₀ := (_root_.GlobalTheory.Ex.OneGen.isUnit_sval_iff τ₀ _ z hJ).1 (e₀ ▸ hu)
   refine hu.mul_right_cancel ?_
   rw [_root_.mul_assoc, ← sval_eq_secRatio_mul τ₀ τ g.left z hJ hz, ← e, sval_eq_secRatio_mul τ₀ τ _ z hJ hz', e₀]
 

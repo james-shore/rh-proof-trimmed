@@ -193,14 +193,11 @@ section Lidx
 
 variable {R W W' : Type*} [CommRing R] [AddCommGroup W] [Module R W] [AddCommGroup W'] [Module R W']
 
-theorem mem_locP (p : Ideal R) [p.IsPrime] (L : Submodule R W) (x : W) :
-    x ∈ Formalism.HermitianLatticesTheory.localization₂ p L ↔ ∃ s ∈ p.primeCompl, s • x ∈ L := Iff.rfl
-
 theorem localization_map_of_injective (p : Ideal R) [p.IsPrime] (f : W →ₗ[R] W') (hf : Function.Injective f)
     (hsat : ∀ (s : R) (y : W'), s ∈ p.primeCompl → s • y ∈ LinearMap.range f → y ∈ LinearMap.range f)
     (A : Submodule R W) : Formalism.HermitianLatticesTheory.localization₂ p (A.map f) = (Formalism.HermitianLatticesTheory.localization₂ p A).map f := by
   ext y
-  simp only [mem_locP, Submodule.mem_map]
+  simp only [_root_.Formalism.DivisionValues.imageLcv_mem_locP, Submodule.mem_map]
   constructor
   · rintro ⟨s, hs, a, ha, hay⟩
     obtain ⟨x, rfl⟩ := hsat s y hs ⟨a, hay⟩

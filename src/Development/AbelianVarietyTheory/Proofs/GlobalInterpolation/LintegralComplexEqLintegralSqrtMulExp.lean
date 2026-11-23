@@ -56,17 +56,6 @@ open MeasureTheory
 
 namespace GlobalTheory
 
-theorem lintegral_Ioi_mul_eq_lintegral_Ioi_sqrt (G : ℝ → ENNReal) :
-    ∫⁻ r in Set.Ioi (0 : ℝ), ENNReal.ofReal r * G r
-      = ∫⁻ u in Set.Ioi (0 : ℝ), (2 : ENNReal)⁻¹ * G (Real.sqrt u) := by
-  first
-  | exact @_root_.GlobalTheory.SquareImageInterval.main
-  | exact _root_.GlobalTheory.SquareImageInterval.main
-  | (apply _root_.GlobalTheory.SquareImageInterval.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SquareImageInterval.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SquareImageInterval.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SquareImageInterval.main ..)
-
 theorem lintegral_complex_eq_lintegral_sqrt_mul_exp (ε c : ℝ) (hε : ε = 1 ∨ ε = -1)
     (g : ℂ → ENNReal) (hg : Measurable g) (h0 : g 0 = 0) :
     ∫⁻ z, g z = ∫⁻ t : ℝ, ∫⁻ θ in Set.Ioo (-Real.pi) Real.pi,
@@ -105,7 +94,7 @@ theorem lintegral_complex_eq_lintegral_sqrt_mul_exp (ε c : ℝ) (hε : ε = 1 �
     · simp
     · simp only [neg_mul, one_mul]
       exact (lintegral_neg_eq_self F).symm
-  rw [h1, lintegral_Ioi_mul_eq_lintegral_Ioi_sqrt, h2, h3]
+  rw [h1, _root_.GlobalTheory.SquareImageInterval.main, h2, h3]
   refine lintegral_congr fun t => ?_
   simp only [hG]
   rw [lintegral_const_mul' _ _ (by norm_num)]

@@ -266,10 +266,6 @@ private theorem wzCore (f n : ℕ) {O : Type} [CommRing O] {Y : Scheme.{0}} (q :
     rw [a, a]
     exact this
 
-private theorem mapU_sharp' {A B : PAlg l} (f : A ⟶ B) (a : A.A) : PAlg.mapU f (A.sharp a) = B.sharp (PAlg.Hom.f f a) := by
-  change B.th (PAlg.mapW f (WittVector.teichmuller l a)) = B.th (WittVector.teichmuller l (PAlg.Hom.f f a))
-  rw [PAlg.mapW, WittVector.map_teichmuller]
-
 private theorem wzChart {Y : Scheme.{0}} (hY : AffFin Y) {J : Type} [Finite J] (T : J → Corr l Y) (A : Test l)
     (y : Spec (CommRingCat.of A.obj.U) ⟶ Y) :
     ∃ S : Fam A, IsDec S ∧ ∀ s, ∃ U V : Y.Opens, IsAffineOpen U ∧ IsAffineOpen V ∧
@@ -284,7 +280,7 @@ private theorem wzChart {Y : Scheme.{0}} (hY : AffFin Y) {J : Type} [Finite J] (
   obtain ⟨B, f, hd, h1⟩ := decEx l A I e₀ he₀
   refine ⟨⟨I, B, f⟩, hd, fun s => ⟨U (a s), V (a s), hU _, hV _, hUV _, fun p _ => ?_⟩⟩
   have h2 : PAlg.mapU (f s).hom (e s) = 1 := by
-    rw [← hs, mapU_sharp']
+    rw [← hs, _root_.GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp]
     change (B s).obj.sharp (PAlg.Hom.f (f s).hom (e₀ s)) = 1
     rw [h1 s]
     simp [PAlg.sharp]

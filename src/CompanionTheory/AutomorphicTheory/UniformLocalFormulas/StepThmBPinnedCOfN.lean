@@ -255,7 +255,7 @@ theorem stepThmBPinnedC_ofN (hB : JointNormBoundRotatedUniform) (hA : AmpUnif) (
   have hTB : 0 ≤ Real.exp ((max 0 Cb * max 2 Cw + |Ca| + |Cn|) * ((2 * D.R.rS + 2 : ℕ) : ℝ) ^ 5 * D.R.f *
       Real.log large₂.sc.b) * Ire := mul_nonneg (Real.exp_pos _).le hIre
   exact pointSum_of_B3R (Y.tO u u') (NOf2 Y u u' νL ν ng) (hB1 (max Cg₀ 0) (le_max_left _ _) D)
-    (fun γ => Formalism.L2.SG.ThmBUse.J2of_nonneg' Y u u' ν γ) hTB
+    (fun γ => _root_.Formalism.L2.SG.NGAnalytic.J2of_nonneg Y u u' ν γ) hTB
     (ties_coreN (Y.tO u u') (NOf2 Y u u' νL ν ng) u u' A hH hTT hT hT' (hA2 C' Cl hC'a hClb D large₂) hStd
       (fun _ => hctx.2.2.2.2.2.2.2.2.2) (point_amplitude_relation_normalized Y u u' (hP2 C' Cl hC'g hClh D large₂ X Y u u' hctx) νL ν ng)
       (Formalism.L2.SG.ThmBUse.weight_normalized Formalism.L2.SG.Pf.weightConclusion Y u u' νL ν ng A) hIre Cc hBs hθ0 hθw dg hAg zero_le_one
@@ -313,7 +313,7 @@ theorem stepThmBG_ofN (hB : JointNormBoundRotatedUniform) (hA : AmpUnif) (hP : P
   have hTB : 0 ≤ Real.exp ((max 0 Cb * max 2 Cw + |Ca| + |Cn|) * ((2 * D.R.rS + 2 : ℕ) : ℝ) ^ 5 * D.R.f *
       Real.log large₂.sc.b) * Ire := mul_nonneg (Real.exp_pos _).le hIre
   exact pointSum_of_B3R (genT (Y.tO u u)) (NOfG Y u νL ν ng) (hB1 (max Cg₀ 0) (le_max_left _ _) D)
-    (fun γ => Formalism.L2.SG.ThmBUse.J2of_nonneg' Y u u ν γ) hTB
+    (fun γ => _root_.Formalism.L2.SG.NGAnalytic.J2of_nonneg Y u u ν γ) hTB
     (ties_coreN (genT (Y.tO u u)) (NOfG Y u νL ν ng) u u A hH hTT hT hT (hA2 C' Cl hC'a hClb D large₂) hStd
       (fun _ => hctx.2.2.2.2.2.2.2.2.2) (ptTie_NOfG Y u (hP2 C' Cl hC'g hClh D large₂ X Y u hctx) νL ν ng)
       (wtTie_NOfG Y u νL ν ng A) hIre Cc hBs hθ0 hθw dg hAg zero_le_one

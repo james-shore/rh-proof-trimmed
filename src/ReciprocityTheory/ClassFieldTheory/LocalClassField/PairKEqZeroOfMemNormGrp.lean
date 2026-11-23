@@ -136,7 +136,7 @@ theorem index_normGrp_le (hK : FiniteDimensional ℚ_[p] K) (hL : IsAbLK p K L) 
         have := (subG_le_iff (L' := K) hL.le).1 fun s _ => hall s
         rwa [sup_idem] at this
       have h2 : L = K := le_antisymm h1 hL.le
-      rw [h2, normGrp_self, Subgroup.index_top]
+      rw [h2, _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normGroup_self_eq_top, Subgroup.index_top]
       exact hn ▸ degLK_pos hL.fin
     · push Not at hall
       obtain ⟨g, hg⟩ := hall
@@ -286,7 +286,7 @@ theorem exists_conjGK {M : IntermediateField ℚ_[p] (PadicAlgCl p)} (hM : Finit
   have hinv := stable_inv_of_stable hM σ hσ
   have hex : ∀ g : GK p M, ∃ g' : GK p M, resGK h g' = σ * resGK h g * σ⁻¹ := fun g => by
     have : σ * resGK h g * σ⁻¹ ∈ (resGK h).range := by
-      rw [range_resGK h]
+      rw [_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction h]
       intro x hx
       show σ (g (σ⁻¹ x)) = x
       rw [show g (σ⁻¹ x) = σ⁻¹ x from g.commutes ⟨_, hinv x hx⟩]

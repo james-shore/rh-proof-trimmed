@@ -48,6 +48,7 @@ import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl
+import Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsThetaSeriesApplyNeZeroOfLargeForm
 
 @[expose] public section
 
@@ -80,10 +81,6 @@ theorem posn_quad_add {g : ℕ} (H₀ Hm : Matrix (Fin g) (Fin g) ℂ) (n : ℕ)
   rw [Matrix.add_mulVec, dotProduct_add, h1, dotProduct_smul, Complex.add_re, nsmul_eq_mul,
     ← Complex.ofReal_natCast, Complex.re_ofReal_mul]
 
-theorem posn_cont {g : ℕ} (H : Matrix (Fin g) (Fin g) ℂ) :
-    Continuous fun z : Fin g → ℂ => (z ⬝ᵥ H.mulVec (star z)).re := by
-  fun_prop
-
 theorem posn_main : ∀ (g : ℕ) (H₀ Hm : Matrix (Fin g) (Fin g) ℂ),
     (∀ z : Fin g → ℂ, z ≠ 0 → 0 < (z ⬝ᵥ H₀.mulVec (star z)).re) →
     ∃ n : ℕ, ∀ z : Fin g → ℂ, z ≠ 0 → 0 < (z ⬝ᵥ (Hm + n • H₀).mulVec (star z)).re := by
@@ -105,8 +102,8 @@ theorem posn_main : ∀ (g : ℕ) (H₀ Hm : Matrix (Fin g) (Fin g) ℂ),
     exact pos_of_mul_pos_right h (sq_nonneg _)
   by_cases hne : (Metric.sphere (0 : Fin g → ℂ) 1).Nonempty
   · have hK : IsCompact (Metric.sphere (0 : Fin g → ℂ) 1) := isCompact_sphere 0 1
-    obtain ⟨w₀, hw₀, hmin⟩ := hK.exists_isMinOn hne (posn_cont H₀).continuousOn
-    obtain ⟨C, hC⟩ := hK.exists_bound_of_continuousOn (posn_cont Hm).continuousOn
+    obtain ⟨w₀, hw₀, hmin⟩ := hK.exists_isMinOn hne (_root_.GlobalTheory.ThetaLarge.continuous_form H₀).continuousOn
+    obtain ⟨C, hC⟩ := hK.exists_bound_of_continuousOn (_root_.GlobalTheory.ThetaLarge.continuous_form Hm).continuousOn
     have hw₀ne : w₀ ≠ 0 := by
       intro h; rw [h, mem_sphere_zero_iff_norm, norm_zero] at hw₀; exact zero_ne_one hw₀
     set m := (w₀ ⬝ᵥ H₀.mulVec (star w₀)).re with hm

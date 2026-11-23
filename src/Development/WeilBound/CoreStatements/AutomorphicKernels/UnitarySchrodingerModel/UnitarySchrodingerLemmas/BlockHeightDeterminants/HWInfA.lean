@@ -42,6 +42,7 @@ import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsArchEquivEq
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.BigCellDefs
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.ThetaOrbits
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BlockMatrixTwoByTwoFinStandardSkewMap
 
 @[expose] public section
 
@@ -70,23 +71,10 @@ theorem block_matrix_conjTranspose {n : ℕ} (a b c d : Matrix (Fin n) (Fin n) �
   unfold blk4
   rw [Matrix.conjTranspose_submatrix, Matrix.fromBlocks_conjTranspose]
 
-theorem block_matrix_mul_comm_ring {R : Type} [CommRing R] {n : ℕ} (a b c d a' b' c' d' : Matrix (Fin n) (Fin n) R) :
-    blk4 a b c d * blk4 a' b' c' d' =
-      blk4 (a * a' + b * c') (a * b' + b * d') (c * a' + d * c') (c * b' + d * d') := by
-  unfold blk4
-  rw [Matrix.submatrix_mul_equiv, Matrix.fromBlocks_multiply]
-
 theorem block_matrix_injective {R : Type} {n : ℕ} {a b c d a' b' c' d' : Matrix (Fin n) (Fin n) R}
     (h : blk4 a b c d = blk4 a' b' c' d') : a = a' ∧ b = b' ∧ c = c' ∧ d = d' := by
   have := congrArg (fun M => Matrix.submatrix M finSumFinEquiv finSumFinEquiv) h
   simpa [blk4, Matrix.fromBlocks_inj] using this
-
-theorem compAt_mul (θ : InfFam D) (τ : D.what₂.Tau) {k m n : ℕ} (x : Mx D k m) (y : Mx D m n) :
-    compAt θ τ (x * y) = compAt θ τ x * compAt θ τ y :=
-  Matrix.map_mul (f := (θ τ).comp (infPart D))
-
-theorem compAt_one (θ : InfFam D) (τ : D.what₂.Tau) {k : ℕ} : compAt θ τ (1 : Mx D k k) = 1 :=
-  Matrix.map_one _ (map_zero ((θ τ).comp (infPart D))) (map_one ((θ τ).comp (infPart D)))
 
 theorem compAt_zero (θ : InfFam D) (τ : D.what₂.Tau) {k m : ℕ} : compAt θ τ (0 : Mx D k m) = 0 :=
   Matrix.map_zero _ (map_zero ((θ τ).comp (infPart D)))
@@ -117,14 +105,14 @@ theorem local_det {n : ℕ} (α ai β β0 : Matrix (Fin n) (Fin n) ℂ) (U : Mat
     ‖α.det‖ ^ 2 * (1 + β * β).det.re = 1 := by
   have hU' : U * Uᴴ = 1 := mul_eq_one_comm.1 hU
   have hM : (blk4 0 1 (-1) 0 * blk4 1 β 0 1 : Matrix (Fin (n + n)) (Fin (n + n)) ℂ) = blk4 0 1 (-1) (-β) := by
-    rw [block_matrix_mul_comm_ring]; simp
+    rw [_root_.GlobalTheory.StdUnn.Frame.submatrix_fromBlocks_mul]; simp
   have hL : (blk4 α 0 0 aiᴴ * blk4 1 β0 0 1 : Matrix (Fin (n + n)) (Fin (n + n)) ℂ) = blk4 α (α * β0) 0 aiᴴ := by
-    rw [block_matrix_mul_comm_ring]; simp
+    rw [_root_.GlobalTheory.StdUnn.Frame.submatrix_fromBlocks_mul]; simp
   rw [hM, hL] at h
   have hMM : blk4 0 1 (-1) (-β) * (blk4 0 1 (-1) (-β))ᴴ =
       blk4 α (α * β0) 0 aiᴴ * (blk4 α (α * β0) 0 aiᴴ)ᴴ := by
     rw [h, Matrix.conjTranspose_mul, Matrix.mul_assoc, ← Matrix.mul_assoc U, hU', Matrix.one_mul]
-  rw [block_matrix_conjTranspose, block_matrix_conjTranspose, block_matrix_mul_comm_ring, block_matrix_mul_comm_ring] at hMM
+  rw [block_matrix_conjTranspose, block_matrix_conjTranspose, _root_.GlobalTheory.StdUnn.Frame.submatrix_fromBlocks_mul, _root_.GlobalTheory.StdUnn.Frame.submatrix_fromBlocks_mul] at hMM
   have h22 := (block_matrix_injective hMM).2.2.2
   have h22' : 1 + β * β = aiᴴ * ai := by
     simpa [hβ] using h22

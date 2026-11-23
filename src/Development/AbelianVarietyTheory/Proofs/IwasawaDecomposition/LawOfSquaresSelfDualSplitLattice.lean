@@ -125,7 +125,7 @@ theorem index_eq (H : Host E) (L : Submodule (𝓞 E) (Fin n → E)) (cc : Ideal
     obtain ⟨x, hx, y, hy, rfl⟩ := Submodule.mem_sup.1 hv
     rw [smul_add]
     exact add_mem (Submodule.smul_mem _ _ hx) (h y hy)
-  obtain ⟨𝔞, a0, e1, e2, e3⟩ := GlobalTheory.T.exists_common_indexIdeal_inf_sup_lattices E n L (stdLat E n) hb fun m _ => exists_smul_std m
+  obtain ⟨𝔞, a0, e1, e2, e3⟩ := _root_.GlobalTheory.BetaEx.exists_index_ideal_inf_sup E n L (stdLat E n) hb fun m _ => exists_smul_std m
   obtain ⟨𝔟, e4⟩ := exists_idlE ((detSpan_mono (inf_le_right : L ⊓ stdLat E n ≤ _)).trans detSpan_std_le)
   rw [detSpan_std, smul_eq_idlE_mul] at e2
   rw [e4, smul_eq_idlE_mul] at e1
@@ -149,7 +149,7 @@ theorem index_eq (H : Host E) (L : Submodule (𝓞 E) (Fin n → E)) (cc : Ideal
   have e7 : idlE (conjId H 𝔟) * detSpan (stdLat E n ⊔ L) ≤ 1 := by
     refine Submodule.mul_le.2 fun x hx y hy => ?_
     rw [← conjMod_idlE, mem_conjMod, ← e4] at hx
-    have := GlobalTheory.T.detSpan_conj_mul_integral_of_integral_pairing E n _ _ pair _ hx y hy
+    have := _root_.GlobalTheory.detSpan_conj_mul_mem_range E n _ _ pair _ hx y hy
     rw [IsCMField.complexConj_apply_apply] at this
     exact Submodule.mem_one.2 this
   have e8 : conjId H 𝔟 = 𝔞 := by

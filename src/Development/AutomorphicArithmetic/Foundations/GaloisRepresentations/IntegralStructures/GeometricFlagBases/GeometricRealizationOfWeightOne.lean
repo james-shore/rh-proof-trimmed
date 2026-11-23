@@ -58,7 +58,7 @@ theorem jumpStep_holds : JumpStep := G3.jumpStep_of Seam.HT.htSpecGood Seam.crys
 theorem steps_holds : Steps := steps_of Seam.crysStep_holds jumpStep_holds UpperTheory.Ru.crystallineComparison.phiStep
 
 theorem kodaira_spencer_of_weight_one (hW : LocalSmoothExtension.HolomorphicLefschetzFormula) : KSAll :=
-  ⟨CovMain.stdEx_holds, G3.kSEx_holds, G3.kSNice_holds, FiniteEtaleModels.ksGood_holds, CovMain.ksCong_holds, LocalSmoothExtension.ksHodge_of_geo hW FixZ.FixK_holds⟩
+  ⟨_root_.UpperTheory.standard_datum_exists, G3.kSEx_holds, G3.kSNice_holds, FiniteEtaleModels.ksGood_holds, CovMain.ksCong_holds, LocalSmoothExtension.ksHodge_of_geo hW FixZ.FixK_holds⟩
 
 theorem geometric_realization_of_weight_one (hW : LocalSmoothExtension.HolomorphicLefschetzFormula) : GeoOne := geoOne_of_parts steps_holds (kodaira_spencer_of_weight_one hW) Pl.planEx_holds
 

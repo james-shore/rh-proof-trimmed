@@ -67,7 +67,7 @@ theorem has_prod_of_inInd : ∀ (g : ℕ) [Fact g.Prime] (S : Sys g) (π : GLRep
   | cons π σ ρ L hπ _ _ hmap ih =>
     intro F hF
     obtain ⟨f, f', hf, hf', rfl⟩ :=
-      GlobalTheory.T.seriesIdempotent_mul_of_maps_to_parabolicInduction g S π.1 σ.1 ρ.1 _ π.2.ρ _ _ σ.2.ρ ρ.2.ρ hπ hmap F hF
+      _root_.GlobalTheory.SerSys.Prod.series_of_mapsToProd g S π.1 σ.1 ρ.1 _ π.2.ρ _ _ σ.2.ρ ρ.2.ρ hπ hmap F hF
     obtain ⟨fs, hfs, rfl⟩ := ih f hf
     exact ⟨f' :: fs, List.Forall₂.cons hf' hfs, by simp [mul_comm]⟩
 

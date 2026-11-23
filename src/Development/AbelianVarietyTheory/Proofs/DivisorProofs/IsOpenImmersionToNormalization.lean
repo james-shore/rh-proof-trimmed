@@ -56,9 +56,6 @@ theorem isOpenImmersion_toNormalization {V P X : Scheme.{0}} (c : V ⟶ P) (p : 
   have : IsImmersion c := IsImmersion.of_comp c p
   infer_instance
 
-theorem main : ∀ {V P X : AlgebraicGeometry.Scheme.{0}} (c : V ⟶ P) (p : P ⟶ X) [IsSeparated p]
-    (j : V ⟶ X) [IsOpenImmersion j] [inst : QuasiCompact c] [inst_1 : QuasiSeparated c]
-    (h : c ≫ p = j), IsOpenImmersion c.toNormalization :=
-  fun c p _ j _ _ _ h => isOpenImmersion_toNormalization c p j h
+alias main := _root_.GlobalTheory.NormalizationOpenImmersion.isOpenImmersion_toNormalization
 
 end GlobalTheory.NormalizationOpenImmersion

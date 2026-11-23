@@ -50,9 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeR
 
 namespace GlobalTheory.ParAsm
 
-theorem one_le_nV (D : D7) : 1 ≤ D.R.nV := by
-  have := D.R.m_add_three_le_k
-  simp only [Ranks.nV, Ranks.r] at *
-  omega
-
 end GlobalTheory.ParAsm

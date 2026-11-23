@@ -146,7 +146,7 @@ theorem finPhaseC_of (hNR : Formalism.L2.SG.PairVal.NormRepExists D u u' (X.Fu u
   have hrow := (Y.rowsOK u).1 s.1.lam s.1.mem
   have hmk : mk s.1.lam (lf D (X.Fu u)) (PD D s.1.lam (lf D (X.Fu u)) u') ⟨s.1.frame, s.1.rep.2.2.2.2⟩ =
       mk s.1.lam (lf D (X.Fu u)) (PD D s.1.lam (lf D (X.Fu u)) u') ⟨hex.choose.1, hP''⟩ := hmk''.symm
-  obtain ⟨n, hn, m, hm, hfr, -⟩ := (Formalism.L2.SG.Closed.TermEqIff_holds D u u' (X.Fu u) s.1.lam hrow _ _).1 hmk
+  obtain ⟨n, hn, m, hm, hfr, -⟩ := (_root_.term_eq_iff_relation D u u' (X.Fu u) s.1.lam hrow _ _).1 hmk
 
   obtain ⟨vn, um, hvn, hum, hvnF, humF, hsum⟩ := Formalism.L2.SG.Pf.UnitriangularPhases.phase_move s.1.lam (lf D (X.Fu u)) s.1.frame
     hex.choose.1 hn hm hfr _ hL hU hL'' hU'' hZ hZ''

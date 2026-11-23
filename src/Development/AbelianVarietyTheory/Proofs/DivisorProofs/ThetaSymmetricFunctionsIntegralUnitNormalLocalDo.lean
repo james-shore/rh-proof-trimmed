@@ -64,26 +64,7 @@ namespace GlobalTheory.UMin.IntTheta
 section Pull
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : LB A.left} {a : ℤ}
 
-theorem sec_ext' {X : Scheme.{0}} {M : LB X} {s s' : LB.Sec M} (h : ∀ j, s.f j = s'.f j) : s = s' := by
-  obtain ⟨f₁, p₁⟩ := s
-  obtain ⟨f₂, p₂⟩ := s'
-  obtain rfl : f₁ = f₂ := funext h
-  rfl
-
-theorem gs_pullS' {T T' : Over S} (h : T' ⟶ T) (s : LB.Sec (LPow A L a T)) {Z : Scheme.{0}}
-    (r : Z ⟶ (T' ⊗ A).left) (z : Z) (j : Fin 1 → L.ι) (hz : r z ∈ (LPow A L a T').U j) :
-    gs r z ((LPow A L a T').U j) ((VVRank.pullS A a h s).f j) =
-      gs (r ≫ (h ▷ A).left) z ((LPow A L a T).U j) (s.f j) :=
-  (gs_res r z (chart_le_res A L (h ▷ A) (whiskerRight_snd _ _) a j) hz _).trans
-    (gs_pull r (h ▷ A).left z _ (chart_le_res A L (h ▷ A) (whiskerRight_snd _ _) a j hz) _)
-
-theorem pullS_comp' {T T' T'' : Over S} (h' : T'' ⟶ T') (h : T' ⟶ T) (s : LB.Sec (LPow A L a T)) :
-    VVRank.pullS A a h' (VVRank.pullS A a h s) = VVRank.pullS A a (h' ≫ h) s :=
-  sec_ext' fun j => fn_ext fun y hy => by
-    refine (gs_pullS' h' _ _ y j hy).trans ((gs_pullS' h _ _ y j
-      (chart_le_res A L (h' ▷ A) (whiskerRight_snd _ _) a j hy)).trans (Eq.trans ?_ (gs_pullS' _ _ _ y j hy).symm))
-    rw [comp_whiskerRight, Over.comp_left]
-    rfl
+alias sec_ext' := _root_.ReciprocityTheory.ChartRestriction.G.DVR.SecOps.sec_ext
 
 theorem pullS_heq {T : Over S} {Y : Scheme.{0}} {y₁ y₂ : Y ⟶ S} (e : y₁ = y₂) (h₁ : Over.mk y₁ ⟶ T)
     (h₂ : Over.mk y₂ ⟶ T) (he : h₁.left = h₂.left) (s : LB.Sec (LPow A L a T)) :
@@ -101,7 +82,7 @@ theorem pull_pull {R K K' : Type} [CommRing R] [CommRing K] [CommRing K'] {x : S
     (i : R →+* K) (i' : K →+* K') :
     HEq (SecAt.pull G L (SecAt.pull G L θ i) i') (SecAt.pull G L θ (i'.comp i)) := by
   unfold SecAt.pull
-  rw [pullS_comp']
+  rw [_root_.GlobalTheory.ThetaRuleCompare.pullS_comp]
   refine pullS_heq ?_ _ _ ?_ θ
   · rw [spMap_comp, Category.assoc]
   · simp only [Over.comp_left, Over.homMk_left]

@@ -57,18 +57,18 @@ theorem GlobalTheory.semistable_class_of_pair : ∀ (l : ℕ) [Fact l.Prime] (P 
   intro l _ P AI T K V _ _ _ _ _ _ _ ρ hρ x hx y hy hxy
   obtain ⟨ι, hιC, hιact⟩ := GlobalTheory.T.exists_equivariant_log_semistable_to_deRham l P AI T
   obtain ⟨hιst, -, -⟩ := GlobalTheory.T.lTensor_semistable_to_deRham_equivariant l P ι hιC hιact K V ρ
-  obtain ⟨z, hNz, hφz, hFz⟩ := GlobalTheory.T.exists_monodromy_frobenius_solution_fil l P AI T ι hιC K V x y hxy
+  obtain ⟨z, hNz, hφz, hFz⟩ := _root_.GlobalTheory.PMon.solve_mon_phi_fil l P AI T ι hιC K V x y hxy
   have hx' := (mem_Dst P ρ).mp hx
   have hy' := (mem_Dst P ρ).mp hy
   have hw : ∀ g : ↥(GK K), ∃ v : V, stRep P ρ g z - z = v ⊗ₜ[ℚ_[l]] (1 : Bst P) := by
     intro g
-    refine GlobalTheory.T.exists_eq_tmul_one_of_monodromy_frobenius_filtration l P AI T ι hιC K V (stRep P ρ g z - z) ?_ ?_ ?_
+    refine _root_.GlobalTheory.PMon.exists_eq_tmul_one_of_mon_phi_fil l P AI T ι hιC K V (stRep P ρ g z - z) ?_ ?_ ?_
     · rw [map_sub, ← Module.End.mul_apply, monV_stRep, Module.End.mul_apply, hNz, hx', sub_self]
     · have hφz' : phiV P ℚ_[l] V z = z + y := by rw [← hφz]; abel
       rw [map_sub, ← Module.End.mul_apply, phiV_stRep, Module.End.mul_apply, hφz', map_add (f := _), hy']
       abel
     · rw [map_sub, hιst]
-      exact Submodule.sub_mem _ (GlobalTheory.T.actVdR_mem_tensorDeRhamFiltration l P K V ρ 0 g _ hFz) hFz
+      exact Submodule.sub_mem _ (_root_.GlobalTheory.FilStable.actVdR_mem_FilV l P K V ρ 0 g _ hFz) hFz
   choose c hc using hw
   have hc' : ∀ g, c g ⊗ₜ[ℚ_[l]] (1 : Bst P) = stRep P ρ g z - z := fun g => (hc g).symm
   exact ⟨z, c, GlobalTheory.T.continuousCocycle_of_semistable_coboundary l P AI T K V ρ hρ z c hc', hc', hNz⟩

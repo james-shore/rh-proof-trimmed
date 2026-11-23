@@ -162,7 +162,7 @@ theorem sq_norm_le {a : ℕ} {π : CG E a} (hu : π.IsUnitary) {T : Finset (Heig
   have hx : 1 < x := by
     rw [hxdef, Real.lt_logb_iff_rpow_lt hq hM0, Real.rpow_one]; exact hlt
   have hqx : (Ideal.absNorm w.asIdeal : ℝ) ^ x = M := Real.rpow_logb hq0 hq.ne' hM0
-  obtain ⟨L, hL, -, -⟩ := GlobalTheory.T.rankinSelberg_partialL_pole_at_one_conj E a π ha hu T hT
+  obtain ⟨L, hL, -, -⟩ := _root_.GlobalTheory.RSPole.rs_pole_conj E a π ha hu T hT
   obtain ⟨hP, hL1⟩ := hL x hx
   have hzero : locL (Ideal.absNorm (⟨w, hw⟩ : {w : HeightOneSpectrum (𝓞 E) // w ∉ T}).1.asIdeal)
       (sat π w) ((sat π w).map (Units.map (starRingEnd ℂ).toMonoidHom)) (x : ℂ) = 0 := by
@@ -223,7 +223,7 @@ theorem summable_diag {a : ℕ} (σ : CG E a) (hσ : σ.IsUnitary)
   rcases Nat.eq_zero_or_pos a with rfl | ha
   · simp only [sat_zero, Multiset.map_zero, Multiset.sum_zero, map_zero, mul_zero, zero_div]
     exact summable_zero
-  obtain ⟨L, hL, -, -⟩ := GlobalTheory.T.rankinSelberg_partialL_pole_at_one_conj E a σ ha hσ T hT
+  obtain ⟨L, hL, -, -⟩ := _root_.GlobalTheory.RSPole.rs_pole_conj E a σ ha hσ T hT
   obtain ⟨hP, -⟩ := hL x hx
   have hloc : ∀ w : {w : HeightOneSpectrum (𝓞 E) // w ∉ T}, ∃ Lw : ℝ,
       HasSum (fun n : ℕ => ((Ideal.absNorm w.1.asIdeal : ℝ) ^ (-x)) ^ n *

@@ -62,20 +62,6 @@ namespace GlobalTheory.OTY
 
 open MeasureTheory Filter Topology Metric in
 open scoped ENNReal ContDiff in
-private lemma continuous_sqn_of_isSec' {n : ℕ} {Y : Type*} [TopologicalSpace Y] [T2Space Y]
-    [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y] {ι La : Type*}
-    [AddCommGroup La] (A : _root_.ReciprocityTheory.L2DbarEstimates.Y.WeightedAtlas n Y ι La) {L : La} {N : ℕ} {s : Fin N → ι → Y → ℂ}
-    (hs : ∀ k, A.IsSec L (s k)) : Continuous (A.sqn L s) := by
-  have hsum : A.sqn L s = fun y => ∑ k, A.nsq L (s k) y := by
-    funext y
-    rfl
-  rw [hsum]
-  refine continuous_finsetSum _ fun k _ => ?_
-  have hk : A.IsSecOn L Set.univ (s k) := hs k
-  exact continuousOn_univ.mp (_root_.ReciprocityTheory.L2DbarEstimates.Y.api_nsq_contOn A isOpen_univ hk)
-
-open MeasureTheory Filter Topology Metric in
-open scoped ENNReal ContDiff in
 private lemma mem_zeroSet_of_sqn_eq_zero {n : ℕ} {Y : Type*} [TopologicalSpace Y] [T2Space Y]
     [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y] {ι La : Type*}
     [AddCommGroup La] (A : _root_.ReciprocityTheory.L2DbarEstimates.Y.WeightedAtlas n Y ι La) {L : La} {N : ℕ} (s : Fin N → ι → Y → ℂ) {y : Y}
@@ -170,7 +156,7 @@ theorem _root_.GlobalTheory.OTY.exists_local_extension : ∀ (n : ℕ) (Y : Type
       rw [he] at hyc
       exact hyc
     · obtain ⟨x0, hx0, hmin⟩ := hΩo.isClosed_compl.isCompact.exists_isMinOn hne
-        (continuous_sqn_of_isSec' A hs).continuousOn
+        (_root_.ReciprocityTheory.L2DbarEstimates.Y.WeightedAtlas.continuous_sqn A hs).continuousOn
       refine ⟨A.sqn L s x0, lt_of_le_of_ne (A.sqn_nonneg L s x0)
         (fun h0 => hx0 (hZΩ x0 (mem_zeroSet_of_sqn_eq_zero A s h0.symm))), fun y hy => ?_⟩
       by_contra hyΩ

@@ -72,9 +72,6 @@ namespace GlobalTheory.DimFull
 
 open GlobalTheory.CuspMult GlobalTheory.PartDims
 
-theorem dualLab_twice (d : List ℤ) : dualLab (dualLab d) = d := by
-  simp [dualLab, List.map_reverse, Function.comp_def]
-
 variable {D : D7}
 
 section Adj
@@ -129,7 +126,7 @@ theorem rel_of_E (h : Core R F) (hS : SchurAll R) {SF} (hSF : IsSF R SF) (i : Fi
   have h1 := hev c Q hQ (Finsupp.single d 1) x hx
   have h2 := hev c Q hQ (Finsupp.single (dualLab d) 1) x hx
   rw [evC_single _ _ _ hd] at h1
-  rw [evC_single _ _ _ hdd, dualLab_twice] at h2
+  rw [evC_single _ _ _ hdd, _root_.GlobalTheory.SphLabelOps.dualLab_dualLab] at h2
   exact star_eq_of_normal hN hQ d h0 h1 h2
 
 theorem unitary_relation_labels_of_W_eigenvector (h : Core R F) (hS : SchurAll R) (hI : ∀ χ ∈ A.X, IsAbsIrrChar χ) {SF} (hSF : IsSF R SF) (i : Fin D.R.m)
@@ -143,7 +140,7 @@ theorem unitary_relation_labels_of_W_eigenvector (h : Core R F) (hS : SchurAll R
   rw [evC_single _ _ _ hwd] at h1
   rw [evC_single _ _ _ hw] at h2
   refine star_eq_of_normal hN hQ (dualLab d) h0 h1 ?_
-  rw [dualLab_twice]
+  rw [_root_.GlobalTheory.SphLabelOps.dualLab_dualLab]
   exact h2
 
 theorem good_Y (h : Core R F) {Q : Pl D.host.E} (hQ : Good R A.μ0 Q) (c : ℕ) :

@@ -44,6 +44,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.HasTypeVec
 import Development.AbelianVarietyTheory.Definitions.Foundations.InnerEqZeroOfNotUEquiv
 import Development.AbelianVarietyTheory.Definitions.Foundations.MeasurePreservingRmulQuotMeas
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CommuteOfWittFrameWeights
 
 @[expose] public section
 
@@ -61,27 +62,16 @@ namespace GlobalTheory.Cusp.ConjLevi
 
 variable {D : D7} {V : HSp D}
 
-theorem ratAct_mul_apply (a b : GF V) (v : V.V) :
-    GlobalTheory.Cusp.ratAct D.sp.cm V (a * b) v = GlobalTheory.Cusp.ratAct D.sp.cm V a (GlobalTheory.Cusp.ratAct D.sp.cm V b v) := by
-  simp only [GlobalTheory.Cusp.ratAct]
-  rw [show (a * b).1.1 = a.1.1 * b.1.1 from rfl, Matrix.toLin_mul V.frame V.frame V.frame]
-  rfl
-
-theorem ratAct_one_apply (v : V.V) : GlobalTheory.Cusp.ratAct D.sp.cm V 1 v = v := by
-  simp only [GlobalTheory.Cusp.ratAct]
-  rw [show (1 : GF V).1.1 = 1 from rfl, Matrix.toLin_one]
-  rfl
-
 theorem ratAct_inv_apply (g : GF V) (v : V.V) :
     GlobalTheory.Cusp.ratAct D.sp.cm V g⁻¹ (GlobalTheory.Cusp.ratAct D.sp.cm V g v) = v := by
-  rw [← ratAct_mul_apply, inv_mul_cancel, ratAct_one_apply]
+  rw [← _root_.GlobalTheory.Cusp.WeightCommute.ratAct_mul', inv_mul_cancel, _root_.GlobalTheory.Cusp.WeightCommute.ratAct_one']
 
 theorem conj_maps (γ g : GF V) (S : Submodule D.host.E V.V)
     (h : ∀ v ∈ S, GlobalTheory.Cusp.ratAct D.sp.cm V γ v ∈ S) :
     ∀ w ∈ S.map (GlobalTheory.Cusp.ratAct D.sp.cm V g),
       GlobalTheory.Cusp.ratAct D.sp.cm V (g * γ * g⁻¹) w ∈ S.map (GlobalTheory.Cusp.ratAct D.sp.cm V g) := by
   rintro _ ⟨y, hy, rfl⟩
-  rw [ratAct_mul_apply, ratAct_inv_apply, ratAct_mul_apply]
+  rw [_root_.GlobalTheory.Cusp.WeightCommute.ratAct_mul', ratAct_inv_apply, _root_.GlobalTheory.Cusp.WeightCommute.ratAct_mul']
   exact ⟨_, h y hy, rfl⟩
 
 theorem map_span_range (g : GF V) {a : ℕ} (x : Fin a → V.V) (y : Fin a → V.V)

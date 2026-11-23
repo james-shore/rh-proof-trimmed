@@ -99,7 +99,7 @@ theorem quotM : QuotMStatement := by
   have hbd : ∀ f ∈ G, ∃ C : ℝ, ∀ g ∈ UJset ε, ‖L f g‖ ≤ C * frob g ^ (1 - aExp ε h) := fun f hf => by
     obtain ⟨C, hC⟩ := (hspec f hf).2.2 []
     exact ⟨C, hC⟩
-  have hcont : ∀ f ∈ G, ContinuousOn (L f) (UJset ε) := fun f hf => QuotA.contOn_of_smooth (hsm f hf).1
+  have hcont : ∀ f ∈ G, ContinuousOn (L f) (UJset ε) := fun f hf => _root_.ReciprocityTheory.ChartRestriction.DS.Lap.CurveContinuity.smooth_contOn (hsm f hf).1
   set ψ := Formalism.MainNotions.S.psiGen k r z c with hψdef
   let Z : Submodule ℂ (Fin (2 * r + k + 1) → D) :=
     { carrier := {y | y ∈ X ∧ ∀ g ∈ Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk k r), per P μW μN ψ π (L y) ξ g = 0}

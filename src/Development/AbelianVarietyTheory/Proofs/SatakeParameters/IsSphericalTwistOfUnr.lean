@@ -134,7 +134,7 @@ theorem holds_good_crys : AutomorphicFormsFiniteGL → HeckeLAdicCharacterAbove 
   intro P AI hT A hAw O _ _ _ Bw hj σ hσ hsph
   obtain ⟨κ, m, hκ, hκu, hcs⟩ := GlobalTheory.T.exists_good_conjSelfDual_twist_split_unramified hF E l a ha π χ hs w hw
   obtain ⟨art, hart, hch⟩ := (GlobalArtinReciprocity.heckeLAdicCharacter_and_principalIdealSt
-    GlobalTheory.globalArtinReciprocity_holds).1 E Ω
+    _root_.CompanionTheory.FamInh.globalArtin).1 E Ω
   obtain ⟨μ, ⟨hμc, hμ⟩, -⟩ := hch l ι κ m (fun k _ => hκ k)
   have hw' : Weak (π.twist κ) ι (UpperTheory.V.Af.tw r μ) :=
     ⟨UpperTheory.galoisRep_irreducibility_criterion.2 _ _ a _ μ hr.1 hμc, UpperTheory.V.Af.Cq.attTwist E Ω l ι a r π hr.2 art κ m μ hart hμ⟩

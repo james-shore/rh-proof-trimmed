@@ -136,7 +136,7 @@ theorem main : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing
         pairNum (pointIdeal O (joinCoord x z)) (b i) (b j) f g (psumExpansion N k)
           (classList (fun j => pullDeg (K' := K') (L j)) μ) := by
     intro A B i j f g hs pi pj hf
-    exact (GlobalTheory.T.same_generic_flag_difference O Ω K ι x ϖ hϖ d hM N V A B hs K' ι' z hMB hbir (EB i) (EB j) pi pj
+    exact (_root_.GlobalTheory.CompanionTheory.Ar.Num.ck_rootNum_eq_pairNum_on_flagPair O Ω K ι x ϖ hϖ d hM N V A B hs K' ι' z hMB hbir (EB i) (EB j) pi pj
       w w (b i) (b j) f g hf).1 k hk1 hk2 q L Q hQ
   have coc := fun μ (hμ : μ ∈ Q.support) =>
     GlobalTheory.T.pair_cocycle O ϖ hϖ Ω (K ⊕ K') (Sum.elim ι ι') (joinCoord x z) d hM' N V (EB 0) (EB 1) (EB 2)

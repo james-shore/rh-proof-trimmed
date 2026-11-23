@@ -49,5 +49,3 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 attribute [local instance] Over.cartesianMonoidalCategory
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
 
-theorem _root_.GlobalTheory.T.properness_descends_fg_subalgebra : ∀ (k V : Type) [CommRing k] [IsNoetherianRing k] [CommRing V] [Algebra k V] (X : Scheme.{0}) (p : X ⟶ Sp k), IsQProjOver p → IsProper (pullback.snd p (spMap (algebraMap k V))) → ∃ R : Subalgebra k V, R.FG ∧ IsProper (pullback.snd p (spMap (algebraMap k R))) := by
-  first | exact @GlobalTheory.CompanionTheory.Ar.Approx.exists_fg_isProper_of_isQProjOver | exact GlobalTheory.CompanionTheory.Ar.Approx.exists_fg_isProper_of_isQProjOver | (intros; apply GlobalTheory.CompanionTheory.Ar.Approx.exists_fg_isProper_of_isQProjOver <;> assumption)

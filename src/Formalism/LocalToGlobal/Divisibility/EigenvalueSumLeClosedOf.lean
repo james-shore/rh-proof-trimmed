@@ -56,6 +56,9 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.GlobalTheory.PowFourLtCeilThresholdPrime
+import Formalism.SharpRestriction.CuspSpanNormBounds.StandingHypothesesHoldFamily
+import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.NdBNonneg
 
 @[expose] public section
 
@@ -437,11 +440,10 @@ def BigX : Prop :=
 
 variable {L}
 
-theorem x_one : 1 ≤ L.sc.x := L.sc.one_lt_alt.le
 theorem x_pos' : 0 < L.sc.x := lt_trans one_pos L.sc.one_lt_alt
 
 theorem rpow_sixth_le_half : L.sc.x ^ (L.sc.eps / 6) ≤ L.sc.x ^ (L.sc.eps / 2) :=
-  Real.rpow_le_rpow_of_exponent_le x_one (by linarith [L.sc.eps_pos])
+  Real.rpow_le_rpow_of_exponent_le _root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (by linarith [L.sc.eps_pos])
 
 theorem P_le_X' (hS : SizesAt L) (hB : BigX L) {e : ℕ} (he : e ≤ 8) : szPol L ^ e ≤ L.sc.X' := by
   have hx9 : 9 ≤ L.sc.x := by linarith [hB.1]
@@ -452,12 +454,12 @@ theorem P_le_X' (hS : SizesAt L) (hB : BigX L) {e : ℕ} (he : e ≤ 8) : szPol 
   have h1 : szPol L ^ e ≤ (L.sc.x ^ Q) ^ e := pow_le_pow_left₀ (by linarith) hP e
   have h2 : (L.sc.x ^ Q) ^ e = L.sc.x ^ (Q * e) := by rw [← Real.rpow_natCast, ← Real.rpow_mul x_pos'.le]
   have h3 : L.sc.x ^ (Q * e) ≤ L.sc.x ^ (8 * Q) := by
-    apply Real.rpow_le_rpow_of_exponent_le x_one
+    apply Real.rpow_le_rpow_of_exponent_le _root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge
     have : (e : ℝ) ≤ 8 := by exact_mod_cast he
     nlinarith
   have heps := L.sc.eps_pos
   have h4 : L.sc.x ^ (8 * Q) ≤ Real.exp (L.sc.x ^ (L.sc.eps / 3)) := by
-    apply rpow_le_exp_of x_one (by linarith) (by linarith)
+    apply rpow_le_exp_of _root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (by linarith) (by linarith)
     have e1 : 2 * (8 * Q) / (L.sc.eps / 3) = 48 * Q / L.sc.eps := by field_simp; ring
     have e2 : L.sc.eps / 3 / 2 = L.sc.eps / 6 := by ring
     rw [e1, e2]
@@ -469,14 +471,14 @@ theorem P_le_X' (hS : SizesAt L) (hB : BigX L) {e : ℕ} (he : e ≤ 8) : szPol 
 theorem X'_le_b : L.sc.X' ≤ L.sc.b := by
   unfold Scale.X' Scale.b Scale.L
   apply Real.exp_le_exp.mpr
-  exact Real.rpow_le_rpow_of_exponent_le x_one (by linarith [L.sc.eps_pos])
+  exact Real.rpow_le_rpow_of_exponent_le _root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (by linarith [L.sc.eps_pos])
 
 theorem P_le_b (hS : SizesAt L) (hB : BigX L) {e : ℕ} (he : e ≤ 8) : szPol L ^ e ≤ L.sc.b :=
   (P_le_X' hS hB he).trans X'_le_b
 
 theorem logx_le_L (hB : BigX L) : Real.log L.sc.x ≤ L.sc.L := by
   have heps := L.sc.eps_pos
-  have hl := log_le_half (x_one (L := L)) heps
+  have hl := log_le_half (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (L := L)) heps
   set T := L.sc.x ^ (L.sc.eps / 2) with hT
   have hT1 : 2 / L.sc.eps ≤ T := by
     have h := hB.2
@@ -594,10 +596,7 @@ theorem nf_blkW (hS : SizesAt L) (hh0 : L.etaSz = (D.R.m : ℝ) * (h0 : ℝ)) :
   rw [e]
   exact hE.2.2.2.2.1
 
-theorem cloudConstant_nonneg : 0 ≤ L.Nc := by
-  unfold SizeData₂.Nc budgetNc rankBudget bSize
-  have := x_pos' (L := L)
-  positivity
+alias cloudConstant_nonneg := _root_.Formalism.MainNotions.Nc_nonneg
 
 theorem logCardGroup_nonneg (G : Type) [Group G] [Fintype G] : 0 ≤ Real.log (Fintype.card G : ℝ) :=
   Real.log_nonneg (by exact_mod_cast Fintype.card_pos)
@@ -691,7 +690,7 @@ theorem nf_logrd (hS : SizesAt L) (hB : BigX L) :
   have hn := n_pos hN
   have heps := L.sc.eps_pos
   have heps' := L.sc.eps_lt
-  have hx1 := x_one (L := L)
+  have hx1 := _root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (L := L)
   have hx0 := x_pos' (L := L)
   set T := L.sc.x ^ (L.sc.eps / 2) with hT
   have hT1 : 1 ≤ T := Real.one_le_rpow hx1 (by linarith)
@@ -872,10 +871,10 @@ theorem size_le_two_b (hS : SizesAt L) (hB : BigX L) :
     have hxe : 0 ≤ L.sc.x ^ L.sc.eps := Real.rpow_nonneg hx0.le _
     have hq : szNst L * L.sc.x ^ L.sc.eps * L.LaG / D.R.k ≤ 1 := by
       have h2t : 0 ≤ L.sc.x ^ szTh L * Real.log L.sc.x * L.LaG / D.R.k := by
-        have := Real.log_nonneg (x_one (L := L))
+        have := Real.log_nonneg (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (L := L))
         have := Real.rpow_nonneg hx0.le (szTh L)
         positivity
-      have hxm2 : L.sc.x ^ (-2 : ℝ) ≤ 1 := Real.rpow_le_one_of_one_le_of_nonpos (x_one (L := L)) (by norm_num)
+      have hxm2 : L.sc.x ^ (-2 : ℝ) ≤ 1 := Real.rpow_le_one_of_one_le_of_nonpos (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (L := L)) (by norm_num)
       have hR := hRho
       unfold SizeRho at hR
       have e : 4 * szNst L * L.sc.x ^ L.sc.eps * L.LaG / D.R.k = 4 * (szNst L * L.sc.x ^ L.sc.eps * L.LaG / D.R.k) := by ring
@@ -886,7 +885,7 @@ theorem size_le_two_b (hS : SizesAt L) (hB : BigX L) :
           (szNst L * L.sc.x ^ L.sc.eps * L.LaG / D.R.k) * L.sc.b' := by ring
       rw [e] at hbt
       nlinarith
-    have hbx : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self hb'0 (x_one (L := L))
+    have hbx : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self hb'0 (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.nd_x_ge (L := L))
     linarith
   · by_cases hth : (D.eTau τ : D.R.GG) ∈ D.host.thickPlaces
     · obtain ⟨-, w2⟩ := L.win_thick j h1 h2' τ hth
@@ -1192,10 +1191,6 @@ theorem place_cases (τ : D.what₂.Tau) :
   · exact Or.inr (Or.inl ⟨h1, h2⟩)
   exact Or.inr (Or.inr ⟨(D.eTau τ).2, h1, h2⟩)
 
-theorem a_nonneg_rec : 0 ≤ L.sc.a := le_of_lt (mul_pos (lt_trans zero_lt_one L.sc.one_lt_alt) (Real.exp_pos _))
-
-theorem b'_nonneg_rec : 0 ≤ L.sc.b' := div_nonneg (a_nonneg_rec L) (Real.exp_pos _).le
-
 theorem top_of_mem (τ : D.what₂.Tau) (h : (D.eTau τ : D.R.GG) ∈ D.host.topPlaces) :
     ∃ t : D.host.TT, (D.eTau τ : D.R.GG) = D.R.tau1 t := by
   unfold Host.topPlaces at h
@@ -1209,7 +1204,7 @@ theorem wj_ge_rec (X : ℝ) (hb : X ≤ L.sc.b) (hw : X ≤ L.sc.w'' D.R.n) (hb'
   · obtain ⟨t, ht⟩ := top_of_mem τ h
     have hw := (L.win_top j hj1 hjm τ t ht).1
     have hbt := L.bT_ge t
-    have : 0 ≤ L.sc.b' / L.sc.x := div_nonneg (b'_nonneg_rec L) (by linarith [L.sc.one_lt_alt])
+    have : 0 ≤ L.sc.b' / L.sc.x := div_nonneg (_root_.Formalism.MainNotions.DIV.Proofs.HHParts.b'_nonneg L) (by linarith [L.sc.one_lt_alt])
     linarith
   · linarith [(L.win_thick j hj1 hjm τ h.2).1]
   · linarith [(L.win_thin j hj1 hjm τ h).1]
@@ -1252,7 +1247,7 @@ theorem nu_nonneg_from_bounds (hDel : D.s.Del = (Del : ℚ)) (P5 : ParameterChoi
     have hk : 5 ≤ D.R.k := by have := D.R.m_add_three_le_k; have := D.R.two_le_m; omega
     set τ := tauPl D z with hτ
     have hx1 : 1 < L.sc.x := L.sc.one_lt_alt
-    have hb'0 := b'_nonneg_rec L
+    have hb'0 := _root_.Formalism.MainNotions.DIV.Proofs.HHParts.b'_nonneg L
     have hbx : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self hb'0 hx1.le
     have hbx0 : 0 ≤ L.sc.b' / L.sc.x := div_nonneg hb'0 (by linarith)
     have hkR : (5 : ℝ) ≤ D.R.k := by exact_mod_cast hk
@@ -1416,31 +1411,7 @@ end Top
 
 section Discharge
 
-theorem w''_le_b'x : L.sc.w'' D.R.n ≤ L.sc.b' / L.sc.x := by
-  have hx0 : 0 < L.sc.x := lt_trans zero_lt_one L.sc.one_lt_alt
-  have hn : (1 : ℝ) ≤ D.R.n := by
-    have : 1 ≤ D.R.n := D.R.ord_pos
-    exact_mod_cast this
-  unfold Scale.w''
-  rw [← div_div]
-  exact div_le_self (div_nonneg (b'_nonneg_rec L) hx0.le) hn
-
-theorem b'x_le_b' : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self (b'_nonneg_rec L) L.sc.one_lt_alt.le
-
-theorem w''_le_b : L.sc.w'' D.R.n ≤ L.sc.b := by
-  have hx1 : 1 < L.sc.x := L.sc.one_lt_alt
-  have hb0 : 0 < L.sc.b := Real.exp_pos _
-  have hn : (1 : ℝ) ≤ D.R.n := by
-    have : 1 ≤ D.R.n := D.R.ord_pos
-    exact_mod_cast this
-  have hX : 1 ≤ L.sc.X' := Real.one_le_exp (Real.rpow_nonneg (by linarith) _)
-  unfold Scale.w'' Scale.b' Scale.a
-  have hxn : 0 < L.sc.x * D.R.n := by positivity
-  rw [div_div, div_le_iff₀ (by positivity)]
-  have : L.sc.x * L.sc.b ≤ L.sc.x * L.sc.b * (L.sc.X' * D.R.n) := by
-    have h1 : 1 ≤ L.sc.X' * D.R.n := by nlinarith
-    exact le_mul_of_one_le_right (by positivity) h1
-  nlinarith
+theorem b'x_le_b' : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self (_root_.Formalism.MainNotions.DIV.Proofs.HHParts.b'_nonneg L) L.sc.one_lt_alt.le
 
 theorem Nm_le_w'' (hDel : D.s.Del = (Del : ℚ)) (P5 : ParameterChoice' D L) :
     ((ofRecord D L Del h0).Nm : ℝ) + D.R.k + 1 ≤ L.sc.w'' D.R.n := by
@@ -1487,8 +1458,8 @@ theorem nf_sw_rec' (hDel : D.s.Del = (Del : ℚ)) (P5 : ParameterChoice' D L) :
         (ofRecord D L Del h0).w j z := by
   have h := Nm_le_w'' L Del h0 hDel P5
   have hk : (0 : ℝ) ≤ D.R.k := Nat.cast_nonneg _
-  have hw := w''_le_b L
-  have hw' := (w''_le_b'x L).trans (b'x_le_b' L)
+  have hw := _root_.Formalism.MainNotions.S.w''_le_b L
+  have hw' := (_root_.Formalism.L2.GlobalTheoryTheory.Loss.pd_wpp_le_bx L).trans (b'x_le_b' L)
   exact nf_sw_rec L Del h0 (by linarith) (by linarith) (by linarith)
 
 theorem nu_nonneg_from_conditions (hDel : D.s.Del = (Del : ℚ)) (P5 : ParameterChoice' D L) (u : D.what₂.Word) :
@@ -1496,8 +1467,8 @@ theorem nu_nonneg_from_conditions (hDel : D.s.Del = (Del : ℚ)) (P5 : Parameter
       0 ≤ (ofRecord D L Del h0).nu (letterOf D L Del h0 u) j z i := by
   have h := Nm_le_w'' L Del h0 hDel P5
   have hk : (0 : ℝ) ≤ D.R.k := Nat.cast_nonneg _
-  have hw := w''_le_b L
-  have hw' := w''_le_b'x L
+  have hw := _root_.Formalism.MainNotions.S.w''_le_b L
+  have hw' := _root_.Formalism.L2.GlobalTheoryTheory.Loss.pd_wpp_le_bx L
   exact nu_nonneg_from_bounds L Del h0 hDel P5 u (by linarith) (by linarith) (by linarith)
 
 end Discharge

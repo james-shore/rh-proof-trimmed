@@ -190,4 +190,4 @@ theorem main : Formalism.FG.CoeffBoundV.{u, v, w} := by
 
 end Formalism.FG.CoefficientBoundsFormalGroupWitt
 
-theorem Formalism.FG.coeff_bound_vector : Formalism.FG.CoeffBoundV.{u, v, w} := Formalism.FG.CoefficientBoundsFormalGroupWitt.main.{u, v, w}
+alias Formalism.FG.coeff_bound_vector := _root_.Formalism.FG.CoefficientBoundsFormalGroupWitt.main

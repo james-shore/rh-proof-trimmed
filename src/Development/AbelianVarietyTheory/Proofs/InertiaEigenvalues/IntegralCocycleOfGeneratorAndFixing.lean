@@ -204,16 +204,13 @@ theorem nearZ_mul (e M : ℕ) {x b : (LT l).R.BdR} {σ τ : GQ l}
   rw [PadicInt.coe_add, PadicInt.coe_mul]
   exact fil_mul LT e h hy hz
 
-theorem exists_pow_lt {ε : ℝ} (hε : 0 < ε) : ∃ n : ℕ, (l : ℝ) ^ (-(n : ℤ)) < ε := by
-  have hl : (1 : ℝ) < l := by exact_mod_cast (Fact.out : l.Prime).one_lt
-  obtain ⟨n, hn⟩ := exists_pow_lt_of_lt_one hε (inv_lt_one_of_one_lt₀ hl)
-  exact ⟨n, by rwa [zpow_neg, zpow_natCast, ← inv_pow]⟩
+alias exists_pow_lt := _root_.GlobalTheory.Cyc.exists_zpow_neg_lt
 
 theorem eq_zero_of_fil {P : LocPrime l} {AI : LocAinf l P} (T : LocTied l P AI) {M : ℕ}
     (hM : 1 ≤ M) {c : ℚ_[l]} (hc : qB P c ∈ FilB P (M : ℤ)) : c = 0 := by
   by_contra h
   obtain ⟨n, hn⟩ := exists_pow_lt (l := l) (norm_pos_iff.2 h)
-  exact absurd (GlobalTheory.T.norm_le_of_qB_mem_Lat_alt l P AI T M n hM c (FilB_le_Lat AI hc)) (not_le.2 hn)
+  exact absurd (_root_.GlobalTheory.ExpImage.norm_le_of_qB_mem_Lat l P AI T M n hM c (FilB_le_Lat AI hc)) (not_le.2 hn)
 
 end GlobalTheory.ExpImage.IntCoc
 
@@ -245,7 +242,7 @@ theorem integral_cocycle_of_gen : ∀ (LT : LocTheory) (l : ℕ) [Fact l.Prime] 
     | zero => rw [pow_zero]; exact hHz 1 (one_mem _)
     | succ a ih => rw [pow_succ']; exact nearZ_mul LT e _ (hfix g hg.1) hgz ih
   have hall : ∀ σ ∈ Gj K s, NearZ (LT l) (e + 1) (coc LT e x b σ) := fun σ hσ => by
-    refine GlobalTheory.T.padicInt_add_fil_closed_in_deRhamPeriodRing l _ AI T _ hM _ fun n => ?_
+    refine _root_.GlobalTheory.ExpImage.nearZ_of_forall_Lat l _ AI T _ hM _ fun n => ?_
     have hcl := ((gen_dense l _ _ hact hχ K s hs).2 g hg).2.2 hσ
     obtain ⟨τ, ⟨h, hh, a, rfl⟩, hτ⟩ := ((mem_closure_iff_frequently.1 hcl).and_eventually
       (coc_near LT T e (e + 1) n hx hb σ (hfix σ hσ))).exists
@@ -262,7 +259,7 @@ theorem integral_cocycle_of_gen : ∀ (LT : LocTheory) (l : ℕ) [Fact l.Prime] 
     filter_upwards [self_mem_nhdsWithin, nhdsWithin_le_nhds
       (coc_near LT T e (e + 1) n hx hb σ (hfix σ hσ))] with τ hτ h1
     rw [dist_eq_norm]
-    refine lt_of_le_of_lt (GlobalTheory.T.norm_le_of_qB_mem_Lat_alt l _ AI T _ n hM _ ?_) hn
+    refine lt_of_le_of_lt (_root_.GlobalTheory.ExpImage.norm_le_of_qB_mem_Lat l _ AI T _ n hM _ ?_) hn
     have := sub_mem (add_mem (FilB_le_Lat AI (n := n) (hz τ hτ)) h1) (FilB_le_Lat AI (hz σ hσ))
     convert this using 1
     rw [map_sub]

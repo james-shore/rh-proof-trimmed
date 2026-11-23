@@ -67,7 +67,7 @@ theorem isAlgPos_of_compNorm : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   have hkc : ∀ τ, k (ComplexEmbedding.conjugate τ) = k τ := fun τ => by
     have := (hk _).symm.trans ((GlobalTheory.T.exponent_heckeChar_compNorm_conjEmbedding E χ τ).trans (hk τ))
     exact_mod_cast this
-  obtain ⟨n, hn⟩ := GlobalTheory.T.cmField_prod_embeddings_regroup_maximalReal E k hkc
+  obtain ⟨n, hn⟩ := _root_.GlobalTheory.cm_prod_regroup_maximalReal E k hkc
   refine ⟨n, fun x hx => ?_⟩
   have hpos : ∀ φ : maximalRealSubfield E →+* ℂ,
       ((‖φ (x : maximalRealSubfield E)‖ : ℝ) : ℂ) = φ x ∧ 0 < ‖φ (x : maximalRealSubfield E)‖ := by

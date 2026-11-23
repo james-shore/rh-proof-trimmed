@@ -160,7 +160,7 @@ theorem idV_le_dI (P : Places L) {v : GlobalTheory.FinPl.Pl D} (hv : v ∈ P.S0)
       ((Ideal.absNorm D.host.ccK : ℕ) : D.host.E) := by
     rw [← algebraMap_O, map_natCast]; rfl
   rw [e, e2]
-  exact FractionalIdeal.mul_mem_mul (GlobalTheory.HostClear.absNorm_mem_AA D) hz
+  exact FractionalIdeal.mul_mem_mul (_root_.Formalism.L2.Pj.normK_mem_AA D) hz
 
 theorem compl_mem (P : Places L) (sc : Consts) {v : GlobalTheory.FinPl.Pl D} (hv : v ∈ P.S0) {e : AE D} (he : IsIdemSum e P.W0)
     (𝔞 : FI D) {s : AE D} (hs : s ∈ idV (𝔞 * ((P.modul sc : Ideal (𝓞 D.host.E)) : FI D)⁻¹) v) :

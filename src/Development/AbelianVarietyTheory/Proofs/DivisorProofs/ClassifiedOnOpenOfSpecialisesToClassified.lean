@@ -56,9 +56,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 noncomputable section
 namespace GlobalTheory.ClsOpen
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 end GlobalTheory.ClsOpen
 
@@ -83,7 +81,7 @@ theorem GlobalTheory.clsOpen : ∀ {E : Type} [Field E] [NumberField E] [IsCMFie
   haveI : IsNoetherianRing A := IsLocalization.isNoetherianRing (Submonoid.powers f) A hR.1.1
   haveI : IsIntegrallyClosed R := hR.1.2.2.1
   haveI : IsIntegrallyClosed A := isIntegrallyClosed_of_isLocalization A (Submonoid.powers f) hpow
-  have hψ := GlobalTheory.T.psiUnitOn_basicOpen_of_comesFromBase L P₁.D.toPre P₁.oD iw s ε e₁ hD₁ f (by
+  have hψ := _root_.GlobalTheory.UnitOpen.psiUnitOn_basicOpen_of_divFrom L P₁.D.toPre P₁.oD iw s ε e₁ hD₁ f (by
     rintro (i | j)
     · exact ⟨1, by rw [pow_one, hf_def]; exact Finset.dvd_prod_of_mem _ (Finset.mem_univ i)⟩
     · exact ⟨0, (hu j).dvd⟩)

@@ -62,7 +62,7 @@ theorem main : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host 
   obtain ⟨hB', o', ho', hW'⟩ := GlobalTheory.T.pullDeg_keeps_bimult_action_polarisationElement o₀ hD oQ.onB
     (fun a y => by rw [hxe, hxe]; exact e.map_smul a y) oQ.c_lin
     (fun a => by rw [hβ]; exact hact a) hB₀ H.w0 hW₀
-  obtain ⟨q, h1, h2, h3, h4⟩ := GlobalTheory.T.rescaled_degenerationData_differ_by_scalar Q oQ g o' ho' hBQ hB' H.w0 hWQ hW'
-  exact ⟨g, hD, q, hxe, hβ, GlobalTheory.T.psiUnitOn_univ_of_pullback_read_top hD hWt, h1, h2, h3, h4⟩
+  obtain ⟨q, h1, h2, h3, h4⟩ := _root_.GlobalTheory.RatioScalar.scalar Q oQ g o' ho' hBQ hB' H.w0 hWQ hW'
+  exact ⟨g, hD, q, hxe, hβ, _root_.GlobalTheory.PullTopUnit.psiUnitOn_pull_top hD hWt, h1, h2, h3, h4⟩
 
 end GlobalTheory.YRatio

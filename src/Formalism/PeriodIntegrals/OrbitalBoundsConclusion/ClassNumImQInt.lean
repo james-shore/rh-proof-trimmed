@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem imag_quadratic_integral_basis : PI.ClassNumImQ.IntBasis :=
-  PI.UnitaryGroupMassFormula.ClassNumImQInt.intBasis

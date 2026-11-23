@@ -131,11 +131,6 @@ theorem exists_k_unif (v : HeightOneSpectrum (𝓞 F)) (ι : Type) [Fintype ι]
   rw [Real.dist_eq, abs_sub_comm] at h4
   exact h4.le
 
-theorem exists_reps {α : Type} (r : α → α → Prop) (hs : ∀ a b, r a b → r b a)
-    (ht : ∀ a b c, r a b → r b c → r a c) (t : Finset α) :
-    ∃ C ⊆ t, (∀ a ∈ C, ∀ b ∈ C, r a b → a = b) ∧ ∀ x ∈ t, x ∈ C ∨ ∃ c ∈ C, r x c :=
-  _root_.UpperTheory.Reformulated.B.Rc5.exists_reps r hs ht t
-
 theorem exists_centres (v : HeightOneSpectrum (𝓞 F)) (ι : Type) [Fintype ι] (k : ℕ)
     {K : Set (ι → Fv F v)} (hK : IsCompact K) :
     ∃ C : Finset (ι → Fv F v), (∀ c ∈ C, c ∈ K) ∧
@@ -152,7 +147,7 @@ theorem exists_centres (v : HeightOneSpectrum (𝓞 F)) (ι : Type) [Fintype ι]
       exact (continuous_apply i).sub continuous_const
     · intro i; simpa using zero_mem_ball v k
   obtain ⟨t, hcov⟩ := hK.elim_nhdsWithin_subcover' _ hnh
-  obtain ⟨C, hCt, hC, hCc⟩ := exists_reps (fun a b : ι → Fv F v => ∀ i, a i - b i ∈ ballV v k)
+  obtain ⟨C, hCt, hC, hCc⟩ := _root_.UpperTheory.Reformulated.B.Rc5.exists_reps (fun a b : ι → Fv F v => ∀ i, a i - b i ∈ ballV v k)
     (fun a b h i => by simpa using neg_mem_ball v k (h i))
     (fun a b c h h' i => by simpa using add_mem_ball v k (h i) (h' i)) (t.image Subtype.val)
   refine ⟨C, ?_, hC, ?_⟩

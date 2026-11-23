@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.RelativeAmpleness.RelAmpleAndKTrivIff
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ResidueNormalOfProfiniteInvariants
 
 @[expose] public section
 
@@ -147,7 +148,7 @@ theorem residue_fixed_mem : ∀ (R K Ω : Type) [CommRing R] [IsDomain R] [IsDis
   have hQmax : Q.IsMaximal := Ideal.IsMaximal.of_liesOver_isMaximal Q (maximalIdeal R)
   letI := Ideal.Quotient.field (maximalIdeal R)
   letI := Ideal.Quotient.field Q
-  haveI hN : Normal (R ⧸ maximalIdeal R) (B ⧸ Q) := GlobalTheory.T.residue_normal_of_profinite_invariants G (maximalIdeal R) Q
+  haveI hN : Normal (R ⧸ maximalIdeal R) (B ⧸ Q) := _root_.GlobalTheory.Ideal.Quotient.normal_of_profinite G (maximalIdeal R) Q
   haveI : PerfectField (R ⧸ maximalIdeal R) := ‹PerfectField (ResidueField R)›
   haveI : IsGalois (R ⧸ maximalIdeal R) (B ⧸ Q) := {}
 

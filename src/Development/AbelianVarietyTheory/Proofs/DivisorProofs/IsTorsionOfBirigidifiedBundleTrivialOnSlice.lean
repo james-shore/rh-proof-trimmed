@@ -82,14 +82,14 @@ theorem exists_pow_eq_one : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsComm
   have iso : LBIso P' (P.pull φ₂) := PullbackComparison.gen_refl _ hP'
   have dg := SiegelPull.diag_iso sq iso
   obtain ⟨B₀, A₀, _, _, ψ, ψ₂, P₀, fin, ab₀, pb₀, sq₀, hP₀, iso₀, r₁, r₂, symm₀, ample₀⟩ :=
-    GlobalTheory.T.polarised_abelian_scheme_descends_finite_type B A' P' hab hP'
+    _root_.GlobalTheory.PolModel.polarised_descends B A' P' hab hP'
       (gen_chartPull (chartPullLinComb P _ _ _ _ φ (fun _ => PullbackComparison.lift_one_id y A)) t₁ ht₁)
       (gen_chartPull (chartPullLinComb P _ _ _ _ φ (fun _ => PullbackComparison.lift_id_one y A)) t₂ ht₂)
       (LBIso.chartPull (ReciprocityTheory.ChartRestriction.G.Geo.Tor.chartPullPull P _ _ rfl)
         (chartPullLinComb P _ _ _ _ φ₂ (fun _ => PullbackComparison.lift_swap y A)) symm)
       ((pol_pull S _ A A' y φ _ _ (pull_isLB hP _) (pull_isLB hP' _) ab pb dg).2.1 ample)
   have : IsNoetherianRing B₀ := Algebra.FiniteType.isNoetherianRing ℤ B₀
-  obtain ⟨M, hM, hker⟩ := GlobalTheory.T.exists_pow_eq_one_birigidifiedSymmetric_noetherian B₀ A₀ P₀ ab₀ hP₀ r₁ r₂ symm₀ ample₀
+  obtain ⟨M, hM, hker⟩ := _root_.GlobalTheory.AbDual.exists_pow_eq_one_of_triv_ev_noeth B₀ A₀ P₀ ab₀ hP₀ r₁ r₂ symm₀ ample₀
   refine ⟨M, hM, ?_⟩
   let T : Over (Sp B) := Over.mk (𝟙 _)
   obtain ⟨e, he⟩ := GlobalTheory.LiePull.exists_pushEquiv pb T y (Category.id_comp _).symm

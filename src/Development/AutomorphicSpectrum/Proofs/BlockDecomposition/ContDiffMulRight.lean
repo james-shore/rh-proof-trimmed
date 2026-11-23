@@ -254,9 +254,6 @@ theorem exists_nil {W₁ W₂ : Submodule ℂ (Fin n → ℂ)} {blk : Fin n → 
     simp only [Matrix.mulVec_mulVec, ← Matrix.mul_assoc, hPQ, Matrix.one_mul, Matrix.mulVec_zero] at this
     exact this
 
-theorem mul_mem {a b : Mat n} (ha : a ∈ GLs n) (hb : b ∈ GLs n) : a * b ∈ GLs n := by
-  simpa [GLs, Matrix.det_mul] using And.intro ha hb
-
 theorem contDiff_mul_left (P : Mat n) : ContDiff ℝ ∞ (fun y : Mat n => P * y) :=
   (LinearMap.toContinuousLinearMap (LinearMap.mulLeft ℝ P)).contDiff
 
@@ -288,13 +285,13 @@ theorem gelFlag_of (hC : GelComm) (hN : GelN) : GelFlag := by
   have e4 : gel s m (fun y => A x (f y)) x = A x (gel s m f x) :=
     ((hC n V V s m f hf).2 x hx).2.2 (A x)
   set r : Mat n := P⁻¹ * x with hr
-  have hrm : r ∈ GLs n := mul_mem hQm hx
+  have hrm : r ∈ GLs n := _root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs hQm hx
   let D₁ : Mat n → V := fun y => D (P * y)
   have hD₁ : ContDiffOn ℝ ∞ D₁ (GLs n) :=
-    hD.comp (contDiff_mul_left P).contDiffOn fun y hy => mul_mem hPm hy
+    hD.comp (contDiff_mul_left P).contDiffOn fun y hy => _root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs hPm hy
   let h : Mat n → V := fun y => D₁ (y * r)
   have hh : ContDiffOn ℝ ∞ h (GLs n) :=
-    hD₁.comp (contDiff_mul_right r).contDiffOn fun y hy => mul_mem hy hrm
+    hD₁.comp (contDiff_mul_right r).contDiffOn fun y hy => _root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs hy hrm
   have hone : (1 : Mat n) ∈ GLs n := by simp [GLs]
   have e5 : gel s m h 1 = gel s m D₁ (1 * r) := (((hC n V V s m D₁ hD₁).2 1 hone).2.1 r hrm).2
   have e6 : gel s m D₁ r = gel s m D (P * r) := (((hC n V V s m D hD).2 r hrm).2.1 P hPm).1
@@ -304,7 +301,7 @@ theorem gelFlag_of (hC : GelComm) (hN : GelN) : GelFlag := by
     · intro u hu g hg
       obtain ⟨U, hUN, hU⟩ := exists_nil hP hb h1 h2 hu
       have hUunit : IsUnit (u : Mat n) := isUnit_unip hb hu
-      have hy : P * (g * r) ∈ GLs n := mul_mem hPm (mul_mem hg hrm)
+      have hy : P * (g * r) ∈ GLs n := _root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs hPm (_root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs hg hrm)
       have hshift : P * (u * g * r) = U.val * (P * (g * r)) := by
         rw [hU]
         simp only [Matrix.mul_assoc]
@@ -329,7 +326,7 @@ theorem gelFlag_of (hC : GelComm) (hN : GelN) : GelFlag := by
     · intro g hg hgb
       have hgu : IsUnit g := (Matrix.isUnit_iff_isUnit_det g).2 (isUnit_iff_ne_zero.2 hg)
       have hbl : ∀ a b, blk b < blk a → g a b = 0 := fun a b hab => hgb a b (by omega)
-      have hq : P * g * P⁻¹ ∈ GLs n := mul_mem (mul_mem hPm hg) hQm
+      have hq : P * g * P⁻¹ ∈ GLs n := _root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs (_root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs hPm hg) hQm
       have hx' : P * (g * r) = (P * g * P⁻¹) * x := by
         rw [hr]; simp only [Matrix.mul_assoc]
       show D (P * (g * r)) = 0

@@ -77,8 +77,8 @@ theorem exists_datum_pure_linBar : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc :
           ∀ Y, ι φ₀ Y = c * (matLat (Fin (G.V (.grid i j)).rank) Λ : Set _).indicator 1 (P.val * Y) := by
   intro D T L sc G μ₀ hL W B ρ t i j M hM Θ Θ' hΘ g₁ e Bs Γ X om om' h hTr hv
   obtain ⟨ΦB, hD, m, f, φ, φ₀, hΦ, hSB, hvac, hv₁, h0, hne, L₁, L₂, θ, hθ, hfix, huniq⟩ :=
-    GlobalTheory.T.exists_gridDatum_pureTensor_vacuaAE hL W B ρ t i j M hM Θ Θ' hΘ g₁ e Bs Γ X om om' h hTr hv
-  obtain ⟨ι, P, Λ, c, hι, hY⟩ := GlobalTheory.T.latticeVacuum_eq_smul_indicator_splitPlace Bs Γ X om om' hTr L₁ L₂ θ hθ φ₀ h0 hne hfix huniq
+    _root_.GlobalTheory.SmallDatumVac.exists_datum_pure_vac hL W B ρ t i j M hM Θ Θ' hΘ g₁ e Bs Γ X om om' h hTr hv
+  obtain ⟨ι, P, Λ, c, hι, hY⟩ := _root_.GlobalTheory.VacShape.vacuum_eq_smul_indicator Bs Γ X om om' hTr L₁ L₂ θ hθ φ₀ h0 hne hfix huniq
   exact ⟨ΦB, hD, m, f, φ, φ₀, hΦ, hSB, hvac, hv₁, ι, P, Λ, c, hι, hY⟩
 
 end GlobalTheory.SmallDatum

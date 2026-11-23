@@ -102,7 +102,7 @@ theorem conj_invT_of_unitary' {n : ℕ} {M : Matrix (Fin n) (Fin n) ℂ} (h : Ma
 theorem conjT_mul_compAt {D : D7} {θ : InfFam D} (hθ : IsInfFam θ) {V : HSp D} (hV : V.gram = 1) (g : GA D V)
     (τ : D.what₂.Tau) :
     Matrix.conjTranspose (compAt θ τ (Formalism.L2.Theta.mt V g)) * compAt θ τ (Formalism.L2.Theta.mt V g) = 1 := by
-  have h1 := GlobalTheory.StdUnn.CartanMove.compAt_isom hθ V g τ
+  have h1 := _root_.GlobalTheory.RealWeil.compAt_unitary hθ V g τ
   have hg : gramAt D V τ = 1 := by
     unfold gramAt
     rw [hV]

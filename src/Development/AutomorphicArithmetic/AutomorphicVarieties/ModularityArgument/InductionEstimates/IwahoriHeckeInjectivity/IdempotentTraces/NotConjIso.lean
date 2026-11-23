@@ -52,6 +52,7 @@ public import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SubsingletonRankZero
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.CycCOfCyclic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.GelfandKazhdanReal
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.TheoremZeroOfReducedInputs
 
 @[expose] public section
 
@@ -89,10 +90,6 @@ private theorem pow_val {K : Type} [Field K] [NumberField K] {χ : HChar K} {s :
     rw [WithZero.log_exp, e', zpow_neg_one, NNReal.coe_inv, Complex.ofReal_inv, NNReal.coe_natCast, Complex.ofReal_natCast,
       Complex.inv_cpow _ _ (by rw [Complex.natCast_arg]; exact Real.pi_ne_zero.symm), Complex.cpow_neg]
 
-private theorem exists_place (E : Type) [Field E] [NumberField E] : Nonempty (HeightOneSpectrum (𝓞 E)) := by
-  obtain ⟨m, hm⟩ := Ideal.exists_maximal (𝓞 E)
-  exact ⟨⟨m, hm.isPrime, Ring.ne_bot_of_isMaximal_of_not_isField hm (RingOfIntegers.not_isField E)⟩⟩
-
 private theorem absC_pow (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (s : ℂ) : IsPow (GlobalTheory.CuspRep.Model.absC E s) s := by
   obtain ⟨b, hb⟩ := GlobalTheory.AbsTwist.exists_eq_mul_log_module (F := E) (GlobalTheory.Mem.Chr.CharModel.logNorm E)
     (GlobalTheory.Mem.Chr.CharModel.continuous_logNorm E) (GlobalTheory.Mem.Chr.CharModel.logNorm_mul E)
@@ -105,7 +102,7 @@ private theorem absC_pow (E : Type) [Field E] [NumberField E] [_root_.NumberFiel
     push_cast
     ring
   have hb1 : b = 1 := by
-    obtain ⟨w⟩ := exists_place E
+    obtain ⟨w⟩ := _root_.Formalism.MainNotions.Gaps.EtaleWeightGaps.exists_prime E
     have h1 := (pow_val (hgen 1) w).2
     have e' : normV w = Ideal.absNorm w.asIdeal := by
       rw [normV, Ideal.absNorm_apply, Submodule.cardQuot_apply]

@@ -32,9 +32,9 @@ mechanical steps only.
 
 - S2 is ported to Lean 4.37 as [PR #243](https://github.com/leanprover-community/riemann-hypothesis/pull/243) on
   leanprover-community/riemann-hypothesis, built on [#185](https://github.com/leanprover-community/riemann-hypothesis/pull/185),
-  now merged. Its lists are at tag [`s2-pr-185-5`](https://github.com/james-shore/rh-proof-trimmed/tree/s2-pr-185-5)
-- It compiles on [#134](https://github.com/leanprover-community/riemann-hypothesis/pull/134) under Lean 4.36 and cuts the
-  warnings from the three linters by 94%
+  now merged. Its lists are at tag [`s2-pr-185-6`](https://github.com/james-shore/rh-proof-trimmed/tree/s2-pr-185-6)
+- It compiles and verifies on Lean 4.37, compiles on [#134](https://github.com/leanprover-community/riemann-hypothesis/pull/134)
+  under Lean 4.36, and cuts the warnings from the three linters by 94%
 - S3 is [PR #295](https://github.com/leanprover-community/riemann-hypothesis/pull/295) on leanprover-community/riemann-hypothesis,
   built on [#185](https://github.com/leanprover-community/riemann-hypothesis/pull/185), now merged. Its lists are at tag
   [`s3-pr-185-2`](https://github.com/james-shore/rh-proof-trimmed/tree/s3-pr-185-2)

@@ -76,7 +76,7 @@ theorem exists_ptOf_mul_K1 : ∀ {B : Base} (n : ℕ) [NeZero n] (ST SG : Finset
     have hr : (redG B.sp.cm n ∅ ∅ ⟨t, hz⟩)⁻¹ = 1 := Subsingleton.elim _ _
     rw [hr] at h
     rw [(near_of_isPtOf hp 0).deco] at h
-    simp only [map_one] at h
+    simp only at h
     change decoRaw ∅ ∅ (k * t) = Deco.act 1 1 p.deco.1 at h
     rw [Deco.act_one] at h
     exact h.symm

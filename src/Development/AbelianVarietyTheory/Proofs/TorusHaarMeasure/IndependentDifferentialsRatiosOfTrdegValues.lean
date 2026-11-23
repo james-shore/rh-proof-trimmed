@@ -70,7 +70,6 @@ theorem ratio_single {F Γ : Type} [Field F] [AddCommGroup Γ] (g : Γ) (a b : F
   rw [AddMonoidAlgebra.smul_single'] at hc
   have hv : a = hex.choose * b := by
     first
-    | exact AddMonoidAlgebra.single_injective g hc
     | simpa using hc
   exact eq_div_of_mul_eq hb hv.symm
 

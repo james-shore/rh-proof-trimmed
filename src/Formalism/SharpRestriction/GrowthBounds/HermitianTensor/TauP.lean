@@ -99,7 +99,7 @@ private theorem isWeightedHomogeneous_colW_adjugate_genY {R : Type} [CommRing R]
     have hpa : p ≠ a := fun h => hs (h ▸ hp)
     rw [Finset.prod_eq_zero (Finset.mem_univ p)]
     · exact isWeightedHomogeneous_zero _ _ _
-    · simp [Matrix.updateRow_apply, hp, Pi.single_apply, hpa]
+    · simp [Matrix.updateRow_apply, hp, hpa]
 
 private theorem isWeightedHomogeneous_colW_detY {R : Type} [CommRing R] (r : ℕ) : IsWeightedHomogeneous (colW r r) (detY R r) (fun _ => 1) := by
   rw [detY_eq, Matrix.det_apply, ← mem_weightedHomogeneousSubmodule]
@@ -124,7 +124,7 @@ private theorem colAdd_mapMatrix_genY_eq_mul_transvection {R : Type} [CommRing R
   · subst hb
     simp [Matrix.mul_apply, Matrix.single_apply, mul_comm]
   · have hb' : j ≠ b := Ne.symm hb
-    simp [Matrix.mul_apply, Matrix.single_apply, hb, hb']
+    simp [Matrix.mul_apply, hb, hb']
 
 private theorem colAdd_detY_eq_of_ne {R : Type} [CommRing R] (r : ℕ) (l j : Fin r) (hlj : l ≠ j) (c : R) :
     colAdd R l j c (detY R r) = detY R r := by
@@ -145,7 +145,7 @@ private theorem colAdd_adjugate_genY_eq_of_ne {R : Type} [CommRing R] (r : ℕ) 
   by_cases ha : a = l
   · subst ha; simp [Matrix.single_mul_apply_same]
   · have ha' : l ≠ a := Ne.symm ha
-    simp [ha, ha', Matrix.mul_apply, Matrix.single_apply]
+    simp [ha, ha', Matrix.mul_apply]
 
 private theorem adjugate_subst_mem_dualWeyl_of_mem {R : Type} [CommRing R] [IsDomain R] [Infinite R] (r : ℕ) (ν : Fin r → ℕ)
     (f : MvPolynomial (Fin r × Fin r) R) (hf : f ∈ dualWeyl R r r ν) :
@@ -187,7 +187,7 @@ private theorem adjugate_subst_mem_dualWeyl_of_mem {R : Type} [CommRing R] [IsDo
       simp only [colAdd, aeval_X]
       by_cases h : v.2 = l.rev
       · have h' : v.2.rev = l := by rw [h, Fin.rev_rev]
-        simp [h, h', map_add (f := _), map_mul, aeval_X, aeval_C, Fin.rev_rev]
+        simp [h, map_add (f := _), map_mul, aeval_X, aeval_C, Fin.rev_rev]
       · have h' : v.2.rev ≠ l := fun e => h (by rw [← e, Fin.rev_rev])
         simp [h, h']
     have hl : j.rev < l.rev := Fin.rev_lt_rev.mpr hlj
@@ -214,7 +214,7 @@ private theorem map_aeval_adjugate_subst_eq_aeval_map {A B : Type} [CommRing A] 
     exact congrFun (congrFun this a) i
   induction f using MvPolynomial.induction_on
   next a =>
-    simp [aeval_C, map_C]
+    simp [map_C]
   next p q hp hq =>
     simp only [map_add (f := _), hp, hq]
   next p v hp =>
@@ -287,7 +287,7 @@ private theorem transpose_act_comp_adjugate_subst_comp_act_eq_det {R : Type} [Co
     refine Finset.sum_congr rfl fun b _ => ?_
     simp [Am, mul_comm]
   rw [hsum, Matrix.mul_assoc, Matrix.adjugate_mul, hdet]
-  simp [Matrix.mul_smul, Matrix.smul_apply]
+  simp [Matrix.smul_apply]
 
 private theorem adjugate_subst_mapMatrix_genY_eq_transpose_mul_antidiag {R : Type} [CommRing R] (r : ℕ) :
     (aeval fun v : Fin r × Fin r => (genY R r).adjugate v.2.rev v.1).mapMatrix (genY R r) =

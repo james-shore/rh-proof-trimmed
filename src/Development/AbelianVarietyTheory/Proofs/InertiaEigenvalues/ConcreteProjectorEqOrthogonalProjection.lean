@@ -80,7 +80,7 @@ theorem semi_expand (y : Fin n → K) : J y = ∑ i, σ (y i) • J (Pi.single i
   have : (Pi.single i (y i) : Fin n → K) = y i • Pi.single i 1 := by
     ext k; by_cases hk : k = i
     · subst hk; simp
-    · simp [Pi.single_apply, hk]
+    · simp [hk]
   rw [this, LinearMap.map_smulₛₗ]
 
 theorem semi_injective (hli : LinearIndependent ℂ fun i => J (Pi.single i 1)) : Function.Injective J := by
@@ -101,7 +101,7 @@ theorem semi_mulVec_mem (E : Matrix (Fin n) (Fin d) K) (c : Fin d → K) :
     congr 1
     ext a; by_cases ha : a = k
     · subst ha; simp
-    · simp [Pi.single_apply, ha]
+    · simp [ha]
 
   rw [e, map_sum]
   refine Submodule.sum_mem _ fun k _ => ?_

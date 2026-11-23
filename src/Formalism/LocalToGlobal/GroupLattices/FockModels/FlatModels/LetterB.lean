@@ -135,7 +135,7 @@ theorem nuOf_letterWt (m : ℕ) (hm : 1 ≤ m) (d : ℕ) (vec : Bool) : nuOf (le
 
 theorem nuL_smul (m d : ℕ) (vec : Bool) : nuL m d vec = d • nuL m 1 vec := by
   funext t
-  cases vec <;> simp [nuL] <;> split_ifs <;> simp
+  cases vec <;> simp [nuL] <;> split_ifs
 
 def s0 (m : ℕ) (vec : Bool) : ℕ := if vec then 1 else m
 
@@ -190,8 +190,6 @@ theorem Nv_mem (R : Type) [CommRing R] (m : ℕ) (vec : Bool) (c : Fin (m + 1)) 
           ext
           first
             | (rw [Fin.val_zero]; omega)
-            | (simp only [Fin.coe_ofNat_eq_mod, Nat.zero_mod]; omega)
-            | (norm_num; omega)
         simp [ht, h1]
     rw [e]
     exact initMinor_isWeightedHomogeneous _ _
@@ -255,7 +253,6 @@ theorem exists_succAbove {m : ℕ} (I : Fin m → Fin (m + 1)) (hI : StrictMono 
   have hinj := hI.injective
   have hcard : (Finset.univ \ Finset.univ.image I).card = 1 := by
     first
-      | rw [Finset.card_sdiff (Finset.subset_univ _), Finset.card_image_of_injective _ hinj]
       | rw [Finset.card_sdiff_of_subset (Finset.subset_univ _), Finset.card_image_of_injective _ hinj]
     simp
   obtain ⟨c, hc⟩ := Finset.card_eq_one.1 hcard
@@ -325,7 +322,7 @@ theorem shape_sizes (m : ℕ) (hm : 1 ≤ m) (d : ℕ) (vec : Bool) {K : ℕ} (s
   have hsum : ∑ k, (if sz k = 0 then 0 else 1) = (Finset.univ.filter fun k : Fin K => ((0 : Fin (m + 1)) : ℕ) < sz k).card := by
     rw [Finset.card_filter]
     refine Finset.sum_congr rfl (fun k _ => ?_)
-    by_cases h : sz k = 0 <;> simp [h, Nat.pos_iff_ne_zero, Fin.val_zero]
+    by_cases h : sz k = 0 <;> simp [h, Nat.pos_iff_ne_zero]
   have h0 : (Finset.univ.filter fun k : Fin K => ((0 : Fin (m + 1)) : ℕ) < sz k).card = d := by
     rw [hA 0]
     cases vec <;> simp [nuL, hl]

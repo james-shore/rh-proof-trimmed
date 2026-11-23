@@ -51,7 +51,7 @@ theorem UpperTheory.V.Z.Sym.Dict.Br.rhoGlob :
   intro L _ _ _ P v w h x
   have hx : x = algebraMap (Lp L) (Lsq (Lp L) P.Δ) x.re
       + algebraMap (Lp L) (Lsq (Lp L) P.Δ) x.im * QuadraticAlgebra.omega := by
-    ext <;> simp [QuadraticAlgebra.omega_re, QuadraticAlgebra.omega_im]
+    ext <;> simp
   have lhs : P.rho v w h (lmap (cv v) P.Δ x)
       = P.φ v w h (cv v x.re) + P.φ v w h (cv v x.im) * P.rt w := rfl
   rw [lhs, P.φ_alg, P.φ_alg, Pre.rt]

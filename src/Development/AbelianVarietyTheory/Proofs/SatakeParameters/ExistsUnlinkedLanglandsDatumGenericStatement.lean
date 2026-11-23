@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_unlinked_langlandsDatum_generic : ∀ (k : 
     (x : IrrGL (k := k)), IsGeneric x.rep →
     ∃ (c : ℕ) (Δ : Fin c → Segment k), (∀ i j, i ≠ j → ¬ (Δ i).Linked (Δ j)) ∧
       IsL ((List.ofFn Δ : List (Segment k)) : Multiset (Segment k)) x.rep := by
-  first | (exact @GlobalTheory.GenericLDatum.exists_unlinked_isL) | (exact GlobalTheory.GenericLDatum.exists_unlinked_isL) | (intros; apply GlobalTheory.GenericLDatum.exists_unlinked_isL  <;> assumption)
+  first | (exact @GlobalTheory.GenericLDatum.exists_unlinked_isL)

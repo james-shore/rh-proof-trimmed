@@ -58,8 +58,6 @@ variable {p q r s : ℕ}
 theorem omAct_eq_sum (M : Matrix (FockH1Action.Ln p q r s) (FockH1Action.Ln p q r s) ℂ) :
     FockH1Action.omAct p q r s M = ∑ l, ∑ l', M l l' • FockH1Action.omE l l' := by
   first
-  | (simp only [FockH1Action.omAct, LinearMap.coeFn_sum, Finset.sum_apply,
-      LinearMap.smulRight_apply, Matrix.entryLinearMap_apply]; done)
   | (simp only [FockH1Action.omAct, LinearMap.sum_apply,
       LinearMap.smulRight_apply, Matrix.entryLinearMap_apply]; done)
 

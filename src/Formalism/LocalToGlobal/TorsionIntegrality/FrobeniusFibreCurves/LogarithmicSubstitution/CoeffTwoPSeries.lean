@@ -58,8 +58,6 @@ theorem coeff_two_pSeries (L : PeriodPair) :
   rw [Formalism.L2.Th1.F.pSeriesCoeff L 2, if_neg (by norm_num)]
   first
     | (simp only [PeriodPair.g₂]; push_cast; ring)
-    | (unfold PeriodPair.g₂; push_cast; ring)
-    | (norm_num [PeriodPair.g₂]; ring)
 
 theorem coeff_two_shift (L : PeriodPair) (P : ℂ) (hP : P ∉ L.lattice) :
     PowerSeries.coeff 2 (taylor0 (fun z => L.weierstrassP (z + P)))
@@ -69,15 +67,10 @@ theorem coeff_two_shift (L : PeriodPair) (P : ℂ) (hP : P ∉ L.lattice) :
   have hc : IsClosed (L.lattice : Set ℂ) := by
     first
       | exact L.isClosed_lattice
-      | exact PeriodPair.isClosed_lattice L
-      | (haveI : DiscreteTopology L.lattice.toAddSubgroup := inferInstanceAs (DiscreteTopology L.lattice)
-         exact (L.lattice.toAddSubgroup).isClosed_of_discreteTopology)
   have hopen : ∀ᶠ w in nhds P, w ∉ L.lattice := hc.isOpen_compl.mem_nhds hP
   have hev : deriv L.weierstrassP =ᶠ[nhds P] L.derivWeierstrassP := by
     filter_upwards [hopen] with w hw
     first
-      | exact (L.hasDerivAt_weierstrassP hw).deriv
-      | exact (PeriodPair.hasDerivAt_weierstrassP L hw).deriv
       | exact congrFun L.deriv_weierstrassP w
   have h1 : deriv (fun z => L.weierstrassP (z + P)) = fun w => deriv L.weierstrassP (w + P) := by
     funext w

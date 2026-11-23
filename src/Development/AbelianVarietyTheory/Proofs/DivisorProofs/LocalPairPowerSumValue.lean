@@ -229,8 +229,7 @@ lemma homF_comm (i j : ℤ) (hij : (ComplexShape.up ℤ).Rel i j) :
     rw [reassoc_of% (ι_homF K a b (a + b) rfl),
       HomologicalComplex.extend_d_eq _ ComplexShape.embeddingDownNat (i := a + b) (j := k) (fN _) (fN _),
       Iso.inv_hom_id_assoc]
-    simp only [HomologicalComplex₂.total_d, Preadditive.add_comp, Preadditive.comp_add, Category.assoc,
-      HomologicalComplex₂.ι_D₁_assoc, HomologicalComplex₂.ι_D₂_assoc]
+    simp only [HomologicalComplex₂.total_d, Preadditive.add_comp, Preadditive.comp_add, HomologicalComplex₂.ι_D₁_assoc, HomologicalComplex₂.ι_D₂_assoc]
     have hd₁ : (kN K a b).hom ≫ K.d₁ (ComplexShape.down ℕ) a b k ≫
         ((K.total (ComplexShape.down ℕ)).extendXIso ComplexShape.embeddingDownNat (fN k)).inv =
         (ext2 K).d₁ (ComplexShape.up ℤ) (-(a : ℤ)) (-(b : ℤ)) (-(k : ℤ)) ≫ homF K (-(k : ℤ)) := by

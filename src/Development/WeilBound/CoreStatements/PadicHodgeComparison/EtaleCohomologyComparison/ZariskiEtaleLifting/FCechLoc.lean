@@ -64,7 +64,7 @@ def clAct {D : Type u} [Category.{v} D] (H : D ⥤ ModuleCat.{w} R) (ρ : ∀ X,
     A →+* Module.End R (Cn H p) where
   toFun a := LinearMap.pi fun s => (ρ _ a) ∘ₗ LinearMap.proj s
   map_one' := LinearMap.ext fun f => funext fun s => by simp
-  map_mul' a b := LinearMap.ext fun f => funext fun s => by simp [Module.End.mul_apply]
+  map_mul' a b := LinearMap.ext fun f => funext fun s => by simp
   map_zero' := LinearMap.ext fun f => funext fun s => by simp
   map_add' a b := LinearMap.ext fun f => funext fun s => by simp
 

@@ -74,7 +74,7 @@ private theorem sb_mul_w {F : Type} [Field F] [NumberField F] {v : P F} {a : M2 
 private theorem infOrth_wW (F : Type) [Field F] [NumberField F] : InfOrth (wW F) := by
   intro i j
   have h : (wW F).1 * (wW F).1ᵀ = 1 := by
-    ext i j; fin_cases i <;> fin_cases j <;> simp [wW, Matrix.mul_apply, Fin.sum_univ_two, Matrix.transpose_apply]
+    ext i j; fin_cases i <;> fin_cases j <;> simp [wW, Matrix.mul_apply, Fin.sum_univ_two]
   rw [h]
 
 theorem UpperTheory.ConvolutionTheory.R2.I.omW :

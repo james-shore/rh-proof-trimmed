@@ -234,7 +234,6 @@ theorem akCount_split (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF :
       simp only [consBasis_inl, consBasis_inr]
       have e : starRingEnd K (h S.x₀ (S.ι (b' i))) = h (S.ι (b' i)) S.x₀ := by
         first
-          | exact hs S.x₀ (S.ι (b' i))
           | exact hs.eq S.x₀ (S.ι (b' i))
       rw [← e, S.orth]
       simp [Formalism.HermitianLattices.Ext.L3.PinE.HH]
@@ -246,7 +245,7 @@ theorem akCount_split (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF :
       Formalism.HermitianLattices.Ext.L3.PinE.HH (H'.map (Ideal.Quotient.mk (extP K 𝔭 ^ k))) := by
     ext p q
     rcases p with u | i <;> rcases q with u' | j <;>
-      simp [Formalism.HermitianLattices.Ext.L3.PinE.HH, Matrix.one_apply]
+      simp [Formalism.HermitianLattices.Ext.L3.PinE.HH]
 
   have htr : ∀ x : Unit ⊕ Fin (finrank K V') → 𝓞 K ⧸ extP K 𝔭 ^ k,
       star x ⬝ᵥ (Formalism.HermitianLattices.Ext.L3.PinE.HH (H'.map (Ideal.Quotient.mk (extP K 𝔭 ^ k))) *ᵥ x) = 1 →
@@ -278,7 +277,7 @@ theorem akCount_split (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF :
       have e := (Formalism.HermitianLattices.Ext.L3.integralBasisSpans.congrP_int h𝔭 k z 1).2 (by rw [map_one]; exact hform.symm)
       rwa [map_one, hz] at e
     obtain ⟨z', hz'L, hz'1, hz'd⟩ :=
-      Formalism.HermitianLattices.Ext.L3.PinF.exists_exact_lift hK hF hs hd (by first | exact hL | exact hL.toIsLattice) hLi h𝔭 h1 hk hwL hcong
+      Formalism.HermitianLattices.Ext.L3.PinF.exists_exact_lift hK hF hs hd (by first | exact hL) hLi h𝔭 h1 hk hwL hcong
     obtain ⟨g, hg, hgx⟩ :=
       Formalism.HermitianLattices.Ext.L3.PinC.exists_aut_map hK hF hs hd S h1 hL hLi hx h𝔭 hv hz'L hz'1
     rw [← hbb] at hg

@@ -52,12 +52,6 @@ theorem geometricLemma : GlobalTheory.Published.GeometricLemma := by
   have h := GlobalTheory.T.induced_cell_semisimplification k
   have hloc := GlobalTheory.T.jacquetOfInducedFiltration' k
   first
-    | exact h hloc
-    | exact h.mpr hloc
-    | exact ⟨h, hloc⟩
     | exact ⟨hloc, h⟩
-    | exact hloc.mpr h
-    | exact hloc h
-    | exact hloc
 
 end GlobalTheory.CompanionTheory.GeoLink

@@ -84,7 +84,6 @@ private lemma exists_adjusted_exceptional_exponent {cb B β X : ℝ} {θ : ℤ} 
     have hBne : B ≠ 0 := hBpos.ne'
     have e : 2 / B ^ 2 = cb / (B ^ 2 * Real.log B) * (2 / cb * Real.log B) := by
       field_simp
-      try ring
     rw [e]
     exact mul_le_mul h3 hcbX (mul_nonneg (div_nonneg (by norm_num) hcb.le) hlogB.le) (by linarith)
 
@@ -709,7 +708,6 @@ theorem shortIntervalImpliesProgressions_statement : ShortIntervalImpliesProgres
   have htot0 : 0 < m.totient := by
     first
     | exact Nat.totient_pos.mpr (by omega)
-    | exact Nat.totient_pos (by omega)
   have htot1 : (1 : ℝ) ≤ (m.totient : ℝ) := by exact_mod_cast htot0
   have htotB : (m.totient : ℝ) ≤ 4 * m := by
     have h1 : (m.totient : ℝ) ≤ m := by exact_mod_cast Nat.totient_le m
@@ -759,8 +757,6 @@ theorem shortIntervalImpliesProgressions_statement : ShortIntervalImpliesProgres
     rw [hunion, Finset.filter_union]
     first
     | exact Finset.card_union_of_disjoint hdisj
-    | exact Finset.card_disjoint_union hdisj
-    | exact Finset.card_union_eq_card_add_card.mpr hdisj
   have key2 : c * h * (4 * (m : ℝ)) ^ (-6 : ℝ) * Y / Real.log Y ≤
       (((Icc 1 ⌊Y * (1 + h)⌋₊).filter (fun p => p.Prime ∧ Nat.ModEq m p a)).card : ℝ)
         - (((Icc 1 ⌊Y⌋₊).filter (fun p => p.Prime ∧ Nat.ModEq m p a)).card : ℝ) := key
@@ -1051,7 +1047,7 @@ theorem log_l_value_field_bound : LogLFunctionEulerBound := by
       _ = (∑ P ∈ T, Real.log (Ideal.absNorm P.1 : ℝ)) / (2 * Real.log p) := by rw [Finset.sum_div]
       _ ≤ (Module.finrank ℚ K * Real.log p) / (2 * Real.log p) := by
           apply div_le_div_of_nonneg_right hlog; linarith
-      _ = (Module.finrank ℚ K : ℝ) / 2 := by field_simp; try ring
+      _ = (Module.finrank ℚ K : ℝ) / 2 := by field_simp
 
   have euler_factor_log_bound (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (M : ℕ) (hM : 1 ≤ M) (P : Ideal (𝓞 K))
       (hP : P.IsMaximal) :
@@ -1063,7 +1059,7 @@ theorem log_l_value_field_bound : LogLFunctionEulerBound := by
     have hlne := hlp.ne'
     have hc : idealPrimeWeight P = (k : ℝ) / 2 := by
       dsimp only [idealPrimeWeight]
-      rw [hk, Nat.cast_pow, Real.log_pow]; field_simp; try ring
+      rw [hk, Nat.cast_pow, Real.log_pow]; field_simp
     have hg := neg_log_one_sub_inv_pow_nonneg M hM _ hp
     unfold Formalism.HermitianLatticesTheory.eulerFac
     split_ifs with hconj

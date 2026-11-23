@@ -69,9 +69,7 @@ theorem cd_nM (τ : X.Ψ) (a b : Fin r) : ContDiff ℂ ∞ fun z : V (nd X) => n
   by_cases h : b < a
   · simp only [dif_pos h]
     first
-      | exact (EuclideanSpace.proj (𝕜 := ℂ) _).contDiff
       | fun_prop
-      | exact ((EuclideanSpace.proj (𝕜 := ℂ) _).contDiff).congr fun z => rfl
   · simp only [dif_neg h]
     exact contDiff_const
 
@@ -128,7 +126,6 @@ theorem cd_Am_entry (τ : X.Ψ) (a c : Fin X.p0) :
   rw [hfun]
   refine contDiff_const.sub (ContDiff.sum fun m _ => (hZ a m).mul ?_)
   first
-    | exact (hZ c m).star
     | exact Complex.conjCLE.contDiff.comp (hZ c m)
 
 theorem cd_detAm (τ : X.Ψ) : ContDiff ℝ ∞ fun z : V (nd X) => (Am X z τ).det := by

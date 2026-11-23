@@ -80,11 +80,7 @@ theorem isIntegral_of_forall_apply {O : Type} [CommRing O] {ι : Type} [Finite �
     [∀ i, CommRing (R i)] [∀ i, Algebra O (R i)] (x : ∀ i, R i) (hx : ∀ i, IsIntegral O (x i)) :
     IsIntegral O x := by
   first
-  | exact @_root_.GlobalTheory.IntegralPi.main
-  | exact _root_.GlobalTheory.IntegralPi.main
   | (apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPi.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegralPi.main ..)
 
 theorem etale_of_etale_pi {R : Type} [CommRing R] [IsNoetherianRing R] {ι : Type} [Finite ι]

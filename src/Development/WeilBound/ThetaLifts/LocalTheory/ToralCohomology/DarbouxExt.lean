@@ -237,7 +237,7 @@ theorem exists_rot {ι : Type} [Fintype ι] {n : ℕ} (G : ι → Matrix (Fin n)
     rw [← coe_evalRingHom, RingHom.map_det]
     congr 1
     ext i j
-    by_cases e : i = j <;> simp [e, one_apply]
+    by_cases e : i = j <;> simp [e]
   have q0 : ∏ w, q w ≠ 0 := Finset.prod_ne_zero_iff.2 fun w _ e => by
     have := ev w Complex.I
     rw [e, Complex.I_mul_I] at this

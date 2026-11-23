@@ -81,11 +81,11 @@ private theorem factor_abs {n : ℕ} {A G H : Type} [CommRing A] [Group G] [Grou
       have hm : MonoidAlgebra.mapRingHom K (algebraMap A B) (MonoidAlgebra.single 1 r)
           = MonoidAlgebra.single 1 (algebraMap A B r) := by
         ext g
-        simp [MonoidAlgebra.coeff_single, Finsupp.single_apply]
+        simp [MonoidAlgebra.coeff_single]
       rw [hr, map_mul, map_mul, map_mul, hx, Matrix.map_mul, hm, repAlg_single, repAlg_single, map_one]
       congr 1
       ext i j
-      by_cases h : i = j <;> simp [Matrix.one_apply, h]
+      by_cases h : i = j <;> simp [h]
   have chi_eq {K : Type} [Group K] (R : K →* Matrix (Fin n) (Fin n) A) (y : MonoidAlgebra A K) :
       (W.GDet.ofRep R).chi y = (W.GDet.repAlg R A y).charpoly := by
     unfold W.GDet.chi
@@ -94,7 +94,7 @@ private theorem factor_abs {n : ℕ} {A G H : Type} [CommRing A] [Group G] [Grou
     rw [Matrix.charpoly]
     congr 1
     ext i j
-    by_cases h : i = j <;> simp [Matrix.charmatrix_apply, Matrix.one_apply, h]
+    by_cases h : i = j <;> simp [h]
   have tr_eq (y : MonoidAlgebra A H) :
       (W.GDet.ofRep (W.mat ρ)).tr y = (W.GDet.repAlg (W.mat ρ) A y).trace := by
     haveI : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩

@@ -88,7 +88,7 @@ theorem finiteDimensional_chainsIn (lev : Fin n → ℕ) (d : ℕ) (S : Submodul
 
 theorem lF_apply (E : Fin n → Fin n → Module.End ℂ V) (p q : Fin n) (x : Cn n V) (A : Finset (Pos n)) :
     lF E p q x A = E p q (x A) + ∑ i : Pos n, ∑ k : Pos n, adC p q i k • cre k (ann i x) A := by
-  simp [lF, adL, LinearMap.add_apply, LinearMap.sum_apply, Finset.sum_apply, Module.End.mul_apply]
+  simp [lF, adL, LinearMap.add_apply, LinearMap.sum_apply, Finset.sum_apply]
 
 theorem cre_ann_mem {S : Submodule ℂ V} {x : Cn n V} (hx : ∀ A, x A ∈ S) (i k : Pos n) (A : Finset (Pos n)) :
     cre k (ann i x) A ∈ S := by

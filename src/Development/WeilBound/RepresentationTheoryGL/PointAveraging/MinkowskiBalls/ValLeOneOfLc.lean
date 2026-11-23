@@ -69,7 +69,7 @@ theorem vmul_lt {a b c : ValueGroupWithZero k} (h : a < b) (hc : c ≠ 0) : a * 
   mul_lt_mul_of_pos_right h (zero_lt_iff.2 hc)
 
 theorem vmul_le_iff {a b c : ValueGroupWithZero k} (hc : c ≠ 0) : c * a ≤ c * b ↔ a ≤ b := by
-  first | exact mul_le_mul_left₀ hc | exact mul_le_mul_iff_right₀ (zero_lt_iff.2 hc)
+  first | exact mul_le_mul_iff_right₀ (zero_lt_iff.2 hc)
 
 theorem near_id {j : ℕ} (E : Fin j → Fin j → k) (hE : ∀ a b, valuation k (E a b) < 1)
     (t : Fin j → k) (γ : ValueGroupWithZero k)
@@ -350,8 +350,8 @@ theorem ind_eq [Fintype 𝓀[k]] [DecidableEq 𝓀[k]] {n r j : ℕ} (hjn : j �
     intro ρ
     refine forall_congr' fun i => forall_congr' fun a => ?_
     have e := mulMr_left hjr ((ϖ : k)⁻¹) (c : k) L ρ x i a
-    first | rw [e] | erw [e] | (simp only [Matrix.mul_apply] at e ⊢; rw [e])
-  simp only [Set.indicator_apply, mem_ball_iff hjr, hLeq]
+    first | erw [e]
+  simp only [Set.indicator_apply, mem_ball_iff hjr]
   by_cases hx : Lc hjr c x
   · obtain ⟨T, hT⟩ := exists_strictHenselian_absolutely_closed_local_ring hjn hjr hc hx hrk
     have h1 : (∀ i (l : Fin r), j ≤ l.val → valuation k (x i l) ≤ valuation k (c : k)) ↔

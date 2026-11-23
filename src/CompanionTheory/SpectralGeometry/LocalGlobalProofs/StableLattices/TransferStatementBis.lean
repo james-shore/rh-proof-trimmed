@@ -207,7 +207,7 @@ theorem word_apply {E : H →L[ℂ] H} (hA : IsAvg σ K E) (b : G → Hk K)
   induction l with
   | nil =>
     simp only [List.map_nil, word_nil, List.reverse_nil, List.prod_nil, OneMemClass.coe_one,
-      Module.End.one_apply, dlt, phi_single hv, one_smul, map_one, ContinuousLinearMap.one_apply]
+      dlt, phi_single hv, one_smul, map_one, ContinuousLinearMap.one_apply]
     exact hA.2.1 v hv
   | cons g l ih =>
     simp only [List.map_cons, word_cons, ContinuousLinearMap.mul_apply]

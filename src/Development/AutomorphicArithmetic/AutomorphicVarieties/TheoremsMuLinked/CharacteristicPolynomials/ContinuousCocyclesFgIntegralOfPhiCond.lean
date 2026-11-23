@@ -159,7 +159,7 @@ private theorem cocycles_finitely_generated (l : ℕ) [Fact l.Prime] {R G M : Ty
         refine AddMonoidHom.ext fun x => ?_
         induction x using Submodule.Quotient.induction_on with
         | H x =>
-          simp [Module.End.mul_apply]
+          simp
           rfl }
   have hρ' : ∀ g x, ρ' g (Submodule.Quotient.mk x) = Submodule.Quotient.mk (ρ g x) := fun g x => rfl
   have hS := UpperTheory.V.Pa.Det.locallyConstant_cocycles_finite_of_phi l ρ' hΦ

@@ -63,7 +63,6 @@ theorem schur_orthogonality_idempotent : PI.PhSchurConv.SchurConv := by
       simp only [PI.PhSchurConv.phOf, PI.PhSchurConv.coefM]
       rw [(PI.UnitaryGroupMassFormula.PhSchurConv.Main.coef_inv hU)]
       simp only [star_mul', star_star, hstard]
-      try ring
     · intro x y
       have key : ∀ g, PI.PhSchurConv.phOf σ w d g * PI.PhSchurConv.phOf σ w d (x⁻¹ * g⁻¹ * y)
           = ((d : ℂ) * d) * (⟪σ y w, σ g (σ x w)⟫_ℂ * star ⟪w, σ g w⟫_ℂ) := by

@@ -121,7 +121,7 @@ theorem rowE_mem_symLev_of_box : ∀ (k : Type) [Field k] [ValuativeRel k] [Topo
     change (fromBlocks 1 0 C' 1 : Matrix (XIx (Fin κ) t j ⊕ Fin (c + 1 + 1)) (XIx (Fin κ) t j ⊕ Fin (c + 1 + 1)) k) (o a) (o b) = _
     rcases hoa : o a with y | l <;> rcases hob : o b with z | z
     · simp [Matrix.one_apply]
-    · simp [one_apply]
+    · simp
     · rw [fromBlocks_apply₂₁, Matrix.one_apply, if_neg (by simp), hC']
       split_ifs with hl
       · exfalso

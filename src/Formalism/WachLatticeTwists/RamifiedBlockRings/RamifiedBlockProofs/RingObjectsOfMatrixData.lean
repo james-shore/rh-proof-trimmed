@@ -77,7 +77,7 @@ theorem rank_block {K : Type*} [Field K] {d : Type} [Fintype d] [DecidableEq d] 
   let P : Matrix {a // bl a = k} d K := Matrix.of fun i a => if (i : d) = a then (1 : K) else 0
   have h1 : M.toSquareBlock bl k = P * M * P.transpose := by
     ext i j
-    simp [P, Matrix.mul_apply, Matrix.toSquareBlock_def, Matrix.transpose_apply]
+    simp [P, Matrix.mul_apply, Matrix.toSquareBlock_def]
   have h2 : M = P.transpose * M.toSquareBlock bl k * P := by
     ext a b
     simp only [P, Matrix.mul_apply, Matrix.transpose_apply, Matrix.of_apply, Matrix.toSquareBlock_def]
@@ -131,7 +131,7 @@ theorem eDiag' (A : Type) [CommRing A] (d : Type) [Fintype d] [DecidableEq d] (S
     by_cases hab : a = b
     · subst hab
       by_cases hs : S a <;> simp [hs]
-    · simp [Matrix.diagonal_apply, hab]
+    · simp [hab]
   have hp : ∀ l : List ℕ, (Matrix.diagonal fun a => if S a then (1 : A) else 0) *
       (l.map fun i => Matrix.diagonal fun a => if S a then β a - α i else 0).prod =
       Matrix.diagonal fun a => if S a then (l.map fun i => β a - α i).prod else 0 := by

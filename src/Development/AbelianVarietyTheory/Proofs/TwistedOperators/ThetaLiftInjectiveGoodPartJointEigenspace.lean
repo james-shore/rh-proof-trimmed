@@ -67,11 +67,6 @@ theorem label_eigensystem : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I
     by_cases hg : GlobalTheory.Hk3.Good R.toRealDat A3.A.fam.μ0 P
     · by_cases hl : GlobalTheory.Hk3.IsLab (Vc D j) P d
       · first
-          | exact (Classical.em (Formalism.L2.DIV.conjPl P = P)).elim
-              (fun hc => (GlobalTheory.InertEigScalar.inert_label_scalar R F hok hch hex hOk hpg j c h hops hnf P hg hc d hl).imp
-                (fun _ ha _ _ => ha))
-              (fun hc => (GlobalTheory.SplitEigen.label_scalar_split R F hok hch hex hOk hpg j c h hops hnf P hg hc d hl).imp
-                (fun _ ha _ _ => ha))
           | exact (Classical.em (Formalism.DivisionValues.conjPl P = P)).elim
               (fun hc => (GlobalTheory.InertEigScalar.inert_label_scalar R F hok hch hex hOk hpg j c h hops hnf P hg hc d hl).imp
                 (fun _ ha _ _ => ha))
@@ -106,8 +101,6 @@ theorem inj_eig : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type
     have h1 : Tw.map (twAt D.what₂.embLL A3.A.v0) (R.thG j A3.A.fam.μ0) x = 0 := h0
     rw [h1]
     first
-      | exact smul_zero (M := Tw (twAt D.what₂.embLL A3.A.v0) (R.HW j _).H) (R.phs j)
-      | exact smul_zero (M := Tw (twAt D.what₂.embLL A3.A.v0) _) (R.phs j)
       | (simp only [smul_zero]; rfl)
   have hy0 : R.thG j A3.A.fam.μ0 (Tw.out (s := twAt D.what₂.embLL A3.A.v0) y) = 0 := by
     have h2 : Formalism.IndefR.Links.cj (twAt D.what₂.embLL A3.A.v0) (R.phs j) • R.thG j A3.A.fam.μ0 (Tw.out (s := twAt D.what₂.embLL A3.A.v0) y) = 0 := hθy

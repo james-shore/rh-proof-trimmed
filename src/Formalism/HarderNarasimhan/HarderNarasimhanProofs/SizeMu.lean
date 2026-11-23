@@ -79,7 +79,6 @@ theorem sizeMu_finrank_eq (K : Type) [Field K] [NumberField K] [_root_.NumberFie
     have hc : w.1.IsComplex := IsTotallyComplex.isComplex w.1
     first
       | exact (NumberField.InfinitePlace.not_isReal_iff_isComplex.mpr hc) w.2
-      | exact (NumberField.InfinitePlace.not_isComplex_iff_isReal.mpr w.2) hc
   have h3 : Nat.card {w : InfinitePlace K // w.IsComplex} = Nat.card (InfinitePlace K) :=
     Nat.card_congr (Equiv.subtypeUnivEquiv (fun w => IsTotallyComplex.isComplex w))
   simp only [Fintype.card_eq_nat_card, Nat.card_of_isEmpty, h3] at h1

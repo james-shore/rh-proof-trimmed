@@ -88,7 +88,7 @@ theorem integrable_k (m : Measure Y) [SFinite m] (ν : Measure S) [IsFiniteMeasu
         refine lintegral_congr fun y => ?_
         rw [← lintegral_const_mul' _ _ enorm_ne_top]
         refine lintegral_congr fun s => ?_
-        simp [enorm_mul]
+        simp
     _ ≤ ∫⁻ y, ‖c y‖ₑ * (‖F y‖ₑ * ν Set.univ ^ (1 / 2 : ℝ)) ∂m := by
         refine lintegral_mono fun y => ?_
         gcongr

@@ -112,11 +112,7 @@ theorem isClosed_Ine [Algebra.IsAlgebraic ℚ Ω] (A : ValuationSubring Ω) :
 theorem continuous_toZModPow' (l : ℕ) [hl : Fact l.Prime] (n : ℕ) :
     Continuous (PadicInt.toZModPow (p := l) n) := by
   first
-  | exact @_root_.GlobalTheory.ContinuousZModPow.main
-  | exact _root_.GlobalTheory.ContinuousZModPow.main
   | (apply _root_.GlobalTheory.ContinuousZModPow.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ContinuousZModPow.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ContinuousZModPow.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ContinuousZModPow.main ..)
 
 theorem isClosed_ker_cycMod (l : ℕ) [Fact l.Prime] (m : ℕ) :

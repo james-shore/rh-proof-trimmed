@@ -137,9 +137,9 @@ theorem occ1 {Γ m n d J : Type*} [Fintype m] [Fintype n] [Fintype d] [Decidable
     intro j r
     have h1 : (TV j - θ j • (1 : Matrix m m k)).map i * Φ = Φ * (TH j - θ j • (1 : Matrix n n k)).map i := by
       have e1 : (TV j - θ j • (1 : Matrix m m k)).map i = (TV j).map i - i (θ j) • (1 : Matrix m m C) := by
-        ext p q; by_cases h : p = q <;> simp [h, one_apply]
+        ext p q; by_cases h : p = q <;> simp [h]
       have e2 : (TH j - θ j • (1 : Matrix n n k)).map i = (TH j).map i - i (θ j) • (1 : Matrix n n C) := by
-        ext p q; by_cases h : p = q <;> simp [h, one_apply]
+        ext p q; by_cases h : p = q <;> simp [h]
       rw [e1, e2, Matrix.sub_mul, Matrix.mul_sub, hT, Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, Matrix.mul_one]
     induction r with
     | zero => simp [Matrix.map_one _ (map_zero i) (map_one i)]

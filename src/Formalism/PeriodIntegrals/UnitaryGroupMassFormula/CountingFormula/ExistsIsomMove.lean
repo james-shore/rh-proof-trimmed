@@ -67,7 +67,7 @@ variable {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K V]
 variable {S : Subring K} {h : V →ₗ⋆[K] V →ₗ[K] K} {M : AddSubgroup V}
 
 theorem star_h (hs : h.IsSymm) (u v : V) : star (h u v) = h v u := by
-  first | exact hs u v | exact hs.eq u v
+  first | exact hs.eq u v
 
 theorem exists_pair (hS : IsHermSemilocal S) (hM : IsSelfDualMod S h M) {ι : Type} [Fintype ι]
     (x : ι → V) (hxo : ∀ i j, i ≠ j → h (x i) (x j) = 0) (hxu : ∀ i, IsUnitIn S (h (x i) (x i)))
@@ -108,7 +108,7 @@ theorem exists_pair (hS : IsHermSemilocal S) (hM : IsSelfDualMod S h M) {ι : Ty
     exact S.mul_mem (hM.int _ (hxM i) _ hm₀) (hxu i).2.2
   · set_option synthInstance.maxHeartbeats 100000 in
       simp only [map_sub, map_sum, LinearMap.sub_apply, LinearMap.sum_apply,
-        map_smulₛₗ, LinearMap.smul_apply, map_smul, smul_eq_mul, RingHom.id_apply, hrx, mul_zero,
+        map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul, RingHom.id_apply, hrx, mul_zero,
         Finset.sum_const_zero, sub_zero]
     rw [hα, inv_mul_cancel₀ hα0]
   · intro j
@@ -122,7 +122,7 @@ theorem isSymm_smul (hs : h.IsSymm) {u : K} (hus : star u = u) : (u⁻¹ • h).
   have H : ∀ a b : V, star ((u⁻¹ • h) a b) = (u⁻¹ • h) b a := by
     intro a b
     simp only [LinearMap.smul_apply, smul_eq_mul, star_mul', star_inv₀, hus, star_h hs]
-  first | exact H | exact ⟨H⟩
+  first | exact ⟨H⟩
 
 theorem exists_of_ref (hS : IsHermSemilocal S) (hs : h.IsSymm) (hM : IsSelfDualMod S h M) {ι : Type}
     [Fintype ι] (x : ι → V) (hxo : ∀ i j, i ≠ j → h (x i) (x j) = 0) (hxu : ∀ i, IsUnitIn S (h (x i) (x i)))
@@ -133,7 +133,7 @@ theorem exists_of_ref (hS : IsHermSemilocal S) (hs : h.IsSymm) (hM : IsSelfDualM
   obtain ⟨α, hα0, hαM, w, hwM, hw1, hwx⟩ :=
     exists_pair hS hM x hxo hxu hxM ⟨r, by rw [hrr]; exact hu0⟩ hrx
   have hyy : h (α⁻¹ • r) (α⁻¹ • r) = star α⁻¹ * α⁻¹ * u := by
-    simp only [map_smulₛₗ, LinearMap.smul_apply, map_smul, smul_eq_mul, starRingEnd_apply, hrr, RingHom.id_apply]
+    simp only [map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul, starRingEnd_apply, hrr, RingHom.id_apply]
     ring
   have hsa : star α⁻¹ * α⁻¹ ∈ S := by
     have h1 := S.mul_mem (hM.int _ hαM _ hαM) hu.2.2
@@ -153,7 +153,7 @@ theorem exists_of_ref (hS : IsHermSemilocal S) (hs : h.IsSymm) (hM : IsSelfDualM
     rw [LinearMap.smul_apply, LinearMap.smul_apply, smul_eq_mul, map_smul, smul_eq_mul, hyw0, mul_one,
       inv_mul_cancel₀ hu0]
   have hww : (u⁻¹ • h) (u • w) (u • w) = u * h w w := by
-    simp only [LinearMap.smul_apply, map_smulₛₗ, map_smul, smul_eq_mul, starRingEnd_apply, hus, RingHom.id_apply]
+    simp only [LinearMap.smul_apply, map_smulₛₗ, smul_eq_mul, starRingEnd_apply, hus, RingHom.id_apply]
     field_simp
   obtain ⟨c, hc, d, hd, hcd⟩ := Formalism.HermitianLattices.Ext.L3.WA.exists_norm_one_of_pair hS hs'
     (y := α⁻¹ • r) (w := u • w) (a := α⁻¹ * b) hab (mul_ne_zero (inv_ne_zero hα0) hb0) hy' hyw'
@@ -191,7 +191,7 @@ theorem exists_quasi (hs : h.IsSymm) (w : V) {a : K} (ha : a + star a = a * star
   intro x y
   change h (x - (a * h w x) • w) (y - (a * h w y) • w) = h x y
   have hsx : star (h w x) = h x w := star_h hs w x
-  simp only [map_sub, map_smulₛₗ, LinearMap.sub_apply, LinearMap.smul_apply, map_smul, smul_eq_mul,
+  simp only [map_sub, map_smulₛₗ, LinearMap.sub_apply, LinearMap.smul_apply, smul_eq_mul,
     starRingEnd_apply, RingHom.id_apply, star_mul', hsx]
   linear_combination (-(h w y * h x w)) * ha
 

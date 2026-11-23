@@ -76,7 +76,7 @@ theorem compAt_mt_of_suppAt {e : AE D} (he : infPart D e = 0) (hce : infPart D (
     rw [h1, Matrix.sub_apply, sub_add_cancel]
   simp only [compAt, Matrix.map_apply]
   rw [e1]
-  simp only [map_add, map_mul, he, hce, add_zero, zero_mul, map_zero, zero_add]
+  simp only [map_add, map_mul, he, hce, add_zero, zero_mul, zero_add]
   rcases eq_or_ne i j with rfl | hij
   · simp
   · simp [Matrix.one_apply_ne hij]

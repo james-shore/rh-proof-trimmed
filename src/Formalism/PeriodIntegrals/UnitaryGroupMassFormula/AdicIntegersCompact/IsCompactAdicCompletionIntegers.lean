@@ -94,8 +94,6 @@ theorem exists_close (x : v.adicCompletion F) (hx : Valued.v x ≤ 1) :
       intro y
       first
       | rfl
-      | simp
-      | exact (IsScalarTower.algebraMap_apply (𝓞 F) (valuationSubringAtPrime F v) F y).symm
     have h' := congrArg Subtype.val h
     have h'' : k * ((algebraMap (𝓞 F) (valuationSubringAtPrime F v) s : valuationSubringAtPrime F v) : F) =
         ((algebraMap (𝓞 F) (valuationSubringAtPrime F v) r : valuationSubringAtPrime F v) : F) := by
@@ -125,7 +123,6 @@ theorem exists_close (x : v.adicCompletion F) (hx : Valued.v x ≤ 1) :
         ≤ 1 * v.valuation F (1 - algebraMap (𝓞 F) F (s * t)) := by
           first
           | exact mul_le_mul_of_nonneg_right hk1 zero_le'
-          | gcongr
       _ < 1 := by rw [one_mul]; exact h1
   have e2 : x - algebraMap F (v.adicCompletion F) (algebraMap (𝓞 F) F (r * t)) =
       (x - algebraMap F (v.adicCompletion F) k) +

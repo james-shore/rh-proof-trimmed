@@ -159,7 +159,7 @@ theorem rep1 {φ : Mat k r → E} (hφ : CkOn 1 (GV k r) φ) {g : Mat k r} (hg :
       ∀ h ∈ U, h ∈ GV k r → φ h = F h := by
   obtain ⟨U, f', hU, hgU, hf', hff⟩ := hφ g hg
   have hd : DifferentiableAt ℝ f' g :=
-    (hf'.differentiableOn (by first | exact le_rfl | simp)).differentiableAt (hU.mem_nhds hgU)
+    (hf'.differentiableOn (by first | simp)).differentiableAt (hU.mem_nhds hgU)
   exact ⟨U, f', hU, hgU, hd.hasFDerivAt, hff⟩
 
 theorem EH_HC : HC (Q.EH (E := E) k r) := by

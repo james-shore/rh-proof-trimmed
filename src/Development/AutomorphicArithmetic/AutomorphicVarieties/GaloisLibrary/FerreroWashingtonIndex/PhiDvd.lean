@@ -81,7 +81,6 @@ private theorem UpperTheory.V.FW.phiDvd_nil (k A : Type) [Field k] [CommRing A] 
     have hc : IsUnit (algebraMap k A (q.coeff 0)) := (Ne.isUnit hnd).map _
     rw [hev]
     first
-      | exact hnil.isUnit_add_right_of_commute hc (Commute.all _ _)
       | (rw [add_comm]; exact hnil.isUnit_add_right_of_commute hc (Commute.all _ _))
   have hφ : Polynomial.aeval T f = T ^ Polynomial.rootMultiplicity 0 f * Polynomial.aeval T q := by
     conv_lhs => rw [hq]

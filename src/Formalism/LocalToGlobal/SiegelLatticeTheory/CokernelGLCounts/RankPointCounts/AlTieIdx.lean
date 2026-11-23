@@ -137,7 +137,6 @@ theorem idx_arith (g r k : ℕ) (hg : g.Prime) :
   have hB' := hB.ne'
   have hgn : (g : ℝ) ^ ((2 * r + k + 1) * (2 * r + k + 1)) ≠ 0 := pow_ne_zero _ hq0
   field_simp
-  try ring
 
 variable {D : D7} (X : HidaSetting D)
 

@@ -169,7 +169,6 @@ theorem maj_pair {k r : ℕ} (L : LocBessel k r) (hκ : L.κN ≠ ⊤) {α β : 
   have hsN : SigmaFinite L.μN := by
     rw [e, ← ENNReal.coe_toNNReal hct]
     first
-    | exact inferInstance
     | exact (inferInstance : SigmaFinite ((L.κN * ENNReal.ofReal cN).toNNReal • Formalism.FourierDecayAlt.D.muN k r))
   have : IsFiniteMeasure L.μW := ⟨by rw [L.hμW.2]; exact ENNReal.one_lt_top⟩
   have : IsFiniteMeasure L.μW' := ⟨by rw [L.hμW'.2]; exact ENNReal.one_lt_top⟩

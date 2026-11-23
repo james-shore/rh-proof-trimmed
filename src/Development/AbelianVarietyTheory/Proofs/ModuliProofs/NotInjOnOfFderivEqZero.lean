@@ -304,11 +304,7 @@ theorem analyticAt_det {X E : Type*} [NormedAddCommGroup X] [NormedSpace ℂ X]
     (hA : AnalyticAt ℂ A a) :
     AnalyticAt ℂ (fun z => LinearMap.det (A z : E →ₗ[ℂ] E)) a := by
   first
-  | exact @_root_.GlobalTheory.AnalyticMatrixEntries.analyticAt_det
-  | exact _root_.GlobalTheory.AnalyticMatrixEntries.analyticAt_det
   | (apply _root_.GlobalTheory.AnalyticMatrixEntries.analyticAt_det <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AnalyticMatrixEntries.analyticAt_det <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AnalyticMatrixEntries.analyticAt_det <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AnalyticMatrixEntries.analyticAt_det ..)
 
 def LocalStatement (n : ℕ) : Prop :=

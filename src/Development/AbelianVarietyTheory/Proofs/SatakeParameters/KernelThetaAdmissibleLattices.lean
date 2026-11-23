@@ -92,11 +92,7 @@ theorem xiL_map (hH : ∀ x y, H (T x) (T y) = H x y) (hα : ∀ x, α (T x) = �
 theorem isReps_image {Λ₁ Λ₂ M₁ M₂ : AddSubgroup V} {S : Finset V} (hS : IsReps Λ₁ Λ₂ S) (h1 : ∀ x, T x ∈ M₁ ↔ x ∈ Λ₁)
     (h2 : ∀ x, T x ∈ M₂ ↔ x ∈ Λ₂) : IsReps M₁ M₂ (S.image T) := by
   first
-  | exact @_root_.GlobalTheory.TransportLemma.main
-  | exact _root_.GlobalTheory.TransportLemma.main
   | (apply _root_.GlobalTheory.TransportLemma.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TransportLemma.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TransportLemma.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TransportLemma.main ..)
 
 

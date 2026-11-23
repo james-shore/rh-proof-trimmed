@@ -139,11 +139,9 @@ theorem exists_shape : GlobalTheory.IndefiniteRowSideFullHecke.FlagUnipotentSemi
       exact (Ideal.IsPrime.mul_mem_pow _ hm).elim hs hd.2
   obtain ⟨r, hr, e, z, hz⟩ := H A E _ hq n c
     (Submodule.span A (Set.range (Pi.basisFun E (Fin n))))
-    (by first | exact isLattice_span_basis (Pi.basisFun E (Fin n))
-              | exact (isLattice_span_basis (Pi.basisFun E (Fin n))).toIsLattice)
+    (by first | exact isLattice_span_basis (Pi.basisFun E (Fin n)))
     (Submodule.span A (Set.range ((Pi.basisFun E (Fin (n + c))).map h)))
-    (by first | exact isLattice_span_basis ((Pi.basisFun E (Fin (n + c))).map h)
-              | exact (isLattice_span_basis ((Pi.basisFun E (Fin (n + c))).map h)).toIsLattice)
+    (by first | exact isLattice_span_basis ((Pi.basisFun E (Fin (n + c))).map h))
   refine ⟨r, hr, e, z, ?_⟩
   have hqE : algebraMap A E (algebraMap (𝓞 E) A ((qOf P : ℕ) : 𝓞 E)) = (qOf P : E) := by
     rw [map_natCast, map_natCast]

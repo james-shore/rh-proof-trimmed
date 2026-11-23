@@ -105,7 +105,6 @@ theorem D_succ (m : ℕ) (a : ℕ → ℕ) :
     ext x
     simp only [Finset.mem_Ioo]
     simp
-    try omega
   rw [h0, Finset.prod_empty, mul_one, ← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl (fun i hi => ?_)
   have hi' : i < m := Finset.mem_range.mp hi

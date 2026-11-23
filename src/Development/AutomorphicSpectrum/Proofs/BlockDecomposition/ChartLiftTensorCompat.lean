@@ -213,7 +213,6 @@ theorem cmp_bij : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] {X : Sche
     exact this
   refine Function.bijective_iff_has_inverse.2 ⟨Hb, fun x => RingHom.congr_fun hid x, fun y => ?_⟩
   obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective (show GB (l := l) cO.D m from y)
-  change σ.φ (Hb (Ideal.Quotient.mk _ x)) = _
   rw [hHb, hs']
   rfl
 

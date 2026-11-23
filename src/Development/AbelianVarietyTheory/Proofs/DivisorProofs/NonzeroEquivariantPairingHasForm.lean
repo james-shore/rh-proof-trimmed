@@ -96,7 +96,7 @@ theorem pderiv_rename_eq_zero {σ τ : Type*} (i : σ → τ) (v : τ) (hv : ∀
   induction g using MvPolynomial.induction_on with
   | C a => simp
   | add p q hp hq => simp [hp, hq]
-  | mul_X p m hp => simp [hp, pderiv_X, Pi.single_apply, hv m]
+  | mul_X p m hp => simp [hp, hv m]
 
 theorem pderiv_rename_mul (hj : Function.Injective j) (k : Ln P Q R' S') (f : Pol P Q R' S') (G : Pol P Q R S)
     (hG : pderiv (j k) G = 0) : pderiv (j k) (rename j f * G) = rename j (pderiv k f) * G := by
@@ -123,7 +123,7 @@ theorem omE_rename_mul (hj : Function.Injective j) (hpos : ∀ l, linePos (j l) 
     omE (j l) (j l') (rename j f * G) = rename j (omE l l' f) * G := by
   simp only [omE, LinearMap.add_apply, Module.End.mul_apply, lowB_rename_mul j hj hpos l' f G hG,
     raiB_rename_mul j hj hpos l _ G hG, hj.eq_iff]
-  split_ifs <;> simp [add_mul, smul_mul_assoc]
+  split_ifs <;> simp [add_mul]
 
 end General
 

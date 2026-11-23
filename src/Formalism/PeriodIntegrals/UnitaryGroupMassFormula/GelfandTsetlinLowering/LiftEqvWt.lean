@@ -121,7 +121,7 @@ theorem weight_rowW_apply {r c : ℕ} (m : Fin r × Fin c →₀ ℕ) (a : Fin r
     simp [rowW]
   · intro b _ hb
     refine Finset.sum_eq_zero fun s _ => ?_
-    simp [rowW, Pi.single_apply, Ne.symm hb]
+    simp [rowW, Ne.symm hb]
   · simp
 
 theorem weight_colW_apply {r c : ℕ} (m : Fin r × Fin c →₀ ℕ) (j : Fin c) :
@@ -132,7 +132,7 @@ theorem weight_colW_apply {r c : ℕ} (m : Fin r × Fin c →₀ ℕ) (j : Fin c
   rw [Finset.sum_eq_single j]
   · simp [colW]
   · intro b _ hb
-    simp [colW, Pi.single_apply, Ne.symm hb]
+    simp [colW, Ne.symm hb]
   · simp
 
 theorem weight_lastW {n : ℕ} (m : Fin (n + 1) × Fin (n + 1) →₀ ℕ) :

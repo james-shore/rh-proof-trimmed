@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.PsCo.Pc1
 
 theorem _root_.GlobalTheory.T.maximalCompact_pseudoCoefficientData : StKData := by
-  first | exact @GlobalTheory.PsCo.Pc1.maximalCompact_pseudoCoefficientData' | exact GlobalTheory.PsCo.Pc1.maximalCompact_pseudoCoefficientData' | (intros; apply GlobalTheory.PsCo.Pc1.maximalCompact_pseudoCoefficientData' <;> assumption)
+  first | exact @GlobalTheory.PsCo.Pc1.maximalCompact_pseudoCoefficientData'

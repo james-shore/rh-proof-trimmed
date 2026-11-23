@@ -63,11 +63,11 @@ theorem isClopen_setOf_valuation_eq_one (k : Type) [Field k] [ValuativeRel k] [T
     by_cases h0 : y = 0
     · subst h0
       refine ⟨1, fun z hz ↦ ?_⟩
-      simp only [Set.mem_ofPred_eq, Units.val_one, sub_zero, Set.mem_compl_iff, Set.mem_setOf_eq] at hz ⊢
+      simp only [Set.mem_ofPred_eq, Units.val_one, sub_zero, Set.mem_compl_iff] at hz ⊢
       exact hz.ne
     · have hv : valuation k y ≠ 0 := by simpa using h0
       refine ⟨Units.mk0 _ hv, fun z hz ↦ ?_⟩
-      simp only [Set.mem_ofPred_eq, Units.val_mk0, Set.mem_compl_iff, Set.mem_setOf_eq] at hz ⊢
+      simp only [Set.mem_ofPred_eq, Units.val_mk0, Set.mem_compl_iff] at hz ⊢
       have : z = y + (z - y) := by ring
       rw [this, (valuation k).map_add_eq_of_lt_left hz]
       exact hy
@@ -75,7 +75,7 @@ theorem isClopen_setOf_valuation_eq_one (k : Type) [Field k] [ValuativeRel k] [T
     intro y hy
     rw [IsValuativeTopology.mem_nhds_iff']
     refine ⟨1, fun z hz ↦ ?_⟩
-    simp only [Set.mem_ofPred_eq, Units.val_one, Set.mem_setOf_eq] at hz hy ⊢
+    simp only [Set.mem_ofPred_eq, Units.val_one] at hz hy ⊢
     have : z = y + (z - y) := by ring
     rw [this, (valuation k).map_add_eq_of_lt_left (by rw [hy]; exact hz), hy]
 

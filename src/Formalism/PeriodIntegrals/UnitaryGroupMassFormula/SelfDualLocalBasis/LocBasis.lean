@@ -79,6 +79,6 @@ namespace PI.SelfDualLoc.W
 open PI.SelfDualLoc LB
 
 theorem locBasis : LocBasis := by
-  first | exact Bl.PaddedFamilies.goal1 .. | (apply Bl.PaddedFamilies.goal1 <;> assumption) | (intros; apply Bl.PaddedFamilies.goal1 <;> assumption)
+  first | (apply Bl.PaddedFamilies.goal1 <;> assumption)
 
 end PI.SelfDualLoc.W

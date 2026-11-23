@@ -112,7 +112,6 @@ theorem toLin_mem_box (b : Basis ι K E) (t : Matrix.TransvectionStruct ι K) (x
     rw [Valuation.map_mul]
     calc valuation K t.c * valuation K (b.repr x t.j) ≤ valuation K t.c * 1 := by
           first
-          | exact mul_le_mul_left' hj _
           | gcongr
       _ = valuation K t.c := mul_one _
       _ ≤ max (valuation K t.c) 1 := le_max_left _ _

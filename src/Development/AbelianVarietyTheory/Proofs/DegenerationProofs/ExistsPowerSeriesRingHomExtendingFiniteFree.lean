@@ -57,11 +57,7 @@ theorem powerSeries_extend_finite_free (O O₁ K : Type) [CommRing O] [CommRing 
       Φ PowerSeries.X = i PowerSeries.X ∧
       ∀ f, Φ f ∈ Subring.closure (Set.range i ∪ Set.range io) := by
   first
-  | exact @_root_.GlobalTheory.PowerSeriesCompositionMap.main
-  | exact _root_.GlobalTheory.PowerSeriesCompositionMap.main
   | (apply _root_.GlobalTheory.PowerSeriesCompositionMap.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerSeriesCompositionMap.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerSeriesCompositionMap.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PowerSeriesCompositionMap.main ..)
 
 end GlobalTheory

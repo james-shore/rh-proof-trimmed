@@ -87,7 +87,7 @@ theorem schur_sesq {G : Type*} [Group G] {E : Type*} [NormedAddCommGroup E] [Inn
     intro x y
     conv_lhs => rw [← b.sum_repr' y]
 
-    simp [A, map_sum, inner_sum, inner_smul_right, inner_conj_symm, mul_comm]
+    simp [A, map_sum, inner_conj_symm, mul_comm]
   have hcomm : ∀ h x, A (ρ h x) = ρ h (A x) := by
     intro h x
     apply ext_inner_left ℂ

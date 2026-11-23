@@ -225,11 +225,7 @@ theorem mem_rootRing {c : Om l} (hc : c ∈ MaximalUnramifiedExtension l) (h1 : 
 theorem root_eq_of_norm_lt {m : ℕ} (hm : 0 < m) (hl : ¬ l ∣ m) {a b : Om l} (ha : a ^ m = 1)
     (hb : b ^ m = 1) (h : ‖a - b‖ < 1) : a = b := by
   first
-  | exact @_root_.GlobalTheory.RootsOfUnityClose.eq_of_pow_eq_one_of_norm_sub_lt_one
-  | exact _root_.GlobalTheory.RootsOfUnityClose.eq_of_pow_eq_one_of_norm_sub_lt_one
   | (apply _root_.GlobalTheory.RootsOfUnityClose.eq_of_pow_eq_one_of_norm_sub_lt_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RootsOfUnityClose.eq_of_pow_eq_one_of_norm_sub_lt_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RootsOfUnityClose.eq_of_pow_eq_one_of_norm_sub_lt_one <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RootsOfUnityClose.eq_of_pow_eq_one_of_norm_sub_lt_one ..)
 
 

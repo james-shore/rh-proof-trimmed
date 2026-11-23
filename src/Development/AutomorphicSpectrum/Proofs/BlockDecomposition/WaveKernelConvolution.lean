@@ -136,7 +136,7 @@ theorem conv_eq_of_isKer : LgFacts → Unimod → RCalc → WaveSpeed → WaveEx
           ← hK.2.2.2 u hu 1 h1]
         exact act_congr_kerconv μ E K hu0 h1
       rw [hlin]
-      simp [Fintype.sum_bool, hc1, hc2]) y hy
+      simp [hc1, hc2]) y hy
   exact sub_eq_zero.1 key
 
 end GlobalTheory.CompanionTheory.WaveMult

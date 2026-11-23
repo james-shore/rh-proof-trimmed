@@ -164,7 +164,7 @@ theorem FlagBundleSectionForms.proof : FlagBundleSectionForms.Statement := by
       (isWeightedHomogeneous_X F (blockWeight (bundleIdx ι M)) ⟨none, l⟩)
     convert h using 1
     funext o
-    cases o <;> simp [liftNat, blockWeight, Pi.single_apply]
+    cases o <;> simp [liftNat, blockWeight]
   · funext o
     cases o with
     | none => simp [liftNat, zetaDeg, liftDeg]

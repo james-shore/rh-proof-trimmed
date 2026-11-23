@@ -116,11 +116,7 @@ theorem sub_mem_of_path {Q Z : Type} [AddCommGroup Q] [Module ℂ Q] (E : Q →�
 theorem exists_fg_subst {D : D7} {a b : ℕ} (τ : D.what₂.Tau) (ε : Fin a → Bool) (ε' : Fin b → Bool) (P : PolF D b a) :
     ∃ V : Submodule ℂ (PolF D b a), V.FG ∧ ∀ g k, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.subst τ ε ε' g k P ∈ V := by
   first
-  | exact @_root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg
-  | exact _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg
   | (apply _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg ..)
 
 section Oriented

@@ -94,7 +94,7 @@ theorem af_le_stdLat {o C : Type} [CommRing o] [Field C] [Algebra o C] (RC : Sub
   intro k _
   have h4 : (linMap n χ l) (Pi.single k 1) ∈ RC := h3 _ (Set.mem_univ _)
   have h5 : (linMap n χ l) (Pi.single k 1) = l k := by
-    simp only [linMap, Fintype.linearCombination_apply, LinearMap.coe_mk]
+    simp only [linMap, Fintype.linearCombination_apply]
     rw [Finset.sum_apply, Finset.sum_eq_single k]
     · simp [h1]
     · intro j _ hj

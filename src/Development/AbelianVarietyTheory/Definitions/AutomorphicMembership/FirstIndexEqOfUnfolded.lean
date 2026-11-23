@@ -167,9 +167,8 @@ omit [NumberField E] [IsCMField E] in
 theorem gram_eq_mul (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (x : Matrix (Fin r) (Fin r) ℂ) :
     (gram τ G x)ᵀ = xᴴ * (G.map τ)ᵀ * x := by
   ext a b
-  simp only [ReciprocityTheory.ChartRestriction.G.FD.gram, hermC, ReciprocityTheory.ChartRestriction.G.FD.col, transpose_apply, of_apply, mul_apply, conjTranspose_apply, map_apply,
-    Finset.sum_mul, Finset.mul_sum, RCLike.star_def]
-  simp only [Matrix.mul_apply, conjTranspose_apply, map_apply, transpose_apply, Finset.sum_mul, Finset.mul_sum, RCLike.star_def]
+  simp only [ReciprocityTheory.ChartRestriction.G.FD.gram, hermC, ReciprocityTheory.ChartRestriction.G.FD.col, transpose_apply, of_apply]
+  simp only [Matrix.mul_apply, conjTranspose_apply, map_apply, transpose_apply, Finset.sum_mul, RCLike.star_def]
   exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring
 
 variable (X : Data E r) {j : ℕ} (hj : j ≤ r) {Tau : Type} (ι : Tau → X.Ψ)

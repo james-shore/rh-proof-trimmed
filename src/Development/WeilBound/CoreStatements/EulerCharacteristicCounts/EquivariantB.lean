@@ -76,7 +76,7 @@ theorem actQ_mul' (L : Lattice (O := O) ρ) (I : Submodule O ↥L.T) (hI : Stabl
   congr 1
   apply Subtype.ext
   change ρ (g * h) (x : V) = ρ g (ρ h x)
-  simp [Module.End.mul_apply]
+  simp
 
 end Act
 

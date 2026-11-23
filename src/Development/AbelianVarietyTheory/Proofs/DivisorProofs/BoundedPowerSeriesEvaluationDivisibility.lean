@@ -78,11 +78,6 @@ theorem main : ∀ (C : Type) [NontriviallyNormedField C] [IsUltrametricDist C] 
   first
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.SummableSeriesBounds.main
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.SummableSeriesBounds.main
-  | exact @_root_.GlobalTheory.SummableSeriesBounds.main
-  | exact _root_.GlobalTheory.SummableSeriesBounds.main
-  | (apply _root_.GlobalTheory.SummableSeriesBounds.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SummableSeriesBounds.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SummableSeriesBounds.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SummableSeriesBounds.main ..)
 
 end GlobalTheory.MBLow.BddPS

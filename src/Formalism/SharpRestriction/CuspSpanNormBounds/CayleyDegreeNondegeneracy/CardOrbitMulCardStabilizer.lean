@@ -66,7 +66,7 @@ theorem card_orbit_mul_card_stabilizer (A : Subgroup Γ) (x : 𝒳) (hle : stabi
     Nat.card_congr (orbitEquivQuotientStabilizer A x)
   have h2 : stabilizer A x = (stabilizer Γ x).subgroupOf A := by
     ext a
-    simp [mem_stabilizer_iff, Subgroup.mem_subgroupOf, Subgroup.smul_def]
+    simp [mem_stabilizer_iff, Subgroup.smul_def]
   have h3 : Nat.card (stabilizer A x) = Nat.card (stabilizer Γ x) := by
     rw [h2]
     exact Nat.card_congr (Subgroup.subgroupOfEquivOfLe hle).toEquiv

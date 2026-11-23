@@ -48,4 +48,3 @@ theorem _root_.GlobalTheory.T.lattice_stable_almost_all_places_right : ∀ (F E 
   intro F E _ _ _ _ _ n d X Y hY N
   first
   | exact GlobalTheory.AdelMatLatRight.almost_all_stable_right F E n d X Y hY N
-  | exact GlobalTheory.AdelMatLatRight.almost_all_stable_right F E n d X Y hY.toIsLattice N

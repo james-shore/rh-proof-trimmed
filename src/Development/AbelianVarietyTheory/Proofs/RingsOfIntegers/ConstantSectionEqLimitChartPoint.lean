@@ -76,9 +76,7 @@ theorem ptOf_const_left : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteVa
     have hj : ∀ p : Fin 1 × Fin d, jetA (V := V) (Fin 1 × Fin d) m (MvPowerSeries.X p) =
         Ideal.Quotient.mk _ (MvPolynomial.X p) := fun p => by
       first
-      | exact (mk_psTrunc m _ (MvPowerSeries.constantCoeff_X p)).trans (Chart.pj_X m p)
       | exact FBIdSy.mk_psTrunc_X m p
-      | exact (mk_psTrunc m _ (MvPowerSeries.constantCoeff_X p)).symm.trans (Chart.pj_X m p)
     have k : ψ.comp (jetA (Fin 1 × Fin d) m) = (Ideal.Quotient.mkₐ V (maximalIdeal V ^ (m + 1))).comp χ := by
       have hv : ∀ p, (ψ.comp (jetA (Fin 1 × Fin d) m)) (MvPowerSeries.X p) = Ideal.Quotient.mk _ (α p.2) :=
         fun p => by rw [AlgHom.comp_apply, hj, hψ]

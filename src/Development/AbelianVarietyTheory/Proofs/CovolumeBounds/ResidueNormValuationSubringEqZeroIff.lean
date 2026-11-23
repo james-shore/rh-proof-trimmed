@@ -121,8 +121,8 @@ theorem exists_norm_sum_monomial_eq_one [Infinite (IsLocalRing.ResidueField 𝒪
   have hP : P ≠ 0 := by
     intro h
     have h1 : P.coeff t₀ = IsLocalRing.residue 𝒪 (b' t₀) := by
-      simp [P, MvPolynomial.coeff_sum, MvPolynomial.coeff_monomial, h₀]
-    simp only [h, MvPolynomial.coeff_zero, Pi.zero_apply] at h1
+      simp [P, MvPolynomial.coeff_monomial, h₀]
+    simp only [h, MvPolynomial.coeff_zero] at h1
     rw [eq_comm] at h1
     have hlt : ‖(b' t₀ : C)‖ < 1 :=
       (residue_normValuationSubring_eq_zero_iff (b' t₀)).1 h1

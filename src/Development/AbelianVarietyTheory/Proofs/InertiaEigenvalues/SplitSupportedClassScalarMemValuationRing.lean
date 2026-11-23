@@ -134,7 +134,7 @@ theorem val_le_one_of_mem {k : Type} [Field k] [NumberField k] (σ : k →+* ℂ
       by_cases hv : v = la
       · subst hv
         rw [hq, map_div₀, map_pow, map_pow, hm, he, ← WithZero.exp_nsmul, ← WithZero.exp_nsmul]
-        rw [show e • (-(m : ℤ)) = m • (-(e : ℤ)) by simp [smul_eq_mul]; ring, div_self (by simp)]
+        rw [show e • (-(m : ℤ)) = m • (-(e : ℤ)) by simp; ring, div_self (by simp)]
       · rw [hq, map_div₀, map_pow, map_pow, hv1 v hv, one_pow, div_one]
         exact pow_le_one' (v.valuation_le_one c) e
     obtain ⟨c', hc'⟩ := HeightOneSpectrum.mem_integers_of_valuation_le_one (K := k) q hqv
@@ -143,7 +143,7 @@ theorem val_le_one_of_mem {k : Type} [Field k] [NumberField k] (σ : k →+* ℂ
       have h1 : la.valuation k (c' : k) < 1 := (la.valuation_lt_one_iff_mem (K := k) c').2 hc'la
       rw [show la.valuation k (c' : k) = la.valuation k q from by rw [← hc']] at h1
       rw [hq, map_div₀, map_pow, map_pow, hm, he, ← WithZero.exp_nsmul, ← WithZero.exp_nsmul,
-        show e • (-(m : ℤ)) = m • (-(e : ℤ)) by simp [smul_eq_mul]; ring, div_self (by simp)] at h1
+        show e • (-(m : ℤ)) = m • (-(e : ℤ)) by simp; ring, div_self (by simp)] at h1
       exact lt_irrefl _ h1
     · have : ((c' : 𝓞 k) : k) = q := hc'
       rw [this, hq, mul_div_cancel₀ _ (pow_ne_zero _ hαk0)]
@@ -187,8 +187,6 @@ theorem val_le_one_of_mem {k : Type} [Field k] [NumberField k] (σ : k →+* ℂ
   have hne : WithZero.exp (-(mb : ℤ)) ≠ 0 := WithZero.exp_ne_zero
   have hexp' : la.valuation k z * WithZero.exp (-(mb : ℤ)) ≤ 1 * WithZero.exp (-(mb : ℤ)) := by rwa [one_mul]
   first
-    | exact (mul_le_mul_right₀ hne).1 hexp'
-    | exact le_of_mul_le_mul_right' hexp'
     | exact (mul_le_mul_iff_of_pos_right (zero_lt_iff.2 hne)).1 hexp'
 end GlobalTheory.LevelSeriesScal
 

@@ -138,7 +138,7 @@ theorem transPow {K : Type} [NormedField K] [IsUltrametricDist K] [DecidableEq K
           simp only [map_mul, map_pow]; try ring
       _ = C (c ^ (k + 1) * (c ^ 2) ^ m * a)⁻¹ * (C (c ^ (k + 1) * (c ^ 2) ^ m * a) *
             (X ^ E * ((C c⁻¹ * G t) ^ (k + 1) * V))) := by
-          rw [hmain]; simp only [map_mul, map_pow]; try ring
+          rw [hmain]; simp only [map_mul, map_pow]
       _ = X ^ E * ((C c⁻¹ * G t) ^ (k + 1) * V) := by rw [← mul_assoc, hD1, one_mul]
   obtain ⟨hE, hb⟩ := eq_and_eq_one_of_C_mul_X_pow_eq hh key
   subst hE

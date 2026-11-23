@@ -132,8 +132,8 @@ theorem Stable.ballFn_mem_and_one_mem_of_sub_mem (k : Type) [Field k] [Valuative
   have R2 := hS.scale_mem h0 _ _ _ _ _ _ _ R1
   have R3 : (1 - q) • e + q • ballFn (0 : k) 1 + (-1 : ℂ) • ballFn (0 : k) ϖ ∈ S := by
     refine hS.2 _ R1 _ ?_ ?_ fun x hx => ?_
-    · simp [ballFn_coe, ballFn, he]; ring
-    · simp [ballFn_coe, ballFn, he]
+    · simp [ballFn, he]; ring
+    · simp [ballFn, he]
     · have hx0 : 0 < valuation k x := zero_lt_iff.2 (by simpa using hx)
       simp only [Pi.add_apply, Pi.smul_apply, ballFn_coe, sub_zero, map_one, hϖ, le_uniformizer_iff, map_inv₀, he, smul_eq_mul,
         inv_le_one₀ hx0, inv_lt_one₀ hx0]

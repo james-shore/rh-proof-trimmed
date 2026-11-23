@@ -302,8 +302,8 @@ theorem cns_shift_inj (dual : Bool) (μ : Fin n → ℝ) {s s' : Fin n} (h : shi
   have heval : shiftF dual μ s s = shiftF dual μ s' s := congrFun h s
   delta shiftF at heval
   cases dual
-  · simp [Pi.single_apply, hne] at heval
-  · simp [Pi.single_apply, hne] at heval
+  · simp [hne] at heval
+  · simp [hne] at heval
 
 theorem cns_coefV {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (g : Matrix (Fin n) (Fin n) ℂ) (a b : H) (x y : Fin n → ℂ) :

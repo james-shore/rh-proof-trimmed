@@ -68,7 +68,7 @@ theorem blockDiagonal'_mulVec_apply {m : (Σ w : ι, Ix (P w) (Q w)) → Type} [
     (b : m o) : (blockDiagonal' M *ᵥ v) ⟨o, b⟩ = ∑ b', M o b b' * v ⟨o, b'⟩ := by
   simp only [mulVec, dotProduct]
   rw [Fintype.sum_sigma, Finset.sum_eq_single o]
-  · simp [blockDiagonal'_apply']
+  · simp
   · intro o' _ h
     simp [blockDiagonal'_apply_ne M b _ (Ne.symm h)]
   · simp
@@ -206,7 +206,7 @@ theorem coordOf_mulVec (k : G →* (∀ w, Mat (R w) (S w)))
   ext a b
   simp only [coordOf, Function.comp_apply, Equiv.symm_symm, Equiv.symm_apply_apply]
   rw [blockDiagonal'_mulVec_apply]
-  simp only [mul_apply, transpose_apply, Finset.mul_sum, Function.comp_apply]
+  simp only [Finset.mul_sum, Function.comp_apply]
   exact Finset.sum_congr rfl fun _ _ => by simp only [coordOf, transpose_apply]; ring
 
 end GlobalTheory.HoweD.Osc

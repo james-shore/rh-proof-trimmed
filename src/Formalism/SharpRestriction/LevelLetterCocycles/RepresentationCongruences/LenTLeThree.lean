@@ -131,8 +131,8 @@ private lemma div_le_div_of_mul_le_mul_of_pos {a b c d : ℝ} (hb : 0 < b) (hd :
   have hb' : b ≠ 0 := hb.ne'
   have hd' : d ≠ 0 := hd.ne'
   have hbd : 0 < b * d := mul_pos hb hd
-  have e1 : a / b = (a * d) * (b * d)⁻¹ := by field_simp <;> ring
-  have e2 : c / d = (c * b) * (b * d)⁻¹ := by field_simp <;> ring
+  have e1 : a / b = (a * d) * (b * d)⁻¹ := by field_simp
+  have e2 : c / d = (c * b) * (b * d)⁻¹ := by field_simp
   rw [e1, e2]
   exact mul_le_mul_of_nonneg_right h (inv_nonneg.mpr hbd.le)
 
@@ -362,7 +362,6 @@ theorem sum_lenT (hne : ∃ i, ¬ th i) :
             rw [Nat.cast_sub hlt.le]; ring
           rw [e5]; exact hth
       rw [hek]; ring
-  beta_reduce
   rw [hfib, Finset.card_image_of_injOn, Finset.card_range]
   intro k hk k' hk' hkk
   simp only [Finset.coe_range, Set.mem_Iio] at hk hk'

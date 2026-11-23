@@ -138,8 +138,8 @@ theorem finiteDimensional_homPi_of_le [Finite κ] (hδ : ∀ i, IsIrrUnitary (δ
     FiniteDimensional ℂ (homPi e δ ρ X) := by
   let L : homPi e δ ρ X →ₗ[ℂ] (κ → ℂ) :=
     { toFun := fun Φ k => bePi Φ.1 (Ψ k)
-      map_add' := fun Φ Φ' => funext fun k => by simp [bePi, inner_add_right]
-      map_smul' := fun c Φ => funext fun k => by simp [bePi, inner_smul_right] }
+      map_add' := fun Φ Φ' => funext fun k => by simp [bePi]
+      map_smul' := fun c Φ => funext fun k => by simp [bePi] }
   refine Module.Finite.of_injective L ((injective_iff_map_eq_zero L).2 fun Φ hΦ => ?_)
   refine Subtype.ext (ContinuousMultilinearMap.ext fun y => ?_)
   have hle : (Submodule.span ℂ {v | ∃ k y, v = Ψ k y}).topologicalClosure ≤ (ℂ ∙ Φ.1 y)ᗮ :=

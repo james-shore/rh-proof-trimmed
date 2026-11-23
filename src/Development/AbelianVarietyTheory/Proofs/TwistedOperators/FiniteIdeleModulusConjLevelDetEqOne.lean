@@ -147,7 +147,6 @@ theorem GlobalTheory.DetIdeleUnit.valued_eq_one_of_valuation {D : D7} {w : Pl D.
   have e := ValuativeRel.isEquiv (ValuativeRel.valuation (Kw w)) (Valued.v : Valuation (Kw w) (WithZero (Multiplicative ℤ)))
   first
   | exact e.eq_one_iff_eq_one.1 h
-  | exact le_antisymm (e.le_one_iff_le_one.1 h.le) (e.one_le_iff_one_le.1 h.ge)
 
 namespace GlobalTheory.DetIdeleUnit
 
@@ -187,7 +186,7 @@ theorem cpt_det_cutPart {e : AE D} {P : Finset (Pl D.host.E)} (he : IsIdemSum e 
   congr 1
   ext a b
   simp only [RingHom.mapMatrix_apply, Matrix.map_apply, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, map_add (f := _),
-    map_mul, map_sub, map_one, hψa, hψe, hψc, one_mul, sub_self, zero_mul, add_zero]
+    map_mul, map_sub, map_one, hψe, hψc, one_mul, sub_self, zero_mul, add_zero]
 
 theorem absFin_detAt_cutPart {e : AE D} {P : Finset (Pl D.host.E)} (he : IsIdemSum e P) (hee : e * e = e) (V : HSp D)
     (g : GA D V) (hg : ∀ PP ∈ P, Valued.v (GlobalTheory.StdFrames.cpt PP (toEAf D (Formalism.L2.Theta.mt V g).det)) = 1) :

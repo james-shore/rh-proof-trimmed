@@ -82,11 +82,7 @@ theorem hf_sum_r {ι : Type} (s : Finset ι) (a : ι → Fin n → E) (y : Fin n
 theorem exists_smul_mem [IsNonarchimedeanLocalField F] {Λ : Submodule L.O (Fin n → E)}
     (hΛ : IsLat L Λ) (x : Fin n → E) : ∃ t : 𝒪[F], t ≠ 0 ∧ algebraMap F E t • x ∈ Λ := by
   first
-  | exact @_root_.GlobalTheory.CommonDenominator.main
-  | exact _root_.GlobalTheory.CommonDenominator.main
   | (apply _root_.GlobalTheory.CommonDenominator.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonDenominator.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonDenominator.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CommonDenominator.main ..)
 
 noncomputable def shear {m : ℕ} (b d : Fin m → Fin n → E) (hdb : ∀ i j, hf L Hm (d i) (b j) = 0) :

@@ -59,11 +59,7 @@ namespace GlobalTheory.SchrSB
 
 theorem eq_one_of_pow_two_pow (z : ℂ) (h : ∀ k : ℕ, ‖z ^ (2 ^ k) - 1‖ < 1 / 2) : z = 1 := by
   first
-  | exact @_root_.GlobalTheory.IterativeScalingBound.main
-  | exact _root_.GlobalTheory.IterativeScalingBound.main
   | (apply _root_.GlobalTheory.IterativeScalingBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IterativeScalingBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IterativeScalingBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IterativeScalingBound.main ..)
 
 theorem isLocallyConstant_addChar {G : Type} [AddCommGroup G] [TopologicalSpace G] [NonarchimedeanAddGroup G]

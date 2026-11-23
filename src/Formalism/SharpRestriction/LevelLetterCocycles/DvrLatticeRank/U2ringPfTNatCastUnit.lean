@@ -139,7 +139,6 @@ theorem u2ringPfT_deriv [IsDomain O] [IsDiscreteValuationRing O] [CharZero O]
   have hDπ : D π = u * ((s' : PowerSeries O) * PowerSeries.X ^ (s' - 1)) + PowerSeries.X ^ s' * D u := by
     rw [hπu, Derivation.leibniz, Derivation.leibniz_pow, hdX]
     simp only [smul_eq_mul, nsmul_eq_mul, mul_one]
-    try ring
   have hdq := congrArg D hQ
   rw [Derivation.leibniz, Derivation.map_aeval, hDπ] at hdq
   have hdq2 := congrArg (Ideal.Quotient.mk (DualFramesAlt.eigenRingInvariants.Ia x)) hdq

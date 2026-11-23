@@ -64,11 +64,7 @@ theorem pInfPi_eq (x : Fin m → Ad E) :
 
 theorem one_add_pow_le {t : ℝ} (ht : 0 ≤ t) (k : ℕ) : (1 + t) ^ k ≤ 2 ^ k * (1 + t ^ k) := by
   first
-  | exact @_root_.GlobalTheory.OneAddPowBound.one_add_pow_le
-  | exact _root_.GlobalTheory.OneAddPowBound.one_add_pow_le
   | (apply _root_.GlobalTheory.OneAddPowBound.one_add_pow_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OneAddPowBound.one_add_pow_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OneAddPowBound.one_add_pow_le <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.OneAddPowBound.one_add_pow_le ..)
 
 theorem integrable_arch (φ : SchwartzMap (Fin m → mixedEmbedding.mixedSpace E) ℂ) (k : ℕ) :

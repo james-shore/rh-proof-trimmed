@@ -57,9 +57,6 @@ private theorem exists_prime_over_lemma {A B : Type*} [CommRing A] [CommRing B] 
     ∃ Q : Ideal B, I ≤ Q ∧ Q.IsPrime ∧ Q.comap (algebraMap A B) = p := by
   first
   | exact Ideal.exists_ideal_over_prime_of_isIntegral p I hI
-  | exact Ideal.exists_ideal_over_prime_of_isIntegral_of_isPrime p I hI
-  | (obtain ⟨Q, h1, h2, h3⟩ := Ideal.exists_ideal_over_prime_of_isIntegral p I hI
-     exact ⟨Q, h1, h2, h3⟩)
 
 theorem exists_ltSeries_lift_of_isIntegral {A B : Type*} [CommRing A] [CommRing B]
     [Algebra A B] [Algebra.IsIntegral A B] (h : Function.Injective (algebraMap A B))
@@ -76,11 +73,7 @@ theorem exists_ltSeries_lift_of_isIntegral {A B : Type*} [CommRing A] [CommRing 
     intro l hl
     obtain ⟨Q, -, hQ, hQc⟩ := exists_prime_over_lemma l.last.asIdeal ⊥ (by
       first
-      | (rw [Ideal.comap_bot_of_injective _ h]; exact bot_le)
-      | (intro y hy
-         rw [Ideal.mem_comap, Ideal.mem_bot] at hy
-         rw [show y = 0 from h (by rw [hy, map_zero])]
-         exact Ideal.zero_mem _))
+      | (rw [Ideal.comap_bot_of_injective _ h]; exact bot_le))
     refine ⟨RelSeries.singleton _ ⟨Q, hQ⟩, ?_, ?_⟩
     · simp [hl]
     · simpa using hQc
@@ -102,7 +95,6 @@ theorem exists_ltSeries_lift_of_isIntegral {A B : Type*} [CommRing A] [CommRing 
     refine ⟨l'.snoc ⟨Q, hQ⟩ hlt', ?_, ?_⟩
     · first
       | (simp [hlen, hl]; done)
-      | (simp [hlen, hl]; omega)
     · simpa using hQc
 
 theorem ringKrullDim_eq_of_isIntegral_of_injective {A B : Type*} [CommRing A] [CommRing B]
@@ -118,9 +110,6 @@ theorem ringKrullDim_eq_of_isIntegral_of_injective {A B : Type*} [CommRing A] [C
   apply le_antisymm
   · first
     | exact Order.krullDim_le_of_strictMono _ hmono
-    | (apply iSup_le
-       intro l'
-       exact le_iSup_of_le (l'.map _ hmono) le_rfl)
   · apply iSup_le
     intro l
     obtain ⟨l', hlen, -⟩ := exists_ltSeries_lift_of_isIntegral hinj l
@@ -133,7 +122,6 @@ theorem ringKrullDim_quotient_eq_quotient_comap_of_isIntegral {A B : Type*} [Com
   haveI : Algebra.IsIntegral (A ⧸ I.comap (algebraMap A B)) (B ⧸ I) := by
     first
     | infer_instance
-    | exact Algebra.IsIntegral.quotient I
   exact ringKrullDim_eq_of_isIntegral_of_injective Ideal.algebraMap_quotient_injective
 
 end ReciprocityTheory.CA

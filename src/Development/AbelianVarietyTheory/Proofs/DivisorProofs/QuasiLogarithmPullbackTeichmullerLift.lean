@@ -82,7 +82,7 @@ theorem lin_subst {R : Type} [CommRing R] {d e : ℕ} (a : Fin e → MvPowerSeri
         apply inj
         rw [map_zero, ← Multiset.card_eq_zero, hcard, h]
       subst h0
-      simp [hf1, coeff_X]
+      simp [hf1]
     · obtain ⟨j, hj⟩ := Multiset.card_eq_one.1 ((hcard α).trans h)
       have h1 : α = Finsupp.single j 1 := by
         apply inj

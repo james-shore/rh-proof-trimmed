@@ -73,7 +73,7 @@ theorem flagMat_mulVec (y : Fin c → (n ⊕ Fin c → k)) (v : n ⊕ Fin c → 
   congr 1
   · rcases r with r | l
     · simp [Matrix.one_apply]
-    · simp [one_apply]
+    · simp
   · exact Finset.sum_congr rfl fun i _ => mul_comm _ _
 
 theorem flagMat_uni {y : Fin c → (n ⊕ Fin c → k)} (hY : ∀ i, y i ∈ Yle k n c (i.val + 1))

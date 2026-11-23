@@ -46,4 +46,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 theorem _root_.GlobalTheory.T.exists_strictHenselization_at_maximal : ∀ (B : Type) [CommRing B] (P : Ideal B) [P.IsMaximal], IsSepClosed (IsLocalRing.ResidueField (Localization.AtPrime P)) → ∃ (O : Type) (_ : CommRing O) (_ : Algebra B O), SH O ∧ IndEt B O ∧ ∀ Q : Ideal O, Q.IsMaximal → Q.comap (algebraMap B O) = P ∧ ∀ o : O, ∃ b : B, o - algebraMap B O b ∈ Q := by
-  first | (exact @GlobalTheory.HensMax.exists_strictHens_of_maximal) | (exact GlobalTheory.HensMax.exists_strictHens_of_maximal) | (intros; apply GlobalTheory.HensMax.exists_strictHens_of_maximal  <;> assumption)
+  first | (exact @GlobalTheory.HensMax.exists_strictHens_of_maximal)

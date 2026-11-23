@@ -66,11 +66,7 @@ theorem exists_orthonormal_mem {K : UQ} (n : ℕ) : ∀ (V : Type) [AddCommGroup
     Submodule.span K.E (L : Set V) = ⊤ → (∀ y, y ∈ L ↔ ∀ z ∈ L, h y z ∈ (algebraMap K.O K.E).range) →
     ∃ v : Fin n → V, (∀ i, v i ∈ L) ∧ ∀ i j, h (v i) (v j) = if i = j then 1 else 0 := by
   first
-  | exact @_root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal
-  | exact _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal
   | (apply _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal <;> assumption)
-  | (intros; apply _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.InvolutionTraceUnit.exists_orthonormal ..)
 
 end GlobalTheory.InertUnitOrb.LatOnto

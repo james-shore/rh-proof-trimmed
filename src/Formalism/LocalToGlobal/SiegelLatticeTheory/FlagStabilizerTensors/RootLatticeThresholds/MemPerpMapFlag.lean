@@ -60,7 +60,6 @@ theorem mapFlag_inv (F0 : FlagG (VS D) D.R.rS T) :
   have key : ∀ x, (β⁻¹ : (VS D).V ≃ₗ[D.host.E] (VS D).V) (β x) = x := fun x => β.symm_apply_apply x
   cases F0
   simp only [Formalism.L2.SG.Saturated.mapFlag, key]
-  all_goals rfl
 
 theorem stabF_conj (F0 : FlagG (VS D) D.R.rS T) {γ : (VS D).V ≃ₗ[D.host.E] (VS D).V} (hγ : γ ∈ stabF D F0) :
     β * γ * β⁻¹ ∈ stabF D (Formalism.L2.SG.Saturated.mapFlag β hβ F0) := by
@@ -70,10 +69,8 @@ theorem stabF_conj (F0 : FlagG (VS D) D.R.rS T) {γ : (VS D).V ≃ₗ[D.host.E] 
       (F0.Xa j).map (β : (VS D).V →ₗ[D.host.E] (VS D).V) := by
     intro j
     first
-      | rfl
       | (simp only [FlagG.Xa, Formalism.L2.SG.Saturated.mapFlag, Submodule.map_span, ← Set.range_comp]; rfl)
       | (simp only [FlagG.Xa, Formalism.L2.SG.Saturated.mapFlag, Submodule.map_span, Set.image_image]; rfl)
-      | simp [FlagG.Xa, Formalism.L2.SG.Saturated.mapFlag, Submodule.map_span, Set.image_image, ← Set.range_comp]
   have hc : ((β * γ * β⁻¹ : (VS D).V ≃ₗ[D.host.E] (VS D).V) : (VS D).V →ₗ[D.host.E] (VS D).V).comp
       (β : (VS D).V →ₗ[D.host.E] (VS D).V) =
       (β : (VS D).V →ₗ[D.host.E] (VS D).V).comp (γ : (VS D).V →ₗ[D.host.E] (VS D).V) := by
@@ -127,17 +124,9 @@ theorem perp_mapFlag :
     intro x y
     first
       | exact hβ x y
-      | exact LinearMap.congr_fun₂ hβ x y
-      | exact Formalism.HermitianLatticesTheory.isom_apply hβ x y
-      | exact Formalism.L2.SG.Saturated.isom_apply hβ x y
-      | exact isom_apply hβ x y
   have hX : (Formalism.L2.SG.Saturated.mapFlag β hβ F0).X = F0.X.map (β : (VS D).V →ₗ[D.host.E] (VS D).V) := by
     first
-      | rfl
       | (simp only [FlagG.X, Formalism.L2.SG.Saturated.mapFlag, Submodule.map_span, ← Set.range_comp]; rfl)
-      | (simp only [FlagG.X, Formalism.L2.SG.Saturated.mapFlag, Submodule.map_span, Set.image_union,
-          Set.image_singleton, ← Set.range_comp]; rfl)
-      | simp [FlagG.X, Formalism.L2.SG.Saturated.mapFlag, Submodule.map_span, ← Set.range_comp, Set.image_union]
   ext y
   rw [hX, Submodule.mem_map_equiv]
   simp only [perpS, Submodule.mem_mk, AddSubmonoid.mem_mk, AddSubsemigroup.mem_mk, Set.mem_setOf_eq]

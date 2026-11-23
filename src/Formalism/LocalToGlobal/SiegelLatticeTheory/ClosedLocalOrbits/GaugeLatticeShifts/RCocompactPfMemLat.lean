@@ -68,8 +68,6 @@ theorem natAbs_sq_cast {K : Type*} [Ring K] (z : ℤ) : (((z.natAbs ^ 2 : ℕ)) 
 
 theorem crd_sub_lat (a b : (VS D).V) : X.crd (a - b) = X.crd a - X.crd b := by
   first
-    | exact Formalism.L2.SG.Pf.Vanish2.crd_sub' (X := X) a b
-    | exact map_sub _ a b
     | (funext i; simp [Formalism.L2.SG.HidaSetting.HidaSetting.crd, crdOf])
 
 theorem repr_crd (a : (VS D).V) (i : Fin X.B.I.n) : X.bas.repr a i = X.ιE (X.crd a i) := by

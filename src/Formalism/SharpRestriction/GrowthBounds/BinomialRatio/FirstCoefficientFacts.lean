@@ -189,7 +189,7 @@ theorem seg_num {k Q a b' Y E0 N1 La m cm A0 mN e1 e2 : ℝ} (hk5 : 5 ≤ k) (hQ
     have h2 : S * (m + 5) * a = k * Q * (m + 5) := by rw [← hSa]; ring
     linarith [mul_nonneg hkQ.le (sub_nonneg.2 hNk)]
   have hkr : k * ((2 * a / (k * Y) + E0 + Q) / a) = 2 * (1 / Y) + k * E0 / a + S := by
-    rw [hS]; field_simp; try ring
+    rw [hS]; field_simp
   have hmr : mN * ((2 * a / (k * Y) + E0 + Q) / a) ≤ k * ((2 * a / (k * Y) + E0 + Q) / a) :=
     mul_le_mul_of_nonneg_right hmNk hr0
   have hSm : 0 ≤ S * m := mul_nonneg hS0 hm

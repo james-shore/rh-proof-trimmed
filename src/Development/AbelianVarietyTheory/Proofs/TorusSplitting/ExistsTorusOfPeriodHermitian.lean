@@ -184,11 +184,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 theorem conj_rt (τ : E →+* ℂ) : τ (H.rt : E) ^ 2 = -(H.d : ℂ) ∧
     starRingEnd ℂ (τ (H.rt : E)) = -τ (H.rt : E) := by
   first
-  | exact @_root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj
-  | exact _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj
   | (apply _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj ..)
 
 theorem mult_add_mult_conj (D : Datum H) (τ : E →+* ℂ) :

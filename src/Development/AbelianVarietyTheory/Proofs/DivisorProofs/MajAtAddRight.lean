@@ -104,7 +104,6 @@ theorem selfAdj_of_pyth (hv : v.IsComplex) (e : V →ₗ[K] V)
     push_neg at hcon
     apply InfinitePlace.isComplex_iff.mp hv
     first
-    | exact fun t => Complex.conj_eq_iff_im.mpr (hcon t)
     | (rw [ComplexEmbedding.isReal_iff]; ext t; exact Complex.conj_eq_iff_im.mpr (hcon t))
   have hzero : ∀ x y, majAt b X v (e x) (y - e y) = 0 := by
     intro x y

@@ -66,7 +66,7 @@ theorem ιLev_apply_in (g : Matrix (Fin (2 * r' + k + 1)) (Fin (2 * r' + k + 1))
   have h2 : i ≤ q.val ∧ q.val < 2 * r' + k + 1 + i := by omega
   simp only [ιLev]
   rw [dite_eq_left h1, dite_eq_left h2]
-  congr 1 <;> apply Fin.ext <;> simp only [Fin.val_mk] <;> omega
+  congr 1 <;> apply Fin.ext <;> simp only <;> omega
 
 theorem ιLev_apply_out (g : Matrix (Fin (2 * r' + k + 1)) (Fin (2 * r' + k + 1)) ℂ)
     (p q : Fin (2 * (i + r') + k + 1)) (hp : ¬ (i ≤ p.val ∧ p.val < 2 * r' + k + 1 + i)) :
@@ -88,7 +88,7 @@ theorem liftVec_apply_in (v : Fin (2 * r' + k + 1) → ℂ) (p : Fin (2 * (i + r
   rw [dite_eq_left h1]
   congr 1
   apply Fin.ext
-  simp only [Fin.val_mk]
+  simp only
   omega
 
 theorem liftVec_apply_out (v : Fin (2 * r' + k + 1) → ℂ) (p : Fin (2 * (i + r') + k + 1))
@@ -102,7 +102,7 @@ theorem bvec_lift (a : Fin (2 * r' + k + 1)) (q : Fin (2 * (i + r') + k + 1)) (h
   have ha := a.isLt
   by_cases hp : i ≤ p.val ∧ p.val < 2 * r' + k + 1 + i
   · rw [liftVec_apply_in (bvec a) p ⟨p.val - i, by omega⟩ (by simp only [Fin.val_mk]; omega)]
-    simp only [bvec, Pi.single_apply, Fin.ext_iff, Fin.val_mk]
+    simp only [bvec, Pi.single_apply, Fin.ext_iff]
     split_ifs <;> first | rfl | (exfalso; omega)
   · rw [liftVec_apply_out _ p hp]
     simp only [bvec, Pi.single_apply, Fin.ext_iff]
@@ -116,7 +116,7 @@ theorem col_fix (g : Matrix (Fin (2 * r' + k + 1)) (Fin (2 * r' + k + 1)) ℂ) (
     ιLev k i r' g *ᵥ bvec q = bvec q := by
   by_cases hq : i ≤ q.val ∧ q.val < 2 * r' + k + 1 + i
   · have hqa : q.val - i < 2 * r' + k + 1 := by omega
-    have e : q.val = (⟨q.val - i, hqa⟩ : Fin (2 * r' + k + 1)).val + i := by simp only [Fin.val_mk]; omega
+    have e : q.val = (⟨q.val - i, hqa⟩ : Fin (2 * r' + k + 1)).val + i := by simp only; omega
     rw [← bvec_lift ⟨q.val - i, hqa⟩ q e, mulVec_lift, h _ e]
   · funext p
     rw [mulVec_bvec]
@@ -159,14 +159,14 @@ theorem level_group_nilpotent : LevN := by
         rw [ιLev_apply_in g p (eI k (i + r') a) ⟨p.val - i, hpl⟩ (eI k r' ⟨a.val - i, hbr⟩)
           (by simp only [Fin.val_mk]; omega) (by simp only [eI, Fin.val_mk]; omega)]
         rw [h2 ⟨a.val - i, hbr⟩ ⟨p.val - i, hpl⟩ (by simp only [Fin.val_mk]; omega)]
-        simp only [Fin.ext_iff, eI, Fin.val_mk]
+        simp only [Fin.ext_iff, eI]
         split_ifs <;> first | rfl | (exfalso; omega)
       · rw [ιLev_apply_out g p _ hp]
     · have hq : ¬ (i ≤ (eI k (i + r') a).val ∧ (eI k (i + r') a).val < 2 * r' + k + 1 + i) := by
         simp only [eI, Fin.val_mk]; omega
       by_cases hp : i ≤ p.val ∧ p.val < 2 * r' + k + 1 + i
       · rw [ιLev_apply_in_out g p _ hp hq]
-        simp only [Fin.ext_iff, eI, Fin.val_mk]
+        simp only [Fin.ext_iff, eI]
         split_ifs <;> first | rfl | (exfalso; omega)
       · rw [ιLev_apply_out g p _ hp]
   · intro p q hq1 hq2 hp1
@@ -177,7 +177,7 @@ theorem level_group_nilpotent : LevN := by
         (by simp only [Fin.val_mk]; omega)]
       rw [h3 ⟨p.val - i, hpl⟩ ⟨q.val - i, hql⟩ (by simp only [Fin.val_mk]; omega) (by simp only [Fin.val_mk]; omega)
         (by simp only [Fin.val_mk]; omega)]
-      simp only [Fin.ext_iff, Fin.val_mk]
+      simp only [Fin.ext_iff]
       split_ifs <;> first | rfl | (exfalso; omega)
     · rw [ιLev_apply_out g p q hp]
 

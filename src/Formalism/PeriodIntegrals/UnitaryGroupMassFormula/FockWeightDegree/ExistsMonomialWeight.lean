@@ -69,7 +69,6 @@ theorem X_mul_monomial' {σ : Type*} (l : σ) (β : σ →₀ ℕ) (c : ℂ) :
       MvPolynomial.monomial (Finsupp.single l 1 + β) c := by
   first
     | (rw [MvPolynomial.X, MvPolynomial.monomial_mul, one_mul])
-    | simp [MvPolynomial.X, MvPolynomial.monomial_mul]
 
 theorem omE_diag_monomial {p q r s : ℕ} (l : Ln p q r s) (α : Ln p q r s →₀ ℕ) :
     omE l l (MvPolynomial.monomial α (1 : ℂ)) =
@@ -95,7 +94,6 @@ theorem omE_diag_monomial {p q r s : ℕ} (l : Ln p q r s) (α : Ln p q r s →�
     have hs : Finsupp.single l 1 + α - Finsupp.single l 1 = α := by
       first
         | exact add_tsub_cancel_left _ _
-        | (ext k; simp)
     have hv : (((Finsupp.single l 1 + α : FockH1Action.Ln p q r s →₀ ℕ) l : ℕ) : ℂ) = (α l : ℂ) + 1 := by
       rw [Finsupp.add_apply, Finsupp.single_eq_same]; push_cast; ring
     rw [h1, h2, X_mul_monomial', hpd, hs, hv, one_mul, hm ((α l : ℂ) + 1), ← neg_smul,
@@ -117,9 +115,6 @@ theorem omE_diag_monomial {p q r s : ℕ} (l : Ln p q r s) (α : Ln p q r s →�
       · have hs : Finsupp.single l 1 + (α - Finsupp.single l 1) = α := by
           first
             | exact add_tsub_cancel_of_le (Finsupp.single_le_iff.2 (Nat.one_le_iff_ne_zero.2 h0))
-            | (ext k
-               simp only [Finsupp.coe_add, Finsupp.coe_tsub, Pi.add_apply, Pi.sub_apply, Finsupp.single_apply]
-               split_ifs with hk <;> (try subst hk) <;> omega)
         rw [X_mul_monomial', hs, hm (α l : ℂ)]
     rw [h2, h1, hpd, key, hw, add_smul]
 
@@ -152,7 +147,6 @@ theorem fockAct1_diag (p q r s : ℕ) (a : Ix p q) :
     show FockH1Action.Eab a a x x' * (1 : FockH1Action.Mat r s) y y' = _
     first
       | simp only [FockH1Action.Eab, Matrix.single_apply, Matrix.one_apply, Prod.mk.injEq]
-      | simp only [FockH1Action.Eab, Matrix.single, Matrix.of_apply, Matrix.one_apply, Prod.mk.injEq]
     split_ifs <;> first | (simp_all; done) | aesop
   rw [show FockH1Action.fockAct1 p q r s (FockH1Action.Eab a a) = FockH1Action.omAct p q r s
       ((Matrix.kroneckerMapBilinear (LinearMap.mul ℂ ℂ)).flip (1 : FockH1Action.Mat r s)
@@ -174,7 +168,6 @@ theorem fockAct2_diag (p q r s : ℕ) (c : Ix r s) :
     show (1 : FockH1Action.Mat p q) x x' * FockH1Action.Eab c c y y' = _
     first
       | simp only [FockH1Action.Eab, Matrix.single_apply, Matrix.one_apply, Prod.mk.injEq]
-      | simp only [FockH1Action.Eab, Matrix.single, Matrix.of_apply, Matrix.one_apply, Prod.mk.injEq]
     split_ifs <;> first | (simp_all; done) | aesop
   rw [show FockH1Action.fockAct2 p q r s (FockH1Action.Eab c c) = FockH1Action.omAct p q r s
       ((Matrix.kroneckerMapBilinear (LinearMap.mul ℂ ℂ)) (1 : FockH1Action.Mat p q)
@@ -273,14 +266,12 @@ private theorem sum_add_half_add_sum_neg_sub_half (A B : ℕ) (f : Fin A → ℚ
   first
     | (simp only [Finset.sum_add_distrib, Finset.sum_sub_distrib, Finset.sum_neg_distrib,
         Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]; ring)
-    | (simp [Finset.sum_add_distrib, Finset.sum_sub_distrib]; ring)
 
 private theorem sum_neg_sub_half_add_sum_add_half (A B : ℕ) (f : Fin A → ℚ) (g : Fin B → ℚ) :
     ∑ c, (-f c - 1 / 2) + ∑ c, (g c + 1 / 2) = (∑ c, g c) - (∑ c, f c) - ((A : ℚ) - B) / 2 := by
   first
     | (simp only [Finset.sum_add_distrib, Finset.sum_sub_distrib, Finset.sum_neg_distrib,
         Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]; ring)
-    | (simp [Finset.sum_add_distrib, Finset.sum_sub_distrib]; ring)
 
 theorem shift1_le {p q r s : ℕ} (α : Ln p q r s →₀ ℕ) (a : Ix p q) :
     |shiftNu (cPair r s) (fun b => W1 b α) a| ≤ ∑ c : Ix r s, (α (a, c) : ℚ) := by
@@ -289,7 +280,7 @@ theorem shift1_le {p q r s : ℕ} (α : Ln p q r s →₀ ℕ) (a : Ix p q) :
   | inl i =>
     have hL : W1 (Sum.inl i) α = ∑ c : Fin r, ((α (Sum.inl i, Sum.inl c) : ℚ) + 1 / 2) +
         ∑ c : Fin s, (-(α (Sum.inl i, Sum.inr c) : ℚ) - 1 / 2) := by
-      rw [W1, Fintype.sum_sum_type] <;> first | rfl | simp [lw, FockH1Action.linePos]
+      rw [W1, Fintype.sum_sum_type] <;> first | rfl
     have hx : FockH1Action.shiftNu (FockH1Action.cPair r s) (fun b => W1 b α) (Sum.inl i) =
         (∑ c : Fin r, (α (Sum.inl i, Sum.inl c) : ℚ)) - ∑ c : Fin s, (α (Sum.inl i, Sum.inr c) : ℚ) := by
       show W1 (Sum.inl i) α - FockH1Action.cPair r s = _
@@ -300,7 +291,7 @@ theorem shift1_le {p q r s : ℕ} (α : Ln p q r s →₀ ℕ) (a : Ix p q) :
   | inr j =>
     have hL : W1 (Sum.inr j) α = ∑ c : Fin r, (-(α (Sum.inr j, Sum.inl c) : ℚ) - 1 / 2) +
         ∑ c : Fin s, ((α (Sum.inr j, Sum.inr c) : ℚ) + 1 / 2) := by
-      rw [W1, Fintype.sum_sum_type] <;> first | rfl | simp [lw, FockH1Action.linePos]
+      rw [W1, Fintype.sum_sum_type] <;> first | rfl
     have hx : FockH1Action.shiftNu (FockH1Action.cPair r s) (fun b => W1 b α) (Sum.inr j) =
         (∑ c : Fin s, (α (Sum.inr j, Sum.inr c) : ℚ)) - ∑ c : Fin r, (α (Sum.inr j, Sum.inl c) : ℚ) := by
       show W1 (Sum.inr j) α + FockH1Action.cPair r s = _
@@ -316,7 +307,7 @@ theorem shift2_le {p q r s : ℕ} (α : Ln p q r s →₀ ℕ) (c : Ix r s) :
   | inl k =>
     have hL : W2 (Sum.inl k) α = ∑ a : Fin p, ((α (Sum.inl a, Sum.inl k) : ℚ) + 1 / 2) +
         ∑ a : Fin q, (-(α (Sum.inr a, Sum.inl k) : ℚ) - 1 / 2) := by
-      rw [W2, Fintype.sum_sum_type] <;> first | rfl | simp [lw, FockH1Action.linePos]
+      rw [W2, Fintype.sum_sum_type] <;> first | rfl
     have hx : FockH1Action.shiftNu (FockH1Action.cPair p q) (fun b => W2 b α) (Sum.inl k) =
         (∑ a : Fin p, (α (Sum.inl a, Sum.inl k) : ℚ)) - ∑ a : Fin q, (α (Sum.inr a, Sum.inl k) : ℚ) := by
       show W2 (Sum.inl k) α - FockH1Action.cPair p q = _
@@ -327,7 +318,7 @@ theorem shift2_le {p q r s : ℕ} (α : Ln p q r s →₀ ℕ) (c : Ix r s) :
   | inr k =>
     have hL : W2 (Sum.inr k) α = ∑ a : Fin p, (-(α (Sum.inl a, Sum.inr k) : ℚ) - 1 / 2) +
         ∑ a : Fin q, ((α (Sum.inr a, Sum.inr k) : ℚ) + 1 / 2) := by
-      rw [W2, Fintype.sum_sum_type] <;> first | rfl | simp [lw, FockH1Action.linePos]
+      rw [W2, Fintype.sum_sum_type] <;> first | rfl
     have hx : FockH1Action.shiftNu (FockH1Action.cPair p q) (fun b => W2 b α) (Sum.inr k) =
         (∑ a : Fin q, (α (Sum.inr a, Sum.inr k) : ℚ)) - ∑ a : Fin p, (α (Sum.inl a, Sum.inr k) : ℚ) := by
       show W2 (Sum.inr k) α + FockH1Action.cPair p q = _

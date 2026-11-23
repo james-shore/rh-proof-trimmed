@@ -161,11 +161,7 @@ theorem mem_smul_top_of_one_tmul_eq_zero (A : Type) [CommRing A] [IsLocalRing A]
 theorem one_tmul_surjective (A : Type) [CommRing A] [IsLocalRing A] (Λ : Type)
     [Ring Λ] [Algebra A Λ] (z : ResidueField A ⊗[A] Λ) : ∃ y : Λ, (1 : ResidueField A) ⊗ₜ[A] y = z := by
   first
-  | exact @_root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq
-  | exact _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq
   | (apply _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq ..)
 
 theorem exists_residue_idempotent : ∀ (A : Type) [CommRing A] [IsLocalRing A] [Finite (IsLocalRing.ResidueField A)] (Λ : Type) [Ring Λ] [Algebra A Λ] [IsAzumaya A Λ] [Module.Free A Λ] [Nontrivial Λ], ∃ x : Λ, x * x - x ∈ (IsLocalRing.maximalIdeal A) • (⊤ : Submodule A Λ) ∧ (∀ y : Λ, ∃ c : A, x * y * x - c • x ∈ (IsLocalRing.maximalIdeal A) • (⊤ : Submodule A Λ)) ∧ ∃ (N : ℕ) (a b : Fin N → Λ), ∑ i, a i * x * b i - 1 ∈ (IsLocalRing.maximalIdeal A) • (⊤ : Submodule A Λ) := by

@@ -65,10 +65,10 @@ theorem isCongIdeal_congJ {L V : Type} [NontriviallyNormedField L] [IsUltrametri
     obtain ⟨z, hz, e1⟩ := hy v hv
     obtain ⟨w, hw, e2⟩ := hx z hz
     refine ⟨π • w, lat_smul hΛ hπ.le hw, ?_⟩
-    simp [Module.End.mul_apply, e1, e2]
+    simp [e1, e2]
   · intro i x hx v hv
     obtain ⟨z, hz, e1⟩ := hx v hv
-    exact ⟨P i z, hP i z hz, by simp [Module.End.mul_apply, e1]⟩
+    exact ⟨P i z, hP i z hz, by simp [e1]⟩
   · intro i x hx v hv
     exact hx _ (hP i v hv)
 
@@ -118,7 +118,7 @@ theorem stIwahori : StIwahori := by
   have hk3 : (k.toLinearMap : Module.End L V) * st (k.toLinearMap) = 1 := by
     ext y
     obtain ⟨z, rfl⟩ := k.surjective y
-    simp [Module.End.mul_apply, hkk z]
+    simp [hkk z]
   rw [hab] at hk2 hk3
   obtain ⟨ua, ub⟩ := GlobalTheory.T.unitary_factors_of_unitary_upper_mul_lowerUni wt P hP rev rev_rev
     (fun i j hij => by have := wt_rev i; have := wt_rev j; omega) wt_injective st st_mul st_one st_zero st_P

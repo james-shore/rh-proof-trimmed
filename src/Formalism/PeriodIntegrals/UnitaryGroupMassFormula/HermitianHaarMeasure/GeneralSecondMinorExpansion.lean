@@ -113,14 +113,12 @@ theorem vecMulSingle {m : ℕ} (P : Matrix (Fin m) (Fin m) ℂ) (l l' : Fin m) :
   first
     | (show ∑ j, (Pi.single l (1 : ℂ) : Fin m → ℂ) j * P j l' = P l l'
        simp [Pi.single_apply])
-    | simp [Matrix.vecMul, Pi.single_apply]
 
 theorem mulVecSingle {m : ℕ} (Q : Matrix (Fin m) (Fin m) ℂ) (p p' : Fin m) :
     (Q *ᵥ Pi.single p (1 : ℂ)) p' = Q p' p := by
   first
     | (show ∑ j, Q p' j * (Pi.single p (1 : ℂ) : Fin m → ℂ) j = Q p' p
        simp [Pi.single_apply])
-    | simp [Matrix.mulVec, Pi.single_apply]
 
 theorem pull1 {A : Type*} [AddCommMonoid A] {m : ℕ} (g : Fin m → Fin m → Fin m → A) :
     ∑ a, ∑ b, ∑ c, g a b c = ∑ c, ∑ a, ∑ b, g a b c := by
@@ -251,7 +249,6 @@ theorem tATrans (hCC : ContractionsCovariant) {A : Type} [Ring A] [Algebra ℂ A
     simp only [mul_smul_comm, smul_mul_assoc, smul_smul]
     refine (measurePreserving_swap4 _).trans ?_
     first
-      | rfl
       | exact Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun p _ => Finset.sum_comm
   fin_cases p <;> fin_cases q
   exacts [h00, h01, h10, h11]

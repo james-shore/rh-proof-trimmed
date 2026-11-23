@@ -70,7 +70,7 @@ theorem qm_mul_w (M : Maps D hn) (x : Mx D ρ p) :
   have hz : ((0 : hermA D ρ).1 : Mx D ρ ρ) = 0 := rfl
   rw [hz]
   simp only [bl, Matrix.submatrix_mul_equiv, Matrix.fromBlocks_multiply]
-  simp only [Matrix.mul_zero, Matrix.zero_mul, Matrix.mul_one, Matrix.one_mul, add_zero, zero_add, Matrix.neg_mul, neg_zero, neg_neg]
+  simp only [Matrix.mul_zero, Matrix.zero_mul, Matrix.mul_one, Matrix.one_mul, add_zero, zero_add, Matrix.neg_mul]
   congr 1
   · change _ = (Matrix.fromBlocks 0 0 (adj x) 0 + Matrix.fromBlocks 1 0 0 0).submatrix _ _
     rw [Matrix.fromBlocks_add]; simp

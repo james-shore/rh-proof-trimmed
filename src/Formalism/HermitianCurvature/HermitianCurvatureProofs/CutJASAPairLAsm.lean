@@ -92,7 +92,6 @@ theorem sAPairOne_of_parts (hZ : SAZero) (hL : SALocal) (hE : SAExh) (hJC : SAJC
     have h0 := image_eq_zero_of_notMem_tsupport hn
     simp only [MA.ext] at h0
     first
-    | exact h0 hy
     | exact (dif_pos hy).symm.trans h0
   have hΘK0 : ∀ y ∈ Qs, y ∉ Cs → B.opApply Θ K (B.gq (T v).base y) = 0 := fun y hy hyC =>
     hL' E Wp Wq S T f χ ν' m₀ top A₀ hB2 v Θ hΘ K hK (Qs \ Cs) ((MA.Qset_open _ _).sdiff hCcl)
@@ -112,7 +111,6 @@ theorem sAPairOne_of_parts (hZ : SAZero) (hL : SALocal) (hE : SAExh) (hJC : SAJC
         simp [hΘK0 y hyQ hyC, GA.hsVec_zero']
       · simp only [MA.ext]
         first
-        | exact fun h => absurd h hyQ
         | exact dif_neg hyQ
     have hts := closure_minimal hsupp hCcl
     exact ⟨hCc.of_isClosed_subset (isClosed_tsupport _) hts, hts.trans hCQ⟩

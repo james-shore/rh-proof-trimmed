@@ -131,7 +131,7 @@ theorem quad_basis {ι A : Type} [Fintype ι] [DecidableEq ι] [Ring A] [Algebra
   simp only [e1, e2]
   calc _ = ∑ k, ∑ a, (X * U) k a • (x (Pi.single k 1) * c • y ((U * Δ) *ᵥ Pi.single a 1)) := by
         refine Finset.sum_congr rfl fun k _ => ?_
-        simp only [Matrix.mul_apply, Finset.sum_smul, Finset.smul_sum, Finset.mul_sum, mul_smul_comm, smul_smul]
+        simp only [Matrix.mul_apply, Finset.smul_sum, Finset.mul_sum, mul_smul_comm, smul_smul]
         rw [Finset.sum_comm]
         refine Finset.sum_congr rfl fun _ _ => ?_
         rw [Finset.sum_mul, Finset.sum_smul]

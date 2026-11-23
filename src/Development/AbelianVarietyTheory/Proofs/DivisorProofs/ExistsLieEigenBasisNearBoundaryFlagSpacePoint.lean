@@ -176,7 +176,7 @@ theorem exists_eigBasis_at (TF : TorFlag Xo c) (p : TF.Y.X) :
         LinearMap.toMatrix' (ReciprocityTheory.ChartRestriction.G.PullbackSections.proj (rho hx') (embK c) α τ) := by
       ext i j
       have s : (Pi.single j 1 : Fin n → k) = ψ ∘ Pi.single j 1 := funext fun r => by
-        by_cases hj : r = j <;> simp [hj, Pi.single_apply]
+        by_cases hj : r = j <;> simp [hj]
       rw [Matrix.map_apply, LinearMap.toMatrix'_apply, LinearMap.toMatrix'_apply, s]
       exact (congrFun (pr _ _) i).symm
     intro v

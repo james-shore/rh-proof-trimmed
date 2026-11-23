@@ -170,7 +170,7 @@ def coordField (z : Cone n (AlgebraicClosure ℚ)) : IntermediateField ℚ (Alge
 
 theorem isIntegral_algebraicClosure_rat (x : AlgebraicClosure ℚ) : IsIntegral ℚ x := by
   have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := by
-    convert AlgebraicClosure.isAlgebraic ℚ <;> rfl
+    convert AlgebraicClosure.isAlgebraic ℚ
   exact (Algebra.IsAlgebraic.isAlgebraic x).isIntegral
 
 instance (z : Cone n (AlgebraicClosure ℚ)) : FiniteDimensional ℚ (coordField z) :=

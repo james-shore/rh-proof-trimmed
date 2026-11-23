@@ -220,7 +220,7 @@ theorem latticeNormalFormCoord_of : GlobalTheory.IndefiniteRowSideFullHecke.Flag
   intro H O F _ _ _ _ _ _ q hq n c L hL Λ hΛ
   let φ := LinearEquiv.ofInjective (Loc.inX F n c) inX_injective
   obtain ⟨r, e, z, hr, ⟨z', rfl⟩, h⟩ := H O F (Fin (n + c) → F) q hq c _ _ isFrame _ (by
-    first | exact isFullLattice_map φ L hL | exact isLattice_map φ L hL) Λ hΛ
+    first | exact isFullLattice_map φ L hL) Λ hΛ
   refine ⟨r, mem_unipotentRadical_of_isSemidirect hr, e, z', ?_⟩
   rw [h]
   congr 1

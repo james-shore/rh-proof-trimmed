@@ -265,7 +265,7 @@ private theorem units_pack (l : ℕ) [Fact l.Prime] (M : Type) [CommGroup M] (o 
     have hdiv : ((l : ℤ) ^ k) ∣ (o x).toAdd := by
       rw [← PadicInt.norm_int_le_pow_iff_dvd, hy2, nsmul_eq_mul, norm_mul]
       have h1 : ‖((l ^ k : ℕ) : ℤ_[l])‖ = (l : ℝ) ^ (-k : ℤ) := by
-        simp [PadicInt.norm_p_pow]
+        simp
       rw [h1]
       exact mul_le_of_le_one_right (by positivity) (PadicInt.norm_le_one _)
     obtain ⟨n0, hn0⟩ := hdiv

@@ -49,7 +49,7 @@ theorem cnorm_add_le {ι : Type} [Fintype ι] (u w : ι → ℂ) :
     rw [EuclideanSpace.norm_eq]; rfl
   rw [key, key, key]
   have e : (WithLp.equiv 2 (ι → ℂ)).symm (u + w) = (WithLp.equiv 2 (ι → ℂ)).symm u + (WithLp.equiv 2 (ι → ℂ)).symm w := by
-    first | exact WithLp.equiv_symm_add 2 u w | rfl | simp
+    first | rfl
   rw [e]
   exact norm_add_le _ _
 

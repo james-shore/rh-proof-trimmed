@@ -145,7 +145,7 @@ theorem blk₂₂_one : (mat c (1 : UG c (stdJ ν E))).toBlocks₂₂ = 1 := by
   ext i j; simp [mat, toBlocks₂₂, Matrix.one_apply]
 
 theorem blk₂₁_one : (mat c (1 : UG c (stdJ ν E))).toBlocks₂₁ = 0 := by
-  ext i j; simp [mat, toBlocks₂₁, one_apply]
+  ext i j; simp [mat, toBlocks₂₁]
 
 theorem eventually_isUnit : ∀ᶠ g in 𝓝 (1 : UG c (stdJ ν E)), IsUnit (mat c g).toBlocks₂₂.det := by
   have h : Tendsto (fun g : UG c (stdJ ν E) => (mat c g).toBlocks₂₂.det) (𝓝 1) (𝓝 1) := by

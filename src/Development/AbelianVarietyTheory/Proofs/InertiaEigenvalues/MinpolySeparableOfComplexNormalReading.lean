@@ -79,7 +79,7 @@ theorem aeval_adj (U : Submodule ℂ H) (S S' : Module.End ℂ H) (hS : ∀ u �
       = inner ℂ u (Polynomial.aeval S' (q.map (starRingEnd ℂ)) v) := by
   refine Polynomial.induction_on q ?_ ?_ ?_
   · intro a u hu v hv
-    simp [Module.algebraMap_end_apply, inner_smul_left, inner_smul_right, mul_comm]
+    simp [Module.algebraMap_end_apply, mul_comm]
   · intro p r hp hr u hu v hv
     simp only [map_add (f := _), Polynomial.map_add (f := _), LinearMap.add_apply, inner_add_left, inner_add_right,
       hp u hu v hv, hr u hu v hv]

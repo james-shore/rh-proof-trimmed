@@ -63,7 +63,6 @@ theorem linearIndependent_of_isBaseChange_alt {K K' V V₁ ι : Type} [Field K] 
   classical
   have hs : LinearIndepOn K id (Set.range v) := by
     first
-    | exact hv.linearIndepOn_id_range
     | exact (linearIndepOn_id_range_iff hv.injective).mpr hv
   let B := Basis.extend hs
   have hsub : Set.range v ⊆ hs.extend (Set.subset_univ _) := hs.subset_extend (Set.subset_univ _)
@@ -73,7 +72,6 @@ theorem linearIndependent_of_isBaseChange_alt {K K' V V₁ ι : Type} [Field K] 
     funext i
     first
     | simp [B, g, IsBaseChange.basis_apply, Basis.coe_extend]
-    | simp [B, g, Basis.coe_extend]
   rw [hB']
   exact (hj.basis B).linearIndependent.comp g hg
 
@@ -90,7 +88,6 @@ theorem span_image_span_alt {K K' V V₁ : Type} [Field K] [Field K'] [Algebra K
     exact Submodule.span_le_restrictScalars K K' _ h1
   · first
     | exact Submodule.span_mono (Set.image_mono Submodule.subset_span)
-    | exact Submodule.span_mono (Set.image_subset _ Submodule.subset_span)
 
 theorem finrank_span_image_alt : FinrankSpanImage := by
   intro O O' K K' V V₁ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ j hj V'

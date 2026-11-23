@@ -521,14 +521,14 @@ private def coprodSwapAssocIso (A F T : Scheme.{u}) : A ⨿ (T ⨿ F) ≅ (A ⨿
   inv := coprodSwapAssocInv A F T
   hom_inv_id := by
     refine coprod.hom_ext ?_ ?_
-    · simp [coprodSwapAssocHom, coprodSwapAssocInv, coprod.inl_desc, coprod.inr_desc]
+    · simp [coprodSwapAssocHom, coprodSwapAssocInv]
     · refine coprod.hom_ext ?_ ?_ <;>
-        simp [coprodSwapAssocHom, coprodSwapAssocInv, coprod.inl_desc, coprod.inr_desc]
+        simp [coprodSwapAssocHom, coprodSwapAssocInv]
   inv_hom_id := by
     refine coprod.hom_ext ?_ ?_
     · refine coprod.hom_ext ?_ ?_ <;>
-        simp [coprodSwapAssocHom, coprodSwapAssocInv, coprod.inl_desc, coprod.inr_desc]
-    · simp [coprodSwapAssocHom, coprodSwapAssocInv, coprod.inl_desc, coprod.inr_desc]
+        simp [coprodSwapAssocHom, coprodSwapAssocInv]
+    · simp [coprodSwapAssocHom, coprodSwapAssocInv]
 
 private theorem coprodSwapAssocIso_hom (A F T : Scheme.{u}) :
     (coprodSwapAssocIso A F T).hom = coprodSwapAssocHom A F T := rfl
@@ -561,14 +561,13 @@ theorem isBlowupAlongIdealSheaf_totalTransition_of_coprod_desc (i : ℕ)
         S.totalTransition i := by
     refine coprod.hom_ext ?_ ?_
     · simp only [coprodSwapAssocIso_hom, coprodSwapAssocHom, Category.assoc,
-        coprod.inl_desc_assoc, coprod.inl_map, coprod.inl_desc]
+        coprod.inl_desc_assoc, coprod.inl_map]
       exact (S.inl_totalTransition_eq_strictTransformMap_inl i).symm
     · refine coprod.hom_ext ?_ ?_
-      · simp only [coprodSwapAssocIso_hom, coprodSwapAssocHom, Category.assoc,
-          coprod.inr_desc_assoc, coprod.inl_desc_assoc, coprod.inr_map, Category.comp_id]
+      · simp only [coprodSwapAssocIso_hom, coprodSwapAssocHom, coprod.inr_desc_assoc, coprod.inl_desc_assoc, coprod.inr_map]
         exact (S.inl_inr_totalTransition i).symm
       · simp only [coprodSwapAssocIso_hom, coprodSwapAssocHom, Category.assoc,
-          coprod.inr_desc_assoc, coprod.inl_map, coprod.inr_desc]
+          coprod.inr_desc_assoc, coprod.inl_map]
         exact (S.inr_inr_totalTransition i).symm
   have hfin := hmap.iso_hom_comp
     (coprodSwapAssocIso (S.strictTransform (i + 1)) (S.detachedScheme i) (S.detachedCoprod i))

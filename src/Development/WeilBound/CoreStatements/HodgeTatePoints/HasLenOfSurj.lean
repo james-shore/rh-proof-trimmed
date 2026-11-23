@@ -368,7 +368,6 @@ theorem inh_af : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed 
         Submodule.sub_mem _ (multOrder' v hv e).one_mem (hmem _), by simp [Finset.sum_apply], ?_⟩
       have e3 := geom_sum_mul (ψ 1) p
       rw [hpow, sub_self, mul_eq_zero] at e3
-      simp [Finset.sum_apply, Finset.sum_sub_distrib, AddChar.pow_apply,
-        e3.resolve_right (sub_ne_zero.2 h1)]
+      simp [Finset.sum_apply, Finset.sum_sub_distrib, e3.resolve_right (sub_ne_zero.2 h1)]
 
 end PositivityTheory.HtPt.Ri

@@ -104,7 +104,7 @@ theorem toPi_E (a i j : ι) (x : N) : U.toPi a (U.E i j x) = Pi.single i (U.toPi
   rw [toPi_apply, U.apply_apply]
   by_cases h : k = i
   · subst h; simp [toPi_apply]
-  · simp [h, Pi.single_apply]
+  · simp [h]
 
 end MatrixUnits
 
@@ -117,7 +117,7 @@ def stdUnits (M : Type*) [AddCommGroup M] [Module R M] : MatrixUnits R (ι → M
     · simp [h, Pi.single_apply]
   sum_diag := by
     ext x m
-    simp [LinearMap.sum_apply, Finset.sum_apply, Pi.single_apply]
+    simp [Finset.sum_apply, Pi.single_apply]
 
 end GlobalTheory.Morita
 

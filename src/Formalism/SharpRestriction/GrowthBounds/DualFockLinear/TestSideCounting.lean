@@ -364,14 +364,13 @@ theorem card_all {n' m : ℕ} (hm : 2 ≤ m) (TT : Finset (Fin n')) (lam0 : Fin 
     simp [restW, flW, dT, hs]
   have hR1 : ∀ s, s ∈ TT → ∀ i : Fin (m + 1), i ≠ 0 → restW TT lam0 s i = lam0 s i := by
     intro s hs i hi
-    simp [restW, flW, Pi.single_apply, hi]
+    simp [restW, flW, hi]
   have hR2 : ∀ s, s ∈ TT → restW TT lam0 s 0 = lam0 s 1 := by
     intro s hs
     have h01 : lam0 s 1 ≤ lam0 s 0 := hdom s (Fin.zero_le 1)
     simp [restW, flW, dT, hs, flatDeg, Int.toNat_of_nonneg (sub_nonneg.mpr h01)]
   have h1v : ((1 : Fin (m + 1)) : ℕ) = 1 := by
     first
-    | exact Nat.mod_eq_of_lt (by omega)
     | (simp; omega)
   have h10 : (1 : Fin (m + 1)) ≠ 0 := fun h => by
     have := congrArg Fin.val h

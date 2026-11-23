@@ -231,7 +231,7 @@ theorem leviEmb_zLevi (d : Fin h → ℕ) (hd : ∑ a, d a = N) (w : Fin h → �
     · have hne := stdBlocks_ne d hd i j (fun e => hij (by simpa using e))
       rw [Matrix.diagonal_apply_ne _ hne, coe_zLevi, Matrix.scalar_apply, Matrix.diagonal_apply_ne _ hij]
   · have hne := stdBlocks_ne d hd i j (fun e => hab (congrArg Sigma.fst e))
-    simp [leviEmb, Matrix.blockDiagonal'_apply, hab, Matrix.diagonal_apply_ne _ hne]
+    simp [leviEmb, Matrix.blockDiagonal'_apply, hab]
 
 def lam (d : Fin h → ℕ) (hd : ∑ a, d a = N) : Fin N → ℤ :=
   fun i => -(((blk (stdBlocks d hd) i : Fin h) : ℕ) : ℤ)

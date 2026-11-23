@@ -98,7 +98,7 @@ theorem relIndex_smul_eq_absNorm : ∀ (F : Type) [Field F] [NumberField F] (I :
       (f := (g : 𝓞 F →+ F)) hgi
     rw [← Submodule.map_toAddSubgroup, ← Submodule.map_toAddSubgroup] at a1 a2
     rw [← a1, ← a2, hpJ, hJ]
-  have hle2 : p * J ≤ J := by first | exact Ideal.mul_le_left | exact Ideal.mul_le_right
+  have hle2 : p * J ≤ J := by first | exact Ideal.mul_le_right
   have hidx : (p * J).toAddSubgroup.relIndex J.toAddSubgroup * Ideal.absNorm J = Ideal.absNorm (p * J) :=
     by simpa only [Ideal.absNorm_eq_index] using
       AddSubgroup.relIndex_mul_index (H := (p * J).toAddSubgroup) (K := J.toAddSubgroup) hle2

@@ -78,11 +78,7 @@ theorem exists_nat_smul_mem {r : ℕ} (Λ : Submodule (𝓞 E) (Fin r → E))
     (hsp : Submodule.span E (Λ : Set (Fin r → E)) = ⊤) (w : Fin r → E) :
     ∃ k : ℕ, 0 < k ∧ (k : E) • w ∈ Λ := by
   first
-  | exact @_root_.GlobalTheory.NatMulIntegralExists.main
-  | exact _root_.GlobalTheory.NatMulIntegralExists.main
   | (apply _root_.GlobalTheory.NatMulIntegralExists.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatMulIntegralExists.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatMulIntegralExists.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NatMulIntegralExists.main ..)
 
 theorem exists_nat_den {r : ℕ} (Λ : Submodule (𝓞 E) (Fin r → E)) (hfg : Λ.FG) :
@@ -161,7 +157,7 @@ theorem princ_lat : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Number
     simp only [y, Pi.smul_apply, smul_eq_mul, map_mul, map_natCast]
     by_cases h : i = b
     · subst h; simp
-    · simp [Pi.single_apply, h]
+    · simp [h]
   have hcol : x *ᵥ y - y = (d₁ : E ⊗[F] v.adicCompletion F) • ((x - 1) *ᵥ Pi.single b 1) := by
     rw [hy', Matrix.mulVec_smul, Matrix.sub_mulVec, Matrix.one_mulVec, smul_sub]
   have h1 := congrFun hxz a

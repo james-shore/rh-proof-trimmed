@@ -200,7 +200,7 @@ theorem induced_eq (H : Subgroup G) (hcl : IsClosed (H : Set G)) (μ : Measure G
   have hmne : m ≠ 0 := by
     intro h0
     have hu := hmA Set.univ MeasurableSet.univ
-    simp only [Set.indicator_univ, Pi.one_apply, lintegral_const, one_mul, lintegral_one] at hu
+    simp only [Set.indicator_univ, Pi.one_apply, lintegral_const, one_mul] at hu
     rw [h0, Measure.coe_zero, Pi.zero_apply] at hu
     have hν : ν Set.univ ≠ 0 := isOpen_univ.measure_ne_zero ν Set.univ_nonempty
     have hρ : ρ' Set.univ ≠ 0 := by

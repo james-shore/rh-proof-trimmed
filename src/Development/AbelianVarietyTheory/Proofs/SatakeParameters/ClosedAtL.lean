@@ -84,7 +84,7 @@ theorem closedAtL : ClosedAtL := by
       simpa [jl, mapRep] using this
     · refine MonoidHom.ext fun g => LinearMap.ext fun v => ?_
       rw [hR]
-      simp [LocBridge.repE, Matrix.toLin'_apply]
+      simp [LocBridge.repE]
 
   have hCl : ∀ ρ₁ ∈ (fun ρ => ρ.comp jl) '' C, ∀ (L : FinExt l) (r' : ↥(GK Bw.Kw) →* GL (Fin a) ↥L.1)
       (R : Representation ↥L.1 ↥(GK Bw.Kw) (Fin a → ↥L.1)), Bw.LL.1 ≤ L.1 → (∀ g v, R g v = (r' g).val *ᵥ v) →

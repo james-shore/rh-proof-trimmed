@@ -337,7 +337,7 @@ theorem hasFiniteLength_of_coinvariants {V : Type u} [AddCommGroup V] [Module �
     intro g
     refine Submodule.span_le.2 ?_
     rintro _ ⟨h, rfl⟩
-    exact Submodule.subset_span ⟨g * h, by simp [map_mul, Module.End.mul_apply]⟩
+    exact Submodule.subset_span ⟨g * h, by simp [map_mul]⟩
   let Cs : Submodule ℂ V := A.toSubmodule ⊔ S
   have hCs : ∀ g, Cs ≤ Cs.comap (X g) := fun g => sup_le
     (fun v hv => Submodule.mem_sup_left (A.apply_mem_toSubmodule g hv))

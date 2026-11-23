@@ -69,11 +69,7 @@ namespace GlobalTheory
 theorem norm_multisetProd_sub_one_le_exp (s : Multiset ℂ) {t : ℝ} (ht : 0 ≤ t)
     (hs : ∀ μ ∈ s, ‖μ - 1‖ ≤ t) : ‖s.prod - 1‖ ≤ Real.exp (s.card * t) - 1 := by
   first
-  | exact @_root_.GlobalTheory.CuspFormEvaluationComplement.main
-  | exact _root_.GlobalTheory.CuspFormEvaluationComplement.main
   | (apply _root_.GlobalTheory.CuspFormEvaluationComplement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CuspFormEvaluationComplement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CuspFormEvaluationComplement.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CuspFormEvaluationComplement.main ..)
 
 theorem norm_det_one_add_sub_one_le_exp {n : Type*} [Fintype n] [DecidableEq n]
@@ -108,7 +104,7 @@ theorem norm_gram_sign_sub_le {r : ℕ} (j : Fin r → ℂ) (hj : ∀ a, ‖j a�
     ‖((1 + z)ᵀ * diagonal j * (1 + z).map star - diagonal j : Matrix (Fin r) (Fin r) ℂ) a b‖ ≤ 3 * δ := by
   have hstar : (1 + z : Matrix (Fin r) (Fin r) ℂ).map star = 1 + z.map star := by
     ext a b
-    by_cases h : a = b <;> simp [one_apply, h]
+    by_cases h : a = b <;> simp [h]
   have heq : (1 + z)ᵀ * diagonal j * (1 + z).map star - diagonal j =
       zᵀ * diagonal j + diagonal j * z.map star + zᵀ * diagonal j * z.map star := by
     rw [hstar]
@@ -145,7 +141,7 @@ theorem norm_prod_sign_mul_det_submatrix_sub_one_le {r : ℕ} (j : Fin r → ℂ
     by_cases h : a = b
     · subst h
       rcases hj (e a) with h | h <;> simp [h]
-    · simp [h, he.eq_iff, diagonal_apply]
+    · simp [h, he.eq_iff]
   have h2 := norm_det_one_add_sub_one_le_exp
     (diagonal (fun a => j (e a)) * (G - diagonal j).submatrix e e) hε (fun a b => by
       rw [diagonal_mul, norm_mul, submatrix_apply]
@@ -181,8 +177,7 @@ omit [NumberField E] [IsCMField E] in
 theorem gram_eq_transpose_mul_mul_map_star {r : ℕ} (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E)
     (x : Matrix (Fin r) (Fin r) ℂ) : gram τ G x = xᵀ * G.map τ * x.map star := by
   ext a b
-  simp only [gram, hermC, ReciprocityTheory.ChartRestriction.G.FD.col, of_apply, mul_apply, transpose_apply, map_apply,
-    Finset.sum_mul]
+  simp only [gram, hermC, ReciprocityTheory.ChartRestriction.G.FD.col, of_apply]
   simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Finset.sum_mul]
   rw [Finset.sum_comm]
   rfl
@@ -268,7 +263,7 @@ omit [NumberField E] [IsCMField E] in
 theorem rmul_one_frame {Ψ : Finset (E →+* ℂ)} {r : ℕ} (x : Frame Ψ r) :
     rmul x (fun _ a b => if a = b then 1 else 0) = x := by
   funext τ a b
-  simp [rmul, mat, Matrix.mul_apply, Matrix.one_apply]
+  simp [rmul, mat, Matrix.mul_apply]
 
 omit [NumberField E] [IsCMField E] in
 theorem differentiable_rmul_add {Ψ : Finset (E →+* ℂ)} {r : ℕ} (x I : Frame Ψ r) :

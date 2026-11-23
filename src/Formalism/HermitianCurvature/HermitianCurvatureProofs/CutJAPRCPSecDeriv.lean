@@ -147,7 +147,6 @@ theorem lie_of_curve {μ : ℂ → Q.Mx k r} {ζ : ℂ} {D : ℂ →L[ℝ] Q.Mx 
     have hd : HasDerivAt (fun t : ℝ => (μ (ζ + t • v) *ᵥ w) q) ((D v *ᵥ w) q) 0 := by
       simp only [Matrix.mulVec, dotProduct]
       first
-      | exact HasDerivAt.sum fun p _ => (hent q p).mul_const (w p)
       | exact HasDerivAt.fun_sum fun p _ => (hent q p).mul_const (w p)
     have hc : HasDerivAt (fun t : ℝ => (μ (ζ + t • v) *ᵥ w) q) 0 0 :=
       (hasDerivAt_const (0 : ℝ) (w q)).congr_of_eventuallyEq (hw.mono fun t ht => by

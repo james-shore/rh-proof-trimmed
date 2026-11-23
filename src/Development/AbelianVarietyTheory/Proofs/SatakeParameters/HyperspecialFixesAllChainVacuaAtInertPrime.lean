@@ -224,7 +224,7 @@ theorem vacFix_of_inert (ψ : AddChar (AF D.host.F) ℂ) {S T : HSp D} {χS χT 
         refine ⟨b + c, ?_⟩
         change (b : D.host.E) + c = _
         rw [hb, hc]
-        simp [f, map_add, add_mul, Finset.sum_add_distrib, mul_add]
+        simp [f, add_mul, Finset.sum_add_distrib, mul_add]
       smul_mem' := by
         rintro c x ⟨b, hb⟩
         refine ⟨RingOfIntegers.mapRingHom (starRingEnd D.host.E) c * b, ?_⟩

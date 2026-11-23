@@ -71,7 +71,7 @@ theorem intM_one : IntM (1 : GL (Fin n) k) := by
   show valuation k (((1 : GL (Fin n) k) : Matrix (Fin n) (Fin n) k) i j) ≤ valuation k ((1 : kˣ) : k)
   by_cases h : i = j
   · simp [h]
-  · simp [one_apply, h]
+  · simp [h]
 
 theorem IntM.mulVec_mem {m : GL (Fin n) k} (hm : IntM m) {s : kˣ} {v : Fin n → k}
     (hv : Multiplicative.ofAdd v ∈ polyBall (k := k) n s) :

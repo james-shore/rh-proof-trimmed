@@ -140,7 +140,6 @@ theorem lat_form_regular_generizes : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G
     rw [this]
     exact mul_mem ⟨s, rfl⟩ hn
   · intro n n' hn hn'
-    change f (jq (n + n')) ∈ regAt ξ q
     rw [map_add (f := _), map_add (f := _)]
     exact add_mem hn hn'
 

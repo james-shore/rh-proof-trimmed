@@ -174,8 +174,8 @@ theorem eval_applyWord (e : Fin r × Fin n →₀ ℕ) (L : List (Fin r × Fin n
     congr 1
     ext v
     by_cases hv : v = p
-    · subst hv; simp [Finsupp.filter_apply, hpL]
-    · simp [Finsupp.filter_apply, hv, Finsupp.single_apply, Ne.symm hv]
+    · subst hv; simp [hpL]
+    · simp [Finsupp.filter_apply, hv]
 
 def positions (r n : ℕ) : List (Fin r × Fin n) :=
   (List.finRange n).reverse.flatMap fun s =>

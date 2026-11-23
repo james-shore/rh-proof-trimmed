@@ -73,8 +73,7 @@ theorem pointsCentraliser_of_commutant_of_adjoint :
       (γ : Matrix n n E).map (inclE (F := F) R) := rfl
   simp only [centPts, Subgroup.mem_inf, Subgroup.mem_centralizer_singleton_iff]
   unfold UPts UJ
-  simp only [Subgroup.mem_mk, Submonoid.mem_mk, Subsemigroup.mem_mk, Set.mem_ofPred_eq,
-    Units.ext_iff, Units.val_mul, hb]
+  simp only [Subgroup.mem_mk, Submonoid.mem_mk, Subsemigroup.mem_mk, Set.mem_ofPred_eq]
   rw [cT_mul_mul_eq_iff_mul_adj_eq_one _ hJ]
   constructor
   · rintro ⟨hunit, hc⟩

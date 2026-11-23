@@ -78,9 +78,7 @@ theorem exists_gauss_vac : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
     exact mul_ne_zero hx hy this.symm
   · refine (congrFun hf u).trans ?_
     first
-    | exact (one_mul _).symm.trans (Finsupp.sum_single_index (h := fun d (c : ℂ) => c * GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.boxA e d u) (zero_mul _)).symm
     | (erw [Finsupp.sum_single_index (by exact zero_mul _), one_mul]; rfl)
-    | (simp only [Finsupp.sum_single_index, zero_mul, one_mul]; rfl)
 
 end GlobalTheory.FlipVac
 

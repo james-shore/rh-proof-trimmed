@@ -61,11 +61,7 @@ theorem finite_lift_fractionField (R : Type) [CommRing R] [IsDomain R] [IsIntegr
     (hp : IsFinite p) (hy : y ≫ p = jK R ≫ ξ₀) :
     ∃ ξ : Sp R ⟶ Z, jK R ≫ ξ = y ∧ ξ ≫ p = ξ₀ := by
   first
-  | exact @_root_.GlobalTheory.RetractionLiftSection.lift_finite
-  | exact _root_.GlobalTheory.RetractionLiftSection.lift_finite
   | (apply _root_.GlobalTheory.RetractionLiftSection.lift_finite <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RetractionLiftSection.lift_finite <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RetractionLiftSection.lift_finite <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RetractionLiftSection.lift_finite ..)
 
 end GlobalTheory

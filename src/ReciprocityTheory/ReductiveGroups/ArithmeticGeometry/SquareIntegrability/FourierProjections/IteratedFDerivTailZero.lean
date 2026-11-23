@@ -83,14 +83,11 @@ theorem expN_hasDerivAt (N : ℕ) (z : ℂ) : HasDerivAt (expN (N + 1)) (expN N 
     simp only [expN, Finset.sum_range_succ _ (N + 1), Nat.factorial_succ (N + 1), Nat.add_sub_cancel]
     first
       | (congr 1; rw [Nat.cast_mul]; exact mul_div_mul_left _ _ hne)
-      | (push_cast; field_simp; ring)
-      | (push_cast; field_simp)
 
 theorem contDiff_expN (N : ℕ) : ContDiff ℂ (⊤ : ℕ∞) (expN N) := by
   unfold expN
   first
     | exact ContDiff.sum fun n _ => (contDiff_id.pow n).div_const _
-    | fun_prop
 
 theorem contDiff_gN (N : ℕ) : ContDiff ℂ (⊤ : ℕ∞) (gN N) := by
   unfold gN
@@ -125,8 +122,6 @@ theorem ellL_apply (q : ℕ) (a v : EuclideanSpace ℂ ι) : ellL q a v = q * Re
   left
   first
     | (rw [PiLp.inner_apply]; exact Finset.sum_congr rfl fun x _ => by simp [mul_comm])
-    | (simp [PiLp.inner_apply, mul_comm]; done)
-    | (simp [EuclideanSpace.inner_eq_star_dotProduct, dotProduct, mul_comm]; done)
 
 theorem iteratedFDeriv_tail_zero (q : ℕ) (a : EuclideanSpace ℂ ι) (N : ℕ) {P : EuclideanSpace ℂ ι → ℂ}
     (hP : ContDiff ℂ (⊤ : ℕ∞) P) {k : ℕ} (hk : k ≤ N) :
@@ -135,7 +130,7 @@ theorem iteratedFDeriv_tail_zero (q : ℕ) (a : EuclideanSpace ℂ ι) (N : ℕ)
   have hz : ∀ i, i ≤ N → ‖iteratedFDeriv ℂ i (fun v => gN N (ellL q a v)) 0‖ = 0 := by
     intro i hi
     have h1 := (ellL q a).iteratedFDeriv_comp_right (contDiff_gN N) (0 : EuclideanSpace ℂ ι)
-      (i := i) (by first | exact le_top | exact WithTop.coe_le_coe.mpr le_top | exact_mod_cast (le_top : (i : ℕ∞) ≤ ⊤) | simp)
+      (i := i) (by first | exact WithTop.coe_le_coe.mpr le_top)
     have h2 : iteratedFDeriv ℂ i (gN N) 0 = 0 := by
       rw [← norm_eq_zero, norm_iteratedFDeriv_eq_norm_iteratedDeriv, iteratedDeriv_gN i N hi, norm_zero]
     rw [map_zero, h2] at h1
@@ -143,7 +138,7 @@ theorem iteratedFDeriv_tail_zero (q : ℕ) (a : EuclideanSpace ℂ ι) (N : ℕ)
     ext m
     simp
   refine norm_le_zero_iff.mp ((norm_iteratedFDeriv_mul_le hg hP 0
-    (by first | exact le_top | simp | exact_mod_cast (le_top : (k : ℕ∞) ≤ ⊤))).trans_eq ?_)
+    (by first | simp)).trans_eq ?_)
   refine Finset.sum_eq_zero fun i hi => ?_
   rw [hz i (by have := Finset.mem_range.mp hi; omega)]
   simp
@@ -156,15 +151,11 @@ theorem paD_tail_zero (q : ℕ) (a : EuclideanSpace ℂ ι) (N : ℕ) {P : Eucli
   have hmα : m = α := by
     first
       | (simp [MvPolynomial.support_monomial] at hm; exact hm)
-      | (rw [MvPolynomial.support_monomial] at hm; split_ifs at hm with h
-         · simp at hm
-         · simpa using hm)
   subst hmα
   have hk : Multiset.card (Finsupp.toMultiset m) ≤ N := by
     rw [Finsupp.card_toMultiset]
     first
       | exact hα
-      | simpa [Finsupp.degree, Finsupp.sum] using hα
   rw [iteratedFDeriv_tail_zero q a N hP hk]
   simp
 

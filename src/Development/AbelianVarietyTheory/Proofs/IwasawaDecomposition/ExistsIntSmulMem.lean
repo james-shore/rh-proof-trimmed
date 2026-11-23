@@ -52,11 +52,7 @@ variable {E V : Type} [Field E] [NumberField E] [AddCommGroup V] [Module E V]
 theorem exists_int_smul_mem (L : Submodule (𝓞 E) V) (hL : Submodule.span E (L : Set V) = ⊤) (v : V) :
     ∃ n : ℤ, n ≠ 0 ∧ n • v ∈ L := by
   first
-  | exact @_root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem
-  | exact _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem
   | (apply _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem ..)
 
 theorem finrank_int_eq (L : Submodule (𝓞 E) V) (hL : Submodule.span E (L : Set V) = ⊤) :

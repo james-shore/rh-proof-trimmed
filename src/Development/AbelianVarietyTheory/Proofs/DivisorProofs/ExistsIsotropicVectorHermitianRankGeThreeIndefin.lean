@@ -111,7 +111,7 @@ theorem exists_isotropic : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
 
       simp [Matrix.mulVec, dotProduct, map_sum, map_mul]
     rw [form, h1, ← hPg]
-    simp only [Matrix.dotProduct_mulVec, Matrix.vecMul_vecMul, Matrix.mulVec_mulVec]
+    simp only [Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec]
     rw [← Matrix.vecMul_transpose, Matrix.vecMul_vecMul, Matrix.mul_assoc]
   by_cases hz : ∃ i, g i = 0
   · obtain ⟨i, hi⟩ := hz

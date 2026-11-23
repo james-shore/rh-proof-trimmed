@@ -268,8 +268,8 @@ theorem sgE_comm {cp cm : Fin n → Fin n → Module.End ℂ W} (hC : IsCAR cp c
       simp [hxy, Ne.symm hxy]
     · rcases eq_or_ne b c with h1 | h1 <;> rcases eq_or_ne d a with h2 | h2
       · subst h1; subst h2; simp [Finset.sum_sub_distrib]; try abel
-      · subst h1; simp [h2, Ne.symm h2]; try abel
-      · subst h2; simp [h1, Ne.symm h1]; try abel
+      · subst h1; simp [h2, Ne.symm h2]
+      · subst h2; simp [h1, Ne.symm h1]
       · simp [h1, Ne.symm h1, h2, Ne.symm h2]
 
 theorem dOp_sq {E cp cm : Fin n → Fin n → Module.End ℂ W} (hE : IsGlRep E) (hC : IsCAR cp cm)

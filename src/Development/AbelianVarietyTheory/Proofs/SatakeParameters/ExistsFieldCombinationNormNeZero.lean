@@ -66,7 +66,7 @@ theorem exists_field_combination_norm_ne_zero {k B A : Type} [Field k] [Infinite
     congr 1
     ext j l
 
-    simp [M, map_sum, Matrix.sum_apply, mul_comm]
+    simp [M, map_sum, Matrix.sum_apply]
   by_contra hcon
   push_neg at hcon
   have hinf : ∀ _ : Fin d, (Set.range (algebraMap k B)).Infinite := fun _ =>

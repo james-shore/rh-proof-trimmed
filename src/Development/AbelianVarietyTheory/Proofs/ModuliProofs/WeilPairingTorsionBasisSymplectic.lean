@@ -64,11 +64,7 @@ theorem rel_prod {G U : Type} [Monoid G] [CommMonoid U] (R : G → U → Prop) (
     ∀ (n : ℕ) (y : Fin n → G) (c : Fin n → U) (a : Fin n → ℕ), (∀ i, R (y i) (c i)) →
       R (List.ofFn fun i => y i ^ a i).prod (∏ i, c i ^ a i) := by
   first
-  | exact @_root_.GlobalTheory.RelationPowers.rel_prod_pow
-  | exact _root_.GlobalTheory.RelationPowers.rel_prod_pow
   | (apply _root_.GlobalTheory.RelationPowers.rel_prod_pow <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RelationPowers.rel_prod_pow <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RelationPowers.rel_prod_pow <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RelationPowers.rel_prod_pow ..)
 
 theorem unitOn_inj {R : Type} [CommRing R] : Function.Injective (unitOn (R := R)) := fun _ _ h =>

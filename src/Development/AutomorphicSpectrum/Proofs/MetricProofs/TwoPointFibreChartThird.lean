@@ -61,10 +61,7 @@ theorem contDiffOn_conj_mul_mul {e N : ℕ} {Un : Set (Fin e → ℂ)} (hUn : Is
     ((hA r s).contDiffOn hUn.uniqueDiffOn).restrict_scalars ℝ
   have hAc : ∀ r s, ContDiffOn ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun w => star (A w r s)) Un := fun r s => by
     first
-      | exact ContDiffOn.star (hA' r s)
       | exact (Complex.conjCLE.contDiff.comp_contDiffOn (hA' r s))
-      | (have h := Complex.conjCLE.contDiff.comp_contDiffOn (hA' r s)
-         simpa [Function.comp_def] using h)
   simp only [Matrix.mul_apply, Matrix.conjTranspose_apply]
   refine ContDiffOn.sum fun k _ => ?_
   refine ContDiffOn.mul ?_ (hA' k s)

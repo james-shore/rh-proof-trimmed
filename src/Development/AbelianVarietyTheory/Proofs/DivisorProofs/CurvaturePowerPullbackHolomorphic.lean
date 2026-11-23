@@ -64,11 +64,7 @@ variable {n n' : ℕ} {r : Type} [Fintype r] [DecidableEq r] {G : V n → Matrix
 theorem curvPoly_comp (hφ : ContDiffAt ℂ 2 φ w) (hG : MContDiffAt ∞ G (φ w)) (hu : IsUnit (G (φ w)).det) :
     curvPoly (fun x => G (φ x)) w = (subst (fderiv ℂ φ w)).mapMatrix (curvPoly G (φ w)) := by
   first
-  | exact @_root_.GlobalTheory.CurvatureSesquilinearExpansion.curvPoly_pullback
-  | exact _root_.GlobalTheory.CurvatureSesquilinearExpansion.curvPoly_pullback
   | (apply _root_.GlobalTheory.CurvatureSesquilinearExpansion.curvPoly_pullback <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CurvatureSesquilinearExpansion.curvPoly_pullback <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CurvatureSesquilinearExpansion.curvPoly_pullback <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CurvatureSesquilinearExpansion.curvPoly_pullback ..)
 
 theorem curvEv_eq (G : V n → Matrix r r ℂ) (v : V n) :
@@ -79,7 +75,7 @@ theorem charpolyRev_map {R S : Type} [CommRing R] [CommRing S] (f : R →+* S) (
   rw [Matrix.charpolyRev, Matrix.charpolyRev, ← Polynomial.coe_mapRingHom, RingHom.map_det]
   congr 1
   ext1 i j
-  by_cases h : i = j <;> simp [h, Matrix.one_apply]
+  by_cases h : i = j <;> simp [h]
 
 end GlobalTheory.ChernCalc.HoloPull
 

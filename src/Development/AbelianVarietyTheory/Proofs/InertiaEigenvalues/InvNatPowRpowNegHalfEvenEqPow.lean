@@ -283,7 +283,7 @@ theorem datum_rel (B : Base S T) (hB : B.Good) {Q : Finset (Pl D.host.E)} (hQ : 
   have key0 : B.F.datumFn B.G (B.de.Q ∪ Q) ω1 x = C * (if IntM (Ov D v) Y then 1 else 0) := by
     have := key 1 (GlobalTheory.SplitHecke.suppAt_one T)
     rwa [inv_one, inv_one, show actO S T (1 : GA D S) (1 : GA D T) x = x by
-      unfold actO; simp [GlobalTheory.AdelicLatMove.mt_one], map_one, Units.val_one, Matrix.one_mul] at this
+      unfold actO; simp, map_one, Units.val_one, Matrix.one_mul] at this
 
   have hHk : ∀ k ∈ Finset.Icc 1 T.rank, Hk (Ov D v) p k (rho T π β' (α k)) ∧ Reps (Ov D v) (rho T π β' (α k)) (R k) (rho T π β') :=
     fun k hk => ⟨GlobalTheory.T.heckeElement_component_mem_standardDoubleCoset e v π hsp hπ T β' hfr ϖ p k (α k) hpϖ (hα k hk).1,

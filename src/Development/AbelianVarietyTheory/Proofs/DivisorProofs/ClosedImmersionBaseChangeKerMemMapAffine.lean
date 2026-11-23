@@ -78,7 +78,7 @@ theorem closedImmersion_baseChange_ker_mem_map : ∀ (X X' Z Z' : Scheme.{0}) (p
   let l := h.lift e t hw
   have hl : l ≫ i' = e := h.lift_fst e t hw
   have hle : (⊤ : (Spec (CommRingCat.of (Γ(X', p ⁻¹ᵁ W) ⧸ J))).Opens) ≤ e ⁻¹ᵁ (p ⁻¹ᵁ W) := by
-    simp [e, Scheme.Hom.comp_preimage, hU'.fromSpec_preimage_self]
+    simp [e, hU'.fromSpec_preimage_self]
   have h0 : (e.appLE (p ⁻¹ᵁ W) ⊤ hle).hom s = 0 := by
     have key : ∀ (g : Spec (CommRingCat.of (Γ(X', p ⁻¹ᵁ W) ⧸ J)) ⟶ X') (hg : g = e) (hle' : ⊤ ≤ g ⁻¹ᵁ (p ⁻¹ᵁ W)),
         g.appLE (p ⁻¹ᵁ W) ⊤ hle' = e.appLE (p ⁻¹ᵁ W) ⊤ hle := by

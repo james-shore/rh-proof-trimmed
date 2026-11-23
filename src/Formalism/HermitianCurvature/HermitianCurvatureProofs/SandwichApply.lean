@@ -108,7 +108,6 @@ theorem hpartLevi : HpartLevi := by
     | (simp; done)
     | (simp [Complex.conj_I]; done)
     | (simp [Complex.conj_I]; ring; done)
-    | (simp only [mul_one, mul_zero, sub_zero, zero_sub, add_zero, zero_add, map_neg, hcI, hc2, neg_neg,
-        neg_mul] <;> ring)
+    | (simp only [mul_one, mul_zero, sub_zero, zero_sub, add_zero, zero_add, map_neg, hcI, hc2, neg_neg] <;> ring)
 
 end Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential

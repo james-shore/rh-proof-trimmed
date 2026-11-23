@@ -89,12 +89,12 @@ theorem sum_eS (w : ι) (a : Ix (P w) (Q w)) (b : Ix (R w) (S w)) (x : ℂ) (c :
       lineSign a b * x * star (c w a b) := by
   rw [Finset.sum_eq_single w]
   · rw [eS_same, Finset.sum_eq_single a, Finset.sum_eq_single b]
-    · simp [Matrix.single_apply]
-    · intro y _ hy; simp [Matrix.single_apply, hy, Ne.symm hy]
+    · simp
+    · intro y _ hy; simp [Ne.symm hy]
     · simp
     · intro y _ hy
       refine Finset.sum_eq_zero fun b' _ => ?_
-      simp [Matrix.single_apply, hy, Ne.symm hy]
+      simp [Ne.symm hy]
     · simp
   · intro y _ hy
     simp [eS_ne w a b x hy]
@@ -111,11 +111,11 @@ theorem decomp (c : ∀ w, MD P Q R S w) :
     rw [Finset.sum_eq_single a, Finset.sum_eq_single b]
     · simp only [Matrix.single_apply, and_self, if_true, Complex.real_smul, mul_one]
       exact (Complex.re_add_im _).symm
-    · intro y _ hy; simp [Matrix.single_apply, hy, Ne.symm hy]
+    · intro y _ hy; simp [hy]
     · simp
     · intro y _ hy
       refine Finset.sum_eq_zero fun b' _ => ?_
-      simp [Matrix.single_apply, hy, Ne.symm hy]
+      simp [hy]
     · simp
   · intro y _ hy
     refine Finset.sum_eq_zero fun a' _ => Finset.sum_eq_zero fun b' _ => ?_
@@ -154,7 +154,7 @@ theorem dual {l : Type} [Fintype l] (φ : (∀ w, MD P Q R S w) ≃ₗ[ℝ] (l �
   congr 2
   · simp [Complex.mul_im, Complex.mul_re]
     linear_combination (c w a b).re * h2
-  · simp [Complex.mul_im, Complex.mul_re]
+  · simp [Complex.mul_im]
     linear_combination (c w a b).im * h2
 
 end GlobalTheory.HoweD.QuadFockD
@@ -235,6 +235,6 @@ theorem quad_fockD : ∀ (ι l : Type) [Fintype ι] [DecidableEq ι] [Fintype l]
 
   simp only [ContinuousLinearMap.smul_apply, ContinuousLinearMap.coe_sum', Finset.sum_apply,
   ContinuousLinearMap.add_apply, ContinuousLinearMap.mul_apply, LinearMap.smul_apply, LinearMap.sum_apply,
-  LinearMap.add_apply, Module.End.mul_apply, map_smul, map_sum, map_add, hΨ, hZ]
+  LinearMap.add_apply, map_smul, map_sum, map_add, hΨ, hZ]
 
 end GlobalTheory.HoweD

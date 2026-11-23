@@ -629,7 +629,7 @@ theorem position_inj (hM : M.IsGood B.ψ) {f : SInf F (Fin n × Fin d)} (hf : f 
       funext w
       by_cases hw : w = v
       · subst w; simp [t]
-      · simp [t, hw, Function.update_of_ne hw]
+      · simp [t, hw]
     unfold GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure
     rw [key, finprod_mul_distrib ht hs, finprod_eq_single t v fun w hw => if_neg hw]
     simp only [t, if_true]

@@ -139,11 +139,7 @@ theorem coe_eq_of_pow {𝔞 𝔟 : Submodule (𝓞 L) L} (hb : 𝔞 * 𝔟 = 1) 
 theorem val_le_of_span {S : Set L} (w : HeightOneSpectrum (𝓞 L)) {γ : ℤᵐ⁰} (h : ∀ x ∈ S, w.valuation L x ≤ γ) :
     ∀ x ∈ Submodule.span (𝓞 L) S, w.valuation L x ≤ γ := by
   first
-  | exact @_root_.GlobalTheory.SpanValuationBound.main
-  | exact _root_.GlobalTheory.SpanValuationBound.main
   | (apply _root_.GlobalTheory.SpanValuationBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanValuationBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanValuationBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SpanValuationBound.main ..)
 
 variable {N : ℕ}
@@ -220,7 +216,7 @@ theorem span_det_eq {M M' : Submodule (𝓞 L) (Fin N → L)} (h : M.FG)
         rw [Matrix.smul_mulVec, ← Matrix.mulVec_mulVec, mul_smul, ← Matrix.mulVec_smul, ← Matrix.det_transpose,
           Matrix.det_smul_inv_mulVec_eq_cramer _ _ hd']
         ext j
-        simp [Matrix.mulVec, dotProduct, Matrix.cramer_transpose_apply, Finset.mul_sum, mul_comm, mul_left_comm]
+        simp [Matrix.mulVec, dotProduct, Finset.mul_sum, mul_comm, mul_left_comm]
         change ∑ i, s * (y i j * (Matrix.of x).transpose.cramer v i) = _
         simp_rw [Matrix.cramer_transpose_apply]
       rw [e1]

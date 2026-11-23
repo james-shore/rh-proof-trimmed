@@ -78,7 +78,7 @@ theorem coeff_prod_one_add (s : Multiset ℂ) (n : ℕ) :
   | cons a s ih =>
     rw [Multiset.map_cons, Multiset.prod_cons, add_mul, one_mul, mul_assoc, coeff_add, coeff_C_mul]
     cases n with
-    | zero => simp [ih, esymm_zero']
+    | zero => simp [ih]
     | succ n => rw [coeff_X_mul, ih, ih, esymm_cons_succ]
 
 theorem esymm_add (s t : Multiset ℂ) (n : ℕ) :

@@ -225,7 +225,6 @@ private theorem character_elliptic_eq_coeff_sum_lemma (F : Type) [Field F] [Fini
     refine congrArg Multiset.sum (Multiset.map_congr rfl fun i _ => ?_)
     simp only [Function.comp_apply, map_pow, ← pow_mul, hωdef]
     rw [hqdef]
-    try ring
   have hmodω : ∀ s t : ℕ, s % m = t % m → ω ^ s = ω ^ t := fun s t hst => by
     rw [← pow_mod_orderOf ω s, ← pow_mod_orderOf ω t, ← hω.eq_orderOf, hst]
   have hcop : Nat.Coprime q m := by

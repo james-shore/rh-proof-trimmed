@@ -363,8 +363,7 @@ theorem isNefBigDatum_zcomb (hD : GroundTheory.Heights₂.Heights.Inter.DegreeGe
     have h := hB K ι (mCoordIdeal y) D _ hP hnef 1
     convert h using 2
     ext k
-    simp only [HermLine.zcomb, Pi.add_apply, Pi.smul_apply, smul_eq_mul, hHa, Pi.one_apply,
-      one_mul]
+    simp only [HermLine.zcomb, Pi.add_apply, Pi.smul_apply, smul_eq_mul, hHa, Pi.one_apply]
     rw [Nat.cast_sub hp]
     ring
 

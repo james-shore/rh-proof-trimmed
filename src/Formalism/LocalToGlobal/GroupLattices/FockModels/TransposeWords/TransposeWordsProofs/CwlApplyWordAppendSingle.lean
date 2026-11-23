@@ -95,7 +95,7 @@ theorem cwl_coeffT_sum {ι : Type*} (s : Finset ι) (d : Fin r × Fin n →₀ �
     (G : ι → MvPolynomial (Fin r × Fin n) (MvPolynomial (Fin r × Fin n) R)) :
     cwl_coeffT d (∑ i ∈ s, G i) = ∑ i ∈ s, cwl_coeffT d (G i) := by
   ext m
-  simp [cwl_coeff_coeffT, coeff_sum]
+  simp [cwl_coeff_coeffT]
 
 theorem cwl_coeffT_monomial (d u : Fin r × Fin n →₀ ℕ) (c : MvPolynomial (Fin r × Fin n) R) :
     cwl_coeffT d (monomial u c) = monomial u (AddMonoidAlgebra.coeff c d) := by

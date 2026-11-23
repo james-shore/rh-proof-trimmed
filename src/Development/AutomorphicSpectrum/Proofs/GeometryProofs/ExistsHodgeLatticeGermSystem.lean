@@ -79,7 +79,7 @@ theorem germ_gives_hodgeLat : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   let ρH : 𝓞 E →+* Module.End Ω ((Fin d → Ω) × Module.Dual Ω (Fin d → Ω)) :=
     { toFun := fun a => dd.toLinearMap ∘ₗ ρ0 a ∘ₗ dd.symm.toLinearMap
       map_one' := LinearMap.ext fun y => by simp
-      map_mul' := fun a b => LinearMap.ext fun y => by simp [Module.End.mul_apply]
+      map_mul' := fun a b => LinearMap.ext fun y => by simp
       map_zero' := LinearMap.ext fun y => by simp
       map_add' := fun a b => LinearMap.ext fun y => by simp }
   have hρH : ∀ a y, ρH a y = dd (GlobalTheory.CompanionTheory.Ar.Conj.rhoH S.g₀.B a (dd.symm y)) := by

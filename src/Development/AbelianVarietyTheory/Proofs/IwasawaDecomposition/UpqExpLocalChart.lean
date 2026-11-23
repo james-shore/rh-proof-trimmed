@@ -85,11 +85,7 @@ theorem sumAbs_neg (A : Matrix n n ℂ) : sumAbs (-A) = sumAbs A := by
 omit [DecidableEq n] in
 theorem sumAbs_mul_le (A B : Matrix n n ℂ) : sumAbs (A * B) ≤ sumAbs A * sumAbs B := by
   first
-  | exact @_root_.GlobalTheory.EntrySumMulBound.entrySum_mul_le
-  | exact _root_.GlobalTheory.EntrySumMulBound.entrySum_mul_le
   | (apply _root_.GlobalTheory.EntrySumMulBound.entrySum_mul_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EntrySumMulBound.entrySum_mul_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EntrySumMulBound.entrySum_mul_le <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.EntrySumMulBound.entrySum_mul_le ..)
 
 section Op

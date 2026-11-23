@@ -96,7 +96,7 @@ theorem Lv_apply (lev : Fin n → ℕ) (E1 E2 : Fin n → Fin n → Module.End �
   simp only [Lv, adLL, LinearMap.add_apply, LinearMap.sum_apply, Pi.add_apply, Finset.sum_apply, liftL_apply]
   congr 1
   refine Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun k _ => ?_
-  split_ifs <;> simp [Module.End.mul_apply]
+  split_ifs <;> simp
 
 theorem creL_annL_mem {S : Submodule ℂ V} {x : Cq n V} (hx : ∀ A, x A ∈ S) (l k : Lt n) (A : Finset (Lt n)) :
     creL k (annL l x) A ∈ S := by

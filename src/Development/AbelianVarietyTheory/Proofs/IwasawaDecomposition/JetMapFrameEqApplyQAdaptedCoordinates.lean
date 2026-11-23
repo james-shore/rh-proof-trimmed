@@ -132,7 +132,7 @@ theorem prod_factorial_add_single [Fintype σ] [DecidableEq σ] (α : σ →₀ 
     · subst hi
       simp [Nat.factorial_succ]
       ring
-    · simp [Finsupp.single_apply, Ne.symm hi, hi]
+    · simp [hi]
   simp_rw [h]
   rw [Finset.prod_mul_distrib, Finset.prod_ite_eq']
   simp
@@ -330,7 +330,6 @@ theorem jetMap_frame_eq_applyQ : ∀ (D : D7) {p : ℕ} [Fact p.Prime] (N0 N1 : 
     rw [Matrix.mul_apply, ← hBB α']
     simp only [Finset.mul_sum, Finset.sum_mul]
     first
-      | exact Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun a _ => by ring
       | (rw [Finset.sum_comm]; exact Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun a _ => by ring)
   simp only [key]
   simp only [mul_ite, mul_one, mul_zero, hC, Finset.sum_ite_eq, Finset.mem_univ, if_true, map_mul]

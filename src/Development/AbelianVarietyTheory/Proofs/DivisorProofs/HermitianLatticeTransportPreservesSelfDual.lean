@@ -111,7 +111,7 @@ theorem isSDLat_pi (E : Type) [Field E] [NumberField E] [StarRing E] (n : ℕ) :
       rw [Finset.sum_eq_single i]
       · simp
       · intro j _ hj
-        simp [Pi.single_apply, hj]
+        simp [hj]
       · simp
     rwa [e] at this
 
@@ -124,11 +124,7 @@ theorem isSDLat_image [NumberField E] [NumberField E'] [StarRing E] [StarRing E'
     IsSDLat E' n (Submodule.span (𝓞 E')
       ((fun (x : Fin n → E) (i : Fin n) => f (x i)) '' (L : Set (Fin n → E)))) := by
   first
-  | exact @_root_.GlobalTheory.StandardLatticeSpan.isSDLat_map
-  | exact _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map
   | (apply _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map <;> assumption)
-  | (intros; apply _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.StandardLatticeSpan.isSDLat_map <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map ..)
 
 end Transport

@@ -92,11 +92,7 @@ omit [Module ℂ V] [Module ℂ W] in
 theorem isReps_image {Λ₁ Λ₂ : AddSubgroup V} {M₁ M₂ : AddSubgroup W} {S : Finset V} (hS : IsReps Λ₁ Λ₂ S)
     (h1 : ∀ x, T x ∈ M₁ ↔ x ∈ Λ₁) (h2 : ∀ x, T x ∈ M₂ ↔ x ∈ Λ₂) : IsReps M₁ M₂ (S.image T) := by
   first
-  | exact @_root_.GlobalTheory.RepresentativesImage.isReps_image
-  | exact _root_.GlobalTheory.RepresentativesImage.isReps_image
   | (apply _root_.GlobalTheory.RepresentativesImage.isReps_image <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RepresentativesImage.isReps_image <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RepresentativesImage.isReps_image <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RepresentativesImage.isReps_image ..)
 
 

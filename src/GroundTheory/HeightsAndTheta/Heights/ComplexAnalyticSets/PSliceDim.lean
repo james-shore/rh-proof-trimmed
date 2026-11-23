@@ -59,7 +59,7 @@ noncomputable section
 theorem SliceDim.homogeneousComponent_zero_linForm_sub_one {n : ℕ} (ℓ : Fin n → ℂ) :
     homogeneousComponent 0 (linForm ℓ - 1 : MvPolynomial (Fin n) ℂ) = -1 := by
   rw [homogeneousComponent_zero]
-  simp [linForm, coeff_sum, coeff_C_mul, coeff_X]
+  simp [linForm, coeff_C_mul, coeff_X]
 
 theorem SliceDim.linForm_sub_one_not_mem {n : ℕ} {J : Ideal (MvPolynomial (Fin n) ℂ)}
     (hH : IsHomogIdeal J) (hJ : J ≠ ⊤) (ℓ : Fin n → ℂ) : linForm ℓ - 1 ∉ J := by

@@ -432,11 +432,7 @@ theorem mem_GLint_of_unitary (hσ : ∀ x, Valued.v (σ x) = Valued.v x) {J : GL
 theorem exists_pow_mem {ϖ : L} (hϖ : Valued.v ϖ = WithZero.exp (-1 : ℤ)) (M : Matrix (Fin n) (Fin n) L) :
     ∃ N : ℕ, ∀ i j, ϖ ^ N * M i j ∈ intL L := by
   first
-  | exact @_root_.GlobalTheory.MatrixEntryBound.main
-  | exact _root_.GlobalTheory.MatrixEntryBound.main
   | (apply _root_.GlobalTheory.MatrixEntryBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MatrixEntryBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MatrixEntryBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.MatrixEntryBound.main ..)
 
 theorem inv_mem_doubleCoset {ϖ : L} {q : ℕ} (hU : IsUnramInv ϖ σ q) {J : GL (Fin n) L}

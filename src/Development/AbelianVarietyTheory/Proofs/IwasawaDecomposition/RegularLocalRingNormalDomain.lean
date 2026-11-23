@@ -107,11 +107,7 @@ theorem dvd_of_not_dvd (hx : Prime x) (h : StableDvd (A ⧸ Ideal.span {x})) {a 
     (hb : ¬ x ∣ b) {I : Ideal A} (hI : I ≠ ⊥)
     (hst : ∀ r ∈ I, ∃ s ∈ I, a * r = b * s) : b ∣ a := by
   first
-  | exact @_root_.GlobalTheory.SaturatedNotDvd.main
-  | exact _root_.GlobalTheory.SaturatedNotDvd.main
   | (apply _root_.GlobalTheory.SaturatedNotDvd.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SaturatedNotDvd.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SaturatedNotDvd.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SaturatedNotDvd.main ..)
 
 

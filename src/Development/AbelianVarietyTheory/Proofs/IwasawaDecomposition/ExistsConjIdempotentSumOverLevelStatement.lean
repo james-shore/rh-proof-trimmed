@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_conj_idempotentSum_over_level : ∀ (D : D7) (N : ℕ) (e : AE D) (P : Finset (Formalism.L2.DIV.Pl D.host.E)), IsIdemSum e P → (∀ PP ∈ P, ((N : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal) → ∃ (e' : AE D) (P' : Finset (Formalism.L2.DIV.Pl D.host.E)), IsIdemSum e' P' ∧ (∀ PP ∈ P', ((N : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal) ∧ cA D e' = e := by
-  first | exact @GlobalTheory.HalfLevelConj.exists_conj_idemSum | exact GlobalTheory.HalfLevelConj.exists_conj_idemSum | (intros; apply GlobalTheory.HalfLevelConj.exists_conj_idemSum <;> assumption)
+  first | exact @GlobalTheory.HalfLevelConj.exists_conj_idemSum

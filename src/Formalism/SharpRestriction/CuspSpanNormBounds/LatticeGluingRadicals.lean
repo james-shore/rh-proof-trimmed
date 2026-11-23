@@ -465,10 +465,7 @@ theorem a_full (Λ : Submodule (𝓞 E) S.V) (hL : Submodule.IsLattice E Λ)
 theorem a_exists_smul_mem (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsFullLattice E Λ) (x : S.V) :
     ∃ c : 𝓞 E, c ≠ 0 ∧ c • x ∈ Λ := by
   first
-  | exact Formalism.MainNotions.LatticeGluingRadicals.a_exists_smul_memL
   | (apply Formalism.MainNotions.LatticeGluingRadicals.a_exists_smul_memL <;> assumption)
-  | (intros; apply Formalism.MainNotions.LatticeGluingRadicals.a_exists_smul_memL <;> assumption)
-  | (intros; exact Formalism.MainNotions.LatticeGluingRadicals.a_exists_smul_memL ‹_› ‹_›)
 theorem a_span_inf (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsFullLattice E Λ) (U : Submodule E S.V) :
     Submodule.span E ((Λ ⊓ toO S U : Submodule (𝓞 E) S.V) : Set S.V) = U := by
   apply le_antisymm
@@ -1481,14 +1478,11 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : �
 theorem m_exists_smul_mem (M : Submodule (𝓞 E) S.V) {x : S.V} (hx : x ∈ Submodule.span E (M : Set S.V)) :
     ∃ d : 𝓞 E, d ≠ 0 ∧ d • x ∈ M := by
   first
-  | exact Formalism.MainNotions.LatticeGluingRadicals.m_exists_smul_memL
   | (apply Formalism.MainNotions.LatticeGluingRadicals.m_exists_smul_memL <;> assumption)
-  | (intros; apply Formalism.MainNotions.LatticeGluingRadicals.m_exists_smul_memL <;> assumption)
-  | (intros; exact Formalism.MainNotions.LatticeGluingRadicals.m_exists_smul_memL ‹_› ‹_›)
 
 theorem m_exists_nat_smul_mem (M : Submodule (𝓞 E) S.V) {x : S.V}
     (hx : x ∈ Submodule.span E (M : Set S.V)) : ∃ n : ℕ, 0 < n ∧ n • x ∈ M := by
-  first | exact UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem .. | (apply UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem <;> assumption) | (intros; apply UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem <;> assumption) | (apply @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem <;> assumption) | (intros; apply @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem <;> assumption) | (apply @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem <;> first | assumption | infer_instance) | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S M x hx | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S M x | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S M | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E
+  first | (apply UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem <;> assumption) | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S M x hx | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S M x | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S M | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› S | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E ‹_› | exact @UpperTheory.Reformulated.B.Qh47.m_exists_nat_smul_mem E
 
 
 omit [StarRing E] in
@@ -2455,10 +2449,7 @@ variable {Λ g}
 theorem c_lat_mult (hΛ : Submodule.IsFullLattice E Λ) (v : S.V) :
     ∃ n : 𝓞 E, n ≠ 0 ∧ n • v ∈ Λ := by
   first
-  | exact Formalism.MainNotions.LatticeGluingRadicals.c_lat_multL
   | (apply Formalism.MainNotions.LatticeGluingRadicals.c_lat_multL <;> assumption)
-  | (intros; apply Formalism.MainNotions.LatticeGluingRadicals.c_lat_multL <;> assumption)
-  | (intros; exact Formalism.MainNotions.LatticeGluingRadicals.c_lat_multL ‹_› ‹_›)
 theorem c_Thp_le_La {F : LFlag S r T} {F' : LFlag S r T'} (hU : HU Λ F F') :
     Thp Λ F F' ≤ La Λ g F F' := by
   intro x hx
@@ -6844,10 +6835,7 @@ theorem j_exists_nat_smul_mem {V : Type} [AddCommGroup V] [Module E V] [Module (
     [IsScalarTower (𝓞 E) E V] (M : Submodule (𝓞 E) V) {x : V}
     (hx : x ∈ Submodule.span E (M : Set V)) : ∃ n : ℕ, 0 < n ∧ n • x ∈ M := by
   first
-  | exact Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_memL
   | (apply Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_memL <;> assumption)
-  | (intros; apply Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_memL <;> assumption)
-  | (intros; exact Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_memL ‹_› ‹_›)
 variable {e : ℕ}
 
 def j_Lat (A : Submodule (𝓞 E) (Fin e → E)) : Prop :=

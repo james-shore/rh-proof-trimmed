@@ -51,4 +51,4 @@ open NumberField IsDedekindDomain MvPolynomial Formalism.BasicNotions Formalism.
 open scoped Matrix ComplexOrder
 
 theorem _root_.GlobalTheory.T.lattice_extension_along_field_embedding_duals : TauLatLattice ∧ TauLatDual ∧ RoundLat := by
-  first | exact @GlobalTheory.TauLat.tauLat_lattice_dual_round | exact GlobalTheory.TauLat.tauLat_lattice_dual_round | (intros; apply GlobalTheory.TauLat.tauLat_lattice_dual_round <;> assumption)
+  first | exact @GlobalTheory.TauLat.tauLat_lattice_dual_round

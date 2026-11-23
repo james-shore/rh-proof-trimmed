@@ -143,11 +143,7 @@ theorem piW_inclR' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField
 theorem sum_four_swap_pairs_reverse_inner {R α β : Type} [AddCommMonoid R] [Fintype α] [Fintype β] (f : α → β → α → β → R) :
     ∑ a, ∑ b, ∑ c, ∑ e, f a b c e = ∑ c, ∑ e, ∑ b, ∑ a, f a b c e := by
   first
-  | exact @_root_.GlobalTheory.TargetEquivalence.target
-  | exact _root_.GlobalTheory.TargetEquivalence.target
   | (apply _root_.GlobalTheory.TargetEquivalence.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TargetEquivalence.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TargetEquivalence.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TargetEquivalence.target ..)
 
 theorem splitTrace' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}

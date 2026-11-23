@@ -43,4 +43,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.prodDerivWeierstrassPOverSquares_sq_mem_stable : ∀ (p : ℕ) (F : IntermediateField ℚ ℂ) (L : PeriodPair) (t : ℂ), p.Prime → p % 4 = 3 → 3 < p → Datum p F L t → sqProd p L t ^ 2 ∈ F ∧ (sqProd p L t ∈ F → Stable L F (sqPt p t)) := by
-  first | exact @GlobalTheory.CMModel.sqProd_sq_mem_and_stable | exact GlobalTheory.CMModel.sqProd_sq_mem_and_stable | (intros; apply GlobalTheory.CMModel.sqProd_sq_mem_and_stable <;> assumption)
+  first | exact @GlobalTheory.CMModel.sqProd_sq_mem_and_stable

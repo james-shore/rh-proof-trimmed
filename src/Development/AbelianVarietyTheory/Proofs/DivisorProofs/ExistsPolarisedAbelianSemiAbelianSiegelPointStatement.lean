@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_polarisedAbelian_semiAbelian_siegelPoint : 
           IsGrpPullback A.A F.univ.A (spMap fK ≫ y) α ∧ IsSquare α α₂ ∧ LBIso (abelian₂ A.A A.L) (F.univ.P.pull α₂) ∧
           ∃ (G : Over (Sp V₁)) (_ : GrpObj G) (_ : IsCommMonObj G) (gen : (Over.pullback (jK V₁)).obj G ≅ A.A),
             IsSemiAbelian G ∧ IsMonHom gen.hom := by
-  first | exact @GlobalTheory.CExtGen.exists_polAV_semiAbelian | exact GlobalTheory.CExtGen.exists_polAV_semiAbelian | (intros; apply GlobalTheory.CExtGen.exists_polAV_semiAbelian <;> assumption)
+  first | exact @GlobalTheory.CExtGen.exists_polAV_semiAbelian

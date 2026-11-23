@@ -57,4 +57,4 @@ open ReciprocityTheory.AnForm.M
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
 
 theorem _root_.GlobalTheory.T.exists_finite_topologicalKrullDim_diff_open_lt : ∀ (T : Type) [TopologicalSpace T] [NoetherianSpace T] [QuasiSober T] [T0Space T] (Z : Set T), IsClosed Z → ∃ S : Set T, S.Finite ∧ ∀ U : Set T, IsOpen U → S ⊆ U → ∀ d : ℕ, (topologicalKrullDim Z < (d + 1 : ℕ) → topologicalKrullDim (Z \ U : Set T) < (d : ℕ)) := by
-  first | exact @GlobalTheory.Div.exists_finite_topologicalKrullDim_diff_lt | exact GlobalTheory.Div.exists_finite_topologicalKrullDim_diff_lt | (intros; apply GlobalTheory.Div.exists_finite_topologicalKrullDim_diff_lt <;> assumption)
+  first | exact @GlobalTheory.Div.exists_finite_topologicalKrullDim_diff_lt

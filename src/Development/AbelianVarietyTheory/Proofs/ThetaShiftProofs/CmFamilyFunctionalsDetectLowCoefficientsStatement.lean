@@ -42,4 +42,4 @@ open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G Reciproci
 open Formalism.L2.Pj Formalism.L2.Pj.QAt Formalism.MainNotions Formalism.BasicNotions Formalism.L2.LamCM GlobalTheory.ArcCM
 
 theorem _root_.GlobalTheory.T.cmFamilyFunctionals_detect_lowCoefficients : Known → ∀ (D : D7) (T : Core D) (h : LawsCore T) (j : ℕ) (ka : WeightFamilies.Wt D j) (CR Tt cc : ℝ), GlobalTheory.RunIn.GamAt T → InR D j → j < D.R.m → 3 ≤ D.R.r → 0 < Tt → 0 < cc → DetectQ h j ka CR Tt cc := by
-  first | exact @GlobalTheory.ArcCM.detectQ_of_known | exact GlobalTheory.ArcCM.detectQ_of_known | (intros; apply GlobalTheory.ArcCM.detectQ_of_known <;> assumption)
+  first | exact @GlobalTheory.ArcCM.detectQ_of_known

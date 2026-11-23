@@ -70,7 +70,7 @@ private theorem rowAct_lp {n : ℕ} (g : Matrix (Fin n) (Fin n) ℂ) :
       (Matrix.of fun p q : Fin n => (X (Fin.castLE le_rfl p, Fin.castLE le_rfl q) : MvPolynomial (Fin n × Fin n) ℂ)) =
       (g.map C).transpose * Matrix.of fun p q : Fin n => (X (Fin.castLE le_rfl p, Fin.castLE le_rfl q) : MvPolynomial (Fin n × Fin n) ℂ) := by
     ext p q
-    simp [Formalism.GradedWeylDivisibility.rowAct, Matrix.mul_apply, aeval_X, Matrix.transpose_apply, MvPolynomial.algebraMap_eq]
+    simp [Formalism.GradedWeylDivisibility.rowAct, Matrix.mul_apply, aeval_X, Matrix.transpose_apply]
   rw [hM, Matrix.det_mul, Matrix.det_transpose]
   congr 1
   exact (RingHom.map_det (C : ℂ →+* MvPolynomial (Fin n × Fin n) ℂ) g).symm

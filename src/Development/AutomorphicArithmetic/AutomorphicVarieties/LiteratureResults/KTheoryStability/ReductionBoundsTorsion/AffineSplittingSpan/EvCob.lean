@@ -67,8 +67,7 @@ theorem key {G : Type} [Group G] (j : ℕ) (e : (Fin (j + 1) → G) → ℝ) (he
 
   rw [ev_eq, bd, Finsupp.linearCombination_single, one_smul, map_add (f := _), map_sum,
   Finsupp.linearCombination_single, dC, Fin.sum_univ_succ]
-  simp only [MonoidHom.id_apply, smul_eq_mul, mul_one, Fin.succAbove_zero, one_smul,
-    Fin.val_zero, pow_zero, one_mul, map_smul, Finsupp.linearCombination_single, Fin.val_succ]
+  simp only [MonoidHom.id_apply, smul_eq_mul, mul_one, Fin.succAbove_zero, Fin.val_zero, pow_zero, one_mul, map_smul, Finsupp.linearCombination_single, Fin.val_succ]
   congr 1
   · have h := he (g 0) fun i => Fin.partialProd (fun i => g i.succ) i
     simp only [MonoidHom.id_apply, smul_eq_mul] at h

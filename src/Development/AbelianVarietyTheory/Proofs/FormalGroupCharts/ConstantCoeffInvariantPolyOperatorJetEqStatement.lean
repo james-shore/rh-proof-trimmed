@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChartCmp
 
 theorem _root_.GlobalTheory.T.constantCoeff_invariantPolyOperator_jetEq : ∀ (k : Type) [CommRing k] (d n : ℕ) (F : Fin d → PS k 2 d) (Ix : Type) [Fintype Ix] (cp : Ix → Fin n) (u : Ix → Fin d → k) (P : MvPolynomial Ix k) (m : ℕ) (f g : PS k n d), P.totalDegree ≤ m → JEq m f g → MvPowerSeries.constantCoeff (DpolyN F cp u P f) = MvPowerSeries.constantCoeff (DpolyN F cp u P g) := by
-  first | exact @GlobalTheory.ChartCmp.constantCoeff_DpolyN_jEq | exact GlobalTheory.ChartCmp.constantCoeff_DpolyN_jEq | (intros; apply GlobalTheory.ChartCmp.constantCoeff_DpolyN_jEq <;> assumption)
+  first | exact @GlobalTheory.ChartCmp.constantCoeff_DpolyN_jEq

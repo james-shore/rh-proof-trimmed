@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.MBLow.Cl Matrix
 
 theorem _root_.GlobalTheory.T.weilPairing_degenerationTorsion_classical : AllCD fun {N} {g'} {r} {g} {bX} d σ => ∀ k : ℕ, 0 < k → ∀ M Nn M' Nn' p p', d.Rep σ k M Nn p → d.Rep σ k M' Nn' p' → (N.wp p p' : ℂ) = Complex.exp ((2 * Real.pi * Complex.I : ℂ) * (cv M ⬝ᵥ cv Nn' - cv Nn ⬝ᵥ cv M') / k) := by
-  first | exact @GlobalTheory.MBLow.Cl.wp_classical | exact GlobalTheory.MBLow.Cl.wp_classical | (intros; apply GlobalTheory.MBLow.Cl.wp_classical <;> assumption)
+  first | exact @GlobalTheory.MBLow.Cl.wp_classical

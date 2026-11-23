@@ -46,4 +46,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.FrobeniusOrbi
 open scoped Pointwise
 
 theorem _root_.GlobalTheory.T.exists_place_over_prime_of_padicAlgCl_embedding : ∀ (l : ℕ) [Fact l.Prime] (E : Type) [Field E] [NumberField E] (c : E →+* PadicAlgCl l), ∃ v : HeightOneSpectrum (𝓞 E), v ∈ placesOver E l ∧ ∀ x : 𝓞 E, x ∈ v.asIdeal ↔ ‖c (x : E)‖ < 1 := by
-  first | exact @GlobalTheory.LocPlace.exists_place_of_emb | exact GlobalTheory.LocPlace.exists_place_of_emb | (intros; apply GlobalTheory.LocPlace.exists_place_of_emb <;> assumption)
+  first | exact @GlobalTheory.LocPlace.exists_place_of_emb

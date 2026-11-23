@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.chernTransgressionForm_holomorphic_pullback : ∀ (n n' : ℕ) (r : Type) [Fintype r] [DecidableEq r] (G G' : V n → Matrix r r ℂ) (φ : V n' → V n) (w : V n'), ContDiffAt ℂ 2 φ w → MContDiffAt ∞ G (φ w) → IsUnit (G (φ w)).det → MContDiffAt ∞ G' (φ w) → IsUnit (G' (φ w)).det → ∀ k, transAt (fun x => G (φ x)) (fun x => G' (φ x)) w k = pull (fderiv ℂ φ w) (transAt G G' (φ w) k) := by
-  first | exact @GlobalTheory.ChernCalc.transAt_comp_holo | exact GlobalTheory.ChernCalc.transAt_comp_holo | (intros; apply GlobalTheory.ChernCalc.transAt_comp_holo <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.transAt_comp_holo

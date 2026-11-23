@@ -130,7 +130,7 @@ theorem gram_entry (s : A →+* A) (J : Matrix (Fin M) (Fin M) A)
   simp only [Matrix.mul_apply, cT, Matrix.transpose_apply, Matrix.map_apply, sum_two,
     hypOne_zero_zero, hypOne_zero_one, hypOne_one_zero, hypOne_one_one, hypOne_zero_rest,
     hypOne_one_rest, hypOne_rest_zero, hypOne_rest_one, hypOne_rest_rest, mul_zero, mul_one,
-    zero_mul, Finset.sum_const_zero, add_zero, zero_add, hv, rowv]
+    Finset.sum_const_zero, add_zero, zero_add, hv, rowv]
   ring
 
 def ColE (P : Matrix (Fin (M + 2)) (Fin (M + 2)) A) : Prop :=
@@ -186,7 +186,7 @@ theorem dg_unitary (s : A →+* A) (J u : Matrix (Fin M) (Fin M) A) (hu : cT s u
     rw [← this]
     simp [Matrix.mul_apply, cT, hv, rowv]
   refine mat_ext2 ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ <;> intros <;> rw [gram_entry] <;>
-    simp [dg, key, hv, rowv, hypOne_zero_zero, hypOne_zero_one, hypOne_one_zero, hypOne_one_one,
+    simp [dg, hv, rowv, hypOne_zero_zero, hypOne_zero_one, hypOne_one_zero, hypOne_one_one,
       hypOne_zero_rest, hypOne_one_rest, hypOne_rest_zero, hypOne_rest_one, hypOne_rest_rest]
   all_goals exact key _ _
 
@@ -315,19 +315,17 @@ theorem nM_unitary (hs : ∀ x, s (s x) = x) (hJ : ∀ i j, s (J j i) = J i j) (
   · rw [gram_entry]; simp [nM, hv, rowv, hypOne_zero_one]
   · rw [gram_entry]; simp [nM, hv, rowv, hypOne_one_zero]
   · rw [gram_entry]
-    simp only [nM, Matrix.of_apply, Fin.cons_zero, Fin.cons_one, Fin.cons_succ, nM_rest_one, map_one, one_mul, mul_one, hypOne_one_one]
+    simp only [nM, Matrix.of_apply, Fin.cons_zero, Fin.cons_one, Fin.cons_succ, map_one, one_mul, mul_one, hypOne_one_one]
     rw [← hz]; ring
   · intro j; rw [gram_entry]; simp [nM, hv, rowv, hypOne_zero_rest]
   · intro j
     rw [gram_entry]
-    simp only [nM, Matrix.of_apply, Fin.cons_zero, Fin.cons_one, Fin.cons_succ,  nM_rest_one, nM_rest_rest,
-      map_one, one_mul, mul_zero, zero_add, hypOne_one_rest, hv_single]
+    simp only [nM, Matrix.of_apply, Fin.cons_zero, Fin.cons_one, Fin.cons_succ,  map_one, one_mul, mul_zero, zero_add, hypOne_one_rest, hv_single]
     ring
   · intro i; rw [gram_entry]; simp [nM, hv, rowv, hypOne_rest_zero]
   · intro i
     rw [gram_entry]
-    simp only [nM, Matrix.of_apply, Fin.cons_zero, Fin.cons_one, Fin.cons_succ, nM_rest_one, nM_rest_rest,
-      map_neg, map_zero, s_rowv hs hJ, mul_one, zero_mul, add_zero, hypOne_rest_one]
+    simp only [nM, Matrix.of_apply, Fin.cons_zero, Fin.cons_one, Fin.cons_succ, map_neg, map_zero, s_rowv hs hJ, mul_one, zero_mul, add_zero, hypOne_rest_one]
     simp [hv, rowv, Matrix.one_apply]
   · intro i j
     rw [gram_entry]

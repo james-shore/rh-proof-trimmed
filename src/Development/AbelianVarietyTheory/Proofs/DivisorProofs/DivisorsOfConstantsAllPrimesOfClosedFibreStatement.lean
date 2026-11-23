@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing Polynomial
 
 theorem _root_.GlobalTheory.T.divisorsOfConstantsAllPrimes_of_closedFibre : GlobalTheory.VertUnits.DivConstLocal → GlobalTheory.VertUnits.DivConstAll := by
-  first | exact @GlobalTheory.VertUnits.divConstAll_of_divConstLocal | exact GlobalTheory.VertUnits.divConstAll_of_divConstLocal | (intros; apply GlobalTheory.VertUnits.divConstAll_of_divConstLocal <;> assumption)
+  first | exact @GlobalTheory.VertUnits.divConstAll_of_divConstLocal

@@ -61,4 +61,4 @@ open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 
 theorem _root_.GlobalTheory.T.exists_polarization_sectionBasis_pullback_affine : ∀ {R R' : Type} [CommRing R] [CommRing R'] (P : PolAV (Sp R)) (P' : PolAV (Sp R')) (f : R →+* R') (ψ : P'.A.left ⟶ P.A.left), IsGrpPullback P'.A P.A (spMap f) ψ → LBIso P'.L (P.L.pull ψ) → ∀ th : LB.Sec (LPow P.A P.L 1 (baseOver (Sp R))), IsSecBasis _ (fun _ : Fin 1 => th) → ∃ th' : LB.Sec (LPow P'.A P'.L 1 (baseOver (Sp R'))), IsSecBasis _ (fun _ : Fin 1 => th') := by
-  first | exact @GlobalTheory.SecBasisPull.exists_secBasis_pull | exact GlobalTheory.SecBasisPull.exists_secBasis_pull | (intros; apply GlobalTheory.SecBasisPull.exists_secBasis_pull <;> assumption)
+  first | exact @GlobalTheory.SecBasisPull.exists_secBasis_pull

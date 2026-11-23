@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.Me
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.frobenius_period_ring_injective : ∀ (l : ℕ) [Fact l.Prime], Function.Injective (Per.φB l) := by
-  first | exact @GlobalTheory.MemLoc.phiB_injective | exact GlobalTheory.MemLoc.phiB_injective | (intros; apply GlobalTheory.MemLoc.phiB_injective <;> assumption)
+  first | exact @GlobalTheory.MemLoc.phiB_injective

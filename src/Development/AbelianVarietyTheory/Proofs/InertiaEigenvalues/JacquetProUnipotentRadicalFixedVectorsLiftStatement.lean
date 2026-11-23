@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL ValuativeRel
 
 theorem _root_.GlobalTheory.T.jacquet_proUnipotentRadical_fixed_vectors_lift : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {α n : Type} [Fintype α] [LinearOrder α] {m : α → Type} [∀ a, Fintype (m a)] [∀ a, DecidableEq (m a)] [Fintype n] [DecidableEq n] (e : (Σ a, m a) ≃ n) {V : Type} [AddCommGroup V] [Module ℂ V] (π : Representation ℂ (GL n k) V), IsAdmissible π → ∀ y : Jacquet π (unipRad k e), y ∈ fixed (jacU e π) (leviKOne k m) → ∃ v ∈ fixed π (proRad k e), (Submodule.Quotient.mk v : Jacquet π (unipRad k e)) = y := by
-  first | exact @GlobalTheory.LocGL.ProRadOnto.exists_proRad_fixed_mk_eq | exact GlobalTheory.LocGL.ProRadOnto.exists_proRad_fixed_mk_eq | (intros; apply GlobalTheory.LocGL.ProRadOnto.exists_proRad_fixed_mk_eq <;> assumption)
+  first | exact @GlobalTheory.LocGL.ProRadOnto.exists_proRad_fixed_mk_eq

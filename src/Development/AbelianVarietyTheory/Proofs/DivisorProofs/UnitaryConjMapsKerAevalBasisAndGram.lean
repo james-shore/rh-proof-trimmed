@@ -59,11 +59,7 @@ theorem unitary_conj_ker_basis_gram {K : Type} [Field K] (σ : K →+* K) {n : �
     (Matrix.of fun i j => ∑ k, σ (((g : Matrix (Fin n) (Fin n) K) *ᵥ u i) k) *
         ((g : Matrix (Fin n) (Fin n) K) *ᵥ u j) k) = Matrix.of fun i j => ∑ k, σ (u i k) * u j k := by
   first
-  | exact @_root_.GlobalTheory.ConjugateAlgebraLemmas.main
-  | exact _root_.GlobalTheory.ConjugateAlgebraLemmas.main
   | (apply _root_.GlobalTheory.ConjugateAlgebraLemmas.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ConjugateAlgebraLemmas.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ConjugateAlgebraLemmas.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ConjugateAlgebraLemmas.main ..)
 
 end GlobalTheory

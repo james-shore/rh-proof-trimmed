@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.finiteSupport_unitaryPoint_replaces_pureTensorFact
         (∀ v, φ' v ∈ GlobalTheory.WeilM.SB (Fin n × Fin d → Fv F v)) ∧ (∀ v ∉ S, φ' v = φ v) ∧
         (∀ v, φ' v - φ v ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.augAt om v) ∧
         om (gS, 1) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f φ) = GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f φ' := by
-  first | exact @GlobalTheory.PlaceProd.pure_of_finSupp | exact GlobalTheory.PlaceProd.pure_of_finSupp | (intros; apply GlobalTheory.PlaceProd.pure_of_finSupp <;> assumption)
+  first | exact @GlobalTheory.PlaceProd.pure_of_finSupp

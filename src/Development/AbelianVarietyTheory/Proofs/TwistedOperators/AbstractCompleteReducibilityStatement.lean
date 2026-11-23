@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.mem_iSup_irreducible_of_fixed_projector : ∀ {E :
     (∀ x ∈ N, ∀ y ∈ N, b (e x) y = b x (e y)) → FiniteDimensional ℂ (N.map e) →
     ∀ ψ ∈ N, e ψ = ψ →
     ψ ∈ ⨆ (A : Submodule ℂ E) (_ : A ≤ N ∧ P A ∧ A ≠ ⊥ ∧ ∀ B : Submodule ℂ E, B ≤ A → P B → B = ⊥ ∨ B = A), A := by
-  first | exact @GlobalTheory.abstract_complete_reducibility | exact GlobalTheory.abstract_complete_reducibility | (intros; apply GlobalTheory.abstract_complete_reducibility <;> assumption)
+  first | exact @GlobalTheory.abstract_complete_reducibility

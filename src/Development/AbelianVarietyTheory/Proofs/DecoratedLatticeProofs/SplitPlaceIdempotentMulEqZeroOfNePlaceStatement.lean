@@ -51,4 +51,4 @@ open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 
 theorem _root_.GlobalTheory.T.splitPlaceIdempotent_mul_eq_zero_of_ne_place : ∀ (D : D7) (k k' : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [Field k'] [ValuativeRel k'] [TopologicalSpace k'] [IsNonarchimedeanLocalField k'] (q : SplitPt D k) (q' : SplitPt D k'), q.v ≠ q'.v → q.e * q'.e = 0 := by
-  first | exact @GlobalTheory.SplitOrth.split_mul_split | exact GlobalTheory.SplitOrth.split_mul_split | (intros; apply GlobalTheory.SplitOrth.split_mul_split <;> assumption)
+  first | exact @GlobalTheory.SplitOrth.split_mul_split

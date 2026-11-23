@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.structure_h1_rank_descends_field : ∀ (K L : Type) [Field K] [Field L] [Algebra K L] (A : Over (Sp K)) [GrpObj A] (B : Over (Sp L)) [GrpObj B] (φ : B.left ⟶ A.left), IsGrpPullback B A (spMap (algebraMap K L)) φ → IsAbelianScheme A → ∀ g : ℕ, Module.Finite L (HO1 B.hom) → Module.finrank L (HO1 B.hom) = g → Module.Finite K (HO1 A.hom) ∧ Module.finrank K (HO1 A.hom) = g := by
-  first | exact @GlobalTheory.AbCoh.finrank_HO1_descend_field | exact GlobalTheory.AbCoh.finrank_HO1_descend_field | (intros; apply GlobalTheory.AbCoh.finrank_HO1_descend_field <;> assumption)
+  first | exact @GlobalTheory.AbCoh.finrank_HO1_descend_field

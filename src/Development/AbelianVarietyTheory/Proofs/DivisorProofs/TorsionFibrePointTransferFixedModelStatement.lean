@@ -69,4 +69,4 @@ theorem _root_.GlobalTheory.T.torsion_fibre_point_transfer_fixed_model : ∀ (V�
   ∀ q : Sp K ⟶ ((Over.pullback (spMap ev)).obj X).left, q ≫ pullback.fst X.hom (spMap ev) = y.left →
     q ≫ pullback.snd X.hom (spMap ev) = 𝟙 _ →
     ∃ y' : Over.mk (spMap e) ⟶ Y, y' ^ n = 1 ∧ y'.left = q ≫ ψ ≫ φ := by
-  first | exact @GlobalTheory.TorsionTransfer.torsion_transfer | exact GlobalTheory.TorsionTransfer.torsion_transfer | (intros; apply GlobalTheory.TorsionTransfer.torsion_transfer <;> assumption)
+  first | exact @GlobalTheory.TorsionTransfer.torsion_transfer

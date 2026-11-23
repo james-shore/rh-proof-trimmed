@@ -186,7 +186,7 @@ theorem mem_span_translT : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.rank) (Fo
       Φ' (m + (ϖ ^ N • z).map (algebraMap (GlobalTheory.SplitHecke.Ov D v) (Fv D.host.F v))) = Φ' m) ∧
       ∀ m, Φ' m ≠ 0 → ∃ z : Matrix (Fin S.rank) (Fin T.rank) (GlobalTheory.SplitHecke.Ov D v),
         algebraMap (GlobalTheory.SplitHecke.Ov D v) (Fv D.host.F v) (ϖ ^ N) • m = z.map (algebraMap (GlobalTheory.SplitHecke.Ov D v) (Fv D.host.F v)) := by
-    obtain ⟨N', hinv, hsupp⟩ := GlobalTheory.T.schwartzBruhat_conjHalf_locallyConstant_compactSupport D S T βS βT e PP v φ ι hidem hch ΛS ΛT (by first | exact hLS | exact hLS.toIsLattice) (by first | exact hLT | exact hLT.toIsLattice) Φ hΦ ϖ hϖ
+    obtain ⟨N', hinv, hsupp⟩ := GlobalTheory.T.schwartzBruhat_conjHalf_locallyConstant_compactSupport D S T βS βT e PP v φ ι hidem hch ΛS ΛT (by first | exact hLS) (by first | exact hLT) Φ hΦ ϖ hϖ
     refine ⟨N', fun m z => ?_, fun m hm => ?_⟩
     · exact hinv (σ m) _ (hσH m) (hσH _) z (by rw [hσ, hσ])
     · obtain ⟨z, hz⟩ := hsupp (σ m) hm

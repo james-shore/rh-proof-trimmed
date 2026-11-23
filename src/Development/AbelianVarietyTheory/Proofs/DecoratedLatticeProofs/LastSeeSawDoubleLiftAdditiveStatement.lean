@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.lastSeeSaw_doubleLift_additive : ∀ D : D7, GlobalTheory.FinPl.SeeSmall D := by
-  first | exact @GlobalTheory.SeeSmallPf.seeSmall | exact GlobalTheory.SeeSmallPf.seeSmall | (intros; apply GlobalTheory.SeeSmallPf.seeSmall <;> assumption)
+  first | exact @GlobalTheory.SeeSmallPf.seeSmall

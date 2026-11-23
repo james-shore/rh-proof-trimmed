@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.conj_zpowers_entries_valued_bounded_of_compact_clo
     IsCompact (closure (Subgroup.zpowers t : Set (UL n w))) →
     ∃ B : WithZero (Multiplicative ℤ), ∀ (k : ℤ) (i j : Fin n),
       Valued.v ((((g⁻¹ * t ^ k * g : UL n w) : GLw n w) : Matrix (Fin n) (Fin n) (w.adicCompletion E)) i j) ≤ B := by
-  first | exact @GlobalTheory.BCT.powers_entries_bdd | exact GlobalTheory.BCT.powers_entries_bdd | (intros; apply GlobalTheory.BCT.powers_entries_bdd <;> assumption)
+  first | exact @GlobalTheory.BCT.powers_entries_bdd

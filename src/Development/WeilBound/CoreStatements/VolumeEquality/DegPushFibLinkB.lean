@@ -289,7 +289,7 @@ private theorem exists_integral_change_of_basis_of_span_eq (fn : Ω₀ →+* Ω)
     by_cases hlj : l = j
     · subst hlj
       simp
-    · simp [Pi.single_apply, hlj]
+    · simp [hlj]
   choose h hh1 hh2 using hj
   refine ⟨G, Matrix.of fun m j => h j m, fun l k => by rw [hGdef]; exact (hg1 k).1 l,
     fun l k => hh1 k l, ?_, hGk⟩

@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_cartanInvolution_hyperbolicSwap_extension :
     (∀ u, (ι *ᵥ u) ⬝ᵥ M *ᵥ star X = 0 ∧ (ι *ᵥ u) ⬝ᵥ M *ᵥ star Y = 0) → Function.Injective ι.mulVec →
     IsCartan (ιᵀ * M * ι.map star) θ₁ →
     ∃ θ, IsCartan M θ ∧ θ * ι = ι * θ₁ ∧ ∃ c : ℂ, c ≠ 0 ∧ Y = c • θ *ᵥ X := by
-  first | exact @GlobalTheory.PlaneCartan.exists_cartan_hyperbolic_swap | exact GlobalTheory.PlaneCartan.exists_cartan_hyperbolic_swap | (intros; apply GlobalTheory.PlaneCartan.exists_cartan_hyperbolic_swap <;> assumption)
+  first | exact @GlobalTheory.PlaneCartan.exists_cartan_hyperbolic_swap

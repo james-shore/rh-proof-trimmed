@@ -47,4 +47,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_torsionLabels_uniformisedDominatingTrait : ∀ (R₁ : Type) [CommRing R₁] [IsDomain R₁] [IsLocalRing R₁], Base R₁ → ∀ (D₁ : DegData R₁ (maximalIdeal R₁)) (A : PolAV (Sp (FractionRing R₁))), UniTrait D₁.toPre A → ∃ lab : Labels D₁.toPre A, OneTrait D₁.toPre A lab := by
-  first | exact @GlobalTheory.Mum.exists_oneTrait | exact GlobalTheory.Mum.exists_oneTrait | (intros; apply GlobalTheory.Mum.exists_oneTrait <;> assumption)
+  first | exact @GlobalTheory.Mum.exists_oneTrait

@@ -45,4 +45,4 @@ open scoped TensorProduct InnerProductSpace Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.lintegral_besselGroup_unfold_fundamental_domain : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (u : D.what₂.Word) (ψ : AddChar (AF D.host.F) ℂ) (A : HSp D) (B : SBes X h u ψ A) (𝓢 : Set (besGrp B.d B.o)), IsFundamentalDomain ((GQ (D.sp.Y 0)).subgroupOf (besGrp B.d B.o)) 𝓢 B.lev.μR → ∀ f : X.B.I.GA → ENNReal, Measurable f → ∫⁻ s, f (iotaX X h s.1) ∂B.lev.μR = ∫⁻ s in 𝓢, ∑' σ : Srat X u, f ((σ : X.B.I.GA) * iotaX X h s.1) ∂B.lev.μR := by
-  first | exact @GlobalTheory.Core.Mi.Unfold.lintegral_unfold | exact GlobalTheory.Core.Mi.Unfold.lintegral_unfold | (intros; apply GlobalTheory.Core.Mi.Unfold.lintegral_unfold <;> assumption)
+  first | exact @GlobalTheory.Core.Mi.Unfold.lintegral_unfold

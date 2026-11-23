@@ -117,14 +117,12 @@ lemma volume_axes : volume {z : ℂ | z.im = 0 ∨ z.re = 0} = 0 := by
     have hs : {z : ℂ | z.im = 0} = Complex.measurableEquivRealProd ⁻¹' (Set.univ ×ˢ {0}) := by
       first
       | (ext z; exact ⟨fun h => ⟨trivial, h⟩, fun h => h.2⟩)
-      | (ext z; simp [Complex.measurableEquivRealProd])
     rw [hs, e.measure_preimage_equiv, Measure.volume_eq_prod, Measure.prod_prod]
     simp
   have h2 : volume {z : ℂ | z.re = 0} = 0 := by
     have hs : {z : ℂ | z.re = 0} = Complex.measurableEquivRealProd ⁻¹' ({0} ×ˢ Set.univ) := by
       first
       | (ext z; exact ⟨fun h => ⟨h, trivial⟩, fun h => h.1⟩)
-      | (ext z; simp [Complex.measurableEquivRealProd])
     rw [hs, e.measure_preimage_equiv, Measure.volume_eq_prod, Measure.prod_prod]
     simp
   have hu : {z : ℂ | z.im = 0 ∨ z.re = 0} = {z : ℂ | z.im = 0} ∪ {z : ℂ | z.re = 0} := rfl
@@ -204,7 +202,6 @@ lemma unitIndicator_eq {y : ℝ} (hy : |y| ≤ 1) : one1 y = 1 := by
 lemma powIndicator_eq {β y : ℝ} (hy : |y| ≤ 1) : pw1 β y = |y| ^ (-β) := by
   unfold pw1
   rw [Set.indicator_of_mem (show y ∈ Set.Icc (-1 : ℝ) 1 from abs_le.mp hy)]
-  try rfl
 
 lemma gF_integrable (p q : ι) {β : ℝ} (hβ : β < 1) (i : ι) : Integrable (gF p q β i) := by
   by_cases h1 : i = q

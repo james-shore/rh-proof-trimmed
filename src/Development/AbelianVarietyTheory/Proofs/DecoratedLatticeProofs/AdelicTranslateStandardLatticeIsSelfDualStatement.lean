@@ -46,4 +46,4 @@ open scoped TensorProduct Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.adelicTranslate_standardLattice_isSelfDual : ∀ (D : D7) (V : HSp D) (n : ℕ) (hn : V.rank = n), V.gram = 1 → (∀ g : GA D V, ∃ N, Moves V hn g N) ∧ ∀ (g : GA D V) N, Moves V hn g N → Formalism.L2.Col.IsSdLat N ∧ ∃ Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E), (Λ : Set (Fin V.rank → D.host.E)) = latFr V hn N ∧ IsSelfDualC V Λ := by
-  first | exact @GlobalTheory.StdMove.std_moved_lattice | exact GlobalTheory.StdMove.std_moved_lattice | (intros; apply GlobalTheory.StdMove.std_moved_lattice <;> assumption)
+  first | exact @GlobalTheory.StdMove.std_moved_lattice

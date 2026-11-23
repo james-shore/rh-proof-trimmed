@@ -70,7 +70,6 @@ theorem continuous_finOf : Continuous (finOf : (κ → AF F) → κ → FiniteAd
 private theorem continuous_infiniteAdeleRing_ringEquiv_mixedSpace :
     Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F) := by
   first
-  | exact (InfiniteAdeleRing.homeomorph_mixedSpace F).continuous
   | (rw [show (InfiniteAdeleRing.ringEquiv_mixedSpace F : InfiniteAdeleRing F → mixedEmbedding.mixedSpace F) =
         fun x => (fun v : {w : InfinitePlace F // w.IsReal} =>
           InfinitePlace.Completion.extensionEmbeddingOfIsReal v.2 (x v.1),
@@ -101,10 +100,8 @@ private theorem totallyDisconnectedSpace_finiteAdeleRing :
   have hf : Continuous f := by
     first
     | exact RestrictedProduct.continuous_coe
-    | fun_prop
   have hi : Function.Injective f := by
     first
-    | exact RestrictedProduct.coe_injective
     | exact fun x y h => Subtype.ext h
   refine ⟨fun s _ hs => ?_⟩
   have h1 : (f '' s).Subsingleton := (hs.image f hf.continuousOn).subsingleton

@@ -68,7 +68,7 @@ def swap (S : Type) [CommRing S] : DualNumber (DualNumber S) →+* DualNumber (D
     TrivSqZeroExt.inr (TrivSqZeroExt.inl x.fst.snd + TrivSqZeroExt.inr x.snd.snd)
   map_one' := by ext <;> simp
   map_zero' := by ext <;> simp
-  map_add' a b := by ext <;> simp <;> ring
+  map_add' a b := by ext <;> simp
   map_mul' a b := by ext <;> simp <;> ring
 
 theorem swap_snd_snd (x : DualNumber (DualNumber S)) : (swap S x).snd.snd = x.snd.snd := by
@@ -86,7 +86,7 @@ theorem dualMap_comp_inc (φ : R →+* S) : (dualMap φ).comp (inc R) = (inc S).
   refine RingHom.ext fun x => ?_; ext <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
 theorem fst_comp_inc : (fstH S).comp (inc S) = RingHom.id S := by
-  refine RingHom.ext fun x => ?_; simp [fstH, TrivSqZeroExt.algebraMap_eq_inl]
+  refine RingHom.ext fun x => ?_; simp [fstH]
 
 theorem swap_inc_inc_comp (φ : R →+* S) : (swap S).comp ((inc (DualNumber S)).comp ((inc S).comp φ)) =
     (inc (DualNumber S)).comp ((inc S).comp φ) := by

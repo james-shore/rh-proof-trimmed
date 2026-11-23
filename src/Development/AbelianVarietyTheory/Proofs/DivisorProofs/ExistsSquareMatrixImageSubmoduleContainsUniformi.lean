@@ -57,9 +57,5 @@ theorem exists_square_matrix_of_submodule_between
     (hN : ∀ y : Fin n → O, (fun a => ϖ * y a) ∈ N) :
     ∃ A : Matrix (Fin n) (Fin n) O, (∀ x, x ∈ N ↔ ∃ u, A *ᵥ u = x) ∧ A.det ≠ 0 := by
   first
-  | exact @_root_.GlobalTheory.MatrixRangeExistence.exists_matrix_range_eq
-  | exact _root_.GlobalTheory.MatrixRangeExistence.exists_matrix_range_eq
   | (apply _root_.GlobalTheory.MatrixRangeExistence.exists_matrix_range_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MatrixRangeExistence.exists_matrix_range_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MatrixRangeExistence.exists_matrix_range_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.MatrixRangeExistence.exists_matrix_range_eq ..)

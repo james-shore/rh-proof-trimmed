@@ -70,7 +70,7 @@ def mulX (i : ι) : Module.End R (MvPolynomial ι R ⊗[R] V) :=
 
 lemma mulX_zv (i : ι) (α : ι →₀ ℕ) (v : V) :
     mulX i (zv (R := R) α v) = zv (Finsupp.single i 1 + α) v := by
-  simp [mulX, zv, X, monomial_mul]
+  simp [mulX, zv, X]
 
 def degLt (R : Type*) [CommRing R] (ι : Type*) (V : Type*) [AddCommGroup V] [Module R V] (n : ℕ) :
     Submodule R (MvPolynomial ι R ⊗[R] V) :=

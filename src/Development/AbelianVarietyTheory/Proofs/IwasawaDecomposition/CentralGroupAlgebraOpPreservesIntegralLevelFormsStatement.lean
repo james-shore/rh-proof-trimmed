@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.centralGroupAlgebraOp_preserves_integralLevelForms
     ∀ (G : Type) [Group G] [Fintype G] (r : Representation K G S.Forms), S.ActGood r →
     ∀ (P : Subgroup G) (ψ : P →* Kˣ) (a : MonoidAlgebra K G), (∀ b, a * b = b * a) → (∀ t : G, ∃ n : ℤ, a.coeff t = n) →
     ∀ x ∈ S.lvlNab r P ψ, (S.lvlOp r P ψ a).mulVec x ∈ S.lvlNab r P ψ := by
-  first | exact @GlobalTheory.CentralLevelOp.lvlOp_mem_lvlNab | exact GlobalTheory.CentralLevelOp.lvlOp_mem_lvlNab | (intros; apply GlobalTheory.CentralLevelOp.lvlOp_mem_lvlNab <;> assumption)
+  first | exact @GlobalTheory.CentralLevelOp.lvlOp_mem_lvlNab

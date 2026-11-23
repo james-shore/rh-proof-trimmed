@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.iteratedLevelPattern_of_framePlaces : ∀ (F : Typ
         (κ + s + 1 ≤ p ∨ symIdx κ ρ p' < symIdx κ ρ p ∨ (p' = κ + ρ ∧ p < κ)) → R p p' = 0) ∧
       (∀ p p', κ + s + 1 ≤ p' → p' < κ + s + 1 + j * τ → p < κ + s + 1 + j * τ →
         (p' - (κ + s + 1)) / τ < (p - (κ + s + 1)) / τ → R p p' = 0)) → (∀ (a b : Ix (Fin κ ⊕ Fin (s + 1)) (Fin τ) j), ¬ FreeIx ρ a b → R (zPos a) (zPos b) = if a = b then 1 else 0) := by
-  first | exact @GlobalTheory.patOfPlaces | exact GlobalTheory.patOfPlaces | (intros; apply GlobalTheory.patOfPlaces <;> assumption)
+  first | exact @GlobalTheory.patOfPlaces

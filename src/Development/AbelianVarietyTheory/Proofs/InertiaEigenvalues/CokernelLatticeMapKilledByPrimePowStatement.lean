@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open PowerSeries GlobalTheory.BK
 
 theorem _root_.GlobalTheory.T.cokernel_latticeMap_killed_by_prime_pow : GlobalTheory.IndefiniteRowSideFullHecke.RepresentationBounds.Stmt := by
-  first | exact @GlobalTheory.Proof.cokernel_latticeMap_killed_by_prime_pow.main | exact GlobalTheory.Proof.cokernel_latticeMap_killed_by_prime_pow.main | (intros; apply GlobalTheory.Proof.cokernel_latticeMap_killed_by_prime_pow.main <;> assumption)
+  first | exact @GlobalTheory.Proof.cokernel_latticeMap_killed_by_prime_pow.main

@@ -55,11 +55,7 @@ theorem sumForm_add {A C K B : Type} [CommRing A] [CommRing C] [CommRing K] [Com
     (hy : ∃ (n : ℕ) (c : Fin n → C) (b : Fin n → K), (∀ m, φ.IsIntegralElem (b m)) ∧ y = ∑ m, gc (c m) * gk (b m)) :
     ∃ (n : ℕ) (c : Fin n → C) (b : Fin n → K), (∀ m, φ.IsIntegralElem (b m)) ∧ x + y = ∑ m, gc (c m) * gk (b m) := by
   first
-  | exact @_root_.GlobalTheory.IntegralAddSum.add_sum_integral
-  | exact _root_.GlobalTheory.IntegralAddSum.add_sum_integral
   | (apply _root_.GlobalTheory.IntegralAddSum.add_sum_integral <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralAddSum.add_sum_integral <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralAddSum.add_sum_integral <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegralAddSum.add_sum_integral ..)
 
 theorem isAffineOpen_Sp_field (K : Type) [Field K] (V : (Sp K).Opens) : IsAffineOpen V := by

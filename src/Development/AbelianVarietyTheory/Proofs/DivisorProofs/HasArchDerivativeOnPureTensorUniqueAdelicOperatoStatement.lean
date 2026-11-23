@@ -46,4 +46,4 @@ open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Forma
 
 theorem _root_.GlobalTheory.T.hasArchDerivativeOnPureTensor_unique_adelicOperators : ∀ {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ] {T : ℝ → ((κ → AF F) → ℂ) → (κ → AF F) → ℂ}
     {f f₁ f₂ : SInf F κ}, SD T f f₁ → SD T f f₂ → f₁ = f₂ := by
-  first | exact @GlobalTheory.SDUnique.sd_unique | exact GlobalTheory.SDUnique.sd_unique | (intros; apply GlobalTheory.SDUnique.sd_unique <;> assumption)
+  first | exact @GlobalTheory.SDUnique.sd_unique

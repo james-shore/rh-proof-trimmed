@@ -52,4 +52,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.mem_span_boxFamily_powerDegData : Laws → Laws2 → Laws4 → TwistBaseChangeStatement → ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (maximalIdeal V) V] (j : ℕ) (D D' : DegData V (maximalIdeal V)) (pD : IsPowDeg D'.toPre D.toPre j) (F : Type) [Field F] [Algebra (FractionRing V) F] (k : ℕ), 1 ≤ k → ∀ S : Fam D'.toPre F k, S ∈ Submodule.span F {S' | ∃ s : Fin j → Fam D.toPre F k, IsBoxFam pD F k S' s} := by
-  first | exact @GlobalTheory.mem_span_boxFam | exact GlobalTheory.mem_span_boxFam | (intros; apply GlobalTheory.mem_span_boxFam <;> assumption)
+  first | exact @GlobalTheory.mem_span_boxFam

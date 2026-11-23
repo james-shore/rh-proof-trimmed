@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.hasDerivAt_heisenbergTranslate_fockBox : ∀ {D : 
         (Γ.M.co.e (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.realAd D.host.F s • u)).1 ⬝ᵥ (Γ.M.co.e v).2)) *
       GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.boxA e (Path.Fam.zip (fun a (f : Sch G a) Q => W.fock a.pair f Q) d P) (v + GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.realAd D.host.F s • u))
       (b.sum fun P' c => c * GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.boxA e (Path.Fam.zip (fun a (f : Sch G a) Q => W.fock a.pair f Q) d P') v) 0 := by
-  first | exact @GlobalTheory.RouteBoxDeriv.hasDerivAt_box | exact GlobalTheory.RouteBoxDeriv.hasDerivAt_box | (intros; apply GlobalTheory.RouteBoxDeriv.hasDerivAt_box <;> assumption)
+  first | exact @GlobalTheory.RouteBoxDeriv.hasDerivAt_box

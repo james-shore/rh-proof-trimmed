@@ -68,7 +68,6 @@ private theorem unm_add_one_eq {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 = n) :
     exfalso
     first
     | (simp at h; done)
-    | (rw [WithBot.bot_add] at h; exact WithBot.bot_ne_coe (a := (n : ℕ∞)) (by exact_mod_cast h))
   | coe b =>
     induction b using ENat.recTopCoe with
     | top =>
@@ -77,7 +76,7 @@ private theorem unm_add_one_eq {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 = n) :
       simp at h'
     | coe k =>
       have h' : k + 1 = n := by exact_mod_cast h
-      exact ⟨k, h'.symm, by first | rfl | norm_cast | simp⟩
+      exact ⟨k, h'.symm, by first | rfl | simp⟩
 
 private theorem unm_dim_le_of_le {I J : Ideal R} (h : I ≤ J) :
     ringKrullDim (R ⧸ J) ≤ ringKrullDim (R ⧸ I) := by
@@ -112,7 +111,7 @@ private theorem unm_dim_succ_le_of_lt {Q P : Ideal R} [Q.IsPrime] (h : Q < P) :
     ringKrullDim_le_of_surjective f hf
   calc ringKrullDim (R ⧸ P) + 1
       ≤ ringKrullDim ((R ⧸ Q) ⧸ Ideal.span {(Ideal.Quotient.mk Q a : R ⧸ Q)}) + 1 := by
-        first | gcongr | exact add_le_add_right hle 1
+        first | gcongr
     _ ≤ ringKrullDim (R ⧸ Q) := ringKrullDim_quotient_succ_le_of_nonZeroDivisor hxreg
 
 private theorem unm_modDepthGE_congr {N : Type*} [AddCommGroup N] [Module R N]
@@ -259,7 +258,7 @@ theorem IsCMMod.quotient_ofList (h : IsCMMod R M) {rs : List R}
   induction rs generalizing M with
   | nil =>
     refine unm_isCMMod_congr (Submodule.quotEquivOfEqBot _ ?_).symm h
-    first | simp | simp [Ideal.ofList]
+    first | simp
   | cons r rs ih =>
     rw [RingTheory.Sequence.isRegular_cons_iff] at reg
     have hr : r ∈ maximalIdeal R := hrs r (by simp)

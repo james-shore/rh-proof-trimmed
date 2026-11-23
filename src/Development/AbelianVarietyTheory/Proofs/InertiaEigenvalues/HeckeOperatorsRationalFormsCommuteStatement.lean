@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.heckeOperatorsRationalForms_commute : ∀ {D : D7}
           GlobalTheory.GoodSS.opK S j (H.hL j k P) (fun x hx => H.hs j h1 h2 k P x hx) ∧
       ∀ g : S.G, GlobalTheory.GoodSS.opK S j (H.hL j k P) (fun x hx => H.hs j h1 h2 k P x hx) * rhoKG S j (Y.rho j h1 h2) g =
         rhoKG S j (Y.rho j h1 h2) g * GlobalTheory.GoodSS.opK S j (H.hL j k P) (fun x hx => H.hs j h1 h2 k P x hx) := by
-  first | exact @GlobalTheory.HkKs.opK_comm | exact GlobalTheory.HkKs.opK_comm | (intros; apply GlobalTheory.HkKs.opK_comm <;> assumption)
+  first | exact @GlobalTheory.HkKs.opK_comm

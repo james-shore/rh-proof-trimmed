@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.adjointFrameMatrix_add_integral_reduction : ∀ {D
   IsIntM (frMapAdj S T βS βT x) → IsIntM (frMapAdj S T βS βT y) →
   IsIntM (frMapAdj S T βS βT (x + y)) ∧
   ∀ PP : Pl D.host.E, redM PP (frMapAdj S T βS βT (x + y)) = redM PP (frMapAdj S T βS βT x) + redM PP (frMapAdj S T βS βT y) := by
-  first | exact @GlobalTheory.FrameAdjAdd.frMapAdj_add_isIntM_redM | exact GlobalTheory.FrameAdjAdd.frMapAdj_add_isIntM_redM | (intros; apply GlobalTheory.FrameAdjAdd.frMapAdj_add_isIntM_redM <;> assumption)
+  first | exact @GlobalTheory.FrameAdjAdd.frMapAdj_add_isIntM_redM

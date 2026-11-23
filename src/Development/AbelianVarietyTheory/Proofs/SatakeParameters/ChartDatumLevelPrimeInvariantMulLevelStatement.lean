@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.chartDatum_levelPrime_invariant_mul_level : UnderT
     ∀ p p' p₁ p₁', IsPtAd A a i (Nat.le_of_succ_le hi) β x p → IsPtAd A a (i + 1) hi β' x' p' →
       IsPtAd A a i (Nat.le_of_succ_le hi) β x₁ p₁ → IsPtAd A a (i + 1) hi β' x₁' p₁' →
       ∀ z, phiT t.X.K p₁.deco.1 p₁'.deco.1 z = phiT t.X.K p.deco.1 p'.deco.1 z) := by
-  first | exact @GlobalTheory.TwV.PhiTLev.phiT_mul_lev | exact GlobalTheory.TwV.PhiTLev.phiT_mul_lev | (intros; apply GlobalTheory.TwV.PhiTLev.phiT_mul_lev <;> assumption)
+  first | exact @GlobalTheory.TwV.PhiTLev.phiT_mul_lev

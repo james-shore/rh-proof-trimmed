@@ -45,4 +45,4 @@ open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 theorem _root_.GlobalTheory.T.valEqSelfSt_of_hyps : ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O : Type) [CommRing O] [StarRing O] (dd : ℕ) (Y : FBChart C V O dd) (d : ℕ) [NeZero d] (Orb : Type) [Fintype Orb] (I0 : Orb → Type) [∀ o, Fintype (I0 o)] (p : ∀ o, SelfData Y d (I0 o)) (H : ∀ o, (Y.rawSelf (p o)).Hyps V) (Ls : LetSys C dd) (n : ℕ), ValEqSelfSt Y p H Ls n := by
-  first | exact @GlobalTheory.ValSelf.valEqSelf | exact GlobalTheory.ValSelf.valEqSelf | (intros; apply GlobalTheory.ValSelf.valEqSelf <;> assumption)
+  first | exact @GlobalTheory.ValSelf.valEqSelf

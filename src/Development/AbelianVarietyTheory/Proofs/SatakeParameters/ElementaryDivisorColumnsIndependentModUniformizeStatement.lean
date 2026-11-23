@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.elementaryDivisor_columns_independentModUniformize
     (∀ c : Fin n → L, (∀ j, c j ∈ Formalism.UG.intL L) →
       ((∀ i, (x *ᵥ (V *ᵥ c)) i ∈ Formalism.UG.intL L) ↔ ∀ j, GlobalTheory.Hk3.IntWitt.DvdPow ϖ (a j) (c j))) →
     GlobalTheory.Hk3.IntWitt.IndepMod ϖ (fun j : {j : Fin n // 0 < a j} => x *ᵥ (V *ᵥ Pi.single (j : Fin n) (ϖ ^ a (j : Fin n)))) := by
-  first | exact @GlobalTheory.columns_indepMod | exact GlobalTheory.columns_indepMod | (intros; apply GlobalTheory.columns_indepMod <;> assumption)
+  first | exact @GlobalTheory.columns_indepMod

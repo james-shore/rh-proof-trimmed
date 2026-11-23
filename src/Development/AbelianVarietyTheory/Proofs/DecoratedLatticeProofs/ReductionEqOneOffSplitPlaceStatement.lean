@@ -54,4 +54,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.StepData GlobalTheory.SplitWeil ValuativeRel
 
 theorem _root_.GlobalTheory.T.reduction_eq_one_off_splitPlace : ∀ {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (q : GlobalTheory.FinPl.SplitPt D k) {PP : Formalism.L2.DIV.Pl D.host.E}, Formalism.L2.NTheta.IsIdemAt q.e PP → ∀ (V : HSp D) (β : GL (Fin V.rank) (Lev.EAf D)) (κ : GA D V), Formalism.L2.Theta.SuppAt q.e V κ → Lev.finE V κ ∈ Formalism.L2.DIV.St β → ∀ PP' : Formalism.L2.DIV.Pl D.host.E, (_root_.IsDedekindDomain.HeightOneSpectrum.under (𝓞 D.host.F) PP') ≠ (_root_.IsDedekindDomain.HeightOneSpectrum.under (𝓞 D.host.F) PP) → Formalism.L2.DIV.redFn β PP' (Lev.finE V κ) = 1 := by
-  first | exact @GlobalTheory.SplitOffRed.redFn_eq_one_off | exact GlobalTheory.SplitOffRed.redFn_eq_one_off | (intros; apply GlobalTheory.SplitOffRed.redFn_eq_one_off <;> assumption)
+  first | exact @GlobalTheory.SplitOffRed.redFn_eq_one_off

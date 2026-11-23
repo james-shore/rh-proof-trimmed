@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.goodForms_lift_baseLevel_extension_span : GlobalTh
         ∀ (j : Fin (w.st Z).toD7.R.m) (j' : Fin (w'.st Z').toD7.R.m), (j : ℕ) = j' →
         ∀ φ : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL, (∀ x, (w'.st Z').toD7.what₂.embLL (φ x) = (w.st Z).toD7.what₂.embLL x) →
         z'.R.toRealDat.WL z'.F.lv2 false j' = Submodule.span (w'.st Z').toD7.what₂.LL {x' | ∃ x ∈ z.R.toRealDat.WL z.F.lv2 false j, ∀ (k : Fin (z.R.nW j)) (k' : Fin (z'.R.nW j')), (k : ℕ) = k' → x' k' = φ (x k)}) := by
-  first | exact @GlobalTheory.Mem.R3.Rw.goodForms_lift_bc | exact GlobalTheory.Mem.R3.Rw.goodForms_lift_bc | (intros; apply GlobalTheory.Mem.R3.Rw.goodForms_lift_bc <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.goodForms_lift_bc

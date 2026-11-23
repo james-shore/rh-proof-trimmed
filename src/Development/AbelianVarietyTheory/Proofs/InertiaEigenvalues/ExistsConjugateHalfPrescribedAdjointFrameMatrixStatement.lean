@@ -49,4 +49,4 @@ open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestrictio
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_conjugateHalf_prescribed_adjoint_frameMatrix : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) (e : AE D), e * e = e → ∀ z : Matrix (Fin S.rank) (Fin T.rank) (EAf D), (∀ i j, toEAf D e * z i j = z i j) → ∃ y : WO S T, IsHalf (cA D e) y ∧ (∀ i j, infPart D (y i j) = 0) ∧ frMapAdj S T βS βT y = z := by
-  first | exact @GlobalTheory.AdjHalfLift.exists_half_frMapAdj | exact GlobalTheory.AdjHalfLift.exists_half_frMapAdj | (intros; apply GlobalTheory.AdjHalfLift.exists_half_frMapAdj <;> assumption)
+  first | exact @GlobalTheory.AdjHalfLift.exists_half_frMapAdj

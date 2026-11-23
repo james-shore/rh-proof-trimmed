@@ -50,4 +50,4 @@ open scoped CategoryTheory.Obj TensorProduct ContDiff
 open GlobalTheory.KS
 
 theorem _root_.GlobalTheory.T.exists_unique_invariantVectorField_of_tangent : ∀ (K : Type) [Field K] (A₀ : Over (Sp K)) [GrpObj A₀] (v : epsR K ⟶ A₀), IsTangent v → (∃ dd, IsInvDer v dd) ∧ ∀ dd, IsInvDer v dd → (∀ W f f', dd W (f + f') = dd W f + dd W f') ∧ (∀ W f f', dd W (f * f') = f * dd W f' + f' * dd W f) ∧ (∀ W W' (f : Γ(A₀.left, W)), W' ≤ W → dd W' (rsT f W') = rsT (dd W f) W') ∧ (∀ W a, dd W (constFn A₀.hom W a) = 0) ∧ ∀ dd', IsInvDer v dd' → dd' = dd := by
-  first | exact @GlobalTheory.KS.InvField.main | exact GlobalTheory.KS.InvField.main | (intros; apply GlobalTheory.KS.InvField.main <;> assumption)
+  first | exact @GlobalTheory.KS.InvField.main

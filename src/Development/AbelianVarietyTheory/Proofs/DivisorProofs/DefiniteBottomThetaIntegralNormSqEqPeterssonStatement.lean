@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.definiteBottom_thetaIntegral_normSq_eq_petersson :
     ∃ m : Measure (GA D (GlobalTheory.Grid.neg A)), m.IsHaarMeasure ∧
       ((∫ h in 𝓕, ‖X.I W.ψ W.θ t P h‖ ^ 2 ∂ν : ℝ) : ℂ) =
         petersson WW ν (up ((X.ω t).toSgn true) m (pureTensorO W.ψ W.θ (GlobalTheory.Grid.neg A) WW (fun τ => -X.rA.s τ) X.rW.s X.rA.B X.rW.B (X.f t) P) fun _ => 1) (up ((X.ω t).toSgn true) m (pureTensorO W.ψ W.θ (GlobalTheory.Grid.neg A) WW (fun τ => -X.rA.s τ) X.rW.s X.rA.B X.rW.B (X.f t) P) fun _ => 1) := by
-  first | exact @GlobalTheory.NormBigDict.normSq_eq_petersson | exact GlobalTheory.NormBigDict.normSq_eq_petersson | (intros; apply GlobalTheory.NormBigDict.normSq_eq_petersson <;> assumption)
+  first | exact @GlobalTheory.NormBigDict.normSq_eq_petersson

@@ -50,4 +50,4 @@ open NumberField GlobalTheory.UnitaryBC IsDedekindDomain Matrix Polynomial Globa
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.isIntegral_of_preserves_fullLattice : ∀ (K : GlobalTheory.UnitLemma.UQ) (B : GlobalTheory.UnitLemma.InvAlg K) (u : B.A) (L : Submodule K.O B.A), GlobalTheory.UnitLemma.IsLat K.O K.E L → (∀ z ∈ L, u * z ∈ L) → IsIntegral K.O u := by
-  first | exact @GlobalTheory.UnitLemma.isIntegral_of_lat_stable | exact GlobalTheory.UnitLemma.isIntegral_of_lat_stable | (intros; apply GlobalTheory.UnitLemma.isIntegral_of_lat_stable <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.isIntegral_of_lat_stable

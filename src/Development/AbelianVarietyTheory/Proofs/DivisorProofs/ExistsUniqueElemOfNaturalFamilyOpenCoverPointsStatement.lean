@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.existsUnique_elem_of_natural_family_openCoverPoint
       τ E' (θ.comp ψ) = θ (τ E ψ)) →
     ∃! d : D, ∀ (E : Type) [CommRing E] [Algebra R E] (ψ : D →ₐ[R] E),
       Sm W (D := E) (spOver ψ ≫ y) → τ E ψ = ψ d := by
-  first | exact @GlobalTheory.PtExt.NatGlue.existsUnique_of_natural | exact GlobalTheory.PtExt.NatGlue.existsUnique_of_natural | (intros; apply GlobalTheory.PtExt.NatGlue.existsUnique_of_natural <;> assumption)
+  first | exact @GlobalTheory.PtExt.NatGlue.existsUnique_of_natural

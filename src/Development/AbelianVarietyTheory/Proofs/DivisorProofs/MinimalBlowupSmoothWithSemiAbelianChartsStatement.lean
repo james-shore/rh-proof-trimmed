@@ -41,4 +41,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 theorem _root_.GlobalTheory.T.minimalBlowup_smooth_with_semiAbelianCharts : GlobalTheory.SiegJoin.ChartSt5 := by
-  first | exact @GlobalTheory.SiegJoin.chartSt5_holds | exact GlobalTheory.SiegJoin.chartSt5_holds | (intros; apply GlobalTheory.SiegJoin.chartSt5_holds <;> assumption)
+  first | exact @GlobalTheory.SiegJoin.chartSt5_holds

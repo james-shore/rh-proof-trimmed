@@ -43,4 +43,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.IsoTriv
 
 theorem _root_.GlobalTheory.T.invariantDerivationEqPartialLogCoords_proof : InvDerSt := by
-  first | exact @GlobalTheory.InvDer.invDer | exact GlobalTheory.InvDer.invDer | (intros; apply GlobalTheory.InvDer.invDer <;> assumption)
+  first | exact @GlobalTheory.InvDer.invDer

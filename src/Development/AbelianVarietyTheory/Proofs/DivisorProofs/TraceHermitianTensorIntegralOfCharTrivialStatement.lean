@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.trace_hermitianTensor_integral_of_char_trivial : �
       ψ (symp (cA σ) (-1) (incM F X.J) (incM F Y.J) (GlobalTheory.EmbChart.atPlace v 1 • incM F X₀) γ) = 1) →
     ∀ x ∈ X.L, ∀ y ∈ Y.L, algebraMap F (Fv F v) (Algebra.trace F E (-GlobalTheory.WeilM.hTens σ X.J Y.J X₀ (Matrix.vecMulVec x y)))
       ∈ v.adicCompletionIntegers F := by
-  first | exact @GlobalTheory.KFinLoc.trace_hTens_integral_of_char | exact GlobalTheory.KFinLoc.trace_hTens_integral_of_char | (intros; apply GlobalTheory.KFinLoc.trace_hTens_integral_of_char <;> assumption)
+  first | exact @GlobalTheory.KFinLoc.trace_hTens_integral_of_char

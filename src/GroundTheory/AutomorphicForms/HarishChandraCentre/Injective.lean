@@ -66,7 +66,7 @@ theorem exists_adjoint (u : U n) :
     rw [ι_eq_sum_e]
 
     simp only [map_sum, map_smul, LinearMap.sum_apply, LinearMap.smul_apply, fischer_sum_left,
-    fischer_sum_right, fischer_smul_left, fischer_smul_right, star_star]
+    fischer_sum_right, fischer_smul_left, fischer_smul_right]
     refine Finset.sum_congr rfl fun a _ => ?_
     rw [show e a = e (a.1, a.2) from rfl, rho_zero_e, rho_zero_e, fischer_rowOp]
   | hmul a b ha hb =>

@@ -71,7 +71,7 @@ private theorem permJ' {r : ℕ} (p q : ℕ) (e : Fin p ⊕ Fin q ≃ Fin r) :
     revert h
     generalize e.symm a = i
     generalize e.symm b = j
-    rcases i with i | i <;> rcases j with j | j <;> intro h <;> simp_all [one_apply]
+    rcases i with i | i <;> rcases j with j | j <;> intro h <;> simp_all
 
 namespace GlobalTheory.CovTop.VolUp.FrameBox
 

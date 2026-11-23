@@ -327,7 +327,6 @@ theorem norm_nat_coprime [Fact p.Prime] {s : ℕ} (h : Nat.Coprime s p) : ‖(s 
   rw [← h1, PadicComplex.norm_extends, PadicAlgCl.norm_extends, Padic.norm_natCast_eq_one_iff]
   first
   | exact h.symm
-  | exact (Nat.Prime.coprime_iff_not_dvd Fact.out).mp h.symm
 
 theorem norm_le_of_intAt [Fact p.Prime] (ψ : K →+* ℂ_[p]) {x : K} (h : IntAt p x) : ‖ψ x‖ ≤ 1 := by
   obtain ⟨s, hs, hx⟩ := h

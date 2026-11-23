@@ -47,4 +47,4 @@ open scoped MatrixGroups Real ComplexConjugate
 
 theorem _root_.GlobalTheory.T.regularizedEisensteinLatticeSum_dilate : ∀ (j L N : ℕ) (v : ℤ × ℤ) (Φ : ℤ × ℤ → ℂ) (τ τ' : ℍ), 0 < N → (τ' : ℂ) = N * τ →
     lat j 0 L v Φ τ' = lat j 0 L ((N : ℤ) * v.1, v.2) (fun y => if (N : ℤ) ∣ y.1 then Φ (y.1 / N, y.2) else 0) τ := by
-  first | exact @GlobalTheory.EisM.lat_dilate | exact GlobalTheory.EisM.lat_dilate | (intros; apply GlobalTheory.EisM.lat_dilate <;> assumption)
+  first | exact @GlobalTheory.EisM.lat_dilate

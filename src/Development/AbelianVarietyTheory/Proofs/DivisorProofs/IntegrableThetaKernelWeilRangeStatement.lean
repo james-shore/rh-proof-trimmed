@@ -46,4 +46,4 @@ open GlobalTheory.AutomorphicL2Unitary GlobalTheory.Doubling GlobalTheory.Eis Gl
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.integrable_thetaKernel_weilRange : GlobalTheory.Published.WeilThetaConvergence → ∀ (D : D7) (A B : HSp D) (m : Measure (GA D B)), m.IsHaarMeasure → 1 ≤ A.rank → (Formalism.MainNotions.SchurIrreducible.wittIdx B = 0 ∨ A.rank + Formalism.MainNotions.SchurIrreducible.wittIdx B < B.rank) → ∀ (ψ : AddChar (AF D.host.F) ℂ) (χ : (AE D)ˣ →* Circle) (ω : GA D (dblSp A) × GA D B →* Module.End ℂ (WO (dblSp A) B → ℂ)), IsWeilDatumO ψ (dblSp A) B 1 χ ω → ∀ f, IsThetaFunO ψ (dblSp A) B f → ∀ g, Integrable (descend (GQ B) fun h => thetaKO ω g h f) (autMeasure B m) := by
-  first | exact @GlobalTheory.WeilThetaInt.integrable_thetaKO | exact GlobalTheory.WeilThetaInt.integrable_thetaKO | (intros; apply GlobalTheory.WeilThetaInt.integrable_thetaKO <;> assumption)
+  first | exact @GlobalTheory.WeilThetaInt.integrable_thetaKO

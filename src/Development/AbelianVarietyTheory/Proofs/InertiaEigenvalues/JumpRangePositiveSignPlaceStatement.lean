@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism Formalism.MainNotions Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module GlobalTheory.Pass
 
 theorem _root_.GlobalTheory.T.jump_range_positive_sign_place : StepJumpDirect := by
-  first | exact @GlobalTheory.Pass.stepJumpDirect_holds | exact GlobalTheory.Pass.stepJumpDirect_holds | (intros; apply GlobalTheory.Pass.stepJumpDirect_holds <;> assumption)
+  first | exact @GlobalTheory.Pass.stepJumpDirect_holds

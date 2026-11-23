@@ -47,4 +47,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.AdelicScalar GlobalTheory.LiftRows GlobalTheory.LowRow
 
 theorem _root_.GlobalTheory.T.adelicLift_mem_cuspForm_multiplicitySpace : GlobalTheory.Published.CuspRapidDecay → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), LiftIsCuspC R F := by
-  first | exact @GlobalTheory.LowRow.CuspLift.liftIsCuspC | exact GlobalTheory.LowRow.CuspLift.liftIsCuspC | (intros; apply GlobalTheory.LowRow.CuspLift.liftIsCuspC <;> assumption)
+  first | exact @GlobalTheory.LowRow.CuspLift.liftIsCuspC

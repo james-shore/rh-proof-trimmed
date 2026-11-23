@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.finiteSetsInAffineOpen_finite_coproduct : ∀ {κ : Type} [Finite κ] (B : κ → Scheme.{0}), (∀ i, FinAff (B i)) → FinAff (∐ B) := by
-  first | exact @GlobalTheory.DualCon.finAff_sigma | exact GlobalTheory.DualCon.finAff_sigma | (intros; apply GlobalTheory.DualCon.finAff_sigma <;> assumption)
+  first | exact @GlobalTheory.DualCon.finAff_sigma

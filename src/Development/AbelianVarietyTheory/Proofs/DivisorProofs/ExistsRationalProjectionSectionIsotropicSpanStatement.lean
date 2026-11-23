@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.exists_rational_projection_section_isotropicSpan :
       (∀ s ∈ S, (s.1, (Q.map (algebraMap F (AF F))) *ᵥ s.1) ∈ S) ∧
       (∀ ξ : κ → F, P *ᵥ ξ = 0 →
         ((fun i => algebraMap F (AF F) (ξ i)), (fun i => algebraMap F (AF F) ((Q *ᵥ ξ) i))) ∈ S) := by
-  first | exact @GlobalTheory.rational_proj_section_of_span | exact GlobalTheory.rational_proj_section_of_span | (intros; apply GlobalTheory.rational_proj_section_of_span <;> assumption)
+  first | exact @GlobalTheory.rational_proj_section_of_span

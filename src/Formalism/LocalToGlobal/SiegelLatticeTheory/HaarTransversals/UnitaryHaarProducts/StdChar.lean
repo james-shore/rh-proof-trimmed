@@ -182,7 +182,7 @@ def psiFin (z : Af F) : ℂ := ((AddCircle.toCircle (-((exists_psiF F).choose z)
 theorem psiFin_add (z w : Af F) : psiFin F (z + w) = psiFin F z * psiFin F w := by
   unfold psiFin
   rw [map_add (f := _), neg_add, AddCircle.toCircle_add]
-  first | rfl | simp
+  first | rfl
 
 theorem psiFin_int (z : Af F) (hz : z ∈ Formalism.UG.intAd F) : psiFin F z = 1 := by
   have h0 := (exists_psiF F).choose_spec.1 z hz

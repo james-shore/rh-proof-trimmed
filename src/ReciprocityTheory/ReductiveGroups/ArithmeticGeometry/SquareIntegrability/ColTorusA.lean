@@ -128,7 +128,7 @@ theorem ct_iter_cexp {V : Type*} [NormedAddCommGroup V] [NormedSpace ℂ V]
           ((ContinuousMultilinearMap.mkPiAlgebraFin ℂ n ℂ).compContinuousLinearMap (fun _ => ℓ))) v :=
       (ℓ.hasFDerivAt.cexp).smul_const _
     rw [hd.fderiv]
-    simp [ContinuousMultilinearMap.mkPiAlgebraFin_apply, List.prod_ofFn, Fin.prod_univ_succ, Fin.tail]
+    simp [ContinuousMultilinearMap.mkPiAlgebraFin_apply, List.prod_ofFn, Fin.tail]
     all_goals ring
 
 theorem ct_iter_cexp_apply {V : Type*} [NormedAddCommGroup V] [NormedSpace ℂ V]

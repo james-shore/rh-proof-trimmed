@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_iso_cancel_pulled_bundles_germs : ∀ {Y XA
       ∀ (Z : Scheme.{0}) (r : Z ⟶ Y) (z : Z) (i : LL.ι) (j : LM.ι) (k : LP.ι),
         fst (r z) ∈ LL.U i → fst (r z) ∈ LM.U j → θ (r z) ∈ LP.U k →
         gw w₀ r z j (fun _ => k) = (gm (r ≫ fst) z (LL.U i ⊓ LM.U j) (e.s (i, j)))⁻¹ * gw ψ (r ≫ θ) z i k := by
-  first | exact @GlobalTheory.IsoComp.isoCancelGerm | exact GlobalTheory.IsoComp.isoCancelGerm | (intros; apply GlobalTheory.IsoComp.isoCancelGerm <;> assumption)
+  first | exact @GlobalTheory.IsoComp.isoCancelGerm

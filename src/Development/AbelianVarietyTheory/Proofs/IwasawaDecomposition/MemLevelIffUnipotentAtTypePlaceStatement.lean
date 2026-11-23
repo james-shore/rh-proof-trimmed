@@ -69,4 +69,4 @@ theorem _root_.GlobalTheory.T.mem_level_iff_unipotent_at_typePlace : ∀ (D : D7
     (∀ P ∈ M.QP, (M.sp P).v ≠ (M.sp (NX.pG D kv0)).v) → (∀ P ∈ M.DP, (M.sp P).v ≠ (M.sp (NX.pG D kv0)).v) →
     ∀ κ, TrivOutside {(M.sp (NX.pG D kv0)).v} κ →
       (κ ∈ M.J ↔ NG.UniRT (M.sp (NX.pG D kv0)) D.R.r ((M.sp (NX.pG D kv0)).loc D.R.nV κ)) := by
-  first | exact @GlobalTheory.LevUniLoc.mem_iff_uniRT | exact GlobalTheory.LevUniLoc.mem_iff_uniRT | (intros; apply GlobalTheory.LevUniLoc.mem_iff_uniRT <;> assumption)
+  first | exact @GlobalTheory.LevUniLoc.mem_iff_uniRT

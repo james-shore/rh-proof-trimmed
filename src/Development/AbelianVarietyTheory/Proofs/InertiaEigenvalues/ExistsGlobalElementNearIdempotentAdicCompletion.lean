@@ -72,7 +72,7 @@ theorem exists_global_near_idempotent (E E' : Type) [Field E] [NumberField E] [F
     intro t
     ext i
 
-    simp [hΦ, map_sum, Finsupp.smul_apply, Finsupp.single_apply]
+    simp [hΦ, map_sum, Finsupp.single_apply]
   have hM : Continuous fun t => Algebra.leftMulMatrix B (Φ t) := by
     have h : (fun t => Algebra.leftMulMatrix B (Φ t)) =
         fun t => ∑ i, t i • Algebra.leftMulMatrix B (B i) := by

@@ -58,4 +58,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.exists_finite_local_extension_with_embedded_field_extension : ∀ (V₀ : Type) [CommRing V₀] [IsDomain V₀] [IsLocalRing V₀], IsCN V₀ → ∀ (L : Type) [Field L] [Algebra (FractionRing V₀) L] [FiniteDimensional (FractionRing V₀) L], ∃ (V₁ : Type) (_ : CommRing V₁) (_ : IsDomain V₁) (_ : IsLocalRing V₁) (ρ : V₀ →+* V₁) (σ : L →+* FractionRing V₁), IsCN V₁ ∧ Function.Injective ρ ∧ ρ.Finite ∧ IsLocalHom ρ ∧ ∀ x : V₀, σ (algebraMap (FractionRing V₀) L (algebraMap V₀ (FractionRing V₀) x)) = algebraMap V₁ (FractionRing V₁) (ρ x) := by
-  first | exact @GlobalTheory.Poinc.exists_integralClosure_isCN_finite_local | exact GlobalTheory.Poinc.exists_integralClosure_isCN_finite_local | (intros; apply GlobalTheory.Poinc.exists_integralClosure_isCN_finite_local <;> assumption)
+  first | exact @GlobalTheory.Poinc.exists_integralClosure_isCN_finite_local

@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.classSum_principalLevel_eq_const_mul_classSum : �
     ∀ (ω : PairRep S T), B.IsWeil ψ.chi ω → ∀ (m : ℕ) (h₀ : Fin m → GA D S), IsClassSystem S ((GlobalTheory.FlatVecSum.princ B).levJ ψ) h₀ →
     ∀ (I : Type) [Fintype I] (h : I → GA D S), IsClassSystem S (B.levJ ψ) h →
     ∃ κ : ℂ, ∀ F ∈ B.formsC ψ, (GlobalTheory.FlatVecSum.princ B).classSum ω ψ h₀ F = κ • B.classSum ω ψ h F := by
-  first | exact @GlobalTheory.ClassSumPrinc.classSum_princ_eq | exact GlobalTheory.ClassSumPrinc.classSum_princ_eq | (intros; apply GlobalTheory.ClassSumPrinc.classSum_princ_eq <;> assumption)
+  first | exact @GlobalTheory.ClassSumPrinc.classSum_princ_eq

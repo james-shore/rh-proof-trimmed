@@ -49,4 +49,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.twistedChain_coefficient_supported_principal_level : ∀ D : D7, ForStepQ D fun c w _ s s' p => ∀ m X, IsCovolOne (ratL s'.V s.V) m X → ∀ P (g : GA D s.V), coefW p.ω m X (p.pt P) g ≠ 0 → ∀ v ∈ w.S₀, gAt s.V (.inl v) g ∈ Lev.levG s.V s.β s.L := by
-  first | exact @GlobalTheory.TwSuppLev.supp_at_principal | exact GlobalTheory.TwSuppLev.supp_at_principal | (intros; apply GlobalTheory.TwSuppLev.supp_at_principal <;> assumption)
+  first | exact @GlobalTheory.TwSuppLev.supp_at_principal

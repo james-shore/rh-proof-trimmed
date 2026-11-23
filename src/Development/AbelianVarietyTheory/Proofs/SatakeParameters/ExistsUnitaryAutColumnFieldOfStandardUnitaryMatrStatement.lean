@@ -45,4 +45,4 @@ open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.MainNo
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.exists_unitaryAut_columnField_of_standard_unitary_matrix : ∀ {D : D7} {X : Fields} (s : Seam D X), s.Ok → ∀ {n : ℕ} (G : GL (Fin n) D.host.E), cT (Formalism.L2.Forms.sigD D : D.host.E →+* D.host.E) (G : Matrix (Fin n) (Fin n) D.host.E) * (G : Matrix (Fin n) (Fin n) D.host.E) = 1 → ∃ g : UF X.E n, seamGL s g.1 = G := by
-  first | exact @GlobalTheory.TwU.UnitaryFrom.exists_uf_seamGL_eq | exact GlobalTheory.TwU.UnitaryFrom.exists_uf_seamGL_eq | (intros; apply GlobalTheory.TwU.UnitaryFrom.exists_uf_seamGL_eq <;> assumption)
+  first | exact @GlobalTheory.TwU.UnitaryFrom.exists_uf_seamGL_eq

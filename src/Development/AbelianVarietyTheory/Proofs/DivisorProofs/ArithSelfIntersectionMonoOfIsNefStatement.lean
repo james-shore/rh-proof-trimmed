@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 theorem _root_.GlobalTheory.T.arithSelfIntersection_mono_of_isNef : GlobalTheory.Published.ArCalc → AmpleHS → SemiPull → ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ (A B : HermLB p) (α β : ℝ), A.IsNef D → B.IsNef D → Le B A → A.IsSelfInter α → B.IsSelfInter β → β ≤ α := by
-  first | exact @GlobalTheory.HSNefMono.selfInter_mono_of_isNef | exact GlobalTheory.HSNefMono.selfInter_mono_of_isNef | (intros; apply GlobalTheory.HSNefMono.selfInter_mono_of_isNef <;> assumption)
+  first | exact @GlobalTheory.HSNefMono.selfInter_mono_of_isNef

@@ -84,4 +84,4 @@ theorem _root_.GlobalTheory.T.finite_plancherel_schrodinger_intertwiner_alt : �
   Th f₀ → ip f₀ f₀ = 1 →
   ip (T fun t => if h : t ∈ Λc then Gd (red ⟨t, h⟩) else 0) (T fun t => if h : t ∈ Λc then Gd (red ⟨t, h⟩) else 0) =
     ((∑ g, ‖Gd g‖ ^ 2 : ℝ) : ℂ) / (Fintype.card G : ℂ) := by
-  first | exact @GlobalTheory.finite_plancherel_schrodinger_intertwiner | exact GlobalTheory.finite_plancherel_schrodinger_intertwiner | (intros; apply GlobalTheory.finite_plancherel_schrodinger_intertwiner <;> assumption)
+  first | exact @GlobalTheory.finite_plancherel_schrodinger_intertwiner

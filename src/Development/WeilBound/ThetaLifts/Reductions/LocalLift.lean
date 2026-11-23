@@ -91,11 +91,11 @@ theorem block_inl_inl_one : bl Sum.inl Sum.inl (1 : Matrix (l ⊕ l) (l ⊕ l) �
 
 theorem block_inl_inr_one : bl Sum.inl Sum.inr (1 : Matrix (l ⊕ l) (l ⊕ l) ℝ) = 0 := by
   ext x a
-  simp [bl_apply, Matrix.one_apply]
+  simp [bl_apply]
 
 theorem block_inr_inl_one : bl Sum.inr Sum.inl (1 : Matrix (l ⊕ l) (l ⊕ l) ℝ) = 0 := by
   ext x a
-  simp [bl_apply, Matrix.one_apply]
+  simp [bl_apply]
 
 theorem hasDerivAt_lin_exp {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F] (L : Matrix (l ⊕ l) (l ⊕ l) ℝ →ₗ[ℝ] F)
     (X : Matrix (l ⊕ l) (l ⊕ l) ℝ) (t : ℝ) :

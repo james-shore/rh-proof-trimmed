@@ -60,7 +60,6 @@ theorem annihilator_levels_of_grading (D : D7) (HW : HWOf D.loc) (F : FonOf D.lo
   intro l _ K LL hG hC h5
   have hfd : FiniteDimensional (Padic l) ↥(K0 K) := by
     first
-    | exact inferInstance
     | exact ((D.loc l).PD K).finK₀
   haveI : NeZero (Module.finrank (Padic l) ↥(K0 K)) := ⟨Module.finrank_pos.ne'⟩
   have hR := ring_condition_uniformizer_polynomial D HW F h9 l K LL hC

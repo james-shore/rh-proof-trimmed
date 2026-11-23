@@ -45,4 +45,4 @@ open GlobalTheory GlobalTheory.CM
 
 
 theorem _root_.GlobalTheory.T.exists_pat_pullback_g_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (S S' : Scheme.{0}) (f : S' ⟶ S) (T : PAT H S), ∃ (T' : PAT H S') (_ : SABMap T'.t T.t f), T'.g = T.g := by
-  first | exact @GlobalTheory.CM.PAT.exists_pullback | exact GlobalTheory.CM.PAT.exists_pullback | (intros; apply GlobalTheory.CM.PAT.exists_pullback <;> assumption)
+  first | exact @GlobalTheory.CM.PAT.exists_pullback

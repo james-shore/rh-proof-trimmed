@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.uniformisationExistence_and_torsion_statements : GlobalTheory.ZH.ThmUSt ∧ GlobalTheory.ZH.UTorsSt := by
-  first | exact @GlobalTheory.ZH.thmU_and_uTors | exact GlobalTheory.ZH.thmU_and_uTors | (intros; apply GlobalTheory.ZH.thmU_and_uTors <;> assumption)
+  first | exact @GlobalTheory.ZH.thmU_and_uTors

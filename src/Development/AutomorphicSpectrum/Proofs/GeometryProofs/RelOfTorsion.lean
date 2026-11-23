@@ -456,7 +456,7 @@ theorem omega_canon : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClos
       let W : Submodule R (Module.Dual R L) := LinearMap.range ((N : R) • (LinearMap.id : Module.Dual R L →ₗ[R] Module.Dual R L))
       have h0 : N • W.mkQ = 0 := by
         ext w'
-        simp only [LinearMap.smul_apply, LinearMap.zero_apply, LinearMap.comp_apply]
+        simp only [LinearMap.smul_apply, LinearMap.zero_apply]
         exact (map_nsmul W.mkQ N w').symm.trans ((Submodule.Quotient.mk_eq_zero W).2 ⟨w', by simp [Nat.cast_smul_eq_nsmul]⟩)
       obtain ⟨ψ, hψ, -⟩ := hlift _ W.mkQ h0
       have h1 : W.mkQ w = 0 := by

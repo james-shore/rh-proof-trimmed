@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.shiftedJumpUpperBound_le_twist_bound : ∀ (t : �
       (if up then (z : ℝ) - ((t : ℝ) - 1) / 2 else ((t : ℝ) - 1) / 2 - z) ≤ W0 + S + η + 1) →
     2 * B + (t : ℝ) / 2 + 3 ≤ W0 →
     ((GlobalTheory.PositionData.hS up t Fl Fc : ℕ) : ℝ) ≤ W0 + S + 2 * η + 3 := by
-  first | exact @GlobalTheory.hS_le_bound | exact GlobalTheory.hS_le_bound | (intros; apply GlobalTheory.hS_le_bound <;> assumption)
+  first | exact @GlobalTheory.hS_le_bound

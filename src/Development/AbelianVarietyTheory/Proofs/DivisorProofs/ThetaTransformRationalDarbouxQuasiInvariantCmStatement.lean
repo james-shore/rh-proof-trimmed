@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.thetaTransform_rationalDarboux_quasiInvariant_cm :
             GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ φ (Formalism.IndefR.DatumF.ratWF γ + w) =
               B.ψ (-(Formalism.IndefR.DatumF.symplOHF σ JS JT ξ₀ (Formalism.IndefR.DatumF.ratWF γ) w)) *
                 GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ φ w := by
-  first | exact @GlobalTheory.ThetaQuasiRatCM.thetaTr_ratWF_add_quasi | exact GlobalTheory.ThetaQuasiRatCM.thetaTr_ratWF_add_quasi | (intros; apply GlobalTheory.ThetaQuasiRatCM.thetaTr_ratWF_add_quasi <;> assumption)
+  first | exact @GlobalTheory.ThetaQuasiRatCM.thetaTr_ratWF_add_quasi

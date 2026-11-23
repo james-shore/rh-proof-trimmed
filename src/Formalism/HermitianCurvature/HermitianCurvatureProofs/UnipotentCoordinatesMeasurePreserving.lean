@@ -2338,7 +2338,7 @@ theorem um_uni (x1 : U.RC k 1 (j + ρ)) : Ux2.uniK (Ux2.kU (j + 1)) (Um x1) := b
         intro h; subst h; exact lt_irrefl _ hab
 
 theorem rev_zero' (n : ℕ) : Fin.rev (0 : Fin (n + 1)) = Fin.last n := by ext; simp
-theorem rev_succ' {n : ℕ} (a : Fin n) : Fin.rev a.succ = (Fin.rev a).castSucc := by ext; simp [Fin.val_rev]; try omega
+theorem rev_succ' {n : ℕ} (a : Fin n) : Fin.rev a.succ = (Fin.rev a).castSucc := by ext; simp [Fin.val_rev]
 theorem rev_last' (n : ℕ) : Fin.rev (Fin.last n) = 0 := by ext; simp
 theorem rev_castSucc' {n : ℕ} (a : Fin n) : Fin.rev a.castSucc = (Fin.rev a).succ := by ext; simp [Fin.val_rev]; try omega
 
@@ -2584,7 +2584,6 @@ theorem kl0 (x1 : U.RC k 1 (j + ρ)) (x : U.RC k j ρ) :
         simp only [Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₁₂, Matrix.neg_apply, Matrix.neg_mul]
         rw [rowP, hrn_form, vecMul_block3_first_coords, e1, e2, e3]
         simp [Um]
-        done
     | succ a =>
       cases a' using Fin.cases with
       | zero => simp only [posX, pos0, Ux3.block3_apply]; simp [Um]
@@ -4225,7 +4224,7 @@ theorem mem_N (M : B.Mat k r) (hM : M ∈ UH (Hpk k r)) (U : Matrix (Fin (r + 1)
     · rw [ee_sum_hi _ i (by omega), if_neg]; intro e; rw [e] at hi; simp [eI] at hi
   · intro i j hj1 hj2 hi
     rw [entry M i j, hw j hj1 hj2 i hi]
-    simp [bvec, Pi.single_apply, eq_comm]
+    simp [bvec, Pi.single_apply]
 
 include hγ hd hZ hB
 
@@ -4497,9 +4496,9 @@ theorem trivial_of_u_one {ρ : B.Mat k r} (hρ : ρ ∈ C6.Rset γ) (hu1 : C2.uM
   ext i j
   rw [entry ρ i j]
   rcases pos_cases j with ⟨c, rfl⟩ | ⟨h1, h2⟩ | ⟨c, rfl⟩
-  · rw [show bvec (eI k r c) = DF.ee k r c from rfl, hee c]; simp [Matrix.one_apply, DF.ee, bvec, Pi.single_apply, eq_comm]
-  · rw [hW j h1 h2]; simp [Matrix.one_apply, bvec, Pi.single_apply, eq_comm]
-  · rw [show bvec (esI k r c) = DF.es k r c from rfl, hes c]; simp [Matrix.one_apply, DF.es, bvec, Pi.single_apply, eq_comm]
+  · rw [show bvec (eI k r c) = DF.ee k r c from rfl, hee c]; simp [Matrix.one_apply, DF.ee, bvec, Pi.single_apply]
+  · rw [hW j h1 h2]; simp [Matrix.one_apply, bvec, Pi.single_apply]
+  · rw [show bvec (esI k r c) = DF.es k r c from rfl, hes c]; simp [Matrix.one_apply, DF.es, bvec, Pi.single_apply]
 
 theorem inj_degen : Set.InjOn (C2.uMap k r D.z) (C6.Rset γ) := by
   intro ρ1 h1 ρ2 h2 heq
@@ -5895,7 +5894,7 @@ theorem zj_split (v : U.LW (sigP (n := n) σ) → ℂ) (u : G.UT (ph + (n + 1)) 
   have hL := Matrix.nonsing_inv_mul _ (isUnit_low σ (v1 σ v))
   have hW := Matrix.nonsing_inv_mul _ (isUnit_wP σ)
   have hU := Matrix.mul_nonsing_inv _ (isUnit_up (u1 u))
-  simp only [Matrix.of_symm_apply, Equiv.apply_symm_apply, U.headH, aN, bN]
+  simp only [Equiv.apply_symm_apply, U.headH, aN, bN]
   congr 1
   · rw [show U.wP σ * U.lowW σ (v1 σ v) * Matrix.diagonal d * G.upper (u1 u) * ((G.upper (u1 u))⁻¹ * Bm u) =
       U.wP σ * U.lowW σ (v1 σ v) * Matrix.diagonal d * (G.upper (u1 u) * (G.upper (u1 u))⁻¹) * Bm u by
@@ -5960,8 +5959,7 @@ theorem conj_split (v : U.LW (sigP (n := n) σ) → ℂ) :
 theorem upper_fact (u : G.UT (ph + (n + 1)) → ℂ) :
     G.upper u = U.blk2 (G.upper (u1 u)) 0 0 (G.upper (u2 u)) * U.blk2 1 (Matrix.of (Matrix.of.symm (bN u))) 0 1 := by
   rw [upper_split, Ux2.symmetricScalarBlockMatrix_mul]
-  simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.mul_one, Matrix.one_mul,
-    Equiv.apply_symm_apply]
+  simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.mul_one, Equiv.apply_symm_apply]
   congr 1
   unfold bN
   rw [← Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (isUnit_up (u1 u)), Matrix.one_mul]; rfl
@@ -6350,7 +6348,7 @@ section core
 
 theorem card_UT (m : ℕ) : 2 * Fintype.card (G.UT m) = m * (m - 1) := by
   induction m with
-  | zero => simp [Fintype.card_eq_zero_iff]
+  | zero => simp
   | succ m ih =>
     have e := Fintype.card_congr (utEquiv (ph := m) (n := 0))
     have h1 : Fintype.card (G.UT (0 + 1)) = 0 := by
@@ -6359,12 +6357,12 @@ theorem card_UT (m : ℕ) : 2 * Fintype.card (G.UT m) = m * (m - 1) := by
         have b := q.1.2.isLt
         have e : q.1.1 = q.1.2 := Fin.ext (by omega)
         rw [e]; exact lt_irrefl _)⟩
-    simp only [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin, h1, add_zero, mul_one] at e
+    simp only [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin, h1, add_zero] at e
     rw [show m + (0 + 1) = m + 1 from rfl] at e
     rw [e, mul_add, ih]
     cases m with
     | zero => simp
-    | succ m => simp [Nat.succ_sub_one]; ring
+    | succ m => simp; ring
 
 theorem card_UT' (n : ℕ) : Fintype.card (G.UT (n + 1)) = (n + 1) * n / 2 := by
   have := card_UT (n + 1)

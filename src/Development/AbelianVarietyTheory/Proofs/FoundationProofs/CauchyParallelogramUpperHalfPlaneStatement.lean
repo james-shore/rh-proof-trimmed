@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.integral_segment_eq_parallelogram_sides : ∀ (g :
       Complex.I * (∫ s in (0:ℝ)..S, g (Complex.I + s * Complex.I)) -
         Complex.I * (∫ s in (0:ℝ)..S, g (τ + s * Complex.I)) +
         (τ - Complex.I) * ∫ t in (0:ℝ)..1, g (Complex.I + t * (τ - Complex.I) + S * Complex.I) := by
-  first | exact @GlobalTheory.cauchy_parallelogram_upper_half_plane | exact GlobalTheory.cauchy_parallelogram_upper_half_plane | (intros; apply GlobalTheory.cauchy_parallelogram_upper_half_plane <;> assumption)
+  first | exact @GlobalTheory.cauchy_parallelogram_upper_half_plane

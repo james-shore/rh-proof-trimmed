@@ -124,7 +124,7 @@ private lemma exists_isCompact_integral_compl_sq_lt (μ : Measure ℂ) [NullSing
             rw [div_le_iff₀ (by positivity)]
             rw [div_lt_iff₀ hpos] at ha
             linarith
-        simp [Set.indicator_apply, hmem])
+        simp [hmem])
     simpa using h
   obtain ⟨n, hn⟩ := (hlim.eventually (gt_mem_nhds hη)).exists
   exact ⟨Kn n, hKc n, h0K n, hn⟩

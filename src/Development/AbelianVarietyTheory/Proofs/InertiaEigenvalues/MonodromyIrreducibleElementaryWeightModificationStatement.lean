@@ -47,4 +47,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.monodromy_irreducible_elementary_weightModification : ModStep := by
-  first | exact @GlobalTheory.PMon.modStep_holds | exact GlobalTheory.PMon.modStep_holds | (intros; apply GlobalTheory.PMon.modStep_holds <;> assumption)
+  first | exact @GlobalTheory.PMon.modStep_holds

@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.thetaPullbackConstant_sq_eq_det : ∀ D : D7, LemmaCGaussConstant D := by
-  first | exact @GlobalTheory.UnitaryTheta.const_sq_eq_det | exact GlobalTheory.UnitaryTheta.const_sq_eq_det | (intros; apply GlobalTheory.UnitaryTheta.const_sq_eq_det <;> assumption)
+  first | exact @GlobalTheory.UnitaryTheta.const_sq_eq_det

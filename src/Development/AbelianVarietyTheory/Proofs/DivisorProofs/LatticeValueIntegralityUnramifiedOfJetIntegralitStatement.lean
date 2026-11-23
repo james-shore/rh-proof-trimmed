@@ -44,4 +44,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.LatVal GlobalTheory.LatJet
 
 theorem _root_.GlobalTheory.T.latticeValueIntegrality_unramified_of_jetIntegrality : GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates.Statement → JetInt → LatIntUnr := by
-  first | exact @GlobalTheory.LatValUnr.latIntUnr | exact GlobalTheory.LatValUnr.latIntUnr | (intros; apply GlobalTheory.LatValUnr.latIntUnr <;> assumption)
+  first | exact @GlobalTheory.LatValUnr.latIntUnr

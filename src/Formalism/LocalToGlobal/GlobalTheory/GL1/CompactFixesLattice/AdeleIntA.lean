@@ -69,16 +69,6 @@ private theorem valR_lemma_2 (v : HeightOneSpectrum R) (r : R) :
   first
   | exact (IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v _).trans
       (IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap v _)
-  | exact (IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation' (K := K) v _).trans
-      (IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap (K := K) v _)
-  | (rw [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation',
-      IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap])
-  | (erw [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation',
-      IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap])
-  | (rw [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation,
-      IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap])
-  | simp [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation',
-      IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap]
 
 theorem int_R (v : HeightOneSpectrum R) (r : R) :
     algebraMap K (v.adicCompletion K) (algebraMap R K r) ∈ v.adicCompletionIntegers K := by

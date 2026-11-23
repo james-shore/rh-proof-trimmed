@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.definiteBottom_exists_open_fixes_finiteVector : �
     {i j : Fin D.R.m} {A A' WW : HSp D} {X : Tri T A A' WW}, IsBottomTri W i j X → ∀ t : T,
     ∃ U : Subgroup (GA D WW), IsOpen (U : Set (GA D WW)) ∧ ∀ κ ∈ U, κ ∈ GfC WW → X.ω t (1, κ) X.vac = X.vac →
       X.ω t (1, κ) (X.f t) = X.f t := by
-  first | exact @GlobalTheory.RowTest.IsBottomTri.exists_open_fix_f | exact GlobalTheory.RowTest.IsBottomTri.exists_open_fix_f | (intros; apply GlobalTheory.RowTest.IsBottomTri.exists_open_fix_f <;> assumption)
+  first | exact @GlobalTheory.RowTest.IsBottomTri.exists_open_fix_f

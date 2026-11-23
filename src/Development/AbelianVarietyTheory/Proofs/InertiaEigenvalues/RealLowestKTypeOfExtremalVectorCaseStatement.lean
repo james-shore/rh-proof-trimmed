@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.realLowestKType_of_extremalVectorCase : ∀ (D : D
         ∏ ρ, ⟪((v ρ : (R.MW i (sg0 D A)).sm ρ) : (R.MW i (sg0 D A)).H ρ),
           (R.MW i (sg0 D A)).rep ρ (infMat D.sp.cm.sig (Wc D i).gram (R.θ ρ) u)
             ((v ρ : (R.MW i (sg0 D A)).sm ρ) : (R.MW i (sg0 D A)).H ρ)⟫_ℂ) → RealLow R i t := by
-  first | exact @GlobalTheory.RawLift.RealLowRed.realLow_of_ext | exact GlobalTheory.RawLift.RealLowRed.realLow_of_ext | (intros; apply GlobalTheory.RawLift.RealLowRed.realLow_of_ext <;> assumption)
+  first | exact @GlobalTheory.RawLift.RealLowRed.realLow_of_ext

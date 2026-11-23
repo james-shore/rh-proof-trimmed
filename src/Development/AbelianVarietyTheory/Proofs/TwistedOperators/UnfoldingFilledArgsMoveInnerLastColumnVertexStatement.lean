@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.unfoldingFilledArgs_moveInnerLastColumnVertex : �
     downMap hs x' e' j = (g⁻¹).val * downMap hs x e j →
     downMap hs x' e' (j + 1) = downMap hs x e (j + 1) * g.val →
     Γ.moveArgs .one (Pi.mulSingle (Γ.m, j + 1) g) (fill hs x y e) = fill hs x' y e' := by
-  first | exact @GlobalTheory.TopLevelInv.fill_moveVertex | exact GlobalTheory.TopLevelInv.fill_moveVertex | (intros; apply GlobalTheory.TopLevelInv.fill_moveVertex <;> assumption)
+  first | exact @GlobalTheory.TopLevelInv.fill_moveVertex

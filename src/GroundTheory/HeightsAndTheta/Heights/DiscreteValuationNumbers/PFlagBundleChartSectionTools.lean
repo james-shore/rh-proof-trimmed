@@ -115,7 +115,7 @@ theorem chartMono_homog (M : ℕ) (c : ∀ k, ι k) (α : K → ℕ) :
   have hw : liftNat α = ∑ k, α k • blockWeight (bundleIdx ι M) ⟨some k, c k⟩ := by
     funext o
     cases o with
-    | none => simp [liftNat, blockWeight, Finset.sum_apply, Pi.single_apply]
+    | none => simp [liftNat, blockWeight, Finset.sum_apply]
     | some k => simp [liftNat, blockWeight, Finset.sum_apply, Pi.single_apply]
   rw [IsMultiHomog, chartMono, hw]
   exact h

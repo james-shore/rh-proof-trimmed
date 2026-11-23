@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.fockToSchwartz_intertwines_metaplecticQuadratic : 
     ∀ Y : ι → Mat R S, (∀ w, Y w ∈ upq R S) → ∀ Z : Matrix (l ⊕ l) (l ⊕ l) ℝ,
     (∀ c, Z *ᵥ φ c = φ fun w => c w * (Y w)ᵀ) →
     ∀ T, quad Z (Ψ T) = Ψ (sumPl (fun w => fockAct2 P Q R S (Y w)) T) := by
-  first | exact @GlobalTheory.RealLift.QuadFock.quad_fock | exact GlobalTheory.RealLift.QuadFock.quad_fock | (intros; apply GlobalTheory.RealLift.QuadFock.quad_fock <;> assumption)
+  first | exact @GlobalTheory.RealLift.QuadFock.quad_fock

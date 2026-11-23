@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_coefficientMaps_agree_rootOfUnity_enlarged 
       (u : (w.st Z).toD7.what₂.LL) (u' : (w'.st Z').toD7.what₂.LL) (n n' : ℕ), n ≠ 0 ∧ u ^ n = 1 ∧ n' ≠ 0 ∧ u' ^ n' = 1 ∧
       HEq (MvPolynomial.map (w'.st Z').toD7.what₂.embLL v'.1) (MvPolynomial.map (w.st Z).toD7.what₂.embLL v.1) ∧ c0L i v ≠ 0 ∧
       HEq ((w'.st Z').toD7.what₂.embLL u' • c0L'' i' v') ((w.st Z).toD7.what₂.embLL u • c0L i v) := by
-  first | exact @GlobalTheory.Mem.R3.Rw.LiftUnit.exists_agree_root | exact GlobalTheory.Mem.R3.Rw.LiftUnit.exists_agree_root | (intros; apply GlobalTheory.Mem.R3.Rw.LiftUnit.exists_agree_root <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.LiftUnit.exists_agree_root

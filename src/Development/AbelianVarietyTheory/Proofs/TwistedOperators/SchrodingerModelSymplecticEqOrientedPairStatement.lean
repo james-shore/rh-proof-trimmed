@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.schrodingerModel_symplectic_eq_orientedPair : ∀ 
       (∀ u, cS u = (HMul.hMul (uᵀ.submatrix e id) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM ((if ε then -1 else 1 : D.host.E) • S.gram)) : Matrix (Fin X.rank) (Fin S.rank) (AE D))) →
       ∀ u v, GlobalTheory.WeilM.symp (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (-1) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM D.host.F Vs.J)
         (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM D.host.F Ws.J) u v = symplO (sgn ε S) X (cS u) (cS v) := by
-  first | exact @GlobalTheory.SquareAgree.SympForm.symp_model_eq_symplO | exact GlobalTheory.SquareAgree.SympForm.symp_model_eq_symplO | (intros; apply GlobalTheory.SquareAgree.SympForm.symp_model_eq_symplO <;> assumption)
+  first | exact @GlobalTheory.SquareAgree.SympForm.symp_model_eq_symplO

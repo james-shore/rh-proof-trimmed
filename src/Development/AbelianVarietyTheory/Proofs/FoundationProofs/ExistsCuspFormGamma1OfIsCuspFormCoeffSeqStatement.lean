@@ -48,4 +48,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.exists_cuspForm_gamma1_of_isCuspFormCoeffSeq : ∀ (k L N : ℕ) (ε : DirichletCharacter ℂ N) (a : ℕ → ℂ), 1 ≤ k → 0 < L → N ∣ L → CF k L (ch ε) a → ∃ f : CuspForm (Gamma1 L) (k : ℤ), ⇑f = qs a := by
-  first | exact @GlobalTheory.EisM.cuspForm_of_CF | exact GlobalTheory.EisM.cuspForm_of_CF | (intros; apply GlobalTheory.EisM.cuspForm_of_CF <;> assumption)
+  first | exact @GlobalTheory.EisM.cuspForm_of_CF

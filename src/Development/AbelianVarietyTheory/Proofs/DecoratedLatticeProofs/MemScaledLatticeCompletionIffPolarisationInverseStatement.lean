@@ -45,4 +45,4 @@ open scoped TensorProduct nonZeroDivisors
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.mem_scaledLatticeCompletion_iff_polarisationInverse : ∀ (D : D7) (v : Pl D) (S : HSp D) (L : Lat S) (y : Fin S.rank → AE D), y ∈ latA S L (· = v) ↔ (∀ i, y i ∈ idAt D (· = v)) ∧ ∀ s ∈ idV D.host.AA⁻¹ v, s • y ∈ latV S L (· = v) := by
-  first | exact @GlobalTheory.SeeSaw.mem_latA_iff_mul_inv | exact GlobalTheory.SeeSaw.mem_latA_iff_mul_inv | (intros; apply GlobalTheory.SeeSaw.mem_latA_iff_mul_inv <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.mem_latA_iff_mul_inv

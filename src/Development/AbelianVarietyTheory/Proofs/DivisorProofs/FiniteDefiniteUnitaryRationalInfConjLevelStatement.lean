@@ -44,4 +44,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.finite_definiteUnitaryRational_inf_conj_level : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ n : ℕ, 1 ≤ n → ∀ (S : Set (Pl E)), IsSection S → ∀ (K' : ∀ w : Pl E, Subgroup (UL n w)), IsLevelFam (fun w : Pl E => MonoidHom.id (UL n w)) (KL n) K' → ∀ x : finU (E := E) (n := n), Finite ↥(ratFinU E n ⊓ (globLev S K').map (MulAut.conj x).toMonoidHom) := by
-  first | exact @GlobalTheory.BCT.finite_ratFinU_inf_conj_globLev | exact GlobalTheory.BCT.finite_ratFinU_inf_conj_globLev | (intros; apply GlobalTheory.BCT.finite_ratFinU_inf_conj_globLev <;> assumption)
+  first | exact @GlobalTheory.BCT.finite_ratFinU_inf_conj_globLev

@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.exists_diagonalStabiliser_mul_mem_bigCell_inert : 
     {d : ℕ} (W : Spc F E d) (r s : ℕ), B.IsGood σ → W.IsSkew σ B r s →
     ∀ (v : Pl (F := F)) (w : HeightOneSpectrum (𝓞 E)), Formalism.UG.IsInertAt F E v w → ∀ g ∈ GlobalTheory.DblVac.KD σ W v,
       ∃ p ∈ GlobalTheory.DblVac.KD σ W v, p ∈ GlobalTheory.DblVac.PDiag σ W ∧ p * g ∈ GlobalTheory.DblVac.KD σ W v ∧ GlobalTheory.DblVac.BigCell W v (p * g) := by
-  first | exact @GlobalTheory.DblVac.exists_diag_mul_bigCell | exact GlobalTheory.DblVac.exists_diag_mul_bigCell | (intros; apply GlobalTheory.DblVac.exists_diag_mul_bigCell <;> assumption)
+  first | exact @GlobalTheory.DblVac.exists_diag_mul_bigCell

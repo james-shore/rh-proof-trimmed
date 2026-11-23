@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.dbar_curvatureMatrixEvenForms_eq_zero : ∀ (n : ℕ) (r : Type) [Fintype r] [DecidableEq r] (G : V n → Matrix r r ℂ) (v : V n), MContDiffAt ∞ G v → IsUnit (G v).det → ∀ i j, dbarAt (fun x => (curvEv G x i j : Alt n)) v = 0 := by
-  first | exact @GlobalTheory.ChernCalc.CurvClosed.dbarAt_curvEv | exact GlobalTheory.ChernCalc.CurvClosed.dbarAt_curvEv | (intros; apply GlobalTheory.ChernCalc.CurvClosed.dbarAt_curvEv <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.CurvClosed.dbarAt_curvEv

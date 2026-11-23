@@ -45,4 +45,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.cm_theta_values_vanish_at_odd_split_prime : ∀ D : D7, GL3Theta.splitZero D := by
-  first | exact @GlobalTheory.ThetaSplit.splitZero | exact GlobalTheory.ThetaSplit.splitZero | (intros; apply GlobalTheory.ThetaSplit.splitZero <;> assumption)
+  first | exact @GlobalTheory.ThetaSplit.splitZero

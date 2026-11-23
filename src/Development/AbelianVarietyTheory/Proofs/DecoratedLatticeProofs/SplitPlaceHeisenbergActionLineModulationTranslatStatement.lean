@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.splitPlace_heisenbergAction_line_modulation_transl
         (∀ (L₂' : Lat W₀) (L₃ : Lat B'.V₀) (f₂ : WO W₀ B'.V₀ → ℂ) (Ψ₂ : Matrix n'' n k → ℂ) (b : (n → k) → ℂ) (Ξ : WO W₀ B'.V₀ → ℂ),
           Over ψ β γ₀ L₂' L₃ f₂ (tensRow Ψ₂ b) Ξ →
           Over ψ β γ₀ L₂' L₃ f₂ (tensRow Ψ₂ fun η => (χ (ε * (η ⬝ᵥ t)) : ℂ) * b η) (heisO ψ W₀ B'.V₀ ((B'.o.resT W₀).symm (0, -w₀)) Ξ))) := by
-  first | exact @GlobalTheory.FinPl.LineAct.line_act | exact GlobalTheory.FinPl.LineAct.line_act | (intros; apply GlobalTheory.FinPl.LineAct.line_act <;> assumption)
+  first | exact @GlobalTheory.FinPl.LineAct.line_act

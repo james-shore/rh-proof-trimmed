@@ -75,7 +75,6 @@ lemma Nmat_low (x : LoI X.Ψ r → ℂ) (τ : X.Ψ) : (Nmat x τ).BlockTriangula
   have h2 : a ≠ b := hab'.ne
   first
   | simp [Nmat, h1, h2]
-  | (unfold Nmat; rw [Matrix.of_apply, dite_eq_right h1]; simp [h2, Ne.symm h2])
 
 lemma det_Nmat (x : LoI X.Ψ r → ℂ) (τ : X.Ψ) : (Nmat x τ).det = 1 := by
   rw [Matrix.det_of_lowerTriangular _ (Nmat_low X x τ)]

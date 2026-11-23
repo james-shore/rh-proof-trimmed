@@ -127,7 +127,7 @@ theorem integral_conj_mul_eq (U : Sch l →ₗ[ℂ] Sch l)
   have k2 := key (-1)
   have k3 := key (-(RCLike.I : ℂ))
   have k4 := key (RCLike.I : ℂ)
-  simp only [one_smul, neg_one_smul, neg_smul, ← sub_eq_add_neg] at k1 k2 k3 k4
+  simp only [one_smul, neg_smul, ← sub_eq_add_neg] at k1 k2 k3 k4
   have e1 := SchwartzMap.inner_toL2_toL2_eq (U f) (U g) volume
   have e2 := SchwartzMap.inner_toL2_toL2_eq f g volume
   simp only [RCLike.inner_apply] at e1 e2
@@ -164,7 +164,6 @@ theorem conj_mul_eq (U : Sch l →ₗ[ℂ] Sch l)
   have hinv := hDc.fourierInv_fourier_eq hDi (by rw [hF]; exact integrable_zero _ _ _)
   have hz : 𝓕⁻ (0 : EuclideanSpace ℝ l → ℂ) = 0 := by
     first
-      | exact FourierTransform.fourierInv_zero
       | (funext w; simp [Real.fourierInv_eq])
   rw [hF, hz] at hinv
   have hx := congrFun hinv x

@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.exists_heisenberg_derivative_archimedean_direction
       GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.At (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI F) u →
       ∃ g₁ : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.SInf F (Fin n × Fin d),
         GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ActsD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI F) (M.heisLine ψ u) g g₁ := by
-  first | exact @GlobalTheory.HeisLineDeriv.exists_actsD | exact GlobalTheory.HeisLineDeriv.exists_actsD | (intros; apply GlobalTheory.HeisLineDeriv.exists_actsD <;> assumption)
+  first | exact @GlobalTheory.HeisLineDeriv.exists_actsD

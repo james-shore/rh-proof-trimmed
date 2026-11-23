@@ -106,15 +106,15 @@ theorem multiProd_scalar {α n : Type} {m : α → Type} [Fintype α] [LinearOrd
     obtain ⟨⟨b, j⟩, rfl⟩ := e.surjective j
     by_cases hab : a = b
     · subst hab
-      simp [leviEmb, blockDiagonal'_apply_eq, GeneralLinearGroup.scalar, diagonal_apply]
-    · simp [leviEmb, blockDiagonal'_apply_ne _ _ _ hab, GeneralLinearGroup.scalar,
-        diagonal_apply, hab]
+      simp [leviEmb, GeneralLinearGroup.scalar, diagonal_apply]
+    · simp [leviEmb, GeneralLinearGroup.scalar,
+        hab]
   refine Subtype.ext (Subtype.ext (funext fun x => ?_))
   have hm : leviEmb k e (fun a => GeneralLinearGroup.scalar (m a) z) ∈ parab k e := by
     apply mem_parab_iff.2
     intro a b i j hab
     rw [h1]
-    simp [GeneralLinearGroup.scalar, diagonal_apply, hab.ne']
+    simp [GeneralLinearGroup.scalar, hab.ne']
   have hp : leviProj k e ⟨_, hm⟩ = (fun a => GeneralLinearGroup.scalar (m a) z) := by
     funext a
     ext i j

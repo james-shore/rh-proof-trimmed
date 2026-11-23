@@ -49,4 +49,4 @@ open NumberField
 theorem _root_.GlobalTheory.T.latticeDeterminantSpan_span_eq_generator_dets : ∀ {F : Type} [Field F] [NumberField F] (p : ℕ) (S : Set (Fin p → F)),
     GlobalTheory.IdxTensor.dets F p (Submodule.span (𝓞 F) S) =
       Submodule.span (𝓞 F) {d | ∃ y : Fin p → Fin p → F, (∀ i, y i ∈ S) ∧ d = (Matrix.of y).det} := by
-  first | exact @GlobalTheory.IdxTensor.dets_span_eq | exact GlobalTheory.IdxTensor.dets_span_eq | (intros; apply GlobalTheory.IdxTensor.dets_span_eq <;> assumption)
+  first | exact @GlobalTheory.IdxTensor.dets_span_eq

@@ -81,7 +81,6 @@ lemma tendsto_one_div_linear (c w : ℂ) (hw : w ≠ 0) :
     Tendsto (fun N : ℕ => 1 / (c + (N : ℂ) * w)) atTop (𝓝 0) := by
   have hinv : Tendsto (fun N : ℕ => ((N : ℂ))⁻¹) atTop (𝓝 0) := by
     first
-    | exact RCLike.tendsto_inv_atTop_nhds_zero_nat (𝕜 := ℂ)
     | (have h := (Complex.continuous_ofReal.tendsto 0).comp tendsto_inv_atTop_nhds_zero_nat
        simpa using h)
     | (rw [Metric.tendsto_atTop]

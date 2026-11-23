@@ -156,8 +156,6 @@ theorem ext_k {G G' : O⟦X⟧} (h : ∀ k, map (mkk k) G = map (mkk k) G') : G 
     rw [smod_iff, ← PowerSeries.coeff_map, ← PowerSeries.coeff_map, h k]
   first
   | exact (IsHausdorff.eq_iff_smodEq (I := IsLocalRing.maximalIdeal O)).mpr hk
-  | exact sub_eq_zero.mp (IsHausdorff.haus inferInstance _ fun k =>
-      SModEq.sub_mem.mpr (by rw [sub_zero]; exact SModEq.sub_mem.mp (hk k)))
 
 variable (t : O) (ht : t ∈ IsLocalRing.maximalIdeal O)
 include ht
@@ -283,15 +281,11 @@ def shiftEquiv : O⟦X⟧ ≃ₐ[O] O⟦X⟧ :=
 theorem shiftEquiv_X : shiftEquiv t ht X = X + C t := by
   first
   | exact shift_X t ht
-  | (show shift t ht X = X + C t; exact shift_X t ht)
 
 theorem shiftEquiv_symm_X : (shiftEquiv t ht).symm X = X - C t := by
   first
   | (show shift (-t) (neg_mem ht) X = X - C t
      rw [shift_X, _root_.map_neg, sub_eq_add_neg])
-  | (rw [AlgEquiv.symm_apply_eq, _root_.map_sub, shiftEquiv_X,
-      show shiftEquiv t ht (C t) = C t from algC (shiftEquiv t ht).toAlgHom t]
-     ring)
 
 end Shift
 

@@ -377,7 +377,6 @@ theorem adelic_theta_conj : H.conj (adelTheta H) = 1 - adelTheta H := by
   unfold adelTheta
   first
   | (rw [map_div₀, map_add (f := _), map_one, adel_conj_bE, map_ofNat]; ring)
-  | (simp [adel_conj_bE]; ring)
 
 theorem adelic_theta_mul_one_sub : adelTheta H * (1 - adelTheta H) = ((adelNd H : ℤ) : H.E) := by
   have h4 := congrArg (Int.cast : ℤ → H.E) (adelNd_spec H)

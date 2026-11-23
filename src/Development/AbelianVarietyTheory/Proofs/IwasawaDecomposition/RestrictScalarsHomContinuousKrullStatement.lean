@@ -53,4 +53,4 @@ import ReciprocityTheory.NeutralLocalFields.Reciprocity
 open NumberField IsDedekindDomain Neutral.B1 ReciprocityTheory.Neutral.Bridge.HCFR Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host GlobalTheory.HeckeGal GlobalTheory.NormCompat
 
 theorem _root_.GlobalTheory.T.continuous_restrictScalarsHom' : ∀ (E Ω : Type) [Field E] [Field Ω] [Algebra E Ω] (K : IntermediateField E Ω), Continuous (AlgEquiv.restrictScalarsHom E : G K Ω →* G E Ω) := by
-  first | exact @GlobalTheory.restrictScalarsHom_continuous_krull | exact GlobalTheory.restrictScalarsHom_continuous_krull | (intros; apply GlobalTheory.restrictScalarsHom_continuous_krull <;> assumption)
+  first | exact @GlobalTheory.restrictScalarsHom_continuous_krull

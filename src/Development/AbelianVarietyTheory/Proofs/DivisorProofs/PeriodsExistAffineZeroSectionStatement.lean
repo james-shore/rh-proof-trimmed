@@ -44,4 +44,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.AnPer
 
 theorem _root_.GlobalTheory.T.periods_exist_affine_zero_section : PExist := by
-  first | exact @GlobalTheory.AnPer.periods_exist | exact GlobalTheory.AnPer.periods_exist | (intros; apply GlobalTheory.AnPer.periods_exist <;> assumption)
+  first | exact @GlobalTheory.AnPer.periods_exist

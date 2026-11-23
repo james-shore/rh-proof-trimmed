@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.firstCoupledStep_adelicDatum_law_targetLevel : Und
     IsPtAd A a (i + 1) hi β' x₁' p₁' → ∀ w,
     muOf t u μ dtU (i + 1) (Matrix.GeneralLinearGroup.det κ'.1) * t.seam.σ₀ (xiPt A i hi β β' p p₁' w) =
       ((((St (i + 1) hi).K β').lev.chi κ' : ℂˣ) : ℂ) * t.seam.σ₀ (xiPt A i hi β β' p p' w)) := by
-  first | exact @GlobalTheory.CplTarget.levAt_target | exact GlobalTheory.CplTarget.levAt_target | (intros; apply GlobalTheory.CplTarget.levAt_target <;> assumption)
+  first | exact @GlobalTheory.CplTarget.levAt_target

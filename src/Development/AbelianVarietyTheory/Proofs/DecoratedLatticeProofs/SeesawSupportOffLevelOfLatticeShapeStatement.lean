@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.seesaw_support_off_level_of_lattice_shape : ∀ D : D7, GlobalTheory.SeeSaw.OffOfShape D := by
-  first | exact @GlobalTheory.SeeSaw.offOfShape_all | exact GlobalTheory.SeeSaw.offOfShape_all | (intros; apply GlobalTheory.SeeSaw.offOfShape_all <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.offOfShape_all

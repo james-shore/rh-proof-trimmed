@@ -63,4 +63,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open GlobalTheory.AboveL
 
 theorem _root_.GlobalTheory.T.unramifiedAt_value_heckeChar_comp_ideleNorm : ∀ (K M : Type) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] (ψ : HChar K) (ψ' : HChar M), (∀ x : Ideles M, ψ'.1 x = ψ.1 (GroundTheory.Global.ideleNorm K M x)) → ∀ (w : HeightOneSpectrum (𝓞 M)) (f : ℕ), normV w = normV (w.under (𝓞 K)) ^ f → ψ.UnrAt (w.under (𝓞 K)) → ψ'.UnrAt w ∧ ψ'.val w = ψ.val (w.under (𝓞 K)) ^ f := by
-  first | exact @GlobalTheory.NormValGen.unrAt_val_of_comp_norm | exact GlobalTheory.NormValGen.unrAt_val_of_comp_norm | (intros; apply GlobalTheory.NormValGen.unrAt_val_of_comp_norm <;> assumption)
+  first | exact @GlobalTheory.NormValGen.unrAt_val_of_comp_norm

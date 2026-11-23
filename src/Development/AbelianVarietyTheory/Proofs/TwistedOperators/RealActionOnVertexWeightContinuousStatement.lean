@@ -52,4 +52,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 theorem _root_.GlobalTheory.T.realActionOnVertexWeight_continuous : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} (θ : InfFam D), IsInfFam θ →
     ∀ (fr : ∀ X : Node, GL (Fin (G.V X).rank) D.host.E) (X : Node) (Λ : Module.Dual ℂ (VV ℂ (wt G X))) (w : VV ℂ (wt G X)),
     Continuous fun k : GinfC (G.V X) => Λ (realAct θ fr X ((k : GA D (G.V X))⁻¹) w) := by
-  first | exact @GlobalTheory.RealActCont.realAct_inv_continuous | exact GlobalTheory.RealActCont.realAct_inv_continuous | (intros; apply GlobalTheory.RealActCont.realAct_inv_continuous <;> assumption)
+  first | exact @GlobalTheory.RealActCont.realAct_inv_continuous

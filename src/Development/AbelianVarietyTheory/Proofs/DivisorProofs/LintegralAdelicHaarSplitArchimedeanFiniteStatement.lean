@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.lintegral_adelicHaar_split_archimedean_finite : �
     ∃ c : ℝ≥0∞, c ≠ 0 ∧ c ≠ ⊤ ∧ ∀ (fi : (κ → mixedEmbedding.mixedSpace F) → ℝ≥0∞) (g : (κ → Af F) → ℝ≥0∞),
       Measurable fi → Measurable g →
         ∫⁻ x, fi (fun i => evI F (x i)) * g (fun i => sndA F (x i)) ∂μ = c * ((∫⁻ z, fi z ∂μi) * ∫⁻ y, g y ∂μf) := by
-  first | exact @GlobalTheory.WeilAdm.HaarSplit.lintegral_split_mul | exact GlobalTheory.WeilAdm.HaarSplit.lintegral_split_mul | (intros; apply GlobalTheory.WeilAdm.HaarSplit.lintegral_split_mul <;> assumption)
+  first | exact @GlobalTheory.WeilAdm.HaarSplit.lintegral_split_mul

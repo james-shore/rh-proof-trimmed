@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.inertPlace_localHeisenbergOperators_law : ∀ (F E
       (∀ x (m : SB (Fin a' × Fin (a + a') → Fv F v)), Acts (evFin F v) (G.M'.co.rho B.ψ (κ x))
         (m : (Fin a' × Fin (a + a') → Fv F v) → ℂ) ((ρ x m : SB (Fin a' × Fin (a + a') → Fv F v)) : (Fin a' × Fin (a + a') → Fv F v) → ℂ)) →
     ρ 0 = 1 ∧ ∀ x y, ρ x * ρ y = ψL ((GlobalTheory.Hk3.locH σL δ JS JT x y + σL (GlobalTheory.Hk3.locH σL δ JS JT x y)) / 2) • ρ (x + y) := by
-  first | exact @GlobalTheory.InertRhoLaw.rho_law | exact GlobalTheory.InertRhoLaw.rho_law | (intros; apply GlobalTheory.InertRhoLaw.rho_law <;> assumption)
+  first | exact @GlobalTheory.InertRhoLaw.rho_law

@@ -101,7 +101,6 @@ theorem add_pow_congr {a b : C} (ha : V.Ge 0 a) (hb : V.Ge 0 b) (n : ℕ) :
       (⟨a, ha⟩ : intRing V) ^ (V.l ^ n) + (⟨b, hb⟩ : intRing V) ^ (V.l ^ n) + (V.l : intRing V) * r := by
     obtain ⟨r, hr⟩ := exists_add_pow_prime_pow_eq V.l_prime (⟨a, ha⟩ : intRing V) ⟨b, hb⟩ n
     first
-      | exact ⟨r, hr⟩
       | exact ⟨_, by rw [hr, mul_assoc, mul_assoc]⟩
   obtain ⟨r, hr⟩ := h
   have h2 := congrArg (fun z : intRing V => (z : C)) hr

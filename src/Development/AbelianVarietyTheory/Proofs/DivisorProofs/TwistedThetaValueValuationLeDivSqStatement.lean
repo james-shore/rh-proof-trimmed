@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.twistedThetaValue_valuation_le_div_sq : ∀ {D : D
         nch.kMapE w (BlochKatoReduction.Gen.thEval D.ntw (nch.twI w) (nch.Q w) lam (nch.k' w)
           (BlochKatoReduction.Gen.psiAt (D.ntw.sideL (nch.twI w) lam) (nch.psi' w ^ a))) →
     (Formalism.DivisionValues.vw (D.plEq w) z : ℝ) ≤ (Formalism.DivisionValues.vw (D.plEq w) ((D.what₂.places.resChar w : ℕ) : D.what₂.LL) : ℝ) / ((D.what₂.places.resChar w : ℕ) : ℝ) ^ 2 := by
-  first | exact @GlobalTheory.TwistValBound.vw_le_of_bound | exact GlobalTheory.TwistValBound.vw_le_of_bound | (intros; apply GlobalTheory.TwistValBound.vw_le_of_bound <;> assumption)
+  first | exact @GlobalTheory.TwistValBound.vw_le_of_bound

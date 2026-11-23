@@ -46,4 +46,4 @@ open scoped InnerProductSpace
 open GlobalTheory.SepReal
 
 theorem _root_.GlobalTheory.T.translateCoefficientDerivativeIntegralBounds_of_laws : EmbLaws → PowInt → DecPow → LieBound → DerBounds := by
-  first | exact @GlobalTheory.SepReal.DerInt.derBounds_of | exact GlobalTheory.SepReal.DerInt.derBounds_of | (intros; apply GlobalTheory.SepReal.DerInt.derBounds_of <;> assumption)
+  first | exact @GlobalTheory.SepReal.DerInt.derBounds_of

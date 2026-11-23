@@ -58,4 +58,4 @@ open GlobalTheory.HSCore GlobalTheory.QCoh
 open GlobalTheory
 
 theorem _root_.GlobalTheory.T.zero_dim_support_euler_char : ∀ (k : Type) [Field k] (Y : Scheme.{0}) [Algebra k Γ(Y, ⊤)], IsProjOver (GlobalTheory.strHom k (X := Y)) → ∀ (L : LB Y) (hL : L.IsLB) (F : Y.Modules) [IsFiniteQC F], suppDim F ≤ 0 → ∀ j : ℤ, (GlobalTheory.hdim k (GlobalTheory.twistZ F L j) 0 : ℤ) = GlobalTheory.chi k F := by
-  first | exact @GlobalTheory.HSCore.hdim_zero_twistZ_eq_chi_of_suppDim_le_zero | exact GlobalTheory.HSCore.hdim_zero_twistZ_eq_chi_of_suppDim_le_zero | (intros; apply GlobalTheory.HSCore.hdim_zero_twistZ_eq_chi_of_suppDim_le_zero <;> assumption)
+  first | exact @GlobalTheory.HSCore.hdim_zero_twistZ_eq_chi_of_suppDim_le_zero

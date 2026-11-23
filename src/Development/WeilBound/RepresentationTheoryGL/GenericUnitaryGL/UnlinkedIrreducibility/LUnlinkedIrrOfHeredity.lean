@@ -66,12 +66,9 @@ theorem lUnlinkedIrr_nu (hJ : Zc.LSegJacquet k) (hG : GlobalTheory.Published.Geo
   have hA : GlobalTheory.Published.IrreducibleAdmissibleGL := by
     first
     | exact PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top
-    | exact PositivityTheory.Exh.irreducibleAdmissibleGL
-    | exact GlobalTheory.RgGu.irreducibleAdmissibleGL
   have hF : GlobalTheory.BZSeg.ProdIrrFiniteLength k := by
     first
     | exact GlobalTheory.RgGu.prodIrrFiniteLength k
-    | exact fun h N x hd => GlobalTheory.CompanionTheory.ProdFL.hasFiniteLength_prodIrr hA x hd
   exact GlobalTheory.T.lUnlinkedIrr_of_irreducibleAdmissible k hA hJ hG hN (whitRankStd k) hF
 
 theorem lUnlinkedComm_of_irr (hL : GlobalTheory.BZSeg.LUnlinkedIrr k) : GlobalTheory.BZSeg.LUnlinkedComm k :=

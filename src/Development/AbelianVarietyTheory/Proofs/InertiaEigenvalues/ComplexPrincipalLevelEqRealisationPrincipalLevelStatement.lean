@@ -47,4 +47,4 @@ open Formalism.IndefR.Lev Formalism.L2.DIV Formalism.IndefR.Mult
 
 
 theorem _root_.GlobalTheory.T.complex_principal_level_eq_realisation_principal_level : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 I0 T : Type} {A3 : FamIn3 D.what₂.LL Γ Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (Rl : RealDat3 D A3 Ks) {cG : G0 Rl.Pg D.R.r ≃* G0g D.nd} {ρ : Setup D.ntw}, RealPin Rl cG ρ → ∀ (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool), ρ.levK i j b = levG (Wc D j) (Rl.βW j) (Rl.datWp j Rl.triv) := by
-  first | exact @GlobalTheory.SeriesTie.levK_eq_levG_triv | exact GlobalTheory.SeriesTie.levK_eq_levG_triv | (intros; apply GlobalTheory.SeriesTie.levK_eq_levG_triv <;> assumption)
+  first | exact @GlobalTheory.SeriesTie.levK_eq_levG_triv

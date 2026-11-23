@@ -63,11 +63,7 @@ theorem tensor_ringHom_ext {R S B C : Type} [CommRing R] [CommRing S] [CommRing 
     (h₁ : ∀ s : S, φ (s ⊗ₜ[R] (1 : B)) = ψ (s ⊗ₜ[R] (1 : B)))
     (h₂ : ∀ b : B, φ ((1 : S) ⊗ₜ[R] b) = ψ ((1 : S) ⊗ₜ[R] b)) : φ = ψ := by
   first
-  | exact @_root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor
-  | exact _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor
   | (apply _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor ..)
 
 theorem one_tmul_algebraMap {R S B : Type} [CommRing R] [CommRing S] [CommRing B]
@@ -149,7 +145,6 @@ theorem exists_mul_mem_span_X {A EA : Type} [CommRing A] [IsNoetherianRing A] [C
       have h2 := Ideal.mul_mem_left N c this
       rw [smul_eq_mul]
       convert h2 using 1
-      push_cast
       ring
     | sup J₁ J₂ _ _ h₁ h₂ =>
       intro hle

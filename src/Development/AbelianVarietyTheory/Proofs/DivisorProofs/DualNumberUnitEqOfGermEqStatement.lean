@@ -59,4 +59,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.dualNumber_unit_eq_of_germ_eq : ∀ (k : Type) [Field k] (z : Sp (DualNumber k)) (u v : (DualNumber k)ˣ), gm (𝟙 (Sp (DualNumber k))) z ⊤ (unitOn u) = gm (𝟙 (Sp (DualNumber k))) z ⊤ (unitOn v) → u = v := by
-  first | exact @GlobalTheory.DualUnitGerm.unit_eq_of_germ_eq | exact GlobalTheory.DualUnitGerm.unit_eq_of_germ_eq | (intros; apply GlobalTheory.DualUnitGerm.unit_eq_of_germ_eq <;> assumption)
+  first | exact @GlobalTheory.DualUnitGerm.unit_eq_of_germ_eq

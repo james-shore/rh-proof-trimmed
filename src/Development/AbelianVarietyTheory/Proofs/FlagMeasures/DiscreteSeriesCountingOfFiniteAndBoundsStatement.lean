@@ -51,4 +51,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ContDiff
 
 theorem _root_.GlobalTheory.T.discreteSeries_counting_of_finite_and_bounds : (∀ (B : RowsAut) (Cg : ℝ) (n₀ : ℕ) (d : InfinitePlace B.I.F → ℝ) (p q : ℕ) (b : ℝ), 8 ≤ n₀ → CountHyp B Cg n₀ d p q b → FiniteDimensional ℂ (B.I.eHom B.σs B.μf B.fund B.R B.Re)) → GlobalTheory.FlagMeas.FlagMeasureBound → GlobalTheory.Deep.PtBound → GlobalTheory.IndefiniteRowSideFullHecke.NearNonzeroTerms.NearModerate → GlobalTheory.IndefiniteRowSideFullHecke.FarTermsModerate.FarModerate → GlobalTheory.IndefiniteRowSideFullHecke.RareFlags.FlagRare → GlobalTheory.IndefiniteRowSideFullHecke.DeepSet.DeepBound → GlobalTheory.IndefiniteRowSideFullHecke.LatticeCountingTheorem.CountingTheorem := by
-  first | exact @GlobalTheory.CountSum.countingTheorem_of_finite_of_bounds | exact GlobalTheory.CountSum.countingTheorem_of_finite_of_bounds | (intros; apply GlobalTheory.CountSum.countingTheorem_of_finite_of_bounds <;> assumption)
+  first | exact @GlobalTheory.CountSum.countingTheorem_of_finite_of_bounds

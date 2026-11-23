@@ -46,4 +46,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.pull_O1_section_coordinates_power : ∀ (k Ω o : Type) [CommRing k] [Field Ω] [Algebra k Ω] [CommRing o] (M : RatModel k Ω) (I : Type) [Finite I] (th : I → Ω) (δ : LB M.Z) (t : I → δ.Sec) (N D : ℕ) (e : Fin (N + 1) → Ω) (h : M.Z ⟶ PSpace o N), δ.IsLB → (⨆ a, nonzeroLocus (t a)) = ⊤ → SecCoord δ t M.pt th → PCrd (M.pt ≫ h) e → SameScale M th e D → LBIso ((GlobalTheory.ProjSpace.O1 o N).pull h) (lbPow δ D) := by
-  first | exact @GlobalTheory.SiegTh.PullO1.lbIso_pull_O1_lbPow | exact GlobalTheory.SiegTh.PullO1.lbIso_pull_O1_lbPow | (intros; apply GlobalTheory.SiegTh.PullO1.lbIso_pull_O1_lbPow <;> assumption)
+  first | exact @GlobalTheory.SiegTh.PullO1.lbIso_pull_O1_lbPow

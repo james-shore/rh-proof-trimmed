@@ -55,4 +55,4 @@ open Formalism.IndefR.DatumF
 
 theorem _root_.GlobalTheory.T.extensionAdeles_stableRange_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (a b : AF F ⊗[F] E),
     IsCoprime a b → ∃ t : AF F ⊗[F] E, IsUnit (a + t * b) := by
-  first | exact @GlobalTheory.StableRange.adeles_tensor_stableRange_one | exact GlobalTheory.StableRange.adeles_tensor_stableRange_one | (intros; apply GlobalTheory.StableRange.adeles_tensor_stableRange_one <;> assumption)
+  first | exact @GlobalTheory.StableRange.adeles_tensor_stableRange_one

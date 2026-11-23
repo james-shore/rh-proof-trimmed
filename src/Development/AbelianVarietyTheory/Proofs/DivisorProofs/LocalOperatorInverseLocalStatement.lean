@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.local_operator_inverse_local : ∀ {F : Type} [Fie
     (e : ((κ → AF F) → ℂ) →ₗ[ℂ] ((κ → AF F) → ℂ)), IsLocOp e →
     Set.BijOn e (schA F κ : Set ((κ → AF F) → ℂ)) (schA F κ : Set ((κ → AF F) → ℂ)) →
     ∃ e' : ((κ → AF F) → ℂ) →ₗ[ℂ] ((κ → AF F) → ℂ), IsLocOp e' ∧ ∀ Φ ∈ schA F κ, e' (e Φ) = Φ := by
-  first | exact @GlobalTheory.LocOpInv.isLocOp_inv | exact GlobalTheory.LocOpInv.isLocOp_inv | (intros; apply GlobalTheory.LocOpInv.isLocOp_inv <;> assumption)
+  first | exact @GlobalTheory.LocOpInv.isLocOp_inv

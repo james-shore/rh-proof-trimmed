@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.polynomialFockSpace_eq_range_fockMap_variable_sign
     (Φ : TensD F P Q R S →ₗ[ℂ] SInf F (Fin n × Fin d)), IsCMExt F E σ → IsStd ψ →
     FramedD τ (incM F X.J) (incM F W.J) 1 Complex.I A C → (∀ w, X.θ w * A w = A w * Jm (P w) (Q w)) →
     (∀ w, W.θ w * C w = C w * Jm (R w) (S w)) → IsFockMapD ψ τ M.co A C Φ → LinearMap.range Φ = M.Pol ψ τ := by
-  first | exact @GlobalTheory.HoweD.PolRangeD.polRangeD | exact GlobalTheory.HoweD.PolRangeD.polRangeD | (intros; apply GlobalTheory.HoweD.PolRangeD.polRangeD <;> assumption)
+  first | exact @GlobalTheory.HoweD.PolRangeD.polRangeD

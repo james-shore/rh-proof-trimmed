@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.Dec
 
 theorem _root_.GlobalTheory.T.phi_centre_eigenfunction_discrete_series : PhiEigen := by
-  first | exact @GlobalTheory.PhiEigenfun.phiEigen | exact GlobalTheory.PhiEigenfun.phiEigen | (intros; apply GlobalTheory.PhiEigenfun.phiEigen <;> assumption)
+  first | exact @GlobalTheory.PhiEigenfun.phiEigen

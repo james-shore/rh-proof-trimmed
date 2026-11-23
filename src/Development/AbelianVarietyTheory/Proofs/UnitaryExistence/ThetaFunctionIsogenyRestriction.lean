@@ -206,11 +206,7 @@ theorem exists_coc {ι : Type} [Fintype ι]
       (φ y : ℝ) = (Hf x (y : EuclideanSpace ℂ ι)).im) :
     ∃ Y : GT ι, Y.b = b ∧ FPw.Coc Y 1 := by
   first
-  | exact @_root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc
-  | exact _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc
   | (apply _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc ..)
 
 variable {g : ℕ} {Hm : Matrix (Fin g) (Fin g) ℂ}

@@ -50,4 +50,4 @@ open ReciprocityTheory.AnForm.M
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
 
 theorem _root_.GlobalTheory.T.chern_form_fubini_study_total : ∀ N : ℕ, ((ProjSpace.hermitianTwistingSheaf ℂ N).φ (RingHom.id ℂ)).chernPart N 1 Set.univ = 1 ∧ ((ProjSpace.hermitianTwistingSheaf ℂ N).φ (RingHom.id ℂ)).chernPart N (-1) Set.univ = 0 := by
-  first | exact @GlobalTheory.FSMass.chern_mass_hermitian_O_one_projective | exact GlobalTheory.FSMass.chern_mass_hermitian_O_one_projective | (intros; apply GlobalTheory.FSMass.chern_mass_hermitian_O_one_projective <;> assumption)
+  first | exact @GlobalTheory.FSMass.chern_mass_hermitian_O_one_projective

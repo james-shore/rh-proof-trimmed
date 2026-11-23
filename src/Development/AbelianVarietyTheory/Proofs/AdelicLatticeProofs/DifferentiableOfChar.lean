@@ -58,11 +58,7 @@ open GlobalTheory.SplitScalar GlobalTheory.LatVac
 theorem differentiable_of_char (χ : ℝ → ℂ) (hc : Continuous χ) (h0 : χ 0 = 1)
     (hm : ∀ s t, χ (s + t) = χ s * χ t) : Differentiable ℝ χ := by
   first
-  | exact @_root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable
-  | exact _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable
   | (apply _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable ..)
 
 variable {D : D7}

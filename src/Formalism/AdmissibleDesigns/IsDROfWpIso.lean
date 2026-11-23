@@ -274,7 +274,7 @@ theorem decomp_at (hDec : TruncatedSeriesCountingIdentities.SemisimpleDecomposit
       eK (D.nbr i w hw) ((toK D.nd i (((chiU D.nd i 1 h)⁻¹ : (D.nd.O i)ˣ) : D.nd.O i) • mapM (toK D.nd i) (rhoO D.nd i ρ π) h) a b) := by
     intro a b
     subst hh
-    simp [WpO, twistM, mapM, loc_apply] <;> rfl
+    simp [WpO, twistM, mapM, loc_apply]
   have hc : ∀ j : Fin D.R.t, MsC i hw j g 0 0 = eK (D.nbr i w hw) (toK D.nd i ((chiU D.nd i ((j : ℕ) + 1) h : (D.nd.O i)ˣ) : D.nd.O i) * toK D.nd i (((chiU D.nd i 1 h)⁻¹ : (D.nd.O i)ˣ) : D.nd.O i)) := by
     intro j
     subst hh

@@ -51,4 +51,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.Hec
 theorem _root_.GlobalTheory.T.norm_heckeTermDecayFourierIntegral_le : ∀ K : Set ℂ, IsCompact K → K ⊆ halfPlane → ∀ (a : ℤ) (b m : ℕ), 2 ≤ a + 2 * b → ∃ C : ℝ,
     ∀ σ ∈ K, ∀ ν y : ℝ, y ≠ 0 →
       ‖intZ σ ν a b m y‖ ≤ C * |y| ^ ((m : ℝ) + 1 - a - 2 * b - 2 * σ.re) := by
-  first | exact @GlobalTheory.HeckeTwo.TermDecay.norm_intZ_le | exact GlobalTheory.HeckeTwo.TermDecay.norm_intZ_le | (intros; apply GlobalTheory.HeckeTwo.TermDecay.norm_intZ_le <;> assumption)
+  first | exact @GlobalTheory.HeckeTwo.TermDecay.norm_intZ_le

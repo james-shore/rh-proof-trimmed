@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_hyperbolicPartner_splitting_selfDualLattice
     IsSelfDualC S Λ → x ≠ 0 → S.hT x x = 0 →
     ∃ y : S.V, S.hT y y = 0 ∧ S.hT x y = 1 ∧
       ∀ z, GlobalTheory.SqStepK.InLat S Λ z → GlobalTheory.SqStepK.InLat S Λ (S.hT y z • x) ∧ GlobalTheory.SqStepK.InLat S Λ (S.hT x z • y) := by
-  first | exact @GlobalTheory.HypPairSelfDual.exists_partner | exact GlobalTheory.HypPairSelfDual.exists_partner | (intros; apply GlobalTheory.HypPairSelfDual.exists_partner <;> assumption)
+  first | exact @GlobalTheory.HypPairSelfDual.exists_partner

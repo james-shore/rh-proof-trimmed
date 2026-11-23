@@ -47,4 +47,4 @@ open GlobalTheory.EvenOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.even_theta_step_adjoint_nonzero_transferred_params : ∀ D : D7, FinDim D → ParOfVal D → UpSpan D → UpAdj D → UpPar D → UpNe D → StepUp D := by
-  first | exact @GlobalTheory.EvenOnto.stepUp | exact GlobalTheory.EvenOnto.stepUp | (intros; apply GlobalTheory.EvenOnto.stepUp <;> assumption)
+  first | exact @GlobalTheory.EvenOnto.stepUp

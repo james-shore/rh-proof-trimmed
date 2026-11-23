@@ -49,4 +49,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.splitPlaceDoubleStepLocalIteratedIntegral_proof : ∀ D : D7, ValOne D := by
-  first | exact @GlobalTheory.ValOneAt.valOne_all | exact GlobalTheory.ValOneAt.valOne_all | (intros; apply GlobalTheory.ValOneAt.valOne_all <;> assumption)
+  first | exact @GlobalTheory.ValOneAt.valOne_all

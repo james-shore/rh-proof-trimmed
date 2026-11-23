@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.biVacuumOperator_zero_or_left_invertible : ∀ D : D7, GlobalTheory.FinPl.BiInv D := by
-  first | exact @GlobalTheory.FinPl.biInv_main | exact GlobalTheory.FinPl.biInv_main | (intros; apply GlobalTheory.FinPl.biInv_main <;> assumption)
+  first | exact @GlobalTheory.FinPl.biInv_main

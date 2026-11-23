@@ -73,11 +73,7 @@ variable {R : Type} [CommRing R] (p w : R)
 theorem mem_pow_succ (k : ℕ) (x : R) (hx : x ∈ Ideal.span {p, w} ^ (k + 1)) :
     ∃ c G, G ∈ Ideal.span {p, w} ^ k ∧ x = w ^ (k + 1) * c + p * G := by
   first
-  | exact @_root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ
-  | exact _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ
   | (apply _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ ..)
 
 theorem pow_mem (k : ℕ) : w ^ k ∈ Ideal.span {p, w} ^ k :=

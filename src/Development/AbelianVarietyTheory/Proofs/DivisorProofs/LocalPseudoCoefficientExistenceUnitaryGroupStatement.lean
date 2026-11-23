@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.PsCo.Pc1
 
 theorem _root_.GlobalTheory.T.localPseudoCoefficientExistence_unitaryGroup : GlobalTheory.PsCo.Pc.LocalPC := by
-  first | exact @GlobalTheory.PsCo.Pc.localPC_holds | exact GlobalTheory.PsCo.Pc.localPC_holds | (intros; apply GlobalTheory.PsCo.Pc.localPC_holds <;> assumption)
+  first | exact @GlobalTheory.PsCo.Pc.localPC_holds

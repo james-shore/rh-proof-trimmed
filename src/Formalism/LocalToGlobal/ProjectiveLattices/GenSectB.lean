@@ -320,7 +320,6 @@ theorem halg_of (x : Fin m → Ω) (j₀ : Fin m) (htr : Algebra.trdeg K Ω = D)
     · exact h
   have halg : Algebra.IsAlgebraic (IntermediateField.adjoin K (Set.range fun j => x j / x j₀)) Ω := by
     first
-    | exact Algebra.trdeg_eq_zero_iff.mp h0
     | exact trdeg_eq_zero_iff.mp h0
   exact IntermediateField.isAlgebraic_adjoin_iff.mp (halg.isAlgebraic ω)
 

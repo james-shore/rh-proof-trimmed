@@ -90,7 +90,7 @@ theorem norm_genVal_le {Z : Comp Xo c} {G : WTZ E} {N m : ℕ} {b : Module.Basis
       ρ (genVal Z ((b j : cuspOn U Z G) : Rul Xo c)) := by
     conv_lhs => rw [← b.sum_repr f]
     set_option synthInstance.maxHeartbeats 100000 in
-      simp only [Submodule.coe_sum, Submodule.coe_smul, map_sum, map_smul, Algebra.smul_def, map_mul, RingHom.comp_apply, AlgHom.commutes]
+      simp only [Submodule.coe_sum, Submodule.coe_smul, map_sum, Algebra.smul_def, map_mul, RingHom.comp_apply, AlgHom.commutes]
   rw [e]
   have h := norm_pairing_le (hF.herm (ρ.comp (algebraMap c.F (Om Z))))
     (fun j => (ρ.comp (algebraMap c.F (Om Z))) (b.repr f j)) (fun i => ρ (genVal Z ((b i : cuspOn U Z G) : Rul Xo c)))

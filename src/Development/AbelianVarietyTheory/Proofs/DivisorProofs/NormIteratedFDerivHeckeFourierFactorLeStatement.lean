@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.norm_iteratedFDeriv_heckeFourierFactor_le : (∀ K
     ∀ σ ∈ K, ∀ ν β : ℝ, ν ≠ 0 → β ≠ 0 → ∀ w : ℂ, c ≤ w.im → w.im ≤ c' →
       ‖iteratedFDeriv ℝ k (fun w : ℂ => Complex.exp (2 * (Real.pi : ℂ) * I * ((ν * β * w.re : ℝ) : ℂ)) *
           hTrans σ ν (β * w.im)) w‖ ≤ C * (|β| + |β|⁻¹) ^ m / (1 + |ν * β|) ^ N := by
-  first | exact @GlobalTheory.HeckeTwo.FactorBound.norm_iteratedFDeriv_fourierFactor_le | exact GlobalTheory.HeckeTwo.FactorBound.norm_iteratedFDeriv_fourierFactor_le | (intros; apply GlobalTheory.HeckeTwo.FactorBound.norm_iteratedFDeriv_fourierFactor_le <;> assumption)
+  first | exact @GlobalTheory.HeckeTwo.FactorBound.norm_iteratedFDeriv_fourierFactor_le

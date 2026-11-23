@@ -50,4 +50,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.exists_realSubfield_place_in_ramified_set : ∀ (D : D7) (χ : HChar D.host.E) (w : PlE D.host), (∀ k, w ∉ placesOver D.host.E (D.host.g k)) → ¬ χ.UnrAt w → ∃ v, NG.OverPl w v ∧ v ∈ qPl D χ := by
-  first | exact @GlobalTheory.GeoUnder.exists_under_in_qPl | exact GlobalTheory.GeoUnder.exists_under_in_qPl | (intros; apply GlobalTheory.GeoUnder.exists_under_in_qPl <;> assumption)
+  first | exact @GlobalTheory.GeoUnder.exists_under_in_qPl

@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_selfDual_lattice_cmHomomorphisms_definite :
         ∀ τ : 𝓞 E →+* 𝓞 K, τ H.rt = ρ → ∀ τE : E →+* K, (∀ x : 𝓞 E, τE x = ((τ x : 𝓞 K) : K)) →
           FB.eigLat X.B.t.act τ = Submodule.span (𝓞 K)
             {w | ∃ c ∈ Λ, ∃ e ∈ FP.eigLat (X.A true).t.act τ, w = ∑ a, τE (c a) • MP a e} := by
-  first | exact @GlobalTheory.FlatCM.HomLat.exists_selfDual_lieSpan | exact GlobalTheory.FlatCM.HomLat.exists_selfDual_lieSpan | (intros; apply GlobalTheory.FlatCM.HomLat.exists_selfDual_lieSpan <;> assumption)
+  first | exact @GlobalTheory.FlatCM.HomLat.exists_selfDual_lieSpan

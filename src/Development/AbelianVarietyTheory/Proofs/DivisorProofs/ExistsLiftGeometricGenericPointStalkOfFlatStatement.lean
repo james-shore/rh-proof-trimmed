@@ -75,4 +75,4 @@ open ReciprocityTheory.ChartRestriction.G.Semi
 theorem _root_.GlobalTheory.T.exists_lift_geometricGenericPoint_stalk_of_flat : ∀ {X' W : Scheme.{0}} [IsIntegral X'] (h : W ⟶ X') [Flat h] (q : W)
     [IsDomain (W.presheaf.stalk q)] {V : Scheme.{0}} [Nonempty V] (ℓ : V ⟶ X') [IsOpenImmersion ℓ]
     (Ω : Type) [Field Ω] (y : Sp Ω ⟶ Spec (W.presheaf.stalk q)) (hy : ∀ x, (y x).asIdeal = ⊥), ∃ z : Sp Ω ⟶ V, y ≫ W.fromSpecStalk q ≫ h = z ≫ ℓ := by
-  first | exact @GlobalTheory.lift_of_stalk_generic_flat | exact GlobalTheory.lift_of_stalk_generic_flat | (intros; apply GlobalTheory.lift_of_stalk_generic_flat <;> assumption)
+  first | exact @GlobalTheory.lift_of_stalk_generic_flat

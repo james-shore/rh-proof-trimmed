@@ -48,4 +48,4 @@ open scoped TensorProduct Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.archimedeanLevelVolume_mul_relIndex : ∀ (D : D7) (V : HSp D) (v : GlobalTheory.Unf.Vol V) (U U' : Subgroup (GA D V)), U ≤ U' → U' ≤ GfC V → IsCompact (U' : Set (GA D V)) → IsOpen ((U.subgroupOf (GfC V) : Subgroup (GfC V)) : Set (GfC V)) → volLev v U * (U.relIndex U' : ℝ) = volLev v U' := by
-  first | exact @GlobalTheory.LevVol.volLev_mul_relIndex | exact GlobalTheory.LevVol.volLev_mul_relIndex | (intros; apply GlobalTheory.LevVol.volLev_mul_relIndex <;> assumption)
+  first | exact @GlobalTheory.LevVol.volLev_mul_relIndex

@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.congruent_pairs_fix_vacuum_weilDatum : ∀ {D : D7
     {χS χT : (Formalism.L2.Theta.AE D)ˣ →* Circle} {om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)}, IsVacO ψ θ S T sS sT (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E)) v → IsSelfDualC S ΛS → IsSelfDualC T ΛT →
     (∀ τ, IsCartanInv (gramAt D S τ) (sS τ)) → (∀ τ, IsCartanInv (gramAt D T τ) (sT τ)) → IsWeilDatumO ψ S T χS χT om →
     ∃ N : ℕ, 0 < N ∧ ∀ k ∈ GfC S, ∀ k' ∈ GfC T, GlobalTheory.Member.FinCong S N k → GlobalTheory.Member.FinCong T N k' → om (k, k') v = v := by
-  first | exact @GlobalTheory.VacFixPair.pair_fix_vacO | exact GlobalTheory.VacFixPair.pair_fix_vacO | (intros; apply GlobalTheory.VacFixPair.pair_fix_vacO <;> assumption)
+  first | exact @GlobalTheory.VacFixPair.pair_fix_vacO

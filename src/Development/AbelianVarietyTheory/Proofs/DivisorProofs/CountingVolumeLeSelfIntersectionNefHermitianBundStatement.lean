@@ -59,4 +59,4 @@ open scoped ENNReal Classical
 
 
 theorem _root_.GlobalTheory.T.countingVolume_le_selfIntersection_nefHermitianBundle : ∀ (k : Type) [CommRing k] (X : AlgebraicGeometry.Scheme.{0}) [AlgebraicGeometry.IsIntegral X] (p : X ⟶ Sp k) (D d a : ℕ) (L : GlobalTheory.HermLB p) (A : ℝ) (m : ℕ → ℕ∞), GlobalTheory.Published.ArithHilbertSamuel → GlobalTheory.IsArithVar p D → L.IsNef D → L.IsSelfInter A → 0 < d → 0 < a → (∀ i : ℕ, 1 ≤ i → m (a * i) ≤ (L.pow (a * i)).smallSec.encard) → countVol D d a m ≤ ENNReal.ofReal (A / ((d : ℝ) * ((D : ℝ) + 1))) := by
-  first | exact @GlobalTheory.countVol_le_selfInter | exact GlobalTheory.countVol_le_selfInter | (intros; apply GlobalTheory.countVol_le_selfInter <;> assumption)
+  first | exact @GlobalTheory.countVol_le_selfInter

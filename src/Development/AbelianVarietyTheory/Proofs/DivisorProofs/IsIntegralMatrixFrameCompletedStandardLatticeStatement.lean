@@ -60,4 +60,4 @@ open GlobalTheory.StdRead
 
 
 theorem _root_.GlobalTheory.T.isIntegralMatrix_frame_completedStandardLattice : ∀ {D : D7} {n : ℕ} (β : GL (Fin n) (EAf D)), Formalism.L2.DIV.IsFrame β (stdL D n) → IsIntM β.val ∧ IsIntM (β⁻¹).val := by
-  first | exact @GlobalTheory.StdRead.isIntM_of_isFrame_stdL | exact GlobalTheory.StdRead.isIntM_of_isFrame_stdL | (intros; apply GlobalTheory.StdRead.isIntM_of_isFrame_stdL <;> assumption)
+  first | exact @GlobalTheory.StdRead.isIntM_of_isFrame_stdL

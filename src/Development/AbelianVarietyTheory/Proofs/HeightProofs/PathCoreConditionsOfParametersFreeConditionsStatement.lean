@@ -41,4 +41,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.pathCoreConditions_of_intrinsicConditions : ∀ (D : D7) (O : GlobalTheory.EX.OB.Obj D) (c : ℝ) (b : BdPt D O c), TiesB D O c b → FieldSmall D O.L → CoreTies O.L O.ex.errX b.T b.R.toRealDat ∧ b.T.pb = b.R.C.P.pb ∧ GlobalTheory.GLq.ESerTie D ∧ b.LevelTie ∧ b.DataTie := by
-  first | exact @GlobalTheory.PlugPt.ties_core_of_tiesB | exact GlobalTheory.PlugPt.ties_core_of_tiesB | (intros; apply GlobalTheory.PlugPt.ties_core_of_tiesB <;> assumption)
+  first | exact @GlobalTheory.PlugPt.ties_core_of_tiesB

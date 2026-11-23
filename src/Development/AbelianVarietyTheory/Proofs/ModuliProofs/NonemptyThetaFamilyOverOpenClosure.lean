@@ -235,7 +235,6 @@ theorem genericObj_of (h₂ : Out.Laws2) (w w' : J)
   · rw [← hker]
     first
     | exact RingHom.ker_comp_of_injective y e.injective
-    | (ext a; simp [RingHom.mem_ker])
   · rw [shape_cast]
     exact (GlobalTheory.shape_prim_pull_and_descend _ _ _ _ _ Mat κ w w' _ _ _ _ _ t tc htc).1 hsh
   · rw [hasTh_cast]
@@ -314,7 +313,6 @@ theorem exists_chart [IsNoetherianRing o] (hG : GenericObj C Y Mat κ)
   haveI : IsOpenImmersion (spMap (algebraMap R0 (Localization.Away f))) := by
     first
     | infer_instance
-    | (unfold spMap; infer_instance)
   refine ⟨Localization.Away f, inferInstance, spMap (algebraMap R0 (Localization.Away f)) ≫ x0,
     fun a => algebraMap R0 (Localization.Away f) (v0 a), cast t hbt, ?_, ?_⟩
   · unfold IsChart
@@ -464,7 +462,6 @@ theorem Covered.hasTh_iff (h : Covered Mat κ univ) (h₁ : Out.Laws) (h₂ : Ou
     refine ⟨Localization.Away f, inferInstance, algebraMap R (Localization.Away f), ?_, ?_, hsc⟩
     · first
       | infer_instance
-      | (unfold spMap; infer_instance)
     · change p ∈ Set.range (PrimeSpectrum.comap (algebraMap R (Localization.Away f)))
       rw [PrimeSpectrum.localization_away_comap_range (Localization.Away f) f]
       exact hf

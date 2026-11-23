@@ -131,11 +131,11 @@ theorem exists_fixed_avg (σ : Representation ℂ G W) (hs : GlobalTheory.PRep.I
     · intro v hv
       rw [hO, Set.Finite.mem_toFinset] at hv ⊢
       obtain ⟨j, rfl⟩ := hv
-      exact ⟨⟨k, hk⟩ * j, by simp [Module.End.mul_apply]⟩
+      exact ⟨⟨k, hk⟩ * j, by simp⟩
     · intro v hv
       rw [hO, Set.Finite.mem_toFinset] at hv ⊢
       obtain ⟨j, rfl⟩ := hv
-      exact ⟨⟨k, hk⟩⁻¹ * j, by simp [Module.End.mul_apply]⟩
+      exact ⟨⟨k, hk⟩⁻¹ * j, by simp⟩
     · intro v _
       rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
     · intro v _
@@ -169,8 +169,7 @@ theorem exists_rep (U : Submodule ℂ W) [FiniteDimensional ℂ U]
       map_smul' := by
         intro r z
         ext x
-        simp only [RingHom.id_apply, LinearMap.smul_apply, LinearMap.comp_apply, LinearMap.flip_apply,
-          Submodule.coe_smul]
+        simp only [RingHom.id_apply, LinearMap.smul_apply, LinearMap.comp_apply, LinearMap.flip_apply]
         rw [RCLike.real_smul_eq_coe_smul (K := ℂ) r z, Submodule.coe_smul, LinearMap.map_smulₛₗ, Complex.real_smul,
           RCLike.conj_ofReal, smul_eq_mul]
         rfl }

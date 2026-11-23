@@ -57,4 +57,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.exists_standardPositiveDefinite_hermitianSpace_rank : ∀ (D : D7) (n : ℕ), ∃ V : HSp D, V.rank = n ∧ V.gram = 1 ∧ IsDefiniteSpace V := by
-  first | exact @GlobalTheory.StdDefSpace.exists_std_definite | exact GlobalTheory.StdDefSpace.exists_std_definite | (intros; apply GlobalTheory.StdDefSpace.exists_std_definite <;> assumption)
+  first | exact @GlobalTheory.StdDefSpace.exists_std_definite

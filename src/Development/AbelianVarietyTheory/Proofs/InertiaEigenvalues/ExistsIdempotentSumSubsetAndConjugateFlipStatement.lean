@@ -62,4 +62,4 @@ open GlobalTheory.LevelSeries
 
 
 theorem _root_.GlobalTheory.T.exists_idempotentSum_subset_and_conjugate_flip : ∀ (D : D7) (e : AE D) (P T : Finset (Formalism.L2.DIV.Pl D.host.E)), IsIdemSum e P → T ⊆ P → (∃ eT : AE D, IsIdemSum eT T) ∧ ∃ e' : AE D, IsIdemSum e' ((P \ T) ∪ T.image Formalism.L2.DIV.conjPl) := by
-  first | exact @GlobalTheory.IdemFlip.idemSum_sub_and_flip | exact GlobalTheory.IdemFlip.idemSum_sub_and_flip | (intros; apply GlobalTheory.IdemFlip.idemSum_sub_and_flip <;> assumption)
+  first | exact @GlobalTheory.IdemFlip.idemSum_sub_and_flip

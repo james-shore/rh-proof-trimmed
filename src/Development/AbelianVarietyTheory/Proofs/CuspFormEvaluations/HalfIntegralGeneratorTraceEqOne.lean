@@ -169,7 +169,6 @@ theorem chi_eq_sign : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   have key : Φ.χ a * (Complex.exp (Real.pi * Complex.I * ((hermForm Φ.Hm a (tyAct ty H.w0 a)).im : ℂ)))⁻¹ = 1 := by
     rw [← hprod]
     field_simp
-    try ring
   have hχ := (mul_inv_eq_one₀ hX).1 key
   obtain ⟨k, hk⟩ := Φ.toAnFr.herm_im_int ha hw
   refine ⟨?_, hχ⟩

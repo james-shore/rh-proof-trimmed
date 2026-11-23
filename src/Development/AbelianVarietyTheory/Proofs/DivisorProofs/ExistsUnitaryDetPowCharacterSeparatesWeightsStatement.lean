@@ -62,4 +62,4 @@ open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.exists_unitary_detPowCharacter_separates_weights : ∀ {ι : Type} [Fintype ι] (a : ℕ), 0 < a → ∀ n n₀ : ι → ℕ, n ≠ n₀ →
     ∃ g : ι → Matrix.unitaryGroup (Fin a) ℂ, GlobalTheory.MinorFrame.detChar n (fun τ => (g τ : Matrix (Fin a) (Fin a) ℂ)) ≠ GlobalTheory.MinorFrame.detChar n₀ (fun τ => (g τ : Matrix (Fin a) (Fin a) ℂ)) := by
-  first | exact @GlobalTheory.MinorFrame.exists_unitary_detChar_ne | exact GlobalTheory.MinorFrame.exists_unitary_detChar_ne | (intros; apply GlobalTheory.MinorFrame.exists_unitary_detChar_ne <;> assumption)
+  first | exact @GlobalTheory.MinorFrame.exists_unitary_detChar_ne

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.norm_completedHeckeL_CM_one_le_phragmenLindelof : 
     IsUnitary χ → TrivOnF χ → HasInf χ φ m → (∀ i, 0 < m i) → (∀ v, ExpAt χ v (a v)) → IsHeckeL χ Λ →
     ‖Λ 1‖ ≤ ‖riemannZeta (3 / 2)‖ ^ Module.finrank ℚ E *
       ((((discr E).natAbs * a.prod fun v k => Ideal.absNorm v.asIdeal ^ k : ℕ) : ℝ)) * ∏ i, (1 + (m i : ℝ)) := by
-  first | exact @GlobalTheory.HeckeLOneBound.norm_heckeL_one_le | exact GlobalTheory.HeckeLOneBound.norm_heckeL_one_le | (intros; apply GlobalTheory.HeckeLOneBound.norm_heckeL_one_le <;> assumption)
+  first | exact @GlobalTheory.HeckeLOneBound.norm_heckeL_one_le

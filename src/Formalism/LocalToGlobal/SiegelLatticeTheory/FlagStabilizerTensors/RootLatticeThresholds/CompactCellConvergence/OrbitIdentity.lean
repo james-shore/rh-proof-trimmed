@@ -60,7 +60,6 @@ theorem rmulF_meas (ρ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ)
   simp only [Formalism.FourierDecayAlt.B.rmulF, Matrix.mul_apply, Matrix.of_apply]
   refine Finset.measurable_sum _ fun l _ => ?_
   first
-  | exact (measurable_pi_iff.mp (measurable_pi_apply i) l).mul measurable_const
   | fun_prop
 
 theorem orbit_identity (L : LocBessel k r) {γ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}

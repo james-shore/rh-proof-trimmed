@@ -57,4 +57,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.PairLift
 
 theorem _root_.GlobalTheory.T.isDiscreteSeries_neg_signature_of_isDiscreteSeries : ∀ (n : ℕ) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] (ε : Fin n → Bool) (lam : Fin n → ℝ) (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)), Formalism.MainNotions.S.IsDS ε lam σ → Formalism.MainNotions.S.IsDS (fun a => !ε a) lam σ := by
-  first | exact @GlobalTheory.PairLift.isDS_flip | exact GlobalTheory.PairLift.isDS_flip | (intros; apply GlobalTheory.PairLift.isDS_flip <;> assumption)
+  first | exact @GlobalTheory.PairLift.isDS_flip

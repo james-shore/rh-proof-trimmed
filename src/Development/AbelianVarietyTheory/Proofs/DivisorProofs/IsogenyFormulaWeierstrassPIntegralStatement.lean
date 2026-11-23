@@ -50,4 +50,4 @@ open GlobalTheory.CMVal GlobalTheory.HeckeGal
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.isogeny_formula_weierstrassP_integral : ∀ (L : PeriodPair) (α β Ω P : ℂ) (M n : ℕ), MulStable L β → β.im ≠ 0 → Ω ^ 12 = latDisc L → MulStable L α → Complex.normSq α = n → 0 < n → 0 < M → P ∉ L.lattice → (M : ℂ) * P ∈ L.lattice → IsIntegral ℤ (((M * n : ℕ) : ℂ) ^ 2 * ((α ^ 2 - n) * ((s2 L + L.weierstrassP P) / Ω ^ 2) - (α ^ 2 - 1) * (L.weierstrassP P / Ω ^ 2))) := by
-  first | exact @GlobalTheory.IsogFormula.main | exact GlobalTheory.IsogFormula.main | (intros; apply GlobalTheory.IsogFormula.main <;> assumption)
+  first | exact @GlobalTheory.IsogFormula.main

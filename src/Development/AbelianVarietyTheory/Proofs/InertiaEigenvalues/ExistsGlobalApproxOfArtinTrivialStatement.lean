@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_global_approx_of_artin_trivial : ∀ (E Ω 
       (∀ v : HeightOneSpectrum (𝓞 E), v ≠ w →
         v.valuation E (((k : E) - 1) / (a : E)) ≤ 1 ∧ v.valuation E ((k : E)⁻¹) ≤ 1) ∧
       Valued.v (algebraMap E (w.adicCompletion E) (k : E) - (x : w.adicCompletion E)) ≤ Valued.v t) := by
-  first | exact @GlobalTheory.ArtinApprox.exists_global_approx | exact GlobalTheory.ArtinApprox.exists_global_approx | (intros; apply GlobalTheory.ArtinApprox.exists_global_approx <;> assumption)
+  first | exact @GlobalTheory.ArtinApprox.exists_global_approx

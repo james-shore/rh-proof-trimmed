@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.splitPlace_hecke_doubleCoset_card_gaussBinom : ∀
     (Rc : Finset (GA D (Wc D i))), Bridge.SplitOff P (R.Sb : Set (Formalism.L2.DIV.Pl D.host.E)) → k ≤ D.R.r →
     IsHeckeAt (Wc D i) P k α → Bridge.IsDC (Lev.levG (Wc D i) (R.βW i) (R.datWp i R.triv)) α Rc →
     Rc.card = GlobalTheory.IndefiniteRowSideFullHecke.GaussianBinomialFormula.gaussBinom (Ideal.absNorm P.asIdeal) D.R.r k := by
-  first | exact @GlobalTheory.SplitCosetCount.card_cosets | exact GlobalTheory.SplitCosetCount.card_cosets | (intros; apply GlobalTheory.SplitCosetCount.card_cosets <;> assumption)
+  first | exact @GlobalTheory.SplitCosetCount.card_cosets

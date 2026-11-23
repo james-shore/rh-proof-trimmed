@@ -46,4 +46,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_modification_closure_of_graph : ∀ (R : Type) [CommRing R] [IsDomain R] (o : Type) [CommRing o] (b : o →+* R) (Z : Scheme.{0}) (s : Z ⟶ Sp o), IsProper s → ∀ y : Sp (FractionRing R) ⟶ Z, y ≫ s = jK R ≫ spMap b → ∃ (M : Modif R) (h : M.S ⟶ Z), M.gp ≫ h = y ∧ h ≫ s = M.π ≫ spMap b := by
-  first | exact @GlobalTheory.Mum.exists_modif_graph | exact GlobalTheory.Mum.exists_modif_graph | (intros; apply GlobalTheory.Mum.exists_modif_graph <;> assumption)
+  first | exact @GlobalTheory.Mum.exists_modif_graph

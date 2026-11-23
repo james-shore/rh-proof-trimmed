@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.summable_heckeBalancedLatticeDoubleSum : ∀ (F : 
       Summable (fun p : Quotient (unitRel (𝔟 : FractionalIdeal (𝓞 F)⁰ F)) × NZ (𝔞 : FractionalIdeal (𝓞 F)⁰ F) =>
         ∏ τ : Emb F, (|τ (((ε p.1 : 𝓞 F) : F) * p.1.out.1)| + |τ (((ε p.1 : 𝓞 F) : F) * p.1.out.1)|⁻¹) ^ m /
           (1 + |τ p.2.1 * τ p.1.out.1|) ^ N) := by
-  first | exact @GlobalTheory.HeckeTwo.summable_balanced_latSum | exact GlobalTheory.HeckeTwo.summable_balanced_latSum | (intros; apply GlobalTheory.HeckeTwo.summable_balanced_latSum <;> assumption)
+  first | exact @GlobalTheory.HeckeTwo.summable_balanced_latSum

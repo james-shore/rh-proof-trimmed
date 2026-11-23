@@ -354,7 +354,7 @@ private lemma sum_weights_over_prime_le_half_degree (p : ℕ) (T : Finset {P : I
     _ = (∑ P ∈ T, Real.log (Ideal.absNorm P.1 : ℝ)) / (2 * Real.log p) := by rw [Finset.sum_div]
     _ ≤ (Module.finrank ℚ K * Real.log p) / (2 * Real.log p) := by
         apply div_le_div_of_nonneg_right hlog; linarith
-    _ = (Module.finrank ℚ K : ℝ) / 2 := by field_simp; try ring
+    _ = (Module.finrank ℚ K : ℝ) / 2 := by field_simp
 
 variable [StarRing K]
 
@@ -367,7 +367,7 @@ private lemma euler_factor_log_bound (hK : Formalism.HermitianLatticesTheory.IsC
   have hlp := log_prime_pos _ hp
   have hlne := hlp.ne'
   have hc : idealPrimeWeight K P = (k : ℝ) / 2 := by
-    rw [idealPrimeWeight, hk, Nat.cast_pow, Real.log_pow]; field_simp; try ring
+    rw [idealPrimeWeight, hk, Nat.cast_pow, Real.log_pow]; field_simp
   have hg := neg_log_one_sub_inv_pow_nonneg M hM _ hp
   unfold Formalism.HermitianLatticesTheory.eulerFac
   split_ifs with hconj

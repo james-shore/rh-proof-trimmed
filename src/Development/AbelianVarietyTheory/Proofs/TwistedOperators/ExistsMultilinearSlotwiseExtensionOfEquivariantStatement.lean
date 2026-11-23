@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.exists_multilinear_positionwise_extension_of_equiv
       ∀ τ (u : ∀ τ, H τ), (∀ τ', τ' ≠ τ → u τ' ∈ B τ') →
         T.toLinearMap u τ ∈ C τ ∧
           ∀ r ∈ Rg τ, ∀ x ∈ B τ, T (Function.update u τ (r.1 x)) = r.2 (T (Function.update u τ x)) := by
-  first | exact @GlobalTheory.FactorwiseExtension.exists_multilinear_positionwise_extension | exact GlobalTheory.FactorwiseExtension.exists_multilinear_positionwise_extension | (intros; apply GlobalTheory.FactorwiseExtension.exists_multilinear_positionwise_extension <;> assumption)
+  first | exact @GlobalTheory.FactorwiseExtension.exists_multilinear_positionwise_extension

@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DownLift GlobalTheory.Core.Rk.Exh
 
 theorem _root_.GlobalTheory.T.real_invariant_sesquilinear_form_eq_smul_inner : ∀ (D : D7) (V : HSp D) (c : CoefA V), c.Is → ∀ (B : c.W →ₗ⋆[ℂ] c.W →ₗ[ℂ] ℂ), (∀ u ∈ GinfC V, ∀ x y, B (c.ρ u x) (c.ρ u y) = B x y) → ∃ z : ℂ, ∀ x y, B x y = z * ⟪x, y⟫_ℂ := by
-  first | exact @GlobalTheory.CoefRealSchur.form_eq_smul_inner | exact GlobalTheory.CoefRealSchur.form_eq_smul_inner | (intros; apply GlobalTheory.CoefRealSchur.form_eq_smul_inner <;> assumption)
+  first | exact @GlobalTheory.CoefRealSchur.form_eq_smul_inner

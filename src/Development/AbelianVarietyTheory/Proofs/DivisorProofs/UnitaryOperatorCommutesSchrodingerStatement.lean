@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.unitary_operator_commutes_schrodinger : GlobalTheo
     (∀ μ : @Measure (κ → AF F) (borel _), @Measure.IsAddHaarMeasure _ _ _ (borel _) μ →
       ∀ φ ∈ schA F κ, ∫⁻ x, ‖M φ x‖ₑ ^ 2 ∂μ = ∫⁻ x, ‖φ x‖ₑ ^ 2 ∂μ) →
     ∃ z : ℂ, ∀ φ ∈ schA F κ, M φ = z • φ := by
-  first | exact @GlobalTheory.AdelicSchur.schur | exact GlobalTheory.AdelicSchur.schur | (intros; apply GlobalTheory.AdelicSchur.schur <;> assumption)
+  first | exact @GlobalTheory.AdelicSchur.schur

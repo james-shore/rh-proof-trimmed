@@ -48,4 +48,4 @@ open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
 theorem _root_.GlobalTheory.T.flagRefinementBundle_dim_eq_base_add_card_aboveDiagonal : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (X Y : Var F) (ι : Type) [Fintype ι] (m : ι → ℕ) (E : Fr (ratOf X) m 0) (E' : Fr (ratOf Y) m m) (φ : X.Fn →ₐ[F] Y.Fn) (f : Y.X ⟶ X.X) (hf : f ≫ X.str = Y.str), Refines E E' φ f → Y.dim = X.dim + Fintype.card (Cell m) := by
-  first | exact @GlobalTheory.FlagCell2.Dim.main | exact GlobalTheory.FlagCell2.Dim.main | (intros; apply GlobalTheory.FlagCell2.Dim.main <;> assumption)
+  first | exact @GlobalTheory.FlagCell2.Dim.main

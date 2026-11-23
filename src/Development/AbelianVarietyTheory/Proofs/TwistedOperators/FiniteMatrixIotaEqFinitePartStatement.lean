@@ -54,4 +54,4 @@ open scoped Matrix
 
 
 theorem _root_.GlobalTheory.T.finiteMatrix_iota_eq_finitePart : ∀ {D : D7} (κ : GA D (Yc D 0)), (GlobalTheory.SeeConjGroup.II D).fmat ((Formalism.IndefR.RationalEmbedding.iota D) κ).2 = (finE (Yc D 0) κ).val := by
-  first | exact @GlobalTheory.SeeConjGroup.fmat_iota_eq_finE | exact GlobalTheory.SeeConjGroup.fmat_iota_eq_finE | (intros; apply GlobalTheory.SeeConjGroup.fmat_iota_eq_finE <;> assumption)
+  first | exact @GlobalTheory.SeeConjGroup.fmat_iota_eq_finE

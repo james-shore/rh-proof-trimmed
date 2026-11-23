@@ -42,4 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 
 theorem _root_.GlobalTheory.T.exists_adaptedNormalForm_relevantTerm : GlobalTheory.TypeAsm.NFExC := by
-  first | exact @GlobalTheory.TypeAsm.nfExC_holds | exact GlobalTheory.TypeAsm.nfExC_holds | (intros; apply GlobalTheory.TypeAsm.nfExC_holds <;> assumption)
+  first | exact @GlobalTheory.TypeAsm.nfExC_holds

@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.exists_trigPolynomial_indicator_awayFromPlace : �
         (fun i => ((x + (GlobalTheory.LatVac.liftV v 1 • y - GlobalTheory.LatVac.liftV v 1 • x)) i).2) ∈ V) ∧
       ∀ x : κ → AF F, (fun i => (x i).2) ∈ K →
         ∑ b ∈ s, c b * ψ (x ⬝ᵥ b) = A.indicator (fun _ => (1 : ℂ)) (fun i => (x i).2) := by
-  first | exact @GlobalTheory.OffVTrig.exists_offV_indicator_poly | exact GlobalTheory.OffVTrig.exists_offV_indicator_poly | (intros; apply GlobalTheory.OffVTrig.exists_offV_indicator_poly <;> assumption)
+  first | exact @GlobalTheory.OffVTrig.exists_offV_indicator_poly

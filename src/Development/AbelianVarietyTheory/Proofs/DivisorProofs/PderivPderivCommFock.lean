@@ -69,19 +69,19 @@ theorem fock_letters_ccr (p q r s : ℕ) (l m : Ln p q r s) :
       rw [if_pos rfl]
       cases hl : linePos l <;> simp only [lowB, raiB, hl, Bool.false_eq_true, ↓reduceIte] <;>
         refine LinearMap.ext fun f => ?_ <;>
-        simp [Module.End.mul_apply, hX]
+        simp [hX]
     · rw [if_neg hlm]
       cases hl : linePos l <;> cases hm : linePos m <;>
         simp only [lowB, raiB, hl, hm, Bool.false_eq_true, ↓reduceIte] <;>
         refine LinearMap.ext fun f => ?_ <;>
-        simp [Module.End.mul_apply, hX, hcomm, Ne.symm hlm, hlm] <;> ring
+        simp [hX, hcomm, Ne.symm hlm, hlm] <;> ring
   · cases hl : linePos l <;> cases hm : linePos m <;>
       simp only [lowB, hl, hm, Bool.false_eq_true, ↓reduceIte] <;>
       refine LinearMap.ext fun f => ?_ <;>
-      simp [Module.End.mul_apply, hX, hcomm] <;> (try ring_nf) <;> (try (intro h; subst h; exact absurd (hl.symm.trans hm) (by decide)))
+      simp [hX, hcomm] <;> (try ring_nf) <;> (try (intro h; subst h; exact absurd (hl.symm.trans hm) (by decide)))
   · cases hl : linePos l <;> cases hm : linePos m <;>
       simp only [raiB, hl, hm, Bool.false_eq_true, ↓reduceIte] <;>
       refine LinearMap.ext fun f => ?_ <;>
-      simp [Module.End.mul_apply, hX, hcomm] <;> (try ring_nf) <;> (try (intro h; subst h; exact absurd (hl.symm.trans hm) (by decide)))
+      simp [hX, hcomm] <;> (try ring_nf) <;> (try (intro h; subst h; exact absurd (hl.symm.trans hm) (by decide)))
 
 end GlobalTheory

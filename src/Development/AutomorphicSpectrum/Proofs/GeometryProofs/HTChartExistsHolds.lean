@@ -157,7 +157,7 @@ def dualAct {L : Type} [AddCommGroup L] [Module R L] (ρ : 𝓞 E →+* Module.E
   map_mul' a b := by
     rw [mul_comm a b]
     ext w l
-    simp [Module.End.mul_apply]
+    simp
   map_zero' := by ext w l; simp
   map_add' a b := by ext w l; simp
 
@@ -218,7 +218,7 @@ theorem htChartExists : HTChartExists := by
     induction hy using AddSubgroup.closure_induction with
     | mem y hy =>
       obtain ⟨k, rfl⟩ := hy
-      have : h (b k) = wb k := by simp [h, Module.Basis.constr_basis]
+      have : h (b k) = wb k := by simp [h]
       rw [this]; exact hwb k
     | zero => rw [map_zero, show χ 0 = 1 from charOf_zero _ _ _ _ _ _ _]; exact hzero
     | add y y' _ _ h1 h2 =>

@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.fockAction_quadraticOperators_factorSignatures : �
     ∀ Y : ∀ w : ι, Mat (R w) (S w), (∀ w, Y w ∈ upq (R w) (S w)) → ∀ Z : Matrix (l ⊕ l) (l ⊕ l) ℝ,
     (∀ c, Z *ᵥ φ c = φ fun w => c w * (Y w)ᵀ) →
     ∀ T, quad Z (Ψ T) = Ψ (sumPl (fun w => fockAct2 (P w) (Q w) (R w) (S w) (Y w)) T) := by
-  first | exact @GlobalTheory.HoweD.quad_fockD | exact GlobalTheory.HoweD.quad_fockD | (intros; apply GlobalTheory.HoweD.quad_fockD <;> assumption)
+  first | exact @GlobalTheory.HoweD.quad_fockD

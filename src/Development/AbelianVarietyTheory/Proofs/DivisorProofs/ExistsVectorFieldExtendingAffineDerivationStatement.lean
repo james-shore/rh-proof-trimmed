@@ -53,4 +53,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_vectorField_extending_affineDerivation : ∀ (Z : Scheme.{0}) (U : Z.Opens), IsAffineOpen U → ∀ δ : Γ(Z, U) → Γ(Z, U), (∀ a b, δ (a + b) = δ a + δ b) → (∀ a b, δ (a * b) = a * δ b + b * δ a) → ∃ d : Fld Z, IsField U d ∧ d U = δ := by
-  first | exact @GlobalTheory.DerFieldExt.exists_field | exact GlobalTheory.DerFieldExt.exists_field | (intros; apply GlobalTheory.DerFieldExt.exists_field <;> assumption)
+  first | exact @GlobalTheory.DerFieldExt.exists_field

@@ -52,11 +52,7 @@ namespace GlobalTheory.ShFam.Hor.PerBasis
 theorem mult_conj_add_mult {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
     (D : Datum H) (τ : E →+* ℂ) : D.mult (conjEmb τ) + D.mult τ = D.p + D.q := by
   first
-  | exact @_root_.GlobalTheory.ConjugateMultiplicity.target
-  | exact _root_.GlobalTheory.ConjugateMultiplicity.target
   | (apply _root_.GlobalTheory.ConjugateMultiplicity.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ConjugateMultiplicity.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ConjugateMultiplicity.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ConjugateMultiplicity.target ..)
 
 theorem exists_indep {E : Type} [Field E] [NumberField E] (M : Type) [AddCommGroup M] [Module (𝓞 E) M]

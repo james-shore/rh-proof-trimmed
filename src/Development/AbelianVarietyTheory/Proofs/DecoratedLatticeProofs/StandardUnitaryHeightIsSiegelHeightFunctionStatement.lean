@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.standardUnitaryHeight_isSiegelHeightFunction : ∀ (D : D7) (A : HSp D) (μ : D.host.E), IsSkew μ → ∀ κ : GA D (dblSp A) ≃* G D A.rank, IsChart A μ κ → ∀ (a : GL (Fin A.rank) (AE D)) (p : siegel A), IsConj A a κ p → IsHeight (hgtStd A a κ p) := by
-  first | exact @GlobalTheory.StdUnn.isHeight_hgtStd | exact GlobalTheory.StdUnn.isHeight_hgtStd | (intros; apply GlobalTheory.StdUnn.isHeight_hgtStd <;> assumption)
+  first | exact @GlobalTheory.StdUnn.isHeight_hgtStd

@@ -172,14 +172,10 @@ theorem isAlgebraic_compAt_of_mem_GQ {D : D7} {θ : InfFam D} (hθ : IsInfFam θ
   have h0 : IsAlgebraic ℚ (γ₀.1 a b) := Algebra.IsAlgebraic.isAlgebraic (R := ℚ) (γ₀.1 a b)
   first
     | exact h0.algHom (tauE D τ).toRatAlgHom
-    | exact IsAlgebraic.map (tauE D τ).toRatAlgHom h0
-    | exact (isAlgebraic_algHom_iff (tauE D τ).toRatAlgHom (tauE D τ).injective).2 h0
 
 theorem isAlgebraic_conj {z : ℂ} (h : IsAlgebraic ℚ z) : IsAlgebraic ℚ (starRingEnd ℂ z) := by
   first
     | exact h.algHom (starRingEnd ℂ).toRatAlgHom
-    | exact IsAlgebraic.map (starRingEnd ℂ).toRatAlgHom h
-    | exact (isAlgebraic_algHom_iff (starRingEnd ℂ).toRatAlgHom (starRingEnd ℂ).injective).2 h
 
 end GlobalTheory.MovedJet
 

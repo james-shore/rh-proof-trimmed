@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.exists_fullLevelAmpleModel_of_semistableReduction : GlobalTheory.Published.SemistableReductionSt → GlobalTheory.Models.TopAmpExists := by
-  first | exact @GlobalTheory.topAmpExists_of_semistableReduction | exact GlobalTheory.topAmpExists_of_semistableReduction | (intros; apply GlobalTheory.topAmpExists_of_semistableReduction <;> assumption)
+  first | exact @GlobalTheory.topAmpExists_of_semistableReduction

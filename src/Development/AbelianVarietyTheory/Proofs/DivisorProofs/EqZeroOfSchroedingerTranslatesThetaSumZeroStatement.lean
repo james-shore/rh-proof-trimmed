@@ -47,4 +47,4 @@ open NumberField IsDedekindDomain MeasureTheory Filter Formalism.MainNotions.Glo
 
 theorem _root_.GlobalTheory.T.eq_zero_of_schroedingerTranslates_thetaSum_zero : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), IsStd ψ → ∀ (κ : Type) [Fintype κ], ∀ Φ ∈ schA F κ,
     (∀ w : (κ → AF F) × (κ → AF F), thetaSum F (schr ψ w Φ) = 0) → Φ = 0 := by
-  first | exact @GlobalTheory.ThetaInj.main | exact GlobalTheory.ThetaInj.main | (intros; apply GlobalTheory.ThetaInj.main <;> assumption)
+  first | exact @GlobalTheory.ThetaInj.main

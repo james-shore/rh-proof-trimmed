@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.exists_factor_closedImmersion_of_locally_on_source : ∀ (Z A Y : Scheme.{0}) (a : A ⟶ Z), IsClosedImmersion a → ∀ (g : Y ⟶ Z), (∀ y : Y, ∃ W : Y.Opens, y ∈ W ∧ ∃ z : W.toScheme ⟶ A, z ≫ a = W.ι ≫ g) → ∃ z : Y ⟶ A, z ≫ a = g := by
-  first | exact @GlobalTheory.exists_factor_closedImmersion_of_locally | exact GlobalTheory.exists_factor_closedImmersion_of_locally | (intros; apply GlobalTheory.exists_factor_closedImmersion_of_locally <;> assumption)
+  first | exact @GlobalTheory.exists_factor_closedImmersion_of_locally

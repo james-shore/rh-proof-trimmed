@@ -97,7 +97,7 @@ theorem high_pow_coeff_mem_span_pow :
   have hu : WittVector.frobenius u = y.shift 1 := by
     ext n
     rw [WittVector.coeff_frobenius_charP]
-    simp only [u, WittVector.coeff_mk]
+    simp only [u]
     exact frobenius_apply_frobeniusEquiv_symm R p _
   have hyp : y = u * (p : WittVector p R) := by
     rw [hyV, ← hu, WittVector.verschiebung_frobenius]

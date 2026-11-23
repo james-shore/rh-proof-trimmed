@@ -52,4 +52,4 @@ open Matrix
 theorem _root_.GlobalTheory.T.irreducible_map_unramifiedWittToFractionField_of_eisenstein : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ) [NeZero a] (E : Polynomial (Wq l a)), E.Monic → 0 < E.natDegree →
     (∀ i < E.natDegree, (l : Wq l a) ∣ E.coeff i) → (∃ w : (Wq l a)ˣ, E.coeff 0 = (l : Wq l a) * w) →
     Irreducible (E.map (GlobalTheory.TameFrob.iota l a)) := by
-  first | exact @GlobalTheory.TameFrob.irreducible_map_iota_of_eisenstein | exact GlobalTheory.TameFrob.irreducible_map_iota_of_eisenstein | (intros; apply GlobalTheory.TameFrob.irreducible_map_iota_of_eisenstein <;> assumption)
+  first | exact @GlobalTheory.TameFrob.irreducible_map_iota_of_eisenstein

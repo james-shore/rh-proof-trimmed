@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.pairwise_disjoint_parahoricTorusDoubleCoset_antito
     valuation k (ϖ : k) = uniformizer k → ∀ (r l t : ℕ),
     Pairwise (Function.onFun Disjoint fun e : {e : Fin (l * t) → ℤ // Antitone e} =>
       (dcell ϖ (e.1 ∘ (blkEquiv l t).symm) : Set (GL (Fin r ⊕ Blocks l t) k))) := by
-  first | exact @GlobalTheory.CellDisjoint.dcell_pairwise_disjoint | exact GlobalTheory.CellDisjoint.dcell_pairwise_disjoint | (intros; apply GlobalTheory.CellDisjoint.dcell_pairwise_disjoint <;> assumption)
+  first | exact @GlobalTheory.CellDisjoint.dcell_pairwise_disjoint

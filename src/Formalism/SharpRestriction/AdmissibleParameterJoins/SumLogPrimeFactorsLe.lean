@@ -556,7 +556,6 @@ theorem Xpp_eq (s : Scale) (n : ℕ) (hn : 0 < n) : s.X'' n = s.X' * s.x * n := 
   have hn' : (0 : ℝ) < n := by exact_mod_cast hn
   simp only [Scale.X'', Scale.w'', Scale.b']
   field_simp [ha.ne', hX.ne', hx.ne', hn'.ne']
-  try ring
 
 theorem one_le_Xp (s : Scale) : 1 ≤ s.X' := by
   unfold Scale.X'

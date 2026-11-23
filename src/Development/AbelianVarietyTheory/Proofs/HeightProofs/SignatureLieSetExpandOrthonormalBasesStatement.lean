@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
 
 theorem _root_.GlobalTheory.T.signature_lieSet_expand_orthonormal_bases : ∀ (n : ℕ) (ε : Fin n → Bool), ∀ U ∈ lieSet ε, U = ∑ b, (trace (U * pB ε b)).re • pB ε b - ∑ i, (trace (U * kB ε i)).re • kB ε i := by
-  first | exact @GlobalTheory.TypeSum.CasBasis.lieSet_expand_bases | exact GlobalTheory.TypeSum.CasBasis.lieSet_expand_bases | (intros; apply GlobalTheory.TypeSum.CasBasis.lieSet_expand_bases <;> assumption)
+  first | exact @GlobalTheory.TypeSum.CasBasis.lieSet_expand_bases

@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.continuous_archimedeanWeilOperator_line_pairW : �
       ∀ γ ∈ Lines σ W, ∀ T : ℝ → SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d),
         (∀ (t : ℝ) (f : SInf F (Fin n × Fin d)), Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (T t f)) →
         ∀ (f : SInf F (Fin n × Fin d)) (x : (Fin n × Fin d → mixedEmbedding.mixedSpace F)), Continuous fun t => T t f x := by
-  first | exact @GlobalTheory.ArchLineContPair.continuous_apply | exact GlobalTheory.ArchLineContPair.continuous_apply | (intros; apply GlobalTheory.ArchLineContPair.continuous_apply <;> assumption)
+  first | exact @GlobalTheory.ArchLineContPair.continuous_apply

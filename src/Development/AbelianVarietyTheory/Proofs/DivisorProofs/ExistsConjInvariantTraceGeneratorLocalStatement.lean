@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_conj_invariant_trace_generator_local : ∀ 
     (h𝔭 : 𝔭.IsMaximal),
     ∃ θ : 𝓞 E →+ ℤ, (∀ t, θ (H.bar t) = θ t) ∧ ∃ s : 𝓞 E, s ∉ 𝔭 ∧ H.bar s ∉ 𝔭 ∧
       ∀ ψ : 𝓞 E →+ ℤ, ∃ t : 𝓞 E, ∀ u, ψ (s * u) = θ (t * u) := by
-  first | exact @GlobalTheory.RealTheta.exists_bar_inv_trace_gen | exact GlobalTheory.RealTheta.exists_bar_inv_trace_gen | (intros; apply GlobalTheory.RealTheta.exists_bar_inv_trace_gen <;> assumption)
+  first | exact @GlobalTheory.RealTheta.exists_bar_inv_trace_gen

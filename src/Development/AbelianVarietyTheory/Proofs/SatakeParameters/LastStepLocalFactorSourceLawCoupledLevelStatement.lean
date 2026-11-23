@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.last_step_local_factor_source_law_coupled_level : 
       z * (PhiTopG Ch mu cst.sharp (m2 + 1) (m2 + 1 + 1) (R.N (m2 + 1 + 1)) P.1
         (prXpG X.E (R.N (m2 + 1 + 1)) ∘ₗ y ∘ₗ LinearMap.funLeft X.E X.E (Fin.castAdd (cOf R (m2 + 1)))) *
       ftY sel mu cst P (atNL X.E (R.N (m2 + 1 + 1)) (R.N (m2 + 1 + 1) - 1) ∘ₗ y) y') := by
-  first | exact @GlobalTheory.TopLawG.locTopG_source | exact GlobalTheory.TopLawG.locTopG_source | (intros; apply GlobalTheory.TopLawG.locTopG_source <;> assumption)
+  first | exact @GlobalTheory.TopLawG.locTopG_source

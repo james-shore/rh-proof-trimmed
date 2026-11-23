@@ -295,7 +295,7 @@ theorem eisInt_bound (hP : SPois) {ω : HChar F} {c : HeightOneSpectrum (𝓞 F)
         ≤ ((t : ℝ) ^ 3)⁻¹ * M1 * t * max B1 0 :=
           mul_le_mul (mul_le_mul_of_nonneg_right hX ht0.le) hsB1 hs0.le
             (mul_nonneg (mul_nonneg (by positivity) hM1) ht0.le)
-      _ = M1 * max B1 0 * ((t : ℝ) ^ 2)⁻¹ := by field_simp; try ring
+      _ = M1 * max B1 0 * ((t : ℝ) ^ 2)⁻¹ := by field_simp
       _ ≤ M1 * max B1 0 * (1 + Real.log t ^ 2)⁻¹ :=
           mul_le_mul_of_nonneg_left (inv_sq_le_of_one_le h1) hB10
       _ ≤ (M1 * max B1 0 + ‖C0‖ * M2 * max B2 0) * (1 + Real.log t ^ 2)⁻¹ :=
@@ -313,7 +313,7 @@ theorem eisInt_bound (hP : SPois) {ω : HChar F} {c : HeightOneSpectrum (𝓞 F)
     calc ‖thetaS (Phi c) (Matrix.GeneralLinearGroup.scalar (Fin 2) z * g)‖ * t * s
         ≤ ‖C0‖ * ((t : ℝ) ^ 2 * a)⁻¹ * ((t : ℝ) ^ 3 * M2) * t * s :=
           mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_right hY ht0.le) hs0.le
-      _ = ‖C0‖ * M2 * ((t : ℝ) ^ 2 * s⁻¹) := by rw [← hsa]; field_simp; try ring
+      _ = ‖C0‖ * M2 * ((t : ℝ) ^ 2 * s⁻¹) := by rw [← hsa]; field_simp
       _ ≤ ‖C0‖ * M2 * ((1 + Real.log t ^ 2)⁻¹ * max B2 0) :=
           mul_le_mul_of_nonneg_left (mul_le_mul (sq_le_of_le_one ht0 h1) hsB2 (inv_nonneg.2 hs0.le) hL0.le)
             (mul_nonneg (norm_nonneg _) hM2)

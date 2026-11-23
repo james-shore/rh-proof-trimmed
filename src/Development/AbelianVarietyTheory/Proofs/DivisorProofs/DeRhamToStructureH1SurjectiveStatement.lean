@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.de_rham_to_structure_h1_surjective : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → Function.Surjective (toHO1 A.hom) := by
-  first | exact @GlobalTheory.AbCoh.toHO1_surjective | exact GlobalTheory.AbCoh.toHO1_surjective | (intros; apply GlobalTheory.AbCoh.toHO1_surjective <;> assumption)
+  first | exact @GlobalTheory.AbCoh.toHO1_surjective

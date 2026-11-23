@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.placesUnder_localData_mem_goodCharacter_ramificati
     (i j : Fin D.R.m) (B : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Base D.host.F D.host.E) (X : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Chars D.host.F D.host.E) (a a' : ℕ),
     X.α = alpha G t i j → X.β = beta G i j → X.IsGood B a a' →
     ∀ w ∈ locPl G t, w.under (𝓞 D.host.F) ∈ X.T := by
-  first | exact @GlobalTheory.BigNZ.LocalPlaceUnderMembership.under_locPl_mem | exact GlobalTheory.BigNZ.LocalPlaceUnderMembership.under_locPl_mem | (intros; apply GlobalTheory.BigNZ.LocalPlaceUnderMembership.under_locPl_mem <;> assumption)
+  first | exact @GlobalTheory.BigNZ.LocalPlaceUnderMembership.under_locPl_mem

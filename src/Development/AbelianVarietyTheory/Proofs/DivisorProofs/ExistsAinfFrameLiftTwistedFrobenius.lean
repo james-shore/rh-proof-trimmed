@@ -54,11 +54,7 @@ namespace GlobalTheory.FLam
 theorem exists_fixed {B : Type} [CommRing B] (q : B) [h : IsAdicComplete (Ideal.span {q}) B]
     (σ : B →+* B) (hσ : σ q = q) (w : B) : ∃ c : B, c = -w + q * σ c := by
   first
-  | exact @_root_.GlobalTheory.FixedPointApproximation.exists_fixed
-  | exact _root_.GlobalTheory.FixedPointApproximation.exists_fixed
   | (apply _root_.GlobalTheory.FixedPointApproximation.exists_fixed <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FixedPointApproximation.exists_fixed <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FixedPointApproximation.exists_fixed <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FixedPointApproximation.exists_fixed ..)
 
 theorem one_add_pow_of_sq {B : Type} [CommRing B] (x : B) (hx : x * x = 0) (n : ℕ) :

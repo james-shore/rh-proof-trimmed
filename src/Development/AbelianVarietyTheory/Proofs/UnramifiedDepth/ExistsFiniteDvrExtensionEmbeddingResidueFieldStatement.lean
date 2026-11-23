@@ -57,4 +57,4 @@ open NumberField IsLocalRing Formalism.IncomingBounds Formalism.L2.FormalSeriesB
 open ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF ReciprocityTheory.ChartRestriction.G.Pdiv.AvDefs
 
 theorem _root_.GlobalTheory.T.exists_finite_dvr_extension_embedding_residueField : ∀ (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [IsAdicComplete (maximalIdeal W) W] (k' : Type) [Field k'] [Algebra (ResidueField W) k'] [FiniteDimensional (ResidueField W) k'], ∃ (W' : Type) (_ : CommRing W') (_ : IsDomain W') (_ : IsDiscreteValuationRing W') (_ : IsAdicComplete (maximalIdeal W') W') (_ : Algebra W W'), Module.Finite W W' ∧ Function.Injective (algebraMap W W') ∧ ∃ e : k' →+* ResidueField W', ∀ v : W, e (algebraMap (ResidueField W) k' (residue W v)) = residue W' (algebraMap W W' v) := by
-  first | exact @GlobalTheory.exists_finite_dvr_residueField_ringHom | exact GlobalTheory.exists_finite_dvr_residueField_ringHom | (intros; apply GlobalTheory.exists_finite_dvr_residueField_ringHom <;> assumption)
+  first | exact @GlobalTheory.exists_finite_dvr_residueField_ringHom

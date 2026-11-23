@@ -95,6 +95,6 @@ theorem exists_line (D : D7) (X : HidaSetting D) (u : D.what₂.Word) :
   · simp [negLine, Formalism.BasicNotions.Examples₂.stdSpace]
   · rw [X.zu_norm]; exact neg_ne_zero.2 hT0
   · rw [negLine_gram, X.zu_norm, star_inv₀, star_eq_hostConj, ← hπ]
-    field_simp <;> ring
+    field_simp
 
 end GlobalTheory.RankOneLine

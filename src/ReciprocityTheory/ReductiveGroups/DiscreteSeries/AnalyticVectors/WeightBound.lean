@@ -135,7 +135,7 @@ theorem sqrt_nsq_add_ncSum_le {j : ℕ} {ω : Fin n → ℝ} (hω : IsNCSum ε j
     rw [Fintype.sum_eq_add a b hne]
     · norm_num [root, Pi.single_apply, hne, hne.symm]
     · intro c hc
-      simp [root, Pi.single_apply, hc.1, hc.2]
+      simp [root, hc.1, hc.2]
   have hr : ∀ i, √(nsq (root (γ i).1 (γ i).2)) ≤ √2 := fun i => by
     have hne : (γ i).1 ≠ (γ i).2 := fun h => hγ i (congrArg ε h)
     exact le_of_eq (by rw [hroot _ _ hne])

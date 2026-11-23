@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.exists_cmHomGramMatrix_det_ne_zero_definite : ∀ 
     (X : GlobalTheory.CM.CMObj H K ρ σ₁ p 0),
     ∃ (gP : Matrix (Fin p) (Fin p) (𝓞 E)) (gQ : Matrix (Fin 0) (Fin 0) (𝓞 E)),
       GlobalTheory.FlatCM.IsGram X gP gQ ∧ gP.det ≠ 0 := by
-  first | exact @GlobalTheory.FlatCM.HomLat.exists_isGram_det_ne_zero | exact GlobalTheory.FlatCM.HomLat.exists_isGram_det_ne_zero | (intros; apply GlobalTheory.FlatCM.HomLat.exists_isGram_det_ne_zero <;> assumption)
+  first | exact @GlobalTheory.FlatCM.HomLat.exists_isGram_det_ne_zero

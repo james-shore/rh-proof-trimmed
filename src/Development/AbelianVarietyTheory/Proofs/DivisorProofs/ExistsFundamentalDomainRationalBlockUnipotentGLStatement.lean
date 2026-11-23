@@ -49,4 +49,4 @@ import GroundTheory.GlobalFields.KummerTheory.LocalIndex
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
 
 theorem _root_.GlobalTheory.T.exists_fundamentalDomain_rationalBlockUnipotentGL : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (s : ℕ) [MeasurableSpace (BlockIx a s → Ad E)] [BorelSpace (BlockIx a s → Ad E)] (μ : Measure (BlockIx a s → Ad E)) [μ.IsAddHaarMeasure], ∃ 𝓕 : Set (BlockIx a s → Ad E), IsAddFundamentalDomain (ratN E a s) 𝓕 μ ∧ μ 𝓕 ≠ 0 ∧ μ 𝓕 < ⊤ := by
-  first | exact @GlobalTheory.CuspRep.exists_isAddFundamentalDomain_ratN | exact GlobalTheory.CuspRep.exists_isAddFundamentalDomain_ratN | (intros; apply GlobalTheory.CuspRep.exists_isAddFundamentalDomain_ratN <;> assumption)
+  first | exact @GlobalTheory.CuspRep.exists_isAddFundamentalDomain_ratN

@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.L2.FormalSeriesBounds
 
 theorem _root_.GlobalTheory.T.levelsUsed_balancedValue_orbitSums : ThlEq ∧ LevelBound ∧ LemmaFe ∧ FInertReps := by
-  first | exact @GlobalTheory.LevelsOrbits.main | exact GlobalTheory.LevelsOrbits.main | (intros; apply GlobalTheory.LevelsOrbits.main <;> assumption)
+  first | exact @GlobalTheory.LevelsOrbits.main

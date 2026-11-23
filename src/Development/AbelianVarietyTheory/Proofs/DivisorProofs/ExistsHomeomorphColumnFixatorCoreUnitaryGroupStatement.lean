@@ -49,4 +49,4 @@ open Formalism.UG (cT bc)
 
 
 theorem _root_.GlobalTheory.T.exists_homeomorph_columnFixator_coreUnitaryGroup : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (n : ℕ) (J : Matrix (Fin n) (Fin n) E) (j m : ℕ) (C D : Matrix (Fin n) (Fin j) E) (Z : Matrix (Fin n) (Fin m) E) (J₀ : Matrix (Fin m) (Fin m) E), Fr σ J C D Z J₀ → ∃ e : GAd σ J₀ ≃ₜ* (fixG σ J C ⊓ fixG σ J D : Subgroup (GAd σ J)), ∀ g, g ∈ ratPts σ J₀ ↔ (e g : GAd σ J) ∈ ratPts σ J := by
-  first | exact @GlobalTheory.SphEis.fixFrames_equiv_core | exact GlobalTheory.SphEis.fixFrames_equiv_core | (intros; apply GlobalTheory.SphEis.fixFrames_equiv_core <;> assumption)
+  first | exact @GlobalTheory.SphEis.fixFrames_equiv_core

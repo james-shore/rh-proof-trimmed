@@ -84,7 +84,7 @@ theorem ord_prod {R ι : Type*} [CommRing R] [IsDomain R] (s : Finset ι) (d : �
     (hd : ∀ i, d i ≠ 0) : Ring.ord R (∏ i ∈ s, d i) = ∑ i ∈ s, Ring.ord R (d i) := by
   classical
   induction s using Finset.induction_on with
-  | empty => simp [Ring.ord_one]
+  | empty => simp
   | insert i s hi ih =>
     rw [Finset.prod_insert hi, Finset.sum_insert hi,
       Ring.ord_mul' R (mem_nonZeroDivisors_of_ne_zero (hd i)), ih]
@@ -116,7 +116,7 @@ theorem length_coker {R ι : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealR
       Module.Basis.equiv_apply, Equiv.refl_apply, Submodule.subtype_apply, this]
     by_cases hij : i = j
     · subst hij; simp
-    · simp [hij, Finsupp.single_apply, Ne.symm hij]
+    · simp [hij]
   rw [h1, h2] at hass
   obtain ⟨v, hv⟩ := hass.symm
   rw [(Submodule.quotientEquivPiSpan _ e h).length_eq, Module.length_pi_of_fintype, ← hv,

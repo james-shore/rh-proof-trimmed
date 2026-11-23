@@ -59,4 +59,4 @@ open ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.
 open scoped ComplexOrder ENNReal
 
 theorem _root_.GlobalTheory.T.lintegral_pi_fibre_measurePreserving : ∀ (T A B C : Type) [Fintype T] [MeasureSpace A] [MeasureSpace B] [MeasureSpace C] [SigmaFinite (volume : Measure A)] [SigmaFinite (volume : Measure B)] [SigmaFinite (volume : Measure C)] (g : A × B → C) (π : C → A) (D : C → ℝ≥0∞) (φ : (T → A) → ℝ≥0∞), MeasurePreserving g volume volume → Measurable π → (∀ w, π (g w) = w.1) → Measurable D → Measurable φ → ∫⁻ c : T → C, φ (fun t => π (c t)) * ∏ t, D (c t) = ∫⁻ a : T → A, φ a * ∏ t, ∫⁻ b, D (g (a t, b)) := by
-  first | exact @GlobalTheory.ProdFibre.lintegral_pi_fibre | exact GlobalTheory.ProdFibre.lintegral_pi_fibre | (intros; apply GlobalTheory.ProdFibre.lintegral_pi_fibre <;> assumption)
+  first | exact @GlobalTheory.ProdFibre.lintegral_pi_fibre

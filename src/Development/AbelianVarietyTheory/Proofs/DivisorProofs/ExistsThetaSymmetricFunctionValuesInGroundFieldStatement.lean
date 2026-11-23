@@ -50,4 +50,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_theta_symmetric_function_values_in_ground_field : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : LB G.left) (ρ : LB.Gen (L.pull (eSec G))), L.IsLB → ρ.IsGen → ∀ (g m N : ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (x : Sp Ω ⟶ S) (θ : SecAt G L x), Odd m → N = m ^ (4 * g) → PolFib G L g x → ∃ e : Fin N → Ω, SymAt G L ρ m x θ e := by
-  first | exact @GlobalTheory.UMin.SymRat.symAt_exists | exact GlobalTheory.UMin.SymRat.symAt_exists | (intros; apply GlobalTheory.UMin.SymRat.symAt_exists <;> assumption)
+  first | exact @GlobalTheory.UMin.SymRat.symAt_exists

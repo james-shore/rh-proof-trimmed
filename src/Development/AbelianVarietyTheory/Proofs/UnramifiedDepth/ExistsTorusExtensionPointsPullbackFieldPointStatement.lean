@@ -51,4 +51,4 @@ open Formalism.L2.FormalSeriesBounds IsLocalRing GlobalTheory.AlphaPair
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.exists_torusExtension_points_pullback_fieldPoint : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (S S' : Scheme.{0}) (f : S' ⟶ S) (t : SAB H S) (t' : SAB H S') (_ : SABMap t' t f) (Ω : Type) [Field Ω] (s : Sp Ω ⟶ S) (s' : Sp Ω ⟶ S'), s' ≫ f = s → ∀ n : ℕ, ∃ (τ : PtHom s s' t.G t'.G) (io : TorHom s t.G PUnit), IsTorExt s s' t.G t'.G PUnit τ io ∧ Transfer n t.cub t'.cub τ := by
-  first | exact @GlobalTheory.AlphaPair.exists_isTorExt_pull | exact GlobalTheory.AlphaPair.exists_isTorExt_pull | (intros; apply GlobalTheory.AlphaPair.exists_isTorExt_pull <;> assumption)
+  first | exact @GlobalTheory.AlphaPair.exists_isTorExt_pull

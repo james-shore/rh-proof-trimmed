@@ -57,4 +57,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.exists_etaleCompletion_with_residueField_equiv : ∀ (O : Type) [CommRing O] [IsDomain O] [IsLocalRing O] [IsIntegrallyClosed O] [CharZero O] [Algebra.EssFiniteType ℤ O] (M : Type) [Field M] (m : ResidueField O →+* M), m.Finite → m.FormallyUnramified → ∃ (A : Type) (_ : CommRing A) (_ : IsDomain A) (_ : IsLocalRing A) (ψ : O →+* A) (_ : IsLocalHom ψ) (E : M ≃+* ResidueField A), IsCN A ∧ IsEtaleCompletion ψ ∧ ((residue A).comp ψ).FormallyUnramified ∧ (E : M →+* ResidueField A).comp m = ResidueField.map ψ := by
-  first | exact @GlobalTheory.EtaleCompletionResidue.exists_etaleCompletion_residue_equiv | exact GlobalTheory.EtaleCompletionResidue.exists_etaleCompletion_residue_equiv | (intros; apply GlobalTheory.EtaleCompletionResidue.exists_etaleCompletion_residue_equiv <;> assumption)
+  first | exact @GlobalTheory.EtaleCompletionResidue.exists_etaleCompletion_residue_equiv

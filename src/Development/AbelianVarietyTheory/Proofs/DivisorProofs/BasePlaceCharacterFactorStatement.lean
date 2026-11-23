@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.base_place_character_factor : ∀ {D : D7} {T : Ty
       g' ∣ ((Ideal.absNorm v.1.asIdeal : ℕ) : 𝓞 D.what₂.LL) ^ condExp G.pl v.1 ∧
       ((chrW (GlobalTheory.SqStep.chs G i j μ₀).ν (Bs.τ v) (Units.map (Int.castRingHom _).toMonoidHom s) : ℂ) * eps Bs.ψ (chrW (GlobalTheory.SqStep.chs G i j μ₀).ν (Bs.τ v)) z) =
         D.what₂.embLL (b * ((g : D.what₂.LL) / (g' : D.what₂.LL))) * ((chrW (GlobalTheory.SqStep.chs G i j t).ν (Bs.τ v) (Units.map (Int.castRingHom _).toMonoidHom s) : ℂ) * eps Bs.ψ (chrW (GlobalTheory.SqStep.chs G i j t).ν (Bs.τ v)) z) := by
-  first | exact @GlobalTheory.SqStepArith.base_place_factor_zero | exact GlobalTheory.SqStepArith.base_place_factor_zero | (intros; apply GlobalTheory.SqStepArith.base_place_factor_zero <;> assumption)
+  first | exact @GlobalTheory.SqStepArith.base_place_factor_zero

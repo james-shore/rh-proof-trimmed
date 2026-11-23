@@ -111,7 +111,7 @@ theorem compAt_fin {θ : InfFam D} {V : HSp D} {h : GA D V} (hh : h ∈ GfC V) (
   split_ifs <;> simp
 
 theorem actO_one_one {S T : HSp D} (u : WO S T) : actO S T 1 1 u = u := by
-  simp [actO, GlobalTheory.AdelicLatMove.mt_one]
+  simp [actO]
 
 theorem om_keep_vac {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : HSp D} {χS χT : (AE D)ˣ →* Circle}
     {om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)} (hW : IsWeilDatumO ψ S T χS χT om) (hθ : IsInfFam θ)
@@ -157,7 +157,7 @@ theorem actO_cut_half {S T : HSp D} {b e : AE D} (hbe : b * e = 0) {g : GA D T}
   have hby : ∀ i j, b * y i j = 0 := fun i j => by rw [← hy i j, ← mul_assoc, hbe, zero_mul]
   have h1 : actO S T 1 g y = (HMul.hMul (Formalism.L2.Theta.mt T g) (y : Matrix (Fin T.rank) (Fin S.rank) (AE D)) :
       Matrix (Fin T.rank) (Fin S.rank) (AE D)) := by
-    simp [actO, GlobalTheory.AdelicLatMove.mt_one]
+    simp [actO]
   rw [h1, hg, Matrix.add_mul, Matrix.smul_mul, Matrix.smul_mul, Matrix.one_mul]
   ext i j
   rw [Matrix.add_apply, Matrix.smul_apply, Matrix.smul_apply, smul_eq_mul, smul_eq_mul, Matrix.mul_apply,
@@ -176,7 +176,7 @@ theorem cut_mul_cut {n : Type} [Fintype n] [DecidableEq n] {a : AE D} (ha : a * 
   have h0' : (1 - a) * a = 0 := by rw [mul_comm, h0]
   have h1 : (1 - a) * (1 - a) = 1 - a := by rw [sub_mul, one_mul, h0, sub_zero]
   rw [sub_sub_cancel]
-  simp only [Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul, smul_smul, Matrix.one_mul, Matrix.mul_one]
+  simp only [Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, Matrix.mul_one]
   simp only [smul_add, smul_smul, h0, h0', ha, h1, zero_smul, zero_add, add_zero]
   rw [← add_smul, sub_add_cancel, one_smul]
 

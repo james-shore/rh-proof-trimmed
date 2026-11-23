@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_continuous_unitaryDiagonalEmbedding_doubled
         (∀ e h, Formalism.IndefR.DatumF.SuppAtF σ e J h → Formalism.IndefR.DatumF.SuppAtF σ e (GlobalTheory.WeilSchrodinger.DblTargetF.dblG J) (ι h)) ∧
         (∀ e h y, Formalism.IndefR.DatumF.IsDetAtF σ e J h y →
           Formalism.IndefR.DatumF.IsDetAtF σ e (GlobalTheory.WeilSchrodinger.DblTargetF.dblG J) (ι h) y) := by
-  first | exact @GlobalTheory.DiagEmbU.exists_diagEmb | exact GlobalTheory.DiagEmbU.exists_diagEmb | (intros; apply GlobalTheory.DiagEmbU.exists_diagEmb <;> assumption)
+  first | exact @GlobalTheory.DiagEmbU.exists_diagEmb

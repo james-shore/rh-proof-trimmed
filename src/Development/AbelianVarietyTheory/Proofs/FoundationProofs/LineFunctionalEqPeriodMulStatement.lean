@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.line_functional_eq_period_mul_alt : ∀ (l : ℕ) 
   (∀ i s v, LinearMap.baseChange (PadicAlgCl l) (g s) (σ i v) = σ i (Matrix.mulVec (ρ s) v)) →
   (∀ i, L (σ i ![1, 0]) = 0) →
   ∃ (κ : Fin m → PadicAlgCl l) (per : ℂ_[l]), ‖per‖ = 1 ∧ ∀ i v, L (σ i v) = per * ((κ i * v 1 : PadicAlgCl l) : ℂ_[l]) := by
-  first | exact @GlobalTheory.line_functional_eq_period_mul | exact GlobalTheory.line_functional_eq_period_mul | (intros; apply GlobalTheory.line_functional_eq_period_mul <;> assumption)
+  first | exact @GlobalTheory.line_functional_eq_period_mul

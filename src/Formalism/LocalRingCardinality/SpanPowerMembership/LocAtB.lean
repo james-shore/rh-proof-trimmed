@@ -289,13 +289,9 @@ theorem exists_sqrt (g d : ℕ) (hg : g.Prime) (hg2 : g ≠ 2) (hgv : (g : 𝓞 
     have h2 := (legendreSym.eq_zero_iff g (-(d : ℤ))).mpr h1
     first
     | (rw [jacobiSym.legendreSym.to_jacobiSym, hj] at h2; exact one_ne_zero h2)
-    | (rw [← jacobiSym.legendreSym.to_jacobiSym] at hj; rw [hj] at h2; exact one_ne_zero h2)
-    | (simp only [jacobiSym.legendreSym.to_jacobiSym, hj] at h2; exact one_ne_zero h2)
   have hsqr : IsSquare (((-(d : ℤ)) : ℤ) : ZMod g) := by
     first
     | exact ZMod.isSquare_of_jacobiSym_eq_one hj
-    | exact (legendreSym.eq_one_iff g (by push_cast; exact neg_ne_zero.mpr hne)).1
-        (by rw [jacobiSym.legendreSym.to_jacobiSym]; exact hj)
   obtain ⟨c, hc⟩ := hsqr
   push_cast at hc
   obtain ⟨a0, ha0⟩ := ZMod.intCast_surjective c
@@ -307,10 +303,6 @@ theorem exists_sqrt (g d : ℕ) (hg : g.Prime) (hg2 : g ≠ 2) (hgv : (g : 𝓞 
   have h2ne : (2 : ZMod g) ≠ 0 := by
     first
     | exact Ring.two_ne_zero (by rw [ZMod.ringChar_zmod_n]; exact hg2)
-    | (intro h
-       have h' : ((2 : ℕ) : ZMod g) = 0 := by exact_mod_cast h
-       rw [ZMod.natCast_zmod_eq_zero_iff_dvd] at h'
-       exact hg2 ((Nat.prime_dvd_prime_iff_eq hg Nat.prime_two).1 h'))
   have hnd : ¬ (g : ℤ) ∣ 2 * a0 := by
     intro h
     have h2 : (((2 * a0 : ℤ)) : ZMod g) = 0 := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).2 h
@@ -324,17 +316,13 @@ theorem exists_sqrt (g d : ℕ) (hg : g.Prime) (hg2 : g ≠ 2) (hgv : (g : 𝓞 
   have hev : P.eval (a0 : ℤ_[g]) = ((a0 ^ 2 + d : ℤ) : ℤ_[g]) := by
     first
     | (simp [hP]; done)
-    | (simp [hP]; norm_num; done)
-    | (simp [hP]; ring)
   have hder : P.derivative.eval (a0 : ℤ_[g]) = ((2 * a0 : ℤ) : ℤ_[g]) := by
     first
     | (simp [hP]; done)
     | (simp [hP]; norm_num; done)
-    | (simp [hP]; ring)
   have hn1 : ‖((a0 ^ 2 + d : ℤ) : ℤ_[g])‖ < 1 := by
     first
     | exact (PadicInt.norm_int_lt_one_iff_dvd _).2 hdvd
-    | (rw [PadicInt.norm_lt_one_iff_dvd]; simpa using map_dvd (Int.castRingHom ℤ_[g]) hdvd)
   have hn2 : ‖((2 * a0 : ℤ) : ℤ_[g])‖ = 1 := by
     have hle := PadicInt.norm_le_one ((2 * a0 : ℤ) : ℤ_[g])
     have hnlt : ¬ ‖((2 * a0 : ℤ) : ℤ_[g])‖ < 1 := by

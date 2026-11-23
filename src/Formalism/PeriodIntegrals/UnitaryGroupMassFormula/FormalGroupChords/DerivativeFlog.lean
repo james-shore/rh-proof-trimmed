@@ -97,7 +97,6 @@ theorem iW_const (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
 theorem hasSubst_iW (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) : PowerSeries.HasSubst (iW W wq) := by
   first
   | exact PowerSeries.HasSubst.of_constantCoeff_zero' (iW_const W wq)
-  | exact PowerSeries.HasSubst.of_constantCoeff_zero (iW_const W wq)
 
 theorem subst_isWq {W : WeierstrassCurve ℂ_[p]} {wq t : PowerSeries ℂ_[p]} (ht : PowerSeries.HasSubst t)
     (h : IsWq W wq) :
@@ -183,7 +182,6 @@ theorem deriv_ext {f g : PowerSeries ℂ_[p]} (hd : PowerSeries.derivative (R :=
     rw [PowerSeries.coeff_derivative, PowerSeries.coeff_derivative] at e
     first
     | exact mul_right_cancel₀ (Nat.cast_add_one_ne_zero n) e
-    | exact mul_right_cancel₀ (Nat.cast_ne_zero.mpr (Nat.succ_ne_zero n)) e
 
 private theorem derivative_subst_eq_subst_derivative_mul (a f : PowerSeries ℂ_[p]) (ha : PowerSeries.HasSubst a) :
     PowerSeries.derivative (R := ℂ_[p]) (PowerSeries.subst a f) =

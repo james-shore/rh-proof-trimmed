@@ -55,11 +55,7 @@ theorem jacquet_mk_ne_zero (hp : GlobalTheory.Published.DepthZeroJacquetInjectiv
     (π : Irr k n) (v : π.V) (θ : Fin n → kˣ →* ℂˣ) (hv : v ≠ 0) (hI : IsIwVec θ π.π v) :
     (Submodule.Quotient.mk v : Jacquet π.π (unipB k (Fin n))) ≠ 0 := by
   first
-  | exact @_root_.GlobalTheory.PointStabilizer.mk_ne_zero
-  | exact _root_.GlobalTheory.PointStabilizer.mk_ne_zero
   | (apply _root_.GlobalTheory.PointStabilizer.mk_ne_zero <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PointStabilizer.mk_ne_zero <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PointStabilizer.mk_ne_zero <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PointStabilizer.mk_ne_zero ..)
 
 end GlobalTheory.TameIwahori.JacquetNonzero

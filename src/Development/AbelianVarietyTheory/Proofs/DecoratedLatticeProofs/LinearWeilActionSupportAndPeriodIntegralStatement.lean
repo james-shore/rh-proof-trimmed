@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.linearWeilAction_support_and_period_integral : ∀
       IntM (g'⁻¹ : GL B k).val → IntM ((ϖ : k) ^ (i + 1) • g'.val) →
     (∀ x, om μ g g' Φ x ≠ 0 → ∀ r s, valuation k (x r s) ≤ valuation k (((ϖ ^ (i + 1))⁻¹ : kˣ) : k)) ∧
     (∀ x y, (∀ r s, valuation k (y r s) ≤ valuation k ((ϖ : k) ^ (i + 1))) → om μ g g' Φ (x + y) = om μ g g' Φ x) := by
-  first | exact @GlobalTheory.StepData.om_support_period | exact GlobalTheory.StepData.om_support_period | (intros; apply GlobalTheory.StepData.om_support_period <;> assumption)
+  first | exact @GlobalTheory.StepData.om_support_period

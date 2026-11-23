@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.thetaDictionary_lattice_of_frameCoordinates : ∀ 
     ∀ v : Fin D.R.r → D.host.E,
       v ∈ ((T.U ((i : ℕ) + 1) σ).X (GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues.dictW T i σ hV g).1).Λ ↔
         (fun m => v (Fin.cast (rank_Wc i) m)) ∈ latG (Wc D i) (γ * g) := by
-  first | exact @GlobalTheory.DictLatPin.lat_of_frAt | exact GlobalTheory.DictLatPin.lat_of_frAt | (intros; apply GlobalTheory.DictLatPin.lat_of_frAt <;> assumption)
+  first | exact @GlobalTheory.DictLatPin.lat_of_frAt

@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.twistPrime_rowType_topRestriction_mul_levelChar_eq
     CongE P.1 (2 * M) g (k⁻¹).1 →
     LocE.lamQB (resChar ξ P.1) R.r (R.N R.m - 1) g''.toLinearMap *
       (((levCong (N_m_succ R) P.1 c (rowTyQ R ξ Q P)).lam ⟨k, hk⟩ : X.Kˣ) : X.K) = 1 := by
-  first | exact @GlobalTheory.TopRowsQ.lamQB_mul_levCong | exact GlobalTheory.TopRowsQ.lamQB_mul_levCong | (intros; apply GlobalTheory.TopRowsQ.lamQB_mul_levCong <;> assumption)
+  first | exact @GlobalTheory.TopRowsQ.lamQB_mul_levCong

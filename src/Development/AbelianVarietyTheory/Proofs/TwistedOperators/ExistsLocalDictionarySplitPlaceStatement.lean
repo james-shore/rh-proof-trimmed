@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_local_dictionary_splitPlace : ∀ {F E : Ty
       ∃ S : Matrix (Fin d) (Fin d) (v.adicCompletionIntegers F), IsUnit S.det ∧
         S.map (fun x => (x : Fv F v)) =
           (b₁ : Matrix (Fin d) (Fin d) (Fv F v))ᵀ * (incM F W.J).map π₁ * (b₂ : Matrix (Fin d) (Fin d) (Fv F v)) := by
-  first | exact @GlobalTheory.SplitDict.exists_split_dictionary | exact GlobalTheory.SplitDict.exists_split_dictionary | (intros; apply GlobalTheory.SplitDict.exists_split_dictionary <;> assumption)
+  first | exact @GlobalTheory.SplitDict.exists_split_dictionary

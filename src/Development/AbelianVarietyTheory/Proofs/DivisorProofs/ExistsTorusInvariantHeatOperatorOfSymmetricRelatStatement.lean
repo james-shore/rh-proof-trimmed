@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_torus_invariant_heat_operator_of_symmetric_
         z i i' = ∑ b, constFn Y.H.hom _ (c b) * dlg Y.H Y.q.left Dd.toPre.P.L (dd b) (j i) (j i') _ +
           (rsT (y i') (Y.q.left ⁻¹ᵁ V i ⊓ Y.q.left ⁻¹ᵁ V i') - rsT (y i) (Y.q.left ⁻¹ᵁ V i ⊓ Y.q.left ⁻¹ᵁ V i'))) →
     ∃ h : Heat Y.H Y.q.left Dd.toPre.P.L dd ⇑D, IsBasic Y h := by
-  first | exact @GlobalTheory.HeatGlue.exists_basic_heat | exact GlobalTheory.HeatGlue.exists_basic_heat | (intros; apply GlobalTheory.HeatGlue.exists_basic_heat <;> assumption)
+  first | exact @GlobalTheory.HeatGlue.exists_basic_heat

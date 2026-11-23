@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.kummer_extension_prime_not_map_comap_le_sq : ∀ (
   ∀ s : Finset E, IntermediateField.adjoin K₀ (s : Set E) = ⊤ → (∀ x ∈ s, ∃ u : A₀ˣ, x ^ N = algebraMap A₀ E u) →
   ∀ P : Ideal (integralClosure A₀ E), P.IsPrime → P ≠ ⊥ →
     ¬ Ideal.map (algebraMap A₀ (integralClosure A₀ E)) (P.comap (algebraMap A₀ (integralClosure A₀ E))) ≤ P ^ 2 := by
-  first | exact @GlobalTheory.kummer_not_map_comap_le_sq | exact GlobalTheory.kummer_not_map_comap_le_sq | (intros; apply GlobalTheory.kummer_not_map_comap_le_sq <;> assumption)
+  first | exact @GlobalTheory.kummer_not_map_comap_le_sq

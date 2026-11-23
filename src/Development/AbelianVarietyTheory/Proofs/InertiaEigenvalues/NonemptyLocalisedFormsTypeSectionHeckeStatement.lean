@@ -44,4 +44,4 @@ import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CentralIdem
 open Formalism Formalism.MainNotions Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations Formalism.L2 NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module Polynomial GlobalTheory.Pass GlobalTheory.PendOf
 
 theorem _root_.GlobalTheory.T.nonempty_localised_forms_type_section_hecke : ∀ (D : D7) (M : MtFam D) (i : D.nd.Loc), HeckeTied D M → HeckeRational D M → AVTied D M → GlobalTheory.EtaJoin.SplitUnif D → GlobalTheory.EtaJoin.HeckeScalar M i → Nonempty (Sec D i) := by
-  first | exact @GlobalTheory.PendOf.SecProof.main | exact GlobalTheory.PendOf.SecProof.main | (intros; apply GlobalTheory.PendOf.SecProof.main <;> assumption)
+  first | exact @GlobalTheory.PendOf.SecProof.main

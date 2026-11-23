@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.divAt_selfDual_lattice_iff_hasElementaryDivisors :
     ∀ (P : HeightOneSpectrum (𝓞 D.host.E)) (e f : AE D) (ϖ : 𝓞 D.host.E) (d : List ℤ) (x : UA D.host.E V.rank),
       IsPrimeIdem P e f → ϖ ∈ P.asIdeal → ϖ ∉ P.asIdeal ^ 2 → x ∈ locU V.rank P →
       (DivAt V e (ϖ : D.host.E) d (cj j h₀ x) ↔ d.length = V.rank ∧ HasDiv (Ov D.host.E P) d (cLoc P x)) := by
-  first | exact @GlobalTheory.DivTransfer.divAt_cj_iff | exact GlobalTheory.DivTransfer.divAt_cj_iff | (intros; apply GlobalTheory.DivTransfer.divAt_cj_iff <;> assumption)
+  first | exact @GlobalTheory.DivTransfer.divAt_cj_iff

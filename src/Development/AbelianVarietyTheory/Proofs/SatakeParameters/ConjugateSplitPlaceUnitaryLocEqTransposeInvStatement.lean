@@ -59,4 +59,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.conjugateSplitPlace_unitaryLoc_eq_transpose_inv : ∀ {L : Type} [Field L] [NumberField L] [IsCMField L] (n : ℕ) (s : SplitPlace L) (x : GAf L n), ((GlobalTheory.TypeTame.conjSP s).loc n x).val = ((s.loc n x)⁻¹ : GL (Fin n) (s.v.adicCompletion (maximalRealSubfield L))).val.transpose := by
-  first | exact @GlobalTheory.ConjLoc.loc_conjSP | exact GlobalTheory.ConjLoc.loc_conjSP | (intros; apply GlobalTheory.ConjLoc.loc_conjSP <;> assumption)
+  first | exact @GlobalTheory.ConjLoc.loc_conjSP

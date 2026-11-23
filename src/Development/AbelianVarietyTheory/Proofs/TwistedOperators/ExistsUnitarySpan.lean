@@ -65,11 +65,7 @@ theorem exists_unitary_span (r s : ℕ) (W U I : Type) [AddCommGroup W] [Module 
       LinearMap.range inc = Submodule.span ℂ {y | ∃ i P, y = j i P} ∧
       ∀ Z ∈ upq r s, ∀ y, inc (MM.M.act Z y) = b Z (inc y) := by
   first
-  | exact @_root_.GlobalTheory.RealPartAdjointAction.main
-  | exact _root_.GlobalTheory.RealPartAdjointAction.main
   | (apply _root_.GlobalTheory.RealPartAdjointAction.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RealPartAdjointAction.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RealPartAdjointAction.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RealPartAdjointAction.main ..)
 
 end GlobalTheory.ArchRec.SpanMod

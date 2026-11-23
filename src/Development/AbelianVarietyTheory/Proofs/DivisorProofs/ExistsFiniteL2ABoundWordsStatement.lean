@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_finite_l2A_bound_words : ∀ (F : Type) [Fi
     ∀ (μ : @MeasureTheory.Measure (κ → FiniteAdeleRing (𝓞 F) F) (borel _)), @MeasureTheory.Measure.IsAddHaarMeasure _ _ _ (borel _) μ →
     ∀ (n : ℕ) (R : ℝ), ∃ B : ENNReal, B ≠ ⊤ ∧ ∀ ws : List ((κ → mixedEmbedding.mixedSpace F) × (κ → mixedEmbedding.mixedSpace F)), ws.length = n → (∀ h ∈ ws, ‖h‖ ≤ R) →
       GlobalTheory.WeilL2Words.l2A F μ (GlobalTheory.WeilL2Words.word F ψ ws Φ) ≤ B := by
-  first | exact @GlobalTheory.WeilL2Words.l2A_word_le | exact GlobalTheory.WeilL2Words.l2A_word_le | (intros; apply GlobalTheory.WeilL2Words.l2A_word_le <;> assumption)
+  first | exact @GlobalTheory.WeilL2Words.l2A_word_le

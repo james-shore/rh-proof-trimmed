@@ -56,15 +56,12 @@ theorem padicValNat_le_of_dvd' (p : ℕ) {a b : ℕ} (hab : a ∣ b) (hb : b ≠
   by_cases hp1 : p = 1
   · subst hp1
     first
-      | simp
       | simp [padicValNat]
-      | (unfold padicValNat; simp)
   · nth_rw 2 [Nat.padicValNat_def]
     have hd : p ^ padicValNat p a ∣ b := (_root_.Dvd.intro_left _ (_root_.Nat.divMaxPow_mul_pow_padicValNat _ _)).trans hab
     have hf : FiniteMultiplicity p b := Nat.finiteMultiplicity_iff.2 ⟨hp1, Nat.pos_of_ne_zero hb⟩
     first
       | exact hf.le_multiplicity_of_pow_dvd hd
-      | exact (hf.pow_dvd_iff_le_multiplicity).mp hd
 
 theorem ePB_le_expLift_pf (l M H h : ℕ) (jumps : Finset ℤ) (hM : M ≤ h) (hH : H ≤ 2 * h) :
     Formalism.MainNotions.LiftingTheory.ePB l 1 M H jumps ≤ expLift l h (Formalism.MainNotions.LiftingTheory.JSet jumps M) := by
@@ -113,7 +110,6 @@ theorem jumpSet_bound {l : ℕ} [Fact l.Prime] (P : LocPrime l) (K LL : FinExt l
   have ha' : a ∈ Finset.Icc (-(M : ℤ)) M := by
     first
       | exact Finset.mem_of_mem_filter a ha
-      | (simp only [Finset.mem_filter] at ha; exact ha.1)
   obtain ⟨h1, h2⟩ := Finset.mem_Icc.mp ha'
   constructor <;> omega
 

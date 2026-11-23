@@ -77,7 +77,7 @@ theorem tensor_eq_zero_of_forall {K : Type} [Field K] {V W : Type} [AddCommGroup
     intro j s
     induction s using TensorProduct.induction_on with
     | zero => simp
-    | tmul m n => simp [TensorProduct.equivFinsuppOfBasisRight_apply_tmul_apply]
+    | tmul m n => simp
     | add u v hu hv => simp only [map_add (f := _), Finsupp.add_apply, hu, hv]
   apply (TensorProduct.equivFinsuppOfBasisRight b).injective
   ext j

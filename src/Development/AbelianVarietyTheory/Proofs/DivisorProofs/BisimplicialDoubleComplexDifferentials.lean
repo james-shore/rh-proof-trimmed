@@ -174,8 +174,6 @@ theorem ιTotal_tot_d (Y : SimplicialObject (SimplicialObject C)) (a b k : ℕ)
   refine Eq.trans Finset.sum_add_distrib.symm (Finset.sum_congr rfl (fun x _ => ?_))
   rw [dT, (ev Y).map_add, (ev Y).map_zsmul]
   first
-    | (rw [Preadditive.add_comp, Preadditive.zsmul_comp])
-    | (simp only [Preadditive.add_comp, Preadditive.zsmul_comp])
     | (erw [Preadditive.add_comp, Preadditive.zsmul_comp])
   rfl
 

@@ -51,4 +51,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.tendsto_finitePlaceTruncation_adeleE : ∀ (D : D7) (ε : HeightOneSpectrum (𝓞 D.host.F) → AF D.host.F), (∀ v, IsPlaceIdem D v (ε v)) → ∀ a : AE D, infPart D a = 0 → Filter.Tendsto (fun s : Finset (HeightOneSpectrum (𝓞 D.host.F)) => algebraMap (AF D.host.F) (AE D) (∑ v ∈ s, ε v) * a) Filter.atTop (nhds a) := by
-  first | exact @GlobalTheory.VecInv.tendsto_truncation | exact GlobalTheory.VecInv.tendsto_truncation | (intros; apply GlobalTheory.VecInv.tendsto_truncation <;> assumption)
+  first | exact @GlobalTheory.VecInv.tendsto_truncation

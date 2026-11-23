@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
 
 theorem _root_.GlobalTheory.T.hermLineBundleGeometricDegree_raiseWeight : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ (L : HermLB p) (u : SmFn p), gdeg (up L u) D = gdeg L D := by
-  first | exact @GlobalTheory.GdegMetric.gdeg_up | exact GlobalTheory.GdegMetric.gdeg_up | (intros; apply GlobalTheory.GdegMetric.gdeg_up <;> assumption)
+  first | exact @GlobalTheory.GdegMetric.gdeg_up

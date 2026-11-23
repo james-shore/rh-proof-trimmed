@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.thetaTransform_injOn_adelicSchwartzSpace : ∀ (D 
     ∀ Φ ∈ GlobalTheory.WeilM.schA D.host.F κ, ∀ Φ' ∈ GlobalTheory.WeilM.schA D.host.F κ,
       (∀ w, GlobalTheory.WeilM.thetaSum D.host.F (GlobalTheory.WeilM.schr ψ w Φ) = GlobalTheory.WeilM.thetaSum D.host.F (GlobalTheory.WeilM.schr ψ w Φ')) →
       Φ = Φ' := by
-  first | exact @GlobalTheory.Adopt.thetaTransform_injOn_adelicSchwartzSpace | exact GlobalTheory.Adopt.thetaTransform_injOn_adelicSchwartzSpace | (intros; apply GlobalTheory.Adopt.thetaTransform_injOn_adelicSchwartzSpace <;> assumption)
+  first | exact @GlobalTheory.Adopt.thetaTransform_injOn_adelicSchwartzSpace

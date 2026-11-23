@@ -44,4 +44,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.evalModelPolynomialOnStdFrames_injective : ∀ {p : ℕ} [Fact p.Prime] (X : Sys p) (D : D7) (pos : (Σ v : X.Pl, Fin (X.G.P.n' v)) ≃ D.what₂.Tau) (i : ℕ) {n : ℕ} (h : (X.Pj i).m + 1 = n) (R : XR (X.Pj i) ℂ), (∀ f : Fr1 D n, ev1 X D pos i h R f = 0) → R = 0 := by
-  first | exact @GlobalTheory.TwV.DelA.eq_zero_of_ev1_eq_zero_on_frames | exact GlobalTheory.TwV.DelA.eq_zero_of_ev1_eq_zero_on_frames | (intros; apply GlobalTheory.TwV.DelA.eq_zero_of_ev1_eq_zero_on_frames <;> assumption)
+  first | exact @GlobalTheory.TwV.DelA.eq_zero_of_ev1_eq_zero_on_frames

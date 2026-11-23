@@ -72,7 +72,7 @@ theorem pm_id : pm R (id : Fin n → Fin n) = 1 := by
   by_cases h : a = b
   · subst h
     simp [pm]
-  · simp [pm, Matrix.one_apply, h, Ne.symm h]
+  · simp [pm, h, Ne.symm h]
 
 def pmU (f g : Fin n → Fin n) (h1 : ∀ k, f (g k) = k) (h2 : ∀ k, g (f k) = k) : GL (Fin n) R :=
   ⟨pm R f, pm R g, by rw [pm_mul, show f ∘ g = id from funext h1, pm_id],
@@ -168,7 +168,7 @@ theorem GlobalTheory.HomStab.exists_perm_face_stdSeq : ∀ (R : Type) [CommRing 
       split_ifs <;> omega
     · intro j h1 h2
       have hjp : j < p := by simpa [stdList] using h2
-      simp only [List.getElem_map, List.getElem_eraseIdx, stdList, List.getElem_ofFn, Fin.val_mk]
+      simp only [List.getElem_map, List.getElem_eraseIdx, stdList, List.getElem_ofFn]
       split_ifs with hj
       · exact pairAct_pmU R _ _ _ _ _ (by omega) _ (by simp only [cyc_val, Fin.val_mk]; split_ifs <;> omega)
       · exact pairAct_pmU R _ _ _ _ _ (by omega) _ (by simp only [cyc_val, Fin.val_mk]; split_ifs <;> omega)

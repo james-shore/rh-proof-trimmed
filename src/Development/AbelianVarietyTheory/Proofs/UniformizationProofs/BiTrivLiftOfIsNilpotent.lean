@@ -201,7 +201,6 @@ theorem exists_reduces (hJ : IsNilpotent J) {Y : Over (Spec (CommRingCat.of A))}
       (Semi.toZ (Spec (CommRingCat.of A)))))
   have : IsAffine (𝕋 ⊗ Y).left := by
     first
-    | infer_instance
     | exact (inferInstance : IsAffine (pullback (splitTorus (Spec (CommRingCat.of A)) X).hom Y.hom))
   obtain ⟨s, hs, hv⟩ := exists_val_lift hL f (lam (fst 𝕋 Y ≫ i) (snd 𝕋 Y ≫ x)) Oε t₀ g₀
   refine ⟨s, hs, fun Z t y a ha z I hI => ?_⟩
@@ -363,7 +362,6 @@ theorem exists_glued [IsMonHom i] (hJ : IsNilpotent J) :
           (lift (opnι (𝕋 ⊗ G) (Wo U) ≫ fst 𝕋 G) (opnι (𝕋 ⊗ G) (Wo U) ≫ snd 𝕋 G)).left ≫ lamφ i k := by
         first
         | rw [lift_comp_fst_snd]
-        | (congr 2; ext <;> simp)
       rw [e', BiTransport.lift_lam]
       fin_cases k <;> rfl
     obtain ⟨t, gt, vt⟩ := exists_gen hL (φ' := fun k => (Wo U).ι ≫ lamφ i k) (ε' := Oε)
@@ -378,11 +376,9 @@ theorem exists_glued [IsMonHom i] (hJ : IsNilpotent J) :
     have w1 : (r ≫ (κ U).left) ≫ (𝕋 ⊗ opn G U.1).hom = FinalForm.hom := by
       first
       | (erw [Category.assoc, Over.w (κ U)]; rfl)
-      | (simp only [Category.assoc, Over.w]; rfl)
     have w2 : (r' ≫ (κ V).left) ≫ (𝕋 ⊗ opn G V.1).hom = FinalForm.hom := by
       first
       | erw [Category.assoc, Over.w (κ V)]
-      | simp only [Category.assoc, Over.w]
       show r' ≫ (Wo V).ι ≫ (𝕋 ⊗ G).hom = r ≫ (Wo U).ι ≫ (𝕋 ⊗ G).hom
       rw [← Category.assoc, ← hrr, Category.assoc]
     let ρ : FinalForm ⟶ 𝕋 ⊗ opn G U.1 := Over.homMk (r ≫ (κ U).left) w1
@@ -430,7 +426,6 @@ theorem exists_glued [IsMonHom i] (hJ : IsNilpotent J) :
     all_goals first
     | (erw [← e3] at *; exact comp_opnI_mem U.1 y p)
     | (rw [← Scheme.Hom.comp_apply, e3]; exact comp_opnI_mem U.1 y p)
-    | exact e3 ▸ comp_opnI_mem U.1 y p
   have hq' : (lift t (y ≫ opnι G U.1)).left = q.left ≫ (Wo U).ι := by
     rw [← hq]; rfl
   have hqκ : q ≫ κ U = lift t y := by
@@ -613,7 +608,6 @@ theorem biTriv_lift_of_isNilpotent : (∀ (A : Type) [CommRing A] (J : Ideal A),
   have : Mono (red J) := by
     first
     | infer_instance
-    | exact (inferInstance : IsImmersion (red J)).mono
   have : IsMonHom i := hi
   obtain ⟨s₀, g₀, l₀, m₀⟩ := BiTransport.biTriv_transport _ _ (red J) X G G₀ F hw hpb P P₀ w hP i i₀ hi hi₀ hc σ
   exact BiLift.nonempty_biTriv g₀ l₀ hJ m₀

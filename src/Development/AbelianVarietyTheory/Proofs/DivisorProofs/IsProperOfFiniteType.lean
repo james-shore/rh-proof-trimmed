@@ -144,7 +144,7 @@ theorem isProper_of_finiteType : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (A
         (GlobalTheory.OriginCohom.lbIso_pull_pull_comp (pull_isLB hM _) _ _) ?_)
       rotate_left 3
       exact GlobalTheory.OriginCohom.lbIso_pull_pull_comp hM _ _
-      all_goals (first | assumption | (apply pull_isLB; first | assumption | (apply pull_isLB; first | assumption | (apply pull_isLB; assumption))))
+      all_goals (first | (apply pull_isLB; first | assumption | (apply pull_isLB; first | assumption | (apply pull_isLB; assumption))))
 
     obtain ⟨g, ⟨hg, χA, χB, hχA, hχB, hχA1, hχB1, hχΦ⟩, -⟩ :=
       R.rep (Sp V) y AV BV ψA ψB ΦV hVA hVB hΦV iso
@@ -166,7 +166,7 @@ theorem isProper_of_finiteType : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (A
         (lbIso_pull_eq hM (by rw [← Category.assoc, hΦK1])) ?_
       rotate_left 3
       exact LBIso.symm (GlobalTheory.OriginCohom.lbIso_pull_pull_comp hM _ _)
-      all_goals (first | assumption | (apply pull_isLB; first | assumption | (apply pull_isLB; first | assumption | (apply pull_isLB; assumption))))
+      all_goals (first | (apply pull_isLB; first | assumption | (apply pull_isLB; first | assumption)))
     obtain ⟨g0, -, huniq⟩ := R.rep (Sp (FractionRing V)) (x ≫ R.π) AK BK (pA ≫ R.φA) (pB ≫ R.φB) ΦK hKA hKB hΦK isoK
     have e1 : x = g0 := huniq x ⟨rfl, pA, pB, hK1A, hK1B, rfl, rfl, hΦK1⟩
     have e2 : Out.jK V ≫ g = g0 := huniq _ ⟨by rw [Category.assoc, hg, hxy], κA ≫ χA, κB ≫ χB,

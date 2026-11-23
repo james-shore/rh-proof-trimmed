@@ -48,4 +48,4 @@ open scoped TensorProduct InnerProductSpace ComplexConjugate
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.maximal_compact_sorted_frame_acts_through_model_compact : ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (hV : V.SigOK) (k : GA D V), IsInfFam θ → k ∈ GlobalTheory.Cusp.Kinf θ V (GlobalTheory.ChainOnto.RealData.sortedFrame M hV) → ∀ τ, M.fr τ * infMat D.sp.cm.sig V.gram (θ τ) k * (M.fr τ)⁻¹ ∈ Formalism.REAL.Kset (M.ε τ) := by
-  first | exact @GlobalTheory.ChainOnto.RealData.conj_mem_Kset_of_mem_Kinf | exact GlobalTheory.ChainOnto.RealData.conj_mem_Kset_of_mem_Kinf | (intros; apply GlobalTheory.ChainOnto.RealData.conj_mem_Kset_of_mem_Kinf <;> assumption)
+  first | exact @GlobalTheory.ChainOnto.RealData.conj_mem_Kset_of_mem_Kinf

@@ -42,4 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 
 theorem _root_.GlobalTheory.T.archimedean_local_global_dictionary : PositivityTheory.RgEis.DictInf := by
-  first | exact @GlobalTheory.CompanionTheory.RgEis.dictInf | exact GlobalTheory.CompanionTheory.RgEis.dictInf | (intros; apply GlobalTheory.CompanionTheory.RgEis.dictInf <;> assumption)
+  first | exact @GlobalTheory.CompanionTheory.RgEis.dictInf

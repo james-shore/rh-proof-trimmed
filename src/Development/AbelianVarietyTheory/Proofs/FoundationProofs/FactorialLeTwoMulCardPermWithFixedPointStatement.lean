@@ -48,4 +48,4 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.SamePartIffOfNeZ
 open Polynomial Classical GlobalTheory.BadShare
 
 theorem _root_.GlobalTheory.T.factorial_le_two_mul_card_perm_with_fixedPoint : ∀ (α : Type) [Fintype α] [DecidableEq α], Nonempty α → (Fintype.card α).factorial ≤ 2 * (Finset.univ.filter fun σ : Equiv.Perm α => ∃ i, σ i = i).card := by
-  first | exact @GlobalTheory.BadShare.factorial_le_two_mul_card_perm_fixed | exact GlobalTheory.BadShare.factorial_le_two_mul_card_perm_fixed | (intros; apply GlobalTheory.BadShare.factorial_le_two_mul_card_perm_fixed <;> assumption)
+  first | exact @GlobalTheory.BadShare.factorial_le_two_mul_card_perm_fixed

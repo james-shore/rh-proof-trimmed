@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_translate_cubicalSymmetricLineBundle_twoTor
         (J' : (T.left ⟶ G.left) → P'.L.L.ι), Good P.L.L z J →
         (∀ r, HEq (J' r) (fun _ : PUnit.{1} => J (r ≫ ((toUnit G ≫ a) * 𝟙 G).left))) →
         cubV P'.c z J' x y u = cubV P.c z J x y ((toUnit T ≫ a) * u) * (cubV P.c z J x y (toUnit T ≫ a))⁻¹) := by
-  first | exact @GlobalTheory.TranslCP.exists_transl | exact GlobalTheory.TranslCP.exists_transl | (intros; apply GlobalTheory.TranslCP.exists_transl <;> assumption)
+  first | exact @GlobalTheory.TranslCP.exists_transl

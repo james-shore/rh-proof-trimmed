@@ -67,7 +67,7 @@ theorem selfDual_kx_exists : ∀ (F E : Type) [NontriviallyNormedField F] [Nontr
   obtain ⟨hL, -⟩ := hT
   have hsymm : (trxForm A (x : A.K)).IsSymm := by
     refine ⟨fun u b => ?_⟩
-    simp only [trxForm, LinearMap.mk₂_apply, RingHom.id_apply]
+    simp only [trxForm, LinearMap.mk₂_apply]
     ring_nf
   have hleft : ∀ u : A.K, (∀ b, trxForm A (x : A.K) u b = 0) → u = 0 := by
     intro u hu

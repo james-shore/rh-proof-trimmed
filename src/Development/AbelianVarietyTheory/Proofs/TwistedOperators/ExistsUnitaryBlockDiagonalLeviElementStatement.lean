@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.InertZeta
 
 theorem _root_.GlobalTheory.T.exists_unitary_block_diagonal_levi_element : LeviExists := by
-  first | exact @GlobalTheory.InertZeta.leviExists | exact GlobalTheory.InertZeta.leviExists | (intros; apply GlobalTheory.InertZeta.leviExists <;> assumption)
+  first | exact @GlobalTheory.InertZeta.leviExists

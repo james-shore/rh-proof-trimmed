@@ -44,4 +44,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.sourceScalar_latticeTuple_constant : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ∀ (d : Dec J std) j (hj : j < D.R.m), Nonempty (Lv.comp (j + 1)) → ∀ La : (sysS H X std).Lt j, dPow (mM d j hj.le La).1 (fun τ => -(wT (sysS H X std) D (hT.gat_pos u w hg) j τ)) * sPt d j hj.le La * d.uS S j La = kS J j hj.le La.1) := by
-  first | exact @GlobalTheory.TwV.DelA.source_scalar_const | exact GlobalTheory.TwV.DelA.source_scalar_const | (intros; apply GlobalTheory.TwV.DelA.source_scalar_const <;> assumption)
+  first | exact @GlobalTheory.TwV.DelA.source_scalar_const

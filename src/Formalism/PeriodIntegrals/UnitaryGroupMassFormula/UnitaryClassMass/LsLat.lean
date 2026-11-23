@@ -118,7 +118,7 @@ theorem lsLat : LSLat := by
       funext j
       by_cases hj : j = i
       · subst hj; simp [vinc]
-      · simp [vinc, Pi.single_apply, hj]
+      · simp [vinc, hj]
     have e2 : P.mulVec (Pi.single i (inclR (F := F) (Af F) c)) = k • fun l => m' • P l i := by
       rw [mulVec_single']
       funext l

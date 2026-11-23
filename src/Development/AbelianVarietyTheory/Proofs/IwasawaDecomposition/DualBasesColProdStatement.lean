@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.dual_bases_colProd_alt : (∀ (N : ℕ) (Y : Young
     (∀ i k, Formalism.GradedWeylDivisibility.fockQ (b i) (g k) = if i = k then Nc else 0) ∧
     Submodule.span ℤ (Set.range g) =
       (Formalism.GradedWeylDivisibility.weyl ℤ N N le_rfl (fun r : Fin N => Y.rowLen r)).map (Formalism.GradedWeylDivisibility.intQ N N) := by
-  first | exact @GlobalTheory.WeylLatDualProof.dual_bases_colProd | exact GlobalTheory.WeylLatDualProof.dual_bases_colProd | (intros; apply GlobalTheory.WeylLatDualProof.dual_bases_colProd <;> assumption)
+  first | exact @GlobalTheory.WeylLatDualProof.dual_bases_colProd

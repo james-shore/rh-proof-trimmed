@@ -75,11 +75,7 @@ theorem exists_smul_eq_ite {R : Type*} [Ring R] {ι : Type*} [Fintype ι] [Decid
     (h : ∀ i j, i ≠ j → ∀ f : M i →ₗ[R] M j, f = 0) (i₀ : ι) (s : ∀ i, Finset (M i)) :
     ∃ r : R, ∀ i, ∀ m ∈ s i, r • m = if i = i₀ then m else 0 := by
   first
-  | exact @_root_.GlobalTheory.OrthogonalProjectionOnto.main
-  | exact _root_.GlobalTheory.OrthogonalProjectionOnto.main
   | (apply _root_.GlobalTheory.OrthogonalProjectionOnto.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OrthogonalProjectionOnto.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OrthogonalProjectionOnto.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.OrthogonalProjectionOnto.main ..)
 
 end GlobalTheory.TraceSep

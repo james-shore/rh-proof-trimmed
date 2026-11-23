@@ -47,4 +47,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaChainLifts_areCuspForms : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, GlobalTheory.Chain.LiftCusp D := by
-  first | exact @GlobalTheory.LiftCuspObj.liftCusp | exact GlobalTheory.LiftCuspObj.liftCusp | (intros; apply GlobalTheory.LiftCuspObj.liftCusp <;> assumption)
+  first | exact @GlobalTheory.LiftCuspObj.liftCusp

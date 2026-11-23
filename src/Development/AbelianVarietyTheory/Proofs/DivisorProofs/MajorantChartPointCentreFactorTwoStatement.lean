@@ -48,4 +48,4 @@ open NumberField MeasureTheory ReciprocityTheory.ChartRestriction.G.FD Reciproci
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.majorant_chart_point_centre_factor_two : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (x : Frame X.Ψ r) (z : V (nd X)), IsOrth X x → (r : ℝ) ^ 2 * ‖z‖ ≤ 1 / 100 → ∀ (τ : X.Ψ) (v : Fin r → ℂ), X.maj (cpt X x z) τ v ≤ 2 * X.maj x τ v ∧ X.maj x τ v ≤ 2 * X.maj (cpt X x z) τ v := by
-  first | exact @GlobalTheory.ChartGraph.maj_cpt_le_two | exact GlobalTheory.ChartGraph.maj_cpt_le_two | (intros; apply GlobalTheory.ChartGraph.maj_cpt_le_two <;> assumption)
+  first | exact @GlobalTheory.ChartGraph.maj_cpt_le_two

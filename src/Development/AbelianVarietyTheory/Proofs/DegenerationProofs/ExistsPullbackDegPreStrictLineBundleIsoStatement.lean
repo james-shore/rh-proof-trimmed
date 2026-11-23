@@ -52,4 +52,4 @@ open GlobalTheory GlobalTheory.Ex
 open GlobalTheory.ModelData
 
 theorem _root_.GlobalTheory.T.exists_pullback_degPre_strict_lineBundle_iso : Laws → ∀ (R R' : Type) [CommRing R] [IsDomain R] [CommRing R'] [IsDomain R'] (φ : R →+* R') (D : DegPre R) (W : (Spec (CommRingCat.of R)).Opens), Nonempty (PsiOn D W) → (specOf φ).base (genericPoint (Spec (CommRingCat.of R'))) ∈ W → ∃ (D' : DegPre R') (hD : IsPullDeg φ D D'), D'.P.g = D.P.g ∧ Strict hD.w := by
-  first | exact @GlobalTheory.StrictPull.exists_isPullDeg_strict | exact GlobalTheory.StrictPull.exists_isPullDeg_strict | (intros; apply GlobalTheory.StrictPull.exists_isPullDeg_strict <;> assumption)
+  first | exact @GlobalTheory.StrictPull.exists_isPullDeg_strict

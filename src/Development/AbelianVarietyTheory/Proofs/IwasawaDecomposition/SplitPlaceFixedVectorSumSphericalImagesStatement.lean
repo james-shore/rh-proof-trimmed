@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.splitPlace_fixed_vector_sum_spherical_images : ∀
     ∃ (m : ℕ) (T : Fin m → σ.V →ₗ[ℂ] (GAf L n → π.W)) (e : Fin m → σ.V),
       (∀ j, GlobalTheory.HeckeFrob.IsLocMap s σ i (T j)) ∧
       (∀ j, e j ∈ GlobalTheory.PRep.fixed σ.ρ (GlobalTheory.SplitWeil.KO (s.w.adicCompletion L) (Fin n))) ∧ f = ∑ j, T j (e j) := by
-  first | exact @GlobalTheory.SphAvg.exists_sum_fixed | exact GlobalTheory.SphAvg.exists_sum_fixed | (intros; apply GlobalTheory.SphAvg.exists_sum_fixed <;> assumption)
+  first | exact @GlobalTheory.SphAvg.exists_sum_fixed

@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.hecke_commutation_real_expansion : ∀ {D : D7} {G
         ∀ z ∈ LinearMap.range (GlobalTheory.GoodSS.goodProjectorBaseChangeForms S j (Y.rho j h1 h2) (Y.chi j h1 h2) D.nexp.eLL0),
           Polynomial.aeval (LinearMap.baseChange ↥D.LL0
             (GlobalTheory.GoodSS.opK S j (H.hL j k P) (fun x hx => H.hs j h1 h2 k P x hx))) q z = 0 := by
-  first | exact @GlobalTheory.GoodSS.Heart.hL_separable_good | exact GlobalTheory.GoodSS.Heart.hL_separable_good | (intros; apply GlobalTheory.GoodSS.Heart.hL_separable_good <;> assumption)
+  first | exact @GlobalTheory.GoodSS.Heart.hL_separable_good

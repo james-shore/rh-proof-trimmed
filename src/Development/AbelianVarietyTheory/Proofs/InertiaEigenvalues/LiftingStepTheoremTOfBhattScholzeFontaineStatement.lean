@@ -48,4 +48,4 @@ open scoped Formalism.Per
 open Formalism.MainNotions Formalism.MainNotions.N
 
 theorem _root_.GlobalTheory.T.liftingStep_theoremT_of_bhattScholze_fontaine : GlobalTheory.Published.BhattScholzeCrystallineLattices → GlobalTheory.Published.FontaineBcris → ∀ C : ℕ, 40 ≤ C → ∀ (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW), Formalism.MainNotions.ElementDenominator.HodgeTateFromSandwich D HW F C := by
-  first | exact @GlobalTheory.TheoremTClosing.main | exact GlobalTheory.TheoremTClosing.main | (intros; apply GlobalTheory.TheoremTClosing.main <;> assumption)
+  first | exact @GlobalTheory.TheoremTClosing.main

@@ -71,7 +71,7 @@ private lemma cc_psTrunc_lemma {κ : Type} [Fintype κ] [DecidableEq κ] (m : �
 
   rw [map_sum, Finset.sum_eq_single 0]
   · rw [MvPolynomial.constantCoeff_monomial, if_pos rfl]
-    first | rfl | simp
+    first | rfl
   · intro e _ he
     rw [MvPolynomial.constantCoeff_monomial, if_neg he]
   · intro h0
@@ -165,7 +165,7 @@ theorem jetSubstP_eq_jetSubstPS {κ κ' : Type} [Fintype κ'] [DecidableEq κ'] 
   rw [Ideal.Quotient.eq]
   apply mem_of_coeff_lemma_3
   intro e he
-  simp [MvPolynomial.coeff_sub, coeff_psTrunc_lemma_4, (mem_degLE_lemma_5 m e).mpr he, MvPolynomial.coeff_coe,
+  simp [coeff_psTrunc_lemma_4, (mem_degLE_lemma_5 m e).mpr he, MvPolynomial.coeff_coe,
     cc_psTrunc_lemma, hP, fun i => const_coeff_coe_zero _ (hP i)]
 
 private lemma jetSubstPS_X_lemma_6 {κ κ' : Type} [Fintype κ'] [DecidableEq κ'] (m : ℕ) (g : κ → MvPowerSeries κ' R)

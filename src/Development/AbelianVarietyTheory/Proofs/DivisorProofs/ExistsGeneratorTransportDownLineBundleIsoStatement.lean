@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_generator_transport_down_lineBundleIso : �
     (w : LB.Iso L' (L.pull F)), w.IsGen → L.IsLB → L'.IsLB → ∀ (φ' : Ix → (Y ⟶ X')) (ε : Ix → ℤ)
     (a : LB.Gen (LB.LinComb L' φ' ε)), a.IsGen →
     ∃ t : LB.Gen (LB.LinComb L (fun k => φ' k ≫ F) ε), t.IsGen ∧ PMaps w φ' (fun k => φ' k ≫ F) ε a t (𝟙 Y) := by
-  first | exact @GlobalTheory.GenTransport.exists_gen_down_pmaps | exact GlobalTheory.GenTransport.exists_gen_down_pmaps | (intros; apply GlobalTheory.GenTransport.exists_gen_down_pmaps <;> assumption)
+  first | exact @GlobalTheory.GenTransport.exists_gen_down_pmaps

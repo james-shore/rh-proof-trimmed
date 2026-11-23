@@ -106,7 +106,7 @@ theorem IsKSR.baseChangeForKSFamily (P : AbelianDeRham) {Φ : Finset (E →+* �
   refine ⟨B, _, B', _, φ ≫ π, φ' ≫ π', _, hj, b', fun σ k => tv (ub σ k), fun k => th (hb k),
     (hφ.comp hπ).congr h.1.symm rfl, hφ'.comp hπ', by rw [← Category.assoc, sq, Category.assoc, e], hpol',
     fun σ k => ?_, fun σ k => (hl σ k).baseChange (hφ := hφ) hF hL (hth _) (htv _), fun τ a => ?_⟩
-  · rw [← Category.assoc, htv, Category.assoc, hu, h.2.1] <;> rfl
+  · rw [← Category.assoc, htv, Category.assoc, hu, h.2.1]
   · obtain ⟨w, hw, f, hf, hd, hv⟩ := hM τ a
     refine ⟨tv w, ArcQ.NormalForm.isLieComb_baseChange hφ (fun _ => htv _) (htv w) hw, th f,
       mem_Fil_of_corr (hφ := hφ) hF (hth f) hf, fun k => ?_,

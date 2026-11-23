@@ -124,7 +124,6 @@ private theorem exists_ringOfIntegers_valuation_sub_lt_one_of_le (k : F) (hk : v
         calc w.intValuation c * (w.intValuation a * (w.intValuation (b : 𝓞 F))⁻¹)
             ≤ w.intValuation (b : 𝓞 F) * (1 * (w.intValuation (b : 𝓞 F))⁻¹) := by
               first
-              | exact mul_le_mul' hc' (mul_le_mul_right' (intValuation_le_one w a) _)
               | (gcongr; exact intValuation_le_one w a)
           _ = 1 := by rw [one_mul, mul_inv_cancel₀ hbne]
       · have hb1 : w.intValuation (b : 𝓞 F) = 1 := by
@@ -148,7 +147,6 @@ private theorem exists_ringOfIntegers_valuation_sub_lt_one_of_le (k : F) (hk : v
   calc v.valuation F (IsLocalization.mk' F a b) * v.valuation F (algebraMap (𝓞 F) F i)
       ≤ 1 * v.valuation F (algebraMap (𝓞 F) F i) := by
         first
-        | exact mul_le_mul_right' hk _
         | gcongr
     _ = v.valuation F (algebraMap (𝓞 F) F i) := one_mul _
     _ < 1 := hvi
@@ -164,26 +162,7 @@ private theorem valued_algebraMap_ringOfIntegers_eq_intValuation (a : 𝓞 F) :
 
 private theorem denseRange_algebraMap_adicCompletion' : DenseRange (algebraMap F (v.adicCompletion F)) := by
   first
-  | exact IsDedekindDomain.HeightOneSpectrum.adicCompletion.denseRange_coe F v
   | exact IsDedekindDomain.HeightOneSpectrum.denseRange_algebraMap F v
-  | exact IsDedekindDomain.HeightOneSpectrum.denseRange_coe F v
-  | exact (v.valuation F).denseRange_coe
-  | exact Valuation.Completion.denseRange_coe
-  | exact UniformSpace.Completion.denseRange_coe (α := WithVal (v.valuation F))
-  | (intro x; exact UniformSpace.Completion.denseRange_coe x)
-  | exact (UniformSpace.Completion.denseRange_coe (α := WithVal (v.valuation F))).comp
-      (WithVal.equiv (v.valuation F)).symm.surjective.denseRange
-      (UniformSpace.Completion.continuous_coe _)
-  | exact @UniformSpace.Completion.denseRange_coe F v.adicValued.toUniformSpace
-  | (letI := v.adicValued; exact UniformSpace.Completion.denseRange_coe)
-  | (refine Dense.mono ?_ (UniformSpace.Completion.denseRange_coe (α := WithVal (v.valuation F)))
-     rintro _ ⟨y, rfl⟩
-     first
-     | exact ⟨WithVal.equiv _ y, rfl⟩
-     | exact ⟨WithVal.ofVal y, rfl⟩
-     | exact ⟨y, rfl⟩
-     | exact ⟨WithVal.equiv _ y, by simp⟩
-     | exact ⟨WithVal.ofVal y, by simp⟩)
   | (delta IsDedekindDomain.HeightOneSpectrum.adicCompletion
      exact UniformSpace.Completion.denseRange_coe)
   | (unfold IsDedekindDomain.HeightOneSpectrum.adicCompletion Valuation.Completion
@@ -226,7 +205,6 @@ private theorem exists_ringOfIntegers_valued_sub_lt_one_of_le_one (x : v.adicCom
     rw [e, map_mul]
     calc _ ≤ Valued.v (algebraMap (𝓞 F) (v.adicCompletion F) π) * 1 := by
           first
-          | exact mul_le_mul_left' h2 _
           | gcongr
       _ < 1 := by rw [mul_one]; exact hvP
   have hkv : v.valuation F k ≤ 1 := by

@@ -85,7 +85,7 @@ private theorem esymm_add' (s t : Multiset ℂ) (j : ℕ) :
 
 private theorem esymm_sum : ∀ (m : ℕ) (M : Fin m → Multiset ℂ) (j : ℕ),
     (∑ l, M l).esymm j = ∑ a ∈ Finset.piAntidiag Finset.univ j, ∏ l, (M l).esymm (a l)
-  | 0, M, 0 => by simp [esymm_zero']
+  | 0, M, 0 => by simp
   | 0, M, j + 1 => by simp [Multiset.esymm, Multiset.powersetCard_zero_right]
   | m + 1, M, j => by
     rw [Fin.sum_univ_succ, esymm_add', sum_pi]

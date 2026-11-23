@@ -52,4 +52,4 @@ open GlobalTheory.SimilTheta
 
 
 theorem _root_.GlobalTheory.T.exists_holomorphic_coord_similitudeThetaProduct : ∀ (g m : ℕ) (a b : Fin g → ℂ) (al : Matrix (Fin 4) (Fin 4) ℤ) (Th : Fin (m ^ g) → (Fin g → Fin g → ℂ) → (Fin g → ℂ) → ℂ), charHalf g a b → 1 ≤ m → al.transpose * al = (m : ℤ) • (1 : Matrix (Fin 4) (Fin 4) ℤ) → LevBasis a b m Th → ∀ k n : Fin 4 → Fin g → ℤ, ∃ qa : (Fin g → Fin g → ℂ) → (Fin 4 → Fin (m ^ g)) → ℂ, (∀ I, DifferentiableOn ℂ (fun p => qa p I) (Key.phDom g)) ∧ ∀ p ∈ Key.phDom g, ∀ q : (Fin 4 → Fin (m ^ g)) → ℂ, (∀ y, simTheta (per p) a b al m k n y = ∑ I, q I * ∏ c, Th (I c) p (y c)) ↔ q = qa p := by
-  first | exact @GlobalTheory.SimilTheta.exists_holomorphic_coord_simTheta | exact GlobalTheory.SimilTheta.exists_holomorphic_coord_simTheta | (intros; apply GlobalTheory.SimilTheta.exists_holomorphic_coord_simTheta <;> assumption)
+  first | exact @GlobalTheory.SimilTheta.exists_holomorphic_coord_simTheta

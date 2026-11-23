@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.branchingPairing_map_extendScalars_embedding : ∀
     (Λ : ι → DomWeight N) (σ : ι → DomWeight n) (u : VV K Λ) (v : VV K fun τ => (σ τ).dual),
     φ (GlobalTheory.BrPairF.brPairF σ hN Λ u v) =
       GlobalTheory.BrPairF.brPairF σ hN Λ (GlobalTheory.CoefModel.mapVV φ Λ u) (GlobalTheory.CoefModel.mapVV φ _ v) := by
-  first | exact @GlobalTheory.BrPairF.brPairF_map_descent | exact GlobalTheory.BrPairF.brPairF_map_descent | (intros; apply GlobalTheory.BrPairF.brPairF_map_descent <;> assumption)
+  first | exact @GlobalTheory.BrPairF.brPairF_map_descent

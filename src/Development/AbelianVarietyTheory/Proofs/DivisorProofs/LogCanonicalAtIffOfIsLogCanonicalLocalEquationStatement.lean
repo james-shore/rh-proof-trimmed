@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.logCanonicalAt_iff_of_isLogCanonicalLocalEquation : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] [GlobalTheory.IsNormalScheme X] (p : X ⟶ Sp ℂ) (n : ℕ), IsProjOver p → topologicalKrullDim X = n → ∀ (Γ : X → ℚ) (η : RatForms p n) (x : X) (m : ℕ) (g : X.functionFieldˣ), η ≠ 0 → 0 < m → IsLogEqn p Γ η x m g → (LcAt p n Γ x ↔ ∀ E : DivOver p, E.Through x → -1 ≤ discrep E η m g) := by
-  first | exact @GlobalTheory.PairStep.lcAt_iff_of_isLogEqn | exact GlobalTheory.PairStep.lcAt_iff_of_isLogEqn | (intros; apply GlobalTheory.PairStep.lcAt_iff_of_isLogEqn <;> assumption)
+  first | exact @GlobalTheory.PairStep.lcAt_iff_of_isLogEqn

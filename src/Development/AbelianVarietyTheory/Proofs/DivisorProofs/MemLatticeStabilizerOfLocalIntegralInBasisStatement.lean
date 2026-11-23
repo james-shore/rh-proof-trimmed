@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 
 
 theorem _root_.GlobalTheory.T.mem_latticeStabilizer_of_local_integral_inBasis : ∀ {D : D7} {n : ℕ} (β x : GL (Fin n) (Lev.EAf D)), (∀ w : Pl D.host.E, inBasis rfl β w x ∈ KO (Kw w) (Fin n)) → x ∈ St β := by
-  first | exact @GlobalTheory.Adopt.mem_latticeStabilizer_of_local_integral_inBasis | exact GlobalTheory.Adopt.mem_latticeStabilizer_of_local_integral_inBasis | (intros; apply GlobalTheory.Adopt.mem_latticeStabilizer_of_local_integral_inBasis <;> assumption)
+  first | exact @GlobalTheory.Adopt.mem_latticeStabilizer_of_local_integral_inBasis

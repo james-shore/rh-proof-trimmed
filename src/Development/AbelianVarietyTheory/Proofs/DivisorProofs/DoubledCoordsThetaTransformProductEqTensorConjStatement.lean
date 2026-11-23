@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.doubledCoordsThetaTransform_product_eq_tensor_conj
         GlobalTheory.WeilSchrodinger.thetaTr D.host.F (GlobalTheory.DblSchr.ddr co) ψ (GlobalTheory.WeilM.boxFun φ₁ φ₂) =
           GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero.delta S T (GlobalTheory.WeilSchrodinger.thetaTr D.host.F co ψ φ₁)
             (GlobalTheory.WeilSchrodinger.thetaTr D.host.F co ψ (fun x => starRingEnd ℂ (φ₂ (-x)))) := by
-  first | exact @GlobalTheory.Adopt.doubledCoordsThetaTransform_product_eq_tensor_conj | exact GlobalTheory.Adopt.doubledCoordsThetaTransform_product_eq_tensor_conj | (intros; apply GlobalTheory.Adopt.doubledCoordsThetaTransform_product_eq_tensor_conj <;> assumption)
+  first | exact @GlobalTheory.Adopt.doubledCoordsThetaTransform_product_eq_tensor_conj

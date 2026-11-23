@@ -52,4 +52,4 @@ open scoped Formalism.Per
 open GlobalTheory.BaseCoef
 
 theorem _root_.GlobalTheory.T.exists_integralLatticeBasisLocal : ∀ (l : ℕ) [Fact l.Prime] {G : Type} [Group G] [TopologicalSpace G] (LL : FinExt l) (T : LocLat G ℚ_[l] ↥LL.1 ↥(OL LL)), ∃ (k : ℕ) (b : Module.Basis (Fin k) ↥LL.1 T.V), IsLatBasis T b := by
-  first | exact @GlobalTheory.BaseCoef.lattice_basis_exists | exact GlobalTheory.BaseCoef.lattice_basis_exists | (intros; apply GlobalTheory.BaseCoef.lattice_basis_exists <;> assumption)
+  first | exact @GlobalTheory.BaseCoef.lattice_basis_exists

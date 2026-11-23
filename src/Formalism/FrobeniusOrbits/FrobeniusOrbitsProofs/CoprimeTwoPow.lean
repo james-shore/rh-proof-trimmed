@@ -211,7 +211,6 @@ lemma odd_of_unit (e : ℕ) (l : ℤ) (u : (ZMod (2 ^ (e + 2)))ˣ)
   have h3 : ((c + c : ℤ) : ZMod 2) = 0 := by
     first
       | (rw [Int.cast_add, ← two_mul, show (2 : ZMod 2) = 0 by decide, zero_mul])
-      | (rw [ZMod.intCast_zmod_eq_zero_iff_dvd]; exact ⟨c, by push_cast; ring⟩)
   rw [h3, zero_mul] at h2
   exact zero_ne_one h2
 

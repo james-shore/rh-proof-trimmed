@@ -115,11 +115,7 @@ theorem exists_smul_mem {K : Type} [Field K] [NumberField K] {b : ℕ}
     (B : Submodule (𝓞 K) (Fin b → K)) (hBs : Submodule.span K (B : Set (Fin b → K)) = ⊤)
     (v : Fin b → K) : ∃ d : 𝓞 K, d ≠ 0 ∧ d • v ∈ B := by
   first
-  | exact @_root_.GlobalTheory.FiniteSumFlagMeasures.main
-  | exact _root_.GlobalTheory.FiniteSumFlagMeasures.main
   | (apply _root_.GlobalTheory.FiniteSumFlagMeasures.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteSumFlagMeasures.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteSumFlagMeasures.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FiniteSumFlagMeasures.main ..)
 
 theorem homLat_span {K : Type} [Field K] [NumberField K] {a b : ℕ}

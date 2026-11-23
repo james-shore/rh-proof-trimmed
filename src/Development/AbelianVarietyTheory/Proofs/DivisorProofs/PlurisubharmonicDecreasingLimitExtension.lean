@@ -89,7 +89,6 @@ theorem exists_tendstoLocallyUniformlyOn_ultrafilter {E : Type*} [NormedAddCommG
       rw [dist_eq_norm]
       linarith [hM k w hw, hM k c (mem_ball_self hr)]
     first
-      | exact mem_ball.2 h2
       | exact mem_closedBall.2 h2.le
   have hlipf : ∀ z ∈ ball c r, dist (f z) (f c) ≤ L * dist z c := fun z hz =>
     le_of_tendsto ((hf z (hrU hz)).dist (hf c hc)) (Eventually.of_forall fun k => hlip k z hz)
@@ -118,7 +117,7 @@ theorem enorm_sq_le_lintegral {n : ℕ} {g : V n → ℂ} {c : V n} {r : ℝ} (h
     (MeasurableEquiv.addLeft c).measurableEmbedding (fun z => ‖g z‖ₑ ^ 2) (closedBall c r)
   have h3 : (fun z => c + z) ⁻¹' closedBall c r = closedBall 0 r := by
     ext z
-    simp [mem_closedBall_iff_norm]
+    simp
   rw [h3] at h2
   rw [← h2]
   simpa using h1

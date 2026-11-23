@@ -49,4 +49,4 @@ open scoped CategoryTheory.Obj TensorProduct
 open GlobalTheory.ZM
 
 theorem _root_.GlobalTheory.T.levelQuotient_unramified_dualNumberPoints : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l l₂ : Level H) (Xo₂ : Moduli D l₂) (Q : LevelQuot l Xo₂), 1 ≤ D.p + D.q → l.Dvd l₂ → ∀ (k : Type) [Field k] (x : Sp (DualNumber k) ⟶ Q.X) (ob : Obj D l (baseKA l) (x ≫ Q.s)), Nonempty (ObjMap ob Q.univ x) → Nonempty (ObjMap ob Q.univ (constPt x)) → x = constPt x := by
-  first | exact @GlobalTheory.levelQuot_unram | exact GlobalTheory.levelQuot_unram | (intros; apply GlobalTheory.levelQuot_unram <;> assumption)
+  first | exact @GlobalTheory.levelQuot_unram

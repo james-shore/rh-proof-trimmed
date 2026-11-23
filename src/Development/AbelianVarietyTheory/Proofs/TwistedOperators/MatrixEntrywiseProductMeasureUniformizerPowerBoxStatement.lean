@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.matrixEntrywiseProductMeasure_uniformizer_power_bo
     volM ν A D {y | ∀ i j, valuation k (y i j) ≤ valuation k ((ϖ : k) ^ c i j)} =
       ν (𝒪[k] : Set k) ^ (Fintype.card A * Fintype.card D) *
         ENNReal.ofReal ((resCard k : ℝ) ^ (-∑ i, ∑ j, c i j)) := by
-  first | exact @GlobalTheory.BoxVolume.volM_box | exact GlobalTheory.BoxVolume.volM_box | (intros; apply GlobalTheory.BoxVolume.volM_box <;> assumption)
+  first | exact @GlobalTheory.BoxVolume.volM_box

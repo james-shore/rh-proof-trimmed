@@ -117,11 +117,11 @@ theorem isTest_indicator_comm (G : HTGroup p) (K' : Subgroup (Gr G 1))
   · rw [hθ]
     by_cases hg : g ∈ K'
     · have h' : k⁻¹ * g * k ∈ K' := K'.mul_mem (K'.mul_mem (K'.inv_mem hk) hg) hk
-      simp [Set.indicator_apply, hg, h']
+      simp [hg, h']
     · have h' : k⁻¹ * g * k ∉ K' := fun h => hg (by
         have e : g = k * (k⁻¹ * g * k) * k⁻¹ := by group
         rw [e]; exact K'.mul_mem (K'.mul_mem hk h) (K'.inv_mem hk))
-      simp [Set.indicator_apply, hg, h']
+      simp [hg, h']
   · set K₀ := KHT p G.m G.n 1 G.Fw
     haveI : (K₀.subgroupOf K').FiniteIndex := Subgroup.isFiniteRelIndex_iff_finiteIndex.mp hK.2
     haveI : Finite (K' ⧸ K₀.subgroupOf K') := Subgroup.finite_quotient_of_finiteIndex

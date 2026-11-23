@@ -45,4 +45,4 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Alternates
 open GlobalTheory.HTW Formalism.BasicNotions Formalism.FrobeniusOrbits
 
 theorem _root_.GlobalTheory.T.thinSize_dominates_at_large_scale : ∀ eps : ℝ, 0 < eps → ∃ x0 : ℝ, ∀ (D : D7) (L : SizeData₂ D) (_ : ParameterChoice' D L), L.sc.eps = eps → x0 ≤ L.sc.x → (100 : ℝ) ≤ L.sc.w'' D.R.n ∧ 100 * (L.etaSz + L.Sc + D.R.t + 2) ≤ L.sc.w'' D.R.n ∧ L.sc.w'' D.R.n ≤ L.sc.b' := by
-  first | exact @GlobalTheory.HTW.thinSize_dominates | exact GlobalTheory.HTW.thinSize_dominates | (intros; apply GlobalTheory.HTW.thinSize_dominates <;> assumption)
+  first | exact @GlobalTheory.HTW.thinSize_dominates

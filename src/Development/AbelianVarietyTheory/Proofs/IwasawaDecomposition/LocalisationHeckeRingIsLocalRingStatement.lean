@@ -51,4 +51,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 open Formalism.L2.Fam.NPC Formalism.L2.Fam.NPC.BaseC GlobalTheory.HeckeLocN
 
 theorem _root_.GlobalTheory.T.localisation_heckeRing_isLocalRing : ∀ {R : Ranks} {H : Host R} {what₂ : Rows.Data R} (B : LocBase0 H what₂) (hs : HeckeStd0 B) (hd : FinDimV B) (i : LocT B), IsLocalRing (TOf B i) := by
-  first | exact @GlobalTheory.HeckeLocN.TLocal.main | exact GlobalTheory.HeckeLocN.TLocal.main | (intros; apply GlobalTheory.HeckeLocN.TLocal.main <;> assumption)
+  first | exact @GlobalTheory.HeckeLocN.TLocal.main

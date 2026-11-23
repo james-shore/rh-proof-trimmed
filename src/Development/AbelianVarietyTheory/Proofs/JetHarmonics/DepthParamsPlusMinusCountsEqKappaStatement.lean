@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF (AvFSt HTFSt UpFSt)
 open GlobalTheory.RunDepth GlobalTheory.CharDepth
 
 theorem _root_.GlobalTheory.T.depthParams_plusMinusCounts_eq_kappa : ∀ (D : D7) (L : SizeData₂ D) (Pm : ParameterChoice' D L) (Tp : ParamsT D L Pm) (hK : DV.KapDef D) (j : ℕ), InR D j → (numOf D L).Dplus j = ((∑ τ, ∑ i, (kaR Tp hK j).aP τ i : ℕ) : ℚ) ∧ (numOf D L).Dminus j = ((∑ τ, ∑ i, (kaR Tp hK j).aM τ i : ℕ) : ℚ) := by
-  first | exact @GlobalTheory.RunDepth.numOf_Dplus_Dminus | exact GlobalTheory.RunDepth.numOf_Dplus_Dminus | (intros; apply GlobalTheory.RunDepth.numOf_Dplus_Dminus <;> assumption)
+  first | exact @GlobalTheory.RunDepth.numOf_Dplus_Dminus

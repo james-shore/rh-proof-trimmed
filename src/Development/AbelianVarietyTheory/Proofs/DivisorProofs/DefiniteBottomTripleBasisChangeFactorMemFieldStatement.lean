@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.definite_bottom_triple_basis_change_factor_mem_fie
       ((splitFacO (GlobalTheory.BotFrames.botAlpha L i j t) (GlobalTheory.BotFrames.botAlpha L i j t / GlobalTheory.BotFrames.botBeta G i j) x' y : Circle)
         : ℂ) /
       ((splitFacO (GlobalTheory.BotFrames.botBeta G i j) (GlobalTheory.BotFrames.botBeta G i j / GlobalTheory.BotFrames.botAlpha L i j t) x y : Circle) : ℂ) := by
-  first | exact @GlobalTheory.BotFrames.factor_mem_field | exact GlobalTheory.BotFrames.factor_mem_field | (intros; apply GlobalTheory.BotFrames.factor_mem_field <;> assumption)
+  first | exact @GlobalTheory.BotFrames.factor_mem_field

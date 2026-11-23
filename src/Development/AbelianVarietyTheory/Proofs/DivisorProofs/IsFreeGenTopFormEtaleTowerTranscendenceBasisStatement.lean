@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.isFreeGen_topForm_etaleTower_transcendenceBasis : 
     (ι : R →+* T) (ψ : T →+* R) (τ : Fin r → T) (x : Fin n → R),
   IsEtTower cK R cL T ι ψ τ → TrBasis cK (fun i => (x i : K)) →
   IsFreeGen L (dForm cL (Fin.append (fun i => (τ i : L)) (fun i => (ι (x i) : L)))) := by
-  first | exact @GlobalTheory.FieldPair.isFreeGen_dForm_tower | exact GlobalTheory.FieldPair.isFreeGen_dForm_tower | (intros; apply GlobalTheory.FieldPair.isFreeGen_dForm_tower <;> assumption)
+  first | exact @GlobalTheory.FieldPair.isFreeGen_dForm_tower

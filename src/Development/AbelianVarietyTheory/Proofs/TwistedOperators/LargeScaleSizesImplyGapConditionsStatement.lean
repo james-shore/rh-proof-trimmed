@@ -46,4 +46,4 @@ open GlobalTheory.SepRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.largeScaleSizes_imply_gapConditions : SizeGap := by
-  first | exact @GlobalTheory.SepRows.sizeGap_of_sizes | exact GlobalTheory.SepRows.sizeGap_of_sizes | (intros; apply GlobalTheory.SepRows.sizeGap_of_sizes <;> assumption)
+  first | exact @GlobalTheory.SepRows.sizeGap_of_sizes

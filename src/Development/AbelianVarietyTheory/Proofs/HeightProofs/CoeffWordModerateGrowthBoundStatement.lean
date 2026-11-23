@@ -50,4 +50,4 @@ open GlobalTheory.TypeSum.CoefClos
 theorem _root_.GlobalTheory.T.coeffWord_moderateGrowth_bound : ∀ (n : ℕ) (ε : Fin n → Bool) (N : ℕ) (f : Mx n → ℂ) (F : List (Mx n) → Mx n → ℂ),
     (∀ g ∈ UJset ε, F [] g = f g) → IsDerFam ε F → FamGrowth ε N F →
     ∀ u : List (Ltr ε), ∃ C : ℝ, ∀ g ∈ UJset ε, ‖wordF u f g‖ ≤ C * (1 + Formalism.REAL.hs g) ^ N := by
-  first | exact @GlobalTheory.TypeSum.CoefClos.wordF_growth | exact GlobalTheory.TypeSum.CoefClos.wordF_growth | (intros; apply GlobalTheory.TypeSum.CoefClos.wordF_growth <;> assumption)
+  first | exact @GlobalTheory.TypeSum.CoefClos.wordF_growth

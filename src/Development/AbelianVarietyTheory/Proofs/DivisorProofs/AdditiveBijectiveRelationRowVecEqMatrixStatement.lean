@@ -50,4 +50,4 @@ open GlobalTheory.CMVal GlobalTheory.HeckeGal
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.additive_bijective_relation_rowVec_eq_matrix : ∀ (N : ℕ) [NeZero N] (R : (Fin 2 → ZMod N) → (Fin 2 → ZMod N) → Prop), (∀ x, ∃ y, R x y) → (∀ x y x' y', R x y → R x' y' → R (x - x') (y - y')) → (∀ x y, R x y → (x = 0 ↔ y = 0)) → ∃ A : GL (Fin 2) (ZMod N), ∀ x, R x (vmul x A) := by
-  first | exact @GlobalTheory.RelLin.main | exact GlobalTheory.RelLin.main | (intros; apply GlobalTheory.RelLin.main <;> assumption)
+  first | exact @GlobalTheory.RelLin.main

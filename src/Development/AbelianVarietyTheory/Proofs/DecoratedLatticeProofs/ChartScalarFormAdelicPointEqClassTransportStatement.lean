@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.chartScalarForm_adelicPoint_eq_classTransport : �
     A.chOf j ((I.stp u a j).cl c.1 d) = b →
     cosetIn d = cosetIn ((I.stp u a j).rep ((I.stp u a j).cl c.1 d)) → ∀ y,
       A.rd θ j hj b φ y x = (I.stp u a j).trTo B.fields.emb B.embLL c.1 d (φ ((I.stp u a j).cl c.1 d)) y := by
-  first | exact @GlobalTheory.AdForm.rd_trTo | exact GlobalTheory.AdForm.rd_trTo | (intros; apply GlobalTheory.AdForm.rd_trTo <;> assumption)
+  first | exact @GlobalTheory.AdForm.rd_trTo

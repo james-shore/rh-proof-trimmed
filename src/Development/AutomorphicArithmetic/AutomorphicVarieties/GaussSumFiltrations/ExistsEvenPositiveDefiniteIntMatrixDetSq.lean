@@ -76,7 +76,7 @@ theorem AC (R : Type) [CommRing R] (n : ℕ) : Am R n * Cm R n = ((n : R) + 1) �
 
 theorem Gmap (n : ℕ) : (Gm ℤ n).map (Int.cast : ℤ → ℝ) = Gm ℝ n := by
   ext (i | i) (j | j) <;> by_cases h : i = j <;>
-    simp [Gm, Am, Cm, Jm, Matrix.one_apply, Matrix.natCast_apply, Matrix.diagonal_apply, h]
+    simp [Gm, Am, Cm, Jm, Matrix.natCast_apply, h]
 
 theorem Cpos (n : ℕ) : (Cm ℝ n).PosDef := by
   have h : Jm ℝ n = (Matrix.of fun (_ : Fin 1) (_ : Fin n) => (1 : ℝ))ᴴ * Matrix.of fun (_ : Fin 1) (_ : Fin n) => (1 : ℝ) := by
@@ -103,7 +103,7 @@ theorem Gfac (n : ℕ) : Gm ℝ n =
   rw [Matrix.fromBlocks_conjTranspose, hXH, Matrix.conjTranspose_one, Matrix.conjTranspose_zero,
     Matrix.fromBlocks_multiply, Matrix.fromBlocks_multiply]
   simp only [one_mul, mul_one, zero_mul, mul_zero, add_zero, zero_add,
-    Matrix.mul_smul, Matrix.smul_mul, h1, h2, Matrix.mul_assoc]
+    Matrix.mul_smul, Matrix.smul_mul, h1, h2]
   rw [Gm]
   congr 1
   rw [Cinv, smul_smul, ← add_smul, ← one_add_mul, add_comm (1 : ℝ), mul_inv_cancel₀ (by positivity),
@@ -167,7 +167,7 @@ private theorem exists_ne_zero_smul_mem_of_mem_span' (n k : ℕ) :
   | zero =>
     ext a b
     have h0 : Fin.ofNat (n + 1) 0 = 0 := Fin.ext (by simp)
-    simp [Matrix.one_apply, h0]
+    simp [Matrix.one_apply]
   | succ k ih =>
     rw [pow_succ, ih]
     ext a b
@@ -213,8 +213,7 @@ private theorem main_lemma_3 (n : ℕ) : ∃ U : Matrix (Fin n) (Fin n) ℤ,
   have hBL : B * L = 1 - X * Y := by
     ext a b
     refine Fin.cases ?_ (fun b' => ?_) b <;>
-      simp [hL, hB, hX, hY, Matrix.mul_apply, Matrix.one_apply, sub_mul, Finset.sum_sub_distrib,
-        Fin.succ_ne_zero, eq_comm]
+      simp [hL, hB, hX, hY, Matrix.mul_apply, Matrix.one_apply, Fin.succ_ne_zero, eq_comm]
   have hYP : Y * P = Y := by
     ext j b
     simp [hY, hP, Matrix.mul_apply]
@@ -227,7 +226,7 @@ private theorem main_lemma_3 (n : ℕ) : ∃ U : Matrix (Fin n) (Fin n) ℤ,
     exact if_congr (by simp [eq_comm]) rfl rfl
   have hC : Cm ℤ n = Bᵀ * B := by
     ext r c
-    simp [Cm, Jm, hB, Matrix.mul_apply, Matrix.one_apply, mul_sub, sub_mul, Finset.sum_sub_distrib,
+    simp [Cm, Jm, hB, Matrix.mul_apply, Matrix.one_apply, mul_sub, Finset.sum_sub_distrib,
       Fin.succ_ne_zero, Function.swap, eq_comm]
   have hsumP : ∑ k ∈ Finset.range (n + 1), P ^ k = Z * Y := by
     rw [hP, main_lemma_2]
@@ -311,12 +310,11 @@ theorem main (n : ℕ) (hn : 0 < n) (he : Even n) :
     · simp [Gm, Am, Jm, Matrix.natCast_apply]
       first
         | exact ⟨m, hm⟩
-        | exact ⟨(m : ℤ), by rw [hm]; push_cast; ring⟩
     · simp [Gm, Cm, Jm, Matrix.natCast_apply]
 
   · rw [Matrix.fromBlocks_transpose, Matrix.transpose_transpose, Matrix.transpose_zero, Gm, Matrix.fromBlocks_multiply, Matrix.fromBlocks_multiply]
     simp only [Matrix.zero_mul, Matrix.mul_zero, add_zero, zero_add, Matrix.mul_smul,
-      Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, smul_zero, hW, hVU, hUtVt, hUC]
+      Matrix.smul_mul, Matrix.mul_one, smul_zero, hW, hVU, hUtVt, hUC]
   · have hT : ∑ i ∈ Finset.range (n + 1), Vᵀ ^ i = 0 := by
       simp_rw [← Matrix.transpose_pow]
       rw [← Matrix.transpose_sum, hVsum, Matrix.transpose_zero]
@@ -349,4 +347,4 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.exists_evenPositiveDefinite_intMatrix_det_sq : ∀ p : ℕ, p.Prime → p ≠ 2 → ∃ (G S : Matrix (Fin (p - 1) ⊕ Fin (p - 1)) (Fin (p - 1) ⊕ Fin (p - 1)) ℤ) (t : ℕ), LatD p G S t := by
-  first | exact @GlobalTheory.HilbertThetaSeries.EvenLat.exists_latD | exact GlobalTheory.HilbertThetaSeries.EvenLat.exists_latD | (intros; apply GlobalTheory.HilbertThetaSeries.EvenLat.exists_latD <;> assumption)
+  first | exact @GlobalTheory.HilbertThetaSeries.EvenLat.exists_latD

@@ -48,4 +48,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel Topology
 
 theorem _root_.GlobalTheory.T.exists_smoothDual_ne_zero_at_vector : ∀ (G V : Type) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [AddCommGroup V] [Module ℂ V] (ρ : Representation ℂ G V), (∀ U ∈ 𝓝 (1 : G), ∃ K : Subgroup G, IsOpen (K : Set G) ∧ IsCompact (K : Set G) ∧ (K : Set G) ⊆ U) → IsSmooth ρ → ∀ v : V, v ≠ 0 → ∃ l : Module.Dual ℂ V, l ∈ smoothPart ρ.dual ∧ l v ≠ 0 := by
-  first | exact @GlobalTheory.SmoothForm.exists_smooth_form_ne_zero | exact GlobalTheory.SmoothForm.exists_smooth_form_ne_zero | (intros; apply GlobalTheory.SmoothForm.exists_smooth_form_ne_zero <;> assumption)
+  first | exact @GlobalTheory.SmoothForm.exists_smooth_form_ne_zero

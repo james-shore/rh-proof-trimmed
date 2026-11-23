@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField
 
 theorem _root_.GlobalTheory.T.isTorsionFree_ringOfIntegers_of_isTorsionFree_int' : ∀ (E : Type) [Field E] [NumberField E] (N : Type) [AddCommGroup N] [Module (𝓞 E) N] [Module.IsTorsionFree ℤ N], Module.IsTorsionFree (𝓞 E) N := by
-  first | exact @GlobalTheory.isTorsionFree_ringOfIntegers_of_isTorsionFree_int | exact GlobalTheory.isTorsionFree_ringOfIntegers_of_isTorsionFree_int | (intros; apply GlobalTheory.isTorsionFree_ringOfIntegers_of_isTorsionFree_int <;> assumption)
+  first | exact @GlobalTheory.isTorsionFree_ringOfIntegers_of_isTorsionFree_int

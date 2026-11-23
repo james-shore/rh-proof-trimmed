@@ -47,4 +47,4 @@ open scoped Matrix TensorProduct FourierTransform
 open MeasureTheory GroundTheory.Automorphic.GJMatrix
 
 theorem _root_.GlobalTheory.T.standardTraceAdelicAddChar_apply_eq_adelicChar : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), IsStd ψ → ∀ x : AF F, ψ x = (GroundTheory.Global.adelicChar F x : ℂ) := by
-  first | exact @GlobalTheory.StdCharEq.eq_adelicChar | exact GlobalTheory.StdCharEq.eq_adelicChar | (intros; apply GlobalTheory.StdCharEq.eq_adelicChar <;> assumption)
+  first | exact @GlobalTheory.StdCharEq.eq_adelicChar

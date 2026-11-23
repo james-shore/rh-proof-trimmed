@@ -98,8 +98,8 @@ theorem modK_twist {δ : ∀ p : PlF D, (D.s.atP p).Fp} {M : ∀ p : PlF D, Loc.
     · simp only [twist, hsp]
       apply sg.e.injective
       rw [map_mul, map_one]
-      simp only [map_one, RingEquiv.apply_symm_apply, AlgEquiv.apply_symm_apply]
-      refine Prod.ext ?_ ?_ <;> first | (simp; done) | (simp [← mul_pow]; done) | (simp; rw [← mul_pow]; norm_num)
+      simp only [AlgEquiv.apply_symm_apply]
+      refine Prod.ext ?_ ?_ <;> first | (simp; done) | (simp [← mul_pow]; done)
   have hu : IsUnit (twist p s 1) := ⟨⟨twist p s 1, twist p s 1, htw1, htw1⟩, rfl⟩
   have hsq : A5.modK (M p).R (twist p s 1) * A5.modK (M p).R (twist p s 1) = 1 := by
     rw [← Formalism.FourierDecayAlt.P.A5x5.modK_mul' hd hu hu, htw1, h1]
@@ -117,13 +117,8 @@ theorem alg_mem_R {M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep}
   · simp only [Loc.Model.R, hsp]
     rw [(M p).L.O_def]
     first
-    | exact (isIntegral_algebraMap (x := (⟨b, hb⟩ : 𝒪[(D.s.atP p).Fp])) :)
     | (rw [show algebraMap (D.s.atP p).Fp (D.s.atP p).Ep b =
           algebraMap 𝒪[(D.s.atP p).Fp] (D.s.atP p).Ep ⟨b, hb⟩ from rfl]
-       exact isIntegral_algebraMap)
-    | (rw [show algebraMap (D.s.atP p).Fp (D.s.atP p).Ep b =
-          algebraMap 𝒪[(D.s.atP p).Fp] (D.s.atP p).Ep ⟨b, hb⟩ from
-          (IsScalarTower.algebraMap_apply 𝒪[(D.s.atP p).Fp] (D.s.atP p).Fp (D.s.atP p).Ep ⟨b, hb⟩)]
        exact isIntegral_algebraMap)
   · simp only [Loc.Model.R, hsp]
     rw [Subring.mem_comap, Subring.mem_map]
@@ -248,16 +243,16 @@ theorem modK_tMod {δ : ∀ p : PlF D, (D.s.atP p).Fp} {M : ∀ p : PlF D, Loc.M
     · simp only [twist, hsp]
       apply sg.e.injective
       rw [map_mul]
-      simp only [map_one, RingEquiv.apply_symm_apply, AlgEquiv.apply_symm_apply]
-      refine Prod.ext ?_ ?_ <;> first | (simp; done) | (simp; ring) | ring
+      simp only [map_one, AlgEquiv.apply_symm_apply]
+      refine Prod.ext ?_ ?_ <;> first | (simp; done)
   have htw1 : twist p s 1 * twist p s 1 = 1 := by
     rcases hsp : (D.s.atP p).split with _ | sg
     · simp [twist, hsp]
     · simp only [twist, hsp]
       apply sg.e.injective
       rw [map_mul, map_one]
-      simp only [map_one, RingEquiv.apply_symm_apply, AlgEquiv.apply_symm_apply]
-      refine Prod.ext ?_ ?_ <;> first | (simp; done) | (simp [← mul_pow]; done) | (simp; rw [← mul_pow]; norm_num)
+      simp only [AlgEquiv.apply_symm_apply]
+      refine Prod.ext ?_ ?_ <;> first | (simp; done) | (simp [← mul_pow]; done)
   have htw1u : IsUnit (twist p s 1) := ⟨⟨twist p s 1, twist p s 1, htw1, htw1⟩, rfl⟩
   have hδu : IsUnit (algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (δ p)) :=
     (isUnit_iff_ne_zero.mpr (hA p).2.1).map _

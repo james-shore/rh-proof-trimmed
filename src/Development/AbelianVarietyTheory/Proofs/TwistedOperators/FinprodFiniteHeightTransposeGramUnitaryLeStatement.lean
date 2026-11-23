@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 
 theorem _root_.GlobalTheory.T.finprod_finiteHeight_transposeGramUnitary_le : ∀ (D : D7) (X : HSp D) {d : ℕ} (e : Fin X.rank ≃ Fin d) {J : Matrix (Fin d) (Fin d) D.host.E} (hJ : J = D.host.xi0 • reindex e e X.gramᵀ), ∃ C : NNReal, ∀ h : GA D X, ∏ᶠ v, GlobalTheory.AdelicU.htFin D.host.F v (Formalism.UG.bc (GlobalTheory.AdelicU.compFin D.host.F D.host.E v) (kapX X e hJ h).1) ≤ C * ∏ᶠ v, GlobalTheory.IndefiniteRowSideFullHecke.LieAlgebraExponentialFamilies.finHt X v h := by
-  first | exact @GlobalTheory.SquareAgree.finprod_htFin_kapX_le | exact GlobalTheory.SquareAgree.finprod_htFin_kapX_le | (intros; apply GlobalTheory.SquareAgree.finprod_htFin_kapX_le <;> assumption)
+  first | exact @GlobalTheory.SquareAgree.finprod_htFin_kapX_le

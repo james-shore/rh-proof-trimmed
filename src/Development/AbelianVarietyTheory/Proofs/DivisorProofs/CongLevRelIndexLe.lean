@@ -72,11 +72,7 @@ theorem mul_mem_hatId {𝔪 : Ideal (𝓞 D.host.E)} {t y : AE D} (ht : t ∈ Oh
 theorem ohE_approx (N : ℕ) (hN : 1 ≤ N) (x : AE D) (hx : x ∈ OhE D) :
     ∃ a ∈ Formalism.UG.intOE D.host.E, ∃ z ∈ OhE D, x = inc D a + (N : AE D) * z := by
   first
-  | exact @_root_.GlobalTheory.AdeleTensorModule.main
-  | exact _root_.GlobalTheory.AdeleTensorModule.main
   | (apply _root_.GlobalTheory.AdeleTensorModule.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AdeleTensorModule.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AdeleTensorModule.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AdeleTensorModule.main ..)
 
 theorem exists_rep {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥) {x : AE D} (hx : x ∈ OhE D) :

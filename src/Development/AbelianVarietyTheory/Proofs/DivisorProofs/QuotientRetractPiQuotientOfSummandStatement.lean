@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.quotient_retract_pi_quotient_of_summand : ∀ {C :
   (∃ E' M : Submodule C H, IsCompl E' M ∧ E' ⊔ I • ⊤ = F) →
   ∃ (m : ℕ) (s : (H ⧸ F) →ₗ[C] (Fin m → C ⧸ I)) (r : (Fin m → C ⧸ I) →ₗ[C] (H ⧸ F)),
     r ∘ₗ s = LinearMap.id := by
-  first | exact @GlobalTheory.quotient_retract_pi_quotient | exact GlobalTheory.quotient_retract_pi_quotient | (intros; apply GlobalTheory.quotient_retract_pi_quotient <;> assumption)
+  first | exact @GlobalTheory.quotient_retract_pi_quotient

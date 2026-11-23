@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.generator_values_mem_subfield_galoisDescent : ∀ 
     (∀ (z : Sp K) (J : (Sp K ⟶ B₀.left) → M₀.ι), Good M₀ z J → val t x₁ z J = 1) →
     ∀ x : Sp K ⟶ A.left, x ≫ A.hom = spMap ev → DefOver k₀ (x ≫ β) →
     ∀ (z : Sp K) (J : (Sp K ⟶ B₀.left) → M₀.ι), Good M₀ z J → ∃ c ∈ k₀, (val t x z J).val = toStk z c := by
-  first | exact @GlobalTheory.Poinc.Sep.gen_values_mem | exact GlobalTheory.Poinc.Sep.gen_values_mem | (intros; apply GlobalTheory.Poinc.Sep.gen_values_mem <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.gen_values_mem

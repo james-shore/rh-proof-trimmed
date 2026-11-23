@@ -217,8 +217,6 @@ theorem prj_of_mem (v : P) (w : EuclideanSpace ℝ (P × ι × Fin 2)) (hw : w �
 theorem sum_prj (w : EuclideanSpace ℝ (P × ι × Fin 2)) : ∑ v, prj v w = w := by
   ext p
   first
-    | rw [Finset.sum_apply]
-    | erw [Finset.sum_apply]
     | simp only [WithLp.ofLp_sum, Finset.sum_apply]
   simp [prj_apply]
 

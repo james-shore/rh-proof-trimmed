@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.admissibleConjugatePairPlaces_eq_of_twOK : ∀ {D 
   GlobalTheory.UnivChar.IsUnivChar Y → ∀ (i : X.Tw) (k : ℕ) (Q : Finset (Pl D.host.E)) (M : ℕ)
     (χ : Multiplicative (DelQM D.host (X.l i) Q M) →* (X.Ok i k)ˣ),
     TwOK i k Q (χ.comp (Y.delU i Q M)) → admissibleConjugatePairPlaces X i Q M = Q := by
-  first | exact @GlobalTheory.AdmAll.admissibleConjugatePairPlaces_eq_of_twist_condition | exact GlobalTheory.AdmAll.admissibleConjugatePairPlaces_eq_of_twist_condition | (intros; apply GlobalTheory.AdmAll.admissibleConjugatePairPlaces_eq_of_twist_condition <;> assumption)
+  first | exact @GlobalTheory.AdmAll.admissibleConjugatePairPlaces_eq_of_twist_condition

@@ -225,7 +225,7 @@ theorem SU_eq_closure (hdet : IsUnit J.det) [Nontrivial K]
   · intro hg
     have hdetg : g.det = 1 := hg.1
     have hpresg : ∀ x y, hf σ J (g *ᵥ x) (g *ᵥ y) = hf σ J x y := by
-      intro x y; apply SU_preserves (hg := hg) <;> first | exact hδ | exact hσδ | assumption
+      intro x y; apply SU_preserves (hg := hg)
     obtain ⟨r, F, hF⟩ : ∃ r, ∃ F : OFam σ J e f r, F.Spans := by
       apply exists_spans hσ hJ he hff hef hdet hfix
       all_goals first

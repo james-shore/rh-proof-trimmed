@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.symmetricPullbackGenerator_second_difference : ∀
         val uw x.left z J * val uw x'.left z J * val u (lift x x').left z J *
           cubV D₀.cub z J (x ≫ f) (x' ≫ f) x * cubV D₀.cub z J (x ≫ f) (x' ≫ f) x' *
           cubV D₀.cub z J x x' ((x ≫ f) * (x' ≫ f)) := by
-  first | exact @GlobalTheory.UTau0.SecondDiff.uw_second_diff | exact GlobalTheory.UTau0.SecondDiff.uw_second_diff | (intros; apply GlobalTheory.UTau0.SecondDiff.uw_second_diff <;> assumption)
+  first | exact @GlobalTheory.UTau0.SecondDiff.uw_second_diff

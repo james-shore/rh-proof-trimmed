@@ -72,7 +72,7 @@ private theorem sum_pairSingle_mul_eq_ite (i j : ι) (hij : i ≠ j) (x y z w : 
   by_cases hpi : p = i
   · simp [hpi, Pi.single_apply, add_mul, Finset.sum_add_distrib, ite_mul]
   · by_cases hpj : p = j
-    · simp [hpi, hpj, Ne.symm hij, Pi.single_apply, add_mul, Finset.sum_add_distrib, ite_mul]
+    · simp [hpj, Ne.symm hij, Pi.single_apply, add_mul, Finset.sum_add_distrib, ite_mul]
     · simp [hpi, hpj, Pi.single_apply, ite_mul]
 
 private theorem unit_lemma' (i j : ι) (hij : i ≠ j) (x y a' b' : R) (key : x * a' + y * b' = 1) :

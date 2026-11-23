@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.majorant_eq_of_firstColumns_change : ∀ (E : Type
     (∀ a : Fin X.p0, col (mat x' τ) (Fin.castLE X.p0_le a) =
       ∑ c : Fin X.p0, C c a • col (mat y τ) (Fin.castLE X.p0_le c)) →
     ∀ v : Fin r → ℂ, X.maj x' τ v = X.maj y τ v := by
-  first | exact @GlobalTheory.MajCols.maj_eq_of_cols | exact GlobalTheory.MajCols.maj_eq_of_cols | (intros; apply GlobalTheory.MajCols.maj_eq_of_cols <;> assumption)
+  first | exact @GlobalTheory.MajCols.maj_eq_of_cols

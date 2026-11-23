@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.dvd_integral_monic_coprime_derivative_bezout_facto
     Q₁ ∣ P₀.map (algebraMap (w.adicCompletionIntegers E) (w.adicCompletion E)) →
     ∃ (Q₁₀ Q₂₀ A B : (w.adicCompletionIntegers E)[X]) (c : w.adicCompletion E), c ≠ 0 ∧ P₀ = Q₁₀ * Q₂₀ ∧
       A * Q₁₀ + B * Q₂₀ = 1 ∧ Q₁ = C c * Q₁₀.map (algebraMap (w.adicCompletionIntegers E) (w.adicCompletion E)) := by
-  first | exact @GlobalTheory.monic_dvd_integral_factor_bezout | exact GlobalTheory.monic_dvd_integral_factor_bezout | (intros; apply GlobalTheory.monic_dvd_integral_factor_bezout <;> assumption)
+  first | exact @GlobalTheory.monic_dvd_integral_factor_bezout

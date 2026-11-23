@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.depthLatticeGridRow_stable_wittTargetProjections : OnStd fun {D} _ _ {sc} {G} _ F => ∀ σ (_ : 2 * (σ + 1) + 2 ≤ D.R.m) (h' : 2 * σ + 2 ≤ D.R.m), ∀ u ∈ latRow G (2 * σ + 2), ((F.dB σ h').jX * (F.dB σ h').pX) * u ∈ latRow G (2 * σ + 2) ∧ ((F.dB σ h').jY * (F.dB σ h').pY) * u ∈ latRow G (2 * σ + 2) := by
-  first | exact @GlobalTheory.AscFin.latRow_proj_tgt | exact GlobalTheory.AscFin.latRow_proj_tgt | (intros; apply GlobalTheory.AscFin.latRow_proj_tgt <;> assumption)
+  first | exact @GlobalTheory.AscFin.latRow_proj_tgt

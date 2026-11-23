@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.gridSquare_skewSumSpace_isSkewHermitianSelfDual : 
         (Spc.mk (skewGram (spV G i j) (spV₁ G i j) e) Λ (fun w => (blk e (W.cart (.grid (i : ℕ) ((j : ℕ) + 1)) (τf w)) (W.cart (.grid ((i : ℕ) + 1) (j : ℕ)) (τf w))).map conj) bas)
         ((spW G i j).rank + (spW₁ G i j).rank - ((D.R.m - j - 1) / 2 + (D.R.m - j) / 2))
         ((D.R.m - j - 1) / 2 + (D.R.m - j) / 2) := by
-  first | exact @GlobalTheory.SkewLat.bigSpace_isSkew | exact GlobalTheory.SkewLat.bigSpace_isSkew | (intros; apply GlobalTheory.SkewLat.bigSpace_isSkew <;> assumption)
+  first | exact @GlobalTheory.SkewLat.bigSpace_isSkew

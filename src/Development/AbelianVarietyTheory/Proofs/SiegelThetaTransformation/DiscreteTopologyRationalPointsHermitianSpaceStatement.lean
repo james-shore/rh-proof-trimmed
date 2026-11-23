@@ -45,4 +45,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.discreteTopology_rationalPoints_hermitianSpace : ∀ (D : D7) (V : HSp D), DiscreteTopology (GQ V) := by
-  first | exact @GlobalTheory.RationalDiscrete.discreteTopology_GQ | exact GlobalTheory.RationalDiscrete.discreteTopology_GQ | (intros; apply GlobalTheory.RationalDiscrete.discreteTopology_GQ <;> assumption)
+  first | exact @GlobalTheory.RationalDiscrete.discreteTopology_GQ

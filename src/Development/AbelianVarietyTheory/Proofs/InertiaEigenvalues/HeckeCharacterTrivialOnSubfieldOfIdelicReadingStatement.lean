@@ -44,4 +44,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Form
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.heckeCharacter_trivialOnSubfield_of_idelicReading : ∀ (D : D7) (c : (AE D)ˣ →* Circle) (χ : Formalism.L2.Host.HChar D.host.E), ChrEq c χ → (∀ a : (AF D.host.F)ˣ, c (idF D a) = 1) → χ.TrivOn D.host.F := by
-  first | exact @GlobalTheory.TrivOnRead.trivOn_of_chrEq | exact GlobalTheory.TrivOnRead.trivOn_of_chrEq | (intros; apply GlobalTheory.TrivOnRead.trivOn_of_chrEq <;> assumption)
+  first | exact @GlobalTheory.TrivOnRead.trivOn_of_chrEq

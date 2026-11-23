@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.exists_section_hermitianLinearForm_fg_module : ∀
     (n : ℕ) (J : Matrix (Fin n) (Fin n) E) (L : Submodule (𝓞 E) (Fin n → E)), L.FG →
     ∀ x : Fin n → E, (∃ z ∈ L, form σ J z x ≠ 0) →
     ∃ y₀ : Fin n → E, form σ J y₀ x = 1 ∧ ∀ z ∈ L, form σ J z x • y₀ ∈ L := by
-  first | exact @GlobalTheory.FormSection.exists_section | exact GlobalTheory.FormSection.exists_section | (intros; apply GlobalTheory.FormSection.exists_section <;> assumption)
+  first | exact @GlobalTheory.FormSection.exists_section

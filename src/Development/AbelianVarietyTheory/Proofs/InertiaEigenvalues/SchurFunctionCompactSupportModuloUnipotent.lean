@@ -79,7 +79,7 @@ theorem fromBlocks_decomp {a b : ℕ} (A : Matrix (Fin a) (Fin a) R) (B : Matrix
     rw [Matrix.mul_assoc (B * D⁻¹) uD, hD', Matrix.nonsing_inv_mul_cancel_right _ _ hD]
   have h3 : uD * (cD * (D⁻¹ * C)) = C := by
     rw [← Matrix.mul_assoc, hD', Matrix.mul_nonsing_inv_cancel_left _ _ hD]
-  simp only [Matrix.mul_zero, Matrix.zero_mul, zero_add, add_zero, h1, h2, h3, hD', hA, sub_add_cancel]
+  simp only [Matrix.mul_zero, Matrix.zero_mul, zero_add, h1, h2, h3, hD', hA, sub_add_cancel]
 
 end Mat
 
@@ -262,7 +262,7 @@ theorem GlobalTheory.SchurExtCpt.exists_compact_support : ∀ (E : Type) [Field 
       rw [← Matrix.fromBlocks_toBlocks (blk (p : Matrix (Fin (m + r + 1 + 1)) (Fin (m + r + 1 + 1)) (Ad E)))]
       refine (fromBlocks_decomp _ _ _ _ _ _ _ _ hD ?_ ?_).symm
       · rw [← Units.val_mul, mul_inv_cancel_left, coe_mkGL hdet]; try rfl
-      · rw [← Units.val_mul, mul_inv_cancel_left, coe_mkGL hD]; try rfl
+      · rw [← Units.val_mul, mul_inv_cancel_left, coe_mkGL hD]
     rw [Units.val_mul, Units.mul_inv_eq_iff_eq_mul]
     exact hpU
   · rw [_root_.mul_inv_rev, inv_inv, inv_mul_cancel_right]

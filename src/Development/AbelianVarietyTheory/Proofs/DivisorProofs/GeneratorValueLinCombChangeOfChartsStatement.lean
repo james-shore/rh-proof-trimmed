@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.generatorValue_linComb_change_of_charts : ∀ {X Y
     ⊤ ≤ y ⁻¹ᵁ LB.wchart L φ j → ⊤ ≤ y ⁻¹ᵁ LB.wchart L φ j' →
     valR y (LB.wchart L φ j) (t.s j).val =
       (∏ k, trV L (y ≫ φ k) (j k) (j' k) (ε k)) * valR y (LB.wchart L φ j') (t.s j').val := by
-  first | exact @GlobalTheory.MBLow.TanGauge.valR_gen_linComb | exact GlobalTheory.MBLow.TanGauge.valR_gen_linComb | (intros; apply GlobalTheory.MBLow.TanGauge.valR_gen_linComb <;> assumption)
+  first | exact @GlobalTheory.MBLow.TanGauge.valR_gen_linComb

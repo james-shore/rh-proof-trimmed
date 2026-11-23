@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.jacobiToBesselFlatMapSupport_proof : ∀ D : D7, GlobalTheory.FinPl.SupportShift D := by
-  first | exact @GlobalTheory.FinPl.supportShift | exact GlobalTheory.FinPl.supportShift | (intros; apply GlobalTheory.FinPl.supportShift <;> assumption)
+  first | exact @GlobalTheory.FinPl.supportShift

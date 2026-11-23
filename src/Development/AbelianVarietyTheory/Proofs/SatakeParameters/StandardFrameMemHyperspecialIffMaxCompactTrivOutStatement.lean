@@ -43,4 +43,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.standardFrame_mem_hyperspecial_iff_maxCompact_trivOutside : ∀ {D : D7} (hF : D.host.F = maximalRealSubfield D.host.E) {V : TH.HSp D} {n : ℕ} (Ps : Formalism.IndefR.principalLevelFrame.RowPsi V n), GlobalTheory.NJoin.StdFrame hF Ps → ∀ (sp : SplitPlace D.host.E) (κ : Formalism.AUTREP.GAf D.host.E n), Ps.ψ κ ∈ GlobalTheory.Hk3.hyp V sp.w ↔ κ ∈ Umax D.host.E n ∧ TrivOutside {sp.v} κ := by
-  first | exact @GlobalTheory.FrameHyp.mem_hyp_iff | exact GlobalTheory.FrameHyp.mem_hyp_iff | (intros; apply GlobalTheory.FrameHyp.mem_hyp_iff <;> assumption)
+  first | exact @GlobalTheory.FrameHyp.mem_hyp_iff

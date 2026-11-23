@@ -43,4 +43,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.TypeRec.factG GlobalTheory.LabPin.instCM
 
 theorem _root_.GlobalTheory.T.depthZeroIdentity_finiteType_of_typePrimeComponent : ∀ (D : D7) (I : Ident D) (rep : D.what₂.FT → NG.FinTyp D.host.E D.R.r) (cp : GlobalTheory.GoodTypes.Comp D), IsComp I rep cp → ∀ σ k v (a : MonoidAlgebra ℂ (GL (Fin D.R.r) (ZMod (D.host.g k)))), (∀ y ∈ fixK1 (cp σ k v).ρ, actK (cp σ k v).ρ a y = y) → ∀ s : SplitPlace D.host.E, s.w = D.naut.plGw k v → GlobalTheory.LabPin.SerFix (rep σ) s a := by
-  first | exact @GlobalTheory.DepthZeroSer.serFix_of_comp | exact GlobalTheory.DepthZeroSer.serFix_of_comp | (intros; apply GlobalTheory.DepthZeroSer.serFix_of_comp <;> assumption)
+  first | exact @GlobalTheory.DepthZeroSer.serFix_of_comp

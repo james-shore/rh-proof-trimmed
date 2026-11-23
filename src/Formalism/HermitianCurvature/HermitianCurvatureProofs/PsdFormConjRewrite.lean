@@ -107,7 +107,7 @@ private theorem tb_psdOn_of_ta_psdOn {α : Type} (F : Finset α) (k : α → α 
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [← Finset.sum_coe_sort F]
       refine Finset.sum_congr rfl fun j _ => ?_
-      simp [ha, Complex.star_def, mul_assoc]
+      simp [ha, mul_assoc]
     rw [hQ, Complex.le_def]
     simp only [Complex.zero_re, Complex.zero_im]
     exact ⟨h.2 a, (im_quadratic_form_eq_zero_of_hermitian F k h.1 a).symm⟩

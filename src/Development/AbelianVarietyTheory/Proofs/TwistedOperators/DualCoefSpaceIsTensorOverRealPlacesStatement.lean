@@ -46,4 +46,4 @@ open GlobalTheory.SepRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.dualCoefSpace_isTensorOverRealPlaces : CoefTensor := by
-  first | exact @GlobalTheory.CoefTensorProof.coefTensor | exact GlobalTheory.CoefTensorProof.coefTensor | (intros; apply GlobalTheory.CoefTensorProof.coefTensor <;> assumption)
+  first | exact @GlobalTheory.CoefTensorProof.coefTensor

@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_finset_representatives_mul_inv_integral : �
     (∀ y ∈ Y, ∀ y' ∈ Y, y - y' ∈ GlobalTheory.Hk3.HoweDuality.intMat L n' n → y = y') ∧
     ∀ u : Matrix (Fin n') (Fin n) L, (∀ i j, u i j ∈ Formalism.UG.intL L) →
       ∃ y ∈ Y, u * ((a⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) - y ∈ GlobalTheory.Hk3.HoweDuality.intMat L n' n := by
-  first | exact @GlobalTheory.Hk3.HoweDuality.exists_finset_reps_mul_inv | exact GlobalTheory.Hk3.HoweDuality.exists_finset_reps_mul_inv | (intros; apply GlobalTheory.Hk3.HoweDuality.exists_finset_reps_mul_inv <;> assumption)
+  first | exact @GlobalTheory.Hk3.HoweDuality.exists_finset_reps_mul_inv

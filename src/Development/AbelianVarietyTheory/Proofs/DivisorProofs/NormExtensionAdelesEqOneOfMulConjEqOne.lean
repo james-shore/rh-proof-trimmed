@@ -75,7 +75,7 @@ theorem exists_moved {σ : E →ₐ[F] E} (h : IsCMExt F E σ) : ∃ x : E, σ x
     ext x
     have h1 := h.2.2.2 τ x
     rw [hc x] at h1
-    simp only [NumberField.ComplexEmbedding.conjugate_coe_eq, Function.comp_apply]
+    simp only [NumberField.ComplexEmbedding.conjugate_coe_eq]
     exact h1.symm
   exact (NumberField.InfinitePlace.isComplex_mk_iff.mp (h.2.1.isComplex _)) hr
 

@@ -45,4 +45,4 @@ open MeasureTheory Matrix Formalism.BasicNotions Formalism.QuantumDeterminants F
 open scoped InnerProductSpace ENNReal
 
 theorem _root_.GlobalTheory.T.amplitudeSizeConsequences_of_wordIndependentHyps : ∀ (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb Cu cT CT C0 : ℝ), D.host.rdE ≤ large₂.sc.b → HypZ D large₂ C' Cl Cg cb Cu cT CT C0 → Sizes D large₂ Cl Cg CT := by
-  first | exact @GlobalTheory.Amp.SizesProof.sizes_of_hyp | exact GlobalTheory.Amp.SizesProof.sizes_of_hyp | (intros; apply GlobalTheory.Amp.SizesProof.sizes_of_hyp <;> assumption)
+  first | exact @GlobalTheory.Amp.SizesProof.sizes_of_hyp

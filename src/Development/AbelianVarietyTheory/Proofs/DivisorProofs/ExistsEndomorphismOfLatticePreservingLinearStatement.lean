@@ -57,4 +57,4 @@ open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.exists_endomorphism_of_lattice_preserving_linear : ∀ (A : Over (Sp ℂ)) [GrpObj A], IsAbelianScheme A → ∀ (L : LB A.left) (g : ℕ) (u : HolUnif A L g)
     (F : (Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ)), (∀ l ∈ u.Λ, F l ∈ u.Λ) → ∃ f : A ⟶ A, IsMonHom f ∧ ∀ z, u.ex (F z) = u.ex z ≫ f := by
-  first | exact @GlobalTheory.UnifEndo.exists_isMonHom_of_map_lattice | exact GlobalTheory.UnifEndo.exists_isMonHom_of_map_lattice | (intros; apply GlobalTheory.UnifEndo.exists_isMonHom_of_map_lattice <;> assumption)
+  first | exact @GlobalTheory.UnifEndo.exists_isMonHom_of_map_lattice

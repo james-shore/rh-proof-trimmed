@@ -48,4 +48,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 set_option autoImplicit false
 
 theorem _root_.GlobalTheory.T.primitive_of_axes_vanishing : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A], AxesVanishingStructureSheafDegOne A → StructureSheafH1Primitive A := by
-  first | exact @GlobalTheory.AbCoh.PrimLift.primO1_of_axesO1 | exact GlobalTheory.AbCoh.PrimLift.primO1_of_axesO1 | (intros; apply GlobalTheory.AbCoh.PrimLift.primO1_of_axesO1 <;> assumption)
+  first | exact @GlobalTheory.AbCoh.PrimLift.primO1_of_axesO1

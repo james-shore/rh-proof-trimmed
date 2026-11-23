@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_unit_eq_of_stable_lattices : ∀ {O K : Typ
     ∀ M₁ M₂ : Submodule O (Fin n → K), IsLatV O M₁ → IsLatV O M₂ →
     (∀ v ∈ M₁, γ *ᵥ v ∈ M₁) → (∀ v ∈ M₂, γ *ᵥ v ∈ M₂) →
     ∃ p : K[X], IsUnit (aeval γ p) ∧ M₂ = matLat O (aeval γ p) M₁ := by
-  first | exact @GlobalTheory.LatOrb.Stab.exists_unit_eq_matLat | exact GlobalTheory.LatOrb.Stab.exists_unit_eq_matLat | (intros; apply GlobalTheory.LatOrb.Stab.exists_unit_eq_matLat <;> assumption)
+  first | exact @GlobalTheory.LatOrb.Stab.exists_unit_eq_matLat

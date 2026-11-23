@@ -98,7 +98,7 @@ theorem exists_quadratic_section {N : ℕ} (q : (Fin N → ℝ) → (Fin N → �
     have hval : Φ p.1 - Φ p.2 - ((ContinuousLinearEquiv.refl ℝ (Fin N → ℝ) : (Fin N → ℝ) ≃L[ℝ] (Fin N → ℝ)) :
         (Fin N → ℝ) →L[ℝ] (Fin N → ℝ)) (p.1 - p.2) = q (p.1 - p.2) p.1 + q p.2 (p.1 - p.2) := by
       rw [← hexp]
-      simp only [hΦ, ContinuousLinearEquiv.coe_refl', id]
+      simp only [hΦ]
       simp
       abel
     rw [hval]

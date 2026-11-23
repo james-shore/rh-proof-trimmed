@@ -51,11 +51,7 @@ namespace GlobalTheory.CocycleChar
 
 theorem pow_near_one {z : ℂ} (h : ∀ n : ℕ, ‖z ^ n - 1‖ < 1 / 2) : z = 1 := by
   first
-  | exact @_root_.GlobalTheory.InductiveNormBound.main
-  | exact _root_.GlobalTheory.InductiveNormBound.main
   | (apply _root_.GlobalTheory.InductiveNormBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.InductiveNormBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.InductiveNormBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.InductiveNormBound.main ..)
 
 theorem cocycle_char_trivial_near_zero :

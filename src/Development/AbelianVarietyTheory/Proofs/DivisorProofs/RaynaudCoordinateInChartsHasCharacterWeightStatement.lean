@@ -54,4 +54,4 @@ open GlobalTheory.HeatConn
 open GlobalTheory.HeatConn
 
 theorem _root_.GlobalTheory.T.raynaud_coordinate_in_charts_has_character_weight : ∀ {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O] [Module O Q.X] {oa : Q.OAct O} (Y : Ray oa) (α : Q.X) (t : Fin 4 → Q.P.L.ι) (W : Y.H.left.Opens), W ≤ xU Y α t → IsWt Y α W (rsT (xc Y α t).val W) := by
-  first | exact @GlobalTheory.HeatConn.CoordWt.isWt_xc | exact GlobalTheory.HeatConn.CoordWt.isWt_xc | (intros; apply GlobalTheory.HeatConn.CoordWt.isWt_xc <;> assumption)
+  first | exact @GlobalTheory.HeatConn.CoordWt.isWt_xc

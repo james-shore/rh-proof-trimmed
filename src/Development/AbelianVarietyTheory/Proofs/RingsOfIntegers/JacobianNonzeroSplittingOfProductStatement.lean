@@ -47,4 +47,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.PlaceInt
 
 theorem _root_.GlobalTheory.T.jacobian_nonzero_splitting_of_product : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (maximalIdeal V) V] [CharZero V] (d : ℕ) (O : Type) [CommRing O] [StarRing O] (B : FB V d O), FinHt B → ∀ (n : ℕ) (p q s : Matrix (Fin n) (Fin n) O) (N : ℕ), 1 ≤ N → s * (p * q) = (N : O) • (1 : Matrix (Fin n) (Fin n) O) → (p * q) * s = (N : O) • (1 : Matrix (Fin n) (Fin n) O) → IsDomain O → (N : O) ≠ 0 → jacM B (p * q) ≠ 0 → SplitKer B (p * q) → ∀ f : PS V n d, (∀ α ∈ kerM B q, shift B.G.F α f = f) → (kerM B (p * q)).Finite ∧ ∃ g : PS V n d, ∑ᶠ α ∈ kerM B (p * q), shift B.G.F α f = MvPowerSeries.C (((kerM B q).ncard : V) * jacM B p) * pullM B (p * q) g := by
-  first | exact @GlobalTheory.PlaceInt.KerTrace.sum_shift_kerM_mul | exact GlobalTheory.PlaceInt.KerTrace.sum_shift_kerM_mul | (intros; apply GlobalTheory.PlaceInt.KerTrace.sum_shift_kerM_mul <;> assumption)
+  first | exact @GlobalTheory.PlaceInt.KerTrace.sum_shift_kerM_mul

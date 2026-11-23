@@ -112,8 +112,6 @@ theorem op_isFractionRing :
       congr 1
       first
         | (field_simp; done)
-        | (rw [mul_div_assoc', mul_div_cancel_left₀ _ hy'])
-        | (field_simp; ring)
     next p q hp hq =>
       obtain ⟨s1, hs1, p1, hp1⟩ := hp
       obtain ⟨s2, hs2, q1, hq1⟩ := hq
@@ -165,8 +163,6 @@ theorem op_isFractionRing :
     have h2 := hCne sp hsp
     first
       | (field_simp; done)
-      | (field_simp; ring)
-      | (rw [div_mul_eq_mul_div, div_eq_iff hq0]; ring)
   · intro x y hxy
     exact ⟨1, by rw [hinj hxy]⟩
 

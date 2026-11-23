@@ -63,4 +63,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.chernCurvature_lowerTriangular_positive_diagonal : ∀ (n s : ℕ) (T : V n → Matrix (Fin s) (Fin s) ℂ) (d : Fin s → V n → ℝ) (v : V n), MContDiffAt ∞ T v → (∀ i, 0 < d i v) → (∀ᶠ x in 𝓝 v, (∀ i j, i < j → T x i j = 0) ∧ ∀ i, T x i i = d i x) → ∀ ξ η, (∀ i j, j < i → curv T v ξ η i j = 0) ∧ ∀ i, curv T v ξ η i i = -leviForm (fun x => Real.log (d i x)) v ξ η := by
-  first | exact @GlobalTheory.ChernCalc.curv_lowerTriangular | exact GlobalTheory.ChernCalc.curv_lowerTriangular | (intros; apply GlobalTheory.ChernCalc.curv_lowerTriangular <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.curv_lowerTriangular

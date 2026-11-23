@@ -157,7 +157,6 @@ theorem isPrecomplete_of_surjective {A B : Type*} [CommRing A] [CommRing B] (f :
     (hf : Function.Surjective f) (a : A) [IsPrecomplete (Ideal.span {a}) A] :
     IsPrecomplete (Ideal.span {f a}) B := by
   first
-  | exact GroundTheory.Variant₂.N1.isPrecomplete_of_surjective ..
   | (apply GroundTheory.Variant₂.N1.isPrecomplete_of_surjective <;> assumption)
 
 theorem isAdicComplete_of_pow_mul_mem {T S : Subring Q} (hTS : T ≤ S) (hp : IsUnit (p : Q)) (v : ℕ)

@@ -85,8 +85,6 @@ attribute [local instance] locT
 
 theorem dvrT (w : HeightOneSpectrum (𝓞 K₁)) : IsDiscreteValuationRing (Tw w) := by
   first
-    | exact IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 K₁) (NumberField.RingOfIntegers.not_isField K₁) w.ne_bot (Tw w)
-    | exact IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain w.ne_bot (Tw w)
     | exact IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 K₁) w.ne_bot (Tw w)
 
 attribute [local instance] dvrT
@@ -94,8 +92,6 @@ attribute [local instance] dvrT
 theorem dvrLa (la : HeightOneSpectrum (𝓞 K)) :
     IsDiscreteValuationRing (Localization.AtPrime la.asIdeal) := by
   first
-    | exact IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 K) (NumberField.RingOfIntegers.not_isField K) la.ne_bot _
-    | exact IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain la.ne_bot _
     | exact IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 K) la.ne_bot _
 
 attribute [local instance] dvrLa

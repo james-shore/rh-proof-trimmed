@@ -124,7 +124,7 @@ theorem exists_finite_indicator_poly : ∀ {F : Type} [Field F] [NumberField F] 
         (fun i => ((x + (GlobalTheory.LatVac.liftV v 1 • y - GlobalTheory.LatVac.liftV v 1 • x)) i).2) ∈ V) ∧
       ∀ x : κ → AF F, (fun i => (x i).2) ∈ K →
         ∑ b ∈ s, c b * ψ (x ⬝ᵥ b) = A.indicator (fun _ => (1 : ℂ)) (fun i => (x i).2) := by
-  first | exact @GlobalTheory.T.exists_trigPolynomial_indicator_awayFromPlace | exact GlobalTheory.T.exists_trigPolynomial_indicator_awayFromPlace
+  first | exact @GlobalTheory.T.exists_trigPolynomial_indicator_awayFromPlace
 
 theorem exists_arch_bump_poly : ∀ {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ] (ψ : AddChar (AF F) ℂ),
     GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsStd ψ → ∀ (U : Set (κ → Ainf F)) (y : κ → AF F), IsOpen U → (fun i => (y i).1) ∈ U →
@@ -135,7 +135,7 @@ theorem exists_arch_bump_poly : ∀ {F : Type} [Field F] [NumberField F] {κ : T
         (∀ n (x : κ → AF F), ‖∑ b ∈ s n, c n b * ψ (x ⬝ᵥ b)‖ ≤ C) ∧
         ∀ x : κ → AF F, Filter.Tendsto (fun n => ∑ b ∈ s n, c n b * ψ (x ⬝ᵥ b)) Filter.atTop
           (nhds ((β (fun i => (x i).1) : ℝ) : ℂ)) := by
-  first | exact @GlobalTheory.T.archimedean_smooth_bump_with_trigonometric_expansion | exact GlobalTheory.T.archimedean_smooth_bump_with_trigonometric_expansion
+  first | exact @GlobalTheory.T.archimedean_smooth_bump_with_trigonometric_expansion
 
 theorem exists_trig_prod : ∀ {X B : Type} [AddCommMonoid B] [DecidableEq B] (χ : B → X → ℂ),
     (∀ b b' x, χ (b + b') x = χ b x * χ b' x) → ∀ (s₁ s₂ : Finset B) (c₁ c₂ : B → ℂ),

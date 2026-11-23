@@ -47,4 +47,4 @@ import GroundTheory.GlobalFields.KummerTheory.LocalIndex
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
 
 theorem _root_.GlobalTheory.T.exists_height_mul_le_of_isCompact : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (Ω : Set (GL (Fin a) (Cinf E))), IsCompact Ω → ∃ B : ℝ, 1 ≤ B ∧ ∀ c ∈ Ω, ∀ y : GL (Fin a) (Cinf E), height (y * c) ≤ B * height y := by
-  first | exact @GlobalTheory.AutGrowth.height_mul_le_of_isCompact | exact GlobalTheory.AutGrowth.height_mul_le_of_isCompact | (intros; apply GlobalTheory.AutGrowth.height_mul_le_of_isCompact <;> assumption)
+  first | exact @GlobalTheory.AutGrowth.height_mul_le_of_isCompact

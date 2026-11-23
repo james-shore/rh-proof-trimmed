@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.schwartzBruhat_matrices_invariant_supported_eq_smu
       ∃ c : ℂ, g = c • f),
     ∃ c : ℂ, f = c • (closure (S : Set (Matrix (Fin m) (Fin k) (Fv F v)))).indicator 1 ∧
       IsOpen (closure (S : Set (Matrix (Fin m) (Fin k) (Fv F v)))) ∧ IsCompact (closure (S : Set (Matrix (Fin m) (Fin k) (Fv F v)))) := by
-  first | exact @GlobalTheory.SBClosure.main | exact GlobalTheory.SBClosure.main | (intros; apply GlobalTheory.SBClosure.main <;> assumption)
+  first | exact @GlobalTheory.SBClosure.main

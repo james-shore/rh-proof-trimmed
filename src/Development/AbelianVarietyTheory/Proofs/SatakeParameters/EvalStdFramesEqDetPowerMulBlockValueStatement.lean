@@ -44,4 +44,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.evalStdFrames_eq_detPower_mul_blockValue : ∀ {p : ℕ} [Fact p.Prime] (X : Sys p) (D : D7) (pos : (Σ v : X.Pl, Fin (X.G.P.n' v)) ≃ D.what₂.Tau) (i : ℕ) {n : ℕ} (h : (X.Pj i).m + 1 = n) (R : XR (X.Pj i) ℂ) (f : Fr1 D n), ev1 X D pos i h R f = (∏ τ, (zT X D pos f.1 τ).det ^ eT X D pos i τ) * valZ X D pos i h R f.1 := by
-  first | exact @GlobalTheory.TwV.DelA.ev1_eq_prod_det_pow_mul_valZ | exact GlobalTheory.TwV.DelA.ev1_eq_prod_det_pow_mul_valZ | (intros; apply GlobalTheory.TwV.DelA.ev1_eq_prod_det_pow_mul_valZ <;> assumption)
+  first | exact @GlobalTheory.TwV.DelA.ev1_eq_prod_det_pow_mul_valZ

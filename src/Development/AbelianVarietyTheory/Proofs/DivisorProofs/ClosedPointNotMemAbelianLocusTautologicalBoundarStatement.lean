@@ -47,4 +47,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.closedPoint_notMem_abelianLocus_tautologicalBoundaryChart : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Geo.Tor.Level H} (Xo : Moduli Dw l) (c : Coeff l) (φ : InvFun (𝓞 E)) (k : Type) [Field k] (m e : ℕ) (C : MonoFam Xo c φ (ChartRing k m e)), IsTaut C → 1 ≤ C.m → closedPoint (ChartRing k m e) ∉ abLocus C.t.G := by
-  first | exact @GlobalTheory.UChart.closedPoint_not_mem_abLocus_of_isTaut | exact GlobalTheory.UChart.closedPoint_not_mem_abLocus_of_isTaut | (intros; apply GlobalTheory.UChart.closedPoint_not_mem_abLocus_of_isTaut <;> assumption)
+  first | exact @GlobalTheory.UChart.closedPoint_not_mem_abLocus_of_isTaut

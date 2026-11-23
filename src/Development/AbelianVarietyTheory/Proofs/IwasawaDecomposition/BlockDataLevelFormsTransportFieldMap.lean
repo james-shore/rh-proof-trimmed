@@ -235,11 +235,7 @@ omit [StarRing K] [StarRing K'] in
 theorem map_injective (φ : K →+* K') {n d : ℕ} (E : Matrix (Fin n) (Fin d) K) (hE : Function.Injective E.mulVec) :
     Function.Injective (E.map φ).mulVec := by
   first
-  | exact @_root_.GlobalTheory.IsolatedTheoremFive.target
-  | exact _root_.GlobalTheory.IsolatedTheoremFive.target
   | (apply _root_.GlobalTheory.IsolatedTheoremFive.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IsolatedTheoremFive.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IsolatedTheoremFive.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IsolatedTheoremFive.target ..)
 
 theorem subE_baseChange (φ : K →+* K') {n n' : ℕ} (C : Matrix (Fin n') (Fin n) K') (hC : Function.Injective C.mulVec)

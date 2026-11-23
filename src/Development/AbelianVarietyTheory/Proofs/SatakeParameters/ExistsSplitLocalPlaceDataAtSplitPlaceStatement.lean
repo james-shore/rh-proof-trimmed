@@ -45,4 +45,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_splitLocalPlaceData_at_splitPlace : ∀ (D : D7) (s : SplitPlace D.host.E) (hF : D.host.F = maximalRealSubfield D.host.E), ∃ (p : GlobalTheory.LocMod.Place D (s.w.adicCompletion D.host.E)) (c : s.v.adicCompletion (maximalRealSubfield D.host.E) ≃+* s.w.adicCompletion D.host.E), Formalism.L2.JoinChr.IsPlIdem D p.e s.w ∧ Continuous c ∧ (∀ x : D.host.E, c (s.i x) = algebraMap D.host.E (s.w.adicCompletion D.host.E) x) ∧ ∀ a : Formalism.L2.Theta.AE D, p.π a = c (s.proj (GlobalTheory.NJoin.tensCast hF (Formalism.L2.Theta.finPart D a))) := by
-  first | exact @GlobalTheory.SplitLocPlace.exists_place | exact GlobalTheory.SplitLocPlace.exists_place | (intros; apply GlobalTheory.SplitLocPlace.exists_place <;> assumption)
+  first | exact @GlobalTheory.SplitLocPlace.exists_place

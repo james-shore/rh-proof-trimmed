@@ -54,4 +54,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TestFibre
 
 theorem _root_.GlobalTheory.T.thetaSystem_exists_rootOfUnity_sum_norm_attained : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (p : ℕ) [Fact p.Prime] (y₀ : S.R →+* PadicAlgCl p), (∀ a : o, ‖y₀ (algebraMap o S.R a)‖ ≤ 1) → ∀ (T : AddSubgroup S.Gam) (c : T →+ ZMod S.N) (B : ℝ), (∀ (t : T) i, ‖∑ j, y₀ (algebraMap o S.R (S.proj T c j i)) * y₀ ⟨S.ev t j, S.ev_mem t j⟩‖ ≤ B) → (∃ (t : T) (i : S.J), B ≤ ‖∑ j, y₀ (algebraMap o S.R (S.proj T c j i)) * y₀ ⟨S.ev t j, S.ev_mem t j⟩‖) → ∃ (k : _) (hk : S.FF T c k ∈ S.R), ‖y₀ ⟨S.FF T c k, hk⟩‖ = B := by
-  first | exact @GlobalTheory.thetaSys_exists_norm_FF_eq | exact GlobalTheory.thetaSys_exists_norm_FF_eq | (intros; apply GlobalTheory.thetaSys_exists_norm_FF_eq <;> assumption)
+  first | exact @GlobalTheory.thetaSys_exists_norm_FF_eq

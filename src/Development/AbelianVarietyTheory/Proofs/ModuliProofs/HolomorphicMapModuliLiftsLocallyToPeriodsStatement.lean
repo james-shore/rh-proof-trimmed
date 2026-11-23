@@ -133,4 +133,4 @@ theorem _root_.GlobalTheory.T.holomorphic_map_moduli_lifts_locally_to_periods : 
     (P b) a₂)) (unitOn c)) ∧ (∀ a ∈ l.Mb.map (H.bar : 𝓞 E →+* 𝓞 E) • (⊤ : Submodule (𝓞
     E) D.La), toUnit _ ≫ Xo.univ.eta a = (e b) ((l.M : ℂ)⁻¹ • (P b) (t a))) ∧
     ∀ a, toUnit _ ≫ Xo.univ.etaA a = (e b) ((l.A : ℂ)⁻¹ • (P b) (t a))) := by
-  first | exact @GlobalTheory.LocLift.holomorphic_map_lifts_to_periods | exact GlobalTheory.LocLift.holomorphic_map_lifts_to_periods | (intros; apply GlobalTheory.LocLift.holomorphic_map_lifts_to_periods <;> assumption)
+  first | exact @GlobalTheory.LocLift.holomorphic_map_lifts_to_periods

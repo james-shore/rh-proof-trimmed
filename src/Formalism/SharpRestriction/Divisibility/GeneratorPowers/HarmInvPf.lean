@@ -90,7 +90,6 @@ theorem tie_val (C : ChartAt Xo c y) (φ : Fin C.d → MvPowerSeries (Fin 1 × F
     funext i
     first
       | simp [FB.FK, FGLaw.mapF]
-      | (ext n; simp [FB.FK, FGLaw.mapF, MvPowerSeries.coeff_map])
   have hφ' : IsExpOf (C.B.FK S) C.uvec φ := by
     rw [hFK]
     exact hφ

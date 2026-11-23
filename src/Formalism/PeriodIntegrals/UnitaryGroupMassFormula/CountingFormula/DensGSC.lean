@@ -115,7 +115,6 @@ theorem sig_tau (e : E ≃ₐ[F] F × F) {n : ℕ} (β : Module.Basis (Fin n) E 
     sig e β (tau e β p) = p := by
   unfold sig tau
   first
-  | simp only [Basis.repr_sum_self, AlgEquiv.apply_symm_apply]
   | simp [map_sum, Finsupp.single_apply]
 
 theorem tau_sig (e : E ≃ₐ[F] F × F) {n : ℕ} (β : Module.Basis (Fin n) E V) (x : V) :

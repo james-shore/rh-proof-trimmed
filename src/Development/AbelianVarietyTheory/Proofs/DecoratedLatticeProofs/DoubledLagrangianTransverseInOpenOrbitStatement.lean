@@ -55,4 +55,4 @@ open Matrix
 
 
 theorem _root_.GlobalTheory.T.doubled_lagrangian_transverse_in_open_orbit : ∀ (D : D7) (V : HSp D), ∀ γ ∈ GQ (dblSp V), ∀ γi : Matrix (Fin (V.rank + V.rank)) (Fin (V.rank + V.rank)) D.host.E, (matHom (dblSp V) γ⁻¹).1 = γi.map (incA D) → (∀ x : Fin V.rank → D.host.E, diagSnd γi *ᵥ x = 0 → x = 0) → ∃ δ ∈ GQ V, γ * (io V (δ, 1))⁻¹ ∈ siegel V := by
-  first | exact @GlobalTheory.Core.Rk.Dich.exists_mem_siegel_of_diagSnd | exact GlobalTheory.Core.Rk.Dich.exists_mem_siegel_of_diagSnd | (intros; apply GlobalTheory.Core.Rk.Dich.exists_mem_siegel_of_diagSnd <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.Dich.exists_mem_siegel_of_diagSnd

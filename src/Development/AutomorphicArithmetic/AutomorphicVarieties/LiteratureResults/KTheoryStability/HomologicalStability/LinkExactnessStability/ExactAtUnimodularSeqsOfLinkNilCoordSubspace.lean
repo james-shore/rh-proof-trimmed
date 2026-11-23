@@ -147,7 +147,7 @@ private theorem exactAt_of_exactAt_image_injective {V U : Type} (e : V → U) (h
       apply Finsupp.lhom_ext'
       intro l
       apply LinearMap.ext_ring
-      simp [bd, map_sum, Finsupp.lmapDomain_apply, Finsupp.mapDomain_smul, Finsupp.mapDomain_single, List.eraseIdx_map]
+      simp [bd, map_sum, Finsupp.lmapDomain_apply, Finsupp.mapDomain_single, List.eraseIdx_map]
     exact LinearMap.congr_fun E c
   intro c hc hbc
   have hc' : Finsupp.mapDomain (List.map e) c ∈ chains (List.map e '' F) q := by

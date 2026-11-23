@@ -45,4 +45,4 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.row_lattices_same_inner_differ_by_rational_unipotent : ∀ (D : D7) (T : D.host.E) (F0 : FlagG (VS D) D.R.rS T) (Λa Λb : LV D) (σ : GV D), IsRowLat D F0 Λa → IsRowLat D F0 Λb → Adapt σ (lf D F0) (lf D F0) → Lsub (Formalism.HermitianLatticesTheory.gmap σ Λa) (lf D F0) = Lsub Λb (lf D F0) → ∃ n ∈ NRat (lf D F0), Formalism.HermitianLatticesTheory.gmap (n * σ) Λa = Λb := by
-  first | exact @GlobalTheory.Unfold.sameInner_unip | exact GlobalTheory.Unfold.sameInner_unip | (intros; apply GlobalTheory.Unfold.sameInner_unip <;> assumption)
+  first | exact @GlobalTheory.Unfold.sameInner_unip

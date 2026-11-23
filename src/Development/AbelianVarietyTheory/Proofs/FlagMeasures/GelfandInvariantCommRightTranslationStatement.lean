@@ -47,4 +47,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ComplexOrder ContDiff
 
 theorem _root_.GlobalTheory.T.gelfandInvariant_comm_rightTranslation : ∀ (n : ℕ) (ε : Fin n → Bool) (m : ℕ) (f : Matrix (Fin n) (Fin n) ℂ → ℂ) (k g : Matrix (Fin n) (Fin n) ℂ), SmoothOnG ε f → k ∈ UJset ε → g ∈ UJset ε → gelf ε m (fun x => f (x * k)) g = gelf ε m f (g * k) := by
-  first | exact @GlobalTheory.Dec.GelfAd.gelf_right | exact GlobalTheory.Dec.GelfAd.gelf_right | (intros; apply GlobalTheory.Dec.GelfAd.gelf_right <;> assumption)
+  first | exact @GlobalTheory.Dec.GelfAd.gelf_right

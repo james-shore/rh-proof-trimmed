@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DownLift
 
 theorem _root_.GlobalTheory.T.goodTypes_exclude_levelCharacter : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → R.FullP → ∀ i t, GoodNoChi R i t := by
-  first | exact @GlobalTheory.GoodTypeNoChi.goodNoChi | exact GlobalTheory.GoodTypeNoChi.goodNoChi | (intros; apply GlobalTheory.GoodTypeNoChi.goodNoChi <;> assumption)
+  first | exact @GlobalTheory.GoodTypeNoChi.goodNoChi

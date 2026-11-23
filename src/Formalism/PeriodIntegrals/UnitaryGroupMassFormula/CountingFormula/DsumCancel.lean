@@ -213,8 +213,8 @@ private theorem pW_skL (D : Formalism.BasicNotions.D7) (S : Matrix (Fin D.R.rS) 
   rw [skL_apply]
 
   simp only [pW, map_add (f := _), map_sum, map_smul, hf, hz, D.sp.hyp_ee, smul_eq_mul, mul_zero, add_zero,
-  mul_ite, mul_one, Finset.sum_ite_eq', Finset.sum_ite_eq, Finset.mem_univ, if_true, add_smul,
-  Finset.sum_add_distrib, Finset.sum_const_zero, zero_smul]
+  mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true, add_smul,
+  Finset.sum_add_distrib, Finset.sum_const_zero]
   module
 
 theorem pWf_skE (D : Formalism.BasicNotions.D7) (S : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E)

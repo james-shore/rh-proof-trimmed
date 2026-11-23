@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.isUnit_coefficient_of_thetaSquare_integralTorsion 
         gs r z ⊤ ((Scheme.ΓSpecIso (CommRingCat.of V₁)).inv.hom G) =
           sval (θ : LB.Sec (LB.LinComb D.P.L (D.famφB 0) (DegPre.famε 1))) (r ≫ (b c₁).left) z J ^ 2 *
             (U Z r z J).val) → IsUnit G := by
-  first | exact @GlobalTheory.Poinc.Sep.CoefInt.isUnit_of_theta_sq | exact GlobalTheory.Poinc.Sep.CoefInt.isUnit_of_theta_sq | (intros; apply GlobalTheory.Poinc.Sep.CoefInt.isUnit_of_theta_sq <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.CoefInt.isUnit_of_theta_sq

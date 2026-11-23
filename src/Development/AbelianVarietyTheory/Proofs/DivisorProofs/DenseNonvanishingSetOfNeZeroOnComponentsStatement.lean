@@ -49,4 +49,4 @@ open MeasureTheory Filter Topology Metric ReciprocityTheory.L2DbarEstimates Reci
 open scoped ENNReal ContDiff
 
 theorem _root_.GlobalTheory.T.dense_nonvanishingSet_of_ne_zero_on_components : ∀ (n : ℕ) (Y : Type) [TopologicalSpace Y] [T2Space Y] [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y] (ι La : Type) [AddCommGroup La] (A : WeightedAtlas n Y ι La), ∀ (Λ : La) (τ : ι → Y → ℂ) (T : Set Y), A.IsSec Λ τ → (∀ y, ∃ P ∈ T, P ∈ connectedComponent y) → (∀ P ∈ T, τ (A.pick P) P ≠ 0) → Dense (nz A τ) := by
-  first | exact @GlobalTheory.nz_dense_of_ne_zero_on_components | exact GlobalTheory.nz_dense_of_ne_zero_on_components | (intros; apply GlobalTheory.nz_dense_of_ne_zero_on_components <;> assumption)
+  first | exact @GlobalTheory.nz_dense_of_ne_zero_on_components

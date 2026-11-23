@@ -44,4 +44,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.targetStep_scalar_eq : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ∀ (d : Dec J std) j (hj : j + 1 ≤ D.R.m) (La' : (sysS H X std).Lt (j + 1)), dPow (mM d (j + 1) hj La').1 (fun τ => -(wT (sysS H X std) D (hT.gat_pos u w hg) j τ)) * sPt d (j + 1) hj La' = d.uT S j La' * kT J j hj La'.1) := by
-  first | exact @GlobalTheory.TwV.DelA.target_scalar | exact GlobalTheory.TwV.DelA.target_scalar | (intros; apply GlobalTheory.TwV.DelA.target_scalar <;> assumption)
+  first | exact @GlobalTheory.TwV.DelA.target_scalar

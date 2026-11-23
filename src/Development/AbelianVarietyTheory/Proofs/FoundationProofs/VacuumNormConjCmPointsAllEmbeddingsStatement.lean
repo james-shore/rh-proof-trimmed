@@ -45,4 +45,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.vacuumNorm_conj_cmPoints_all_embeddings : ∀ D : D7, useNorm D := by
-  first | exact @GlobalTheory.ConjNorm.useNorm_all | exact GlobalTheory.ConjNorm.useNorm_all | (intros; apply GlobalTheory.ConjNorm.useNorm_all <;> assumption)
+  first | exact @GlobalTheory.ConjNorm.useNorm_all

@@ -559,11 +559,7 @@ theorem exists_dil (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing
       (∀ Q : B' → Prop, (∀ b, Q (φ b)) → (∀ g ∈ I, ∀ b', algebraMap R B' π * b' = φ g → Q b') →
         (∀ x y, Q x → Q y → Q (x + y)) → (∀ x y, Q x → Q y → Q (x * y)) → ∀ x, Q x) := by
   first
-  | exact @_root_.GlobalTheory.FiniteFieldCountEstimate.main
-  | exact _root_.GlobalTheory.FiniteFieldCountEstimate.main
   | (apply _root_.GlobalTheory.FiniteFieldCountEstimate.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteFieldCountEstimate.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteFieldCountEstimate.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FiniteFieldCountEstimate.main ..)
 
 theorem exists_ext {R B B' S : Type} [CommRing R] [CommRing B] [CommRing B'] [CommRing S] [Algebra R B] [Algebra R B']

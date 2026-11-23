@@ -72,7 +72,7 @@ theorem hE_crd (x y : (VS D).V) :
     X.ιE (hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas x) (crdOf X.B.I X.ιE X.bas y)) = (VS D).hT x y := by
   unfold hE Formalism.UG.hform crdOf
 
-  simp only [map_sum, map_mul, AlgHom.coe_toRingHom, RingHom.coe_coe]
+  simp only [map_sum, map_mul, RingHom.coe_coe]
   simp only [sig_eq, X.J_eq, RingEquiv.apply_symm_apply]
   conv_rhs => rw [← X.bas.sum_repr x, ← X.bas.sum_repr y]
 

@@ -151,7 +151,7 @@ lemma fwd_bwd : (fwd f g k).comp (bwd2 f g k) = AlgHom.id k _ := by
   simp only [MvPolynomial.map_X, rhoK_apply, rhoA_apply] at h1 h2
   change fwd f g k (bwd2 f g k (algebraMap _ (Lk f g k) (Ideal.Quotient.mk (Ik f k) (MvPolynomial.X i)))) =
     algebraMap _ (Lk f g k) (Ideal.Quotient.mk (Ik f k) (MvPolynomial.X i))
-  simp only [bwd2, IsLocalization.Away.coe_liftAlgHom, IsLocalization.Away.lift_eq, AlgHom.coe_toRingHom, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
+  simp only [bwd2, IsLocalization.Away.coe_liftAlgHom, IsLocalization.Away.lift_eq, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
     fibreHypersurfaceBackwardQuotient_mk, h2, Algebra.TensorProduct.includeRight_apply, fwd, Algebra.TensorProduct.lift_tmul, map_one,
     _root_.one_mul, fwd2, h1]
 
@@ -169,7 +169,7 @@ lemma bwd_fwd : (bwd2 f g k).comp (fwd f g k) = AlgHom.id k _ := by
     change bwd2 f g k (fwd f g k ((1 : k) ⊗ₜ[A] algebraMap _ (LA f g) (Ideal.Quotient.mk (Ideal.span {f}) (MvPolynomial.X i)))) =
       (1 : k) ⊗ₜ[A] algebraMap _ (LA f g) (Ideal.Quotient.mk (Ideal.span {f}) (MvPolynomial.X i))
     simp only [fwd, Algebra.TensorProduct.lift_tmul, map_one, _root_.one_mul, fwd2, IsLocalization.Away.coe_liftAlgHom,
-      IsLocalization.Away.lift_eq, AlgHom.coe_toRingHom, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, h1, bwd2, fibreHypersurfaceBackwardQuotient_mk, h2,
+      IsLocalization.Away.lift_eq, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, h1, bwd2, fibreHypersurfaceBackwardQuotient_mk, h2,
       Algebra.TensorProduct.includeRight_apply]
 
 lemma rhoK_comp : (rhoK f g k).toRingHom =
@@ -191,7 +191,7 @@ theorem range_comap_rhoK : Set.range (PrimeSpectrum.comap (rhoK f g k).toRingHom
     · rw [PrimeSpectrum.mem_zeroLocus, Set.singleton_subset_iff, SetLike.mem_coe,
         PrimeSpectrum.comap_asIdeal, Ideal.mem_comap]
       have : (rhoK f g k).toRingHom (MvPolynomial.map (algebraMap A k) f) = 0 := by
-        simp [rhoK_apply, Ideal.Quotient.eq_zero_iff_mem, Ideal.mem_span_singleton_self]
+        simp [rhoK_apply]
       rw [this]; exact q.asIdeal.zero_mem
     · rw [PrimeSpectrum.mem_zeroLocus, Set.singleton_subset_iff, SetLike.mem_coe,
         PrimeSpectrum.comap_asIdeal, Ideal.mem_comap]

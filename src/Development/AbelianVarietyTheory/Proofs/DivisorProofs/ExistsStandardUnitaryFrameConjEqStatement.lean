@@ -50,4 +50,4 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 open GlobalTheory.FrameTransport
 
 theorem _root_.GlobalTheory.T.exists_standardUnitary_frameConj_eq : ∀ {D : D7} (V : HSp D) (fr : GL (Fin V.rank) D.host.E), Formalism.UG.cT (↑D.sp.cm.sig) (fr : Matrix (Fin V.rank) (Fin V.rank) D.host.E) * V.gram * (fr : Matrix (Fin V.rank) (Fin V.rank) D.host.E) = 1 → ∀ M : GL (Fin V.rank) (Lev.EAf D), M ∈ UA D.sp.cm V.gram → ∃ h : StandardLatticesGL3.GA D V.rank, GlobalTheory.FrameTransport.frConj fr h.1 = M := by
-  first | exact @GlobalTheory.FrameTransport.exists_frConj_eq | exact GlobalTheory.FrameTransport.exists_frConj_eq | (intros; apply GlobalTheory.FrameTransport.exists_frConj_eq <;> assumption)
+  first | exact @GlobalTheory.FrameTransport.exists_frConj_eq

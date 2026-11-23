@@ -635,7 +635,6 @@ theorem hence_local {D nV dQ n : ℕ} (w : Pl K) (RR : Submodule (𝓞 K) (Fin D
     rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, heq]
     first
       | exact Matrix.smul_mulVec _ _ _
-      | exact Matrix.smul_mulVec_assoc _ _ _
   obtain ⟨t, ht, htc⟩ := unit_at_val w c hc
   have hw0 : ((w.asIdeal : Ideal (𝓞 K)) : FractionalIdeal (nonZeroDivisors (𝓞 K)) K) ≠ 0 :=
     FractionalIdeal.coeIdeal_ne_zero.mpr w.ne_bot
@@ -743,7 +742,6 @@ theorem fcoord_sum {ι V P : Type} [Fintype ι] [DecidableEq ι] [AddCommGroup V
   rw [hv]
   first
     | exact Matrix.mulVec_sum _ _ _
-    | exact map_sum (Matrix.mulVecLin ((X v)⁻¹)) _ _
 
 theorem normAt_sq_eq {ι V : Type} [Fintype ι] [DecidableEq ι] [AddCommGroup V] [Module K V] (b : Module.Basis ι K V)
     (X : InfinitePlace K → Matrix ι ι ℂ) (v : InfinitePlace K) (x : V) :
@@ -776,9 +774,6 @@ theorem fcoord_scale {d : ℕ} (t : InfinitePlace K → ℝ) (ht : ∀ v, 0 < t 
   rw [hinv, Complex.ofReal_inv, inv_inv]
   first
     | exact Matrix.smul_mulVec _ _ _
-    | exact Matrix.smul_mulVec_assoc _ _ _
-    | (funext i
-       simp only [Matrix.mulVec, dotProduct, Matrix.smul_apply, smul_eq_mul, Pi.smul_apply, Finset.mul_sum, mul_assoc])
 
 theorem isUnit_scaleFrame {d : ℕ} (t : InfinitePlace K → ℝ) (ht : ∀ v, 0 < t v)
     (X : InfinitePlace K → Matrix (Fin d) (Fin d) ℂ) (hX : ∀ v, IsUnit (X v).det) (v : InfinitePlace K) :

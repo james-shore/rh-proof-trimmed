@@ -248,7 +248,6 @@ theorem stepHeight_of_normOne (h : StepNormOne) : StepHeight := by
   · have ha : 0 < (2 * D.R.rS + 1) * Fintype.card (InfinitePlace D.host.E) :=
       Nat.mul_pos (by omega) Fintype.card_pos
     simp [hg, zero_pow ha.ne']
-    try positivity
   · have hg1 : (1 : ℝ) ≤ X.B.g := by exact_mod_cast hg
     exact (inv_le_one_of_one_le₀ (one_le_pow₀ hg1)).trans (one_le_pow₀ hg1)
 

@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.isotropicStabilizer_splitPlace_inConjParabolics : 
         (s.equiv : GLoc D.sp.cm.sig V.gram v →* GL (Fin V.rank) (Fv D.host.F v))) (Module.finrank D.host.E W) ∧
       InConjParabolic ((GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.parab D.sp.cm V (Fv D.host.F v) W).map
         (s.equiv : GLoc D.sp.cm.sig V.gram v →* GL (Fin V.rank) (Fv D.host.F v))) (V.rank - Module.finrank D.host.E W) := by
-  first | exact @GlobalTheory.SplitStab.splitStab | exact GlobalTheory.SplitStab.splitStab | (intros; apply GlobalTheory.SplitStab.splitStab <;> assumption)
+  first | exact @GlobalTheory.SplitStab.splitStab

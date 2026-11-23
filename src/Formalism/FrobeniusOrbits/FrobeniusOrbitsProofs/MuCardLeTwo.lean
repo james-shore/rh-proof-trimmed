@@ -144,7 +144,7 @@ theorem mu_card_le_two {G : Type*} [One G] (f : Gal(L/ℚ) → G) (hinj : Functi
   let g : H → ({1, t} : Set G) := fun ρ => ⟨f ρ, by rcases hH ρ ρ.2 with h | h <;> simp [h]⟩
   have hg : Function.Injective g := fun x y hxy => Subtype.ext (hinj (congrArg Subtype.val hxy))
   calc Nat.card H ≤ Nat.card ({1, t} : Set G) := Nat.card_le_card_of_injective g hg
-    _ = ({1, t} : Set G).ncard := by first | exact Nat.card_coe_set_eq _ | exact Set.Nat.card_coe_set_eq _
+    _ = ({1, t} : Set G).ncard := by first | exact Nat.card_coe_set_eq _
     _ ≤ 2 := (Set.ncard_insert_le 1 {t}).trans (by simp)
 
 variable {e q d : ℕ} {ζ a b : L}

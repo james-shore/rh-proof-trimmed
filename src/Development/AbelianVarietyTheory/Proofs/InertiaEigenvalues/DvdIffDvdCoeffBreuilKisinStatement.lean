@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.dvd_iff_dvd_coeff_breuilKisin : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (A : Type) [CommRing A] (s : bk.S →+* A) (ι : Type) (TB : TopBasis s bk.J ι) (a : bk.S) (x : A), s a ∣ x ↔ ∀ i, a ∣ TB.c i x := by
-  first | exact @GlobalTheory.BSP.TopBasis.dvd_iff_dvd_c | exact GlobalTheory.BSP.TopBasis.dvd_iff_dvd_c | (intros; apply GlobalTheory.BSP.TopBasis.dvd_iff_dvd_c <;> assumption)
+  first | exact @GlobalTheory.BSP.TopBasis.dvd_iff_dvd_c

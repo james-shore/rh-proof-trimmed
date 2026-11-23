@@ -76,4 +76,4 @@ theorem _root_.GlobalTheory.T.exists_doubledWeil_blockEmbedding_acts_on_first_bo
                            gd.1.1 = Matrix.fromBlocks g.1.1 0 0 1 →
                            ∀ φ₁ ∈ GlobalTheory.WeilM.schA D.host.F κ, ∀ φ₂ ∈ GlobalTheory.WeilM.schA D.host.F κ,
                              omd gd (GlobalTheory.WeilM.boxFun φ₁ φ₂) = GlobalTheory.WeilM.boxFun (om (1, g) φ₁) φ₂ := by
-  first | exact @GlobalTheory.DblSchr.doubledModel | exact GlobalTheory.DblSchr.doubledModel | (intros; apply GlobalTheory.DblSchr.doubledModel <;> assumption)
+  first | exact @GlobalTheory.DblSchr.doubledModel

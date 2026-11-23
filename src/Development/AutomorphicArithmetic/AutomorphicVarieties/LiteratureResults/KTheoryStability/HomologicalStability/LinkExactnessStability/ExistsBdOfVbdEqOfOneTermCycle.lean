@@ -108,7 +108,7 @@ private theorem slicePr_apply_eq (V W : Type) (w : List W) (z : List V × List W
     by_cases h : w' = w
     · subst h
       simp [Finsupp.single_apply]
-    · simp [h, Finsupp.single_apply, Ne.symm h]
+    · simp [h, Ne.symm h]
 
 theorem slicePr_mem {V W : Type} (D : Set (List V × List W)) (p b : ℕ) (w : List W) :
     ∀ z ∈ chains2 D p b, slicePr V W w z ∈ chains {l | (l, w) ∈ D} p := by
@@ -152,7 +152,7 @@ theorem sum_slicePr {V W : Type} (z : List V × List W →₀ ℤ) (U : Finset (
   apply Finset.sum_congr rfl
   intro q hq
   simp [slicePr, Finsupp.linearCombination_single, hU q hq, Finset.sum_ite_eq,
-    Finset.sum_ite_eq', Finsupp.smul_single]
+    Finsupp.smul_single]
 
 theorem exists_sum_bd {V : Type} (F : Set (List V)) (p : ℕ) {ι : Type} (S : Finset ι)
     (f : ι → List V →₀ ℤ) (hS : ∀ i ∈ S, ∃ b ∈ chains F (p + 1), bd V b = f i) :

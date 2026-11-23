@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.existsUnique_linearLift_of_holomorphic_abelianVari
   ∀ G : (Fin m → ℂ) → (𝟙_ (Over (Sp ℂ)) ⟶ A), (∀ z w, G (z + w) = G z * G w) →
   IsHolTo (Set.univ : Set (Fin m → ℂ)) (fun z => (G z).left) →
   ∃! F : (Fin m → ℂ) →ₗ[ℂ] (Fin g → ℂ), ∀ z, u.ex (F z) = G z := by
-  first | exact @GlobalTheory.existsUnique_linear_lift_of_isHolTo | exact GlobalTheory.existsUnique_linear_lift_of_isHolTo | (intros; apply GlobalTheory.existsUnique_linear_lift_of_isHolTo <;> assumption)
+  first | exact @GlobalTheory.existsUnique_linear_lift_of_isHolTo

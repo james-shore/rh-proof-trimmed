@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.haar_measure_uniformizer_translate : ∀ (E : Type
     (A : Set (GlobalTheory.CellDec.NA E n)), MeasurableSet A →
     ν {u : GlobalTheory.CellDec.NA E n | ∃ a ∈ A, (a : GA E n) = GlobalTheory.CellDec.tl n ϖ l * (u : GA E n) * (GlobalTheory.CellDec.tl n ϖ l)⁻¹} =
       ENNReal.ofReal (GlobalTheory.CellDec.dinv n l) * ν A := by
-  first | exact @GlobalTheory.CellDec.ModulusPf.modulus_conj | exact GlobalTheory.CellDec.ModulusPf.modulus_conj | (intros; apply GlobalTheory.CellDec.ModulusPf.modulus_conj <;> assumption)
+  first | exact @GlobalTheory.CellDec.ModulusPf.modulus_conj

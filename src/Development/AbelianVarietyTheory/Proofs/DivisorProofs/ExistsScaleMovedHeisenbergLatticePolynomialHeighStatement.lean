@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.exists_scale_movedHeisenbergLattice_polynomial_hei
         GlobalTheory.FinSupp.FinDiv F N ((m : AF F) *
           (e (((g⁻¹ : GL (Fin n) (AF F ⊗[F] E)) : Matrix (Fin n) (Fin n) (AF F ⊗[F] E)) * e.symm (0, Pi.single i 1) *
             (((h⁻¹ : GL (Fin d) (AF F ⊗[F] E)) : Matrix (Fin d) (Fin d) (AF F ⊗[F] E)))ᵀ)).2 j) := by
-  first | exact @GlobalTheory.MovedLat.exists_scale | exact GlobalTheory.MovedLat.exists_scale | (intros; apply GlobalTheory.MovedLat.exists_scale <;> assumption)
+  first | exact @GlobalTheory.MovedLat.exists_scale

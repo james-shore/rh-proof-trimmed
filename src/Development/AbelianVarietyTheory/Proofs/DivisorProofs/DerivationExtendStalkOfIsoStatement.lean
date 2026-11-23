@@ -63,4 +63,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_derivation_stalk_extend_of_app : ∀ (X X' : Scheme.{0}) (f : X' ⟶ X) [IsIso f] (U : X.affineOpens) (d : Derivation ℤ Γ(X, U.1) Γ(X, U.1)) (x : X') (hx : x ∈ f ⁻¹ᵁ U.1), ∃ δ : Derivation ℤ (X'.presheaf.stalk x) (X'.presheaf.stalk x), ∀ r, δ ((X'.presheaf.germ (f ⁻¹ᵁ U.1) x hx).hom ((f.app U.1).hom r)) = (X'.presheaf.germ (f ⁻¹ᵁ U.1) x hx).hom ((f.app U.1).hom (d r)) := by
-  first | exact @GlobalTheory.StalkDer.derivation_extend_stalk_of_iso | exact GlobalTheory.StalkDer.derivation_extend_stalk_of_iso | (intros; apply GlobalTheory.StalkDer.derivation_extend_stalk_of_iso <;> assumption)
+  first | exact @GlobalTheory.StalkDer.derivation_extend_stalk_of_iso

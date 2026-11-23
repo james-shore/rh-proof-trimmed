@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.realThetaIntertwiner_span_kFiniteTensors : ∀ (hD
     ∀ (ω : GA D V × GA D W →* Module.End ℂ (WO V W → ℂ)) (f : WO V W → ℂ), IsStepWeil k ψ V W ω → IsVacVec ψ θ M M' f →
     ∀ It : PolF D W.rank V.rank →ₗ[ℂ] SmT M' →ₗ[ℂ] SmT M, IsItW θ M M' ω (ptOf ψ θ M M' f) It →
     ∃ (h : KSm M) (h' : KSm M'), LinearMap.range (inclK h) ≤ Submodule.span ℂ {x | ∃ φ y, It φ (inclK h' y) = x} := by
-  first | exact @GlobalTheory.Chain.KFinOnto.itW_onto_kFin | exact GlobalTheory.Chain.KFinOnto.itW_onto_kFin | (intros; apply GlobalTheory.Chain.KFinOnto.itW_onto_kFin <;> assumption)
+  first | exact @GlobalTheory.Chain.KFinOnto.itW_onto_kFin

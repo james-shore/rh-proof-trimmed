@@ -60,11 +60,7 @@ theorem exists_finiteDimensional_stable (M : Type) [AddCommGroup M] [Module ℂ 
     (hm : ∀ i, FiniteDimensional ℂ (Submodule.span ℂ {x : M | ∃ a ∈ A i, x = a m})) :
     ∃ W : Submodule ℂ M, FiniteDimensional ℂ W ∧ m ∈ W ∧ ∀ i, ∀ a ∈ A i, ∀ x ∈ W, a x ∈ W := by
   first
-  | exact @_root_.GlobalTheory.OrbitGrowth.main
-  | exact _root_.GlobalTheory.OrbitGrowth.main
   | (apply _root_.GlobalTheory.OrbitGrowth.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OrbitGrowth.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OrbitGrowth.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.OrbitGrowth.main ..)
 
 end GlobalTheory.FiniteOrbit

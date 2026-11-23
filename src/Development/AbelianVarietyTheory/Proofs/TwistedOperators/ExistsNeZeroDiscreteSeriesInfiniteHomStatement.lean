@@ -52,4 +52,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.exists_ne_zero_discreteSeriesInfiniteHom : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] (π : GA D V →* (H →L[ℂ] H)), IsIrrUnitary π → HasDSComp M π → ∃ Φ ∈ homDS M π ⊤, Φ ≠ 0 := by
-  first | exact @GlobalTheory.TensorHom.exists_ne_zero_homDS | exact GlobalTheory.TensorHom.exists_ne_zero_homDS | (intros; apply GlobalTheory.TensorHom.exists_ne_zero_homDS <;> assumption)
+  first | exact @GlobalTheory.TensorHom.exists_ne_zero_homDS

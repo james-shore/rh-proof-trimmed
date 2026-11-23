@@ -53,4 +53,4 @@ open GlobalTheory.CMVal GlobalTheory.HeckeGal
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.valuation_bound_three_inert : ∀ [Fact (Nat.Prime 3)] (lam : algebraicClosure ℚ ℂ →+* ℂ_[3]) (d : ℕ) (w σ p : ℂ), d % 3 = 1 → w ^ 2 = -(d : ℂ) → Sz 3 lam 0 (((1 + w) ^ 2 - (1 + (d : ℂ))) * σ - ((1 + w) ^ 2 - 1) * p) → Sz 3 lam 0 (((1 - w) ^ 2 - (1 + (d : ℂ))) * σ - ((1 - w) ^ 2 - 1) * p) → Sz 3 lam 0 σ := by
-  first | exact @GlobalTheory.ArithThreeInert.main | exact GlobalTheory.ArithThreeInert.main | (intros; apply GlobalTheory.ArithThreeInert.main <;> assumption)
+  first | exact @GlobalTheory.ArithThreeInert.main

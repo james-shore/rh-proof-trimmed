@@ -52,4 +52,4 @@ open GlobalTheory.HSApp
 open GlobalTheory.Cartier GlobalTheory.Discrepancy GlobalTheory.QCoh
 
 theorem _root_.GlobalTheory.T.ampleModuloEffectiveAwayFromPoint_pull_affine : ∀ (Y X : Scheme.{0}) (π : X ⟶ Y) [IsAffineHom π] (N : LB Y), N.IsLB → ∀ x : X, AmpleAt N (π x) → AmpleAt (N.pull π) x := by
-  first | exact @GlobalTheory.AmplePull.ampleAt_pull | exact GlobalTheory.AmplePull.ampleAt_pull | (intros; apply GlobalTheory.AmplePull.ampleAt_pull <;> assumption)
+  first | exact @GlobalTheory.AmplePull.ampleAt_pull

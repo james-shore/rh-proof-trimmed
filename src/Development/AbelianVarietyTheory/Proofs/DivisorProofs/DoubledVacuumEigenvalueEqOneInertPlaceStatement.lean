@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.doubledVacuum_eigenvalue_eq_one_inertPlace : ∀ (
     ∀ p ∈ GlobalTheory.DblVac.KD σ G.V v, p ∈ GlobalTheory.DblVac.PDiag σ G.V → ∀ μ : ℂ,
       omd p (boxFun (tens (evFin F v) (G.M.vac v) r) (fun x => star (tens (evFin F v) (G.M.vac v) r x))) =
         μ • boxFun (tens (evFin F v) (G.M.vac v) r) (fun x => star (tens (evFin F v) (G.M.vac v) r x)) → μ = 1 := by
-  first | exact @GlobalTheory.DblVacSiegelV.eigen_eq_one_of_diag | exact GlobalTheory.DblVacSiegelV.eigen_eq_one_of_diag | (intros; apply GlobalTheory.DblVacSiegelV.eigen_eq_one_of_diag <;> assumption)
+  first | exact @GlobalTheory.DblVacSiegelV.eigen_eq_one_of_diag

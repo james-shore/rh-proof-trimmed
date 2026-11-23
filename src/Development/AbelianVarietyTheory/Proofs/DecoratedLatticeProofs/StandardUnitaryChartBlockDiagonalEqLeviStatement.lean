@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.standardUnitaryChart_blockDiagonal_eq_levi : ∀ (D : D7) (A : HSp D) (μ : D.host.E), IsSkew μ → ∀ κ : GA D (dblSp A) ≃* G D A.rank, IsChart A μ κ → ∀ (g : GA D (dblSp A)) (a : GL (Fin A.rank) (AE D)), mat (κ g) = blk4 a.1 0 0 (adj (a⁻¹).1) → g = (dblDec A).levi a := by
-  first | exact @GlobalTheory.StdUnn.chart_levi | exact GlobalTheory.StdUnn.chart_levi | (intros; apply GlobalTheory.StdUnn.chart_levi <;> assumption)
+  first | exact @GlobalTheory.StdUnn.chart_levi

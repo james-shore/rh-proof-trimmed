@@ -45,4 +45,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.oddness_condition_holds : ∀ D : D7, odd4 D := by
-  first | exact @GlobalTheory.VacuumScalar.vacuum_scalar | exact GlobalTheory.VacuumScalar.vacuum_scalar | (intros; apply GlobalTheory.VacuumScalar.vacuum_scalar <;> assumption)
+  first | exact @GlobalTheory.VacuumScalar.vacuum_scalar

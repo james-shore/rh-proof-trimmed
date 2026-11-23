@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.translatedUniformisationBundle_even_closedFibreTor
         (∀ r, HEq (J' r) (fun _ : PUnit.{1} => J (r ≫ ((toUnit G ≫ a) * 𝟙 G).left))) →
         cubV P.c z J' x y u = cubV U.cubG z J x y ((toUnit T ≫ a) * u) * (cubV U.cubG z J x y (toUnit T ≫ a))⁻¹) →
       EvenOn P := by
-  first | exact @GlobalTheory.Mum.TransEven.evenOn_translate | exact GlobalTheory.Mum.TransEven.evenOn_translate | (intros; apply GlobalTheory.Mum.TransEven.evenOn_translate <;> assumption)
+  first | exact @GlobalTheory.Mum.TransEven.evenOn_translate

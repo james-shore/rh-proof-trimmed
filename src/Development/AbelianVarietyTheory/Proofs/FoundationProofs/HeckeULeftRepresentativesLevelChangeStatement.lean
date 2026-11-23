@@ -49,4 +49,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.heckeU_leftRepresentatives_level_change : ∀ L l : ℕ, l.Prime → (l ∣ L → LRep L (DU L l) (repU l)) ∧ (l ∣ L → LRep (L * l) {δ | δ ∈ DU L l ∧ ((L * l : ℕ) : ℤ) ∣ δ 1 0} (repU l)) := by
-  first | exact @GlobalTheory.EisM.zrepU | exact GlobalTheory.EisM.zrepU | (intros; apply GlobalTheory.EisM.zrepU <;> assumption)
+  first | exact @GlobalTheory.EisM.zrepU

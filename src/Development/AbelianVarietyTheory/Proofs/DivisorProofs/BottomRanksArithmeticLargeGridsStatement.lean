@@ -47,4 +47,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.bottomRanks_arithmetic_largeGrids : GBig fun {D} {T} {Lc} {sc} G _ _ _ _ => ∀ i j : Fin D.R.m, Even (SqNum.botBig D i j + SqNum.botSmall D i j) ∧ SqNum.botSmall D i j + 2 < SqNum.botBig D i j ∧ 1 < SqNum.botSmall D i j := by
-  first | exact @GlobalTheory.BotRankSize.bottom_ranks | exact GlobalTheory.BotRankSize.bottom_ranks | (intros; apply GlobalTheory.BotRankSize.bottom_ranks <;> assumption)
+  first | exact @GlobalTheory.BotRankSize.bottom_ranks

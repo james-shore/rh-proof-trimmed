@@ -52,4 +52,4 @@ open ValuativeRel Formalism.L2.Host
 
 
 theorem _root_.GlobalTheory.T.gridGivenPathTensor_mem_subfield : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} (F : Subfield ℂ) (B : Frames G) (t : T) (Φ : G.Datum) (w : Pl D.host.E), (∀ j x, ((L.C.mu0 j).loc w x : ℂ) ∈ F) → (∀ x, ((L.xiH t).loc w x : ℂ) ∈ F) → ∀ z : (locGrid G t w).Args, (givenStage t w B Φ).tensor z ∈ F := by
-  first | exact @GlobalTheory.GivenField.tensor_givenStage_mem | exact GlobalTheory.GivenField.tensor_givenStage_mem | (intros; apply GlobalTheory.GivenField.tensor_givenStage_mem <;> assumption)
+  first | exact @GlobalTheory.GivenField.tensor_givenStage_mem

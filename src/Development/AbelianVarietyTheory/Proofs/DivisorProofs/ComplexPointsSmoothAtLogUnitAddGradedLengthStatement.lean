@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.complexPointsSmoothAt_log_unit_add_graded_length :
     (H : Mat m X.Fn → CxPts X.str σ → Mat m ℂ), IsMetricFr E H → ∀ (y : CxPts X.str σ), ∀ A ∈ E.S (under y),
     ∀ u : X.Fn, UnitAt (under y) u → ∀ (τ : ι) (i : Fin (m τ)),
       CInfAt (fun z => -Real.log (‖ratVal u z‖ ^ 2) - Real.log (grD (H A z τ) i)) y := by
-  first | exact @GlobalTheory.ChernCalc.cInfAt_logUnit_grD | exact GlobalTheory.ChernCalc.cInfAt_logUnit_grD | (intros; apply GlobalTheory.ChernCalc.cInfAt_logUnit_grD <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.cInfAt_logUnit_grD

@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.weilDatum_doubled_target_restricts_to_pair : ∀ (
       ∀ f₁ f₂ : Formalism.IndefR.DatumF.WOF F E nS nT → ℂ,
         Formalism.IndefR.DatumF.IsThetaFunOF σ JS JT ξ₀ B.ψ f₁ → Formalism.IndefR.DatumF.IsThetaFunOF σ JS JT ξ₀ B.ψ f₂ →
         ωd (1, hd) (GlobalTheory.DblTargetDelta.deltaT f₁ f₂) = GlobalTheory.DblTargetDelta.deltaT (ω (1, h) f₁) f₂ := by
-  first | exact @GlobalTheory.DblTargetRestrictCore.restrict_core | exact GlobalTheory.DblTargetRestrictCore.restrict_core | (intros; apply GlobalTheory.DblTargetRestrictCore.restrict_core <;> assumption)
+  first | exact @GlobalTheory.DblTargetRestrictCore.restrict_core

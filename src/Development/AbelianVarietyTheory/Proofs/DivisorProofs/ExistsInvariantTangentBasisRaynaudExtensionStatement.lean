@@ -52,4 +52,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_invariant_tangent_basis_raynaudExtension : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] [IsNoetherianRing R] (Q : DegPre R) (O : Type) [CommRing O] [StarRing O] [Module O Q.X] (oa : Q.OAct O) (Y : Ray oa), ∃ (n : ℕ) (v : Module.Basis (Fin n) R (TanM (𝟙 (Sp R)) Y.H)) (dd : Fin n → Fld Y.H.left), ∀ a, IsInv Y.H (v a) (dd a) := by
-  first | exact @GlobalTheory.RayTan.exists_basis_isInv | exact GlobalTheory.RayTan.exists_basis_isInv | (intros; apply GlobalTheory.RayTan.exists_basis_isInv <;> assumption)
+  first | exact @GlobalTheory.RayTan.exists_basis_isInv

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.leviForm_graded_length_sub_log_unit_normSq : ∀ (
     ∀ u : X.Fn, UnitAt (under y) u → ∀ (τ : ι) (i : Fin (m τ)) (c : AlgChart X.str σ X.dim), y ∈ c.e.source →
       leviForm (fun v => -Real.log (‖ratVal u (c.e.symm v)‖ ^ 2) - Real.log (grD (H A (c.e.symm v) τ) i)) (c.e y) =
         leviForm (fun v => -Real.log (grD (H A (c.e.symm v) τ) i)) (c.e y) := by
-  first | exact @GlobalTheory.ChernCalc.leviForm_neg_log_unit_sub_log_grD | exact GlobalTheory.ChernCalc.leviForm_neg_log_unit_sub_log_grD | (intros; apply GlobalTheory.ChernCalc.leviForm_neg_log_unit_sub_log_grD <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.leviForm_neg_log_unit_sub_log_grD

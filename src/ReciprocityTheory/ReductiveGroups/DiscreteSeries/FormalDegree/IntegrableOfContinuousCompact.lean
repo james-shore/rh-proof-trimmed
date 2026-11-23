@@ -207,8 +207,6 @@ theorem conj_projection_apply {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KT
     (T.op k * projW T * T.op k⁻¹) v = ⟪T.op k T.w, v⟫_ℂ • T.op k T.w := by
   rw [KType_op_inv_eq_adjoint]
   first
-  | (simp only [ContinuousLinearMap.mul_apply, projW, ContinuousLinearMap.smulRight_apply,
-      innerSL_apply, ContinuousLinearMap.adjoint_inner_right, map_smul]; done)
   | (simp [projW, ContinuousLinearMap.adjoint_inner_right]; done)
 
 theorem inner_fF_eq_integral {ε : Fin n → Bool} (lam : Fin n → ℝ) {Λ : Fin n → ℝ} (T : KType ε Λ) (z : PCoord ε → ℂ)

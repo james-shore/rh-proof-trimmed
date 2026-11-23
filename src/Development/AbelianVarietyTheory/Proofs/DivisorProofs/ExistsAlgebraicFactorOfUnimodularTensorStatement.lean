@@ -47,4 +47,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_algebraic_factor_of_unimodular_tensor : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], AdmBase R (maximalIdeal R) → ∀ (D D' : DegData R (maximalIdeal R)) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ), ((W + W.transpose).map (Int.cast : ℤ → ℝ)).PosDef → IsUnit (W + W.transpose).det → ∀ T : Tens D.toPre D'.toPre W, 1 ≤ r → (∃ F : Factor D.toPre D'.toPre, F.Alg) := by
-  first | exact @GlobalTheory.Mum.Tens.nonempty_factor | exact GlobalTheory.Mum.Tens.nonempty_factor | (intros; apply GlobalTheory.Mum.Tens.nonempty_factor <;> assumption)
+  first | exact @GlobalTheory.Mum.Tens.nonempty_factor

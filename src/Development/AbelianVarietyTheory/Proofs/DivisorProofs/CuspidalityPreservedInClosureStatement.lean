@@ -44,4 +44,4 @@ open scoped TensorProduct InnerProductSpace ContDiff
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.cuspidality_preserved_in_closure : ∀ (D : D7) (θ : InfFam D) (V : HSp D), IsInfFam θ → ∀ (μ : Measure (GA D V)) (𝓕 : Set (GA D V)) (ρ : GA D V →* (Lp ℂ 2 (nuQ V μ 𝓕) →L[ℂ] Lp ℂ 2 (nuQ V μ 𝓕))), FinPair V μ 𝓕 → IsReg V μ 𝓕 ρ → ∀ (φ ψ : GA D V → ℂ) F₀ F, IsAutFun V φ → ZCusp V φ → Repr V μ 𝓕 F₀ φ → IsAutFun V ψ → Repr V μ 𝓕 F ψ → F ∈ closure (Submodule.span ℂ {z | ∃ u : GA D V, z = ρ u F₀} : Set (Lp ℂ 2 (nuQ V μ 𝓕))) → ZCusp V ψ := by
-  first | exact @GlobalTheory.HolDict.ZClosed.zcusp_of_mem_closure | exact GlobalTheory.HolDict.ZClosed.zcusp_of_mem_closure | (intros; apply GlobalTheory.HolDict.ZClosed.zcusp_of_mem_closure <;> assumption)
+  first | exact @GlobalTheory.HolDict.ZClosed.zcusp_of_mem_closure

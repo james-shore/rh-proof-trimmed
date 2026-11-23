@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.galois_data_exists : ∀ D : D7, galEx D := by
-  first | exact @GlobalTheory.GalExist.galEx_all | exact GlobalTheory.GalExist.galEx_all | (intros; apply GlobalTheory.GalExist.galEx_all <;> assumption)
+  first | exact @GlobalTheory.GalExist.galEx_all

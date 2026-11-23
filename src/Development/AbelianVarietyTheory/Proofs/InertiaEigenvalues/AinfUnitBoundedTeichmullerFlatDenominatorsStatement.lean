@@ -48,4 +48,4 @@ open scoped Formalism.Per NNReal
 open Matrix
 
 theorem _root_.GlobalTheory.T.ainf_unit_bounded_teichmullerFlat_denominators : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (a : Ainf l), IsUnit (inclW l a) → ∀ n : ℕ, ∃ (m : ℕ) (t : Ainf l), (l : Ainf l) ^ n ∣ t * a - bk.ev X ^ m := by
-  first | exact @GlobalTheory.BSP.BddDen.main | exact GlobalTheory.BSP.BddDen.main | (intros; apply GlobalTheory.BSP.BddDen.main <;> assumption)
+  first | exact @GlobalTheory.BSP.BddDen.main

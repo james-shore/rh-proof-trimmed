@@ -75,7 +75,7 @@ theorem colGeR_single (K : Type) [Field K] (d j : ℕ) (hj : 1 ≤ j) :
       have hij : (⟨(i : ℕ), hlt⟩ : Fin j) = ⟨j - 1, by omega⟩ := Fin.ext (by simp; omega)
       simp only [colGeR, colGeE]
       rw [dite_eq_left ⟨hl, hlt⟩, hij]
-      simp [hl, hi]
+      simp [hl]
       omega
     · simp only [colGeR, colGeE]
       by_cases hlt : (i : ℕ) < j

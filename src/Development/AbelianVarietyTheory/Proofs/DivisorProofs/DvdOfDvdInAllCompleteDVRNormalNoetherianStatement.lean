@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.dvd_of_dvd_in_all_completeDVR_normal_noetherian : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R] [CharZero R] (a b : R), b ≠ 0 → (∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V], GlobalTheory.LN.CDvr V → ∀ φ : R →+* V, Function.Injective φ → φ b ∣ φ a) → b ∣ a := by
-  first | exact @GlobalTheory.DvrDiv.dvd_of_forall_cDvr | exact GlobalTheory.DvrDiv.dvd_of_forall_cDvr | (intros; apply GlobalTheory.DvrDiv.dvd_of_forall_cDvr <;> assumption)
+  first | exact @GlobalTheory.DvrDiv.dvd_of_forall_cDvr

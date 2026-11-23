@@ -190,11 +190,7 @@ theorem isExpHomR_bc {x : ∀ m, overAt x0 (Jet S (Fin 1 × Fin d) m) ⟶ Xo.uni
     simp only [← Category.assoc, kS, k0, k1]
     simp only [Category.assoc, h2 m]
     first
-    | exact Hom.comp_mul _ _ _
     | exact MonObj.comp_mul _ _ _
-    | exact CategoryTheory.Hom.comp_mul _ _ _
-    | simp only [Hom.comp_mul]
-    | simp only [MonObj.comp_mul]
 
 theorem dual_comp : (ReciprocityTheory.ChartRestriction.G.Chart.dualMapR f).comp (algebraMap S (DualNumber S)) =
     (algebraMap T (DualNumber T)).comp f := RingHom.ext fun s => by

@@ -64,7 +64,7 @@ def resEnd {V : Type} [AddCommGroup V] [Module K V] (ρ : Γ →* Module.End K V
     simp [LinearMap.restrict_apply]
   map_mul' g h := by
     refine LinearMap.ext fun x => Subtype.ext ?_
-    simp [LinearMap.restrict_apply, Module.End.mul_apply]
+    simp [LinearMap.restrict_apply]
 
 def quoEnd {V : Type} [AddCommGroup V] [Module K V] (ρ : Γ →* Module.End K V) (U : Submodule K V)
     (hU : AInv ρ U) : Γ →* Module.End K (V ⧸ U) where
@@ -74,7 +74,7 @@ def quoEnd {V : Type} [AddCommGroup V] [Module K V] (ρ : Γ →* Module.End K V
     simp
   map_mul' g h := by
     refine Submodule.linearMap_qext _ (LinearMap.ext fun x => ?_)
-    simp [Module.End.mul_apply]
+    simp
 
 def matRep {V : Type} [AddCommGroup V] [Module K V] {m : ℕ} (ρ : Γ →* Module.End K V)
     (b : Module.Basis (Fin m) K V) : Γ →* GL (Fin m) K :=

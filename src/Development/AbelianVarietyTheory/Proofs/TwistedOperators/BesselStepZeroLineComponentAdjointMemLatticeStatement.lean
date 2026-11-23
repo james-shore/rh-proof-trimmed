@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.besselStepZero_lineComponent_adjoint_mem_lattice : OnStd fun {D} _ _ {sc} {G} W F => ∀ (h : 2 * 0 + 2 ≤ D.R.m), ∀ u ∈ (pcBF W F 0 h).Γ₀, incA D D.host.xi0⁻¹ • GlobalTheory.IndefiniteRowSideFullHecke.SkewGramHalfModule.starAdj _ _ (((F.oB 0 h).resS (G.V (.core (2 * 0 + 1))) u).2) ∈ lineLat F 0 := by
-  first | exact @GlobalTheory.LineZero.adj_mem_lineLat | exact GlobalTheory.LineZero.adj_mem_lineLat | (intros; apply GlobalTheory.LineZero.adj_mem_lineLat <;> assumption)
+  first | exact @GlobalTheory.LineZero.adj_mem_lineLat

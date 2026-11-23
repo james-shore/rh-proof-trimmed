@@ -48,4 +48,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_additiveFamily_of_pullback_finiteSurjective : ∀ (S : Scheme.{0}) (A U U' : Over S) [GrpObj A] [IsLocallyNoetherian U.left], IsAbelianScheme A → ∀ (p : U' ⟶ U), IsFinite p.left → Surjective p.left → ∀ (N' : LB (A ⊗ U').left) (h : Fam A N') (c : Pic (A ⊗ U).left), GlobalTheory.CechPic.pull (A ◁ p).left c = cls N' h.isLB → ∃ M : LB (A ⊗ U).left, Fam A M ∧ Same A M N' p (𝟙 U') := by
-  first | exact @GlobalTheory.Pinch.exists_fam_of_pull | exact GlobalTheory.Pinch.exists_fam_of_pull | (intros; apply GlobalTheory.Pinch.exists_fam_of_pull <;> assumption)
+  first | exact @GlobalTheory.Pinch.exists_fam_of_pull

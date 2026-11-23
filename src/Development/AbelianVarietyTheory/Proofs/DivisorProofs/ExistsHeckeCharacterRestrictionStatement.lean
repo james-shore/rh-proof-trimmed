@@ -48,4 +48,4 @@ open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.Inde
 
 theorem _root_.GlobalTheory.T.exists_hecke_character_restriction : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E),
     B.IsGood σ → ∃ χ : Chr F E, IsHecke F E χ ∧ ResEtaPow (Units.map (algebraMap F (AF F)).toMonoidHom).range χ 1 := by
-  first | exact @GlobalTheory.CMHeckeEta.exists_hecke_resEtaPow_one | exact GlobalTheory.CMHeckeEta.exists_hecke_resEtaPow_one | (intros; apply GlobalTheory.CMHeckeEta.exists_hecke_resEtaPow_one <;> assumption)
+  first | exact @GlobalTheory.CMHeckeEta.exists_hecke_resEtaPow_one

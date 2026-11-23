@@ -50,4 +50,4 @@ open scoped Pointwise ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.localTermWeight_eq_character_mul_inv : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E] (M : Loc.Model F E) {V : Type} [AddCommGroup V] [Module E V] (H : Loc.HermSp M V) (r k : ℕ) (P : LocNG.FPair H r) (S : Frames M.L r k) (c : WCoord P S) (d : LocNG.Datum P) (t : Loc.Term V M r), LocNG.IsTermOver P d t → ∀ m m' : S.GLV, (∀ b, c.e (t.f b) = m (S.f b)) → (∀ b, c.e (t.f' b) = m' (S.f' b)) → LocNG.om P t = S.psi m * (S.psi' m')⁻¹ := by
-  first | exact @GlobalTheory.HL.TermPhase.om_eq_psi_mul_inv | exact GlobalTheory.HL.TermPhase.om_eq_psi_mul_inv | (intros; apply GlobalTheory.HL.TermPhase.om_eq_psi_mul_inv <;> assumption)
+  first | exact @GlobalTheory.HL.TermPhase.om_eq_psi_mul_inv

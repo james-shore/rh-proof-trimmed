@@ -53,4 +53,4 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell
 
 theorem _root_.GlobalTheory.T.dickson_exists_finite_subfamily_below : ∀ {ι : Type} (n : ℕ) (f : ι → Fin n → ℕ), ∃ F : Finset ι, ∀ i, ∃ j ∈ F, f j ≤ f i := by
-  first | exact @GlobalTheory.dickson_finite_below_every | exact GlobalTheory.dickson_finite_below_every | (intros; apply GlobalTheory.dickson_finite_below_every <;> assumption)
+  first | exact @GlobalTheory.dickson_finite_below_every

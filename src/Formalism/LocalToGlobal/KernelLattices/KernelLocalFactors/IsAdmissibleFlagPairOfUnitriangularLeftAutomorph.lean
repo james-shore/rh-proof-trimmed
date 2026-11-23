@@ -424,7 +424,7 @@ theorem single_mem_homL (i : Fin N') (j : Fin N) :
   intro i'
   by_cases h : i = i'
   · subst h; simpa [Matrix.mulVec, dotProduct, Matrix.single_apply] using hx j
-  · simp [Matrix.mulVec, dotProduct, Matrix.single_apply, h]
+  · simp [Matrix.mulVec, dotProduct, h]
 
 def putE (D : D7) (N N' : ℕ) (i : Fin N') (j : Fin N) : (D.what₂.Tau → ℂ) →+ TaylorLogMetric.VC D N N' where
   toFun v := fun τ i' j' => if i' = i ∧ j' = j then v τ else 0

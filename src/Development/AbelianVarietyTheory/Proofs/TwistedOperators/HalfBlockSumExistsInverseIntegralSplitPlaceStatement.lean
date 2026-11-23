@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.halfBlockSum_exists_inverse_integral_splitPlace : 
   ∀ Y : Matrix (Fin d) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), Y.map π = (b : Matrix (Fin d) (Fin d) (Fv F v)) * X.map (fun x => (x : Fv F v)) * ((b⁻¹ : GL (Fin d) (Fv F v)) : Matrix (Fin d) (Fin d) (Fv F v)) →
   ∃ N : Matrix (Fin d) (Fin d) (Fv F v), N * (⅟(2 : AF F) • ((g).toBlocks₁₁ + (g).toBlocks₁₂ + (g).toBlocks₂₁ + (g).toBlocks₂₂) +
       Y * (⅟(2 : AF F) • ((g).toBlocks₁₁ + (g).toBlocks₁₂ - (g).toBlocks₂₁ - (g).toBlocks₂₂))).map π = 1 ∧ (∀ i j, (((b⁻¹ : GL (Fin d) (Fv F v)) : Matrix (Fin d) (Fin d) (Fv F v)) * N * (b : Matrix (Fin d) (Fin d) (Fv F v))) i j ∈ v.adicCompletionIntegers F) := by
-  first | exact @GlobalTheory.Twist.halfBlockSum_inv_conj_integral | exact GlobalTheory.Twist.halfBlockSum_inv_conj_integral | (intros; apply GlobalTheory.Twist.halfBlockSum_inv_conj_integral <;> assumption)
+  first | exact @GlobalTheory.Twist.halfBlockSum_inv_conj_integral

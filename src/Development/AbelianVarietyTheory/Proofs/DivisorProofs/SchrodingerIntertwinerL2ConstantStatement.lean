@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.schrodinger_intertwiner_l2_constant : ∀ (F : Typ
         @Measure.IsAddHaarMeasure _ _ _ (borel _) μ → ∀ f f' : SInf F κ,
           @integral _ ℂ _ _ (borel _) μ (fun x => T f x * starRingEnd ℂ (T f' x)) =
             (c : ℂ) * @integral _ ℂ _ _ (borel _) μ (fun x => f x * starRingEnd ℂ (f' x)) := by
-  first | exact @GlobalTheory.SvNForm.schrodinger_intertwiner_l2_const | exact GlobalTheory.SvNForm.schrodinger_intertwiner_l2_const | (intros; apply GlobalTheory.SvNForm.schrodinger_intertwiner_l2_const <;> assumption)
+  first | exact @GlobalTheory.SvNForm.schrodinger_intertwiner_l2_const

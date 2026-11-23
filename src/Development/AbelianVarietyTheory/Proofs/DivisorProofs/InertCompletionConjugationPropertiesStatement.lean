@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.inertCompletionConjugation_properties : ∀ {F E :
   (∀ x ∈ w.adicCompletionIntegers E, GlobalTheory.InertBigCell.conjW σ hw x ∈ w.adicCompletionIntegers E) ∧
   (2 : w.adicCompletion E)⁻¹ ∈ w.adicCompletionIntegers E ∧
   (∀ e : E, GlobalTheory.InertBigCell.conjW σ hw (algebraMap E (w.adicCompletion E) e) = algebraMap E (w.adicCompletion E) (σ e)) := by
-  first | exact @GlobalTheory.InertBigCell.conjW_props | exact GlobalTheory.InertBigCell.conjW_props | (intros; apply GlobalTheory.InertBigCell.conjW_props <;> assumption)
+  first | exact @GlobalTheory.InertBigCell.conjW_props

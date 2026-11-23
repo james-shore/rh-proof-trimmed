@@ -47,4 +47,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.deRhamExtension_potentiallySemistable : ExtStep := by
-  first | exact @GlobalTheory.PMon.extStep_holds | exact GlobalTheory.PMon.extStep_holds | (intros; apply GlobalTheory.PMon.extStep_holds <;> assumption)
+  first | exact @GlobalTheory.PMon.extStep_holds

@@ -74,8 +74,6 @@ def bK (b : L) : Kd b := ⟨b, mem_adjoin_simple_self ℚ b⟩
 theorem bK_sq (hb : b ^ 2 = -(d : L)) : bK b ^ 2 = -(d : Kd b) := by
   first
   | exact Subtype.ext (by simp [bK, hb])
-  | (apply Subtype.ext; simp [bK, hb])
-  | (apply Subtype.ext; push_cast [bK]; exact hb)
 
 theorem b_not_rat (hd : 0 < d) (hb : b ^ 2 = -(d : L)) : b ∉ (⊥ : IntermediateField ℚ L) := by
   intro h
@@ -95,7 +93,6 @@ private theorem aeval_X_sq_add_C_eq_zero_of_sq_eq_neg (hb : b ^ 2 = -(d : L)) :
     Polynomial.aeval b (Polynomial.X ^ 2 + Polynomial.C (d : ℚ)) = 0 := by
   first
   | simp [hb]
-  | (rw [map_add (f := _), map_pow, Polynomial.aeval_X, Polynomial.aeval_C, hb]; simp)
 
 private theorem minpoly_natDegree_eq_two_of_sq_eq_neg (hd : 0 < d) (hb : b ^ 2 = -(d : L)) :
     (minpoly ℚ b).natDegree = 2 := by
@@ -132,8 +129,6 @@ private theorem Kd_algEquiv_ext_of_apply_bK_eq (σ τ : Kd b ≃ₐ[ℚ] Kd b) (
     apply (IntermediateField.adjoin.powerBasis hint).algHom_ext
     first
     | exact h
-    | (rw [IntermediateField.adjoin.powerBasis_gen]; exact h)
-    | (simp only [IntermediateField.adjoin.powerBasis_gen, AlgEquiv.coe_algHom]; exact h)
   exact AlgEquiv.ext fun x => AlgHom.congr_fun key x
 
 theorem gal_eq_one_of_fix (σ : Kd b ≃ₐ[ℚ] Kd b) (h : σ (bK b) = bK b) : σ = 1 := by
@@ -147,7 +142,6 @@ private theorem Kd_algEquiv_bK_eq_or_eq_neg (hb : b ^ 2 = -(d : L)) (σ : Kd b �
   have h1 : σ (bK b) ^ 2 = bK b ^ 2 := by
     first
     | rw [← map_pow, bK_sq hb, map_neg, map_natCast]
-    | (rw [← map_pow, bK_sq hb]; simp)
   have h2 : (σ (bK b) - bK b) * (σ (bK b) + bK b) = 0 := by linear_combination h1
   rcases mul_eq_zero.mp h2 with h | h
   · left
@@ -237,7 +231,7 @@ theorem card_gal (hd : 0 < d) (hb : b ^ 2 = -(d : L)) : Nat.card (Kd b ≃ₐ[�
     intro h1
     apply hne
     rw [h1] at hτ
-    first | exact hτ | simpa using hτ
+    first | exact hτ
   haveI : Nontrivial (Kd b ≃ₐ[ℚ] Kd b) := ⟨⟨τ, 1, hτ1⟩⟩
   apply le_antisymm
   · calc Nat.card (Kd b ≃ₐ[ℚ] Kd b) ≤ Nat.card ({bK b, -bK b} : Set (Kd b)) :=
@@ -245,9 +239,6 @@ theorem card_gal (hd : 0 < d) (hb : b ^ 2 = -(d : L)) : Nat.card (Kd b ≃ₐ[�
       _ = 2 := by
         first
         | rw [Nat.card_coe_set_eq, Set.ncard_pair hne]
-        | (rw [← Set.ncard_pair hne]; rfl)
-        | (rw [← Set.ncard_pair hne, Set.ncard_def]; simp)
-        | (rw [← Set.ncard_pair hne]; exact (Set.ncard_eq_toFinset_card' _).symm.trans (by simp))
   · exact Finite.one_lt_card
 
 theorem bK_sq_int (hb : b ^ 2 = -(d : L)) : bK b ^ 2 = ((-(d : ℤ) : ℤ) : Kd b) := by
@@ -265,7 +256,7 @@ theorem exists_ne_one (hd0 : 0 < d) (hb : b ^ 2 = -(d : L)) : ∃ ι : Kd b ≃�
   obtain ⟨τ, hτ⟩ := Kd_exists_algEquiv_bK_eq_neg hd0 hb
   refine ⟨τ, fun h1 => bK_ne_neg_bK_of_sq_eq_neg hd0 hb ?_⟩
   rw [h1] at hτ
-  first | exact hτ | simpa using hτ
+  first | exact hτ
 
 theorem apply_bK_of_ne (hd0 : 0 < d) (hb : b ^ 2 = -(d : L)) (ι : Kd b ≃ₐ[ℚ] Kd b) (hι : ι ≠ 1) :
     ι (bK b) = -bK b := by
@@ -284,9 +275,7 @@ theorem span_prime (p : ℕ) [hp : Fact p.Prime] : (span {(p : ℤ)}).IsPrime :=
 
 private theorem Kd_isGalois_of_sq_eq_neg (hd : 0 < d) (hb : b ^ 2 = -(d : L)) : IsGalois ℚ (Kd b) := by
   first
-  | exact IsGalois.of_card_aut_eq_finrank (by rw [card_gal hd hb, finrank_K hd hb])
   | exact IsGalois.of_card_aut_eq_finrank ℚ (Kd b) (by rw [card_gal hd hb, finrank_K hd hb])
-  | (haveI := quad_K hd hb; exact inferInstance)
 
 theorem fund (hd0 : 0 < d) (hb : b ^ 2 = -(d : L)) (p : ℕ) [Fact p.Prime]
     (P : Ideal (𝓞 (Kd b))) [P.IsPrime] [P.LiesOver (span {(p : ℤ)})] :
@@ -362,8 +351,6 @@ theorem smul_mem_of_eq (σ : Kd b ≃ₐ[ℚ] Kd b) (P : Ideal (𝓞 (Kd b))) (h
     (y : 𝓞 (Kd b)) (hy : y ∈ P) : σ • y ∈ P := by
   first
   | (have h1 := Ideal.smul_mem_pointwise_smul σ y P hy; rwa [h] at h1)
-  | (rw [← h]; exact Ideal.smul_mem_pointwise_smul σ y P hy)
-  | (rw [← h]; exact Ideal.mem_map_of_mem _ hy)
 
 theorem smul_intCast (σ : Kd b ≃ₐ[ℚ] Kd b) (n : ℤ) : σ • (n : 𝓞 (Kd b)) = n := by
   first
@@ -546,7 +533,6 @@ theorem clause (hd : d.Prime) (hd7 : d % 8 = 7) (hb : b ^ 2 = -(d : L)) (p : ℕ
         subst hpd
         first
         | (rw [jacobiSym.mod_left, Int.emod_eq_zero_of_dvd (by simp), jacobiSym.zero_left hp.one_lt])
-        | (rw [jacobiSym.eq_zero_iff_not_coprime]; simp [Int.gcd_neg, Int.gcd_self]; exact hp.one_lt.ne')
       rw [h3, hJ]
       simp [h2]
     · have h3 := odd_case hd hb p h2 hpd P
@@ -596,11 +582,11 @@ theorem hostSplitK_of (hFrob : HostFrob) : HostSplitK := by
   · intro h
     refine Or.inr ⟨hp2, ?_⟩
     rw [← h2, h]
-    first | rfl | simp
+    first | rfl
   · rintro (h | ⟨-, h⟩)
     · exact absurd h hp2
     · apply Units.ext
       rw [h2, h]
-      first | rfl | simp
+      first | rfl
 
 end Formalism.FrobeniusOrbits

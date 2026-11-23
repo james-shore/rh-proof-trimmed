@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.flat_tensor_galois_injective_invariants : ∀ (R R
     Function.Injective (algebraMap O (TensorProduct R O R')) ∧
     ∀ t : TensorProduct R O R', (∀ σ, GlobalTheory.InvAlg.galTensor O σ t = t) →
       t ∈ Set.range (algebraMap O (TensorProduct R O R')) := by
-  first | exact @GlobalTheory.InvAlg.flat_tensor_invariants | exact GlobalTheory.InvAlg.flat_tensor_invariants | (intros; apply GlobalTheory.InvAlg.flat_tensor_invariants <;> assumption)
+  first | exact @GlobalTheory.InvAlg.flat_tensor_invariants

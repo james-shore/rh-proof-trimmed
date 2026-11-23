@@ -291,7 +291,7 @@ private theorem loc_open {K : Type} [NontriviallyNormedField K] [CompleteSpace K
       by_cases hij : i = j
       · rw [hij, Matrix.one_apply_eq]
         exact isIntegral_one
-      · simp [Matrix.one_apply, hij, isIntegral_zero]
+      · simp [hij, isIntegral_zero]
     have ht : Tendsto (fun y => (nD Δ y)⁻¹ - 1) (𝓝 ![1, 0, 0, 0]) (𝓝 0) := by
       have h3 := ((hcont.tendsto ![1, 0, 0, 0]).inv₀ (by rw [h1]; exact one_ne_zero)).sub_const 1
       rwa [h1, inv_one, sub_self] at h3

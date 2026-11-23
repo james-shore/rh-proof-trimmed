@@ -206,7 +206,6 @@ lemma length_quot_smulRange_free (Q : Type*) [AddCommGroup Q] [Module O Q] [Modu
   haveI : Module.Free O Q := by
     first
       | exact Module.free_of_finite_type_torsion_free'
-      | infer_instance
   let e : Q ≃ₗ[O] (Fin (finrank O Q) → O) := (Module.finBasis O Q).equivFun
   have hmap : (smulRange Q l).map (e : Q →ₗ[O] (Fin (finrank O Q) → O)) =
       smulRange (Fin (finrank O Q) → O) l := by
@@ -222,8 +221,6 @@ lemma length_quot_smulRange_free (Q : Type*) [AddCommGroup Q] [Module O Q] [Modu
   rw [← length_quot_smulRange_pi (finrank O Q) l]
   first
     | exact e'.length_eq
-    | exact le_antisymm (Module.length_le_of_injective e'.toLinearMap e'.injective)
-        (Module.length_le_of_injective e'.symm.toLinearMap e'.symm.injective)
 
 variable {V : Type*} [AddCommGroup V] [Module (FractionRing O) V] [Module O V]
   [IsScalarTower O (FractionRing O) V] [FiniteDimensional (FractionRing O) V]

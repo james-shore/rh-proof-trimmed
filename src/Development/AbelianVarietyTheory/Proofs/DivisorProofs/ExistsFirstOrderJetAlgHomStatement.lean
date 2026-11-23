@@ -57,4 +57,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_firstOrderJet_algHom : ∀ {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] (W : Opens E) (p : E), p ∈ W → ∀ v : E, ∃ ρ : Hol W →ₐ[ℂ] DualNumber ℂ, ∀ h, (ρ h).fst = h.fn p ∧ (ρ h).snd = fderiv ℂ h.fn p v := by
-  first | exact @GlobalTheory.AnPer.Hol.exists_jet_algHom | exact GlobalTheory.AnPer.Hol.exists_jet_algHom | (intros; apply GlobalTheory.AnPer.Hol.exists_jet_algHom <;> assumption)
+  first | exact @GlobalTheory.AnPer.Hol.exists_jet_algHom

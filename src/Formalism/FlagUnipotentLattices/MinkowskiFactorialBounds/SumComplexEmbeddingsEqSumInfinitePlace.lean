@@ -216,7 +216,6 @@ lemma four_mul_card_le_norm_sq_mul_discr (hc : ∀ w : InfinitePlace E, w.IsComp
       first
       | (rw [NumberField.integralBasis_apply]; rfl)
       | exact NumberField.integralBasis_apply E i
-      | simp [NumberField.integralBasis_apply]
     rw [hi]
     exact hL _ (hmem _)
   choose n hn using hn0
@@ -224,8 +223,6 @@ lemma four_mul_card_le_norm_sq_mul_discr (hc : ∀ w : InfinitePlace E, w.IsComp
     have hnd : (Algebra.traceForm ℚ E).Nondegenerate := by
       first
       | exact traceForm_nondegenerate ℚ E
-      | exact Algebra.traceForm_nondegenerate ℚ E
-      | exact traceForm_nondegenerate _ _
     refine ⟨∑ i, (n i : ℚ) • LinearMap.BilinForm.dualBasis (Algebra.traceForm ℚ E) hnd
       (integralBasis E) i, fun j => ?_⟩
     have h : ∀ i, Algebra.trace ℚ E (LinearMap.BilinForm.dualBasis (Algebra.traceForm ℚ E) hnd
@@ -234,7 +231,6 @@ lemma four_mul_card_le_norm_sq_mul_discr (hc : ∀ w : InfinitePlace E, w.IsComp
       rw [← Algebra.traceForm_apply]
       first
       | rw [LinearMap.BilinForm.apply_dualBasis_left]
-      | exact LinearMap.BilinForm.apply_dualBasis_left _ _ _ _ _
 
     rw [Finset.sum_mul, map_sum]
     have h' : ∀ i, Algebra.trace ℚ E ((n i : ℚ) • LinearMap.BilinForm.dualBasis (Algebra.traceForm ℚ E) hnd
@@ -265,9 +261,6 @@ lemma four_mul_card_le_norm_sq_mul_discr (hc : ∀ w : InfinitePlace E, w.IsComp
     rw [hψ0, LinearMap.zero_apply, LinearEquiv.symm_apply_apply] at h0
     first
     | exact sub_eq_zero.mp (inner_self_eq_zero.mp h0.symm)
-    | exact sub_eq_zero.mp ((inner_self_eq_zero (𝕜 := ℝ)).mp h0.symm)
-    | (have h1 : ‖y - yz‖ ^ 2 = 0 := by rw [← real_inner_self_eq_norm_sq]; exact h0.symm
-       exact sub_eq_zero.mp (norm_eq_zero.mp (pow_eq_zero_iff two_ne_zero |>.mp h1)))
   have hcod : ∀ a : 𝓞 E, ∃ m : ℤ, Algebra.trace ℚ E (z * (a : E)) = m := by
     intro a
     obtain ⟨m, hm⟩ := hL _ (hmem a)
@@ -289,7 +282,6 @@ lemma four_mul_card_le_norm_sq_mul_discr (hc : ∀ w : InfinitePlace E, w.IsComp
     intro w
     first
     | exact NumberField.InfinitePlace.mult_isComplex ⟨w, hc w⟩
-    | simp [NumberField.InfinitePlace.mult, NumberField.InfinitePlace.not_isReal_iff_isComplex.mpr (hc w)]
   have hprod : |((Algebra.norm ℚ z : ℚ) : ℝ)| = ∏ w : InfinitePlace E, ‖w.embedding z‖ ^ 2 := by
     have h := NumberField.InfinitePlace.prod_eq_abs_norm z
     have h2 : ∏ w : InfinitePlace E, w z ^ w.mult = ∏ w : InfinitePlace E, ‖w.embedding z‖ ^ 2 :=
@@ -297,13 +289,11 @@ lemma four_mul_card_le_norm_sq_mul_discr (hc : ∀ w : InfinitePlace E, w.IsComp
     rw [h2] at h
     first
     | (push_cast at h ⊢; linarith)
-    | exact_mod_cast h.symm
-    | simp [h]
   have hnorm : ‖y‖ ^ 2 = 4 * ∑ w : InfinitePlace E, ‖w.embedding z‖ ^ 2 := by
     rw [hyz, hyzdef, EuclideanSpace.norm_eq, Real.sq_sqrt (Finset.sum_nonneg fun _ _ => sq_nonneg _),
       Finset.mul_sum]
     refine Finset.sum_congr rfl fun w _ => ?_
-    simp [norm_mul, mul_pow] <;> norm_num
+    simp [mul_pow] <;> norm_num
   have hamgm : (∏ w : InfinitePlace E, ‖w.embedding z‖ ^ 2) ^ (1 / (Fintype.card (InfinitePlace E) : ℝ)) ≤
       (∑ w : InfinitePlace E, ‖w.embedding z‖ ^ 2) / (Fintype.card (InfinitePlace E) : ℝ) := by
     have h := Real.geom_mean_le_arith_mean Finset.univ (fun _ : InfinitePlace E => (1 : ℝ))
@@ -334,7 +324,6 @@ lemma four_mul_card_le_norm_sq_mul_discr (hc : ∀ w : InfinitePlace E, w.IsComp
         first
         | (field_simp; ring)
         | field_simp
-        | (rw [← mul_assoc r, mul_div_cancel₀ _ hr']; ring)
 
 end Cov2
 

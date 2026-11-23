@@ -92,11 +92,7 @@ theorem exists_orthonormal_family (K : UQ)
       ∃ m, ∃ v : Fin m → V, (∀ i j, h (v i) (v j) = if i = j then 1 else 0) ∧
         Submodule.span K.O (Set.range v) = L := by
   first
-  | exact @_root_.GlobalTheory.UnitPairNorm.main
-  | exact _root_.GlobalTheory.UnitPairNorm.main
   | (apply _root_.GlobalTheory.UnitPairNorm.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitPairNorm.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitPairNorm.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.UnitPairNorm.main ..)
 
 end GlobalTheory.SelfDualLattice

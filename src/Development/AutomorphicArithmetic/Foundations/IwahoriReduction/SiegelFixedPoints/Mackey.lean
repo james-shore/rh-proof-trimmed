@@ -173,7 +173,7 @@ private lemma FF_eq (X : Tower Ω ε) {l : ℕ} [Fact l.Prime] {n m N : ℕ} [Ne
   have hsl := sl_eq_of_map X hw hmap
   have hex : ex l n w (gm r₀ * liftSL _ (γ * Tm (topMu l n m N) b)) = ex l n w (gm r₀ * liftSL _ γ) := by
     have h00 := congrArg (fun g : SL(2, ZMod (topMu l n m N)) => g.1 0 0) hmap
-    simp only [Matrix.SpecialLinearGroup.map_apply_coe, RingHom.mapMatrix_apply, Matrix.map_apply, eq_intCast] at h00
+    simp only [Matrix.SpecialLinearGroup.map_apply_coe, Matrix.map_apply, eq_intCast] at h00
     have hd : l ^ n ∣ topMu l n m N := by
       unfold topMu
       exact Dvd.dvd.mul_right (pow_dvd_pow l (Nat.le_add_left n m)) _

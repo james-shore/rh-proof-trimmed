@@ -62,4 +62,4 @@ open GlobalTheory.ArcPull
 
 
 theorem _root_.GlobalTheory.T.pulledBack_uniformisationEndomorphism_comm_genericFibre : ∀ {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [IsDomain R'] {I : Ideal R} {I' : Ideal R'} (g : R →+* R') (hg : Function.Injective g) {D : DegData R I} {D' : DegData R' I'} {A : PolAV (Spec (CommRingCat.of (FractionRing R)))} {A' : PolAV (Spec (CommRingCat.of (FractionRing R')))} {G : Over (Spec (CommRingCat.of R))} [GrpObj G] [IsCommMonObj G] (U : UnifPre I D A G) (U' : UnifPre I' D' A' ((Over.pullback (specOf g)).obj G)) (gA : A'.A.left ⟶ A.A.left), IsGrpPullback A'.A A.A (spMap (fracMap hg)) gA → gA ≫ U.gen.inv.left ≫ pullback.fst G.hom (jK R) = U'.gen.inv.left ≫ pullback.fst ((Over.pullback (specOf g)).obj G).hom (jK R') ≫ pullback.fst G.hom (specOf g) → ∀ (E : EndU U) (E' : EndU U'), E'.aG = (Over.pullback (specOf g)).map E.aG → E'.aA.left ≫ gA = gA ≫ E.aA.left := by
-  first | exact @GlobalTheory.Poinc.AComm.pulled_end_comm | exact GlobalTheory.Poinc.AComm.pulled_end_comm | (intros; apply GlobalTheory.Poinc.AComm.pulled_end_comm <;> assumption)
+  first | exact @GlobalTheory.Poinc.AComm.pulled_end_comm

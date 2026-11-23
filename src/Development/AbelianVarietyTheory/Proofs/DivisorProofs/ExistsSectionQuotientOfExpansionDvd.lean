@@ -97,7 +97,6 @@ theorem exists_expT_of_dvd : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRi
       (fun _ => ((1 : ℕ) : ℤ))).IsLB := by
     first
     | exact ReciprocityTheory.ChartRestriction.G.DVR.linComb_isLB _ U.P.L.isLB _ _
-    | exact ReciprocityTheory.ChartRestriction.G.DVR.linComb_isLB _ _ _
   have hloc := GlobalTheory.T.germ_dvd_of_sectionExpansion_dvd_closedFibre R hB D A G U σ f g q hσ hfg
   have hall := GlobalTheory.T.lineBundle_section_dvd_everywhere_smooth_connected_fibres R _ (𝟙_ (Over (Sp R)) ⊗ G).hom hSm hGC _ he _ hLB σ q hq hloc
   have hflat : Flat (𝟙_ (Over (Sp R)) ⊗ G).hom := inferInstance

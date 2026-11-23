@@ -67,4 +67,4 @@ open GlobalTheory.LevelSeries
 
 
 theorem _root_.GlobalTheory.T.exists_field_element_local_components_level_number : ∀ (E : Type) [Field E] [NumberField E] (χ : Formalism.L2.Host.HChar E) (M₀ : ℕ) (u : Eˣ), (u : E) = ((M₀ : ℕ) : E) → ∀ (T : Finset (HeightOneSpectrum (𝓞 E))), ∃ a : Eˣ, IsIntegral ℤ (a : E) ∧ (∀ v ∈ T, χ.locK v a = χ.locK v u ∧ v.valuation E (a : E) = v.valuation E ((M₀ : ℕ) : E)) ∧ ∀ v : HeightOneSpectrum (𝓞 E), ((M₀ : ℕ) : 𝓞 E) ∈ v.asIdeal → v ∉ T → χ.locK v a = 1 ∧ v.valuation E (a : E) = 1 := by
-  first | exact @GlobalTheory.LevelFieldApprox.exists_approx | exact GlobalTheory.LevelFieldApprox.exists_approx | (intros; apply GlobalTheory.LevelFieldApprox.exists_approx <;> assumption)
+  first | exact @GlobalTheory.LevelFieldApprox.exists_approx

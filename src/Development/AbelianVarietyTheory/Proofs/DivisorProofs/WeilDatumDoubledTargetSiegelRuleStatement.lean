@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.weilDatum_doubledTarget_siegelRule : ∀ (F E : Ty
             (GlobalTheory.WeilSchrodinger.transD (cA σ) co) χS
             ((diagCols (Fin nT) : Matrix (Fin nT ⊕ Fin nT) (Fin nT) (AF F ⊗[F] E)).submatrix finSumFinEquiv.symm id)
             (omp.comp (MonoidHom.inl _ _)) := by
-  first | exact @GlobalTheory.WeilSchrodinger.DblTargetF.siegelRule_dblTarget | exact GlobalTheory.WeilSchrodinger.DblTargetF.siegelRule_dblTarget | (intros; apply GlobalTheory.WeilSchrodinger.DblTargetF.siegelRule_dblTarget <;> assumption)
+  first | exact @GlobalTheory.WeilSchrodinger.DblTargetF.siegelRule_dblTarget

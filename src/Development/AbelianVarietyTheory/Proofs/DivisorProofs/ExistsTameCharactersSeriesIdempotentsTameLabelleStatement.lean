@@ -52,4 +52,4 @@ open Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.
 open GlobalTheory.LiftRows
 
 theorem _root_.GlobalTheory.T.exists_tameCharacters_seriesIdempotentsTameLabelled : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Given R F → ∃ om, GlobalTheory.DimPartsCompare.TameTie D om := by
-  first | exact @GlobalTheory.TameTieOfGood.exists_tameTie_of_given | exact GlobalTheory.TameTieOfGood.exists_tameTie_of_given | (intros; apply GlobalTheory.TameTieOfGood.exists_tameTie_of_given <;> assumption)
+  first | exact @GlobalTheory.TameTieOfGood.exists_tameTie_of_given

@@ -52,4 +52,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.splitPlace_matrix_eq_of_agree_with_framedGL : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (p : SplitPt D k) (S : HSp D) (n : Type) [Fintype n] [DecidableEq n] (β : Frame p S n) (κ : GA D S) (g : GL n k), κ * (β.gl g)⁻¹ ∈ grpOff S (· = p.v) → (mt S κ).map p.pr = β.b * g.val * β.b' := by
-  first | exact @GlobalTheory.AdForm.OffPlace.map_pr_of_off | exact GlobalTheory.AdForm.OffPlace.map_pr_of_off | (intros; apply GlobalTheory.AdForm.OffPlace.map_pr_of_off <;> assumption)
+  first | exact @GlobalTheory.AdForm.OffPlace.map_pr_of_off

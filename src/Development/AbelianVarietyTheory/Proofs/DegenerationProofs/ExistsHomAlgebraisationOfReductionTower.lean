@@ -63,8 +63,8 @@ theorem step_comm {C : Type*} [Category C] {Y Y' B S S' T : C} {p : B ⟶ T} {t 
   have key : β ≫ hb'.isoPullback.hom
       = hb.isoPullback.hom ≫ pullback.map p t p t' (𝟙 _) τ (𝟙 _) e₁ e₂ := by
     apply pullback.hom_ext
-    · simp [h₁, pullback.map, pullback.lift_fst]
-    · simp [h₂, pullback.map, pullback.lift_snd]
+    · simp [h₁, pullback.map]
+    · simp [h₂, pullback.map]
   rw [Iso.eq_inv_comp, ← Category.assoc, ← key, Category.assoc, Iso.hom_inv_id_assoc, hc]
 
 theorem base_comm {C : Type*} [Category C] {Y B S T Z : C} {p : B ⟶ T} {t : S ⟶ T}

@@ -56,4 +56,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.reduced_finiteType_int_exists_finite_prod_normalDomains_nonzero_conductor : ∀ (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] [IsReduced R] [Nontrivial R], ∃ (n : ℕ) (D : Fin n → Type) (_ : ∀ i, CommRing (D i)) (_ : ∀ i, Algebra R (D i)), (∀ i, IsDomain (D i) ∧ IsIntegrallyClosed (D i) ∧ Module.Finite R (D i)) ∧ Function.Injective (algebraMap R (∀ i, D i)) ∧ ∃ a : R, a ≠ 0 ∧ ∀ r : (∀ i, D i), ∃ y : R, algebraMap R (∀ i, D i) y = algebraMap R (∀ i, D i) a * r := by
-  first | exact @GlobalTheory.ReducedNormalisation.exists_finiteIndex_prod_normalDomains | exact GlobalTheory.ReducedNormalisation.exists_finiteIndex_prod_normalDomains | (intros; apply GlobalTheory.ReducedNormalisation.exists_finiteIndex_prod_normalDomains <;> assumption)
+  first | exact @GlobalTheory.ReducedNormalisation.exists_finiteIndex_prod_normalDomains

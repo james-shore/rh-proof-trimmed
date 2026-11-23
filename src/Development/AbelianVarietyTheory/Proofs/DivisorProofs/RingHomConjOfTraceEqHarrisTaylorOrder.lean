@@ -79,9 +79,9 @@ theorem rep_conj_of_trace_eq : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (g : �
       ext τ i j
       simp only [Finset.sum_apply]
       rw [Finset.sum_eq_single τ]
-      · simp [Pi.single_apply, Matrix.scalar_apply, Matrix.diagonal_apply, Matrix.one_apply]
+      · simp [Matrix.scalar_apply, Matrix.diagonal_apply, Matrix.one_apply]
       · intro b _ hb
-        simp [Pi.single_apply, Ne.symm hb]
+        simp [Ne.symm hb]
       · simp
 
     rw [this, map_sum, Matrix.trace_sum]
@@ -101,7 +101,7 @@ theorem rep_conj_of_trace_eq : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (g : �
       have hφ' : φ (algebraMap (𝓞 D.F) D.O c) = fun τ => Matrix.scalar (Fin D.m) (τ (c : D.F)) := funext (hφ c)
       rw [← hσ, ← hσ', hφ', key, key] at h1
       simp only [Finset.sum_apply, Pi.smul_apply, Function.comp_apply, smul_eq_mul, Pi.zero_apply]
-      simp only [χ, MonoidHom.coe_coe, RingHom.coe_comp, Function.comp_apply, sub_mul, Finset.sum_sub_distrib]
+      simp only [χ, sub_mul, Finset.sum_sub_distrib]
       rw [sub_eq_zero]
       simpa [mul_comm] using h1)
     intro τ

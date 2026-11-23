@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.ArInt GlobalTheory.MixHt
 
 theorem _root_.GlobalTheory.T.arithHeight_projectionFormula_pointCurve : ∀ (k : Type) [CommRing k] (X Y : Scheme.{0}) (p : X ⟶ Sp k) (q : Y ⟶ Sp k) (D E : ℕ), IsArithVar p D → IsArithVar q E → ∀ (π : Y ⟶ X) (hπ : π ≫ p = q) (L : HermLB p) (h : X → ℝ) (h' : Y → ℝ), L.IsArithHeight h → (L.pull π hπ).IsArithHeight h' → ∀ y : Y, CharZero Γ(clo y, ⊤) → HasDim y 1 → h' y = (π.residueDegree y : ℝ) * h (π y) := by
-  first | exact @GlobalTheory.ProjCurve.main | exact GlobalTheory.ProjCurve.main | (intros; apply GlobalTheory.ProjCurve.main <;> assumption)
+  first | exact @GlobalTheory.ProjCurve.main

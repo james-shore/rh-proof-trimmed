@@ -102,7 +102,7 @@ theorem om_trans {r n : ℕ} (θr : GL (Fin r) k →* GL (Fin r) k) (θn : GL (F
   have hm : ((θn g)⁻¹ : GL (Fin n) k).val * x * (θr h).val = (h⁻¹.val * x.transpose * g.val).transpose := by
     rw [← map_inv, hn, hr, inv_inv, Matrix.transpose_mul, Matrix.transpose_mul, Matrix.transpose_transpose]
     simp only [Matrix.mul_assoc]
-  simp only [om, Function.comp_apply, map_one, MonoidHom.one_apply, Units.val_one, inv_one, one_mul,
+  simp only [om, Function.comp_apply, MonoidHom.one_apply, Units.val_one, inv_one, one_mul,
     Fintype.card_fin]
   rw [nabs_det_transInv θr hr, nabs_det_transInv θn hn, rpow_inv_half (nabs_pos' k _),
     rpow_inv_half (nabs_pos' k _), neg_neg, hm]

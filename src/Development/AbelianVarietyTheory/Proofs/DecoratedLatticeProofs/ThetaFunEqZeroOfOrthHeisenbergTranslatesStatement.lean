@@ -48,4 +48,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaFun_eq_zero_of_orth_heisenbergTranslates : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (S T : HSp D) (v : VolM D T.rank S.rank) (f g : WO S T → ℂ), IsThetaFunO ψ S T f → IsThetaFunO ψ S T g → g ≠ 0 → (∀ u : WO S T, thPair v.μ v.𝓕 f (heisO ψ S T u g) = 0) → f = 0 := by
-  first | exact @GlobalTheory.ThetaIrred.eq_zero_of_orth_heis | exact GlobalTheory.ThetaIrred.eq_zero_of_orth_heis | (intros; apply GlobalTheory.ThetaIrred.eq_zero_of_orth_heis <;> assumption)
+  first | exact @GlobalTheory.ThetaIrred.eq_zero_of_orth_heis

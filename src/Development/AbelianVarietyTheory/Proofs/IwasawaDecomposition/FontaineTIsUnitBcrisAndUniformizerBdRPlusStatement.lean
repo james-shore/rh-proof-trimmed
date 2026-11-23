@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.Me
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.fontaine_t_isUnit_bcris_and_uniformizer_bdRPlus : ∀ (l : ℕ) [Fact l.Prime], ∀ C : Core l, IsUnit (algebraMap (Per.Acris l) (Per.Bcris l) C.t) ∧ C.j C.t ∈ Per.FilP l 1 ∧ C.j C.t ∉ Per.FilP l 2 ∧ IsUnit (l : Per.Bcris l) := by
-  first | exact @GlobalTheory.MemLoc.core_t_unit_fil | exact GlobalTheory.MemLoc.core_t_unit_fil | (intros; apply GlobalTheory.MemLoc.core_t_unit_fil <;> assumption)
+  first | exact @GlobalTheory.MemLoc.core_t_unit_fil

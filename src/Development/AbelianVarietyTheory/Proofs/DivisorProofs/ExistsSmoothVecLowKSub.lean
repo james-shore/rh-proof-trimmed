@@ -253,11 +253,7 @@ theorem isKTypeOf_map {Λ : Fin n → ℝ} {S : Submodule ℂ H} (hS : IsKTypeOf
     (hL : ∀ k ∈ Formalism.REAL.Kset ε, ∀ w, σ k (L w) = L (σ k w)) {v : H} (hv : v ∈ S) (hLv : L v ≠ 0) :
     IsKTypeOf ε σ Λ (S.map L) := by
   first
-  | exact @_root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map
-  | exact _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map
   | (apply _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map <;> assumption)
-  | (intros; apply _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map ..)
 
 theorem exists_smoothVec_lowKSub {lam : Fin n → ℝ} (hσ : IsDS ε lam σ) {P G : Matrix (Fin n) (Fin n) ℂ}

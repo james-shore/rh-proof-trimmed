@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain Polynomial GlobalTheory.QNorm GlobalTheory.CNo
 open scoped WithZero TensorProduct
 
 theorem _root_.GlobalTheory.T.np_of_finrank_two' : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E], Module.finrank F E = 2 → NP F E := by
-  first | exact @GlobalTheory.CNorm.np_of_finrank_two | exact GlobalTheory.CNorm.np_of_finrank_two | (intros; apply GlobalTheory.CNorm.np_of_finrank_two <;> assumption)
+  first | exact @GlobalTheory.CNorm.np_of_finrank_two

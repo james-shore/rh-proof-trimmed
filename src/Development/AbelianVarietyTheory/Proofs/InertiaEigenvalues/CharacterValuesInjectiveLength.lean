@@ -99,7 +99,7 @@ theorem blockPol_map {B : Type} [CommRing B] (f : A →+* B) (e M : Matrix (Fin 
   rw [← Polynomial.coe_mapRingHom, RingHom.map_det]
   congr 1
   ext a b : 2
-  by_cases h : a = b <;> simp [h, Matrix.one_apply]
+  by_cases h : a = b <;> simp [h]
 
 theorem overK_apply {k : ℕ} (σ : Γ →* GL (Fin k) A) (g : Γ) (u : Fin k → FractionRing A) :
     overK σ g u = ((mat σ g).map (toFr A)).mulVec u := rfl
@@ -114,7 +114,7 @@ theorem blockPol_coeff_mem {T : Subalgebra A (X → A)} {rep : X → (Γ →* GL
   apply congrArg (fun p : Polynomial A => p.coeff j)
   apply congrArg Matrix.det
   ext a b : 2
-  by_cases h : a = b <;> simp [h, Matrix.one_apply] <;> abel
+  by_cases h : a = b <;> simp [h] <;> abel
 
 theorem rank_const [IsDomain A] [IsLocalRing A] {T : Subalgebra A (X → A)}
     {rep : X → (Γ →* GL (Fin n) A)} (hl : IsLocalRing T)
@@ -128,7 +128,7 @@ theorem rank_const [IsDomain A] [IsLocalRing A] {T : Subalgebra A (X → A)}
   apply congrArg (fun p : Polynomial A => p.coeff j)
   apply congrArg Matrix.det
   ext a b : 2
-  by_cases h : a = b <;> simp [h, Matrix.one_apply]
+  by_cases h : a = b <;> simp [h]
 
 theorem corner_act {K : Type} [Field K] (e : (Fin n → K) ≃ₗ[K] ((Fin r → K) × (Fin t → K)))
     {E G : Matrix (Fin n) (Fin n) K} {P : Matrix (Fin r) (Fin r) K} {d : Fin t → K}
@@ -227,7 +227,7 @@ theorem charPolyIn_map {T : Subalgebra A (X → A)} {T' : Subalgebra B (X → B)
   rw [← Polynomial.coe_mapRingHom, RingHom.map_det]
   congr 1
   ext a b : 2
-  by_cases hab : a = b <;> simp [hab, Matrix.one_apply, mat, mapRep]
+  by_cases hab : a = b <;> simp [hab, mat, mapRep]
 
 theorem span_top_map {ρ : Γ →* GL (Fin r) A} (h : Submodule.span A (Set.range (mat ρ)) = ⊤) :
     Submodule.span B (Set.range (mat (mapRep (algebraMap A B) ρ))) = ⊤ :=

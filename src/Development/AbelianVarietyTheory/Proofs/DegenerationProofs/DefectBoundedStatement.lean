@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.exists_defect_bound_of_smooth_away : ∀ (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] (π : R), Irreducible π → ∀ (B : Type) [CommRing B] [Algebra R B] [Algebra.FiniteType R B], Algebra.Smooth R (Localization.Away (algebraMap R B π)) → ∃ c : ℕ, ∀ (R' : Type) [CommRing R'] [IsDomain R'] [Algebra R R'] (a : B →ₐ[R] R'), Defect a π c := by
-  first | exact @GlobalTheory.SS.defect_bounded | exact GlobalTheory.SS.defect_bounded | (intros; apply GlobalTheory.SS.defect_bounded <;> assumption)
+  first | exact @GlobalTheory.SS.defect_bounded

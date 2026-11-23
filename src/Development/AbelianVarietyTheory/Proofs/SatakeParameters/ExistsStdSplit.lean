@@ -65,7 +65,7 @@ theorem exists_std_split {E : Type} [Field E] [NumberField E] [StarRing E] {n : 
     (hST : GlobalTheory.IndefiniteRowSideFullHecke.StandardDeterminantUnit.SplitNonConj ST) {N : Submodule (𝓞 E) (Sp E n)} (hN : IsSdLat N) :
     ∃ γ : UF E n, ∀ P ∈ ST, localization₂ P.asIdeal (gmap γ.1 N) = stdAt E n P ∧
       localization₂ (conjPrime₂ P).asIdeal (gmap γ.1 N) = stdAt E n (conjPrime₂ P) := by
-  obtain ⟨g, hg, hc⟩ := exists_unitary_carries hST (by first | exact hN | exact hN.1)
+  obtain ⟨g, hg, hc⟩ := exists_unitary_carries hST (by first | exact hN)
   let f : Sp E n ≃ₗ[E] Sp E n := Matrix.toLin'OfInv (M := gᴴ) (M' := g) hg (mul_eq_one_comm.1 hg)
   have hf : ∀ x, f x = g *ᵥ x := fun x => rfl
   have hU : f ∈ UF E n := by

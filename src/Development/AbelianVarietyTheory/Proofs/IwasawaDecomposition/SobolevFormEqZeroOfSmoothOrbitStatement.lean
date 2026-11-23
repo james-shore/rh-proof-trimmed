@@ -45,4 +45,4 @@ open scoped TensorProduct ContDiff InnerProductSpace Topology
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.sobolevForm_eq_zero_of_smooth_orbit : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (P G : Matrix (Fin n) (Fin n) ℂ), IsUnit P → Pᴴ * Formalism.REAL.Jm ε * P = G → IsURepOn (UJset ε) σ → IsIrredOn (UJset ε) σ → ∀ ℓ : H →ₗ[ℂ] ℂ, Sobolev₂ (lieG G) (trRep σ P) ℓ → ∀ v ∈ smSub G (trRep σ P), v ≠ 0 → (∀ g ∈ UJset ε, ℓ (σ g v) = 0) → ∀ w ∈ smSub G (trRep σ P), ℓ w = 0 := by
-  first | exact @GlobalTheory.SmVec.sobCont_eq_zero_of_orbit | exact GlobalTheory.SmVec.sobCont_eq_zero_of_orbit | (intros; apply GlobalTheory.SmVec.sobCont_eq_zero_of_orbit <;> assumption)
+  first | exact @GlobalTheory.SmVec.sobCont_eq_zero_of_orbit

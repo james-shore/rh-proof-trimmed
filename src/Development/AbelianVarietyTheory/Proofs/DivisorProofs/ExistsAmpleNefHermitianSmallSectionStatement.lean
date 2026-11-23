@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr
 
 theorem _root_.GlobalTheory.T.exists_ample_nef_hermitian_smallSection : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∃ A : HermLB p, IsAmpleLB A.B ∧ A.IsNef D ∧ ∃ s ∈ A.smallSec, s ≠ 0 := by
-  first | exact @GlobalTheory.AmpleNefSmall.exists_ample_nef_smallSec | exact GlobalTheory.AmpleNefSmall.exists_ample_nef_smallSec | (intros; apply GlobalTheory.AmpleNefSmall.exists_ample_nef_smallSec <;> assumption)
+  first | exact @GlobalTheory.AmpleNefSmall.exists_ample_nef_smallSec

@@ -46,4 +46,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.kernelSite_modelStageWeights_eq_chainWeights : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ∀ j < D.R.m, Nonempty (Lv.comp (j + 1)) → WtOK (sysS H X std) D (hT.gat_pos u w hg) u μ j) := by
-  first | exact @GlobalTheory.TwV.DelA.wtOK_sites | exact GlobalTheory.TwV.DelA.wtOK_sites | (intros; apply GlobalTheory.TwV.DelA.wtOK_sites <;> assumption)
+  first | exact @GlobalTheory.TwV.DelA.wtOK_sites

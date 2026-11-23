@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.ringHom_isPushout_of_pi_components : ∀ {A P A' P
       (CommRingCat.ofHom (kk i)) (CommRingCat.ofHom (hh i))) →
     CategoryTheory.IsPushout (CommRingCat.ofHom f) (CommRingCat.ofHom k) (CommRingCat.ofHom k')
       (CommRingCat.ofHom h') := by
-  first | exact @GlobalTheory.isPushout_of_pi_components | exact GlobalTheory.isPushout_of_pi_components | (intros; apply GlobalTheory.isPushout_of_pi_components <;> assumption)
+  first | exact @GlobalTheory.isPushout_of_pi_components

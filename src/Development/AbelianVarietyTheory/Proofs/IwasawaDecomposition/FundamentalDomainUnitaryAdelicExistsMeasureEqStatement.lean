@@ -49,4 +49,4 @@ open Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVo
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.fundamentalDomain_unitaryAdelic_exists_measure_eq : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (M : ℕ) (J : Matrix (Fin M) (Fin M) E) (μ : Measure (HA (AF F) σ J)), μ.IsHaarMeasure → (∃ 𝓕, IsFundamentalDomain (HFinIn (AF F) σ J) 𝓕 μ) ∧ ∀ 𝓕 𝓕', IsFundamentalDomain (HFinIn (AF F) σ J) 𝓕 μ → IsFundamentalDomain (HFinIn (AF F) σ J) 𝓕' μ → μ 𝓕 = μ 𝓕' ∧ μ 𝓕 ≠ 0 := by
-  first | exact @GlobalTheory.Mem.Vol.fundamentalDomain_adelicUnitary | exact GlobalTheory.Mem.Vol.fundamentalDomain_adelicUnitary | (intros; apply GlobalTheory.Mem.Vol.fundamentalDomain_adelicUnitary <;> assumption)
+  first | exact @GlobalTheory.Mem.Vol.fundamentalDomain_adelicUnitary

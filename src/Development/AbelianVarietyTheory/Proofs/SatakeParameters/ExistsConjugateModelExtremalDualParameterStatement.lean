@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_conjugateModel_extremal_dual_parameter : �
       ∃ u ∈ Submodule.span ℂ {v : M | ∃ y : Matrix (Fin n') (Fin n) L, GlobalTheory.Hk3.HoweDuality.latIdx y < GlobalTheory.Hk3.HoweDuality.latIdx x ∧ v = ρ y s},
         v - u ∈ Submodule.span ℂ {v : M | ∃ h : Formalism.UG.UJ σ (JT : Matrix (Fin n') (Fin n') L), (h : GL (Fin n') L) ∈ Formalism.UG.GLint (Fin n') (Formalism.UG.intL L) ∧
           v = ρ (((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) s} ∧ v - u ≠ 0 := by
-  first | exact @GlobalTheory.Hk3.HoweG.gramClass_orbit_mod_lower | exact GlobalTheory.Hk3.HoweG.gramClass_orbit_mod_lower | (intros; apply GlobalTheory.Hk3.HoweG.gramClass_orbit_mod_lower <;> assumption)
+  first | exact @GlobalTheory.Hk3.HoweG.gramClass_orbit_mod_lower

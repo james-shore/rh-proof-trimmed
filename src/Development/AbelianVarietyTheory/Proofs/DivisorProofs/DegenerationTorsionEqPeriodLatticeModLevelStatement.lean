@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.MBLow.Cl Matrix
 
 theorem _root_.GlobalTheory.T.degenerationTorsion_eq_periodLattice_mod_level : AllCD fun {N} {g'} {r} {g} {bX} d σ => ∀ k : ℕ, 0 < k → (∀ p, ∃ M Nn, d.Rep σ k M Nn p) ∧ (∀ M Nn, ∃! p, d.Rep σ k M Nn p) ∧ (∀ M Nn M' Nn' p p', d.Rep σ k M Nn p → d.Rep σ k M' Nn' p' → d.Rep σ k (M + M') (Nn + Nn') (p * p')) ∧ ∀ M Nn M' Nn' p p', d.Rep σ k M Nn p → d.Rep σ k M' Nn' p' → (N.QEq p p' ↔ ∃ M₁ N₁, M' = M + (k : ℤ) • M₁ ∧ Nn' = Nn + (k : ℤ) • N₁) := by
-  first | exact @GlobalTheory.MBLow.Cl.torsion_eq_periods_mod | exact GlobalTheory.MBLow.Cl.torsion_eq_periods_mod | (intros; apply GlobalTheory.MBLow.Cl.torsion_eq_periods_mod <;> assumption)
+  first | exact @GlobalTheory.MBLow.Cl.torsion_eq_periods_mod

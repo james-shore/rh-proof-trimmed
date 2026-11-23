@@ -68,13 +68,11 @@ theorem cube_of_two_identities_holds : CubeOfTwoIdentities := by
 
 theorem phGramG_holds : PhGramG := by
   first
-  | exact phase_gram'
   | (intro p _ g; intros; apply phase_gram' <;> first | exact fglData g ‹_› | assumption)
   | (unfold PhGramG; done)
 
 theorem gramUnitEq_holds : GramUnitEq := by
   first
-  | exact gramExpansion_orthonormal
   | (intro p _ g; intros; apply gramExpansion_orthonormal <;> first | exact fglData g ‹_› | assumption)
   | (unfold GramUnitEq; done)
 

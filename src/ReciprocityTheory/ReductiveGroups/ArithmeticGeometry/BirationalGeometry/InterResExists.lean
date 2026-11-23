@@ -124,8 +124,8 @@ theorem resExists_of_projLogRes (hL : ReciprocityTheory.AnForm.R.ProjLogResC) (h
       obtain ⟨k0, i0⟩ := v
       by_cases hk : k = k0
       · subst hk
-        simp [Finsupp.single_apply, Sigma.mk.inj_iff]
-      · simp [Finsupp.single_apply, Sigma.mk.inj_iff, Ne.symm hk, hk]
+        simp [Finsupp.single_apply]
+      · simp [hk]
     refine ⟨fun m hm k => ?_, fun hne => ?_⟩
     · have := key m hm k
       beta_reduce

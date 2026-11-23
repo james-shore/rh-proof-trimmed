@@ -41,4 +41,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.adelicThetaSeriesComparison_indep_scalars_errors : ∀ (D : D7) (nch : NChoice D) (s : Side D nch) kap lam err, Nonempty (GlobalTheory.SeriesTie.ExportTie s.YS s.v₀) → Nonempty (GlobalTheory.SeriesTie.ExportTie (s.upd kap lam err).YS (s.upd kap lam err).v₀) := by
-  first | exact @GlobalTheory.PlugPt.Side.exportTie_upd | exact GlobalTheory.PlugPt.Side.exportTie_upd | (intros; apply GlobalTheory.PlugPt.Side.exportTie_upd <;> assumption)
+  first | exact @GlobalTheory.PlugPt.Side.exportTie_upd

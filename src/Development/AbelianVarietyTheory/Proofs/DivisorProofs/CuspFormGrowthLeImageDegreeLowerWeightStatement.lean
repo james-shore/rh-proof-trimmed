@@ -45,4 +45,4 @@ open NumberField GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.DegCmp Glob
 open scoped ENNReal NNReal
 
 theorem _root_.GlobalTheory.T.cuspFormGrowth_le_imageDegree_lowerWeight : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r), UnfAll U → ∀ (Z : Comp Xo c) (G G' : WTZ E), Even G.2 → Even G'.2 → growthOn U Z G ≠ ⊤ → BirOn U Z G → ValMult U Z G G' → growthOn U Z G' ≤ (compDeg U Z G : ℝ≥0∞) := by
-  first | exact @GlobalTheory.DegVal.growthOn_le_compDeg | exact GlobalTheory.DegVal.growthOn_le_compDeg | (intros; apply GlobalTheory.DegVal.growthOn_le_compDeg <;> assumption)
+  first | exact @GlobalTheory.DegVal.growthOn_le_compDeg

@@ -137,12 +137,12 @@ theorem main : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C]
   have hEq : h = comb a e0 := sub_eq_zero.1 hs'.symm
   rw [hEq]
 
-  simp only [lin, comb, Fintype.sum_sum_type, map_add (f := _), map_sum, coeff_smul, smul_eq_mul]
+  simp only [lin, comb, Fintype.sum_sum_type, map_add (f := _), map_sum, coeff_smul]
   have h2 : ∀ j, algebraMap O C (a (Sum.inr j)) * coeff (Finsupp.single i 1) (e0 (Sum.inr j)) = 0 :=
     fun j => by rw [hinr j, map_zero, zero_mul]
   have h1 : ∀ i', coeff (Finsupp.single i 1) (e0 (Sum.inl i')) = (Pi.single i' (1 : C) : Fin d → C) i :=
     fun i' => congrFun (hA i').2 i
   simp only [h2, h1, Finset.sum_const_zero, add_zero, Pi.single_apply, mul_ite, mul_one, mul_zero,
-    Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    Finset.sum_ite_eq, Finset.mem_univ, if_true]
 
 end GlobalTheory.QLog.RedO

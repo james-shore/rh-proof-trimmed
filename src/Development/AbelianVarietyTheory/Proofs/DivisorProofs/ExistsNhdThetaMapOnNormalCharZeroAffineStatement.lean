@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_nhd_thetaMap_on_normal_charZero_affine : �
     (∀ (R : Type) [CommRing R] (x : Sp R ⟶ X), PolFib G L g (x ≫ q)) →
     ∀ (U : X.affineOpens), IsDomain Γ(X, U) → IsNoetherianRing Γ(X, U) → IsIntegrallyClosed Γ(X, U) → CharZero Γ(X, U) →
     ∀ x ∈ (U : X.Opens), ∃ (W : X.Opens) (h : W.toScheme ⟶ PSpace o n), x ∈ W ∧ h ≫ PSpace.str o n = W.ι ≫ s ∧ ThMap G L ρ m (W.ι ≫ q) h := by
-  first | exact @GlobalTheory.UMin.exists_nbhd_thetaMap | exact GlobalTheory.UMin.exists_nbhd_thetaMap | (intros; apply GlobalTheory.UMin.exists_nbhd_thetaMap <;> assumption)
+  first | exact @GlobalTheory.UMin.exists_nbhd_thetaMap

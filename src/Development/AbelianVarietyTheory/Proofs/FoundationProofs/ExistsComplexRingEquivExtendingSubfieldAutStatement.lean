@@ -54,4 +54,4 @@ open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.exists_complex_ringEquiv_extending_subfield_aut : ∀ (Ω : Type) [Field Ω] (ε : Ω →+* ℂ) (s : Ω ≃+* Ω), ∃ g : ℂ ≃+* ℂ, ∀ x, g (ε x) = ε (s x) := by
-  first | exact @GlobalTheory.FN.exists_ringEquiv_extend_of_embedding | exact GlobalTheory.FN.exists_ringEquiv_extend_of_embedding | (intros; apply GlobalTheory.FN.exists_ringEquiv_extend_of_embedding <;> assumption)
+  first | exact @GlobalTheory.FN.exists_ringEquiv_extend_of_embedding

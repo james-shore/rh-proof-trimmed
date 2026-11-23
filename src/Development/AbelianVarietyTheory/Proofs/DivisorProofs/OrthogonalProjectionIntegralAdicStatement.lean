@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.orthogonal_projection_integral_adic : ∀ (E : Typ
     (∀ x ∈ V, e *ᵥ x = x) → (∀ x ∈ V, ∀ y, ∑ k, σ (x k) * (y - e *ᵥ y) k = 0) →
     ∃ (s : ℕ) (f : Module.Basis (Fin s) (w.adicCompletion E) V),
       Valued.v (Matrix.of fun i j => ∑ k, σ ((f i : Fin n → w.adicCompletion E) k) * (f j : Fin n → w.adicCompletion E) k).det = 1 := by
-  first | exact @GlobalTheory.IdempotentUnimodular.main | exact GlobalTheory.IdempotentUnimodular.main | (intros; apply GlobalTheory.IdempotentUnimodular.main <;> assumption)
+  first | exact @GlobalTheory.IdempotentUnimodular.main

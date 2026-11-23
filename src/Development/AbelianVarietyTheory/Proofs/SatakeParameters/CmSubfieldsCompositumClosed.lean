@@ -79,11 +79,7 @@ open ComplexEmbedding InfinitePlace IntermediateField
 theorem isCMField_of_forall_isConj (K : Type) [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K]
     {σ : K ≃ₐ[ℚ] K} (hσ : ∀ φ : K →+* ℂ, IsConj φ σ) : IsCMField K := by
   first
-  | exact @_root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj
-  | exact _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj
   | (apply _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj ..)
 
 end Crit

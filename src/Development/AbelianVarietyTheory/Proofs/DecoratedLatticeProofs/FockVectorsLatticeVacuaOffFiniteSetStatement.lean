@@ -52,4 +52,4 @@ open Formalism.MainNotions.SchurIrreducible (IsSplit)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.fock_vectors_lattice_vacua_off_finite_set : ∀ D : D7, ForStep D fun c _ s s' p => ∀ φ, ∀ v ∉ c.S, VacFin c.ψ s.V s'.V v (p.pt φ) := by
-  first | exact @GlobalTheory.ChainOnto.fock_vacFin_off | exact GlobalTheory.ChainOnto.fock_vacFin_off | (intros; apply GlobalTheory.ChainOnto.fock_vacFin_off <;> assumption)
+  first | exact @GlobalTheory.ChainOnto.fock_vacFin_off

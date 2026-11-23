@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_ringEquiv_powerSeries_prescribed_parameters : ∀ (R : Type) [CommRing R] [IsRegularLocalRing R], IsAdicComplete (maximalIdeal R) R → Nonempty (ℚ →+* R) → ∀ (m : ℕ) (t : Fin m → R), (∀ i, t i ∈ maximalIdeal R) → (∀ a : Fin m → R, ∑ i, a i * t i ∈ maximalIdeal R ^ 2 → ∀ i, a i ∈ maximalIdeal R) → ∃ (k : Type) (_ : Field k) (e : ℕ) (σ : R ≃+* ChartRing k m e), ∀ i, σ (t i) = bdParam k m e i := by
-  first | exact @GlobalTheory.CohenChart.exists_ringEquiv_chartRing | exact GlobalTheory.CohenChart.exists_ringEquiv_chartRing | (intros; apply GlobalTheory.CohenChart.exists_ringEquiv_chartRing <;> assumption)
+  first | exact @GlobalTheory.CohenChart.exists_ringEquiv_chartRing

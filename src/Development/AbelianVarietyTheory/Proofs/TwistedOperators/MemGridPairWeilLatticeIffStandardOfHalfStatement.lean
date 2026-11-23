@@ -50,4 +50,4 @@ open GlobalTheory.RowEx
 
 
 theorem _root_.GlobalTheory.T.mem_gridPairWeilLattice_iff_standard_of_half : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} {G : GridData L sc} {W : G.Weil} (S : GridChoice W Set.univ) (t : T) (p : Pair T), DefPair D.R.m p → ∀ (e : AE D), IsIdemSum e (locPl G t) → ∀ x : WO (G.pS p) (G.pT p), IsHalf e x → (x ∈ pairLat G p ↔ x ∈ latO (G.pS p) (G.pT p) (S.N.latS p : Set (Fin (G.pS p).rank → D.host.E)) (S.N.latT p : Set (Fin (G.pT p).rank → D.host.E)) fun _ => True) := by
-  first | exact @GlobalTheory.StdHalfLat.mem_pairLat_iff_std | exact GlobalTheory.StdHalfLat.mem_pairLat_iff_std | (intros; apply GlobalTheory.StdHalfLat.mem_pairLat_iff_std <;> assumption)
+  first | exact @GlobalTheory.StdHalfLat.mem_pairLat_iff_std

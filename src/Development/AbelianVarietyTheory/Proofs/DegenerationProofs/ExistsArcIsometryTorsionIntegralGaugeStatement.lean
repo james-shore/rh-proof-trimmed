@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex
 
 theorem _root_.GlobalTheory.T.exists_arcIsometry_torsion_integralGauge : Laws → BrGtSt → AllA fun {_} _ _ _ {_} {_} {_} {_} {_} {_} _ {O'} _ _ {_} a => ∀ (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing O') F] (S : ValuationSubring F), (∀ r : O', algebraMap (FractionRing O') F (algebraMap O' _ r) ∈ S) → ∃ A : Lift a F, A.ν.Integral S := by
-  first | exact @GlobalTheory.Ex.ArcLift.exists_lift | exact GlobalTheory.Ex.ArcLift.exists_lift | (intros; apply GlobalTheory.Ex.ArcLift.exists_lift <;> assumption)
+  first | exact @GlobalTheory.Ex.ArcLift.exists_lift

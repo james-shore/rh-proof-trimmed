@@ -210,7 +210,7 @@ lemma wZeta_scale (z : ℂ) : wZeta (scalePair L c hc) (c * z) = c⁻¹ * wZeta 
   have hc2 : c * (c ^ 2)⁻¹ = c⁻¹ := by
     rw [pow_two, mul_inv, ← mul_assoc, mul_inv_cancel₀ hc, one_mul]
   rw [e]
-  simp only [one_div, mul_inv, div_eq_mul_inv, mul_pow]
+  simp only [mul_inv, div_eq_mul_inv, mul_pow]
   linear_combination (z * ((l : ℂ) ^ 2)⁻¹) * hc2
 
 omit L in

@@ -259,14 +259,8 @@ theorem exists_res_eqOn_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* Padi
   have hint : IsIntegral F α := IsIntegral.of_finite F α
   have htop : Algebra.adjoin F {α} = ⊤ := by
     first
-    | rw [← IntermediateField.adjoin_simple_toSubalgebra_of_isIntegral hint, hα,
-        IntermediateField.top_toSubalgebra]
     | rw [← IntermediateField.adjoin_simple_toSubalgebra_of_isAlgebraic hint.isAlgebraic, hα,
         IntermediateField.top_toSubalgebra]
-    | rw [← IntermediateField.adjoin_toSubalgebra_of_isAlgebraic (S := {α})
-        (fun _ _ => Algebra.IsAlgebraic.isAlgebraic _), hα, IntermediateField.top_toSubalgebra]
-    | rw [← IntermediateField.adjoin_algebraic_toSubalgebra (S := {α})
-        (fun _ _ => Algebra.IsAlgebraic.isAlgebraic _), hα, IntermediateField.top_toSubalgebra]
   have key : ((res ι σ).toAlgHom.comp E.val : E →ₐ[F] Ω) = τ.toAlgHom.comp E.val := by
     apply AlgHom.ext_of_adjoin_eq_top htop
     intro z hz

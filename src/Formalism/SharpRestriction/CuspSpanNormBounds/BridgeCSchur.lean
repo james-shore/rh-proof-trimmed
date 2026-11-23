@@ -214,10 +214,7 @@ theorem SqRep.memLp' (h : SqRep μ ρ) (v w : H) : MemLp (fun g => ⟪ρ g v, w�
     exact (star_inner_lemma_2 w (ρ g v)).symm
   rw [e]
   first
-  | exact (h.sq v w).congr_norm (h.sq v w).1.star (ae_of_all _ fun g => (norm_star _).symm)
   | exact (h.sq v w).star
-  | exact (h.sq v w).congr_norm (continuous_star.comp_aestronglyMeasurable (h.sq v w).1)
-      (ae_of_all _ fun g => (norm_star _).symm)
 
 def Tlin (h : SqRep μ ρ) (v : H) : H →ₗ[ℂ] Lp ℂ 2 μ where
   toFun w := (h.memLp' v w).toLp _
@@ -225,12 +222,12 @@ def Tlin (h : SqRep μ ρ) (v : H) : H →ₗ[ℂ] Lp ℂ 2 μ where
     rw [← MemLp.toLp_add]
     congr 1
     funext g
-    simp [inner_add_right]
+    simp
   map_smul' c w := by
     rw [RingHom.id_apply, ← MemLp.toLp_const_smul]
     congr 1
     funext g
-    simp [inner_smul_right]
+    simp
 
 theorem Tlin_coe (h : SqRep μ ρ) (v w : H) : (Tlin h v w : G → ℂ) =ᵐ[μ] fun g => ⟪ρ g v, w⟫_ℂ := by
   first
@@ -570,8 +567,6 @@ instance instInvInvMuG : (Formalism.REAL.muG ε).IsInvInvariant :=
 theorem continuous_umat : Continuous (fun g : Formalism.REAL.UJ ε => umat g) := by
   first
   | exact Units.continuous_val.comp continuous_subtype_val
-  | fun_prop
-  | continuity
 
 theorem umat_mem (g : Formalism.REAL.UJ ε) : umat g ∈ UJset ε := by
   first
@@ -633,11 +628,9 @@ theorem schur_UJ [CompleteSpace H] (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[
   haveI : (Formalism.REAL.muG ε).IsMulLeftInvariant := by
     first
     | infer_instance
-    | (unfold Formalism.REAL.muG; infer_instance)
   haveI : (Formalism.REAL.muG ε).IsOpenPosMeasure := by
     first
     | infer_instance
-    | (unfold Formalism.REAL.muG; infer_instance)
   obtain ⟨d, hd, hrel⟩ := schur_orth (μ := Formalism.REAL.muG ε) (sqRep_of hU hS) (irr_of hI)
   exact ⟨d, hd, hrel⟩
 

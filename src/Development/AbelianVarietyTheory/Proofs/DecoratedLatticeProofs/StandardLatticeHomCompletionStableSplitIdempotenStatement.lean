@@ -46,4 +46,4 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum MeasureTheory Matrix ValuativeRel GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SplitWeil GlobalTheory.SeeSaw GlobalTheory.AdForm GlobalTheory.LocMod
 
 theorem _root_.GlobalTheory.T.standardLatticeHomCompletion_stable_splitIdempotent : ∀ (D : D7) (S T : HSp D) (a : AE D), IsSplitIdem D a → ∀ u ∈ stdHom S T, u.map (fun x => a * x) ∈ stdHom S T := by
-  first | exact @GlobalTheory.AdForm.stdHom_map_splitIdem | exact GlobalTheory.AdForm.stdHom_map_splitIdem | (intros; apply GlobalTheory.AdForm.stdHom_map_splitIdem <;> assumption)
+  first | exact @GlobalTheory.AdForm.stdHom_map_splitIdem

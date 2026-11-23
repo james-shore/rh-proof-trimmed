@@ -49,4 +49,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.chainLevelIntegralRealZeta_of_twisted_transform_laws : ∀ D : D7, LevelLawQ D → LevInt D := by
-  first | exact @GlobalTheory.ChainTw.LevIntProof.levInt | exact GlobalTheory.ChainTw.LevIntProof.levInt | (intros; apply GlobalTheory.ChainTw.LevIntProof.levInt <;> assumption)
+  first | exact @GlobalTheory.ChainTw.LevIntProof.levInt

@@ -52,4 +52,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.irreducibleUnitaryRep_eq_finiteSmoothPart_tensor_discreteSeries : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] (π : GA D V →* (H →L[ℂ] H)), IsIrrUnitary π → HasDSComp M π → ∀ hU : IsSubrep π ⊤, IsCopyFinDS (finPartDSSm M hU) M π ⊤ := by
-  first | exact @GlobalTheory.TrCopy.isCopyFinDS_finPartDSSm | exact GlobalTheory.TrCopy.isCopyFinDS_finPartDSSm | (intros; apply GlobalTheory.TrCopy.isCopyFinDS_finPartDSSm <;> assumption)
+  first | exact @GlobalTheory.TrCopy.isCopyFinDS_finPartDSSm

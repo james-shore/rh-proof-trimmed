@@ -44,4 +44,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.galoisLattice_sub_mem_pow_smul_eventually : ∀ (l : ℕ) [Fact l.Prime] (LL : FinExt l) (T : QLat LL) (t : T.V), t ∈ T.L.T → ∀ m : ℕ, ∀ᶠ g in nhds (1 : Gl l), ∃ t' ∈ T.L.T, T.ρ g t - t = ((l : ↥LL.1) ^ m) • t' := by
-  first | exact @GlobalTheory.BKGal.ContNear.sub_mem_pow_smul_lattice_eventually | exact GlobalTheory.BKGal.ContNear.sub_mem_pow_smul_lattice_eventually | (intros; apply GlobalTheory.BKGal.ContNear.sub_mem_pow_smul_lattice_eventually <;> assumption)
+  first | exact @GlobalTheory.BKGal.ContNear.sub_mem_pow_smul_lattice_eventually

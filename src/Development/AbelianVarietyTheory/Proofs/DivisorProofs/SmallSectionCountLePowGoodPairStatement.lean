@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr
 
 theorem _root_.GlobalTheory.T.smallSectionCount_le_pow_goodPair : GlobalTheory.Published.ArithHilbertSamuel → GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ (P : Pair p), ∀ (b : ℕ) (s t : X.functionField), P.Good D b s t → ∃ C : ℝ, ∀ᶠ N : ℕ in atTop, P.lc N 0 (Real.exp (3 * N)) ≤ C * (N : ℝ) ^ (D + 1) := by
-  first | exact @GlobalTheory.VolBr.crude_upper_lc | exact GlobalTheory.VolBr.crude_upper_lc | (intros; apply GlobalTheory.VolBr.crude_upper_lc <;> assumption)
+  first | exact @GlobalTheory.VolBr.crude_upper_lc

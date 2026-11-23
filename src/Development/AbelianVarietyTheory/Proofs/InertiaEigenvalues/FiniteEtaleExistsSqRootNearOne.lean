@@ -86,7 +86,7 @@ theorem exists_sq_eq_inv_near_one : ∀ (F E : Type) [NontriviallyNormedField F]
     (((2 : F) • ContinuousLinearMap.fst F V V).prod (ContinuousLinearMap.fst F V V + ContinuousLinearMap.snd F V V))
     (((2 : F)⁻¹ • ContinuousLinearMap.fst F V V).prod (ContinuousLinearMap.snd F V V - (2 : F)⁻¹ • ContinuousLinearMap.fst F V V))
     (by intro p; ext1 <;> simp [smul_smul, h2])
-    (by intro p; ext1 <;> simp [smul_smul, h2] <;> abel)
+    (by intro p; ext1 <;> simp [smul_smul, h2])
   have hd1 : HasStrictFDerivAt (fun p : V × V => B p.1 p.1)
       ((B p0.1).comp (ContinuousLinearMap.fst F V V) + ((B.comp (ContinuousLinearMap.fst F V V))).flip p0.1) p0 := by
     have := ((B.comp (ContinuousLinearMap.fst F V V))).hasStrictFDerivAt (x := p0)

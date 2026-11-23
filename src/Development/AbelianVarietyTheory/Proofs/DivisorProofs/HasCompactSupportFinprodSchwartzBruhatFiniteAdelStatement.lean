@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.hasCompactSupport_finprod_schwartzBruhat_finiteAde
     (φ : ∀ v : IsDedekindDomain.HeightOneSpectrum (𝓞 F), (κ → Fv F v) → ℂ), (∀ v, φ v ∈ GlobalTheory.WeilM.SB _) →
     (∀ᶠ v in Filter.cofinite, φ v = Set.indicator {x | ∀ i, x i ∈ v.adicCompletionIntegers F} 1) →
     HasCompactSupport (fun y : κ → FiniteAdeleRing (𝓞 F) F => ∏ᶠ v, φ v fun i => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.evalV F v (y i)) := by
-  first | exact @GlobalTheory.AdelicCoordSupport.hasCompactSupport_finprod | exact GlobalTheory.AdelicCoordSupport.hasCompactSupport_finprod | (intros; apply GlobalTheory.AdelicCoordSupport.hasCompactSupport_finprod <;> assumption)
+  first | exact @GlobalTheory.AdelicCoordSupport.hasCompactSupport_finprod

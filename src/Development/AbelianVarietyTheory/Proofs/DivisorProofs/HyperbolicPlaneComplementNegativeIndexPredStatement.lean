@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.hyperbolicPlaneComplement_negativeIndex_pred : ∀
     Formalism.BasicNotions.HSpace.IsIsomEmb S₁ S ι → S.hT x x = 0 → S.hT y y = 0 → S.hT x y = 1 →
     (∀ u, S.hT x (ι u) = 0 ∧ S.hT y (ι u) = 0) → NegIdx S (q + 1) →
     ∀ τ : D.host.E →+* ℂ, Formalism.UG.HasSignature (S₁.gram.map τ) (S₁.rank - q) q := by
-  first | exact @GlobalTheory.PlaneComplementSig.sig | exact GlobalTheory.PlaneComplementSig.sig | (intros; apply GlobalTheory.PlaneComplementSig.sig <;> assumption)
+  first | exact @GlobalTheory.PlaneComplementSig.sig

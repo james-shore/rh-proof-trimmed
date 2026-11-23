@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.UnitLemma Polynomial
 
 theorem _root_.GlobalTheory.T.linearLatticeCountDescent_proof : LinearDescent := by
-  first | exact @GlobalTheory.UnitLemma.Desc.linearDescent | exact GlobalTheory.UnitLemma.Desc.linearDescent | (intros; apply GlobalTheory.UnitLemma.Desc.linearDescent <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.Desc.linearDescent

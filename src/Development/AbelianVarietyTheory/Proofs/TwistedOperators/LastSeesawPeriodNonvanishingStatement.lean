@@ -46,4 +46,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
 theorem _root_.GlobalTheory.T.lastSeesaw_periodNonvanishing : ∀ D : D7, UpLast D := by
-  first | exact @GlobalTheory.LastSeesaw.upLast | exact GlobalTheory.LastSeesaw.upLast | (intros; apply GlobalTheory.LastSeesaw.upLast <;> assumption)
+  first | exact @GlobalTheory.LastSeesaw.upLast

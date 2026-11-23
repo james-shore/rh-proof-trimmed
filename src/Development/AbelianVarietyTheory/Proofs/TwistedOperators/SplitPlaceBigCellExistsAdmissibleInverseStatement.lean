@@ -76,4 +76,4 @@ theorem _root_.GlobalTheory.T.splitPlace_bigCell_exists_admissible_inverse_alt :
         ∃ M : Matrix (Fin d) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), M * (GlobalTheory.DblVac.diagonalBlockOfMatrix g + Y * (⅟(2 : AF F) • ((GlobalTheory.DblVac.matD g).toBlocks₁₁ +
           (GlobalTheory.DblVac.matD g).toBlocks₁₂ - (GlobalTheory.DblVac.matD g).toBlocks₂₁ - (GlobalTheory.DblVac.matD g).toBlocks₂₂))) = 1 ∧
           ∀ z ∈ GlobalTheory.InertSph.latAt W v, M *ᵥ z ∈ GlobalTheory.InertSph.latAt W v := by
-  first | exact @GlobalTheory.SplitPlaceBigCell.splitPlace_bigCell_exists_admissible_inverse | exact GlobalTheory.SplitPlaceBigCell.splitPlace_bigCell_exists_admissible_inverse | (intros; apply GlobalTheory.SplitPlaceBigCell.splitPlace_bigCell_exists_admissible_inverse <;> assumption)
+  first | exact @GlobalTheory.SplitPlaceBigCell.splitPlace_bigCell_exists_admissible_inverse

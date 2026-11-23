@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.ZH GlobalTheory.CechPic GlobalTheory.Cartier Glob
 open Classical
 
 theorem _root_.GlobalTheory.T.intersectionNumber_pullback_dimSuccDivisors_eq_zero : ∀ (F : Type) [Field F] (Y : Var F) (W : Dbl Y), W.Small → ∀ (q : W.Z ⟶ Y.X) [IsDominant q] (y : Fin (Y.dim + 1) → CartierDiv W.Z) (e : Fin (Y.dim + 1) → Y.Dv), (∀ i, IsPull q (y i) (e i)) → W.num y = 0 := by
-  first | exact @GlobalTheory.FlagPush.Dbl.num_eq_zero_of_isPull | exact GlobalTheory.FlagPush.Dbl.num_eq_zero_of_isPull | (intros; apply GlobalTheory.FlagPush.Dbl.num_eq_zero_of_isPull <;> assumption)
+  first | exact @GlobalTheory.FlagPush.Dbl.num_eq_zero_of_isPull

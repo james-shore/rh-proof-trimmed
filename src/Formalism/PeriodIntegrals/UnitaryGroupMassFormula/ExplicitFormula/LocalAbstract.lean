@@ -85,7 +85,6 @@ private theorem differentiableOn_gfun_of_differentiableOn {U : Set ℂ} (hh : Di
   refine DifferentiableOn.mul ?_ hh
   have hd : Differentiable ℂ (fun z => ∏ ρ ∈ Z, refl s₀ R ρ z ^ m ρ) := by
     first
-      | exact Differentiable.finset_prod fun ρ _ => (differentiable_refl s₀ R ρ).pow (m ρ)
       | (have hbd := differentiable_refl s₀ R; fun_prop)
   exact hd.differentiableOn
 

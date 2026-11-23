@@ -172,10 +172,7 @@ def tv (D : Formalism.BasicNotions.D7) (Z : MatZ D) (R : Matrix (Fin (D.R.rS + 1
 private theorem hT_swap_eq_star' (D : Formalism.BasicNotions.D7) (p q : (VS D).V) :
     (VS D).hT q p = star ((VS D).hT p q) := by
   first
-  | exact ((VS D).herm p q).symm
   | exact ((VS D).herm.eq p q).symm
-  | simpa using ((VS D).herm p q).symm
-  | simpa using ((VS D).herm.eq p q).symm
 
 private theorem pW_add' (D : Formalism.BasicNotions.D7) (u v : (VS D).V) : pW D (u + v) = pW D u + pW D v := by
   unfold pW
@@ -212,7 +209,7 @@ private theorem hT_pW_self_of_hT_hypE_eq_zero (D : Formalism.BasicNotions.D7) (w
     intro y
 
     simp only [hsdef, map_sum, LinearMap.sum_apply, map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul,
-    starRingEnd_apply, LinearMap.map_sum₂, LinearMap.map_smulₛₗ₂]
+    starRingEnd_apply]
   have hys : ∀ y, (VS D).hT y s = ∑ a, (VS D).hT (D.sp.hypF a) w * (VS D).hT y (D.sp.hypE a) := by
     intro y
 
@@ -225,7 +222,7 @@ private theorem hT_pW_self_of_hT_hypE_eq_zero (D : Formalism.BasicNotions.D7) (w
   have h6 : (VS D).hT D.sp.zm w = (D.sp.T : D.host.E) * g := by
     rw [hg, mul_div_assoc', mul_comm, mul_div_assoc, div_self hT0, mul_one]
   simp only [map_add (f := _), map_sub, map_smul, map_smulₛₗ, LinearMap.add_apply, LinearMap.sub_apply,
-    LinearMap.smul_apply, smul_eq_mul, RingHom.id_apply, h1, h2, h3, h4, h5, hzz, hwz, h6,
+    LinearMap.smul_apply, smul_eq_mul, h1, h2, h3, h4, h5, hzz, hwz, h6,
     starRingEnd_apply, star_mul', star_natCast]
   ring
 
@@ -254,7 +251,7 @@ theorem tv_norm (D : Formalism.BasicNotions.D7) {T : D.host.E} (T' : D.host.E) (
     intro b1 b2
     rw [hG b1 b2]
     unfold Gfl
-    split_ifs <;> first | rfl | (exfalso; tauto)
+    split_ifs <;> first | rfl
   have hEw : ∀ a, (VS D).hT (D.sp.hypE a) w = 0 := by
     intro a
     have h0 : (betaZ D Z * Pm D Z R) a b = 0 := by rw [beta_Pm D Z R hR]; rfl
@@ -267,7 +264,7 @@ theorem tv_norm (D : Formalism.BasicNotions.D7) {T : D.host.E} (T' : D.host.E) (
       ∑ b1, ∑ b2, star (Pm D Z R b1 b) * Pm D Z R b2 b * Gfl D T' b1 b2 := by
     rw [hw]
 
-    simp only [LinearMap.map_sum₂, LinearMap.map_smulₛₗ₂, map_sum, map_smul, map_smulₛₗ,
+    simp only [map_sum, map_smul, map_smulₛₗ,
     LinearMap.sum_apply, LinearMap.smul_apply, smul_eq_mul, starRingEnd_apply, Finset.mul_sum]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl (fun b1 _ => Finset.sum_congr rfl (fun b2 _ => ?_))

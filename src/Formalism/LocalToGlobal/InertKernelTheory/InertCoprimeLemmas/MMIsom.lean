@@ -348,7 +348,6 @@ theorem frameONB_of (hLB : LocBasisMM) (hRC : RatCoord) (hFC : FixConj) : FrameO
       _ = _ := by
         refine Finset.sum_congr rfl fun i' _ => ?_
         rw [← hP i', Matrix.transpose_mul, Matrix.transpose_transpose, Matrix.map_mul, Matrix.transpose_map, hsσ]
-        try simp only [Matrix.mul_assoc]
   have hUA : ∀ τ τ'', ∑ m, ∑ n, Q m τ * G m n * σp (Q n τ'') = if τ = τ'' then 1 else 0 := by
     intro τ τ''
     have h := congrFun (congrFun (hmain.symm.trans hA2) (0, τ)) (0, τ'')
@@ -360,7 +359,7 @@ theorem frameONB_of (hLB : LocBasisMM) (hRC : RatCoord) (hFC : FixConj) : FrameO
     · intro i' _ hi'
       have hne : ¬ i' = ((0 : Fin 4), τ).1 := hi'
       have hne' : ¬ i' = ((0 : Fin 4), τ'').1 := hi'
-      simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Matrix.of_apply, hne, hne', if_false,
+      simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Matrix.of_apply, hne, if_false,
         map_zero, mul_zero, zero_mul, Finset.sum_const_zero]
     · intro h0
       exact absurd (Finset.mem_univ _) h0

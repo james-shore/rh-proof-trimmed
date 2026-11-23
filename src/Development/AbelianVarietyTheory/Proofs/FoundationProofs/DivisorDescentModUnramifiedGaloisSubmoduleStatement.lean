@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.divisor_descent_mod_unramified_galois_submodule : 
   (∀ c : ClassGroup A₀, ∃ d, c = d ^ N) →
   ∀ w : L, w ≠ 0 → (∀ σ : L ≃ₐ[K₀] L, ∃ u : L, u ≠ 0 ∧ σ w = w * u ^ N) →
   ∃ (f : K₀) (J : Submodule R L), f ≠ 0 ∧ J ^ N = Submodule.span R {w / algebraMap K₀ L f} := by
-  first | exact @GlobalTheory.DivisorDescent.descent_submodule | exact GlobalTheory.DivisorDescent.descent_submodule | (intros; apply GlobalTheory.DivisorDescent.descent_submodule <;> assumption)
+  first | exact @GlobalTheory.DivisorDescent.descent_submodule

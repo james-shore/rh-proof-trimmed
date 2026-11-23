@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.adicCompletion_ring_injective_invariants_of_module
     ∀ y, y ∈ Set.range (GlobalTheory.InvAlg.cmap (algebraMap A B) J (J.map (algebraMap A B)) le_rfl) ↔
       ∀ σ, GlobalTheory.InvAlg.cmap (g σ).toRingHom (J.map (algebraMap A B)) (J.map (algebraMap A B))
         (GlobalTheory.InvAlg.map_algebraMap_le (g σ) J) y = y := by
-  first | exact @GlobalTheory.InvAlg.cmap_transfer | exact GlobalTheory.InvAlg.cmap_transfer | (intros; apply GlobalTheory.InvAlg.cmap_transfer <;> assumption)
+  first | exact @GlobalTheory.InvAlg.cmap_transfer

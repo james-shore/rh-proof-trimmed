@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
 theorem _root_.GlobalTheory.T.isLocallyFinite_piTensorSumOfFactorOperators : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (V : ι → Type) [∀ i, AddCommGroup (V i)] [∀ i, Module ℂ (V i)] (L : ∀ i, Module.End ℂ (V i)), (∀ i, GlobalTheory.RealLift.LocFin (L i)) → GlobalTheory.RealLift.LocFin (GlobalTheory.RealLift.sumPl L) := by
-  first | exact @GlobalTheory.RealLift.locFin_sumPl | exact GlobalTheory.RealLift.locFin_sumPl | (intros; apply GlobalTheory.RealLift.locFin_sumPl <;> assumption)
+  first | exact @GlobalTheory.RealLift.locFin_sumPl

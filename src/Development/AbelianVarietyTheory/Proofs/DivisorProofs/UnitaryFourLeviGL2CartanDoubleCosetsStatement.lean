@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.UG GlobalTheory.SatakeWeyl
 
 theorem _root_.GlobalTheory.T.unitaryFourLeviGL2_cartan_doubleCosets : GlobalTheory.SatakeWeyl.CartanFour := by
-  first | exact @GlobalTheory.SatakeWeyl.Four.cartanFour | exact GlobalTheory.SatakeWeyl.Four.cartanFour | (intros; apply GlobalTheory.SatakeWeyl.Four.cartanFour <;> assumption)
+  first | exact @GlobalTheory.SatakeWeyl.Four.cartanFour

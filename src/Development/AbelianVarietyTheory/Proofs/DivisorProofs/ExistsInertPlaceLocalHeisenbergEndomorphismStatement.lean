@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_inertPlace_local_heisenbergEndomorphism : �
     ∃ ρ : Matrix (Fin (a + a')) (Fin a') L → Module.End ℂ (SB (Fin a' × Fin (a + a') → Fv F v)),
       ∀ x (m : SB (Fin a' × Fin (a + a') → Fv F v)), Acts (evFin F v) (G.M'.co.rho B.ψ (κ x))
         (m : (Fin a' × Fin (a + a') → Fv F v) → ℂ) ((ρ x m : SB (Fin a' × Fin (a + a') → Fv F v)) : (Fin a' × Fin (a + a') → Fv F v) → ℂ) := by
-  first | exact @GlobalTheory.InertRho.exists_rho | exact GlobalTheory.InertRho.exists_rho | (intros; apply GlobalTheory.InertRho.exists_rho <;> assumption)
+  first | exact @GlobalTheory.InertRho.exists_rho

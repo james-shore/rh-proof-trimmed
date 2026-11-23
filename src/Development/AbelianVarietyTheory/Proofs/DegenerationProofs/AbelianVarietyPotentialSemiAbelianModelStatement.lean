@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.abelianVariety_potential_semiAbelian_model : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (IsLocalRing.maximalIdeal V) V] (K : Type) [Field K] [CharZero K] [Algebra V K] [IsFractionRing V K] (A : Over (Spec (CommRingCat.of K))) [GrpObj A], IsAbelianScheme A → PotModel V K A (fun _ _ _ G _ => IsSemiAbelian G) := by
-  first | exact @GlobalTheory.SS.potModel_isSemiAbelian | exact GlobalTheory.SS.potModel_isSemiAbelian | (intros; apply GlobalTheory.SS.potModel_isSemiAbelian <;> assumption)
+  first | exact @GlobalTheory.SS.potModel_isSemiAbelian

@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.keyValues_detOmega_delta_unit_affineOpens : ∀ κ
         f c i * S.presheaf.germ _ (genericPoint S) h2 (δ.g i i' : Γ(S, δ.U i ⊓ δ.U i')) ^ 8 =
           S.presheaf.germ _ (genericPoint S) h1
             ((VB.det (LieVB.omega G) g).g c c' : Γ(S, (VB.det (LieVB.omega G) g).U c ⊓ (VB.det (LieVB.omega G) g).U c')) ^ 4 * f c' i') := by
-  first | exact @GlobalTheory.KeyValsGen.keyVals | exact GlobalTheory.KeyValsGen.keyVals | (intros; apply GlobalTheory.KeyValsGen.keyVals <;> assumption)
+  first | exact @GlobalTheory.KeyValsGen.keyVals

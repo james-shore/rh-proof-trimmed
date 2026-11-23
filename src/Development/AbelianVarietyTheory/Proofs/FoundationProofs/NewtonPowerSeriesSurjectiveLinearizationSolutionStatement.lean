@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.newton_powerSeries_surjective_linearization_soluti
  (∀ (x h : ι → PowerSeries k) (m : ℕ), 1 ≤ m → (∀ i, PowerSeries.constantCoeff (x i) = x₀ i) → ∀ e,
    (PowerSeries.X : PowerSeries k) ^ (m + 1) ∣ G (fun i => x i + PowerSeries.X ^ m * h i) e - G x e - PowerSeries.X ^ m * PowerSeries.C (L (fun i => PowerSeries.constantCoeff (h i)) e)) →
  ∃ x : ι → PowerSeries k, (∀ i, PowerSeries.constantCoeff (x i) = x₀ i) ∧ ∀ e, G x e = 0 := by
-  first | exact @GlobalTheory.newton_powerSeries_target | exact GlobalTheory.newton_powerSeries_target | (intros; apply GlobalTheory.newton_powerSeries_target <;> assumption)
+  first | exact @GlobalTheory.newton_powerSeries_target

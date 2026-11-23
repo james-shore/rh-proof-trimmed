@@ -210,9 +210,7 @@ theorem lemGA_la_of [NeZero n] (W : LocWach PD LL O v n) (hT2 : Formalism.MainNo
   have hInI : Formalism.MainNotions.CrystallineLiftingInputs.InI W T₂ (i - 2) y := by
     refine ⟨hyD, ⟨0, ?_⟩, ⟨y', hy'Δ.1, hy'Δ.2, by rw [pow_one]; exact hy'⟩⟩
     first
-      | exact hyN
       | (simp only [LocWach.InvN]; simpa using hyN)
-      | (unfold LocWach.InvN; simpa [Formalism.MainNotions.DeltaInvariantLattices.invN, Formalism.MainNotions.DeltaInvariantLattices.smulA] using hyN)
   have hqΔ : Formalism.MainNotions.LiftingTheory.qp W ∈ W.AΔ := W.AΔ.add_mem hR.πΔ (Subalgebra.natCast_mem _ _)
   set H := hpar n b S + η with hH
   obtain ⟨hex, hcl, -⟩ := (hT2 hA hp11 2 1 (2 * H) (lemG_sig PD.p H) (Or.inr ⟨rfl, rfl, rfl⟩)).1

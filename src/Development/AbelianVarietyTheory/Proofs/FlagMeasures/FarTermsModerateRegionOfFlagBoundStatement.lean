@@ -47,4 +47,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ContDiff
 
 theorem _root_.GlobalTheory.T.farTermsModerateRegion_of_flagBound : GlobalTheory.FlagMeas.FlagMeasureBound → GlobalTheory.Deep.FarBound → GlobalTheory.IndefiniteRowSideFullHecke.FarTermsModerate.FarModerate := by
-  first | exact @GlobalTheory.Deep.farModerate_of_farBound | exact GlobalTheory.Deep.farModerate_of_farBound | (intros; apply GlobalTheory.Deep.farModerate_of_farBound <;> assumption)
+  first | exact @GlobalTheory.Deep.farModerate_of_farBound

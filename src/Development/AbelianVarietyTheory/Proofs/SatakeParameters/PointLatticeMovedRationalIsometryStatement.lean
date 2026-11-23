@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.pointLattice_moved_rational_isometry : UnderTie (f
       γ ∈ UJ (sigD D : D.host.E →+* D.host.E) (gramN D i hi) → x₁.1 = ratA D.host.F γ * x.1 →
       ∀ g : UF t.X.E (D.R.N i), seamGL t.seam g.1 = A.crd i hi * γ * (A.crd i hi)⁻¹ →
       ∀ p, IsPtAd A a i hi β x p → t.seam.lat ((((g, 1, 1) : UF t.X.E (D.R.N i) × GLG (E := t.X.E) (n := D.R.N i) (SG := t.Pr.vGs) × GLQ t.X.E (D.R.N i) (QE t.sel (t.tup μ : Chr t.X.F t.X.E t.X.K))) • p)).deco.1.N = latCo D.sp (gramN D i hi) (A.crd i hi) a x₁.1 ((St i hi).K β).lev.Lb) := by
-  first | exact @GlobalTheory.TwLatRat.lat_moved | exact GlobalTheory.TwLatRat.lat_moved | (intros; apply GlobalTheory.TwLatRat.lat_moved <;> assumption)
+  first | exact @GlobalTheory.TwLatRat.lat_moved

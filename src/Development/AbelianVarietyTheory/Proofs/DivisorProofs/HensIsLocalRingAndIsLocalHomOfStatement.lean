@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing GlobalTheory.Henselisation
 
 theorem _root_.GlobalTheory.T.isLocalRing_hens_and_isLocalHom_of : ∀ (R : Type) [CommRing R] [IsLocalRing R], IsLocalRing (Hens R) ∧ ∀ i : EtNbhd R, IsLocalHom (Hens.of i) := by
-  first | exact @GlobalTheory.Henselisation.hens_isLocalRing_and_isLocalHom_of | exact GlobalTheory.Henselisation.hens_isLocalRing_and_isLocalHom_of | (intros; apply GlobalTheory.Henselisation.hens_isLocalRing_and_isLocalHom_of <;> assumption)
+  first | exact @GlobalTheory.Henselisation.hens_isLocalRing_and_isLocalHom_of

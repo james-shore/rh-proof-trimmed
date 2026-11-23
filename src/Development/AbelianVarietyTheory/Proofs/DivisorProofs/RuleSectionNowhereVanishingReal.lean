@@ -93,11 +93,7 @@ theorem nval_unit (T : CDVR) (u : T.V) (hu : IsUnit u) : nval T.V 1 (algebraMap 
 theorem exists_factor (T : CDVR) {F : Type} [Field F] (io : F →+* T.Fr) (hio : ∀ a, a ≠ 0 → vV T.V (io a) = 0) :
     ∃ φ : F →+* T.V, (algebraMap T.V T.Fr).comp φ = io := by
   first
-  | exact @_root_.GlobalTheory.LiftAndFactorization.exists_factor
-  | exact _root_.GlobalTheory.LiftAndFactorization.exists_factor
   | (apply _root_.GlobalTheory.LiftAndFactorization.exists_factor <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LiftAndFactorization.exists_factor <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LiftAndFactorization.exists_factor <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LiftAndFactorization.exists_factor ..)
 
 end GlobalTheory.BdryUnitVal

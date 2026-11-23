@@ -70,4 +70,4 @@ theorem _root_.GlobalTheory.T.localThetaSections_ratio_coordinates_overlap : ∀
           ((G.hom.app _).hom ((h.app _).hom (ratioOn (chart k n a ⊓ chart k n b) a inf_le_left b))) *
         resG _ (fun _ hx => ⟨hx.1, hx.2.2⟩ :
           L.U i ⊓ G.hom ⁻¹ᵁ (h ⁻¹ᵁ (chart k n a ⊓ chart k n b)) ≤ L.U i ⊓ G.hom ⁻¹ᵁ (h ⁻¹ᵁ chart k n b)) (sb i) := by
-  first | exact @GlobalTheory.UMin.ThBdl.cross_ratio_sections | exact GlobalTheory.UMin.ThBdl.cross_ratio_sections | (intros; apply GlobalTheory.UMin.ThBdl.cross_ratio_sections <;> assumption)
+  first | exact @GlobalTheory.UMin.ThBdl.cross_ratio_sections

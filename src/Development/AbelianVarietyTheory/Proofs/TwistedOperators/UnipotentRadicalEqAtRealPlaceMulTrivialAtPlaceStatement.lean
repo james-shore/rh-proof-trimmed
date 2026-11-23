@@ -47,4 +47,4 @@ open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.unipotentRadical_eq_atRealPlace_mul_trivialAtPlace : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (V : HSp D) (r : ℕ) (C : Matrix (Fin V.rank) (Fin r) D.host.E), IsIsoFrame V C → ∀ (τ : D.what₂.Tau) (h : NI V C), ∃ p ∈ GlobalTheory.FibreAtTau.atP θ V C τ, ∃ q ∈ GlobalTheory.FibreAtTau.offP θ V C τ, h = p * q := by
-  first | exact @GlobalTheory.FibreAtTau.decomp | exact GlobalTheory.FibreAtTau.decomp | (intros; apply GlobalTheory.FibreAtTau.decomp <;> assumption)
+  first | exact @GlobalTheory.FibreAtTau.decomp

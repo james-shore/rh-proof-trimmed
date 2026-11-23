@@ -242,11 +242,7 @@ theorem pivot_w {E : Type} [NormedField E] [IsUltrametricDist E] [StarRing E]
     (hGd : ‖G.det‖ = 1) :
     ∃ i, ∃ w : n → E, (∀ a, ‖w a‖ ≤ 1) ∧ w i = 1 ∧ ‖star w ⬝ᵥ (G *ᵥ w)‖ = 1 := by
   first
-  | exact @_root_.GlobalTheory.UnitValueExistence.main
-  | exact _root_.GlobalTheory.UnitValueExistence.main
   | (apply _root_.GlobalTheory.UnitValueExistence.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitValueExistence.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitValueExistence.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.UnitValueExistence.main ..)
 
 end Piv

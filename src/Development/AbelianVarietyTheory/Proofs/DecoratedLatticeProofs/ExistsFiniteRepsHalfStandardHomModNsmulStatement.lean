@@ -44,4 +44,4 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum MeasureTheory Matrix ValuativeRel GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SplitWeil GlobalTheory.SeeSaw GlobalTheory.AdForm GlobalTheory.LocMod
 
 theorem _root_.GlobalTheory.T.exists_finite_reps_half_standardHom_mod_nsmul : ∀ (D : D7) (S T : HSp D) (Q : Finset (Formalism.L2.DIV.Pl D.host.E)) (E₂ : AE D), IsIdemSum E₂ Q → ∀ k : ℕ, 0 < k → ∃ R : Finset (WO S T), ∀ u ∈ stdHom S T, IsHalf E₂ u → ∃ r ∈ R, ∃ v ∈ stdHom S T, IsHalf E₂ v ∧ u = r + k • v := by
-  first | exact @GlobalTheory.HalfStdFin.exists_reps_half_stdHom | exact GlobalTheory.HalfStdFin.exists_reps_half_stdHom | (intros; apply GlobalTheory.HalfStdFin.exists_reps_half_stdHom <;> assumption)
+  first | exact @GlobalTheory.HalfStdFin.exists_reps_half_stdHom

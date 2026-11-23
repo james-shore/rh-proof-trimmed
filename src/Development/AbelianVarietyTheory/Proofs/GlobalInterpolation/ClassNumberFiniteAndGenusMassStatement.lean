@@ -44,4 +44,4 @@ open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.Stan
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.classNumber_finite_and_genusMass : ∀ D : D7, ClassFin D ∧ ClassMass D := by
-  first | exact @GlobalTheory.ClassNumberMass.classFin_and_classMass | exact GlobalTheory.ClassNumberMass.classFin_and_classMass | (intros; apply GlobalTheory.ClassNumberMass.classFin_and_classMass <;> assumption)
+  first | exact @GlobalTheory.ClassNumberMass.classFin_and_classMass

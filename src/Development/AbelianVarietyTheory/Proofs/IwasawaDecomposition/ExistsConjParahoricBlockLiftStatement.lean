@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.exists_conj_parahoric_block_lift : ∀ {D : D7} {G
   ∃ c : G, ∀ g : G,
     Formalism.IndefR.Lev.IsLevelLift (Formalism.IndefR.Links.Vc D k) (R.βV k) (R.datVt k s) (R.eG g) (P.ψ (L ((R.eG.trans cG) (c * g * c⁻¹)))) ∧
     Formalism.IndefR.Lev.levChi (Formalism.IndefR.Links.Vc D k) (R.βV k) (Formalism.IndefR.Lev.flagL (R.datVt k s)) (P.ψ (L ((R.eG.trans cG) (c * g * c⁻¹)))) = 1 := by
-  first | exact @GlobalTheory.ParahLift.exists_conj_parahoric_lift | exact GlobalTheory.ParahLift.exists_conj_parahoric_lift | (intros; apply GlobalTheory.ParahLift.exists_conj_parahoric_lift <;> assumption)
+  first | exact @GlobalTheory.ParahLift.exists_conj_parahoric_lift

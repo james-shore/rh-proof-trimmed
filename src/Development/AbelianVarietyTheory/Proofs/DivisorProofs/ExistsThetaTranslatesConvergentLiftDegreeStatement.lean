@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_theta_translates_convergent_lift_degree : �
       IntegrableOn (translates z (kerSmall W Θ' g g₁)) (M.fd (.grid i j)) (M.ν (.grid i j))) ∧
     zdeg z * liftT W M (routeSmall t i j) Θ' F g₁ = ∫ g in M.fd (.grid i (j + 1)), F g * ∫ u in M.fd (.grid i j),
       translates z (kerSmall W Θ' g g₁) u ∂M.ν (.grid i j) ∂M.ν (.grid i (j + 1)) := by
-  first | exact @GlobalTheory.SmallRoute.exists_translates_lift | exact GlobalTheory.SmallRoute.exists_translates_lift | (intros; apply GlobalTheory.SmallRoute.exists_translates_lift <;> assumption)
+  first | exact @GlobalTheory.SmallRoute.exists_translates_lift

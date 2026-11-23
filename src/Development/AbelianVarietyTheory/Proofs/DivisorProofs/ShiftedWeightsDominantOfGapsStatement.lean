@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.shifted_weights_dominant_of_gaps : ∀ {E : Type} 
         P.u τ a - P.u τ b)) →
     ∀ s : ℕ, s ≤ 3 → ∀ τ : Psi H, Antitone (P.uMinus τ + (s * P.c₀) • hodgeWt Dw τ) ∧
       Antitone (((P.T + CompHt.dimFlag Dw + (if s = 0 then 3 else 4) : ℕ) : ℤ) • P.u₁ τ - (P.uMinus τ + (s * P.c₀) • hodgeWt Dw τ)) := by
-  first | exact @GlobalTheory.CompHS.WtPar.shifted_dominant | exact GlobalTheory.CompHS.WtPar.shifted_dominant | (intros; apply GlobalTheory.CompHS.WtPar.shifted_dominant <;> assumption)
+  first | exact @GlobalTheory.CompHS.WtPar.shifted_dominant

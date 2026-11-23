@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.lagrangianColumns_linear_parametrisation_finitePla
       (∀ z : Matrix (Fin n) (Fin m) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), At (evFin F v) z → ∃ y, ζ y = z) ∧
       ∀ s : GL (Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), ∃ T : GL (Fin N) (Fv F v), (∀ y, ζ (T.val *ᵥ y) = s.val * ζ y) ∧
         T.val.det = Algebra.norm (Fv F v) (compFin F E v s.val.det) ^ m := by
-  first | exact @GlobalTheory.InertLagParam.param | exact GlobalTheory.InertLagParam.param | (intros; apply GlobalTheory.InertLagParam.param <;> assumption)
+  first | exact @GlobalTheory.InertLagParam.param

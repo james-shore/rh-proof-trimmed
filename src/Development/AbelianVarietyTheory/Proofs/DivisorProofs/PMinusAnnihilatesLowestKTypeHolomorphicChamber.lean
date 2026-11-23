@@ -75,7 +75,7 @@ theorem GlobalTheory.HolDS.pMinus_kills_lowest : ∀ (n : ℕ) (ε : Fin n → B
       have hc := hgl c d p.1.2 p.1.1
       have key : E c d (E p.1.2 p.1.1 y) = E p.1.2 p.1.1 (E c d y) +
           ((if d = p.1.2 then E c p.1.1 else 0) - (if p.1.1 = c then E p.1.2 d else 0)) y := by
-        rw [← hc]; simp [Module.End.mul_apply]
+        rw [← hc]; simp
       rw [key]
       refine N.add_mem (hgen p _ (hLs c d hcd y hy)) ?_
       rw [LinearMap.sub_apply]

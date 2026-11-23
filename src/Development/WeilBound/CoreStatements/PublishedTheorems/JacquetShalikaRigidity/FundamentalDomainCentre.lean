@@ -128,16 +128,16 @@ theorem exp_band_iff_floor {c L : ℝ} (hc : 0 < c) (n : ℤ) :
     rw [eq_comm, Int.floor_eq_iff, le_div_iff₀ hc, div_lt_iff₀ hc]
     push_cast at h1 h2
     constructor
-    · first | linarith | nlinarith
-    · first | linarith | nlinarith
+    · first | linarith
+    · first | linarith
   · intro h
     rw [eq_comm, Int.floor_eq_iff, le_div_iff₀ hc, div_lt_iff₀ hc] at h
     obtain ⟨h1, h2⟩ := h
     rw [← Real.exp_add, Real.one_le_exp_iff, Real.exp_lt_exp]
     push_cast
     constructor
-    · first | linarith | nlinarith
-    · first | linarith | nlinarith
+    · first | linarith
+    · first | linarith
 
 theorem split_centre_band_iff (hD : D0) (hk : 1 ≤ k) (n : ℤ) (g : GA E k) :
     splitCentre E k 1 ^ (-n) * g ∈ band E k ↔

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.natCard_torsion_quot_span_dvd_of_range_subset' : �
     Set.range γ ⊆ Set.range δ →
     Nat.card (Submodule.torsion ℤ (L ⧸ Submodule.span ℤ (Set.range γ))) ∣
       Nat.card (Submodule.torsion ℤ (L ⧸ Submodule.span ℤ (Set.range δ))) := by
-  first | exact @GlobalTheory.natCard_torsion_quot_span_dvd_of_range_subset | exact GlobalTheory.natCard_torsion_quot_span_dvd_of_range_subset | (intros; apply GlobalTheory.natCard_torsion_quot_span_dvd_of_range_subset <;> assumption)
+  first | exact @GlobalTheory.natCard_torsion_quot_span_dvd_of_range_subset

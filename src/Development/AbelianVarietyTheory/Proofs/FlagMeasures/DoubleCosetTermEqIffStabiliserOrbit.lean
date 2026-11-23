@@ -98,7 +98,7 @@ variable {D : D7} {Z : LocDat D} {T T' : D.host.E} {F0 : LFlag (D.sp.Y 0) D.R.rS
   (c : GCoord Z F0 F0' FP G)
 
 theorem grp_mul (ρ a b : (VS D).V ≃ₗ[D.host.E] (VS D).V) : c.grp ρ (a * b) = c.grp ρ a * c.grp ρ b := by
-  ext x; simp [GCoord.grp, LinearEquiv.mul_apply]
+  ext x; simp [GCoord.grp]
 
 theorem grp_one (ρ : (VS D).V ≃ₗ[D.host.E] (VS D).V) : c.grp ρ 1 = 1 := by
   ext x; simp [GCoord.grp]
@@ -108,7 +108,7 @@ theorem grp_inv (ρ a : (VS D).V ≃ₗ[D.host.E] (VS D).V) : c.grp ρ a⁻¹ = 
   rw [← grp_mul, inv_mul_cancel, grp_one]
 
 theorem grp_conj (ρ τ a : (VS D).V ≃ₗ[D.host.E] (VS D).V) : c.grp (ρ * τ) a = c.grp ρ (τ * a * τ⁻¹) := by
-  ext x; simp [GCoord.grp, LinearEquiv.mul_eq_trans, LinearEquiv.symm_trans_apply]
+  ext x; simp [GCoord.grp, LinearEquiv.mul_eq_trans]
 
 theorem grp_surj (ρ : (VS D).V ≃ₗ[D.host.E] (VS D).V) (s : G.GLV) :
     c.grp ρ (((ρ.trans c.e).trans s).trans (ρ.trans c.e).symm) = s := by
@@ -120,7 +120,7 @@ theorem lat_map_grp (ρ a σ : (VS D).V ≃ₗ[D.host.E] (VS D).V) (Λ : Submodu
   simp only [GCoord.lat]
   rw [← Submodule.map_comp]
   congr 1
-  ext x; simp [GCoord.grp, LinearEquiv.mul_apply]
+  ext x; simp [GCoord.grp]
 
 theorem lat_mul (ρ a : (VS D).V ≃ₗ[D.host.E] (VS D).V) (Λ : Submodule (𝓞 D.host.E) (VS D).V) :
     c.lat (ρ * a) Λ = c.lat ρ (Formalism.HermitianLatticesTheory.gmap a Λ) := by

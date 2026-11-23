@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.isPullbackUniformisation_comp_id_pullback : ∀ (R
       bc''.hom.left ≫ pullback.fst G.hom (specOf φ) =
         bc'.hom.left ≫ pullback.fst G'.hom (specOf (RingHom.id R')) ≫ bc.hom.left ≫ pullback.fst G.hom (specOf φ) ∧
       (IsMonHom bc.hom → IsMonHom bc'.hom → IsMonHom bc''.hom) := by
-  first | exact @GlobalTheory.PullUnifId.isPullUnif_comp_id | exact GlobalTheory.PullUnifId.isPullUnif_comp_id | (intros; apply GlobalTheory.PullUnifId.isPullUnif_comp_id <;> assumption)
+  first | exact @GlobalTheory.PullUnifId.isPullUnif_comp_id

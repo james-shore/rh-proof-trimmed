@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.isLevelLift_of_isLevelLift_realisation : ∀ (D : 
     (g : X.Γ) (κ : GA D (Wc D j)),
     Lev.IsLevelLift (Wc D j) (X.R.βW j) (X.R.datWp j X.R.triv) (X.R.eG g) κ →
     Lev.IsLevelLift (Wc D j) (Y.Z.ρ.B i j b).F.βT (Y.Z.ρ.B i j b).G.levT (Y.Z.ρ.eG i j b (X.cG (X.R.eG g))) κ := by
-  first | exact @GlobalTheory.TwistLiftW.isLevelLift_base_of_realisation_lift | exact GlobalTheory.TwistLiftW.isLevelLift_base_of_realisation_lift | (intros; apply GlobalTheory.TwistLiftW.isLevelLift_base_of_realisation_lift <;> assumption)
+  first | exact @GlobalTheory.TwistLiftW.isLevelLift_base_of_realisation_lift

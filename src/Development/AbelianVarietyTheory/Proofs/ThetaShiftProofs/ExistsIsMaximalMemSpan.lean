@@ -86,11 +86,7 @@ theorem isIsotropicSub_span {G : Matrix (Fin r) (Fin r) E} {s : Set (Fin r → E
 
 theorem exists_smul_mem (X : Data E r) (v : Fin r → E) : ∃ n : ℤ, n ≠ 0 ∧ (n : E) • v ∈ X.Λ := by
   first
-  | exact @_root_.GlobalTheory.SubmoduleScalarClosure.main
-  | exact _root_.GlobalTheory.SubmoduleScalarClosure.main
   | (apply _root_.GlobalTheory.SubmoduleScalarClosure.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SubmoduleScalarClosure.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SubmoduleScalarClosure.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SubmoduleScalarClosure.main ..)
 
 section Torus

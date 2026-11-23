@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.hyper_h2_exterior_square_iso : ∀ (R : Type) [CommRing R] (C : Type) [Category.{0} C] (F : C ⥤ CommAlgCat.{0} R), HasFrame F → CohomZeroIsConstants F → Closed1 F = ⊤ → Function.Surjective (toO F) → WedgeO F → (∀ a, cupHyp F a a = 0) → ∃ e : ⋀[R]^2 (Hyp1 F) ≃ₗ[R] Hyp2 F, ∀ a b, e (exteriorPower.ιMulti R 2 ![a, b]) = cupHyp F a b := by
-  first | exact @GlobalTheory.AbCoh.exists_wedge_hyp_equiv | exact GlobalTheory.AbCoh.exists_wedge_hyp_equiv | (intros; apply GlobalTheory.AbCoh.exists_wedge_hyp_equiv <;> assumption)
+  first | exact @GlobalTheory.AbCoh.exists_wedge_hyp_equiv

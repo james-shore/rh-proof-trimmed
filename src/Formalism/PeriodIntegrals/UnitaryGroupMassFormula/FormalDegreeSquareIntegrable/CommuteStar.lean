@@ -99,9 +99,6 @@ lemma sa_scalar (hirr : Irr π) (A : H →L[ℂ] H) (hA : IsSelfAdjoint A)
     intro f g
     first
     | exact (hc g).cfc_real f
-    | exact Commute.cfc_real (hc g) f
-    | exact (hc g).cfc (by rw [hA.star_eq]; exact hc g) f
-    | exact Commute.cfc (hc g) (by rw [hA.star_eq]; exact hc g) f
   have hsub : ∀ s ∈ spectrum ℝ A, ∀ t ∈ spectrum ℝ A, s < t → False := by
     intro s hs t ht hst
     set m := (s + t) / 2 with hm
@@ -175,7 +172,6 @@ theorem stSchur : StSchur := by
   have hc : ∀ g, Commute T (π g) := fun g => by
     first
     | exact hT g
-    | simpa [Commute, SemiconjBy, ContinuousLinearMap.mul_def] using hT g
   have hcs : ∀ g, Commute (star T) (π g) := fun g => commute_star π hπ T hc g
   obtain ⟨r1, h1⟩ := sa_scalar π hirr (ℜ T : H →L[ℂ] H) (ℜ T).2 (fun g => by
     rw [realPart_apply_coe]

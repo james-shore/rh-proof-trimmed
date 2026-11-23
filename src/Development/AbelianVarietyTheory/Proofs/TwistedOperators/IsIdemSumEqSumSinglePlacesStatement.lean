@@ -58,4 +58,4 @@ open Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 
 theorem _root_.GlobalTheory.T.isIdemSum_eq_sum_singlePlaces : ∀ (D : D7) (e : AE D) (P : Finset (Pl D.host.E)), IsIdemSum e P → ∀ (eL : P → AE D), (∀ w, IsIdemSum (eL w) {w.1}) → e = ∑ w, eL w ∧ (∀ S : Finset P, IsIdemSum (∑ w ∈ S, eL w) (S.map (Function.Embedding.subtype _))) ∧ ∀ S S' : Finset P, (∑ w ∈ S, eL w) * (∑ w ∈ S', eL w) = ∑ w ∈ S ∩ S', eL w := by
-  first | exact @GlobalTheory.IdemSingleSum.sum_single | exact GlobalTheory.IdemSingleSum.sum_single | (intros; apply GlobalTheory.IdemSingleSum.sum_single <;> assumption)
+  first | exact @GlobalTheory.IdemSingleSum.sum_single

@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_integral_unitary_lift_idempotentPart : ∀ 
   ∀ x : (AE D)ˣ, IsUnitDet e (N.map (toE D)) x → ∃ k : Formalism.MainNotions.StandardLatticesGL3.GA D a, k ∈ intG D a ∧
     ∀ i j, GlobalTheory.BotClassDict.finQ D e * (((k : GL (Fin a) (Formalism.MainNotions.StandardLatticesGL3.AE D))⁻¹ : GL (Fin a) (Formalism.MainNotions.StandardLatticesGL3.AE D)) :
       Matrix (Fin a) (Fin a) (Formalism.MainNotions.StandardLatticesGL3.AE D)) i j = GlobalTheory.BotClassDict.finQ D e * N i j := by
-  first | exact @GlobalTheory.StdRead.IntLift.exists_lift | exact GlobalTheory.StdRead.IntLift.exists_lift | (intros; apply GlobalTheory.StdRead.IntLift.exists_lift <;> assumption)
+  first | exact @GlobalTheory.StdRead.IntLift.exists_lift

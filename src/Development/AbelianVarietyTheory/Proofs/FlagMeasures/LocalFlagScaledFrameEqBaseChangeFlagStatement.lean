@@ -52,4 +52,4 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.local_flag_scaled_frame_eq_baseChange_flag : ∀ (D : D7) (T : D.host.E) (G : LFlag (D.sp.Y 0) D.R.rS T) (Z : LocDat D) (A : ∀ p : PlF D, LocNG.FrameD (locH Z p) D.R.rS), (∀ p, (A p).f = fun a => frFac Z.δ p a • baseChange₂ D p (frame G a)) → ∀ (p : PlF D) (j : ℕ), Submodule.span (D.s.atP p).Ep (baseChange₂ D p '' (G.fl.Xa j : Set (VS D).V)) = (A p).Fj j := by
-  first | exact @GlobalTheory.FlagBaseChange.span_bcP_Xa_eq_Fj | exact GlobalTheory.FlagBaseChange.span_bcP_Xa_eq_Fj | (intros; apply GlobalTheory.FlagBaseChange.span_bcP_Xa_eq_Fj <;> assumption)
+  first | exact @GlobalTheory.FlagBaseChange.span_bcP_Xa_eq_Fj

@@ -92,7 +92,7 @@ theorem finLocal : ∀ {E K ι : Type} [Field E] [NumberField E] [Field K] [Numb
     have gm : ∀ m ∈ M, g m ∈ L := fun m hm => (hL _).2 ⟨by simpa [g] using hm, 0, by simp [g]⟩
     have he : e ∈ L := (hL _).2 ⟨by
       have : (fun k : Fin n => e (Fin.castSucc k)) = 0 := by
-        funext k; simp [e, Pi.single_apply, Fin.castSucc_ne_last]
+        funext k; simp [e, Fin.castSucc_ne_last]
       rw [this]; exact M.zero_mem, 1, by simp [e]⟩
     have hg : ∀ x : Fin n → E, g x ∈ Submodule.span E (L : Set (Fin (n + 1) → E)) := by
       intro x
@@ -105,7 +105,7 @@ theorem finLocal : ∀ {E K ι : Type} [Field E] [NumberField E] [Field K] [Numb
     apply top_unique
     intro x _
     have dec : x = g (fun k => x (Fin.castSucc k)) + x (Fin.last n) • e := by
-      ext j; refine Fin.lastCases ?_ (fun i => ?_) j <;> simp [g, e, Pi.single_apply, Fin.castSucc_ne_last]
+      ext j; refine Fin.lastCases ?_ (fun i => ?_) j <;> simp [g, e, Fin.castSucc_ne_last]
     rw [dec]
     exact Submodule.add_mem _ (hg _) (Submodule.smul_mem _ _ (Submodule.subset_span he))
   have h1 := GlobalTheory.OntoExponentsLat.exZ_sum_smul_mem_locP_delAtr E K ι N emb Λ L hLlat w u hu

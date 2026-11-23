@@ -46,4 +46,4 @@ open scoped ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.trace_form_pos_on_orth_liftedFlag : ∀ (D : D7) (T' : ℕ) (F' : Fg D ((T' : ℕ) : D.host.E)), 0 < T' → ∀ x ∈ orth (hS D) (Xplus F'), x ∉ Xsp F' → 0 < Algebra.trace ℚ D.host.E ((hS D).hT x x) := by
-  first | exact @GlobalTheory.LoopC.PerpPos.trace_pos_perp | exact GlobalTheory.LoopC.PerpPos.trace_pos_perp | (intros; apply GlobalTheory.LoopC.PerpPos.trace_pos_perp <;> assumption)
+  first | exact @GlobalTheory.LoopC.PerpPos.trace_pos_perp

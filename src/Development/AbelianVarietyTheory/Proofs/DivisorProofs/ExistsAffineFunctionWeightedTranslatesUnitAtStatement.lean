@@ -71,4 +71,4 @@ theorem _root_.GlobalTheory.T.exists_affineFunction_weighted_translates_unitAt :
     (∀ n : ℕ, n ≠ 0 → UnitAt x (n : X.functionField)) →
     (∃ i, ∀ f, RegAt x f → ZeroAt x (σ i f - f)) →
     ∃ a : Γ(X, U), UnitAt x (∑ i, σ i (fnOf U (gen_mem hx) a) * u i) := by
-  first | exact @GlobalTheory.CharIndepAt.main | exact GlobalTheory.CharIndepAt.main | (intros; apply GlobalTheory.CharIndepAt.main <;> assumption)
+  first | exact @GlobalTheory.CharIndepAt.main

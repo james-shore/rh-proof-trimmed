@@ -104,16 +104,11 @@ theorem ap_uMat_mul_inv {n : ℕ} {ε : Fin n → Bool} (g : Formalism.REAL.UJ �
     Formalism.MainNotions.S.uMat g * Formalism.MainNotions.S.uMat g⁻¹ = 1 := by
   first
     | simp [Formalism.MainNotions.S.uMat]
-    | (show ((g : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ) *
-          (((g⁻¹ : Formalism.REAL.UJ ε) : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ) = 1
-       rw [Subgroup.coe_inv, Units.mul_inv])
 
 theorem ap_inUJ {n : ℕ} {ε : Fin n → Bool} (g : Formalism.REAL.UJ ε) :
     (Formalism.MainNotions.S.uMat g)ᴴ * Formalism.REAL.Jm ε * Formalism.MainNotions.S.uMat g = Formalism.REAL.Jm ε := by
   first
     | exact g.2
-    | (have h := g.2
-       simpa [Formalism.REAL.UJ, Formalism.REAL.inUJ] using h)
 
 theorem ap_Jm_herm {n : ℕ} (ε : Fin n → Bool) : (Formalism.REAL.Jm ε)ᴴ = Formalism.REAL.Jm ε := by
   unfold Formalism.REAL.Jm
@@ -246,7 +241,6 @@ theorem ap_hM (k : ℕ) (b' : Fin k → Fin I.n → I.E) (w : Fin I.n → I.E) (
     Finset.sum_mul, starRingEnd_apply]
   first
     | exact Finset.sum_comm
-    | rw [Finset.sum_comm]
 
 theorem ap_ker (δ : Matrix (Fin I.n) (Fin I.n) I.E) (k : ℕ) (u b' : Fin k → Fin I.n → I.E)
     (hu : LinearIndependent I.E (fun c => δ *ᵥ u c))
@@ -359,7 +353,7 @@ theorem archimedean_place_exists : ArchPlaceOf := by
     have h1 : ‖(amat I x y v δ *ᵥ w) i‖ ≤ ∑ j, ‖amat I x y v δ i j‖ * ‖w j‖ := by
       simp only [Matrix.mulVec, dotProduct]
       refine (norm_sum_le _ _).trans (le_of_eq ?_)
-      simp [norm_mul]
+      simp
     have h2 := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ (fun j => ‖amat I x y v δ i j‖) (fun j => ‖w j‖)
     calc ‖(amat I x y v δ *ᵥ w) i‖ ^ 2 ≤ (∑ j, ‖amat I x y v δ i j‖ * ‖w j‖) ^ 2 := by
           nlinarith [h1, norm_nonneg ((amat I x y v δ *ᵥ w) i)]

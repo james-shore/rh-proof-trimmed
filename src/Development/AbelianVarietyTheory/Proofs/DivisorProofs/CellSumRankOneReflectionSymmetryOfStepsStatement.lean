@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.UG GlobalTheory.SatakeWeyl
 
 theorem _root_.GlobalTheory.T.cellSumRankOneReflectionSymmetry_of_steps : GlobalTheory.SatakeWeyl.Descent → GlobalTheory.SatakeWeyl.CellInv → GlobalTheory.SatakeWeyl.ChainSum → GlobalTheory.SatakeWeyl.RankOne := by
-  first | exact @GlobalTheory.SatakeWeyl.rankOne_of_steps | exact GlobalTheory.SatakeWeyl.rankOne_of_steps | (intros; apply GlobalTheory.SatakeWeyl.rankOne_of_steps <;> assumption)
+  first | exact @GlobalTheory.SatakeWeyl.rankOne_of_steps

@@ -236,7 +236,7 @@ theorem mem_tensSpan_of_killed (F : ι → Set (Module.End ℂ V)) (A : ι → S
         by_cases hw : w = a
         · subst hw
           simp [ha]
-        · simp [hw, Function.update_of_ne hw]
+        · simp [hw]
       rw [e, PiTensorProduct.map_comp, LinearMap.comp_apply, ih]
       exact hfix a
   have hT' : PiTensorProduct.map p T = T := by

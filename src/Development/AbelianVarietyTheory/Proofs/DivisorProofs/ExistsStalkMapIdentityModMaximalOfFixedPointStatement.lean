@@ -67,4 +67,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.OrbitSep
 
 theorem _root_.GlobalTheory.T.exists_stalk_map_identity_mod_maximal_of_fixed_point : ∀ (X : Scheme.{0}) [IsIntegral X] (b : X ≅ X) (x : X), X.fromSpecResidueField x ≫ b.hom = X.fromSpecResidueField x → ∃ st : X.presheaf.stalk x →+* X.presheaf.stalk x, (show Sp (X.presheaf.stalk x) ⟶ X from X.fromSpecStalk x) ≫ b.hom = spMap st ≫ X.fromSpecStalk x ∧ (∀ a, IsLocalRing.residue (X.presheaf.stalk x) (st a) = IsLocalRing.residue (X.presheaf.stalk x) a) ∧ ∀ a, GlobalTheory.functionFieldMap b.hom (algebraMap (X.presheaf.stalk x) X.functionField a) = algebraMap (X.presheaf.stalk x) X.functionField (st a) := by
-  first | exact @GlobalTheory.FixStalk.fixes_stalk | exact GlobalTheory.FixStalk.fixes_stalk | (intros; apply GlobalTheory.FixStalk.fixes_stalk <;> assumption)
+  first | exact @GlobalTheory.FixStalk.fixes_stalk

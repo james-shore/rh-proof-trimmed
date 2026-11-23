@@ -77,7 +77,7 @@ lemma hpk_apply (i l : Fin (2 * r + k + 1)) :
   have hi := i.isLt
   have hl := l.isLt
   simp only [Hpk, sgI, Fin.ext_iff]
-  split_ifs <;> first | rfl | omega | norm_num
+  split_ifs <;> first | rfl | omega
 
 lemma sgI_lt (i : Fin (2 * r + k + 1)) : sgI k r i.val < 2 * r + k + 1 := by
   have hi := i.isLt

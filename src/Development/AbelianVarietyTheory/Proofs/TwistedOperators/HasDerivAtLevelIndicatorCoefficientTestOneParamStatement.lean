@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Classical
 
 theorem _root_.GlobalTheory.T.hasDerivAt_levelIndicatorCoefficientTest_oneParam : ∀ (D : D7), GlobalTheory.Published.HarishChandraModules → ∀ (θ : InfFam D), IsInfFam θ → ∀ (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (K : Subgroup (GL (Fin V.rank) (Lev.EAf D))) (v b : ∀ τ, M.H τ) (τ : D.what₂.Tau), b τ ∈ GlobalTheory.IndefiniteRowSideFullHecke.KTypeExtension.kFin M τ → ∀ X ∈ lieAt V τ, ∀ x : GA D V, HasDerivAt (fun s : ℝ => coef θ M K v b (x * oneP θ V τ X s)) (coef θ M K v (Function.update b τ (dRep (M.rep τ) X (b τ))) x) 0 := by
-  first | exact @GlobalTheory.TermDeriv.hasDerivAt_coef_oneP | exact GlobalTheory.TermDeriv.hasDerivAt_coef_oneP | (intros; apply GlobalTheory.TermDeriv.hasDerivAt_coef_oneP <;> assumption)
+  first | exact @GlobalTheory.TermDeriv.hasDerivAt_coef_oneP

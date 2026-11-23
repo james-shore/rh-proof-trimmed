@@ -105,7 +105,7 @@ theorem span_eq_top {k W : Type} [Field k] [AddCommGroup W] [Module k W]
       by_cases hj : (j : ℕ) + 1 < e
       · apply Submodule.subset_span
         refine ⟨(i, ⟨(j : ℕ) + 1, hj⟩), ?_⟩
-        simp [pow_succ', Module.End.mul_apply]
+        simp [pow_succ']
       · have hje : (j : ℕ) + 1 = e := by omega
         have h0 : π ((π ^ (j : ℕ)) (x i)) = 0 := by
           have h1 : (π ^ ((j : ℕ) + 1)) (x i) = π ((π ^ (j : ℕ)) (x i)) := by

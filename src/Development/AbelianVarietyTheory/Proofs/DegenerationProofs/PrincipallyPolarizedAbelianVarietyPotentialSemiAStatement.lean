@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.principallyPolarizedAbelianVariety_potentialSemiAbelianModel : ∀ (V K : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (IsLocalRing.maximalIdeal V) V] [Field K] [CharZero K] [Algebra V K] [IsFractionRing V K], Finite (IsLocalRing.ResidueField V) → ∀ P : Out.PolAV (Sp K), PotModel V K P.A (fun _ _ _ G _ => IsSemiAbelian G) := by
-  first | exact @GlobalTheory.SemiPol.potModel_semiAbelian | exact GlobalTheory.SemiPol.potModel_semiAbelian | (intros; apply GlobalTheory.SemiPol.potModel_semiAbelian <;> assumption)
+  first | exact @GlobalTheory.SemiPol.potModel_semiAbelian

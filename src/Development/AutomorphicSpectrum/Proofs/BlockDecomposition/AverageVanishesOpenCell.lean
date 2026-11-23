@@ -121,14 +121,14 @@ theorem vEl_of_ne (i t : ℕ) (v : Fin ((i + 1) + t + 1) → k) (r s : Fin ((i +
     (((vEl k i t v : Mir k ((i + 1) + t + 1)) : GL (Fin ((i + 1) + t + 2)) k) :
       Matrix (Fin ((i + 1) + t + 2)) (Fin ((i + 1) + t + 2)) k) r s = 0 := by
   show (1 + colMat k _ v) r s = 0
-  simp [colMat, one_apply, h, hs]
+  simp [colMat, h, hs]
 
 theorem vEl_diag (i t : ℕ) (v : Fin ((i + 1) + t + 1) → k) (r : Fin ((i + 1) + t + 1)) :
     (((vEl k i t v : Mir k ((i + 1) + t + 1)) : GL (Fin ((i + 1) + t + 2)) k) :
       Matrix (Fin ((i + 1) + t + 2)) (Fin ((i + 1) + t + 2)) k)
       (Fin.castSucc r) (Fin.castSucc r) = 1 := by
   show (1 + colMat k _ v) _ _ = 1
-  simp [colMat, one_apply, Fin.castSucc_ne_last]
+  simp [colMat, Fin.castSucc_ne_last]
 
 theorem cEl_mem (i t : ℕ) (c : Fin (i + 1) → k) : cEl k i t c ∈ HPG k (i + 1) (t + 1) := by
   show ((cEl k i t c : Mir k ((i + 1) + t + 1)) : GL (Fin ((i + 1) + t + 2)) k) ∈ parab k (ePG (i + 1) (t + 1))
@@ -159,7 +159,7 @@ theorem det_unip (n : ℕ) (v : Multiplicative (Fin n → k)) :
       rw [e] at hab'
       exact absurd hab' (not_lt.2 (Fin.le_last _))
     show (1 + colMat k n v.toAdd) a b = 0
-    simp [colMat, one_apply, hb, hab'.ne']
+    simp [colMat, hb, hab'.ne']
   rw [det_of_upperTriangular h]
   refine Finset.prod_eq_one fun a _ => ?_
   show (1 + colMat k n v.toAdd) a a = 1
@@ -192,14 +192,14 @@ theorem pgProj_cEl (i t : ℕ) (c : Fin (i + 1) → k) :
         rw [ePG_false_eq]
         refine (vEl_castSucc_last i t _ _).trans ?_
         refine (Fin.append_left _ _ _).trans ?_
-        simp [colMat, one_apply, Fin.castSucc_ne_last]
+        simp [colMat, Fin.castSucc_ne_last]
     | cast b =>
       rw [ePG_false_eq]
       induction a using Fin.lastCases with
       | last =>
         rw [ePG_false_last]
         refine (vEl_of_ne i t _ _ _ (Fin.castSucc_ne_last _).symm (Fin.castSucc_ne_last _)).trans ?_
-        simp [colMat, one_apply, (Fin.castSucc_ne_last _).symm]
+        simp [colMat, (Fin.castSucc_ne_last _).symm]
       | cast a =>
         rw [ePG_false_eq]
         by_cases h : a = b
@@ -212,7 +212,7 @@ theorem pgProj_cEl (i t : ℕ) (c : Fin (i + 1) → k) :
             have := congrArg Fin.val e
             simp at this
             exact Fin.ext this
-          · simp [colMat, one_apply, h, Fin.castSucc_ne_last]
+          · simp [colMat, h, Fin.castSucc_ne_last]
   · ext a b
     show (((cEl k i t c : Mir k ((i + 1) + t + 1)) : GL (Fin ((i + 1) + t + 2)) k) :
       Matrix (Fin ((i + 1) + t + 2)) (Fin ((i + 1) + t + 2)) k) (ePG (i + 1) (t + 1) ⟨true, a⟩) (ePG (i + 1) (t + 1) ⟨true, b⟩) =

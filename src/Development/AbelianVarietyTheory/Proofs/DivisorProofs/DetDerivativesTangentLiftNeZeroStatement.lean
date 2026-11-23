@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.det_derivatives_tangentLift_ne_zero : ∀ {E : Typ
     (hl : ∀ b, zv b ≫ toFlag M = X.ptY (v b)) (i : M.K.bundle.ι) (O : M.X.Opens) (hO : O ≤ M.K.bundle.U i)
     (g : Fin (dimFlag Dw) → Γ(M.X, O)) (hzO : ⊤ ≤ z ⁻¹ᵁ O) (hzv : ∀ b, ⊤ ≤ zv b ⁻¹ᵁ O)
     (hJ : evalPt z O hzO (M.K.jacobian i hO g) ≠ 0), (Matrix.of fun a b => (evalPt (zv (tanOrd Dw b)) O (hzv _) (g a)).snd).det ≠ 0 := by
-  first | exact @GlobalTheory.CompHS.det_tanLift_ne_zero | exact GlobalTheory.CompHS.det_tanLift_ne_zero | (intros; apply GlobalTheory.CompHS.det_tanLift_ne_zero <;> assumption)
+  first | exact @GlobalTheory.CompHS.det_tanLift_ne_zero

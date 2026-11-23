@@ -372,7 +372,6 @@ theorem factNc : FactNc := by
   · simp [hn]
   · first
     | (field_simp; done)
-    | (field_simp; ring)
 
 theorem bridge_ccb_unit_holds : bridge_ccb_unit := by
   intro R L _ _ _ _ _ w x hx
@@ -643,7 +642,6 @@ theorem factFrobGeom : FactFrobGeom := by
   rw [h, Prod.snd_inv]
   first
   | rfl
-  | simp [Formalism.HC.Frame.iotaInv]
 
 end host
 
@@ -1013,11 +1011,6 @@ theorem nPl_two_mul (K : Type) [Field K] [NumberField K] [_root_.NumberField.IsT
   have h3 : NumberField.InfinitePlace.nrRealPlaces K = 0 := by
     first
     | exact NumberField.IsTotallyComplex.nrRealPlaces_eq_zero K
-    | exact NumberField.IsTotallyComplex.nrRealPlaces_eq_zero (K := K)
-    | exact (NumberField.IsTotallyComplex.nrRealPlaces_eq_zero (K := K)).1
-    | simp
-    | (simp only [NumberField.InfinitePlace.nrRealPlaces, Fintype.card_eq_zero_iff]
-       exact ⟨fun w => (NumberField.InfinitePlace.not_isReal_iff_isComplex.mpr (NumberField.IsTotallyComplex.isComplex w.1)) w.2⟩)
   exact_mod_cast (by omega : Fintype.card (NumberField.InfinitePlace K) * 2 = Module.finrank ℚ K)
 
 theorem HLat.L_ne_bot {K : Type} [Field K] [NumberField K] [StarRing K] (A : HLat K)

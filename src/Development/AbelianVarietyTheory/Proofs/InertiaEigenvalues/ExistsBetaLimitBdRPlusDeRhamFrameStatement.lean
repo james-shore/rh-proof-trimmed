@@ -50,4 +50,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.exists_beta_limit_bdRPlus_deRhamFrame : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (N d : ℕ) (ρ : ↥(GK K) → Matrix (Fin d) (Fin d) ℤ_[l]) (F : Frame bk N d ρ), F.IsDR → ∃ B : Matrix (Fin d) (Fin d) (Per.BdRp l), ∀ m : ℕ, ∃ (k : ℕ) (β : Matrix (Fin d) (Fin d) bk.S), F.IsBeta m k β ∧ ∀ i j, aDp l (bk.ev (β i j)) - (l : Per.BdRp l) ^ k * B i j ∈ Per.FilP l m := by
-  first | exact @GlobalTheory.BKLim.exists_beta_limit | exact GlobalTheory.BKLim.exists_beta_limit | (intros; apply GlobalTheory.BKLim.exists_beta_limit <;> assumption)
+  first | exact @GlobalTheory.BKLim.exists_beta_limit

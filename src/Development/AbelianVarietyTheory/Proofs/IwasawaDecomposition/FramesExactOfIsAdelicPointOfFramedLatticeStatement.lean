@@ -47,4 +47,4 @@ open scoped TensorProduct
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.framesExact_of_isAdelicPointOfFramedLattice : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E] (hc : Formalism.BasicNotions.CMData F E) (n : ℕ) [NeZero n] {ST SG Q : Finset (Pl E)} {K : Type} [Field K] {Θ : LevQFam E K n Q} (q : QLoc hc n Q Θ), (∀ P : Q, conjPrime₂ P.1 ≠ P.1) → ∀ {g : GL (Fin n) (AfE F E)} {p : DecoF E n ST SG Q}, IsPtOf hc g p → g ∈ UAd hc n ∧ FrExact q g p := by
-  first | exact @GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf | exact GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf | (intros; apply GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf <;> assumption)
+  first | exact @GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf

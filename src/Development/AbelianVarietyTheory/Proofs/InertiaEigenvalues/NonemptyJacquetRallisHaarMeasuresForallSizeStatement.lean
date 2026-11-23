@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 theorem _root_.GlobalTheory.T.nonempty_jacquetRallisHaarMeasures_forall_size : ∀ (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E] [Unram F E] (r : ℕ), Nonempty (Meas r F E) := by
-  first | exact @GlobalTheory.JR.HaarExist.meas_nonempty | exact GlobalTheory.JR.HaarExist.meas_nonempty | (intros; apply GlobalTheory.JR.HaarExist.meas_nonempty <;> assumption)
+  first | exact @GlobalTheory.JR.HaarExist.meas_nonempty

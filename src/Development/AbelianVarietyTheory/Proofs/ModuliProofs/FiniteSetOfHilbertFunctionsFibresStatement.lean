@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj TensorProduct
 open GlobalTheory.ZM
 theorem _root_.GlobalTheory.T.finite_setOf_hilbertFunctions_fibres : ∀ (R σ : Type) [CommRing R] [IsNoetherianRing R] [Finite σ] (I : Ideal (MvPolynomial σ R)), (∀ F ∈ I, ∀ e, MvPolynomial.homogeneousComponent e F ∈ I) → {φ : ℕ → ℕ | ∃ (K : Type) (_ : Field K) (x : R →+* K), φ = dimDeg (I.map (MvPolynomial.map x))}.Finite := by
-  first | exact @GlobalTheory.finite_setOf_dimDeg_map | exact GlobalTheory.finite_setOf_dimDeg_map | (intros; apply GlobalTheory.finite_setOf_dimDeg_map <;> assumption)
+  first | exact @GlobalTheory.finite_setOf_dimDeg_map

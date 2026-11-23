@@ -135,14 +135,14 @@ theorem unimodular_partner_aff : ∀ (R : Type) [CommRing R] (s : ℕ), StableRa
     simp only [y, Finsupp.finsetSum_apply]
     exact Finset.sum_eq_zero fun i _ => by
       have := i.isLt
-      simp [Finsupp.single_apply, show (i : ℕ) ≠ m by omega]
+      simp [show (i : ℕ) ≠ m by omega]
   have hyi : ∀ i : Fin n, y i = -(t i * a j) := by
     intro i
     simp only [y, Finsupp.finsetSum_apply]
     rw [Finset.sum_eq_single i]
     · simp
     · intro b _ hb
-      simp [Finsupp.single_apply, Fin.val_ne_of_ne hb]
+      simp [Fin.val_ne_of_ne hb]
     · intro h
       exact absurd (Finset.mem_univ i) h
   let x : ℕ →₀ R := Finsupp.single j 1 + y
@@ -204,6 +204,4 @@ open GlobalTheory.SeqCx Matrix UpperTheory.V.KL
 theorem _root_.GlobalTheory.T.exists_mem_translate_unimodular_pair_of_stableRangeLe : ∀ (R : Type) [CommRing R] (s : ℕ), StableRangeLe R s → ∀ (n j : ℕ), s ≤ n → n ≤ j → ∀ v : ℕ →₀ R, [v] ∈ uniM R (ℕ →₀ R) → ∃ x ∈ aff R n j, [v, x] ∈ uniM R (ℕ →₀ R) := by
   first
   | exact @GlobalTheory.unimodular_partner_aff
-  | exact @GlobalTheory.finsupp_exists_form_of_span
-  | exact @GlobalTheory.finsupp_coord_ideal_eq_top
 end

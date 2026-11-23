@@ -52,4 +52,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.nonempty_descentSeparatedEmbedding : ∀ σ : Setup, σ.Common → Nonempty (Emb σ) := by
-  first | exact @GlobalTheory.Desc.nonempty_emb | exact GlobalTheory.Desc.nonempty_emb | (intros; apply GlobalTheory.Desc.nonempty_emb <;> assumption)
+  first | exact @GlobalTheory.Desc.nonempty_emb

@@ -132,8 +132,6 @@ lemma Phh_bound {ε : ℝ} (hε : 0 < ε) (j : ℕ) :
         by
           first
           | exact Complex.ofRealCLM.norm_iteratedFDeriv_comp_left hh'.contDiffAt (by exact_mod_cast le_top)
-          | exact Complex.ofRealCLM.norm_iteratedFDeriv_comp_left hh' z (by exact_mod_cast le_top)
-          | exact Complex.ofRealCLM.norm_iteratedFDeriv_comp_left hh'.contDiffAt z (by exact_mod_cast le_top)
     _ ≤ _ := by
         gcongr
         calc ‖iteratedFDeriv ℝ j (hh ε ∘ Complex.reCLM) z‖
@@ -141,8 +139,6 @@ lemma Phh_bound {ε : ℝ} (hε : 0 < ε) (j : ℕ) :
                 fun _ => Complex.reCLM‖ := by
               first
               | rw [Complex.reCLM.iteratedFDeriv_comp_right (hh_cd hε) z (by exact_mod_cast le_top)]
-              | rw [Complex.reCLM.iteratedFDeriv_comp_right (hh_cd hε).contDiffAt (by exact_mod_cast le_top)]
-              | rw [Complex.reCLM.iteratedFDeriv_comp_right (hh_cd hε) (by exact_mod_cast le_top)]
           _ ≤ ‖iteratedFDeriv ℝ j (hh ε) (Complex.reCLM z)‖ * ∏ _i : Fin j, ‖Complex.reCLM‖ :=
               ContinuousMultilinearMap.norm_compContinuousLinearMap_le _ _
           _ = ‖iteratedFDeriv ℝ j (hh ε) (Complex.reCLM z)‖ * ‖Complex.reCLM‖ ^ j := by

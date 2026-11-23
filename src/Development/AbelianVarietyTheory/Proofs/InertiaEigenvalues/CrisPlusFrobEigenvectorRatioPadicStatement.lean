@@ -47,4 +47,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.crisPlus_frob_eigenvector_ratio_padic : Ratio := by
-  first | exact @GlobalTheory.PMon.ratio_holds | exact GlobalTheory.PMon.ratio_holds | (intros; apply GlobalTheory.PMon.ratio_holds <;> assumption)
+  first | exact @GlobalTheory.PMon.ratio_holds

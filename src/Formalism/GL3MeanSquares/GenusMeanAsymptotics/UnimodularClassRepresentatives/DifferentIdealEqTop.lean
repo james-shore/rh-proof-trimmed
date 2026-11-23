@@ -232,7 +232,6 @@ theorem discr_pos (hK : Formalism.HermitianLatticesTheory.IsCMUnram K)
     (hF : ∀ a : K, star a = a ↔ a ∈ Set.range (algebraMap F K)) : 0 < discr F := by
   haveI := isTotallyReal hK hF
   first
-    | exact NumberField.discr_pos_of_isTotallyReal F
     | (have h := NumberField.sign_discr F
        rw [IsTotallyReal.nrComplexPlaces_eq_zero, pow_zero] at h
        exact Int.sign_eq_one_iff_pos.mp h)

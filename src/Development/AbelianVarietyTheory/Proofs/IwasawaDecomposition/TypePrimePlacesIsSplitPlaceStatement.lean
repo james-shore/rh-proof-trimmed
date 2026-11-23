@@ -53,4 +53,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 open Formalism.L2.Fam.NPC Formalism.L2.Fam.NPC.BaseC GlobalTheory.HeckeLocN
 
 theorem _root_.GlobalTheory.T.typePrime_places_isSplitPlace : ∀ (D : D7) (k : Fin 2) (v : PlE D.host), v ∈ placesOver D.host.E (D.host.g k) → IsSplitPl D.host v := by
-  first | exact @GlobalTheory.TypePrimeSplit.typePrime_split | exact GlobalTheory.TypePrimeSplit.typePrime_split | (intros; apply GlobalTheory.TypePrimeSplit.typePrime_split <;> assumption)
+  first | exact @GlobalTheory.TypePrimeSplit.typePrime_split

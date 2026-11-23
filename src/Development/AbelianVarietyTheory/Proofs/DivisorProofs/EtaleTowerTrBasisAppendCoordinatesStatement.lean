@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.etaleTower_trBasis_append_coordinates : ∀ {K L :
     (ι : R →+* T) (ψ : T →+* R) (τ : Fin r → T) (x : Fin n → R),
   IsEtTower cK R cL T ι ψ τ → TrBasis cK (fun i => (x i : K)) →
   TrBasis cL (Fin.append (fun i => (τ i : L)) (fun i => (ι (x i) : L))) := by
-  first | exact @GlobalTheory.FieldPair.TowerTrdeg.trBasis_append | exact GlobalTheory.FieldPair.TowerTrdeg.trBasis_append | (intros; apply GlobalTheory.FieldPair.TowerTrdeg.trBasis_append <;> assumption)
+  first | exact @GlobalTheory.FieldPair.TowerTrdeg.trBasis_append

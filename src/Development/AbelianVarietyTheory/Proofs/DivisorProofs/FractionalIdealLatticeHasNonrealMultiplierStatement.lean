@@ -54,4 +54,4 @@ open GlobalTheory.CMVal GlobalTheory.HeckeGal
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.fractionalIdealLattice_has_nonreal_multiplier : ∀ (K : Type) [Field K] [NumberField K] (d : ℕ) (δ : K) (ι : K →+* ℂ) (𝔞 : FractionalIdeal (nonZeroDivisors (𝓞 K)) K) (Λ : PeriodPair), 0 < d → δ ^ 2 = -(d : K) → GlobalTheory.IndefiniteRowSideFullHecke.LatticeNormTransport.IsLatOf ι 𝔞 Λ → (∀ a : 𝓞 K, MulStable Λ (ι a)) ∧ MulStable Λ (ι δ) ∧ (ι δ).im ≠ 0 ∧ IsIntegral ℤ δ := by
-  first | exact @GlobalTheory.LatOfMult.main | exact GlobalTheory.LatOfMult.main | (intros; apply GlobalTheory.LatOfMult.main <;> assumption)
+  first | exact @GlobalTheory.LatOfMult.main

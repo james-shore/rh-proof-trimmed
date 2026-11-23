@@ -103,7 +103,6 @@ theorem pf_parseval (g k : E d → ℂ) (hg : Integrable g) (hkc : Continuous k)
       exact hg.mul_prod hK
     refine hprod.mono ?_ (Filter.Eventually.of_forall fun p => le_of_eq ?_)
     · first
-      | exact hg.1.fst.mul (hcχ.aestronglyMeasurable.mul hK.1.snd)
       | exact hg.1.comp_fst.mul (hcχ.aestronglyMeasurable.mul hK.1.comp_snd)
     · try dsimp only
       rw [norm_mul, norm_mul, norm_mul, norm_eF_eq_one, one_mul]

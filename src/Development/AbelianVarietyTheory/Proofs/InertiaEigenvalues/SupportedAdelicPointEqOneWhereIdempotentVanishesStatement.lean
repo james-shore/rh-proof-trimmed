@@ -61,4 +61,4 @@ open GlobalTheory.StdAtPrime
 
 
 theorem _root_.GlobalTheory.T.supported_adelic_point_eq_one_where_idempotent_vanishes : ∀ (D : D7) (ι : (Af D.host.F ⊗[D.host.F] D.host.E) ≃+* FiniteAdeleRing (𝓞 D.host.E) D.host.E) (V : HSp D) (e : AE D) (g : GA D V), SuppAt e V g → ∀ Q : HeightOneSpectrum (𝓞 D.host.E), ι (finPart D (e + cA D e)) Q = 0 → ∀ i j, ((Matrix.GeneralLinearGroup.map ι.toRingHom (finPt V g).1).1 i j) Q = ((1 : Matrix (Fin V.rank) (Fin V.rank) (FiniteAdeleRing (𝓞 D.host.E) D.host.E)) i j) Q := by
-  first | exact @GlobalTheory.SuppOneIdentity.finPt_entry_eq_one_of_idem_zero | exact GlobalTheory.SuppOneIdentity.finPt_entry_eq_one_of_idem_zero | (intros; apply GlobalTheory.SuppOneIdentity.finPt_entry_eq_one_of_idem_zero <;> assumption)
+  first | exact @GlobalTheory.SuppOneIdentity.finPt_entry_eq_one_of_idem_zero

@@ -54,4 +54,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_basicOpen_smoothOfRelativeDimension_of_generic : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] (X : Over (Sp R)), Smooth X.hom → QuasiCompact X.hom → ∀ (K : Type) [Field K] (e : R →+* K), Function.Injective e → ∀ g : ℕ, SmoothOfRelativeDimension g (pullback.snd X.hom (spMap e)) → ∃ f : R, e f ≠ 0 ∧ ∀ (F : Type) [Field F] (ψ : R →+* F), IsUnit (ψ f) → SmoothOfRelativeDimension g (pullback.snd X.hom (spMap ψ)) := by
-  first | exact @GlobalTheory.SmoothRelDim.exists_basicOpen | exact GlobalTheory.SmoothRelDim.exists_basicOpen | (intros; apply GlobalTheory.SmoothRelDim.exists_basicOpen <;> assumption)
+  first | exact @GlobalTheory.SmoothRelDim.exists_basicOpen

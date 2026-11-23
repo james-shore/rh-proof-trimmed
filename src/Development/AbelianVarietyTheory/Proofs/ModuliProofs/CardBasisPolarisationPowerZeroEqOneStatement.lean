@@ -50,4 +50,4 @@ open scoped CategoryTheory.Obj TensorProduct Pointwise
 open GlobalTheory.Models GlobalTheory.ModelSum
 
 theorem _root_.GlobalTheory.T.card_basis_polarisation_power_zero_eq_one : Out.GlobalFnsSt → ∀ (R : Type) [CommRing R] [Nontrivial R] (P : Out.PolAV (Sp R)) (n : ℕ) (b : Fin n → LB.Sec (Out.LPow P.A P.L ((0 : ℕ) : ℤ) (Over.mk (𝟙 (Sp R))))), GlobalTheory.LN.BasisAlong P.A P.L 0 (𝟙 _) b → n = 1 := by
-  first | exact @GlobalTheory.basisAlong_zero_card | exact GlobalTheory.basisAlong_zero_card | (intros; apply GlobalTheory.basisAlong_zero_card <;> assumption)
+  first | exact @GlobalTheory.basisAlong_zero_card

@@ -49,4 +49,4 @@ open Formalism Formalism.MainNotions Formalism.BasicNotions Formalism.BasicNotio
 
 
 theorem _root_.GlobalTheory.T.lenMod_span_sUnion_le_of_directed' : ∀ {O M : Type} [CommRing O] [AddCommGroup M] [Module O M] (S : Set (Set M)) (H : Submodule O M) (N : ℕ∞), (∀ A ∈ S, ∀ B ∈ S, ∃ C ∈ S, A ⊆ C ∧ B ⊆ C) → (∀ A ∈ S, BlochKatoDuality.lenMod (Submodule.span O A) H ≤ N) → BlochKatoDuality.lenMod (Submodule.span O (⋃₀ S)) H ≤ N := by
-  first | exact @GlobalTheory.Pass.LocDirect.lenMod_span_sUnion_le_of_directed | exact GlobalTheory.Pass.LocDirect.lenMod_span_sUnion_le_of_directed | (intros; apply GlobalTheory.Pass.LocDirect.lenMod_span_sUnion_le_of_directed <;> assumption)
+  first | exact @GlobalTheory.Pass.LocDirect.lenMod_span_sUnion_le_of_directed

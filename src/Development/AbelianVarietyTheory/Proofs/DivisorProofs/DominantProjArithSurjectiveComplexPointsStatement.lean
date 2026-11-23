@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
 
 theorem _root_.GlobalTheory.T.dominant_projArith_surjective_complexPoints : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ (Y : Scheme.{0}) [IsIntegral Y] (q : Y ⟶ Sp k) (E : ℕ), IsArithVar q E → ∀ (π : Y ⟶ X) (hπ : π ≫ p = q), π (genericPoint Y) = genericPoint X → ∀ σ : k →+* ℂ, Function.Surjective (Points.PtsOver.map π hπ (spMap σ) : CxPts q σ → CxPts p σ) := by
-  first | exact @GlobalTheory.DomSurj.surjective_cxPts_map | exact GlobalTheory.DomSurj.surjective_cxPts_map | (intros; apply GlobalTheory.DomSurj.surjective_cxPts_map <;> assumption)
+  first | exact @GlobalTheory.DomSurj.surjective_cxPts_map

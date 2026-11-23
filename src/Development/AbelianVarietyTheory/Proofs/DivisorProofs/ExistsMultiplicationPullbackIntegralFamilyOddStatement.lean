@@ -46,4 +46,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_multiplicationPullback_integralFamily_odd : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D : DegData R (maximalIdeal R)) (m : ℕ), Odd m → ∀ F₁ : IntFam (maximalIdeal R) D.toPre 1, ∃ G : IntFam (maximalIdeal R) D.toPre (m ^ 2), MulFam m F₁ G := by
-  first | exact @GlobalTheory.Mum.exists_intFam_mul | exact GlobalTheory.Mum.exists_intFam_mul | (intros; apply GlobalTheory.Mum.exists_intFam_mul <;> assumption)
+  first | exact @GlobalTheory.Mum.exists_intFam_mul

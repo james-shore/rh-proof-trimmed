@@ -91,7 +91,7 @@ theorem quotient_base_change_invariant_derivations :
         rw [Algebra.TensorProduct.tmul_mul_tmul, hεt, hεt]
         rw [LinearMap.liftBaseChange_tmul, LinearMap.liftBaseChange_tmul,
           LinearMap.liftBaseChange_tmul, hl]
-        simp only [smul_eq_mul, smul_add, Algebra.smul_def]
+        simp only [smul_eq_mul, Algebra.smul_def]
         ring
       | add y₁ y₂ ih₁ ih₂ =>
         rw [mul_add, map_add (f := _), ih₁, ih₂, map_add (f := _), map_add (f := _)]

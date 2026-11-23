@@ -67,11 +67,9 @@ theorem regVert_eq_of_le_height_one {A : Type*} [CommRing A] [IsDomain A] {Q P :
   haveI : (⊥ : Ideal A).FiniteHeight := ⟨Or.inr (by simp)⟩
   have h1 : (⊥ : Ideal A).height + 1 ≤ Q.height := by
     first
-    | exact ENat.add_one_le_of_lt (Ideal.height_strict_mono_of_isPrime hbot)
     | exact Order.add_one_le_of_lt (Ideal.height_strict_mono_of_isPrime hbot)
   have h2 : Q.height + 1 ≤ P.height := by
     first
-    | exact ENat.add_one_le_of_lt (Ideal.height_strict_mono_of_isPrime hlt)
     | exact Order.add_one_le_of_lt (Ideal.height_strict_mono_of_isPrime hlt)
   rw [hP] at h2
   have h3 : (2 : ℕ∞) ≤ 1 := by

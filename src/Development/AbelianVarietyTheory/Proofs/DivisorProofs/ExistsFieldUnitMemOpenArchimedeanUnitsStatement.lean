@@ -48,4 +48,4 @@ import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 open NumberField IsDedekindDomain GlobalTheory.CuspRep Matrix
 
 theorem _root_.GlobalTheory.T.exists_field_unit_mem_open_archimedean_units : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (V : Set (Cinf E)ˣ), IsOpen V → V.Nonempty → ∃ α : Eˣ, Units.map ((pInf E).comp (algebraMap E (Ad E))).toMonoidHom α ∈ V := by
-  first | exact @GlobalTheory.UnitsDense.exists_unit_mem_open | exact GlobalTheory.UnitsDense.exists_unit_mem_open | (intros; apply GlobalTheory.UnitsDense.exists_unit_mem_open <;> assumption)
+  first | exact @GlobalTheory.UnitsDense.exists_unit_mem_open

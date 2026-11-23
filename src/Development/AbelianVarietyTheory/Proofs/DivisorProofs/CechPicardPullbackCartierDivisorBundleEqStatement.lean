@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.cechPicardPullback_cartierDivisorBundle_eq : ∀ (
     (D : CartierDiv X) (E : CartierDiv W),
     (∀ y b, E.IsEqn y b → ∀ x, q x = y → D.IsEqn x (Units.map (functionFieldMap q).toMonoidHom b)) →
     CechPic.pull q (cls (toLB E) (isLB_toLB E)) = cls (toLB D) (isLB_toLB D) := by
-  first | exact @GlobalTheory.Cartier.PullPres.pull_cls_toLB | exact GlobalTheory.Cartier.PullPres.pull_cls_toLB | (intros; apply GlobalTheory.Cartier.PullPres.pull_cls_toLB <;> assumption)
+  first | exact @GlobalTheory.Cartier.PullPres.pull_cls_toLB

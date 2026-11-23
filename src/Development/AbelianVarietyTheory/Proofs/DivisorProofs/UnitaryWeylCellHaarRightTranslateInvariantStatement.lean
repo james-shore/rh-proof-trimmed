@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.unitaryWeylCell_haar_rightTranslate_invariant : �
       (∀ F : GU σ n → ℂ, ∫ u : cellU y, F ((u * p : cellU y) : GU σ n) ∂μ = ∫ u : cellU y, F (u : GU σ n) ∂μ) ∧
       (∀ F : GU σ n → ENNReal,
         ∫⁻ u : cellU y, F ((u * p : cellU y) : GU σ n) ∂μ = ∫⁻ u : cellU y, F (u : GU σ n) ∂μ) := by
-  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.cellU_haar_rightInv | exact GlobalTheory.WeylCell.WeylUnipotentShell.cellU_haar_rightInv | (intros; apply GlobalTheory.WeylCell.WeylUnipotentShell.cellU_haar_rightInv <;> assumption)
+  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.cellU_haar_rightInv

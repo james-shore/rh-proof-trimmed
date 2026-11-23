@@ -129,8 +129,7 @@ theorem isU_alpha_of_prime {x : GlobalTheory.FinPl.Pl D} {T : ℕ} (hT : T.Prime
     (ReciprocityTheory.ChartRestriction.G.PullbackSections.PfModelLatA.normCc_mem_AA D)
   obtain ⟨e, he, hg⟩ := line_gen hζ (by
     first
-    | exact GlobalTheory.WeilAtPlace.isSelfDualC_frameLat L
-    | exact (GlobalTheory.WeilAtPlace.isSelfDualC_frameLat L).1) x
+    | exact GlobalTheory.WeilAtPlace.isSelfDualC_frameLat L) x
   refine IsU.inv (fun a ha => ?_) α.inv_mul
   have h1 := hα L (GlobalTheory.AdelicU.frameLat L) ((incA D e * a) • ratV ζ)
   have e1 : incA D e⁻¹ * incA D e = 1 := (inU e he).inv_mul

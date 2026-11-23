@@ -51,4 +51,4 @@ import Mathlib.Topology.Sheaves.Init
 open Polynomial
 
 theorem _root_.GlobalTheory.T.exists_aeval_eq_of_mulLeft_charpoly_separable : ∀ (E A : Type) [Field E] [CommRing A] [Algebra E A] [Module.Finite E A] (g : A), (LinearMap.mulLeft E g).charpoly.Separable → ∀ x : A, ∃ p : E[X], aeval g p = x := by
-  first | exact @GlobalTheory.SepGenElt.exists_aeval_eq | exact GlobalTheory.SepGenElt.exists_aeval_eq | (intros; apply GlobalTheory.SepGenElt.exists_aeval_eq <;> assumption)
+  first | exact @GlobalTheory.SepGenElt.exists_aeval_eq

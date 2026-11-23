@@ -54,4 +54,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.hasProd_localTwistedLFactor_div_unitaryLocalFactor : ∀ (D : D7) (Sb : Finset (HeightOneSpectrum (𝓞 D.host.F))) (B : Fam D.host.E) (χ : (AE D)ˣ →* Circle), Converges (above D.host.E (Sb : Set (HeightOneSpectrum (𝓞 D.host.F)))) (twist B (val χ)⁻¹) ((1 + (D.R.t : ℂ)) / 2) → HasProd (fun v : {v : HeightOneSpectrum (𝓞 D.host.F) // v ∉ Sb} => LvTw B (val χ) v.1 ((1 + (D.R.t : ℂ)) / 2) / (dLoc D v.1 : ℂ)) (LSD D Sb B χ ((1 + (D.R.t : ℂ)) / 2) / (dOff D Sb : ℂ)) := by
-  first | exact @GlobalTheory.FinZeta.hasProd_LvTw_div_dLoc | exact GlobalTheory.FinZeta.hasProd_LvTw_div_dLoc | (intros; apply GlobalTheory.FinZeta.hasProd_LvTw_div_dLoc <;> assumption)
+  first | exact @GlobalTheory.FinZeta.hasProd_LvTw_div_dLoc

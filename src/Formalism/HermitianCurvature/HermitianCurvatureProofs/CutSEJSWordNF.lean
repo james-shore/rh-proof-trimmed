@@ -179,7 +179,7 @@ theorem op_pt (X : ActualOps k r z z' π π') (l : Fin r) (i : Fin 6) (Ψ : RadS
 
 theorem wOp_cons (X : ActualOps k r z z' π π') (l : Fin r) (j : Fin 6) (js : List (Fin 6))
     (Ψ : RadSp k r z z' π π') : wOp X l (j :: js) Ψ = X.op l j (wOp X l js Ψ) := by
-  simp [wOp, List.map_cons, List.prod_cons, Module.End.mul_apply]
+  simp [wOp, List.map_cons, List.prod_cons]
 
 theorem wOp_nil (X : ActualOps k r z z' π π') (l : Fin r) (Ψ : RadSp k r z z' π π') : wOp X l [] Ψ = Ψ := by
   simp [wOp]

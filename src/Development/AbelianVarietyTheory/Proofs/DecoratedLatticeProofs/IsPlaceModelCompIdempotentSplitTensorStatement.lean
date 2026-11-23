@@ -48,4 +48,4 @@ open scoped TensorProduct Pointwise
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.isPlaceModel_comp_idempotentSplitTensor : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (a b : AE D) (Λ : AddSubgroup (WO S T)) (f₀ : WO S T → ℂ) (Tm : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ)), a * b = 0 → b * b = b → (∀ u ∈ Λ, b • u ∈ Λ) → IsPlaceModel ψ (symplO S T) (heisO ψ S T) (a + b) Λ 1 f₀ Tm → IsPlaceModel ψ (symplO S T) (heisO ψ S T) a Λ 1 f₀ (Tm ∘ₗ GlobalTheory.FinPl.PutIn.tensL b (halfInd b Λ)) := by
-  first | exact @GlobalTheory.FinPl.PutIn.isPlaceModel_tensHalf | exact GlobalTheory.FinPl.PutIn.isPlaceModel_tensHalf | (intros; apply GlobalTheory.FinPl.PutIn.isPlaceModel_tensHalf <;> assumption)
+  first | exact @GlobalTheory.FinPl.PutIn.isPlaceModel_tensHalf

@@ -47,4 +47,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Fo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LabPin.instCM
 
 theorem _root_.GlobalTheory.T.fixedTypePrimePlaces_choice_one_per_conjugate_pair : ∀ (D : D7) (X : HidaSetting D), GlobalTheory.RowLev.IsChoice X.B.I D.host.g D.nd.PlG (fun k v => Formalism.L2.SG.Pf.RowDictPf.wB X (D.naut.plGw k v)) := by
-  first | exact @GlobalTheory.RowLev.FixedChoice.isChoice_wB_plGw | exact GlobalTheory.RowLev.FixedChoice.isChoice_wB_plGw | (intros; apply GlobalTheory.RowLev.FixedChoice.isChoice_wB_plGw <;> assumption)
+  first | exact @GlobalTheory.RowLev.FixedChoice.isChoice_wB_plGw

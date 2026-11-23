@@ -71,21 +71,13 @@ variable {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Module K V]
 theorem exists_mul_mem {A : Submodule (𝓞 K) V} (hA : Submodule.span K (A : Set V) = ⊤) (x : V) :
     ∃ N : ℤ, N ≠ 0 ∧ N • x ∈ A := by
   first
-  | exact @_root_.GlobalTheory.IntMulIntegral.main
-  | exact _root_.GlobalTheory.IntMulIntegral.main
   | (apply _root_.GlobalTheory.IntMulIntegral.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntMulIntegral.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntMulIntegral.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntMulIntegral.main ..)
 
 theorem exists_mul_le {A : Submodule (𝓞 K) V} (hA : Submodule.span K (A : Set V) = ⊤)
     {B : Submodule (𝓞 K) V} (hB : B.FG) : ∃ N : ℤ, N ≠ 0 ∧ ∀ x ∈ B, N • x ∈ A := by
   first
-  | exact @_root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le
-  | exact _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le
   | (apply _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le ..)
 
 theorem finite_between {Λ : Submodule (𝓞 K) V} (hΛ : Λ.FG) {a b : ℤ} (ha : a ≠ 0) (hb : b ≠ 0) :

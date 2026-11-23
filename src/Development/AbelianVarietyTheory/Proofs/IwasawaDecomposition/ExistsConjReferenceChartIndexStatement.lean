@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_conj_referenceChartIndex : ∀ {B : Base} {
       ∀ (g : ↥(levGAt I.sel (I.tup a) (I.idx a) (I.Tp a) i b).grp) (g0 : ↥(levGAt I.sel (I.tup I.mu0) (I.idx I.mu0) (I.Tp I.mu0) i b0).grp),
         (∀ w, g0.1 w = x w * g.1 w * (x w)⁻¹) →
         (levGAt I.sel (I.tup a) (I.idx a) (I.Tp a) i b).chr g = (levGAt I.sel (I.tup I.mu0) (I.idx I.mu0) (I.Tp I.mu0) i b0).chr g0 := by
-  first | exact @GlobalTheory.Mem.Col2.TC.ChTw.Match.IdxMatch.idx_match | exact GlobalTheory.Mem.Col2.TC.ChTw.Match.IdxMatch.idx_match | (intros; apply GlobalTheory.Mem.Col2.TC.ChTw.Match.IdxMatch.idx_match <;> assumption)
+  first | exact @GlobalTheory.Mem.Col2.TC.ChTw.Match.IdxMatch.idx_match

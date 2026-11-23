@@ -47,4 +47,4 @@ open scoped Classical ENNReal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.weighted_count_glued_lattices_eq_mass_mul_local : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (locH Z p) D.R.rS) (u u' : D.what₂.Word) (F G : LFlag (D.sp.Y 0) D.R.rS (((D.mem u).A.T : ℕ) : D.host.E)) (F' G' : LFlag (D.sp.Y 0) D.R.rS (((D.mem u').A.T : ℕ) : D.host.E)) (P : Finset (PlF D)) (d0 : Dat Z FP), 4 * D.R.rS + 7 ≤ D.R.k → BaseOK (Tu D u) (Tu D u') F F' P d0 → StdOff Z P F G F' G' → TotPos (Gval F F') → ∀ (R : ∀ p, LocNG.Reps (FP p)) (V : ℝ), 0 ≤ V → MassLaw F F' P d0 V → ∀ s : Finset (LV D), Glue G G' s → ENNReal.ofReal (glueSum G G' s) = ENNReal.ofReal V * ∏ p ∈ P, locSum G G' p (R p) (d0 p) := by
-  first | exact @GlobalTheory.GlueCount.glue_count | exact GlobalTheory.GlueCount.glue_count | (intros; apply GlobalTheory.GlueCount.glue_count <;> assumption)
+  first | exact @GlobalTheory.GlueCount.glue_count

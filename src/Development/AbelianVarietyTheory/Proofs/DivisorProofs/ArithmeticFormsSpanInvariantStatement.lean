@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.arithmetic_forms_span_invariant : ∀ (LL Ks : Typ
     Formalism.HN.rkK (A.Mall J0 lam0) = Module.finrank LL (A.typeP J0 lam0) ∧
     Formalism.HN.rkK (A.Mall J0 lam0 ⊓ (LinearMap.ker f).restrictScalars (𝓞 LL)) =
       Module.finrank LL (A.typeP J0 lam0 ⊓ LinearMap.ker f : Submodule LL (Fin n → LL)) := by
-  first | exact @GlobalTheory.IntFormsRank.rkK_Mall | exact GlobalTheory.IntFormsRank.rkK_Mall | (intros; apply GlobalTheory.IntFormsRank.rkK_Mall <;> assumption)
+  first | exact @GlobalTheory.IntFormsRank.rkK_Mall

@@ -219,7 +219,6 @@ theorem cvA_near (hσ : IsURepOn (UJset ε) σ) {φ : Matrix (Fin n) (Fin n) ℂ
   have hw : w = ∫ g : Formalism.REAL.UJ ε, ((φ (Formalism.MainNotions.S.umat g) : ℂ)) • w ∂(Formalism.REAL.muG ε) := by
     rw [integral_smul_const]
     first
-    | rw [integral_ofReal, hφ1, Complex.ofReal_one, one_smul]
     | rw [integral_complex_ofReal, hφ1, Complex.ofReal_one, one_smul]
   have hdiff : ∫ g : Formalism.REAL.UJ ε, ((φ (Formalism.MainNotions.S.umat g) : ℂ)) • (σ (Formalism.MainNotions.S.umat g) w - w) ∂(Formalism.REAL.muG ε)
       = cvA ε σ (fun g => (φ g : ℂ)) w - w := by

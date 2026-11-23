@@ -305,7 +305,7 @@ theorem exists_isSupercuspidal_quotient {U : Type*} [AddCommGroup U] [Module ℂ
     ⟨Submodule.span ℂ (Set.range fun g => τ g u₀), fun g x hx =>
       (Submodule.span_le.2 (by
         rintro _ ⟨h, rfl⟩
-        exact Submodule.subset_span ⟨g * h, by simp [map_mul, Module.End.mul_apply]⟩) :
+        exact Submodule.subset_span ⟨g * h, by simp [map_mul]⟩) :
         Submodule.span ℂ (Set.range fun g => τ g u₀) ≤
           (Submodule.span ℂ (Set.range fun g => τ g u₀)).comap (τ g)) hx⟩
   have hu₀A : u₀ ∈ A.toSubmodule := Submodule.subset_span ⟨1, by simp⟩

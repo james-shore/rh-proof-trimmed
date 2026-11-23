@@ -169,10 +169,7 @@ private theorem le_dual_of_integral_form {K V : Type} [Field K] [NumberField K] 
   simp only [Formalism.HermitianLatticesTheory.dual, Formalism.E.hdual, Submodule.mem_iInf]
   intro y hy
   first
-  | exact hi x hx y hy
   | exact hi y hy x hx
-  | simpa using hi x hx y hy
-  | simpa using hi y hy x hx
 
 private theorem norm_cofactor_le_of_factorization {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
     [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (h : V →ₗ⋆[K] V →ₗ[K] K)

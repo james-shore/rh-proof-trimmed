@@ -159,7 +159,7 @@ private theorem es_of (h1 : SEsLev) (h2 : SEsFrob) (h3 : SEsT)
     simpa using this
   rw [← h4.smul_eq_zero, ← map_smul, ← fin, t1, t2]
   congr 1
-  simp only [Pi.sub_apply, Pi.add_apply, Pi.smul_apply, Finset.sum_apply, smul_sub, smul_add, Finset.smul_sum, map_smul]
+  simp only [Pi.add_apply, Pi.smul_apply, Finset.sum_apply, smul_sub, smul_add, Finset.smul_sum, map_smul]
   congr 1
   change _ + (4 : ℤ_[l]) • (q : ℤ_[l]) ^ (w + 1) • X.kmap l (X.gal σ⁻¹) (X.kmap l _ (b _)) = _
   rw [smul_smul, smul_smul, smul_smul]

@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.exists_mixed_chart_through_W_coordinate : ∀ {D :
         (Assignment.one.block _ _)ᶜ ∧
       ∀ u, chart jj (finCongr (rankW G t i j w)) (colsEq t e w) g (invT cc) (coX (Bs.τ v) (Γ.V.bas v) (Γ.W.bas v) u) =
         linA B t i j w (ptA e u) := by
-  first | exact @GlobalTheory.TopFlip.ChartA.exists_mixChart_lin | exact GlobalTheory.TopFlip.ChartA.exists_mixChart_lin | (intros; apply GlobalTheory.TopFlip.ChartA.exists_mixChart_lin <;> assumption)
+  first | exact @GlobalTheory.TopFlip.ChartA.exists_mixChart_lin

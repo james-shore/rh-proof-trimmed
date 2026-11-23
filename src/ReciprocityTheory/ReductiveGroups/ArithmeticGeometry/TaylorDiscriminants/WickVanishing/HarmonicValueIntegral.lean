@@ -82,8 +82,6 @@ theorem const_subst {σ τ k : Type} [CommRing k] [Finite σ] {a : σ → MvPowe
   have h0 : constantCoeff (G - C (constantCoeff G)) = 0 := by simp
   have h1 : constantCoeff (subst a (G - C (constantCoeff G))) = 0 := by
     first
-    | exact constantCoeff_subst_eq_zero hs _ h0
-    | exact constantCoeff_subst_eq_zero hs h0
     | (apply constantCoeff_subst_eq_zero <;> assumption)
   have e : subst a (G - C (constantCoeff G)) = subst a G - C (constantCoeff G) := by
     rw [← coe_substAlgHom hs, map_sub, coe_substAlgHom hs, mvPowerSeries_subst_C hs]

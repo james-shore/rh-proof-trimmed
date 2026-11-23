@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.axes_vanishing_noetherian_abelian : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → AxesVanishingStructureSheafDegOne A := by
-  first | exact @GlobalTheory.AbCoh.AxesSq.axesO1_of_isAbelianScheme | exact GlobalTheory.AbCoh.AxesSq.axesO1_of_isAbelianScheme | (intros; apply GlobalTheory.AbCoh.AxesSq.axesO1_of_isAbelianScheme <;> assumption)
+  first | exact @GlobalTheory.AbCoh.AxesSq.axesO1_of_isAbelianScheme

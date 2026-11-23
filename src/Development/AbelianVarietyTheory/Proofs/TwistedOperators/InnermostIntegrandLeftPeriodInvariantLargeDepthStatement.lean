@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.innermostIntegrand_leftPeriodInvariant_largeDepth : Big fun ch => RInv ch := by
-  first | exact @GlobalTheory.RowLeftInv.rinv | exact GlobalTheory.RowLeftInv.rinv | (intros; apply GlobalTheory.RowLeftInv.rinv <;> assumption)
+  first | exact @GlobalTheory.RowLeftInv.rinv

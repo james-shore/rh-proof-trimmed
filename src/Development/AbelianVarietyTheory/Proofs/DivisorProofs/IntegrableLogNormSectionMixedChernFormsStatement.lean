@@ -50,4 +50,4 @@ open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
 theorem _root_.GlobalTheory.T.integrable_logNormSection_mixedChernForms : ∀ (F : Type) [Field F] (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (p : X ⟶ Sp F) (σ : F →+* ℂ) (D : ℕ), IsProjOver p → SmoothOfRelativeDimension D p → ∀ (L : Fin D → MLine p σ) (M : MLine p σ) (s : M.B.Sec), genericPoint X ∈ nonzeroLocus s → Intg L (M.logSec s) := by
-  first | exact @GlobalTheory.MixLogSec.intg_logSec | exact GlobalTheory.MixLogSec.intg_logSec | (intros; apply GlobalTheory.MixLogSec.intg_logSec <;> assumption)
+  first | exact @GlobalTheory.MixLogSec.intg_logSec

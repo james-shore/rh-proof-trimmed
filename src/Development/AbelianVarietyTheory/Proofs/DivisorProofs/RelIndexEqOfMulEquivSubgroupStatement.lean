@@ -58,4 +58,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open GlobalTheory.UnitLemma GlobalTheory.InertUnitOrb
 
 theorem _root_.GlobalTheory.T.relIndex_eq_relIndex_inf_of_mulEquiv_subgroup : ∀ (G H : Type) [Group G] [Group H] (T : Subgroup G) (S : Subgroup H) (τ : T ≃* S) (A₁ A₂ : Subgroup G) (B₁ B₂ : Subgroup H), A₁ ≤ T → A₂ ≤ T → (∀ t : T, (t : G) ∈ A₁ ↔ ((τ t : S) : H) ∈ B₁) → (∀ t : T, (t : G) ∈ A₂ ↔ ((τ t : S) : H) ∈ B₂) → A₁.relIndex A₂ = (B₁ ⊓ S).relIndex (B₂ ⊓ S) := by
-  first | exact @GlobalTheory.relIndex_eq_of_mulEquiv_subgroup | exact GlobalTheory.relIndex_eq_of_mulEquiv_subgroup | (intros; apply GlobalTheory.relIndex_eq_of_mulEquiv_subgroup <;> assumption)
+  first | exact @GlobalTheory.relIndex_eq_of_mulEquiv_subgroup

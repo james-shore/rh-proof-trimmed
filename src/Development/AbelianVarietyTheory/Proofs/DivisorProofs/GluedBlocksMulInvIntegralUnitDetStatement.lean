@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.glued_blocks_mul_inv_integral_unit_det : ∀ (C : 
     (∀ i a c, a ∈ S i → c ∈ S i → ∑ b, x i a b * y i b c = if a = c then 1 else 0) →
     (∀ a b, IsIntV v (glue lab S x a b)) ∧ glue lab S x * glue lab S y = 1 ∧
       v (glue lab S x).det = 0 := by
-  first | exact @GlobalTheory.GlueBlocks.glue_mul_glue_inv | exact GlobalTheory.GlueBlocks.glue_mul_glue_inv | (intros; apply GlobalTheory.GlueBlocks.glue_mul_glue_inv <;> assumption)
+  first | exact @GlobalTheory.GlueBlocks.glue_mul_glue_inv

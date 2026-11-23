@@ -48,4 +48,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 theorem _root_.GlobalTheory.T.fourierTermSystem_exact_of_geometric_uniformisation : ∀ (O : Type) [CommRing O] (bar : O → O) (q s : ℕ) (W : Matrix (Fin s) (Fin s) ℤ) (X₁ : GlobalTheory.GSep.GSet) (z₁ : X₁.M.Z) (act : O → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)) (x₀ : X₁.S.Gam) (Φ : VPre bar q W (X₁.M.Z.presheaf.stalk z₁)) (lab : Φ.Q → X₁.S.Gam), GlobalTheory.GSep.IsGeo X₁ z₁ act x₀ Φ lab → Φ.Exact (X₁.S.r * X₁.S.N) := by
-  first | exact @GlobalTheory.GSep.ExactSums.exact_of_isGeo | exact GlobalTheory.GSep.ExactSums.exact_of_isGeo | (intros; apply GlobalTheory.GSep.ExactSums.exact_of_isGeo <;> assumption)
+  first | exact @GlobalTheory.GSep.ExactSums.exact_of_isGeo

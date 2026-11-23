@@ -48,4 +48,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open AlgebraicGeometry CategoryTheory Limits
 
 theorem _root_.GlobalTheory.T.hom_ext_of_agree_on_fibreDense_open_smooth : ∀ (X T Y : Scheme.{0}) (p : X ⟶ T) [Smooth p] (q : Y ⟶ T) [IsSeparated q] (W : X.Opens), (∀ x : X, x ∈ closure ((W : Set X) ∩ p ⁻¹' {p x})) → ∀ f g : X ⟶ Y, f ≫ q = g ≫ q → W.ι ≫ f = W.ι ≫ g → f = g := by
-  first | exact @GlobalTheory.FibreDense.main | exact GlobalTheory.FibreDense.main | (intros; apply GlobalTheory.FibreDense.main <;> assumption)
+  first | exact @GlobalTheory.FibreDense.main

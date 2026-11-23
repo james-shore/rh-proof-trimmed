@@ -47,4 +47,4 @@ open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.realPoints_unitaryCharacter_eq_detPower : ∀ (D : D7) (θ : InfFam D) (V : HSp D), IsInfFam θ → V.SigOK → ∀ z : GA D V → ℂ, (∀ a ∈ GinfC V, ∀ a' ∈ GinfC V, z (a * a') = z a * z a') → (∀ a ∈ GinfC V, ‖z a‖ = 1) → ContinuousOn z (GinfC V : Set (GA D V)) → ∃ m : D.what₂.Tau → ℤ, ∀ a ∈ GinfC V, z a = detPow θ V m a := by
-  first | exact @GlobalTheory.AdSpan.char_eq_detPow | exact GlobalTheory.AdSpan.char_eq_detPow | (intros; apply GlobalTheory.AdSpan.char_eq_detPow <;> assumption)
+  first | exact @GlobalTheory.AdSpan.char_eq_detPow

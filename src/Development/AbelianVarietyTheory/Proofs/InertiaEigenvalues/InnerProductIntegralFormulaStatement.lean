@@ -50,4 +50,4 @@ open GlobalTheory.RawLift
 open GlobalTheory.AdjUp
 
 theorem _root_.GlobalTheory.T.inner_product_integral_formula : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Laws R F → ∀ (i : Fin D.R.m) (t : T), ∃ c : ℝ, 0 < c ∧ ∀ u u' : (R.HV i t).H, ⟪u, u'⟫_ℂ = (c : ℂ) * ∫ h in R.fdV i t, ⟪R.extV i t u h, R.extV i t u' h⟫_ℂ ∂(R.νV i t) ∧ ∀ a a' : (R.cV i).W, IntegrableOn (fun h => star ⟪a, R.extV i t u h⟫_ℂ * ⟪a', R.extV i t u' h⟫_ℂ) (R.fdV i t) (R.νV i t) := by
-  first | exact @GlobalTheory.AdelicL2Norm.norm_eq_integral | exact GlobalTheory.AdelicL2Norm.norm_eq_integral | (intros; apply GlobalTheory.AdelicL2Norm.norm_eq_integral <;> assumption)
+  first | exact @GlobalTheory.AdelicL2Norm.norm_eq_integral

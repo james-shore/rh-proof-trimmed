@@ -49,4 +49,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.isLocalAtPlace_conj_product : ∀ {D : D7} (V : Formalism.BasicNotions.TH.HSp D) {Pl0 : Type} (pl : Pl0 → Pl D.host.E) (ok : Set Pl0) (i i' : ok × ℕ) (a b c d : Bridge.Gf V), (pl i.1).under (𝓞 D.host.F) = (pl i'.1).under (𝓞 D.host.F) → isLocEnv V pl ok i a → isLocEnv V pl ok i' b → isLocEnv V pl ok i' c → isLocEnv V pl ok i d → isLocEnv V pl ok i ((c * d)⁻¹ * (a * b)) := by
-  first | exact @GlobalTheory.FrameProdLoc.isLocEnv_prod | exact GlobalTheory.FrameProdLoc.isLocEnv_prod | (intros; apply GlobalTheory.FrameProdLoc.isLocEnv_prod <;> assumption)
+  first | exact @GlobalTheory.FrameProdLoc.isLocEnv_prod

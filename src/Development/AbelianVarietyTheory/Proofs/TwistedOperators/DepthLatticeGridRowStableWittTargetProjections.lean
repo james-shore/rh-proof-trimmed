@@ -155,7 +155,6 @@ theorem colsOf_cT_mul {n k m : ℕ} (a : Matrix (Fin n) (Fin c) D.host.E) (f : F
     (colsOf a f s)ᴴ * N = Matrix.of fun p j => star (s p) * (aᴴ * N) (f p) j := by
   ext p j
   simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, colsOf, Matrix.of_apply, star_mul', Finset.mul_sum, mul_assoc]
-  try rfl
 
 theorem colsOf_mulVec {n k : ℕ} (a : Matrix (Fin n) (Fin c) D.host.E) (f : Fin k → Fin c) (s : Fin k → D.host.E)
     (w : Fin k → D.host.E) : colsOf a f s *ᵥ w = fun i => ∑ p, a i (f p) * (s p * w p) := by
@@ -172,7 +171,7 @@ theorem sum_mem_sumLat {n k l : ℕ} (M : Matrix (Fin n) (Fin l) D.host.E) (Λ :
     · exact hu q
     · exact (𝔟 q).val.zero_mem
   · funext i
-    simp only [Matrix.mulVec_zero, Pi.zero_apply, zero_add, Matrix.mulVec, dotProduct, Finset.mul_sum]
+    simp only [Matrix.mulVec_zero, zero_add, Matrix.mulVec, dotProduct, Finset.mul_sum]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun p _ => ?_
     simp only [mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]

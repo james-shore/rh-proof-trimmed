@@ -80,11 +80,7 @@ theorem tensorLift_tmul (u : A →+* C) (v : B →+* C)
 theorem ringHom_ext {g h : A ⊗[R] B →+* C} (h1 : ∀ a : A, g (a ⊗ₜ[R] (1 : B)) = h (a ⊗ₜ[R] (1 : B)))
     (h2 : ∀ b : B, g ((1 : A) ⊗ₜ[R] b) = h ((1 : A) ⊗ₜ[R] b)) : g = h := by
   first
-  | exact @_root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor
-  | exact _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor
   | (apply _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor ..)
 
 theorem algebraMap_tmul_one (r : R) :

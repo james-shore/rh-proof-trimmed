@@ -241,7 +241,7 @@ theorem gram_re_posSemidef {n : ℕ} (u : Fin n → Fin g → ℂ) :
       rw [← reForm_apply_alt]
 
       simp only [map_sum, LinearMap.sum_apply, map_smul, LinearMap.smul_apply, reForm_apply_alt]
-      simp [dotProduct, mulVec, Finset.mul_sum, mul_assoc]
+      simp [dotProduct, mulVec, Finset.mul_sum]
       rw [Finset.sum_comm]
       exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
     rwa [e] at h

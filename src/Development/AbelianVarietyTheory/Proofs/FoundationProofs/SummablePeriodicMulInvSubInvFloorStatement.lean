@@ -51,4 +51,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.summable_periodic_mul_inv_sub_inv_floor' : ∀ (L : ℕ) (φ : ZMod L → ℂ) (z : ℂ), 0 < L → 0 < z.im → Summable (fun d : ℤ => φ d * ((z + d)⁻¹ - (z + (L * (d / L) : ℤ))⁻¹)) := by
-  first | exact @GlobalTheory.summable_periodic_mul_inv_sub_inv_floor | exact GlobalTheory.summable_periodic_mul_inv_sub_inv_floor | (intros; apply GlobalTheory.summable_periodic_mul_inv_sub_inv_floor <;> assumption)
+  first | exact @GlobalTheory.summable_periodic_mul_inv_sub_inv_floor

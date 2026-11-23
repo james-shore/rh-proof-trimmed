@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.untiltOfTiltRoot_flat_algebraic_and_galois_fix : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K), (∀ n : ℕ, ∃ z : Om l, ((GlobalTheory.MemLoc.rootT bk.flat n : OC l) : ℂ_[l]) = (z : ℂ_[l])) ∧ ∀ (g : GQ l) (y : OCb l), (∀ n : ℕ, Per.σO g (GlobalTheory.MemLoc.rootT bk.flat n) = GlobalTheory.MemLoc.rootT y n) → Per.σF g bk.flat = y := by
-  first | exact @GlobalTheory.BSP.rootT_flat_alg_and_fix | exact GlobalTheory.BSP.rootT_flat_alg_and_fix | (intros; apply GlobalTheory.BSP.rootT_flat_alg_and_fix <;> assumption)
+  first | exact @GlobalTheory.BSP.rootT_flat_alg_and_fix

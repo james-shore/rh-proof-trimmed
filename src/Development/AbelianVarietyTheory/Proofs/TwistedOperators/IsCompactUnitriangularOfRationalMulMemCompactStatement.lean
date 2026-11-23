@@ -57,4 +57,4 @@ open GlobalTheory.AscFin
 
 
 theorem _root_.GlobalTheory.T.isCompact_unitriangular_of_rational_mul_mem_compact : ∀ (D : D7) (n ρ : ℕ) (x₀ : Matrix (Fin n) (Fin ρ) D.host.E), LinearIndependent D.host.E x₀.transpose → ∀ K : Set (Mx D n ρ), IsCompact K → IsCompact {u : UX D ρ | rat x₀ ⬝ u.1.1 ∈ K} := by
-  first | exact @GlobalTheory.AscFin.isCompact_setOf_rat_mul_mem | exact GlobalTheory.AscFin.isCompact_setOf_rat_mul_mem | (intros; apply GlobalTheory.AscFin.isCompact_setOf_rat_mul_mem <;> assumption)
+  first | exact @GlobalTheory.AscFin.isCompact_setOf_rat_mul_mem

@@ -64,11 +64,7 @@ theorem val_galFq (g : GQ l) (x : Fq l a) : Fq.val l a (galFq l a g x) = Per.σF
 
 theorem exists_pow_eq (φ : Fq l a →+* Fq l a) : ∃ m : ℕ, ∀ x, φ x = x ^ l ^ m := by
   first
-  | exact @_root_.GlobalTheory.FrobeniusPower.main
-  | exact _root_.GlobalTheory.FrobeniusPower.main
   | (apply _root_.GlobalTheory.FrobeniusPower.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FrobeniusPower.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FrobeniusPower.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FrobeniusPower.main ..)
   | (intro h; exact _root_.GlobalTheory.FrobeniusPower.main h _ (fun _ => Iff.rfl))
   | exact _root_.GlobalTheory.FrobeniusPower.main ‹_› _ (fun _ => Iff.rfl)

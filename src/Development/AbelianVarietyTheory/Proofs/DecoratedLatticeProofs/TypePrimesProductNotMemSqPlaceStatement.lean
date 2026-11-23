@@ -50,4 +50,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.typePrimes_product_not_mem_sq_place : ∀ (D : D7) (Q : Pl D.host.E), ((D.host.g 0 * D.host.g 1 : ℕ) : 𝓞 D.host.E) ∈ Q.asIdeal → ((D.host.g 0 * D.host.g 1 : ℕ) : 𝓞 D.host.E) ∉ Q.asIdeal ^ 2 := by
-  first | exact @GlobalTheory.TypePrimeUnif.prod_not_mem_sq | exact GlobalTheory.TypePrimeUnif.prod_not_mem_sq | (intros; apply GlobalTheory.TypePrimeUnif.prod_not_mem_sq <;> assumption)
+  first | exact @GlobalTheory.TypePrimeUnif.prod_not_mem_sq

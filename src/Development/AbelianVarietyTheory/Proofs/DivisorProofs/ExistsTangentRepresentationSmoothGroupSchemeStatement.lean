@@ -52,4 +52,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_tangentRepresentation_smooth_groupScheme : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A], Smooth A.hom → ∃ (W : Type) (_ : AddCommGroup W) (_ : Module R W), Module.Finite R W ∧ Module.Projective R W ∧ Nonempty (TanRep A W) := by
-  first | exact @GlobalTheory.TanRepr.exists_tanRep | exact GlobalTheory.TanRepr.exists_tanRep | (intros; apply GlobalTheory.TanRepr.exists_tanRep <;> assumption)
+  first | exact @GlobalTheory.TanRepr.exists_tanRep

@@ -54,4 +54,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.blockTypeVector_irreducible_splits_as_product : GlobalTheory.Published.BernsteinZelevinskyFiniteness → GlobalTheory.Published.GeometricLemma → GlobalTheory.Published.UnlinkedProductIrreducible → GlobalTheory.Published.DepthZeroJacquetInjective → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k], BlockSplit k := by
-  first | exact @GlobalTheory.BlockSplitProof.main | exact GlobalTheory.BlockSplitProof.main | (intros; apply GlobalTheory.BlockSplitProof.main <;> assumption)
+  first | exact @GlobalTheory.BlockSplitProof.main

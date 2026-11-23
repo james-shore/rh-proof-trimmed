@@ -45,4 +45,4 @@ open GlobalTheory GlobalTheory.CM
 
 
 theorem _root_.GlobalTheory.T.lieLattice_fg_and_span_eq_top_ringOfIntegers : ∀ (K : Type) [Field K] [NumberField K] (P : Out.PolAV (Sp (𝓞 K))) (F : GenFib P), F.lieLat.FG ∧ Submodule.span K (F.lieLat : Set (Fin F.P₀.g → K)) = ⊤ := by
-  first | exact @GlobalTheory.CM.LieLattice.lieLat_fg_and_span_eq_top | exact GlobalTheory.CM.LieLattice.lieLat_fg_and_span_eq_top | (intros; apply GlobalTheory.CM.LieLattice.lieLat_fg_and_span_eq_top <;> assumption)
+  first | exact @GlobalTheory.CM.LieLattice.lieLat_fg_and_span_eq_top

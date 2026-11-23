@@ -63,4 +63,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.StepData GlobalTheory.SplitWeil ValuativeRel
 
 theorem _root_.GlobalTheory.T.completion_smallIntegers_in_prime_dense : ∀ (E : Type) [Field E] [NumberField E] (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (PP : HeightOneSpectrum (𝓞 E)) (q : ℕ) (ι : E →+* k) (ϖ : kˣ), GlobalTheory.SymBridge.IsCompl PP q ι ϖ → GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum.IsUnif ϖ → (∀ z : 𝓞 E, valuation k (ι z) < 1 → z ∈ PP.asIdeal) ∧ ∀ y : k, y ∈ 𝒪[k] → ∃ z : 𝓞 E, valuation k (y - ι z) < 1 := by
-  first | exact @GlobalTheory.SymBridge.ComplDense.small_in_prime_and_dense | exact GlobalTheory.SymBridge.ComplDense.small_in_prime_and_dense | (intros; apply GlobalTheory.SymBridge.ComplDense.small_in_prime_and_dense <;> assumption)
+  first | exact @GlobalTheory.SymBridge.ComplDense.small_in_prime_and_dense

@@ -136,7 +136,7 @@ theorem exists_cop : ∀ (D : Data) (Λ : Lift D) (n : ℕ) (U : AffOp D.X) (T :
     have e : g'.φ.comp ψ = b.φ.comp ((Λ.e U).toAlgHom.comp pres) := by
       apply MvPolynomial.algHom_ext
       intro i
-      simp only [AlgHom.comp_apply, hψX, map_add (f := _), AlgEquiv.coe_toAlgHom, AlgHom.coe_coe]
+      simp only [AlgHom.comp_apply, hψX, map_add (f := _), AlgEquiv.coe_toAlgHom]
       rw [hg'τ i, ← Thick.comp_φ, hg'u]
       simp only [c]
       abel

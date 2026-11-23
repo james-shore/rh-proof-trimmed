@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_trait_nonlocal_torusExtension' : ∀ (R : T
       IsLocalHom ψ ∧ (∀ x ∈ maximalIdeal W, β x = 0) ∧
       (α.comp (algebraMap V (FractionRing V))).comp ψ = β.comp g ∧
       Nonempty (TorusExtension ((Over.pullback (spMap ((algebraMap V (FractionRing V)).comp ψ))).obj G)) := by
-  first | exact @GlobalTheory.exists_trait_nonlocal_torusExtension | exact GlobalTheory.exists_trait_nonlocal_torusExtension | (intros; apply GlobalTheory.exists_trait_nonlocal_torusExtension <;> assumption)
+  first | exact @GlobalTheory.exists_trait_nonlocal_torusExtension

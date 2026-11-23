@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.galoisAddHom_vanishes_complexConjugation : ∀ (E 
     (l ≠ 2 ∨ InfinitePlace.nrRealPlaces E = 0) →
     ∀ (M : Type) [AddCommGroup M] [Module O M] (z : G E Ω → M), (∀ g h, z (g * h) = z g + z h) →
     ∀ (c : Ω ≃ₐ[E] Ω), IsComplexConjugation c → z c = 0 := by
-  first | exact @GlobalTheory.addHom_complexConjugation_eq_zero | exact GlobalTheory.addHom_complexConjugation_eq_zero | (intros; apply GlobalTheory.addHom_complexConjugation_eq_zero <;> assumption)
+  first | exact @GlobalTheory.addHom_complexConjugation_eq_zero

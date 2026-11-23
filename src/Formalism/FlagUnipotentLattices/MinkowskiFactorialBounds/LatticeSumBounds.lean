@@ -461,7 +461,6 @@ theorem minBoundSecond' : MinII' := by
             CT ^ k * loss := by
           rw [hDD]
           gcongr
-          all_goals first | assumption | positivity | skip
       _ = loss * loss' ^ 2 * (6 * Real.exp 1 * Real.pi * CT / (k * g ^ (2 * r + 2))) ^ k := by
           ring
 

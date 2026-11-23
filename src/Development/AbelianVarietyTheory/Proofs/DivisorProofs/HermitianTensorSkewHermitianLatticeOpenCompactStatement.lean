@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.hermitian_tensor_skewHermitian_lattice_open_compac
         AddSubgroup ((Fin n × Fin d → Fv F v) × (Fin n × Fin d → Fv F v))) : Set ((Fin n × Fin d → Fv F v) × (Fin n × Fin d → Fv F v))) ∧
       IsCompact (((GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.latAtV X Y v).map (GlobalTheory.LatVac.locCo M.co v) :
         AddSubgroup ((Fin n × Fin d → Fv F v) × (Fin n × Fin d → Fv F v))) : Set ((Fin n × Fin d → Fv F v) × (Fin n × Fin d → Fv F v))) := by
-  first | exact @GlobalTheory.LatOpenCpt.main | exact GlobalTheory.LatOpenCpt.main | (intros; apply GlobalTheory.LatOpenCpt.main <;> assumption)
+  first | exact @GlobalTheory.LatOpenCpt.main

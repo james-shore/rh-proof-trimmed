@@ -113,7 +113,7 @@ theorem holUpTo_of_lowKilled : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (B : C.B
         simp only [s]; push_cast; ring
       rw [hb, hA]
       field_simp [dNe a, Complex.exp_ne_zero]
-      <;> ring
+
     · rw [hk2]
       show _ = B ρ * (diagonal fun c => cexp ((t (C.m.e ρ) c : ℂ) * I)).map (starRingEnd ℂ) * (B ρ)⁻¹
       rw [diagonal_map (map_zero _)]

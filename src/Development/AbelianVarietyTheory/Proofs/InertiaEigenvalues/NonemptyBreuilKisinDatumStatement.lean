@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.nonempty_breuilKisinDatum : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l), Nonempty (BK K) := by
-  first | exact @GlobalTheory.BSP.nonempty_bk_of_finExt | exact GlobalTheory.BSP.nonempty_bk_of_finExt | (intros; apply GlobalTheory.BSP.nonempty_bk_of_finExt <;> assumption)
+  first | exact @GlobalTheory.BSP.nonempty_bk_of_finExt

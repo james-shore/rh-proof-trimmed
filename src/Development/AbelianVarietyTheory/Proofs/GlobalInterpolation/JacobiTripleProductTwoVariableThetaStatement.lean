@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Complex
 
 theorem _root_.GlobalTheory.T.jacobiTripleProduct_twoVariableTheta : GlobalTheory.ThetaWeberRoad.TripleProduct := by
-  first | exact @GlobalTheory.JacobiTriple.tripleProduct | exact GlobalTheory.JacobiTriple.tripleProduct | (intros; apply GlobalTheory.JacobiTriple.tripleProduct <;> assumption)
+  first | exact @GlobalTheory.JacobiTriple.tripleProduct

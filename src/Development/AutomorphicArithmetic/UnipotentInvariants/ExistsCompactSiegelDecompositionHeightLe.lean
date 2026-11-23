@@ -97,10 +97,10 @@ private theorem norm_toL_mD_le (q : (A E)ˣ) {r : ℝ} (hr : 0 ≤ r) (h1 : ∀ 
   · simpa using h1 w
   · refine le_trans (le_of_eq ?_) hr
     simp
-    first | exact norm_zero | rfl
+    first | rfl
   · refine le_trans (le_of_eq ?_) hr
     simp
-    first | exact norm_zero | rfl
+    first | rfl
   · simpa using h2 w
 
 end SlopeTestRemainingChoices

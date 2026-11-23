@@ -50,4 +50,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh Gl
 
 theorem _root_.GlobalTheory.T.rationalResidueField_closedPoint_projectiveComplex : ∀ (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp ℂ), IsProjOver p → ∀ x : X,
     IsClosed ({x} : Set X) → RatRes (Cartier.constFn p) (locRing x) := by
-  first | exact @GlobalTheory.FieldPair.ratRes_locRing_of_isClosed_of_isProjOver | exact GlobalTheory.FieldPair.ratRes_locRing_of_isClosed_of_isProjOver | (intros; apply GlobalTheory.FieldPair.ratRes_locRing_of_isClosed_of_isProjOver <;> assumption)
+  first | exact @GlobalTheory.FieldPair.ratRes_locRing_of_isClosed_of_isProjOver

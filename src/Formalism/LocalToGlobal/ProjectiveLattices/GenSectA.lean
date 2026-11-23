@@ -139,7 +139,6 @@ theorem gs_succ (x : Fin m → Ω) (j₀ : Fin m) (i : Fin D) (j : Fin m) :
       unfold Zs
       exact ⟨Fin.succ_ne_zero i, h⟩
     rw [gs, if_pos hz, xv_of_Z hz, if_pos h, zero_add]
-    try rfl
   · have hz : ¬ Zs j₀ (i.succ, j) := by
       unfold Zs
       exact fun hz => h hz.2
@@ -185,7 +184,6 @@ theorem incl_xv_succ (j₀ : Fin m) (i : Fin D) (k : Fin m) :
       unfold Zs
       exact fun hz => h hz.2
     rw [xv_of_not hz, if_neg h, incl, rename_X]
-    try rfl
 
 theorem X_sub_incl_gs (x : Fin m → Ω) (j₀ : Fin m) (hx₀ : x j₀ ≠ 0) (i : Fin D) :
     X (i.succ, j₀) - incl j₀ (gs x j₀ (i.succ, j₀)) = C (x j₀)⁻¹ * sec x i := by
@@ -276,7 +274,7 @@ theorem pderiv_gs (x : Fin m → Ω) (j₀ : Fin m) (q : {p : Fin (D + 1) × Fin
     rw [gs, if_pos hp, if_neg hne, zero_sub, map_neg]
     congr 1
 
-    simp only [map_sum, Derivation.leibniz, pderiv_C, smul_zero, smul_eq_mul, pderiv_xv, mul_zero, zero_add]
+    simp only [map_sum, Derivation.leibniz, pderiv_C, smul_eq_mul, pderiv_xv, mul_zero, zero_add]
     rw [Finset.sum_eq_single q.1.2]
     · by_cases h1 : p.1 = q.1.1
       · have e : (p.1, q.1.2) = q.1 := Prod.ext h1 rfl

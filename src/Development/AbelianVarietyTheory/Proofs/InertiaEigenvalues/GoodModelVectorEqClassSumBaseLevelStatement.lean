@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.goodModelVector_eq_classSum_baseLevel : ∀ (D : D
           (X.R.HW j (sg0 D X.A3.A)).e w (X.geo.v₀ j _) g) →
       ∃ F ∈ Submodule.span ℂ (Y.Z.ρ.mt i j b 0 ∅ 1 : Set (Bridge.Gf (Vc D j) → PolF D (Wc D j).rank (Vc D j).rank)),
         (X.R.HW j (sg0 D X.A3.A)).e w (X.geo.v₀ j _) = Y.Z.ρ.sum i j b 0 ∅ 1 F := by
-  first | exact @GlobalTheory.TypeClassSum.goodModel_eq_classSum | exact GlobalTheory.TypeClassSum.goodModel_eq_classSum | (intros; apply GlobalTheory.TypeClassSum.goodModel_eq_classSum <;> assumption)
+  first | exact @GlobalTheory.TypeClassSum.goodModel_eq_classSum

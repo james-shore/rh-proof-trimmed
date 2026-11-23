@@ -50,4 +50,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.Ade
 open Formalism.IndefR.Cx GlobalTheory.BigOn
 
 theorem _root_.GlobalTheory.T.hookLogSum_sub_sizeTerm_le_lowerBound : ∀ (D : D7) (L : SizeData₂ D) (Del h0 : ℕ) (Csz : ℝ) (j : Fin D.R.m), 8 ≤ Csz → Sizes D j L.sc.b → (∑ ρ, (ofRecord D L Del h0).logHook ((j : ℕ) + 1) ρ) - Csz * ((D.R.f : ℝ) * (D.R.nV : ℝ) ^ 2 * (ofRecord D L Del h0).Lp) ≤ lowB D j L.sc.b := by
-  first | exact @GlobalTheory.LowMainTerm.main_le_lowB | exact GlobalTheory.LowMainTerm.main_le_lowB | (intros; apply GlobalTheory.LowMainTerm.main_le_lowB <;> assumption)
+  first | exact @GlobalTheory.LowMainTerm.main_le_lowB

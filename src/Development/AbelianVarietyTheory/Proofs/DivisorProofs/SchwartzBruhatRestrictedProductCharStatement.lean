@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.schwartz_bruhat_restricted_product_char : ∀ (F :
     ∀ x, pure f φ x * ψ (x ⬝ᵥ y) = (f (fun i => evI F (x i)) * eInf (fun i => evI F (x i)) (fun i => evI F (y i))) *
       ∏ᶠ v, (φ v (fun i => evFin F v (x i)) *
         GlobalTheory.LatVac.psiAt ψ v ((fun i => evFin F v (x i)) ⬝ᵥ fun i => evFin F v (y i))) := by
-  first | exact @GlobalTheory.WeylTwist.pure_mul_psi | exact GlobalTheory.WeylTwist.pure_mul_psi | (intros; apply GlobalTheory.WeylTwist.pure_mul_psi <;> assumption)
+  first | exact @GlobalTheory.WeylTwist.pure_mul_psi

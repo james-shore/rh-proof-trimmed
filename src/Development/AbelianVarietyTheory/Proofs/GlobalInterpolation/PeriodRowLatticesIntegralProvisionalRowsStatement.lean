@@ -44,4 +44,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.IndefR.p
 open GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.Mem.R3.Tr
 
 theorem _root_.GlobalTheory.T.periodRowLatticesIntegral_provisionalRows : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T) (P : Pre2 K w), ∀ o : P.q.Over, GlobalTheory.PerQ.RowInt w.I w.l o.Z := by
-  first | exact @GlobalTheory.RowIntQ.rowInt_over | exact GlobalTheory.RowIntQ.rowInt_over | (intros; apply GlobalTheory.RowIntQ.rowInt_over <;> assumption)
+  first | exact @GlobalTheory.RowIntQ.rowInt_over

@@ -54,4 +54,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.isRaynaudFourierTerm_sub_smul : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre R) (Ω : Type) [CommRing Ω] [StarRing Ω] [Module Ω Q.X] (oa : Q.OAct Ω) (Y : Ray oa), ∀ (k : ℕ) (α : Q.X) (σ σ' : Q.SecB k α) (τ τ' : SecM Y.q.left Q.P.L k) (e : R), IsTerm Y k α σ τ → IsTerm Y k α σ' τ' → IsTerm Y k α (σ' - constFn Q.P.A.hom ⊤ e • σ) (τ' - constFn Y.H.hom ⊤ e • τ) := by
-  first | exact @GlobalTheory.HeatTermLin.isTerm_sub_smul | exact GlobalTheory.HeatTermLin.isTerm_sub_smul | (intros; apply GlobalTheory.HeatTermLin.isTerm_sub_smul <;> assumption)
+  first | exact @GlobalTheory.HeatTermLin.isTerm_sub_smul

@@ -66,7 +66,6 @@ theorem UpperTheory.trace_eta_pointwise : TrEtaPt := by
   · refine Iff.trans ?_ ((h3 _ (hpos N') N'.2.2 x 0).trans ?_)
     · rw [e1]
       first
-        | simp only [hzero]
         | erw [hzero]
     · simp only [hin0, zero_add]
   · rintro rfl y hxy

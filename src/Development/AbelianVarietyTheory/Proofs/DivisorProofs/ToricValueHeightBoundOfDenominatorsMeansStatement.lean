@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.SqTop
 
 theorem _root_.GlobalTheory.T.toricValueHeightBound_of_denominatorsMeans : GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds.ToricDenominator → FieldDat → TorEx → DenEx → DenSum → BetaArch → ThbSt := by
-  first | exact @GlobalTheory.SqTop.thbSt_of_inputs | exact GlobalTheory.SqTop.thbSt_of_inputs | (intros; apply GlobalTheory.SqTop.thbSt_of_inputs <;> assumption)
+  first | exact @GlobalTheory.SqTop.thbSt_of_inputs

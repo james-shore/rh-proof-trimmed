@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF (AvFSt HTFSt UpFSt)
 open GlobalTheory.RunDepth GlobalTheory.CharDepth
 
 theorem _root_.GlobalTheory.T.cloudSizes_between_zero_and_twice_b : ∀ (D : D7) (L : SizeData₂ D) (_ : ParameterChoice' D L), 3 ≤ L.sc.x → (D.R.k : ℝ) * L.sc.b' ≤ L.sc.b → L.Sc + L.etaSz ≤ 2 * L.sc.b ∧ ∀ j, InR D j → (∀ τ, 0 ≤ wj D j τ ∧ wj D j τ ≤ 2 * L.sc.b) ∧ (∀ t, wj D j (plOf D (false, t)) ≤ 2 * L.sc.b') ∧ ∀ z, (numOf D L).w j z = wj D j (plOf D z) := by
-  first | exact @GlobalTheory.RunDepth.sizes_le_two_mul | exact GlobalTheory.RunDepth.sizes_le_two_mul | (intros; apply GlobalTheory.RunDepth.sizes_le_two_mul <;> assumption)
+  first | exact @GlobalTheory.RunDepth.sizes_le_two_mul

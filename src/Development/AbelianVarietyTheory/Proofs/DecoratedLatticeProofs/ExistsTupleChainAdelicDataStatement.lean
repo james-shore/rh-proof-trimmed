@@ -47,4 +47,4 @@ open GlobalTheory.KJInf Formalism.L2.Ker
 open GlobalTheory.SeeSaw GlobalTheory.Unf
 
 theorem _root_.GlobalTheory.T.exists_tupleChain_adelicData : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)), ∀ (u : B.Word) (a : I.ι), ∃ (Ch : ℕ → Type) (_ : ∀ i, Fintype (Ch i)) (A : TwDat I l Z u a Ch), A.Is ∧ Nonempty (Unique (Ch B.R.m)) ∧ ∀ i, i < B.R.m → ∀ β, A.kb i β = TC.kStd X u (B.R.N i) := by
-  first | exact @GlobalTheory.AdForm.exists_twDat | exact GlobalTheory.AdForm.exists_twDat | (intros; apply GlobalTheory.AdForm.exists_twDat <;> assumption)
+  first | exact @GlobalTheory.AdForm.exists_twDat

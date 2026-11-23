@@ -223,8 +223,6 @@ private lemma kappa_bound_logb (l : ℕ) [Fact l.Prime] (hl2 : l ≠ 2) (G S h e
   rw [Fin.sum_univ_succ, Fin.sum_univ_succ]
   simp only [Fin.cons_zero, Fin.cons_succ, Finset.sum_const, Finset.card_univ, Fintype.card_fin,
     smul_eq_mul, nsmul_eq_mul]
-  try push_cast
-  try ring
 
 theorem killerKap_holds : KillerKap 8 := by
   intro l hl h5 G S h ell ro a hGh h1 ha JS

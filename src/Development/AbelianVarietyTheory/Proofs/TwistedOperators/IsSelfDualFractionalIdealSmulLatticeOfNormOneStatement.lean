@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.isSelfDual_fractionalIdealSmulLattice_of_norm_one : ∀ {D : D7} (S : HSp D) (Λ : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)) (I I' : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E), IsSelfDualC S Λ → I * I' = 1 → (∀ x : D.host.E, x ∈ I' ↔ star x ∈ I) → IsSelfDualC S (idLat I Λ) := by
-  first | exact @GlobalTheory.idLat_isSelfDualC | exact GlobalTheory.idLat_isSelfDualC | (intros; apply GlobalTheory.idLat_isSelfDualC <;> assumption)
+  first | exact @GlobalTheory.idLat_isSelfDualC

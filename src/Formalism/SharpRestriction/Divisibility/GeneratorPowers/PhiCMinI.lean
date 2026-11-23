@@ -195,7 +195,7 @@ private theorem amgm_lemma_3 (w : (E →+* ℂ) → ℝ) (hw : ∀ σ, 0 ≤ w �
   have hcard : (Fintype.card (E →+* ℂ) : ℝ) = finrank ℚ E := by
     rw [NumberField.Embeddings.card]
   have hn : (0 : ℝ) < finrank ℚ E := by
-    first | exact_mod_cast Module.finrank_pos | exact_mod_cast FiniteDimensional.finrank_pos
+    first | exact_mod_cast Module.finrank_pos
   have hn' : (finrank ℚ E : ℝ) ≠ 0 := hn.ne'
   have hsum : ∑ _σ : E →+* ℂ, (1 : ℝ) / finrank ℚ E = 1 := by
     rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, hcard, mul_one_div_cancel hn']
@@ -240,7 +240,7 @@ theorem lower_bound {cj : E → E} (hcj : ∀ (φ : E →+* ℂ) (z : E), φ (cj
     by_contra hcon
     push_neg at hcon
     have hP : Pm hcj (Algebra.linearMap ℤ ℝ ∘ₗ ν) (Algebra.linearMap ℤ ℝ ∘ₗ ν) ≠ 0 := by
-      first | exact Pm_ne_zero hcj hη | exact Pm_ne_zero hη
+      first | exact Pm_ne_zero hcj hη
     apply hP
     apply Subtype.ext
     apply LinearMap.ext₂
@@ -248,7 +248,7 @@ theorem lower_bound {cj : E → E} (hcj : ∀ (φ : E →+* ℂ) (z : E), φ (cj
     simp [Pm_apply, Pf, hv, hcon]
   have hne : Nonempty (E →+* ℂ) := by
     rw [← Fintype.card_pos_iff, NumberField.Embeddings.card]
-    first | exact Module.finrank_pos | exact FiniteDimensional.finrank_pos
+    first | exact Module.finrank_pos
   obtain ⟨L, hL⟩ : ∃ L : (E →+* ℂ) → ℝ, ∀ σ, L σ = ∑ i, (comp (Algebra.linearMap ℤ ℝ ∘ₗ ν) σ (x i) *
       conj (comp (Algebra.linearMap ℤ ℝ ∘ₗ ν) σ (x' i))).re := ⟨_, fun _ => rfl⟩
   have hLpos : ∀ σ, 0 < L σ := by

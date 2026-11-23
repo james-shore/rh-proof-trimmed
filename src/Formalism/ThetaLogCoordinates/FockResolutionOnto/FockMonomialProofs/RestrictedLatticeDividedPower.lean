@@ -271,7 +271,7 @@ private theorem pderiv_last_eq_zero_of_mem_pol_setLast_zero (LL : Letters (K + 1
         (fun _ _ => Nat.zero_le _) (Finset.mem_univ d)
     rw [hm] at hle
     simp [setLast] at hle
-  simp [h0, AddMonoidAlgebra.coeff]
+  simp [h0]
 
 private theorem mem_yCond_succ_of_mem_pol_setLast_zero (LL : Letters (K + 1)) (hv : LL.vec (Fin.last K) = true) (Mt : WithTop ℤ)
     (y : MvPolynomial (Fin (K + 1) × Fin r) ℚ_[p]) (hy : y ∈ YCond p LL K Mt)

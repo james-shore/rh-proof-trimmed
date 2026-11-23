@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.squareNu_unramified_off_pair_partial_L_primitive :
     GlobalTheory.LFun.UnrOff χ ((sfB G t : Finset (FinPl D)) : Set (FinPl D)) ∧
     ∀ Λ : ℂ → ℂ, GlobalTheory.CMVal.IsHeckeL (nuH G t i j) Λ → ∀ s : ℂ,
       GlobalTheory.Cont.HolValueAt (GlobalTheory.LFun.charL χ⁻¹ ((sfB G t : Finset (FinPl D)) : Set (FinPl D))) s (Λ s) := by
-  first | exact @GlobalTheory.NuOffPair.main | exact GlobalTheory.NuOffPair.main | (intros; apply GlobalTheory.NuOffPair.main <;> assumption)
+  first | exact @GlobalTheory.NuOffPair.main

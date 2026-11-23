@@ -55,4 +55,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ArchRec
 
 theorem _root_.GlobalTheory.T.lowestKTypeFockMap_unique_of_discreteSeries : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → ∀ D : D7, IoUniq D := by
-  first | exact @GlobalTheory.ArchRec.IoPhase.ioUniq_of_discreteSeriesCover | exact GlobalTheory.ArchRec.IoPhase.ioUniq_of_discreteSeriesCover | (intros; apply GlobalTheory.ArchRec.IoPhase.ioUniq_of_discreteSeriesCover <;> assumption)
+  first | exact @GlobalTheory.ArchRec.IoPhase.ioUniq_of_discreteSeriesCover

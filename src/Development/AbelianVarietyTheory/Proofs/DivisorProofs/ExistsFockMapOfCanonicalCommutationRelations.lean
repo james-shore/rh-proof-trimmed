@@ -61,7 +61,7 @@ open MvPolynomial
 theorem polEval_X {V : Type} [AddCommGroup V] [Module ℂ V] {ι : Type} (m : ι → Module.End ℂ V)
     (hm : ∀ i j, m i * m j = m j * m i) (f₀ : V) (i : ι) (p : MvPolynomial ι ℂ) :
     polEval m hm f₀ (X i * p) = m i (polEval m hm f₀ p) := by
-  simp [polEval, Module.End.mul_apply]
+  simp [polEval]
 
 theorem polEval_one {V : Type} [AddCommGroup V] [Module ℂ V] {ι : Type} (m : ι → Module.End ℂ V)
     (hm : ∀ i j, m i * m j = m j * m i) (f₀ : V) : polEval m hm f₀ 1 = f₀ := by

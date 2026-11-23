@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_basicOpen_cover_idealRepresents : ∀ (S : 
     ∀ a ∈ s, ∃ J : Ideal (Localization.Away a),
       Represents (fun (R' : Type) [CommRing R'] (h : Localization.Away a →+* R') ↦
         ptQ P V hV R' (h.comp (algebraMap Γ(S, V) (Localization.Away a)))) J := by
-  first | exact @GlobalTheory.PtClosed.affine_local_represents | exact GlobalTheory.PtClosed.affine_local_represents | (intros; apply GlobalTheory.PtClosed.affine_local_represents; all_goals assumption)
+  first | exact @GlobalTheory.PtClosed.affine_local_represents

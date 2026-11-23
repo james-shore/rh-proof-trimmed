@@ -152,11 +152,7 @@ section Bridge
 theorem ball_of_int {L : Type} [Field L] [NumberField L] {l : ℕ} [Fact l.Prime] (a b : L →+* Qbar l)
     (h : ∀ x : 𝓞 L, ‖a x‖ < 1 ↔ ‖b x‖ < 1) (x : L) : ‖a x‖ ≤ 1 ↔ ‖b x‖ ≤ 1 := by
   first
-  | exact @_root_.GlobalTheory.SmallPrimeIdeal.norm_le_one_iff
-  | exact _root_.GlobalTheory.SmallPrimeIdeal.norm_le_one_iff
   | (apply _root_.GlobalTheory.SmallPrimeIdeal.norm_le_one_iff <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SmallPrimeIdeal.norm_le_one_iff <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SmallPrimeIdeal.norm_le_one_iff <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SmallPrimeIdeal.norm_le_one_iff ..)
 
 theorem val_pos_iff (w : D.what₂.places.Pl) {x : D.what₂.LL} (hx : x ≠ 0) :

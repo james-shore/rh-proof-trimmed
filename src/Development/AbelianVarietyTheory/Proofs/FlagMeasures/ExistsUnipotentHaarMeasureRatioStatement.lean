@@ -45,4 +45,4 @@ open Formalism.FourierDecayAlt GlobalTheory.ThA MeasureTheory Formalism.QuantumD
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.exists_unipotentHaarMeasure_ratio : ∀ (k r : ℕ), ∃ cN : ℝ, IsRatioN k r cN := by
-  first | exact @GlobalTheory.ThA.exists_isRatioN | exact GlobalTheory.ThA.exists_isRatioN | (intros; apply GlobalTheory.ThA.exists_isRatioN <;> assumption)
+  first | exact @GlobalTheory.ThA.exists_isRatioN

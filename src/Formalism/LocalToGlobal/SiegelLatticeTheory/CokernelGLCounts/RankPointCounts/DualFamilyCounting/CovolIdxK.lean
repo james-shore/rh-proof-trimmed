@@ -228,7 +228,6 @@ private theorem card_quotient_eq_index {R N : Type*} [Ring R] [AddCommGroup N] [
 private theorem mem_smul_univ_iff_coe_mem_smul (I : Ideal (𝓞 K)) (N : Submodule (𝓞 K) M) (x : N) :
     x ∈ I • (⊤ : Submodule (𝓞 K) N) ↔ (x : M) ∈ I • N := by
   first
-  | exact Submodule.mem_smul_top_iff N x
   | (have e : Submodule.map N.subtype (I • (⊤ : Submodule (𝓞 K) N)) = I • N := by
        rw [Submodule.map_smul'', Submodule.map_subtype_top]
      rw [← e, Submodule.mem_map]
@@ -471,7 +470,6 @@ theorem relIndex_eq (n : ℕ) (𝔞 : Ideal (𝓞 K)) (h𝔞 : 𝔞 ≠ ⊥) (N 
       (𝔞 • N).toAddSubgroup.relIndex N.toAddSubgroup < Ideal.absNorm 𝔟 ^ n * Ideal.absNorm 𝔞 ^ n := by
     first
     | exact lt_of_le_of_lt (Nat.mul_le_mul_right _ h2) (Nat.mul_lt_mul_of_pos_left hlt hB)
-    | nlinarith
   exact absurd hprod (ne_of_lt hlt2)
 
 end General

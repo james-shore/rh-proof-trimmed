@@ -65,4 +65,4 @@ open GlobalTheory.OrbitSep
 
 
 theorem _root_.GlobalTheory.T.existsUnique_cmOrderActionMatrix_on_affineOpen : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (X : Scheme.{0}) (t : SAB H X) (U : X.affineOpens) (n : ℕ) (v : Fin n → (Sp (DualNumber Γ(X, U.1)) ⟶ t.G.left)), (∀ i, IsTanAtG t (GlobalTheory.LogKS.chart U) (v i)) → (∀ w, IsTanAtG t (GlobalTheory.LogKS.chart U) w → ∃! cf : Fin n → Γ(X, U.1), IsCombAtG t (GlobalTheory.LogKS.chart U) v cf w) → ∃ A : 𝓞 E → Matrix (Fin n) (Fin n) Γ(X, U.1), ∀ a i, IsCombAtG t (GlobalTheory.LogKS.chart U) v (A a i) (v i ≫ (t.act.act a).left) := by
-  first | exact @GlobalTheory.ActMatrix.actMatrix | exact GlobalTheory.ActMatrix.actMatrix | (intros; apply GlobalTheory.ActMatrix.actMatrix <;> assumption)
+  first | exact @GlobalTheory.ActMatrix.actMatrix

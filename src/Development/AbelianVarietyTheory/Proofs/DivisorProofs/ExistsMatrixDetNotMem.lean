@@ -505,7 +505,7 @@ theorem exists_unitary_mod (g g' : Matrix (Fin n) (Fin n) (𝓞 E)) (h : ∀ i j
       have key := Ideal.Quotient.eq_zero_iff_mem.2 key0
 
       simp only [Matrix.sub_apply, Matrix.mul_apply, Matrix.of_apply, Matrix.transpose_apply, Matrix.map_apply, Matrix.one_apply,
-      map_sub, map_sum, map_mul, map_add, map_one, bar_bar, apply_ite (H.bar), map_zero,
+      map_sub, map_sum, map_mul, map_add, map_one, bar_bar, map_zero,
       apply_ite (Ideal.Quotient.mk (Mfr l)), e1, e2, sub_self, zero_mul, one_mul, add_zero, zero_add, mul_zero,
       mul_one, sub_zero] at key ⊢
       simpa [mul_comm] using key

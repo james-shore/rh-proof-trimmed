@@ -195,11 +195,7 @@ theorem map_aeval {M N : Type} [AddCommGroup M] [Module ℂ M] [AddCommGroup N] 
     {T : Module.End ℂ M} {T' : Module.End ℂ N} (h : ∀ v, r (T v) = T' (r v)) (p : Polynomial ℂ) (v : M) :
     r (Polynomial.aeval T p v) = Polynomial.aeval T' p (r v) := by
   first
-  | exact @_root_.GlobalTheory.IntertwineAeval.intertwine_aeval
-  | exact _root_.GlobalTheory.IntertwineAeval.intertwine_aeval
   | (apply _root_.GlobalTheory.IntertwineAeval.intertwine_aeval <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntertwineAeval.intertwine_aeval <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntertwineAeval.intertwine_aeval <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntertwineAeval.intertwine_aeval ..)
 
 theorem s_mul_exp (H : IsLieData σ j s) (k : uGrp H) (Y : L) :

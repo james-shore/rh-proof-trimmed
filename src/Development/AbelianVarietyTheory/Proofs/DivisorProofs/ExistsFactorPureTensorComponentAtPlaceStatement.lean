@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_factor_pureTensor_component_at_place : ∀ 
     (∀ᶠ v in Filter.cofinite, φ v = Set.indicator {x | ∀ i, x i ∈ v.adicCompletionIntegers F} 1) →
     ∃ r : (κ → AF F) → ℂ, (∀ x z, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.At (evFin F v₁) z → r (x + z) = r x) ∧
       ∀ ψ₀ : (κ → Fv F v₁) → ℂ, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens (evFin F v₁) ψ₀ r = GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f (Function.update φ v₁ ψ₀) := by
-  first | exact @GlobalTheory.PureFactor.exists_rest_factor | exact GlobalTheory.PureFactor.exists_rest_factor | (intros; apply GlobalTheory.PureFactor.exists_rest_factor <;> assumption)
+  first | exact @GlobalTheory.PureFactor.exists_rest_factor

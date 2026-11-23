@@ -59,4 +59,4 @@ open GlobalTheory.SplitHecke GlobalTheory.LFun.ConjPlace GlobalTheory.AdelicU Gl
 
 
 theorem _root_.GlobalTheory.T.suppAt_unitaryGroupLocalToAdelicEmbedding : ∀ (D : D7) (V : HSp D) (v : HeightOneSpectrum (𝓞 D.host.F)) (w : HeightOneSpectrum (𝓞 D.host.E)), w.under (𝓞 D.host.F) = v → ∀ ε : AE D, Formalism.L2.NTheta.IsIdemAt ε w → ∀ g : Gv V v, SuppAt ε V (embV V v g) := by
-  first | exact @GlobalTheory.SuppAtPlace.suppAt_embV | exact GlobalTheory.SuppAtPlace.suppAt_embV | (intros; apply GlobalTheory.SuppAtPlace.suppAt_embV <;> assumption)
+  first | exact @GlobalTheory.SuppAtPlace.suppAt_embV

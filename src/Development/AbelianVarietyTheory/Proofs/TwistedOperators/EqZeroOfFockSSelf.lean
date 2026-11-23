@@ -82,12 +82,11 @@ theorem hwVec_eq_ten (n : ℕ) (lam : ι → ℕ → ℤ) (lam' : ι → DomWeig
   have hs0 := s.isLt
   split_ifs with hs
   · congr 1
-    simp only [Formalism.GradedWeylDivisibility.nuNext, DomWeight.natW, DomWeight.detShift, dif_pos hs, dif_pos (show 0 < n by omega), hl,
-      Fin.val_mk]
+    simp only [Formalism.GradedWeylDivisibility.nuNext, DomWeight.natW, DomWeight.detShift, dif_pos hs, dif_pos (show 0 < n by omega), hl]
     have a1 := (lam' τ).anti (show s ≤ (⟨s.val + 1, hs⟩ : Fin n) by simp [Fin.le_def])
     have a2 := (lam' τ).anti (show (⟨s.val + 1, hs⟩ : Fin n) ≤ ⟨n - 1, by omega⟩ by simp [Fin.le_def]; omega)
     rw [hl, hl] at a1 a2
-    simp only [Fin.val_mk] at a1 a2
+    simp only at a1 a2
     omega
   · have hs' : s.val = n - 1 := by omega
     have h0 : (lam' τ).natW s = 0 := by
@@ -114,7 +113,7 @@ private theorem map_conj_blockAct {ι : Type} [Fintype ι] {n : ℕ} (U : ι →
       Formalism.GradedWeylDivisibility.blockAct ℂ (fun τ => (U τ).map (starRingEnd ℂ)) (map (starRingEnd ℂ) F) := by
   induction F using MvPolynomial.induction_on
   next a =>
-    simp [Formalism.GradedWeylDivisibility.blockAct, MvPolynomial.aeval_C, MvPolynomial.algebraMap_eq]
+    simp [Formalism.GradedWeylDivisibility.blockAct, MvPolynomial.algebraMap_eq]
   next p q hp hq =>
     simp only [map_add (f := _), hp, hq]
   next p v hp =>

@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.exists_standardAuxiliaryFrames_allRowGrids : All fun {_} _ _ _ {G} _ _ => ∃ F : Frames G, Std F := by
-  first | exact @GlobalTheory.AscFin.exists_std_frames | exact GlobalTheory.AscFin.exists_std_frames | (intros; apply GlobalTheory.AscFin.exists_std_frames <;> assumption)
+  first | exact @GlobalTheory.AscFin.exists_std_frames

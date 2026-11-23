@@ -62,11 +62,6 @@ theorem det_real_mul_mul (ι : Type) [Fintype ι] (j : ℕ) (A B : ι → Matrix
   first
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.DeterminantRealSandwich.det_real_family
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.DeterminantRealSandwich.det_real_family
-  | exact @_root_.GlobalTheory.DeterminantRealSandwich.det_real_family
-  | exact _root_.GlobalTheory.DeterminantRealSandwich.det_real_family
-  | (apply _root_.GlobalTheory.DeterminantRealSandwich.det_real_family <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DeterminantRealSandwich.det_real_family <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DeterminantRealSandwich.det_real_family <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DeterminantRealSandwich.det_real_family ..)
 
 end GlobalTheory.MatMulDet

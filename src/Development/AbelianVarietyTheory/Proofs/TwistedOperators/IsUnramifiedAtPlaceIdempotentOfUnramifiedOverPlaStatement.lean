@@ -54,4 +54,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 
 
 theorem _root_.GlobalTheory.T.isUnramifiedAtPlaceIdempotent_of_unramified_over_place : ∀ {D : D7} {χ : (AE D)ˣ →* Circle} {v : HeightOneSpectrum (𝓞 D.host.F)} {ε : AF D.host.F}, IsPlaceIdem D v ε → (∀ w : HeightOneSpectrum (𝓞 D.host.E), w.under (𝓞 D.host.F) = v → GlobalTheory.LFun.UnrAt χ w) → GlobalTheory.WeilParts.UnramAt ε χ := by
-  first | exact @GlobalTheory.UnrOverPlaceConv.unramAt_of_unrAt_all | exact GlobalTheory.UnrOverPlaceConv.unramAt_of_unrAt_all | (intros; apply GlobalTheory.UnrOverPlaceConv.unramAt_of_unrAt_all <;> assumption)
+  first | exact @GlobalTheory.UnrOverPlaceConv.unramAt_of_unrAt_all

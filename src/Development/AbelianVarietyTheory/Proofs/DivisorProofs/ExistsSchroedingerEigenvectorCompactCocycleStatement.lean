@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_schroedinger_eigenvector_compact_cocycle : 
           (∑ m, (b m : Fv F v) • u m).1 ⬝ᵥ (∑ m, (a m : Fv F v) • u m).2)))) →
       ∃ φ ∈ GlobalTheory.WeilM.SB (κ → Fv F v), φ ≠ 0 ∧
         ∀ a : M → v.adicCompletionIntegers F, GlobalTheory.WeilM.schr ψ (∑ m, (a m : Fv F v) • u m) φ = χ a • φ := by
-  first | exact @GlobalTheory.VacLoc.exists_schr_eigen | exact GlobalTheory.VacLoc.exists_schr_eigen | (intros; apply GlobalTheory.VacLoc.exists_schr_eigen <;> assumption)
+  first | exact @GlobalTheory.VacLoc.exists_schr_eigen

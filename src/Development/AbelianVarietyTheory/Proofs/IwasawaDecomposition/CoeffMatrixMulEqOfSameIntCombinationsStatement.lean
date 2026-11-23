@@ -68,4 +68,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.coeffMatrix_mul_eq_of_same_intCombinations : ∀ (g r r₀ : ℕ) (l l' : Fin r → Fin g → ℂ) (w : Fin r₀ → Fin g → ℂ) (c : Matrix (Fin r₀) (Fin r) ℤ) (T : Matrix (Fin r) (Fin r) ℤ), LinearIndependent ℤ l → (∀ i, l' i = ∑ j, T i j • l j) → (∀ i, w i = ∑ j, c i j • l j) → (∀ i, w i = ∑ j, c i j • l' j) → c * T = c := by
-  first | exact @GlobalTheory.FrameFix.coeff_mul_eq_of_same_combinations | exact GlobalTheory.FrameFix.coeff_mul_eq_of_same_combinations | (intros; apply GlobalTheory.FrameFix.coeff_mul_eq_of_same_combinations <;> assumption)
+  first | exact @GlobalTheory.FrameFix.coeff_mul_eq_of_same_combinations

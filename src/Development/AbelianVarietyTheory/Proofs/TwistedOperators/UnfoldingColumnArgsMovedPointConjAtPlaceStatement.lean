@@ -48,4 +48,4 @@ open GlobalTheory.TopLevelInv
 theorem _root_.GlobalTheory.T.unfoldingColumnArgs_movedPoint_conj_atPlace : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T} (S : GridChoice W U) {t : T}, t ∈ U → ∀ (j : ℕ) (hj : j + 1 < D.R.m) (k : FinPt G (.top (j + 1))), ∀ w ∈ locPl G t,
     ∀ x : ∀ j' : Fin D.R.m, WO (G.pS (.top t j' : Pair T)) (G.pT (.top t j' : Pair T)),
       S.colAt t w (movedPt t j hj ((S.N.u (.top (j + 1)))⁻¹ * k * S.N.u (.top (j + 1))) x) = colMove j (kapAt S t j hj k w) (S.colAt t w x) := by
-  first | exact @GlobalTheory.TopLevelInv.colAt_movedPt_conj | exact GlobalTheory.TopLevelInv.colAt_movedPt_conj | (intros; apply GlobalTheory.TopLevelInv.colAt_movedPt_conj <;> assumption)
+  first | exact @GlobalTheory.TopLevelInv.colAt_movedPt_conj

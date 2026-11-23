@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.twistLiftForms_eq_baseChange_rationalDatumForms : 
             (FractionRing ((T.ntw hE (mkF D T S In hfg hst sd rho hrho) (TwL.empty T)).O i)) (cHkT D T i b P : T.O i) ^ k •
           GlobalTheory.HeightCounting.hkF D ({ S with } : RatDat (T.ntw hE (mkF D T S In hfg hst sd rho hrho) (TwL.empty T))) i j b
             (In.hL j) (In.hs j h1 h2) k P (e x) := by
-  first | exact @GlobalTheory.HeightCounting.FormsStep.formsExport_eq | exact GlobalTheory.HeightCounting.FormsStep.formsExport_eq | (intros; apply GlobalTheory.HeightCounting.FormsStep.formsExport_eq <;> assumption)
+  first | exact @GlobalTheory.HeightCounting.FormsStep.formsExport_eq

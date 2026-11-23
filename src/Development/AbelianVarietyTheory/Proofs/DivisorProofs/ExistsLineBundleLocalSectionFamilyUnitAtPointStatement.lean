@@ -55,4 +55,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_lineBundleLocalSectionFamily_unit_at_point : ∀ (X : Scheme.{0}) (L : LB X), L.IsLB → ∀ (W : X.Opens), IsAffineOpen W → ∀ (J : Type) [Fintype J] (f : J → Γ(X, W)) (k : J → L.ι) (hk : ∀ j, X.basicOpen (f j) ≤ L.U (k j)) (x : X), x ∈ W → ∃ e : ∀ j, Γ(X, X.basicOpen (f j)), GlobalTheory.Pinch.IsSecFam L (fun j => X.basicOpen (f j)) k hk e ∧ ∀ j (h : x ∈ X.basicOpen (f j)), IsUnit ((X.presheaf.germ (X.basicOpen (f j)) x h).hom (e j)) := by
-  first | exact @GlobalTheory.Pinch.SemiLoc.exists_secFam_isUnit_germ | exact GlobalTheory.Pinch.SemiLoc.exists_secFam_isUnit_germ | (intros; apply GlobalTheory.Pinch.SemiLoc.exists_secFam_isUnit_germ <;> assumption)
+  first | exact @GlobalTheory.Pinch.SemiLoc.exists_secFam_isUnit_germ

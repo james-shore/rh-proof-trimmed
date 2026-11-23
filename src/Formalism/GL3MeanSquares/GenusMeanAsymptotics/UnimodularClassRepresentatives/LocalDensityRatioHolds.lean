@@ -79,8 +79,8 @@ theorem relIndex_sSub_inf (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (
   obtain ⟨h1, h2, h3⟩ := hk₀ k hk
   refine ⟨h1, ?_⟩
   rw [h3]
-  exact relIndex_hermL hK hF hs hd (by first | exact hA₀ | exact hA₀.toIsLattice) hA₀i
-    (by first | exact hB₀ | exact hB₀.toIsLattice) hB₀i h𝔭 h2
+  exact relIndex_hermL hK hF hs hd (by first | exact hA₀) hA₀i
+    (by first | exact hB₀) hB₀i h𝔭 h2
 
 end Formalism.HermitianLattices.Ext.L3.D2
 
@@ -107,15 +107,15 @@ theorem local_density_ratio_holds :
   set c := c₁ + c₂ with hc
   obtain ⟨k₁, hk₁⟩ := hc₁ c (by omega)
   obtain ⟨k₂, hk₂⟩ := hc₂ c (by omega)
-  obtain ⟨k₃, hk₃⟩ := D2.akCount_eq_relIndex hK hF hs hd (by first | exact hA₀ | exact hA₀.toIsLattice) hA₀i h𝔭
-  obtain ⟨k₄, hk₄⟩ := D2.akCount_eq_relIndex hK hF hs hd (by first | exact hB₀ | exact hB₀.toIsLattice) hB₀i h𝔭
+  obtain ⟨k₃, hk₃⟩ := D2.akCount_eq_relIndex hK hF hs hd (by first | exact hA₀) hA₀i h𝔭
+  obtain ⟨k₄, hk₄⟩ := D2.akCount_eq_relIndex hK hF hs hd (by first | exact hB₀) hB₀i h𝔭
   obtain ⟨k₅, hk₅⟩ := D2.relIndex_inf_glSub hK hF hs hd hA₀ hA₀i hB₀ h𝔭
   obtain ⟨k₆, hk₆⟩ := D2.relIndex_inf_glSub hK hF hs hd hB₀ hB₀i hA₀ h𝔭
   obtain ⟨k₇, hk₇⟩ := D2.nSub_le_glSub hB₀ hA₀ h𝔭
   obtain ⟨k₈, hk₈⟩ := D2.alphaL_eq hK hF hs hd
-    (by first | exact hA₀ | exact hA₀.toIsLattice) hA₀i h𝔭
+    (by first | exact hA₀) hA₀i h𝔭
   obtain ⟨k₉, hk₉⟩ := D2.alphaL_eq hK hF hs hd
-    (by first | exact hB₀ | exact hB₀.toIsLattice) hB₀i h𝔭
+    (by first | exact hB₀) hB₀i h𝔭
   set k := k₁ + k₂ + k₃ + k₄ + k₅ + k₆ + k₇ + k₈ + k₉ with hk
   obtain ⟨hJI, hIJ⟩ := hk₁ k (by omega)
   obtain ⟨hNN, hNNi⟩ := hk₂ k (by omega)

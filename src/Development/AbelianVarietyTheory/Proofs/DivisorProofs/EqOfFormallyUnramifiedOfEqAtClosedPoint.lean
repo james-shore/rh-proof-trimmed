@@ -90,8 +90,8 @@ theorem eq_of_unramified_of_closedPoint : ∀ {S T : Scheme.{0}} (f : T ⟶ S) [
   let g : Spec R ⟶ pullback f f := pullback.lift u₁ u₂ h
   have hkg : k ≫ g = (k ≫ u₁) ≫ pullback.diagonal f := by
     apply pullback.hom_ext
-    · simp [g, pullback.lift_fst]
-    · simp [g, hku, pullback.lift_snd]
+    · simp [g]
+    · simp [g, hku]
   obtain ⟨x⟩ : Nonempty (Sp K) := (inferInstance : Nonempty (PrimeSpectrum K))
   have hc : g (IsLocalRing.closedPoint R) ∈ Set.range (pullback.diagonal f) := by
     refine ⟨(k ≫ u₁) x, ?_⟩

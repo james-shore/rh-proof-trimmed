@@ -75,7 +75,7 @@ theorem inCoefLat_pow' (R : RealDat D A Ks) (i : Fin D.R.m) {β : GL (Fin (Vc D 
   have e2 := smul_mem_hLat hβ (k := k⁻¹) (by rw [inv_inv]; exact h₁ (m₁ + m₂) (Nat.le_add_right _ _)) (h * k)
   rw [mul_inv_cancel_right] at e2
   have e3 := Submodule.smul_mem _ ((p ^ d : ℕ) : 𝓞 D.what₂.LL)
-    (nabAtr_scale (labLL D) (Formalism.IndefR.FWT.lamV D i) _ (by first | exact GlobalTheory.RepsCompare.isLattice_hLat _ _ | exact hLat_full _ _) e1 e2 P hP)
+    (nabAtr_scale (labLL D) (Formalism.IndefR.FWT.lamV D i) _ (by first | exact hLat_full _ _) e1 e2 P hP)
   refine ⟨_, e3, ?_⟩
   rw [Nat.cast_smul_eq_nsmul, map_nsmul, map_smulₛₗ, ← Nat.cast_smul_eq_nsmul ℂ, smul_smul]
   congr 1

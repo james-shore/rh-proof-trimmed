@@ -65,11 +65,7 @@ theorem HasDiv.exists_eq_mul_mul {O : Subring L} (hO : ∀ x : L, Valued.v x ≤
     {g s : GL (Fin n) L} (hg : HasDiv O d g) (hs : HasDiv O d s) :
     ∃ a b : GLint (Fin n) O, g = a * s * b := by
   first
-  | exact @_root_.GlobalTheory.DoubleCosetDivisors.main
-  | exact _root_.GlobalTheory.DoubleCosetDivisors.main
   | (apply _root_.GlobalTheory.DoubleCosetDivisors.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DoubleCosetDivisors.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DoubleCosetDivisors.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DoubleCosetDivisors.main ..)
 
 end Local

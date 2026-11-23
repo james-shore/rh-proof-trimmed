@@ -43,4 +43,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.IsoTriv
 
 theorem _root_.GlobalTheory.T.constCoeffOperatorLinearSubstitution_proof : LinSt := by
-  first | exact @GlobalTheory.IsoTriv.linSt_holds | exact GlobalTheory.IsoTriv.linSt_holds | (intros; apply GlobalTheory.IsoTriv.linSt_holds <;> assumption)
+  first | exact @GlobalTheory.IsoTriv.linSt_holds

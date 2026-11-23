@@ -51,4 +51,4 @@ open scoped CategoryTheory.Obj TensorProduct
 open GlobalTheory.ZM
 
 theorem _root_.GlobalTheory.T.nonempty_siegelFamily_over_arithmetic_base : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (P : Out.PolAV S) (M : LB P.A.left), M.IsLB → ∃ t : LB.Gen (Theta P.A M), t.IsGen) → ThetaUnifAV → ∀ (h n : ℕ), 1 ≤ h → n.Prime → Odd n → ∃ j₀ : ℕ, ∀ j ≥ j₀, ∀ (o : Type) [CommRing o] (b : TBase o ((n ^ j) ^ 2)) (em : o →+* ℂ), ArBase em → Nonempty (SFam h ((n ^ j) ^ 2) (b.ζ : o)) := by
-  first | exact @GlobalTheory.ZM.SiegelArithFamily.nonempty_sFam | exact GlobalTheory.ZM.SiegelArithFamily.nonempty_sFam | (intros; apply GlobalTheory.ZM.SiegelArithFamily.nonempty_sFam <;> assumption)
+  first | exact @GlobalTheory.ZM.SiegelArithFamily.nonempty_sFam

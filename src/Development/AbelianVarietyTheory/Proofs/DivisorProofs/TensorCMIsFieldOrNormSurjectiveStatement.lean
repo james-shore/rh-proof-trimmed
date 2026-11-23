@@ -50,4 +50,4 @@ open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.Genus
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.tensorCM_isField_or_norm_surjective : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (K : Type) [Field K] [Algebra F K], (∀ a : K ⊗[F] E, a ≠ 0 → IsUnit a) ∨ (∀ k : K, k ≠ 0 → ∃ t : K ⊗[F] E, t * sigR K σ t = algebraMap K (K ⊗[F] E) k) := by
-  first | exact @GlobalTheory.NormDichotomy.unit_or_norm | exact GlobalTheory.NormDichotomy.unit_or_norm | (intros; apply GlobalTheory.NormDichotomy.unit_or_norm <;> assumption)
+  first | exact @GlobalTheory.NormDichotomy.unit_or_norm

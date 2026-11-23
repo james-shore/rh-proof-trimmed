@@ -46,4 +46,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.integrationOverCycles_lifts_lieLattice : PLie := by
-  first | exact @GlobalTheory.AnPer.pLie_holds | exact GlobalTheory.AnPer.pLie_holds | (intros; apply GlobalTheory.AnPer.pLie_holds <;> assumption)
+  first | exact @GlobalTheory.AnPer.pLie_holds

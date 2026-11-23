@@ -54,4 +54,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_isGen_iso_pullback_lineBundle_zpow : ∀ {X Y Z : Scheme.{0}} (M : LB X) (H : LB Y) (f : Z ⟶ X) (g : Z ⟶ Y) (w : LB.Iso (M.pull f) (H.pull g)), M.IsLB → H.IsLB → w.IsGen → ∀ n : ℤ, ∃ w' : LB.Iso ((GlobalTheory.AbLaw.pw M n).pull f) ((GlobalTheory.AbLaw.pw H n).pull g), w'.IsGen := by
-  first | exact @GlobalTheory.PullPow.exists_isGen_iso_pw | exact GlobalTheory.PullPow.exists_isGen_iso_pw | (intros; apply GlobalTheory.PullPow.exists_isGen_iso_pw <;> assumption)
+  first | exact @GlobalTheory.PullPow.exists_isGen_iso_pw

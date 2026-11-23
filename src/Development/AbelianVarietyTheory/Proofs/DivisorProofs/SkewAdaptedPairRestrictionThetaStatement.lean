@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.skew_adapted_pair_restriction_theta : ∀ (F E : T
           (M₁.co.e z).1 = 0 ∧ ∀ φ : Fn F n d,
             schr B.ψ (t • ((fun i => algebraMap F (AF F) (w.1 i)), (fun i => algebraMap F (AF F) (w.2 i)))) φ =
               M.co.rho B.ψ u (M.co.rho B.ψ (incM F (1 : Matrix (Fin n) (Fin n) E) * z * (incM F H'.ι)ᵀ) φ) := by
-  first | exact @GlobalTheory.MixedLagr.exists_ratLagr | exact GlobalTheory.MixedLagr.exists_ratLagr | (intros; apply GlobalTheory.MixedLagr.exists_ratLagr <;> assumption)
+  first | exact @GlobalTheory.MixedLagr.exists_ratLagr

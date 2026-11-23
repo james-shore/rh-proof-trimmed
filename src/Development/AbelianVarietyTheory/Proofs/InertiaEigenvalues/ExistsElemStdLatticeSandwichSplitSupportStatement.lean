@@ -60,4 +60,4 @@ open GlobalTheory.SingleDatum
 
 
 theorem _root_.GlobalTheory.T.exists_elem_stdLattice_sandwich_splitSupport : ∀ (D : D7) (V : HSp D), V.gram = 1 → Bridge.hLat V 1 = Formalism.L2.Pj.stdLat D.host.E V.rank → ∀ (h : GA D V) (e : AE D) (Ps : Finset (Formalism.L2.DIV.Pl D.host.E)) (bad : ℕ), IsIdemSum e Ps → (∀ PP ∈ Ps, ((bad : ℕ) : 𝓞 D.host.E) ∉ PP.asIdeal) → SuppAt e V h → ∃ m : 𝓞 D.host.E, m ≠ 0 ∧ Ideal.span {m} • Bridge.hLat V (finPt V h) ≤ Formalism.L2.Pj.stdLat D.host.E V.rank ∧ Ideal.span {m} • Formalism.L2.Pj.stdLat D.host.E V.rank ≤ Bridge.hLat V (finPt V h) ∧ ∀ P : Ideal (𝓞 D.host.E), P.IsPrime → m ∈ P → P.map (GlobalTheory.IdemSupport.cO D : 𝓞 D.host.E →+* 𝓞 D.host.E) ≠ P ∧ ((bad : ℕ) : 𝓞 D.host.E) ∉ P := by
-  first | exact @GlobalTheory.SuppLatStd.lat_std_of_suppAt | exact GlobalTheory.SuppLatStd.lat_std_of_suppAt | (intros; apply GlobalTheory.SuppLatStd.lat_std_of_suppAt <;> assumption)
+  first | exact @GlobalTheory.SuppLatStd.lat_std_of_suppAt

@@ -106,7 +106,7 @@ theorem cc_jac (i b : Fin d) : constantCoeff (Jac G i b) = if i = b then 1 else 
   by_cases hib : i = b
   · subst hib
     simp
-  · simp [hib, Ne.symm hib]
+  · simp [hib]
 
 def JM : Matrix (Fin d) (Fin d) (PS k 1 d) := Matrix.of (Jac G)
 
@@ -145,7 +145,6 @@ theorem cc_om : (Om G).map constantCoeff = 1 := by
   simp only [Matrix.map_mul] at h
   first
     | (rw [jm_map_cc, mul_one, Matrix.map_one _ (map_zero _) (map_one _)] at h; exact h)
-    | (simpa [jm_map_cc] using h)
 
 theorem om_Q (i b : Fin d) : ∑ j, ev (n := 2) ![G.F] (Om G i j) * Ar G j b = ev (n := 2) ![pt k d 1] (Om G i b) := by
   have hF : CZ (![G.F] : Fin 1 → Pt k 2 d) := by
@@ -320,7 +319,7 @@ theorem om_key (i a b : Fin d) :
     simp [pt, MvPowerSeries.pderiv_X, Pi.single_apply]
   have hR : pderiv (R := k) ((1 : Fin 2), b) (ev (n := 2) ![pt k d 0] (Om G i a)) = 0 := by
     rw [pderiv_ev czX, Fintype.sum_prod_type]
-    simp [pt, MvPowerSeries.pderiv_X, Pi.single_apply]
+    simp [pt]
   have hP := congrArg (⇑(pderiv (R := k) ((1 : Fin 2), b))) (om_P G i a)
 
   rw [hR, map_sum] at hP

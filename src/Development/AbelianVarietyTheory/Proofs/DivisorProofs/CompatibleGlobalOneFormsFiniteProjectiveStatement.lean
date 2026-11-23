@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.glob1_finite_and_projective : ∀ (R : Type) [CommRing R] (C : Type) [Category.{0} C] (F : C ⥤ CommAlgCat.{0} R), HasFrame F → CohomZeroIsConstants F → Module.Finite R (Glob1 F) ∧ Module.Projective R (Glob1 F) := by
-  first | exact @GlobalTheory.AbCoh.compatibleGlobalOneForms_finite_projective | exact GlobalTheory.AbCoh.compatibleGlobalOneForms_finite_projective | (intros; apply GlobalTheory.AbCoh.compatibleGlobalOneForms_finite_projective <;> assumption)
+  first | exact @GlobalTheory.AbCoh.compatibleGlobalOneForms_finite_projective

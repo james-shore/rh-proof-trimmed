@@ -52,4 +52,4 @@ open GlobalTheory.BadPlace
 open Classical
 
 theorem _root_.GlobalTheory.T.frameMatrix_component_sub_one_eq_zero_off_idempotent : ∀ (D : D7) (W : HSp D) (β : GL (Fin W.rank) (Formalism.IndefR.Lev.EAf D)) (f : AE D) (k : GA D W) (PP : Pl D.host.E), SuppF W f k → GlobalTheory.StdFrames.cpt PP (toEAf D f) = 0 → ∀ a b, GlobalTheory.StdFrames.cpt PP (((HMul.hMul (HMul.hMul ((β)⁻¹).val ((Formalism.L2.Theta.mt W k).map (toEAf D))) (β).val : Matrix (Fin (W).rank) (Fin (W).rank) (Formalism.IndefR.Datum.EAf D)) - 1) a b) = 0 := by
-  first | exact @GlobalTheory.FrameOff.cpt_frame_sub_one_eq_zero_of_suppF | exact GlobalTheory.FrameOff.cpt_frame_sub_one_eq_zero_of_suppF | (intros; apply GlobalTheory.FrameOff.cpt_frame_sub_one_eq_zero_of_suppF <;> assumption)
+  first | exact @GlobalTheory.FrameOff.cpt_frame_sub_one_eq_zero_of_suppF

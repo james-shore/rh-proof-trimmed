@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_open_fixing_negative_vacuum_definite_bottom
     {A A' WW : HSp D} {X : Tri T A A' WW}, IsBottomTri W i j X → ∀ t : T,
     ∃ U : Subgroup (GA D A), IsOpen (U : Set (GA D A)) ∧ GinfC A ≤ U ∧
       ∀ k ∈ U, k ∈ GfC A → X.ω t (k, 1) X.vac = X.vac := by
-  first | exact @GlobalTheory.VacFixNeg.exists_open_fix_vac_neg | exact GlobalTheory.VacFixNeg.exists_open_fix_vac_neg | (intros; apply GlobalTheory.VacFixNeg.exists_open_fix_vac_neg <;> assumption)
+  first | exact @GlobalTheory.VacFixNeg.exists_open_fix_vac_neg

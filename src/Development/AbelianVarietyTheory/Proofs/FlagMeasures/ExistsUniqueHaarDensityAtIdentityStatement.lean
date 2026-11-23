@@ -46,4 +46,4 @@ open MeasureTheory Matrix Filter Topology Formalism.QuantumDeterminants Formalis
 open scoped InnerProductSpace ENNReal
 
 theorem _root_.GlobalTheory.T.exists_unique_haarDensity_at_identity : ∀ (m : ℕ) (S : Set (Matrix (Fin m) (Fin m) ℂ)) (μ : Measure (PI.MtM m)), PI.IsMatGroup S → PI.IsHaarOnM S μ → ∃ c : ℝ, 0 < c ∧ HasDens S μ (ENNReal.ofReal c) ∧ ∀ c', HasDens S μ c' → c' = ENNReal.ofReal c := by
-  first | exact @GlobalTheory.MatHaarDensity.exists_hasDens | exact GlobalTheory.MatHaarDensity.exists_hasDens | (intros; apply GlobalTheory.MatHaarDensity.exists_hasDens <;> assumption)
+  first | exact @GlobalTheory.MatHaarDensity.exists_hasDens

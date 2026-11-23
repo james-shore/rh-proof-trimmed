@@ -64,9 +64,6 @@ theorem csGlobApprox_vD (v : HeightOneSpectrum (𝓞 F)) (r : 𝓞 F) :
     Valued.v (algebraMap (𝓞 F) (v.adicCompletion F) r) = v.intValuation r := by
   first
   | exact (v.valuedAdicCompletion_eq_valuation r).trans (v.valuation_of_algebraMap r)
-  | exact (v.valuedAdicCompletion_eq_valuation r).trans (v.valuation_of_algebraMap (K := F) r)
-  | (rw [IsScalarTower.algebraMap_apply (𝓞 F) F (v.adicCompletion F)]
-     exact (v.valuedAdicCompletion_eq_valuation' _).trans (v.valuation_of_algebraMap (K := F) r))
 
 theorem csGlobApprox_local (v : HeightOneSpectrum (𝓞 F)) (D : 𝓞 F) (hD : D ≠ 0)
     (x : v.adicCompletion F) (hx : x ∈ v.adicCompletionIntegers F) :
@@ -132,8 +129,6 @@ private theorem valued_v_algebraMap_adicCompletion {F : Type} [Field F] [NumberF
     Valued.v (algebraMap F (w.adicCompletion F) k) = w.valuation F k := by
   first
   | exact w.valuedAdicCompletion_eq_valuation' k
-  | rfl
-  | simp [HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
 
 theorem csGlob_intAdApprox : Formalism.UG.CS.IntAdApprox := by
   apply Formalism.UG.P.integral_adele_approximation_holds <;> assumption

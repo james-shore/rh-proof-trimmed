@@ -428,7 +428,7 @@ theorem exists_line {η : kˣ →* ℂˣ} (hη : IsSmoothChar η) :
     have h2 := h ∞
     have h3 := h (0 : k)
     have h4 := h (1 : k)
-    simp [ballFn, ballFn_coe, h1] at h2 h3 h4
+    simp [ballFn, h1] at h2 h3 h4
     exact ⟨h3.symm.trans h2, h4.symm.trans h2⟩
   refine ⟨_, _, _, _, f, nonempty_equiv_parInd hη, fun c d h => congrArg (fun F => F.1 ∞) h, fun h => ?_,
     fun S => (const_or_eq_top (subrepTwist _ _ S)).imp

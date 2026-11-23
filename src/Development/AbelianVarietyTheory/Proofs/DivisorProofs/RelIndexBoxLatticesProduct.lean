@@ -129,7 +129,7 @@ theorem isIntB_sum_leftBasis_iff_eventually : ∀ (L : Type) [Field L] [NumberFi
       rw [Algebra.TensorProduct.map_tmul, Algebra.TensorProduct.tmul_mul_tmul, mul_one, AlgHom.id_apply,
         repr_tmul_apply, hrepr]
       by_cases h : i = j
-      · subst h; simp [repr_tmul_apply]
+      · subst h; simp
       · simp [h]
     | add x y hx hy =>
       rw [map_add (f := _), add_mul, LinearEquiv.map_add (e := _), Finsupp.add_apply, hx, hy, Pi.single_add, Pi.add_apply,
@@ -147,7 +147,7 @@ theorem isIntB_sum_leftBasis_iff_eventually : ∀ (L : Type) [Field L] [NumberFi
 
     rw [← Finsupp.finsetSum_apply, ← map_sum]
     congr 2
-    simp [Finset.sum_apply, Pi.single_apply]
+    simp [Pi.single_apply]
   rw [hS v hv]
   constructor
   · intro h i a

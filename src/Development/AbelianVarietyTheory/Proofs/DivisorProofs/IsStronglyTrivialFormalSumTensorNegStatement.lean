@@ -46,4 +46,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.isStronglyTrivialFormalSumTensor_neg : ∀ (R : Type) [CommRing R] [IsDomain R] (D D' : DegPre R) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ) (T : Tens D D' W) (c : GlobalTheory.TensBal.Vec r →₀ ℤ), GlobalTheory.TensBal.Triv T c → GlobalTheory.TensBal.Triv T (-c) := by
-  first | exact @GlobalTheory.TensBalNeg.triv_neg | exact GlobalTheory.TensBalNeg.triv_neg | (intros; apply GlobalTheory.TensBalNeg.triv_neg <;> assumption)
+  first | exact @GlobalTheory.TensBalNeg.triv_neg

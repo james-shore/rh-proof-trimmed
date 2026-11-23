@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.liftCharacters_agree_over_enlarged_base : ∀ {B B
   {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks (w'.st Z').toD7.what₂.LL] {Xg : Finset (Gc B' w'.px → B'.LL)} {tr : TrI B' w'.px}
   (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → HEq f' f → HEq w'.px w.px → LevOf (w'.st Z') w'.I (usedOf w'.I T' Wt') R'.toLevCh → LevSame z Wt' R' := by
-  first | exact @GlobalTheory.Mem.R3.Rw.LevExt.levSame_of_levOf | exact GlobalTheory.Mem.R3.Rw.LevExt.levSame_of_levOf | (intros; apply GlobalTheory.Mem.R3.Rw.LevExt.levSame_of_levOf <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.LevExt.levSame_of_levOf

@@ -54,4 +54,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.isUnitAwayFromLevel_prod_normalised_matrixGaussSum : ∀ (D : D7) [∀ PP : Pl D.host.E, Fintype (kP PP)] (Q : Finset (Pl D.host.E)) (n r : ℕ), r ≤ n → ∀ (ψP : ∀ PP : Pl D.host.E, AddChar (kP PP) ℂ) (ξ : ∀ PP : Pl D.host.E, (kP PP)ˣ →* ℂˣ), (∀ PP ∈ Q, (ψP PP).IsPrimitive) → (∀ PP ∈ Q, ξ PP ≠ 1) → ∀ N : ℕ, N ≠ 0 → (∀ PP ∈ Q, (N : 𝓞 D.host.E) ∈ PP.asIdeal) → UnitOff N (∏ PP ∈ Q.attach, ((Nat.card (kP PP.1) : ℂ) ^ (n * r))⁻¹ * ∑ g : GL (Fin r) (kP PP.1), (((ξ PP.1 (Matrix.GeneralLinearGroup.det g))⁻¹ : ℂˣ) : ℂ) * ψP PP.1 (Matrix.trace (g : Matrix (Fin r) (Fin r) (kP PP.1)))) := by
-  first | exact @GlobalTheory.GaussUnit.unitOff_prod_gaussSum | exact GlobalTheory.GaussUnit.unitOff_prod_gaussSum | (intros; apply GlobalTheory.GaussUnit.unitOff_prod_gaussSum <;> assumption)
+  first | exact @GlobalTheory.GaussUnit.unitOff_prod_gaussSum

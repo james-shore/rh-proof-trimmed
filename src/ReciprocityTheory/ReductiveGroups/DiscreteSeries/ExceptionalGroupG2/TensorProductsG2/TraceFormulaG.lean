@@ -111,7 +111,7 @@ theorem tf_closure_stable (dual : Bool) {lam : Fin n → ℝ} {H : Type*} [Norme
         refine Eq.trans ?_ (toL2_smul_smooth ε a _)
         refine toL2_congr_of_eq_on_UJset fun g _ => ?_
         cases dual <;> simp [coefMap, tensGrp, inner_sum, inner_smul_right, mul_sum,
-          mul_assoc, mul_left_comm, mul_comm]) }
+          mul_left_comm]) }
   have hΦE : ∀ a b (f : tensSub (n := n) (genSub E V)), smE ε (tfRdiag ε) a b (Φ f) =
       Φ ⟨tensF dual E a b f.1, tensSub_stable dual a b f.1 f.2⟩ := fun a b f =>
     Subtype.ext (vectorL2_ext fun c => by

@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.thetaLift_eq_integral_routeKernel_fubini : ∀ {D 
       IntegrableOn (kerBig W Θ g g₁) (M.fd (.grid (i + 1) (j + 1))) (M.ν (.grid (i + 1) (j + 1)))) ∧
     liftT W M (routeBig t i j) Θ F g₁ = ∫ g in M.fd (.grid i (j + 1)), F g * ∫ u in M.fd (.grid (i + 1) (j + 1)),
       kerBig W Θ g g₁ u ∂M.ν (.grid (i + 1) (j + 1)) ∂M.ν (.grid i (j + 1)) := by
-  first | exact @GlobalTheory.BigRoute.lift_eq_integral_kerBig | exact GlobalTheory.BigRoute.lift_eq_integral_kerBig | (intros; apply GlobalTheory.BigRoute.lift_eq_integral_kerBig <;> assumption)
+  first | exact @GlobalTheory.BigRoute.lift_eq_integral_kerBig

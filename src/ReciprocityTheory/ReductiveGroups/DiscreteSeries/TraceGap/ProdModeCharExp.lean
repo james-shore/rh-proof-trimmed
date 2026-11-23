@@ -92,7 +92,7 @@ theorem tco_diagE_wt (E : Fin n → Fin n → Module.End ℂ N) (a : Fin n)
   rw [Finset.sum_eq_single s]
   · simp [fockBasis_wt]
   · intro b _ hb
-    simp [fockBasis_wt, Finsupp.single_apply, hb]
+    simp [fockBasis_wt, hb]
   · simp
 
 end T

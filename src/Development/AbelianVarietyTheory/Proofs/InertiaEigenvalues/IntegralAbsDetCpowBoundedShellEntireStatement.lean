@@ -50,4 +50,4 @@ open scoped nonZeroDivisors ComplexConjugate
 
 
 theorem _root_.GlobalTheory.T.integral_absDet_cpow_bounded_shell_entire : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (μ : Measure (GA E a)) (S : Set (GA E a)), NullMeasurableSet S μ → μ S < ⊤ → ∀ c : ℝ, 0 < c → (∀ g ∈ S, c ≤ (ideleModule E (GeneralLinearGroup.det g) : ℝ) ∧ (ideleModule E (GeneralLinearGroup.det g) : ℝ) ≤ 1) → ∀ F : GA E a → ℂ, Continuous F → ∀ C : ℝ, (∀ g, ‖F g‖ ≤ C) → Differentiable ℂ fun s : ℂ => ∫ g in S, F g * ((ideleModule E (GeneralLinearGroup.det g) : ℝ) : ℂ) ^ (s - 1) ∂μ := by
-  first | exact @GlobalTheory.DiffInt.integral_absDet_cpow_entire | exact GlobalTheory.DiffInt.integral_absDet_cpow_entire | (intros; apply GlobalTheory.DiffInt.integral_absDet_cpow_entire; all_goals assumption)
+  first | exact @GlobalTheory.DiffInt.integral_absDet_cpow_entire

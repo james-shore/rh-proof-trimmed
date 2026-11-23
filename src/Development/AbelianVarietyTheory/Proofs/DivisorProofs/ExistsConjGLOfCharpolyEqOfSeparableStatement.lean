@@ -52,4 +52,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.exists_conj_GL_of_charpoly_eq_of_separable : ∀ (K : Type) [Field K] (n : ℕ) (a b : GL (Fin n) K), a.val.charpoly = b.val.charpoly → a.val.charpoly.Separable → ∃ h : GL (Fin n) K, b = h⁻¹ * a * h := by
-  first | exact @GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable | exact GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable | (intros; apply GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable <;> assumption)
+  first | exact @GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable

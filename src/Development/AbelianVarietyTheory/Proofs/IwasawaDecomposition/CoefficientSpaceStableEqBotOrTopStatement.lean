@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.coefficientSpace_stable_eq_bot_or_top : ∀ (K : T
       ∀ f : nablaSq K n (lam τ), (φ f : MvPolynomial (Fin n × Fin n) K) = ∑ g ∈ s, c g • sqAct K n (lam τ) g f) →
     ∀ W : Submodule K (Formalism.L2.DIV.VV K lam), (∀ g : ι → GL (Fin n) K, ∀ w ∈ W, Formalism.L2.DIV.rhoK lam g w ∈ W) →
       W = ⊥ ∨ W = ⊤ := by
-  first | exact @GlobalTheory.TensorIrr.eq_bot_or_eq_top | exact GlobalTheory.TensorIrr.eq_bot_or_eq_top | (intros; apply GlobalTheory.TensorIrr.eq_bot_or_eq_top <;> assumption)
+  first | exact @GlobalTheory.TensorIrr.eq_bot_or_eq_top

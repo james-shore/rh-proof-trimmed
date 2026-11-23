@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_adelicWeilRep_unitaryPair_schroedingerModel
         GlobalTheory.WeilM.ResEtaPow (Units.map (algebraMap D.host.F (AF D.host.F)).toMonoidHom).range χX n →
         GlobalTheory.WeilM.ResEtaPow (Units.map (algebraMap D.host.F (AF D.host.F)).toMonoidHom).range χW d →
         ∃ om, Mo.IsWeil B.ψ χX χW om := by
-  first | exact @GlobalTheory.WeilSchrodinger.exists_isWeil | exact GlobalTheory.WeilSchrodinger.exists_isWeil | (intros; apply GlobalTheory.WeilSchrodinger.exists_isWeil <;> assumption)
+  first | exact @GlobalTheory.WeilSchrodinger.exists_isWeil

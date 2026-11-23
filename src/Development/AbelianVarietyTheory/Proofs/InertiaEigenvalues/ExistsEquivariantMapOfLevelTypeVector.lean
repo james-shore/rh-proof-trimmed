@@ -76,7 +76,7 @@ theorem exists_map_of_typeVec (F : Type) [Field F] [ValuativeRel F] [Topological
     rw [hΦ, hΦ, map_sum]
     refine Fintype.sum_equiv (Equiv.mulLeft g₀) _ _ fun g => ?_
     rw [map_smul, ← Module.End.mul_apply, ← map_mul, IsLift.apply_eq hp h1 (H.mul hp (hℓ g)) (hℓ _)]
-    simp [mul_inv_rev, map_mul, Module.End.mul_apply]
+    simp [mul_inv_rev, map_mul]
   by_contra hne
   have hz : ∀ μ, Φ μ = 0 := fun μ => by
     by_contra e

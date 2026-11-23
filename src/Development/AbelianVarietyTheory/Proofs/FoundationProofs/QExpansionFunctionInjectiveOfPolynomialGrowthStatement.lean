@@ -47,4 +47,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.qExpansionFunction_injective_of_polynomialGrowth : ∀ a b : ℕ → ℂ, PolyB a → PolyB b → qs a = qs b → a = b := by
-  first | exact @GlobalTheory.EisM.qs_injective | exact GlobalTheory.EisM.qs_injective | (intros; apply GlobalTheory.EisM.qs_injective <;> assumption)
+  first | exact @GlobalTheory.EisM.qs_injective

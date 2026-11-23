@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.fockVacua_smooth_family_complexGaussians : ∀ {V 
         ∀ x, g x = g 0 * Complex.exp (M t x x)) ∧
       ∃ (n : ℕ) (qs qs' : Fin n → V) (cs : Fin n → ℂ), ∀ x,
         HasDerivAt (fun t => M t x x) (∑ i, cs i * (β x (qs i) : ℂ) * (β x (qs' i) : ℂ)) 0 := by
-  first | exact @GlobalTheory.FockFamily.fock_vacua_family | exact GlobalTheory.FockFamily.fock_vacua_family | (intros; apply GlobalTheory.FockFamily.fock_vacua_family <;> assumption)
+  first | exact @GlobalTheory.FockFamily.fock_vacua_family

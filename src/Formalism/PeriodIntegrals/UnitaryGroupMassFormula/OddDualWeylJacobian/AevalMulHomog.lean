@@ -101,12 +101,11 @@ lemma genM_map (A : Matrix (Fin k) (Fin k) (MvPolynomial (Fin k × Fin k) R)) :
 lemma cM_map (A : Matrix (Fin k) (Fin k) (MvPolynomial (Fin k × Fin k) R)) (g : Matrix (Fin k) (Fin k) R) :
     (cM g).map (sbs A) = cM g := by
   ext i j
-  simp [cM, sbs_C]
+  simp [cM]
 
 lemma cM_mul (g h : Matrix (Fin k) (Fin k) R) : cM (g * h) = cM g * cM h := by
   first
   | (unfold cM; exact Matrix.map_mul)
-  | (ext i j; simp [cM, Matrix.mul_apply])
 
 lemma cM_one : cM (1 : Matrix (Fin k) (Fin k) R) = 1 := by
   ext i j
@@ -178,9 +177,9 @@ lemma rowAct_homog (g : Matrix (Fin k) (Fin k) R) {p : MvPolynomial (Fin k × Fi
     apply IsHomogeneous.sum
     intro b _
     have hC : IsHomogeneous (C (g v.1 b) : MvPolynomial (Fin k × Fin k) R) 0 := by
-      first | exact isHomogeneous_C _ _ | exact isHomogeneous_C _
+      first | exact isHomogeneous_C _ _
     have hX : IsHomogeneous (X (b, v.2) : MvPolynomial (Fin k × Fin k) R) 1 := by
-      first | exact isHomogeneous_X _ _ | exact isHomogeneous_X _
+      first | exact isHomogeneous_X _ _
     have h1 := hC.mul hX
     rwa [zero_add] at h1
 
@@ -193,7 +192,7 @@ lemma rowAct_homog (g : Matrix (Fin k) (Fin k) R) {p : MvPolynomial (Fin k × Fi
     rw [PI.OddDualWeyl.rowAct, aeval_monomial, algebraMap_eq, Finsupp.prod]
   rw [hmon]
   have hC : IsHomogeneous (C (AddMonoidAlgebra.coeff p m) : MvPolynomial (Fin k × Fin k) R) 0 := by
-    first | exact isHomogeneous_C _ _ | exact isHomogeneous_C _
+    first | exact isHomogeneous_C _ _
   have hprod := IsHomogeneous.prod m.support (fun i => (∑ b : Fin k, C (g i.1 b) * X (b, i.2)) ^ m i)
     (fun i => 1 * m i) (fun i _ => (hL i).pow (m i))
   have h2 := hC.mul hprod
@@ -306,7 +305,7 @@ lemma relK (g : Matrix (Fin k) (Fin k) K) (hd : g.det ≠ 0)
     (c c' : K) (hc : c' * g.det ^ D * (g.det)⁻¹ ^ M = c) :
     dualSub K k (c' • rowAct K gᵀ p') = (genM K k).det ^ M * (c • rowAct K g⁻¹ p) := by
   have hs : PI.OddDualWeyl.dualSub K k (c' • PI.OddDualWeyl.rowAct K gᵀ p') = c' • PI.OddDualWeyl.dualSub K k (PI.OddDualWeyl.rowAct K gᵀ p') := by
-    first | exact _root_.map_smul _ _ _ | exact AlgHom.map_smul_of_tower _ _ _ | simp
+    first | exact _root_.map_smul _ _ _
   rw [hs, dualSub_rowAct g hd hrel hp', ← hc]
   simp only [MvPolynomial.smul_eq_C_mul, _root_.map_mul, _root_.map_pow, mul_pow]
   ring
@@ -358,7 +357,6 @@ theorem twistedWeylStep : GStep := by
       (degW (nuOf (lamStar lam))) := by
     first
     | exact (hhom f' hf').map _
-    | (intro d hd0; apply hhom f' hf'; intro h0; apply hd0; rw [coeff_map, h0, _root_.map_zero])
   have hF0 : rowAct K g⁻¹ (MvPolynomial.map (algebraMap O K) f) = F0 := by
     rw [hfF, PI.OddDualWeyl.Red.rowAct_rowAct, Matrix.mul_nonsing_inv g hg, PI.OddDualWeyl.Red.rowAct_one]
   have hT : gᵀ * (g⁻¹)ᵀ = 1 := by
@@ -377,7 +375,7 @@ theorem twistedWeylStep : GStep := by
     exact PI.OddDualWeyl.Red.zp g.det hd _ _ _ _ hbal
   · have hC : IsHomogeneous (C ((g⁻¹)ᵀ.det ^ (-(lamStar lam (Fin.last m)))) :
         MvPolynomial (Fin (m + 1) × Fin (m + 1)) K) 0 := by
-      first | exact isHomogeneous_C _ _ | exact isHomogeneous_C _
+      first | exact isHomogeneous_C _ _
     have h1 := hC.mul (PI.OddDualWeyl.Red.rowAct_homog gᵀ hhomK)
     rw [zero_add] at h1
     rw [MvPolynomial.smul_eq_C_mul]

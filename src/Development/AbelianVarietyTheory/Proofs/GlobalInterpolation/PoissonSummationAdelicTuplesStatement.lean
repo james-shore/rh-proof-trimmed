@@ -49,4 +49,4 @@ open NumberField IsDedekindDomain MeasureTheory Topology Filter Formalism.MainNo
 open scoped TensorProduct NNReal ENNReal
 
 theorem _root_.GlobalTheory.T.poisson_summation_adelic_tuples : ∀ (F : Type) [Field F] [NumberField F] (N : ℕ) (ψ : AddChar (AF F) ℂ) (lam : InfinitePlace F → ℝ) (ν : Measure (AF F)) (a : Fin N → F), Ctx ψ lam ν a → ∀ Φ : (Fin N → AF F) → ℂ, Decay Φ → Decay (Fo ψ ν a Φ) → th (Fo ψ ν a Φ) = th Φ := by
-  first | exact @GlobalTheory.SWQ.poisson_summation | exact GlobalTheory.SWQ.poisson_summation | (intros; apply GlobalTheory.SWQ.poisson_summation <;> assumption)
+  first | exact @GlobalTheory.SWQ.poisson_summation

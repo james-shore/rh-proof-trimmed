@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_connection_sumWedgeCurvature_abelianScheme : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → ∀ x : HO1 A.hom, ∃ (m : ℕ) (u v : Fin m → GlobForm A.hom), ObRel (OAff A.hom) x u v := by
-  first | exact @GlobalTheory.AbCoh.exists_obRel_abelian | exact GlobalTheory.AbCoh.exists_obRel_abelian | (intros; apply GlobalTheory.AbCoh.exists_obRel_abelian <;> assumption)
+  first | exact @GlobalTheory.AbCoh.exists_obRel_abelian

@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_reference_class_matching_coupling_coset : �
         κ.2.2 = 1 → (i + 1 = B.R.m → ∀ w, κ0.2.1.1 w = y w * κ.2.1.1 w * (y w)⁻¹) →
         (cosetIn ((I.stp u a i).act c.1 κ ((I.stp u a i).rep c)) = cosetIn ((I.stp u a i).rep c) ↔
           cosetIn ((I.stp u I.mu0 i).act c0.1 κ0 ((I.stp u I.mu0 i).rep c0)) = cosetIn ((I.stp u I.mu0 i).rep c0)) := by
-  first | exact @GlobalTheory.Mem.Col2.TC.ChTw.Match.coset_match | exact GlobalTheory.Mem.Col2.TC.ChTw.Match.coset_match | (intros; apply GlobalTheory.Mem.Col2.TC.ChTw.Match.coset_match <;> assumption)
+  first | exact @GlobalTheory.Mem.Col2.TC.ChTw.Match.coset_match

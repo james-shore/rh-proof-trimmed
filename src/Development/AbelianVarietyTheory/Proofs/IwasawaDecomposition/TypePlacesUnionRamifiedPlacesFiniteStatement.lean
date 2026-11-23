@@ -65,4 +65,4 @@ open GlobalTheory.TwistChoice (Reading ReadsAt)
 
 
 theorem _root_.GlobalTheory.T.typePlaces_union_ramifiedPlaces_finite : ∀ (D : D7) (η : HChar D.host.E), (gPl D ∪ qPl D η).Finite := by
-  first | exact @GlobalTheory.LevCmp.gPl_union_qPl_finite | exact GlobalTheory.LevCmp.gPl_union_qPl_finite | (intros; apply GlobalTheory.LevCmp.gPl_union_qPl_finite <;> assumption)
+  first | exact @GlobalTheory.LevCmp.gPl_union_qPl_finite

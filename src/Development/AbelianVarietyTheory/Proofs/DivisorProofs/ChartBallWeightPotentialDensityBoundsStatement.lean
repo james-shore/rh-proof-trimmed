@@ -47,4 +47,4 @@ open NumberField ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.Chart
 open scoped ContDiff ENNReal Matrix
 
 theorem _root_.GlobalTheory.T.chartBall_weightPotential_density_bounds : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (la : Wt X.Ψ r) (x : Frame X.Ψ r) (z : V (nd X)), IsOrth X x → ‖z‖ ≤ 1 / (100 * (r : ℝ) ^ 2) → z ∈ OmF X x ∧ |phla X la (cpt X x z)| ≤ ∑ τ, ∑ a, |(la τ a : ℝ)| ∧ |rhF X x z| ≤ (X.Ψ.card : ℝ) ∧ |Real.log (densF X x z)| ≤ (X.Ψ.card : ℝ) * r ∧ 0 < densF X x z := by
-  first | exact @GlobalTheory.WeightSizes.chart_ball_sizes | exact GlobalTheory.WeightSizes.chart_ball_sizes | (intros; apply GlobalTheory.WeightSizes.chart_ball_sizes <;> assumption)
+  first | exact @GlobalTheory.WeightSizes.chart_ball_sizes

@@ -77,12 +77,11 @@ theorem nonempty_hos (F : Type) [Field F] [NumberField F] : Nonempty (HeightOneS
 
 theorem nontrivial_Af (F : Type) [Field F] [NumberField F] : Nontrivial (Af F) := by
   first
-  | exact inferInstance
   | (obtain ⟨v⟩ := nonempty_hos F
      refine ⟨⟨0, 1, fun h => ?_⟩⟩
      have h2 : Subtype.val (0 : Af F) v = Subtype.val (1 : Af F) v := by rw [h]
-     have h0 : Subtype.val (0 : Af F) v = 0 := by first | rfl | simp
-     have h1 : Subtype.val (1 : Af F) v = 1 := by first | rfl | simp
+     have h0 : Subtype.val (0 : Af F) v = 0 := by first | rfl
+     have h1 : Subtype.val (1 : Af F) v = 1 := by first | rfl
      exact zero_ne_one (h0.symm.trans (h2.trans h1)))
 
 theorem inj_Af (F : Type) [Field F] [NumberField F] : Function.Injective (algebraMap F (Af F)) := by

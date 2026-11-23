@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.continuous_archimedeanWeilOperator_line_triple : �
     ∀ T : ℝ → SInf F (Fin a × Fin (a + a')) →ₗ[ℂ] SInf F (Fin a × Fin (a + a')),
     (∀ (t : ℝ) (f : SInf F (Fin a × Fin (a + a'))), Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (T t f)) →
     ∀ (f : SInf F (Fin a × Fin (a + a'))) (x : Fin a × Fin (a + a') → mixedEmbedding.mixedSpace F), Continuous fun t => T t f x := by
-  first | exact @GlobalTheory.ArchLineCont.continuous_apply | exact GlobalTheory.ArchLineCont.continuous_apply | (intros; apply GlobalTheory.ArchLineCont.continuous_apply <;> assumption)
+  first | exact @GlobalTheory.ArchLineCont.continuous_apply

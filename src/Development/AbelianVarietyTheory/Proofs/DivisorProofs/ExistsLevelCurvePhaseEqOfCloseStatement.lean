@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_level_curvePhase_eq_of_close : ∀ {D : D7}
   ∀ {a d : ℕ} (x : Formalism.MainNotions.StandardLatticesGL3.GA D a) (y : Formalism.MainNotions.StandardLatticesGL3.GA D d) (z : Matrix (Fin d) (Fin a) D.host.E),
   ∃ n : ℕ, 0 < n ∧ ∀ z', Formalism.MainNotions.StandardLatticesGL3.CloseTo D cc n (x : GL (Fin a) (Formalism.MainNotions.StandardLatticesGL3.AE D)) (y : GL (Fin d) (Formalism.MainNotions.StandardLatticesGL3.AE D)) z z' →
     Formalism.MainNotions.StandardLatticesGL3.wdPh D (tor0 D cc δ) (pt D (tor0 D cc δ) δ z') = Formalism.MainNotions.StandardLatticesGL3.wdPh D (tor0 D cc δ) (pt D (tor0 D cc δ) δ z) := by
-  first | exact @GlobalTheory.PhaseMove.phase_eq | exact GlobalTheory.PhaseMove.phase_eq | (intros; apply GlobalTheory.PhaseMove.phase_eq <;> assumption)
+  first | exact @GlobalTheory.PhaseMove.phase_eq

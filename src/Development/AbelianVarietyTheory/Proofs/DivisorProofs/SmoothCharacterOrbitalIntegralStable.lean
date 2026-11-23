@@ -129,7 +129,7 @@ theorem mem_augRk_of_smallF_eq_zero : ∀ (k : Type) [Field k] [ValuativeRel k] 
       exact this.mem_nhds (by simp)
     filter_upwards [sb_left_invariant Φ hΦ.1, h2, hKo.mem_nhds (one_mem K)] with u h1 h2 h3 g
     funext Y
-    simp only [F, gdet_mul, map_mul, h2, apow_mul, apow_of_valuation_eq_one (valuation_gdet_of_mem_KO h3),
+    simp only [F, map_mul, h2, apow_mul, apow_of_valuation_eq_one (valuation_gdet_of_mem_KO h3),
       Units.val_mul, Matrix.mul_assoc, h1, one_mul]
   have hlc : IsLocallyConstant F := by
     refine (IsLocallyConstant.iff_eventually_eq _).2 fun x => ?_

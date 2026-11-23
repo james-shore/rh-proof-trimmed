@@ -69,4 +69,4 @@ theorem _root_.GlobalTheory.T.twisted_frame_invariant_under_descentDatum : ∀ {
       ∀ (z : ↥(pullback f f)) (i j : L.ι), f (pullback.fst f f z) ∈ V' → pullback.fst f f z ∈ L.U i →
         pullback.snd f f z ∈ L.U j →
         gm (pullback.fst f f) z _ (s i) * gm (𝟙 _) z _ (φ i j) = gm (pullback.snd f f) z _ (s j) := by
-  first | exact @GlobalTheory.LBDescent.twist_frame_descent | exact GlobalTheory.LBDescent.twist_frame_descent | (intros; apply GlobalTheory.LBDescent.twist_frame_descent <;> assumption)
+  first | exact @GlobalTheory.LBDescent.twist_frame_descent

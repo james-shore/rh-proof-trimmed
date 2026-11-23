@@ -52,4 +52,4 @@ open scoped CategoryTheory.Obj RatFunc
 
 
 theorem _root_.GlobalTheory.T.spec_injectiveRingMap_cancellation : (∀ (R R' : Type) [CommRing R] [CommRing R'] [IsLocalRing R] [IsLocalRing R'] (φ : R →+* R') [IsLocalHom φ], Function.Injective φ → ∀ (Y : Scheme.{0}) (a a' : Sp R ⟶ Y), spMap φ ≫ a = spMap φ ≫ a' → a = a') ∧ (∀ (R R' : Type) [CommRing R] [CommRing R'] (φ : R →+* R'), Function.Injective φ → ∀ (S Y : Scheme.{0}) (p : Y ⟶ S) [IsSeparated p] (a a' : Sp R ⟶ Y), a ≫ p = a' ≫ p → spMap φ ≫ a = spMap φ ≫ a' → a = a') := by
-  first | exact @GlobalTheory.Nef.spMap_injective_cancel | exact GlobalTheory.Nef.spMap_injective_cancel | (intros; apply GlobalTheory.Nef.spMap_injective_cancel <;> assumption)
+  first | exact @GlobalTheory.Nef.spMap_injective_cancel

@@ -55,4 +55,4 @@ open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.liftWeightParam_eq_infinitesimalCharacter_of_halfInt : ∀ (R : Ranks) (h : HCParam R) (j : Fin R.m) (sh : ℂ), (∃ z : ℤ, sh = (z : ℂ) + 1 / 2) →
     ∃ lam : DomWeight R.nV, NG.infOf lam.w = NG.paramV R h j sh := by
-  first | exact @GlobalTheory.WtComb.paramV_eq_infOf | exact GlobalTheory.WtComb.paramV_eq_infOf | (intros; apply GlobalTheory.WtComb.paramV_eq_infOf <;> assumption)
+  first | exact @GlobalTheory.WtComb.paramV_eq_infOf

@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.UnitLemma Polynomial
 
 theorem _root_.GlobalTheory.T.exists_conductor_mul_mem_adjoin_of_separable : ∀ (K : UQ) (B : InvAlg K), B.P.Separable → IsIntegral K.O B.g → ∃ c : K.O, c ≠ 0 ∧ ∀ u : B.A, IsIntegral K.O u → algebraMap K.O B.A c * u ∈ Algebra.adjoin K.O ({B.g} : Set B.A) := by
-  first | exact @GlobalTheory.UnitLemma.exists_conductor_mul_mem_adjoin | exact GlobalTheory.UnitLemma.exists_conductor_mul_mem_adjoin | (intros; apply GlobalTheory.UnitLemma.exists_conductor_mul_mem_adjoin <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.exists_conductor_mul_mem_adjoin

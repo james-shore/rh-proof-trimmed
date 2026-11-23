@@ -72,7 +72,7 @@ theorem adjoin_lie_equiv {E : Type} [Field E] [NumberField E] [_root_.NumberFiel
     intro χ hχ
     obtain ⟨y₁, y₂⟩ := hy χ hχ
     obtain ⟨x₁, x₂⟩ := hx _ y₁
-    exact ⟨by simpa [Module.End.mul_apply] using x₁, by simp [Module.End.mul_apply, x₂, y₂]⟩
+    exact ⟨by simpa [Module.End.mul_apply] using x₁, by simp [x₂, y₂]⟩
 
 theorem capEquiv : CapEquiv := by
   intro E _ _ _ N U T ψ m hU hT hψ hc τ u

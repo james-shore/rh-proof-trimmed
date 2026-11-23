@@ -102,7 +102,7 @@ theorem exists_cube (hB : D.TauBimult) {T : Over (Spec (CommRingCat.of R))} (a b
       simp only [Sum.elim_inl, Sum.elim_inr]
       rw [prod_lam₁, prod_lam_neg, prod_lam_neg]
       apply Additive.ofMul.injective
-      simp only [lamH, ofMul_mul, ofMul_inv, ofMul_zpow, zpow_one]
+      simp only [lamH, ofMul_mul, ofMul_inv, zpow_one]
       abel)
     (LB.pullGen D.P.L (thφ D.P.A (x3 D.P.A)) thε D.cub.t (lift a (lift b u)).left)
     (DVR.pullGen_isGen _ _ _ _ D.cub.isGen _)
@@ -233,7 +233,7 @@ theorem exists_generator_lambda_linear_first_position (hB : D.TauBimult) {T : Ov
         (fun q : Fin (r + 1) × Fin 4 => GlobalTheory.PolDeg.lamPts (p q.1) u q.2))
       (ε' := Sum.elim Oε (fun q : Fin (r + 1) × Fin 4 => -(m q.1 * Oε q.2))) (fun U _ h => by
         simp only [Fintype.prod_sum_type, Fintype.prod_prod_type, Sum.elim_inl, Sum.elim_inr, prodNeg, prod_lam₁,
-          prod_lam, prod_lam_neg]
+          prod_lam]
         simp only [Fin.prod_univ_succ]
         apply Additive.ofMul.injective
         simp only [ofMul_mul, ofMul_inv, ofMul_zpow, zpow_one, ofMul_prod]

@@ -64,4 +64,4 @@ open GlobalTheory.TwistChoice (Reading ReadsAt)
 
 
 theorem _root_.GlobalTheory.T.ringClassGroup_descents_differ_by_power_prime_to_l : ∀ (D : D7) (i : D.ntw.Tw) (k : ℕ) (b b' : Bool) (v v' : D.what₂.places.Pl) (ρ : Reading i k b v) (ρ' : Reading i k b' v') (Q : Finset (PlE D.host)) (ψ ψ' : D.ntw.RCG i Q →* (D.ntw.Ok i k)ˣ) (ψ₀ : G D.host.E D.nd.Om →* (D.what₂.LL)ˣ), (∃ z : D.what₂.LL, IsPrimitiveRoot z (D.ntw.l i ^ k)) → (∀ g, ψ₀ g ^ (D.ntw.l i ^ k) = 1) → ρ.Pulls ψ ψ₀ → ρ'.Pulls ψ' ψ₀ → ∃ a : ℤ, Nat.Coprime a.natAbs (D.ntw.l i) ∧ ψ' = ψ ^ a := by
-  first | exact @GlobalTheory.LevCmp.pulls_eq_zpow | exact GlobalTheory.LevCmp.pulls_eq_zpow | (intros; apply GlobalTheory.LevCmp.pulls_eq_zpow <;> assumption)
+  first | exact @GlobalTheory.LevCmp.pulls_eq_zpow

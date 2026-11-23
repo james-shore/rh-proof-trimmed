@@ -48,4 +48,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.hasDualRepresentative_of_relAmple_noetherian : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → ∀ L : LB A.left, L.IsLB → Out.RelAmple A L → HasRepAF A g (𝟙_ _) := by
-  first | exact @GlobalTheory.DualPol.hasRepAF_of_relAmple | exact GlobalTheory.DualPol.hasRepAF_of_relAmple | (intros; apply GlobalTheory.DualPol.hasRepAF_of_relAmple <;> assumption)
+  first | exact @GlobalTheory.DualPol.hasRepAF_of_relAmple

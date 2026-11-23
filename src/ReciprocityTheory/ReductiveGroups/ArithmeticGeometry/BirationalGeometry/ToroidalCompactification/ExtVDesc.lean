@@ -225,12 +225,12 @@ theorem pullCubDescent (hExt : extendGenSt.{0}) (hGF : GlobalFnsDvrSt) : PullCub
       rw [← Over.comp_left, eta_eq_one, eta_eq_one]
       congr 1
       apply CartesianMonoidalCategory.hom_ext
-      · simp only [Category.assoc, tensorHom_fst, tensorHom_fst_assoc, tensorHom_snd_assoc]
+      · simp only [Category.assoc, tensorHom_fst]
         simp only [← Category.assoc, MonObj.one_comp]
       · apply CartesianMonoidalCategory.hom_ext
-        · simp only [Category.assoc, tensorHom_fst, tensorHom_snd, tensorHom_fst_assoc, tensorHom_snd_assoc]
+        · simp only [Category.assoc, tensorHom_fst, tensorHom_snd]
           simp only [← Category.assoc, MonObj.one_comp]
-        · simp only [Category.assoc, tensorHom_fst, tensorHom_snd, tensorHom_fst_assoc, tensorHom_snd_assoc]
+        · simp only [Category.assoc, tensorHom_snd]
           simp only [← Category.assoc, MonObj.one_comp]
     have hsum : (∑ I : thK.{0}, thε I) = 0 := by decide
     have key : ∀ z : (𝟙_ (Over (Sp V))).left, gm (eSec (G3 t.G)) z ⊤ u = 1 := by

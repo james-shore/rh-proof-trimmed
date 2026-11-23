@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.exists_small_ample_through_off' : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (p : X ⟶ Sp ℂ), IsProjOver p → ∀ (N : LB X) (x z : X) (ε : ℚ), IsAmpleLB N → ¬ z ⤳ x → 0 < ε → ∃ (b : ℚ) (A : X → ℚ), 0 ≤ b ∧ b ≤ ε ∧ QNum p N b A ∧ Off A x ∧ ¬ Off A z := by
-  first | exact @GlobalTheory.PairStep.exists_small_ample_through_off | exact GlobalTheory.PairStep.exists_small_ample_through_off | (intros; apply GlobalTheory.PairStep.exists_small_ample_through_off <;> assumption)
+  first | exact @GlobalTheory.PairStep.exists_small_ample_through_off

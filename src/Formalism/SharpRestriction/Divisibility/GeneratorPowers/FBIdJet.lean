@@ -112,14 +112,12 @@ private lemma mem_orig_pow_lemma_6 {ι : Type} (m : ℕ) (Q : MvPolynomial ι R)
   have hX : ∀ i, (MvPolynomial.X i : MvPolynomial ι R) ∈ orig R ι := fun i => by
     first
     | exact Ideal.subset_span ⟨i, rfl⟩
-    | (unfold orig; exact Ideal.subset_span ⟨i, rfl⟩)
   have h1 : (∏ i ∈ e.support, (MvPolynomial.X i : MvPolynomial ι R) ^ e i) ∈
       ∏ i ∈ e.support, orig R ι ^ e i :=
     Ideal.prod_mem_prod fun i _ => Ideal.pow_mem_pow (hX i) _
   rw [Finset.prod_pow_eq_pow_sum] at h1
   first
   | exact h1
-  | (unfold Finsupp.prod; simpa [Finsupp.degree] using h1)
 
 theorem mk_trunc_coe {ι : Type} [Fintype ι] [DecidableEq ι] (m : ℕ) (P : MvPolynomial ι R) :
     (Ideal.Quotient.mk (orig R ι ^ (m + 1))
@@ -189,9 +187,6 @@ theorem psJet_one {ι : Type} [Fintype ι] [DecidableEq ι] (m : ℕ) :
   unfold psJet
   first
   | rw [psTrunc_eq, ← MvPolynomial.coe_one, mk_trunc_coe, map_one]
-  | (have h := mk_trunc_coe (R := R) (ι := ι) m 1
-     rw [MvPolynomial.coe_one] at h
-     rw [psTrunc_eq, h, map_one])
 
 theorem psTrunc_mem_orig {τ : Type} [Fintype τ] [DecidableEq τ] (m : ℕ) (g : MvPowerSeries τ R)
     (hg : MvPowerSeries.constantCoeff g = 0) : psTrunc m g ∈ orig R τ := by

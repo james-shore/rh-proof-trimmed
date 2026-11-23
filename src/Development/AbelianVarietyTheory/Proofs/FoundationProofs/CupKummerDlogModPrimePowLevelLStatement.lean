@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.cup_kummer_dlog_mod_primePow_levelL : ∀ (p : ℕ
   ∀ r s : Ω, r ^ (p ^ n) = ι u → s ^ (p ^ n) = ι v →
   ∀ a b lz lq : Gal p Ω → ZMod (p ^ n), IsKum T n (Gn T L) r a → IsKum T n (Gn T L) s b → IsKum T n (Gn T L) (T.ζ (L + n)) lz → IsKum T n (Gn T L) (T.qq (L + n)) lq →
   Cob2 n (Gn T L) (fun g h => (p : Ω) ^ c * (((a g).val : Ω) * ((b h).val : Ω)) + (p : Ω) ^ c * ι (α * β' - β * α') * (((lz g).val : Ω) * ((lq h).val : Ω))) := by
-  first | exact @GlobalTheory.K5.LevelDown.cup_kummer_dlog_mod | exact GlobalTheory.K5.LevelDown.cup_kummer_dlog_mod | (intros; apply GlobalTheory.K5.LevelDown.cup_kummer_dlog_mod <;> assumption)
+  first | exact @GlobalTheory.K5.LevelDown.cup_kummer_dlog_mod

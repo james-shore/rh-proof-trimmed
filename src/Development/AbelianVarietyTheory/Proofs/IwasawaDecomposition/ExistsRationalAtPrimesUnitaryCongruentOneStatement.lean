@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_rationalAtPrimes_unitary_congruentOne : ∀
     z ∈ St (1 : GL (Fin n) (AfE F E)) →
     ∃ g : GL (Fin n) (AfE F E), g ∈ UAd hc n ∧ g ∈ RatAt Q ∧ GlobalTheory.Mem.ColAd.CongOne ((m : ℕ) : 𝓞 E) (z⁻¹ * g) ∧
       GlobalTheory.Mem.ColAd.CongOne ((m : ℕ) : 𝓞 E) (z⁻¹ * g)⁻¹ := by
-  first | exact @GlobalTheory.SeeSaw.TwLev.GlueApprox.exists_ratAt_congOne | exact GlobalTheory.SeeSaw.TwLev.GlueApprox.exists_ratAt_congOne | (intros; apply GlobalTheory.SeeSaw.TwLev.GlueApprox.exists_ratAt_congOne <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.TwLev.GlueApprox.exists_ratAt_congOne

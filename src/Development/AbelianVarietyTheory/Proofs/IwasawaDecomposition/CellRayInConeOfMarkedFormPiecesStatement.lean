@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.cell_ray_in_cone_of_marked_form_pieces : ∀ (E : 
   ∀ c : Fin m → ℝ, (∀ j, 0 ≤ c j) → toReal β = ∑ j, c j • toReal (δ j) →
   ∀ j, 0 < c j → ∃ a : Fin m₀ → ℝ, (∀ i, 0 ≤ a i) ∧ (∀ i, t i = 0 → a i = 0) ∧
     toReal (δ j) = ∑ i, a i • toReal (pullAdd f (u i)) := by
-  first | exact @GlobalTheory.PolFan.OrbMark.exists_coord_pullAdd_of_pos | exact GlobalTheory.PolFan.OrbMark.exists_coord_pullAdd_of_pos | (intros; apply GlobalTheory.PolFan.OrbMark.exists_coord_pullAdd_of_pos <;> assumption)
+  first | exact @GlobalTheory.PolFan.OrbMark.exists_coord_pullAdd_of_pos

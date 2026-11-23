@@ -59,4 +59,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_submersivePresentation_add_zero_variables : ∀ (R D ν σ κ : Type) [CommRing R] [CommRing D] [Algebra R D] [Finite ν] [Finite σ] [Finite κ] (P : Algebra.SubmersivePresentation R D ν σ), ∃ P' : Algebra.SubmersivePresentation R D (κ ⊕ ν) (κ ⊕ σ), P'.val = Sum.elim (fun _ ↦ 0) P.val := by
-  first | exact @GlobalTheory.PinchEnl.exists_submersivePresentation_sum_zero | exact GlobalTheory.PinchEnl.exists_submersivePresentation_sum_zero | (intros; apply GlobalTheory.PinchEnl.exists_submersivePresentation_sum_zero <;> assumption)
+  first | exact @GlobalTheory.PinchEnl.exists_submersivePresentation_sum_zero

@@ -54,4 +54,4 @@ open GlobalTheory.Core.Rk.IP
 
 
 theorem _root_.GlobalTheory.T.siegelEisensteinSum_moderateGrowth_convergent : ∀ (D : D7) (V : HSp D) (a : GL (Fin V.rank) (AE D)), IsMaj V a → HasIwasawa D.sp.cm.sig (dblSp V).gram (Khat V a) → ∀ (μ : (AE D)ˣ →* Circle) (s₁ : ℂ) (φ : GA D (dblSp V) → ℂ), φ ∈ degPS V a μ s₁ → (V.rank : ℝ) / 2 < s₁.re → GlobalTheory.Grow.ModGrowth (dblSp V) (GlobalTheory.Eis.eis V φ) := by
-  first | exact @GlobalTheory.EisConvGrowth.eis_modGrowth | exact GlobalTheory.EisConvGrowth.eis_modGrowth | (intros; apply GlobalTheory.EisConvGrowth.eis_modGrowth <;> assumption)
+  first | exact @GlobalTheory.EisConvGrowth.eis_modGrowth

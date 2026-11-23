@@ -90,8 +90,6 @@ theorem rp_rep_ae_eq [μ.IsMulLeftInvariant] [Countable Γ] (h : rr_FD μ Γ D) 
     unfold rr_rep
     first
     | exact dif_pos hex
-    | rw [dif_pos hex]
-    | simp only [dif_pos hex]
   rw [e, hr'] at hx
   show ∃ γ₁ ∈ Γ, ∃ γ₂ ∈ Γ, γ₁ ≠ γ₂ ∧ γ₁ * (x * g) ∈ D ∧ γ₂ * (x * g) ∈ D
   exact ⟨hex.choose, hex.choose_spec.1, γ, hγ, fun heq => hx (by rw [heq]), hex.choose_spec.2, hD⟩
@@ -189,8 +187,6 @@ theorem rp_map [μ.IsMulLeftInvariant] [Countable Γ] (h : rr_FD μ Γ D) {g : G
     unfold rr_rep
     first
     | exact dif_pos hex
-    | rw [dif_pos hex]
-    | simp only [dif_pos hex]
   haveI : Nonempty Γ := ⟨1⟩
   obtain ⟨e, he⟩ := exists_surjective_nat Γ
   have hp : ∀ y : G, ∃ n, (e n : G) * y ∈ D := fun y => by
@@ -225,8 +221,6 @@ theorem rp_rep_comp [μ.IsMulLeftInvariant] [Countable Γ] (h : rr_FD μ Γ D) (
     unfold rr_rep
     first
     | exact dif_pos hex
-    | rw [dif_pos hex]
-    | simp only [dif_pos hex]
   rw [ae_iff]
   refine measure_mono_null (fun x hx => ?_) hnull
   simp only [Set.mem_setOf_eq] at hx
@@ -290,8 +284,6 @@ variable (I : AutInst)
 theorem muInf_right : (ProjRows.muInf I).IsMulRightInvariant := by
   first
   | infer_instance
-  | (unfold ProjRows.muInf; infer_instance)
-  | (unfold Formalism.L2.SG.ProjRows.muInf Formalism.REAL.muG; infer_instance)
 
 theorem rp_inst (μf : Measure I.Gf) [SigmaFinite μf] (g : I.Ginf) :
     RPres (I.muA μf) ((g, 1) : I.GA) := by
@@ -341,13 +333,10 @@ theorem adele_tendsto (μf : Measure I.Gf) [SigmaFinite μf] {A : Set I.GA} (hA 
         = (fun x : I.Ginf => (x, y)) ⁻¹' A \ (fun x => x * g) ⁻¹' ((fun x : I.Ginf => (x, y)) ⁻¹' A) := by
     intro g y
     ext x
-    simp [Set.mem_diff]
+    simp
   have hmA : ∀ y : I.Gf, MeasurableSet ((fun x : I.Ginf => (x, y)) ⁻¹' A) := fun y => by
     first
-    | exact hA.preimage measurable_prod_mk_right
     | exact hA.preimage measurable_prodMk_right
-    | exact hA.preimage (measurable_id.prodMk measurable_const)
-    | exact hA.preimage (measurable_id.prod_mk measurable_const)
   have hB : ∀ g : I.Ginf, MeasurableSet (A \ (fun x => x * ((g, 1) : I.GA)) ⁻¹' A) := fun g =>
     hA.diff (hA.preimage (measurable_mul_const _))
   have hF : ∀ g : I.Ginf, I.muA μf (A \ (fun x => x * ((g, 1) : I.GA)) ⁻¹' A)
@@ -363,7 +352,6 @@ theorem adele_tendsto (μf : Measure I.Gf) [SigmaFinite μf] {A : Set I.GA} (hA 
     exact hfin
   have hmeasA : Measurable fun y : I.Gf => ProjRows.muInf I ((fun x : I.Ginf => (x, y)) ⁻¹' A) := by
     first
-    | exact measurable_measure_prod_mk_right hA
     | exact measurable_measure_prodMk_right hA
   simp_rw [hF]
   rw [show (0 : ℝ≥0∞) = ∫⁻ _ : I.Gf, (0 : ℝ≥0∞) ∂μf by simp]
@@ -371,7 +359,6 @@ theorem adele_tendsto (μf : Measure I.Gf) [SigmaFinite μf] {A : Set I.GA} (hA 
     (fun y => ProjRows.muInf I ((fun x : I.Ginf => (x, y)) ⁻¹' A)) ?_ ?_ hAint ?_
   · filter_upwards with g
     first
-    | exact measurable_measure_prod_mk_right (hB g)
     | exact measurable_measure_prodMk_right (hB g)
   · filter_upwards with g
     filter_upwards with y

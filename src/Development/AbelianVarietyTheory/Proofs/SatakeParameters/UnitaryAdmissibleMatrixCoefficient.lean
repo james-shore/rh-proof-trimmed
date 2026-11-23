@@ -65,11 +65,7 @@ theorem exists_mem_eq_on_of_finiteDimensional {V : Type} [AddCommGroup V] [Modul
     (L : V →ₗ⋆[ℂ] ℂ) (W : Submodule ℂ V) [FiniteDimensional ℂ W] :
     ∃ u ∈ W, ∀ w ∈ W, L w = Bf u w := by
   first
-  | exact @_root_.GlobalTheory.ExistsRepresentation.exists_represent
-  | exact _root_.GlobalTheory.ExistsRepresentation.exists_represent
   | (apply _root_.GlobalTheory.ExistsRepresentation.exists_represent <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ExistsRepresentation.exists_represent <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ExistsRepresentation.exists_represent <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ExistsRepresentation.exists_represent ..)
 
 theorem finite_orbit {G V : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]

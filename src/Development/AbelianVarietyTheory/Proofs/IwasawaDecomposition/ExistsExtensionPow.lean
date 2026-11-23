@@ -69,11 +69,7 @@ theorem exists_extension_pow (K L : Type) [Field K] [NumberField K] [Field L] [N
       (∀ x : K, f (algebraMap K _ x) = algebraMap L _ (algebraMap K L x)) ∧
       ∀ y, Valued.v (f y) = Valued.v y ^ e := by
   first
-  | exact @_root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom
-  | exact _root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom
   | (apply _root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom ..)
 
 end GlobalTheory.DenseCompl

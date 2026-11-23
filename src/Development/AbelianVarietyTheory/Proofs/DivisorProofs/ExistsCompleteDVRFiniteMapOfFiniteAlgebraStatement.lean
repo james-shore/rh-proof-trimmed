@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_completeDVR_finite_map_of_finiteAlgebra : �
       ∃ (W : Type) (_ : CommRing W) (_ : IsDomain W) (_ : IsLocalRing W) (f : V →+* W) (ψ : R₁ →+* FractionRing W),
         GlobalTheory.LN.CDvr W ∧ Function.Injective f ∧ IsLocalHom f ∧ f.Finite ∧
         ∀ a, ψ (algebraMap (FractionRing V) R₁ (algebraMap V _ a)) = algebraMap W _ (f a) := by
-  first | exact @GlobalTheory.CdvrFiniteAlgebra.exists_cdvr_map_of_finite | exact GlobalTheory.CdvrFiniteAlgebra.exists_cdvr_map_of_finite | (intros; apply GlobalTheory.CdvrFiniteAlgebra.exists_cdvr_map_of_finite <;> assumption)
+  first | exact @GlobalTheory.CdvrFiniteAlgebra.exists_cdvr_map_of_finite

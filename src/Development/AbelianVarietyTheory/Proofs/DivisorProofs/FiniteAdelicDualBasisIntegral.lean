@@ -67,7 +67,7 @@ theorem enorm_sum_mul_sq_le {m : ℕ} (a b : Fin m → ℂ) :
     ‖∑ i, a i * b i‖ₑ ^ 2 ≤ (∑ i, ‖b i‖ₑ ^ 2) * ∑ i, ‖a i‖ₑ ^ 2 := by
   have h1 : ‖∑ i, a i * b i‖₊ ≤ ∑ i, ‖b i‖₊ * ‖a i‖₊ := by
     refine (nnnorm_sum_le _ _).trans (le_of_eq ?_)
-    simp [nnnorm_mul, mul_comm]
+    simp [mul_comm]
   have h2 : ‖∑ i, a i * b i‖₊ ^ 2 ≤ (∑ i, ‖b i‖₊ ^ 2) * ∑ i, ‖a i‖₊ ^ 2 :=
     (pow_le_pow_left₀ (by positivity) h1 2).trans (Finset.sum_mul_sq_le_sq_mul_sq _ _ _)
   simp only [enorm_eq_nnnorm]

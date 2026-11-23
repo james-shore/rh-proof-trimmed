@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.exists_symplecticBasis_e8Factor_torsion : ∀ (W :
     ∀ (x y : Fin 8 → (Fin gQ ⊕ Fin gQ → ℤ)) (X Y : Out.baseOver (Sp K) ⟶ P'.A),
       (∀ u, X ≫ pr u = ∏ c, b c ^ x u c) → (∀ u, Y ≫ pr u = ∏ c, b c ^ y u c) →
       Out.WeilIs P'.A P'.L N X Y (unitOn z ^ ∑ u, ∑ v, E8Fibration.e8 W u v * omegaStd (x u) (y v)) := by
-  first | exact @GlobalTheory.Poinc.Sep.E8Fibration.FactorBasis.exists_basis | exact GlobalTheory.Poinc.Sep.E8Fibration.FactorBasis.exists_basis | (intros; apply GlobalTheory.Poinc.Sep.E8Fibration.FactorBasis.exists_basis <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.E8Fibration.FactorBasis.exists_basis

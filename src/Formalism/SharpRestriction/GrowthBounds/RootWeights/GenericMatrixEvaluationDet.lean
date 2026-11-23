@@ -184,7 +184,7 @@ theorem mul_dl_coeff (H : MvPolynomial (ι × Fin r) k1) (m : ι × Fin r →₀
       by_cases hk : eWt LL S d = k <;> simp [hk]
     · by_cases hk : eWt LL S d = k <;> simp [hk, hdm]
   | add p q hp hq =>
-    simp only [map_add (f := _), AddMonoidAlgebra.coeff_add, Finsupp.add_apply, MvPolynomial.coeff_add, hp, hq]
+    simp only [map_add (f := _), AddMonoidAlgebra.coeff_add, Finsupp.add_apply, hp, hq]
     split_ifs <;> simp
 
 def mul_Dg (B : Type*) [CommRing B] (r : ℕ) [NeZero r] (k : ℤ) : Matrix (Fin r) (Fin r) (LaurentPolynomial B) :=

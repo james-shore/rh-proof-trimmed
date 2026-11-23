@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_vacuum_transverseLagrangian_localField : �
     ∃ f₀ ∈ GlobalTheory.WeilM.SB (κ → k), f₀ ≠ 0 ∧
       (∀ u : Matrix (Fin n) (Fin d) k, (∀ r q, u r q ∈ 𝒪[k]) → GlobalTheory.WeilM.schr ψ0 (wT u) f₀ = f₀) ∧
       (∀ z : Matrix (Fin n) (Fin d) k, (∀ r q, z r q ∈ 𝒪[k]) → GlobalTheory.WeilM.schr ψ0 (wM z) f₀ = f₀) := by
-  first | exact @GlobalTheory.LagVac.exists_vacuum | exact GlobalTheory.LagVac.exists_vacuum | (intros; apply GlobalTheory.LagVac.exists_vacuum <;> assumption)
+  first | exact @GlobalTheory.LagVac.exists_vacuum

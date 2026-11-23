@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.exists_integer_map_eq_halfOneAddSqrt : ∀ (D : D7), ∃ a : 𝓞 D.host.K, D.host.φ₀ (((a : D.host.K) : D.host.E)) = w0 D := by
-  first | exact @GlobalTheory.NormSum.exists_integer_map_eq_w0 | exact GlobalTheory.NormSum.exists_integer_map_eq_w0 | (intros; apply GlobalTheory.NormSum.exists_integer_map_eq_w0 <;> assumption)
+  first | exact @GlobalTheory.NormSum.exists_integer_map_eq_w0

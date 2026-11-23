@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_lambdaPolarisation_siegelObject_charZeroFie
     ∀ (K : Type) [Field K] [CharZero K] (f : Sp K ⟶ S), ∃ (R₁ : Type) (_ : CommRing R₁) (_ : Algebra K R₁),
       Module.Finite K R₁ ∧ Nontrivial R₁ ∧ ∃ (P : PolAV (Sp R₁)) (α : P.A.left ⟶ c.A.left) (α₂ : (G2 P.A).left ⟶ (G2 c.A).left),
         IsGrpPullback P.A c.A (spMap (algebraMap K R₁) ≫ f) α ∧ IsSquare α α₂ ∧ LBIso (abelian₂ P.A P.L) (c.P.pull α₂) := by
-  first | exact @GlobalTheory.SiegelSqrtField.exists_sqrt_field | exact GlobalTheory.SiegelSqrtField.exists_sqrt_field | (intros; apply GlobalTheory.SiegelSqrtField.exists_sqrt_field <;> assumption)
+  first | exact @GlobalTheory.SiegelSqrtField.exists_sqrt_field

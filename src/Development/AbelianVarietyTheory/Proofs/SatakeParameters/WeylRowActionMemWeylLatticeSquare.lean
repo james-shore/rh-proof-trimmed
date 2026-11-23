@@ -171,8 +171,7 @@ theorem isUnit_shift (R : Type) [CommRing R] {r : ℕ} (M : Matrix (Fin r) (Fin 
     refine Matrix.ext fun i j => ?_
     simp only [hA, Matrix.map_apply, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, map_add (f := _),
       map_mul, HahnSeries.ofPowerSeries_X, HahnSeries.ofPowerSeries_C, mul_add, ← mul_assoc, hT,
-      one_mul, toInv, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_C, Polynomial.eval₂_X,
-      Matrix.one_apply]
+      one_mul, toInv, Polynomial.coe_eval₂RingHom, Matrix.one_apply]
     rw [add_comm]
     split_ifs <;> simp
   rw [Matrix.isUnit_iff_isUnit_det, h3, Matrix.det_smul]

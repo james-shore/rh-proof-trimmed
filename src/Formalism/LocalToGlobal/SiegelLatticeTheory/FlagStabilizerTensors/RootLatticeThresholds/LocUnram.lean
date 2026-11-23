@@ -184,7 +184,6 @@ private theorem mem_integers_of_isIntegral_algebraMap (s : (D.s.atP p).Fp) (hs :
   have h1 : IsIntegral 𝒪[(D.s.atP p).Fp] s := (isIntegral_algebraMap_iff ).1 hs
   first
   | exact (Valuation.integer.integers _).mem_of_integral h1
-  | (obtain ⟨t, ht⟩ := (Valuation.integer.integers _).mem_of_integral h1; rw [← ht]; exact t.2)
 
 private theorem algebraMap_mem_O_of_mem_integers (a : (D.s.atP p).Fp) (ha : a ∈ 𝒪[(D.s.atP p).Fp]) :
     algebraMap (D.s.atP p).Fp (D.s.atP p).Ep a ∈ (D.s.atP p).O := by
@@ -193,7 +192,6 @@ private theorem algebraMap_mem_O_of_mem_integers (a : (D.s.atP p).Fp) (ha : a �
   have h := isIntegral_algebraMap (R := 𝒪[(D.s.atP p).Fp]) (A := (D.s.atP p).Ep) (x := (⟨a, ha⟩ : 𝒪[(D.s.atP p).Fp]))
   first
   | exact h
-  | (rw [IsScalarTower.algebraMap_apply 𝒪[(D.s.atP p).Fp] (D.s.atP p).Fp (D.s.atP p).Ep] at h; exact h)
 
 private theorem linearIndependent_one_omega_of_cj_ne (ω : (D.s.atP p).Ep) (hne : (D.s.atP p).cj ω ≠ ω) :
     LinearIndependent (D.s.atP p).Fp ![(1 : (D.s.atP p).Ep), ω] := by
@@ -336,7 +334,6 @@ theorem c_eq (θ : D.host.E) (c tr nm : 𝓞 D.host.F) (hc : ((c : D.host.F) : D
     rw [hc, htr, hnm]; ring
   have hF : (c : D.host.F) = (tr : D.host.F) ^ 2 - 4 * (nm : D.host.F) := by
     first
-    | exact_mod_cast hE
     | exact Subtype.ext (by push_cast; exact hE)
   rw [hF, map_sub, map_pow, map_mul, map_ofNat]
 

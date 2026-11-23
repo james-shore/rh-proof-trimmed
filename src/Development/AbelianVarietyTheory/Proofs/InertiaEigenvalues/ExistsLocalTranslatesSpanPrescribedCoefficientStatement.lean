@@ -52,4 +52,4 @@ open GlobalTheory.DownLift.GenFinite
 open GlobalTheory.DownLift.SplitCoef
 
 theorem _root_.GlobalTheory.T.exists_localTranslatesSpan_prescribedCoefficient : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D), IsStdChar D ψ (-1) → ∀ (ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)) (ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)), IsSelfDualC S ΛS → IsSelfDualC T ΛT → ∀ a : AE D, IsSplitIdem D a → ∀ f : WO S T → ℂ, IsThetaFunO ψ S T f → ∀ Φ : WO S T → ℂ, IsSBHalf a (latH S T ΛS ΛT) Φ → ∀ x₁, IsHalf a x₁ → ∃ f' ∈ locSpan ψ S T a f, ∀ ℓ, InvForm ψ S T a ℓ → ∀ x, IsHalf a x → ℓ (heisO ψ S T x f') = Φ x * ℓ (heisO ψ S T x₁ f) := by
-  first | exact @GlobalTheory.DownLift.SplitCoef.exists_locSpan_coef_eq | exact GlobalTheory.DownLift.SplitCoef.exists_locSpan_coef_eq | (intros; apply GlobalTheory.DownLift.SplitCoef.exists_locSpan_coef_eq <;> assumption)
+  first | exact @GlobalTheory.DownLift.SplitCoef.exists_locSpan_coef_eq

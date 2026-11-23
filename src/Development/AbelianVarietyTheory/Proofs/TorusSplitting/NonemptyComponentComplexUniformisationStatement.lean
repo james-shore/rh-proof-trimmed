@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.nonempty_component_complexUniformisation : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (r : ℕ) (U : Unf Xo c σ r), GoodEmb c σ → IsUnf U → 1 ≤ r → Nonempty U.Comp := by
-  first | exact @GlobalTheory.nonempty_comp_of_isUnf | exact GlobalTheory.nonempty_comp_of_isUnf | (intros; apply GlobalTheory.nonempty_comp_of_isUnf <;> assumption)
+  first | exact @GlobalTheory.nonempty_comp_of_isUnf

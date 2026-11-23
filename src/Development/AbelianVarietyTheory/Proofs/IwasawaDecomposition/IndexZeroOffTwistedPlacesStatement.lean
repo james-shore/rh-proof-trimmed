@@ -46,4 +46,4 @@ open GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Me
 theorem _root_.GlobalTheory.T.index_zero_off_twistedPlaces : ∀ (K : Ctx) (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T), K.Over B.toPre → Forced K B T →
     pinAnd HasPk K B f T w → ∀ (P : Pre2 K w) (x : St P) (hη : ∀ j v, 1 ≤ j → j ≤ B.R.m → x.o.η j v = P.q.eta j v), P.Wt = x.m.z.W1 (F0K K.s (w.D x.o.Z)) → ∀ v, v ∉ P.Wt → ∀ j, 1 ≤ j → j ≤ B.R.m →
       (w.D x.o.Z).what₂.Ij (w.D x.o.Z).what₂.mu0 j v = 0 ∧ (w.D x.o.Z).what₂.jw (w.D x.o.Z).what₂.mu0 j v = 0 := by
-  first | exact @GlobalTheory.Mem.R3.Rw.St.idx_zero_off_twisted | exact GlobalTheory.Mem.R3.Rw.St.idx_zero_off_twisted | (intros; apply GlobalTheory.Mem.R3.Rw.St.idx_zero_off_twisted <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.St.idx_zero_off_twisted

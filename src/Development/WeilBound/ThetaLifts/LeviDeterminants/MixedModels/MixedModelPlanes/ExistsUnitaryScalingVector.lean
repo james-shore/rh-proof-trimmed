@@ -50,4 +50,4 @@ theorem _root_.PositivityTheory.Mix.T.exists_unitary_scaling_vector : ∀ (F E :
     (X₁ : Spc F E n₁) (H : Plane E n n₁) (j₀ j₁ r s r₁ s₁ : ℕ), B.IsGood σ → H.IsAdapted σ B X X₁ j₀ j₁ → X.IsHerm σ B r s → X₁.IsHerm σ B r₁ s₁ →
       ∀ t : ℕ, t ≠ 0 → ∃ m : UA σ X.J, mat m *ᵥ incV F H.x = (t : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) • incV F H.x ∧
         (t : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) • (mat m *ᵥ incV F H.y) = incV F H.y ∧ ∀ z : Fin n₁ → _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E), mat m *ᵥ (incM F H.ι *ᵥ z) = incM F H.ι *ᵥ z := by
-  first | exact @PositivityTheory.Mix.exists_unitary_scaling_isotropic | exact fun _ => @PositivityTheory.Mix.exists_unitary_scaling_isotropic | exact PositivityTheory.Mix.exists_unitary_scaling_isotropic | exact @PositivityTheory.Mix.exists_unitary_scaling_isotropic trivial
+  first | exact @PositivityTheory.Mix.exists_unitary_scaling_isotropic

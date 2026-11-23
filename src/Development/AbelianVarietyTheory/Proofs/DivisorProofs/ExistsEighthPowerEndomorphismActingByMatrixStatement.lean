@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_eighth_power_endomorphism_acting_by_matrix : ∀ (S : Scheme.{0}) (A B : Over S) [GrpObj A] [GrpObj B] [IsCommMonObj B] (pr : Fin 8 → (A ⟶ B)),
   E8Fibration.IsProd pr → ∀ m : Matrix (Fin 8) (Fin 8) ℤ, ∃ f : A ⟶ A, IsMonHom f ∧ E8Fibration.ActsBy pr f m := by
-  first | exact @GlobalTheory.Poinc.Sep.E8Fibration.exists_monHom_actsBy | exact GlobalTheory.Poinc.Sep.E8Fibration.exists_monHom_actsBy | (intros; apply GlobalTheory.Poinc.Sep.E8Fibration.exists_monHom_actsBy <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.E8Fibration.exists_monHom_actsBy

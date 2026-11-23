@@ -60,7 +60,7 @@ theorem chainsCoprod : LateralTheory.E.BinPf.ChainsCoprod := by
   have h : IsIso (coprodComparison (chains R) U V) := inferInstance
   have e : biprod.desc ((chains R).map (coprod.inl : U ⟶ U ⨿ V)) ((chains R).map (coprod.inr : V ⟶ U ⨿ V)) =
       (biprod.isoCoprod _ _).hom ≫ coprodComparison (chains R) U V := by
-    apply biprod.hom_ext' <;> simp [coprodComparison, coprod.inl_desc, coprod.inr_desc]
+    apply biprod.hom_ext' <;> simp [coprodComparison]
   rw [e]; infer_instance
 
 theorem bin_of (hD : LateralTheory.E.BinPf.DescEqv) : LateralTheory.E.ProdAcycPf.Bin :=

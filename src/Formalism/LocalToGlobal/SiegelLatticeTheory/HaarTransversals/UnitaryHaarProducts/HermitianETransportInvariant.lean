@@ -463,14 +463,10 @@ theorem hA_natsmul_left (c : ℕ) (u' v : VA X.B.I) :
     hA X.B.I ((c : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) • u') v = (c : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) * hA X.B.I u' v := by
   first
   | (simp only [hA, Formalism.UG.hform, Pi.smul_apply, smul_eq_mul, map_mul, map_natCast, Finset.mul_sum, mul_assoc]; done)
-  | (simp [hA, Formalism.UG.hform, Finset.mul_sum, mul_assoc]; done)
-  | (unfold hA; done)
 
 theorem hA_sub_left (u' u'' v : VA X.B.I) : hA X.B.I (u' - u'') v = hA X.B.I u' v - hA X.B.I u'' v := by
   first
   | (simp only [hA, Formalism.UG.hform, Pi.sub_apply, map_sub, sub_mul, Finset.sum_sub_distrib]; done)
-  | (simp [hA, Formalism.UG.hform, sub_mul, Finset.sum_sub_distrib]; done)
-  | (unfold hA; done)
 
 theorem hA_f_span (T : Set (Fin D.R.rS)) (y : VA X.B.I)
     (hy : y ∈ Submodule.span (X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) ((fun b => incl X.B.I (X.eR b)) '' T))
@@ -1180,7 +1176,6 @@ theorem PW_add (y y' : Fin X.B.I.n → X.B.I.E) : PW X u (y + y') = PW X u y + P
 theorem PW_smul (c : X.B.I.E) (y : Fin X.B.I.n → X.B.I.E) : PW X u (c • y) = c • PW X u y := by
   first
   | (simp only [PW, hE_smul_right, mul_assoc, mul_smul, smul_sub, Finset.smul_sum]; done)
-  | (simp only [PW, hE_smul_right, mul_assoc, mul_smul, smul_sub, Finset.smul_sum]; abel)
 
 theorem PW_sub (y y' : Fin X.B.I.n → X.B.I.E) : PW X u (y - y') = PW X u y - PW X u y' := by
   have hs : ∀ x z z' : Fin X.B.I.n → X.B.I.E, hE X x (z - z') = hE X x z - hE X x z' := fun x z z' => by
@@ -1773,7 +1768,7 @@ theorem rv_span (v : InfinitePlace X.B.I.F) (y : Fin X.B.I.n → ℂ) :
     funext k
     by_cases h : k = i
     · subst h; simp
-    · simp [Pi.single_apply, h]
+    · simp [h]
   have hy : y = ∑ i, (X.B.I.P v *ᵥ y) i • rvHom X v (Pi.single i 1) := by
     simp only [hs1, ← mulVec_smul, ← mulVec_sum]
     rw [sum_single X, mulVec_mulVec, Matrix.nonsing_inv_mul _ hPu, one_mulVec]
@@ -1787,7 +1782,7 @@ theorem incl_span (y : VA X.B.I) : y ∈ Submodule.span (X.B.I.E ⊗[X.B.I.F] Af
     funext i
     congr 1
     funext j
-    by_cases h : j = i <;> simp [inclHom, incl, Pi.single_apply, h]
+    by_cases h : j = i <;> simp [inclHom, incl, h]
   rw [hy]
   exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨_, rfl⟩)
 

@@ -53,4 +53,4 @@ open GlobalTheory
 open Formalism.L2.Pj Formalism.NormVectorIdentities.Items
 
 theorem _root_.GlobalTheory.T.height_birationalImage_eq_tuple_height : Quoted → ∀ (F : Type) [Field F] [NumberField F] (T : Tuple F) (V Ω : Type) [AddCommGroup V] [Module F V] [Module (𝓞 F) V] [IsScalarTower (𝓞 F) F V] [Field Ω] [Algebra F Ω] (Nm : (F →+* ℂ) → V → ℝ) (W : Submodule (𝓞 F) V) (ev : V →ₗ[F] Ω), IsTotallyComplex F → T.IsGeometric → T.Birational → CompHt.Presents T.toHermSys Nm W ev → T.IsHeight (CompHt.imageHeight Nm W ev T.D) := by
-  first | exact @GlobalTheory.HSCore.isHeight_imageHeight | exact GlobalTheory.HSCore.isHeight_imageHeight | (intros; apply GlobalTheory.HSCore.isHeight_imageHeight <;> assumption)
+  first | exact @GlobalTheory.HSCore.isHeight_imageHeight

@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.residue_topForm_along_primeDivisor_adjunction : �
   dForm cL (Fin.cons (f : L) (fun i => (w i : L)) : Fin (n + 1) → L) =
     H • dForm cL (Fin.cons (t : L) (fun i => (v i : L)) : Fin (n + 1) → L) →
   ∃ h : S.ring, (h : L) * f = H * t ∧ dForm cK (fun i => ψ (w i)) = ψ h • dForm cK (fun i => ψ (v i)) := by
-  first | exact @GlobalTheory.Residue.residue_dForm | exact GlobalTheory.Residue.residue_dForm | (intros; apply GlobalTheory.Residue.residue_dForm <;> assumption)
+  first | exact @GlobalTheory.Residue.residue_dForm

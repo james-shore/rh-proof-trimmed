@@ -47,4 +47,4 @@ open GlobalTheory.Mum
 
 
 theorem _root_.GlobalTheory.T.exists_adicSum_null_family_complete_local : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (X : Type) (v : X → R), (∀ e : ℕ, {α | v α ∉ maximalIdeal R ^ (e + 1)}.Finite) → ∃ s : R, ∀ (e : ℕ) (S : Finset X), (∀ α ∉ S, v α ∈ maximalIdeal R ^ (e + 1)) → s - ∑ α ∈ S, v α ∈ maximalIdeal R ^ (e + 1) := by
-  first | exact @GlobalTheory.Mum.AdicSum.exists_adic_sum | exact GlobalTheory.Mum.AdicSum.exists_adic_sum | (intros; apply GlobalTheory.Mum.AdicSum.exists_adic_sum <;> assumption)
+  first | exact @GlobalTheory.Mum.AdicSum.exists_adic_sum

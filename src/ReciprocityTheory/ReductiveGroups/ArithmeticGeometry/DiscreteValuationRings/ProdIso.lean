@@ -182,7 +182,6 @@ lemma wu_gen (w : LB.Iso L M) (hw : w.IsGen) {V : Y.Opens} {ψ : Y ⟶ X} {a a' 
     _ = _ := K
     _ = tr M V ψ a a' * (tr L V ψ b b')⁻¹ * wu w V ψ a' b' := by
       rw [e2, e3, e4]
-      all_goals exact rfl
 
 end IsoUnits
 

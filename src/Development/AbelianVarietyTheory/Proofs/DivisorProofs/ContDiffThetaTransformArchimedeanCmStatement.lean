@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.contDiff_thetaTransform_archimedean_cm : ∀ (F E 
             co.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) →
           ∀ Φ ∈ schA F κ, ∀ (k : ℕ) (L : (Fin k → ℝ) →+ WOF F E nS nT), Continuous L →
             (∀ t, (L t).map (finPartF F E) = 0) → ∀ w, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) fun t => GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ Φ (w + L t) := by
-  first | exact @GlobalTheory.ThetaSmoothF.contDiff_thetaTr_realF | exact GlobalTheory.ThetaSmoothF.contDiff_thetaTr_realF | (intros; apply GlobalTheory.ThetaSmoothF.contDiff_thetaTr_realF <;> assumption)
+  first | exact @GlobalTheory.ThetaSmoothF.contDiff_thetaTr_realF

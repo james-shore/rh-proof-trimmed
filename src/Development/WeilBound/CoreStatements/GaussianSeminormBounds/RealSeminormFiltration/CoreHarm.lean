@@ -191,11 +191,11 @@ theorem minusPart_second_action_Eab {c d : Ix r s} (h : ¬ sameBlock c d) (g : P
   rw [Finset.sum_eq_single c, Finset.sum_eq_single d]
   · simp [Eab]
   · intro y _ hy
-    simp [Eab, Matrix.single_apply, Ne.symm hy]
+    simp [Eab, Ne.symm hy]
   · simp
   · intro x _ hx
     refine Finset.sum_eq_zero (fun y _ => ?_)
-    simp [Eab, Matrix.single_apply, Ne.symm hx]
+    simp [Eab, Ne.symm hx]
   · simp
 
 def low1 (a b : Ix p q) : Module.End ℂ (Pol p q r s) :=
@@ -431,7 +431,7 @@ private theorem omE_add_pderiv_pderiv_eq_X_mul_X_of_not_sameBlock {c d : Ix r s}
         (if linePos ((a, d) : Ln p q r s) = true then pderiv (a, c) (pderiv (a, d) P) else 0) =
       if linePos ((a, c) : Ln p q r s) = true then X (a, c) * (X (a, d) * P) else 0 := by
   rcases a with a | a <;> rcases c with c | c <;> rcases d with d | d <;>
-    simp_all [omE, raiB, lowB, linePos, sameBlock, Module.End.mul_apply]
+    simp_all [omE, raiB, lowB, linePos, sameBlock]
 
 theorem second_action_add_lowering {c d : Ix r s} (hcd : ¬ sameBlock c d) {e : ℕ} {g : Pol p q r s}
     (hg : g ∈ homog (Ix p q × Ix r s) e) :

@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.mem_rowLevel_of_reduction_mem_levelGroup : ∀ (X 
       Formalism.L2.Col.redG X.toD7.sp.cm (X.B.R.N X.B.R.m - 1) ∅ (Formalism.L2.Col.rowSG (X.B.primes px) I.sel t.1) ⟨_, hz⟩ ∈
         ((Formalism.L2.Col.rowTyKK I.Ch I.sel t.1).inv).grp →
       h ∈ (levEnv X.toD7.sp.X' L.βX (L.datXt t)).J := by
-  first | exact @GlobalTheory.Mem.R3.RowDeco.mem_J_of_redG_mem_grp | exact GlobalTheory.Mem.R3.RowDeco.mem_J_of_redG_mem_grp | (intros; apply GlobalTheory.Mem.R3.RowDeco.mem_J_of_redG_mem_grp <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.RowDeco.mem_J_of_redG_mem_grp

@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.comparisonCharacter_det_eq_one_inertPlace : ∀ (F
       ∀ z ∈ GlobalTheory.InertSph.latAt G.W v, (t : Matrix (Fin (a + a')) (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) *ᵥ z ∈ GlobalTheory.InertSph.latAt G.W v ∧
         ((t⁻¹ : GL (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) : Matrix (Fin (a + a')) (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) *ᵥ z ∈ GlobalTheory.InertSph.latAt G.W v) →
       X.α (Matrix.GeneralLinearGroup.det t) = 1 := by
-  first | exact @GlobalTheory.InertDetChr.alpha_det_eq_one | exact GlobalTheory.InertDetChr.alpha_det_eq_one | (intros; apply GlobalTheory.InertDetChr.alpha_det_eq_one <;> assumption)
+  first | exact @GlobalTheory.InertDetChr.alpha_det_eq_one

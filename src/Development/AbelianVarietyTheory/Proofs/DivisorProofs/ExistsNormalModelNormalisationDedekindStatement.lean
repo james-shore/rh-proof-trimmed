@@ -55,4 +55,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc
 
 theorem _root_.GlobalTheory.T.exists_normal_model_normalisation_dedekind : ∀ (A o Ω : Type) [CommRing A] [IsDedekindDomain A] [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (κ : A →+* o), κ.Finite → ∀ (Z : Scheme.{0}) (z : Z ⟶ Sp A), LocallyOfFiniteType z → QuasiCompact z → IsSeparated z → ∀ p : Sp Ω ⟶ Z, p ≫ z = spMap ((algebraMap o Ω).comp κ) → (p.stalkMap (genericPoint (Sp Ω))).hom.Finite → ∃ (M : RatModel o Ω) (π : M.Z ⟶ Z), IsNormalScheme M.Z ∧ IsFinite π ∧ M.pt ≫ π = p := by
-  first | exact @GlobalTheory.Poinc.exists_ratModel_normalization | exact GlobalTheory.Poinc.exists_ratModel_normalization | (intros; apply GlobalTheory.Poinc.exists_ratModel_normalization <;> assumption)
+  first | exact @GlobalTheory.Poinc.exists_ratModel_normalization

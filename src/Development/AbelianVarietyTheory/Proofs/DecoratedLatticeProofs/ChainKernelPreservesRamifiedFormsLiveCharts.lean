@@ -82,7 +82,7 @@ theorem kernels_keep_ramL : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} (
     rw [hth c]
     have hJ : jetC I.J.cD (0 : VCx B.fields.Tau (B.R.N i) (B.R.N (i + 1)) → ℂ) = 0 := by
       funext m
-      simp [jetC, derivAt0, iteratedFDeriv_fun_zero]
+      simp [jetC, derivAt0]
     rw [hJ]
     have hM : jetMap (0 : (DVar B.fields.Tau (B.R.N i) (B.R.N (i + 1)) →₀ ℕ) → ℂ) 0 = 0 := by
       have hL : jetLin (0 : (DVar B.fields.Tau (B.R.N i) (B.R.N (i + 1)) →₀ ℕ) → ℂ) = 0 := by

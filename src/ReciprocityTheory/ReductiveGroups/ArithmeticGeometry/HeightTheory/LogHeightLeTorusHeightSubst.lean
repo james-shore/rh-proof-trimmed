@@ -156,12 +156,6 @@ theorem gaussAbs_coeffIn_le {V : Type*} (w : FinitePlace K) (i : V) (k : ℕ)
   · exact ReciprocityTheory.MultiplicativeHeights.coeff_le_gauss_abs w P s
   · rw [map_zero]; exact h0
 
-theorem coeff_prod_pow_linear {B : Type*} [CommRing B] {T : Type*} (s : Finset T) (p : T → Polynomial B)
-    (e : T → ℕ) (hp : ∀ t, (p t).natDegree ≤ 1) :
-    (∏ t ∈ s, p t ^ e t).natDegree ≤ ∑ t ∈ s, e t ∧
-      (∏ t ∈ s, p t ^ e t).coeff (∑ t ∈ s, e t) = ∏ t ∈ s, (p t).coeff 1 ^ e t := by
-  first | exact GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow .. | (apply GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (intros; apply GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (apply @GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (intros; apply @GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (apply @GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> first | assumption | infer_instance)
-
 theorem polyIn_substitution_leading {D N : ℕ} (f : KTp K D N) (a : Fin (D + 1) → ℕ)
     (hmh : ReciprocityTheory.MultiplicativeHeights.IsMultiHomogeneous a f) :
     (asPolyInVar (Sum.inr 0) (bilinearSubstitution f)).natDegree ≤ ∑ b, a b ∧
@@ -202,7 +196,7 @@ theorem polyIn_substitution_leading {D N : ℕ} (f : KTp K D N) (a : Fin (D + 1)
             (Sum.inl (t.1.succ, t.2) : (Fin (D + 2) × Fin (N + 1)) ⊕ Fin (D + 2)))
             (MvPolynomial.monomial s (f.coeff s)) := by
     intro s hs
-    obtain ⟨h1, h2⟩ := coeff_prod_pow_linear Finset.univ p s hp1
+    obtain ⟨h1, h2⟩ := _root_.GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow Finset.univ p s hp1
     rw [MvPolynomial.aeval_monomial, Finsupp.prod_fintype _ _ (fun _ => pow_zero _),
       Polynomial.algebraMap_apply, ← hsum s hs]
     refine ⟨(Polynomial.natDegree_C_mul_le _ _).trans h1, ?_⟩

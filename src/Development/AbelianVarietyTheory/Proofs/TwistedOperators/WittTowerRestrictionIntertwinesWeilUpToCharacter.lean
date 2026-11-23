@@ -110,16 +110,11 @@ theorem heisO_smul (S T : HSp D) (w₀ : WO S T) (c : ℂ) (f : WO S T → ℂ) 
 theorem mt_one' (S : HSp D) : Formalism.L2.Theta.mt S 1 = 1 := by
   simp [Formalism.L2.Theta.mt]
 
-theorem mt_mul' (S : HSp D) (h k : GA D S) :
-    Formalism.L2.Theta.mt S (h * k) = Formalism.L2.Theta.mt S h * Formalism.L2.Theta.mt S k := by
-  simp [Formalism.L2.Theta.mt]
+alias mt_mul' := _root_.GlobalTheory.BesselCompare.mt_mul
 
 theorem actO_one_mul (S T : HSp D) (h k : GA D T) (x : WO S T) :
     actO S T 1 h (actO S T 1 k x) = actO S T 1 (h * k) x := by
   simp [actO, mt_one', mt_mul', Matrix.mul_assoc]
-
-theorem actO_one_one (S T : HSp D) (x : WO S T) : actO S T 1 1 x = x := by
-  simp [actO, mt_one']
 
 theorem actO_iso_mid (V V' W : HSp D) {r : ℕ} (C : Matrix (Fin V.rank) (Fin r) D.host.E)
     (B : Matrix (Fin V.rank) (Fin V'.rank) D.host.E) (k : GA D W) (y : Mx D W.rank r) (x : WO V' W) :
@@ -131,7 +126,7 @@ theorem actO_iso_mid (V V' W : HSp D) {r : ℕ} (C : Matrix (Fin V.rank) (Fin r)
 theorem move (S T : HSp D) {χS χT : (AE D)ˣ →* Circle} {ω : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)}
     (hω : IsWeilDatumO ψ S T χS χT ω) (h : GA D T) (w : WO S T) (P : WO S T → ℂ) (hP : IsThetaFunO ψ S T P) :
     heisO ψ S T w (ω (1, h) P) = ω (1, h) (heisO ψ S T (actO S T 1 h⁻¹ w) P) := by
-  rw [hω.om_heis 1 h _ P hP, actO_one_mul, mul_inv_cancel, actO_one_one]
+  rw [hω.om_heis 1 h _ P hP, actO_one_mul, mul_inv_cancel, _root_.GlobalTheory.LatNhds.actO_one]
 
 theorem inv_apply (S T : HSp D) (ω : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)) (h : GA D T)
     (z : WO S T → ℂ) : ω (1, h⁻¹) (ω (1, h) z) = z := by
@@ -152,7 +147,7 @@ theorem per_h {V V' W : HSp D} {r : ℕ} {C : Matrix (Fin V.rank) (Fin r) D.host
   have thV' := (GlobalTheory.HeisThetaLaws.heis_theta_laws D ψ hψ V' W).1
   obtain ⟨μV, 𝓕V, hμV, h𝓕V⟩ := exists_fd (D := D) V W
   obtain ⟨μ', 𝓕', hμ', h𝓕'⟩ := exists_fd (D := D) V' W
-  obtain ⟨ν, hν, hMC⟩ := coef_unfold D V V' W r C B hs ψ hψ μ 𝓨 hμ μV 𝓕V hμV h𝓕V μ' 𝓕' hμ' h𝓕'
+  obtain ⟨ν, hν, hMC⟩ := _root_.GlobalTheory.CoefUnfold.coef_unfold D V V' W r C B hs ψ hψ μ 𝓨 hμ μV 𝓕V hμV h𝓕V μ' 𝓕' hμ' h𝓕'
   have hU : ∀ P Q, IsThetaFunO ψ V W P → IsThetaFunO ψ V W Q →
       ∫ w in 𝓕V, ω (1, h) P w * star (ω (1, h) Q w) ∂μV = ∫ w in 𝓕V, P w * star (Q w) ∂μV :=
     fun P Q hP hQ => GlobalTheory.Mem.LiftPolar.scalar_eq D ψ hψ V W μV 𝓕V hμV h𝓕V (ω (1, h)) (hω.om_pres _)

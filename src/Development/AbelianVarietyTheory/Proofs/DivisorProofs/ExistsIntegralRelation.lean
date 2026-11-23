@@ -67,6 +67,6 @@ theorem exists_integral_relation : ∀ (F : Type) [Field F] (S : LinSys F), S.Is
     (fun i => S.val (resPt (genericPoint S.Y)) (S.comb (u i))) (S.powVal (resPt (genericPoint S.Y)) th)
     (GlobalTheory.T.exists_ratio_mem_valuationSubring_at_generic_point F S hS r e u th hcov _ hη)
   obtain ⟨a, ha, h0⟩ := GlobalTheory.T.homogeneous_components_of_cone_integral_equation _ _ _ r e m _ _ b hb
-  exact ⟨m, a, ha, GlobalTheory.T.linearSystem_relation_of_generic_point F S hI r e u th _ hη m a ha h0⟩
+  exact ⟨m, a, ha, _root_.GlobalTheory.Adelic.GenericRel.relation_of_generic F S hI r e u th _ hη m a ha h0⟩
 
 end GlobalTheory.SecIntegral

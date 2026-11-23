@@ -390,14 +390,6 @@ theorem sgnPt_bcMap {S S' : Scheme.{0}} {X : Type} [AddCommGroup X] (f : S' ⟶ 
     refine ((congrArg f.appTop.hom a).trans (map_intCast _ _)).trans (b.symm.trans ?_)
     exact congrArg (sgnPt (𝟙_ (Over S')) φ).left.appTop.hom (bcMap_charUnit f χ).symm
 
-theorem appTop_injective {A B : Type} [CommRing A] [CommRing B] {f : A →+* B} (hf : Function.Injective f) :
-    Function.Injective (spMap f).appTop.hom := fun a b h => by
-  apply (ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of A)).hom).1
-  have key : ∀ c : Γ(Sp A, ⊤), f ((Scheme.ΓSpecIso (CommRingCat.of A)).hom.hom c) =
-      (Scheme.ΓSpecIso (CommRingCat.of B)).hom.hom ((spMap f).appTop.hom c) := fun c =>
-    (congrArg (fun q => q.hom c) (Scheme.ΓSpecIso_naturality (CommRingCat.ofHom f))).symm
-  exact hf ((key a).trans ((congrArg _ h).trans (key b).symm))
-
 section Formal
 open GlobalTheory.IndefiniteRowSideFullHecke.AlgebraLevelSetting (FormalTorus Lv pr)
 variable {R : Type} [CommRing R] [IsDomain R] [IsLocalRing R] {G : Over (Sp R)} [GrpObj G] [IsCommMonObj G]
@@ -534,8 +526,8 @@ theorem exists_even_of_transl : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
   have htΩ : ∀ φ, (tΩ φ)⁻¹ = tΩ φ := fun φ => by rw [← map_inv, sgn_inv]
   let m : Γ(Sp R, ⊤)ˣ →* Γ((TF (R := R) Ω).left, ⊤)ˣ := Units.map ρ.left.appTop.hom.toMonoidHom
   have hm : Function.Injective m := Units.map_injective
-    ((appTop_injective (algebraMap (FractionRing R) Ω).injective).comp
-      (appTop_injective (IsFractionRing.injective R (FractionRing R))))
+    ((_root_.GlobalTheory.Ex.ThetaDescent.appTop_injective (algebraMap (FractionRing R) Ω).injective).comp
+      (_root_.GlobalTheory.Ex.ThetaDescent.appTop_injective (IsFractionRing.injective R (FractionRing R))))
   have vq : ∀ {P' : CP G} {φ v}, SymVal P' (t φ).left v → ∀ z J, Good P'.L.L z J →
       val P'.sym (tΩ φ).left z J = gm (𝟙 _) z ⊤ (m v) := fun h z J hJ => (h _ ρ.left z J hJ).trans (gm_top _ z _)
   let ε₀ : Γ(Sp Ω, ⊤) ≃+* Ω := (Scheme.ΓSpecIso (CommRingCat.of Ω)).commRingCatIsoToRingEquiv

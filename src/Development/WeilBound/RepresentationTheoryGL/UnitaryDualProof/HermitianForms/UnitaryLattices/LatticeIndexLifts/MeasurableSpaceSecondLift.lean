@@ -89,7 +89,7 @@ theorem relIndex_ne_zero_of_lat {A₀ A : AddSubgroup (Fin n → k)} (h₀ : Lat
   exact AddSubgroup.index_ne_zero_of_finite
 
 theorem lat_over {K : Set (Fin n → k)} (hK : IsCompact K) : ∃ A : AddSubgroup (Fin n → k), Lat A ∧ K ⊆ A := by
-  obtain ⟨A, h1, h2, h3⟩ := GlobalTheory.T.exists_open_compact_lattice_containing k n K hK
+  obtain ⟨A, h1, h2, h3⟩ := _root_.GlobalTheory.CompanionTheory.LocalLattice.exists_compact_open_addSubgroup k n K hK
   exact ⟨A, ⟨h1, h2⟩, h3⟩
 
 theorem lat_shrink (hψ : Continuous ψ) (hψ1 : ψ ≠ 1) {U : Set (Fin n → k)} (hU : U ∈ 𝓝 (0 : Fin n → k)) :
@@ -134,12 +134,12 @@ theorem Ct_apply (g : GL (Fin (m + 1)) k) (v w : V) :
 
 open Classical in
 def sect (ξ : Fin (m + 1) → k) : GL (Fin (m + 1)) k :=
-  if h : ξ = 0 then 1 else (Classical.choose (GlobalTheory.T.exists_GL_last_basis_vecMul_eq k m ξ h))⁻¹
+  if h : ξ = 0 then 1 else (Classical.choose (_root_.GlobalTheory.CompanionTheory.RowSect.exists_GL_last_row k m ξ h))⁻¹
 
 theorem sect_spec {ξ : Fin (m + 1) → k} (h : ξ ≠ 0) :
     xz m ᵥ* (((sect ξ)⁻¹ : GL (Fin (m + 1)) k) : Matrix (Fin (m + 1)) (Fin (m + 1)) k) = ξ := by
   rw [sect, dite_eq_right h, inv_inv]
-  exact Classical.choose_spec (GlobalTheory.T.exists_GL_last_basis_vecMul_eq k m ξ h)
+  exact Classical.choose_spec (_root_.GlobalTheory.CompanionTheory.RowSect.exists_GL_last_row k m ξ h)
 
 
 open Classical in
@@ -360,7 +360,7 @@ theorem meas_perp_gmap (hψ : Continuous ψ) (hψ1 : ψ ≠ 1) (g : GL (Fin (m +
     (hA : Lat A) : (ν (perp ψ (gmap g A))).toReal = (md g)⁻¹ * (ν (perp ψ A)).toReal := by
   have hmeas : MeasurableSet (perp ψ A : Set (Fin (m + 1) → k)) := (perp_open ψ hψ hψ1 hA).measurableSet
   have hmeas' : MeasurableSet (perp ψ (gmap g A) : Set (Fin (m + 1) → k)) :=
-    (perp_open ψ hψ hψ1 (lat_gmap g A hA)).measurableSet
+    (perp_open ψ hψ hψ1 (_root_.PositivityTheory.RgUd.Form.U.Lift2.AvA.lat_gmap' g A hA)).measurableSet
   have h := integral_vecMul ν ((perp ψ A : Set (Fin (m + 1) → k)).indicator fun _ => (1 : ℂ)) g
   have hset : (fun ξ => (perp ψ A : Set (Fin (m + 1) → k)).indicator (fun _ => (1 : ℂ))
       (ξ ᵥ* (g : Matrix (Fin (m + 1)) (Fin (m + 1)) k))) =
@@ -496,7 +496,7 @@ theorem locB {ζ : Fin (m + 1) → k} (hζ : ζ ≠ 0) (v : V) :
     rw [hDg, Df_eq hC hζ (sect_spec hζ), Ct_apply, Ct_apply, hu, md_mul, md_inv, hhd, inv_one, one_mul]
   refine ⟨hconst, fun M hM hM₀M => ?_⟩
   set g' : GL (Fin (m + 1)) k := (f ξ)⁻¹ * sect ζ with hg'
-  have hA : Lat (gmap g'⁻¹ M) := lat_gmap _ M hM
+  have hA : Lat (gmap g'⁻¹ M) := _root_.PositivityTheory.RgUd.Form.U.Lift2.AvA.lat_gmap' _ M hM
   have hA₁A : A₁ ≤ gmap g'⁻¹ M := by
     intro a ha
     have hK : ((g' : Matrix (Fin (m + 1)) (Fin (m + 1)) k) *ᵥ a) ∈ M :=
@@ -505,7 +505,7 @@ theorem locB {ζ : Fin (m + 1) → k} (hζ : ζ ≠ 0) (v : V) :
     simp only [LinearMap.toAddMonoidHom_coe, mulVecLin_apply]
     rw [mulVec_mulVec, ← Units.val_mul, inv_mul_cancel, Units.val_one, one_mulVec]
   have hdens := hA₁s _ hA hA₁A
-  have hav := av_conj ψ hψ col hS.col_zero hS.col_add hS.smooth_col gl hS.conj g'⁻¹ M hM ξ v
+  have hav := _root_.PositivityTheory.RgUd.Form.U.Lift2.AvA.av_conj' ψ hψ col hS.col_zero hS.col_add hS.smooth_col gl hS.conj g'⁻¹ M hM ξ v
   have hξg' : ξ ᵥ* (((g'⁻¹)⁻¹ : GL (Fin (m + 1)) k) : Matrix (Fin (m + 1)) (Fin (m + 1)) k) = xz m := by
     rw [inv_inv, ← hg'ξ, vecMul_vecMul, ← Units.val_mul, inv_mul_cancel, Units.val_one, vecMul_one]
   rw [hξg', hu] at hav

@@ -44,6 +44,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsPotential
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DescNEqXPowMulIterateDerivative
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NablaPowApplySmulLeibniz
 
 @[expose] public section
 
@@ -124,14 +126,14 @@ theorem coord_desc {O K : Type} [CommRing O] [NormedField K] [IsUltrametricDist 
   have hΦsum : ∀ {J : Type} (s : Finset J) (w : J → Vec K a ι),
       (P.mxInv τ *ᵥ (∑ x ∈ s, w x) τ) i = ∑ x ∈ s, (P.mxInv τ *ᵥ w x τ) i := fun s w => by
     rw [Finset.sum_apply, Matrix.mulVec_sum, Finset.sum_apply]
-  conv_lhs => rw [desc_eq, P.eq_sum_phi_bas m]
+  conv_lhs => rw [_root_.GlobalTheory.DescFalling.desc_eq_X_pow_smul_nabla_pow, P.eq_sum_phi_bas m]
 
   rw [hΦs, map_sum, hΦsum, Finset.mul_sum]
   refine Finset.sum_congr rfl fun j _ => ?_
-  rw [nabla_pow_smul, hΦsum, Finset.mul_sum]
+  rw [_root_.GlobalTheory.BKReal.Conn.pow_apply_smul, hΦsum, Finset.mul_sum]
   refine Finset.sum_congr rfl fun p hp => ?_
   have hpk : p ≤ k := Nat.lt_succ_iff.1 (Finset.mem_range.1 hp)
-  rw [hΦs, hΦ, descN_eq]
+  rw [hΦs, hΦ, _root_.GlobalTheory.BKReal.descN_eq_X_pow_mul_iterate_derivative]
   have hX : (X : K⟦X⟧) ^ k = X ^ p * X ^ (k - p) := by rw [← pow_add, Nat.add_sub_cancel' hpk]
   rw [hX]
   ring
@@ -173,7 +175,7 @@ theorem taylor_of_basis {l : ℕ} [Fact l.Prime] {a e : ℕ} [NeZero a] [NeZero 
         ∑ k ∈ Finset.range n, ∑ q ∈ Finset.range (k + 1),
           (ϖ.muDiv a O g q * ϖ.iC t K (fun τ => ⟨descN K q (c p.2 τ), descN_mem_S e q (c p.2 τ).2⟩)) *
           (ϖ.muDiv a O g (k - q) * ϖ.iC t K (fun τ => ⟨_, hS τ p.2 (k - q) p.1⟩)) :=
-    fun p => cauchy_dvd _ _ (fun k => ϖ.muDiv a O g k * ϖ.iC t K (fun τ => ⟨_, hS τ p.2 k p.1⟩)) _ _
+    fun p => _root_.GlobalTheory.cauchy_product_dvd_pow _ _ (fun k => ϖ.muDiv a O g k * ϖ.iC t K (fun τ => ⟨_, hS τ p.2 k p.1⟩)) _ _
       (fun r => galOCr_iC_taylor t ϖ g (c p.2) r) (fun r => hconv p.1 p.2 r) r
   choose N hN using key
   refine ⟨Finset.univ.sup N, fun n hn => ?_⟩

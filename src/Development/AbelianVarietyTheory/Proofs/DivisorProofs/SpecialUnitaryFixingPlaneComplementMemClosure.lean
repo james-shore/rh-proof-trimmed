@@ -121,7 +121,7 @@ theorem plane_closure : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
     with hGdef
   have hGu : Formalism.UG.cT c G * J.map ιR * G = J.map ιR := ((show HR (AF F) σ J from g).2)
   have hfixM : G * (1 - A * B) = 1 - A * B :=
-    GlobalTheory.T.matrix_fixes_lowRankProjector_of_fixes_rationalKernel F E (AF F) M _ _ hBA₀ G (fun v hv => hfix v ((hker v).1 hv).1 ((hker v).1 hv).2)
+    _root_.GlobalTheory.RatFix.ratfix_mul_eq F E (AF F) M _ _ hBA₀ G (fun v hv => hfix v ((hker v).1 hv).1 ((hker v).1 hv).2)
   obtain ⟨hGemb, hXu⟩ := GlobalTheory.T.unitary_fixing_kernel_eq_oneAddLowRank_of_unitary _ c hcc M (J.map ιR) hJu A B H hBA h1 h2 G hGu hfixM
   have hdetX : (B * G * A).det = 1 := by
     rw [← det_emb hBA, ← hGemb]; exact StrongApprox.mem_SUAdelic.1 hg
@@ -135,7 +135,7 @@ theorem plane_closure : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
       rw [← hf₁, ← hf₂, ← map_div₀]; exact hιR _
     rw [← e]; exact ht
   have hxcl : x ∈ closure (H0 (a := δ) (b := -(f₂ / f₁)) ε) :=
-    GlobalTheory.T.strongApproximation_quaternion_normOne_split F δ (-(f₂ / f₁)) hδ0 hbq0 S₁ S₂ ε hε hS hpq x hx1
+    _root_.GlobalTheory.QSA.strongApprox_nrm_one F δ (-(f₂ / f₁)) hδ0 hbq0 S₁ S₂ ε hε hS hpq x hx1
 
   have hunit : ∀ y : DA F δ (-(f₂ / f₁)), nrm y = 1 →
       Formalism.UG.cT c (emb A B (qm ι θ y)) * J.map ιR * emb A B (qm ι θ y) = J.map ιR := by

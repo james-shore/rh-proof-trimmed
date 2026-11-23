@@ -156,7 +156,7 @@ theorem moves_iff {V : HSp D} {L : GlobalTheory.FinPl.Lat V} (hL : ∀ z, z ∈ 
   · intro h
     refine isInt_of fun z => ?_
     let sw := (Algebra.TensorProduct.comm D.host.F (Af D.host.F) D.host.E)
-    choose a ha ha' using fun i => GlobalTheory.KStabBridge.exists_fin_lift (D := D) (sw.symm (z i))
+    choose a ha ha' using fun i => _root_.GlobalTheory.VacInert.exists_lift (D := D) (sw.symm (z i))
     have hz : ∀ i, toEAf D (a i) = z i := fun i => (congrArg sw (ha' i)).trans (sw.apply_symm_apply _)
     have hi : ∀ i, a i ∈ GlobalTheory.FinPl.idAt D fun _ => True := fun i =>
       Submodule.mem_inf.2 ⟨ha i, (Submodule.mem_iInf _).2 fun u => absurd trivial u.2⟩

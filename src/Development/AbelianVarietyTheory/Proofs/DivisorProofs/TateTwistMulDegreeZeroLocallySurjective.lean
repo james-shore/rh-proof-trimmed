@@ -54,16 +54,7 @@ variable {R : Type} [CommRing R]
 theorem loc_top (U : Scheme.{0}) {P : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : ∀ V g, P V g) : Loc U P :=
   ⟨⊤, Scheme.etaleTopology.top_mem U, fun V g _ => h V g⟩
 
-theorem loc_mono {U : Scheme.{0}} {P P' : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : Loc U P) (h' : ∀ V g, P V g → P' V g) :
-    Loc U P' := by
-  obtain ⟨S, hS, hP⟩ := h
-  exact ⟨S, hS, fun V g hg => h' V g (hP V g hg)⟩
-
-theorem loc_and {U : Scheme.{0}} {P P' : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : Loc U P) (h' : Loc U P') :
-    Loc U fun V g => P V g ∧ P' V g := by
-  obtain ⟨S, hS, hP⟩ := h
-  obtain ⟨S', hS', hP'⟩ := h'
-  exact ⟨S ⊓ S', GrothendieckTopology.intersection_covering _ hS hS', fun V g hg => ⟨hP V g hg.1, hP' V g hg.2⟩⟩
+alias loc_mono := _root_.GlobalTheory.TwSec.loc_mono
 
 theorem loc_bind {U : Scheme.{0}} {P : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} {P' : ∀ V : Scheme.{0}, (V ⟶ U) → Prop}
     (h : Loc U P) (h' : ∀ V g, P V g → Loc V fun W k => P' W (k ≫ g)) : Loc U P' := by
@@ -84,21 +75,15 @@ theorem res_map {F G : Shv R} (f : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x 
   have := congrArg (fun m => m.hom x) (f.hom.naturality g.op)
   simpa using this.symm
 
-theorem res_comp {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (x : Sec F U) :
-    Sec.res (k ≫ g) x = Sec.res k (Sec.res g x) := by
-  simp [Sec.res]
+alias res_comp := _root_.GlobalTheory.TwSec.res_comp
 
 theorem smap_add {F G : Shv R} (f : F ⟶ G) {U : Scheme.{0}} (x y : Sec F U) :
     Sec.map f (x + y) = Sec.map f x + Sec.map f y := map_add _ x y
 
-theorem sres_add {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (x y : Sec F U) :
-    Sec.res g (x + y) = Sec.res g x + Sec.res g y := map_add _ x y
-
 theorem smap_nsmul {F G : Shv R} (f : F ⟶ G) {U : Scheme.{0}} (n : ℕ) (x : Sec F U) :
     Sec.map f (n • x) = n • Sec.map f x := map_nsmul _ n x
 
-theorem sres_nsmul {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (n : ℕ) (x : Sec F U) :
-    Sec.res g (n • x) = n • Sec.res g x := map_nsmul _ n x
+alias sres_nsmul := _root_.GlobalTheory.TwSec.res_nsmul
 
 theorem smap_zero {F G : Shv R} (f : F ⟶ G) {U : Scheme.{0}} : Sec.map f (0 : Sec F U) = 0 := map_zero _
 
@@ -123,7 +108,7 @@ theorem good_bind {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (x : Sec G U) {P
 
 theorem good_add {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} {x x' : Sec G U} (h : Good φ U x) (h' : Good φ U x') :
     Good φ U (x + x') :=
-  loc_mono (loc_and h h') fun _ g ⟨⟨z, hz⟩, ⟨z', hz'⟩⟩ => ⟨z + z', by rw [smap_add, sres_add, hz, hz']⟩
+  loc_mono (_root_.GlobalTheory.TwSec.loc_and h h') fun _ g ⟨⟨z, hz⟩, ⟨z', hz'⟩⟩ => ⟨z + z', by rw [smap_add, _root_.GlobalTheory.TwSec.res_add, hz, hz']⟩
 
 theorem good_zero {F G : Shv R} (φ : F ⟶ G) (U : Scheme.{0}) : Good φ U 0 := good_of φ ⟨0, smap_zero _⟩
 
@@ -139,7 +124,7 @@ theorem tw_mul_locSurj : ∀ (q : ℕ) [NeZero q] (i j k : ℤ), i + j = k → �
       τ.mul U 0 0 0 (add_zero 0) (Sec.map (sglι _) (twGen i ζ)) (Sec.map (sglι _) (twGen j ζ))) →
     ∀ (U : Scheme.{0}) (y : Sec (K.X 0) U), Loc U fun V g => ∃ z : Sec (tw q k) V, Sec.map φ z = Sec.res g y := by
   intro q _ i j k hk K τ hτ φ hφ
-  have hT := GlobalTheory.T.tateTwist_sections_locally_generated
+  have hT := _root_.GlobalTheory.EtC.twist_sections
   have key_gen : ∀ V (a : Sec (tw q i) V) (b : Sec (tw q j) V),
       Good φ V (τ.mul V 0 0 0 (add_zero 0) (Sec.map (sglι _) a) (Sec.map (sglι _) b)) := by
     intro V a b

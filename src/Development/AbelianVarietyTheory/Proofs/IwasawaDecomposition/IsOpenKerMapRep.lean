@@ -59,7 +59,7 @@ theorem indep : ∀ (D : D7) (Rw : RowSide D) (Pl : PlSide D) (X : LocNd (lay0 D
 theorem ssRep_spec {Γ : Type} [Group Γ] {k : Type} [Field k] {a : ℕ} (ρ : Γ →* GL (Fin a) k) :
     IsSSRep (ssRep ρ) ∧ ρ.ker ≤ (ssRep ρ).ker ∧
     ∀ g, (ssRep ρ g : Matrix (Fin a) (Fin a) k).charpoly = (ρ g : Matrix (Fin a) (Fin a) k).charpoly :=
-  Classical.epsilon_spec (ss_exists ρ)
+  Classical.epsilon_spec (_root_.GlobalTheory.SemisimplificationExists.exists_semisimplification ρ)
 
 theorem castMt_eq {D : D7} {μ μ' : D.what₂.Tup} {j j' : ℕ} (h1 : μ = μ') (h2 : j = j') (M : Submodule ℂ (D.what₂.Mt μ j))
     (M' : Submodule ℂ (D.what₂.Mt μ' j')) (h : HEq M M') : castMt h1 h2 M = M' := by
@@ -150,7 +150,7 @@ theorem rbar_tie_at (D : D7) (Rw : RowSide D) (Pl : PlSide D) (X : LocNd (lay0 D
   obtain ⟨hz, e⟩ := hplB i ((ρ g : Matrix (Fin D.R.r) (Fin D.R.r) (X.nd.O i)).charpoly.coeff n)
   rw [← e0, ← e, fbCast_trans, fbCast_trans]
   exact plκ_cast D Pl hw0 _ _ _ _ _ hz0 hz
-    (indep D Rw Pl X Y hCheb hloc hplB σ _ i hw0 Sig0 Sig ρ0 ρ hs.1 hs.2 hP hR g n)
+    (_root_.GlobalTheory.HeightCounting.charpoly_coeff_congr_same_place D Rw Pl X Y hCheb hloc hplB σ _ i hw0 Sig0 Sig ρ0 ρ hs.1 hs.2 hP hR g n)
 
 
 

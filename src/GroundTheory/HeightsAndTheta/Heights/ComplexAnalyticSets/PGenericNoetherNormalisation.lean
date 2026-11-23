@@ -72,8 +72,7 @@ end Combination
 
 universe u
 
-theorem proof : GenericNoetherNormalisation.Statement.{u} :=
-  _root_.UpperTheory.Reformulated.B.GenericNoetherNormalisationCapelliIdentities.proof
+alias proof := _root_.UpperTheory.Reformulated.B.GenericNoetherNormalisationCapelliIdentities.proof
 
 end GenericNoetherNormalisation
 

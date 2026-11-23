@@ -72,7 +72,6 @@ theorem one_sub_mul_conjTranspose_posDef {p q : ℕ} (z : Matrix (Fin p) (Fin q)
   have h3 := (GlobalTheory.MatrixBall.posDef_iff_norm_lt_one zᴴ).mpr h2
   rwa [Matrix.conjTranspose_conjTranspose] at h3
 
-theorem main : ∀ {p q : ℕ} (z : Matrix (Fin p) (Fin q) ℂ), (1 - zᴴ * z).PosDef → (1 - z * zᴴ).PosDef :=
-  fun z h => one_sub_mul_conjTranspose_posDef z h
+alias main := _root_.GlobalTheory.PosDefSwap.one_sub_mul_conjTranspose_posDef
 
 end GlobalTheory.PosDefSwap

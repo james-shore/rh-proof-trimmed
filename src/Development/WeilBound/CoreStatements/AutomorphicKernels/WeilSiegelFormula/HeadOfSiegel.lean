@@ -55,13 +55,10 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.PfWsf.Top
 
-theorem pull : PositivityTheory.GramSchwartzFunctions.PullSchLI := GlobalTheory.CompanionTheory.PullSch.pullSchLI
-theorem orb : PositivityTheory.GramSchwartzFunctions.ThetaOrbits := GlobalTheory.CompanionTheory.ThetaOrbit.thetaOrbits
-
 theorem head_of_two (hE : PositivityTheory.GramSchwartzFunctions.EisCells) (hB : PositivityTheory.GramSchwartzFunctions.BigCell) : GlobalTheory.Published.WeilSiegelFormula :=
   GlobalTheory.CompanionTheory.SiegelAssemblyLI.weilSiegelFormula_of_chapters_LI
     (GlobalTheory.CompanionTheory.WeilTheta.weilThetaConvergence_of_siegelSet GlobalTheory.CompanionTheory.SiegelRed.siegelSetUnitary)
-    GlobalTheory.WeilEisConv.weilEisensteinSiegelConvergence pull hE orb hB
+    GlobalTheory.WeilEisConv.weilEisensteinSiegelConvergence _root_.GlobalTheory.CompanionTheory.PullSch.pullSchLI hE _root_.GlobalTheory.CompanionTheory.ThetaOrbit.thetaOrbits hB
 
 theorem big_of_three (h1 : PositivityTheory.GramSchwartzFunctions.BC.PoissonHerm) (h2 : PositivityTheory.GramSchwartzFunctions.BC.SiegelND) (h3 : PositivityTheory.GramSchwartzFunctions.BC.SiegelDeg) :
     PositivityTheory.GramSchwartzFunctions.BigCell :=

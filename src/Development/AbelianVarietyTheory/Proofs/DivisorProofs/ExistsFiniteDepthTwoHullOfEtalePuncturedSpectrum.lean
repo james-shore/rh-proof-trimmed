@@ -136,6 +136,6 @@ theorem exists_finite_depth_two_hull_of_etale_off_closed_point : ∀ (S : Type) 
       hp ((maximalIdeal.isMaximal S).eq_of_le (Ideal.IsPrime.ne_top inferInstance)
         (Ideal.IsPrime.le_of_pow_le h)).symm
     obtain ⟨s, hs, hsp⟩ := Set.not_subset.mp hnot
-    exact GlobalTheory.T.etale_localization_of_injective_cokernel_killed S A B ι hιinj p s hsp (hk s hs) (het p hp)
+    exact _root_.GlobalTheory.etale_localization_of_cokernel_killed S A B ι hιinj p s hsp (hk s hs) (het p hp)
 
 end GlobalTheory

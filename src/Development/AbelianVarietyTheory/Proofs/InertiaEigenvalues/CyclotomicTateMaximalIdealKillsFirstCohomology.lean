@@ -112,22 +112,6 @@ theorem exists_field (F : IntermediateField ℚ_[l] (Om l)) (W : Set (GQ l)) (hW
     exact fun x hx => this hx
   · rw [hsup] at hg; exact hg.2
 
-theorem average {G C : Type*} [Group G] [NormedField C] [IsUltrametricDist C]
-    (act : G →* (C ≃+* C)) (hn : ∀ g y, ‖act g y‖ = ‖y‖) (H V : Subgroup G) (S : Finset G)
-    (hS : ∀ s ∈ S, s ∈ H) (hS' : ∀ h ∈ H, ∃! s, s ∈ S ∧ s⁻¹ * h ∈ V)
-    (a b : C) (hb : ‖b‖ ≤ 1) (hbV : ∀ g ∈ V, act g b = b) (hab : ∑ s ∈ S, act s b = a)
-    (c : G → C) (hc : ∀ g ∈ H, ∀ h ∈ H, c (g * h) = c g + act g (c h))
-    (t ε : ℝ) (ht0 : 0 ≤ t) (hε : 0 ≤ ε) (ht : ∀ g ∈ H, ‖c g‖ ≤ t)
-    (hV : ∀ g ∈ H, g ∈ V → ‖c g‖ ≤ ε) :
-    ∃ x : C, ‖x‖ ≤ t ∧ ∀ h ∈ H, ‖a * c h - (act h x - x)‖ ≤ ε := by
-  first
-  | exact @_root_.GlobalTheory.PermutationExistence.main
-  | exact _root_.GlobalTheory.PermutationExistence.main
-  | (apply _root_.GlobalTheory.PermutationExistence.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PermutationExistence.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PermutationExistence.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PermutationExistence.main ..)
-
 theorem step (act : GQ l →* (PadicComplex l ≃+* PadicComplex l)) (hact : IsActC act) (K : FinExt l)
     (a : PadicComplex l) (ha : a ∈ inC (Kinf K)) (ha1 : ‖a‖ < 1) (c : GQ l → PadicComplex l)
     (hcont : ContinuousOn c (Hinf K))
@@ -144,8 +128,8 @@ theorem step (act : GQ l →* (PadicComplex l ≃+* PadicComplex l)) (hact : IsA
     simpa [hc1] using hε
   rw [eventually_nhdsWithin_iff] at hev
   obtain ⟨L, S, hL, hst, hS, hS', hW⟩ := exists_field (Kinf K) _ hev
-  obtain ⟨b, hbL, hb1, hb⟩ := GlobalTheory.T.cyclotomicTower_trace_almost_surjective l K L S hL hst hS hS' a₀ ha₀ (by simpa using ha1)
-  refine average act hact.2 (Hinf K) L.fixingSubgroup S hS hS' _ (b : PadicComplex l)
+  obtain ⟨b, hbL, hb1, hb⟩ := _root_.GlobalTheory.Cyc.trace_almost_onto l K L S hL hst hS hS' a₀ ha₀ (by simpa using ha1)
+  refine _root_.GlobalTheory.PermutationExistence.main act hact.2 (Hinf K) L.fixingSubgroup S hS hS' _ (b : PadicComplex l)
     (by simpa using hb1) (fun g hg => ?_) ?_ c hc t ε ht0 hε.le ht (fun g hg hg' => (hW g hg' hg).le)
   · rw [hact.1, (IntermediateField.mem_fixingSubgroup_iff _ _).1 hg b hbL]
   · simp only [hact.1, ← hb]
@@ -170,7 +154,7 @@ theorem rank_one (act : GQ l →* (PadicComplex l ≃+* PadicComplex l)) (hact :
     rintro n y ⟨hy1, hy⟩
     obtain ⟨x, hx, hx'⟩ := step act hact K a ha ha1 (fun g => c g - a⁻¹ * (act g y - y))
       (hcont.sub (continuousOn_const.mul
-        ((GlobalTheory.T.continuous_orbit_padicComplex l act hact y).continuousOn.sub continuousOn_const)))
+        ((_root_.GlobalTheory.Cyc.IsActC.continuous_orbit l act hact y).continuousOn.sub continuousOn_const)))
       (fun g hg h hh => by
         simp only [hc g hg h hh, map_mul, map_sub, map_inv₀, hfix g hg, RingAut.mul_apply]
         ring)

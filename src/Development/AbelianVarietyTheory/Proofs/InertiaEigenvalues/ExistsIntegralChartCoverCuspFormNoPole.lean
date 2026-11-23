@@ -79,7 +79,7 @@ theorem exists_cover_noPole : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
     exact (evR Xo c f ((P j).y e he)).2
   have hint : ∀ j, IsIntegral (Algebra.adjoin c.F ((P j).gens : Set (P j).Ω)) (evR Xo c f (P j).yg) := by
     intro j
-    refine GlobalTheory.T.isIntegral_adjoin_of_forall_dvr_map_mem c.F (P j).Ω (P j).gens (P j).frac _ fun T hT φ hK hgn => ?_
+    refine _root_.GlobalTheory.isIntegral_adjoin_of_forall_cdvr c.F (P j).Ω (P j).gens (P j).frac _ fun T hT φ hK hgn => ?_
     obtain ⟨e, he⟩ := (P j).es_ne
     let io : c.F →+* T.Fr := φ.comp (algebraMap c.F (P j).Ω)
     letI := io.toAlgebra

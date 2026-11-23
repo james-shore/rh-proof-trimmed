@@ -128,9 +128,6 @@ theorem exL_left (d : BesselDatum A B ι) (ψ) (ε : AE D) (m) {β : GA D B → 
 theorem isK_unique {v y : Fin B.rank → AE D} {k k' : GA D B} (h : IsK B v y k) (h' : IsK B v y k') : k = k' :=
   mt_ext fun x => by rw [h x, h' x]
 
-theorem isK_zero (v : Fin B.rank → AE D) : IsK B v 0 1 := fun x => by
-  rw [GlobalTheory.BesselCompare.mt_one, Matrix.one_mulVec, hA_zero_right, zero_smul, smul_zero, add_zero, sub_zero]
-
 theorem continuous_iA : Continuous (iA (A := A) (B := B) ι) := by
   haveI : IsTopologicalRing (AE D) := Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.isTopRing
   unfold iA
@@ -178,9 +175,9 @@ theorem exch_finite (d : BesselDatum A B ι) {ψ} (hψ : IsStdChar D ψ (-1)) {�
   have h0 : (0 : Fin A.rank → AE D) ∈ V := by
     have : (⟨0, smul_zero _⟩ : {t : Fin A.rank → AE D // cA D ε • t = t}) ∈ Subtype.val ⁻¹' V := by
       rw [hVe]
-      have e : K ⟨0, smul_zero _⟩ = 1 := isK_unique (hKk _) (by
+      have e : K ⟨0, smul_zero _⟩ = 1 := _root_.GlobalTheory.RootExch.ExStruct.isK_unique (hKk _) (by
         have : iA (A := A) (B := B) ι 0 = 0 := Matrix.mulVec_zero _
-        rw [this]; exact isK_zero _)
+        rw [this]; exact _root_.GlobalTheory.RootExch.ExStruct.isK_one _)
       simp [e]
     exact this
   obtain ⟨C, hC, hCm⟩ := GlobalTheory.PosLinVec.annihilator_subset_compact D ψ hψ ε hε A d.θ d.θ_ne V (hV.mem_nhds h0)

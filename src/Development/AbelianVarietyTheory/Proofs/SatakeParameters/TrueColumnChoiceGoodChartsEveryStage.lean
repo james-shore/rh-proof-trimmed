@@ -65,7 +65,7 @@ theorem goodCharts_all : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok �
       · subst heq
         exact GlobalTheory.T.exists_good_chart_lastStep_allTuples I hOk hPins l Z u F a Q hQ hStd
     choose ChS hfin chOfS KcS hgood using hS
-    obtain ⟨K0, h0a, h0b, h0c⟩ := GlobalTheory.T.trueColumnChoice_stepZero_charts_good I hOk hPins l Z u F a Q hQ hStd
+    obtain ⟨K0, h0a, h0b, h0c⟩ := _root_.GlobalTheory.TwU.AtTrue.charts_zero_good I hOk hPins l Z u F a Q hQ hStd
     have hC := GlobalTheory.Mem.Col2.TC.spaces_in_coordinates I hOk hPins l Z
     have hE : ∀ i (hi : i ≤ B.R.m), ∃ eY : (I.chain l u a).Y i ≃ Formalism.L2.Forms.Fr (I.rec7 l Z) i hi,
         I.IdY l Z u a i hi eY := by

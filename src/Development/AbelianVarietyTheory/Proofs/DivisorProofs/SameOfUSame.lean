@@ -120,7 +120,7 @@ theorem GLab.conj [IsNoetherianRing o] (hM : ReciprocityTheory.ChartRestriction.
     (same_of_uSame hS₁) σ g P b t (fun _ => 𝟙 _) hb ht l₁ lt (fun _ => ⟨by simp, by simp⟩) hp
   obtain ⟨P₀, a, a', ha, ha', hL, hL', hlab, -⟩ := GalTrans.spread M hM ρ' ρ'' σ s hs y hR hR₁ y₀ y₁ hy₀ hy₁ u u' Q
     hb' hb'' l' l''
-  obtain ⟨e, hψ, htor⟩ := GlobalTheory.T.exists_latticeIso_of_two_padicAlgCl_uniformisations _ _ ρ' ρ'' p y₀ y₁ u u' P₀ a a' ha ha' hL hL'
+  obtain ⟨e, hψ, htor⟩ := _root_.GlobalTheory.UnifTorsK.main _ _ ρ' ρ'' p y₀ y₁ u u' P₀ a a' ha ha' hL hL'
   haveI : CharZero (FractionRing u.V) := (algebraMap (FractionRing u.V) (PadicAlgCl p)).charZero
   haveI : CharZero u.V := (algebraMap u.V (FractionRing u.V)).charZero
   haveI : CharZero (FractionRing u'.V) := (algebraMap (FractionRing u'.V) (PadicAlgCl p)).charZero

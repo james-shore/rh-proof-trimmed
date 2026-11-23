@@ -103,7 +103,7 @@ theorem fock_map_of_ccr : ∀ {V : Type} [AddCommGroup V] [Module ℂ V] {W : Ty
         (LinearMap.mulLeft ℂ (MvPolynomial.X l)) T)) =
       fockM H (w, l) (polEval (fockM H) hm f₀ (polMap W (Ix P Q × Ix R S) T)) := by
     intro w l T
-    have h := LinearMap.congr_fun (GlobalTheory.T.tensorPolynomialsToProductVariables_comp_mulLeft_X W (Ix P Q × Ix R S) w l) T
+    have h := LinearMap.congr_fun (_root_.GlobalTheory.CCRFock.polMap_comp_atPl_mulLeft_X W (Ix P Q × Ix R S) w l) T
     simp only [LinearMap.comp_apply, LinearMap.mulLeft_apply] at h
     rw [h, polEval_X]
   have hD : ∀ (w : W) (l : Ix P Q × Ix R S) T, polEval (fockM H) hm f₀ (polMap W (Ix P Q × Ix R S)
@@ -111,7 +111,7 @@ theorem fock_map_of_ccr : ∀ {V : Type} [AddCommGroup V] [Module ℂ V] {W : Ty
         (MvPolynomial.pderiv l).toLinearMap T)) =
       fockD H (w, l) (polEval (fockM H) hm f₀ (polMap W (Ix P Q × Ix R S) T)) := by
     intro w l T
-    have h := LinearMap.congr_fun (GlobalTheory.T.tensorPolynomialsToProductVariables_comp_pderiv W (Ix P Q × Ix R S) w l) T
+    have h := LinearMap.congr_fun (_root_.GlobalTheory.CCRFock.polMap_comp_atPl_pderiv W (Ix P Q × Ix R S) w l) T
     simp only [LinearMap.comp_apply, Derivation.coeFn_coe] at h
     rw [h, hpd]
 

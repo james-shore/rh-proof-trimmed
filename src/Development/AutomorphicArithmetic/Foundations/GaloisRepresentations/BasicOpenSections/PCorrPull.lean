@@ -59,6 +59,6 @@ theorem UpperTheory.Gal.Mod.corrPull :
   haveI := T.fin
   refine ⟨⟨pullback T.p s, pullback.snd T.p s, hS.lift _ _ hsq, Wt.comap (pullback.fst T.p s) w,
     inferInstance,
-    TranscendenceTraces.wtBC_holds _ _ _ _ w (IsPullback.of_hasPullback T.p s) hw⟩,
+    _root_.UpperTheory.Gal.TranscendenceTraces.wtBC_of _ _ _ _ w (IsPullback.of_hasPullback T.p s) hw⟩,
     pullback.fst T.p s, IsPullback.of_hasPullback T.p s, hS.lift_fst _ _ _, ?_, rfl⟩
   exact hS.lift_snd _ _ _

@@ -127,21 +127,6 @@ private theorem isAdmissibleSmoothingFactor_add_intVector {c : ℕ} {x y : Fin 2
   · push_cast; rw [hu, h0]; ring
   · push_cast; rw [hv, h1]; ring
 
-private theorem admissible_act_SL2 {c : ℕ} {x : Fin 2 → ℚ} (hx : GlobalTheory.Sieg.admitted c x) (γ : SL(2, ℤ)) : GlobalTheory.Sieg.admitted c (act x γ) := by
-  have hd : en γ 0 0 * en γ 1 1 - en γ 0 1 * en γ 1 0 = 1 := by
-    have h := γ.det_coe
-    rwa [Matrix.det_fin_two] at h
-  have hq : (en γ 0 0 : ℚ) * en γ 1 1 - en γ 0 1 * en γ 1 0 = 1 := by exact_mod_cast hd
-  refine ⟨hx.1, hx.2.1, fun ⟨⟨u, hu⟩, ⟨v, hv⟩⟩ =>
-    hx.2.2 ⟨⟨u * en γ 1 1 - v * en γ 1 0, ?_⟩, ⟨v * en γ 0 0 - u * en γ 0 1, ?_⟩⟩⟩
-  all_goals
-    simp only [act, Fin.sum_univ_two] at hu hv
-    simp only [en] at hq ⊢
-    push_cast
-    rw [hu, hv]
-  · linear_combination (c * x 0) * hq
-  · linear_combination (c * x 1) * hq
-
 private theorem sl_dg_siegel [IsAlgClosure ℚ Ω] {ε : Ω →+* ℂ} (X : Tower Ω ε) {c N : ℕ} (hN : 0 < N) {x y : Fin 2 → ℚ}
     (hx : GlobalTheory.Sieg.admitted c x) (γ : SL(2, ℤ)) (k : ℤ) (hk : en γ 1 0 = N * k) (p q : ℤ)
     (h0 : y 0 = x 0 * en γ 0 0 + x 1 * k + p) (h1 : y 1 = x 0 * (N * en γ 0 1) + x 1 * en γ 1 1 + q) :
@@ -150,7 +135,7 @@ private theorem sl_dg_siegel [IsAlgClosure ℚ Ω] {ε : Ω →+* ℂ} (X : Towe
   rw [← X.sl_mul, e, X.sl_mul, GlobalTheory.T.siegelUnitInTower_sl_action_rowVector Ω ε X c x δ hx]
   congr 1
   simp only [en] at h00 h01 h10 h11 h0 h1
-  refine (siegel_per X (admissible_act_SL2 hx δ) p q ?_ ?_).symm
+  refine (siegel_per X (_root_.GlobalTheory.KZ.SiegelMem.admissible_act_SL2 hx δ) p q ?_ ?_).symm
   · simp only [act, Fin.sum_univ_two]; rw [h0, h00, h10]
   · simp only [act, Fin.sum_univ_two]; rw [h1, h01, h11]; push_cast; ring
 

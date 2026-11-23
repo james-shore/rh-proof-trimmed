@@ -72,12 +72,7 @@ theorem iter_φB_alg (k : ℕ) (y : Per.Acris l) :
   induction k generalizing y with
   | zero => rfl
   | succ k ih =>
-    rw [Function.iterate_succ_apply, Function.iterate_succ_apply, GlobalTheory.MemLoc.fund_phiB_alg, ih]
-
-theorem phiA_alg (a : Per.Ainf l) :
-    GlobalTheory.MemLoc.phiA l (algebraMap (Per.Ainf l) (Per.Acris l) a) =
-      algebraMap (Per.Ainf l) (Per.Acris l) (Per.φA l a) :=
-  (GlobalTheory.CrisMaps.phiA_extends l).alg a
+    rw [Function.iterate_succ_apply, Function.iterate_succ_apply, _root_.GlobalTheory.CrisMaps.φB_phiA, ih]
 
 theorem iter_phiA_alg (k : ℕ) (a : Per.Ainf l) :
     (⇑(GlobalTheory.MemLoc.phiA l))^[k] (algebraMap (Per.Ainf l) (Per.Acris l) a) =
@@ -85,7 +80,7 @@ theorem iter_phiA_alg (k : ℕ) (a : Per.Ainf l) :
   induction k generalizing a with
   | zero => rfl
   | succ k ih =>
-    rw [Function.iterate_succ_apply, Function.iterate_succ_apply, phiA_alg, ih]
+    rw [Function.iterate_succ_apply, Function.iterate_succ_apply, _root_.GlobalTheory.MemLoc.PhiImage.phiA_alg, ih]
 
 theorem iter_mul {A : Type} [CommRing A] (f : A →+* A) (k : ℕ) (a b : A) :
     (⇑f)^[k] (a * b) = (⇑f)^[k] a * (⇑f)^[k] b := by
@@ -126,7 +121,7 @@ theorem concrete (C : GlobalTheory.MemLoc.Core l) (n : ℕ) (hn : 0 < n) :
   have hxa : x = Per.aB l (ξ * w) * algebraMap (Per.Acris l) (Per.Bcris l) c := by
     have e : algebraMap (Per.Acris l) (Per.Bcris l) (algebraMap (Per.Ainf l) (Per.Acris l) (ξ * w)) =
         Per.aB l (ξ * w) := by
-      apply (GlobalTheory.T.localPeriodRingsData_unramified_laws l C).2.2.2.1
+      apply (_root_.GlobalTheory.MemLoc.ULaws.u_laws l C).2.2.2.1
       rw [GlobalTheory.MemLoc.PrimeEx.iota_aB, C.ι_j, GlobalTheory.MemLoc.TFil.j_alg C.j_cris]
     rw [hx, ha, map_mul, e]
   have hx0 : x ≠ 0 := by

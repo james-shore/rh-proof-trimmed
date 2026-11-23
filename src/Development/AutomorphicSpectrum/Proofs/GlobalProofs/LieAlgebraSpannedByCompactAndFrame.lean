@@ -116,26 +116,10 @@ theorem sum_frame {A : Type} [Ring A] [Algebra ℂ A] (L : Matrix (Fin n) (Fin n
   rw [Finset.sum_comm (f := fun a b => L (single b a 1) * L (single a b 1))]
   module
 
-theorem Jm_herm (e : Fin n → Bool) : (Formalism.REAL.Jm e)ᴴ = Formalism.REAL.Jm e := by
-  delta Formalism.REAL.Jm
-  rw [diagonal_conjTranspose]
-  congr 1
-  funext a
-  by_cases h : e a <;> simp [h]
-
-theorem Jm_sq (e : Fin n → Bool) : Formalism.REAL.Jm e * Formalism.REAL.Jm e = 1 := by
-  delta Formalism.REAL.Jm
-  rw [diagonal_mul_diagonal, ← diagonal_one]
-  congr 1
-  funext a
-  by_cases h : e a <;> simp [h]
-
-theorem Jm_unit (e : Fin n → Bool) : IsUnit (Formalism.REAL.Jm e).det := isUnit_det_of_right_inverse (Jm_sq e)
-
 theorem cj_single (e : Fin n → Bool) (a b : Fin n) :
     cj (Formalism.REAL.Jm e) (single a b 1) = -(sg e a b • single b a 1) := by
   delta GlobalTheory.UnitaryLieComplexification.cj
-  rw [inv_eq_right_inv (Jm_sq e), conjTranspose_single, star_one]
+  rw [inv_eq_right_inv (_root_.Formalism.REAL.Jm_mul_self e), conjTranspose_single, star_one]
   congr 1
   ext i j
   delta Formalism.REAL.Jm
@@ -158,9 +142,9 @@ theorem gv_skew (e : Fin n → Bool) (p : Fin n × Fin n × Bool) :
   obtain ⟨a, b, c⟩ := p
   cases c
   · rw [gv_false]
-    exact (imPart (Jm_herm e) (Jm_unit e) (single a b 1)).2
+    exact (imPart (_root_.Formalism.REAL.Jm_conjTranspose e) (_root_.CompanionTheory.D.gk.RF.Jm_det e) (single a b 1)).2
   · rw [gv_true]
-    exact (rePart (Jm_herm e) (Jm_unit e) (single a b 1)).2
+    exact (rePart (_root_.Formalism.REAL.Jm_conjTranspose e) (_root_.CompanionTheory.D.gk.RF.Jm_det e) (single a b 1)).2
 
 theorem mem_span_gv (e : Fin n → Bool) {Z : Matrix (Fin n) (Fin n) ℂ}
     (hZ : Zᴴ * Formalism.REAL.Jm e + Formalism.REAL.Jm e * Z = 0) : Z ∈ Submodule.span ℝ (Set.range (gv e)) := by
@@ -203,7 +187,7 @@ theorem mem_span_gv (e : Fin n → Bool) {Z : Matrix (Fin n) (Fin n) ℂ}
         match_scalars <;> ring
       rw [e1]
       exact S.add_mem (S.smul_mem _ h1) (S.smul_mem _ h2)
-  have hz : cj (Formalism.REAL.Jm e) Z = Z := (mem_iff_cj (Jm_unit e) Z).1 hZ
+  have hz : cj (Formalism.REAL.Jm e) Z = Z := (mem_iff_cj (_root_.CompanionTheory.D.gk.RF.Jm_det e) Z).1 hZ
   have := key Z
   rw [hz] at this
   have e2 : (1 / 2 : ℂ) • (Z + Z) = Z := by module

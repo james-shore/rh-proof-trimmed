@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Topology.Algebra.Polynomial
+import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.Descent.NilpotentPowers.IsNilpotentPowSub
 
 @[expose] public section
 
@@ -91,14 +92,6 @@ theorem isClosed_rank {X : Type} [TopologicalSpace X] {F : Set X} (hF : IsClosed
   obtain ⟨y, hyU, hyF, hyr⟩ := mem_closure_iff_nhds.1 hx _ (hf.continuousAt.preimage_mem_nhds hU)
   exact ⟨hxF, (hUe _ hyU (hi y hyF)).symm.trans hyr⟩
 
-theorem isClosed_Bz (Z : Subalgebra k (Matrix (Fin N) (Fin N) k)) : IsClosed (Bz Z) := by
-  have h : Bz Z = ⋂ a ∈ Z, {x : Matrix (Fin N) (Fin N) k | a * x = x * a} := by
-    ext x
-    simp [Bz]
-  rw [h]
-  exact isClosed_biInter (fun a _ => isClosed_eq (continuous_const.mul continuous_id)
-    (continuous_id.mul continuous_const))
-
 theorem continuous_pe {d : ℕ} (c : Fin d → Matrix (Fin N) (Fin N) k) : Continuous (pe c) :=
   continuous_finsetSum _ fun _ _ => continuous_const.mul (continuous_pow _)
 
@@ -112,13 +105,6 @@ theorem pe_conj {Z : Subalgebra k (Matrix (Fin N) (Fin N) k)} {d : ℕ} (c : Fin
   simp only [mul_assoc]
   rw [← mul_assoc (c l), hg _ (hc l), mul_assoc]
 
-theorem aeval_conj (g : GL (Fin N) k) (x : Matrix (Fin N) (Fin N) k) (χ : k[X]) :
-    aeval (g.val * x * g⁻¹.val) χ = g.val * aeval x χ * g⁻¹.val := by
-  induction χ using Polynomial.induction_on' with
-  | add p r hp hr => simp only [map_add (f := _), hp, hr, mul_add, add_mul]
-  | monomial n a =>
-    simp only [aeval_monomial, Units.conj_pow, ← Algebra.smul_def, mul_smul_comm, smul_mul_assoc]
-
 theorem rank_conj (g : GL (Fin N) k) (e : Matrix (Fin N) (Fin N) k) : (g.val * e * g⁻¹.val).rank = e.rank := by
   rw [Matrix.rank_mul_eq_left_of_isUnit_det _ _ ((Matrix.isUnit_iff_isUnit_det _).1 (g⁻¹).isUnit),
     Matrix.rank_mul_eq_right_of_isUnit_det _ _ ((Matrix.isUnit_iff_isUnit_det _).1 g.isUnit)]
@@ -127,7 +113,7 @@ variable (k) in
 theorem pieceTop : PieceTop k := by
   intro N q Z hZ χ D τ
   have hF : IsClosed {x : Matrix (Fin N) (Fin N) k | x ∈ Bz Z ∧ aeval x χ = 0} :=
-    (isClosed_Bz Z).inter (isClosed_eq (Polynomial.continuous_aeval χ) continuous_const)
+    (_root_.PositivityTheory.RgUd.T.Desc.Asm.isClosed_Bz Z).inter (isClosed_eq (Polynomial.continuous_aeval χ) continuous_const)
   have hft : ∀ t : Fin D.m, Continuous fun x : Matrix (Fin N) (Fin N) k =>
       ∑ j : Fin D.r, D.κ t j • pe (D.a j) x :=
     fun t => continuous_finsetSum _
@@ -158,7 +144,7 @@ theorem pieceTop : PieceTop k := by
       calc a * (g.val * x * (g⁻¹).val) = g.val * (a * x) * (g⁻¹).val := by simp only [← mul_assoc, hga]
         _ = g.val * (x * a) * (g⁻¹).val := by rw [hxB a ha]
         _ = g.val * x * (g⁻¹).val * a := by simp only [mul_assoc, hgi]
-    · rw [aeval_conj, hxa, mul_zero, zero_mul]
+    · rw [_root_.PositivityTheory.RgUd.T.Desc.Asm.aeval_conj, hxa, mul_zero, zero_mul]
     · rw [← hxt]
       funext t
       simp only [typ]

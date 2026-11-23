@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsRigidifiedTwist
 
 @[expose] public section
 
@@ -60,7 +61,7 @@ theorem pull_local_eq_zero {R : Type} [CommRing R] [IsLocalRing R] {X : Scheme.{
   obtain ⟨L, hL, rfl⟩ := cls_surj c
   have hc : f.base (IsLocalRing.closedPoint R) ∈ (⨆ i, L.U i : X.Opens) := by rw [hL.cover]; trivial
   obtain ⟨i, hi⟩ := TopologicalSpace.Opens.mem_iSup.1 hc
-  exact GlobalTheory.KTrivOfLam.pull_eq_zero_of_chart hL f i fun y =>
+  exact _root_.GlobalTheory.RigidifyTwist.pull_cls_eq_zero hL f i fun y =>
     ((IsLocalRing.specializes_closedPoint y).map f.continuous).mem_open (L.U i).isOpen hi
 
 theorem cls_lam_div {S : Scheme.{0}} {G : Over S} [GrpObj G] {L M : LB G.left} (hL : L.IsLB) (hM : M.IsLB)

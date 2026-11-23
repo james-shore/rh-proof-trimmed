@@ -62,7 +62,7 @@ private theorem cartIso {φ : A.left ⟶ B.left} (h : IsGrpPullback A B (𝟙 X)
   have hw : φ ≫ B.hom = A.hom := by simpa using h.1.w
   have he : (Over.isoMk (asIso φ) hw).hom.left = φ := rfl
   refine ⟨Over.isoMk (asIso φ) hw, rfl, ?_⟩
-  apply GlobalTheory.GrpPullPow.isMonHom_of_mul_pts
+  apply _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.isMonHom_of_mul
   intro T x y
   apply Over.OverMorphism.ext
   let j : Over.mk (T.hom ≫ 𝟙 X) ⟶ T := Over.homMk (𝟙 T.left) (by simp)

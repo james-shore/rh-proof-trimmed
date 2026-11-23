@@ -70,7 +70,7 @@ theorem liftAll_deg_reg : ∀ (q l : ℕ) (L : List (ℕ × ℕ)), 2 ≤ q → l
     have hdegcons : deg (p :: L) = p.1 + deg L := by simp [deg]
     rw [hcons, hdegapp, hdegcons]
     by_cases h : l ∣ p.1
-    · obtain ⟨h1, h2⟩ := GlobalTheory.T.deg_liftL_and_reg_pow q l [p] hq hl.pos (by
+    · obtain ⟨h1, h2⟩ := _root_.GlobalTheory.Shin.liftL_deg_reg q l [p] hq hl.pos (by
         intro x hx; rw [List.mem_singleton] at hx; subst hx; exact ⟨hp.1, h, hp.2⟩)
       rw [if_pos h]
       have hs : deg [p] = p.1 := by simp [deg]
@@ -80,7 +80,7 @@ theorem liftAll_deg_reg : ∀ (q l : ℕ) (L : List (ℕ × ℕ)), 2 ≤ q → l
       · exact h2 x hx
       · exact ih'.2 x hx
     · rw [if_neg h]
-      have hr := (GlobalTheory.T.regular_pair_lift_to_prime_power_field q l p.1 p.2 hq hl hp.1 h hp.2).1
+      have hr := (_root_.GlobalTheory.Shin.reg_norm_frob q l p.1 p.2 hq hl hp.1 h hp.2).1
       have hs : deg [(p.1, p.2 * ∑ i ∈ Finset.range l, q ^ (p.1 * i))] = p.1 := by simp [deg]
       refine ⟨by rw [hs, ih'.1], ?_⟩
       intro x hx

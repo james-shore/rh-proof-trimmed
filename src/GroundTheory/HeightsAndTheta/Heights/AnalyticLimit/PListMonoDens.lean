@@ -92,7 +92,7 @@ theorem ListMonoDens.proof : ListMonoDens.Statement := by
 
   have hsum : ∀ i, hessC (fun y' => o y' + v i y') y =
       hessC (fun y' => f i y' + v i y') y + hessC (fun y' => o y' + (-1) * f i y') y := fun i => by
-    rw [← ReciprocityTheory.AnForm.A.hessC_add _ _ y ((hfC i).add (hvC i))
+    rw [← _root_.ReciprocityTheory.AnForm.A.TraceConjugationCover.complexHessian_add_of_contDiffAt _ _ y ((hfC i).add (hvC i))
       (hgC i)]
     congr 1
     funext y'

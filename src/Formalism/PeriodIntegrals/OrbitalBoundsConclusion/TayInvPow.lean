@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem coeffInversePowerFacts.{u, v} : PI.TayInvPow.{u, v} := PI.UnitaryGroupMassFormula.TayInvPow.main

@@ -62,15 +62,6 @@ theorem pInfPi_eq (x : Fin m → Ad E) :
     (fun i => pInf E (x i)) = (toMixedPi E m).symm (infPartPi x) := by
   rw [← toMixedPi_pInf, ContinuousLinearEquiv.symm_apply_apply]
 
-theorem one_add_pow_le {t : ℝ} (ht : 0 ≤ t) (k : ℕ) : (1 + t) ^ k ≤ 2 ^ k * (1 + t ^ k) := by
-  first
-  | exact @_root_.GlobalTheory.OneAddPowBound.one_add_pow_le
-  | exact _root_.GlobalTheory.OneAddPowBound.one_add_pow_le
-  | (apply _root_.GlobalTheory.OneAddPowBound.one_add_pow_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OneAddPowBound.one_add_pow_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OneAddPowBound.one_add_pow_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.OneAddPowBound.one_add_pow_le ..)
-
 theorem integrable_arch (φ : SchwartzMap (Fin m → mixedEmbedding.mixedSpace E) ℂ) (k : ℕ) :
     Integrable (fun u => ‖φ u‖ * (1 + ‖(toMixedPi E m).symm u‖) ^ k) (mixedMeasurePi E) := by
   set S := (toMixedPi E m).symm
@@ -88,7 +79,7 @@ theorem integrable_arch (φ : SchwartzMap (Fin m → mixedEmbedding.mixedSpace E
       calc (1 + ‖S u‖) ^ k ≤ ((1 + C) * (1 + ‖u‖)) ^ k := pow_le_pow_left₀ (by positivity) h2 k
         _ = (1 + C) ^ k * (1 + ‖u‖) ^ k := mul_pow _ _ _
         _ ≤ (1 + C) ^ k * (2 ^ k * (1 + ‖u‖ ^ k)) :=
-          mul_le_mul_of_nonneg_left (one_add_pow_le (norm_nonneg u) k) (by positivity)
+          mul_le_mul_of_nonneg_left (_root_.GlobalTheory.OneAddPowBound.one_add_pow_le (norm_nonneg u) k) (by positivity)
     rw [Real.norm_of_nonneg (by positivity)]
     calc ‖φ u‖ * (1 + ‖S u‖) ^ k ≤ ‖φ u‖ * ((1 + C) ^ k * (2 ^ k * (1 + ‖u‖ ^ k))) :=
           mul_le_mul_of_nonneg_left h3 (norm_nonneg _)

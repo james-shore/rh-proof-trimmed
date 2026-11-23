@@ -218,9 +218,6 @@ def kdMkU {N : ℕ} (A : Matrix (Fin N) (Fin N) ℂ) (h : A * Aᴴ = 1) : UNgrp 
 
 lemma kd_toM_inj {ε : Fin n → Bool} {g h : UJ ε} (e : toM g = toM h) : g = h := Subtype.ext (Units.ext e)
 
-lemma kd_KG_ext {ε : Fin n → Bool} {g h : KG ε} (e : toMK g = toMK h) : g = h :=
-  Subtype.ext (kd_toM_inj e)
-
 def kdMkK (ε : Fin n → Bool) {g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ Kset ε) : KG ε :=
   ⟨⟨⟨g, star g, Unitary.mul_star_self_of_mem hg.1, Unitary.star_mul_self_of_mem hg.1⟩, by
       show gᴴ * Jm ε * g = Jm ε
@@ -248,11 +245,11 @@ lemma kdPsi_mem (ε : Fin n → Bool) (x : UNgrp (pOf ε) × UNgrp (qOf ε)) :
 def kdPsi (ε : Fin n → Bool) : UNgrp (pOf ε) × UNgrp (qOf ε) →* KG ε where
   toFun x := kdMkK ε (kdPsi_mem ε x)
   map_one' := by
-    apply kd_KG_ext
+    apply _root_.ReciprocityTheory.ChartRestriction.DS.HW.onep_KG_ext
     show kdD ε (kdPair ε 1 1) = 1
     rw [kdPair_one, map_one]
   map_mul' x y := by
-    apply kd_KG_ext
+    apply _root_.ReciprocityTheory.ChartRestriction.DS.HW.onep_KG_ext
     show kdD ε (kdPair ε (toM x.1 * toM y.1) (toM x.2 * toM y.2)) =
       kdD ε (kdPair ε (toM x.1) (toM x.2)) * kdD ε (kdPair ε (toM y.1) (toM y.2))
     rw [kdPair_mul, map_mul]
@@ -290,7 +287,7 @@ lemma kdPsi_surjective (ε : Fin n → Bool) : Function.Surjective (kdPsi ε) :=
     apply kdD_injective ε
     rw [map_mul, ← kdD_conjTranspose, ← hX, hu, map_one]
   refine ⟨(kdMkU (kdR ε X true) (congrFun hv true), kdMkU (kdR ε X false) (congrFun hv false)), ?_⟩
-  apply kd_KG_ext
+  apply _root_.ReciprocityTheory.ChartRestriction.DS.HW.onep_KG_ext
   rw [toMK_kdPsi]
   conv_rhs => rw [← hXdef, hX]
   congr 1

@@ -55,7 +55,7 @@ theorem heckeChar_eq_one_of_split : ∀ (F E : Type) [Field F] [NumberField F] [
       (∀ e, IsSplitIdemF σ e → ∀ x : (AF F ⊗[F] E)ˣ, (e + cAF σ e) * ((x : AF F ⊗[F] E) - 1) = (x : AF F ⊗[F] E) - 1 →
         ν x = 1) → ∀ x, ν x = 1 := by
   intro F E _ _ _ _ _ σ B hB ν hν hs
-  exact GlobalTheory.T.heckeChar_eq_one_of_trivial_splitPlaces_CM F E σ hB.cm ν hν hs
+  exact _root_.GlobalTheory.HeckeSplitGen.heckeChar_eq_one_of_split F E σ hB.cm ν hν hs
 
 end GlobalTheory.HeckeSplitBase
 

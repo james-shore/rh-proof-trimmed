@@ -139,6 +139,6 @@ theorem integral_dbar_fn_mul_eq_zero : ∀ {M : Type} [TopologicalSpace M] [Comp
       rfl
     · rw [HolAtlas.loc, dite_eq_right ht, dbarAt_eq_zero_of_eventually (hF0 v fun h => ht (hBt h))]
   rw [hloc]
-  exact GlobalTheory.T.integral_re_topDegreeDensity_dbar_eq_zero F hFC hFs
+  exact _root_.GlobalTheory.CxForm.integral_re_dens_dbarAt_eq_zero F hFC hFs
 
 end GlobalTheory.CxForm.DbarLocStokes

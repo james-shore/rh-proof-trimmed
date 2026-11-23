@@ -81,18 +81,6 @@ theorem eq_of_forall_geom {R : Type} [CommRing R] [_root_.IsReduced R] (a b : R)
     Ideal.algebraMap_residueField_eq_zero] at this
   exact this
 
-theorem exists_factor_pi {J : Type} [Fintype J] [DecidableEq J] (A : J → Type)
-    [∀ i, CommRing (A i)] {k : Type} [CommRing k] [IsDomain k] (χ : (∀ i, A i) →+* k) :
-    ∃ (i : J) (ψ : A i →+* k), ∀ x, χ x = ψ (x i) := by
-  first
-  | exact @_root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection
-  | exact _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection
-  | (apply _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection ..)
-
-
 open scoped TensorProduct in
 theorem exists_lift_geom (R S : Type) [CommRing R] [CommRing S] [Algebra R S]
     [Algebra.FiniteType R S] [Module.FaithfullyFlat R S] (k : Type) [Field k] [IsAlgClosed k]
@@ -164,7 +152,7 @@ theorem exists_of_finite_cover (K B : Type) [CommRing K] [CommRing B] [Algebra K
       (∀ x : K, χ' (algebraMap B (∀ i, A i) (algebraMap K B x)) = algebraMap K Ω x) →
       ∃ ρ : B →ₐ[K] Ω, (∀ y, ρ y = χ' (algebraMap B (∀ i, A i) y)) ∧ χ' a = F Ω ρ := by
     intro Ω _ _ _ χ' hK
-    obtain ⟨i, ψ, hψ⟩ := exists_factor_pi A χ'
+    obtain ⟨i, ψ, hψ⟩ := _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection A χ'
     have hB : ∀ y, ψ (algebraMap B (A i) y) = χ' (algebraMap B (∀ i, A i) y) := fun y => by
       rw [hψ]; rfl
     have hc : ∀ x : K, ψ (algebraMap K (A i) x) = algebraMap K Ω x := fun x => by

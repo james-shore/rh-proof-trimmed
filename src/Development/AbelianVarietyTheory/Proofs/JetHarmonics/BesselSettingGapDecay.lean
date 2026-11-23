@@ -60,7 +60,7 @@ theorem bessel_integral_eq_smul : Hyps → ∀ (k r : ℕ) (ε : Fin (2 * r + k 
     intro γ hγ
     obtain ⟨A, hA1, hA2⟩ := GlobalTheory.T.bessel_orbital_integral_factors_through_left_functional hH k r ε mu h R Wp Wq D l l' hDS hgap hok hl hl' γ hγ
     obtain ⟨Bb, hB1, hB2⟩ := GlobalTheory.T.bessel_orbital_integral_factors_through_right_functional hH k r ε mu h R Wp Wq D l l' hDS hgap hok hl hl' γ hγ
-    obtain ⟨O, hO⟩ := GlobalTheory.T.factorisation_of_conjHomogeneous_and_homogeneous R.TK Wp Wq (fun x => l x) (fun y => l' y)
+    obtain ⟨O, hO⟩ := _root_.GlobalTheory.factorisation_of_two_partial_integrations R.TK Wp Wq (fun x => l x) (fun y => l' y)
       (fun x y X => B.JF D (fun g => ⟪(x : R.H), R.σ g y⟫_ℂ • X) γ)
       (fun y => A y) (fun x => Bb x) (fun y => hA1 y) (fun x => hB1 x)
       (fun x y X c => hA2 x x.2 y y.2 X c) (fun x y X c => hB2 x x.2 y y.2 X c)
@@ -69,12 +69,12 @@ theorem bessel_integral_eq_smul : Hyps → ∀ (k r : ℕ) (ε : Fin (2 * r + k 
   have hint : ∀ F s, IsCoef R l l' F s → ∀ γ ∈ JF.Om k r D.z D.z',
       Integrable (JF.integrand D F γ) D.μSS := by
     intro F s hF γ hγ
-    exact (Formalism.FourierDecayAlt.P.bessel_integral_converges k r Wp Wq D _ F (GlobalTheory.T.decayThresholds_of_spectralGapCondition k r h hok).1
+    exact (Formalism.FourierDecayAlt.P.bessel_integral_converges k r Wp Wq D _ F (_root_.GlobalTheory.thresholds_of_gapOK k r h hok).1
       ((GlobalTheory.T.smooth_and_inCC_of_isCoef_of_gap hH k r ε mu h R Wp Wq l l' F s hDS hgap hok hF).2 0)).1 γ hγ
   refine ⟨OO, fun F s hF γ hγ => ⟨hint F s hF γ hγ, ?_⟩⟩
   obtain ⟨m, x, y, X, hxy, hFe, hs⟩ := hF
   have hγG : γ ∈ GG k r := hγ.1
-  obtain ⟨hloc, -, hsum, -⟩ := GlobalTheory.T.besselFunction_locality_invariantFactor_finiteSum k r Wp Wq D γ hγG
+  obtain ⟨hloc, -, hsum, -⟩ := _root_.GlobalTheory.BesselFunctionBasic.JF_basic k r Wp Wq D γ hγG
   rw [(hloc F (fun g => ∑ i, ⟪x i, R.σ g (y i)⟫_ℂ • X i) hFe).1,
     hsum (Fin m) (fun i g => ⟪x i, R.σ g (y i)⟫_ℂ • X i) ?_, hs, Finset.sum_smul]
   · exact Finset.sum_congr rfl fun i _ => hOO γ hγ _ (hxy i).1 _ (hxy i).2 _

@@ -307,14 +307,6 @@ theorem exists_prime_mem {R : Type} [CommRing R] {P : Ideal R} (hP : P.IsPrime) 
     rw [Nat.cast_mul] at h
     exact (hP.mem_or_mem h).elim (fun h => ⟨p, hp, h⟩) (ih (right_ne_zero_of_mul h0))
 
-theorem cA_cA' (a : AE D) : cA D (cA D a) = a := by
-  induction a using TensorProduct.induction_on with
-  | zero => rw [RingHom.map_zero, RingHom.map_zero]
-  | tmul x e =>
-    show TensorProduct.tmul D.host.F x (star (star e)) = _
-    rw [star_star]
-  | add a b ha hb => rw [RingHom.map_add (f := _), RingHom.map_add (f := _), ha, hb]
-
 theorem zeroAt_half {ε : AE D} (hε : GlobalTheory.RatAut.IsHalfIdem D ε) {q : ℕ} (hq : q.Prime) (hi : Formalism.MainNotions.StandardLatticesGL3.InertQ D q)
     (b : AE D) : Formalism.MainNotions.StandardLatticesGL3.ZeroAt D q (finQ D (ε * b)) :=
   (GlobalTheory.T.finitePartRationalTensor_zeroAtPrime_iff_placeIdem D q hq _).2 fun v η hv hqv => by
@@ -339,12 +331,12 @@ theorem half_supp {ε : AE D} (hε : GlobalTheory.RatAut.IsHalfIdem D ε) {a : A
       · have h3 := congrArg (cA D) h1
         have h4 := congrArg (cA D) h2
         rw [RingHom.map_mul] at h3
-        rw [RingHom.map_mul, cA_cA', RingHom.map_zero] at h4
+        rw [RingHom.map_mul, _root_.Formalism.L2.Theta.cA_cA, RingHom.map_zero] at h4
         linear_combination a * (h1 + h2 + h3 + h4)
       · have h3 := congrArg (cA D) h1
         have h4 := congrArg (cA D) h2
         rw [RingHom.map_mul, RingHom.map_zero] at h3
-        rw [RingHom.map_mul, cA_cA'] at h4
+        rw [RingHom.map_mul, _root_.Formalism.L2.Theta.cA_cA] at h4
         linear_combination a * (h1 + h2 + h3 + h4)
   have h1 := congrArg (fun z => Φ z Q) key
   simp only [GlobalTheory.IdemSupport.ev_mul (Φ := Φ) (algebraMap (AF D.host.F) (AE D) η),
@@ -427,7 +419,7 @@ theorem reads_om_split : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (θ : Inf
   Reads ψ θ hS hT cc δ r (W.Om x y e0) (om (g, h) f₀) := by
   intro D ψ θ S T a d hS hT cc δ r hset e0 W χS χT om hom _ t0 _ _ hodd cS cT f₀ hf x y g h hg hh sx sy
   subst hS hT
-  obtain ⟨w, hw, hph⟩ := GlobalTheory.T.finitePartQuadraticPhase_eq_cmTheta_exp D
+  obtain ⟨w, hw, hph⟩ := _root_.GlobalTheory.SplitPhase.phase_eq D
   obtain ⟨lam, hlam, hsq⟩ := exists_goodNorm D
   obtain ⟨ε, hε⟩ := GlobalTheory.RatAut.exists_isHalfIdem D
   have dS := isSelfDualC_of_sd S hset.gS (GlobalTheory.T.invDifferentLatticeProductHermitian_isSelfDual D cc r S.rank hset.crv.1.1 hset.scale)

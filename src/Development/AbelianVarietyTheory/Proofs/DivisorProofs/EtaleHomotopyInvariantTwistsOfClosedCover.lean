@@ -51,27 +51,18 @@ open scoped TensorProduct
 
 namespace GlobalTheory.EtC.ClosedCover
 
-theorem spMap_comp {A B D : Type} [CommRing A] [CommRing B] [CommRing D] (f : A →+* B) (g : B →+* D) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp, Functor.map_comp]
-
-theorem spMap_id (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 _ := by
-  simp only [spMap]
-  rw [show CommRingCat.ofHom (RingHom.id A) = 𝟙 (CommRingCat.of A) from rfl, Spec.map_id]
-  exact sch.map_id _
-
 theorem pull_spMap_bij {q : ℕ} {A B : Type} [CommRing A] [CommRing B] (e : A ≃+* B) (n i : ℤ) :
     Function.Bijective (pull (ZMod q) (spMap (e : A →+* B)) (tw q i) n) := by
   have h1 : ∀ x, pull (ZMod q) (spMap (e.symm : B →+* A)) (tw q i) n (pull (ZMod q) (spMap (e : A →+* B)) (tw q i) n x) = x := by
     intro x
-    rw [← pull_comp, ← spMap_comp]
+    rw [← pull_comp, ← _root_.GlobalTheory.EtC.HInvIso.spMap_comp']
     have : (e.symm : B →+* A).comp (e : A →+* B) = RingHom.id A := by ext; simp
-    rw [this, spMap_id, pull_id]
+    rw [this, _root_.GlobalTheory.EtC.HInvIso.spMap_id', pull_id]
   have h2 : ∀ x, pull (ZMod q) (spMap (e : A →+* B)) (tw q i) n (pull (ZMod q) (spMap (e.symm : B →+* A)) (tw q i) n x) = x := by
     intro x
-    rw [← pull_comp, ← spMap_comp]
+    rw [← pull_comp, ← _root_.GlobalTheory.EtC.HInvIso.spMap_comp']
     have : (e : A →+* B).comp (e.symm : B →+* A) = RingHom.id B := by ext; simp
-    rw [this, spMap_id, pull_id]
+    rw [this, _root_.GlobalTheory.EtC.HInvIso.spMap_id', pull_id]
   exact ⟨Function.LeftInverse.injective h1, Function.RightInverse.surjective h2⟩
 
 theorem polyProd_bij (A B : Type) [CommRing A] [CommRing B] :
@@ -100,8 +91,8 @@ theorem prodL : ∀ (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRing B],
     ext x <;> simp [e, g]
 
   have hgb : Function.Bijective (pull (ZMod q) (spMap g) (tw q i) n) := by
-    have hP := GlobalTheory.T.etaleCohomology_prod_ring_projections_bijective q A B n i
-    have hD := GlobalTheory.T.etaleCohomology_prod_ring_projections_bijective q (Polynomial A) (Polynomial B) n i
+    have hP := _root_.GlobalTheory.EtC.ProdCoh.ht_prod_bijective q A B n i
+    have hD := _root_.GlobalTheory.EtC.ProdCoh.ht_prod_bijective q (Polynomial A) (Polynomial B) n i
     have hsq : ∀ x : Ht q (sp (A × B)) n i,
         (pull _ (spMap (RingHom.fst (Polynomial A) (Polynomial B))) _ _ (pull _ (spMap g) _ n x),
           pull _ (spMap (RingHom.snd (Polynomial A) (Polynomial B))) _ _ (pull _ (spMap g) _ n x)) =
@@ -110,7 +101,7 @@ theorem prodL : ∀ (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRing B],
           (pull _ (spMap (RingHom.fst A B)) _ _ x, pull _ (spMap (RingHom.snd A B)) _ _ x) := by
       intro x
       simp only [Prod.map]
-      rw [← pull_comp, ← pull_comp, ← pull_comp, ← pull_comp, ← spMap_comp, ← spMap_comp, ← spMap_comp, ← spMap_comp]
+      rw [← pull_comp, ← pull_comp, ← pull_comp, ← pull_comp, ← _root_.GlobalTheory.EtC.HInvIso.spMap_comp', ← _root_.GlobalTheory.EtC.HInvIso.spMap_comp', ← _root_.GlobalTheory.EtC.HInvIso.spMap_comp', ← _root_.GlobalTheory.EtC.HInvIso.spMap_comp']
       rfl
     have hcomp : (fun x : Ht q (sp (Polynomial A × Polynomial B)) n i =>
           (pull _ (spMap (RingHom.fst (Polynomial A) (Polynomial B))) _ _ x,
@@ -129,7 +120,7 @@ theorem prodL : ∀ (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRing B],
   have heq : ⇑(pull (ZMod q) (spMap g) (tw q i) n) =
       ⇑(pull (ZMod q) (spMap e.toRingHom) (tw q i) n) ∘ ⇑(pull (ZMod q) (spMap (Polynomial.C : A × B →+* Polynomial (A × B))) (tw q i) n) := by
     funext x
-    rw [Function.comp_apply, ← pull_comp, ← spMap_comp, hg]
+    rw [Function.comp_apply, ← pull_comp, ← _root_.GlobalTheory.EtC.HInvIso.spMap_comp', hg]
   rw [heq] at hgb
   exact (Function.Bijective.of_comp_iff' (pull_spMap_bij e n i) _).mp hgb
 
@@ -271,7 +262,7 @@ theorem tensorPow (q : ℕ) [NeZero q] (I J : Ideal A)
 theorem closedCover : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A] (I J : Ideal A), I ⊓ J ≤ nilradical A →
     IsUnit (q : A) → HInv q (A ⧸ I) → HInv q (A ⧸ J) → HInv q (A ⧸ (I ⊔ J)) → HInv q A := by
   intro q _ A _ I J hn hq hI hJ hIJ
-  refine GlobalTheory.T.etaleHomotopyInvariance_cechDescent_integral q A ((A ⧸ I) × (A ⧸ J)) inferInstance ?_ hq (fun k => (tensorPow q I J hI hJ hIJ k).2)
+  refine _root_.GlobalTheory.EtC.CechDescHInv.hInv_of_integral q A ((A ⧸ I) × (A ⧸ J)) inferInstance ?_ hq (fun k => (tensorPow q I J hI hJ hIJ k).2)
   intro x hx
   apply hn
   rw [RingHom.mem_ker] at hx

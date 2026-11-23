@@ -43,6 +43,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.MemWeightSpaceIffDiagonalEigen
 
 @[expose] public section
 
@@ -68,20 +69,11 @@ theorem pp_cons (E : GLOps n K V) (mu : Fin n → ℤ) (ab : Fin n × Fin n) (l 
 
 end
 
-private theorem mem_weightSp_iff_forall_diag {n : ℕ} {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-    (E : GLOps n K V) (ν : Fin n → ℤ) (y : V) :
-    y ∈ weightSp E ν ↔ ∀ c, E c c y = (ν c : K) • y := by
-  simp only [weightSp, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply,
-    LinearMap.smul_apply, sub_eq_zero]
-  first
-  | simp only [Module.End.one_apply]
-  | simp only [LinearMap.one_apply]
-
 private theorem glRep_apply_mem_weightSp_shift {n : ℕ} {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
     (E : GLOps n K V) (hE : IsGLRep E) (a b : Fin n) (ν : Fin n → ℤ) (y : V)
     (hy : y ∈ weightSp E ν) :
     E a b y ∈ weightSp E (fun c => ν c + ((if c = a then 1 else 0) - (if c = b then 1 else 0))) := by
-  rw [mem_weightSp_iff_forall_diag] at hy ⊢
+  rw [_root_.Formalism.MainNotions.G.GLWeightTheory.mem_weightSpace_iff_diagonal_eigen] at hy ⊢
   intro c
   have h := congrArg (fun f : Module.End K V => f y) (hE.1 c c a b)
   simp only [LinearMap.sub_apply, Module.End.mul_apply, hy c, map_smul] at h

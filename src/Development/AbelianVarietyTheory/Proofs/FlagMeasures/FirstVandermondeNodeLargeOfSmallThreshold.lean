@@ -70,9 +70,6 @@ lemma b_le (c : Sz.Cfg) (hc : c.Ok) : ∀ i j, 1 ≤ i → i ≤ j → j ≤ c.m
     have := hc.hgap j (by omega) (by omega)
     linarith [ih (by omega)]
 
-lemma one_le_b (c : Sz.Cfg) (hc : c.Ok) (j : ℕ) (h1 : 1 ≤ j) (h2 : j ≤ c.m) : 1 ≤ c.b j :=
-  le_trans hc.hb1 (b_le c hc 1 j le_rfl h1 h2)
-
 lemma v_bounds (c : Sz.Cfg) (hc : c.Ok) (i : ℕ) (h1 : 1 ≤ i) (h2 : i + 1 ≤ c.k) :
     0 ≤ c.v i ∧ c.v i ≤ c.v 1 := by
   have hi : (i : ℝ) + 1 ≤ c.k := by exact_mod_cast h2
@@ -197,7 +194,7 @@ lemma vand_lam_le_cfg (c : Sz.Cfg) (hc : c.Ok) (hs : c.vth ≤ 1 / 10) (hmk : c.
     have h3 : 2 * ((c.k : ℝ) * c.Del) ≤ c.m * (c.k * c.Del) := mul_le_mul_of_nonneg_right hmR hkD
     linarith
   obtain ⟨hV, hRel, hRlo, -, hVk⟩ := Formalism.FourierDecayAlt.P.vandermondeTop c de hc hw
-  obtain ⟨hLam, -⟩ := Formalism.FourierDecayAlt.P.vandermonde_lambda_lower_bound c hc
+  obtain ⟨hLam, -⟩ := _root_.Formalism.FourierDecayAlt.P.Sz5.vandLamLower c hc
   have hR : 0 < Sz.Rde (c.k - 2) de := lt_of_lt_of_le (Real.exp_pos _) hRlo
   have hU0 : 0 ≤ Sz.Vand (c.k - 2) (fun i => c.u de (i + 1)) := by
     rw [hRel]; exact (mul_pos hR hV).le
@@ -237,7 +234,7 @@ lemma vand_lam_le_cfg (c : Sz.Cfg) (hc : c.Ok) (hs : c.vth ≤ 1 / 10) (hmk : c.
     intro i hi j hj
     rw [mem_Icc] at hi hj
     have h1 := v_bounds c hc i hi.1 (by omega)
-    have h2 := one_le_b c hc j hj.1 hj.2
+    have h2 := _root_.Formalism.FourierDecayAlt.P.Sz5.b_ge_one c hc j hj.1 hj.2
     have h3 := hbj j hj.1 hj.2
     have h5 := hc.hv1
     constructor <;> linarith [h1.1, h1.2]
@@ -254,7 +251,7 @@ lemma vand_lam_le_cfg (c : Sz.Cfg) (hc : c.Ok) (hs : c.vth ≤ 1 / 10) (hmk : c.
     rw [mem_Icc] at hi
     rw [mem_Ioc] at hj
     have h1 := b_le c hc i j hi.1 hj.1.le hj.2
-    have h2 := one_le_b c hc i hi.1 hi.2
+    have h2 := _root_.Formalism.FourierDecayAlt.P.Sz5.b_ge_one c hc i hi.1 hi.2
     have h3 := hbj j (by omega) hj.2
     constructor <;> linarith
   have A40 : ∀ i ∈ Icc 1 c.m, 0 ≤ ∏ j ∈ Ioc i c.m, (-c.b i - -c.b j) :=

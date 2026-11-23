@@ -1003,9 +1003,7 @@ theorem gmap_inv {a : S.V ≃ₗ[E] S.V} {L L' : Submodule (𝓞 E) S.V} (h : Fo
     Formalism.HermitianLatticesTheory.gmap a⁻¹ L = L' := by
   rw [← h, ← gmap_mul, inv_mul_cancel, gmap_one]
 
-theorem xflag_zero : Xflag F 0 = ⊥ := by
-  show Submodule.span E (F.fl.e '' {i | i.1 < 0}) = ⊥
-  simp
+alias xflag_zero := _root_.Formalism.L2.SG.FourParts.Xflag_zero
 
 theorem xflag_mono (j : ℕ) : Xflag F j ≤ Xflag F (j + 1) :=
   Submodule.span_mono (Set.image_mono fun i (hi : i.1 < j) => Nat.lt_succ_of_lt hi)

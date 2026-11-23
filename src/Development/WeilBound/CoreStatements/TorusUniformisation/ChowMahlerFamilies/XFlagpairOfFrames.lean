@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.FlagMinor
+import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XVertdivCommensurable
 
 @[expose] public section
 
@@ -116,27 +117,6 @@ theorem pow_smul_mem {O : Type*} [CommRing O] [IsDomain O] [IsDiscreteValuationR
 
 end PositivityTheory.Xgn.A_flagpair_of_frames
 
-private theorem isMultiHomog_prod_X_pow' {O : Type} [CommRing O] {K : Type} [Fintype K] [DecidableEq K]
-    {ι : K → Type} (c : (k : K) → ι k) (e : K → ℕ) :
-    IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing ι O) ^ e k) e := by
-  have hXpow : ∀ (q : (k : K) × ι k) (n : ℕ),
-      IsMultiHomog ((X q : MRing ι O) ^ n) (n • blockWeight ι q) := by
-    intro q n
-    induction n with
-    | zero =>
-      rw [pow_zero, zero_smul]
-      exact isWeightedHomogeneous_one O (blockWeight ι)
-    | succ n ih =>
-      rw [pow_succ, succ_nsmul]
-      exact IsWeightedHomogeneous.mul ih (isWeightedHomogeneous_X O (blockWeight ι) q)
-  have h := IsWeightedHomogeneous.prod Finset.univ (fun k => (X ⟨k, c k⟩ : MRing ι O) ^ e k)
-    (fun k => e k • blockWeight ι ⟨k, c k⟩) (fun k _ => hXpow _ _)
-  have hsum : (∑ k, e k • blockWeight ι ⟨k, c k⟩) = e := by
-    funext k'
-    simp [Finset.sum_apply, blockWeight, Pi.single_apply, Pi.smul_apply]
-  rw [hsum] at h
-  exact h
-
 private theorem exists_multiHomog_aeval_eq_mul_mseg_pow {O : Type} [CommRing O] {Ω : Type} [Field Ω] [Algebra O Ω]
     {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} (x : (k : K) × ι k → Ω)
     (c : (k : K) → ι k) (hc : mseg x c ≠ 0) (a : Ω) (ha : a ∈ chartRing O (mseg x) c) :
@@ -151,7 +131,7 @@ private theorem exists_multiHomog_aeval_eq_mul_mseg_pow {O : Type} [CommRing O] 
   induction ha using Algebra.adjoin_induction with
   | mem u hu =>
     obtain ⟨s, rfl⟩ := hu
-    refine ⟨1, ∏ k, (X ⟨k, s k⟩ : MRing ι O) ^ (fun _ : K => 1) k, isMultiHomog_prod_X_pow' (O := O) s _, ?_⟩
+    refine ⟨1, ∏ k, (X ⟨k, s k⟩ : MRing ι O) ^ (fun _ : K => 1) k, _root_.PositivityTheory.Xgn.A_vertdiv_commensurable.mono_homog (O := O) s _, ?_⟩
     rw [pow_one, div_mul_cancel₀ _ hc]
     simp [mseg, map_prod]
   | algebraMap r =>
@@ -163,8 +143,8 @@ private theorem exists_multiHomog_aeval_eq_mul_mseg_pow {O : Type} [CommRing O] 
     refine ⟨p1 + p2, h1 * (∏ k, (X ⟨k, c k⟩ : MRing ι O) ^ (fun _ : K => p2) k) +
       h2 * (∏ k, (X ⟨k, c k⟩ : MRing ι O) ^ (fun _ : K => p1) k), ?_, ?_⟩
     · refine IsWeightedHomogeneous.add
-        (hdeg (IsWeightedHomogeneous.mul hh1 (isMultiHomog_prod_X_pow' (O := O) c _)) ?_)
-        (hdeg (IsWeightedHomogeneous.mul hh2 (isMultiHomog_prod_X_pow' (O := O) c _)) ?_)
+        (hdeg (IsWeightedHomogeneous.mul hh1 (_root_.PositivityTheory.Xgn.A_vertdiv_commensurable.mono_homog (O := O) c _)) ?_)
+        (hdeg (IsWeightedHomogeneous.mul hh2 (_root_.PositivityTheory.Xgn.A_vertdiv_commensurable.mono_homog (O := O) c _)) ?_)
       · funext k
         simp
       · funext k
@@ -258,10 +238,10 @@ theorem PositivityTheory.Xgn.t_flagpair_of_frames : ∀ (O : Type) [CommRing O] 
     refine ⟨h * ∏ k, (X ⟨k, c k⟩ : MRing ι O) ^ (b i k - b' i k).toNat,
       C (ϖ ^ n) * ∏ k, (X ⟨k, c k⟩ : MRing ι O) ^ (p + (-(b i k - b' i k)).toNat),
       fun k => p + (b i k - b' i k).toNat, fun k => p + (-(b i k - b' i k)).toNat, ?_, ?_, ?_, ?_, ?_⟩
-    · exact hdeg (IsWeightedHomogeneous.mul hh (isMultiHomog_prod_X_pow' (O := O) c (fun k => (b i k - b' i k).toNat)))
+    · exact hdeg (IsWeightedHomogeneous.mul hh (_root_.PositivityTheory.Xgn.A_vertdiv_commensurable.mono_homog (O := O) c (fun k => (b i k - b' i k).toNat)))
         (by funext k; simp)
     · exact hdeg (IsWeightedHomogeneous.mul (isWeightedHomogeneous_C _ _)
-        (isMultiHomog_prod_X_pow' (O := O) c (fun k => p + (-(b i k - b' i k)).toNat))) (by funext k; simp)
+        (_root_.PositivityTheory.Xgn.A_vertdiv_commensurable.mono_homog (O := O) c (fun k => p + (-(b i k - b' i k)).toNat))) (by funext k; simp)
     · funext k
       simp only [Pi.sub_apply]
       push_cast
@@ -294,7 +274,7 @@ theorem PositivityTheory.Xgn.t_flagpair_of_frames : ∀ (O : Type) [CommRing O] 
           · refine IsWeightedHomogeneous.sub
               (hdeg (IsWeightedHomogeneous.mul hh hh') (by funext k; simp))
               (hdeg (IsWeightedHomogeneous.mul (isWeightedHomogeneous_C _ _)
-                (isMultiHomog_prod_X_pow' (O := O) c (fun _ : K => p + p'))) (by funext k; simp))
+                (_root_.PositivityTheory.Xgn.A_vertdiv_commensurable.mono_homog (O := O) c (fun _ : K => p + p'))) (by funext k; simp))
           · rw [map_sub, map_mul, map_mul, hhev, hh'ev, aeval_C, map_pow]
             simp only [map_prod, map_pow, aeval_X]
             rw [show (∏ k, x ⟨k, c k⟩ ^ (p + p')) = mseg x c ^ (p + p') by rw [Finset.prod_pow]; rfl]

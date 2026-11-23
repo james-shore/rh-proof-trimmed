@@ -95,7 +95,7 @@ theorem unit_mul_monomial_of_forall_height_one (R K : Type) [CommRing R] [IsDoma
     intro Q hQ hQJ e hmem
     obtain ⟨j, hj, hjm⟩ := Ideal.IsPrime.prod_mem_iff.mp hmem
     exact hQJ j hj (hQ.mem_of_pow_mem _ hjm)
-  obtain ⟨u, hu⟩ := GlobalTheory.T.associated_of_height_one_agree R π J a b han hbn hπ
+  obtain ⟨u, hu⟩ := _root_.GlobalTheory.exists_unit_eq_mul_of_height_one_avoiding R π J a b han hbn hπ
     (fun j hj hp => ⟨hna j hj hp, hnb j hj hp⟩) (fun Q hQ h1 hQJ => by
       obtain ⟨c, d, hc, hd, hcd⟩ := h Q hQ h1 hQJ
       refine ⟨c * ∏ j ∈ J, π j ^ β j, d * ∏ j ∈ J, π j ^ α j,
@@ -150,8 +150,8 @@ theorem unit_mul_monomial_iff : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRin
       intro j hj
       by_cases hjP : t j ∈ P
       · right
-        refine GlobalTheory.T.regular_quotient_prime_element A P (t j) (fun h0 => ht j (by rw [h0, map_zero])) hjP
-          (GlobalTheory.T.etale_coordinate_quotient_regular p A t het j)
+        refine _root_.GlobalTheory.prime_algebraMap_localization_of_isRegularRing_quotient A P (t j) (fun h0 => ht j (by rw [h0, map_zero])) hjP
+          (_root_.GlobalTheory.isRegularRing_quotient_etaleCoordinate p A t het j)
       · left
         exact IsLocalization.map_units (Localization.AtPrime P) (⟨t j, hjP⟩ : P.primeCompl)
     obtain ⟨u, m, hum⟩ := unit_mul_monomial_of_forall_height_one (Localization.AtPrime P) L

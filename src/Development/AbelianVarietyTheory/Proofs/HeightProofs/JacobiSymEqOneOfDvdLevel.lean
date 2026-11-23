@@ -65,15 +65,6 @@ theorem zeta_mul_mem (F : IntermediateField ℚ ℂ) {m n : ℕ} (hm : 0 < m) (h
   rw [e]
   exact mul_mem (zpow_mem h1 u) (zpow_mem h2 v)
 
-theorem FO_le_coeff {D : D7} (Q : Par D) (h : Q.PinField) : FO D ≤ Q.c.F := by
-  rw [FO, IntermediateField.adjoin_le_iff]
-  rintro _ ⟨y, rfl⟩
-  have e := h (Q.eO.symm y)
-  rw [RingEquiv.apply_symm_apply] at e
-  have e' : D.what₂.phiO y = ((Q.eO.symm y : Q.c.F) : ℂ) := e
-  rw [e']
-  exact SetLike.coe_mem _
-
 theorem half_of_split (D : D7) {p : ℕ} (hp : SplitOK D p) (P : HeightOneSpectrum (𝓞 D.host.K))
     (hP : ((p : ℕ) : 𝓞 D.host.K) ∈ P.asIdeal) (I : Ideal (𝓞 D.host.E))
     (hI : I = P.asIdeal.map (algebraMap (𝓞 D.host.K) (𝓞 D.host.E))) :

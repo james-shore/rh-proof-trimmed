@@ -51,7 +51,7 @@ private theorem UpperTheory.grpLat_half {p : ℕ} [Fact p.Prime] {D : Datum p} {
     ∀ v ∈ LaHat D, L.actG (h₁ * h₂⁻¹) v ∈ LaHat D := by
   intro v hv
   obtain ⟨v', hv', e₁⟩ := s₂ v hv
-  obtain ⟨x, w, hw, e₂⟩ := GlobalTheory.T.latticeCompletion_eq_latticeVector_add_nsmul p D M hM hc v' hv'
+  obtain ⟨x, w, hw, e₂⟩ := _root_.GlobalTheory.LKGeo.exists_inAf_add_nsmul_of_mem_laHat p D M hM hc v' hv'
   obtain ⟨u, hu, e₃⟩ := e x ⟨v - L.actG h₂ w, sub_mem hv (i₂ w hw), by
     have h : L.actG h₂ v' = L.actG h₂ (inAf D x) + M • L.actG h₂ w := by
       rw [e₂, map_add (f := _), map_nsmul]

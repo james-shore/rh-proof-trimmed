@@ -414,7 +414,7 @@ theorem known_of_translate : Out.Laws → ThetaUnifAV → ∀ (K : Type) [Field 
     have b : f (t₀ * (ν : K) ^ 2) = f t₀ * ((Units.map f.toMonoidHom ν : ℂˣ) : ℂ) ^ 2 := by
       rw [map_mul, map_pow]; rfl
     rw [b]
-    exact GlobalTheory.T.keyNormalFormDetRatio_twoTorsion_translate laws hU x x' p _ _ hp a
+    exact _root_.GlobalTheory.KeyEq.val_of_isTrl laws hU x x' p _ _ hp a
   obtain ⟨φ, hφ⟩ := polPB_of_eq hP
   exact GlobalTheory.T.thetaFrameValueKnown_of_polarizedPullback laws K y₁ y' φ hφ k₁
 

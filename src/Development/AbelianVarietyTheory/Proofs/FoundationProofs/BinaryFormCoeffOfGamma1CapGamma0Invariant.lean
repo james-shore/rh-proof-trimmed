@@ -73,7 +73,7 @@ theorem GlobalTheory.KZ.H3.coef_of_inv : ∀ (Ω : Type) [Field Ω] [Algebra ℚ
     refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun k _ => ?_
     rw [mul_comm]
   have hz := GlobalTheory.homogeneous_poly_coeff_eq_zero l (X.Khat l)
-    (fun a x ha hx => GlobalTheory.T.algebraicTowerKhat_padic_smul_torsionFree Ω ε X l a x ha hx) w
+    (fun a x ha hx => _root_.GlobalTheory.KZ.H3.khat_torsionFree Ω ε X l a x ha hx) w
     (fun i => c i - ∑ k, (cf w (γ : Matrix (Fin 2) (Fin 2) ℤ) i k : ℤ_[l]) • X.kmap l (X.sl (ofSL γ)).toRingEquiv (c k))
     (by intro u; simp_rw [smul_sub]; rw [Finset.sum_sub_distrib, ← hb u, ← key u, sub_self])
   intro i

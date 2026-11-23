@@ -113,15 +113,10 @@ theorem determinant_vanishing_holds : ZxDet := by
   unfold PBQ.zxH
   rw [Matrix.det_reindex_self, Matrix.det_mul]
   exact mul_ne_zero (LeftFubiniLemmas.lh_unit _ v).ne_zero
-    (Formalism.FourierDecayAlt.P.PBM.hMat_det_ne _ _ (fun a => Formalism.FourierDecayAlt.P.PBJ.Asm.ptScal_ne h hh.1 a a.isLt))
+    (_root_.Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne _ _ (fun a => Formalism.FourierDecayAlt.P.PBJ.Asm.ptScal_ne h hh.1 a a.isLt))
 
 end Formalism.FourierDecayAlt.P.CutEX
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem residue_top_exceptional_level : CutEX.ResTop := CutEX.residue_top_exceptional
-theorem radial_extension_exceptional : CutEX.RadExt := CutEX.radial_extension_holds
-theorem radial_of_function_exceptional : CutEX.RadOfFun := CutEX.radial_of_function_holds
-theorem determinant_exceptional_holds : CutEX.ZxDet := CutEX.determinant_vanishing_holds
 
 end Formalism.FourierDecayAlt.P

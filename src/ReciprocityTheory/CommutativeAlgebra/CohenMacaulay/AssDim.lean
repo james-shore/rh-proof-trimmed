@@ -51,12 +51,6 @@ open IsLocalRing RingTheory.Sequence Pointwise
 
 variable {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
-theorem exists_assoc_step {M : Type*} [AddCommGroup M] [Module R M] [Module.Finite R M]
-    {p : Ideal R} (hp : p ∈ associatedPrimes R M) {x : R} (hx : x ∈ maximalIdeal R)
-    (reg : IsSMulRegular M x) :
-    ∃ q ∈ associatedPrimes R (QuotSMulTop x M), p < q ∧ x ∈ q ∧ x ∉ p := by
-  first | exact Bl.general_b_fact_rest.goal1 .. | (apply Bl.general_b_fact_rest.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_rest.goal1 <;> assumption)
-
 theorem length_le_of_isRegular_of_mem_associatedPrimes : ∀ (rs : List R)
     {M : Type*} [AddCommGroup M] [Module R M] [Module.Finite R M],
     (∀ r ∈ rs, r ∈ maximalIdeal R) → IsRegular M rs → ∀ {p : Ideal R},
@@ -68,7 +62,7 @@ theorem length_le_of_isRegular_of_mem_associatedPrimes : ∀ (rs : List R)
   | x :: rs', M, _, _, _, hm, reg, p, hp => by
     obtain ⟨hreg, hreg'⟩ := (isRegular_cons_iff M x rs').mp reg
     have hx : x ∈ maximalIdeal R := hm x List.mem_cons_self
-    obtain ⟨q, hq, hpq, hxq, hxnp⟩ := exists_assoc_step hp hx hreg
+    obtain ⟨q, hq, hpq, hxq, hxnp⟩ := _root_.Bl.general_b_fact_rest.goal1 hp hx hreg
     have ih := length_le_of_isRegular_of_mem_associatedPrimes rs'
       (fun r hr => hm r (List.mem_cons_of_mem _ hr)) hreg' hq
     have hpp : p.IsPrime := hp.isPrime

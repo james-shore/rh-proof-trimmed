@@ -56,15 +56,8 @@ namespace GlobalTheory.CovTop.VolUp.Proj
 
 variable {p q r : ℕ}
 
-theorem Jpq_eq_diagonal (p q : ℕ) :
-    Formalism.UG.Jpq p q = Matrix.diagonal (Sum.elim (fun _ => (1 : ℂ)) (fun _ => -1)) := by
-  ext i j
-  rcases i with i | i <;> rcases j with j | j <;>
-    simp [Formalism.UG.Jpq, Matrix.diagonal_apply, Matrix.one_apply]
-  split_ifs <;> simp
-
 theorem det_Jpq_ne (p q : ℕ) : (Formalism.UG.Jpq p q).det ≠ 0 := by
-  rw [Jpq_eq_diagonal, Matrix.det_diagonal]
+  rw [_root_.Formalism.UG.P.Jpq_eq_diagonal, Matrix.det_diagonal]
   refine Finset.prod_ne_zero_iff.2 fun i _ => ?_
   rcases i with i | i <;> simp
 
@@ -83,7 +76,7 @@ theorem det_mat_ne (u : UpqT p q) : (UpqT.mat u).det ≠ 0 := by
 
 theorem dg_unitary (a₀ : Fin p ⊕ Fin q) (z : ℂ) (hz : star z * z = 1) :
     (dg a₀ z)ᴴ * Formalism.UG.Jpq p q * dg a₀ z = Formalism.UG.Jpq p q := by
-  rw [Jpq_eq_diagonal, dg, Matrix.diagonal_conjTranspose, Matrix.diagonal_mul_diagonal,
+  rw [_root_.Formalism.UG.P.Jpq_eq_diagonal, dg, Matrix.diagonal_conjTranspose, Matrix.diagonal_mul_diagonal,
     Matrix.diagonal_mul_diagonal]
   congr 1
   funext i

@@ -140,7 +140,7 @@ theorem exists_good_gen (rep : N.X i → (GE N →* GL (Fin R.nV) (N.O i)))
   have hTT : ∀ f ∈ N.T i, (fun x' : N.X i × Equiv.Perm (Fin R.t) => f x'.1) ∈ T' :=
     fun f hf => Algebra.subset_adjoin (Or.inl ⟨f, hf, rfl⟩)
   have hT' : CharPolyIn T' (fun x' => rep x'.1) := fun h d => hTT _ (hT h d)
-  obtain ⟨ψρ, ψχ, hψ, hψs⟩ := GlobalTheory.T.exists_block_action_of_decomposition T' (fun x' => rep x'.1) (ρ π) (N.chi i) (π, 1) e hspan hd
+  obtain ⟨ψρ, ψχ, hψ, hψs⟩ := _root_.GlobalTheory.SpanBlockAction.exists_block_action T' (fun x' => rep x'.1) (ρ π) (N.chi i) (π, 1) e hspan hd
   have hpol : ∀ x' : N.X i × Equiv.Perm (Fin R.t),
       ∏ c ∈ Finset.Icc 1 R.t, (Polynomial.X - Polynomial.C (root β c x')) =
         blockPol (eB x'.1) (X0 x'.1) := by
@@ -171,7 +171,7 @@ theorem exists_good_gen (rep : N.X i → (GE N →* GL (Fin R.nV) (N.O i)))
         left_inv := by rintro ⟨⟨y, σ⟩, rfl⟩; rfl
         right_inv := fun _ => rfl }
     exact (Nat.card_congr this).trans (by simp [Fintype.card_perm])
-  · refine GlobalTheory.T.prod_other_root_factors_action_first_coordinate e (eB π) (X0 π) (fun c => root β c (π, 1)) (two_le_ranks_t R) heB (fun u => ?_)
+  · refine _root_.GlobalTheory.RootFactorProduct.prod_other_factors_action e (eB π) (X0 π) (fun c => root β c (π, 1)) (two_le_ranks_t R) heB (fun u => ?_)
     rw [hXπ]
     congr 1
     funext c
@@ -194,12 +194,12 @@ theorem objects_globalStep_gen : ∀ (D : D7) (i : D.nd.Loc) (r : D.nd.X i → (
   intro D i r ρ π _ hG1 _ _ _ hdec _ hres _ hun ht
   classical
   obtain ⟨e, hd⟩ := hdec
-  obtain ⟨w, hw, g0, hg0, hord⟩ := GlobalTheory.T.exists_inertia_cyclotomic_generates_units_mod D.nd i hun
-  have hu := GlobalTheory.T.isUnit_sub_charValues_of_cyclotomic_generator D.nd i g0 hord ht
+  obtain ⟨w, hw, g0, hg0, hord⟩ := _root_.GlobalTheory.CycGen.main D.nd i hun
+  have hu := _root_.GlobalTheory.CharacterUnits.chi_sub_isUnit D.nd i g0 hord ht
   have hT : CharPolyIn (D.nd.T i) r := hG1
-  have hspan : Submodule.span (D.nd.O i) (Set.range (mat (ρ π))) = ⊤ := GlobalTheory.T.span_repMatrix_eq_top_of_residue_span_eq_top (ρ π) hres
+  have hspan : Submodule.span (D.nd.O i) (Set.range (mat (ρ π))) = ⊤ := _root_.GlobalTheory.span_mat_eq_top_of_residue (ρ π) hres
   obtain ⟨eB, e1, ⟨hB, h1, hBB, h11, hB1, h1B⟩, heB, ε, hε, he1⟩ :=
-    GlobalTheory.T.exists_orthogonal_idempotents_heckeSpan_rep (D.nd.l i) (D.nd.T i) r (ρ π) (D.nd.chi i) π e (two_le_r _) hspan hd
+    _root_.GlobalTheory.SpanIdem.exists_orthogonal_idempotents (D.nd.l i) (D.nd.T i) r (ρ π) (D.nd.chi i) π e (two_le_r _) hspan hd
   have hl := D.nd.T_local i
   have hXπ : ∀ u, e (((eB π * mat (r π) g0 * eB π).map (toK D.nd i)).mulVec u) =
       (0, fun c : Fin D.R.t => toK D.nd i ((D.nd.chi i ((c : ℕ) + 1) g0 : (D.nd.O i)ˣ) : D.nd.O i) * (e u).2 c) := by
@@ -210,7 +210,7 @@ theorem objects_globalStep_gen : ∀ (D : D7) (i : D.nd.Loc) (r : D.nd.X i → (
   have hrB : ∀ x, ((eB x).map (toK D.nd i)).rank = D.R.t := fun x => by
     rw [rank_const hl hT hB hBB x π]; exact hat.1
   have hr1 : ∀ x, ((e1 x).map (toK D.nd i)).rank = 1 := fun x => by
-    rw [rank_const hl hT h1 h11 x π, GlobalTheory.T.rank_eq_of_mulVec_through_first_block e _ ε he1, hε]
+    rw [rank_const hl hT h1 h11 x π, _root_.GlobalTheory.rank_eq_of_acts_through_first_block e _ ε he1, hε]
   have hX : InRing (D.nd.T i) r (fun x => eB x * mat (r x) g0 * eB x) :=
     inRing_mul (inRing_mul hB (inRing_mat g0)) hB
   have hBx : ∀ x, eB x * eB x = eB x := congrFun hBB

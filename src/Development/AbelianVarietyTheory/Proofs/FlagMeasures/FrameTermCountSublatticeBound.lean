@@ -126,8 +126,7 @@ theorem symm_fix {n : S.V ≃ₗ[E] S.V} {x : S.V} (h : n x = x) : n.symm x = x 
 theorem Xflag_le_X (F : LFlag S r T) (j : ℕ) : Xflag F j ≤ Xsp F :=
   Submodule.span_mono (Set.image_subset_range _ _)
 
-theorem mem_orth' {U : Submodule E S.V} {y : S.V} : y ∈ orth S U ↔ ∀ x ∈ U, S.hT x y = 0 := by
-  simp only [orth, Submodule.mem_iInf, LinearMap.mem_ker]
+alias mem_orth' := _root_.GlobalTheory.LoopC.FixedLift.mem_orth
 
 theorem ap_mem_gmap {Λ : Submodule (𝓞 E) S.V} (n : S.V ≃ₗ[E] S.V) (x : S.V) :
     n x ∈ Formalism.HermitianLatticesTheory.gmap n Λ ↔ x ∈ Λ := by

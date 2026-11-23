@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InnerKAvgNeZero
 
 @[expose] public section
 
@@ -59,8 +60,6 @@ variable {n : ℕ}
 theorem toMK_expK_real {ε : Fin n → Bool} {X : Mx n} (hX : inK ε X) (t : ℝ) :
     toMK (expK ε X t) = NormedSpace.exp (t • X) := by
   rw [toMK_expK hX t, Complex.coe_smul]
-
-theorem toMK_mem_UJ {ε : Fin n → Bool} (k : KG ε) : toMK k ∈ UJset ε := K_le_UJ (toMK_mem_K k)
 
 theorem integral_conj_swap {ε : Fin n → Bool} (e : KG ε → ℂ) (he : ∀ a k : KG ε, e (a * k * a⁻¹) = e k)
     (φ : Mx n → ℂ) (g : Mx n) (κ : KG ε) :
@@ -88,7 +87,7 @@ theorem measurable_fam (hD : IsDerFam ε F) {f : Mx n → ℂ} (hf : ContinuousO
   induction l with
   | nil =>
     intro _ a ha b hb
-    have hm : ∀ k : KG ε, a * toMK k * b ∈ UJset ε := fun k => mul_mem_UJ (mul_mem_UJ ha (toMK_mem_UJ k)) hb
+    have hm : ∀ k : KG ε, a * toMK k * b ∈ UJset ε := fun k => mul_mem_UJ (mul_mem_UJ ha (_root_.GlobalTheory.TypeSum.KCoef.toMK_mem_UJ k)) hb
     have e1 : (fun k : KG ε => F [] (a * toMK k * b)) = fun k => f (a * toMK k * b) :=
       funext fun k => hF0 _ (hm k)
     rw [e1]
@@ -106,7 +105,7 @@ theorem measurable_fam (hD : IsDerFam ε F) {f : Mx n → ℂ} (hf : ContinuousO
       have := ((ih hl' a ha _ (mul_mem_UJ hb (exp_mem_UJ hX (s m)))).sub (ih hl' a ha b hb)).const_smul (s m)⁻¹
       exact this
     refine measurable_of_tendsto_metrizable hmeas (tendsto_pi_nhds.2 fun k => ?_)
-    have hg : a * toMK k * b ∈ UJset ε := mul_mem_UJ (mul_mem_UJ ha (toMK_mem_UJ k)) hb
+    have hg : a * toMK k * b ∈ UJset ε := mul_mem_UJ (mul_mem_UJ ha (_root_.GlobalTheory.TypeSum.KCoef.toMK_mem_UJ k)) hb
     have hd := (hasDerivAt_iff_tendsto_slope.1 (hD l hl' X hX _ hg)).comp hs0
     refine hd.congr fun m => ?_
     simp only [Function.comp_apply, slope_def_module, sub_zero, zero_smul, NormedSpace.exp_zero, mul_one,
@@ -132,7 +131,7 @@ theorem hasDerivAt_avg (hD : IsDerFam ε F) {N : ℕ} (hG : FamGrowth ε N F) {f
   obtain ⟨C, hC⟩ := hG (X :: l) hl'
   obtain ⟨C0, hC0⟩ := hG l hl
   have hmem : ∀ (k : KG ε) (s : ℝ), g * toMK k * NormedSpace.exp (s • X) ∈ UJset ε := fun k s =>
-    mul_mem_UJ (mul_mem_UJ hg (toMK_mem_UJ k)) (exp_mem_UJ hXl s)
+    mul_mem_UJ (mul_mem_UJ hg (_root_.GlobalTheory.TypeSum.KCoef.toMK_mem_UJ k)) (exp_mem_UJ hXl s)
   have hhs : ∀ (k : KG ε) (s : ℝ), hs (g * toMK k * NormedSpace.exp (s • X)) = hs g := fun k s => by
     rw [← toMK_expK_real hX, mul_assoc, ← toMK_mul]
     exact ((hermitian_small_ball n ε).2 _ _ (toMK_mem_K _)).1
@@ -186,7 +185,7 @@ theorem rder_avgK_all (hD : IsDerFam ε F) {N : ℕ} (hG : FamGrowth ε N F) {f 
     rw [rder_nil]
     refine integral_congr_ae (ae_of_all _ fun k => ?_)
     simp only
-    rw [hF0 _ (mul_mem_UJ (mul_mem_UJ hy (toMK_mem_UJ k')) (toMK_mem_UJ k))]
+    rw [hF0 _ (mul_mem_UJ (mul_mem_UJ hy (_root_.GlobalTheory.TypeSum.KCoef.toMK_mem_UJ k')) (_root_.GlobalTheory.TypeSum.KCoef.toMK_mem_UJ k))]
   | cons X l ih =>
     intro hu k'
     have hX : inK ε X := hu X List.mem_cons_self
@@ -198,7 +197,7 @@ theorem rder_avgK_all (hD : IsDerFam ε F) {N : ℕ} (hG : FamGrowth ε N F) {f 
       funext t
       rw [ih hlK, toMK_mul, mul_assoc y]
     rw [e1]
-    exact (hasDerivAt_avg hD hG hf hF0 hec he hl hX (mul_mem_UJ hy (toMK_mem_UJ k'))).deriv
+    exact (hasDerivAt_avg hD hG hf hF0 hec he hl hX (mul_mem_UJ hy (_root_.GlobalTheory.TypeSum.KCoef.toMK_mem_UJ k'))).deriv
 
 theorem rder_avgK_one (ε : Fin n → Bool) (N : ℕ) (F : List (Mx n) → Mx n → ℂ) (hD : IsDerFam ε F)
     (hG : FamGrowth ε N F) (f : Mx n → ℂ) (hf : ContinuousOn f (UJset ε)) (hF0 : ∀ g ∈ UJset ε, F [] g = f g)

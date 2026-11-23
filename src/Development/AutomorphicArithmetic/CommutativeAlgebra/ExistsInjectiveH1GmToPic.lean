@@ -114,10 +114,10 @@ private def PD : Data where
     rw [uS_res]
     rfl
   ι_inj R u v h := by
-    have h1 := (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ Gm (Spec R)).2.1 h
+    have h1 := (_root_.GlobalTheory.EtC.resSec ℤ Gm (Spec R)).2.1 h
     exact Additive.toMul.injective ((uS_bij R).1 h1)
   d_eq_zero R w := by
-    have h := (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ Gm (Spec R)).1 w
+    have h := (_root_.GlobalTheory.EtC.resSec ℤ Gm (Spec R)).1 w
     constructor
     · intro h0
       obtain ⟨a, ha⟩ := h.1 h0

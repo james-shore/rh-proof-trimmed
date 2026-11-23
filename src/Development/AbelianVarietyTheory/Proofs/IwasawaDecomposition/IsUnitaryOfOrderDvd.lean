@@ -98,15 +98,7 @@ theorem isSDFrame_of_one {V : HSp D} {β : GL (Fin V.rank) (Lev.EAf D)}
   rw [one_pow] at hc
   rwa [pow_zero]
 
-theorem isUnitary_of_orderDvd {L : Type} [Field L] [NumberField L] {χ : HChar L} {n : ℕ} (hn : 0 < n) (h : χ.OrderDvd n) :
-    χ.IsUnitary := by
-  intro x
-  have h1 : (χ.1 x) ^ n = 1 := by
-    have : (χ ^ n).1 x = 1 := by rw [h]; rfl
-    rw [← this]; rfl
-  have h2 : ‖((χ.1 x : ℂˣ) : ℂ)‖ ^ n = 1 := by
-    rw [← norm_pow, ← Units.val_pow_eq_pow_val, h1, Units.val_one, norm_one]
-  exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hn.ne').1 h2
+alias isUnitary_of_orderDvd := _root_.Formalism.L2.Host.HChar.isUnitary_of_order
 
 theorem exists_levCh (D : D7) (C : CharFrame D) (T : Type) (μ0 : T) (ξ : T → HChar D.host.E)
     (Q : T → Finset (Pl D.host.E)) (hinj : Function.Injective ξ) (hbase : ξ μ0 = 1)

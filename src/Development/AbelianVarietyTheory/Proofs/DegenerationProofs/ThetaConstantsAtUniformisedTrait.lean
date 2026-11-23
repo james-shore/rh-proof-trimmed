@@ -172,7 +172,7 @@ theorem theta_at_trait : HV → ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
       ∃ x, ∃ c : F, ThG t'.G t'.PP.L t'.PP.rig n (VVRank.pullS t'.G _ ξ σ') x (fnOf c) ∧ v c = 0 := by
     intro ϖ hϖ F _ _ _ v hv
     choose Q hQ using QForm.exists_QVal hϖ P.D
-    have q := GlobalTheory.T.thetaConstants_integral_unit_of_closedFibre_nonvanishing hV V hA ϖ hϖ P.D Q hQ F v hv P.A t'.G t'.semi P.U
+    have q := _root_.GlobalTheory.Ex.OnModel.theta_on_model hV V hA ϖ hϖ P.D Q hQ F v hv P.A t'.G t'.semi P.U
     dsimp only at q
     rw [P.bundle] at q
     exact q σ' hσ'

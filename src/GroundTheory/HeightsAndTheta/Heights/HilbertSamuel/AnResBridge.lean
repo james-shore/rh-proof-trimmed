@@ -62,20 +62,6 @@ section Res
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
   {P J : Ideal (MRing ι)} {e : ℕ}
 
-theorem psi0_null (R : AnRes P J e) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ))
-    (hP : IsArithVar P (e + 1)) (hΨ : IsGoodProj P Ψ) (j : Fin R.A.n) :
-    volume ((R.A.chart j).target ∩
-      (R.A.chart j).symm ⁻¹' {x | Ψ (segre (R.lift x x)) 0 = 0}) = 0 :=
-  volume_projection_zeroSet_null R Ψ hP hΨ j
-
-theorem ram_null (R : AnRes P J e) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ))
-    (hP : IsArithVar P (e + 1)) (hΨ : IsGoodProj P Ψ) (j : Fin R.A.n) :
-    volume ((R.A.chart j).target ∩ (R.A.chart j).symm ⁻¹' {x | Ψ (segre (R.lift x x)) 0 ≠ 0 ∧
-      ∃ k, x ∈ (R.A.chart k).source ∧
-        LinearMap.det (fderiv ℂ (brQ R Ψ ∘ (R.A.chart k).symm) (R.A.chart k x) :
-          (Fin e → ℂ) →ₗ[ℂ] (Fin e → ℂ)) = 0}) = 0 :=
-  ram_null' R Ψ hP hΨ j
-
 theorem brBad_null (R : AnRes P J e) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ))
     (hP : IsArithVar P (e + 1)) (hΨ : IsGoodProj P Ψ) (j : Fin R.A.n) :
     volume ((R.A.chart j).target ∩ (R.A.chart j).symm ⁻¹' brBad R Ψ) = 0 := by
@@ -93,8 +79,8 @@ theorem brBad_null (R : AnRes P J e) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[�
         exact hn ⟨analyticAt_brQ R Ψ x k hk h0, hd⟩
   refine measure_mono_null (Set.inter_subset_inter_right _ (Set.preimage_mono h3)) ?_
   simp only [Set.preimage_union, Set.inter_union_distrib_left]
-  exact measure_union_null (measure_union_null (R.null j) (psi0_null R Ψ hP hΨ j))
-    (ram_null R Ψ hP hΨ j)
+  exact measure_union_null (measure_union_null (R.null j) (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.AnResBridge.volume_projection_zeroSet_null R Ψ hP hΨ j))
+    (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.AnResBridge.ram_null' R Ψ hP hΨ j)
 
 theorem potOf_isPotential (R : AnRes P J e) (L : HermLine ι) (hL : IsSmoothHerm L) :
     IsPotential R.A (potOf R L) :=

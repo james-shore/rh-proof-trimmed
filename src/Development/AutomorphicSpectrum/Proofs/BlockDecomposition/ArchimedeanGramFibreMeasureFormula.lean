@@ -138,7 +138,7 @@ theorem compact_decay {N : ℕ} (v : (Fin N → ℝ) → ℝ) (hv : Continuous v
 
 theorem family_core : ∀ (X P : Type) [AddCommGroup X] [TopologicalSpace X] [MeasurableSpace X] [BorelSpace X] [TopologicalSpace P] [FirstCountableTopology P] (N : ℕ) (e : X ≃+ (Fin N → ℝ)), Continuous e → Continuous e.symm → ∀ (c : P) (m : P → Measure X) (m0 : Measure X) (A : P → X →+ X) (κ : P → ℝ≥0), (∀ s, Continuous (A s)) → (∀ x, Filter.Tendsto (fun s => A s x) (nhds c) (nhds (A c x))) → Function.Injective (A c) → (∀ᶠ s in nhds c, m s = κ s • m0.map (A s)) → ∫⁻ x, ENNReal.ofReal ((1 + ‖e x‖) ^ (-((N + 1 : ℕ) : ℝ))) ∂m0 ≠ ⊤ → ∀ χ : X → ℝ, Continuous χ → HasCompactSupport χ → ContinuousAt (fun s => ∫ x, χ x ∂(m s)) c → ∫ x, χ x ∂(m c) ≠ 0 → ∀ f : SchwartzMap (Fin N → ℝ) ℂ, (∀ᶠ s in nhds c, Integrable (fun x => f (e x)) (m s)) ∧ ContinuousAt (fun s => ∫ x, f (e x) ∂(m s)) c := by
   intro X P _ _ _ _ _ _ N e he hes c m m0 A κ hAc hAt hinj hm hfin χ hχc hχs hχt hχ0 f
-  obtain ⟨δ, hδ, hlow⟩ := GlobalTheory.T.uniform_lower_bound_near_injective X P N e he hes c A hAc hAt hinj
+  obtain ⟨δ, hδ, hlow⟩ := _root_.GlobalTheory.CompanionTheory.RealCoordinates.eventually_lower_bound_of_tendsto_injective X P N e he hes c A hAc hAt hinj
   let eh : X ≃ₜ (Fin N → ℝ) := { e.toEquiv with continuous_toFun := he, continuous_invFun := hes }
   let v : (Fin N → ℝ) → ℝ := fun y => χ (e.symm y)
   have hvc : Continuous v := hχc.comp hes
@@ -425,7 +425,7 @@ theorem fibre_schwartzN : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
       exact hKu.isOpen_range.preimage (hgc n M J).matrix_det
     have hsupp : minf c {X | IsUnit (gramR (Ainf F) σ J X).det}ᶜ = 0 :=
       measure_mono_null (Set.compl_subset_compl.2 Set.inter_subset_right) (hm'.1 c)
-    obtain ⟨χ, hχc, hχs, hχU, hχ0⟩ := GlobalTheory.T.exists_bump_with_nonzero_integral _ (minf c) _ hUo hsupp h0
+    obtain ⟨χ, hχc, hχs, hχU, hχ0⟩ := _root_.GlobalTheory.CompanionTheory.MeasureBump.exists_integral_ne_zero_of_carried_by_isOpen _ (minf c) _ hUo hsupp h0
       (fun χ h1 h2 h3 => (hm'.2.2 χ h1 h2 h3).1 c hc)
     have hχt : ContinuousAt (fun s => ∫ x, χ x ∂(minf s)) c :=
       ((hm'.2.2 χ hχc hχs hχU).2).continuousAt (hBo.mem_nhds hc)

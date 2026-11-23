@@ -92,15 +92,6 @@ theorem pullback_isColimit {U : Scheme.{0}} {ι : Type} {V : ι → Scheme.{0}} 
     change y ((pullback.fst y (j i)) p) = y ((pullback.fst y (j k)) q)
     rw [hp, hq]
 
-theorem sec_subsingleton_of_isEmpty {R : Type} [CommRing R] (G : Shv R) (W : Scheme.{0}) [IsEmpty W] :
-    Subsingleton (Sec G W) := by
-  haveI : ∀ e : PEmpty.{1}, IsOpenImmersion (PEmpty.elim e : (PEmpty.elim e : Scheme.{0}) ⟶ W) :=
-    fun e => e.elim
-  obtain ⟨hc⟩ := nonempty_isColimit_cofanMk_of (X := fun e : PEmpty.{1} => (PEmpty.elim e : Scheme.{0})) (S := W)
-    (fun e => PEmpty.elim e) (by rw [eq_top_iff]; rintro z -; exact isEmptyElim z) (fun e => PEmpty.elim e)
-  have hb := GlobalTheory.T.etaleModuleSheaf_sections_coprod_bijective R G W PEmpty.{1} _ _ hc
-  exact ⟨fun x y => hb.1 (funext fun e => PEmpty.elim e)⟩
-
 end GlobalTheory.EtC.FreeCofan
 
 namespace GlobalTheory.EtC.FreeCofan
@@ -120,7 +111,7 @@ theorem main : ∀ (R : Type) [CommRing R] (U : Scheme.{0}) (ι : Type) (V : ι 
     fun i W q0 => ConcreteCategory.congr_hom (congr_app (hpb i).w (op W)) q0
   have hcol : ∀ (T : Scheme.{0}) (x : P.obj (op T)), IsColimit (Cofan.mk T (fun i => pullback.fst (y T x) (j i))) :=
     fun T x => (pullback_isColimit j hc (y T x)).some
-  have SC := fun (G : Shv R) (T : Scheme.{0}) (x : P.obj (op T)) => GlobalTheory.T.etaleModuleSheaf_sections_coprod_bijective R G T ι _ _ (hcol T x)
+  have SC := fun (G : Shv R) (T : Scheme.{0}) (x : P.obj (op T)) => _root_.GlobalTheory.EtC.sec_coprod R G T ι _ _ (hcol T x)
   have hex : ∀ i (W : Scheme.{0}) (x : P.obj (op W)) (σ : W ⟶ V i), y W x = σ ≫ j i →
       ∃ q : (Q i).obj (op W), (a i).app _ q = x ∧ (b i).app _ q = σ := fun i W x σ h =>
     Types.exists_of_isPullback ((hpb i).map ((evaluation _ _).obj (op W))) x σ h
@@ -189,7 +180,7 @@ theorem main : ∀ (R : Type) [CommRing R] (U : Scheme.{0}) (ι : Type) (V : ι 
         refine ⟨fun z => hki (hdis k i (pullback.snd (y W x) (j k) z)
           ((pullback.fst (y W x) (j k) ≫ ((b i).app _ q0 : W ⟶ V i)) z) ?_)⟩
         rw [← Scheme.Hom.comp_apply, ← Scheme.Hom.comp_apply, ← pullback.condition, Category.assoc, ← hwx]
-      exact (sec_subsingleton_of_isEmpty s.pt _).elim _ _
+      exact (_root_.GlobalTheory.EtC.sec_subsingleton_of_isEmpty s.pt _).elim _ _
   · intro s m hm
     have hm' : ∀ i, (free R).map (a i) ≫ m = s.inj i := hm
     apply (FH P s.pt).1

@@ -120,7 +120,7 @@ theorem exists_section : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     show mat x τ * yM X z τ * (mat x τ)⁻¹ * mat x τ = mat x τ * mat (nmat X z) τ * gsB X z τ
     rw [Matrix.mul_assoc _ (mat x τ)⁻¹, Matrix.nonsing_inv_mul _ (hx0 τ), Matrix.mul_one, yM, Matrix.mul_assoc]
   · have h1 : HasStrictFDerivAt (fun z => C (yF X z)) (C.comp (dY X)) 0 :=
-      C.hasStrictFDerivAt.comp 0 (GlobalTheory.T.unitaryChartSectionFrameEntries_hasStrictFDerivAt X hx)
+      C.hasStrictFDerivAt.comp 0 (_root_.GlobalTheory.SUChartSection.yF_hasStrictFDerivAt X hx)
     refine h1.congr_of_eventuallyEq ?_
     filter_upwards [Metric.ball_mem_nhds (0 : V (nd X)) hR] with z hz
     funext τ a b
@@ -128,8 +128,8 @@ theorem exists_section : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     rfl
   · intro z
     have hdiag : ∀ τ a, dY X z τ a a = 0 := fun τ a => by
-      have h6 := congrArg Complex.re (GlobalTheory.T.unitaryChartSectionFrameEntriesFDeriv_skew X hx z τ a a)
-      have h7 := GlobalTheory.T.unitaryChartSectionFrameEntriesFDeriv_diag_im X hx z τ a
+      have h6 := congrArg Complex.re (_root_.GlobalTheory.SUChartSection.dY_skew X hx z τ a a)
+      have h7 := _root_.GlobalTheory.SUChartSection.diagreal X hx z τ a
       simp only [Complex.add_re, Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, Complex.conj_re,
         Complex.conj_im, h7, Complex.zero_re, mul_zero, sub_zero, zero_mul, neg_zero] at h6
       have hs := PoinPf.sgn_ne X.p0 (a : ℕ)

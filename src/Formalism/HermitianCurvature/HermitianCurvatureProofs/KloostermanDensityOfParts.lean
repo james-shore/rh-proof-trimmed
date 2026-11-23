@@ -131,7 +131,7 @@ theorem ptMatN_append (h rest : C.LPt) :
   | left i =>
     induction j using Fin.addCases with
     | left j =>
-      rw [Dx2.SL.b_cc]; simp only [D.ptMatN]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_upper_left]; simp only [D.ptMatN]
       rw [ptEntry_append, if_pos ⟨by simp, by simp⟩]; rfl
     | right j =>
       rw [Dx2.SL.b_cn]; simp only [D.ptMatN, Matrix.zero_apply]
@@ -139,10 +139,10 @@ theorem ptMatN_append (h rest : C.LPt) :
   | right i =>
     induction j using Fin.addCases with
     | left j =>
-      rw [Dx2.SL.b_nc]; simp only [D.ptMatN, Matrix.zero_apply]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_left]; simp only [D.ptMatN, Matrix.zero_apply]
       rw [ptEntry_append, if_neg (by simp), if_neg (by simp)]
     | right j =>
-      rw [Dx2.SL.b_nn]; simp only [D.ptMatN]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_right]; simp only [D.ptMatN]
       rw [ptEntry_append, if_neg (by simp), if_pos ⟨by simp, by simp⟩]
       simp
 
@@ -189,23 +189,13 @@ theorem ptMatN_block (m : ℕ) (t c : ℂ) :
   rw [e1, e2] at h
   rw [ptBlock_eq]; exact h
 
-theorem ptScal_ne (a : C.LPt) (ha : ∀ b ∈ a, 1 ≤ b.1 ∧ b.2 ≠ 0) : ∀ i < D.ptSize a, D.ptScal a i ≠ 0 := by
-  induction a with
-  | nil => intro i hi; simp [D.ptSize] at hi
-  | cons x a ih =>
-    obtain ⟨s, t⟩ := x
-    intro i hi
-    simp only [D.ptScal]
-    have hS : D.ptSize ((s, t) :: a) = s + D.ptSize a := by simp [D.ptSize]
-    split_ifs with h
-    · exact (ha (s, t) List.mem_cons_self).2
-    · exact ih (fun b hb => ha b (List.mem_cons_of_mem _ hb)) _ (by omega)
+alias ptScal_ne := _root_.Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne
 
 theorem exists_hMat (a : C.LPt) (ha : ∀ b ∈ a, 1 ≤ b.1 ∧ b.2 ≠ 0) :
     ∃ (σ : Equiv.Perm (Fin (D.ptSize a))) (d : Fin (D.ptSize a) → ℂ), (∀ i, d i ≠ 0) ∧
       U.hMat σ d = D.ptMatN a (D.ptSize a) := by
   refine ⟨D.ptPerm a, D.ptDiag a, fun i => ptScal_ne a ha i i.isLt, ?_⟩
-  exact ((Formalism.FourierDecayAlt.P.ptPerm_spec a (D.ptSize a) ⟨ha, rfl⟩).2.2).symm
+  exact ((_root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec a (D.ptSize a) ⟨ha, rfl⟩).2.2).symm
 
 end points
 
@@ -246,7 +236,7 @@ theorem phiTop_one (β : ℂ) (σ : Equiv.Perm (Fin 1)) (d : Fin 1 → ℂ) (Φ 
   subst hi; subst hj
   have hσ : σ = 1 := Subsingleton.elim _ _
   subst hσ
-  rw [U.ZjH, Formalism.FourierDecayAlt.P.level_z_affine, Dx2.SL.b_cc]
+  rw [U.ZjH, _root_.Formalism.FourierDecayAlt.P.Ux4.ux_zjAffine, _root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_upper_left]
   simp [U.headH, U.lowW, G.upper, U.wP, Matrix.mul_apply, G.strictUpper]
 
 end one

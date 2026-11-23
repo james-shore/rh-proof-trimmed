@@ -40,4 +40,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem hasse_presentation : PI.HassePresH := PI.UnitaryGroupMassFormula.HassePresH.main

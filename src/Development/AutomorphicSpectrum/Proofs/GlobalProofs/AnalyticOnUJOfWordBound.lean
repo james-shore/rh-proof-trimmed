@@ -68,16 +68,11 @@ variable {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 def projJ (ε : Fin n → Bool) (Y : Matrix (Fin n) (Fin n) ℂ) : Matrix (Fin n) (Fin n) ℂ :=
   (1 / 2 : ℝ) • (Y - Jε ε * Yᴴ * Jε ε)
 
-theorem Jm_herm (ε : Fin n → Bool) : (Jε ε)ᴴ = Jε ε := by
-  delta ReciprocityTheory.ChartRestriction.DS.Jm
-  rw [diagonal_conjTranspose]
-  congr 1; funext a; by_cases h : ε a <;> simp [h]
-
 theorem inG_projJ (ε : Fin n → Bool) (Y : Matrix (Fin n) (Fin n) ℂ) : ReciprocityTheory.ChartRestriction.DS.inG ε (projJ ε Y) := by
   have hJ : Jε ε * Jε ε = 1 := CompanionTheory.D.gk.HC.Jm_sq_A
   show (projJ ε Y)ᴴ * Jε ε + Jε ε * projJ ε Y = 0
   have e : (projJ ε Y)ᴴ = (1 / 2 : ℝ) • (Yᴴ - Jε ε * Y * Jε ε) := by
-    simp only [projJ, conjTranspose_smul, conjTranspose_sub, conjTranspose_mul, Jm_herm, conjTranspose_conjTranspose,
+    simp only [projJ, conjTranspose_smul, conjTranspose_sub, conjTranspose_mul, _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_conjTranspose, conjTranspose_conjTranspose,
       star_trivial, Matrix.mul_assoc]
   have e1 : Jε ε * Y * Jε ε * Jε ε = Jε ε * Y := by rw [Matrix.mul_assoc, hJ, Matrix.mul_one]
   have e2 : Jε ε * (Jε ε * Yᴴ * Jε ε) = Yᴴ * Jε ε := by
@@ -105,9 +100,6 @@ def projL (ε : Fin n → Bool) : (Fin n → Fin n → ℂ) →ₗ[ℝ] Matrix (
     have e : (Matrix.of (r • Y) : Matrix (Fin n) (Fin n) ℂ) = r • Matrix.of Y := rfl
     simp only [projJ, e, conjTranspose_smul, star_trivial, mul_smul_comm, smul_mul_assoc, RingHom.id_apply]
     module
-
-theorem mnorm_nonneg (X : Matrix (Fin n) (Fin n) ℂ) : 0 ≤ mnorm X :=
-  Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => norm_nonneg _
 
 theorem mnorm_of_le (Y : Fin n → Fin n → ℂ) : mnorm (Matrix.of Y) ≤ (n : ℝ) ^ 2 * ‖Y‖ := by
   calc mnorm (Matrix.of Y) ≤ ∑ _a : Fin n, ∑ _b : Fin n, ‖Y‖ :=
@@ -246,7 +238,7 @@ theorem exists_series [CompleteSpace H] (hrep : Formalism.QuantumDeterminants.Is
     rw [hq, norm_smul, norm_inv, Real.norm_natCast, inv_mul_le_iff₀ hf]
     refine h.trans ?_
     have h2 : ∏ i, (mnorm ∘ fun i => projL ε (Y i)) i ≤ ((n : ℝ) ^ 2) ^ m * ∏ i, ‖Y i‖ := by
-      refine (Finset.prod_le_prod₀ (fun i _ => mnorm_nonneg _) fun i _ => mnorm_projL_le ε (Y i)).trans (le_of_eq ?_)
+      refine (Finset.prod_le_prod₀ (fun i _ => _root_.GlobalTheory.CompanionTheory.Hypotheses₂.HCA.mnorm_nonneg' _) fun i _ => mnorm_projL_le ε (Y i)).trans (le_of_eq ?_)
       rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
     refine (mul_le_mul_of_nonneg_left h2 (by positivity)).trans (le_of_eq (by ring))
   let p : FormalMultilinearSeries ℝ (Fin n → Fin n → ℂ) H := fun m => (q m).mkContinuous _ (hqb m)
@@ -296,7 +288,7 @@ theorem analytic_orbit [CompleteSpace H] (hrep : Formalism.QuantumDeterminants.I
   have hU : h ∈ UJset ε := by
     show hᴴ * Jε ε * h = Jε ε
     have e : hᴴ = Jε ε * g₀ * Jε ε := by
-      rw [hh, Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, Jm_herm, Matrix.conjTranspose_conjTranspose,
+      rw [hh, Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_conjTranspose, Matrix.conjTranspose_conjTranspose,
         Matrix.mul_assoc]
     rw [e, Matrix.mul_assoc _ (Jε ε) (Jε ε), hJ, Matrix.mul_one, Matrix.mul_assoc, h2, Matrix.mul_one]
   let T₀ : (Fin n → Fin n → ℂ) →ₗ[ℝ] (Fin n → Fin n → ℂ) :=

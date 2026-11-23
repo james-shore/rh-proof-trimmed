@@ -53,17 +53,6 @@ noncomputable section
 
 namespace GlobalTheory.FixConvRow
 
-theorem loc_gen {E : Type} [Field E] [NumberField E] (P : IsDedekindDomain.HeightOneSpectrum (𝓞 E))
-    (J : Ideal (𝓞 E)) (hJ : J ≠ ⊥) :
-    ∃ d ∈ J, d ≠ 0 ∧ ∃ s, s ∉ P.asIdeal ∧ ∀ y ∈ J, ∃ o : 𝓞 E, s * y = o * d := by
-  first
-  | exact @_root_.GlobalTheory.LocalGenerators.main
-  | exact _root_.GlobalTheory.LocalGenerators.main
-  | (apply _root_.GlobalTheory.LocalGenerators.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LocalGenerators.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LocalGenerators.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LocalGenerators.main ..)
-
 end GlobalTheory.FixConvRow
 
 namespace GlobalTheory.FixConvRow
@@ -110,7 +99,7 @@ theorem inv_gen (P : HeightOneSpectrum (𝓞 E)) (J : Ideal (𝓞 E)) (hJ : J �
       algebraMap (𝓞 E) E s * c ∈ ((J : FractionalIdeal (nonZeroDivisors (𝓞 E)) E)⁻¹)) ∧
       ∀ x ∈ ((J : FractionalIdeal (nonZeroDivisors (𝓞 E)) E)⁻¹), ∃ s ∈ P.asIdeal.primeCompl, ∃ o : 𝓞 E,
         algebraMap (𝓞 E) E s * x = algebraMap (𝓞 E) E o * c := by
-  obtain ⟨d, hdJ, hd0, s, hsP, hs⟩ := loc_gen P J hJ
+  obtain ⟨d, hdJ, hd0, s, hsP, hs⟩ := _root_.GlobalTheory.LocalGenerators.main P J hJ
   have hJ0 : (J : FractionalIdeal (nonZeroDivisors (𝓞 E)) E) ≠ 0 := FractionalIdeal.coeIdeal_ne_zero.2 hJ
   have hd0' : algebraMap (𝓞 E) E d ≠ 0 := by
     rwa [Ne, map_eq_zero_iff _ (FaithfulSMul.algebraMap_injective (𝓞 E) E)]

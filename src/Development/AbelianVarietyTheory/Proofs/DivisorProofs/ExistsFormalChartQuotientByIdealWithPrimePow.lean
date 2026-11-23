@@ -100,7 +100,7 @@ theorem ev₂_map {p m d : ℕ} {O k : Type} [CommRing O] [CommRing k] {r : O �
 
 theorem exists_chart : ∀ (p : ℕ) [Fact p.Prime] (O : Type) [CommRing O] (G : PDivGroup p O) (d : ℕ) (c : QLog.Chart G d), ∀ (I : Ideal O) (m : ℕ), (p : O) ^ m ∈ I → ∃ c' : Katz.Chart (G.baseChange (O ⧸ I)) d, c'.IsLawOf (fun i => map (Ideal.Quotient.mk I) (c.μ i)) ∧ (∀ n f, c'.ev n (map (Ideal.Quotient.mk I) f) = (G.toBase (O ⧸ I)).app n (c.ev n f)) ∧ ∀ n s, c'.ev₂ n (map (Ideal.Quotient.mk I) s) = ((G.toBase (O ⧸ I)).app n).two (c.ev₂ n s) := by
   intro p _ O _ G d c I m hm
-  obtain ⟨hx, h1, h2⟩ := T.formalChart_presents_levels_mod_ideal p O G d c I m hm
+  obtain ⟨hx, h1, h2⟩ := _root_.GlobalTheory.QLog.Chart.presents_quotient p O G d c I m hm
   have hp : (p : O ⧸ I) ^ m = 0 := by
     rw [← map_natCast (Ideal.Quotient.mk I), ← map_pow]
     exact Ideal.Quotient.eq_zero_iff_mem.2 hm

@@ -176,7 +176,7 @@ theorem GlobalTheory.Mum.PFactor.nonempty_of_tens : ∀ (R : Type) [CommRing R] 
   let s := symUnitOf W hdet
   let i₀ : Fin r := ⟨0, hr⟩
   letI := PowLim.mod xe s
-  obtain ⟨w', hw', htau⟩ := GlobalTheory.T.mumfordIso_periods_factor_tensor_polarised R hR Q D' W hdet hpos pr hl xe w hpr hc hw hpsi i₀
+  obtain ⟨w', hw', htau⟩ := _root_.GlobalTheory.Mum.PolPair.pairing_factor R hR Q D' W hdet hpos pr hl xe w hpr hc hw hpsi i₀
   obtain ⟨hxx, hxe, hinj, honto⟩ := PowLim.factor_latt xe s i₀
   have hp : 0 < (s.1 : Matrix (Fin r) (Fin r) ℤ) i₀ i₀ := by
     have h := hpos.diag_pos (i := i₀)
@@ -192,7 +192,7 @@ theorem GlobalTheory.Mum.PFactor.nonempty_of_tens : ∀ (R : Type) [CommRing R] 
                     map_add := fun a b => PowLim.act_add pr hl hpr _ _
                     rosati := GlobalTheory.Mum.PowLim.Rosati.rosatiAdj_pow R Q D'.toPre W hdet pr hl w hpr hw }
            c_lin := PowLim.c_smul Q D'.toPre pr hl xe hc s
-           tau_bal := GlobalTheory.T.tensorData_periods_balanced_integralMatrices R hR Q D' W hdet hpos pr hl xe w hpr hc hw hpsi }
+           tau_bal := _root_.GlobalTheory.Mum.PolTens.tauBal_polTens R hR Q D' W hdet hpos pr hl xe w hpr hc hw hpsi }
     e := TensO.idem s i₀
     f := TensO.binv s
     inc := PowLim.inc pr hl i₀

@@ -203,7 +203,7 @@ theorem finVol : FiniteVolume₂ := by
   choose Λ _ hΛ1 hΛ2 hΛ3 using fun s : HA (Af F) σ J =>
     GlobalTheory.AdLat.exists_lattice_latOf F E M L (HA.mat (Af F) σ J s) hL hLs
   choose Ω _ hΩ1 hΩ2 using fun s : HA (Af F) σ J =>
-    GlobalTheory.T.finite_covolume_latticeStabiliser_unitaryRealPoints F E σ hCM M J hJ (Λ s) (hΛ1 s) (hΛ2 s) Measure.haar inferInstance
+    _root_.GlobalTheory.MixedSignature.finite_covolume_real_points F E σ hCM M J hJ (Λ s) (hΛ1 s) (hΛ2 s) Measure.haar inferInstance
   refine measure_lt_top_of_cover e Γ μ S K hKc Ω hΩ1 (fun g => ?_) 𝓕 h𝓕
   obtain ⟨⟨γ', γ, hγ, hγγ⟩, s, hs, k, hk, hg⟩ := hS (e g).2
   have hg2 : (e g).2 = ratPt (Af F) σ J ⟨γ, hγ⟩ * (s * k) := by

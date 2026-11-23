@@ -190,7 +190,7 @@ theorem ptsFam (Gr : RefGeo Y) (An : Gr.An) (ψ : An.Sys.X → An.Re.R.X) (hψ :
     have hx₀ : centre (z (An.Re.π w₁)) ∈ U := hgU _ _ (Gr.𝔐.all _) hc hg0
     obtain ⟨k, hk⟩ := An.Sys.A.cover (An.Re.π w₁)
     have hopen := (An.Sys.A.chart k).isOpen_inter_preimage (hol k U 0).1
-    have hd := (GlobalTheory.T.section_boundary_closed_and_codense _ _ An.Sys.A An.Sys.L An.Sys.s An.Sys.nb An.Sys.m An.Sys.W An.Sys.sec An.Sys.snc).2
+    have hd := (_root_.GlobalTheory.CompanionTheory.Ar.Bdry.bdry_isClosed_dense_compl _ _ An.Sys.A An.Sys.L An.Sys.s An.Sys.nb An.Sys.m An.Sys.W An.Sys.sec An.Sys.snc).2
     obtain ⟨x, ⟨hxs, -, hxU⟩, hxo⟩ := hd.inter_open_nonempty _ hopen ⟨An.Re.π w₁, hk, (An.Sys.A.chart k).map_source hk, by
       show ⊤ ≤ z ((An.Sys.A.chart k).symm (An.Sys.A.chart k _)) ⁻¹ᵁ U
       rw [(An.Sys.A.chart k).left_inv hk]

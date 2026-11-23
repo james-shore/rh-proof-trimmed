@@ -62,7 +62,7 @@ namespace PositivityTheory.Rg.Rsw.L.UnitaryGroupMatrix
 
 variable {D : D7} {n : ℕ}
 
-theorem matG_mul (g h : G D n) : mat (g * h) = mat g * mat h := rfl
+alias matG_mul := _root_.GlobalTheory.StdUnn.Gen.mat_mul
 
 theorem matG_ext {g h : G D n} (e : mat g = mat h) : g = h := by
   apply Subtype.ext; apply Units.ext; exact e
@@ -73,11 +73,9 @@ theorem matG_inv {g : G D n} {M : Mx D (n + n) (n + n)} (h : mat g * M = 1) : ma
   calc mat g⁻¹ = mat g⁻¹ * (mat g * M) := by rw [h, Matrix.mul_one]
     _ = M := by rw [← Matrix.mul_assoc, e, Matrix.one_mul]
 
-theorem adjM_mul {a b c : ℕ} (x : Mx D a b) (y : Mx D b c) : adj (x * y) = adj y * adj x := by
-  simp only [adj, Matrix.map_mul, Matrix.transpose_mul]
+alias adjM_mul := _root_.GlobalTheory.MixModel.adj_mul
 
-theorem adjM_one {a : ℕ} : adj (1 : Mx D a a) = 1 := by
-  simp only [adj, Matrix.map_one _ (map_zero _) (map_one _), Matrix.transpose_one]
+alias adjM_one := _root_.GlobalTheory.MixModel.adj_one
 
 end PositivityTheory.Rg.Rsw.L.UnitaryGroupMatrix
 

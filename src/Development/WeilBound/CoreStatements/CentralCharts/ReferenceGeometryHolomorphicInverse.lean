@@ -135,7 +135,7 @@ theorem local_bounds (hG : Top.Given) (h0 : Flat.FlatLineGenerator) (h1 : Flat.F
   · have hr : ∀ r, Tame χ.a fun t => Real.log ((hx r).h (χ.γ t)) := fun r => by
       have t1 := (hM _ _ (HodgeCpt.rootIdx D r).2.2).1
       have t2 := (hM _ _ (HodgeCpt.rootIdx D r).2.2.le).1
-      refine ((tame_log_norm χ.a (hF r).1 (hF r).2).add ((t1.add (t2.const_mul (-1))).const_mul
+      refine ((_root_.AnalyticReference.An.H.tame_log_norm χ.a (hF r).1 (hF r).2).add ((t1.add (t2.const_mul (-1))).const_mul
         (-((HodgeCpt.rootSgn D r : ℝ) / 2)))).congr ?_
       filter_upwards [hev r] with t ht hoff
       rw [ht hoff]
@@ -148,7 +148,7 @@ theorem local_bounds (hG : Top.Given) (h0 : Flat.FlatLineGenerator) (h1 : Flat.F
     obtain ⟨Fc, d, hFc, hFc0, hc⟩ := central_chart h0 h1 hS hpq 𝔐 Fl hBd χ ha xdeg e hx hroot hhod hdg τ
     refine ⟨?_, fun hi => ?_⟩
     · by_cases hip : (i : ℕ) < D.p
-      · refine ((PshAt0.sum (Finset.Iic i) fun k _ => pshAt0_log_norm (-1) 0 (hF (τ, k)).1 (hF (τ, k)).2).add
+      · refine ((PshAt0.sum (Finset.Iic i) fun k _ => _root_.AnalyticReference.An.H.plog_norm (-1) 0 (hF (τ, k)).1 (hF (τ, k)).2).add
           (((hM (.inl τ) ((i : ℕ) + 1) hip).2 ha).const_mul (c := 1 / 2) (by norm_num))).congr ?_
         filter_upwards [hall] with t ht
         have e1 : ∀ k ∈ Finset.Iic i, Real.log ((hx (τ, k)).h (χ.γ t)) = Real.log ‖F (τ, k) t‖ -
@@ -163,9 +163,9 @@ theorem local_bounds (hG : Top.Given) (h0 : Flat.FlatLineGenerator) (h1 : Flat.F
           sum_Iic_tele (fun m => M (.inl τ) m t), hM0]
         simp only [neg_mul, _root_.one_mul, add_zero, Finset.sum_neg_distrib]
         ring
-      · refine (((PshAt0.sum (Finset.Ioi i) fun k _ => pshAt0_log_norm 1 0 (hF (τ, k)).1 (hF (τ, k)).2).add
+      · refine (((PshAt0.sum (Finset.Ioi i) fun k _ => _root_.AnalyticReference.An.H.plog_norm 1 0 (hF (τ, k)).1 (hF (τ, k)).2).add
           (((hM (.inr τ) (D.p + D.q - ((i : ℕ) + 1)) (by show _ ≤ D.q; omega)).2 ha).const_mul (c := 1 / 2)
-            (by norm_num))).add (pshAt0_log_norm (-1) (-d) hFc hFc0)).congr ?_
+            (by norm_num))).add (_root_.AnalyticReference.An.H.plog_norm (-1) (-d) hFc hFc0)).congr ?_
         filter_upwards [hall, hc] with t ht hct
         have e1 : ∀ k ∈ Finset.Ioi i, Real.log ((hx (τ, k)).h (χ.γ t)) = Real.log ‖F (τ, k) t‖ -
             1 / 2 * (M (.inr τ) (D.p + D.q - ((k : ℕ) + 1)) t - M (.inr τ) (D.p + D.q - k) t) := fun k hk => by
@@ -188,7 +188,7 @@ theorem local_bounds (hG : Top.Given) (h0 : Flat.FlatLineGenerator) (h1 : Flat.F
           ← Finset.mul_sum, sum_Ioi_tele (fun m => M (.inr τ) (D.p + D.q - m) t), Nat.sub_self, hM0, hct] at e4
         simp only [_root_.one_mul, add_zero]
         linarith
-    · refine (pshAt0_log_norm 1 d hFc hFc0).congr ?_
+    · refine (_root_.AnalyticReference.An.H.plog_norm 1 d hFc hFc0).congr ?_
       filter_upwards [hc] with t hct
       rw [show Finset.Iic i = Finset.univ by
         ext k

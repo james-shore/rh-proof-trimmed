@@ -69,10 +69,6 @@ def oActIso {O : Type} [CommRing O] {S : Scheme.{0}} {A B : Over S} [GrpObj A] [
   mul x y := by rw [a.mul]; simp
   add x y := by rw [a.add, MonObj.mul_comp, MonObj.comp_mul]
 
-theorem pbMap_fst {S S' : Scheme.{0}} (f : S' ⟶ S) {X Y : Over S} (a : X ⟶ Y) :
-    ((Over.pullback f).map a).left ≫ pullback.fst Y.hom f = pullback.fst X.hom f ≫ a.left :=
-  pullback.lift_fst _ _ _
-
 end GlobalTheory.PolPartPull
 
 namespace GlobalTheory.PolPartPull

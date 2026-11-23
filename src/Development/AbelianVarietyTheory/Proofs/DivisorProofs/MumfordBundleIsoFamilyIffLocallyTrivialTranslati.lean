@@ -69,7 +69,7 @@ theorem same_lam_iff_locally_triv : ∀ {S : Scheme.{0}} (A T : Over S) [GrpObj 
   intro S A T _ hA L hL N hN Y a t
   haveI := hA.comm
   have hP : (abelian₂ A L).IsLB := LB.isLB_linComb hL _ _
-  have hF : Fam A (abelian₂ A L) := ⟨hP, (GlobalTheory.CubeDual.isAdditive_lam GlobalTheory.CubeTop.cubeTheorem hA hL hP).1⟩
+  have hF : Fam A (abelian₂ A L) := ⟨hP, (GlobalTheory.CubeDual.isAdditive_lam _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hA hL hP).1⟩
   have hT : (translDiff A L a).IsLB := LB.isLB_linComb hL _ _
   have hD : (LB.div (translDiff A L a) (ev N (snd Y A) (fst Y A ≫ t))).IsLB :=
     LB.isLB_div hT (pull_isLB hN.isLB _)

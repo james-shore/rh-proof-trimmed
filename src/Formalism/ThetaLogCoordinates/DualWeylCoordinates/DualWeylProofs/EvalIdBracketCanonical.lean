@@ -146,22 +146,17 @@ theorem qn_divideN (n : ℕ) [NeZero n] (ν0 : Fin n → ℕ) {ι : Type} (Q : �
 def qn_nu {n : ℕ} [NeZero n] (mu : Fin n → ℤ) : Fin n → ℕ :=
   fun t => (mu t + ((-(mu (lastIdx n))).toNat : ℤ)).toNat
 
-theorem qn_le_last {n : ℕ} [NeZero n] (a : Fin n) : a ≤ lastIdx n := by
-  have h2 : (lastIdx n).val = n - 1 := rfl
-  have := a.isLt
-  exact Fin.le_def.mpr (by omega)
-
 theorem qn_nu_eq {n : ℕ} [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) :
     qn_nu mu = fun t => qa_nu mu t + (mu (lastIdx n)).toNat := by
   funext t
-  have h := hmu (qn_le_last t)
+  have h := hmu (_root_.Formalism.InvariantFactorPaths.ColumnFamilies.qa_last_le t)
   unfold qn_nu qa_nu
   omega
 
 theorem qn_nu_cast {n : ℕ} [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) :
     (fun a => ((qn_nu mu a : ℕ) : ℤ)) = fun a => mu a + ((-(mu (lastIdx n))).toNat : ℤ) := by
   funext t
-  have h := hmu (qn_le_last t)
+  have h := hmu (_root_.Formalism.InvariantFactorPaths.ColumnFamilies.qa_last_le t)
   unfold qn_nu
   omega
 

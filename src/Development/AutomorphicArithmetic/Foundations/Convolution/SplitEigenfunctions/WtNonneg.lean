@@ -49,10 +49,6 @@ open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspR
 open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.R2.Ff UpperTheory.ConvolutionTheory.RankTwoDescent
 open scoped Classical
 
-private theorem cD_one' {F : Type} [Field F] [NumberField F] (g : G1 F) : cD (1 : (A F)ˣ) g = g := by
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [cD]
-
 private theorem norm_eta {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {D : Dat ℚ E} (W : Weil D)
     (a : (A ℚ)ˣ) : ‖((W.η.1 a : ℂˣ) : ℂ)‖ = 1 := by
   have h2 : ((W.η.1 a : ℂˣ) : ℂ) ^ 2 = 1 := by
@@ -65,18 +61,13 @@ private theorem om_norm {E : Type} [Field E] [NumberField E] [_root_.NumberField
       ab a ^ 2 * ‖(W.Om k' ph).1 (fun i => (a : A ℚ) * D.act x⁻¹ v i)‖ := by
   have hc : W.Om (nU b * mD a * k') (W.L x ph) = W.L x (W.Om (nU b * mD a * k') ph) := by
     have := W.comm x (nU b * mD a * k')
-    rw [hx, cD_one'] at this
+    rw [hx, _root_.UpperTheory.ConvolutionTheory.R2.M.cD_one] at this
     exact (congrArg (fun T : Module.End ℂ (S4 ℚ) => T ph) this).symm
   have hab : ab (1 : (A ℚ)ˣ) = 1 := by simp [ab]
   have hψ : ∀ y : A ℚ, ‖ψ y‖ = 1 := fun y => Circle.norm_coe _
   rw [hc, W.L_apply, hx, hab, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, W.Om_n, W.Om_m]
   simp only [inv_one, Complex.ofReal_one, one_mul, norm_mul, hψ, norm_eta W, Complex.norm_real, Real.norm_eq_abs]
   rw [abs_of_nonneg (by positivity)]
-
-private theorem rat_eq {E : Type} [Field E] [NumberField E] (γ : Matrix.SpecialLinearGroup (Fin 2) E) :
-    gl (ratS E γ) = ratGL E 2 (Matrix.SpecialLinearGroup.toGL γ) := by
-  ext i j
-  simp [ratS, ratGL]
 
 private theorem qr_rho {E : Type} [Field E] [NumberField E] (D : Dat ℚ E) (g : G1 E) (ξ ξ' : Fin 4 → ℚ)
     (h : D.act (gl g) (rp ξ) = rp ξ') : qr D.δ ξ' = qr D.δ ξ := by
@@ -139,7 +130,7 @@ private theorem maj_core (hL : LatSum) (hDec : DecE) (E : Type) [Field E] [Numbe
       rw [← hxx, _root_.mul_inv_rev (gl (ratS E γ)) (gl h * k), inv_mul_cancel_right]
     rw [hg, D.act_mul, hρ]
   have hφ : φ.1 (gl h * k) = φ.1 x₂ := by
-    rw [← hxx, rat_eq]
+    rw [← hxx, _root_.UpperTheory.ConvolutionTheory.R2.gl_ratS]
     exact (hLf.2 _ _).symm
   have ha0 : 0 < ab a := hc.trans_le hca
   have hβ0 : 0 < ab β := hc₀.trans_le hβ
@@ -191,17 +182,11 @@ private theorem maj_core (hL : LatSum) (hDec : DecE) (E : Type) [Field E] [Numbe
       _ = |Bn| * (Bl * Bd) * (ab a ^ 2 * (ab a)⁻¹ ^ (s + 2)) * (ab β ^ r * (ab β)⁻¹ ^ r) := by rw [hT]; ring
       _ = |Bn| * (Bl * Bd) * (ab a)⁻¹ ^ s := by rw [hcancel, hca2, mul_one]
 
-private theorem cont_gl {E : Type} [Field E] [NumberField E] : Continuous (gl : G1 E → GL (Fin 2) (A E)) := by
-  refine Units.continuous_iff.2 ⟨continuous_subtype_val, ?_⟩
-  have h : Continuous fun g : G1 E => ((g⁻¹ : G1 E) : Matrix (Fin 2) (Fin 2) (A E)) :=
-    continuous_subtype_val.comp continuous_inv
-  exact h
-
 theorem UpperTheory.ConvolutionTheory.RankTwoDescent.maj :
     LatSum → DecE → Maj := by
   intro hL hDec E _ _ _ D W _ _ P ph hph φ hφ C hC hC1 c hc s
   obtain ⟨c₀, K, hc₀, hK, hr⟩ := redE E
-  refine maj_core hL hDec E D W P orb1 (gl '' K) (hK.image cont_gl) ?_ c₀ hc₀ ?_ ph hph φ hφ C hC hC1 c hc s
+  refine maj_core hL hDec E D W P orb1 (gl '' K) (hK.image _root_.UpperTheory.ConvolutionTheory.R2.continuous_gl) ?_ c₀ hc₀ ?_ ph hph φ hφ C hC hC1 c hc s
   · rintro _ ⟨g, -, rfl⟩
     exact nu_gl g
   · intro h

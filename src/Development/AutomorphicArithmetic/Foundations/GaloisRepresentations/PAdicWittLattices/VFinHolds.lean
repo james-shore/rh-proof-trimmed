@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.EtaleCohomology.KummerTheory.AdicLimPfKer
 
 @[expose] public section
 
@@ -63,8 +64,8 @@ theorem vFin_holds : GlobalTheory.GalV.VFin := by
     exact UpperTheory.Et.etale_finiteness_of_duality (l ^ a) k (by rw [Nat.cast_pow]; exact hl.pow a) p m i
   have hM : Module.Finite ℤ_[l] (Hl l (sch.obj X) n i) :=
     LateralTheory.EWeil.AdicFinPf.AdicFin_of l _ n i (fun a => hT a n)
-      (LateralTheory.EWeil.AdicKerPf.AdicKer_of GlobalTheory.EtC.RedCoef.a11 l _ i
-        (fun b => LateralTheory.Fin.AdicFin.etale_bockstein_sequence_adic_finiteness GlobalTheory.T.etaleCohomology_coefficient_longExactSequence GlobalTheory.T.etaleCohomology_coefficientRing_invariance GlobalTheory.T.etaleCohomology_bijective_of_support_bijective GlobalTheory.EtC.RedCoef.a11 l b _ i
+      (_root_.LateralTheory.KummerTheory.AdicKer_holds GlobalTheory.EtC.RedCoef.a11 l _ i
+        (fun b => LateralTheory.Fin.AdicFin.etale_bockstein_sequence_adic_finiteness _root_.GlobalTheory.EtC.coefSeq_exact _root_.GlobalTheory.EtC.a8 _root_.GlobalTheory.EtC.a10 GlobalTheory.EtC.RedCoef.a11 l b _ i
           (LateralTheory.EWeil.FinQCut.inv_of_over hl p)) hT n)
   exact ⟨hM, Module.Finite.base_change ℤ_[l] ℚ_[l] _⟩
 

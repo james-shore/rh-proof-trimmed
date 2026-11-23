@@ -61,7 +61,7 @@ theorem dsInfChar' : GlobalTheory.Dec.DSInfChar :=
     GlobalTheory.CompanionTheory.CycWordTrace.sum_cycWord_eq_etr
     GlobalTheory.CompanionTheory.KFinSmoothBoth.kFin_smooth_both
     GlobalTheory.CompanionTheory.DiscreteSeries.isDS_sk_imp_upqRep
-    GlobalTheory.CompanionTheory.CoefSmooth.coef_smooth
+    _root_.GlobalTheory.CompanionTheory.CoefSmooth.coef_smoothOnG
     CompanionTheory.D.DSIC.discrete_series_infinitesimal_character
 
 end CompanionTheory.RgDsInf

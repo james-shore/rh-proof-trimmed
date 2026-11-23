@@ -55,11 +55,7 @@ section Transfer
 variable {S S' : Scheme.{0}} {t' : SAB H S'} {t : SAB H S} {f : S' ⟶ S} (m : SABMap t' t f)
   {R : Type} [CommRing R] {x : Sp R ⟶ S'} {x' : Sp R ⟶ S}
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (g : B →+* C) (h : A →+* B) :
-    spMap g ≫ spMap h = spMap (g.comp h) := by
-  unfold spMap
-  rw [← Spec.map_comp]
-  rfl
+alias spMap_comp := _root_.Formalism.L2.Pj.spMap_comp_ring
 
 theorem epsMul_over (s : R) : spMap (epsMul s) ≫ spMap (algebraMap R (DualNumber R)) =
     spMap (algebraMap R (DualNumber R)) := by

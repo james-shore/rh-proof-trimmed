@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StandardRankOneLatticeOfLocal
 
 @[expose] public section
 
@@ -354,12 +355,6 @@ open Formalism.L2.Forms
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem star_eq_conj (D : D7) (x : D.host.E) : star x = D.host.conj x := by
-  apply D.host.φ₀.injective
-  letI := D.host.isCMField_hostE
-  show D.host.φ₀ (IsCMField.complexConj D.host.E x) = _
-  rw [NumberField.IsCMField.complexEmbedding_complexConj, Formalism.HC.HostAx.conjE_apply]
-
 variable {D : D7} {X : Fields} (s : Seam D X)
 
 theorem conjP_seamP (hs : s.Ok) (P : HeightOneSpectrum (𝓞 X.E)) : conjPrime₂ (seamP s P) = seamP s (conjPrime₂ P) := by
@@ -369,7 +364,7 @@ theorem conjP_seamP (hs : s.Ok) (P : HeightOneSpectrum (𝓞 X.E)) : conjPrime�
   have h : cO D.host.E (RingOfIntegers.mapRingEquiv s.iE x) = RingOfIntegers.mapRingEquiv s.iE (cO X.E x) := by
     apply RingOfIntegers.ext
     show star (s.iE (x : X.E)) = s.iE (star (x : X.E))
-    rw [hs.2, star_eq_conj]
+    rw [hs.2, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.star_conj]
   rw [h, mem_seamP]
 
 theorem eq_map_or_eq_map_conj_of_liesOver (hs : s.Ok) {P : HeightOneSpectrum (𝓞 X.E)} {v : HeightOneSpectrum (𝓞 D.host.F)} (hv : IsOver v (seamP s P))
@@ -403,7 +398,7 @@ theorem component_transport_conj_eq_zero (hs : s.Ok) {P : HeightOneSpectrum (�
     (fun b hb => ⟨RingOfIntegers.mapRingEquiv s.iE (cO X.E b), (mem_seamP s P _).2 ((mem_conjP P b).1 hb), ?_⟩) hz
   change Formalism.UG.sigR (sigD D) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) (ι ((b : X.E) ⊗ₜ[X.F] 1)) =
     s.iE (star (b : X.E)) ⊗ₜ[D.host.F] 1
-  rw [hrat, hs.2, ← star_eq_conj]
+  rw [hrat, hs.2, ← _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.star_conj]
   rfl
 
 theorem valued_lt_of_intAtA {P : HeightOneSpectrum (𝓞 X.E)} {z : AfE X.F X.E}
@@ -451,7 +446,7 @@ theorem normOne_idele_eq_hilbert90_part_at_primes (hs : s.Ok) {S : Finset (Heigh
       rw [a1, a2, mul_one]
     · have a1 := component_transport_eq_zero ι hrat hint (P := conjPrime₂ P) (z := x - 1) (by rw [map_sub, component_mulIndicator_of_notMem y (hS P hP), map_one, sub_self])
       have a2 := component_transport_conj_eq_zero ι hrat hint hs (P := conjPrime₂ P) (z := x - y)
-        (by rw [GlobalTheory.MuConj.conjP_involutive, map_sub, component_mulIndicator_of_mem y hP, sub_self])
+        (by rw [_root_.GlobalTheory.CharValCompare.conjP_conjP, map_sub, component_mulIndicator_of_mem y hP, sub_self])
       rw [map_sub, map_sub, map_one, map_one, sub_eq_zero] at a1
       rw [map_sub, map_sub, map_sub, sub_eq_zero] at a2
       rw [a1, a2, ← map_mul, hn, map_one]

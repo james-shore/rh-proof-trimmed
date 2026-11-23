@@ -87,13 +87,6 @@ theorem isLieImg_comb {Ω : Type} [Field Ω] {x x' : Sp Ω ⟶ Xo.X} {ψ : Gx x 
     rw [tanMap_scale, ← hAB, ← Category.assoc, ← Category.assoc, scaleAt_comm]
   exact ⟨htw, htw', W, rfl, congrArg (·.left) key⟩
 
-theorem scal_mul'' {S : Type} [CommRing S] (x : Sp S ⟶ Xo.X) (a b : S) (i : (PPx x).ι) :
-    scal x (a * b) i = scal x a i * scal x b i := by
-  simp only [scal, ReciprocityTheory.ChartRestriction.G.Out.liftFun, map_mul]
-
-theorem scal_one'' {S : Type} [CommRing S] (x : Sp S ⟶ Xo.X) (i : (PPx x).ι) : scal x (1 : S) i = 1 := by
-  simp only [scal, ReciprocityTheory.ChartRestriction.G.Out.liftFun, map_one]
-
 theorem secBC_self {Ω : Type} [CommRing Ω] {x : Sp Ω ⟶ Xo.X} {a : Ω} {s s' : LB.Sec (PPx x)}
     (h : GlobalTheory.Frames.SecBC (RingHom.id Ω) a x x s s') : ∀ i, s'.f i = scal x a i * s.f i := by
   obtain ⟨pm, h₁, h₂, h₃⟩ := h
@@ -164,6 +157,6 @@ theorem hkRelFr_frBor : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     have hs₂ := secBC_self hs'
     refine GlobalTheory.ThetaTrace.IsThetaTrace.smul hth' (toΓ Ω (((t none)⁻¹ : Ωˣ) : Ω)) (fun k => ?_) (fun k => hs₂ k)
     show w.s.f k = scal w.x (((t none)⁻¹ : Ωˣ) : Ω) k * zs.f k
-    rw [hs₁ k, ← _root_.mul_assoc, ← scal_mul'', Units.inv_mul, scal_one'', _root_.one_mul]
+    rw [hs₁ k, ← _root_.mul_assoc, ← _root_.GlobalTheory.Frames.SecCalc.scal_mul', Units.inv_mul, _root_.GlobalTheory.Frames.SecCalc.scal_one', _root_.one_mul]
 
 end GlobalTheory.HeckeBorelChange

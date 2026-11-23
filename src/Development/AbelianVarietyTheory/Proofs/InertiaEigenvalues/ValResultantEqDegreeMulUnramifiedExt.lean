@@ -181,7 +181,7 @@ theorem val_resultant_unr : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsU
     rwa [hr.natDegree_map] at this
   have hr₁r := hres r₁ hr₁m (by rw [hQr₁₂]; exact dvd_mul_right _ _)
   have hr₂r := hres r₂ hr₂m (by rw [hQr₁₂]; exact dvd_mul_left _ _)
-  obtain ⟨φO, hφO, hint⟩ := int_lift K K' d φ hU
+  obtain ⟨φO, hφO, hint⟩ := _root_.GlobalTheory.UnitLemma.Unr.intMap_isIntegral_of_unr K K' d φ hU
   have hφc : (algebraMap K'.O K'.E).comp φO = φ.comp (algebraMap K.O K.E) := RingHom.ext hφO
   have hg₂ : IsIntegral K.O B₂.g := by
     letI : Algebra K.O K'.O := φO.toAlgebra
@@ -215,7 +215,7 @@ theorem val_resultant_unr : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsU
   rw [hc'm.leadingCoeff, C_1, mul_one] at hc₂
   have hfrc : p₂.map φO = r₂ * c₂ :=
     Polynomial.map_injective _ hinj' (by rw [hc', Polynomial.map_mul, hr₂, hc₂])
-  have hgen := res_gen K K' d φ hU (B₁.prod B₂) (ψ₁.prod ψ₂) (fun e => Prod.ext (h₁ e) (h₂ e)) (show Nontrivial (B₁.A × B₂.A) from inferInstance)
+  have hgen := _root_.GlobalTheory.UnitLemma.Unr.residue_generates K K' d φ hU (B₁.prod B₂) (ψ₁.prod ψ₂) (fun e => Prod.ext (h₁ e) (h₂ e)) (show Nontrivial (B₁.A × B₂.A) from inferInstance)
     hO s Q hQm (by
       show (eval₂ ((ψ₁.prod ψ₂).comp (algebraMap K'.O K'.E)) ((B₁.g, B₂.g) : B₁.A × B₂.A) Q : B₁.A × B₂.A) = 0
       refine Prod.ext ?_ ?_
@@ -243,7 +243,7 @@ theorem val_resultant_unr : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsU
     exact (Module.finrank_mul_finrank K.E K'.E B₂.A).symm
   have hmap : p₂.map (φ.comp (algebraMap K.O K.E)) = (r₂ * c₂).map (algebraMap K'.O K'.E) := by
     rw [← hfrc, Polynomial.map_map, hφc]
-  have hnr := res_mult K K' d φ hU s hgen p₂ r₂ c₂ hp₂m hr₂m hr₂r hdeg hmap
+  have hnr := _root_.GlobalTheory.UnitLemma.Unr.ResMult.not_isRoot_cofactor K K' d φ hU s hgen p₂ r₂ c₂ hp₂m hr₂m hr₂r hdeg hmap
   have hu : IsUnit (resultant c₂ r₁) := by
     rw [← IsLocalRing.residue_ne_zero_iff_isUnit, ← resultant_map_map, hr₁r,
       resultant_X_sub_C_pow_right _ _ _ _ natDegree_map_le]
@@ -266,7 +266,7 @@ theorem val_resultant_unr : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsU
         rw [resultant_comm, val_neg_one_pow]
     _ = val K.O (Algebra.norm K.E (aeval B₁.g B₂.P)) := by rw [hk₁', val_neg_one_pow]
     _ = d * val K'.O (@Algebra.norm K'.E B₁.A _ _ ψ₁.toAlgebra (aeval B₁.g B₂.P)) := by
-        rw [norm_tower φ B₁ ψ₁ h₁, val_norm K K' d φ hU]
+        rw [norm_tower φ B₁ ψ₁ h₁, _root_.GlobalTheory.UnitLemma.Unr.NormValU.val_norm K K' d φ hU]
     _ = d * val K'.O (resultant B₂'.P B₁'.P) := by
         rw [hk₂', val_neg_one_pow, hmul, hcu, val_mul_unit _ _ hu]
     _ = d * val K'.O (resultant B₁'.P B₂'.P) := by

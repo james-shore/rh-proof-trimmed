@@ -55,10 +55,10 @@ open GlobalTheory.Doubling (absE)
 namespace GlobalTheory.CompanionTheory.SiegelEis
 theorem eis_half_plane_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E) (n : ℕ) (Y : Spc F E n) (r s : ℕ), _root_.UpperTheory.TP.W.GoodK σ B → 1 ≤ n → (Y.IsHerm σ B r s ∨ Y.IsSkew σ B r s) → ∀ (b : GL (Fin n ⊕ Fin n) E) (K : Subgroup (G2 σ Y)) (a : G2 σ Y → ℝ), IsFrame2 σ Y b → IsStdK (σ := σ) (Y := Y) B b K → IsHgt K a → ∀ (χ : Chr F E) (s₁ : ℂ) (f : G2 σ Y → ℂ), IsSec K χ s₁ f → ∃ Ê : ℂ → G2 σ Y → ℂ, ∃ t : ℝ, (∀ s : ℂ, t < s.re → ∀ x, HasSum (eisTerm (flat a f s₁ s) x) (Ê s x)) ∧ ∀ x, DifferentiableOn ℂ (Ê · x) {s | t < s.re} := by
   intro F E _ _ _ _ _ σ B n Y r s hB hn hY b K a hb hK hH χ s₁ f hf
-  have hKc : IsCompact (K : Set (G2 σ Y)) := _root_.GlobalTheory.T.isCompact_standard_maximal_compact F E σ B n Y r s hB hn hY b K a hb hK hH
-  obtain ⟨-, hpos⟩ := _root_.GlobalTheory.T.height_function_continuous_pos F E σ B n Y r s hB hn hY b K a hb hK hH
-  obtain ⟨C, hC⟩ := GlobalTheory.T.flat_section_growth_bound K a hKc hH hpos χ s₁ f hf
-  obtain ⟨σ₀, hσ⟩ := _root_.GlobalTheory.T.eisenstein_series_convergence_bound F E σ B n Y r s hB hn hY b K a hb hK hH
+  have hKc : IsCompact (K : Set (G2 σ Y)) := _root_.GlobalTheory.CompanionTheory.StdK.isCompact_K_k F E σ B n Y r s hB hn hY b K a hb hK hH
+  obtain ⟨-, hpos⟩ := _root_.GlobalTheory.CompanionTheory.Iwasawa.height_continuous_pos_k F E σ B n Y r s hB hn hY b K a hb hK hH
+  obtain ⟨C, hC⟩ := _root_.GlobalTheory.CompanionTheory.EisTerm.flat_norm_le_height_rpow K a hKc hH hpos χ s₁ f hf
+  obtain ⟨σ₀, hσ⟩ := _root_.GlobalTheory.CompanionTheory.GodementH.godement_sum_k F E σ B n Y r s hB hn hY b K a hb hK hH
   have hsum : ∀ σ' : ℝ, σ₀ < σ' → ∀ x : G2 σ Y,
       Summable (fun q : Cos σ Y => a ((Quotient.out q).1 * x) ^ σ') := by
     intro σ' h x

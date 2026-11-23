@@ -372,10 +372,6 @@ theorem HDep.mono {n : ℕ} {N N' : Submodule (𝓞 K) M} (h : HDep n N) (hle : 
   intro y hy
   exact h y (fun i => hle (hy i))
 
-theorem relIndex_eq_card (I : Ideal (𝓞 K)) (N : Submodule (𝓞 K) M) :
-    (I • N).toAddSubgroup.relIndex N.toAddSubgroup = Nat.card (N ⧸ I • (⊤ : Submodule (𝓞 K) N)) :=
-  relIndex_smul_eq_card_quotient_smul I N
-
 theorem fg_smul (I : Ideal (𝓞 K)) (N : Submodule (𝓞 K) M) (hN : N.FG) : (I • N).FG := by
   first
   | exact Submodule.FG.smul (IsNoetherian.noetherian I) hN
@@ -400,7 +396,7 @@ theorem relIndex_prime_le (𝔭 : Ideal (𝓞 K)) [𝔭.IsMaximal] (n : ℕ) (N 
     refine ⟨c, hc, ?_⟩
     apply Subtype.ext
     simpa using hs
-  rw [relIndex_eq_card, absNorm_eq_card_quotient]
+  rw [_root_.Formalism.L2.SG.Pf.NcReal.JX.CovB.IdxK.relIndex_smul_eq_card_quotient_smul, absNorm_eq_card_quotient]
   exact card_quot_le 𝔭 n hdep
 
 private theorem ideal_mul_smul_submodule (I J : Ideal (𝓞 K)) (N : Submodule (𝓞 K) M) : (I * J) • N = I • J • N := by

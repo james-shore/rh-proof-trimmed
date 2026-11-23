@@ -43,6 +43,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Presheaf
 import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.AtypicalPathSmallWeight
 import Formalism.SharpRestriction.GrowthBounds.ValuationLowestDegreeMapFractionField
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.ReflectionMemGlevCastSucc
 
 @[expose] public section
 
@@ -67,12 +68,6 @@ private theorem fr_lt_fr_of_lt {F : Frames n' r} {L₁ N₁ : ℕ} (hV : F.Valid
     · subst h
       exact hV.2.2.1 j i hi'
 
-private theorem fr_le_fr_of_le {F : Frames n' r} {L₁ N₁ : ℕ} (hV : F.Valid L₁ N₁) (j : ℤ) (i : ℕ)
-    (hi : i < r) : F.fr j 0 ≤ F.fr j i := by
-  rcases Nat.eq_zero_or_pos i with h | h
-  · rw [h]
-  · exact (fr_lt_fr_of_lt hV j 0 i h hi).le
-
 private theorem fr_le_fr_last {F : Frames n' r} {L₁ N₁ : ℕ} (hV : F.Valid L₁ N₁) (j : ℤ) (i : ℕ)
     (hi : i < r) : F.fr j i ≤ F.fr j (r - 1) := by
   rcases Nat.lt_or_ge i (r - 1) with h | h
@@ -85,8 +80,8 @@ private theorem fr_one_zero_mem_letters_one {F : Frames n' r} {L₁ N₁ : ℕ} 
     have h0 := hV.2.2.2.1 0
     simpa using h0
   simp only [Frames.letters, sub_self, Finset.mem_filter, Finset.mem_Icc]
-  refine ⟨⟨?_, fr_le_fr_of_le hV 1 (r - 1) (by omega)⟩, (hV.2.2.2.2.1 1 0 (by omega)).1⟩
-  have h1 := fr_le_fr_of_le hV 0 (r - 1) (by omega)
+  refine ⟨⟨?_, _root_.Formalism.MainNotions.SelectionLemmas.Pf.frame_zero_le hV 1 (r - 1) (by omega)⟩, (hV.2.2.2.2.1 1 0 (by omega)).1⟩
+  have h1 := _root_.Formalism.MainNotions.SelectionLemmas.Pf.frame_zero_le hV 0 (r - 1) (by omega)
   omega
 
 theorem six_le_Ns (hX : X.Hyp p K) : 6 ≤ X.Ns := by
@@ -95,7 +90,7 @@ theorem six_le_Ns (hX : X.Hyp p K) : 6 ≤ X.Ns := by
   have hg : X.F.fr 0 (r - 1) < X.F.fr 1 0 := by
     have h0 := hV.2.2.2.1 0
     simpa using h0
-  have hle : ∀ j : ℤ, ∀ i, i < r → X.F.fr j 0 ≤ X.F.fr j i := fun j i hi => fr_le_fr_of_le hV j i hi
+  have hle : ∀ j : ℤ, ∀ i, i < r → X.F.fr j 0 ≤ X.F.fr j i := fun j i hi => _root_.Formalism.MainNotions.SelectionLemmas.Pf.frame_zero_le hV j i hi
   have hleT : ∀ j : ℤ, ∀ i, i < r → X.F.fr j i ≤ X.F.fr j (r - 1) := fun j i hi => fr_le_fr_last hV j i hi
   have hinj : ∀ j : ℤ, Set.InjOn (fun i => X.F.fr j i) (Finset.range r) := by
     intro j a ha b hb hab
@@ -220,8 +215,8 @@ theorem c_bounds (hX : X.Hyp p K) (h41 : ∀ t ∈ X.F.TT, (9 / 10 : ℝ) * (X.d
     refine ⟨⟨le_refl _, ?_⟩, (hV.2.2.2.2.1 (j - 1) 0 (by omega)).1⟩
     have hg := hV.2.2.2.1 (j - 1)
     rw [sub_add_cancel] at hg
-    have h1 := fr_le_fr_of_le hV (j - 1) (r - 1) (by omega)
-    have h2 := fr_le_fr_of_le hV j (r - 1) (by omega)
+    have h1 := _root_.Formalism.MainNotions.SelectionLemmas.Pf.frame_zero_le hV (j - 1) (r - 1) (by omega)
+    have h2 := _root_.Formalism.MainNotions.SelectionLemmas.Pf.frame_zero_le hV j (r - 1) (by omega)
     omega
   have hdist : X.F.dist j y ≤ X.F.dist j (X.F.fr (j - 1) 0) := by
     unfold Frames.dist

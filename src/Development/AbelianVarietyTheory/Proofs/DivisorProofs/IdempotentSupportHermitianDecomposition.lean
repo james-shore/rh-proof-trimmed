@@ -60,17 +60,6 @@ section General
 
 variable {E : Type} [Field E] [NumberField E] {n : ℕ}
 
-theorem exists_nat_smul_mem (L L' : Submodule (𝓞 E) (Fin n → E)) (hL : L.FG)
-    (hsp : Submodule.span E (L' : Set (Fin n → E)) = ⊤) :
-    ∃ c : ℕ, 0 < c ∧ ∀ x ∈ L, (c : E) • x ∈ L' := by
-  first
-  | exact @_root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le
-  | exact _root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le
-  | (apply _root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le ..)
-
 theorem fg_colLat (B : GL (Fin n) E) : (colLat B).FG :=
   Submodule.fg_span (Set.finite_range _)
 
@@ -156,8 +145,8 @@ theorem exists_rep_std : ∀ (D : D7) (V : HSp D) (fr : GL (Fin V.rank) D.host.E
       (Formalism.IndefR.Lev.finE V x).1 = γ.1.map (eToEAf D) * (Formalism.IndefR.Lev.finE V h).1 * (Formalism.IndefR.Lev.finE V k).1 := by
   intro D V fr S hS x hx
   obtain ⟨-, -, hfg, hsp, -⟩ := GlobalTheory.Member.latHat_eq_hat_and_gram D V
-  obtain ⟨c1, hc1, h1⟩ := exists_nat_smul_mem (colLat fr) (GlobalTheory.Member.latC V) (fg_colLat fr) hsp
-  obtain ⟨c2, hc2, h2⟩ := exists_nat_smul_mem (GlobalTheory.Member.latC V) (colLat fr) hfg (span_colLat fr)
+  obtain ⟨c1, hc1, h1⟩ := _root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le (colLat fr) (GlobalTheory.Member.latC V) (fg_colLat fr) hsp
+  obtain ⟨c2, hc2, h2⟩ := _root_.GlobalTheory.NatMultipleIntegralSmulBound.exists_nat_smul_le (GlobalTheory.Member.latC V) (colLat fr) hfg (span_colLat fr)
   have h1' : ∀ y ∈ colLat fr, ((c1 * c2 : ℕ) : D.host.E) • y ∈ GlobalTheory.Member.latC V := fun y hy => by
     rw [Nat.cast_mul, mul_comm, mul_smul, Nat.cast_smul_eq_nsmul D.host.E c2]
     exact (GlobalTheory.Member.latC V).toAddSubmonoid.nsmul_mem (h1 y hy) c2

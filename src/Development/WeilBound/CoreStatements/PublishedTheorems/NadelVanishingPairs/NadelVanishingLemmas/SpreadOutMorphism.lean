@@ -74,7 +74,7 @@ theorem lbSec_descends_to_subring : ∀ (k : Type) [Field k] (R₀ : Subring k) 
   obtain ⟨τ, hστ⟩ := GlobalTheory.T.exists_sectionsHaveSameZeroScheme_of_lineBundleIso X L (L'.pull j') σ hL hLj hI
   have QX : IsPullback j' f (pullback.snd f₀ a) (spMap R'.subtype) :=
     IsPullback.of_right (by rw [hj₁, e₁]; exact hp) hj₂ PX'
-  obtain ⟨F₂, hF₂⟩ := GlobalTheory.T.spread_out_line_bundle k R' X (pullback f₀ a) f (pullback.snd f₀ a) j' L' τ QX hL'
+  obtain ⟨F₂, hF₂⟩ := _root_.GlobalTheory.LogPair.exists_finset_sec_descends k R' X (pullback f₀ a) f (pullback.snd f₀ a) j' L' τ QX hL'
   refine ⟨S ∪ F₂, fun R₁ hR hs X₁ f₁ π₁ j hp₁ hjπ hjf => ?_⟩
   rw [Finset.coe_union, Set.union_subset_iff] at hs
   have hle : R' ≤ R₁ := sup_le hR (Subring.closure_le.2 hs.1)
@@ -95,7 +95,7 @@ theorem lbSec_descends_to_subring : ∀ (k : Type) [Field k] (R₀ : Subring k) 
     · rw [Category.assoc, hq₁, hjπ, hj₁]
     · rw [Category.assoc, hq₂, reassoc_of% hjf, e₃, hj₂]
   obtain ⟨τ₁, hτ₁⟩ := hF₂ R₁ hle hs.2 X₁ f₁ q j QX₁ hjq hjf
-  refine ⟨L'.pull q, LB.isLB_pull hL' q, τ₁, ?_, GlobalTheory.T.same_divisor_trans X L (L'.pull j') _ σ τ _ hLj hστ hτ₁⟩
+  refine ⟨L'.pull q, LB.isLB_pull hL' q, τ₁, ?_, _root_.GlobalTheory.LogPair.SameDiv.trans_of_isLB X L (L'.pull j') _ σ τ _ hLj hστ hτ₁⟩
   rw [(CechPic.cls_eq_iff hL hLj).2 hI, CechPic.cls_pull hL' j' hLj, CechPic.cls_pull hL' q, ← hjq,
     CechPic.pull_comp]
 

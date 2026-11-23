@@ -85,8 +85,8 @@ theorem rallis_inner_product_bottom_norm_eq (hP : _root_.GlobalTheory.FunPr.Thet
         ∫ g in openOff A LA Sf, wcoef om ν 𝓕 Φ Φ g ∂m := by
   have hU19 := GlobalTheory.T.unramifiedDoublingIntegral_inert_place
   have hPB := paramBoundOn_all_of_split_inert D (GlobalTheory.T.sphericalParameterBound_split_place D) (GlobalTheory.T.sphericalParameterBound_nonsplit_places hU19 D)
-  have hLZ := localZetaOn_all_of_split_inert D (GlobalTheory.T.unramifiedDoublingIntegral_splitPlace_adelic hP.unramifiedDoublingGL D)
-    (GlobalTheory.T.unramified_doubling_integral_inert_adelic hU19 D (GlobalTheory.T.sphericalParameterBound_nonsplit_places hU19 D))
+  have hLZ := localZetaOn_all_of_split_inert D (_root_.GlobalTheory.Core.Rk.IP.localZetaOn_split hP.unramifiedDoublingGL D)
+    (_root_.GlobalTheory.LocZetaInertAd.localZetaOn_inert hU19 D (_root_.GlobalTheory.Core.Rk.ParamInert.paramBoundOn_nonsplit hU19 D))
   have hE : EulerRight D :=
     GlobalTheory.T.doubling_eulerProduct_farRight hP.cuspRapidDecay D (GlobalTheory.T.doublingSphericalFactorization_of_weilDualPair hP.weilRepresentationUnitaryPair D) hLZ hPB
   have hG : GlobalFormAniso D := _root_.GlobalTheory.T.theta_tower_compatibility hP.weilRepresentationUnitaryPair hP.cuspRapidDecay hP.doublingMethod D

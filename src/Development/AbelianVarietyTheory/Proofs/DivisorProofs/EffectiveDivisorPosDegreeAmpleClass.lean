@@ -151,7 +151,7 @@ theorem inter_cons_pos : ∀ (K : Type) [Field K] (A : AbVar K) (n : ℕ), A.dim
     refine Fin.cases ?_ (fun j => ?_) j
     · simp
     · simp
-  rw [hfam, T.abelianVariety_intersection_eq_lineBundleIntersection K A (Fin (n + 1)) _ hcons]
+  rw [hfam, _root_.GlobalTheory.AV.AbVar.inter_cls_eq_interNum K A (Fin (n + 1)) _ hcons]
   have hs : genericPoint A.X.left ∈ nonzeroLocus s := by
     obtain ⟨y, hy⟩ : (nonzeroLocus s : Set A.X.left).Nonempty := by
       by_contra h

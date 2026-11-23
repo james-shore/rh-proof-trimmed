@@ -126,7 +126,7 @@ theorem uloc_T_iff (σ : E →ₐ[F] E) (hdeg : Module.finrank F E = 2) (hσ : �
   subst hJ
   have hT0 : (T : E) ≠ 0 := Nat.cast_ne_zero.2 hT.ne_zero
   have hp0 : (p : E) ≠ 0 := fun h => hT0 (by rw [← hpq, h, zero_mul])
-  refine ⟨fun hx => ⟨S.Uloc_lev v hx, GlobalTheory.T.level_acts_trivially_on_discriminant_group σ hσ S p q hq hpq hT.ne_zero hL ?_ v hv ?_ x hx⟩, fun h => GlobalTheory.uloc_of_triv_disc σ S v hv x h.1 h.2⟩
+  refine ⟨fun hx => ⟨S.Uloc_lev v hx, _root_.GlobalTheory.uloc_acts_trivially_on_dual_quotient σ hσ S p q hq hpq hT.ne_zero hL ?_ v hv ?_ x hx⟩, fun h => GlobalTheory.uloc_of_triv_disc σ S v hv x h.1 h.2⟩
   · rw [hL]; exact GlobalTheory.uLocDual_eq σ hσ n p q hp0 hq
   · intro m hm d c hd hc
     exact GlobalTheory.T.unitaryScalar_eq_one_mod_of_fixes_simple_module σ hdeg hσ hfix hun v T hT hunif (S.fM v hv) (S.fM_card v hv) m hm d c hd hc

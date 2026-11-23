@@ -97,9 +97,7 @@ theorem latO_eq_bot (S T : HSp D) (LS : Set (Fin S.rank → D.host.E)) (LT : Set
   simp only [pairA, Prod.mk_zero_zero, Matrix.of_apply, Matrix.zero_apply]
   exact TensorProduct.zero_tmul _ _
 
-theorem heisO_zero_eq (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (f : WO S T → ℂ) : heisO ψ S T 0 f = f := by
-  funext w
-  simp [heisO, symplOH, symplO, hO]
+alias heisO_zero_eq := _root_.GlobalTheory.SplitScalar.heisO_zero
 
 theorem suppFirst_holds (D : D7) : SuppFirst D := by
   intro ψ ρ B J s LV LV₀ LW LW₀ P hgood hunr hsdW Φ hΦ

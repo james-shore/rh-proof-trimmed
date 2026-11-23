@@ -80,7 +80,7 @@ variable {σ : Type} [DecidableEq σ] {H : Type} [NormedAddCommGroup H] [InnerPr
 
 theorem oneStep_mul (h : IsFockIP ι) (i : σ) : OneStep ι (LinearMap.mulLeft ℂ (X i)) := by
   intro d P hP
-  refine ⟨?_, (GlobalTheory.T.fock_norm_bounds_mul_X_pderiv σ H ι h i d P hP).1⟩
+  refine ⟨?_, (_root_.GlobalTheory.FockNormBound.fock_norm_bounds σ H ι h i d P hP).1⟩
   rw [LinearMap.mulLeft_apply]
   refine (totalDegree_mul _ _).trans ?_
   rw [totalDegree_X]; omega
@@ -88,7 +88,7 @@ theorem oneStep_mul (h : IsFockIP ι) (i : σ) : OneStep ι (LinearMap.mulLeft �
 theorem oneStep_pderiv (h : IsFockIP ι) (i : σ) : OneStep ι (pderiv i).toLinearMap := by
   intro d P hP
   refine ⟨((totalDegree_pderiv_le_self i P).trans hP).trans (Nat.le_succ _), ?_⟩
-  have := (GlobalTheory.T.fock_norm_bounds_mul_X_pderiv σ H ι h i d P hP).2
+  have := (_root_.GlobalTheory.FockNormBound.fock_norm_bounds σ H ι h i d P hP).2
   have h2 := sq_nonneg ‖ι P‖
   change ‖ι (pderiv i P)‖ ^ 2 ≤ _
   nlinarith

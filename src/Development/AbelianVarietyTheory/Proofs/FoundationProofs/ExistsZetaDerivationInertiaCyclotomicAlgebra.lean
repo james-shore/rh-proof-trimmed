@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsArcIsometryTorsionIntegralGauge
 
 @[expose] public section
 
@@ -179,7 +180,7 @@ theorem exists_root_succ [CharZero Ω] [IsAlgClosed Ω] {p : ℕ} [hp : Fact p.P
       rw [Nat.coprime_pow_right_iff hn] at hi
       exact hi.pow_right _
   have hw : IsPrimitiveRoot (ζ ^ j) (p ^ (n + 1)) := hζ.pow_of_coprime j hj
-  have hmem : ζ ^ j ∈ A := mem_of_pow_mem A hpos.ne' (by rw [hw.pow_eq_one]; exact A.one_mem)
+  have hmem : ζ ^ j ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A hpos.ne' (by rw [hw.pow_eq_one]; exact A.one_mem)
   refine ⟨⟨ζ ^ j, hmem⟩, hw, Subtype.ext ?_⟩
   rw [← hjz]
   show (ζ ^ j) ^ p = _
@@ -218,7 +219,7 @@ theorem zeta_derivation_cyc : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω
       D (zs (m + 1)) = Submodule.Quotient.mk ((zs (m + 1) : Ω) * p / (p : Ω) ^ (N + m + 1)) := by
     intro m
     refine exists_der_one (zs (m + 1)) _ fun Q hQ => ?_
-    obtain ⟨R, rfl⟩ := GlobalTheory.T.cyclotomic_dvd_of_aeval_primitive_root_inertia_fixed p Ω A hO (N + m + 1) (zs (m + 1)) (hprim (m + 1)) Q hQ
+    obtain ⟨R, rfl⟩ := _root_.GlobalTheory.RecOne.CycDvd.cyclotomic_dvd p Ω A hO (N + m + 1) (zs (m + 1)) (hprim (m + 1)) Q hQ
     have hzA : IsPrimitiveRoot (zs (m + 1)) (p ^ (N + m + 1)) :=
       IsPrimitiveRoot.of_map_of_injective (f := A.subtype) (hprim (m + 1)) Subtype.val_injective
     have hroot : aeval (zs (m + 1)) (cyclotomic (p ^ (N + m + 1)) (fixA A)) = 0 := by

@@ -197,7 +197,7 @@ theorem GlobalTheory.RealGal.exists_infinite_qcm_split_ram : ∀ (F Ω : Type) [
       ∀ (u : HeightOneSpectrum (𝓞 F)) (A' : ValuationSubring Ω), ((p : ℕ) : 𝓞 F) ∈ u.asIdeal →
         IsPlaceOver A' u → ¬ Ine (F := F) A' ≤ (res F Ω ↥Q.K).range := by
     intro p hp Q hQK u A' hu hA' hle
-    obtain ⟨s, hs, hne⟩ := GlobalTheory.T.inertia_moves_square_root F Ω p hp.1 hp.2.2.1 hp.2.2.2.1 (δ p) (hδ p) u A' hu hA'
+    obtain ⟨s, hs, hne⟩ := _root_.GlobalTheory.SqrtNegRam.sqrt_neg_moved_by_inertia F Ω p hp.1 hp.2.2.1 hp.2.2.2.1 (δ p) (hδ p) u A' hu hA'
     refine hne ((mem_range_res_iff Q.K s).1 (hle hs) (δ p) ?_)
     rw [hQK]
     exact IntermediateField.mem_adjoin_simple_self F (δ p)
@@ -207,7 +207,7 @@ theorem GlobalTheory.RealGal.exists_infinite_qcm_split_ram : ∀ (F Ω : Type) [
     refine ⟨fun s hs => ?_, ?_⟩
     · rw [mem_range_res_iff, hQK]
       refine fix_adjoin (halg.isAlgebraic (δ p)).isIntegral s ?_
-      exact GlobalTheory.T.decomposition_fixes_square_root F Ω v A hA q hqv (-(p : ℤ)) (δ p) (by push_cast; exact hδ p)
+      exact _root_.GlobalTheory.SqFix.sqrt_fixed_of_isSquare_padic F Ω v A hA q hqv (-(p : ℤ)) (δ p) (by push_cast; exact hδ p)
         (by push_cast; exact hp.2.1) s hs
     · obtain ⟨u, hu⟩ := exists_mem_of_prime (F := F) hp.1
       obtain ⟨A', hA'⟩ := ReciprocityTheory.Gal.exists_isPlaceOver Ω u

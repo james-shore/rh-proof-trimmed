@@ -219,7 +219,7 @@ theorem tiesAt_true : ∀ {B : GlobalTheory.Mem.Base} {X : GlobalTheory.Mem.PreX
       rintro A rfl
       obtain ⟨hne, hb⟩ := (hFam.1 u a).period
       obtain ⟨hY, hK, hF, hM, hper⟩ := hb hne.some
-      obtain ⟨eM, heM1, heM2, heM3, heM4⟩ := GlobalTheory.T.ramifiedColumns_trueColumns_eq_concrete I h l Z l0 u
+      obtain ⟨eM, heM1, heM2, heM3, heM4⟩ := _root_.GlobalTheory.AtG.ramCols_true I h l Z l0 u
       obtain ⟨e, he1, he2, he3, he4⟩ := hR u
       let rE := GlobalTheory.PeriodOnStep.rowEmb (Pr := B.primes X) (I := I.chIn u a) B.wts I.Ch I.sel (I.tup a) I.Ps (I.perIn u a).b0
         (I.perIn u a).til (I.perIn u a).ext (I.perIn u a).tz (I.perIn u a).H (KerRat.tilOk I h u a).2.2 B.embLL
@@ -248,7 +248,7 @@ theorem tiesAt_true : ∀ {B : GlobalTheory.Mem.Base} {X : GlobalTheory.Mem.PreX
           exact ⟨Formalism.L2.DIV.plc_prime' v, I.sel v, hmem, hu rfl⟩
       · exact fun i hi => hJ a u i hi
       · exact colTie_of_addEquiv (EX := exOf EX h1 h2) I.Ch u eM heM1 heM2
-      · obtain ⟨r1, r2⟩ := GlobalTheory.T.rowForms_coefficientField_form_complexPeriodRows I h l u a
+      · obtain ⟨r1, r2⟩ := _root_.GlobalTheory.Mem.Col2.KerRat.rowForm_baseChange I h l u a
         refine ⟨fun s hs => (r1 s hs).map' e.toLinearMap e.ker, span_range_comp_eq_top rE e r2, fun v hv => ?_, he4⟩
         obtain ⟨z, hz⟩ := he3 v hv
         exact ⟨z, hz⟩

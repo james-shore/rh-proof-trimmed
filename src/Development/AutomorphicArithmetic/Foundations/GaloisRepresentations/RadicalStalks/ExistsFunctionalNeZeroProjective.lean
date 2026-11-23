@@ -78,18 +78,13 @@ private theorem exists_functional_ne_zero_projective {B M : Type} [CommRing B] [
   have := LinearMap.congr_fun hs m
   simpa [h0] using this.symm
 
-private theorem exists_point_nonvanishing_reduced (k : Type) [Field k] [IsAlgClosed k] (B : Type) [CommRing B] [Algebra k B]
-    [Algebra.FiniteType k B] [IsReduced B] {c : B} (hc : c ≠ 0) :
-    ∃ x : B →ₐ[k] k, x c ≠ 0 :=
-  _root_.UpperTheory.Reformulated.B.NonvanishingPoint.exists_point_nonvanishing_reduced k B hc
-
 theorem UpperTheory.Gal.Ord.dz1 :
     ∀ (k : Type) [Field k] [IsAlgClosed k] (B : Type) [CommRing B] [Algebra k B] [Algebra.FiniteType k B] [IsReduced B] [Module.Projective B Ω[B⁄k]] (r : B),
       (∀ v : B →ₐ[k] DualNumber k, TrivSqZeroExt.snd (v r) = 0) → KaehlerDifferential.D k B r = 0 := by
   intro k _ _ B _ _ _ _ _ r hv
   by_contra hne
   obtain ⟨l, hl⟩ := exists_functional_ne_zero_projective (B := B) hne
-  obtain ⟨x, hx⟩ := exists_point_nonvanishing_reduced k B hl
+  obtain ⟨x, hx⟩ := _root_.UpperTheory.Reformulated.B.NonvanishingPoint.exists_point_nonvanishing_reduced k B hl
   let d : B →ₗ[k] k := x.toLinearMap ∘ₗ (l.restrictScalars k) ∘ₗ (KaehlerDifferential.D k B).toLinearMap
   have hd : ∀ b, d b = x (l (KaehlerDifferential.D k B b)) := fun _ => rfl
   let f : B →ₗ[k] DualNumber k :=

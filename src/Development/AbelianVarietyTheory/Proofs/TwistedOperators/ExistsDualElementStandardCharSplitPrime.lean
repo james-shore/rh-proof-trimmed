@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.RealLowestKTypeCoeffSquareIntegrable
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IntegralPowerExpansion
 
 @[expose] public section
 
@@ -120,13 +121,6 @@ theorem comp_sec (he : SplitAt D v e) (a : Fv D.host.F v) : comp he (GlobalTheor
 theorem sec_comp (he : SplitAt D v e) (z : AE D) : GlobalTheory.FinPl.SplitPoint.sec D v e (comp he z) = e * z := by
   rw [GlobalTheory.FinPl.SplitPoint.sec_apply, sc_spec he z]
   rfl
-
-theorem le_exp_neg_one {x : WithZero (Multiplicative ℤ)} (hx : x < 1) : x ≤ WithZero.exp (-1) := by
-  rcases eq_or_ne x 0 with rfl | h0
-  · exact zero_le'
-  · rw [← WithZero.exp_log h0] at hx ⊢
-    rw [← WithZero.exp_zero, WithZero.exp_lt_exp] at hx
-    exact WithZero.exp_le_exp.2 (by omega)
 
 end GlobalTheory.SplitDualElt
 
@@ -261,7 +255,7 @@ open GlobalTheory.IdemModTwo GlobalTheory.SplitChart
 theorem exists_edge {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) (χ : AddChar (v.adicCompletion F) ℂ)
     (hχ : Continuous χ) (hne : ∃ a, χ a ≠ 1) :
     ∃ c₀ : v.adicCompletion F, χ c₀ ≠ 1 ∧ ∀ m : v.adicCompletion F, Valued.v m < 1 → χ (c₀ * m) = 1 := by
-  obtain ⟨n, hn⟩ := GlobalTheory.CharConductor.exists_exponent_of_valued χ hχ hne
+  obtain ⟨n, hn⟩ := _root_.GlobalTheory.CharacterConductorBall.exists_conductor χ hχ hne
   obtain ⟨ϖ, hϖ⟩ := HeightOneSpectrum.valuation_exists_uniformizer F v
   have hv : Valued.v (ϖ : v.adicCompletion F) = WithZero.exp (-1) := by
     rw [HeightOneSpectrum.valuedAdicCompletion_eq_valuation', hϖ]
@@ -278,7 +272,7 @@ theorem exists_edge {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum 
     push_neg at h
     exact hnot ((hn t₀).1 h)
   refine ⟨t₀ * s, hs, fun m hm => ?_⟩
-  have hm' := le_exp_neg_one hm
+  have hm' := _root_.GlobalTheory.Proof.IntegralPowerExpansion.le_exp_neg_one_of_lt_one hm
   have hle : Valued.v (t₀ * s * m) ≤ WithZero.exp n := by
     rw [map_mul, map_mul, hvt]
     calc WithZero.exp (n + 1) * Valued.v s * Valued.v m ≤ WithZero.exp (n + 1) * 1 * WithZero.exp (-1) :=

@@ -78,7 +78,7 @@ theorem charpoly_den_bounded : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (Ω 
       (IsModuleTopology.continuous_of_linearMap (LevelExists.mulMatAlg (AfP p) G.C).toLinearMap)
   let S : Set (AfP p) := ⋃ i ∈ Finset.range (d + 1), (F i ∘ φ) '' Ω
   have hS : IsCompact S := (Finset.range (d + 1)).isCompact_biUnion fun i _ => hΩ.image ((hF i).comp hφ)
-  obtain ⟨D, hD0, hD⟩ := GlobalTheory.T.exists_common_pos_denominator_of_isCompact_finiteAdeleAway p S hS
+  obtain ⟨D, hD0, hD⟩ := _root_.GlobalTheory.AfPCpctDen.exists_den p S hS
   refine ⟨D, hD0, fun g y x hg hx i => ?_⟩
   by_cases hi : i ≤ d
   · have hmem : F i (φ g) ∈ S :=
@@ -86,7 +86,7 @@ theorem charpoly_den_bounded : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (Ω 
     have hval : F i (φ g) = algebraMap ℚ (AfP p) ((LinearMap.mulLeft ℚ y).charpoly.coeff i) := by
       show (LevelExists.mulMatAlg (AfP p) G.C (φ g)).charpoly.coeff i = _
       rw [show φ g = _ from hx]
-      have := GlobalTheory.T.charpoly_tensorLeftMul_conj_one_tmul (AfP p) G.C x y
+      have := _root_.GlobalTheory.conj_one_tmul_charpoly (AfP p) G.C x y
       simp only [inC] at *
       rw [show ((Algebra.TensorProduct.includeRight : G.C →ₐ[ℚ] AfP p ⊗[ℚ] G.C) : G.C →+* AfP p ⊗[ℚ] G.C) y = 1 ⊗ₜ[ℚ] y from rfl]
       rw [this, Polynomial.coeff_map]

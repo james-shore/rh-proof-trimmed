@@ -76,10 +76,6 @@ theorem norm_twChi {ε : Fin n → Bool} (c : ℤ) (k : KG ε) : ‖twChi c k‖
   have h3 : 0 ≤ ‖twChi c k‖ := norm_nonneg _
   nlinarith [h2, h3]
 
-theorem kop_one {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) : T.op 1 = 1 := by
-  show ((T.τ 1 : unitary (T.V →L[ℂ] T.V)) : T.V →L[ℂ] T.V) = 1
-  rw [map_one]; rfl
-
 theorem kop_mul {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) (x y : KG ε) : T.op (x * y) = T.op x * T.op y := by
   show ((T.τ (x * y) : unitary (T.V →L[ℂ] T.V)) : T.V →L[ℂ] T.V) = _
   rw [map_mul]; rfl
@@ -89,7 +85,7 @@ def twTau {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) (c : ℤ)
   map_one' := by
     apply Subtype.ext
     show twChi c 1 • T.op 1 = 1
-    rw [twChi_one, one_smul, kop_one]
+    rw [twChi_one, one_smul, _root_.ReciprocityTheory.ChartRestriction.DS.pdA_op_one]
   map_mul' := by
     intro x y
     apply Subtype.ext

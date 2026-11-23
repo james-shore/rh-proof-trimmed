@@ -164,7 +164,7 @@ theorem derivation_extends : ∀ (R A : Type) [CommRing R] [IsLocalRing R] [IsNo
         rw [pow_succ'] at hx
         refine Submodule.mul_induction_on hx (fun a ha b hb => ?_) (fun a b ha hb => ?_)
         · rw [map_mul, add_comm]
-          exact GlobalTheory.T.mvPowerSeriesDegreeAdicFiltration_mul_le (Fin n) R _ 1 k (Ideal.mul_mem_mul (hT1 a ha) (ih b hb))
+          exact _root_.GlobalTheory.FormalOrigin.Extend.filt_mul_filt_le (Fin n) R _ 1 k (Ideal.mul_mem_mul (hT1 a ha) (ih b hb))
         · rw [map_add (f := _)]; exact Ideal.add_mem _ ha hb
     have hek : ∀ k, ∀ x ∈ maximalIdeal A ^ (k + 1), e x ∈ filt (maximalIdeal R) k := by
       intro k
@@ -177,12 +177,12 @@ theorem derivation_extends : ∀ (R A : Type) [CommRing R] [IsLocalRing R] [IsNo
         · rw [e_mul]
           refine Ideal.add_mem _ ?_ (Ideal.mul_mem_right _ _ (hTk _ b hb))
           rw [add_comm]
-          exact GlobalTheory.T.mvPowerSeriesDegreeAdicFiltration_mul_le (Fin n) R _ 1 k (Ideal.mul_mem_mul (hT1 a ha) (ih b hb))
+          exact _root_.GlobalTheory.FormalOrigin.Extend.filt_mul_filt_le (Fin n) R _ 1 k (Ideal.mul_mem_mul (hT1 a ha) (ih b hb))
         · rw [e_add]; exact Ideal.add_mem _ ha hb
     intro f
     have : e f = 0 := by
       refine eq_zero_of_forall_mem_filt (maximalIdeal R) _ fun k => ?_
-      obtain ⟨p, hp, hfp⟩ := GlobalTheory.T.exists_coordinate_polynomial_sub_mem_maximalIdeal_pow R A inc ev hev n z hm (k + 1) f
+      obtain ⟨p, hp, hfp⟩ := _root_.GlobalTheory.exists_mem_closure_sub_mem_maximalIdeal_pow R A inc ev hev n z hm (k + 1) f
       have h1 : e f = e p + e (f - p) := by rw [← e_add]; congr 1; ring
       rw [h1, show e p = 0 from hQ hp, zero_add]
       exact hek k _ hfp

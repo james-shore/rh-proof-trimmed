@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 
 @[expose] public section
 
@@ -96,30 +97,12 @@ theorem comm_of_sub_one_mul {R : Type*} [Ring R] (M N : R) (h1 : (M - 1) * (N - 
     _ = (N * M - N - M + 1) + (M + N - 1) := by rw [key]
     _ = N * M := by abel
 
-theorem placeIdem_mul {D : D7} {v v' : HeightOneSpectrum (𝓞 D.host.F)} {ε ε' : AF D.host.F}
-    (h : IsPlaceIdem D v ε) (h' : IsPlaceIdem D v' ε') (hv : v ≠ v') : ε * ε' = 0 := by
-  obtain ⟨α, rfl, h1, h0⟩ := h
-  obtain ⟨α', rfl, h1', h0'⟩ := h'
-  have hα : α * α' = 0 := by
-    apply RestrictedProduct.ext
-    intro w
-    have e : evalV D.host.F w (α * α') = 0 := by
-      rw [map_mul]
-      by_cases hw : w = v
-      · subst hw
-        rw [h0' w hv, mul_zero]
-      · rw [h0 w hw, zero_mul]
-    exact e
-  show ((0 : Ainf D.host.F), α) * ((0 : Ainf D.host.F), α') = 0
-  rw [Prod.mk_mul_mk, mul_zero, hα]
-  rfl
-
 theorem gl_comm_other : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (p p' : SplitPt D k) (S : HSp D) (n n' : Type) [Fintype n] [DecidableEq n] [Fintype n'] [DecidableEq n'] (β : Frame p S n) (β' : Frame p' S n') (g : GL n k) (h : GL n' k), p.v ≠ p'.v → β.gl g * β'.gl h = β'.gl h * β.gl g := by
   intro D k _ _ _ _ p p' S n n' _ _ _ _ β β' g h hv
   obtain ⟨ε, hε, he⟩ := p.above
   obtain ⟨ε', hε', he'⟩ := p'.above
   have hεε : algebraMap (AF D.host.F) (AE D) ε * algebraMap (AF D.host.F) (AE D) ε' = 0 := by
-    rw [← map_mul, placeIdem_mul hε hε' hv, map_zero]
+    rw [← map_mul, _root_.GlobalTheory.PlaceDatum.placeIdem_mul hε hε' hv, map_zero]
   have hM := β.gl_supp g
   have hN := β'.gl_supp h
   unfold SuppAt at hM hN
@@ -262,7 +245,7 @@ theorem opsStepZero_norm : ∀ (D : D7) (u : D.what₂.Word) (F : Formalism.L2.F
   swap
   · exact ⟨LinearEquiv.refl ℂ _, 1, one_pos, fun φ => by simp, fun φ y => (hY ⟨y⟩).elim⟩
   obtain ⟨y₀⟩ := hY
-  obtain ⟨c, hc, hN⟩ := normStepZero D u F θ hθ hcpt vS y₀
+  obtain ⟨c, hc, hN⟩ := _root_.GlobalTheory.StepZeroNorm.integral_rd_eq_inner D u F θ hθ hcpt vS y₀
   choose Sf hSf using hS
   have hk : (0 : ℝ) < resCard k := by
     unfold resCard

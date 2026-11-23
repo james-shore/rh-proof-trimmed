@@ -62,17 +62,8 @@ theorem cusp_average_isCuspOfType : ∀ (D : D7) (θ : InfFam D), IsInfFam θ �
       (fun k => GlobalTheory.Published.AutFin.conj_mem_UH (N.M.fr_unit τ) (N.M.fr_gram τ) k) e hc ψ hψ.1
   · by_cases h : τ' = τ
     · subst h
-      exact _root_.GlobalTheory.T.average_isTypeAt_same_place_twist D θ hθ hp N τ' ψ hψ.1 (hψ.2.2 τ') e he
-    · exact _root_.GlobalTheory.T.average_isTypeAt_other_place_twist D θ hθ hp N τ τ' h ψ hψ.1 (hψ.2.2 τ') e he
+      exact _root_.GlobalTheory.AvgSamePlace.isTypeAt_average_same_place D θ hθ hp N τ' ψ hψ.1 (hψ.2.2 τ') e he
+    · exact _root_.GlobalTheory.AvgTypeOther.isTypeAt_average_other_place D θ hθ hp N τ τ' h ψ hψ.1 (hψ.2.2 τ') e he
 end GlobalTheory.AvgCuspType
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim GlobalTheory.FlipRun
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
-open GlobalTheory.Grow GlobalTheory.Size
-
-theorem _root_.GlobalTheory.T.averaging_preserves_cusp_type : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (N : GlobalTheory.Grid.Node D) (ψ : GA D N.V → ℂ), GlobalTheory.IndefiniteRowSideFullHecke.CuspAlongSmoothLifts.IsCuspOfType θ N ψ → ∀ (τ : D.what₂.Tau) (e : Formalism.REAL.KG (N.M.ε τ) → ℂ), GlobalTheory.TypeSum.KFinFun (N.M.ε τ) e → GlobalTheory.IndefiniteRowSideFullHecke.CuspAlongSmoothLifts.IsCuspOfType θ N (GlobalTheory.SeriesToClosure.avg θ N.V τ (N.M.ε τ) (N.M.fr τ) e ψ) := by
-  first | exact @_root_.GlobalTheory.AvgCuspType.cusp_average_isCuspOfType | exact _root_.GlobalTheory.AvgCuspType.cusp_average_isCuspOfType | (intros; apply _root_.GlobalTheory.AvgCuspType.cusp_average_isCuspOfType <;> assumption)
-end

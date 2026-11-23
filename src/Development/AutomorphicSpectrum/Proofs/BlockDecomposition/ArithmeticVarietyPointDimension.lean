@@ -73,7 +73,7 @@ theorem topologicalKrullDim_closure_eq (Y : Scheme.{0}) (f : Y ⟶ Spec (.of ℤ
   obtain ⟨B, _, _, j, _, q, hq, hj⟩ := exists_affine_chart_over f y
   subst hq
   have := finiteType_of_chart f j hj
-  rw [← GlobalTheory.T.krull_dim_quotient_eq_trdeg_succ Y B j q inferInstance, ← topologicalKrullDim_range_inter_closure_eq j q]
+  rw [← _root_.GlobalTheory.CompanionTheory.DimChart.ringKrullDim_quotient_eq Y B j q inferInstance, ← topologicalKrullDim_range_inter_closure_eq j q]
   refine le_antisymm (topologicalKrullDim_le_of_forall_exists_isOpen fun z ↦ ?_)
     (IsEmbedding.inclusion Set.inter_subset_right).isInducing.topologicalKrullDim_le
   obtain ⟨C, _, _, j', _, y', hy, hj'⟩ := exists_affine_chart_over f z.1
@@ -85,10 +85,10 @@ theorem topologicalKrullDim_closure_eq (Y : Scheme.{0}) (f : Y ⟶ Spec (.of ℤ
   rw [← topologicalKrullDim_eq_of_isEmbedding (IsEmbedding.subtypeVal.comp IsEmbedding.subtypeVal)
     (Z := Set.range j' ∩ closure {j q})
     (by rw [Set.range_comp, Subtype.range_coe, Subtype.image_preimage_coe, Set.inter_comm])]
-  rw [topologicalKrullDim_range_inter_closure_eq j q, GlobalTheory.T.krull_dim_quotient_eq_trdeg_succ Y B j q inferInstance]
+  rw [topologicalKrullDim_range_inter_closure_eq j q, _root_.GlobalTheory.CompanionTheory.DimChart.ringKrullDim_quotient_eq Y B j q inferInstance]
   conv_lhs => rw [← hq', topologicalKrullDim_range_inter_closure_eq j' q']
   have h0 : CharZero (Y.residueField (j' q')) := hq' ▸ inferInstance
-  rw [GlobalTheory.T.krull_dim_quotient_eq_trdeg_succ Y C j' q' h0, hq']
+  rw [_root_.GlobalTheory.CompanionTheory.DimChart.ringKrullDim_quotient_eq Y C j' q' h0, hq']
 
 theorem ptCoord_chart_ne_zero {m : ℕ} {n : Fin (m + 1) → ℕ} (x : MP ℤ m n) (k : Fin (m + 1)) :
     ptCoord x ⟨k, ptChart x k⟩ ≠ 0 := by

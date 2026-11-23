@@ -253,7 +253,7 @@ theorem exists_sUnitsToUnits_eq_of_gsQuotMor (x : cohomology (galUnits K.1 (maxU
     (hx : (cohomologyMap (gsQuotMor K S) 2).hom x = 0) :
     ∃ y : cohomology (galSUnitsMax K.1 ℚ̄ S) 2,
       (cohomologyMap (sUnitsToUnits S (maxUnramifiedOutside K.1 ℚ̄ S)) 2).hom y = x :=
-  exists_cohomologyMap_f_eq_of_cohomologyMap_g_eq_zero (sUnitsQuotSequence_shortExact K.1 ℚ̄ S) 2 x hx
+  _root_.GroundTheory.ProfCoh.exists_cohomologyMap_f_eq (sUnitsQuotSequence_shortExact K.1 ℚ̄ S) 2 x hx
 
 theorem exists_δ_pic_eq (p : cohomology (galUnitsModSUnits K.1 ℚ̄ S) 2)
     (hp : (cohomologyMap (sUnitsQuotDiv K S ιs) 2).hom p = 0) :

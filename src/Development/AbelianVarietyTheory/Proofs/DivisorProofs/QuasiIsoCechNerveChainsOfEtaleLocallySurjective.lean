@@ -120,9 +120,9 @@ theorem quasiIso_chains_cech_of_locSurj (R : Type) [CommRing R] {P Q : PSh} (φ 
     rfl
   have hsurj : ∀ U, Function.Surjective (π.app U) := fun U =>
     (epi_iff_surjective _).1 ((NatTrans.epi_iff_epi_app _).1 (inferInstance : Epi π) U)
-  have h1 : QuasiIso ((chains R).map aπ) := GlobalTheory.T.quasiIso_chains_cechNerve_of_surjective R π hsurj
+  have h1 : QuasiIso ((chains R).map aπ) := _root_.GlobalTheory.EtC.chains_cechNerve_quasiIso_of_surjective R π hsurj
   have hιfree : IsIso ((free R).map ι) := by
-    refine (GlobalTheory.T.freeEtaleModuleSheaf_map_mono_epi_iso R ι).2.2 ?_ ?_
+    refine (_root_.GlobalTheory.EtC.free_map_mono_epi_iso R ι).2.2 ?_ ?_
     · intro U y
       exact GlobalTheory.EtC.loc_calculus.2.1 U _ _ (hφ U y) fun V g ⟨x, hx⟩ => ⟨π.app (op V) x, hx⟩
     · intro U x x' hxx

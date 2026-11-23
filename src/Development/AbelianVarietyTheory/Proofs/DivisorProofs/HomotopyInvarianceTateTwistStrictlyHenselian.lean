@@ -73,7 +73,7 @@ theorem GlobalTheory.homotopyInvariance_strictlyHenselian : ∀ (q : ℕ) [NeZer
       intro R _ _ hR hd
       have hdom : ∀ (D : Type) [CommRing D] [IsDomain D] [Algebra.FiniteType ℤ D], IsUnit (q : D) → ringKrullDim D ≤ d → HInv q D := by
         intro D _ _ _ hD hDd
-        refine GlobalTheory.T.etaleHomotopyInvariance_cechDescent_integral q D (integralClosure D (AlgebraicClosure (FractionRing D))) inferInstance ?_ hD (GlobalTheory.T.etale_homotopy_invariance_tensor_power_integral_closure q d ih D hD hDd)
+        refine _root_.GlobalTheory.EtC.CechDescHInv.hInv_of_integral q D (integralClosure D (AlgebraicClosure (FractionRing D))) inferInstance ?_ hD (_root_.GlobalTheory.EtC.hInv_tensorPower_integralClosure q d ih D hD hDd)
         intro x hx
         have hinj : Function.Injective (algebraMap D (AlgebraicClosure (FractionRing D))) := by
           rw [IsScalarTower.algebraMap_eq D (FractionRing D) (AlgebraicClosure (FractionRing D))]
@@ -83,7 +83,7 @@ theorem GlobalTheory.homotopyInvariance_strictlyHenselian : ∀ (q : ℕ) [NeZer
           have := congrArg Subtype.val (RingHom.mem_ker.mp hx)
           simpa using this
         rw [h0]; exact zero_mem _
-      refine GlobalTheory.T.etaleHomotopyInvariantTwists_of_domains_of_dim_lt q d ih hdom R hR ?_
+      refine _root_.GlobalTheory.hInv_of_domains_of_dim_lt q d ih hdom R hR ?_
       revert hd
       induction ringKrullDim R with
       | bot => intro _; exact bot_le
@@ -120,4 +120,4 @@ theorem GlobalTheory.homotopyInvariance_strictlyHenselian : ∀ (q : ℕ) [NeZer
         | coe m => exact ⟨m, le_rfl⟩
     exact hfg (d + 1) (S s) (hunit s) (lt_of_le_of_lt hd (by exact_mod_cast Nat.lt_succ_self d))
   intro i
-  exact GlobalTheory.T.hInv_of_directed_union_subalgebras q A (Finset A) S hmono hcov hunit hinv i
+  exact _root_.GlobalTheory.EtC.hInv_of_directed_union q A (Finset A) S hmono hcov hunit hinv i

@@ -56,9 +56,6 @@ open Formalism.DivisionValues Formalism.L2.Indef Formalism.L2.Indef.Tree GlobalT
 
 variable {K : Type} [Field K] [NumberField K]
 
-theorem lw_nonneg (w : HeightOneSpectrum (𝓞 K)) : 0 ≤ lw w :=
-  div_nonneg (Real.log_natCast_nonneg _) (Nat.cast_nonneg _)
-
 omit [NumberField K] in
 theorem localization_mono' {W : Type} [AddCommGroup W] [Module (𝓞 K) W] (p : Ideal (𝓞 K)) [p.IsPrime]
     {L L' : Submodule (𝓞 K) W} (h : L ≤ L') : Formalism.HermitianLatticesTheory.localization₂ p L ≤ Formalism.HermitianLatticesTheory.localization₂ p L' := by

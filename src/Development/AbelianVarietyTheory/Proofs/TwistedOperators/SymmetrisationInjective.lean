@@ -100,16 +100,6 @@ lemma pLin_Eab (ab : PIx p q) : pLin (Eab ab.1.1 ab.1.2) = X ab := by
   · intro h
     exact absurd (Finset.mem_univ _) h
 
-private lemma prod_map_X_eq_monomial' (L : List (PIx p q)) :
-    (L.map (X : PIx p q → MvPolynomial (PIx p q) ℂ)).prod =
-      monomial (Multiset.toFinsupp (L : Multiset (PIx p q))) 1 := by
-  induction L with
-  | nil => simp [Multiset.toFinsupp_zero, MvPolynomial.monomial_zero']
-  | cons a L ih =>
-    rw [List.map_cons, List.prod_cons, ih, ← Multiset.cons_coe, ← Multiset.singleton_add,
-      Multiset.toFinsupp_add, Multiset.toFinsupp_singleton, MvPolynomial.X,
-      MvPolynomial.monomial_mul, one_mul]
-
 lemma exists_list (α : PIx p q →₀ ℕ) : ∃ l : List (Mat p q), l.length = α.degree ∧
     (l.map pLin).prod = monomial α 1 := by
   refine ⟨(Finsupp.toMultiset α).toList.map fun ab => Eab ab.1.1 ab.1.2, ?_, ?_⟩
@@ -117,7 +107,7 @@ lemma exists_list (α : PIx p q →₀ ℕ) : ∃ l : List (Mat p q), l.length =
     rfl
   · rw [List.map_map]
     have hc : (pLin ∘ fun ab : PIx p q => Eab ab.1.1 ab.1.2) = X := funext pLin_Eab
-    rw [hc, prod_map_X_eq_monomial', Multiset.coe_toList, Finsupp.toMultiset_toFinsupp]
+    rw [hc, _root_.GlobalTheory.InducedPBW.Symbol.prod_X_eq_monomial, Multiset.coe_toList, Finsupp.toMultiset_toFinsupp]
 
 private lemma coordP_Eab (i j : PIx p q) :
     coordP i (Eab j.1.1 j.1.2) = if i = j then 1 else 0 := by

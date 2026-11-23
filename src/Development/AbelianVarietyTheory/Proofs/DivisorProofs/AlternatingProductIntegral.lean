@@ -58,7 +58,7 @@ theorem prodL_mem_forms_and_vanish {K : Type} [CommRing K] {V : Type} [AddCommGr
     ∀ (vs : List V), (∀ w ∈ vs, w ∈ L) → ∀ t : Finset ι,
       (t ⊆ s → ∀ q, q + t.card = vs.length + 1 → prodL f h vs t ∈ forms (A : Set K) L q) ∧
       (vs.length + 1 < t.card → prodL f h vs t = 0) := by
-  obtain ⟨hone, hmul, hsmul, -, -⟩ := GlobalTheory.T.exteriorFormsSpanOfSets_mul_smul_mono A L
+  obtain ⟨hone, hmul, hsmul, -, -⟩ := _root_.GlobalTheory.DI.forms_mul_smul_mono A L
   intro vs
   induction vs with
   | nil =>

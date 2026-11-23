@@ -47,6 +47,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsDual
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsScale
 
 @[expose] public section
 
@@ -291,16 +293,6 @@ theorem prVec_sub_one (v : HeightOneSpectrum (𝓞 F)) (y : GL (Fin n) (E ⊗[F]
   funext i
   simp [prVec]
 
-theorem hform_add_right {A : Type} [CommRing A] {ι : Type} [Fintype ι] (τ : A →+* A)
-    (J : Matrix ι ι A) (x u w : ι → A) : hform τ J x (u + w) = hform τ J x u + hform τ J x w := by
-  simp only [hform, Pi.add_apply, mul_add, Finset.sum_add_distrib]
-
-theorem hform_smul_right {A : Type} [CommRing A] {ι : Type} [Fintype ι] (τ : A →+* A)
-    (J : Matrix ι ι A) (a : A) (x u : ι → A) : hform τ J x (a • u) = a * hform τ J x u := by
-  simp only [hform, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
 theorem hR_incl (σ : E →ₐ[F] E) (J : Matrix (Fin n) (Fin n) E) (x y : Fin n → E) :
     hR σ J (Ad F) (fun i => inclE (F := F) (Ad F) (x i)) (fun i => inclE (F := F) (Ad F) (y i)) =
       inclE (F := F) (Ad F) (hform (σ : E →+* E) J x y) := by
@@ -333,16 +325,6 @@ private theorem sigR_mem_intAE' (σ : E →ₐ[F] E) {a : E ⊗[F] Ad F} (ha : a
       exact Subring.subset_closure (Or.inr ⟨⟨z, hz⟩, rfl⟩)
   exact hle ha'
 
-private theorem hform_add_left_flag_measures {A : Type} [CommRing A] {ι : Type} [Fintype ι] (τ : A →+* A)
-    (J : Matrix ι ι A) (u w x : ι → A) : hform τ J (u + w) x = hform τ J u x + hform τ J w x := by
-  simp only [hform, Pi.add_apply, map_add (f := _), add_mul, Finset.sum_add_distrib]
-
-private theorem hform_smul_left_flag_measures' {A : Type} [CommRing A] {ι : Type} [Fintype ι] (τ : A →+* A)
-    (J : Matrix ι ι A) (a : A) (u x : ι → A) : hform τ J (a • u) x = τ a * hform τ J u x := by
-  simp only [hform, Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
 theorem hR_mem (σ : E →ₐ[F] E) (J : Matrix (Fin n) (Fin n) E) (L : Submodule (𝓞 E) (Fin n → E))
     (hint : ∀ x ∈ L, x ∈ dualSet (σ : E →+* E) J L) {a b : Fin n → E ⊗[F] Ad F}
     (ha : a ∈ hat F L) (hb : b ∈ hat F L) : hR σ J (Ad F) a b ∈ OAd F E := by
@@ -360,22 +342,22 @@ theorem hR_mem (σ : E →ₐ[F] E) (J : Matrix (Fin n) (Fin n) E) (L : Submodul
       exact Subring.zero_mem _
     | add a1 a2 _ _ h1 h2 =>
       simp only [hR] at h1 h2 ⊢
-      rw [hform_add_left_flag_measures]
+      rw [_root_.Formalism.UG.P.csDual_hform_add_left]
       exact Subring.add_mem _ h1 h2
     | smul c a1 _ h1 =>
       simp only [hR] at h1 ⊢
-      rw [Subring.smul_def, hform_smul_left_flag_measures']
+      rw [Subring.smul_def, _root_.Formalism.UG.P.csDual_hform_smul_left]
       exact Subring.mul_mem _ (sigR_mem_intAE' σ c.2) h1
   | zero =>
     simp only [hR, hform, Pi.zero_apply, mul_zero, Finset.sum_const_zero]
     exact Subring.zero_mem _
   | add b1 b2 _ _ h1 h2 =>
     simp only [hR] at h1 h2 ⊢
-    rw [hform_add_right]
+    rw [_root_.Formalism.UG.P.csScale_hform_add_right]
     exact Subring.add_mem _ h1 h2
   | smul c b1 _ h1 =>
     simp only [hR] at h1 ⊢
-    rw [Subring.smul_def, hform_smul_right]
+    rw [Subring.smul_def, _root_.Formalism.UG.P.csScale_hform_smul_right]
     exact Subring.mul_mem _ c.2 h1
 
 theorem prV_hR (σ : E →ₐ[F] E) (J : Matrix (Fin n) (Fin n) E) (v : HeightOneSpectrum (𝓞 F))

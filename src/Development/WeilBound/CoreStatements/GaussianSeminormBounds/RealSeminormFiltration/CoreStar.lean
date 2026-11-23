@@ -131,9 +131,6 @@ theorem star_cas_mk {p q r s : ℕ} (c τ : ℂ) (g : Pol p q r s) :
   · simp only [Module.End.mul_apply, units, thAct_mk]
   · simp
 
-theorem star_sb_refl {r s : ℕ} (a : Ix r s) : sameBlock a a := by
-  cases a <;> trivial
-
 theorem star_th {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ : τ = τ0) (La : Ix r s → ℚ)
     (hC : CombOK p q c0 τ0 La) (d0 : ℕ) (hd : (d0 : ℚ) = degW (cPair r s) (fun _ : Ix p q => c0)) :
     StarK (thAct p q r s c τ) ((homog (Ix p q × Ix r s) d0).map (thMkC p q r s c))
@@ -158,7 +155,7 @@ theorem star_th {p q r s : ℕ} (c τ : ℂ) (c0 τ0 : ℚ) (hc : c = c0) (hτ :
     rintro _ ⟨a, b, hab, _, ⟨g, hg, rfl⟩, rfl⟩
     have hne : a ≠ b := by
       rintro rfl
-      exact hab (star_sb_refl a)
+      exact hab (_root_.PI.FockOneDegW.HwC.sameBlock_refl' a)
     have hlow : thMkC p q r s c (PI.FockOneDegW.lowOp (p := p) (q := q) a b g) = 0 := by
       by_cases h2 : d0 < 2
       · rw [low_homog_small a b h2 hg, map_zero]

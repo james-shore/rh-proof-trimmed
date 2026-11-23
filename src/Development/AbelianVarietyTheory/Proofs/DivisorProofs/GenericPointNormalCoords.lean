@@ -79,7 +79,7 @@ theorem closureEtaleAt_bc : ∀ (A R A₁ R₁ : Type) [CommRing A] [IsDomain A]
     ((algebraMap R₁ (Localization.AtPrime P₁)).comp κ).toAlgebra
   letI : Algebra R₁ (BC β DA) := (baseHom A₁ R₁ (BC β DA)).toAlgebra
   haveI hE : Algebra.Etale (Localization.AtPrime P₁) (Localization.AtPrime P₁ ⊗[R] closure A R DA) :=
-    GlobalTheory.T.etale_atPrime_baseChange_of_integralClosureEtale A R R₁ DA κ P₁ hP
+    _root_.GlobalTheory.KeyOriginEnlarge.closureEtaleAt_comap_baseChange_atPrime A R R₁ DA κ P₁ hP
   haveI : IsDomain (Localization.AtPrime P₁) :=
     IsLocalization.isDomain_localization P₁.primeCompl_le_nonZeroDivisors
   haveI : IsIntegrallyClosed (Localization.AtPrime P₁) :=
@@ -93,9 +93,9 @@ theorem closureEtaleAt_bc : ∀ (A R A₁ R₁ : Type) [CommRing A] [IsDomain A]
     intro h
     have h1 : algebraMap A₁ R₁ a = 0 := hinjS (by simpa using h)
     exact nonZeroDivisors.ne_zero ha (hA₁ (by simpa using h1))
-  obtain ⟨hinj, hint⟩ := GlobalTheory.T.etale_integrallyClosed_in_localization (Localization.AtPrime P₁)
+  obtain ⟨hinj, hint⟩ := _root_.GlobalTheory.EtaleNormalLoc.etale_integrallyClosed_localization (Localization.AtPrime P₁)
     (Localization.AtPrime P₁ ⊗[R] closure A R DA) _ hM
-  obtain ⟨φ, ψ, hψφ, hunit, hsurj⟩ := GlobalTheory.T.exists_closureBaseChange_maps_and_retraction A R A₁ R₁ f hf κ hκ β hβ DA (Localization.AtPrime P₁)
+  obtain ⟨φ, ψ, hψφ, hunit, hsurj⟩ := _root_.GlobalTheory.KeyOriginBCMaps.exists_bc_closure_maps A R A₁ R₁ f hf κ hκ β hβ DA (Localization.AtPrime P₁)
   have hψφ' : ∀ e, ψ (φ e) = algebraMap _ _ e := fun e => by
     rw [← AlgHom.comp_apply, hψφ]; rfl
   have hφinj : Function.Injective φ := by

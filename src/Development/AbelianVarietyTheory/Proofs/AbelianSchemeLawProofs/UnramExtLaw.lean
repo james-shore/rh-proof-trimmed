@@ -49,6 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
-theorem unramExt_law : UnramExtSt := unramExt
-
 end GlobalTheory

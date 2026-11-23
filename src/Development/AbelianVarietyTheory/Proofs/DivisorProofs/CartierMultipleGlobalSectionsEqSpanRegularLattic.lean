@@ -60,32 +60,19 @@ theorem spMap_comp' {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (g : S
     spMap (g.comp h) = spMap g ≫ spMap h := by
   simp [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
 
-theorem gp_comp {X : Scheme.{0}} [IsIntegral X] {R : Type} [CommRing R] (p : X ⟶ Sp R) :
-    gp X ≫ p = spMap (Desc.cst p) := by
-  apply ext_of_isAffine
-  rw [Scheme.Hom.comp_appTop, gp, Scheme.fromSpecStalk_appTop]
-  rw [← cancel_epi (Scheme.ΓSpecIso (CommRingCat.of R)).inv]
-  rw [← cancel_mono (Scheme.ΓSpecIso (CommRingCat.of X.functionField)).hom]
-  simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
-  rw [Scheme.ΓSpecIso_naturality]
-  ext r
-  simp [Desc.cst, Cartier.fnOf]
-
 theorem cst_comp_spMap {X : Scheme.{0}} [IsIntegral X] {R S : Type} [CommRing R] [CommRing S] (p : X ⟶ Sp S)
     (g : R →+* S) : Desc.cst (p ≫ spMap g) = (Desc.cst p).comp g := by
   have h : spMap (Desc.cst (p ≫ spMap g)) = spMap ((Desc.cst p).comp g) := by
-    rw [spMap_comp', ← gp_comp, ← gp_comp, Category.assoc]
+    rw [spMap_comp', ← _root_.GlobalTheory.Desc.gp_comp, ← _root_.GlobalTheory.Desc.gp_comp, Category.assoc]
   exact congrArg CommRingCat.Hom.hom (Spec.map_injective h)
 
-theorem regAt_cst {X : Scheme.{0}} [IsIntegral X] {R : Type} [CommRing R] (q : X ⟶ Sp R) (x : X) (r : R) :
-    RegAt x (Desc.cst q r) :=
-  regAt_fnOf (U := ⊤) trivial trivial _
+alias regAt_cst := _root_.GlobalTheory.Desc.GaussPt.regAt_cst
 
 theorem theta_c₀ (σ : Setup) (x : Sp σ.R) (r : σ.R) :
     σ.θ x (σ.c₀ r) = Desc.cst (σ.C x).G.hom (σ.ρ x r) := by
   obtain ⟨l, h1, h2⟩ := σ.hθ x
   have e : spMap ((σ.θ x).comp σ.c₀) = spMap ((Desc.cst (σ.C x).G.hom).comp (σ.ρ x)) := by
-    rw [spMap_comp', spMap_comp', Setup.c₀, ← gp_comp, ← gp_comp, ← Category.assoc, ← h2, Category.assoc,
+    rw [spMap_comp', spMap_comp', Setup.c₀, ← _root_.GlobalTheory.Desc.gp_comp, ← _root_.GlobalTheory.Desc.gp_comp, ← Category.assoc, ← h2, Category.assoc,
       (σ.cart x).w, ← Category.assoc, ← Category.assoc, h1, Category.assoc]
   exact congrArg (fun q : σ.R →+* _ => q r) (congrArg CommRingCat.Hom.hom (Spec.map_injective e))
 

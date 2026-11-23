@@ -157,7 +157,7 @@ theorem exists_linear (hT : ThetaUnifAV) {g : ℕ} (ex : (Fin g → ℂ) → Out
     simp
   let L : d.A.X → (Fin g → ℂ) →L[ℂ] ℂ := fun x => fderiv ℂ (fun z => eTwoPi (l z x)) 0
   have hL : ∀ x z, eTwoPi (l z x) = Complex.exp (L x z) := fun x =>
-    Doubling.eq_cexp_fderiv_of_map_add (hd x) (AnArc.e_ne_zero _) (hmul x)
+    _root_.GlobalTheory.ExpOfFrechetDerivative.eq_exp_fderiv (hd x) (AnArc.e_ne_zero _) (hmul x)
   have hadd : ∀ x x' z, L (x + x') z = L x z + L x' z := fun x x' z => by
     rw [← sub_eq_zero]
     refine eq_zero_of_forall_smul_mem_countable
@@ -304,7 +304,7 @@ theorem im_hermForm_eq (hL : Out.Laws) (hL2 : Out.Laws2) (hP : ∀ w v, Ha.y v =
   obtain ⟨fr, f₁, f₂, f₃, -, f₅⟩ := Θ.onB w hw
   obtain ⟨ρ, r₁, r₂, r₃⟩ := T.exists_entire_unit_appellHumbert_frame_ratio a.D₀.P.A _ a.D₀.P.L a.D₀.P.L a.D₀.P.isLB a.D₀.P.isLB (𝟙 _) wL hwL g _ u Hm χ' hAH
     _ F (fun z => (Category.comp_id _).trans (hF z)) fr th _ f₁ f₂ f₃ f₅
-  obtain ⟨t₁, t₂, t₃⟩ := T.thetaCharOff_ne_zero_differentiable_quasiPeriodic' g Θ.S (Θ.τ w) Θ.c₁ Θ.c₂ (Θ.pos w hw).1 (Θ.pos w hw).2 Θ.half₁ Θ.half₂ Θ.c₁_S
+  obtain ⟨t₁, t₂, t₃⟩ := _root_.GlobalTheory.ThetaBlock.thetaCharOff_ne_zero_differentiable_quasiPeriodic g Θ.S (Θ.τ w) Θ.c₁ Θ.c₂ (Θ.pos w hw).1 (Θ.pos w hw).2 Θ.half₁ Θ.half₂ Θ.c₁_S
   have hfac : ∀ v, Ha.y (Θ.bas v) = 0 → ∃ a₁ b₁ : ℂ, a₁ ≠ 0 ∧
       (∀ z, Θ.κ * thetaCharOff Θ.S (Θ.τ w) Θ.c₁ Θ.c₂ (Θ.h.mulVec (z + p v)) =
         a₁ * Complex.exp (dotForm Θ.h (fun i => (v (.inr i) : ℂ)) z) *

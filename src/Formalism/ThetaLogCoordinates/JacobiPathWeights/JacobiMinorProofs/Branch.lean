@@ -47,6 +47,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.ThetaLogCoordinates.JacobiPathWeights.JacobiMinorProofs.LeIffLtColHeight
 
 @[expose] public section
 
@@ -286,38 +287,12 @@ theorem heights_of_gtBox {n : ℕ} {μ : Fin (n + 1) → ℤ} {κ : Fin n → �
     rw [Finset.card_map] at h2
     omega
 
-private theorem le_iff_lt_colHeight_of_antitone {n : ℕ} {κ : Fin n → ℤ} (h : Antitone κ) (c : ℤ) (i : Fin n) :
-    c ≤ κ i ↔ i.val < colHeight κ c := by
-  unfold colHeight
-  constructor
-  · intro hc
-    have hsub : Finset.Iic i ⊆ univ.filter fun m => c ≤ κ m := by
-      intro m hm
-      rw [Finset.mem_Iic] at hm
-      simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      exact le_trans hc (h hm)
-    have h1 := Finset.card_le_card hsub
-    rw [Fin.card_Iic] at h1
-    omega
-  · intro hi
-    by_contra hc
-    have hsub : (univ.filter fun m => c ≤ κ m) ⊆ Finset.Iio i := by
-      intro m hm
-      simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hm
-      rw [Finset.mem_Iio]
-      by_contra hmi
-      push_neg at hmi
-      exact hc (le_trans hm (h hmi))
-    have h1 := Finset.card_le_card hsub
-    rw [Fin.card_Iio] at h1
-    omega
-
 theorem shape_unique {n : ℕ} {κ κ' : Fin n → ℤ} (h : Antitone κ) (h' : Antitone κ')
     (he : ∀ c, colHeight κ c = colHeight κ' c) : κ = κ' := by
   funext i
   apply le_antisymm
-  · rw [le_iff_lt_colHeight_of_antitone h' (κ i) i, ← he, ← le_iff_lt_colHeight_of_antitone h]
-  · rw [le_iff_lt_colHeight_of_antitone h (κ' i) i, he, ← le_iff_lt_colHeight_of_antitone h']
+  · rw [_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Paths.le_iff_lt_colHeight h' (κ i) i, ← he, ← _root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Paths.le_iff_lt_colHeight h]
+  · rw [_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Paths.le_iff_lt_colHeight h (κ' i) i, he, ← _root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Paths.le_iff_lt_colHeight h']
 
 private theorem card_filter_val_lt_eq {n k : ℕ} (hk : k ≤ n) : (univ.filter fun m : Fin n => m.val < k).card = k := by
   have e : (univ.filter fun m : Fin n => m.val < k).map Fin.valEmbedding = Finset.range k := by
@@ -338,14 +313,14 @@ theorem exists_shape {n : ℕ} {μ : Fin (n + 1) → ℤ} (hμ : Antitone μ) (h
   have hA : Antitone h := antitone_int_of_succ_le hanti
   have hlo : ∀ i : Fin n, i.val < h (μ i.succ) := by
     intro i
-    have h4 := (le_iff_lt_colHeight_of_antitone hμ (μ i.succ) i.succ).1 le_rfl
+    have h4 := (_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Paths.le_iff_lt_colHeight hμ (μ i.succ) i.succ).1 le_rfl
     have h5 := h2 (μ i.succ)
     rw [Fin.val_succ] at h4
     omega
   have hhi : ∀ (i : Fin n) (c : ℤ), i.val < h c → c ≤ μ i.castSucc := by
     intro i c hic
     by_contra hc
-    have h4 : ¬ (i.castSucc).val < colHeight μ c := fun h' => hc ((le_iff_lt_colHeight_of_antitone hμ c i.castSucc).2 h')
+    have h4 : ¬ (i.castSucc).val < colHeight μ c := fun h' => hc ((_root_.Formalism.InvariantFactorPaths.GelfandTsetlinBases.Paths.le_iff_lt_colHeight hμ c i.castSucc).2 h')
     rw [Fin.coe_castSucc] at h4
     have h5 := h1 c
     omega

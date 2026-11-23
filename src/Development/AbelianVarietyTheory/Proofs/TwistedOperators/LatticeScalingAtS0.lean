@@ -51,6 +51,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalBlockDetBlockTriangular
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MxAtOfMemDepLat
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsLocalVacuumOfIsLatticeVacuumCoprimeLevel
 
 @[expose] public section
 
@@ -68,12 +69,6 @@ noncomputable section
 namespace GlobalTheory.DepthMap
 
 variable {D : D7}
-
-theorem intAf_mul' {α β : Af D.host.F} (hα : α ∈ intAf D.host.F) (hβ : β ∈ intAf D.host.F) :
-    α * β ∈ intAf D.host.F := fun v => by rw [map_mul]; exact mul_mem (hα v) (hβ v)
-
-theorem pairA_mul' (α β : Af D.host.F) :
-    pairA D.host.F 0 α * pairA D.host.F 0 β = pairA D.host.F 0 (α * β) := Prod.ext (zero_mul _) rfl
 
 theorem mul_ePl {v : GlobalTheory.FinPl.Pl D} {α : Af D.host.F} (h : ∀ w, w ≠ v → evalV D.host.F w α = 0) :
     α * GlobalTheory.FinPlLoc.ePl D (· = v) = α := by
@@ -111,10 +106,10 @@ theorem smul_mem_hatMx {m n : ℕ} {Λ : Submodule (𝓞 D.host.E) (Fin n → D.
     induction hx using AddSubgroup.closure_induction with
     | mem x hx =>
       obtain ⟨β, hβ, X, hX, rfl⟩ := hx
-      refine AddSubgroup.subset_closure ⟨α * β, intAf_mul' hα hβ, c • X, smul_mem_homLat h𝔪 hc hX, ?_⟩
+      refine AddSubgroup.subset_closure ⟨α * β, _root_.GlobalTheory.FinPl.LatMem.intAf_mul' hα hβ, c • X, smul_mem_homLat h𝔪 hc hX, ?_⟩
       ext i j
       simp only [Matrix.smul_apply, Matrix.of_apply, smul_eq_mul]
-      rw [Algebra.TensorProduct.tmul_mul_tmul, pairA_mul']
+      rw [Algebra.TensorProduct.tmul_mul_tmul, _root_.GlobalTheory.VacLat.pairA_mul]
     | zero => rw [smul_zero]; exact zero_mem _
     | add x y _ _ hx hy => rw [smul_add]; exact add_mem hx hy
     | neg x _ hx => rw [smul_neg]; exact neg_mem hx
@@ -268,7 +263,7 @@ theorem GlobalTheory.DepthMap.smul_mulVec_mem_latV : All fun {D} _ _ {sc} {G} _ 
       (fun x x' hx hx' => ?_)
     · have e1 : pairA D.host.F 0 α ⊗ₜ[D.host.F] (b * c) = (pairA D.host.F 0 α ⊗ₜ[D.host.F] b) *
           (pairA D.host.F 0 (GlobalTheory.FinPlLoc.ePl D (· = v)) ⊗ₜ[D.host.F] c) := by
-        rw [Algebra.TensorProduct.tmul_mul_tmul, pairA_mul', mul_ePl hsupp]
+        rw [Algebra.TensorProduct.tmul_mul_tmul, _root_.GlobalTheory.VacLat.pairA_mul, mul_ePl hsupp]
       have hz : pairA D.host.F 0 (GlobalTheory.FinPlLoc.ePl D (· = v)) ⊗ₜ[D.host.F] c ∈
           GlobalTheory.SeeSaw.idV ((G.pl.modul sc : Ideal (𝓞 D.host.E)) : GlobalTheory.SeeSaw.FI D)⁻¹ v :=
         AddSubgroup.subset_closure ⟨_, GlobalTheory.FinPlLoc.ePl_int _, fun w hw => by

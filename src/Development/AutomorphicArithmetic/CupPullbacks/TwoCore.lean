@@ -55,7 +55,7 @@ variable {q : ℕ} [NeZero q]
 
 theorem pull_cup {E E' : Spc} (f : E ⟶ E') {n m i j : ℤ} (a : Ht q E' n i) (b : Ht q E' m j) :
     pull _ f _ _ (cup q a b) = cup q (pull _ f _ _ a) (pull _ f _ _ b) :=
-  GlobalTheory.T.cup_hypercohomologyPullback _ (twPair q i j) f rfl a b
+  _root_.GlobalTheory.EtC.Pair.cup_pull _ (twPair q i j) f rfl a b
 
 theorem cast_smul {E : Spc} {n i n' i' : ℤ} (hn : n = n') (hi : i = i') (ε : ℤˣ) (x : Ht q E n i) :
     (ε • x).cast hn hi = ε • x.cast hn hi := by

@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 
 @[expose] public section
 
@@ -62,10 +63,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.HTLift
-
-theorem spMap_comp_spMap {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : B →+* C) (g : A →+* B) :
-    spMap f ≫ spMap g = spMap (f.comp g) := by
-  simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
 
 theorem exists_char_units {R Ω T : Type} [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [Field Ω]
     (κ : FractionRing R ≃+* Ω) [CommGroup T] {n : ℕ} (hn : 1 ≤ n) (c : T →* Ωˣ) (hc : ∀ t, c t ^ n = 1) :
@@ -108,12 +105,12 @@ theorem exists_tors [CharZero Ω] [IsNoetherianRing R] (G : Over X) [GrpObj G] [
   have : CharZero R := (κ.toRingHom.comp (algebraMap R (FractionRing R))).charZero
   have e1 : spMap κ.symm.toRingHom ≫ spMap (κ.toRingHom.comp (algebraMap R _)) =
       spMap (algebraMap R (FractionRing R)) := by
-    rw [spMap_comp_spMap]
+    rw [_root_.Formalism.L2.Pj.spMap_comp_ring]
     congr 1
     ext r
     simp
   have e2 : spMap κ.toRingHom ≫ spMap κ.symm.toRingHom = 𝟙 _ := by
-    rw [spMap_comp_spMap]
+    rw [_root_.Formalism.L2.Pj.spMap_comp_ring]
     have : κ.toRingHom.comp κ.symm.toRingHom = RingHom.id Ω := by
       ext r
       simp
@@ -147,7 +144,7 @@ theorem exists_tors [CharZero Ω] [IsNoetherianRing R] (G : Over X) [GrpObj G] [
       ∃ t, g.left = Spec.map (CommRingCat.ofHom α) ≫ (τ t).left := by
     intro Ω' _ _ α g hg
     have e5 : spMap (α.comp κ.symm.toRingHom) = spMap α ≫ spMap κ.symm.toRingHom :=
-      (spMap_comp_spMap _ _).symm
+      (_root_.Formalism.L2.Pj.spMap_comp_ring _ _).symm
     have e6 : spMap (α.comp κ.symm.toRingHom) ≫ ξ = Spec.map (CommRingCat.ofHom α) ≫ (BT.genPt R).hom ≫ x := by
       rw [e5, Category.assoc, e3]
     let c : Over.mk (spMap (α.comp κ.symm.toRingHom) ≫ ξ) ⟶

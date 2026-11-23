@@ -468,7 +468,7 @@ theorem integrable_snd (hX : IsBottomTri W i j X) (t : T) (P) (x : GA D WW) :
   obtain ⟨χ, χ', hom⟩ := weil_snd hX t
   have hF := GlobalTheory.Chain.InnerSteps.theta_pureTensorO hX.is.isVac'.1 hX.is.isVac'.2.inf X.rA'.s X.rA'.B X.rW.s X.rW.B
     (theta_snd hX t) P
-  have := GlobalTheory.WeilParts.integrableOn_theta_definite D W.ψ hom.std A' WW χ χ' (X.ω' t) hom
+  have := _root_.GlobalTheory.DefiniteQuotient.integrableOn_theta D W.ψ hom.std A' WW χ χ' (X.ω' t) hom
     (GlobalTheory.ConstRatio.posDef_of_std hX.std') ℂ (LinearMap.toSpanSingleton ℂ _ _)
     (fun c => GlobalTheory.OrientedHeis.theta_smul c hF) (fun _ => 1) continuous_const (fun _ _ _ => rfl) X.m' X.fd'
     hX.is.meas'.1 hX.is.meas'.2 x

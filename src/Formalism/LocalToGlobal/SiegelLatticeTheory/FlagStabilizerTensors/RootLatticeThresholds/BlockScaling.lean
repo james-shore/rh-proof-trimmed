@@ -279,7 +279,7 @@ theorem measPinAt_of (sc : ℝ) (hsc : 0 < sc) (i0 i0' : ∀ _ : InfinitePlace X
     refine Equiv.ext fun x => Fin.ext ?_
     calc ((hloc.2 ▸ Formalism.FourierDecayAlt.D.ptPerm p' : Equiv.Perm (Fin (D.R.rS + 1))) x).val
         = (Formalism.FourierDecayAlt.D.ptPerm p' ⟨x.val, by rw [hloc.2]; exact x.isLt⟩).val := Formalism.MainNotions.BigCellDensity.cast_perm_val _ _ _
-      _ = Formalism.FourierDecayAlt.D.ptPartner p' x.val := (Formalism.FourierDecayAlt.P.ptPerm_spec p' (D.R.rS + 1) hloc).1 _
+      _ = Formalism.FourierDecayAlt.D.ptPartner p' x.val := (_root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec p' (D.R.rS + 1) hloc).1 _
       _ = Formalism.FourierDecayAlt.D.ptPartner (pN.1.map Prod.swap) x.val := by rw [hswap]
       _ = (Formalism.MainNotions.BigCellDensity.wPt pN x).val := (Formalism.MainNotions.BigCellDensity.wPt_val pN x).symm
   have hdm : ∀ q : Formalism.FourierDecayAlt.C2.Lstidx (Formalism.MainNotions.BigCellDensity.wPt pN),
@@ -314,7 +314,7 @@ theorem measPinAt_of (sc : ℝ) (hsc : 0 < sc) (i0 i0' : ∀ _ : InfinitePlace X
         (trG ((PP).Q v) ((PP).Qi v) ((h v)⁻¹ * (gamW X u u' w) v * h' v))} = 0 := by
     have hS : IsClosed {x : Formalism.QuantumDeterminants.Mt D.R.k D.R.rS | Matrix.of x ∈ Formalism.FourierDecayAlt.C6.Rset
         (trG ((PP).Q v) ((PP).Qi v) ((h v)⁻¹ * (gamW X u u' w) v * h' v))} :=
-      (Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (Formalism.FourierDecayAlt.P.Dx2.Rad.isUnit_G hδG)).closed
+      (Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (_root_.PI.StabPairsW.isUnit_det_of_mem_GV hδG)).closed
     rw [Measure.map_map hΦ2 hΦ1]
     refine (Measure.map_apply (hΦ2.comp hΦ1) ?_).trans ?_
     · exact hS.measurableSet.compl

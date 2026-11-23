@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.TwoAdicScalarConditions
 
 @[expose] public section
 
@@ -100,12 +101,12 @@ theorem Th0TwoAnalytic_of (hE : HalfFibreExists) (hF : FibreZInstance) (hH : Hal
     rw [hd, map_zero]
     ring
   have hy : ‖Formalism.L2.Th1.E.AnaSysW.yc 2 L ι W (ω₀ / 2)‖ ≤ 1 :=
-    ((Formalism.L2.Th1.A.bridgeTwoMore ℂ_[2] W _ _ hEq h2).2.2 hW hxT).1
+    ((_root_.Formalism.L2.Th1.A.two_curves_relation ℂ_[2] W _ _ hEq h2).2.2 hW hxT).1
 
   obtain ⟨hLaw, hi, -⟩ := Formalism.L2.Th1.A.bridgeLaw ℂ_[2] W hW
-  have hlp := Crv2.logPair W
+  have hlp := _root_.Formalism.L2.Th1.C.WeierstrassCurveSeries.logPair W
   obtain ⟨hEnd, hcl, h0, hne, h1, hb1, hb2⟩ :=
-    twoAdicScalars ℂ_[2] (fgl W) (logSer W) (expSer W) b b' hLaw hlp hnb hnb'
+    _root_.Formalism.L2.Th1.B.Van.two_adic_scalar_conditions ℂ_[2] (fgl W) (logSer W) (expSer W) b b' hLaw hlp hnb hnb'
 
   have hQn : ∀ Q : Sq, (Q : ℂ) ∉ L.lattice := by
     intro Q hQ
@@ -136,7 +137,7 @@ theorem Th0TwoAnalytic_of (hE : HalfFibreExists) (hF : FibreZInstance) (hH : Hal
     rw [norm_transport ι α S.card (Formalism.L2.Th1.F.kerRepsCard L α S hα hmul hS), Fintype.card_coe]
     exact_mod_cast hcard.symm
   have hS2 : ι α * (ι α - ι (conj α)) * ι (Formalism.L2.Th1.F.s2 L) = ι (∑ P ∈ S, L.weierstrassP P) := by
-    rw [← Formalism.L2.Th1.F.quasiPeriodConstIsogeny L α S hα hmul hS, ← Complex.mul_conj, ← map_sub, ← map_mul,
+    rw [← _root_.Formalism.L2.Th1.F.quasiPeriodConstIsogeny_thm L α S hα hmul hS, ← Complex.mul_conj, ← map_sub, ← map_mul,
       ← map_mul]
     congr 1
     ring
@@ -153,7 +154,7 @@ theorem Th0TwoAnalytic_of (hE : HalfFibreExists) (hF : FibreZInstance) (hH : Hal
   have hV' : Simeq (ι := Unit)
       (evenSigmaLogAtTwoTorsion W (ι (Formalism.L2.Th1.F.s2 L)) (px W (ptW 2 L ι W (ω₀ / 2)))) 0 := hV
   refine ⟨hV', ?_⟩
-  rw [Formalism.L2.Th1.E.inWTh0 2 L ι W hU ω₀ hω hω2]
+  rw [_root_.Formalism.L2.Th1.E.even_theta_half_period_in_model 2 L ι W hU ω₀ hω hω2]
   exact Formalism.L2.Th1.E.Two.oneUnit_fExp_neg hV'
 
 end Formalism.L2.Th1.B.An2

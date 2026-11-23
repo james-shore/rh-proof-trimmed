@@ -134,22 +134,6 @@ theorem piW_cA' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E]
   | tmul a e => rfl
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
 
-theorem piW_inclR' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    {v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)} (τ : E →ₐ[F] Fv F v) (e : E) :
-    GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.piW τ (inclR (F := F) (AF F) e) = τ e := by
-  change evFin F v 1 * τ e = τ e
-  simp
-
-theorem sum_four_swap_pairs_reverse_inner {R α β : Type} [AddCommMonoid R] [Fintype α] [Fintype β] (f : α → β → α → β → R) :
-    ∑ a, ∑ b, ∑ c, ∑ e, f a b c e = ∑ c, ∑ e, ∑ b, ∑ a, f a b c e := by
-  first
-  | exact @_root_.GlobalTheory.TargetEquivalence.target
-  | exact _root_.GlobalTheory.TargetEquivalence.target
-  | (apply _root_.GlobalTheory.TargetEquivalence.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TargetEquivalence.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TargetEquivalence.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TargetEquivalence.target ..)
-
 theorem splitTrace' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
     (hcm : IsCMExt F E σ) (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) (t : E →ₐ[F] Fv F v) {n d : ℕ} (J : Matrix (Fin n) (Fin n) E)
     (K : Matrix (Fin d) (Fin d) E) (hJ : ∀ i j, σ (J j i) = J i j) (hK : ∀ i j, σ (K j i) = -K i j)
@@ -171,7 +155,7 @@ theorem splitTrace' {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
   show GlobalTheory.AdelicU.evFin F v (Algebra.trace (AF F) _ _) = _
   rw [trace_at hcm t hzAt]
 
-  simp only [GlobalTheory.WeilM.hTens, map_mul, map_neg, map_one, map_sum, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM, Matrix.map_apply, piW_cA', piW_inclR',
+  simp only [GlobalTheory.WeilM.hTens, map_mul, map_neg, map_one, map_sum, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM, Matrix.map_apply, piW_cA', _root_.GlobalTheory.OppLinChar.piW_inclR,
   GlobalTheory.AdelicU.comp_conj_conj hcm, AlgHom.comp_apply, hJ, hK]
   simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Matrix.neg_apply, Finset.mul_sum, Finset.sum_mul]
   rw [sub_eq_add_neg]
@@ -182,7 +166,7 @@ theorem splitTrace' {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
     rw [Finset.mul_sum, ← Finset.sum_neg_distrib]
     refine Finset.sum_congr rfl fun k _ => ?_
     ring
-  · rw [sum_four_swap_pairs_reverse_inner]
+  · rw [_root_.GlobalTheory.TargetEquivalence.main]
     simp only [neg_mul, mul_neg, one_mul, Finset.sum_mul, Finset.sum_neg_distrib, neg_neg]
     refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun l _ =>
       Finset.sum_congr rfl fun k _ => ?_

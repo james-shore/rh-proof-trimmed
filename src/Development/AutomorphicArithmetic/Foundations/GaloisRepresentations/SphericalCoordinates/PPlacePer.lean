@@ -81,12 +81,6 @@ private theorem exists_extend {M V E : Type} [AddCommGroup M] [AddCommGroup V] [
     have hk := key (j v) 1 v one_ne_zero (by simp)
     simpa using hk
 
-private theorem finrank_eq_of_place {M V : Type} [AddCommGroup M] [Module.Free ℤ M] [Module.Finite ℤ M]
-    [AddCommGroup V] [Module ℚ V] (j : M →+ V) (hj : Function.Injective j)
-    (hd : ∀ w, ∃ (m : ℕ) (u : M), m ≠ 0 ∧ m • w = j u) :
-    Module.finrank ℤ M = Module.finrank ℚ V :=
-  _root_.UpperTheory.Reformulated.B.FinrankIntEqFinrankRat.finrank_eq_of_place j hj hd
-
 private theorem period_of_basis {M : Type} [AddCommGroup M] [Module.Free ℤ M] [Module.Finite ℤ M] {g : ℕ}
     (P : M →+ (Fin g → ℂ)) (hs : Submodule.span ℝ (Set.range P) = ⊤)
     (hc : Module.finrank ℤ M = 2 * g) :
@@ -214,7 +208,7 @@ theorem UpperTheory.Gal.W2.placePer_of :
       exact mul_left_cancel₀ (mul_ne_zero hmR hnR) h5
   · obtain ⟨hQa, hQs, Hm, hH, hpos, hIm⟩ := hQ
     have hc : Module.finrank ℤ D'.La = 2 * D.g := by
-      rw [finrank_eq_of_place j hinj hden, hrk]
+      rw [_root_.UpperTheory.Reformulated.B.FinrankIntEqFinrankRat.finrank_eq_of_place j hinj hden, hrk]
       haveI : Module.Free ℤ D.La := D.freeLa
       exact Module.finrank_baseChange
     have hs' : Submodule.span ℝ (Set.range (Q.comp j)) = ⊤ := by

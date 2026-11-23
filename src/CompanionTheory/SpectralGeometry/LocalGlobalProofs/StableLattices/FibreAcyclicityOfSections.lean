@@ -99,8 +99,8 @@ theorem fibAc_comp_of_fibres : ∀ {k : Type} [Field k] [IsAlgClosed k] {X T Z :
     (Fin (r + 1)) (fun j => q ⁻¹ᵁ V j) hG hsep hD hc
     (by rw [← Scheme.Hom.preimage_iSup, hBc, Scheme.Hom.preimage_top])
     (by rw [← Scheme.Hom.preimage_iSup, hVc, Scheme.Hom.preimage_top])
-    (fun i _ h => GlobalTheory.MumfordCohom.isAffineOpen_preimage_inf _ (hB i) h)
-    (fun j _ h => GlobalTheory.MumfordCohom.isAffineOpen_preimage_inf _ (hV j) h)
+    (fun i _ h => _root_.GlobalTheory.AbLaw.isAffineOpen_preimage_inf_of_isSeparated _ (hB i) h)
+    (fun j _ h => _root_.GlobalTheory.AbLaw.isAffineOpen_preimage_inf_of_isSeparated _ (hV j) h)
     (fun i j => (over_affineOpen_of_isPullback a b p q H (hV j) B hB hBc G hG).1 i) n
   have e₂ := trunc₂HomologyIsoFstSingleton (0 : Fin (r + 1)) (secCube (p ≫ a) G
     fun u : Fin m ⊕ₗ Fin (r + 1) =>

@@ -91,8 +91,7 @@ def smallSub {C : Type} [Field C] (v : Valuation C NNReal) (t : NNReal) {r : ℕ
   zero_mem' m := by simp
   neg_mem' ha m := by rw [map_neg, Valuation.map_neg]; exact ha m
 
-theorem bar_bar {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (a : 𝓞 E) : H.bar (H.bar a) = a :=
-  RingOfIntegers.ext (by rw [H.bar_eq, H.bar_eq, IsCMField.complexConj_apply_apply])
+alias bar_bar := _root_.GlobalTheory.HostModel.bar_bar
 
 end PositivityTheory.Xgn.TestGroupPoint
 

@@ -62,7 +62,7 @@ theorem exists_mem_and_rightTranslate_mem_of_mem_identityComponent :
   intro k _ G _ hs U y hU hy
   set e : G.left := (η[G]).left (IsLocalRing.closedPoint k) with he
   have hirr : IsIrreducible (connectedComponent e) := by
-    have h := (GlobalTheory.T.isOpen_isIrreducible_componentOfRationalPoint_smooth k G.left G.hom (η[G]).left hs (Over.w (η[G]))).2
+    have h := (_root_.GlobalTheory.isOpen_and_isIrreducible_sectionComponent_of_smooth_field k G.left G.hom (η[G]).left hs (Over.w (η[G]))).2
     have hsub : ∀ a : Spec (CommRingCat.of k), a = IsLocalRing.closedPoint k := fun a =>
       Subsingleton.elim (α := PrimeSpectrum k) _ _
     convert h using 1

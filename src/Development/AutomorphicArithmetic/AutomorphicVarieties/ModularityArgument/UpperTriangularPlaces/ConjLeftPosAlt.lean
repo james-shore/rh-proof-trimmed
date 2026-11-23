@@ -173,12 +173,6 @@ private theorem anti3 (e : ℕ) (he : 1 ≤ e) : StrictAnti ![(e : ℤ), 0, -(e 
   intro a b hab
   fin_cases a <;> fin_cases b <;> first | (exfalso; revert hab; decide) | (simp; omega)
 
-private theorem cont_units {Γ M : Type} [Group Γ] [TopologicalSpace Γ] [ContinuousInv Γ] [Monoid M] [TopologicalSpace M]
-    (f : Γ →* Mˣ) (h : Continuous fun g => (f g : M)) : Continuous f := by
-  refine Units.continuous_iff.2 ⟨h, ?_⟩
-  simp only [← map_inv]
-  exact h.comp continuous_inv
-
 end UpperTheory.V.Z.Keep.KatoThreePlus
 
 namespace UpperTheory.V.Z.Keep.KatoThreePlus
@@ -364,7 +358,7 @@ private theorem UpperTheory.V.Z.Keep.KatoThreePlus.main :
   have hK : ∀ s, (UnitaryThreeInertia.push A.val r (galEmb ℚ K Ω s)).right = 1 := fun s => (hright _).trans (hmem s)
   have hLη : galOf ℚ L Ω ≤ η.ker := Db.galL_le k
   have hρc : Continuous ρ := by
-    refine KatoThreePlus.cont_units ρ (continuous_matrix fun a b => ?_)
+    refine _root_.UpperTheory.Reformulated.B.ContinuousHomomorphism.cont_hom ρ (continuous_matrix fun a b => ?_)
     have h1 : Alg.AdicCont (maximalIdeal A) fun g : G ℚ Ω => (r g).mat a b := fun n =>
       (hr.cont n).comp fun m => m a b
     refine ((hcont (G ℚ Ω) _ h1).comp (galEmbTop ℚ K Ω).1.continuous).congr fun s => ?_

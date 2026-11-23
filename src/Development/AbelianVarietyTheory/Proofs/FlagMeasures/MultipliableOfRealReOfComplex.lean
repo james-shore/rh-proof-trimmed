@@ -69,7 +69,4 @@ theorem multipliable_ofReal_re_of_complex (ι : Type) (c : ι → ℂ) (hc : Mul
     rw [ENNReal.ofReal_prod_of_nonneg (fun i _ => (hcr i).2)]
   exact ⟨h2.multipliable, by rw [h2.tprod_eq, ha.tprod_eq]⟩
 
-theorem multipliable_ofReal_re_of_complex' : ∀ (ι : Type) (c : ι → ℂ), Multipliable c → (∀ i, (c i).im = 0 ∧ 0 ≤ (c i).re) → Multipliable (fun i => ENNReal.ofReal (c i).re) ∧ ∏' i, ENNReal.ofReal (c i).re = ENNReal.ofReal (∏' i, c i).re :=
-  multipliable_ofReal_re_of_complex
-
 end GlobalTheory

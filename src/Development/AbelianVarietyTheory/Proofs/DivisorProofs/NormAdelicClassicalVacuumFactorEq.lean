@@ -262,7 +262,7 @@ theorem GlobalTheory.AdTh.norm_factor_eq_of_reads : ∀ (D : D7) (ψ : AddChar (
   have h₀ := hn x hd hu ϑ κ₀ hϑ hmean hκ₀
   suffices h : ρ = ‖κ‖ from fun x' hx' hu' ϑ' κ' h1 h2 h3 => (hn x' hx' hu' ϑ' κ' h1 h2 h3).trans h
   obtain ⟨X', m, hq', hq, bas', idx', hs', hΛ, -, -, -, -, -, hB⟩ :=
-    GlobalTheory.T.orthonormal_frame_reading_eq_conjugate_datum_theta D ψ θ V W g X bas idx hstd hinf he hV hm hs
+    _root_.GlobalTheory.AdTh.reads_iff_eq_th D ψ θ V W g X bas idx hstd hinf he hV hm hs
   obtain ⟨⟨B, hB1⟩, hB2⟩ := hB x hx
   let C : GlobalTheory.Ker.Ctx V W := ⟨ψ, hstd, θ, hinf, X', m, g, X.p0, hq', bas', idx', hs', he⟩
   obtain ⟨hCB, -, -, hz, hpv, -⟩ := hB2 B hB1

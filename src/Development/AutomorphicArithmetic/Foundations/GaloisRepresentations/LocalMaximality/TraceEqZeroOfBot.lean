@@ -127,7 +127,7 @@ theorem UpperTheory.Gal.productCup_of_system.field0_of :
         det := hdet }
     exact hLe F K K' d xu j2 Fx A hY a had u hu
   · push_neg at had
-    have hv := (GlobalTheory.T.dlog_basis_and_vanishing_above_dimension ℂ F K d x hK).2 a had
+    have hv := (_root_.GlobalTheory.PD.IsFinCover.dlog_basis_and_vanish ℂ F K d x hK).2 a had
     refine (Finset.sum_eq_zero fun p _ => ?_).trans (Finset.sum_eq_zero fun e _ => ?_).symm
     · rw [trace_eq_zero_of_bot _ (fun I => omB_eq_bot _ a hv) _ (u p), mul_zero]
     · rw [coeff_det_eq_zero had, zero_div]

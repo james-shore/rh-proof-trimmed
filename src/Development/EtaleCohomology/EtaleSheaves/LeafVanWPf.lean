@@ -70,8 +70,6 @@ theorem desc_eq_zero {n m : ℤ} {α : Cochain K M m} {β : Cochain L M n} {h : 
   · have := mappingCone.inr_descCochain φ α β h
     rw [H, Cochain.comp_zero] at this; exact this.symm
 
-theorem units_mul_self' (u : ℤˣ) : u * u = 1 := Int.units_mul_self u
-
 theorem cone_zero
     (hinj : ∀ (n : ℤ) (x : Cocycle L M n),
       CohomologyClass.mk (zcomp (Cocycle.ofHom φ) x (zero_add n)) = 0 → CohomologyClass.mk x = 0)
@@ -92,7 +90,7 @@ theorem cone_zero
     apply hinj
     rw [CohomologyClass.mk_eq_zero_iff, mem_coboundaries_iff _ (n - 1) (by omega)]
     refine ⟨-((n + 1).negOnePow • a), ?_⟩
-    rw [δ_neg, δ_units_smul, hda, smul_neg, neg_neg, smul_smul, units_mul_self', one_smul]
+    rw [δ_neg, δ_units_smul, hda, smul_neg, neg_neg, smul_smul, _root_.Int.units_mul_self, one_smul]
     simp [zcomp, bc]
   rw [CohomologyClass.mk_eq_zero_iff, mem_coboundaries_iff _ (n - 1) (by omega)] at hb0
   obtain ⟨γ, hγ⟩ := hb0
@@ -123,7 +121,7 @@ theorem cone_zero
   rw [hz, mappingCone.ext_cochain_from_iff φ (n - 1) n (by omega)]
   constructor
   · simp only [mappingCone.inl_descCochain, Cochain.comp_add, Cochain.comp_sub, Cochain.comp_units_smul, δ_zero, zero_add,
-      Cochain.comp_zero, smul_zero, add_zero, smul_smul, units_mul_self', one_smul, ha']
+      Cochain.comp_zero, smul_zero, add_zero, smul_smul, _root_.Int.units_mul_self, one_smul, ha']
     abel
   · simp
 end Cone

@@ -84,16 +84,16 @@ theorem fin_cosets_away_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L : 
     (∀ g : Gv G v, g⁻¹ * piV G v γ * g ∈ IntV G v → ∃ c ∈ GlobalTheory.BCT.twCent (MonoidHom.id (Gv G v)) (piV G v γ),
       ∃ d ∈ IntV G v, g = c * d) ∧ ∀ a ∈ IntV G v, ∀ b ∈ IntV G v, a * b ∈ IntV G v}
   have hGood : ∀ᶠ v in (Filter.cofinite : Filter (AwayP p)), v ∈ Good := by
-    filter_upwards [GlobalTheory.T.eventually_compact_unitaryAdelic_image_integral p G Ω hΩ, kottwitz_almost' G y hdeg hsep x (fun v => piV G v γ) hg0, GlobalTheory.T.eventually_integralUnitaryPointsAtPlace_mul_mem p G]
+    filter_upwards [_root_.GlobalTheory.OrbFinAf.cptInt p G Ω hΩ, kottwitz_almost' G y hdeg hsep x (fun v => piV G v γ) hg0, _root_.GlobalTheory.OrbFinAf.mul_mem_IntV_eventually p G]
       with v h1 h2 h3
     exact ⟨h1, h2, h3⟩
   have hL1 := fun v : AwayP p => local_fin' G v y hdeg hsep (xV G x v) (piV G v γ) (hg0 v) (piV G v '' Ω)
-    (hΩ.image (GlobalTheory.T.continuous_unitaryAdelicComponentAtPlace_explicit p G v))
+    (hΩ.image (_root_.GlobalTheory.OrbFinAf.continuous_piV p G v))
   choose D₁ hD₁ hD₁g using hL1
   let D' : ∀ v : AwayP p, Set (Gv G v) := fun v => if v ∈ Good then IntV G v else D₁ v
   have hD'c : ∀ v, IsCompact (D' v) := by
     intro v; by_cases hv : v ∈ Good
-    · simp only [D', if_pos hv]; exact GlobalTheory.T.isCompact_integralUnitaryPointsAtPlace p G v
+    · simp only [D', if_pos hv]; exact _root_.GlobalTheory.OrbFinAf.isCompact_IntV p G v
     · simp only [D', if_neg hv]; exact hD₁ v
   have hD'i : ∀ᶠ v in (Filter.cofinite : Filter (AwayP p)), D' v ⊆ IntV G v := by
     filter_upwards [hGood] with v hv
@@ -111,15 +111,15 @@ theorem fin_cosets_away_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L : 
         exact ⟨c, hc, d, by simp only [D', if_neg hv]; exact hd, e⟩
     choose c hc d hd e using hloc
     have hcint : ∀ᶠ v in (Filter.cofinite : Filter (AwayP p)), c v ∈ IntV G v := by
-      filter_upwards [GlobalTheory.T.eventually_compact_unitaryAdelic_image_integral p G {g} isCompact_singleton, hGood] with v h1 h2
+      filter_upwards [_root_.GlobalTheory.OrbFinAf.cptInt p G {g} isCompact_singleton, hGood] with v h1 h2
       have hdv : d v ∈ IntV G v := by have := hd v; simp only [D', if_pos h2] at this; exact this
       have ec : c v = piV G v g * (d v)⁻¹ := by rw [e v]; group
       rw [ec]
       exact h2.2.2 _ (h1 ⟨g, rfl, rfl⟩) _ (inv_mem_IntV G v hdv)
-    obtain ⟨tt, htt⟩ := GlobalTheory.T.exists_unitaryAdelicPoint_of_eventually_integral_local p G c hcint
+    obtain ⟨tt, htt⟩ := _root_.GlobalTheory.OrbFinAf.exists_glue p G c hcint
     refine ⟨tt, ?_, tt⁻¹ * g, ?_, by group⟩
     · show tt * γ = γ * (MonoidHom.id _) tt
-      apply GlobalTheory.T.unitaryAdelicPoint_ext_of_components p G
+      apply _root_.GlobalTheory.OrbFinAf.ext_of_piV p G
       intro v
       have h1 : c v * piV G v γ = piV G v γ * (MonoidHom.id _) (c v) := hc v
       simp only [map_mul, htt, MonoidHom.id_apply] at h1 ⊢
@@ -128,7 +128,7 @@ theorem fin_cosets_away_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L : 
       have : piV G v (tt⁻¹ * g) = d v := by rw [map_mul, map_inv, htt, e v]; group
       rw [this]; exact hd v
   set D := {g : G.GAf | ∀ v, piV G v g ∈ D' v}
-  have hD : IsCompact D := GlobalTheory.T.isCompact_unitaryAdelic_prod_local_compacts p G D' hD'c hD'i
+  have hD : IsCompact D := _root_.GlobalTheory.OrbFinAf.isCompact_prod_local p G D' hD'c hD'i
   obtain ⟨I, hI⟩ := hD.elim_finite_subcover (fun d : G.GAf => d • (K : Set G.GAf))
     (fun d => L.K.isOpen.smul d) (fun d _ => Set.mem_iUnion.2 ⟨d, ⟨1, one_mem _, mul_one d⟩⟩)
   refine ⟨I, fun h hh => ?_⟩
@@ -228,7 +228,7 @@ theorem finite_pts_conj_fixL_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p),
   have hz₀ : FixL G v β y₀ z₀.1 := fixL_conj G v β γ₀ y₀ _ hfix₀
   obtain ⟨R1, hR1⟩ := fin_cosets_away_sep p G L f hf β x t hx y₀ hsd.2 hsd.1
   obtain ⟨R2, hR2⟩ := exists_finset_doubleCoset_cover_of_separable p G K' f' hf' β y₀ hsd.2 hsd.1
-  have h3 := GlobalTheory.T.finite_classNumber_centraliserTorus_separable p G L K' hf'.1 β x t hx hsym y₀ hsd.2 hsd.1
+  have h3 := _root_.GlobalTheory.CentCls.main p G L K' hf'.1 β x t hx hsym y₀ hsd.2 hsd.1
   choose R3 hR3 using h3
   let Fs : Finset (G.GAf × Gr G 1) := (R1 ×ˢ R2).biUnion R3
   refine (Fs.finite_toSet.image (fun s => (Quot.mk _ (s, z₀) : Pts G v β x t hx L.K.toSubgroup K'))).subset ?_

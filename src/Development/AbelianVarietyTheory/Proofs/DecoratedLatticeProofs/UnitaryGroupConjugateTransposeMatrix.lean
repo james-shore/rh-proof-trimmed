@@ -59,12 +59,6 @@ namespace GlobalTheory.GramFrame
 section Gen
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem integral_adelic_lattice_mul_mem {z w : GlobalTheory.AdLat.RA F E}
-    (hz : z ∈ GlobalTheory.AdLat.hat1 F ((1 : FractionalIdeal (nonZeroDivisors (𝓞 E)) E) : Set E))
-    (hw : w ∈ GlobalTheory.AdLat.hat1 F ((1 : FractionalIdeal (nonZeroDivisors (𝓞 E)) E) : Set E)) :
-    z * w ∈ GlobalTheory.AdLat.hat1 F ((1 : FractionalIdeal (nonZeroDivisors (𝓞 E)) E) : Set E) := by
-  exact GlobalTheory.AdelicLatticeClosure.adelic_hat_one_mul_mem hz hw
-
 theorem one_int_af : ∀ v : HeightOneSpectrum (𝓞 F),
     (1 : FiniteAdeleRing (𝓞 F) F) v ∈ v.adicCompletionIntegers F := fun v => by
   show (1 : v.adicCompletion F) ∈ _
@@ -113,7 +107,7 @@ theorem mem_integral_adelic_lattice_iff (z : GlobalTheory.AdLat.RA F E) :
       | mul a b _ _ ha hb =>
         obtain ⟨t, ht, rfl⟩ := ha
         obtain ⟨t', ht', rfl⟩ := hb
-        exact ⟨t * t', integral_adelic_lattice_mul_mem ht ht', map_mul _ _ _⟩
+        exact ⟨t * t', _root_.GlobalTheory.AdelicLatticeClosure.adelic_hat_one_mul_mem ht ht', map_mul _ _ _⟩
     obtain ⟨t, ht, e⟩ := key _ hz
     rwa [GlobalTheory.LevSplit.swp_bij.1 e] at ht
 

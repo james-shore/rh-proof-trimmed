@@ -81,25 +81,7 @@ variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAl
 
 private theorem cz : CharZero (w.adicCompletion E) := charZero_of_injective_algebraMap (algebraMap E _).injective
 
-private theorem geo : GlobalTheory.Published.GeometricLemma := PositivityTheory.Exh.geometricLemmaGL
-
-private theorem eq_of_support_singleton {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
-    [IsNonarchimedeanLocalField k] {y z : IrrGL (k := k)} (h : HasSupport y.rep {z}) : y = z := by
-  obtain ⟨r, u, hu, hi, hc, e, hsub⟩ := h
-  obtain rfl : r = 1 := by simpa using congrArg Multiset.card hu
-  obtain rfl : u = fun _ => z := funext fun i => by
-    rw [Subsingleton.elim i 0]
-    simpa using hu
-  obtain ⟨d, c⟩ := y
-  obtain rfl : z.1 = d := by simpa using Fintype.card_congr e
-  have hd : ∑ _ : Fin 1, z.1 = z.1 := by simp
-  obtain ⟨φ⟩ := (GlobalTheory.SmGL.Placing.parInd_jac_placing k _ _ _ e (stdBlocks (fun _ : Fin 1 => z.1) hd) _).1
-    (piTensor fun _ => z.rep)
-  obtain ⟨ψ⟩ := nonempty_equiv_prodIrr_one z hd
-  let χ := φ.trans ψ.symm
-  obtain ⟨θ⟩ := SupportUnique.nonempty_equiv_of_isSubquotient hi z.2.rep.irr
-    (hsub.trans (.of_injective χ.toIntertwiningMap χ.toLinearEquiv.injective))
-  exact ((IrrGL.of_rep z).symm.trans ((IrrGL.of_eq_of.2 ⟨θ⟩).trans (IrrGL.of_rep ⟨_, c⟩))).symm
+private alias geo := _root_.GlobalTheory.CompanionTheory.GeoLink.geometricLemma
 
 private theorem det_law (H : LawsT a ha rc) (t : ℕ) (χ : (w.adicCompletion E)ˣ →* ℂˣ) (hχ : IsSmoothChar χ) :
     rc (cls (IrrRep.det (Fin t) χ hχ)) =
@@ -234,7 +216,7 @@ private theorem cusp_law (H : LawsT a ha rc) (x : IrrGL (k := w.adicCompletion E
   haveI := cz (E := E) (w := w)
   obtain ⟨𝔪, hm⟩ := Pr.exh (w.adicCompletion E) x
   obtain ⟨l, rfl⟩ : ∃ l : List (Segment (w.adicCompletion E)), (l : Multiset _) = 𝔪 := ⟨_, 𝔪.coe_toList⟩
-  have hs := GlobalTheory.T.langlandsClassification_supercuspidalSupport_multisegment Pr.zel _ _ x hm
+  have hs := _root_.GlobalTheory.LocGL.hasSupport_msupp_of_isL Pr.zel _ _ x hm
   rw [H.langlands l x hm] at hx
   have key : ∀ (Δ : Segment (w.adicCompletion E)) (m : List (Segment (w.adicCompletion E))), segSum rc (Δ :: m) =
       (((rc Δ.first).lpTw (((Δ.len : ℝ) - 1) / 2)).lpChar (WD.lpSp (h := h) Δ.len)).lpSum (segSum rc m) := fun _ _ => rfl
@@ -260,7 +242,7 @@ private theorem cusp_law (H : LawsT a ha rc) (x : IrrGL (k := w.adicCompletion E
       rw [msupp, Multiset.coe_singleton, Multiset.singleton_bind]
       exact (congrArg Segment.ms e').trans (Segment.ms_single _ _)
     rw [hms] at hs
-    rw [eq_of_support_singleton hs]
+    rw [_root_.GlobalTheory.CompanionTheory.CuspPairSub.eq_of_hasSupport_singleton hs]
     exact Δ.isCusp_first
   | Δ :: Δ' :: m, _, hx =>
     rw [key] at hx

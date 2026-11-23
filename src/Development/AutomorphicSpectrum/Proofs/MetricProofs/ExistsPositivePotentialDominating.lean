@@ -64,19 +64,12 @@ open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P
 
 variable {e : ℕ} {X : Type} [TopologicalSpace X]
 
-theorem potential_contDiffAt (A : FinHolAtlas e X) (P : LocPot X) (hP : IsPotential A P) (x : X)
-    (j : Fin A.n) {y : Fin e → ℂ} (hy : y ∈ (A.chart j).target ∩ (A.chart j).symm ⁻¹' P.U x) :
-    ContDiffAt ℝ 2 (P.φ x ∘ (A.chart j).symm) y :=
-  ((hP.1 x j).of_le two_le_infty).contDiffAt
-    (((A.chart j).continuousOn_symm.isOpen_inter_preimage (A.chart j).open_target
-      (P.isOpen_U x)).mem_nhds hy)
-
 theorem isPosPot_rsmul (A : FinHolAtlas e X) (P : LocPot X) (hP : IsPotential A P)
     (hpos : IsPosPot A P) {c : ℝ} (hc : 0 < c) : IsPosPot A (P.rsmul c) := by
   intro x j y hy w hw
   have h : levi ((P.rsmul c).φ x ∘ (A.chart j).symm) y w =
       c * levi (P.φ x ∘ (A.chart j).symm) y w :=
-    TailChernBound.levi_smul' c (potential_contDiffAt A P hP x j hy) w
+    TailChernBound.levi_smul' c (_root_.ReciprocityTheory.AnForm.M.potSmoothAt A P hP x j hy) w
   rw [h]
   exact mul_pos hc (hpos x j y hy w hw)
 
@@ -86,8 +79,8 @@ theorem isPsh_add_rsmul_succ (A : FinHolAtlas e X) (Θ Φ : LocPot X) (hΘ : IsP
   intro x j y hy w
   have hyΦ : y ∈ (A.chart j).target ∩ (A.chart j).symm ⁻¹' Φ.U x := ⟨hy.1, hy.2.1.1⟩
   have hyΘ : y ∈ (A.chart j).target ∩ (A.chart j).symm ⁻¹' Θ.U x := ⟨hy.1, hy.2.2⟩
-  have hΘa := potential_contDiffAt A Θ hΘ x j hyΘ
-  have hΦa := potential_contDiffAt A Φ hΦ x j hyΦ
+  have hΘa := _root_.ReciprocityTheory.AnForm.M.potSmoothAt A Θ hΘ x j hyΘ
+  have hΦa := _root_.ReciprocityTheory.AnForm.M.potSmoothAt A Φ hΦ x j hyΦ
   have e1 : (Φ + LocPot.ofFun (fun _ => 0) + Θ.rsmul (C + 1)).φ x ∘ (A.chart j).symm =
       fun z => (C + 1) * (Θ.φ x ∘ (A.chart j).symm) z + 1 * (Φ.φ x ∘ (A.chart j).symm) z := by
     funext z

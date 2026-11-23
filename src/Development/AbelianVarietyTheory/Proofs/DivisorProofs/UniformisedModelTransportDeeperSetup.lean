@@ -61,9 +61,7 @@ noncomputable section
 
 namespace GlobalTheory.UPoinc.Transport
 
-theorem spMap_comp₂ {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]; rfl
+alias spMap_comp₂ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 
 open GlobalTheory.Poinc.Extend in

@@ -55,12 +55,6 @@ namespace PositivityTheory.Sph
 open scoped Matrix
 open NumberField IsDedekindDomain Topology GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes PositivityTheory.ThK
 
-theorem exists_fixed_sum {K S : Type} [Group K] [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K]
-    [AddCommGroup S] [Module ℂ S] (ω : K →* Module.End ℂ S) (f₀ : S)
-    (hU : ∃ U ∈ 𝓝 (1 : K), ∀ k ∈ U, ω k f₀ = f₀) :
-    ∃ (m : ℕ) (k : Fin (m + 1) → K), ∀ g, ω g (∑ i, ω (k i) f₀) = ∑ i, ω (k i) f₀ :=
-  _root_.UpperTheory.Reformulated.B.InvariantSumOfTranslates.main ω f₀ hU
-
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {n d : ℕ}
   {X : Spc F E n} {W : Spc F E d} {M : Model σ X W} {ψ : AddChar (AF F) ℂ} {om : Rep σ X W} {v : Pl F}
   {ω : UA σ X.J × UA σ W.J → Module.End ℂ (Fn F n d v)} {ρ : Matrix (Fin n) (Fin d) (AE F E) → Module.End ℂ (Fn F n d v)}
@@ -147,7 +141,7 @@ theorem isVacSph_of (L : IsLocRep M ψ om v ω ρ) (H : IsHowe M v ω) (hKX : Is
   haveI : CompactSpace (KSub σ W v) := isCompact_iff_compactSpace.1 hKW
   refine ⟨H.fixW, fun φ hφ => ?_, fun φ hφ => ?_⟩
   · obtain ⟨U, hU, hU'⟩ := smX φ hφ
-    obtain ⟨m, k, hk⟩ := exists_fixed_sum (IsLocRep.onKX L) ⟨φ, hφ⟩
+    obtain ⟨m, k, hk⟩ := _root_.UpperTheory.Reformulated.B.InvariantSumOfTranslates.main (IsLocRep.onKX L) ⟨φ, hφ⟩
       ⟨Subtype.val ⁻¹' U, continuous_subtype_val.continuousAt hU, fun k hk => Subtype.ext (hU' k.1 hk k.2.1)⟩
     set f := ∑ i, ω ((k i).1, 1) φ with hf
     have hfS : f ∈ SB _ := sum_mem fun i _ => L.pres _ (k i).2.1 1 (one_mem_UAt W v) φ hφ
@@ -166,7 +160,7 @@ theorem isVacSph_of (L : IsLocRep M ψ om v ω ρ) (H : IsHowe M v ω) (hKX : Is
       Submodule.smul_mem _ (((m + 1 : ℕ) : ℂ)⁻¹) hgen, ?_⟩
     rw [← smul_add, sub_add_cancel, smul_smul, inv_mul_cancel₀ hc, one_smul]
   · obtain ⟨U, hU, hU'⟩ := L.smooth φ hφ
-    obtain ⟨m, k, hk⟩ := exists_fixed_sum L.onK ⟨φ, hφ⟩
+    obtain ⟨m, k, hk⟩ := _root_.UpperTheory.Reformulated.B.InvariantSumOfTranslates.main L.onK ⟨φ, hφ⟩
       ⟨Subtype.val ⁻¹' U, continuous_subtype_val.continuousAt hU, fun k hk => Subtype.ext (hU' k.1 hk k.2.1)⟩
     set f := ∑ i, ω (1, (k i).1) φ with hf
     have hfS : f ∈ SB _ := sum_mem fun i _ => L.pres 1 (one_mem_UAt X v) _ (k i).2.1 φ hφ

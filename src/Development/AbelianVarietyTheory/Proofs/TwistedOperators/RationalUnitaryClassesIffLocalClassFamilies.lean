@@ -183,7 +183,7 @@ theorem rat_classes_iff_local (E : Type) [Field E] [NumberField E] (F : Subfield
         ∀ w, HasCls P _ J (projArch σ J w (ratEmb σ J γ)) (qa w) := by
   have e1 : ∀ v γ, proj σ J v (ratEmb σ J γ) = diagH σ J (Fv F v) γ := proj_ratEmb σ J
   have e2 : ∀ w γ, projArch σ J w (ratEmb σ J γ) = diagH σ J w.Completion γ := projArch_ratEmb σ J
-  obtain ⟨H1, H2⟩ := GlobalTheory.T.rationalNormClasses_eq_local_unramifiedCM E F σ hc hu r P J hJ
+  obtain ⟨H1, H2⟩ := _root_.GlobalTheory.TrEll.Hasse.rational_eq_local E F σ hc hu r P J hJ
   refine ⟨fun γ h => ⟨fun v => ?_, fun w => ?_, ?_⟩, fun γ γ' h h' => ⟨fun e => ⟨fun v q hq => ?_, fun w q hq => ?_⟩,
     fun H => ?_⟩, fun qf qa hf ha h1 => ?_⟩
   · rw [e1]; exact existsUnique_hasCls_rat hc hJ _ γ h

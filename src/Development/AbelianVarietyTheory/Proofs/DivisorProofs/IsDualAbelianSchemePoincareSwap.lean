@@ -73,9 +73,9 @@ theorem fibre_isIso : ∀ (S : Scheme.{0}) (A B C : Over S) [GrpObj A] [GrpObj B
     DimLe B C → IsDual A B P → IsDual B C Q → IsMonHom κ → LBIso (swap P) (ev Q (fst B A) (snd B A ≫ κ)) →
     ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (t : Sp Ω ⟶ S), IsIso ((Over.pullback t).map κ) := by
   intro S A B C _ _ _ P Q κ hA hB hC hAB hBC hd hQ hm e Ω _ _ t
-  have hA' := GlobalTheory.IsoOverField.isAbelianScheme_pullback t A hA
-  have hB' := GlobalTheory.IsoOverField.isAbelianScheme_pullback t B hB
-  have hC' := GlobalTheory.IsoOverField.isAbelianScheme_pullback t C hC
+  have hA' := _root_.GlobalTheory.isAbelianScheme_pullback_obj t A hA
+  have hB' := _root_.GlobalTheory.isAbelianScheme_pullback_obj t B hB
+  have hC' := _root_.GlobalTheory.isAbelianScheme_pullback_obj t C hC
   obtain ⟨g, hgA⟩ := GlobalTheory.AbelianDim.exists_relDim Ω ((Over.pullback t).obj A) hA'
   have hgB : SmoothOfRelativeDimension g ((Over.pullback t).obj B).hom := hAB g (Sp Ω) t hgA
   have hgC : SmoothOfRelativeDimension g ((Over.pullback t).obj C).hom := hBC g (Sp Ω) t hgB

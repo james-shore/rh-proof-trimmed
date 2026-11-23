@@ -48,7 +48,7 @@ import Mathlib.Topology.Sheaves.Init
 namespace Formalism.L2.SG.Pf.BH
 
 theorem sandwich' : Sandwich := by
-  refine sandwich_of_chart Sw.lieG' Sw.lieWb' gauss_sum_unique phi_form' big_cell_g
+  refine sandwich_of_chart Sw.lieG' Sw.lieWb' _root_.PI.SwBig.GU.gaussUniq_main _root_.PI.SwBig.PhiFormProof.phiForm _root_.PI.SwBig.BigCellGProof.bigCellG
     (phiDeriv_of Sw.w0Sq) Sw.lIso Sw.w0Sq ?_ ?_
   · unfold PI.SwSand.LieEN
     intros

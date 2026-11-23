@@ -221,8 +221,8 @@ theorem theta_low (hp : IsUnit (p : T.V)) (y y' : IntFr Xo c T io)
   obtain ⟨F, F', a₁, a₂, a₃, -, -, a₄, -⟩ :=
     GlobalTheory.T.exists_ext_pair_alt E H Dw l Xo T _ _ I.G I'.G I.t' I'.t' I.m1 I.m2 I'.m1 I'.m2 f f' hP.1 hP.2.1
   obtain ⟨w, w₁, w₂⟩ := GlobalTheory.T.exists_pull_isTranslSum_of_isThetaTrace E H Dw l Xo T.Fr _ _ f f' p y.1.s y'.1.s s _ hP hs hT
-  exact GlobalTheory.T.integral_scalar_of_pulledBack_generator_extends_model E H Dw l Xo c T io y y' I I' f F F' (p ^ 2) p _ w a₁ a₂ a₃ (a₄ _ hP.2.2.2.1)
-    (by rw [Nat.cast_pow]; exact hp.pow 2) w₁ (GlobalTheory.T.sum_symmetricTranslates_thetaPullback_extends E H Dw l Xo c T io y I p w (hU I) hp w₂)
+  exact _root_.GlobalTheory.HkIntegral.PullScalar.mem_range_of_reg E H Dw l Xo c T io y y' I I' f F F' (p ^ 2) p _ w a₁ a₂ a₃ (a₄ _ hP.2.2.2.1)
+    (by rw [Nat.cast_pow]; exact hp.pow 2) w₁ (_root_.GlobalTheory.HkIntegral.RegSum.reg_of_isTranslSum E H Dw l Xo c T io y I p w (hU I) hp w₂)
 
 theorem theta_high (hpp : p.Prime) (hp : IsUnit (p : T.V)) (y y' : IntFr Xo c T io)
     (hU : ∀ I : IntData Xo c T io y'.1, ∃ P : PELUnif (IsLocalRing.maximalIdeal T.V) I.G, P.TorsionIso) :
@@ -241,7 +241,7 @@ theorem theta_high (hpp : p.Prime) (hp : IsUnit (p : T.V)) (y y' : IntFr Xo c T 
     GlobalTheory.T.exists_ext_pair_alt E H Dw l Xo T _ _ I.G I'.G I.t' I'.t' I.m1 I.m2 I'.m1 I'.m2 f f₂ hP.1 hf₂
   have hb : b ∈ Set.range (algebraMap T.V T.Fr) := GlobalTheory.T.integral_scalar_of_pulledBack_generator_extends_model E H Dw l Xo c T io y' y I' I f₂ F' F (p ^ 3) (p ^ 2) b w a₂ a₁ a₃ (a₄ _ hff)
     (by rw [Nat.cast_pow]; exact hp.pow 3) w₁
-    (GlobalTheory.T.sum_symmetricTranslates_thetaPullback_extends E H Dw l Xo c T io y' I' (p ^ 2) w (hU I') (by rw [Nat.cast_pow]; exact hp.pow 2) w₂)
+    (_root_.GlobalTheory.HkIntegral.RegSum.reg_of_isTranslSum E H Dw l Xo c T io y' I' (p ^ 2) w (hU I') (by rw [Nat.cast_pow]; exact hp.pow 2) w₂)
   obtain ⟨b₀, rfl⟩ := hb
   have hζ0 : ζ ≠ 0 := fun h => by simp [h, hpp.ne_zero] at hζ
   have hp0 : (p : T.Fr) ≠ 0 := by simpa using (hp.map (algebraMap T.V T.Fr)).ne_zero
@@ -381,7 +381,7 @@ theorem heckeFrameInt (cls : PtClass Xo c)
     haveI := hk
     exact fun a => Algebra.IsIntegral.isIntegral (R := T.Fr) a
   obtain ⟨L, _, _, i₁, j₁, y₁, z₁, e₁, f₁, hy₁, hz₁, h₁⟩ :=
-    exists_hkOver k hk' hpp.pos hw (GlobalTheory.T.exists_linear_heckeIsogeny_inverse_up_to_p_sq E H Dw l Xo c P p n hP Ω w C z hz)
+    exists_hkOver k hk' hpp.pos hw (_root_.GlobalTheory.HkIntegral.exists_hkWith_of_hkRelFr E H Dw l Xo c P p n hP Ω w C z hz)
   obtain ⟨T₁, iT, r₁, ψ, hr₁, hv₁, hψ, hT₁⟩ : ∃ (T₁ : CDVR) (iT : T.Fr →+* T₁.Fr) (r : ℕ) (ψ : L ≃+* T₁.Fr), 0 < r ∧
       (∀ a : T.Fr, vV T₁.V (iT a) = (r : ℤ) * vV T.V a) ∧ (∀ a, ψ (i₁ a) = iT a) ∧ T₁.FinRes := by
     letI := i₁.toRingHom.toAlgebra

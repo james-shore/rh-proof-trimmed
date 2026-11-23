@@ -112,7 +112,7 @@ theorem tangent_basis : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlg
     simp only [Fintype.sum_sum_type, Ls, Sum.elim_inl, Sum.elim_inr, Pi.zero_apply, smul_zero,
       Finset.sum_const_zero, zero_add] at h0
     exact (Fintype.linearIndependent_iff.1 lbs.linearIndependent) _ h0
-  obtain ⟨lb, hlb⟩ := GlobalTheory.T.exists_basis_of_blockLowerTriangular_inv' O G.dual.Lie d k k' lbs ((Matrix.of P).map F.θ)
+  obtain ⟨lb, hlb⟩ := _root_.GlobalTheory.exists_basis_of_blockLowerTriangular_inv O G.dual.Lie d k k' lbs ((Matrix.of P).map F.θ)
     ((Matrix.of P').map F.θ) (by rw [← Matrix.map_mul, h1, Matrix.map_one _ (map_zero _) (map_one _)])
     (by rw [← Matrix.map_mul, h2, Matrix.map_one _ (map_zero _) (map_one _)]) hzero
   refine ⟨lb, fun j => ?_⟩

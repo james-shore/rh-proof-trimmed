@@ -58,6 +58,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDrowLemmas
 
 @[expose] public section
 
@@ -120,7 +121,7 @@ theorem cor_latData (h1 : RowGlOne) (hw : SwpWt) (hP : SwpPol) (ν : Fin n → �
       rw [GAe_comp]
       exact intPol_whc _ μ x hx
     · intro U hU
-      exact Formalism.InvariantFactorPaths.PW.Top.latBasisPol p _ U
+      exact _root_.Formalism.InvariantFactorPaths.PW.lattice_basis_polynomial p _ U
         (Submodule.finiteDimensional_of_le hU)
   exact
     { stable := cor_stable h1 ν
@@ -136,18 +137,6 @@ theorem cor_latData (h1 : RowGlOne) (hw : SwpWt) (hP : SwpPol) (ν : Fin n → �
       graded := D.graded
       basis := fun U hU => D.basis U (hU.trans (cor_W_le_pol hP ν)) }
 
-theorem cor_weight_rowW (m : Fin r × Fin n →₀ ℕ) (a : Fin r) :
-    Finsupp.weight (rowW r n) m a = rowDeg m a := by
-  classical
-  rw [Finsupp.weight_apply, Finsupp.sum_fintype m (fun i c => c • rowW r n i) (fun _ => zero_smul _ _),
-    Finset.sum_apply, Fintype.sum_prod_type, rowDeg]
-  simp only [rowW, Pi.smul_apply, Pi.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero]
-  rw [Finset.sum_eq_single a]
-  · simp
-  · intro b _ hb
-    simp [Ne.symm hb]
-  · simp
-
 def swappedHighestWeight (p : ℕ) [Fact p.Prime] {r n : ℕ} (hn : n ≤ r) (ν : Fin n → ℕ) : MvPolynomial (Fin n × Fin r) ℚ_[p] :=
   swp ℚ_[p] r n (hw ℚ_[p] hn ν)
 
@@ -162,7 +151,7 @@ theorem swapped_highest_weight_isHW (h1 : RowGlOne) (hw' : SwpWt) (hn : n ≤ r)
     (GR p r ν).IsHW (fun a => (rowNu ν a : ℤ)) (swappedHighestWeight p hn ν) := by
   refine ⟨(hw' p r n ν _ _).mpr fun m hm a => ?_, fun a b hab => ?_⟩
   · have := hwRowWeight ℚ_[p] r n hn ν hν (mem_support_iff.mp hm)
-    rw [← cor_weight_rowW, this]
+    rw [← _root_.Formalism.GradedWeylDivisibility.ldrow_weight_rowW, this]
   · rw [swappedHighestWeight, ← h1 p r n ν a b, hwRaise ℚ_[p] r n hn ν a b 1 hab le_rfl, map_zero]
 
 theorem cor_line (hk : RowGlDiv) (hn : n ≤ r) (ν : Fin n → ℕ) (hν : Antitone ν) (μ : Fin r → ℤ)
@@ -259,7 +248,7 @@ theorem coreQp_of (h1 : RowGlOne) (hk : RowGlDiv) (hw : SwpWt) (hP : SwpPol) (hI
     swap_mem_swappedDualWeyl (dualWeylMap ℤ_[p] ℚ_[p] (algebraMap ℤ_[p] ℚ_[p]) r n ν x hx)
   have hXM : cor_emb p r n x ∈ (IntPol p (Fin n × Fin r)).toAddSubgroup :=
     (hI p r n _).mpr ⟨x, rfl⟩
-  have h := Formalism.InvariantFactorPaths.PW.Top.weylInt p _ r (GR p r ν) (swappedDualWeyl p r n ν) (IntPol p (Fin n × Fin r)).toAddSubgroup l
+  have h := _root_.Formalism.InvariantFactorPaths.PW.weyl_integral_holds p _ r (GR p r ν) (swappedDualWeyl p r n ν) (IntPol p (Fin n × Fin r)).toAddSubgroup l
     (cor_latData h1 hw hP ν l hS) (fun a => (rowNu ν a : ℤ)) (cor_emb p r n x)
     (cor_W_le_iso h1 hk hw hP hn ν hν hXW) hXM
   obtain ⟨y, hy, hyx⟩ := cor_delta_le hk hI hn ν hν _ h

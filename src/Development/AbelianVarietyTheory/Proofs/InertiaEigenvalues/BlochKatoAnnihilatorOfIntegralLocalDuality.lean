@@ -253,7 +253,7 @@ theorem coef_data (LL : Type) [Field LL] [Algebra ℚ_[l] LL] [TopologicalSpace 
       (∀ z : ℤ_[l], ∃ o : O, algebraMap O LL o = algebraMap ℚ_[l] LL (z : ℚ_[l])) ∧
       (∀ o : O, ∃ z : ℤ_[l], lam (algebraMap O LL o) = (z : ℚ_[l])) ∧
       (∀ x : LL, x = ∑ i, lam (algebraMap O LL (f i) * x) • algebraMap O LL (e i)) :=
-  GlobalTheory.T.exists_integral_dual_functional l LL O hO
+  _root_.GlobalTheory.IntDual.intDual_coef l LL O hO
 
 theorem cobO_iff (P : LocPrime l) (K : FinExt l) {LL : Type} [Field LL] [Algebra ℚ_[l] LL]
     {O : Type} [CommRing O] [Algebra O LL] (lam : LL →ₗ[ℚ_[l]] ℚ_[l]) (n : ℕ) (e f : Fin n → O)
@@ -266,7 +266,7 @@ theorem cobO_iff (P : LocPrime l) (K : FinExt l) {LL : Type} [Field LL] [Algebra
     (hL1Z : L1Z.T = LinearMap.range (Algebra.linearMap ℤ_[l] ℚ_[l]))
     (z : ↥(GK K) × ↥(GK K) → LL) :
     CobO (P.PD K) L1 z ↔ ∀ o : O, CobO (P.PD K) L1Z (fun x => lam (algebraMap O LL o * z x)) :=
-  GlobalTheory.T.coboundaryMod_iff_forall_traceForm_coboundary l P K LL O lam n e f hZ hlam hrec L1 hL1 L1Z hL1Z z
+  _root_.GlobalTheory.cobO_iff_forall_lam l P K LL O lam n e f hZ hlam hrec L1 hL1 L1Z hL1Z z
 
 theorem exists_latZ (K : FinExt l) {LL : Type} [Field LL] [Algebra ℚ_[l] LL]
     {O : Type} [CommRing O] [Algebra O LL]
@@ -278,7 +278,7 @@ theorem exists_latZ (K : FinExt l) {LL : Type} [Field LL] [Algebra ℚ_[l] LL]
     (hrec : ∀ x : LL, x = ∑ i, lam (algebraMap O LL (f i) * x) • algebraMap O LL (e i))
     (ρ : Representation LL ↥(GK K) V) (L : Lattice (O := O) ρ) :
     ∃ LZ : Lattice (O := ℤ_[l]) (GlobalTheory.PstCoeff.resQ ρ), ∀ v, v ∈ LZ.T ↔ v ∈ L.T :=
-  GlobalTheory.T.zlLattice_of_coefficientLattice l K LL O V lam n e f hZ hlam hrec ρ L
+  _root_.GlobalTheory.latticeZl_of_latticeO l K LL O V lam n e f hZ hlam hrec ρ L
 
 theorem dualLatZ (P : LocPrime l) (K : FinExt l) {LL : Type} [Field LL] [Algebra ℚ_[l] LL]
     {O : Type} [CommRing O] [Algebra O LL]
@@ -298,7 +298,7 @@ theorem dualLatZ (P : LocPrime l) (K : FinExt l) {LL : Type} [Field LL] [Algebra
     (Pr : V →ₗ[LL] V' →ₗ[LL] LL) (PQ : V →ₗ[ℚ_[l]] V' →ₗ[ℚ_[l]] ℚ_[l])
     (hPQ : ∀ x y, PQ x y = lam (Pr x y)) (hP : IsDualLat1 (P.PD K) L L' Pr) :
     IsDualLat1 (P.PD K) LZ LZ' PQ :=
-  GlobalTheory.T.dualLattice_restrictScalars_traceForm l P K LL O V V' lam n e f hZ hlam hrec ρ ρ' L L' LZ LZ' hLZ hLZ' Pr PQ hPQ hP
+  _root_.GlobalTheory.DualLatDescent.dualLat_resQ l P K LL O V V' lam n e f hZ hlam hrec ρ ρ' L L' LZ LZ' hLZ hLZ' Pr PQ hPQ hP
 
 theorem bkBCore_of_integralDuality : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K : FinExt l),
     GlobalTheory.Published.BlochKato.IntegralDuality (P.PD K) → bkBCore (P.PD K) := by

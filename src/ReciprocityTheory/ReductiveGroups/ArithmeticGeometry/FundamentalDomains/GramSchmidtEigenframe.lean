@@ -58,10 +58,6 @@ noncomputable section
 
 variable {E : Type} [Field E] [NumberField E] [NumberField.IsCMField E]
 
-private theorem hermC_sub_left_eq_sub {r : ℕ} (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E)
-    (u u' v : Fin r → ℂ) : hermC τ G (u - u') v = hermC τ G u v - hermC τ G u' v :=
-  map_sub (AddMonoidHom.mk' (fun x => hermC τ G x v) (fun a b => hermC_add_left τ G a b v)) u u'
-
 private theorem hermC_finset_sum_left' {r : ℕ} (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E)
     {ι : Type} (s : Finset ι) (u : ι → Fin r → ℂ) (v : Fin r → ℂ) :
     hermC τ G (∑ i ∈ s, u i) v = ∑ i ∈ s, hermC τ G (u i) v :=
@@ -77,7 +73,7 @@ private theorem hermC_finset_sum_right_of_conj_symm {r : ℕ} (τ : E →+* ℂ)
 private theorem hermC_sub_right_of_conj_symm {r : ℕ} (τ : E →+* ℂ) {G : Matrix (Fin r) (Fin r) E}
     (hG : ∀ a b, cc (G a b) = G b a) (u v v' : Fin r → ℂ) :
     hermC τ G u (v - v') = hermC τ G u v - hermC τ G u v' := by
-  rw [← hermC_conj τ hG _ u, hermC_sub_left_eq_sub, map_sub, hermC_conj τ hG, hermC_conj τ hG]
+  rw [← hermC_conj τ hG _ u, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_left, map_sub, hermC_conj τ hG, hermC_conj τ hG]
 
 private theorem ppos_self_adjoint_hermC {r : ℕ} (X : Data E r) (x : Frame X.Ψ r) (τ : X.Ψ)
     (w v : Fin r → ℂ) :
@@ -150,7 +146,7 @@ theorem gramSchmidt_eigenframe (r : ℕ) (X : DataX E r) (ξ : Fin r → E) (z0 
   have hJspan : ∀ τ : X.Ψ, ∀ y ∈ Submodule.span ℂ (Set.range (f τ)),
       hermC τ.1 X.Gm (I • ((2 : ℂ) • X.ppos z0 τ y - y)) (Data.emb τ.1 ξ) = 0 := by
     intro τ y hy
-    rw [hermC_smul_left, hermC_sub_left_eq_sub, hermC_smul_left, ppos_self_adjoint_hermC, (hspan τ y hy).1,
+    rw [hermC_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_left, hermC_smul_left, ppos_self_adjoint_hermC, (hspan τ y hy).1,
       (hspan τ y hy).2]
     simp
   refine ⟨fun τ => EigenframeMatrices.Mmat (τ := τ.1) (G := X.Gm) (p := X.p0 - 1) (f := f τ) (g := g τ),
@@ -166,7 +162,7 @@ theorem gramSchmidt_eigenframe (r : ℕ) (X : DataX E r) (ξ : Fin r → E) (z0 
       (hf := (hf τ).2.2.1) _
       (fun k => ?_)
     simp only [Pi.add_apply, Data.lineV, Data.Jz]
-    simp only [hermC_add_left, hermC_smul_left, hermC_sub_left_eq_sub, ppos_self_adjoint_hermC, e0, eP,
+    simp only [hermC_add_left, hermC_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_left, ppos_self_adjoint_hermC, e0, eP,
       mul_zero, sub_zero, add_zero, zero_add]
   · intro u hu
     obtain ⟨hu1, hu2⟩ := hu

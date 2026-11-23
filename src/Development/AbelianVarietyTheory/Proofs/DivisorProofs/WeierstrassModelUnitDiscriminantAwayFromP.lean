@@ -92,7 +92,7 @@ theorem modelAt_one_of_sqProd_mem : ∀ (p : ℕ) (F : IntermediateField ℚ ℂ
         rw [hcard]
         exact Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd Nat.prime_three).2 (by omega))
       have hc : V.valuation (Fintype.card ι : ℂ) = 1 := by
-        rcases GlobalTheory.T.valuation_natCast_eq_one_or_of_coprime V _ _ hcop with h | h
+        rcases _root_.GlobalTheory.CMModel.valuation_natCast_eq_one_of_coprime V _ _ hcop with h | h
         · exact h
         · exact absurd (by simpa using h) h3
       exact GlobalTheory.T.exists_integralModel_of_galoisStable_torsion L (sqrtNegNat p) u V N hD.mul hβ huv hNv hNodd F ι T hD.g₂_mem hD.g₃_mem huF
@@ -102,7 +102,7 @@ theorem modelAt_one_of_sqProd_mem : ∀ (p : ℕ) (F : IntermediateField ℚ ℂ
     have hcop : Nat.Coprime (Fintype.card (Sq p)) 2 :=
       Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd Nat.prime_two).2 (by rcases hodd' with ⟨k, hk⟩; omega))
     have hc : V.valuation (Fintype.card (Sq p) : ℂ) = 1 := by
-      rcases GlobalTheory.T.valuation_natCast_eq_one_or_of_coprime V _ _ hcop with h | h
+      rcases _root_.GlobalTheory.CMModel.valuation_natCast_eq_one_of_coprime V _ _ hcop with h | h
       · exact h
       · exact absurd (by simpa using h) h2
     exact GlobalTheory.T.exists_integralModel_of_galoisStable_torsion L (sqrtNegNat p) u V p hD.mul hβ huv hVp hodd F (Sq p) (sqPt p t)

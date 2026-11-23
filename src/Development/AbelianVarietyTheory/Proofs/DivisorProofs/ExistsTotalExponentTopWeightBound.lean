@@ -310,10 +310,6 @@ end GlobalTheory.FinSize
 
 namespace GlobalTheory.FinSize
 
-private theorem natW_anti' {n : ℕ} (l : Formalism.BasicNotions.DomWeight n) : Antitone l.natW := fun i j hij => by
-  unfold Formalism.BasicNotions.DomWeight.natW
-  exact Int.toNat_le_toNat (by have := l.anti hij; omega)
-
 private theorem exponent_bound : ∃ CF0 : ℝ, ∀ CF : ℝ, CF0 ≤ CF → ∃ K0 : ℝ, ∀ ε : ℝ, ∃ x₀ : ℝ, ∀ (D : D7) (large₂ : SizeData₂ D), large₂.sc.eps = ε → x₀ ≤ large₂.sc.x →
     ∀ (Γ : Type) [Group Γ] [Fintype Γ] (Pl0 T : Type) (A : FamIn D.what₂.LL Γ Pl0 T D.R.m)
       (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), HidaSetting large₂ R F →
@@ -361,7 +357,7 @@ private theorem exponent_bound : ∃ CF0 : ℝ, ∀ CF : ℝ, CF0 ≤ CF → ∃
         (Fintype.card D.what₂.Tau * ((ch.G.V (.top D.R.m)).rank).choose 2) * Nat.log p W ∧
       (W < p → (∑ τ, Formalism.CohomologicalDescent.LA.exZ _ _ le_rfl (wt ch.G (.top D.R.m) τ).natW p) = 0) := by
     intro p hp
-    have hτ := fun τ => exZ_le_of_width _ (natW_anti' (wt ch.G (.top D.R.m) τ)) W (hwidth τ) p hp
+    have hτ := fun τ => exZ_le_of_width _ (_root_.Formalism.L2.Col.natW_anti (wt ch.G (.top D.R.m) τ)) W (hwidth τ) p hp
     constructor
     · calc (∑ τ, Formalism.CohomologicalDescent.LA.exZ _ _ le_rfl (wt ch.G (.top D.R.m) τ).natW p)
           ≤ ∑ _τ : D.what₂.Tau, ((ch.G.V (.top D.R.m)).rank).choose 2 * Nat.log p W :=
@@ -406,11 +402,4 @@ end GlobalTheory.FinSize
 
 end
 
-theorem _root_.GlobalTheory.T.exists_totalExponent_topWeight_bound : ∃ CF0 : ℝ, ∀ CF : ℝ, CF0 ≤ CF → ∃ K0 : ℝ, ∀ ε : ℝ, ∃ x₀ : ℝ, ∀ (D : D7) (large₂ : SizeData₂ D), large₂.sc.eps = ε → x₀ ≤ large₂.sc.x →
-    ∀ (Γ : Type) [Group Γ] [Fintype Γ] (Pl0 T : Type) (A : FamIn D.what₂.LL Γ Pl0 T D.R.m)
-      (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), HidaSetting large₂ R F →
-      ∀ ch : Choice R, ch.Is → ch.AtScale CF large₂.sc.b →
-        1 ≤ large₂.sc.b ∧ ∃ Dn : ℕ, 0 < Dn ∧
-          (∀ p : ℕ, p.Prime → p ^ (∑ τ, Formalism.CohomologicalDescent.LA.exZ _ _ le_rfl (wt ch.G (.top D.R.m) τ).natW p) ∣ Dn) ∧
-          Real.log Dn ≤ K0 * D.R.f * (bigN D : ℝ) ^ 2 * large₂.sc.b * Real.log large₂.sc.b :=
-  GlobalTheory.FinSize.exponent_bound
+alias _root_.GlobalTheory.T.exists_totalExponent_topWeight_bound := _root_.GlobalTheory.FinSize.exponent_bound

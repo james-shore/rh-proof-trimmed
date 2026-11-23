@@ -56,16 +56,6 @@ noncomputable section
 
 namespace GlobalTheory.PrimExt
 
-theorem refl_of_isLB {X : Scheme.{0}} {L : LB X} (hL : L.IsLB) : LBIso L L := by
-  refine ⟨⟨fun p => L.g p.1 p.2⟩, fun p q => unit_ext fun y hy => ?_⟩
-  refine (gm_res _ y _ hy _).trans (Eq.symm ((map_mul _ _ _).trans ((congrArg₂ (· * ·)
-    (gm_div L L (𝟙 X) y p q hy) (gm_res _ y _ hy _)).trans ?_)))
-  have a := gm_cocycle hL (𝟙 X) y hy.1.1 hy.2.1 hy.2.2
-  have b := gm_cocycle hL (𝟙 X) y hy.1.1 hy.1.2 hy.2.2
-  show gm (𝟙 X) y _ (L.g p.1 q.1) * (gm (𝟙 X) y _ (L.g p.2 q.2))⁻¹ * gm (𝟙 X) y _ (L.g q.1 q.2) =
-    gm (𝟙 X) y _ (L.g p.1 p.2)
-  rw [mul_right_comm, a, ← b, mul_inv_cancel_right]
-
 theorem lbIso_pull_of_range_subset {X Y Y' : Scheme.{0}} (e : Y ⟶ X) [IsOpenImmersion e] (f : Y' ⟶ X)
     (hf : Set.range f.base ⊆ Set.range e.base) (L M : LB X) (h : LBIso (L.pull e) (M.pull e)) :
     LBIso (L.pull f) (M.pull f) := by
@@ -92,7 +82,7 @@ theorem prim_pull {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E
         simp [U, pushPt, hact]) I.down).trans (by rw [hU])
   have h4 : LBIso (cubeLB tF.G ![𝟙 tF.G, tF.act.act H.w0] (PP.L.pull e))
       ((cubeLB G ![𝟙 G, act.act H.w0] PP.L).pull e) :=
-    LBIso.chartPull (chartPullLinComb PP.L e _ _ _ e hc) (chartPullPull _ e) (refl_of_isLB hC)
+    LBIso.chartPull (chartPullLinComb PP.L e _ _ _ e hc) (chartPullPull _ e) (_root_.GlobalTheory.lbIso_refl hC)
   refine LBIso.trans hP tF.PP.isLB (pull_isLB hC e) hw.symm ?_
   refine LBIso.trans tF.PP.isLB (GlobalTheory.SabPullCompare.cubeLB_isLB _ tF.PP.isLB) (pull_isLB hC e) tF.prim ?_
   exact LBIso.trans (GlobalTheory.SabPullCompare.cubeLB_isLB _ tF.PP.isLB) (GlobalTheory.SabPullCompare.cubeLB_isLB _ hP)

@@ -258,7 +258,7 @@ theorem end0 : End0 := by
   have hcone : ∫ v in cone n,
       LinearMap.trace ℂ E.V ((Γ * S 0 * Kc σ c Fr k Γ T d.val (oPt n, v) : E.V →L[ℂ] E.V) : E.V →ₗ[ℂ] E.V) =
         ∫ y : G n, F y.val ∂μ := by
-    rw [setIntegral_congr_fun (GlobalTheory.CompanionTheory.ConeHaar.cone_open n).measurableSet hpt, hform F hFcont hFsupp hFinv,
+    rw [setIntegral_congr_fun (_root_.GlobalTheory.CompanionTheory.ConeHaar.isOpen_cone n).measurableSet hpt, hform F hFcont hFsupp hFinv,
       ← integral_const_mul]
     congr 1; funext v; ring
   rw [hcone]

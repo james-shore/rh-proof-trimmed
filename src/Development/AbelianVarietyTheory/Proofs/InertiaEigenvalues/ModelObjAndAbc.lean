@@ -60,7 +60,7 @@ theorem model_obj_and_abc : ∀ {k G : Type} [Field k] [Group G] {l n : ℕ} [Fa
   obtain ⟨s1, s2, s3⟩ := GlobalTheory.T.phiGammaModule_saturation_theorem R (F.D B) (F.D A₁) (F.map A₁ B j)
     (F.map_inj A₁ B j o1 oB hj hji) (F.map_φ A₁ B j o1 oB hj) (F.map_γ A₁ B j o1 oB hj)
     Dt.w Dt.wst Nb h1 h2 h3
-  exact ⟨oA, GlobalTheory.T.phiGammaLatticeFamily_image_of_surjective R (F.D A₁) (F.D A) (F.map A₁ A p)
+  exact ⟨oA, _root_.GlobalTheory.PhiGam.Img.image_lattice R (F.D A₁) (F.D A) (F.map A₁ A p)
     (F.map_surj A₁ A p o1 oA hp hps) (F.map_φ A₁ A p o1 oA hp) (F.map_γ A₁ A p o1 oA hp)
     Dt.w Dt.wst (F.pre A₁ B j Nb) s1 s2 s3⟩
 

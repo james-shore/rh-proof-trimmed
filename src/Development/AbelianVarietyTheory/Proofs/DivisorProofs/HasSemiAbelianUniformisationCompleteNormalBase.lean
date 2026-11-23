@@ -67,10 +67,10 @@ theorem has_of_base : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], 
   intro R _ _ _ hB D
   rcases subsingleton_or_nontrivial D.toPre.X with hX | hX
   · exact GlobalTheory.Mum.has_of_subsingleton R hB.1 D hX
-  obtain ⟨E, _, _, _, H, Dm, D', hmod, o, hPel, F, hA⟩ := GlobalTheory.T.exists_unitaryPELType_factor_degData R hB D hX
+  obtain ⟨E, _, _, _, H, Dm, D', hmod, o, hPel, F, hA⟩ := _root_.GlobalTheory.Mum.exists_pelOK_factor R hB D hX
   have hX' : Nontrivial D'.toPre.X :=
     (Function.LeftInverse.injective (g := F.xp) (f := F.xi) F.xp_xi).nontrivial
-  obtain ⟨R', _, _, _, ρ, D'', hρ, hpull, hcov⟩ := GlobalTheory.T.exists_labelledCover_unitaryPELType_finiteExt R hB E H Dm D' o hX' hPel
+  obtain ⟨R', _, _, _, ρ, D'', hρ, hpull, hcov⟩ := _root_.GlobalTheory.Mum.exists_labCover_of_pelOK R hB E H Dm D' o hX' hPel
   have hB' : Base R' := ⟨hρ.1, @charZero_of_injective_ringHom _ _ _ _ ρ hρ.2.1 hB.2⟩
   have hfin'' : HasFin D'' := GlobalTheory.T.hasSemiAbelianUniformisation_of_labelledCover R' hB' D'' hcov
   have hfin' : HasFin D' := GlobalTheory.Mum.hasFin_of_finExt R R' ρ hρ D' D'' hpull hfin''

@@ -180,8 +180,7 @@ def fr : F →+ A F := (algebraMap F (A F)).toAddMonoidHom
 
 variable {F}
 
-theorem oh_mul {x y : A F} (hx : x ∈ Oh F) (hy : y ∈ Oh F) : x * y ∈ Oh F :=
-  fun v => mul_mem (hx v) (hy v)
+alias oh_mul := _root_.GlobalTheory.CompanionTheory.SW.Core.Scale.mul_mem_Oh
 
 def perpG (ψ : AddChar (A F) ℂ) (L : AddSubgroup (A F)) : AddSubgroup (A F) where
   carrier := perp (fun x y => ψ (x * y)) L
@@ -203,11 +202,11 @@ abbrev MG (ψ : AddChar (A F) ℂ) : AddSubgroup (A F) := perpG ψ (ohG F)
 variable {ψ : AddChar (A F) ℂ}
 
 theorem ohG_le_MG (hψ : IsStdChar F ψ) : ohG F ≤ MG ψ :=
-  fun _ hx z hz => ((GlobalTheory.T.standard_adelic_character F).2 ψ hψ).2.1 _ (oh_mul hz hx)
+  fun _ hx z hz => ((_root_.GlobalTheory.CompanionTheory.SW.Core.StdChar.main F).2 ψ hψ).2.1 _ (oh_mul hz hx)
 
 theorem algebraMap_mem_MG_iff (hψ : IsStdChar F ψ) {b : F} :
     algebraMap F (A F) b ∈ MG ψ ↔ b ∈ dinv F := by
-  rw [mem_dinv, ← ((GlobalTheory.T.standard_adelic_character F).2 ψ hψ).2.2 b]
+  rw [mem_dinv, ← ((_root_.GlobalTheory.CompanionTheory.SW.Core.StdChar.main F).2 ψ hψ).2.2 b]
   exact forall₂_congr fun z _ => by
     show ψ (z * _) = 1 ↔ _
     rw [mul_comm]

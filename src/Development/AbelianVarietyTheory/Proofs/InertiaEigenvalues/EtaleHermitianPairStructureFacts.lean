@@ -167,7 +167,7 @@ theorem nonunits_null [U : Unram F E] (A : Et F E) (μ : Measure A.K) (hμ : μ.
     obtain ⟨m, hm, htm⟩ := exists_max_ideal_of_mem_nonunits (show t ∈ nonunits A.K from ht)
     exact Set.mem_biUnion hm htm
   refine measure_mono_null hsub ((measure_biUnion_null_iff hfin.countable).2 fun m hm => ?_)
-  have h := GlobalTheory.T.addHaar_proper_submodule_eq_zero_moduleTopology F A.K μ hμ (m.restrictScalars F) (fun h => hm.ne_top ?_)
+  have h := _root_.GlobalTheory.HaarNullSub.addHaar_submodule_eq_zero F A.K μ hμ (m.restrictScalars F) (fun h => hm.ne_top ?_)
   · exact h
   · rw [Ideal.eq_top_iff_one]
     have : (1 : A.K) ∈ m.restrictScalars F := h ▸ Submodule.mem_top

@@ -154,16 +154,6 @@ theorem hcnt_card_mul (i : ℕ) (hi : i ≤ finrank K V) :
     Finset.sum_congr rfl (fun U _ => hfib U), Finset.sum_const, smul_eq_mul, Finset.card_univ,
     Nat.card_eq_fintype_card]
 
-private theorem gaussBin_eq_zero_of_lt (q : ℕ) {n i : ℕ} (h : n < i) : gaussBin q n i = 0 := by
-  induction n generalizing i with
-  | zero =>
-    obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : i ≠ 0)
-    rfl
-  | succ n ih =>
-    obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : i ≠ 0)
-    show gaussBin q n k + q ^ (k + 1) * gaussBin q n (k + 1) = 0
-    rw [ih (by omega), ih (by omega), mul_zero, add_zero]
-
 theorem card_subspaces_finrank (i : ℕ) :
     Nat.card {U : Submodule K V // finrank K U = i} = gaussBin (Fintype.card K) (finrank K V) i := by
   classical
@@ -181,7 +171,7 @@ theorem card_subspaces_finrank (i : ℕ) :
         gaussBin (Fintype.card K) (finrank K V) i :=
       mul_right_cancel₀ hP (h3.trans h2.symm)
     exact_mod_cast h4
-  · rw [gaussBin_eq_zero_of_lt _ (not_le.1 hi), Nat.card_eq_zero]
+  · rw [_root_.Formalism.L2.Col.gaussBin_eq_zero _ (not_le.1 hi), Nat.card_eq_zero]
     left
     exact ⟨fun ⟨U, hU⟩ => by have := Submodule.finrank_le U; have := not_le.1 hi; omega⟩
 

@@ -34,6 +34,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.NonsingularNorm
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.LemmaTwoOf
 
 @[expose] public section
 
@@ -42,20 +44,11 @@ open Formalism.ConjugateSelfDual ReciprocityTheory.Gal UpperTheory.V.GradeZeroIn
 section
 variable {K : Type} [NormedField K] [IsUltrametricDist K]
 
-private theorem um_add_lt {a b : K} (ha : ‖a‖ < 1) (hb : ‖b‖ < 1) : ‖a + b‖ < 1 :=
-  (IsUltrametricDist.norm_add_le_max a b).trans_lt (max_lt ha hb)
-
-private theorem um_add_le {a b : K} (ha : ‖a‖ ≤ 1) (hb : ‖b‖ ≤ 1) : ‖a + b‖ ≤ 1 :=
-  (IsUltrametricDist.norm_add_le_max a b).trans (max_le ha hb)
-
 private theorem um_sub_lt {a b : K} (ha : ‖a‖ < 1) (hb : ‖b‖ < 1) : ‖a - b‖ < 1 := by
-  rw [sub_eq_add_neg]; exact um_add_lt ha (by rwa [norm_neg])
-
-private theorem um_sub_le {a b : K} (ha : ‖a‖ ≤ 1) (hb : ‖b‖ ≤ 1) : ‖a - b‖ ≤ 1 := by
-  rw [sub_eq_add_neg]; exact um_add_le ha (by rwa [norm_neg])
+  rw [sub_eq_add_neg]; exact _root_.Formalism.L2.Th1.E.unitAtAlt.s_add ha (by rwa [norm_neg])
 
 private theorem le_of_cong {a x : K} (h : ‖a - x‖ < 1) (hx : ‖x‖ = 1) : ‖a‖ ≤ 1 := by
-  have := um_add_le h.le hx.le
+  have := _root_.Formalism.L2.Th1.E.unitAtAlt.i_add h.le hx.le
   rwa [sub_add_cancel] at this
 
 private theorem diff_lt {a b x : K} (ha : ‖a - x‖ < 1) (hb : ‖b - x‖ < 1) : ‖a - b‖ < 1 := by
@@ -69,7 +62,7 @@ private theorem half_lt (h2 : ‖(2 : K)‖ = 1) {a b x : K} (ha : ‖a - x‖ <
   have e : (2 : K)⁻¹ * (a + b) - x = (2 : K)⁻¹ * ((a - x) + (b - x)) := by
     field_simp; ring
   rw [e, norm_mul, norm_inv, h2, inv_one, one_mul]
-  exact um_add_lt ha hb
+  exact _root_.Formalism.L2.Th1.E.unitAtAlt.s_add ha hb
 
 private theorem key (h2 : ‖(2 : K)‖ = 1) (γ : Kˣ) (x : K) (A B : Matrix (Fin 2) (Fin 2) K) (hγ : ‖(γ : K)‖ = 1) (hx : ‖x‖ = 1)
     (a00 : ‖A 0 0 - 1‖ < 1) (a11 : ‖A 1 1 - x‖ < 1) (a10 : ‖A 1 0‖ < 1) (a01 : ‖A 0 1‖ ≤ 1)
@@ -91,20 +84,20 @@ private theorem key (h2 : ‖(2 : K)‖ = 1) (γ : Kˣ) (x : K) (A B : Matrix (F
   have d11 := le_of_cong b11 hx
   have e01 : ‖mix γ A B 0 1‖ < 1 := (hh _).trans_lt (um_sub_lt p b10)
   have e02 : ‖mix γ A B 0 2‖ < 1 := (hh _).trans_lt (diff_lt b11 a11)
-  have e03 : ‖mix γ A B 0 3‖ < 1 := (hh _).trans_lt (um_add_lt p b10)
+  have e03 : ‖mix γ A B 0 3‖ < 1 := (hh _).trans_lt (_root_.Formalism.L2.Th1.E.unitAtAlt.s_add p b10)
   have e13 : ‖mix γ A B 1 3‖ < 1 := (hh _).trans_lt (diff_lt a00 b00)
   have e20 : ‖mix γ A B 2 0‖ < 1 := (hh _).trans_lt (diff_lt b11 a11)
   have e21 : ‖mix γ A B 2 1‖ < 1 := (hh _).trans_lt (um_sub_lt p' b10)
-  have e23 : ‖mix γ A B 2 3‖ < 1 := (hh _).trans_lt (um_add_lt p' b10)
+  have e23 : ‖mix γ A B 2 3‖ < 1 := (hh _).trans_lt (_root_.Formalism.L2.Th1.E.unitAtAlt.s_add p' b10)
   have e31 : ‖mix γ A B 3 1‖ < 1 := (hh _).trans_lt (diff_lt a00 b00)
-  have e00 : ‖mix γ A B 0 0‖ ≤ 1 := (hh _).trans_le (um_add_le c11 d11)
-  have e11 : ‖mix γ A B 1 1‖ ≤ 1 := (hh _).trans_le (um_add_le c00 d00)
-  have e22 : ‖mix γ A B 2 2‖ ≤ 1 := (hh _).trans_le (um_add_le c11 d11)
-  have e33 : ‖mix γ A B 3 3‖ ≤ 1 := (hh _).trans_le (um_add_le c00 d00)
-  have e10 : ‖mix γ A B 1 0‖ ≤ 1 := (hh _).trans_le (um_sub_le q b01)
-  have e12 : ‖mix γ A B 1 2‖ ≤ 1 := (hh _).trans_le (um_sub_le q' b01)
-  have e30 : ‖mix γ A B 3 0‖ ≤ 1 := (hh _).trans_le (um_add_le q b01)
-  have e32 : ‖mix γ A B 3 2‖ ≤ 1 := (hh _).trans_le (um_add_le q' b01)
+  have e00 : ‖mix γ A B 0 0‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.L2.Th1.E.unitAtAlt.i_add c11 d11)
+  have e11 : ‖mix γ A B 1 1‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.L2.Th1.E.unitAtAlt.i_add c00 d00)
+  have e22 : ‖mix γ A B 2 2‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.L2.Th1.E.unitAtAlt.i_add c11 d11)
+  have e33 : ‖mix γ A B 3 3‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.L2.Th1.E.unitAtAlt.i_add c00 d00)
+  have e10 : ‖mix γ A B 1 0‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.InvariantFactorPaths.G7.LemTwo.norm_sub_le_one q b01)
+  have e12 : ‖mix γ A B 1 2‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.InvariantFactorPaths.G7.LemTwo.norm_sub_le_one q' b01)
+  have e30 : ‖mix γ A B 3 0‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.L2.Th1.E.unitAtAlt.i_add q b01)
+  have e32 : ‖mix γ A B 3 2‖ ≤ 1 := (hh _).trans_le (_root_.Formalism.L2.Th1.E.unitAtAlt.i_add q' b01)
   refine ⟨fun i j => ?_, fun i => ?_, fun i j hij hw => ?_, fun h => ?_⟩
   · fin_cases i <;> fin_cases j
     exacts [e00, e01.le, e02.le, e03.le, e10, e11, e12, e13.le, e20.le, e21.le, e22, e23.le, e30, e31.le, e32, e33]
@@ -126,7 +119,7 @@ private theorem key (h2 : ‖(2 : K)‖ = 1) (γ : Kˣ) (x : K) (A B : Matrix (F
     · exact Or.inl h1
     rcases e30.eq_or_lt with h3 | h3
     · exact Or.inr ⟨n.trans h3, h3⟩
-    have := um_add_lt h1 h3
+    have := _root_.Formalism.L2.Th1.E.unitAtAlt.s_add h1 h3
     rw [s, qe, h] at this
     exact absurd this (lt_irrefl _)
 

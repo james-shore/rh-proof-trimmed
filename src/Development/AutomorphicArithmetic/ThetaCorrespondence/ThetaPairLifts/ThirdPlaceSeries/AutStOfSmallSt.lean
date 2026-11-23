@@ -39,7 +39,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 
-section
-theorem GlobalTheory.FrameAut.frame_autSt_of_smallSt : _root_.GlobalTheory.ExpTie.SmallnessCondition → _root_.GlobalTheory.FrameAut.AutStAlt :=
-  _root_.GlobalTheory.T.aut_statement_of_small_exponent_statement
-end

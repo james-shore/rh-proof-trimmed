@@ -75,21 +75,6 @@ def rearr (k r : ℕ) (w : Equiv.Perm (Fin (r + 1))) :
 @[simp] theorem rearr_apply (w : Equiv.Perm (Fin (r + 1))) (q : OD.RR k r w) :
     rearr k r w q = ((q.1.2.1, q.2.2.1), ((q.1.1, q.1.2.2), (q.2.1, q.2.2.2))) := rfl
 
-private theorem measurePreserving_swap4 {α β γ δ : Type} [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
-    [MeasurableSpace δ] (μa : Measure α) (μb : Measure β) (μc : Measure γ) (μd : Measure δ) [SFinite μa]
-    [SFinite μb] [SFinite μc] [SFinite μd] :
-    MeasurePreserving (Dx2.SL.swap4 : (α × β) × γ × δ ≃ᵐ (α × γ) × β × δ) ((μa.prod μb).prod (μc.prod μd))
-      ((μa.prod μc).prod (μb.prod μd)) := by
-  have e1 := measurePreserving_prodAssoc μa μb (μc.prod μd)
-  have e2 := MeasurePreserving.symm _ (measurePreserving_prodAssoc μb μc μd)
-  have e3 := (Measure.measurePreserving_swap (μ := μb) (ν := μc)).prod (MeasurePreserving.id μd)
-  have e4 := measurePreserving_prodAssoc μc μb μd
-  have e5 := MeasurePreserving.symm _ (measurePreserving_prodAssoc μa μc (μb.prod μd))
-  have h := (e5.comp ((MeasurePreserving.id μa).prod (e4.comp (e3.comp e2)))).comp e1
-  convert h using 1
-  funext p
-  rfl
-
 theorem mp_rearr (S : B.RealPlaceData k r Wp Wq) (w : Equiv.Perm (Fin (r + 1))) {μ0 μ0' : Measure (Mt k r)}
     (hμ0 : B.IsHaarOn (C2.N0set k r S.z) μ0) (hμ0' : B.IsHaarOn (C2.N0set k r S.z') μ0') :
     MeasurePreserving (rearr k r w) (OD.nuR S w μ0 μ0')
@@ -107,7 +92,7 @@ theorem mp_rearr (S : B.RealPlaceData k r Wp Wq) (w : Equiv.Perm (Fin (r + 1))) 
   haveI t4 : SFinite (volume : Measure (G.UT (r + 1) → ℂ)) := inferInstance
   have h1 := (inE_mp S.μW (volume : Measure (C2.LPidx w → ℂ)) μ0).prod
     (inE_mp S.μW' (volume : Measure (G.UT (r + 1) → ℂ)) μ0')
-  have h2 := measurePreserving_swap4 (volume : Measure (C2.LPidx w → ℂ)) (S.μW.prod μ0)
+  have h2 := _root_.Formalism.FourierDecayAlt.P.Dx2.SL.measurePreserving_prod_middle_swap (volume : Measure (C2.LPidx w → ℂ)) (S.μW.prod μ0)
     (volume : Measure (G.UT (r + 1) → ℂ)) (S.μW'.prod μ0')
   exact h2.comp h1
 

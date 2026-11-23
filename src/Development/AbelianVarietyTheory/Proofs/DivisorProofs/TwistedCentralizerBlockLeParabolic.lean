@@ -51,17 +51,6 @@ noncomputable section
 
 namespace GlobalTheory.LeviDesc
 
-theorem intertwiner_eq_zero_of_isCoprime {K : Type} [Field K] {a b : ℕ}
-    (A : Matrix (Fin a) (Fin a) K) (B : Matrix (Fin b) (Fin b) K) (C : Matrix (Fin b) (Fin a) K)
-    (hc : IsCoprime A.charpoly B.charpoly) (hC : C * A = B * C) : C = 0 := by
-  first
-  | exact @_root_.GlobalTheory.IntertwiningOperators.main
-  | exact _root_.GlobalTheory.IntertwiningOperators.main
-  | (apply _root_.GlobalTheory.IntertwiningOperators.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntertwiningOperators.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntertwiningOperators.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntertwiningOperators.main ..)
-
 theorem twCent_blk_le_parP : ∀ (E : Type) [Field E] [NumberField E] (n a b : ℕ) (h : a + b = n) (w : Pl E)
     (m : GLw a w × GLw b w), (m.1.val.charpoly * m.2.val.charpoly).Separable →
     twCent (MonoidHom.id (GLw n w)) (blk h w m 0) ≤ GlobalTheory.LeviDesc.parP a n w := by
@@ -95,7 +84,7 @@ theorem twCent_blk_le_parP : ∀ (E : Type) [Field E] [NumberField E] (n a b : �
   have hC : g'.toBlocks₂₁ * m.1.val = m.2.val * g'.toBlocks₂₁ := by
     have := hc2.2.2.1
     simpa using this
-  have hC0 := intertwiner_eq_zero_of_isCoprime _ _ _ hcop hC
+  have hC0 := _root_.GlobalTheory.IntertwiningOperators.main _ _ _ hcop hC
   show (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)).BlockTriangular fun i : Fin n => decide (a ≤ (i : ℕ))
   intro i j hij
   have hi : a ≤ (i : ℕ) := by

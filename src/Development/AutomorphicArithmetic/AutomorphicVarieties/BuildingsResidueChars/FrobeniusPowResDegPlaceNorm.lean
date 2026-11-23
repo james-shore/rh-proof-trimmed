@@ -53,10 +53,6 @@ public import Mathlib.RingTheory.Ideal.Norm.AbsNorm
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial GlobalTheory.GalOfCusp UpperTheory.V.Af
 
-private theorem pow_cong {Ω : Type} [Field Ω] (A : ValuationSubring Ω) {a b : Ω} (ha : A.valuation a ≤ 1)
-    (hb : A.valuation b ≤ 1) (h : A.valuation (a - b) < 1) (m : ℕ) : A.valuation (a ^ m - b ^ m) < 1 :=
-  _root_.UpperTheory.Reformulated.B.Qh11.pow_cong A ha hb h m
-
 private theorem dec_le {K Ω : Type} [Field K] [NumberField K] [Field Ω] [Algebra K Ω] {A : ValuationSubring Ω} {g : G K Ω}
     (hg : g ∈ Dec (F := K) A) {x : Ω} (hx : A.valuation x ≤ 1) : A.valuation (g x) ≤ 1 :=
   (A.valuation_le_one_iff _).2 ((apply_mem_iff_of_mem_Dec hg x).2 ((A.valuation_le_one_iff _).1 hx))
@@ -68,7 +64,7 @@ private theorem isFrob_pow {K Ω : Type} [Field K] [NumberField K] [Field Ω] [A
   | succ n ih =>
     refine ⟨Subgroup.pow_mem _ hg.1 _, fun x hx => ?_⟩
     have h1 := hg.2 _ (dec_le ih.1 hx)
-    have h2 := pow_cong A (dec_le ih.1 hx) (b := x ^ q ^ n) (by rw [map_pow]; exact pow_le_one' hx _) (ih.2 x hx) q
+    have h2 := _root_.UpperTheory.Reformulated.B.Qh11.pow_cong A (dec_le ih.1 hx) (b := x ^ q ^ n) (by rw [map_pow]; exact pow_le_one' hx _) (ih.2 x hx) q
     have h3 := Valuation.map_add_lt A.valuation h1 h2
     rw [sub_add_sub_cancel, ← pow_mul, ← pow_succ] at h3
     rw [pow_succ' g, AlgEquiv.mul_apply]

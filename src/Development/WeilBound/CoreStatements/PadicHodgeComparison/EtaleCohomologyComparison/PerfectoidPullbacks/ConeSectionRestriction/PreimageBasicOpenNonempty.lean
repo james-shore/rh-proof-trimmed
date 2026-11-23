@@ -71,7 +71,7 @@ theorem preimage_basicOpen_nonempty [IsIntegral X] {g : MvPolynomial (Fin (N + 1
     (hg : g ∈ grK K N e) (hg0 : Ideal.Quotient.mk (homIdeal i) g ≠ 0) :
     ((i ⁻¹ᵁ Proj.basicOpen (grK K N) g : X.Opens) : Set X).Nonempty := by
   first
-    | exact GlobalTheory.T.basic_open_nonempty_of_ne_zero ..
-    | (intros; apply GlobalTheory.T.basic_open_nonempty_of_ne_zero <;> assumption)
+    | exact _root_.GlobalTheory.CompanionTheory.Geo.preimage_basicOpen_nonempty_of_mk_ne_zero ..
+    | (intros; apply _root_.GlobalTheory.CompanionTheory.Geo.preimage_basicOpen_nonempty_of_mk_ne_zero <;> assumption)
 
 end CrystallineSemistableComparison.Pb

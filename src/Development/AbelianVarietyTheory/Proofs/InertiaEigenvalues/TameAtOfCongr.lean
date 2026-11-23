@@ -124,7 +124,7 @@ theorem tameAt_of_congr (H : Formalism.L2.Host.HChar E) (PP : HeightOneSpectrum 
     hT.inter ((GlobalTheory.ChainOnto.TameRes.isOpen_ltOne PP).preimage (continuous_sub_right 1))
   obtain ⟨k, hk⟩ := (HeightOneSpectrum.denseRange_algebraMap E PP).exists_mem_open hU ⟨_, hxT⟩
   have hk1 : PP.valuation E (k - 1) < 1 := by
-    rw [← GlobalTheory.ChainOnto.TameRes.val_alg, map_sub, map_one]; exact hk.2
+    rw [← _root_.Formalism.UG.P.levelaf_valued_algebraMap, map_sub, map_one]; exact hk.2
   have hk0 : k ≠ 0 := by
     rintro rfl
     simp at hk1

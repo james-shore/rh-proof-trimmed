@@ -56,13 +56,6 @@ open scoped ComplexConjugate BigOperators Topology
 
 namespace GlobalTheory.MomOne
 
-private theorem norm_zc_eq {q : ℕ} [Fact q.Prime] (a : ℤ_[q]) : ‖zc a‖ = ‖a‖ := by
-  unfold zc
-  exact (PadicComplex.norm_extends' (p := q) (a : ℚ_[q])).trans (PadicInt.norm_def).symm
-
-private theorem zc_natCast_eq {q : ℕ} [Fact q.Prime] (n : ℕ) : zc (n : ℤ_[q]) = (n : ℂ_[q]) := by
-  simp [zc]
-
 theorem height_one_of_split : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (F : FormalGroup 𝓞_ℂ_[q]), d.Prime → d % 16 = 7 → Split d q → IsOK d M.L → M.Ok → MvPowerSeries.subst (![PowerSeries.subst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) ℂ_[q]) (PowerSeries.map (M.ι : ℂ →+* ℂ_[q]) (tay M.u)), PowerSeries.subst (MvPowerSeries.X 1 : MvPowerSeries (Fin 2) ℂ_[q]) (PowerSeries.map (M.ι : ℂ →+* ℂ_[q]) (tay M.u))] : Fin 2 → MvPowerSeries (Fin 2) ℂ_[q]) (MvPowerSeries.map (algebraMap 𝓞_ℂ_[q] ℂ_[q]) F.toPowerSeries) = PowerSeries.subst (MvPowerSeries.X 0 + MvPowerSeries.X 1 : MvPowerSeries (Fin 2) ℂ_[q]) (PowerSeries.map (M.ι : ℂ →+* ℂ_[q]) (tay M.u)) → ∃ ℓ : ℂ_[q]⟦X⟧, constantCoeff ℓ = 0 ∧ PowerSeries.subst ℓ (PowerSeries.map (M.ι : ℂ →+* ℂ_[q]) (tay M.u)) = X ∧ ‖coeff q (PowerSeries.subst (C (q : ℂ_[q]) * ℓ) (PowerSeries.map (M.ι : ℂ →+* ℂ_[q]) (tay M.u)))‖ = 1 ∧ ∀ k < q, ‖coeff k (PowerSeries.subst (C (q : ℂ_[q]) * ℓ) (PowerSeries.map (M.ι : ℂ →+* ℂ_[q]) (tay M.u)))‖ < 1 := by
   intro d q _ M F hd hd16 hs hOK hM hF
   set U : ℂ_[q]⟦X⟧ := PowerSeries.map (M.ι : ℂ →+* ℂ_[q]) (tay M.u) with hUdef
@@ -80,7 +73,7 @@ theorem height_one_of_split : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (F : Fo
 
     have hle : ‖coeff q (U.subst (C (q : ℂ_[q]) * ℓ))‖ ≤ 1 := by
       have := P1 (q : ℤ_[q])
-      rw [zc_natCast_eq] at this
+      rw [_root_.GlobalTheory.MomOne.FormalMul.zc_natCast] at this
       exact this q
     refine le_antisymm hle (not_lt.1 fun hlt => ?_)
     have P3' := P3 hlt
@@ -89,7 +82,7 @@ theorem height_one_of_split : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (F : Fo
     have ar := okArith d q M.ι hd hd16 hs
     obtain ⟨a, ha⟩ := (ar.2.1 β hβ).1
     have hanorm : ‖a‖ ≤ (q : ℝ) ^ (-(k : ℤ)) := by
-      rw [← norm_zc_eq, ← ha]
+      rw [← _root_.GlobalTheory.MomOne.FormalMul.norm_zc, ← ha]
       exact hβn
     have hlat : ∀ l ∈ M.L.lattice, β * l ∈ M.L.lattice := by
       intro l hl

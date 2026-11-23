@@ -69,19 +69,12 @@ theorem cc_subst0 [Finite σ] {u : σ → MvPowerSeries τ R}
     constantCoeff (subst u f) = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_zero hu) hu hf
 
-theorem cc_elim {u v : Fin d → MvPowerSeries τ R} (hu : ∀ i, constantCoeff (u i) = 0)
-    (hv : ∀ i, constantCoeff (v i) = 0) (i : Fin d ⊕ Fin d) :
-    constantCoeff (Sum.elim u v i) = 0 := by
-  cases i with
-  | inl i => exact hu i
-  | inr i => exact hv i
-
 theorem mvPowerSeriesMap_evalTwoGroups (φ : R →+* S) {u v : Fin d → MvPowerSeries τ R}
     (hu : ∀ i, constantCoeff (u i) = 0) (hv : ∀ i, constantCoeff (v i) = 0)
     (c : MvPowerSeries (Fin d ⊕ Fin d) R) :
     map φ (at2 c u v) = at2 (map φ c) (fun i => map φ (u i)) (fun i => map φ (v i)) := by
   unfold at2
-  rw [map_subst0 φ (cc_elim hu hv)]
+  rw [map_subst0 φ (_root_.GlobalTheory.CobEdges.elim_const hu hv)]
   congr 1
   funext i
   cases i <;> rfl
@@ -91,8 +84,8 @@ theorem at2_lin {u v : Fin d → MvPowerSeries τ R}
     (c r : MvPowerSeries (Fin d ⊕ Fin d) R) :
     at2 (n • c + r) u v = n • at2 c u v + at2 r u v := by
   unfold at2
-  rw [subst_add (hasSubst_of_constantCoeff_zero (cc_elim hu hv)),
-    subst_smul (hasSubst_of_constantCoeff_zero (cc_elim hu hv))]
+  rw [subst_add (hasSubst_of_constantCoeff_zero (_root_.GlobalTheory.CobEdges.elim_const hu hv)),
+    subst_smul (hasSubst_of_constantCoeff_zero (_root_.GlobalTheory.CobEdges.elim_const hu hv))]
 
 theorem at2_zero {u v : Fin d → MvPowerSeries τ R}
     (hu : ∀ i, constantCoeff (u i) = 0) (hv : ∀ i, constantCoeff (v i) = 0) :
@@ -101,15 +94,6 @@ theorem at2_zero {u v : Fin d → MvPowerSeries τ R}
   rw [smul_zero, add_zero] at this
   rw [this]; simp
 
-theorem cc_op {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R} (h : ∀ i, constantCoeff (μ i) = 0)
-    {u v : Fin d → MvPowerSeries τ R}
-    (hu : ∀ i, constantCoeff (u i) = 0) (hv : ∀ i, constantCoeff (v i) = 0) (i : Fin d) :
-    constantCoeff (op μ u v i) = 0 := cc_subst0 (cc_elim hu hv) (h i)
-
-theorem c1 (i : Fin d) : constantCoeff (x1 (R := R) i) = 0 := constantCoeff_X _
-theorem c2 (i : Fin d) : constantCoeff (x2 (R := R) i) = 0 := constantCoeff_X _
-theorem c3 (i : Fin d) : constantCoeff (x3 (R := R) i) = 0 := constantCoeff_X _
-
 theorem map_formalGroupLawCoboundaryTwo (φ : R →+* S) {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R}
     (h : ∀ i, constantCoeff (μ i) = 0) (c : MvPowerSeries (Fin d ⊕ Fin d) R) :
     map φ (cob2 μ c) = cob2 (fun i => map φ (μ i)) (map φ c) := by
@@ -117,32 +101,26 @@ theorem map_formalGroupLawCoboundaryTwo (φ : R →+* S) {μ : Fin d → MvPower
   have e2 : (fun i => map φ (x2 (R := R) (d := d) i)) = x2 := funext fun i => map_X _ _
   have e3 : (fun i => map φ (x3 (R := R) (d := d) i)) = x3 := funext fun i => map_X _ _
   have o1 : (fun i => map φ (op μ x1 x2 i)) = op (fun i => map φ (μ i)) x1 x2 :=
-    funext fun i => by unfold op; rw [mvPowerSeriesMap_evalTwoGroups φ c1 c2, e1, e2]
+    funext fun i => by unfold op; rw [mvPowerSeriesMap_evalTwoGroups φ _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables, e1, e2]
   have o2 : (fun i => map φ (op μ x2 x3 i)) = op (fun i => map φ (μ i)) x2 x3 :=
-    funext fun i => by unfold op; rw [mvPowerSeriesMap_evalTwoGroups φ c2 c3, e2, e3]
+    funext fun i => by unfold op; rw [mvPowerSeriesMap_evalTwoGroups φ _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables, e2, e3]
   unfold cob2
-  rw [map_sub, map_add (f := _), map_sub, mvPowerSeriesMap_evalTwoGroups φ c2 c3, mvPowerSeriesMap_evalTwoGroups φ (cc_op h c1 c2) c3,
-    mvPowerSeriesMap_evalTwoGroups φ c1 (cc_op h c2 c3), mvPowerSeriesMap_evalTwoGroups φ c1 c2, o1, o2, e1, e2, e3]
+  rw [map_sub, map_add (f := _), map_sub, mvPowerSeriesMap_evalTwoGroups φ _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables, mvPowerSeriesMap_evalTwoGroups φ (_root_.GlobalTheory.Katz.CobCob.op_const h _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables) _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables,
+    mvPowerSeriesMap_evalTwoGroups φ _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables (_root_.GlobalTheory.Katz.CobCob.op_const h _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables), mvPowerSeriesMap_evalTwoGroups φ _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables, o1, o2, e1, e2, e3]
 
 theorem formalGroupLawCoboundaryTwo_smul_add {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R}
     (h : ∀ i, constantCoeff (μ i) = 0) (n : R) (c r : MvPowerSeries (Fin d ⊕ Fin d) R) :
     cob2 μ (n • c + r) = n • cob2 μ c + cob2 μ r := by
   unfold cob2
-  rw [at2_lin c2 c3, at2_lin (cc_op h c1 c2) c3, at2_lin c1 (cc_op h c2 c3), at2_lin c1 c2]
+  rw [at2_lin _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables, at2_lin (_root_.GlobalTheory.Katz.CobCob.op_const h _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables) _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables, at2_lin _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables (_root_.GlobalTheory.Katz.CobCob.op_const h _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables), at2_lin _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables]
   simp only [smul_sub, smul_add]
   abel
 
 theorem formalGroupLawCoboundaryTwo_zero {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R}
     (h : ∀ i, constantCoeff (μ i) = 0) : cob2 μ 0 = 0 := by
   unfold cob2
-  rw [at2_zero c2 c3, at2_zero (cc_op h c1 c2) c3, at2_zero c1 (cc_op h c2 c3), at2_zero c1 c2]
+  rw [at2_zero _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables, at2_zero (_root_.GlobalTheory.Katz.CobCob.op_const h _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables) _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables, at2_zero _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables (_root_.GlobalTheory.Katz.CobCob.op_const h _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsThirdVariables), at2_zero _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsFirstVariables _root_.GlobalTheory.Katz.CobCob.constantCoeff_threeGroupsSecondVariables]
   simp
-
-theorem map_swap (φ : R →+* S) (c : MvPowerSeries (Fin d ⊕ Fin d) R) :
-    map φ (swap c) = swap (map φ c) := by
-  unfold swap
-  rw [mvPowerSeriesMap_evalTwoGroups φ (fun _ => constantCoeff_X _) (fun _ => constantCoeff_X _)]
-  simp only [map_X]
 
 theorem map_formalGroupLawCoboundaryOne_eq (φ : R →+* S) {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R}
     (h : ∀ i, constantCoeff (μ i) = 0) (f : MvPowerSeries (Fin d) R) :
@@ -179,7 +157,7 @@ theorem coeff_formalGroupLawCoboundaryTwo_mem_ideal {μ : Fin d → MvPowerSerie
 theorem swap_mem (J : Ideal R) {r : MvPowerSeries (Fin d ⊕ Fin d) R}
     (hr : ∀ α, coeff α r ∈ J) : ∀ α, coeff α (swap r) ∈ J := by
   rw [mem_iff_map] at hr ⊢
-  rw [map_swap, hr]
+  rw [_root_.GlobalTheory.CocLift.map_swap, hr]
   exact at2_zero (fun _ => constantCoeff_X _) (fun _ => constantCoeff_X _)
 
 end Nat
@@ -189,9 +167,6 @@ section Closure
 variable {B Q : Type} [CommRing B] [CommRing Q] [Algebra B Q] {d : ℕ}
   {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) B}
 
-theorem cc_up (h : ∀ i, constantCoeff (μ i) = 0) (i : Fin d) : constantCoeff (up Q μ i) = 0 :=
-  cc_map _ (h i)
-
 theorem ql_add (h : ∀ i, constantCoeff (μ i) = 0) {f g : MvPowerSeries (Fin d) Q}
     (hf : QL μ ⊤ f) (hg : QL μ ⊤ g) : QL μ ⊤ (f + g) := by
   refine ⟨by rw [map_add (f := _), hf.1, hg.1, add_zero], fun i => ?_, fun α => ?_⟩
@@ -200,7 +175,7 @@ theorem ql_add (h : ∀ i, constantCoeff (μ i) = 0) {f g : MvPowerSeries (Fin d
     exact ⟨a + b, trivial, by rw [map_add (f := _), ← ha, ← hb]; exact map_add _ _ _⟩
   · obtain ⟨a, -, ha⟩ := hf.2.2 α
     obtain ⟨b, -, hb⟩ := hg.2.2 α
-    exact ⟨a + b, trivial, by rw [formalCoboundary_add (cc_up h), map_add (f := _), ha, hb, map_add (f := _)]⟩
+    exact ⟨a + b, trivial, by rw [formalCoboundary_add (_root_.GlobalTheory.SymCob.up_const h), map_add (f := _), ha, hb, map_add (f := _)]⟩
 
 theorem ql_smul (h : ∀ i, constantCoeff (μ i) = 0) (r : B) {f : MvPowerSeries (Fin d) Q}
     (hf : QL μ ⊤ f) : QL μ ⊤ (algebraMap B Q r • f) := by
@@ -208,7 +183,7 @@ theorem ql_smul (h : ∀ i, constantCoeff (μ i) = 0) (r : B) {f : MvPowerSeries
   · obtain ⟨a, -, ha⟩ := hf.2.1 i
     exact ⟨r * a, trivial, by rw [map_mul, ← ha]; exact coeff_smul _ _ _⟩
   · obtain ⟨a, -, ha⟩ := hf.2.2 α
-    exact ⟨r * a, trivial, by rw [formalCoboundary_smul (cc_up h), coeff_smul, ha, map_mul]⟩
+    exact ⟨r * a, trivial, by rw [formalCoboundary_smul (_root_.GlobalTheory.SymCob.up_const h), coeff_smul, ha, map_mul]⟩
 
 theorem ql_map (h : ∀ i, constantCoeff (μ i) = 0) {s : MvPowerSeries (Fin d) B}
     (hs : constantCoeff s = 0) : QL μ ⊤ (map (algebraMap B Q) s) := by
@@ -249,7 +224,7 @@ theorem step_generation : ∀ (p : ℕ) [Fact p.Prime] (B O Q : Type) [CommRing 
     intro α
     by_cases h : α = 0
     · refine ⟨0, 0, fun _ => rfl, zero_mem _, ?_⟩
-      rw [h, coeff_zero_eq_constantCoeff_apply, constantCoeff_formalGroupLawCoboundaryOne (cc_up hc) hf.1]
+      rw [h, coeff_zero_eq_constantCoeff_apply, constantCoeff_formalGroupLawCoboundaryOne (_root_.GlobalTheory.SymCob.up_const hc) hf.1]
       simp
     · obtain ⟨b, hb, hb'⟩ := hf.2.2 α
       obtain ⟨c, r, hr, rfl⟩ := dec b hb
@@ -284,8 +259,8 @@ theorem step_generation : ∀ (p : ℕ) [Fact p.Prime] (B O Q : Type) [CommRing 
     exact sub_mem (hIN hb) (coeff_formalGroupLawCoboundaryTwo_mem_ideal hc N' hr α)
   have hsw : ∀ α, a ∣ coeff α (swap (map θ c) - map θ c) := by
     intro α
-    rw [← map_swap, ← map_sub, coeff_map, ← hna]
-    rw [hcob, ← map_swap] at k2
+    rw [← _root_.GlobalTheory.CocLift.map_swap, ← map_sub, coeff_map, ← hna]
+    rw [hcob, ← _root_.GlobalTheory.CocLift.map_swap] at k2
     have k3 := congrArg (coeff α) k2
     rw [coeff_map, coeff_map] at k3
     have k4 := hF.inj k3
@@ -364,13 +339,13 @@ theorem step_generation : ∀ (p : ℕ) [Fact p.Prime] (B O Q : Type) [CommRing 
     obtain ⟨v, hv, hv'⟩ := g3 α
     rw [map_sub, coeff_map, coeff_map, sub_eq_iff_eq_add] at hv'
     have e1 : algebraMap O C (θ u) = algebraMap O C (v + θ (coeff α c)) := by
-      rw [← hΘ, ← hu, ← coeff_map, map_formalGroupLawCoboundaryOne_eq Θ (cc_up hc), hup, hΘh, formalCoboundary_add (cc_up hc'), l3,
+      rw [← hΘ, ← hu, ← coeff_map, map_formalGroupLawCoboundaryOne_eq Θ (_root_.GlobalTheory.SymCob.up_const hc), hup, hΘh, formalCoboundary_add (_root_.GlobalTheory.SymCob.up_const hc'), l3,
         add_zero, hv', map_add]
     have e4 : a ∣ θ (coeff α c - u) := by
       rw [map_sub, hC.inj e1]
       simpa using Ideal.mem_span_singleton.1 hv
     refine ⟨(coeff α c - u) * n + coeff α r, add_mem ((hna _).2 e4) (hr α), ?_⟩
-    rw [formalCoboundary_add (cc_up hc), formalCoboundary_smul (cc_up hc), map_add (f := _), coeff_smul, hu, hcob, coeff_map,
+    rw [formalCoboundary_add (_root_.GlobalTheory.SymCob.up_const hc), formalCoboundary_smul (_root_.GlobalTheory.SymCob.up_const hc), map_add (f := _), coeff_smul, hu, hcob, coeff_map,
       map_add (coeff α), coeff_smul]
     simp only [map_add (f := _), map_mul, map_sub]
     ring

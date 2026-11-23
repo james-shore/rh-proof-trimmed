@@ -52,13 +52,13 @@ namespace GlobalTheory
 theorem cuspRapidDecaySiegelGL_of_finite (hfin : GlobalTheory.Published.AutomorphicFormsFiniteGL) :
     GlobalTheory.Published.CuspRapidDecaySiegelGL := by
   intro E _ _ _ a φ hφ ω hω hωB _ t ht lam
-  obtain ⟨Ω, Kf, hΩ, hKf, hgeom⟩ := GlobalTheory.T.siegelSet_adelicGL_exists_compact_decomposition E a ω hω hωB t ht
-  obtain ⟨S, hS⟩ := GlobalTheory.T.finite_translates_smoothFunction_of_compact E a φ hφ.1.level Kf hKf
+  obtain ⟨Ω, Kf, hΩ, hKf, hgeom⟩ := _root_.GlobalTheory.SiegelSetGL.exists_compact_decomp E a ω hω hωB t ht
+  obtain ⟨S, hS⟩ := _root_.GlobalTheory.finite_translates_of_isCompact E a φ hφ.1.level Kf hKf
   have hcore := fun f' : GL (Fin a) (Af E) =>
     GlobalTheory.T.cuspForm_rapidDecay_siegelCone_realPoints hfin E a (finRep E a f' φ) (GlobalTheory.T.isCuspForm_operator_act hfin E a (.fin f') φ hφ) Ω hΩ t ht lam
   choose C hC0 hC using hcore
   refine ⟨∑ f' ∈ S, C f', fun b hb r hr hchain hprod k hk => ?_⟩
-  obtain ⟨d, hd, hdiag⟩ := GlobalTheory.T.exists_realDiagonal_infGL_eq_positiveIdeleDiagonal E a r hr
+  obtain ⟨d, hd, hdiag⟩ := _root_.GlobalTheory.SiegelTorusInf.exists_diag_infGL E a r hr
   rw [hdiag]
   obtain ⟨c, hc, f, hf, heq⟩ := hgeom r d hr hchain hd b hb k hk
   rw [heq]

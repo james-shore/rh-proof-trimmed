@@ -57,9 +57,6 @@ theorem continuous_toZModPow (l : ℕ) [hl : Fact (Nat.Prime l)] (n : ℕ) :
     exact hy
   exact tendsto_nhds_of_eventually_eq hev
 
-theorem main : ∀ (l : ℕ) [hl : Fact (Nat.Prime l)] (n : ℕ),
-    Continuous (⇑(PadicInt.toZModPow n) : ℤ_[l] → ZMod (l ^ n)) := by
-  intro l _ n
-  exact continuous_toZModPow l n
+alias main := _root_.GlobalTheory.ContinuousZModPow.continuous_toZModPow
 
 end GlobalTheory.ContinuousZModPow

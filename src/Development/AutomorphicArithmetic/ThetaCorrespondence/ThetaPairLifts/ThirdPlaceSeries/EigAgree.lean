@@ -61,7 +61,7 @@ theorem GlobalTheory.EigAgree.eig_agree_alt : GlobalTheory.Published.Automorphic
     (((h41 i).2.1 Q Q' (by rw [hQ]; exact Option.some_ne_none x) (hQ.trans hQ'.symm)).2 Pp hPS hPQ).1 hsplit
   obtain ⟨sp, hspw, hJ⟩ := _root_.GlobalTheory.OffBad.offbad_alt hAF hL D P X hA h41 h7 htie i Pp hG hS
   subst hspw
-  obtain ⟨Ds, hD1, hD2, hD3, hDt⟩ := _root_.GlobalTheory.T.is_split_of_hk3_good_at_split_place hAF hL D P X hA h41 h7 htie i hμ j hj sp hG hS hJ d hd
+  obtain ⟨Ds, hD1, hD2, hD3, hDt⟩ := _root_.GlobalTheory.LabelTransport.is_split_of_hk3_good_transport_label hAF hL D P X hA h41 h7 htie i hμ j hj sp hG hS hJ d hd
   have E1 := hDt f₁ c₁ e1
   have E2 := hDt f₂ c₂ e2
   have m1 : (P.M.loc i).real (hj ▸ f₁) ∈ NG.isoTyp (P.M.loc i).wt.ρ (P.H.av.S i Q) := by
@@ -78,6 +78,6 @@ theorem GlobalTheory.EigAgree.eig_agree_alt : GlobalTheory.Published.Automorphic
     GlobalTheory.EigAgree.cast_ne_zero hj f₁ h0₁ ((P.M.loc i).real_inj (h.trans (map_zero _).symm))
   have n2 : (P.M.loc i).real (hj ▸ f₂) ≠ 0 := fun h =>
     GlobalTheory.EigAgree.cast_ne_zero hj f₂ h0₂ ((P.M.loc i).real_inj (h.trans (map_zero _).symm))
-  exact _root_.GlobalTheory.T.double_coset_support_at_split_alt hAF hL D P i Q Q' sp hJ Ds hD1 hD2 hD3
+  exact _root_.GlobalTheory.LocEigAgree.main_alt_alt hAF hL D P i Q Q' sp hJ Ds hD1 hD2 hD3
     (fun σ σ' h h' => _root_.UpperTheory.One.M.cls_eq_of_locV_eq' hL D P i Q Q' sp σ σ' h h' hloc) _ m1 t1 n1 _ m2 t2 n2 c₁ c₂ E1 E2
 end

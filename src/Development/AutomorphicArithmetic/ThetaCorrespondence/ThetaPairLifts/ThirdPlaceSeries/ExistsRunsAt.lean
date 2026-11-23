@@ -53,15 +53,15 @@ variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotio
   {Y : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Y cX} {Csz : ℝ}
 theorem exists_runs_at_alt (p : PtAt ex Csz) (hR : p.PointConditions') (hM : More p) :
     ∃ r : TwoRuns p.T p.P.Gp, RunsOk (fw2 p) r ∧ OwnPin r := by
-  have hL : Links2 p := _root_.GlobalTheory.T.links2_of_single_index_twisted D L hT Gi Gl Kc Y cX ex Csz p hR hM.1
+  have hL : Links2 p := _root_.GlobalTheory.BigOn.links2_of_rows_alt D L hT Gi Gl Kc Y cX ex Csz p hR hM.1
   have hC : CoreTies L ex.errX p.T (R2 p) := hM.2.1
   obtain ⟨r₁, l₁, c₁, d₁, x₁, p₁⟩ :=
-    GlobalTheory.T.exists_parameterRun_with_laws_and_pins_at_special_prime D L hT Gi Gl Kc Y cX ex Csz p hL hC D.host.pde (Or.inl rfl)
+    _root_.GlobalTheory.RunOnto.exists_run_pins D L hT Gi Gl Kc Y cX ex Csz p hL hC D.host.pde (Or.inl rfl)
   obtain ⟨r₂, l₂, c₂, d₂, x₂, p₂⟩ :=
-    GlobalTheory.T.exists_parameterRun_with_laws_and_pins_at_special_prime D L hT Gi Gl Kc Y cX ex Csz p hL hC D.host.pde' (Or.inr rfl)
+    _root_.GlobalTheory.RunOnto.exists_run_pins D L hT Gi Gl Kc Y cX ex Csz p hL hC D.host.pde' (Or.inr rfl)
   have hcore : GlobalTheory.Hk3.Core (R2 p) (F2 p) :=
     ⟨hL.1.lev, hL.1.grp, hL.1.fam, hL.1.models, hL.1.chain, hL.1.thP⟩
-  obtain ⟨ℓ, hℓ⟩ := GlobalTheory.T.finiteGroup_levelStructure_action_fixedRuns D _ _ _ _ p.T (R2 p) (F2 p) p.κ p.v₀ (fw2 p) (om2 p) hcore hL.2.2.2.2.2.2.1
+  obtain ⟨ℓ, hℓ⟩ := _root_.GlobalTheory.LevelActionOnto.levelPin_actionPin D _ _ _ _ p.T (R2 p) (F2 p) p.κ p.v₀ (fw2 p) (om2 p) hcore hL.2.2.2.2.2.2.1
     p.rhoGeo (fun i => (hR.oneMap i).1) hC.level
   let r : TwoRuns p.T p.P.Gp := ⟨r₁, r₂, ℓ⟩
   have hown : OwnPin r := ownPin_of d₁ d₂

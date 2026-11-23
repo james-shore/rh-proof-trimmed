@@ -65,10 +65,6 @@ theorem mul_mem_UJset_of_inUJ {n : ℕ} {ε : Fin n → Bool} {y m : Matrix (Fin
         simp only [Matrix.mul_assoc]
     _ = Formalism.REAL.Jm ε := by rw [hy', hm']
 
-theorem continuous_maximalCompactSubgroup_toMatrix {n : ℕ} (ε : Fin n → Bool) :
-    Continuous (fun k : Formalism.REAL.KG ε => Formalism.REAL.toMK k) :=
-  Units.continuous_val.comp (continuous_subtype_val.comp continuous_subtype_val)
-
 theorem continuousOn_avg_right_translates : ∀ (n : ℕ) (ε : Fin n → Bool) (f : GlobalTheory.TypeSum.Mx n → ℂ),
     ContinuousOn f (UJset ε) →
     ∀ e : ↥(Formalism.REAL.KG ε) → ℂ, Continuous e →
@@ -89,7 +85,7 @@ theorem continuousOn_avg_right_translates : ∀ (n : ℕ) (ε : Fin n → Bool) 
       fun p => mul_mem_UJset_of_inUJ p.1.2 ((p.2 : Formalism.REAL.UJ ε).2)
     exact hf.comp_continuous
       ((continuous_subtype_val.comp continuous_fst).matrix_mul
-        ((continuous_maximalCompactSubgroup_toMatrix ε).comp continuous_snd)) hmaps
+        ((_root_.GlobalTheory.TypeSum.continuous_toMK ε).comp continuous_snd)) hmaps
   have h := continuous_parametric_integral_of_continuous (μ := Formalism.REAL.muK ε) hF isCompact_univ
   simp only [Measure.restrict_univ] at h
   exact h

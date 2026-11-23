@@ -61,11 +61,9 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Regular
 
-theorem GlueRegularised.full : GlueRegularised.Statement :=
-  GlueRegularised.proof
+alias GlueRegularised.full := _root_.GroundTheory.Heights₂.Heights.Regular.GlueRegularised.proof
 
-theorem KernelPositive.full : KernelPositive.Statement :=
-  kernelPositive_statement
+alias KernelPositive.full := _root_.GroundTheory.Heights₂.Heights.Regular.kernelPositive_statement
 
 theorem Tau0Holomorphic.cond (hE : RiemannExtensionSlices.Statement)
     (hO : PuncturedExpOrder.Statement) (hD : LogCoverDescent.Statement) :

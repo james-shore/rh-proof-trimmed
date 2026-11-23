@@ -153,7 +153,7 @@ theorem Kres_commensurable (K : IntermediateField ℚ_[p] (PadicAlgCl p)) [Finit
     intro x k l hkl h
     rw [← Nat.add_sub_cancel' hkl, pow_add, mul_comm ((p : KQ p K r) ^ k), mul_assoc]
     exact mul_mem (pow_mem (natCast_mem _ p) _) h
-  choose f hf using GlobalTheory.T.exists_padic_pow_mul_mem_tensorUnramifiedIntegers p K r
+  choose f hf using _root_.GlobalTheory.LKRes.exists_pow_mul_mem_intKQ p K r
   let k : ℕ := (Finset.univ.sup fun ij : Fin n × Fin n => f ((g : Matrix (Fin n) (Fin n) (KQ p K r)) ij.1 ij.2)) ⊔
     Finset.univ.sup fun ij : Fin n × Fin n => f (((g⁻¹ : GL (Fin n) (KQ p K r)) : Matrix (Fin n) (Fin n) (KQ p K r)) ij.1 ij.2)
   have hk1 : ∀ i j, (p : KQ p K r) ^ k * (g : Matrix (Fin n) (Fin n) (KQ p K r)) i j ∈ intKQ p K r :=
@@ -166,10 +166,10 @@ theorem Kres_commensurable (K : IntermediateField ℚ_[p] (PadicAlgCl p)) [Finit
   let c : intKQ p K r := (p : intKQ p K r) ^ k
   have hc : (c : KQ p K r) = (p : KQ p K r) ^ k := by simp [c]
   have hfin : Finite (intKQ p K r ⧸ Ideal.span {c * c}) := by
-    have h := GlobalTheory.T.finite_padicTensorUnramifiedIntegers_quot_primePow p K r (2 * k) (GlobalTheory.T.finite_padicIntegers_quot_primePow_of_finiteDim p K (2 * k)) (GlobalTheory.T.finite_padicIntegers_quot_primePow_of_finiteDim p (Qr p r) (2 * k))
+    have h := _root_.GlobalTheory.TenFin.finite_intKQ_quot p K r (2 * k) (_root_.GlobalTheory.LKLoc.IntFin.finite_intK_quot_pow p K (2 * k)) (_root_.GlobalTheory.LKLoc.IntFin.finite_intK_quot_pow p (Qr p r) (2 * k))
     have e : c * c = (p : intKQ p K r) ^ (2 * k) := by simp only [c]; ring
     rw [e]; exact h
-  exact GlobalTheory.T.commensurable_conj_range_gl_map_subtype (intKQ p K r) n c hfin g (fun i j => by rw [hc]; exact hk1 i j)
+  exact _root_.GlobalTheory.commensurable_conj_range_GL_subring (intKQ p K r) n c hfin g (fun i j => by rw [hc]; exact hk1 i j)
     (fun i j => by rw [hc]; exact hk2 i j)
 
 end GlobalTheory.HeckeP
@@ -185,7 +185,7 @@ theorem GlobalTheory.heckeOperator_integral :
   intro p _ G r hr
   refine ⟨fun g => ?_, ?_, ?_⟩
   · unfold KHT
-    exact GlobalTheory.T.commensurable_map_conj_prod_pi' _ _ g (by rw [gl_one_map_conj])
+    exact _root_.GlobalTheory.commensurable_map_conj_prod_pi _ _ g (by rw [gl_one_map_conj])
       (fun i => Kres_commensurable p (G.Fw i) G.n r hr (g.2 i))
   · ext x
     rw [Subgroup.mem_comap, Kp0, Subgroup.mem_comap, inclG_mem_KHT_iff, inclG_mem_KHT_iff]

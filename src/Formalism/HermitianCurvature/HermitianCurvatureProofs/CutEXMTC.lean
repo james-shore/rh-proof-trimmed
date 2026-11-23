@@ -68,19 +68,6 @@ open Formalism.FourierDecayAlt
 
 variable {n : ℕ}
 
-theorem upper_utc {M : Matrix (Fin n) (Fin n) ℂ} (hM : M ∈ C2.UTset n) : G.upper (StabilizerDisintegration.utc M) = M := by
-  ext i j
-  simp only [G.upper, G.strictUpper, StabilizerDisintegration.utc, Matrix.add_apply, Matrix.one_apply, Matrix.of_apply]
-  rcases lt_trichotomy i j with h | rfl | h
-  · rw [dite_eq_left h, if_neg (ne_of_lt h), zero_add]
-  · rw [dite_eq_right (lt_irrefl _), if_pos rfl, hM.2, add_zero]
-  · rw [dite_eq_right (not_lt.2 h.le), if_neg (ne_of_gt h), hM.1 i j h, add_zero]
-
-theorem upper_ut (v : G.UT n → ℂ) : G.upper v ∈ C2.UTset n := by
-  refine ⟨fun i j h => ?_, fun i => ?_⟩
-  · simp [G.upper, G.strictUpper, not_lt.2 h.le, ne_of_gt h]
-  · simp [G.upper, G.strictUpper]
-
 section gam
 
 variable {r : ℕ} {X : Type}
@@ -91,12 +78,12 @@ def Gam (p : ((Fin r → Fin r → ℂ) × X) × (G.UT r → ℂ)) : (Fin r → 
 theorem Gam_det (p : ((Fin r → Fin r → ℂ) × X) × (G.UT r → ℂ)) :
     (Matrix.of (Gam p).1).det = (Matrix.of p.1.1).det := by
   simp only [Gam, Equiv.apply_symm_apply]
-  rw [Matrix.det_mul, Matrix.det_mul, C2x2.ut_det (Wm_ut _), C2x2.ut_det (upper_ut p.2), mul_one, mul_one]
+  rw [Matrix.det_mul, Matrix.det_mul, C2x2.ut_det (Wm_ut _), C2x2.ut_det (_root_.Formalism.FourierDecayAlt.P.StabilizerDisintegration.HC.upper_mem p.2), mul_one, mul_one]
 
 theorem Gam_eq (q : (Fin r → Fin r → ℂ) × X) (u : Matrix (Fin r) (Fin r) ℂ) (hdet : (Matrix.of q.1).det ≠ 0)
     (hu : u ∈ C2.UTset r) : Gam ((Matrix.of.symm (Matrix.of q.1 * u), q.2), StabilizerDisintegration.utc (Sm (Matrix.of q.1))) = q := by
   simp only [Gam, Equiv.apply_symm_apply]
-  rw [Wm_mul hdet hu, upper_utc (Sm_ut _), Matrix.mul_assoc (Matrix.of q.1) u,
+  rw [Wm_mul hdet hu, _root_.Formalism.FourierDecayAlt.P.StabilizerDisintegration.HC.upper_utc (Sm_ut _), Matrix.mul_assoc (Matrix.of q.1) u,
     Matrix.mul_nonsing_inv_cancel_left _ _ (C2x2.ut_unit hu), Matrix.mul_assoc, Wm_mul_Sm, Matrix.mul_one]
   rfl
 
@@ -136,7 +123,7 @@ theorem top_truncation_construction : MkTopCut := by
         fun v => β₀ (StabilizerDisintegration.utc (Sm (Matrix.of Z) * G.upper v)) := by
       funext v
       simp only [Equiv.apply_symm_apply]
-      rw [Sm_mul hZ (upper_ut v)]
+      rw [Sm_mul hZ (_root_.Formalism.FourierDecayAlt.P.StabilizerDisintegration.HC.upper_mem v)]
     show Integrable (fun v : G.UT r → ℂ => β₀ (StabilizerDisintegration.utc (Sm (Matrix.of (Matrix.of.symm (Matrix.of Z * G.upper v)))))) ∧
       ∫ v : G.UT r → ℂ, β₀ (StabilizerDisintegration.utc (Sm (Matrix.of (Matrix.of.symm (Matrix.of Z * G.upper v))))) = 1
     rw [hfun]

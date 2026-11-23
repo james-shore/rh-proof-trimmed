@@ -159,7 +159,7 @@ theorem GlobalTheory.Mum.TensAct.qkAct_tens : ∀ (R : Type) [CommRing R] [IsDom
     rw [← NumD.projB_apply, map_prod]
     refine Finset.prod_congr rfl fun j _ => ?_
     rw [map_zpow, NumD.projB_apply, hrel0.2.1 j]
-  have hros := GlobalTheory.T.rosati_values_tensor_data_matrix_action R hR D D' W T F N N' ν ν' E H ρ hρ o hact x ρ' hρ' q0.1.2 w' (fun j => (qs j).1.2) hrel0.2 hw'
+  have hros := _root_.GlobalTheory.Mum.TensRos.rosGt_values R hR D D' W T F N N' ν ν' E H ρ hρ o hact x ρ' hρ' q0.1.2 w' (fun j => (qs j).1.2) hrel0.2 hw'
 
   set y'' : N'.X := ν'.eX.symm (x • p'.y) with hy''
   have hey : ∀ i, TensTor.chi T ν ν' y'' i = (us i).1.1.toAdd := fun i => by

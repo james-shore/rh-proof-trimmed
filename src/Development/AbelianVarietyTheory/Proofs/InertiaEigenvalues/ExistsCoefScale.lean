@@ -119,7 +119,7 @@ theorem exists_coef_scale : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T
       rintro _ ⟨w, rfl⟩
       have h1 : harmFn (Wc D i).rank B.w B.F.BS (R.ioP i x w) ∈
           (harm (Wc D i).rank B.w B.F.BS).map (harmFn (Wc D i).rank B.w B.F.BS) := Submodule.mem_map_of_mem (hharm w)
-      rw [GlobalTheory.T.fockHarmonicValueSpace_map_eq_dualWeylModuleFunctions D _ _ B.w B.F.BS hB.wt hpq, hlam] at h1
+      rw [_root_.GlobalTheory.ExportSeries.Onto.map_harm_eq D _ _ B.w B.F.BS hB.wt hpq, hlam] at h1
       refine Submodule.span_le.2 ?_ h1
       rintro _ ⟨G', rfl⟩
       exact ⟨e G', congrArg (coefLin _) (e.symm_apply_apply G')⟩)

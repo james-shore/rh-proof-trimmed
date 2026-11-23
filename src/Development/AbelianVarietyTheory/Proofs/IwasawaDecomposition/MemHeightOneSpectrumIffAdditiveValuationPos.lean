@@ -217,7 +217,7 @@ theorem GlobalTheory.Mem.R3.tupL_of_twisted : ∀ (X : Stages) (px : PreX X.B.to
       have hv' : v = X.toD7.plEq w := by rw [hwdef, Equiv.apply_symm_apply]
       have hpl : Formalism.EigenvalueLevelCeiling.plc v = X.B.places.resChar w := by
         rw [hv']
-        exact plc_eq_of_natCast_mem _ (X.B.places.resChar_prime w) (GlobalTheory.LvT.Inh.resChar_mem_plEq X.toD7 w)
+        exact plc_eq_of_natCast_mem _ (X.B.places.resChar_prime w) (_root_.Formalism.BasicNotions.resChar_mem X.toD7 w)
       refine ⟨T.psi w, T.Q w, ?_, ?_⟩
       · rw [hpl]; exact T.psi_is w
       · rw [hxi, hpl, hC]

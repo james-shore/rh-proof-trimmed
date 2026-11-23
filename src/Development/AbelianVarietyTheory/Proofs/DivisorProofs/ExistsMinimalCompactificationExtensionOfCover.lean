@@ -64,8 +64,8 @@ theorem exists_extension_of_cover_hodge : ∀ (o : Type) [CommRing o] (g : ℕ) 
   have := hG.separated
   have : QuasiSeparated G.hom := inferInstance
   have hL : (hodge G g).IsLB := isLB_hodge G g
-  obtain ⟨T, hT, hTv⟩ := GlobalTheory.T.exists_transport_generator_lbPow_to_ampleBundle S' Z π OZ (hodge G g) N hOZ hL hw
-  obtain ⟨e₀, he₀, H⟩ := GlobalTheory.T.exists_integral_hodgeBundle_generator S' g G hG hsm R G₁ hG₁ y α hα
+  obtain ⟨T, hT, hTv⟩ := _root_.GlobalTheory.GenTransport.transport S' Z π OZ (hodge G g) N hOZ hL hw
+  obtain ⟨e₀, he₀, H⟩ := _root_.GlobalTheory.HodgeFrameGen.exists_integral_hodgeGen S' g G hG hsm R G₁ hG₁ y α hα
   have amp : ∀ z : Z, ∃ (d : ℕ) (s : H0 OZ d), 1 ≤ d ∧ z ∈ nonzeroLocus s ∧ IsAffineOpen (nonzeroLocus s) := by
     intro x
     obtain ⟨n, hn, s, hs, ha⟩ := hA.exists_affine x

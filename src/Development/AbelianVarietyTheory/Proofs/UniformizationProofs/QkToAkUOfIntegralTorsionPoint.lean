@@ -244,8 +244,8 @@ open ReciprocityTheory.ChartRestriction.G.DVR GlobalTheory.FieldBaseChange Globa
 theorem qkToAkU_of_integral_torsion : Laws → ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (I : Ideal R), AdmBase R I → I ≠ ⊤ → ∀ (D : DegData R I) (A : PolAV (Spec (CommRingCat.of (FractionRing R)))) (G : Over (Spec (CommRingCat.of R))) [GrpObj G] [IsCommMonObj G] (U : Unif I D A G) (k : ℕ), 1 ≤ k → ∀ (x : (𝟙_ (Over (Spec (CommRingCat.of R)))) ⟶ G) (gp : GtPt D.toPre (𝟙_ (Over (Spec (CommRingCat.of R))))), x ^ k = 1 → (∀ e : ℕ, ∃ xe : Over.mk (thick R I e) ⟶ (Over.map (thick R I e)).obj (thickObj R I e G), xe ≫ fstG I e G = toUnit _ ≫ x ∧ xe ≫ (U.gt e).pG = toUnit _ ≫ gp.b ∧ ∀ χ, LB.Gen.Corr D.toPre.P.L _ _ _ _ (LB.pullGen D.toPre.P.L _ _ ((U.gt e).t χ) xe.left) (LB.pullGen D.toPre.P.L _ _ (gp.s χ) (toUnit (Over.mk (thick R I e))).left)) → ∀ (F : Type) [Field F] [Algebra (FractionRing R) F] (p : QkPt D.toPre F k) (xF : TFK (R := R) F ⟶ A.A), p.y = 0 → GtPt.IsPullF F (toUnit (TF (R := R) F)).left gp p.g → xF.left ≫ U.gen.inv.left ≫ pullback.fst G.hom (jK R) = (toUnit (TF (R := R) F) ≫ x).left → QkToAkU U.toUnifPre F k p xF := by
   intro hL R _ _ _ I hR hI D A G _ _ U k hk x gp hx hm F _ _ p xF hy hp hxF w hw
   have hG : GlobalFnsSt := hL.globalFns
-  obtain ⟨hb, -⟩ := T.torsionPoint_qk_alt hG R I hR hI D A G U.toUnifPre k x gp hx hm
-  obtain ⟨ν, uL, uM, hν, huL, huM, hE⟩ := T.expandsAt_translate_torsion_alt hG R I hR hI D A G U.toUnifPre k x gp hx hb hm
+  obtain ⟨hb, -⟩ := _root_.GlobalTheory.TorsionQk.torsionPoint_qk hG R I hR hI D A G U.toUnifPre k x gp hx hm
+  obtain ⟨ν, uL, uM, hν, huL, huM, hE⟩ := _root_.GlobalTheory.expandsAt_translate_torsion hG R I hR hI D A G U.toUnifPre k x gp hx hb hm
   have := U.gen_hom
   have : IsMonHom U.gen.symm.hom := inferInstanceAs (IsMonHom U.gen.inv)
   have gpb : IsGrpPullback A.A G (jK R) (U.gen.inv.left ≫ pullback.fst G.hom (jK R)) :=

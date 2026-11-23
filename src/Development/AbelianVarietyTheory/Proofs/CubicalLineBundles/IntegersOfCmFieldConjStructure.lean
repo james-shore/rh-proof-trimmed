@@ -94,14 +94,7 @@ theorem cm_generator_sq_quadratic_eq (H : Host E) : H.w0 ^ 2 + (((1 + H.d) / 4 :
   apply mul_left_cancel₀ (show (4 : 𝓞 E) ≠ 0 by norm_num)
   linear_combination h + h5
 
-theorem exists_coord (H : Host E) {a : 𝓞 E} (ha : a ∈ OK H) : ∃ u v : ℤ, a = u + v * H.w0 := by
-  first
-  | exact @_root_.GlobalTheory.CMGeneratorSquare.main
-  | exact _root_.GlobalTheory.CMGeneratorSquare.main
-  | (apply _root_.GlobalTheory.CMGeneratorSquare.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CMGeneratorSquare.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CMGeneratorSquare.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CMGeneratorSquare.main ..)
+alias exists_coord := _root_.GlobalTheory.CMGeneratorSquare.main
 
 theorem coord_eq_zero (H : Host E) {u v : ℤ} (h : (u : 𝓞 E) + v * H.w0 = 0) : u = 0 ∧ v = 0 := by
   have h1 := congrArg H.bar h

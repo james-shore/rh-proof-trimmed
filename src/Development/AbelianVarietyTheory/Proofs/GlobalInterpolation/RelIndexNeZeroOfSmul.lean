@@ -194,11 +194,6 @@ theorem Wx_mul (x : HomE X.E a b) (c : ℂ) (F : VCx X.Tau a b → ℂ) :
   simp only [Wx, opU]
   ring
 
-theorem Wx_sum {κ : Type} (x : HomE X.E a b) (s : Finset κ) (F : κ → VCx X.Tau a b → ℂ) :
-    Wx A x (fun z => ∑ k ∈ s, F k z) = fun z => ∑ k ∈ s, Wx A x (F k) z := by
-  funext z
-  simp only [Wx, opU, Finset.sum_mul, Finset.mul_sum]
-
 theorem Wx_Wx_of_int {x y : HomE X.E a b} (h : ∃ n : ℤ, coc A x y = n) (F : VCx X.Tau a b → ℂ) :
     Wx A x (Wx A y F) = Wx A (x + y) F := by
   obtain ⟨n, hn⟩ := h
@@ -461,11 +456,11 @@ theorem moments_thInd : ∀ (X : Fields) (A : Amb X) (a b : ℕ) (S SG : Finset 
         rw [mul_smul, smul_comm]
         exact nat_smul_mem M _ (hpu m hm))
     hR hR₁ hR₂ (fun y hy l hl hl' => by
-      rw [← Wx_Wx_of_int A (b6 y hy l hl'), hfixW l hl])
+      rw [← _root_.GlobalTheory.MomT.ThShape.Wx_mul A (b6 y hy l hl'), hfixW l hl])
   set γ : HomE X.E a b → ℂ := fun y => (n : ℂ)⁻¹ * Complex.exp (-(2 * (Real.pi : ℂ)) * Complex.I * (coc A (-t) y : ℂ)) with hγ
   have hγq : ∀ y, γ y ∈ TaylorLogMetric.Qbar := fun y => mul_mem hnq (hζ y _).1
   have hΘ : Θ = fun z => ∑ q ∈ R₂ ×ˢ R₁, (γ q.1 * brkE A q.2 (-t)) * Wx A q.2 (Wx A (q.1 - t) e) z := by
-    rw [hth R hR, Wx_sum]
+    rw [hth R hR, _root_.GlobalTheory.MomT.ThShape.Wx_sum]
     funext z
     have := congrFun hsum z
     simp only [Finset.sum_apply] at this

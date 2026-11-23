@@ -98,17 +98,13 @@ theorem piInf_eq_infProj {w : InfinitePlace D.host.F} (e : GlobalTheory.AdelicU.
   | add a b ha hb => rw [RingHom.map_add (f := _), RingHom.map_add (f := _), RingHom.map_add (f := _), ha, hb]
   | tmul a x => rfl
 
-theorem isInfFam_thetaC (D : D7) : IsInfFam (Eqv.thetaC D) := by
-  obtain ⟨θ, hθ⟩ := GlobalTheory.AdelicU.exists_isInfFam D
-  exact Eqv.eq_thetaC D hθ ▸ hθ
-
 theorem psiT_cA (t : D.what₂.Tau) (y : AE D) :
     Eqv.psiT D t (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig y) = conj (Eqv.psiT D t y) := Eqv.psiT_sigR D t y
 
 theorem piInf_cA_of_eq (t : D.what₂.Tau) (e : GlobalTheory.AdelicU.EmbOver D.host.E (GlobalTheory.AdelicU.placeOf D t))
     (h : e.1 = tauE D t) (y : AE D) :
     GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.piInf e (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig y) = conj (Eqv.psiT D t y) := by
-  rw [piInf_eq_infProj, ← GlobalTheory.AdelicU.eq_infProj (isInfFam_thetaC D) e h, ← psiT_cA]
+  rw [piInf_eq_infProj, ← GlobalTheory.AdelicU.eq_infProj (_root_.Formalism.IndefR.Eqv.isInfFam_thetaC D) e h, ← psiT_cA]
   rfl
 
 theorem piInf_cA_of_eq_conj (t : D.what₂.Tau) (e : GlobalTheory.AdelicU.EmbOver D.host.E (GlobalTheory.AdelicU.placeOf D t))
@@ -117,7 +113,7 @@ theorem piInf_cA_of_eq_conj (t : D.what₂.Tau) (e : GlobalTheory.AdelicU.EmbOve
   obtain ⟨σ, hσ⟩ := e
   simp only at h
   subst h
-  rw [GlobalTheory.ConjInfExp.piInf_eq _ (isInfFam_thetaC D)]
+  rw [GlobalTheory.ConjInfExp.piInf_eq _ (_root_.Formalism.IndefR.Eqv.isInfFam_thetaC D)]
   show conj (Eqv.psiT D t (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig y)) = _
   rw [psiT_cA, Complex.conj_conj]
 
@@ -345,7 +341,7 @@ theorem line_mem (hJ : V.J = (1 : D.host.E) • W.gram) (Bs : GlobalTheory.Indef
           (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.piInf (Bs.emb (GlobalTheory.AdelicU.placeOf D t)))) (V.θ (GlobalTheory.AdelicU.placeOf D t)))
     {t : D.what₂.Tau} {Z : Matrix (Fin W.rank) (Fin W.rank) ℂ} (hZ : Z ∈ lieAt W t) (hZC : Commute Z (C t)) (s' : ℝ) :
     GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W 1 hJ (oneP (Eqv.thetaC D) W t Z s') ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.KInf D.sp.cm.sig V Bs.emb := by
-  have hat := GlobalTheory.Mem.Lift.isAtTau_oneP (isInfFam_thetaC D) hZ s'
+  have hat := GlobalTheory.Mem.Lift.isAtTau_oneP (_root_.Formalism.IndefR.Eqv.isInfFam_thetaC D) hZ s'
   refine ⟨mem_UAt hJ hat.1, fun w => ?_⟩
   obtain ⟨t', rfl⟩ := (GlobalTheory.AdelicU.placeOf_bijective D).2 w
   by_cases e : t' = t
@@ -361,7 +357,7 @@ theorem prod_eq (hJ : V.J = (1 : D.host.E) • W.gram) {k : GlobalTheory.Indefin
       GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W 1 hJ (oneP (Eqv.thetaC D) W q.1 q.2 1)).prod := by
   classical
   have hat : ∀ t (s' : ℝ), IsAtTau (Eqv.thetaC D) W t (NormedSpace.exp (s' • Z t)) (oneP (Eqv.thetaC D) W t (Z t) s') :=
-    fun t s' => GlobalTheory.Mem.Lift.isAtTau_oneP (isInfFam_thetaC D) (hZ t).1 s'
+    fun t s' => GlobalTheory.Mem.Lift.isAtTau_oneP (_root_.Formalism.IndefR.Eqv.isInfFam_thetaC D) (hZ t).1 s'
   have e1 : ((Finset.univ.toList.map fun t => (t, Z t)).map fun q : D.what₂.Tau × Matrix (Fin W.rank) (Fin W.rank) ℂ =>
       GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W 1 hJ (oneP (Eqv.thetaC D) W q.1 q.2 1)) =
       (Finset.univ.toList.map fun t => oneP (Eqv.thetaC D) W t (Z t) 1).map (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W 1 hJ) := by

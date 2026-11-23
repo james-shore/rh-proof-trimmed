@@ -53,9 +53,6 @@ namespace GlobalTheory.VacMove
 
 variable {D : D7}
 
-theorem mt_mul_inv' (V : HSp D) (g : GA D V) : Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V g⁻¹ = 1 := by
-  unfold Formalism.L2.Theta.mt; rw [← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]
-
 theorem mem_ideal_mul_mul {m n k l : ℕ} (I : Ideal (AE D)) (A : Matrix (Fin m) (Fin n) (AE D))
     (u : Matrix (Fin n) (Fin k) (AE D)) (B : Matrix (Fin k) (Fin l) (AE D)) (hu : ∀ i j, u i j ∈ I) :
     ∀ i j, (A * u * B) i j ∈ I := by
@@ -99,7 +96,7 @@ theorem mulVec_latA_mem (T : HSp D) (LT MT : Lat T) (P : Pl D → Prop) (h : GA 
     have hy' : y' ∈ GlobalTheory.FinPl.latV T MT P := AddSubgroup.subset_closure ⟨α, hα, hP, 1, rfl, x, hx, rfl⟩
     have hent : ∀ i, y' i ∈ idAt D P := (((GlobalTheory.T.adelicPoint_components_atPlaces_lattices_vacua D P).2 T).2.2.2 MT y' hMT.1).1 hy' |>.1
     have hy'' : Formalism.L2.Theta.mt T h⁻¹ *ᵥ y' ∈ GlobalTheory.FinPl.latV T LT P := by
-      rw [hmov _ (mem_ideal_mulVec _ _ _ hent), Matrix.mulVec_mulVec, mt_mul_inv', Matrix.one_mulVec]
+      rw [hmov _ (mem_ideal_mulVec _ _ _ hent), Matrix.mulVec_mulVec, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.one_mulVec]
       exact hy'
     have hgen : (fun i => pairA D.host.F 0 α ⊗ₜ[D.host.F] (a * x i)) =
         ((1 : AF D.host.F) ⊗ₜ[D.host.F] a : AE D) • y' := by
@@ -130,8 +127,8 @@ theorem vac_of_moves : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp 
   have hact : ∀ u : WO S T, actO S T g h (pull g h u) = u := by
     intro u
     unfold actO pull
-    simp only [← Matrix.mul_assoc, mt_mul_inv', Matrix.one_mul]
-    simp only [Matrix.mul_assoc, mt_mul_inv', Matrix.mul_one]
+    simp only [← Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.one_mul]
+    simp only [Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.mul_one]
   have hhalf : ∀ e (u : WO S T), IsHalf e u → IsHalf e (pull g h u) := by
     intro e u hu i j
     unfold pull

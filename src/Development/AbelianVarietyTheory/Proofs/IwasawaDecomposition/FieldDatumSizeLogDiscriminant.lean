@@ -64,16 +64,6 @@ open scoped IntermediateField
 
 namespace GlobalTheory.Mem.Fld.TorsionSize
 
-theorem exists_prime_dvd_mem {O : Type} [CommRing O] (P : Ideal O) [hP : P.IsPrime] (m : ℕ) :
-    m ≠ 0 → (m : O) ∈ P → ∃ p : ℕ, p.Prime ∧ p ∣ m ∧ (p : O) ∈ P := by
-  first
-  | exact @_root_.GlobalTheory.PrimeDvdNatCastMem.exists_prime_dvd_natCast_mem
-  | exact _root_.GlobalTheory.PrimeDvdNatCastMem.exists_prime_dvd_natCast_mem
-  | (apply _root_.GlobalTheory.PrimeDvdNatCastMem.exists_prime_dvd_natCast_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PrimeDvdNatCastMem.exists_prime_dvd_natCast_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PrimeDvdNatCastMem.exists_prime_dvd_natCast_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PrimeDvdNatCastMem.exists_prime_dvd_natCast_mem ..)
-
 theorem unramIn_of_discr (H M : Type) [Field H] [NumberField H] [Field M] [NumberField M]
     [Algebra H M] [IsGalois H M] (n : ℕ)
     (h : ∀ p : ℕ, p.Prime → p ∣ (discr M).natAbs → p ∣ n)
@@ -85,7 +75,7 @@ theorem unramIn_of_discr (H M : Type) [Field H] [NumberField H] [Field M] [Numbe
     have h1 : Ideal.absNorm P ∣ (discr M).natAbs := by
       rw [natAbs_discr_eq_absNorm_differentIdeal_mul_natAbs_discr_pow H (𝓞 H) M (𝓞 M)]
       exact (map_dvd Ideal.absNorm hd).mul_right _
-    obtain ⟨p, hp, hpd, hpP⟩ := exists_prime_dvd_mem P (Ideal.absNorm P)
+    obtain ⟨p, hp, hpd, hpP⟩ := _root_.GlobalTheory.PrimeDvdNatCastMem.exists_prime_dvd_natCast_mem P (Ideal.absNorm P)
       (by rwa [Ne, Ideal.absNorm_eq_zero_iff]) (Ideal.absNorm_mem P)
     obtain ⟨k, hk⟩ := h p hp (hpd.trans h1)
     apply hn

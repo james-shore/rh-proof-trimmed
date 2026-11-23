@@ -171,8 +171,8 @@ theorem UpperTheory.exteriorCup_cocycle_exists_of_pairing :
     zcomp (Cocycle.ofHom ((chains R).map (prod.snd : sch.obj W ⨯ E ⟶ E))) α₂ (zero_add m)
   let B : Cocycle ((chains R).obj (sch.obj W ⨯ E)) P 1 :=
     zcomp (Cocycle.ofHom ((chains R).map (prod.fst : sch.obj W ⨯ E ⟶ _))) z' (zero_add 1)
-  obtain ⟨γ, hγ⟩ := (GlobalTheory.T.cup_eq_class_of_isAW R μ h).1 A B
-  have hc := (GlobalTheory.T.cup_eq_class_of_isAW R μ h).2 A B γ hγ
+  obtain ⟨γ, hγ⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ h).1 A B
+  have hc := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ h).2 A B γ hγ
   have evA : ∀ (p : ℕ) s hs (T : Scheme.{0}) (y : Sx (sch.obj W ⨯ E) p T), ev (R := R) A.1 p s hs T y = ev (R := R) α₂.1 p s hs T (y.map prod.snd) :=
     fun p s hs T y => (GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R (E := E) (I := Q) (n := m)).2.2.2.1 prod.snd α₂.1 p s hs T y
   have evB : ∀ (p : ℕ) s hs (T : Scheme.{0}) (y : Sx (sch.obj W ⨯ E) p T), ev (R := R) B.1 p s hs T y = ev (R := R) z'.1 p s hs T (y.map prod.fst) :=

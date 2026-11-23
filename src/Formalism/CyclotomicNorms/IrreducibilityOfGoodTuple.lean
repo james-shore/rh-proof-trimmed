@@ -50,6 +50,6 @@ namespace Formalism.CyclotomicNorms
 
 theorem restriction : Restriction := restriction_of_blocks_and_jordan blocks_form_cycle jordan_transitivity
 
-theorem irreducibility_of_good_tuple : IrreducibilityCriterion := irreducibility_of_restriction restriction
+theorem irreducibility_of_good_tuple : IrreducibilityCriterion := _root_.Formalism.CyclotomicNorms.CycleTypeFiniteOrder.t1 restriction
 
 end Formalism.CyclotomicNorms

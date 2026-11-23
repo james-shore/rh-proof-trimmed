@@ -75,7 +75,7 @@ theorem pair_kernel_le : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZero d
       rw [Finset.sum_comm]
       exact Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun κ _ => by ring
     rw [e]
-    exact GlobalTheory.RowKernel.mm_sum fun k _ => GlobalTheory.RowKernel.mm_mul_int (hm k) (hsi k κ')
+    exact GlobalTheory.RowKernel.mm_sum fun k _ => _root_.GlobalTheory.RowLaw.GoodPair.mm_mul (hm k) (hsi k κ')
   · intro ν k hk'
     refine Finset.sum_eq_zero fun κ _ => ?_
     by_cases hκ : (X.G g).ty (Sum.inr κ) = a'

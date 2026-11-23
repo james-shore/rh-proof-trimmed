@@ -164,7 +164,7 @@ theorem GlobalTheory.AbhyankarBC.etale_integralClosure_of_root_uniformizer : ∀
   let f : S[X] := X ^ q - C π
   let D := AdjoinRoot f
   have hD : Algebra.Etale D (integralClosure D (D ⊗[S] L)) :=
-    GlobalTheory.T.abhyankar_dvr_of_isSeparable_alt S K L π q D ⟨AlgEquiv.refl⟩ hπ hqu hram hsep
+    _root_.GlobalTheory.abhyankar_dvr_of_isSeparable S K L π q D ⟨AlgEquiv.refl⟩ hπ hqu hram hsep
   let φ : D →ₐ[S] S₁ := AdjoinRoot.liftAlgHom f (Algebra.ofId S S₁) y (by simp [f, hy])
   letI : Algebra D S₁ := φ.toRingHom.toAlgebra
   letI : Algebra D K₁ := ((algebraMap S₁ K₁).comp φ.toRingHom).toAlgebra
@@ -176,7 +176,7 @@ theorem GlobalTheory.AbhyankarBC.etale_integralClosure_of_root_uniformizer : ∀
   let T := S₁ ⊗[D] N
   haveI : Algebra.Etale S₁ T := Algebra.Etale.baseChange D N S₁
   haveI : Algebra.IsIntegral S₁ T := Algebra.IsIntegral.tensorProduct D S₁ N
-  haveI hT := GlobalTheory.T.etale_integralClosure_tensor S₁ K₁ T inferInstance inferInstance
+  haveI hT := _root_.GlobalTheory.etale_integralClosure_tensor_of_etale_of_isIntegral S₁ K₁ T inferInstance inferInstance
   have hunit : ∀ m ∈ Algebra.algebraMapSubmonoid D (nonZeroDivisors S), IsUnit (algebraMap D K₁ m) := by
     rintro _ ⟨s, hs, rfl⟩
     rw [← IsScalarTower.algebraMap_apply, IsScalarTower.algebraMap_apply S S₁ K₁]

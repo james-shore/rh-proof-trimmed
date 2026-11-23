@@ -226,7 +226,7 @@ theorem fibre_charts : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fint
     refine ⟨x₀, Set.mem_iUnion.2 ⟨(tm m).2, hm.1.2, ?_⟩, rfl⟩
     by_contra hcon
     push_neg at hcon
-    obtain ⟨c, a', ho⟩ := GlobalTheory.T.flag_analytic_plucker_column_swap K ι Φ y Ψ N j M n d BM FA τ ca cb hlt hblk (tm m).2 x₀ hm.1.2 hcon.2
+    obtain ⟨c, a', ho⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.WSq.FC.exists_Lca_of_plk_ne K ι Φ y Ψ N j M n d BM FA τ ca cb hlt hblk (tm m).2 x₀ hm.1.2 hcon.2
     have hbs := hm.1.1
     let w := mk ((BM.Rb.A.chart (tm m).1) (FA.pr (FA.Re.π x₀))) c
     have hbw : bpt (tm m).1 w = FA.pr (FA.Re.π x₀) := by

@@ -166,7 +166,7 @@ theorem GlobalTheory.rap_vari : ∀ (E : Type) [Field E] [NumberField E] [_root_
     refine ⟨(τ • z', c), ⟨?_, hc⟩, rfl⟩
     rw [Metric.mem_closedBall, dist_zero_right, norm_smul, Real.norm_eq_abs, abs_of_nonneg hτ.1]
     exact (mul_le_of_le_one_left (norm_nonneg _) hτ.2).trans hz'R'
-  have key := GlobalTheory.T.norm_sub_le_of_lieDerivative_unipotentSegment E a ψ (infGL E a (d * c)) _ (fun τ => c⁻¹ * unip (τ • z') * c)
+  have key := _root_.GlobalTheory.CuspRapid.norm_sub_le_of_lieD_unipotent_segment E a ψ (infGL E a (d * c)) _ (fun τ => c⁻¹ * unip (τ • z') * c)
     (Cb * (a * a * A * A * (C0 * (r j / r i) * R)) * M) hNN hu (by
       intro τ hτ
       have e : infGL E a (d * c) * infGL E a (c⁻¹ * unip (τ • z') * c) =

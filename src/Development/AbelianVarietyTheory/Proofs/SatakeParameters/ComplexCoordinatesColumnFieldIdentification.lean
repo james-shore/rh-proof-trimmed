@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.UnderTie
+import Formalism.LocalToGlobal.GlobalTheory.GL3.IsometryLinkageTrivialLevel
 
 @[expose] public section
 
@@ -49,8 +50,6 @@ noncomputable section
 namespace GlobalTheory.TwU.SeamEmb
 
 open Formalism.L2.Ker
-
-theorem tau_nonempty' (D : D7) : Nonempty D.what₂.Tau := ⟨D.eTau.symm (Classical.arbitrary _)⟩
 
 variable {D : D7} {X : Fields} (s : Seam D X)
 
@@ -122,7 +121,7 @@ theorem seam_coords : ∀ {D : D7} {X : Fields} (s : Seam D X), s.Ok → ∀ (δ
     · rintro ⟨x, hx, hxv⟩
       exact ⟨seamHom s x, (hM x).2 hx, (hcomp x v).2 hxv⟩
   · intro hδ Ξ v
-    haveI : Nonempty D.what₂.Tau := tau_nonempty' D
+    haveI : Nonempty D.what₂.Tau := _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.G0.tau_nonempty D
     haveI : Nonempty X.Tau := ⟨s.iT.symm (Classical.arbitrary _)⟩
     have hex : (∃ y, embH (X.embC s.σ₀) δ y = fun τ => v (s.iT τ)) ↔ ∃ x, embH (fun τ : D.what₂.Tau => TaylorLogMetric.embT D τ) δ x = v := by
       constructor

@@ -111,13 +111,6 @@ end GlobalTheory.USep.Alg
 
 namespace GlobalTheory.USep.Alg
 
-theorem zpow_sum_units {G ι : Type} [CommGroup G] (a : G) (s : Finset ι) (f : ι → ℤ) :
-    a ^ (∑ i ∈ s, f i) = ∏ i ∈ s, a ^ f i := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert x s hx ih => rw [Finset.sum_insert hx, Finset.prod_insert hx, zpow_add, ih]
-
 end GlobalTheory.USep.Alg
 
 noncomputable section
@@ -239,7 +232,7 @@ theorem GlobalTheory.USep.sepB_of_normBl : ∀ (E : Type) [Field E] [NumberField
       congr 1
       rw [← Units.coe_prod, Finset.prod_comm]
       congr 1
-      exact Finset.prod_congr rfl fun k _ => (GlobalTheory.USep.Alg.zpow_sum_units _ _ _).symm
+      exact Finset.prod_congr rfl fun k _ => (_root_.GlobalTheory.SharpFamRel.zpow_finsetSum _ _ _).symm
     let F : balForms (H.bar : 𝓞 E → 𝓞 E) (Φ.X y) →ₗ[ℤ] ℤ :=
       (ε.coord (.inr i)).comp (pullBalEquiv (H.bar : 𝓞 E → 𝓞 E) e).symm.toLinearMap
     obtain ⟨n, hn, lam, hlam⟩ := GlobalTheory.USep.Alg.exists_extend_smul (balForms (H.bar : 𝓞 E → 𝓞 E) (Φ.X y)) F

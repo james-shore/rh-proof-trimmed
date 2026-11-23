@@ -102,7 +102,7 @@ theorem firstFactor_ev₂ (c : Chart G d) (n : ℕ) (f : MvPowerSeries (Fin d �
       | inr i => exact map_zero _)
     _ hy (by
       intro j; cases j with
-      | inl i => simp [Chart.ev, GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate]
+      | inl i => simp [Chart.ev, _root_.GlobalTheory.Katz.evA_X]
       | inr i => simp) f
   exact h2.trans h1.symm
 
@@ -116,7 +116,7 @@ theorem Katz.Chart.isLaw_of_isLawOf : ∀ (p : ℕ) (k : Type) [CommRing k] (d :
   have hcomp : ∀ (n : ℕ) (i : Fin d), pullbackTwo (G.res n) (Coalgebra.comul (R := k) (c.x (n + 1) i))
       = Coalgebra.comul (R := k) (c.x n i) := fun n i => by
     rw [pullTwo_comul, c.res]
-  refine ⟨((GlobalTheory.T.connectedPDivGroup_formalLaw_coordinates p k d G c).2 μ hμ).1, ?_, ?_, ?_⟩
+  refine ⟨((_root_.GlobalTheory.LawCoord.main p k d G c).2 μ hμ).1, ?_, ?_, ?_⟩
   · funext i
     obtain ⟨f, -, huniq⟩ := (GlobalTheory.T.functions_eq_series_in_chart p k d G c).2.2 (fun n => c.x n i) (fun n => c.res n i)
     have hX : ∀ n, c.ev n (X i) = c.x n i := fun n => GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate _ _ _ _ _ i

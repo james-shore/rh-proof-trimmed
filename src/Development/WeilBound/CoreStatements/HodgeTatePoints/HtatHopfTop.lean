@@ -91,7 +91,7 @@ theorem btOrder_eq_top (hHenselian : type_of% @GlobalTheory.T.exists_henselian_f
     simpa only [hκa] using this
   rw [← PositivityTheory.HtPt.Twhopf.mem_order, ← GlobalTheory.T.btOrder_eq_of_le_of_isFinOpenSub R' T Γ' U' _ hU' hFU hle, PositivityTheory.HtPt.Twhopf.mem_order] at h1
   rw [← hg1]
-  refine PositivityTheory.HtPt.Htat.bt_reg_descent R T Γ R' Γ' F hF hflat κ hκ _ g' ?_
+  refine _root_.PositivityTheory.HtPt.Htat.StalkDivisibility.regularAt_of_baseChange R T Γ R' Γ' F hF hflat κ hκ _ g' ?_
   simpa only [hκa] using h1 t g' (hU'cl g' hg2)
 
 end PositivityTheory.HtPt.Htat.HopfOrderEqTop

@@ -162,7 +162,7 @@ open Classical in
 theorem exists_bump (ρ : Representation ℂ (LH k n) E) (hρ : IsSmooth ρ) (s : kˣ) (e : E) :
     ∃ b : cIndSpace (LH k n) ρ, ∀ v : Fin n → k,
       restr ρ b v = if Multiplicative.ofAdd v ∈ polyBall (k := k) n s then e else 0 :=
-  GlobalTheory.T.exists_induced_ball_indicator k n E ρ hρ s e
+  _root_.GlobalTheory.CompanionTheory.MirLevi.Bump.exists_bump_restr k n E ρ hρ s e
 
 open Classical in
 theorem exists_reps (φ : (Fin n → k) → E) (s S : kˣ)
@@ -170,7 +170,7 @@ theorem exists_reps (φ : (Fin n → k) → E) (s S : kˣ)
     (hsupp : ∀ v : Fin n → k, φ v ≠ 0 → Multiplicative.ofAdd v ∈ polyBall (k := k) n S) :
     ∃ R : Finset (Fin n → k), ∀ v : Fin n → k,
       φ v = ∑ x ∈ R, if Multiplicative.ofAdd (v - x) ∈ polyBall (k := k) n s then φ x else 0 :=
-  GlobalTheory.T.locally_constant_finite_ball_sum k n E φ s S hper hsupp
+  _root_.GlobalTheory.CompanionTheory.MirFourier.exists_finset_eq_sum_polyBall_translates k n E φ s S hper hsupp
 
 open Classical in
 theorem exists_strictHenselian_absolutely_closed_local_ring (ψ : AddChar k Circle) (hψ : Continuous ψ) (N : ℕ) (ρ : Representation ℂ (LH k (N + 1)) E) :
@@ -181,7 +181,7 @@ theorem exists_strictHenselian_absolutely_closed_local_ring (ψ : AddChar k Circ
       (∀ s : kˣ, (∀ a : Fin (N + 1) → k, Multiplicative.ofAdd a ∈ polyBall (k := k) (N + 1) s → ψ (a (Fin.last N)) = 1) →
         ∃ c : ℂ, c ≠ 0 ∧ ∀ (b : cIndSpace (LH k (N + 1)) ρ) (e : E),
           (∀ v, restr ρ b v = if Multiplicative.ofAdd v ∈ polyBall (k := k) (N + 1) s then e else 0) → T b = c • e) :=
-  GlobalTheory.T.restriction_ball_indicator_span k ψ hψ N _ E (restr ρ) (restr_periodic ρ) (restr_support ρ)
+  _root_.GlobalTheory.CompanionTheory.ThetaInt.exists_twisted_integral k ψ hψ N _ E (restr ρ) (restr_periodic ρ) (restr_support ρ)
     (fun a f => cInd (LH k (N + 1)) ρ (uv (N + 1) a) f) (fun a f v => restr_uv ρ a f v)
     (fun m f => cInd (LH k (N + 1)) ρ (levi k (N + 1) m) f) (fun m => ρ (lv k (N + 1) m))
     (fun m f v => restr_levi ρ m f v)

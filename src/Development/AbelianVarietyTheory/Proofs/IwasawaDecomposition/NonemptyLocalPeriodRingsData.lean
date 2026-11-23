@@ -57,11 +57,6 @@ namespace GlobalTheory.MemLoc
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.MemLoc
 open scoped Formalism.Per
 
-theorem coreEx_alg_tower {l : ℕ} [Fact l.Prime] (a : Per.Ainf l) :
-    algebraMap (Per.Ainf l) (Per.Acris l) a =
-      algebraMap (Per.Acris0 l) (Per.Acris l) (algebraMap (Per.Ainf l) (Per.Acris0 l) a) :=
-  GlobalTheory.RingIface.tower l a
-
 section
 set_option allowUnsafeReducibility true in
 attribute [local irreducible] Per.Acris Per.Bcris
@@ -81,7 +76,7 @@ theorem coreEx_isUnit_l {l : ℕ} [Fact l.Prime] (e : Per.Fl l) (h1 : e.untilt =
   have h4 : (algebraMap (Per.Acris l) (Per.Bcris l)).comp (algebraMap (Per.Acris0 l) (Per.Acris l))
       (algebraMap (Per.Ainf l) (Per.Acris0 l) (mu e)) =
       algebraMap (Per.Acris l) (Per.Bcris l) (algebraMap (Per.Ainf l) (Per.Acris l) (mu e)) := by
-    rw [coreEx_alg_tower, RingHom.comp_apply]
+    rw [_root_.GlobalTheory.MemLoc.algebraMap_ainf_acris_eq, RingHom.comp_apply]
   rw [h4] at h3
   exact isUnit_of_mul_isUnit_left (h3 ▸ hu.pow (l - 1))
 
@@ -109,7 +104,7 @@ theorem nonempty_core : ∀ (l : ℕ) [Fact l.Prime], Nonempty (Core l) := by
     intro a
     have h := hι (algebraMap (Per.Ainf l) (Per.Acris l) a)
     have h' : j (algebraMap (Per.Ainf l) (Per.Acris l) a) = aDp l a := by
-      rw [coreEx_alg_tower, hj.on0]; rfl
+      rw [_root_.GlobalTheory.MemLoc.algebraMap_ainf_acris_eq, hj.on0]; rfl
     rw [h'] at h
     rw [GlobalTheory.RingIface.aB_apply]
     exact h

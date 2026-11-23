@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.ConjTransposeEqOfInG
 import Std.Tactic.BVDecide.Normalize.Prop
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CayleyChartDomainIsOpen
 
 @[expose] public section
 
@@ -115,13 +116,6 @@ def weightedL2Continuous (s : ℝ) : Submodule ℂ (ℝ → ℂ) where
     rw [this]
     exact ENNReal.mul_lt_top (by simp [ENNReal.pow_lt_top]) hf'
 
-theorem inUJ_mul {ε : Fin n → Bool} {g h : Matrix (Fin n) (Fin n) ℂ} (hg : Formalism.REAL.inUJ ε g)
-    (hh : Formalism.REAL.inUJ ε h) : Formalism.REAL.inUJ ε (g * h) := by
-  unfold Formalism.REAL.inUJ at *
-  calc (g * h)ᴴ * Formalism.REAL.Jm ε * (g * h) = hᴴ * (gᴴ * Formalism.REAL.Jm ε * g) * h := by
-        simp only [Matrix.conjTranspose_mul, Matrix.mul_assoc]
-    _ = Formalism.REAL.Jm ε := by rw [hg, hh]
-
 section Fam
 
 variable {ε : Fin n → Bool} {X : GMod n} {ι : Type} {c : ι → X.V →ₗ[ℂ] (Matrix (Fin n) (Fin n) ℂ → ℂ)}
@@ -133,7 +127,7 @@ def line (c : ι → X.V →ₗ[ℂ] (Matrix (Fin n) (Fin n) ℂ → ℂ)) (A g 
 theorem line_hasDerivAt (hc : IsCoefFam ε X c) (hA : Formalism.REAL.inG ε A) {g : Matrix (Fin n) (Fin n) ℂ}
     (hg : Formalism.REAL.inUJ ε g) (i : ι) (u : X.V) (t : ℝ) :
     HasDerivAt (line c A g i u) (line c A g i (actM X.E A u) t) t := by
-  have h := hc.1 i u A hA (g * NormedSpace.exp ((t : ℂ) • A)) (inUJ_mul hg (Formalism.REAL.exp_indefinite_unitary_holds n ε A hA t))
+  have h := hc.1 i u A hA (g * NormedSpace.exp ((t : ℂ) • A)) (_root_.ReciprocityTheory.ChartRestriction.DS.slm_inUJ_mul hg (Formalism.REAL.exp_indefinite_unitary_holds n ε A hA t))
   have h' : HasDerivAt (fun t' : ℝ => c i u (g * NormedSpace.exp ((t : ℂ) • A) *
       NormedSpace.exp (((t' - t : ℝ) : ℂ) • A))) (c i (actM X.E A u) (g * NormedSpace.exp ((t : ℂ) • A))) t :=
     HasDerivAt.comp_sub_const t t (by simpa using h)
@@ -273,7 +267,7 @@ theorem shift_mem (hc : IsCoefFam ε X c) (hA : Formalism.REAL.inG ε A) (μ : M
             simp only [Matrix.mul_assoc]
         _ = _ := by rw [hE, Matrix.mul_one]
     have hgU : Formalism.REAL.inUJ ε (S7.toM x * NormedSpace.exp ((t : ℂ) • A)) :=
-      inUJ_mul x.2 (Formalism.REAL.exp_indefinite_unitary_holds n ε A hA t)
+      _root_.ReciprocityTheory.ChartRestriction.DS.slm_inUJ_mul x.2 (Formalism.REAL.exp_indefinite_unitary_holds n ε A hA t)
     change c i (actM X.E Y u) (S7.toM x * NormedSpace.exp ((t : ℂ) • A)) = _
     rw [left_expand hl Y u hgU, hconj]
     simp only [h, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Matrix.smul_apply, Finset.mul_sum, Finsupp.sum, line]

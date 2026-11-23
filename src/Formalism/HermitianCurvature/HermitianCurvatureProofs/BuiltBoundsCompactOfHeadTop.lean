@@ -55,9 +55,9 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.GermPartsCom
 namespace Formalism.FourierDecayAlt.P
 
 theorem built_bounds_compact_of_head_top (hH : Formalism.FourierDecayAlt.KB.HeadTop) : Formalism.FourierDecayAlt.KB.BuiltBounds2Cpt := fun hA =>
-  built_bounds_compact_of_leaves radial_head hH degree_of_lift_pairing top_local_built_places degree_top
-    top_ratio (germ_parts_compact_support kernel_continuity_built germ_rate_bound hA)
+  _root_.Formalism.FourierDecayAlt.P.PBASM.builtBounds2CptOfLeaves radial_head hH degree_of_lift_pairing _root_.Formalism.FourierDecayAlt.P.PBL.topLocB degree_top
+    _root_.Formalism.FourierDecayAlt.P.PBL.topRatio (_root_.Formalism.FourierDecayAlt.P.GermFibreKernels.germPartsC_of _root_.Formalism.FourierDecayAlt.P.LastBlockContinuity.level_forms_joint_continuity germ_rate_bound hA)
     (fun hA' => uniform_decay_of_place hA' radial_head hH
-      (uniform_decay_of_heads radial_head hH)) hA
+      (_root_.Formalism.FourierDecayAlt.P.PBO.decayUnifOfHeads radial_head hH)) hA
 
 end Formalism.FourierDecayAlt.P

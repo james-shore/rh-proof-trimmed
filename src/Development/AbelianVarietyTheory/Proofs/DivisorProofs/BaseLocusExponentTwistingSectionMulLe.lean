@@ -80,7 +80,7 @@ theorem refExp_vp_add_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   intro E _ _ _ H Dw l Xo c r U hU x G G₀ hG cst k q hq t ht
   refine (refExp_vp_le_iff U).2 fun la T io e ho y hy φ hφ => ?_
   have h0 := (refExp_vp_le_iff U).1 (le_refl (refExp_vp U cst G q)) la T io e ho y hy φ hφ
-  obtain ⟨Z, hZ⟩ := GlobalTheory.T.exists_component_integral_framedPoint_liesOn E H Dw l Xo c T io y
+  obtain ⟨Z, hZ⟩ := _root_.GlobalTheory.IntFrComp.exists_liesOn E H Dw l Xo c T io y
   have hv : (fun f => nval T.V e (evI y f)) ∈ valOn Z la.1 := ⟨PtV.mk la.1 ho y ⟨hy, hZ⟩ () trivial, rfl⟩
   have hm : 0 < vAdd la.1 (q : c.F) := vAdd_natCast_pos hq.ne_zero la.2
   have hq' : vV T.V (q : T.Fr) = (e : ℤ) * vAdd la.1 (q : c.F) := by

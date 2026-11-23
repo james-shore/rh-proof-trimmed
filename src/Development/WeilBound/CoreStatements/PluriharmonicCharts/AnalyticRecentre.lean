@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.BiholomorphicLiftSystem
 
 @[expose] public section
 
@@ -52,11 +53,6 @@ open GroundTheory.Heights₂.Heights.LowerBoundFree
 namespace PositivityTheory.Xgp.c_bm_exists_local
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
-
-theorem not_top (z : (Σ k, ι k) → ℂ) : z ∉ mcPts (⊤ : Ideal (MRing ι)) := by
-  intro h
-  have := h.2 1 trivial
-  simp at this
 
 private theorem fderiv_pi_apply {E Q : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] [Fintype Q]
     {G : E → Q → ℂ} {y : E} (hG : DifferentiableAt ℂ G y) (q : Q) (w : E) :
@@ -75,7 +71,7 @@ theorem imm_chart {P : Ideal (MRing ι)} {D : ℕ} (R : AnLogRes P ⊤ D) (x : R
   have hyx' : R.A.chart j ((R.A.chart j).symm y) = y := (R.A.chart j).right_inv hyt
   have hmem := R.mem ((R.A.chart j).symm y) ((R.A.chart j).symm y) (R.mem_U _)
   choose p hp using hmem.1
-  have himm := R.immersion ((R.A.chart j).symm y) (not_top _) p hp j hx'src
+  have himm := R.immersion ((R.A.chart j).symm y) (_root_.GlobalTheory.CompanionTheory.Ar.PB.Cj.ResTop.not_mem_mcPts_top _) p hp j hx'src
   rw [hyx'] at himm
   have hdiffq : ∀ q, DifferentiableAt ℂ (fun z => R.lift x ((R.A.chart j).symm z) q) y := fun q =>
     (R.holo x q j y ⟨hyt, hxU⟩).differentiableAt
@@ -344,7 +340,7 @@ theorem exists_sncChart {P : Ideal (MRing ι)} {n : ℕ} (R : AnLogRes P ⊤ n) 
             R.lift ((B.chart k).symm (recentre w₀ ρ π t')) ((B.chart k).symm (recentre w₀ ρ π t')) p := by
             rw [hep]
             ring
-    have hzz := R.inj _ _ (not_top _) horb
+    have hzz := R.inj _ _ (_root_.GlobalTheory.CompanionTheory.Ar.PB.Cj.ResTop.not_mem_mcPts_top _) horb
     have hrr : recentre w₀ ρ π t = recentre w₀ ρ π t' := by
       have h := congrArg (B.chart k) hzz
       rwa [(B.chart k).right_inv hrt, (B.chart k).right_inv hrt'] at h

@@ -191,9 +191,6 @@ theorem mat_blkU (A B : HSp D) {d : ℕ} (e : Fin A.rank ⊕ Fin B.rank ≃ Fin 
     (h : J = skewGram A B e) (g : GA D A × GA D B) :
     mat (blkU A B e h g) = GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blk e (mt A g.1) (mt B g.2) := rfl
 
-theorem mt_one (V : HSp D) : mt V 1 = 1 := by
-  simp [Formalism.L2.Theta.mt]
-
 theorem exists_detOne_mul_blkU : ∀ {D : D7} (A B : HSp D) {d : ℕ} (e : Fin A.rank ⊕ Fin B.rank ≃ Fin d) {J : Matrix (Fin d) (Fin d) D.host.E}
     (h : J = skewGram A B e), 0 < d → ∀ x : UB J, ∃ (s : UB J) (g : GA D A × GA D B), (mat s).det = 1 ∧ x = s * blkU A B e h g := by
   intro D A B d e J h hd x
@@ -203,9 +200,9 @@ theorem exists_detOne_mul_blkU : ∀ {D : D7} (A B : HSp D) {d : ℕ} (e : Fin A
   obtain ⟨g, hg⟩ : ∃ g : GA D A × GA D B, (mat (blkU A B e h g)).det = (mat x).det := by
     rcases Nat.eq_zero_or_pos A.rank with hA | hA
     · obtain ⟨g, hg⟩ := exists_det_eq B (by omega) _ hz
-      exact ⟨(1, g), by rw [mat_blkU, det_blk, mt_one, Matrix.det_one, one_mul, hg]⟩
+      exact ⟨(1, g), by rw [mat_blkU, det_blk, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.det_one, one_mul, hg]⟩
     · obtain ⟨g, hg⟩ := exists_det_eq A hA _ hz
-      exact ⟨(g, 1), by rw [mat_blkU, det_blk, mt_one, Matrix.det_one, mul_one, hg]⟩
+      exact ⟨(g, 1), by rw [mat_blkU, det_blk, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.det_one, mul_one, hg]⟩
   refine ⟨x * (blkU A B e h g)⁻¹, g, ?_, (inv_mul_cancel_right x _).symm⟩
   have hm : mat x = mat (x * (blkU A B e h g)⁻¹) * mat (blkU A B e h g) := by
     conv_lhs => rw [← inv_mul_cancel_right x (blkU A B e h g)]

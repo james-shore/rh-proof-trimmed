@@ -45,5 +45,3 @@ open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.Char
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
 attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
-theorem _root_.GlobalTheory.T.low_height_of_given : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsGalois ℚ E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), HTLow Xo c := by
-  first | exact @GlobalTheory.CompanionTheory.Ar.Plug.htLow | exact GlobalTheory.CompanionTheory.Ar.Plug.htLow | (intros; apply GlobalTheory.CompanionTheory.Ar.Plug.htLow <;> assumption)

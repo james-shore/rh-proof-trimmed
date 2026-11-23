@@ -79,7 +79,7 @@ theorem interNum_nonneg_of_ample_tens_nef : ∀ (k : Type) [Field k] [Infinite k
     exact hind
   have hsupp : suppDim (QCoh.structureModule (Scheme.IdealSheafData.vanishingIdeal Z).subscheme) ≤ (d : WithBot ℕ∞) :=
     (QCoh.suppDim_le _).trans hYdim
-  exact T.intersectionNumber_nonneg_of_nef_ample_add_nef k _ hYproj (fun A N hA hN => H _ hYproj hYdim A N hA hN) d _ hsupp
+  exact _root_.GlobalTheory.interNum_nonneg_of_isNef_of_ample_tens_nef k _ hYproj (fun A N hA hN => H _ hYproj hYdim A N hA hN) d _ hsupp
     (fun i => (P i).pull (redι Z)) (fun i => (hP i).pull_of_isClosedImmersion (redι Z) hcompat)
 
 end GlobalTheory.KleimanDim

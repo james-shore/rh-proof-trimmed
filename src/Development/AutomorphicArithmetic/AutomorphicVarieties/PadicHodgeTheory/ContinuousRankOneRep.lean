@@ -103,7 +103,7 @@ theorem UpperTheory.V.Loc.laWD :
   · rw [MonoidHom.mul_apply, Units.val_mul, eξ, hκψ, mul_right_comm, map_mul ι (_ * _)]
     rfl
   · rw [htw] at pκ ⊢
-    rw [GlobalTheory.T.fontaineParameter_twist_potentiallySemistable l _ _ ⟨T⟩ ι F Ω A w h O Bw hj 1 _ _ (continuous_rank_one_rep μ hμ) (continuous_rank_one_rep ψ hψ) pμ pψ pκ,
+    rw [_root_.GlobalTheory.TwistParamAbove.wdAt_twist l _ _ ⟨T⟩ ι F Ω A w h O Bw hj 1 _ _ (continuous_rank_one_rep μ hμ) (continuous_rank_one_rep ψ hψ) pμ pψ pκ,
       ParamAboveModel.eq_lpOfChar h _ (GlobalTheory.Pst.Test.lpDim_wdAt _ ι Bw h hj (GlobalTheory.TripleGal.rk1 ψ)) η sη wψ,
       GlobalTheory.RowTie.EigTwist.eig_lpChar _ _ σ (by simp [WD.lpOfChar]) _ (eig_lpOfChar η sη σ)]
     exact Multiset.mem_map_of_mem _ (wξ σ)

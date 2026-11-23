@@ -89,7 +89,7 @@ theorem adCent_comm (d : GL (Fin n) E) (hd : IsRegD d) (t t' : GA E n) (ht : t �
     t * t' = t' * t := by
   obtain ⟨v, hv⟩ := GlobalTheory.T.exists_cyclic_vector_of_separable E n (nrm d).val hd
   have hγ : IsPol (nrm d).val (nrm d).val := ⟨X, (aeval_X _).symm⟩
-  exact Units.ext (GlobalTheory.T.commute_of_commute_cyclic_matrix E (Ad E) n (nrm d).val v hv t.val t'.val
+  exact Units.ext (_root_.GlobalTheory.CompanionTheory.TorusCh.commute_of_commute_cyclic E (Ad E) n (nrm d).val v hv t.val t'.val
     (commute_of_mem d t ht _ hγ) (commute_of_mem d t' ht' _ hγ))
 
 theorem exists_idem' {K : Type} [Field K] {n : ℕ} (γ : Matrix (Fin n) (Fin n) K) (hγ : γ.charpoly.Separable)
@@ -159,7 +159,7 @@ theorem prim_dich (d : GL (Fin n) E) (e : Matrix (Fin n) (Fin n) E) (he : IsPrim
 
 theorem lam_sg (d : GL (Fin n) E) (e : Matrix (Fin n) (Fin n) E) (he : IsPol (nrm d).val e) (he2 : e * e = e) (t : GA E n)
     (ht : t ∈ adCent d) : lam (sg d e) t = - lam e t :=
-  GlobalTheory.T.lambda_involution_neg E n d e he2 t ht (commute_of_mem d t ht e he) (commute_of_mem d t ht _ (sg_pol d e he))
+  _root_.GlobalTheory.CompanionTheory.TorusAdj.lam_sg E n d e he2 t ht (commute_of_mem d t ht e he) (commute_of_mem d t ht _ (sg_pol d e he))
 
 theorem height_lb {K : Type} [Field K] [NumberField K] {n : ℕ} (γ : Matrix (Fin n) (Fin n) K) (hγ : γ.charpoly.Separable)
     (e : Matrix (Fin n) (Fin n) K) (he : IsPrim γ e) {c : ℝ} (hc : 0 < c) :
@@ -299,7 +299,7 @@ theorem torusChar : DegAdelic → TorusChar := by
     exact lam_rat _ (hπi _) r (hcm _ (GlobalTheory.CompanionTheory.RatDisc.ratCent_le d ⟨r, hr, rfl⟩) _)
   · exact continuousOn_pi.2 fun j => GlobalTheory.T.continuousOn_lambda_subgroup E n _ (hπi _) (GlobalTheory.T.log_abs_eq_log_idele_module E) (adCent d) fun t ht => hcm t ht _
   · intro M
-    obtain ⟨S, hS, hSx⟩ := GlobalTheory.T.exists_primitive_idempotents_separating E n γ hsep
+    obtain ⟨S, hS, hSx⟩ := _root_.GlobalTheory.CompanionTheory.TorusCh.exists_prim_cover E n γ hsep
     have hbd : ∀ e ∈ S, ∀ t ∈ adCent d, (∀ i, |a t i| ≤ M) → |lam e t| ≤ m * |M| := by
       intro e he t ht hM
       have hp := hS e he

@@ -196,6 +196,6 @@ theorem GlobalTheory.ChernPull.chernTop_comp : ∀ {n : ℕ} {ι : Type} {m : ι
     (f := fun x : ι × ℕ => chernPoly (fun u => K u x.1) (φ v) x.2)
     ((GlobalTheory.ChernPull.substAlg (GlobalTheory.ChernPull.jac φ v)).restrictScalars ℝ))
   simp only [AlgHom.comp_apply, AlgHom.coe_restrictScalars'] at ha
-  rw [← ha, GlobalTheory.ChernPull.substAlg, GlobalTheory.T.topDegreeFormCoeff_linearSubst_eq_absDet_sq_mul, Complex.mul_conj, GlobalTheory.ChernPull.jac_eq_toMatrix,
+  rw [← ha, GlobalTheory.ChernPull.substAlg, _root_.GlobalTheory.GoodMetric.topCoeff_subst_conj, Complex.mul_conj, GlobalTheory.ChernPull.jac_eq_toMatrix,
     LinearMap.det_toMatrix, Complex.re_ofReal_mul]
   ring

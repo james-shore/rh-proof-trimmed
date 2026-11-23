@@ -171,7 +171,7 @@ theorem step [Module.Finite O O'] [Module.Free O O'] [Nontrivial O'] {ℓ : ℕ}
   have hJ : a ⊗ₜ[O] (v * r) ∈ Ideal.map (GlobalTheory.CompanionTheory.UnitNorm.inc : R →ₐ[O] O' ⊗[O] R) (⊥ : Ideal R).jacobson :=
     Ideal.map_mono (Ideal.pow_le_self (by omega)) hmem
   have hU : IsUnit (1 + a ⊗ₜ[O] (v * r)) :=
-    GlobalTheory.T.isUnit_one_add_jacobson_tensor O O' R _ hJ
+    _root_.GlobalTheory.CompanionTheory.JacUnit.main O O' R _ hJ
   have hPP : GlobalTheory.CompanionTheory.UnitNorm.nrm ℓ τ (P : O' ⊗[O] R) *
       GlobalTheory.CompanionTheory.UnitNorm.nrm ℓ τ ((P⁻¹ : (O' ⊗[O] R)ˣ) : O' ⊗[O] R) = 1 := by
     rw [← GlobalTheory.CompanionTheory.UnitNorm.nrm_mul, Units.mul_inv, GlobalTheory.CompanionTheory.UnitNorm.nrm_one]
@@ -230,7 +230,7 @@ theorem norm_units_surjective : PositivityTheory.Rg.Tf.Loc.N1 → PositivityTheo
     exact Ideal.map_mono hle
   have h4 : ∀ x ∈ Ideal.map (GlobalTheory.CompanionTheory.UnitNorm.inc : R →ₐ[O] O' ⊗[O] R) ((⊥ : Ideal R).jacobson ^ 1),
       IsUnit (1 + x) := fun x hx =>
-    GlobalTheory.T.isUnit_one_add_jacobson_tensor O O' R x (by rwa [pow_one] at hx)
+    _root_.GlobalTheory.CompanionTheory.JacUnit.main O O' R x (by rwa [pow_one] at hx)
   have h6 : (GlobalTheory.CompanionTheory.UnitNorm.inc : R →ₐ[O] O' ⊗[O] R) (r : R) - GlobalTheory.CompanionTheory.UnitNorm.nrm ℓ τ (P₁ : O' ⊗[O] R) ∈
       Ideal.map (GlobalTheory.CompanionTheory.UnitNorm.inc : R →ₐ[O] O' ⊗[O] R) ((⊥ : Ideal R).jacobson ^ 1) := by
     rw [pow_one, ← neg_sub]

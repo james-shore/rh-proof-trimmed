@@ -59,7 +59,7 @@ theorem kills_hcTw : ∀ (F : Type) [Field F] [Finite F], ∀ (t : F →+* F) (a
     ∀ (α A : GL (Fin a) F → ℂ) (β B : GL (Fin b) F → ℂ), IsChar ℂ ℂ A → IsChar ℂ ℂ B → Kills α A →
       Kills β B → Kills (hcTw t a b α β n) (hc a b A B n) := by
   intro F _ _ t a b n hn α A β B hA hB hαA hβB
-  obtain ⟨H, π, hmem, hsurj, hπ, -, -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F a b n hn
+  obtain ⟨H, π, hmem, hsurj, hπ, -, -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F a b n hn
   have hcard : (Nat.card {p : GL (Fin n) F // InPar a p} : ℂ) = (Nat.card H : ℂ) := by
     congr 1
     exact Nat.card_congr (Equiv.subtypeEquivRight fun x => (hmem x).symm)
@@ -96,8 +96,8 @@ theorem kills_hcTw : ∀ (F : Type) [Field F] [Finite F], ∀ (t : F →+* F) (a
     congr 1
     funext y
     rw [hid, hE]
-  have hk := GlobalTheory.T.isotypicPart_exteriorProduct_inflated_surjection H (GL (Fin a) F) (GL (Fin b) F) π hsurj α A β B hA hB hαA hβB
+  have hk := _root_.GlobalTheory.Shin.kills_prod_comp_surj H (GL (Fin a) F) (GL (Fin b) F) π hsurj α A β B hA hB hαA hβB
   rw [h1, h2]
-  exact GlobalTheory.T.isInCharacterIsotypicPart_twistedInduction (GL (Fin n) F) H (fun y => gal t n y) _ _ hk
+  exact _root_.GlobalTheory.Shin.IndIso.kills_ind (GL (Fin n) F) H (fun y => gal t n y) _ _ hk
 
 end GlobalTheory.Shin.HcIso

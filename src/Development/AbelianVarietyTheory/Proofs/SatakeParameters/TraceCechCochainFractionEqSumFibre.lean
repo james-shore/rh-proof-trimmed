@@ -73,14 +73,14 @@ theorem trF_locCoch_eq_finsum_fib : ∀ (k : Type) [Field k] [CharZero k] (F K :
   have h1 : trF k τ ρ (locCoch k K x (h : K) Finset.univ) = ρ (Algebra.trace F K (h : K)) := by
     simp only [trF, LinearMap.comp_apply, LinearMap.restrictScalars_apply, hloc, map_smul, hτ.1, smul_eq_mul, mul_one]
   rw [h1]
-  obtain ⟨e, -⟩ := GlobalTheory.T.standardAffineOpen_ring_polynomialEquiv k F d x hc.pd 0
+  obtain ⟨e, -⟩ := _root_.GlobalTheory.PD.rA_single_polyEquiv k F d x hc.pd 0
   haveI : IsIntegrallyClosed (rA k x {0}) := IsIntegrallyClosed.of_equiv e.toRingEquiv
-  haveI : IsFractionRing (rA k x {0}) F := (GlobalTheory.T.standardOpenCoordinateRing_isFractionRing_isNoetherianRing k F d x hc.pd {0} (Finset.singleton_nonempty _)).1
+  haveI : IsFractionRing (rA k x {0}) F := (_root_.GlobalTheory.PD.rA_isFractionRing_isNoetherianRing k F d x hc.pd {0} (Finset.singleton_nonempty _)).1
   haveI := hc.fin
   have hint : IsIntegral (rA k x {0}) (h : K) := h.2
   obtain ⟨a, ha⟩ := (IsIntegrallyClosed.isIntegral_iff (R := rA k x {0}) (K := F)).1 (Algebra.isIntegral_trace (L := F) hint)
-  obtain ⟨ev, hev, hker⟩ := GlobalTheory.T.laurentConstantTerm_eq_eval_origin_chart k F d x hc.pd ρ hρ
+  obtain ⟨ev, hev, hker⟩ := _root_.GlobalTheory.PD.ResEv.chart0 k F d x hc.pd ρ hρ
   have ha' : (a : F) = Algebra.trace F K (h : K) := ha
-  rw [← ha', hev, GlobalTheory.T.trace_eval_origin_eq_fibre_trace k F K d x hc ev hker h a ha', GlobalTheory.T.trace_fibreRing_eq_finsum_fibrePoints k F K d x hc hac hred h]
+  rw [← ha', hev, _root_.GlobalTheory.PD.TraceOrigin.ev_eq_trace_quot k F K d x hc ev hker h a ha', _root_.GlobalTheory.PD.FibTrace.trace_quot_eq_finsum_fib k F K d x hc hac hred h]
 
 end GlobalTheory.PD

@@ -70,15 +70,6 @@ section Algebra
 
 
 open PowerSeries in
-theorem constantCoeff_algHom {L : Type} [CommRing L] (γ : L⟦X⟧ →ₐ[L] L⟦X⟧) (h0 : constantCoeff (γ X) = 0)
-    (a : L⟦X⟧) : constantCoeff (γ a) = constantCoeff a := by
-  conv_lhs => rw [PowerSeries.eq_shift_mul_X_add_const a]
-  have : γ (C (constantCoeff a)) = C (constantCoeff a) := γ.commutes _
-  rw [map_add (f := _), map_mul, this, map_add (f := _), map_mul, h0]
-  simp
-
-
-open PowerSeries in
 theorem eq_zero_of_fixed {L ι : Type} [Field L] [Fintype ι] [DecidableEq ι] (γ : L⟦X⟧ →ₐ[L] L⟦X⟧)
     (h0 : constantCoeff (γ X) = 0) (hu : ∀ k : ℕ, 0 < k → coeff 1 (γ X) ^ k ≠ 1) (G : ι → ι → L⟦X⟧)
     (hG : ∀ i j, constantCoeff (G i j) = if i = j then 1 else 0) (d : ι → L⟦X⟧)
@@ -101,7 +92,7 @@ theorem eq_zero_of_fixed {L ι : Type} [Field L] [Fintype ι] [DecidableEq ι] (
         ring
       have h3 := congrArg constantCoeff h2
 
-      simp only [map_sum, map_mul, map_pow, hG, constantCoeff_algHom γ h0, ite_mul, one_mul, zero_mul,
+      simp only [map_sum, map_mul, map_pow, hG, _root_.GlobalTheory.Cyc.constantCoeff_algHom γ h0, ite_mul, one_mul, zero_mul,
       Finset.sum_ite_eq, Finset.mem_univ, if_true] at h3
       have h4 : constantCoeff (e i) = 0 := by
         have : constantCoeff (e i) * (constantCoeff z ^ (k + 1) - 1) = 0 := by linear_combination h3
@@ -243,7 +234,7 @@ theorem coord_eq (hu : ∀ k : ℕ, 0 < k → algebraMap O LL (Γ.χΓ Γ.gam : 
     split_ifs <;> simp
   · have e1 : PowerSeries.constantCoeff (toL O LL n (z' i) k) = 0 := (hc (z' i k)).trans (by rw [hz0, map_zero])
     have e2 : ∀ j, PowerSeries.constantCoeff (γL R g (w j) k) = 0 := fun j =>
-      (constantCoeff_algHom _ (hX g) _).trans (hw0 j k)
+      (_root_.GlobalTheory.Cyc.constantCoeff_algHom _ (hX g) _).trans (hw0 j k)
 
     simp only [Matrix.mulVec, dotProduct, Pi.sub_apply, Finset.sum_apply, Pi.mul_apply, map_sub, map_sum, map_mul,
     e1, e2, hw0, mul_zero, Finset.sum_const_zero, sub_zero]
@@ -275,13 +266,7 @@ theorem γD_smulA (T : LocLat G Qp LL O) (g : Γ.Gam) (a : LetA O n) (x : E.DD T
     E.γD T g (a • x) = letγ (R.γ₀ g) a • E.γD T g x := by
   rw [← algebraMap_smul R.EE a x, E.γD_smul, R.γE_ext, algebraMap_smul]
 
-theorem φD_smulA (T : LocLat G Qp LL O) (a : LetA O n) (x : E.DD T) :
-    E.φD T (a • x) = letφ R.φ₀ a • E.φD T x := by
-  rw [← algebraMap_smul R.EE a x, E.φD_smul, R.φE_ext, algebraMap_smul]
-
-theorem jD_smulA (T : LocLat G Qp LL O) (a : LetA O n) (x : E.DD T) :
-    E.jD T (a • x) = inclR (I.io a) • E.jD T x := by
-  rw [← algebraMap_smul R.EE a x, E.jD_smul, I.ioE_ext]
+alias φD_smulA := _root_.GlobalTheory.HWL.SandProof.φD_smulA
 
 theorem exists_val (hinj : Function.Injective inclR) (gA : G → (RA →ₐ[O] RA))
     (hg1 : ∀ g r, inclR (gA g r) = gR g (inclR r))
@@ -302,7 +287,7 @@ theorem exists_val (hinj : Function.Injective inclR) (gA : G → (RA →ₐ[O] R
 
     rw [map_sum]
     refine val_sum _ _ _ fun i => ?_
-    rw [jD_smulA]
+    rw [_root_.GlobalTheory.HWL.SandProof.jD_smulA]
     exact (hx i).smul _
   let a : ι → ↥Dc.C := fun j => ⟨_, hC j⟩
   have hτ : IsUnit (Dc.J Dc.t ^ p) := by

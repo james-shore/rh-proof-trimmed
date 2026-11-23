@@ -77,15 +77,7 @@ theorem tensorLift_tmul (u : A →+* C) (v : B →+* C)
     tensorLift u v h (a ⊗ₜ[R] b) = u a * v b := by
   simp [tensorLift, Algebra.TensorProduct.productMap_apply_tmul]
 
-theorem ringHom_ext {g h : A ⊗[R] B →+* C} (h1 : ∀ a : A, g (a ⊗ₜ[R] (1 : B)) = h (a ⊗ₜ[R] (1 : B)))
-    (h2 : ∀ b : B, g ((1 : A) ⊗ₜ[R] b) = h ((1 : A) ⊗ₜ[R] b)) : g = h := by
-  first
-  | exact @_root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor
-  | exact _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor
-  | (apply _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor ..)
+alias ringHom_ext := _root_.GlobalTheory.RingHomTensorExtensionality.ringHom_ext_tensor
 
 theorem algebraMap_tmul_one (r : R) :
     (algebraMap R A r) ⊗ₜ[R] (1 : B) = (1 : A) ⊗ₜ[R] (algebraMap R B r) := by

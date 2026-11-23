@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PUnipotentModulusMatrix
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.MeasurableCuspWeightFamily
 
 @[expose] public section
 
@@ -75,7 +76,7 @@ theorem first_minimum_cusp_weight_regular : ∀ (E : Type) [Field E] [NumberFiel
     rintro y ⟨I, hI, rfl⟩
     exact (h3 I hI).1
   have hcw : Measurable fun x : U => (R x).cuspW F.σ :=
-    GlobalTheory.T.measurable_cusp_weight_family E g Λ Ψ U R F.σ F.form (fun x => F.form_eq _) (fun I => (hnz I).measurable) hbdd
+    _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Measurability.measurable_cuspW E g Λ Ψ U R F.σ F.form (fun x => F.form_eq _) (fun I => (hnz I).measurable) hbdd
   refine ⟨continuousOn_iff_continuous_restrict.2 hlam, ?_, hO, ?_⟩
   · classical
     have e : (ballDom F.q).indicator (fun t => (F.R t).cuspW F.σ) =

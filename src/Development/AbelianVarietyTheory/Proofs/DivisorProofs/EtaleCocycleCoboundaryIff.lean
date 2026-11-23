@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimplicialCochainCoboundaryOfClassZero
 
 @[expose] public section
 
@@ -60,15 +61,6 @@ noncomputable section
 namespace GlobalTheory.CechOne
 
 variable (A B : Type) [CommRing A] [CommRing B] [Algebra A B]
-
-theorem isCls_zero (R : Type) [CommRing R] (F : Shv R) (E : Spc) :
-    IsCls (0 : (free R).obj (E.obj (op ⦋1⦌)) ⟶ F) (0 : H R E F ((1 : ℕ) : ℤ)) := by
-  have hc0 : ∀ {n : ℕ}, cobd (0 : (free R).obj (E.obj (op ⦋n⦌)) ⟶ F) = 0 := by
-    intro n; simp [cobd]
-  obtain ⟨x, hx⟩ := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F E 1).1 0 hc0
-  have h4 := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F E 0).2.2.2.1 0 x (by rw [hc0]; exact hx)
-  rw [h4] at hx
-  exact hx
 
 theorem mul_inv_mul_cancel_comm {M : Type*} [AddCommGroup M] {a b c : M} (h : a - b + c = 0) : b = c + a := by
   rw [sub_add_eq_add_sub, sub_eq_zero] at h
@@ -95,7 +87,7 @@ theorem cobd_eq_zero_iff (R : Type) [CommRing R] (F : Shv R) (s : (free R).obj (
         (Algebra.TensorProduct.includeLeft : B →ₐ[A] B ⊗[A] B)).toRingHom)).hom (val s (Spec (CommRingCat.of (B ⊗[A] B))) (P1 A B)) +
       ((onRings F).map (CommRingCat.ofHom
         (Algebra.TensorProduct.includeRight : B ⊗[A] B →ₐ[A] B ⊗[A] (B ⊗[A] B)).toRingHom)).hom (val s (Spec (CommRingCat.of (B ⊗[A] B))) (P1 A B)) := by
-  have hinj := (GlobalTheory.T.freeSheafHomValueAt_cechNerveSimplex_bijective R F _ _ (fB A B) 2 _ _ (y2 A B) (hy2 A B) (GlobalTheory.T.triple_tensor_wide_pullback_limit A B).some).1
+  have hinj := (_root_.GlobalTheory.EtC.CechPts.main R F _ _ (fB A B) 2 _ _ (y2 A B) (hy2 A B) (_root_.GlobalTheory.CechOne.spec_tensor3_isLimit A B).some).1
   constructor
   · intro h
     have h2 := (val_coboundary_second_level A B R F s).symm.trans
@@ -117,19 +109,19 @@ theorem rel_unique [Algebra.Etale A B] [Module.FaithfullyFlat A B] (R : Type) [C
   obtain ⟨s, hs, hx⟩ := h
   obtain ⟨s', hs', hx'⟩ := h'
   have hss : s = s' :=
-    (GlobalTheory.T.freeSheafHomValueAt_cechNerveSimplex_bijective R F _ _ (fB A B) 1 _ _ (y1 A B) (hy1 A B) (GlobalTheory.T.isLimit_widePullbackCone_spec_tensorSquare A B).some).1 (hs.trans hs'.symm)
+    (_root_.GlobalTheory.EtC.CechPts.main R F _ _ (fB A B) 1 _ _ (y1 A B) (hy1 A B) (_root_.GlobalTheory.CechOne.isLimit_widePullback_tensor A B).some).1 (hs.trans hs'.symm)
   subst hss
-  have := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F (cech (fB A B)) 1).2.2.1 s _ _ hx hx'
+  have := (_root_.GlobalTheory.EtC.isCls_basic R F (cech (fB A B)) 1).2.2.1 s _ _ hx hx'
   obtain ⟨h1, h2⟩ := smooth_surj A B
   exact (GlobalTheory.T.etC_a2 R (fB A B) F ((1 : ℕ) : ℤ)).1 this
 
 theorem rel_exists [Algebra.Etale A B] [Module.FaithfullyFlat A B] (R : Type) [CommRing R] (F : Shv R) (u : Z1 F A B) :
     ∃ x, Rel A B R F u x := by
-  obtain ⟨s, hs⟩ := (GlobalTheory.T.freeSheafHomValueAt_cechNerveSimplex_bijective R F _ _ (fB A B) 1 _ _ (y1 A B) (hy1 A B) (GlobalTheory.T.isLimit_widePullbackCone_spec_tensorSquare A B).some).2
+  obtain ⟨s, hs⟩ := (_root_.GlobalTheory.EtC.CechPts.main R F _ _ (fB A B) 1 _ _ (y1 A B) (hy1 A B) (_root_.GlobalTheory.CechOne.isLimit_widePullback_tensor A B).some).2
     (u : (onRings F).obj (CommRingCat.of (B ⊗[A] B)))
   have hs' : val s (Spec (CommRingCat.of (B ⊗[A] B))) (P1 A B) = (u : (onRings F).obj (CommRingCat.of (B ⊗[A] B))) := hs
   have hc : cobd s = 0 := (cobd_eq_zero_iff A B R F s).2 (by rw [hs']; exact (mem_Z1_iff_cocycle A B R F _).1 u.2)
-  obtain ⟨y, hy⟩ := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F (cech (fB A B)) 1).1 s hc
+  obtain ⟨y, hy⟩ := (_root_.GlobalTheory.EtC.isCls_basic R F (cech (fB A B)) 1).1 s hc
   obtain ⟨h1, h2⟩ := smooth_surj A B
   obtain ⟨x, hx⟩ := (GlobalTheory.T.etC_a2 R (fB A B) F ((1 : ℕ) : ℤ)).2 y
   exact ⟨x, s, hs', hx ▸ hy⟩
@@ -143,14 +135,14 @@ theorem rel_add (R : Type) [CommRing R] (F : Shv R) (u u' : Z1 F A B) (x x' : H 
   · rw [val_add, hs, hs']
     rfl
   · rw [map_add (f := _)]
-    exact (GlobalTheory.T.simplicialCochain_classes_basic_properties R F _ 1).2.1 s s' _ _ hx hx'
+    exact (_root_.GlobalTheory.EtC.isCls_basic R F _ 1).2.1 s s' _ _ hx hx'
 
 theorem rel_zero (R : Type) [CommRing R] (F : Shv R) : Rel A B R F 0 0 := by
   refine ⟨0, ?_, ?_⟩
   · rw [val_zero]
     rfl
   · rw [map_zero]
-    exact isCls_zero R F _
+    exact _root_.GlobalTheory.CechOne.isCls_zero_deg_one R F _
 
 
 open Classical in
@@ -188,7 +180,7 @@ theorem cech1 : ∀ (R : Type) [CommRing R] (F : Shv R) (A : Type) [CommRing A],
   intro R _ F A _
   refine ⟨fun B => gamHom A B R F, ?_⟩
   intro B _ _ _ _
-  have bij0 := GlobalTheory.T.freeSheafHomValueAt_cechNerveSimplex_bijective R F _ _ (fB A B) 0 _ _ _ _ (GlobalTheory.T.isLimit_widePullbackCone_spec_single A B).some
+  have bij0 := _root_.GlobalTheory.EtC.CechPts.main R F _ _ (fB A B) 0 _ _ _ _ (_root_.GlobalTheory.CechOne.isLimit_cone_one A B).some
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro u
     change gam A B R F u = 0 ↔ _
@@ -196,7 +188,7 @@ theorem cech1 : ∀ (R : Type) [CommRing R] (F : Shv R) (A : Type) [CommRing A],
     constructor
     · rintro ⟨s, hs, hx⟩
       rw [map_zero] at hx
-      obtain ⟨t, rfl⟩ := GlobalTheory.T.simplicialCochain_coboundary_of_class_zero R F _ s hx
+      obtain ⟨t, rfl⟩ := _root_.GlobalTheory.CechOne.cobd_of_isCls_zero R F _ s hx
       exact ⟨val t (Spec (CommRingCat.of B)) (P0 A B), by rw [← hs, val_coboundary_first_level]⟩
     · rintro ⟨v, hv⟩
       obtain ⟨t, ht⟩ := bij0.2 v
@@ -206,23 +198,23 @@ theorem cech1 : ∀ (R : Type) [CommRing R] (F : Shv R) (A : Type) [CommRing A],
       have hc : cobd (cobd t) = 0 := (cobd_eq_zero_iff A B R F _).2 (by rw [hval]; exact (mem_Z1_iff_cocycle A B R F _).1 u.2)
       refine ⟨cobd t, hval, ?_⟩
       rw [map_zero]
-      obtain ⟨x, hx⟩ := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F _ 1).1 (cobd t) hc
-      have h4 := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F _ 0).2.2.2.1 t x hx
+      obtain ⟨x, hx⟩ := (_root_.GlobalTheory.EtC.isCls_basic R F _ 1).1 (cobd t) hc
+      have h4 := (_root_.GlobalTheory.EtC.isCls_basic R F _ 0).2.2.2.1 t x hx
       rw [h4] at hx
       exact hx
   · intro x hx
-    obtain ⟨s, hs, hcls⟩ := GlobalTheory.T.etaleCohomology_one_cechCocycle_of_pullback_zero R F _ _ (fB A B) x hx
+    obtain ⟨s, hs, hcls⟩ := _root_.GlobalTheory.EtC.LerayOne.cech_cocycle_of_pull_eq_zero R F _ _ (fB A B) x hx
     exact ⟨⟨val s (Spec (CommRingCat.of (B ⊗[A] B))) (P1 A B), (mem_Z1_iff_cocycle A B R F _).2 ((cobd_eq_zero_iff A B R F s).1 hs)⟩, (gam_eq A B R F _ x).2 ⟨s, rfl, hcls⟩⟩
   · intro u
     obtain ⟨s, hs, hcls⟩ := gam_spec A B R F u
-    exact GlobalTheory.T.etaleCohomologyPullback_eq_zero_of_cechOneCocycle R F (fB A B) s ((cobd_eq_zero_iff A B R F s).2 (by rw [hs]; exact (mem_Z1_iff_cocycle A B R F _).1 u.2)) _ hcls
+    exact _root_.GlobalTheory.CechOne.pull_sch_eq_zero R F (fB A B) s ((cobd_eq_zero_iff A B R F s).2 (by rw [hs]; exact (mem_Z1_iff_cocycle A B R F _).1 u.2)) _ hcls
   · intro B' _ _ _ _ φ u u' hu
     change gam A B' R F u' = gam A B R F u
     rw [gam_eq]
     obtain ⟨s, hs, hcls⟩ := gam_spec A B R F u
     refine ⟨(free R).map ((cechMap (fB A B) (fB A B') _ (spec_algHom φ)).app (op ⦋1⦌)) ≫ s, ?_, ?_⟩
     · rw [val_cech_map_first_level, hs, hu]
-    · have := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F _ 1).2.2.2.2 _ (cechMap (fB A B) (fB A B') _ (spec_algHom φ)) s _ hcls
+    · have := (_root_.GlobalTheory.EtC.isCls_basic R F _ 1).2.2.2.2 _ (cechMap (fB A B) (fB A B') _ (spec_algHom φ)) s _ hcls
       rw [← pull_comp, cechMap_aug] at this
       exact this
 

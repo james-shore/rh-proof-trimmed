@@ -76,7 +76,7 @@ theorem topLocB : TopLocB := by
   have hds : d + s = S.G.r + 1 := by omega
   have hd2 : d ≤ 2 * S.G.r := by omega
   obtain ⟨-, grid, hinj, hbnd, hmem, hwords, hprob, -⟩ :=
-    Formalism.FourierDecayAlt.P.new_letters_admissible E Wp Wq S hGo hGr hCI v a C.Kst d ha' haN' hd2
+    _root_.Formalism.FourierDecayAlt.P.PBD.newLetters E Wp Wq S hGo hGr hCI v a C.Kst d ha' haN' hd2
   refine ⟨PBD.pushU grid (fun ys => KB.plusW ys a), PBD.pushTh grid (fun ys => KB.plusW ys a), hprob, ?_⟩
   intro ε hε t Y ht hY
   have hY' : ∀ P ∈ Y, D.ptSize P = d := fun P hP => by rw [hd]; exact hY P hP
@@ -145,7 +145,7 @@ theorem topLocB : TopLocB := by
             ∑ e', ∑ ρ, (del2 S p v (KB.plusW (List.ofFn fun b => grid b (n b)) a) e' ρ : ℂ) *
               gramH (vecT S p F v ε s t (KB.plusW (List.ofFn fun b => grid b (n b)) a) e' ρ) P Q)) := by
     intro P hP Q hQ
-    refine (mix_pushT (setC S p F) v ε (S.G.r + 1) grid (fun ys => KB.plusW ys a) _ _).trans ?_
+    refine (_root_.Formalism.FourierDecayAlt.P.PBL.mix_push (setC S p F) v ε (S.G.r + 1) grid (fun ys => KB.plusW ys a) _ _).trans ?_
     refine Finset.sum_congr rfl fun n _ => ?_
     rw [thGrid_eq, ← hΛ, gN_top hVT hB F v ε s hs2 t _ P Q (hsz P hP) (hsz Q hQ), sizeAt_plusW]
     have hk : 1 / (ΓS S (S.G.r + 1) * (((List.ofFn fun b => grid b (n b)).map fun y => |S.P v y|).prod *
@@ -188,7 +188,7 @@ theorem topLocB : TopLocB := by
       have e2 : (S.G.r : ℤ) + 2 - ((S.G.r + 2 - s : ℕ) : ℤ) = (s : ℤ) := by push_cast; omega
       have e3 : (S.g : ℝ) = S.G.g := by unfold C.HidaSetting.g Sz.Glob.g; push_cast; ring
       have e4 : S.G.r + 2 - s - 1 = d := by omega
-      rw [e2, e1, e4, hlvdef, zpow_sq_eq _ (by positivity), inv_div, e3, hBdef, ← pow_mul, ntop_eq_N'',
+      rw [e2, e1, e4, hlvdef, zpow_sq_eq _ (by positivity), inv_div, e3, hBdef, ← pow_mul, _root_.Formalism.FourierDecayAlt.P.PBL.ntop_eq_N',
         len_eq_lenI', hC0, mul_comm d 2]
       ring
     have hfin : ‖c‖ ^ 2 * Λ * C0 ^ C.Kst * Λ ≤ (‖t‖ * lamTop S (S.G.r + 2 - s) v) ^ (2 * C.Kst) := by
@@ -209,4 +209,3 @@ end
 
 end Formalism.FourierDecayAlt.P.PBL
 
-theorem Formalism.FourierDecayAlt.P.top_local_built_places : Formalism.FourierDecayAlt.P.PBL.TopLocB := Formalism.FourierDecayAlt.P.PBL.topLocB

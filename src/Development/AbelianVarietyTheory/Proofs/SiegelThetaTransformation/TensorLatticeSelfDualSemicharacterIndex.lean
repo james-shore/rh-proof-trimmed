@@ -142,7 +142,7 @@ theorem exists_mul_le {B B' : Lt E r} (hfg : B.FG)
     ∃ N : 𝓞 E, N ≠ 0 ∧ ∀ u ∈ B, (N : E) • u ∈ B' := by
   obtain ⟨s, rfl⟩ := hfg
   choose d hd0 hd using fun v : Fin r → E =>
-    exists_smul_mem_of_mem_span_fraction (K := E) B' v (hsp ▸ Submodule.mem_top)
+    _root_.GlobalTheory.LatticeBoundedAction.main (K := E) B' v (hsp ▸ Submodule.mem_top)
   refine ⟨∏ v ∈ s, d v, Finset.prod_ne_zero_iff.2 fun v _ => hd0 v, fun u hu => ?_⟩
   change (∏ v ∈ s, d v) • u ∈ B'
   induction hu using Submodule.span_induction with

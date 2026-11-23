@@ -288,7 +288,7 @@ theorem unramified_doubling_sum : GlobalTheory.Published.UnramifiedDoublingGL �
   have hsum := GlobalTheory.summable_nonneg_family_of_differentiableOn c n (ratFun (resCard k) N β) _ εβ hc0 hεβ dβ fun z h1 h2 => by
     have := hnβ z h1 h2
     simpa only [hcb] using this
-  have hid := GlobalTheory.hasSum_of_dominated_of_eq_near_zero' b c n (ratFun (resCard k) N α) _ εα hbc hsum hεα dα hnα
+  have hid := _root_.GlobalTheory.hasSum_of_dominated_of_eq_near_zero b c n (ratFun (resCard k) N α) _ εα hbc hsum hεα dα hnα
   have hz : ‖(resCard k : ℂ) ^ (-s)‖ = (resCard k : ℝ) ^ (-s.re) := by
     rw [Complex.norm_natCast_cpow_of_pos (by omega)]
     simp

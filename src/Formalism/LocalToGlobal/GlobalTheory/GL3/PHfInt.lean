@@ -42,21 +42,9 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-noncomputable section
-
 namespace Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.TI
 
-open Polynomial NumberField Matrix
-
-theorem trace_isIntegral {E : Type*} [Field E] [NumberField E] (φ : E →+* ℂ) {n : ℕ}
-    (L : Submodule (𝓞 E) (Fin n → E)) (hfg : L.FG)
-    (hsp : Submodule.span E (L : Set (Fin n → E)) = ⊤)
-    (M : Matrix (Fin n) (Fin n) E) (hM : ∀ x ∈ L, M *ᵥ x ∈ L) : IsIntegral ℤ M.trace := by
-  first | exact GlobalTheory.IntegralTrace.isIntegral_trace .. | (apply GlobalTheory.IntegralTrace.isIntegral_trace <;> assumption) | (intros; apply GlobalTheory.IntegralTrace.isIntegral_trace <;> assumption) | (apply @GlobalTheory.IntegralTrace.isIntegral_trace <;> assumption) | (intros; apply @GlobalTheory.IntegralTrace.isIntegral_trace <;> assumption) | (apply @GlobalTheory.IntegralTrace.isIntegral_trace <;> first | assumption | infer_instance) | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› φ n L hfg hsp M hM | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› φ n L hfg hsp M | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› φ n L hfg hsp | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› φ n L hfg | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› φ n L | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› φ n | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› φ | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› ‹_› | exact @GlobalTheory.IntegralTrace.isIntegral_trace E ‹_› | exact @GlobalTheory.IntegralTrace.isIntegral_trace E
-
 end Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.TI
-
-end
 
 noncomputable section
 
@@ -142,7 +130,7 @@ theorem sE_hom_gen {N N' : ℕ} (L : Submodule (𝓞 D.host.E) (Fin N → D.host
     intro x hx
     rw [← Matrix.mulVec_mulVec]
     exact hBs_mem _ (hA x hx)
-  have h := trace_isIntegral D.host.φ₀ L hL.1 hL.2.1 (Bs * A) hM
+  have h := _root_.GlobalTheory.IntegralTrace.isIntegral_trace D.host.φ₀ L hL.1 hL.2.1 (Bs * A) hM
   have htr : (Bs * A).trace = sE D A B := by
     simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, sE, hBs, Matrix.of_apply]
     rw [Finset.sum_comm]

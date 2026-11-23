@@ -65,7 +65,7 @@ theorem unit_isPow_on_excisionNbhd : ∀ (k B : Type) [Field k] [IsAlgClosed k] 
   have hw : (a * a' * g - a - a') * g = n' * d' * (bn * bd) - 1 := by
     linear_combination (-(bd * d')) * ha + (a * g - 1) * hb
   have hC' : IsExcisionNbhd B (Localization.Away (n' * d')) g :=
-    GlobalTheory.T.isExcisionNbhd_away_of_inverse_mod B B g (isExcisionNbhd_self B g) (n' * d') (bn * bd)
+    _root_.GlobalTheory.EtC.isExcisionNbhd_away B B g (isExcisionNbhd_self B g) (n' * d') (bn * bd)
       (Ideal.mem_span_singleton'.mpr ⟨_, hw⟩)
   set C' := Localization.Away (n' * d') with hC'def
   have hnd : IsUnit (algebraMap B C' (n' * d')) := IsLocalization.Away.algebraMap_isUnit _
@@ -77,7 +77,7 @@ theorem unit_isPow_on_excisionNbhd : ∀ (k B : Type) [Field k] [IsAlgClosed k] 
   set ε : C' := algebraMap B C' n' * Di with hεdef
   have hε : IsUnit ε := hnC.mul (Units.isUnit _)
   have hεd : ε * algebraMap B C' d' = algebraMap B C' n' := by rw [hεdef, mul_assoc, hDi1, mul_one]
-  obtain ⟨r, hr⟩ := GlobalTheory.T.exists_pow_sub_mem_span_of_isUnit_mod k B q hq g hg (n' * bd) (bn * d')
+  obtain ⟨r, hr⟩ := _root_.GlobalTheory.exists_pow_sub_mem_span_of_isUnit_mod_of_isAlgClosed k B q hq g hg (n' * bd) (bn * d')
     (Ideal.mem_span_singleton'.mpr ⟨a * a' * g - a - a', by linear_combination hw⟩)
   obtain ⟨w, hw'⟩ := Ideal.mem_span_singleton'.mp hr
   have hqC : IsUnit (q : C') := by simpa using hq.map ((algebraMap B C').comp (algebraMap k B))
@@ -88,10 +88,10 @@ theorem unit_isPow_on_excisionNbhd : ∀ (k B : Type) [Field k] [IsAlgClosed k] 
     simp only [map_mul, map_sub, map_add (f := _), map_pow, map_one] at e1 e2
     rw [hεdef]
     linear_combination e1 + (algebraMap B C' n' * Di) * e2 - (algebraMap B C' n' * algebraMap B C' bd) * hDi1
-  obtain ⟨C, _, _, hC, x, hx⟩ := GlobalTheory.T.exists_excisionNbhd_with_root_of_isUnit C' (algebraMap B C' g) q hqC ε (algebraMap B C' r) hε hεr
+  obtain ⟨C, _, _, hC, x, hx⟩ := _root_.GlobalTheory.EtC.exists_excisionNbhd_adjoin_root C' (algebraMap B C' g) q hqC ε (algebraMap B C' r) hε hεr
   letI : Algebra B C := ((algebraMap C' C).comp (algebraMap B C')).toAlgebra
   haveI : IsScalarTower B C' C := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  refine ⟨C, inferInstance, inferInstance, GlobalTheory.T.isExcisionNbhd_trans' B C' C g hC' hC, ?_⟩
+  refine ⟨C, inferInstance, inferInstance, _root_.GlobalTheory.EtC.isExcisionNbhd_trans B C' C g hC' hC, ?_⟩
   set L := Localization.Away (algebraMap B C (f * g))
   set ψ : B →+* L := (algebraMap C L).comp (algebraMap B C) with hψ
   set ρ : C' →+* L := (algebraMap C L).comp (algebraMap C' C) with hρ

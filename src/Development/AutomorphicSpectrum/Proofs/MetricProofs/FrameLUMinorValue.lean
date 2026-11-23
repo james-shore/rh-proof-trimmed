@@ -80,7 +80,7 @@ theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι 
     rw [GlobalTheory.T.frame_minor_value_formula K ι Φ y Ψ N j M F zb (τ', stepOf N j b') k A (hh τ')⁻¹ z α J hF hzb hG hk
       hA hzα, hLU, MinorCalc.minorIJ_mul_of_support L U J (stepCols N j (stepOf N j b'))
       (MinorCalc.support_stepCols (i := stepOf N j b') hj U hUb hUt)]
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.lower_unipotent_minor_formula N j L a' b' hj hLb hLu hba hs
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.WMan.LowMinor.minorIJ_stepCols_of_isLowerUni N j L a' b' hj hLb hLu hba hs
   have hUne : minorIJ U (stepCols N j (stepOf N j b')) (stepCols N j (stepOf N j b')) ≠ 0 := by
     rw [MinorCalc.minorIJ_self_of_triangular U hUt]
     exact Finset.prod_ne_zero_iff.2 hUd

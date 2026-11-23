@@ -55,10 +55,6 @@ namespace GlobalTheory.FinGL.PosOne
 
 open GlobalTheory.FinGL Formalism.L2.DIV Module Matrix
 
-theorem mem_eig {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V] (τ : Representation ℂ G V) (S : Set G) (χ : G → ℂ)
-    (v : V) : v ∈ eig τ S χ ↔ ∀ g ∈ S, τ g v = χ g • v := by
-  simp [eig, Submodule.mem_iInf, sub_eq_zero]
-
 theorem exists_descent {G P V : Type} [Group G] [Group P] [AddCommGroup V] [Module ℂ V] (τ : Representation ℂ G V)
     (Q : Subgroup G) (ρ : Q →* P) (hρ : Function.Surjective ρ) (χ : Q →* ℂˣ) :
     ∃ (M : Submodule ℂ V) (π : Representation ℂ P M), ∀ (S : Set P) (c : P → ℂ) (T : Set G) (d : G → ℂ),
@@ -72,7 +68,7 @@ theorem exists_descent {G P V : Type} [Group G] [Group P] [AddCommGroup V] [Modu
   have hσ : ∀ (g : Q) (v : V), σ g v = (((χ g)⁻¹ : ℂˣ) : ℂ) • τ g v := fun g v => rfl
   let M : Submodule ℂ V := eig σ (ρ.ker : Set Q) fun _ => 1
   have hM : ∀ v, v ∈ M ↔ ∀ g : Q, ρ g = 1 → σ g v = v := fun v => by
-    simp [M, mem_eig]
+    simp [M, _root_.GlobalTheory.FinGL.Mir.mem_eig]
   have hst : ∀ g : Q, ∀ v ∈ M, σ g v ∈ M := by
     intro g v hv
     rw [hM] at hv ⊢
@@ -114,7 +110,7 @@ theorem exists_descent {G P V : Type} [Group G] [Group P] [AddCommGroup V] [Modu
     · intro h; rw [h, smul_smul]; simp
   have e : (eig π S c).map M.subtype = eig τ T d := by
     ext v
-    simp only [Submodule.mem_map, mem_eig]
+    simp only [Submodule.mem_map, _root_.GlobalTheory.FinGL.Mir.mem_eig]
     constructor
     · rintro ⟨w, hw, rfl⟩ g hg
       obtain ⟨h, hh⟩ := (hT g).1 hg
@@ -346,7 +342,7 @@ theorem nPos_zero_eq_sum : ∀ (F : Type) [Field F] [Fintype F] (ψ : AddChar F 
   obtain ⟨M, π, hπ⟩ := exists_descent τ (tailUnip F r k) (corner h) (corner_surj h) (addCharHom ψ (tailHom F r k))
   have hχ : ∀ g : tailUnip F r k, ((addCharHom ψ (tailHom F r k) g : ℂˣ) : ℂ) =
       ψ (edgeSum (tailEdge k) (g : GL (Fin r) F)) := fun g => rfl
-  have main := GlobalTheory.T.finrank_mirabolic_whittaker_eigenspace F ψ hψ k (tailUnip F (k + 1) k) mem_tailUnip_last M π
+  have main := _root_.GlobalTheory.FinGL.Mir.mirabolic_whittaker F ψ hψ k (tailUnip F (k + 1) k) mem_tailUnip_last M π
   have hs : ∀ {n : ℕ} (a b : Fin n), symEdge 0 k a b → b.val = a.val + 1 := fun a b t => by
     unfold symEdge at t; omega
   rw [hπ _ _ (unipSym F r 0 k : Set (GL (Fin r) F)) (fun g => ψ (edgeSum (symEdge 0 k) g))

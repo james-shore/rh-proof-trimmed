@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 public import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.CoeSelfDualLatticeInFrameCoordinatesEq
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.InclusionInjective
 
 @[expose] public section
 
@@ -201,7 +202,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem place_mul_eq_zero {D : D7} (V : HSp D) {g : GA D V} (α : Af D.host.F)
     (h : (α ⊗ₜ[D.host.F] (1 : D.host.E) : AfE D) • ((finHom V g).1 - 1) = 0) (i j : Fin V.rank) :
     algebraMap (AF D.host.F) (AE D) (pairA D.host.F 0 α) * (mt V g - 1) i j = 0 := by
-  have hfm : (finHom V g).1 = (mt V g).map (finPart D) := GlobalTheory.UnitarySplit.val_bc _ _
+  have hfm : (finHom V g).1 = (mt V g).map (finPart D) := _root_.Formalism.UG.P.bc_coe _ _
   have hal : algebraMap (AF D.host.F) (AE D) (pairA D.host.F 0 α) =
       (pairA D.host.F 0 α) ⊗ₜ[D.host.F] (1 : D.host.E) := by
     rw [Algebra.algebraMap_eq_smul_one, Algebra.TensorProduct.one_def, TensorProduct.smul_tmul', smul_eq_mul,
@@ -236,7 +237,7 @@ theorem exists_rat_real_trivAt_cong : ∀ (D : D7) (V : HSp D) (L : Lt D.host.E 
   obtain ⟨-, -, -, hlift, -⟩ := GlobalTheory.UnitarySplit.real_finite_split D V
   obtain ⟨g₁, hg₁, hg₁f⟩ := hlift h' hh'
   obtain ⟨k₁, hk₁, hk₁f⟩ := hlift k' hk'
-  have hfm : ∀ x : GA D V, (finHom V x).1 = (mt V x).map (finPart D) := fun x => GlobalTheory.UnitarySplit.val_bc _ _
+  have hfm : ∀ x : GA D V, (finHom V x).1 = (mt V x).map (finPart D) := fun x => _root_.Formalism.UG.P.bc_coe _ _
   have hγfin : (finHom V γ).1 = GlobalTheory.UnRep.fm D.host.F γ'.1 := by
     rw [GlobalTheory.Member.RatElt.fin_eq hγ]
     rfl

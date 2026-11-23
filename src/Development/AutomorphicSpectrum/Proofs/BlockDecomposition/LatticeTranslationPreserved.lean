@@ -66,11 +66,6 @@ open GlobalTheory.CompanionTheory.FourierN (mat_injective)
 
 variable {D : D7} {n ρ p : ℕ} {hn : ρ + p = n}
 
-theorem adelicConjTranspose_blockMatrixTwoByTwoFin {k : ℕ} (a b c d : Mx D k k) :
-    adj (blk4 a b c d) = blk4 (adj a) (adj c) (adj b) (adj d) := by
-  simp only [adj, blk4]
-  rw [← Matrix.submatrix_map, Matrix.transpose_submatrix, Matrix.fromBlocks_map, Matrix.fromBlocks_transpose]
-
 theorem block_matrix_diagonal_one_eq_one {k : ℕ} : blk4 (1 : Mx D k k) 0 0 1 = 1 := by
   simp only [blk4, Matrix.fromBlocks_one, Matrix.submatrix_one_equiv]
 
@@ -81,7 +76,7 @@ theorem jr_eq {k : ℕ} : JR (AF D.host.F) (Jst D k) = (blk4 0 1 (-1) 0 : Mx D (
 theorem rel_left {k : ℕ} (g : G D k) {a b c d : Mx D k k} (h : mat g = blk4 a b c d) :
     adj d ⬝ a - adj b ⬝ c = 1 ∧ adj a ⬝ c = adj c ⬝ a ∧ adj b ⬝ d = adj d ⬝ b ∧ adj a ⬝ d - adj c ⬝ b = 1 := by
   have h2 : adj (mat g) * JR (AF D.host.F) (Jst D k) * mat g = JR (AF D.host.F) (Jst D k) := g.2
-  rw [jr_eq, h, adelicConjTranspose_blockMatrixTwoByTwoFin, submatrix_fromBlocks_mul, submatrix_fromBlocks_mul] at h2
+  rw [jr_eq, h, _root_.GlobalTheory.StdUnn.Model.adelicConjTranspose_blockMatrixTwoByTwoFin, submatrix_fromBlocks_mul, submatrix_fromBlocks_mul] at h2
   obtain ⟨e1, e2, e3, e4⟩ := block_matrix_injective h2
   simp only [Matrix.mul_zero, Matrix.zero_mul, Matrix.mul_one, Matrix.mul_neg, add_zero, zero_add, Matrix.neg_mul] at e1 e2 e3 e4
   refine ⟨?_, (neg_add_eq_zero.1 e1).symm, (neg_add_eq_zero.1 e4).symm, ?_⟩
@@ -210,13 +205,9 @@ theorem zTv_eq {a b c d : Mx D p p} (l4 : adj a ⬝ d - adj c ⬝ b = 1) (x y : 
   simp only [zTv, Matrix.sub_mul, Matrix.mul_sub, Matrix.mul_assoc, e, Matrix.mul_add]
   abel
 
-theorem rational_map_sub {k l : ℕ} (u v : Matrix (Fin k) (Fin l) D.host.E) : rat (D := D) (u - v) = rat u - rat v := by
-  ext i j
-  exact map_sub (incA D) _ _
+alias rational_map_sub := _root_.GlobalTheory.MixModel.rat_sub
 
-theorem rational_map_add {k l : ℕ} (u v : Matrix (Fin k) (Fin l) D.host.E) : rat (D := D) (u + v) = rat u + rat v := by
-  ext i j
-  exact map_add (incA D) _ _
+alias rational_map_add := _root_.GlobalTheory.MixModel.rat_add
 
 theorem transport {D : D7} {n ρ p : ℕ} {hn : ρ + p = n} (M : Maps D hn) (γ : G D p) (hγ : γ ∈ GF D p) :
     ∃ T : (Mx D ρ p × Mx D ρ p) ≃ₜ+ (Mx D ρ p × Mx D ρ p),

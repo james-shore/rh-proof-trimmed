@@ -88,7 +88,7 @@ variable {D : D7}
 theorem real_le_off (V : HSp D) (P : Pl D → Prop) : GinfC V ≤ grpOff V P := by
   intro a ha
   rw [GinfC, MonoidHom.mem_ker] at ha
-  rw [grpOff, GlobalTheory.FinPl.LocProd.mem_congGrp_entries]
+  rw [grpOff, _root_.GlobalTheory.FrameAt.mem_congGrp]
   intro i j
   have h2 : finPart D (Formalism.L2.Theta.mt V a i j) = (1 : Matrix (Fin V.rank) (Fin V.rank) _) i j :=
     congrArg (fun x : GL (Fin V.rank) _ => x.1 i j) ha

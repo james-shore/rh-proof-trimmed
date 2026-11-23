@@ -270,15 +270,6 @@ theorem pureTensorO_one {S T : HSp D} (ψ : AddChar (AF D.host.F) ℂ) (θ : Inf
   rw [h, Module.Basis.constr_basis]
   simp [opPow]
 
-theorem onBasis_pos {k : ℕ} {G B : Matrix (Fin k) (Fin k) ℂ} (h : IsONBasis G 1 B k) : Bᴴ * G * B = 1 := by
-  obtain ⟨ε, h1, h2, -⟩ := h
-  rw [h2, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  rcases h1 a with h | h
-  · simp [h.1]
-  · exact absurd a.2 (not_lt.2 h.2)
-
 theorem ranks (i : Fin D.R.m) : (D.R.sigW ((i : ℕ) + 1)).1 + (D.R.sigW ((i : ℕ) + 1)).2 = D.R.r ∧ Even D.R.nV := by
   have := D.R.m_add_three_le_k
   have := i.2
@@ -335,7 +326,7 @@ theorem value_mem_span (hP : GlobalTheory.Published.CuspRapidDecay) (hsz : Globa
       (hmult.lev _ k (hlev i k hk h1 h2).1 g).trans (by rw [(hlev i k hk h1 h2).2, one_mul])⟩
   exact span_any R.ψ (hT.ωP i t).std R.θ hM.inf (R.ωP i t) (isWeak_of_datum (hT.ωP i t))
     (fun f hf w => ((hT.ωP i t).om_cont f hf w).comp (Continuous.prodMk_right 1)) b hb hev _ _ hpq (D.sp.W_sig _) hsigW hsz' hn
-    (R.MW i (sg0 D A)) hε (R.BV i) (fun τ => onBasis_pos (hM.BV i τ)) (R.ΛV i) (GlobalTheory.OneMapRef.FactsLat.selfDual_frame_level_one_lattice_eq_standard (hL.βV i))
+    (R.MW i (sg0 D A)) hε (R.BV i) (fun τ => _root_.GlobalTheory.JointHarm.onb_eq_one (hM.BV i τ)) (R.ΛV i) (GlobalTheory.OneMapRef.FactsLat.selfDual_frame_level_one_lattice_eq_standard (hL.βV i))
     (R.ΛW i) hsd (R.βV i) (R.βW i) (hL.βV i).choose_spec.1 (hL.βW i).choose_spec.1 R.Pg (R.Q t) (R.xiR t) hPg (hodd t)
     (R.vacP i) (R.vP i t) (hT.vP i t) _ _ (R.ptP i t) _ (fun _ => rfl) _ hΔ (LinearMap.mem_range_self _ w₀) hU _ hk hwt (hmult.aut _).left hlv
     (GlobalTheory.CuspDecay.bounded_of_cuspForm hP hM.inf (hmult.aut _) (hmult.cusp _))

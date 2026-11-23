@@ -100,31 +100,6 @@ theorem exists_der_fun {A S : Type} [CommRing A] [CommRing S] [Algebra A S] (M :
   obtain ⟨δS, hδS⟩ := exists_der_ext M δ (S := S)
   exact ⟨δS.toLinearMap.toAddMonoidHom, fun x y => by simp [Derivation.leibniz, smul_eq_mul], hδS⟩
 
-theorem exists_der_frac (Ω : Type) [CommRing Ω] [IsDomain Ω] (δ : Derivation ℤ Ω Ω) :
-    ∃ δS : Derivation ℤ (FractionRing Ω) (FractionRing Ω),
-      ∀ ω, δS (algebraMap Ω (FractionRing Ω) ω) = algebraMap Ω (FractionRing Ω) (δ ω) := by
-  obtain ⟨f, hf1, hf2⟩ := exists_der_fun (nonZeroDivisors Ω) δ (S := FractionRing Ω)
-  have hf0 : f 1 = 0 := by
-    have h11 := hf1 1 1
-    rw [_root_.mul_one, _root_.one_mul] at h11
-    linear_combination -h11
-  have hfc : ∀ (c : ℤ) (y : FractionRing Ω), f ((c : FractionRing Ω) * y) = (c : FractionRing Ω) * f y := by
-    intro c y
-    have h2 : f (c : FractionRing Ω) = 0 := by
-      rw [← zsmul_one, map_zsmul, hf0]
-      simp
-    rw [hf1, h2]
-    simp
-  refine ⟨{ toFun := f
-            map_add' := f.map_add
-            map_smul' := (fun c y => ?_)
-            map_one_eq_zero' := hf0
-            leibniz' := (fun x y => ?_) }, hf2⟩
-  · simp only [RingHom.id_apply]
-    rw [Algebra.smul_def, eq_intCast, zsmul_eq_mul]
-    exact hfc c y
-  · exact hf1 x y
-
 theorem isKS_of_heat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] [IsNoetherianRing R] [IsAdicComplete (maximalIdeal R) R] [Algebra ℚ R] (t : SAB H (Sp R)) (P : PELUnif (maximalIdeal R) t) (m : ℕ) (tt : Fin m → R) (gam : Fin m → LinearMap.BilinForm ℤ P.D.toPre.X), IsMonomial P.D.toPre tt gam → (∀ i, tt i ≠ 0) → (∀ p : Sp R, p ∈ abLocus t.G ↔ ∏ i, tt i ∉ p.asIdeal) → letI := H.starRing; ∀ (Y : Ray P.oD) (n : ℕ) (vH : Module.Basis (Fin n) R (TanM (𝟙 (Sp R)) Y.H)) (dd : Fin n → Fld Y.H.left), (∀ a, IsInv Y.H (vH a) (dd a)) → ∀ (v' : Fin n → TanM (𝟙 (Sp R)) t.G), (∀ a, GlobalTheory.FormalPoint.IsPointOf P.U.toUnifPre (Y.Φ _ (tv (vH a))) (tv (v' a))) → ∀ (D : Derivation ℤ R R) (h : Heat Y.H Y.q.left P.D.toPre.P.L dd ⇑D), IsBasic Y h → HasDefect Y h (fun _ _ _ => 0) → IsKS t ((Sp R).basicOpen ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom (∏ i, tt i))) (⟨⊤, isAffineOpen_top _⟩ : (Sp R).affineOpens) (fun a => spMap (dualMap (Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom) ≫ (tv (v' a)).left) (fun r => (Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom (D ((Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom r))) ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom.mapMatrix h.Θ) := by
   intro E _ _ _ H R _ _ _ _ _ _ t P m tt gam hmon htt hab Y n vH dd hdd v' hv' D h hB hDef
   letI := H.starRing
@@ -151,16 +126,16 @@ theorem isKS_of_heat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     simp [valR]
 
   obtain ⟨x', hx', dd', hdd', hδ', hinj', hpt⟩ :=
-    GlobalTheory.T.exists_uniformisedGroup_point_sameDerivations E H R t P m tt gam hmon htt hab Y n vH dd hdd v' hv' Ω φ x δ hΩc hφ hx hδφ hδ
+    _root_.GlobalTheory.FormalPointG.exists_point_sameDerivations E H R t P m tt gam hmon htt hab Y n vH dd hdd v' hv' Ω φ x δ hΩc hφ hx hδφ hδ
   obtain ⟨g, hg⟩ := ReciprocityTheory.ChartRestriction.G.DVR.exists_gen_of_local (V := Ω) t.PP.L t.PP.isLB (K := PUnit)
     (fun _ => x' ≫ 𝟙 t.G.left) (fun _ => 1)
   have hex : ∀ a, ∃ δS : Derivation ℤ (FractionRing Ω) (FractionRing Ω),
       ∀ ω, δS (algebraMap Ω (FractionRing Ω) ω) = algebraMap Ω (FractionRing Ω) (δ a ω) :=
-    fun a => exists_der_frac Ω (δ a)
+    fun a => _root_.GlobalTheory.Heat.exists_derivation_fractionRing_ext Ω (δ a)
   choose δL hδL using hex
-  obtain ⟨dt, u', p, p', hdt, hact⟩ := GlobalTheory.T.commuting_heatOperators_act_on_values E H R t P m tt gam hmon htt hab Y n vH dd hdd v' hv' D h hB hDef
+  obtain ⟨dt, u', p, p', hdt, hact⟩ := _root_.GlobalTheory.Heat.heat_acts_on_values E H R t P m tt gam hmon htt hab Y n vH dd hdd v' hv' D h hB hDef
     i0 Ω φ x x' δ hΩc hx hx' hδφ hδ hpt dΩ hxW hd g hg δL hδL
-  obtain ⟨b, rfl⟩ := GlobalTheory.T.tangentBasis_uniformisedGroup_of_raynaudExtension E H R t P Y n vH v' hv'
+  obtain ⟨b, rfl⟩ := _root_.GlobalTheory.TanRayBasis.vBasis_of_isPointOf E H R t P Y n vH v' hv'
   let D₀ : Derivation ℤ Γ(Sp R, ⊤) Γ(Sp R, ⊤) := Derivation.mk'
     ((e.inv.hom.toAddMonoidHom.comp ((D : R →ₗ[ℤ] R).toAddMonoidHom.comp e.hom.hom.toAddMonoidHom)).toIntLinearMap)
     (fun a a' => by
@@ -173,8 +148,8 @@ theorem isKS_of_heat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     congr 1
     simp [D₀]
 
-  obtain ⟨Θ₁, hsym, hKS⟩ := GlobalTheory.T.exists_symmetric_kodairaSpencer_abelianLocus E H R t P m tt gam hmon htt hab n b DV
-  obtain ⟨iota, dt₂, u₂, p₂, p₂', hiota, hdt₂, hact₂⟩ := GlobalTheory.T.heatOperators_kodairaSpencer_formal_point_values E H R t P m tt gam hmon htt hab n b D Ω φ x' δ dd'
+  obtain ⟨Θ₁, hsym, hKS⟩ := _root_.GlobalTheory.KSAbLocusSymm.exists_symm_isKS_abLocus E H R t P m tt gam hmon htt hab n b DV
+  obtain ⟨iota, dt₂, u₂, p₂, p₂', hiota, hdt₂, hact₂⟩ := _root_.GlobalTheory.HeatV.heat_values_of_isKS E H R t P m tt gam hmon htt hab n b D Ω φ x' δ dd'
     hΩc hx' hdd' hδφ hδ' hinj' g hg δL hδL Θ₁ DV hDV' hKS
   have heq := GlobalTheory.T.heatOperator_symbol_unique_principalPolarisation E H R t P m tt gam hmon htt hab n b D Ω φ x' δ dd' hΩc hx' hdd' hδφ hδ' hinj' g hg δL hδL
     (((algebraMap Ω (FractionRing Ω)).comp φ).mapMatrix h.Θ) (iota.mapMatrix Θ₁) dt dt₂ u' u₂ p p' p₂ p₂'
@@ -205,6 +180,6 @@ theorem isKS_of_heat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     simp only [RingHom.mapMatrix_apply, Matrix.map_apply, RingHom.comp_apply] at this ⊢
     rw [← this, hiota]
   rw [hΘ] at hKS
-  exact GlobalTheory.T.isKodairaSpencer_affineChart_of_basicOpen E H R t m tt n ⇑b D DV h.Θ hDV' hKS
+  exact _root_.GlobalTheory.KSChartRes.isKS_top_of_basicOpen E H R t m tt n ⇑b D DV h.Θ hDV' hKS
 
 end GlobalTheory.KBracket

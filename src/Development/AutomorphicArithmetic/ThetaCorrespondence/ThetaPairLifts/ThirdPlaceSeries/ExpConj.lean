@@ -70,7 +70,7 @@ theorem expConj_alt : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Pub
           ∑ k, τ (ρ.e ((Fm.ex x hx i).nch.twI w) ((Fm.ex x hx i).nch.sd w) (a k)) • evW p.nexp p.v₀ j (g k).val =
             c • ∑ k, ρ.e ((Fm.ex x hx i).nch.twI w) ((Fm.ex x hx i).nch.sd w) (a k) • evW p.nexp p.v₀ j (g k).val := by
   intro h1 h2 h3 h4
-  have hO := _root_.GlobalTheory.T.real_datum_normalized_rational_base_alt h1 h2 h3 h4
+  have hO := _root_.GlobalTheory.SerSmall.one_expansion_alt h1 h2 h3 h4
   have hZ := _root_.GlobalTheory.BigOn.Exp.bigOn_expZero
   unfold _root_.GlobalTheory.BigOn.Exp.ExpZeroAlt at hZ
   refine (_root_.GlobalTheory.BigOn.Exp.TwistConditions.and hO hZ).imp fun Fm x hx i p _ _ w _ j H => ?_

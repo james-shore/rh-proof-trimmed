@@ -50,7 +50,7 @@ namespace GlobalTheory.EvenTheta
 
 theorem IsLat.evenTheta_translate_sq_eq_sigmaStar : ∀ Λ : AddSubgroup ℂ, IsLat Λ → ∀ t₀ : ℂ, t₀ ∉ Λ → 2 * t₀ ∈ Λ → ∀ t, t ∉ Λ → ∀ z, U1 Λ t (sgStar Λ) 0 ^ 2 * U1 Λ t (GL3Theta.th0 Λ t₀) z ^ 2 = -(U1 Λ (2 * t) (sgStar Λ) z * sgStar Λ z) + (wpF Λ t - wpF Λ t₀) * U1 Λ t (sgStar Λ) 0 ^ 2 * U1 Λ t (sgStar Λ) z ^ 2 := by
   intro Λ h t₀ h0 h2 t ht z
-  have hsq := (GlobalTheory.T.th0_zero_even_sq_zeros_and_periodicity Λ h t₀ h0 h2).2.2.2.1 (z + t)
+  have hsq := (_root_.GlobalTheory.EvenTheta.evenThetaTwoTorsion_basic_properties Λ h t₀ h0 h2).2.2.2.1 (z + t)
   have hσ := (h.sg_eq_zero t).not.2 ht
   rw [h.sqTh_sub h0 ht] at hsq
   have hs : sqTh Λ t (z + t) * sgStar Λ t ^ 2 = -(sgStar Λ (z + 2 * t) * sgStar Λ z) := by

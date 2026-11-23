@@ -198,15 +198,15 @@ theorem casOp_equivariant : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [Norm
   have hZ : ∀ c, Z c ∈ lieSet ε := by rintro (c | c); exacts [hk c, hp c]
   have hO : ∀ c d, trF (Z c) (Z d) = if c = d then s c else 0 := by
     rintro (c | c) (d | d)
-    · simpa [Z, s] using kk_orth n ε c d
-    · simpa [Z, s] using kp_orth n ε c d
-    · simpa [Z, s, trF_comm] using kp_orth n ε d c
-    · simpa [Z, s] using pp_orth n ε c d
+    · simpa [Z, s] using _root_.GlobalTheory.TypeSum.CasBasis.kB_trace_orthonormal n ε c d
+    · simpa [Z, s] using _root_.GlobalTheory.TypeSum.CasBasis.re_trace_kB_mul_pB n ε c d
+    · simpa [Z, s, trF_comm] using _root_.GlobalTheory.TypeSum.CasBasis.re_trace_kB_mul_pB n ε d c
+    · simpa [Z, s] using _root_.GlobalTheory.TypeSum.CasBasis.pB_orthonormal n ε c d
   have hE : ∀ U ∈ lieSet ε, U = ∑ c, (s c * trF U (Z c)) • Z c := by
     intro U hU
     simp only [Fintype.sum_sum_type, Z, s, Sum.elim_inl, Sum.elim_inr, neg_one_mul, one_mul, neg_smul,
       Finset.sum_neg_distrib]
-    conv_lhs => rw [expand n ε U hU]
+    conv_lhs => rw [_root_.GlobalTheory.TypeSum.CasBasis.lieSet_expand_bases n ε U hU]
     abel
   have := sum_sq_conj h hs hO hE hZ hg hv
   simp only [Fintype.sum_sum_type, Z, s, Sum.elim_inl, Sum.elim_inr, Complex.ofReal_neg, Complex.ofReal_one, neg_smul,

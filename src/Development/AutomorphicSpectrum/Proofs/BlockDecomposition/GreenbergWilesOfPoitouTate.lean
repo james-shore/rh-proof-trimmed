@@ -106,7 +106,7 @@ theorem greenbergWiles_of_poitouTate : PoitouTateNormalised → GlobalEulerChar 
   haveI : ∀ v : S, Finite (H1 ((twDual μ ρ).comp (locFam S Av v))) := fun v => (hlf' v).2.1
   obtain ⟨hH0, hH1, hH2, hH0', hH1'⟩ := GlobalTheory.T.greenberg_wiles_formula F Ω l r M S Av μ ρ hρ
     (invAt S Av μ hμ inv) hμ hfinD hLF hr hAv hnine hsha
-  have hloc := GlobalTheory.T.galois_cohomology_localization_exact F Ω l r M S Av μ ρ hρ hμ hLTD hr inv hinv hAv
+  have hloc := _root_.GlobalTheory.CompanionTheory.LocalPerfect.locPerfect F Ω l r M S Av μ ρ hρ hμ hLTD hr inv hinv hAv
   have hB := GlobalTheory.CompanionTheory.Pairing.sum_perfect (ZMod (l ^ r)) S (fun v => H1 (ρ.comp (locFam S Av v)))
     (fun v => H1 ((twDual μ ρ).comp (locFam S Av v)))
     (fun v => (cupH1H1TwistedDual μ ρ (locFam S Av v) (hρ.comp' (continuous_locFam S Av v))).compr₂
@@ -115,7 +115,7 @@ theorem greenbergWiles_of_poitouTate : PoitouTateNormalised → GlobalEulerChar 
     unfold sumPair; rw [LinearMap.coe_sum]; exact hB.1
   have hBf : Function.Injective (sumPair S Av μ (invAt S Av μ hμ inv) ρ hρ).flip := by
     unfold sumPair; exact hB.2
-  have hrange := GlobalTheory.T.tate_shafarevich_duality_h1 F Ω l r M S Av μ ρ hρ (invAt S Av μ hμ inv) hnine
+  have hrange := _root_.GlobalTheory.CompanionTheory.PoitouTateGlue.range_localization_eq_annihilator F Ω l r M S Av μ ρ hρ (invAt S Av μ hμ inv) hnine
   have count := GlobalTheory.CompanionTheory.Counting.card_comap_mul_card_ker_mul_card_eq (l ^ r) (H1 ρ)
     (H1 (twDual μ ρ)) (∀ v : S, H1 (ρ.comp (locFam S Av v)))
     (∀ v : S, H1 ((twDual μ ρ).comp (locFam S Av v)))

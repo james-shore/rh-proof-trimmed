@@ -228,9 +228,9 @@ theorem kernel_of_f : KernelOfF := by
     rw [← hϖ, zero_pow]
     have : 2 ^ 2 ≤ p ^ 2 := Nat.pow_le_pow_left hU.2.1.le 2
     omega
-  obtain ⟨-, -, μ, hμ0, -, hμ, -, -⟩ := Formalism.InvariantFactorPaths.G7.Top.logRescale K p ϖ hU.1 hnp hϖ
+  obtain ⟨-, -, μ, hμ0, -, hμ, -, -⟩ := _root_.Formalism.InvariantFactorPaths.G7.LogarithmEquivalence.logRescale K p ϖ hU.1 hnp hϖ
   rw [theta_integer_is_theta_log K0 K p ν r0 r1 σ j om oms ϖ μ hU.1.two_le hϖ0 hμ0 hμ]
-  exact Formalism.InvariantFactorPaths.G7.Top.kernel_from_k_one_k p K0 σ hU hζ F hF be (betaHypOfF K0 p σ hU F be hF1 hF2) K j
+  exact _root_.Formalism.InvariantFactorPaths.G7.kernel_bounds_generic p K0 σ hU hζ F hF be (betaHypOfF K0 p σ hU F be hF1 hF2) K j
     ν r0 r1 hj _ _ ϖ μ U0 Φ hϖ (omega_integral_criterion K0 K p ν σ j hU hj om oms hO hT) hμ0 hμ hU0 hΦ0 hΦ
     TT colN hts hp I n
 

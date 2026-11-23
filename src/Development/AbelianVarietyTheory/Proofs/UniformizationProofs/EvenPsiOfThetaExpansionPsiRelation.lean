@@ -76,7 +76,7 @@ theorem psiEven_of_psiRel : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A} {G}
   obtain ⟨a, ha⟩ := GlobalTheory.T.expansionComponents_proportional_shift_multiple hL hL2 V hV D A G U 2 (by norm_num) 0 m u hu (hsupp.2 0)
   have e1 := GlobalTheory.psi_mul_psi_of_addition_first_variable V D (Kbar V) s₀ r n s s' hr hB hP h0 0 0 m 0
     (add_zero 0).symm a u (fun i z J hJ => ha _ _ (hE i).1 z J hJ) z J hJ
-  have e2 := GlobalTheory.T.psi_mul_psi_addition_second_variable V D (Kbar V) s₀ r n s s' hr hB hP h0 m 0 rfl a u
+  have e2 := _root_.GlobalTheory.psi_mul_psi_of_addition_second_variable V D (Kbar V) s₀ r n s s' hr hB hP h0 m 0 rfl a u
     (fun i z J hJ => ha _ _ (hE i).2 z J hJ) z J hJ
   have hc0 : cT D (TF (R := V) (Kbar V)) 0 = 1 := by
     have h := GlobalTheory.FirstSlot.cT_add D (TF (R := V) (Kbar V)) 0 0

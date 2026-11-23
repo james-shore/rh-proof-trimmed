@@ -192,8 +192,8 @@ private lemma rB_shift (h : IsFinCover ℂ K x) {J : Finset (Fin (d + 1))} {j j'
   · refine ⟨0, ?_⟩
     rw [Finset.insert_eq_of_mem hj'] at hb
     simpa using hb
-  · obtain ⟨N, hN⟩ := ((GlobalTheory.T.finite_cover_ring_localization_chart ℂ F K d x h (insert j' J) j (Finset.mem_insert_of_mem hj)).2 b).1 hb
-    refine ⟨N, ((GlobalTheory.T.finite_cover_ring_localization_chart ℂ F K d x h J j hj).2 _).2 ⟨N, ?_⟩⟩
+  · obtain ⟨N, hN⟩ := ((_root_.GlobalTheory.PD.rB_mono_loc ℂ F K d x h (insert j' J) j (Finset.mem_insert_of_mem hj)).2 b).1 hb
+    refine ⟨N, ((_root_.GlobalTheory.PD.rB_mono_loc ℂ F K d x h J j hj).2 _).2 ⟨N, ?_⟩⟩
     rw [Finset.prod_insert hj', map_mul, mul_pow] at hN
     convert hN using 1
     ring

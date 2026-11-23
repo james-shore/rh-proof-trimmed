@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.LocalToGlobal.Columns.PolyFn
 
 @[expose] public section
 
@@ -87,7 +88,7 @@ theorem blockEmb_hom {K : Type} [Field K] {ι : Type} [Fintype ι] {n : ℕ} (τ
   rw [weight_blkW]
   by_cases h : τ' = τ
   · subst h
-    rw [Pi.single_eq_same, ← e, GlobalTheory.LvT.KerLat.weight_rowW, rowDeg]
+    rw [Pi.single_eq_same, ← e, _root_.Formalism.GradedWeylDivisibility.ldrow_weight_rowW, rowDeg]
     refine Finset.sum_congr rfl fun s _ => ?_
     exact Finsupp.mapDomain_apply_of_injective (fun x y hxy => (Prod.mk.inj hxy).2) u (a, s)
   · rw [Pi.single_eq_of_ne h]
@@ -107,12 +108,9 @@ theorem ten_hom {K : Type} [Field K] {ι : Type} [Fintype ι] {n : ℕ}
   rw [e]
   exact h
 
-theorem natW_antitone' {n : ℕ} (l : DomWeight n) : Antitone l.natW := fun _ _ h =>
-  Int.toNat_le_toNat (sub_le_sub_right (l.anti h) _)
-
 theorem extremal_hom (K : Type) [Field K] {n : ℕ} (l : DomWeight n) :
     IsWeightedHomogeneous (rowW n n) (extremal K n l) l.natW := by
-  have h := hwRowWeight K n n le_rfl l.natW (natW_antitone' l)
+  have h := hwRowWeight K n n le_rfl l.natW (_root_.Formalism.L2.Col.natW_anti l)
   have e : (rowNu l.natW : Fin n → ℕ) = l.natW := by
     funext a
     simp [rowNu]
@@ -142,7 +140,7 @@ theorem weight_line : ∀ (K : Type) [Field K] {ι : Type} [Fintype ι] {n : ℕ
       · rw [← he] at hi
         rw [hi.weightedHomogeneousComponent_same]
         have hc : ∀ τ, ∃ c : K, ssB K (lam τ).natW (i τ) = c • extremal K n (lam τ) := fun τ => by
-          refine GlobalTheory.Alc.hw_line_field K n _ (natW_antitone' _) _ ?_ ?_
+          refine GlobalTheory.Alc.hw_line_field K n _ (_root_.Formalism.L2.Col.natW_anti _) _ ?_ ?_
           · rw [← (sp τ).2.1]
             exact Submodule.subset_span ⟨i τ, rfl⟩
           · have := hb τ

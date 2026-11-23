@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.DividedPowerZeroOfGlActionZero
 
 @[expose] public section
 
@@ -191,14 +192,6 @@ theorem nd_single (v : VarH X) : ndHom X (Finsupp.single v 1) = wN X v := by
   rw [degUS, Finsupp.support_single_ne_zero _ one_ne_zero, Finset.sum_singleton, Finsupp.single_eq_same]
   simp [wN, hhLetters]
 
-private theorem colH_mono_of_forall_le {n : ℕ} {u v : Fin n → ℤ} (huv : ∀ b, u b ≤ v b) (c : ℤ) :
-    colH u c ≤ colH v c := by
-  unfold colH
-  apply Finset.card_le_card
-  intro b hb
-  simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hb ⊢
-  exact le_trans hb (huv b)
-
 private theorem colH_eq_zero_of_forall_lt {n : ℕ} {u : Fin n → ℤ} (c : ℤ) (hu : ∀ b, u b < c) : colH u c = 0 := by
   unfold colH
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
@@ -280,10 +273,10 @@ private theorem colH_ka_le_by_vecc_of_PH {N K : ℕ} {vecc : Fin N → Bool} {B 
   constructor
   · intro hv
     rw [if_pos hv] at hs
-    exact colH_mono_of_forall_le hs.1 c
+    exact _root_.Formalism.MainNotions.LemmaBAlt.column_height_mono hs.1 c
   · intro hv
     rw [if_neg (by simp [hv])] at hs
-    exact ⟨colH_mono_of_forall_le hs.1 c, h.nucov a hv⟩
+    exact ⟨_root_.Formalism.MainNotions.LemmaBAlt.column_height_mono hs.1 c, h.nucov a hv⟩
 
 private theorem wN_phiS_castAdd_zero_eq_ite_lamS (X : Loc) (j : Fin (numSeg X.TT)) (t : Fin (2 * segS X.TT j + 1 + 1)) :
     wN X (Formalism.MainNotions.ColumnSystems.Pf.phiS X j (t, Fin.castAdd X.m 0)) = if (lamS X j t).2 = false then 1 else 0 := by

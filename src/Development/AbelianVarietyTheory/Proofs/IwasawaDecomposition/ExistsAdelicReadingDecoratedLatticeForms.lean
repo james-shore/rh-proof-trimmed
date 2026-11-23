@@ -61,8 +61,7 @@ namespace GlobalTheory.Mem.R3.BrgRead
 
 
 
-theorem embLL_labLL_eq {D : D7} (τ : D.what₂.Tau) (x : D.host.E) : D.what₂.embLL (labLL D τ x) = tauE D τ x :=
-  DFunLike.congr_fun D.embE_φ₀ (D.host.sigmaOf (D.eTau τ).1 x)
+alias embLL_labLL_eq := _root_.GlobalTheory.CoefSpace.embLL_labLL
 
 theorem gram_V (X : Stages) (h : DiagSpaces X.toD7.sp) (i : Fin X.toD7.R.m) : (Vc X.toD7 i).gram = 1 := by
   obtain ⟨hs, -, -, -, -, hV⟩ := h
@@ -129,8 +128,8 @@ theorem exists_brgL : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B
   have hVP : Seed.VPos X.toD7 := fun i => X.B.V_posDef _ (by omega) i.2
   obtain ⟨cX, cV, prX, gramR, c0R, c0L, hcX, hcV, hdual, hiso, hgram, hmapR, hmapL, hinR, hinL⟩ :=
     exists_coefData X.toD7 hVP θ hθ MX
-  have hR := GlobalTheory.T.exists_rowForms_adelic_decoratedLattices X px I hX U Xg tr L eG hI hV hL hG cX gramR c0R hcX hgram hmapR hinR hβX hsX
-  have hLf := fun i => GlobalTheory.T.exists_liftForms_adelic_decoratedLattices X px I hX U Xg tr L eG hI hV hL hG cV i (c0L i) (hcV i) (hmapL i) (hinL i) (hβV i)
+  have hR := _root_.GlobalTheory.Mem.R3.RowsRead.exists_rowSide X px I hX U Xg tr L eG hI hV hL hG cX gramR c0R hcX hgram hmapR hinR hβX hsX
+  have hLf := fun i => _root_.GlobalTheory.Mem.R3.LiftBrg.exists_liftSide X px I hX U Xg tr L eG hI hV hL hG cV i (c0L i) (hcV i) (hmapL i) (hinL i) (hβV i)
     (gram_V X hI.spaces i) (hsV i)
   obtain ⟨sR, hsR, hstR⟩ := hR
   choose sL hsL hstL using hLf

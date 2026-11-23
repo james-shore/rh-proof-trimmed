@@ -199,7 +199,7 @@ theorem exists_pairing {s : S ⟶ Sp R} {c : ℕ} {o o' : Obj b N s} {ψ : o.A �
             exact this
           have hz : ((G₁ ≫ fst o'.A T)⁻¹ * (G₂ ≫ fst o'.A T)) ^ c = 1 := by
             rw [mul_pow, inv_pow, hb, inv_mul_cancel]
-          obtain ⟨V, i, y, w', hi, rfl, hy, hiz⟩ := GlobalTheory.T.abelianScheme_torsionPoint_locally_constant_geomPoint S o'.A o'.ab k x c (Nat.cast_ne_zero.2 hc.ne') FinalForm
+          obtain ⟨V, i, y, w', hi, rfl, hy, hiz⟩ := _root_.GlobalTheory.TorsLocConst.locally_const_torsion S o'.A o'.ab k x c (Nat.cast_ne_zero.2 hc.ne') FinalForm
             (G₁ ≫ snd o'.A T) _ hz w
           have hV : i ≫ G₂ = (i ≫ G₁) ≫ tr y := by
             apply CartesianMonoidalCategory.hom_ext
@@ -396,7 +396,7 @@ theorem isTj_dual {r : ℤ} {w : Ideal (𝓞 D.F)} (hw : w.IsMaximal) (hu : uIde
       Ideal.span {((p ^ e : ℕ) : 𝓞 D.F)} := by
     rw [Nat.cast_pow, ← Ideal.span_singleton_pow]
     exact Ideal.pow_right_mono (uIdeal_mul_map_le D hw.ne_top hu) e
-  obtain ⟨H₁, H₂⟩ := GlobalTheory.T.conj_dual_parts_killed_of_perfect_pairing (𝓞 D.F) (D.bar : 𝓞 D.F →+* 𝓞 D.F) Γ((Over.mk x).left, ⊤)
+  obtain ⟨H₁, H₂⟩ := _root_.GlobalTheory.DualParts.conj_dual_parts (𝓞 D.F) (D.bar : 𝓞 D.F →+* 𝓞 D.F) Γ((Over.mk x).left, ⊤)
     (kerPts ψ (Over.mk x)) (kerPts ψ' (Over.mk x))
     (fun a => kerAct ψ hl _ (algebraMap (𝓞 D.F) D.O a)) (fun a => kerAct ψ' hl' _ (algebraMap (𝓞 D.F) D.O a))
     (kerAct_one ψ hl _) (kerAct_mul ψ hl _) (kerAct_add ψ hl _)
@@ -468,7 +468,7 @@ theorem finite_etale_target : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Ty
   haveI := M.smooth
   haveI : Smooth M.s := SmoothOfRelativeDimension.smooth (D.a * (D.n - 1)) M.s
   haveI : IsLocallyNoetherian M.X := LocallyOfFiniteType.isLocallyNoetherian M.s
-  obtain ⟨Y', o₀, m₀, o₂, χ, hfin, het, hχ, hχT, univ'⟩ := GlobalTheory.T.harrisTaylor_typeTj_isogenies_representable p D R b N hN hNp hp (D.tr - r) _ j (p ^ e)
+  obtain ⟨Y', o₀, m₀, o₂, χ, hfin, het, hχ, hχT, univ'⟩ := _root_.GlobalTheory.UPel.HT.ES.IsogRep.exists_rep p D R b N hN hNp hp (D.tr - r) _ j (p ^ e)
     hw' hu' hj ⟨e, rfl, he⟩ hm M.X M.s M.univ
   obtain ⟨ψ', hψ', a₁, a₂⟩ := hψ.2.2.2.2.2
   obtain ⟨χ', hχ', b₁, b₂⟩ := hχ.2.2.2.2.2

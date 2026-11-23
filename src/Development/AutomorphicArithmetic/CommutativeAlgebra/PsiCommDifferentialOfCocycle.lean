@@ -40,14 +40,11 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.CupPullbacks.ConstCompSingle
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchClsCocycleSec
 
 @[expose] public section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC UpperTheory.Pbf UpperTheory.Kun
-
-private theorem map_units {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (ε : ℤˣ) (x : Sec F U) :
-    Sec.map φ (ε • x) = ε • Sec.map φ x := by
-  rcases Int.units_eq_one_or ε with rfl | rfl <;> simp
 
 private theorem map_add' {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (x y : Sec F U) :
     Sec.map φ (x + y) = Sec.map φ x + Sec.map φ y :=
@@ -80,7 +77,7 @@ theorem UpperTheory.psi_comm_differential_of_cocycle :
       Sec.res (prod.snd : W ⨯ T ⟶ T) (c₁ (Sec.map ((LL I Q).d s (s + 1)) a)) +
         (s + 1).negOnePow • μ.mul (W ⨯ T) (s + 1 + -1) 1 (s + 1) (by omega)
           (Sec.res (prod.snd : W ⨯ T ⟶ T) (c₂ (Sec.map ((LL I Q).d s (s + 1)) a))) (Sec.res (prod.fst : W ⨯ T ⟶ W) z)
-    rw [map_add', map_units, hL, c₁_d, c₂_d, res_map, Int.negOnePow_succ]
+    rw [map_add', _root_.GlobalTheory.EtC.SchCls.map_units_smul, hL, c₁_d, c₂_d, res_map, Int.negOnePow_succ]
     congr 1
     have hn : Sec.res (prod.snd : W ⨯ T ⟶ T) (- Sec.map (Q.d (s + -1) (s + 1 + -1)) (c₂ a)) =
         - Sec.map (Q.d (s + -1) (s + 1 + -1)) (Sec.res (prod.snd : W ⨯ T ⟶ T) (c₂ a)) := by

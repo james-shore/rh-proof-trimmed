@@ -51,14 +51,6 @@ theorem basis_spread (K A : Type) [Field K] [CommRing A] [Algebra K A] [Algebra.
       LinearIndependent B (fun i => KaehlerDifferential.D K B (algebraMap A B (x i))) ∧
         Submodule.span B (Set.range fun i => KaehlerDifferential.D K B (algebraMap A B (x i))) = ⊤ := GlobalTheory.T.kaehler_basis_spreads_to_neighbourhood K A P x hx
 
-theorem omega_free (K : Type) [Field K] (D : ℕ) (Y : Scheme.{0}) (g : Y ⟶ Sp K)
-    (hD : SmoothOfRelativeDimension D g) (U : Y.affineOpens) (P : Ideal Γ(Y, U.1)) [P.IsPrime] :
-    letI := secAlgebra g U.1
-    Algebra.FinitePresentation K Γ(Y, U.1) ∧
-      Module.Free (Localization.AtPrime P) Ω[Localization.AtPrime P⁄K] ∧
-      Module.Finite (Localization.AtPrime P) Ω[Localization.AtPrime P⁄K] ∧
-      Module.finrank (Localization.AtPrime P) Ω[Localization.AtPrime P⁄K] = D := GlobalTheory.T.smooth_local_ring_free_differentials K D Y g hD U P
-
 theorem stalk_transfer (Y : Scheme.{0}) (U : Y.affineOpens) (y : Y) (hy : y ∈ U.1)
     (hreg : IsRegularLocalRing (Y.presheaf.stalk y)) (m : ℕ) (f : Fin m → Γ(Y, U.1))
     (hf : FinalTheorems.Rsp (Y.presheaf.stalk y) m (fun i => Y.presheaf.germ U.1 y hy (f i))) :
@@ -66,15 +58,6 @@ theorem stalk_transfer (Y : Scheme.{0}) (U : Y.affineOpens) (y : Y) (hy : y ∈ 
       FinalTheorems.Rsp (Localization.AtPrime (U.2.primeIdealOf ⟨y, hy⟩).asIdeal) m
         (fun i => algebraMap Γ(Y, U.1) _ (f i)) ∧
       ∀ s : Γ(Y, U.1), y ∈ Y.basicOpen s ↔ s ∉ (U.2.primeIdealOf ⟨y, hy⟩).asIdeal := GlobalTheory.T.regular_sequence_germs_regular_local Y U y hy hreg m f hf
-
-theorem isCoords_basicOpen (K : Type) [Field K] (Y : Scheme.{0}) (g : Y ⟶ Sp K) (U : Y.affineOpens)
-    (s : Γ(Y, U.1)) {n : ℕ} (x : Fin n → Γ(Y, U.1))
-    (h : letI := secAlgebra g U.1
-      ∀ (B : Type) [CommRing B] [Algebra Γ(Y, U.1) B] [Algebra K B] [IsScalarTower K Γ(Y, U.1) B]
-        [IsLocalization.Away s B],
-        LinearIndependent B (fun i => KaehlerDifferential.D K B (algebraMap Γ(Y, U.1) B (x i))) ∧
-          Submodule.span B (Set.range fun i => KaehlerDifferential.D K B (algebraMap Γ(Y, U.1) B (x i))) = ⊤) :
-    IsCoords g (Y.basicOpen s) (fun i => Y.presheaf.map (homOfLE (Y.basicOpen_le s)).op (x i)) := GlobalTheory.T.kaehler_basis_on_localization_away K Y g U s x h
 
 theorem coords_at_point (K : Type) [Field K] [CharZero K] (D : ℕ) (Y : Scheme.{0}) (g : Y ⟶ Sp K)
     (hD : SmoothOfRelativeDimension D g) (U : Y.affineOpens) (y : Y) (hy : y ∈ U.1)
@@ -84,15 +67,15 @@ theorem coords_at_point (K : Type) [Field K] [CharZero K] (D : ℕ) (Y : Scheme.
       (∀ j, x (e j) = f j) ∧
       IsCoords g (Y.basicOpen s) (fun i => Y.presheaf.map (homOfLE (Y.basicOpen_le s)).op (x i)) := by
   let _ := secAlgebra g U.1
-  obtain ⟨hregP, hrspP, hmem⟩ := stalk_transfer Y U y hy hreg m f hf
-  obtain ⟨hfp, hfree, hfin, hrank⟩ := omega_free K D Y g hD U (U.2.primeIdealOf ⟨y, hy⟩).asIdeal
+  obtain ⟨hregP, hrspP, hmem⟩ := _root_.GlobalTheory.CompanionTheory.ResKCoords.stalk_to_localization Y U y hy hreg m f hf
+  obtain ⟨hfp, hfree, hfin, hrank⟩ := _root_.GlobalTheory.CompanionTheory.ResKCoords.finitePresentation_and_kaehler_atPrime K D Y g hD U (U.2.primeIdealOf ⟨y, hy⟩).asIdeal
   obtain ⟨x, e, hxe, bs, hbs⟩ := GlobalTheory.exists_coords_extending_regularParams K Γ(Y, U.1)
     (Localization.AtPrime (U.2.primeIdealOf ⟨y, hy⟩).asIdeal) (U.2.primeIdealOf ⟨y, hy⟩).asIdeal D hrank m f hrspP
   have hb : (fun i => KaehlerDifferential.D K (Localization.AtPrime (U.2.primeIdealOf ⟨y, hy⟩).asIdeal)
       (algebraMap Γ(Y, U.1) _ (x i))) = bs := funext fun i => (hbs i).symm
-  obtain ⟨s, hs, hspread⟩ := basis_spread K Γ(Y, U.1) (U.2.primeIdealOf ⟨y, hy⟩).asIdeal x
+  obtain ⟨s, hs, hspread⟩ := _root_.GlobalTheory.CompanionTheory.KaehlerSpread.spread K Γ(Y, U.1) (U.2.primeIdealOf ⟨y, hy⟩).asIdeal x
     ⟨by rw [hb]; exact bs.linearIndependent, by rw [hb]; exact bs.span_eq⟩
-  exact ⟨s, x, e, (hmem s).2 hs, hxe, isCoords_basicOpen K Y g U s x hspread⟩
+  exact ⟨s, x, e, (hmem s).2 hs, hxe, _root_.GlobalTheory.CompanionTheory.Glob.ResKCoords.isCoords_basicOpen_of_away K Y g U s x hspread⟩
 
 theorem exists_perm_first {D : ℕ} (E : Finset (Fin D)) :
     ∃ σ : Fin D ≃ Fin D, ∀ i : Fin D, (i : ℕ) < E.card ↔ σ i ∈ E := by

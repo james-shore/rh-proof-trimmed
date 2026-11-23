@@ -261,7 +261,7 @@ theorem GlobalTheory.BKLim.isDR_of_links : ∀ (l : ℕ) [Fact l.Prime] (K : Fin
         exact Matrix.ext fun i j => σA_frob _ _
       simp only [Φ, Mx, msub, Matrix.map_mul]
       rw [hRev, hRσ, ← Matrix.mul_assoc, ← Matrix.mul_assoc, hp1, Matrix.mul_assoc _ ((((F m).ε g).map (WittVector.frobenius : Ainf l →+* Ainf l)).map p), hp2, hp3, sub_self]
-  obtain ⟨x, hx⟩ := GlobalTheory.T.breuilKisin_quotient_eisenstein_compactness l K bk (Fin d × Fin d) (M + 1) Q hmono hpert hex
+  obtain ⟨x, hx⟩ := _root_.GlobalTheory.BKLim.Cpt.compact l K bk (Fin d × Fin d) (M + 1) Q hmono hpert hex
   refine ⟨c + k₀ + r, Xm x, fun i j => ?_, fun g i j => ?_⟩
   · have h4 := htf1.2.2.2 (bk.ev ((Xm x - (l : bk.S) ^ (c + k₀ + r) • (1 : Matrix (Fin d) (Fin d) bk.S)) i j))
       (fun n => exists_of_mem_sup (ev_mem bk n 1 _ ((hx n).1 i j)))

@@ -94,7 +94,7 @@ theorem om_rot_vac'_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (h
       obtain ⟨p, q, e, hw⟩ := _root_.PositivityTheory.SiegelWeilFormula.KFP.om_place_k hT hLO hLI R w
       refine ⟨F0 p q e (yrot d.n (R.sg w) t) * χ, mul_ne_zero (weight_factor_rotation_ne_zero p q e d.n (R.sg w) t) hχ,
         fun g hg Ω hΩ hTΩ => ?_⟩
-      have hK : InK (mR (yrot d.n (R.sg w) t)) := by rw [mR_yrot]; exact inK_yrotM' _ _ _
+      have hK : InK (mR (yrot d.n (R.sg w) t)) := by rw [mR_yrot]; exact _root_.PositivityTheory.SiegelWeilFormula.KFP.inK_yrotM _ _ _
       rw [List.map_cons, List.prod_cons, map_mul, Module.End.mul_apply, h g hg Ω hΩ hTΩ, map_smul,
         hw _ hK g hg Ω hΩ hTΩ, smul_smul, mul_comm]
   exact key _

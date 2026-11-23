@@ -293,36 +293,6 @@ theorem exists_bundle (Z : RatModel o Ω) {m : ℕ} (t : Fin m → Ω) (ht : Z.H
   obtain ⟨i, hi⟩ := ht z
   exact TopologicalSpace.Opens.mem_iSup.2 ⟨i, (RatModel.mem_nonzeroLocus_iff_div hLB hGT hs hloc i z).2 hi⟩
 
-private theorem valF_mul_var (M : RatModel o Ω) {V : M.Z.Opens} (hV : (V : Set M.Z).Nonempty)
-    (a b : Γ(M.Z, V)) : valF M.pt V (a * b) = valF M.pt V a * valF M.pt V b := by
-  have hgen : genericPoint M.Z ∈ V :=
-    ((genericPoint_spec M.Z).mem_open_set_iff V.isOpen).mpr (by simpa using hV)
-  have htop : ⊤ ≤ M.pt ⁻¹ᵁ V := by
-    intro w _
-    have hw : M.pt w ∈ Set.range M.pt := ⟨w, rfl⟩
-    rw [M.gen] at hw
-    show M.pt w ∈ V
-    rw [hw]
-    exact hgen
-  unfold valF
-  rw [dite_eq_left htop, dite_eq_left htop, dite_eq_left htop]
-  simp only [map_mul]
-
-private theorem valF_one_var (M : RatModel o Ω) {V : M.Z.Opens} (hV : (V : Set M.Z).Nonempty) :
-    valF M.pt V 1 = 1 := by
-  have hgen : genericPoint M.Z ∈ V :=
-    ((genericPoint_spec M.Z).mem_open_set_iff V.isOpen).mpr (by simpa using hV)
-  have htop : ⊤ ≤ M.pt ⁻¹ᵁ V := by
-    intro w _
-    have hw : M.pt w ∈ Set.range M.pt := ⟨w, rfl⟩
-    rw [M.gen] at hw
-    show M.pt w ∈ V
-    rw [hw]
-    exact hgen
-  unfold valF
-  rw [dite_eq_left htop]
-  simp only [map_one]
-
 theorem exists_unit {M : RatModel o Ω} {H : LB M.Z} {e : H.ι → Ω} (he : M.GenTriv H e) {m : ℕ}
     {s : Fin m → H.Sec} {t : Fin m → Ω} (hv : ∀ k, M.HasVal e (s k) (t k)) (hs : ⨆ k, nonzeroLocus (s k) = ⊤)
     (i : H.ι) (z : M.Z) (hz : z ∈ H.U i) : ∃ k, t k ≠ 0 ∧ e i / t k ∈ M.O z := by
@@ -338,7 +308,7 @@ theorem exists_unit {M : RatModel o Ω} {H : LB M.Z} {e : H.ι → Ω} (he : M.G
   have hval : valF M.pt _ (resG M.Z hVl ((s k).f l)) = t k / e l := by
     rw [RatModel.valF_resG M hVl hVne, hv k l ⟨z, hVl hl⟩]
   have h1 : valF M.pt _ (↑u⁻¹ : Γ(M.Z, M.Z.basicOpen ((s k).f l))) * (t k / e l) = 1 := by
-    rw [← hval, ← hu', ← valF_mul_var M hVne, Units.inv_mul, valF_one_var M hVne]
+    rw [← hval, ← hu', ← _root_.PositivityTheory.UnitarySelfGeneration.FrameHeightScaling.valF_pt_mul' M hVne, Units.inv_mul, _root_.PositivityTheory.UnitarySelfGeneration.FrameHeightScaling.valF_pt_one' M hVne]
   have htk : t k ≠ 0 := by
     intro h0
     rw [h0, zero_div, mul_zero] at h1

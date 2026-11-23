@@ -65,45 +65,25 @@ variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 def gram (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) {ι : Type} (w : ι → Fin n → E) :
     Matrix ι ι E := Matrix.of fun a b => hf L Hm (w b) (w a)
 
-def comb {n m : ℕ} (w : Fin m → Fin n → E) (A : Matrix (Fin m) (Fin m) E) : Fin m → Fin n → E :=
-  fun j => ∑ i, A i j • w i
-
-theorem hf_addl (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (a b y : Fin n → E) :
-    hf L Hm (a + b) y = hf L Hm a y + hf L Hm b y := by
-  simp [hf, add_mul, Finset.sum_add_distrib]
-
-theorem hf_smull (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (c : E) (a y : Fin n → E) :
-    hf L Hm (c • a) y = c * hf L Hm a y := by
-  simp [hf, Finset.mul_sum, mul_assoc]
-
-theorem hf_addr (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (a b y : Fin n → E) :
-    hf L Hm y (a + b) = hf L Hm y a + hf L Hm y b := by
-  simp [hf, mul_add, Finset.sum_add_distrib]
-
-theorem hf_smulr (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (c : E) (a y : Fin n → E) :
-    hf L Hm y (c • a) = L.cj c * hf L Hm y a := by
-  simp only [hf, Finset.mul_sum, Pi.smul_apply, smul_eq_mul, map_mul]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
-
 theorem hf_suml (L : LocE F E) {n m : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (t : Fin m → E)
     (w : Fin m → Fin n → E) (y : Fin n → E) :
     hf L Hm (∑ i, t i • w i) y = ∑ i, t i * hf L Hm (w i) y := by
   induction (Finset.univ : Finset (Fin m)) using Finset.induction_on with
   | empty => simp [hf]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, hf_addl, hf_smull, ih]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, _root_.GlobalTheory.HL.Eichler.hf_add_l, _root_.GlobalTheory.HL.Eichler.hf_smul_l, ih]
 
 theorem hf_sumr (L : LocE F E) {n m : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (t : Fin m → E)
     (w : Fin m → Fin n → E) (y : Fin n → E) :
     hf L Hm y (∑ i, t i • w i) = ∑ i, L.cj (t i) * hf L Hm y (w i) := by
   induction (Finset.univ : Finset (Fin m)) using Finset.induction_on with
   | empty => simp [hf]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, hf_addr, hf_smulr, ih]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, _root_.GlobalTheory.HL.Eichler.hf_add_r, _root_.GlobalTheory.HL.Eichler.hf_smul_r, ih]
 
 theorem gram_comb (L : LocE F E) {n m : ℕ} (Hm : Matrix (Fin n) (Fin n) E)
     (w : Fin m → Fin n → E) (A : Matrix (Fin m) (Fin m) E) :
-    gram L Hm (comb w A) = cT L A * (gram L Hm w * A) := by
+    gram L Hm (_root_.GlobalTheory.HL.rmul w A) = cT L A * (gram L Hm w * A) := by
   ext a b
-  simp only [gram, comb, Matrix.of_apply, hf_sumr, hf_suml, Matrix.mul_apply, cT]
+  simp only [gram, _root_.GlobalTheory.HL.rmul, Matrix.of_apply, hf_sumr, hf_suml, Matrix.mul_apply, cT]
   refine Finset.sum_congr rfl fun i _ => ?_
   congr 1
   refine Finset.sum_congr rfl fun j _ => mul_comm _ _
@@ -114,19 +94,19 @@ theorem det_cT (L : LocE F E) {m : ℕ} (A : Matrix (Fin m) (Fin m) E) :
   rw [this, Matrix.det_transpose, ← RingHom.map_det]; rfl
 
 theorem comb_comb {n m : ℕ} (w : Fin m → Fin n → E) (A B : Matrix (Fin m) (Fin m) E) :
-    comb (comb w A) B = comb w (A * B) := by
+    _root_.GlobalTheory.HL.rmul (_root_.GlobalTheory.HL.rmul w A) B = _root_.GlobalTheory.HL.rmul w (A * B) := by
   funext j
-  simp only [comb, Finset.smul_sum, smul_smul, Matrix.mul_apply, Finset.sum_smul]
+  simp only [_root_.GlobalTheory.HL.rmul, Finset.smul_sum, smul_smul, Matrix.mul_apply, Finset.sum_smul]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun k _ => by rw [mul_comm]
 
-theorem comb_one {n m : ℕ} (w : Fin m → Fin n → E) : comb w 1 = w := by
+theorem comb_one {n m : ℕ} (w : Fin m → Fin n → E) : _root_.GlobalTheory.HL.rmul w 1 = w := by
   funext j
-  simp [comb, Matrix.one_apply, ite_smul]
+  simp [_root_.GlobalTheory.HL.rmul, Matrix.one_apply, ite_smul]
 
 theorem sum_comb {n m : ℕ} (w : Fin m → Fin n → E) (A : Matrix (Fin m) (Fin m) E) (s : Fin m → E) :
-    ∑ j, s j • comb w A j = ∑ i, (A.mulVec s) i • w i := by
-  simp only [comb, Finset.smul_sum, smul_smul, Matrix.mulVec, dotProduct, Finset.sum_smul]
+    ∑ j, s j • _root_.GlobalTheory.HL.rmul w A j = ∑ i, (A.mulVec s) i • w i := by
+  simp only [_root_.GlobalTheory.HL.rmul, Finset.smul_sum, smul_smul, Matrix.mulVec, dotProduct, Finset.sum_smul]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun k _ => by rw [mul_comm]
 
@@ -161,7 +141,7 @@ theorem mem_spanO (L : LocE F E) {n m : ℕ} (w : Fin m → Fin n → E) (x : Fi
 theorem dual_iff (L : LocE F E) {n m : ℕ} (Hm : Matrix (Fin n) (Fin n) E)
     (w : Fin m → Fin n → E) (hu : IsUnit (gram L Hm w).det) (x : Fin n → E) :
     (x ∈ Submodule.span E (Set.range w) ∧ ∀ a, hf L Hm x (w a) ∈ L.O) ↔
-      x ∈ Submodule.span L.O (Set.range (comb w (gram L Hm w)⁻¹)) := by
+      x ∈ Submodule.span L.O (Set.range (_root_.GlobalTheory.HL.rmul w (gram L Hm w)⁻¹)) := by
   rw [mem_spanO, Submodule.mem_span_range_iff_exists_fun]
   constructor
   · rintro ⟨⟨t, rfl⟩, h⟩
@@ -203,7 +183,7 @@ theorem disc_fin [IsNonarchimedeanLocalField F] [CharZero F] (L : LocE F E) {n :
   have hcu : IsUnit (algebraMap F E c) := (IsUnit.mk0 c hc).map _
   have hu : IsUnit (gram L Hm v).det := hG ▸ hcu
   have hv : ∀ a, v a ∈ Mh := fun a => h1 (Submodule.subset_span ⟨a, rfl⟩)
-  have hle : Mh ≤ Submodule.span L.O (Set.range (comb v (gram L Hm v)⁻¹)) := fun x hx =>
+  have hle : Mh ≤ Submodule.span L.O (Set.range (_root_.GlobalTheory.HL.rmul v (gram L Hm v)⁻¹)) := fun x hx =>
     (dual_iff L Hm v hu x).1 ⟨h2 x hx, fun a => h3 x hx _ (hv a)⟩
   have hfg : Mh.FG :=
     Submodule.FG.of_le (Submodule.fg_span (Set.finite_range _)) hle
@@ -217,7 +197,7 @@ theorem disc_fin [IsNonarchimedeanLocalField F] [CharZero F] (L : LocE F E) {n :
     (mem_spanO L b _).1 (hMh ▸ hv j)
   choose s hs hsv using hA
   set A : Matrix (Fin m) (Fin m) E := Matrix.of fun i j => s j i with hAdef
-  have hvA : v = comb b A := by funext j; exact (hsv j).symm
+  have hvA : v = _root_.GlobalTheory.HL.rmul b A := by funext j; exact (hsv j).symm
   have hdet : (gram L Hm b).det * (A.det * L.cj A.det) = algebraMap F E c := by
     rw [← hG, hvA, gram_comb, Matrix.det_mul, Matrix.det_mul, det_cT]; ring
   obtain ⟨-, -, cA, hcA⟩ := hcj A.det (det_mem _ A fun i j => hs j i)
@@ -246,16 +226,16 @@ theorem disc_fin [IsNonarchimedeanLocalField F] [CharZero F] (L : LocE F E) {n :
     rw [← hadd c0 cA hc0 hcA0, ← hcc]
   have hspb : Submodule.span E (Set.range b) = Submodule.span E (Set.range v) := by
     rw [← hsp, hMh, Submodule.span_span_of_tower]
-  have hMd : Md = Submodule.span L.O (Set.range (comb b (gram L Hm b)⁻¹)) := by
+  have hMd : Md = Submodule.span L.O (Set.range (_root_.GlobalTheory.HL.rmul b (gram L Hm b)⁻¹)) := by
     ext x
     rw [h4, ← dual_iff L Hm b hub, hspb]
     refine and_congr_right fun _ => ⟨fun h a => h _ (hbm a), fun h y hy => ?_⟩
     obtain ⟨t, ht, rfl⟩ := (mem_spanO L b _).1 (hMh ▸ hy)
     rw [hf_sumr]
     exact L.O.sum_mem fun i _ => L.O.mul_mem (hcj _ (ht i)).1 (h i)
-  have hbd : b = comb (comb b (gram L Hm b)⁻¹) (gram L Hm b) := by
+  have hbd : b = _root_.GlobalTheory.HL.rmul (_root_.GlobalTheory.HL.rmul b (gram L Hm b)⁻¹) (gram L Hm b) := by
     rw [comb_comb, Matrix.nonsing_inv_mul _ hub, comb_one]
-  have hud : IsUnit (gram L Hm (comb b (gram L Hm b)⁻¹)).det := by
+  have hud : IsUnit (gram L Hm (_root_.GlobalTheory.HL.rmul b (gram L Hm b)⁻¹)).det := by
     rw [gram_comb, Matrix.mul_nonsing_inv _ hub, mul_one, det_cT]
     exact (Matrix.isUnit_nonsing_inv_det _ hub).map _
   have hMM : Mh ≤ Md := fun x hx => (h4 x).2 ⟨h2 x hx, h3 x hx⟩

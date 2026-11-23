@@ -53,10 +53,6 @@ open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.TorSecLocal
 
-theorem spMap_comp_ringHom {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B)
-    (g : B →+* C) : spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [spMap, spMap, spMap, ← Spec.map_comp]; rfl
-
 theorem pow_comp_of_isMonHom {S : Scheme.{0}} {G G' Z : Over S} [MonObj G] [MonObj G'] (φ : G ⟶ G')
     [IsMonHom φ] (x : Z ⟶ G) (n : ℕ) : (x ^ n) ≫ φ = (x ≫ φ) ^ n := by
   induction n with
@@ -89,7 +85,7 @@ theorem toric_torsion_section_overLocal : ∀ (E : Type) [Field E] [NumberField 
       (s U (u.comp ψ) τ h).left = (z ≫ j).left ≫ mV.φ := by
   intro E _ _ _ H R _ _ _ t P k s hs1 hs2 hs3 X' _ ρ V _ _ ψ tV mV j _ t₀ m₀ h₀ m₀' hφ hpull
     U _ _ u hu hk τU τ h hτU hττ z hz
-  have hg : spMap (u.comp ψ) = (Over.mk (spMap u)).hom ≫ spMap ψ := spMap_comp_ringHom ψ u
+  have hg : spMap (u.comp ψ) = (Over.mk (spMap u)).hom ≫ spMap ψ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp ψ u
   obtain ⟨e, he⟩ := GlobalTheory.LiePull.exists_pushEquiv mV.cart (Over.mk (spMap u)) (spMap (u.comp ψ)) hg
 
   have hzk : z ^ k = 1 := by
@@ -141,7 +137,7 @@ theorem toric_torsion_section_overLocal : ∀ (E : Type) [Field E] [NumberField 
         · rw [Category.assoc, GlobalTheory.SplitTorus.bcMap_hom, ← Category.assoc, Over.w z₁, Category.assoc,
             Over.w z]
           show spMap (ResidueField.map u) ≫ spMap (residue V) = spMap cU ≫ spMap u
-          rw [← spMap_comp_ringHom, ← spMap_comp_ringHom, hres]
+          rw [← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, hres]
         · rw [Scheme.Hom.comp_appTop, CommRingCat.hom_comp, RingHom.comp_apply, GlobalTheory.UU.bcMap_charUnit,
             Scheme.Hom.comp_appTop, CommRingCat.hom_comp, RingHom.comp_apply, ← GlobalTheory.UU.chV_val,
             ← GlobalTheory.UU.chV_val, hz₁, hz]

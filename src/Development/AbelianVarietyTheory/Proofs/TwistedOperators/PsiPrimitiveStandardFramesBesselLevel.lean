@@ -103,7 +103,7 @@ theorem GlobalTheory.AscFin.primAt_std_bessel : OnStd fun {D} _ _ {sc} {G} W F =
       show a * incA D ((F.dB ρ h).e k p) = _
       rw [he]
       simp only [colsOf, map_mul, mul_assoc]
-    have hL1 := GlobalTheory.T.column_mem_lattice_iff_ideal (G.colDec (2 * ρ + 2) (by omega) h) (by norm_num) (G.sp.P (2 * ρ + 2)).lat
+    have hL1 := _root_.GlobalTheory.UnitaryEmbeddingColumns.mem_latV_iff (G.colDec (2 * ρ + 2) (by omega) h) (by norm_num) (G.sp.P (2 * ρ + 2)).lat
       (stairId (G.pl.stA sc) (G.pl.stAbar sc) (2 * ρ + 2 - 1)) v (Fin.castLE (by omega) p) (a * incA D ((-D.host.xi0) ^ (p.1 + 1)))
     rw [e1]
     refine (show _ ↔ _ from hlat ▸ hL1).trans ?_

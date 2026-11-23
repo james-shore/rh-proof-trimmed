@@ -264,8 +264,8 @@ theorem room_four : ∃ C₀ : ℝ → ℝ → ℝ → ℝ, (∀ a b c, 0 ≤ C�
     have h3 : CR * Real.log D.host.rdE ≤ |CR| * |CA| * z := by
       rw [abs_of_nonneg hCR, mul_assoc]
       exact mul_le_mul_of_nonneg_left hrd hCR
-    have h4 := log_le_self' (by linarith : (0 : ℝ) ≤ WeightFamilies.dP D j)
-    have h5 := log_le_self' (by linarith : (0 : ℝ) ≤ WeightFamilies.rho D j)
+    have h4 := _root_.Real.log_le_self (by linarith : (0 : ℝ) ≤ WeightFamilies.dP D j)
+    have h5 := _root_.Real.log_le_self (by linarith : (0 : ℝ) ≤ WeightFamilies.rho D j)
     push_cast
     linarith
   have hs1 := ka.one_le_size
@@ -283,7 +283,7 @@ theorem room_four : ∃ C₀ : ℝ → ℝ → ℝ → ℝ, (∀ a b c, 0 ≤ C�
     refine (Real.log_le_log (by linarith) h3).trans ?_
     rw [Real.log_mul (by positivity) (by positivity)]
     have h4 : Real.log large₂.sc.b = large₂.sc.L := Real.log_exp _
-    have h5 := log_le_self' (by linarith : (0 : ℝ) ≤ |Ck| * z + z)
+    have h5 := _root_.Real.log_le_self (by linarith : (0 : ℝ) ≤ |Ck| * z + z)
     linarith
   obtain ⟨hn, hLa⟩ := H D.host.E D.R.r (D.R.sigW j).2 (D.host.g 0 * D.host.g 1) (discr D.host.E).natAbs
     (Ideal.absNorm D.host.ccK) (WeightFamilies.c1 D CR Tt cc j) (ka.size + D.R.r) (K * z) hr3 hp1 hpr
@@ -300,7 +300,7 @@ theorem room_four : ∃ C₀ : ℝ → ℝ → ℝ → ℝ, (∀ a b c, 0 ≤ C�
   have ho : |large₂.logOm| ≤ K * z := by
     have : CA * large₂.sc.L ≤ |CA| * z := mul_le_mul (le_abs_self _) hLz (by linarith) ha0
     linarith
-  have hR : Real.log (D.R.r : ℝ) ≤ z := (log_le_self' (by linarith)).trans hrz
+  have hR : Real.log (D.R.r : ℝ) ≤ z := (_root_.Real.log_le_self (by linarith)).trans hrz
   refine ⟨hz1, ?_⟩
   exact assemble K (C * K ^ A) (z ^ A) z ka.size _ _ (Real.log D.host.rdE) _ _ _ _ hz1 hP (by linarith)
     (by positivity) hs1 hmax hLa (by linarith) hR ho (by linarith) hn

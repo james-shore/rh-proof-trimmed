@@ -101,7 +101,7 @@ theorem conjStable_first_member (hCRD : GlobalTheory.Published.CuspRapidDecay) {
     refine ⟨(Complex.continuous_conj).comp hcont, fun γ hγ g => ?_, C, fun g => ?_⟩
     · simp only [hfdef, hinv γ hγ g]
     · simpa [hfdef] using hC g
-  exact GlobalTheory.T.boundedAutomorphic_parameters_star_stable D s'.V c.S f hfmem B h3
+  exact _root_.GlobalTheory.LFun.StarParam.param_star D s'.V c.S f hfmem B h3
 
 end GlobalTheory.ChainTw
 
@@ -123,7 +123,7 @@ theorem lPos_of_rapidDecay : GlobalTheory.Published.CuspRapidDecay → ∀ D : D
     have h5 : D.R.r + 5 ≤ D.R.t := by simpa [Formalism.BasicNotions.Ranks.r] using D.R.rank_add_five_le
     have h5' : (D.R.r : ℝ) + 5 ≤ D.R.t := by exact_mod_cast h5
     linarith
-  obtain ⟨l, hl, he⟩ := GlobalTheory.T.euler_product_conjugation_stable_parameters_pos D c.S B (c.μ (k + 1)) D.R.r ((D.R.r : ℝ) / 2) ((1 + (D.R.t : ℝ)) / 2) hch.1 hch.2
+  obtain ⟨l, hl, he⟩ := _root_.GlobalTheory.EulerConjPos.lsd_pos D c.S B (c.μ (k + 1)) D.R.r ((D.R.r : ℝ) / 2) ((1 + (D.R.t : ℝ)) / 2) hch.1 hch.2
     (hc.unr ⟨k, hk⟩) hbd hrt hst
   refine ⟨l, hl, ?_⟩
   rw [← he]

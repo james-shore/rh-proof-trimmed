@@ -65,19 +65,19 @@ variable {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (PadicAlgCl l)}
 
 theorem crystalline_firstChern_level [FiniteDimensional ℚ_[l] K] (hM : M.Sm) (U : Cov M.q) (hU : ∀ α, U.d α + m ≤ s) (hs : m ≤ s)
     (a : (dat Amp).Ch M) (x : ((dat Amp).H a).N 2) (hx : (dat Amp).c1H a x) (c : HdR M.q 2) (hcK : IsFirstChernDeRham M.q (lineK a.1) c) :
-    (chainOf hL M s (qb_le hL M s) (rHof d hc M s)).Rho (fun n => (show (M.HS false 2).lim from x).1 n) (evB M c) := by
+    (chainOf hL M s (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf hL M s) (rHof d hc M s)).Rho (fun n => (show (M.HS false 2).lim from x).1 n) (evB M c) := by
   obtain ⟨N, i, -, -, hi⟩ := a.2
   have hcov := sSup_𝒱D a.1 N i hi
-  obtain ⟨z, hz, -⟩ := thickening_firstChern_existsUnique L.γ M.p l s a.1 hcov
+  obtain ⟨z, hz, -⟩ := _root_.GlobalTheory.CompanionTheory.CrystallineFirstChernTorsionFree.existsUnique_isFirstChernTorsionFree L.γ M.p l s a.1 hcov
   refine ⟨fun k φ => ?_, 0, z, fun n => ?_, fun {e} bs => ?_⟩
   · show algebraMap K L.B (k • φ c) = algebraMap K L.B k * algebraMap K L.B (φ c)
     rw [smul_eq_mul, map_mul]
   · rw [pow_zero, one_smul]
-    exact coefficientReduction_firstChernClass_tateTwist (d n) M.p s ((PAlg.base l).cris n) L.lam (hc n) a.1 hcov _ z (hx n) hz
+    exact _root_.GlobalTheory.CompanionTheory.ReductionFirstChern.coefficientReduction_firstChernClass_tateTwist (d n) M.p s ((PAlg.base l).cris n) L.lam (hc n) a.1 hcov _ z (hx n) hz
   · rw [pow_zero, one_smul]
-    have h1 : bMap M s hL (qb_le hL M s) 2 z = muB L.γB M.q 1 s {⊤} 2 c :=
-      thickening_firstChern_pullback (nmB M hL) (QA L M s) (TF 1 s) (Or.inl ⟨rfl, 1, s, rfl⟩) (qb_le hL M s) a.1 s z _ hcov hz
-        (deRham_firstChern_to_thickening L.γB M.q s (lineK a.1) c hcK)
+    have h1 : bMap M s hL (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf hL M s) 2 z = muB L.γB M.q 1 s {⊤} 2 c :=
+      _root_.GlobalTheory.CompanionTheory.FirstChernPullback.firstChern_pullback (nmB M hL) (QA L M s) (TF 1 s) (Or.inl ⟨rfl, 1, s, rfl⟩) (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf hL M s) a.1 s z _ hcov hz
+        (_root_.GlobalTheory.CompanionTheory.FirstChernRationalLift.isFirstChernThickening_muB_of_isFirstChernDeRham L.γB M.q s (lineK a.1) c hcK)
     refine Eq.trans ?_ h1.symm
     show ∑ t, algebraMap K L.B (bs.coord t c) • muB L.γB M.q 1 s {⊤} 2 (bs t) = muB L.γB M.q 1 s {⊤} 2 c
     conv_rhs => rw [← bs.sum_repr c]

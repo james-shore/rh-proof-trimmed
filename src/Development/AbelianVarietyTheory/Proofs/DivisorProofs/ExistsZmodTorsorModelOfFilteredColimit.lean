@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFinitePresentationModelOfIsColimit
 
 @[expose] public section
 
@@ -112,18 +113,18 @@ theorem exists_torsor_model_of_isColimit : ∀ (J : Type) [SmallCategory J] [IsF
   haveI : Module.Finite c.pt D := hD.1
   haveI : Module.Projective c.pt D := hD.2.1
   haveI : Module.FinitePresentation c.pt D := Module.finitePresentation_of_projective c.pt D
-  obtain ⟨j, A, _, _, _, he0⟩ := GlobalTheory.T.exists_finitePresentation_descent_of_isColimit J F c hc D inferInstance
-  obtain ⟨k, B, _, _, _, actB, e, he⟩ := GlobalTheory.T.exists_zmod_action_model_of_isColimit_filtered J F c hc q hq j A D act he0
+  obtain ⟨j, A, _, _, _, he0⟩ := _root_.GlobalTheory.FpDescent.exists_finitePresentation_model_of_isColimit J F c hc D inferInstance
+  obtain ⟨k, B, _, _, _, actB, e, he⟩ := _root_.GlobalTheory.TorsorColim.exists_action_model_of_isColimit J F c hc q hq j A D act he0
   letI : Algebra (F.obj k) c.pt := (c.ι.app k).hom.toAlgebra
   have hT : GlobalTheory.LocAcyc.IsZModTorsor c.pt (c.pt ⊗[F.obj k] B) q
       (GlobalTheory.TorsorColim.bcAct c.pt actB) := by
     refine GlobalTheory.TorsorColim.isZModTorsor_of_algEquiv c.pt D _ q act _ e.symm (fun g y => ?_) hD
     apply e.injective
     rw [he, AlgEquiv.apply_symm_apply, AlgEquiv.apply_symm_apply]
-  have h1 := GlobalTheory.T.eventually_finite_baseChange_filtered_colimit J F c hc k B hT.1
-  have h2 := GlobalTheory.T.projective_eventually_filteredColimit_algebra J F c hc k B ⟨hT.1, hT.2.1⟩
-  have h3 := GlobalTheory.T.exists_late_split_of_filteredColimit J F c hc k B ⟨hT.1, GlobalTheory.T.exists_linear_splitting_unit_faithfullyFlat _ _ hT.1 hT.2.1 hT.2.2.1⟩
-  have h4 := GlobalTheory.T.eventually_zmodTorsorGaloisProductMap_bijective_colimit J F c hc q hq k B actB hT
+  have h1 := _root_.GlobalTheory.FiniteColim.eventually_finite_baseChange J F c hc k B hT.1
+  have h2 := _root_.GlobalTheory.ProjColim.projective_eventually J F c hc k B ⟨hT.1, hT.2.1⟩
+  have h3 := _root_.GlobalTheory.SplitColim.exists_late_split_of_isColimit J F c hc k B ⟨hT.1, _root_.GlobalTheory.unit_splits_of_projective_faithfullyFlat _ _ hT.1 hT.2.1 hT.2.2.1⟩
+  have h4 := _root_.GlobalTheory.TorsorColim.eventually_prodMapOf_bijective J F c hc q hq k B actB hT
   have h34 := GlobalTheory.TorsorColim.eventually_and (fun (m : J) (h : k ⟶ m) => letI : Algebra (F.obj k) (F.obj m) := (F.map h).hom.toAlgebra; ∃ τ : (F.obj m ⊗[F.obj k] B) →ₗ[F.obj m] F.obj m, τ 1 = 1) (fun (m : J) (h : k ⟶ m) => letI : Algebra (F.obj k) (F.obj m) := (F.map h).hom.toAlgebra; Function.Bijective (GlobalTheory.TorsorColim.prodMapOf (F.obj m) (F.obj m ⊗[F.obj k] B) q (GlobalTheory.TorsorColim.bcAct (F.obj m) actB))) h3 h4
   have h234 := GlobalTheory.TorsorColim.eventually_and (fun (m : J) (h : k ⟶ m) => letI : Algebra (F.obj k) (F.obj m) := (F.map h).hom.toAlgebra; Module.Projective (F.obj m) (F.obj m ⊗[F.obj k] B)) (fun (m : J) (h : k ⟶ m) => letI : Algebra (F.obj k) (F.obj m) := (F.map h).hom.toAlgebra; (∃ τ : (F.obj m ⊗[F.obj k] B) →ₗ[F.obj m] F.obj m, τ 1 = 1) ∧ Function.Bijective (GlobalTheory.TorsorColim.prodMapOf (F.obj m) (F.obj m ⊗[F.obj k] B) q (GlobalTheory.TorsorColim.bcAct (F.obj m) actB))) h2 h34
   obtain ⟨m, f₀, hm⟩ := GlobalTheory.TorsorColim.eventually_and (fun (m : J) (h : k ⟶ m) => letI : Algebra (F.obj k) (F.obj m) := (F.map h).hom.toAlgebra; Module.Finite (F.obj m) (F.obj m ⊗[F.obj k] B)) (fun (m : J) (h : k ⟶ m) => letI : Algebra (F.obj k) (F.obj m) := (F.map h).hom.toAlgebra; Module.Projective (F.obj m) (F.obj m ⊗[F.obj k] B) ∧ (∃ τ : (F.obj m ⊗[F.obj k] B) →ₗ[F.obj m] F.obj m, τ 1 = 1) ∧ Function.Bijective (GlobalTheory.TorsorColim.prodMapOf (F.obj m) (F.obj m ⊗[F.obj k] B) q (GlobalTheory.TorsorColim.bcAct (F.obj m) actB))) h1 h234

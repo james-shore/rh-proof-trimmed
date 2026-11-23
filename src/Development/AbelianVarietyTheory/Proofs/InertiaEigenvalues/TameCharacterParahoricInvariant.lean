@@ -55,14 +55,6 @@ namespace GlobalTheory.JacTypeVec
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.SplitRead GlobalTheory.JacBlock GlobalTheory.JacBlockTwo ValuativeRel Matrix
 
-theorem exists_irreducible_subquotient_rel (G V : Type) [Group G] [AddCommGroup V] [Module ℂ V]
-    (ρ : Representation ℂ G V) (x : V) (hx : x ≠ 0) :
-    ∃ (Y : Type) (_ : AddCommGroup Y) (_ : Module ℂ Y) (τ : Representation ℂ G Y) (y : Y),
-      τ.IsIrreducible ∧ GlobalTheory.SmGL.IsSubquotient τ ρ ∧ y ≠ 0 ∧
-        ∀ (ι : Type) (s : Finset ι) (f : ι → G) (c : ι → ℂ) (b : ℂ),
-          ∑ i ∈ s, c i • ρ (f i) x = b • x → ∑ i ∈ s, c i • τ (f i) y = b • y :=
-  _root_.GlobalTheory.QuotientGenerator.exists_irreducible_subquotient G V ρ x hx
-
 section Local
 
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F]
@@ -136,7 +128,7 @@ theorem exists_subquot_typeVec : GlobalTheory.Published.DepthZeroJacquetInjectiv
   obtain ⟨hx0, hxt⟩ := jacquet_ne_zero_of_isBlockVec_two hP F r t χ W π y hsm hirr hχ hy0 hy
   set x : Jacquet π (unipRad F (two (stdSum (rfl : r + t = r + t)))) := Submodule.Quotient.mk y with hxdef
   obtain ⟨Y, _, _, τ, w, hτ, hsq, hw0, hrel⟩ :=
-    exists_irreducible_subquotient_rel _ _ (jac (two (stdSum (rfl : r + t = r + t))) π) x hx0
+    _root_.GlobalTheory.QuotientGenerator.exists_irreducible_subquotient _ _ (jac (two (stdSum (rfl : r + t = r + t))) π) x hx0
   refine ⟨Y, inferInstance, inferInstance, τ, hτ, hsq, w, hw0, fun g hg => ?_, ?_, ℓ, hℓ, ?_⟩
   · have := hrel Unit {()} (fun _ => Pi.mulSingle true g) (fun _ => 1) _ (by
       simpa using hxt g hg)

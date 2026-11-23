@@ -86,10 +86,10 @@ theorem conv_mirC_eC : GlobalTheory.MirAvg.SeriesKillsAvg → ∀ (D : D7) (G : 
     rw [← hcoef g]
     unfold RealDat.eC sg0
     rw [sgAt_mk _ R.hv0]
-  rw [Finset.sum_congr rfl (fun y _ => by rw [GlobalTheory.T.mirabolicAverage_eq_coeff_singlePlaceElement D G Pl0 T A Ks R eR plg iso hrec i kv0 a b ε y, heC])]
-  refine GlobalTheory.T.convolution_singleFactor_goodProjector_eq_zero D G eR kv0 _ ?_ x
+  rw [Finset.sum_congr rfl (fun y _ => by rw [_root_.GlobalTheory.MirAvg.mirC_eq_coeff_mirEl D G Pl0 T A Ks R eR plg iso hrec i kv0 a b ε y, heC])]
+  refine _root_.GlobalTheory.DownLift.conv_single_goodProj_eq_zero D G eR kv0 _ ?_ x
   intro a' hgood
-  obtain ⟨L, hL, c, hc, hcc⟩ := GlobalTheory.T.levelCharacter_teichmullerLabel_of_goodTypes D G Pl0 T A Ks R hG.types kv0.1 kv0.2 i (plg kv0).1 (hdiv kv0) (iso kv0) ε hε
+  obtain ⟨L, hL, c, hc, hcc⟩ := _root_.GlobalTheory.CharLabTransport.charLab_of_goodTypes D G Pl0 T A Ks R hG.types kv0.1 kv0.2 i (plg kv0).1 (hdiv kv0) (iso kv0) ε hε
   rw [← D.ntypes.eSer_central, hL]
   have h1 := not_root_of_good _ _ _ _ (hgood kv0.1).1 kv0.2 i
   have h2 := not_root_of_good _ _ _ _ (hgood kv0.1).2 kv0.2 i

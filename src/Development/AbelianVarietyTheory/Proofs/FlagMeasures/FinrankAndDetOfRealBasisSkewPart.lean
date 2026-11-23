@@ -47,6 +47,7 @@ import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
 import Formalism.SharpRestriction.CuspSpanNormBounds.Point
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CartanInvolutionConjTransposeMul
 
 @[expose] public section
 
@@ -56,24 +57,6 @@ namespace GlobalTheory.RealFormBasis
 
 variable {n : ℕ} (ε : Fin n → Bool)
 
-private theorem Jm_mul_self_eq_one' {n : ℕ} (ε : Fin n → Bool) :
-    Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  rw [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> norm_num
-
-private theorem Jm_conjTransposeFlagMeasures {n : ℕ} (ε : Fin n → Bool) :
-    (Formalism.REAL.Jm ε)ᴴ = Formalism.REAL.Jm ε := by
-  rw [Formalism.REAL.Jm, Matrix.diagonal_conjTranspose]
-  congr 1
-  funext a
-  by_cases h : ε a <;> simp [h]
-
-private theorem Jm_mul_Jm_mul' {n : ℕ} (ε : Fin n → Bool) (M : Matrix (Fin n) (Fin n) ℂ) :
-    Formalism.REAL.Jm ε * (Formalism.REAL.Jm ε * M) = M := by
-  rw [← Matrix.mul_assoc, Jm_mul_self_eq_one', Matrix.one_mul]
-
 theorem inG_iff_adj (X : Matrix (Fin n) (Fin n) ℂ) :
     Formalism.REAL.inG ε X ↔ Formalism.REAL.Jm ε * Xᴴ * Formalism.REAL.Jm ε = -X := by
   unfold Formalism.REAL.inG
@@ -81,19 +64,19 @@ theorem inG_iff_adj (X : Matrix (Fin n) (Fin n) ℂ) :
   · intro h
 
     have h' := congrArg (fun M => Formalism.REAL.Jm ε * M) h
-    simp only [Matrix.mul_add, Matrix.mul_zero, Jm_mul_Jm_mul'] at h'
+    simp only [Matrix.mul_add, Matrix.mul_zero, _root_.Formalism.REAL.signature_mul_signature_mul] at h'
     rw [← Matrix.mul_assoc] at h'
     exact eq_neg_of_add_eq_zero_left h'
   · intro h
     have h' := congrArg (fun M => Formalism.REAL.Jm ε * M) h
-    simp only [Matrix.mul_assoc, Jm_mul_Jm_mul', Matrix.mul_neg] at h'
+    simp only [Matrix.mul_assoc, _root_.Formalism.REAL.signature_mul_signature_mul, Matrix.mul_neg] at h'
     rw [h', neg_add_cancel]
 
 theorem adj_adj (X : Matrix (Fin n) (Fin n) ℂ) :
     Formalism.REAL.Jm ε * (Formalism.REAL.Jm ε * Xᴴ * Formalism.REAL.Jm ε)ᴴ * Formalism.REAL.Jm ε = X := by
   rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose,
-    Jm_conjTransposeFlagMeasures]
-  simp only [Matrix.mul_assoc, Jm_mul_Jm_mul', Jm_mul_self_eq_one', Matrix.mul_one]
+    _root_.Formalism.REAL.Jm_conjTranspose]
+  simp only [Matrix.mul_assoc, _root_.Formalism.REAL.signature_mul_signature_mul, _root_.Formalism.REAL.Jm_mul_self, Matrix.mul_one]
 
 theorem finrank_and_det (n : ℕ) (ε : Fin n → Bool) (N : Submodule ℂ (Matrix (Fin n) (Fin n) ℂ)) (d : ℕ)
     (E : Fin d → Matrix (Fin n) (Fin n) ℂ)

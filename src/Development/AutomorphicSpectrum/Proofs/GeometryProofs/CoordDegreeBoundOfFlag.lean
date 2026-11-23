@@ -64,12 +64,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.RootHt.Pick
 
-theorem exists_indep_of_sat {R E : Type} [CommRing R] [IsDomain R] [IsNoetherianRing R] [AddCommGroup E] [Module R E]
-    [Module.Finite R E] [Module.IsTorsionFree R E] (T : Set E) (F : Submodule R E)
-    (hF : ∀ x, x ∈ F ↔ ∃ a : R, a ≠ 0 ∧ a • x ∈ Submodule.span R T) :
-    ∃ f : Fin (Module.finrank R F) → E, (∀ j, f j ∈ T) ∧ LinearIndependent R f :=
-  _root_.UpperTheory.Reformulated.B.Ud9.exists_indep_of_sat T F hF
-
 def valMap {X : Scheme.{0}} {R : Type} [CommRing R] [IsLocalRing R] (z : Sp R ⟶ X) : X.presheaf.stalk (centre z) →+* R :=
   (Scheme.stalkClosedPointTo z).hom
 
@@ -202,7 +196,7 @@ theorem pick : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (K
   have hsub₁ : IsSubFibre M (flagStep Ω b₀ (i + 1)) z MB (F.F i.succ) := by simpa using hsub i.succ
   set zL := spMap (algebraMap (𝓞 L) L) ≫ z with hzL
 
-  obtain ⟨f₀, hfT, hfi⟩ := exists_indep_of_sat _ (F.F i.castSucc) hsub₀
+  obtain ⟨f₀, hfT, hfi⟩ := _root_.UpperTheory.Reformulated.B.Ud9.exists_indep_of_sat _ (F.F i.castSucc) hsub₀
   have hrk : Module.finrank (𝓞 L) (F.F i.castSucc) = i := (F.rank i.castSucc).trans (by simp)
   have hrk₁ : Module.finrank (𝓞 L) (F.F i.succ) = i + 1 := (F.rank i.succ).trans (by simp)
   let f : Fin i → B.carrier := fun j => f₀ (Fin.cast hrk.symm j)

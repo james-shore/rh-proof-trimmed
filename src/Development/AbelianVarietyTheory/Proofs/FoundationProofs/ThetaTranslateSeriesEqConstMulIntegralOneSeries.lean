@@ -62,14 +62,8 @@ open GlobalTheory.EvenTheta GlobalTheory.ThetaTransl
 section
 variable {p : ℕ} [Fact p.Prime]
 
-theorem lamC_eq (lam : Qbar →+* ℂ_[p]) {x : ℂ} (hx : x ∈ Qbar) : lamC lam x = lam ⟨x, hx⟩ := dif_pos hx
-
-theorem lamC_mul' (lam : Qbar →+* ℂ_[p]) {x y : ℂ} (hx : x ∈ Qbar) (hy : y ∈ Qbar) :
-    lamC lam (x * y) = lamC lam x * lamC lam y := by
-  rw [lamC_eq lam hx, lamC_eq lam hy, lamC_eq lam (mul_mem hx hy), ← map_mul]; rfl
-
 theorem lamC_ne_zero (lam : Qbar →+* ℂ_[p]) {x : ℂ} (hx : x ∈ Qbar) (h0 : x ≠ 0) : lamC lam x ≠ 0 := by
-  rw [lamC_eq lam hx]
+  rw [_root_.GlobalTheory.TranslLin.lamC_of lam hx]
   intro h
   apply h0
   have := (map_eq_zero_iff lam lam.injective).1 h
@@ -92,9 +86,6 @@ theorem tors_neg' {p : ℕ} {Λ : AddSubgroup ℂ} {t : ℂ} (h : GL3Theta.Tors1
 
 theorem laQ_of_tors {p : ℕ} {Λ : AddSubgroup ℂ} {t : ℂ} (h : GL3Theta.Tors1 p Λ t) : InRationalLattice Λ t :=
   let ⟨_, n, hn, _, h⟩ := h; ⟨n, hn, h⟩
-
-theorem thetaTranslateOperator_zero_eq_self (Λ : AddSubgroup ℂ) (F : ℂ → ℂ) : U1 Λ 0 F = F := by
-  funext z; simp [U1]
 
 theorem thetaTranslate_sigmaStar_at_zero_ne_zero_of_not_mem_lattice {Λ : AddSubgroup ℂ} (hlat : IsLat Λ) {t : ℂ} (ht : t ∉ Λ) :
     U1 Λ t (sgStar Λ) 0 ≠ 0 := by
@@ -129,7 +120,7 @@ theorem tau_eq_C_mul : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (cc : Ideal (𝓞 D
   obtain ⟨-, hw, -, hE, -⟩ := GlobalTheory.EvenTheta.DatumBasic.datum_basic p g hok hlat' h2 h3 hdisc
   have hsg : AlgEnt (sgStar g.abelian₂) := by
     have := halg 0 ⟨1, one_pos, by simp⟩
-    rwa [thetaTranslateOperator_zero_eq_self] at this
+    rwa [_root_.GlobalTheory.ThetaParam.thetaTranslation_zero] at this
   have hEi : (ePhi1 g.lam g.abelian₂ g.C g.wq)⁻¹ * ePhi1 g.lam g.abelian₂ g.C g.wq = 1 :=
     PowerSeries.inv_mul_cancel _ (by rw [hE]; exact one_ne_zero)
   have hcon : ∀ s, InRationalLattice g.abelian₂ s → PowerSeries.constantCoeff (tau g s) = cval g s ∧
@@ -145,7 +136,7 @@ theorem tau_eq_C_mul : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (cc : Ideal (𝓞 D
   have b3 := (hcon (-t) hq').2
   have e := (atU_smul' g (mul_mem a3 b3) c1).2
   rw [funext (hlat'.sqTh_mul ht.1), ((GlobalTheory.SerTransport.transport p g).1 _ _ (halg _ hq) (halg _ hq')).1.2,
-    c2, lamC_mul' _ a3 b3] at e
+    c2, _root_.GlobalTheory.ThetaParam.lamC_mul _ a3 b3] at e
   have hprod : tau g t * tau g (-t) = PowerSeries.C (cval g t * cval g (-t)) *
       lineSer g.wq⁻¹ (xAt g t) := by
     simp only [tau, cval]

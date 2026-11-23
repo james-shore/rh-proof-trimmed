@@ -129,7 +129,7 @@ theorem minpoly_unramifiedSubfield_eq_cyclotomic (K : FinExt l) (j : ℕ) (hj : 
     rw [aeval_def, eval₂_eq_eval_map, map_cyclotomic]
     exact hζ.isRoot_cyclotomic hpos
   have hnorm : ‖ζ - 1‖ = (l : ℝ) ^ (-(1 : ℝ) / ((Nat.totient (l ^ j) : ℕ) : ℝ)) := by
-    have h1 := GlobalTheory.T.norm_primitiveRoot_primePow_sub_one_padicComplex l j hj (ζ : PadicComplex l)
+    have h1 := _root_.GlobalTheory.Cyc.norm_primitiveRoot_sub_one l j hj (ζ : PadicComplex l)
       (hζ.map_of_injective (f := algebraMap (Om l) (PadicComplex l)) (RingHom.injective _))
     rw [Nat.totient_prime_pow hlp hj]
     push_cast [Nat.cast_sub hlp.one_le]
@@ -149,11 +149,7 @@ theorem minpoly_unramifiedSubfield_eq_cyclotomic (K : FinExt l) (j : ℕ) (hj : 
   · rw [taylor_apply, aeval_comp]
     simp
 
-theorem exists_primitiveRoot_Om (j : ℕ) : ∃ ζ : Om l, IsPrimitiveRoot ζ (l ^ j) := by
-  have hlp : l.Prime := Fact.out
-  haveI : NeZero (l ^ j) := ⟨(pow_pos hlp.pos j).ne'⟩
-  haveI : CharZero (Om l) := algebraRat.charZero _
-  exact HasEnoughRootsOfUnity.exists_primitiveRoot (Om l) (l ^ j)
+alias exists_primitiveRoot_Om := _root_.GlobalTheory.Cyc.exists_primRoot_pow
 
 theorem Ks_eq_restrictScalars (K : FinExt l) (j : ℕ) (ζ : Om l)
     (hζ : IsPrimitiveRoot ζ (l ^ j)) :

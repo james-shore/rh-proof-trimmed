@@ -57,10 +57,6 @@ open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.Basi
 
 variable {l : ℕ} [Fact l.Prime] {P : LocPrime l}
 
-theorem oB_mem_zero {AI : LocAinf l P} (T : LocTied l P AI) (x : Om l) : oB P x ∈ FilB P 0 := by
-  obtain ⟨y, h1, -⟩ := T.om x
-  exact (GlobalTheory.ThetaTie.fil_zero T _).2 ⟨y, h1.symm⟩
-
 theorem tD_pow_mem_zero (j : ℕ) : tD P ^ j ∈ FilB P 0 :=
   FilB_anti (by simp) (FilB_pow (tD_mem (P := P)) j)
 
@@ -97,7 +93,7 @@ theorem expStar_of_sum : ∀ (LT : LocTheory) (l : ℕ) [Fact l.Prime] (AI : Loc
     ∑ j ∈ Finset.range e, qB (LT l) (c j) * (oB (LT l) (w j) * tD (LT l) ^ j) with hS
   have hS0 : S ∈ FilB (LT l) 0 :=
     Submodule.sum_mem _ fun j _ =>
-      qB_mul_mem _ (FilB_zero_mul (oB_mem_zero T _) (tD_pow_mem_zero j))
+      qB_mul_mem _ (FilB_zero_mul (_root_.GlobalTheory.ExpImage.IntCoc.oB_mem T _) (tD_pow_mem_zero j))
   have hSH : ∀ h ∈ Hinf K, (LT l).actQdR h S = S := by
     intro h hh
     have h1 : (LT l).χQ h = 1 := (hker K h (Hinf_le_fix hh)).2.1 hh

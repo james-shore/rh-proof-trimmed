@@ -122,7 +122,7 @@ theorem oscLe_inert_large : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     · refine ⟨(0, boundAll p (rk f) (cx f)), (GlobalTheory.T.factorDepth_between_zero_and_bound E H Dw l Xo c p la f (cx f)).1, ?_⟩
       simp only [hw, if_neg hb, boundAll, sub_zero, le_refl]
   choose g hg using key
-  obtain ⟨n, hn⟩ := ((GlobalTheory.T.productDepth_sum_rounding_oscillation E H Dw l Xo c p la cx).1 (fun f => (g f).1) (fun f => (g f).2) fun f => (hg f).1).2
+  obtain ⟨n, hn⟩ := ((_root_.GlobalTheory.RefSum.nuBetween_sum_and_eLoc_le E H Dw l Xo c p la cx).1 (fun f => (g f).1) (fun f => (g f).2) fun f => (hg f).1).2
   refine ⟨n, nuBetween_mono hn ?_⟩
   have hsum : ∑ f, ((g f).2 - (g f).1) ≤ ∑ f, w f := Finset.sum_le_sum fun f _ => (hg f).2
   suffices hw2 : ∑ f, w f ≤ (6 * F * m * Mb + Sm) / ((p : ℝ) - 1) by linarith

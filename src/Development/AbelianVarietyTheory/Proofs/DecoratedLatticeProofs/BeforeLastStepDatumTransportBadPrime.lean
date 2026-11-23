@@ -56,25 +56,11 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formal
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem intAt_iff_val (P : HeightOneSpectrum (𝓞 E)) (a : E) : IntAt P a ↔ P.valuation E a ≤ 1 := by
-  constructor
-  · rintro ⟨r, s, hs, h⟩
-    have h1 : P.valuation E (algebraMap (𝓞 E) E s) = 1 := by
-      rw [HeightOneSpectrum.valuation_of_algebraMap, HeightOneSpectrum.intValuation_eq_one_iff]
-      exact hs
-    have h2 := congrArg (P.valuation E) h
-    rw [map_mul, h1, one_mul] at h2
-    rw [h2]
-    exact P.valuation_le_one r
-  · intro h
-    obtain ⟨n, d, hnd⟩ := P.exists_primeCompl_mul_eq_of_integer a h
-    exact ⟨n, d, d.2, by rw [mul_comm]; exact hnd⟩
-
 theorem intAt_inv_pow_mul {P : HeightOneSpectrum (𝓞 E)} {q B c : ℕ} (hq : (q : E) ≠ 0) {z : E}
     (hz : P.valuation E z ≤ P.valuation E (((q ^ B * c : ℕ) : ℕ) : E)) : IntAt P (((q : E) ^ B)⁻¹ * z) := by
-  rw [intAt_iff_val, map_mul, map_inv₀]
+  rw [_root_.GlobalTheory.Proof.IntegralPowerExpansion.intAt_iff_val, map_mul, map_inv₀]
   have hc : P.valuation E ((c : ℕ) : E) ≤ 1 :=
-    (intAt_iff_val P _).1 ⟨(c : 𝓞 E), 1, fun h => P.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 h), by simp⟩
+    (_root_.GlobalTheory.Proof.IntegralPowerExpansion.intAt_iff_val P _).1 ⟨(c : 𝓞 E), 1, fun h => P.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 h), by simp⟩
   have h1 : P.valuation E z ≤ P.valuation E ((q : E) ^ B) := by
     refine hz.trans ?_
     rw [Nat.cast_mul, Nat.cast_pow, map_mul]

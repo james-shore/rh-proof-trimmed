@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem area_lattice_formula : PI.AreaLat := PI.AreaLatWork.areaLat

@@ -126,8 +126,8 @@ theorem stHt : SquareStatements.StHt := by
       · intro e; apply a; apply i.injective; simpa using e
       · simpa using hreg p' _ b
       · simpa using hreg p' _ d
-  have hnoeth := (GlobalTheory.T.regAt_noetherian_model_noetherian A.X Ω A.ξ ℤ _ _ A.tie).1
-  have hnoeth' := (GlobalTheory.T.regAt_noetherian_model_noetherian A'.X Ω' A'.ξ ℤ _ _ A'.tie).1
+  have hnoeth := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A.X Ω A.ξ ℤ _ _ A.tie).1
+  have hnoeth' := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A'.X Ω' A'.ξ ℤ _ _ A'.tie).1
   have hic : ∀ q : Cpt A.ξ, IsIntegrallyClosed (A.X.presheaf.stalk q.1) := fun q => (A.normal q.1).2
   have hic' : ∀ q : Cpt A'.ξ, IsIntegrallyClosed (A'.X.presheaf.stalk q.1) := fun q => (A'.normal q.1).2
   have htors : ∀ p ∈ S, FullTorsion A'.t.G A'.ξ (p ^ A.R p) := fun p hp =>
@@ -142,11 +142,11 @@ theorem stHt : SquareStatements.StHt := by
       rw [hf, ← Category.assoc, hdom, Category.assoc, hx, Category.assoc])
     have hc1 : IsIntegrallyClosed (A.X.presheaf.stalk (h p'.1)) := hic ⟨h p'.1, hsp p'⟩
     have hn1 : IsNoetherianRing (A.X.presheaf.stalk (h p'.1)) := noeth_stalk hgen ⟨h p'.1, hsp p'⟩ (hnoeth _)
-    have h1 := PositivityTheory.UnitarySelfGeneration.lattice_integrally_closed_torsion E H D l (KA l) (baseKA l) A.X Ω A.ξ s0 o A.t m0 A.Li A.M (p ^ A.R p) ⟨h p'.1, hsp p'⟩ hgen hN
+    have h1 := _root_.GlobalTheory.CompanionTheory.Ar.OmLinkK.htOm_eq_htLat E H D l (KA l) (baseKA l) A.X Ω A.ξ s0 o A.t m0 A.Li A.M (p ^ A.R p) ⟨h p'.1, hsp p'⟩ hgen hN
       (A.tors p hp) hc1 hn1
-    have h1' := PositivityTheory.UnitarySelfGeneration.lattice_integrally_closed_torsion E H D l (KA l) (baseKA l) A'.X Ω' A'.ξ s0' o' A'.t m0' A'.Li A'.M (p ^ A.R p) p' hgen' hN
+    have h1' := _root_.GlobalTheory.CompanionTheory.Ar.OmLinkK.htOm_eq_htLat E H D l (KA l) (baseKA l) A'.X Ω' A'.ξ s0' o' A'.t m0' A'.Li A'.M (p ^ A.R p) p' hgen' hN
       (htors p hp) (hic' _) (noeth_stalk hgen' _ (hnoeth' _))
-    have h2 := PositivityTheory.UnitarySelfGeneration.height_pullback_dominating_map A.X A'.X Ω Ω' A.ξ A'.ξ h i A.t.G A'.t.G mh.φ A.Li A'.Li A.M A'.M j hgen hgen' hdom mh.cart hsm hj jd hjd
+    have h2 := _root_.GlobalTheory.CompanionTheory.Ar.HTPullK.main A.X A'.X Ω Ω' A.ξ A'.ξ h i A.t.G A'.t.G mh.φ A.Li A'.Li A.M A'.M j hgen hgen' hdom mh.cart hsm hj jd hjd
       (p ^ A.R p) hN p' (hsp p') hc1 hn1 (h1.2.1 hpos) h1.1
     rw [h1'.2.2, h2, pull_eq A'.ξ h _ jd p' (hsp p'), h1.2.2]
   have hpos : ∀ s, 0 < labelRk D s → 0 < D.p + D.q := by

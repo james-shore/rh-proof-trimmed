@@ -79,7 +79,7 @@ theorem lift_commutes_translation : ∀ (E : Type) [Field E] [NumberField E] [Is
   obtain ⟨N, hN, Ix, U, M, r, hU, hUa, hgen, hrat⟩ := GlobalTheory.Heat.Gens.gens P.D.toPre
   refine GlobalTheory.Heat.DerComm.comm_of_gen A₀.hom P.D.toPre.P.A.hom m₀ _ dl hdl _ T₀ hT₀ hT₀' (Over.w _) Ix U M r hU hUa hgen (fun i j => ?_) W f
   obtain ⟨σ, σ', hσ⟩ := hrat i j
-  exact GlobalTheory.T.closedFibreLift_comm_translation_section_ratios E H k m d t P gam hmon hli hab Y n' v' dd hinv D q hq h hB hdef hΘ ρ hρ A₀ _ m₀ hm₀ dl hdl hdesc y T₀ hT₀
+  exact _root_.GlobalTheory.HeatRatioW.dl_comm_transl_ratio E H k m d t P gam hmon hli hab Y n' v' dd hinv D q hq h hB hdef hΘ ρ hρ A₀ _ m₀ hm₀ dl hdl hdesc y T₀ hT₀
     hT₀' N hN σ σ' (U i) (r i j) hσ
 
 end GlobalTheory.HeatTranslW

@@ -60,7 +60,7 @@ theorem slopeMax_le : GlobalTheory.UCls.MassBound → GlobalTheory.UCls.TorusBou
     rw [normW, normW, petW, petW, GlobalTheory.CompHt.goodOf_conj σ]
   have hP := GlobalTheory.T.kronecker_character_frame_first hMass hTor D j H Dw l Xo c U dict hL χ hχ a n hD
   have hR := GlobalTheory.LevGeo.RankBd.finrank_cuspW_le hMass hTor D j H Dw l Xo c U dict hL a n hD
-  have hS := GlobalTheory.T.maxSlope_sq_le_of_no_short_vector c.F (cuspW Xo c U (wtZ a n)) (normW U (xiR D) (fun _ => D.sp.W j) dict (wtZ a n))
+  have hS := _root_.GlobalTheory.SlopeMink.slopeMax_sq_le_of_no_short c.F (cuspW Xo c U (wtZ a n)) (normW U (xiR D) (fun _ => D.sp.W j) dict (wtZ a n))
     (latW U (wtZ a n)) _ hG.1 hj hG.2.1 h0 (fun F hF hF0 => (hP F hF hF0).2)
   haveI := hR.1
   obtain ⟨F, hF, hF0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot h0

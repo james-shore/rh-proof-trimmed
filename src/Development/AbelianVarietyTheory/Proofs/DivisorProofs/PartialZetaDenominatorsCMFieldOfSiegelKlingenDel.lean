@@ -60,11 +60,6 @@ open scoped nonZeroDivisors
 
 namespace GlobalTheory.ZetaDenom
 
-theorem eulerStep {F : Type} [Field F] [NumberField F] (𝔪 𝔭 : Ideal (𝓞 F)) (hmax : 𝔭.IsMaximal) (hp : 𝔭 ≠ ⊥) (hcop : 𝔭 ⊔ 𝔪 = ⊤)
-    (C : ClassGroup (𝓞 F)) (Z Z' : ℂ → ℂ) (hZ : IsRayL 𝔪 (wideInd C) Z) (hZ' : IsRayL 𝔪 (wideInd (C * (cls 𝔭)⁻¹)) Z') :
-    IsRayL (𝔪 * 𝔭) (wideInd C) (fun s => Z s - ((Ideal.absNorm 𝔭 : ℕ) : ℂ) ^ (-s) * Z' s) :=
-  GlobalTheory.T.isNarrowRayClassLFunction_mul_prime_wideIndicator 𝔪 𝔭 hmax hp hcop C Z Z' hZ hZ'
-
 theorem isRayL_top_iff {F : Type} [Field F] [NumberField F] (C : ClassGroup (𝓞 F)) (Z : ℂ → ℂ) :
     IsRayL (⊤ : Ideal (𝓞 F)) (wideInd C) Z ↔ IsClassZeta C Z :=
   GlobalTheory.T.isNarrowRayClassLFunction_top_wideIndicator_iff C Z
@@ -73,10 +68,6 @@ theorem primesOver_exists {F : Type} [Field F] [NumberField F] (l : ℕ) (hl : l
     ∃ P : Finset (Ideal (𝓞 F)), (∀ 𝔭 ∈ P, 𝔭.IsMaximal ∧ 𝔭 ≠ ⊥ ∧ l ∣ Ideal.absNorm 𝔭) ∧
       ∀ I : Ideal (𝓞 F), CoprimeTo F (∏ 𝔭 ∈ P, 𝔭) I ↔ CoprimeTo F (Ideal.span {(l : 𝓞 F)}) I :=
   GlobalTheory.T.exists_finite_primes_over_prime_coprimality_equiv l hl
-
-theorem inZl_of_shift {G : Type} [CommGroup G] [Finite G] (l : ℕ) [Fact l.Prime] (g : G) (q : ℕ) (hq : l ∣ q)
-    (x : G → ℚ) (h : ∀ C, InZl l (x C - (q : ℚ) * x (C * g))) (C : G) : InZl l (x C) :=
-  GlobalTheory.T.isRatInPadicIntegers_of_twisted_difference l g q hq x h C
 
 theorem cE_le_of_inZl {F : Type} [Field F] [NumberField F] (z : ClassGroup (𝓞 F) → ℚ) (l a n : ℕ) [Fact l.Prime]
     (ha : 2 ≤ a) (hn : 1 ≤ n) (h : ∀ C, InZl l (((a ^ n - 1 : ℕ) : ℚ) * z C)) :
@@ -103,7 +94,7 @@ theorem exists_isZetaValues (h : GlobalTheory.Published.SiegelKlingen) (F : Type
     intro C
     obtain ⟨L, hL, hv⟩ := h F ⊤ top_ne_bot (wideInd C) (isRayFun_wideInd _ C)
     obtain ⟨r, hr⟩ := hv k hk
-    exact ⟨r, L, (isRayL_top_iff C L).1 hL, hr⟩
+    exact ⟨r, L, (_root_.GlobalTheory.ZetaDenom.isRayL_top_wideInd_iff C L).1 hL, hr⟩
   choose z hz using this
   exact ⟨z, hz⟩
 
@@ -112,7 +103,7 @@ theorem inZl_mul_zeta (h : GlobalTheory.Published.DeligneRibet) (F : Type) [Fiel
     (z : ClassGroup (𝓞 F) → ℚ) (hz : IsZetaValues k z) (C : ClassGroup (𝓞 F)) :
     InZl l (((a ^ (finrank ℚ F * k) - 1 : ℕ) : ℚ) * z C) := by
   classical
-  obtain ⟨P, hP, hPc⟩ := primesOver_exists (F := F) l hl.out
+  obtain ⟨P, hP, hPc⟩ := _root_.GlobalTheory.PrimesAboveExistence.exists_primes_above (F := F) l hl.out
   set c : ℚ := ((a ^ (finrank ℚ F * k) - 1 : ℕ) : ℚ) with hcdef
   let St : Finset (Ideal (𝓞 F)) → Prop := fun T => ∀ x : ClassGroup (𝓞 F) → ℚ,
     (∀ C, ∃ Z : ℂ → ℂ, IsRayL (∏ 𝔭 ∈ T, 𝔭) (wideInd C) Z ∧ Z (1 - (k : ℂ)) = (x C : ℂ)) → ∀ C, InZl l (c * x C)
@@ -153,13 +144,13 @@ theorem inZl_mul_zeta (h : GlobalTheory.Published.DeligneRibet) (F : Type) [Fiel
       intro C
       refine ⟨fun s => Zf C s - ((Ideal.absNorm 𝔭 : ℕ) : ℂ) ^ (-s) * Zf (C * (cls 𝔭)⁻¹) s, ?_, ?_⟩
       · rw [Finset.prod_insert h𝔭T, mul_comm]
-        exact eulerStep _ 𝔭 hmax hne hcopT C _ _ (hZf C) (hZf _)
+        exact _root_.GlobalTheory.isRayL_mul_prime_wideInd _ 𝔭 hmax hne hcopT C _ _ (hZf C) (hZf _)
       · have e1 : -(1 - (k : ℂ)) = ((k - 1 : ℕ) : ℂ) := by rw [Nat.cast_sub (by omega)]; push_cast; ring
         simp only [e1, Complex.cpow_natCast, eZ, hqdef]
         push_cast; ring
     have := hSt _ hy
     intro C
-    have hmul := inZl_of_shift l ((cls 𝔭)⁻¹) q (dvd_pow hdvd (by omega)) (fun C => c * x C)
+    have hmul := _root_.GlobalTheory.inZl_of_twisted_difference l ((cls 𝔭)⁻¹) q (dvd_pow hdvd (by omega)) (fun C => c * x C)
       (fun C => by have := this C; rwa [mul_sub, mul_left_comm] at this) C
     exact hmul
   have key : ∀ U : Finset (Ideal (𝓞 F)), U ⊆ P → St (P \ U) := by
@@ -183,7 +174,7 @@ theorem inZl_mul_zeta (h : GlobalTheory.Published.DeligneRibet) (F : Type) [Fiel
   rw [Finset.sdiff_self] at h0
   refine h0 z (fun C => ?_) C
   obtain ⟨Z, hZ, e⟩ := hz C
-  exact ⟨Z, by rw [Finset.prod_empty, Ideal.one_eq_top]; exact (isRayL_top_iff C Z).2 hZ, e⟩
+  exact ⟨Z, by rw [Finset.prod_empty, Ideal.one_eq_top]; exact (_root_.GlobalTheory.ZetaDenom.isRayL_top_wideInd_iff C Z).2 hZ, e⟩
 
 theorem zetaDenominators (h : GlobalTheory.Published.SiegelKlingenDeligneRibet) : ZetaDenominators := by
   apply ZetaDenominatorsReal.cm

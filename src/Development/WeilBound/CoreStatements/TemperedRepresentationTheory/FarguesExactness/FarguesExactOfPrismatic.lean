@@ -119,7 +119,7 @@ theorem farguesExact_of_hodge (hP : GlobalTheory.Published.PrismaticDieudonneHod
     smul_muTate_bijective ζ h0 h (primitive h0 h h1)
   obtain ⟨B₀, hB₀, -, -⟩ := GlobalTheory.PointGroup.exists_form hv G _ hζ
   have hk := (GlobalTheory.DetInv.HTKer.ker_hodgeTateLinear p C v O ε hε hS G _ B₀ hv hζ hB₀).1 x
-  obtain ⟨-, -, hc⟩ := GlobalTheory.T.pDivGroup_omega_finite_free_and_p_sq_mem_dlog_span p C v O ε hε hv hS G
+  obtain ⟨-, -, hc⟩ := _root_.GlobalTheory.DlogSpan.finite_free_and_sq_smul_mem_span p C v O ε hε hv hS G
   have hBB : ∀ (z : O ⊗[ℤ_[p]] G.Tate) (χ : G.dual.Tate),
       (TensorProduct.rid ℤ_[p] O) ((B₀.flip χ).baseChange O z) = B z (1 ⊗ₜ χ) := fun z χ => by
     induction z using TensorProduct.induction_on with

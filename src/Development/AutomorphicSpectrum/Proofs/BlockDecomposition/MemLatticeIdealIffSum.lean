@@ -47,6 +47,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.RingTheory.Ideal.BigOperators
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemLatticeSubIffSum
 
 @[expose] public section
 
@@ -72,25 +73,6 @@ theorem dpE_zero : Lat.dpE f ξ l M 0 = 1 := by
   unfold Lat.dpE
   rw [pow_zero, Nat.factorial_zero, Nat.cast_one, inv_one, one_smul]
 
-private theorem dpE_mul_dpE_eq_choose_mul (a b : ℕ) :
-    Lat.dpE f ξ l M a * Lat.dpE f ξ l M b =
-      (((a + b).choose a : ℕ) : B) * Lat.dpE f ξ l M (a + b) := by
-  have h0 : (a + b).choose a * a.factorial * b.factorial = (a + b).factorial := by
-    have h1 := Nat.choose_mul_factorial_mul_factorial (Nat.le_add_right a b)
-    rwa [Nat.add_sub_cancel_left] at h1
-  have hC : (((a + b).choose a : ℕ) : ℚ) ≠ 0 := by
-    exact_mod_cast (Nat.choose_pos (Nat.le_add_right a b)).ne'
-  have key : ((a.factorial : ℚ))⁻¹ * ((b.factorial : ℚ))⁻¹ =
-      (((a + b).choose a : ℕ) : ℚ) * (((a + b).factorial : ℕ) : ℚ)⁻¹ := by
-    rw [← h0, Nat.cast_mul, Nat.cast_mul, mul_inv, mul_inv, ← mul_assoc, ← mul_assoc,
-      mul_inv_cancel₀ hC, one_mul]
-  have key' : algebraMap ℚ B ((a.factorial : ℚ))⁻¹ * algebraMap ℚ B ((b.factorial : ℚ))⁻¹ =
-      (((a + b).choose a : ℕ) : B) * algebraMap ℚ B (((a + b).factorial : ℕ) : ℚ)⁻¹ := by
-    rw [← map_mul, key, map_mul, map_natCast]
-  unfold Lat.dpE
-  rw [Algebra.smul_def, Algebra.smul_def, Algebra.smul_def, pow_add]
-  linear_combination (Lat.η f ξ l M ^ a * Lat.η f ξ l M ^ b) * key'
-
 private theorem mul_mem_set_f_mul_dpE {y z : B}
     (hy : y ∈ {y : B | ∃ (w : W) (k : ℕ), y = f w * Lat.dpE f ξ l M k})
     (hz : z ∈ {y : B | ∃ (w : W) (k : ℕ), y = f w * Lat.dpE f ξ l M k}) :
@@ -99,7 +81,7 @@ private theorem mul_mem_set_f_mul_dpE {y z : B}
   obtain ⟨w', b, rfl⟩ := hz
   refine ⟨w * w' * (((a + b).choose a : ℕ) : W), a + b, ?_⟩
   rw [map_mul, map_mul, map_natCast]
-  linear_combination (f w * f w') * dpE_mul_dpE_eq_choose_mul f ξ l M a b
+  linear_combination (f w * f w') * _root_.GlobalTheory.CompanionTheory.LatSpan.dpE_mul f ξ l M a b
 
 private theorem mul_mem_closure_f_mul_dpE {y z : B}
     (hy : y ∈ AddSubgroup.closure {y : B | ∃ (w : W) (k : ℕ), y = f w * Lat.dpE f ξ l M k})

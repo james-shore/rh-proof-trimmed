@@ -65,23 +65,10 @@ noncomputable section
 
 namespace GlobalTheory.Proof.integralJets_normalisedThetaCombinations_away_d
 
-theorem jets_comb {K : Type} [NormedField K] [IsUltrametricDist K] {X κ : Type} [Fintype κ] (r : κ → K)
-    (sg : κ → MvPowerSeries X K) (hr : ∀ k, ‖r k‖ ≤ 1) (hsg : ∀ k, JetsIntegral (sg k)) :
-    JetsIntegral (∑ k, MvPowerSeries.C (r k) * sg k) := by
-  refine (Formalism.L2.Th1.G.jets_in_norm_holds K X _).2 ?_
-  refine Formalism.L2.Th1.G.jetsIn_sum _ _ fun k _ => ?_
-  exact Formalism.L2.Th1.G.jetsIn_mul (Formalism.L2.Th1.G.jetsIn_C (hr k))
-    ((Formalism.L2.Th1.G.jets_in_norm_holds K X _).1 (hsg k))
-
 theorem embT_mem (D : D7) (τ : D.what₂.Tau) (x : D.host.E) : TaylorLogMetric.embT D τ x ∈ TaylorLogMetric.Qbar := by
   have hx : IsAlgebraic ℚ x := Algebra.IsAlgebraic.isAlgebraic x
   have : IsAlgebraic ℚ ((TaylorLogMetric.embT D τ).toRatAlgHom x) := hx.algHom _
   exact (mem_algebraicClosure_iff).2 this
-
-theorem norm_natCast_coprime {p : ℕ} [Fact p.Prime] {n : ℕ} (h : Nat.Coprime n p) : ‖(n : ℂ_[p])‖ = 1 := by
-  have e : (n : ℂ_[p]) = algebraMap ℚ_[p] ℂ_[p] (n : ℚ_[p]) := (map_natCast _ n).symm
-  rw [e, norm_algebraMap', Padic.norm_natCast_eq_one_iff]
-  exact h.symm
 
 theorem atLin_X {σ κ : Type} [Fintype κ] {p : ℕ} [Fact p.Prime] (c : σ → κ → ℂ_[p]) (F : MvPowerSeries σ ℂ_[p]) :
     TaylorLogMetric.atLin c (fun j => MvPowerSeries.X j) F = Formalism.L2.Th1.G.linSub c F := rfl
@@ -173,7 +160,7 @@ theorem term_jets (hIn : GlobalTheory.ThLoc.Inputs) (hcc : TaylorLogMetric.IsCur
   let v : Fin n → DVar X.Tau N N' → ℂ := fun j =>
     (s.flatV N N').symm (TaylorLogMetric.embV D B.tor (((s₁ * s₂ : ℕ) : D.host.E) • y j))
   let A : Fin n → Fin n → ℂ_[p] := fun j x => if j = x then (((s₁ * s₂ : ℕ) : ℂ_[p]))⁻¹ else 0
-  have hn1 : ‖(((s₁ * s₂ : ℕ) : ℂ_[p]))‖ = 1 := norm_natCast_coprime hS
+  have hn1 : ‖(((s₁ * s₂ : ℕ) : ℂ_[p]))‖ = 1 := _root_.GlobalTheory.HeckeVal.norm_natCast_eq_one hS
   have hn0 : (((s₁ * s₂ : ℕ) : ℂ_[p])) ≠ 0 := fun h => by rw [h, norm_zero] at hn1; exact zero_ne_one hn1
   have hv : ∀ j, InMul (cmL a₀ b₀ D.host.d ha hd lam hlam) (s.laF B.tor L₁ L₁') (v j) := by
     intro j ω hω
@@ -240,6 +227,6 @@ theorem GlobalTheory.Proof.integralJets_normalisedThetaCombinations_away_d.jetsA
     rw [map_mul, AlgHom.commutes, Formalism.L2.Th1.G.linSubHom_apply]
     rfl
   rw [e]
-  exact GlobalTheory.Proof.integralJets_normalisedThetaCombinations_away_d.jets_comb r _ hr fun k =>
+  exact _root_.GlobalTheory.ThLoc.LocJets.jets_comb r _ hr fun k =>
     GlobalTheory.Proof.integralJets_normalisedThetaCombinations_away_d.term_jets hIn hcc hδ B χ hχ s hs a₀ b₀ c₀ ha hd lam hlam hcm hlat (hL1 k).1 (hL1 k).2.1 (hL1 k).2.2 lm ι hι hpd h3
       (t k) (ht k) y hy

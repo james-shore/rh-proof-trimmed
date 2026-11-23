@@ -108,8 +108,7 @@ theorem lamAf_fg (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.FG) :
     rw [← hs] at hx
     exact key x hx
 
-theorem main : ∀ {F E : Type} [inst : Field F] [inst_1 : NumberField F] [inst_2 : Field E] [inst_3 : NumberField E] [inst_4 : Algebra F E] {n : ℕ} (L : Submodule (NumberField.RingOfIntegers E) (Fin n → E)), Submodule.FG L → Submodule.FG (R := ↥(Formalism.MainNotions.S.IntAf F E)) (Formalism.MainNotions.S.lamAf L) :=
-  fun L hL => lamAf_fg L hL
+alias main := _root_.GlobalTheory.VectorInclusion.lamAf_fg
 
 end GlobalTheory.VectorInclusion
 

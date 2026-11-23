@@ -52,15 +52,6 @@ namespace GlobalTheory.LKRes.Denom
 
 variable (p : ℕ) [Fact p.Prime]
 
-theorem exists_pow_mul_norm_le_one (y : PadicAlgCl p) : ∃ k : ℕ, ‖(p : PadicAlgCl p) ^ k * y‖ ≤ 1 := by
-  first
-  | exact @_root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one
-  | exact _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one
-  | (apply _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one ..)
-
 variable (K : IntermediateField ℚ_[p] (PadicAlgCl p)) (r : ℕ)
 
 theorem inclK_mem (a : K) (ha : ‖(a : PadicAlgCl p)‖ ≤ 1) : inclK p K r a ∈ intKQ p K r :=
@@ -75,8 +66,8 @@ theorem aux (x : K ⊗[ℚ_[p]] Qr p r) :
   induction x using TensorProduct.induction_on with
   | zero => exact ⟨0, by rw [mul_zero]; exact (intKQ p K r).zero_mem⟩
   | tmul a b =>
-    obtain ⟨k, hk⟩ := exists_pow_mul_norm_le_one p (a : PadicAlgCl p)
-    obtain ⟨l, hl⟩ := exists_pow_mul_norm_le_one p (b : PadicAlgCl p)
+    obtain ⟨k, hk⟩ := _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one p (a : PadicAlgCl p)
+    obtain ⟨l, hl⟩ := _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one p (b : PadicAlgCl p)
     refine ⟨k + l, ?_⟩
     have e : (p : K ⊗[ℚ_[p]] Qr p r) ^ (k + l) * (a ⊗ₜ[ℚ_[p]] b) =
         ((p : K) ^ k * a) ⊗ₜ[ℚ_[p]] ((p : Qr p r) ^ l * b) := by

@@ -122,9 +122,6 @@ private theorem rt_constantCoeff_lam_lemma {f : MvPowerSeries (Fin 2) ℂ_[p]} (
   refine lt_of_lt_of_le ?_ hf
   simp
 
-theorem rt_constantCoeff_lam (wq : PowerSeries ℂ_[p]) : MvPowerSeries.constantCoeff (lam wq) = 0 := by
-  exact rt_constantCoeff_lam_lemma (rt_order_lam wq)
-
 theorem rt_wv (wq : PowerSeries ℂ_[p]) (i : Fin 2) :
     wv wq i = (Xv i) ^ 3 * PowerSeries.subst (Xv i : MvPowerSeries (Fin 2) ℂ_[p]) wq := by
   have ha : PowerSeries.HasSubst (Xv i : MvPowerSeries (Fin 2) ℂ_[p]) :=
@@ -158,7 +155,7 @@ theorem rt_order_Bcf (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
 
 theorem constantCoeff_Acf (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
     MvPowerSeries.constantCoeff (Acf W wq) = 1 := by
-  simp [Acf, rt_constantCoeff_lam]
+  simp [Acf, _root_.PI.AddIntG.Wk.constantCoeff_lam]
 
 theorem rt_Acf_ne (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
     MvPowerSeries.constantCoeff (Acf W wq) ≠ 0 := by
@@ -256,7 +253,7 @@ theorem subst_thirdRoot_wSeries {W : WeierstrassCurve ℂ_[p]} {wq : PowerSeries
     rw [hw', map_mul, map_pow, hz0]
     simp
   have hv0 : MvPowerSeries.constantCoeff v = 0 := by
-    simp [hv, hz0, rt_constantCoeff_lam, rt_constantCoeff_nu]
+    simp [hv, hz0, _root_.PI.AddIntG.Wk.constantCoeff_lam, rt_constantCoeff_nu]
   have hfac : G W z v - G W z w = (v - w) *
       (algebraMap ℂ_[p] (MvPowerSeries (Fin 2) ℂ_[p]) W.a₁ * z +
         algebraMap ℂ_[p] (MvPowerSeries (Fin 2) ℂ_[p]) W.a₂ * z ^ 2 +

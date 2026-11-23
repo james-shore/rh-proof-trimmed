@@ -65,48 +65,35 @@ section Basic
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem v_eq_ord {x : L} (hx : x ≠ 0) : Valued.v x =
-    ((Multiplicative.ofAdd (-ordL x) : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by
-  have h : Valued.v x ≠ 0 := (Valuation.ne_zero_iff _).2 hx
-  unfold ordL
-  rw [dite_eq_right h]
-  simp
-
-theorem ord_mul {x y : L} (hx : x ≠ 0) (hy : y ≠ 0) : ordL (x * y) = ordL x + ordL y := by
-  have h := v_eq_ord (mul_ne_zero hx hy)
-  rw [map_mul, v_eq_ord hx, v_eq_ord hy, ← WithZero.coe_mul, ← ofAdd_add] at h
-  have := Multiplicative.ofAdd.injective (WithZero.coe_injective h)
-  omega
-
 theorem ord_prod {ι : Type} (s : Finset ι) (c : ι → L) (h : ∀ x ∈ s, c x ≠ 0) :
     ordL (∏ x ∈ s, c x) = ∑ x ∈ s, ordL (c x) := by
   classical
   induction s using Finset.induction_on with
   | empty =>
     simp only [Finset.prod_empty, Finset.sum_empty]
-    have := v_eq_ord (one_ne_zero : (1 : L) ≠ 0)
+    have := _root_.Formalism.UG.P.fSatake_v_eq (one_ne_zero : (1 : L) ≠ 0)
     rw [map_one] at this
     have h2 : (1 : Multiplicative ℤ) = Multiplicative.ofAdd (-ordL (1 : L)) := WithZero.coe_injective this
     have h3 : (0 : ℤ) = -ordL (1 : L) := Multiplicative.ofAdd.injective h2
     omega
   | insert a s ha ih =>
-    rw [Finset.prod_insert ha, Finset.sum_insert ha, ord_mul (h a (by simp))
+    rw [Finset.prod_insert ha, Finset.sum_insert ha, _root_.Formalism.UG.P.fSatake_ord_mul (h a (by simp))
       (Finset.prod_ne_zero_iff.2 fun x hx => h x (by simp [hx])), ih fun x hx => h x (by simp [hx])]
 
 theorem ord_nonneg {x : L} (hx : x ≠ 0) (h : Valued.v x ≤ 1) : 0 ≤ ordL x := by
-  rw [v_eq_ord hx, ← WithZero.coe_one, WithZero.coe_le_coe] at h
+  rw [_root_.Formalism.UG.P.fSatake_v_eq hx, ← WithZero.coe_one, WithZero.coe_le_coe] at h
   have : Multiplicative.ofAdd (-ordL x) ≤ Multiplicative.ofAdd (0 : ℤ) := h
   have := Multiplicative.ofAdd_le.1 this
   omega
 
 theorem ord_eq_zero {x : L} (hx : x ≠ 0) (h : Valued.v x = 1) : ordL x = 0 := by
-  rw [v_eq_ord hx, ← WithZero.coe_one] at h
+  rw [_root_.Formalism.UG.P.fSatake_v_eq hx, ← WithZero.coe_one] at h
   have h2 : Multiplicative.ofAdd (-ordL x) = Multiplicative.ofAdd (0 : ℤ) := WithZero.coe_injective h
   have := Multiplicative.ofAdd.injective h2
   omega
 
 theorem v_eq_one_of_ord {x : L} (hx : x ≠ 0) (h : ordL x = 0) : Valued.v x = 1 := by
-  rw [v_eq_ord hx, h]; simp
+  rw [_root_.Formalism.UG.P.fSatake_v_eq hx, h]; simp
 
 theorem prod_lt_one {ι : Type} (s : Finset ι) (c : ι → WithZero (Multiplicative ℤ)) (h : ∀ x ∈ s, c x ≤ 1)
     {x : ι} (hx : x ∈ s) (hlt : c x < 1) : ∏ y ∈ s, c y < 1 := by
@@ -278,9 +265,9 @@ theorem key {R I B T : Matrix (Fin n) (Fin n) L} {π π' : Equiv.Perm (Fin n)}
   have ne : e ≠ 0 := right_ne_zero_of_mul (h2 ▸ mul_ne_zero nD2 nP)
   have o1 := congrArg ordL h1
   have o2 := congrArg ordL h2
-  rw [ord_mul nm nP', ord_mul nB nD1, ord_eq_zero nD1 d1, ord_prod _ _ fun a _ => hTz _,
+  rw [_root_.Formalism.UG.P.fSatake_ord_mul nm nP', _root_.Formalism.UG.P.fSatake_ord_mul nB nD1, ord_eq_zero nD1 d1, ord_prod _ _ fun a _ => hTz _,
     ord_prod _ _ fun a _ => hBz _] at o1
-  rw [ord_mul nD2 nP, ord_mul nB ne, ord_eq_zero nD2 d2, ord_prod _ _ fun a _ => hTz _,
+  rw [_root_.Formalism.UG.P.fSatake_ord_mul nD2 nP, _root_.Formalism.UG.P.fSatake_ord_mul nB ne, ord_eq_zero nD2 d2, ord_prod _ _ fun a _ => hTz _,
     ord_prod _ _ fun a _ => hBz _] at o2
   have pm := ord_nonneg nm l1
   have pe := ord_nonneg ne l2

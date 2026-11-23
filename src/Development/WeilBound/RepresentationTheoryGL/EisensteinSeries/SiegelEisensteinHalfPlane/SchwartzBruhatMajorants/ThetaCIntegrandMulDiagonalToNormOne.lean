@@ -147,10 +147,4 @@ theorem theta_integral_functional_equation (w : InfinitePlace k) {F : (ι → �
   rw [step1, step2, hDinv.setIntegral_eq hD hinvar]
   rfl
 
-theorem thetaCInt_inv : ∀ {k : Type} [Field k] [NumberField k], ∀ {ι : Type} [Fintype ι]
-    [DecidableEq ι], ∀ (w : InfinitePlace k) {F : (ι → 𝔸[k]) → ℂ} (hF : F ∈ schwartzBruhatPi (K := k) (ι := ι))
-    (ω : HeckeCharacter k) (t : {r : ℝ // 0 < r}), thetaCInt w F ω t⁻¹ =
-      ((t : ℝ) : ℂ) ^ Fintype.card ι * thetaCInt w (adelicFourierPi k F) ω⁻¹ t :=
-  fun w _ hF ω t ↦ theta_integral_functional_equation w hF ω t
-
 end GlobalTheory.CompanionTheory.AdelicThetaSeries.Hd

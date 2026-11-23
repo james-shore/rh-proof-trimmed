@@ -132,24 +132,11 @@ lemma rho_nonneg (c : Cfg) (de de' : ℕ → ℝ) (Y : ℝ) (l i : ℕ) (h : c.O
     exact div_nonneg (Real.sqrt_nonneg _) (by linarith [hY'.2])
   · exact div_nonneg (Real.sqrt_nonneg _) (Real.sqrt_nonneg _)
 
-private lemma one_le_b_of_ok (c : Cfg) (h : c.Ok) : ∀ j : ℕ, 1 ≤ j → j ≤ c.m → 1 ≤ c.b j := by
-  intro j
-  induction j with
-  | zero => intro h1; omega
-  | succ n ih =>
-    intro h1 h2
-    rcases Nat.eq_zero_or_pos n with hn | hn
-    · subst hn
-      simpa using h.hb1
-    · have e1 := ih hn (by omega)
-      have e2 := h.hgap n hn (by omega)
-      linarith
-
 lemma prodb_pos (c : Cfg) (h : c.Ok) : 0 < c.prodb := by
   unfold Cfg.prodb
   exact Finset.prod_pos (fun j hj => by
     rw [Finset.mem_Icc] at hj
-    linarith [one_le_b_of_ok c h j hj.1 hj.2])
+    linarith [_root_.Formalism.FourierDecayAlt.P.Sz5.b_ge_one c h j hj.1 hj.2])
 
 lemma edge_bound (c : Cfg) (de de' : ℕ → ℝ) (Y : ℝ) (l : ℕ) (h : c.Ok) (hw : IsWord c.k de)
     (hw' : IsWord c.k de') (hl : 1 ≤ l) (hlk : l + 2 ≤ c.k) (hY : Y ∈ c.cutI l) :
@@ -306,7 +293,7 @@ end Formalism.FourierDecayAlt.P.Sz7
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem a_zero_le_one_sixty : Formalism.FourierDecayAlt.Sz.AZeroBound := Sz7.aZeroBound
+alias a_zero_le_one_sixty := _root_.Formalism.FourierDecayAlt.P.Sz7.aZeroBound
 
 theorem beta_bound_on_boundary : Formalism.FourierDecayAlt.Sz.BetaOnCut := Sz7.betaOnCut_of_tcritLower critical_threshold_lower_bound
 

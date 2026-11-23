@@ -123,7 +123,7 @@ theorem lemT : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B px) (U
           X.toD7.what₂.embLL (((Formalism.L2.Col.mtTyKK I.Ch I.sel t.1 ((i : ℕ) + 1)).inv.chr ⟨h, hh⟩ : X.B.fields.Kˣ) : X.B.fields.K) =
             (((levEnv (Vc X.toD7 i) (L.βV i) (L.datVt i t)).ch κ : ℂˣ) : ℂ) := by
   intro X px I U L eG hI hV hL hG i t A k hA κ
-  obtain ⟨hh, hc⟩ := GlobalTheory.T.flagLift_translation_mem_typeLevel_character X px I U L eG hI hV hL hG i t A k hA κ
+  obtain ⟨hh, hc⟩ := _root_.GlobalTheory.Mem.R3.LiftBrg.ActQ.inv_redZ_mul_g0Hat_type X px I U L eG hI hV hL hG i t A k hA κ
   refine ⟨_, hh, fun x => ?_, hc⟩
   rw [GlobalTheory.T.stdDecoratedLattice_rightTranslate_levelQ X px I U L hI hV hL i t A k hA κ x, mul_inv_cancel_right]
 
@@ -157,7 +157,7 @@ theorem exists_actTie : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X
         eG (a.red q) = rTup (L.βV i) (L.datVt i t) (Formalism.UG.bc (swapAE X.toD7) ((q : Bridge.Gf (Vc X.toD7 i)) : GL _ _)) := by
   intro X px I hX U Xg tr L eG hI hV hL hG cV i t A k hA P hP
   refine ⟨{ red := redQ X I U L eG i t
-            red_surj := GlobalTheory.T.levelGroup_reduction_onto_finite_group_surjective X px I U L eG hI hV hL hG i t
+            red_surj := _root_.GlobalTheory.Mem.R3.LiftBrg.ActQ.redQ_surjective X px I U L eG hI hV hL hG i t
             red_ker := fun q => redQ_eq_one_iff X I U L eG i t q
             act_eq := lemAct X px I hX U Xg tr L eG hI hV hL hG cV i t A k hA P hP }, fun q => ?_⟩
   exact eG_redQ X I U L eG i t q

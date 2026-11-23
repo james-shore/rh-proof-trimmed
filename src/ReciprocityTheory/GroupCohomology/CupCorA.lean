@@ -55,12 +55,6 @@ noncomputable section
 
 universe u
 
-section HomLemmas
-
-variable {R : Type u} [CommRing R] {A B C : Cx R}
-
-end HomLemmas
-
 section Retr
 
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] (U : Subgroup G)
@@ -75,10 +69,6 @@ theorem rep_mul (x : U) (g : G) : rep U ((x : G) * g) = rep U g := by
   rw [mkR_eq]
   simpa [mul_inv_rev] using U.inv_mem x.2
 
-theorem retr_mul (x : U) (g : G) : retr U ((x : G) * g) = x * retr U g := by
-  apply Subtype.ext
-  simp only [retr, rep_mul, Subgroup.coe_mul, mul_assoc]
-
 theorem retr_spec (g : G) : (retr U g : G) = g * (rep U g)⁻¹ := rfl
 
 theorem continuous_rep (hU : IsOpen (U : Set G)) : Continuous (rep U) := by
@@ -91,9 +81,6 @@ theorem continuous_rep (hU : IsOpen (U : Set G)) : Continuous (rep U) := by
   filter_upwards [hmem] with y hy
   have h1 : rep U ((⟨y * g⁻¹, hy⟩ : U) * g) = rep U g := rep_mul U ⟨y * g⁻¹, hy⟩ g
   simpa using h1.symm
-
-theorem continuous_retr (hU : IsOpen (U : Set G)) : Continuous (retr U) :=
-  Continuous.subtype_mk (continuous_id.mul (continuous_rep U hU).inv) _
 
 instance finite_rightRel [U.FiniteIndex] : Finite (Quotient (QuotientGroup.rightRel U)) :=
   Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel U).symm

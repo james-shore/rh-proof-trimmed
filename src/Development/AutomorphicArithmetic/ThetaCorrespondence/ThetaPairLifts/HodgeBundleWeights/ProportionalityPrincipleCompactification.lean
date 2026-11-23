@@ -66,7 +66,7 @@ theorem hirzebruch_proportionality_toroidal :
   have hr : 1 ≤ (T.Q.Dw j).p + (T.Q.Dw j).q := by omega
   obtain ⟨X, h1, h2, h3, h4⟩ := hT.exists_model_charts hS hr Y.d.Xo₂ Y.d.c₂
   obtain ⟨TF, hc⟩ := exists_torFlag_charts hr X h1 h2 h3 h4
-  exact _root_.GlobalTheory.CompProport.proportionality_of_local_charts (_root_.GlobalTheory.T.covering_topology_refinement hP) hP.q7 hL hY hf TF hc
+  exact _root_.GlobalTheory.CompProport.proportionality_of_local_charts (_root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems.toClassicalTheorems hP) hP.q7 hL hY hf TF hc
 end GlobalTheory.CompProport
 end
 

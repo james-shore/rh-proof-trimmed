@@ -98,15 +98,6 @@ theorem hasDerivAt_pev (p : ℂ[X]) (f : ℕ → ℝ → ℂ) (hf : ∀ k t, Has
   simp only [pev, Polynomial.sum_def]
   exact HasDerivAt.fun_sum fun n _ => (hf n t).const_mul (p.coeff n)
 
-theorem iteratedDeriv_chain (f : ℕ → ℝ → ℂ) (hf : ∀ k t, HasDerivAt (f k) (f (k + 1) t) t) (k : ℕ) :
-    iteratedDeriv k (f 0) = f k := by
-  induction k with
-  | zero => simp
-  | succ k ih =>
-    rw [iteratedDeriv_succ, ih]
-    funext t
-    exact (hf k t).deriv
-
 theorem eq_exp_of_hasDerivAt {P : ℝ → ℂ} {v : ℂ} (hP : ∀ t, HasDerivAt P (v * P t) t) (t : ℝ) :
     P t = Complex.exp (v * t) * P 0 := by
   have hg : ∀ t : ℝ, HasDerivAt (fun t : ℝ => Complex.exp (-(v * t)) * P t) 0 t := by

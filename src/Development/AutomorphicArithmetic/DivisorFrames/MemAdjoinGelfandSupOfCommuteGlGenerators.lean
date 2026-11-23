@@ -155,7 +155,7 @@ private theorem word_of_comm (hX : GlRel X) (d : ℕ) (M₀ : Matrix (Fin d → 
   have hcomm : ∀ T : Matrix (Fin d → Fin n) (Fin d → Fin n) ℂ,
       (∀ π, T * permMat n d π = permMat n d π * T) → M₀ * T = T * M₀ := by
     intro T hT
-    have hTa := GlobalTheory.T.mem_adjoin_glAction_of_commute_tensorPerm n d T hT
+    have hTa := _root_.GlobalTheory.SymmTensor.mem_adjoin_polar n d T hT
     have hT' : T ∈ Subalgebra.centralizer ℂ {M₀} := by
       refine Algebra.adjoin_le ?_ hTa
       rintro _ ⟨p, rfl⟩

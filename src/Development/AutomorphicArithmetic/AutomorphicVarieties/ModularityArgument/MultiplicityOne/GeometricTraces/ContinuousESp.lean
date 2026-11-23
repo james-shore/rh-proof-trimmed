@@ -57,6 +57,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemULOfSplit
 
 @[expose] public section
 
@@ -151,14 +152,6 @@ private theorem twTr_tr (e : G ≃* H) (ρ : Representation ℂ H V) (K L : Subg
   exact dite_tr _ _ _ _ (fixed_comap e ρ L) fun v hv =>
     levOp_tr e ρ K L f hr hfin ((fixed_comap e ρ L) ▸ hv)
 
-private theorem finite_cosets [TopologicalSpace G] [IsTopologicalGroup G] (K : Subgroup G)
-    (hK : IsOpen (K : Set G)) (f : G → ℂ) (hc : HasCompactSupport f) :
-    (Function.support fun q : G ⧸ K => f q.out).Finite := by
-  haveI : DiscreteTopology (G ⧸ K) := QuotientGroup.discreteTopology hK
-  have himg : IsCompact ((QuotientGroup.mk : G → G ⧸ K) '' tsupport f) :=
-    IsCompact.image hc continuous_quot_mk
-  exact himg.finite_of_discrete.subset fun q hq => ⟨q.out, subset_tsupport _ hq, QuotientGroup.out_eq' q⟩
-
 private theorem trc_at [TopologicalSpace G] [IsTopologicalGroup G] (K : Subgroup G) (hKo : IsOpen (K : Set G))
     (hKc : IsCompact (K : Set G)) (ρ : Representation ℂ G V) (f : G → ℂ) (L : Subgroup G)
     (hLo : IsOpen (L : Set G)) (hLK : L ≤ K) (hf : IsHecke L f) (hfd : FiniteDimensional ℂ (fixed ρ L)) :
@@ -184,12 +177,8 @@ section Local
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ} {w : Pl E}
 
-private theorem mem_UL (hs : IsSplitAt w) (g : GLw n w) : g ∈ UL n w := by
-  rw [UL, if_pos hs]
-  exact Subgroup.mem_top _
-
 private def eSp (hs : IsSplitAt w) : GLw n w ≃* UL n w where
-  toFun g := ⟨g, mem_UL hs g⟩
+  toFun g := ⟨g, _root_.GlobalTheory.BCT.CtLevel.mem_UL_of_split hs g⟩
   invFun x := x.1
   left_inv _ := rfl
   right_inv _ := rfl
@@ -224,7 +213,7 @@ private theorem tr_Z (hs : IsSplitAt w) (σ : SmIrr (UL n w)) (K' : Subgroup (UL
     (hf : IsHecke K' fun x : UL n w => f x.1) (hfd : FiniteDimensional ℂ (fixed σ.ρ K')) :
     twTr σ.ρ (KL n w) K' (fun x => f x.1) LinearMap.id = trc (toGL hs σ).ρ (KGL w (n := n)) f := by
   have h1 := twTr_tr (eSp hs) σ.ρ (KL n w) K' (fun x => f x.1) (fun k hk x => (hf.2 k hk x).2)
-    (finite_cosets K' hKo _ hf.1)
+    (_root_.GlobalTheory.TraceLevel.support_out_finite K' hKo _ hf.1)
   rw [comap_KL hs] at h1
   rw [← h1]
   have hc : HasCompactSupport f := by
@@ -244,7 +233,7 @@ private theorem trace_test_function_eq (hs : IsSplitAt w) (σ : SmIrr (UL n w)) 
     twTr σ.ρ (KL n w) (KL n w) (fun y : UL n w => fn1 n w e y.1) LinearMap.id = ev1 n w e B := by
   have hH := (levelU E n w hs).2 _ (exAct E n w e).1
   have h1 := twTr_tr (eSp hs) σ.ρ (KL n w) (KL n w) (fun y : UL n w => fn1 n w e y.1)
-    (fun k hk x => (hH.2 k hk x).2) (finite_cosets _ (unitHecke E n 0 0 w).1 _ hH.1)
+    (fun k hk x => (hH.2 k hk x).2) (_root_.GlobalTheory.TraceLevel.support_out_finite _ (unitHecke E n 0 0 w).1 _ hH.1)
   rw [comap_KL hs] at h1
   rw [← h1]
   exact trSph exAct splitLine E n w (toGL hs σ) B hB e

@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem fglChordFactor : PI.FglChordFactor.Lemma := PI.FglChordFactor.Wk.formal_group_chord_factor

@@ -128,7 +128,7 @@ private theorem cell (hG : GlobalTheory.Published.GeometricLemma) (hBZ : GlobalT
   obtain ⟨hd, f, hf⟩ := h
   obtain ⟨hd', f', hf'⟩ := h'
   have hτ : (piTensor fun j => (![y', z'] j).rep).IsIrreducible :=
-    GlobalTheory.T.piExteriorTensor_smoothIrreducible_isIrreducible hBZ k _ _ fun j => (![y', z'] j).2.rep
+    _root_.GlobalTheory.ExtTensorIrr.piTensor_isIrreducible hBZ k _ _ fun j => (![y', z'] j).2.rep
   haveI := GlobalTheory.SmGL.Model.nontrivial_of_isIrreducible x.2.rep.irr
   obtain ⟨v, hv⟩ := exists_ne (0 : x.2.rep.V)
   have h1 := GlobalTheory.CompanionTheory.SocleJm.one_le_jhMult_jac (stdBlocks (fun a => (![y', z'] a).1) hd') hτ f'

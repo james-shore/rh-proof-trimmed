@@ -57,23 +57,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 section Main
 variable {D : D7} {X : HidaSetting D}
 
-theorem stab_of_fix' (u : D.what₂.Word) {a : (VS D).V ≃ₗ[D.host.E] (VS D).V} (hi : a ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT)
-    (hfix : ∀ c, a ((F0 X u).e c) = (F0 X u).e c) : a ∈ stabF D (X.Fu u) := by
-  refine ⟨hi, fun j => ?_, ?_⟩
-  · unfold FlagG.Xa
-    rw [Submodule.map_span, Set.image_image]
-    congr 1
-    apply Set.image_congr
-    intro i _
-    have h' : (F0 X u).e i.castSucc = (X.Fu u).e i := fv_cast (lf D (X.Fu u)).fl i
-    have := hfix i.castSucc
-    rw [h'] at this
-    exact this
-  · have h' : (F0 X u).e (Fin.last _) = (X.Fu u).z := fv_last (lf D (X.Fu u)).fl
-    have := hfix (Fin.last _)
-    rw [h'] at this
-    exact this
-
 theorem fix_X (u : D.what₂.Word) {a : (VS D).V ≃ₗ[D.host.E] (VS D).V}
     (hfix : ∀ c, a ((F0 X u).e c) = (F0 X u).e c) : ∀ x ∈ (X.Fu u).X, a x = x := by
   intro x hx
@@ -183,7 +166,7 @@ theorem fibCardC : FibCardC := by
     fun t => ind_exists u (hA t).1 (hA t).2.2.1
   choose Φ hΦ using Hφ
   have hmem : ∀ t, Φ t ∈ autLz D (X.Fu u) t₀.lam' :=
-    fun t => ⟨A t, stab_of_fix' u (hA t).1 (hA t).2.2.1, (hA t).2.1, hΦ t⟩
+    fun t => ⟨A t, _root_.GlobalTheory.TypeAsm.FibProof.stab_of_fix u (hA t).1 (hA t).2.2.1, (hA t).2.1, hΦ t⟩
   let f : s → autLz D (X.Fu u) t₀.lam' := fun t => ⟨Φ t, hmem t⟩
   have hinj : Function.Injective f := by
     intro t₁ t₂ h12

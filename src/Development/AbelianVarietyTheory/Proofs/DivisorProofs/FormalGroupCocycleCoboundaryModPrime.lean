@@ -96,7 +96,7 @@ theorem coboundary_mod_p : ∀ (p : ℕ) [Fact p.Prime] (O : Type) [CommRing O] 
     exact Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_span_singleton_self _)
   have hev0 : c'.ev 1 (map r B) = 0 := by
     rw [hev, hB, toBase_app, ← TensorProduct.smul_tmul, hp1, TensorProduct.zero_tmul]
-  obtain ⟨s, hs⟩ := GlobalTheory.T.exists_coboundary_of_pullback_nmul_coboundary p (O ⧸ I) d (G.baseChange (O ⧸ I)) c' _ hlaw (map r κ) (map r B)
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.Katz.exists_coboundary_of_pullback_nmul_coboundary' p (O ⧸ I) d (G.baseChange (O ⧸ I)) c' _ hlaw (map r κ) (map r B)
     hcoc' heq hev0
   have hs0 : constantCoeff s = 0 := by
     have h1 : constantCoeff (map r κ) = 0 := by

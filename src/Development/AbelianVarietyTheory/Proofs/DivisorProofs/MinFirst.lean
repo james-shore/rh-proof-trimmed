@@ -101,16 +101,9 @@ theorem hw_of_map {a : Mat p q →ₗ[ℂ] Module.End ℂ V} {b : Mat p q →ₗ
   · rw [map_sub, map_smul, hg _ (isKC_diag i), hv.1 i]
   · rw [hg _ (isKC_pos hij), hv.2 i j hij]
 
-theorem kStable_inf {a : Mat p q →ₗ[ℂ] Module.End ℂ V} {U W : Submodule ℂ V} (hU : KStable a U)
-    (hW : KStable a W) : KStable a (U ⊓ W) :=
-  fun X hX w hw => ⟨hU X hX w hw.1, hW X hX w hw.2⟩
+alias kStable_inf := _root_.GlobalTheory.BlockReps.stable_inf
 
-theorem kStable_sup {a : Mat p q →ₗ[ℂ] Module.End ℂ V} {U W : Submodule ℂ V} (hU : KStable a U)
-    (hW : KStable a W) : KStable a (U ⊔ W) := by
-  intro X hX w hw
-  obtain ⟨y, hy, z, hz, rfl⟩ := Submodule.mem_sup.1 hw
-  rw [map_add (f := _)]
-  exact Submodule.add_mem_sup (hU X hX y hy) (hW X hX z hz)
+alias kStable_sup := _root_.GlobalTheory.BlockReps.stable_sup
 
 theorem kStable_ker {a : Mat p q →ₗ[ℂ] Module.End ℂ V} {b : Mat p q →ₗ[ℂ] Module.End ℂ V'}
     (g : V →ₗ[ℂ] V') (hg : ∀ Z, IsKC Z → ∀ v, g (a Z v) = b Z (g v)) :

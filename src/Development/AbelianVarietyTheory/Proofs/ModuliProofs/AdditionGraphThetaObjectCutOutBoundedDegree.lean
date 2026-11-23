@@ -165,7 +165,7 @@ theorem GlobalTheory.cutBy_graph_addition : Out.Laws → Out.Laws2 → ∀ (g : 
   intro hL hL2 g J _ Mat κ n hn hodd
   have hn1 := hn.one_lt
   haveI : NeZero ((n ^ 2) ^ 2) := ⟨by positivity⟩
-  obtain ⟨d, k₀, H⟩ := GlobalTheory.T.abelianVariety_cut_out_bounded_degree_torsion hL hL2 (2 * g) (2 * (n ^ 2) ^ 2)
+  obtain ⟨d, k₀, H⟩ := _root_.GlobalTheory.cutBy_idealOf_torsion hL hL2 (2 * g) (2 * (n ^ 2) ^ 2)
     ((Ix g ((n ^ 2) ^ 2) × Ix g ((n ^ 2) ^ 2)) × Ix g ((n ^ 2) ^ 2))
   refine ⟨max 2 k₀, fun j hj o _ b => ?_⟩
   haveI : NeZero ((n ^ j) ^ 2) := ⟨by positivity⟩

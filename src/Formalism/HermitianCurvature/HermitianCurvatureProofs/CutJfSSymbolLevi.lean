@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerPairs.IsUnitDetOfMemGV
 
 @[expose] public section
 
@@ -87,7 +88,7 @@ theorem herm_pw_right {v : Fin (2 * r + k + 1) → ℂ} (hv : inWb k r v) (x : F
 
 theorem herm_pw_left {v : Fin (2 * r + k + 1) → ℂ} (hv : inWb k r v) (x : Fin (2 * r + k + 1) → ℂ) :
     herm (Hpk k r) (diagonal (pw (k := k) (r := r)) *ᵥ x) v = herm (Hpk k r) x v := by
-  rw [herm_swap, herm_pw_right hv, ← herm_swap]
+  rw [_root_.PI.StabPairsW.herm_swap, herm_pw_right hv, ← _root_.PI.StabPairsW.herm_swap]
 
 theorem flt_sub_pw (x : Fin (2 * r + k + 1) → ℂ) (hx : ∀ b : Fin r, x (esI k r b) = 0) :
     Flt r (x - diagonal (pw (k := k) (r := r)) *ᵥ x) := by
@@ -111,7 +112,7 @@ theorem flt_of_orth (x : Fin (2 * r + k + 1) → ℂ)
     · exact neg_eq_zero.1 h0
     · exact h0
   · have e : i = esI k r ⟨2 * r + k - i.val, by omega⟩ := by apply Fin.ext; simp [esI]; omega
-    have e2 := herm_e x ⟨2 * r + k - i.val, by omega⟩
+    have e2 := _root_.PI.StabPairsW.herm_e x ⟨2 * r + k - i.val, by omega⟩
     rw [← e] at e2
     rw [← e2]
     refine h _ (fun b => ?_)
@@ -184,7 +185,7 @@ theorem symbolNil_direct : SymbolNil := by
   have hξe : ∀ c : Fin r, ξ *ᵥ bvec (eI k r c) = 0 := fun c => (hX _ (flt_bvec r c c.isLt)).1
   have hrange : ∀ v b, (ξ *ᵥ v) (esI k r b) = 0 := by
     intro v b
-    rw [← herm_e (ξ *ᵥ v) b, herm_skew hξ, hξe, herm_zero_right, neg_zero]
+    rw [← _root_.PI.StabPairsW.herm_e (ξ *ᵥ v) b, herm_skew hξ, hξe, herm_zero_right, neg_zero]
   set P : B.Mat k r := diagonal (pw (k := k) (r := r)) with hP
   have hξP : ∀ y, (∀ b : Fin r, y (esI k r b) = 0) → ξ *ᵥ (P *ᵥ y) = ξ *ᵥ y := by
     intro y hy
@@ -212,7 +213,7 @@ theorem symbolNil_direct : SymbolNil := by
   have hcore := coreW hz hT (P * ξ * P)
     (fun u _ => by rw [hcomp]; exact hPin _)
     (fun u v hu hv => by
-      rw [hcomp, hcomp, hPfix u hu, hPfix v hv, hPl v hv, herm_swap u, hPl u hu, herm_skew hξ u v, herm_swap u])
+      rw [hcomp, hcomp, hPfix u hu, hPfix v hv, hPl v hv, _root_.PI.StabPairsW.herm_swap u, hPl u hu, herm_skew hξ u v, _root_.PI.StabPairsW.herm_swap u])
     (fun u v hu hv huz hvz => by
       rw [hcomp, hPfix u hu, hPl v hv]
       exact herm_zero_of_lieW hξ z hW u v hu hv huz hvz)
@@ -260,6 +261,6 @@ end Formalism.FourierDecayAlt.P.CutMP.JfS.Sym
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JfS
 
-theorem symbol_nilpotent_holds : SymbolNil := Sym.symbolNil_direct
+alias symbol_nilpotent_holds := _root_.Formalism.FourierDecayAlt.P.CutMP.JfS.Sym.symbolNil_direct
 
 end Formalism.FourierDecayAlt.P.CutMP.JfS

@@ -95,15 +95,6 @@ theorem root_rel {W : WeierstrassCurve ℂ_[p]} {wq : PowerSeries ℂ_[p]} (h : 
   linear_combination (PowerSeries.subst r (omegaW W wq)) * hD -
     (r * D (lam wq) + D (nu wq)) * hω
 
-theorem var_zero_sub_var_one_ne : (Xv 0 - Xv 1 : MvPowerSeries (Fin 2) ℂ_[p]) ≠ 0 := by
-  intro h
-  have h2 := congrArg (MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1)) h
-  have hne : (Finsupp.single (0 : Fin 2) 1 : Fin 2 →₀ ℕ) ≠ Finsupp.single 1 1 := by
-    intro hs
-    have h3 := congrArg (fun f => f 0) hs
-    simp at h3
-  simp [Xv, MvPowerSeries.coeff_X, hne] at h2
-
 theorem abel_cc_flog (W : WeierstrassCurve ℂ_[p]) (wq : PowerSeries ℂ_[p]) :
     PowerSeries.constantCoeff (flog W wq) = 0 := by
   unfold flog
@@ -144,7 +135,7 @@ theorem abel {W : WeierstrassCurve ℂ_[p]} {wq : PowerSeries ℂ_[p]} (h : IsWq
     intro hs
     have h4 := congrArg (fun f => f 0) hs
     simp at h4
-  have h01 : (Xv 0 - Xv 1 : MvPowerSeries (Fin 2) ℂ_[p]) ≠ 0 := var_zero_sub_var_one_ne
+  have h01 : (Xv 0 - Xv 1 : MvPowerSeries (Fin 2) ℂ_[p]) ≠ 0 := _root_.PI.AddIntG.Wk.var_zero_sub_var_one_ne_zero
   have h02 : (Xv 0 - Z3 W wq : MvPowerSeries (Fin 2) ℂ_[p]) ≠ 0 := by
     intro h0
     have h3 := congrArg (MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1)) h0

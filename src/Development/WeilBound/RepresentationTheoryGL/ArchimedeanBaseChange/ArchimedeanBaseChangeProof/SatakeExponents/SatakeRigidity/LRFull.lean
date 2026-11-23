@@ -71,12 +71,6 @@ theorem rfull_eventually_sat (D : Pre E n) :
     GlobalTheory.SatInd.exists_hasSatGL_of_isIrreducible (D.σ i w).smooth (D.σ i w).irred (hw i)
   exact ⟨∑ i, b i, b, fun i => ⟨hw i, hb i⟩, rfl⟩
 
-theorem rfull_bcParam_map_inv (n : ℕ) (α : Fin (n / 2) → ℂˣ) :
-    (GlobalTheory.LGrp.bcParam n α).map (·⁻¹) = GlobalTheory.LGrp.bcParam n α := by
-  simp only [GlobalTheory.LGrp.bcParam, Multiset.map_add (f := _), Multiset.map_map, Function.comp_def, inv_inv,
-    Multiset.map_replicate, inv_one]
-  rw [add_comm (Multiset.map _ _) (Multiset.map _ _)]
-
 theorem rFullSat : RFullSat := by
   intro hU hI hS E _ _ _ hE n π hπ D D' hD hD'
   filter_upwards [hU E n π hπ, hS E n π hπ D D' hD.1.2 hD'.1.2] with w hu hsp
@@ -133,7 +127,7 @@ theorem rFullTheta : RFullTheta := by
       exact hw ⟨u, hne, hwu.1⟩
     subst hu'
     have e := hBα s ϖ q hs' hinv α hα
-    rw [e, rfull_bcParam_map_inv, ← e]
+    rw [e, _root_.GlobalTheory.LFun.ConjPlace.bcParam_map_inv, ← e]
     exact hB
 
 end PositivityTheory.Rg.BcB.F.Rig

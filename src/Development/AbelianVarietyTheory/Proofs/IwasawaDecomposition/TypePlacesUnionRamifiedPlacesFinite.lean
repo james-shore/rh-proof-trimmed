@@ -75,20 +75,10 @@ theorem overPl_subsingleton {L : Type} [Field L] (w : HeightOneSpectrum (𝓞 L)
   intro v hv v' hv'
   exact HeightOneSpectrum.ext (hv.symm.trans hv')
 
-theorem placesOver_finite_of_ne_zero (E : Type) [Field E] [NumberField E] (p : ℕ) (hp : p ≠ 0) :
-    (placesOver E p).Finite := by
-  have h0 : Ideal.span {((p : ℕ) : 𝓞 E)} ≠ 0 := by
-    rw [Ne, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]
-    exact_mod_cast hp
-  refine (Ideal.finite_factors h0).subset fun v hv => ?_
-  show v.asIdeal ∣ _
-  rw [Ideal.dvd_iff_le, Ideal.span_singleton_le_iff_mem]
-  exact hv
-
 theorem gPl_union_qPl_finite : ∀ (D : D7) (η : HChar D.host.E), (gPl D ∪ qPl D η).Finite := by
   intro D η
   have hS : (⋃ k : Fin 2, placesOver D.host.E (D.host.g k)).Finite :=
-    Set.finite_iUnion fun k => placesOver_finite_of_ne_zero _ _ (D.host.g_prime k).ne_zero
+    Set.finite_iUnion fun k => _root_.Formalism.MainNotions.placesOver_finite_av _ _ (D.host.g_prime k).ne_zero
   have hR : {w | ¬ η.UnrAt w}.Finite := GlobalTheory.Mem.UnrAe.finite_ramified η
   refine Set.Finite.union ?_ ?_
   · refine (hS.biUnion fun w _ => (overPl_subsingleton w).finite).subset ?_

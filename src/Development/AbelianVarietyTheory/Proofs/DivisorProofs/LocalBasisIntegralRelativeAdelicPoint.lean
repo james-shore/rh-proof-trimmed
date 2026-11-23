@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LamGApply
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormEmbeddingIntegerLeOne
 
 @[expose] public section
 
@@ -59,15 +60,6 @@ section General
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   {l : ℕ} [Fact l.Prime]
 
-theorem norm_le_one_of_isIntegral' {K : Type} [NormedField K] [IsUltrametricDist K] {x : K} (hx : IsIntegral ℤ x) :
-    ‖x‖ ≤ 1 := by
-  have := (Valuation.integer.integers (NormedField.valuation (K := K))).mem_of_integral hx.tower_top
-  rw [Valuation.mem_integer_iff, NormedField.valuation_apply] at this
-  exact_mod_cast this
-
-theorem norm_inc_le_one (inc : E →+* PadicAlgCl l) (r : 𝓞 E) : ‖inc (r : E)‖ ≤ 1 :=
-  norm_le_one_of_isIntegral' ((RingOfIntegers.isIntegral_coe r).map inc.toIntAlgHom)
-
 theorem norm_natCast_eq_one' {m : ℕ} (hm : ¬ l ∣ m) : ‖(m : PadicAlgCl l)‖ = 1 := by
   have h : (m : PadicAlgCl l) = algebraMap ℚ_[l] (PadicAlgCl l) (m : ℚ_[l]) := (map_natCast _ m).symm
   rw [h, norm_algebraMap', Padic.norm_natCast_eq_one_iff]
@@ -86,7 +78,7 @@ theorem norm_ev_latHat_le_one (inc : E →+* PadicAlgCl l)
       rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]
     show ‖ev (c ⊗ₜ[F] x a)‖ ≤ 1
     rw [e, map_mul, norm_mul, hev.1, ← hr]
-    exact mul_le_one₀ (hev.2.1 c hc) (norm_nonneg _) (norm_inc_le_one inc r)
+    exact mul_le_one₀ (hev.2.1 c hc) (norm_nonneg _) (_root_.GlobalTheory.LadicPlace.norm_embedding_integer_le_one inc r)
   | zero => simp
   | add y w _ _ hy hw =>
     show ‖ev (y a + w a)‖ ≤ 1
@@ -160,7 +152,7 @@ theorem norm_ev_hLat_le_one (V : Formalism.BasicNotions.TH.HSp D) (hL0 : V.L0 = 
       simp only [Pi.smul_apply, smul_eq_mul, Algebra.TensorProduct.tmul_mul_tmul, mul_one]
       congr 1
     rw [e, Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul, map_mul, norm_mul, hev.1]
-    exact mul_le_one₀ (norm_inc_le_one inc r) (norm_nonneg _) hx
+    exact mul_le_one₀ (_root_.GlobalTheory.LadicPlace.norm_embedding_integer_le_one inc r) (norm_nonneg _) hx
 
 end Space
 

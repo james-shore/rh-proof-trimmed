@@ -60,6 +60,6 @@ theorem ioXT_levelP_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi 
   have hC := hP.bot.hyp.2.2.2.1
   have h1 := cxp_le (_root_.GlobalTheory.Fam.complexLevelStructure W) hP.hTop t F.2
   exact ⟨h1, fun hc => top_mem (_root_.GlobalTheory.Fam.complexLevelStructure W) hc hC.lev hC.models hC.chain t j h ⟨F.1, h1⟩ F.2,
-    fun v hv Q x => lift_ioX_pt (_root_.GlobalTheory.Fam.complexLevelStructure W) hC.lev hC.models hC.chain t j h ⟨F.1, h1⟩ (_root_.GlobalTheory.T.extra_projection_level_character_alt W hP t ⟨F.1, h1⟩ F.2) hv Q x⟩
+    fun v hv Q x => lift_ioX_pt (_root_.GlobalTheory.Fam.complexLevelStructure W) hC.lev hC.models hC.chain t j h ⟨F.1, h1⟩ (_root_.GlobalTheory.StepLevelP.ioX_levChi_alt W hP t ⟨F.1, h1⟩ F.2) hv Q x⟩
 end GlobalTheory.TopStep
 end

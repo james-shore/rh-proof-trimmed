@@ -111,7 +111,7 @@ theorem exists_form_finite_fibres : ∀ (F : Type) [Field F] (S : LinSys F), S.I
   obtain ⟨t, ht⟩ := isCompact_univ.elim_finite_subcover (fun y => (W y : Set S.Y)) (fun y => (W y).isOpen)
     (fun y _ => Set.mem_iUnion.2 ⟨y, hy y⟩)
   choose s hs using fun z => exists_finset_separating S hV (W z) (hW z)
-  choose d P Q hP hQ hQI _ hval using fun z a => GlobalTheory.T.exists_homogeneous_forms_quotient_birational_system F S hV hb hB (W z) a
+  choose d P Q hP hQ hQI _ hval using fun z a => _root_.GlobalTheory.HSShort.FormRatio.exists_forms F S hV hb hB (W z) a
   refine ⟨∑ z ∈ t, ∑ a ∈ s z, d z a, ∏ z ∈ t, ∏ a ∈ s z, Q z a, ?_, ?_, fun K _ _ y => ?_⟩
   · exact IsHomogeneous.prod _ _ _ fun z _ => IsHomogeneous.prod _ _ _ fun a _ => hQ z a
   · rw [Ideal.IsPrime.prod_mem_iff]

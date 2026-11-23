@@ -119,10 +119,7 @@ theorem one_add_DF_le {j : ℕ} (w : WeightFamilies.Wt D j) : 1 + (WeightAlgebra
   have : (0 : ℝ) ≤ (D.R.f : ℝ) * max ((D.R.sigW j).2 : ℝ) 1 * D.R.r * w.n := by positivity
   linarith
 
-theorem one_le_size {j : ℕ} (w : WeightFamilies.Wt D j) : 1 ≤ w.size := by
-  have := one_add_DF_le w
-  have h : (0 : ℝ) ≤ WeightAlgebra.DF w := Nat.cast_nonneg _
-  linarith
+alias one_le_size := _root_.Formalism.MainNotions.WeightFamilies.Wt.one_le_size
 
 theorem log_size_le (large₂ : SizeData₂ D) {j : ℕ} (w : WeightFamilies.Wt D j) {CK : ℝ} (hC : CK ≤ zBase large₂)
     (h : w.size ≤ CK * D.R.k * D.R.f * large₂.sc.b) : Real.log w.size ≤ 3 * zBase large₂ := by

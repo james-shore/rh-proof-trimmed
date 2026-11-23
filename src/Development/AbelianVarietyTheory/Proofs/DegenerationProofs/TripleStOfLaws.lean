@@ -78,7 +78,7 @@ theorem tripleSt_of_laws : Laws → ThetaUnifAV → TripleSt := by
     · rw [← hspan]; exact congrArg _ (congrArg SetLike.coe hr)
     · rw [hP', hP', him, hEF]
   obtain ⟨T, L, u, hA, hdim, hamp, hK, ht₁, ht₂, hker, hact, hW⟩ :=
-    PeriodPoint.exists_triple laws Moduli.cube_of_isLB principalTorus_algebraic (exists_isMonHom_of_map_lattice hθ laws)
+    PeriodPoint.exists_triple laws _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen principalTorus_algebraic (exists_isMonHom_of_map_lattice hθ laws)
       (lbIso_cubeLB_of_pairing_adjoint laws) (PrimNorm.exists_primitive_normalisation laws.globalFns)
       (kTriv_of_descent laws) relAmple_finite_pow_iso D' ty P' hper
   let Q : PolAV (Sp ℂ) :=

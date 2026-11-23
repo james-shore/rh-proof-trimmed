@@ -96,18 +96,9 @@ theorem cas_hw {μ : Fin r → ℤ} {x : V} (h : G.IsHW μ x) : G.Cas x = ((GlW.
   rw [hC]
   simp only [hterm, Formalism.GM.DimensionMonotonicity.GlW.casI, Int.cast_sum, Finset.sum_smul]
 
-private theorem cprod_eig_lemma {x : V} {e : ℤ} (hx : G.Cas x = ((e : ℤ) : K) • x) (cs : List ℤ) :
-    G.cprod cs x = (cs.map (fun c => (((e - c : ℤ)) : K))).prod • x := by
-  induction cs with
-  | nil => simp [Formalism.GM.DimensionMonotonicity.GlW.cprod]
-  | cons c cs ih =>
-    simp only [Formalism.GM.DimensionMonotonicity.GlW.cprod, LinearMap.comp_apply, ih, List.map_cons, List.prod_cons]
-    rw [LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.id_apply, map_smul, hx, smul_comm _ (((e : ℤ) : K)),
-      ← sub_smul, smul_smul, Int.cast_sub]
-
 theorem cprod_kill {x : V} {e : ℤ} (hx : G.Cas x = ((e : ℤ) : K) • x) (cs : List ℤ) (he : e ∈ cs) :
     G.cprod cs x = 0 := by
-  rw [cprod_eig_lemma G hx cs]
+  rw [_root_.Formalism.GM.DimensionMonotonicity.cprod_eig G hx cs]
   have h0 : (cs.map (fun c => (((e - c : ℤ)) : K))).prod = 0 :=
     List.prod_eq_zero (List.mem_map.mpr ⟨e, he, by simp⟩)
   rw [h0, zero_smul]
@@ -1710,10 +1701,6 @@ end Formalism.CountingSumsFrames.TO
 
 namespace Formalism.CountingSumsFrames.TO
 
-open Formalism.GM Formalism.GM.M MvPolynomial Finset
-
-variable {p : ℕ} [Fact p.Prime]
-
 end Formalism.CountingSumsFrames.TO
 
 namespace Formalism.CountingSumsFrames.TO
@@ -2935,23 +2922,7 @@ theorem good_norm (E : ℝ) (hE : 0 ≤ E) (d : ℚ_[p]) (hd : ¬ ‖d‖ < (p :
     inv_pow, ← zpow_natCast, ← zpow_neg]
   exact zpow_le_zpow_right₀ hp1.le (by omega)
 
-theorem S_eq_total {N : ℕ} (L : Letters N) (T : TieData) (i : Fin T.t) (h : T.pos i + 1 < N) :
-    (L.takeD (T.pos i + 1)).total = T.S L i := by
-  classical
-  let F : ℕ → ℕ := fun k => if hk : k < N then L.deg ⟨k, hk⟩ else 0
-  have h1 : (L.takeD (T.pos i + 1)).total = ∑ k ∈ range (T.pos i + 1), F k := by
-    rw [← Fin.sum_univ_eq_sum_range]
-    rfl
-  have h2 : T.S L i = ∑ k ∈ range N, if k ≤ T.pos i then F k else 0 := by
-    rw [← Fin.sum_univ_eq_sum_range (fun k => if k ≤ T.pos i then F k else 0) N]
-    unfold TieData.S
-    refine Finset.sum_congr rfl fun a _ => ?_
-    simp only [F, a.isLt, dif_pos, Fin.eta]
-  rw [h1, h2, ← Finset.sum_filter]
-  refine Finset.sum_congr ?_ fun _ _ => rfl
-  ext k
-  simp only [Finset.mem_range, Finset.mem_filter]
-  omega
+alias S_eq_total := _root_.Formalism.GM.TM.takeD_total_eq
 
 end Formalism.CountingSumsFrames.TO
 
@@ -2967,30 +2938,6 @@ theorem smul_int {σ : Type} {c : ℚ_[p]} (hc : ‖c‖ ≤ 1) {x : MvPolynomia
 theorem norm_p_pow_le (k : ℕ) : ‖(p : ℚ_[p]) ^ k‖ ≤ 1 := by
   rw [norm_pow]
   exact pow_le_one₀ (norm_nonneg _) (by rw [Padic.norm_p]; exact inv_le_one_of_one_le₀ (by exact_mod_cast (Fact.out : p.Prime).one_lt.le))
-
-theorem exists_pow_int {σ : Type} (v : MvPolynomial σ ℚ_[p]) : ∃ k : ℕ, ((p : ℚ_[p]) ^ k) • v ∈ IntPol p σ := by
-  classical
-  induction v using MvPolynomial.induction_on' with
-  | monomial m a =>
-    have hp1 : (1 : ℝ) < p := by exact_mod_cast (Fact.out : p.Prime).one_lt
-    obtain ⟨k, hk⟩ := pow_unbounded_of_one_lt ‖a‖ hp1
-    refine ⟨k, mem_intPol_of_norm _ fun m' => ?_⟩
-    rw [MvPolynomial.coeff_smul, coeff_monomial, smul_eq_mul]
-    split_ifs
-    · rw [norm_mul, norm_pow, Padic.norm_p, inv_pow]
-      rw [inv_mul_le_iff₀ (by positivity), mul_one]
-      exact hk.le
-    · simp
-  | add x y hx hy =>
-    obtain ⟨k1, h1⟩ := hx
-    obtain ⟨k2, h2⟩ := hy
-    refine ⟨k1 + k2, ?_⟩
-    have e : ((p : ℚ_[p]) ^ (k1 + k2)) • (x + y) =
-        ((p : ℚ_[p]) ^ k2) • (((p : ℚ_[p]) ^ k1) • x) + ((p : ℚ_[p]) ^ k1) • (((p : ℚ_[p]) ^ k2) • y) := by
-      rw [smul_add, smul_smul, smul_smul, pow_add]
-      congr 2; ring
-    rw [e]
-    exact Submodule.add_mem _ (smul_int (norm_p_pow_le k2) h1) (smul_int (norm_p_pow_le k1) h2)
 
 theorem Cset_thrUpTo [NeZero r] (L : Letters N) (T : TieData) (i : Fin T.t) :
     Cset p (r := r) L (T.pos i + 1 + 1) T.J (T.thrUpTo i) = Cset p L (T.pos i + 1 + 1) T.J T.thr := by
@@ -3058,7 +3005,7 @@ theorem tie_core [NeZero r] (L : Letters N) (T : TieData) (hadm : T.Admissible L
   have hspQ : ∀ μ v, v ∈ Cset p L (T.pos i + 1 + 1) T.J T.thr → (GA p L (T.pos i + 1 + 1)).IsHW μ v →
       v ∈ Submodule.span ℚ_[p] (Set.range h') := by
     intro μ v hv hw
-    obtain ⟨k, hk⟩ := exists_pow_int v
+    obtain ⟨k, hk⟩ := _root_.Formalism.GM.TM.exists_pow_smul_intPol v
     have h1 := hspZ μ (((p : ℚ_[p]) ^ k) • v) (Submodule.smul_mem _ _ hv) (isHW_smul L _ μ _ hw) hk
     have h2 : ((p : ℚ_[p]) ^ k) • v ∈ Submodule.span ℚ_[p] (Set.range h') :=
       Submodule.span_le_restrictScalars ℤ_[p] ℚ_[p] _ h1

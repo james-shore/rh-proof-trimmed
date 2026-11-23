@@ -40,8 +40,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.V
 
-theorem Published.exists_hilbertModularForm_congr_one : Published.HilbertOne := GlobalTheory.HilbertThetaSeries.hilbertOne
-
-theorem Lit.oneUse : Lit.OneUse := Lit.oneUse_of Published.exists_hilbertModularForm_congr_one
+theorem Lit.oneUse : Lit.OneUse := Lit.oneUse_of _root_.GlobalTheory.HilbertThetaSeries.hilbertOne
 
 end UpperTheory.V

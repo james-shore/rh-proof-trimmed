@@ -58,9 +58,6 @@ theorem locS_le_of_le {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W] (
   obtain ⟨t, ht, htx⟩ := h hx
   exact ⟨t * s, S.mul_mem ht hs, by rw [mul_smul]; exact htx⟩
 
-theorem le_locS {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W] (S : Submonoid R) (M : Submodule R W) :
-    M ≤ Formalism.HermitianLatticesTheory.locS S M := fun x hx => ⟨1, S.one_mem, by simpa using hx⟩
-
 theorem localization_eq_of_semilocalization_eq' {E : Type} [Field E] [NumberField E] [StarRing E] (Q : HeightOneSpectrum (𝓞 E)) {n : ℕ}
     {Λ Λ₁ : Submodule (𝓞 E) (Fin n → E)} (h : Formalism.HermitianLatticesTheory.loc (K := E) Q.asIdeal Λ = Formalism.HermitianLatticesTheory.loc (K := E) Q.asIdeal Λ₁) :
     Formalism.HermitianLatticesTheory.localization₂ Q.asIdeal Λ = Formalism.HermitianLatticesTheory.localization₂ Q.asIdeal Λ₁ := by
@@ -72,7 +69,7 @@ theorem localization_eq_of_semilocalization_eq' {E : Type} [Field E] [NumberFiel
       Formalism.HermitianLatticesTheory.localization₂ Q.asIdeal M ≤ Formalism.HermitianLatticesTheory.localization₂ Q.asIdeal M₁ := by
     intro M M₁ hM
     refine locS_le_of_le _ fun x hx => ?_
-    have h1 : x ∈ Formalism.HermitianLatticesTheory.loc (K := E) Q.asIdeal M₁ := hM ▸ le_locS _ M hx
+    have h1 : x ∈ Formalism.HermitianLatticesTheory.loc (K := E) Q.asIdeal M₁ := hM ▸ _root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ M hx
     obtain ⟨t, ht, htx⟩ := h1
     exact ⟨t, hle ht, htx⟩
   exact le_antisymm (key h) (key h.symm)
@@ -85,7 +82,7 @@ theorem loc_mvL {E : Type} [Field E] [NumberField E] [StarRing E] (Q : Ideal (�
     intro M M₁ hM
     refine locS_le_of_le _ ?_
     rintro _ ⟨y, hy, rfl⟩
-    have h1 : y ∈ Formalism.HermitianLatticesTheory.loc (K := E) Q M₁ := hM ▸ le_locS _ M hy
+    have h1 : y ∈ Formalism.HermitianLatticesTheory.loc (K := E) Q M₁ := hM ▸ _root_.Formalism.HermitianLatticesTheory.locBasic_le_locS _ M hy
     obtain ⟨t, ht, hty⟩ := h1
     refine ⟨t, ht, ⟨t • y, hty, ?_⟩⟩
     simp
@@ -150,20 +147,6 @@ theorem seam_locP (P : HeightOneSpectrum (𝓞 X.E)) (N N₁ : Submodule (𝓞 X
 
 end SeamLoc
 
-theorem loc_compan {R : Ranks} {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E]
-    (sp : Spaces R F E) {N : ℕ} (J : Matrix (Fin N) (Fin N) E) (a : 𝓞 E) (Q : Ideal (𝓞 E))
-    (Λ Λ₁ : Submodule (𝓞 E) (Fin N → E)) (hΛ : Λ.FG) (hΛ₁ : Λ₁.FG)
-    (h : Formalism.HermitianLatticesTheory.loc (K := E) Q Λ = Formalism.HermitianLatticesTheory.loc (K := E) Q Λ₁) :
-    Formalism.HermitianLatticesTheory.loc (K := E) Q (compan (sp := sp) J a Λ) = Formalism.HermitianLatticesTheory.loc (K := E) Q (compan (sp := sp) J a Λ₁) :=
-  GlobalTheory.T.localization_unimodularCompanion_eq sp J a Q Λ Λ₁ hΛ hΛ₁ h
-
-theorem loc_latAd {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E]
-    (hc : Formalism.BasicNotions.CMData F E) (Q : HeightOneSpectrum (𝓞 E)) (v : HeightOneSpectrum (𝓞 F)) (hv : Formalism.L2.Col.IsOver v Q)
-    {N : ℕ} (Lb : Submodule (𝓞 E) (Fin N → E)) (hfin : Module.Finite (𝓞 E) Lb) (hspan : Submodule.span E (Lb : Set (Fin N → E)) = ⊤)
-    (x x₁ : GL (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) (h : bc (prV (E := E) v) x₁ = bc (prV (E := E) v) x) :
-    Formalism.HermitianLatticesTheory.loc (K := E) Q.asIdeal (latAd x₁ Lb) = Formalism.HermitianLatticesTheory.loc (K := E) Q.asIdeal (latAd x Lb) :=
-  GlobalTheory.T.hermitianLocalisation_adelicPointLattice_eq hc Q v hv Lb hfin hspan x x₁ h
-
 theorem latAd_fg {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     {N : ℕ} (Lb : Submodule (𝓞 E) (Fin N → E)) (hfin : Module.Finite (𝓞 E) Lb) (hspan : Submodule.span E (Lb : Set (Fin N → E)) = ⊤)
     (x : GL (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) : (latAd x Lb).FG :=
@@ -184,8 +167,8 @@ theorem phiT_lat : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU a => 
   refine localization_eq_of_semilocalization_eq' _ ?_
   unfold latCo
   refine loc_mvL _ _ ?_
-  refine loc_compan _ _ _ _ _ _ (latAd_fg _ ((St j hj).K β).lev.Lb_fin ((St j hj).K β).lev.Lb_span _)
-    (latAd_fg _ ((St j hj).K β).lev.Lb_fin ((St j hj).K β).lev.Lb_span _) ?_
-  exact loc_latAd D.sp.cm _ v hv _ ((St j hj).K β).lev.Lb_fin ((St j hj).K β).lev.Lb_span _ _ hxv
+  refine _root_.GlobalTheory.loc_compan_eq _ _ _ _ _ _ (_root_.GlobalTheory.LatAdFG.latAd_fg_of_full _ ((St j hj).K β).lev.Lb_fin ((St j hj).K β).lev.Lb_span _)
+    (_root_.GlobalTheory.LatAdFG.latAd_fg_of_full _ ((St j hj).K β).lev.Lb_fin ((St j hj).K β).lev.Lb_span _) ?_
+  exact _root_.GlobalTheory.LatAdLoc.loc_latAd_eq D.sp.cm _ v hv _ ((St j hj).K β).lev.Lb_fin ((St j hj).K β).lev.Lb_span _ _ hxv
 
 end GlobalTheory.PhiTLat

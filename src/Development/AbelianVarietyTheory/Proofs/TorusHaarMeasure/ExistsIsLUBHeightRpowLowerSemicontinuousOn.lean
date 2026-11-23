@@ -69,7 +69,7 @@ theorem exists_isLUB_height_rpow_lowerSemicontinuousOn : (∀ (r : ℕ) (X : Dat
   have hbdd : ∀ x ∈ s, ∀ i : ℕ, BddAbove ((fun W => d x W ^ (-δ)) ''
       {W : Submodule E (Fin r → E) | Module.finrank E W = i}) := by
     intro x hx i
-    obtain ⟨m, hm, hmW⟩ := GlobalTheory.T.exists_pos_le_latticeHeight_at_frame r X d hd x hx
+    obtain ⟨m, hm, hmW⟩ := _root_.GlobalTheory.HeightLower.exists_pos_le_height r X d hd x hx
     refine ⟨m ^ (-δ), ?_⟩
     rintro _ ⟨W, -, rfl⟩
     exact Real.rpow_le_rpow_of_nonpos hm (hmW W) (by linarith)
@@ -83,10 +83,10 @@ theorem exists_isLUB_height_rpow_lowerSemicontinuousOn : (∀ (r : ℕ) (X : Dat
     obtain ⟨W, hW⟩ := exists_submodule_finrank_eq_of_le (K := E) hi
     obtain ⟨_, ⟨V, hV, rfl⟩, hyV⟩ := exists_lt_of_lt_csSup (Set.Nonempty.image _ (⟨W, hW⟩ : Set.Nonempty {W : Submodule E (Fin r → E) | Module.finrank E W = i})) hy
     have hpos : ∀ x' ∈ s, 0 < d x' V := fun x' hx' => by
-      obtain ⟨m, hm, hmW⟩ := GlobalTheory.T.exists_pos_le_latticeHeight_at_frame r X d hd x' hx'
+      obtain ⟨m, hm, hmW⟩ := _root_.GlobalTheory.HeightLower.exists_pos_le_height r X d hd x' hx'
       exact hm.trans_le (hmW V)
     have hcont : ContinuousOn (fun x' => d x' V ^ (-δ)) s :=
-      (GlobalTheory.T.latticeHeight_continuousOn_frames r X d hd V).rpow_const fun x' hx' => Or.inl (hpos x' hx').ne'
+      (_root_.GlobalTheory.HeightCont.height_continuousOn r X d hd V).rpow_const fun x' hx' => Or.inl (hpos x' hx').ne'
     have hev : ∀ᶠ x' in 𝓝[s] x, y < d x' V ^ (-δ) := (hcont x hx).eventually (lt_mem_nhds hyV)
     filter_upwards [hev, self_mem_nhdsWithin] with x' h1 h2
     exact h1.trans_le (le_csSup (hbdd x' h2 i) ⟨V, hV, rfl⟩)

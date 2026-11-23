@@ -311,7 +311,7 @@ theorem exists_phiNormSq {O Ψ : Type} [CommRing O] [Fintype Ψ] {g m r : ℕ} [
     (hmem : ∀ τ a, eigComp ρ (σ τ) (v a) ∈ eigSp ρ (σ τ))
     (hli : ∀ τ, LinearIndependent ℂ fun a => eigComp ρ (σ τ) (v a)) : ∃ ν, PhiNormSq ρ hb I κ σ b ν := by
   classical
-  have h1 := fun τ => GlobalTheory.T.exists_extend_linearIndependent_of_span g m r _ (b τ) (hli τ) (hbi τ) fun a => by rw [hbs]; exact hmem τ a
+  have h1 := fun τ => _root_.GlobalTheory.CompanionTheory.Ar.Exchange.exists_completion_by_members g m r _ (b τ) (hli τ) (hbi τ) fun a => by rw [hbs]; exact hmem τ a
   obtain ⟨k, -, rfl, -⟩ := h1 (Classical.arbitrary Ψ)
   have h2 : ∀ τ, ∃ q : Fin k → Fin g → ℂ, (∀ c, q c ∈ eigSp ρ (σ τ)) ∧
       ∃ T : Matrix (Fin (r + k)) (Fin (r + k)) ℂ,

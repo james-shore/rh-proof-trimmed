@@ -72,11 +72,6 @@ end GlobalTheory.AdForm.RdTrans
 
 namespace GlobalTheory.AdForm.RdTrans
 
-theorem infM_fin'' {D : D7} (θ : InfFam D) (V : HSp D) {n : ℕ} (hn : V.rank = n) (k : GA D V) (hk : k ∈ GfC V)
-    (τ : D.what₂.Tau) : infM θ V hn k τ = 1 := by
-  subst hn
-  exact GlobalTheory.AdForm.RdLaw.infM_fin θ V k hk τ
-
 end GlobalTheory.AdForm.RdTrans
 
 namespace GlobalTheory.AdForm.RdTrans
@@ -197,7 +192,7 @@ theorem GlobalTheory.AdForm.rd_trTo : ∀ {B : Base} {X : PreX B.toPre} (I : TC 
       atInf (Formalism.L2.Forms.embT (I.rec7 l Z)) (((I.stp u a j).gam c.1 ((I.stp u a j).mv c.1 d))⁻¹ : GL _ _).val τ := by
     intro τ
     have e1 : infM θ _ (rankN (I.rec7 l Z) j hj) α τ = infM θ _ (rankN (I.rec7 l Z) j hj) ai τ := by
-      rw [hα, GlobalTheory.AdForm.Model.infM_mul, GlobalTheory.AdForm.RdTrans.infM_fin'' θ _ _ af haf, Matrix.mul_one]
+      rw [hα, GlobalTheory.AdForm.Model.infM_mul, _root_.GlobalTheory.AdForm.ChartVal.infM_fin' θ _ _ af haf, Matrix.mul_one]
     have e2 : infM θ _ (rankN (I.rec7 l Z) j hj) ai⁻¹ τ * infM θ _ (rankN (I.rec7 l Z) j hj) ai τ = 1 := by
       rw [← GlobalTheory.AdForm.Model.infM_mul, inv_mul_cancel, GlobalTheory.AdForm.Model.infM_one]
     exact GlobalTheory.AdForm.RdTrans.eq_of_mul_eq_one _ _ _ _ e2

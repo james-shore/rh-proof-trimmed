@@ -63,19 +63,9 @@ namespace GlobalTheory.PsiNontriv
 
 variable {F : Type} [Field F] [NumberField F]
 
-theorem trace_re (x : F) :
-    ((Algebra.trace ℚ F x : ℚ) : ℝ) = ∑ w : InfinitePlace F, (w.mult : ℝ) * (w.embedding x).re := by
-  first
-  | exact @_root_.GlobalTheory.TraceRealEmbeddingSum.trace_eq_sum_mult_mul_re
-  | exact _root_.GlobalTheory.TraceRealEmbeddingSum.trace_eq_sum_mult_mul_re
-  | (apply _root_.GlobalTheory.TraceRealEmbeddingSum.trace_eq_sum_mult_mul_re <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceRealEmbeddingSum.trace_eq_sum_mult_mul_re <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceRealEmbeddingSum.trace_eq_sum_mult_mul_re <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TraceRealEmbeddingSum.trace_eq_sum_mult_mul_re ..)
-
 theorem trace_mixedEmbedding (x : F) :
     Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (mixedEmbedding F x) = ((Algebra.trace ℚ F x : ℚ) : ℝ) := by
-  rw [trace_re, Algebra.trace_prod_apply, PI.ProdFormulaE.Tr.trace_pi, PI.ProdFormulaE.Tr.trace_pi,
+  rw [_root_.GlobalTheory.TraceRealEmbeddingSum.trace_eq_sum_mult_mul_re, Algebra.trace_prod_apply, PI.ProdFormulaE.Tr.trace_pi, PI.ProdFormulaE.Tr.trace_pi,
     InfinitePlace.sum_eq_sum_add_sum]
   simp only [Algebra.trace_complex_apply, mixedEmbedding.mixedEmbedding_apply_isReal,
     mixedEmbedding.mixedEmbedding_apply_isComplex, Algebra.trace_self_apply]

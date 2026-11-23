@@ -45,10 +45,6 @@ import Mathlib.Tactic.ReduceModChar
 
 open IsLocalRing Matrix Filter NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Pa UpperTheory.V.HV UpperTheory.V.Th GlobalTheory.GalOfCusp
 
-private theorem dO_int (l : ℕ) [Fact l.Prime] (x : PadicAlgCl l) (hx : IsIntegral ℤ_[l] x) :
-    ‖x‖ ≤ 1 :=
-  _root_.UpperTheory.Reformulated.B.S6.norm_le_one_of_isIntegral l x hx
-
 private theorem dO_small {l : ℕ} [Fact l.Prime] {A : Type} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     (y : A →+* PadicAlgCl l) (hle : ∀ x, ‖y x‖ ≤ 1) {ε : ℝ} (hε : 0 < ε) :
     ∃ n : ℕ, ∀ z ∈ maximalIdeal A ^ n, ‖y z‖ < ε := by
@@ -142,7 +138,7 @@ theorem UpperTheory.V.Th.detO :
   set f := algebraMap c.O (Qbar l) with hf
   have hinj : Function.Injective f := Subtype.val_injective
   have hle : ∀ x : c.O, ‖f x‖ ≤ 1 := fun x =>
-    dO_int l _ ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) x).map c.O.val)
+    _root_.UpperTheory.Reformulated.B.S6.norm_le_one_of_isIntegral l _ ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) x).map c.O.val)
   have hm : ∀ g, mat (pushRep f y.ρ) g = (mat y.ρ g).map f := fun g => rfl
   have hP : ((GeneralLinearGroup.map f y.P : GL (Fin n) (Qbar l)) : Matrix (Fin n) (Fin n) (Qbar l)) =
     (y.P : Matrix (Fin n) (Fin n) c.O).map f := rfl

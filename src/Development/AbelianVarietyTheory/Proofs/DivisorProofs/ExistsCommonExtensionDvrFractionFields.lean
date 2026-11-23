@@ -74,22 +74,6 @@ theorem exists_normalization (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R
     Subtype.val_injective, fun r => rfl, fun y => ?_⟩
   exact (IsLocalization.algEquiv (nonZeroDivisors R₂) K' (FractionRing R₂)).commutes y
 
-theorem exists_trait (R R₂ W : Type) [CommRing R] [IsDomain R] [IsLocalRing R] [CommRing R₂] [IsDomain R₂]
-    [IsLocalRing R₂] [CommRing W] [IsDomain W] [IsLocalRing W] (hW : GlobalTheory.LN.CDvr W) (φ : R →+* W)
-    (hφ : IsLocalHom φ) (ρ : R →+* R₂) (hρ : ρ.Finite) (Ω : Type) [Field Ω] (j : FractionRing W →+* Ω)
-    (m : R₂ →+* Ω) (hm : Function.Injective m) (hc : ∀ r, m (ρ r) = j (algebraMap W _ (φ r))) :
-    ∃ (W₂ : Type) (_ : CommRing W₂) (_ : IsDomain W₂) (_ : IsLocalRing W₂) (σ : W →+* W₂) (φ₂ : R₂ →+* W₂)
-      (j₂ : FractionRing W₂ →+* Ω), GlobalTheory.LN.CDvr W₂ ∧ FinExt σ ∧ IsLocalHom σ ∧ Function.Injective φ₂ ∧
-      IsLocalHom φ₂ ∧ φ₂.comp ρ = σ.comp φ ∧ (∀ w, j₂ (algebraMap W₂ _ (σ w)) = j (algebraMap W _ w)) ∧
-      ∀ r, j₂ (algebraMap W₂ _ (φ₂ r)) = m r := by
-  first
-  | exact @_root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension
-  | exact _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension
-  | (apply _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension ..)
-
 end GlobalTheory.FieldTraitExt
 
 namespace GlobalTheory.FieldTraitExt
@@ -98,7 +82,7 @@ theorem exists_finite_extension_of_trait : ∀ (R W : Type) [CommRing R] [IsDoma
   intro R W _ _ _ _ _ _ hR hW φ _ hφ K' Ω _ _ io j l hio hc
   obtain ⟨R₂, _, _, _, ρ, i, e, hfe, he, heρ, hie⟩ := exists_normalization R hR K' io hio
   obtain ⟨W₂, _, _, _, σ, φ₂, j₂, hW₂, hσ, hσl, hφ₂i, hφ₂l, hcomm, hj₁, hj₂⟩ :=
-    exists_trait R R₂ W hW φ hφ ρ hfe.2.2 Ω j (l.comp e) (l.injective.comp he)
+    _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension R R₂ W hW φ hφ ρ hfe.2.2 Ω j (l.comp e) (l.injective.comp he)
       (fun r => by rw [RingHom.comp_apply, heρ, hc])
   refine ⟨R₂, _, _, _, ρ, i, W₂, _, _, _, σ, φ₂, j₂, hfe, hW₂, hσ, hσl, hφ₂i, hφ₂l, hcomm, fun r => ?_, hj₁,
     fun r => ?_⟩

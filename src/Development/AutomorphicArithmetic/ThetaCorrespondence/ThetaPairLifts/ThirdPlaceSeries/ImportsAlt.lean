@@ -53,14 +53,14 @@ theorem main_alt_alt : ∀ (D : D7) (L : SizeData₂ D) (hT : GatTies D) (Gi : F
   have hlev := W.Q.charW.base.lev
   refine ⟨fun j hj => ?_, fun j h => ?_⟩
   · have hv := (hR.row W.P.A3.A.μ0).vP j hj
-    obtain ⟨dG, hG, hQ⟩ := _root_.GlobalTheory.T.self_dual_frame_vacuum_step_alt W u hP j (by omega) (Yc D (j + 1)) _ ((_root_.GlobalTheory.Fam.pk_z W).MY (j + 1)) ((_root_.GlobalTheory.Fam.pk_z W).ΛY (j + 1))
+    obtain ⟨dG, hG, hQ⟩ := _root_.GlobalTheory.FamSplit.split_datum_alt W u hP j (by omega) (Yc D (j + 1)) _ ((_root_.GlobalTheory.Fam.pk_z W).MY (j + 1)) ((_root_.GlobalTheory.Fam.pk_z W).ΛY (j + 1))
       ((_root_.GlobalTheory.Fam.pk_z W).βY (j + 1)) ((_root_.GlobalTheory.Fam.pk_z W).vac j) (Or.inr (hlev.βY (j + 1) hj)) hv.1
     refine ⟨dG, hG, fun t => ?_⟩
     obtain ⟨dQ, hdQ, hiff⟩ := hQ t
     exact ⟨dQ, hdQ, (hiff _).1 ((hR.row t).vP j hj)⟩
   · have hm : D.R.m = j + 1 + 1 := by omega
     have hv := (hR.row W.P.A3.A.μ0).vT j h
-    obtain ⟨dG, hG, hQ⟩ := _root_.GlobalTheory.T.self_dual_frame_vacuum_step_alt W u hP (j + 1) (by omega) D.sp.X' _ (_root_.GlobalTheory.Fam.pk_z W).MX (_root_.GlobalTheory.Fam.pk_z W).ΛX (_root_.GlobalTheory.Fam.pk_z W).βX
+    obtain ⟨dG, hG, hQ⟩ := _root_.GlobalTheory.FamSplit.split_datum_alt W u hP (j + 1) (by omega) D.sp.X' _ (_root_.GlobalTheory.Fam.pk_z W).MX (_root_.GlobalTheory.Fam.pk_z W).ΛX (_root_.GlobalTheory.Fam.pk_z W).βX
       (vacT (_root_.GlobalTheory.Fam.pk_z W) j h) (Or.inl hlev.βX) hv.1
     refine ⟨dG, hG, fun t => ?_⟩
     obtain ⟨dQ, hdQ, hiff⟩ := hQ t

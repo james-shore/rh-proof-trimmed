@@ -52,10 +52,10 @@ theorem UpperTheory.Gal.KunnethLefschetz.G.oKDvr :
     constructor
     · intro hx
       have h1 : ‖(x : PadicAlgCl l)‖ ≤ 1 := hx
-      have h2 : IsIntegral ℤ_[l] (x : PadicAlgCl l) := UpperTheory.V.Lib.Small.isIntegral_of_norm_le h1
+      have h2 : IsIntegral ℤ_[l] (x : PadicAlgCl l) := _root_.UpperTheory.Reformulated.B.S4.isIntegral_of_norm_le h1
       exact (isIntegral_algHom_iff (K.val.restrictScalars ℤ_[l]) Subtype.val_injective).1 h2
     · intro hx
       have h2 : IsIntegral ℤ_[l] (x : PadicAlgCl l) := IsIntegral.map (K.val.restrictScalars ℤ_[l]) hx
-      exact UpperTheory.V.Lib.Small.norm_le_one_of_isIntegral l _ h2
+      exact _root_.UpperTheory.Reformulated.B.S6.norm_le_one_of_isIntegral l _ h2
   rw [hK]
   exact (IsIntegralClosure.isNoetherianRing ℤ_[l] ℚ_[l] K (integralClosure ℤ_[l] K))

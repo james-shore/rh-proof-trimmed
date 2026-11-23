@@ -170,6 +170,6 @@ end PositivityTheory.Rg.Sw.HSt.CRSec
 
 namespace PositivityTheory.Rg.Sw.HSt
 
-theorem locSec : LocSec := CRSec.locSec
+alias locSec := _root_.PositivityTheory.Rg.Sw.HSt.CRSec.locSec
 
 end PositivityTheory.Rg.Sw.HSt

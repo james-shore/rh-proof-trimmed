@@ -158,17 +158,6 @@ theorem antisym_strictAnti {m : ℕ} {l : Fin m → ℕ} (hl : Antitone l) :
   simp only [staircase]
   omega
 
-theorem antisym_gap {m : ℕ} {s : Fin m → ℕ} (hs : StrictAnti s) :
-    ∀ (k : ℕ) (i j : Fin m), (j : ℕ) = i + k → s j + k ≤ s i := by
-  first
-  | exact @_root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti
-  | exact _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti
-  | (apply _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti <;> assumption)
-  | (intros; apply _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti ..)
-
-
 open Classical in
 theorem antisym_sum_sort {M : Type*} [AddCommMonoid M] (m d : ℕ) (g : (Fin m → ℕ) → M) :
     ∑ l ∈ antiParts m d, ∑ τ : Perm (Fin m), g (fun i => l (τ i) + staircase m (τ i)) =
@@ -215,7 +204,7 @@ theorem antisym_sum_sort {M : Type*} [AddCommMonoid M] (m d : ℕ) (g : (Fin m �
     have hδ : ∀ i, staircase m i ≤ ν (σ i) := by
       intro i
       have hm : m - 1 < m := by have := i.2; omega
-      have := antisym_gap hs (m - 1 - i) i ⟨m - 1, hm⟩ (by simp; have := i.2; omega)
+      have := _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti hs (m - 1 - i) i ⟨m - 1, hm⟩ (by simp; have := i.2; omega)
       simp only [staircase, Function.comp] at this ⊢
       omega
     refine ⟨(fun i => ν (σ i) - staircase m i, σ.symm), ?_, ?_⟩
@@ -229,7 +218,7 @@ theorem antisym_sum_sort {M : Type*} [AddCommMonoid M] (m d : ℕ) (g : (Fin m �
         rw [Equiv.sum_comp σ ν] at e
         omega
       · intro i j hij
-        have g := antisym_gap hs (j - i) i j (by have : (i : ℕ) ≤ j := hij; omega)
+        have g := _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti hs (j - i) i j (by have : (i : ℕ) ≤ j := hij; omega)
         have h1 := hδ i
         have h2 := hδ j
         simp only [staircase, Function.comp] at g h1 h2 ⊢

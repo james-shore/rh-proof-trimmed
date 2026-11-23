@@ -66,7 +66,7 @@ private theorem galRepOfR_iso (P : Hypotheses₂) {F Ω : Type} [Field F] [Numbe
   · obtain ⟨h1, h2, h3, h4⟩ := H.above Q AI hT w A h O Bw hj
     have hc : ∀ g : ↥(Dec (F := F) A), r'.comp (Dec (F := F) A).subtype g =
         p * r.comp (Dec (F := F) A).subtype g * p⁻¹ := fun g => hp g
-    obtain ⟨k1, k2, -, k4⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant l Q F Ω O _ Bw n _ _ p hc
+    obtain ⟨k1, k2, -, k4⟩ := _root_.GlobalTheory.ConjLocal.local_conj l Q F Ω O _ Bw n _ _ p hc
     refine ⟨k1 h1, fun τ LL' τ' hτ => k4 τ _ (h2 τ LL' τ' hτ), fun σ hσ hI => ⟨isSstAt_conj Q Bw p hc (h3 σ hσ hI).1,
       fun rc hrc => ?_⟩, fun σ hσ hS => k2 (h4 σ hσ hS)⟩
     obtain ⟨T⟩ := hT

@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem TwNormLat : PI.TwNormLat.TwNormLat := PI.TwNormLat.W.twNormLat_main
+alias TwNormLat := _root_.PI.TwNormLat.W.twNormLat_main

@@ -67,10 +67,6 @@ open GlobalTheory.SplitScalar GlobalTheory.HeisOrtho GlobalTheory.Mem.CoefInv
 
 variable {D : D7}
 
-theorem actO_one_one (S T : HSp D) (x : WO S T) : actO S T 1 1 x = x := by
-  unfold actO
-  rw [inv_one, GlobalTheory.AdelicLatMove.mt_one, GlobalTheory.AdelicLatMove.mt_one, Matrix.one_mul, Matrix.mul_one]
-
 theorem actO_one_mul (S T : HSp D) (k k' : GA D T) (x : WO S T) :
     actO S T 1 (k * k') x = actO S T 1 k (actO S T 1 k' x) := by
   unfold actO
@@ -85,7 +81,7 @@ def MovesMod (S T : HSp D) (L : AddSubgroup (WO S T)) (c : ℕ) (k : GA D T) : P
   ∀ x ∈ L, ∃ l ∈ L, actO S T 1 k x = x + c • l
 
 theorem movesMod_one (S T : HSp D) (L : AddSubgroup (WO S T)) (c : ℕ) : MovesMod S T L c 1 :=
-  fun x _ => ⟨0, zero_mem _, by rw [actO_one_one, smul_zero, add_zero]⟩
+  fun x _ => ⟨0, zero_mem _, by rw [_root_.GlobalTheory.LatNhds.actO_one, smul_zero, add_zero]⟩
 
 theorem movesMod_mul {S T : HSp D} {L : AddSubgroup (WO S T)} {c : ℕ} {k k' : GA D T}
     (hk : MovesMod S T L c k) (hk' : MovesMod S T L c k') : MovesMod S T L c (k * k') := by

@@ -65,7 +65,7 @@ theorem transl_triv {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonObj A] (h
     (h : ∀ z : Over.mk y ⟶ A, z ^ n = 1 → Out.WeilIs A M (n : ℤ) x z 1) :
     ∃ t : (Out.translDiff A M x).Gen, t.IsGen := by
   obtain ⟨L, hL, ⟨c⟩⟩ := GlobalTheory.Moduli.cubicalStr_of_triv_theta GlobalTheory.abelianSchemeLaws_all.1 _ A hA M hM hR
-    (GlobalTheory.WeilIntegral.triv_theta GlobalTheory.CubeTop.cubeTheorem hA hM)
+    (GlobalTheory.WeilIntegral.triv_theta _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hA hM)
   subst hL
   exact GlobalTheory.OrthKer.mem_kernel_of_cubWeil_orthogonal K S y A hA L c n hn x hx
     (fun z hz => (GlobalTheory.UU.cubWeil_iff_weilIs GlobalTheory.globalFns_holds hA hx hz 1).2 (h z hz))
@@ -100,7 +100,7 @@ theorem fibre_triv : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datu
     ⟨(Spec.preimage (y ≫ s)).hom, by simp [spMap]⟩
   obtain ⟨I, hI⟩ := o.geom K y β hβ
   obtain ⟨n, h', hn0, hnp, hsq, hpow, hW⟩ :=
-    GlobalTheory.T.exists_sqrt_heckePoint_weilPairing_orthogonal D K _ _ _ I g c k N hc hk (by omega) hNp hEF hsurj hdvd x
+    _root_.GlobalTheory.UPel.HT.HeckeRoot.sqrt_hecke_point_weil_orthogonal D K _ _ _ I g c k N hc hk (by omega) hNp hEF hsurj hdvd x
   have hnK : (n : K) ≠ 0 := by
     have := (b.unit n hnp).map β
     rw [map_natCast] at this
@@ -111,7 +111,7 @@ theorem fibre_triv : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datu
       have e1 : unitOn (1 : Kˣ) = 1 := map_one _
       rw [e1] at w
       exact w)
-  exact GlobalTheory.T.biextension_trivial_of_translate_difference_trivial o.A o.ab o.P o.isLB o.rig₁ o.rig₂ o.symm (Over.mk y) (pic_field_eq_zero K)
+  exact _root_.GlobalTheory.PicBilin.triv_pow_of_translDiff o.A o.ab o.P o.isLB o.rig₁ o.rig₂ o.symm (Over.mk y) (pic_field_eq_zero K)
     (o.eta (N • g x)) h' (k ^ 2 / c) (by rw [hsq, hI]) htr
 
 end GlobalTheory.HeckeFibre

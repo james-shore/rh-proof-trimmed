@@ -65,9 +65,9 @@ theorem datumDep : GlobalTheory.SepRows.DatumDep := by
     GlobalTheory.Chain.InnerSteps.theta_pureTensorO W.ψ_std W.θ_is _ _ _ _ hth P
   refine ⟨hthP (ρ i), fun u hu => ?_, fun e he u hu hh => ?_⟩
   · exact GlobalTheory.Hk3.FiniteHeis.heisO_pureTensorO_of_finite W.ψ W.θ _ _ W.θ_is _ _ _ _ _ hthP (2 • u)
-      (GlobalTheory.VacGood.infPart_latO (AddSubgroup.nsmul_mem _ hu 2).1) (hlat.1 u hu) (ρ i)
+      (_root_.GlobalTheory.SplitScalar.latO_fin (AddSubgroup.nsmul_mem _ hu 2).1) (hlat.1 u hu) (ρ i)
   · exact GlobalTheory.Hk3.FiniteHeis.heisO_pureTensorO_of_finite W.ψ W.θ _ _ W.θ_is _ _ _ _ _ hthP u
-      (GlobalTheory.VacGood.infPart_latO hu.1) (hlat.2 e he u hu hh) (ρ i)
+      (_root_.GlobalTheory.SplitScalar.latO_fin hu.1) (hlat.2 e he u hu hh) (ρ i)
 
 end GlobalTheory.FirstRowDepth
 

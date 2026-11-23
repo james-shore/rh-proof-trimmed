@@ -114,14 +114,6 @@ private theorem exists_rational_support_subset_of_galois_stable {V κ : Type} [A
     obtain ⟨u, huW, hu0, hurat, husub⟩ := ih _ hlt _ hdW hd0 rfl
     exact ⟨u, huW, hu0, hurat, husub.trans hsub⟩
 
-theorem exists_rational_support_subset {V κ : Type} [AddCommGroup V] [Module ℂ V]
-    (b : Module.Basis κ ℂ V) (W : Submodule ℂ V)
-    (hW : ∀ σ : ℂ ≃+* ℂ, ∀ w ∈ W, ∃ w' ∈ W, ∀ k, b.repr w' k = σ (b.repr w k)) (n : ℕ) :
-    ∀ w ∈ W, w ≠ 0 → (b.repr w).support.card = n →
-      ∃ u ∈ W, u ≠ 0 ∧ (∀ k, ∃ q : ℚ, b.repr u k = q) ∧
-        (b.repr u).support ⊆ (b.repr w).support :=
-  fun w hw hw0 hcard => exists_rational_support_subset_of_galois_stable b W hW n w hw hw0 hcard
-
 private theorem mem_span_rational_of_galois_stable_of_support_card {V κ : Type} [AddCommGroup V] [Module ℂ V]
     (b : Module.Basis κ ℂ V) (W : Submodule ℂ V)
     (hW : ∀ σ : ℂ ≃+* ℂ, ∀ w ∈ W, ∃ w' ∈ W, ∀ k, b.repr w' k = σ (b.repr w k)) :
@@ -134,7 +126,7 @@ private theorem mem_span_rational_of_galois_stable_of_support_card {V κ : Type}
   by_cases hw0 : w = 0
   · rw [hw0]; exact Submodule.zero_mem _
   obtain ⟨u, huW, hu0, hurat, husub⟩ :=
-    exists_rational_support_subset b W hW n w hw hw0 hcard
+    _root_.GlobalTheory.ClassFin.GaloisDescent.exists_rational_support_subset_of_galois_stable b W hW n w hw hw0 hcard
   have hru : b.repr u ≠ 0 := fun h => hu0 (b.repr.map_eq_zero_iff.mp h)
   obtain ⟨k, hk⟩ := Finsupp.support_nonempty_iff.mpr hru
   have huk : b.repr u k ≠ 0 := Finsupp.mem_support_iff.mp hk

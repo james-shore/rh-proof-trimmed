@@ -34,6 +34,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.ContinuousAdelicGL2OfContinuousEntries
 
 @[expose] public section
 
@@ -43,12 +44,7 @@ open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.RankTwoDesce
 open scoped Classical ENNReal NNReal
 open UpperTheory.ConvolutionTheory.R2.G (FS2 Rw nE row)
 
-private theorem cont_aE {K : Type} [Field K] [NumberField K] : Continuous (aE : (A K)ˣ → GL (Fin 2) (A K)) := by
-  refine Units.continuous_iff.2 ⟨continuous_matrix fun i j => ?_, continuous_matrix fun i j => ?_⟩
-  · fin_cases i <;> fin_cases j
-    exacts [Units.continuous_val, continuous_const, continuous_const, continuous_const]
-  · fin_cases i <;> fin_cases j
-    exacts [Units.continuous_coe_inv, continuous_const, continuous_const, continuous_const]
+private alias cont_aE := _root_.UpperTheory.ConvolutionTheory.R2.continuous_aE
 
 theorem UpperTheory.measurable_whittaker_idele_diagTorus_mul :
     ∀ (E : Type) [Field E] [NumberField E] (D : Dat ℚ E) (ω : HChar ℚ) (φ : GL (Fin 2) (A E) → ℂ), admitted D ω φ →

@@ -60,15 +60,6 @@ attribute [local instance] SplitExt.free SplitExt.finite
 noncomputable section
 namespace GlobalTheory.ZH.UFib
 
-theorem gm_charUnit_zero_eq_one {S : Scheme.{0}} {X : Type} [AddCommGroup X] {Z : Over S} (τ : Z ⟶ splitTorus S X)
-    (z : Z.left) : gm τ.left z ⊤ (charUnit S X 0) = 1 := by
-  have a : splitTorusPointsEquiv S X Z τ (Multiplicative.ofAdd 0) = pullU τ.left ⊤ (charUnit S X 0) :=
-    Units.ext (splitTorusPointsEquiv_val _ _ _ τ 0)
-  have b : pullU τ.left ⊤ (charUnit S X 0) = 1 := a.symm.trans (map_one _)
-  have c := gm_pull (𝟙 Z.left) τ.left z ⊤ trivial (charUnit S X 0)
-  rw [b, map_one, Category.id_comp] at c
-  exact c.symm
-
 def chartPullH {k : Type} [Field k] (Φ : FibPre k) {Y : Scheme.{0}} {L : LB Y} {π : Φ.E.B.left ⟶ Y} {N : ℕ}
     (c : ChartPull Φ.N₀ (npw L N) π) :
     ChartPull (Φ.H 1) (LB.LinComb L (fun _ : Fin 1 => Φ.D.q.left ≫ π) (fun _ => (N : ℤ))) (𝟙 _) :=
@@ -138,7 +129,7 @@ theorem exists_red_of_pure : ∀ (k : Type) [Field k] [IsAlgClosed k] (Φ : FibP
       have h₄ := h₂.symm.trans (h₀.trans (congrArg _ h₁))
       rw [hw Z τ g z J hJ, mul_left_comm, ← Units.val_mul] at h₄
       exact (Units.mul_left_inj _).1 h₄
-    rw [gm_charUnit_zero_eq_one, Units.val_one, _root_.one_mul]
+    rw [_root_.GlobalTheory.ZH.UFib.gm_charUnit_zero, Units.val_one, _root_.one_mul]
     refine (gs_res _ z (le j) hz' _).trans (Eq.trans ?_ (gs_res _ z (le j) hz _).symm)
     refine (sec_trans σ _ z (le j hz') (hJ.mem _ _)).trans (Eq.trans ?_ (sec_trans σ _ z (le j hz) (hJ.mem _ _)).symm)
     refine congrArg₂ (· * ·) (congrArg Units.val ?_) h₃

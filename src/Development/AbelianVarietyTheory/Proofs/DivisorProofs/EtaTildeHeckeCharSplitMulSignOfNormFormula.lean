@@ -296,10 +296,7 @@ theorem fixed_of_cA {e : AE D} {P : HeightOneSpectrum (𝓞 D.host.E)} (he : IsP
   · simp [hx]
   · rw [conj_mem_iff he x hx, h, he.2.2 x hx]
 
-theorem cA_algebraMap (a : AF D.host.F) : cA D (algebraMap (AF D.host.F) (AE D) a) = algebraMap (AF D.host.F) (AE D) a := by
-  change a ⊗ₜ[D.host.F] D.sp.cm.sig 1 = _
-  rw [map_one]
-  rfl
+alias cA_algebraMap := _root_.GlobalTheory.IdemSupport.cA_algebraMap
 
 theorem cA_of_fixed {e : AE D} {P : HeightOneSpectrum (𝓞 D.host.E)} (he : IsPlIdem D e P)
     (h : D.host.conj • P.asIdeal = P.asIdeal) : cA D e = e := by

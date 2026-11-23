@@ -86,7 +86,7 @@ theorem UpperTheory.pullback_cube_faces_equiv_tate_twist :
           (Sp.map E (incl (Q1 N))) (Sp.map E (incl (Q2 N))) (Sp.map E ((βC N).sub (Q1 N))) (Sp.map E ((βC N).sub (Q2 N)))
           (Sp.map E (βC N)) h₁ h₂) (tw q i) := by
   intro q _ N E i h₁ h₂ hE
-  obtain ⟨hiso, hcomp, -, -⟩ := GlobalTheory.T.etaleCohomologyEquivalence_basic_properties (ZMod q) (tw q i)
+  obtain ⟨hiso, hcomp, -, -⟩ := _root_.GlobalTheory.EtC.eqv_basic (ZMod q) (tw q i)
   have hP := pb_sub E ((Q1 N).inf (Q2 N)) (Q1 N) (Q2 N) (fun A x hx => hx.1) (fun A x hx => hx.2)
     (fun A x ha hb => ⟨ha, hb⟩)
   have hP' := pb_sub E (((Q1 N).inf (Q2 N)).comap (βC N)) ((Q1 N).comap (βC N)) ((Q2 N).comap (βC N))

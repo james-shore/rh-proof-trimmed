@@ -81,7 +81,7 @@ theorem zeTied_of_read : (GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalT
     apply hne
     rw [hfac φ x hx, Y.junk μ hU, LinearMap.zero_apply, (D.Bu_linR u φ).map_zero, mul_zero]
   obtain ⟨t, rfl⟩ : ∃ t, Y.tup t = μ := ⟨Y.tupT μ, Y.tupTie μ hU⟩
-  have hRS := (GlobalTheory.T.rowSide_definition_both_levels hC D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH).1
+  have hRS := (_root_.GlobalTheory.Mem.R3.IotaRd.rowSideDef3_both hC D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH).1
   have hFo := Y.formsA t
   have hR : LinearMap.range (rE D A3.A F.P1 F.ψ1 t).mulVecLin = LinearMap.range (rV0 D A3.A F.P1 F.ψ1 t).mulVecLin :=
     GlobalTheory.range_lvlOp_idemOf_eq_range_lvlPr_mul_V0E _ _ _ _ _

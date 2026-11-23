@@ -170,7 +170,7 @@ theorem transfer [DecidableEq Ψ] (M R : RootModel Ψ N) (i : R.Ω →+* M.Ω) (
   have hz' : z' ∈ ptsOver F (mCoordIdeal (joinOf M R i)) :=
     ptsOver_of_map (algebraMap F (AlgebraicClosure L)) hz
   refine ⟨F, inferInstance, inferInstance, fun p => z' (GlobalTheory.CompanionTheory.Ar.Cmp.joinInr M.ι R.ι p), (hpts F z' hz').2, ?_⟩
-  have key := GlobalTheory.T.root_height_difference_bound Ψ N M R i u c t s lo hi lam hC hA F z' hz'
+  have key := _root_.GlobalTheory.CompanionTheory.Ar.Ht.CloseHt.close_ht Ψ N M R i u c t s lo hi lam hC hA F z' hz'
   have heq : rootHt M t lam s F (fun p => z' (GlobalTheory.CompanionTheory.Ar.Cmp.joinInl M.ι R.ι p)) = rootHt M t lam s L w := by
     unfold rootHt
     refine Finset.sum_congr rfl fun j _ => ?_

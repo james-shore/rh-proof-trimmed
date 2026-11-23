@@ -223,7 +223,7 @@ theorem read_gen {V : HSp D} {Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.h
 
   have hmap : toEAf D e • (1 - a₁.map (toEAf D)) =
       (Lev.finE V g).1 * (toEAf D e • (1 - a₂.map (toEAf D))) := by
-    rw [actO, inv_one, GlobalTheory.ChainOnto.FrameAct.mt_one', Matrix.mul_one] at heq
+    rw [actO, inv_one, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.mul_one] at heq
     have h := congrArg (fun N : Mx D V.rank V.rank => N.map (toEAf D)) heq
     rw [map_smul_one_sub, Matrix.map_mul, map_smul_one_sub] at h
     exact h

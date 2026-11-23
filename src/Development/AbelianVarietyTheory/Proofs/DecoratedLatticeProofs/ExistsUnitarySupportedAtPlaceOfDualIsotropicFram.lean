@@ -80,11 +80,11 @@ namespace GlobalTheory.IwaPlace.BuildQ
 variable {D : D7} {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ)
 
 theorem gXX {k : ℕ} (X : Mx D ρ k) : adj d.jX * (gA S * (d.jX * X)) = 0 := by
-  rw [mul_tail₃ d.gram_XX, Matrix.zero_mul]
+  rw [_root_.GlobalTheory.MixModel.cancel₃ d.gram_XX, Matrix.zero_mul]
 theorem gYX {k : ℕ} (X : Mx D ρ k) : adj d.jY * (gA S * (d.jX * X)) = X := by
-  rw [mul_tail₃ d.gram_YX, Matrix.one_mul]
+  rw [_root_.GlobalTheory.MixModel.cancel₃ d.gram_YX, Matrix.one_mul]
 theorem g0X {k : ℕ} (X : Mx D ρ k) : adj d.j0 * (gA S * (d.jX * X)) = 0 := by
-  rw [mul_tail₃ d.gram_0X, Matrix.zero_mul]
+  rw [_root_.GlobalTheory.MixModel.cancel₃ d.gram_0X, Matrix.zero_mul]
 
 end GlobalTheory.IwaPlace.BuildQ
 
@@ -167,7 +167,7 @@ theorem imYY {ε : AE D} (hεε : ε * ε = ε) (hεc : cA D ε = ε) {α : Fin 
     conv_rhs => rw [← hc]
     rw [adj_smul, hεc]
   simp only [adj_add, adj_mul, adj_smul, adj_diagonal, cA_cA, hcA1, Matrix.mul_add, Matrix.add_mul, Matrix.mul_assoc]
-  simp only [mul_tail₃ H2, Matrix.mul_zero, Matrix.smul_mul, Matrix.mul_smul, smul_smul, d.gram_YY, smul_zero,
+  simp only [_root_.GlobalTheory.MixModel.cancel₃ H2, Matrix.mul_zero, Matrix.smul_mul, Matrix.mul_smul, smul_smul, d.gram_YY, smul_zero,
     kill_mid₂ hεε hc, kill_left hεε (diag_absorb hαε), add_zero, Matrix.zero_mul]
 
 

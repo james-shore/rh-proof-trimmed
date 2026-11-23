@@ -91,18 +91,14 @@ def LL (ι : Type) (c : F) : AddSubgroup (ι → A F) where
 
 variable [Fintype ι] [DecidableEq ι]
 
-lemma Bf_mul (g h : Matrix ι ι F) : Bf (g * h) = Bf g * Bf h := Matrix.map_mul
-
-lemma Bf_one : Bf (1 : Matrix ι ι F) = 1 := Matrix.map_one _ (map_zero _) (map_one _)
-
 lemma Bf_transpose (g : Matrix ι ι F) : Bf gᵀ = (Bf g)ᵀ := by
   ext i j; rfl
 
 lemma Bf_inv_mul {g : Matrix ι ι F} (hg : g.det ≠ 0) : Bf g⁻¹ * Bf g = 1 := by
-  rw [← Bf_mul, Matrix.nonsing_inv_mul _ (isUnit_iff_ne_zero.2 hg), Bf_one]
+  rw [← _root_.GlobalTheory.CompanionTheory.SW.Core.PiScale.Bf_mul, Matrix.nonsing_inv_mul _ (isUnit_iff_ne_zero.2 hg), _root_.GlobalTheory.CompanionTheory.SW.Core.PiScale.Bf_one]
 
 lemma Bf_mul_inv {g : Matrix ι ι F} (hg : g.det ≠ 0) : Bf g * Bf g⁻¹ = 1 := by
-  rw [← Bf_mul, Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.2 hg), Bf_one]
+  rw [← _root_.GlobalTheory.CompanionTheory.SW.Core.PiScale.Bf_mul, Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.2 hg), _root_.GlobalTheory.CompanionTheory.SW.Core.PiScale.Bf_one]
 
 lemma Bf_smul_one (c : F) : Bf (c • (1 : Matrix ι ι F)) = algebraMap F (A F) c • 1 := by
   ext i j
@@ -157,7 +153,7 @@ lemma perp_Gs (ψ : AddChar (A F) ℂ) (B g : Matrix ι ι F) (hg : (gᵀ * B).d
   have key : ∀ s y : ι → A F, chiB ψ (Bf B) (Bf g *ᵥ s) y = ψ (s ⬝ᵥ (Bf (gᵀ * B) *ᵥ y)) := by
     intro s y
     unfold chiB
-    rw [Bf_mul, Bf_transpose, ← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec s,
+    rw [_root_.GlobalTheory.CompanionTheory.SW.Core.PiScale.Bf_mul, Bf_transpose, ← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec s,
       Matrix.vecMul_transpose]
   ext y
   rw [mem_Gs_iff (det_inv_ne hg), Matrix.nonsing_inv_nonsing_inv _ (isUnit_iff_ne_zero.2 hg)]

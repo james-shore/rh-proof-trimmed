@@ -153,11 +153,6 @@ namespace GlobalTheory.MBLow.JetBCGen
 
 open GlobalTheory.MBLow.JetBC GlobalTheory.ThetaPtMove GlobalTheory.ConstFam GlobalTheory.GlobalLift
 
-theorem one_left_eq {S : Scheme.{0}} (A : Over S) [GrpObj A] (T : Over S) : (1 : T ⟶ A).left = T.hom ≫ eSec A := by
-  show (toUnit T ≫ η[A]).left = _
-  rw [Over.comp_left]
-  rfl
-
 theorem tr_move_gen {S S' : Scheme.{0}} {P₀ : PolAV S} {P : PolAV S'} {f : S' ⟶ S} {φ : P.A.left ⟶ P₀.A.left}
     (hp : IsGrpPullback P.A P₀.A f φ) {T : Over S'} {T₀ : Over S} (τ : T.left ⟶ T₀.left)
     (hτ : τ ≫ T₀.hom = T.hom ≫ f) {w : LB.Iso P.L (P₀.L.pull φ)}
@@ -182,7 +177,7 @@ theorem tr_move_gen {S S' : Scheme.{0}} {P₀ : PolAV S} {P : PolAV S'} {f : S' 
   rw [val_pull hJ, val_rigT' _ _ _ _ _ _ _ _ hJ, Category.assoc _ τ T₀.hom, hτ, ← Category.assoc, q₁, q₂] at q
   rw [val_pull hJ', val_rigT' _ _ _ _ _ _ _ _ hJ']
   have e₁ : (𝟙 _ ≫ (ptSecT P.A (1 : T ⟶ P.A)).left) ≫ (snd T P.A).left = (𝟙 _ ≫ T.hom) ≫ eSec P.A := by
-    rw [Category.id_comp, ptSecT_snd, one_left_eq, Category.id_comp]
+    rw [Category.id_comp, ptSecT_snd, _root_.GlobalTheory.UU.one_left, Category.id_comp]
   have e₂ : (𝟙 _ ≫ (ptSecT P.A (1 : T ⟶ P.A)).left) ≫ (snd T P.A ^ m).left = (𝟙 _ ≫ T.hom) ≫ eSec P.A := by
     rw [Category.id_comp, ← Over.comp_left, MonObj.comp_pow, ← e₁, Category.id_comp, ← Over.comp_left,
       show ptSecT P.A (1 : T ⟶ P.A) ≫ snd T P.A = 1 from lift_snd _ _, one_pow]

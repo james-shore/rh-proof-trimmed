@@ -108,7 +108,7 @@ theorem finrank_lat_int : Module.finrank ℤ (Lat ρ) = r := by
   rw [← LinearEquiv.finrank_eq (intEquiv ρ), Module.finrank_fin_fun]
 
 instance : Module.Projective (𝓞 E) (Lat ρ) := by
-  haveI : Module.IsTorsionFree (𝓞 E) (Lat ρ) := isTorsionFree_of_int E (Lat ρ)
+  haveI : Module.IsTorsionFree (𝓞 E) (Lat ρ) := _root_.GlobalTheory.isTorsionFree_ringOfIntegers_of_isTorsionFree_int E (Lat ρ)
   haveI : Module.FinitePresentation (𝓞 E) (Lat ρ) := Module.finitePresentation_of_finite _ _
   exact Module.Flat.projective_of_finitePresentation
 

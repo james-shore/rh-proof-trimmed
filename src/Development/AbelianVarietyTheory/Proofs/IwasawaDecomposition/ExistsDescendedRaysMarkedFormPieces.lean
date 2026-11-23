@@ -137,7 +137,7 @@ theorem exists_desc_rays_pullAdd : ∀ (E : Type) [Field E] [NumberField E] [IsC
         · have hk0' : (k : ℤ) ≠ 0 := by exact_mod_cast hk0.ne'
           have hval : ∀ x y, (k : ℤ) * β' x y = u i (f x) (f y) := fun x y => by
             rw [← pullAdd_apply, ← hk]; simp
-          obtain ⟨ζ, hζ⟩ := GlobalTheory.T.exists_intBilinForm_descend_along_surjective f hf β'
+          obtain ⟨ζ, hζ⟩ := _root_.GlobalTheory.exists_bilinForm_descend_of_surjective f hf β'
             (fun x hx y => by
               have := hval x y
               rw [hx, map_zero, LinearMap.zero_apply] at this

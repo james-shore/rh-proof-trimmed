@@ -69,7 +69,7 @@ theorem perVec_mem_range_iff (Wt : UnfAt U k x) (v : Fin r → D.host.E) :
       rw [e1, pv_lat]
       change perVec Wt v - Wt.Pm a = 0
       rw [← ha, sub_self]
-    obtain ⟨N, hN, hNw⟩ := exists_nsmul_mem (U.X k) w
+    obtain ⟨N, hN, hNw⟩ := _root_.UpperTheory.Reformulated.B.Uc15.exists_nsmul_mem (U.X k) w
     set c' := (Wt.φ k).symm ⟨N • w, hNw⟩ with hc'
     have hc : (Wt.φ k c' : Fin r → D.host.E) = (N : D.host.E) • w := by
       rw [hc', LinearEquiv.apply_symm_apply, Nat.cast_smul_eq_nsmul]

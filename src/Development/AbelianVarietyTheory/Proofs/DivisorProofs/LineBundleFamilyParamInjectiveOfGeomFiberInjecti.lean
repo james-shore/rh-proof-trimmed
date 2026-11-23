@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.MonoOfGeomPoints
 
 @[expose] public section
 
@@ -53,25 +54,6 @@ set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.DualInj
-
-theorem mono_of_points_tangents {X Y : Scheme.{0}} (f : X ⟶ Y) [LocallyOfFiniteType f]
-    (h₁ : ∀ (k : Type) [Field k] [IsAlgClosed k] (y y' : Sp k ⟶ X), y ≫ f = y' ≫ f → y = y')
-    (h₂ : ∀ (k : Type) [Field k] [IsAlgClosed k] (w : Sp (DualNumber k) ⟶ X),
-      w ≫ f = TangentCrit.dualBase k ≫ TangentCrit.dualPt k ≫ w ≫ f →
-        w = TangentCrit.dualBase k ≫ TangentCrit.dualPt k ≫ w) : Mono f := by
-  have hu : FormallyUnramified f := TangentCrit.formallyUnramified_of_tangent f h₂
-  have hs : Surjective (pullback.diagonal f) := by
-    apply ((tfae_universallyInjective f).out 2 4).1
-    intro k _ y y' e
-    let x : Sp (AlgebraicClosure k) ⟶ Sp k := Spec.map (CommRingCat.ofHom (algebraMap k (AlgebraicClosure k)))
-    have : Surjective x :=
-      ⟨fun z => ⟨(default : PrimeSpectrum (AlgebraicClosure k)), Subsingleton.elim (α := PrimeSpectrum k) _ _⟩⟩
-    have : Epi x := Flat.epi_of_flat_of_surjective x
-    refine (cancel_epi x).1 (h₁ _ _ _ ?_)
-    rw [Category.assoc, Category.assoc]
-    exact congrArg (x ≫ ·) e
-  have : IsIso (pullback.diagonal f) := (isIso_iff_isOpenImmersion_and_surjective _).2 ⟨inferInstance, hs⟩
-  exact (pullback.isIso_diagonal_iff f).1 this
 
 variable {S : Scheme.{0}} {A U : Over S} [GrpObj A]
 
@@ -141,7 +123,7 @@ theorem inj_of_fibInj : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (A : Ov
   have : LocallyOfFiniteType p := by
     show LocallyOfFiniteType (i.left ≫ pullback.fst U.hom U.hom)
     infer_instance
-  have hmono : Mono p := mono_of_points_tangents p
+  have hmono : Mono p := _root_.GlobalTheory.FibreEmbed.mono_of_geom_points p
     (fun k _ _ y y' e => pt _ y y' k (𝟙 _) (y ≫ G.hom) e (Category.id_comp _).symm)
     (fun k _ _ w hw => pt _ w _ k (TangentCrit.dualBase k) (TangentCrit.dualPt k ≫ w ≫ G.hom) hw (by
       have := congrArg (· ≫ U.hom) hw

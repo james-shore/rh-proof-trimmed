@@ -70,7 +70,7 @@ theorem bc_tens : ∀ {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (P
       (M' := Mid.HM r M n j) fun _ a y => idA r a • bWL r M n j y := by
   intro l _ K r M hM j n
   letI := (Mid.wn r n).toAlgebra
-  haveI : Module.Flat (Wc.Wm l r.k n) ((base l).Acr n) := GlobalTheory.T.flat_acris_truncated_witt r n
+  haveI : Module.Flat (Wc.Wm l r.k n) ((base l).Acr n) := _root_.GlobalTheory.CompanionTheory.CrisFlat.flat_acr r n
   obtain ⟨U⟩ := cov_of_sm M hM
   let m := nm r M n
   let Q : ObjectProperty (Thick (nlFun (Wc.pd l r.k n) l M.X M.p ((Wc.res l r.k n).comp r.ρ))) := St ⊤ {⊤}
@@ -80,7 +80,7 @@ theorem bc_tens : ∀ {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (P
   have h : ∀ T, Q' T → Q ((m.mor l).functor.obj T) := fun T _ => hQ _
   have ha : ∀ a, (m.smor Q Q' h).LeC a (oT Q) (oT Q') := fun a => GlobalTheory.CompanionTheory.BcCov.leC_top _ a _ _ (oT_top Q')
   have hb : ∀ a, (m.smor Q Q' h).LeC a (oB Q) (oB Q') := fun a => GlobalTheory.CompanionTheory.BcCov.leC_bot _ a _ _ fun T => oB_bot Q _
-  have T := GlobalTheory.T.nilpotent_identity_morphism_compat (Fact.out : l.Prime).ne_zero (l_nil r n) m rfl rfl U Q Q' rfl rfl h ha hb j
+  have T := _root_.GlobalTheory.CompanionTheory.BcCov.bc_cover (Fact.out : l.Prime).ne_zero (l_nil r n) m rfl rfl U Q Q' rfl rfl h ha hb j
   refine tens_change (A := AW r) (Ideal.Quotient.mk _) ((base l).cris n) (cris_surjective n) (fun w => rfl)
     Ideal.Quotient.mk_surjective ((l : WittVector l r.k) ^ n)
     (Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_span_singleton_self _)) ?_

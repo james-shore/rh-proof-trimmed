@@ -199,7 +199,7 @@ theorem exists_stable (E : Type) [Field E] [NumberField E] [_root_.NumberField.I
     haveI : BorelSpace (AutomorphicForm.archGroup E a) := ⟨rfl⟩
     obtain ⟨D, hD, hDc, hrep⟩ := GlobalTheory.T.lie_derivative_convolution_kernel E a (Measure.haar : Measure (AutomorphicForm.archGroup E a)) φ h1.1 X
     have hc : Continuous φ.1 := ContAut.continuous_of_isOpen_stab E a φ h1.1.level
-    obtain ⟨h', hW⟩ := GlobalTheory.T.l2_convolution_locally_compact_mem (latticeGL E a) μ (Measure.haar : Measure (AutomorphicForm.archGroup E a))
+    obtain ⟨h', hW⟩ := _root_.GlobalTheory.CompanionTheory.AutomorphicL2Convolution.memL2_convolution_mem (latticeGL E a) μ (Measure.haar : Measure (AutomorphicForm.archGroup E a))
       (AutomorphicForm.infEmb E a) AutomorphicForm.continuous_infEmb D hD hDc φ.1 (lie E a X φ).1 hc h3 hrep
     refine ⟨⟨⟨fun γ g => lieD_left X (h1.1.left γ) g, ?_, GlobalTheory.T.finiteDimensional_span_compact_orbit_lieDerivative E a X φ h1.1.kfin,
       GlobalTheory.CuspStab.zfin_of_comm _ (fun z hz => GlobalTheory.T.mem_zalg_commute_lie_action E a X z hz) h1.1.zfin,

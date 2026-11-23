@@ -108,13 +108,6 @@ theorem denE (p : PlF D) (a : (D.s.atP p).Ep) :
   rw [map_mul, iE_alg] at h2
   exact h2
 
-theorem baseChangeAt_frame (p : PlF D) (j : Fin (nV D)) : baseChange₂ D p ((VS D).frame j) = Pi.single j 1 := by
-  funext i
-  simp only [baseChange₂, AddMonoidHom.coe_mk, ZeroHom.coe_mk, Module.Basis.repr_self, Finsupp.single_apply, Pi.single_apply]
-  split_ifs with h1 h2 h2 <;> simp_all [eq_comm]
-
-
-
 theorem exists_isLattice_eq_localLattice (Zd : LocDat D) (p : PlF D) (M : Submodule (Zd.M p).L.O (Vp D p)) (hfg : M.FG)
     (hsp : Submodule.span (D.s.atP p).Ep (M : Set (Vp D p)) = ⊤) :
     ∃ Λ' : Submodule (𝓞 D.host.E) (VS D).V, Submodule.IsFullLattice D.host.E Λ' ∧ M = lattice₂ D Zd.M p Λ' := by
@@ -193,7 +186,7 @@ theorem exists_isLattice_eq_localLattice (Zd : LocDat D) (p : PlF D) (M : Submod
   obtain ⟨Λ', hΛ'⟩ : ∃ Λ' : Submodule (𝓞 D.host.E) (VS D).V, Λ' = Submodule.span (𝓞 D.host.E) G := ⟨_, rfl⟩
   have hbcf : ∀ i, baseChange₂ D p (algebraMap D.host.F D.host.E (c : D.host.F) • (VS D).frame i) = u c • (Pi.single i 1 : Vp D p) := by
     intro i
-    rw [baseChange_smul₂, baseChangeAt_frame, iE_alg]
+    rw [baseChange_smul₂, _root_.Formalism.L2.SG.TermLoc.baseChangeAt_frame, iE_alg]
   have hlat : Submodule.IsFullLattice D.host.E Λ' := by
     have hfg' : Λ'.FG := by
       rw [hΛ']

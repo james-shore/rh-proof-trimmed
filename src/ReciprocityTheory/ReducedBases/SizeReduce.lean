@@ -105,25 +105,6 @@ private lemma sub_gs_mem_span_gs_Iio {E : Type*} [NormedAddCommGroup E] [InnerPr
   exact Submodule.sum_mem _ fun i hi =>
     Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, Finset.mem_Iio.mp hi, rfl⟩)
 
-private lemma mu_eq_zero_of_lt {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
-    (b : Fin d → E) {l j : Fin d} (hlj : l < j) : mu b l j = 0 := by
-  have hm : b l ∈ span ℝ (gs b '' Set.Iio j) := by
-    have h1 := mem_span_gramSchmidt (𝕜 := ℝ) (f := b) (le_refl l)
-    refine Submodule.span_mono ?_ h1
-    exact Set.image_mono (fun i hi => lt_of_le_of_lt hi hlj)
-  have h0 := Submodule.mem_orthogonal_singleton_iff_inner_right.mp (span_gs_Iio_le_orthogonal b j hm)
-  simp only [mu]
-  rw [h0, zero_div]
-
-private lemma mu_diag_eq_one {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
-    (b : Fin d → E) (hli : LinearIndependent ℝ b) (j : Fin d) : mu b j j = 1 := by
-  have hne : gs b j ≠ 0 := gramSchmidt_ne_zero (𝕜 := ℝ) (n := j) hli
-  have h0 := Submodule.mem_orthogonal_singleton_iff_inner_right.mp (span_gs_Iio_le_orthogonal b j (sub_gs_mem_span_gs_Iio b j))
-  rw [inner_sub_right] at h0
-  simp only [mu]
-  rw [sub_eq_zero.mp h0, real_inner_self_eq_norm_sq]
-  exact div_self (pow_ne_zero 2 (norm_ne_zero_iff.mpr hne))
-
 private lemma gs_sub_sum_lower_smul {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
     (b : Fin d → E) (c : Fin d → Fin d → ℝ) (hc : ∀ i l, i ≤ l → c i l = 0) :
     gs (fun i => b i - ∑ l, c i l • b l) = gs b := by
@@ -230,9 +211,9 @@ private lemma exists_basis_size_reduce_column {E : Type*} [NormedAddCommGroup E]
     rw [hgs, hfi, inner_sub_right, inner_smul_right]
     ring
   refine ⟨e1, hgs, fun i hi => ?_, fun i j' hj' => ?_⟩
-  · rw [hmu, if_pos hi, mu_diag_eq_one b (hli e0) j, mul_one]
+  · rw [hmu, if_pos hi, _root_.ReciprocityTheory.ReducedBases.T2.mu_self b (hli e0) j, mul_one]
     exact abs_sub_round _
-  · rw [hmu, mu_eq_zero_of_lt b hj', mul_zero, sub_zero]
+  · rw [hmu, _root_.ReciprocityTheory.ReducedBases.T2.mu_of_lt b hj', mul_zero, sub_zero]
 
 lemma size_reduce {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {d : ℕ}
     (f : (Fin d → ℤ) →ₗ[ℤ] E)

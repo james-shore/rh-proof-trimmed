@@ -52,15 +52,11 @@ namespace SheetDecomposition
 open NumberField Matrix MeasureTheory ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp GlobalTheory.CompanionTheory.Ar.Cusp.Dict
   GlobalTheory.CompanionTheory.Ar.Cusp.DictMeas GlobalTheory.CompanionTheory.Ar.Cmp PositivityTheory.EqVol
 
-theorem qconj_eq {E : Type} [Field E] [NumberField E] [IsCMField E] (x : E) :
-    GroundTheory.Automorphic.conj (maximalRealSubfield E) E x = IsCMField.complexConj E x :=
-  HermTrace.quadConj_eq_complexConj x
-
 theorem sesq_eq_herm {E : Type} [Field E] [NumberField E] [IsCMField E] {N : ℕ}
     (h : GroundTheory.Automorphic.HermitianForm (maximalRealSubfield E) E (Fin N → E)) (r : E) (x y : Fin N → E) :
     herm (r • (GroundTheory.Automorphic.gram h.toSesq (Pi.basisFun E (Fin N)))ᵀ) x y = r * h.toSesq y x := by
   rw [GroundTheory.Automorphic.sesq_eq_sum h.toSesq (Pi.basisFun E (Fin N)), herm, Finset.sum_comm]
-  simp only [Finset.mul_sum, qconj_eq, Pi.basisFun_repr, Matrix.smul_apply, Matrix.transpose_apply, smul_eq_mul, cc]
+  simp only [Finset.mul_sum, _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.HermTrace.quadConj_eq_complexConj, Pi.basisFun_repr, Matrix.smul_apply, Matrix.transpose_apply, smul_eq_mul, cc]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun k _ => ?_
   ring
 
@@ -120,7 +116,7 @@ theorem stdModel_of (h : StdZ) : StdModel := by
   refine ⟨r • g₀ᵀ, e, fun τ => (k : ℂ) • A τ, fun τ => (k : ℂ)⁻¹ • C.cinv (A τ) τ, Z, fun a b => ?_, ?_, C.e_inj, ⟨?_, ?_⟩,
     hform, fun τ => ⟨?_, ?_, ?_⟩, hbij, hmeas, fun γ hγ δ hδ t ht t' ht' => ?_⟩
   · have h1 : cc (g₀ b a) = g₀ a b := by
-      rw [cc, ← qconj_eq]
+      rw [cc, ← _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.HermTrace.quadConj_eq_complexConj]
       exact C.h.isSymm.eq _ _
     show cc (r * g₀ b a) = r * g₀ a b
     rw [← h1]

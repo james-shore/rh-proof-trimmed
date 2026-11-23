@@ -38,14 +38,13 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange.PSSmo
 
 @[expose] public section
 
 open NumberField IsDedekindDomain
 
-private theorem not_both (F : Type) [Field F] [NumberField F] (h : IsTotallyReal F) (h' : IsTotallyComplex F) : False := by
-  obtain ⟨v⟩ : Nonempty (InfinitePlace F) := inferInstance
-  exact (InfinitePlace.not_isReal_iff_isComplex.2 (h'.isComplex v)) (h.isReal v)
+private alias not_both := _root_.UpperTheory.CBC.SmoothnessOfSatakeParameters.not_both
 
 theorem UpperTheory.ConvolutionTheory.Sph.cbcSph :
     UpperTheory.ConvolutionTheory.Sph.CBCsph := by

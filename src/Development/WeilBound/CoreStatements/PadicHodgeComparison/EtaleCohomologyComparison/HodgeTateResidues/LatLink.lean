@@ -143,7 +143,7 @@ theorem levSys_good (h : LevHyp l K M) : (levSys h).Good := by
     dlam m c := Subtype.ext (dk_pk (m + 1) (ACris.iota ℂ_[l] l c))
     dO m a := Subtype.ext (dk_pk (m + 1) (kP l K a))
     dK m k := dk_pk (m + 1) (kP l K k)
-    ddp := GlobalTheory.T.level_system_transition_isDPMorphism h
+    ddp := _root_.GlobalTheory.CompanionTheory.LatC.levSys_ddp h
     ddpB m := dp_of_char (K := K) ((levSys h).L (m + 1)).γB ((levSys h).L m).γB ((levSys h).L (m + 1)).ι ((levSys h).L m).ι
       ((levSys h).dA m) ((levSys h).dB m) (GlobalTheory.T.level_ideal_eq_map h (m + 2)) (GlobalTheory.T.level_ideal_eq_map h (m + 1)) (GlobalTheory.T.level_system_transition_isDPMorphism h m).1 (sys_dι h m)
     dσ := GlobalTheory.T.level_system_transition_galois_A h
@@ -152,6 +152,6 @@ theorem levSys_good (h : LevHyp l K M) : (levSys h).Good := by
   }
 
 theorem levSys_ex [FiniteDimensional ℚ_[l] K] : ∃ S : Kap.LevSys (per l K), S.Good ∧ ∀ m, (S.L m).CrisOK :=
-  (levHyp_ex (l := l) (K := K)).elim fun _ h => ⟨levSys h, levSys_good h, fun m => GlobalTheory.T.level_xi_mem_ideal_and_theta_compat h (m + 1)⟩
+  (levHyp_ex (l := l) (K := K)).elim fun _ h => ⟨levSys h, levSys_good h, fun m => _root_.GlobalTheory.CompanionTheory.LatC.Red.xi_and_sub_mem_I h (m + 1)⟩
 
 end CrystallineSemistableComparison.HT

@@ -67,10 +67,6 @@ theorem star_mem_of_normal {L : Type} [Field L] [CharZero L] [StarRing L] [IsGal
   have h := (IntermediateField.normal_iff_forall_map_le (K := M)).1 hM.to_normal (starRingEnd L).toRatAlgHom
   exact h ⟨x, hx, rfl⟩
 
-theorem exists_over (E : Type) [Field E] [NumberField E] {p : ℕ} (hp : p.Prime) :
-    ∃ w : HeightOneSpectrum (𝓞 E), ((p : ℕ) : 𝓞 E) ∈ w.asIdeal :=
-  _root_.GlobalTheory.HeightOnePrimeMembership.exists_heightOne_mem E hp
-
 end GlobalTheory.TwInputs.SmallField
 
 namespace GlobalTheory.TwInputs.SmallField
@@ -124,7 +120,7 @@ theorem exists_finset_lam (P : Pre) : ∃ S : Finset ℂ, (∀ z ∈ S, IsAlgebr
     subst hB
     exact absurd h hq
   have hqp := (GlobalTheory.EX.DC.globalTwisting_spec_fact P.host).1
-  obtain ⟨w0, hw0⟩ := exists_over P.host.E hqp
+  obtain ⟨w0, hw0⟩ := _root_.GlobalTheory.CharVal.exists_over P.host.E hqp
   have hmod : ∀ p ∈ [P.host.g 0, P.host.g 1, P.host.pde, P.host.pde', GlobalTheory.EX.DC.q0H P.host],
       p ≡ 1 [MOD P.host.QS * P.host.q * P.host.d] := by
     intro p hp

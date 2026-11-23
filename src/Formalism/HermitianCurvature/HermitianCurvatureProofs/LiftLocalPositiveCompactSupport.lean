@@ -286,7 +286,7 @@ theorem Formalism.FourierDecayAlt.P.lift_local_compact_support_route : Formalism
   obtain ⟨-, -, -, -, -, -, -, -, -, -, hGo, hGr, -⟩ := hB'
   have hCI := Formalism.FourierDecayAlt.P.PBCut.cutInside_of_built hB
   obtain ⟨-, grid, hinj, hl1, hmem, hall, hlp, hlm⟩ :=
-    Formalism.FourierDecayAlt.P.new_letters_admissible E Wp Wq S hGo hGr hCI v a C.Kst (2 * (b + s - 1 - s) + s) ha' haK' (by omega)
+    _root_.Formalism.FourierDecayAlt.P.PBD.newLetters E Wp Wq S hGo hGr hCI v a C.Kst (2 * (b + s - 1 - s) + s) ha' haK' (by omega)
   have hnodes : ∀ n : Fin C.Kst → Fin (2 * (b + s - 1 - s) + s + 1),
       D.AdmAt S v (KB.plusW (List.ofFn fun c => grid c (n c)) a) ∧
       D.AdmAt S v (KB.minusW (List.ofFn fun c => grid c (n c)) a) ∧

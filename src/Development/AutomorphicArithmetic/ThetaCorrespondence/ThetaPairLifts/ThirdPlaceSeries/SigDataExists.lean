@@ -78,7 +78,7 @@ theorem span_eig_BI_alt (D : D7) (cf : CharFrame D) (jE : D.host.E →+* Qb) (A 
       {y : FractionRing (T.O i) ⊗[T.O i] ↥(BI D T S In i j b) | ∃ σ : D.what₂.FT,
         (D.what₂.isot j σ ≠ ⊥ ∧ D.nd.goodRow σ) ∧ ∀ k P, sigVal D T i k P →
           (hkB D T S In hst i j b k P).baseChange (FractionRing (T.O i)) y = sigLam D T In i j b σ k P • y}) := by
-    refine le_trans (_root_.GlobalTheory.T.lattice_in_isotypic_sup_alt D cf jE A S In b0 b1 Sx T Sp hSb hstar i j b h1 h2) ?_
+    refine le_trans (_root_.GlobalTheory.HeightCounting.FormsStep.goodPart_le_iSup_eigen_alt D cf jE A S In b0 b1 Sx T Sp hSb hstar i j b h1 h2) ?_
     refine iSup₂_le fun σ hσ => ?_
     intro x hx
     obtain ⟨hx0, hx1⟩ := Submodule.mem_inf.mp hx

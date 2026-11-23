@@ -75,7 +75,7 @@ theorem lbIso_pull_comp_self {X : Scheme.{0}} {L : LB X} (hL : L.IsLB) (a b : X 
 theorem exists_lb_descent_of_finite_aut : ∀ (K K' : Type) [Field K] [Field K'] (i : K →+* K'), i.Finite → ∀ (Γ : Type) [Finite Γ] (s : Γ → (K' ≃+* K')), (∀ g x, s g (i x) = i x) → (∀ y : K', (∀ g, s g y = y) → y ∈ i.range) → ∀ (A : Over (Sp K)) [GrpObj A] (A' : Over (Sp K')) [GrpObj A'] (φ : A'.left ⟶ A.left), IsAbelianScheme A → IsGrpPullback A' A (spMap i) φ → ∀ L' : LB A'.left, L'.IsLB → (∀ g, ∃ ψ : A'.left ⟶ A'.left, ψ ≫ φ = φ ∧ ψ ≫ A'.hom = A'.hom ≫ spMap (s g).toRingHom ∧ LBIso L' (L'.pull ψ)) → ∃ L : LB A.left, L.IsLB ∧ LBIso L' (L.pull φ) := by
   intro K K' _ _ i hfin Γ _ s hs hfix A _ A' _ φ hA hp L' hL' hinv
   letI : Algebra K K' := i.toAlgebra
-  obtain ⟨hgal, hgen⟩ := GlobalTheory.T.isGalois_of_finite_fixed_automorphisms K K' i hfin Γ s hs hfix
+  obtain ⟨hgal, hgen⟩ := _root_.GlobalTheory.galois_of_finite_generating_automorphisms K K' i hfin Γ s hs hfix
   haveI : FiniteDimensional K K' := hfin
   have hc0 := GlobalTheory.ZM.DwModel.isGaloisCover_field K K'
   have hfixσ : ∀ σ : K' ≃ₐ[K] K', ∀ x, (σ : K' ≃+* K') (i x) = i x := fun σ x => σ.commutes x
@@ -137,7 +137,7 @@ theorem exists_lb_descent_of_finite_aut : ∀ (K K' : Type) [Field K] [Field K']
     · rw [Category.assoc, ht1, Category.assoc, hp.1.lift_fst, ← Category.assoc, hσi σ]
     · rw [Category.assoc, ht2, ← Category.assoc, he, Category.assoc, he]
       simp
-  obtain ⟨u, hu, hcoc⟩ := GlobalTheory.T.exists_linearisation_invariant_rigidified_bundle (Sp K') A'.left A'.hom e he hsurj L' hL'
+  obtain ⟨u, hu, hcoc⟩ := _root_.GlobalTheory.MumLin.exists_linearisation (Sp K') A'.left A'.hom e he hsurj L' hL'
     (GlobalTheory.SS.HtForm.gen_field _ (pull_isLB hL' e)) (K' ≃ₐ[K] K') t (fun σ => spMap (σ : K' →+* K'))
     (fun a c => hGC.mul a c) (fun a c => hc0.mul a c) heθ hall
   exact GlobalTheory.LinDescent.exists_descent_of_isGaloisCover _ _ φ _ t L' hGC hL' u hu hcoc

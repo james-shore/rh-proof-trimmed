@@ -268,10 +268,6 @@ theorem val_qOf_lt_one (P : HeightOneSpectrum (𝓞 E)) : P.valuation E ((qOf P 
   have h := (P.valuation_lt_one_iff_mem (K := E) ((qOf P : ℕ) : 𝓞 E)).2 (Ideal.absNorm_mem _)
   simpa using h
 
-omit [StarRing E] in
-theorem qOf_pos (P : HeightOneSpectrum (𝓞 E)) : 0 < qOf P :=
-  Nat.pos_of_ne_zero fun h0 => P.ne_bot (Ideal.absNorm_eq_zero_iff.1 h0)
-
 theorem mle_frame {g : GL (Fin a) (AfE F E)} {p : DecoF E a ST SG Q} (h : IsPtOf hc g p) (w : SG) :
     MLe Valued.v ((g⁻¹ : GL (Fin a) (AfE F E)).1.map (adAt F w.1) *
       (LinearMap.toMatrix' (p.deco.1.liftFr w).toLinearMap).map (algebraMap E (w.1.adicCompletion E)) - 1) (WithZero.exp (-((1 : ℕ) : ℤ))) := by
@@ -325,7 +321,7 @@ theorem exists_modulus {k y : GL (Fin a) (AfE F E)} {k' y' : GL (Fin b) (AfE F E
   have vd : w.1.valuation E d ≠ 0 := (Valuation.ne_zero_iff _).2 hd
   obtain ⟨n, hn⟩ := exists_pow_lt₀ (val_qOf_lt_one w.1)
     (Units.mk0 (m'⁻¹ * w.1.valuation E d * m⁻¹) (mul_ne_zero (mul_ne_zero (inv_ne_zero m0') vd) (inv_ne_zero m0)))
-  refine ⟨qOf w.1 ^ n, pow_pos (qOf_pos _) n, fun M₀ hM x x₀ hx => ⟨_, _, hAi.near_mul h1.le hC, hAi'.near_mul h1.le hC', ?_⟩⟩
+  refine ⟨qOf w.1 ^ n, pow_pos (_root_.Formalism.L2.Ker.qOf_pos _) n, fun M₀ hM x x₀ hx => ⟨_, _, hAi.near_mul h1.le hC, hAi'.near_mul h1.le hC', ?_⟩⟩
   have hM₀ : Valued.v ((M₀ : ℕ) : w.1.adicCompletion E) ≤ m'⁻¹ * w.1.valuation E d * m⁻¹ := by
     obtain ⟨c, rfl⟩ := hM
     rw [← map_natCast ι, valued_algebraMap, Nat.cast_mul, map_mul, Nat.cast_pow, map_pow]

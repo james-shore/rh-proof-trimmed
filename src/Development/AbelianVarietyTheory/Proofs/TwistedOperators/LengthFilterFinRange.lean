@@ -177,13 +177,13 @@ theorem wordMult_prod₂ (hG : JacquetOfInducedFiltration k) (hC : CellSemisimpl
     · cases ε j <;> simp
     · funext j
       simp
-  · rw [T.jordanHolderMultiplicity_leviChar_geometricLemmaCell k hC Bool (Fin (r + t)) _ (fun i j => Fin (b.1 i j)) (f b) _ _ _ hs hl _
+  · rw [_root_.GlobalTheory.SmGL.Exponents.jhMult_leviChar_cellFunctor k hC Bool (Fin (r + t)) _ (fun i j => Fin (b.1 i j)) (f b) _ _ _ hs hl _
       fun j => isSmoothChar_of_isUnram (isUnram_unrChar k _), Fintype.prod_bool, mul_comm,
       ← ofFn_blk (f₁ b) (hf₁ b) _ fun j => by have := hcol b j; simp; omega,
       ← ofFn_blk (f₂ b) (hf₂ b) _ fun j => by have := hcol b j; simp; omega,
       List.map_ofFn, List.map_ofFn, wordMult_ofFn, wordMult_ofFn]
-    exact congrArg₂ (· * ·) (T.jordanHolderMultiplicity_jacquet_eq_borelJacquet_of_small k _ _ _ (f₁ b) (hf₁ b) _ π₁ _)
-      (T.jordanHolderMultiplicity_jacquet_eq_borelJacquet_of_small k _ _ _ (f₂ b) (hf₂ b) _ π₂ _)
+    exact congrArg₂ (· * ·) (_root_.GlobalTheory.SmGL.EmptyBlocks.jhMult_jac_eq_jacB k _ _ _ (f₁ b) (hf₁ b) _ π₁ _)
+      (_root_.GlobalTheory.SmGL.EmptyBlocks.jhMult_jac_eq_jacB k _ _ _ (f₂ b) (hf₂ b) _ π₂ _)
 
 end GlobalTheory.SmGL.Exponents
 
@@ -254,13 +254,13 @@ theorem wordMult_segment {ϖ : kˣ} (hϖ : valuation k (ϖ : k) = uniformizer k)
   obtain ⟨d, hd, _, ⟨σ, rfl, hσ⟩, l, hl⟩ := Δ
   rcases (show 1 < d ∨ d = 1 by omega) with h1 | rfl
   · refine Or.inr fun w => ?_
-    have := T.subsingleton_borelJacquet_of_cuspidal_segment_jacquet k l d hl h1 _ _ σ.ρ (Z ⟨d, hd, _, ⟨σ, rfl, hσ⟩, l, hl⟩).rep.ρ hσ fun e =>
+    have := _root_.GlobalTheory.SmGL.CuspSegment.subsingleton_jacquet_unipB k l d hl h1 _ _ σ.ρ (Z ⟨d, hd, _, ⟨σ, rfl, hσ⟩, l, hl⟩).rep.ρ hσ fun e =>
       (hZ ⟨d, hd, _, ⟨σ, rfl, hσ⟩, l, hl⟩ σ rfl e _).2.1 (IrrCl.cl_rep _)
     unfold wordMult
     split_ifs
     · exact jhMult_of_subsingleton (isIrreducible_ofChar _) _
     · rfl
-  obtain ⟨χ, hχ, ⟨φ⟩⟩ := T.exists_equiv_detCharacter_of_irreducible_rank_le_one k (Fin 1) _ σ.ρ σ.smooth σ.irr
+  obtain ⟨χ, hχ, ⟨φ⟩⟩ := _root_.GlobalTheory.SmGL.RankLeOne.exists_equiv_detRep k (Fin 1) _ σ.ρ σ.smooth σ.irr
   have e : (⟨1, hd, _, ⟨σ, rfl, hσ⟩, l, hl⟩ : Segment k) = Segment.ofChar χ hχ l hl := by
     have : σ.cl = (IrrRep.det (Fin 1) χ hχ).cl := IrrRep.cl_eq_iff.2 ⟨φ⟩
     unfold Segment.ofChar
@@ -481,7 +481,7 @@ theorem exponentsSeparate (hG : Published.GeometricLemma) (hZ : Published.Zelevi
     exact (hne i j hij).false (IrrRep.cl_eq_iff.1
       (sigma_mk_injective (β := fun n => IrrCl (GL (Fin n) k)) h)).some
   · intro i
-    obtain ⟨χ, hχ⟩ := T.exists_exponent_of_iwahori_fixed_vector k r _ (π i) (ha i) (hI i)
+    obtain ⟨χ, hχ⟩ := _root_.GlobalTheory.SmGL.exists_expMult_ne_zero_of_fixed_iwahori k r _ (π i) (ha i) (hI i)
     rw [hE i] at hχ
     have hm : χ ∈ E i := Multiset.count_ne_zero.1 (Nat.cast_ne_zero.1 hχ)
     obtain ⟨z, hz⟩ := exists_eq_torusChar hϖ (θ := χ * δ⁻¹) fun t ht => by
@@ -494,7 +494,7 @@ theorem exponentsSeparate (hG : Published.GeometricLemma) (hZ : Published.Zelevi
     · obtain ⟨z, rfl⟩ : ∃ z : Fin r → ℂˣ, w = List.ofFn z :=
         ⟨fun i => w.get (i.cast hw.symm), List.ext_getElem (by simp [hw]) fun i h1 h2 => by simp⟩
       simp only [hM, ENat.toNat_coe]
-      exact T.unramified_char_sums_strict_cone_vanish_each k ϖ hϖ r n E c (fun i χ hχ t ht => (hE i).unramified hχ ht) hc _
+      exact _root_.GlobalTheory.ConeCount.sum_count_eq_zero k ϖ hϖ r n E c (fun i χ hχ t ht => (hE i).unramified hχ ht) hc _
     · simp [wordMult_of_ne _ hw]
 
 end GlobalTheory.SmGL.Exponents

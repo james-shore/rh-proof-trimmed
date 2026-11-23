@@ -71,6 +71,6 @@ theorem free_base_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : 
     (sup_span_ne_top _ (D.host.g_prime 1) (by rw [hM]; exact dvd_mul_left _ _))
     (Ideal.mem_sup_right (Ideal.mem_span_singleton_self _)) (Ideal.mem_sup_right (Ideal.mem_span_singleton_self _))
     le_sup_left le_sup_left (fun g x => Submodule.smul_mono_left le_sup_left (hun g x))
-    (fun g x => Submodule.smul_mono_left le_sup_left (hun g x)) (_root_.GlobalTheory.T.eq_one_of_lev_sub_mem_Mb_gram p i PP A M hR hi hG hW hH hF)
+    (fun g x => Submodule.smul_mono_left le_sup_left (hun g x)) (_root_.GlobalTheory.BaseLevelInj.eq_one_of_lev_sub_mem_Mb p i PP A M hR hi hG hW hH hF)
 end GlobalTheory.DefFree
 end

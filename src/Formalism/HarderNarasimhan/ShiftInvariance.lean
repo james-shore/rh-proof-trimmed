@@ -68,28 +68,25 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.HN
 
-theorem satR : SatR := real_saturation_property
-theorem finSup : FinSup := finite_supremum_slopes
-theorem satBasic : SatBasic := saturation_basic_properties
-theorem ratioMax : RatioMax := maximal_slope_ratio
-theorem degSupermod : DegSupermod := degree_supermodular
-theorem muChar : MuChar := slope_characterization
-theorem hnStep_spec : HNStep := hnStep_of degSupermod muChar ratioMax finSup satR satBasic
-theorem hnSum : HNSum := polygon_slope_sum
-theorem hnSlopes : HNSlopes := polygon_slopes_characterization
-theorem shiftInvariance : ShiftInvariance := shiftInvariance_of muChar muChar hnSlopes
-theorem plLat : PlLat := place_lattice_structure
-theorem sizeMu : SizeMu := size_maximal_slope
-theorem rescaleCovol : RescaleCovol := rescale_covolume_formula
-theorem twist : Twist := twist_of rescaleCovol plLat shiftInvariance
-theorem slopeIneqMean : SlopeIneqMean := slope_inequality_mean
-theorem htGram : HtGram := height_gram_determinant
+alias satR := _root_.Formalism.HN.real_saturation_property
+alias finSup := _root_.Formalism.HN.finite_supremum_slopes
+alias satBasic := _root_.Formalism.HN.saturation_basic_properties
+alias degSupermod := _root_.Formalism.HN.degree_supermodular
+alias muChar := _root_.Formalism.HN.slope_characterization
+theorem hnStep_spec : HNStep := hnStep_of degSupermod muChar _root_.Formalism.HN.maximal_slope_ratio finSup satR satBasic
+alias hnSum := _root_.Formalism.HN.polygon_slope_sum
+theorem shiftInvariance : ShiftInvariance := shiftInvariance_of muChar muChar _root_.Formalism.HN.polygon_slopes_characterization
+alias plLat := _root_.Formalism.HN.place_lattice_structure
+alias sizeMu := _root_.Formalism.HN.size_maximal_slope
+theorem twist : Twist := twist_of _root_.Formalism.HN.rescale_covolume_formula plLat shiftInvariance
+alias slopeIneqMean := _root_.Formalism.HN.slope_inequality_mean
+alias htGram := _root_.Formalism.HN.height_gram_determinant
 theorem htImage : HtImage := height_image_formula
 theorem sizeIneq : SizeIneq := sizeIneq_of size_maximal_slope height_image_formula place_lattice_structure
 theorem rerealize : Rerealize := lattice_rerealization
 theorem quotRealize : QuotRealize := quotient_lattice_realization
-theorem theoremFSharp : TheoremFSharp := frame_theorem_sharp
-theorem theoremF : TheoremF := frame_theorem_log_ideal
-theorem dualPl : DualPl := dual_polygon_identity
+alias theoremFSharp := _root_.Formalism.HN.frame_theorem_sharp
+alias theoremF := _root_.Formalism.HN.frame_theorem_log_ideal
+alias dualPl := _root_.Formalism.HN.dual_polygon_identity
 
 end Formalism.HN

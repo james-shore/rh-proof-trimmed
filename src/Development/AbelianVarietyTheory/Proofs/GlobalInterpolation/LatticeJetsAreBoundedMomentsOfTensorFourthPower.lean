@@ -134,7 +134,7 @@ theorem jets_root : ∀ (q : ℕ) [Fact q.Prime] (ι : ℂ ≃+* ℂ_[q]) (n : T
         exact h
     have hrange : ∀ p : Fin 4 × κ, p ∈ Set.range (e a) ↔ p ∈ S a := by
       rintro ⟨b, i⟩; simp [Set.mem_range, he, S, eq_comm]
-    obtain ⟨h1, h2⟩ := mahler_embed (n → ℂ) κ (Fin 4 × κ) (e a) (fun i => c • v i) (fun p => sliceL a (U p)) G hG
+    obtain ⟨h1, h2⟩ := _root_.GlobalTheory.MomEmbed.mahler_embed (n → ℂ) κ (Fin 4 × κ) (e a) (fun i => c • v i) (fun p => sliceL a (U p)) G hG
       (fun i => by simp [U, he, sliceL_apply, slice_fourBlockInclusionVector])
       (fun p hp => by
         have : p.1 ≠ a := fun h => hp ((hrange p).2 (by simp [S, h]))
@@ -155,9 +155,9 @@ theorem jets_root : ∀ (q : ℕ) [Fact q.Prime] (ι : ℂ ≃+* ℂ_[q]) (n : T
   have d2 := dj {0, 1} 2 (by decide)
   have d3 := dj {0, 1, 2} 3 (by decide)
   rw [u1] at d1; rw [u2] at d2; rw [u3] at d3
-  obtain ⟨A1v, A1⟩ := mahler_mul_disj _ _ U _ _ (hGa 0) (hGa 1) (S 0) (S 1) d1 (hposition 0).1 (hposition 1).1
-  obtain ⟨A2v, A2⟩ := mahler_mul_disj _ _ U _ _ ((hGa 0).mul (hGa 1)) (hGa 2) (S 0 ∪ S 1) (S 2) d2 A1v (hposition 2).1
-  obtain ⟨-, A3⟩ := mahler_mul_disj _ _ U _ _ (((hGa 0).mul (hGa 1)).mul (hGa 2)) (hGa 3)
+  obtain ⟨A1v, A1⟩ := _root_.GlobalTheory.mahler_mul_of_disjoint_support _ _ U _ _ (hGa 0) (hGa 1) (S 0) (S 1) d1 (hposition 0).1 (hposition 1).1
+  obtain ⟨A2v, A2⟩ := _root_.GlobalTheory.mahler_mul_of_disjoint_support _ _ U _ _ ((hGa 0).mul (hGa 1)) (hGa 2) (S 0 ∪ S 1) (S 2) d2 A1v (hposition 2).1
+  obtain ⟨-, A3⟩ := _root_.GlobalTheory.mahler_mul_of_disjoint_support _ _ U _ _ (((hGa 0).mul (hGa 1)).mul (hGa 2)) (hGa 3)
     (S 0 ∪ S 1 ∪ S 2) (S 3) d3 A2v (hposition 3).1
   have key : mahler U (tens4 G) (fun p => m p.2) = (mahler (fun i => c • v i) G m) ^ 4 := by
     rw [ht, A3 _ ?_, A2 _ ?_, A1 _ ?_, (hposition 0).2 _ ?_, (hposition 1).2 _ ?_, (hposition 2).2 _ ?_, (hposition 3).2 _ ?_]

@@ -187,7 +187,7 @@ theorem finite_constTerm : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F �
   obtain ⟨hcm, hJ⟩ := host_facts D V
   obtain ⟨hr, hi, hg⟩ := id hC
   obtain ⟨r, rfl⟩ : ∃ r', r = r' + 1 := ⟨r - 1, by omega⟩
-  obtain ⟨m, hm, X, Y, hW, hX⟩ := GlobalTheory.WittExt.exists_isWittFrame_initCols D.host.F D.host.E D.sp.cm.sig hcm V.rank V.gram hJ r C hi hg
+  obtain ⟨m, hm, X, Y, hW, hX⟩ := _root_.GlobalTheory.AdjugateAppendColumn.exists_wittFrame_initCols D.host.F D.host.E D.sp.cm.sig hcm V.rank V.gram hJ r C hi hg
   have hfin := finite_formsOn (c := c) (U := U) hθ hU hfr hρ hW _ {(⟨r, hm⟩ : Fin m)} (Finset.singleton_nonempty _) rfl
   haveI := hfin
   refine Submodule.finiteDimensional_of_le (S₂ := Submodule.span ℂ (formsOn θ V X Y {(⟨r, hm⟩ : Fin m)} U ε fr ρ c))

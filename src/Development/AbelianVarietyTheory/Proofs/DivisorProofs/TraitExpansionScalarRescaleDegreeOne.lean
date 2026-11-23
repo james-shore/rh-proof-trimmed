@@ -54,14 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.Mum.Rescale
 
-theorem gs_comp_stalk {X Y Z : Scheme.{0}} (g : Z ⟶ Y) (f : Y ⟶ X) (z : Z) (U : X.Opens) (h : f (g z) ∈ U)
-    (a : Γ(X, U)) : gs (g ≫ f) z U a = (g.stalkMap z).hom (gs f (g z) U a) := by
-  rw [gs_stalkMap (g ≫ f) z U h, gs_stalkMap f (g z) U h, Scheme.Hom.stalkMap_comp]
-  rfl
-
-theorem cst_zero' {V : Type} [CommRing V] {Z : Scheme.{0}} (q : Z ⟶ Sp V) (z : Z) : cst q z 0 = 0 := by
-  simp only [cst, gs_eq q z ⊤ trivial, map_zero]
-
 theorem sval_secScale {X Y Z : Scheme.{0}} {L : LB X} {K : Type} [Fintype K] {φ : K → (Y ⟶ X)} {ε : K → ℤ}
     (c : Γ(Y, ⊤)) (s : LB.Sec (LB.LinComb L φ ε)) (r : Z ⟶ Y) (z : Z) {J : (Z ⟶ X) → L.ι} (hJ : Good L z J) :
     sval (ReciprocityTheory.ChartRestriction.G.DVR.SecOps.secScale c s) r z J = gs r z ⊤ c * sval s r z J :=
@@ -92,13 +84,13 @@ theorem cancel (C : LabCover D) {W : Type} [CommRing W] [IsDomain W] [IsLocalRin
   have A₁ : sval s₁ (g ≫ pullback.fst T.β C.α) z J = (g.stalkMap z).hom (sval s₁ (pullback.fst T.β C.α) (g z) J₀) := by
     rw [sval_of s₁ _ z J (fun _ => J₀ (pullback.fst T.β C.α ≫ T.β)) (fun _ => (e₀ ()).symm),
       sval_of s₁ _ (g z) J₀ (fun _ => J₀ (pullback.fst T.β C.α ≫ T.β)) (fun _ => rfl)]
-    exact gs_comp_stalk g _ z _ (hJ₀.mem _ _) _
+    exact _root_.GlobalTheory.OneBasis.ThMove.gs_comp g _ z _ (hJ₀.mem _ _) _
   have A₂ : sval s₂ (g ≫ pullback.snd T.β C.α) z J = (g.stalkMap z).hom (sval s₂ (pullback.snd T.β C.α) (g z) J₀) := by
     have e₁ : J ((g ≫ pullback.snd T.β C.α) ≫ C.α) = J₀ (pullback.fst T.β C.α ≫ T.β) := by
       rw [e₀ (), Category.assoc, Category.assoc, pullback.condition]
     rw [sval_of s₂ _ z J (fun _ => J₀ (pullback.fst T.β C.α ≫ T.β)) (fun _ => e₁),
       sval_of s₂ _ (g z) J₀ (fun _ => J₀ (pullback.fst T.β C.α ≫ T.β)) (fun _ => eJ)]
-    refine gs_comp_stalk g _ z _ ?_ _
+    refine _root_.GlobalTheory.OneBasis.ThMove.gs_comp g _ z _ ?_ _
     exact Set.mem_iInter.2 fun _ => by rw [← eJ]; exact hJ₀ (pullback.snd T.β C.α ≫ C.α)
   have hz : sval s₁ (pullback.fst T.β C.α) (g z) J₀ = sval s₂ (pullback.snd T.β C.α) (g z) J₀ := by
     have h0 : cst (pullback.fst T.β C.α ≫ T.G.hom) (g z) b *
@@ -106,7 +98,7 @@ theorem cancel (C : LabCover D) {W : Type} [CommRing W] [IsDomain W] [IsLocalRin
       rw [mul_sub, key, sub_self]
     have := GlobalTheory.cst_dvd_of_cst_mul_eq_zero (pullback.fst T.β C.α ≫ T.G.hom) (g z) (a := b) (b := 0)
       (fun c hc => zero_dvd_iff.2 ((mul_eq_zero.1 hc).resolve_left hb)) h0
-    rw [cst_zero', zero_dvd_iff, sub_eq_zero] at this
+    rw [_root_.GlobalTheory.GenSecField.cst_zero', zero_dvd_iff, sub_eq_zero] at this
     exact this
   rw [A₁, A₂, hz]
 
@@ -151,7 +143,7 @@ theorem rescale : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base
   have e1 := hC Z p z J I hJ hI'
   have e2 := hσ Z p p' hpp z J hJ
   rw [e1, gs_scal, gs_scal, pow_one] at e2
-  rw [sval_secScale _ _ _ _ hJ, sval_secScale _ _ _ _ hJ, hs₁ Z p z J I hJ hI', gs_scal, gs_scal]
+  rw [_root_.GlobalTheory.KunnethDomain.sval_scale _ _ _ _ hJ, _root_.GlobalTheory.KunnethDomain.sval_scale _ _ _ _ hJ, hs₁ Z p z J I hJ hI', gs_scal, gs_scal]
 
   have hρ : ∀ c : R, cst (p ≫ T.G.hom) z (T.φ c) = cst (p' ≫ C.A.A.hom) z (algebraMap R (FractionRing R) c) := by
     intro c

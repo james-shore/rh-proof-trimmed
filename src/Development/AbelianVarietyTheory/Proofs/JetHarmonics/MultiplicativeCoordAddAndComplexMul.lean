@@ -110,8 +110,7 @@ theorem sub_mem_of_germ (M : Mdl q) (hM : M.Ok) (α s t : ℂ) (hα : α ≠ 0) 
   have := sub_mem_of_uw M hM _ _ h1.1 h1.2.1 h2 h3
   simpa using this
 
-theorem const_ell (ω : ℂ_[q]) : constantCoeff (C ω * logS : ℂ_[q]⟦X⟧) = 0 := by
-  simp [logS, ← coeff_zero_eq_constantCoeff_apply]
+alias const_ell := _root_.GlobalTheory.MomOne.hatmul_const_log
 
 theorem bd_w (M : Mdl q) (ℓ : ℂ_[q]⟦X⟧) (h : M.Chart ℓ) : Bd 1 (hat M.ι ℓ M.w) := by
   obtain ⟨-, v, xs, ys, -, -, hys, -, -, hc, -, hw, -⟩ := GlobalTheory.T.integral_weierstrass_chart_xy_unit_series q M ℓ h
@@ -178,19 +177,6 @@ theorem germ_mul (M : Mdl q) (ω : ℂ_[q]) (hM : M.MChart ω) (F : ℂ → ℂ)
   filter_upwards [hψe, he.filter_mono nhdsWithin_le_nhds] with z e1 e2
   rw [← mul_add, ← e1, e2]
 
-theorem norm_mul_sub_one_lt {ζ ξ : ℂ_[q]} (h : ‖ζ - 1‖ < 1) (h' : ‖ξ - 1‖ < 1) : ‖ζ * ξ - 1‖ < 1 := by
-  have e : ζ * ξ - 1 = (ζ - 1) * (ξ - 1) + ((ζ - 1) + (ξ - 1)) := by ring
-  rw [e]
-  refine lt_of_le_of_lt (IsUltrametricDist.norm_add_le_max _ _) (max_lt ?_ ?_)
-  · rw [norm_mul]
-    exact mul_lt_one_of_nonneg_of_lt_one_left (norm_nonneg _) h h'.le
-  · exact lt_of_le_of_lt (IsUltrametricDist.norm_add_le_max _ _) (max_lt h h')
-
-theorem norm_pow_sub_one_lt {ζ : ℂ_[q]} (h : ‖ζ - 1‖ < 1) (k : ℕ) : ‖ζ ^ k - 1‖ < 1 := by
-  induction k with
-  | zero => simp
-  | succ k ih => rw [pow_succ]; exact norm_mul_sub_one_lt ih h
-
 theorem at_add_and_mul : ∀ (q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q]), M.MChart ω → (∀ ζ ζ' p p', M.At ω ζ p → M.At ω ζ' p' → M.At ω (ζ * ζ') (p + p')) ∧ ∀ (α : ℂ) (a : ℤ_[q]) (n k : ℕ) (ζ : ℂ_[q]) (p : ℂ), (∀ l ∈ M.L.lattice, α * l ∈ M.L.lattice) → M.ι α = zc a → ‖a - (k : ℤ_[q])‖ ≤ (q : ℝ) ^ (-(n : ℤ)) → ζ ^ (q ^ n) = 1 → M.At ω ζ p → M.At ω (ζ ^ k) (α * p) := by
   intro q _ M ω hM
   have hOk : M.Ok := hM.1
@@ -201,7 +187,7 @@ theorem at_add_and_mul : ∀ (q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q])
   have hTu := fun ζ p h => (GlobalTheory.T.multiplicativeShift_eq_translate_by_small_point q M ω ζ p hM h).1
   have hTw := fun ζ p h => (GlobalTheory.T.multiplicativeShift_eq_translate_by_small_point q M ω ζ p hM h).2
   refine ⟨fun ζ ζ' p p' h h' => ?_, fun α a n k ζ p hL hα hk hζ h => ?_⟩
-  · obtain ⟨t, ht⟩ := hex _ (norm_mul_sub_one_lt h.2.1 h'.2.1)
+  · obtain ⟨t, ht⟩ := hex _ (_root_.GlobalTheory.MomOne.ShiftComp.norm_mul_sub_one h.2.1 h'.2.1)
     have := sub_mem_of_germ M hOk 1 (p + p') t one_ne_zero ht.1
       (germ_add M ω hM M.u hEu (fun z hz => (hS z hz).1) hBu hTu ζ ζ' p p' t h h' ht)
       (germ_add M ω hM M.w hEw (fun z hz => (hS z hz).2.1) hBw hTw ζ ζ' p p' t h h' ht)
@@ -222,7 +208,7 @@ theorem at_add_and_mul : ∀ (q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q])
       obtain ⟨m, rfl⟩ := hd'
       rw [pow_mul, hζ, one_pow, zero_mul]
       exact h10
-    · obtain ⟨t, ht⟩ := hex _ (norm_pow_sub_one_lt h.2.1 k)
+    · obtain ⟨t, ht⟩ := hex _ (_root_.GlobalTheory.MomOne.ShiftComp.norm_pow_sub_one h.2.1 k)
       have := sub_mem_of_germ M hOk α (α * p) t h0 ht.1
         (germ_mul M ω hM M.u hEu (fun z hz => (hS z hz).1) hBu hTu α a n k ζ p t hL hα hk hζ h ht)
         (germ_mul M ω hM M.w hEw (fun z hz => (hS z hz).2.1) hBw hTw α a n k ζ p t hL hα hk hζ h ht)

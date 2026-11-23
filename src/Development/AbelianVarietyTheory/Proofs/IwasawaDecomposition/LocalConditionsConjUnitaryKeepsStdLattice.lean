@@ -115,22 +115,6 @@ theorem hasRes_matMul {n : ℕ} {P : HeightOneSpectrum (𝓞 E)} {A B : Matrix (
     rw [map_mul]
     exact hasRes_mul (hA i k) (hB k j)
 
-private theorem hasRes_unique {P : HeightOneSpectrum (𝓞 E)}
-    {a : P.adicCompletion E} {c d : 𝓞 E ⧸ P.asIdeal} (hc : HasRes P a c) (hd : HasRes P a d) : c = d := by
-  obtain ⟨r, rfl, hr⟩ := hc
-  obtain ⟨s, rfl, hs⟩ := hd
-  rw [Ideal.Quotient.eq]
-  have key : Valued.v (algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E (r - s))) < 1 := by
-    have e : algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E (r - s)) =
-        (a - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E s)) -
-          (a - algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E r)) := by
-      rw [map_sub, map_sub]; ring
-    rw [e]
-    exact (Valuation.map_sub _ _ _).trans_lt (max_lt hs hr)
-  by_contra hne
-  rw [GlobalTheory.Mem.Dil.val_eq_one hne] at key
-  exact lt_irrefl _ key
-
 private theorem hasRes_inv_entry_of_le_one [StarRing E] {n : ℕ} (P : HeightOneSpectrum (𝓞 E)) (t : GL (Fin n) (AfE F E)) (X : GL (Fin n) (𝓞 E ⧸ P.asIdeal))
     (ht : ∀ i j, HasRes P (adAt F P ((t : Matrix (Fin n) (Fin n) (AfE F E)) i j)) ((X : Matrix (Fin n) (Fin n) (𝓞 E ⧸ P.asIdeal)) i j))
     (hti : ∀ i j, Valued.v (adAt F P (((t⁻¹ : GL (Fin n) (AfE F E)) : Matrix (Fin n) (Fin n) (AfE F E)) i j)) ≤ 1)
@@ -152,7 +136,7 @@ private theorem hasRes_inv_entry_of_le_one [StarRing E] {n : ℕ} (P : HeightOne
       split_ifs
       · rw [map_one]; exact hasRes_one P
       · rw [map_zero]; exact hasRes_zero P
-    exact hasRes_unique h1 h2
+    exact _root_.GlobalTheory.Mem.Col2.HasRes.unique h1 h2
   rw [Units.inv_eq_of_mul_eq_one_right hXY]
   exact hY i j
 

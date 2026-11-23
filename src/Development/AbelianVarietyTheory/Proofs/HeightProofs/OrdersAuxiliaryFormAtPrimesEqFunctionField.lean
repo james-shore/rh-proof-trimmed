@@ -192,7 +192,7 @@ theorem exists_equiv_places {D : D7} {B : WeightFamilies.Prov D} {P : ModuliInte
           χ c (CurveLoc.invS X la N w (gF c)) ^ m := fun c m F hF => by
     refine (hΨ c _).trans ?_
     rw [CurveLoc.phiZ_fraction_base, map_mul, map_pow, hχψ c]
-  obtain ⟨e, he⟩ := GlobalTheory.T.exists_equiv_coverPoints_places_baseChange (ReciprocityTheory.ChartRestriction.G.T0.Op d.D d.N la) (Op X la N) (KTf B.KO d.D d.N) (Kp X la N)
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.exists_equiv_pts_places_baseChange (ReciprocityTheory.ChartRestriction.G.T0.Op d.D d.N la) (Op X la N) (KTf B.KO d.D d.N) (Kp X la N)
     hmax hres' ι (fun c => OmS (Ω c) d.D d.N) (OsK X la w) (unifO X la N) hU
     (fun c => (Ψ' c).restrictScalars (Op X la N)) hΨs hΨi hΨsep
   refine ⟨e.trans (Equiv.sigmaCongrRight fun c => Equiv.subtypeEquivRight fun v => by
@@ -368,7 +368,7 @@ theorem netTie_record : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (hj : I
   intro D T h j hj hG _ ka wL wF G S g0 hH hV hC hB y hw hcur htie _ δ hδ d hd hs eN hD hord _ _ hdw hdet hwt
     Gc PH Prw Pet
   have hT : GenFromTest (T.Q.Xo j) T.Q.c hG := fun Z => h.allTest j hj (Om Z) (genFr hG Z)
-  have hpt := GlobalTheory.T.realisation_values_eq_valuedPoint_orders D T h j hj hG ka wL wF G S g0 hH hV hC hB y hw hcur htie δ hδ
+  have hpt := _root_.GlobalTheory.RealisationValues.values_eq_orders D T h j hj hG ka wL wF G S g0 hH hV hC hB y hw hcur htie δ hδ
   have hQ : CountQAtSt h j hj hG hT := GlobalTheory.SecCount.countQAtSt D T h j hj hG hT
   have hordC : ∀ (Z : Comp (T.Q.Xo j) T.Q.c) (v : AddValuation (Om Z) (WithTop ℤ)) a n f,
       ordC (δ Z v) v (wtZ a n) (valC hG a n f Z) =

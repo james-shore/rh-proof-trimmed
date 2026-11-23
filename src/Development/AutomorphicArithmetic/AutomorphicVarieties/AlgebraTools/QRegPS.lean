@@ -58,10 +58,6 @@ section SlopeTestRemainingChoices
 
 open MvPowerSeries
 
-private theorem mem_span_X {O σ : Type} [CommRing O] [Fintype σ] (f : MvPowerSeries σ O)
-    (hf : constantCoeff f = 0) : f ∈ Ideal.span (Set.range (MvPowerSeries.X : σ → MvPowerSeries σ O)) :=
-  _root_.UpperTheory.Reformulated.B.MemSpanVariable.mem_span_X f hf
-
 private theorem order_of_mem_pow {O σ : Type} [CommRing O] (n : ℕ) :
     ∀ g ∈ Ideal.span (Set.range (MvPowerSeries.X : σ → MvPowerSeries σ O)) ^ n, (n : ℕ∞) ≤ g.order := by
   have h1 : ∀ g ∈ Ideal.span (Set.range (MvPowerSeries.X : σ → MvPowerSeries σ O)),
@@ -145,4 +141,4 @@ theorem UpperTheory.V.AlgebraTools.qRegAt_mvPowerSeries :
   have h3 : c α = (c α - MvPowerSeries.C (MvPowerSeries.constantCoeff (c α))) +
       MvPowerSeries.C (MvPowerSeries.constantCoeff (c α)) := by ring
   rw [h3]
-  exact Submodule.add_mem_sup (mem_span_X _ (by simp)) (Ideal.mem_map_of_mem _ h2)
+  exact Submodule.add_mem_sup (_root_.UpperTheory.Reformulated.B.MemSpanVariable.mem_span_X _ (by simp)) (Ideal.mem_map_of_mem _ h2)

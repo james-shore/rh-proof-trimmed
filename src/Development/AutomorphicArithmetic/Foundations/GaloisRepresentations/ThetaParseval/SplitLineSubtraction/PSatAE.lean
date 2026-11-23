@@ -70,7 +70,7 @@ theorem UpperTheory.Gal.TP.Sub.satAE_holds :
   have hLo : IsOpen (L : Set (finU (E := E) (n := a))) := (hU.aut φ hφ).level
   filter_upwards [GlobalTheory.T.eventually_localIntegralPoints_mem_openSubgroup_definiteUnitary E a L hLo] with w hw hs
   obtain ⟨hJo, hJc⟩ := GlobalTheory.LFun.SatCompare.isOpen_isCompact_KGL w a
-  obtain ⟨σ, hσ, v, hv0, hv⟩ := GlobalTheory.T.exists_localComponent_eigenvector_splitPlace E a U hU w hs (GlobalTheory.LFun.KGL w (n := a)) hJo hJc 1 φ hφ hφ0
+  obtain ⟨σ, hσ, v, hv0, hv⟩ := _root_.GlobalTheory.SplitEigen.exists_locComp_eigen E a U hU w hs (GlobalTheory.LFun.KGL w (n := a)) hJo hJc 1 φ hφ hφ0
     (fun x hx hxK => by
       have h : RU E a x φ = φ := hw x hx hxK hx.1
       simpa using h)

@@ -53,13 +53,13 @@ import Mathlib.Topology.Sheaves.Init
 namespace Formalism.L2.KerInert
 
 variable [Fact _root_.Formalism.L2.Th1.CM.CM2] in
-theorem genus_one_witt_exists : GenusOneWittExists := ModelP.genus_one_witt_exists_of (GenusOneDatumExistence.genus_one_datum_exists Sigma.invAlg')
+theorem genus_one_witt_exists : GenusOneWittExists := ModelP.genus_one_witt_exists_of (GenusOneDatumExistence.genus_one_datum_exists _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic)
 
 variable [Fact _root_.Formalism.L2.Th1.CM.CM2] in
 theorem unit_substitution_local : UnitSubstLoc :=
   unitSubstLoc_of_model (ModelP.endIntInertAll_of endomorphisms_integral_inert genus_one_witt_exists)
-    (ModelP.phNormOKInertAll_of phi_norm_inert_prime endomorphisms_integral_inert genus_one_witt_exists)
-    (ModelP.biaddInertAll_of (Dict.biaddInert_of (Sigma.sigmaCurveInert_of Sigma.invAlg' Sigma.secondEisensteinAlgebraic))
+    (ModelP.phNormOKInertAll_of _root_.Formalism.L2.KerInert.PN.phNormOKInert_of endomorphisms_integral_inert genus_one_witt_exists)
+    (ModelP.biaddInertAll_of (Dict.biaddInert_of (Sigma.sigmaCurveInert_of _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic Sigma.secondEisensteinAlgebraic))
       genus_one_witt_exists)
 
 

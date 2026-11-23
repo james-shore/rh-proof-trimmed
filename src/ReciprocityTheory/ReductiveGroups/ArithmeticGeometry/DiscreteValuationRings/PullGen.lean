@@ -384,22 +384,13 @@ lemma smul_star_inj {O : Type} [CommRing O] [StarRing O] {X : Type} [AddCommGrou
   have h3 : (N : ℤ) • χ₁ = (N : ℤ) • χ₂ := by rw [natCast_zsmul, natCast_zsmul]; exact h2
   exact smul_right_injective X (by omega) h3
 
-private lemma rs_rs_eq_rs_trans {Y : Scheme.{0}} {U W Z : Y.Opens} (h₁ : W ≤ U) (h₂ : Z ≤ W) (x : Γ(Y, U)) :
-    rs h₂ (rs h₁ x) = rs (h₂.trans h₁) x := by
-  simp only [rs]
-  rw [← RingHom.comp_apply, ← CommRingCat.hom_comp, ← Functor.map_comp]
-  rfl
-
-private lemma rs_mul' {Y : Scheme.{0}} {U W : Y.Opens} (h : W ≤ U) (x y : Γ(Y, U)) :
-    rs h (x * y) = rs h x * rs h y := map_mul _ _ _
-
 lemma shape_secRel {Y : Scheme.{0}} {U₁ U₂ U₃ W V₂ O : Y.Opens} (hW : W ≤ U₃) (hWV : W ≤ V₂) (hV : V₂ ≤ U₂)
     (o : O ≤ W ⊓ U₁) (o₁ : O ≤ U₁) (o₂ : O ≤ U₂) (o₃ : O ≤ U₃) (x : Γ(Y, U₁)) (y : Γ(Y, U₂)) (u : Γ(Y, U₃)ˣ)
     (e : rs (inf_le_left : W ⊓ U₁ ≤ W) (rs hW (u : Γ(Y, U₃)) * rs hWV (rs hV y)) =
       rs (inf_le_right : W ⊓ U₁ ≤ U₁) x) :
     rs o₁ x = rs o₂ y * rs o₃ (u : Γ(Y, U₃)) := by
   have e2 := congrArg (fun z => rs o z) e
-  simp only [rs_rs_eq_rs_trans, rs_mul'] at e2
+  simp only [_root_.ReciprocityTheory.ChartRestriction.G.DVR.rs_rs, _root_.ReciprocityTheory.ChartRestriction.G.DVR.rs_mul] at e2
   rw [mul_comm]
   exact e2.symm
 

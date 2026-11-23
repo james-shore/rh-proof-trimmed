@@ -64,15 +64,11 @@ namespace ThetaHomothety
 open Formalism.L2.Th1.F (scalePair opU herm th0 area taylor0 sgStar)
 
 
-theorem herm_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (z x : ℂ) :
-    herm (scalePair L c hc) (c * z) (c * x) = herm L z x := by
-  exact Formalism.L2.Th1.F.Homog.herm_scale (L := L) (c := c) (hc := hc) z x
-
 theorem opU_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (ω₀ s z : ℂ) :
     opU (scalePair L c hc) (c * s) (th0 (scalePair L c hc) (c * ω₀ / 2)) (c * z) =
       opU L s (th0 L (ω₀ / 2)) z := by
   unfold opU
-  rw [herm_scale L c hc z s, herm_scale L c hc s s]
+  rw [_root_.Formalism.L2.Th1.F.Homog.herm_scale L c hc z s, _root_.Formalism.L2.Th1.F.Homog.herm_scale L c hc s s]
   have h1 : c * ω₀ / 2 = c * (ω₀ / 2) := by ring
   have h2 : c * z + c * s = c * (z + s) := by ring
   rw [h1, h2, Formalism.L2.Th1.F.Homog.normalizedTheta_scale (L := L) (c := c) (hc := hc)]

@@ -75,7 +75,7 @@ theorem exactIff_kernel_sec {R : Type} [CommRing R] {G K : Shv R} (ψ : G ⟶ K)
 
 theorem exactIff : ∀ (R : Type) [CommRing R] (S : ShortComplex (Shv R)), S.Exact ↔ ∀ U (b : Sec S.X₂ U), Sec.map S.g b = 0 → Loc U fun V g => ∃ a : Sec S.X₁ V, Sec.map S.f a = Sec.res g b := by
   intro R _ S
-  have hME : ∀ {F G : Shv R} (φ : F ⟶ G), _ := fun {F G} φ => GlobalTheory.T.bigEtaleModuleSheaf_mono_epi_iff_sections R φ
+  have hME : ∀ {F G : Shv R} (φ : F ⟶ G), _ := fun {F G} φ => _root_.GlobalTheory.EtC.mono_epi_sections R φ
   rw [ShortComplex.exact_iff_epi_kernel_lift, (hME (kernel.lift S.g S.f S.zero)).2.2.1]
   have hinj : ∀ U, Function.Injective (Sec.map (kernel.ι S.g) (U := U)) :=
     ((hME (kernel.ι S.g)).1).1 inferInstance

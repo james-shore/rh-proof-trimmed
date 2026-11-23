@@ -55,12 +55,7 @@ namespace GlobalTheory.DefU.LocAdm
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
 
-theorem continuous_finGL : Continuous (finGL E n) := by
-  refine Continuous.units_map _ ?_
-  have hs : Continuous (sFin E : Af E → Ad E) :=
-    (continuous_const.prodMk continuous_id : Continuous fun x : Af E => ((0, x) : InfiniteAdeleRing E × Af E))
-  exact (continuous_const.add (continuous_id.matrix_map hs) :
-    Continuous fun x : Matrix (Fin n) (Fin n) (Af E) => 1 - matN n (sFin E) 1 + x.map (sFin E))
+alias continuous_finGL := _root_.GlobalTheory.DefU.ClassFin.continuous_finGL
 
 theorem t2Space_finiteAdeleRing_cmField : T2Space (FiniteAdeleRing (𝓞 E) E) :=
   inferInstanceAs (T2Space (RestrictedProduct (fun v : HeightOneSpectrum (𝓞 E) => v.adicCompletion E)

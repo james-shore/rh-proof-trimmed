@@ -167,23 +167,18 @@ def ofL {k : ℤ} {p : ℕ} (f : ∀ i : Fin (p + 1) → Fin (n + 1), LDeg A (Se
     (i) : lval (ofL f) i = (f i).1 := by
   simp [lval, ofL]
 
-lemma range_comp_subset {α β γ : Type*} (f : α → β) (g : β → γ) :
-    Set.range (g ∘ f) ⊆ Set.range g := by
-  rintro _ ⟨a, rfl⟩
-  exact ⟨f a, rfl⟩
-
 lemma lval_d {k : ℤ} {p : ℕ} (σ : Cochain (twistAb A n k) (cover A n) p)
     (i : Fin (p + 2) → Fin (n + 1)) :
     lval (d _ _ p σ) i = ∑ a : Fin (p + 2), ((-1 : ℤ) ^ (a : ℕ)) • lval σ (i ∘ a.succAbove) := by
   have key : d _ _ p σ i = theta i k (∑ a : Fin (p + 2), ((-1 : ℤ) ^ (a : ℕ)) •
-      ⟨lval σ (i ∘ a.succAbove), LDeg_mono (range_comp_subset _ _) k (lval_mem σ _)⟩) := by
+      ⟨lval σ (i ∘ a.succAbove), LDeg_mono (_root_.Set.range_comp_subset_range _ _) k (lval_mem σ _)⟩) := by
 
     rw [d_apply, map_sum]
     refine Finset.sum_congr rfl fun a _ => ?_
     rw [map_zsmul]
     congr 1
     conv_lhs => rw [← theta_lval σ (i ∘ a.succAbove)]
-    exact res_theta (range_comp_subset _ _) _ k _
+    exact res_theta (_root_.Set.range_comp_subset_range _ _) _ k _
   rw [lval, key, AddEquiv.symm_apply_apply, AddSubgroup.val_finsetSum]
   simp
 

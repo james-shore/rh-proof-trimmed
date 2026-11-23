@@ -71,9 +71,9 @@ theorem eigen_of_expansion_in_class : Laws → Laws2 → UTorsSt → ∀ (o Ω :
   have hN1 : 1 ≤ S.N := le_trans (by norm_num) S.N_ge
   obtain ⟨-, -, -, hval, -, hθ⟩ := hs
   obtain ⟨θ, hθs, hθa⟩ := hθ (t : S.Gam)
-  obtain ⟨τ, q, hqy, hqt, hqx, hτ⟩ := GlobalTheory.T.torusPoints_level_weights_from_orthogonal_labels h1 h2 hT o Ω S ρ p y₀ u l hy x hx t
+  obtain ⟨τ, q, hqy, hqt, hqx, hτ⟩ := _root_.GlobalTheory.TestFibre.torus_points_level_weights h1 h2 hT o Ω S ρ p y₀ u l hy x hx t
   obtain ⟨⟨w, hw⟩, -⟩ := GlobalTheory.UT.SymFrame.main hLL u.V _ hadm u.D (PadicAlgCl p) S.N hodd q
-  obtain ⟨-, -, c3, c4, c5⟩ := GlobalTheory.T.fibreSection_linearComb_exists_unique_thetaAction u.V u.A (PadicAlgCl p) S.N S.J s b
+  obtain ⟨-, -, c3, c4, c5⟩ := _root_.GlobalTheory.secComb_thetaAct u.V u.A (PadicAlgCl p) S.N S.J s b
   choose s' hs' using fun i => (c4 θ (s i)).exists
   obtain ⟨σ', hσ'⟩ := (c4 θ σ).exists
   have hσ'c : IsComb u.A s' b σ' := (c3 θ s' σ σ' hs' hσ).1 hσ'
@@ -81,7 +81,7 @@ theorem eigen_of_expansion_in_class : Laws → Laws2 → UTorsSt → ∀ (o Ω :
   obtain ⟨hbij, hlin⟩ := GlobalTheory.UT.expBijF_and_expandsF_lin hLL u.V _ hadm u.D u.A u.G u.semi u.U
   obtain ⟨hb1, hb2⟩ := hbij (PadicAlgCl p) S.N hN1 w₀ hw₀
   obtain ⟨Φ', hΦ'⟩ := (hb1 σ').exists
-  have hrel := GlobalTheory.T.symmetricLift_oddOrder_acts_as_expansionOperator hLL u.V _ hadm u.D u.A u.G u.semi u.U (PadicAlgCl p) S.N hodd q _ hqx θ hθs w₀ hw₀ w hw
+  have hrel := _root_.GlobalTheory.UT.symLift_acts_as_phi hLL u.V _ hadm u.D u.A u.G u.semi u.U (PadicAlgCl p) S.N hodd q _ hqx θ hθs w₀ hw₀ w hw
     σ σ' Φ Φ' hΦ hΦ' hσ'
   have hwt := ((GlobalTheory.UT.TorusWeight.torus_weight hLL u.V _ hadm u.D u.A u.G u.semi u.U (PadicAlgCl p) S.N hodd q τ hqy
     hqt w hw).2 Φ Φ').1 hrel
@@ -96,14 +96,14 @@ theorem eigen_of_expansion_in_class : Laws → Laws2 → UTorsSt → ∀ (o Ω :
       obtain ⟨z, rfl⟩ := hβ
       rw [hτ, hκ]
       simp
-  obtain ⟨⟨σ'', hσ''⟩, -⟩ := GlobalTheory.T.fibreSection_linearComb_exists_unique_thetaAction u.V u.A (PadicAlgCl p) S.N (Fin 2) (fun _ => σ) ![κ - 1, 1]
+  obtain ⟨⟨σ'', hσ''⟩, -⟩ := _root_.GlobalTheory.secComb_thetaAct u.V u.A (PadicAlgCl p) S.N (Fin 2) (fun _ => σ) ![κ - 1, 1]
   have hσ''e : u.U.ExpandsF (PadicAlgCl p) S.N w₀ σ'' ((κ - 1) • Φ + Φ) := by
     refine hlin (PadicAlgCl p) S.N w₀ σ σ σ'' Φ Φ (κ - 1) hΦ hΦ fun j => ?_
     rw [hσ'' j, Fin.sum_univ_two]
     simp [liftFun, cF]
   have heq : σ'' = σ' := (hb2 Φ').unique (hΦeq ▸ hσ''e) hΦ'
   subst heq
-  obtain ⟨v1, -, v3, -⟩ := GlobalTheory.T.isFibreSectionValueInFrame_linear_unique_exists h1 u.V u.A (PadicAlgCl p) S.N (x h) (e h)
+  obtain ⟨v1, -, v3, -⟩ := _root_.GlobalTheory.TestFibre.CombValue.valIs_linear h1 u.V u.A (PadicAlgCl p) S.N (x h) (e h)
   have a1 := v1 S.J s b _ σ hσ (fun i => hval i h)
   have a2 := v1 S.J s _ _ σ'' hσ'c2 (fun i => hval i h)
   have a3 := v1 (Fin 2) (fun _ => σ) _ _ σ'' hσ'' (fun _ => a1)

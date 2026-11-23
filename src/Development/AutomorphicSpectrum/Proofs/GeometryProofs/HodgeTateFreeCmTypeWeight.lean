@@ -237,10 +237,7 @@ theorem latOn_mono {A K : Type} [CommRing A] [Field K] [Algebra A K] {E : Type} 
   rw [← ha]
   exact hB.1 a
 
-theorem h_mem_om' {A K : Type} [CommRing A] [Field K] [Algebra A K] {E : Type} [Field E] [NumberField E]
-    {c : E ≃+* E} {p R N : ℕ} {Ω : Type} [AddCommGroup Ω] [Module K Ω] [Module A Ω] [IsScalarTower A K Ω]
-    (D : HTChart A K c p R N Ω) (x : Fin N → 𝓞 E) : D.h x ∈ D.om' :=
-  Submodule.mem_sup_left (Submodule.subset_span ⟨x, rfl⟩)
+alias h_mem_om' := _root_.PositivityTheory.HtPt.Ga.h_mem_om'
 
 theorem chart_pack : ∀ (A K : Type) [CommRing A] [IsDomain A] [IsNoetherianRing A] [Field K] [Algebra A K] [IsFractionRing A K] [CharZero K] (E : Type) [Field E] [NumberField E] (c : E ≃+* E) (hc : ∀ x, c (c x) = x) (p R N : ℕ) [Fact p.Prime] (Li : Type) [AddCommGroup Li] [Module K Li] (D : HTChart A K c p R N (Module.Dual K Li)) (ρ : 𝓞 E →+* Module.End K Li), (∀ (a : 𝓞 E) (w : Module.Dual K Li), D.ρΩ a w = w ∘ₗ ρ (RingOfIntegers.mapRingEquiv c a)) → ∀ (σ : E →+* K) (d : A) (m : ℕ) (i : Module.Dual A (D.omHT (σ.comp c.toRingHom)) →ₗ[A] (Fin N → A)), algebraMap A K d ≠ 0 → D.ExactMod σ m i → D.IsDualMap σ d m i → Module.Projective A (D.omHT σ) → ∃ J : Li →ₗ[K] (Fin N → K), ∀ B : Subring K, HTL.IsLocIn A B → (∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∀ l, J e l ∈ B) ∧ (∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∀ j, ∃ z ∈ B, ∑ l, J e l * D.gram σ d l j = algebraMap A K d * D.h (Pi.single j 1) e + (p : K) ^ m * z) ∧ (∃ Rr : (Fin N → K) →ₗ[K] Li, (∀ k, Rr (Pi.single k 1) ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B) ∧ ∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∃ e' ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, Rr (J e) = e + ((p : K) ^ m) • e') ∧ (∃ Rr : (Fin N → K) →ₗ[K] Li, (∀ k, Rr (Pi.single k 1) ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B) ∧ ∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B, ∃ e' ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B, Rr (fun l => D.h (Pi.single l 1) e) = e + ((p : K) ^ m) • e') ∧ ∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∀ e' ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B, ∃ z ∈ B, ∑ l, J e l * D.h (Pi.single l 1) e' = (p : K) ^ m * z := by
   intro A K _ _ _ _ _ _ _ E _ _ c hc p R N _ Li _ _ D ρ hact σ d m i hd hex hdual hproj
@@ -348,7 +345,7 @@ theorem exactModLat_hodgeTate : FarguesHodgeTate → ∀ (E : Type) [Field E] [N
   obtain ⟨hproj, hdiff, κ, hκ, hκs⟩ := GlobalTheory.T.hodge_tate_free_flag_lattice_upper E H D l Xo c O β Y S Ω K J y 𝔐 p hpS hpq o ho Dc hfam hfree
   obtain ⟨hchar, -, -, -, -, -, hcharts⟩ := GlobalTheory.T.hodge_tate_free_integral_models E H D l Xo c O β Y S Ω K J y 𝔐 p hpS o ho
   haveI := hchar
-  have hPt : PointHT := GlobalTheory.T.pointHT_of_fargues_hodge_tate hF
+  have hPt : PointHT := _root_.GlobalTheory.CompanionTheory.Ar.HT.Fargues.pointHT hF
   have hc : ∀ x, cmConj E (cmConj E x) = x := fun x => by
     simp [cmConj]
   let σ : E →+* Ω := 𝔐.cst.comp (τ.1.codRestrict c.F (c.conj τ.1))

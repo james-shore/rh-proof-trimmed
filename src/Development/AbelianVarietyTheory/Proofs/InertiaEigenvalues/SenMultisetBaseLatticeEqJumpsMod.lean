@@ -219,10 +219,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] [TopologicalSpace LL] {v : AddValuation LL (WithTop ℚ)} {n₀ : ℕ}
     (W : LocWach PD LL O v n₀) {k : Type} [Field k] [Algebra O k]
 
-theorem γD_smulA (T : LocLat G Qp LL O) (g : W.Gam) (a : LetA O n₀) (x : W.DD T) :
-    W.γD T g (a • x) = W.γA g a • W.γD T g x := by
-  rw [← algebraMap_smul W.EE a x, W.γD_smul, W.γE_ext, algebraMap_smul]; rfl
-
 theorem γ₀_π₀ {δ : W.Gam} (hδ : δ ∈ W.DelF) : W.γ₀ δ W.π₀₁ = W.π₀₁ := by
   classical
   have hm : ∀ g, g ∈ W.DelF ↔ IsOfFinOrder g := fun g => by rw [W.DelF_def, isOfFinOrder_iff_pow_eq_one]
@@ -236,7 +232,7 @@ theorem γ₀_π₀ {δ : W.Gam} (hδ : δ ∈ W.DelF) : W.γ₀ δ W.π₀₁ =
   · rw [map_mul]; rfl
 
 theorem smul_mem (T : LocLat G Qp LL O) {a : LetA O n₀} (ha : ∀ δ ∈ W.DelF, W.γA δ a = a) {x : W.DD T}
-    (hx : x ∈ DΔ W T) : a • x ∈ DΔ W T := fun δ hδ => by rw [γD_smulA, ha δ hδ, hx δ hδ]
+    (hx : x ∈ DΔ W T) : a • x ∈ DΔ W T := fun δ hδ => by rw [_root_.GlobalTheory.WachTie.MatF.γD_smulA, ha δ hδ, hx δ hδ]
 
 theorem coord_inv (T : LocLat G Qp LL O) {m : ℕ} (b : Fin m → W.DD T) (hb : ∀ j, b j ∈ DΔ W T)
     (hli : LinearIndependent (LetA O n₀) b) (a : Fin m → LetA O n₀) (hx : ∑ j, a j • b j ∈ DΔ W T) (j : Fin m) :
@@ -245,7 +241,7 @@ theorem coord_inv (T : LocLat G Qp LL O) {m : ℕ} (b : Fin m → W.DD T) (hb : 
   have h := hx δ hδ
 
   rw [map_sum] at h
-  simp only [γD_smulA, hb _ δ hδ] at h
+  simp only [_root_.GlobalTheory.WachTie.MatF.γD_smulA, hb _ δ hδ] at h
   have := Fintype.linearIndependent_iff.1 hli (fun j => W.γA δ (a j) - a j) (by
     simp only [sub_smul, Finset.sum_sub_distrib, h, sub_self]) j
   exact sub_eq_zero.1 this

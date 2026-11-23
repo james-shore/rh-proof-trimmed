@@ -74,10 +74,6 @@ theorem finiteRing_sq_sub_mul_sq_eq_of_card {A : Type} [CommRing A] {S : Subring
       rw [this, smul_comm]
       exact Submodule.smul_mem _ a hx
 
-theorem main : ∀ {A : Type} [inst : CommRing A] {S : Subring A} {n : Type} [inst_1 : Fintype n] [DecidableEq n]
-    (Λ : Submodule (↥S) (n → A)), Submodule.FG Λ →
-    (∀ (v : n → A), ∃ (N : ℕ), (1 : ℕ) ≤ N ∧ (↑N : A) • v ∈ Λ) →
-    ∀ (X : Matrix n n A), ∃ (N : ℕ), (1 : ℕ) ≤ N ∧ ∀ y ∈ Λ, (↑N : A) • Matrix.mulVec X y ∈ Λ :=
-  fun Λ hfg hden X => finiteRing_sq_sub_mul_sq_eq_of_card Λ hfg hden X
+alias main := _root_.GlobalTheory.SublatticeFacts.finiteRing_sq_sub_mul_sq_eq_of_card
 
 end GlobalTheory.SublatticeFacts

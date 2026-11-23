@@ -268,7 +268,7 @@ theorem reads_of_pulls {i : D.ntw.Tw} {k : ℕ} {b : Bool} {v : D.what₂.places
     (hg : GalOf D χ ψ₀) {ι : FractionRing ρ.Oe →+* ℂ} (hι : ∀ x, ι (ρ.emb x) = D.what₂.embLL x) :
     SideRead i b k (ι.comp (kMap ρ)) ∧ ReadsHecke (ι.comp (kMap ρ)) (ψ.comp (D.ntw.art i Q)) χ := by
   refine ⟨fun x => ?_, ?_⟩
-  · rw [RingHom.comp_apply, ← (GlobalTheory.T.twistReading_induces_sideEmbedding_fixedField D i k b v ρ).2.1 x, hι]
+  · rw [RingHom.comp_apply, ← (_root_.GlobalTheory.LevCmp.reading_sidePl_emb D i k b v ρ).2.1 x, hι]
     rfl
   · obtain ⟨-, art, ha, h⟩ := hg
     refine ⟨art, ha, fun x σ e => (h x σ e).trans (Units.ext ?_)⟩

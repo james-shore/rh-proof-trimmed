@@ -54,14 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.PullFrom
 
-theorem spMap_comp_ring {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap]
-
-theorem good_exists {X Z : Scheme.{0}} {L : LB X} (hL : L.IsLB) (z : Z) : ∃ J, Good L z J := by
-  obtain ⟨J, hJ, -⟩ := exists_good L hL z (K := Empty) Empty.elim Empty.elim (fun a => a.elim) (fun k => k.elim)
-  exact ⟨J, hJ⟩
-
 private theorem sq_ext_lemma {S Z : Scheme.{0}} {G : Over S} {f g : Z ⟶ (G2 G).left}
     (h₁ : f ≫ (fst G G).left = g ≫ (fst G G).left) (h₂ : f ≫ (snd G G).left = g ≫ (snd G G).left) : f = g :=
   Over.tensorObj_ext _ _ h₁ h₂
@@ -70,7 +62,7 @@ theorem pullData_of_dataFrom : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLoc
   intro o W _ _ _ T R V _ _ _ _ θ iw I _ s ε n Q e Q' e' hs hQ hQ'
   obtain ⟨β₀, β₀₂, w₀, hpb₀, hsq₀, hw₀, hc₀, hτ₀⟩ := hQ
   obtain ⟨β₁, β₁₂, w₁, hpb₁, hsq₁, hw₁, hc₁, hτ₁⟩ := hQ'
-  have hcomp : spMap θ ≫ spMap iw = spMap (θ.comp iw) := (spMap_comp_ring iw θ).symm
+  have hcomp : spMap θ ≫ spMap iw = spMap (θ.comp iw) := (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp iw θ).symm
 
   obtain ⟨β, β₂, hpb, hsq, hβ, hβ₂⟩ := GlobalTheory.T.exists_cancel_grpPullback_with_squares (Sp V) (Sp R) (Sp W) Q'.B Q.B T.B (spMap θ) (spMap iw)
     β₁ β₀ β₁₂ β₀₂ (hcomp ▸ hpb₁) hpb₀ hsq₁ hsq₀
@@ -128,14 +120,14 @@ theorem pullData_of_dataFrom : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLoc
   · rw [hk₁]
     exact hxy'
   · intro z J hJ
-    obtain ⟨J₀, hJ₀⟩ := good_exists T.M.isLB z
+    obtain ⟨J₀, hJ₀⟩ := _root_.GlobalTheory.UU.exists_good_pt T.M.isLB z
     have hl : (toUnit (TK R)).left ≫ (lift (Q.c a₀) (Q.c b₀)).left =
         (lift (toUnit (TK R) ≫ Q.c a₀) (toUnit (TK R) ≫ Q.c b₀)).left := by
       rw [← Over.comp_left, comp_lift]
     rw [hv₀ z J₀ J hJ₀ hJ, hvu _ _ z J₀ J hJ₀ hJ, hl]
     rfl
   · intro z J J' hJ hJ'
-    obtain ⟨J₀, hJ₀⟩ := good_exists T.M.isLB z
+    obtain ⟨J₀, hJ₀⟩ := _root_.GlobalTheory.UU.exists_good_pt T.M.isLB z
     rw [ha₀, hb₀] at hvu
     rw [hv₁ z J₀ J' hJ₀ hJ', hrel _ _ z J' J J₀ hJ' hJ hJ₀, hvu _ ((TK V).hom ≫ spMap θ) z J₀ J hJ₀ hJ, hsqQ,
       Category.assoc ((TK V).hom) (spMap θ) (spMap iw), hcomp, _root_.mul_assoc]

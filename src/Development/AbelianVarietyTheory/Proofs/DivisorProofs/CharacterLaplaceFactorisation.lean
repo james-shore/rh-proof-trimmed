@@ -60,17 +60,6 @@ namespace GlobalTheory.LaplaceChar
 
 open ReciprocityTheory.ChartRestriction.TR.Weyl
 
-theorem exists_mul_eq_mul_diagonal {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) (t : Fin n → ℂ)
-    (ht : Function.Injective t) (hA : A.charpoly = ∏ i, (X - C (t i))) :
-    ∃ P : GL (Fin n) ℂ, A * (P : Matrix (Fin n) (Fin n) ℂ) = (P : Matrix (Fin n) (Fin n) ℂ) * diagonal t := by
-  first
-  | exact @_root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal
-  | exact _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal
-  | (apply _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal ..)
-
 theorem chAt_prod_eq_gtChar {n : ℕ} (lam : DomWeight n) (t : Fin n → ℂ) (ht : Function.Injective t)
     (h0 : ∀ i, t i ≠ 0) : chAt lam (∏ i, (X - C (t i))) = gtChar n lam.w t := by
   have hdet : IsUnit (diagonal t) := by
@@ -80,7 +69,7 @@ theorem chAt_prod_eq_gtChar {n : ℕ} (lam : DomWeight n) (t : Fin n → ℂ) (h
     ⟨hdet.unit, by simp [charpoly_diagonal]⟩
   unfold chAt
   rw [dite_eq_left hex]
-  obtain ⟨P, hP⟩ := exists_mul_eq_mul_diagonal _ t ht hex.choose_spec
+  obtain ⟨P, hP⟩ := _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal _ t ht hex.choose_spec
   set g := hex.choose
   let D : GL (Fin n) ℂ := P⁻¹ * g * P
   have hD : (D : Matrix (Fin n) (Fin n) ℂ) = diagonal t := by

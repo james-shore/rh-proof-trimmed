@@ -58,12 +58,6 @@ namespace GlobalTheory.WeilSlice
 
 variable {D : D7}
 
-theorem symplOH_zero_right' (S T : HSp D) (x : WO S T) : symplOH S T x 0 = 0 := by
-  simp [symplOH, symplO, hO]
-
-theorem symplOH_zero_left' (S T : HSp D) (x : WO S T) : symplOH S T 0 x = 0 := by
-  simp [symplOH, symplO, hO]
-
 def shiftA {S A B : HSp D} (o : OrthDec S A B) (T : HSp D) (g : GA D A) (h : GA D T) : WO S T →+ WO S T where
   toFun w := (o.resS T).symm (actO A T g⁻¹ h⁻¹ (o.resS T w).1, (o.resS T w).2)
   map_zero' := by simp [actO_eq]
@@ -151,7 +145,7 @@ theorem half (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S A B T : HSp D) (o : Or
       have e : (o.resS T).symm (u, (o.resS T (ratW T S γ)).2) = ratW T S δ + (o.resS T).symm (u, 0) := by
         rw [hδ', ← map_add (f := _), Prod.mk_add_mk, zero_add, add_zero]
       rw [e, hF.quasi δ, hδ', o.symplOH_resS]
-      simp only [AddEquiv.apply_symm_apply, symplOH_zero_left', symplOH_zero_right', add_zero, neg_zero,
+      simp only [AddEquiv.apply_symm_apply, _root_.GlobalTheory.MixModel.symplOH_zero_left, _root_.GlobalTheory.MixModel.symplOH_zero_right, add_zero, neg_zero,
         AddChar.map_zero_eq_one, one_mul]
     show om (g, h) (fun u => F ((o.resS T).symm (u, (o.resS T (ratW T S γ)).2))) (o.resS T (ratW T S γ)).1 =
       om (g, h) (fun u => F ((o.resS T).symm (u, (o.resS T 0).2))) (o.resS T 0).1
@@ -159,7 +153,7 @@ theorem half (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S A B T : HSp D) (o : Or
     rw [hsl]
     obtain ⟨γa, hγa⟩ := ha
     have ea : (o.resS T (ratW T S γ)).1 = ratW T A γa + 0 := by rw [add_zero]; exact hγa.symm
-    rw [ea, (hom.om_pres (g, h) _ ((hslice F hF).1 0)).quasi γa 0, symplOH_zero_right', neg_zero,
+    rw [ea, (hom.om_pres (g, h) _ ((hslice F hF).1 0)).quasi γa 0, _root_.GlobalTheory.MixModel.symplOH_zero_right, neg_zero,
       AddChar.map_zero_eq_one, one_mul]
 
 theorem resS_symm_swap {S A B : HSp D} (o : OrthDec S A B) (T : HSp D) (u : WO B T) (v : WO A T) :

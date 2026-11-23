@@ -216,7 +216,7 @@ theorem GlobalTheory.TInj.exists_tautPt : ∀ {o W : Type} [CommRing o] [CommRin
       rfl
     let r := (TF (R := V) F).hom ≫ spMap ω
     let ρ := toUnit (Over.mk r)
-    have W1 := (GlobalTheory.T.mumfordBundleIso_additive_cubicalStructure T ε n V D ω s e β ββ w hB hF' (TF (R := V) F) (DegPre.cF D F χ) (DegPre.cF D F χ') b
+    have W1 := (_root_.GlobalTheory.TInj.lamVal_add_cub T ε n V D ω s e β ββ w hB hF' (TF (R := V) F) (DegPre.cF D F χ) (DegPre.cF D F χ') b
       (ρ ≫ T.c₀ ((n : ℤ) • e χ)) (ρ ≫ T.c₀ ((n : ℤ) • e χ')) (ρ ≫ T.c₀ a) ((hx χ).trans (Category.assoc _ _ _).symm)
       ((hx χ').trans (Category.assoc _ _ _).symm) (hb.trans (Category.assoc _ _ _).symm) y J J' hJ hJ').1
     have T1 : val (T.τ₀ ((n : ℤ) • e χ + (n : ℤ) • e χ') a) r y J *

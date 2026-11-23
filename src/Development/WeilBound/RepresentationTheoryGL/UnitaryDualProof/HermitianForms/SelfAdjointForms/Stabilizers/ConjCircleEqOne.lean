@@ -135,7 +135,7 @@ theorem avg_decomp_pf (hψ : Continuous ψ) (hψ1 : ψ ≠ 1) (hπ : IsSmooth π
     (R.card : ℂ) • avg ψ h π ξ A v = (T.card : ℂ) • ∑ η ∈ R, avg ψ h π (ξ + η) A' v := by
   classical
   obtain ⟨⟨H, S⟩, hHA, hHo, hHv, hHξ, hS1, hS2⟩ := avgData_exists ψ h π hψ hπ ξ A hA v
-  obtain ⟨U, hU1, hU2⟩ := GlobalTheory.T.exists_coset_reps_open_in_compact (Fin (m + 1) → k) A' H hA'.1 hHo (hHA.trans hAA)
+  obtain ⟨U, hU1, hU2⟩ := _root_.GlobalTheory.CompanionTheory.Topology.exists_finset_transversal_of_isCompact_of_isOpen (Fin (m + 1) → k) A' H hA'.1 hHo (hHA.trans hAA)
   set f : (Fin (m + 1) → k) → V := fun t => (starRingEnd ℂ ((ψ (ξ ⬝ᵥ t) : Circle) : ℂ)) • π (colEl k m N h t) v
     with hfdef
 
@@ -170,9 +170,9 @@ theorem avg_decomp_pf (hψ : Continuous ψ) (hψ1 : ψ ≠ 1) (hπ : IsSmooth π
       Module.End.mul_apply, hHv d hd]
   have hind : ∑ u ∈ U.filter (· ∈ A), f u = ∑ t ∈ S, f t :=
     sum_tr_indep A H _ S (isTr_filter A A' H hHA U ⟨hU1, hU2⟩ hAA) ⟨hS1, hS2⟩ f hper
-  have cU : U.card = H.relIndex A' := GlobalTheory.T.card_coset_reps_eq_relIndex _ A' H U (hHA.trans hAA) hU1 hU2
-  have cS : S.card = H.relIndex A := GlobalTheory.T.card_coset_reps_eq_relIndex _ A H S hHA hS1 hS2
-  have cT : T.card = A.relIndex A' := GlobalTheory.T.card_coset_reps_eq_relIndex _ A' A T hAA hT.1 hT.2
+  have cU : U.card = H.relIndex A' := _root_.GlobalTheory.CompanionTheory.Transversal.card_eq_relIndex _ A' H U (hHA.trans hAA) hU1 hU2
+  have cS : S.card = H.relIndex A := _root_.GlobalTheory.CompanionTheory.Transversal.card_eq_relIndex _ A H S hHA hS1 hS2
+  have cT : T.card = A.relIndex A' := _root_.GlobalTheory.CompanionTheory.Transversal.card_eq_relIndex _ A' A T hAA hT.1 hT.2
   have cmul : U.card = S.card * T.card := by
     rw [cU, cS, cT, AddSubgroup.relIndex_mul_relIndex H A A' hHA hAA]
   have hS0 : (S.card : ℂ) ≠ 0 := by

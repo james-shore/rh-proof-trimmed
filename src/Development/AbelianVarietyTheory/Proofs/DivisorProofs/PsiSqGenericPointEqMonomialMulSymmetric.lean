@@ -55,11 +55,6 @@ noncomputable section
 
 namespace GlobalTheory.PsiSqGeneric
 
-theorem jFK_self (V : Type) [CommRing V] [IsDomain V] :
-    jFK (R := V) (FractionRing V) = 𝟙 (Spec (CommRingCat.of (FractionRing V))) := by
-  show Spec.map (CommRingCat.ofHom (algebraMap (FractionRing V) (FractionRing V))) = 𝟙 _
-  rw [Algebra.algebraMap_self, CommRingCat.ofHom_id, Spec.map_id]
-
 theorem cst_eq_gm {V : Type} [CommRing V] [IsDomain V] (z : Spec (CommRingCat.of (FractionRing V)))
     (k : (FractionRing V)ˣ) :
     cst (R := V) (FractionRing V) z (k : FractionRing V) =
@@ -102,7 +97,7 @@ theorem core (V : Type) [CommRing V] [IsDomain V] (D : DegPre V) (hE : D.PsiEven
       congrArg (fun w => val (D.psi w) (𝟙 (Spec (CommRingCat.of (FractionRing V)))) z J) (add_neg_cancel mu)] at hv'
     rw [hx] at ev
     rw [hrig] at p0 hv'
-    rw [jFK_self, GlobalTheory.Poinc.Sep.Frames.toUnit_left_eq, cst_eq_gm]
+    rw [_root_.GlobalTheory.UU.ExpFrac.jFK_self, GlobalTheory.Poinc.Sep.Frames.toUnit_left_eq, cst_eq_gm]
     have hg : gm (𝟙 (Spec (CommRingCat.of (FractionRing V)))) z ⊤ (unitOn k'⁻¹) =
         (gm (𝟙 (Spec (CommRingCat.of (FractionRing V)))) z ⊤ (unitOn k'))⁻¹ := by
       rw [← map_inv]; rfl

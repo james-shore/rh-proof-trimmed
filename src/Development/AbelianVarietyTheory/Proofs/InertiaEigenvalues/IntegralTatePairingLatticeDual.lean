@@ -107,7 +107,7 @@ theorem integral_pairing : Formalism.GaloisCohomology.LocalTateDualityK → ∀ 
       (∀ d c, β d c = 0 ↔ CobO (P.PD K) L1 (cupLD LA' m d.1 c.1)) ∧
       (∀ d c, d.1 ∈ latticeCoboundaries LA → β d c = 0) ∧ ∀ d c, c.1 ∈ BD LA' → β d c = 0 := by
   intro hT l _ P K LL _ _ _ O _ _ hG L1 hL1 A A' LA LA' m hd
-  obtain ⟨e⟩ := GlobalTheory.T.tate_H2_period_datum hT l P K LL O hG L1 hL1
+  obtain ⟨e⟩ := _root_.GlobalTheory.TateTop.tateH2_of_duality_loc hT l P K LL O hG L1 hL1
   obtain ⟨⟨hO, hDVR, hFr⟩, -, -, htr, hopen⟩ := hG
   haveI := hO
   haveI := hDVR

@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Definitions.Divisors.FirstChernLeviEqConstant
 import Development.AbelianVarietyTheory.Definitions.Divisors.SlopeTestRemainingChoices
+import Formalism.LocalToGlobal.ProjectiveLattices.CrudeVal
 
 @[expose] public section
 
@@ -61,13 +62,6 @@ section Scalars
 
 variable {K : Type} [Field K] [NumberField K]
 
-theorem vLa_mul_of_ne (la : HeightOneSpectrum (𝓞 K)) {x y : K} (hx : x ≠ 0) (hy : y ≠ 0) :
-    vLa la (x * y) = vLa la x + vLa la y := by
-  have h1 : la.valuation K x ≠ 0 := (Valuation.ne_zero_iff _).2 hx
-  have h2 : la.valuation K y ≠ 0 := (Valuation.ne_zero_iff _).2 hy
-  simp only [vLa, map_mul, WithZero.log_mul h1 h2]
-  ring
-
 theorem vLa_natCast_nonneg (la : HeightOneSpectrum (𝓞 K)) {n : ℕ} (hn : n ≠ 0) : 0 ≤ vLa la (n : K) := by
   have := vAdd_int_nonneg la (a := (n : 𝓞 K)) (by simpa using hn)
   simpa [vLa, Formalism.BasicNotions.vAdd] using this
@@ -78,7 +72,7 @@ theorem le_vLa_of_pow_dvd (la : HeightOneSpectrum (𝓞 K)) {p n N : ℕ} (hN : 
   have h1 := mul_ne_zero_iff.1 hN
   have h2 : vLa la (((p ^ n : ℕ)) : K) = n * vLa la (p : K) := by
     simp [vLa, WithZero.log_pow]
-  rw [Nat.cast_mul, vLa_mul_of_ne la (Nat.cast_ne_zero.2 h1.1) (Nat.cast_ne_zero.2 h1.2), h2]
+  rw [Nat.cast_mul, _root_.Formalism.L2.Pj.Crude.crv_vLa_mul la (Nat.cast_ne_zero.2 h1.1) (Nat.cast_ne_zero.2 h1.2), h2]
   linarith [vLa_natCast_nonneg la h1.2]
 
 theorem exists_scalar (e : HeightOneSpectrum (𝓞 K) →₀ ℝ) (t : (K →+* ℂ) → ℝ)
@@ -94,13 +88,13 @@ theorem exists_scalar (e : HeightOneSpectrum (𝓞 K) →₀ ℝ) (t : (K →+* 
   have hNK : (N : K) ≠ 0 := Nat.cast_ne_zero.2 hN0
   refine ⟨N * α, mul_ne_zero hNK h0, fun la => ?_, fun la p hp => ?_, fun σ => ?_⟩
   · have h3 : (0 : ℝ) ≤ vLa la (N : K) := by exact_mod_cast vLa_natCast_nonneg la hN0
-    rw [vLa_mul_of_ne la hNK h0, Int.cast_add]
+    rw [_root_.Formalism.L2.Pj.Crude.crv_vLa_mul la hNK h0, Int.cast_add]
     linarith [h1 la]
   · have h3 : (⌈τ * a p⌉₊ : ℝ) * vLa la (p : K) ≤ vLa la (N : K) := by
       exact_mod_cast le_vLa_of_pow_dvd la hN0 (Finset.dvd_prod_of_mem (fun p => p ^ ⌈τ * a p⌉₊) hp)
     have h4 : (0 : ℝ) ≤ vLa la (p : K) := by exact_mod_cast vLa_natCast_nonneg la (hS p hp).ne_zero
     have h5 := mul_le_mul_of_nonneg_right (Nat.le_ceil (τ * a p)) h4
-    rw [vLa_mul_of_ne la hNK h0, Int.cast_add]
+    rw [_root_.Formalism.L2.Pj.Crude.crv_vLa_mul la hNK h0, Int.cast_add]
     nlinarith [h1 la]
   · have h3 : Real.log N ≤ τ * ∑ p ∈ S, a p * Real.log p + ∑ p ∈ S, Real.log p := by
       rw [hN, Nat.cast_prod, Real.log_prod (fun p hp => by exact_mod_cast pow_ne_zero _ (hS p hp).ne_zero),

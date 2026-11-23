@@ -100,7 +100,7 @@ theorem ipDict (R : RealDat D A Ks) (F : Face D A) (hG : Given R F) : IPDict R :
   obtain ⟨v, hv⟩ := exists_vec R hG.core.chain t hk hm
   exact ⟨fun h => hasPeterssonInner_unique _ _ _ _ _ v hv h (isInnerProduct_of_isMet' R t k hm x y), fun h => h ▸ isInnerProduct_of_isMet' R t k hm x y⟩
 
-theorem main : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Given R F → IPDict R := fun R F hG => ipDict R F hG
+alias main := _root_.GlobalTheory.ChainTw.IPDictPf.ipDict
 
 end GlobalTheory.ChainTw.IPDictPf
 

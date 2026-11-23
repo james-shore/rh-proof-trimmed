@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalRingCardinality.HostCls
 
 @[expose] public section
 
@@ -154,25 +155,9 @@ theorem disc_of_equiv (h : V →ₗ⋆[K] V →ₗ[K] K) (N : Submodule (𝓞 K)
 
 end General
 
-theorem finrank_E {R : Ranks} (H : Host R) : Module.finrank ℚ H.E = 2 * R.f := by
-  rw [H.finrank_cmField]
-  simp only [Ranks.f, Ranks.n]
-  ring
-
-theorem fDeg_E (D : D7) : fDeg D.host.E = D.R.f := by
-  let _ := D.host.cmStar
-  have : IsTotallyComplex D.host.E := D.sp.cm.cmUnram.1
-  have h1 := NumberField.InfinitePlace.card_eq_nrRealPlaces_add_nrComplexPlaces (K := D.host.E)
-  have h2 := NumberField.InfinitePlace.card_add_two_mul_card_eq_rank D.host.E
-  have h3 : NumberField.InfinitePlace.nrRealPlaces D.host.E = 0 := by
-    rw [NumberField.nrRealPlaces_eq_zero_iff]; infer_instance
-  have h4 := finrank_E D.host
-  unfold fDeg
-  omega
-
 theorem vInv_E (D : D7) : 2 * vInv D.host.E = D.host.rdE := by
   unfold vInv Host.rdE
-  rw [fDeg_E, finrank_E]
+  rw [_root_.Formalism.MainNotions.StandardLattice.fDeg_host, _root_.Formalism.BasicNotions.Host.finrank_E']
   push_cast
   ring
 
@@ -195,7 +180,7 @@ theorem main : ∀ c₀ : ℝ, 0 < c₀ → ∃ C₀ : ℝ, ∀ C : ℝ, C₀ �
   have hrd' : Real.log D.host.rdE ≤ large₂.sc.L / c₀ := hrd.trans (by gcongr)
   obtain ⟨⟨hPD, hrk⟩, hrow⟩ := GlobalTheory.Mass.RowPerp.main D u F0 he hz
   obtain ⟨hint, hcyc⟩ := hrow Λ hΛ
-  have hM := (GlobalTheory.T.mass_rowLattice_orthogonal_split_prime D u F0 he hz hTp hTs Λ hΛ).2
+  have hM := (_root_.GlobalTheory.Mass.RowPerpMass.main D u F0 he hz hTp hTs Λ hΛ).2
   have hs := (D.sp.X 0).herm
   have hgen := (GlobalTheory.Mass.CyclicGenus.main _ _ _ hK hs (D.sp.X 0).nondeg _ hTp hTs).2
   generalize Lat.L0X D Λ (lf D F0) = L₀ at *
@@ -206,7 +191,7 @@ theorem main : ∀ c₀ : ℝ, 0 < c₀ → ∃ C₀ : ℝ, ∀ C : ℝ, C₀ �
         dual h L = L ⊔ Submodule.span (𝓞 D.host.E) (t : Set (D.sp.X 0).V)) := fun L hL => by
     obtain ⟨a, ⟨e⟩⟩ := (hgen L₀ L hint hcyc).1 hL
     obtain ⟨b, c⟩ := disc_of_equiv h L _ e
-    exact ⟨a, by rw [b, finrank_E], ((GlobalTheory.Mass.DetAgree.main _ _ h hK hs hPD L a).2.2.2.1 1).1 c⟩
+    exact ⟨a, by rw [b, _root_.Formalism.BasicNotions.Host.finrank_E'], ((GlobalTheory.Mass.DetAgree.main _ _ h hK hs hPD L a).2.2.2.1 1).1 c⟩
   have hlhs : (∑ L' ∈ reps, ENNReal.ofReal ((Nat.card (Formalism.ThetaLiftIndependence.autL h L') : ℝ))⁻¹ *
       (Cnt.cntPrim h L' (D.R.k - s) de : ℝ≥0∞)) =
       orbSum (isom h) (genus h L₀) (fun L => (((primSp h L (D.R.k - s) (de ^ 2)).encard : ℕ∞) : ℝ≥0∞)) := by
@@ -235,7 +220,7 @@ theorem main : ∀ c₀ : ℝ, 0 < c₀ → ∃ C₀ : ℝ, ∀ C : ℝ, C₀ �
     rw [e1] at H2
     have e2 : ((Lat.Tu D u ^ (2 * D.R.f) : ℕ) : ℝ) = Cnt.NT D u ^ 2 := by
       rw [Cnt.NT, ← pow_mul, mul_comm D.R.f]; push_cast; rfl
-    rw [e2, finrank_E, Cnt.XiS, Cnt.Xi, if_pos ⟨hs2, hmid⟩]
+    rw [e2, _root_.Formalism.BasicNotions.Host.finrank_E', Cnt.XiS, Cnt.Xi, if_pos ⟨hs2, hmid⟩]
     push_cast
     exact H2
   · have hk : 1 ≤ D.R.k := by omega
@@ -249,7 +234,7 @@ theorem main : ∀ c₀ : ℝ, 0 < c₀ → ∃ C₀ : ℝ, ∀ C : ℝ, C₀ �
       rcases (by omega : D.R.k - s = 1 ∨ D.R.k - s = 0) with e | e
       · rw [e]
         refine p1.trans (le_of_eq ?_)
-        rw [vInv_E, fDeg_E, hrk]
+        rw [vInv_E, _root_.Formalism.MainNotions.StandardLattice.fDeg_host, hrk]
         congr 2
         push_cast
         rw [← Real.rpow_natCast (de : ℝ) 2, ← Real.rpow_mul (by linarith), ← Real.rpow_natCast (de : ℝ) D.R.k]

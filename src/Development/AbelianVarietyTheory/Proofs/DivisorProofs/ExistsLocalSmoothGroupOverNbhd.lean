@@ -69,16 +69,6 @@ open GlobalTheory.Desc
 
 namespace GlobalTheory.Desc.Spread
 
-theorem isPullback_sq {S U Z X : Scheme.{0}} {s : Z ⟶ S} {j : U ⟶ S} {p : X ⟶ U} {φ : X ⟶ Z}
-    (h : IsPullback φ p s j) :
-    IsPullback (pullback.map p p s s φ φ j h.w.symm h.w.symm) (pullback.fst p p ≫ p) (pullback.fst s s ≫ s) j := by
-  have h₁ : IsPullback (pullback.map p p s s φ φ j h.w.symm h.w.symm) (pullback.fst p p) (pullback.fst s s) φ := by
-    refine IsPullback.of_right (h₁₂ := pullback.snd s s) (v₁₃ := s) (h₂₂ := s) ?_ (pullback.lift_fst _ _ _)
-      (IsPullback.of_hasPullback s s).flip
-    rw [pullback.lift_snd, h.w]
-    exact (IsPullback.of_hasPullback p p).flip.paste_horiz h
-  exact h₁.paste_vert h
-
 theorem lift_left_eq {S : Scheme.{0}} {T G : Over S} (a b : T ⟶ G) (t : T.left ⟶ pullback G.hom G.hom)
     (h₁ : t ≫ pullback.fst _ _ = a.left) (h₂ : t ≫ pullback.snd _ _ = b.left) : (lift a b).left = t := by
   apply pullback.hom_ext
@@ -122,9 +112,9 @@ theorem exists_grp_near : ∀ (R : Type) [CommRing R] [IsDomain R] (f : R), f �
   intro R _ _ f hf x S₁ X ξ' _ _ _ q _ _ _ A _ hc G _ i e hi he hm
   obtain ⟨hone, hinv⟩ := GlobalTheory.T.grpUnits_and_inverses_agree_of_laws_agree _ _ _ X q _ _ A G i e hi he.w hm
   obtain ⟨g₁, hg₁, H₁⟩ := exists_ext hf x ξ' (pullback.fst q q ≫ q) q ((μ[A]).left ≫ i) ((μ[G]).left ≫ e)
-    (isPullback_sq hi) (isPullback_sq he)
-    (by rw [(isPullback_sq hi).w, Category.assoc, hi.w, Over.w_assoc]; rfl)
-    (by rw [(isPullback_sq he).w, Category.assoc, he.w, Over.w_assoc]; rfl)
+    (_root_.GlobalTheory.SpreadAb.isPullback_square hi) (_root_.GlobalTheory.SpreadAb.isPullback_square he)
+    (by rw [(_root_.GlobalTheory.SpreadAb.isPullback_square hi).w, Category.assoc, hi.w, Over.w_assoc]; rfl)
+    (by rw [(_root_.GlobalTheory.SpreadAb.isPullback_square he).w, Category.assoc, he.w, Over.w_assoc]; rfl)
     (fun T t₀ t₁ h => by
       have k₁ := congrArg (· ≫ pullback.fst q q) h
       have k₂ := congrArg (· ≫ pullback.snd q q) h
@@ -156,13 +146,13 @@ theorem exists_grp_near : ∀ (R : Type) [CommRing R] [IsDomain R] (f : R), f �
   let H : Over (Sp (Localization.Away g)) := Over.mk (pullback.snd q (awayMap g))
   let h : H.left ⟶ X := pullback.fst q (awayMap g)
   have hH : IsPullback h H.hom q (awayMap g) := IsPullback.of_hasPullback _ _
-  obtain ⟨m, hm₁, hm₂⟩ := H₁ _ _ (not_mem_of_dvd ⟨g₂ * g₃, mul_assoc _ _ _⟩ (isPullback_sq hH).w)
+  obtain ⟨m, hm₁, hm₂⟩ := H₁ _ _ (not_mem_of_dvd ⟨g₂ * g₃, mul_assoc _ _ _⟩ (_root_.GlobalTheory.SpreadAb.isPullback_square hH).w)
   obtain ⟨n, hn₁, hn₂⟩ := H₂ _ _ (not_mem_of_dvd ⟨g₁ * g₃, by simp only [g]; ring⟩ hH.w)
   obtain ⟨o, ho₁, ho₂⟩ := H₃ _ (awayMap g) (not_mem_of_dvd (c := 𝟙 _) ⟨g₁ * g₂, mul_comm _ _⟩ (by simp))
   have L : ∀ (Y : Over (Sp (Localization.Away g))) (u : Y.left ⟶ X), u ≫ q = Y.hom ≫ awayMap g →
       ∃ v : Y ⟶ H, v.left ≫ h = u :=
     fun Y u w => ⟨Over.homMk (hH.lift u Y.hom w) (hH.lift_snd _ _ _), hH.lift_fst _ _ _⟩
-  obtain ⟨m', hm'⟩ := L (H ⊗ H) m (hm₁.trans (isPullback_sq hH).w)
+  obtain ⟨m', hm'⟩ := L (H ⊗ H) m (hm₁.trans (_root_.GlobalTheory.SpreadAb.isPullback_square hH).w)
   obtain ⟨n', hn'⟩ := L H n (hn₁.trans hH.w)
   obtain ⟨o', ho'⟩ := L (𝟙_ _) o (ho₁.trans ((Category.comp_id _).trans (Category.id_comp _).symm))
   obtain ⟨_, hfin⟩ := GlobalTheory.T.grpObj_of_law_unit_inverse_agree_away R f g hf X q inferInstance ‹_› A hc i hi H h hH m' n' o'

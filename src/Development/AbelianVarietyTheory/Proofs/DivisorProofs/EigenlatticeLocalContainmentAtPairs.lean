@@ -61,16 +61,6 @@ section Gen
 variable {K : Type} [Field K] [NumberField K]
 variable {Z : Type} [AddCommGroup Z] [Module K Z] [Module (𝓞 K) Z] [IsScalarTower (𝓞 K) K Z]
 
-theorem exists_smul_mem_of_mem_span {A : Submodule (𝓞 K) Z} {x : Z} (hx : x ∈ Submodule.span K (A : Set Z)) :
-    ∃ d : 𝓞 K, d ≠ 0 ∧ d • x ∈ A := by
-  first
-  | exact @_root_.GlobalTheory.TargetLemmaCollection.target
-  | exact _root_.GlobalTheory.TargetLemmaCollection.target
-  | (apply _root_.GlobalTheory.TargetLemmaCollection.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TargetLemmaCollection.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TargetLemmaCollection.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TargetLemmaCollection.target ..)
-
 theorem span_cut {A : Submodule (𝓞 K) Z} (hA : Submodule.span K (A : Set Z) = ⊤) (W : Submodule K Z) :
     Submodule.span K (Formalism.EigenvalueLevelCeiling.cut W A : Set Z) = W := by
   apply le_antisymm
@@ -78,7 +68,7 @@ theorem span_cut {A : Submodule (𝓞 K) Z} (hA : Submodule.span K (A : Set Z) =
     intro x hx
     exact (Submodule.mem_inf.1 hx).2
   · intro w hw
-    obtain ⟨d, hd, hm⟩ := exists_smul_mem_of_mem_span (A := A) (x := w) (by rw [hA]; trivial)
+    obtain ⟨d, hd, hm⟩ := _root_.GlobalTheory.TargetLemmaCollection.main (A := A) (x := w) (by rw [hA]; trivial)
     have hd' : algebraMap (𝓞 K) K d ≠ 0 := (map_ne_zero_iff _ (IsFractionRing.injective (𝓞 K) K)).2 hd
     have hmem : d • w ∈ Formalism.EigenvalueLevelCeiling.cut W A := by
       refine Submodule.mem_inf.2 ⟨hm, ?_⟩

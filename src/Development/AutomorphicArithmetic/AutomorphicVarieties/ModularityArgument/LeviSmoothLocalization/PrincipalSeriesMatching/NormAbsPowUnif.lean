@@ -118,11 +118,11 @@ private theorem exponent_of_unl [CharZero k] {N : ℕ} {V : Type} [AddCommGroup 
   let D : Fin h → Segment k := fun i => (Δ i).nu ((s i : ℝ) : ℂ)
   have hL' : ∀ i, IsLSeg (D i) ((δ i).nu ((s i : ℝ) : ℂ)).rep := fun i => GlobalTheory.isLSeg_nu (hL i) _
   have hG : GlobalTheory.Published.GeometricLemma :=
-    GlobalTheory.geometricLemma_of_filtration GlobalTheory.Laid.bzfin_holds GlobalTheory.geometricLemmaFiltration_holds
+    GlobalTheory.geometricLemma_of_filtration _root_.GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness _root_.CompanionTheory.Geo.geometricLemmaFiltration
   have hs2 : HasSupport ρ (∑ i, (D i).ms) :=
     GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_of_isSubquotient_prodIrr (fun i => (hL' i).hasSupport) hi
       (IsSubquotient.of_injective φ.toIntertwiningMap φ.toLinearEquiv.injective)
-  have he := GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_unique hG GlobalTheory.Laid.bzfin_holds hs2 hS
+  have he := GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_unique hG _root_.GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness hs2 hS
   obtain ⟨hξ0, hm⟩ := hξ
   obtain ⟨i, -, hi'⟩ := Multiset.mem_sum.1 (he ▸ hm)
   have hmem : ∀ a : ℕ, a < (D i).len → (D i).first.nu (a : ℂ) ∈ S := fun a ha => by

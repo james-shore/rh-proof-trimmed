@@ -69,5 +69,5 @@ theorem UpperTheory.quotient_unique_of_comp :
     exact ⟨a₀, hk ▸ ha₀⟩
   obtain ⟨a, ha⟩ := self n₁
   obtain ⟨a', ha'⟩ := self n₂
-  have hr : a.φ = a'.φ := GlobalTheory.T.harrisTaylor_pullback_abelian_map_unique q D R b N₀ h3 hc X X (f ≫ s₁) (f ≫ s₁) u' u' (𝟙 X) a a'
+  have hr : a.φ = a'.φ := _root_.GlobalTheory.UPel.HT.MapUniq.objMap_φ_unique q D R b N₀ h3 hc X X (f ≫ s₁) (f ≫ s₁) u' u' (𝟙 X) a a'
   rw [h₁, h₂, ha', ← hr, ← ha]

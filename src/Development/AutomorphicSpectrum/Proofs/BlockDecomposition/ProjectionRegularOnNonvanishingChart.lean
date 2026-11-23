@@ -236,7 +236,7 @@ theorem mem_pieceSet : ∀ (m : ℕ) (n : Fin (m + 1) → ℕ) (X : Scheme.{0}) 
     have h1 := (hlamU v hv.1).1
     have h2 := over_liftOf h1
     exact ratios_eq_of_sameOrbit Ψ
-      ((GlobalTheory.T.points_eq_iff_same_torus_orbit m n X i _ _ _ _ h2 h1).1 rfl) (hΨ0 v hv)
+      ((_root_.GlobalTheory.CompanionTheory.MixZ.Orbit.eq_iff_sameOrbit m n X i _ _ _ _ h2 h1).1 rfl) (hΨ0 v hv)
   have hτd : DifferentiableOn ℂ (projCoord i Ψ ∘ c.finChart.symm) O := by
     intro v hv
     have h1 : DifferentiableAt ℂ (fun v' => ratio (Ψ (segre (lam v')))) v :=

@@ -118,21 +118,6 @@ lemma bd_pow {f : ℂ_[q]⟦X⟧} (hf : Bd 1 f) (a : ℕ) : Bd 1 (f ^ a) := by
     have := ((GlobalTheory.MomOne.sup_norm_laws q).1 _ _ _ _ ih hf).2
     rwa [one_mul, ← pow_succ] at this
 
-lemma hat_mul (ι : ℂ ≃+* ℂ_[q]) {ℓ : ℂ_[q]⟦X⟧} (hl : constantCoeff ℓ = 0) {F G : ℂ → ℂ}
-    (hF : AnalyticAt ℂ F 0) (hG : AnalyticAt ℂ G 0) :
-    hat ι ℓ (fun z => F z * G z) = hat ι ℓ F * hat ι ℓ G :=
-  ((GlobalTheory.MomOne.TaylorRead.hat_laws q ι ℓ hl).1 F G hF hG).2.1
-
-lemma hat_pow (ι : ℂ ≃+* ℂ_[q]) {ℓ : ℂ_[q]⟦X⟧} (hl : constantCoeff ℓ = 0) {F : ℂ → ℂ}
-    (hF : AnalyticAt ℂ F 0) (a : ℕ) : hat ι ℓ (fun z => F z ^ a) = hat ι ℓ F ^ a := by
-  induction a with
-  | zero =>
-    have := (GlobalTheory.MomOne.TaylorRead.hat_laws q ι ℓ hl).2.1 1
-    simpa using this
-  | succ a ih =>
-    simp only [pow_succ]
-    rw [hat_mul ι hl (F := fun z => F z ^ a) (by fun_prop) hF, ih]
-
 lemma hat_comb (ι : ℂ ≃+* ℂ_[q]) {ℓ : ℂ_[q]⟦X⟧} (hl : constantCoeff ℓ = 0) {κ : Type} (T : Finset κ)
     (c : κ → ℂ_[q]) (F : κ → ℂ → ℂ) (hF : ∀ j, AnalyticAt ℂ (F j) 0) (a : ℕ) :
     hat ι ℓ (fun z => ∑ j ∈ T, ι.symm (c j) * F j z ^ a) = ∑ j ∈ T, C (c j) * hat ι ℓ (F j) ^ a := by
@@ -148,8 +133,8 @@ lemma hat_comb (ι : ℂ ≃+* ℂ_[q]) {ℓ : ℂ_[q]⟦X⟧} (hl : constantCoe
     have h2 : AnalyticAt ℂ (fun z => ∑ j ∈ T, ι.symm (c j) * F j z ^ a) 0 :=
       Finset.analyticAt_fun_sum _ fun j _ => by have := hF j; fun_prop
     rw [((GlobalTheory.MomOne.TaylorRead.hat_laws q ι ℓ hl).1 _ _ h1 h2).1, ih,
-      hat_mul ι hl (F := fun _ => ι.symm (c i)) (G := fun z => F i z ^ a) analyticAt_const (by fun_prop),
-      hat_pow ι hl hi', (GlobalTheory.MomOne.TaylorRead.hat_laws q ι ℓ hl).2.1]
+      _root_.GlobalTheory.MomOne.ChartXY.hat_mul ι hl (F := fun _ => ι.symm (c i)) (G := fun z => F i z ^ a) analyticAt_const (by fun_prop),
+      _root_.GlobalTheory.MomOne.ChartXY.hat_pow ι hl hi', (GlobalTheory.MomOne.TaylorRead.hat_laws q ι ℓ hl).2.1]
     simp
 
 lemma bd_scale_iff (ι : ℂ ≃+* ℂ_[q]) (ω : ℂ_[q]) {S : ℕ} (hS : Nat.Coprime S q) {G : ℂ → ℂ}
@@ -211,7 +196,7 @@ theorem translate_bd : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q])
       refine Finset.sum_congr rfl fun j _ => ?_
       rw [div_pow]; field_simp
     rw [((GlobalTheory.MomOne.TaylorRead.hat_laws q M.ι _ hl).1 _ _ hGS hpr).2.2.1 hev,
-      hat_mul M.ι hl (hθS.fun_pow a) hφ0, hat_pow M.ι hl hθS] at hB
+      _root_.GlobalTheory.MomOne.ChartXY.hat_mul M.ι hl (hθS.fun_pow a) hφ0, _root_.GlobalTheory.MomOne.ChartXY.hat_pow M.ι hl hθS] at hB
     have h1 : Bd 1 (hat M.ι (C ω * logS) (fun z => θ ((S : ℂ) * z))) :=
       (bd_scale_iff M.ι ω hSq (hθd.analyticAt 0) 1).mpr (GlobalTheory.T.cm_even_theta_series_chart_coeff_integral d q M ω θ hd hd16 hsp hL hM hθ)
     refine (GlobalTheory.MomOne.sup_norm_laws q).2.2.2.2.2 _ _ 0 B (bd_pow h1 a) ?_ (by rwa [pow_zero, one_mul])
@@ -266,7 +251,7 @@ theorem translate_bd : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q])
       field_simp
     rw [key, mul_pow]; ring
   rw [((GlobalTheory.MomOne.TaylorRead.hat_laws q M.ι _ hl).1 _ _ hGS hpr).2.2.1 hev,
-    hat_mul M.ι hl (hUtS.fun_pow a) hφt0, hat_pow M.ι hl hUtS]
+    _root_.GlobalTheory.MomOne.ChartXY.hat_mul M.ι hl (hUtS.fun_pow a) hφt0, _root_.GlobalTheory.MomOne.ChartXY.hat_pow M.ι hl hUtS]
   have h1 : Bd 1 (hat M.ι (C ω * logS) (fun z => U1 d t θ ((S : ℂ) * z))) :=
     (bd_scale_iff M.ι ω hSq (hUt.analyticAt 0) 1).mpr (GlobalTheory.T.cpSeriesBounded_one_torsionTranslate_cmTheta d q M ω θ hd hd16 hsp hL hM hθ t ht ht2)
   have := ((GlobalTheory.MomOne.sup_norm_laws q).1 _ _ _ _ (bd_pow h1 a) hBφt).2

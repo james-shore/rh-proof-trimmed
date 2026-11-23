@@ -88,7 +88,7 @@ theorem exists_equiv : ∀ (g n : ℕ) (o : Type) [CommRing o] (ζ : o) (F : SFa
     by_cases ha : a = 0
     · simp [ha]
     · exact (GlobalTheory.Poinc.Trait.beta_pos g n o ζ F T a ha).le
-  obtain ⟨e, he₁, he₂⟩ := GlobalTheory.T.eighthPower_uniformised_monomialPeriods_latticeIso R hB hdvr G hG D A U G' hG' D' A' U' W hW (fun a => pr a ≫ i.hom)
+  obtain ⟨e, he₁, he₂⟩ := _root_.GlobalTheory.Poinc.EighthPow.main R hB hdvr G hG D A U G' hG' D' A' U' W hW (fun a => pr a ≫ i.hom)
     (fun a => by have := hpr a; infer_instance) hu' hL' (h T.ϖ)
     (T.β.compl₁₂ (ε : D.toPre.X →+ T.D.toPre.X).toIntLinearMap (ε : D.toPre.X →+ T.D.toPre.X).toIntLinearMap)
     (fun a b => T.symm (ε a) (ε b)) (fun a => hnn (ε a)) hτ

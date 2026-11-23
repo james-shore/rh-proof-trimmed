@@ -51,11 +51,6 @@ open scoped Formalism.Per
 
 namespace GlobalTheory
 
-theorem gam_norm_natCast_eq (l : ℕ) [Fact l.Prime] : ‖(l : ℂ_[l])‖ = (l : ℝ)⁻¹ := by
-  have h := PadicComplex.norm_extends' l (l : ℚ_[l])
-  rw [Padic.norm_p] at h
-  simpa using h
-
 theorem gam_exists_max_of_tendsto (f : ℤ → ℝ) (hf0 : ∀ n, 0 ≤ f n)
     (hf : Filter.Tendsto f Filter.cofinite (nhds 0)) : ∃ n₀, ∀ n, f n ≤ f n₀ := by
   by_cases hall : ∀ n, f n = 0
@@ -76,7 +71,7 @@ theorem gam_laws : ∀ (l : ℕ) [Fact l.Prime] (h j : ℕ) (r : ℝ), 1 ≤ h �
   intro l _ h j r h1 hr0 hr1
   have hl : 1 < l := (Fact.out : l.Prime).one_lt
   have hlR : (1 : ℝ) < l := by exact_mod_cast hl
-  have ha := gam_norm_natCast_eq l
+  have ha := _root_.GlobalTheory.psers_norm_natCast_self l
   set a := ‖(l : ℂ_[l])‖ with ha_def
   have ha0 : 0 < a := by rw [ha]; positivity
 

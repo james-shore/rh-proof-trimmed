@@ -86,7 +86,7 @@ private theorem localMap_projection (L : TjE E mπ T) (k : ℕ) (i : Fin k) :
 private theorem ks_pb (L : TjE E mπ T) (k : ℕ) :
     IsPullback (L.ksP k) ((GlobalTheory.KS.pow L.o.A k).hom ≫ L.g) ((GlobalTheory.KS.pow E.univ.A k).hom ≫ π) T.s := by
   rw [TjE.ksP]
-  exact (GlobalTheory.T.fibrePowerMapOfTotalSpaces_isPullback _ _ _ _ _ _ _ L.ms.cart.1 k).paste_vert L.pb
+  exact (_root_.GlobalTheory.KS.PowPB.powMap_isPullback _ _ _ _ _ _ _ L.ms.cart.1 k).paste_vert L.pb
 
 private theorem img_of (L : TjE E mπ T) {X : Scheme.{0}} (c : X ⟶ L.o.A.left) (z : X ⟶ T.Y) (a : X ⟶ M.univ.A.left)
     (hz : z = c ≫ L.o.A.hom ≫ L.g) (ha : a = c ≫ L.ms.φ ≫ mπ.φ) (e : a ≫ M.univ.A.hom = z ≫ T.s) :

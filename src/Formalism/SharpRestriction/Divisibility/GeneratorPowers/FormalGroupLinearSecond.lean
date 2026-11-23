@@ -262,32 +262,6 @@ theorem formal_group_linear_first (G : FGLaw S d) (i j : Fin d) :
   rw [← hc]
   exact formal_group_linear_second G i j
 
-theorem eq_single_of_degree_one {κ : Type} (e : κ →₀ ℕ) (he : e.degree = 1) : ∃ q, e = Finsupp.single q 1 := by
-  classical
-  have h1 : ∑ i ∈ e.support, e i = 1 := by
-    first
-      | exact he
-      | simpa [Finsupp.degree] using he
-  obtain ⟨q, hq⟩ : e.support.Nonempty := by
-    rw [Finset.nonempty_iff_ne_empty]
-    intro h
-    rw [h, Finset.sum_empty] at h1
-    exact zero_ne_one h1
-  have h2 := Finset.add_sum_erase e.support e hq
-  rw [h1] at h2
-  have hq0 : e q ≠ 0 := Finsupp.mem_support_iff.1 hq
-  have h3s : ∑ i ∈ e.support.erase q, e i = 0 := by omega
-  have h3 := Finset.sum_eq_zero_iff.1 h3s
-  refine ⟨q, ?_⟩
-  ext i
-  by_cases hi : i = q
-  · subst hi
-    rw [Finsupp.single_eq_same]
-    omega
-  · rw [Finsupp.single_apply, if_neg (Ne.symm hi)]
-    by_contra hne
-    exact hne (h3 i (Finset.mem_erase.2 ⟨hi, Finsupp.mem_support_iff.2 hne⟩))
-
 private theorem mem_degLE_lemma {κ : Type} [Fintype κ] [DecidableEq κ] {n : ℕ} {x : κ →₀ ℕ}
     (hx : x.degree ≤ n) : x ∈ degLE n := by
   have hle : ∀ i, x i ≤ n := by
@@ -349,7 +323,7 @@ theorem psTrunc_law_sub_mem (G : FGLaw S d) {m : ℕ} (hm : 1 ≤ m) (j : Fin d)
         | exact Finsupp.degree_eq_zero_iff.1 h0
     subst hx0
     simp [coeff_X', MvPowerSeries.coeff_zero_eq_constantCoeff_apply, G.const]
-  · obtain ⟨⟨q1, q2⟩, rfl⟩ := eq_single_of_degree_one x h0
+  · obtain ⟨⟨q1, q2⟩, rfl⟩ := _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp2.eq_single_lemma_6 x h0
     obtain rfl | rfl : q1 = 0 ∨ q1 = 1 := by fin_cases q1 <;> simp
     · by_cases hq : q2 = j
       · subst hq
@@ -535,7 +509,7 @@ theorem psTrunc_act_sub_mem (φ : Fin d → PS S 1 d) (hφ : ∀ i, MvPowerSerie
         | exact Finsupp.degree_eq_zero_iff.1 h0
     subst hx0
     simp [coeff_C_mul, coeff_X', MvPowerSeries.coeff_zero_eq_constantCoeff_apply, hφ]
-  · obtain ⟨⟨q1, q2⟩, rfl⟩ := eq_single_of_degree_one x h0
+  · obtain ⟨⟨q1, q2⟩, rfl⟩ := _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp2.eq_single_lemma_6 x h0
     have hq1 : q1 = 0 := Subsingleton.elim _ _
     subst hq1
     rw [Finset.sum_eq_single q2]

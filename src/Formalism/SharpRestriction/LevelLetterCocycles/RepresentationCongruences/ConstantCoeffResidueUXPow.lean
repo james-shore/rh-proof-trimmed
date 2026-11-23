@@ -179,19 +179,6 @@ theorem ContD.mem_iff_le (ϖ : O) (g f : O⟦X⟧) (k : ℕ) :
     have hlt : ((k - 1 : ℕ) : ℕ∞) < (k : ℕ∞) := by exact_mod_cast (by omega : k - 1 < k)
     exact absurd (lt_of_le_of_lt hle hlt) (not_lt.2 h)
 
-theorem ContD.enat_le_of_forall {a b : ℕ∞} (h : ∀ k : ℕ, (k : ℕ∞) ≤ a → (k : ℕ∞) ≤ b) : a ≤ b := by
-  by_contra hab
-  push_neg at hab
-  have hb : b ≠ ⊤ := ne_top_of_lt hab
-  obtain ⟨m, rfl⟩ := ENat.ne_top_iff_exists.1 hb
-  have h1 : ((m + 1 : ℕ) : ℕ∞) ≤ a := by
-    first
-    | exact_mod_cast Order.add_one_le_of_lt hab
-    | exact_mod_cast (ENat.add_one_le_iff (ENat.coe_ne_top m)).2 hab
-  have h2 := h (m + 1) h1
-  norm_cast at h2
-  omega
-
 theorem ContD.alg_C (ψ : O⟦X⟧ →ₐ[O] O⟦X⟧) (c : O) : ψ (C c) = C c := by
   first
   | exact ψ.commutes c
@@ -328,11 +315,11 @@ theorem PhiData.DESC (f g : O⟦X⟧) (k : ℕ)
 theorem PhiData.cont_phi_phi_eq {g : O⟦X⟧} (hg : IsDist g) (f : O⟦X⟧) :
     cont ϖ (P.φ g) (P.φ f) = cont ϖ g f := by
   apply le_antisymm
-  · apply ContD.enat_le_of_forall
+  · apply _root_.Formalism.MainNotions.N.FrobeniusPowerSeries.Cont.enat_le_of_forall
     intro k hk
     rw [← ContD.mem_iff_le] at hk ⊢
     exact P.DESC hϖ f g k hk
-  · apply ContD.enat_le_of_forall
+  · apply _root_.Formalism.MainNotions.N.FrobeniusPowerSeries.Cont.enat_le_of_forall
     intro k hk
     rw [← ContD.mem_iff_le] at hk ⊢
     obtain ⟨a, b, hab⟩ := Ideal.mem_span_pair.1 hk

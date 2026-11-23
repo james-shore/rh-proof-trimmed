@@ -72,7 +72,7 @@ theorem exists_shear_of_adjoint : ∀ {E : Type} [Field E] [NumberField E] [IsCM
     intro z hz
     obtain ⟨e, he⟩ := exists_eq_nsmul_of_forall_ef_dvd D hN (w z - z) fun b => by
       obtain ⟨b', hb', e, he⟩ := hσN b
-      have h0 : D.EF z b' = 0 := by rw [ef_swap, hb' z hz, neg_zero]
+      have h0 : D.EF z b' = 0 := by rw [_root_.GlobalTheory.SimLift.form_skew, hb' z hz, neg_zero]
       refine ⟨D.EF z e, ?_⟩
       simp only [map_sub, LinearMap.sub_apply, hw, he, map_add (f := _), map_nsmul, h0, nsmul_eq_mul]
       ring
@@ -100,7 +100,7 @@ theorem exists_shear_of_adjoint : ∀ {E : Type} [Field E] [NumberField E] [IsCM
       fun _ _ => rfl⟩
   have hskew : ∀ a b, β a b = -β b a := fun a b => by
     rw [hβ, hβ]
-    exact mul_left_cancel₀ hnZ (by rw [mul_neg, hf, hf, ef_swap])
+    exact mul_left_cancel₀ hnZ (by rw [mul_neg, hf, hf, _root_.GlobalTheory.SimLift.form_skew])
   have hadj : ∀ (c : 𝓞 E) a b, β (c • a) b = β a (H.bar c • b) := fun c a b => by
     rw [hβ, hβ]
     exact mul_left_cancel₀ hnZ (by rw [hf, hf, Submodule.coe_smul, Submodule.coe_smul, w.map_smul, w.map_smul, D.adj])
@@ -112,7 +112,7 @@ theorem exists_shear_of_adjoint : ∀ {E : Type} [Field E] [NumberField E] [IsCM
     rw [ht, hwz, hk, smul_sub, mul_smul]
     abel
   · have e1 : D.EF (w z) (c z') = D.EF z (c z') := by rw [hw, hσb _ (c z').2]
-    have e2 : D.EF (c z) (w z') = D.EF (c z) z' := by rw [ef_swap, hw, hσb _ (c z).2, ← ef_swap]
+    have e2 : D.EF (c z) (w z') = D.EF (c z) z' := by rw [_root_.GlobalTheory.SimLift.form_skew, hw, hσb _ (c z).2, ← _root_.GlobalTheory.SimLift.form_skew]
     have e3 : D.EF (c z) (c z') = 0 := hO.2.1 (c z).2 _ (c z').2
     have e4 : (n : ℤ) * β z z' = D.EF (w z) (w z') := by rw [hβ, hf]
     have e5 := hc z z'

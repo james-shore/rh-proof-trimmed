@@ -78,9 +78,9 @@ theorem shLift_cusp_kills_of_not_dvd : ∀ (F F' : Type) [Field F] [Field F'] [A
   have hcard' : Nat.card F' = q ^ l := by
     rw [hq_def, Nat.card_eq_fintype_card, Nat.card_eq_fintype_card, Module.card_eq_pow_finrank (K := F)]
   set K := k * ∑ i ∈ Finset.range l, q ^ (n * i) with hK_def
-  obtain ⟨hregK, a, ha⟩ := GlobalTheory.T.regular_pair_lift_to_prime_power_field q l n k hq2 hl hn hnd hreg
+  obtain ⟨hregK, a, ha⟩ := _root_.GlobalTheory.Shin.reg_norm_frob q l n k hq2 hl hn hnd hreg
   have hregK' : Reg (Nat.card F') n K := by rw [hcard']; exact hregK
-  obtain ⟨hYchar, -⟩ := GlobalTheory.T.cuspidalCharacterGL_isCharacter_norm_one_of_regular F' θ hθ n K hn hregK'
+  obtain ⟨hYchar, -⟩ := _root_.GlobalTheory.Shin.isChar_cusp_and_norm_of_reg F' θ hθ n K hn hregK'
   have hYs : ∀ g, cusp θ n K (galAct F F' n s g) = cusp θ n K g := by
     intro g
     obtain ⟨⟨i, hi⟩, hi'⟩ := (FiniteField.bijective_frobeniusAlgEquivOfAlgebraic_pow F F').2 s
@@ -91,7 +91,7 @@ theorem shLift_cusp_kills_of_not_dvd : ∀ (F F' : Type) [Field F] [Field F'] [A
       intro x
       change s x = _
       rw [← hi', AlgEquiv.coe_pow, FiniteField.coe_frobeniusAlgEquivOfAlgebraic_iterate, hr, hchar, pow_mul]
-    have h1 := GlobalTheory.T.cuspidalCharacterGLFiniteField_frobenius_pow F' θ s.toRingEquiv ((r : ℕ) * i) hsx n K g
+    have h1 := _root_.GlobalTheory.Shin.cusp_gal F' θ s.toRingEquiv ((r : ℕ) * i) hsx n K g
     have hpq : ringChar F' ^ ((r : ℕ) * i) = q ^ i := by
       rw [hchar, pow_mul, ← hr, hq_def, Nat.card_eq_fintype_card]
     rw [hpq] at h1
@@ -109,10 +109,10 @@ theorem shLift_cusp_kills_of_not_dvd : ∀ (F F' : Type) [Field F] [Field F'] [A
           _ ≡ (K * (q ^ l) ^ a) * Nat.card F' ^ (a * j) [MOD Nat.card F' ^ n - 1] := by
             apply Nat.ModEq.mul_right
             rw [hcard']; exact ha
-    have h2 := GlobalTheory.T.cuspidalCharacterGLFiniteField_eq_of_modEq F' θ hθ n K (K * q ^ i) (a * i) hn (hpow i)
+    have h2 := _root_.GlobalTheory.Shin.cusp_eq_of_modEq F' θ hθ n K (K * q ^ i) (a * i) hn (hpow i)
     rw [galAct_apply]
     exact h1.trans (congrFun h2 g)
-  obtain ⟨X0, hX0, hX0a, hX0b⟩ := GlobalTheory.T.exists_virtualCharacter_shintani_psi_lift F F' s hl hs ι θ hθ k n
+  obtain ⟨X0, hX0, hX0a, hX0b⟩ := _root_.GlobalTheory.Shin.exists_virt_psi_lift F F' s hl hs ι θ hθ k n
   set c : ℂ := (-1) ^ (n - 1) with hc_def
   have hc2 : c * c = 1 := by rw [hc_def, ← mul_pow]; simp
   have hcstar : star c = c := by rw [hc_def]; simp
@@ -129,7 +129,7 @@ theorem shLift_cusp_kills_of_not_dvd : ∀ (F F' : Type) [Field F] [Field F'] [A
     by_cases h : ∃ γ, IsNorm s δ γ <;> simp [shLift, cusp, h, hc_def]
   have hcl : IsCl (cusp (pullθ ι θ) n k) := by
     intro x y
-    have := ((GlobalTheory.T.twistedHarishChandraInductionGL_isTwistedClassFunction F (RingHom.id F) 0 0 n (fun _ => 0) (fun _ => 0)).2.2 (rootSum (pullθ ι θ) k)).1 x y
+    have := ((_root_.GlobalTheory.Shin.twisted_class_main F (RingHom.id F) 0 0 n (fun _ => 0) (fun _ => 0)).2.2 (rootSum (pullθ ι θ) k)).1 x y
     simp only [cusp]
     rw [this]
   have hinj : Function.Injective ι := ι.toRingHom.injective
@@ -139,11 +139,11 @@ theorem shLift_cusp_kills_of_not_dvd : ∀ (F F' : Type) [Field F] [Field F'] [A
     refine hθ _ _ ?_ ?_ h
     · exact fun h0 => hx (hinj (h0.trans (map_zero ι).symm))
     · exact fun h0 => hy (hinj (h0.trans (map_zero ι).symm))
-  obtain ⟨-, hnormF⟩ := GlobalTheory.T.cuspidalCharacterGL_isCharacter_norm_one_of_regular F (pullθ ι θ) hθ' n k hn hreg
+  obtain ⟨-, hnormF⟩ := _root_.GlobalTheory.Shin.isChar_cusp_and_norm_of_reg F (pullθ ι θ) hθ' n k hn hreg
   have hΓ : Nat.card (F' ≃ₐ[F] F') = l := IsGalois.card_aut_eq_finrank F F'
   have htop : ∀ t : F' ≃ₐ[F] F', t ∈ Subgroup.zpowers s := fun t => by
     rw [zpowers_eq_top_of_prime_card hΓ hs]; trivial
-  have hiso := GlobalTheory.T.shintaniLiftClassFunction_isometry F F' s htop n _ _ hcl hcl
+  have hiso := _root_.GlobalTheory.Shin.shLift_isometry F F' s htop n _ _ hcl hcl
   rw [hnormF] at hiso
   have hnorm : ∑ᶠ g, X (inl g * inr s) * star (X (inl g * inr s)) = (Nat.card (GL (Fin n) F') : ℂ) := by
     have e : ∀ g, X (inl g * inr s) * star (X (inl g * inr s)) =
@@ -161,13 +161,13 @@ theorem shLift_cusp_kills_of_not_dvd : ∀ (F F' : Type) [Field F] [Field F'] [A
   have hSprod : S = fun P => ∏ j : Fin l, rootSum θ (k * q ^ (j : ℕ)) P := by
     funext P
     simp only [hS_def]
-    rw [GlobalTheory.T.prod_rootPowerSum_map_galois_eq F F' θ k P, Fin.prod_univ_eq_prod_range (fun j => rootSum θ (k * q ^ j) P) l]
-  have hprim := GlobalTheory.T.psi_sum_eq_char_sum_against_cusp_form F' θ S n K hS1
-  have hprod := GlobalTheory.T.primitiveFunctionCharpoly_pair_prod_rootSum F' θ hθ n K l (fun j => k * q ^ (j : ℕ)) hn
+    rw [_root_.GlobalTheory.Shin.prod_rootSum_map_algEquiv F F' θ k P, Fin.prod_univ_eq_prod_range (fun j => rootSum θ (k * q ^ j) P) l]
+  have hprim := _root_.GlobalTheory.Shin.sum_psiG_mul_star_cusp_eq F' θ S n K hS1
+  have hprod := _root_.GlobalTheory.Shin.psiG_rootSum_pair_prod_rootSum F' θ hθ n K l (fun j => k * q ^ (j : ℕ)) hn
   rw [hcard'] at hprod
   set cnt := (Finset.univ.filter fun a : Fin l → Fin n =>
     K ≡ ∑ j : Fin l, k * q ^ (j : ℕ) * (q ^ l) ^ (a j : ℕ) [MOD (q ^ l) ^ n - 1]).card with hcnt_def
-  have hcnt : cnt ≡ 1 [MOD l] := GlobalTheory.T.card_exponent_tuples_modEq_one_of_prime_not_dvd q l n k hq2 hl hn hnd hreg
+  have hcnt : cnt ≡ 1 [MOD l] := _root_.GlobalTheory.ExpCount.count_one_mod q l n k hq2 hl hn hnd hreg
   have hz : ∑ᶠ g, X (inl g) * star (cusp θ n K g) = ((cnt : ℤ) : ℂ) * (Nat.card (GL (Fin n) F') : ℂ) := by
     simp only [finsum_eq_sum_of_fintype] at hprim hprod ⊢
     have e1 : ∀ g, X (inl g) * star (cusp θ n K g) = c * (psiG S n g * star (cusp θ n K g)) := fun g => by
@@ -188,7 +188,7 @@ theorem shLift_cusp_kills_of_not_dvd : ∀ (F F' : Type) [Field F] [Field F'] [A
     have h1 : cnt % l = 1 % l := hcnt
     rw [(Nat.dvd_iff_mod_eq_zero).1 h, Nat.mod_eq_of_lt hl.one_lt] at h1
     exact zero_ne_one h1
-  have key := GlobalTheory.T.twisted_virtualCharacter_norm_one_support (GL (Fin n) F') (F' ≃ₐ[F] F') (galAct F F' n) s (hΓ ▸ hl) hs X hX hnorm (cusp θ n K)
+  have key := _root_.GlobalTheory.Shin.kills_of_norm_one_of_pairing_prime (GL (Fin n) F') (F' ≃ₐ[F] F') (galAct F F' n) s (hΓ ▸ hl) hs X hX hnorm (cusp θ n K)
     hYchar hYs (cnt : ℤ) hz hndvd
   rw [hfun] at key
   exact key

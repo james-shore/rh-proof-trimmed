@@ -62,16 +62,16 @@ theorem kernel_datum_of_hecke_character_values : ∀ (D : D7) (L : SizeData₂ D
   rcases lt_trichotomy i t.m2 with hlt | heq | hgt
   · intro x
     rw [hE i hlt c c' x]
-    exact GlobalTheory.T.isIntegralOffPrimes_matrixStepEntryData D L hT Gi Gl K Y cX ex t h1 h2 u μ (hQ μ) i hlt _ _ _ _ x
+    exact _root_.GlobalTheory.KerTie.intOff_xiEntry D L hT Gi Gl K Y cX ex t h1 h2 u μ (hQ μ) i hlt _ _ _ _ x
   · subst heq
     intro x
     rw [hC1 c c' x]
-    exact GlobalTheory.T.precedingStepDatum_integral_away_from_levels D L hT Gi Gl K Y cX ex t h1 h2 u μ (hQ μ) _ _ _ _ x
+    exact _root_.GlobalTheory.xiCpl1_intOff D L hT Gi Gl K Y cX ex t h1 h2 u μ (hQ μ) _ _ _ _ x
   · have hi' : i = t.m2 + 1 := by omega
     subst hi'
     obtain ⟨d, hd⟩ := (hp c').1 hpin
     refine forall_val_of_heq_hom (congrArg D.R.N (by omega : t.m2 + 1 + 1 = D.R.m))
       (IntOff (t.O u μ).S) (hC2 c c' d hd) fun x => ?_
-    exact GlobalTheory.T.lastStep_data_integralAwayFrom_levels D L hT Gi Gl K Y cX ex t u μ _ _ d x (hyb c)
+    exact _root_.GlobalTheory.CplTwoInt.xiCpl2_intOff_tied D L hT Gi Gl K Y cX ex t u μ _ _ d x (hyb c)
 
 end GlobalTheory

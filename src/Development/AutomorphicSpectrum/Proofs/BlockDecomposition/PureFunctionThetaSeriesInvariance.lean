@@ -55,7 +55,7 @@ theorem finite_contributing : ∀ (F : Type) [Field F] [NumberField F], IsTotall
     {x : F | (∀ v, v ∉ T → algebraMap F (Fv F v) x ∈ v.adicCompletionIntegers F) ∧
       phiA G a (fun _ => θ δ * algebraMap F (Ainf F) x) * ∏ v ∈ T, psiA S g a v (fun _ => algebraMap F (Fv F v) x) ≠ 0}.Finite := by
   intro F _ _ _ θ _ S T G g a _ hGc hg hST ha δ hδ
-  obtain ⟨N, hN, hNint⟩ := GlobalTheory.T.bounded_denominators_compact_idele_set F {a} isCompact_singleton S (fun v => tsupport (g v))
+  obtain ⟨N, hN, hNint⟩ := _root_.GlobalTheory.CompanionTheory.BasePsi.Den.common_denominator F {a} isCompact_singleton S (fun v => tsupport (g v))
     (fun v hv => (hg v hv).2)
   have h1 : ((↑a⁻¹ : AF F)).1 * (↑a : AF F).1 = 1 := congrArg Prod.fst (Units.inv_mul a)
   have h2 : θ δ⁻¹ * θ δ = 1 := by rw [← map_mul, inv_mul_cancel₀ hδ.ne', map_one]

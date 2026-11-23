@@ -60,18 +60,6 @@ noncomputable section
 
 namespace GlobalTheory.KS.Endo
 
-private theorem valAt'_comp_lemma {Y Z : Scheme.{0}} (x : Sp ℂ ⟶ Y) (φ : Y ⟶ Z) (U : Z.Opens) (a : Γ(Z, U)) :
-    valAt' (x ≫ φ) U a = valAt' x (φ ⁻¹ᵁ U) ((φ.app U).hom a) := by
-  unfold valAt'
-  by_cases h : ⊤ ≤ (x ≫ φ) ⁻¹ᵁ U
-  · have h' : ⊤ ≤ x ⁻¹ᵁ φ ⁻¹ᵁ U := h
-    rw [dite_eq_left h, dite_eq_left h']
-    unfold valAt
-    rw [Scheme.Hom.comp_appLE]
-    rfl
-  · have h' : ¬ ⊤ ≤ x ⁻¹ᵁ φ ⁻¹ᵁ U := h
-    rw [dite_eq_right h, dite_eq_right h']
-
 theorem ptDer_push {X Y : Scheme.{0}} (y : Sp ℂ ⟶ X) (f : X ⟶ Y) (δ : ∀ W : X.Opens, Γ(X, W) → ℂ) (h : PtDer y δ) :
     PtDer (y ≫ f) (fun W a => δ (f ⁻¹ᵁ W) ((f.app W).hom a)) := by
   constructor
@@ -79,7 +67,7 @@ theorem ptDer_push {X Y : Scheme.{0}} (y : Sp ℂ ⟶ X) (f : X ⟶ Y) (δ : ∀
     rw [(f.app W).hom.map_add]
     exact h.add (f ⁻¹ᵁ W) hW _ _
   · intro W hW a b
-    rw [map_mul, valAt'_comp_lemma y f W a, valAt'_comp_lemma y f W b]
+    rw [map_mul, _root_.GlobalTheory.KS.VertField.valAt'_comp y f W a, _root_.GlobalTheory.KS.VertField.valAt'_comp y f W b]
     exact h.mul (f ⁻¹ᵁ W) hW _ _
   · intro W W' hle hW a
     have hle' : f ⁻¹ᵁ W' ≤ f ⁻¹ᵁ W := fun x hx => hle hx
@@ -125,7 +113,7 @@ theorem fn_differentiableAt (m : A₀.left ⟶ X) (W : X.Opens) (a : Γ(X, W)) (
   have hz' : z ∈ {z | ⊤ ≤ (u.ex z).left ⁻¹ᵁ (m ⁻¹ᵁ W)} := hz
   have heq : fn u m W a = fun z => valAt' (u.ex z).left (m ⁻¹ᵁ W) ((m.app W).hom a) := by
     funext w
-    exact valAt'_comp_lemma (u.ex w).left m W a
+    exact _root_.GlobalTheory.KS.VertField.valAt'_comp (u.ex w).left m W a
   rw [heq]
   exact hU.2.differentiableAt (hU.1.mem_nhds hz')
 
@@ -167,7 +155,7 @@ theorem comm_of_endo : ∀ (P₀ : Out.PolAV (Sp ℂ)) (u : HolUnif P₀.A P₀.
   have hfn : ∀ W a z, fn u m (f ⁻¹ᵁ W) ((f.app W).hom a) z = fn u m W a (F z) := by
     intro W a z
     show valAt' ((u.ex z).left ≫ m) (f ⁻¹ᵁ W) ((f.app W).hom a) = valAt' ((u.ex (F z)).left ≫ m) W a
-    rw [← hpt z, ← Category.assoc, valAt'_comp_lemma ((u.ex z).left ≫ m) f W a]
+    rw [← hpt z, ← Category.assoc, _root_.GlobalTheory.KS.VertField.valAt'_comp ((u.ex z).left ≫ m) f W a]
   have hfd : ∀ W a z, F z ∈ dom u m W → fderiv ℂ (fn u m (f ⁻¹ᵁ W) ((f.app W).hom a)) z =
       (fderiv ℂ (fn u m W a) (F z)).comp (LinearMap.toContinuousLinearMap F) := by
     intro W a z hz

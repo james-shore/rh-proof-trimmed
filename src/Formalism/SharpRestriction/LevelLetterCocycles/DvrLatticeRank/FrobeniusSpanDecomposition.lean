@@ -120,7 +120,7 @@ theorem frobenius_span_exact_lift (W : LocWach PD LL O v n) [IsAdicComplete (Ide
     rw [Formalism.MainNotions.LiftingTheory.wmap_mem_Nl]
     refine ⟨y k, hyN, ?_⟩
     apply hinj
-    rw [Formalism.MainNotions.LiftingTheory.wmap_map_smul, hy k, Formalism.MainNotions.LiftingTheory.wmap_Nl_fix W Tp i (s k) (hs k)]
+    rw [Formalism.MainNotions.LiftingTheory.wmap_map_smul, hy k, _root_.Formalism.MainNotions.LiftingTheory.idempotent_smul_of_mem_letter' W Tp i (s k) (hs k)]
   refine ⟨∑ k : Fin PD.p, (letπ : LetA O n) ^ (k : ℕ) • W.φD T (y k), ?_, ?_⟩
   · refine Submodule.sum_mem _ fun k _ => Submodule.smul_mem _ _ ?_
     unfold Formalism.MainNotions.DeltaInvariantLattices.φspan

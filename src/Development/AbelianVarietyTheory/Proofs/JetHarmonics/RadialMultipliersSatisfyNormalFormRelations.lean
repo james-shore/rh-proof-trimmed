@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentComposition.Development
 
 @[expose] public section
 
@@ -78,9 +79,6 @@ section hs
 
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq]
-
-omit [FiniteDimensional ℂ Wp] in
-theorem hsVec_smul (s : ℂ) (A : Wq →L[ℂ] Wp) : B.hsVec (s • A) = s • B.hsVec A := rfl
 
 omit [FiniteDimensional ℂ Wp] in
 theorem hsVec_sub (A A' : Wq →L[ℂ] Wp) : B.hsVec (A - A') = B.hsVec A - B.hsVec A' := rfl
@@ -123,7 +121,7 @@ theorem commute_of_adj {a b w : Module.End ℂ (Q.RadSp P.k P.r Bs.z Bs.z' Bs.π
   have h1 := hab (w Φ) (a (w Φ) - w (a Φ)) x hx
   have h2 := hab Φ (a (w Φ) - w (a Φ)) x hx
   unfold B.hsInner at h1 h2
-  rw [hw Φ, hsVec_smul, inner_smul_right, ← h2, ← inner_smul_right, ← hsVec_smul, ← hw (a Φ)] at h1
+  rw [hw Φ, _root_.PI.UnitaryGroupMassFormula.UsCompose.hsVec_smul, inner_smul_right, ← h2, ← inner_smul_right, ← _root_.PI.UnitaryGroupMassFormula.UsCompose.hsVec_smul, ← hw (a Φ)] at h1
   exact h1
 
 theorem commute_of_ptAdj {x : RA P Bs} (hx : PtAdj P Bs x) {w : Module.End ℂ (Q.RadSp P.k P.r Bs.z Bs.z' Bs.π Bs.π')}

@@ -51,16 +51,10 @@ section Emb
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem emb_injective (s : 𝓞 E →+* ℂ) : Function.Injective s := by
-  have hc : (RingHom.ker s).comap (algebraMap ℤ (𝓞 E)) = ⊥ := by
-    rw [RingHom.comap_ker]
-    exact (RingHom.injective_iff_ker_eq_bot _).1 (RingHom.injective_int _)
-  exact (RingHom.injective_iff_ker_eq_bot s).2 (Ideal.eq_bot_of_comap_eq_bot hc)
-
-def extEmb (s : 𝓞 E →+* ℂ) : E →+* ℂ := IsFractionRing.lift (emb_injective s)
+def extEmb (s : 𝓞 E →+* ℂ) : E →+* ℂ := IsFractionRing.lift (_root_.LevelTowerAlt.emb_inj s)
 
 theorem extEmb_apply (s : 𝓞 E →+* ℂ) (a : 𝓞 E) : extEmb s (algebraMap (𝓞 E) E a) = s a :=
-  IsFractionRing.lift_algebraMap (emb_injective s) a
+  IsFractionRing.lift_algebraMap (_root_.LevelTowerAlt.emb_inj s) a
 
 theorem extEmb_comp (s : 𝓞 E →+* ℂ) : (extEmb s).comp (algebraMap (𝓞 E) E) = s :=
   RingHom.ext (extEmb_apply s)

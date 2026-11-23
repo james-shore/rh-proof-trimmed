@@ -76,9 +76,9 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre R) (O : Type
     rw [← Category.assoc, ← hy, Category.assoc, Over.w Y.q]
   rw [e₀, e₁, e₂, ← _root_.mul_assoc, ← _root_.mul_assoc, ← add_mul] at E
   have E' := (Units.mul_left_inj _).1 E
-  rw [hH, hy, GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ hJ', GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ hJ',
-    GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ hJ', GlobalTheory.HeatDefect.gs_comp_stalk p _ w ⊤ trivial,
-    GlobalTheory.HeatDefect.gs_comp_stalk p _ w ⊤ trivial, hfun, ← map_mul, ← map_mul, ← map_add] at E'
+  rw [hH, hy, _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ hJ', _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ hJ',
+    _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ hJ', _root_.GlobalTheory.OneBasis.ThMove.gs_comp p _ w ⊤ trivial,
+    _root_.GlobalTheory.OneBasis.ThMove.gs_comp p _ w ⊤ trivial, hfun, ← map_mul, ← map_mul, ← map_add] at E'
   exact hinj E'
 
 end GlobalTheory.TermDescend

@@ -216,7 +216,7 @@ theorem boundary_eq : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H 
 
   have hdiv : idlAlong BD.idealSheaf ξ = Ideal.span {∏ i, C.s i ^ a i} := by
     rw [hprod]
-    refine GlobalTheory.T.ideal_eq_span_monomial_of_orders_along_completeDVR k m e _ _ fun W _ _ _ hW ψ hψ hψl => ?_
+    refine _root_.GlobalTheory.MonoVal.eq_span_monomial_of_forall_cdvr k m e _ _ fun W _ _ _ hW ψ hψ hψl => ?_
     rw [← hprod, ← idlAlong_comp_local]
     haveI : IsDiscreteValuationRing W := hW.1
     obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible W

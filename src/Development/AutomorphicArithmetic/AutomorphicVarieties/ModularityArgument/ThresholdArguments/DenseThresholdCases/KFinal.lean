@@ -44,6 +44,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 section
 namespace UpperTheory.V.ZK
-theorem lemmaK_litN_alt (hN : _root_.GlobalTheory.Mem.LiteralAutomorphy.LiteratureRankNHypothesis) : ∃ CK, LemmaK CK := _root_.UpperTheory.V.ZK.lemmaK_of_litN_alt hN bOdd
+theorem lemmaK_litN_alt (hN : _root_.GlobalTheory.Mem.LiteralAutomorphy.LiteratureRankNHypothesis) : ∃ CK, LemmaK CK := _root_.UpperTheory.V.ZK.lemmaK_of_litN_alt hN _root_.PositivityTheory.KB.bOdd_zk
 end UpperTheory.V.ZK
 end

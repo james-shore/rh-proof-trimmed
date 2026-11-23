@@ -96,8 +96,8 @@ theorem tensorFractionRing_units_pow_surj : ∀ (q : ℕ) [NeZero q] (T : Type) 
   have hB : ∀ P : Ideal L, P.IsPrime → P ≠ ⊥ → P.IsMaximal ∧ ∀ x : L, ∃ c d : T, d ≠ 0 ∧
       algebraMap T L d * x - algebraMap T L c ∈ P := by
     intro P hP hne
-    obtain ⟨g, hg, hgP⟩ := GlobalTheory.T.exists_ne_zero_polynomial_mem_prime_localization T hAIC O hind P hP hne
-    exact GlobalTheory.T.prime_tensor_polynomial_isMaximal_of_mem_image T hAIC O hind P hP g hg hgP
+    obtain ⟨g, hg, hgP⟩ := _root_.GlobalTheory.genFibre_prime_meets_polynomial T hAIC O hind P hP hne
+    exact _root_.GlobalTheory.ClosedFibre.isMaximal_of_mem T hAIC O hind P hP g hg hgP
   by_cases hJ : RingHom.ker φ = ⊥
   · have hinj : Function.Injective φ := (RingHom.injective_iff_ker_eq_bot φ).2 hJ
     let e : L ≃+* R := RingEquiv.ofBijective φ ⟨hinj, hφ⟩
@@ -154,7 +154,7 @@ theorem tensorFractionRing_units_pow_surj : ∀ (q : ℕ) [NeZero q] (T : Type) 
         linear_combination Dinv ^ (n + 1) * hR + w0 * hDn
       rw [key]
       exact Ideal.mul_mem_left _ _ hcd
-    obtain ⟨v, hv⟩ := GlobalTheory.T.exists_root_of_unit_zero_dimensional (L ⧸ J) q hq0 hqL (Units.map e.symm.toMonoidHom u) hroot
+    obtain ⟨v, hv⟩ := _root_.GlobalTheory.exists_unit_pow_eq_of_krullDimLE_zero (L ⧸ J) q hq0 hqL (Units.map e.symm.toMonoidHom u) hroot
     exact ⟨Units.map e.toMonoidHom v, by rw [← map_pow, hv]; ext; simp⟩
 
 end GlobalTheory.QUnits

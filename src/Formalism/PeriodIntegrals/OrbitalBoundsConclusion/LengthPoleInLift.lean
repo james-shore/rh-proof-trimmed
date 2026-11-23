@@ -40,4 +40,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem length_pole_t0 : PI.LengthPoleInLift := PI.PoleLengthCount.pole_length_bound

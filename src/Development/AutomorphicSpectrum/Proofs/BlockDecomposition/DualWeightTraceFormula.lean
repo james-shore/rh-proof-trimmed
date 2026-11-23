@@ -139,7 +139,7 @@ theorem core (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [Finite
     · intro h
       exact absurd hin h
   have hsum : ∑ ν ∈ hfin.toFinset, p ν = LinearMap.id :=
-    (sub_eq_zero.mp (GlobalTheory.T.intertwiner_eq_zero_of_vanish_on_highest H H G G hg hh _ hcomm hhigh)).symm
+    (sub_eq_zero.mp (_root_.GlobalTheory.CompanionTheory.RealCountG.intertwiner_eq_zero_of_highest H H G G hg hh _ hcomm hhigh)).symm
   refine ⟨hfin.toFinset, fun ν hν => ((hF ν).1 hν).1, fun ν hν hνF => ?_, ?_⟩
   · by_contra hne
     exact hνF ((hF ν).2 ⟨hν, hne⟩)
@@ -155,29 +155,6 @@ theorem core (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [Finite
 
           simp [LinearMap.sum_apply, map_sum]
       _ = _ := Finset.sum_congr rfl fun ν hν => hptr ν ((hF ν).1 hν).1 S hS k z hk hz
-
-theorem sum_single' {M : Type*} [AddCommGroup M] [Module ℂ M] (x : Fin n → Fin n → M) (a b : Fin n) (c : ℂ) :
-    ∑ i, ∑ j, (Matrix.single a b c : Matrix (Fin n) (Fin n) ℂ) i j • x i j = c • x a b := by
-  classical
-  rw [Finset.sum_eq_single a (fun i _ hi => Finset.sum_eq_zero fun j _ => by
-        simp [Ne.symm hi]) (by simp),
-      Finset.sum_eq_single b (fun j _ hj => by simp [Ne.symm hj]) (by simp)]
-  simp
-
-theorem eq_zero_of_skew {M : Type*} [AddCommGroup M] [Module ℂ M] (x : Fin n → Fin n → M)
-    (h : ∀ X : Matrix (Fin n) (Fin n) ℂ, Xᴴ = -X → ∑ i, ∑ j, X i j • x i j = 0) (a b : Fin n) : x a b = 0 := by
-  have h1 := h (Matrix.single a b 1 - Matrix.single b a 1) (by
-    rw [Matrix.conjTranspose_sub, GlobalTheory.CompanionTheory.RealCount.InjHw.single_conjT, GlobalTheory.CompanionTheory.RealCount.InjHw.single_conjT,
-      star_one, neg_sub])
-  have h2 := h (Matrix.single a b Complex.I + Matrix.single b a Complex.I) (by
-    rw [Matrix.conjTranspose_add, GlobalTheory.CompanionTheory.RealCount.InjHw.single_conjT, GlobalTheory.CompanionTheory.RealCount.InjHw.single_conjT,
-      Complex.star_def, Complex.conj_I, GlobalTheory.CompanionTheory.RealCount.InjHw.single_negI, GlobalTheory.CompanionTheory.RealCount.InjHw.single_negI,
-      neg_add, add_comm])
-  simp only [Matrix.sub_apply, Matrix.add_apply, sub_smul, add_smul, Finset.sum_sub_distrib,
-    Finset.sum_add_distrib, sum_single', one_smul] at h1 h2
-  rw [sub_eq_zero] at h1
-  rw [← h1, ← two_smul ℂ, smul_smul] at h2
-  exact (smul_eq_zero.mp h2).resolve_left (mul_ne_zero two_ne_zero Complex.I_ne_zero)
 
 theorem trOn_transport {M N : Type*} [AddCommGroup M] [Module ℂ M] [AddCommGroup N] [Module ℂ N] (e : M ≃ₗ[ℂ] N)
     (D : Submodule ℂ M) (D' : Submodule ℂ N) (hD : ∀ x, x ∈ D ↔ e x ∈ D') (f : M →ₗ[ℂ] M) (g : N →ₗ[ℂ] N)
@@ -231,7 +208,7 @@ theorem main : ∀ {n : ℕ} (E : KMod n) (T : E.V →L[ℂ] E.V), (∀ k, T * E
       simp only [map_sum, map_smul] at h5
       simp only [smul_sub, Finset.sum_sub_distrib]
       rw [h5, sub_self]
-    exact sub_eq_zero.mp (eq_zero_of_skew (fun i j => e (G i j ξ) - G' i j (e ξ)) hx a b)
+    exact sub_eq_zero.mp (_root_.GlobalTheory.CompanionTheory.RealCountG.DualComm.eq_zero_of_skew (fun i j => e (G i j ξ) - G' i j (e ξ)) hx a b)
   have hint2 : ∀ a b w, e.symm (G' a b w) = G a b (e.symm w) := fun a b w =>
     e.injective (by rw [hint, e.apply_symm_apply, e.apply_symm_apply])
   have hcommT : ∀ a b ξ, dualT E T (G a b ξ) = G a b (dualT E T ξ) := GlobalTheory.T.dual_operator_commutes_lie E T hT G hG

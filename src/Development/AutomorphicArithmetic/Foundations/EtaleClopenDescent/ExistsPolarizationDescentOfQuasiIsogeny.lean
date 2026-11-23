@@ -65,7 +65,7 @@ theorem UpperTheory.Cb.exists_polarization_descent_of_quasi_isogeny :
     unfold Hecke.lbPow
     exact LB.isLB_linComb hP _ _
   obtain ⟨Dd, _, Q, h, hD, hdual, hadd, hh, hiso⟩ :=
-    GlobalTheory.T.exists_dual_abelian_scheme Y B o.A ψ' o.P hB o.ab hψ' hP o.rig₁ o.rig₂
+    _root_.GlobalTheory.DualHomPull.exists_dual_hom Y B o.A ψ' o.P hB o.ab hψ' hP o.rig₁ o.rig₂
   have hQ := hdual.isLB
   have etens : (ψ' ⊗ₘ ψ') = lift (fst B B ≫ ψ') (snd B B ≫ ψ') := by
     ext <;> simp
@@ -100,7 +100,7 @@ theorem UpperTheory.Cb.exists_polarization_descent_of_quasi_isogeny :
     rw [map_natCast] at h3
     simpa using h3.pow e
   obtain ⟨P', hP'lb, hr1, hr2, hP'iso⟩ :=
-    GlobalTheory.T.exists_birigidified_kth_root_pullback_bundle Y B Dd Q h (p ^ e) _ o.P (Over.Hom.left (ψ' ⊗ₘ ψ')) hB hD hdual hadd hh hc0 hunit hP
+    _root_.GlobalTheory.KthRoot.exists_birigid_kth_root Y B Dd Q h (p ^ e) _ o.P (Over.Hom.left (ψ' ⊗ₘ ψ')) hB hD hdual hadd hh hc0 hunit hP
       hiso Y (𝟙 Y) B (𝟙 _) (𝟙 _) (GlobalTheory.SiegLower.isGrpPullback_id B) ⟨by simp, by simp⟩ hkerh
   have kP' := (GlobalTheory.CechPic.cls_eq_iff (pull_isLB hP _) (GlobalTheory.isLB_lbPow hP'lb _)).2 hP'iso
   rw [Category.id_comp, GlobalTheory.CechPic.cls_lbPow hP'lb, GlobalTheory.CechPic.cls_pull hP, ← esq] at kP'
@@ -122,7 +122,7 @@ theorem UpperTheory.Cb.exists_polarization_descent_of_quasi_isogeny :
   refine ⟨P', ⟨hP'lb, hr1, hr2⟩, ?_, ?_⟩
   · rw [← GlobalTheory.CechPic.cls_eq_iff (pull_isLB hP _) (by unfold Hecke.lbPow; exact LB.isLB_linComb hP'lb _ _),
       GlobalTheory.BirigidPow.cls_lbPow hP'lb, GlobalTheory.CechPic.cls_pull hP, kP']
-  · refine GlobalTheory.T.lineBundle_prod_iso_of_pow_iso_birigidified Y o.A (p ^ e) _ _ o.ab hc0 hunit (hlb _) ?_ ?_ hP2 ?_ ?_ ?_
+  · refine _root_.GlobalTheory.BirigidRoot.iso_of_lbPow_iso Y o.A (p ^ e) _ _ o.ab hc0 hunit (hlb _) ?_ ?_ hP2 ?_ ?_ ?_
     · rw [← GlobalTheory.CechPic.cls_eq_zero_iff (pull_isLB (hlb _) _), GlobalTheory.CechPic.cls_pull (hlb _),
         GlobalTheory.BirigidPow.cls_lbPow hP, map_nsmul, ← GlobalTheory.CechPic.cls_pull hP _ (pull_isLB hP _),
         (GlobalTheory.CechPic.cls_eq_zero_iff _).2 o.rig₁, nsmul_zero]
@@ -139,6 +139,6 @@ theorem UpperTheory.Cb.exists_polarization_descent_of_quasi_isogeny :
         GlobalTheory.CechPic.cls_lbPow (hlb _), GlobalTheory.CechPic.cls_lbPow hP2, GlobalTheory.BirigidPow.cls_lbPow hP, smul_smul,
         ← pow_two, ← GlobalTheory.BirigidPow.cls_lbPow hP _ (hlb _),
         (GlobalTheory.CechPic.cls_eq_iff (hlb _) (pull_isLB hP _)).2
-          (GlobalTheory.T.lbIso_lbPow_sq_pull_sq2_of_isGen_of_relAmple Y o.A o.ab o.P hP o.rig₁ o.rig₂ o.ample (p ^ e)),
+          (_root_.GlobalTheory.BirigidPow.birigidified_pullback_mulPair_iso_tensorPowSq Y o.A o.ab o.P hP o.rig₁ o.rig₂ o.ample (p ^ e)),
         ← h1, sqc, GlobalTheory.CechPic.cls_pull hP, GlobalTheory.CechPic.pull_comp, kP', map_nsmul,
         ← GlobalTheory.CechPic.cls_pull hP'lb _ hP2]

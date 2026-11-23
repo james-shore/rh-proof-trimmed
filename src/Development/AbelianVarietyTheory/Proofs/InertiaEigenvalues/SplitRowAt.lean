@@ -60,7 +60,7 @@ theorem splitRow_at : ∀ D : D7, SplitRow_at D := by
     rcases GlobalTheory.SplitRowProbe.embIn_xor D i w hw τ with h | h
     · exact h.2 h2
     · exact h.2 h1
-  · exact GlobalTheory.T.splitPrime_place_cmType_conjugate D i hi
-  · exact GlobalTheory.T.cmHalfTypePlaces_meet_conjugatePairs_and_count D i hi
+  · exact _root_.GlobalTheory.SplitType.place_type_conj D i hi
+  · exact _root_.GlobalTheory.SplitCount.columns_count D i hi
 
 end GlobalTheory.SplitRowAll

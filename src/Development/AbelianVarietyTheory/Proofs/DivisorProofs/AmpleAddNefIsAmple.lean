@@ -61,7 +61,7 @@ theorem isAmpleLB_tens_of_isNef_of_dim_le (k : Type) [Field k] [Infinite k] : �
   intro d
   induction d with
   | zero => exact isAmpleLB_tens_of_isNef_of_dim_le_zero k
-  | succ d ih => exact GlobalTheory.T.ample_plus_nef_induction k d ih
+  | succ d ih => exact _root_.GlobalTheory.isAmpleLB_tens_of_isNef_succ k d ih
 
 theorem isAmpleLB_of_cls_eq_ample_add_nef : ∀ (k : Type) [Field k] [Infinite k] (X : Scheme.{0}) (p : X ⟶ Sp k), IsProjOver p → ∀ (A N P : LB X) (hA : IsAmpleLB A) (hN : letI := algebraΓOfHom p; IsNef k N) (hP : P.IsLB), cls P hP = cls A hA.isLB + cls N (letI := algebraΓOfHom p; hN.isLB) → IsAmpleLB P := by
   intro k _ _ X p hp A N P hA hN hP hcls

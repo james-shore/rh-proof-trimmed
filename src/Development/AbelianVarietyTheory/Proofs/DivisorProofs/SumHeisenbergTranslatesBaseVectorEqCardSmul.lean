@@ -73,14 +73,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.HeisTranslSum
 
-theorem isHalf_add' {D : D7} {m n : ℕ} {e : AE D} {u v : Mx D m n} (hu : IsHalf e u) (hv : IsHalf e v) :
-    IsHalf e (u + v) := fun i j => by
-  rw [Matrix.add_apply, mul_add, hu i j, hv i j]
-
-theorem isHalf_sub' {D : D7} {m n : ℕ} {e : AE D} {u v : Mx D m n} (hu : IsHalf e u) (hv : IsHalf e v) :
-    IsHalf e (u - v) := fun i j => by
-  rw [Matrix.sub_apply, mul_sub, hu i j, hv i j]
-
 theorem half_duality {D : D7} {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S T : HSp D}
     {ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)} {ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)}
     (hS : IsSelfDualC S ΛS) (hT : IsSelfDualC T ΛT) {Q : Finset (Pl D.host.E)} {e : AE D} (he : IsIdemSum e Q)
@@ -167,7 +159,7 @@ theorem sum_heisO_base_eq : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStd
         have hact_sub : ∀ a b : WO S T, actO S T z⁻¹ 1 (a - b) = actO S T z⁻¹ 1 a - actO S T z⁻¹ 1 b :=
           fun a b => map_sub (GlobalTheory.SplitHecke.actAdd S T z⁻¹ 1) a b
         have hshift : ∀ u ∈ Rr, actO S T z⁻¹ 1 (u + u₀) ∈ Λ ∧ IsHalf (cA D e) (u + u₀) := fun u hu =>
-          ⟨by rw [hact_add, hy0]; exact Λ.add_mem (hRr u hu).1 hyΛ, isHalf_add' (hRr u hu).2 hu₀H⟩
+          ⟨by rw [hact_add, hy0]; exact Λ.add_mem (hRr u hu).1 hyΛ, _root_.GlobalTheory.SplitScalar.isHalf_add (hRr u hu).2 hu₀H⟩
         let rep : ∀ u ∈ Rr, WO S T := fun u hu =>
           ((huniq (u + u₀) (hshift u hu).1 (hshift u hu).2).exists).choose
         have hrep : ∀ u (hu : u ∈ Rr), rep u hu ∈ Rr ∧ (u + u₀) - rep u hu ∈ Λ := fun u hu =>
@@ -184,7 +176,7 @@ theorem sum_heisO_base_eq : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStd
           · intro b hb
             have hw1 : actO S T z⁻¹ 1 (b - u₀) ∈ Λ := by
               rw [hact_sub, hy0]; exact Λ.sub_mem (hRr b hb).1 hyΛ
-            have hw2 : IsHalf (cA D e) (b - u₀) := isHalf_sub' (hRr b hb).2 hu₀H
+            have hw2 : IsHalf (cA D e) (b - u₀) := _root_.GlobalTheory.SplitScalar.isHalf_sub (hRr b hb).2 hu₀H
             obtain ⟨a, ha, hwa⟩ := (huniq (b - u₀) hw1 hw2).exists
             refine ⟨a, ha, ?_⟩
             refine (huniq (a + u₀) (hshift a ha).1 (hshift a ha).2).unique (hrep a ha) ⟨hb, ?_⟩
@@ -193,7 +185,7 @@ theorem sum_heisO_base_eq : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStd
           · intro u hu
             have hdiff := (hrep u hu).2
             have hH : IsHalf (cA D e) ((u + u₀) - rep u hu) :=
-              isHalf_sub' (isHalf_add' (hRr u hu).2 hu₀H) (hRr _ (hrep u hu).1).2
+              _root_.GlobalTheory.SplitScalar.isHalf_sub (_root_.GlobalTheory.SplitScalar.isHalf_add (hRr u hu).2 hu₀H) (hRr _ (hrep u hu).1).2
             rw [← AddChar.map_add_eq_mul, ← GlobalTheory.LatVac.symplO_add_right]
             have hsplit : u + u₀ = rep u hu + ((u + u₀) - rep u hu) := by abel
             rw [hsplit, GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul, hchar _ hdiff hH, mul_one]

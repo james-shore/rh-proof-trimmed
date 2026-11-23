@@ -62,6 +62,6 @@ theorem exists_sec_expandsAt_of_integral_family : ∀ (R : Type) [CommRing R] [I
       (fun W => GlobalTheory.IntegralExpansion.prB_app_injective D.toPre W) (hf α) (by rw [hw]; exact hf₀ α)
   have hm' : ∀ α, ∀ j, (f₀ α).f j = resTop _ (scal D.toPre.P.A.hom r) * (f α).f j := fun α j => hm α j
   obtain ⟨σ, hσ⟩ := GlobalTheory.sec_div_of_expandsAt R I hR D A G U k r hr σ₀ f₀ f hm' hE
-  exact ⟨σ, GlobalTheory.T.expandsAt_cancel_nonzero_scalar R I hR D A G U k r hr σ₀ σ f₀ f hm' hσ hE⟩
+  exact ⟨σ, _root_.GlobalTheory.expandsAt_cancel_scalar R I hR D A G U k r hr σ₀ σ f₀ f hm' hσ hE⟩
 
 end GlobalTheory

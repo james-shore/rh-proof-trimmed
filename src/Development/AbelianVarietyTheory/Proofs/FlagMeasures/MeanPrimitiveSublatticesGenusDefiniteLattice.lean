@@ -57,25 +57,6 @@ open scoped Pointwise ENNReal Classical
 
 namespace GlobalTheory.DegCnt.PrimGenus
 
-section
-variable {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
-
-theorem nondeg_of_pd (h : V →ₗ⋆[K] V →ₗ[K] K) (hp : GlobalTheory.Mass.PD h) : h.Nondegenerate := by
-  unfold GlobalTheory.Mass.PD at hp
-  have key : ∀ x, h x x = 0 → x = 0 := by
-    intro x hx
-    by_contra hne
-    have hlt := hp (Classical.arbitrary (K →+* ℂ)) x hne
-    rw [hx, map_zero, Complex.zero_re] at hlt
-    exact lt_irrefl _ hlt
-  constructor
-  · intro x hx
-    exact key x (hx x)
-  · intro y hy
-    exact key y (hy y)
-
-end
-
 theorem gen_of_cyclic {R W : Type} [CommRing R] [AddCommGroup W] [Module R W] {A B : Submodule R W} (hle : B ≤ A)
     (I : Ideal R) (e : (↥A ⧸ B.comap A.subtype) ≃ₗ[R] (R ⧸ I)) :
     ∃ t : Finset W, t.card ≤ 1 ∧ A = B ⊔ Submodule.span R (t : Set W) := by
@@ -199,7 +180,7 @@ theorem main : GlobalTheory.Mass.MaxMass → Formalism.HermitianLatticesTheory.S
   intro hMax hS K V _ _ _ _ _ _ _ _ H hK hO hv hPD hk T L₀ Mb hT hTP hL₀ hq hMb D₀ hD₀ s n hs hsk hn
   obtain ⟨ms, hms0, hms⟩ := GlobalTheory.OrthoMass.main K hK
   have hsymm : H.B.flip.IsSymm := GlobalTheory.HermLat.flip_isSymm H
-  have hnd : H.B.flip.Nondegenerate := nondeg_of_pd H.B.flip hPD
+  have hnd : H.B.flip.Nondegenerate := _root_.GlobalTheory.Mass.PrimDisc.nondeg H.B.flip hPD
   have hgen := GlobalTheory.T.cyclicDiscriminant_lattices_form_one_genus K V H.B.flip hK hsymm hnd T hT hTP
   obtain ⟨-, -, hstab, -⟩ := GlobalTheory.T.hermitianGenusMass_eq_orbitStabilizerMass K V H.B.flip hK hsymm hPD L₀ hL₀.1
   have hsk' : Module.finrank K V - s + s = Module.finrank K V := Nat.sub_add_cancel hsk.le

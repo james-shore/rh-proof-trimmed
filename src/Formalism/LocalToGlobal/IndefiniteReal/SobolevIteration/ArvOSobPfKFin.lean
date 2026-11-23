@@ -122,7 +122,7 @@ theorem avgKFin_holds : AvgKFin := by
 
 end KFin
 
-theorem avgKFin_holds : AvgKFin := KFin.avgKFin_holds
+alias avgKFin_holds := _root_.Formalism.IndefR.Tow.SobPf.KFin.avgKFin_holds
 
 end Formalism.IndefR.Tow.SobPf
 

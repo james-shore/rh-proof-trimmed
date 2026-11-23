@@ -61,12 +61,6 @@ section Lin
 
 variable {n r : ℕ} (ε : Fin n → Bool)
 
-theorem hJ_add_r (x y y' : Fin n → ℂ) : hJ ε x (y + y') = hJ ε x y + hJ ε x y' := by
-  simp [hJ, Matrix.mulVec_add, dotProduct_add]
-
-theorem hJ_sub_r (x y y' : Fin n → ℂ) : hJ ε x (y - y') = hJ ε x y - hJ ε x y' := by
-  simp [hJ, Matrix.mulVec_sub, dotProduct_sub]
-
 theorem hJ_smul_r (x : Fin n → ℂ) (c : ℂ) (y : Fin n → ℂ) : hJ ε x (c • y) = c * hJ ε x y := by
   simp [hJ, Matrix.mulVec_smul, dotProduct_smul]
 
@@ -78,15 +72,12 @@ theorem hJ_sum_r {ι : Type*} (s : Finset ι) (x : Fin n → ℂ) (f : ι → Fi
   classical
   induction s using Finset.induction_on with
   | empty => simp [hJ_zero_r]
-  | insert i s hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, hJ_add_r, ih]
+  | insert i s hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, _root_.Formalism.L2.SG.RealObj.InfCut.ProductExactness.hJ_add_r, ih]
 
 theorem hJ_unit (M : Matrix (Fin n) (Fin n) ℂ) (hM : Mᴴ * Formalism.REAL.Jm ε * M = Formalism.REAL.Jm ε) (x y : Fin n → ℂ) :
     hJ ε (M *ᵥ x) (M *ᵥ y) = hJ ε x y := by
   unfold hJ
   rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hM]
-
-theorem hJ_conj_swap (x y : Fin n → ℂ) : hJ ε x y = conj (hJ ε y x) :=
-  Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.hJ_conj ε x y
 
 theorem recon (e u : Fin r → Fin n → ℂ) (κ : Fin r → ℂ) (hκ : ∀ d, κ d ≠ 0)
     (hue : ∀ d c, hJ ε (u d) (e c) = if d = c then κ d else 0) (s : Finset (Fin r)) (w : Fin n → ℂ)
@@ -101,7 +92,7 @@ theorem recon (e u : Fin r → Fin n → ℂ) (κ : Fin r → ℂ) (hκ : ∀ d,
   | zero => simp [hJ_zero_r]
   | add x y _ _ hx hy =>
     conv_lhs => rw [hx, hy]
-    simp only [hJ_add_r, add_div, add_smul, Finset.sum_add_distrib]
+    simp only [_root_.Formalism.L2.SG.RealObj.InfCut.ProductExactness.hJ_add_r, add_div, add_smul, Finset.sum_add_distrib]
   | smul t x _ hx =>
     conv_lhs => rw [hx]
     simp only [hJ_smul_r, Finset.smul_sum, smul_smul, mul_div_assoc]
@@ -117,7 +108,7 @@ theorem orth_span (e : Fin r → Fin n → ℂ) (x : Fin n → ℂ) (s : Set (Fi
   induction hw using Submodule.span_induction with
   | mem y hy => obtain ⟨b, hb, rfl⟩ := hy; exact hx b hb
   | zero => exact hJ_zero_r ε x
-  | add y y' _ _ hy hy' => rw [hJ_add_r, hy, hy', add_zero]
+  | add y y' _ _ hy hy' => rw [_root_.Formalism.L2.SG.RealObj.InfCut.ProductExactness.hJ_add_r, hy, hy', add_zero]
   | smul t y _ hy => rw [hJ_smul_r, hy, mul_zero]
 
 theorem spanLt_eq (e : Fin r → Fin n → ℂ) (a : ℕ) :
@@ -139,7 +130,7 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
 
   have hu1 : ∀ d c, hJ ε (G *ᵥ e d) (e c) = if d = c then conj (cv d) else 0 := by
     intro d c
-    rw [hJ_conj_swap, hZ]
+    rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_conj, hZ]
     by_cases h : c = d
     · subst h; simp
     · rw [if_neg h, if_neg (Ne.symm h), map_zero]
@@ -164,7 +155,7 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
         have h0 := zero_of_pair ε e (fun d => G *ᵥ e d) (fun d => conj (cv d)) hk1 hu1 _ _ hw (by
           intro d hd
           simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hd
-          rw [Matrix.sub_mulVec, Matrix.one_mulVec, hJ_sub_r, hfx _ _ (ih' d hd).2, sub_self])
+          rw [Matrix.sub_mulVec, Matrix.one_mulVec, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, hfx _ _ (ih' d hd).2, sub_self])
         rw [Matrix.sub_mulVec, Matrix.one_mulVec, sub_eq_zero] at h0
         exact h0
       refine ⟨h1, ?_⟩
@@ -173,7 +164,7 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
       have h0 := zero_of_pair ε e (fun d => Gi *ᵥ e d) cv hcv hu2 _ _ hw (by
         intro d hd
         simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hd
-        rw [← hJ_unit ε G hG, hGGi, Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.mulVec_sub, hMG, hJ_sub_r,
+        rw [← hJ_unit ε G hG, hGGi, Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.mulVec_sub, hMG, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right,
           hfx _ _ (ih' d hd).1, sub_self])
       rw [Matrix.sub_mulVec, Matrix.one_mulVec, sub_eq_zero] at h0
       rw [← hMG, h0]
@@ -188,13 +179,13 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
     have hGe : ∀ d c, hJ ε (G *ᵥ e d) (G *ᵥ e c) = 0 := fun d c => by rw [hJ_unit ε G hG, hee]
     have ho1 : ∀ d, hJ ε (e d) v1 = 0 := by
       intro d
-      rw [hv1, hJ_sub_r, hJ_sub_r, hS1, hS2, hJ_sum_r, hJ_sum_r]
+      rw [hv1, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, hS1, hS2, hJ_sum_r, hJ_sum_r]
       simp only [hJ_smul_r, hee, mul_zero, Finset.sum_const_zero, sub_zero, hZ]
       rw [Finset.sum_eq_single d (fun c _ hc => by rw [if_neg (Ne.symm hc), mul_zero]) (by simp), if_pos rfl,
         div_mul_cancel₀ _ (hcv d), sub_self]
     have ho2 : ∀ d, hJ ε (G *ᵥ e d) v1 = 0 := by
       intro d
-      rw [hv1, hJ_sub_r, hJ_sub_r, hS1, hS2, hJ_sum_r, hJ_sum_r]
+      rw [hv1, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, hS1, hS2, hJ_sum_r, hJ_sum_r]
       simp only [hJ_smul_r, hGe, mul_zero, Finset.sum_const_zero, sub_zero, hu1]
       rw [Finset.sum_eq_single d (fun c _ hc => by rw [if_neg (Ne.symm hc), mul_zero]) (by simp), if_pos rfl,
         div_mul_cancel₀ _ (hk1 d), sub_self]

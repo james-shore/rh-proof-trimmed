@@ -58,14 +58,14 @@ theorem locComp_of_isRc_classMapD_cenLoc : _root_.GlobalTheory.NRows.ThetaLocalI
   have hsp : IsSplitPl D.host (D.naut.plGw k v) := GlobalTheory.T.isSplitPlace_of_over_type_prime D k _ (D.naut.plGw_over k v)
   obtain ⟨htame, hχ, u, hu, hlab⟩ := _root_.GlobalTheory.T.nonGalois_tame_label_mu_alt hPr hL D P hChi S hS i k v hsp
   refine ⟨u, hu, fun w hw => ⟨fun hw0 => ?_, fun hc => ?_⟩⟩
-  · obtain ⟨hdR, hwd⟩ := _root_.GlobalTheory.T.isdRW_chiGL_at_places_over_l hPr hL D P i w hw
+  · obtain ⟨hdR, hwd⟩ := _root_.GlobalTheory.ChiOneAbove.main_alt_alt_alt hPr hL D P i w hw
     refine ⟨hdR, ?_⟩
     rw [hwd, hw0]
     rw [_root_.GlobalTheory.LabFixed.labLP_twist_eq_labAt_ofDet hPr hL D P S hS i k v hsp hχ, hlab]
-  · obtain ⟨hdR, hwd⟩ := _root_.GlobalTheory.T.isdRW_chiGL_at_places_over_l hPr hL D P i w hw
+  · obtain ⟨hdR, hwd⟩ := _root_.GlobalTheory.ChiOneAbove.main_alt_alt_alt hPr hL D P i w hw
     refine ⟨hdR, ?_⟩
     rw [hwd]
-    exact _root_.GlobalTheory.T.placeLabel_of_conjugate_place_alt hPr hL D P hLab S hS i k v hsp hχ u htame hlab w hc _
+    exact _root_.GlobalTheory.LabConjPlace.locComp_of_isRc_classMapD_cenLoc hPr hL D P hLab S hS i k v hsp hχ u htame hlab w hc _
 end GlobalTheory.TieChiPin
 end
 end

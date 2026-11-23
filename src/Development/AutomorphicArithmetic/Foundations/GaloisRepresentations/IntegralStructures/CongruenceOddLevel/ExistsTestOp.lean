@@ -75,11 +75,11 @@ theorem exists_op {w : HeightOneSpectrum (𝓞 E)} (hw : IsSplitAt w) (Kw : Subg
   classical
   obtain ⟨t, ht, hact⟩ := GlobalTheory.T.localOperator_acts_by_localComponentScalar E a w hw Kw hc ho f z act
   let e : Submodule ℂ (UA E a → ℂ) → ℂ := fun U =>
-    if h : IsAutRepU U then z (GlobalTheory.T.exists_unique_splitPlaceComponent_definiteUnitary E a U h w hw).1.choose else 0
+    if h : IsAutRepU U then z (_root_.GlobalTheory.SplitComp.exists_comp_and_unique E a U h w hw).1.choose else 0
   have he : ∀ U, IsAutRepU U → ∀ φ ∈ U, (∀ x ∈ locU a w, cLoc w x ∈ Kw → RU E a x φ = φ) →
       opOf (RU E a) t φ = e U • φ := fun U hU φ hφ hx => by
     simp only [e, dif_pos hU]
-    exact hact U hU _ (GlobalTheory.T.exists_unique_splitPlaceComponent_definiteUnitary E a U hU w hw).1.choose_spec φ hφ hx
+    exact hact U hU _ (_root_.GlobalTheory.SplitComp.exists_comp_and_unique E a U hU w hw).1.choose_spec φ hφ hx
   refine ⟨t, e, ht, he, ?_⟩
   rintro U hU ⟨φ, hφ, h0, hx⟩ σ hσ
   exact smul_left_injective ℂ h0 ((he U hU φ hφ hx).symm.trans (hact U hU σ hσ φ hφ hx))
@@ -101,7 +101,7 @@ theorem fixed_ne_bot {U : Submodule ℂ (UA E a → ℂ)} (hU : IsAutRepU U) {w 
 
 theorem exists_satU {U : Submodule ℂ (UA E a → ℂ)} (hU : IsAutRepU U) {w : HeightOneSpectrum (𝓞 E)} (hw : IsSplitAt w)
     (h : ∃ φ ∈ U, φ ≠ 0 ∧ ∀ x ∈ locU a w, cLoc w x ∈ GlobalTheory.LFun.KGL w (n := a) → RU E a x φ = φ) : ∃ B, SatU U w B := by
-  obtain ⟨σ, hσ⟩ := (GlobalTheory.T.exists_unique_splitPlaceComponent_definiteUnitary E a U hU w hw).1
+  obtain ⟨σ, hσ⟩ := (_root_.GlobalTheory.SplitComp.exists_comp_and_unique E a U hU w hw).1
   obtain ⟨B, hB⟩ := (UpperTheory.Cb.spherical_operators_exist E w a).1 σ (fixed_ne_bot hU hw h σ hσ)
   exact ⟨B, σ, hσ, hB⟩
 

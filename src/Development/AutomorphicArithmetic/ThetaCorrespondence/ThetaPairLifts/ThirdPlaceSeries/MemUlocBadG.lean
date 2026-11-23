@@ -67,10 +67,10 @@ theorem mem_Uloc_badG_alt : ∀ {B : GlobalTheory.Mem.Base} {X : GlobalTheory.Me
     exact hu
   have hTv : ((((I.rec7 l Z).mem u).A.T : ℕ) : 𝓞 (I.rec7 l Z).host.F) ∉ v.asIdeal :=
     GlobalTheory.Mem.Col2.TC.GLev0.T_notMem X u i0 hi0
-  have hx := _root_.GlobalTheory.T.true_geometry_compact_level_property_alt W hA u a hat κ hκ y hy hIn.1 v hTv
+  have hx := _root_.GlobalTheory.FinPl.AwayLevel.mem_levelVL_base_alt W hA u a hat κ hκ y hy hIn.1 v hTv
   have hfr : (_root_.GlobalTheory.MiTop.formsAtZero W u).glev0.fr i0 v hi0 = 1 := hstd.fr0 i0 v hi0
   refine ((_root_.GlobalTheory.MiTop.formsAtZero W u).glev0.mem i0 v hi0 _ hx).2 ?_
   rw [hfr]
-  exact _root_.GlobalTheory.T.true_geometry_final_index_alt W hA u a ha hat row col hc κ hκ y hy i v i0 hi0 hqv (_root_.GlobalTheory.T.true_geometry_final_measure_alt W hA u a ha hat κ hIn.2.2 i)
+  exact _root_.GlobalTheory.FamTrace.RedAt.inJ_red_alt W hA u a ha hat row col hc κ hκ y hy i v i0 hi0 hqv (_root_.GlobalTheory.FamTrace.TraceBwd.pattern_of_traceAtG_alt W hA u a ha hat κ hIn.2.2 i)
 end GlobalTheory.FamTrace.AtG
 end

@@ -60,7 +60,7 @@ theorem exists_nef_model_of_image : _root_.SelfIntersectionVolumeEstimates.Volum
     simp only [Deep.dg, compDeg, Nat.cast_pos] at this
     exact this
   have hB' : GlobalTheory.DegVal.GenRatios (genPoint Z (cuspOn Y.U Z (wtOf (T.Q.Dw j) u 0))) := hB
-  obtain ⟨X, hX, p, L0, ψ, s, hM⟩ := _root_.GlobalTheory.T.image_admits_model hP Y.d.c₂.F (cuspOn Y.U Z (wtOf (T.Q.Dw j) u 0)) (Om Z)
+  obtain ⟨X, hX, p, L0, ψ, s, hM⟩ := _root_.GlobalTheory.ImageModel.exists_model_of_image hP Y.d.c₂.F (cuspOn Y.U Z (wtOf (T.Q.Dw j) u 0)) (Om Z)
     (normOn Y.U (xiR D) (fun _ => D.sp.W j) Y.dict Z (wtOf (T.Q.Dw j) u 0)) (latOn Y.U Z (wtOf (T.Q.Dw j) u 0))
     (genPoint Z (cuspOn Y.U Z (wtOf (T.Q.Dw j) u 0))) (dimFlag (T.Q.Dw j)) hK hgram hconj hfg hspan hB hdeg
   obtain ⟨h, hh, -⟩ := hP.q11.existsUnique hM.arith (L0.shift (fun _ => t) (fun _ => rfl))

@@ -175,7 +175,7 @@ theorem theta_family : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepS
   have hDF' : Real.log (1 + Formalism.L2.Pj.DF (T.Q.Dw j) (wtA w)) ≤ 2 * large₂.sc.L := by
     refine le_trans (Real.log_le_log (by positivity) ?_) hlDF
     linarith
-  obtain ⟨R, b, hb, hgen, hR, hl1⟩ := GlobalTheory.T.exists_reduced_integral_basis_harmonicPolynomials D.host.E T.Q.H (T.Q.Dw j) T.Q.l T.Q.c w.n
+  obtain ⟨R, b, hb, hgen, hR, hl1⟩ := _root_.GlobalTheory.HarmBasis.exists_reduced_basis_harmA D.host.E T.Q.H (T.Q.Dw j) T.Q.l T.Q.c w.n
     (by rw [hpq]; exact hr) (wtA w) large₂.sc.L hL hrd hfd' hDF' hln
 
   obtain ⟨g, hgr, hgcl⟩ := exists_family hci (T.Q.Xo j) T.Q.c (T.nab j) hn (htot j hj) (wtA w) w.n b hb hgen

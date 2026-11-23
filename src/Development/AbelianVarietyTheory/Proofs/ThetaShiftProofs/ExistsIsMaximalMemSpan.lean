@@ -84,31 +84,6 @@ theorem isIsotropicSub_span {G : Matrix (Fin r) (Fin r) E} {s : Set (Fin r → E
     rw [this, hx, hy, add_zero]
   | smul c x _ hx => rw [herm_smul_left', hx, mul_zero]
 
-theorem exists_smul_mem (X : Data E r) (v : Fin r → E) : ∃ n : ℤ, n ≠ 0 ∧ (n : E) • v ∈ X.Λ := by
-  first
-  | exact @_root_.GlobalTheory.SubmoduleScalarClosure.main
-  | exact _root_.GlobalTheory.SubmoduleScalarClosure.main
-  | (apply _root_.GlobalTheory.SubmoduleScalarClosure.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SubmoduleScalarClosure.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SubmoduleScalarClosure.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SubmoduleScalarClosure.main ..)
-
-section Torus
-
-variable (X : Data E r)
-
-end Torus
-
-section Main
-
-variable (X : DataX E r) (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ) (hP : X.IsSec la P)
-  (hχ : ∀ γ ∈ X.Γ, (∀ v ∈ X.Λ, ∃ y ∈ X.Λ,
-    Matrix.mulVec (γ : Matrix (Fin r) (Fin r) E) v - v = (X.g : E) • y) → X.χ la γ = 1)
-
-include hP hχ
-
-end Main
-
 end
 
 end GlobalTheory.MaxCusp

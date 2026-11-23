@@ -51,14 +51,10 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.LocMod.SuppFirst
 
-theorem e_mul_ι {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-    (p : Place D k) (x : k) : p.e * p.ι x = p.ι x := by
-  rw [← p.ι_π, p.π_ι]
-
 theorem ι_mul' {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (p : Place D k) (x y : k) : p.ι (x * y) = p.ι x * p.ι y := by
   have h := p.ι_π (p.ι x * p.ι y)
-  rw [map_mul, p.π_ι, p.π_ι, ← mul_assoc, e_mul_ι] at h
+  rw [map_mul, p.π_ι, p.π_ι, ← mul_assoc, _root_.GlobalTheory.LocMod.Witness.e_ι] at h
   exact h
 
 theorem ι_one' {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -71,9 +67,9 @@ theorem shift_mul {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpa
     (p.ι x + (1 - p.e)) * (p.ι y + (1 - p.e)) = p.ι (x * y) + (1 - p.e) := by
   have he : p.e * p.e = p.e := p.split.1
   have h1 : p.ι x * (1 - p.e) = 0 := by
-    rw [mul_sub, mul_one, mul_comm, e_mul_ι, sub_self]
+    rw [mul_sub, mul_one, mul_comm, _root_.GlobalTheory.LocMod.Witness.e_ι, sub_self]
   have h2 : (1 - p.e) * p.ι y = 0 := by
-    rw [sub_mul, one_mul, e_mul_ι, sub_self]
+    rw [sub_mul, one_mul, _root_.GlobalTheory.LocMod.Witness.e_ι, sub_self]
   have h3 : (1 - p.e) * (1 - p.e) = 1 - p.e := by
     rw [sub_mul, one_mul, mul_sub, mul_one, he, sub_self, sub_zero]
   rw [ι_mul', add_mul, mul_add, mul_add, h1, h2, h3, add_zero, zero_add]
@@ -85,12 +81,6 @@ def shiftU {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [
       rw [shift_mul, Units.inv_mul, ι_one']; ring⟩
   map_one' := by ext; simp [ι_one']
   map_mul' x y := by ext; simp [shift_mul]
-
-theorem exists_comp {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-    (p : Place D k) (χ : (AE D)ˣ →* Circle) : ∃ μ : kˣ →* ℂˣ, p.IsComp χ μ := by
-  refine ⟨Circle.toUnits.comp (χ.comp (shiftU p)), fun x a ha => ?_⟩
-  have : shiftU p x = a := Units.ext ha.symm
-  simp [this]
 
 theorem card_frame {k : Type} [Field k] {N : ℕ} {Y : Type} [Fintype Y] [DecidableEq Y] (Fr : Frame k N Y) :
     Fintype.card Y = N := by
@@ -173,7 +163,7 @@ theorem gsupp1 : ∀ (D : D7), OmLoc D → FlatBF D → GlobalTheory.LocFlat.Sym
   obtain ⟨hk, hhk⟩ := (hloc J.W _ F.G₁).2.1 h hh
   have hc : c = 2 * σ := by have := F.bes.1; omega
 
-  obtain ⟨μT, hT⟩ := exists_comp p s₁.χW
+  obtain ⟨μT, hT⟩ := _root_.GlobalTheory.LocMod.Witness.exists_isComp p s₁.χW
   have hS : p.IsComp s₁.χV (S.μ (j + 1))⁻¹ := by
     intro x a ha
     have := hμ x a ha

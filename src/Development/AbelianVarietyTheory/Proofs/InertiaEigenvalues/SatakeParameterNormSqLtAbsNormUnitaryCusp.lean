@@ -118,9 +118,9 @@ theorem norm_sq_lt_absNorm : ∀ (E : Type) [Field E] [NumberField E] [_root_.Nu
       ‖(α : ℂ)‖ ^ 2 < (Ideal.absNorm w.asIdeal : ℝ) := by
   intro E _ _ _ a σ ha hσ T hT w hw α hα
   classical
-  obtain ⟨L1, hL1, -, c1, hc1, hlim1⟩ := GlobalTheory.T.rankinSelberg_partialL_pole_at_one_conj E a σ ha hσ T hT
+  obtain ⟨L1, hL1, -, c1, hc1, hlim1⟩ := _root_.GlobalTheory.RSPole.rs_pole_conj E a σ ha hσ T hT
   have hT' : UnrOutside (insert w T) σ := fun v hv => hT v (fun h => hv (Finset.mem_insert_of_mem h))
-  obtain ⟨L2, hL2, -, c2, hc2, hlim2⟩ := GlobalTheory.T.rankinSelberg_partialL_pole_at_one_conj E a σ ha hσ (insert w T) hT'
+  obtain ⟨L2, hL2, -, c2, hc2, hlim2⟩ := _root_.GlobalTheory.RSPole.rs_pole_conj E a σ ha hσ (insert w T) hT'
   have hsplit : ∀ x : ℝ, 1 < x → (L1 x : ℂ) = ((sat σ w ×ˢ (sat σ w).map (Units.map (starRingEnd ℂ).toMonoidHom)).map
       (gfac (Ideal.absNorm w.asIdeal) x)).prod * (L2 x : ℂ) := by
     intro x hx

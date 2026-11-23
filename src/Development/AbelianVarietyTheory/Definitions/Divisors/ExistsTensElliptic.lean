@@ -95,7 +95,7 @@ theorem formula_trans (D : DegPre R) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ) 
     rw [comp_tensφ, hx, hx, ← zpow_mul, mul_comm]
     rfl
   have h₃ : ∀ i j, val (D.tau (y i) (y j)) (𝟙 _) z J = (F i j)⁻¹ * val (D.tau (y i) (y j)) (𝟙 _) z J₀ := fun i j => by
-    obtain ⟨t, ht, hv⟩ := exists_tau_four D (y i) (y j)
+    obtain ⟨t, ht, hv⟩ := _root_.GlobalTheory.PolDeg.Wit.exists_tau D (y i) (y j)
     refine (hv _ _ z J hJ).symm.trans ((gen_trans ht (𝟙 _) z (hJ.mem _ _) (hJ₀.mem _ _)).trans
       (congrArg₂ (· * ·) ?_ (hv _ _ z J₀ hJ₀)))
     change ∏ a, H (𝟙 _ ≫ lamPts (toUnit (TK R) ≫ D.c (y i)) (toUnit (TK R) ≫ D.c (y j)) a) ^ negε a = _

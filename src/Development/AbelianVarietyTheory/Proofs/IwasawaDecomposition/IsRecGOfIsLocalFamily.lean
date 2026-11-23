@@ -126,7 +126,7 @@ theorem isRecG_of_isLocalFamily {sc : Scale} {D : D7} {L0 : LevelData D} {T : �
       IsRecG.intro D L0 I ψ hd H0 hL T' B hBs hB iK lam hK hPos CH rfl
     have hRetie : IsRecG sc D' Gt c G.herm G.forms :=
       LayerTwoModel.isRecG_retie hRec G.herm.g
-    have hPlace := GlobalTheory.T.mem_localPlace_asIdeal_iff_val_pos
+    have hPlace := _root_.GlobalTheory.TiePlace.place_of_tie
       D sc 1 L0 I ψ hd H0 hL B hBs hB iK lam hK hPos
     ⟨Gt, c, G, hRetie, fun _ => rfl, fun _ => rfl, hPlace⟩
 

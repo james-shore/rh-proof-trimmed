@@ -89,7 +89,7 @@ noncomputable def restrictRep {K E LL : FinExt l} (hle : K.1 ≤ E.1)
 theorem isDR_of_restrict (P : LocPrime l) {K E LL : FinExt l} (hle : K.1 ≤ E.1)
     (hs : ∀ g ∈ GK K, ∀ x ∈ E.1, g x ∈ E.1) (T : LocLat ↥(GK K) ℚ_[l] ↥LL.1 ↥(OL LL))
     (h : IsDR (P.PD E) (restrictRep hle T).ρ) : IsDR (P.PD K) T.ρ :=
-  GlobalTheory.T.isDeRham_of_restrict_galois_descent l P K E LL (GK_le hle) hle hs T.V T.ρ h
+  _root_.GlobalTheory.DeRhamDescent.isDR_of_restrict l P K E LL (GK_le hle) hle hs T.V T.ρ h
 
 
 

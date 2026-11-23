@@ -145,7 +145,7 @@ theorem lev_indU {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ W
 
 theorem levTransportU : Formalism.FourierDecayAlt.P.PTie.LevTransportU := by
   intro Wp Wq _ _ _ _ _ _ P z z' π π' X μ L st l0 Bs hD hz hz' hπ hπ' i
-  obtain ⟨T, h1, h2, h3, h4, hN⟩ := Formalism.FourierDecayAlt.P.exists_normalized_tower P.k P.r Wp Wq Bs
+  obtain ⟨T, h1, h2, h3, h4, hN⟩ := _root_.Formalism.FourierDecayAlt.P.HaarMassHermitianCurvature.towerAt P.k P.r Wp Wq Bs
   have e1 : T.base.z = z := h1.trans hz
   have e2 : T.base.z' = z' := h2.trans hz'
   have e3 : T.base.π = π := h3.trans hπ
@@ -169,7 +169,5 @@ theorem levTransportU : Formalism.FourierDecayAlt.P.PTie.LevTransportU := by
 end Formalism.FourierDecayAlt.P.PTieUL
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem level_transport_unitary : Formalism.FourierDecayAlt.P.PTie.LevTransportU := PTieUL.levTransportU
 
 end Formalism.FourierDecayAlt.P

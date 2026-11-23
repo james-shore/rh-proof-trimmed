@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.UnipotentCoordinatesMeasurePreserving
 
 @[expose] public section
 
@@ -74,13 +75,6 @@ theorem sum_embA {a b : ℕ} (f : Fin a → Fin b) (hf : Function.Injective f) (
 
 theorem hermitian_form_column_vanishes (j y : Fin (2 * r + k + 1)) (hj : j.val ≤ r + k) (hy : y.val < r) : Hpk k r y j = 0 := by
   unfold Hpk
-  split_ifs <;> first | rfl | (exfalso; omega)
-
-theorem hpk_esI_left (a : Fin r) (x : Fin (2 * r + k + 1)) :
-    Hpk k r (esI k r a) x = if x = eI k r a then 1 else 0 := by
-  have ha := a.isLt
-  unfold Hpk
-  simp only [esI, eI, Fin.ext_iff]
   split_ifs <;> first | rfl | (exfalso; omega)
 
 theorem hpk_esI_right (a : Fin r) (y : Fin (2 * r + k + 1)) :
@@ -134,7 +128,7 @@ theorem P_row (hw : w ∈ UWset k r z') (hm : m ∈ Nset k r) (a : Fin r) (j : F
   rw [charpoly_eq_of_isIso hw hm, Matrix.mul_apply]
   refine Finset.sum_congr rfl (fun y _ => ?_)
   rw [Matrix.mul_apply]
-  simp only [hpk_esI_left, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true,
+  simp only [_root_.Formalism.FourierDecayAlt.P.Dx2.DF.hpk_esI, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true,
     Matrix.conjTranspose_apply]
 
 theorem esI_of (i : Fin (2 * r + k + 1)) (hi : r + k < i.val) :

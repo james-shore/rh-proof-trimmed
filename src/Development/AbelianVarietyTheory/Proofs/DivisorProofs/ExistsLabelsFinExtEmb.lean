@@ -72,7 +72,7 @@ theorem exists_labels_finExt_emb : ∀ (R : Type) [CommRing R] [IsDomain R] [IsL
   have c' : Compat ρ (Kb R₁) := fun r => congrArg (algebraMap (FractionRing R₁) (Kb R₁)) (hga r)
 
   obtain ⟨W, _, _, _, io, φ, hW, iio, lio, lφ, hc⟩ :=
-    GlobalTheory.LocExt.exists_cDvr_ext_of_finite R R₁ ρ hρ.2.1 hρ.2.2 W₀ hW₀ φ₀ l₀
+    _root_.GlobalTheory.FieldExtensionExists.exists_extension R R₁ ρ hρ.2.1 hρ.2.2 W₀ hW₀ φ₀ l₀
   have iφ : Function.Injective φ := by
     letI := ρ.toAlgebra
     haveI : Module.Finite R R₁ := hρ.2.2

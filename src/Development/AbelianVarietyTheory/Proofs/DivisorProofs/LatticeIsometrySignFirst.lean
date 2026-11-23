@@ -205,8 +205,7 @@ theorem mem_latG_one {β : GL (Fin T.rank) (EAf D)} (hβ : IsSDFrame T β ΛT 1)
   · intro h
     exact ⟨_, h, by rw [map_one, Units.val_one, Matrix.one_mulVec]; rfl⟩
 
-theorem star_int (c : 𝓞 D.host.E) : ∃ c' : 𝓞 D.host.E, (c' : D.host.E) = star (c : D.host.E) :=
-  ⟨⟨_, (RingOfIntegers.isIntegral_coe c).map (starRingEnd D.host.E).toIntAlgHom⟩, rfl⟩
+alias star_int := _root_.GlobalTheory.LevSplit.exists_conj
 
 theorem mem_latRat_iff (hG : S.gram = 1)
     (hS : ΛS = Submodule.pi Set.univ fun _ => (1 : Submodule (𝓞 D.host.E) D.host.E))

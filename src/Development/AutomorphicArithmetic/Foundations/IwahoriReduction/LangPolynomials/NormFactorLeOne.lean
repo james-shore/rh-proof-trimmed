@@ -50,26 +50,11 @@ namespace UpperTheory.Kd.C7.LocalUnitsRoots
 
 variable {l : ℕ} [Fact l.Prime]
 
-private theorem cg_symm {n : ℕ} {x y : Qbar l} (h : Cg n x y) : Cg n y x := by
-  unfold Cg at *; rwa [norm_sub_rev]
-
-private theorem cg_trans {n : ℕ} {x y w : Qbar l} (h₁ : Cg n x y) (h₂ : Cg n y w) : Cg n x w := by
-  unfold Cg at *
-  calc ‖x - w‖ = ‖(x - y) + (y - w)‖ := by ring_nf
-    _ ≤ max ‖x - y‖ ‖y - w‖ := IsUltrametricDist.norm_add_le_max _ _
-    _ ≤ _ := max_le h₁ h₂
-
 private theorem cg_mono {n n' : ℕ} (hn : n ≤ n') {x y : Qbar l} (h : Cg n' x y) : Cg n x y := by
   unfold Cg at *
   refine h.trans ?_
   rw [norm_pow, norm_pow]
   exact pow_le_pow_of_le_one (norm_nonneg _) (IsUltrametricDist.norm_natCast_le_one _ l) hn
-
-private theorem cg_mul {n : ℕ} {t x y : Qbar l} (ht : ‖t‖ ≤ 1) (h : Cg n x y) : Cg n (t * x) (t * y) := by
-  unfold Cg at *
-  rw [← mul_sub, norm_mul]
-  calc ‖t‖ * ‖x - y‖ ≤ 1 * ‖x - y‖ := mul_le_mul_of_nonneg_right ht (norm_nonneg _)
-    _ ≤ _ := by rw [one_mul]; exact h
 
 private theorem norm_char_le_one {N : ℕ} [NeZero N] (ψ : DirichletCharacter (Qbar l) N) (x : ZMod N) : ‖ψ x‖ ≤ 1 := by
   by_cases hx : IsUnit x
@@ -163,7 +148,7 @@ private theorem main
       funext x
       rw [hχ r hr1 x, mul_comm]
     rw [heq, hy s hs hc] at h1
-    exact cg_symm h1
+    exact _root_.GlobalTheory.Ord2.cg_symm h1
   have hI : IwI c A Z := by
     refine ⟨fun r s _ x => (hIw.2.1 r).1 s x, fun r s hs t ht x => ?_, fun r s _ x => hIw.2.2 r s x⟩
     rw [(hIw.2.1 r).2 s (Ine_le_Dec A hs) t (Ine_le_Dec A ht) x, hInu s hs, Units.val_one, one_mul]
@@ -188,12 +173,12 @@ private theorem main
       obtain ⟨κι, hfin, P, o, hP, hlaw⟩ := hHT m hm0
       refine ⟨j (ζ m), hprim m, fun ψ hψ => ?_⟩
       have ht := norm_factor_le_one ψ⁻¹ 2
-      have e1 := cg_mul ht (cg_symm (hRhs m hm0 ψ hψ _ (hprim m)))
-      have e2 := cg_mul ht (cg_symm (hlaw ψ hψ))
+      have e1 := _root_.GlobalTheory.KZ.AutoPin.cg_mul ht (_root_.GlobalTheory.Ord2.cg_symm (hRhs m hm0 ψ hψ _ (hprim m)))
+      have e2 := _root_.GlobalTheory.KZ.AutoPin.cg_mul ht (_root_.GlobalTheory.Ord2.cg_symm (hlaw ψ hψ))
       have e3 := hrel m (by omega) κι hfin P o hP.2.1 hP.2.2.1 (by
         rw [← roots_pow hR c₀ m (by omega)]
         exact hP.2.2.2.2) ψ
-      exact cg_trans (cg_mono (by omega) (cg_trans e1 e2)) (cg_mono (by omega) e3)) hNZ
+      exact _root_.GlobalTheory.Ord2.cg_trans (cg_mono (by omega) (_root_.GlobalTheory.Ord2.cg_trans e1 e2)) (cg_mono (by omega) e3)) hNZ
   obtain ⟨r₃, hr₃⟩ := hint φ e he hSZ n₁
   exact hG (max r₂ r₃) (le_max_left _ _) _ (hprim _) (hr₃ _ (le_max_right _ _) _ (hprim _))
 
@@ -201,4 +186,4 @@ end UpperTheory.Kd.C7.LocalUnitsRoots
 
 theorem UpperTheory.Kd.C7.pLocu :
     GlobalTheory.KZ.ZetaEulerSystemNonvanishing GlobalTheory.KZ.Pin7 :=
-  UpperTheory.Kd.C7.LocalUnitsRoots.main GlobalTheory.T.nonvanishing_transfer_characterSums_powerSeries GlobalTheory.T.quotient_char_trivial_inertia_cyclotomic_tower
+  UpperTheory.Kd.C7.LocalUnitsRoots.main _root_.GlobalTheory.KZ.Cmp.nonvanishing_transfer _root_.GlobalTheory.quot_eq_one_of_cycBar_eq_one

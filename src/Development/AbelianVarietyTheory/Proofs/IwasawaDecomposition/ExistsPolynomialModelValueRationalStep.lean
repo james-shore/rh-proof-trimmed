@@ -67,14 +67,14 @@ theorem lift_ratSpan (D : D7) {n : ℕ} (lam : D.what₂.Tau → DomWeight n) (P
     refine ⟨r • Formalism.L2.Forms.ten (fun τ => MvPolynomial.map (Int.castRingHom D.what₂.LL) (f τ)), ?_, ?_⟩
     · show _ ∈ WtPol _ _
       apply Submodule.smul_mem
-      apply GlobalTheory.KerWt.VV_le_WtPol lam
+      apply _root_.Formalism.L2.Ker.VV_le_WtPol lam
       unfold Formalism.L2.DIV.VV Formalism.GradedWeylDivisibility.tensorLat
       apply Submodule.subset_span
       refine ⟨fun τ => MvPolynomial.map (Int.castRingHom D.what₂.LL) (f τ), fun τ => ?_, rfl⟩
       have h1 : MvPolynomial.map (Int.castRingHom D.what₂.LL) (f τ) ∈ delSq D.what₂.LL n (lam τ) := by
         rw [← GlobalTheory.Published.span_map_delSq ℤ D.what₂.LL (Int.castRingHom D.what₂.LL) n (lam τ)]
         exact Submodule.subset_span ⟨f τ, hf τ, rfl⟩
-      exact Formalism.GradedWeylDivisibility.weylLeDual D.what₂.LL n n le_rfl _ (GlobalTheory.FormsSharpTie.natW_antitone (lam τ)) h1
+      exact Formalism.GradedWeylDivisibility.weylLeDual D.what₂.LL n n le_rfl _ (_root_.Formalism.L2.Col.natW_anti (lam τ)) h1
     · have hc : D.what₂.embLL.comp (Int.castRingHom D.what₂.LL) = Int.castRingHom ℂ := RingHom.ext_int _ _
       simp only [RingHom.toAddMonoidHom_eq_coe, AddMonoidHom.coe_coe, MvPolynomial.smul_eq_C_mul, map_mul,
         MvPolynomial.map_C, Formalism.L2.Forms.ten, map_prod, MvPolynomial.map_rename, MvPolynomial.map_map, hc]

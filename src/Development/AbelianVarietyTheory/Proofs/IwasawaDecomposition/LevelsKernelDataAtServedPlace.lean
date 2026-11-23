@@ -67,10 +67,10 @@ theorem kerData_at_served : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat
         Formalism.L2.Herm.GIwPos u v hg (Formalism.L2.G.Cmp.kerAtP_of t.Gt KD) := by
   intro K B f T w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE Fl hFl hw u v hg
   haveI : Fact ((w.D Z).what₂.places.resChar v).Prime := ⟨(w.D Z).what₂.places.resChar_prime v⟩
-  obtain ⟨iK, hiK⟩ := GlobalTheory.T.exists_localCoefficientField_embedding_kernelPlace w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE u v hg
-  have hpos := GlobalTheory.T.splitPlace_embedding_at_orbitPosition_eq_induced_alt w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE u v hg
-  obtain ⟨cls0, h0iff, h0surj⟩ := GlobalTheory.T.stepZeroClasses_servedPlace_eq_localOrbitPairs w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE u v hg
-  obtain ⟨Lv, clsS, up, hSiff, hSsurj, hInt⟩ := GlobalTheory.T.served_place_levels_classes_comparison_maps w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE Fl hFl hw u v hg
+  obtain ⟨iK, hiK⟩ := _root_.GlobalTheory.KerIK.exists_iK w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE u v hg
+  have hpos := _root_.GlobalTheory.Mem.Top.KerOne.splitPlace_embedding_at_orbitPosition_eq_induced w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE u v hg
+  obtain ⟨cls0, h0iff, h0surj⟩ := _root_.GlobalTheory.Mem.Top.KerOne.stepZeroClasses_servedPlace_eq_localOrbitPairs_alt w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE u v hg
+  obtain ⟨Lv, clsS, up, hSiff, hSsurj, hInt⟩ := _root_.GlobalTheory.Mem.Top.KerOne.levels_cls_cmp_at_served w hO hF hP Z t Wt nch hn Y hMu hQp O hStd hUnf E hE Fl hFl hw u v hg
   classical
   let Gs := t.full.1.g
   let iwJ : ∀ j (q : Fin ((Fl u v hg).Pj j).nV), (w.D Z).host.E →+* ((Fl u v hg).Pj j).Qq q := fun j =>
@@ -81,9 +81,9 @@ theorem kerData_at_served : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat
       Submodule (𝓞 (w.D Z).host.E) (Fin (((Fl u v hg).Pj j).m + 1) → (w.D Z).host.E) := fun j =>
     match j with
     | 0 => fun _ L => if hL : ((Fl u v hg).Pj 0).IsLatTup L then
-        Classical.choose (GlobalTheory.T.exists_global_module_localising_to_lattices Gs u v hg (((Fl u v hg).Pj 0).m + 1) L hL) else ⊥
+        Classical.choose (_root_.GlobalTheory.Mem.Top.KerGlob.exists_global_lattice Gs u v hg (((Fl u v hg).Pj 0).m + 1) L hL) else ⊥
     | j + 1 => fun _ L => if hL : ((Fl u v hg).Pj (j + 1)).IsLatTup L then
-        Classical.choose (GlobalTheory.T.exists_global_module_localising_to_lattices Gs u v hg (((Fl u v hg).Pj (j + 1)).m + 1) L hL) else ⊥
+        Classical.choose (_root_.GlobalTheory.Mem.Top.KerGlob.exists_global_lattice Gs u v hg (((Fl u v hg).Pj (j + 1)).m + 1) L hL) else ⊥
   let clsJ : ∀ j, Lv.comp j → ((Fl u v hg).Pj j).Tup → ((w.D Z).chTw u ((w.D Z).what₂.muAt v)).cls j := fun j =>
     match j with
     | 0 => fun a L => cls0 a L
@@ -100,11 +100,11 @@ theorem kerData_at_served : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat
         intro j _ a L hL q
         cases j with
         | zero =>
-          have h := Classical.choose_spec (GlobalTheory.T.exists_global_module_localising_to_lattices Gs u v hg (((Fl u v hg).Pj 0).m + 1) L hL) q
+          have h := Classical.choose_spec (_root_.GlobalTheory.Mem.Top.KerGlob.exists_global_lattice Gs u v hg (((Fl u v hg).Pj 0).m + 1) L hL) q
           simp only [globJ, iwJ, dif_pos hL]
           exact h
         | succ j =>
-          have h := Classical.choose_spec (GlobalTheory.T.exists_global_module_localising_to_lattices Gs u v hg (((Fl u v hg).Pj (j + 1)).m + 1) L hL) q
+          have h := Classical.choose_spec (_root_.GlobalTheory.Mem.Top.KerGlob.exists_global_lattice Gs u v hg (((Fl u v hg).Pj (j + 1)).m + 1) L hL) q
           simp only [globJ, iwJ, dif_pos hL]
           exact h
       cls := clsJ
@@ -121,7 +121,7 @@ theorem kerData_at_served : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat
       Th := fun _ _ _ => 0
       up := up
       intS := hInt }
-  obtain ⟨Th, hTh⟩ := GlobalTheory.T.exists_freeSeries_kernel_servedPlace t.Gt KD0 E rfl
+  obtain ⟨Th, hTh⟩ := _root_.GlobalTheory.KerTieServed.exists_th_served t.Gt KD0 E rfl
   refine ⟨Lv, { KD0 with Th := Th }, rfl, hTh, ?_, ?_⟩
   · intro q x
     exact splitPlaceIdempotent_cmEmbedding_compat Gs u v hg q x

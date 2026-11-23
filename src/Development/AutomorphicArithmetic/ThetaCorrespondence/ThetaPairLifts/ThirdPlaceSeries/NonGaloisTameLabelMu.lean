@@ -57,9 +57,9 @@ theorem GlobalTheory.PendOf.tame_label_mu_alt : _root_.GlobalTheory.NRows.ThetaL
   have hj := D.nd.j_range i
   let j : Fin D.R.m := ⟨D.nd.j i - 1, by omega⟩
   obtain ⟨c, hc, hcv⟩ := hchi k v j u hu0 hrep'
-  have htame := _root_.GlobalTheory.T.split_weil_mu_tame_of_is_true hL D P S hS i k v hw
+  have htame := _root_.GlobalTheory.PendOf.isTame_reading_mu_at_split_plGw hL D P S hS i k v hw
   refine ⟨htame, (S i _ hw).mu_ok.1, c, hc, _root_.UpperTheory.Lit.Dz.dz_swap_compatible_alt hL D P.ty.grp k v _ _ htame u hu0 hrep c ?_⟩
-  rw [_root_.GlobalTheory.T.split_mu_unit_eq_mu0_loc_k hL D P S hS i k v hw j (by simp only [j]; omega) u hu0 hunit]
+  rw [_root_.GlobalTheory.TupleCharAtType.mu_unit_value_eq_loc_k_mu0 hL D P S hS i k v hw j (by simp only [j]; omega) u hu0 hunit]
   exact hcv.symm
 end
 section

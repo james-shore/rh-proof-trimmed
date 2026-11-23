@@ -58,13 +58,9 @@ theorem tieGal_of_jumpsCard_alt (hDR : GlobalTheory.Published.DeRhamPotSemistabl
   refine ⟨GlobalTheory.CrysWD.crysIffWD D, potCrysIffWD D, hJ, fun i => ?_⟩
   exact ⟨_root_.GlobalTheory.WeilDeligne.InertiaSplit.decomp_away_alt hDR hL D P i,
     _root_.GlobalTheory.ConjGal.main_alt_alt hDR hL D P i,
-    _root_.GlobalTheory.T.de_rham_weight_direct_sum_alt hDR hL D P i,
-    _root_.GlobalTheory.T.de_rham_weight_twist_character_alt hDR hL D P i⟩
+    _root_.GlobalTheory.SumRepAdd.main_alt_alt hDR hL D P i,
+    _root_.GlobalTheory.TwistGal.galois_twist_alt hDR hL D P i⟩
 
-theorem main_alt_alt : GlobalTheory.Published.DeRhamPotSemistable →
-    ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7)
-      (P : _root_.GlobalTheory.NPin.CharacterChoiceData hL D),
-      JumpsCard D.nd D.naut → Formalism.MainNotions.SumRepresentations.At.TieGal D.nd D.naut :=
-  fun hDR hL D P hJ => _root_.GlobalTheory.TieGalAssembly.tieGal_of_jumpsCard_alt hDR hL D P hJ
+alias main_alt_alt := _root_.GlobalTheory.TieGalAssembly.tieGal_of_jumpsCard_alt
 end GlobalTheory.TieGalAssembly
 end

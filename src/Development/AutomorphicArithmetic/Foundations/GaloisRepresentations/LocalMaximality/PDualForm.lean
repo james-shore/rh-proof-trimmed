@@ -80,8 +80,8 @@ private lemma perfectPairing_surjective {F Q P : Type*} [Field F] [AddCommGroup 
 theorem UpperTheory.Gal.productCup_of_system.dualForm_of :
     DualForm := by
   intro F K _ _ _ _ _ _ d x hc τ ht a ha ψ
-  obtain ⟨hinj, hrk, hfdP⟩ := GlobalTheory.T.trace_wedge_pairing_perfect_rational_forms ℂ F K d (xv x) hc τ ht (d - a) a (by omega)
-  obtain ⟨-, -, hfdQ⟩ := GlobalTheory.T.trace_wedge_pairing_perfect_rational_forms ℂ F K d (xv x) hc τ ht a (d - a) (by omega)
+  obtain ⟨hinj, hrk, hfdP⟩ := _root_.GlobalTheory.PD.IsFinCover.trace_wedge_perfect ℂ F K d (xv x) hc τ ht (d - a) a (by omega)
+  obtain ⟨-, -, hfdQ⟩ := _root_.GlobalTheory.PD.IsFinCover.trace_wedge_perfect ℂ F K d (xv x) hc τ ht a (d - a) (by omega)
   haveI : FiniteDimensional F K := hc.fin
   haveI : FiniteDimensional F (⋀[K]^(d - a) Ω[K⁄ℂ]) := Module.Finite.trans K _
   haveI : FiniteDimensional F (⋀[K]^a Ω[K⁄ℂ]) := Module.Finite.trans K _

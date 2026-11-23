@@ -48,10 +48,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem formal_group_add_generation : PI.FglPtW.AddGen := PI.FglPtW.Wk.addGen_thm
-
-theorem formal_group_mul_generation : PI.FglPtW.MulGen := PI.FglPtW.Wk.mulGen_thm
-
 private theorem cc_subst_lemma {K : Type*} [CommRing K] {σ : Type*} {a : MvPowerSeries σ K}
     (ha : MvPowerSeries.constantCoeff a = 0) (f : PowerSeries K) :
     MvPowerSeries.constantCoeff (PowerSeries.subst a f) = PowerSeries.constantCoeff f := by

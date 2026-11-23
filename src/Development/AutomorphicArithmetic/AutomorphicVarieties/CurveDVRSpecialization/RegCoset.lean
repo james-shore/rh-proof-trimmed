@@ -114,11 +114,6 @@ private lemma minors_ne_zero {κ : Type} [Field κ] {n : ℕ} (hn : n ≤ 3) (M 
     have := congrFun hback j
     simpa [hv', j.2] using this.symm
 
-private lemma exists_diag {κ : Type} [Field κ] {n : ℕ} (M : Matrix (Fin n) (Fin n) κ) (a : Fin n → κ)
-    (ha : Function.Injective a) (h : M.charpoly = ∏ i, (X - C (a i))) :
-    ∃ P : GL (Fin n) κ, M * (P : Matrix (Fin n) (Fin n) κ) = (P : Matrix (Fin n) (Fin n) κ) * diagonal a :=
-  _root_.UpperTheory.Reformulated.B.DiagonalizationExistence.exists_diag M a ha h
-
 private lemma strongIrr_conj {G κ : Type} [Group G] [Field κ] {n : ℕ} (r : G →* GL (Fin n) κ) (hr : StrongIrr r)
     (P : GL (Fin n) κ) : StrongIrr ((MulAut.conj P⁻¹).toMonoidHom.comp r) :=
   _root_.UpperTheory.Reformulated.B.StronglyIrreducible.strongIrr_conj r hr P
@@ -202,7 +197,7 @@ theorem UpperTheory.V.Pr.regCoset :
     intro i j h
     by_contra hij
     exact hα i j hij 1 one_pos (by simpa using Units.ext h)
-  obtain ⟨P, hP⟩ := exists_diag (gm r u) _ hinj hu
+  obtain ⟨P, hP⟩ := _root_.UpperTheory.Reformulated.B.DiagonalizationExistence.exists_diag (gm r u) _ hinj hu
   have e : ∀ g, gm ((MulAut.conj P⁻¹).toMonoidHom.comp r) g = ((P⁻¹ * r g * P : GL (Fin n) κ) : Matrix _ _ κ) := by
     intro g
     simp [gm]

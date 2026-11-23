@@ -73,9 +73,9 @@ theorem residueField_isSeparable_of_kummer_root (T V : Type) [CommRing T] [IsDom
     (hα : α ^ (m * k) = algebraMap T V (u * ϖ ^ k))
     (hgen : ∀ v : V, ∃ f g : Polynomial T, Polynomial.aeval α g ≠ 0 ∧ Polynomial.aeval α g * v = Polynomial.aeval α f) :
     Algebra.IsSeparable (IsLocalRing.ResidueField T) (IsLocalRing.ResidueField V) := by
-  obtain ⟨γ, hγu, hαγ, hγk⟩ := GlobalTheory.T.dvr_exists_unit_pow_eq_mul_uniformizer T V hinj α ϖ u m k hϖ hu hk0 hα
-  have hK := GlobalTheory.T.kummer_aeval_valuation_dvr T V hinj γ ϖ u k hϖ hu hk hk0 hγk
-  have hres := GlobalTheory.T.kummer_residue_mem_adjoin_unit T V hinj α γ ϖ m hϖ hm0 hγu hαγ hK hgen
+  obtain ⟨γ, hγu, hαγ, hγk⟩ := _root_.GlobalTheory.dvr_pow_mul_eq_unit_mul_pow_unif T V hinj α ϖ u m k hϖ hu hk0 hα
+  have hK := _root_.GlobalTheory.kummer_valuation T V hinj γ ϖ u k hϖ hu hk hk0 hγk
+  have hres := _root_.GlobalTheory.kummer_residue_mem_adjoin T V hinj α γ ϖ m hϖ hm0 hγu hαγ hK hgen
   set g := IsLocalRing.residue V γ
   have hsepg : IsSeparable (IsLocalRing.ResidueField T) g := by
     have hroot : Polynomial.aeval g (Polynomial.X ^ k - Polynomial.C (IsLocalRing.residue T u)) = 0 := by
@@ -134,7 +134,7 @@ theorem abhyankar_residueField_isSeparable : ∀ (S K L : Type) [CommRing S] [Is
   haveI : P.LiesOver (maximalIdeal S) :=
     ⟨(IsLocalRing.eq_maximalIdeal (Ideal.isMaximal_under_of_isIntegral_of_isMaximal P)).symm⟩
   letI := Localization.AtPrime.algebraOfLiesOver P Q
-  obtain ⟨hVd, hVdvr⟩ := GlobalTheory.T.localization_normalization_rootAdjoin_isDVR S K L π e D ⟨φ⟩ hπ he Q
+  obtain ⟨hVd, hVdvr⟩ := _root_.GlobalTheory.LocNormDVR.main S K L π e D ⟨φ⟩ hπ he Q
   have hinj : Function.Injective
       (algebraMap (Localization.AtPrime P) (Localization.AtPrime Q)) := by
     rw [injective_iff_map_eq_zero]
@@ -167,7 +167,7 @@ theorem abhyankar_residueField_isSeparable : ∀ (S K L : Type) [CommRing S] [Is
     exact IsLocalization.mk'_zero _
   have hπP : algebraMap S (integralClosure S L) π ∈ P :=
     (Ideal.mem_of_liesOver P (maximalIdeal S) π).mp ((IsLocalRing.mem_maximalIdeal π).2 hπ.not_isUnit)
-  obtain ⟨ϖ, hϖ, u', hπu'⟩ := GlobalTheory.T.uniformizer_eq_pow_ramificationIdx_mul_unit_integralClosure S K L π e D P hπ hπP
+  obtain ⟨ϖ, hϖ, u', hπu'⟩ := _root_.GlobalTheory.pi_eq_pow_ramificationIdx_mul_unit S K L π e D P hπ hπP
   set u : Localization.AtPrime P := (u' : Localization.AtPrime P) with hu_def
   have hu : IsUnit u := u'.isUnit
   have hπu : algebraMap S (Localization.AtPrime P) π = u * ϖ ^ P.ramificationIdx S := by
@@ -238,8 +238,8 @@ theorem abhyankar_residueField_isSeparable : ∀ (S K L : Type) [CommRing S] [Is
         (algebraMap D _ t)) f := by
     intro v
     obtain ⟨⟨b, c⟩, rfl⟩ := IsLocalization.mk'_surjective Q.primeCompl v
-    obtain ⟨fb, sb, hsb, hb⟩ := GlobalTheory.T.exists_mul_eq_aeval_root_normalisation S K L π e D φ b
-    obtain ⟨fc, sc, hsc, hc⟩ := GlobalTheory.T.exists_mul_eq_aeval_root_normalisation S K L π e D φ c.1
+    obtain ⟨fb, sb, hsb, hb⟩ := _root_.GlobalTheory.normalisation_mul_eq_aeval_root S K L π e D φ b
+    obtain ⟨fc, sc, hsc, hc⟩ := _root_.GlobalTheory.normalisation_mul_eq_aeval_root S K L π e D φ c.1
     refine ⟨Polynomial.C (algebraMap S _ sc) * fb.map (algebraMap (integralClosure S L) (Localization.AtPrime P)),
       Polynomial.C (algebraMap S _ sb) * fc.map (algebraMap (integralClosure S L) (Localization.AtPrime P)), ?_, ?_⟩
     · rw [map_mul, Polynomial.aeval_C, hpoly, ← hc]

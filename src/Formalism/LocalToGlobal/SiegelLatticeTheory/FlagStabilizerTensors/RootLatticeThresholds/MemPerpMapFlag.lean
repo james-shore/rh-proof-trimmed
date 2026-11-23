@@ -40,6 +40,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianLattices.HermitianLatticesProofs.GenusBasic
+import Formalism.ThetaLiftIndependence.ThetaOrbitSums.LatLiftIndep
 
 @[expose] public section
 
@@ -107,12 +109,12 @@ theorem RowRepsIso_holds (D : D7) : Formalism.L2.SG.TermTieOf.RowRepsIso D := by
       exact h
     obtain ⟨M, ⟨hM, γ, hγ, hγM⟩, hU⟩ := huniq _ h0
     refine ⟨Formalism.HermitianLatticesTheory.gmap β M, ⟨Finset.mem_image_of_mem _ hM, β * γ * β⁻¹, stabF_conj β hβ F0 hγ, ?_⟩, ?_⟩
-    · rw [gmap_mul, gmap_mul, gmap_inv_gmap, hγM, gmap_gmap_inv]
+    · rw [_root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, _root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, _root_.Formalism.HermitianLatticesTheory.genusBasic_gmap_inv, hγM, gmap_gmap_inv]
     · rintro N ⟨hN, γ', hγ', hγN⟩
       obtain ⟨M', hM', rfl⟩ := Finset.mem_image.1 hN
       have hM'M : M' = M := by
         refine hU M' ⟨hM', β⁻¹ * γ' * β, stabF_conj_inv β hβ F0 hγ', ?_⟩
-        rw [gmap_mul, gmap_mul, hγN]
+        rw [_root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, _root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, hγN]
       rw [hM'M]
 
 section Wb
@@ -192,7 +194,7 @@ theorem autLz_fwd {Λ : Submodule (𝓞 D.host.E) (VS D).V} {φ : WbQ D F0 → W
       autLz D (Formalism.L2.SG.Saturated.mapFlag β hβ F0) (Formalism.HermitianLatticesTheory.gmap β Λ) := by
   obtain ⟨γ, hγ, hΛ, hφ⟩ := hφ
   refine ⟨β * γ * β⁻¹, stabF_conj β hβ F0 hγ, ?_, ?_⟩
-  · rw [gmap_mul, gmap_mul, gmap_inv_gmap, hΛ]
+  · rw [_root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, _root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, _root_.Formalism.HermitianLatticesTheory.genusBasic_gmap_inv, hΛ]
   · intro x hx
     have hy0 : β.symm x.1 ∈ perpS (VS D) F0.X := (mem_perp_mapFlag β hβ F0).1 x.2
     have hy1 : γ (β.symm x.1) ∈ perpS (VS D) F0.X := by
@@ -215,7 +217,7 @@ theorem autLz_bwd {Λ : Submodule (𝓞 D.host.E) (VS D).V}
     (wbEquiv β hβ F0).symm ∘ ψ ∘ (wbEquiv β hβ F0) ∈ autLz D F0 Λ := by
   obtain ⟨γ, hγ, hΛ, hψ⟩ := hψ
   refine ⟨β⁻¹ * γ * β, stabF_conj_inv β hβ F0 hγ, ?_, ?_⟩
-  · rw [gmap_mul, gmap_mul, hΛ, gmap_inv_gmap]
+  · rw [_root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, _root_.Formalism.ThetaLiftIndependence.LatticeLiftIndependence.gmap_mul, hΛ, _root_.Formalism.HermitianLatticesTheory.genusBasic_gmap_inv]
   · intro x hx
     have hx1 : γ (β x.1) ∈ perpS (VS D) (Formalism.L2.SG.Saturated.mapFlag β hβ F0).X := by
       rw [mem_perp_mapFlag β hβ F0]

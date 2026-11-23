@@ -437,7 +437,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Plug.many_sections : GlobalTheory.Compan
   obtain ⟨P0, hP0, hsp⟩ := hn1.semipos
   have harith := (T.M B b).arith
   haveI : CharZero (T.M B b).Ω := charZero_of_arith (T.M B b).y harith
-  obtain ⟨hfd, hlim⟩ := GlobalTheory.T.section_count_tendsto_geomDeg hRR hG II hII (T.M B b).K (T.M B b).ι (T.M B b).Ω (T.M B b).y
+  obtain ⟨hfd, hlim⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.nefCount hRR hG II hII (T.M B b).K (T.M B b).ι (T.M B b).Ω (T.M B b).y
     (Top.dimFl (CMType H) (Dw.p + Dw.q)) (Top.combLine ((T.M B b).line (Top.scale (s n))) (m n)) hD harith
     (T.M B b).birational hsp.1
     (fun W _ hW' => GroundTheory.Heights₂.Heights.HilbertSamuel.NefOnGenericOfSemipos.geomDeg_one_nonneg hP0 hsp hW')

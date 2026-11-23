@@ -284,26 +284,9 @@ theorem exists_eq_transpose_mul_map [IsLocalRing R₀] (hc : ∀ x, c (c x) = x)
 
 end Base
 
-section Split
-
-variable {R₀ R : Type*} [CommRing R₀] [CommRing R] (c : R →+* R)
-  {ι : Type*} [Fintype ι] [DecidableEq ι]
-
-end Split
-
 section Norm
 
 open Polynomial
-
-theorem exists_binary_eq_of_finite {k : Type*} [Field k] [Finite k] {a n : k}
-    (hD : a ^ 2 - 4 * n ≠ 0) (u : k) : ∃ r s, r ^ 2 + a * r * s + n * s ^ 2 = u := by
-  first
-  | exact @_root_.GlobalTheory.BinaryFormUniversal.binary_form_universal
-  | exact _root_.GlobalTheory.BinaryFormUniversal.binary_form_universal
-  | (apply _root_.GlobalTheory.BinaryFormUniversal.binary_form_universal <;> assumption)
-  | (intros; apply _root_.GlobalTheory.BinaryFormUniversal.binary_form_universal <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.BinaryFormUniversal.binary_form_universal <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.BinaryFormUniversal.binary_form_universal ..)
 
 theorem exists_add_mul_sq_eq {R₀ : Type*} [CommRing R₀] (I : Ideal R₀) [HenselianRing R₀ I]
     (n : R₀) {e : R₀} (he : e ∈ I) : ∃ t, t + n * t ^ 2 = e := by
@@ -345,7 +328,7 @@ theorem exists_norm_eq_of_henselian (c : R →+* R) (hc : ∀ x, c (c x) = x)
     convert hω.pow 2 using 1
     simp only [map_sub, map_mul, map_pow, map_ofNat, ha, hn]
     ring
-  obtain ⟨r, s, hrs⟩ := exists_binary_eq_of_finite (a := residue R₀ a) (n := residue R₀ n)
+  obtain ⟨r, s, hrs⟩ := _root_.GlobalTheory.BinaryFormUniversal.binary_form_universal (a := residue R₀ a) (n := residue R₀ n)
     (by simpa only [map_sub, map_mul, map_pow, map_ofNat] using (hD.map (residue R₀)).ne_zero)
     (residue R₀ u)
   obtain ⟨r, rfl⟩ := residue_surjective r

@@ -77,13 +77,13 @@ theorem exists_isAdj : ∀ (K : Type) [Field K] (A B : AbVar K) (c : Pic A.X.lef
   have hzero : CechPic.pull (lift (𝟙 A.X) (1 : A.X ⟶ B.X)).left
       (AbVar.lam d (fst A.X B.X ≫ f.hom) (snd A.X B.X)) = 0 := by
     rw [lam_eq, CechPic.pull_lam, lift_snd, CechPic.lam_one_right]
-  obtain ⟨ψ, hψ, -⟩ := GlobalTheory.T.biadditiveClass_eq_poincarePullback_unique_hom K A A' B P hP _ hadd hzero
+  obtain ⟨ψ, hψ, -⟩ := _root_.GlobalTheory.AV.FamHom.main K A A' B P hP _ hadd hzero
   have hpow : ∀ (Y : Over (Sp K)) (a : Y ⟶ A.X) (b : Y ⟶ A'.X) (m : ℕ),
       AbDual.evc hP.isLB a (b ^ m) = m • AbDual.evc hP.isLB a b := by
     intro Y a b m
     induction m with
     | zero => rw [pow_zero, zero_smul, AbDual.evc_one_right hP.isLB hP.zero a]
-    | succ m ih => rw [pow_succ, GlobalTheory.T.poincareClass_additive_in_dual_variable K A A' P hP Y a, ih, succ_nsmul]
+    | succ m ih => rw [pow_succ, _root_.GlobalTheory.AbDual.poincare_evc_mul_right K A A' P hP Y a, ih, succ_nsmul]
   refine ⟨n, ψ ≫ v, hn, ?_⟩
   have e1 := congrArg (CechPic.pull (lift (fst A.X B.X) (snd A.X B.X ≫ (ψ ≫ v).hom)).left) hφ
   rw [lam_eq, CechPic.pull_lam, AbDual.pull_evc, lift_fst, lift_snd_assoc, lift_snd, ← lam_eq] at e1

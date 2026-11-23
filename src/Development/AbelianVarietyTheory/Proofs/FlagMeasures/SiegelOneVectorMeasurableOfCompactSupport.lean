@@ -137,7 +137,7 @@ theorem sw1b2_of_cc : GlobalTheory.GaussMean.OneVectorCc → ∀ (F E : Type) [F
     have e : (fun v => ∫⁻ X, ENNReal.ofReal (Φv v X).re ∂(fv v (algebraMap F (Fv F v) β))) =
         fun v => ENNReal.ofReal (Fl v (algebraMap F (Fv F v) β)).re := funext fun v => (hdensV Fl hFl v).2
     rw [e]
-    exact GlobalTheory.T.multipliable_ofReal_re_of_nonneg_real _ _ hm fun v => by
+    exact _root_.GlobalTheory.multipliable_ofReal_re_of_complex _ _ hm fun v => by
       rw [(hdensV Fl hFl v).1]
       exact ⟨by simp, by simpa using integral_nonneg fun X => (hreal v X).1⟩
   refine ⟨(hFlR Fl0 hFl0 hmul0).1, ?_⟩
@@ -242,12 +242,12 @@ theorem sw1b2_of_cc : GlobalTheory.GaussMean.OneVectorCc → ∀ (F E : Type) [F
         ((φ (eV (projInf (act x h))) * (Φf (projFin (act x h))).re : ℝ) : ℂ)
       conv_lhs => rw [(hΦfR (projFin (act x h))).1]
       push_cast; ring
-    have hint := GlobalTheory.T.lintegral_hermitian_orbit_sum_fixed_length_lt_top F E σ hCM M J hJ β hβ Φ' hΦ'c.1 hΦ'c.2 μ 𝓕 hμ h𝓕
+    have hint := _root_.GlobalTheory.OrbitSumInt.lintegral_orbitSum_lt_top F E σ hCM M J hJ β hβ Φ' hΦ'c.1 hΦ'c.2 μ 𝓕 hμ h𝓕
     have hint' : ∫⁻ h in 𝓕, ∑' x : T, ‖((f x h : ℝ) : ℂ)‖ₑ ∂μ < ⊤ := by
       refine lt_of_eq_of_lt ?_ hint
       refine lintegral_congr fun h => tsum_congr fun x => ?_
       rw [← hΦ'f]
-    have hL := GlobalTheory.T.meanL_tsum_ofReal_eq_ofReal_re_meanC (HA (AF F) σ J) μ 𝓕 T f hfm hf0 hfin hint'
+    have hL := _root_.GlobalTheory.meanL_eq_ofReal_meanC_re (HA (AF F) σ J) μ 𝓕 T f hfm hf0 hfin hint'
     rw [hm₁ (fun y => ENNReal.ofReal (φ y)) (ENNReal.measurable_ofReal.comp hφc.measurable),
       hm₂ (fun y => ENNReal.ofReal (φ y)) (ENNReal.measurable_ofReal.comp hφc.measurable)]
     have e1 : (μ 𝓕)⁻¹ * ∫⁻ h in 𝓕, ∑' x : T, ENNReal.ofReal (φ (a x h)) * w x h ∂μ =

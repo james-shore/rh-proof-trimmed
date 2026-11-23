@@ -136,7 +136,7 @@ theorem key_unit_at {κ : KeyRule} (hκ : IsKeyRule κ) (hpq : 1 ≤ Dw.p + Dw.q
   obtain ⟨mK, -⟩ := sabCancel pullCubCancel E H _ _ _ Y.t tP t' yt (Out.jK T.V) mP' (PullbackSections.sabMapCast mJ hj)
   have hprop : IsProper t'.G.hom :=
     MorphismProperty.of_isPullback (P := @IsProper) m1.cart.1 Xo.univ.proper
-  obtain ⟨ψ, -⟩ := GlobalTheory.semiAbelian_model_determined_by_generic_fibre E H T.V inferInstance G tP t' hprop m2 mK
+  obtain ⟨ψ, -⟩ := _root_.GlobalTheory.ModelUniqueChecks.extV_holds E H T.V inferInstance G tP t' hprop m2 mK
   obtain ⟨n', -⟩ := sabComp pullCubComp E H _ _ _ Y.t tP G yt (𝟙 _) mP' ψ
   exact (((GlobalTheory.T.thetaKeyScalar_isUnit_on_integralModels κ hκ E H Dw l Xo c _ _ Y p hpq (isBaseRing_local c W) hp h2 h3 h4 h5).1 T.V T.Fr z yt h1 G
     (PullbackSections.sabMapCast n' (Category.id_comp yt)) n w hw θ k hk).1 hθ).1
@@ -169,7 +169,7 @@ theorem key_unit_any {κ : KeyRule} (hκ : IsKeyRule κ) (hpq : 1 ≤ Dw.p + Dw.
   obtain ⟨p, hp, hpl⟩ := GlobalTheory.Reg.exists_prime_natCast_mem la
   by_cases hgp : l.GoodAt p
   · exact key_unit_at hκ hpq hp hpl hgp ho hxs m1 m2 hw hθ k hk
-  · exact GlobalTheory.T.thetaKeyRule_isUnit_at_bad_level_place E H Dw l Xo c κ hκ hpq la p hp hpl hgp T io e ho x hxs G t' m1 m2 n w hw θ hθ k hk
+  · exact _root_.GlobalTheory.KeyBadPrime.key_unit_bad E H Dw l Xo c κ hκ hpq la p hp hpl hgp T io e ho x hxs G t' m1 m2 n w hw θ hθ k hk
 
 theorem exists_tied_det_any {κ : KeyRule} (hκ : IsKeyRule κ) (hpq : 1 ≤ Dw.p + Dw.q)
     {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ))

@@ -66,12 +66,6 @@ theorem left_ext {Y Z : Over S} {W : Scheme.{0}} {u v : W ⟶ (Y ⊗ Z).left}
   rw [Over.snd_left] at h₂
   exact pullback.hom_ext h₁ h₂
 
-theorem lift_left_fst' {T X Y : Over S} (a : T ⟶ X) (b : T ⟶ Y) : (lift a b).left ≫ (fst X Y).left = a.left := by
-  rw [← Over.comp_left, lift_fst]
-
-theorem lift_left_snd' {T X Y : Over S} (a : T ⟶ X) (b : T ⟶ Y) : (lift a b).left ≫ (snd X Y).left = b.left := by
-  rw [← Over.comp_left, lift_snd]
-
 variable {G' : Over S'} [GrpObj G'] {G : Over S} [GrpObj G] {f : S' ⟶ S} {φ : G'.left ⟶ G.left}
 
 theorem one_left (h : IsGrpPullback G' G f φ) (T : Over S') :
@@ -100,7 +94,7 @@ theorem mul_compat (h : IsGrpPullback G' G f φ) (k : (G' ⊗ G').left ⟶ (G �
     rw [h.1.w, ← Category.assoc, Over.w])
   have e := h.2 (G' ⊗ G') (fst G' G') (snd G' G') x₀ y₀ rfl rfl
   rw [Hom.mul_def, Hom.mul_def, lift_fst_snd, Category.id_comp, Over.comp_left] at e
-  have hl : (lift x₀ y₀).left = k := left_ext (by rw [lift_left_fst', hk₁]; rfl) (by rw [lift_left_snd', hk₂]; rfl)
+  have hl : (lift x₀ y₀).left = k := left_ext (by rw [_root_.GlobalTheory.TripleDescent.lift_left_fst, hk₁]; rfl) (by rw [_root_.GlobalTheory.TripleDescent.lift_left_snd, hk₂]; rfl)
   rw [← e, hl]
 
 theorem inv_compat (h : IsGrpPullback G' G f φ) : φ ≫ ι[G].left = ι[G'].left ≫ φ := by
@@ -140,8 +134,8 @@ theorem push_mul (m : Y ⊗ Y ⟶ Y) (hj : j ≫ Y.hom = A.hom ≫ s) (k : (A �
     (hm : k ≫ m.left = μ[A].left ≫ j) {T : Over S'} (x y : T ⟶ A) :
     lift (push hj x) (push hj y) ≫ m = push hj (x * y) := by
   have hl : (lift (push hj x) (push hj y)).left = (lift x y).left ≫ k := left_ext
-    (by rw [lift_left_fst', Category.assoc, hk₁, ← Category.assoc, lift_left_fst', push_left])
-    (by rw [lift_left_snd', Category.assoc, hk₂, ← Category.assoc, lift_left_snd', push_left])
+    (by rw [_root_.GlobalTheory.TripleDescent.lift_left_fst, Category.assoc, hk₁, ← Category.assoc, _root_.GlobalTheory.TripleDescent.lift_left_fst, push_left])
+    (by rw [_root_.GlobalTheory.TripleDescent.lift_left_snd, Category.assoc, hk₂, ← Category.assoc, _root_.GlobalTheory.TripleDescent.lift_left_snd, push_left])
   apply Over.OverMorphism.ext
   rw [Over.comp_left, hl, Category.assoc, hm, push_left, Hom.mul_def, Over.comp_left, Category.assoc]
 
@@ -242,20 +236,20 @@ theorem exists_glued_grp : ∀ (P R₁ R₂ R₀ : CommRingCat.{0}) (f₁ : P �
       (Spec.map g₁) (Spec.map g₂) (by dsimp; infer_instance) (IsPullback.id_vert _) (IsPullback.id_vert _)
       (IsPullback.id_vert _) hw (by simp)
 
-  obtain ⟨k₁, hk₁f, hk₁s, hk₁⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map f₁) A₁ A₁ Y Y j₁ j₁ hj₁ hj₁
-  obtain ⟨k₂, hk₂f, hk₂s, hk₂⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map f₂) A₂ A₂ Y Y j₂ j₂ hj₂ hj₂
-  obtain ⟨i₁, hi₁f, hi₁s, hi₁⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map g₁) A₀ A₀ A₁ A₁ ψ₁ ψ₁ hψ₁.1 hψ₁.1
-  obtain ⟨i₂, hi₂f, hi₂s, hi₂⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map g₂) A₀ A₀ A₂ A₂ ψ₂ ψ₂ hψ₂.1 hψ₂.1
+  obtain ⟨k₁, hk₁f, hk₁s, hk₁⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map f₁) A₁ A₁ Y Y j₁ j₁ hj₁ hj₁
+  obtain ⟨k₂, hk₂f, hk₂s, hk₂⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map f₂) A₂ A₂ Y Y j₂ j₂ hj₂ hj₂
+  obtain ⟨i₁, hi₁f, hi₁s, hi₁⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map g₁) A₀ A₀ A₁ A₁ ψ₁ ψ₁ hψ₁.1 hψ₁.1
+  obtain ⟨i₂, hi₂f, hi₂s, hi₂⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map g₂) A₀ A₀ A₂ A₂ ψ₂ ψ₂ hψ₂.1 hψ₂.1
   have hfl2 : Flat (Y ⊗ Y).hom := by rw [Over.tensorObj_hom]; infer_instance
   have hik : i₁ ≫ k₁ = i₂ ≫ k₂ := left_ext
     (by rw [Category.assoc, Category.assoc, hk₁f, hk₂f, reassoc_of% hi₁f, reassoc_of% hi₂f, hY.w])
     (by rw [Category.assoc, Category.assoc, hk₁s, hk₂s, reassoc_of% hi₁s, reassoc_of% hi₂s, hY.w])
   have Q2 : IsPushout i₁ i₂ k₁ k₂ := pinch (Y ⊗ Y) (A₁ ⊗ A₁) (A₂ ⊗ A₂) (A₀ ⊗ A₀) k₁ k₂ i₁ i₂ hfl2 hk₁ hk₂ hi₁ hik hi₂.w
 
-  obtain ⟨l₁, hl₁f, hl₁s, hl₁⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map f₁) (A₁ ⊗ A₁) A₁ (Y ⊗ Y) Y k₁ j₁ hk₁ hj₁
-  obtain ⟨l₂, hl₂f, hl₂s, hl₂⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map f₂) (A₂ ⊗ A₂) A₂ (Y ⊗ Y) Y k₂ j₂ hk₂ hj₂
-  obtain ⟨h₁, hh₁f, hh₁s, hh₁⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map g₁) (A₀ ⊗ A₀) A₀ (A₁ ⊗ A₁) A₁ i₁ ψ₁ hi₁ hψ₁.1
-  obtain ⟨h₂, hh₂f, hh₂s, hh₂⟩ := GlobalTheory.T.over_tensor_isPullback_of_isPullback_squares (Spec.map g₂) (A₀ ⊗ A₀) A₀ (A₂ ⊗ A₂) A₂ i₂ ψ₂ hi₂ hψ₂.1
+  obtain ⟨l₁, hl₁f, hl₁s, hl₁⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map f₁) (A₁ ⊗ A₁) A₁ (Y ⊗ Y) Y k₁ j₁ hk₁ hj₁
+  obtain ⟨l₂, hl₂f, hl₂s, hl₂⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map f₂) (A₂ ⊗ A₂) A₂ (Y ⊗ Y) Y k₂ j₂ hk₂ hj₂
+  obtain ⟨h₁, hh₁f, hh₁s, hh₁⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map g₁) (A₀ ⊗ A₀) A₀ (A₁ ⊗ A₁) A₁ i₁ ψ₁ hi₁ hψ₁.1
+  obtain ⟨h₂, hh₂f, hh₂s, hh₂⟩ := _root_.GlobalTheory.over_tensor_isPullback_of_isPullback (Spec.map g₂) (A₀ ⊗ A₀) A₀ (A₂ ⊗ A₂) A₂ i₂ ψ₂ hi₂ hψ₂.1
   have hfl3 : Flat ((Y ⊗ Y) ⊗ Y).hom := by rw [Over.tensorObj_hom]; infer_instance
   have hhl : h₁ ≫ l₁ = h₂ ≫ l₂ := left_ext
     (by rw [Category.assoc, Category.assoc, hl₁f, hl₂f, reassoc_of% hh₁f, reassoc_of% hh₂f, hik])

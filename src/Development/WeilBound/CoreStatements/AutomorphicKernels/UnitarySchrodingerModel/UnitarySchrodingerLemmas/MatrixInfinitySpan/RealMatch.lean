@@ -104,7 +104,7 @@ theorem realMatch : RealMatch := by
       exact Units.mul_inv (frG τ)
     have hY : ∀ τ, PositivityTheory.SiegelWeilFormula.Gen.crd (θ τ) (frG τ) (aTau θ a τ) (HeckeCharacterZeroLocus.SiegelWeilU.projInf (tupInv x)) =
         ((frG τ)⁻¹).1 * compAt θ τ (HMul.hMul x a.1 : Mx D V.rank n) := fun τ => by
-      rw [GlobalTheory.VacKInf.LeviFix.compAt_mul', ← Matrix.mul_assoc]
+      rw [_root_.GlobalTheory.WeilVacMove.compAt_mul, ← Matrix.mul_assoc]
       rfl
     have hZ : ∀ τ, frM τ * (((frG τ)⁻¹).1 * compAt θ τ (HMul.hMul x a.1 : Mx D V.rank n)) =
         compAt θ τ (HMul.hMul x a.1 : Mx D V.rank n) := fun τ => by

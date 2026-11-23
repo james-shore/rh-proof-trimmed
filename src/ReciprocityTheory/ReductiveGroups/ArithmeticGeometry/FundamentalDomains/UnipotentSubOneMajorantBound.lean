@@ -123,7 +123,7 @@ lemma maj_Ce_bz (C b : ℂ) :
       C * conj C * hermC τ.1 X.Gm (X.Jp x τ e) e +
         b * conj b * hermC τ.1 X.Gm (X.Jp x τ (X.d2z x τ e δ)) (X.d2z x τ e δ)
     rw [Jp_sub, Jp_smul, Jp_smul]
-    simp only [hC_sub_left, hC_smul_left, hC_sub_right, hC_smul_right, hfz, hze]
+    simp only [hC_sub_left, hC_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_right, hC_smul_right, hfz, hze]
     ring
   rw [hself, hself, hself, Complex.mul_conj, Complex.mul_conj] at h3
   exact_mod_cast h3

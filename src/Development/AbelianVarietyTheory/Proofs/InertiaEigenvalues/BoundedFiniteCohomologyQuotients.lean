@@ -104,17 +104,6 @@ theorem redT_mem_BQ (L : Lattice (O := O) ρ) (I : Submodule O ↥L.T) (hI : Sta
   rfl
 
 
-omit [TopologicalSpace G] [TopologicalSpace V] [ContinuousAdd V] [ContinuousConstSMul LL V] in
-theorem exists_smul_mem [IsDomain O] [IsFractionRing O LL] (L : Lattice (O := O) ρ) (w : V) :
-    ∃ b : O, b ≠ 0 ∧ b • w ∈ L.T := by
-  first
-  | exact @_root_.GlobalTheory.NonzeroScalarLattice.exists_ne_zero_smul_mem
-  | exact _root_.GlobalTheory.NonzeroScalarLattice.exists_ne_zero_smul_mem
-  | (apply _root_.GlobalTheory.NonzeroScalarLattice.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NonzeroScalarLattice.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NonzeroScalarLattice.exists_ne_zero_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NonzeroScalarLattice.exists_ne_zero_smul_mem ..)
-
 theorem exists_torsion_lift [IsDomain O] [IsFractionRing O LL] (L : Lattice (O := O) ρ)
     (hρ : ∀ m, Continuous fun g => ρ g m) (s : O) (σ : LL) (hs : algebraMap O LL s = σ) (hσ : σ ≠ 0)
     (c : G → ↥L.T ⧸ (Ideal.span {s} • ⊤ : Submodule O ↥L.T))
@@ -146,7 +135,7 @@ theorem exists_torsion_lift [IsDomain O] [IsFractionRing O LL] (L : Lattice (O :
     · simp only [map_mul, Module.End.mul_apply, map_sub]
       abel
   refine ⟨⟨_, hZ⟩, ?_, ?_⟩
-  · obtain ⟨b, hb, hbw⟩ := exists_smul_mem L w
+  · obtain ⟨b, hb, hbw⟩ := _root_.GlobalTheory.NonzeroScalarLattice.exists_ne_zero_smul_mem L w
     refine ⟨⟨b, mem_nonZeroDivisors_of_ne_zero hb⟩, ?_⟩
     show b • (Submodule.Quotient.mk ⟨_, hZ⟩ : LatticeCohomology L) = 0
     rw [← Submodule.Quotient.mk_smul, Submodule.Quotient.mk_eq_zero]
@@ -218,7 +207,7 @@ end Gen
 
 theorem ker_bounded : Formalism.GaloisCohomology.LocalTateDualityK → ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K : FinExt l) (LL : Type) [Field LL] [Algebra ℚ_[l] LL] [TopologicalSpace LL] (O : Type) [CommRing O] [Algebra O LL], GoodO (Qp := ℚ_[l]) LL O → ∀ (A' : GRep ↥(GK K) ℚ_[l] LL O) (LA' : Lattice (O := O) A'.ρ), ∃ C0 k0 : ℕ, ∀ (r : ℕ) (hI' : StableSub LA' (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA'.T)), ∃ F : Finset (QuotientCohomology LA' _ hI'), F.card ≤ C0 ∧ ∀ c' : ↥(quotientCocycles LA' _ hI'), (fun g => (Submodule.Quotient.mk ((((l : ℕ) : LL) ^ r)⁻¹ • Formalism.MainNotions.LocalSituation.liftQ LA' _ ((c' : ↥(GK K) → ↥LA'.T ⧸ (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA'.T)) g)) : A'.V ⧸ LA'.T)) ∈ BD LA' → (Submodule.Quotient.mk c' : QuotientCohomology LA' _ hI') ∈ F ∧ (((l : ℕ) : O) ^ k0) • (Submodule.Quotient.mk c' : QuotientCohomology LA' _ hI') = 0 := by
   intro hT l _ P K LL _ _ _ O _ _ hO A' LA'
-  have hgc := GlobalTheory.GoodCoeff.good_coeff_integers l LL O hO
+  have hgc := _root_.GlobalTheory.PowerImageOpen.main l LL O hO
   have hfg : Module.Finite O (LatticeCohomology LA') := GlobalTheory.TateFiniteH1.tate_finH1 hT l P K LL O hO A' LA'
   letI hD : IsDomain O := hO.1.choose
   haveI : IsDiscreteValuationRing O := hO.1.choose_spec.1

@@ -53,6 +53,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.LemmaNA
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TiledBoundaries.MemSpanBn
 import Std.Tactic.BVDecide.Normalize.Prop
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.ExistsPairs
 
 @[expose] public section
 
@@ -163,7 +164,7 @@ theorem ct_norm_C (hI : IsSplit P I) (q : ℕ) (a : Vsp X.dim) :
   have h1 := Col.norm_sq_decomp hK a
   have h2 := Col.norm_wmap hK a
   have h3 := Col.norm_uc_sq (IR I) a
-  rw [Col.Hf_self a, Col.Hf_self (Col.wmap (IR I) a), h2, h3]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.DimC.Hf_self a, _root_.ReciprocityTheory.ChartRestriction.G.I2.DimC.Hf_self (Col.wmap (IR I) a), h2, h3]
   have hS : (Col.S (IR I) a).re = ∑ k, ((Col.z (IR I) k a).re ^ 2 - (Col.z (IR I) k a).im ^ 2) := by
     unfold Col.S; rw [Complex.re_sum]; refine Finset.sum_congr rfl fun k _ => ?_
     rw [sq, Complex.mul_re]; ring

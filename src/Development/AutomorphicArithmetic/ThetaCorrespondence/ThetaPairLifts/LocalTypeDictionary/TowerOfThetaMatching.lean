@@ -58,21 +58,15 @@ open GlobalTheory.SqTop
 open GlobalTheory.ConstRatio (NegIdx Factor)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.SqTower
-section Units
-variable {K : Type} [Field K] [NumberField K] [StarRing K]
-end Units
-section Descent
-variable {D : D7} {T : Type} {Lc : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} {G : GridData Lc sc} {W : G.Weil} {μ₀ : T}
-end Descent
 end GlobalTheory.SqTower
 namespace GlobalTheory.SqTower
 open GlobalTheory.SqTower
 theorem tower_alt_bis : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → LNe → Tower := by
   intro hP hK hM hL
-  have H := gbig_and (_root_.GlobalTheory.T.witt_tower_top_stage_theta_norm_formula hP hK hM) (gbig_and (_root_.GlobalTheory.T.exists_factor_of_isStageC hP hK hM) (gbig_and (_root_.GlobalTheory.T.witt_tower_norm_step_of_small_rank hP hK hM)
-    (gbig_and (_root_.GlobalTheory.T.witt_tower_norm_step_of_large_rank hP hK hM) (gbig_and (_root_.GlobalTheory.T.witt_tower_constant_ratio_eq_bottom hP hK hM) hL))))
+  have H := _root_.GlobalTheory.SqStepBig.gbig_both (_root_.GlobalTheory.SqTower.theta_tower_top_stage_norm_eq hP hK hM) (_root_.GlobalTheory.SqStepBig.gbig_both (_root_.GlobalTheory.StageFactor.theta_tower_stage_norm_factorization hP hK hM) (_root_.GlobalTheory.SqStepBig.gbig_both (_root_.GlobalTheory.SqStep.theta_tower_norm_step_small_rank hP hK hM)
+    (_root_.GlobalTheory.SqStepBig.gbig_both (_root_.GlobalTheory.SqStepBig.theta_tower_norm_step_large_rank hP hK hM) (_root_.GlobalTheory.SqStepBig.gbig_both (_root_.GlobalTheory.SqTower.theta_tower_bottom_constant_ratio hP hK hM) hL))))
   unfold Tower
-  refine gbig_mono H ?_
+  refine _root_.GlobalTheory.StageDict.gBig_mono H ?_
   intro D T Lc sc G μ₀ C x b hμ hQ
   obtain ⟨htop, hfac, hsm, hbig, hbot, hlne⟩ := hQ
   intro W S ρ hψ hN i j t c c₀ A A' WW X c0 Λ Λ₀ hnz hc hnz₀ hc₀ hX hc0 hΛ hΛ₀
@@ -144,8 +138,3 @@ end GlobalTheory.SqTower
 end
 end
 
-section
-open GlobalTheory.SqTop
-theorem _root_.GlobalTheory.T.tower_of_theta_matching_lNe : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → LNe → Tower := by
-  first | exact @_root_.GlobalTheory.SqTower.tower_alt_bis | exact _root_.GlobalTheory.SqTower.tower_alt_bis | (intros; apply _root_.GlobalTheory.SqTower.tower_alt_bis <;> assumption)
-end

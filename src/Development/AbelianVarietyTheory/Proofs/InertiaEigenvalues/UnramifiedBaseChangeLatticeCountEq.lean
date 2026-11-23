@@ -56,7 +56,7 @@ open GlobalTheory.UnitLemma Polynomial
 
 theorem N_overExt : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsUnrExt K K' d φ → ∀ (B : InvAlg K) (ψ : K'.E →+* B.A) (hψ : ∀ e, ψ (φ e) = algebraMap K.E B.A e) (hσ : ∀ e, B.σ (ψ e) = ψ (K'.c e)), (∀ y : K'.O, ψ (algebraMap K'.O K'.E y) ∈ Algebra.adjoin K.O ({B.g} : Set B.A)) → ∀ x : B.A, (overExt φ B ψ hψ hσ).N x = B.N x := by
   intro K K' d φ hU B ψ hψ hσ hO x
-  refine (@GlobalTheory.T.weightedOrbitSum_congr_coefficientRing K.O K'.O B.A _ _ B.cA B.aO (overExt φ B ψ hψ hσ).aO B.T (B.X x) ((overExt φ B ψ hψ hσ).X x) ?_ ?_ ?_)
+  refine (@_root_.GlobalTheory.UnitLemma.Orbit.orbSum_congr_coe K.O K'.O B.A _ _ B.cA B.aO (overExt φ B ψ hψ hσ).aO B.T (B.X x) ((overExt φ B ψ hψ hσ).X x) ?_ ?_ ?_)
   · intro L hL
     let S : Subalgebra K.O B.A :=
       { carrier := {a | ∀ z ∈ L, a * z ∈ L}
@@ -90,6 +90,6 @@ theorem N_overExt : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), IsUnrExt K 
     refine and_congr_left' ?_
     change (IsIntegral K.O (t : B.A) ∧ IsIntegral K.O ((t⁻¹ : B.Aˣ) : B.A)) ↔
       (@IsIntegral K'.O (overExt φ B ψ hψ hσ).A _ _ _ (t : B.A) ∧ @IsIntegral K'.O (overExt φ B ψ hψ hσ).A _ _ _ ((t⁻¹ : B.Aˣ) : B.A))
-    rw [GlobalTheory.T.isIntegral_unramifiedExt_iff_isIntegral_base K K' d φ hU B ψ hψ hσ, GlobalTheory.T.isIntegral_unramifiedExt_iff_isIntegral_base K K' d φ hU B ψ hψ hσ]
+    rw [_root_.GlobalTheory.UnitLemma.Unr.isIntegral_overExt_iff K K' d φ hU B ψ hψ hσ, _root_.GlobalTheory.UnitLemma.Unr.isIntegral_overExt_iff K K' d φ hU B ψ hψ hσ]
 
 end GlobalTheory.UnitLemma.Unr

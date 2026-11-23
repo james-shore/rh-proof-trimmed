@@ -81,10 +81,6 @@ theorem sign_norm {l : ℕ} (hl : l ≤ D.R.rS + 1) :
   rw [hdet, star_pow, star_neg, star_one, ← pow_add]
   exact Even.neg_one_pow ⟨_, rfl⟩
 
-theorem conjF_star (x : D.host.E) : D.conjF x = star x := by
-  rw [D.conjF_eq]
-  exact (Formalism.BasicNotions.Examples₂.star_eq_conj D.host x).symm
-
 private lemma submatrix_castLE_mul_of_upper {K : Type*} [Field K] {n l : ℕ} (hl : l ≤ n) (A B : Matrix (Fin n) (Fin n) K)
     (hB : ∀ i j, j < i → B i j = 0) :
     (A * B).submatrix (Fin.castLE hl) (Fin.castLE hl) =
@@ -163,7 +159,7 @@ theorem gflag_ne (γ : TermDef.Term D u u' F0 what₂) (Z : PairVal.MatR D)
       unfold Dmin Formalism.MainNotions.S.leadMinorE
       simp only [dif_pos hl]
       rw [← Matrix.det_mul, ← submatrix_castLE_mul_of_upper hl _ _ hS, ← zhatOM_eq_mul_zhatOM_one, hM, det_submatrix_castLE_LPU_eq hl _ _ _ hL hU]
-    rw [h1, conjF_star, star_mul']
+    rw [h1, _root_.Formalism.L2.SG.Pf.AtPt.conjF_star, star_mul']
     linear_combination (-(Formalism.MainNotions.S.leadMinorE Z l * star (Formalism.MainNotions.S.leadMinorE Z l))) * sign_norm hl
   intro h0
   apply hG

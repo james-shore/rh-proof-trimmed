@@ -59,14 +59,6 @@ namespace GlobalTheory.SiegelSetGL
 
 variable (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ)
 
-theorem continuous_pInfC : Continuous (pInf E) :=
-  continuous_pi fun w =>
-    ((InfinitePlace.Completion.isometryEquivComplexOfIsComplex (IsTotallyComplex.isComplex w)).continuous.comp
-      (continuous_apply w)).comp continuous_fst
-
-theorem continuous_mapInf : Continuous (GeneralLinearGroup.map (n := Fin a) (pInf E)) :=
-  Continuous.units_map _ (continuous_id.matrix_map (continuous_pInfC E))
-
 theorem continuous_mapFin : Continuous (GeneralLinearGroup.map (n := Fin a) (pFin E)) :=
   Continuous.units_map _ (continuous_id.matrix_map (continuous_snd : Continuous (pFin E)))
 
@@ -80,7 +72,7 @@ theorem exists_compact_decomp : ∀ (E : Type) [Field E] [NumberField E] [_root_
   intro E _ _ _ a ω hω hωB t ht
   set pI := GeneralLinearGroup.map (n := Fin a) (pInf E)
   set pF := GeneralLinearGroup.map (n := Fin a) (pFin E)
-  have hωI : IsCompact (pI '' ω) := hω.image (continuous_mapInf E a)
+  have hωI : IsCompact (pI '' ω) := hω.image (_root_.GlobalTheory.CuspRep.ContAut.continuous_map_pInf E a)
   have hup : ∀ b ∈ pI '' ω, b.val.BlockTriangular id := by
     rintro _ ⟨b, hb, rfl⟩ i j hij
     have h0 : (b : Matrix (Fin a) (Fin a) (Ad E)) i j = 0 := hωB hb hij
@@ -90,7 +82,7 @@ theorem exists_compact_decomp : ∀ (E : Type) [Field E] [NumberField E] [_root_
   have hK := isCompact_maxCompact (K := E) (n := a)
   refine ⟨Ω0 * pI '' (maxCompact (K := E) (n := a) : Set (AdelicGLn.AdelicGL E a)),
     pF '' ω * pF '' (maxCompact (K := E) (n := a) : Set (AdelicGLn.AdelicGL E a)),
-    hΩ0.mul (hK.image (continuous_mapInf E a)),
+    hΩ0.mul (hK.image (_root_.GlobalTheory.CuspRep.ContAut.continuous_map_pInf E a)),
     (hω.image (continuous_mapFin E a)).mul (hK.image (continuous_mapFin E a)), ?_⟩
   intro r d hr hrt hd b hb k hk
   refine ⟨(d⁻¹ * pI b * d) * pI k, Set.mul_mem_mul (hΩ r d hr hrt hd _ ⟨b, hb, rfl⟩) ⟨k, hk, rfl⟩,

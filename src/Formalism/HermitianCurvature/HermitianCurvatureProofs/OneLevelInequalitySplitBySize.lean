@@ -49,7 +49,7 @@ import Mathlib.Topology.Sheaves.Init
 namespace Formalism.FourierDecayAlt.P
 
 theorem one_level_inequality_split_by_size : Formalism.FourierDecayAlt.TB.OneLevel :=
-  levelInequalityOfSteps splitByLastSize schurRecursion_true diagStep
+  _root_.Formalism.FourierDecayAlt.P.OneLevelCoefficients.oneLevel_of_steps splitByLastSize schurRecursion_true diagStep
     singleBlockStep longBlockStep
 
 end Formalism.FourierDecayAlt.P

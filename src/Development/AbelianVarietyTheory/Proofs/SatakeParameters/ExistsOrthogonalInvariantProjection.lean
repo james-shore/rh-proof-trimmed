@@ -56,7 +56,7 @@ theorem mem_germ_range_of_mem_rB : ∀ (d : ℕ) (Z : Scheme.{0}) [IsIntegral Z]
       (p.appTop.hom ((Scheme.ΓSpecIso (CommRingCat.of ℂ)).inv.hom r)) := by
     subst hinst; intro r; rfl
   set U : Z.Opens := I.inf fun i => φ ⁻¹ᵁ chart d i with hU
-  have hUa : IsAffineOpen U := (GlobalTheory.T.projective_chart_affine_cover d Z φ).2 I hI
+  have hUa : IsAffineOpen U := (_root_.GlobalTheory.PD.XCover.preimage_chart_cover d Z φ).2 I hI
   haveI : Nonempty U := ⟨⟨_, h⟩⟩
   haveI := functionField_isFractionRing_of_isAffineOpen Z U hUa
   have halg : ∀ b, algebraMap Γ(Z, U) Z.functionField b = (Z.presheaf.germ U (genericPoint Z) h).hom b := fun _ => rfl
@@ -77,7 +77,7 @@ theorem mem_germ_range_of_mem_rB : ∀ (d : ℕ) (Z : Scheme.{0}) [IsIntegral Z]
       have hle : U ≤ φ ⁻¹ᵁ chart d i := Finset.inf_le hi
       refine ⟨Z.presheaf.map (homOfLE hle).op (φ.app (chart d i) (ratioSec d i j)), ?_⟩
       rw [Z.presheaf.germ_res_apply]
-      have hr := (GlobalTheory.T.pulledBackProjCoordinateRatio_overlap_div d Z φ 0 i j (hgen 0) (hgen i)).2
+      have hr := (_root_.GlobalTheory.PD.XCover.rat_overlap d Z φ 0 i j (hgen 0) (hgen i)).2
       simp only [IntermediateField.coe_div, crd_val]
       rw [← hr, rat, dite_eq_left (hgen i)]
     | algebraMap r =>

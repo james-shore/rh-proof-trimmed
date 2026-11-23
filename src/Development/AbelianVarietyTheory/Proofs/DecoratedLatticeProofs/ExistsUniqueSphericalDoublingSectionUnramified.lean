@@ -137,8 +137,8 @@ theorem exists_isSphSecAt_unique : ∀ (D : D7) (A : HSp D) (L : Lat A), IsSelfD
     Formalism.IndefR.Fin.PDA.selfDual_isFullLattice A L hL
   have hI : HasIwasawa D.sp.cm.sig (dblSp A).gram (KFin D.sp.cm.sig (dblSp A).gram L v) := by
     by_cases hs : Formalism.MainNotions.SchurIrreducible.IsSplit (E := D.host.E) v
-    · exact GlobalTheory.T.hasIwasawaDecomposition_doubled_split_place D A L hL v hs
-    · exact GlobalTheory.T.iwasawa_doubled_hermitian_space_nonsplit_place D A L hL v hs
+    · exact _root_.GlobalTheory.Core.Rk.IwSplit.hasIwasawa_split D A L hL v hs
+    · exact _root_.GlobalTheory.InertIwasawa.hasIwasawa_inert D A L hL v hs
   let N : ℝ≥0 →* ℂ := ⟨⟨fun r => npow r (s + (A.rank : ℂ) / 2), one_npow _⟩, fun r r' => GlobalTheory.Doubling.npow_mul r r' _⟩
   let f : siegelH (Fv D.host.F v) D.sp.cm.sig (dblSp A).gram →* ℂ :=
     (Circle.coeHom.comp ((charAt μ v).comp (aH _ D.sp.cm.sig (dblSp A).gram))) *

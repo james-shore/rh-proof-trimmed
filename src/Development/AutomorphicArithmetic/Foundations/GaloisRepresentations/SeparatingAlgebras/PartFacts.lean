@@ -51,7 +51,7 @@ theorem UpperTheory.Gal.Gen.partFacts_pf :
   intro E _ _ _ a W C P
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · intro f hf
-    obtain ⟨I, F, h1, h2, rfl⟩ := GlobalTheory.T.eigenForm_eq_finite_sum_autRep_eigenForms E a W C 1 f (fun c v g => by simpa using hf c.1 c.2 v g)
+    obtain ⟨I, F, h1, h2, rfl⟩ := _root_.GlobalTheory.EigenDecomp.eigen_decomp E a W C 1 f (fun c v g => by simpa using hf c.1 c.2 v g)
     refine Submodule.sum_mem _ fun π hπ => ?_
     have hfix : F π ∈ fixedBy W C := fun k hk v g => by simpa using h2 π hπ ⟨k, hk⟩ v g
     by_cases hP : P π.V

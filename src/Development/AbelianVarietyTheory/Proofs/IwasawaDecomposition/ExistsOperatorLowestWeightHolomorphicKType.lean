@@ -105,7 +105,7 @@ theorem exists_op_of_isTau {n : ℕ} {ε : Fin n → Bool} {abelian₂ : Fin n �
   have gram0 : ∀ k k' : Formalism.REAL.Kset ε, B (π k.1 y) (π k'.1 y) = B y y * ⟪τ k.1 w, τ k'.1 w⟫_ℂ := by
     intro k k'
     have hk := star_mem_K k.2
-    have e := GlobalTheory.T.lowestWeight_matrixCoefficient_depends_on_weight n ε (-abelian₂) P B π W (innerₛₗ ℂ) (fun g => (τ g : W →ₗ[ℂ] W)) y y w w hπ hτ hy hy
+    have e := _root_.GlobalTheory.JointHarm.Sph.coeff_eq n ε (-abelian₂) P B π W (innerₛₗ ℂ) (fun g => (τ g : W →ₗ[ℂ] W)) y y w w hπ hτ hy hy
       hbw hbw _ (mul_mem_K hk k'.2)
     have hww : innerₛₗ ℂ w w = 1 := by
       rw [innerₛₗ_apply_apply, inner_self_eq_norm_sq_to_K, hw]; simp

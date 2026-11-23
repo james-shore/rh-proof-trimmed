@@ -74,7 +74,7 @@ lemma infR_skew (T : KType ε (lowK ε lam)) (μ : Fin n → ℤ) (hμ : IsMu la
     {x : Matrix (Fin n) (Fin n) ℂ} (hx : x.PosDef) {A : Matrix (Fin n) (Fin n) ℂ} (hA : inK ε A) :
     fderiv ℂ (psM T μ) x (x * A) = -(T.dτ A * psM T μ x) ∧
       fderiv ℂ (psM T μ) x (A * x) = -(psM T μ x * T.dτ A) := by
-  obtain ⟨hAs, hAb⟩ := (inK_iff ε A).1 hA
+  obtain ⟨hAs, hAb⟩ := (_root_.ReciprocityTheory.ChartRestriction.DS.S7.kfa_inK_iff ε A).1 hA
   have hH : IsBlock ε (Complex.I • A) := by
     intro i j hij
     rw [Matrix.smul_apply, hAb i j hij, smul_zero]

@@ -74,11 +74,11 @@ theorem letE_inv (T : LocLat G Qp LL O) (Pt : ZMod n → LL → (K →ₐ[Qp] LL
     (h' : ℕ) (c : ZMod n) (hE : Eπ ∈ W.AΔ) (z : LcQ W T π' c) :
     algebraMap (LetA O n) W.EE (letE c) ⊗ₜ z ∈ InvL W T Pt π' Eπ h' c ⊤ := by
   refine Submodule.mem_inf.2 ⟨tmul_mem_LamLA W T π' Eπ h' c (a := letE c * Eπ ^ h')
-    (W.AΔ.mul_mem (letE_mem W c) (W.AΔ.pow_mem hE _))
-    (by rw [← mul_assoc, CrystallineExponents.letE_mul_self]) (by rw [← map_mul, mul_comm]) z, ?_⟩
+    (W.AΔ.mul_mem (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W c) (W.AΔ.pow_mem hE _))
+    (by rw [← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]) (by rw [← map_mul, mul_comm]) z, ?_⟩
   rw [Submodule.mem_comap, LinearMap.sub_apply, ModelFPf.γLA_tmul,
     show W.γE W.gamK (algebraMap (LetA O n) W.EE (letE c)) =
-      algebraMap (LetA O n) W.EE (W.γA W.gamK (letE c)) from W.γE_ext _ _, Formalism.MainNotions.LiftingTheory.wmap_γA_letE,
+      algebraMap (LetA O n) W.EE (W.γA W.gamK (letE c)) from W.γE_ext _ _, _root_.Formalism.MainNotions.LiftingTheory.gammaA_letter_idempotent,
     LinearMap.id_apply, sub_self]
   exact Submodule.zero_mem _
 
@@ -243,16 +243,16 @@ theorem mix_local [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
   · have hΛu : IsUnit (algebraMap (LetA O n) W.EE (Eπ ^ h')) := by rw [map_pow]; exact hEu.pow _
     set a₀ : LetA O n := letE c * ((π' - algebraMap O (LetA O n) rU) ^ (h' - b τU) *
       (π' - algebraMap O (LetA O n) rD) ^ (h' + (b τD + S))) with ha₀
-    have ha₀Δ : a₀ ∈ W.AΔ := W.AΔ.mul_mem (letE_mem W c) (W.AΔ.mul_mem
+    have ha₀Δ : a₀ ∈ W.AΔ := W.AΔ.mul_mem (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W c) (W.AΔ.mul_mem
       (W.AΔ.pow_mem (W.AΔ.sub_mem hπΔ (W.AΔ.algebraMap_mem _)) _)
       (W.AΔ.pow_mem (W.AΔ.sub_mem hπΔ (W.AΔ.algebraMap_mem _)) _))
-    have hea₀ : (letE c : LetA O n) * a₀ = a₀ := by rw [ha₀, ← mul_assoc, CrystallineExponents.letE_mul_self]
+    have hea₀ : (letE c : LetA O n) * a₀ = a₀ := by rw [ha₀, ← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
     have hΛ₀ : algebraMap (LetA O n) W.EE (Eπ ^ h') *
         ((↑hΛu.unit⁻¹ : W.EE) * algebraMap (LetA O n) W.EE a₀) = algebraMap (LetA O n) W.EE a₀ := by
       rw [← mul_assoc, hΛu.mul_val_inv, one_mul]
     have hlev₀ : ∀ ζ, W.lev c ζ a₀ = yR W π' c rU ζ ^ (h' - b τU) * yR W π' c rD ζ ^ (h' + (b τD + S)) := by
       intro ζ
-      rw [ha₀, map_mul, lev_letE, one_mul, map_mul, map_pow, map_pow, map_sub, map_sub, lev_alg, lev_alg]
+      rw [ha₀, map_mul, _root_.Formalism.MainNotions.UnusedSlot80.LevR.lev_letE, one_mul, map_mul, map_pow, map_pow, map_sub, map_sub, lev_alg, lev_alg]
       rfl
     have hvanD : ∀ τ ζ, Pt c ζ τ → constantCoeff (W.lev c ζ π') = algebraMap O LL rD →
         ∀ i < h' + (b τD + S), coeff i (W.lev c ζ a₀) = 0 := by
@@ -345,9 +345,9 @@ theorem mix_local [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
         mul_one]
     set aN : LetA O n := ((PD.p : ℕ) : O) ^ y₀ • a - o • (letE c * Eπ ^ h') with haN
     have haNΔ : aN ∈ W.AΔ := W.AΔ.sub_mem (W.AΔ.smul_mem ha _)
-      (W.AΔ.smul_mem (W.AΔ.mul_mem (letE_mem W c) (W.AΔ.pow_mem hEΔ _)) _)
+      (W.AΔ.smul_mem (W.AΔ.mul_mem (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W c) (W.AΔ.pow_mem hEΔ _)) _)
     have heN : (letE c : LetA O n) * aN = aN := by
-      rw [haN, mul_sub, mul_smul_comm, mul_smul_comm, hea, ← mul_assoc, CrystallineExponents.letE_mul_self]
+      rw [haN, mul_sub, mul_smul_comm, mul_smul_comm, hea, ← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
     have hΛN : algebraMap (LetA O n) W.EE (Eπ ^ h') *
         (((PD.p : ℕ) : O) ^ y₀ • f - o • algebraMap (LetA O n) W.EE (letE c)) =
         algebraMap (LetA O n) W.EE aN := by
@@ -356,7 +356,7 @@ theorem mix_local [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
     have hlevN : ∀ ζ i, coeff i (W.lev c ζ aN) = (PD.p : LL) ^ y₀ *
         (coeff i (W.lev c ζ a) - x₀ * coeff i (W.lev c ζ (Eπ ^ h'))) := by
       intro ζ i
-      rw [haN, map_sub, map_sub, lev_smul, lev_smul, map_mul, lev_letE, one_mul, ho, map_pow, map_natCast]
+      rw [haN, map_sub, map_sub, lev_smul, lev_smul, map_mul, _root_.Formalism.MainNotions.UnusedSlot80.LevR.lev_letE, one_mul, ho, map_pow, map_natCast]
       ring
     have hN := memNL0 W T₂ Pt π' Eπ h' c haNΔ heN hΛN x hx fun τ ζ hpt => by
       cases hu : up τ

@@ -238,11 +238,6 @@ theorem near_series (ι : B →+* R) (io : LetA O n →+* B) (hu : IsUnit (ι (i
     refine ⟨s, letπ ^ m * (fun i => PowerSeries.C (c' i) : LetA O n) + a2, ?_⟩
     linear_combination h12 + letπ ^ m * hs + letπ ^ m * hC
 
-private theorem near_mono_lemma_2 {A : Type} [CommRing A] (ι : A →+* R) (τ : A) {m : ℕ} {x : R}
-    (h : Near ι p (ι τ) (m + 1) x) : Near ι p (ι τ) m x := by
-  obtain ⟨a, r, hx⟩ := h
-  exact ⟨τ * a, r, by rw [hx, map_mul, pow_succ]; ring⟩
-
 theorem near_closed (ι : B →+* R) (io : LetA O n →+* B) (al : LetA O n →+* E) (j : E →+* R)
     (hj : ∀ a, j (al a) = ι (io a)) (hu : IsUnit (ι (io letπ)))
     (hd : ∀ e, ∃ a m r, e * al (letπ ^ m) - al a = (p : E) * r)
@@ -277,7 +272,7 @@ theorem near_closed (ι : B →+* R) (io : LetA O n →+* B) (al : LetA O n →+
     have h2 : j (e (m + 1) - e m) = (x - j (e m)) + -(x - j (e (m + 1))) := by
       rw [map_sub]; ring
     rw [h2]
-    exact Near.add (he m) (Near.neg (near_mono_lemma_2 ι (io letπ) (he (m + 1))))
+    exact Near.add (he m) (Near.neg (_root_.GlobalTheory.HWL.Rational.near_mono_lemma ι (io letπ) (he (m + 1))))
   choose b r hbr using hstep
   obtain ⟨σ, hσ⟩ := exists_tail b
   obtain ⟨r0, hr0⟩ := hnear (x - j (e 0) - ι (io σ)) fun M => by

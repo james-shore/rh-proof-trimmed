@@ -73,5 +73,5 @@ theorem UpperTheory.Gal.InertialTypesAlt.jdChar :
   intro hH F _ _ θ hθ
   refine ⟨detc_isChar θ, fun a hok hq => ?_⟩
   obtain ⟨-, -, hL⟩ := hok
-  have hJ := GlobalTheory.T.isCharacter_harishChandraProductCuspidalGL_of_regular F θ hθ a.L (fun p hp => by rw [← hq]; exact hL p hp) _ rfl
+  have hJ := _root_.GlobalTheory.Shin.isChar_J_of_reg F θ hθ a.L (fun p hp => by rw [← hq]; exact hL p hp) _ rfl
   exact jd_isChar hH θ a.L hJ a.D

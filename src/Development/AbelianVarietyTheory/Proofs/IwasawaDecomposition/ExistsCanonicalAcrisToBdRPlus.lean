@@ -56,10 +56,6 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.MemLoc.CrisMap
 
-theorem smodEq_iff {R : Type} [CommRing R] (a : R) (n : ℕ) (x y : R) :
-    x ≡ y [SMOD (Ideal.span {a} ^ n • ⊤ : Submodule R R)] ↔ a ^ n ∣ x - y := by
-  rw [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
-
 theorem complete_of_sandwich (p N : ℕ) {B R : Type} [CommRing B] [CommRing R]
     (hB : IsAdicComplete (Ideal.span {(p : B)}) B) (g : B →+* R) (hg : Function.Injective g)
     (h : ∀ r : R, ∃ b : B, (p : R) ^ N * r = g b) : IsAdicComplete (Ideal.span {(p : R)}) R := by
@@ -70,27 +66,27 @@ theorem complete_of_sandwich (p N : ℕ) {B R : Type} [CommRing B] [CommRing R]
     rw [hy, map_mul, map_pow, map_natCast, ← hc]
     ring
   refine { haus' := fun x hx => ?_, prec' := fun x hx => ?_ }
-  · simp only [smodEq_iff, sub_zero] at hx
+  · simp only [_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff, sub_zero] at hx
     obtain ⟨y, hy⟩ := hx N
     obtain ⟨b, hb⟩ := h y
     have : b = 0 := by
       refine IsHausdorff.haus hB.toIsHausdorff b fun k => ?_
-      rw [smodEq_iff, sub_zero]
+      rw [_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff, sub_zero]
       exact key b k (by rw [← hb, ← hy]; exact hx _)
     rw [hy, hb, this, map_zero]
-  · simp only [smodEq_iff] at hx ⊢
+  · simp only [_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff] at hx ⊢
     have h1 : ∀ k, ∃ b : B, x (k + N) - x N = g b := fun k => by
       obtain ⟨y, hy⟩ := hx (Nat.le_add_left N k)
       obtain ⟨b, hb⟩ := h y
       exact ⟨-b, by rw [map_neg, ← hb, ← hy]; ring⟩
     choose b hb using h1
     obtain ⟨L, hL⟩ := IsPrecomplete.prec hB.toIsPrecomplete (f := b) (fun {m n} hmn => by
-      rw [smodEq_iff]
+      rw [_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff]
       refine key _ _ ?_
       rw [map_sub, ← hb, ← hb, sub_sub_sub_cancel_right]
       exact hx (Nat.add_le_add_right hmn N))
     refine ⟨x N + g L, fun n => ?_⟩
-    have h2 := map_dvd g ((smodEq_iff _ _ _ _).1 (hL n))
+    have h2 := map_dvd g ((_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff _ _ _ _).1 (hL n))
     rw [map_pow, map_natCast, map_sub, ← hb] at h2
     have h3 := dvd_add (hx (Nat.le_add_right n N)) h2
     convert h3 using 1
@@ -113,7 +109,7 @@ theorem extend_unique (p : ℕ) {D R : Type} [CommRing D] [CommRing R]
   ext1 x
   rw [← sub_eq_zero]
   refine IsHausdorff.haus hR _ fun k => ?_
-  rw [smodEq_iff, sub_zero]
+  rw [_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff, sub_zero]
   obtain ⟨s, z, rfl⟩ := GlobalTheory.PrincipalCompletion.dense (p : D) x k
   refine ⟨F z - G z, ?_⟩
   simp only [map_add (f := _), map_mul, map_pow, map_natCast, h]
@@ -171,7 +167,7 @@ theorem bound (n : ℕ) (s : Per.AinfP l) (hs : s ∈ Per.Acris0 l) : ∃ a : Pe
   | mem y hy =>
     obtain ⟨k, hk⟩ := hy
     rcases le_total k n with hkn | hkn
-    · obtain ⟨c, hc⟩ := GlobalTheory.RingBasics.exists_pow_div_factorial l k
+    · obtain ⟨c, hc⟩ := _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow l k
       have hc' : ((k.factorial : ℕ) : Per.AinfP l) * algebraMap (Per.Ainf l) (Per.AinfP l) (Per.zA l c) =
           (l : Per.AinfP l) ^ k := by
         have h := congrArg ((algebraMap (Per.Ainf l) (Per.AinfP l)).comp (Per.zA l)) hc

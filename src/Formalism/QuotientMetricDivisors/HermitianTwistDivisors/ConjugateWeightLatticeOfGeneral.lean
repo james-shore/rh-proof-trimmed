@@ -588,7 +588,7 @@ theorem second_step_refined_weak : StepBRW := by
     M hM HT XT hHT0 hHTw T hT θ hθ κ hκ ρ ρr hρr hρ0 hρpos hρv hdet0 hdet G e hLB hG n H hH hHpos P hP
     hQ Mt hMt hLamP hGR R hR hRloc
   have hLB0 : ∀ w, IsLocBasis (matLat P Mt) w (e μ0 w) := fun w => hLamP ▸ hLB μ0 w
-  have hRb := (lemmaRb K K0 hK0 v0 hv0 n D H hH hHpos P hP (XQ μ0) hQ Mt hMt.toIsLattice
+  have hRb := (_root_.Formalism.DivisionValues.reduction_lemma_second K K0 hK0 v0 hv0 n D H hH hHpos P hP (XQ μ0) hQ Mt hMt.toIsLattice
     (e μ0) hLB0).2
   have hbase : lcv (XQ μ0) (abelian₂ μ0) ≤ ∑ᶠ w, lw w * (vw w (G μ0 w) : ℝ) := by
     rw [hLamP]

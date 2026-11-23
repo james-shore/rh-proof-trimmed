@@ -74,16 +74,16 @@ theorem lowerSemicontinuousOn_sum_pos_mul {Y : Type*} [TopologicalSpace Y] {s : 
 
 theorem exists_drift_function_orthFrames : (∀ (r : ℕ) (X : Data E r), 0 < X.p0 → X.p0 < r → ∀ (τ0 : X.Ψ) (S : Finset (Matrix (Fin r) (Fin r) ℂ)), (∀ a ∈ S, a.IsHermitian ∧ a.det ≠ 0 ∧ a⁻¹ ∈ S) → (∀ W : Submodule ℂ (Fin r → ℂ), (∀ a ∈ S, ∀ v ∈ W, (a * a).mulVec v ∈ W) → W = ⊥ ∨ W = ⊤) → (∀ a ∈ S, (a)ᵀ * (Matrix.diagonal fun k : Fin r => if (k : ℕ) < X.p0 then (1 : ℂ) else -1) * (a).map (starRingEnd ℂ) = (Matrix.diagonal fun k : Fin r => if (k : ℕ) < X.p0 then (1 : ℂ) else -1)) → ∃ (f : Frame X.Ψ r → ℝ) (c b : ℝ), 0 ≤ c ∧ c < 1 ∧ 0 ≤ b ∧ LowerSemicontinuousOn f {x | IsOrth X x} ∧ (∀ x, IsOrth X x → 0 ≤ f x) ∧ (∀ γ : GL (Fin r) E, IsUStab X.Gm X.Λ γ → ∀ x, IsOrth X x → f (lact γ x) = f x) ∧ (∀ x, IsOrth X x → ∑ a ∈ S, f (@Function.update X.Ψ (fun _ => Fin r → Fin r → ℂ) (Classical.decEq _) x τ0 (mat x τ0 * a⁻¹ : Matrix (Fin r) (Fin r) ℂ)) ≤ S.card * (c * f x + b)) ∧ ∀ M : ℝ, ∃ ε : ℝ, 0 < ε ∧ ∀ x, IsOrth X x → f x ≤ M → ε ≤ X.la1 x) := by
   intro r X hp0 hp0r τ0 S hS hirr hU
-  obtain ⟨d, hd⟩ := GlobalTheory.T.exists_subspaceHeight_gramDeterminant r X
-  obtain ⟨δ, hδ, hdrift⟩ := GlobalTheory.T.weighted_height_sup_drift_orthonormal_frames r X d hd τ0 S hS hirr hU
+  obtain ⟨d, hd⟩ := _root_.GlobalTheory.SubspaceHeight.exists_height r X
+  obtain ⟨δ, hδ, hdrift⟩ := _root_.GlobalTheory.FiniteCovolume.weighted_sup_drift_on_orthonormal_frames r X d hd τ0 S hS hirr hU
   obtain ⟨α, hlub, hlsc⟩ := exists_isLUB_height_rpow_lowerSemicontinuousOn r X d hd δ hδ
   obtain ⟨e, c, b, he, hc0, hc1, hb, hdr⟩ := hdrift α hlub
-  have hdet : ∀ x, IsOrth X x → ∀ τ : X.Ψ, (mat x τ).det ≠ 0 := fun x hx => (GlobalTheory.T.majorant_eq_sum_norm_sq_orthonormalFrame r X x hx).1
+  have hdet : ∀ x, IsOrth X x → ∀ τ : X.Ψ, (mat x τ).det ≠ 0 := fun x hx => (_root_.GlobalTheory.MajorantOrthFrame.maj_eq_sum_norm_sq_of_isOrth r X x hx).1
   have hr : 0 < r := lt_trans hp0 hp0r
   have hlow : ∀ x, IsOrth X x → ∀ i ≤ r, ∀ W : Submodule E (Fin r → E),
       Module.finrank E W = i → 0 < d x W ∧ d x W ^ (-δ) ≤ α i x := by
     intro x hx i hi W hW
-    obtain ⟨m, hm, hmW⟩ := GlobalTheory.T.exists_pos_le_latticeHeight_at_frame r X d hd x (hdet x hx)
+    obtain ⟨m, hm, hmW⟩ := _root_.GlobalTheory.HeightLower.exists_pos_le_height r X d hd x (hdet x hx)
     exact ⟨lt_of_lt_of_le hm (hmW W), (hlub i hi x (hdet x hx)).1 ⟨W, hW, rfl⟩⟩
   have hαnn : ∀ x, IsOrth X x → ∀ i ≤ r, 0 ≤ α i x := by
     intro x hx i hi
@@ -99,12 +99,12 @@ theorem exists_drift_function_orthFrames : (∀ (r : ℕ) (X : Data E r), 0 < X.
     exact Finset.sum_nonneg (hterm_nn x hx)
   · intro γ hγ x hx
     refine Finset.sum_congr rfl fun i hi => ?_
-    rw [GlobalTheory.T.heightSup_invariant_under_hermitianLattice_aut r X d hd δ α hlub γ hγ x (hdet x hx) i (Finset.mem_Ioo.1 hi).2.le]
+    rw [_root_.GlobalTheory.height_sup_lact_invariant r X d hd δ α hlub γ hγ x (hdet x hx) i (Finset.mem_Ioo.1 hi).2.le]
   · intro M
     have h1 : (1 : ℕ) ∈ Finset.Ioo 0 r := Finset.mem_Ioo.2 ⟨Nat.one_pos, lt_of_le_of_lt hp0 hp0r⟩
     set K : ℝ := max (M / e 1) 1 with hK
     have hKpos : 0 < K := lt_of_lt_of_le one_pos (le_max_right _ _)
-    obtain ⟨ε, hε, hεla⟩ := GlobalTheory.T.firstMinimum_lower_of_lineHeights r X d hd hr (K ^ (-1 / δ)) (Real.rpow_pos_of_pos hKpos _)
+    obtain ⟨ε, hε, hεla⟩ := _root_.GlobalTheory.LineHeight.exists_la1_lower_bound_of_line_heights r X d hd hr (K ^ (-1 / δ)) (Real.rpow_pos_of_pos hKpos _)
     refine ⟨ε, hε, fun x hx hfM => hεla x hx fun W hW => ?_⟩
     obtain ⟨hpos, hle⟩ := hlow x hx 1 (Finset.mem_Ioo.1 h1).2.le W hW
     have hsingle : e 1 * α 1 x ≤ M :=

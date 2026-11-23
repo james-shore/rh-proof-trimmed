@@ -73,19 +73,6 @@ theorem shift_C {K : Type} [Field K] [CharZero K] (sh : K⟦X⟧ →+* K⟦X⟧�
       exact Nat.cast_ne_zero.2 (Nat.factorial_ne_zero _)
     rw [(mul_eq_zero.1 h1).resolve_left h2, PowerSeries.coeff_C, if_neg (Nat.succ_ne_zero n)]
 
-theorem bc_induction {A B M N : Type} [CommRing A] [CommRing B] [AddCommGroup M] [Module A M]
-    [AddCommGroup N] [Module B N] {f : A →+* B} {u : M →ₛₗ[f] N} (h : SemiBC u) (p : N → Prop)
-    (h0 : p 0) (hadd : ∀ y z, p y → p z → p (y + z)) (hs : ∀ (r : B) y, p y → p (r • y))
-    (hu : ∀ x, p (u x)) (y : N) : p y := by
-  first
-  | (rename_i h_4 h_5 h_6 h_7 h_8 h_9; revert A B M N h_4 h_5 h_6 h_7 h_8 h_9 f u h p h0 hadd hs hu y; exact @_root_.GlobalTheory.BaseChangeInduction.baseChange_induction)
-  | exact @_root_.GlobalTheory.BaseChangeInduction.baseChange_induction
-  | exact _root_.GlobalTheory.BaseChangeInduction.baseChange_induction
-  | (apply _root_.GlobalTheory.BaseChangeInduction.baseChange_induction <;> assumption)
-  | (intros; apply _root_.GlobalTheory.BaseChangeInduction.baseChange_induction <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.BaseChangeInduction.baseChange_induction <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.BaseChangeInduction.baseChange_induction ..)
-
 theorem exists_crystalline_epsilon_combination {l : ℕ} [Fact l.Prime] {a e : ℕ} {O K : Type} [CommRing O] [NormedField K]
     [IsUltrametricDist K] [Algebra O K] [IsUnitBall O K] [CharZero K] {ι : Type} [Fintype ι] [DecidableEq ι]
     {R : Type} [CommRing R] (Q : Obj l R) (toA : Q.A → ZMod a → K⟦X⟧) {J : Type} [Fintype J] (o : J → O)
@@ -117,7 +104,7 @@ theorem exists_crystalline_epsilon_combination {l : ℕ} [Fact l.Prime] {a e : �
   have hU₀ : ∀ o y τ i, lam₀ ((U o).u PP y) τ i =
       PowerSeries.C (PowerSeries.C (algebraMap O K o)) * lam₀ y τ i := by
     intro o y
-    refine bc_induction (EE.tr_bc p₀) (fun y => ∀ τ i, lam₀ ((U o).u PP y) τ i =
+    refine _root_.GlobalTheory.BaseChangeInduction.baseChange_induction (EE.tr_bc p₀) (fun y => ∀ τ i, lam₀ ((U o).u PP y) τ i =
       PowerSeries.C (PowerSeries.C (algebraMap O K o)) * lam₀ y τ i) ?_ ?_ ?_ ?_ y
     · intro τ i; simp
     · intro y z hy hz τ i
@@ -163,7 +150,7 @@ theorem exists_crystalline_epsilon_combination {l : ℕ} [Fact l.Prime] {a e : �
       · simp only [Pi.single_eq_of_ne h, map_zero]
     rw [e1, Matrix.mulVec_single_one]
     rfl
-  refine bc_induction (EE.tr_bc p₁) (fun y => ∀ τ, lam₀ y τ = ε τ *ᵥ lam₁ y τ) hS0 hSadd hSs fun x => ?_
+  refine _root_.GlobalTheory.BaseChangeInduction.baseChange_induction (EE.tr_bc p₁) (fun y => ∀ τ, lam₀ y τ = ε τ *ᵥ lam₁ y τ) hS0 hSadd hSs fun x => ?_
   choose w hwx using fun i => hspan (fun τ => c x τ i) fun τ => mem_tot.1 (hmem x) τ i
   have hx : x = ∑ i, ∑ k, (U (o k)).u _ (w i k • b i) := by
     apply hinj

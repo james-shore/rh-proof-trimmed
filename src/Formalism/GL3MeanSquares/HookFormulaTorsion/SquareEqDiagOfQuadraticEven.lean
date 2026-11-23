@@ -66,15 +66,8 @@ theorem t_heis : HeisenbergCocycle := by
   rw [hc]
   ring
 
-section
-variable {V : Type} [AddCommGroup V] {H : V → V → ℂ}
-
-end
-
 end Formalism.HermitianLattices.WeilRepresentation.CocycleEighthPower
 
 namespace Formalism.HermitianLattices.WeilRepresentation
-
-theorem heisenberg_cocycle : HeisenbergCocycle := CocycleEighthPower.t_heis
 
 end Formalism.HermitianLattices.WeilRepresentation

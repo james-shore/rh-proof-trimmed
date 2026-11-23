@@ -55,15 +55,6 @@ namespace GlobalTheory.ThetaLiftBound
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem exists_rat_height_le {D : D7} (W : HSp D) (h : GA D W) :
-    ∃ γ ∈ GQ W, GlobalTheory.Grow.height W (γ * h) ≤ 2 * GlobalTheory.Grow.quotHeight W h := by
-  have hq := GlobalTheory.Grow.one_le_quotHeight W h
-  by_contra hne
-  push_neg at hne
-  have : 2 * GlobalTheory.Grow.quotHeight W h ≤ GlobalTheory.Grow.quotHeight W h :=
-    (GlobalTheory.Grow.le_quotHeight_iff W).2 fun γ hγ => (hne γ hγ).le
-  linarith
-
 theorem bound_pow (c a b M q : ℝ) (A : ℕ) (ha : 1 ≤ a) (haM : a ≤ M) (hb : 1 ≤ b) (hbq : b ≤ 2 * q) :
     c * (a * b) ^ A ≤ max c 0 * (M * (2 * q)) ^ A := by
   have hX : a * b ≤ M * (2 * q) := mul_le_mul haM hbq (by linarith) (by linarith)
@@ -89,7 +80,7 @@ theorem lintegral_ne_top : ∀ (D : D7) (V W : HSp D) (r : ℕ) (C : Matrix (Fin
       ENNReal.ofReal (max c 0 * (2 * M) ^ A * max C' 0) := by
     intro n h
     obtain ⟨γ, hγ, k, hk, rfl⟩ := hcov n
-    obtain ⟨γ', hγ', hh⟩ := exists_rat_height_le W h
+    obtain ⟨γ', hγ', hh⟩ := _root_.GlobalTheory.Grow.exists_height_le_two_mul_quotHeight W h
     have e1 : Sg (((γ * k : NI V C) : GA D V) * g, h) = Sg ((k : GA D V) * g, γ' * h) := by
       rw [Subgroup.coe_mul, mul_assoc, h1 _ γ.2 (Subgroup.mem_subgroupOf.1 hγ), h2 _ hγ']
     rw [e1]

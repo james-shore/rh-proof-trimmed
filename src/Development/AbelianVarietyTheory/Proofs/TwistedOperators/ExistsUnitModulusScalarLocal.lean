@@ -84,18 +84,6 @@ theorem applyAt0_monomial' (D : D7) {N N' : ℕ} (α : Mono D N N') (G : VC D N 
   rw [MvPolynomial.support_monomial, if_neg one_ne_zero, Finset.sum_singleton, MvPolynomial.coeff_monomial,
     if_pos rfl, one_mul]
 
-theorem unitAt_mul {q : ℕ} [Fact q.Prime] {a b : ℂ} (ha : Mod1All a) (hb : Mod1All b) (hua : UnitAt q a)
-    (hub : UnitAt q b) : UnitAt q (a * b) := by
-  obtain ⟨ha', -⟩ := ha
-  obtain ⟨hb', -⟩ := hb
-  intro lam
-  have hab : a * b ∈ Qbar := mul_mem ha' hb'
-  have e : lamC lam (a * b) = lamC lam a * lamC lam b := by
-    unfold lamC
-    rw [dite_eq_left hab, dite_eq_left ha', dite_eq_left hb', ← map_mul]
-    rfl
-  rw [e, norm_mul, hua lam, hub lam, one_mul]
-
 end GlobalTheory.MovedKappaEx
 
 namespace GlobalTheory.MovedKappaEx

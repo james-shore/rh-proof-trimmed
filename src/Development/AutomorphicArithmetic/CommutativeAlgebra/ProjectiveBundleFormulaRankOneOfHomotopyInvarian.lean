@@ -474,7 +474,7 @@ private theorem chains_qi (R : Type) [CommRing R] (E : Spc) : QuasiIso ((chains 
 
 private theorem eqv1 (R : Type) [CommRing R] (E : Spc) (F : Shv R) : Eqv R (fst1 E) F := by
   haveI := chains_qi R E
-  exact fun n => GlobalTheory.T.quasiIso_hypercohomology_bijective R ((chains R).map (fst1 E)) F n
+  exact fun n => _root_.GlobalTheory.EtC.quasiIso_hypercohomology_bijective' R ((chains R).map (fst1 E)) F n
 
 section
 variable {q : ℕ} {X : Spc}

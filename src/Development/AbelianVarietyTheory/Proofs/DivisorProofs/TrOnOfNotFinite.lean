@@ -57,10 +57,6 @@ section Linear
 
 variable {X V : Type} [AddCommGroup X] [Module ℂ X] [AddCommGroup V] [Module ℂ V]
 
-theorem trOn_map (j : X →ₗ[ℂ] V) (hj : Function.Injective j) (M : Submodule ℂ X) (L' : X →ₗ[ℂ] X) (L : V →ₗ[ℂ] V)
-    (h : ∀ x ∈ M, L (j x) = j (L' x)) : trOn (M.map j) L = trOn M L' :=
-  _root_.GlobalTheory.TraceOnInjectiveMap.trOn_map_of_injective j hj M L' L h
-
 theorem trOn_of_not_finite (M : Submodule ℂ V) (L : V →ₗ[ℂ] V) (h : ¬ Module.Finite ℂ M) : trOn M L = 0 := by
   unfold trOn
   split_ifs with hL
@@ -396,7 +392,7 @@ theorem trOn_levOp_cross (ρ : Representation ℂ G V) (X : Submodule ℂ V) (hX
       trOn (X ⊓ fixed ρ U) (levOp ρ U₀ U F LinearMap.id) =
         trOn (fixed τ K) (levOp τ K₀ K a LinearMap.id ∘ₗ B.toLinearMap) := fun F a hF hFr har ha => by
     rw [hY]
-    refine trOn_map _ X'.injective_subtype _ _ _ fun v hv => ?_
+    refine _root_.GlobalTheory.TraceOnInjectiveMap.trOn_map_of_injective _ X'.injective_subtype _ _ _ fun v hv => ?_
     have hv' : X'.subtype v ∈ X ⊓ fixed ρ U := hY ▸ ⟨v, hv, rfl⟩
     rw [levOp_split ι r hr hc hK1 hK2 ρ U₀ K₀ h0 F a b hF hFr har (fun k hk x => (hbi k hk x).2) ha hb _ hv'.2,
       LinearMap.comp_apply, ← levOp_nat τ ρH X'.subtype (fun _ _ => rfl) K₀ K a ha]

@@ -1107,11 +1107,7 @@ namespace Formalism.L2.KerInert.RepFrame
 open Formalism.MainNotions.FormalGroupSystem
 open NumberField Formalism.BasicNotions Formalism.MainNotions.TaylorLogMetric Formalism.L2.Ker
 
-theorem conj_conj (D : D7) (x : D.host.E) : D.host.conj (D.host.conj x) = x := by
-  apply D.host.φ₀.injective
-  show D.host.φ₀ (D.host.conj (D.host.conj x)) = D.host.φ₀ x
-  rw [Formalism.HC.HostAx.conjE_apply, Formalism.HC.HostAx.conjE_apply]
-  simp
+alias conj_conj := _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.conj_conj
 
 variable {p : ℕ} [Fact p.Prime] (X : Sys p) [IsFractionRing X.G.O X.G.Kf] (E : Formalism.L2.G.Pend.CEmbC X.G)
   (hfin : ∀ j c, (X.Lv.lev j c).FinClasses) (D : D7) (pos : (Σ v : X.Pl, Fin (X.G.P.n' v)) ≃ D.what₂.Tau)

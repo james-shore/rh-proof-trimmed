@@ -129,7 +129,7 @@ theorem span_coefIdeal_eq_span_frFac : ∀ (D : D7) (T : D.host.E) (G : LFlag (D
             (Λ.map (Formalism.L2.SG.Pf.LocFacts.phi D) ⊓ W.restrictScalars (𝓞 D.host.E)) : Set (Vp D p)) =
           (PI.LocLatEq.latL (D.s.atP p) (Λ.map (Formalism.L2.SG.Pf.LocFacts.phi D)) : Set (Vp D p)) ∩
             Submodule.span (D.s.atP p).Ep (PI.LocLatEq.bc (D.s.atP p) '' (W : Set (Fin (nV D) → D.host.E))) :=
-        inf_eq_inter_span _ _ _ _ (D.s.atP p) _ _ _ hFG
+        _root_.PI.LocLatSat.UnitaryGroupMassFormula.locLatSat _ _ _ _ (D.s.atP p) _ _ _ hFG
       have himg : baseChange₂ D p '' (Xr : Set (VS D).V) =
           PI.LocLatEq.bc (D.s.atP p) '' (W : Set (Fin (nV D) → D.host.E)) := by
         rw [hW, Submodule.map_coe, Set.image_image]

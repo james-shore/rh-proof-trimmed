@@ -51,11 +51,6 @@ open Polynomial IsLocalRing UpperTheory.V.Alg
 
 namespace UpperTheory.V.J
 
-private theorem finite_of_alg {O R : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [IsAdicComplete (maximalIdeal O) O]
-    [CommRing R] [IsDomain R] [Algebra O R] [IsCO O R] (hinj : Function.Injective (algebraMap O R))
-    (hal : ∀ a : R, ∃ P : O[X], P ≠ 0 ∧ aeval a P = 0) : Module.Finite O R :=
-  _root_.UpperTheory.Reformulated.B.Ra2.finite_of_alg hinj hal
-
 private theorem exists_sqz {O Λ A N : Type} [CommRing O] [IsLocalRing O] [CommRing Λ] [Algebra O Λ] [CommRing A] [Algebra O A]
     [IsCO O A] [AddCommGroup N] [Module A N] [Module O N] [IsScalarTower O A N] [Module.Finite A N] (p : Λ →ₐ[O] A)
     (d : Λ →ₗ[O] N) (hd : ∀ f g, d (f * g) = p f • d g + p g • d f) :
@@ -102,7 +97,7 @@ private theorem exists_pair_of_der {O Λ K : Type} [CommRing O] [IsDomain O] [Is
   classical
   have hsurj : Function.Surjective p.rangeRestrict := p.rangeRestrict_surjective
   haveI : IsCO O p.range := co_quot O Λ p.range p.rangeRestrict hsurj
-  have hfin : Module.Finite O p.range := finite_of_alg
+  have hfin : Module.Finite O p.range := _root_.UpperTheory.Reformulated.B.Ra2.finite_of_alg
     (fun a b h => hinj (congrArg Subtype.val h))
     fun a => by
       obtain ⟨P, hP, h0⟩ := hal a

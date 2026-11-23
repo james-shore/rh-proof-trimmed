@@ -88,7 +88,7 @@ theorem GlobalTheory.ValuationAlmostSeparation.exists_valuation_almostSep : ∀ 
   intro p _ Ω _ _ hp2 hclo T
   obtain ⟨v, hint, hinv, hp0, hp1⟩ := GlobalTheory.T.exists_galoisInvariant_valuation_integers_eq_integral p Ω hclo
   refine ⟨v, hint, hinv, hp0, hp1, fun S => ?_⟩
-  obtain ⟨U, hUn, hUf, hUS, hUsep⟩ := GlobalTheory.T.exists_normal_finiteIndex_fixing_finite_orbits Ω (↥(⨅ n, Gn T n)) S
+  obtain ⟨U, hUn, hUf, hUS, hUsep⟩ := _root_.GlobalTheory.AlmostEt.exists_normal_finiteIndex_fixing Ω (↥(⨅ n, Gn T n)) S
     (fun s _ => orbit_finite hclo _ s)
   refine ⟨U, hUn, hUf, hUS, ?_⟩
   have hR := GlobalTheory.T.approxPthRoot_fixedField_cyclotomic_tower p Ω hp2 hclo T v hint hp0 hp1

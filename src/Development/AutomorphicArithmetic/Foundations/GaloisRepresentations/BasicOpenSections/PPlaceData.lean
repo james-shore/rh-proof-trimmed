@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinitePlacesInertiaNotFixingFiniteExtension
 
 @[expose] public section
 
@@ -51,12 +52,7 @@ open Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 
 namespace UpperTheory.Gal.Mod.PlaceDataValuations
 
-private theorem int_le {Ω : Type} [Field Ω] (A : ValuationSubring Ω) {b : Ω} (hb : IsIntegral ℤ b) :
-    A.valuation b ≤ 1 := by
-  have h : IsIntegral A b := hb.tower_top
-  obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.1 h
-  rw [A.valuation_le_one_iff, ← hy]
-  exact y.2
+private alias int_le := _root_.GlobalTheory.InertiaAlmostAll.val_le_one_of_isIntegral
 
 private theorem isUnit_iff {E : Type} [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) (a : Ow w) :
     IsUnit a ↔ w.valuation E (a : E) = 1 := by
@@ -88,9 +84,7 @@ private theorem mem_max_iff {E : Type} [Field E] [NumberField E] (w : HeightOneS
   have ha : w.valuation E (a : E) ≤ 1 := a.2
   exact ⟨fun h => lt_of_le_of_ne ha h, fun h => h.ne⟩
 
-private theorem pow_sub_mem {E : Type} [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) (x : 𝓞 E) :
-    x ^ Ideal.absNorm w.asIdeal - x ∈ w.asIdeal :=
-  _root_.UpperTheory.Reformulated.B.Qk67.pow_sub_mem w x
+private alias pow_sub_mem := _root_.UpperTheory.Reformulated.B.Qk67.pow_sub_mem
 
 end UpperTheory.Gal.Mod.PlaceDataValuations
 

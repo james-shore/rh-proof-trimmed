@@ -103,7 +103,7 @@ theorem rootSum_eq_of_modEq (F : Type) [Field F] [Finite F] (θ : AlgebraicClosu
   obtain ⟨n, -, hn⟩ := FiniteField.card F (ringChar F)
   have hq : ringChar F ^ ((n : ℕ) * a) = Nat.card F ^ a := by
     rw [Nat.card_eq_fintype_card, hn, pow_mul]
-  have hgal := GlobalTheory.T.rootSum_map_frobenius_pow_eq_rootSum_mul F θ (RingHom.id F) ((n : ℕ) * a) (fun x => by
+  have hgal := _root_.GlobalTheory.Shin.rootSum_map_frobeniusPow F θ (RingHom.id F) ((n : ℕ) * a) (fun x => by
     rw [hq, Nat.card_eq_fintype_card, FiniteField.pow_card_pow]; rfl) k f
   rw [Polynomial.map_id, hq] at hgal
   rw [hgal]
@@ -180,6 +180,6 @@ theorem cusp_eq_of_modEq : ∀ (F : Type) [Field F] [Finite F] (θ : AlgebraicCl
     have m2 := GlobalTheory.T.endomorphismMass_mobiusInverse_monic_eq F V _ hs _ hP hdeg
     unfold mass at m1 m2
     rw [m1, m2, hmang, sub_self]
-  exact sub_eq_zero.1 (GlobalTheory.T.primitiveEndClassFunction_zero_of_charpoly_mass_zero F V φ hc hp g hmass)
+  exact sub_eq_zero.1 (_root_.GlobalTheory.CuspGL.eq_zero_of_mass_charpoly_eq_zero F V φ hc hp g hmass)
 
 end GlobalTheory.Shin

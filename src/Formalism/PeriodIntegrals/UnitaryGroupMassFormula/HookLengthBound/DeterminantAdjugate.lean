@@ -63,15 +63,6 @@ theorem mulXAdj : MulXAdj := by
   show ((fockQ (X v * f) g : ℚ) : ℂ) = ((fockQ f (pderiv v g) : ℚ) : ℂ)
   rw [lfockq_cast, lfockq_cast, map_mul, map_X, Formalism.REAL.fischerInner_X_mul_left, pderiv_map]
 
-private theorem fockQ_eq_sum_of_support_subset_of_type {σ : Type*} (f g : MvPolynomial σ ℚ) (S : Finset (σ →₀ ℕ))
-    (h : f.support ⊆ S) :
-    fockQ f g = ∑ m ∈ S, f.coeff m * g.coeff m * ((∏ k ∈ m.support, (m k).factorial : ℕ) : ℚ) := by
-  unfold fockQ
-  refine Finset.sum_subset h fun m _ hm => ?_
-  have : f.coeff m = 0 := by simpa using hm
-  rw [this]
-  ring
-
 theorem fockQ_zero_left {σ : Type*} (g : MvPolynomial σ ℚ) : fockQ 0 g = 0 := by
   unfold fockQ
   simp
@@ -90,7 +81,7 @@ theorem fockQ_sum_right {σ ι : Type*} (s : Finset ι) (F : ι → MvPolynomial
 
 theorem fockQ_zsmul_left {σ : Type*} (z : ℤ) (f g : MvPolynomial σ ℚ) :
     fockQ (z • f) g = (z : ℚ) * fockQ f g := by
-  rw [← Int.cast_smul_eq_zsmul ℚ z f, fockQ_eq_sum_of_support_subset_of_type _ g f.support MvPolynomial.support_smul]
+  rw [← Int.cast_smul_eq_zsmul ℚ z f, _root_.Formalism.GradedWeylDivisibility.lfockq_eq_sum _ g f.support MvPolynomial.support_smul]
   unfold fockQ
   rw [Finset.mul_sum]
   refine Finset.sum_congr rfl fun m _ => ?_

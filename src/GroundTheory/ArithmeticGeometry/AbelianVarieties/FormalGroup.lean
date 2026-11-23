@@ -97,7 +97,7 @@ theorem vStep_contract (f g : PowerSeries R) (n : ℕ)
     _ ≤ _ := add_le_add hX h2
 
 theorem existsUnique_vStep : ∃! v : PowerSeries R, vStep W v = v :=
-  GroundTheory.LocalField.FormalGroup.existsUnique_fixedPoint (vStep W) (vStep_contract W)
+  _root_.UpperTheory.Reformulated.B.Ydb5.existsUnique_fixedPoint (vStep W) (vStep_contract W)
 
 def formalV : PowerSeries R := (existsUnique_vStep W).exists.choose
 

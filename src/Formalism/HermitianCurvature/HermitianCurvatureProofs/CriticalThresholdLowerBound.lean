@@ -97,9 +97,7 @@ lemma vand_split (p q : ℕ) (x : ℕ → ℝ) :
     exact hs2
   rw [← Finset.prod_Ioc_consecutive _ (Nat.zero_le p) (Nat.le_add_right p q), h1, h2]
 
-lemma v_sub (c : Cfg) (i j : ℕ) : c.v i - c.v j = 4 * c.Del * ((j : ℝ) - (i : ℝ)) := by
-  unfold Cfg.v
-  ring
+alias v_sub := _root_.Formalism.FourierDecayAlt.P.Sz4.v_sub
 
 lemma v_nonneg (c : Cfg) (h : c.Ok) (i : ℕ) (hi : i + 1 ≤ c.k) : 0 ≤ c.v i := by
   have hki : (i : ℝ) + 1 ≤ (c.k : ℝ) := by exact_mod_cast hi
@@ -511,11 +509,6 @@ lemma vand_head (q : ℕ) (x : ℕ → ℝ) :
   rw [Nat.add_comm q 1, vand_split 1 q x, vand_one]
   simp only [Finset.Icc_self, Finset.prod_singleton, one_mul]
 
-lemma vand_last (p : ℕ) (x : ℕ → ℝ) :
-    Vand (p + 1) x = Vand p x * ∏ i ∈ Icc 1 p, (x i - x (p + 1)) := by
-  rw [vand_split p 1 x, vand_one]
-  simp only [Finset.Icc_self, Finset.prod_singleton, mul_one, Nat.add_comm 1 p]
-
 lemma u_one (c : Cfg) (de : ℕ → ℝ) : c.u de 1 = c.a := by
   simp [Cfg.u]
 
@@ -746,7 +739,7 @@ lemma key_top (hTp : VandTop) (c : Cfg) (bb : ℝ) (de : ℕ → ℝ) (h : c.Ok)
   have hP2split : Vand (c.k - 1) (fun i => c.u de (i + 1)) =
       Vand (c.k - 2) (fun i => c.u de (i + 1)) * ∏ i ∈ Icc 1 (c.k - 2), (c.u de (i + 1) + c.bp) := by
     have hk2 : c.k - 1 = (c.k - 2) + 1 := by omega
-    rw [hk2, vand_last]
+    rw [hk2, _root_.Formalism.FourierDecayAlt.P.Sz4.vand_succ_top]
     congr 1
     apply Finset.prod_congr rfl
     intro i _
@@ -860,8 +853,6 @@ namespace Formalism.FourierDecayAlt.P
 
 theorem critical_threshold_words : Formalism.FourierDecayAlt.Sz.TcritWords := Sz5.tcritWords_of vandermondeWords
 
-theorem vandermonde_lambda_lower_bound : Formalism.FourierDecayAlt.Sz.VandLamLower := Sz5.vandLamLower
-
-theorem critical_threshold_lower_bound : Formalism.FourierDecayAlt.Sz.TcritLower := Sz5.tcritLower_of bracket_bound_alt vandermondeNonTop vandermondeTop edgeFactors vandermondeWords
+theorem critical_threshold_lower_bound : Formalism.FourierDecayAlt.Sz.TcritLower := Sz5.tcritLower_of _root_.Formalism.FourierDecayAlt.P.Sz2.bracketBound vandermondeNonTop vandermondeTop edgeFactors vandermondeWords
 
 end Formalism.FourierDecayAlt.P

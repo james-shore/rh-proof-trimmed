@@ -49,6 +49,7 @@ import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.SharpRestriction.GrowthBounds.CovariantDegrees
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.DvrFractionFieldCharZeroPrime
 
 @[expose] public section
 
@@ -170,25 +171,6 @@ private theorem isUnit_natCast_of_not_dvd_root_weights (S : UniformizedDVR p O) 
     exact Ideal.add_mem _ (Ideal.mul_mem_left _ _ hum) (Ideal.mul_mem_left _ _ S.p_mem)
   exact (IsLocalRing.maximalIdeal.isMaximal O).ne_top ((Ideal.eq_top_iff_one _).mpr h2)
 
-private theorem charZero_KK_of_uniformizedDVR (S : UniformizedDVR p O) (hp : p.Prime) : CharZero (KK O) := by
-  refine charZero_of_inj_zero fun N hN => ?_
-  by_contra hN0
-  have hN' : (N : O) = 0 := by
-    apply IsFractionRing.injective O (KK O)
-    rw [map_natCast, map_zero, hN]
-  have hCu : p ^ N.factorization p * (N / p ^ N.factorization p) = N := by
-    first
-      | exact Nat.ordProj_mul_ordCompl_eq_self N p
-      | exact Nat.ord_proj_mul_ord_compl_eq_self N p
-  have hu : ¬ p ∣ (N / p ^ N.factorization p) := by
-    first
-      | exact Nat.not_dvd_ordCompl hp hN0
-      | exact Nat.not_dvd_ord_compl hp hN0
-  rw [← hCu, Nat.cast_mul, Nat.cast_pow] at hN'
-  rcases mul_eq_zero.mp hN' with h | h
-  · exact S.p_ne (pow_eq_zero_iff'.mp h).1
-  · exact (isUnit_natCast_of_not_dvd_root_weights S hp _ hu).ne_zero h
-
 private theorem exists_integral_p_pow_div_choose_of_log_le (S : UniformizedDVR p O) (hp : p.Prime) (N k d : ℕ)
     (hN : Nat.log p N ≤ d) (hk : k ≤ N) :
     ∃ o : O, algebraMap O (KK O) o = ((p : KK O) ^ d) * (1 / ((N.choose k : ℕ) : KK O)) := by
@@ -226,7 +208,7 @@ theorem scaled_casimirPower_integral_bound (S : UniformizedDVR p O) (hp : p.Prim
     {M : Submodule O V} (hM : UZStable (O := O) E M) (c : Fin n) (L : ℕ) (s : Finset (Fin n)) :
     (∀ j ∈ s, j ≠ c) → ∀ q b : ℕ, q + b ≤ L + n - 1 → ∀ y ∈ M,
       ((p : O) ^ (s.card * deF p n L)) • casimirPowerScaled E c s b q y ∈ M := by
-  haveI := charZero_KK_of_uniformizedDVR S hp
+  haveI := _root_.Formalism.MainNotions.G.GLWeightTheory.dvr_fraction_field_charZero_prime S hp
   induction s using Finset.induction_on with
   | empty =>
     intro _ q b _ y hy

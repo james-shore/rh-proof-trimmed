@@ -87,7 +87,7 @@ theorem geo_setup {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ 
             (∀ r : Γ(X, V), ∃ b ∈ B Finset.univ, ∃ b' ∈ B Finset.univ, b' ≠ 0 ∧ r * b' = b) := by
   classical
   haveI : IsClosedImmersion i := hci
-  haveI hXi : IsIntegral X := isIntegral_of_smooth q (n + 1)
+  haveI hXi : IsIntegral X := _root_.CrystallineSemistableComparison.Pb.isIntegral_of_smooth_pf q (n + 1)
   haveI : Infinite K := Infinite.of_injective (Nat.cast : ℕ → K) Nat.cast_injective
   obtain ⟨e, m, y, he, hy, halg, hfin⟩ :=
     GlobalTheory.T.noether_normalization_homogeneous K N (homIdeal i) (homIdeal_ne_top i) (homIdeal_homog i)
@@ -122,7 +122,7 @@ theorem geo_setup {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ 
     have := preimage_basicOpen_nonempty i (hpos _ Finset.univ_nonempty) (yS_mem y hy Finset.univ) hne0
     rwa [← biInf_preimage i y Finset.univ] at this
   letI algW : Algebra K Γ(X, W) := (strV q W).toAlgebra
-  have htW : ∀ k, IsUnit (tV i y hy W hWV k) := tV_isUnit i y hy hWV
+  have htW : ∀ k, IsUnit (tV i y hy W hWV k) := _root_.GlobalTheory.CompanionTheory.GeoUnit.tV_isUnit i y hy hWV
   have hindW : AlgebraicIndependent K (tV i y hy W hWV) :=
     algebraicIndependent_tV i y hy hWV he q hiq halg hWne
   haveI : Nonempty W := hWne.to_subtype
@@ -131,7 +131,7 @@ theorem geo_setup {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ 
     have hr : r ∈ Set.range (resO (le_refl W)) := ⟨r, by simp [resO]⟩
     rw [range_resO_eq i hci (yS_mem y hy _) (hpos _ Finset.univ_nonempty) (biInf_preimage i y _) le_rfl hWS] at hr
     obtain ⟨a, rfl⟩ := hr
-    exact isIntegral_torusS i y hy hWV he q hiq hfin Finset.univ hWS htW a
+    exact _root_.GlobalTheory.CompanionTheory.GeoInteg.isIntegral_torusS i y hy hWV he q hiq hfin Finset.univ hWS htW a
   have halgW : Algebra.IsAlgebraic (Algebra.adjoin K (Set.range (tV i y hy W hWV))) Γ(X, W) :=
     isAlgebraic_of_integral_torusS (fun k => (htW k).unit) hintW
   haveI hlft : LocallyOfFiniteType q := by
@@ -139,14 +139,14 @@ theorem geo_setup {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ 
       | infer_instance
       | (haveI : Smooth q := SmoothOfRelativeDimension.smooth (n + 1) q; infer_instance)
       | (haveI : Smooth q := inferInstance; haveI : LocallyOfFinitePresentation q := inferInstance; infer_instance)
-  haveI : Algebra.FiniteType K Γ(X, W) := finiteType_affine q hWaff
-  obtain ⟨g, hg0, het⟩ := exists_etale_away (tV i y hy W hWV) hindW halgW
-  obtain ⟨c, hc⟩ := exists_coord_basicOpen q hWaff g (tV i y hy W hWV) het
+  haveI : Algebra.FiniteType K Γ(X, W) := _root_.GlobalTheory.CompanionTheory.GeoFT.finiteType_affine q hWaff
+  obtain ⟨g, hg0, het⟩ := _root_.CrystallineSemistableComparison.Pb.exists_etale_away_pf (tV i y hy W hWV) hindW halgW
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.CompanionTheory.GeoCoord.exists_coord_basicOpen q hWaff g (tV i y hy W hWV) het
   have hVne : ((X.basicOpen g : X.Opens) : Set X).Nonempty := by
     rw [← TopologicalSpace.Opens.ne_bot_iff_nonempty]
     intro h
     exact hg0 ((basicOpen_eq_bot_iff g).1 h)
-  have hdn : d = n + 1 := coord_card_eq q (n + 1) hVne c
+  have hdn : d = n + 1 := _root_.GlobalTheory.CompanionTheory.CoordCard.main q (n + 1) hVne c
   subst hdn
   refine ⟨e, he, y, hy, ?_⟩
   intro U
@@ -163,7 +163,7 @@ theorem geo_setup {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ 
   refine ⟨hcov, fun S hS => haff S hS, X.basicOpen g, hV, c', ?_⟩
   letI algV : Algebra K Γ(X, X.basicOpen g) := (strV q _).toAlgebra
   haveI : Nonempty (X.basicOpen g) := hVne.to_subtype
-  refine ⟨inferInstance, fun k => rfl, tV_isUnit i y hy hV, algebraicIndependent_tV i y hy hV he q hiq halg hVne, ?_⟩
+  refine ⟨inferInstance, fun k => rfl, _root_.GlobalTheory.CompanionTheory.GeoUnit.tV_isUnit i y hy hV, algebraicIndependent_tV i y hy hV he q hiq halg hVne, ?_⟩
   let B : Finset (Fin (n + 2)) → Subalgebra K Γ(X, X.basicOpen g) := fun S =>
     { (resO (le_biInf_of_le hV S)).range with
       algebraMap_mem' := fun a => RingHom.mem_range.2 ⟨strV q _ a,
@@ -177,12 +177,12 @@ theorem geo_setup {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ 
       (le_biInf_of_le hV S).trans (biInf_preimage i y S).le
     refine Algebra.adjoin_le ?_
     rintro _ ⟨m, hm, rfl⟩
-    have h1 := tpow_mem_range i y hy hV he S hS' (tV_isUnit i y hy hV) m hm
+    have h1 := _root_.GlobalTheory.CompanionTheory.GeoTpow.tpow_mem_range i y hy hV he S hS' (_root_.GlobalTheory.CompanionTheory.GeoUnit.tV_isUnit i y hy hV) m hm
     rw [← range_resO_eq i hci (yS_mem y hy S) (hpos S hS) (biInf_preimage i y S) (le_biInf_of_le hV S) hS'] at h1
     exact (memB S _).2 h1
   · intro S hS
     letI : Algebra K Γ(X, ⨅ k ∈ S, U k) := (strV q _).toAlgebra
-    haveI : Algebra.FiniteType K Γ(X, ⨅ k ∈ S, U k) := finiteType_affine q (haff S hS)
+    haveI : Algebra.FiniteType K Γ(X, ⨅ k ∈ S, U k) := _root_.GlobalTheory.CompanionTheory.GeoFT.finiteType_affine q (haff S hS)
     let φ : Γ(X, ⨅ k ∈ S, U k) →ₐ[K] Γ(X, X.basicOpen g) :=
       { resO (le_biInf_of_le hV S) with
         commutes' := fun a => (RingHom.congr_fun (strV_res q (le_biInf_of_le hV S)) a).symm }
@@ -197,7 +197,7 @@ theorem geo_setup {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X ⟶ 
       (le_biInf_of_le hV S).trans (biInf_preimage i y S).le
     rw [memB, range_resO_eq i hci (yS_mem y hy S) (hpos S hS) (biInf_preimage i y S) (le_biInf_of_le hV S) hS'] at hb
     obtain ⟨a, rfl⟩ := hb
-    exact isIntegral_torusS i y hy hV he q hiq hfin S hS' (tV_isUnit i y hy hV) a
+    exact _root_.GlobalTheory.CompanionTheory.GeoInteg.isIntegral_torusS i y hy hV he q hiq hfin S hS' (_root_.GlobalTheory.CompanionTheory.GeoUnit.tV_isUnit i y hy hV) a
   · intro j x hx
     rw [memB] at hx ⊢
     obtain ⟨a, rfl⟩ := hx

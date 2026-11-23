@@ -76,7 +76,7 @@ theorem theta_and_it_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi
     subst e
     exact ⟨hC.chain.ωX _, hC.chain.ItX _⟩
   obtain ⟨hW', hI'⟩ := key (j + 1) (idx_top h)
-  obtain ⟨b, hb, hbv⟩ := _root_.GlobalTheory.T.top_step_vector_theta_alt W hP j h _ hvT
+  obtain ⟨b, hb, hbv⟩ := _root_.GlobalTheory.TopConv.top_comb_alt W hP j h _ hvT
   exact ⟨fun φ => GlobalTheory.Chain.InnerSteps.theta_pureTensorO hW'.std hθ _ _ _ _ hth φ, isItW_of_comb hW' hθ hth hb hbv hI'⟩
 end GlobalTheory.BaseChainTop
 end

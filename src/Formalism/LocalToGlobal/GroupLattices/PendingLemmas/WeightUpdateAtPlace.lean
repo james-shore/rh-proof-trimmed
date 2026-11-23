@@ -44,6 +44,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 
 @[expose] public section
 
@@ -69,10 +70,10 @@ theorem lsmul_mul (γ γ' : C.Γ) (L : P.Tup) : C.smul (γ * γ') L = C.smul γ 
   simp [Level.smul, Matrix.mulVec_mulVec]
 
 theorem lsmul_inv_lsmul (γ : C.Γ) (L : P.Tup) : C.smul γ⁻¹ (C.smul γ L) = L := by
-  rw [← lsmul_mul, inv_mul_cancel, lsmul_one]
+  rw [← _root_.Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, inv_mul_cancel, lsmul_one]
 
 theorem lsmul_lsmul_inv (γ : C.Γ) (L : P.Tup) : C.smul γ (C.smul γ⁻¹ L) = L := by
-  rw [← lsmul_mul, mul_inv_cancel, lsmul_one]
+  rw [← _root_.Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, mul_inv_cancel, lsmul_one]
 
 def orbS : Setoid P.Tup where
   r L L' := ∃ γ : C.Γ, L' = C.smul γ L
@@ -134,7 +135,7 @@ theorem repC_ex (h : C.FinClasses) (L : P.Tup) (hL : P.IsLatTup L) :
     ∃! L0 : P.Tup, L0 ∈ repC C h ∧ ∃ γ : C.Γ, L = C.smul γ L0 := by
   obtain ⟨L₀, hL₀, γ, hγ⟩ := (Classical.choose_spec h).2 L hL
   obtain ⟨γ', hγ'⟩ := can_rel C L₀
-  refine ⟨can C L₀, ⟨(mem_repC C h _).mpr ⟨L₀, hL₀, rfl⟩, γ * γ', by rw [hγ, lsmul_mul, ← hγ']⟩, ?_⟩
+  refine ⟨can C L₀, ⟨(mem_repC C h _).mpr ⟨L₀, hL₀, rfl⟩, γ * γ', by rw [hγ, _root_.Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, ← hγ']⟩, ?_⟩
   rintro L1 ⟨h1, δ, hδ⟩
   have e1 : can C L1 = L1 := by
     obtain ⟨M, _, rfl⟩ := (mem_repC C h L1).mp h1

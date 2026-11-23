@@ -93,9 +93,9 @@ theorem exists_principal_algClosure : ∀ (K : Type) [Field K] [CharZero K] (A :
       simp [pushPt]
     refine GlobalTheory.AmpleLocalBase.relAmple_baseChange h.1 (pull_isLB hP _) (pull_isLB hP' _) ?_ ha
     refine LBIso.trans (pull_isLB hP' _) (pull_isLB hP _) (pull_isLB (pull_isLB hP _) _)
-      (GlobalTheory.Mum.lbIso_pull_pull_comp hP _ _) ?_
+      (_root_.GlobalTheory.SiegelPullComp.iso_pull_pull hP _ _) ?_
     rw [e]
-    exact (GlobalTheory.Mum.lbIso_pull_pull_comp hP _ _).symm
+    exact (_root_.GlobalTheory.SiegelPullComp.iso_pull_pull hP _ _).symm
   · intro T x ⟨t, ht⟩
     let T₀ : Over (Sp K) := Over.mk (T.hom ≫ f)
     let x₀ : T₀ ⟶ A := pushPt w x

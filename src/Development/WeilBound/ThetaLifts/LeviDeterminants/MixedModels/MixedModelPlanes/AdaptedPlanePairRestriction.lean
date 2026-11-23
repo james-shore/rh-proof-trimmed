@@ -148,7 +148,7 @@ theorem exists_isEv_mixedX_m : ∀ (F E : Type) [Field F] [NumberField F] [Field
   obtain ⟨j, co, hj, hrat, hι, hx, hy⟩ :=
     PositivityTheory.Mix.T.exists_adapted_basis_hermitian F E σ B n d X W r s r' s' hP.base hP.herm hP.skew n₁ X₁ H j₀ j₁ M₁ r₁ s₁ hP₁.herm hH hP₁.good
   obtain ⟨e₁, ei₁, ev₁, hsurj, hmaps, hheis, hSB, hvac, hstd, hpure⟩ :=
-    PositivityTheory.Mix.T.darboux_coordinates_good_model F E σ B n d X W M r s r' s' hP.base hP.herm hP.skew hP.good co hrat
+    _root_.PositivityTheory.Mix.darboux_model_rational_lattice F E σ B n d X W M r s r' s' hP.base hP.herm hP.skew hP.good co hrat
   have hres := fun v => PositivityTheory.Mix.T.adapted_basis_hermitian_unique F E σ B n d X W r s r' s' hP.base hP.herm hP.skew n₁ X₁ H j₀ j₁ M₁ r₁ s₁ hP₁.herm hH
     hP₁.good j co hj hι hx hy v _ (hvac v)
   choose c hc0 hc using hres
@@ -161,11 +161,11 @@ theorem exists_isEv_mixedX_m : ∀ (F E : Type) [Field F] [NumberField F] [Field
       fun i => zero_mem _
     rw [Pi.smul_apply, Set.indicator_of_mem hm, smul_eq_mul] at h
     simpa using h.symm
-  obtain ⟨R, hR⟩ := PositivityTheory.Mix.T.exists_restriction_extend_by_zero F j hj
+  obtain ⟨R, hR⟩ := _root_.GlobalTheory.RestrS.exists_restr F j hj
   refine ⟨(∏ᶠ v, c v)⁻¹ • (LinearMap.funLeft ℂ ℂ (fun y : Fin n₁ × Fin d → AF F => Function.extend j y 0) ∘ₗ e₁),
     ⟨?_, ?_, ?_, ?_⟩⟩
   · intro Φ hΦ
-    exact Submodule.smul_mem _ _ (PositivityTheory.Mix.T.extend_by_zero_mem_schA F j hj _ (hmaps Φ hΦ))
+    exact Submodule.smul_mem _ _ (_root_.GlobalTheory.RestrSchA.mem_schA_comp_extend F j hj _ (hmaps Φ hΦ))
   · intro z Φ hΦ
     have h1 : incM F H.ι * z * (incM F (1 : Matrix (Fin d) (Fin d) E))ᵀ = incM F H.ι * z := by
       rw [show incM F (1 : Matrix (Fin d) (Fin d) E) = 1 from Matrix.map_one _ (map_zero _) (map_one _)]
@@ -210,7 +210,7 @@ theorem exists_isEv_mixedX_m : ∀ (F E : Type) [Field F] [NumberField F] [Field
       · rw [LinearMap.smul_apply, LinearMap.comp_apply]
         rw [show LinearMap.funLeft ℂ ℂ (fun y : Fin n₁ × Fin d → Fv F v => Function.extend j y 0) (ev₁ v (M.vac v)) =
           c v • M₁.vac v from hc v, smul_smul, inv_mul_cancel₀ (hc0 v), one_smul]
-      · rw [Submodule.map_smul _ _ _ (inv_ne_zero (hc0 v)), Submodule.map_comp, hSB v, PositivityTheory.Mix.T.extend_by_zero_schwartzBruhat_map F j hj v]
+      · rw [Submodule.map_smul _ _ _ (inv_ne_zero (hc0 v)), Submodule.map_comp, hSB v, _root_.GlobalTheory.SchwartzBruhatRestrict.map_funLeft_extendZero F j hj v]
     · intro f φ hφ hφv
       funext y
       rw [LinearMap.smul_apply, LinearMap.comp_apply, hpure f φ hφ hφv]

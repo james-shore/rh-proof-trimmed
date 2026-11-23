@@ -207,15 +207,10 @@ private theorem thick_of_der {l : ℕ} [Fact l.Prime] {k : Type} [Field k] [Char
   fin_cases i <;> fin_cases j <;>
     first | exact b0 g | exact b1 g | exact b2 g | exact b3 g | exact h0 g _ _ (by decide)
 
-private theorem span_X {O σ : Type} [CommRing O] (I : Ideal (MvPowerSeries σ O)) (s : Finset σ)
-    (hs : ∀ i ∈ s, MvPowerSeries.X i ∈ I) :
-    ∀ f : MvPowerSeries σ O, (∀ n : σ →₀ ℕ, (∀ i ∈ s, n i = 0) → MvPowerSeries.coeff n f = 0) → f ∈ I :=
-  _root_.UpperTheory.Reformulated.B.SpanOfVariable.span_X I s hs
-
 private theorem pderiv_even {O : Type} [CommRing O] {a g : ℕ} (I : Ideal (MvPowerSeries (Fin a ⊕ Fin g) O))
     (hI : ∀ j, MvPowerSeries.X (.inr j) ∈ I) {f : MvPowerSeries (Fin a ⊕ Fin g) O}
     (hf : f ∈ wtPart O (Space.Loc.par a g) 0) (b : Fin g) : MvPowerSeries.pderiv (R := O) (.inr b) f ∈ I := by
-  refine span_X I (Finset.univ.map ⟨Sum.inr, Sum.inr_injective⟩) (by simpa using hI) _ fun n hn => ?_
+  refine _root_.UpperTheory.Reformulated.B.SpanOfVariable.span_X I (Finset.univ.map ⟨Sum.inr, Sum.inr_injective⟩) (by simpa using hI) _ fun n hn => ?_
   have h : ∀ j, n (.inr j) = 0 := by simpa using hn
   rw [MvPowerSeries.coeff_pderiv, hf, zero_mul]
   rw [map_add (f := _), Finsupp.weight_single, Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by simp)]

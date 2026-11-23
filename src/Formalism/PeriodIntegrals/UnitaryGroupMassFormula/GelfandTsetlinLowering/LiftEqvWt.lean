@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalRingCardinality.Params
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockDiagBound
 
 @[expose] public section
 
@@ -75,25 +76,6 @@ theorem coeff_aeval_scale {σ : Type} (e : σ → ℂ) (f : MvPolynomial σ ℂ)
     · simp
   · rw [map_add (f := _), MvPolynomial.coeff_add, MvPolynomial.coeff_add, hp, hq, mul_add]
 
-theorem rowAct_diagonal {r c : ℕ} (d : Fin r → ℂ) :
-    rowAct ℂ (n := c) (Matrix.diagonal d) = aeval (fun v : Fin r × Fin c => C (d v.1) * X v) := by
-  unfold Formalism.GradedWeylDivisibility.rowAct
-  congr 1
-  funext v
-  rw [Finset.sum_eq_single v.1]
-  · simp
-  · intro b _ hb
-    simp [Matrix.diagonal_apply_ne _ (Ne.symm hb)]
-  · simp
-
-theorem prod_rowDeg {r c : ℕ} (x : Fin r → ℂ) (m : Fin r × Fin c →₀ ℕ) :
-    (m.prod fun v k => x v.1 ^ k) = ∏ a, x a ^ rowDeg m a := by
-  rw [Finsupp.prod_fintype _ _ (fun _ => pow_zero _), Fintype.prod_prod_type]
-  refine Finset.prod_congr rfl fun a _ => ?_
-  unfold rowDeg
-  show ∏ y : Fin c, x a ^ m (a, y) = x a ^ ∑ s, m (a, s)
-  rw [Finset.prod_pow_eq_pow_sum]
-
 theorem coeff_sqAct_diag {r : ℕ} (lam : DomWeight r) (t : Fin r → ℂˣ) (f : MvPolynomial (Fin r × Fin r) ℂ)
     (m : Fin r × Fin r →₀ ℕ) :
     AddMonoidAlgebra.coeff (sqAct ℂ r lam (diagGL ℂ r t) f) m =
@@ -108,8 +90,8 @@ theorem coeff_sqAct_diag {r : ℕ} (lam : DomWeight r) (t : Fin r → ℂˣ) (f 
       Matrix.diagonal fun a => (t a : ℂ) :=
     Matrix.diagonal_transpose _
   unfold sqAct
-  rw [MvPolynomial.coeff_smul, smul_eq_mul, hdet, htr, rowAct_diagonal, coeff_aeval_scale,
-    prod_rowDeg (fun a => (t a : ℂ)) m]
+  rw [MvPolynomial.coeff_smul, smul_eq_mul, hdet, htr, _root_.Formalism.GradedWeylDivisibility.ldiag_rowAct_diag_eq, coeff_aeval_scale,
+    _root_.Formalism.GradedWeylDivisibility.ldiag_prod_rowDeg (fun a => (t a : ℂ)) m]
 
 theorem weight_rowW_apply {r c : ℕ} (m : Fin r × Fin c →₀ ℕ) (a : Fin r) :
     Finsupp.weight (rowW r c) m a = rowDeg m a := by

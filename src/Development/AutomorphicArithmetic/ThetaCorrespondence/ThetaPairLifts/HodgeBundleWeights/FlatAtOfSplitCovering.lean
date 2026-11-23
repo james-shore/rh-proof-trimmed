@@ -75,7 +75,7 @@ theorem flat_at_of_split_covering (p : PtAt ex Csz) (i : Fin D.R.m) (Y : Cov p i
     FlatAt p i Y (11 * CA + 83) := by
   obtain ⟨hcx, hgood, hflat, hc1, hlog⟩ := hc
   have hj : InR D ((i : ℕ) + 1) := ⟨by omega, by have := i.2; omega⟩
-  have hUn := _root_.GlobalTheory.T.unramified_points_of_deep_cover hP D p.T ((i : ℕ) + 1) Y _ _ p.fw.laws hj hY.1
+  have hUn := _root_.GlobalTheory.UnramCover.unramified_points_at_deep_level hP D p.T ((i : ℕ) + 1) Y _ _ p.fw.laws hj hY.1
   have hrank : 1 ≤ (dat p i).p + (dat p i).q := Inhab.rank_pos p.T.toCore p.fw.laws.pins ((i : ℕ) + 1) hj
   have hev : Even (p.κ i).n := hW.dom.2
   have hFL := ((GlobalTheory.T.flatLine_thetaRoot_twist_twistingSection hP.p5 D p.T.Q.H (dat p i) Y.d.l₂ Y.d.Xo₂ Y.d.c₂ D.R.r Y.U (fun _ => D.sp.W ((i : ℕ) + 1))

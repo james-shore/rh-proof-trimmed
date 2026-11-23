@@ -197,9 +197,9 @@ theorem weil_open : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (M : ℕ) (t : 
     refine (GlobalTheory.loc_units_eq S M v (Units.map (fnOn t).toMonoidHom (ζu ^ (2 * omegaStd a c))) hMS hv
       fun k _ _ g => ?_).congr fun k _ _ g => ?_
     · obtain ⟨β, hβ⟩ := exists_spMap (g ≫ t)
-      rw [map_fnOn _ g β hβ, ← GlobalTheory.SiegCover.unitOn_pow', map_zpow, ← zpow_natCast, ← zpow_mul, mul_comm, zpow_mul,
+      rw [map_fnOn _ g β hβ, ← _root_.GlobalTheory.HeckePoint.unitOn_pow, map_zpow, ← zpow_natCast, ← zpow_mul, mul_comm, zpow_mul,
         zpow_natCast, hζM, one_zpow]
-      exact GlobalTheory.SiegCover.unitOn_one'
+      exact _root_.GlobalTheory.HeckePoint.unitOn_one
     · have hW' := GlobalTheory.CommPairing.weilIs_pull hG hA hD (toUnit (Over.mk g)) hW
       have hgl : (toUnit (Over.mk g)).left = g := by simpa using Over.w (toUnit (Over.mk g))
       rw [hgl] at hW'

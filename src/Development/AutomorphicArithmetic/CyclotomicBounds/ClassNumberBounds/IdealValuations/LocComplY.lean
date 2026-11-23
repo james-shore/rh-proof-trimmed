@@ -69,11 +69,6 @@ variable {l : ℕ} [Fact l.Prime]
 
 variable {E : Type*} [Field E] [NumberField E]
 
-private theorem mem_of_adjoin_top {K : Type*} [Field K] [CharZero K] {S : Set K}
-    (hS : Algebra.adjoin ℚ S = ⊤) (j : K →+* PadicAlgCl l)
-    (F : IntermediateField ℚ_[l] (PadicAlgCl l)) (h : ∀ s ∈ S, j s ∈ F) (x : K) : j x ∈ F :=
-  _root_.UpperTheory.Reformulated.B.Qj1.mem_of_adjoin_top hS j F h x
-
 omit [NumberField E] in
 private theorem norm_int_le_one (j : E →+* PadicAlgCl l) (x : 𝓞 E) : ‖j (x : E)‖ ≤ 1 := by
   have h1 : IsIntegral ℤ (j (x : E)) := x.isIntegral_coe.map j.toIntAlgHom
@@ -132,7 +127,7 @@ private theorem finiteDimensional_complField (j : E →+* PadicAlgCl l) :
     apply le_antisymm
     · rw [complField, IntermediateField.adjoin_le_iff]
       rintro _ ⟨x, rfl⟩
-      refine mem_of_adjoin_top hα' j _ ?_ x
+      refine _root_.UpperTheory.Reformulated.B.Qj1.mem_of_adjoin_top hα' j _ ?_ x
       rintro _ rfl
       exact IntermediateField.mem_adjoin_simple_self _ _
     · exact IntermediateField.adjoin.mono _ _ _ (Set.singleton_subset_iff.mpr ⟨α, rfl⟩)

@@ -57,8 +57,8 @@ namespace GlobalTheory.AV.AbVar
 theorem exists_factor_abelianSubvariety : ∀ (K : Type) [Field K] (A B : AbVar K) (f : A ⟶ B),
     ∃ (C : AbVar K) (p : A ⟶ C) (i : C ⟶ B), Surjective p.hom.left ∧ IsClosedImmersion i.hom.left ∧ p ≫ i = f := by
   intro K _ A B f
-  obtain ⟨Z, p, i, hpi, hp, hi, hg⟩ := GlobalTheory.T.exists_geometricallyIntegral_image_of_hom K A B f
-  obtain ⟨hG, hpm, him⟩ := GlobalTheory.T.exists_subgroupScheme_of_geometricallyIntegral_image K A B f Z p i hpi hp hi hg
+  obtain ⟨Z, p, i, hpi, hp, hi, hg⟩ := _root_.GlobalTheory.AV.AbVar.exists_image_geometricallyIntegral K A B f
+  obtain ⟨hG, hpm, him⟩ := _root_.GlobalTheory.AV.AbVar.exists_grpObj_of_image K A B f Z p i hpi hp hi hg
   letI := hG
   have hmono : Mono i := by
     have : Mono i.left := inferInstance
@@ -78,7 +78,7 @@ theorem exists_factor_abelianSubvariety : ∀ (K : Type) [Field K] (A B : AbVar 
     have : IsIntegral W := hg.geometrically_isIntegral y fst snd h
     infer_instance⟩
   have hab : IsAbelianScheme Z := ⟨hcomm, hsm, hpr, hgc⟩
-  obtain ⟨g, hd⟩ := GlobalTheory.T.abelianScheme_field_smoothOfRelativeDimension_exists K Z hab
+  obtain ⟨g, hd⟩ := _root_.GlobalTheory.AV.exists_smoothOfRelativeDimension_of_isAbelianScheme K Z hab
   let C : AbVar K := { X := Z, ab := hab, dim := g, smooth := hd }
   refine ⟨C, Hom.mk (B := C) p, Hom.mk (A := C) i, hp, hi, ?_⟩
   exact Subtype.ext hpi

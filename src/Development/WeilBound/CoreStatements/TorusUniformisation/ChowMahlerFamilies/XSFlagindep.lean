@@ -64,6 +64,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import GroundTheory.HeightsAndTheta.Heights.LocalFiniteness.NumbersDVRC3ResidualContractionComponent
 
 @[expose] public section
 
@@ -77,15 +78,12 @@ theorem closureModel : GenericProjClosureModel.Statement :=
       (PairBundleTrdeg.proof AdjoinTrdegAdd.proof PairConeLinesIndep.proof PairConeAlg.proof))
     (GenericProjClosureDivisor.proof TwistedDualGensExpress.proof)
 
-theorem flagClosureModel : SegreFlagClosureModel.Statement :=
-  SegreFlagClosureModel.proof (SegreFlagClosureTrdeg.proof SegreFlagConeAlg.proof)
-
 theorem of_items (hC2 : VerticalDivisorsCommute.Statement.{0}) (hPull : PairNumberPullback.Statement)
     (hCut : SegreFlagClosureCut.Statement) : FlagIndependence.Statement := by
   have hPE := PairNumberExpansionIndependence.proof hC2
-  have hSP := SegreFlagClosurePullback.proof hPull hPE flagClosureModel PairNumberRelabel.proof
+  have hSP := SegreFlagClosurePullback.proof hPull hPE _root_.GroundTheory.Heights₂.Heights.AutoClose.NumbersDVR_SegreFlagClosureModel PairNumberRelabel.proof
     VerticalDivisorJoinPullback.proof SegreFlagClosureBirational.proof
-  have hSCN := SegreClosureNumber.proof hPE flagClosureModel hCut hSP
+  have hSCN := SegreClosureNumber.proof hPE _root_.GroundTheory.Heights₂.Heights.AutoClose.NumbersDVR_SegreFlagClosureModel hCut hSP
   exact FlagIndependence.proof hPE (HsymmPairFlagIndependence.proof hPE closureModel hSCN)
     SymmetricSpanHsymm.proof
 

@@ -233,11 +233,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
 
 variable [FiniteDimensional Qp LL]
 
-theorem ArcLengthThreeDescent.letE_idem (c : ZMod n) : (letE (O := O) c : LetA O n) * letE c = letE c := by
-  funext i
-  simp only [Formalism.BasicNotions.letE, Pi.mul_apply, Pi.single_apply]
-  split_ifs <;> simp
-
 theorem ArcLengthThreeDescent.letE_mem (W : LocWach PD LL O v n) (c : ZMod n) : (letE (O := O) c : LetA O n) ∈ W.AΔ := by
   show ∀ δ ∈ W.DelF, W.γA δ (letE c) = letE c
   intro δ _
@@ -290,7 +285,7 @@ theorem ArcLengthThreeDescent.split [IsDomain O] [IsDiscreteValuationRing O] [Is
   have hX₂E : lE W κ * algebraMap O W.EE X₂ = lE W K * algebraMap O W.EE x := by
     have := congrArg (algebraMap O W.EE) hX₂
     simpa [lE, map_mul, map_pow, map_natCast] using this
-  have he := ArcLengthThreeDescent.letE_idem (O := O) (n := n) c
+  have he := _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq (O := O) (n := n) c
   have heM := ArcLengthThreeDescent.letE_mem W c
   have hpsM : ∀ s : ℕ, ps W s ∈ W.AΔ := fun s => by rw [Br.ps_eq]; exact Br.cst_mem _
   have hlM : lA W ∈ W.AΔ := by rw [Br.lA_eq]; exact Br.cst_mem _

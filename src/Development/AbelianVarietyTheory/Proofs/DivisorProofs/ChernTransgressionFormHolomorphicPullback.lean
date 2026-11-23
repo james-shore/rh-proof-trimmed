@@ -53,10 +53,6 @@ open scoped Matrix ContDiff ComplexOrder
 noncomputable section
 namespace GlobalTheory.ChernCalc
 
-theorem eq_sum_ofLp_smul_complexCoordinateVector {n : ℕ} (w : V n) : w = ∑ a, w a • coordVec a := by
-  ext i
-  simp [coordVec, Pi.single_apply]
-
 theorem trace_mul_constMatrix_mul_evenForms_sum {n : ℕ} {r : Type} [Fintype r] [DecidableEq r] (P Q : Matrix r r (Ev n)) (C : Matrix r r ℂ) :
     (((P * C.map (algebraMap ℂ (Ev n)) * Q).trace : Ev n) : Alt n) = ∑ p, ∑ q, C p q • (((Q * P) q p : Ev n) : Alt n) := by
   rw [Matrix.trace_mul_cycle, Matrix.trace]
@@ -82,7 +78,7 @@ theorem transAt_comp_holo : ∀ (n n' : ℕ) (r : Type) [Fintype r] [DecidableEq
     intro ξ
     rw [conn_comp_holo h1 hφ1, conn_comp_holo h1' hφ1]
     show connectionMatrixDifferenceLinearMap G G' (φ w) (fderiv ℂ φ w ξ) = _
-    conv_lhs => rw [eq_sum_ofLp_smul_complexCoordinateVector (fderiv ℂ φ w ξ)]
+    conv_lhs => rw [_root_.GlobalTheory.CurvatureSesquilinearExpansion.eq_sum_coordVec (fderiv ℂ φ w ξ)]
 
     rw [map_sum]
     simp only [map_smul]

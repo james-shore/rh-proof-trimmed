@@ -451,7 +451,7 @@ theorem hasModel_rank (hL : Out.Laws) (hL' : Out.Laws2) (hp : IsProper tM.G.hom)
     obtain ⟨A', -, e⟩ := exists_ampFrames A.isLB A.ample h
     exact ⟨{ C with amp := A' }, e⟩
   by_cases hT : ∀ (W : Type) [CommRing W] [IsDomain W] [IsLocalRing W], LN.CDvr W → IsEmpty (Sp W ⟶ C.Z)
-  · exact GlobalTheory.T.hasTransitionCompatibleFrames_of_no_completeDVR_points _ _ _ _ _ _ _ _ _ (le_max_left _ _) hT (hasFrames_of_ampFrames A)
+  · exact _root_.GlobalTheory.ModelSum.hasFrames_rank_of_isEmpty _ _ _ _ _ _ _ _ _ (le_max_left _ _) hT (hasFrames_of_ampFrames A)
   push Not at hT
   obtain ⟨W, _, _, _, hW, ⟨χ₀⟩⟩ := hT
   have := hW.2.2

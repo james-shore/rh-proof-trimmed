@@ -102,7 +102,7 @@ theorem local_dual_unit (ψ : AddChar (AF D.host.F) ℂ) (hψ : IsStdChar D ψ (
         toEAf D Z = c * r → ψ (Algebra.trace (AF D.host.F) (AE D) (incA D D.host.xi0 * Z)) = 1) ∧
       (∀ Z : AE D, infPart D Z = 0 → toEAf D Z = c * u →
         ψ (Algebra.trace (AF D.host.F) (AE D) (incA D D.host.xi0 * Z)) ≠ 1) := by
-  obtain ⟨c, h1, h2⟩ := local_dual ψ hψ e₁ PP he₁
+  obtain ⟨c, h1, h2⟩ := _root_.GlobalTheory.SplitDualElt.exists_dual_elt ψ hψ e₁ PP he₁
   haveI := PP.isMaximal
   obtain ⟨b, hb⟩ := Ideal.Quotient.exists_inv (I := PP.asIdeal) hu
   obtain ⟨a, ha⟩ := Ideal.Quotient.mk_surjective b
@@ -192,7 +192,7 @@ theorem GlobalTheory.HalfDuality.exists_dual_half : ∀ {D : D7} {G : Type} [Gro
       simp only [hO, map_sum, map_mul, hy0, mul_zero, Finset.sum_const_zero]
   have hfin : ∀ k, IsHalf (cA D e) k → toEAf D (hO (Vc D i) (Wc D i) y k) =
       c₀ * frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) k a b := fun k hk => by
-    rw [GlobalTheory.HalfDuality.trace_id _ _ (R.βV i) (R.βW i), hyz, GlobalTheory.HalfDuality.trace_mul_single, mul_comm (toEAf D e) c₀, mul_left_comm,
+    rw [_root_.GlobalTheory.TraceFrames.toEAf_hO_eq_trace_frames _ _ (R.βV i) (R.βW i), hyz, GlobalTheory.HalfDuality.trace_mul_single, mul_comm (toEAf D e) c₀, mul_left_comm,
       mul_comm _ (toEAf D e), GlobalTheory.AdjVecLocal.frMapAdj_half _ _ _ _ hk]
   have hs : ∀ k, R.ψ (symplO (Vc D i) (Wc D i) k y) =
       (R.ψ (Algebra.trace (AF D.host.F) (AE D) (incA D D.host.xi0 * hO (Vc D i) (Wc D i) y k)))⁻¹ := fun k => by

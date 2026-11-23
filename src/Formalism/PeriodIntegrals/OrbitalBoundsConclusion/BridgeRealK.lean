@@ -42,4 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem adelic_compact_real_places : PI.AdBridgeSteps.RealK := PI.UnitaryGroupMassFormula.BridgeRealK.realK

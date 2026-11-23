@@ -91,10 +91,4 @@ theorem ring_of_covering_descent_alt (_hP : _root_.GlobalTheory.CovTop.Published
   exact le_trans (sub_le_sub_left h2r _) hB
 end GlobalTheory.CovTop.RingStep
 end
-section
-open GlobalTheory.CovTop GlobalTheory.BigTop
-
-theorem _root_.GlobalTheory.T.covering_ring_of_prints_gram_deepGood : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → _root_.GlobalTheory.CovTop.GramCondition → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.RingCondition := by
-  first | exact @_root_.GlobalTheory.CovTop.RingStep.ring_of_covering_descent_alt | exact _root_.GlobalTheory.CovTop.RingStep.ring_of_covering_descent_alt | (intros; apply _root_.GlobalTheory.CovTop.RingStep.ring_of_covering_descent_alt <;> assumption)
-end
 end

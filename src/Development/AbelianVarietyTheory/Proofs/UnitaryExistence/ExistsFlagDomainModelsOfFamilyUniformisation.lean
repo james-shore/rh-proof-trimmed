@@ -158,11 +158,11 @@ theorem exists_modelsOf : GlobalTheory.Published.HasseNormSt → ∀ (E : Type) 
   have hrk : r = Dw.p + Dw.q := (GlobalTheory.HermModel.rank_integral_selfDual E H Dw r (-ξ₀) Gm φ hξ' hφ).1
   have hq : Dw.q ≤ r := by omega
   have hΨ : ∀ τ : E →+* ℂ, τ ∈ Ψ ↔ ComplexEmbedding.conjugate τ ∉ Ψ := fun τ => by
-    rw [hmem, hmem]; exact cm_type H τ
+    rw [hmem, hmem]; exact _root_.GlobalTheory.PrincFree.cmType_of_rt H τ
   have hsig : ∀ τ : Ψ, ∃ P : Matrix (Fin r) (Fin r) ℂ, P.det ≠ 0 ∧
       gram τ.1 Gm P = Matrix.diagonal fun a : Fin r => ((sgn Dw.q (a : ℕ) : ℝ) : ℂ) := fun τ => by
     have hτ := (hmem τ.1).1 τ.2
-    refine (GlobalTheory.T.signature_hermitian_model_of_datum E H Dw r (-ξ₀) Gm φ hξ' hφ τ.1 hτ).1 ?_
+    refine (_root_.GlobalTheory.HermSign.signature_of_model E H Dw r (-ξ₀) Gm φ hξ' hφ τ.1 hτ).1 ?_
     have := hneg τ.1 hτ
     rw [map_neg, Complex.neg_im]
     linarith

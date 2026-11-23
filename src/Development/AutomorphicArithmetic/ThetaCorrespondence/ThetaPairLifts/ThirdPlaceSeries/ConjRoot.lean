@@ -70,7 +70,7 @@ theorem conjRoot_alt : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Pu
         rdAt p w j hρ' ν f = c • ρ.theta ((Fm.ex x hx i).nch.twI w) j ((Fm.ex x hx i).nch.sd w) h P := by
   intro p1 p2 p3 p4
   have hA := _root_.GlobalTheory.T.expAlg_of_cusp_decay_and_reciprocity p1 p2 p3 p4
-  have hB := _root_.GlobalTheory.T.real_datum_rational_normalization_alt p1 p2 p3 p4
+  have hB := _root_.GlobalTheory.BigOn.Exp.expConj_alt p1 p2 p3 p4
   unfold _root_.GlobalTheory.BigOn.Exp.ExpAlgAlt at hA
   unfold _root_.GlobalTheory.BigOn.Exp.TwistConditions _root_.GlobalTheory.BigOn.AtPtsAlt at *
   refine (Formalism.MainNotions.Closed.and hA hB).imp fun Fm CH _ h => ?_

@@ -128,7 +128,7 @@ theorem stepSt_of_ex (hEll : EllSt) (H : WtLacEx) : StepSt := by
   rintro _ ⟨U₁, mu, g1, g2, g3, rfl⟩
   refine ⟨by simp, ?_⟩
   have hmu : (Wt.ofFam mu).at = mu := by
-    obtain ⟨W', -, hW', -⟩ := GlobalTheory.T.exists_algebraicForm_weight_level_smooth_at_place E a mu K U₁ hK.fin g3 w₀
+    obtain ⟨W', -, hW', -⟩ := _root_.GlobalTheory.Cong.exists_algForm_ofType E a mu K U₁ hK.fin g3 w₀
     obtain rfl : mu = W'.at := (funext hW').symm
     have : Wt.ofFam W'.at = W' := funext fun v => W'.at_embedding v
     rw [this]
@@ -200,7 +200,7 @@ theorem congUWG_of (H : StepSt) (hFin : FinU) (D : ∀ a : ℕ, MvPolynomial (Fi
   have hsys : ∀ U', IsAutRepU U' → (∃ φ ∈ U', φ ≠ 0 ∧ ∀ x ∈ K', RU E a x φ = φ) → IsSysU O U' fun j => ι.symm (ej j U') :=
     fun U' h1 h2 j σ hσ => congrArg ι.symm (hje j U' h1 (hloc U' h2 _ (O.split j) (hO₀ j) (hOv j)) σ hσ)
   have hθeq : θ = fun j => ι.symm (ej j U) := funext fun j => by
-    obtain ⟨σ, hσ⟩ := (GlobalTheory.T.exists_unique_splitPlaceComponent_definiteUnitary E a U hU.1 _ (O.split j)).1
+    obtain ⟨σ, hσ⟩ := (_root_.GlobalTheory.SplitComp.exists_comp_and_unique E a U hU.1 _ (O.split j)).1
     rw [hθ j σ hσ]
     exact (hsys U hU.1 hfix j σ hσ).symm
   have hactJ : ActsBy K' tj fun U' j => ej j U' := fun U' hU' φ hφ hx j =>
@@ -240,7 +240,7 @@ theorem congUWG_of (H : StepSt) (hFin : FinU) (D : ∀ a : ℕ, MvPolynomial (Fi
     · exact hcp p
     · exact hcz z
   have hlam' : (Wt.ofFam lam).at = lam := by
-    obtain ⟨W', -, hW', -⟩ := GlobalTheory.T.exists_algebraicForm_weight_level_smooth_at_place E a lam K' U hK'.fin hOf w₀
+    obtain ⟨W', -, hW', -⟩ := _root_.GlobalTheory.Cong.exists_algForm_ofType E a lam K' U hK'.fin hOf w₀
     obtain rfl : lam = W'.at := (funext hW').symm
     have : Wt.ofFam W'.at = W' := funext fun v => W'.at_embedding v
     rw [this]

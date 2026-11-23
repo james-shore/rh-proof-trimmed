@@ -60,8 +60,8 @@ theorem exists_sqZero_lift : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel
   have hsq : RingHom.ker π ^ 2 = 0 := by rw [hsq']; rfl
   obtain ⟨tR, rfl⟩ : ∃ tR : R →+* C, t = spMap tR :=
     ⟨(Spec.preimage t).hom, by simp [spMap]⟩
-  obtain ⟨E, hEc, hEf, hEs, hEi, hEl⟩ := GlobalTheory.T.harrisTaylor_exists_isotropic_stable_summand p D R b N C C₀ π hπ hsq tR o₀
-  obtain ⟨A, _, i, h, act, hA, hE, hact⟩ := GlobalTheory.T.harrisTaylor_exists_lift_orderAction_hodge_summand p D R b N C C₀ π hπ hsq tR o₀ E hEc hEf hEs
+  obtain ⟨E, hEc, hEf, hEs, hEi, hEl⟩ := _root_.GlobalTheory.HTSummand.exists_summand p D R b N C C₀ π hπ hsq tR o₀
+  obtain ⟨A, _, i, h, act, hA, hE, hact⟩ := _root_.GlobalTheory.HTDeform.exists_lift_oAct p D R b N C C₀ π hπ hsq tR o₀ E hEc hEf hEs
   haveI : IsCommMonObj A := hA.comm
   subst hE
   obtain ⟨P, φ₂, hP, r1, r2, hsym, hamp, hker, hros, hsq2, hpol⟩ :=

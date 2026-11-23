@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.AlgebraicIndependentResidueOfIsUnit
 
 @[expose] public section
 
@@ -127,13 +128,6 @@ theorem sImg_base (j₀ : Fin (N + 1)) (x : Fin N → Ω) :
   | exact (Fin.insertNth_apply_same (α := fun _ => MvPolynomial (SVar D N) Ω) j₀ _ _).trans (if_pos rfl)
   | simp [Fin.succAboveCases]
 
-theorem sImg_succAbove (j₀ : Fin (N + 1)) (x : Fin N → Ω) (i : Fin (D + 1)) (k : Fin N) :
-    sImg (Ω := Ω) j₀ x (i, j₀.succAbove k) =
-      algebraMap (MvPolynomial (SVar D N) Ω) (OmS Ω D N) (X (Sum.inr (i, k))) := by
-  unfold sImg
-  congr 1
-  exact Fin.insertNth_apply_succAbove (α := fun _ => MvPolynomial (SVar D N) Ω) j₀ _ _ k
-
 theorem ker_eval_ne_bot (hΩ : Algebra.trdeg K Ω = D) (j₀ : Fin (N + 1)) (x : Fin N → Ω) :
     kerP (K := K) (D := D) j₀ x ≠ ⊥ := by
   intro hbot
@@ -201,7 +195,7 @@ theorem w0rat_eq_base (hd : d.AxH 𝒜) (c : ι) :
   unfold Data.rationalBaseRow
   rw [Fin.sum_univ_succAbove _ (d.jc c), hr1, map_one, mul_one]
 
-  simp only [sH_X, sImg_succAbove, sImg_base, map_add (f := _), map_sum, map_mul]
+  simp only [sH_X, _root_.ReciprocityTheory.ChartRestriction.G.T0.genericImage_succAbove, sImg_base, map_add (f := _), map_sum, map_mul]
   congr 1
 
 theorem ker_eval_le_of_place (hd : d.AxH 𝒜) (c : ι) {p : Ideal (KTp K d.D d.N)}

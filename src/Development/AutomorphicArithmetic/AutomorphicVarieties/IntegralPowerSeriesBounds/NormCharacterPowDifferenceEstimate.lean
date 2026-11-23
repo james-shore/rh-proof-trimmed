@@ -63,10 +63,6 @@ private theorem norm_int_eq_one (l : ℕ) [Fact l.Prime] (n : ℤ) (h : ¬ (l : 
   have h2 : (n : Qbar l) = algebraMap ℚ_[l] (Qbar l) (n : ℚ_[l]) := by simp
   rw [h2, norm_algebraMap', h1]
 
-private theorem norm_pow_sub_pow_le {K : Type*} [NormedField K] [IsUltrametricDist K] (x y : K)
-    (hx : ‖x‖ ≤ 1) (hy : ‖y‖ ≤ 1) (e : ℕ) : ‖x ^ e - y ^ e‖ ≤ ‖x - y‖ :=
-  _root_.UpperTheory.Reformulated.B.Qi18.norm_pow_sub_pow_le x y hx hy e
-
 private theorem norm_char_le_one (l : ℕ) [Fact l.Prime] (φ : DirichletCharacter (Qbar l) l) (x : ZMod l) :
     ‖φ x‖ ≤ 1 := by
   by_cases hx : x = 0
@@ -115,7 +111,7 @@ theorem UpperTheory.norm_character_pow_difference_estimate :
     intro h; rw [h, norm_zero] at hna; exact zero_ne_one hna
   rw [hφ, ← mul_sub, norm_mul]
   refine (mul_le_of_le_one_left (norm_nonneg _) (norm_char_le_one l φ _)).trans ?_
-  refine (norm_pow_sub_pow_le _ _ (IsUltrametricDist.norm_natCast_le_one _ _) ?_ e).trans ?_
+  refine (_root_.UpperTheory.Reformulated.B.Qi18.norm_pow_sub_pow_le _ _ (IsUltrametricDist.norm_natCast_le_one _ _) ?_ e).trans ?_
   · rw [norm_div, hna, div_one]
     exact IsUltrametricDist.norm_intCast_le_one _ _
   · obtain ⟨c, hc⟩ := hd

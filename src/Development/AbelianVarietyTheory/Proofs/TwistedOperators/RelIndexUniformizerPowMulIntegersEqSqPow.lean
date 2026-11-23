@@ -79,17 +79,6 @@ noncomputable section
 
 namespace GlobalTheory.UnramIntIndex
 
-theorem le_exp_neg_one_of_lt_one {a : WithZero (Multiplicative ℤ)} (ha : a < 1) :
-    a ≤ ((Multiplicative.ofAdd (-1 : ℤ) : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by
-  rcases eq_or_ne a 0 with rfl | h
-  · exact zero_le'
-  · obtain ⟨m, rfl⟩ := WithZero.ne_zero_iff_exists.mp h
-    rw [← WithZero.coe_one, WithZero.coe_lt_coe] at ha
-    rw [WithZero.coe_le_coe]
-    have h1 : Multiplicative.toAdd m < 0 := ha
-    show Multiplicative.toAdd m ≤ -1
-    omega
-
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
 theorem mem_maximalIdeal_iff (y : (Valued.v : Valuation L (WithZero (Multiplicative ℤ))).valuationSubring) :
@@ -140,7 +129,7 @@ theorem relIndex_mul_uniformizer (ϖ : L) (c : L →+* L) (q : ℕ) (h : IsUnram
     constructor
     · rintro ⟨y, hy, rfl⟩
       have hy' : Valued.v (y : L) < 1 := (mem_maximalIdeal_iff y).1 hy
-      have hle := le_exp_neg_one_of_lt_one hy'
+      have hle := _root_.Formalism.UG.P.satake_lt_one_le hy'
       refine ⟨ϖ⁻¹ * (y : L), ?_, ?_⟩
       · show Valued.v (ϖ⁻¹ * (y : L)) ≤ 1
         rw [map_mul, map_inv₀, inv_mul_le_iff₀ (zero_lt_iff.mpr (by simpa using h0)), mul_one, h4]

@@ -180,8 +180,8 @@ theorem trel_prod : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Ad
   obtain ⟨v', hv'⟩ := GlobalTheory.T.twistedFunctionalEquation_bundle_trivial_abelianPart R hA D a a' h h' hE n' j' mu β' β₁' e'
   obtain ⟨v'', hv''⟩ := GlobalTheory.T.twistedFunctionalEquation_bundle_trivial_abelianPart R hA D a a' h h' hE (n + n') (j + j') mu (β + β') (β₁ + β₁') (by
     rw [e, e']; simp only [shift, add_smul]; abel)
-  obtain ⟨uf, huf⟩ := (GlobalTheory.T.twistedFactor_exists_unique_const_mul_integralGenerator R hA D a h hE.1 hE.2.2.2.1 n j mu β β₁ v hv).1
-  obtain ⟨ug, hug⟩ := (GlobalTheory.T.twistedFactor_exists_unique_const_mul_integralGenerator R hA D a h hE.1 hE.2.2.2.1 n' j' mu β' β₁' v' hv').1
+  obtain ⟨uf, huf⟩ := (_root_.GlobalTheory.TwFac.fac_exists_unique_const R hA D a h hE.1 hE.2.2.2.1 n j mu β β₁ v hv).1
+  obtain ⟨ug, hug⟩ := (_root_.GlobalTheory.TwFac.fac_exists_unique_const R hA D a h hE.1 hE.2.2.2.1 n' j' mu β' β₁' v' hv').1
   obtain ⟨w, hw, ew⟩ := exists_prodFac D.toPre D.tau_bimult a h n j n' j' mu β β' β₁ β₁' uf ug huf hug
   intro u hu Z x z J hJ
   have e₁ := hp₁ Z (x ≫ (DegPre.prB D.toPre (FractionRing R)).left) z J hJ
@@ -190,7 +190,7 @@ theorem trel_prod : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Ad
   rw [Category.assoc, show ((DegPre.trF D.toPre (FractionRing R) mu).left ≫ (DegPre.prB D.toPre (FractionRing R)).left) ≫ _ = _
     from comp_cub D.toPre β β' (DegPre.trF D.toPre (FractionRing R) mu ≫ DegPre.prB D.toPre (FractionRing R))] at e₂
   rw [e₁, e₂, hf uf huf Z x z J hJ, hg ug hug Z x z J hJ,
-    (GlobalTheory.T.twistedFactor_exists_unique_const_mul_integralGenerator R hA D a h hE.1 hE.2.2.2.1 _ _ mu _ _ v'' hv'').2.1 u w hu hw Z x z J hJ, ew Z x z J hJ]
+    (_root_.GlobalTheory.TwFac.fac_exists_unique_const R hA D a h hE.1 hE.2.2.2.1 _ _ mu _ _ v'' hv'').2.1 u w hu hw Z x z J hJ, ew Z x z J hJ]
   have key : ∀ {S : Type} [CommRing S] (s t : S) (c₁ c₂ b₁ b₂ : Sˣ),
       s * b₁.val * (t * b₂.val) * c₁.val = s * t * c₂.val * (b₁ * b₂ * c₁ * c₂⁻¹).val := by
     intro S _ s t c₁ c₂ b₁ b₂

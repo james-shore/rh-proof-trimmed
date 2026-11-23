@@ -58,12 +58,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace GlobalTheory.CompanionTheory.FinPresDescent
 
-theorem finiteType_of_finite_projective (R C D : Type*) [CommRing R] [CommRing C] [CommRing D]
-    [Algebra R C] [Algebra C D] [Algebra R D] [IsScalarTower R C D]
-    [Module.Finite C D] [Module.Projective C D] (hinj : Function.Injective (algebraMap C D))
-    [Algebra.FiniteType R D] : Algebra.FiniteType R C :=
-  _root_.UpperTheory.Reformulated.B.FiniteTypeDescent.main R C D hinj
-
 theorem ker_fg_of_projective {P C M : Type*} [CommRing P] [CommRing C] [Algebra P C]
     [AddCommGroup M] [Module P M] [Module C M] [IsScalarTower P C M]
     (hsurj : Function.Surjective (algebraMap P C))
@@ -193,7 +187,7 @@ theorem GlobalTheory.CompanionTheory.FinPresDescent.finitePresentation_of_finite
   intro R C D _ _ _ _ _ _ _ hfin hproj hff hfp
   have hinj : Function.Injective (algebraMap C D) := FaithfulSMul.algebraMap_injective C D
   haveI : Algebra.FiniteType R D := inferInstance
-  haveI : Algebra.FiniteType R C := finiteType_of_finite_projective R C D hinj
+  haveI : Algebra.FiniteType R C := _root_.UpperTheory.Reformulated.B.FiniteTypeDescent.main R C D hinj
   obtain ⟨k, f, hf⟩ := Algebra.FiniteType.iff_quotient_mvPolynomial''.1 ‹Algebra.FiniteType R C›
   letI : Algebra (MvPolynomial (Fin k) R) C := f.toRingHom.toAlgebra
   letI : Algebra (MvPolynomial (Fin k) R) D := ((algebraMap C D).comp f.toRingHom).toAlgebra

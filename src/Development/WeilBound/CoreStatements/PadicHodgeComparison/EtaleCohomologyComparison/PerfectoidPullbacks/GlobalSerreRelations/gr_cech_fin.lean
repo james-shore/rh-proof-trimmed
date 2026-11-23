@@ -54,6 +54,6 @@ namespace CrystallineSemistableComparison.Pb
 
 
 theorem gr_cech_fin_pf : KH.GrCechFin :=
-  @GlobalTheory.T.graded_cech_cohomology_finite locGr_h polyTf_h globSerreSt_h globVanSt_h
+  @_root_.GlobalTheory.CompanionTheory.GrCech.main_thm locGr_h polyTf_h globSerreSt_h globVanSt_h
 
 end CrystallineSemistableComparison.Pb

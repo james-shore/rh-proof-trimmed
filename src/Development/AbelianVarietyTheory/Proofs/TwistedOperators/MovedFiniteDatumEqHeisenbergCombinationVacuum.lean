@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealLineOfPeriodsOnLine
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvolutionSphericalHeckeAnti
 
 @[expose] public section
 
@@ -86,22 +87,13 @@ theorem datum_fixed {S T : HSp D} {e a a' : AE D} (ha : e * (a + cA D a) = 0) (h
     (fun x => Φ (actO S T b⁻¹ b'⁻¹ x)) = Φ := by
   funext x
   by_cases hx : IsHalf e x
-  · rw [GlobalTheory.StdHalfLat.actO_eq_self_of_half ha ha' (GlobalTheory.StdHalfLat.suppAt_inv' hb) (GlobalTheory.StdHalfLat.suppAt_inv' hb') hx]
+  · rw [GlobalTheory.StdHalfLat.actO_eq_self_of_half ha ha' (_root_.GlobalTheory.SplitPlace.suppAt_inv hb) (_root_.GlobalTheory.SplitPlace.suppAt_inv hb') hx]
   · have h0 : Φ x = 0 := by
       by_contra hne
       exact hx (hΦ x hne)
     rw [h0]
     by_contra hne
     exact hx (GlobalTheory.MovedVac.halfBack D S T _ _ e x (hΦ _ hne))
-
-private theorem actO_actO_inv_inv (S T : HSp D) (g : GA D S) (h : GA D T) (u : WO S T) :
-    actO S T g h (actO S T g⁻¹ h⁻¹ u) = u := by
-  have h1 : mt T h * mt T h⁻¹ = 1 := by
-    rw [← GlobalTheory.VacMove.mt_mul₀, mul_inv_cancel, GlobalTheory.VacMove.mt_one₀]
-  have h2 : mt S g * mt S g⁻¹ = 1 := by
-    rw [← GlobalTheory.VacMove.mt_mul₀, mul_inv_cancel, GlobalTheory.VacMove.mt_one₀]
-  rw [GlobalTheory.VacMove.actO_eq, GlobalTheory.VacMove.actO_eq, inv_inv, ← Matrix.mul_assoc, ← Matrix.mul_assoc, h1, Matrix.one_mul,
-    Matrix.mul_assoc, h2, Matrix.mul_one]
 
 private theorem actO_two_nsmul' (S T : HSp D) (g : GA D S) (h : GA D T) (x : WO S T) :
     actO S T g h (2 • x) = 2 • actO S T g h x := by
@@ -121,13 +113,13 @@ theorem isLatVac_move {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} {χS χT : 
   refine ⟨fun u hu => ?_, fun e he u hu hue => ?_⟩
   · have hu0 := GlobalTheory.VacMove.actO_mem_latO hM hΛ hM' hΛ' (GlobalTheory.VacMove.moves_inv hb) (GlobalTheory.VacMove.moves_inv hb') hu
     refine key _ (2 • actO S T b⁻¹ b'⁻¹ u) ?_ (hv1 _ hu0)
-    rw [actO_two_nsmul', actO_actO_inv_inv]
+    rw [actO_two_nsmul', _root_.GlobalTheory.AdelicLatMove.actO_actO_inv]
   · have hu0 := GlobalTheory.VacMove.actO_mem_latO hM hΛ hM' hΛ' (GlobalTheory.VacMove.moves_inv hb) (GlobalTheory.VacMove.moves_inv hb') hu
     have hc : IsHalf e (actO S T b⁻¹ b'⁻¹ u) := by
       apply GlobalTheory.MovedVac.halfBack D S T b b' e
-      rw [actO_actO_inv_inv]
+      rw [_root_.GlobalTheory.AdelicLatMove.actO_actO_inv]
       exact hue
-    exact key u _ (actO_actO_inv_inv S T b b' u) (hv2 e he _ hu0 hc)
+    exact key u _ (_root_.GlobalTheory.AdelicLatMove.actO_actO_inv S T b b' u) (hv2 e he _ hu0 hc)
 
 theorem om_eq_of_isThetaAt {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} {χS χT : (AE D)ˣ →* Circle} {om : Om S T}
     (hW : IsWeilDatumO ψ S T χS χT om) {Λ M : Lat S} {Λ' M' : Lat T} (hΛ : IsSelfDualC S Λ) (hM : IsSelfDualC S M)

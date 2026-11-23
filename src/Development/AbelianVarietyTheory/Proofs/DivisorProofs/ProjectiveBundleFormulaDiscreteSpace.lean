@@ -77,7 +77,7 @@ theorem pbf_disc : ∀ (q : ℕ) [NeZero q] (N : ℕ) (F : PSh) (V : disc.obj F 
       exact (Function.Bijective.of_comp_iff' e.bijective _).1 hs)
     F hF n
   obtain ⟨e, he'⟩ := he F hF n
-  rw [GlobalTheory.T.discrete_glBundle_eq_trivialGLBundle N F V]
+  rw [_root_.GlobalTheory.EtC.disc_eq_trivV N F V]
   have hcomp : pbfMap q (trivV N (disc.obj F)) n i =
       e ∘ (fun a => ∑ j, cpost _ (ψ j) (n - 2 * (j : ℕ)) n (by omega) (a j)) :=
     funext fun a => (he' a).symm

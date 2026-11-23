@@ -65,7 +65,7 @@ theorem exists_cell {F : Type} [Field F] (O : Subring F) [IsLocalRing O] {n r : 
     (hN : ∀ a b, N a b ∈ O) (hNA : N * A = 1) (Y : Matrix (Fin r) (Fin r) F)
     (hs : ∀ i : Fin r, ∃ J, NormAt O (A * Y) ((i : ℕ) + 1) i.2 J) :
     ∃ w : Equiv.Perm (Fin r), ∀ (k : ℕ) (hk : k ≤ r), NormAt O Y k hk (w ∘ Fin.castLE hk) := by
-  refine GlobalTheory.T.exists_perm_normalized_minors O Y (fun k hk I' I => GlobalTheory.T.normalized_minor_extends O Y k hk I' I) fun k hk => ?_
+  refine _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.Cell.exists_perm_normAt O Y (fun k hk I' I => _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.Cell.normAt_exchange O Y k hk I' I) fun k hk => ?_
   cases k with
   | zero => exact ⟨Fin.elim0, normAt_zero O Y _⟩
   | succ k =>
@@ -99,7 +99,7 @@ theorem big_cell_smooth : ∀ (Ω : Type) [Field Ω] (S : Type) [Fintype S] (r n
       rw [← hB]
       exact ⟨hJ0 ⟨s, i'⟩, hJr ⟨s, i'⟩⟩
   choose w hw using hw
-  have hlu := fun s => GlobalTheory.T.lu_decomposition_of_minors ((Y s).submatrix (w s) id) fun k hk => (hw s k hk).1
+  have hlu := fun s => _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.Cell.exists_lu_of_leading_minors ((Y s).submatrix (w s) id) fun k hk => (hw s k hk).1
   choose C V hC hV0 hV1 hCV using hlu
 
   let v : GenIx r → GenField Ω r := fun q => V q.1 q.2.1.1 q.2.1.2

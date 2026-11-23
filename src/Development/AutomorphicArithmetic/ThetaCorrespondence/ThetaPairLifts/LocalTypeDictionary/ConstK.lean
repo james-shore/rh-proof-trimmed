@@ -51,7 +51,7 @@ namespace GlobalTheory.ConstNZ
 theorem constK_alt : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching →
     GlobalTheory.SquareSt.WeilConvergence → GlobalTheory.SquareSt.LocalMatching → GlobalTheory.SquareSt.ThetaIntegralsAgree → GlobalTheory.RowClaim.ConstK := by
   intro h1 h2 hLM h3 h4 h5
-  obtain ⟨CF0, hH⟩ := ((_root_.GlobalTheory.T.square_convolution_estimate h1 h2 h3 h4 h5).and (_root_.GlobalTheory.T.exists_integrable_translates_small_convolution h1 h2 h3 h4 h5)).and (_root_.GlobalTheory.T.dominant_term_ne_zero h1 h2 hLM h3 h4 h5)
+  obtain ⟨CF0, hH⟩ := ((_root_.GlobalTheory.SquareConv.square_convolution_large_bound h1 h2 h3 h4 h5).and (_root_.GlobalTheory.SmallConv.small_convolution_exists_integrable_translates h1 h2 h3 h4 h5)).and (_root_.GlobalTheory.BigNZ.large_term_nonzero h1 h2 hLM h3 h4 h5)
   refine ⟨CF0, fun ε CF hCF => ?_⟩
   obtain ⟨x₀, hx⟩ := hH ε CF hCF
   refine ⟨x₀, fun D large₂ he hx0 Γ _ _ Pl0 T A Ks _ _ _ R F hS ch hch hsc => ?_⟩

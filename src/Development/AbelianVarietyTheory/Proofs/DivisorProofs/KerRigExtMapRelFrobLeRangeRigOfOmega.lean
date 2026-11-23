@@ -164,7 +164,7 @@ theorem ker_rigExtMap_relFrob_le_range_rigOfOmega (p : ℕ) [Fact p.Prime] (K : 
     congrArg (fun z : G.cocycles => z.1 1) hc₁
   have hker := GlobalTheory.T.frobeniusKernelIdeal_eq_kernel_relativeFrobenius p K h G 1
   have hmem : B₁.1 1 ∈ frobKerIdeal p K (G.A 1) := by
-    refine GlobalTheory.T.mem_frobeniusKernelIdeal_of_zero_differential p K (G.A 1) _ hb0 hbd ?_
+    refine _root_.GlobalTheory.PDiv.FrobKerPrim.mem_frobKerIdeal_of_cobOne p K (G.A 1) _ hb0 hbd ?_
     rw [hker]
     exact map_mk_cobOne_eq_zero ((relFrob h G).app 1) hb0 hcob
   rw [hker] at hmem

@@ -122,12 +122,11 @@ theorem join_exists : ∀ (o : Type) [CommRing o] (Ω : Type) [Field Ω] [Algebr
     exact ⟨y, hy, z, hz, rfl⟩
   obtain ⟨M'⟩ := GlobalTheory.T.projective_model_nonempty o Ω' (κ × κ') (joinCo i x w) ⟨(c, l), hJ, hfrac⟩
   have hctr : ∀ p', p' ∈ ctrSet o x i M'.ξ := fun p' => (PositivityTheory.HtPt.Mb.join_charts o Ω κ κ' x Ω' i w M' hi p').1
-  obtain ⟨f, hf, -⟩ := PositivityTheory.HtPt.Mb.morph o Ω κ x M o Ω' (κ × κ') (joinCo i x w) M' i hctr
+  obtain ⟨f, hf, -⟩ := _root_.PositivityTheory.HtPt.Mb.LMorph.ChMorph.existsUnique_dominates o Ω κ x M o Ω' (κ × κ') (joinCo i x w) M' i hctr
   exact ⟨M', f, hf⟩
 
 end PositivityTheory.HtPt.Mb.LJoinExists
 
 
 open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar NumberField in
-theorem PositivityTheory.HtPt.Mb.join_exists : ∀ (o : Type) [CommRing o] (Ω : Type) [Field Ω] [Algebra o Ω] (κ : Type) [Finite κ] (x : κ → Ω) (M : PModel o x) (Ω' : Type) [Field Ω'] [Algebra o Ω'] (i : Ω →+* Ω') (κ' : Type) [Finite κ'] (w : κ' → Ω'), (∀ a : o, i (algebraMap o Ω a) = algebraMap o Ω' a) → (∃ l, w l ≠ 0) → Subfield.closure (Set.range i ∪ {a | ∃ l l', a = w l / w l'}) = ⊤ → ∃ (M' : PModel o (joinCo i x w)) (f : M'.X ⟶ M.X), Dominates M'.ξ M.ξ f i :=
-  @PositivityTheory.HtPt.Mb.LJoinExists.join_exists
+alias PositivityTheory.HtPt.Mb.join_exists := _root_.PositivityTheory.HtPt.Mb.LJoinExists.join_exists

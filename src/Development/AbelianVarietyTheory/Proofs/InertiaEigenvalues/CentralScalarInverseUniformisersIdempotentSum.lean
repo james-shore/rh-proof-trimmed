@@ -123,11 +123,6 @@ end Alg
 
 variable {D : D7}
 
-theorem cA_incA (x : D.host.E) : cA D (incA D x) = incA D (star x) := rfl
-
-theorem mt_inj (V : HSp D) {a b : GA D V} (h : Formalism.L2.Theta.mt V a = Formalism.L2.Theta.mt V b) : a = b :=
-  Subtype.ext (Units.ext h)
-
 theorem exists_scalar (V : HSp D) (a : AE D) (ha : cA D a * a = 1) :
     ∃ z : GA D V, Formalism.L2.Theta.mt V z = Matrix.diagonal fun _ => a := by
   have h1 : (Matrix.diagonal fun _ : Fin V.rank => a) * (Matrix.diagonal fun _ => cA D a) = 1 := by
@@ -149,7 +144,7 @@ theorem scalar_central (V : HSp D) {a : AE D} {z : GA D V} (hz : Formalism.L2.Th
     z ∈ Subgroup.center (GA D V) := by
   rw [Subgroup.mem_center_iff]
   intro g
-  apply mt_inj V
+  apply _root_.GlobalTheory.IdemSupport.mt_inj V
   change Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V z = Formalism.L2.Theta.mt V z * Formalism.L2.Theta.mt V g
   rw [hz]
   ext i j
@@ -202,7 +197,7 @@ theorem centralScalar : ∀ (D : D7) (V : HSp D) (Q : Finset (Pl D.host.E)) (es 
   have hca : cA D a = comp Q es (fun i => cA D (es i)) (fun PP => incA D (ϖ PP : D.host.E))
       (fun PP => incA D (star (ϖ PP : D.host.E)⁻¹)) := by
     rw [ha', map_comp (cA D) GlobalTheory.DualPairCheck.cA_cA]
-    simp only [cA_incA, star_star]
+    simp only [_root_.GlobalTheory.DualPairCheck.cA_incA, star_star]
   have hn : cA D a * a = 1 := by
     rw [hca, ha', comp_mul hp hq]
     refine comp_eq_one (fun i hi => ?_) (fun i hi => ?_)
@@ -246,9 +241,9 @@ theorem centralScalar : ∀ (D : D7) (V : HSp D) (Q : Finset (Pl D.host.E)) (es 
     exact Finset.sum_congr rfl fun i hi => hp _ _ i hi
   · set_option synthInstance.maxHeartbeats 100000 in
       rw [mul_comm, map_sum, map_sum, Finset.sum_mul]
-    exact Finset.sum_congr rfl fun i hi => by rw [map_mul, cA_incA]; exact hq _ _ i hi
+    exact Finset.sum_congr rfl fun i hi => by rw [map_mul, _root_.GlobalTheory.DualPairCheck.cA_incA]; exact hq _ _ i hi
   · set_option synthInstance.maxHeartbeats 100000 in
       rw [mul_comm, map_sum, map_sum, Finset.sum_mul, hca]
-    exact Finset.sum_congr rfl fun i hi => by rw [map_mul, cA_incA]; exact hq _ _ i hi
+    exact Finset.sum_congr rfl fun i hi => by rw [map_mul, _root_.GlobalTheory.DualPairCheck.cA_incA]; exact hq _ _ i hi
 
 end GlobalTheory.CentralScalar

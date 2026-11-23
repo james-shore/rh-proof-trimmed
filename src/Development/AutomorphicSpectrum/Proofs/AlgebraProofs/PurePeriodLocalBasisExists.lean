@@ -72,15 +72,8 @@ open scoped ComplexOrder
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem norm_le_one_of_int {C : Type} [NormedField C] [IsUltrametricDist C] {x : C}
-    (hx : @IsIntegral ℤ C _ _ (Ring.toIntAlgebra C) x) : ‖x‖ ≤ 1 := by
-  have h : x ∈ (NormedField.valuation (K := C)).integer :=
-    (Valuation.integer.integers (NormedField.valuation (K := C))).mem_of_integral hx.tower_top
-  rw [Valuation.mem_integer_iff, NormedField.valuation_apply] at h
-  exact_mod_cast h
-
 theorem norm_int_le (ℓ : Nat.Primes) (j : E →+* ℂ_[ℓ]) (b : 𝓞 E) : ‖j (b : E)‖ ≤ 1 :=
-  norm_le_one_of_int (map_isIntegral_int j b.isIntegral_coe)
+  _root_.PositivityTheory.Xgf.NI.norm_le_one_of_isIntegral (map_isIntegral_int j b.isIntegral_coe)
 
 theorem norm_prime_lt (ℓ : Nat.Primes) : ‖(((ℓ : ℕ) : ℂ_[ℓ]))‖ < 1 := by
   have h : (((ℓ : ℕ) : ℂ_[ℓ])) = algebraMap ℚ_[ℓ] ℂ_[ℓ] ((ℓ : ℕ) : ℚ_[ℓ]) := by simp
@@ -253,7 +246,7 @@ open scoped ComplexOrder
 
 theorem GlobalTheory.CompanionTheory.Ar.Fl.DSplit.exists_split_period : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (g : ℕ) (ty : Fin g → (E →+* ℂ)) (P₀ : D.La →+ (Fin g → ℂ)) (p q : ℕ) (ℓ : Nat.Primes), IsPeriod D ty P₀ → IsTypeFn H p q ty → p + q = D.p + D.q → ∃ (P : D.La →+ (Fin g → ℂ)) (hP : IsPeriod D ty P) (x : Fin p ⊕ Fin q → D.La), IsLocBasis (𝓞 E) ℓ x ∧ IsPure hP x := by
   intro E _ _ _ H D g ty P₀ p q ℓ hP₀ hty hpq
-  obtain ⟨x, hxb, hx0, hxn⟩ := GlobalTheory.T.local_basis_gram_determinant_bound E H D p q ℓ hpq
+  obtain ⟨x, hxb, hx0, hxn⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Fl.LocR.exists_locBasis_first_unimodular E H D p q ℓ hpq
   have hli := hxb.1
   let Ψ : Set (E →+* ℂ) := {τ | τ (H.rt : E) = H.rt0}
   let M : (E →+* ℂ) → Matrix (Fin p ⊕ Fin q) (Fin p ⊕ Fin q) ℂ :=

@@ -128,7 +128,7 @@ theorem jet_radial_holds : GTCLRJetRad := by
   have hB : NF.RadBase P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' :=
     ⟨Bs.k_pos, Bs.z_mem, Bs.z'_mem, Bs.T_pos, Bs.T'_pos, Bs.sec, Bs.π_rep, Bs.π'_rep, Bs.π_cont,
       Bs.π'_cont⟩
-  have hmem := Formalism.FourierDecayAlt.P.radical_reduction_mem Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hB Φ Φ.2
+  have hmem := _root_.Formalism.FourierDecayAlt.P.NFRadRedA.radRedMem Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hB Φ Φ.2
   have hΦe := (Φ.2).2.2
   let tt : Set ℂ := {ζ | Tz P.k P.r Bs.z * Tz P.k P.r Bs.z' < Complex.normSq ζ}
   have ht : IsOpen tt := isOpen_lt continuous_const Complex.continuous_normSq
@@ -147,7 +147,7 @@ theorem jet_radial_holds : GTCLRJetRad := by
     rw [Set.indicator_of_mem (hmapQ hζ)]
   have hdom := Formalism.FourierDecayAlt.P.NFRadRedA.mem_domR Bs.z_mem Bs.z'_mem Bs.sec hq
   obtain ⟨V, hV, hg₀V, a, b, ha, hb, hfac⟩ :=
-    Formalism.FourierDecayAlt.P.local_smooth_section P.k P.r Bs.z Bs.z' Bs.μsec Bs.k_pos Bs.z_mem Bs.z'_mem Bs.T_pos
+    _root_.Formalism.FourierDecayAlt.P.NFRadRedLocSec.locSec P.k P.r Bs.z Bs.z' Bs.μsec Bs.k_pos Bs.z_mem Bs.z'_mem Bs.T_pos
       Bs.T'_pos Bs.sec _ hdom.2.1 hdom.2.2
   have hf0 := hfac _ hg₀V hdom.2.1 hdom.2.2
   obtain ⟨Vp, hVp, haVp, Pp, hPp, hPpe⟩ :=

@@ -167,13 +167,13 @@ theorem main : MaxMass → ∀ (K V : Type) [Field K] [NumberField K] [StarRing 
   have hnd := nondeg_of_pd h hp
   have hp' := pd_of_ortho hK h' I _ hI
   have hnd' := nondeg_of_pd h' hp'
-  obtain ⟨⟨s, hcard, hsP, hcop, hprod⟩, hgen⟩ := GlobalTheory.T.cyclicDiscriminant_lattices_form_one_genus K V h hK hs hnd T hT hsp
+  obtain ⟨⟨s, hcard, hsP, hcop, hprod⟩, hgen⟩ := _root_.GlobalTheory.Mass.CyclicGenus.main K V h hK hs hnd T hT hsp
   have hT0 : (T : 𝓞 K) ≠ 0 := Nat.cast_ne_zero.2 hT.ne_zero
   have hP0 : (∏ P ∈ s, P) ≠ ⊥ := by
     intro h0
     rw [h0, Ideal.bot_mul, eq_comm, Ideal.span_singleton_eq_bot] at hprod
     exact hT0 hprod
-  obtain ⟨o1, o2⟩ := GlobalTheory.T.exists_unimodular_overlattice_cyclic_split_discriminant K V h hK hs hnd _ hP0 hcop
+  obtain ⟨o1, o2⟩ := _root_.GlobalTheory.Mass.SplitOver.main K V h hK hs hnd _ hP0 hcop
   rw [hprod] at o1 o2
   have hex : ∀ N ∈ genus h L, ∃! M, Over h (∏ P ∈ s, P) N M := by
     intro N hN

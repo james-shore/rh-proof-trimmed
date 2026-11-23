@@ -72,17 +72,10 @@ section Mat
 
 variable {ε : Fin n → Bool}
 
-theorem J_mul_J_eq_one (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  unfold Jm
-  rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> norm_num
-
 theorem unitary_group_inv_eq_conj {g : Matrix (Fin n) (Fin n) ℂ} (hg : inUJ ε g) : g⁻¹ = Jm ε * gᴴ * Jm ε := by
   apply Matrix.inv_eq_left_inv
   unfold inUJ at hg
-  rw [Matrix.mul_assoc, Matrix.mul_assoc, ← Matrix.mul_assoc gᴴ, hg, J_mul_J_eq_one]
+  rw [Matrix.mul_assoc, Matrix.mul_assoc, ← Matrix.mul_assoc gᴴ, hg, _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self]
 
 theorem J_conj_entry (ε : Fin n → Bool) (A : Matrix (Fin n) (Fin n) ℂ) (d c : Fin n) :
     (Jm ε * A * Jm ε) d c = (if ε d then 1 else -1) * A d c * (if ε c then 1 else -1) := by
@@ -93,11 +86,11 @@ theorem J_conj_neg_mul_inv {g X : Matrix (Fin n) (Fin n) ℂ} (hX : inG ε X) :
   unfold inG at hX
   have h1 : Xᴴ * Jm ε = -(Jm ε * X) := eq_neg_of_add_eq_zero_left hX
   have h2 : Jm ε * Xᴴ * Jm ε = -X := by
-    rw [Matrix.mul_assoc, h1, Matrix.mul_neg, ← Matrix.mul_assoc, J_mul_J_eq_one, Matrix.one_mul]
+    rw [Matrix.mul_assoc, h1, Matrix.mul_neg, ← Matrix.mul_assoc, _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self, Matrix.one_mul]
   have h3 : Jm ε * (g * X)ᴴ * Jm ε = (Jm ε * Xᴴ * Jm ε) * (Jm ε * gᴴ * Jm ε) := by
     rw [Matrix.conjTranspose_mul]
     simp only [Matrix.mul_assoc]
-    rw [← Matrix.mul_assoc (Jm ε) (Jm ε), J_mul_J_eq_one, Matrix.one_mul]
+    rw [← Matrix.mul_assoc (Jm ε) (Jm ε), _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self, Matrix.one_mul]
   rw [h3, h2, Matrix.neg_mul]
 
 theorem hasDerivAt_exp_curve_entry (g X : Matrix (Fin n) (Fin n) ℂ) (c d : Fin n) :

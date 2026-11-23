@@ -282,8 +282,7 @@ theorem coeff_hCv (X : RawChart C d I κ) {γ : κ → PowerSeries C} (hγ : ∀
     · exact g0 _ x
     · exact (g1 _ x).trans (h x).symm
 
-theorem intS_X' {V : VF C} {σ : Type} (s : σ) : IntS V (MvPowerSeries.X s : MvPowerSeries σ C) :=
-  GlobalTheory.RowVal.intS_X s
+alias intS_X' := _root_.GlobalTheory.RowVal.intS_X
 
 theorem intS_inT {V : VF C} {σ : Type} {f : PowerSeries C} (hf : ∀ n, V.Ge 0 (PowerSeries.coeff n f)) :
     IntS V (inT σ f) :=

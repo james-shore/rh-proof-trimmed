@@ -123,7 +123,7 @@ theorem EvVal_translate : ∀ {k : Type} [Field k] [ValuativeRel k] [Topological
   intro k _ _ _ _ _ _ ν _ ψ n V V' _ _ _ _ T T' B s _ _ hB y v v' A hA
   obtain ⟨t₀, ht₀⟩ := hA
   obtain ⟨t₁, h01, h1⟩ := exists_threshold_mem_box y t₀
-  obtain ⟨hc1, hc2, -⟩ := GlobalTheory.T.mirabolic_coefficient_translation T T' B s hB
+  obtain ⟨hc1, hc2, -⟩ := _root_.GlobalTheory.CompanionTheory.MirPair.coef_rules T T' B s hB
   refine ⟨⟨t₁, fun t ht => ?_⟩, ⟨t₁, fun t ht => ?_⟩⟩
   · have hy := h1 t ht
     have hJ := ht₀ t (h01.trans ht)

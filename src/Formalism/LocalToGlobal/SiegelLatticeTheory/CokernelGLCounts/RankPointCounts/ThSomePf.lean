@@ -768,17 +768,4 @@ end Formalism.L2.SG.Pf.ThSomePf
 
 namespace Formalism.L2.SG.Pf
 
-open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermDef Formalism.L2.SG.DataCut Formalism.L2.SG.LsDatumB
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem thSome_holds_of {D : Formalism.BasicNotions.D7} {δ : ∀ p : PlF D, (D.s.atP p).Fp}
-    {M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep} (hA : ∀ p, Agree δ M p) {u u' : D.what₂.Word}
-    {F0 : FlagG (VS D) D.R.rS (Formalism.L2.SG.CntLocal.Tn u)} {what₂ : Finset (Submodule (𝓞 D.host.E) (VS D).V)}
-    (hNR : NormRepElig u u' F0 what₂)
-    (hInt : ∀ (γ : TermDef.Term D u u' F0 what₂) (w : Point D.host.E (D.R.rS + 1)), EligAt γ w →
-      ∀ p a b, Formalism.L2.SG.CntLocal.ZZP (M := M) δ u u' p (zT γ) a b ∈ (M p).R) :
-    ThSome M δ u u' F0 what₂ :=
-  ThSomePf.thSome_of hA hNR hInt
-
 end Formalism.L2.SG.Pf

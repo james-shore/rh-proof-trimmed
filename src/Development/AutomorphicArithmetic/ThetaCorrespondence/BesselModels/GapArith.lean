@@ -80,11 +80,6 @@ theorem e_add_le_b {l : ℕ} (h1 : 1 ≤ l) (h2 : l + 1 ≤ D.R.m) :
 theorem b_lt {l l' : ℕ} (h1 : 1 ≤ l) (h2 : l < l') (h3 : l' ≤ D.R.m) : ((num D C τ).b l : ℚ) < (num D C τ).b l' := by
   exact_mod_cast (num D C τ).b_mono l l' h1 h2 h3
 
-theorem b_le {l l' : ℕ} (h1 : 1 ≤ l) (h2 : l ≤ l') (h3 : l' ≤ D.R.m) : ((num D C τ).b l : ℚ) ≤ (num D C τ).b l' := by
-  rcases h2.eq_or_lt with rfl | h
-  · exact le_rfl
-  · exact (b_lt D C τ h1 h h3).le
-
 theorem cloud_gt {x : ℚ} (h : x ∈ (num D C τ).cloud) : -((num D C τ).b 1 : ℚ) < x := by
   obtain ⟨i, h1, h2, rfl⟩ := GlobalTheory.SignedHC.GridData.mem_cloud.1 h
   have hk : D.R.m + 3 ≤ D.R.k := D.R.m_add_three_le_k
@@ -105,12 +100,6 @@ theorem cloud_gt {x : ℚ} (h : x ∈ (num D C τ).cloud) : -((num D C τ).b 1 :
     · exact le_rfl
     · exact_mod_cast ((num D C τ).v_anti i D.R.k h1 h le_rfl).le
   linarith
-
-theorem blockM_bound {a : ℕ} {x : ℚ} (h : x ∈ (num D C τ).blockM a) :
-    -((num D C τ).e a : ℚ) - ((D.R.t : ℚ) - 1) / 2 ≤ x ∧ x ≤ -((num D C τ).e a : ℚ) + ((D.R.t : ℚ) - 1) / 2 := by
-  have := abs_le.1 (abs_sub_le_of_mem_block (c := -((num D C τ).e a : ℚ)) (t := D.R.t) h)
-  constructor <;> linarith [this.1, this.2]
-
 
 variable {D} in
 theorem blockC_gt {a : ℕ} (h1 : 1 ≤ a) (h2 : a ≤ D.R.m) {x : ℚ} (h : x ∈ (num D C τ).blockC a) :
@@ -158,7 +147,7 @@ theorem b_gap (C : ℝ) (hS : LowsOver D g) (τ : D.what₂.Tau) {l l' : ℕ} (h
   obtain ⟨a, rfl⟩ : ∃ a, l' = a + 2 := ⟨l' - 2, by omega⟩
   have h := hS τ a (by omega)
   rw [b_spec D C τ (by omega), b_spec D C τ (by omega)] at h
-  have := b_le D C τ h1 (show l ≤ a + 1 by omega) (by omega)
+  have := _root_.GlobalTheory.FunObj.num_b_le D C τ h1 (show l ≤ a + 1 by omega) (by omega)
   linarith
 
 theorem gap_true (C : ℝ) (hS : LowsOver D g) (τ : D.what₂.Tau) {i j l : ℕ} (hi : i ≤ D.R.m) (hl1 : j + 2 ≤ l)
@@ -182,7 +171,7 @@ theorem gap_true (C : ℝ) (hS : LowsOver D g) (τ : D.what₂.Tau) {i j l : ℕ
       refine lt_abs.2 (Or.inl (by linarith))
     · have := b_gap C hS τ (show 1 ≤ l by omega) h h2
       refine lt_abs.2 (Or.inr (by linarith))
-  · have a0 := (blockM_bound D C τ hm).1
+  · have a0 := (_root_.GlobalTheory.FunObj.blockM_bd D C τ hm).1
     have a1 := e_add_le_b D C τ h1 (show a + 1 ≤ D.R.m by omega)
     have a2 := b_gap C hS τ (show 1 ≤ a + 1 by omega) (show a + 1 < l by omega) hl2
     refine lt_abs.2 (Or.inl (by linarith))

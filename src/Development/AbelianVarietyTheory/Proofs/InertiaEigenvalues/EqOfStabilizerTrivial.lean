@@ -51,10 +51,6 @@ noncomputable section
 
 namespace GlobalTheory.TypePlace
 
-theorem exists_place {l : ℕ} [Fact l.Prime] {E : Type} [Field E] [NumberField E] (c : E →+* PadicAlgCl l) :
-    ∃ v : HeightOneSpectrum (𝓞 E), ((l : ℕ) : 𝓞 E) ∈ v.asIdeal ∧ ∀ x : 𝓞 E, x ∈ v.asIdeal ↔ ‖c (x : E)‖ < 1 :=
-  _root_.GlobalTheory.IntegralNormSmallIdeal.exists_place_of_embedding c
-
 theorem eq_of_stabilizer_trivial {l : ℕ} [Fact l.Prime] {E : Type} [Field E] [NumberField E] [IsGalois ℚ E]
     (a b : E →+* PadicAlgCl l) (P : Ideal (𝓞 E)) (ha : ∀ x : 𝓞 E, x ∈ P ↔ ‖a (x : E)‖ < 1)
     (hb : ∀ x : 𝓞 E, x ∈ P ↔ ‖b (x : E)‖ < 1) (hP : ∀ σ : E ≃ₐ[ℚ] E, σ • P = P → σ = 1) : a = b := by
@@ -93,7 +89,7 @@ theorem type_prime_places : ∀ (D : D7) (i : D.nd.Loc) (k : Fin 2), D.nd.l i = 
     ext y
     rw [Ideal.mem_pointwise_smul_iff_inv_smul_mem, inv_inv]
     exact (hc y (D.host.conj • y) rfl).symm
-  · obtain ⟨v, hv, ha⟩ := exists_place a
+  · obtain ⟨v, hv, ha⟩ := _root_.GlobalTheory.IntegralNormSmallIdeal.exists_place_of_embedding a
     have hP := (GlobalTheory.Mem.Chr.splitsC_place (p := D.nd.l i) Fact.out hs v hv).2.2
     exact eq_of_stabilizer_trivial a b v.asIdeal ha (fun x => (ha x).trans (hab x)) hP
 

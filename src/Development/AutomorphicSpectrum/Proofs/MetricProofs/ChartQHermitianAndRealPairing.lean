@@ -189,7 +189,7 @@ theorem rel_im (τ : Matrix (Fin g) (Fin g) ℂ) (hτ : τᵀ = τ) (G Pr : Matr
 theorem pr_int (S : Matrix (Fin g) (Fin g) ℤ) (Pr : Matrix (Fin g) (Fin g) ℝ) (hP : IsKerProj S Pr)
     (hST : Sᵀ = S) (u : Fin g → ℤ) (hu : ∀ v : Fin g → ℤ, S *ᵥ v = 0 → u ⬝ᵥ v = 0) :
     Pr *ᵥ (fun k => (u k : ℝ)) = 0 := by
-  obtain ⟨N, w, hN, hw⟩ := GlobalTheory.T.exists_int_preimage_of_orthogonal_kernel g S hST u hu
+  obtain ⟨N, w, hN, hw⟩ := _root_.GlobalTheory.CompanionTheory.Ar.IntegralKernel.exists_smul_eq_mulVec g S hST u hu
   obtain ⟨hPP, hPT, hker⟩ := hP
   set ur : Fin g → ℝ := fun k => (u k : ℝ) with hur
   set wr : Fin g → ℝ := fun k => (w k : ℝ) with hwr

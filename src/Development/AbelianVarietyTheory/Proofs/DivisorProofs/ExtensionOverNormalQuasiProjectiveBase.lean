@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsTjCorrDiagModel
 import Development.AbelianVarietyTheory.Definitions.Divisors.NotCompactOfMEqOne
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompEqOneOfTransl
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsIntegralAndIsNormalSchemeOfSmoothDvr
 
 @[expose] public section
 
@@ -145,11 +146,6 @@ theorem exists_extension_local {X : Scheme.{0}} {W : X.Opens} (hW : IsAffineOpen
   ext b
   exact congrArg Subtype.val (e.apply_symm_apply ⟨φ.hom b, hmem b⟩)
 
-theorem isDominant_spMap (O K : Type) [CommRing O] [IsDomain O] [Field K] [Algebra O K] [IsFractionRing O K] :
-    IsDominant (spMap (algebraMap O K)) := by
-  refine ⟨(PrimeSpectrum.denseRange_comap_iff_ker_le_nilRadical _).mpr ?_⟩
-  exact ((RingHom.injective_iff_ker_eq_bot _).mp (IsFractionRing.injective O K)).le.trans bot_le
-
 theorem exists_nhds_specializes {Y : Scheme.{0}} [IsLocallyNoetherian Y] (y : Y) [IsDomain (Y.presheaf.stalk y)]
     (V : Y.Opens) (hy : y ∈ V) :
     ∃ U : Y.Opens, y ∈ U ∧ U ≤ V ∧
@@ -188,7 +184,7 @@ theorem exists_extension_nhds {R : Type} [CommRing R] {Y₀ Y X : Scheme.{0}} (i
   let O : Type := Y.presheaf.stalk y
   let K : Type := FractionRing O
   let j : Sp K ⟶ Spec (Y.presheaf.stalk y) := spMap (algebraMap O K)
-  have hjd : IsDominant j := isDominant_spMap O K
+  have hjd : IsDominant j := _root_.GlobalTheory.isDominant_spMap_of_isFractionRing O K
   let ξ : Y := Y.fromSpecStalk y (⊥ : PrimeSpectrum (Y.presheaf.stalk y))
   have hgen : ∀ p, (j ≫ Y.fromSpecStalk y) p = ξ := fun p =>
     (Scheme.Hom.comp_apply _ _ _).trans (congrArg (Y.fromSpecStalk y) (spMap_apply_eq_bot O K p))

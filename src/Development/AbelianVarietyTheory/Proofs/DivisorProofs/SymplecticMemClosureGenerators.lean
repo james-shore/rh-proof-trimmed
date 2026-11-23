@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymplecticBlockGeneratorsLagrangianNormalF
 
 @[expose] public section
 
@@ -217,22 +218,6 @@ private theorem exists_symm_isUnit_det_sub_mul_of_finrank_ker (b : Matrix κ κ 
   rw [this]
   exact hu
 
-private theorem fromBlocks_one_symm_mem_closure_gens (T : Matrix κ κ F) (hT : Tᵀ = T) :
-    Matrix.fromBlocks 1 T 0 1 ∈ Submonoid.closure (GlobalTheory.AdelicSvN.gens F κ) := by
-  have hw : (Matrix.fromBlocks 0 1 (-1) 0 : Matrix (κ ⊕ κ) (κ ⊕ κ) F) ∈
-      Submonoid.closure (GlobalTheory.AdelicSvN.gens F κ) :=
-    Submonoid.subset_closure (Or.inr rfl)
-  have hu : (Matrix.fromBlocks 1 0 (-T) 1 : Matrix (κ ⊕ κ) (κ ⊕ κ) F) ∈
-      Submonoid.closure (GlobalTheory.AdelicSvN.gens F κ) :=
-    Submonoid.subset_closure (Or.inl (Or.inr ⟨T, hT, rfl⟩))
-  have e : (Matrix.fromBlocks 1 T 0 1 : Matrix (κ ⊕ κ) (κ ⊕ κ) F) =
-      Matrix.fromBlocks 0 1 (-1) 0 * Matrix.fromBlocks 1 0 (-T) 1 *
-        (Matrix.fromBlocks 0 1 (-1) 0 * Matrix.fromBlocks 0 1 (-1) 0 * Matrix.fromBlocks 0 1 (-1) 0) := by
-    simp [Matrix.fromBlocks_multiply]
-  rw [e]
-  exact Submonoid.mul_mem _ (Submonoid.mul_mem _ hw hu)
-    (Submonoid.mul_mem _ (Submonoid.mul_mem _ hw hw) hw)
-
 theorem main (g : Matrix (κ ⊕ κ) (κ ⊕ κ) F) (hg : Sp g) : g ∈ Submonoid.closure (GlobalTheory.AdelicSvN.gens F κ) := by
   obtain ⟨a, b, c, d, rfl⟩ : ∃ a b c d, g = Matrix.fromBlocks a b c d :=
     ⟨_, _, _, _, (Matrix.fromBlocks_toBlocks g).symm⟩
@@ -272,7 +257,7 @@ theorem main (g : Matrix (κ ⊕ κ) (κ ⊕ κ) F) (hg : Sp g) : g ∈ Submonoi
   set k := Matrix.fromBlocks 1 (-S) 0 1 * Matrix.fromBlocks a b (c - C * a) d' with hk
   have hkSp : Sp k := by
     have hn : Sp (Matrix.fromBlocks 1 (-S) 0 1 : Matrix (κ ⊕ κ) (κ ⊕ κ) F) :=
-      sp_of_mem_closure (fromBlocks_one_symm_mem_closure_gens (-S) (by rw [Matrix.transpose_neg, hS]))
+      sp_of_mem_closure (_root_.GlobalTheory.AdelicSvN.LagrangianNormalForm.upper_mem (-S) (by rw [Matrix.transpose_neg, hS]))
     exact hn.mul hg1
   have hk12 : k.toBlocks₁₂ = 0 := by
     simp [hk, Matrix.fromBlocks_multiply, Matrix.neg_mul, hSd]
@@ -282,7 +267,7 @@ theorem main (g : Matrix (κ ⊕ κ) (κ ⊕ κ) F) (hg : Sp g) : g ∈ Submonoi
     rw [hk, ← Matrix.mul_assoc (Matrix.fromBlocks 1 S 0 1), ← e1]
     simp [Matrix.fromBlocks_multiply]
   rw [e2]
-  refine Submonoid.mul_mem _ (Submonoid.subset_closure ?_) (Submonoid.mul_mem _ (fromBlocks_one_symm_mem_closure_gens S hS) hkm)
+  refine Submonoid.mul_mem _ (Submonoid.subset_closure ?_) (Submonoid.mul_mem _ (_root_.GlobalTheory.AdelicSvN.LagrangianNormalForm.upper_mem S hS) hkm)
   exact Or.inl (Or.inr ⟨-C, by rw [Matrix.transpose_neg, hC], rfl⟩)
 
 end GlobalTheory.SympGen

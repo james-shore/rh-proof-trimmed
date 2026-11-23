@@ -126,7 +126,7 @@ theorem ringKrullDim_of_isChowFormInt {P : Ideal (MvPolynomial (Fin N) K)} [hp :
     ringKrullDim (MvPolynomial (Fin N) K ⧸ P) = (D + 1 : ℕ) := by
   obtain ⟨j, hj⟩ := exists_X_notMem h
   obtain ⟨e, he⟩ := exists_ringKrullDim_quotient_eq_succ (isHomogeneous_of_component hP) hj
-  obtain ⟨δ', f', h'⟩ := GlobalTheory.T.exists_chowForm_of_homogeneous_prime_krullDim K N e P hp hP he
+  obtain ⟨δ', f', h'⟩ := _root_.GlobalTheory.ChowHt.exists_isChowFormInt_of_ringKrullDim_eq K N e P hp hP he
   obtain rfl : e = D := le_antisymm (not_lt.1 (not_lt_of_isChowFormInt h h'))
     (not_lt.1 (not_lt_of_isChowFormInt h' h))
   exact he
@@ -176,7 +176,7 @@ theorem degree_eq_coeff (D : ℕ) : ∀ (K : Type) [Field K] [CharZero K] (P : I
     have : CharZero L := charZero_of_injective_algebraMap (algebraMap K L).injective
     obtain ⟨hE, hEH⟩ := GlobalTheory.T.idealQuotientHilbertPoly_map_baseChange K L N P hP
     obtain ⟨hEp, hl⟩ := GlobalTheory.T.isPrime_map_rationalFunctions_generic_linearForm_not_mem K L N P hp
-    obtain ⟨Q, hQ, hIQ, hsat⟩ := GlobalTheory.T.exists_prime_saturation_generic_hyperplane_section K L N P hp fun u => by
+    obtain ⟨Q, hQ, hIQ, hsat⟩ := _root_.GlobalTheory.Chow.exists_prime_saturation_generic_section K L N P hp fun u => by
       obtain ⟨y, hy, h1, h2⟩ := (h.zero_iff _).1 (aeval_eq_zero_of_block h
         (fun v => if v.1 = 0 then u v.2 else 0) (Fin.last _) (fun j => if_neg (by simp)))
       exact ⟨y, hy, h1, by simpa using h2 0⟩
@@ -185,7 +185,7 @@ theorem degree_eq_coeff (D : ℕ) : ∀ (K : Type) [Field K] [CharZero K] (P : I
         MvPolynomial (Fin N) L).IsHomogeneous 1 :=
       IsHomogeneous.sum _ _ _ fun j _ => (isHomogeneous_X L j).C_mul _
     have hI := isHomogeneous_sup_span_singleton (isHomogeneous_of_component hE) hlin
-    obtain ⟨hQh, hQH⟩ := GlobalTheory.T.isHomogeneous_and_hilbertPoly_eq_of_prime_in_saturation L N _ Q (fun g hg n => homogeneousComponent_mem_of_mem hI hg n) hQ hIQ hsat
+    obtain ⟨hQh, hQH⟩ := _root_.GlobalTheory.prime_saturation_homogeneous_and_hilbertPoly_eq L N _ Q (fun g hg n => homogeneousComponent_mem_of_mem hI hg n) hQ hIQ hsat
     have hf'' : IsChowFormInt Q D δ f' := ⟨hf'.homog, hf'.irred, fun u => (hf'.zero_iff u).trans
       (exists_congr fun y => and_congr_right fun hy => and_congr_left fun _ =>
         ⟨fun h1 g hg => by
@@ -238,7 +238,7 @@ theorem exists_isImageDeg [FiniteDimensional K V] (ev : V →ₗ[K] Ω) (D a : �
     exact hc (by rw [idealHilbertPoly_eq_zero_of_forall_X_mem hI hX, Polynomial.coeff_zero])
   have hdim := ProjCut.ringKrullDim_eq_natDegree_idealHilbertPoly hI hX
   rw [hd] at hdim
-  obtain ⟨δ, f, hf⟩ := GlobalTheory.T.exists_chowForm_of_homogeneous_prime_krullDim K _ D _ hp hP hdim
+  obtain ⟨δ, f, hf⟩ := _root_.GlobalTheory.ChowHt.exists_isChowFormInt_of_ringKrullDim_eq K _ D _ hp hP hdim
   exact ⟨δ, _, b, f, hf⟩
 
 end Growth
@@ -269,7 +269,7 @@ theorem growth_rank_le [CharZero K] [FiniteDimensional K V] (ev : V →ₗ[K] Ω
     (S : ℕ → Submodule K Ω) (hS : ∀ k, ∀ t ∈ S k, IsIntDeg ev (a * k) t ∧ IsRatio ev (a * k) t) :
     growth D (fun k => Cardinal.toENat (Module.rank K (S k))) ≤ growth D (fun k => hilb ev (a * k)) := by
   have := finiteType_coneAlg ev
-  obtain ⟨c, hc, H⟩ := GlobalTheory.T.exists_conductor_ne_zero_finiteType_charZero K (coneAlg ev) (Polynomial Ω) Subtype.val_injective
+  obtain ⟨c, hc, H⟩ := _root_.GlobalTheory.exists_ne_zero_mul_mem_of_isIntegral_of_fraction K (coneAlg ev) (Polynomial Ω) Subtype.val_injective
   obtain ⟨e, he⟩ : ∃ e, (c : Polynomial Ω).coeff e ≠ 0 := by
     by_contra h
     push Not at h

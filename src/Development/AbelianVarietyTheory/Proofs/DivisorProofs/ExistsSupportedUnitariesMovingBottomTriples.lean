@@ -174,7 +174,7 @@ theorem exists_move : ∀ {D : D7} (V : HSp D), V.gram = 1 → ∀ (e : AE D), G
     ext i j
     simp only [Matrix.smul_apply, smul_eq_mul]
     exact mul_eq_of_toEAf_eq hO (toEAf_prod _ _ _ _ hQm hPm (by group) i j)
-  obtain ⟨g, hg, hgi⟩ := exists_unitary V hV e he hef _ _ hPQ hQP
+  obtain ⟨g, hg, hgi⟩ := _root_.GlobalTheory.UnitaryMove.exists_blockUnit V hV e he hef _ _ hPQ hQP
   have hdd : (Formalism.L2.Theta.mt V g).det * (Formalism.L2.Theta.mt V g⁻¹).det = 1 := by
     rw [← Matrix.det_mul, ← GlobalTheory.AdelicLatMove.mt_mul, mul_inv_cancel, GlobalTheory.AdelicLatMove.mt_one, Matrix.det_one]
   have hdd' : (Formalism.L2.Theta.mt V g⁻¹).det * (Formalism.L2.Theta.mt V g).det = 1 := by rw [mul_comm, hdd]
@@ -187,7 +187,7 @@ theorem exists_move : ∀ {D : D7} (V : HSp D), V.gram = 1 → ∀ (e : AE D), G
   · clear hPQ hQP hdd hdd' hPm hQm hP hQ h₀ h₁
     simp only [hg, Matrix.sub_apply, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul]
     exact supp_alg _ _ _ _ _ he hc hef
-  · refine mem_St V g β₀ β₁ h₀ h₁ (toEAf D e) (toEAf D (cA D e)) (GlobalTheory.IdemFin.toEAf_mem_intAf_of_idem he)
+  · refine _root_.GlobalTheory.StabMove.finE_mem_St V g β₀ β₁ h₀ h₁ (toEAf D e) (toEAf D (cA D e)) (GlobalTheory.IdemFin.toEAf_mem_intAf_of_idem he)
       (GlobalTheory.IdemFin.toEAf_mem_intAf_of_idem hc) ?_ ?_
     · ext i j
       simp only [hg, Matrix.map_apply, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, Matrix.transpose_apply, map_add (f := _),

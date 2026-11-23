@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.MemRangeCompIffOfIsClosedImmersion
 
 @[expose] public section
 
@@ -60,18 +61,6 @@ noncomputable section
 
 namespace GlobalTheory.Heat.WtSub
 
-theorem valR_resG' {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) {U V : X.Opens} (e : V ≤ U)
-    (h : ⊤ ≤ x ⁻¹ᵁ V) (f : Γ(X, U)) : valR x V (resG X e f) = valR x U f := by
-  have h' : ⊤ ≤ x ⁻¹ᵁ U := h.trans (x.preimage_mono e)
-  simp only [valR, dif_pos h, dif_pos h']
-  congr 1
-  change (X.presheaf.map (homOfLE e).op ≫ x.appLE V ⊤ h).hom f = _
-  rw [Scheme.Hom.map_appLE]
-
-theorem valR_one' {A : Type} [CommRing A] {X : Scheme.{0}} (x : Sp A ⟶ X) (U : X.Opens) (h : ⊤ ≤ x ⁻¹ᵁ U) :
-    valR x U (1 : Γ(X, U)) = 1 := by
-  simp only [valR, dif_pos h, map_one]
-
 variable {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O] [Module O Q.X]
   {oa : Q.OAct O} {Y : Ray oa}
 
@@ -80,7 +69,7 @@ theorem isWt_res {α : Q.X} {U V : Y.H.left.Opens} (e : V ≤ U) {f : Γ(Y.H.lef
   intro S _ φ x x' c a a' ha ha' hV hV' hq hc
   have hU : ⊤ ≤ a ⁻¹ᵁ U := hV.trans (a.preimage_mono e)
   have hU' : ⊤ ≤ a' ⁻¹ᵁ U := hV'.trans (a'.preimage_mono e)
-  rw [valR_resG' a' e hV', valR_resG' a e hV]
+  rw [_root_.GlobalTheory.ZH.CrdCalc.valR_res a' e hV', _root_.GlobalTheory.ZH.CrdCalc.valR_res a e hV]
   exact hf S φ x x' c a a' ha ha' hU hU' hq hc
 
 theorem isWt_inv {V : Y.H.left.Opens} (u : Γ(Y.H.left, V)ˣ) (hu : IsWt Y 0 V u.val) :
@@ -93,11 +82,11 @@ theorem isWt_inv {V : Y.H.left.Opens} (u : Γ(Y.H.left, V)ˣ) (hu : IsWt Y 0 V u
   have m : ∀ b : Sp S ⟶ Y.H.left, ⊤ ≤ b ⁻¹ᵁ V →
       valR b V (u⁻¹ : Γ(Y.H.left, V)ˣ).val * valR b V u.val = 1 := by
     intro b hb
-    rw [← WtAlg.valR_mul'' b V hb, Units.inv_mul, valR_one' b V hb]
+    rw [← WtAlg.valR_mul'' b V hb, Units.inv_mul, _root_.GlobalTheory.Points.valR_one b V hb]
   have m' : ∀ b : Sp S ⟶ Y.H.left, ⊤ ≤ b ⁻¹ᵁ V →
       valR b V u.val * valR b V (u⁻¹ : Γ(Y.H.left, V)ˣ).val = 1 := by
     intro b hb
-    rw [← WtAlg.valR_mul'' b V hb, Units.mul_inv, valR_one' b V hb]
+    rw [← WtAlg.valR_mul'' b V hb, Units.mul_inv, _root_.GlobalTheory.Points.valR_one b V hb]
   calc valR a' V (u⁻¹ : Γ(Y.H.left, V)ˣ).val
         = valR a' V (u⁻¹ : Γ(Y.H.left, V)ˣ).val *
             (valR a V u.val * valR a V (u⁻¹ : Γ(Y.H.left, V)ˣ).val) := by rw [m' a hV, _root_.mul_one]

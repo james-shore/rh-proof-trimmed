@@ -59,6 +59,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Algebra.Nonarchimedean.Completion
 import Mathlib.Topology.Sheaves.Init
+import Lemmata.GeneralBFactThird.Imports
 
 @[expose] public section
 
@@ -168,21 +169,6 @@ theorem integral_of_alg (b : WW p) (hb : IsAlgebraic ℚ_[p] (algebraMap (WW p) 
       have h4 : (p : WW p) * (b ^ e * z') = 1 := by rw [← h3]; ring
       exact (WittVector.irreducible p).not_isUnit (IsUnit.of_mul_eq_one _ h4)
 
-theorem norm_le_one_of_root {K : Type*} [NormedField K] [IsUltrametricDist K] (P : K[X]) (hm : P.Monic)
-    (hc : ∀ i, ‖P.coeff i‖ ≤ 1) (x : K) (hx : P.eval x = 0) : ‖x‖ ≤ 1 := by
-  by_contra! h
-  have hx0 : 0 < ‖x‖ := zero_lt_one.trans h
-  rw [Polynomial.eval_eq_sum_range, Finset.sum_range_succ, hm.coeff_natDegree, one_mul] at hx
-  have hsum : ‖∑ i ∈ Finset.range P.natDegree, P.coeff i * x ^ i‖ ≤ ‖x‖ ^ P.natDegree / ‖x‖ := by
-    refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg (by positivity) fun i hi => ?_
-    rw [norm_mul, norm_pow, le_div_iff₀ hx0]
-    calc
-      ‖P.coeff i‖ * ‖x‖ ^ i * ‖x‖ ≤ 1 * ‖x‖ ^ i * ‖x‖ := by gcongr; exact hc i
-      _ = ‖x‖ ^ (i + 1) := by rw [one_mul, pow_succ]
-      _ ≤ ‖x‖ ^ P.natDegree := pow_le_pow_right₀ h.le (Finset.mem_range.1 hi)
-  rw [eq_neg_of_add_eq_zero_left hx, norm_neg, norm_pow] at hsum
-  exact (not_lt_of_ge hsum) (div_lt_self (pow_pos hx0 _) h)
-
 abbrev Kalg : IntermediateField ℚ_[p] (K0 p) := algebraicClosure ℚ_[p] (K0 p)
 
 def phi : Kalg p →ₐ[ℚ_[p]] ℂ_[p] := by
@@ -217,7 +203,7 @@ theorem norm_phi_le (z : Kalg p) (b : WW p) (h : (z : K0 p) = algebraMap (WW p) 
     have := congrArg (phi p : Kalg p →+* ℂ_[p]) e2
     rw [hom_eval₂, e3, map_zero] at this
     exact this
-  refine norm_le_one_of_root (P.map f) (hm.map f) (fun i => ?_) _ (by rw [eval_map]; exact e4)
+  refine _root_.Bl.general_b_fact_third.goal1 (P.map f) (hm.map f) (fun i => ?_) _ (by rw [eval_map]; exact e4)
   rw [coeff_map]
   have : ‖f (P.coeff i)‖ = ‖((P.coeff i : ℤ_[p]) : ℚ_[p])‖ := PadicComplex.norm_extends' p _
   rw [this]
@@ -294,8 +280,7 @@ theorem exists_approx (x : WW p) (N : ℕ) : ∃ z, Approx p N x z := by
 theorem nadd {a b : ℂ_[p]} {c : ℝ} (ha : ‖a‖ ≤ c) (hb : ‖b‖ ≤ c) : ‖a + b‖ ≤ c :=
   (PadicComplex.isNonarchimedean p a b).trans (max_le ha hb)
 
-theorem nsub {a b : ℂ_[p]} {c : ℝ} (ha : ‖a‖ ≤ c) (hb : ‖b‖ ≤ c) : ‖a - b‖ ≤ c := by
-  first | exact Bl.FirstBlockLemmaF.goal1 .. | (apply Bl.FirstBlockLemmaF.goal1 <;> assumption) | (intros; apply Bl.FirstBlockLemmaF.goal1 <;> assumption) | (apply @Bl.FirstBlockLemmaF.goal1 <;> assumption) | (intros; apply @Bl.FirstBlockLemmaF.goal1 <;> assumption) | (apply @Bl.FirstBlockLemmaF.goal1 <;> first | assumption | infer_instance) | exact @Bl.FirstBlockLemmaF.goal1 p hp a b c ha hb | exact @Bl.FirstBlockLemmaF.goal1 p hp a b c ha | exact @Bl.FirstBlockLemmaF.goal1 p hp a b c | exact @Bl.FirstBlockLemmaF.goal1 p hp a b | exact @Bl.FirstBlockLemmaF.goal1 p hp a | exact @Bl.FirstBlockLemmaF.goal1 p hp | exact @Bl.FirstBlockLemmaF.goal1 p
+alias nsub := _root_.Bl.FirstBlockLemmaF.goal1
 
 theorem approx_close {N M : ℕ} (hNM : N ≤ M) {x : WW p} {z z' : Kalg p} (h : Approx p N x z)
     (h' : Approx p M x z') : ‖phi p z - phi p z'‖ ≤ ((p : ℝ)⁻¹) ^ N := by

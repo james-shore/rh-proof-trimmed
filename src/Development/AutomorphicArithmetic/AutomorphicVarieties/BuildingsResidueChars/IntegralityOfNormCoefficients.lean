@@ -53,10 +53,6 @@ private theorem int_of_norm {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) (h : ‖
   obtain ⟨q, hq, -, hqm⟩ := lifts_and_degree_eq_and_monic hl' (minpoly.monic hi)
   exact ⟨q, hqm, by rw [← aeval_def, ← aeval_map_algebraMap ℚ_[l], hq, minpoly.aeval]⟩
 
-private theorem coef_of_field {l : ℕ} [Fact l.Prime] (K : IntermediateField ℚ_[l] (PadicAlgCl l)) [FiniteDimensional ℚ_[l] K] :
-    ∃ c : Coef l, ∀ x ∈ K, ‖x‖ ≤ 1 → x ∈ c.O :=
-  _root_.UpperTheory.Reformulated.B.CoefficientsOfField.coef_of_field K
-
 private theorem mem_pow_iff {l : ℕ} [Fact l.Prime] (c : Coef l) : ∃ a : ℝ, 0 < a ∧ a < 1 ∧
     ∀ (n : ℕ) (x : c.O), x ∈ maximalIdeal c.O ^ n ↔ ‖(x : PadicAlgCl l)‖ ≤ a ^ n := by
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible c.O
@@ -81,7 +77,7 @@ theorem UpperTheory.integrality_of_norm_coefficients :
     UpperTheory.V.Sd.S3.CoefEx := by
   intro l _
   refine ⟨fun c E hE => ?_, fun c Γ _ f => ?_⟩
-  · obtain ⟨c', hc'⟩ := coef_of_field E
+  · obtain ⟨c', hc'⟩ := _root_.UpperTheory.Reformulated.B.CoefficientsOfField.coef_of_field E
     obtain ⟨c₁, h1, h2⟩ := (UpperTheory.V.HV.coefSup l).1 c c'
     exact ⟨c₁, h1, fun y hy h => h2 (hc' y hy h)⟩
   obtain ⟨a, h0, h1, ha⟩ := mem_pow_iff c

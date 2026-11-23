@@ -392,7 +392,7 @@ theorem deg_count (L : C.I → AddSubgroup V) (k A : Type) [Field k] [Algebra k 
       · subst h0
         exact ⟨0, by rw [idealV_bot, subDeg_bot]; simp, fun h => absurd rfl h⟩
       · obtain ⟨J₁, t, l, hlt, ht, hJt, hm, hl0, hl1⟩ :=
-          GlobalTheory.T.ideal_descending_one_dim_quotient k A χ e J he h1 hnil hJ h0
+          _root_.GlobalTheory.CompanionTheory.Ar.Flat.StepIdeal.exists_colength_one k A χ e J he h1 hnil hJ h0
         obtain ⟨n, hn, -⟩ := ih J₁ hlt (hlt.le.trans hJ)
         refine ⟨n + 1, ?_, fun _ => Nat.succ_pos n⟩
         rw [GlobalTheory.T.algebra_action_bundle_filtration_step K C V L k A τ r χ J₁ J t l hL hτ hτk hk hfree hlt.le ht hJt hm hl0 hl1, hn]
@@ -436,7 +436,7 @@ theorem deg_quot_eq_zero : ∀ (E : Type) [Field E] [NumberField E] [StarRing (�
     (fun c x => by
       rw [Algebra.TensorProduct.algebraMap_apply, Algebra.algebraMap_self_apply, act_tmul]
       simp)
-    hk (fun i => GlobalTheory.T.module_basis_lattice_bundle_free K C _ D.H _ _ k (RingOfIntegers.basis E) D.ρH r i D.H_bun (hk i) (hfr i))
+    hk (fun i => _root_.GlobalTheory.CompanionTheory.Ar.Flat.DegCurve.freeAt_of_basis_lattice K C _ D.H _ _ k (RingOfIntegers.basis E) D.ρH r i D.H_bun (hk i) (hfr i))
     he h1 hnil
   rw [vanish D k hk e he, idealV_ker K k (𝓞 E) _ D.ρH χ₀] at hc
   change _ = _ * deg C (quot C D.H (⨆ a : 𝓞 E, LinearMap.range (D.ρH a - χ a • LinearMap.id))) at hc

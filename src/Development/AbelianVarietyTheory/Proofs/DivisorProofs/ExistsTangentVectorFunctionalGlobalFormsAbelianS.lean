@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.HomDerivDescendsToNumberField
 
 @[expose] public section
 
@@ -102,47 +103,6 @@ theorem eq_top_of_residue {R G : Type} [CommRing R] [AddCommGroup G] [Module R G
   exact hmax.ne_top ((Ideal.eq_top_iff_one _).2 (by simpa using m.sub_mem h1 hr))
 
 variable {R R' : Type} [CommRing R] [CommRing R']
-
-theorem tanVal_pullForm {σ : R →+* R'} {A : Over (Sp R)} {B : Over (Sp R')} {φ : B.left ⟶ A.left}
-    (m : IsMor (dp0 R) (A.hom ≫ 𝟙 _) (dp0 R') (B.hom ≫ 𝟙 _) σ φ) {v : epsR R ⟶ A} {v' : epsR R' ⟶ B}
-    (e : v'.left ≫ φ = spMap (Chart.dualMapR σ) ≫ v.left) (f : Form (A.hom ≫ 𝟙 _)) :
-    tanVal v' (m.pullForm f) = σ (tanVal v f) := by
-  let E := SqExt.dual R
-  let E' := SqExt.dual R'
-  have hy := pt_w v
-  have hy' := pt_w v'
-  have hc : ∀ r : R, Chart.dualMapR σ (algebraMap R (DualNumber R) r) =
-      algebraMap R' (DualNumber R') (σ r) := fun r => by
-    ext <;> simp [Chart.dualMapR, TrivSqZeroExt.algebraMap_eq_inl]
-  have e₀ : spMap σ ≫ spMap (E.π : E.C →+* E.B) ≫ v.left =
-      (spMap (E'.π : E'.C →+* E'.B) ≫ v'.left) ≫ φ := by
-    rw [Category.assoc, e, ← Category.assoc, ← Category.assoc, ← Cris.spMap_comp, ← Cris.spMap_comp]
-    congr 2
-    ext a <;> simp [Chart.dualMapR, E, E', TrivSqZeroExt.algebraMap_eq_inl]
-  let Φ : E.thick _ (E.red_w hy) ⟶ m.obj (E'.thick _ (E'.red_w hy')) :=
-    { φ := { Chart.dualMapR σ with commutes' := hc }
-      φ₀ := σ
-      comm := fun b => by
-        change σ b.fst = (Chart.dualMapR σ b).fst
-        simp [Chart.dualMapR]
-      dp := isDPMorphism_sqDP E.sq E'.sq _ fun a ha => by
-        have ha' : a.fst = 0 := ha
-        change (Chart.dualMapR σ a).fst = 0
-        simp [Chart.dualMapR, ha']
-      pt := e₀ }
-  let a : Thick.triv E.C _ hy ⟶ m.obj (Thick.triv E'.C _ hy') :=
-    Thick.trivHom { Chart.dualMapR σ with commutes' := hc } e.symm
-  let b : Thick.triv E.B _ (E.red_w hy) ⟶ m.obj (Thick.triv E'.B _ (E'.red_w hy')) :=
-    Thick.trivHom { σ with commutes' := fun _ => rfl } e₀
-  have k1 := Form.ev_sq f a (m.functor.map (E'.idHom hy')) (E.idHom hy) Φ rfl rfl fun _ => rfl
-  have k2 := Form.ev_sq f b (m.functor.map (E'.secHom (E'.red_w hy') E'.i E'.π_i))
-    (E.secHom (E.red_w hy) E.i E.π_i) Φ rfl rfl fun c => (hc c).symm
-  have k : E'.val v'.left hy' (m.pullForm f).1 = Chart.dualMapR σ (E.val v.left hy f.1) :=
-    (congrArg₂ (fun u v : E'.C => u - v) k2 k1).trans
-      ((add_sub_add_right_eq_sub (G := E'.C) _ _ _).trans (map_sub (Chart.dualMapR σ) _ _).symm)
-  rw [tanVal_apply, tanVal_apply]
-  refine (congrArg (TrivSqZeroExt.snd (R := R')) k).trans ?_
-  exact zero_add _
 
 def glob {X : Scheme.{0}} (s : X ⟶ Sp R) : Form s →ₗ[R] GlobForm s :=
   (ClosedForm s).subtype ∘ₗ cmpForm s
@@ -253,12 +213,6 @@ theorem dualMapR_comp {R'' : Type} [CommRing R''] (σ : R →+* R') (τ : R' →
     TrivSqZeroExt.inr (τ (Chart.dualMapR σ x).snd)
   rw [f, s]; rfl
 
-theorem epsScaleR_comp_dualMapR (τ : R →+* R') (c : R) :
-    (epsScaleR (τ c)).comp (Chart.dualMapR τ) = (Chart.dualMapR τ).comp (epsScaleR c) := by
-  have f : ∀ x, (Chart.dualMapR τ x).fst = τ x.fst := fun _ ↦ add_zero _
-  have s : ∀ x, (Chart.dualMapR τ x).snd = τ x.snd := fun _ ↦ zero_add _
-  refine RingHom.ext fun x ↦ TrivSqZeroExt.ext ?_ ?_ <;> simp [epsScaleR, f, s]
-
 theorem exists_lieBasis_lift {K : Type} [Field K] (σ : R →+* K) (A : Over (Sp R)) [GrpObj A]
     [IsCommMonObj A] (g : ℕ) (hdim : SmoothOfRelativeDimension g A.hom) :
     ∃ (B : Over (Sp K)) (_ : GrpObj B) (_ : IsCommMonObj B) (φ : B.left ⟶ A.left),
@@ -294,7 +248,7 @@ theorem exists_lieBasis_lift {K : Type} [Field K] (σ : R →+* K) (A : Over (Sp
       rw [← dualMapR_comp, hτ]
     have e2 : (epsScaleR (σ r ^ N)).comp (Chart.dualMapR τ) =
         (Chart.dualMapR τ).comp (epsScaleR (algebraMap R (Localization.Away r) r ^ N)) := by
-      rw [← epsScaleR_comp_dualMapR, map_pow, hτ']
+      rw [← _root_.GlobalTheory.HomDerivDescent.epsScaleR_comp_dualMapR, map_pow, hτ']
     rw [e1, Cris.spMap_comp, Category.assoc, Category.assoc, he', ← Category.assoc (y i).left, hyv,
       ← Category.assoc, ← Category.assoc, ← Cris.spMap_comp, e2, Cris.spMap_comp]
     simp only [Category.assoc]
@@ -355,7 +309,7 @@ theorem exists_tangent_residue (hC : GlobalTheory.Published.CrystallineSmoothLif
         rw [Serre.Lie.hom_smul_left, Serre.Lie.hom_basis]
         exact h.2.2
       rw [lieVal_apply, lieVal_apply, Serre.Lie.hom_mk]
-      exact tanVal_pullForm m k f⟩
+      exact _root_.GlobalTheory.LieDual.tanVal_pullForm_baseChange m k f⟩
   obtain ⟨v, hv⟩ := exists_lift_of_basis hσ (lieVal A) (lieVal B) m.pullForm
     (Serre.Lie.basis (Serre.intAct B) hy) hb v'
   refine ⟨v, fun f ↦ (hv f).symm.trans ((hv' _).trans ?_)⟩

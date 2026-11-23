@@ -300,7 +300,7 @@ theorem parA_of (P : ParameterChoice' D L) (S : SizesAt L) (hg : ∀ i, Real.log
     nlinarith
   · exact (logOm_le P).trans (by linarith)
 
-theorem one_le_Z (L : SizeData₂ D) : 1 ≤ zBase L := one_le_mul_of_one_le_of_one_le (one_le_fr D) (one_le_L L)
+alias one_le_Z := _root_.Formalism.MainNotions.WeightFamilies.one_le_zBase
 
 theorem Zpow_le (L : SizeData₂ D) {a n : ℕ} (h : a ≤ n) : zBase L ^ a ≤ zBase L ^ n := pow_le_pow_right₀ (one_le_Z L) h
 

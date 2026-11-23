@@ -50,11 +50,7 @@ open ReciprocityTheory.ChartRestriction.G.PullbackSections
 
 namespace ShortClause
 
-theorem val_mul {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) {a b : K} (ha : a ≠ 0) (hb : b ≠ 0) :
-    vLa la (a * b) = vLa la a + vLa la b := by
-  unfold vLa
-  rw [map_mul, WithZero.log_mul ((Valuation.ne_zero_iff _).2 ha) ((Valuation.ne_zero_iff _).2 hb)]
-  ring
+alias val_mul := _root_.Formalism.L2.Pj.Crude.crv_vLa_mul
 
 theorem val_pow {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) (a : K) (n : ℕ) :
     vLa la (a ^ n) = n * vLa la a := by
@@ -123,7 +119,7 @@ theorem thc_le_of_shortBound : ShortBoundSt → ∀ (D : D7) (T : Top D) (h : La
         vLa la ((pPow D a b b : ℕ) : T.Q.c.F) +
         ((D.R.f * D.R.r * w.n : ℕ) : ℤ) * vLa la ((D.host.g 0 * D.host.g 1 : ℕ) : T.Q.c.F) := by
     rw [e, val_mul _ h123 h4, val_mul _ h12 h3, val_mul _ h1 h2, val_pow, val_pow]
-  have hr := GlobalTheory.T.ramified_prime_loss_le_valuation_prime_power D T.Q.c.F la j w a b ha hb
+  have hr := _root_.GlobalTheory.PlaceTop.ramLoss_le_vLa_pPow D T.Q.c.F la j w a b ha hb
   have hp : (0 : ℝ) ≤ ((vLa (la : HeightOneSpectrum (𝓞 T.Q.c.F)) (((T.dδ j w.n).pd : ℕ) : T.Q.c.F) : ℤ) : ℝ) := by
     exact_mod_cast val_nat_nonneg _ _
   have hk : (0 : ℝ) ≤ ((vLa (la : HeightOneSpectrum (𝓞 T.Q.c.F)) (((T.dδ j w.n).pd : ℕ) : T.Q.c.F) : ℤ) : ℝ) *

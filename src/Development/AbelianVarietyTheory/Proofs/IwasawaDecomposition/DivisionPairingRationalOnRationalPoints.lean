@@ -62,7 +62,7 @@ theorem divisionPairing_rational_on_rationalPoints : (GlobalTheory.Published.Dis
   have hR := complex_data_conditions_base_level_of_primitive_links hHolds.ok hHolds.sep hPins.char hHolds.prim
   have hW := hR.wf true
   have h2 := (hR.what₂ true).1
-  have hI := (GlobalTheory.T.rowSide_definition_both_levels hC D G Pl0 I0 T A3 Ks R F cG X0 Y Z hPins hHolds).1
+  have hI := (_root_.GlobalTheory.Mem.R3.IotaRd.rowSideDef3_both hC D G Pl0 I0 T A3 Ks R F cG X0 Y Z hPins hHolds).1
   have hPq := hW.Pq_surj A3.fam3.base3.μ0
   have hV := GlobalTheory.range_op_eq_span_of_formsTie D.what₂.embLL (Y.jA A3.fam3.base3.μ0) _ _ _
       (rV0 D A3.A F.P1 F.ψ1 A3.fam3.base3.μ0) (Y.formsA A3.fam3.base3.μ0)

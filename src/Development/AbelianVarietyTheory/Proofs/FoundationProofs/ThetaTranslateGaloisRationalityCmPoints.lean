@@ -157,7 +157,7 @@ theorem gal_top (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (hc : Crv D cc 
   set l : VC D N N' := ∑ j, ω j • embV D (tor0 D cc δ) (b j) with hldef
   have hlA : l ∈ La D (tor0 D cc δ) L L' :=
     AddSubgroup.sum_mem _ fun j _ => AddSubgroup.subset_closure ⟨ω j, hω j, b j, hb j, rfl⟩
-  obtain ⟨hp1, hp2⟩ := GlobalTheory.T.thetaTranslation_comb_periodic_twice_level D (tor0 D cc δ) N N' _ hint hq k c t e₀ x m₀ he hx ht l hlA
+  obtain ⟨hp1, hp2⟩ := _root_.GlobalTheory.GalTheta.Period.period D (tor0 D cc δ) N N' _ hint hq k c t e₀ x m₀ he hx ht l hlA
   have hy : m₀ • (x + (2 * m₀) • l) ∈ La D (tor0 D cc δ) L L' := by
     rw [smul_add]
     exact AddSubgroup.add_mem _ hx (AddSubgroup.nsmul_mem _ (AddSubgroup.nsmul_mem _ hlA _) _)
@@ -239,7 +239,7 @@ theorem fnConj_mul (D : D7) {N N' : ℕ} (M : IntermediateField ℚ ℂ) (ρ : M
 theorem gal_all : ∀ D : D7, gal D := by
   intro D cc δ hc M ρ hK hD N N' L L' hL hL' k c t e₀ x x' m₀ he hm hx ht hA hG hU
   obtain ⟨s, b, a, a', hb, ha, hxa, hxa', haa⟩ := hA
-  obtain ⟨σ, hσ⟩ := GlobalTheory.T.exists_complexEndomorphism_eq_on_countable M ρ
+  obtain ⟨σ, hσ⟩ := _root_.GlobalTheory.GalTheta.exists_top_embedding_eq_on_countable M ρ
     ((⋃ τ, Set.range (embT D τ)) ∪ Set.range D.host.φ₀ ∪
       {g2 (lamOf D cc δ), g3 (lamOf D cc δ), wdPh D (tor0 D cc δ) x} ∪
       Set.range (fun j => wpF (lamOf D cc δ) (a j / ((2 * m₀ : ℕ) : ℂ))) ∪

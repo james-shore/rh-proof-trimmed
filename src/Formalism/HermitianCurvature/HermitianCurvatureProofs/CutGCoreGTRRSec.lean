@@ -287,10 +287,6 @@ theorem smul_one_mulVec' {k : ℕ} (c : ℂ) (u : Fin (k + 1) → ℂ) :
     (c • (1 : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ)) *ᵥ u = c • u := by
   rw [smul_mulVec, one_mulVec]
 
-theorem herm_smul_left' {ι : Type*} [Fintype ι] (H : Matrix ι ι ℂ) (c : ℂ) (v w : ι → ℂ) :
-    herm H (c • v) w = c * herm H v w := by
-  simp [herm, Matrix.mulVec_smul, dotProduct_smul]
-
 private theorem herm_Hb_self_eq_ofReal_re {k : ℕ} (u : Fin (k + 1) → ℂ) :
     herm (Hb k) u u = ((herm (Hb k) u u).re : ℂ) := by
   have h : herm (Hb k) u u =
@@ -388,7 +384,7 @@ theorem rotation_section_holds : GTRRSec := by
           simp only [NF.muZ, zc]
           conv_lhs => rw [← hzj', emb_mulVec_jV, smul_one_mulVec', jV_smul', hzj']
           rw [mulVec_smul]
-        rw [hv, herm_smul_left', (sec_vec hz hz' hsec hζ).2.2, Complex.normSq_mul]
+        rw [hv, _root_.Formalism.FourierDecayAlt.P.SettingConstruction.herm_smul_left, (sec_vec hz hz' hsec hζ).2.2, Complex.normSq_mul]
         have h1 : Complex.normSq (Complex.exp ((φ : ℂ) * Complex.I)) = 1 := by
           rw [Complex.normSq_eq_norm_sq, Complex.norm_exp_ofReal_mul_I]
           norm_num

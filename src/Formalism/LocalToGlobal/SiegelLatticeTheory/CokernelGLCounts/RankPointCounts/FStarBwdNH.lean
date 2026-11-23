@@ -140,7 +140,7 @@ theorem exists_y (γ : TermDef.Term D u u' F0 what₂) {Λ₂ : Submodule (𝓞 
       rw [BwdNA.hsw (VS D) w (F0.e i), ← frame_cs, hw, hρe, star_zero]
     | zero => simp
     | add a b _ _ ha hb => rw [map_add (f := _), LinearMap.add_apply, ha, hb, add_zero]
-    | smul c x _ hx => rw [BwdNA.hT_smulL, hx, mul_zero]
+    | smul c x _ hx => rw [_root_.PI.ScalarPairDr.W.hT_smul_left, hx, mul_zero]
   · have : frame (lf D F0) (Fin.last D.R.rS) = F0.z := by simp [frame, FlagG.fvec]
     rw [← this, hw, hρl]
 

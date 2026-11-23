@@ -60,7 +60,7 @@ theorem theta_kernel_basic_properties : _root_.GlobalTheory.FunPr.ThetaLocalInpu
     have e : om (γ * g, γ' * h) Φ = om (γ, γ') (om (g, h) Φ) := by
       rw [← Module.End.mul_apply, ← map_mul]; rfl
     rw [e]
-    exact _root_.GlobalTheory.T.theta_pair_sum_rational hKP F E σ B n d X W M χX χW om r s r' s' hP γ hγ γ' hγ' _ (hS.pres _ _ hΦ)
+    exact _root_.GlobalTheory.ThetaRatPair.theta_sum_omega_rational hKP F E σ B n d X W M χX χW om r s r' s' hP γ hγ γ' hγ' _ (hS.pres _ _ hΦ)
   · intro φ hφ g h
     obtain ⟨T, hT⟩ := hS.adm (g, h) l hl φ hφ
     refine T.continuous.congr fun f => ?_
@@ -73,8 +73,3 @@ end GlobalTheory.ThKBasic
 end
 end
 
-section
-
-theorem _root_.GlobalTheory.T.theta_kernel_fundamental_properties : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.ThK.ThetaBasic := by
-  first | exact @_root_.GlobalTheory.ThKBasic.theta_kernel_basic_properties | exact _root_.GlobalTheory.ThKBasic.theta_kernel_basic_properties | (intros; apply _root_.GlobalTheory.ThKBasic.theta_kernel_basic_properties <;> assumption)
-end

@@ -44,10 +44,8 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.Stage1.PM
 
-theorem harishChandraModules : GlobalTheory.Published.HarishChandraModules :=
-  CompanionTheory.D.gk.HC.print_harishChandraModules
+alias harishChandraModules := _root_.CompanionTheory.D.gk.HC.print_harishChandraModules
 
-theorem greenCuspidal : GlobalTheory.Published.GreenCuspidal :=
-  PositivityTheory.GreenCharacters.greenCuspidal
+alias greenCuspidal := _root_.PositivityTheory.GreenCharacters.greenCuspidal
 
 end PositivityTheory.Stage1.PM

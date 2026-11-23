@@ -325,7 +325,7 @@ private theorem core [CharZero k] {Γ : Type} [Group Γ] (r : Γ →* GL (Fin 2)
     intro v hv
     have := hW s v hv
     simpa [hs, sym_four_diagonal] using this
-  have hsingle := UpperTheory.V.Lib.Small.single_mem W _ (diag_inj a b ha hb hm) hD
+  have hsingle := _root_.UpperTheory.Reformulated.B.S3.single_mem W _ (diag_inj a b ha hb hm) hD
   have hM : ∀ v ∈ W, (symmetricFourthPowerMatrix k (r g : Matrix (Fin 2) (Fin 2) k)).mulVec v ∈ W := fun v hv => by
     simpa using hW g v hv
   have g00 := hg 0 0

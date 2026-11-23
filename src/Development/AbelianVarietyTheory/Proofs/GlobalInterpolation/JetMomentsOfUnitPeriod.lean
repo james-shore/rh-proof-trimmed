@@ -142,7 +142,7 @@ theorem jetMoments_of_unitPeriod
     fun P h => hd' ⟨P, (mem_divs hπ0 P).2 h⟩
   have hF : (ambOf s B χ cD).chiF (D.R.N i) b d.1.N d'.1.N ∈ TaylorLogMetric.Qbar := mul_mem (zpow_mem c1 _) (zpow_mem c2 _)
   have hF1 : ‖TaylorLogMetric.lamC lam ((ambOf s B χ cD).chiF (D.R.N i) b d.1.N d'.1.N)‖ = 1 := by
-    refine (congrArg norm (lamC_mul lam (zpow_mem c1 _) (zpow_mem c2 _))).trans ?_
+    refine (congrArg norm (_root_.GlobalTheory.MomT.UnitTr.lamC_mul_of_mem lam (zpow_mem c1 _) (zpow_mem c2 _))).trans ?_
     rw [lamC_zpow lam c1, lamC_zpow lam c2, norm_mul, norm_zpow, norm_zpow, c1', c2', one_zpow, one_zpow, one_mul]
   refine ⟨fun hseen => ?_, fun hseen => ?_⟩
   · refine type_bar hctx hlam hw d d' hF hF1 Ξ₀ hΞ ?_

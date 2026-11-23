@@ -289,7 +289,7 @@ theorem quotient_integral_unit : ∀ (E : Type) [NontriviallyNormedField E] [IsU
     have hgI : ∀ i j, ‖g.1 i j‖ ≤ 1 := by
       rw [hgv]; exact integ_mul hw (integ_add integ_one (integ_smul hϖle hx))
     have hgd : ‖g.1.det‖ = 1 := by
-      rw [hgv, Matrix.det_mul, norm_mul, hwd, GlobalTheory.T.ultrametric_norm_det_one_add_smul E n x.1 ϖ hϖ1 hx, one_mul]
+      rw [hgv, Matrix.det_mul, norm_mul, hwd, _root_.GlobalTheory.UnitDiscAlg.norm_det_one_add_smul E n x.1 ϖ hϖ1 hx, one_mul]
     obtain ⟨hgu, hgiI⟩ := isUnit_and_integ_inv_of_norm_det_eq_one E n g.1 hgI hgd
     refine ⟨⟨g.1⁻¹, mem _ (inv_comm (memN g))⟩, Subtype.ext ?_, hgiI⟩
     exact Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).1 hgu)

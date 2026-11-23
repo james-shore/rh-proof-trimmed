@@ -72,10 +72,6 @@ theorem sp_blk_surj (ε : Fin n → Bool) (a : Fin n) : ∃ r, blk ε (ε a) r =
   obtain ⟨r, hr⟩ := ha
   exact ⟨r, hr⟩
 
-private theorem eps_blk (ε : Fin n → Bool) (c : Bool) (r : Fin (cnt ε c)) : ε (blk ε c r) = c := by
-  have h := Finset.orderEmbOfFin_mem (univ.filter fun i : Fin n => ε i = c) rfl r
-  exact (Finset.mem_filter.mp h).2
-
 private theorem apply_eq_zero_of_commute_Jm_of_eps_ne {ε : Fin n → Bool} {M : Matrix (Fin n) (Fin n) ℂ}
     (hM : M * Jm ε = Jm ε * M) (a b : Fin n) (h : ε a ≠ ε b) : M a b = 0 := by
   have e := congrFun (congrFun hM a) b
@@ -93,7 +89,7 @@ private theorem image_blk_univ_eq_filter_eps (ε : Fin n → Bool) (c : Bool) :
   constructor
   · intro hb
     obtain ⟨t, -, rfl⟩ := Finset.mem_image.mp hb
-    exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, eps_blk ε c t⟩
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, _root_.ReciprocityTheory.ChartRestriction.TR.Weyl.blk_mem ε c t⟩
   · intro hb
     have hb' : ε b = c := (Finset.mem_filter.mp hb).2
     subst hb'
@@ -113,7 +109,7 @@ private theorem sp_sub_mul_of_eq_zero_off_eps_blocks {ε : Fin n → Bool} (c : 
   apply Finset.sum_subset (Finset.subset_univ _)
   intro b _ hb
   have hb' : ε b ≠ c := fun e => hb (Finset.mem_filter.mpr ⟨Finset.mem_univ _, e⟩)
-  rw [hM _ _ (by rw [eps_blk ε c r]; exact fun e => hb' e.symm), zero_mul]
+  rw [hM _ _ (by rw [_root_.ReciprocityTheory.ChartRestriction.TR.Weyl.blk_mem ε c r]; exact fun e => hb' e.symm), zero_mul]
 
 theorem sp_sub_mul {ε : Fin n → Bool} (c : Bool) {M : Matrix (Fin n) (Fin n) ℂ}
     (hM : M * Jm ε = Jm ε * M) (N : Matrix (Fin n) (Fin n) ℂ) :
@@ -204,7 +200,7 @@ theorem sp_sub_inK {ε : Fin n → Bool} (c : Bool) {X : Matrix (Fin n) (Fin n) 
   ext i j
   have e := congrFun (congrFun hG (blk ε c i)) (blk ε c j)
   simp only [Jm, Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.add_apply, Matrix.zero_apply,
-    Matrix.conjTranspose_apply, eps_blk] at e
+    Matrix.conjTranspose_apply, _root_.ReciprocityTheory.ChartRestriction.TR.Weyl.blk_mem] at e
   simp only [sp_sub, Matrix.add_apply, Matrix.zero_apply, Matrix.conjTranspose_apply,
     Matrix.submatrix_apply]
   have hd : (if c = true then (1 : ℂ) else -1) ≠ 0 := by cases c <;> norm_num
@@ -227,7 +223,7 @@ theorem sp_sub_single_same (ε : Fin n → Bool) (c : Bool) (r s : Fin (cnt ε c
 theorem sp_sub_single_other (ε : Fin n → Bool) {c c' : Bool} (h : c ≠ c') (r s : Fin (cnt ε c)) (x : ℂ) :
     sp_sub ε c' (single (blk ε c r) (blk ε c s) x) = 0 := by
   ext i j
-  have hne : blk ε c r ≠ blk ε c' i := fun e => h (by rw [← eps_blk ε c r, e, eps_blk ε c' i])
+  have hne : blk ε c r ≠ blk ε c' i := fun e => h (by rw [← _root_.ReciprocityTheory.ChartRestriction.TR.Weyl.blk_mem ε c r, e, _root_.ReciprocityTheory.ChartRestriction.TR.Weyl.blk_mem ε c' i])
   simp [sp_sub, Matrix.single_apply, hne]
 
 end ReciprocityTheory.ChartRestriction.TR.Weyl

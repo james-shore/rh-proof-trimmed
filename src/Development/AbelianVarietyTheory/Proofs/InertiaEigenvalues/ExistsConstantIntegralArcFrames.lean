@@ -193,7 +193,7 @@ theorem exists_arcFrame : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   refine ⟨ρ, e, th, y₀, fun i => match i with
     | none => hsu.unit
     | some p => Units.mk0 _ (hLd p.1 p.2), hbe, hth, hte, fun τ x => (hρ τ x).symm, ?_, ?_⟩
-  · refine GlobalTheory.T.arcFrame_change_by_constants hL hL₂ E H Dw l Xo c _ _ Y T.V b a χ W e₁ e th th k 1 hth he (ThMul.refl th) T.Fr _ y₁ y₀
+  · refine _root_.GlobalTheory.ArcQ.isArcFr_of_frChg_const hL hL₂ E H Dw l Xo c _ _ Y T.V b a χ W e₁ e th th k 1 hth he (ThMul.refl th) T.Fr _ y₁ y₀
       hm hy₁ ?_
     rw [hC, map_one, map_one]
     exact hy₀

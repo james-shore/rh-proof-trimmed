@@ -175,7 +175,7 @@ theorem csr_one (w : Pl E) : IsCsr w (1 : (w.adicCompletion E)[X]) := by
 
 theorem kapSign_conj (hU : Unr E) (hn : 1 ≤ n) {w : Pl E} (Q : (w.adicCompletion E)[X]) (y g : UL n w)
     (hy : y.1.val.charpoly.Separable) : kapSign n w Q (g⁻¹ * y * g).1 = kapSign n w Q y.1 :=
-  (GlobalTheory.T.kappa_sign_multiplicative E hU n hn w 1 1 Q y g hy (by simp) isCoprime_one_left (csr_one w) (csr_one w)).2.1
+  (_root_.GlobalTheory.KapSignMul.main E hU n hn w 1 1 Q y g hy (by simp) isCoprime_one_left (csr_one w) (csr_one w)).2.1
 
 abbrev LocCl (n : ℕ) (P : E[X]) (w : Pl E) : Type :=
   {c : TwCl (MonoidHom.id (UL n w)) // c.rep.1.val.charpoly = atPl w P}
@@ -295,7 +295,7 @@ theorem sign_mul (hU : Unr E) (hn : 1 ≤ n) {P Q₁ Q₂ : E[X]} (hP : P ∈ El
   have hs : γ.1.val.charpoly.Separable := by
     rw [hγ]
     exact atPl_separable hP w
-  have key := (GlobalTheory.T.kappa_sign_multiplicative E hU n hn w (atPl w Q₁) (atPl w Q₂) 1 γ 1 hs hd hcw (csr_at hU hP h1 d1 w)
+  have key := (_root_.GlobalTheory.KapSignMul.main E hU n hn w (atPl w Q₁) (atPl w Q₂) 1 γ 1 hs hd hcw (csr_at hU hP h1 d1 w)
     (csr_at hU hP h2 d2 w)).1
   have e : atPl w (Q₁ * Q₂) = atPl w Q₁ * atPl w Q₂ := Polynomial.map_mul _
   rw [e]
@@ -334,7 +334,7 @@ theorem signs (hU : Unr E) (hn : 1 ≤ n) {S : Set (Pl E)} (hS : IsSection S) {P
     refine finprod_mem_induction (fun z : ℂ => z = 1 ∨ z = -1) (Or.inl rfl) ?_ ?_
     · rintro a b (rfl | rfl) (rfl | rfl) <;> norm_num
     · intro w _
-      exact (GlobalTheory.T.kappa_sign_multiplicative E hU n hn w 1 1 (atPl w Q) (x w).1.rep 1 (hsepx w) (by simp) isCoprime_one_left
+      exact (_root_.GlobalTheory.KapSignMul.main E hU n hn w 1 1 (atPl w Q) (x w).1.rep 1 (hsepx w) (by simp) isCoprime_one_left
         (csr_one w) (csr_one w)).2.2
   have hdiv := (GlobalTheory.T.monic_divisor_sign_sum E P hP.1 hP.2.2.1 σ hmul hpm).2
   have hbij : Function.Bijective (fun d : Fac P => (⟨d.1.1, d.2.1, ⟨d.1.2, d.2.2.2.symm⟩⟩ :
@@ -376,7 +376,7 @@ theorem signs (hU : Unr E) (hn : 1 ≤ n) {S : Set (Pl E)} (hS : IsSection S) {P
         obtain ⟨g, hg⟩ := hy1 w
         rw [hg]
         exact kapSign_conj hU hn _ _ _ (hsepx w)
-      obtain ⟨γ, hγP, hγ⟩ := (GlobalTheory.T.unitary_conjugacy_sign_product E hU n hn S hS P hP).2.2 y hyP hyK hyS
+      obtain ⟨γ, hγP, hγ⟩ := (_root_.GlobalTheory.UnitaryClasses.main E hU n hn S hS P hP).2.2 y hyP hyK hyS
       obtain ⟨h, hh⟩ := rep_cls γ
       refine ⟨⟨cls γ, by rw [hh, charpoly_conj', hγP]⟩, fun w hw => ?_⟩
       apply Subtype.ext
@@ -385,7 +385,7 @@ theorem signs (hU : Unr E) (hn : 1 ≤ n) {S : Set (Pl E)} (hS : IsSection S) {P
       obtain ⟨k, hk⟩ := hy1 w
       rw [hh, locPt_conj hU, cls_conj, hg, cls_conj, hk, cls_conj, cls_rep]
     · rintro ⟨r, hr⟩ Q hQ hQP
-      rw [← (GlobalTheory.T.unitary_conjugacy_sign_product E hU n hn S hS P hP).2.1 r.1.rep r.2 Q hQ hQP]
+      rw [← (_root_.GlobalTheory.UnitaryClasses.main E hU n hn S hS P hP).2.1 r.1.rep r.2 Q hQ hQP]
       refine finprod_mem_congr rfl fun w hw => ?_
       have e : (x w).1 = cls (locPt w r.1.rep) := (congrArg Subtype.val (hr w hw)).symm
       obtain ⟨g, hg⟩ := rep_cls (locPt w r.1.rep)
@@ -446,7 +446,7 @@ theorem fixedP (hU : Unr E) (hn : 1 ≤ n) {S : Set (Pl E)} (hS : IsSection S) {
     simpa [mul_assoc] using hw
   case h4 =>
     intro r r' h
-    have := (GlobalTheory.T.unitary_conjugacy_sign_product E hU n hn S hS P hP).1 r.1.rep r'.1.rep r.2 r'.2 fun w hw => by
+    have := (_root_.GlobalTheory.UnitaryClasses.main E hU n hn S hS P hP).1 r.1.rep r'.1.rep r.2 r'.2 fun w hw => by
       have e := congrArg Subtype.val (h w hw)
       exact (cls_eq_iff _ _).1 e
     obtain ⟨g, hg⟩ := this
@@ -502,7 +502,7 @@ theorem geomURat_eq_geomU : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     (∃ w ∈ S, ∀ y, f w y ≠ 0 → y.1.val.charpoly.Separable) →
     geomURat lam (fun γ => ∏ᶠ w ∈ S, twOrb (MonoidHom.id _) (KL n w) (locPt w γ) (f w)) = geomU S lam f := by
   intro E _ _ _ hU n hn S hS lam K' hK' f hf _
-  have hFin := GlobalTheory.T.finite_elliptic_charpolys_support E hU n S hS f (fun w => (hf.1 w).1) hf.2
+  have hFin := _root_.GlobalTheory.FinPolySupp.finpoly E hU n S hS f (fun w => (hf.1 w).1) hf.2
   let F := hFin.toFinset
   have hmemF : ∀ P, P ∈ F ↔ P ∈ Ell E n ∧ ∀ w ∈ S, ∃ y : UL n w, f w y ≠ 0 ∧ y.1.val.charpoly = atPl w P :=
     fun P => hFin.mem_toFinset

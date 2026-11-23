@@ -90,7 +90,7 @@ theorem coef_eq (p m N k : ℕ) [Fact p.Prime] (hm : 1 ≤ m) (hN : 0 < N) (hpN 
   have hNK : (N : K) ≠ 0 := by exact_mod_cast hN.ne'
   rw [pieceTRaw_eq p m N k hm hpN hk ψ hψ ζ]
   rw [sum_congr rfl fun i hi => by
-    rw [GlobalTheory.T.primitiveCharacter_entry_sum_eisenstein_product p m N k K hm hN hpN hk ψ hψ ζ hζ a₀ b₀ t ht,
+    rw [_root_.GlobalTheory.KummerEisensteinGalois.UnitPieceMu.entry_sum p m N k K hm hN hpN hk ψ hψ ζ hζ a₀ b₀ t ht,
       Nat.add_sub_cancel' (Nat.lt_succ_iff.mp (mem_range.mp hi))]]
   split_ifs with h
   · obtain ⟨k', rfl⟩ : ∃ k', k = k' + 2 := ⟨k - 2, by omega⟩

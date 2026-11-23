@@ -243,9 +243,9 @@ theorem hilbert90_matrix_subalgebra_norm_one : ∀ (F F' : Type) [Field F] [Fiel
   set l := Module.finrank F F'
   have hl : 0 < l := Module.finrank_pos
   let b := Module.finBasis F F'
-  have hT := GlobalTheory.T.galoisDescent_sum_basis_smul_ker_bijective F F' s hs B (tw s B hB ε hinv) (tw_semilin s B hB ε hinv)
+  have hT := _root_.GlobalTheory.Shin.galoisDescent_semilinear_bijective F F' s hs B (tw s B hB ε hinv) (tw_semilin s B hB ε hinv)
     (tw_pow_finrank s B hB ε hinv hnrm) (Fin l) b
-  have hT0 := GlobalTheory.T.galoisDescent_sum_basis_smul_ker_bijective F F' s hs B (tw s B hB 1 h1) (tw_semilin s B hB 1 h1)
+  have hT0 := _root_.GlobalTheory.Shin.galoisDescent_semilinear_bijective F F' s hs B (tw s B hB 1 h1) (tw_semilin s B hB 1 h1)
     (tw_pow_finrank s B hB 1 h1 (nrmG_one s _)) (Fin l) b
   obtain ⟨injM, surjM⟩ := sumMap_transfer s B hB ε hinv b hT
   obtain ⟨injN, surjN⟩ := sumMap_transfer s B hB 1 h1 b hT0
@@ -261,7 +261,7 @@ theorem hilbert90_matrix_subalgebra_norm_one : ∀ (F F' : Type) [Field F] [Fiel
   let e : (Fin l → keyP s B ε) ≃ₗ[fix s B] (Fin l → keyP s B 1) :=
     ((LinearEquiv.ofInjective _ injM).trans (LinearEquiv.ofEq _ _ hrange)).trans
       (LinearEquiv.ofInjective _ injN).symm
-  obtain ⟨ψ⟩ := GlobalTheory.T.nonempty_linearEquiv_of_pi_fin_pow_finite (fix s B) (keyP s B ε) (keyP s B 1) l hl ⟨e⟩
+  obtain ⟨ψ⟩ := _root_.GlobalTheory.PowCancel.cancel_pow (fix s B) (keyP s B ε) (keyP s B 1) l hl ⟨e⟩
   have h1N : (1 : Matrix (Fin n) (Fin n) F') ∈ keyP s B 1 :=
     ⟨B.one_mem, by simp [Matrix.map_one _ (map_zero s) (map_one s)]⟩
   set x : Matrix (Fin n) (Fin n) F' := ((ψ.symm ⟨1, h1N⟩ : keyP s B ε) : Matrix (Fin n) (Fin n) F') with hxdef

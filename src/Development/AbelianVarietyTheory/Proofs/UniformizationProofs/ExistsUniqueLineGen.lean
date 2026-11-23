@@ -67,7 +67,7 @@ open GlobalTheory.GtPointsCompare (castGen pairEquiv ptEquiv rel_iff)
 variable {R : Type} [CommRing R] [IsDomain R] {D : DegPre R}
 variable {F : Type} [Field F] [Algebra (FractionRing R) F] {k : ℕ}
 
-theorem hG : GlobalFnsSt := GlobalTheory.abelianSchemeLaws_all.1.globalFns
+alias hG := _root_.GlobalTheory.globalFns_holds
 
 
 theorem phiRel_total (hB : D.TauBimult) (q : QkPt D F k)

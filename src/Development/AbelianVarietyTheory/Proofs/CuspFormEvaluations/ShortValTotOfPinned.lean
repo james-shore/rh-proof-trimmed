@@ -87,10 +87,7 @@ theorem evR_eq_of_point_eq (d : DeltaDat Xo c n) {ψ : (LaI Xo c d ≃ₗ[𝓞 E
     (fun _ => rfl) k y y' (h.trans (Category.comp_id _).symm)
   simpa using e
 
-theorem map_wchar {J : Type} [Fintype J] {K S T : Type} [Field K] [CommRing S] [Algebra K S] [CommRing T] [Algebra K T]
-    (χ : S →ₐ[K] T) (e : J → ℕ) (t : J → Sˣ) :
-    χ (wchar e t) = wchar e (fun i => Units.map (χ : S →* T) (t i)) := by
-  simp [wchar, map_prod, map_pow]
+alias map_wchar := _root_.GlobalTheory.ThetaValueWeight.map_wchar
 
 end GlobalTheory.ShortDescent
 
@@ -106,7 +103,7 @@ theorem shortValTot_of_pinned : Laws → ChartIndepSt2 → ∀ (E : Type) [Field
   have hP₂ := hmap a P hP.1
   obtain ⟨hex, -⟩ := GlobalTheory.T.shortThetaValue_existsUnique_natural_of_laws hL hC E H Dw d.l₂ d.Xo₂ d.c₂ d.nab₂ hnab n Λ N hU hT hO a _ hP₂ (d.w x0)
     (d.eF (betaH (Dw := Dw) c Λ))
-  have hd := GlobalTheory.T.evaluation_lemma_for_nabla_levels hL hC E H Dw l Xo c n d hW₂ hAll₂ hN hLev hA hnab hpin' Λ N hU hT hO a _ hP₂ x0
+  have hd := _root_.GlobalTheory.CoverDescent.shortValue_descends hL hC E H Dw l Xo c n d hW₂ hAll₂ hN hLev hA hnab hpin' Λ N hU hT hO a _ hP₂ x0
     (d.eF (betaH (Dw := Dw) c Λ))
   obtain ⟨hlift, -, hbor⟩ := GlobalTheory.T.framedPoints_lift_to_levelCover hL E H Dw l Xo c n d
   obtain ⟨_, ψ, _, -, hψ⟩ := hpin'

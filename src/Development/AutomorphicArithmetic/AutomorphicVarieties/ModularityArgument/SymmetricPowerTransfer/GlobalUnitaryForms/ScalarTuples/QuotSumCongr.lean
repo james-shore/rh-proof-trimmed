@@ -125,15 +125,11 @@ private theorem tr_det_rat (g : DX Δ) : ∃ a b : K, (mt g).trace = algebraMap 
     rw [h, map_zero] at hd
     exact (Matrix.isUnits_det_units (g : GL (Fin 2) (Lsq K Δ))).ne_zero hd
 
-private theorem mt_mul (a b : DX Δ) : mt (a * b) = mt a * mt b := rfl
-
-private theorem mt_inj {a b : DX Δ} (h : mt a = mt b) : a = b := Subtype.ext (Units.ext h)
-
 private theorem tr_conj (x g : DX Δ) : (mt (x⁻¹ * g * x)).trace = (mt g).trace := by
-  rw [mt_mul, Matrix.trace_mul_comm, ← mt_mul, ← mul_assoc, mul_inv_cancel, one_mul]
+  rw [_root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, Matrix.trace_mul_comm, ← _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, ← mul_assoc, mul_inv_cancel, one_mul]
 
 private theorem det_conj (x g : DX Δ) : (mt (x⁻¹ * g * x)).det = (mt g).det := by
-  rw [mt_mul, Matrix.det_mul_comm, ← mt_mul, ← mul_assoc, mul_inv_cancel, one_mul]
+  rw [_root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, Matrix.det_mul_comm, ← _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, ← mul_assoc, mul_inv_cancel, one_mul]
 
 private theorem mem_ZD (z : DX Δ) : z ∈ ZD Δ ↔ ∃ s : Kˣ, mt z = algebraMap K (Lsq K Δ) s • 1 := by
   unfold ZD
@@ -169,7 +165,7 @@ private theorem rel_inj {a b : K} (hb : b ≠ 0) {δ δ' x z : DX Δ} (hz : z �
     (h : δ' = x⁻¹ * δ * x * z) : a = b ∧ z = 1 := by
   obtain ⟨s, hs⟩ := (mem_ZD z).1 hz
   have e : mt δ' = algebraMap K (Lsq K Δ) s • mt (x⁻¹ * δ * x) := by
-    rw [h, mt_mul, hs, Matrix.mul_smul, Matrix.mul_one]
+    rw [h, _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, hs, Matrix.mul_smul, Matrix.mul_one]
   rw [e, Matrix.trace_smul, tr_conj, h1, smul_eq_mul, ← map_mul] at h1'
   rw [e, Matrix.det_smul, det_conj, h2, Fintype.card_fin, ← map_pow, ← map_mul] at h2'
   have e1 := alg_inj h1'
@@ -179,7 +175,7 @@ private theorem rel_inj {a b : K} (hb : b ≠ 0) {δ δ' x z : DX Δ} (hz : z �
     rw [one_mul]
     calc (s : K) * b = s * (s * a) := by rw [e1]
       _ = b := by rw [← e2]; ring
-  refine ⟨by rw [← e1, hs1, one_mul], mt_inj ?_⟩
+  refine ⟨by rw [← e1, hs1, one_mul], _root_.UpperTheory.V.Z.Sym.Glob.dx_ext ?_⟩
   rw [hs, hs1, map_one, one_smul]
   rfl
 
@@ -284,8 +280,8 @@ private theorem term_eq [CharZero K] {G V : Type} [Group G] [AddCommGroup V] [Mo
       have hw1 := (rel_inj (two_add_ne hτ) (inv_mem hw) t1 t2 t1 t2 e').2
       rw [hw1, mul_one, mul_assoc, eq_inv_mul_iff_mul_eq] at e'
       have e2 := congrArg mt e'
-      rw [mt_mul, mt_mul, hδ, mul_add, add_mul, mul_one, one_mul, add_right_inj] at e2
-      exact (h2 x).2 (mt_inj e2)
+      rw [_root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, hδ, mul_add, add_mul, mul_one, one_mul, add_right_inj] at e2
+      exact (h2 x).2 (_root_.UpperTheory.V.Z.Sym.Glob.dx_ext e2)
     · rintro ⟨w, rfl⟩
       refine ⟨1, one_mem _, ?_⟩
       change (j w)⁻¹ * j z * j w = j z * 1
@@ -402,7 +398,7 @@ theorem UpperTheory.V.Z.Sym.Glob.sideK :
   · rintro g ⟨y, hy⟩
     obtain ⟨τ, hτ, γ', hγ', w, hw, e⟩ := cover_glob hD hι ht g y.out hy
     obtain ⟨x, hx⟩ := (embAlg F Δ τ hΔ (hreg ⟨τ, hτ⟩) (γ ⟨τ, hτ⟩) (hγ ⟨τ, hτ⟩)).2.2 γ' hγ'
-    refine ⟨⟨τ, hτ⟩, x, w, hB.Γ₀ ▸ hw, mt_inj ?_⟩
+    refine ⟨⟨τ, hτ⟩, x, w, hB.Γ₀ ▸ hw, _root_.UpperTheory.V.Z.Sym.Glob.dx_ext ?_⟩
     change mt g = mt (x⁻¹ * j ⟨τ, hτ⟩ (z ⟨τ, hτ⟩) * x * w)
-    have hx1 : mt x⁻¹ * mt x = 1 := by rw [← mt_mul, inv_mul_cancel]; rfl
-    rw [e, hx, mt_mul, mt_mul, mt_mul, mt_mul, mt_mul, hδ, mul_add (mt x⁻¹), add_mul _ _ (mt x), mul_one, hx1]
+    have hx1 : mt x⁻¹ * mt x = 1 := by rw [← _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, inv_mul_cancel]; rfl
+    rw [e, hx, _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, _root_.UpperTheory.V.Z.Sym.Glob.FK.mt_mul, hδ, mul_add (mt x⁻¹), add_mul _ _ (mt x), mul_one, hx1]

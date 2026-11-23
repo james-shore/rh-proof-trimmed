@@ -67,33 +67,6 @@ theorem integral_jnp (R : RD d) {νf : Measure (Yf d)} (hνf : νf.IsAddHaarMeas
       ∫ u, star (b u) * hg R νf f g u := by
   exact KFPB.integral_jnp' R hνf hf hg' hb hb1
 
-theorem arc_add (R : RD d) (X Y : Mx F E d.m d.n) : arc R (X + Y) = arc R X + arc R Y := by
-  exact arc_add' R X Y
-
-theorem arc_realAd (R : RD d) (t : ℝ) (X : Mx F E d.m d.n) : arc R (realAd F t • X) = t • arc R X := by
-  exact arc_realAd' R t X
-
-theorem fin_add_of (R : RD d) {Z : Mx F E d.m d.n} (hZ : finOne F • Z = 0) (X : Mx F E d.m d.n) :
-    fin d (X + Z) = fin d X := by
-  exact fin_add_of' R hZ X
-
-theorem fin_realAd_smul {Z : Mx F E d.m d.n} (hZ : finOne F • Z = 0) (t : ℝ) : finOne F • (realAd F t • Z) = 0 := by
-  exact fin_realAd_smul' hZ t
-
-theorem gau_eq (R : RD d) (X : Mx F E d.m d.n) : gau R X = (Real.exp (-(2 * Real.pi * ‖arc R X‖ ^ 2)) : ℂ) := by
-  exact gau_eq' R X
-
-theorem psi_tw (R : RD d) {W : Mx F E d.m d.n} (hW : finOne F • W = 0) (t : ℝ) (X : Mx F E d.m d.n) :
-    d.B.ψ (d.tt (d.gram (realAd F t • tw R W) X)) =
-      Complex.exp (4 * Real.pi * Complex.I * t * ⟪arc R W, arc R X⟫_ℝ) := by
-  exact psi_tw' R hW t X
-
-theorem psi_sp (R : RD d) {W : Mx F E d.m d.n} (hW : finOne F • W = 0) (s t : ℝ) :
-    d.B.ψ (-(⅟(2 : AF F) * spf d ((realAd F s • W) * (incM F d.b.1.toCols₂)ᵀ)
-      ((realAd F t • tw R W) * (incM F d.b.1.toCols₁)ᵀ))) =
-      Complex.exp (-(2 * Real.pi * Complex.I * s * t * ‖arc R W‖ ^ 2)) := by
-  exact psi_sp' R hW s t
-
 end PositivityTheory.SiegelWeilFormula.KFP
 
 end

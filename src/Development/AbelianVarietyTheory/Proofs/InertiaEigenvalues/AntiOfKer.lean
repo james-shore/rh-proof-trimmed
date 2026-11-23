@@ -160,7 +160,7 @@ theorem det_ne_zero (hPT : PoitouTateTotallyComplex) (hT : TameLocal) (hl : 0 < 
   refine GlobalTheory.T.det_ne_zero_of_lowestForm_ne_zero_presentation A B (π : B →+* A) x₁ x₂ (Bool × Fin D.R.r) a a' Φ' (fun j => Z' (two X σ j.1) j.2)
     (fun j => Z' (two X γ j.1) j.2) (fun j => if j.1 then 1 else ((κ' σ : Bˣ) : B)) Ψ E (fun j => Z (two X σ j.1) j.2)
     (fun j => if j.1 then - y.1 (cConj X σ) j.2 else y.1 σ j.2) l₀ hπ hker h1 h2 h11 (hcard ▸ h22) (hcard ▸ h12)
-    (fun j => ?_) (GlobalTheory.T.universal_cocycle_rows_relation_newPlace hT D N X bkP i s hl M L z p d σ γ h3 hL hp B κ' x₁ x₂ hK' ha' h11 hI hσ Q' a' Φ' Z' hZ')
+    (fun j => ?_) (_root_.GlobalTheory.NewPrimeRel.rel hT D N X bkP i s hl M L z p d σ γ h3 hL hp B κ' x₁ x₂ hK' ha' h11 hI hσ Q' a' Φ' Z' hZ')
     hE1 hE2 hE3 (hcog _ _ _ fun x hx => ?_) ?_
   · split_ifs
     · exact map_one _
@@ -201,9 +201,9 @@ theorem step : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLocal →
   have hMν : nu X i + 1 ≤ M := by omega
   have hp : (X.l i).Prime := (X.lPrime i).out
   by_cases hNF : NF bkP i s M d P (2 * (e + 1) * w + 2)
-  · obtain ⟨P', hE, hSt', -⟩ := GlobalTheory.T.exists_newPlace_frobeniusConjugate_modOpenNormalSubgroup hC D N X i s M R n d A₀ L z P hM1 hz hL hSt hn H S hAdm hLH L 1 hL.1.1 hL.1.2.1
+  · obtain ⟨P', hE, hSt', -⟩ := _root_.GlobalTheory.NewPrimePick.exists_newPlace hC D N X i s M R n d A₀ L z P hM1 hz hL hSt hn H S hAdm hLH L 1 hL.1.1 hL.1.2.1
       le_rfl L.one_mem (fun _ _ => map_one _) (fun b _ => (hSt.2.1 b).1 _ (over_refl _) _ (N.plOm.2 _))
-    exact ⟨P', hE, hSt', (GlobalTheory.T.chebotarevInductionGrowBound_of_presentation hT D N X bkP hS i s hG hl M R n d A₀ L z P P' _ hn hM h3 hz hL hSt' hE).1 hNF⟩
+    exact ⟨P', hE, hSt', (_root_.GlobalTheory.Growth.grow hT D N X bkP hS i s hG hl M R n d A₀ L z P P' _ hn hM h3 hz hL hSt' hE).1 hNF⟩
   unfold NF at hNF
   push Not at hNF
   obtain ⟨Q, hQ, a, Φ, hΦ, F₀, hF₀, hc₀⟩ := hNF
@@ -221,7 +221,7 @@ theorem step : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLocal →
   obtain ⟨F₁, hF₁⟩ := GlobalTheory.TwSys.toLam_surjective X i M (Fin R ⊕ Fin n) (Φ.adjugate b b')
   let K : Set (Fin R ⊕ Fin n) := {q | ∃ j : Fin R, n ≤ j.val ∧ q = .inl j}
   have := X.twistBaseCoefficientRing_residueField_finite i
-  obtain ⟨A, _, _, _, _, t, a₀, hK, htK, ht2, haK, hau, hdvd⟩ := GlobalTheory.T.exists_finiteLocalRing_poly_divides_var_pow (X.O0 i) ((X.l i : X.O0 i) ^ nu X i) e w _ K F₁ he (by
+  obtain ⟨A, _, _, _, _, t, a₀, hK, htK, ht2, haK, hau, hdvd⟩ := _root_.GlobalTheory.NewPrime.LocalRing.exists_finite_local_ring (X.O0 i) ((X.l i : X.O0 i) ^ nu X i) e w _ K F₁ he (by
     obtain ⟨m, h1, h2, h3⟩ := hb F₁ hF₁
     exact ⟨m, h1, by rintro q ⟨j, hj, rfl⟩; exact h2 j hj, h3⟩)
   change Kills i A at hK
@@ -282,12 +282,12 @@ theorem step : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLocal →
     have e1 := congrFun (congrFun (Matrix.mul_adjugate Ψ) u) b'
     rw [hdet, zero_smul] at e1
     exact e1
-  obtain ⟨h, hh, hB⟩ := GlobalTheory.T.exists_smallSubgroup_cocycleForm_ne_zero D N X bkP i s hl M L' z hMν hz hL' A κ Q ρ hSet hK hρ hAnti (hκz z hz) hκL a Ψ Z hZ _ b _ y
+  obtain ⟨h, hh, hB⟩ := _root_.GlobalTheory.NewPrime.FormNonzero.exists_bform_ne_zero D N X bkP i s hl M L' z hMν hz hL' A κ Q ρ hSet hK hρ hAnti (hκz z hz) hκL a Ψ Z hZ _ b _ y
     hx₀ hadj hyc
   obtain ⟨x, hx, -⟩ := (hZ A).1 _ hx₀
   rw [← hx] at hB
-  obtain ⟨U, hUo, hUn, hUL, hUm, hUB⟩ := GlobalTheory.T.exists_open_normal_subgroup_two_cocycles D N X i s hl M L' z hMν hL' A κ ρ hK hρ hκL x y h hh hB
-  obtain ⟨P', hE, hSt', σ, γ, g, hNew, hdσ, hg⟩ := GlobalTheory.T.exists_newPlace_frobeniusConjugate_modOpenNormalSubgroup hC D N X i s M R n d A₀ L z P hM1 hz hL hSt hn H S hAdm hLH U h
+  obtain ⟨U, hUo, hUn, hUL, hUm, hUB⟩ := _root_.GlobalTheory.CocycleKernel.exists_open_normal D N X i s hl M L' z hMν hL' A κ ρ hK hρ hκL x y h hh hB
+  obtain ⟨P', hE, hSt', σ, γ, g, hNew, hdσ, hg⟩ := _root_.GlobalTheory.NewPrimePick.exists_newPlace hC D N X i s M R n d A₀ L z P hM1 hz hL hSt hn H S hAdm hLH U h
     hUo hUn (hUL.trans inf_le_left) hh.1
     (fun c hc => ((hmem h).1 hh).2 _ (by rintro ⟨j, hj, h⟩; cases h; omega))
     (fun c hc => by
@@ -295,9 +295,9 @@ theorem step : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLocal →
         (hmem τ).2 ⟨(hSt.2.1 c).1 _ (over_refl _) _ (N.plOm.2 _) hτ, fun q hq =>
           (hSt.1.2.2 q).2.2.2.1 _ (fun h => hq ⟨c, hc, hSt.1.2.1 _ _ h⟩) _ (N.plOm.2 _) τ hτ⟩
       intro τ hτ
-      have e1 := (GlobalTheory.T.inertiaVanishing_noInvariants_firstHalfPlaces hT D N X bkP i s hG hl M R n d A₀ L z P hMν hz hL hSt A κ _ hK hSet.2.2.2.2.1 (Or.inl rfl) A c).2
+      have e1 := (_root_.GlobalTheory.StageFirst.firstHalf hT D N X bkP i s hG hl M R n d A₀ L z P hMν hz hL hSt A κ _ hK hSet.2.2.2.2.1 (Or.inl rfl) A c).2
         hAnti (fun τ hτ => hκL τ (hI τ hτ)) x τ hτ
-      have e2 := (GlobalTheory.T.inertiaVanishing_noInvariants_firstHalfPlaces hT D N X bkP i s hG hl M R n d A₀ L z P hMν hz hL hSt A κ⁻¹ ρ hK
+      have e2 := (_root_.GlobalTheory.StageFirst.firstHalf hT D N X bkP i s hG hl M R n d A₀ L z P hMν hz hL hSt A κ⁻¹ ρ hK
         (fun g => (hSet.2.2.2.2.1 g).imp fun k hk => by rw [MonoidHom.inv_apply, inv_pow, hk, inv_one]) (Or.inr hρ) A c).2
         (fun g g' hg => by rw [MonoidHom.inv_apply, MonoidHom.inv_apply, hAnti g g' hg])
         (fun τ hτ => by rw [MonoidHom.inv_apply, hκL τ (hI τ hτ), inv_one]) y τ hτ
@@ -306,7 +306,7 @@ theorem step : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLocal →
   by_contra hcon
   push Not at hcon
   have hr : 0 < 2 * D.R.r := by have := hG.2.2.2.2.2.2; omega
-  obtain ⟨B, _, _, j, π, x₁, x₂, hπj, hπk, h1, h2, h11, h22, h12⟩ := GlobalTheory.T.exists_ring_sq_zero_nilpotent_augmented (X.O0 i) A _ hr
+  obtain ⟨B, _, _, j, π, x₁, x₂, hπj, hπk, h1, h2, h11, h22, h12⟩ := _root_.GlobalTheory.SqZeroPow.exists_ring (X.O0 i) A _ hr
   have hK' : Kills i B := fun u hu => by rw [← j.commutes, hK u hu, map_zero]
   let q₀ : Fin R ⊕ Fin (n + 1) := .inr (Fin.last n)
   let q₁ : Fin R ⊕ Fin n := .inl ⟨n, hn⟩

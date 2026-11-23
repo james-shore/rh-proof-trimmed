@@ -52,18 +52,12 @@ namespace GlobalTheory.CompanionTheory.SegLayers
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem term_injective (Δ : Segment k) : Function.Injective Δ.term := fun a b h =>
-  Fin.ext ((IrrGL.nu_natCast_inj (x := Δ.first) Δ.d_pos).1 h)
-
-theorem ms_nodup (Δ : Segment k) : Δ.ms.Nodup :=
-  Multiset.Nodup.map (term_injective Δ) Finset.univ.nodup
-
 theorem ncard_carrier (Δ : Segment k) : Δ.carrier.ncard = Δ.len := by
-  rw [Segment.carrier, ← Set.image_univ, Set.ncard_image_of_injective _ (term_injective Δ)]
+  rw [Segment.carrier, ← Set.image_univ, Set.ncard_image_of_injective _ (_root_.GlobalTheory.SmGL.Segment.term_injective Δ)]
   simp
 
 theorem ms_le {Δ : Segment k} {s : Multiset (IrrGL (k := k))} (h : ∀ x ∈ Δ.carrier, x ∈ s) : Δ.ms ≤ s :=
-  (Multiset.le_iff_subset (ms_nodup Δ)).2 fun _ hx => h _ (Segment.mem_ms.1 hx)
+  (Multiset.le_iff_subset (_root_.GlobalTheory.SmGL.Segment.nodup_ms Δ)).2 fun _ hx => h _ (Segment.mem_ms.1 hx)
 
 theorem exists_longest {s : Multiset (IrrGL (k := k))} {y : IrrGL (k := k)} (hy : y ∈ s) (hc : y.IsCusp) :
     ∃ Γ : Segment k, (∀ x ∈ Γ.carrier, x ∈ s) ∧

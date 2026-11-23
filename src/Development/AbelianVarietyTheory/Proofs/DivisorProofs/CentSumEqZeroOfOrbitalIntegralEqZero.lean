@@ -219,9 +219,9 @@ theorem GlobalTheory.LKDef.DForm.centSum_eq_zero_of_orbK : ∀ (p : ℕ) [Fact p
         ((KHT p G.m G.n 1 G.Fw).map (MulAut.conj g).toMonoidHom) := by
       rw [← conjAct_smul_eq_map', ← conjAct_smul_eq_map']
       exact hf'.1.smul (ConjAct.toConjAct g)
-    exact (h1.trans ((GlobalTheory.T.unitarySimilitudeIntegralSubgroup_commensurated_frobenius p G 1 one_pos).1 g)).trans hf'.1.symm
+    exact (h1.trans ((_root_.GlobalTheory.heckeOperator_integral p G 1 one_pos).1 g)).trans hf'.1.symm
   have hK : ∀ x : G.GAf × Gr G 1, (K.map (MulAut.conj x).toMonoidHom).Commensurable K :=
-    GlobalTheory.LKCountComm.commensurable_prod _ _ (GlobalTheory.T.compactOpenLevel_conj_commensurable p G L) hK'c
+    GlobalTheory.LKCountComm.commensurable_prod _ _ (_root_.GlobalTheory.LKMid.level_conj_commensurable p G L) hK'c
   have hbi : ∀ k ∈ K, ∀ k' ∈ K, ∀ g, F₀ (k * g * k') = F₀ g := by
     intro k hk k' hk' g
     obtain ⟨hk1, hk2⟩ := Subgroup.mem_prod.1 hk
@@ -242,7 +242,7 @@ theorem GlobalTheory.LKDef.DForm.centSum_eq_zero_of_orbK : ∀ (p : ℕ) [Fact p
       calc (t * x * k)⁻¹ * B.emb y * (t * x * k) = k⁻¹ * (x⁻¹ * (t⁻¹ * B.emb y * t) * x) * k := by group
         _ = _ := by rw [e0]
     rw [e, hbi _ (K.inv_mem hk) _ hk]
-  have hstab := GlobalTheory.T.definiteForm_stabilizer_finite_away_from_p p G ha L K' hf'.1 B
+  have hstab := _root_.GlobalTheory.DefStab.finite_locPart p G ha L K' hf'.1 B
   have hfin : ∀ x : G.GAf × Gr G 1, ((Γ' ⊓ K.map (MulAut.conj x).toMonoidHom : Subgroup (G.GAf × Gr G 1)) : Set (G.GAf × Gr G 1)).Finite := by
     intro x
     haveI := hstab x

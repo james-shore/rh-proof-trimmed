@@ -71,16 +71,9 @@ section Frames
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Zm : Model Xo c β}
 
-theorem spMap_inj {R S : Type} [CommRing R] [CommRing S] {f g : R →+* S} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
-
-theorem spMap_comp' {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (f : R →+* S) (g : S →+* T) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]; rfl
-
 theorem spMap_dualMap_comp {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (f : R →+* S) (g : S →+* T) :
     spMap (dualMap g) ≫ spMap (dualMap f) = spMap (dualMap (g.comp f)) := by
-  rw [← spMap_comp']
+  rw [← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
   congr 1
   exact RingHom.ext fun z => by ext <;> simp [dualMap]
 
@@ -130,17 +123,17 @@ theorem ratLin_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   obtain ⟨f₀', hf₀'⟩ := f₀.exists_isMap (functionFieldMap φ) rfl hη
 
   have hch : spMap ((functionFieldMap φ).comp φ₀) = genericFieldPoint X' ≫ φ ≫ s₀ TF.Y Z := by
-    rw [spMap_comp', ← hφ₀, ← Category.assoc, ← Category.assoc]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← hφ₀, ← Category.assoc, ← Category.assoc]
     rw [show spMap (functionFieldMap φ) ≫ (show Sp (X₀ TF.Y Z).functionField ⟶ X₀ TF.Y Z from
         (X₀ TF.Y Z).fromSpecStalk (genericPoint (X₀ TF.Y Z))) = genericFieldPoint X' ≫ φ from
       specMap_functionFieldMap φ]
     simp only [Category.assoc]
   have hσ : ∀ γ, (functionFieldMap φ).comp φ₀ = (functionFieldMap (ρ' γ).asIso.hom).comp ((functionFieldMap φ).comp φ₀) := by
     intro γ
-    refine spMap_inj ?_
+    refine _root_.GlobalTheory.ZM.DenseFib.spMap_inj ?_
     have e1 : spMap (functionFieldMap (ρ' γ).asIso.hom) ≫ genericFieldPoint X' = genericFieldPoint X' ≫ (ρ' γ).asIso.hom :=
       specMap_functionFieldMap _
-    rw [spMap_comp' _ (functionFieldMap (ρ' γ).asIso.hom), hch, ← Category.assoc (spMap _) (genericFieldPoint X'), e1,
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ (functionFieldMap (ρ' γ).asIso.hom), hch, ← Category.assoc (spMap _) (genericFieldPoint X'), e1,
       Category.assoc, hρ]
 
   choose T hT using fun γ => GlobalTheory.T.eigenFrame_transport_cartesian_automorphism TF.Y (φ ≫ (barComp TF.Y Z).ι) G' ψ act' (ρ' γ).asIso (m γ) hG hact (hm γ)
@@ -161,12 +154,12 @@ theorem ratLin_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   choose F hF using fun x : X' => (fy x).exists_isMap (φ.stalkMap x).hom rfl (hxF x)
   have hχ : ∀ x : X', spMap ((φ.stalkMap x).hom.comp (φy x)) =
       (show Sp (X'.presheaf.stalk x) ⟶ X' from X'.fromSpecStalk x) ≫ φ ≫ s₀ TF.Y Z := fun x => by
-    rw [spMap_comp', ← (hDx x).1, ← Category.assoc, ← Category.assoc]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← (hDx x).1, ← Category.assoc, ← Category.assoc]
     exact congrArg (· ≫ s₀ TF.Y Z) (Scheme.SpecMap_stalkMap_fromSpecStalk φ)
   have hφK : ∀ x : X', (functionFieldMap φ).comp φ₀ =
       (algebraMap (X'.presheaf.stalk x) X'.functionField).comp ((φ.stalkMap x).hom.comp (φy x)) := fun x => by
-    refine spMap_inj ?_
-    rw [hch, spMap_comp' _ (algebraMap (X'.presheaf.stalk x) X'.functionField), hχ x, ← Category.assoc]
+    refine _root_.GlobalTheory.ZM.DenseFib.spMap_inj ?_
+    rw [hch, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ (algebraMap (X'.presheaf.stalk x) X'.functionField), hχ x, ← Category.assoc]
     exact congrArg (· ≫ φ ≫ s₀ TF.Y Z) (specAlgebraMap_fromSpecStalk x).symm
   have hxK : ∀ x : X', genericFieldPoint X' ≫ φ ≫ (barComp TF.Y Z).ι =
       spMap (algebraMap (X'.presheaf.stalk x) X'.functionField) ≫
@@ -178,8 +171,8 @@ theorem ratLin_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   have hdet : ∀ (x : X') τ, ((FK x).co f₀' τ).det = functionFieldMap φ (d x τ) := by
     intro x τ
     have hφy : φ₀ = (algebraMap ((X₀ TF.Y Z).presheaf.stalk (φ x)) (X₀ TF.Y Z).functionField).comp (φy x) := by
-      refine spMap_inj ?_
-      rw [← hφ₀, spMap_comp', ← (hDx x).1, ← Category.assoc]
+      refine _root_.GlobalTheory.ZM.DenseFib.spMap_inj ?_
+      rw [← hφ₀, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← (hDx x).1, ← Category.assoc]
       exact congrArg (· ≫ s₀ TF.Y Z) (specAlgebraMap_fromSpecStalk (φ x)).symm
     have hxy : (show Sp (X₀ TF.Y Z).functionField ⟶ X₀ TF.Y Z from
         (X₀ TF.Y Z).fromSpecStalk (genericPoint (X₀ TF.Y Z))) ≫ (barComp TF.Y Z).ι =
@@ -218,7 +211,7 @@ theorem ratLin_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
               (∏ τ, (Fs.isUnit_det_co Ft τ).unit ^ (-a τ)) := by
     intro γ x y st hst hstK
     have hχst : (φ.stalkMap x).hom.comp (φy x) = st.comp ((φ.stalkMap y).hom.comp (φy y)) := by
-      refine spMap_inj ?_
+      refine _root_.GlobalTheory.ZM.DenseFib.spMap_inj ?_
       calc spMap ((φ.stalkMap x).hom.comp (φy x))
           = (show Sp (X'.presheaf.stalk x) ⟶ X' from X'.fromSpecStalk x) ≫ φ ≫ s₀ TF.Y Z := hχ x
         _ = ((show Sp (X'.presheaf.stalk x) ⟶ X' from X'.fromSpecStalk x) ≫ (ρ' γ).asIso.hom) ≫ φ ≫ s₀ TF.Y Z := by
@@ -226,7 +219,7 @@ theorem ratLin_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
         _ = (spMap st ≫ X'.fromSpecStalk y) ≫ φ ≫ s₀ TF.Y Z := by rw [hst]
         _ = spMap st ≫ ((show Sp (X'.presheaf.stalk y) ⟶ X' from X'.fromSpecStalk y) ≫ φ ≫ s₀ TF.Y Z) :=
           Category.assoc _ _ _
-        _ = spMap (st.comp ((φ.stalkMap y).hom.comp (φy y))) := by rw [spMap_comp', hχ y]
+        _ = spMap (st.comp ((φ.stalkMap y).hom.comp (φy y))) := by rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, hχ y]
     have hxs : ((show Sp (X'.presheaf.stalk x) ⟶ X' from X'.fromSpecStalk x) ≫ (ρ' γ).asIso.hom) ≫ φ ≫
         (barComp TF.Y Z).ι = spMap st ≫ ((show Sp (X'.presheaf.stalk y) ⟶ X' from X'.fromSpecStalk y) ≫ φ ≫
           (barComp TF.Y Z).ι) := by

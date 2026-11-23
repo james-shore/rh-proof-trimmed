@@ -78,7 +78,7 @@ theorem sub_abelianScheme : QuotientByFiniteFlatStatement → ZarhinStatement �
     ∀ K : AddSubgroup N, GenAF p (torsFun C T pt) K := by
   intro hQ hZ hD p _ C _ _ _ v R _ _ hint hp hc A _ L hA hL hamp T N _ _ _ pt hpt K
   haveI : IsCommMonObj A := hA.comm
-  have hsub := GlobalTheory.T.torsion_points_finite_flat_subgroup p C v R hint hp A T N pt hpt K
+  have hsub := _root_.GlobalTheory.CompanionTheory.Relay.torsion_points_finite_flat_subgroup p C v R hint hp A T N pt hpt K
   obtain ⟨A', _, L', q, hA', hL', hamp', hq, -, -, -, hker⟩ := hQ R A L hA hL hamp _ _ hsub
   obtain ⟨P, i, r, hi, hr, hir⟩ := hZ C v R hint A' L' hA' hL' hamp'
   haveI : IsCommMonObj P.A := P.isAb.comm
@@ -99,13 +99,13 @@ theorem sub_abelianScheme : QuotientByFiniteFlatStatement → ZarhinStatement �
   letI : Algebra ℤ_[p] R := (Av.zpLift p R hc).toAlgebra
   obtain ⟨⟨T'⟩, cp, -, -, pt', hpt', -⟩ := hD p C v R hint hp hc P
   have hjm : IsMonHom (q ≫ i) := inferInstance
-  obtain ⟨jN, -, hjN, -, hpull⟩ := GlobalTheory.T.torsion_points_isogeny_hopf_order p C v R hint hp A P.A T N pt hpt T' _ pt' hpt'
+  obtain ⟨jN, -, hjN, -, hpull⟩ := _root_.GlobalTheory.CompanionTheory.Relay.torsion_points_isogeny_hopf_order p C v R hint hp A P.A T N pt hpt T' _ pt' hpt'
     (q ≫ i) hjm
-  obtain ⟨hK, hid⟩ := GlobalTheory.T.torsion_points_homomorphism_compatible p C v R hint hp A P.A T N pt hpt T' _ pt' hpt' (q ≫ i) hjm K
+  obtain ⟨hK, hid⟩ := _root_.GlobalTheory.CompanionTheory.Relay.torsion_points_homomorphism_compatible p C v R hint hp A P.A T N pt hpt T' _ pt' hpt' (q ≫ i) hjm K
     hj jN hjN
-  obtain ⟨⟨AA, hAA⟩, -⟩ := GlobalTheory.T.torsion_points_hopf_order p C v R hint hp A T N pt hpt
-  obtain ⟨⟨AP, hAP⟩, -⟩ := GlobalTheory.T.torsion_points_hopf_order p C v R hint hp P.A T' _ pt' hpt'
-  have hinv := GlobalTheory.T.hopf_order_pullback_along_hom p C v R hint hp N AA _ AP jN
+  obtain ⟨⟨AA, hAA⟩, -⟩ := _root_.PositivityTheory.HtPt.Rf.tors_hopf p C v R hint hp A T N pt hpt
+  obtain ⟨⟨AP, hAP⟩, -⟩ := _root_.PositivityTheory.HtPt.Rf.tors_hopf p C v R hint hp P.A T' _ pt' hpt'
+  have hinv := _root_.PositivityTheory.HtPt.Rh.sub_closed p C v R hint hp N AA _ AP jN
     (by rw [hAA, hAP]; exact hpull) (by rw [hAA, hAP]; exact hid)
   rw [hAA, hAP, hK] at hinv
   exact GlobalTheory.T.generation_along_invariants p C R N _ _ _ jN K hinv (gp_polAV hD p C v R hint hp hc P T' _ pt' hpt').1

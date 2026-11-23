@@ -88,7 +88,7 @@ theorem exists_frob_fix_of_eisenstein : GlobalTheory.Published.GlobalArtinRecipr
   set cπ : (W.adicCompletion K)ˣ := Units.map (algebraMap K (W.adicCompletion K)).toMonoidHom yK with hcπ
   have hcu : IsUnifAt W cπ := hunif cπ rfl
   obtain ⟨σ, hσF, hσA⟩ := (hartK.frob W A hAW (artK (localIdele K W cπ))).mp ⟨cπ, hcu, rfl⟩
-  have hN := GlobalTheory.T.artin_restrict_eq_artin_norm_single_place E Ω K art artK hart hartK v W hWv hWuniq yK σ⁻¹ hσA
+  have hN := _root_.GlobalTheory.NormCompat.res_art_eq_art_norm E Ω K art artK hart hartK v W hWv hWuniq yK σ⁻¹ hσA
   refine ⟨σ.restrictScalars E, ?_, ?_, ?_⟩
   · rw [← hnW]; exact hσF
   · have := σ.commutes (IntermediateField.AdjoinSimple.gen E π)

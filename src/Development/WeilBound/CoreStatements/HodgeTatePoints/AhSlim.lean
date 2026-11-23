@@ -54,9 +54,7 @@ namespace PositivityTheory.HtPt.Ah
 
 open GlobalTheory.CompanionTheory.Ar
 
-theorem resK (h₁ : GlobalTheory.CompanionTheory.Hypotheses₂.ResolutionCharZero) (h₂ : GlobalTheory.CompanionTheory.Hypotheses₂.PrincipalisationCharZero) :
-    ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatement :=
-  GlobalTheory.CompanionTheory.Hypotheses₂.ResKSide.resK_of_resolution_principalisation h₁ h₂
+alias resK := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.ResKSide.resK_of_resolution_principalisation
 
 theorem ais (h₁ : GlobalTheory.CompanionTheory.Hypotheses₂.ResolutionCharZero) (h₂ : GlobalTheory.CompanionTheory.Hypotheses₂.PrincipalisationCharZero)
     (hPL : GlobalTheory.CompanionTheory.Hypotheses₂.PoincareLelongInv) : ReciprocityTheory.ChartRestriction.G.Geo.ArithIntersectionSystemStatement :=

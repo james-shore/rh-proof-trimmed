@@ -59,7 +59,7 @@ theorem pRows_of_parts_alt : ∀ (D : D7) (O : Obj D) (c : ℝ) (b : _root_.Glob
       framesOK := b.B.Q.frames hFr
       divRows := hD
       psi := b.psi
-      d0 := _root_.GlobalTheory.T.ind_piece_degree_zero D O c b
+      d0 := _root_.GlobalTheory.Fc.Ind.base_level_rows_eq_dimension_alt D O c b
       export_ := hN
       goodFT := hG
       w1 := fun w hw => ((b.muDef 0 0).2.2.2 w).2 hw

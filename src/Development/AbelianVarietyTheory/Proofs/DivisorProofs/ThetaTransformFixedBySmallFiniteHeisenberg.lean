@@ -173,8 +173,8 @@ theorem schr_fin_fix (F : Type) [Field F] [NumberField F] [Invertible (2 : AF F)
   induction hΦ using Submodule.span_induction with
   | mem Φ h =>
     obtain ⟨f, g, hg, rfl⟩ := h
-    obtain ⟨H1, hH1⟩ := uniform_locConst g hg.1 hg.2
-    obtain ⟨H2, hH2⟩ := char_dot_compact (GlobalTheory.HeisSchA.finChar ψ)
+    obtain ⟨H1, hH1⟩ := _root_.GlobalTheory.locallyConstant_compactSupport_invariant_openAddSubgroup g hg.1 hg.2
+    obtain ⟨H2, hH2⟩ := _root_.GlobalTheory.CharDotKill.charDot_kill (GlobalTheory.HeisSchA.finChar ψ)
       (hψ.comp (continuous_const.prodMk continuous_id)) κ (tsupport g) hg.2
     let c : Af F := (⅟(2 : AF F)).2
     let m : (κ → Af F) →+ (κ → Af F) := DistribSMul.toAddMonoidHom _ c

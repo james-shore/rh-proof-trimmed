@@ -134,7 +134,7 @@ theorem volume_range : ∀ (n : ℕ) (ε : Fin n → Bool) (ι : Type) [Fintype 
   intro n ε ι _ m w Φ hw hc hi hhs μ hμ
   obtain ⟨h0, hinv, hlim⟩ := hμ
   have hcpt : ∀ i, CompactSpace (Formalism.REAL.UJ (allPos (m i))) := fun i => compactSpace_allPos _
-  choose c hcpos hcg _ using fun i => GlobalTheory.GaugeConst.gauge_exists_pos_unique (m i) (allPos (m i))
+  choose c hcpos hcg _ using fun i => _root_.GlobalTheory.GaugeConst.exists_unique_isGauge (m i) (allPos (m i))
   set νi : ∀ i, Measure (Formalism.REAL.UJ (allPos (m i))) :=
     fun i => ENNReal.ofReal (c i) • Formalism.REAL.muG (allPos (m i)) with hνi
   have hfin : ∀ i, IsFiniteMeasure (νi i) := fun i => ⟨by
@@ -220,7 +220,7 @@ private theorem fintype_sum_matrix_mul_eq_sum_mul {n m : ℕ} {ι : Type} [Finty
 theorem exists_frame : ∀ (n : ℕ) (ε : Fin n → Bool) (p q : ℕ), (univ.filter fun a => ε a = true).card = p → (univ.filter fun a => ε a = false).card = q → ∀ (a : ℕ) (j : Fin a → ℕ) (W : Fin (a + 1) → Submodule ℂ (Fin n → ℂ)), IsIsoFlag ε j W → ∃ (T : ∀ i, Matrix (Fin n) (Fin (j i)) ℂ) (P : Matrix (Fin n) (Fin (p - ∑ i, j i)) ℂ) (Q : Matrix (Fin n) (Fin (q - ∑ i, j i)) ℂ), (∀ i, (T i)ᴴ * T i = 1) ∧ (∀ i k, i ≠ k → (T i)ᴴ * T k = 0) ∧ (∀ i k, (T i)ᴴ * Formalism.REAL.Jm ε * T k = 0) ∧ (∀ i, (T i)ᴴ * P = 0) ∧ (∀ i, (T i)ᴴ * Q = 0) ∧ Pᴴ * P = 1 ∧ Qᴴ * Q = 1 ∧ Formalism.REAL.Jm ε * P = P ∧ Formalism.REAL.Jm ε * Q = -Q ∧ (∑ i, (T i * (T i)ᴴ + Formalism.REAL.Jm ε * T i * (T i)ᴴ * Formalism.REAL.Jm ε)) + P * Pᴴ + Q * Qᴴ = 1 ∧ ∀ (l : Fin (a + 1)) (y : Fin n → ℂ), y ∈ W l ↔ (∑ i ∈ univ.filter (fun i : Fin a => i.val < l.val), T i * (T i)ᴴ) *ᵥ y = y := by
   intro n ε p q hp hq a j W hW
   obtain ⟨h0, hmono, hrk, hiso⟩ := hW
-  obtain ⟨T, hTT, hTo, hmem⟩ := GlobalTheory.T.exists_orthonormal_frame_of_flag_alt n a j W h0 hmono hrk
+  obtain ⟨T, hTT, hTo, hmem⟩ := _root_.GlobalTheory.exists_orthonormal_frame_of_flag n a j W h0 hmono hrk
   have hcol : ∀ k (d : Fin (j k)), (fun r => T k r d) ∈ W (Fin.last a) := by
     intro k d
     rw [hmem]

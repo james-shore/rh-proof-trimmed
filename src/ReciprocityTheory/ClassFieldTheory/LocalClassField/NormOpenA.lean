@@ -152,7 +152,7 @@ theorem tower_bijective {L' : IntermediateField ℚ_[p] (PadicAlgCl p)} (h : K �
       (QuotientGroup.mk (x.1.out * resGK (p := p) (K := K) (L := L) h x.2.out) :
         GK p K ⧸ subG p K L')) := by
   have hres : ∀ τ : GK p L, resGK h τ ∈ subG p K L := fun τ => by
-    rw [← range_resGK h]; exact ⟨τ, rfl⟩
+    rw [← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction h]; exact ⟨τ, rfl⟩
   constructor
   · rintro ⟨c, d⟩ ⟨c', d'⟩ hcd
     have h1 : (c.out * resGK h d.out)⁻¹ * (c'.out * resGK h d'.out) ∈ subG p K L' :=
@@ -181,7 +181,7 @@ theorem tower_bijective {L' : IntermediateField ℚ_[p] (PadicAlgCl p)} (h : K �
       have h1 : (QuotientGroup.mk σ : GK p K ⧸ subG p K L).out⁻¹ * σ ∈ subG p K L :=
         QuotientGroup.eq.1 (QuotientGroup.out_eq' _)
       have h1' : (QuotientGroup.mk σ : GK p K ⧸ subG p K L).out⁻¹ * σ ∈ (resGK h).range := by
-        rw [range_resGK h]; exact h1
+        rw [_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction h]; exact h1
       obtain ⟨τ, hτ⟩ := h1'
       refine ⟨(QuotientGroup.mk σ, QuotientGroup.mk τ), ?_⟩
       have h2 : (QuotientGroup.mk τ : GK p L ⧸ subG p L L').out⁻¹ * τ ∈ subG p L L' :=

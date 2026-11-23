@@ -214,20 +214,6 @@ private theorem apply_eq_apply_of_comp_eq {A B C D : Scheme.{u}} (f : A ⟶ B) (
     (f' : A ⟶ D) (g' : D ⟶ C) (e : f ≫ g = f' ≫ g') (x : ↥A) : ⇑g (⇑f x) = ⇑g' (⇑f' x) :=
   congrArg (fun m : A ⟶ C => ⇑m x) e
 
-private theorem mem_boundaryLocus_iff {k : Type u} [Field k] {X : Scheme.{u}}
-    {p : X ⟶ Spec (CommRingCat.of k)} {I : X.IdealSheafData} {m : ℕ}
-    {E : List X.IdealSheafData} (s : MarkedSequenceOfBlowups p I m E) (t : ℕ) (x : ↥(s.schemeAt t)) :
-    x ∈ MarkedSequenceOfBlowups.boundaryLocus s t ↔
-      ∃ D ∈ s.boundary t, x ∈ ((D.support : Set ↥(s.schemeAt t))) := by
-  constructor
-  · intro hx
-    unfold MarkedSequenceOfBlowups.boundaryLocus at hx
-    obtain ⟨D, hD, hxD⟩ := Set.mem_iUnion₂.1 hx
-    exact ⟨D, hD, hxD⟩
-  · rintro ⟨D, hD, hxD⟩
-    unfold MarkedSequenceOfBlowups.boundaryLocus
-    exact Set.mem_iUnion₂.2 ⟨D, hD, hxD⟩
-
 private theorem otherBoundaryLocus_eq_otherLocusOfList {k : Type u} [Field k] {X : Scheme.{u}}
     {p : X ⟶ Spec (CommRingCat.of k)} {I : X.IdealSheafData} {m : ℕ}
     {E : List X.IdealSheafData} (S : MarkedSequenceOfBlowups p I m E) (j t : ℕ) :
@@ -326,7 +312,7 @@ private theorem boundaryLocus_subset_preimage_otherLocus (hres : FunctorialResol
   induction t with
   | zero =>
       intro _ x hx
-      obtain ⟨D, hD, hxD⟩ := (mem_boundaryLocus_iff s 0 x).1 hx
+      obtain ⟨D, hD, hxD⟩ := (_root_.FunctorialResolution.EmbeddedResolution.MarkedSequenceOfBlowups.mem_boundaryLocus_iff s 0 x).1 hx
       rw [MarkedSequenceOfBlowups.boundary_zero] at hD
       obtain ⟨D₀, hD₀, rfl⟩ := List.mem_map.1 hD
       have hD₀' : D₀ ∈ List.map (fun D => D.comap (T.boundary.get ⟨j, hj⟩).subschemeι)
@@ -375,7 +361,7 @@ private theorem boundaryLocus_subset_preimage_otherLocus (hres : FunctorialResol
         exact apply_eq_apply_of_comp_eq _ _ _ _
           (embeddingIntoAmbient_comp_blowupMorphism hres hno T j hj I₀ E₀ s hpr n) y
       have hcenter := preimage_support_center_ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr n
-      obtain ⟨D, hD, hxD⟩ := (mem_boundaryLocus_iff s (n + 1) x).1 hx
+      obtain ⟨D, hD, hxD⟩ := (_root_.FunctorialResolution.EmbeddedResolution.MarkedSequenceOfBlowups.mem_boundaryLocus_iff s (n + 1) x).1 hx
       rw [MarkedSequenceOfBlowups.boundary_succ s n hn] at hD
       rcases List.mem_append.1 hD with hD' | hD'
       · obtain ⟨D₀, hD₀, rfl⟩ := List.mem_map.1 hD'
@@ -390,7 +376,7 @@ private theorem boundaryLocus_subset_preimage_otherLocus (hres : FunctorialResol
           (Scheme.IdealSheafData.mem_support_comap ..).1 hy.1
         have hy2 : ⇑(s.transitionMapSucc n) y ∉ (((s.center n).support) : Set _) := fun hcon =>
           hy.2 ((Scheme.IdealSheafData.mem_support_comap ..).2 hcon)
-        have hIH0 := ihn ((mem_boundaryLocus_iff s n _).2 ⟨D₀, hD₀, hy1⟩)
+        have hIH0 := ihn ((_root_.FunctorialResolution.EmbeddedResolution.MarkedSequenceOfBlowups.mem_boundaryLocus_iff s n _).2 ⟨D₀, hD₀, hy1⟩)
         have hIH : ⇑(embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr n) (⇑(s.transitionMapSucc n) y)
             ∈ unionSupportsExcept ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).boundaryFrom E₀ n) j := hIH0
         obtain ⟨i, hi, hij, hmem⟩ :=

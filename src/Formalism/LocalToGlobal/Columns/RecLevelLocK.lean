@@ -144,25 +144,14 @@ theorem rll_mulVec_single (M : Matrix (Fin n) (Fin n) Rv) (j : Fin n) (x : Rv) (
 variable (h : BasePi ST π)
 include h
 
-private theorem pE_ne_zero : pE ≠ 0 := by
-  intro h0
-  have h1 : π = 0 := by
-    first
-    | exact (map_eq_zero_iff _ (NoZeroSMulDivisors.algebraMap_injective (𝓞 E) E)).1 h0
-    | exact_mod_cast h0
-    | simpa using h0
-  have hc' := h.cop
-  rw [h1, isCoprime_zero_left, map_zero] at hc'
-  exact not_isUnit_zero hc'
-
 theorem rll_pinv_mul (x : Rv) : ιv pE⁻¹ * (ιv pE * x) = x := by
-  rw [← mul_assoc, ← map_mul, inv_mul_cancel₀ (pE_ne_zero h), map_one, one_mul]
+  rw [← mul_assoc, ← map_mul, inv_mul_cancel₀ (_root_.Formalism.L2.Col.BasePi.coe_ne_zero h), map_one, one_mul]
 
 theorem rll_p_mul_pinv (x : Rv) : ιv pE * (ιv pE⁻¹ * x) = x := by
-  rw [← mul_assoc, ← map_mul, mul_inv_cancel₀ (pE_ne_zero h), map_one, one_mul]
+  rw [← mul_assoc, ← map_mul, mul_inv_cancel₀ (_root_.Formalism.L2.Col.BasePi.coe_ne_zero h), map_one, one_mul]
 
 theorem rll_cp_mul (x : Rv) : ιv (star pE / pE) * (ιv pE * x) = ιv (star pE) * x := by
-  rw [← mul_assoc, ← map_mul, div_mul_cancel₀ _ (pE_ne_zero h)]
+  rw [← mul_assoc, ← map_mul, div_mul_cancel₀ _ (_root_.Formalism.L2.Col.BasePi.coe_ne_zero h)]
 
 theorem rll_maps_Sh {g : GL (Fin n) Rv} (hg : ∀ i j, (g : Matrix (Fin n) (Fin n) Rv) i j ∈ 𝒪v)
     (hcol : ∀ i, i ≠ lastIdx n → ∃ s ∈ 𝒪v, (g : Matrix (Fin n) (Fin n) Rv) i (lastIdx n) = ιv (star pE) * s)

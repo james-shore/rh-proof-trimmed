@@ -66,11 +66,6 @@ theorem inclV_mem {L : Submodule (𝓞 E) (Fin n → E)} {w : Fin n → E} (hw :
 theorem one_tmul_mem_intAf {c : Af F} (hc : c ∈ Ohat F) : ((1 : E) ⊗ₜ[F] c) ∈ IntAf F E :=
   Subring.subset_closure (Or.inr ⟨⟨c, hc⟩, rfl⟩)
 
-theorem exists_nat_smul_mem (L : Submodule (𝓞 E) (Fin n → E))
-    (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤) (w : Fin n → E) :
-    ∃ m : ℕ, 0 < m ∧ m • w ∈ L := by
-  first | exact Bl.general_b_fact_third'.goal1 .. | (apply Bl.general_b_fact_third'.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_third'.goal1 <;> assumption)
-
 variable {ι : Type} [Fintype ι] [DecidableEq ι]
 
 theorem exists_lower (b : Module.Basis ι F E) (L : Submodule (𝓞 E) (Fin n → E))
@@ -78,7 +73,7 @@ theorem exists_lower (b : Module.Basis ι F E) (L : Submodule (𝓞 E) (Fin n �
     ∃ d : ℕ, 0 < d ∧ ∀ y : Fin n → E ⊗[F] Af F,
       (∀ j k, coord b (y j) k ∈ Ohat F) → d • y ∈ lamAf (F := F) L := by
   classical
-  choose m hm hmL using fun p : Fin n × ι => exists_nat_smul_mem L hL (Pi.single p.1 (b p.2))
+  choose m hm hmL using fun p : Fin n × ι => _root_.Bl.general_b_fact_third'.goal1 L hL (Pi.single p.1 (b p.2))
   refine ⟨∏ p, m p, Finset.prod_pos fun p _ => hm p, fun y hy => ?_⟩
   have key : ∀ (j : Fin n) (k : ι) (c : Af F), c ∈ Ohat F →
       (∏ p, m p) • Pi.single j (b k ⊗ₜ[F] c) ∈ lamAf (F := F) L := by

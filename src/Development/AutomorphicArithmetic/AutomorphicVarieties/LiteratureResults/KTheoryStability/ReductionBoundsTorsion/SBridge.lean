@@ -61,19 +61,15 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.KB
 
-theorem sChain : SChain := sChain_of
-theorem sEv : SEv := sEv_of
-theorem sSep' : SSep := sSep_of sChain
-theorem sBridge : SBridge := sBridge_of
-theorem sStab : SStab := sStab_of sChain sBridge
-theorem sFin : SFin := sFin_of sBridge
-theorem sPsi : SPsi := sPsi_of sChain
-theorem sAff : SAff := sAff_of sChain sEv sSep' sBridge
-theorem sHecke : SHecke := sHecke_of sChain sEv sSep' sStab sFin sAff
+theorem sStab : SStab := sStab_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sBridge_of
+theorem sFin : SFin := sFin_of _root_.PositivityTheory.KB.sBridge_of
+theorem sPsi : SPsi := sPsi_of _root_.PositivityTheory.KB.sChain_of
+theorem sAff : SAff := sAff_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sEv_of _root_.PositivityTheory.KB.sSep _root_.PositivityTheory.KB.sBridge_of
+theorem sHecke : SHecke := sHecke_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sEv_of _root_.PositivityTheory.KB.sSep sStab sFin sAff
 theorem sPU : SPU := sPU_of sHt_of
 theorem sMom : SMom := TwSMInt2.sMom_of sHt_of
-theorem sWhit : SWhit := sWhit_of sEv sStokes_of
-theorem sCen : SCen := sCen_of sEv
-theorem sLoc : SLoc := sLoc_of sEv
+theorem sWhit : SWhit := sWhit_of _root_.PositivityTheory.KB.sEv_of sStokes_of
+theorem sCen : SCen := sCen_of _root_.PositivityTheory.KB.sEv_of
+theorem sLoc : SLoc := sLoc_of _root_.PositivityTheory.KB.sEv_of
 
 end PositivityTheory.KB

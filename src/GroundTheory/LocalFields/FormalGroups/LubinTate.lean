@@ -346,7 +346,7 @@ include hf0 hf1 hg0 hg1 hreg hunit hdiv in
 theorem existsUnique_of_dvd_defect {ℓ : MvPowerSeries σ A} (hℓ : constantCoeff ℓ = 0) :
     ∃! φ : MvPowerSeries σ A,
       (2 : ℕ∞) ≤ order (φ - ℓ) ∧ PowerSeries.subst φ f = subst (substEach g) φ := by
-  obtain ⟨φ, hφ, huniq⟩ := existsUnique_fixedPoint (step π f g ℓ)
+  obtain ⟨φ, hφ, huniq⟩ := _root_.UpperTheory.Reformulated.B.Ydb5.existsUnique_fixedPoint (step π f g ℓ)
     (step_contract hf0 hf1 hg0 hg1 hreg hunit hdiv ℓ)
   exact ⟨φ, (step_eq_self_iff hf0 hf1 hg0 hg1 hreg hunit hdiv hℓ φ).1 hφ,
     fun ψ hψ => huniq ψ ((step_eq_self_iff hf0 hf1 hg0 hg1 hreg hunit hdiv hℓ ψ).2 hψ)⟩

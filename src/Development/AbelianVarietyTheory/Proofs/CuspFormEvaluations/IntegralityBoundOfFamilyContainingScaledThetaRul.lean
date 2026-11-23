@@ -88,7 +88,7 @@ theorem i2iAt_of_containsTh : ChartIndepSt2 → ∀ (E : Type) [Field E] [Number
   classical
   obtain ⟨hUn, hFT, hxi⟩ := hU σ hσ
   obtain ⟨b, -, hbd, hbo, -, hphi, hpn⟩ := exists_ortho_frame E r ((U σ).X k) x hx
-  obtain ⟨T, Pr, hTr, hq, hPm, hph, hbound⟩ := GlobalTheory.T.unfoldedThetaRule_archimedeanValue_bound hCI E H Dw l Xo c σ r (U σ) k ⟨_, hbd⟩ xR nab hnab hσ hUn
+  obtain ⟨T, Pr, hTr, hq, hPm, hph, hbound⟩ := _root_.GlobalTheory.ThetaLower.thetaRule_sum_lower hCI E H Dw l Xo c σ r (U σ) k ⟨_, hbd⟩ xR nab hnab hσ hUn
     (hFT k _) hbo (hxi k) α hα hMb a n P₁ hP hbp R0 m hrun hm
   obtain ⟨h0, hh, -⟩ := GlobalTheory.T.determinantBlockProduct_rename_torusPolynomial E H Dw n c.F σ P₁ hbp Dw.mult id (fun _ => le_rfl) Function.injective_id
   have hdeg := totalDegree_eq_sum_rows c a n P₁ hP h0 hh

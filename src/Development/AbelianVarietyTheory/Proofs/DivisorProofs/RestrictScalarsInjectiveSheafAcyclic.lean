@@ -64,5 +64,5 @@ theorem GlobalTheory.EtC.restr_injective_acyclic : ∀ (R S : Type) [CommRing R]
   have h2 : Subsingleton (HK R (sgl ((free R).obj P)) ((restr φ).obj I) n) :=
     GlobalTheory.T.subsingleton_etaleHypercohomology_of_retract R _ _ ((restr φ).map i) ((restr φ).map r)
       (by rw [← Functor.map_comp, hir]; exact (restr φ).map_id I) _ n h1
-  obtain ⟨e, -, -⟩ := GlobalTheory.T.exists_natural_homotopyEquiv_chains_constant_presheaf R
-  exact (GlobalTheory.T.quasiIso_hypercohomology_bijective R (e P).hom ((restr φ).obj I) n).1.subsingleton
+  obtain ⟨e, -, -⟩ := _root_.GlobalTheory.EtC.chains_disc_homotopyEquiv R
+  exact (_root_.GlobalTheory.EtC.quasiIso_hypercohomology_bijective' R (e P).hom ((restr φ).obj I) n).1.subsingleton

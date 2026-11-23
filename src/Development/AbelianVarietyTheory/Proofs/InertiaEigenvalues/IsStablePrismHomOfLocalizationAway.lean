@@ -98,7 +98,7 @@ theorem stable_of_isLoc : ∀ (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] (
   ·
     have hgen : GenAway B' (k.f s) (k.f t) := by
       refine ⟨k.f_I t ht, fun x hx => ?_⟩
-      rw [← GlobalTheory.T.prism_hom_map_ideal_eq l R B B' k] at hx
+      rw [← _root_.GlobalTheory.Prism.Rigid.map_I_eq l R B B' k] at hx
       have hx' : x ∈ Ideal.span (k.f '' B.I) := hx
       refine Submodule.span_induction
         (p := fun x _ => ∃ n : ℕ, k.f s ^ n * x ∈ Ideal.span {k.f t}) ?_ ?_ ?_ ?_ hx'

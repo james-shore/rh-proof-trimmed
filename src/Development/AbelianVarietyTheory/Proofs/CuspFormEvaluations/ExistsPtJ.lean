@@ -284,17 +284,10 @@ theorem aug_jS (m : ℕ) (p : Q R d n) : (jetAug R _ m).comp (jP m p) = jetAug R
   show (0 : R) = (MvPolynomial.aeval fun _ => (0 : R)) (MvPolynomial.X j)
   rw [MvPolynomial.aeval_X]
 
-private theorem spMap_jetAug_comp_x_eq_one (m : ℕ) : spMap (jetAug R (Fin d) m) ≫ x m = 1 := by
-  have e : (jetAug R (Fin d) 0).comp (jetZeroR R (Fin d) m) = jetAug R (Fin d) m := by
-    apply jetR_algHom_ext_of_eq_on_zR
-    intro j
-    rfl
-  rw [← e, jet_spMap_square_comm, Category.assoc, hx.2.1 m, MonObj.comp_one]
-
 theorem ptJ_aug (m : ℕ) (p : Q R d n) : spMap (jetAug R _ m) ≫ ptJ x m p = 1 := by
   unfold ptJ
   rw [← Category.assoc, ← jet_spMap_square_comm, aug_jS hx]
-  exact spMap_jetAug_comp_x_eq_one hx m
+  exact _root_.ReciprocityTheory.ChartRestriction.G.Chart.spMap_jetAug_alt hx m
 
 theorem ptJ_trunc (m : ℕ) (p : Q R d n) : spMap (jetTruncR R _ m) ≫ ptJ x (m + 1) p = ptJ x m p := by
   have e : (jetTruncR R (Fin n × Fin d) m).comp (jP (m + 1) p) = (jP m p).comp (jetTruncR R (Fin d) m) := by
@@ -365,7 +358,7 @@ theorem ptJ_zero (m : ℕ) : ptJ x m (0 : Q R d n) = 1 := by
     rw [MvPolynomial.aeval_X, map_zero]
     simp [pj]
   unfold ptJ
-  rw [e, jet_spMap_square_comm, Category.assoc, spMap_jetAug_comp_x_eq_one hx m, MonObj.comp_one]
+  rw [e, jet_spMap_square_comm, Category.assoc, _root_.ReciprocityTheory.ChartRestriction.G.Chart.spMap_jetAug_alt hx m, MonObj.comp_one]
 
 theorem exists_series [IsCommMonObj G] {O : Type} [CommRing O] (a : Geo.Tor.OAct O G) :
     ∃ (F : FGLaw R d) (A : OAct O F),

@@ -130,24 +130,18 @@ namespace GlobalTheory.AscFin.ProjTgt
 
 variable {D : D7}
 
-theorem cT_eq_cT {m n : ℕ} (M : Matrix (Fin m) (Fin n) D.host.E) :
-    Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) M = Mᴴ := Matrix.ext fun _ _ => rfl
-
-theorem gram_herm (V : HSp D) : V.gramᴴ = V.gram :=
-  Matrix.ext fun i j => V.herm.eq (V.frame j) (V.frame i)
-
 section SlopeTestRemainingChoices
 
 variable {A B B₀ : HSp D} {c ρ : ℕ} {ε : D.host.E}
 
 theorem orthogonalExtension_conjTranspose_mul_gram_mul_eq_one (a : HermitianOrthogonalExtensionData A B c ε) : a.aᴴ * B.gram * a.a = antiDiagonalSignGramMatrix c ε := by
-  rw [← cT_eq_cT]; exact a.gram
+  rw [← _root_.GlobalTheory.MixModel.cT_sig]; exact a.gram
 
 theorem besselDatum_auxiliaryVector_orthogonal_image (a : HermitianOrthogonalExtensionData A B c ε) : a.aᴴ * B.gram * frameMat B A a.ι = 0 := by
   have h := a.perp
-  rw [cT_eq_cT] at h
+  rw [_root_.GlobalTheory.MixModel.cT_sig] at h
   have h2 := congrArg Matrix.conjTranspose h
-  simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, gram_herm, Matrix.conjTranspose_zero] at h2
+  simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, _root_.GlobalTheory.MixModel.gram_conjTranspose, Matrix.conjTranspose_zero] at h2
   rw [Matrix.mul_assoc]; exact h2
 
 theorem colsOf_cT_mul {n k m : ℕ} (a : Matrix (Fin n) (Fin c) D.host.E) (f : Fin k → Fin c) (s : Fin k → D.host.E)

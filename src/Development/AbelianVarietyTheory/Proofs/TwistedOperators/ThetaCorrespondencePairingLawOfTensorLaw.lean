@@ -166,7 +166,7 @@ theorem exists_both (h₁ : IsGK a₁) (h₂ : IsGK a₂) (hA : AdmGK R.HK) {U :
       Function.Injective inc ∧ (∀ Z ∈ upq r s, ∀ y, inc (MM.M.act Z y) = b Z (inc y)) ∧
       TIntw a₁ a₂ R.HK MM.M f ∧ TIntw a₁ a₂ R.HK MM.M f' ∧
       (∀ P v, B P v = inc (ctr R _ v (f P))) ∧ ∀ P v, B' P v = inc (ctr R _ v (f' P)) := by
-  obtain ⟨MM, inc, hi, hr, he⟩ := GlobalTheory.T.exists_unitary_module_onto_span_of_intertwining r s (MvPolynomial σ ℂ) U (R.HK.V ⊕ R.HK.V) a₂ b
+  obtain ⟨MM, inc, hi, hr, he⟩ := _root_.GlobalTheory.RealPartAdjointAction.main r s (MvPolynomial σ ℂ) U (R.HK.V ⊕ R.HK.V) a₂ b
     (Sum.elim (fun v => B.flip v) (fun v => B'.flip v)) h₂ hb (by
       rintro (v | v) Z hZ P
       · exact hB.2 Z hZ P v

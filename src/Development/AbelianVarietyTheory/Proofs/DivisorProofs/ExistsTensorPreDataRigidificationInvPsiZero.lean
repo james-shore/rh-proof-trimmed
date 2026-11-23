@@ -99,7 +99,7 @@ theorem GlobalTheory.Mum.TensData.main : ∀ (R : Type) [CommRing R] [IsDomain R
   have hL : Laws := GlobalTheory.lawsAndExpansions.1.1
   have cub := (hL.cube _ P' ⟨P'.L, rig, P'.isLB, hrig⟩ rfl).1.some
   choose psi hpsi hpv using fun y : Fin r → D.toPre.X =>
-    GlobalTheory.T.exists_tensorTrivialisation_powerLattice_points R D.toPre W P'.A P'.L P'.isLB pr w hw (cpt lim y) y (cpt_pr lim y)
+    _root_.GlobalTheory.Mum.tensPsi_exists R D.toPre W P'.A P'.L P'.isLB pr w hw (cpt lim y) y (cpt_pr lim y)
   let D' : DegPre R :=
     { P := P'
       rig := rig

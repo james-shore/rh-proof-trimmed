@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NegIdxOfIsStd
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmall
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsFinCombSingleZero
 
 @[expose] public section
 
@@ -97,13 +98,6 @@ theorem externalProduct_latticeVacua_adjoint_isLatticeVacuum (hψ : IsStdChar D 
     have he' : IsSplitIdem D (cA D e) := GlobalTheory.SplitScalar.isSplitIdem_conj he
     rw [heisenbergOperator_externalProductOnHermitianSum, heis_rd hψ, hf.2 e he _ (h u hu).1 h1,
       hg.2 _ he' _ (h u hu).2 (GlobalTheory.AdjLawPf.adj_half (negSp B) S e _ h2)]
-
-theorem vac_ne_zero {θ : InfFam D} {S T : HSp D} {sS sT LS LT} {f : WO S T → ℂ} (hf : IsVacO ψ θ S T sS sT LS LT f) :
-    f ≠ 0 := by
-  rintro rfl
-  obtain ⟨⟨p, hp⟩, hn⟩ := hf.2.norm
-  have n1 : nrm2 p.1 p.2 (0 : WO S T → ℂ) = 1 := hn p hp
-  simp [nrm2] at n1
 
 theorem externalProduct_readThroughAdjoint_ne_zero {S A B : HSp D} {f : WO S A → ℂ} {g : WO (negSp B) S → ℂ} (hf : f ≠ 0) (hg : g ≠ 0) :
     box2 f (rd S B g) ≠ 0 := by
@@ -168,7 +162,7 @@ theorem vac_eq_smul_vacB : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : GlobalT
   obtain ⟨a, ha⟩ := GlobalTheory.LevelSeries.eq_smul_vacuum W.ψ_std W.θ_is (W.cart_is (.grid i j) ⟨i.2.le, j.2.le⟩)
     (GlobalTheory.ArchRec.LieAtPlace.cart_isCartanInv (frSum AV AV₁)) s0 hΛ hf (f' := vacB ρ i j) key.1 hl
     (fun s => by have := key.2 s; rw [c₁] at this; exact this)
-  have hne : vacB ρ i j ≠ 0 := by rw [e]; exact externalProduct_readThroughAdjoint_ne_zero (vac_ne_zero v1) (vac_ne_zero v2)
+  have hne : vacB ρ i j ≠ 0 := by rw [e]; exact externalProduct_readThroughAdjoint_ne_zero (_root_.GlobalTheory.SeeSaw.Inh.vac_ne_zero v1) (_root_.GlobalTheory.SeeSaw.Inh.vac_ne_zero v2)
   have ha0 : a ≠ 0 := by
     rintro rfl
     exact hne (by rw [ha, zero_smul])

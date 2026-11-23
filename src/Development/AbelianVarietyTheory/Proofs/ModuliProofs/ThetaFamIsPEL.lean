@@ -60,4 +60,4 @@ theorem GlobalTheory.thetaFam_isPEL : Out.Laws → Out.Laws2 → (∀ (S : Schem
     rw [← hs]
     infer_instance
   have : IsLocallyNoetherian F.MM := LocallyOfFiniteType.isLocallyNoetherian F.s
-  exact GlobalTheory.T.exists_isPELTriple_of_dense_fibres h1 h2 h3 E H D g J a bas w w' hpq hbas hw hw' hcl (N' ^ 2) o b em ρ F.MM F.s F.univ hρ hinj F.dense
+  exact _root_.GlobalTheory.PELFamily.exists_isPEL_of_dense h1 h2 h3 E H D g J a bas w w' hpq hbas hw hw' hcl (N' ^ 2) o b em ρ F.MM F.s F.univ hρ hinj F.dense

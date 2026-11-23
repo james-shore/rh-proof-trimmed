@@ -254,13 +254,13 @@ theorem cmp_iso (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.l
     GlobalTheory.IndefiniteRowSideFullHecke.WachCrystallineComparison.CmpIso ((HW l).W K s LL h) ((D.loc l).PD K).p T := by
   have := ((D.loc l).PD K).finK₀
   have : NeZero (Module.finrank ℚ_[l] ↥(K0 K)) := ⟨Module.finrank_pos.ne'⟩
-  have hstd := GlobalTheory.T.wach_lattice_eq_std_powerSeries_at_zero D HW F Cm l K s LL h T hT
-  have hD := GlobalTheory.T.crystallineFrobenius_bijOn_letters_directSum D HW l K s LL h T hT
+  have hstd := _root_.GlobalTheory.NL.AtZero.lat_one_std D HW F Cm l K s LL h T hT
+  have hD := _root_.GlobalTheory.NL.PhiD.phi_letters D HW l K s LL h T hT
   obtain ⟨nb⟩ := GlobalTheory.NL.N_basis D HW F l K s LL h T hT
   exact cmp_iso_of_expansions ((HW l).W K s LL h) Subtype.val_injective T
     (fun i => ex (Cm l) h T i 1) (fun i x => ((Cm l).C K s LL h).tie.cmp_eq T hT i x) hstd
     hD.2.1 hD.2.2.1 nb
-    (fun i y => (((GlobalTheory.T.wachExpansion_basis_divisibility D HW F Cm l K s LL h T hT i 1 (prim_one l)
+    (fun i y => (((_root_.GlobalTheory.NL.LevInj.expansion_basis D HW F Cm l K s LL h T hT i 1 (prim_one l)
         (full_of_std (hstd i))).2 _ nb).2.2 y 1).1)
     (fun i x m hx => by
       have key := ((Cm l).C K s LL h).tie.levB_φ T hT i 1 (prim_one _) x m hx 0

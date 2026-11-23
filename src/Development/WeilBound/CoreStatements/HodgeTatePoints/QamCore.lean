@@ -379,7 +379,7 @@ theorem second (hp : 1 ≤ p) (hL : L.IsLB) (ha : secZ G x p ≫ a = pullback.fs
   have e : trY G x p hp ≫ prZ G x p ≫ pullback.fst G.hom x = prZ G x 1 ≫ pullback.fst G.hom x := by
     rw [← Category.assoc, trY_prZ]
   rw [e]
-  refine GlobalTheory.T.line_bundle_cocycle_pullback_transform _ _ L hL _ _ ?_ (fun j => tU G x _ (s j)) ?_
+  refine _root_.GlobalTheory.CompanionTheory.Ar.Coc.exists_gen_of_units _ _ L hL _ _ ?_ (fun j => tU G x _ (s j)) ?_
   · intro y
     have h := base_eq G x p a ha (trY G x p hp y)
     have h' := congrArg (fun q : Ym G x 1 ⟶ G.left => q y) e

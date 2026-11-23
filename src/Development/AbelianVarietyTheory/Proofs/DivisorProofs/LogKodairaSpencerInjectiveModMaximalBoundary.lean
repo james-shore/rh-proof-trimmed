@@ -97,7 +97,7 @@ theorem logKS_inj_mod_boundary : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
     show genι Y (ξ (closedPoint _)) ∈ U.1
     rw [hξ, hx'x]
     exact hxU
-  have hU : ⊤ ≤ (ξ ≫ genι Y) ⁻¹ᵁ U.1 := top_le_preimage_of_closedPoint _ _ hxU'
+  have hU : ⊤ ≤ (ξ ≫ genι Y) ⁻¹ᵁ U.1 := _root_.GlobalTheory.GenDer.top_le_preimage_of_mem _ _ hxU'
   have h4 := GlobalTheory.ChartDer.logDer_extend_chartRing E H Dw l Xo c Y U D k m' d ξ hxU' hEt hId
   obtain ⟨DR, hDR0, hDRt⟩ := h4
   have hval : ∀ r, valR (ξ ≫ genι Y) U.1 r = ((Scheme.stalkClosedPointTo ξ).hom.comp

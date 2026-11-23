@@ -55,7 +55,7 @@ theorem spMap_comp_spMap' {A A' B : Type} [CommRing A] [CommRing A'] [CommRing B
   simp only [spMap, ← Spec.map_comp]
   rfl
 
-theorem spMap_id' (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 (Sp A) := Spec.map_id _
+alias spMap_id' := _root_.GlobalTheory.LevelFibre.spMap_id'
 
 theorem isLocalRing_sq (K : Type) [Field K] : IsLocalRing (TrivSqZeroExt K (K × K)) :=
   haveI : Nontrivial (TrivSqZeroExt K (K × K)) := TrivSqZeroExt.inl_injective.nontrivial

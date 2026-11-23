@@ -60,16 +60,6 @@ namespace GlobalTheory.UTrans
 
 open GlobalTheory.UTrans.Calc
 
-private theorem sigma_hf_eq_hf_swap {R : Type} [CommRing R] {n : ℕ} (σ : R →+* R)
-    (G : Matrix (Fin n) (Fin n) R) (hσ : ∀ a, σ (σ a) = a) (hG : ∀ a b, σ (G a b) = G b a)
-    (x y : Fin n → R) : σ (GlobalTheory.UTrans.hf σ G x y) = GlobalTheory.UTrans.hf σ G y x := by
-  unfold GlobalTheory.UTrans.hf
-
-  simp only [map_sum, map_mul, hσ, hG]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
-  ring
-
 private theorem hf_add_smul_self {R : Type} [CommRing R] {n : ℕ} (σ : R →+* R)
     (G : Matrix (Fin n) (Fin n) R) (x y : Fin n → R) (c : R) (hc : σ c = c) :
     GlobalTheory.UTrans.hf σ G (x + c • y) (x + c • y) = GlobalTheory.UTrans.hf σ G x x
@@ -117,10 +107,10 @@ theorem real_isotropic_or_one_class : ∀ (K L : Type) [Field K] [Field L] [Char
   right
   push_neg at hiso
   intro x y hx hy
-  obtain ⟨p, hp⟩ := hfix _ (sigma_hf_eq_hf_swap σ G hσ hG x x)
-  obtain ⟨q, hq⟩ := hfix _ (sigma_hf_eq_hf_swap σ G hσ hG y y)
+  obtain ⟨p, hp⟩ := hfix _ (_root_.GlobalTheory.UTrans.Calc.hf_conj σ G hσ hG x x)
+  obtain ⟨q, hq⟩ := hfix _ (_root_.GlobalTheory.UTrans.Calc.hf_conj σ G hσ hG y y)
   obtain ⟨m, hm⟩ := hfix (GlobalTheory.UTrans.hf σ G y x + GlobalTheory.UTrans.hf σ G x y)
-    (by rw [map_add (f := _), sigma_hf_eq_hf_swap σ G hσ hG, sigma_hf_eq_hf_swap σ G hσ hG, add_comm])
+    (by rw [map_add (f := _), _root_.GlobalTheory.UTrans.Calc.hf_conj σ G hσ hG, _root_.GlobalTheory.UTrans.Calc.hf_conj σ G hσ hG, add_comm])
   have hp0 : e p ≠ 0 := by
     intro h
     apply hx

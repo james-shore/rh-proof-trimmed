@@ -124,17 +124,6 @@ section LocalNorms
 
 variable {K : Type*} [Field K] [NumberField K] {L : Type*} [Field L] [NumberField L] [Algebra K L]
 
-theorem pow_finrank_mem_range_finiteLocalNorm (v : HeightOneSpectrum (𝓞 K))
-    (y : (v.adicCompletion K)ˣ) : y ^ finrank K L ∈ (finiteLocalNorm L v).range := by
-  refine ⟨fun w ↦ Units.map (algebraMap (v.adicCompletion K) (w.1.adicCompletion L) :
-    v.adicCompletion K →* w.1.adicCompletion L) y, ?_⟩
-  apply Units.ext
-  rw [coe_finiteLocalNorm, Units.val_pow_eq_pow_val, ← sum_finrank_eq L v,
-    ← Finset.prod_pow_eq_pow_sum]
-  refine Finset.prod_congr rfl fun w _ ↦ ?_
-  rw [Units.coe_map]
-  exact Algebra.norm_algebraMap (S := w.1.adicCompletion L) (y : v.adicCompletion K)
-
 theorem pow_finrank_mem_range_infiniteLocalNorm (v : InfinitePlace K) (y : (v.Completion)ˣ) :
     y ^ finrank K L ∈ (infiniteLocalNorm L v).range := by
   classical
@@ -228,7 +217,7 @@ theorem FirstInequality.secondInequalityRoots (hFI : FirstInequality.{u}) :
     · by_cases hvS : v ∈ S
       · obtain ⟨y, hy⟩ := hxS v hvS
         rw [← hy, powMonoidHom_apply, ← hdeg]
-        exact pow_finrank_mem_range_finiteLocalNorm v y
+        exact _root_.GroundTheory.Global.KummerIndex.pow_finrank_mem_range_finiteLocalNorm v y
       by_cases hvT : v ∈ T
       · rw [range_finiteLocalNorm_eq_top_of_isFiniteSplit v ((splitsCompletely_iff_isFiniteSplit v).1
           (splitsCompletely_of_pow_eq hα hgen v (mem_unitsPowIn.1 (haT v hvT))))]

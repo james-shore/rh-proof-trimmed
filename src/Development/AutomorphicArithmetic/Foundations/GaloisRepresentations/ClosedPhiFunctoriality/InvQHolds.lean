@@ -113,7 +113,7 @@ theorem invQ_holds : InvQ := by
         (F.ε g).map (fun a => ι (WittVector.frobenius (WittVector.frobenius a)))) at e
     rw [← hfr, hσf, hm1, hm2, hm3] at e
     exact e
-  have hL1 := GlobalTheory.T.frobenius_equation_of_twisted_cocycle_defect (Per.Acris l) (phiA l) σ d N k (l : Per.Acris l) (fA bk.E) (f0 bk.E) Q Q' (F.A.map fA) (F.A'.map fA)
+  have hL1 := _root_.GlobalTheory.FrobeniusDefect.frobenius_defect_eq (Per.Acris l) (phiA l) σ d N k (l : Per.Acris l) (fA bk.E) (f0 bk.E) Q Q' (F.A.map fA) (F.A'.map fA)
     (F.A.map f0) (F.A'.map f0) ε' htf ⟨v, hv⟩ he₀ hcomm (map_natCast _ _) (map_natCast _ _) hσe₀ hσA₀ hQQ hBB hAA hQφ h2
   obtain ⟨w₀, hw₀⟩ := he₀
   set D := Q' * ε' * Q.map σ - (l : Per.Acris l) ^ (2 * k) • (1 : Matrix (Fin d) (Fin d) (Per.Acris l)) with hD

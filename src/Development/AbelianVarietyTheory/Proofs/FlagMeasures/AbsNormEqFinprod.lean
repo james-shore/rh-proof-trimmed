@@ -67,10 +67,6 @@ namespace GlobalTheory.IdealResProd
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {sig : E →ₐ[F] E}
 variable {p : HeightOneSpectrum (𝓞 F)}
 
-theorem val_le_iff (A : LocAt F E sig p) (x y : F) :
-    valuation A.Fp (A.ιF x) ≤ valuation A.Fp (A.ιF y) ↔ p.valuation F x ≤ p.valuation F y := by
-  rw [← A.val, (valuation A.Fp).vle_iff_le]
-
 theorem val_unit {K : Type} [Field K] [ValuativeRel K] (u : (𝒪[K])ˣ) :
     valuation K ((u : 𝒪[K]) : K) = 1 :=
   (Valuation.integer.integers (valuation K)).valuation_unit u
@@ -87,7 +83,7 @@ theorem val_unif (A : LocAt F E sig p) {ϖ : 𝒪[A.Fp]} (hϖ : Irreducible ϖ) 
   have hπ0 : π ≠ 0 := by rintro rfl; simp at hπ; exact WithZero.exp_ne_zero hπ.symm
   have hπ1 : valuation A.Fp (A.ιF π) < 1 := by
     have : ¬ valuation A.Fp (A.ιF 1) ≤ valuation A.Fp (A.ιF π) := by
-      rw [val_le_iff, hπ, map_one, not_le, ← WithZero.exp_zero, WithZero.exp_lt_exp]; norm_num
+      rw [_root_.GlobalTheory.HL.PlacesInt.val_le_iff, hπ, map_one, not_le, ← WithZero.exp_zero, WithZero.exp_lt_exp]; norm_num
     simpa using this
   apply le_antisymm
   · obtain ⟨k, u, hk⟩ := GlobalTheory.UnramVal.exists_eq_zpow_mul_unit hϖ ((map_ne_zero A.ιF).2 hπ0)
@@ -102,9 +98,9 @@ theorem val_unif (A : LocAt F E sig p) {ϖ : 𝒪[A.Fp]} (hϖ : Irreducible ϖ) 
       exact (valuation A.Fp).map_add_eq_of_lt_left hz
     obtain ⟨y, hy⟩ := A.dense.mem_nhds hn
     have hy : valuation A.Fp (A.ιF y) = valuation A.Fp ϖ := hy
-    rw [← hy, val_le_iff, hπ]
+    rw [← hy, _root_.GlobalTheory.HL.PlacesInt.val_le_iff, hπ]
     have h1 : ¬ p.valuation F 1 ≤ p.valuation F y := by
-      rw [← val_le_iff A, hy, map_one, map_one, not_le]; exact hlt
+      rw [← _root_.GlobalTheory.HL.PlacesInt.val_le_iff A, hy, map_one, map_one, not_le]; exact hlt
     rw [map_one, not_le] at h1
     by_cases hz : p.valuation F y = 0
     · rw [hz]; exact zero_le
@@ -115,7 +111,7 @@ theorem val_unif (A : LocAt F E sig p) {ϖ : 𝒪[A.Fp]} (hϖ : Irreducible ϖ) 
 theorem mem_pow_iff (A : LocAt F E sig p) {ϖ : 𝒪[A.Fp]} (hϖ : Irreducible ϖ) (x : 𝓞 F) (n : ℕ) :
     x ∈ p.asIdeal ^ n ↔ valuation A.Fp (A.ιF x) ≤ valuation A.Fp ϖ ^ n := by
   obtain ⟨π, hπ⟩ := p.valuation_exists_uniformizer F
-  rw [← val_unif A hϖ hπ, ← map_pow, ← map_pow, val_le_iff, map_pow, hπ, ← WithZero.exp_nsmul,
+  rw [← val_unif A hϖ hπ, ← map_pow, ← map_pow, _root_.GlobalTheory.HL.PlacesInt.val_le_iff, map_pow, hπ, ← WithZero.exp_nsmul,
     ← HeightOneSpectrum.intValuation_le_pow_iff_mem, ← HeightOneSpectrum.valuation_of_algebraMap (K := F)]
   simp
 

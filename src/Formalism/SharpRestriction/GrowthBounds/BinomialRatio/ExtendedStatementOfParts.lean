@@ -161,7 +161,7 @@ theorem extended_statement_of_parts {D : Formalism.BasicNotions.D7} {C0 CYb Cde 
   rw [div_le_iff₀ hNe]
   by_cases hall : ∀ j, kT j ≤ 1
   · by_cases hs1 : ∑ j, kT j ≤ 1
-    · have hsp := Formalism.CountingSumsFrames.Top.shareProd (numSeg X.TT) kT (fun j => Module.finrank O (L₁ j))
+    · have hsp := _root_.Formalism.CountingSumsFrames.share_product_bound (numSeg X.TT) kT (fun j => Module.finrank O (L₁ j))
         (fun j => rkj O C0 CE1 CE2 Cm X j) (fun j => ⟨(hDj j).2.1, hall j⟩) hg
       have hrank' : (1 - X.kapP C0 CE1 CE2 Cm Ckap) * (dimHH (m := X.m) Kf X.TT X.aT X.bT : ℝ) ≤
           gaussianNumber (X.p ^ X.n') (X.m + 1) * ((∏ j, rkj O C0 CE1 CE2 Cm X j : ℕ) : ℝ) := by

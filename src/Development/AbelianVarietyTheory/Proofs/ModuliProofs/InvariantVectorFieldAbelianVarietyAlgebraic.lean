@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.ToricGeometry.TopLePreimageOfValAtNeZero
 
 @[expose] public section
 
@@ -72,18 +73,6 @@ theorem top_le_preimage_of_dualFst_comp {X : Scheme.{0}} (g : Sp (DualNumber ℂ
     exact hker x
   obtain ⟨q, rfl⟩ := hx
   exact h (show q ∈ (⊤ : (Sp ℂ).Opens) from trivial)
-
-private theorem valAt'_app' {X Z : Scheme.{0}} (y : Sp ℂ ⟶ X) (τ : X ⟶ Z) (O : Z.Opens) (f : Γ(Z, O)) :
-    valAt' y (τ ⁻¹ᵁ O) ((τ.app O).hom f) = valAt' (y ≫ τ) O f := by
-  unfold valAt'
-  by_cases h : ⊤ ≤ y ⁻¹ᵁ τ ⁻¹ᵁ O
-  · have h' : ⊤ ≤ (y ≫ τ) ⁻¹ᵁ O := h
-    rw [dite_eq_left h, dite_eq_left h']
-    unfold valAt
-    rw [Scheme.Hom.comp_appLE]
-    rfl
-  · have h' : ¬ ⊤ ≤ (y ≫ τ) ⁻¹ᵁ O := h
-    rw [dite_eq_right h, dite_eq_right h']
 
 private theorem comp_mul_monObj {X Y M : Over (Sp ℂ)} [MonObj M] (f : X ⟶ Y) (g h : Y ⟶ M) :
     f ≫ (g * h) = (f ≫ g) * (f ≫ h) :=
@@ -198,7 +187,7 @@ theorem exists_locDer_of_isDiff {g : ℕ} (A : Over (Sp ℂ)) [GrpObj A] {L : LB
       have hfun : (fun z' => valAt' (u.ex z').left (τ.left ⁻¹ᵁ O) ((τ.left.app O).hom f)) =
           fun z' => valAt' (u.ex (z + z')).left O f := by
         funext z'
-        rw [valAt'_app', ← Over.comp_left, hτ]
+        rw [_root_.GlobalTheory.valAt'_comp, ← Over.comp_left, hτ]
       have hshift : fderiv ℂ (fun z' => valAt' (u.ex (z + z')).left O f) 0 =
           fderiv ℂ (fun z' => valAt' (u.ex z').left O f) z := by
         simpa using fderiv_comp_add_left (𝕜 := ℂ) (f := fun y : Fin g → ℂ => valAt' (u.ex y).left O f)

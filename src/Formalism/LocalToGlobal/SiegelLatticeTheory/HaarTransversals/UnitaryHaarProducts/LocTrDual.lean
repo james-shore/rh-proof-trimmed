@@ -193,11 +193,7 @@ theorem mem_intAd {a : Af F} : a ∈ Formalism.UG.intAd F ↔ ∀ w, Valued.v (a
     | exact Iff.rfl
     | exact ⟨fun h w => h w, fun h w => h w⟩
 
-theorem val_alg (w : HeightOneSpectrum (𝓞 F)) (q : F) :
-    Valued.v (algebraMap F (w.adicCompletion F) q) = w.valuation F q := by
-  first
-    | exact val_coe w q
-    | simp [val_coe]
+alias val_alg := _root_.PIW.AdelClassFin.DictRing.val_alg
 
 theorem bwd (x : Fv F v) (hx : Formalism.L2.SG.LocVol.dV v * x ∈ v.adicCompletionIntegers F)
     (y : Fv F v) (hy : y ∈ v.adicCompletionIntegers F) (q : F)

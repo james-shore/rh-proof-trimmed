@@ -89,12 +89,6 @@ theorem addHaar_eq_gram {ι ι' F G : Type} [Fintype ι] [DecidableEq ι] [Finty
 
 open scoped ComplexConjugate
 
-theorem skew_of_mem {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r)
-    (x : Frame X.Ψ r) (hx : IsOrth X x) (Y : EuclideanSpace ℂ (X.Ψ × Fin r × Fin r))
-    (hY : fromFrame x Y ∈ realLie X.Ψ X.Gm) :
-    (∀ τ a b, Y (τ, b, a) = -((sgn X.p0 a * sgn X.p0 b : ℝ) : ℂ) * conj (Y (τ, a, b))) ∧
-      ∀ τ, ∑ a, Y (τ, a, a) = 0 := GlobalTheory.T.specialUnitaryLieAlgebra_entries_orthonormal_frame X x hx Y hY
-
 theorem re_inner_skew {ι : Type} [Fintype ι] {r : ℕ} (s : Fin r → ℝ) (hs : ∀ a, s a * s a = 1)
     (Y Y' : ι × Fin r × Fin r → ℂ)
     (hY : ∀ τ a b, Y (τ, b, a) = -((s a * s b : ℝ) : ℂ) * conj (Y (τ, a, b)))
@@ -103,16 +97,6 @@ theorem re_inner_skew {ι : Type} [Fintype ι] {r : ℕ} (s : Fin r → ℝ) (hs
       2 * ∑ q : ι × {p : Fin r × Fin r // p.2 < p.1},
         (conj (Y (q.1, q.2.1.1, q.2.1.2)) * Y' (q.1, q.2.1.1, q.2.1.2)).re +
       ∑ τ, ∑ a, (Y (τ, a, a)).im * (Y' (τ, a, a)).im := GlobalTheory.T.skew_family_inner_re_eq_strictLower_add_diagIm s hs Y Y' hY hY'
-
-theorem eq_of_skew {ι : Type} [Fintype ι] {r : ℕ} (s : Fin r → ℝ) (hs : ∀ a, s a * s a = 1)
-    (Y Y' : ι × Fin r × Fin r → ℂ)
-    (hY : ∀ τ a b, Y (τ, b, a) = -((s a * s b : ℝ) : ℂ) * conj (Y (τ, a, b)))
-    (htY : ∀ τ, ∑ a, Y (τ, a, a) = 0)
-    (hY' : ∀ τ a b, Y' (τ, b, a) = -((s a * s b : ℝ) : ℂ) * conj (Y' (τ, a, b)))
-    (htY' : ∀ τ, ∑ a, Y' (τ, a, a) = 0)
-    (hlow : ∀ τ a b, b < a → Y (τ, a, b) = Y' (τ, a, b))
-    (hdiag : ∀ τ (a : Fin r), (a : ℕ) + 1 < r → (Y (τ, a, a)).im = (Y' (τ, a, a)).im) : Y = Y' :=
-  GlobalTheory.T.skew_family_eq_of_strictLower_of_diagIm s hs Y Y' hY htY hY' htY' hlow hdiag
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 
@@ -230,7 +214,7 @@ theorem riemLie_eq_smul_map (E : Type) [Field E] [NumberField E] [IsCMField E] (
   have hT0 : ∀ w, (T0 w : EuclideanSpace ℂ (X.Ψ × Fin r × Fin r)) = frameL x (D w) := fun w => rfl
   have hskw : ∀ w, (∀ τ a b, frameL x (D w) (τ, b, a) = -((s a * s b : ℝ) : ℂ) * conj (frameL x (D w) (τ, a, b))) ∧
       ∀ τ, ∑ a, frameL x (D w) (τ, a, a) = 0 := fun w =>
-    skew_of_mem X x hx _ (by rw [hfv]; exact (hD w).1)
+    _root_.GlobalTheory.SUVol.FrameSkew.entries_of_mem X x hx _ (by rw [hfv]; exact (hD w).1)
   have hT0inj : Function.Injective T0 := by
     intro w w' h
     apply hinj
@@ -238,13 +222,13 @@ theorem riemLie_eq_smul_map (E : Type) [Field E] [NumberField E] [IsCMField E] (
     simpa only [hT0, hfv] using this
   have hT0surj : Function.Surjective T0 := by
     intro Y
-    have hY := skew_of_mem X x hx Y.1 Y.2
+    have hY := _root_.GlobalTheory.SUVol.FrameSkew.entries_of_mem X x hx Y.1 Y.2
     let w : ChartSp X := (WithLp.toLp 2 fun j => Y.1 (((Fintype.equivFin (Ent X)).symm j).1,
         ((Fintype.equivFin (Ent X)).symm j).2.1.1, ((Fintype.equivFin (Ent X)).symm j).2.1.2),
       fun τ k => (Y.1 (τ, ⟨k, by omega⟩, ⟨k, by omega⟩)).im)
     refine ⟨w, Subtype.ext ?_⟩
     rw [hT0]
-    have key := eq_of_skew s hs (fun p => frameL x (D w) p) (fun p => Y.1 p) (hskw w).1 (hskw w).2 hY.1 hY.2
+    have key := _root_.GlobalTheory.skewFamily_eq_of_strictLower_of_diagIm s hs (fun p => frameL x (D w) p) (fun p => Y.1 p) (hskw w).1 (hskw w).2 hY.1 hY.2
       (fun τ a b hab => by
         simp only [frameL_apply, (hD w).2.1 τ a b hab, nmat, dif_pos hab, w, PiLp.toLp_apply, Equiv.symm_apply_apply])
       (fun τ a ha => by
@@ -260,7 +244,7 @@ theorem riemLie_eq_smul_map (E : Type) [Field E] [NumberField E] [IsCMField E] (
     intro w w'
     rw [Submodule.coe_inner, hTw, hTw, PiLp.inner_apply, PiLp.inner_apply]
     simp only [Complex.inner]
-    have hre := re_inner_skew s hs (fun p => frameL x (D w) p) (fun p => frameL x (D w') p) (hskw w).1 (hskw w').1
+    have hre := _root_.GlobalTheory.skew_family_inner_re_split s hs (fun p => frameL x (D w) p) (fun p => frameL x (D w') p) (hskw w).1 (hskw w').1
     have hlow : ∀ (v : ChartSp X) (q : Ent X), frameL x (D v) (q.1, q.2.1.1, q.2.1.2) =
         v.1 (Fintype.equivFin (Ent X) q) := by
       intro v q

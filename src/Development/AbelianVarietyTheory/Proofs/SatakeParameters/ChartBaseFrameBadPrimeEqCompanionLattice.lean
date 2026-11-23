@@ -53,25 +53,9 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.BaseFrameLat
 
-theorem locP_map_equiv' {R W W' : Type*} [CommRing R] [AddCommGroup W] [Module R W] [AddCommGroup W'] [Module R W']
-    (e : W ≃ₗ[R] W') (q : Ideal R) [q.IsPrime] (Λ : Submodule R W) :
-    Formalism.HermitianLatticesTheory.localization₂ q (Λ.map (e : W →ₗ[R] W')) = (Formalism.HermitianLatticesTheory.localization₂ q Λ).map (e : W →ₗ[R] W') := by
-  ext x
-  constructor
-  · rintro ⟨s, hs, z, hz, hzx⟩
-    refine ⟨e.symm x, ⟨s, hs, ?_⟩, by simp⟩
-    have : s • e.symm x = z := by
-      apply e.injective
-      rw [map_smul, e.apply_symm_apply]
-      exact hzx.symm
-    rw [this]
-    exact hz
-  · rintro ⟨y, ⟨s, hs, hy⟩, rfl⟩
-    exact ⟨s, hs, s • y, hy, by simp⟩
-
 theorem locP_mvL_comm {E : Type} [Field E] [NumberField E] [StarRing E] {N : ℕ} (c : GL (Fin N) E) (q : Ideal (𝓞 E)) [q.IsPrime]
     (Λ : Submodule (𝓞 E) (Fin N → E)) : Formalism.HermitianLatticesTheory.localization₂ q (mvL c Λ) = mvL c (Formalism.HermitianLatticesTheory.localization₂ q Λ) :=
-  locP_map_equiv' ((toLE c).restrictScalars (𝓞 E)) q Λ
+  _root_.GlobalTheory.LatAway.locP_map_equiv ((toLE c).restrictScalars (𝓞 E)) q Λ
 
 theorem mvL_one' {E : Type} [Field E] [NumberField E] [StarRing E] {N : ℕ} (Λ : Submodule (𝓞 E) (Fin N → E)) : mvL 1 Λ = Λ := by
   unfold mvL
@@ -107,8 +91,8 @@ theorem GlobalTheory.TwV.baseFrame_std_eq_compan : UnderTie (fun {D L hT Gi Gl K
     exact hc.map _
   have hfg : (((St i hi).K β).lev.Lb).FG := Module.Finite.iff_fg.mp ((St i hi).K β).lev.Lb_fin
   have hsp := ((St i hi).K β).lev.Lb_span
-  have h4 := GlobalTheory.T.companionLattice_adelicLattice_localization_eq D.sp (sigD D) rfl (gramN D i hi) hJ a x.1 x.2 _ hfg hsp (seamP t.seam P.1)
-  have hCfg := GlobalTheory.T.companionHermitianLattice_fg D.sp (gramN D i hi) hJ a _ hfg hsp
+  have h4 := _root_.GlobalTheory.CompanLatAd.locP_companion_latAd D.sp (sigD D) rfl (gramN D i hi) hJ a x.1 x.2 _ hfg hsp (seamP t.seam P.1)
+  have hCfg := _root_.GlobalTheory.compan_fg D.sp (gramN D i hi) hJ a _ hfg hsp
   set C := compan (sp := D.sp) (gramN D i hi) a ((St i hi).K β).lev.Lb with hC
   have hCs : Submodule.span D.host.E (C : Set (Fin (D.R.N i) → D.host.E)) = ⊤ := by
     refine eq_top_iff.2 (hsp ▸ Submodule.span_mono ?_)
@@ -120,5 +104,5 @@ theorem GlobalTheory.TwV.baseFrame_std_eq_compan : UnderTie (fun {D L hT Gi Gl K
     rw [GlobalTheory.T.adelicPointLattice_mul_rationalGL, ← mvL_mul, mul_inv_cancel, mvL_one']
     exact (latAd_rat _ _ _).symm
   rw [e1] at hR
-  have h3 := GlobalTheory.T.localisation_eq_stdAt_of_congruentOne_atPrime (seamP t.seam P.1) _ hd _ _ (mvL (A.fb i hi β P)⁻¹ C) (hCfg.map _) (span_mvL _ _ hCs) (hp.frame P) hR.symm
+  have h3 := _root_.GlobalTheory.CongStdLoc.localization_eq_stdAt_of_congAt (seamP t.seam P.1) _ hd _ _ (mvL (A.fb i hi β P)⁻¹ C) (hCfg.map _) (span_mvL _ _ hCs) (hp.frame P) hR.symm
   rw [← h3, ← locP_mvL_comm, ← mvL_mul, mul_inv_cancel, mvL_one']

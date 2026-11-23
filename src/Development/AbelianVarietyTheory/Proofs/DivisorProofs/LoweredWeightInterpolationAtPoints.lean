@@ -62,6 +62,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.Uppe
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.PoinStatementPf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.SiegelSpaceAlgebraHolds
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsArchOne
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.VanishAtSStatementPf
 
 @[expose] public section
 
@@ -95,8 +96,8 @@ theorem kron_at {r : ℕ} (X : Data E r) (Xa : ArchInM X) (Fl : FlatM X Xa) (la 
   have hMet := GlobalTheory.KronMetric.kronMetric (E := E) GlobalTheory.NormFactor.nfac_transform
   have hSol := GlobalTheory.kronSolve (E := E)
   have hVan := GlobalTheory.KronOff.vanish_off (E := E) GlobalTheory.FrameMeasureClosed.measure_statements.2.1
-      GlobalTheory.vanishAtS_holds GlobalTheory.NormFactor.nfac_transform
-  have hOne := GlobalTheory.KronValue.value_and_integrability (E := E) GlobalTheory.vanishAtS_holds
+      _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.vanishAtS_holds GlobalTheory.NormFactor.nfac_transform
+  have hOne := GlobalTheory.KronValue.value_and_integrability (E := E) _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.vanishAtS_holds
   obtain ⟨bb, m, hbb, hbm, hmar⟩ := hm
   obtain ⟨η, hη, hstr⟩ := hs
   have hn : 0 < nd X := lt_of_lt_of_le (by norm_num) Xa.n_ge

@@ -62,16 +62,6 @@ section Local
 
 variable {K : Type} [Field K] [Valued K (WithZero (Multiplicative ℤ))]
 
-theorem exists_bound {m : ℕ} (A : Matrix (Fin m) (Fin m) K) :
-    ∃ k : ℕ, ∀ r s, Valued.v (A r s) ≤ WithZero.exp (k : ℤ) := by
-  first
-  | exact @_root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp
-  | exact _root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp
-  | (apply _root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp ..)
-
 theorem mul_bound {m : ℕ} {A C : Matrix (Fin m) (Fin m) K} {a c : WithZero (Multiplicative ℤ)}
     (hA : ∀ r s, Valued.v (A r s) ≤ a) (hC : ∀ r s, Valued.v (C r s) ≤ c) (r s : Fin m) :
     Valued.v ((A * C) r s) ≤ a * c := by
@@ -108,8 +98,8 @@ theorem exists_root_rat (E : Type) [Field E] [NumberField E] (P : HeightOneSpect
     refine mul_ne_zero ?_ WithZero.exp_ne_zero
     rw [Valuation.ne_zero_iff]
     exact pow_ne_zero _ (Nat.cast_ne_zero.2 hn.ne')
-  obtain ⟨k₁, hk₁⟩ := exists_bound G₂.1
-  obtain ⟨k₂, hk₂⟩ := exists_bound (G₂⁻¹).1
+  obtain ⟨k₁, hk₁⟩ := _root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp G₂.1
+  obtain ⟨k₂, hk₂⟩ := _root_.GlobalTheory.EntriesExpBound.exists_entries_le_exp (G₂⁻¹).1
   set e := WithZero.log (Valued.v ((n : P.adicCompletion E) ^ 2 * q ^ (N + 1))) with he
   obtain ⟨γ, hγ⟩ := GlobalTheory.DenseGL.dense_two_sided E P m (k₁ + k₂ + (-e).toNat) (G₁ * G₂)
   let γ' : GL (Fin m) (P.adicCompletion E) := Matrix.GeneralLinearGroup.map (algebraMap E (P.adicCompletion E)) γ

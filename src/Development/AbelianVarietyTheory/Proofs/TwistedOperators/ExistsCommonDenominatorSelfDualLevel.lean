@@ -82,7 +82,7 @@ theorem exists_nsmul_single_mem (Λ : Submodule (𝓞 E) (Fin n → E)) (hsp : S
     ∃ c : ℕ, 0 < c ∧ ∀ j, c • (Pi.single j (1 : E) : Fin n → E) ∈ Λ := by
   classical
   obtain ⟨c, hc, h⟩ := GlobalTheory.LatSandwich.exists_nsmul_le (Finset.univ.image fun j : Fin n => (Pi.single j (1 : E) : Fin n → E)) Λ
-    (fun x _ => GlobalTheory.LatSandwich.exists_nsmul_mem_of_span Λ hsp x)
+    (fun x _ => _root_.GlobalTheory.NatMulMemUnitaryExistence.main Λ hsp x)
   exact ⟨c, hc, fun j => h _ (Submodule.subset_span (by simp))⟩
 
 end GlobalTheory.LevelDenom

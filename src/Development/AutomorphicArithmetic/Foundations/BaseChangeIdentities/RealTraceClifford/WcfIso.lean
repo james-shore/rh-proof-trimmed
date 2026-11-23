@@ -67,7 +67,7 @@ theorem UpperTheory.RealTr.wcfIso :
   by_cases hS : hw F ν ⊓ S = ⊥
   · have hbot : S = ⊥ := by
       by_contra hne
-      obtain ⟨x, hxS, hx0, μ, hμ⟩ := Formalism.REAL.kHiExist V n (fun _ => true) F S hfin
+      obtain ⟨x, hxS, hx0, μ, hμ⟩ := _root_.Formalism.REAL.highestWeightExists_holds V n (fun _ => true) F S hfin
         (Formalism.REAL.glRel_kRel _ _ hF.gl) (fun a b _ => hF.unit a b) (fun a b _ => hstb a b) hne
       have hmem : x ∈ hw F μ ⊓ S := ⟨hμ, hxS⟩
       by_cases hμν : μ = ν

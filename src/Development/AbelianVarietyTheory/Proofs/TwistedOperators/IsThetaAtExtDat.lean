@@ -92,10 +92,6 @@ theorem half_add_iff {e : AE D} {t x : Mx D m n} (hx : IsHalf e x) : IsHalf e (t
   · intro h i j
     rw [Matrix.add_apply, mul_add, h i j, hx i j]
 
-theorem map_add_mul (a : AE D) (t x : Mx D m n) : (t + x).map (a * ·) = t.map (a * ·) + x.map (a * ·) := by
-  ext i j
-  simp only [Matrix.map_apply, Matrix.add_apply, mul_add]
-
 theorem mul_nsmul_comm' (a x : AE D) (k : ℕ) : a * (k • x) = k • (a * x) := by
   rw [nsmul_eq_mul, nsmul_eq_mul, mul_left_comm]
 
@@ -129,7 +125,7 @@ theorem extDat_trans {e e' : AE D} (h1 : e * e' = e') (h2 : e' * e' = e') (Λ : 
     GlobalTheory.ChainCol.extDat e e' Λ (fun t => Φ (t + x)) = fun t => GlobalTheory.ChainCol.extDat e e' Λ Φ (t + x) := by
   funext t
   have hxe : IsHalf e x := half_of_half h1 hx
-  simp only [GlobalTheory.ChainCol.extDat, half_add_iff hxe, map_add_mul, map_sub_half h1 h2 hx, add_zero, map_half hx]
+  simp only [GlobalTheory.ChainCol.extDat, half_add_iff hxe, _root_.GlobalTheory.SemiChar.map_mul_add, map_sub_half h1 h2 hx, add_zero, map_half hx]
 
 theorem extDat_sb {e e' : AE D} (h1 : e * e' = e') (h2 : e' * e' = e') (Λ : AddSubgroup (Mx D m n))
     (hstab : ∀ u ∈ Λ, u.map (e' * ·) ∈ Λ) {Φ : Mx D m n → ℂ} (hΦ : IsSBHalf e' Λ Φ) :

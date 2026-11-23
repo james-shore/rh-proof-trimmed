@@ -64,38 +64,14 @@ theorem hform_smul {A : Type} [CommRing A] {n : ℕ} (σ : A →+* A) (J : Matri
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   ring
 
-private theorem hform_fin_sum_smul_left {A : Type} [CommRing A] {n m : ℕ} (σ : A →+* A)
-    (J : Matrix (Fin n) (Fin n) A) (a : Fin m → A) (Y : Fin m → Fin n → A) (z : Fin n → A) :
-    Formalism.UG.hform σ J (∑ c, a c • Y c) z = ∑ c, σ (a c) * Formalism.UG.hform σ J (Y c) z := by
-  unfold Formalism.UG.hform
-
-  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, map_sum, map_mul, Finset.sum_mul,
-  Finset.mul_sum]
-  conv_rhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  conv_rhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun c _ => ?_
-  ring
-
-private theorem hform_fin_sum_smul_right {A : Type} [CommRing A] {n m : ℕ} (σ : A →+* A)
-    (J : Matrix (Fin n) (Fin n) A) (x : Fin n → A) (b : Fin m → A) (Y : Fin m → Fin n → A) :
-    Formalism.UG.hform σ J x (∑ d, b d • Y d) = ∑ d, b d * Formalism.UG.hform σ J x (Y d) := by
-  unfold Formalism.UG.hform
-  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  conv_rhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  conv_rhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun d _ => ?_
-  ring
-
 theorem gram_gen {A : Type} [CommRing A] {n r : ℕ} (σ : A →+* A) (J : Matrix (Fin n) (Fin n) A)
     (U : Matrix (Fin (r + 1)) (Fin (r + 1)) A) (Y : Fin (r + 1) → Fin n → A)
     (hU : ∀ c, U (Fin.last r) c = if c = Fin.last r then 1 else 0)
     (hY : ∀ c d, ¬ (c = Fin.last r ∧ d = Fin.last r) → Formalism.UG.hform σ J (Y c) (Y d) = 0)
     (a b : Fin (r + 1)) :
     Formalism.UG.hform σ J (∑ c, U c a • Y c) (∑ c, U c b • Y c) = Formalism.UG.hform σ J (Y a) (Y b) := by
-  rw [hform_fin_sum_smul_left]
-  simp_rw [hform_fin_sum_smul_right]
+  rw [_root_.PI.LocMassTypW.WGramP.hform_sum_left]
+  simp_rw [_root_.PI.LocMassTypW.WGramP.hform_sum_right]
   rw [Finset.sum_eq_single (Fin.last r)]
   · rw [Finset.sum_eq_single (Fin.last r)]
     · by_cases h : a = Fin.last r ∧ b = Fin.last r

@@ -67,7 +67,7 @@ theorem closingFamilyX_alt_alt : GlobalTheory.Published.FontaineBcris → Formal
     fun i hl π hπ => ?_, fun i π => GlobalTheory.Pass.ambient_h1f_of_local_finiteness hK D i _ π _ (hX.cont i π)⟩
   · exact GlobalTheory.BlockWindow.jointCond_TB_at_range D HW F large₂ (hJ large₂ hA) hP i _ π _ (fun h => hR.1 (Or.inl h))
       (fun h => hR.2.1 (Or.inl h)) (fun h => hR.2.1 (Or.inr h)) (hX.good i) (hcB i)
-  · have hp := _root_.GlobalTheory.T.ptIn_of_ptFam_deRham_away hF D X hX hA.1 i hl π hπ
+  · have hp := _root_.GlobalTheory.pointInputAwayFromTypePrimes_alt hF D X hX hA.1 i hl π hπ
     intro _ w hw _ C τ a
     have hd : ∃ e, GlobalTheory.IndefiniteRowSideFullHecke.CongruenceModuleMatrices.IsDecomp (t := D.R.t) (X.r i π) (X.ρ i π) (D.nd.chi i) e := by
       obtain ⟨e, he⟩ := hp.dec

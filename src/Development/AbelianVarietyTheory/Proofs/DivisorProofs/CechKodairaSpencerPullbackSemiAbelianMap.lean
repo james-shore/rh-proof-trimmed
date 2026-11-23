@@ -121,10 +121,6 @@ end GlobalTheory.KSBaseChange
 
 namespace GlobalTheory.KSBaseChange
 
-theorem valR_add_of_le {A : Type} [CommRing A] {Z : Scheme.{0}} (x : Sp A ⟶ Z) (O : Z.Opens)
-    (h : ⊤ ≤ x ⁻¹ᵁ O) (a b : Γ(Z, O)) : valR x O (a + b) = valR x O a + valR x O b := by
-  simp only [valR, dif_pos h, map_add (f := _)]
-
 theorem valR_zero' {A : Type} [CommRing A] {Z : Scheme.{0}} (x : Sp A ⟶ Z) (O : Z.Opens) :
     valR x O 0 = 0 := by
   unfold valR; split_ifs <;> simp
@@ -143,10 +139,6 @@ theorem fst_valR_of_red {Y : Scheme.{0}} {S : Type} [CommRing S] {g₀ : Sp S �
   conv_rhs => rw [← hr]
   rw [GlobalTheory.CechKS.valR_spMap_comp _ _ _ (GlobalTheory.CechKS.le_preimage_of_red hr h)]
   rfl
-
-theorem snd_dualMap {S S' : Type} [CommRing S] [CommRing S'] (σ : S →+* S') (y : DualNumber S) :
-    (dualMap σ y).snd = σ y.snd := by
-  simp [dualMap]
 
 theorem rel_pair {X X' : Scheme.{0}} {t : SAB H X} {t' : SAB H X'} {g : X' ⟶ X} (mu : SABMap t' t g)
     (U : X.affineOpens) (U' : X'.affineOpens) (hU : U'.1 ≤ g ⁻¹ᵁ U.1) {n : ℕ}
@@ -210,7 +202,7 @@ theorem rel_pair {X X' : Scheme.{0}} {t : SAB H X} {t' : SAB H X'} {g : X' ⟶ X
     refine Finset.sum_congr rfl fun b' _ => ?_
     rw [GlobalTheory.CechKS.valR_spMap_comp _ _ _ (GlobalTheory.CechKS.le_preimage_of_red (hred b') hΩ₀),
       GlobalTheory.CechKS.valR_spMap_comp _ _ _ (GlobalTheory.CechKS.le_preimage_of_red (hred b) hO₀),
-      GlobalTheory.CechKS.valR_spMap_comp σ g₀ Ω hΩ₀, snd_dualMap, snd_dualMap, map_mul, map_mul, map_mul]
+      GlobalTheory.CechKS.valR_spMap_comp σ g₀ Ω hΩ₀, _root_.GlobalTheory.CechKS.dualMap_snd, _root_.GlobalTheory.CechKS.dualMap_snd, map_mul, map_mul, map_mul]
     rfl
   intro S _ _ φS g₀ w hg₀ hO₀ hw
   set ψ := (g.appLE U.1 U'.1 hU).hom with hψ
@@ -235,16 +227,16 @@ theorem rel_pair {X X' : Scheme.{0}} {t : SAB H X} {t' : SAB H X'} {g : X' ⟶ X
   case add =>
     intro O' hO' h x y
     have hA : ∀ b, valR (w b) O' (x + y) = valR (w b) O' x + valR (w b) O' y := fun b =>
-      valR_add_of_le _ _ (hwO b h) x y
+      _root_.GlobalTheory.Points.valR_add _ _ (hwO b h) x y
     simp only [Δ, (he₁.1 O' (hreg₁ hO')), (he₂.1 O' (hreg₂ hO')), hA, TrivSqZeroExt.snd_add, mul_add,
       Finset.sum_add_distrib]
-    rw [add_sub_add_comm, valR_add_of_le _ _ h]
+    rw [add_sub_add_comm, _root_.GlobalTheory.Points.valR_add _ _ h]
     ring
   case mul =>
     intro O' hO' h x y
     have hM : ∀ b, (valR (w b) O' (x * y)).snd = valR g₀ O' x * (valR (w b) O' y).snd +
         valR g₀ O' y * (valR (w b) O' x).snd := fun b => by
-      rw [GlobalTheory.CechKSSmul.valR_mul_of_le _ _ (hwO b h), TrivSqZeroExt.snd_mul, fst_valR_of_red (hred b) h,
+      rw [_root_.GlobalTheory.Points.valR_mul _ _ (hwO b h), TrivSqZeroExt.snd_mul, fst_valR_of_red (hred b) h,
         fst_valR_of_red (hred b) h]
       simp [smul_eq_mul, MulOpposite.smul_eq_mul_unop]
       ring
@@ -255,7 +247,7 @@ theorem rel_pair {X X' : Scheme.{0}} {t : SAB H X} {t' : SAB H X'} {g : X' ⟶ X
     simp only [Δ, (he₁.2.1 O' (hreg₁ hO')), (he₂.2.1 O' (hreg₂ hO')), hM, mul_add, Finset.sum_add_distrib, hS]
     rw [GlobalTheory.CechKSSmul.valR_sub_of_le _ _ h, GlobalTheory.CechKSSmul.valR_sub_of_le _ _ h,
       GlobalTheory.CechKSSmul.valR_sub_of_le _ _ h]
-    simp only [valR_add_of_le _ _ h, GlobalTheory.CechKSSmul.valR_mul_of_le _ _ h]
+    simp only [_root_.GlobalTheory.Points.valR_add _ _ h, _root_.GlobalTheory.Points.valR_mul _ _ h]
     ring
   case res =>
     intro O₁ O₂ h hO₁ hO₂ x

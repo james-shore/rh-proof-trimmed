@@ -61,6 +61,4 @@ theorem Setup.hasExt (σ : Setup) : HasExt (awayMap σ.f) σ.A := by
   obtain ⟨E⟩ := GlobalTheory.T.nonempty_descentSeparatedEmbedding σ hc
   exact GlobalTheory.T.extendsToSemiAbelian_of_local_groups σ E hc (GlobalTheory.T.exists_localGroup_range_union_closedFibres σ E hc)
 
-theorem hasExt_of_setup : ∀ σ : Setup, HasExt (awayMap σ.f) σ.A := Setup.hasExt
-
 end GlobalTheory.Desc

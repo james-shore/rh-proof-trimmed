@@ -133,19 +133,12 @@ variable {k : Type} [Field k] {V : Type} [AddCommGroup V] [Module k⸨X⸩ V] [M
 theorem vv_ne : vv k ≠ 0 := by
   unfold vv; exact HahnSeries.single_ne_zero one_ne_zero
 
-theorem vv_eq : vv k = ((PowerSeries.X : k⟦X⟧) : k⸨X⸩) := by
-  unfold vv; simp
-
-theorem coe_smul (b : k⟦X⟧) (x : V) : (b : k⸨X⸩) • x = b • x :=
-  algebraMap_smul k⸨X⸩ b x
-
-theorem mem_sh {a : ℤ} {N : Submodule k⟦X⟧ V} {x : V} : x ∈ sh a N ↔ ∃ y ∈ N, vv k ^ a • y = x := by
-  unfold sh; rw [Submodule.mem_map]; rfl
+alias mem_sh := _root_.GlobalTheory.PhiGam.Window.mem_sh_iff
 
 theorem smul_mem_sh {a : ℤ} (b : ℤ) {N : Submodule k⟦X⟧ V} {x : V} (h : x ∈ sh a N) :
     vv k ^ b • x ∈ sh (a + b) N := by
   obtain ⟨y, hy, rfl⟩ := mem_sh.1 h
-  exact mem_sh.2 ⟨y, hy, by rw [smul_smul, ← zpow_add₀ vv_ne, add_comm]⟩
+  exact mem_sh.2 ⟨y, hy, by rw [smul_smul, ← zpow_add₀ _root_.GlobalTheory.PhiGam.Window.vv_ne_zero, add_comm]⟩
 
 theorem sh_zero (N : Submodule k⟦X⟧ V) : sh 0 N = N := by
   ext x; simp [mem_sh]
@@ -159,7 +152,7 @@ theorem sh_sh (a b : ℤ) (N : Submodule k⟦X⟧ V) : sh b (sh a N) = sh (a + b
   · intro h
     refine mem_sh.2 ⟨vv k ^ (-b) • x, ?_, ?_⟩
     · simpa using smul_mem_sh (-b) h
-    · rw [smul_smul, ← zpow_add₀ vv_ne]; simp
+    · rw [smul_smul, ← zpow_add₀ _root_.GlobalTheory.PhiGam.Window.vv_ne_zero]; simp
 
 theorem sh_mono (a : ℤ) {N P : Submodule k⟦X⟧ V} (h : N ≤ P) : sh a N ≤ sh a P :=
   Submodule.map_mono h
@@ -169,7 +162,7 @@ theorem sh_anti {a b : ℤ} (h : a ≤ b) (N : Submodule k⟦X⟧ V) : sh b N �
   obtain ⟨y, hy, rfl⟩ := mem_sh.1 hx
   obtain ⟨m, rfl⟩ := Int.le.dest h
   refine mem_sh.2 ⟨(PowerSeries.X ^ m : k⟦X⟧) • y, N.smul_mem _ hy, ?_⟩
-  rw [← coe_smul, smul_smul, zpow_add₀ vv_ne, zpow_natCast, vv_eq, map_pow]
+  rw [← _root_.GlobalTheory.PhiGam.Window.coe_smul_eq, smul_smul, zpow_add₀ _root_.GlobalTheory.PhiGam.Window.vv_ne_zero, zpow_natCast, _root_.GlobalTheory.PhiGam.Window.vv_coe, map_pow]
 
 theorem nab_apply (g : V →ₗ[k] V) (x : V) : nab g x = vv k ^ (-1 : ℤ) • (g x - x) := by
   rw [zpow_neg_one]; rfl
@@ -187,7 +180,7 @@ theorem span_le {ι : Type} (e : ι → V) (P : Submodule k⟦X⟧ V) (hP : Subm
   rw [hd, add_smul, algebraMap_smul]
   refine Submodule.add_mem_sup (Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)) ?_
   refine mem_sh.2 ⟨d • e i, P.smul_mem _ he, ?_⟩
-  rw [zpow_one, vv_eq, coe_smul, mul_smul]
+  rw [zpow_one, _root_.GlobalTheory.PhiGam.Window.vv_coe, _root_.GlobalTheory.PhiGam.Window.coe_smul_eq, mul_smul]
 
 theorem fin_quot (N : Submodule k⟦X⟧ V) (hN : N.FG) (a : ℤ) (m : ℕ) :
     ∃ S : Submodule k V, FiniteDimensional k S ∧
@@ -225,7 +218,7 @@ theorem phi_sh {l : ℕ} (R : RingPG k l) (f : V →ₗ[k] V) (hf : Semi R.φ f)
   obtain ⟨z, hz, rfl⟩ := mem_sh.1 hy
   obtain ⟨u, hu⟩ := R.φ_v
   refine mem_sh.2 ⟨((u : k⟦X⟧) ^ t) • f z, Submodule.smul_mem _ _ (Submodule.subset_span ⟨z, hz, rfl⟩), ?_⟩
-  rw [hf, zpow_natCast, zpow_natCast, map_pow, hu, ← coe_smul, smul_smul, map_pow, mul_pow, ← pow_mul, mul_comm]
+  rw [hf, zpow_natCast, zpow_natCast, map_pow, hu, ← _root_.GlobalTheory.PhiGam.Window.coe_smul_eq, smul_smul, map_pow, mul_pow, ← pow_mul, mul_comm]
 
 theorem psi_mem (f ψ : V →ₗ[k] V) (ψ0 : k⸨X⸩ →ₗ[k] k⸨X⸩) (h : ∀ (a : k⸨X⸩) x, ψ (a • f x) = ψ0 a • x) (a : ℤ)
     (h0 : ∀ b : k⟦X⟧, ∃ c : k⟦X⟧, (c : k⸨X⸩) = ψ0 (vv k ^ a * (b : k⸨X⸩))) (N : Submodule k⟦X⟧ V)
@@ -238,7 +231,7 @@ theorem psi_mem (f ψ : V →ₗ[k] V) (ψ0 : k⸨X⸩ →ₗ[k] k⸨X⸩) (h : 
     obtain ⟨x, hx, rfl⟩ := hx
     intro b
     obtain ⟨c, hc⟩ := h0 b
-    rw [← coe_smul, smul_smul, h, ← hc, coe_smul]
+    rw [← _root_.GlobalTheory.PhiGam.Window.coe_smul_eq, smul_smul, h, ← hc, _root_.GlobalTheory.PhiGam.Window.coe_smul_eq]
     exact N.smul_mem _ hx
   | zero => intro b; simp
   | add x y _ _ hx hy => intro b; rw [smul_add, smul_add, map_add (f := _)]; exact N.add_mem (hx b) (hy b)

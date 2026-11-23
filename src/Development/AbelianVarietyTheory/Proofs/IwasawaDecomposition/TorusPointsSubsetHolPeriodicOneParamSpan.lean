@@ -119,23 +119,6 @@ theorem exists_eq_expPt [Module.Free ℤ Λ] (t : Over.mk (𝟙 (Sp ℂ)) ⟶ sp
   rw [AddMonoidHom.smul_apply, smul_eq_mul, ← h1]
   simp
 
-private theorem isHolTo_comp_continuousLinearMap {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {X Y : Scheme.{0}}
-    {B : Set V} {f : V → (Sp ℂ ⟶ X)} (hf : IsHolTo B f) (g : X ⟶ Y) : IsHolTo B fun b => f b ≫ g := by
-  intro U s
-  obtain ⟨h1, h2⟩ := hf (g ⁻¹ᵁ U) ((g.app U).hom s)
-  have key : ∀ b, valAt' (f b ≫ g) U s = valAt' (f b) (g ⁻¹ᵁ U) ((g.app U).hom s) := by
-    intro b
-    unfold valAt'
-    by_cases hb : ⊤ ≤ (f b ≫ g) ⁻¹ᵁ U
-    · have hb' : ⊤ ≤ f b ⁻¹ᵁ g ⁻¹ᵁ U := hb
-      rw [dite_eq_left hb, dite_eq_left hb']
-      unfold valAt
-      rw [Scheme.Hom.comp_appLE]
-      rfl
-    · have hb' : ¬ ⊤ ≤ f b ⁻¹ᵁ g ⁻¹ᵁ U := hb
-      rw [dite_eq_right hb, dite_eq_right hb']
-  exact ⟨h1, h2.congr fun b _ => key b⟩
-
 theorem isHolTo_expPt {m : ℂ → Λ →+ ℂ} (hm : ∀ x, Differentiable ℂ fun s => m s x) :
     IsHolTo Set.univ fun s => (show Sp ℂ ⟶ _ from (expPt (m s)).left) := by
   let ψ : ℂ → (AddMonoidAlgebra ℂ Λ →+* ℂ) := fun s =>
@@ -174,7 +157,7 @@ theorem isHolTo_expPt {m : ℂ → Λ →+ ℂ} (hm : ∀ x, Differentiable ℂ 
     · intro a c
       simp only [hψs]
       exact ((hm a).cexp.const_mul c).differentiableOn
-  have hhol := isHolTo_comp_continuousLinearMap (GlobalTheory.ThetaValueCont.isHolTo_spMap isOpen_univ ψ hd)
+  have hhol := _root_.GlobalTheory.LocLift.isHolTo_comp_hom (GlobalTheory.ThetaValueCont.isHolTo_spMap isOpen_univ ψ hd)
     (SplitTorus.univPt Λ (𝟙 (Spec (CommRingCat.of ℂ)))).left
   convert hhol using 1
   funext s
@@ -265,7 +248,7 @@ def pushHom [IsMonHom i] : (Over.mk (𝟙 (Sp ℂ)) ⟶ splitTorus (Spec (.of �
 theorem isPerHol_push [IsMonHom i] (n : Λ →+ ℤ) : IsPerHol G y fun s => pushHom i (oneParam n s) := by
   unfold IsPerHol
   refine ⟨fun s t => by simp only [oneParam_add, map_mul], ?_, by simp only [oneParam_period, map_one]⟩
-  exact isHolTo_comp_continuousLinearMap (isHolTo_comp_continuousLinearMap (isHolTo_oneParam n) i.left) (pullback.fst G.hom y)
+  exact _root_.GlobalTheory.LocLift.isHolTo_comp_hom (_root_.GlobalTheory.LocLift.isHolTo_comp_hom (isHolTo_oneParam n) i.left) (pullback.fst G.hom y)
 
 end Push
 

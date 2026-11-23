@@ -56,13 +56,6 @@ def Isometric (L M : HermLB p) : Prop :=
   ∃ w : LB.Iso L.B M.B, w.IsGen ∧ ∀ (σ : k →+* ℂ) (a : M.B.ι) (b : L.B.ι) (y : CxPts p σ),
     y ∈ ptsIn p σ (M.B.U a) → y ∈ ptsIn p σ (L.B.U b) →
       (M.φ σ).φ a y = (L.φ σ).φ b y + Real.log (‖ev p σ _ (w.s (a, b)).val y‖ ^ 2)
-private theorem res_res_lemma {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (a : Γ(X, U)ˣ) :
-    res h' (res h a) = res (h'.trans h) a := by
-  ext
-  change (X.presheaf.map (homOfLE h').op).hom ((X.presheaf.map (homOfLE h).op).hom a.val) =
-    (X.presheaf.map (homOfLE (h'.trans h)).op).hom a.val
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
 private theorem isGen_iso_self_of_isLB (B : LB X) (hB : B.IsLB) :
     (⟨fun c => B.g c.1 c.2⟩ : LB.Iso B B).IsGen := by
   obtain ⟨-, -, hc⟩ := hB
@@ -71,7 +64,7 @@ private theorem isGen_iso_self_of_isLB (B : LB X) (hB : B.IsLB) :
     (B.U a ⊓ B.U b) ⊓ (B.U a' ⊓ B.U b') ≤ _)) (hc a a' b')
   have e2 := congrArg (res (fun x hx => by simp only [Opens.mem_inf] at hx ⊢; tauto :
     (B.U a ⊓ B.U b) ⊓ (B.U a' ⊓ B.U b') ≤ _)) (hc a b b')
-  simp only [map_mul, res_res_lemma] at e1 e2
+  simp only [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at e1 e2
   dsimp only [LB.div]
   refine (eq_mul_inv_of_mul_eq e2).trans ?_
   rw [← e1]

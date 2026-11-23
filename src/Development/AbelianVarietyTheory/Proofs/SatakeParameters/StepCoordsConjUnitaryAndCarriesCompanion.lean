@@ -179,8 +179,8 @@ theorem conj_crd_unitary_carries : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ
   have hco := hPins.crd_orth i hi
   have hLbf := ((St i hi).K β).lev.Lb_fin
   have hLbs := ((St i hi).K β).lev.Lb_span
-  obtain ⟨e1, hCf, hCs⟩ := GlobalTheory.T.companion_lattice_eq_point_lattice_over_companion D i hi (A.crd i hi) hco a 1 _ hLbf hLbs
-  have e2 := (GlobalTheory.T.companion_lattice_eq_point_lattice_over_companion D i hi (A.crd i hi) hco a y _ hLbf hLbs).1
+  obtain ⟨e1, hCf, hCs⟩ := _root_.GlobalTheory.LatCoCompan.latCo_eq_latAd_compan D i hi (A.crd i hi) hco a 1 _ hLbf hLbs
+  have e2 := (_root_.GlobalTheory.LatCoCompan.latCo_eq_latAd_compan D i hi (A.crd i hi) hco a y _ hLbf hLbs).1
   have e1' : latCo D.sp (gramN D i hi) (A.crd i hi) a 1 ((St i hi).K β).lev.Lb =
       latAd (ratA D.host.F (A.crd i hi)) (compan (sp := D.sp) (gramN D i hi) a ((St i hi).K β).lev.Lb) := by
     have := e1

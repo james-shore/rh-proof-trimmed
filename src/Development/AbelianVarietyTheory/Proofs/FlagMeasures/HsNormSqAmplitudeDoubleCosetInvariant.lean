@@ -150,9 +150,6 @@ theorem psi_cell {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hz' : i
   rw [e, conj z hz n hn _ h2, psi_exact hz hz' c hg hp ⟨nm _ (nm _ hn' _ hρ.1) _ (ni _ hn'), h2⟩,
     conj z' hz' n' hn' _ hρ.1]
 
-theorem cont_lmul (a : Mat k r) : Continuous (lmulM a : Mt k r → Mt k r) :=
-  continuous_const.matrix_mul (continuous_id (X := Mat k r))
-
 theorem cont_conj (a : Mat k r) : Continuous (conjM a : Mt k r → Mt k r) :=
   (continuous_const.matrix_mul (continuous_id (X := Mat k r))).matrix_mul continuous_const
 
@@ -161,14 +158,14 @@ noncomputable def lmulE {a : Mat k r} (ha : IsUnit a.det) : Mt k r ≃ᵐ Mt k r
   invFun := lmulM a⁻¹
   left_inv x := Matrix.nonsing_inv_mul_cancel_left a (Matrix.of x) ha
   right_inv x := Matrix.mul_nonsing_inv_cancel_left a (Matrix.of x) ha
-  measurable_toFun := (cont_lmul a).measurable
-  measurable_invFun := (cont_lmul a⁻¹).measurable
+  measurable_toFun := (_root_.GlobalTheory.UnipUnimod.cont_lmul a).measurable
+  measurable_invFun := (_root_.GlobalTheory.UnipUnimod.cont_lmul a⁻¹).measurable
 
 theorem quot_translate {μG μR ν : Measure (Mt k r)} {a : Mat k r} (ha : IsUnit a.det)
     (hG : μG.map (lmulM a) = μG) (h : IsQuotMeas μG μR ν) :
     IsQuotMeas μG (μR.map (conjM a)) (ν.map (lmulM a)) := by
   intro f hf
-  have mL := (cont_lmul a).measurable
+  have mL := (_root_.GlobalTheory.UnipUnimod.cont_lmul a).measurable
   have mC := (cont_conj a).measurable
   have e1 : ∫⁻ x, f x ∂μG = ∫⁻ x, f (lmulM a x) ∂μG := by
     conv_lhs => rw [← hG]

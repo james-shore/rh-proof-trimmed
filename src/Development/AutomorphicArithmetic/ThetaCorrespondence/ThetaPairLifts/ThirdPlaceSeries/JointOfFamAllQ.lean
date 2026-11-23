@@ -58,7 +58,7 @@ theorem joint_of_famAllQ_alt : GlobalTheory.Published.CuspRapidDecay → GlobalT
   obtain ⟨z, hz, hzc, hu⟩ := hFam
   refine ⟨z, hz, hzc, fun u => ?_⟩
   obtain ⟨f, d, hPin, hLaws, hZ, hTail, hDown, hOnto, hComm, hRat⟩ := hu u
-  have hMain : MainX f.t := GlobalTheory.T.seesawTransportRelations_of_familyLaws hCusp hHC D _ _ f.t hLaws
+  have hMain : MainX f.t := _root_.GlobalTheory.SeeSaw.mainX_of_lawsX hCusp hHC D _ _ f.t hLaws
   obtain ⟨U, r, c, hr, hU, hc, hRel⟩ :=
     _root_.GlobalTheory.MiTop.rel_of_links_alt W u f d hLaws.tup hMain hZ hTail hDown hOnto hComm hRat hServ
   exact ⟨d, U, r, c, hPin, hr, hU, hc, hRel⟩

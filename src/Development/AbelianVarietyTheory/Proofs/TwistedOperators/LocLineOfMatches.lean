@@ -210,7 +210,7 @@ theorem loc_line {X : ProvA} (hX : ChosenSeries X) (h3 : Formalism.MainNotions.S
       omega
   obtain ⟨⟨e', he'⟩, m', hm', hU'⟩ := hTB X W S' M' τ _ _ (al ++ block t ++ de) (ga ++ be) aS hsetT
   obtain ⟨U', hUm'⟩ := hU' e' he'
-  obtain ⟨κ, hκ⟩ := GlobalTheory.T.exists_fockPolynomialIso_unitaryPair _ _ _ _ V.rank W.rank (M.ε τ) (M'.ε τ) e e' he he'
+  obtain ⟨κ, hκ⟩ := _root_.GlobalTheory.Chain.RealIt.PolyIso.exists_isPolyIso _ _ _ _ V.rank W.rank (M.ε τ) (M'.ε τ) e e' he he'
 
   have hpq : 1 ≤ al.length + be.length + (ga.length + de.length) := by
     have := hA.2.1

@@ -78,15 +78,7 @@ theorem nontrivial_of_irr {G : Type} [Group G] [TopologicalSpace G] (τ : IrrRep
   rw [Subsingleton.elim x 0]
   exact ⟨fun _ => zero_mem _, fun _ => zero_mem _⟩
 
-theorem nontrivial_of_isIrreducible {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V]
-    {π : Representation ℂ G V} (hi : π.IsIrreducible) : Nontrivial V := by
-  by_contra hs
-  rw [not_nontrivial_iff_subsingleton] at hs
-  apply (bot_ne_top : (⊥ : Subrepresentation π) ≠ ⊤)
-  apply Subrepresentation.ext
-  ext x
-  rw [Subsingleton.elim x 0]
-  exact ⟨fun _ => zero_mem _, fun _ => zero_mem _⟩
+alias nontrivial_of_isIrreducible := _root_.GlobalTheory.JacFactor.nontrivial_of_isIrreducible
 
 theorem continuous_inv_addChar (ψ : AddChar k Circle) (hc : Continuous ψ) : Continuous (ψ⁻¹ : AddChar k Circle) := by
   have : (⇑(ψ⁻¹ : AddChar k Circle)) = fun a => ψ (-a) := funext fun a => AddChar.inv_apply ψ a

@@ -120,7 +120,7 @@ theorem etale_cellCoord : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     haveI := TF.smooth
     have : Smooth TF.Y.s := SmoothOfRelativeDimension.smooth (n := Dw.dim) TF.Y.s
     obtain ⟨hN, hA⟩ := normal_mvPolynomial TF.Y.X c.F TF.Y.s U (VIx Dw)
-    exact etale_of_isOpenImmersion_spec _ (GlobalTheory.T.isOpenImmersion_specMap_of_quasiFinite_of_normal _ hA
+    exact etale_of_isOpenImmersion_spec _ (_root_.GlobalTheory.isOpenImmersion_spec_of_quasiFinite_of_normal _ hA
       (finiteType_cell E H Dw l Xo c TF Z hF U n e v hv W k L N h)
       (GlobalTheory.T.locallyQuasiFinite_bigCell_to_base_prod_affineSpace E H Dw l Xo c TF Z hF U n e v hv W k L N h)
       (GlobalTheory.T.exists_open_immersion_big_cell_base_affine_coords E H Dw l Xo c TF Z hF U n e v hv W k L N h hW))

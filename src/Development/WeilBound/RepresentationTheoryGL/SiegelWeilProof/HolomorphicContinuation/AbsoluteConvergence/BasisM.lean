@@ -241,7 +241,4 @@ end PositivityTheory.Rg.Sw.AbsSt.BasisPf
 
 namespace PositivityTheory.Rg.Sw.AbsSt
 
-theorem basis (hI : Iwa) (hD : CayleyBlocksInvertible) (hM : Mult) (hC : CycSec) (hH : HolParam) : Basis :=
-  BasisPf.basis_of hI hD hM hC hH
-
 end PositivityTheory.Rg.Sw.AbsSt

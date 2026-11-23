@@ -87,7 +87,7 @@ theorem hU_isHgt (D : D7) (n : ℕ) (v : Pl D) (τ : D.host.E →ₐ[D.host.F] F
   obtain ⟨y, hy⟩ := (GlobalTheory.T.bijective_local_unitary_to_GL D n v τ).2 (pM a d b)
   obtain ⟨k, hk⟩ := (GlobalTheory.T.bijective_local_unitary_to_GL D n v τ).2 (inL κ)
   have hkK : k ∈ GlobalTheory.LocIntw.KUpFin D.sp.cm.sig (Jst D n) v := (GlobalTheory.T.mem_maximal_compact_iff_integral_image D n v τ k).2 ⟨κ, hk.symm⟩
-  obtain ⟨hyP, hab⟩ := GlobalTheory.T.modulus_upper_parabolic_local D n v τ y a d b hy
+  obtain ⟨hyP, hab⟩ := _root_.GlobalTheory.CompanionTheory.Jp.UpTri.upperParabolic_height D n v τ y a d b hy
   rw [← hy, ← hk, ← map_mul, hU_thU]
   exact (GlobalTheory.LocIntw.hgtUp_mul (GlobalTheory.LocIntw.isIwasawaUp_fin D n v) ⟨y, hyP⟩ hkK).trans hab
 
@@ -129,7 +129,7 @@ theorem split_place_rank_cut_of_local_computation : JpCondition → SplitPlaceRa
   have hok := GlobalTheory.T.normalized_valuation_uniformizer D v ϖ hϖ w hw
   choose ℓ hℓ using fun a : kv D v => IsLocalRing.residue_surjective (R := Ov D v) a
   have hβ : (Matrix.diagonal fun i : Fin n => if i.1 < r then (1 : kv D v) else 0).rank = r := rank_beta0 hrt
-  obtain ⟨ρ, hρ, hρs, hρm⟩ := GlobalTheory.T.surjective_reduction_maximal_compact D n v τ
+  obtain ⟨ρ, hρ, hρs, hρm⟩ := _root_.GlobalTheory.CompanionTheory.Jp.RhoSplit.exists_rho D n v τ
   obtain ⟨c, hcd, hct, hcint⟩ := hA (Ov D v) (Lv D v) n r t hrt hr ψ₀ hψ₀ _ hβ
   choose f hinf hoff hfX _ using fun Y : Matrix (Fin n) (Fin n) (kv D v) =>
     GlobalTheory.T.exists_global_hermitian_local_approximation D n v τ (((w⁻¹ : (Lv D v)ˣ) : Lv D v) • liftM (L := Lv D v) ℓ Y)
@@ -199,7 +199,7 @@ theorem split_place_rank_cut_of_local_computation : JpCondition → SplitPlaceRa
     funext k
     rw [Finset.sum_image (fun Y _ Y' _ h => hfinj h)]
     refine Finset.sum_congr rfl fun Y _ => ?_
-    rw [Function.leftInverse_invFun hfinj Y, e1, map_mul, map_mul, hρ k, GlobalTheory.T.local_image_of_unipotent_element D n nb hnb v τ (f Y), hfX Y]
+    rw [Function.leftInverse_invFun hfinj Y, e1, map_mul, map_mul, hρ k, _root_.GlobalTheory.CompanionTheory.Jp.thU_proj_nMap D n nb hnb v τ (f Y), hfX Y]
     rfl
 
 end GlobalTheory.CompanionTheory.Jp

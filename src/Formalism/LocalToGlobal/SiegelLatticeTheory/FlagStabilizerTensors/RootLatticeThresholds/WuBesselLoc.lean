@@ -111,19 +111,10 @@ section Facts
 
 variable {D : D7} {X : HidaSetting D} {θ : ℝ}
 
-private theorem host_v_pos' (D : D7) : 0 < D.host.v := by
-  have hd : (0 : ℝ) < |(NumberField.discr D.host.E : ℝ)| :=
-    abs_pos.mpr (Int.cast_ne_zero.mpr (NumberField.discr_ne_zero D.host.E))
-  have hr : 0 < D.host.rdE := by
-    unfold Formalism.BasicNotions.Host.rdE
-    exact Real.rpow_pos_of_pos hd _
-  unfold Formalism.BasicNotions.Host.v
-  linarith
-
 theorem theta_pos (C : Choice X θ) (u : D.what₂.Word) (τ : D.what₂.Tau) : 0 < θ := by
   by_contra hθ
   push_neg at hθ
-  have hv := host_v_pos' D
+  have hv := _root_.Formalism.L2.SG.Pf.Choice.host_v_pos D
   have hq := C.nuS_q u τ
   unfold muNB kapN haarLie muS at hq
   simp (disch := exact mul_nonpos_of_nonneg_of_nonpos (by first | positivity | exact Real.rpow_nonneg (by linarith) _ | exact zpow_nonneg (by linarith) _) hθ) only [ENNReal.ofReal_of_nonpos, zero_smul, Measure.prod_zero, Measure.map_zero] at hq
@@ -234,15 +225,13 @@ def cS (D : D7) : ℂ := ((2 * D.host.ka / ((D.host.g 0 : ℝ) * (D.host.g 1 : �
 theorem cS_ne (D : D7) : cS D ≠ 0 := by
   have hka : 0 < D.host.ka := by
     unfold Formalism.BasicNotions.Host.ka
-    exact div_pos Real.pi_pos (host_v_pos' D)
+    exact div_pos Real.pi_pos (_root_.Formalism.L2.SG.Pf.Choice.host_v_pos D)
   have hg0 : ((D.host.g 0 : ℕ) : ℝ) ≠ 0 := by exact_mod_cast (D.host.g_prime 0).ne_zero
   have hg1 : ((D.host.g 1 : ℕ) : ℝ) ≠ 0 := by exact_mod_cast (D.host.g_prime 1).ne_zero
   unfold cS
   exact Complex.ofReal_ne_zero.mpr (div_ne_zero (mul_ne_zero two_ne_zero hka.ne') (mul_ne_zero hg0 hg1))
 
-theorem conjUH (C : Choice X θ) (τ : D.what₂.Tau) (γ : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
-    C.Qi τ * uMat γ * C.Q τ ∈ Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk D.R.k D.R.rS) := by
-  exact conj_mem_lemma C τ γ
+alias conjUH := _root_.Formalism.L2.SG.Pf.WuBL.conj_mem_lemma
 
 theorem norm_psi (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (c : ℂ) (m : Formalism.FourierDecayAlt.B.Mat k r) :
     ‖Formalism.QuantumDeterminants.psi k r z c m‖ = 1 := by

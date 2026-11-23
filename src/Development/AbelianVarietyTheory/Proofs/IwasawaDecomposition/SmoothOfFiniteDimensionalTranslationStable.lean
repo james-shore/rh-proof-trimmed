@@ -106,7 +106,7 @@ theorem smooth_of_finiteDimensional_translation_stable :
     exact left_eq_mul.1 this
   have hR : ∀ i, ContDiff ℝ ∞ (R i) := by
     intro i
-    refine GlobalTheory.T.contDiff_of_continuous_oneParameter_hom _ (R i) ?_ ?_ ?_
+    refine _root_.GlobalTheory.contDiff_of_continuous_oneParameter _ (R i) ?_ ?_ ?_
     · refine continuous_clm_apply.2 fun v => ?_
       simp only [hRapp]
       refine Φ.continuous.comp ?_

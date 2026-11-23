@@ -134,9 +134,4 @@ theorem exists_isolating (B D : Type) [CommRing B] [IsDedekindDomain B] [CommRin
     rw [← Finset.prod_erase_mul _ _ hmem]
     exact Ideal.mul_mem_left _ _ (hxmem Q' ⟨hQ', hfQ'⟩ hne)
 
-theorem isolate_maximal_among_primes_containing : ∀ (B D : Type) [CommRing B] [IsDedekindDomain B] [CommRing D] [Algebra B D]
-    [Algebra.Etale B D] (f : B), f ≠ 0 → ∀ (Q : Ideal D), Q.IsMaximal →
-    ∃ g : D, g ∉ Q ∧ ∀ Q' : Ideal D, Q'.IsPrime → algebraMap B D f ∈ Q' → g ∉ Q' → Q' = Q :=
-  fun B D _ _ _ _ _ f hf Q hQ => exists_isolating B D f hf Q hQ
-
 end GlobalTheory.EtaleIsolate

@@ -367,6 +367,6 @@ end Formalism.FourierDecayAlt.P.CutMP.Gauge.GC.CurvPoly
 
 namespace Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
 
-theorem curvature_polynomial_of_scalar : GTCCurvPolyOfScal := CurvPoly.curvature_polynomial_of_scalar
+alias curvature_polynomial_of_scalar := _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.GC.CurvPoly.curvature_polynomial_of_scalar
 
 end Formalism.FourierDecayAlt.P.CutMP.Gauge.GC

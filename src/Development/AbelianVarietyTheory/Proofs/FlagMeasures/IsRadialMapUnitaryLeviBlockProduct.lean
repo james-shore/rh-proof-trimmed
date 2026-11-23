@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -53,13 +54,7 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheor
 
 namespace GlobalTheory.LeviIso.MapRadial
 
-theorem continuous_hs {n : ℕ} : Continuous (Formalism.REAL.hs : Matrix (Fin n) (Fin n) ℂ → ℝ) := by
-  unfold Formalism.REAL.hs
-  fun_prop
-
-theorem hs_nonneg' {n : ℕ} (g : Matrix (Fin n) (Fin n) ℂ) : 0 ≤ Formalism.REAL.hs g := by
-  unfold Formalism.REAL.hs
-  positivity
+alias continuous_hs := _root_.GlobalTheory.LeviIso.RadLoc.continuous_hs
 
 theorem measurable_hs_uMat {n : ℕ} (ε : Fin n → Bool) :
     Measurable fun g : Formalism.REAL.UJ ε => Formalism.REAL.hs (uMat g - 1) := by
@@ -89,13 +84,13 @@ theorem isRadial_map_lev : ∀ (n n₀ a : ℕ) (j : Fin a → ℕ) (ε : Fin n 
     infer_instance
   have hP := GlobalTheory.T.euclideanBallAsymptotics_finite_pi a (fun i => Fin (j i) → Fin (j i) → ℂ)
     (fun i => ENNReal.ofReal (2 ^ (j i ^ 2)) • haarLoc (j i)) _ (fun i => 2 * j i ^ 2)
-    (fun i => measurable_hs_loc (j i)) (fun i x => add_nonneg (hs_nonneg' _) (hs_nonneg' _))
+    (fun i => measurable_hs_loc (j i)) (fun i x => add_nonneg (_root_.Formalism.REAL.frobenius_nonneg_matrix _) (_root_.Formalism.REAL.frobenius_nonneg_matrix _))
     (fun i => GlobalTheory.T.hasEuclideanBallVolume_haarComplexGL_inverse (j i))
   have h2 := GlobalTheory.T.hasEuclideanBallVolumeSublevelAsymptotics_prod _ _ _ _ _ _ _ _
     (Finset.measurable_sum _ fun i _ => (measurable_hs_loc (j i)).comp (measurable_pi_apply i))
     (measurable_hs_uMat ε₀)
-    (fun x => Finset.sum_nonneg fun i _ => add_nonneg (hs_nonneg' _) (hs_nonneg' _))
-    (fun g => hs_nonneg' _) hP hG
+    (fun x => Finset.sum_nonneg fun i _ => add_nonneg (_root_.Formalism.REAL.frobenius_nonneg_matrix _) (_root_.Formalism.REAL.frobenius_nonneg_matrix _))
+    (fun g => _root_.Formalism.REAL.frobenius_nonneg_matrix _) hP hG
   have hd : n₀ ^ 2 + 2 * ∑ i, j i ^ 2 = ∑ i, 2 * j i ^ 2 + n₀ ^ 2 := by
     rw [Finset.mul_sum, add_comm]
   rw [hd]

@@ -144,10 +144,6 @@ theorem actL_single (E : Fin n → Fin n → Module.End ℂ M) (a b : Fin n) (x 
     exact Finset.sum_eq_zero fun d _ => by simp [Matrix.single_apply, hc.symm]
   · simp
 
-theorem act_single (E : Fin n → Fin n → Module.End ℂ M) (a b : Fin n) :
-    actM E (Matrix.single a b 1) = E a b := by
-  rw [← actL_apply, actL_single, one_smul]
-
 theorem actL_comm {E : Fin n → Fin n → Module.End ℂ M} (hE : GlRel E) (Y Z : Matrix (Fin n) (Fin n) ℂ) :
     actL E Y * actL E Z - actL E Z * actL E Y = actL E (Y * Z - Z * Y) := by
   refine Matrix.induction_on' Y ?_ ?_ ?_
@@ -710,7 +706,7 @@ theorem degree : CompanionTheory.RgExh.Dec.J.Degree := by
   have hst : ∀ a b, ∀ φ ∈ Wm F c, contraE X a b φ ∈ Wm F c := by
     intro a b φ hφ
     have := Wm_stab F c (Matrix.single a b 1) φ hφ
-    rw [act_single] at this
+    rw [_root_.ReciprocityTheory.ChartRestriction.DS.SmDerA.actM_single] at this
     have e : contraE X a b φ = -(φ ∘ₗ X.E a b) := rfl
     rw [e]
     exact neg_mem this

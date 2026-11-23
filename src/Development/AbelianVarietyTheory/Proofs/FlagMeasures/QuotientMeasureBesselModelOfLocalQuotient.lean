@@ -55,16 +55,11 @@ noncomputable section
 
 namespace GlobalTheory.QuotTransport
 
-lemma jm_mul_self {n : ℕ} (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  unfold Formalism.REAL.Jm
-  rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1; funext a; split_ifs <;> norm_num
-
 lemma exists_unit {n m : ℕ} (ε : Fin n → Bool) (H : Matrix (Fin m) (Fin m) ℂ) (Q : Matrix (Fin n) (Fin m) ℂ)
     (Qi : Matrix (Fin m) (Fin n) ℂ) (h1 : Qi * Q = 1) (h2 : Q * Qi = 1) (h3 : Qᴴ * Formalism.REAL.Jm ε * Q = H)
     (y : Matrix (Fin m) (Fin m) ℂ) (hy : yᴴ * H * y = H) :
     ∃ g : Formalism.REAL.UJ ε, ((g : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ) = Q * y⁻¹ * Qi := by
-  have hJ : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := jm_mul_self ε
+  have hJ : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := _root_.Formalism.REAL.Jm_mul_self ε
   have hHi : (Qi * Formalism.REAL.Jm ε * Qiᴴ) * H = 1 := by
     have : H * (Qi * Formalism.REAL.Jm ε * Qiᴴ) = 1 := by
       rw [← h3]

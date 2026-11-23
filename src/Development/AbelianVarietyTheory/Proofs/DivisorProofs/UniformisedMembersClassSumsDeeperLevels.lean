@@ -315,7 +315,7 @@ theorem classSums_deeper : ∀ g : ℕ, 1 ≤ g → ∀ n : ℕ, 3 ≤ n → Odd
       have h3 := ((hyy y₀).2.2.1 _ _ _ h1).1 h2 0
       simp only [Pi.smul_apply, map_nsmul] at h3
       exact congMod_of_nsmul hd (by rw [← 𝔗.lev]; exact h3)
-    have hdet : LinearMap.det (gk.toIntLinearEquiv : Φ.X y₀ →ₗ[ℤ] Φ.X y₀) = 1 := GlobalTheory.T.lattice_automorphism_congr_one_mod_det_eq_one (Φ.X y₀) gk _ hL₁ hcong
+    have hdet : LinearMap.det (gk.toIntLinearEquiv : Φ.X y₀ →ₗ[ℤ] Φ.X y₀) = 1 := _root_.GlobalTheory.Poinc.det_eq_one_of_congMod (Φ.X y₀) gk _ hL₁ hcong
     have hFσ : ∀ a c, σ' (Fv a c) = Fv (𝔗.gl σ' a) c := by
       obtain ⟨Vr, _, _, _, evr, Xr, _, mr, tr, δr, hevr, ⟨𝔪r⟩⟩ := GlobalTheory.Poinc.Sep.exists_uMem_injective g hg n hn hodd F Z z i
         hP hNZ hiz hD W hW hT X₁ z₁ act hact

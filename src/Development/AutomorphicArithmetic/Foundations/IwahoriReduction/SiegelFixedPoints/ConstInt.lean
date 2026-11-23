@@ -127,7 +127,7 @@ private theorem topexOf [IsAlgClosure ℚ Ω] (X : Tower Ω ε) {M l n : ℕ} (h
   haveI : CharZero Ω := algebraRat.charZero Ω
   haveI : NeZero (l ^ n) := ⟨pow_ne_zero _ hl⟩
   haveI := isScalarTower_poly_rat X (CongruenceSubgroup.Gamma M)
-  haveI : FiniteDimensional (RatFunc Ω) (topL X M) := GlobalTheory.T.finiteDimensional_lev_of_gamma_le Ω ε X _ M (Nat.pos_of_ne_zero hM) le_rfl
+  haveI : FiniteDimensional (RatFunc Ω) (topL X M) := _root_.GlobalTheory.K4.finiteDimensional_lev Ω ε X _ M (Nat.pos_of_ne_zero hM) le_rfl
   haveI : Normal (topF X M) (topL X M) := UpperTheory.normal_modularTowerTop X hM
   haveI : Algebra.IsAlgebraic (topF X M) (topBar X M) := Algebra.IsAlgebraic.trans (topF X M) (topL X M) (topBar X M)
   have hN : 0 < l ^ n := pow_pos (Nat.pos_of_ne_zero hl) n
@@ -178,7 +178,7 @@ private theorem topexOf [IsAlgClosure ℚ Ω] (X : Tower Ω ε) {M l n : ℕ} (h
   have hT := isTopEta_topEta X M hex
   refine ⟨hT, fun σ => ⟨topW (K := topL X M) (topZeta X M l n) (topChar X M l n u) (topChar X M l n v)
         (topEta X M (topChar X M l n u) (topChar X M l n v)) σ, ?_⟩⟩
-  exact GlobalTheory.T.edgeClass_eq_kummerCharacter_of_chosen_root_function_field Ω (topL X M) (topBar X M) (topF X M) (l ^ n) (topZeta X M l n) hN hζ hfix (UpperTheory.algEquiv_mem_ringOfIntegers_modularTowerTop X M) aF bF _ _ haF0 hbF0
+  exact _root_.GlobalTheory.K4.isTopW_topW Ω (topL X M) (topBar X M) (topF X M) (l ^ n) (topZeta X M l n) hN hζ hfix (UpperTheory.algEquiv_mem_ringOfIntegers_modularTowerTop X M) aF bF _ _ haF0 hbF0
     hai hai' hbi hbi' hαF hβF _ _ hx hy _ hT.1 hT.2.1
     (fun B g hB hI hg => hT.2.2 B g (fun f hf => hB _ (constInt X M f hf)) hI hg) σ
 

@@ -210,7 +210,7 @@ private theorem rec_sat (hE : GlobalTheory.Published.LanglandsExhaustionGL) (hZ 
     (hBσ : GlobalTheory.LFun.HasSatGL w σ.ρ B) (rc : IrrGL (k := w.adicCompletion E) → WD h) (hrc : UpperTheory.Zero.LLC.IsRecT h rc) :
     rc (algNorm σ) = satWD h n B ∧ UpperTheory.GalStar.Tor (rc (algNorm σ)) ∧ (rc (algNorm σ)).mono0 := by
   obtain ⟨a, ha, hL⟩ := hrc
-  obtain ⟨ξ, hξ, ϖ, hsup, hunr, hϖ, rfl⟩ := GlobalTheory.T.supercuspidal_support_characters E n hn w σ B hBσ
+  obtain ⟨ξ, hξ, ϖ, hsup, hunr, hϖ, rfl⟩ := _root_.GlobalTheory.SatSupp.hasSupport_of_hasSatGL E n hn w σ B hBσ
   have hun : Unlinked (chars ξ hξ) := unlinked_of_sat hJ E n hn π w ξ hξ ϖ hϖ hB
   set s : ℂ := (((1 - (n : ℝ)) / 2 : ℝ) : ℂ) with hs
   let ξ' : Fin n → ((w.adicCompletion E)ˣ →* ℂˣ) := fun j => ξ j * GlobalTheory.SmGL.absPow _ s
@@ -250,7 +250,7 @@ theorem UpperTheory.V.Z.Desc.W.galAEOf_alt  :
   intro P hRow E Ω _ _ _ _ _ _ l _ ι a ha π hc s hreg
   have hp := GlobalTheory.HeightCounting.Blocks.isPolarized_twist_absPow hc s
   have hpp : GlobalTheory.ContraPair.PolarizedPair (π.twist (GlobalTheory.HeckeGal.Model.absPow E s)) _ :=
-    ⟨hp.sign, GlobalTheory.T.cuspContragredientIsCMConjTwist_of_paired_invTranspose E a _ (GlobalTheory.GalOfCusp.compNorm E _) (P.litN.aut.gk E a _) hp.dual⟩
+    ⟨hp.sign, _root_.GlobalTheory.ConjDualPair.dualIsConjBy_of_paired_invT E a _ (GlobalTheory.GalOfCusp.compNorm E _) (P.litN.aut.gk E a _) hp.dual⟩
   obtain ⟨r, wt, HT, H⟩ := hRow E Ω l ι a ha _ _ hreg hpp
   refine ⟨r, H.cont, fun w hl B hB A hA g hg => ?_⟩
   obtain ⟨rc, hrc⟩ := UpperTheory.Zero.LLC.recTExists E Ω A w hA

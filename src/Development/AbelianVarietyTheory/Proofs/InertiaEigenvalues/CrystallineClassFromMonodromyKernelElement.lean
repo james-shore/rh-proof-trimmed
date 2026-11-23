@@ -121,7 +121,7 @@ theorem main : GlobalTheory.Published.BhattScholzeCrystallineLattices → Global
       calc 8 = 2 ^ 3 := by norm_num
         _ ≤ N ^ 3 := Nat.pow_le_pow_left h2 3
     omega
-  obtain ⟨hUnit, hExt⟩ := GlobalTheory.T.extensionLattice_isCrysTameTypeWithJumps hFB l a e ϖ LL Pl AI hStd Sig U hN.zero_mem_Sig hN.zero_mem_U
+  obtain ⟨hUnit, hExt⟩ := _root_.GlobalTheory.ExtGood.extLat_isGood hFB l a e ϖ LL Pl AI hStd Sig U hN.zero_mem_Sig hN.zero_mem_U
   obtain ⟨Tp, f, g, v, hfg, hv, hgv, hcv, hTp⟩ := hExt T hT c hc
   obtain ⟨Pp, hPp⟩ := GlobalTheory.T.exists_breuilKisinModule_tameDescent_goodLattice hBS hFB l a e ϖ LL hl2 Pl AI hStd η H Sig U hN.range_U Tp hTp
   obtain ⟨Pu, hPu⟩ := GlobalTheory.T.exists_breuilKisinModule_tameDescent_goodLattice hBS hFB l a e ϖ LL hl2 Pl AI hStd η H Sig U hN.range_U _ hUnit
@@ -129,7 +129,7 @@ theorem main : GlobalTheory.Published.BhattScholzeCrystallineLattices → Global
   have hG' := GlobalTheory.T.latticeHom_lifts_breuilKisinDescentHom hBS l a e ϖ LL η H Tp (unitLat (Gl l) : QLat LL) Pp Pu g
   obtain ⟨G, hG⟩ := hG'
   have hex : IsExactTriple F.toHom G.toHom :=
-    GlobalTheory.T.isExactTriple_breuilKisin_of_shortExactLattices l a e ϖ LL _ _ _ Pk.D.toPhiMod Pp.D.toPhiMod Pu.D.toPhiMod T Tp (unitLat (Gl l) : QLat LL) Pk.R.I Pp.R.I Pu.R.I f g
+    _root_.GlobalTheory.BKExact.isExactTriple_of_isSESLat l a e ϖ LL _ _ _ Pk.D.toPhiMod Pp.D.toPhiMod Pu.D.toPhiMod T Tp (unitLat (Gl l) : QLat LL) Pk.R.I Pp.R.I Pu.R.I f g
       F.toHom G.toHom hfg hF hG
   have hB : GlobalTheory.IndefiniteRowSideFullHecke.RepresentationBounds.Bounds l e Sig U N η H :=
     ⟨hN.frob_mem, hN.zero_mem_Sig, hN.card_Sig, hN.two_le, hN.range_U, hN.zero_mem_U, hN.card_U, hN.one_le,
@@ -159,7 +159,7 @@ theorem main : GlobalTheory.Published.BhattScholzeCrystallineLattices → Global
   have hσinv : σ ∈ Pk.D.desc.inv := fun γ => hFinj (by
     rw [F.app_act, hFσ, map_sub, Pp.D.desc.act_phi, hx₂.2 γ, Descent.act_xi, hd, ← Descent.red_act,
       Pp.D.desc.act_phi, hx₂.2 γ])
-  exact GlobalTheory.T.extensionClass_eq_lPow_smul_galois l a e ϖ LL η H T Tp f g hfg Pk Pp Pu F G hF hG hex hFinj u x hx1 hu hφu hux
+  exact _root_.GlobalTheory.ExtClass.main l a e ϖ LL η H T Tp f g hfg Pk Pp Pu F G hF hG hex hFinj u x hx1 hu hφu hux
     (GlobalTheory.IndefiniteRowSideFullHecke.RepresentationBounds.rho l Sig N) x₂ hx₂ hGx₂ v c hv hgv hcv σ hσ hσinv hFσ y hy hFy
 
 end GlobalTheory.BKGal.ExtClass

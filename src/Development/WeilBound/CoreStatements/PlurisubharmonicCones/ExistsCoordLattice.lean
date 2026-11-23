@@ -482,7 +482,7 @@ theorem deg_eq_sub {k L L' : Type} [Field k] [NumberField k] [Field L] [NumberFi
   obtain ⟨hd₁, ha₁⟩ := GlobalTheory.T.logNorms_ext_degree_adelic L L' e N₁
   obtain ⟨hd₂, ha₂⟩ := GlobalTheory.T.logNorms_ext_degree_adelic L L' e N₂
   obtain ⟨_, hpf⟩ := GlobalTheory.T.product_formula_log_norms L' a ha
-  have f0 := finite_finSum (GlobalTheory.T.log_norms_of_nonzero_adelic L' a ha)
+  have f0 := finite_finSum (_root_.GlobalTheory.CompanionTheory.Ar.Fl.LogNorms.isAdelic_ofElt L' a ha)
   have f1 := finite_finSum (ha₁.2 h₁)
   have f2 := finite_finSum (ha₂.2 h₂)
   rw [← hd, ← hd₁, ← hd₂]

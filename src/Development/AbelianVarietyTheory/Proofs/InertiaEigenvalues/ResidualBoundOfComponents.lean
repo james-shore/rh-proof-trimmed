@@ -70,7 +70,7 @@ theorem residual_bound_of_parts : ∀ (D : Formalism.BasicNotions.D7) (N : NData
   refine ⟨R, 4 * D.R.r * R, 4 * D.R.r * R + 2, fun M hM H S d hd z hz H' ho hn A => ?_⟩
   have hp : (X.l i).Prime := (X.lPrime i).out
   have hlt : 4 * D.R.r * R + 2 < X.l i ^ M := lt_of_le_of_lt hM (Nat.lt_pow_self hp.one_lt)
-  obtain ⟨L, hLo, hLn, hLH, hLs, hLζ, -⟩ := GlobalTheory.T.exists_open_normal_subgroup_under_inertia D N X bkP i T hT z hz M H hd.1 hd.2.1 hd.2.2.1
+  obtain ⟨L, hLo, hLn, hLH, hLs, hLζ, -⟩ := _root_.GlobalTheory.ResSel.SmallSub.exists_small D N X bkP i T hT z hz M H hd.1 hd.2.1 hd.2.2.1
   obtain ⟨h, U, hh, hUo, hUn, hUL, hco⟩ := hR z hz L hLo hLn hLs
   obtain ⟨P, hAux, hSt, hIne, hFr⟩ := hAB i M (by omega) H S d hd z hz (U ⊓ H') (hUo.inter ho) inferInstance A R h
     (fun a => ⟨hLH (hh a), hLζ _ (hh a)⟩)

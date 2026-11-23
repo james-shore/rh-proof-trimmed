@@ -66,32 +66,9 @@ theorem exists_integralOp_of_admissible {G : Type} [Group G] [TopologicalSpace G
       l (A v) = ∫ g, φ g * l (ρ g v) ∂m) ∧ FiniteDimensional ℂ (LinearMap.range A) :=
   PositivityTheory.TfC.OccursIff.Trace.exists_integralOp m ρ hρ φ hφ hφc
 
-theorem admissible_and_equiv_of_pairing {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    [LocallyCompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
-    {X Y : Type} [AddCommGroup X] [Module ℂ X] [AddCommGroup Y] [Module ℂ Y]
-    (σ : Representation ℂ G X) (π : Representation ℂ G Y)
-    (hσ : GroundTheory.Automorphic.IsSmooth σ) (hσi : σ.IsIrreducible)
-    (hπ : GroundTheory.Automorphic.IsAdmissible π) (hπi : π.IsIrreducible)
-    (B : X →ₗ[ℂ] Y →ₗ⋆[ℂ] ℂ) (hB : ∀ g x y, B (σ g x) (π g y) = B x y) (hB0 : B ≠ 0)
-    (C : Y →ₗ[ℂ] Y →ₗ⋆[ℂ] ℂ) (hC : ∀ g x y, C (π g x) (π g y) = C x y) (hC0 : C ≠ 0) :
-    GroundTheory.Automorphic.IsAdmissible σ ∧ Nonempty (σ.Equiv π) :=
-  PositivityTheory.TfC.OccursIff.Pair.admissible_and_equiv σ π hσ hσi hπ hπi B hB hB0 C hC hC0
+alias admissible_and_equiv_of_pairing := _root_.PositivityTheory.TfC.OccursIff.Pair.admissible_and_equiv
 
-theorem exists_localComponent_family (K : Type) [Field K] [NumberField K] (n : ℕ) (μ : Measure (normOneGL (K := K) (n := n)))
-    [μ.IsHaarMeasure] (V : Submodule ℂ (Lp ℂ 2 (quotientMeasure (rationalGLOne (K := K) (n := n)) μ)))
-    (hle : V ≤ cuspidalL2 μ) (hcl : IsClosed (V : Set (Lp ℂ 2 (quotientMeasure (rationalGLOne (K := K) (n := n)) μ))))
-    (hinv : (rightRegularRep (rationalGLOne (K := K) (n := n)) μ).IsInvariant V) (hne : V ≠ ⊥)
-    (hirr : ∀ V' ≤ V, IsClosed (V' : Set (Lp ℂ 2 (quotientMeasure (rationalGLOne (K := K) (n := n)) μ))) →
-      (rightRegularRep (rationalGLOne (K := K) (n := n)) μ).IsInvariant V' → V' = ⊥ ∨ V' = V)
-    (w : HeightOneSpectrum (𝓞 K)) :
-    ∃ (W : Type) (_ : AddCommGroup W) (_ : Module ℂ W)
-      (π : Representation ℂ (GL (Fin n) (w.adicCompletion K)) W),
-      GroundTheory.Automorphic.IsAdmissible π ∧ π.IsIrreducible ∧
-      ∃ F : Set (W →ₗ[ℂ] Lp ℂ 2 (quotientMeasure (rationalGLOne (K := K) (n := n)) μ)),
-        (∀ f ∈ F, (∀ x, f x ∈ V) ∧ ∀ g x, f (π g x) =
-          rightRegularRep (rationalGLOne (K := K) (n := n)) μ (MultiplicityOne.finProj K n (AdelicGLn.localEmbedding w g)) (f x)) ∧
-        ∀ u ∈ V, u ≠ 0 → ∃ f ∈ F, ∃ x, inner ℂ (f x) u ≠ 0 :=
-  PositivityTheory.TfC.CuspProjectionOrthogonality.occ_loccomp K n μ V hle hcl hinv hne hirr w
+alias exists_localComponent_family := _root_.PositivityTheory.TfC.CuspProjectionOrthogonality.occ_loccomp
 
 end Items
 

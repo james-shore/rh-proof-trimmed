@@ -97,7 +97,7 @@ theorem part1 (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField 
     orbG M f' (act g Y) = orbG M f' Y := by
   letI := M.mG
   haveI := M.bG
-  haveI := GlobalTheory.T.generalLinear_haar_isMulRightInvariant_unramified F E r M
+  haveI := _root_.GlobalTheory.JR.gl_unimodular F E r M
   unfold orbG
   simp only [← act_mul]
   exact integral_mul_right_eq_self (fun h => f' (act h Y) * omega (act h Y)) g
@@ -107,7 +107,7 @@ theorem part2 (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField 
     orbU M f (actU g X) = orbU M f X := by
   letI := M.mU
   haveI := M.bU
-  haveI := (GlobalTheory.T.unitaryGroup_positiveCharacter_trivial_and_unimodular F E r).2 M
+  haveI := (_root_.GlobalTheory.JR.UnitChar.posChar_trivial_and_unimodular F E r).2 M
   unfold orbU
   simp only [← actU_mul]
   exact integral_mul_right_eq_self (fun h => f (actU h X)) g

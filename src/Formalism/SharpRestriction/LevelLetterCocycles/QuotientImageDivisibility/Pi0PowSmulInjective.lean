@@ -67,9 +67,6 @@ section Map
 
 variable {T₁ T₂ : LocLat G Qp LL O} (F : LatHom T₁.L T₂.L)
 
-theorem map_smulA (a : LetA O n) (x : W.DD T₁) : W.map F (a • x) = a • W.map F x := by
-  rw [← algebraMap_smul W.EE a x, LinearMap.map_smul, algebraMap_smul]
-
 theorem map_γ' (x : W.DD T₁) : W.map F (W.γ T₁ x) = W.γ T₂ (W.map F x) := W.map_γ F W.gam x
 
 variable (hc₁ : IsCrys PD T₁.ρ) (hc₂ : IsCrys PD T₂.ρ)
@@ -79,16 +76,16 @@ theorem inPN_map {k : ℕ} {x : W.DD T₁} (h : Formalism.MainNotions.Crystallin
     Formalism.MainNotions.CrystallineLiftingInputs.InPN W T₂ k (W.map F x) := by
   obtain ⟨y, hy, hΔ, rfl⟩ := h
   exact ⟨W.map F y, W.map_N F hc₁ hc₂ y hy, fun δ hδ => by rw [← W.map_γ, hΔ δ hδ],
-    map_smulA W F _ y⟩
+    _root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul W F _ y⟩
 
 theorem dl_map {i : ZMod n} {x : W.DD T₁} (h : Formalism.MainNotions.CrystallineLiftingInputs.DL W T₁ i x) :
     Formalism.MainNotions.CrystallineLiftingInputs.DL W T₂ i (W.map F x) :=
-  ⟨by rw [← map_smulA, h.1], fun δ hδ => by rw [← W.map_γ, h.2 δ hδ]⟩
+  ⟨by rw [← _root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul, h.1], fun δ hδ => by rw [← W.map_γ, h.2 δ hδ]⟩
 
 theorem polesFin_map {x : W.DD T₁} (h : Formalism.MainNotions.CrystallineLiftingInputs.PolesFin W T₁ x) :
     Formalism.MainNotions.CrystallineLiftingInputs.PolesFin W T₂ (W.map F x) := by
   obtain ⟨k, K, hK⟩ := h
-  exact ⟨k, K, by rw [← map_smulA]; exact W.map_N F hc₁ hc₂ _ hK⟩
+  exact ⟨k, K, by rw [← _root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul]; exact W.map_N F hc₁ hc₂ _ hK⟩
 
 theorem inI_map {i : ZMod n} {x : W.DD T₁} (h : Formalism.MainNotions.CrystallineLiftingInputs.InI W T₁ i x) :
     Formalism.MainNotions.CrystallineLiftingInputs.InI W T₂ i (W.map F x) := by
@@ -118,11 +115,7 @@ theorem map_mem_Z1DΔ {T₁ T₂ : LocLat G Qp LL O} (F : LatHom T₁.L T₂.L) 
     rw [← W.map_γ, ← W.map_γ, (h2 δ hδ).1, (h2 δ hδ).2]
     exact ⟨rfl, rfl⟩
 
-theorem letE_mul_self' (c : ZMod n) : (letE c : LetA O n) * letE c = letE c := by
-  funext i
-  by_cases h : i = c
-  · subst h; simp [letE]
-  · simp [letE, h]
+alias letE_mul_self' := _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq
 
 theorem pullJ_letter (T : LocLat G Qp LL O) (c : ZMod n) {P : W.DD T}
     (hP : P ∈ Formalism.MainNotions.CrystallineLiftingInputs.pullJ W T c 1) : (letE (c + 1) : LetA O n) • P = P := by
@@ -215,10 +208,7 @@ theorem pi0_pow_smul_injective (T : LocLat G Qp LL O)
   rw [← algebraMap_smul W.EE (W.π₀ ^ M) y, ← algebraMap_smul W.EE (W.π₀ ^ M) y'] at h
   exact (hunit.smul_left_cancel).1 h
 
-theorem γD_smulA (T : LocLat G Qp LL O) (g : W.Gam) (a : LetA O n) (x : W.DD T) :
-    W.γD T g (a • x) = W.γA g a • W.γD T g x := by
-  rw [← algebraMap_smul W.EE a x, W.γD_smul, W.γE_ext, algebraMap_smul]
-  rfl
+alias γD_smulA := _root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear
 
 theorem inPN_of_inv (T : LocLat G Qp LL O)
     (hu : ∃ u : (LetA O n)ˣ, W.π₀ = (u : LetA O n) * letπ ^ (PD.p - 1))

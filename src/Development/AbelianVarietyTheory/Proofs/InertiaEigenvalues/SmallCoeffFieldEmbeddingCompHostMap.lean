@@ -58,11 +58,6 @@ open Formalism.L2.Host (embLL0)
 
 namespace GlobalTheory.RayInFrac
 
-theorem isUnramifiedAt_of_unramIn {K L : Type} [Field K] [NumberField K] [Field L] [NumberField L] [Algebra K L]
-    [IsGalois K L] {𝔭 : HeightOneSpectrum (𝓞 K)} (h : GlobalTheory.NT.UnramIn L 𝔭) (P : Ideal (𝓞 L)) [P.IsPrime]
-    [P.LiesOver 𝔭.asIdeal] : Algebra.IsUnramifiedAt (𝓞 K) P :=
-  GlobalTheory.T.isUnramifiedAt_of_isUnramifiedInGaloisExtension h P
-
 theorem exists_isPrimitiveRoot_of_isRay {K H : Type} [Field K] [NumberField K] [Field H] [NumberField H] [Algebra K H]
     [IsAbelianGalois K H] {n : ℕ} (hn : n ≠ 0) (h : IsRay H (Ideal.span {(n : 𝓞 K)})) : ∃ ζ : H, IsPrimitiveRoot ζ n :=
   GlobalTheory.T.exists_primitiveRoot_in_rayClassField_natModulus hn h
@@ -119,7 +114,7 @@ theorem exists_field (D : D7) (ρ : Setup D.ntw) (hρ : ρ.Good) (i : D.ntw.Tw) 
       (embLL0 D).fieldRange ≤ L.toSubfield ∧ L.toSubfield ≤ (ρ.e i b).fieldRange ∧
       GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels.RayIn D (m * N) L.toSubfield ∧ ∀ z : ℂ, z ^ (m * N) = 1 → z ∈ L := by
   classical
-  obtain ⟨hKgal, hU⟩ := hostK_facts D
+  obtain ⟨hKgal, hU⟩ := _root_.GlobalTheory.HostQuadUnits.isGalois_and_units D
   letI : Algebra D.host.K ℂ := (phiK D).toAlgebra
   have hlp : (D.ntw.l i).Prime := (D.ntw.lPrime i).out
   have hm₀0 : D.host.g 0 * D.host.g 1 * D.host.pde * D.host.pde' ≠ 0 := by
@@ -171,7 +166,7 @@ theorem exists_field (D : D7) (ρ : Setup D.ntw) (hρ : ρ.Good) (i : D.ntw.Tw) 
       Ideal.span {((m * N : ℕ) : 𝓞 D.host.K)} := by
     have := span_inf_span (R := 𝓞 D.host.K) m'' (D.ntw.l i ^ a) N hcop
     rwa [← hmm] at this
-  have hsup := sup_fieldRange_eq_top hU (hspan _ hm0) (hspan _ hm''0) hq hq2
+  have hsup := _root_.GlobalTheory.RayCompositum.fieldRange_sup_eq_top hU (hspan _ hm0) (hspan _ hm''0) hq hq2
     (Ideal.span_singleton_le_span_singleton.2 (Nat.cast_dvd_cast (hqm.trans hm''m)))
     (Ideal.span_singleton_le_span_singleton.2 (Nat.cast_dvd_cast (hqm.trans (dvd_mul_right _ _))))
     (hinf ▸ hH') hH₁' hH₂' f₁ f₂
@@ -205,7 +200,7 @@ theorem exists_field (D : D7) (ρ : Setup D.ntw) (hρ : ρ.Good) (i : D.ntw.Tw) 
         exact hlp.ne_zero (by exact_mod_cast hlK)
       let 𝔭 : HeightOneSpectrum (𝓞 D.host.K) := ⟨P.under (𝓞 D.host.K), inferInstance, hne⟩
       haveI : P.LiesOver 𝔭.asIdeal := ⟨rfl⟩
-      refine isUnramifiedAt_of_unramIn (hH₂'.1 𝔭 fun hd => ?_) P
+      refine _root_.GlobalTheory.NT.isUnramifiedAt_of_unramIn (hH₂'.1 𝔭 fun hd => ?_) P
       have h3 : ((m'' * N : ℕ) : 𝓞 D.host.K) ∈ 𝔭.asIdeal := Ideal.dvd_iff_le.1 hd (Ideal.mem_span_singleton_self _)
       have hc : (D.ntw.l i).Coprime (m'' * N) := Nat.Coprime.mul_right hm'' hNl.symm
       obtain ⟨A, B, hAB⟩ := Nat.isCoprime_iff_coprime.2 hc
@@ -236,7 +231,7 @@ theorem exists_field (D : D7) (ρ : Setup D.ntw) (hρ : ρ.Good) (i : D.ntw.Tw) 
   have hB : ∀ x, j x ∈ A ⊔ B := fun x => (le_sup_right : B ≤ A ⊔ B) ⟨x, rfl⟩
   refine ⟨A ⊔ B, inferInstance, fun hG => ?_, ?_, ?_, ?_, ?_⟩
   · have gA : IsGalois ℚ A := IsGalois.of_algEquiv (AlgEquiv.ofInjectiveField (embLL0 D).toRatAlgHom)
-    have gB : IsGalois ℚ B := isGalois_fieldRange_of_isRay hmN hH' (j : H →+* ℂ)
+    have gB : IsGalois ℚ B := _root_.GlobalTheory.RayNatGalois.isGalois_fieldRange hmN hH' (j : H →+* ℂ)
     haveI : Normal ℚ ↥(A ⊔ B) := @IntermediateField.normal_sup ℚ ℂ _ _ _ A B gA.to_normal gB.to_normal
     exact ⟨⟩
   · rintro _ ⟨x, rfl⟩
@@ -249,7 +244,7 @@ theorem exists_field (D : D7) (ρ : Setup D.ntw) (hρ : ρ.Good) (i : D.ntw.Tw) 
   · refine ⟨H, inferInstance, inferInstance, inferInstance, inferInstance, hH', (j : H →+* ℂ), ?_, fun x => hB x⟩
     ext x
     exact j.commutes x
-  · obtain ⟨ζ, hζ⟩ := exists_isPrimitiveRoot_of_isRay hmN hH'
+  · obtain ⟨ζ, hζ⟩ := _root_.GlobalTheory.RayRootOfUnity.exists_isPrimitiveRoot_of_isRay hmN hH'
     intro z hz
     haveI : NeZero (m * N) := ⟨hmN⟩
     have hζ' := hζ.map_of_injective (j : H →+* ℂ).injective

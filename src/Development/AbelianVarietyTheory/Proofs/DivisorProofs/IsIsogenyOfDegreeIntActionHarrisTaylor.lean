@@ -66,9 +66,9 @@ theorem isIsogDeg_of_geomFibres (S : Scheme.{0}) (A : Over S) [GrpObj A] (hA : I
     (d : ℕ) (h : ∀ (k : Type) [Field k] [IsAlgClosed k] (t : Sp k ⟶ S),
       GlobalTheory.IwLevel.IsIsogDeg ((Over.pullback t).map φ) d) : GlobalTheory.IwLevel.IsIsogDeg φ d := by
   have := hA.smooth
-  have hfin : IsFinite φ.left := GlobalTheory.T.abelianScheme_endomorphism_finite_of_geometric_fibres S A hA φ fun k _ _ t => (h k t).fin
+  have hfin : IsFinite φ.left := _root_.GlobalTheory.AbEnd.isFinite_of_isFinite_geomFibres S A hA φ fun k _ _ t => (h k t).fin
   have hflat : Flat φ.left :=
-    GlobalTheory.T.flat_of_finite_flat_geometric_fibres_over_base S A A φ inferInstance inferInstance inferInstance hfin fun k _ _ t => (h k t).flat
+    _root_.GlobalTheory.flat_of_isFinite_of_finitePresentation_of_flat_geometric_fibres S A A φ inferInstance inferInstance inferInstance hfin fun k _ _ t => (h k t).flat
   refine ⟨hfin, hflat, GlobalTheory.AbLaw.MulN.surjective_of_geomFibres φ fun k _ _ t => (h k t).surj, fun y => ?_⟩
   let K := AlgebraicClosure (A.left.residueField y)
   let u : Sp K ⟶ A.left := spMap (algebraMap (A.left.residueField y) K) ≫ A.left.fromSpecResidueField y
@@ -90,8 +90,8 @@ theorem isIsogDeg_fibre (k : Type) [Field k] [IsAlgClosed k] (A : Over (Sp k)) [
     (F : Type) [Field F] [NumberField F] (ρ : OAct (𝓞 F) A) (l d : ℕ) (hl : l.Prime) (hl0 : (l : k) ≠ 0)
     (hcard : Nat.card {x : 𝟙_ (Over (Sp k)) ⟶ A // x ^ l = 1} = l ^ (d * Module.finrank ℚ F))
     (c : 𝓞 F) (hc : c ≠ 0) : GlobalTheory.IwLevel.IsIsogDeg (ρ.act c) ((Algebra.norm ℤ c).natAbs ^ d) := by
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.isFinite_and_finrank_act_eq_norm_pow k A hA F ρ l d hl hl0 hcard c hc
-  exact GlobalTheory.T.isogeny_degree_of_fibre_rank k A hA _ (ρ.hom c) h1 _ h2
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.AV.OActDeg.isFinite_and_finrank_eq_norm_pow k A hA F ρ l d hl hl0 hcard c hc
+  exact _root_.GlobalTheory.IwLevel.isIsogDeg_of_isFinite_of_finrank_origin k A hA _ (ρ.hom c) h1 _ h2
 
 def pullAct {p : ℕ} [Fact p.Prime] {D : GlobalTheory.UPel.HT.Datum p} {S : Scheme.{0}} {A : Over S} [GrpObj A]
     [IsCommMonObj A] (act : GlobalTheory.UPel.HT.OActN D.O A) {T : Scheme.{0}} (t : T ⟶ S) :
@@ -119,7 +119,7 @@ theorem isIsogDeg_intAct : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.H
     have := (b.unit l hcop).map φ.hom
     rw [map_natCast] at this
     exact this.ne_zero
-  have hcount := GlobalTheory.T.card_lTorsion_eq_pow_of_tateSimilitude p D k _ _ _ I l hl hlp'
+  have hcount := _root_.GlobalTheory.UPel.HT.TateIsoO.card_pow_eq_one p D k _ _ _ I l hl hlp'
   let e := GlobalTheory.TorsionLift.ptsEquiv t o.A (𝟙_ (Over (Sp k))) t (Category.id_comp t)
   have hc2 : Nat.card {x : 𝟙_ (Over (Sp k)) ⟶ (Over.pullback t).obj o.A // x ^ l = 1} =
       l ^ ((D.m * D.n) * Module.finrank ℚ D.F) := by

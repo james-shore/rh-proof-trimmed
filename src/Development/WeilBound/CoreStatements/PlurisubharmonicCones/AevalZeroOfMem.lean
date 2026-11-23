@@ -115,10 +115,6 @@ theorem hom_eq_aeval {B : Type} [CommRing B] (F : MRing J →+* B) (z : (Σ k, J
   | add p q hp hq => simp [hp, hq]
   | mul_X p q hp => simp [hp, h]
 
-theorem exists_val {Ω : Type} [Field Ω] (A : ValuationSubring Ω) {T : Type} [Finite T] (y : T → Ω)
-    (h : ∃ x, y x ≠ 0) : ∃ x₀, y x₀ ≠ 0 ∧ ∀ x, y x / y x₀ ∈ A :=
-  _root_.UpperTheory.Reformulated.B.Yla8.main A y h
-
 variable {K' : Type} [Fintype K'] {J' : K' → Type} [∀ k, Fintype (J' k)]
 
 theorem exists_lift_blk {Ω L : Type} [Field Ω] [Field L] (y' : (Σ k, J' k) → Ω) (bk : K → K')
@@ -175,7 +171,7 @@ theorem exists_lift_blk {Ω L : Type} [Field Ω] [Field L] (y' : (Σ k, J' k) �
         simpa [φ, ratioPt, hz] using this
       · obtain rfl := hbk h
         rfl
-    · obtain ⟨x₀, h1, h2⟩ := exists_val A (fun x => y' ⟨k', x⟩) (hy' k')
+    · obtain ⟨x₀, h1, h2⟩ := _root_.UpperTheory.Reformulated.B.Yla8.main A (fun x => y' ⟨k', x⟩) (hy' k')
       exact ⟨x₀, h1, h2, fun k h => absurd ⟨k, h⟩ hk⟩
   choose c' hc'0 hc'A hc'z using hch
   let u : (Σ k, J' k) → A := fun p => ⟨ratioPt y' c' p, hc'A p.1 p.2⟩

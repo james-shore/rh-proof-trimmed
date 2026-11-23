@@ -49,6 +49,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleSectionFormsTools
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsFlagBundleForms
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PPairCocycle
 
 @[expose] public section
 
@@ -150,13 +151,6 @@ theorem chartMonoZ_dvd (c : ∀ k, ι k) (δ : K → ℕ) :
   have := Finset.single_le_sum (f := δ) (fun _ _ => Nat.zero_le _) (Finset.mem_univ j)
   simp only [Pi.add_apply]
   omega
-
-theorem repr_eq_sum (w w₁ : Module.Basis (Fin N) Ω E) (v : E) (i : Fin N) :
-    w.repr v i = ∑ m, w₁.repr v m * w.repr (w₁ m) i := by
-  conv_lhs => rw [← w₁.sum_repr v]
-
-  rw [map_sum, Finsupp.finsetSum_apply]
-  simp [smul_eq_mul]
 
 end Generic
 
@@ -322,7 +316,7 @@ theorem chart_data (y : (Σ k, ι k) → Ω) (B₁ : ChartBundle O (segreVec y) 
   have hc'' : ∀ i : Fin N, k ≤ (i : ℕ) → c'' i = 0 := by
     intro i hi
     have hwr : w.repr v₁ i = w₁.repr v₁ ⟨k, hk⟩ * w.repr (w₁ ⟨k, hk⟩) i := by
-      rw [repr_eq_sum w w₁ v₁ i, Finset.sum_eq_single ⟨k, hk⟩]
+      rw [_root_.GroundTheory.Heights₂.Heights.NumbersDVR.repr_chain w w₁ v₁ i, Finset.sum_eq_single ⟨k, hk⟩]
       · intro m _ hm
         rcases lt_or_gt_of_ne hm with h | h
         · have h' : (m : ℕ) < k := h

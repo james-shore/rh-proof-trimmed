@@ -106,7 +106,7 @@ theorem cellWt_of_sideRead_of_admTw : _root_.GlobalTheory.HeightCounting.Up.Publ
     have h1 := hSR (NX.embEL0 (Dof x) (((Dof x).host.sigmaOf ((Dof x).eTau t : (Dof x).R.GG)) y))
     refine Eq.trans ?_ (h1.trans (NX.embLL_embEL0 (Dof x) t y))
     rfl
-  obtain ⟨lamC, T', hT'⟩ := GlobalTheory.T.algebraic_weight_dominant_iso_exists (Dof x).host.E (Dof x).R.nV (Dof x).what₂.Tau (Formalism.L2.embT (Dof x)) hinj hcm hcov
+  obtain ⟨lamC, T', hT'⟩ := _root_.GlobalTheory.WtClass.exists_equiv_VV (Dof x).host.E (Dof x).R.nV (Dof x).what₂.Tau (Formalism.L2.embT (Dof x)) hinj hcm hcov
     (mtAt l.mt.M v j).wt
   have hT'r : ∀ γ y, T' ((mtAt l.mt.M v j).wt.ρ γ y) =
       rhoVr (Formalism.L2.embT (Dof x)) lamC (Formalism.L2.Col.mtwRat.toFun γ) (T' y) :=
@@ -122,9 +122,9 @@ theorem cellWt_of_sideRead_of_admTw : _root_.GlobalTheory.HeightCounting.Up.Publ
     have h2 : ComplexEmbedding.conjugate (Formalism.L2.embT (Dof x) t) = Formalism.L2.embT (Dof x) t' := by
       simpa [Formalism.L2.Col.mtwConj] using h
     exact hcm t' t (by rw [← h2])
-  have hten := Formalism.L2.Col.tenIrr_of' highest_weight_fixed_exists highest_weight_fixed_line
+  have hten := Formalism.L2.Col.tenIrr_of' _root_.PI.HwFix.UnitaryGroupMassFormula.hwFixedEx_main _root_.PI.HwFix.Line.hwFixedLine_main
     (Formalism.L2.embT (Dof x)) hinj hcm lamC
-  have hten' := Formalism.L2.Col.tenIrr_of' highest_weight_fixed_exists highest_weight_fixed_line _ hinj' hcm' lamC
+  have hten' := Formalism.L2.Col.tenIrr_of' _root_.PI.HwFix.UnitaryGroupMassFormula.hwFixedEx_main _root_.PI.HwFix.Line.hwFixedLine_main _ hinj' hcm' lamC
   have hiso : (Formalism.L2.Col.mtWt (Formalism.L2.embT (Dof x)) lamC hten).Iso (mtAt l.mt.M v j).wt :=
     ⟨T'.symm, fun γ y => by
       apply T'.injective

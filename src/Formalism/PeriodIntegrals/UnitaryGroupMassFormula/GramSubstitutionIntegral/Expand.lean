@@ -56,8 +56,7 @@ open PI.FglGram PI.UnitaryGroupMassFormula.PhGram
 
 variable {p : ℕ} [Fact p.Prime] {l ex ph : PowerSeries ℂ_[p]} {σ : Type}
 
-theorem cc_l (hd : Data l ex ph) : PowerSeries.constantCoeff l = 0 := by
-  exact PI.UnitaryGroupMassFormula.PhGram.cc_l hd
+alias cc_l := _root_.PI.UnitaryGroupMassFormula.PhGram.cc_l
 
 theorem ex_l (hd : Data l ex ph) : PowerSeries.subst l ex = PowerSeries.X :=
   (PI.FglPhSplit.Wk.compositionalInverseSymm ℂ_[p] l ex hd.1 hd.2.1).2
@@ -232,9 +231,9 @@ end PI.UnitaryGroupMassFormula.PhGram.ExpandW
 
 namespace PI.UnitaryGroupMassFormula.PhGram
 
-theorem expand_of (hGA : GoodAdd) (hBS : BiaddSub) : Expand := ExpandW.expand_of hGA hBS
+alias expand_of := _root_.PI.UnitaryGroupMassFormula.PhGram.ExpandW.expand_of
 
-theorem sumFirst_of (hGA : GoodAdd) (hBS : BiaddSub) : SumFirst := ExpandW.sumFirst_of hGA hBS
+alias sumFirst_of := _root_.PI.UnitaryGroupMassFormula.PhGram.ExpandW.sumFirst_of
 
 theorem gram_bilinear_expansion : Expand := expand_of goodAdd biaddSub
 

@@ -323,7 +323,7 @@ theorem term_eq_termAt (G : HTGroup p) (P : DPair G) (Kf : Subgroup G.GAf) (f : 
   have hn₀ : IsNrm G r P.atP δ₀ z₀ := hex.choose_spec
   obtain ⟨hreg, hcent⟩ := atP_regular G P
   obtain ⟨g, hgx⟩ := GlobalTheory.LKMid.triv_quot p G (AfP p) (P.β : G.C) x x₀ t t₀ hx h₀
-  obtain ⟨g₂, hδ, hcz⟩ := GlobalTheory.T.twistedConj_of_twistedNormConj_hermitianTriple_regular p G r P.atP δ z δ₀ z₀ hr hreg hn hn₀
+  obtain ⟨g₂, hδ, hcz⟩ := _root_.GlobalTheory.NrmUnique.nrm_unique p G r P.atP δ z δ₀ z₀ hr hreg hn hn₀
   have htw := GlobalTheory.CarryCent.map_centralizer_carry p G r P.atP δ z hr hreg hn
   have hAf : P.toAf x₀ t₀ h₀ = (MulAut.conj g⁻¹⁻¹).toMonoidHom.comp (P.toAf x t hx) := by
     ext y : 1

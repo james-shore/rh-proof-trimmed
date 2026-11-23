@@ -60,10 +60,7 @@ namespace PositivityTheory.Rg.Rsw.L.LToS
 
 variable {D : D7} {a b c r t : ℕ}
 
-theorem adj_smul (e : AE D) (x : Mx D a b) : adj (e • x) = cA D e • adj x := by
-  ext i j
-  show cA D (e * x j i) = cA D e * cA D (x j i)
-  exact map_mul _ _ _
+alias adj_smul := _root_.GlobalTheory.MixModel.adj_smul
 
 theorem ip_smul {e : AE D} (he : e * e = e ∧ cA D e = e) (V : HSp D) (x : Mx D V.rank a) (y : Mx D V.rank b) :
     ip V (e • x) (e • y) = e • ip V x y := by

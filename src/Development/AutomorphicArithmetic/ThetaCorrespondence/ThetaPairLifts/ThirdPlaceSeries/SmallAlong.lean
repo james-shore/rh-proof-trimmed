@@ -55,7 +55,7 @@ theorem small_along_alt : ∀ (𝒜 : FamClass) (σ : RawSel _root_.GlobalTheory
   have hs := hS Fm (w3_a hw) x hx i
   have hp := hP Fm (w3_a hw) x hx i
   refine ⟨fun w hw1 => ((σ Fm (w3_a hw) x hx i).muDef C CH).2.2.2 w |>.2 hw1, ?_, ?_⟩
-  · exact _root_.GlobalTheory.T.indefinite_scale_theta_limit_alt _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hs
-  · exact _root_.GlobalTheory.T.indefScale_theta_degree _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ (Fm.D x i).tcLL hA (σ Fm (w3_a hw) x hx i).ok1 hp.1 C CH
+  · exact _root_.GlobalTheory.Div.SeeIsoClose.seeIso_of_seeEx_alt _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hs
+  · exact _root_.GlobalTheory.passIn3_at_realT_alt _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ (Fm.D x i).tcLL hA (σ Fm (w3_a hw) x hx i).ok1 hp.1 C CH
 end GlobalTheory.Fc.Ind
 end

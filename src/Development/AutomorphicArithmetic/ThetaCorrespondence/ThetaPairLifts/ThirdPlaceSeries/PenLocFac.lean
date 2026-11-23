@@ -65,7 +65,7 @@ theorem pen_locFac_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I :
         Ram := fun _ => Set.univ, S := fun _ => id, rd := fun _ _ _ _ _ => 0, cV := fun _ => 1, cK := fun _ => 1, cP := 1 }
   have hs : (a.G n).s + 1 + 1 = B.R.m := (a.G n).hs
   obtain rfl : j = (a.G n).s := by omega
-  obtain ⟨c, hc, hmatch⟩ := _root_.GlobalTheory.T.true_geometry_line_family_value W hW u a ha hat row col n hj
+  obtain ⟨c, hc, hmatch⟩ := _root_.GlobalTheory.Fam.PenLoc.pen_match_alt W hW u a ha hat row col n hj
   refine ⟨c, hc, fun t J hJ α γ => ⟨_root_.GlobalTheory.Fam.PenLoc.penXi_alt a n, _root_.GlobalTheory.Fam.PenLoc.penXi_isLocFac_of_allTrue W hW u a ha hat row col n, fun P hP z => ?_⟩⟩
   have hPv : P.1 ∈ (B.primes X).vGs := hP ▸ (hW.lev.2.1 _).1 (a.pl n).2
   have hh : ∀ b, (I.idx (W.P.I.tup t)).h (a.G n).s b P = 1 := by

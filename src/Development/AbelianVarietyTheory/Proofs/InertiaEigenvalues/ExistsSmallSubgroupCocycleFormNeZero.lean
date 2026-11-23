@@ -88,7 +88,7 @@ theorem exists_bform_ne_zero : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.
   apply hy
   obtain ⟨d, hd, hd2, hd1, he⟩ := GlobalTheory.TwSys.TameScalar.exists_scalar_tmat_of_tame_inertia D N X bkP i s z hS.1.1 hz
   obtain ⟨x, hx, -⟩ := (hU A).1 x₀ hx₀
-  have hcl := GlobalTheory.T.two_mul_cocycle_values_zero_on_small_subgroup D N X bkP i s hl M L z hM hz hL A κ Q ρ hS hK hρ hanti hκz hκL x y
+  have hcl := _root_.GlobalTheory.NewPrime.FormVanish.two_mul_values_eq_zero D N X bkP i s hl M L z hM hz hL A κ Q ρ hS hK hρ hanti hκz hκL x y
     (fun h hh => by rw [hx]; exact hcon h hh)
   let I : Ideal A := Ideal.span {t | ∃ h ∈ L, ∃ b, t = x.1 h b}
   have hjI : x₀ j ∈ I := by

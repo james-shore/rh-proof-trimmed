@@ -100,12 +100,9 @@ theorem Amat_inv_cont (σ : Equiv.Perm (Fin r)) (d : Fin r → ℂ) (hd : ∀ a,
 theorem norm_psi (z : Fin (2 * r + k + 1) → ℂ) (c : ℂ) (g : B.Mat k r) : ‖psi k r z c g‖ = 1 := by
   unfold psi; rw [Complex.norm_exp]; simp
 
-theorem norm_Gpsi (β x : ℂ) : ‖G.psi β x‖ = 1 := by
-  unfold G.psi; rw [Complex.norm_exp]; simp
-
 theorem norm_psiStar (σ : Equiv.Perm (Fin r)) (z z' : Fin (2 * (r + 0 + 0) + k + 1) → ℂ) (ξ : U.Xi k r 0 0 σ) :
     ‖U.psiStar k 0 σ z z' ξ‖ = 1 := by
-  rw [psiStar_zero, norm_mul, norm_mul, norm_psi, norm_star, norm_psi, norm_Gpsi]; norm_num
+  rw [psiStar_zero, norm_mul, norm_mul, norm_psi, norm_star, norm_psi, _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.F_norm_psi]; norm_num
 
 theorem psi_cont (z : Fin (2 * r + k + 1) → ℂ) (c : ℂ) : Continuous fun g : B.Mat k r => psi k r z c g := by
   unfold psi ell
@@ -224,8 +221,8 @@ theorem inner_int (S : B.RealPlaceData k r Wp Wq) (z0 z0' : Fin (2 * 0 + k + 1) 
   have hhL' : Matrix.of h' ∈ UWset k (r + 0) (liftVec k r 0 z0') := by rw [← hz']; exact hh'
   have hy1W : y1 ∈ UWset k 0 z0 := uw_mid r 0 z0 _ hhL
   have hy1W' : y1' ∈ UWset k 0 z0' := uw_mid r 0 z0' _ hhL'
-  have uy1 : IsUnit y1.det := gv_unit hy1W.1
-  have uy1' : IsUnit y1'.det := gv_unit hy1W'.1
+  have uy1 : IsUnit y1.det := _root_.PI.StabPairsW.isUnit_det_of_mem_GV hy1W.1
+  have uy1' : IsUnit y1'.det := _root_.PI.StabPairsW.isUnit_det_of_mem_GV hy1W'.1
   have hγ' : y1⁻¹ * γ0 * y1' ∈ B.GV k 0 := by
     have hG := Formalism.FourierDecayAlt.P.unitary_group_closed k 0
     exact hG.mul_mem _ (hG.mul_mem _ (hG.inv_mem _ hy1W.1) _ hγ0) _ hy1W'.1

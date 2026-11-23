@@ -64,43 +64,6 @@ open Formalism.IndefR.DatumF
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem cA_eq_cAF (σ : E →ₐ[F] E) (z : AF F ⊗[F] E) : cA σ z = cAF σ z := by
-  induction z using TensorProduct.induction_on with
-  | zero => simp
-  | tmul a b => rfl
-  | add a b ha hb => rw [map_add (f := _), map_add (f := _), ha, hb]
-
-theorem triple_sum_comm_reverse {ι κ μ M : Type} [Fintype ι] [Fintype κ] [Fintype μ] [AddCommMonoid M] (f : ι → κ → μ → M) :
-    ∑ i, ∑ k, ∑ l, f i k l = ∑ l, ∑ k, ∑ i, f i k l := by
-  rw [Finset.sum_comm]
-  rw [Finset.sum_congr rfl fun k _ => Finset.sum_comm]
-  exact Finset.sum_comm
-
-theorem symp_eq_symplOF (σ : E →ₐ[F] E) {nS nT : ℕ} (JS : Matrix (Fin nS) (Fin nS) E)
-    (JT : Matrix (Fin nT) (Fin nT) E) (ξ₀ : E) (JA : Matrix (Fin nT) (Fin nT) E) (JB : Matrix (Fin nS) (Fin nS) E)
-    (ξ : AF F ⊗[F] E) (hA : JA = JTᵀ) (hB : ξ • incM F JB = incM F (ξ₀ • JS⁻¹)) (x y : WOF F E nS nT) :
-    symp (cA σ) ξ (incM F JA) (incM F JB) x y = symplOF σ JS JT ξ₀ x y := by
-  have hB' : ∀ j l, ξ * incM F JB j l = incAF F E ξ₀ * incAF F E (JS⁻¹ j l) := by
-    intro j l
-    have h1 := congrFun (congrFun hB j) l
-    rw [Matrix.smul_apply, smul_eq_mul] at h1
-    rw [h1]
-    show inclR (F := F) (AF F) (ξ₀ * JS⁻¹ j l) = _
-    exact map_mul _ _ _
-  have hA' : ∀ i k, incM F JA i k = incAF F E (JT k i) := by
-    intro i k; subst hA; rfl
-  unfold symp hTens symplOF hOF
-  congr 1
-  simp_rw [Finset.mul_sum]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun j _ => ?_
-  rw [triple_sum_comm_reverse]
-  refine Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun i _ => ?_
-  rw [hA', cA_eq_cAF]
-  calc ξ * (x i j * incAF F E (JT k i) * incM F JB j l * cAF σ (y k l))
-      = x i j * incAF F E (JT k i) * (ξ * incM F JB j l) * cAF σ (y k l) := by ring
-    _ = _ := by rw [hB']; ring
-
 theorem schr_schr_apply {R : Type} [CommRing R] [Invertible (2 : R)] (ψ : AddChar R ℂ) {κ : Type} [Fintype κ]
     (x x₁ x₀ y₁ y₀ : κ → R) (f : (κ → R) → ℂ) :
     ψ (x ⬝ᵥ y₁ + ⅟2 * x₁ ⬝ᵥ y₁) * (ψ ((x + x₁) ⬝ᵥ y₀ + ⅟2 * x₀ ⬝ᵥ y₀) * f (x + x₁ + x₀)) =
@@ -202,7 +165,7 @@ theorem schr_theta_inj (ψ : AddChar (AF F) ℂ) (hψ : IsCharAF F ψ) (κ : Typ
 
 theorem map_cA_eq (σ : E →ₐ[F] E) {n m : ℕ} (M : Matrix (Fin n) (Fin m) (AF F ⊗[F] E)) :
     M.map (cA σ) = M.map (sigR (AF F) σ) := by
-  ext i j; exact cA_eq_cAF σ (M i j)
+  ext i j; exact _root_.GlobalTheory.TransportF.cA_eq σ (M i j)
 
 theorem memT_of_UG (σ : E →ₐ[F] E) {nT : ℕ} (JT JA : Matrix (Fin nT) (Fin nT) E) (hA : JA = JTᵀ)
     (a : UG (cA σ) (incM F JA)) : (a.1 : GL (Fin nT) (AF F ⊗[F] E)) ∈ HR (AF F) σ JT := by
@@ -322,7 +285,7 @@ theorem pres_impl : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
   refine ⟨pres, fun p w φ hφ => ?_⟩
   obtain ⟨a, b⟩ := p
   obtain ⟨g, h, hh, hg⟩ := key (a, b)
-  have hs := symp_eq_symplOF (F := F) σ JS JT ξ₀ JA JB ξ hA hBξ
+  have hs := _root_.GlobalTheory.ThetaQuasiRatF.symp_eq_symplOF' (F := F) σ JS JT ξ₀ JA JB ξ hA hBξ
   have hrho : ∀ w', ∀ φ' ∈ schA F κ, co.rho B.ψ w' φ' ∈ schA F κ :=
     fun w' φ' h' => GlobalTheory.HeisSchA.schr_mem_schA B.ψ hstd _ φ' h'
   have h1 := htr a b g h hh hg _ (hrho w φ hφ)

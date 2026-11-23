@@ -165,7 +165,7 @@ theorem coef_proj (hLL : LL) (hU : UTorsSt) [ArithBase o Ω] [CharZero u.V] (l :
     obtain ⟨q, τ, hq0, hτ, hqa, hτw⟩ := PerpTorus.exists_torus_point hLL hU o Ω S ρ p y₀ u l Φ a.1 a.2
     obtain ⟨t', ht'⟩ := (hlin S.J (fun l => y₀ (algebraMap o S.R (S.ρ a l i))) Φ.s).1
     obtain ⟨wq, hwq⟩ := (GlobalTheory.UT.SymFrame.main hLL u.V _ hA u.D (PadicAlgCl p) S.N hNodd q).1
-    have hrel := GlobalTheory.T.symmetricLift_oddOrder_acts_as_expansionOperator hLL u.V _ hA u.D u.A u.G u.semi u.U (PadicAlgCl p) S.N hNodd q _ hqa (Φ.U a) (Φ.U_sym a) w₀ hw₀
+    have hrel := _root_.GlobalTheory.UT.symLift_acts_as_phi hLL u.V _ hA u.D u.A u.G u.semi u.U (PadicAlgCl p) S.N hNodd q _ hqa (Φ.U a) (Φ.U_sym a) w₀ hw₀
       wq hwq _ t' _ _ (hΨ i) (hc _ t' ht') ((Φ.U_act a i t').2 ht')
     have hwt := ((GlobalTheory.UT.TorusWeight.torus_weight hLL u.V _ hA u.D u.A u.G u.semi u.U (PadicAlgCl p) S.N hNodd q τ hq0
       hτ wq hwq).2 _ _).1 hrel α
@@ -244,7 +244,7 @@ theorem pull_term (hL : LL) (hT : TwistBCSpanStatement) (hVR : TWM.VRatioGtState
   have hinj : Function.Injective E.h := fun a b h => by
     have h' : (m : ℤ) • a = (m : ℤ) • b := by simpa only [natCast_zsmul, hEh] using h
     exact smul_right_injective D.toPre.X (Int.natCast_ne_zero.2 hm.pos.ne') h'
-  have hpull := (GlobalTheory.T.expansion_pullback_section_endomorphism hL V _ hA D A G hG U F E hinj (m ^ 2) 1 le_rfl hm2
+  have hpull := (_root_.GlobalTheory.UT.PullExp.main hL V _ hA D A G hG U F E hinj (m ^ 2) 1 le_rfl hm2
     (ThetaSum.exists_gen_pow U.LG U.cubG U.symG U.symG_gen m E.aG hEG)).2 w₀ ρ hN (mulT A.A _ m) (snd _ A.A ^ m) (lift_snd _ _)
     (lift_fst _ _) (by rw [hEA, MonObj.comp_pow, Category.comp_id]) α hα hαn th s₁ _ σ₁ hϑ hσ₁ htw
   rw [hEB] at hpull

@@ -78,16 +78,6 @@ theorem exists_mul_mem {A : Submodule (𝓞 K) V} (hA : Submodule.span K (A : Se
   | (intros; apply @_root_.GlobalTheory.IntMulIntegral.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntMulIntegral.main ..)
 
-theorem exists_mul_le {A : Submodule (𝓞 K) V} (hA : Submodule.span K (A : Set V) = ⊤)
-    {B : Submodule (𝓞 K) V} (hB : B.FG) : ∃ N : ℤ, N ≠ 0 ∧ ∀ x ∈ B, N • x ∈ A := by
-  first
-  | exact @_root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le
-  | exact _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le
-  | (apply _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le ..)
-
 theorem finite_between {Λ : Submodule (𝓞 K) V} (hΛ : Λ.FG) {a b : ℤ} (ha : a ≠ 0) (hb : b ≠ 0) :
     {M : Submodule (𝓞 K) V | (∀ x ∈ Λ, a • x ∈ M) ∧ ∀ x ∈ M, b • x ∈ Λ}.Finite := by
   haveI : Module.Finite (𝓞 K) Λ := Module.Finite.iff_fg.2 hΛ
@@ -147,8 +137,8 @@ theorem relIndex_ne_zero (G : Subgroup (V ≃ₗ[K] V)) {Λ Λ' : Submodule (�
       (G ⊓ MulAction.stabilizer (V ≃ₗ[K] V) Λ') ≠ 0 := by
   letI := hΛ
   letI := hΛ'
-  obtain ⟨a, ha, h₁⟩ := exists_mul_le (Submodule.IsFullLattice.span_eq_top (A := K) (M := Λ)) hΛ'.fg
-  obtain ⟨b, hb, h₂⟩ := exists_mul_le (Submodule.IsFullLattice.span_eq_top (A := K) (M := Λ')) hΛ.fg
+  obtain ⟨a, ha, h₁⟩ := _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le (Submodule.IsFullLattice.span_eq_top (A := K) (M := Λ)) hΛ'.fg
+  obtain ⟨b, hb, h₂⟩ := _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le (Submodule.IsFullLattice.span_eq_top (A := K) (M := Λ')) hΛ.fg
   set H := G ⊓ MulAction.stabilizer (V ≃ₗ[K] V) Λ' with hH
   have e : (G ⊓ MulAction.stabilizer (V ≃ₗ[K] V) Λ).relIndex H = (MulAction.stabilizer H Λ).index := by
     rw [Subgroup.relIndex]
@@ -201,7 +191,7 @@ theorem exists_den {s : V ≃ₗ[K] V} {n : ℕ} (hs : ((s : V →ₗ[K] V) - 1)
     | zero => simpa using hm 0 x hx
     | succ m ih => rw [pow_succ']; exact hsB _ ih
   letI := hΛ
-  obtain ⟨N, hN, h⟩ := exists_mul_le (Submodule.IsFullLattice.span_eq_top (A := K) (M := Λ)) hB
+  obtain ⟨N, hN, h⟩ := _root_.GlobalTheory.IntegerMultipleIntegral.exists_int_smul_le (Submodule.IsFullLattice.span_eq_top (A := K) (M := Λ)) hB
   exact ⟨N, hN, fun m x hx => h _ (hp m x hx)⟩
 
 theorem inf_stab_smul {Γ X : Type} [Group Γ] [MulAction Γ X] (G : Subgroup Γ) {s : Γ} (hs : s ∈ G) (x : X) :

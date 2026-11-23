@@ -49,13 +49,10 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.D
 
-theorem ringAFacts : RingAFacts := ring_a_facts
-theorem kurIntegers : KurIntegers := KurIntegers_of ringAFacts
+theorem kurIntegers : KurIntegers := KurIntegers_of _root_.Formalism.L2.Th1.D.ring_a_facts
 theorem kurUnram : KurUnram := KurUnram_of kurIntegers
-theorem kurRoots : KurRoots := unramified_completion_roots
-theorem kurComplete : KurComplete := unramified_completion_complete
-theorem frobAIsom : FrobAIsom := FrobAIsom_of ringAFacts
-theorem kurFrob : KurFrob := KurFrob_of frobA frobAIsom kurIntegers kurUnram
-theorem fOfBetaHyp : FOfBetaHyp := f_of_beta_hypotheses
-
+alias kurRoots := _root_.Formalism.L2.Th1.D.unramified_completion_roots
+alias kurComplete := _root_.Formalism.L2.Th1.D.unramified_completion_complete
+theorem frobAIsom : FrobAIsom := FrobAIsom_of _root_.Formalism.L2.Th1.D.ring_a_facts
+theorem kurFrob : KurFrob := KurFrob_of _root_.Formalism.L2.Th1.D.frobenius_on_ring_a frobAIsom kurIntegers kurUnram
 end Formalism.L2.Th1.D

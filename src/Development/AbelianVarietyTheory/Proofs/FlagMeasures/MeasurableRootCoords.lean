@@ -156,8 +156,8 @@ theorem root_conj {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hz' : 
   have mi : Measurable (GlobalTheory.SgInf.invM : Mt k r → Mt k r) := P.B2x2.invM_meas
   have hI' : μ.map GlobalTheory.SgInf.invM = μ := hI
   have mc := (continuous_conj g).measurable
-  rw [← hI', Measure.map_map mc mi, Measure.map_map (measurable_rootCoords z p) (mc.comp mi), ← h2.map_eq,
-    ← Measure.map_smul _ h2.measurable.aemeasurable, ← h, Measure.map_map h2.measurable (measurable_rootCoords z' p)]
+  rw [← hI', Measure.map_map mc mi, Measure.map_map (_root_.GlobalTheory.Amp.RootMove.measurable_rootCoords z p) (mc.comp mi), ← h2.map_eq,
+    ← Measure.map_smul _ h2.measurable.aemeasurable, ← h, Measure.map_map h2.measurable (_root_.GlobalTheory.Amp.RootMove.measurable_rootCoords z' p)]
   refine Measure.map_congr ?_
   filter_upwards [P.Dx2.OrbJ.ae_mem hμ] with x hx
   have hxi := (hR.inv_mem _ hx).2
@@ -331,10 +331,6 @@ theorem amp_at_root (D : D7) τ w w' θ (W : LocW D.R.k D.R.rS) (hW : GoodW D τ
       inner_smul_left, smul_smul, Complex.star_def]
     congr 1
     ring
-
-theorem hs_nonneg {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
-    [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] (A : Wq →L[ℂ] Wp) : 0 ≤ hsNormSq A := by
-  rw [GlobalTheory.AmpNorm.hsNormSq_eq]; positivity
 
 section coefficient
 

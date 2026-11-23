@@ -61,7 +61,7 @@ theorem dividedPowerFiltration_eq_bot : ∀ {W B : Type} [CommRing W] [CommRing 
   intro x hx
   rw [Ideal.mem_bot]
   have h1 : Lat.ι f ξ l M x ∈ pdP (Lat.γB f ξ) m := dividedPowerFiltration_map (isDPMorphism_ι f ξ l M hc) m hx
-  rw [GlobalTheory.T.divided_power_filtration_span_pow f ξ m, h.nil, Ideal.mem_span_singleton, zero_dvd_iff] at h1
+  rw [_root_.GlobalTheory.CompanionTheory.DPFiltration.pdP_γB f ξ m, h.nil, Ideal.mem_span_singleton, zero_dvd_iff] at h1
   exact Lat.ι_injective f ξ l M (by rw [h1, map_zero])
 
 end GlobalTheory.CompanionTheory.LatNil

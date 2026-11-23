@@ -125,7 +125,7 @@ theorem localised_iwasawa_asymptotics : ∀ (n : ℕ) (ε : Fin n → Bool) (a :
         (slab ε EL ρ r).indicator 1 x.2.2) ∂(μN.prod (μM.prod μK)) := fun r =>
     GlobalTheory.IwConst.lintegral_triple_eq μN μM μK (dlt j W) hdltm _ (hPmeas r)
   have hc := continuous_nrm_uMat ε
-  apply GlobalTheory.T.tendsto_small_ball_density_of_squeeze _ (dN + (dM + dK)) _ hvol
+  apply _root_.GlobalTheory.IwConst.tendsto_div_pow_of_squeeze _ (dN + (dM + dK)) _ hvol
   intro η hη
   obtain ⟨t₂, ht₂, h₂⟩ := hCη η hη
   obtain ⟨t₃, ht₃, h₃⟩ := hdlt η hη

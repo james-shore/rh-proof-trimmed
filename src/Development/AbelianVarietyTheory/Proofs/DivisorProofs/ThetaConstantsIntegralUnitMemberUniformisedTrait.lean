@@ -73,9 +73,6 @@ theorem spMap_comp' {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] 
     spMap g ≫ spMap f = spMap (g.comp f) := by
   simp [spMap, ← Spec.map_comp]
 
-theorem spMap_id' (R : Type) [CommRing R] : spMap (RingHom.id R) = 𝟙 _ := by
-  simp [spMap]
-
 section
 variable {S : Scheme.{0}} {G : Over S} [GrpObj G] {L : LB G.left}
 
@@ -200,9 +197,9 @@ theorem main : ∀ (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing
     have hab : j (cF b) = i' (c a) :=
       thG_unique U.LG.rig U.LG.isLB U.LG.rigGen _ (ptF' b) hodd hmKb hPy h1 (hLF'.2.1 b)
     exact isIntegralElem_of_sq φF i i' j hsq hab (hint b)
-  · obtain ⟨x0', hx0'l, hx0't⟩ := pt_of_eq (show x' = spMap (RingHom.id F) ≫ x' by rw [spMap_id', Category.id_comp]) x0
+  · obtain ⟨x0', hx0'l, hx0't⟩ := pt_of_eq (show x' = spMap (RingHom.id F) ≫ x' by rw [_root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp]) x0
     obtain ⟨b0, hb0⟩ := hLF.2.2 F (RingHom.id F) x0' (hx0't _ hx0.1)
-    have hx0b : x0 = ptF b0 := Over.OverMorphism.ext (by rw [← hx0'l, hb0, spMap_id', Category.id_comp])
+    have hx0b : x0 = ptF b0 := Over.OverMorphism.ext (by rw [← hx0'l, hb0, _root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp])
     subst hx0b
     have hc0b : cF b0 = c0 :=
       thG_unique U.LG.rig U.LG.isLB U.LG.rigGen θF (ptF b0) hodd hmF hPF hx0 (hLF.2.1 b0)

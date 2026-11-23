@@ -58,8 +58,8 @@ theorem further_group_charts : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I
   rcases isEmpty_or_nonempty Ch with hE | hNE
   · refine ⟨fun v _ => levelVL (I.rec7 l Z).sp.cm.sig ((I.rec7 l Z).sp.X (B.R.m - 1)).gram v Lb0, 1, fun v hv => le_rfl,
       fun v hv => ⟨1, one_pos, fun x hx => hx.1⟩, fun β => hE.elim β, fun β => hE.elim β, fun β => hE.elim β⟩
-  · obtain ⟨ψ, hψ⟩ := GlobalTheory.T.exists_character_allCharts_furtherPlaces I hI hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hR hfin hoff hchi Lb0 hLb
-    refine ⟨fun v _ => (⨆ β', ((K β').lev.Uloc v).comap (reGL (rankN (I.rec7 l Z) (B.R.m - 1) (Nat.sub_le _ _)) _).toMonoidHom), ψ, fun v hv => iSup_le fun β => GlobalTheory.Mem.Col2.TC.chart_Uloc_le_levelVL_base I hI hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hR hoff hchi Lb0 hLb β v hv, fun v hv => ?_, fun β v hv => ?_, fun β v hv => GlobalTheory.T.chartLocalGroup_finiteIndex_at_furtherPlace I hI hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hR hoff hchi Lb0 hLb β v hv, hψ⟩
+  · obtain ⟨ψ, hψ⟩ := _root_.GlobalTheory.Mem.Col2.QChi.exists_chi_further I hI hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hR hfin hoff hchi Lb0 hLb
+    refine ⟨fun v _ => (⨆ β', ((K β').lev.Uloc v).comap (reGL (rankN (I.rec7 l Z) (B.R.m - 1) (Nat.sub_le _ _)) _).toMonoidHom), ψ, fun v hv => iSup_le fun β => GlobalTheory.Mem.Col2.TC.chart_Uloc_le_levelVL_base I hI hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hR hoff hchi Lb0 hLb β v hv, fun v hv => ?_, fun β v hv => ?_, fun β v hv => _root_.GlobalTheory.Mem.Col2.FinAtQ.chartLoc_finiteIndex I hI hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hR hoff hchi Lb0 hLb β v hv, hψ⟩
     · obtain ⟨β⟩ := hNE
       obtain ⟨n, hn, hx⟩ := GlobalTheory.Mem.Col2.AdT.LevQ.chart_contains_princ I hI hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hR hoff hchi Lb0 hLb β v hv
       exact ⟨n, hn, fun x h => le_iSup (fun β' => ((K β').lev.Uloc v).comap (reGL (rankN (I.rec7 l Z) (B.R.m - 1) (Nat.sub_le _ _)) _).toMonoidHom) β (hx x h)⟩

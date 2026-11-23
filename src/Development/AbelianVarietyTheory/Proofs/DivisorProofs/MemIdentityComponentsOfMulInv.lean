@@ -67,7 +67,7 @@ theorem mem_identityComponents_of_mul_inv :
     rw [← Scheme.Hom.comp_apply, ← Scheme.Hom.comp_apply, Over.w, Over.w]
   have zf := hU _ hf hbf
   have zm := hU _ hm hbm
-  have zi := GlobalTheory.T.inv_mem_identity_component_fibre S G _ zf
+  have zi := _root_.GlobalTheory.inv_mem_connectedComponentIn_fibre S G _ zf
   set φ : G ⊗ G ⟶ G ⊗ G := lift (fst G G ≫ ι[G]) μ[G] with hφ
   have e1 : (fst G G).left (φ.left w) = (ι[G]).left ((fst G G).left w) := by
     rw [← Scheme.Hom.comp_apply, ← Scheme.Hom.comp_apply, ← Over.comp_left, ← Over.comp_left, hφ, lift_fst]

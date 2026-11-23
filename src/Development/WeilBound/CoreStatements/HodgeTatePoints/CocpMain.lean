@@ -64,8 +64,8 @@ theorem cocycle_p : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
     have := congrArg Prod.fst hα
     rwa [alpha_apply] at this
   have hyp := hy1 hwv
-  obtain ⟨gs, hax, hpow, -⟩ := GlobalTheory.T.pow_one_series_p_formula k p d (𝓞 E) g.B
-  have hkill := GlobalTheory.T.alpha_kernel_derivative_vanishes k p d (𝓞 E) g.B (fun i => w i ^ p) gs hα hpow
+  obtain ⟨gs, hax, hpow, -⟩ := _root_.PositivityTheory.HtPt.Cb.first_power_char_p k p d (𝓞 E) g.B
+  have hkill := _root_.GlobalTheory.CompanionTheory.Ar.Kill.germKill k p d (𝓞 E) g.B (fun i => w i ^ p) gs hα hpow
   have hf : ∀ q, MvPowerSeries.pderiv (R := k) q (dSer gs fun i => w i ^ p) = 0 := by
     rintro ⟨i, j⟩
     obtain rfl : i = 0 := Subsingleton.elim _ _

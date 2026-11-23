@@ -115,24 +115,6 @@ theorem isSDLat_pi (E : Type) [Field E] [NumberField E] [StarRing E] (n : ℕ) :
       · simp
     rwa [e] at this
 
-section Transport
-
-variable {E E' : Type} [Field E] [Field E'] (f : E ≃+* E') {n : ℕ}
-
-theorem isSDLat_image [NumberField E] [NumberField E'] [StarRing E] [StarRing E']
-    (hf : ∀ x, f (star x) = star (f x)) (L : Submodule (𝓞 E) (Fin n → E)) (hL : IsSDLat E n L) :
-    IsSDLat E' n (Submodule.span (𝓞 E')
-      ((fun (x : Fin n → E) (i : Fin n) => f (x i)) '' (L : Set (Fin n → E)))) := by
-  first
-  | exact @_root_.GlobalTheory.StandardLatticeSpan.isSDLat_map
-  | exact _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map
-  | (apply _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map <;> assumption)
-  | (intros; apply _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.StandardLatticeSpan.isSDLat_map <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map ..)
-
-end Transport
-
 theorem isSDLat_of_isSdLat {E : Type} [Field E] [NumberField E] [StarRing E] {n : ℕ}
     (L : Submodule (𝓞 E) (Sp E n)) (hL : IsSdLat L) : IsSDLat E n L := by
   obtain ⟨h1, h2⟩ := hL
@@ -185,7 +167,7 @@ theorem seam_selfDual : ∀ (D : D7) (X : Fields) (s : Seam D X), s.Ok → ∀ (
   intro D X s hs n
   letI := D.host.cmStar
   refine ⟨isSDLat_pi D.host.E n, fun L hL => ?_⟩
-  exact isSDLat_image s.iE (fun x => (hs.2 x).trans (bridge_star_holds D.R D.host _).symm) L
+  exact _root_.GlobalTheory.StandardLatticeSpan.isSDLat_map s.iE (fun x => (hs.2 x).trans (bridge_star_holds D.R D.host _).symm) L
     (isSDLat_of_isSdLat L hL)
 
 end GlobalTheory.SeamSelfDual

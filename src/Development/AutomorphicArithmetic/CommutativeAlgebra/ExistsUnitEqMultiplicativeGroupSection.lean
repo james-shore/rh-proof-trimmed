@@ -164,7 +164,7 @@ private lemma unitSec_inj {U : Scheme.{0}} (u v : (Γ(U, ⊤))ˣ) (h : unitSec u
     have h1 := unitSec_mul (u * v⁻¹) v
     rw [inv_mul_cancel_right, h] at h1
     exact (right_eq_add.mp h1)
-  obtain ⟨S, hS, hl⟩ := (GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 U
+  obtain ⟨S, hS, hl⟩ := (_root_.GlobalTheory.EtC.toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 U
     (ULift.up (Additive.ofMul (u * v⁻¹)) : ULift (Additive (Γ(U, ⊤))ˣ)) h0
   have h1 : u * v⁻¹ = 1 := sepU S hS _ _ fun V g hg => by
     have h2 := hl V g hg
@@ -180,7 +180,7 @@ open UpperTheory in
 theorem UpperTheory.exists_unit_eq_multiplicativeGroup_section :
     ∀ (X : Scheme.{0}) (b : Sec Gm X), ∃ u : (Γ(X, ⊤))ˣ, unitSec u = b := by
   intro X b
-  obtain ⟨S, hS, h⟩ := (GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift ℤ (Scheme.Γ ⋙ unitsF)).1 X b
+  obtain ⟨S, hS, h⟩ := (_root_.GlobalTheory.EtC.toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).1 X b
   have h' : ∀ (V : Scheme.{0}) (g : V ⟶ X), S.arrows g →
       ∃ v : (Γ(V, ⊤))ˣ, unitSec v = Sec.res g b := by
     intro V g hg

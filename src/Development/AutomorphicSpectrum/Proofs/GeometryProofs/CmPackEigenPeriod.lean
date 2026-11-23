@@ -57,15 +57,10 @@ section Comb
 
 variable {S : Scheme.{0}} {K C : Type} [CommRing K] [CommRing C]
 
-theorem dualMap_comp_algebraMap' (φ : K →+* C) :
-    (GlobalTheory.CompanionTheory.Ar.dualMap φ).comp (algebraMap K (DualNumber K)) = (algebraMap C (DualNumber C)).comp φ := by
-  refine RingHom.ext fun z => TrivSqZeroExt.ext ?_ ?_ <;>
-    simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-
 def bcHom (φ : K →+* C) (x : Sp K ⟶ S) : epsAt (spMap φ ≫ x) ⟶ epsAt x :=
   Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ)) (by
     show spMap _ ≫ spMap _ ≫ x = spMap _ ≫ spMap _ ≫ x
-    rw [← Category.assoc, ← Category.assoc, spMap_comp_spMap, spMap_comp_spMap, dualMap_comp_algebraMap'])
+    rw [← Category.assoc, ← Category.assoc, spMap_comp_spMap, spMap_comp_spMap, _root_.PositivityTheory.Xgf.dualMap_comp_algebraMap_sesquilinear_fractions])
 
 theorem dual_epsMul (φ : K →+* C) (a : K) :
     spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ spMap (GlobalTheory.CompanionTheory.Ar.epsMul a) =

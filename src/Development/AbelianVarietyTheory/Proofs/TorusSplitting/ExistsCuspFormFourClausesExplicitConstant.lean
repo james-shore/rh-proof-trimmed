@@ -67,7 +67,7 @@ theorem exists_form_four_clauses (D : D7) (T : Top D) (h : LawsP T) (DF q : ℕ)
     have := D.R.m_add_three_le_k
     unfold Ranks.r; omega
   obtain ⟨i, J, fJ, cf, xs, f, hi, hcard, hsp, hrule, hcusp, hne, -, hnzd, harch, hsup⟩ :=
-    GlobalTheory.T.exists_product_cuspForm_ne_zero_arch_supNorm_bounds D.host.E T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c D.R.r
+    _root_.GlobalTheory.EtaAn.exists_etaRule_cusp_ne_zero_bounds D.host.E T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c D.R.r
       (fun σ => Formalism.L2.PjFree.Unf.ofPj (T.U j σ)) T.σ₀ (fun σ hσ => h.unf j hj σ hσ) T.good_σ₀
       (h.allTest j hj) hr 5 (by decide) (by norm_num) DF q D.R.m R0 hrun (Or.inr hq)
   have hw := wtA_wEt_eq_zero D j i

@@ -84,10 +84,6 @@ def incl (T : QLat LL) : ↥T.L.T →ₗ[ℤ_[l]] T.V where
       ← algebraMap_smul ↥LL.1 (algebraMap ℤ_[l] ℚ_[l] z) (x : T.V)]
     rfl
 
-theorem exists_pow_smul_mem (T : QLat LL) (v : T.V) :
-    ∃ n : ℕ, (l : ↥LL.1) ^ n • v ∈ T.L.T :=
-  _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem T v
-
 theorem zl_smul_V (T : QLat LL) (z : ℤ_[l]) (v : T.V) : z • v = algebraMap ℚ_[l] ↥LL.1 (z : ℚ_[l]) • v := by
   change algebraMap ℤ_[l] ℚ_[l] z • v = _
   rw [← algebraMap_smul ↥LL.1 (algebraMap ℤ_[l] ℚ_[l] z) v]
@@ -104,7 +100,7 @@ theorem isLoc (T : QLat LL) : IsLocalizedModule (nonZeroDivisors ℤ_[l]) (incl 
       exact smul_right_injective _ hs' hab
     · refine ⟨(algebraMap ℚ_[l] ↥LL.1 ((s : ℤ_[l]) : ℚ_[l]))⁻¹ • a, ?_⟩
       rw [Module.algebraMap_end_apply, zl_smul_V, smul_smul, mul_inv_cancel₀ hs', one_smul]
-  · obtain ⟨n, hn⟩ := exists_pow_smul_mem T y
+  · obtain ⟨n, hn⟩ := _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem T y
     have hl : ((l : ℤ_[l]) ^ n) ∈ nonZeroDivisors ℤ_[l] :=
       mem_nonZeroDivisors_of_ne_zero (pow_ne_zero _ (Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero))
     refine ⟨(⟨_, hn⟩, ⟨_, hl⟩), ?_⟩

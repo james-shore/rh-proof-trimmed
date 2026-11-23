@@ -73,15 +73,6 @@ set_option autoImplicit false
 
 namespace GlobalTheory.CompanionTheory.Ar.GR
 
-private theorem thetaBar_surj (p : ℕ) [Fact p.Prime] {C : Type} [Field C] [IsAlgClosed C] [CharZero C]
-    {v : Valuation C NNReal} (O : Type) [CommRing O] [Algebra O C] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] (hv : v.Integers O) (ε : PreTilt O p)
-    (hε : IsPrimitiveRoot (((frobeniusEquiv (PreTilt O p) p).symm ε).untilt) p) :
-    Function.Surjective (Ainf.thetaBar p O hv ε hε) := by
-  intro b
-  obtain ⟨a, rfl⟩ := Ainf.theta_surj p O hv b
-  exact ⟨Ideal.Quotient.mk _ a, rfl⟩
-
 private theorem thetaBar_mul (p : ℕ) [Fact p.Prime] {C : Type} [Field C] [IsAlgClosed C] [CharZero C]
     {v : Valuation C NNReal} (O : Type) [CommRing O] [Algebra O C] [Fact ¬IsUnit (p : O)]
     [IsAdicComplete (Ideal.span {(p : O)}) O] (hv : v.Integers O) (ε : PreTilt O p)
@@ -177,7 +168,7 @@ private theorem htd_of_tower (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAl
       IsTorsPts P.A p pt ∧ (∀ T : TorsRep P.A p, H.AA.carrier = torsFun C T pt) ∧
       ∀ (a : OE) (t : TT p P.g), pt (red p P.g (H.ρ (1 ⊗ₜ[ℤ] a) *ᵥ t)) = pt (red p P.g t) ≫ o.act a := by
   have hsurj : Function.Surjective (algebraMap (Ainf.R0 p O ε) (Tw.O : Type)) := by
-    subst hTw; exact thetaBar_surj p O hv ε hε
+    subst hTw; exact _root_.GlobalTheory.WdAinf.thetaBar_surj p O hv ε hε
   have hmul : ∀ x y : Ainf.R0 p O ε, x ∈ RingHom.ker (algebraMap (Ainf.R0 p O ε) (Tw.O : Type)) →
       y ∈ RingHom.ker (algebraMap (Ainf.R0 p O ε) (Tw.O : Type)) → x * y = 0 := by
     subst hTw; exact thetaBar_mul p O hv ε hε
@@ -194,22 +185,22 @@ private theorem htd_of_tower (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAl
   have hsm := GlobalTheory.T.smoothOfRelativeDimension_of_grpPullback_localRing _ _ _ G P.A ψ P.g hab hpb P.smoothDim
   obtain ⟨hθ, hn⟩ := GlobalTheory.T.cube_trivial_and_finite_flat_surjective_mul_abelianScheme _ G _ Q hab (LB.isLB_pull hQ _) hamp hQ
   obtain ⟨hf₁, hf₂, hf₃⟩ := hn p hp0
-  have hcard := GlobalTheory.T.card_torsion_of_polarisedAbelianScheme_lift _ _ C G P ψ hpb p (Nat.cast_ne_zero.2 (Fact.out : p.Prime).ne_zero)
+  have hcard := _root_.GlobalTheory.ChF.card_torsion_of_isGrpPullback _ _ C G P ψ hpb p (Nat.cast_ne_zero.2 (Fact.out : p.Prime).ne_zero)
   have hros := fun a : OE =>
-    GlobalTheory.T.exists_generator_of_rosatiAdjoint_lambdaBundle _ P _ Q ψ₂ hQ hΛ _ _ (o.hom a) (o.hom (star a)) (o.rosati a)
+    _root_.GlobalTheory.RosGen.exists_gen_of_rosatiAdj _ P _ Q ψ₂ hQ hΛ _ _ (o.hom a) (o.hom (star a)) (o.rosati a)
   have key : ∃ (B : BX (Ainf.R0 p O ε)) (e : ∀ R : LAlg (Ainf.R0 p O ε), B.G R → (sp (R₀ := (Ainf.R0 p O ε)) (R : Type) ⟶ G)) (Ad : OE → OAdj B Tw.O), (∀ R, Function.Bijective (e R)) ∧ (∀ R x y, e R (x + y) = e R x * e R y) ∧ (∀ {R S : LAlg (Ainf.R0 p O ε)} (f : LHom R S) (x : B.G R), e S (B.map f x) = spMap f.1 ≫ e R x) ∧ (∀ a, (∀ {R : LAlg (Ainf.R0 p O ε)} (s : LHom Tw.O R) (x : B.G R) (x' : Over.mk (Spec.map (CommRingCat.ofHom s.1.toRingHom)) ⟶ P.A), x'.left ≫ ψ = (e R x).left → (x' ≫ o.act a).left ≫ ψ = (e R ((Ad a).a.f s x)).left)) ∧ ∃ (Dt : DualTower Tw) (D : Dat p P.g B Tw Dt (ℤ_[p] ⊗[ℤ] OE) (sigE p OE) Tw.c), D.H.P = 0 ∧ D.H.PL = 0 ∧ (∀ a {R S : LAlg (Ainf.R0 p O ε)} (s : LHom Tw.O R) (π : LHom R S) (hπ : π.SqZero) (l : Fin P.g) (i : π.ker) (m : Fin P.g → π.ker), (∀ k, (m k : (R : Type)) = s.1 (D.H.ρL (1 ⊗ₜ[ℤ] a) k l) * i) → (Ad a).a.f s (B.tg π hπ (D.ch.gb l ⊗ₜ[(Ainf.R0 p O ε)] i)) = B.tg π hπ (∑ k, D.ch.gb k ⊗ₜ[(Ainf.R0 p O ε)] m k)) ∧ (∀ a j, (Ad a).a.f (LHom.id Tw.O) (D.L.τ j 0) = ∑ k, (PadicInt.toZModPow (0 + 1) (D.H.ρ (1 ⊗ₜ[ℤ] a) k j)).val • D.L.τ k 0) := by
     subst hTw
     obtain ⟨B, e, Ad, k₁, k₂, k₃, k₄, Dt, D, k₅, k₆, k₇, k₈⟩ :=
-      GlobalTheory.T.exists_periodTowerDatum_of_abelianScheme_symmetricBundle p O hv ε hε P.g G Q hab hsm hQ hθ t₁ t₂ hsym hf₁ hf₂ hf₃ hv' (hnd _) hcard
+      _root_.GlobalTheory.AbelianPeriodDatum.main p O hv ε hε P.g G Q hab hsm hQ hθ t₁ t₂ hsym hf₁ hf₂ hf₃ hv' (hnd _) hcard
         P.A ψ ψ₂ P.isAb hpb hsq OE (cjZ OE) o.toRingAct (fun a => star_star a) hros
     exact ⟨B, e, Ad, k₁, k₂, k₃, k₄, Dt, D, k₅, k₆, k₇, fun a j => k₈ a j 0⟩
   obtain ⟨B, e, Ad, k₁, k₂, k₃, k₄, Dt, D, k₅, k₆, k₇, k₈⟩ := key
-  obtain ⟨Y, hY, hR⟩ := GlobalTheory.T.abelianFunctorNilChart_of_nilpotent_chart _ G B e k₁ k₂ k₃ Tw.O P.A ψ hpb P.g F.F X hX
+  obtain ⟨Y, hY, hR⟩ := _root_.GlobalTheory.ChF.bxChart_of_nilChart _ G B e k₁ k₂ k₃ Tw.O P.A ψ hpb P.g F.F X hX
   obtain ⟨H, S, e₁, e₂, e₃, e₄, e₅, e₆, e₇⟩ :=
     htd_of_dat p C v Tw hv' hp.out hc P.g OE B F Y hY α (fun a => (hα a).1) (fun a => (Ad a).a)
       (fun b => hR _ _ _ (hα b) (k₄ b)) Dt Tw.c D k₅ k₆ k₇
   obtain ⟨pt, hpt, hT, hE⟩ :=
-    GlobalTheory.T.dual_tower_hodge_tate_datum p C v P.g B Tw Dt hv' hvp _ (sigE p OE) Tw.c D G e k₁ k₂ k₃ P.A ψ hpb
+    _root_.PositivityTheory.HtPt.Rf.htd_tie p C v P.g B Tw Dt hv' hvp _ (sigE p OE) Tw.c D G e k₁ k₂ k₃ P.A ψ hpb
   refine ⟨H, S, pt, e₁, e₂, e₃, e₄, e₅, hT, fun T => e₆.trans (hE T), fun a t => ?_⟩
   have h0 : ∀ i, p • D.L.τ i 0 = 0 := fun i => by
     have h := D.L.τ_tors i 0

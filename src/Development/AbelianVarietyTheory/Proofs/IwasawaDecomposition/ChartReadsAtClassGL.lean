@@ -90,26 +90,7 @@ theorem val_sub_lt_of_liftFr [StarRing E] {hc : CMData F E} {n : ℕ} {ST SG Q :
   · subst e; simp
   · simp [e, Matrix.one_apply]
 
-theorem val_mul_sub_one_le {P : HeightOneSpectrum (𝓞 E)} {n N : ℕ} {A B : Matrix (Fin n) (Fin n) (P.adicCompletion E)}
-    (hA : ∀ r s, Valued.v (A r s - (1 : Matrix (Fin n) (Fin n) (P.adicCompletion E)) r s) ≤ WithZero.exp (-(N : ℤ)))
-    (hB : ∀ r s, Valued.v (B r s - (1 : Matrix (Fin n) (Fin n) (P.adicCompletion E)) r s) ≤ WithZero.exp (-(N : ℤ)))
-    (r s : Fin n) :
-    Valued.v ((A * B) r s - (1 : Matrix (Fin n) (Fin n) (P.adicCompletion E)) r s) ≤ WithZero.exp (-(N : ℤ)) := by
-  first
-  | exact @_root_.GlobalTheory.MulSubOneValuation.mul_sub_one_le
-  | exact _root_.GlobalTheory.MulSubOneValuation.mul_sub_one_le
-  | (apply _root_.GlobalTheory.MulSubOneValuation.mul_sub_one_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MulSubOneValuation.mul_sub_one_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MulSubOneValuation.mul_sub_one_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MulSubOneValuation.mul_sub_one_le ..)
-
-theorem le_exp_neg_one_of_lt_one' {γ : WithZero (Multiplicative ℤ)} (h : γ < 1) : γ ≤ WithZero.exp (-((1 : ℕ) : ℤ)) := by
-  rcases eq_or_ne γ 0 with h0 | h0
-  · rw [h0]; exact zero_le'
-  rw [← WithZero.exp_log h0] at h ⊢
-  rw [← WithZero.exp_zero, WithZero.exp_lt_exp] at h
-  rw [WithZero.exp_le_exp]
-  omega
+alias le_exp_neg_one_of_lt_one' := _root_.GlobalTheory.Mem.KerDet.le_exp_neg_one
 
 theorem seamGL_apply {D : D7} {Xf : Fields} (sd : Seam D Xf) {n : ℕ} (f : Sp Xf.E n ≃ₗ[Xf.E] Sp Xf.E n) (t s : Fin n) :
     ((GlobalTheory.TwU.seamGL sd f : GL (Fin n) D.host.E) : Matrix (Fin n) (Fin n) D.host.E) t s = sd.iE (f (Pi.single s 1) t) := by
@@ -147,7 +128,7 @@ theorem frame_near : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC
   intro r s
   show Valued.v (GlobalTheory.Mem.ColAd.locM P.1 (_ * _) r s - _) ≤ _
   erw [GlobalTheory.Mem.ColAd.locM_mul]
-  refine val_mul_sub_one_le hfb2 ?_ r s
+  refine _root_.GlobalTheory.MulSubOneValuation.mul_sub_one_le hfb2 ?_ r s
   clear r s
   intro r s
   show Valued.v (adAt B.host.F P.1 (_) - _) ≤ _

@@ -54,17 +54,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 variable {D : D7}
 
-theorem suppAt_conj {V : HSp D} {e : AE D} {y : GA D V} (h : SuppAt e V y) (δ : GA D V) : SuppAt e V (δ * y * δ⁻¹) := by
-  have hs : (e + cA D e) • (mt V y - 1) = mt V y - 1 := Matrix.ext fun i j => h i j
-  have hδ : mt V δ * mt V δ⁻¹ = 1 := by rw [← GlobalTheory.MixModel.mt_mul, mul_inv_cancel, GlobalTheory.MixModel.mt_one]
-  have key : mt V (δ * y * δ⁻¹) - 1 = mt V δ * (mt V y - 1) * mt V δ⁻¹ := by
-    rw [GlobalTheory.MixModel.mt_mul, GlobalTheory.MixModel.mt_mul, Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one, hδ]
-  have h2 : (e + cA D e) • (mt V δ * (mt V y - 1) * mt V δ⁻¹) = mt V δ * (mt V y - 1) * mt V δ⁻¹ := by
-    rw [← Matrix.smul_mul, ← Matrix.mul_smul, hs]
-  intro i j
-  rw [key]
-  exact congrFun (congrFun h2 i) j
-
 variable {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
 
 theorem hasLoc_conj (B : Frames G) (t : T) {j : ℕ} (hj : j ≤ D.R.m) {y : GA D (G.V (.grid D.R.m j))}
@@ -72,7 +61,7 @@ theorem hasLoc_conj (B : Frames G) (t : T) {j : ℕ} (hj : j ≤ D.R.m) {y : GA 
     (δ : GA D (G.V (.grid D.R.m j))) :
     HasLoc t B hj (δ * y * δ⁻¹) (fun w => locAt B t w.1 j hj δ * g w * (locAt B t w.1 j hj δ)⁻¹) := by
   obtain ⟨e, he, hs, hl⟩ := h
-  refine ⟨e, he, suppAt_conj hs δ, fun w => ?_⟩
+  refine ⟨e, he, _root_.GlobalTheory.ConjSplit.suppAt_conj hs δ, fun w => ?_⟩
   change locAt B t w.1 j hj (δ * y * δ⁻¹) = _
   rw [map_mul, map_mul, map_inv]
   exact congrArg (fun z => locAt B t w.1 j hj δ * z * (locAt B t w.1 j hj δ)⁻¹) (hl w)
@@ -103,8 +92,8 @@ theorem GlobalTheory.RowLift.lift_rowR : Big fun {D} _ _ _ _ _ _ _ _ _ _ _ ch =>
       (∀ w, l w ∈ rowR (G := locGrid ch.G t w.1) one_le_sLen (j := j) hj') →
       ∃ y, HasLoc t ch.S.B hj y (fun w => sgnAt ch.G t s w.1 j * l w * (sgnAt ch.G t s w.1 j)⁻¹) ∧
         δ * y * δ⁻¹ ∈ rowGrp ch.G j := by
-  obtain ⟨C1, hJ⟩ := GlobalTheory.T.mem_fourierJacobiGroup_of_local_lattice_matrices
-  obtain ⟨C2, hB⟩ := GlobalTheory.T.mem_besselGroup_of_local_lattice_matrices
+  obtain ⟨C1, hJ⟩ := _root_.GlobalTheory.RowLift.mem_jacGrp_of_hasLoc
+  obtain ⟨C2, hB⟩ := _root_.GlobalTheory.RowLiftBes.mem_besGrp_of_hasLoc
   refine ⟨max C1 C2, fun ε CF hCF => ?_⟩
   obtain ⟨x1, hx1⟩ := hJ ε CF (le_trans (le_max_left _ _) hCF)
   obtain ⟨x2, hx2⟩ := hB ε CF (le_trans (le_max_right _ _) hCF)

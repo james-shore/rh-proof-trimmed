@@ -142,10 +142,10 @@ theorem existsFinK_k (hI : IdxSign) (C : _root_.PositivityTheory.ThKW.Ctx_k σ B
     ((h1.1.mul hκ.cont).pow n).congr fun x => by simp
   have h2' := resEta_mul h2 hκ
   have hB := C.good
-  have hreal := _root_.GlobalTheory.T.finite_lattice_theta_invariant F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
-  have hheis := _root_.GlobalTheory.T.finite_lattice_theta_support F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
-  have hcont := _root_.GlobalTheory.T.finite_lattice_theta_level F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
-  have hunit := _root_.GlobalTheory.T.lintegral_enorm_sq_latRep_apply_eq F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
+  have hreal := _root_.UpperTheory.TP.W.IsLatRepL.real_triv F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
+  have hheis := _root_.GlobalTheory.FinLatHeis.isLatRepF_heis_k F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
+  have hcont := _root_.GlobalTheory.FinLatF.latRepF_cont_k F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
+  have hunit := _root_.GlobalTheory.FinLatUnitF.lintegral_sq_Om_k F E σ B hB nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ hc Λ w lam Om hO
   let z : GAF σ JS × GAF σ JT → Circle := zF σ JS JT (η * κ) ε hε.idem
   have z1 : z 1 = 1 := by simp [z, zF]
   have z2 : ∀ p q, z (p * q) = z p * z q := fun p q => by
@@ -236,9 +236,9 @@ theorem scalar_constK_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀
     fun g h a b ha hb hcm hd c hc0 H => ?_⟩
   obtain ⟨d1, d2⟩ := _root_.PositivityTheory.ThKW.det_kron_k C ha hb
   have hΔ := left_ne_zero_of_mul_eq_one d1
-  obtain ⟨hbij, n, t, c₀, N, M, hn, hc₀, hN, t1, t2, g1, g2, i1, i2⟩ := _root_.PositivityTheory.ThKW.finite_data_k C hG hR hO ha hb hΔ hd
+  obtain ⟨hbij, n, t, c₀, N, M, hn, hc₀, hN, t1, t2, g1, g2, i1, i2⟩ := _root_.PositivityTheory.ThKW.AutLatA.data_k C hG hR hO ha hb hΔ hd
   obtain ⟨hI, hδ0, r₂, p₂, h2⟩ := _root_.PositivityTheory.ThKW.real_data_k C hs ha hb hcm hd
-  obtain ⟨r₁, p₁, h1⟩ := _root_.PositivityTheory.ThKW.gauss_mul_integral_k C hG hR hO hs ha hb hbij hI _ (P.kappa hO hs hcm hc0 H) n t t1 t2
+  obtain ⟨r₁, p₁, h1⟩ := _root_.PositivityTheory.ThKW.Trc.gauss_mul_integral_A_k C hG hR hO hs ha hb hbij hI _ (P.kappa hO hs hcm hc0 H) n t t1 t2
   rw [g1] at h1
   have hN' : (N : E) ^ M ≠ 0 := pow_ne_zero _ (Nat.cast_ne_zero.2 hN)
   obtain ⟨r₃, p₃, h3⟩ := P.prod' hN' hd i1
@@ -253,7 +253,7 @@ theorem isScalar_one_of_commK_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS 
   obtain ⟨a, ha⟩ := exists_isRatF hg
   obtain ⟨b, hb⟩ := exists_isRatF (inv_mem hh)
   obtain ⟨e, s₀, hs₀, H⟩ := _root_.UpperTheory.TP.W.scalar_constK_k C hG hR hO P hs
-  obtain ⟨t, ht, ht'⟩ := (_root_.PositivityTheory.ThKW.infinite_norm_one_k C).exists_notMem_finite
+  obtain ⟨t, ht, ht'⟩ := (_root_.UpperTheory.Reformulated.B.InfiniteNormOneField.infinite_norm_one_k C).exists_notMem_finite
     ((GlobalTheory.RatAut.finite_det_smul_sub_one (b ⊗ₖ aᵀ)).union (GlobalTheory.RatAut.finite_det_smul_sub_one
       ((1 : Matrix (Fin nT) (Fin nT) E) ⊗ₖ (1 : Matrix (Fin nS) (Fin nS) E)ᵀ)))
   rw [Set.mem_union, not_or] at ht'
@@ -265,7 +265,7 @@ theorem isScalar_one_of_commK_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS 
       · simp [Matrix.one_apply_ne hij, Matrix.one_apply_ne (Ne.symm hij)]
     rw [e, Matrix.smul_mul, Matrix.one_mul, Matrix.mul_smul, Matrix.mul_one, smul_smul, show t * σ t = 1 from ht, one_smul])
   have hk := rk.mem
-  have hcomm := _root_.PositivityTheory.ThKW.fin_inf_comm_k C hO (fun p => ⟨_, P.hof p⟩) P.hi
+  have hcomm := _root_.PositivityTheory.ThKW.fin_inf_comm_A_k C hO (fun p => ⟨_, P.hof p⟩) P.hi
   have ck : s * mMF σ JS JT θ (1, k⁻¹) = mMF σ JS JT θ (1, k⁻¹) * s := by
     have := comm_inv (mMF σ JS JT θ) (hs.cen k t rk)
     rwa [Prod.inv_mk, inv_one] at this
@@ -300,15 +300,15 @@ theorem datumK_of_k (hK : KapEx) (hE : EtaProdK) (hI : IdxSign) : ∀ (F E : Typ
       ∀ η : (AF F ⊗[F] E)ˣ →* Circle, IsHeckeCharF η → ResEtaF η 1 → HasExp B.emb η (fun _ => 1) → UnramInert σ η →
         ∃ ω, IsWeilDatumOF σ JS JT (fun w : InfinitePlace F => (B.emb w).1) ξ₀ B.ψ (η ^ nS) (η ^ nT) ω := by
   intro F E _ _ _ _ _ σ B hB nS nT JS JT hS hT ξ₀ h0 hξ Λ hG hR hc w lam Om hO η h1 h2 h3 h4
-  obtain ⟨θ, hθ⟩ := (_root_.GlobalTheory.T.standard_additive_character_sign F E σ B hB).2.1
-  obtain ⟨ι, hι⟩ := _root_.GlobalTheory.T.exists_chart_archimedean_family F E σ B hB θ hθ
+  obtain ⟨θ, hθ⟩ := (_root_.GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood_k F E σ B hB).2.1
+  obtain ⟨ι, hι⟩ := _root_.GlobalTheory.RealWeilF.CMChart.exists_chartF_k F E σ B hB θ hθ
   have C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι := ⟨hB, hS, hT, h0, hξ, hθ, hι⟩
   obtain ⟨κ, hκ⟩ := hK F E σ hB.cm lam hO.good
   obtain ⟨ε, hε, hprod⟩ := hE F E σ B hB.cm hB.unram η h1 h2 h3 h4 lam hO.good κ hκ
   obtain ⟨of, hf, hof⟩ := _root_.UpperTheory.TP.W.existsFinK_k hI C hG hO h1 h2 hκ hε
   obtain ⟨oi, hi, hvac⟩ := _root_.PositivityTheory.ThKW.exists_inf_k C
   have P : _root_.UpperTheory.TP.W.PartsK_k C hc lam Om (η * κ) (η ^ nS) (η ^ nT) ε of oi := ⟨resEta_mul h2 hκ, hε, hprod, hf, hof, hi, hvac⟩
-  have hcomm := _root_.PositivityTheory.ThKW.fin_inf_comm_k C hO (fun p => ⟨_, hof p⟩) hi
+  have hcomm := _root_.PositivityTheory.ThKW.fin_inf_comm_A_k C hO (fun p => ⟨_, hof p⟩) hi
   refine _root_.PositivityTheory.ThKW.datum_of_aut_k C hG hO h1 h2 hf (fun p => ⟨_, hof p⟩) hi fun γ hγ γ' hγ' f hf' => ?_
   have := _root_.PositivityTheory.ThKW.rat_gen_k C (fun p => IsScalarF B ξ₀ of oi p 1)
     (fun p q _ _ q1 q2 a b => mul_one (1 : ℂ) ▸ a.mul_k C hi hcomm b q1 q2)

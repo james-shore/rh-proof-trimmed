@@ -70,8 +70,8 @@ theorem principal_zP : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAway
       ⟨(Out.powIsLimit c.A 8).lift (Fan.mk T y), fun u => (Out.powIsLimit c.A 8).fac (Fan.mk T y) ⟨u⟩,
         fun x hx => (Out.powIsLimit c.A 8).uniq (Fan.mk T y) x fun u => hx u.as⟩
     have h8 := GlobalTheory.PosDefAmple.relAmple_linComb_of_posDef GlobalTheory.SemiRigid.globalFns h M 8 _ _ S t c
-      (Out.powObj c.A 8) (Out.powPr c.A) (zW d) (fun u => inferInstance) huniv hA (GlobalTheory.T.zarhinTriangularMatrix_symmetrisation_posDef d hd)
-    have := GlobalTheory.T.isAffineHom_zarhinProduct_to_eighthPower h M d S t c B Q la mu hZ hd hunit
+      (Out.powObj c.A 8) (Out.powPr c.A) (zW d) (fun u => inferInstance) huniv hA (_root_.GlobalTheory.ZarhinFam.zW_symm_posDef d hd)
+    have := _root_.GlobalTheory.ZarhinFam.isAffineHom_zphi h M d S t c B Q la mu hZ hd hunit
     have hF : (LB.LinComb c.P (K := Fin 8 × Fin 8)
         (fun uv => (lift (Out.powPr c.A uv.1) (Out.powPr c.A uv.2)).left) (fun uv => zW d uv.1 uv.2)).IsLB :=
       LB.isLB_linComb c.isLB _ _
@@ -79,7 +79,7 @@ theorem principal_zP : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAway
     have hzP := zarhinBundle_isLineBundle c.A B c.isLB hZ.2.1.isLB d mu
     refine GlobalTheory.PosDefAmple.relAmple_of_nsmul (pull_isLB hzP _) (pull_isLB hF _) (N := d) hd ?_ hp
 
-    rw [cls_pull hzP, cls_zP, cls_pull hF, cls_linComb c.isLB, GlobalTheory.T.nsmul_zarhinDiagonalClass_eq_form h M d S t c B Q la mu hZ hd, map_sum]
+    rw [cls_pull hzP, cls_zP, cls_pull hF, cls_linComb c.isLB, _root_.GlobalTheory.ZarhinFam.nsmul_pull_diag_zCls h M d S t c B Q la mu hZ hd, map_sum]
     refine Finset.sum_congr rfl fun kl _ => ?_
     rw [map_zsmul, ← pull_comp, ← Over.comp_left, comp_lift, zphi_powPr, zphi_powPr]
   · have hla := hZ.2.2.2.1
@@ -89,10 +89,10 @@ theorem principal_zP : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAway
     have hfg : ∀ a, g (f a) = a ^ d := fun a => by
       change (a ≫ la) ≫ mu = a ^ d
       rw [Category.assoc, hZ.2.2.2.2.2.1, MonObj.comp_pow, Category.comp_id]
-    obtain ⟨hu, hv⟩ := GlobalTheory.T.zarhin_kernel_linearAlgebra_trivial d (T ⟶ c.A) (T ⟶ B) f g hd hfg (fun i => x ≫ pa c.A B i) (fun j => x ≫ pb c.A B j)
-      (fun i => by simpa [f, Category.assoc] using GlobalTheory.T.zarhinBundle_kernel_firstCoord_equations h M d S t c B Q la mu hZ T x hx i)
-      (fun j => GlobalTheory.T.zarhinBundle_kernel_secondCoord_equations h M d S t c B Q la mu hZ T x hx j)
-      (GlobalTheory.T.zarhinBundle_kernel_of_secondCoord_trivial h M d S t c B Q la mu hZ T x hx)
+    obtain ⟨hu, hv⟩ := _root_.GlobalTheory.ZarhinFam.zarhin_kernel_trivial d (T ⟶ c.A) (T ⟶ B) f g hd hfg (fun i => x ≫ pa c.A B i) (fun j => x ≫ pb c.A B j)
+      (fun i => by simpa [f, Category.assoc] using _root_.GlobalTheory.ZarhinKerA.zarhinBundle_kernel h M d S t c B Q la mu hZ T x hx i)
+      (fun j => _root_.GlobalTheory.ZarhinKerB.zarhinBundle_kernel h M d S t c B Q la mu hZ T x hx j)
+      (_root_.GlobalTheory.ZarhinFam.KerC.ker_zarhinPolarization_of_pullback h M d S t c B Q la mu hZ T x hx)
     have e1 : x ≫ fst _ _ = 1 := (Out.powIsLimit c.A 4).hom_ext fun ⟨i⟩ => by
       change (x ≫ fst _ _) ≫ Out.powPr c.A i = 1 ≫ Out.powPr c.A i
       rw [MonObj.one_comp]

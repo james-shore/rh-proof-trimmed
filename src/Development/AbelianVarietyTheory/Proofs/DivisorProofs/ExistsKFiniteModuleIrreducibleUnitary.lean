@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HolomorphicDiscreteSeries
 public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.KsetSubset
 
 @[expose] public section
 
@@ -58,7 +59,7 @@ open scoped InnerProductSpace
 namespace GlobalTheory.CompanionTheory.KModExistsStep
 
 theorem kModExists_holds : CompanionTheory.D.LK.KModExists :=
-  GlobalTheory.CompanionTheory.KModExists.kModExists CompanionTheory.D.DSIC.hSmMod CompanionTheory.D.gk.admitted.kFin_mem_smoothVecs CompanionTheory.D.DSIC.hKFinStab
+  GlobalTheory.CompanionTheory.KModExists.kModExists CompanionTheory.D.DSIC.hSmMod CompanionTheory.D.gk.admitted.kFin_mem_smoothVecs _root_.UpperTheory.Reformulated.B.Gc1.kFinStab
     CompanionTheory.D.DSIC.hStabLink CompanionTheory.D.DSIC.hHWofType CompanionTheory.D.DSIC.hTypeOfHW
 
 end GlobalTheory.CompanionTheory.KModExistsStep

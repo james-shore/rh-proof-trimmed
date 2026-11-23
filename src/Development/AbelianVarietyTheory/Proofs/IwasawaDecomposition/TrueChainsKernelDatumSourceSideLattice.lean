@@ -79,7 +79,7 @@ theorem kerEntHyp_latS : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok �
   intro B X I hOk hPins l Z l0 Y O Pl Bs hQp hStd hBas hEnt _hUnf _hJets u μ w hw i hi φ
   obtain ⟨bad, Ch, chOf, K, hK⟩ := charts_read_step I hOk hPins l Z u μ i hi.le hi
   have hY : I.IdY l Z u μ i hi.le (Equiv.refl _) := fun _ => rfl
-  have V := GlobalTheory.T.hermitianChart_complex_rational_integral_forms I hOk hPins l Z u μ i hi.le bad Ch chOf K (Equiv.refl _) hK hY
+  have V := _root_.GlobalTheory.Mem.Col2.TC.val_tied I hOk hPins l Z u μ i hi.le bad Ch chOf K (Equiv.refl _) hK hY
   constructor
   · rintro ⟨x, hx, rfl⟩
     have hrat := (V.rat ((I.fm l u μ).emb i x)).1 ⟨x, rfl⟩

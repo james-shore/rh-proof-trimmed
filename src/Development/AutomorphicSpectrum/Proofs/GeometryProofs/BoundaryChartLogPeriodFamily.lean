@@ -75,10 +75,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Flat.Conj
 
 open GroundTheory.Heights₂.Heights.Regular GlobalTheory.CompanionTheory.Ar.Flat.Link
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  show Spec.map (CommRingCat.ofHom (g.comp f)) = Spec.map (CommRingCat.ofHom g) ≫ Spec.map (CommRingCat.ofHom f)
-  rw [CommRingCat.ofHom_comp, Spec.map_comp]
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem dualMap_conj_over :
     spMap (dualMap (starRingEnd ℂ)) ≫ spMap (algebraMap ℂ (DualNumber ℂ)) =
@@ -89,26 +86,6 @@ theorem dualMap_conj_over :
     · simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
     · simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
   rw [← spMap_comp', ← spMap_comp', h]
-
-theorem dualMap_comp_ring {R : Type} [CommRing R] (f : R →+* ℂ) :
-    spMap (dualMap ((starRingEnd ℂ).comp f)) = spMap (dualMap (starRingEnd ℂ)) ≫ spMap (dualMap f) := by
-  have h : dualMap ((starRingEnd ℂ).comp f) = (dualMap (starRingEnd ℂ)).comp (dualMap f) := by
-    ext c <;> simp [dualMap]
-  rw [h, spMap_comp']
-
-theorem spMap_dualMap_conj_conj :
-    spMap (dualMap (starRingEnd ℂ)) ≫ spMap (dualMap (starRingEnd ℂ)) = 𝟙 _ := by
-  have h : (dualMap (starRingEnd ℂ)).comp (dualMap (starRingEnd ℂ)) = RingHom.id (DualNumber ℂ) := by
-    ext c <;> simp [dualMap]
-  rw [← spMap_comp', h]
-  exact Spec.map_id _
-
-theorem spMap_conj_conj : spMap (starRingEnd ℂ) ≫ spMap (starRingEnd ℂ) = 𝟙 (Sp ℂ) := by
-  have h : (starRingEnd ℂ).comp (starRingEnd ℂ) = RingHom.id ℂ := by
-    ext c
-    simp
-  rw [← spMap_comp', h]
-  exact Spec.map_id _
 
 def conjTan {S : Scheme.{0}} {G : Over S} {x x' : Sp ℂ ⟶ S} (h : x' = spMap (starRingEnd ℂ) ≫ x)
     (v : epsAt x ⟶ G) : epsAt x' ⟶ G :=
@@ -136,15 +113,15 @@ theorem isRiem_of_chart {Xo : Moduli D l} {σ : KA l →+* ℂ} {n a : ℕ} (C :
   have hx : spMap (conjPts C.ψ (star z)) = spMap (starRingEnd ℂ) ≫ spMap (C.ψ z) := by
     rw [hψ, spMap_comp']
   have hx' : spMap (C.ψ z) = spMap (starRingEnd ℂ) ≫ spMap (conjPts C.ψ (star z)) := by
-    rw [hx, ← Category.assoc, spMap_conj_conj, Category.id_comp]
+    rw [hx, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.Flat.ConjExp.conj_conj_point, Category.id_comp]
   let v' : Fin m → (epsAt (spMap (conjPts C.ψ (star z))) ⟶ C.t.G) := fun i => conjTan hx (v i)
   have hv' : (chart C).IsVal (star z) u v' := by
     intro i
     show spMap (dualMap (starRingEnd ℂ)) ≫ (v i).left = spMap (dualMap (conjPts C.ψ (star z))) ≫ (C.M.pt (u i)).left
-    rw [hv i, hψ, dualMap_comp_ring, Category.assoc]
+    rw [hv i, hψ, _root_.GlobalTheory.CompanionTheory.Ar.Flat.ConjExp.spMap_dualMap_comp, Category.assoc]
   have hback : ∀ i, (v i).left = spMap (dualMap (starRingEnd ℂ)) ≫ (v' i).left := fun i => by
     show (v i).left = spMap (dualMap (starRingEnd ℂ)) ≫ spMap (dualMap (starRingEnd ℂ)) ≫ (v i).left
-    rw [← Category.assoc, spMap_dualMap_conj_conj, Category.id_comp]
+    rw [← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.Flat.ConjExp.conj_conj_dual, Category.id_comp]
   have hform : ∀ i j, hermForm Hm (fun b => conjPts C.ψ (star z) (u i b)) (fun b => conjPts C.ψ (star z) (u j b)) =
       (starRingEnd ℂ) (hermForm (Hm.map (starRingEnd ℂ)) (fun b => C.ψ z (u i b)) (fun b => C.ψ z (u j b))) := by
     intro i j

@@ -66,12 +66,6 @@ namespace GlobalTheory.CosShift
 variable {D : D7} {m n : ℕ} {Λ : Submodule (𝓞 D.host.E) (Fin n → D.host.E)}
   {Λ' : Submodule (𝓞 D.host.E) (Fin m → D.host.E)} {𝔪 : Ideal (𝓞 D.host.E)}
 
-theorem isHalf_sub' {e : AE D} {x y : Mx D m n} (hx : IsHalf e x) (hy : IsHalf e y) : IsHalf e (x - y) := fun i j => by
-  simp only [Matrix.sub_apply, mul_sub, hx i j, hy i j]
-
-theorem isHalf_add' {e : AE D} {x y : Mx D m n} (hx : IsHalf e x) (hy : IsHalf e y) : IsHalf e (x + y) := fun i j => by
-  simp only [Matrix.add_apply, mul_add, hx i j, hy i j]
-
 theorem map_smul_sub (e : AE D) (a b : homLat Λ Λ') : e • ((a - b : homLat Λ Λ') : Matrix (Fin m) (Fin n) D.host.E).map (incA D) =
     e • (a : Matrix (Fin m) (Fin n) D.host.E).map (incA D) - e • (b : Matrix (Fin m) (Fin n) D.host.E).map (incA D) := by
   rw [Submodule.coe_sub, Matrix.map_sub _ (incA D).map_sub, smul_sub]
@@ -96,7 +90,7 @@ theorem mem_cosSet_add {e : AE D} {z : Mx D m n} (hz : IsHalf e z) (x₀ x₁ : 
   constructor
   · rintro ⟨ht, y, hy, hm⟩
     refine ⟨?_, y - x₁, ?_, ?_⟩
-    · have := isHalf_sub' ht hz
+    · have := _root_.GlobalTheory.SplitScalar.isHalf_sub ht hz
       rwa [add_sub_cancel_right] at this
     · rw [mk_sub', mk_sub']
       exact congrArg (· - _) hy
@@ -108,7 +102,7 @@ theorem mem_cosSet_add {e : AE D} {z : Mx D m n} (hz : IsHalf e z) (x₀ x₁ : 
         abel
       rwa [e2] at h2
   · rintro ⟨ht, y, hy, hm⟩
-    refine ⟨isHalf_add' ht hz, y + x₁, ?_, ?_⟩
+    refine ⟨_root_.GlobalTheory.SplitScalar.isHalf_add ht hz, y + x₁, ?_, ?_⟩
     · rw [mk_add']
       rw [mk_sub'] at hy
       have hy' : (Submodule.Quotient.mk y : homLat Λ Λ' ⧸ (𝔪 • ⊤ : Submodule (𝓞 D.host.E) (homLat Λ Λ'))) =

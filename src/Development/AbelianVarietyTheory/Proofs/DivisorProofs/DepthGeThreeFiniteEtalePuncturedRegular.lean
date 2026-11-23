@@ -183,7 +183,7 @@ theorem depth_three : ∀ (R : Type) [CommRing R] [IsRegularLocalRing R], IsAdic
   have hEtB : ∀ (p : Ideal R) [p.IsPrime], p ≠ maximalIdeal R →
       Algebra.Etale (Localization.AtPrime p) (TensorProduct R (Localization.AtPrime p) B) :=
     fun p _ _ => inferInstance
-  obtain ⟨k2, hk2⟩ := GlobalTheory.T.finiteLength_coker_of_etale_punctured_spectrum R A B hEt hEtB ψ hinj ⟨s, hs0, hs⟩
+  obtain ⟨k2, hk2⟩ := _root_.GlobalTheory.EtaleCoker.main R A B hEt hEtB ψ hinj ⟨s, hs0, hs⟩
   have hdesc : ∀ (n : ℕ) (b : B), f ^ n • b ∈ ψ.range → b ∈ ψ.range := by
     intro n
     induction n with

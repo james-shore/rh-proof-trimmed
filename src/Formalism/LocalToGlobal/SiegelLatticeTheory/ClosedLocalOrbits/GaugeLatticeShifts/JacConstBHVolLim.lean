@@ -220,9 +220,6 @@ theorem meas_ind_gen {α : Type*} [MeasurableSpace α] (c : Fin r → ℂ) (s : 
   unfold ind
   exact Measurable.ite (measurableSet_lt hQ measurable_const) measurable_const measurable_const
 
-theorem enn_sq' {E : Type*} [NormedAddCommGroup E] (y : E) : ((‖y‖₊ : ℝ≥0∞)) ^ 2 = ENNReal.ofReal (‖y‖ ^ 2) :=
-  Formalism.L2.SG.Pf.BH.Model.enn_sq y
-
 theorem inner_eq (μb : Measure (Mt k r)) [SFinite μb] (c : Fin r → ℂ) {s : ℝ} (hs : 0 < s) :
     ∫⁻ n, ∫⁻ m, ∫⁻ n', ind c s n m n' ∂(Formalism.MainNotions.S.haarLie (Nset k r) 1) ∂μb ∂(Formalism.MainNotions.S.haarLie (Nset k r) 1) =
       ∫⁻ Y : Formalism.MainNotions.S.lieE (Nset k r), ∫⁻ Y' : Formalism.MainNotions.S.lieE (Nset k r),
@@ -257,7 +254,7 @@ theorem inner_eq (μb : Measure (Mt k r)) [SFinite μb] (c : Fin r → ℂ) {s :
         ENNReal.ofReal (‖Y'‖ ^ 2) < ENNReal.ofReal (s ^ 2) then 1 else 0 := by
     intro m
     unfold ind Qf
-    rw [rhoN k r Y, rhoN k r Y', enn_sq', enn_sq', ← ENNReal.ofReal_add (by positivity) hB]
+    rw [rhoN k r Y, rhoN k r Y', _root_.Formalism.L2.SG.Pf.BH.Model.enn_sq, _root_.Formalism.L2.SG.Pf.BH.Model.enn_sq, ← ENNReal.ofReal_add (by positivity) hB]
   simp_rw [e]
   exact m_int μb hs (by positivity) (by positivity)
 
@@ -289,7 +286,7 @@ theorem model_inner (E1 E2 : Type) [NormedAddCommGroup E1] [InnerProductSpace �
       (if ENNReal.ofReal (‖y1‖ ^ 2 + B) + (‖y2‖₊ : ℝ≥0∞) ^ 2 + ENNReal.ofReal (‖y3‖ ^ 2) <
       ENNReal.ofReal (s ^ 2) then (1 : ℝ≥0∞) else 0) := by
     intro y2
-    rw [enn_sq' y1, enn_sq' y3, ← ENNReal.ofReal_add (by positivity) hB]
+    rw [_root_.Formalism.L2.SG.Pf.BH.Model.enn_sq y1, _root_.Formalism.L2.SG.Pf.BH.Model.enn_sq y3, ← ENNReal.ofReal_add (by positivity) hB]
   simp_rw [e]
   exact z_int volume hs (by positivity) (by positivity)
 

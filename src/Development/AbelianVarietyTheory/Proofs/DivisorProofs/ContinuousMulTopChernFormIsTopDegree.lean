@@ -58,7 +58,7 @@ theorem isTopForm_mul_topDens : ∀ {F : Type} [Field F] {σ : F →+* ℂ} {X :
     rw [chernTop_frame_chart_trans E O H hM _ hy c c' hc hc' hA hA]
     ring
   · intro c
-    refine GlobalTheory.T.aemeasurable_chart_of_locally_continuous_density c.e (d := fun z => ρ z * topDens E H c z) (isOpen_ptsIn O) ?_
+    refine _root_.GlobalTheory.GoodTop.aemeasurable_chart_of_locally_continuous c.e (d := fun z => ρ z * topDens E H c z) (isOpen_ptsIn O) ?_
     intro y hy hc
     have hA := (E.nonempty (under y)).choose_spec
     refine ⟨fun v => ρ (c.e.symm v) * chernTop (MvPolynomial.X ((), X.dim))

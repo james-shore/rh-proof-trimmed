@@ -81,7 +81,7 @@ theorem vanishing_ample_snc_charZero : ∀ (k : Type) [Field k] [CharZero k] (X 
   have hcls₁ : r • cls M₁ hM₁ = r • cls K₁.bundle K₁.isLB + ∑ i, b i • cls (L₁ i) (h₁.isLB i) +
       cls A₁ hA₁ := by
     rw [hA₁c]; abel
-  have hv := GlobalTheory.T.kawamata_viehweg_spreading R k R.subtype X₁ X f₁ f π d hft Subtype.coe_injective hpb s L₁ σ₁ h₁ K₁
+  have hv := _root_.GlobalTheory.vanishing_charZero_fibre_of_finiteType R k R.subtype X₁ X f₁ f π d hft Subtype.coe_injective hpb s L₁ σ₁ h₁ K₁
     M₁ A₁ hM₁ hA₁ r b hAamp hr hb hcls₁ q hq
   have hMM : cls (M₁.pull π) (pull_isLB hM₁ π) = cls M hM := by rw [cls_pull hM₁, hMc]
   exact GlobalTheory.T.cohomology_subsingleton_of_cechPicardClass_eq X (M₁.pull π) M _ hM hMM q hv

@@ -172,7 +172,7 @@ theorem inst_dOf (S : C.HidaSetting D.host.E Wp Wq) (δ : ∀ p : PlF D, (D.s.at
   exact ⟨rfl, rfl, fun _ _ => rfl, S.hv, fun _ _ => rfl, fun _ _ => rfl, fun _ => rfl,
     fun _ _ => rfl, fun _ _ _ => rfl, fun _ _ => rfl⟩
 
-theorem unram_host (D : Formalism.BasicNotions.D7) : S6.Unram D.host.E := MainNotions.LocalModelPeriodLattices.unramE D
+alias unram_host := _root_.Formalism.MainNotions.LocalModelPeriodLattices.unramE
 
 def LocalModelAt (D : Formalism.BasicNotions.D7) : Prop :=
   ∀ (Wp Wq : InfinitePlace D.host.E → Type) [∀ x, NormedAddCommGroup (Wp x)] [∀ x, InnerProductSpace ℂ (Wp x)]

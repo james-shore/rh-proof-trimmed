@@ -57,7 +57,7 @@ theorem unramified_points_at_deep_level : _root_.GlobalTheory.CovTop.PublishedHo
   have h6 : 6 ≤ D.R.r := by
     have h1 := D.R.two_le_m; have h2 := D.R.m_add_three_le_k
     unfold Ranks.r; omega
-  exact _root_.GlobalTheory.T.cm_points_unramified hP _ T.Q.H (T.Q.Dw j) Y.d.l₂ Y.d.Xo₂ Y.d.c₂ (by omega)
+  exact _root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum hP _ T.Q.H (T.Q.Dw j) Y.d.l₂ Y.d.Xo₂ Y.d.c₂ (by omega)
     (Or.inr (Or.inr ⟨by omega, hLaws.line⟩)) hLaws.good
 end GlobalTheory.UnramCover
 end

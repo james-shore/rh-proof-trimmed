@@ -65,35 +65,24 @@ namespace GlobalTheory.Amp.AbsConv
 
 variable {k r : ℕ}
 
-theorem dmin_inv (z z' : Fin (2 * r + k + 1) → ℂ) {γ : Mat k r} (hγ : γ ∈ GG k r) (l : Fin (r + 2)) :
-    Dmin k r z' z γ⁻¹ l = star (Dmin k r z z' γ l) := by
-  unfold Dmin
-  rw [(GlobalTheory.T.besselZhat_inv_and_regular_iff k r z z' γ hγ).1, ← Matrix.det_conjTranspose, Matrix.conjTranspose_submatrix]
-
 theorem dr_inv (z z' : Fin (2 * r + k + 1) → ℂ) {γ : Mat k r} (hγ : γ ∈ GG k r) :
     Dr k r z' z γ⁻¹ = Dr k r z z' γ := by
   unfold Dr
-  rw [dmin_inv z z' hγ, norm_star]
+  rw [_root_.GlobalTheory.SgInf.RegInv.dmin_inv z z' hγ, norm_star]
 
 theorem twoFl_inv {z z' : Fin (2 * r + k + 1) → ℂ} {γ : Mat k r} (h : TwoFl k r z z' γ) : TwoFl k r z' z γ⁻¹ := by
   obtain ⟨h1, h2, h3, h4, h5, h6, h7⟩ := h
   refine ⟨h2, h1, h4, h3, isClosedSub_GG.2.2.2.2 _ h5, ?_, by rwa [dr_inv z z' h5]⟩
   unfold Gf at h6 ⊢
-  rw [dmin_inv z z' h5, dmin_inv z z' h5, mul_comm (Tz k r z')]
+  rw [_root_.GlobalTheory.SgInf.RegInv.dmin_inv z z' h5, _root_.GlobalTheory.SgInf.RegInv.dmin_inv z z' h5, mul_comm (Tz k r z')]
   simpa only [Complex.star_def, Complex.normSq_conj] using h6
 
 theorem deOK_inv {z z' : Fin (2 * r + k + 1) → ℂ} {γ : Mat k r} {De : ℝ} (hγ : γ ∈ GG k r)
     (h : DeOK k r z z' γ De) : DeOK k r z' z γ⁻¹ De := by
   refine ⟨h.1, fun l hl h0 => ?_⟩
-  rw [dmin_inv z z' hγ] at h0 ⊢
+  rw [_root_.GlobalTheory.SgInf.RegInv.dmin_inv z z' hγ] at h0 ⊢
   rw [norm_star]
   exact h.2 l hl fun h' => h0 (by rw [h', star_zero])
-
-theorem continuous_lmul (a : Mat k r) : Continuous (lmulM a : Mt k r → Mt k r) :=
-  continuous_const.matrix_mul (continuous_id (X := Mat k r))
-
-theorem continuous_conj (a : Mat k r) : Continuous (conjM a : Mt k r → Mt k r) :=
-  (continuous_const.matrix_mul (continuous_id (X := Mat k r))).matrix_mul continuous_const
 
 theorem lmul_inv_lmul {γ : Mat k r} (hγ : γ ∈ GG k r) (x : Mt k r) : lmulM γ⁻¹ (lmulM γ x) = x :=
   Matrix.nonsing_inv_mul_cancel_left γ (Matrix.of x) (isUnit_det_of_mem_GG hγ)
@@ -103,40 +92,38 @@ def lmulEquiv {γ : Mat k r} (hγ : γ ∈ GG k r) : Mt k r ≃ᵐ Mt k r where
   invFun := lmulM γ⁻¹
   left_inv := lmul_inv_lmul hγ
   right_inv x := Matrix.mul_nonsing_inv_cancel_left γ (Matrix.of x) (isUnit_det_of_mem_GG hγ)
-  measurable_toFun := (continuous_lmul γ).measurable
-  measurable_invFun := (continuous_lmul γ⁻¹).measurable
+  measurable_toFun := (_root_.GlobalTheory.Amp.StabMeas.cont_lmul γ).measurable
+  measurable_invFun := (_root_.GlobalTheory.Amp.StabMeas.cont_lmul γ⁻¹).measurable
 
 theorem quot_map {γ : Mat k r} (hγ : γ ∈ GG k r) {μG μR ν : Measure (Mt k r)} (hG : IsHaarOn (GG k r) μG)
     (h : IsQuotMeas μG μR ν) : IsQuotMeas μG (μR.map (conjM γ)) (ν.map (lmulEquiv hγ)) := by
   intro f hf
   rw [lintegral_map_equiv]
-  have h1 := h (fun x => f (lmulM γ x)) (hf.comp (continuous_lmul γ).measurable)
-  rw [← lintegral_map hf (continuous_lmul γ).measurable, hG.2.2.2 γ hγ] at h1
+  have h1 := h (fun x => f (lmulM γ x)) (hf.comp (_root_.GlobalTheory.Amp.StabMeas.cont_lmul γ).measurable)
+  rw [← lintegral_map hf (_root_.GlobalTheory.Amp.StabMeas.cont_lmul γ).measurable, hG.2.2.2 γ hγ] at h1
   rw [h1]
   refine lintegral_congr fun x => ?_
   have hm : Measurable fun s : Mt k r => f (rmulM (Matrix.of (lmulEquiv hγ x)) s) :=
     hf.comp (continuous_rmulM _).measurable
-  refine Eq.trans ?_ (lintegral_map hm (continuous_conj γ).measurable).symm
+  refine Eq.trans ?_ (lintegral_map hm (_root_.GlobalTheory.Amp.OnePiece.continuous_conj γ).measurable).symm
   refine lintegral_congr fun s => ?_
   congr 1
   show γ * (Matrix.of s * Matrix.of x) = γ * Matrix.of s * γ⁻¹ * (γ * Matrix.of x)
   rw [Matrix.mul_assoc _ γ⁻¹, Matrix.nonsing_inv_mul_cancel_left γ (Matrix.of x) (isUnit_det_of_mem_GG hγ),
     Matrix.mul_assoc]
 
-def Gs (k r : ℕ) : Set (Mt k r) := {x | Matrix.of x ∈ GG k r}
-
-def ext0 (f : Mat k r → ℝ) : Mt k r → ℝ := Set.indicator (Gs k r) fun x => f (Matrix.of x)
+def ext0 (f : Mat k r → ℝ) : Mt k r → ℝ := Set.indicator (_root_.GlobalTheory.Amp.OnePiece.grp k r) fun x => f (Matrix.of x)
 
 theorem cochainExtendByZeroSubgroup_of_mem (f : Mat k r → ℝ) {x : Mt k r} (hx : Matrix.of x ∈ GG k r) : ext0 f x = f (Matrix.of x) :=
-  Set.indicator_of_mem (s := Gs k r) hx _
+  Set.indicator_of_mem (s := _root_.GlobalTheory.Amp.OnePiece.grp k r) hx _
 
 theorem amplifierAbsConvExtendByZero_of_not_mem (f : Mat k r → ℝ) {x : Mt k r} (hx : Matrix.of x ∉ GG k r) : ext0 f x = 0 :=
-  Set.indicator_of_notMem (s := Gs k r) hx _
+  Set.indicator_of_notMem (s := _root_.GlobalTheory.Amp.OnePiece.grp k r) hx _
 
 theorem measurable_amplifierAbsConvExtendByZero {f : Mat k r → ℝ} (hf : ContinuousOn f (GG k r)) : Measurable (ext0 f) := by
   classical
-  have hc : IsClosed (Gs k r) := isClosedSub_GG.2.1
-  have h1 : ContinuousOn (fun x : Mt k r => f (Matrix.of x)) (Gs k r) := hf
+  have hc : IsClosed (_root_.GlobalTheory.Amp.OnePiece.grp k r) := isClosedSub_GG.2.1
+  have h1 : ContinuousOn (fun x : Mt k r => f (Matrix.of x)) (_root_.GlobalTheory.Amp.OnePiece.grp k r) := hf
   have := ContinuousOn.measurable_piecewise (g := fun _ => (0 : ℝ)) h1 continuousOn_const hc.measurableSet
   convert this using 1
   exact (Set.piecewise_eq_indicator).symm
@@ -231,8 +218,8 @@ theorem abs_core : ∀ (k r : ℕ) {Wp : Type} [NormedAddCommGroup Wp] [InnerPro
     have : (0 : ℝ) < ((k - 2 - r : ℕ) : ℝ) := by exact_mod_cast hkk
     unfold Kc
     positivity
-  have me : Measurable (lmulM γ : Mt k r → Mt k r) := (continuous_lmul γ).measurable
-  have main := GlobalTheory.T.integrable_and_norm_amplitude_le_of_pairings k r νR Φ Φ' γ c (κ / s * Kc k r De * c * 24 * (r : ℝ) ^ (2 * r) * H₁ ^ (24 * r ^ 3) *
+  have me : Measurable (lmulM γ : Mt k r → Mt k r) := (_root_.GlobalTheory.Amp.StabMeas.cont_lmul γ).measurable
+  have main := _root_.GlobalTheory.Amp.OpNorm.integrable_and_norm_ampJ_le k r νR Φ Φ' γ c (κ / s * Kc k r De * c * 24 * (r : ℝ) ^ (2 * r) * H₁ ^ (24 * r ^ 3) *
     De ^ (2 * r) * (2 ^ r / Dr k r z z' γ) ^ (k - 2 - r)) hγ n0 cΦ cΦ' hc (by positivity) ?_
   · refine ⟨main.1, main.2.trans ?_⟩
     have := GlobalTheory.T.amplitudeOperatorNorm_finalArithmetic_le k r H₁ De _ hr hk hH hDe1 hD

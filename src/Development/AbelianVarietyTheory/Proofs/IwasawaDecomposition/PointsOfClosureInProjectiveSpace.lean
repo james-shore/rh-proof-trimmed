@@ -59,10 +59,7 @@ open GlobalTheory.ProjSpace GlobalTheory.FlagMod
 
 variable {Z : Scheme.{0}} {S : Type} [CommRing S]
 
-theorem resG_refl {X : Scheme.{0}} {U : X.Opens} (h : U ≤ U) (a : Γ(X, U)) : resG X h a = a := by
-  show (X.presheaf.map (homOfLE h).op).hom a = a
-  rw [show (homOfLE h).op = 𝟙 _ from rfl, CategoryTheory.Functor.map_id]
-  rfl
+alias resG_refl := _root_.GlobalTheory.LB.resG_self
 
 theorem fnOn_ev (z : Sp S ⟶ Z) (U : Z.Opens) (h : ⊤ ≤ z ⁻¹ᵁ U) (a : Γ(Z, U)) :
     fnOn ⊤ (ev z U h a) = (z.appLE U ⊤ h).hom a := by

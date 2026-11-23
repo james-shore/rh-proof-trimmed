@@ -50,19 +50,9 @@ noncomputable section
 
 namespace GlobalTheory.Mem.R3.Rw.Untw
 
-theorem exists_below_of_range (D D' : D7) (h : Set.range D.what₂.embLL ⊆ Set.range D'.what₂.embLL) (v' : D'.what₂.places.Pl) :
-    ∃ v : D.what₂.places.Pl, Below D D' v v' := by
-  first
-  | exact @_root_.GlobalTheory.PrimeBelow.exists_below
-  | exact _root_.GlobalTheory.PrimeBelow.exists_below
-  | (apply _root_.GlobalTheory.PrimeBelow.exists_below <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PrimeBelow.exists_below <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PrimeBelow.exists_below <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PrimeBelow.exists_below ..)
-
 theorem resChar_of_below {D D' : D7} {v : D.what₂.places.Pl} {v' : D'.what₂.places.Pl} (hB : Below D D' v v') :
     D'.what₂.places.resChar v' = D.what₂.places.resChar v := by
-  refine GlobalTheory.LvT.Inh.resChar_eq_of_mem_plEq D' v' (D.what₂.places.resChar_prime v) ((hB _ _ ?_).1 (GlobalTheory.LvT.Inh.resChar_mem_plEq D v))
+  refine GlobalTheory.LvT.Inh.resChar_eq_of_mem_plEq D' v' (D.what₂.places.resChar_prime v) ((hB _ _ ?_).1 (_root_.Formalism.BasicNotions.resChar_mem D v))
   simp only [map_natCast]
 
 end GlobalTheory.Mem.R3.Rw.Untw

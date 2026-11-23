@@ -107,7 +107,7 @@ theorem main : ∀ (D : D7), PcrisTensorL D.loc → ∀ (i : D.nd.Loc) (w : Heig
   obtain ⟨Fr, hFr⟩ := frob (D.nd.l i) (D.loc (D.nd.l i)) (D.nbr i w hw).Kw K' h hN hF hS hdeg
   have h1 : (1 : (pc (D.loc (D.nd.l i)) h hN hF hS).Iner →* (Br.LL D.nbr i w hw)ˣ) ∈ Sig0.image (fun a => a * c⁻¹) :=
     Finset.mem_image.2 ⟨c, hc, mul_inv_cancel c⟩
-  obtain ⟨Sig, hsub, h1', hst, hit⟩ := GlobalTheory.frobStable_inertial_subset (pc (D.loc (D.nd.l i)) h hN hF hS)
+  obtain ⟨Sig, hsub, h1', hst, hit⟩ := _root_.GlobalTheory.exists_frobStable_inertiaThrough (pc (D.loc (D.nd.l i)) h hN hF hS)
     (fun x : ↥Xs => matRep (Br.loc D.nbr i w hw (rTwO D.nd i r x))) (Fr : Br.G D.nbr i w hw) _ h1 (fun x => (htw x).2)
   exact ⟨K', h, hN, hF, hS, Sig, Fr, hFr, hst, h1',
     le_trans (Finset.card_le_card hsub) (le_trans Finset.card_image_le hcard), fun x => ⟨(htw x).1, hit x⟩⟩

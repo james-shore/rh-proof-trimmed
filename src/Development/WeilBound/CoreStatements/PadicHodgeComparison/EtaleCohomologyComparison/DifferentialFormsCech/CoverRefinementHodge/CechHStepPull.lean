@@ -97,6 +97,6 @@ theorem cechHStep_pull' : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) {κ ι : Type} (V
   exact step_naturality δ.toEquiv δ'.toEquiv e e'
     (H.δ hS (m + 1) (m + 2) rfl) (H.δ hS' (m + 1) (m + 2) rfl)
     p q (hPull f α.τ₃ (m + 1)) (hPull f α.τ₁ (m + 2))
-    hδ he (GlobalTheory.T.sheaf_pull_connecting_compat f hS hS' α (m + 1)) x
+    hδ he (_root_.GlobalTheory.CompanionTheory.CechDelta.hPull_δ f hS hS' α (m + 1)) x
 
 end CrystallineSemistableComparison.Om.Nt2

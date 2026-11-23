@@ -71,7 +71,7 @@ theorem fib_card (K : UQ) (B₁ B₂ : InvAlg K) (hg₁ : B₁.σ B₁.g = B₁.
         ∀ y ∈ M, (B₁.σ y.1, B₂.σ y.2) ∈ M) ∧
         M.comap (LinearMap.inl K.O B₁.A B₂.A) = M₁ ∧ M.map (LinearMap.snd K.O B₁.A B₂.A) = M₂} :=
     { toFun := fun M => ⟨M.1, ⟨M.2.1.2.1, M.2.1.2.2⟩, M.2.2⟩
-      invFun := fun M => ⟨M.1, ⟨GlobalTheory.T.isFullLattice_prod_of_comap_inl_map_snd K B₁ B₂ M.1 (by rw [M.2.2.1]; exact h₁.1)
+      invFun := fun M => ⟨M.1, ⟨_root_.GlobalTheory.UnitLemma.isLat_of_comap_inl_of_map_snd K B₁ B₂ M.1 (by rw [M.2.2.1]; exact h₁.1)
           (by rw [M.2.2.2]; exact h₂.1), M.2.1.1, M.2.1.2⟩, M.2.2⟩
       left_inv := fun M => rfl
       right_inv := fun M => rfl }

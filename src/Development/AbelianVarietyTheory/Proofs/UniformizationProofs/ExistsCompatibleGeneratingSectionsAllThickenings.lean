@@ -118,9 +118,9 @@ theorem exists_tower : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (I : Ide
     | succ e ih => rw [← hσt, Category.assoc, hf, ih]
   obtain ⟨sS, hsS⟩ := exists_veryAmpleBy_pullback g Y.hom hH hs
   have hva := fun e : ℕ => exists_veryAmpleBy_pullback (Ideal.Quotient.mk (I ^ (e + 1))) Y.hom hH hs
-  obtain ⟨t₁, h₁⟩ := GlobalTheory.T.exists_h1Vanishes_generated_pullbackPow_tensor_dual S _ _ _ H _ (σ 0 ≫ f 0) n sS hH hsS
+  obtain ⟨t₁, h₁⟩ := _root_.GlobalTheory.TwistPair.twist_pair S _ _ _ H _ (σ 0 ≫ f 0) n sS hH hsS
   obtain ⟨s₀, hs₀⟩ := hva 0
-  obtain ⟨t₂, h₂⟩ := GlobalTheory.T.exists_h1Vanishes_generated_pullbackPow_tensor_dual _ _ _ _ H _ (f 0) n s₀ hH hs₀
+  obtain ⟨t₂, h₂⟩ := _root_.GlobalTheory.TwistPair.twist_pair _ _ _ _ H _ (f 0) n s₀ hH hs₀
   obtain ⟨m, u₀, hu₀⟩ := (h₂ (max t₁ t₂) (le_max_right _ _)).2
   have hZ := (h₁ (max t₁ t₂) (le_max_left _ _)).1
   have step : ∀ (e : ℕ) (v : LB.Sec (LB.LinComb H (Y := (thickObj R I e Y).left) (K := Fin 2)

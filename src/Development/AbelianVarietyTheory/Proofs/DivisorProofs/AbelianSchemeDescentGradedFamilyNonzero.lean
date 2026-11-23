@@ -60,33 +60,13 @@ open GlobalTheory.Desc
 
 namespace GlobalTheory.DescGraded
 
-theorem spMap_cst {X : Scheme.{0}} [IsIntegral X] {R : Type} [CommRing R] (p : X ⟶ Sp R) :
-    spMap (Desc.cst p) = gp X ≫ p := by
-  have h : spMap (Desc.cst p) = Spec.map ((Scheme.ΓSpecIso (CommRingCat.of R)).inv ≫ p.appTop ≫
-      X.presheaf.germ ⊤ (genericPoint X) trivial) := rfl
-  rw [h, Spec.map_comp, Spec.map_comp, ← Scheme.fromSpecStalk_toSpecΓ, Category.assoc, Category.assoc,
-    ← Scheme.toSpecΓ_naturality_assoc, toSpecΓ_SpecMap_ΓSpecIso_inv, Category.comp_id]
-  rfl
-
-theorem regAt_cst {X : Scheme.{0}} [IsIntegral X] {R : Type} [CommRing R] (p : X ⟶ Sp R) (x : X) (r : R) :
-    RegAt x (Desc.cst p r) := regAt_fnOf (U := ⊤) trivial trivial _
-
-theorem theta_c₀ (σ : Setup) (x : Sp σ.R) : (σ.θ x).comp σ.c₀ = (Desc.cst (σ.C x).G.hom).comp (σ.ρ x) := by
-  obtain ⟨l, hl, hl'⟩ := σ.hθ x
-  have e : spMap ((σ.θ x).comp σ.c₀) = spMap ((Desc.cst (σ.C x).G.hom).comp (σ.ρ x)) := by
-    have e1 : spMap ((σ.θ x).comp σ.c₀) = spMap (σ.θ x) ≫ spMap σ.c₀ := by
-      rw [← Spec.map_comp]; rfl
-    have e2 : spMap ((Desc.cst (σ.C x).G.hom).comp (σ.ρ x)) = spMap (Desc.cst (σ.C x).G.hom) ≫ spMap (σ.ρ x) := by
-      rw [← Spec.map_comp]; rfl
-    rw [e1, e2, Setup.c₀, spMap_cst, spMap_cst, ← Category.assoc, ← hl', ← hl, Category.assoc, (σ.cart x).w]
-    simp only [Category.assoc]
-  exact congrArg CommRingCat.Hom.hom (Spec.map_injective e)
+alias spMap_cst := _root_.GlobalTheory.Desc.GaussPt.spMap_cst
 
 theorem c₀_mem_W (σ : Setup) (x : Sp σ.R) (r : σ.R) : σ.c₀ r ∈ σ.W x := fun z _ => by
-  have := RingHom.congr_fun (theta_c₀ σ x) r
+  have := RingHom.congr_fun (_root_.GlobalTheory.Desc.θ_comp_c₀ σ x) r
   simp only [RingHom.comp_apply] at this
   rw [this]
-  exact regAt_cst _ _ _
+  exact _root_.GlobalTheory.Desc.GaussPt.regAt_cst _ _ _
 
 theorem W_mul (σ : Setup) (x : Sp σ.R) {a b : σ.A.left.functionField} (ha : a ∈ σ.W x) (hb : b ∈ σ.W x) :
     a * b ∈ σ.W x := fun z hz => by
@@ -125,7 +105,7 @@ theorem gradedFam_and_ne_zero : ∀ σ : Setup, GradedFam σ.c₀ σ.N ∧ ∃ k
   intro σ
   refine ⟨⟨⟨fun x => ?_, fun x => ?_⟩, fun k => ⟨fun x => ?_, fun x => ?_⟩,
     fun k a ha b hb => ⟨fun x => (ha.1 x).add (hb.1 x), fun x => W_add σ x (ha.2 x) (hb.2 x)⟩,
-    fun k r a ha => ⟨sec_mul_left _ _ (fun x => regAt_cst _ x r) ha.1, fun x => W_mul σ x (c₀_mem_W σ x r) (ha.2 x)⟩,
+    fun k r a ha => ⟨sec_mul_left _ _ (fun x => _root_.GlobalTheory.Desc.GaussPt.regAt_cst _ x r) ha.1, fun x => W_mul σ x (c₀_mem_W σ x r) (ha.2 x)⟩,
     fun k l a ha b hb => ⟨fun x => ?_, fun x => W_mul σ x (ha.2 x) (hb.2 x)⟩⟩, ?_⟩
   · rw [zero_nsmul]
     exact ⟨1, CartierDiv.isEqn_zero x, by simpa using (unitAt_one x).regAt⟩
@@ -143,7 +123,7 @@ theorem gradedFam_and_ne_zero : ∀ σ : Setup, GradedFam σ.c₀ σ.N ∧ ∃ k
     refine ⟨k, hk, σ.c₀ σ.f ^ M * u, ⟨?_, (GlobalTheory.T.forall_mem_regularChart_iff_heightOne_primes σ _).2 fun p hp hfp => ?_⟩,
       mul_ne_zero (pow_ne_zero _ (c₀_f_ne_zero σ)) hu0⟩
     · rw [← map_pow]
-      exact sec_mul_left _ _ (fun x => regAt_cst _ x _) hu
+      exact sec_mul_left _ _ (fun x => _root_.GlobalTheory.Desc.GaussPt.regAt_cst _ x _) hu
     · have hle : m p ≤ M := hM ⟨p, ⟨hp, hfp⟩, rfl⟩
       obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le' hle
       rw [pow_add, _root_.mul_assoc, ← map_pow]

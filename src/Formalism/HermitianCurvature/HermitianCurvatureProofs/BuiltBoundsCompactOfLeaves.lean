@@ -88,7 +88,7 @@ def BuiltBounds2CptOfLeaves : Prop :=
 theorem builtBounds2CptOfLeaves : BuiltBounds2CptOfLeaves := by
   intro hRH hHT hDL hTL hDT hTR hGP hD
   have hPSC : P5.ThmPActualCpt → StandardPairingDecay.PStdC := fun hA => StandardPairingDecay.pStdC_of hA hRH hHT
-  have hI : P5.ThmPActualCpt → IntB := fun hA => integral_bound_of_parts (hPSC hA) (hD hA)
+  have hI : P5.ThmPActualCpt → IntB := fun hA => _root_.Formalism.FourierDecayAlt.P.PBASM.intBOfParts (hPSC hA) (hD hA)
   exact builtBounds2CptOfParts (waveLocB_of_cpt hPSC) (liftLocB_of_cpt hDL) hTL (fun _ => hDT)
     (fun _ => vector_valued_types) (fun _ => hTR) (fun hA => germLocB_of (hI hA) hGP) positivity_bound hI hD
     (fun _ => thrPos)
@@ -96,7 +96,5 @@ theorem builtBounds2CptOfLeaves : BuiltBounds2CptOfLeaves := by
 end Formalism.FourierDecayAlt.P.PBASM
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem built_bounds_compact_of_leaves : PBASM.BuiltBounds2CptOfLeaves := PBASM.builtBounds2CptOfLeaves
 
 end Formalism.FourierDecayAlt.P

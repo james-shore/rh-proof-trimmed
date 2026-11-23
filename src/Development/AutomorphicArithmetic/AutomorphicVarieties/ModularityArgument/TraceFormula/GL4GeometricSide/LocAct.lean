@@ -66,8 +66,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-private theorem val_mem (y : G n) : y.val ∈ GLs n := ((UpperTheory.RealTr.basic n).2.1 y.val).2 y.isUnit
-
 private theorem mul_mem {x y : Mat n} (hx : x ∈ GLs n) (hy : y ∈ GLs n) : x * y ∈ GLs n := by
   show (x * y).det ≠ 0
   rw [Matrix.det_mul]
@@ -104,7 +102,7 @@ private theorem sec_equiv (hc : ∀ j, Continuous (c j))
     (hF : ∀ y ∈ GLs n, ∀ κ : Un n, F0 (y * κ.1) = ∑ j, c j κ * F j y) {y : Mat n} (hy : y ∈ GLs n) (a : Un n) :
     ∑ j, F j (y * a.1) • ∫ κ, c j κ • M.ρ κ ∂ν = M.ρ a⁻¹ * ∑ j, F j y • ∫ κ, c j κ • M.ρ κ ∂ν := by
   haveI := FiniteDimensional.complete ℂ M.V
-  have ha : a.1 ∈ GLs n := val_mem (Unitary.toUnits a)
+  have ha : a.1 ∈ GLs n := _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val (Unitary.toUnits a)
   rw [sec_eq ν M hc hF (mul_mem hy ha), sec_eq ν M hc hF hy]
   have hint : Integrable (fun κ : Un n => F0 (y * κ.1) • M.ρ κ) ν := by
     have h1 : (fun κ : Un n => F0 (y * κ.1) • M.ρ κ) = fun κ => ∑ j, F j y • (c j κ • M.ρ κ) := by
@@ -126,7 +124,7 @@ omit [MeasurableSpace (Un n)] [BorelSpace (Un n)] in
 private theorem integrable_k (hk : IsMult μ M k val T') {f : Mat n → ℂ} (hf : ContinuousOn f (GLs n)) :
     Integrable (fun y : G n => f y.val • k y.val) μ := by
   obtain ⟨h1, h2, -⟩ := UpperTheory.RealTr.kerReg n μ M k val T' hk
-  have h3 : Continuous fun y : G n => f y.val := hf.comp_continuous Units.continuous_val val_mem
+  have h3 : Continuous fun y : G n => f y.val := hf.comp_continuous Units.continuous_val _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val
   exact (h3.smul h1).integrable_of_hasCompactSupport (h2.mono fun y hy h0 => hy (by simp [h0]))
 
 private theorem ker_avg (hν : ν Set.univ = 1) (hk : IsMult μ M k val T') (hc : ∀ j, Continuous (c j))
@@ -143,10 +141,10 @@ private theorem ker_avg (hν : ν Set.univ = 1) (hk : IsMult μ M k val T') (hc 
     have h2 : ∀ y : G n, F0 (y * Unitary.toUnits κ : G n).val • k (y * Unitary.toUnits κ : G n).val =
         ∑ j, (F j y.val • k y.val) * (c j κ • M.ρ κ) := by
       intro y
-      have h3 := he y.val (val_mem y) 1 κ
+      have h3 := he y.val (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val y) 1 κ
       simp only [OneMemClass.coe_one, one_mul, map_one] at h3
       show F0 (y.val * κ.1) • k (y.val * κ.1) = _
-      rw [hF _ (val_mem y) κ, h3, Finset.sum_smul]
+      rw [hF _ (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val y) κ, h3, Finset.sum_smul]
       exact Finset.sum_congr rfl fun j _ => by rw [smul_mul_smul_comm, mul_comm (c j κ)]
     simp only [h2]
     have h4 := fun j => ((ContinuousLinearMap.mul ℂ (M.V →L[ℂ] M.V)).flip (c j κ • M.ρ κ)).integral_comp_comm
@@ -176,7 +174,7 @@ private theorem ker_val (hk : IsMult μ M k val T') (hc : ∀ j, Continuous (c j
     have h := congrArg (fun X : M.V →L[ℂ] M.V => X e) (sec_equiv ν M hc hF hy a)
     simpa only [sum_apply, smul_apply, mul_apply_eq_comp] using h
   have h := UpperTheory.RealTr.actEig n μ M k val T' hk χ _ hCE
-    (PositivityTheory.Rg.BcB.CG.isEig_sum χ F (fun j => B j e) hs he) 1 (val_mem 1)
+    (PositivityTheory.Rg.BcB.CG.isEig_sum χ F (fun j => B j e) hs he) 1 (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val 1)
   have hI := fun j => integrable_k M μ hk (hs j).continuousOn
   simp only [sum_apply, smul_apply, mul_apply_eq_comp]
   rw [← h]

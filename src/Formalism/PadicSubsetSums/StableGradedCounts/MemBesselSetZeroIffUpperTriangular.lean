@@ -186,16 +186,6 @@ theorem hecke_comm (σ : G → G) (hσ : ∀ x y, σ (x * y) = σ y * σ x) (hσ
   rw [h', fix, ← h'] at h
   exact MulOpposite.op_injective h
 
-theorem gelfand_trick {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
-    (ρ : Representation ℂ G V) (J : Subgroup G) (χ : J →* ℂˣ)
-    (hcomm : ∀ g g' : G, (twistedIdem J χ * MonoidAlgebra.of ℂ G g * twistedIdem J χ) *
-        (twistedIdem J χ * MonoidAlgebra.of ℂ G g' * twistedIdem J χ) =
-      (twistedIdem J χ * MonoidAlgebra.of ℂ G g' * twistedIdem J χ) *
-        (twistedIdem J χ * MonoidAlgebra.of ℂ G g * twistedIdem J χ))
-    (hirr : IsIrr ρ) :
-    Module.finrank ℂ (eqvSpace ρ (fun u : J => (u : G)) (fun u => ((χ u : ℂˣ) : ℂ))) ≤ 1 := by
-  first | exact Bl.CyclicComponents.goal1 .. | (apply Bl.CyclicComponents.goal1 <;> assumption) | (intros; apply Bl.CyclicComponents.goal1 <;> assumption) | (apply @Bl.CyclicComponents.goal1 <;> assumption) | (intros; apply @Bl.CyclicComponents.goal1 <;> assumption) | (apply @Bl.CyclicComponents.goal1 <;> first | assumption | infer_instance)
-
 end GelfandTrick
 
 end Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
@@ -1024,7 +1014,7 @@ theorem gelfand_graev_multiplicity_one : GelfandGraevMultOne := by
   classical
   have : Fintype (GL (Fin N) K) := Fintype.ofFinite _
   rw [besselSpace_zero_eq_equivariant]
-  refine gelfand_trick ρ (uniSub K N) (uniChar ψ₀ N) ?_ hirr
+  refine _root_.Bl.CyclicComponents.goal1 ρ (uniSub K N) (uniChar ψ₀ N) ?_ hirr
   refine hecke_comm flipG flipG_mul flipG_flipG (uniSub K N) (uniChar ψ₀ N) (flip_char ψ₀) ?_
   intro g
   obtain ⟨u, u', hu, hu', π, t, ht, hn⟩ := bruhat_exists g

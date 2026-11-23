@@ -110,18 +110,18 @@ theorem conj_jet : ∀ (D : D7), GlobalTheory.NormSum.Inp D → ∀ (δ t0 : ℂ
   have hL' := GlobalTheory.MovedVacuum.sd_stdL D N'
   have hGth := he.1
   obtain ⟨b, κ₀, hb, hκ₀, rfl⟩ := he.2.2.2.1
-  obtain ⟨k, hk, hC⟩ := GlobalTheory.T.exists_homLattice_commensurable_orthonormal D N N' _ b _ _ hb hL hL'
+  obtain ⟨k, hk, hC⟩ := _root_.GlobalTheory.ThetaConj.exists_comm_YYl D N N' _ b _ _ hb hL hL'
   have kB : KLat D (tor0 D D.host.ccK δ) (LaB D (tor0 D D.host.ccK δ) b) := Or.inl ⟨_, b, hb, rfl⟩
   have kL : KLat D (tor0 D D.host.ccK δ) (La D (tor0 D D.host.ccK δ) _ _) := Or.inr ⟨_, _, hL, hL', rfl⟩
   obtain ⟨-, -, c1, c2, -⟩ := GlobalTheory.T.coords_along_orthonormal_realSubfield_basis D hG D.host.ccK δ N N' _ b hb
   obtain ⟨d1, d2⟩ := GlobalTheory.T.halfPeriodTheta_differentiable_and_signedTranslate_invariant D hG D.host.ccK δ hc t0 ht0
   have hth0 := GlobalTheory.T.orthoProductTheta_mem_thetaSpace_of_lattice D (tor0 D D.host.ccK δ) N N' _ b _ c1 c2 d1 d2
   have hCb : Comm D b k (Set.range b) := by simpa using (comm_range D b).mul k
-  obtain ⟨m1, -⟩ := conj_iop hc ρ hb (GlobalTheory.T.pullB_th0_mem_tr D _ δ hc t0 ht0 N N' _ b hb) hk
+  obtain ⟨m1, -⟩ := conj_iop hc ρ hb (_root_.GlobalTheory.ThetaConj.normalisedThetaPullback_mem_torsionTranslatesSpan D _ δ hc t0 ht0 N N' _ b hb) hk
     hCb hC (LaB_eq D _ b ▸ kB) kL (LaB_eq D _ b ▸ hth0)
   rw [← LaB_eq, ← La_eq] at m1
   have hGm := Submodule.smul_mem _ (⟨κ₀, hκ₀.1⟩ : Qbar) m1
-  obtain ⟨k₁, hk₁, hC₁⟩ := GlobalTheory.T.exists_homLattice_commensurable_orthonormal D N N' _ b Ls Lt hb hL₁ hL₁'
+  obtain ⟨k₁, hk₁, hC₁⟩ := _root_.GlobalTheory.ThetaConj.exists_comm_YYl D N N' _ b Ls Lt hb hL₁ hL₁'
   have hC₂ := hC₁.mul k
   rw [mul_comm k k₁] at hC₂
   obtain ⟨m2, -⟩ := conj_iop hc ρ hb hGm (Nat.mul_pos hk₁ hk) (hC.mul k₁) hC₂ kL

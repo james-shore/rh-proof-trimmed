@@ -71,9 +71,9 @@ theorem exists_genericPoints_equiv_any : ∀ (R : Type) [CommRing R] [IsDomain R
         (algebraMap (FractionRing R) F).comp (algebraMap R (FractionRing R)) := RingHom.ext fun r => (hc r).symm
     calc jFK (R := V) F ≫ jK V ≫ spMap g
         = spMap ((algebraMap (FractionRing V) F).comp ((algebraMap V (FractionRing V)).comp g)) := by
-          rw [spMap_comp_eq (algebraMap (FractionRing V) F), spMap_comp_eq (algebraMap V (FractionRing V)) g]
+          rw [_root_.GlobalTheory.ZM.NearBuild.spMap_comp (algebraMap (FractionRing V) F), _root_.GlobalTheory.ZM.NearBuild.spMap_comp (algebraMap V (FractionRing V)) g]
       _ = spMap ((algebraMap (FractionRing R) F).comp (algebraMap R (FractionRing R))) := by rw [e1]
-      _ = jFK (R := R) F ≫ jK R := spMap_comp_eq _ _
+      _ = jFK (R := R) F ≫ jK R := _root_.GlobalTheory.ZM.NearBuild.spMap_comp _ _
   obtain ⟨eV, heV⟩ := GlobalTheory.LiePull.exists_pushEquiv gVG (TFK (R := V) F) (jFK (R := V) F ≫ jK V ≫ spMap g) rfl
   obtain ⟨eR, heR⟩ := GlobalTheory.LiePull.exists_pushEquiv gR (TFK (R := R) F) (jFK (R := V) F ≫ jK V ≫ spMap g) hcomp
   obtain ⟨eR₀, heR₀⟩ := GlobalTheory.LiePull.exists_pushEquiv gR (TFK (R := R) F) (jFK (R := R) F ≫ jK R) rfl
@@ -101,7 +101,7 @@ theorem exists_genericPoints_equiv_any : ∀ (R : Type) [CommRing R] [IsDomain R
     · simp only [MulEquiv.trans_apply, Category.assoc, hlast, hx]
     · rw [Over.w, Category.assoc, Over.w]
       show jFK (R := R) F = spMap σ.toRingHom ≫ jFK (R := R) F
-      rw [← spMap_comp_eq, hσ]
+      rw [← _root_.GlobalTheory.ZM.NearBuild.spMap_comp, hσ]
   · exact hlast x
 
 end GlobalTheory.GenRestrict

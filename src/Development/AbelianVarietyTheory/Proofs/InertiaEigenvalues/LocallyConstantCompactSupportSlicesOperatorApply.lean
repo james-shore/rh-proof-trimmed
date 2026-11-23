@@ -142,7 +142,4 @@ theorem slices_test {P V Q : Type} [TopologicalSpace P] [TopologicalSpace V] [To
     refine ⟨((x.1, x.2.2), x.2.1), ⟨ha, ?_⟩, rfl⟩
     exact Set.mem_biUnion ⟨⟨(x.1, x.2.2), ha⟩, rfl⟩ (subset_tsupport _ hne)
 
-theorem slices_test' : ∀ {P V Q : Type} [TopologicalSpace P] [TopologicalSpace V] [TopologicalSpace Q] [T2Space P] [T2Space V] [T2Space Q] (T : (V → ℂ) → V → ℂ), (∀ φ, IsTest φ → IsTest (T φ)) → T 0 = 0 → ∀ f : P × V × Q → ℂ, IsTest f → (∀ p q, IsTest (fun v => f (p, v, q))) ∧ IsTest (fun x : P × V × Q => T (fun v => f (x.1, v, x.2.2)) x.2.1) :=
-  fun T hT hT0 f hf => slices_test T hT hT0 f hf
-
 end GlobalTheory

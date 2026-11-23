@@ -76,7 +76,7 @@ theorem det_toFin (δ : GL (Fin 2) F) : (toFin δ).val.det = algebraMap F (Af F)
 
 theorem exists_unit {x : F} (h : ∀ w : HeightOneSpectrum (𝓞 F), w.valuation F x = 1) (hx : x ≠ 0) :
     ∃ ε : (𝓞 F)ˣ, ((ε : 𝓞 F) : F) = x := by
-  have H := (GlobalTheory.T.maximalCompactGL2_finiteAdele_characterization F).2.2.2.2
+  have H := (_root_.GlobalTheory.HilbertThetaSeries.kMem F).2.2.2.2
   have h1 : IsIntegral ℤ x := (H x).1 fun w => (h w).le
   have h2 : IsIntegral ℤ x⁻¹ := (H _).1 fun w => by rw [map_inv₀, h w, inv_one]
   refine ⟨⟨⟨x, h1⟩, ⟨x⁻¹, h2⟩, ?_, ?_⟩, rfl⟩
@@ -85,7 +85,7 @@ theorem exists_unit {x : F} (h : ∀ w : HeightOneSpectrum (𝓞 F), w.valuation
 
 theorem det_unit {g k : GL (Fin 2) (Af F)} (hk : k ∈ KLev F 2 1) {δ : GL (Fin 2) F} (h : toFin δ = g * k * g⁻¹) :
     ∃ ε : (𝓞 F)ˣ, ((ε : 𝓞 F) : F) = δ.val.det := by
-  obtain ⟨H1, -, -, H4, -⟩ := GlobalTheory.T.maximalCompactGL2_finiteAdele_characterization F
+  obtain ⟨H1, -, -, H4, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.kMem F
   refine exists_unit (fun w => ?_) δ.det_ne_zero
   have e : (toFin δ).val.det = k.val.det := by
     rw [h, Units.val_mul, Units.val_mul, Matrix.det_units_conj]
@@ -93,7 +93,7 @@ theorem det_unit {g k : GL (Fin 2) (Af F)} (hk : k ∈ KLev F 2 1) {δ : GL (Fin
   exact ((H1 k).1 hk).2 w
 
 theorem integral_of_mem {x : F} (h : algebraMap F (Af F) x ∈ Ohat F) : IsIntegral ℤ x := by
-  obtain ⟨-, -, -, H4, H5⟩ := GlobalTheory.T.maximalCompactGL2_finiteAdele_characterization F
+  obtain ⟨-, -, -, H4, H5⟩ := _root_.GlobalTheory.HilbertThetaSeries.kMem F
   refine (H5 x).1 fun w => ?_
   rw [← H4]
   exact (Subring.mem_iInf.1 h w : pLoc F w (algebraMap F (Af F) x) ∈ w.adicCompletionIntegers F)
@@ -113,7 +113,7 @@ theorem inGam_of_mem {N : ℕ} (hN : 0 < N) {γ : GL (Fin 2) F} (hd : γ.val.det
 
 theorem unit_scalar_mem (ε : (𝓞 F)ˣ) : Matrix.GeneralLinearGroup.scalar (Fin 2)
     (Units.map (algebraMap F (Af F)).toMonoidHom (Units.map (algebraMap (𝓞 F) F).toMonoidHom ε)) ∈ KLev F 2 1 := by
-  obtain ⟨-, H2, -, H4, -⟩ := GlobalTheory.T.maximalCompactGL2_finiteAdele_characterization F
+  obtain ⟨-, H2, -, H4, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.kMem F
   refine (H2 _ 0 (fun w => ?_) (fun w => by simp)).2
   refine (H4 (algebraMap (𝓞 F) F ε) w).trans ?_
   rw [HeightOneSpectrum.valuation_of_algebraMap]
@@ -124,7 +124,7 @@ theorem invariants [IsTotallyReal F] (g : GL (Fin 2) (Af F)) {N : ℕ} (hN : 0 <
       (Matrix.GeneralLinearGroup.scalar (Fin 2) η * γ).val.det = i.1 ∧
         toFin (Matrix.GeneralLinearGroup.scalar (Fin 2) η * γ) * i.2⁻¹ ∈ KLev F 2 N := by
   classical
-  obtain ⟨⟨Y, hY⟩, E, hE⟩ := GlobalTheory.T.finite_narrowIdeleClasses_and_units_mod_squares F
+  obtain ⟨⟨Y, hY⟩, E, hE⟩ := _root_.GlobalTheory.HilbertThetaSeries.NarrowCls.narrowClass_unitsSq_finite F
   obtain ⟨C, hC⟩ := cover g hN
   have hb : ∀ y : (Af F)ˣ, ∃ b : GL (Fin 2) F, ∀ δ : GL (Fin 2) F, ∀ k ∈ KLev F 2 1,
       toFin δ = Matrix.GeneralLinearGroup.scalar (Fin 2) y * (g * k * g⁻¹) →
@@ -141,7 +141,7 @@ theorem invariants [IsTotallyReal F] (g : GL (Fin 2) (Af F)) {N : ℕ} (hN : 0 <
   refine ⟨(Y ×ˢ E ×ˢ C).image fun t => (((t.2.1 : 𝓞 F) : F) * (b t.1).val.det, t.2.2 * toFin (b t.1)), ?_⟩
   rintro γ ⟨-, z, u, hu, e⟩
   obtain ⟨y, hy, ξ, v, -, hv, rfl⟩ := hY z
-  have hvK := ((GlobalTheory.T.maximalCompactGL2_finiteAdele_characterization F).2.1 v 0 hv (fun w => by simp)).2
+  have hvK := ((_root_.GlobalTheory.HilbertThetaSeries.kMem F).2.1 v 0 hv (fun w => by simp)).2
   obtain ⟨k, hk, ek⟩ := hb y (Matrix.GeneralLinearGroup.scalar (Fin 2) ξ⁻¹ * γ) _ (mul_mem hvK hu) (by
     rw [map_mul, eq_mul_inv_of_mul_eq e, map_inv, map_inv, toFin_scalar, map_mul, map_mul, ← mul_assoc g,
       ← Matrix.GeneralLinearGroup.scalar_commute v g]
@@ -200,5 +200,3 @@ end GlobalTheory.HilbertThetaSeries.StabFin
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.stabilizer_eq_scalar_mul_congruence_mul_finset : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (g : GL (Fin 2) (Af F)) (N : ℕ), 0 < N → ∃ T : Finset (GL (Fin 2) F), (∀ τ ∈ T, Stab g τ) ∧ ∀ γ, Stab g γ → ∃ (η : Fˣ) (γ₀ : GL (Fin 2) F), ∃ τ ∈ T, InGam N γ₀ ∧ γ = Matrix.GeneralLinearGroup.scalar (Fin 2) η * γ₀ * τ := by
-  first | exact @GlobalTheory.HilbertThetaSeries.StabFin.finite_index | exact GlobalTheory.HilbertThetaSeries.StabFin.finite_index | (intros; apply GlobalTheory.HilbertThetaSeries.StabFin.finite_index <;> assumption)

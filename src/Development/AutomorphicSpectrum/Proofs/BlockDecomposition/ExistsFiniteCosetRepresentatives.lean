@@ -80,9 +80,6 @@ theorem finite_transversal {X : Type} [TopologicalSpace X] [AddCommGroup X]
     obtain ⟨q, -, rfl⟩ := Finset.mem_image.mp ht
     rw [(key q).mp hat]
 
-theorem main : ∀ {X : Type} [TopologicalSpace X] [AddCommGroup X] [IsTopologicalAddGroup X]
-    (A H : AddSubgroup X), IsCompact (A : Set X) → IsOpen (H : Set X) → H ≤ A →
-    ∃ T : Finset X, (∀ t ∈ T, t ∈ A) ∧ ∀ a ∈ A, ∃! t, t ∈ T ∧ a - t ∈ H :=
-  fun A H hA hH hHA => GlobalTheory.CompanionTheory.OpenSubgroupTransversal.finite_transversal A H hA hH hHA
+alias main := _root_.GlobalTheory.CompanionTheory.OpenSubgroupTransversal.finite_transversal
 
 end GlobalTheory.CompanionTheory.OpenSubgroupTransversal

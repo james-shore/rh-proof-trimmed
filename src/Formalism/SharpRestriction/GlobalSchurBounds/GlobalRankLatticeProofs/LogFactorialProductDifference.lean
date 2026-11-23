@@ -107,15 +107,12 @@ theorem place_dimension_upper_bound (D : D7) (sc : Scale) (C0 Δ : ℝ) (w : ℕ
   rw [eL]
   linarith
 
-theorem facProd_pos' (N : ℕ) : 0 < facProd N :=
-  Finset.prod_pos fun i _ => by exact_mod_cast Nat.factorial_pos i
-
 theorem log_factorial_product_difference (k r : ℕ) (hk : 1 ≤ k) (hkr : k ≤ r) :
     Real.log (facProd r) - Real.log (facProd k) ≤ ((r - k : ℕ) : ℝ) * ((r : ℝ) * Real.log r) := by
   have hsplit : facProd r = facProd k * ∏ i ∈ Finset.Ico k r, ((i.factorial : ℕ) : ℝ) := by
     unfold facProd
     rw [Finset.prod_range_mul_prod_Ico _ hkr]
-  have hk0 : 0 < facProd k := facProd_pos' k
+  have hk0 : 0 < facProd k := _root_.Formalism.MainNotions.StandardLattice.factorial_product_pos k
   have hP0 : 0 < ∏ i ∈ Finset.Ico k r, ((i.factorial : ℕ) : ℝ) :=
     Finset.prod_pos fun i _ => by exact_mod_cast Nat.factorial_pos i
   rw [hsplit, Real.log_mul hk0.ne' hP0.ne', add_sub_cancel_left,

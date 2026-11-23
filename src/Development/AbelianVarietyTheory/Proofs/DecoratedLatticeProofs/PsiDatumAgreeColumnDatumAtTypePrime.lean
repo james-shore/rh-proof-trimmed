@@ -85,9 +85,7 @@ theorem pow_red (k : ℕ) : IntAt P ((qOf P : E) ^ (k + 1)) ∧ redP P ((qOf P :
     rw [pow_succ]
     exact ⟨ih.1.mul (intAt_q P), by rw [reduction_mul ih.1 (intAt_q P), ih.2, zero_mul]⟩
 
-theorem reduction_one' : redP P (1 : E) = 1 := by
-  have := reduction_coe P 1
-  rwa [map_one, map_one] at this
+alias reduction_one' := _root_.GlobalTheory.SymBridge.PhiAgreeProof.reduction_one'
 
 theorem valuation_one₂ : LocE.vP P (qOf P) (1 : E) = 0 := by
   have hq0 := q_ne_zero P

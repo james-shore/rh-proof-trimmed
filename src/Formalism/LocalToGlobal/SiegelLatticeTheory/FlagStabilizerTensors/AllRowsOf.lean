@@ -182,10 +182,6 @@ theorem eDat_idem (g N : ℕ) [NeZero g] (P : Matrix (Fin N) (Fin N) (ZMod g) �
   congr 1
   field_simp
 
-theorem isUniUp_mul {R : Type} [CommRing R] {N : ℕ} {M M' : Matrix (Fin N) (Fin N) R} (hM : IsUniUp M)
-    (hM' : IsUniUp M') : IsUniUp (M * M') := by
-  first | exact GlobalTheory.UnipotentUpperMul.isUniUp_mul .. | (apply GlobalTheory.UnipotentUpperMul.isUniUp_mul <;> assumption) | (intros; apply GlobalTheory.UnipotentUpperMul.isUniUp_mul <;> assumption) | (apply @GlobalTheory.UnipotentUpperMul.isUniUp_mul <;> assumption) | (intros; apply @GlobalTheory.UnipotentUpperMul.isUniUp_mul <;> assumption) | (apply @GlobalTheory.UnipotentUpperMul.isUniUp_mul <;> first | assumption | infer_instance) | exact @GlobalTheory.UnipotentUpperMul.isUniUp_mul R ‹_› N M M' hM hM' | exact @GlobalTheory.UnipotentUpperMul.isUniUp_mul R ‹_› N M M' hM | exact @GlobalTheory.UnipotentUpperMul.isUniUp_mul R ‹_› N M M' | exact @GlobalTheory.UnipotentUpperMul.isUniUp_mul R ‹_› N M | exact @GlobalTheory.UnipotentUpperMul.isUniUp_mul R ‹_› N | exact @GlobalTheory.UnipotentUpperMul.isUniUp_mul R ‹_› | exact @GlobalTheory.UnipotentUpperMul.isUniUp_mul R
-
 theorem mul_entry_add {R : Type} [CommRing R] {N : ℕ} {M M' : Matrix (Fin N) (Fin N) R} (hM : IsUniUp M)
     (hM' : IsUniUp M') {a b : Fin N} (hab : a < b) (hgap : ∀ j : Fin N, a < j → j < b → M a j * M' j b = 0) :
     (M * M') a b = M a b + M' a b := by
@@ -241,7 +237,7 @@ theorem J_mul {g kk s N : ℕ} {u v : Matrix (Fin N) (Fin N) (ZMod g)}
     (hu : IsUniUp u ∧ ∀ a, s ≤ a → a < s + kk → entN u a (s + kk) = 0)
     (hv : IsUniUp v ∧ ∀ a, s ≤ a → a < s + kk → entN v a (s + kk) = 0) :
     IsUniUp (u * v) ∧ ∀ a, s ≤ a → a < s + kk → entN (u * v) a (s + kk) = 0 := by
-  refine ⟨isUniUp_mul hu.1 hv.1, fun a h1 h2 => ?_⟩
+  refine ⟨_root_.GlobalTheory.UnipotentUpperMul.isUniUp_mul hu.1 hv.1, fun a h1 h2 => ?_⟩
   rw [entN_mul_add hu.1 hv.1 h2 (fun j hj1 hj2 => hv.2 j (by omega) hj2), hu.2 a h1 h2, hv.2 a h1 h2, add_zero]
 
 theorem eJ_idem (g N kk s : ℕ) [NeZero g] (ψ₀ : AddChar (ZMod g) ℂ) :
@@ -599,8 +595,7 @@ def KSub : Subgroup I.Gf where
   one_mem' := K_one I
   inv_mem' := fun hx => K_inv I hx
 
-theorem one_mem_Kg' (m : ℕ) : (1 : I.Gf) ∈ I.Kg m :=
-  ⟨K_one I, fun y _ => ⟨0, zero_mem _, by rw [fmat_one, sub_self, Matrix.zero_mulVec, smul_zero]⟩⟩
+alias one_mem_Kg' := _root_.Formalism.L2.SG.Pf.one_mem_Kg
 
 theorem Kg_mul' (m : ℕ) {x y : I.Gf} (hx : x ∈ I.Kg m) (hy : y ∈ I.Kg m) : x * y ∈ I.Kg m := by
   refine ⟨K_mul I hx.1 hy.1, fun v hv => ?_⟩
@@ -714,12 +709,6 @@ theorem tieCountAt_allRowsOf {n₀ : ℕ} {Alev C₃ cb : ℝ} (hB : CountBase X
     reT_spec X hI _⟩, hgap, hC, hf, hb, hpos⟩
 
 end CountPf
-
-section FinalK
-
-variable {D : D7} (X : HidaSetting D)
-
-end FinalK
 
 section Count
 

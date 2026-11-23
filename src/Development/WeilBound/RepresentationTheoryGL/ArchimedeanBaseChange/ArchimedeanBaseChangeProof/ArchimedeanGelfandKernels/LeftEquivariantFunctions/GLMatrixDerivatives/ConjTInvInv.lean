@@ -195,8 +195,6 @@ theorem hOf_single (i : Fin n × Fin n) : hOf (Pi.single i (1 : ℝ)) = (hb i : 
 
 theorem unit_of {y : Mat n} (hy : y ∈ GLs n) : IsUnit y.det := isUnit_iff_ne_zero.mpr hy
 
-theorem isOpen_cone (hH : HbFacts) : IsOpen (cone n) := PositivityTheory.KcHalf2₂.isOpen_cone_of_hbFacts hH
-
 section Main
 
 variable {lam : Fin n → ℤ} {E : KMod n} {Fr : Mat n → (E.V →L[ℂ] E.V)} {ε ι : Mat n →ₗ[ℝ] (E.V →L[ℂ] E.V)}
@@ -310,7 +308,7 @@ theorem halfTwo_of (hH : HbFacts) (hF : FrameDer) (hc : FrComm) (h2 : DerTwo) (h
   have hyu : IsUnit (σ w).det := unit_of hy
   have hyHu : IsUnit (σ w)ᴴ.det := unit_of (KcInv.conjT_mem hy)
   have hKs := KcInv.kcSmooth n E.V σ c Fr k Γ T d hd hσs hσ h.smooth hk
-  have hop : IsOpen (cone n) := isOpen_cone hH
+  have hop : IsOpen (cone n) := _root_.PositivityTheory.KcHalf2₂.isOpen_cone_of_hbFacts hH
   have hmem : (v, w) ∈ cone n ×ˢ cone n := ⟨hv, hw⟩
   have hnh : cone n ×ˢ cone n ∈ nhds (v, w) := (hop.prod hop).mem_nhds hmem
   have hca : ContDiffAt ℝ ∞ (Kc σ c Fr k Γ T d) (v, w) := hKs.contDiffAt hnh

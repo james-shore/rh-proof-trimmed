@@ -99,16 +99,7 @@ theorem exists_prime_mem {K : Type*} [Field K] [NumberField K] (P : Ideal (𝓞 
   rw [← Ideal.Quotient.eq_zero_iff_mem, map_natCast]
   exact ringChar.Nat.cast_ringChar
 
-theorem exists_int_smul_mem {K V : Type*} [Field K] [NumberField K] [AddCommGroup V] [Module K V]
-    [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] (L : Submodule (𝓞 K) V)
-    (hL : Submodule.span K (L : Set V) = ⊤) (y : V) : ∃ m : ℤ, m ≠ 0 ∧ m • y ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.IntegerScalarIntegral.main
-  | exact _root_.GlobalTheory.IntegerScalarIntegral.main
-  | (apply _root_.GlobalTheory.IntegerScalarIntegral.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegerScalarIntegral.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegerScalarIntegral.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegerScalarIntegral.main ..)
+alias exists_int_smul_mem := _root_.GlobalTheory.IntegerScalarIntegral.exists_int_smul_mem
 
 theorem exists_nearer : ∀ (D : D7) (n : ℕ) (L₀ L : Lat D n), SD D L₀ → SD D L → L₀ ≠ L → ∃ (P : Ideal (𝓞 D.host.E)) (q : ℕ) (x : Fin n → D.host.E), P.IsMaximal ∧ q.Prime ∧ (q : 𝓞 D.host.E) ∈ P ∧ x ∈ L₀ ∧ NbD D P L x ∧ lenQ D L₀ (nbr D L x) + 1 = lenQ D L₀ L := by
   intro D n L₀ L h₀ h hne

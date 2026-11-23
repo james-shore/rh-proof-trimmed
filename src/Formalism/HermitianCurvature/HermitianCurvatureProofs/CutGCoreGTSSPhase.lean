@@ -218,7 +218,7 @@ theorem second_shift_phase_holds : GTSSPhase := by
 
   let sq : ℕ → M.Ty P → ℂ := fun l ρ => ((Real.sqrt (M.Nrm P l ρ) : ℝ) : ℂ)
   have hpos : ∀ l ∈ Icc 1 (P.k - 1), ∀ ρ ρ', M.Up P l ρ ρ' → 0 < M.Nrm P l ρ :=
-    fun l hl ρ ρ' hU1 => ((Formalism.FourierDecayAlt.P.nrmFacts_statement P hP l hl ρ).1 ρ' hU1).1
+    fun l hl ρ ρ' hU1 => ((_root_.Formalism.FourierDecayAlt.P.Mx4.nrmFacts P hP l hl ρ).1 ρ' hU1).1
   have hsq0 : ∀ l ∈ Icc 1 (P.k - 1), ∀ ρ ρ', M.Up P l ρ ρ' → sq l ρ ≠ 0 := by
     intro l hl ρ ρ' hU1
     have := Real.sqrt_pos.2 (hpos l hl ρ ρ' hU1)

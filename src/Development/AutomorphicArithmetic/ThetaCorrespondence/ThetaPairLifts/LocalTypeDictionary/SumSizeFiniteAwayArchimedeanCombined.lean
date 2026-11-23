@@ -65,26 +65,21 @@ theorem sum_size_finite_away_archimedean_combined : _root_.GlobalTheory.FunPr.Th
   intro P
   have hInp : ∀ D, GlobalTheory.NormSum.Inp D := GlobalTheory.T.cmThetaNormBoundHypotheses_satisfied
   have hOK : GlobalTheory.RowClaim.SumOKK := _root_.GlobalTheory.T.sumOKK_of_theta_local_inputs P
-  have hDep : GlobalTheory.SumSize.DepthK := _root_.GlobalTheory.T.depthK_of_sumOKK P hOK
-  have hDict : GlobalTheory.SumSize.DictK := _root_.GlobalTheory.T.sum_size_dictionary P hInp
-  have hScal := _root_.GlobalTheory.T.finite_and_infinite_scalar_bounds P
-  have hForm := _root_.GlobalTheory.T.form_value_finite_infinite_factorization P
-  have hPair := _root_.GlobalTheory.T.field_pair_comparison P
-  have hPsi := _root_.GlobalTheory.Adopt.test_vector_value_factorization P
-  have hTopF := _root_.GlobalTheory.T.sum_size_finite_top_term_integral P hInp hDict hDep
-  have hRowF := _root_.GlobalTheory.T.sum_size_bound_finite_places P hInp hDict hDep
-  have hTopI := _root_.GlobalTheory.T.kernel_conjugation_mean_archimedean_top_term P hInp hDict hDep
-  have hRowI := _root_.GlobalTheory.T.sum_size_bound_opposite_conjugation P hInp hDict hDep
-  refine ⟨?_, _root_.GlobalTheory.Adopt.twisted_local_factor_away_from_level P, ?_⟩
-  · exact GlobalTheory.Adopt.finiteSumDenominatorBound_of_factor_claims hOK hDep hScal.1 (_root_.GlobalTheory.Adopt.finCoefK_of_theta_inputs P) (_root_.GlobalTheory.T.finDatK_of_theta_inputs P) (_root_.GlobalTheory.T.gamma_factor_loss_at_finite_places P)
+  have hDep : GlobalTheory.SumSize.DepthK := _root_.GlobalTheory.DepthUnf.depthK_of_hypotheses_alt P hOK
+  have hDict : GlobalTheory.SumSize.DictK := _root_.GlobalTheory.SumSize.sum_size_dictionary_of_local_bounds P hInp
+  have hScal := _root_.GlobalTheory.ScalAA.finScalK_and_infScalK_of_theta_inputs P
+  have hForm := _root_.GlobalTheory.FormVal.form_value_eq_finite_mul_infinite P
+  have hPair := _root_.GlobalTheory.FPair.lift_splits_locally P
+  have hPsi := _root_.TestFunctionNorms.GlobalTheory.CompanionTheory.TestVal.test_value_psi_finite_infinite P
+  have hTopF := _root_.GlobalTheory.SumSize.TopInt.finite_top_term_integral_bound P hInp hDict hDep
+  have hRowF := _root_.GlobalTheory.SumSize.finite_place_sum_size_bound P hInp hDict hDep
+  have hTopI := _root_.GlobalTheory.KerConjMean.archimedean_top_term_kernel_conj_mean P hInp hDict hDep
+  have hRowI := _root_.GlobalTheory.SumSize.OppConj.archimedean_sum_size_opposite_conjugate P hInp hDict hDep
+  refine ⟨?_, _root_.TwistAwayFromPlace.GlobalTheory.CompanionTheory.Twist.twist_trivial_away_from_level P, ?_⟩
+  · exact _root_.DenominatorLossAdditivity.GlobalTheory.CompanionTheory.FinDen.fin_of_factors hOK hDep hScal.1 (_root_.ResidueCardinalityNilpotence.GlobalTheory.CompanionTheory.VolVal.finCoefK_alt P) (_root_.GlobalTheory.FunDat.finDatK_alt P) (_root_.GlobalTheory.GamLoss.finite_place_gamma_loss_bound P)
       hTopF hRowF hPair.1 hPsi.1 hForm.1
   · exact GlobalTheory.T.archimedeanSumSizeBound_largeData_from_factors hOK hDep hScal.2 (_root_.GlobalTheory.T.sum_size_archimedean_tensor_bound P) (_root_.GlobalTheory.T.sum_count_bound_archimedean P hDep) (_root_.GlobalTheory.T.class_count_bound_archimedean P)
       hTopI hRowI hPair.2 hPsi.2 hForm.2
 end GlobalTheory.SumSize.Join
 end
 
-section
-
-theorem _root_.GlobalTheory.T.sum_size_bound_all_places : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.SumSize.FinK ∧ GlobalTheory.SumSize.AwayK ∧ GlobalTheory.SumSize.InfK := by
-  first | exact @_root_.GlobalTheory.SumSize.Join.sum_size_finite_away_archimedean_combined | exact _root_.GlobalTheory.SumSize.Join.sum_size_finite_away_archimedean_combined | (intros; apply _root_.GlobalTheory.SumSize.Join.sum_size_finite_away_archimedean_combined <;> assumption)
-end

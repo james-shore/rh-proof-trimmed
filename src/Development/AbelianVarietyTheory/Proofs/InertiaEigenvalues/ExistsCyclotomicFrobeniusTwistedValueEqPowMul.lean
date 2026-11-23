@@ -105,7 +105,7 @@ theorem exists_cycVal_eq_pow_mul (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K : 
   induction hmem using AddSubgroup.closure_induction with
   | mem x hx =>
     obtain ⟨j, n, c, hj, hjs, hn', hc, hc1, rfl⟩ := hx
-    exact GlobalTheory.T.exists_cyclotomicFrobeniusTwistedValue_eq l P K s e j n hj hjs hn' c hc hc1
+    exact _root_.GlobalTheory.ExpImage.Values.exists_cycVal_eq l P K s e j n hj hjs hn' c hc hc1
   | zero =>
     refine ⟨fun _ => 0, 0, fun _ => by simp, by simp, by simp, ?_⟩
     rw [cycVal_zero, mul_zero]

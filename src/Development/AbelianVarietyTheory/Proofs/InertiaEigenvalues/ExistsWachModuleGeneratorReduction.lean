@@ -58,19 +58,6 @@ open scoped LaurentSeries PowerSeries TensorProduct
 
 namespace GlobalTheory.RedFun
 
-theorem exists_extend_of_dense {A E F : Type} [CommRing A] [CommRing E] [CommRing F] (ι : A →+* E) (f : A →+* F)
-    (π P : A) (hf : IsUnit (f π)) (hP : f P = 0)
-    (hd : ∀ e : E, ∃ (a : A) (m : ℕ) (y : E), e * ι π ^ m = ι a + ι P * y)
-    (hs : ∀ (a : A) (y : E), ι a = ι P * y → ∃ b, a = P * b) :
-    ∃ g : E →+* F, (∀ a, g (ι a) = f a) := by
-  first
-  | exact @_root_.GlobalTheory.RelationExtension.exists_extension
-  | exact _root_.GlobalTheory.RelationExtension.exists_extension
-  | (apply _root_.GlobalTheory.RelationExtension.exists_extension <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RelationExtension.exists_extension <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RelationExtension.exists_extension <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RelationExtension.exists_extension ..)
-
 theorem exists_letter_reduction : ∀ {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K] [Algebra Qp K₀] [Algebra Qp K] [Algebra K₀ K] [IsScalarTower Qp K₀ K] {B BdR : Type} [CommRing B] [CommRing BdR] [Algebra Qp B] [Algebra K₀ B] [IsScalarTower Qp K₀ B] [Algebra Qp BdR] [Algebra K₀ BdR] [Algebra K BdR] [IsScalarTower Qp K BdR] [IsScalarTower K₀ K BdR] [IsScalarTower Qp K₀ BdR] {PD : PeriodData G Qp K₀ K B BdR} {LL O : Type} [Field LL] [Algebra Qp LL] [CommRing O] [Algebra O LL] [TopologicalSpace LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ} (W : LocWach PD LL O v n) {k : Type} [Field k] [Algebra O k] (lam : O), Function.Surjective (algebraMap O k) → (∀ x, algebraMap O k x = 0 ↔ lam ∣ x) → ((PD.p : ℕ) : k) = 0 → ∃ p : ZMod n → (W.EE →+* k⸨X⸩), (∀ i (a : LetA O n), p i (algebraMap (LetA O n) W.EE a) = ((PowerSeries.map (algebraMap O k) (a i) : k⟦X⟧) : k⸨X⸩)) ∧ (∀ i, Function.Surjective (p i)) ∧ ∀ i e, p i e = 0 → ∃ e', algebraMap (LetA O n) W.EE (letE i) * e = algebraMap O W.EE lam * e' := by
   intro G _ _ Qp K₀ K _ _ _ _ _ _ _ B BdR _ _ _ _ _ _ _ _ _ _ _ PD LL O _ _ _ _ _ v n W k _ _ lam hsurj hker hp
   let f : ZMod n → (LetA O n →+* k⸨X⸩) := fun i =>
@@ -97,7 +84,7 @@ theorem exists_letter_reduction : ∀ {G : Type} [Group G] [TopologicalSpace G] 
     intro a y h
     have := W.EE_sat a 1 (Ideal.mem_span_singleton'.2 ⟨y, by rw [h, map_natCast, pow_one, mul_comm]⟩)
     simpa using this
-  choose p hpa using fun i => exists_extend_of_dense (algebraMap (LetA O n) W.EE) (f i) letπ (PD.p : LetA O n)
+  choose p hpa using fun i => _root_.GlobalTheory.RelationExtension.exists_extension (algebraMap (LetA O n) W.EE) (f i) letπ (PD.p : LetA O n)
     (by rw [hX]; exact hu) (hP i) hd hs
   obtain ⟨u, hπ⟩ := W.EE_π.exists_right_inv
   refine ⟨p, fun i a => hpa i a, fun i c => ?_, fun i e he => ?_⟩

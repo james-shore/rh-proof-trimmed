@@ -131,13 +131,10 @@ theorem exists_nat_denom_family {ι : Type} [Fintype ι] (x : ι → E) :
 theorem smul_eq {D : D7} (V : HSp D) (s : 𝓞 D.host.E) (w : V.V) : s • w = (s : D.host.E) • w :=
   (algebraMap_smul D.host.E s w).symm
 
-theorem exists_nat_smul_mem_L0 {D : D7} (V : HSp D) (v : V.V) : ∃ d : ℕ, 0 < d ∧ (d : 𝓞 D.host.E) • v ∈ V.L0 := by
-  exact _root_.GlobalTheory.NatSmulMemLattice.exists_nat_smul_mem_lattice V v
-
 theorem exists_nat_smul_frame {D : D7} (V : HSp D) :
     ∃ d : ℕ, 0 < d ∧ ∀ j, (d : 𝓞 D.host.E) • V.frame j ∈ V.L0 := by
   classical
-  choose d hd h using fun j => exists_nat_smul_mem_L0 V (V.frame j)
+  choose d hd h using fun j => _root_.GlobalTheory.NatSmulMemLattice.exists_nat_smul_mem_lattice V (V.frame j)
   refine ⟨∏ j, d j, Finset.prod_pos fun j _ => hd j, fun j => ?_⟩
   rw [← Finset.prod_erase_mul _ _ (Finset.mem_univ j), Nat.cast_mul, mul_smul]
   exact V.L0.smul_mem _ (h j)

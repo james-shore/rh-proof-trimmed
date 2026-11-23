@@ -100,7 +100,7 @@ variable {E : Type} [Field E] [NumberField E]
 theorem aut_eq_one (S : Set (HeightOneSpectrum (𝓞 E))) (hS : S.Finite) (F : Type) [Field F] [NumberField F]
     [Algebra E F] (h : ∀ v : HeightOneSpectrum (𝓞 E), v ∉ S → IsFrob F v 1) (σ : F ≃ₐ[E] F) : σ = 1 := by
   by_contra hσ
-  obtain ⟨T, hT, H⟩ := GlobalTheory.T.exists_two_primes_same_norm_of_trivial_frobenius E F σ hσ
+  obtain ⟨T, hT, H⟩ := _root_.GlobalTheory.Mem.Fld.exists_two_primes_of_isFrob_one E F σ hσ
   choose P Q hne hP hQ nP nQ using fun v : {v : HeightOneSpectrum (𝓞 E) // v ∉ S ∪ T} =>
     H v.1 (fun hv => v.2 (Or.inr hv)) (h v.1 fun hv => v.2 (Or.inl hv))
   let f : {v : HeightOneSpectrum (𝓞 E) // v ∉ S ∪ T} × Bool → HeightOneSpectrum (𝓞 F) :=
@@ -220,7 +220,7 @@ theorem finite_M' : FiniteDimensional ℚ D.M' := by
 theorem finite_Om : FiniteDimensional ℚ D.Om := by
   have h1 := finite_M' D
   have h2 := finite_cycField (rootOrder P)
-  have h3 : FiniteDimensional ℚ D.V := GlobalTheory.T.finiteDimensional_kummerFieldOfPowerIdealRoots _ _ _ D.hstar_pos.ne'
+  have h3 : FiniteDimensional ℚ D.V := _root_.GlobalTheory.Mem.FieldsEx.finiteDimensional_kummerField _ _ _ D.hstar_pos.ne'
   unfold FieldDat.Om
   infer_instance
 

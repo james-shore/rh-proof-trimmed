@@ -83,7 +83,7 @@ theorem etaleCohomology_simplicialCochain_representation_step (F : Shv R) (E : S
     (hrange : ∀ x : (cochX R E F).X n, cobd (E := E) (n := n) (show (free R).obj (E.obj (op ⦋n⦌)) ⟶ F from x) = 0 →
       (IsCls (E := E) (n := n) (show (free R).obj (E.obj (op ⦋n⦌)) ⟶ F from x) 0 ↔ ∃ y : (cochX R E F).X i, (cochX R E F).d i n y = x)) :
     Nonempty (H R E F n ≃+ (cochX R E F).homology n) := by
-  obtain ⟨hex, hadd, huniq, -, -⟩ := GlobalTheory.T.simplicialCochain_classes_basic_properties R F E n
+  obtain ⟨hex, hadd, huniq, -, -⟩ := _root_.GlobalTheory.EtC.isCls_basic R F E n
   let X := cochX R E F
   let S := X.sc' i n (n + 1)
   have hg : ∀ x : S.X₂, S.g.hom x = 0 ↔ cobd (E := E) (n := n) (show (free R).obj (E.obj (op ⦋n⦌)) ⟶ F from x) = 0 := by
@@ -126,7 +126,7 @@ theorem etaleCohomology_simplicialCochain_representation_step (F : Shv R) (E : S
 
 theorem isCls_zero (F : Shv R) (E : Spc) (n : ℕ) :
     IsCls (E := E) (n := n) (0 : (free R).obj (E.obj (op ⦋n⦌)) ⟶ F) 0 := by
-  obtain ⟨hex, hadd, huniq, -, -⟩ := GlobalTheory.T.simplicialCochain_classes_basic_properties R F E n
+  obtain ⟨hex, hadd, huniq, -, -⟩ := _root_.GlobalTheory.EtC.isCls_basic R F E n
   obtain ⟨c, hc⟩ := hex 0 (by simp [cobd])
   have h2 := hadd _ _ _ _ hc hc
   rw [add_zero] at h2
@@ -139,10 +139,10 @@ theorem isCls_zero (F : Shv R) (E : Spc) (n : ℕ) :
 theorem bridge (F : Shv R) (E : Spc)
     (hA : ∀ k m : ℕ, 0 < m → ∀ y : H R (disc.obj (E.obj (op ⦋k⦌))) F m, y = 0) (n : ℕ) :
     Nonempty (H R E F n ≃+ (cochX R E F).homology n) := by
-  have hsurj := GlobalTheory.T.exists_simplicialCochain_representing_class_acyclicLevels R F E n (fun k m hm _ y => hA k m hm y)
+  have hsurj := _root_.GlobalTheory.EtC.LeraySurj.main R F E n (fun k m hm _ y => hA k m hm y)
   rcases n with _ | m
   · refine etaleCohomology_simplicialCochain_representation_step R F E 0 0 (CochainComplex.prev_nat_zero) hsurj ?_
-    obtain ⟨hinj0, -⟩ := GlobalTheory.T.leray_simplicialCocycle_coboundary_of_acyclicLevels R F E 0 (fun k m hm _ y => hA k m hm y)
+    obtain ⟨hinj0, -⟩ := _root_.GlobalTheory.EtC.leray_inj R F E 0 (fun k m hm _ y => hA k m hm y)
     intro x _
     have hd : (cochX R E F).d 0 0 = 0 := (cochX R E F).shape 0 0 (by change ¬ (0 + 1 = 0); omega)
     constructor
@@ -154,15 +154,15 @@ theorem bridge (F : Shv R) (E : Spc)
       rw [hd]
       exact isCls_zero R F E 0
   · refine etaleCohomology_simplicialCochain_representation_step R F E (m + 1) m (CochainComplex.prev_nat_succ m) hsurj ?_
-    obtain ⟨-, hinjS⟩ := GlobalTheory.T.leray_simplicialCocycle_coboundary_of_acyclicLevels R F E m (fun k m hm _ y => hA k m hm y)
+    obtain ⟨-, hinjS⟩ := _root_.GlobalTheory.EtC.leray_inj R F E m (fun k m hm _ y => hA k m hm y)
     intro x _
     constructor
     · intro h
       obtain ⟨t, ht⟩ := hinjS _ h
       exact ⟨t, (cochX_d_apply R E F m t).trans ht⟩
     · rintro ⟨y, rfl⟩
-      obtain ⟨-, -, -, hcb, -⟩ := GlobalTheory.T.simplicialCochain_classes_basic_properties R F E m
-      obtain ⟨hex, -, -, -, -⟩ := GlobalTheory.T.simplicialCochain_classes_basic_properties R F E (m + 1)
+      obtain ⟨-, -, -, hcb, -⟩ := _root_.GlobalTheory.EtC.isCls_basic R F E m
+      obtain ⟨hex, -, -, -, -⟩ := _root_.GlobalTheory.EtC.isCls_basic R F E (m + 1)
       have hcc : cobd (E := E) (n := m + 1) (cobd (E := E) (n := m) (show (free R).obj (E.obj (op ⦋m⦌)) ⟶ F from y)) = 0 := by
         have h : ((cochX R E F).d m (m + 1) ≫ (cochX R E F).d (m + 1) (m + 2)) y = 0 := by
           rw [HomologicalComplex.d_comp_d]; rfl
@@ -179,11 +179,6 @@ theorem bridge (F : Shv R) (E : Spc)
 
 section Cech
 variable {Y X : Scheme.{0}} (f : Y ⟶ X)
-
-theorem cechPt_congr (k : ℕ) {U : Scheme.{0}} {x x' : U ⟶ X} {y y' : Fin (k + 1) → (U ⟶ Y)}
-    (h : ∀ i, y i ≫ f = x) (h' : ∀ i, y' i ≫ f = x') (hx : x = x') (hy : y = y') :
-    cechPt f k x y h = cechPt f k x' y' h' := by
-  subst hx hy; rfl
 
 theorem cechPt_map (k : ℕ) {U V : Scheme.{0}} (g : V ⟶ U) (x : U ⟶ X) (y : Fin (k + 1) → (U ⟶ Y))
     (h : ∀ i, y i ≫ f = x) :
@@ -241,7 +236,7 @@ theorem galPt_mul (k : ℕ) (τ : Ω ≃ₐ[K] Ω) (σ : Fin (k + 1) → (Ω ≃
     ((cech (fK K Ω)).obj (op ⦋k⦌)).map (Spec.map (CommRingCat.ofHom (τ : Ω →+* Ω))).op (galPt K Ω k σ) =
       galPt K Ω k (fun i => τ * σ i) := by
   rw [galPt, cechPt_map]
-  apply cechPt_congr
+  apply _root_.GlobalTheory.EtC.GalSec.cechPt_congr
   · rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]; congr 2; exact RingHom.ext fun x => τ.commutes x
   · funext i
     rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
@@ -315,9 +310,9 @@ theorem cohomology_field_addEquiv_galois : ∀ (R : Type) [CommRing R] (F : Shv 
       (Spec (CommRingCat.of Ω)) (galPt K Ω (m + 1) σ)
     rw [galE_apply, galE_apply, ← galPt_face, ← h4]
     rfl
-  obtain ⟨b⟩ := bridge R F (cech (fK K Ω)) (fun k m hm y => GlobalTheory.T.cohomology_cech_level_eq_zero_of_pos R F hF K Ω k m hm y) n
-  obtain ⟨c⟩ := GlobalTheory.T.homogeneousCochains_homology_addEquiv_alt R (Ω ≃ₐ[K] Ω) M (cochC R (cech (fK K Ω)) F) (galE K Ω R F M e) hinj himg hface n
-  exact ⟨(AddEquiv.ofBijective (pull R (cechAug (fK K Ω)) F n) (GlobalTheory.T.etaleCechAugmentation_sepClosure_isEquivalence R F hF K Ω n)).trans (b.trans c)⟩
+  obtain ⟨b⟩ := bridge R F (cech (fK K Ω)) (fun k m hm y => _root_.GlobalTheory.EtC.cech_level_acyclic R F hF K Ω k m hm y) n
+  obtain ⟨c⟩ := _root_.GlobalTheory.homogeneousCochains_homology_addEquiv R (Ω ≃ₐ[K] Ω) M (cochC R (cech (fK K Ω)) F) (galE K Ω R F M e) hinj himg hface n
+  exact ⟨(AddEquiv.ofBijective (pull R (cechAug (fK K Ω)) F n) (_root_.GlobalTheory.SepCech.cechAug_sepClosure_eqv R F hF K Ω n)).trans (b.trans c)⟩
 
 end GlobalTheory.EtC.GalFld
 

@@ -60,12 +60,6 @@ variable {D : D7}
 
 open GlobalTheory.FockTransport
 
-theorem jm_mul_self {n : ℕ} (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  rw [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  cases ε a <;> simp
-
 theorem jm_eq {n : ℕ} (ε : Fin n → Bool) : Formalism.REAL.Jm ε = Matrix.diagonal fun a => ((sg (ε a) : ℝ) : ℂ) := by
   rw [Formalism.REAL.Jm]
   congr 1
@@ -84,7 +78,7 @@ theorem gramAt_inv {V : HSp D} (A : GlobalTheory.ChainFr.Fr V) (τ : D.what₂.T
         simp only [Matrix.mul_assoc]
     _ = (A.fr τ)⁻¹ * (Formalism.REAL.Jm (A.ε τ) * Formalism.REAL.Jm (A.ε τ)) * A.fr τ := by
         rw [h1]; simp only [Matrix.mul_one, Matrix.mul_assoc]
-    _ = 1 := by rw [jm_mul_self, Matrix.mul_one, Matrix.nonsing_inv_mul _ hP]
+    _ = 1 := by rw [_root_.Formalism.REAL.Jm_mul_self, Matrix.mul_one, Matrix.nonsing_inv_mul _ hP]
 
 theorem hAt_frame {S T : HSp D} (A : GlobalTheory.ChainFr.Fr S) (B : GlobalTheory.ChainFr.Fr T) (τ : D.what₂.Tau)
     (X Y : Matrix (Fin T.rank) (Fin S.rank) ℂ) :

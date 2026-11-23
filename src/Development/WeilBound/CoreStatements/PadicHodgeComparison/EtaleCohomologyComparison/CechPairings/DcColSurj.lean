@@ -248,7 +248,7 @@ theorem CrystallineSemistableComparison.P.dc_row : ∀ {R : Type} [CommRing R] {
   intro R _ A K e s hres n
   let e' : DCx.AugCol A K.flip := ⟨e.ε, e.hε, e.comm⟩
   have hc := P.dc_col e' s (fun p => hres p) n
-  obtain ⟨φ, hbij, hφ⟩ := P.dc_flip K
+  obtain ⟨φ, hbij, hφ⟩ := _root_.GlobalTheory.CompanionTheory.DCFlip.flip_tot K
   have heq : (e.edge.comp φ : Cx.Hom A K.flip.tot (RingHom.id R)) = e'.edge := by
     apply Auxfb.hom_ext
     funext m

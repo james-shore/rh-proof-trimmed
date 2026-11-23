@@ -142,7 +142,7 @@ theorem exists_rho_at (U : Set (Xo.XF c)) (τ : E →+* ℂ) (φ : FrameFn Xo c)
     refine ⟨t₀ / Real.log ‖κ₀ π₀‖, fun p κ π hκ hπ => ?_⟩
     have hp : p = p₀ := prime_eq (la.valuation c.F) κ κ₀ hκ hκ₀
     subst hp
-    obtain ⟨g, hg, hgκ⟩ := GlobalTheory.T.padic_embeddings_conjugate_of_units c.F p κ₀ κ (fun a => (hκ₀ a).symm.trans (hκ a))
+    obtain ⟨g, hg, hgκ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Br.Conj.exists_isometry_conj_of_unit_ball c.F p κ₀ κ (fun a => (hκ₀ a).symm.trans (hκ a))
     have e : ‖κ π‖ = ‖κ₀ π₀‖ := by
       rw [norm_eq_of_val_eq _ κ hκ hne (hπ.trans hπ₀.symm), ← hgκ, hg]
     rw [e, div_mul_cancel₀ _ hlog]

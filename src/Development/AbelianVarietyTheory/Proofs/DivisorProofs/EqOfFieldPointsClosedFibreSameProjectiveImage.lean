@@ -49,13 +49,7 @@ namespace GlobalTheory.Mum
 
 namespace ClosedInj
 
-theorem epi_spMap_field {Ω Ω' : Type} [Field Ω] [Field Ω'] (io : Ω →+* Ω') : Epi (spMap io) := by
-  have : Flat (spMap io) := by
-    rw [HasRingHomProperty.Spec_iff (P := @Flat)]
-    letI := io.toAlgebra
-    exact RingHom.flat_algebraMap_iff.mpr inferInstance
-  have : Surjective (spMap io) := ⟨fun t ↦ ⟨IsLocalRing.closedPoint Ω', Subsingleton.elim _ _⟩⟩
-  exact Flat.epi_of_flat_of_surjective _
+alias epi_spMap_field := _root_.GlobalTheory.ThetaDescent.epi_spMap
 
 theorem exists_residue_factor {R Ω : Type} [CommRing R] [IsLocalRing R] [Field Ω] (y : Sp Ω ⟶ Sp R)
     (hy : ∀ t, y t = closedPoint R) : ∃ κ : ResidueField R →+* Ω, y = spMap (κ.comp (residue R)) := by

@@ -85,15 +85,15 @@ theorem frame_pow {Z : Scheme.{0}} (B : LB Z) (r : ℕ) (V : Z.Opens) (u : ∀ i
       B.U (j PUnit.unit) ⊓ B.U (j' PUnit.unit) ⊓ V :=
     inf_le_inf_right V (inf_le_inf (pow_le r j) (pow_le r j'))
   have e := congrArg (fun t => Semi.res hW t ^ r) (h (j PUnit.unit) (j' PUnit.unit))
-  simp only [map_mul, mul_pow, GlobalTheory.CuspDim.IsoPow.res_res] at e
+  simp only [map_mul, mul_pow, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at e
   rw [res_pow_g]
-  simp only [map_pow, GlobalTheory.CuspDim.IsoPow.res_res]
+  simp only [map_pow, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
   exact e
 
 theorem res_blockUnit {k : Fin (m + 1)} (i j : Bk n k) {W W' : (MP ℤ m n).Opens}
     (h : W ≤ prB n k ⁻¹ᵁ (chart ℤ (n k) i ⊓ chart ℤ (n k) j)) (h' : W' ≤ W) :
     Semi.res h' (blockUnit i j h) = blockUnit i j (h'.trans h) :=
-  GlobalTheory.CuspDim.IsoPow.res_res _ _ _
+  _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' _ _ _
 
 theorem ev_res_pow {p : (MP ℤ m n) ⟶ Sp ℤ} {W U : (MP ℤ m n).Opens} (h : W ≤ U) (v : Γ(MP ℤ m n, U)ˣ) (r : ℕ)
     {y : CxPts p σ₀} (hy : y ∈ ptsIn p σ₀ W) :
@@ -125,8 +125,8 @@ theorem chart_pow {B : LB (MP ℤ m n)} (A : Geo.HermLine (Bk n)) (r : ℕ) (j :
   have hW : (lbPow B r).U j ⊓ (mchart c ⊓ mchart c') ≤ B.U (j PUnit.unit) ⊓ (mchart c ⊓ mchart c') :=
     inf_le_inf_right _ (pow_le r j)
   have e := congrArg (fun t => Semi.res hW t ^ r) h
-  simp only [map_mul, mul_pow, map_prod, map_zpow, res_blockUnit, GlobalTheory.CuspDim.IsoPow.res_res] at e
-  simp only [map_pow, GlobalTheory.CuspDim.IsoPow.res_res]
+  simp only [map_mul, mul_pow, map_prod, map_zpow, res_blockUnit, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at e
+  simp only [map_pow, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
   refine e.trans (congrArg _ ?_)
   rw [← Finset.prod_pow]
   refine Finset.prod_congr rfl fun k _ => ?_

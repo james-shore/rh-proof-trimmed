@@ -250,15 +250,6 @@ theorem lower_exp [NeZero n] (T : LocLat G Qp LL O) (M h : ZMod n → ℕ) (hp :
   refine Submodule.smul_mem _ _ ?_
   exact Submodule.span_mono (Set.image_mono (Nl_le T (j - 1))) h1
 
-theorem φA_X (W : LocWach PD LL O v n) : W.φA W.X = W.X * W.Q := by
-  have h1 : W.φA letπ = letπ * W.q := by
-    funext i
-    exact W.φ₀_X
-  have h2 := DFunLike.congr_fun ((Commute.refl W.φA).pow_right (W.s - 1)).eq letπ
-  simp only [AlgHom.mul_apply] at h2
-  unfold LocWach.X LocWach.Q
-  rw [h2, h1, map_mul]
-
 end Generic
 
 end GlobalTheory.NL.SandJumps
@@ -280,7 +271,7 @@ theorem main : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf 
   have hx : φRW LL (inclR LL (((F l).E K s LL h).tie.io ((HW l).W K s LL h).X)) =
       inclR LL (((F l).E K s LL h).tie.io ((HW l).W K s LL h).X) *
         inclR LL (((F l).E K s LL h).tie.io ((HW l).W K s LL h).Q) := by
-    rw [← hφ, φA_X, map_mul, map_mul]
+    rw [← hφ, _root_.Formalism.BasicNotions.LocWach.φA_X, map_mul, map_mul]
   exact sand_exps _ (GlobalTheory.FrobIntegralCoeff.frobenius_integrality_coeff l LL) hx T hT b _ _
     (upper_exp T M hh hp) (lower_exp T M hh hp)
 

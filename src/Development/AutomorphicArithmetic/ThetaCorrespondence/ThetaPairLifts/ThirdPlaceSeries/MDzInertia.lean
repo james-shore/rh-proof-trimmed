@@ -72,7 +72,7 @@ theorem depthZeroInertiaBig_of_narrowBig_m_alt : _root_.DiscreteGroups.sglob.DzT
   intro HT HG HL
   intro E Ω _ _ _ _ _ _ g _ A w h rc hrc i hi κ L t ht hTC n hbig σ _ τ P hP hinf
   have hn : 0 < n := hP.2.1.1
-  obtain ⟨E', _, _, _, _, _, _, _, w', h', hg0, hg1, hN, ⟨ζ, hζ⟩, hfix⟩ := GlobalTheory.T.exists_unramified_totallyComplex_ext_with_unity_roots E Ω g A w h i hi n hn
+  obtain ⟨E', _, _, _, _, _, _, _, w', h', hg0, hg1, hN, ⟨ζ, hζ⟩, hfix⟩ := _root_.GlobalTheory.UnrCycExt.exists_unramified_ext E Ω g A w h i hi n hn
   let t' : Ω ≃ₐ[E'] Ω := { t with commutes' := fun e => hfix t ht e }
   have htt : ∀ z, t' z = t z := fun _ => rfl
   have hdec : t' • A = A := by

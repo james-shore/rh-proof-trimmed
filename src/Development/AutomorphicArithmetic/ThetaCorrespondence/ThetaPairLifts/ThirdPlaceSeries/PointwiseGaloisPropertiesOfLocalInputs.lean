@@ -64,15 +64,15 @@ end Loc
 theorem aux_residual_aux42_prvZ_of_inputs {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {D : D7} (hPr : _root_.GlobalTheory.NRows.ThetaLocalInputsAlt) (hc : GlobalTheory.Published.HarishChandraFinite)
     (dec : GlobalTheory.Published.CuspRapidDecay) (I : _root_.GlobalTheory.NRows.LinkedInputs hL D) (hJ : JumpsCard D.nd D.naut) :
     _root_.Formalism.MainNotions.SumRepresentations.provisionFortyOne D ∧ AutomorphicSideWildInertia.ResidualIrreducibleGood D ∧ SumRepresentations.Conclusion42 D ∧ SumRepresentations.ConclusionZ D := by
-  have R : _root_.GlobalTheory.NRows.PointConditions' D := _root_.GlobalTheory.T.theta_conditions_of_inputs_of_jumpsCard hPr hc dec hL D I hJ
+  have R : _root_.GlobalTheory.NRows.PointConditions' D := _root_.GlobalTheory.RowsAll.locComp_of_isRc_classMapD_cenLoc hPr hc dec hL D I hJ
   have h1 : _root_.Formalism.MainNotions.SumRepresentations.provisionFirst D := I.Conclusion1 (_root_.UpperTheory.GalS.Parts.main_alt_alt D) R.a R.b
-  exact ⟨h1.1, _root_.GlobalTheory.HeightCounting.Up.PointStatements.residualIrreducibleGood_of_inputs hL D I R, h1.2.2, (SumRepresentations.multiplicity_statement_iff_reduced D I.isot h1.2.2).2 (_root_.GlobalTheory.T.reducedMultiplicity_of_inputs hL D I R)⟩
+  exact ⟨h1.1, _root_.GlobalTheory.HeightCounting.Up.PointStatements.residualIrreducibleGood_of_inputs hL D I R, h1.2.2, (SumRepresentations.multiplicity_statement_iff_reduced D I.isot h1.2.2).2 (_root_.GlobalTheory.PtSt.reducedMultiplicity_of_rows' hL D I R)⟩
 end PointStatements
 open PointStatements in
 theorem ptSt_of_inputs_geometric_compat : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → _root_.GlobalTheory.NRows.GeometricGaloisRepCompatibility → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.PointStatement hL := by
   intro hP hX hL
-  have h := allSt_and (allSt_and (allSt_and (_root_.GlobalTheory.T.eventually_nonempty_inputs_of_level_c hL hP hX) (_root_.GlobalTheory.HeightCounting.JumpsSt.locComp_of_isRc_classMapD_cenLoc hL hP hX.ht))
-    (_root_.GlobalTheory.HeightCounting.Up.eventually_eigSpan_of_levelC hL hP)) (_root_.GlobalTheory.T.adm8_and_lamUsed_of_geometric_galois_compat hP hX)
+  have h := allSt_and (allSt_and (allSt_and (_root_.GlobalTheory.PtInputsX.inputs_at_third_place_alt hL hP hX) (_root_.GlobalTheory.HeightCounting.JumpsSt.locComp_of_isRc_classMapD_cenLoc hL hP hX.ht))
+    (_root_.GlobalTheory.HeightCounting.Up.eventually_eigSpan_of_levelC hL hP)) (_root_.GlobalTheory.HeightCounting.Up.RowsAtStates.adm8_and_lamUsed_all_states_of_published_inputs hP hX)
   refine allSt_mono (fun K B f T w P x H l => ?_) h
   obtain ⟨⟨⟨hI, hJ⟩, hE⟩, hS⟩ := H
   refine _root_.GlobalTheory.HeightCounting.Up.PointStatements.eventuallyOfBuilt_mono_withLoc ?_ (_root_.GlobalTheory.HeightCounting.Up.PointStatements.eventuallyOfBuilt_and (_root_.GlobalTheory.HeightCounting.Up.PointStatements.eventuallyOfBuilt_and (hI l) (hJ l)) (hE l))

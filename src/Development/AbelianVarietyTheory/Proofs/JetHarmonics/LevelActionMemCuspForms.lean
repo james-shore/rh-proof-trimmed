@@ -187,7 +187,7 @@ theorem GlobalTheory.LevelCusp.actLev_mem_cuspA : ∀ (D : D7) (T : Top D) (h : 
     rw [(hp.2.2.2 j hj).1, (hp.2.2.2 j hj).2.1]
     have := hj.1; have := hj.2; have := D.R.m_add_three_le_k
     simp only [Ranks.sigW]; omega
-  have hL := GlobalTheory.T.actLev_full_level_group_framedPoints D T.Q j hpq hp.2.1.2
+  have hL := _root_.GlobalTheory.FullLevelAction.actLev_levFull D T.Q j hpq hp.2.1.2
   obtain ⟨hs, hc⟩ := (mem_cusp _ _ _ _ _ _).1 hf
   have hg : actLev (Xo := T.Q.Xo j) T.Q.c (levFull (T.Q.Dw j) T.Q.l) γ f ∈ sec (T.Q.Xo j) T.Q.c (wtA w) w.n :=
     actL_mem _ _ _ _ hL.total hL.nat hL.bor _ γ hs

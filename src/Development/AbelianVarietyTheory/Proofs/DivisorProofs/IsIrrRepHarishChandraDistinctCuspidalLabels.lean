@@ -219,7 +219,7 @@ theorem isIrrRep_of_monotone {C : LabelConv K} (O : LabelMap K C) (b : Fin r →
           rfl
         simp only [this]
         exact PiTensorProduct.map_id
-      cusp := fun S hS y hy => GlobalTheory.T.cuspidal_piTensor_no_blockUnipotent_fixed K r s b lam (fun c => (hl c).2) S hS y hy }
+      cusp := fun S hS y hy => _root_.GlobalTheory.HcIrr.cuspidal_tensor_no_unip_fixed K r s b lam (fun c => (hl c).2) S hS y hy }
   exact isIrrRep_hcRep_of_parInd b lam
     ((GlobalTheory.CuspFactor.irrPar_iff_cuspidalProduct.1 GlobalTheory.FinGL.IrrProduct.irrPar).1 K r _ _ _ hd
       (distinctFactors O b lam (fun c => (hl c).1) hinj))

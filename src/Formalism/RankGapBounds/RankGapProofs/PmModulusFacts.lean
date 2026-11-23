@@ -121,9 +121,6 @@ lemma pm_sum_cover (f : ℕ → ℝ) (hf : ∀ l, 0 ≤ f l) (M N : ℕ) (hM : 2
     sum_le_sum_of_subset_of_nonneg hsub (fun i _ _ => hf i)
   linarith
 
-private theorem log_le_log_of_pos_of_le {a b : ℝ} (ha : 0 < a) (h : a ≤ b) : Real.log a ≤ Real.log b :=
-  Real.log_le_log ha h
-
 private theorem div_le_div_of_mul_le_mul_of_pos' {a b c d : ℝ} (hb : 0 < b) (hd : 0 < d)
     (h : a * d ≤ c * b) : a / b ≤ c / d := by
   first
@@ -137,7 +134,7 @@ lemma pm_key_Y (m x y Y : ℝ) (hx : 1 ≤ x) (hy : 1 ≤ y) (h1 : x * y / 2 ≤
   have hy0 : 0 < y := by linarith
   have hm0 : 0 < m := by linarith
   have hlm : 0 ≤ Real.log m := Real.log_nonneg hm1
-  have hlmY : Real.log m ≤ Real.log Y := log_le_log_of_pos_of_le hm0 hmY
+  have hlmY : Real.log m ≤ Real.log Y := _root_.Real.log_le_log hm0 hmY
   have hlY : 0 ≤ Real.log Y := le_trans hlm hlmY
   rw [show Real.log Y * (2 / y) * (1 / x) = 2 * Real.log Y / (x * y) by ring]
   apply div_le_div_of_mul_le_mul_of_pos' hm0 (mul_pos hx0 hy0)
@@ -182,8 +179,6 @@ lemma pm_resid (hI : OrdersIff) (e J l : ℕ) (hl : Nat.Coprime l (4 * 2 ^ e)) (
   rw [hoi]
   exact pow_dvd_pow 2 hij
 
-private theorem log_natCast_nonneg_real (n : ℕ) : 0 ≤ Real.log n := Real.log_natCast_nonneg n
-
 private theorem sum_range_inv_succ_le_one_add_log (N : ℕ) :
     ∑ k ∈ range N, 1 / ((k : ℝ) + 1) ≤ 1 + Real.log N := by
   induction N with
@@ -215,7 +210,7 @@ lemma pm_y_sum (M N : ℕ) (hM : 2 ≤ M) (Y : ℝ) (hY : 1 ≤ Y) (hNY : (N : �
     intro l
     simp only [hfdef]
     split_ifs
-    · exact div_nonneg (log_natCast_nonneg_real l) (Nat.cast_nonneg l)
+    · exact div_nonneg (_root_.Real.log_natCast_nonneg l) (Nat.cast_nonneg l)
     · exact le_rfl
   have hsf : ∑ l ∈ s, Real.log l / (l : ℝ) = ∑ l ∈ s, f l := by
     apply sum_congr rfl
@@ -242,7 +237,7 @@ lemma pm_y_sum (M N : ℕ) (hM : 2 ≤ M) (Y : ℝ) (hY : 1 ≤ Y) (hNY : (N : �
       rcases Nat.eq_zero_or_pos N with h0 | h0
       · rw [h0, Nat.cast_zero, Real.log_zero]; linarith
       · have : (0 : ℝ) < N := by exact_mod_cast h0
-        have := log_le_log_of_pos_of_le this hNY
+        have := _root_.Real.log_le_log this hNY
         linarith
     calc Real.log Y * (2 / M) * ∑ k ∈ range N, 1 / ((k : ℝ) + 1)
         ≤ Real.log Y * (2 / M) * (1 + Real.log Y) :=

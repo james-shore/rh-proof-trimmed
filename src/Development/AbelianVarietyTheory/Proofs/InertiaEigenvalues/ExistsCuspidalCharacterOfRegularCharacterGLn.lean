@@ -223,7 +223,7 @@ theorem exists_cusp_of_regular : ∀ (g : ℕ) [Fact g.Prime] (d : ℕ), 0 < d �
         (fun G => rootSum θ₀ l (LinearMap.charpoly G)) = glCard (ZMod g) d *
           (((Finset.range d).filter fun i => k * g ^ i ≡ l [MOD g ^ d - 1]).card : ℂ) := by
       intro k l
-      have h := GlobalTheory.T.invertibleEndInnerProduct_rootPowerSum_mobius (ZMod g) (Fin d → ZMod g) θ₀ hθ₀ hfr k l
+      have h := _root_.GlobalTheory.CuspGL.ipGL_psi_rootSum (ZMod g) (Fin d → ZMod g) θ₀ hθ₀ hfr k l
       rwa [Module.finrank_fin_fun, hcF] at h
     have hGL : glCard (ZMod g) d ≠ 0 := by
       unfold glCard

@@ -340,7 +340,7 @@ theorem meas_formula (μG μN μb : Measure (Mt k r)) (hG : IsHaarOn (GG k r) μ
 theorem vol_ball (ρ : ℝ) : volume (dE k r '' Metric.ball (0 : EE k r) ρ) =
     2 ^ r * (volume (Metric.ball (0 : lieE (Nset k r)) ρ) * volume (Metric.ball (0 : lieE (Nset k r)) ρ) *
       (volume (Metric.ball (0 : Fin r → ℂ) ρ) * volume (Metric.ball (0 : lieE (Formalism.FourierDecayAlt.B2.UWb k r)) ρ))) := by
-  rw [GlobalTheory.T.volume_image_of_sqrt_two_isometric_linearEquiv _ _ _ r (dE k r) norm_dL _ Metric.isOpen_ball.measurableSet, ← Prod.mk_zero_zero,
+  rw [_root_.GlobalTheory.CellDens.ScaledVol.volume_image_eq _ _ _ r (dE k r) norm_dL _ Metric.isOpen_ball.measurableSet, ← Prod.mk_zero_zero,
     ← ball_prod_same, ← Prod.mk_zero_zero, ← ball_prod_same, ← Prod.mk_zero_zero, ← ball_prod_same,
     Measure.volume_eq_prod, Measure.prod_prod, Measure.volume_eq_prod, Measure.prod_prod, Measure.volume_eq_prod,
     Measure.prod_prod]

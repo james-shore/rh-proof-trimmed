@@ -144,7 +144,7 @@ theorem res_art_eq_art (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algeb
     rw [e]
     exact ho2.preimage (GlobalTheory.Mem.UnrAe.continuous_localIdele w)
   show f1 x = f2 x
-  refine GlobalTheory.T.units_adicCompletion_hom_ext_of_isOpen_ker E w _ f1 f2 hf1 hf2 (fun c => ?_) x
+  refine _root_.GlobalTheory.units_adicCompletion_hom_ext E w _ f1 f2 hf1 hf2 (fun c => ?_) x
   let y : E'ˣ := Units.map (algebraMap E E').toMonoidHom c
   have hc1 : f1 (Units.map (algebraMap E (w.adicCompletion E)).toMonoidHom c) = ψ1 (locUnit E' w' y) := by
     simp only [f1, MonoidHom.comp_apply, locUnit_apply]

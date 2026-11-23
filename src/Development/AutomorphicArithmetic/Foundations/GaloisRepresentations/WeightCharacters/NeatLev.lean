@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SeparatingAlgebras.MaxCpt
 
 @[expose] public section
 
@@ -66,7 +67,7 @@ theorem UpperTheory.Gal.Wt.neatLev_of :
       obtain ⟨e, he⟩ := GlobalTheory.locU_equiv_GL E a v' hv'
       have hy' : cLoc v' (e.symm y : UA E a) = y := by rw [← he]; simp
       exact ⟨(e.symm y : UA E a), hKC (hint _ (e.symm y).2 (hy'.symm ▸ hy)), hy'⟩
-    have hmax := UpperTheory.Gal.Gen.maxCpt_holds E v' a ((UpperTheory.Gal.Gen.lev K w₀ (J 0)).map (cLoc v'))
+    have hmax := _root_.UpperTheory.Gal.Gen.maxCpt_pf E v' a ((UpperTheory.Gal.Gen.lev K w₀ (J 0)).map (cLoc v'))
       (cLoc v' '' (UpperTheory.Gal.Gen.lev K w₀ (J 0) : Set (UA E a)))
       (hLev.compact.image (GlobalTheory.BCT.GlobLev.continuous_cLoc v'))
       (fun _ h => h) hKGL

@@ -56,14 +56,6 @@ open UpperTheory.Gal.ToralGalois.R2
 
 namespace UpperTheory.Gal.ToralGalois.R2
 
-private theorem fixed_ne_bot {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V]
-    [AddCommGroup W] [Module ℂ W] {ρ : Representation ℂ G V} {σ : Representation ℂ G W}
-    (φ : ρ.Equiv σ) {H : Subgroup G} (h : fixed ρ H ≠ ⊥) : fixed σ H ≠ ⊥ := by
-  obtain ⟨v, hv, h0⟩ := (Submodule.ne_bot_iff _).1 h
-  refine (Submodule.ne_bot_iff _).2 ⟨φ.toIntertwiningMap v, GlobalTheory.Parabolic.mem_fixed.2 fun g hg => ?_, fun e => h0 ?_⟩
-  · rw [← φ.toIntertwiningMap.isIntertwining, GlobalTheory.Parabolic.mem_fixed.1 hv g hg]
-  · exact φ.toLinearEquiv.injective (e.trans (map_zero φ.toLinearEquiv).symm)
-
 private theorem pairwise_of_map {α β : Type*} (f : α → β) {r : β → β → Prop} (hr : Symmetric r) (t : Multiset α)
     (h : (t.map f).Pairwise r) : t.Pairwise fun a b => r (f a) (f b) := by
   induction t using Quot.inductionOn with
@@ -98,7 +90,7 @@ theorem UpperTheory.Gal.ToralGalois.R2.mixedOf :
     fun z s hz => (isGeneric_congr (IrrGL.twEquiv z _ _)).1 ((isGeneric_twist_iff _).2 hz)
   have hgτ : IsGeneric (algNorm σ).rep :=
     hnu _ _ ((isGeneric_congr (IrrGL.equivOf σ.ρ σ.smooth σ.irred)).1 hg)
-  obtain ⟨c, Δ, y, hd, hun, hL, ⟨e⟩⟩ := GlobalTheory.genericUnlinkedGL_outright (w.adicCompletion E) (algNorm σ).1 _
+  obtain ⟨c, Δ, y, hd, hun, hL, ⟨e⟩⟩ := _root_.GlobalTheory.RgGu.Holds.genericUnlinkedGL_holds (w.adicCompletion E) (algNorm σ).1 _
     (algNorm σ).rep (algNorm σ).2.rep.smooth (algNorm σ).2.rep.irr hgτ
   have hIsL : IsL ((List.ofFn Δ : List (Segment (w.adicCompletion E))) : Multiset (Segment (w.adicCompletion E)))
       (algNorm σ).rep :=
@@ -132,7 +124,7 @@ theorem UpperTheory.Gal.ToralGalois.R2.mixedOf :
     have : m = 0 := by have := hlen i; omega
     subst this
     exact ⟨i, by simpa using e'⟩
-  refine ⟨fixed_ne_bot (IrrGL.equivOf σ.ρ σ.smooth σ.irred) hfix, s, hs, ?_, apart_of_nu _ (hap _ hs')⟩
+  refine ⟨_root_.GlobalTheory.LocLanglands.fixed_ne_bot_of_equiv (IrrGL.equivOf σ.ρ σ.smooth σ.irred) hfix, s, hs, ?_, apart_of_nu _ (hap _ hs')⟩
   intro y1 hy1 z1 hz1 hyz
   obtain ⟨i, hi⟩ := mem y1 hy1
   obtain ⟨j, hj⟩ := mem z1 hz1

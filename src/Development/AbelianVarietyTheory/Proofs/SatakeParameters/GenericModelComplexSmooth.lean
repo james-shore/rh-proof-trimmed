@@ -110,8 +110,8 @@ def baseOfG {p : ℕ} [Fact p.Prime] {D : Datum p} (gb : GBase D.toG ℂ) : Base
 
 theorem genericModel_complex_smooth {p : ℕ} [Fact p.Prime] (D : Datum p) (gb : GBase D.toG ℂ) (N : ℕ) (hN : 3 ≤ N)
     (hNp : N.Coprime p) (X : GenModel gb N) : ∃ d, SmoothOfRelativeDimension d X.s := by
-  obtain ⟨M⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D ℂ (baseOfG gb) N hN hNp
-  obtain ⟨j, hj, -, hjs, -⟩ := GlobalTheory.T.exists_open_closed_immersion_genModel_to_fibre p D ℂ (baseOfG gb) ℂ (RingHom.id ℂ) gb rfl
+  obtain ⟨M⟩ := _root_.GlobalTheory.UPel.HT.model_nonempty p D ℂ (baseOfG gb) N hN hNp
+  obtain ⟨j, hj, -, hjs, -⟩ := _root_.GlobalTheory.UPel.HT.GenCmp.genModel_eq_genericFibre p D ℂ (baseOfG gb) ℂ (RingHom.id ℂ) gb rfl
     (fun i => (RingHom.id_comp _).symm) N hN hNp M X
   have h1 : SmoothOfRelativeDimension (D.a * (D.n - 1)) (pullback.snd M.s (spMap (RingHom.id ℂ))) :=
     (smoothOfRelativeDimension_isStableUnderBaseChange _).of_isPullback (IsPullback.of_hasPullback _ _) M.smooth
@@ -211,7 +211,7 @@ theorem genModel_smooth : ∀ (G : GDatum) (gb : GBase G ℂ) (N : ℕ), 3 ≤ N
       SmoothOfRelativeDimension (G.m * G.n * Module.finrank ℚ G.F / 2) X.univ.A.hom := by
   intro G gb N hN X
   refine ⟨?_, relDim_A gb N X⟩
-  obtain ⟨p, _, D, hNp, rfl⟩ := GlobalTheory.T.exists_harrisTaylorDatum_at_prime_coprime G N (by omega)
+  obtain ⟨p, _, D, hNp, rfl⟩ := _root_.GlobalTheory.GoodPrime.exists_datum G N (by omega)
   exact genericModel_complex_smooth D gb N hN hNp X
 
 end GlobalTheory.UPel.HT.Gen.CxSmooth

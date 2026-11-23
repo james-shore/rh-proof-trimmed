@@ -195,7 +195,7 @@ theorem UpperTheory.V.Ws.sxNearA :
       co_quot Λ R' _ (Ideal.Quotient.mkₐ Λ _) (Ideal.Quotient.mkₐ_surjective Λ _)
     exact sxExtA W hG.max _ f f' h
   haveI : IsAdicComplete (maximalIdeal R') R' := IsCO.complete (O := Λ)
-  obtain ⟨F, hF⟩ := sxLimPt (Λ := Λ) (maximalIdeal R') W.zA y
+  obtain ⟨F, hF⟩ := _root_.UpperTheory.Reformulated.B.Qg4.sxLimPt (Λ := Λ) (maximalIdeal R') W.zA y
     (fun N => ⟨fN N, fun s => hy s N (fN N) (hfN N)⟩) huniq
   have hcomp : ∀ N, (Ideal.Quotient.mkₐ Λ (maximalIdeal R' ^ (N + 1))).comp F = fN N := by
     intro N

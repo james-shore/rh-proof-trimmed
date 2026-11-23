@@ -67,7 +67,7 @@ theorem card_torsion_fixedField {K Ω : Type} [Field K] [Field Ω] [Algebra K Ω
   · intro y y' h
     exact Subtype.ext (fixedPtHom_injective H A (congrArg Subtype.val h))
   · rintro ⟨z, hz⟩
-    obtain ⟨y, hy⟩ := GlobalTheory.T.exists_fixedField_point_of_fixed_by_subgroup K Ω H A hA z (fun σ hσ => hfix σ hσ z hz)
+    obtain ⟨y, hy⟩ := _root_.GlobalTheory.Published.AbVarRed.exists_fixedField_point K Ω H A hA z (fun σ hσ => hfix σ hσ z hz)
     have hep := epi_ptOverMap (IntermediateField.val (IntermediateField.fixedField H))
     have hj : (ptOverMap (IntermediateField.val (IntermediateField.fixedField H))).left =
         spMap (algebraMap (IntermediateField.fixedField H) Ω) := rfl

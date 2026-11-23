@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AutomorphicArithmetic.BlowupCategories.AffC
+import Development.AutomorphicArithmetic.CupPullbacks.TwoChart
 
 @[expose] public section
 
@@ -161,11 +162,6 @@ private def tVec (x : (aC N Q).D.obj A) : Um 1 A :=
 
 end
 
-private theorem unimodularRow_one_isUnit {A : Type} [CommRing A] (w : Um 1 A) : IsUnit (w.1 0) := by
-  have h := w.2
-  rw [Set.range_unique] at h
-  exact Ideal.span_singleton_eq_top.1 h
-
 private theorem join_last {N : ℕ} {A : Type} [CommRing A] (x : Um N A × Um 2 A) :
     (Um.join x).1 (Fin.last N) = x.2.1 1 := by
   simp [Um.join]
@@ -186,11 +182,11 @@ private def mkA {N : ℕ} {Q : Pred (XC N)} (i : Fin N) {A : CommRingCat.{0}} (v
     (aC N Q).D.obj A :=
   Subtype.mk (Subtype.mk
     ((v, ⟨![r * w.1 0 * Ring.inverse (v.1 i), w.1 0],
-      Ideal.eq_top_of_isUnit_mem _ (Ideal.subset_span ⟨1, rfl⟩) (unimodularRow_one_isUnit w)⟩) : Um N A × Um 2 A)
+      Ideal.eq_top_of_isUnit_mem _ (Ideal.subset_span ⟨1, rfl⟩) (_root_.UpperTheory.P2.unimodularRow_one_isUnit w)⟩) : Um N A × Um 2 A)
     (by
       change IsUnit ((Um.join _).1 (Fin.last N))
       rw [join_last]
-      exact unimodularRow_one_isUnit w)) hv
+      exact _root_.UpperTheory.P2.unimodularRow_one_isUnit w)) hv
 
 private theorem d_bij {N : ℕ} {Q : Pred (XC N)} {i : Fin N} (hQ : Q.Le (unitAt i)) (A : CommRingCat.{0}) :
     Function.Bijective (fun x : (aC N Q).D.obj A =>
@@ -213,7 +209,7 @@ private theorem d_bij {N : ℕ} {Q : Pred (XC N)} {i : Fin N} (hQ : Q.Le (unitAt
     let w : Um 1 A := y.2
     have hvu : IsUnit (v.1 i) := hQ A v hv
     have hv1 : v.1 i * Ring.inverse (v.1 i) = 1 := Ring.mul_inverse_cancel _ hvu
-    have ht1 : w.1 0 * Ring.inverse (w.1 0) = 1 := Ring.mul_inverse_cancel _ (unimodularRow_one_isUnit w)
+    have ht1 : w.1 0 * Ring.inverse (w.1 0) = 1 := Ring.mul_inverse_cancel _ (_root_.UpperTheory.P2.unimodularRow_one_isUnit w)
     refine ⟨mkA i v hv r w, Prod.ext (Prod.ext (Subtype.ext rfl) ?_) (Subtype.ext (funext fun j => ?_))⟩
     · change r * w.1 0 * Ring.inverse (v.1 i) * v.1 i * Ring.inverse (w.1 0) = r
       linear_combination (r * w.1 0 * Ring.inverse (w.1 0)) * hv1 + r * ht1
@@ -263,17 +259,6 @@ private theorem rHom_fst {N : ℕ} (Q : Pred (XC N)) (i : Fin N) :
     (rHom Q i).comp (prFst ((XC N).sub Q)) = (piC N).sub Q :=
   hom_ext' rfl (Category.comp_id _)
 
-private theorem eqv_comp {R : Type} [CommRing R] {X Y Z : Spc} (f : X ⟶ Y) (g : Y ⟶ Z) (F : Shv R) (hf : Eqv R f F)
-    (hg : Eqv R g F) : Eqv R (f ≫ g) F := fun n => by
-  have h : ⇑(pull R (f ≫ g) F n) = ⇑(pull R f F n) ∘ ⇑(pull R g F n) := funext fun x => pull_comp R f g F n x
-  rw [h]
-  exact (hf n).comp (hg n)
-
-private theorem eqv_iso {R : Type} [CommRing R] {X Y : Spc} (f : X ⟶ Y) [IsIso f] (F : Shv R) : Eqv R f F := fun n =>
-  Function.bijective_iff_has_inverse.2 ⟨pull R (inv f) F n,
-    fun x => by rw [← pull_comp, IsIso.inv_hom_id, pull_id],
-    fun x => by rw [← pull_comp, IsIso.hom_inv_id, pull_id]⟩
-
 private theorem lh_one {q : ℕ} {X E : Spc} (π : X ⟶ E) (d e : Fin 1 → ℤ) (c : ∀ j, Ht q X (d j) (e j))
     (hd : ∀ j, 0 = d j) (he : ∀ j, 0 = e j) (hc : ∀ j, c j = (one q X).cast (hd j) (he j)) (h : LH q π d e c) :
     LH q π (fun _ : Fin 1 => (0 : ℤ)) (fun _ : Fin 1 => (0 : ℤ)) (fun _ => one q X) := by
@@ -304,8 +289,8 @@ private theorem eqv_main (q : ℕ) [NeZero q] (N : ℕ) (E : Spc) (i : Fin N) (Q
   have e2 : Sp.map E (prFst ((XC N).sub Q)) =
       Sp.pair E (prFst ((XC N).sub Q)) (prSnd ((XC N).sub Q)) ≫ Sp.fst (Sp E ((XC N).sub Q)) affC := rfl
   rw [← rHom_fst Q i, sp_comp, e1, e2]
-  exact eqv_comp _ _ _ (eqv_comp _ _ _ (eqv_iso _ _) (eqv_fst q _ hS1 j))
-    (eqv_comp _ _ _ (eqv_iso _ _) (UpperTheory.affineLineAction_fst_twistEquiv q _ j hS))
+  exact _root_.GlobalTheory.HInvAic.eqv_comp _ _ _ (_root_.GlobalTheory.HInvAic.eqv_comp _ _ _ (_root_.GlobalTheory.EtC.eqv_of_isIso _ _) (eqv_fst q _ hS1 j))
+    (_root_.GlobalTheory.HInvAic.eqv_comp _ _ _ (_root_.GlobalTheory.EtC.eqv_of_isIso _ _) (UpperTheory.affineLineAction_fst_twistEquiv q _ j hS))
 
 end UpperTheory.ProjectiveLineCharts
 

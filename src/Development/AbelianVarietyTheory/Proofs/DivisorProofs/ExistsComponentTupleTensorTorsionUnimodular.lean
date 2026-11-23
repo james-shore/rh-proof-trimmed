@@ -78,7 +78,7 @@ theorem exists_components_of_unimodular : ∀ (R : Type) [CommRing R] [IsDomain 
   have hGt := GlobalTheory.Ex.GtValues.points_correspond
   have hf := GlobalTheory.T.tensorData_values_facts R hB D D' W T F N N' ν ν'
   obtain ⟨q', hq', -⟩ := ((hGt R D'.toPre D'.psi_even D'.tau_bimult F N' ν').2.2.2.2 k).1 p'
-  obtain ⟨vs, hvs⟩ := GlobalTheory.T.exists_torus_components_of_unimodular_tensor F N N' W (cmp T ν ν') (chi T ν ν') (wv T ν ν') hf hW q'.1.2
+  obtain ⟨vs, hvs⟩ := _root_.GlobalTheory.Mum.TensTor.gtRelV_onto F N N' W (cmp T ν ν') (chi T ν ν') (wv T ν ν') hf hW q'.1.2
   have hk := gtRelV_npow_of_tensFacts hf hvs k
   rw [N'.mem_QT.1 q'.2] at hk
   have hio := GlobalTheory.T.tensorTorusValueCorrespondence_period F N N' W (cmp T ν ν') (chi T ν ν') (wv T ν ν') hf q'.1.1.toAdd

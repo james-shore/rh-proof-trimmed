@@ -71,7 +71,7 @@ theorem free_sec_sum_eq (R : Type) [CommRing R] (P : PSh) (V : Scheme.{0})
 
 theorem free_sec_loc : ∀ (R : Type) [CommRing R] (P : PSh) (U : Scheme.{0}), (∀ y : Sec ((free R).obj P) U, Loc U fun V g => ∃ c : P.obj (op V) →₀ ULift.{1} R, Sec.res g y = c.sum fun x r => r • freeGen R P V x) ∧ ∀ c : P.obj (op U) →₀ ULift.{1} R, (c.sum fun x r => r • freeGen R P U x) = 0 → Loc U fun _ g => Finsupp.mapDomain (P.map g.op) c = 0 := by
   intro R _ P U
-  have base := GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift R ((freeP R).obj P)
+  have base := _root_.GlobalTheory.EtC.toSheafify_loc_bij_lift R ((freeP R).obj P)
   refine ⟨fun y => ?_, fun c hc => ?_⟩
   · refine etaleLocally_weaken_freeSheafSections (base.1 U y) ?_
     rintro V g ⟨x, hx⟩

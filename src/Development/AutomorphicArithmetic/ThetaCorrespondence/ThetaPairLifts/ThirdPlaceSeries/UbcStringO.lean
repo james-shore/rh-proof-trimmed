@@ -120,7 +120,7 @@ theorem GlobalTheory.EigStrInert.str_inert_tyz : _root_.GlobalTheory.EigStrInert
   intro hA hL D P X hAg hconds hadm htie i hμ j hj x hx f hf y hy hy0 h hh s B hE hB w hw hinert
   obtain ⟨P', hP', hw2⟩ := _root_.GlobalTheory.UbcString.ubc_string_o_alt hA hL D P X hAg hconds hadm htie i x hx
   obtain ⟨B'', c, hc, heq, hnorm⟩ := hw2 w hinert
-  have h1 := _root_.GlobalTheory.T.theta_eigen_compatibility_seventh_alt hA hL D P X hAg hconds hadm htie i hμ j hj x hx f hf y hy hy0 h hh s B hE hB w hw hinert P' hP'
-  have h2 := _root_.GlobalTheory.T.good_place_split_condition_alt hA hL D P X hAg hconds hadm htie i hμ j hj w hw hinert c hc
+  have h1 := _root_.GlobalTheory.StrInert.param_eq_ubc_satV_alt hA hL D P X hAg hconds hadm htie i hμ j hj x hx f hf y hy hy0 h hh s B hE hB w hw hinert P' hP'
+  have h2 := _root_.GlobalTheory.ValInert.val_inert_alt hA hL D P X hAg hconds hadm htie i hμ j hj w hw hinert c hc
   exact ⟨B'', by rw [h1, heq, h2], hnorm⟩
 end

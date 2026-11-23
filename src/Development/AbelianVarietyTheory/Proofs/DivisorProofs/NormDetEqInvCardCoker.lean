@@ -52,6 +52,7 @@ import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.NormCardQuotientSpan
 
 @[expose] public section
 
@@ -65,19 +66,6 @@ noncomputable section
 
 namespace GlobalTheory
 namespace DetIndexPadic
-
-theorem norm_card_quot_span (l : ℕ) [Fact l.Prime] {x : ℤ_[l]} (hx : x ≠ 0) :
-    ‖((Nat.card (ℤ_[l] ⧸ Ideal.span {x}) : ℕ) : ℚ_[l])‖ = ‖x‖ := by
-  have h1 : Ideal.span {x} = RingHom.ker (PadicInt.toZModPow (p := l) x.valuation) := by
-    rw [PadicInt.ker_toZModPow]
-    conv_lhs => rw [PadicInt.unitCoeff_spec hx]
-    exact Ideal.span_singleton_mul_left_unit (PadicInt.unitCoeff hx).isUnit _
-  have h2 : Nat.card (ℤ_[l] ⧸ Ideal.span {x}) = l ^ x.valuation := by
-    rw [h1, Nat.card_congr (RingHom.quotientKerEquivOfSurjective
-      (ZMod.ringHom_surjective (PadicInt.toZModPow (p := l) x.valuation))).toEquiv, Nat.card_zmod]
-  rw [h2, PadicInt.norm_eq_zpow_neg_valuation hx]
-  push_cast
-  rw [Padic.norm_p_pow]
 
 theorem det_ne_zero_of_finite_coker (l : ℕ) [Fact l.Prime] {T : Type} [AddCommGroup T]
     [Module ℤ_[l] T] [Module.Free ℤ_[l] T] [Module.Finite ℤ_[l] T] (φ : T →ₗ[ℤ_[l]] T)
@@ -155,7 +143,7 @@ theorem norm_det_eq_of_card_coker : ∀ (l : ℕ) [Fact l.Prime] (T : Type) [Add
   have h3 : ‖∏ i, c i‖ = ‖((Nat.card (T ⧸ N) : ℕ) : ℚ_[l])‖ := by
     rw [hcq, Nat.cast_prod, norm_prod, norm_prod]
     exact Finset.prod_congr rfl fun i hi =>
-      (norm_card_quot_span l (Finset.prod_ne_zero_iff.1 hne i hi)).symm
+      (_root_.GlobalTheory.NormDetIndex.norm_card_quotient_span l (Finset.prod_ne_zero_iff.1 hne i hi)).symm
   rw [h2, h3, hcard]
   push_cast
   rw [Padic.norm_p_pow]

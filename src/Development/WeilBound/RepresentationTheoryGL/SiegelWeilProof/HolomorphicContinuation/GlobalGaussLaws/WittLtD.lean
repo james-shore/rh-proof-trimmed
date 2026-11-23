@@ -113,7 +113,7 @@ private theorem posIndex_negIndex_eq_one_add_of_hyperbolic_split {n : Type} [Fin
     rw [← hPG, Matrix.map_mul, Matrix.map_mul, Matrix.transpose_map]
     congr 1
     ext i j
-    simp [emb_cc]
+    simp [_root_.GlobalTheory.Published.embedding_cc]
   have hH1 : ((hyp : Matrix (Fin 2) (Fin 2) E).map τ).IsHermitian := by
     rw [hyp_map]
     apply Matrix.IsHermitian.ext
@@ -123,7 +123,7 @@ private theorem posIndex_negIndex_eq_one_add_of_hyperbolic_split {n : Type} [Fin
     apply Matrix.IsHermitian.ext
     intro i j
     simp only [Matrix.map_apply]
-    rw [← starRingEnd_apply, ← emb_cc, hG2]
+    rw [← starRingEnd_apply, ← _root_.GlobalTheory.Published.embedding_cc, hG2]
   have hblk : ((fromBlocks hyp 0 0 G2).submatrix e.symm e.symm).map τ =
       (fromBlocks ((hyp : Matrix (Fin 2) (Fin 2) E).map τ) 0 0 (G2.map τ)).submatrix e.symm e.symm := by
     rw [← Matrix.submatrix_map, Matrix.fromBlocks_map]

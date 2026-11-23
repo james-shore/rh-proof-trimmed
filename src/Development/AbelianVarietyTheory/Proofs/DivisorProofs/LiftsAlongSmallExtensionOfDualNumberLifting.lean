@@ -58,7 +58,7 @@ theorem smallLift_of_tanLift : ∀ (S : Scheme.{0}) [IsAffine S] (A : Over S) [G
   have hsq : (Ideal.span {e}) ^ 2 = ⊥ := by
     rw [Ideal.span_singleton_pow, Ideal.span_singleton_eq_bot, sq]
     exact hk e he
-  obtain ⟨v, hv, hp⟩ := GlobalTheory.T.smooth_exists_point_lift_squareZero_localRing U.left S U.hom C (Ideal.span {e}) hsq s u₀.left (Over.w u₀)
+  obtain ⟨v, hv, hp⟩ := _root_.GlobalTheory.SmoothPtLift.exists_lift U.left S U.hom C (Ideal.span {e}) hsq s u₀.left (Over.w u₀)
   let u' : Over.mk s ⟶ U := Over.homMk v hp
   have hu : u₀ = ptMap s (Ideal.Quotient.mk (Ideal.span {e})) ≫ u' := by
     ext1

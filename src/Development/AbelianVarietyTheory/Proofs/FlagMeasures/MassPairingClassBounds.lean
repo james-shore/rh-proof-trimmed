@@ -96,7 +96,7 @@ theorem mass_pairingClass_bounds : ∀ {F : Type} [Field F] [ValuativeRel F] [To
       (fun t' ht' => and_congr_right fun _ => (hCl d'.1 t' ((R.hRT d'.1).1 ht')).symm)
     convert e.symm
   obtain ⟨hne, hle, hprime, hpos⟩ :=
-    GlobalTheory.T.hermitian_total_mass_le_generic_mass M hM H r k P hk hdim hrel R d0 d t hdt Cl (fun _ => Iff.rfl) g hg'
+    _root_.GlobalTheory.HL.AbsGenMass.total_le_generic M hM H r k P hk hdim hrel R d0 d t hdt Cl (fun _ => Iff.rfl) g hg'
   exact ⟨pos_iff_ne_zero.mpr (hpos ⟨t0, ht0⟩), hne, hprime, hle⟩
 
 end GlobalTheory

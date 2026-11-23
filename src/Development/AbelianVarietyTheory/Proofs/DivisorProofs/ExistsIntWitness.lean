@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 @[expose] public section
 
@@ -72,7 +73,7 @@ theorem exists_int_witness {E : Type} [Field E] [NumberField E] (χ : HChar E) (
     refine Valuation.map_eq_of_sub_lt _ ?_
     rw [Valuation.map_sub_swap, hxv]
     exact lt_of_le_of_lt hy hlt
-  have hyv : w.valuation E (y : E) = 1 := by rwa [← valued_algebraMap]
+  have hyv : w.valuation E (y : E) = 1 := by rwa [← _root_.Formalism.UG.P.levelaf_valued_algebraMap]
   have hy0 : (y : E) ≠ 0 := by
     intro h
     rw [h, map_zero] at hyv
@@ -81,7 +82,7 @@ theorem exists_int_witness {E : Type} [Field E] [NumberField E] (χ : HChar E) (
   · rw [← HeightOneSpectrum.valuation_eq_one_iff_notMem (K := E)]
     exact hyv
   · rw [← HeightOneSpectrum.intValuation_le_pow_iff_mem, ← HeightOneSpectrum.valuation_of_algebraMap (K := E),
-      ← valued_algebraMap]
+      ← _root_.Formalism.UG.P.levelaf_valued_algebraMap]
     have e : algebraMap E (w.adicCompletion E) ((algebraMap (𝓞 E) E) (y - 1)) =
         (algebraMap E (w.adicCompletion E) (y : E) - (x : w.adicCompletion E)) + ((x : w.adicCompletion E) - 1) := by
       simp

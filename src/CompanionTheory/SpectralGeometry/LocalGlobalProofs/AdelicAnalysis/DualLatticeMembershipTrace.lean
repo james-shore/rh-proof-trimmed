@@ -82,7 +82,7 @@ theorem trace_int_of_basis {F : Type} [Field F] [NumberField F]
 
 theorem toA_mem_perp_latN_iff : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (A F) ℂ), IsStdChar F ψ → ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (B : Matrix ι ι F) (b : Module.Basis (InfinitePlace F) ℤ (𝓞 F)) (N : ℕ), 0 < N → ∀ y : ι → F, toA y ∈ perp (chiB ψ (Bf B)) (latN F ι N : Set (ι → A F)) ↔ ∀ i v, ∃ m : ℤ, (N : ℚ) * Algebra.trace ℚ F ((b v : F) * (B *ᵥ y) i) = m := by
   intro F _ _ ψ hψ ι _ _ B b N _ y
-  obtain ⟨-, hall⟩ := GlobalTheory.T.standard_adelic_character F
+  obtain ⟨-, hall⟩ := _root_.GlobalTheory.CompanionTheory.SW.Core.StdChar.main F
   obtain ⟨-, -, hchar⟩ := hall ψ hψ
   have hBy := Bf_mulVec_toA B y
   constructor

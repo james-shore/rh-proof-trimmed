@@ -248,18 +248,18 @@ theorem finrank_eichlerShimuraCocycles_le_Gamma1 (N : ℕ) (Γ : Subgroup SL(2, 
   have hU6 : (S * T) ^ 6 = 1 := by decide
   have hSU : S ^ 2 = (S * T) ^ 3 := by decide
   have hU3 : ((S * T) ^ 3) ^ 2 = 1 := by rw [← pow_mul]; exact hU6
-  obtain ⟨-, h4⟩ := GlobalTheory.T.finrank_twistedLeftInvariant_mul_of_free_action Γ S (rho w S) 4 hfi hE (by norm_num) hS4 (rho_pow_eq_one w _ _ hS4)
+  obtain ⟨-, h4⟩ := _root_.GlobalTheory.HeckeFamilyMatrices.CocBound.finrank_twInv_mul_of_free Γ S (rho w S) 4 hfi hE (by norm_num) hS4 (rho_pow_eq_one w _ _ hS4)
     (fun x k hk hk' h => (torsion_not_mem N hN x k hk).1 hk' (hΓ h))
-  obtain ⟨-, h6⟩ := GlobalTheory.T.finrank_twistedLeftInvariant_mul_of_free_action Γ (S * T) (rho w (S * T)) 6 hfi hE (by norm_num) hU6 (rho_pow_eq_one w _ _ hU6)
+  obtain ⟨-, h6⟩ := _root_.GlobalTheory.HeckeFamilyMatrices.CocBound.finrank_twInv_mul_of_free Γ (S * T) (rho w (S * T)) 6 hfi hE (by norm_num) hU6 (rho_pow_eq_one w _ _ hU6)
     (fun x k hk hk' h => (torsion_not_mem N hN x k hk).2 hk' (hΓ h))
-  obtain ⟨f2, h2⟩ := GlobalTheory.T.finrank_twistedLeftInvariant_mul_of_free_action Γ ((S * T) ^ 3) (rho w ((S * T) ^ 3)) 2 hfi hE (by norm_num) hU3
+  obtain ⟨f2, h2⟩ := _root_.GlobalTheory.HeckeFamilyMatrices.CocBound.finrank_twInv_mul_of_free Γ ((S * T) ^ 3) (rho w ((S * T) ^ 3)) 2 hfi hE (by norm_num) hU3
     (rho_pow_eq_one w _ _ hU3) (fun x k hk hk' h => by
       obtain rfl : k = 1 := by omega
       rw [pow_one] at h
       exact (torsion_not_mem N hN x 3 (by norm_num)).2 (by norm_num) (hΓ h))
   obtain ⟨fC, hC⟩ := GlobalTheory.T.finrank_orderThreeRelation_add_twistedInvariant_le Γ (rho w) (S * T) (rho_mul w) (rho_one w) hU6 f2
   obtain ⟨fB, hB⟩ := GlobalTheory.T.finrank_cocycleExtension_le_orderThreeRelation_add Γ (rho w) S (S * T) (rho_mul w) (rho_one w) hSU closure_S_ST hE fC
-  obtain ⟨fA, hA⟩ := GlobalTheory.T.finrank_cocycles_add_twistedInvariant_le_extension Γ (rho w) S (rho_mul w) (rho_one w) hS4 fB
+  obtain ⟨fA, hA⟩ := _root_.GlobalTheory.HeckeFamilyMatrices.CocBound.finrank_cocyc_add_twInv_le_extn Γ (rho w) S (rho_mul w) (rho_one w) hS4 fB
   have hZ := LinearMap.finrank_le_finrank_of_injective (zMap_injective Γ w)
   refine ⟨Module.Finite.of_injective _ (zMap_injective Γ w), ?_⟩
   rw [hr] at h4 h6 h2 hB

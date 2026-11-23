@@ -275,15 +275,11 @@ end Norm
 
 section ValueGroup
 
-theorem exists_norm_untilt_eq_norm {y : K} (hy0 : y ≠ 0) (hy1 : ‖y‖ ≤ 1) :
-    ∃ a : 𝒪♭, ‖♮a‖ = ‖y‖ :=
-  _root_.GroundTheory.Variant₂.N1.exists_norm_untilt_eq_norm_of_norm_le_one hy0 hy1
-
 theorem exists_tilt_norm_eq {y : K} (hy : y ≠ 0) : ∃ x : K♭, ‖x‖ = ‖y‖ := by
   rcases le_or_gt ‖y‖ 1 with h | h
-  · obtain ⟨a, ha⟩ := exists_norm_untilt_eq_norm (p := p) hy h
+  · obtain ⟨a, ha⟩ := _root_.GroundTheory.Variant₂.N1.exists_norm_untilt_eq_norm_of_norm_le_one (p := p) hy h
     exact ⟨algebraMap 𝒪♭ K♭ a, by rw [norm_algebraMap_preTilt, preTilt_norm_def, ha]⟩
-  · obtain ⟨a, ha⟩ := exists_norm_untilt_eq_norm (p := p) (inv_ne_zero hy)
+  · obtain ⟨a, ha⟩ := _root_.GroundTheory.Variant₂.N1.exists_norm_untilt_eq_norm_of_norm_le_one (p := p) (inv_ne_zero hy)
       (by rw [norm_inv]; exact inv_le_one_of_one_le₀ h.le)
     refine ⟨(algebraMap 𝒪♭ K♭ a)⁻¹, ?_⟩
     rw [norm_inv, norm_algebraMap_preTilt, preTilt_norm_def, ha, norm_inv, inv_inv]

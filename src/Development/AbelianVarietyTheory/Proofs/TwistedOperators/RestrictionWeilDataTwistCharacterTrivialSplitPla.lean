@@ -59,13 +59,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.HalfAverage
-variable {D : D7}
-theorem mt_mul'' (V : HSp D) (g h : GA D V) :
-    Formalism.L2.Theta.mt V (g * h) = Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V h := by
-  unfold Formalism.L2.Theta.mt; rw [map_mul]; rfl
-
-theorem mt_one'' (V : HSp D) : Formalism.L2.Theta.mt V 1 = 1 := by
-  unfold Formalism.L2.Theta.mt; rw [map_one]; rfl
 end GlobalTheory.HalfAverage
 
 namespace GlobalTheory.HalfAverage
@@ -80,11 +73,6 @@ theorem res_add {V V' W : HSp D} {r : ℕ} {C : Matrix (Fin V.rank) (Fin r) D.ho
     (hG : ∀ x, IntegrableOn (fun y => G (isoPart V W C y + midPart V V' W B x)) 𝓨 μ) :
     res V V' W C B μ 𝓨 (F + G) = res V V' W C B μ 𝓨 F + res V V' W C B μ 𝓨 G :=
   funext fun x => integral_add (hF x) (hG x)
-
-theorem res_smul {V V' W : HSp D} {r : ℕ} {C : Matrix (Fin V.rank) (Fin r) D.host.E}
-    {B : Matrix (Fin V.rank) (Fin V'.rank) D.host.E} {μ : Measure (Mx D W.rank r)} {𝓨 : Set (Mx D W.rank r)}
-    (a : ℂ) (F : WO V W → ℂ) : res V V' W C B μ 𝓨 (a • F) = a • res V V' W C B μ 𝓨 F :=
-  funext fun x => integral_const_mul a _
 
 theorem res_zero {V V' W : HSp D} {r : ℕ} {C : Matrix (Fin V.rank) (Fin r) D.host.E}
     {B : Matrix (Fin V.rank) (Fin V'.rank) D.host.E} {μ : Measure (Mx D W.rank r)} {𝓨 : Set (Mx D W.rank r)} :
@@ -150,7 +138,7 @@ theorem charTwist_eq_one_at_split : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C :
         refine ⟨fun t x => ?_, ?_⟩
         · rw [GlobalTheory.SplitScalar.heisO_smul]; exact (hf1 t x).const_mul a
         · refine (hf2.const_mul a).congr (Filter.Eventually.of_forall fun t => ?_)
-          simp only [GlobalTheory.SplitScalar.heisO_smul, res_smul, map_smul, smul_eq_mul] }
+          simp only [GlobalTheory.SplitScalar.heisO_smul, _root_.GlobalTheory.HalfAverage.res_smul_twisted_operators, map_smul, smul_eq_mul] }
   have hP : ∀ f, IsThetaFunO ψ V W f → f ∈ P := fun f hf => ⟨fun t x => (hR _ (hth hf _)).1 x, hint f hf⟩
   let ℓ₀ : P →ₗ[ℂ] ℂ :=
     { toFun := fun f => avgForm ψ V V' W C B μ 𝓨 K e ℓ' f.1
@@ -167,7 +155,7 @@ theorem charTwist_eq_one_at_split : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C :
         unfold avgForm
         rw [smul_eq_mul, ← integral_const_mul]
         refine integral_congr_ae (Filter.Eventually.of_forall fun t => ?_)
-        simp only [GlobalTheory.SplitScalar.heisO_smul, res_smul, map_smul, smul_eq_mul] }
+        simp only [GlobalTheory.SplitScalar.heisO_smul, _root_.GlobalTheory.HalfAverage.res_smul_twisted_operators, map_smul, smul_eq_mul] }
   obtain ⟨ℓ, hℓ⟩ := LinearMap.exists_extend ℓ₀
   have hℓP : ∀ f, f ∈ P → ℓ f = avgForm ψ V V' W C B μ 𝓨 K e ℓ' f := fun f hf =>
     LinearMap.congr_fun hℓ ⟨f, hf⟩
@@ -205,8 +193,8 @@ theorem charTwist_eq_one_at_split : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C :
     exact integral_add_right_eq_self (fun t : halfMx (cA D e) W.rank r =>
       ℓ' (res V V' W C B μ 𝓨 (heisO ψ V W (restEmb V W K ↑t) f))) t₀'
 
-  have hmi : mt W g * mt W g⁻¹ = 1 := by rw [← mt_mul'', mul_inv_cancel, mt_one'']
-  have him : mt W g⁻¹ * mt W g = 1 := by rw [← mt_mul'', inv_mul_cancel, mt_one'']
+  have hmi : mt W g * mt W g⁻¹ = 1 := by rw [← _root_.GlobalTheory.BesselCompare.mt_mul, mul_inv_cancel, _root_.GlobalTheory.BesselCompare.mt_one]
+  have him : mt W g⁻¹ * mt W g = 1 := by rw [← _root_.GlobalTheory.BesselCompare.mt_mul, inv_mul_cancel, _root_.GlobalTheory.BesselCompare.mt_one]
   have hdet : IsUnit (mt W g).det := Matrix.isUnit_det_of_right_inverse hmi
   set s : AE D := ((hdet.unit : (AE D)ˣ) : AE D) with hs_def
   set s' : AE D := (((hdet.unit)⁻¹ : (AE D)ˣ) : AE D) with hs'_def
@@ -220,10 +208,10 @@ theorem charTwist_eq_one_at_split : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C :
     show e * s + (1 - e) = e * (mt W g).det + (1 - e)
     rw [hs_def, IsUnit.unit_spec]
   have hV1 : ∀ X : HSp D, SuppAt e X 1 := fun X i j => by
-    rw [mt_one'', sub_self]; simp
+    rw [_root_.GlobalTheory.BesselCompare.mt_one, sub_self]; simp
   have hD1 : ∀ X : HSp D, IsDetAt e X 1 1 := fun X => by
     show (1 : AE D) = e * (mt X 1).det + (1 - e)
-    rw [mt_one'', Matrix.det_one]; ring
+    rw [_root_.GlobalTheory.BesselCompare.mt_one, Matrix.det_one]; ring
   obtain ⟨r₁, hr₁, hsp⟩ := hω.om_split e he 1 g (hV1 V) hg 1 y (hD1 V) hy
   obtain ⟨r₂, hr₂, hsp'⟩ := hω'.om_split e he 1 g (hV1 V') hg 1 y (hD1 V') hy
   have E1 := hsp ℓ hinv f₀ hf₀
@@ -243,7 +231,7 @@ theorem charTwist_eq_one_at_split : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C :
         congr 1
         show HMul.hMul (HMul.hMul (mt W g) (HMul.hMul (HMul.hMul (mt W g⁻¹) (t : Mx D W.rank r)) (K.map (incA D))))
           (mt V 1⁻¹) = HMul.hMul (t : Mx D W.rank r) (K.map (incA D))
-        rw [inv_one, mt_one'', Matrix.mul_one, ← Matrix.mul_assoc, ← Matrix.mul_assoc, hmi, Matrix.one_mul]
+        rw [inv_one, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.mul_one, ← Matrix.mul_assoc, ← Matrix.mul_assoc, hmi, Matrix.one_mul]
       rw [← hcomm, hc g _ hG, map_smul, hsp' ℓ' hℓ' _ (hR _ hG).2.1, smul_eq_mul]
       ring
     rw [integral_congr_ae (Filter.Eventually.of_forall key2), integral_const_mul,

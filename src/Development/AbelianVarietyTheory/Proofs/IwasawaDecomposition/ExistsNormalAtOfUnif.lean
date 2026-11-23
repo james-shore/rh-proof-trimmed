@@ -62,21 +62,12 @@ noncomputable section
 
 namespace GlobalTheory.ArcNormal
 
-theorem sp_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : B →+* C) (g : A →+* B) :
-    spMap f ≫ spMap g = spMap (f.comp g) := (Spec.map_comp _ _).symm
-
-theorem mem_of_pow_mem' {F : Type} [Field F] (V : ValuationSubring F) {x : F} {n : ℕ} (hn : n ≠ 0) (h : x ^ n ∈ V) :
-    x ∈ V := by
-  rw [← ValuationSubring.valuation_le_one_iff] at h ⊢
-  rw [map_pow] at h
-  exact (pow_le_one_iff hn).1 h
-
 theorem exists_values' {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
     {l : Level H} (c : Coeff l) (V : ValuationSubring c.F) :
     ∃ r z : V, ((V.subtype r : c.F) : ℂ) = H.rt0 ∧ ((V.subtype z : c.F) : ℂ) = zeta l.A := by
   let inc := (IntermediateField.inclusion c.le).toRingHom
-  refine ⟨⟨inc (baseKA l).ρ, mem_of_pow_mem' V two_ne_zero ?_⟩,
-    ⟨inc (baseKA l).ζ, mem_of_pow_mem' V l.A_pos.ne' ?_⟩, rfl, rfl⟩
+  refine ⟨⟨inc (baseKA l).ρ, _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem V two_ne_zero ?_⟩,
+    ⟨inc (baseKA l).ζ, _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem V l.A_pos.ne' ?_⟩, rfl, rfl⟩
   · rw [← map_pow, (baseKA l).ρ_sq, map_neg, map_natCast]
     exact neg_mem (natCast_mem V _)
   · rw [← map_pow, (baseKA l).ζ_prim.pow_eq_one, map_one]
@@ -261,7 +252,7 @@ theorem main_of_lemmas (hFib : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     refine ⟨pullback.lift (Uw.F.u Ha.i (Ha.Pw w)) (spMap c.F.val.toRingHom) ?_, pullback.lift_fst _ _ _,
       pullback.lift_snd _ _ _⟩
     rw [Uw.F.over_σ _ _ (Ha.period w hw)]
-    exact (sp_comp' _ _).symm
+    exact (_root_.Formalism.L2.Pj.spMap_comp_ring _ _).symm
   classical
   let y : ℂ → (Sp ℂ ⟶ Y.X) := fun w =>
     if h : ∃ yF : Sp ℂ ⟶ Xo.XF c, yF ≫ pullback.fst _ _ = Uw.F.u Ha.i (Ha.Pw w) ∧
@@ -315,6 +306,6 @@ end GlobalTheory.ArcNormal
 namespace GlobalTheory.ArcNormal
 
 theorem arc_normal_form : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (V : ValuationSubring c.F) (Y : Model Xo c V.subtype), 1 ≤ Dw.p + Dw.q → PushInvertible Y.t.G Y.t.PP.L → ∀ (a : ArcIn Dw l V.subtype ℂ (c.F.val.toRingHom.comp V.subtype)) (χ : Sp (PowerSeries ℂ) ⟶ Y.X), Y.HasArcData a (Ideal.span {PowerSeries.X}) (PowerSeries.C (R := ℂ)) PowerSeries.X χ → χ ≫ Y.s = spMap (PowerSeries.C (R := ℂ)) ≫ spMap (c.F.val.toRingHom.comp V.subtype) → (∀ x : Sp (PowerSeries ℂ), PowerSeries.X ∉ x.asIdeal → χ x ∈ Set.range Y.j) → ∀ M : GChart Y, ⊤ ≤ χ ⁻¹ᵁ M.U → ∃ y : ℂ → (Sp ℂ ⟶ Y.X), (∀ (U : Y.X.Opens) (f : Γ(Y.X, U)), ⊤ ≤ χ ⁻¹ᵁ U → ∃ T : ℝ, ∀ w : ℂ, T < w.im → ⊤ ≤ y w ⁻¹ᵁ U ∧ SumsAt (valR χ U f) w (valAt' (y w) U f)) ∧ ∃ T C : ℝ, 0 < C ∧ ∀ w : ℂ, T < w.im → ∀ (hz : ⊤ ≤ y w ⁻¹ᵁ M.U) (x : KeyIn ℂ), KeyAt M (y w) hz x → ∃ (τ Mx : Matrix (Fin x.P.g) (Fin x.P.g) ℂ) (a' b' : Fin x.P.g → ℂ) (c₀ : ℂ), GlobalTheory.KeyPow.charHalf _ a' b' ∧ c₀ ≠ 0 ∧ GlobalTheory.KeyPow.NormalAt x τ Mx a' b' c₀ ∧ C⁻¹ ≤ ‖Mx.det‖ / ‖c₀‖ ^ 2 ∧ ‖Mx.det‖ / ‖c₀‖ ^ 2 ≤ C :=
-  main_of_lemmas GlobalTheory.T.exists_arc_fibre_uniformisation_theta_multiple GlobalTheory.T.thetaCoefficient_bounded_along_holomorphicArc GlobalTheory.T.lieBasis_expCoords_det_bounded_along_arc
+  main_of_lemmas _root_.GlobalTheory.ArcNormal.exists_unif_of_arc _root_.GlobalTheory.ArcNormal.theta_const_bounded _root_.GlobalTheory.ArcNormal.lieCoord_det_bounded
 
 end GlobalTheory.ArcNormal

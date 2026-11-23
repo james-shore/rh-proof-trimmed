@@ -60,9 +60,7 @@ section Alg
 
 variable {K : Type} [Field K]
 
-private theorem exists_diag (M : GL (Fin 2) K) {x : K} (hx : x ≠ 1) (ht : M.val.trace = 1 + x) (hd : M.val.det = x) :
-    ∃ g : GL (Fin 2) K, (g * M * g⁻¹).val = Matrix.diagonal ![1, x] :=
-  _root_.UpperTheory.Reformulated.B.IntertwinerDiagonalization.exists_diag M hx ht hd
+private alias exists_diag := _root_.UpperTheory.Reformulated.B.IntertwinerDiagonalization.exists_diag
 
 private theorem off_diag {Y : Matrix (Fin 2) (Fin 2) K} {x : K} (hx : x ≠ 1)
     (h : Matrix.diagonal ![1, x] * Y = Y * Matrix.diagonal ![1, x]) : Y 0 1 = 0 ∧ Y 1 0 = 0 := by

@@ -213,7 +213,7 @@ theorem map_existsUnique : ∀ {l : ℕ} [Fact l.Prime] (A t : PAlg l) (φ : A �
 theorem level : ∀ {l : ℕ} [Fact l.Prime] (ε : Eps l) (t : PAlg l), t.IsTest → ∀ (r : ℕ → t.A), (∀ m, r (m + 1) ^ l = r m) → t.sharp (r 0) = 1 →
   ∀ m, ∃ e : ZMod (l ^ m) → t.A, CompleteOrthogonalIdempotents e ∧ ∀ c, t.sharp (e c) * (t.sharp (r m) - t.sharp (t.s (ε.e m)) ^ c.val) = 0 := by
   intro l _ ε t ht r hr h1 m
-  have hp := (GlobalTheory.T.epsilon_cyclotomic_element_properties ε).2.2.2.2 m
+  have hp := (_root_.GlobalTheory.CompanionTheory.EpsFacts.eps_facts ε).2.2.2.2 m
   have hz : t.sharp (r m) ^ l ^ m = 1 := by
     have : ∀ m, r m ^ l ^ m = r 0 := fun m => by
       induction m with
@@ -249,7 +249,7 @@ theorem rel_of_formula {t : PAlg l} {m : ℕ} {E : ZMod (l ^ m) → t.A} (hE : C
     {x ξ : t.U} (hx : x = ∑ c, t.sharp (E c) * ξ ^ c.val) (c : ZMod (l ^ m)) :
     t.sharp (E c) * (x - ξ ^ c.val) = 0 :=
   mul_sub_eq_zero_of_sum (a := fun c => t.sharp (E c)) (b := fun c : ZMod (l ^ m) => ξ ^ c.val)
-    (fun i => by rw [← map_mul, hE.idem i]) (fun i j h => by rw [← map_mul, hE.ortho h, sharp_zero]) hx c
+    (fun i => by rw [← map_mul, hE.idem i]) (fun i j h => by rw [← map_mul, hE.ortho h, _root_.GlobalTheory.CompanionTheory.RootsLC.sharp_zero]) hx c
 
 theorem continuous_algebra_universal_existsUnique (ε : Eps l) {ρ : ℕ → ((base l).cont ℤ_[l]).A} (hρ : ∀ m, ρ (m + 1) ^ l = ρ m)
     (hF : ∀ m, ((base l).cont ℤ_[l]).sharp (ρ m) =
@@ -307,7 +307,7 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime] (ε : Eps l),
     rw [map_mul, hev]
     exact hshift z
   obtain ⟨ρ, h0, hρ⟩ := exists_roots ((base l).cont ℤ_[l]) η
-  have hF := GlobalTheory.T.sharp_epsilon_root_idempotent_sum ε ρ (fun m z => h0 ▸ hη m z) hρ
+  have hF := _root_.GlobalTheory.CompanionTheory.ContUniv.sharp_roots_universal ε ρ (fun m z => h0 ▸ hη m z) hρ
   have h1 : ((base l).cont ℤ_[l]).sharp η = 1 := by
     have h := hF 0
     rw [h0] at h

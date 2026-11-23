@@ -55,9 +55,6 @@ namespace GlobalTheory.LocMatrix
 variable (ℓ : ℕ) [Fact ℓ.Prime] (F B : Type) [Field F] [NumberField F] [Ring B] [Algebra F B]
   [Algebra ℚ B] [IsScalarTower ℚ F B]
 
-theorem cenMap_tmul (q : ℚ_[ℓ]) (f : F) : cenMap ℓ F B (q ⊗ₜ f) = q ⊗ₜ algebraMap F B f := by
-  simp [cenMap]
-
 theorem cenMap_mem (Λ : Subring B)
     (hΛ : ∀ a : NumberField.RingOfIntegers F, algebraMap F B (a : F) ∈ Λ)
     {a : ℚ_[ℓ] ⊗[ℚ] F} (ha : a ∈ cenOrder ℓ F) : cenMap ℓ F B a ∈ locOrder ℓ Λ := by
@@ -65,18 +62,9 @@ theorem cenMap_mem (Λ : Subring B)
     refine Algebra.adjoin_le ?_
     rintro _ ⟨a, rfl⟩
     show cenMap ℓ F B _ ∈ locOrder ℓ Λ
-    rw [cenMap_tmul]
+    rw [_root_.GlobalTheory.CentralizerMapTensor.cenMap_tmul_eq]
     exact Algebra.subset_adjoin ⟨_, hΛ a, rfl⟩
   exact h ha
-
-theorem cenMap_commute (a : ℚ_[ℓ] ⊗[ℚ] F) (y : ℚ_[ℓ] ⊗[ℚ] B) : Commute (cenMap ℓ F B a) y := by
-  first
-  | exact @_root_.GlobalTheory.CentralizerMapTensor.commute_cenMap
-  | exact _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap
-  | (apply _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CentralizerMapTensor.commute_cenMap <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap ..)
 
 def cenIncl (Λ : Subring B) (hΛ : ∀ a : NumberField.RingOfIntegers F, algebraMap F B (a : F) ∈ Λ) :
     cenOrder ℓ F →ₐ[ℤ_[ℓ]] locOrder ℓ Λ :=
@@ -90,7 +78,7 @@ theorem coe_cenIncl (Λ : Subring B)
 def cenAlgebra (Λ : Subring B)
     (hΛ : ∀ a : NumberField.RingOfIntegers F, algebraMap F B (a : F) ∈ Λ) :
     Algebra (cenOrder ℓ F) (locOrder ℓ Λ) :=
-  (cenIncl ℓ F B Λ hΛ).toRingHom.toAlgebra' fun a x => Subtype.ext (cenMap_commute ℓ F B a x)
+  (cenIncl ℓ F B Λ hΛ).toRingHom.toAlgebra' fun a x => Subtype.ext (_root_.GlobalTheory.CentralizerMapTensor.commute_cenMap ℓ F B a x)
 
 theorem algebraMap_cenAlgebra (Λ : Subring B)
     (hΛ : ∀ a : NumberField.RingOfIntegers F, algebraMap F B (a : F) ∈ Λ) (a : cenOrder ℓ F) :

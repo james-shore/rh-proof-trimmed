@@ -122,7 +122,7 @@ theorem sPiTop_eq_sTLoc (a : D.nd.Loc) (π : D.nd.X a)
     sPiTop D a ρ π = sTLoc D a s := by
   unfold sPiTop sTLoc sT
   rw [selT_eq_selG D a s _ fun v hv => D.ntw.psiL_l a v hv _ (D.nd.plOm.2 v), D.ntw.twOf_l]
-  exact nlen_congr _ _ _ (GlobalTheory.T.selG_length_eq_of_conj _ _ D.nd.plOm (D.nd.l a) (D.nd.O a) (D.loc (D.nd.l a)) (D.nbr a)
+  exact nlen_congr _ _ _ (_root_.GlobalTheory.SelConj.selG_length_conj _ _ D.nd.plOm (D.nd.l a) (D.nd.O a) (D.loc (D.nd.l a)) (D.nbr a)
     (↑(D.nd.S a) ∪ ↑(D.nd.Q a)) _ _ _ U hU).symm
 
 end GlobalTheory.ConjLatticeSelmer

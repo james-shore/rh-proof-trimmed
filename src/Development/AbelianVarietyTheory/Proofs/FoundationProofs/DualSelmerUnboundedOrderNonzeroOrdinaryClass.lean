@@ -67,7 +67,7 @@ theorem gw_limit : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [
   have hfin := GlobalTheory.T.finite_lTorsion_selmer_rank_two_adjoint hL l Ω S A (dual1 W) c hW.above h1 h2 h4
   obtain ⟨x, hx0, hx⟩ := GlobalTheory.T.exists_divisible_chain_primary_torsion_group l (DivSel c (dual1 W) S A) (divSel_torsion c (dual1 W) S A) hfin hunb
   obtain ⟨a, N, p1, p2, p3, p4, p5, p6, p7, p8⟩ := GlobalTheory.T.divisibleOrdinarySelmerChain_exists_integral_representatives l Ω S A (dual1 W) c h1 h2 h4 h5 x hx0 hx
-  exact GlobalTheory.T.nonzero_ordinary_class_of_compatible_cocycles_mod_pow l Ω S A (dual1 W) c h1 h2 h3 a N p1 p2 p3 p4 p5 p6 p7 p8 hGr
+  exact _root_.GlobalTheory.Ord2.limit_nonzero_ordinary_class l Ω S A (dual1 W) c h1 h2 h3 a N p1 p2 p3 p4 p5 p6 p7 p8 hGr
 
 end GlobalTheory.Ord2
 

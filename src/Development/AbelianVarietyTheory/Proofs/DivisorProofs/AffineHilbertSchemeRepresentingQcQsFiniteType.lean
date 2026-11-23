@@ -78,12 +78,12 @@ theorem representing_qc_qs_loft : ∀ (A B : Type) [CommRing A] [CommRing B] [Al
     intro X Y Z a b
     ext p
     simp
-  choose W hW hWc using fun σ : Fin r ↪ Fin N => GlobalTheory.T.exists_open_affineHilbertChartBasic_locus A B N r e σ H ξ
-  choose X x hXa hXl hXb hXu using fun σ : Fin r ↪ Fin N => GlobalTheory.T.affineHilbertChart_representable A B N r e σ
+  choose W hW hWc using fun σ : Fin r ↪ Fin N => _root_.GlobalTheory.HilbAff.Locus.exists_basic_locus A B N r e σ H ξ
+  choose X x hXa hXl hXb hXu using fun σ : Fin r ↪ Fin N => _root_.GlobalTheory.HilbAff.chart_represents A B N r e σ
   have hcov : ⨆ σ, W σ = ⊤ := by
     rw [eq_top_iff]
     intro h _
-    obtain ⟨σ, U, hU, hb⟩ := GlobalTheory.T.exists_affineHilbertChartBasic_neighbourhood A B N r e H ξ h
+    obtain ⟨σ, U, hU, hb⟩ := _root_.GlobalTheory.HilbAff.exists_basic_nhd A B N r e H ξ h
     have := (hW σ _ U.ι).2 hb
     rw [Scheme.Opens.range_ι] at this
     exact TopologicalSpace.Opens.mem_iSup.2 ⟨σ, this hU⟩
@@ -113,7 +113,7 @@ theorem representing_qc_qs_loft : ∀ (A B : Type) [CommRing A] [CommRing B] [Al
     haveI := hg σ; haveI := hXa σ; exact IsAffine.of_isIso (g σ)
   have hint : ∀ (U : H.Opens), CompactSpace U.toScheme → ∀ τ, IsCompact ((U : Set H) ∩ W τ) := by
     intro U hU τ
-    obtain ⟨V, hV, hVc⟩ := GlobalTheory.T.exists_open_affineHilbertChartBasic_locus A B N r e τ U.toScheme ((functor A B r).map U.ι.op ξ)
+    obtain ⟨V, hV, hVc⟩ := _root_.GlobalTheory.HilbAff.Locus.exists_basic_locus A B N r e τ U.toScheme ((functor A B r).map U.ι.op ξ)
     have key : ∀ (Z' : Scheme.{0}) (a : Z' ⟶ U.toScheme),
         Set.range a ⊆ V ↔ U.ι '' Set.range a ⊆ W τ := fun Z' a => by
       rw [hV, hmap, ← hW, hrc]

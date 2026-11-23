@@ -147,15 +147,15 @@ theorem local_pair_scalar_norm : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L
   intro p _ G L f hf _ P₁
   have hdeg := P₁.reg.1
   have hsep := P₁.reg.2
-  obtain ⟨Ω, hΩc, hΩ⟩ := GlobalTheory.T.exists_compact_support_twistedHeckeTestFunction p G L f hf
+  obtain ⟨Ω, hΩc, hΩ⟩ := _root_.GlobalTheory.FinClsLoc.support_subset_compact p G L f hf
   have hev := eventually_compL_mem_intPts p G Ω hΩc
-  have hlat := GlobalTheory.T.eventually_kottwitz_lattice_separable_minpoly p G P₁.γ hsep hdeg
-  have hnorm := GlobalTheory.T.eventually_tauFixed_unit_centralizer_is_norm p G P₁.β P₁.sym P₁.γ (P₁.c : ℚ) P₁.sim hsep hdeg
+  have hlat := _root_.GlobalTheory.FinClsLoc.SepLat.kottwitz_lattice_sep p G P₁.γ hsep hdeg
+  have hnorm := _root_.GlobalTheory.LocNormTau.exists_norm_of_tau_fixed_sep p G P₁.β P₁.sym P₁.γ (P₁.c : ℚ) P₁.sim hsep hdeg
   have hstab := GlobalTheory.FinClsLoc.intC_stab p G P₁.β
   obtain ⟨S, hS⟩ := GlobalTheory.FinClsLoc.exists_finset_forall_prime_awayP_padic p _ (hev.and (hlat.and (hnorm.and hstab)))
   refine ⟨S, fun P hγ hc x t hx g hfy ℓ _ hℓ => ?_⟩
   obtain ⟨w, ⟨hev', hlat', hnorm', hmul, hstar, hβi, hβi'⟩, ⟨e⟩⟩ := hS ℓ hℓ
-  apply GlobalTheory.T.localTwistedNormConclusion_transfer_ringEquiv p G (w.1.adicCompletion ℚ) ℚ_[ℓ] e
+  apply _root_.GlobalTheory.FinClsLoc.localTransfer p G (w.1.adicCompletion ℚ) ℚ_[ℓ] e
   have hint := hev' _ (hΩ _ hfy)
   obtain ⟨k, lam, hk1, hk2, hk3⟩ := GlobalTheory.CxRegPair.glue_pair G P x t hx g w
   rw [hγ] at hk1 hk2

@@ -350,7 +350,7 @@ theorem exists_transports (h2 : Module.finrank ℚ K = 2) (σ : ℂ ≃ₐ[K] �
     ∃ t : (IsDedekindDomain.FiniteAdeleRing (𝓞 K) K)ˣ, Transports σ t h𝔞 ξ := by
   obtain ⟨L, C, h⟩ := exists_variableChange_eq_latticeCurve X
   obtain ⟨α, hα0, hα, hξα⟩ := hξ.exists_mul h
-  obtain ⟨L', g2, g3⟩ := CMRam.exists_conj_lattice σ.toRingEquiv L
+  obtain ⟨L', g2, g3⟩ := _root_.GlobalTheory.DiscUniformisation.main σ.toRingEquiv L
   obtain ⟨s, hs, hc⟩ := exists_conjEquiv g2 g3
   let f : 𝓞 K →+* ℂ := (algebraMap K ℂ).comp (algebraMap (𝓞 K) K)
   have hst : ∀ r : 𝓞 K, ∀ l ∈ L.lattice, f r * l ∈ L.lattice := fun r l hl => by

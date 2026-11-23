@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EmbeddingClosedIntegral
 
 @[expose] public section
 
@@ -67,7 +68,7 @@ private theorem norm_lt_of_mem {l : ℕ} [Fact l.Prime] (c : Coef l) (x : c.O) (
     exact (Fact.out : l.Prime).ne_zero (by exact_mod_cast h1)
   obtain ⟨e, u, hle⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hlne hϖ
   obtain ⟨a, v, hxa⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hx0 hϖ
-  have hlt := GlobalTheory.CoefCoord.norm_natCast_lt_one (l := l)
+  have hlt := _root_.GlobalTheory.CoefEmbed.norm_prime_lt_one (l := l)
   have he : e ≠ 0 := by
     rintro rfl
     have hu := GlobalTheory.CoefCoord.norm_unit c u

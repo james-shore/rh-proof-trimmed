@@ -78,7 +78,7 @@ theorem prod_aeval_aroots_padic_eq_det : ∀ (p : ℕ) [Fact p.Prime] (S : Type)
       @_root_.Algebra.IsIntegral.isAlgebraic, @_root_.inferInstance])
   have hj : Function.Injective j := j.toRingHom.injective
   let uK : Module.End K (TensorProduct S K N) := u.baseChange K
-  have key := GlobalTheory.T.det_aeval_eq_prod_aroots_charpoly' K Ω (TensorProduct S K N) uK (R.map (Int.castRingHom K))
+  have key := _root_.GlobalTheory.det_aeval_eq_prod_aroots_charpoly K Ω (TensorProduct S K N) uK (R.map (Int.castRingHom K))
   have hF : ∀ {A : Type} [Ring A] [Algebra K A] (x : A), aeval x (R.map (Int.castRingHom K)) = aeval x R := by
     intro A _ _ x
     rw [← algebraMap_int_eq, aeval_map_algebraMap]

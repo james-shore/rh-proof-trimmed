@@ -111,16 +111,7 @@ theorem cap_tmul_nsmul (d : ℕ) (a : FiniteAdeleRing (𝓞 F) F) (x : Fin n →
   | zero => simp
   | succ d ih => rw [succ_nsmul, succ_nsmul, TensorProduct.tmul_add, ih]
 
-theorem cap_exists_denom (L : Submodule (𝓞 E) (Fin n → E))
-    (hsp : Submodule.span E (L : Set (Fin n → E)) = ⊤) (x : Fin n → E) :
-    ∃ d : ℕ, 0 < d ∧ d • x ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.NatMulMemUnitaryExistence.target
-  | exact _root_.GlobalTheory.NatMulMemUnitaryExistence.target
-  | (apply _root_.GlobalTheory.NatMulMemUnitaryExistence.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatMulMemUnitaryExistence.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatMulMemUnitaryExistence.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatMulMemUnitaryExistence.target ..)
+alias cap_exists_denom := _root_.GlobalTheory.NatMulMemUnitaryExistence.main
 
 end RationalPoints
 

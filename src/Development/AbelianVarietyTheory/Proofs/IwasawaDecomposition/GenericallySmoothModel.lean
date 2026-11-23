@@ -116,10 +116,6 @@ private theorem exists_algChart_mem_source {R K : Type} [CommRing R] [IsDomain R
     (GlobalTheory.CxPts.mem_ptsIn.2 hzU)
   exact ⟨c, hc⟩
 
-theorem exists_chart {R K : Type} [CommRing R] [IsDomain R] [Field K] [Algebra R K]
-    [IsFractionRing R K] {D : ℕ} {X Y : Scheme.{0}} {p : X ⟶ Sp R} {q : Y ⟶ Sp K} {j : Y ⟶ X}
-    (h : IsPullback j q p (spMap (algebraMap R K))) [LocallyOfFinitePresentation p]
-    [SmoothOfRelativeDimension D q] {τ : R →+* ℂ} (hτ : Function.Injective τ) (y : CxPts p τ) :
-    ∃ c : AlgChart p τ D, y ∈ c.e.source := exists_algChart_mem_source h hτ y
+alias exists_chart := _root_.GlobalTheory.ModelCharts.exists_algChart_mem_source
 
 end GlobalTheory.ModelCharts

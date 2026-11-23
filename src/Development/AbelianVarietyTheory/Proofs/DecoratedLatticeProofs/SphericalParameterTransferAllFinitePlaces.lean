@@ -59,8 +59,8 @@ namespace GlobalTheory.ChainOnto
 theorem transferOn_all : GlobalTheory.Hk3.HoweUnram → ∀ D : D7, TransferOn D fun _ => True := by
   intro hH D ψ S T χS χT om hW t ht v _
   by_cases hv : IsSplit (E := D.host.E) v
-  · exact GlobalTheory.T.sphericalParameterTransfer_splitPlace D ψ S T χS χT om hW t ht v hv
-  · exact GlobalTheory.T.sphericalTransfer_weilPairing_inertPlaces hH D ψ S T χS χT om hW t ht v hv
+  · exact _root_.GlobalTheory.ChainOnto.SplitTransfer.transferOn_isSplit D ψ S T χS χT om hW t ht v hv
+  · exact _root_.GlobalTheory.ChainOnto.transferOn_inert hH D ψ S T χS χT om hW t ht v hv
 
 end GlobalTheory.ChainOnto
 

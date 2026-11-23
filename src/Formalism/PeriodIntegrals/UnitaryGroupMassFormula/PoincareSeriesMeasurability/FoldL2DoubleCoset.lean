@@ -122,7 +122,7 @@ theorem fold_L2_double_coset (G : Type*) [Group G] [TopologicalSpace G] [IsTopol
     simp only [hgdef]
     rw [hminv s (hSΓ hs) y, hinv s hs y]
   have hunf : (∫⁻ x in FΓ, ∑' δ : D, g ((δ : G) * x) ∂μ) = multiplicityLIntegral μ Γ Ω F Ph :=
-    lintegralTransversalSum G μ Γ S hSΓ F hF FΓ hFΓ D hD g hgm hginv
+    _root_.PI.FoldUnfold.UnitaryGroupMassFormula.foldUnfold_main G μ Γ S hSΓ F hF FΓ hFΓ D hD g hgm hginv
   have hbound : (∫⁻ x in FΓ, ‖poinc D Ph x‖ₑ ^ 2 ∂μ)
       ≤ (a : ℝ≥0∞) * quotientLIntegral μ F Ph * multiplicityLIntegral μ Γ Ω F Ph := by
     calc (∫⁻ x in FΓ, ‖poinc D Ph x‖ₑ ^ 2 ∂μ)

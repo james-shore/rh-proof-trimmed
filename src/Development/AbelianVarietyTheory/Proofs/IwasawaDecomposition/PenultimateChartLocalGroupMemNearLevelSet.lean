@@ -155,10 +155,10 @@ theorem exists_stepElt : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok �
   have hx : x.1 ∈ (fun β => (K β).lev.U) (chOf c) := x.2
   obtain ⟨κ', h3⟩ := hl.mp hx
   refine ⟨κ', ⟨h3.1, h3.2.2⟩, fun P f he hei g hL => ?_⟩
-  obtain ⟨hm1, hm2, hn⟩ := GlobalTheory.T.levelElement_at_bad_primes_integral_and_near I hOk l Z u a i hi bad Ch chOf K k hR c x.1 κ' h3.1 (h3.2.1 ▸ hq) P
+  obtain ⟨hm1, hm2, hn⟩ := _root_.GlobalTheory.Mem.Col2.AdT.ReadBad.main I hOk l Z u a i hi bad Ch chOf K k hR c x.1 κ' h3.1 (h3.2.1 ▸ hq) P
   obtain ⟨p, hp, hpN⟩ := hR.k_std (chOf c)
-  exact GlobalTheory.T.adelicMatrixCongruence_move_rational_frame _ _ κ.1 x.1 (k (chOf c)) f _ (fun r s => (GlobalTheory.T.stdPointMatrix_and_inverse_integral_at_every_prime _ _ p hp hpN _ r s).1)
-    (fun r s => (GlobalTheory.T.stdPointMatrix_and_inverse_integral_at_every_prime _ _ p hp hpN _ r s).2) hm1 hm2 (hxκ P) (hn g hL) he hei
+  exact _root_.GlobalTheory.CongMove.nearAt_conj_ratA _ _ κ.1 x.1 (k (chOf c)) f _ (fun r s => (_root_.GlobalTheory.ptOf_std_entries_intAtA _ _ p hp hpN _ r s).1)
+    (fun r s => (_root_.GlobalTheory.ptOf_std_entries_intAtA _ _ p hp hpN _ r s).2) hm1 hm2 (hxκ P) (hn g hL) he hei
 
 end GlobalTheory.Mem.Col2.QChi.NearLev
 

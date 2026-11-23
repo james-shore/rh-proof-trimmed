@@ -639,7 +639,7 @@ private theorem stMat {P : LocPrime l} {AI : LocAinf l P} (T : LocTied l P AI) (
   have hli : LinearIndependent ↥(MaximalUnramifiedExtension l) w := b.linearIndependent.map' (GlobalTheory.PstRank.toB P ρ)
     (LinearMap.ker_eq_bot.mpr (GlobalTheory.PstRank.toB_injective P ρ))
   have hB : LinearIndepOn (Bst P) w ((Finset.univ : Finset (Fin d)) : Set (Fin d)) :=
-    GlobalTheory.RegularRing.linearIndepOn_of_invariant (K := ↥(MaximalUnramifiedExtension l)) (B := Bst P) (G := ↥(GK K'))
+    _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed (K := ↥(MaximalUnramifiedExtension l)) (B := Bst P) (G := ↥(GK K'))
       (fun g b => actSt P (g : GQ l) b)
       (fun g => (GlobalTheory.PstRank.sigSt P ρ ⟨g, GK_le hKK' g.2⟩).toAddMonoidHom)
       (fun g b w => GlobalTheory.PstRank.sigSt_smul P ρ _ b w)

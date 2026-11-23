@@ -57,14 +57,7 @@ namespace GlobalTheory.CMTypeImPos
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-theorem denseRange_embeddings : DenseRange fun (x : E) (w : InfinitePlace E) => w.embedding x := by
-  first
-  | exact @_root_.GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi
-  | exact _root_.GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi
-  | (apply _root_.GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi ..)
+alias denseRange_embeddings := _root_.GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi
 
 theorem exists_im_pos (E : Type) [Field E] [NumberField E] [IsCMField E] (I : Type) [Fintype I]
     (φ : I → E →+* ℂ) (hφ : IsCMType φ) : ∃ θ : E, ∀ i, 0 < (φ i θ).im := by

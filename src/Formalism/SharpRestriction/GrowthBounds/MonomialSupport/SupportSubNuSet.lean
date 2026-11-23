@@ -151,13 +151,6 @@ private theorem geZ_of_le {a b : WithTop ℤ} {t : ℝ} (ha : geZ a t) (hab : a 
     have h2 : a ≤ k := WithTop.coe_le_coe.1 hab
     exact le_trans h1 (by exact_mod_cast h2)
 
-private theorem geZ_inf {a b : WithTop ℤ} {t : ℝ} (ha : geZ a t) (hb : geZ b t) : geZ (a ⊓ b) t := by
-  rcases le_total a b with h | h
-  · rw [inf_of_le_left h]
-    exact ha
-  · rw [inf_of_le_right h]
-    exact hb
-
 private theorem valS_inf_le_valS_add {R : Type} [CommRing R] {ι : Type} {n : ℕ} [NeZero n] (LL : Letters ι) (S : Set ι)
     (F G : MvPolynomial (ι × Fin n) R) : valS LL S F ⊓ valS LL S G ≤ valS LL S (F + G) := by
   unfold valS
@@ -238,8 +231,8 @@ theorem XXg_add {F G : MvPolynomial (TL J Dt.nL r × Fin r) (KK O)} (hF : XXg Dt
   obtain ⟨g1, g2, g3⟩ := hG
   refine ⟨Submodule.add_mem _ h1 g1, fun rho j i => ?_, fun j m hm => ?_⟩
   · rw [fdig_add]
-    exact geZ_of_le (geZ_inf (h2 rho j i) (g2 rho j i)) (valS_inf_le_valS_add _ _ _ _)
-  · exact geZ_of_le (geZ_inf (h3 j m hm) (g3 j m hm)) (valS_inf_le_valS_add _ _ _ _)
+    exact geZ_of_le (_root_.Formalism.MainNotions.TestSideWords.geZ_min (h2 rho j i) (g2 rho j i)) (valS_inf_le_valS_add _ _ _ _)
+  · exact geZ_of_le (_root_.Formalism.MainNotions.TestSideWords.geZ_min (h3 j m hm) (g3 j m hm)) (valS_inf_le_valS_add _ _ _ _)
 
 theorem XXg_smul (c : KK O) {F : MvPolynomial (TL J Dt.nL r × Fin r) (KK O)} (hF : XXg Dt d th thL F) :
     XXg Dt d th thL (c • F) := by

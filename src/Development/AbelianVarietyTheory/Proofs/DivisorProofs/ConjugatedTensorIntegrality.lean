@@ -63,13 +63,13 @@ theorem isIntB_of_isIntB_conj : ∀ (C : Type) [Ring C] [Algebra ℚ C] [FiniteD
         IsIntB v b (↑X * Algebra.TensorProduct.map (AlgHom.id ℚ (v.adicCompletion ℚ)) ι E * ↑X⁻¹) →
         IsIntB v bL E := by
   intro C _ _ _ L _ _ ι hι κ b κ' bL
-  obtain ⟨S₁, h₁⟩ := GlobalTheory.T.exists_finset_adicIntegralTensorBasis_one_mul C κ b
-  obtain ⟨S₂, h₂⟩ := GlobalTheory.T.exists_finset_adicIntegralTensorBasis_one_mul L κ' bL
-  obtain ⟨S₃, h₃⟩ := GlobalTheory.T.adicIntegralTensorBasis_of_trace_mem_eventually L κ' bL
+  obtain ⟨S₁, h₁⟩ := _root_.GlobalTheory.AdicSpan.isIntB_one_mul_eventually C κ b
+  obtain ⟨S₂, h₂⟩ := _root_.GlobalTheory.AdicSpan.isIntB_one_mul_eventually L κ' bL
+  obtain ⟨S₃, h₃⟩ := _root_.GlobalTheory.LocIntSpan.isIntB_of_trace_mem L κ' bL
   refine ⟨S₁ ∪ S₂ ∪ S₃, fun v hv X E hE => ?_⟩
   simp only [Finset.mem_union, not_or] at hv
   obtain ⟨⟨hv1, hv2⟩, hv3⟩ := hv
-  have hint := GlobalTheory.T.isIntegral_of_adicIntegralTensorBasis_ring v C κ b (h₁ v hv1).1 (h₁ v hv1).2 _ hE
+  have hint := _root_.GlobalTheory.AdicSpan.isIntegral_of_isIntB v C κ b (h₁ v hv1).1 (h₁ v hv1).2 _ hE
   have hE' := isIntegral_of_isIntegral_conj X _ hint
   let F : v.adicCompletion ℚ ⊗[ℚ] L →ₐ[v.adicCompletion ℚ] v.adicCompletion ℚ ⊗[ℚ] C :=
     Algebra.TensorProduct.map (AlgHom.id (v.adicCompletion ℚ) (v.adicCompletion ℚ)) ι
@@ -81,7 +81,7 @@ theorem isIntB_of_isIntB_conj : ∀ (C : Type) [Ring C] [Algebra ℚ C] [FiniteD
     (isIntegral_algHom_iff (F.restrictScalars (v.adicCompletionIntegers ℚ)) hinj).1 (by simpa [hF] using hE')
   refine h₃ v hv3 E fun i => mem_of_isIntegral v ?_
   have hb : IsIntegral (v.adicCompletionIntegers ℚ) ((1 : v.adicCompletion ℚ) ⊗ₜ[ℚ] bL i) :=
-    GlobalTheory.T.isIntegral_of_adicIntegralTensorBasis_ring v L κ' bL (h₂ v hv2).1 (h₂ v hv2).2 _ (isIntB_tmul_basis v bL i)
+    _root_.GlobalTheory.AdicSpan.isIntegral_of_isIntB v L κ' bL (h₂ v hv2).1 (h₂ v hv2).2 _ (isIntB_tmul_basis v bL i)
   exact GlobalTheory.DiscConductor.isIntegral_trace_of_isIntegral _ _ _ _ (hE''.mul hb)
 
 end GlobalTheory.LocIntSpan

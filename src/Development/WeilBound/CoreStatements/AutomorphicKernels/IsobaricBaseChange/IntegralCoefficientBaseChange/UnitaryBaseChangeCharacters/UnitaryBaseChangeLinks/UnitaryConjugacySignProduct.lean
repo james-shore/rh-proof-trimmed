@@ -66,8 +66,6 @@ theorem companionEll : ∀ (E : Type) [Field E] [NumberField E] (n : ℕ), ∀ P
 
 theorem unitConj : ∀ (K : Type) [Field K] (σ : K →+* K) (n : ℕ) (γ h : GL (Fin n) K), (∃ g ∈ UJ σ (1 : Matrix (Fin n) (Fin n) K), h⁻¹ * γ * h = g⁻¹ * γ * g) ↔ ∃ c : Matrix (Fin n) (Fin n) K, c * γ.val = γ.val * c ∧ cT σ c * c = (h.val * cT σ h.val)⁻¹ := GlobalTheory.T.exists_unitary_conj_iff_exists_centralizer_norm
 
-theorem normHasse : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (n : ℕ) (γ h : GL (Fin n) E), γ ∈ UE E n → γ.val.charpoly ∈ Ell E n → h⁻¹ * γ * h ∈ UE E n → (∀ w : Pl E, ¬ IsSplitAt w → ∃ c : Matrix (Fin n) (Fin n) (w.adicCompletion E), c * (GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ).val = (GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ).val * c ∧ cT (cj w) c * c = ((GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) h).val * cT (cj w) (GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) h).val)⁻¹) → ∃ c : Matrix (Fin n) (Fin n) E, c * γ.val = γ.val * c ∧ cT (IsCMField.complexConj E).toRingEquiv.toRingHom c * c = (h.val * cT (IsCMField.complexConj E).toRingEquiv.toRingHom h.val)⁻¹ := GlobalTheory.T.nonsplit_place_norm_centraliser
-
 theorem signProd : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ S : Set (Pl E), IsSection S → ∀ d : E, d ≠ 0 → (∀ τ : E →+* ℂ, ∃ r : ℝ, 0 < r ∧ τ d = r) → ∏ᶠ w ∈ S, (if IsSplitAt w then (1 : ℂ) else (-1) ^ ordL (algebraMap E (w.adicCompletion E) d)) = 1 := GlobalTheory.T.finprod_nonsplit_sign_totallyPositive_eq_one
 
 theorem gramPos : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (V : Submodule E (Fin n → E)), (gramOn (IsCMField.complexConj E).toRingEquiv.toRingHom 1 V).det ≠ 0 ∧ ∀ τ : E →+* ℂ, ∃ r : ℝ, 0 < r ∧ τ (gramOn (IsCMField.complexConj E).toRingEquiv.toRingHom 1 V).det = r := GlobalTheory.T.gram_det_hermitian_totally_positive
@@ -76,29 +74,27 @@ theorem sgnConj : ∀ (K : Type) [Field K] [Valued K (WithZero (Multiplicative �
 
 theorem baseChangeSign : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (w : Pl E), ¬ IsSplitAt w → ∀ (n : ℕ) (H A : Matrix (Fin n) (Fin n) E), (-1 : ℂ) ^ ordL (gramOn (cj w) (H.map (algebraMap E (w.adicCompletion E))) (LinearMap.ker (Matrix.toLin' (A.map (algebraMap E (w.adicCompletion E)))))).det = (-1) ^ ordL (algebraMap E (w.adicCompletion E) (gramOn (IsCMField.complexConj E).toRingEquiv.toRingHom H (LinearMap.ker (Matrix.toLin' A))).det) := GlobalTheory.T.gramKernelSign_nonsplit_baseChange_eq
 
-theorem existForm : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ S : Set (Pl E), IsSection S → ∀ (n : ℕ) (γ₀ : GL (Fin n) E), γ₀.val.charpoly ∈ Ell E n → ∀ H : ∀ w : Pl E, Matrix (Fin n) (Fin n) (w.adicCompletion E), (∀ w, ¬ IsSplitAt w → IsHerm (cj w) (H w) ∧ (H w).det ≠ 0 ∧ cT (cj w) (γ₀.val.map (algebraMap E (w.adicCompletion E))) * H w * γ₀.val.map (algebraMap E (w.adicCompletion E)) = H w) → (∀ᶠ w in cofinite, ¬ IsSplitAt w → ∃ k m : GL (Fin n) (w.adicCompletion E), k⁻¹ * GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ₀ * k ∈ GlobalTheory.LFun.KGL w (n := n) ∧ m ∈ GlobalTheory.LFun.KGL w (n := n) ∧ m.val = cT (cj w) k.val * H w * k.val) → (∀ P₁ : E[X], P₁.Monic → P₁ ∣ γ₀.val.charpoly → ∏ᶠ w ∈ S, (if IsSplitAt w then (1 : ℂ) else sgnOn (cj w) (H w) (atPl w P₁) (γ₀.val.map (algebraMap E (w.adicCompletion E)))) = 1) → ∃ H' : Matrix (Fin n) (Fin n) E, IsHerm (IsCMField.complexConj E).toRingEquiv.toRingHom H' ∧ cT (IsCMField.complexConj E).toRingEquiv.toRingHom γ₀.val * H' * γ₀.val = H' ∧ (∀ τ : E →+* ℂ, ∃ Q : Matrix (Fin n) (Fin n) ℂ, Q.det ≠ 0 ∧ H'.map τ = cT (starRingEnd ℂ) Q * Q) ∧ ∀ w, ¬ IsSplitAt w → ∃ c : GL (Fin n) (w.adicCompletion E), c.val * γ₀.val.map (algebraMap E (w.adicCompletion E)) = γ₀.val.map (algebraMap E (w.adicCompletion E)) * c.val ∧ H'.map (algebraMap E (w.adicCompletion E)) = cT (cj w) c.val * H w * c.val := GlobalTheory.T.hermitian_local_data_almost_all
-
 theorem landherrStd : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (n : ℕ) (H : Matrix (Fin n) (Fin n) E), IsHerm (IsCMField.complexConj E).toRingEquiv.toRingHom H → (∀ τ : E →+* ℂ, ∃ Q : Matrix (Fin n) (Fin n) ℂ, Q.det ≠ 0 ∧ H.map τ = cT (starRingEnd ℂ) Q * Q) → (∀ w : Pl E, ¬ IsSplitAt w → ∃ g : Matrix (Fin n) (Fin n) (w.adicCompletion E), H.map (algebraMap E (w.adicCompletion E)) = cT (cj w) g * g) → ∃ h : GL (Fin n) E, H = cT (IsCMField.complexConj E).toRingEquiv.toRingHom h.val * h.val := GlobalTheory.T.landherr_standard_definite_hermitian_cmField
 
 theorem part1 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[X]} (hP : P ∈ Ell E n) (γ γ' : UE E n)
     (h1 : γ.1.val.charpoly = P) (h2 : γ'.1.val.charpoly = P)
     (hloc : ∀ w ∈ S, ∃ g : UL n w, locPt w γ' = g⁻¹ * locPt w γ * g) : ∃ g : UE E n, γ' = g⁻¹ * γ * g := by
-  obtain ⟨h, hh⟩ := conjGL E n γ.1 γ'.1 (h1.trans h2.symm) (h1 ▸ hP.2.2.1)
+  obtain ⟨h, hh⟩ := _root_.GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable E n γ.1 γ'.1 (h1.trans h2.symm) (h1 ▸ hP.2.2.1)
   have hγ' : h⁻¹ * γ.1 * h ∈ UE E n := hh ▸ γ'.2
-  obtain ⟨c, hc1, hc2⟩ := normHasse E hU n γ.1 h γ.2 (h1 ▸ hP) hγ' (fun w hw => by
+  obtain ⟨c, hc1, hc2⟩ := _root_.GlobalTheory.NormHasseCent.main E hU n γ.1 h γ.2 (h1 ▸ hP) hγ' (fun w hw => by
     obtain ⟨g, hg⟩ := hloc w (mem_S hS hw)
     have hUL : UL n w = UJ (cj w) 1 := by unfold UL; rw [if_neg hw]
-    refine (unitConj _ (cj w) n _ _).1 ⟨g.1, hUL ▸ g.2, ?_⟩
+    refine (_root_.GlobalTheory.UnitaryConj.main _ (cj w) n _ _).1 ⟨g.1, hUL ▸ g.2, ?_⟩
     have := congrArg Subtype.val hg
     simp only [Subgroup.coe_mul, Subgroup.coe_inv, locPt_val hU] at this
     rw [← map_inv, ← map_mul, ← map_mul, ← hh]; exact this)
-  obtain ⟨g, hg, hgg⟩ := (unitConj E _ n γ.1 h).2 ⟨c, hc1, hc2⟩
+  obtain ⟨g, hg, hgg⟩ := (_root_.GlobalTheory.UnitaryConj.main E _ n γ.1 h).2 ⟨c, hc1, hc2⟩
   exact ⟨⟨g, hg⟩, Subtype.ext (by simp only [Subgroup.coe_mul, Subgroup.coe_inv]; rw [hh, hgg])⟩
 
 theorem part2 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) (γ : UE E n) (P₁ : E[X]) :
     ∏ᶠ w ∈ S, kapSign n w (atPl w P₁) (locPt w γ).1 = 1 := by
-  obtain ⟨hd0, hdpos⟩ := gramPos E n (LinearMap.ker (Matrix.toLin' (aeval γ.1.val P₁)))
-  rw [← signProd E hU S hS _ hd0 hdpos]
+  obtain ⟨hd0, hdpos⟩ := _root_.GlobalTheory.UnitaryClasses.gramOn_one_det_totallyPositive E n (LinearMap.ker (Matrix.toLin' (aeval γ.1.val P₁)))
+  rw [← _root_.GlobalTheory.UnitaryClasses.signProd_totPos E hU S hS _ hd0 hdpos]
   apply finprod_mem_congr rfl
   intro w _
   by_cases hw : IsSplitAt w
@@ -106,7 +102,7 @@ theorem part2 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) (γ : U
   · rw [if_neg hw, kapSign_eq w hw, locPt_val hU]
     unfold sgnOn
     have hA := aeval_map_mat w γ.1.val P₁
-    have := baseChangeSign E hU w hw n 1 (aeval γ.1.val P₁)
+    have := _root_.GlobalTheory.UnitaryClasses.BaseChangeSign.main E hU w hw n 1 (aeval γ.1.val P₁)
     rw [Matrix.map_one _ (map_zero _) (map_one _)] at this
     rw [← this, ← hA]
     rfl
@@ -115,13 +111,13 @@ theorem part3 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
     (y : ∀ w : Pl E, UL n w) (hy : ∀ w, (y w).1.val.charpoly = atPl w P) (hK : ∀ᶠ w in cofinite, y w ∈ KL n w)
     (hsg : ∀ P₁ : E[X], P₁.Monic → P₁ ∣ P → ∏ᶠ w ∈ S, kapSign n w (atPl w P₁) (y w).1 = 1) :
     ∃ γ : UE E n, γ.1.val.charpoly = P ∧ ∀ w ∈ S, ∃ g : UL n w, locPt w γ = g⁻¹ * y w * g := by
-  obtain ⟨γ₀, hγ₀⟩ := companionEll E n P hP
+  obtain ⟨γ₀, hγ₀⟩ := _root_.GlobalTheory.CompanionEll.exists_GL_charpoly_eq E n P hP
   have hAcp : ∀ w : Pl E, (GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ₀).val.charpoly = atPl w P :=
     fun w => by rw [← hγ₀]; exact Matrix.charpoly_map _ _
   have hsep : ∀ w : Pl E, (atPl w P).Separable := fun w => hP.2.2.1.map
   have hk : ∀ w : Pl E, ∃ k : GLw n w,
       (y w).1 = k⁻¹ * GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ₀ * k := fun w =>
-    conjGL _ n _ (y w).1 ((hAcp w).trans (hy w).symm) (hAcp w ▸ hsep w)
+    _root_.GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable _ n _ (y w).1 ((hAcp w).trans (hy w).symm) (hAcp w ▸ hsep w)
   choose k hk using hk
   have hinvol : ∀ w : Pl E, ∀ x, cj w (cj w x) = x := fun w => (GlobalTheory.ConjAtPlace.main E hU w).2.1
   have hval : ∀ w : Pl E, ∀ x, Valued.v (cj w x) = Valued.v x := fun w => (GlobalTheory.ConjAtPlace.main E hU w).2.2.1
@@ -130,7 +126,7 @@ theorem part3 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
     have h3 : ∀ z : GLw n w, z ∈ UL n w → cT (cj w) z.val * 1 * z.val = 1 := by
       intro z hz; unfold UL at hz; rw [if_neg hw] at hz; exact hz
     exact h3 _ (y w).2
-  obtain ⟨H', hH'h, hH'i, hH'p, hH'l⟩ := existForm E hU S hS n γ₀ (hγ₀ ▸ hP)
+  obtain ⟨H', hH'h, hH'i, hH'p, hH'l⟩ := _root_.GlobalTheory.UnitaryClasses.ExistForm.main E hU S hS n γ₀ (hγ₀ ▸ hP)
     (fun w => cT (cj w) ((k w)⁻¹).val * ((k w)⁻¹).val)
     (fun w hw => ⟨herm_of _ (hinvol w) _, det_ne _ _,
       inv_of_unit _ (k w) (GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ₀) (hk w ▸ hyU w hw)⟩)
@@ -142,9 +138,9 @@ theorem part3 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
       intro w _
       by_cases hw : IsSplitAt w
       · rw [if_pos hw]; unfold kapSign; rw [if_pos hw]
-      · rw [if_neg hw, kapSign_eq w hw, hk w, sgnConj _ (cj w) (hval w)]
+      · rw [if_neg hw, kapSign_eq w hw, hk w, _root_.GlobalTheory.UnitaryClasses.SgnConj.sgnOn_conj _ (cj w) (hval w)]
         rfl)
-  obtain ⟨h, hh⟩ := landherrStd E hU n H' hH'h hH'p (fun w hw => by
+  obtain ⟨h, hh⟩ := _root_.GlobalTheory.LandherrStd.main E hU n H' hH'h hH'p (fun w hw => by
     obtain ⟨c, -, hc⟩ := hH'l w hw
     exact ⟨((k w)⁻¹).val * c.val, by rw [hc, cT_mul]; simp only [Matrix.mul_assoc]⟩)
   have hγU : h * γ₀ * h⁻¹ ∈ UE E n := unit_of_form _ γ₀ h (by rw [← hh]; exact hH'i)
@@ -161,7 +157,7 @@ theorem part3 (hU : Unr E) {n : ℕ} {S : Set (Pl E)} (hS : IsSection S) {P : E[
         show (h.val * γ₀.val * (h⁻¹).val).charpoly = _
         rw [Matrix.coe_units_inv]
         exact Matrix.charpoly_units_conj h γ₀.val
-      obtain ⟨h', hh'⟩ := conjGL _ n (y w).1 _ hb.symm ((hy w) ▸ hsep w)
+      obtain ⟨h', hh'⟩ := _root_.GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable _ n (y w).1 _ hb.symm ((hy w) ▸ hsep w)
       have hmem : h' ∈ UL n w := by unfold UL; rw [if_pos hw]; trivial
       exact ⟨⟨h', hmem⟩, Subtype.ext (by simpa using hh')⟩
     · obtain ⟨c, hc1, hc2⟩ := hH'l w hw

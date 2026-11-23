@@ -111,7 +111,7 @@ theorem tsGen_of (hD : CayleyBlocksInvertible) (hK : KAK) (hM : Mult) (hS : SecZ
         simpa [LinearMap.submoduleMap] using this
       show I ((Bm v : W) : PX m n) gpt = I Q1 gpt
       exact hIsec _ _ (fun y' => by rw [hv', h1 y'])
-    have hspan := GlobalTheory.dual_mem_span_eval_of_finiteDimensional V ℓ
+    have hspan := _root_.UpperTheory.Reformulated.B.Yyc2.dual_mem_span_eval_of_finiteDimensional V ℓ
     obtain ⟨cf, hcf⟩ := Finsupp.mem_span_range_iff_exists_finsupp.1 hspan
     have hℓeval : ∀ v : V, ℓ v = ∑ y ∈ cf.support, cf y * (v : GR n → ℂ) y := by
       intro v

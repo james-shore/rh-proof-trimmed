@@ -131,13 +131,9 @@ theorem ptRep_unique {D : D7} (X : HidaSetting D) (u u' : D.what₂.Word) {w w' 
   simp only [ptC, Matrix.map_apply] at hij
   exact X.ιE.symm.injective ((X.B.I.φ v).injective hij)
 
-theorem one_le_g {D : D7} (X : HidaSetting D) : 1 ≤ X.B.g := by
-  rw [X.g_eq]
-  exact Nat.one_le_iff_ne_zero.mpr (Nat.mul_ne_zero (D.host.g_prime 0).ne_zero (D.host.g_prime 1).ne_zero)
-
 theorem scale_pin : ∀ (D : D7) (X : HidaSetting D) (u u' : D.what₂.Word), ∃ s : X.B.I.Ginf → NNReal, (∀ γ, Formalism.L2.SG.RealObj.RegX X u u' γ → s γ = 1) ∧ (∀ γ, 0 < s γ) ∧ (∀ γ, s γ ≤ 1) ∧ ∀ w : Point D.host.E (D.R.rS + 1), (∃ g, Formalism.L2.SG.RealObj.IsPtRep X u u' w g) → (s (Formalism.L2.SG.RealObj.gamW X u u' w) : ℝ) = (((X.B.g : ℝ) ^ (D.R.f * Fintype.card (Formalism.L2.SG.RealObj.FreeE w)))⁻¹) := by
   intro D X u u'
-  have hg : (1 : NNReal) ≤ (X.B.g : NNReal) := by exact_mod_cast one_le_g X
+  have hg : (1 : NNReal) ≤ (X.B.g : NNReal) := by exact_mod_cast _root_.Formalism.L2.SG.PoincareInHH.Cut.one_le_g X
   let sc : X.B.I.Ginf → NNReal := fun γ =>
     if h : ∃ w, IsPtRep X u u' w γ then ((X.B.g : NNReal) ^ (D.R.f * Fintype.card (FreeE h.choose)))⁻¹ else 1
   refine ⟨sc, ?_, ?_, ?_, ?_⟩

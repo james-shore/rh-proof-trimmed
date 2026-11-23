@@ -56,12 +56,6 @@ noncomputable section
 
 namespace GlobalTheory.SqGlue
 
-theorem res_res {X : Scheme.{0}} {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (s : Γ(X, U)) :
-    (X.presheaf.map (homOfLE h₂).op).hom ((X.presheaf.map (homOfLE h₁).op).hom s) =
-      (X.presheaf.map (homOfLE (h₂.trans h₁)).op).hom s := by
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 theorem subsingleton_of_not_nonempty {X : Scheme.{0}} {W : X.Opens} (h : ¬ Nonempty W) : Subsingleton Γ(X, W) := by
   have e : W = ⊥ := by
     ext x
@@ -91,7 +85,7 @@ theorem exists_unit_of_locally {X : Scheme.{0}} [IsIntegral X] {V W : X.Opens} (
     refine res_cancel (W := O x ⊓ O y) (inf_le_left.trans ((hO x).trans hW)) ht ?_
     have e₁ := congrArg (X.presheaf.map (homOfLE (inf_le_left : O x ⊓ O y ≤ O x)).op).hom (hu x)
     have e₂ := congrArg (X.presheaf.map (homOfLE (inf_le_right : O x ⊓ O y ≤ O y)).op).hom (hu y)
-    rw [map_mul, res_res, res_res] at e₁ e₂
+    rw [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres] at e₁ e₂
     exact e₁.symm.trans e₂
   obtain ⟨c, hc, -⟩ := X.sheaf.existsUnique_gluing' O W (fun x => homOfLE (hO x)) hcov
     (fun x => (u x : Γ(X, O x))) hcomp
@@ -105,13 +99,13 @@ theorem exists_unit_of_locally {X : Scheme.{0}} [IsIntegral X] {V W : X.Opens} (
   refine ⟨hunit.unit, ?_⟩
   refine X.sheaf.eq_of_locally_eq' O W (fun x => homOfLE (hO x)) hcov _ _ fun x => ?_
   change (X.presheaf.map (homOfLE (hO x)).op).hom s = (X.presheaf.map (homOfLE (hO x)).op).hom _
-  rw [map_mul, res_res, IsUnit.unit_spec, hc', hu x]
+  rw [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, IsUnit.unit_spec, hc', hu x]
 
 theorem app_res {X Y : Scheme.{0}} (f : X ⟶ Y) {U U' : Y.Opens} {O : X.Opens} (hU : U' ≤ U) (hO : O ≤ f ⁻¹ᵁ U')
     (s : Γ(Y, U)) :
     (X.presheaf.map (homOfLE (hO.trans (f.preimage_mono hU))).op).hom ((f.app U).hom s) =
       (X.presheaf.map (homOfLE hO).op).hom ((f.app U').hom ((Y.presheaf.map (homOfLE hU).op).hom s)) := by
-  rw [← res_res (f.preimage_mono hU) hO]
+  rw [← _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres (f.preimage_mono hU) hO]
   congr 1
   rw [← CommRingCat.comp_apply, ← CommRingCat.comp_apply, Scheme.Hom.naturality]
   rfl
@@ -153,14 +147,14 @@ theorem GlobalTheory.SqGlue.main : ∀ (R' : Type) [CommRing R'] [IsDomain R'] [
     have hl : V k ⊓ V l ⊓ L2.U j ≤ V l ⊓ L2.U j := inf_le_inf_right _ inf_le_right
     have e1 := congrArg (G₁.left.presheaf.map (homOfLE hk).op).hom huk
     have e2 := congrArg (G₁.left.presheaf.map (homOfLE hl).op).hom hul
-    rw [map_mul, map_pow, res_res, res_res] at e1 e2
+    rw [map_mul, map_pow, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres] at e1 e2
     have e : (resU hk uk : Γ(G₁.left, V k ⊓ V l ⊓ L2.U j)) *
         (G₁.left.presheaf.map (homOfLE (hk.trans inf_le_left)).op).hom (a k) ^ 2 =
         (resU hl ul : Γ(G₁.left, V k ⊓ V l ⊓ L2.U j)) *
         (G₁.left.presheaf.map (homOfLE (hl.trans inf_le_left)).op).hom (a l) ^ 2 := by
       rw [coe_resU, coe_resU, ← e1, ← e2]
     refine ⟨V k ⊓ V l ⊓ L2.U j, inf_le_left, ⟨hx, hj⟩, (resU hk uk)⁻¹ * resU hl ul, ?_⟩
-    rw [map_pow, res_res, map_pow, Units.val_mul, _root_.mul_assoc, ← e, ← _root_.mul_assoc, Units.inv_mul, _root_.one_mul]
+    rw [map_pow, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, map_pow, Units.val_mul, _root_.mul_assoc, ← e, ← _root_.mul_assoc, Units.inv_mul, _root_.one_mul]
   · have ht : (f.app (V k)).hom (a k) ≠ 0 := fun h0 =>
       hne k (GlobalTheory.ExpInt.generic_app_injective G₁ (V k) (h0.trans (map_zero _).symm))
     refine (exists_unit_of_locally inf_le_left
@@ -175,9 +169,9 @@ theorem GlobalTheory.SqGlue.main : ∀ (R' : Type) [CommRing R'] [IsDomain R'] [
     have hO₃ : f ⁻¹ᵁ (V k ⊓ L2.U j) ⊓ Lθ.U i ≤ f ⁻¹ᵁ V k ⊓ Lθ.U i :=
       inf_le_inf_right _ (f.preimage_mono inf_le_left)
     have e1 := congrArg ((pullback G₁.hom (jK R')).presheaf.map (homOfLE hO₁).op).hom hw
-    rw [map_mul, map_pow, res_res, res_res] at e1
+    rw [map_mul, map_pow, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres] at e1
     rw [app_res f (inf_le_right : V k ⊓ L2.U j ≤ L2.U j) hO₂, huk, map_mul, map_mul, map_pow, map_pow,
       ← app_res f (inf_le_left : V k ⊓ L2.U j ≤ V k) hO₂] at e1
     refine ⟨_, hO₃, ⟨⟨hy.1, hj⟩, hy.2⟩, resU hO₁ w * resU hO₂ (Units.map (f.app (V k ⊓ L2.U j)).hom.toMonoidHom uk), ?_⟩
-    rw [map_pow, res_res, map_pow, e1, Units.val_mul, coe_resU, coe_resU, Units.coe_map, _root_.mul_assoc]
+    rw [map_pow, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, map_pow, e1, Units.val_mul, coe_resU, coe_resU, Units.coe_map, _root_.mul_assoc]
     rfl

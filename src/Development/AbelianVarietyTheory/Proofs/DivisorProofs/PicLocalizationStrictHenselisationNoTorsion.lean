@@ -62,7 +62,7 @@ theorem pic_localization_strictHenselisation_no_torsion : ∀ (T O : Type) [Comm
   obtain ⟨P, hP, φ, hφ, hsh⟩ := GlobalTheory.StrictHensUnion.isStrictHenselisation_of_directed_union T O hSi
   haveI : IsLocalRing O := hsh.1.toIsLocalRing
   obtain ⟨ζ, hζ, hζu⟩ := GlobalTheory.exists_pow_eq_one_isUnit_one_sub_pow T q hq0 hq hT.2
-  refine GlobalTheory.T.picard_torsion_trivial_of_torsors_have_sections _ q hq0 ?_ ⟨algebraMap T _ ζ, ?_, ?_⟩ ?_ c hc
+  refine _root_.GlobalTheory.KummerStep.kummer_step _ q hq0 ?_ ⟨algebraMap T _ ζ, ?_, ?_⟩ ?_ c hc
   · simpa using hq.map (algebraMap T (Localization (Algebra.algebraMapSubmonoid O (nonZeroDivisors T))))
   · rw [← map_pow, hζ, map_one]
   · intro k hk hkq

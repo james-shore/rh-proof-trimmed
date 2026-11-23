@@ -125,7 +125,7 @@ theorem exists_stCocycles_lower : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) 
         exact this
       · rw [map_sub, (GlobalTheory.T.monV_eq_zero_iff_mem_range_crisIncl' l P V _).mpr ⟨x, rfl⟩, sub_zero]
         rfl)
-  have h5 := GlobalTheory.T.finrank_dcris_phi_fixed_add_finrank_mon_le_alt l P AI T K V V' ρ ρ' m hd hs
+  have h5 := _root_.GlobalTheory.finrank_dcris_phi_fixed_add_finrank_mon_le l P AI T K V V' ρ ρ' m hd hs
   omega
 
 end GlobalTheory.PMon

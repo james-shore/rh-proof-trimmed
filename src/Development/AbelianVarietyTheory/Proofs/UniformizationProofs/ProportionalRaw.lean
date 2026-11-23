@@ -86,8 +86,7 @@ def germs (L : LB X) (Y : Scheme.{0}) : Γ(Y, ⊤) →+* Vals L Y where
   map_zero' := funext fun p => gs_zero _ _ _
   map_add' a b := funext fun p => gs_add (𝟙 Y) p.1 ⊤ trivial a b
 
-theorem sec_ext {M : LB Y} {s s' : LB.Sec M} (h : ∀ j, s.f j = s'.f j) : s = s' := by
-  cases s; cases s'; congr; exact funext h
+alias sec_ext := _root_.ReciprocityTheory.ChartRestriction.G.DVR.SecOps.sec_ext
 
 theorem sval_eq_zero {s : LB.Sec (LB.LinComb L φ ε)} (h : ∀ j, s.f j = 0) (r : Z ⟶ Y) (z : Z) (J) :
     sval s r z J = 0 := (congrArg (gs r z _) (h _)).trans (gs_zero _ _ _)

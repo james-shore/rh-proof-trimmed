@@ -116,10 +116,10 @@ theorem amp_le_mass {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
           have T := GlobalTheory.T.hermitianFrames_stabilizer_acts_on_terms L r k S d x hT h hh
           have hlat := (GlobalTheory.HL.TermBasic.term_basic L r k S d x hT).1.1
           exact ⟨(hPiff _).2 ⟨T.1, (T.2.2.2.2.2.2.2.2.2.1 β J βJ).2 hI⟩, T.2.1,
-            ((GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).1 x hlat).2.2 h hh, fun y hy => hm_inv h hh x y hx hy⟩)
+            ((_root_.GlobalTheory.HL.volSt L r k S).1 x hlat).2.2 h hh, fun y hy => hm_inv h hh x y hx hy⟩)
         (fun x hx => by
           have hb := GlobalTheory.HL.TermBasic.term_basic L r k S d x ((hPiff x).1 hx).1
-          have A := (GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).1 x hb.1.1
+          have A := (_root_.GlobalTheory.HL.volSt L r k S).1 x hb.1.1
           have W := (GlobalTheory.HL.WitIndep.witness_independence L r k S d x _ _ hb.2.1).2.2.2.2
           obtain ⟨h1, h2, h3, h4⟩ := hm x hx
           exact ⟨A.1, A.2.1, W, h1, h2, h3, h4⟩)

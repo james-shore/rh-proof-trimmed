@@ -75,11 +75,6 @@ theorem normAt_zero {F : Type} [Field F] (O : Subring F) {n r : ℕ} (Y : Matrix
   refine ⟨by simp [kMinor], fun I' => ?_⟩
   simpa [kMinor] using O.one_mem
 
-theorem det_mul_expand {F : Type} [CommRing F] {k r : ℕ} (A : Matrix (Fin k) (Fin r) F)
-    (B : Matrix (Fin r) (Fin k) F) :
-    (A * B).det = ∑ f : Fin k → Fin r, (∏ a, A a (f a)) * (B.submatrix f id).det :=
-  _root_.UpperTheory.Reformulated.B.DetMulExpand.det_mul_expand A B
-
 theorem kMinor_mul_expand {F : Type} [CommRing F] {n m r : ℕ} (A : Matrix (Fin n) (Fin m) F)
     (B : Matrix (Fin m) (Fin r) F) (k : ℕ) (hk : k ≤ r) (J : Fin k → Fin n) :
     kMinor (A * B) k hk J = ∑ I : Fin k → Fin m, (∏ a, A (J a) (I a)) * kMinor B k hk I := by
@@ -87,7 +82,7 @@ theorem kMinor_mul_expand {F : Type} [CommRing F] {n m r : ℕ} (A : Matrix (Fin
   have : (A * B).submatrix J (Fin.castLE hk) = A.submatrix J id * B.submatrix id (Fin.castLE hk) := by
     ext a b
     simp [Matrix.mul_apply]
-  rw [this, det_mul_expand]
+  rw [this, _root_.UpperTheory.Reformulated.B.DetMulExpand.det_mul_expand]
   rfl
 
 theorem kMinor_mul_div_mem {F : Type} [Field F] (D : Subring F) {n m r : ℕ} (A : Matrix (Fin n) (Fin m) F)

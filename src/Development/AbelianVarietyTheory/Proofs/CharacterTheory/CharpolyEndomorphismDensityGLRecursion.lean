@@ -80,10 +80,6 @@ theorem cyclic_conj {F : Type} [Field F] {V V' : Type} [AddCommGroup V] [Module 
     have : e y ∈ U.comap (e.symm : V' →ₗ[F] V) := h1 ▸ Submodule.mem_top
     simpa using this
 
-theorem glCard_ne_zero_of_finite (F : Type) [Field F] [Finite F] (n : ℕ) : glCard F n ≠ 0 := by
-  unfold glCard
-  exact_mod_cast (Nat.card_pos (α := GL (Fin n) F)).ne'
-
 theorem mass_const {F : Type} [Field F] [Finite F] {V : Type} [AddCommGroup V] [Module F V]
     [FiniteDimensional F V] (c : ℂ) (P : F[X]) :
     mass (fun _ : Module.End F V => c) P = c * mass (fun _ : Module.End F V => (1 : ℂ)) P := by
@@ -139,7 +135,7 @@ theorem mu_rec : ∀ (F : Type) [Field F] [Finite F] (P : F[X]), P.Monic →
     unfold conv
     refine finsum_mem_congr rfl fun x hx => ?_
     beta_reduce
-    rw [GlobalTheory.T.endomorphismMassOfCharpoly_card_cyclic_vectors F x.1 hx.1, div_self (glCard_ne_zero_of_finite F _)]
+    rw [_root_.GlobalTheory.CuspGL.mass_card_cyclic F x.1 hx.1, div_self (_root_.GlobalTheory.CuspGL.MassMult.glCard_ne_zero F _)]
   rw [← hr, ← key]
   unfold mu
   simp [mul_div_assoc]

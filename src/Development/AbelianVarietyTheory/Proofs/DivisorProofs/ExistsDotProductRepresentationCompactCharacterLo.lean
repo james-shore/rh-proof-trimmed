@@ -65,19 +65,10 @@ noncomputable section
 
 namespace GlobalTheory.CompactCharDual
 
-theorem eq_one_of_pow_close {z : ℂ} (h : ∀ n : ℕ, ‖z ^ n - 1‖ < 1 / 2) : z = 1 := by
-  first
-  | exact @_root_.GlobalTheory.UnitNormRealPartBound.main
-  | exact _root_.GlobalTheory.UnitNormRealPartBound.main
-  | (apply _root_.GlobalTheory.UnitNormRealPartBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitNormRealPartBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitNormRealPartBound.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UnitNormRealPartBound.main ..)
-
 theorem exists_ball_ker {K : Type} [NormedAddCommGroup K] [IsUltrametricDist K] (ψ : AddChar K ℂ)
     (hc : Continuous ψ) : ∃ δ > 0, ∀ x : K, ‖x‖ < δ → ψ x = 1 := by
   obtain ⟨δ, hδ, h⟩ := Metric.continuousAt_iff.1 (hc.continuousAt (x := 0)) (1 / 2) (by norm_num)
-  refine ⟨δ, hδ, fun x hx => eq_one_of_pow_close fun n => ?_⟩
+  refine ⟨δ, hδ, fun x hx => _root_.GlobalTheory.UnitNormRealPartBound.main fun n => ?_⟩
   have := h (x := n • x) (by
     rw [dist_zero_right]; exact (IsUltrametricDist.norm_nsmul_le x n).trans_lt hx)
   rwa [AddChar.map_zero_eq_one, dist_eq_norm, AddChar.map_nsmul_eq_pow] at this

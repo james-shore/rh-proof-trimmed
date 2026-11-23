@@ -237,7 +237,7 @@ theorem fpair_charInd_dualInd_add_cosets : ∀ (k : Type) [Field k] [ValuativeRe
   rw [key, GlobalTheory.T.fourierPairing_pairCharIndicator_dualLatticeIndicator_zero k n q χ hχ e he μ Q, zero_add, Finset.sum_eq_single (ε • Q)]
   · exact (GlobalTheory.T.fourierPairing_pairCharIndicator_cosetIndicator k n q χ hχ e ε hε μ Q (ε • Q) (Pair.dia_lat ε Q)).1 rfl
   · intro Q'' hQ'' hne
-    exact (GlobalTheory.T.fourierPairing_pairCharIndicator_cosetIndicator k n q χ hχ e ε hε μ Q Q'' (mem_withLat.1 hQ'')).2 hne
+    exact (_root_.GlobalTheory.FinPl.CosetPairing.fpair_charInd_cosetInd k n q χ hχ e ε hε μ Q Q'' (mem_withLat.1 hQ'')).2 hne
   · intro h
     exact absurd (mem_withLat.2 (Pair.dia_lat ε Q)) h
 

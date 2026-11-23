@@ -74,7 +74,7 @@ theorem GlobalTheory.InertHeckeTransfer.exists_lift_eigen : ∀ (L : Type) [Fiel
   refine ⟨φ, hφU, fun h => hlam ?_, GlobalTheory.T.fixed_by_unitaryIntegralPoints_of_level_fixed L n F U hD.1 v w hw U0 hU0 Dv.σw b hbK p hp φ hφU
     (fun g κ hκ => by rw [hφ', hφ', hfU g κ hκ]), fun h hh => ?_⟩
   · rw [← hφ', h]; rfl
-  obtain ⟨e, he1, he2, he3⟩ := GlobalTheory.T.exists_canonical_inert_tensor_completion_equiv L n F v w hw Dv hs
+  obtain ⟨e, he1, he2, he3⟩ := _root_.GlobalTheory.InertTransferCanon.exists_canonical_equiv L n F v w hw Dv hs
   have hbP : b ∈ (Formalism.UG.bc (n := Fin n) (Formalism.UG.intL (w.adicCompletion L)).subtype).range := hbK
   let D0 : InertDatum L n v w := ⟨e, Dv.σw, Dv.ϖ, b, he1, Dv.unram, he2, hbP, hbJ⟩
   have hloc : ∀ y, D0.loc y = b⁻¹ * cLoc w (F.j y) * b := by

@@ -95,9 +95,9 @@ theorem exists_haar_prod {G H I : Type} [Fintype I] {U : I → Type} [Group G] [
   have h1 : Measure.haarMeasure K0 (K : Set H) = 1 := Measure.haarMeasure_self
   rw [h1, mul_one]
 
-theorem mat_mul {P Q : ℕ} (a b : UpqT P Q) : UpqT.mat (a * b) = UpqT.mat a * UpqT.mat b := rfl
+alias mat_mul := _root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.UpqT_mat_mul
 
-theorem mat_one {P Q : ℕ} : UpqT.mat (1 : UpqT P Q) = 1 := rfl
+alias mat_one := _root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.UpqT_mat_one
 
 theorem exists_upq_mul {P Q M : ℕ} (A A' : Matrix (Fin P ⊕ Fin Q) (Fin M) ℂ)
     (B B' : Matrix (Fin M) (Fin P ⊕ Fin Q) ℂ) (h1 : A * B = 1) (h2 : B * A = 1) (h3 : A' * B' = 1)

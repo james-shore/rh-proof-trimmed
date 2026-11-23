@@ -92,7 +92,7 @@ theorem charRep_crys_jump_one : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (A
       have h0 : (i - i₀).val = 0 := by
         rw [hbij.1 (hi.trans hi₀.symm), sub_self, ZMod.val_zero]
       rw [h0] at hj
-      have := GlobalTheory.T.exists_invariant_vector_exact_filtrationDegree_Bcris l P AI hT K LL x hx c hc μ (τ.comp ι0) (τ.comp ι0) 0 hμ' hj 1
+      have := _root_.GlobalTheory.exists_letter_vector_exact_degree l P AI hT K LL x hx c hc μ (τ.comp ι0) (τ.comp ι0) 0 hμ' hj 1
         (by simpa using hF1) (by simpa [show (1 : ℤ) + 1 = 2 by norm_num] using hF2)
       simpa using this
     · have hpos : 0 < (i - i₀).val := by
@@ -107,10 +107,10 @@ theorem charRep_crys_jump_one : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (A
         exact DFunLike.congr_fun hc' z
       have hlt : (i - i₀).val < finrank ℚ_[l] ↥(K0 K) := ZMod.val_lt _
       obtain ⟨h1, h2⟩ := hφj _ hpos hlt
-      have := GlobalTheory.T.exists_invariant_vector_exact_filtrationDegree_Bcris l P AI hT K LL x hx c hc μ (τ₀.comp ι0) (τ.comp ι0) (i - i₀).val hμ' hj 0
+      have := _root_.GlobalTheory.exists_letter_vector_exact_degree l P AI hT K LL x hx c hc μ (τ₀.comp ι0) (τ.comp ι0) (i - i₀).val hμ' hj 0
         h1 (by simpa using h2)
       simpa [hτ] using this
-  have hcrys := GlobalTheory.T.isCrys_character_of_crystalline_vectors l P AI hT K LL hA μ hcont (fun τ => if τ = τ₀ then 1 else 0) key
-  exact ⟨hcrys, GlobalTheory.T.crystalline_character_jumps_of_exact_degree l P AI hT K LL hA μ hcont (fun τ => if τ = τ₀ then 1 else 0) key hcrys⟩
+  have hcrys := _root_.GlobalTheory.LetterCrys.isCrys_of_letters l P AI hT K LL hA μ hcont (fun τ => if τ = τ₀ then 1 else 0) key
+  exact ⟨hcrys, _root_.GlobalTheory.Per.CharJumps.jumps_of_exact_degree l P AI hT K LL hA μ hcont (fun τ => if τ = τ₀ then 1 else 0) key hcrys⟩
 
 end GlobalTheory.HWL

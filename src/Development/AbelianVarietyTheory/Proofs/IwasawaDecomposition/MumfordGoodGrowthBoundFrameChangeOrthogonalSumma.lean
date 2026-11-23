@@ -99,7 +99,7 @@ theorem frame_summands_goodBound : ∀ (n g : ℕ) (S : Finset (Fin n)) (W : Set
   obtain ⟨r₁, hr₁, -, B, hB⟩ := GlobalTheory.T.holomorphicFrameChange_local_bounds n K P r hr hP hP0
   obtain ⟨c₁, hc₁⟩ := GlobalTheory.T.mumfordGoodGrowthBound_holomorphic_frameChange n K S c N B
   let Gb : V n → Matrix K K ℂ := fun u => blockDiagonal' fun τ => Q τ u * G₀ u * (Q τ u)ᴴ
-  obtain ⟨c', N', h3⟩ := GlobalTheory.T.mumfordGoodGrowthBound_blocks_of_blockDiagonal n S ι m (fun τ u => Q τ u * G₀ u * (Q τ u)ᴴ) c₁ N
+  obtain ⟨c', N', h3⟩ := _root_.GlobalTheory.GoodMetric.goodBound_of_blockDiagonal' n S ι m (fun τ u => Q τ u * G₀ u * (Q τ u)ᴴ) c₁ N
   refine ⟨min r₁ (1 / 2), by positivity, c', N', fun v hv hvr τ => ?_⟩
   have hv1 : ‖v‖ < r₁ := hvr.trans_le (min_le_left _ _)
   have hv2 : ‖v‖ < 1 / 2 := hvr.trans_le (min_le_right _ _)

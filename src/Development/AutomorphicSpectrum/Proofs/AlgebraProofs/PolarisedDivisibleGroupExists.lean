@@ -323,10 +323,6 @@ theorem baseChange_perfect {R W : Type} [CommRing R] [AddCommGroup W] [Module.Fr
     LinearMap.BilinForm.baseChange_tmul, hdb]
     simp [Finset.sum_ite_eq]
 
-theorem span_gen {R W T : Type} [CommRing R] [AddCommGroup W] [AddCommGroup T] [Module R T]
-    (j : R ⊗[ℤ] W ≃ₗ[R] T) : Submodule.span R (Set.range fun a : W => j (1 ⊗ₜ a)) = ⊤ :=
-  _root_.UpperTheory.Reformulated.B.DYlb6.main j
-
 theorem span_gen_baseChange {R O W T : Type} [CommRing R] [CommRing O] [Algebra R O] [AddCommGroup W]
     [AddCommGroup T] [Module R T] (j : R ⊗[ℤ] W ≃ₗ[R] T) :
     Submodule.span O (Set.range fun a : W => (1 : O) ⊗ₜ[R] j (1 ⊗ₜ a)) = ⊤ := by
@@ -337,7 +333,7 @@ theorem span_gen_baseChange {R O W T : Type} [CommRing R] [CommRing O] [Algebra 
   | add x y hx hy => exact Submodule.add_mem _ hx hy
   | tmul o t =>
     have ht : t ∈ Submodule.span R (Set.range fun a : W => j (1 ⊗ₜ a)) := by
-      rw [span_gen]; trivial
+      rw [_root_.UpperTheory.Reformulated.B.DYlb6.main]; trivial
     induction ht using Submodule.span_induction generalizing o with
     | mem t h =>
       obtain ⟨a, rfl⟩ := h
@@ -499,7 +495,7 @@ theorem exists_HTPoint : FarguesHodgeTate → ∀ (p : ℕ) [Fact p.Prime] (C : 
       simpa [Bp, b0] using this
   have hpairing : ∀ x y, pairing G O y (tateMap G G.dual O lam x) = Bp x y • muTate O ζ' h0 hs := by
     have hst : Submodule.span ℤ_[p] (Set.range τ) = ⊤ := by
-      have := span_gen j
+      have := _root_.UpperTheory.Reformulated.B.DYlb6.main j
       simpa only [hj] using this
     have hbil : (pairing G O).flip ∘ₗ tateMap G G.dual O lam =
         Bp.compr₂ (LinearMap.toSpanSingleton ℤ_[p] _ (muTate O ζ' h0 hs)) := by

@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem TwChrOne : PI.TwChrOne.TwChrOne := PI.TwChrOne.Pf.twChrOne_main
+alias TwChrOne := _root_.PI.TwChrOne.Pf.twChrOne_main

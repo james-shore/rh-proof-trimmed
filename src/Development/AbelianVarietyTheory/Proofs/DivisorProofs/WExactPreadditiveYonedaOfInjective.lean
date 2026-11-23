@@ -72,7 +72,7 @@ theorem wExact_preadditiveYoneda_of_injective (R : Type) [CommRing R] (T : Type 
     haveI h3 : QuasiIso ((AlgebraicTopology.alternatingFaceMapComplex (Shv R)).map (Functor.constComp SimplexCategoryᵒᵖ (Ψ.obj U).unop (free R)).hom) :=
       quasiIso_of_isIso _
     exact quasiIso_comp (hφ := h2) (hφ' := h3) _ _
-  obtain ⟨hepi, ⟨w, hex⟩, hn⟩ := (GlobalTheory.T.face_map_complex_quasi_iso_iff_epi_exact _ K B f).1 hq'
+  obtain ⟨hepi, ⟨w, hex⟩, hn⟩ := (_root_.GlobalTheory.EtC.AugExact.augmented_exact_iff _ K B f).1 hq'
   have hepi' : Epi ((free R).map (Ψ.map (a.app (SimplexCategory.mk 0))).unop) := by
     have e : f.app (op (SimplexCategory.mk 0)) = (free R).map (Ψ.map (a.app (SimplexCategory.mk 0))).unop :=
       Category.comp_id _

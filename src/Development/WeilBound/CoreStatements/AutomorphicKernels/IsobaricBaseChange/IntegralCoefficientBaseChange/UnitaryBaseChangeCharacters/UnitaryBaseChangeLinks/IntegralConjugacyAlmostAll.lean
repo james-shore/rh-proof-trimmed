@@ -133,12 +133,12 @@ theorem locConj [CompleteSpace L] {σ : L →+* L} {ϖ : L} {q : ℕ} (hσ : IsU
     apply Matrix.map_injective (f := φ) Subtype.val_injective
     show (T₀ * Y.val).map φ = (Y.val * T₀).map φ
     rw [Matrix.map_mul, Matrix.map_mul, hT₀, hYm, hTy]
-  obtain ⟨p, hp⟩ := GlobalTheory.T.localRing_exists_aeval_of_commute_separable (intL L) n Y.val T₀ hs hT₀c
+  obtain ⟨p, hp⟩ := _root_.GlobalTheory.LocalCommutant.exists_aeval_of_comm (intL L) n Y.val T₀ hs hT₀c
   have hTp : tU.val = aeval ym (p.map φ) := by
     change T = _
     rw [← hT₀, hp, ← hYm, GlobalTheory.UTr.aeval_map_map]
   have hch : ym.charpoly = Y.val.charpoly.map φ := by rw [← hYm, Matrix.charpoly_map]
-  obtain ⟨s, hs1, hs2⟩ := GlobalTheory.T.exists_commute_mul_cT_eq_of_integral_hermitian_polynomial L σ ϖ q hσ n ym Y.val.charpoly hyI hyU hch hs tU hTI htiI hTfix ⟨p, hTp⟩
+  obtain ⟨s, hs1, hs2⟩ := _root_.GlobalTheory.NormEq.hermUnit_eq_norm L σ ϖ q hσ n ym Y.val.charpoly hyI hyU hch hs tU hTI htiI hTfix ⟨p, hTp⟩
   refine ⟨s⁻¹ * g, ?_, ?_⟩
   · set S := s.val
     set Si := (s⁻¹ : GL (Fin n) L).val

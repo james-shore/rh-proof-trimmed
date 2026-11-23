@@ -63,14 +63,6 @@ theorem finPart_cA (z : AE D) : finPart D (cA D z) = sigR (Af D.host.F) D.sp.cm.
   | tmul a x => rfl
   | add a b ha hb => simp only [map_add (f := _), ha, hb]
 
-theorem cA_cA' (z : AE D) : cA D (cA D z) = z := by
-  induction z using TensorProduct.induction_on with
-  | zero => simp only [map_zero]
-  | tmul a x =>
-    change a ⊗ₜ[D.host.F] star (star x) = _
-    rw [star_star]
-  | add a b ha hb => simp only [map_add (f := _), ha, hb]
-
 theorem cA_mem {z : AE D} (hz : z ∈ intRing D) : cA D z ∈ intRing D := by
   rw [mem_intRing] at hz ⊢
   rw [finPart_cA]
@@ -86,12 +78,5 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 variable (p : SplitPt D k)
 
 variable {p} {N : ℕ}
-
-section Line
-
-variable {S : HSp D} [Subsingleton (Fin S.rank)] (i : Fin S.rank)
-
-
-end Line
 
 end GlobalTheory.RamLine

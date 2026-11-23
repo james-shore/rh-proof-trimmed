@@ -54,7 +54,7 @@ private theorem pq_isStd_eta {B : Type} [CommRing B] {J : Ideal B} (δ : Divided
 
 theorem repr_sum {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) (b : ℕ →₀ B) :
     (pq B).e.repr (b.sum fun k c => algebraMap B (pq B).P c * (eta δ).dpow k ((pq B).e 1)) = b := by
-  have hs := pq_isStd_eta δ
+  have hs := _root_.CrystallineSemistableComparison.Pb.Site.eta_std δ
   have h1 : (b.sum fun k c => algebraMap B (pq B).P c * (eta δ).dpow k ((pq B).e 1)) =
       Finsupp.linearCombination B (pq B).e b := by
     rw [Finsupp.linearCombination_apply]

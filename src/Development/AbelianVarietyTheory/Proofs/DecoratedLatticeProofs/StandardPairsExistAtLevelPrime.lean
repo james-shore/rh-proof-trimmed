@@ -74,11 +74,6 @@ theorem not_sq_dvd (E : Type) [Field E] [NumberField E] (T : ℕ) (hT : T.Prime)
     (w : HeightOneSpectrum (𝓞 E)) (hw : (T : 𝓞 E) ∈ w.asIdeal) : ¬ w.asIdeal ^ 2 ∣ Ideal.span {(T : 𝓞 E)} :=
   GlobalTheory.T.not_sq_dvd_of_rationalPrimeSplitsCompletely E T hT hs w hw
 
-theorem places_over (D : D7) (π π' : 𝓞 D.host.E) (T : ℕ) (hπ' : (π' : D.host.E) = star (π : D.host.E))
-    (hT : π * π' = (T : 𝓞 D.host.E)) (hne : π ≠ 0) (x : HeightOneSpectrum (𝓞 D.host.F)) :
-    (T : 𝓞 D.host.F) ∈ x.asIdeal ↔ ∃ w ∈ Formalism.L2.Col.divs π, w.under (𝓞 D.host.F) = x :=
-  GlobalTheory.T.places_dvd_norm_iff_under_primes_dvd D π π' T hπ' hT hne x
-
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
 theorem pr_int (p : SplitPt D k) (x : 𝓞 D.host.E) : p.pr (incA D (x : D.host.E)) ∈ 𝒪[k] := by
@@ -140,7 +135,7 @@ open GlobalTheory.AdForm
 theorem stdEx' : StdEx' := by
   intro B X I hI _hP l Z u ψ hψ L hL
   haveI hTf : Fact (B.T u).Prime := ⟨l.pr.T_prime u⟩
-  obtain ⟨hcard, hirr⟩ := qt_facts (B.T u)
+  obtain ⟨hcard, hirr⟩ := _root_.GlobalTheory.TAdicInt.card_residueField_and_irreducible (B.T u)
   have hcop : IsCoprime (X.piT u) (B.fields.conjO (X.piT u)) := l.pr.piT_cop u
   have hne : X.piT u ≠ 0 := by
     intro h0
@@ -163,7 +158,7 @@ theorem stdEx' : StdEx' := by
   have hsplitT := (GlobalTheory.St.G.record_facts (I.rec7 l Z) u).1
   have hsp : ∀ i : (B.primes X).vT u, ∃ p : SplitPt (I.rec7 l Z) ℚ_[B.T u], p.e = e i := fun i =>
     (GlobalTheory.InhPt.exists_splitPt_frame_char (I.rec7 l Z)).1 ℚ_[B.T u] (B.T u) hTf.out hcard hirr i.1 (e i) (he i) (he i).1
-      (l.pr.vT_norm u _ i.2) (not_sq_dvd _ (B.T u) hTf.out hsplitT i.1 (by
+      (l.pr.vT_norm u _ i.2) (_root_.GlobalTheory.St.G.SplitUnram.not_sq_dvd_of_splitsIn _ (B.T u) hTf.out hsplitT i.1 (by
         have h := Ideal.mul_mem_right (B.fields.conjO (X.piT u)) _ (hmem i)
         rw [l.pr.piT_norm u] at h
         exact h))
@@ -174,7 +169,7 @@ theorem stdEx' : StdEx' := by
     intro i
     obtain ⟨ε, h1, h2⟩ := (p i).above
     exact GlobalTheory.IdemUnder.under_eq_of_isIdemAt _ _ _ _ ε (hidem i) h1 h2
-  have hover := fun x => places_over (I.rec7 l Z) (X.piT u) (B.fields.conjO (X.piT u)) (B.T u) rfl (l.pr.piT_norm u) hne x
+  have hover := fun x => _root_.GlobalTheory.NormPlaces.places_dvd_iff (I.rec7 l Z) (X.piT u) (B.fields.conjO (X.piT u)) (B.T u) rfl (l.pr.piT_norm u) hne x
   have hTv : ∀ i, ((B.T u : ℕ) : 𝓞 (I.rec7 l Z).host.F) ∈ (p i).v.asIdeal := fun i =>
     (hover (p i).v).2 ⟨wE i, i.2, hv i⟩
   have hunit : ∀ i, (p i).UnitAA := fun i => GlobalTheory.FinPl.UnitAt.unitAA_level I l Z u (p i) (hTv i)

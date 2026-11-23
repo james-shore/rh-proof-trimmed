@@ -167,12 +167,12 @@ theorem exists_place_weighted_over_place : ∀ {K κ κ' L : Type} [Field K] [Fi
       (fun i => algebraMap (K ⊗[ℂ] κ') L (x i ⊗ₜ 1)))) + 1 ≤ M * ((fun ω => @dite ℤ (∃ a, E.IsFormOrd ω a) (Classical.propDecidable _) (fun h => h.choose) (fun _ => 0)) (dForm (algebraMap ℂ K) x) + 1) + k := by
   intro K κ κ' L _ _ _ _ _ _ _ _ _ _ _ n k k' x τ' R π ρ hx hτ hO hz hc hR hπ E hER hE M hk hM
   obtain ⟨Q, hQ, z, hm, hdim, hEQ, hg, hb, hu, hJ, y, q, hy, hq, hform⟩ :=
-    GlobalTheory.T.exists_regular_localModel_graph_of_place (L := L) n k k' x τ' R π ρ hx hτ hO hz hc hR hπ E hER hE
+    _root_.GlobalTheory.GraphLocal.exists_locModel_graph (L := L) n k k' x τ' R π ρ hx hτ hO hz hc hR hπ E hER hE
   obtain ⟨k, rfl⟩ : ∃ j, k = j + 1 := ⟨k - 1, by omega⟩
   have hw := trBasis_append_tmul (W := L) hx hτ
   let σ : Equiv.Perm (Fin (k + 1 + 1)) := Equiv.swap 0 1
   let wt : Fin (k + 1 + 1) → ℕ := fun i => if i = 1 then M else 1
-  obtain ⟨V, hVQ, hV0, hVz, hVd, hVf⟩ := GlobalTheory.T.exists_weighted_monomial_valuation_of_parameters (algebraMap ℂ L) Q hQ (k + 1) (k' + n)
+  obtain ⟨V, hVQ, hV0, hVz, hVd, hVf⟩ := _root_.GlobalTheory.MonoVal.monomial_place (algebraMap ℂ L) Q hQ (k + 1) (k' + n)
     (z ∘ σ) wt (by rw [σ.surjective.range_comp]; exact hm) hdim (by simp [wt])
     (fun i => by simp only [wt]; split_ifs <;> omega) ⟨_, hw⟩
   have hz0 : V.ord (z 0) = M := by simpa [σ, wt] using hVz 1

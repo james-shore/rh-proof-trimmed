@@ -146,8 +146,8 @@ theorem ampleVanishing : GlobalTheory.Published.AmpleVanishing := by
       rcases hd₂ with e | e
       · rw [e]; exact hd
       · exact Or.inr e
-  obtain ⟨N₁, hN₁⟩ := GlobalTheory.T.serre_vanishing_lineBundleInvMix_fixed_difference K A hA L hL hamp ((a : ℤ) - b)
-  obtain ⟨N₂, hN₂⟩ := GlobalTheory.T.serre_vanishing_lineBundleInvMix_fixed_difference K A hA L hL hamp 0
+  obtain ⟨N₁, hN₁⟩ := _root_.GlobalTheory.AmpleGen.exists_not_NV_mix K A hA L hL hamp ((a : ℤ) - b)
+  obtain ⟨N₂, hN₂⟩ := _root_.GlobalTheory.AmpleGen.exists_not_NV_mix K A hA L hL hamp 0
   obtain ⟨a', b', -, hn, h, hd⟩ := grow (N₁ + N₂)
   obtain ⟨t, ht⟩ : ∃ t, T = t + 1 := ⟨T - 1, by omega⟩
   rw [ht] at h

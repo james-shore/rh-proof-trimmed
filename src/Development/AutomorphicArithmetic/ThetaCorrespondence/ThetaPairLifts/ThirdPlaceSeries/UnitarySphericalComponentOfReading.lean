@@ -67,7 +67,7 @@ theorem unitarySphericalComponent_of_reading_alt : GlobalTheory.Published.Bernst
     rw [T.frobEig w _ hu, hloc, (hL i w hw).sat _ _ α hα, Multiset.map_map]
     simp
   have h1 : GlobalTheory.RowSatakeBound.IsUnitarySatakeAt w R.r (Finset.univ.val.map fun j => (α j : ℂ)) :=
-    GlobalTheory.T.isUnitarySphericalSatake_of_unitarisable_hasSatake H.E w R.r _ α hα (hU i w hw σ hσ)
+    _root_.GlobalTheory.SatHecke.isUnitarySatakeAt_of_hasSatake H.E w R.r _ α hα (hU i w hw σ hσ)
   rw [hfrob]
   refine ⟨?_, ?_⟩
   · simpa [Multiset.map_map, Function.comp_def] using h1

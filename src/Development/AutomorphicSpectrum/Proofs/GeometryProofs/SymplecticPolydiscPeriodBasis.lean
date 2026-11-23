@@ -130,12 +130,8 @@ theorem exists_seq (h : a ≤ n) : ∃ u : ℕ → Fin n → ℂ, (∀ m, u m �
       exact tendsto_inv_atTop_zero.comp
         (tendsto_atTop_add_const_right _ _ tendsto_natCast_atTop_atTop)
 
-theorem logCover_nonempty (h : a ≤ n) : (logCover h).Nonempty := by
-  obtain ⟨u, hu, -⟩ := exists_seq h
-  exact ⟨u 0, hu 0⟩
-
 theorem T_fix (L : LogPeriods n a g Λ) (i : Fin a) (x : L.W) : L.T i x = x := by
-  obtain ⟨w, hw⟩ := logCover_nonempty L.a_le
+  obtain ⟨w, hw⟩ := _root_.GroundTheory.Heights₂.Heights.Regular.logCover_nonempty L.a_le
   apply GlobalTheory.CompanionTheory.Ar.Flat.LogPeriodsModel.P_injective L hw
   rw [← L.mono i w hw, ← L.s_eq x _ (shift_mem L.a_le i hw), expCover_shift, L.s_eq x w hw]
 
@@ -148,7 +144,7 @@ theorem T_fix_of_smul (L : LogPeriods n a g Λ) (i : Fin a) {c : Λ} {k : ℤ} (
 
 theorem T_isometry (L : LogPeriods n a g Λ) (i : Fin a) (x y : Λ) :
     L.E (L.T i x) (L.T i y) = L.E x y := by
-  obtain ⟨w, hw⟩ := logCover_nonempty L.a_le
+  obtain ⟨w, hw⟩ := _root_.GroundTheory.Heights₂.Heights.Regular.logCover_nonempty L.a_le
   have h1 := L.im w hw (L.T i x) (L.T i y)
   have h2 := L.im _ (shift_mem L.a_le i hw) x y
   rw [expCover_shift, L.mono i w hw, L.mono i w hw, h1] at h2

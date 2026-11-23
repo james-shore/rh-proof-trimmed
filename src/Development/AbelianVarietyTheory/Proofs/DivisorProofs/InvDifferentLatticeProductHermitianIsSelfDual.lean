@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsTransvectionVectorsNeighbour
 
 @[expose] public section
 
@@ -79,8 +80,6 @@ theorem conj_smul (D : Formalism.BasicNotions.D7) (c : 𝓞 D.host.E) (x : D.hos
     D.host.conj (c • x) = D.host.conj (c : D.host.E) * D.host.conj x := by
   rw [Algebra.smul_def, map_mul]
 
-theorem intE_coe (D : Formalism.BasicNotions.D7) (c : 𝓞 D.host.E) : IntE D (c : D.host.E) := ⟨c, rfl⟩
-
 theorem intE_mul_conj (D : Formalism.BasicNotions.D7) (cc : Ideal (𝓞 D.host.K)) (r : D.host.E) (hn : (Ideal.absNorm cc : D.host.E) ≠ 0)
     (hs : GlobalTheory.NormExact.IsScale D cc r) {u x : D.host.E} (hu : u ∈ bInv D cc r) (hx : x ∈ bInv D cc r) :
     IntE D (u * D.host.conj x) := by
@@ -96,12 +95,12 @@ theorem intE_mul_conj (D : Formalism.BasicNotions.D7) (cc : Ideal (𝓞 D.host.K
     | add y z _ _ hy hz => rw [map_add (f := _), mul_add]; exact add_mem hy hz
     | smul c y _ hy =>
       rw [conj_smul, mul_left_comm]
-      exact mul_mem (GlobalTheory.InertSign.IntE.conj (intE_coe D c)) hy
+      exact mul_mem (GlobalTheory.InertSign.IntE.conj (_root_.GlobalTheory.NbVec.intE_coe D c)) hy
   | zero => rw [zero_mul]; exact zero_mem _
   | add y z _ _ hy hz => rw [add_mul]; exact add_mem (hy hx) (hz hx)
   | smul c y _ hy =>
     rw [Algebra.smul_def, mul_assoc]
-    exact mul_mem (intE_coe D c) (hy hx)
+    exact mul_mem (_root_.GlobalTheory.NbVec.intE_coe D c) (hy hx)
 
 theorem one_mem_pairSpan (D : Formalism.BasicNotions.D7) (cc : Ideal (𝓞 D.host.K)) (r : D.host.E)
     (hn : (Ideal.absNorm cc : D.host.E) ≠ 0) (hs : GlobalTheory.NormExact.IsScale D cc r) :

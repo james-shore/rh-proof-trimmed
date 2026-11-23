@@ -166,7 +166,7 @@ theorem can_trans {κ ι ι' : Type} [Fintype κ] [Fintype ι] [DecidableEq ι] 
   let R : ((ι' → ℚ) × (ι' → ℚ)) →ₗ[ℚ] ((ι → ℚ) × (ι → ℚ)) :=
     (LinearMap.funLeft ℚ ℚ e).prodMap (LinearMap.funLeft ℚ ℚ e)
   have hd : ∀ a b : ι' → ℚ, (a ∘ e) ⬝ᵥ (b ∘ e) = a ⬝ᵥ b := fun a b => e.sum_comp fun i => a i * b i
-  obtain ⟨σ, hσ, H⟩ := GlobalTheory.T.exists_symplectic_action_of_period_lattice_map ι (R ∘ₗ F) (fun u v => by
+  obtain ⟨σ, hσ, H⟩ := _root_.GlobalTheory.SymplecticPeriods.exists_symplectic_action ι (R ∘ₗ F) (fun u v => by
     rw [← hF u v, ← hd, ← hd (F u).2]; rfl)
   obtain ⟨ω, hω⟩ := GlobalTheory.T.exists_weil_of_symplectic' κ ι σ hκ hσ
   obtain ⟨h1, h2, -⟩ := hω φ hφ

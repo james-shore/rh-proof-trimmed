@@ -93,7 +93,7 @@ theorem GlobalTheory.CoreOnto.IntDatum.psi_int : All fun {D} _ _ _ {G} W _ => �
   have hs0 : (N : 𝓞 D.host.E) ≠ 0 := by exact_mod_cast hNn
   have hN0 : ((N : 𝓞 D.host.E) : D.host.E) ≠ 0 := by exact_mod_cast hNn
   have hα : ((N : 𝓞 D.host.E) : D.host.E) ∈ D.host.AA := by
-    have := GlobalTheory.HostClear.absNorm_mem_AA D
+    have := _root_.Formalism.L2.Pj.normK_mem_AA D
     push_cast
     exact this
   have h1 := GlobalTheory.AscFinWit.rat_mem_latO (P := fun _ => True) hS hT x₀ (fun y hy => hx₀ y hy) hα

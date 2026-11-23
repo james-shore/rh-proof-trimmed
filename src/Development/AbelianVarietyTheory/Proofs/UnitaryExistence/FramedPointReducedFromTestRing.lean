@@ -163,7 +163,7 @@ theorem exists_away_val {K S : Type} [Field K] [CommRing S] [Algebra K S] (S₁ 
     ∃ θ : Localization.Away b →ₐ[K] Localization.Away (b : S),
       (∀ s : S₁, θ (algebraMap S₁ _ s) = algebraMap S _ (s : S)) ∧ Function.Injective θ := by
   obtain ⟨b, hb⟩ := b
-  obtain ⟨θ, hθ, hinj, -⟩ := GlobalTheory.exists_awayMap_subalgebra K S S₁ b hb
+  obtain ⟨θ, hθ, hinj, -⟩ := _root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding K S S₁ b hb
   exact ⟨θ, hθ, hinj⟩
 
 theorem frMap_restrict {S : Type} [CommRing S] [Algebra c.F S]

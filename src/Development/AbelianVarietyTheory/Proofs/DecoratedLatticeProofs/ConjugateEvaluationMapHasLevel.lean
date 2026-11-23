@@ -58,7 +58,7 @@ namespace GlobalTheory.ConjRowLev
 variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D)
 
 theorem e_left (k : X.B.I.Gf) (hk : k ∈ X.K2) (y : X.B.I.Gf) : X.B.e y = X.chi2 k * X.B.e (k * y) := by
-  obtain ⟨-, hKm, hKi, hχm, hχn⟩ := Formalism.L2.SG.Closed.level_subgroup_is_group X
+  obtain ⟨-, hKm, hKi, hχm, hχn⟩ := _root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X
   have hK : ∀ z, z ∈ Formalism.L2.SG.HidaSetting.K2set X.B.I X.B.g X.e0 X.z0 X.bw ↔ z ∈ X.K2 := fun z => Iff.rfl
   rw [X.e_eq y, X.e_eq (k * y)]
   by_cases hy : y ∈ X.K2

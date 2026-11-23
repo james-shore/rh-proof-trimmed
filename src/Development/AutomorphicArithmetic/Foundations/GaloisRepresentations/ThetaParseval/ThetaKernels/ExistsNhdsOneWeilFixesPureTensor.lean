@@ -148,7 +148,7 @@ theorem UpperTheory.exists_nhds_one_weil_fixes_pure_tensor :
     | succ k ih =>
       rw [pow_succ, show ((u ^ k * u, 1) : UA σ X.J × UA σ W.J) = (u ^ k, 1) * (u, 1) from by simp, map_mul,
         Module.End.mul_apply, hc, map_smul, ih, smul_smul, pow_succ']
-  have h6 : c = 1 := PositivityTheory.ThKH.Locrep.eq_one_of_pow_near fun k => by
+  have h6 : c = 1 := _root_.UpperTheory.Reformulated.B.Yhd7.main fun k => by
     have := h3 hu k
     rwa [Set.mem_ofPred_eq, h5, Pi.smul_apply, smul_eq_mul, mul_div_assoc, div_self hy, mul_one] at this
   intro f

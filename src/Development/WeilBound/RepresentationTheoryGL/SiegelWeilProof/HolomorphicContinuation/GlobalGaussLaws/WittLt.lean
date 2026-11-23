@@ -112,7 +112,7 @@ theorem wittLBlt : WittLBlt := by
       rw [hTt]
       ext a b
       simp only [Matrix.map_apply]
-      exact WLt.emb_cc φ _
+      exact _root_.GlobalTheory.Published.embedding_cc φ _
     rw [hm]
     exact hsig _
   obtain ⟨W, hWr, hW⟩ := WLt.main_iso k V.gramᵀ hG hd (by simpa using hk) hsigT

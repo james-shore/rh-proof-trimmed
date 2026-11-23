@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PerCApply
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimilitudePairGramInvCongruent
 
 @[expose] public section
 
@@ -83,13 +84,6 @@ private lemma thR_tmul (th : VQ D →+ Arch G) (a : ℝ) (w : VQ D) :
     thR th (a ⊗ₜ w) = a • th w := by
   simp [thR]
 
-private lemma psiR_tm (G : HTGroup p) (v : InfinitePlace G.F) (r : ℝ) (c : G.C) :
-    G.psiR v (r ⊗ₜ c) = r • G.psi v c := by
-  rw [Algebra.smul_def]
-  unfold HTGroup.psiR
-  erw [Algebra.TensorProduct.lift_tmul]
-  rfl
-
 private lemma thR_act (L : Link D G) (th : VQ D →+ Arch G)
     (hrep : ∀ c w v, th (L.rep c w) v = G.psi v c *ᵥ th w v)
     (a : ℝ ⊗[ℚ] G.C) (x : ℝ ⊗[ℚ] VQ D) (v : InfinitePlace G.F) :
@@ -109,7 +103,7 @@ private lemma thR_act (L : Link D G) (th : VQ D →+ Arch G)
           Module.algebraMap_end_apply]
         change r • (s ⊗ₜ[ℚ] (L.rep c w)) = _
         rw [TensorProduct.smul_tmul', smul_eq_mul]
-      rw [h, thR_tmul, thR_tmul, psiR_tm, Pi.smul_apply, Pi.smul_apply, hrep,
+      rw [h, thR_tmul, thR_tmul, _root_.GlobalTheory.LKMid.psiR_tmul, Pi.smul_apply, Pi.smul_apply, hrep,
         Matrix.smul_mulVec, Matrix.mulVec_smul, mul_smul]
 
 private lemma form_ext (th : VQ D →+ Arch G) (lam : InfinitePlace G.F → ℂ)

@@ -54,10 +54,6 @@ private theorem exists_conj (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosed Ω
     (ComplexEmbedding.conjugate j) (Subsingleton.elim _ _)
   exact ⟨j, σ.symm.toRingEquiv, fun x => DFunLike.congr_fun hσ x⟩
 
-private theorem conj_of_sq {w : ℂ} {q : ℕ} (hq : 0 < q) (h : w ^ 2 = (q : ℂ)) :
-    starRingEnd ℂ w = w :=
-  _root_.UpperTheory.Reformulated.B.Qh56.conj_of_sq hq h
-
 private theorem sq_fix {E Y Ω : Type} [Field E] [Field Y] [Field Ω] [Algebra E Y] [Algebra Y Ω]
     (δ : Y) (q : ℕ) (hq : δ ^ 2 = (q : Y))
     (hspan : ∀ y : Y, ∃ a b : E, y = algebraMap E Y a + algebraMap E Y b * δ)
@@ -87,7 +83,7 @@ theorem UpperTheory.Gal.UnramifiedFromSplittingCriterion.twoPrimes :
   have hcc : ∀ z, c (c z) = z := fun z => j0.injective (by rw [hc, hc, Complex.conj_conj])
   have hcδ : c (algebraMap Y Ω δ) = algebraMap Y Ω δ := j0.injective (by
     rw [hc]
-    exact conj_of_sq hq0 (by rw [← map_pow, hδ2, map_natCast]))
+    exact _root_.UpperTheory.Reformulated.B.Qh56.conj_of_sq hq0 (by rw [← map_pow, hδ2, map_natCast]))
   have hcroot : ∀ ξ : Ω, ξ ^ M = 1 → c ξ = ξ⁻¹ := fun ξ h => j0.injective (by
     have h1 : (j0 ξ) ^ M = 1 := by rw [← map_pow, h, map_one]
     rw [hc, map_inv₀, Complex.inv_eq_conj (Complex.norm_eq_one_of_pow_eq_one h1 hM.ne')])

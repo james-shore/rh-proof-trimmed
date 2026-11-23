@@ -56,13 +56,6 @@ namespace GlobalTheory.CuspDim.IsoPow
 
 variable {Z : Scheme.{0}} {B : LB Z}
 
-theorem res_res {U V W : Z.Opens} (h : V ≤ U) (h' : W ≤ V) (u : Γ(Z, U)ˣ) :
-    res h' (res h u) = res (h'.trans h) u := by
-  ext
-  change (Z.presheaf.map (homOfLE h).op ≫ Z.presheaf.map (homOfLE h').op).hom u.val = _
-  rw [← Functor.map_comp]
-  rfl
-
 theorem pow_le (n : ℕ) (j : PUnit → B.ι) : (lbPow B n).U j ≤ B.U (j PUnit.unit) :=
   LB.wchart_le B (fun _ => 𝟙 Z) j PUnit.unit
 
@@ -73,7 +66,7 @@ theorem res_pow_g (n : ℕ) (j j' : PUnit → B.ι) {W : Z.Opens} (h : W ≤ (lb
       res (inf_le_inf (pow_le n j) (pow_le n j')) (B.g (j PUnit.unit) (j' PUnit.unit)) ^ (n : ℤ) :=
     Fintype.prod_unique fun a : PUnit.{1} => res (le_inf (inf_le_left.trans (LB.wchart_le B (fun _ => 𝟙 Z) j a))
       (inf_le_right.trans (LB.wchart_le B (fun _ => 𝟙 Z) j' a))) (pullU (𝟙 Z) _ (B.g (j a) (j' a))) ^ (n : ℤ)
-  rw [e, zpow_natCast, map_pow, res_res]
+  rw [e, zpow_natCast, map_pow, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
 
 
 

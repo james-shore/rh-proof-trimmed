@@ -47,6 +47,7 @@ public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagIndices
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
 import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
 
 @[expose] public section
 
@@ -55,20 +56,13 @@ open GroundTheory.Heights₂.Heights.LowerBoundFree (ComponentData ComponentSett
 
 namespace RootFieldNumerics
 
-theorem geoNum_zero_nonneg' {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] (W : Ideal (MRing ι))
-    (a : Fin 0 → K → ℤ) : 0 ≤ geoNum 0 W a := by
-  rw [geoNum]
-  split_ifs
-  · exact Int.natCast_nonneg _
-  · exact le_rfl
-
 theorem geoNum_one_nonneg' {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] (W : Ideal (MRing ι))
     (a : K → ℤ) (ha : ∀ k, 0 ≤ a k) : 0 ≤ geoNum 1 W (fun _ => a) := by
   rw [geoNum]
   split_ifs
   · refine Finset.sum_nonneg fun k _ => mul_nonneg (ha k) ?_
     refine finsum_nonneg fun V => finsum_nonneg fun _ => ?_
-    exact mul_nonneg (Int.natCast_nonneg _) (geoNum_zero_nonneg' _ _)
+    exact mul_nonneg (Int.natCast_nonneg _) (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.geoNum_zero_nonneg _ _)
   · exact le_rfl
 
 end RootFieldNumerics

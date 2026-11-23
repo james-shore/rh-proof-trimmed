@@ -63,42 +63,20 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 
 namespace UpperTheory.KumRoot
 
-private lemma map_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U)
-    (x : Sec F U) : Sec.map φ (Sec.res g x) = Sec.res g (Sec.map φ x) := by
-  show (ModuleCat.Hom.hom (φ.hom.app (op V))) ((ModuleCat.Hom.hom (F.obj.map g.op)) x) =
-    (ModuleCat.Hom.hom (G.obj.map g.op)) ((ModuleCat.Hom.hom (φ.hom.app (op U))) x)
-  rw [← ModuleCat.comp_apply, ← ModuleCat.comp_apply, φ.hom.naturality]
+private alias map_res := _root_.GlobalTheory.EtC.exactIff_map_res
 
-private lemma res_comp {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U)
-    (x : Sec F U) : Sec.res k (Sec.res g x) = Sec.res (k ≫ g) x := by
-  show (ModuleCat.Hom.hom (F.obj.map k.op)) ((ModuleCat.Hom.hom (F.obj.map g.op)) x) =
-    (ModuleCat.Hom.hom (F.obj.map (k ≫ g).op)) x
-  rw [← ModuleCat.comp_apply, ← F.obj.map_comp]
-  rfl
+private alias res_comp := _root_.GlobalTheory.EtC.ClsSpec.res_comp
 
-private lemma sec_map_add {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (a b : Sec F U) :
-    Sec.map φ (a + b) = Sec.map φ a + Sec.map φ b := by
-  exact map_add _ a b
+private alias sec_map_sub := _root_.GlobalTheory.EtC.KummerSplit.smap_sub
 
-private lemma sec_map_sub {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (a b : Sec F U) :
-    Sec.map φ (a - b) = Sec.map φ a - Sec.map φ b := by
-  exact map_sub _ a b
+private alias sec_res_add := _root_.GlobalTheory.TwSec.res_add
 
-private lemma sec_res_add {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (a b : Sec F U) :
-    Sec.res g (a + b) = Sec.res g a + Sec.res g b := by
-  exact map_add _ a b
-
-private lemma sec_res_nsmul {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (n : ℕ) (a : Sec F U) :
-    Sec.res g (n • a) = n • Sec.res g a := by
-  exact map_nsmul _ n a
+private alias sec_res_nsmul := _root_.GlobalTheory.TwSec.res_nsmul
 
 private lemma map_smul_int {V : Scheme.{0}} (b : Sec Gm V) (n : ℤ) : Sec.map (n • 𝟙 Gm) b = n • b := by
   rfl
 
-private lemma unitSec_pow {U : Scheme.{0}} (v : (Γ(U, ⊤))ˣ) (n : ℕ) : unitSec (v ^ n) = n • unitSec v := by
-  induction n with
-  | zero => simp [UpperTheory.PicD.unitSec_one]
-  | succ n ih => rw [pow_succ, UpperTheory.PicD.unitSec_mul, ih, succ_nsmul]
+private alias unitSec_pow := _root_.GlobalTheory.EtC.KummerSeq.unitSec_pow
 
 private lemma units_comp {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (w : (Γ(U, ⊤))ˣ) :
     Units.map k.appTop.hom.toMonoidHom (Units.map g.appTop.hom.toMonoidHom w) =
@@ -132,7 +110,7 @@ private noncomputable def kp {V : Scheme.{0}} (s : Sec (tw q 1) V) : Sec Gm V :=
 
 private lemma kp_add {V : Scheme.{0}} (s t : Sec (tw q 1) V) : kp q (s + t) = kp q s + kp q t := by
   unfold kp
-  exact sec_map_add _ _ _
+  exact _root_.GlobalTheory.EtC.ClsSpec.smap_add _ _ _
 
 private lemma kp_res {W V : Scheme.{0}} (k : W ⟶ V) (s : Sec (tw q 1) V) :
     Sec.res k (kp q s) = kp q (Sec.res k s) := by
@@ -160,7 +138,7 @@ private lemma unique_datum {V : Scheme.{0}} (hq : IsUnit (q : Γ(V, ⊤))) (v v'
   have e2 := UpperTheory.kummer_class_add_of_unitSec_add q V hq v v' a e1
   rw [e2, add_assoc] at h
   have h3 : Sec.map (resι _ (tw q 1)) s = Sec.map (resι _ (tw q 1)) ((show Sec (tw q 1) V from a) + s') := by
-    rw [sec_map_add]
+    rw [_root_.GlobalTheory.EtC.ClsSpec.smap_add]
     exact add_left_cancel h
   have hs := resι_inj _ _ _ _ h3
   rw [hs, kp_add, e1, add_assoc]
@@ -203,7 +181,7 @@ theorem UpperTheory.exists_root_of_kummer_class_eq_zero :
     refine ⟨Units.map ↑(CommRingCat.Hom.hom (Scheme.Hom.appTop k)) v, Sec.res k s, ?_, ?_, ?_⟩
     · rw [← map_pow, hv]
       exact units_comp k g w
-    · rw [← res_comp, hs, sec_res_add, (GlobalTheory.T.isKummerTorsorSplitting_kummerTorsorSplitting q).1 W V k v (hqV g), map_res]
+    · rw [← res_comp, hs, sec_res_add, (_root_.GlobalTheory.EtC.KummerSplit.isKum_kumT q).1 W V k v (hqV g), map_res]
       rfl
     · rw [hb, sec_res_add, UpperTheory.PicD.unitSec_res, kp_res]
       rfl

@@ -139,7 +139,7 @@ theorem BeESim_of (hG : GCob) (hL : LDiv) : BeESim := by
   have hg : ep + PowerSeries.C (c0 - (xT + c0)) * PowerSeries.X ^ 2 = gT ep xT := by
     rw [hce, map_neg, gT]; ring
   have hD := (diffPh K g2 g3 s2 c0 (xT + c0) P l i ep F hP hcub hF hC).1
-  obtain ⟨hw, hwI⟩ := wIntegral K c0 (xT + c0) P l i ep F hF hC hn
+  obtain ⟨hw, hwI⟩ := _root_.Formalism.L2.Th1.B.ParE.weierstrass_series_integral K c0 (xT + c0) P l i ep F hF hC hn
   rw [hg] at hD hw
   have hg0 : PowerSeries.constantCoeff (gT ep xT) = 1 := by
     rw [gT, map_sub, hC.2.1]; simp
@@ -184,8 +184,8 @@ theorem BeESim_of (hG : GCob) (hL : LDiv) : BeESim := by
   have e : cob F ph' - cob F ph = fLog nu - fLog d := by
     refine mul_left_cancel₀ (two_ne (K := K)) ?_
     linear_combination h3 - hlog
-  have s := (simeqInt K (Fin 2) _ _ _ _ (simeqLog K (Fin 2) nu hnu0 hnuI).1
-    (simeqLog K (Fin 2) d hd0 hdI).1).1
+  have s := (_root_.Formalism.L2.Th1.B.Sim.simeq_integral_series K (Fin 2) _ _ _ _ (_root_.Formalism.L2.Th1.B.Sim.simeq_formal_log K (Fin 2) nu hnu0 hnuI).1
+    (_root_.Formalism.L2.Th1.B.Sim.simeq_formal_log K (Fin 2) d hd0 hdI).1).1
   unfold Simeq at s ⊢
   rw [e]
   simpa using s
@@ -221,8 +221,8 @@ theorem CubeE_of (hB : BeESim) (hD : CocycleDiffExpEquiv) : CubeE := by
   intro ph'
   have hl0 : PowerSeries.constantCoeff l = 0 := hLaw.2.2.1
   have hcc : PowerSeries.constantCoeff ph' = 0 :=
-    (phEDef K s2 (xT + c0) (3 * (xT + c0) ^ 2 - g2 / 4) (wOf (xT + c0) P) l hl0).1
-  obtain ⟨hdiv, hsw⟩ := cobRules K F l ph' hLaw hcc
+    (_root_.Formalism.L2.Th1.B.Ph.logSigmaOnePullbackSpec K s2 (xT + c0) (3 * (xT + c0) ^ 2 - g2 / 4) (wOf (xT + c0) P) l hl0).1
+  obtain ⟨hdiv, hsw⟩ := _root_.Formalism.L2.Th1.B.coboundary_rules_hold K F l ph' hLaw hcc
   have hO := (first_level_all_formal_groups K g2 g3 s2 c0 a1 a3 P l i ep F hW hLaw hI hC hC3).2.2.1
   have hBE := hB K g2 g3 s2 c0 a1 a3 xT yT P l i ep F hW hLaw hI hC hC3 hT
   have hDD := hD K F _ _ hLaw.1 hLaw.2.1 hBE

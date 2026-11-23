@@ -62,11 +62,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.MeanCount
 
-theorem box_mono {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {d M n : ℕ}
-    (b : Module.Basis (Fin d) F E) (N : ℕ) {r r' : ℝ} (h : r ≤ r') :
-    (box b N r : Set (Fin n → Fin M → AF F ⊗[F] E)) ⊆ box b N r' :=
-  fun _ hX => ⟨hX.1, hX.2.trans h⟩
-
 theorem real_bound {C₁ C₂ x y z : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) (hxy : x ≤ y) :
     C₁ * x ≤ (|C₁| + |C₂|) * (y + z) := by
   have h1 := abs_nonneg C₁
@@ -125,7 +120,7 @@ theorem mean_count_box : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
             fun _ _ => inclR (AF F) (algebraMap F E t) := by
           rw [hgram, hfin2, ht]
           rfl
-        have ht0 : t = 0 := hsmall t _ (box_mono b N hrr₀ hX) hY
+        have ht0 : t = 0 := hsmall t _ (_root_.GlobalTheory.CompanionTheory.SW.LatCount.box_mono b N hrr₀ hX) hY
         rw [ht, ht0]
         funext a c
         simp

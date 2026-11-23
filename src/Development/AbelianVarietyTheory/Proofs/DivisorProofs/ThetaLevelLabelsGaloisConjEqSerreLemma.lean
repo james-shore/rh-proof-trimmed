@@ -135,13 +135,13 @@ theorem GlobalTheory.Mum.thetaLevels_galois : ∀ (R : Type) [CommRing R] [IsDom
       (d := n ^ (2 * i - 1)) (Nat.one_le_pow _ _ hn.pos)
       (by rw [← pow_mul, ← pow_succ']; congr 1; omega) x₂ hx₂ H₂ q hq
   obtain ⟨c, hc'⟩ := hc σ
-  have h₁ := GlobalTheory.ThetaDescentLevel.isThetaPt_reindex hv pre
-  have h₂ := GlobalTheory.T.thetaPoint_conj_algClosure_automorphism R A (n ^ i) σ _ (fun q => lab ((n ^ i) ^ 2) (pre q)) x₂ (fun q => v (pre q)) (fun q => rfl) h₁
+  have h₁ := _root_.GlobalTheory.Ex.AllLevels.isThetaPt_comp hv pre
+  have h₂ := _root_.GlobalTheory.isThetaPt_conj R A (n ^ i) σ _ (fun q => lab ((n ^ i) ^ 2) (pre q)) x₂ (fun q => v (pre q)) (fun q => rfl) h₁
   have h₃ : IsThetaPt A (n ^ i) x₂ (fun q => GlobalTheory.Ex.fnOf (v q)) :=
     GlobalTheory.Ex.ThetaDescent.isThetaPt_unit_mul A (n ^ i) x₂ _ _ (GlobalTheory.Ex.fnOf ((c⁻¹ : (Kb R)ˣ) : Kb R))
       ((Units.isUnit c⁻¹).map _) (fun q => by
         unfold GlobalTheory.Ex.fnOf
         rw [← map_mul, hc' _ _ (hpre q), ← _root_.mul_assoc, Units.inv_mul, _root_.one_mul]) h₂
-  have key := GlobalTheory.T.torsionLabelings_eq_of_thetaPoint_pairings_order_n R D.toPre A n (i - 4) (n ^ i) hn ho hmj hbound (lab ((n ^ i) ^ 2)) x₂ H₁ H₂ Hn v hv h₃ p'
+  have key := _root_.GlobalTheory.Mum.LabelRigid.labels_eq R D.toPre A n (i - 4) (n ^ i) hn ho hmj hbound (lab ((n ^ i) ^ 2)) x₂ H₁ H₂ Hn v hv h₃ p'
   rw [← key]
   exact hx₂ p p' hpp'

@@ -60,7 +60,7 @@ theorem exists_unitaryStab_mul_compact_of_le_firstMinimum :
   intro r X H hH x0 hx0 ε hε
   obtain ⟨-, -, hfr⟩ := GlobalTheory.UnitaryFrames.unitary_group_frames.2 r X H hH
   obtain ⟨horth, ι, hιc, -, hιg⟩ := hfr x0 hx0
-  obtain ⟨R, hR⟩ := GlobalTheory.T.exists_bound_orthonormal_frame_mahler r X ε hε
+  obtain ⟨R, hR⟩ := _root_.GlobalTheory.OrthFrameMahler.exists_bound_orthonormal_frame r X ε hε
   obtain ⟨Γ, hΓ⟩ := exists_stabiliser_image_subgroup r X H hH
   refine ⟨ι '' {x : Frame X.Ψ r | IsOrth X x ∧ ∀ τ a b, ‖x τ a b‖ ≤ R},
     (GlobalTheory.FinCovol.isCompact_orth_bounded r X R).image_of_continuousOn

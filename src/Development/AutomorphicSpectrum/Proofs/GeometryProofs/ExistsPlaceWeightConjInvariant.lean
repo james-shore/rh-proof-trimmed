@@ -281,7 +281,7 @@ theorem disjoint_image {y : (Σ k, ι k) → Ω} {φ : F →+* Ω} (hO : OverInt
   rw [Set.disjoint_left]
   rintro w ⟨z, ⟨hzu, hzp⟩, rfl⟩ ⟨z', ⟨hzu', hzp'⟩, he⟩
   obtain ⟨c, hc, rfl⟩ := orbit_of_prMap_eq (unitBlocks_subset hzu) (unitBlocks_subset hzu') he.symm
-  exact hne ((GlobalTheory.T.complex_point_existsUnique_embedding K ι Ω F y φ hO _ hzp'.1).unique (ptOver_smul hzp c hc) hzp')
+  exact hne ((_root_.GlobalTheory.CompanionTheory.Ar.Flat.existsUnique_ptOver K ι Ω F y φ hO _ hzp'.1).unique (ptOver_smul hzp c hc) hzp')
 
 private theorem exists_smooth_sep_lemma {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {s t : Set E} (hs : IsClosed s) (ht : IsClosed t) (hd : Disjoint s t) :

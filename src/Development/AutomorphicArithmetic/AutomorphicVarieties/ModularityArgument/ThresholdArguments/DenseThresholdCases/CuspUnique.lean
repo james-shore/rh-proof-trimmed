@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange.PSSmo
 
 @[expose] public section
 
@@ -66,9 +67,6 @@ private theorem cusp_unique {F : Type} [Field F] [NumberField F] {n : ℕ} {sat 
   rcases h with ⟨_, π, rfl, -⟩ | ⟨_, π, rfl, -⟩
   · exact fun _ _ _ h h' => h.unique h'
   · exact fun _ _ _ h h' => h.unique h'
-private theorem not_both (F : Type) [Field F] [NumberField F] (h : IsTotallyReal F) (h' : IsTotallyComplex F) : False := by
-  obtain ⟨v⟩ : Nonempty (InfinitePlace F) := inferInstance
-  exact (InfinitePlace.not_isReal_iff_isComplex.2 (h'.isComplex v)) (h.isReal v)
 theorem stepC_alt (H : _root_.UpperTheory.V.Af.HypothesesH') (cyc : CycC) : StepC := by
   intro K M Ω _ _ _ _ _ _ _ _ _ _ _ _ hp hK hM l _ ι n hn r hr hirr hpol
   obtain ⟨hup, hdown, -⟩ := cyc K M hp inferInstance n hn
@@ -96,7 +94,7 @@ theorem stepC_alt (H : _root_.UpperTheory.V.Af.HypothesesH') (cyc : CycC) : Step
         obtain ⟨m, hm, h⟩ := hreg τ
         rw [CG.HasInfChar.infChar_eq (π := CG.mk π) hm]
         exact h
-      · exact (not_both K hR inferInstance).elim)
+      · exact (_root_.UpperTheory.CBC.SmoothnessOfSatakeParameters.not_both K hR inferInstance).elim)
     have hN := (UpperTheory.galois_representation_image_spec K M Ω).1
     have hss₁ := UpperTheory.semisimpleModule_restriction_to_normal_subgroup _ _ _ n r₁ (resG K M Ω) hN hatt₁.1
     have hatt₁' := UpperTheory.satake_base_change_attached K M Ω l ι n r₁ sat sat' (cusp_unique hc) hbc hatt₁ hss₁

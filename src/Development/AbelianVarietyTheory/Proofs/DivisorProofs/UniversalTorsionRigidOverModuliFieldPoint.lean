@@ -52,14 +52,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 noncomputable section
 namespace GlobalTheory.TorsRigid
 
-theorem epi_spMap_field {k Ω : Type} [Field k] [Field Ω] (σ : k →+* Ω) : Epi (spMap σ) := by
-  letI := σ.toAlgebra
-  haveI : Flat (spMap σ) := by
-    rw [HasRingHomProperty.Spec_iff (P := @Flat)]
-    exact RingHom.flat_algebraMap_iff.2 inferInstance
-  haveI : Surjective (spMap σ) := ⟨fun p => ⟨IsLocalRing.closedPoint Ω, Subsingleton.elim _ _⟩⟩
-  exact Flat.epi_of_flat_of_surjective _
-
 theorem torsion_rigid : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Geo.Tor.Level H} (Xo : Moduli Dw l) (c : Coeff l) (φ : InvFun (𝓞 E)), ∀ (K L : Type) [Field K] [Field L] (y : Sp K ⟶ Xo.XF c) (x : Over.mk (y ≫ pullback.fst _ _) ⟶ Xo.univ.t.G), x ^ l.M' = 1 → ∀ κ₁ κ₂ : Sp L ⟶ Sp K, κ₁ ≫ y = κ₂ ≫ y → κ₁ ≫ x.left = κ₂ ≫ x.left := by
   intro E _ _ _ H Dw l Xo c φ K L _ _ y x hx κ₁ κ₂ hκ
   obtain ⟨⟨p, ψ⟩, hyp⟩ := (Scheme.SpecToEquivOfField K (Xo.XF c)).symm.surjective y
@@ -69,7 +61,7 @@ theorem torsion_rigid : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
   have hy : y = spMap φ' ≫ y₀ := hyp.symm
   let K' := AlgebraicClosure K
   let ιK : K →+* K' := algebraMap K K'
-  haveI := epi_spMap_field ιK
+  haveI := _root_.GlobalTheory.ThetaDescent.epi_spMap ιK
   let j : Over.mk (spMap (ιK.comp φ') ≫ y₀ ≫ pullback.fst _ _) ⟶
       Over.mk (y ≫ pullback.fst _ _) :=
     Over.homMk (spMap ιK) (by

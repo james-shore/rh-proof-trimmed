@@ -59,7 +59,6 @@ theorem isGalois_and_units (D : Formalism.BasicNotions.D7) :
   · let σ : D.host.K →+* ℂ := (IsAlgClosed.lift (R := ℚ) (M := ℂ) (S := D.host.K)).toRingHom
     exact GlobalTheory.QuadraticZeta.unit_eq h2 (Formalism.MainNotions.DIV.Bridge.LogAbsNormDifferent.discr_K D) σ (four_lt_d D) u
 
-theorem main : ∀ D : Formalism.BasicNotions.D7, IsGalois ℚ D.host.K ∧ ∀ u : (𝓞 D.host.K)ˣ, u = 1 ∨ u = -1 :=
-  isGalois_and_units
+alias main := _root_.GlobalTheory.HostQuadUnits.isGalois_and_units
 
 end GlobalTheory.HostQuadUnits

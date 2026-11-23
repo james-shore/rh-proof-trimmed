@@ -53,6 +53,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Den
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeA
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeB
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.PullInvClsOfFibres
 
 @[expose] public section
 
@@ -115,7 +116,7 @@ theorem lbIso_pull_of_const : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegP
     intro f π hπ
     rw [← cls_eq_iff (pull_isLB (pull_isLB hL _) _) (pull_isLB hL _)]
     show pull _ (pull π (cls Q.P.L hL)) = pull π (cls Q.P.L hL)
-    rw [← pull_comp, GlobalTheory.SymSpread.inv_comp_of_isGrpPullback hπ, pull_comp, hsymA]
+    rw [← pull_comp, _root_.GlobalTheory.OddDescent.inv_left_comp hπ, pull_comp, hsymA]
   have hfib' : i ≫ π₁ = i ≫ π₂ := hfib A₀.left i A₀.hom hi₂
   have hclosed : LBIso ((Q.P.L.pull π₁).pull i) ((Q.P.L.pull π₂).pull i) := by
     rw [← cls_eq_iff (pull_isLB (pull_isLB hL _) _) (pull_isLB (pull_isLB hL _) _)]

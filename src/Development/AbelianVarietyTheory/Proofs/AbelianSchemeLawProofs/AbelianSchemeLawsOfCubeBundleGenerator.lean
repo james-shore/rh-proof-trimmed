@@ -106,7 +106,7 @@ theorem mulA_props (h : CubeGen) :
       (GlobalTheory.MulPull.mulPull_of_cube_of_symm h (GlobalTheory.exists_gen_negLB GlobalTheory.T.abelianScheme_laws_without_cohomology.1)).1
       GlobalTheory.T.abelianScheme_laws_without_cohomology.2.2.1 gi)
     (GlobalTheory.flat_and_surjective_of_isFinite_abelianEnd gi)
-    GlobalTheory.flat_of_isFinite_of_flat_geometric_fibres GlobalTheory.T.formallyUnramified_mul_invertible_integer
+    GlobalTheory.flat_of_isFinite_of_flat_geometric_fibres _root_.GlobalTheory.formallyUnramified_mulA
 
 theorem weilNondeg (h : CubeGen) : WeilNondegSt :=
   have g := GlobalTheory.T.abelianScheme_laws_without_cohomology.1

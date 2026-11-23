@@ -65,7 +65,7 @@ theorem thG_equiv : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type}
     rw [MulEquiv.apply_symm_apply]; exact hκ'
   have hT : ∀ v, HasType (Wc D i) (R.βW i) (R.datWp i R.triv) (R.thF i t y v) := fun v k hk h =>
     (GlobalTheory.mult_value_left_cont_level R.θ (R.MW i (sg0 D A)) _ _ (R.thF i t y) hX v).2.2 k hk h
-  have h2 := GlobalTheory.ThetaShiftSmooth.levChi_flag_eq_one R i κ'
+  have h2 := _root_.GlobalTheory.ThetaProjEquiv.realDatum_coeffFlagLevelCharacter_eq_one R i κ'
   have hUe : ∀ v, R.thF i t (S y) v =
       actL (Wc D i) (R.βW i) (R.datWp i R.triv) (R.eG (R.eG.symm g0)) (R.thF i t y v) := fun v => by
     funext z

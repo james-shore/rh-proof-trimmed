@@ -53,18 +53,6 @@ open Formalism.IndefR.RecTie Formalism.IndefR.Lev Formalism.L2.Rows GlobalTheory
 
 namespace GlobalTheory.Mem.EigCarry
 
-theorem exists_eq_of_mem_iSup {ι κ M : Type} [AddCommGroup M] [Module ℂ M] (op : ι → Module.End ℂ M) (χ : κ → ι → ℂ)
-    (E : κ → Submodule ℂ M) (hE : ∀ k, ∀ y ∈ E k, ∀ i, op i y = χ k i • y) (ψ : ι → ℂ) (x : M) (hx0 : x ≠ 0)
-    (hx : ∀ i, op i x = ψ i • x) (hmem : x ∈ ⨆ k, E k) : ∃ k, χ k = ψ := by
-  first
-  | (rename_i h_3 h_4; revert ι κ M h_3 h_4 op χ E hE ψ x hx0 hx hmem; exact @_root_.GlobalTheory.JointEigenSupremum.target)
-  | exact @_root_.GlobalTheory.JointEigenSupremum.target
-  | exact _root_.GlobalTheory.JointEigenSupremum.target
-  | (apply _root_.GlobalTheory.JointEigenSupremum.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.JointEigenSupremum.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.JointEigenSupremum.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.JointEigenSupremum.target ..)
-
 theorem exists_part_eq {ι C H M : Type} [AddCommGroup H] [Module ℂ H] [AddCommGroup M] [Module ℂ M] (e : H →ₗ[ℂ] M)
     (op : ι → Module.End ℂ M) (χ : C → ι → ℂ) (N : Submodule ℂ M) (E : C → Submodule ℂ H)
     (hE : ∀ c y, y ∈ E c ↔ e y ∈ N ∧ ∀ i, op i (e y) = χ c i • e y) (S : C → Prop) (c : C) (x : H) (hx : x ∈ E c)
@@ -72,7 +60,7 @@ theorem exists_part_eq {ι C H M : Type} [AddCommGroup H] [Module ℂ H] [AddCom
   have hle : (⨆ (c' : C) (_ : S c'), E c') ≤ (⨆ k : {c' // S c'}, (E k.1).map e).comap e := by
     refine iSup₂_le fun c' hc' y hy => ?_
     exact (le_iSup (fun k : {c' // S c'} => (E k.1).map e) ⟨c', hc'⟩) ⟨y, hy, rfl⟩
-  obtain ⟨k, hk⟩ := exists_eq_of_mem_iSup op (fun k : {c' // S c'} => χ k.1) (fun k => (E k.1).map e)
+  obtain ⟨k, hk⟩ := _root_.GlobalTheory.JointEigenSupremum.joint_eigen_mem_iSup op (fun k : {c' // S c'} => χ k.1) (fun k => (E k.1).map e)
     (by rintro k _ ⟨y, hy, rfl⟩; exact ((hE _ y).1 hy).2) (χ c) (e x) h0 ((hE c x).1 hx).2 (hle hs)
   refine ⟨k.1, k.2, ?_⟩
   ext y

@@ -300,7 +300,6 @@ private theorem diagonal_orbit_admissible : OkDOrb := by
 
 end UpperTheory.V.Z.Sym.Sig
 
-theorem UpperTheory.V.Z.Sym.Sig.okDOrb :
-    UpperTheory.V.Z.Sym.Sig.OkDOrb := UpperTheory.V.Z.Sym.Sig.diagonal_orbit_admissible
+alias UpperTheory.V.Z.Sym.Sig.okDOrb := _root_.UpperTheory.V.Z.Sym.Sig.diagonal_orbit_admissible
 
 end

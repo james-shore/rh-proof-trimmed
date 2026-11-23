@@ -242,10 +242,6 @@ theorem thin_exceptional : ThinAE := by
 
 theorem one_le_k_of_hyp (P : Par) (hH : P.Hyp) : 1 ≤ P.k := hH.m_pos.trans hH.m_le
 
-theorem kc_cast_le_k (P : Par) : (kc P : ℝ) ≤ (P.k : ℝ) := by
-  unfold kc
-  exact_mod_cast Nat.sub_le P.k 1
-
 theorem thick_exceptional : ThickAE := by
   intro hI hC P hH hL ι W hW J τ hτ l hl
   obtain ⟨sh, hS0, hE0⟩ := shape_a_real_holds P hH hL ι W hW τ hτ
@@ -321,7 +317,7 @@ theorem thick_exceptional : ThickAE := by
               (mul_le_mul_of_nonneg_left g2 (by positivity))
         _ = _ := by ring
     refine (hmain.trans hs.2).trans ?_
-    have hk := kc_cast_le_k P
+    have hk := _root_.Formalism.CohomologicalDescent.ShortWeightBounds.kc_cast_le_k P
     have hk0 : (0 : ℝ) ≤ (kc P : ℝ) := Nat.cast_nonneg _
     have h01 : (1 : ℝ) ≤ (h0 P : ℝ) := by exact_mod_cast one_le_floor_height P hH
     have hl1 : 0 ≤ Real.log (3 * (h0 P : ℝ)) := Real.log_nonneg (by linarith)

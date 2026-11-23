@@ -39,9 +39,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 
-section
-open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp
-
-theorem _root_.GlobalTheory.T.bigOn_canProj : _root_.GlobalTheory.BigOn.Exp.CanonicalProjection₂ := by
-  first | exact @_root_.GlobalTheory.BigOn.Exp.canProj_alt | exact _root_.GlobalTheory.BigOn.Exp.canProj_alt | (intros; apply _root_.GlobalTheory.BigOn.Exp.canProj_alt <;> assumption)
-end

@@ -74,7 +74,7 @@ theorem unitTau_along : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   intro E _ _ _ H k _ _ m d t P gam hmon hli hab
   intro Y n' v' dd hdd D q hq h hB hdef hΘ ρ hρ B' _ π₁ π₂ c' h₁ h₂ hfib hc'
   obtain ⟨w, hw⟩ := GlobalTheory.ConstDefSym.lbIso_pull_of_const (ChartRing k m d) P.D.toPre k ρ B' inferInstance π₁ π₂ h₁ h₂ hfib
-  obtain ⟨lam, hlam⟩ := GlobalTheory.T.unitPart_psi_tau_tangent_vector_variation E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq h hB hdef hΘ ρ hρ B' π₁ π₂ c' h₁ h₂ hfib hc' w hw
+  obtain ⟨lam, hlam⟩ := _root_.GlobalTheory.UnitsEval.units_eval E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq h hB hdef hΘ ρ hρ B' π₁ π₂ c' h₁ h₂ hfib hc' w hw
   refine ⟨-1, by norm_num, w, hw, ?_⟩
   intro y z τ₀ hτ ee hee zz J hJ
   obtain ⟨n, ψ₀, hψ⟩ := GlobalTheory.UnitPart.exists_isUnitPart P.D.toPre (bdParam k m d) gam hmon y

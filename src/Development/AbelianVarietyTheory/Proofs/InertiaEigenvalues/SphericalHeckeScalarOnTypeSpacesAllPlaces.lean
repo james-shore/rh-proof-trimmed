@@ -61,22 +61,7 @@ variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ} {W : Type}
 theorem trivOutside_mono {T T' : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield L)))} (h : T ⊆ T') {x : GAf L n}
     (hx : TrivOutside T x) : TrivOutside T' x := fun v hv => hx v (fun h' => hv (h h'))
 
-theorem trivOutside_mul {T : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield L)))} {x y : GAf L n}
-    (hx : TrivOutside T x) (hy : TrivOutside T y) : TrivOutside T (x * y) := by
-  intro v hv
-  have e : (((x * y : GAf L n).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) =
-      ((x.1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) * ((y.1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) := rfl
-  rw [e, Matrix.map_mul, hx v hv, hy v hv, one_mul]
-
-theorem trivOutside_inv {T : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield L)))} {x : GAf L n}
-    (hx : TrivOutside T x) : TrivOutside T x⁻¹ := by
-  intro v hv
-  have e : (((x⁻¹ : GAf L n).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) *
-      ((x.1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) = 1 := Units.inv_mul x.1
-  have h2 := congrArg (fun M : Matrix (Fin n) (Fin n) (AL L) => M.map (compAt L v)) e
-  simp only [Matrix.map_mul, hx v hv, mul_one] at h2
-  rw [h2]
-  exact Matrix.map_one _ (map_zero _) (map_one _)
+alias trivOutside_inv := _root_.GlobalTheory.HeckeScalarSph.triv_inv
 
 end Gen
 
@@ -190,10 +175,10 @@ theorem heckeD_eq_of_fixed (J : Subgroup (GAf L n)) (χ : J →* ℂˣ)
   refine finsum_cosets_eq J (Umax L n) _ (fun x => f (g * x)) ?_ ?_
   · intro x hx x' hx'
     have ht : TrivOutside Bᶜ (x⁻¹ * x') :=
-      trivOutside_mono (Set.singleton_subset_iff.2 hs) (trivOutside_mul (trivOutside_inv hx.1) hx'.1)
+      trivOutside_mono (Set.singleton_subset_iff.2 hs) (_root_.GlobalTheory.HeckeScalarSph.triv_mul (trivOutside_inv hx.1) hx'.1)
     exact (hJ _ ht).1
   · intro x hx x' hx' hu
-    have ht := trivOutside_mul (trivOutside_inv hx.1) hx'.1
+    have ht := _root_.GlobalTheory.HeckeScalarSph.triv_mul (trivOutside_inv hx.1) hx'.1
     have h1 := congrFun (hf _ hu ht) (g * x)
     simp only [NG.rt, LinearMap.coe_mk, AddHom.coe_mk] at h1
     rw [mul_assoc, mul_inv_cancel_left] at h1

@@ -53,14 +53,6 @@ open GlobalTheory.MumFam GlobalTheory.MumProd
 
 namespace GlobalTheory.MumProdSwap
 
-theorem res_res {X : Scheme.{0}} {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (a : Γ(X, U)ˣ) :
-    res h' (res h a) = res (h'.trans h) a := by
-  apply Units.ext
-  show (X.presheaf.map (homOfLE h').op).hom ((X.presheaf.map (homOfLE h).op).hom a.val) =
-    (X.presheaf.map (homOfLE (h'.trans h)).op).hom a.val
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 theorem pullU_res {X Y : Scheme.{0}} (f : Y ⟶ X) {U V : X.Opens} (h : V ≤ U) (a : Γ(X, U)ˣ) :
     pullU f V (res h a) = res (fun _ hx => h hx : f ⁻¹ᵁ V ≤ f ⁻¹ᵁ U) (pullU f U a) := by
   apply Units.ext
@@ -114,9 +106,9 @@ theorem swapIso_isGen {w : LB.Iso L (extLB L₁ L₂ f₁ f₂)} (hw : w.IsGen) 
     fun _ hx => ⟨⟨⟨hx.1.1.2, hx.1.1.1⟩, hx.1.2⟩, ⟨⟨hx.2.1.2, hx.2.1.1⟩, hx.2.2⟩⟩
   have e := congrArg (res hle) (hw ((i.1.2, i.1.1), i.2) ((j.1.2, j.1.1), j.2))
   rw [map_mul] at e
-  erw [res_res, res_res] at e
+  erw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at e
   rw [externalTensorLineBundleSwapIso_sections, externalTensorLineBundleSwapIso_sections]
-  erw [res_res, res_res]
+  erw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
   rw [g_swap i j hle]
   exact e
 
@@ -131,7 +123,7 @@ theorem mapsAt₂_swap {Y : Scheme.{0}} {w : LB.Iso L (extLB L₁ L₂ f₁ f₂
     fun _ hx => ⟨⟨hx.1.2, hx.1.1⟩, hx.2⟩
   have e := congrArg (res hle) (h j₁ j₂ jL)
   rw [map_mul, map_mul, map_zpow] at e
-  erw [res_res, res_res, res_res] at e
+  erw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at e
   have key : pullU p _ ((swapIso w).s (extIdx j₂ j₁, jL)) = res hle (pullU p _ (w.s (extIdx j₁ j₂, jL))) :=
     pullU_res p (swap_le _) _
   rw [key, mul_comm]

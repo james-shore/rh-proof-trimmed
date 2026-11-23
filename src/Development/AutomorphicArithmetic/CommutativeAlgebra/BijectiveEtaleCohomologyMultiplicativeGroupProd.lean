@@ -169,7 +169,7 @@ private theorem coord (q : ℕ) (hq : IsUnit (q : S)) :
 
 private theorem pull_cup {q : ℕ} {E E' : Spc} (s : E ⟶ E') {n m i j : ℤ} (x : Ht q E' n i) (y : Ht q E' m j) :
     pull _ s _ _ (cup q x y) = cup q (pull _ s _ _ x) (pull _ s _ _ y) :=
-  GlobalTheory.T.cup_hypercohomologyPullback (ZMod q) (twPair q i j) s rfl x y
+  _root_.GlobalTheory.EtC.Pair.cup_pull (ZMod q) (twPair q i j) s rfl x y
 
 end UpperTheory.KG
 

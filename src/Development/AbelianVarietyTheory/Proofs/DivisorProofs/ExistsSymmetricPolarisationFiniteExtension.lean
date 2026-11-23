@@ -57,12 +57,7 @@ namespace GlobalTheory.PolDeg.SymPol
 
 variable {S S' : Scheme.{0}} {f : S' ⟶ S} {G : Over S} {G' : Over S'} [GrpObj G] [GrpObj G'] {φ : G'.left ⟶ G.left}
 
-theorem inv_comm (h : IsGrpPullback G' G f φ) : (ι[G']).left ≫ φ = φ ≫ (ι[G]).left := by
-  have e := congrArg (fun z => z.left) (map_inv (pushHom h G') (𝟙 G'))
-  rw [Hom.inv_def, Hom.inv_def, Category.id_comp] at e
-  refine Eq.trans e ?_
-  show (𝟙 _ ≫ φ) ≫ _ = _
-  rw [Category.id_comp]
+alias inv_comm := _root_.GlobalTheory.PolBaseChange.inv_comm
 
 theorem exists_half (h : IsGrpPullback G' G f φ) (a : 𝟙_ (Over S) ⟶ G) (b : Over.mk f ⟶ G) (hb : b ^ 2 = toUnit _ ≫ a) :
     ∃ b' : 𝟙_ (Over S') ⟶ G',
@@ -96,8 +91,8 @@ theorem GlobalTheory.PolDeg.exists_symmetric_pol : ∀ (R : Type) [CommRing R] [
   haveI := hR.1
   have hM := Q.M.isLB
   have hΘ : ∃ t : LB.Gen (Theta Q.B Q.M.L), t.IsGen := ⟨Q.cub.t, Q.cub.isGen⟩
-  obtain ⟨a, ha⟩ := GlobalTheory.T.primitive_bundle_eq_translate_ample_noetherian_local R Q.B Q.g Q.M.L _ Q.isAb Q.smoothDim hM Q.ample Q.ktriv hΘ
-    (LB.isLB_linComb hM _ _) (GlobalTheory.T.exists_generator_mumfordBundle_inv_pullback_primitive R Q.B Q.M Q.cub Q.isAb)
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.PrimitiveAmpleLocal.exists_section_translate R Q.B Q.g Q.M.L _ Q.isAb Q.smoothDim hM Q.ample Q.ktriv hΘ
+    (LB.isLB_linComb hM _ _) (_root_.GlobalTheory.PolDeg.NegPrim.lam_negPull_sub_isTrivial R Q.B Q.M Q.cub Q.isAb)
   have ea := (cls_eq_iff (LB.isLB_linComb hM _ _) (LB.isLB_linComb hM _ _)).2 ha
   rw [cls_linComb hM, cls_linComb hM, Fin.sum_univ_two, Fin.sum_univ_two] at ea
   simp only [Matrix.cons_val_zero, Matrix.cons_val_one, one_smul, add_left_inj] at ea

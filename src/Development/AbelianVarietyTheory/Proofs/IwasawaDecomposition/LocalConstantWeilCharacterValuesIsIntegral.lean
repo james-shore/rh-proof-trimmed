@@ -55,11 +55,7 @@ theorem addChar_isIntegral {A : Type} [AddCommGroup A] [Finite A] {K : Type} [Fi
   rw [← AddChar.map_nsmul_eq_pow, card_nsmul_eq_zero', AddChar.map_zero_eq_one]
   exact isIntegral_one
 
-theorem qOf_pos {E : Type} [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) : 0 < qOf w := by
-  refine Nat.pos_of_ne_zero ?_
-  unfold qOf
-  rw [Ne, Ideal.absNorm_eq_zero_iff]
-  exact w.ne_bot
+alias qOf_pos := _root_.Formalism.L2.Ker.qOf_pos
 
 theorem ciPsi_isIntegral {X : Fields} {Pr : Primes X} {R : Ranks} (Ch : Chars X Pr R.m) {SB : Finset (HeightOneSpectrum (𝓞 X.E))}
     (P : SB) (x : X.E) : IsIntegral ℤ (ciPsi Ch P x) := by

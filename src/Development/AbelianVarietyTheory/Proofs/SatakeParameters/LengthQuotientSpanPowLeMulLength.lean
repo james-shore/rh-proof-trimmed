@@ -89,8 +89,6 @@ theorem length_quotient_span_pow_le (O : Type) [CommRing O] (p : O) (n : ℕ) :
       _ = ((n + 1 : ℕ) : ℕ∞) * Module.length O (O ⧸ Ideal.span {p}) := by
           push_cast; ring
 
-theorem main : ∀ (O : Type) [CommRing O] (p : O) (n : ℕ),
-    Module.length O (O ⧸ Ideal.span {p ^ n}) ≤ (n : ℕ∞) * Module.length O (O ⧸ Ideal.span {p}) :=
-  fun O _ p n => length_quotient_span_pow_le O p n
+alias main := _root_.GlobalTheory.length_quotient_span_pow_le
 
 end GlobalTheory

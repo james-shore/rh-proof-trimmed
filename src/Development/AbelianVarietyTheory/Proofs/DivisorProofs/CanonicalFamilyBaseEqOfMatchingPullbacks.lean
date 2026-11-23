@@ -55,9 +55,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
-theorem GlobalTheory.UCanon.PairBase.spMap_comp {A B C' : Type} [CommRing A] [CommRing B] [CommRing C'] (f : B →+* C') (g : A →+* B) :
-    spMap (f.comp g) = spMap f ≫ spMap g := by
-  simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
+alias GlobalTheory.UCanon.PairBase.spMap_comp := _root_.GlobalTheory.ZM.NearBuild.spMap_comp
 
 namespace GlobalTheory.UCanon.PairBase
 
@@ -129,7 +127,7 @@ theorem GlobalTheory.UCanon.PairBase.base_eq_of_match : ∀ {E : Type} [Field E]
   have hoa' : letI := H.starRing; ∀ x, (C.P.oD.onB.act x).left ≫ β = β ≫ (Cn.L.oa.onB.act x).left :=
     fun x => (hoa x).trans (Category.assoc _ _ _).symm
 
-  have hLB0 := GlobalTheory.T.lineBundleIso_of_action_compatible_match Xo c φ R hR C Cn V hV f₁ f₂ hi₁ hi₂ hl₁ hl₂ D₁ D₂ hD₁ hD₂ j₁ j₂ b φ' hE₁ hE₂ hM hact
+  have hLB0 := _root_.GlobalTheory.UCanon.MatchBundle.lbIso_of_match Xo c φ R hR C Cn V hV f₁ f₂ hi₁ hi₂ hl₁ hl₂ D₁ D₂ hD₁ hD₂ j₁ j₂ b φ' hE₁ hE₂ hM hact
   have hβL : LBIso C.P.D.toPre.P.L (Cn.L.D.P.L.pull β) := ⟨hD.w, hD.w_gen⟩
   have hC := C.P.D.toPre.P.isLB
   have hLD := Cn.L.D.P.isLB
@@ -182,7 +180,7 @@ theorem GlobalTheory.UCanon.PairBase.base_eq_of_match : ∀ {E : Type} [Field E]
       ∃ z : Sp F ⟶ D₁.toPre.P.A.left, z ≫ D₁.toPre.P.A.hom = spMap j ∧ z ≫ π₁ = spMap j ≫ spMap f₁ ≫ u ∧
         z ≫ π₂ = spMap j ≫ spMap f₂ ≫ u := by
     intro y' x u hx hxu
-    obtain ⟨z, hz₁, hz₂⟩ := GlobalTheory.T.divisionPoints_correspond_matched_pullbacks R V C.P.D.toPre D₁.toPre D₂.toPre C.P.D.tau_bimult D₂.tau_bimult f₁ f₂ hD₁ hD₂
+    obtain ⟨z, hz₁, hz₂⟩ := _root_.GlobalTheory.TInj.divPt_match_of_pairs R V C.P.D.toPre D₁.toPre D₂.toPre C.P.D.tau_bimult D₂.tau_bimult f₁ f₂ hD₁ hD₂
       F₀ F j₁ j₂ b φ' l.M' hM1 hpts hφ y' x hx
     have hz₁' : z.left ≫ prj hD₁ = spMap j₁ ≫ x.left := hz₁
     have hz₂' : z.left ≫ b.left ≫ prj hD₂ = spMap j₂ ≫ x.left := hz₂

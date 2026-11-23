@@ -72,41 +72,11 @@ section Alg
 
 variable {F E : Type} [Field F] [Field E] [Algebra F E]
 
-theorem hE_add_right (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (x y z : Fin M → E) :
-    hE σ J x (y + z) = hE σ J x y + hE σ J x z := by
-  simp [hE, hform, mul_add, Finset.sum_add_distrib]
-
-theorem hE_add_left (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (x y z : Fin M → E) :
-    hE σ J (x + y) z = hE σ J x z + hE σ J y z := by
-  simp [hE, hform, add_mul, Finset.sum_add_distrib]
-
-theorem hE_smul_right (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (c : E)
-    (x y : Fin M → E) : hE σ J x (c • y) = c * hE σ J x y := by
-  simp only [hE, hform, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
-theorem hE_smul_left (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (c : E)
-    (x y : Fin M → E) : hE σ J (c • x) y = σ c * hE σ J x y := by
-  simp only [hE, hform, Pi.smul_apply, smul_eq_mul, Finset.mul_sum, map_mul,
-    AlgHom.coe_toRingHom, RingHom.coe_coe]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
-theorem hE_herm (σ : E →ₐ[F] E) (hσ : ∀ e, σ (σ e) = e) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
-    (hJ : ∀ i j, σ (J j i) = J i j) (y z : Fin M → E) : σ (hE σ J y z) = hE σ J z y := by
-
-  simp only [hE, hform, map_sum, map_mul, AlgHom.coe_toRingHom, RingHom.coe_coe, hσ]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  rw [hJ i j]
-  ring
-
 def hLin (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (x : Fin M → E) :
     (Fin M → E) →ₗ[E] E where
   toFun y := hE σ J x y
-  map_add' := hE_add_right σ J x
-  map_smul' c y := by simp [hE_smul_right]
+  map_add' := _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right σ J x
+  map_smul' c y := by simp [_root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right]
 
 theorem hLin_apply (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (x y : Fin M → E) :
     hLin σ J x y = hE σ J x y := rfl
@@ -116,7 +86,7 @@ theorem hE_sum_right (σ : E →ₐ[F] E) {M : ℕ} {ι : Type} (J : Matrix (Fin
     hE σ J x (∑ k ∈ s, c k • y k) = ∑ k ∈ s, c k * hE σ J x (y k) := by
 
   rw [← hLin_apply, map_sum]
-  exact Finset.sum_congr rfl fun k _ => by rw [hLin_apply, hE_smul_right]
+  exact Finset.sum_congr rfl fun k _ => by rw [hLin_apply, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right]
 
 theorem cT_mul_apply (σ : E →ₐ[F] E) {M N : ℕ} (J : Matrix (Fin M) (Fin M) E)
     (col : Fin N → Fin M → E) (i j : Fin N) :
@@ -131,7 +101,7 @@ theorem split_herm (σ : E →ₐ[F] E) (hσ : ∀ e, σ (σ e) = e) {n : ℕ}
     (s : E) (x : Fin (n + 1) → E) (hs0 : s ≠ 0) (hx : hE σ T x x = s) :
     ∃ (g : GL (Fin (n + 1)) E) (T₁ : Matrix (Fin n) (Fin n) E), (∀ a b, σ (T₁ b a) = T₁ a b) ∧
       blockOne s T₁ = cT (σ : E →+* E) (g : Matrix (Fin (n + 1)) (Fin (n + 1)) E) * T * g := by
-  have hherm := hE_herm σ hσ T hT
+  have hherm := _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_herm σ hσ T hT
   have hsurj : Function.Surjective (hLin σ T x) := fun e =>
     ⟨(e / s) • x, by rw [map_smul, hLin_apply, hx, smul_eq_mul]; field_simp⟩
   have hfr : Module.finrank E (LinearMap.ker (hLin σ T x)) = n := by
@@ -189,19 +159,19 @@ theorem exists_value (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {n : ℕ}
     (T : Matrix (Fin n) (Fin n) E) (hT : ∀ a b, σ (T b a) = T a b) (h0 : T ≠ 0) :
     ∃ (t : F) (x : Fin n → E), t ≠ 0 ∧ hE σ T x x = algebraMap F E t := by
   obtain ⟨hσ, δ, hδ, hδs⟩ := HaarCoord.conj_facts hCM
-  have hherm := hE_herm σ hσ T hT
+  have hherm := _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_herm σ hσ T hT
   have hne : ∃ x, hE σ T x x ≠ 0 := by
     by_contra hall
     push_neg at hall
     have key : ∀ x y, hE σ T x y + hE σ T y x = 0 := by
       intro x y
       have h := hall (x + y)
-      rw [hE_add_left, hE_add_right, hE_add_right, hall x, hall y] at h
+      rw [_root_.GlobalTheory.CompanionTheory.SW.WittIso.hE_add_left, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, hall x, hall y] at h
       simpa using h
     have key2 : ∀ x y, hE σ T x y = 0 := by
       intro x y
       have h1 := key x (δ • y)
-      rw [hE_smul_right, hE_smul_left, hδs] at h1
+      rw [_root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, _root_.GlobalTheory.CompanionTheory.SW.WittIso.hE_smul_left, hδs] at h1
       have h2 := key x y
       have h3 : δ * (hE σ T x y - hE σ T y x) = 0 := by linear_combination h1
       have h4 := (mul_eq_zero.1 h3).resolve_left hδ
@@ -244,7 +214,7 @@ theorem split_hyp (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M : ℕ}
       hypOne J₁ = cT (σ : E →+* E) (g : Matrix (Fin (M + 2)) (Fin (M + 2)) E) * J * g ∧
       ∀ i, (g : Matrix (Fin (M + 2)) (Fin (M + 2)) E) i 0 = x i := by
   obtain ⟨hσ, -⟩ := HaarCoord.conj_facts hCM
-  have hherm := hE_herm σ hσ J hJ.1
+  have hherm := _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_herm σ hσ J hJ.1
 
   have hex : ∃ y₀, hE σ J x y₀ ≠ 0 := by
     by_contra hall
@@ -262,19 +232,19 @@ theorem split_hyp (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M : ℕ}
     simpa using this
   obtain ⟨y₀, hy₀⟩ := hex
   obtain ⟨y₁, hxy₁⟩ : ∃ y₁, hE σ J x y₁ = 1 :=
-    ⟨(hE σ J x y₀)⁻¹ • y₀, by rw [hE_smul_right]; exact inv_mul_cancel₀ hy₀⟩
+    ⟨(hE σ J x y₀)⁻¹ • y₀, by rw [_root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right]; exact inv_mul_cancel₀ hy₀⟩
   have hy₁x : hE σ J y₁ x = 1 := by rw [← hherm, hxy₁, map_one]
   obtain ⟨q, hq⟩ : ∃ q, q = hE σ J y₁ y₁ := ⟨_, rfl⟩
   have hqs : σ q = q := by rw [hq]; exact hherm _ _
   obtain ⟨y, hy⟩ : ∃ y : Fin (M + 2) → E, y = y₁ + (-(q / 2)) • x := ⟨_, rfl⟩
   have hxy : hE σ J x y = 1 := by
-    rw [hy, hE_add_right, hE_smul_right, hxy₁, hxx]; simp
+    rw [hy, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, hxy₁, hxx]; simp
   have hyx : hE σ J y x = 1 := by rw [← hherm, hxy, map_one]
   have hyy : hE σ J y y = 0 := by
     have hs2 : σ (-(q / 2)) = -(q / 2) := by
       rw [map_neg, map_div₀, hqs, map_ofNat]
-    rw [hy, hE_add_right, hE_add_left, hE_add_left, hE_smul_right, hE_smul_right, hE_smul_left,
-      hE_smul_left, hs2, hy₁x, hxy₁, hxx, ← hq]
+    rw [hy, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.SW.WittIso.hE_add_left, _root_.GlobalTheory.CompanionTheory.SW.WittIso.hE_add_left, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, _root_.GlobalTheory.CompanionTheory.SW.WittIso.hE_smul_left,
+      _root_.GlobalTheory.CompanionTheory.SW.WittIso.hE_smul_left, hs2, hy₁x, hxy₁, hxx, ← hq]
     field_simp
     ring
   let ψ : (Fin (M + 2) → E) →ₗ[E] (Fin 2 → E) := LinearMap.pi ![hLin σ J x, hLin σ J y]
@@ -285,9 +255,9 @@ theorem split_hyp (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M : ℕ}
       funext i
       fin_cases i
       · change ψ _ 0 = e 0
-        rw [hψ0, hE_add_right, hE_smul_right, hE_smul_right, hxy, hxx]; simp
+        rw [hψ0, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, hxy, hxx]; simp
       · change ψ _ 1 = e 1
-        rw [hψ1, hE_add_right, hE_smul_right, hE_smul_right, hyx, hyy]; simp⟩
+        rw [hψ1, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, hyx, hyy]; simp⟩
   have hfr : Module.finrank E (LinearMap.ker ψ) = M := by
     have h := LinearMap.finrank_range_add_finrank_ker ψ
     rw [LinearMap.range_eq_top.2 hsurj, finrank_top] at h
@@ -319,8 +289,8 @@ theorem split_hyp (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M : ℕ}
     have hsy := congrArg (hE σ J y) hsum
     have hz0 : hE σ J x 0 = 0 := GlobalTheory.CompanionTheory.SW.BlockAlg.hE_zero_right σ J x
     have hz1 : hE σ J y 0 = 0 := GlobalTheory.CompanionTheory.SW.BlockAlg.hE_zero_right σ J y
-    rw [hz0, hE_add_right, hE_add_right, hE_smul_right, hE_smul_right, hE_sum_right, hxx, hxy] at hsx
-    rw [hz1, hE_add_right, hE_add_right, hE_smul_right, hE_smul_right, hE_sum_right, hyx, hyy] at hsy
+    rw [hz0, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, hE_sum_right, hxx, hxy] at hsx
+    rw [hz1, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.SW.HermRep.hE_add_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.WittOne.hE_smul_right, hE_sum_right, hyx, hyy] at hsy
     simp only [hb0, hb1, mul_zero, Finset.sum_const_zero, add_zero, mul_one, zero_add] at hsx hsy
     have hker : ∑ k : Fin M, v k.succ.succ • b k = 0 := by
       apply Subtype.ext

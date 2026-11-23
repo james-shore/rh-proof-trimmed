@@ -209,7 +209,7 @@ theorem adelic_split : ∀ (D : D7) (V : HSp D), IsClosed (GinfC V : Set (GA D V
   have hf := isClosed_GfC' V
   haveI : LocallyCompactSpace (GinfC V) := hi.locallyCompactSpace
   haveI : LocallyCompactSpace (GfC V) := hf.locallyCompactSpace
-  refine ⟨hi, hf, fun a ha b hb => commute_GinfC_GfC V ha hb, ⟨(splitEquiv V).toHomeomorph, fun p => rfl⟩,
+  refine ⟨hi, hf, fun a ha b hb => _root_.GlobalTheory.PointAtPlaceHom.comm_of_mem V ha hb, ⟨(splitEquiv V).toHomeomorph, fun p => rfl⟩,
     fun μ hμ => rightInv_of_prod (A := GinfC V) (fun m hm => ?_) μ hμ, fun V₀ ρ d => ?_⟩
   · haveI := hm
     exact GlobalTheory.UpqUnimodular.isMulRightInvariant_of_continuousMulEquiv (splitEquiv V) m

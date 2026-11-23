@@ -146,7 +146,7 @@ theorem flat_hermitian_fibre_signature (hG : _root_.GlobalTheory.CompanionTheory
     hdeg⟩ := flat_point_of_principal_sign hG hF H tB hP ρ p' q' σ hσ hs h0 τ hτ χ hχ
   obtain ⟨n₀, -⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ m' mo
   let n : SABMap tK t' (spMap (e.comp (algebraMap (𝓞 L) L))) :=
-    ReciprocityTheory.ChartRestriction.G.PullbackSections.sabMapCast n₀ (LevelTowerAlt.spMap_comp _ _).symm
+    ReciprocityTheory.ChartRestriction.G.PullbackSections.sabMapCast n₀ (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _).symm
   have hs₁ : β.comp (tauIn c τ) = (e.comp (algebraMap (𝓞 L) L)).comp s₁ :=
     RingHom.ext fun a => io.injective ((hβ _).trans ((he _).trans (h₁ a)).symm)
   have hs₂ : β.comp (tauIn c (ComplexEmbedding.conjugate τ)) = (e.comp (algebraMap (𝓞 L) L)).comp s₂ :=

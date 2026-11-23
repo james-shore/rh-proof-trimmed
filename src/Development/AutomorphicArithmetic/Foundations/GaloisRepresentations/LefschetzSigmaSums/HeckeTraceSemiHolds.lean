@@ -64,14 +64,13 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Gal.LocalSmoothExtension
 
-theorem InvRoots_holds : InvRoots := invRoots_of
-theorem InvPolProps_holds : InvPolProps := invPolProps_of InvRoots_holds
+theorem InvPolProps_holds : InvPolProps := invPolProps_of _root_.UpperTheory.Gal.LocalSmoothExtension.invRoots_of
 theorem RootW_holds : RootW :=
-  rootW_of UpperTheory.Gal.W2.RootSumW_holds UpperTheory.Gal.W2.RootSumWOff_holds listsEx_of schWEq_of
+  rootW_of _root_.UpperTheory.Gal.W2.rootSumW_of _root_.UpperTheory.Gal.W2.rootSumWOff_of listsEx_of schWEq_of
 theorem EigOf_holds : EigOf := eigOf_of UpperTheory.Gal.CertificateRingHomMap.pProjOne_holds
 theorem CxLin_holds : CxLin := cxLin_of cxFlat_of
 theorem GroupTop_of (h₁ : GlobalTheory.RootSumWeights.MarkWeightedFixedPointEqDefinitePairOdd) (h₂ : GlobalTheory.LKDef.TraceDefinitePairsEqAutomorphicTrace) : GroupTop :=
-  groupTop_of h₁ h₂ RootW_holds InvRoots_holds InvPolProps_holds markRoots_of dPairPol_of dSumCongr_of testOf_of testOne_of
+  groupTop_of h₁ h₂ RootW_holds _root_.UpperTheory.Gal.LocalSmoothExtension.invRoots_of InvPolProps_holds markRoots_of dPairPol_of dSumCongr_of testOf_of testOne_of
 theorem HeckeTraceSemi_holds : HeckeTraceSemi := heckeTraceSemi_of traceSemi_of
 theorem SpecConj_holds : SpecConj :=
   specConj_of traceSemi_of conjRep_of HeckeTraceSemi_holds goodConj_of (schWConj_of schWEq_of) polyFnConj_of

@@ -108,7 +108,7 @@ theorem fibre_volume : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (�
   have hn₁S : n₁ ∈ Sset k r z := GlobalTheory.Amp.YInv.N_sub_S z hn₁
   have hn₂S : n₂ ∈ Sset k r z' := GlobalTheory.Amp.YInv.N_sub_S z' hn₂
   have hn₂G : n₂ ∈ GG k r := hn₂.1
-  have hu2 : IsUnit n₂.det := GG_unit hn₂G
+  have hu2 : IsUnit n₂.det := _root_.GlobalTheory.Amp.NfMid.unit_det hn₂G
   have hn₂i : n₂⁻¹ ∈ Nset k r := (nSubgroup k r).2.2 n₂ hn₂
   have hn₂iS : n₂⁻¹ ∈ Sset k r z' := GlobalTheory.Amp.YInv.N_sub_S z' hn₂i
   have c1 : ∀ B : Mat k r, n₂ * (n₂⁻¹ * B) = B := fun B => Matrix.mul_nonsing_inv_cancel_left n₂ B hu2
@@ -129,10 +129,10 @@ theorem fibre_volume : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (�
   set A := uEmb k r (Matrix.diagonal fun b => (a b : ℂ)) * mEmb k r m with hA
   have hn'G : n' ∈ GG k r := hn'.1
   have hdec' : n₂ * g₁ = n' * A * κ := by rw [hdec, hA]; simp only [mul_assoc]
-  have c3 : ∀ B : Mat k r, n'⁻¹ * (n' * B) = B := fun B => Matrix.nonsing_inv_mul_cancel_left n' B (GG_unit hn'G)
+  have c3 : ∀ B : Mat k r, n'⁻¹ * (n' * B) = B := fun B => Matrix.nonsing_inv_mul_cancel_left n' B (_root_.GlobalTheory.Amp.NfMid.unit_det hn'G)
   have hAK : A * κ ∈ GG k r := by
     have : A * κ = n'⁻¹ * (n₂ * g₁) := by rw [hdec']; simp only [mul_assoc, c3]
-    rw [this]; exact GG_mul (GG_inv hn'G) (GG_mul hn₂G hg₁)
+    rw [this]; exact _root_.GlobalTheory.Amp.NfComp.G_mul (_root_.GlobalTheory.Amp.NfComp.G_inv hn'G) (_root_.GlobalTheory.Amp.NfComp.G_mul hn₂G hg₁)
   have hg : n₂⁻¹ * (n' * (A * κ)) = g₁ := by rw [← mul_assoc n' A, ← hdec', c2]
 
   have hl2 : (lebN k r).map (lmulM n₂) = lebN k r := (GlobalTheory.T.flagUnipotentLebesgueMeasure_isHaarOn k r).2.2.2 n₂ hn₂
@@ -155,15 +155,15 @@ theorem fibre_volume : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (�
     constructor
     · intro h
       have : W = n₂ * (n₂⁻¹ * W * κ) * κ⁻¹ := by
-        simp only [mul_assoc, c1, Matrix.mul_nonsing_inv _ (GG_unit hκ.1), Matrix.mul_one]
-      rw [this]; exact GG_mul (GG_mul hn₂G h) (GG_inv hκ.1)
-    · intro h; exact GG_mul (GG_mul (GG_inv hn₂G) h) hκ.1
+        simp only [mul_assoc, c1, Matrix.mul_nonsing_inv _ (_root_.GlobalTheory.Amp.NfMid.unit_det hκ.1), Matrix.mul_one]
+      rw [this]; exact _root_.GlobalTheory.Amp.NfComp.G_mul (_root_.GlobalTheory.Amp.NfComp.G_mul hn₂G h) (_root_.GlobalTheory.Amp.NfComp.G_inv hκ.1)
+    · intro h; exact _root_.GlobalTheory.Amp.NfComp.G_mul (_root_.GlobalTheory.Amp.NfComp.G_mul (_root_.GlobalTheory.Amp.NfComp.G_inv hn₂G) h) hκ.1
   have hSg' : ∀ W ∈ GG k r, Sg k r z' (n₂⁻¹ * W * κ) = Sg k r z' W :=
     fun W hW => ((GlobalTheory.Amp.LInv.lengths_basic k r z' hz').1 W hW n₂⁻¹ hn₂iS κ hκ).2
   have hSg : ∀ W ∈ GG k r, Sg k r z (n₁ * g₀ * n₂ * (n₂⁻¹ * W * κ)) = Sg k r z (g₀ * W) := by
     intro W hW
     have : n₁ * g₀ * n₂ * (n₂⁻¹ * W * κ) = n₁ * (g₀ * W) * κ := by simp only [mul_assoc, c1]
-    rw [this]; exact ((GlobalTheory.Amp.LInv.lengths_basic k r z hz).1 (g₀ * W) (GG_mul hg₀G hW) n₁ hn₁S κ hκ).2
+    rw [this]; exact ((GlobalTheory.Amp.LInv.lengths_basic k r z hz).1 (g₀ * W) (_root_.GlobalTheory.Amp.NfComp.G_mul hg₀G hW) n₁ hn₁S κ hκ).2
   refine ⟨?_, ?_⟩
   · have hset : {n : Mt k r | Yv k r z z' (n₁ * g₀ * n₂) (Matrix.of n * g₁) = 0} =
         e ⁻¹' {ν | Yv k r z z' g₀ (Matrix.of ν * A) = 0} := by
@@ -186,7 +186,7 @@ theorem fibre_volume : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (�
     have hsub : SubCut (Nset k r) (lebR k r β) (fun ν => ENNReal.ofReal s * φ (P ν)) := by
       refine ⟨(hφ.1.comp hPm).const_mul _, fun x hx => ?_⟩
       have hx0 : Matrix.of (P x) ∈ GG k r := by
-        rw [hP, mul_assoc]; exact GG_mul (GG_inv hn₂G) (GG_mul hx.1 hAK)
+        rw [hP, mul_assoc]; exact _root_.GlobalTheory.Amp.NfComp.G_mul (_root_.GlobalTheory.Amp.NfComp.G_inv hn₂G) (_root_.GlobalTheory.Amp.NfComp.G_mul hx.1 hAK)
       have h1 := hφ.2 (P x) hx0
       have hm1 : Measurable fun ρ : Mt k r => φ (lmulM (Matrix.of ρ) (P x)) :=
         hφ.1.comp (hmeas _ 1 (Matrix.of (P x)) fun ρ => by simp only [hl, Matrix.one_mul])

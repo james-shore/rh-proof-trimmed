@@ -85,10 +85,6 @@ theorem tameAnyFix_map_primeToPart {M K : Type} [Monoid M] [Field K] (l : ℕ) [
       rw [pow_eq_pow_mod _ h2, h3, ← pow_eq_pow_mod _ h2]
     rw [h4, pow_one]
 
-theorem tameAnyFix_isoLoc (D : D7) {a : ℕ} (π : D.naut.CG a) (w : PlE D.host) :
-    isoLoc D.nd D.naut [⟨a, π, 1⟩] w = D.naut.locG π w := by
-  simp [isoLoc, spehLoc, D.naut.lpSum_zero, D.naut.lpTw_zero]
-
 theorem tameAnyFix_not_over (D : D7) (i : D.nd.Loc) (k : Fin 2) (h : D.nd.l i ≠ D.host.g k) (v : D.nd.PlG k) :
     D.naut.plGw k v ∉ placesOver D.host.E (D.nd.l i) := by
   intro hl

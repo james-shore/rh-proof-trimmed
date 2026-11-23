@@ -55,11 +55,6 @@ namespace GlobalTheory.ExpImage.PosWeight
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem zeta_pow_self (P : LocPrime l) (m : ℕ) : P.ζQ m ^ (l ^ m) = 1 := by
-  induction m with
-  | zero => simp [P.ζQ_zero]
-  | succ k ih => rw [pow_succ', pow_mul, P.ζQ_succ, ih]
-
 theorem norm_nat_eq_one {a : ℕ} (ha : ¬ l ∣ a) : ‖(a : Om l)‖ = 1 := by
   rw [← map_natCast (algebraMap ℚ_[l] (Om l)), norm_algebraMap']
   exact Padic.norm_natCast_eq_one_iff.mpr ((Nat.Prime.coprime_iff_not_dvd Fact.out).mpr ha)
@@ -161,7 +156,7 @@ theorem formula_pos : ∀ (LT : LocTheory) (l : ℕ) [Fact l.Prime] (AI : LocAin
       refine Finset.sum_congr rfl fun a ha => ?_
       have h0 := hne a ha
       have hz : (LT l).ζQ s ^ ((1 + l ^ s) * a * l ^ i) = (LT l).ζQ s ^ (a * l ^ i) := by
-        rw [mul_assoc, add_mul, one_mul, pow_add, pow_mul _ (l ^ s), zeta_pow_self, one_pow, mul_one]
+        rw [mul_assoc, add_mul, one_mul, pow_add, pow_mul _ (l ^ s), _root_.GlobalTheory.ExpImage.ζQ_pow, one_pow, mul_one]
       have hco : (((frK (LT l) K ^ i) (lam a * ((a : ↥(K0 K)) ^ e)⁻¹) : ↥(K0 K)) : Om l) =
           (((frK (LT l) K ^ i) (lam a) : ↥(K0 K)) : Om l) * ((a : Om l) ^ e)⁻¹ := by
         rw [map_mul, map_inv₀, map_pow, map_natCast]

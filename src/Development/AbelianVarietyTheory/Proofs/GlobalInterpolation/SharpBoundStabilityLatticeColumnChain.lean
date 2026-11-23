@@ -69,7 +69,7 @@ theorem sharpBound_stability_latticeColumnChain : ∀ (D : D7) (u : D.what₂.Wo
   have hR : ∀ i (h : i ≤ D.R.m), B.Real i (hsp i h).some (Lv i h) := fun i h => (hM i h).choose_spec.some
 
   have hC : ∀ i (h : i ≤ D.R.m), ∃ Co : (Lv i h).Coord, Co.Ok ∧ (hR i h).ValIs Co :=
-    fun i h => GlobalTheory.T.exists_coordinates_valueLattices_eq_weylLattices D u B i (hsp i h).some (Lv i h) (hR i h) h hsee
+    fun i h => _root_.GlobalTheory.LvT.Built.ValLat.exists_coord D u B i (hsp i h).some (Lv i h) (hR i h) h hsee
   let Vt : ValTie Lv := fun i h => ⟨(hC i h).choose, (hC i h).choose_spec.1⟩
 
   have hk : ∀ i (h : i < D.R.m), ∃ k : B.Ker i, Built.Dat.KerEq k ∧ Built.Dat.KerDil k ∧ Built.Dat.KerUK k ∧
@@ -84,7 +84,7 @@ theorem sharpBound_stability_latticeColumnChain : ∀ (D : D7) (u : D.what₂.Wo
     { tgt := fun i h => (hK i h).choose_spec.1
       dil := fun i h => GlobalTheory.T.dilateLaw_pointKernel_of_coefficientKernel D u B i _ _ _ _ (hR i h.le) (hR (i + 1) h) _ _
         (hK i h).choose_spec.1 (hK i h).choose_spec.2 (hk i h).choose_spec.2.1
-      uk := fun i h => GlobalTheory.T.heckeLaw_pointKernel_of_coefficientKernel D u B i _ _ _ _ (hR i h.le) (hR (i + 1) h) _ _
+      uk := fun i h => _root_.GlobalTheory.LvT.Built.UK.ukLaw_of_kerUK D u B i _ _ _ _ (hR i h.le) (hR (i + 1) h) _ _
         (hK i h).choose_spec.1 (hK i h).choose_spec.2 (hk i h).choose_spec.2.2.1
       bar := fun i h => GlobalTheory.T.conjugatePrimeBound_pointKernel_of_coefficientKernel D u B i _ _ _ _ (hR i h.le) (hR (i + 1) h) _ _ _ _
         (hK i h).choose_spec.1 (hK i h).choose_spec.2 (hC i h.le).choose_spec.1 (hC (i + 1) h).choose_spec.1

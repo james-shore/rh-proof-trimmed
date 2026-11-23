@@ -107,15 +107,12 @@ theorem Coprime_prod (s : Finset ℕ) (x : ℕ → LetA O n) {z : LetA O n}
     exact Coprime_mul W (W.AΔ.prod_mem fun i _ => hx i) hz
       (ih fun i hi => h i (Finset.mem_insert_of_mem hi)) (h a (Finset.mem_insert_self a s))
 
-theorem level_mem_invariants (s : ℕ) : ps W s ∈ W.AΔ :=
-  Formalism.MainNotions.UnusedSlot80.UnivC.ps_mem W s
-
 theorem exists_partition_of_l_pow_levels (hC : Formalism.MainNotions.UnusedSlot80.KL.PsCoprime W)
     (N : ℕ) (S : Finset ℕ) (hS : S.Nonempty) :
     ∃ m : ℕ, ∃ ε : ℕ → LetA O n, (∀ s, ε s ∈ W.AΔ) ∧
       (∀ s ∈ S, ∃ r ∈ W.AΔ, ε s = (∏ t ∈ S.erase s, ps W t ^ N) * r) ∧
       ∑ s ∈ S, ε s = lA W ^ m := by
-  have hps := level_mem_invariants W
+  have hps := _root_.Formalism.MainNotions.UnusedSlot80.UnivC.ps_mem W
   induction S using Finset.induction_on with
   | empty => exact absurd hS Finset.not_nonempty_empty
   | insert a s ha ih =>

@@ -61,7 +61,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 theorem hgtPull_k : _root_.PositivityTheory.SiegelWeilFormula.Ald.HgtPull_k := by
   intro F E _ _ _ _ _ σ d n h Y b j hn hs hb hJ
   have hB := d.ok.good
-  have hσ : ∀ z, σ (σ z) = z := UnitA.sig_sig hB.cm
+  have hσ : ∀ z, σ (σ z) = z := _root_.GlobalTheory.AdelicU.cm_conj_conj hB.cm
   refine ⟨fun x => ?_, _root_.PositivityTheory.SiegelWeilFormula.Ldexb.val_pull_k h hJ hb⟩
   obtain ⟨Y₀, b₀, K₀, a₀, hb₀, he₀, hK₀, ha₀⟩ := _root_.PositivityTheory.SiegelWeilFormula.Ldexb.exists_standard_hermitian_space hB hn
   obtain ⟨ε, he⟩ := hb.1

@@ -124,10 +124,10 @@ variable {D : D7} {L : SizeData₂ D} {P : ParameterChoice' D L}
 def kaR (T : ParamsT D L P) (hK : DV.KapDef D) (j : ℕ) : WeightFamilies.Wt D j := kaWt D hK (even_nV T) j
 
 def lR (T : ParamsT D L P) (hK : DV.KapDef D) (j : ℕ) : WeightFamilies.Wt D j :=
-  lWt D (kaR T hK j) T.TO T.nWn (even_nW T)
+  lWt D (kaR T hK j) T.TO T.nWn (_root_.Formalism.BasicNotions.ParamsT.nW_even T)
 
 def fR (T : ParamsT D L P) (hK : DV.KapDef D) (j : ℕ) : WeightFamilies.Wt D j :=
-  fWt D (kaR T hK j) (lR T hK j) T.TO T.nP (even_nP T)
+  fWt D (kaR T hK j) (lR T hK j) T.TO T.nP (_root_.Formalism.BasicNotions.ParamsT.even_nP₂ T)
 
 
 open Classical in

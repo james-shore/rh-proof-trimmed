@@ -229,13 +229,13 @@ theorem invariants_Bcris : ∀ (l : ℕ) [Fact l.Prime], ∀ (C : Core l) (K : F
   have hS : ∀ x ∈ S, Per.φB l x ∈ S := fun x hx g hg => by rw [← hcomm, hx g hg]
   have hO' : ∀ x ∈ S, ∃ y ∈ K.1, C.ι x = O y := by
     intro x hx
-    obtain ⟨y, hy, e⟩ := GlobalTheory.T.bdR_galois_invariants_eq_finExt l C K (C.ι x) (fun g hg => by rw [← hσ, hx g hg])
+    obtain ⟨y, hy, e⟩ := _root_.GlobalTheory.MemLoc.InvDR.invariants_BdR l C K (C.ι x) (fun g hg => by rw [← hσ, hx g hg])
     exact ⟨y, hy, e.symm⟩
   have hO : ∀ x ∈ S, ∃ y, C.ι x = O y := fun x hx => (hO' x hx).imp fun _ h => h.2
   have fund : ∀ (x : Per.Bcris l) (y : Om l), Per.φB l x = x → C.ι x = O y →
       ∃ c : ℚ_[l], C.u (algebraMap ℚ_[l] ↥(MaximalUnramifiedExtension l) c) = x := by
     intro x y h1 h2
-    refine GlobalTheory.T.bcris_frobenius_fixed_fil_zero_eq_qp l C x h1 ?_
+    refine _root_.GlobalTheory.MemLoc.fundamental_exact l C x h1 ?_
     rw [h2]
     refine (hfil (C.o y)).2 ?_
     have hone : (1 : Per.BdRp l) ∈ Per.FilP l 0 :=

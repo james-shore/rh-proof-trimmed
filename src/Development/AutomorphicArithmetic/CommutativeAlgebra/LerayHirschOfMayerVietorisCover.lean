@@ -100,7 +100,7 @@ private theorem ht_cast_injective (q : ℕ) {E : Spc} {n i n' i' : ℤ} (h1 : n 
 
 private theorem pull_cup_commutative_algebra (q : ℕ) {E E' : Spc} (s : E ⟶ E') {n m i j : ℤ} (x : Ht q E' n i) (y : Ht q E' m j) :
     pull _ s _ _ (cup q x y) = cup q (pull _ s _ _ x) (pull _ s _ _ y) :=
-  GlobalTheory.T.cup_hypercohomologyPullback _ _ s _ x y
+  _root_.GlobalTheory.EtC.Pair.cup_pull _ _ s _ x y
 
 private theorem lhmv_phi_add (q : ℕ) {X E : Spc} (π : X ⟶ E) {m : ℕ} (d e : Fin m → ℤ) (c : ∀ j, Ht q X (d j) (e j))
     (n i : ℤ) (a b : ∀ j, Ht q E (n - d j) (i - e j)) :

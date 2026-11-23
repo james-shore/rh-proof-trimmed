@@ -56,7 +56,7 @@ theorem kernel_div_period_isAlgebraic_alt : ∀ {D : D7} {T : Type} [Finite T] {
     ∀ n : D.what₂.Tau → ℕ, ∃ Ω : ℂ, Ω ≠ 0 ∧ ∀ (t : T), ∀ x ∈ GfC A', ∀ h ∈ GfC WW, ∀ U : GlobalTheory.NormSum.Tup D A'.rank WW.rank n,
       IsAlgebraic ℚ (X.ker' W.ψ W.θ t (GlobalTheory.NormSum.minorPol D U) h x / Ω) := by
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX n
-  obtain ⟨Ω, hΩ, H⟩ := _root_.GlobalTheory.T.bottom_field_minor_jet_description hP hI hL hX n
+  obtain ⟨Ω, hΩ, H⟩ := _root_.GlobalTheory.BottomFieldDict.kernel_minor_polynomial_eq_jet hP hI hL hX n
   refine ⟨Ω, hΩ, fun t x hx h hh U => ?_⟩
   obtain ⟨cc, δ, t0, e0, k, c, s, hc, ht0, he0, hca, hs, hU⟩ := H t x hx h hh
   obtain ⟨Q, hQ, heq⟩ := hU U
@@ -68,18 +68,3 @@ theorem kernel_div_period_isAlgebraic_alt : ∀ {D : D7} {T : Type} [Finite T] {
 end GlobalTheory.BotDictAlg
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim
-open Formalism.L2.Host (HChar)
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RowEx MeasureTheory
-
-theorem _root_.GlobalTheory.T.twist_kernel_div_period_isAlgebraic : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D T} {μ₀ : T} {sc : Consts} {G : GridData L sc} {W : G.Weil}
-    {i j : Fin D.R.m} {A A' WW : HSp D} {X : Tri T A A' WW}, _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → L.Is μ₀ →
-    IsBottomTri W i j X →
-    ∀ n : D.what₂.Tau → ℕ, ∃ Ω : ℂ, Ω ≠ 0 ∧ ∀ (t : T), ∀ x ∈ GfC A', ∀ h ∈ GfC WW, ∀ U : GlobalTheory.NormSum.Tup D A'.rank WW.rank n,
-      IsAlgebraic ℚ (X.ker' W.ψ W.θ t (GlobalTheory.NormSum.minorPol D U) h x / Ω) := by
-  first | exact @_root_.GlobalTheory.BotDictAlg.kernel_div_period_isAlgebraic_alt | exact _root_.GlobalTheory.BotDictAlg.kernel_div_period_isAlgebraic_alt | (intros; apply _root_.GlobalTheory.BotDictAlg.kernel_div_period_isAlgebraic_alt <;> assumption)
-end

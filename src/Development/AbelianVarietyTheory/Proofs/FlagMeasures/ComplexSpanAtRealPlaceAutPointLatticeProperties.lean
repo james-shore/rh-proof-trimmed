@@ -157,17 +157,6 @@ section Lattice
 
 variable {E : Type} [Field E] [NumberField E] {n : ℕ}
 
-theorem exists_smul_mem (Λ : Submodule (𝓞 E) (Fin n → E)) (y : Fin n → E)
-    (hy : y ∈ Submodule.span E (Λ : Set (Fin n → E))) :
-    ∃ c : 𝓞 E, c ≠ 0 ∧ c • y ∈ Λ := by
-  first
-  | exact @_root_.GlobalTheory.IntegralBoundFlagMeasures.main
-  | exact _root_.GlobalTheory.IntegralBoundFlagMeasures.main
-  | (apply _root_.GlobalTheory.IntegralBoundFlagMeasures.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralBoundFlagMeasures.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralBoundFlagMeasures.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralBoundFlagMeasures.main ..)
-
 omit [NumberField E] in
 theorem mem_perpSet_span (σ : E →+* E) (J : Matrix (Fin n) (Fin n) E) (S : Set (Fin n → E))
     (y : Fin n → E) :
@@ -194,7 +183,7 @@ theorem span_perp (σ : E →+* E) (J : Matrix (Fin n) (Fin n) E) (Λ R : Submod
     | add u v _ _ hu hv => rw [Formalism.UG.P.csScale_hform_add_right, hu, hv, add_zero]
     | smul c u _ hu => rw [Formalism.UG.P.csScale_hform_smul_right, hu, mul_zero]
   · intro hy
-    obtain ⟨c, hc, hcy⟩ := exists_smul_mem Λ y (by rw [hΛ]; trivial)
+    obtain ⟨c, hc, hcy⟩ := _root_.GlobalTheory.IntegralBoundFlagMeasures.main Λ y (by rw [hΛ]; trivial)
     have hc1 : algebraMap (𝓞 E) E c ≠ 0 := by simpa using hc
     rw [← algebraMap_smul E c] at hcy
     have : y = (algebraMap (𝓞 E) E c)⁻¹ • algebraMap (𝓞 E) E c • y := by

@@ -150,7 +150,7 @@ theorem gNat_pull {d : ℕ} (G : SingleObj (Gam d) ⥤ ModuleCat.{w} R) (g : Gam
 
 theorem killed_of {d : ℕ} (G : SingleObj (Gam d) ⥤ ModuleCat.{w} R) (g : Gam d) (s : R)
     (hu : ∀ T, UpTo s ((gNat G g - 𝟙 G).app T).hom) (n : ℕ) (z : H G n) : s ^ 2 • z = 0 := by
-  obtain ⟨x, hx⟩ := (CrystallineSemistableComparison.P.coef_upTo _ s hu n).2 z
+  obtain ⟨x, hx⟩ := (_root_.GlobalTheory.CompanionTheory.CoefUpTo.coef_upTo _ s hu n).2 z
   rw [← hx]
   have e1 := ni_pull_add (gNat G g - 𝟙 G) (𝟙 G) n x
   rw [sub_add_cancel, gNat_pull, ni_pull_id] at e1

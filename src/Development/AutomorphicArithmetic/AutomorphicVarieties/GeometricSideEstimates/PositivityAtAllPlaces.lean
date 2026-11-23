@@ -45,12 +45,7 @@ open UpperTheory.V.Lit.Geo
 open NumberField Matrix GlobalTheory.CuspRep GlobalTheory.GKCoh UpperTheory.V.Af GlobalTheory.UnitaryBC UpperTheory.V.Lit.Dr UpperTheory.V.Lit.Bor
 open GroundTheory.Automorphic GroundTheory.Automorphic.CuspidalSpectrum GroundTheory.Automorphic.Reduction
 
-private theorem cont_pInf {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] : Continuous (pInf E) := by
-  have c2 : Continuous (infEq E).symm := by
-    refine continuous_pi fun w => ?_
-    exact (InfinitePlace.Completion.isometryEquivComplexOfIsComplex (IsTotallyComplex.isComplex w)).continuous.comp
-      (continuous_apply w)
-  exact c2.comp continuous_fst
+private alias cont_pInf := _root_.GlobalTheory.CuspRep.RankOne.continuous_pInf
 
 private theorem pInf_pos {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (s : ℝ) (hs : 0 < s) :
     pInf E ((posIdele (K := E) s hs : GroundTheory.Global.IdeleGroup E) : Ad E) = fun _ => (s : ℂ) := by

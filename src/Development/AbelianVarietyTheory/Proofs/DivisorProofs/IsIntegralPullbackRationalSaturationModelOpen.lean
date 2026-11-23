@@ -43,21 +43,6 @@ open AlgebraicGeometry CategoryTheory Limits ReciprocityTheory.ChartRestriction.
 
 namespace GlobalTheory.UPoinc
 
-theorem isReduced_of_flat_isPreimmersion {X Y : Scheme.{0}} (f : X ⟶ Y) [Flat f] [IsPreimmersion f] [IsReduced Y] :
-    IsReduced X := by
-  haveI : ∀ x : X, _root_.IsReduced (X.presheaf.stalk x) := fun x => by
-    have hfl := Flat.stalkMap f x
-    have hs := f.stalkMap_surjective x
-    letI := (f.stalkMap x).hom.toAlgebra
-    haveI : Module.Flat (Y.presheaf.stalk (f x)) (X.presheaf.stalk x) := hfl
-    haveI : IsLocalHom (algebraMap (Y.presheaf.stalk (f x)) (X.presheaf.stalk x)) :=
-      inferInstanceAs (IsLocalHom (f.stalkMap x).hom)
-    haveI := Module.FaithfullyFlat.of_flat_of_isLocalHom (A := Y.presheaf.stalk (f x)) (B := X.presheaf.stalk x)
-    have hi : Function.Injective (f.stalkMap x).hom :=
-      FaithfulSMul.algebraMap_injective (Y.presheaf.stalk (f x)) (X.presheaf.stalk x)
-    exact isReduced_of_injective (RingEquiv.ofBijective _ ⟨hi, hs⟩).symm (RingEquiv.injective _)
-  exact isReduced_of_isReduced_stalk X
-
 theorem isIntegral_pullback_toRat : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [CharZero Ω] (M : RatModel o Ω) (U₀ : M.Z.Opens) (R : Subalgebra o Ω) (u₀ : U₀.toScheme ⟶ Sp R), (U₀ : Set M.Z).Nonempty → (∀ x : Sp Ω ⟶ U₀.toScheme, x ≫ U₀.ι = M.pt → x ≫ u₀ = spMap R.val.toRingHom) → IsIntegral (pullback u₀ (spMap (toRat R))) ∧ ∃ pt : Sp Ω ⟶ pullback u₀ (spMap (toRat R)), pt ≫ pullback.fst _ _ ≫ U₀.ι = M.pt ∧ Dense (Set.range pt) := by
   intro o Ω _ _ _ _ M U₀ R u₀ hne hgen
   haveI := M.integral
@@ -79,7 +64,7 @@ theorem isIntegral_pullback_toRat : ∀ (o Ω : Type) [CommRing o] [Field Ω] [A
   have hpt : pt ≫ j = M.pt := by rw [← Category.assoc, pullback.lift_fst, hx]
   haveI : IsPreimmersion j := inferInstance
   haveI : Flat j := inferInstance
-  haveI := isReduced_of_flat_isPreimmersion j
+  haveI := _root_.GlobalTheory.FamSiegel.isReduced_of_flat_preimmersion j
   have hj : ∀ y, j (pt y) = genericPoint M.Z := fun y => by
     rw [← Scheme.Hom.comp_apply, hpt]
     exact M.gen.le ⟨y, rfl⟩

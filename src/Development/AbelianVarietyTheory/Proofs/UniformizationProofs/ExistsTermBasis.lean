@@ -137,7 +137,7 @@ theorem exists_term_basis (hG : GlobalFnsSt) (hP : PolBaseChangeSt) (hT : TwistB
       ∃ b : Fin (k ^ D.P.g) → LB.Sec (LB.LinComb D.P.L φ (DegPre.famε k)),
         IsSecBasis (T := Over.mk t) (A := D.P.A) _ b := by
     rintro t rfl φ rfl
-    obtain ⟨b, hb⟩ := GlobalTheory.T.exists_twist_basis_off_prime hP hG hT R D hW ⊥ k hk α
+    obtain ⟨b, hb⟩ := _root_.GlobalTheory.TwistLoc.exists_basis_off_prime hP hG hT R D hW ⊥ k hk α
     let b' := fun i => DVR.pullSec (L := D.P.L) (DegPre.famφB D α) (DegPre.famε k) (b i)
       (snd (Over.mk (Spec.map (CommRingCat.ofHom f))) D.P.A).left
     refine ⟨b', hb F f (fun s hs => ?_) b' (fun i j => rfl)⟩

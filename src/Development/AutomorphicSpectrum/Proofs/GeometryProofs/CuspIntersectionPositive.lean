@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import GroundTheory.HeightsAndTheta.Heights.Regularisation.GlueCharts
 
 @[expose] public section
 
@@ -85,7 +86,7 @@ theorem loc_of_formula {n : ℕ} (t₀ : Fin n → ℂ) {ρ r : ℝ} (hρ : 0 < 
   have P1 := isPsh_half (⟨P0.1.mono Set.inter_subset_left, fun z w hd => P0.2 z w fun ζ hζ => (hd ζ hζ).1⟩ :
     IsPsh V _)
   refine ⟨V, hV, ⟨by exact Set.mem_preimage.mpr (mem_ball_self hρ), by simpa [affInv_self] using hr⟩,
-    GroundTheory.Heights₂.Heights.NineStatements.isPsh_congr' heq
+    _root_.GroundTheory.Heights₂.Heights.Regular.isPsh_congr heq
       (GroundTheory.Heights₂.Heights.NineStatements.isPsh_add_re_add_const hV P1 hG' 0), ContinuousOn.congr ?_ heq.symm⟩
   exact (((hc.comp (s := V) hd.continuous.continuousOn (fun t ht => norm_affInv t₀ hρ π ht.1)).div_const 2).add
     (Complex.continuous_re.comp_continuousOn hG'.continuousOn)).add continuousOn_const

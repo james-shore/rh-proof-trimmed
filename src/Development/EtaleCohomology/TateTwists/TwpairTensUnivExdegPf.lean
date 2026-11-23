@@ -80,7 +80,7 @@ theorem lam_res {I J I' J' K : Cx R} (ν : Pair I' J' K) (f : I ⟶ I') (g : J �
     simp only [LinearMap.comp_apply, Tens.res, tmap, DirectSum.lmap_lof, TensorProduct.map_tmul, Pair.lift,
       DirectSum.toModule_lof, TensorProduct.lift.tmul]
     have e := ν.nat k p.1.1 p.1.2 w p.2 (Sec.map (f.f p.1.1) a) (Sec.map (g.f p.1.2) b)
-    rw [secmap_res, secmap_res] at e
+    rw [_root_.LateralTheory.EtaleFoundations.EtaleTensorTripleProductLeibnizSeparated.res_map, _root_.LateralTheory.EtaleFoundations.EtaleTensorTripleProductLeibnizSeparated.res_map] at e
     exact e.symm
   exact congrArg (fun m => m x) key
 

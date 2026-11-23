@@ -100,27 +100,6 @@ theorem ut_of_mem {A : Matrix (Fin r) (Fin r) ℂ} (hA : A ∈ C2.UTset r) : G.u
     rw [if_pos rfl, dite_eq_right (lt_irrefl _), add_zero, hA.2 i]
   · rw [if_neg (ne_of_gt h), dite_eq_right (not_lt.2 h.le), add_zero, hA.1 i j h]
 
-theorem ut_inv_mem {A : Matrix (Fin r) (Fin r) ℂ} (hA : A ∈ C2.UTset r) : A⁻¹ ∈ C2.UTset r := by
-  have hT : Matrix.BlockTriangular A id := fun i j hij => hA.1 i j hij
-  have hu : IsUnit A.det := by
-    rw [Matrix.det_of_upperTriangular hT]
-    simp [hA.2]
-  haveI := Matrix.invertibleOfIsUnitDet A hu
-  have hTi : Matrix.BlockTriangular A⁻¹ id := Matrix.blockTriangular_inv_of_blockTriangular hT
-  refine ⟨fun i j hij => hTi hij, fun i => ?_⟩
-  have h1 : (A * A⁻¹) i i = 1 := by rw [Matrix.mul_nonsing_inv _ hu, Matrix.one_apply_eq]
-  rw [Matrix.mul_apply, Finset.sum_eq_single i] at h1
-  · rwa [hA.2, one_mul] at h1
-  · intro k _ hk
-    rcases lt_or_gt_of_ne hk with h | h
-    · rw [hA.1 i k h, zero_mul]
-    · rw [hTi h, mul_zero]
-  · simp
-
-theorem ut_det {A : Matrix (Fin r) (Fin r) ℂ} (hA : A ∈ C2.UTset r) : IsUnit A.det := by
-  rw [Matrix.det_of_upperTriangular (fun i j hij => hA.1 i j hij)]
-  simp [hA.2]
-
 def uTransE (A : X → Matrix (Fin r) (Fin r) ℂ) (hA : ∀ x, A x ∈ C2.UTset r) (hAc : ∀ i j, Measurable fun x => A x i j)
     (hAi : ∀ i j, Measurable fun x => (A x)⁻¹ i j) :
     (X × (G.UT r → ℂ)) ≃ᵐ (X × (G.UT r → ℂ)) where
@@ -130,14 +109,14 @@ def uTransE (A : X → Matrix (Fin r) (Fin r) ℂ) (hA : ∀ x, A x ∈ C2.UTset
     ext
     · rfl
     · simp only
-      rw [ut_of_mem (C2x2.ut_mul (ut_inv_mem (hA p.1)) (StabilizerDisintegration.UC.upper_mem _)), ← Matrix.mul_assoc,
-        Matrix.mul_nonsing_inv _ (ut_det (hA p.1)), Matrix.one_mul, StabilizerDisintegration.UC.utc_upper]
+      rw [ut_of_mem (C2x2.ut_mul (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_inv (hA p.1)) (StabilizerDisintegration.UC.upper_mem _)), ← Matrix.mul_assoc,
+        Matrix.mul_nonsing_inv _ (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_unit (hA p.1)), Matrix.one_mul, StabilizerDisintegration.UC.utc_upper]
   right_inv p := by
     ext
     · rfl
     · simp only
       rw [ut_of_mem (C2x2.ut_mul (hA p.1) (StabilizerDisintegration.UC.upper_mem _)), ← Matrix.mul_assoc,
-        Matrix.nonsing_inv_mul _ (ut_det (hA p.1)), Matrix.one_mul, StabilizerDisintegration.UC.utc_upper]
+        Matrix.nonsing_inv_mul _ (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_unit (hA p.1)), Matrix.one_mul, StabilizerDisintegration.UC.utc_upper]
   measurable_toFun := by
     refine measurable_fst.prodMk ?_
     refine Measurable.of_eval fun q => ?_
@@ -159,7 +138,7 @@ theorem uTransE_mp (A : X → Matrix (Fin r) (Fin r) ℂ) (hA : ∀ x, A x ∈ C
     MeasurePreserving (uTransE A hA hAc hAi) (μ.prod volume) (μ.prod volume) := by
   have h := MeasurePreserving.skew_product (f := id) (g := fun x u => StabilizerDisintegration.utc ((A x)⁻¹ * G.upper u))
     (MeasurePreserving.id μ) (measurable_snd.comp (uTransE A hA hAc hAi).measurable)
-    (Filter.Eventually.of_forall fun x => (StabilizerDisintegration.utLeft r _ (ut_inv_mem (hA x))).map_eq)
+    (Filter.Eventually.of_forall fun x => (StabilizerDisintegration.utLeft r _ (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_inv (hA x))).map_eq)
   exact h
 
 end utrans

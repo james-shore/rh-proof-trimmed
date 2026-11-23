@@ -200,7 +200,7 @@ theorem om_ptP (hC : GlobalTheory.Hk3.Core R F) {B : Base (Vc D i) (Wc D i)} (h 
   have hW := hC.thP.ωP i A.μ0
   have rV : (Vc D i).rank = D.R.r + D.R.t := D.sp.V_rank _ (Nat.le_add_left _ _) i.2
   have rW : (Wc D i).rank = D.R.r := D.sp.W_rank _ (Nat.le_add_left _ _) i.2
-  have hev : Even (Vc D i).rank := rV ▸ (GlobalTheory.ConjTwist.Test.odd_r D).add_odd D.R.t_odd
+  have hev : Even (Vc D i).rank := rV ▸ (_root_.Formalism.L2.Theta.r_odd D).add_odd D.R.t_odd
   obtain ⟨hf, hv, -⟩ := GlobalTheory.CoefActIo.thetaVector_laws (i := i) hC t
   have hω := h.isWeil hC.thP.ωP ht
   have hpt : ∀ P, R.ptP i t P = B.F.fock (R.vP i t) P := fun P => by rw [h.fock_eq]; rfl
@@ -211,7 +211,7 @@ theorem om_ptP (hC : GlobalTheory.Hk3.Core R F) {B : Base (Vc D i) (Wc D i)} (h 
   have heta : GlobalTheory.WeilParts.IsEtaTilde D B.eta := by
     rw [h.eta]
     exact GlobalTheory.EtaTildeOddParity.isEtaTilde_of_odd D _ _ hL.eta R.C.isEta _ _ _ hW.resS hW.resT
-      (hev.add_odd (rW ▸ GlobalTheory.ConjTwist.Test.odd_r D))
+      (hev.add_odd (rW ▸ _root_.Formalism.L2.Theta.r_odd D))
   have hinf : ∀ τ, HasInfExp D (B.mu * ψ.chi) τ ((B.w.c τ : ℚ) - ((B.w.p τ : ℚ) - B.w.q τ) / 2 + 1 / 2) := fun τ => by
     rw [h.mu_mul ht, h.exponent]
     exact (GlobalTheory.PairInfTypes.infTypesAt D T0 R.toLevCh A.μ0 hL i t τ).mu

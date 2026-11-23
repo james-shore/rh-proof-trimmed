@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffOfIsAffineOpen
 
 @[expose] public section
 
@@ -52,18 +53,13 @@ noncomputable section
 namespace GlobalTheory.ZH
 open GlobalTheory.Points
 
-theorem resG_trans_apply {X : Scheme.{0}} {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (a : Γ(X, U)) :
-    resG X h₂ (resG X h₁ a) = resG X (h₂.trans h₁) a := by
-  rw [← CommRingCat.comp_apply, ← X.presheaf.map_comp]
-  rfl
-
 theorem scale_mem_secOn {X : Scheme.{0}} (L : LB X) {V V' : X.Opens} (h : V' ≤ V) (a : Γ(X, V'))
     {σ : ∀ j, Γ(X, V ⊓ L.U j)} (hσ : σ ∈ secOn L V) :
     (fun j => resG X inf_le_left a * resG X (inf_le_inf_right _ h) (σ j)) ∈ secOn L V' := by
   intro i j
   have e := congrArg (resG X (inf_le_inf_right _ (inf_le_inf_right _ h) :
     V' ⊓ L.U i ⊓ L.U j ≤ V ⊓ L.U i ⊓ L.U j)) (hσ i j)
-  simp only [map_mul, resG_trans_apply] at e ⊢
+  simp only [map_mul, _root_.GlobalTheory.Cartier.resG_resG] at e ⊢
   rw [e, mul_left_comm]
 
 theorem valF_scale {X Z : Scheme.{0}} (p : X ⟶ Z) {N N' : Z.Opens} (h : p ⁻¹ᵁ N' ≤ p ⁻¹ᵁ N) (F : Γ(Z, N'))

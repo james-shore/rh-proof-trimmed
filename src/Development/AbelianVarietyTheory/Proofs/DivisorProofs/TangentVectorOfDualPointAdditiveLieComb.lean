@@ -47,6 +47,8 @@ import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffO
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffTopMonEqZero
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.MemSpanOfCardLe
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidStA
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.NonemptyIsLimitBaseChange
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapFibreSimplyTransitive
 
 @[expose] public section
 
@@ -96,29 +98,29 @@ variable {P P' P'' : Type} [CommRing P] [Algebra ℂ P] [CommRing P'] [Algebra �
 theorem specMap_comp₃ (f : P →ₐ[ℂ] P') (g : P' →ₐ[ℂ] P'') :
     mapP (R := R) g ≫ mapP f = mapP (g.comp f) := by
   apply Over.OverMorphism.ext
-  exact spMap_comp' _ _
+  exact _root_.GlobalTheory.spMap_comp_ring _ _
 
 theorem specMap_id₃ : mapP (R := R) (AlgHom.id ℂ P) = 𝟙 _ := by
   apply Over.OverMorphism.ext
-  exact spMap_id' _
+  exact _root_.GlobalTheory.LevelFibre.spMap_id' _
 
 theorem specMap_comp_toTF (f : P →ₐ[ℂ] P') : mapP (R := R) f ≫ toTF P = toTF P' := by
   apply Over.OverMorphism.ext
   show spMap _ ≫ spMap _ = spMap _
-  rw [spMap_comp']
+  rw [_root_.GlobalTheory.spMap_comp_ring]
   congr 1
   exact RingHom.ext fun x => f.commutes x
 
 theorem homF_mapP (a : P' →ₐ[ℂ] ℂ) (f : P →ₐ[ℂ] P') : homF (R := R) a ≫ mapP f = homF (a.comp f) := by
   apply Over.OverMorphism.ext
-  exact spMap_comp' _ _
+  exact _root_.GlobalTheory.spMap_comp_ring _ _
 
 theorem homF_toTF (a : P →ₐ[ℂ] ℂ) : homF (R := R) a ≫ toTF P = 𝟙 _ := by
   apply Over.OverMorphism.ext
   show spMap _ ≫ spMap _ = 𝟙 _
-  rw [spMap_comp']
+  rw [_root_.GlobalTheory.spMap_comp_ring]
   have : a.toRingHom.comp (algebraMap ℂ P) = RingHom.id ℂ := RingHom.ext fun x => a.commutes x
-  rw [this, spMap_id']
+  rw [this, _root_.GlobalTheory.LevelFibre.spMap_id']
 
 end GlobalTheory.TanLinComb
 
@@ -149,7 +151,7 @@ theorem isT_scale (c : ℂ) {x : TP R (DualNumber ℂ) ⟶ G} (hx : IsT x) : IsT
 theorem specMap_scaleD_zero : mapP (R := R) (Chart.scaleD (0 : ℂ)) = toTF (DualNumber ℂ) ≫ homF (Chart.fstD ℂ) := by
   apply Over.OverMorphism.ext
   show spMap _ = spMap _ ≫ spMap _
-  rw [spMap_comp', Chart.scaleD_zero]
+  rw [_root_.GlobalTheory.spMap_comp_ring, Chart.scaleD_zero]
   rfl
 
 theorem scale_zero_comp {x : TP R (DualNumber ℂ) ⟶ G} (hx : IsT x) : mapP (Chart.scaleD (0 : ℂ)) ≫ x = 1 := by
@@ -303,7 +305,7 @@ abbrev fC (R : Type) [CommRing R] [IsDomain R] [Algebra (FractionRing R) ℂ] : 
 
 theorem tf_hom : (TF (R := R) ℂ).hom = spMap (fC R) := by
   show spMap _ ≫ spMap _ = _
-  rw [spMap_comp']
+  rw [_root_.GlobalTheory.spMap_comp_ring]
 
 def dm (R : Type) [CommRing R] [IsDomain R] [Algebra (FractionRing R) ℂ] : TP R (DualNumber ℂ) ⟶ epsR R :=
   Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap (fC R))) (by
@@ -327,11 +329,11 @@ theorem isT_of_tangent {v : epsR R ⟶ G} (hv : IsTangent v) {b : TP R (DualNumb
   apply Over.OverMorphism.ext
   rw [Over.comp_left, hb, Hom.one_def, Over.comp_left, toUnit_left', tf_hom]
   show spMap _ ≫ spMap _ ≫ _ = _
-  rw [← Category.assoc, spMap_comp']
+  rw [← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
   have e : (Chart.fstD ℂ).toRingHom.comp (GlobalTheory.CompanionTheory.Ar.dualMap (fC R)) = (fC R).comp (TrivSqZeroExt.fstHom R R R).toRingHom := by
     refine RingHom.ext fun a => ?_
     simp [GlobalTheory.CompanionTheory.Ar.dualMap, Chart.fstD]
-  rw [e, ← spMap_comp', Category.assoc]
+  rw [e, ← _root_.GlobalTheory.spMap_comp_ring, Category.assoc]
   unfold IsTangent at hv
   rw [hv]
 
@@ -347,7 +349,7 @@ theorem dm_scale (c : R) {v u : epsR R ⟶ G} (hu : u.left = spMap (epsScaleR c)
   apply Over.OverMorphism.ext
   rw [Over.comp_left, Over.comp_left, hu, hb]
   show spMap _ ≫ spMap _ ≫ _ = spMap _ ≫ spMap _ ≫ _
-  rw [← Category.assoc, ← Category.assoc, spMap_comp', spMap_comp']
+  rw [← Category.assoc, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring]
   congr 2
   refine RingHom.ext fun a => ?_
   ext <;> simp [epsScaleR, GlobalTheory.CompanionTheory.Ar.dualMap, Chart.scaleD, smul_smul, _root_.mul_comm]

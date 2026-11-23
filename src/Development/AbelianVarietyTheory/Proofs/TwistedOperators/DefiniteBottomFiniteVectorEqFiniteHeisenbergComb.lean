@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsThetaFunctionStandardPairSecond
 
 @[expose] public section
 
@@ -79,29 +80,11 @@ theorem exists_nat_den (a : D.host.E) : ∃ q : ℕ, 0 < q ∧ (q : EAf D) * eTo
   rw [h2]
   exact mul_mem (intCast_mem _ _) h1
 
-theorem frMapAdj_add' (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) (x y : WO S T) :
-    frMapAdj S T βS βT (x + y) = frMapAdj S T βS βT x + frMapAdj S T βS βT y := by
-  unfold frMapAdj
-  rw [Matrix.map_add (cA D) (fun a b => (cA D).map_add a b), Matrix.transpose_add, Matrix.mul_add, Matrix.add_mul,
-    Matrix.map_add (toEAf D) (fun a b => (toEAf D).map_add a b), Matrix.mul_add, Matrix.add_mul]
-
-theorem frMapAdj_zero' (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) :
-    frMapAdj S T βS βT 0 = 0 := by
-  have h := frMapAdj_add' S T βS βT 0 0
-  rw [add_zero] at h
-  exact (add_eq_left.1 h.symm)
-
-theorem frMapAdj_nsmul' (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) (k : ℕ)
-    (x : WO S T) : frMapAdj S T βS βT (k • x) = k • frMapAdj S T βS βT x := by
-  induction k with
-  | zero => rw [zero_smul, zero_smul, frMapAdj_zero']
-  | succ n ih => rw [succ_nsmul, succ_nsmul, frMapAdj_add', ih]
-
 theorem dualCoord_add_nsmul (A' WW : HSp D) (βA' : GL (Fin A'.rank) (EAf D)) (βW : GL (Fin WW.rank) (EAf D))
     (t u : WO A' WW) (k : ℕ) :
     dualCoord A' WW βA' βW (t + k • u) = dualCoord A' WW βA' βW t + k • dualCoord A' WW βA' βW u := by
   unfold dualCoord
-  rw [frMapAdj_add', frMapAdj_nsmul', smul_add, smul_comm]
+  rw [_root_.GlobalTheory.PlaceVec.frMapAdj_add, _root_.GlobalTheory.CompanionTheory.StdSndTheta.frMapAdj_nsmul, smul_add, smul_comm]
 
 theorem isIntM_rightBlock {k d : ℕ} (a : ℕ) {Y : Matrix (Fin k) (Fin d) (EAf D)} (h : IsIntM Y) :
     IsIntM (rightBlock a Y) := fun i j => by
@@ -160,43 +143,6 @@ theorem stdSnd_shift {ν : (AE D)ˣ →* Circle} {e : AE D} {S : Finset (Pl D.ho
 
 
 
-theorem stdSnd_isSB {ν : (AE D)ˣ →* Circle} (hν : Continuous ν) {e : AE D} {S : Finset (Pl D.host.E)}
-    (he : IsIdemSum e S) {I : Ideal (𝓞 D.host.E)} (hI : I ≠ ⊥) (a : ℕ) (A' WW : HSp D)
-    (βA' : GL (Fin A'.rank) (EAf D)) (βW : GL (Fin WW.rank) (EAf D)) (Λ : AddSubgroup (WO A' WW))
-    (hB : ∃ M : ℕ, 0 < M ∧ ∀ u ∈ Λ, ∀ i j, (M : EAf D) * dualCoord A' WW βA' βW u i j ∈ OO)
-    (hC : ∃ K : ℕ, 0 < K ∧ ∀ t : WO A' WW, IsHalf (cA D e) t → IsIntM (dualCoord A' WW βA' βW t) → K • t ∈ Λ) :
-    IsSBHalf (cA D e) Λ (stdSnd ν e I a A' WW βA' βW) := by
-  obtain ⟨M, hM, hB⟩ := hB
-  obtain ⟨K, hK, hC⟩ := hC
-  obtain ⟨n, hn, hl, -⟩ := GlobalTheory.CharFin.char_finUnit_finite_order D ν hν
-  obtain ⟨n₀, hn₀, hnI⟩ : ∃ n₀ : ℕ, 0 < n₀ ∧ ((n₀ : ℕ) : 𝓞 D.host.E) ∈ I :=
-    ⟨_, Nat.pos_of_ne_zero fun h => hI (Ideal.absNorm_eq_zero_iff.1 h), Ideal.absNorm_mem I⟩
-  obtain ⟨c, hc, hcS⟩ : ∃ c : ℕ, 0 < c ∧ ∀ P ∈ S, ((c : ℕ) : 𝓞 D.host.E) ∈ P.asIdeal := by
-    refine ⟨∏ P ∈ S, Ideal.absNorm P.asIdeal, Finset.prod_pos fun P _ =>
-      Nat.pos_of_ne_zero fun h => P.ne_bot (Ideal.absNorm_eq_zero_iff.1 h), fun P hP => ?_⟩
-    obtain ⟨m, hm⟩ := Finset.dvd_prod_of_mem (fun P : Pl D.host.E => Ideal.absNorm P.asIdeal) hP
-    rw [hm, Nat.cast_mul]
-    exact Ideal.mul_mem_right _ _ (Ideal.absNorm_mem P.asIdeal)
-  refine ⟨fun t ht => ?_, K * ((n₀ * (n * c)) * M),
-    Nat.mul_pos hK (Nat.mul_pos (Nat.mul_pos hn₀ (Nat.mul_pos hn hc)) hM), fun u hu hh t => ?_, fun t ht => ?_⟩
-  · unfold stdSnd at ht
-    by_contra h
-    exact ht (if_neg fun h' => h h'.1)
-  · refine stdSnd_shift he hnI hl hcS a A' WW βA' βW
-      (Z := fun i j => (K : EAf D) * ((M : EAf D) * dualCoord A' WW βA' βW u i j))
-      ?_ (fun i j => mul_mem (natCast_mem _ _) (hB u hu i j)) fun i j => ?_
-    · rw [GlobalTheory.PlaceModel.isHalf_iff A' WW, GlobalTheory.PlaceModel.isHalf_iff A' WW]
-      exact AddSubgroup.add_mem_cancel_right _ (nsmul_mem ((GlobalTheory.PlaceModel.isHalf_iff A' WW).1 hh) _)
-    · rw [dualCoord_add_nsmul, Matrix.add_apply, Matrix.smul_apply, nsmul_eq_mul]
-      push_cast
-      ring
-  · have h : IsHalf (cA D e) t ∧ IsIntM (dualCoord A' WW βA' βW t) := by
-      unfold stdSnd at ht
-      by_contra h
-      exact ht (if_neg fun h' => h ⟨h'.1, h'.2.1⟩)
-    rw [mul_nsmul]
-    exact nsmul_mem (hC t h.1 h.2) _
-
 end GlobalTheory.BottomFinComb
 
 namespace GlobalTheory.BottomFinComb
@@ -226,7 +172,7 @@ theorem finVec_isFinComb : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
     obtain ⟨k, hk, h⟩ := GlobalTheory.PlaceVec.frMapAdj_up A' WW X.rA'.β X.rW.β
     obtain ⟨M, hM, h'⟩ := GlobalTheory.PlaceDatum.exists_den_latO hX.is.rigA'.1.1.fg hX.is.rigW.1.1.fg
     refine ⟨M * k, Nat.mul_pos hM hk, fun u hu => ?_⟩
-    rw [mul_nsmul, frMapAdj_nsmul']
+    rw [mul_nsmul, _root_.GlobalTheory.CompanionTheory.StdSndTheta.frMapAdj_nsmul]
     refine h _ fun a b => ?_
     change toEAf D (M • u a b) ∈ _
     rw [nsmul_eq_mul, RingHom.map_mul, map_natCast]
@@ -252,7 +198,7 @@ theorem finVec_isFinComb : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
       (M : EAf D) * dualCoord A' WW X.rA'.β X.rW.β u a b ∈ Formalism.L2.Herm.intAf D.host.F D.host.E := by
     refine ⟨q * d, Nat.mul_pos hq hd, fun u hu a b => ?_⟩
     have h1 := hL1 u hu a b
-    rw [frMapAdj_nsmul', Matrix.smul_apply, nsmul_eq_mul] at h1
+    rw [_root_.GlobalTheory.CompanionTheory.StdSndTheta.frMapAdj_nsmul, Matrix.smul_apply, nsmul_eq_mul] at h1
     have e1 : ((q * d : ℕ) : EAf D) * dualCoord A' WW X.rA'.β X.rW.β u a b =
         ((q : EAf D) * eToEAf D D.host.xi0) * ((d : EAf D) * frMapAdj A' WW X.rA'.β X.rW.β u a b) := by
       unfold dualCoord
@@ -267,7 +213,7 @@ theorem finVec_isFinComb : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
     have h1 : IsIntM (frMapAdj A' WW X.rA'.β X.rW.β (q' • s)) := fun a b => by
       have e1 : frMapAdj A' WW X.rA'.β X.rW.β (q' • s) a b =
           ((q' : EAf D) * eToEAf D D.host.xi0⁻¹) * dualCoord A' WW X.rA'.β X.rW.β s a b := by
-        rw [frMapAdj_nsmul', Matrix.smul_apply, nsmul_eq_mul]
+        rw [_root_.GlobalTheory.CompanionTheory.StdSndTheta.frMapAdj_nsmul, Matrix.smul_apply, nsmul_eq_mul]
         unfold dualCoord
         rw [Matrix.smul_apply, smul_eq_mul, mul_assoc, ← mul_assoc (eToEAf D _), ← map_mul, inv_mul_cancel₀ hξ,
           map_one, one_mul]
@@ -277,7 +223,7 @@ theorem finVec_isFinComb : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
       (GlobalTheory.PlaceModel.isHalf_iff A' WW).2 (nsmul_mem ((GlobalTheory.PlaceModel.isHalf_iff A' WW).1 hs) _)
     rw [mul_nsmul]
     exact hmem _ h2 h1
-  have hSB := stdSnd_isSB hν he hI A.rank A' WW X.rA'.β X.rW.β _ hB hC
+  have hSB := _root_.GlobalTheory.CompanionTheory.StdSndTheta.stdSnd_isSB hν he hI A.rank A' WW X.rA'.β X.rW.β _ hB hC
   exact GlobalTheory.AdForm.isFinComb_of_isThetaAt W.ψ A' WW X.rA'.Λ X.rW.Λ (cA D (X.e t)) X.vac' _ (X.f' t) hX.is.isVac'.1
     hX.is.rigA'.1 hX.is.rigW.1 hce hcinf hSB (hX.is.snd t)
 

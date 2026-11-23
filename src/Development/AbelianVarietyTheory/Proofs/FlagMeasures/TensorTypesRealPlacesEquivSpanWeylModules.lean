@@ -52,22 +52,9 @@ open scoped InnerProductSpace TensorProduct
 
 namespace GlobalTheory.TenTypes
 
-theorem fockF_eq_fockL {σ : Type} (f g : MvPolynomial σ ℂ) : Formalism.REAL.fockF f g = Formalism.L2.DIV.fockL g f := by
-  classical
-  rw [Formalism.L2.DIV.fockL_apply,
-    Formalism.L2.DIV.fockS_eq_sum g f (f.support ∪ g.support) Finset.subset_union_right]
-  unfold Formalism.REAL.fockF
-  rw [Finset.sum_subset Finset.subset_union_left ?_]
-  · refine Finset.sum_congr rfl fun m _ => ?_
-    simp only [Formalism.L2.DIV.mfact]
-    ring
-  · intro m _ hm
-    rw [MvPolynomial.mem_support_iff, not_not] at hm
-    simp [hm]
-
 private theorem star_fockF_comm {σ : Type} (f g : MvPolynomial σ ℂ) :
     star (Formalism.REAL.fockF f g) = Formalism.REAL.fockF g f := by
-  rw [fockF_eq_fockL g f, Formalism.L2.DIV.fockL_apply]
+  rw [_root_.GlobalTheory.FockTen.fockF_eq_fockL g f, Formalism.L2.DIV.fockL_apply]
   unfold Formalism.REAL.fockF Formalism.L2.DIV.fockS
   rw [star_sum]
   refine Finset.sum_congr rfl fun m _ => ?_
@@ -77,13 +64,13 @@ theorem nfAll_add_left {ι : Type} [Fintype ι] {n : ℕ} (lam : ι → DomWeigh
     (p p' q : MvPolynomial (ι × Fin n × Fin n) ℂ) :
     nfAll lam (p + p') q = nfAll lam p q + nfAll lam p' q := by
   unfold nfAll
-  rw [fockF_eq_fockL (p + p') q, map_add (f := _), ← fockF_eq_fockL p q, ← fockF_eq_fockL p' q, add_div]
+  rw [_root_.GlobalTheory.FockTen.fockF_eq_fockL (p + p') q, map_add (f := _), ← _root_.GlobalTheory.FockTen.fockF_eq_fockL p q, ← _root_.GlobalTheory.FockTen.fockF_eq_fockL p' q, add_div]
 
 theorem nfAll_smul_left {ι : Type} [Fintype ι] {n : ℕ} (lam : ι → DomWeight n)
     (c : ℂ) (p q : MvPolynomial (ι × Fin n × Fin n) ℂ) :
     nfAll lam (c • p) q = c * nfAll lam p q := by
   unfold nfAll
-  rw [fockF_eq_fockL (c • p) q, map_smul, ← fockF_eq_fockL p q, smul_eq_mul, mul_div_assoc]
+  rw [_root_.GlobalTheory.FockTen.fockF_eq_fockL (c • p) q, map_smul, ← _root_.GlobalTheory.FockTen.fockF_eq_fockL p q, smul_eq_mul, mul_div_assoc]
 
 theorem nfAll_symm {ι : Type} [Fintype ι] {n : ℕ} (lam : ι → DomWeight n)
     (p q : MvPolynomial (ι × Fin n × Fin n) ℂ) :

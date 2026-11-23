@@ -178,7 +178,7 @@ theorem flag_fwd_kept (M : FlagModel y Ψ N j) (keep : Ψ × Fin N → Prop) {κ
   have hzb : z ∘ v' ∈ mcPts (mCoordIdeal M.x) := comp_mem_mcPts hb' am hx hz
   let O := regRing (y ∘ v) z
   let val : O →+* ℂ := regVal hz
-  obtain ⟨V, hOV, hpl⟩ := GlobalTheory.T.valuation_ring_extension_specialization Φ O val (regVal_local hz)
+  obtain ⟨V, hOV, hpl⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ComplexPlace.exists_valuationSubring_place Φ O val (regVal_local hz)
   have hO : ∀ {s}, RegAt M.x (mCoordIdeal (z ∘ v')) s → am s ∈ O := fun hs => ⟨_, val_lift_of am hb' hx hz hs⟩
   let Ag : Ψ → Matrix (Fin N) (Fin N) Φ := fun τ => (F.T τ)⁻¹.map am * M.g τ
   have hinvD : ∀ τ, ((F.T τ)⁻¹.map am).det ≠ 0 := fun τ => by

@@ -59,12 +59,7 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 private theorem br_loc : IsLocalRing 𝒪[k] := (inferInstance : IsDiscreteValuationRing 𝒪[k]).toIsLocalRing
 attribute [local instance] br_loc
 
-private theorem br_unif : valuation k (unif k : k) = uniformizer k := by
-  obtain ⟨x, hx⟩ := valuation_surjective (uniformizer k)
-  have h0 : x ≠ 0 := by
-    rintro rfl
-    exact uniformizer_pos.ne (by simpa using hx)
-  exact Classical.epsilon_spec (p := fun x : kˣ => valuation k (x : k) = uniformizer k) ⟨Units.mk0 x h0, hx⟩
+private alias br_unif := _root_.UpperTheory.V.Hi.GlAx.unif_spec
 
 private theorem br_pow (c : ℕ) (x : 𝒪[k]) :
     x ∈ IsLocalRing.maximalIdeal 𝒪[k] ^ c ↔ valuation k (x : k) ≤ uniformizer k ^ c := by
@@ -165,10 +160,6 @@ private theorem br_memNm {c : ℕ} {g : GL (Fin n) k} :
   rw [← inv_mem_iff (H := unipBLower k (Fin n)), GlobalTheory.IwahoriTraceProof.mem_unipBLower]
   refine (mem_unipB k).trans ?_
   exact ⟨fun h => ⟨fun i j hij => h.1 j i hij, h.2⟩, fun h => ⟨fun i j hij => h.1 j i hij, h.2⟩⟩
-
-private theorem br_smooth {V : Type} [AddCommGroup V] [Module ℂ V] (π : Representation ℂ (GL (Fin n) k) V)
-    (h : GlobalTheory.PRep.IsSmooth π) : (glIwa k n).Smooth π :=
-  _root_.UpperTheory.Reformulated.B.BranchingSmooth.br_smooth π h
 
 private theorem br_Kone : Kc k n 1 = KOne k (Fin n) := by
   ext g
@@ -374,7 +365,7 @@ end SlopeTestRemainingChoices
 theorem UpperTheory.V.Hi.glBridge :
     ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (π : Representation ℂ (GL (Fin n) k) V), ((glIwa k n).jacKer π = GlobalTheory.PRep.twKer π (unipB k (Fin n)) 1) ∧ (GlobalTheory.PRep.IsSmooth π → (glIwa k n).Smooth π) ∧ (∀ c, IsOpen ((glIwa k n).I1 c : Set (GL (Fin n) k)) ∧ IsCompact ((glIwa k n).I1 c : Set (GL (Fin n) k))) ∧ (∀ U : Subgroup (GL (Fin n) k), IsOpen (U : Set (GL (Fin n) k)) → ∃ c, Kc k n c ≤ U) ∧ (∀ c, Kc k n (c + 1) ≤ (glIwa k n).I1 c) ∧ (glIwa k n).Iw 0 = iwahori k (Fin n) ∧ valuation k (unif k : k) = uniformizer k ∧ (∀ j ≤ n, ((glIwa k n).Nconj (al k n j)).relIndex (glIwa k n).N = Nat.card 𝓀[k] ^ (j * (n - j))) ∧ (glIwa k n).z = ((List.range n).map (al k n)).prod ∧ ∀ t : (glIwa k n).T, ∃ y : Fin n → Uo k, (t : GL (Fin n) k) = (List.ofFn fun i => (eT k n i (y i) : GL (Fin n) k)).prod ∧ ∀ c, (t : GL (Fin n) k) ∈ (glIwa k n).Tc c → ∀ i, (y i : kˣ) ∈ Uc k (c + 1) := by
   intro k _ _ _ _ n V _ _ π
-  refine ⟨?_, br_smooth π, fun c => ?_, br_basis, br_K_le, br_Iw, br_unif, br_index, iwahori_z_eq_product, iwahori_torus_product_form⟩
+  refine ⟨?_, _root_.UpperTheory.Reformulated.B.BranchingSmooth.br_smooth π, fun c => ?_, br_basis, br_K_le, br_Iw, br_unif, br_index, iwahori_z_eq_product, iwahori_torus_product_form⟩
   · refine congrArg (Submodule.span ℂ) (Set.ext fun w => ⟨?_, ?_⟩)
     · rintro ⟨x, hx, v, rfl⟩
       exact ⟨⟨x, hx⟩, v, by simp⟩

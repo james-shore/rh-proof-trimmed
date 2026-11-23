@@ -96,16 +96,6 @@ theorem sum_mul_right_eq {G M : Type} [Group G] [AddCommMonoid M] (H K : Subgrou
 
 variable {D : D7}
 
-theorem mul_mem_hatId {𝔪 : Ideal (𝓞 D.host.E)} {x y : AE D} (hx : x ∈ OhE D) (hy : y ∈ hatId D 𝔪) :
-    x * y ∈ hatId D 𝔪 := by
-  induction hy using AddSubgroup.closure_induction with
-  | mem y hy =>
-    obtain ⟨b, hb, s, hs, rfl⟩ := hy
-    exact AddSubgroup.subset_closure ⟨b, hb, x * s, mul_mem hx hs, by ring⟩
-  | zero => rw [mul_zero]; exact zero_mem _
-  | add y z _ _ h1 h2 => rw [mul_add]; exact add_mem h1 h2
-  | neg y _ h => rw [mul_neg]; exact neg_mem h
-
 theorem congOne_conj {𝔪 : Ideal (𝓞 D.host.E)} {N : ℕ} {g κ : GA D N} (hg : g ∈ intG D N) (hκ : CongOne D 𝔪 κ) :
     CongOne D 𝔪 (g⁻¹ * κ * g) := by
   intro i j
@@ -122,9 +112,9 @@ theorem congOne_conj {𝔪 : Ideal (𝓞 D.host.E)} {N : ℕ} {g κ : GA D N} (h
   rw [e, Matrix.mul_apply]
   refine sum_mem fun l _ => ?_
   rw [mul_comm]
-  refine mul_mem_hatId (hgi l j).1 ?_
+  refine _root_.GlobalTheory.FunObj.StdDatum.mul_mem_hatId (hgi l j).1 ?_
   rw [Matrix.mul_apply]
-  exact sum_mem fun m _ => mul_mem_hatId (hgi i m).2 (hκ m l)
+  exact sum_mem fun m _ => _root_.GlobalTheory.FunObj.StdDatum.mul_mem_hatId (hgi i m).2 (hκ m l)
 
 theorem om_finsum {δ : ℂ} {a d : ℕ} {e0 : VC D a d → ℂ} (W : WeilO D ⊤ δ a d e0) (g : GA D a) (g' : GA D d) {ι : Type}
     (s : Finset ι) (F : ι → VC D a d → ℂ) (hF : ∀ i ∈ s, F i ∈ TT D (tor0 D ⊤ δ) a d) :

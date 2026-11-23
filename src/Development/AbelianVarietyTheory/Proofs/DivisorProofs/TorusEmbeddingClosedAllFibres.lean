@@ -72,17 +72,6 @@ namespace GlobalTheory.TorusFibreImm
 
 set_option backward.isDefEq.respectTransparency.types false
 
-theorem isPullback_pullback_map {S S' : Scheme.{0}} (a : S' ⟶ S) {X Y : Over S} (v : X ⟶ Y) :
-    IsPullback ((Over.pullback a).map v).left (pullback.fst X.hom a) (pullback.fst Y.hom a) v.left := by
-  have h1 : ((Over.pullback a).map v).left ≫ pullback.fst Y.hom a = pullback.fst X.hom a ≫ v.left :=
-    pullback.lift_fst _ _ _
-  have h2 : ((Over.pullback a).map v).left ≫ pullback.snd Y.hom a = pullback.snd X.hom a :=
-    Over.w ((Over.pullback a).map v)
-  refine IsPullback.of_right ?_ h1 (IsPullback.of_hasPullback Y.hom a).flip
-  have h := (IsPullback.of_hasPullback X.hom a).flip
-  rw [h2, Over.w v]
-  exact h
-
 theorem closedImm_comp_iff {S S' S'' : Scheme.{0}} (b : S'' ⟶ S') (a : S' ⟶ S) {X Y : Over S} (v : X ⟶ Y) :
     IsClosedImmersion ((Over.pullback (b ≫ a)).map v).left ↔
       IsClosedImmersion ((Over.pullback b).map ((Over.pullback a).map v)).left := by
@@ -93,7 +82,7 @@ theorem closedImm_comp_iff {S S' S'' : Scheme.{0}} (b : S'' ⟶ S') (a : S' ⟶ 
 
 theorem closedImm_pullback {S S' : Scheme.{0}} (a : S' ⟶ S) {X Y : Over S} (v : X ⟶ Y)
     (h : IsClosedImmersion v.left) : IsClosedImmersion ((Over.pullback a).map v).left :=
-  MorphismProperty.of_isPullback (P := @IsClosedImmersion) (isPullback_pullback_map a v).flip h
+  MorphismProperty.of_isPullback (P := @IsClosedImmersion) (_root_.GlobalTheory.isPullback_overPullback_map_left a v).flip h
 
 theorem closedImm_of_pullback {k Ω : CommRingCat.{0}} (hk : IsField k) (hΩ : IsField Ω) (φ : k ⟶ Ω)
     {X Y : Over (Spec k)} (v : X ⟶ Y)
@@ -105,7 +94,7 @@ theorem closedImm_of_pullback {k Ω : CommRingCat.{0}} (hk : IsField k) (hΩ : I
   have hq : (@Surjective ⊓ @Flat ⊓ @QuasiCompact : MorphismProperty Scheme.{0}) (Spec.map φ) :=
     GlobalTheory.ClosedImmFieldDescent.fpqc_specMap_field k Ω
   exact MorphismProperty.of_isPullback_of_descendsAlong (P := @IsClosedImmersion)
-    (Q := @Surjective ⊓ @Flat ⊓ @QuasiCompact) (isPullback_pullback_map _ v)
+    (Q := @Surjective ⊓ @Flat ⊓ @QuasiCompact) (_root_.GlobalTheory.isPullback_overPullback_map_left _ v)
     (MorphismProperty.of_isPullback (P := @Surjective ⊓ @Flat ⊓ @QuasiCompact)
       (IsPullback.of_hasPullback Y.hom (Spec.map φ)).flip hq) h
 

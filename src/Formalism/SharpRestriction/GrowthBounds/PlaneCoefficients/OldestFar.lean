@@ -198,12 +198,6 @@ private theorem lt_sort_getD_of_le_card_filter_gt (S : Finset ℤ) (c : ℤ) (k 
   simp at h2
   omega
 
-private theorem fr_zero_le_fr_of_valid (hV : Fr.Valid L₁ N₁) (k : ℤ) (i : ℕ) (hi : i < r) :
-    Fr.fr k 0 ≤ Fr.fr k i := by
-  induction i with
-  | zero => exact le_rfl
-  | succ i ih => exact (ih (by omega)).trans (hV.2.2.1 k i hi).le
-
 theorem oldest_far (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (i : ℕ) (hi : i < r) :
     Fr.fr (j - 1) (r - 1) + L₁ < Fr.oldest j (Fr.fr j i) := by
   classical
@@ -227,9 +221,9 @@ theorem oldest_far (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (i : ℕ) 
     have hmI := hm
     unfold Frames.LLset at hmI
     rw [Finset.mem_filter, Finset.mem_Ioo] at hmI
-    have hm1 := fr_zero_le_fr_of_valid hV (j - 1) (r - 1) (by omega)
-    have hm2 := fr_zero_le_fr_of_valid hV j (r - 1) (by omega)
-    have hm3 := fr_zero_le_fr_of_valid hV j i hi
+    have hm1 := _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.frame_first_entry_le hV (j - 1) (r - 1) (by omega)
+    have hm2 := _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.frame_first_entry_le hV j (r - 1) (by omega)
+    have hm3 := _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.frame_first_entry_le hV j i hi
     rw [Finset.mem_filter, Finset.mem_filter]
     refine ⟨⟨?_, hev, by omega⟩, by omega⟩
     unfold Frames.letters

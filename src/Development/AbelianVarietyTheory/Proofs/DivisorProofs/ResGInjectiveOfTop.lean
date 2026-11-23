@@ -68,12 +68,6 @@ theorem resG_injective_of_top {X : Scheme.{0}} {V : X.Opens} (h : ⊤ ≤ V) : F
   intro a b hab
   simpa [resG, e] using hab
 
-theorem resG_resG {X : Scheme.{0}} {U V W : X.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (a : Γ(X, U)) :
-    resG X h2 (resG X h1 a) = resG X (h2.trans h1) a := by
-  show (X.presheaf.map _ ≫ X.presheaf.map _).hom a = _
-  rw [← Functor.map_comp]
-  rfl
-
 theorem resG_appLE {X Y : Scheme.{0}} (f : Y ⟶ X) {U : X.Opens} {V W : Y.Opens} (h : V ≤ f ⁻¹ᵁ U) (h2 : W ≤ V)
     (a : Γ(X, U)) : resG Y h2 ((f.appLE U V h).hom a) = (f.appLE U W (h2.trans h)).hom a := by
   show (f.appLE U V h ≫ Y.presheaf.map _).hom a = _
@@ -89,12 +83,12 @@ theorem ev_injective (V : (Sp Ω).Opens) (hV : ⊤ ≤ V) : Function.Injective (
 
 theorem ev_resG {V W : (Sp Ω).Opens} (hV : ⊤ ≤ V) (hW : ⊤ ≤ W) (h : W ≤ V) (a : Γ(Sp Ω, V)) :
     ev W hW (resG (Sp Ω) h a) = ev V hV a := by
-  simp only [ev, RingHom.comp_apply, resG_resG]
+  simp only [ev, RingHom.comp_apply, _root_.GlobalTheory.Cartier.resG_resG]
 
 theorem ev_resG_top {V : (Sp Ω).Opens} (hV : ⊤ ≤ V) (x : Ω) :
     ev V hV (resG (Sp Ω) le_top ((Scheme.ΓSpecIso (CommRingCat.of Ω)).inv.hom x)) = x := by
   have e : (homOfLE (hV.trans le_top) : (⊤ : (Sp Ω).Opens) ⟶ ⊤) = 𝟙 _ := Subsingleton.elim _ _
-  simp only [ev, RingHom.comp_apply, resG_resG]
+  simp only [ev, RingHom.comp_apply, _root_.GlobalTheory.Cartier.resG_resG]
   simp [resG, e]
 
 theorem ev_appLE {X : Scheme.{0}} (x : Sp Ω ⟶ X) {U : X.Opens} {V : (Sp Ω).Opens} (hV : ⊤ ≤ V) (h : V ≤ x ⁻¹ᵁ U)

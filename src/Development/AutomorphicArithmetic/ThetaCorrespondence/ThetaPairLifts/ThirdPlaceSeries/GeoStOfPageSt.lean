@@ -75,7 +75,7 @@ theorem geoSt_of_pageSt_alt : _root_.GlobalTheory.BigOn.PageStatement → _root_
   obtain ⟨pnb, -, -, -, -⟩ := hyb x hx hb i
   have hcore := hmore.2.1
   have hown := hrec.2
-  have hch := (_root_.GlobalTheory.T.links2_of_single_index_twisted _ _ _ _ _ _ _ _ _ _ p hrows hmore.1).1
+  have hch := (_root_.GlobalTheory.BigOn.links2_of_rows_alt _ _ _ _ _ _ _ _ _ _ p hrows hmore.1).1
   have hRH := HR _ _ _ _ _ _ _ (F2 p) _ _ _ _ _ _ (Fm.ex x hx i).kap_def _ _ hcore hrec.1.ok hown pna
   obtain ⟨hSup, hSpan, hS, hData⟩ := HL _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ O hrec.1 hcore hown pnb hRH hch.grp
     hch.tup.mu_conj hch.tup.mu_off hch.tup.mu_ne

@@ -116,7 +116,7 @@ theorem ptr_mul_trProd_mem_reach (n : ℕ) (S : Type) [CommRing S] [Algebra ℝ 
     have hr' : (r + i) + (l.map Prod.snd).sum = n := by
       simp only [List.map_cons, List.sum_cons] at hr
       omega
-    obtain ⟨J, _, σ, c, hσ⟩ := GlobalTheory.T.exists_polyRep_combination_pure_power_trace m n S τ i hi
+    obtain ⟨J, _, σ, c, hσ⟩ := _root_.GlobalTheory.GoodMetric.PureVirt.exists_pure_power_trace m n S τ i hi
     have ih' := ih (fun x hx => hl x (List.mem_cons_of_mem _ hx)) (r + i) hr'
     have h := (Reach m n S).smul_mem (((r + i).choose r : ℝ)⁻¹)
       ((Reach m n S).sum_mem (t := Finset.univ)

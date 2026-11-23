@@ -46,6 +46,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimes
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsApprox
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCongLevelIntG
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstStandardPairMemberHasThetaFunction
 
 @[expose] public section
 
@@ -112,14 +113,6 @@ private lemma eq_lr_take_drop_of_map_fst_eq_replicate {D : D7} : ∃ Ψ : AE D �
     · simp only [map_add (f := _), Prod.fst_add, h1.1, h2.1]
     · simp only [map_add (f := _), Prod.snd_add, h1.2, h2.2]
 
-private lemma units_eq_of_res_eq_of_le_iSup {D : D7} {z z' : AE D} (hi : infPart D z = infPart D z') (ht : toEAf D z = toEAf D z') :
-    z = z' := by
-  obtain ⟨Ψ, hΨ⟩ := eq_lr_take_drop_of_map_fst_eq_replicate (D := D)
-  apply Ψ.injective
-  refine Prod.ext ((Algebra.TensorProduct.comm D.host.F D.host.E (Ainf D.host.F)).injective ?_) ?_
-  · rw [← (hΨ z).1, ← (hΨ z').1, hi]
-  · rw [← (hΨ z).2, ← (hΨ z').2, ht]
-
 private lemma exists_unit_infPart_one_toEAf_eq {D : D7} {u w : EAf D} (huw : u * w = 1) :
     ∃ x : (AE D)ˣ, infPart D (x : AE D) = 1 ∧ toEAf D (x : AE D) = u ∧ toEAf D ((x⁻¹ : (AE D)ˣ) : AE D) = w := by
   obtain ⟨Ψ, hΨ⟩ := eq_lr_take_drop_of_map_fst_eq_replicate (D := D)
@@ -148,7 +141,7 @@ theorem exists_isUnitDet {e : AE D} (he : e * e = e) (hE : toEAf D e ∈ Formali
 
 private lemma isUnitDet_unique' {D : D7} {e : AE D} {k : ℕ} {M : Matrix (Fin k) (Fin k) (EAf D)} {x x' : (AE D)ˣ}
     (hx : IsUnitDet e M x) (hx' : IsUnitDet e M x') : x = x' :=
-  Units.ext (units_eq_of_res_eq_of_le_iSup (hx.1.trans hx'.1.symm) (hx.2.1.trans hx'.2.1.symm))
+  Units.ext (_root_.StandardFirstTheta.GlobalTheory.CompanionTheory.StdFstTheta.eq_of_parts (hx.1.trans hx'.1.symm) (hx.2.1.trans hx'.2.1.symm))
 
 private lemma unitChar_eq_inv_of_isUnitDet {D : D7} (ν : (AE D)ˣ →* Circle) {e : AE D} {k : ℕ} {M : Matrix (Fin k) (Fin k) (EAf D)}
     {x : (AE D)ˣ} (hx : IsUnitDet e M x) : unitChar ν e M = (((ν x)⁻¹ : Circle) : ℂ) := by

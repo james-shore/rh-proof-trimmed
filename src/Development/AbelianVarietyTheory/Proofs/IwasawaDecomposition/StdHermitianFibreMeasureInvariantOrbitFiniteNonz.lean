@@ -126,6 +126,6 @@ theorem stdX_props : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
     rw [e1, e2, Units.val_one, ← smul_eq_lrAct] at hT
     exact huniq _ hT
   · refine measure_mono_null (fun X hX => ?_) h1
-    exact fun h => hX (GlobalTheory.T.witt_theorem_adelic_one_vector F E σ hCM M J x β hJ hβ hx X h)
+    exact fun h => hX (_root_.GlobalTheory.AdelicWitt.witt_adelic F E σ hCM M J x β hJ hβ hx X h)
 
 end GlobalTheory.GaugeEx.StdProp

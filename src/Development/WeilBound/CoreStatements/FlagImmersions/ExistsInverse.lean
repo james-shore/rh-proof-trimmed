@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.SameOrbitRefl
 
 @[expose] public section
 
@@ -82,11 +83,6 @@ theorem SO_symm {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') : SameOrbit z
   obtain ⟨c, hc, rfl⟩ := h
   exact ⟨fun k => (c k)⁻¹, fun k => inv_ne_zero (hc k), funext fun p => by rw [inv_mul_cancel_left₀ (hc _)]⟩
 
-theorem SO_trans {z z' z'' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') (h' : SameOrbit z' z'') : SameOrbit z z'' := by
-  obtain ⟨c, hc, rfl⟩ := h
-  obtain ⟨c', hc', rfl⟩ := h'
-  exact ⟨fun k => c k * c' k, fun k => mul_ne_zero (hc k) (hc' k), funext fun p => (mul_assoc _ _ _).symm⟩
-
 theorem SO_ne {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') (q : Σ k, ι k) : z q ≠ 0 ↔ z' q ≠ 0 := by
   obtain ⟨c, hc, rfl⟩ := h
   simp [hc q.1]
@@ -107,7 +103,7 @@ theorem exists_inverse {P J : Ideal (MRing ι)} {e : ℕ} (R : AnLogRes P J e) (
     obtain ⟨O, μ, -, h1, -, h2⟩ := key w₁
     have a1 := h2 w (e₀ ▸ h1)
     rw [e₀] at a1
-    refine R.inj w w₁ (fun h => ?_) (SO_trans a1 (SO_symm (h2 w₁ h1)))
+    refine R.inj w w₁ (fun h => ?_) (_root_.GlobalTheory.CompanionTheory.Ar.PB.Cj.sameOrbit_trans a1 (SO_symm (h2 w₁ h1)))
     simpa using h.2 1 (hJ ▸ Submodule.mem_top)
   let ψ := Function.surjInv hs
   have r : ∀ x, π (ψ x) = x := Function.surjInv_eq hs

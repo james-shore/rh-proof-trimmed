@@ -110,20 +110,6 @@ theorem flat_of_isIndEtale {A S : Type} [CommRing A] [CommRing S] [Algebra A S]
   rw [← hw, hy, map_sum]
   simp only [map_smul]
 
-theorem exists_local_unramified {A S : Type} [CommRing A] [IsLocalRing A] [CommRing S]
-    [IsLocalRing S] [Algebra A S] [IsLocalHom (algebraMap A S)]
-    (h : GlobalTheory.IndefiniteRowSideFullHecke.ProjectiveSpaceOverSpec.IsIndEtale (algebraMap A S)) (s : S) :
-    ∃ (L : Type) (_ : CommRing L) (_ : IsLocalRing L) (_ : Algebra A L)
-      (_ : IsLocalHom (algebraMap A L)) (_ : Algebra.FormallyUnramified A L)
-      (_ : Algebra.EssFiniteType A L) (φ : L →ₐ[A] S) (_ : IsLocalHom φ) (x : L), φ x = s := by
-  first
-  | exact @_root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale
-  | exact _root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale
-  | (apply _root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale ..)
-
 theorem flat_map_maximalIdeal_isSeparable (A S : Type) [CommRing A] [IsLocalRing A] [CommRing S]
     [IsLocalRing S] [Algebra A S] [IsLocalHom (algebraMap A S)]
     (h : GlobalTheory.IndefiniteRowSideFullHecke.ProjectiveSpaceOverSpec.IsIndEtale (algebraMap A S)) :
@@ -131,13 +117,13 @@ theorem flat_map_maximalIdeal_isSeparable (A S : Type) [CommRing A] [IsLocalRing
       Algebra.IsSeparable (ResidueField A) (ResidueField S) := by
   refine ⟨flat_of_isIndEtale h, le_antisymm ?_ fun s hs => ?_, ⟨fun r => ?_⟩⟩
   · exact ((local_hom_tfae (algebraMap A S)).out 1 3 rfl rfl).mp inferInstance
-  · obtain ⟨L, _, _, _, _, _, _, φ, hφ, x, rfl⟩ := exists_local_unramified h s
+  · obtain ⟨L, _, _, _, _, _, _, φ, hφ, x, rfl⟩ := _root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale h s
     have hx : x ∈ maximalIdeal L := fun hx => hs (hx.map φ)
     rw [← Algebra.FormallyUnramified.map_maximalIdeal (R := A)] at hx
     have := Ideal.mem_map_of_mem (φ : L →+* S) hx
     rwa [Ideal.map_map, AlgHom.comp_algebraMap] at this
   · obtain ⟨s, rfl⟩ := residue_surjective r
-    obtain ⟨L, _, _, _, _, _, _, φ, hφ, x, rfl⟩ := exists_local_unramified h s
+    obtain ⟨L, _, _, _, _, _, _, φ, hφ, x, rfl⟩ := _root_.GlobalTheory.LocalIndEtaleUnramified.exists_local_unramified_of_isIndEtale h s
     have : IsLocalHom (φ : L →+* S) := ⟨hφ.1⟩
     let ψ : ResidueField L →ₐ[ResidueField A] ResidueField S :=
       { toRingHom := ResidueField.map (φ : L →+* S)

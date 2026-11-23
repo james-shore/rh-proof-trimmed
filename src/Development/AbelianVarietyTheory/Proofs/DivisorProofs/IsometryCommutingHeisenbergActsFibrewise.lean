@@ -209,6 +209,6 @@ theorem eq_zero_of_vanish_fibre : ∀ {F : Type} [Field F] [NumberField F] {κ :
     have := hiso μ inferInstance _ hmem
     rw [hT] at this
     exact this
-  exact lw v ψ hstd hnt μ inferInstance Φ hΦ (T Φ) hTΦ htrig y O hO hyO
+  exact _root_.GlobalTheory.OffVLocalWeights.exists_localizing_weight v ψ hstd hnt μ inferInstance Φ hΦ (T Φ) hTΦ htrig y O hO hyO
 
 end GlobalTheory.FibreLocality

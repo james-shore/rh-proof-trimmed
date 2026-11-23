@@ -85,7 +85,7 @@ theorem repAll_holds : IdealInd → RepMul → RepAll := by
       exact repLev_top o
     · intro w j _ hQ k
       rw [repLev_iff_pow, ← pow_mul]
-      exact (repLev_iff_pow o w (j * k)).mp (GlobalTheory.T.exists_finiteEtaleScheme_representing_etaleLevels p D R b N w (j * k) hN hQ S s o)
+      exact (repLev_iff_pow o w (j * k)).mp (_root_.GlobalTheory.UPel.HT.EtLev.exists_etLevScheme p D R b N w (j * k) hN hQ S s o)
     · intro 𝔞' 𝔟 hcop h1 h2 k
       rw [repLev_iff_pow, mul_pow]
       refine hM p D R b N S s o (𝔞' ^ k) (𝔟 ^ k) ?_

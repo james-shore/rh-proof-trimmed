@@ -63,7 +63,7 @@ theorem exists_satU_eigenvector : ∀ {K : Type} [Field K] [Valued K (WithZero (
   have hcomm : ∀ a b : Formalism.UG.Hecke ℂ (Formalism.UG.KU σ n), T a.1 * T b.1 = T b.1 * T a.1 := by
     intro a b
     rw [← hmul _ a.2 _ b.2, ← hmul _ b.2 _ a.2, GlobalTheory.UnitarySwap.heckeCommU K ϖ σ q n ℂ hU _ a.2 _ b.2]
-  obtain ⟨x, hx0, hx⟩ := GlobalTheory.exists_common_eigenvector_of_commute
+  obtain ⟨x, hx0, hx⟩ := _root_.GlobalTheory.UnimodularLatticeLemma.main
     (fun b : Formalism.UG.Hecke ℂ (Formalism.UG.KU σ n) => T b.1) hcomm
   choose c hc using hx
   have hinj : Function.Injective fun a : ℂ => a • x := smul_left_injective ℂ hx0

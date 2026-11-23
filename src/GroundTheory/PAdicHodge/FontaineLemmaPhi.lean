@@ -55,18 +55,6 @@ namespace GroundTheory.PAdicHodge
 
 open _root_.WittVector
 
-section Iteration
-
-variable {A R ι : Type*} [CommRing A] [CommRing R]
-
-theorem exists_eq_add_mul_of_forall {a : A} {r : R} [IsAdicComplete (Ideal.span {a}) A]
-    [IsAdicComplete (Ideal.span {r}) R] (f : A →+* R) (hf : f a = r) (X : R) (ψ : ι → R)
-    (h : ∀ y, ∃ b : A, ∃ s : R, ∃ y' : ι, ψ y = f b + X * s + r * ψ y') (y : ι) :
-    ∃ b : A, ∃ s : R, ψ y = f b + X * s :=
-  _root_.GroundTheory.Variant₂.N1.exists_eq_add_mul_of_forall' f hf X ψ h y
-
-end Iteration
-
 namespace ACris
 
 variable {K : Type*} [NontriviallyNormedField K] [IsUltrametricDist K]
@@ -143,7 +131,7 @@ theorem exists_phi_eq_add_mul [CharZero K] {ξ : AInf K p} (hξ : RingHom.ker θ
     (y : ACris K p) :
     ∃ b : AInf K p, ∃ s : ACris K p, phi (K := K) (p := p) y =
       algebraMap (AInf K p) (ACris K p) b + algebraMap (ACrisZero K p) (ACris K p) X * s := by
-  refine exists_eq_add_mul_of_forall (a := (p : AInf K p)) (r := (p : ACris K p))
+  refine _root_.GroundTheory.Variant₂.N1.exists_eq_add_mul_of_forall' (a := (p : AInf K p)) (r := (p : ACris K p))
     (algebraMap (AInf K p) (ACris K p)) (map_natCast _ p) _ (phi (K := K) (p := p)) (fun y => ?_) y
   obtain ⟨y₀, z₁, rfl⟩ := exists_eq_add_p_pow_mul 1 y
   obtain ⟨b, s, hs, e⟩ := exists_phiAway_eq_add_mul hξ hX y₀.2

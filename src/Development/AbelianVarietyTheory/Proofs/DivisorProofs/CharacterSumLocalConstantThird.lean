@@ -53,13 +53,6 @@ open scoped ComplexOrder
 
 namespace GlobalTheory.ColNormsUnit
 
-theorem mem_of_divs {A : Type} [CommRing A] [IsDedekindDomain A] {a : A} {P : HeightOneSpectrum A} (h : P ∈ divs a) :
-    a ∈ P.asIdeal := by
-  unfold divs at h
-  split_ifs at h with hf
-  · exact hf.mem_toFinset.1 h
-  · simp at h
-
 theorem qe_one {X : Fields} (sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)) {Sg : Set ℕ} :
     QE sel ((1 : Tup X.F X.E X.K Sg) : Chr X.F X.E X.K) = ∅ := by
   have h : Qprime ((1 : Tup X.F X.E X.K Sg) : Chr X.F X.E X.K) = ∅ := by
@@ -78,14 +71,14 @@ theorem exists_prime {X : Fields} {Pr : Primes X} (hPr : Pr.Ok) (sel : HeightOne
   classical
   have hg : ∀ i, P ∈ Pr.vG i → ∃ l : ℕ, l.Prime ∧ (l : 𝓞 X.E) ∈ P.asIdeal ∧ ¬ l ∣ Pr.cond := by
     intro i hi
-    refine ⟨Pr.g i, hPr.g_prime i, hPr.piG_norm i ▸ P.asIdeal.mul_mem_left _ (mem_of_divs hi), fun hd => ?_⟩
+    refine ⟨Pr.g i, hPr.g_prime i, hPr.piG_norm i ▸ P.asIdeal.mul_mem_left _ (_root_.Formalism.L2.Col.decoFin_mem_of_mem_divs hi), fun hd => ?_⟩
     have h1 : Pr.g i ≡ 1 [MOD Pr.g i] := (hPr.g_cong i).of_dvd hd
     have h2 : Pr.g i ∣ 1 := (Nat.modEq_zero_iff_dvd).1 (h1.symm.trans ((Nat.modEq_zero_iff_dvd).2 dvd_rfl))
     exact (hPr.g_prime i).one_lt.ne' (Nat.dvd_one.1 h2)
   unfold Sall at hP
   simp only [rowSG, uSG, qe_one, Primes.vGs, Finset.mem_union, Finset.notMem_empty, or_false] at hP
   rcases hP with h | h | h
-  · have h0 : Pr.piT u ∈ P.asIdeal := mem_of_divs h
+  · have h0 : Pr.piT u ∈ P.asIdeal := _root_.Formalism.L2.Col.decoFin_mem_of_mem_divs h
     have hT : (Pr.T u : 𝓞 X.E) ∈ P.asIdeal := hPr.piT_norm u ▸ P.asIdeal.mul_mem_right _ h0
     refine ⟨Pr.T u, hPr.T_prime u, hT, fun hd => ?_⟩
     have h1 : (Pr.T u : 𝓞 X.E) ∣ Pr.piT u - 1 :=

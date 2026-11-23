@@ -56,12 +56,6 @@ private theorem two_mul_card_places (F : Type) [Field F] [NumberField F] [IsTota
     IsTotallyComplex.nrRealPlaces_eq_zero F]
   ring
 
-open scoped Classical in
-private theorem sum_fibre_place (F : Type) [Field F] [NumberField F] [IsTotallyComplex F] (x : F)
-    (v : InfinitePlace F) :
-    ∑ φ : F →+* ℂ with InfinitePlace.mk φ = v, φ x = ((2 * (v.embedding x).re : ℝ) : ℂ) :=
-  _root_.UpperTheory.Reformulated.B.SumOverPlacesFibre.sum_fibre_place F x v
-
 private theorem trace_eq_sum_places (F : Type) [Field F] [NumberField F] [IsTotallyComplex F] (x : F) :
     ((Algebra.trace ℚ F x : ℚ) : ℝ) = ∑ v : InfinitePlace F, 2 * (v.embedding x).re := by
   classical
@@ -78,7 +72,7 @@ private theorem trace_eq_sum_places (F : Type) [Field F] [NumberField F] [IsTota
       ∑ v : InfinitePlace F, ∑ φ : F →+* ℂ with InfinitePlace.mk φ = v, φ x :=
     (Finset.sum_fiberwise _ _ _).symm
   have h3 : ((Algebra.trace ℚ F x : ℚ) : ℂ) = ((∑ v : InfinitePlace F, 2 * (v.embedding x).re : ℝ) : ℂ) := by
-    rw [h1, h2, Finset.sum_congr rfl fun v _ => sum_fibre_place F x v, Complex.ofReal_sum]
+    rw [h1, h2, Finset.sum_congr rfl fun v _ => _root_.UpperTheory.Reformulated.B.SumOverPlacesFibre.sum_fibre_place F x v, Complex.ofReal_sum]
   have h4 : (((Algebra.trace ℚ F x : ℚ) : ℝ) : ℂ) = ((Algebra.trace ℚ F x : ℚ) : ℂ) := by
     push_cast
     rfl
@@ -113,7 +107,7 @@ private theorem span_top (F : Type) [Field F] [NumberField F] [IsTotallyComplex 
       · subst h
         simp [S]
       · simp [S, h]
-    exact hle (by rw [GlobalTheory.LKTrip.HTGroup.span_real_embedding_places]; trivial)
+    exact hle (by rw [_root_.GlobalTheory.EmbeddingRangeSpanTop.span_range_embedding_eq_top]; trivial)
   have hy : y = ∑ i : Fin n, fun v => (Pi.single i (y v i) : Fin n → ℂ) := by
     funext v j
     simp [Finset.sum_apply, Pi.single_apply]

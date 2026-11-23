@@ -173,7 +173,7 @@ theorem normStep_exists (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : AwayP p) (
     apply (basV G v).repr.injective
     exact Finsupp.ext fun i => congrArg (fun f => ((f i : O) : Qv v)) hab
   haveI : Module.Finite O A := Module.Finite.of_injective cf hinj
-  obtain ⟨hhen, hfin⟩ := GlobalTheory.T.padicIntegers_henselian_finiteResidue v.1
+  obtain ⟨hhen, hfin⟩ := _root_.GlobalTheory.IntAdicHensel.henselianLocalRing_and_finite_residueField v.1
   haveI := hhen
   haveI := hfin
   let θA : A := ⟨θ, hθg, hθi⟩
@@ -183,7 +183,7 @@ theorem normStep_exists (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : AwayP p) (
   let siA : A := ⟨↑s⁻¹, congrArg Units.val hsg', hsii⟩
   have hsu : IsUnit sA := IsUnit.of_mul_eq_one (a := sA) siA (Subtype.ext s.mul_inv)
   have hτs : τ sA = sA := Subtype.ext hsfix
-  obtain ⟨t₀, ht₀, ht₀J⟩ := GlobalTheory.T.exists_isUnit_mul_involution_sub_mem_jacobson O A τ hτinv θA hθu sA hsu hτs
+  obtain ⟨t₀, ht₀, ht₀J⟩ := _root_.GlobalTheory.exists_isUnit_mul_sub_mem_jacobson_of_finite_residueField O A τ hτinv θA hθu sA hsu hτs
   haveI : HenselianRing A (⊥ : Ideal A).jacobson := GlobalTheory.henselianRing_of_finite O _ le_rfl
   have hτJ : ∀ a ∈ (⊥ : Ideal A).jacobson, τ a ∈ (⊥ : Ideal A).jacobson := by
     intro a ha
@@ -195,7 +195,7 @@ theorem normStep_exists (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : AwayP p) (
     show ((2 : A) : Qv v ⊗[ℚ] G.C) * h = 1
     rw [show ((2 : A) : Qv v ⊗[ℚ] G.C) = 2 from map_ofNat A.subtype 2]
     exact h2))
-  obtain ⟨t, ht, htt⟩ := GlobalTheory.T.henselian_norm_lift A _ τ hτinv h2A hτJ sA t₀ hsu hτs ht₀ ht₀J
+  obtain ⟨t, ht, htt⟩ := _root_.GlobalTheory.hensel_norm_lift_of_involution A _ τ hτinv h2A hτJ sA t₀ hsu hτs ht₀ ht₀J
   refine ⟨Units.map (A.subtype : A →* Qv v ⊗[ℚ] G.C) ht.unit, ?_, ?_, ?_, ?_⟩
   · exact Units.ext t.2.1
   · exact t.2.2

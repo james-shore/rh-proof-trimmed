@@ -75,10 +75,6 @@ open GlobalTheory.SmGL.CuspMax GlobalTheory.JacMinCusp Matrix
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem tmul_ne_zero' {X Y : Type} [AddCommGroup X] [Module ℂ X] [AddCommGroup Y] [Module ℂ Y] {x : X} {y : Y}
-    (hx : x ≠ 0) (hy : y ≠ 0) : x ⊗ₜ[ℂ] y ≠ 0 :=
-  _root_.UpperTheory.Reformulated.B.DYha2.main hx hy
-
 theorem isCuspidal_of_jacquet_min_left {n a b : ℕ} {V W W' : Type} [AddCommGroup V] [Module ℂ V]
     [AddCommGroup W] [Module ℂ W] [AddCommGroup W'] [Module ℂ W'] [Nontrivial W']
     (π : Representation ℂ (GL (Fin n) k) V) (h : a + b = n)
@@ -169,7 +165,7 @@ theorem isCuspidal_of_jacquet_min_left {n a b : ℕ} {V W W' : Type} [AddCommGro
   by_contra hq
   obtain ⟨w, hw⟩ := exists_ne (0 : W')
   obtain ⟨v, hv⟩ := hsurj ((x - y) ⊗ₜ w)
-  exact tmul_ne_zero' hq hw (hv.symm.trans (hΦ0 v))
+  exact _root_.UpperTheory.Reformulated.B.DYha2.main hq hw (hv.symm.trans (hΦ0 v))
 
 theorem nontrivial_jacquet_top {n : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin n) k) V) (hπ : π.IsIrreducible) (h : n + 0 = n) :
@@ -278,7 +274,7 @@ theorem exists_embedding {n : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]
     obtain ⟨w, hw⟩ := exists_ne (0 : s.V)
     obtain ⟨w', hw'⟩ := exists_ne (0 : t.V)
     obtain ⟨v, hv⟩ := hφ (w ⊗ₜ w')
-    exact tmul_ne_zero' hw hw' hv.symm
+    exact _root_.UpperTheory.Reformulated.B.DYha2.main hw hw' hv.symm
   exact (GlobalTheory.CompanionTheory.Frob.exists_injective_of_jac₂ k a b V s.V t.V π s.ρ t.ρ hs hi φ hφ0).elim fun ψ hψ =>
     exists_embedding_of_prod₂ π s t ha hc ψ hψ
 

@@ -102,7 +102,7 @@ theorem pres_on (hT : CoordTie ℤ ξ fun c' : (k : K) → J k => ∏ k, y ⟨k,
     ∃ g h dg dh, Pres y a c₀ g h dg dh ∧ evC w g ≠ 0 ∧ evC w h ≠ 0 := by
   classical
   obtain ⟨z, hz, hco⟩ := SheetDecomposition.ChartForm.exists_point hT w
-    (fun k => (hw.1 k).imp fun _ h => IsUnit.mk0 _ h) (fun g hg => by rw [← evC_eq]; exact hw.2 g hg)
+    (fun k => (hw.1 k).imp fun _ h => IsUnit.mk0 _ h) (fun g hg => by rw [← _root_.GlobalTheory.CompanionTheory.Ar.Flat.OverUnique.evC_eq_aeval]; exact hw.2 g hg)
   choose c hc using hco.1
   have hy : ∀ k, y ⟨k, c k⟩ ≠ 0 := fun k => (hco.2 k _ (hc k)).1
   have hY : ∀ m : K → ℕ, (∏ k, y ⟨k, c k⟩ ^ m k) ≠ 0 := fun m =>
@@ -148,7 +148,7 @@ theorem pres_on (hT : CoordTie ℤ ξ fun c' : (k : K) → J k => ∏ k, y ⟨k,
   have nt : evC w Gt ≠ 0 := fun h => val_ne_zero htu ht3 (by rw [h, zero_div])
   have nf : evC w Gf ≠ 0 := fun h => val_ne_zero hfu' hf3 (by rw [h, zero_div])
   have hm : ∀ m : K → ℕ, evC w (cMon c m) ≠ 0 := fun m => by
-    rw [evC_eq, aeval_cMon]
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.Flat.OverUnique.evC_eq_aeval, aeval_cMon]
     exact hW m
   refine ⟨Gt * cMon c δf * cMon c fun k => (a k).toNat, Gf * cMon c δt * cMon c fun k => (-a k).toNat, _, _,
     ⟨homog_mul (homog_mul ht1 (homog_cMon _ _)) (homog_cMon _ _),
@@ -176,7 +176,7 @@ theorem smoothLine : SmoothLine := by
     by_cases h : w ∈ mcPts (mCoordIdeal y)
     · exact pres_on hT hD hg h
     · exact pres_off hvar.2.1.2.1 a c₀ hw h
-  obtain ⟨u, hu, huc⟩ := GlobalTheory.T.exists_place_weight_conj_invariant K J Ω F' y ψ (fun σ => Real.log (cinf σ)) hO
+  obtain ⟨u, hu, huc⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.exists_placeWeight K J Ω F' y ψ (fun σ => Real.log (cinf σ)) hO
   have huc' := huc fun σ => by simp only [hconj]
   refine ⟨hu.shift A₀, ?_, ?_, fun z => ?_, ?_, fun w hw => ?_⟩
   · show A₀.a + 0 = a

@@ -171,9 +171,7 @@ theorem io_zero : (io (0 : A) : SlopeTestRemainingChoices S A) = 0 := by simp [i
 
 theorem io_one : (io (1 : A) : SlopeTestRemainingChoices S A) = 1 := by simp [io]
 
-theorem lift_reduction_mul (M N : M2 A) : (lift0 (M * N) : M2 (SlopeTestRemainingChoices S A)) = lift0 M * lift0 N := by
-  refine Matrix.ext fun i j => ?_
-  simp only [lift0, Matrix.map_apply, Matrix.mul_apply, Fin.sum_univ_two, io_add, io_mul]
+alias lift_reduction_mul := _root_.Formalism.FourierDecayAlt.P.Wd7.lift_reduction_mul
 
 theorem liftMatrix_one : (lift0 (1 : M2 A) : M2 (SlopeTestRemainingChoices S A)) = 1 := by
   refine Matrix.ext fun i j => ?_
@@ -634,4 +632,3 @@ end Formalism.FourierDecayAlt.P.Wd8
 theorem Formalism.FourierDecayAlt.P.conjugate_word_eigen : Formalism.FourierDecayAlt.Wd.CwEigen := Formalism.FourierDecayAlt.P.Wd8.cwEigen_of Formalism.FourierDecayAlt.P.exchange_plus_factor Formalism.FourierDecayAlt.P.exchange_second_case
   Formalism.FourierDecayAlt.P.positive_word_fixed Formalism.FourierDecayAlt.P.negative_word_fixed Formalism.FourierDecayAlt.P.Wd8.tTFactor
 
-theorem Formalism.FourierDecayAlt.P.word_product_formula : Formalism.FourierDecayAlt.Wd.UwProduct := Formalism.FourierDecayAlt.P.Wd8.uwProduct

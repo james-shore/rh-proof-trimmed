@@ -67,24 +67,20 @@ namespace GlobalTheory.CompanionTheory.SW.Growth
 section Place
 variable {F : Type} [Field F] [NumberField F]
 
-theorem val_alg (v : HeightOneSpectrum (𝓞 F)) (x : F) :
-    Valued.v (algebraMap F (Fv F v) x) = v.valuation F x :=
-  HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v x
-
 theorem val_lt_one_of_mem (v : HeightOneSpectrum (𝓞 F)) {r : 𝓞 F} (h : r ∈ v.asIdeal) :
     Valued.v ((algebraMap F (Fv F v)) (algebraMap (𝓞 F) F r)) < 1 := by
-  rw [val_alg]
+  rw [_root_.GlobalTheory.CompanionTheory.SW.GoodInt.valued_algebraMap]
   exact (v.valuation_lt_one_iff_mem r).2 h
 
 theorem val_le_one (v : HeightOneSpectrum (𝓞 F)) (r : 𝓞 F) :
     Valued.v ((algebraMap F (Fv F v)) (algebraMap (𝓞 F) F r)) ≤ 1 := by
-  rw [val_alg]
+  rw [_root_.GlobalTheory.CompanionTheory.SW.GoodInt.valued_algebraMap]
   exact v.valuation_le_one r
 
 theorem val_eq_one (v : HeightOneSpectrum (𝓞 F)) {r : 𝓞 F} (h : r ∉ v.asIdeal) :
     Valued.v ((algebraMap F (Fv F v)) (algebraMap (𝓞 F) F r)) = 1 := by
   refine le_antisymm (val_le_one v r) (not_lt.1 fun h' => h ?_)
-  rw [val_alg] at h'
+  rw [_root_.GlobalTheory.CompanionTheory.SW.GoodInt.valued_algebraMap] at h'
   exact (v.valuation_lt_one_iff_mem r).1 h'
 
 theorem two_le_norm (v : HeightOneSpectrum (𝓞 F)) : 2 ≤ Ideal.absNorm v.asIdeal := by

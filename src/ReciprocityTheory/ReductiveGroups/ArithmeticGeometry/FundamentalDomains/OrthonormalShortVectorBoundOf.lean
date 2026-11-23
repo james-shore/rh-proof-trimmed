@@ -182,7 +182,7 @@ theorem orthonormalShortVectorBound_of (hD4 : ShortVectorBound (E := E)) (hD5 : 
     hYind hYU hYorth hYpos hYneg
   obtain ⟨Z1, hfl, hZ⟩ := unitary_fixing_isotropic_plane r X ξ z0 x0 f h1 (d6rh c1 w / 120) hξ hz hx0 hortho hflag hf (by positivity) hU hI
     hUz (fun τ v hv c hc => hYgraph τ c (hc ▸ hmap τ v hv))
-  obtain ⟨hdom1, haproj, -, hJ⟩ := unitaryComplementMove r X.toData ξ hξ z0 hz h1 hU hI hUz
+  obtain ⟨hdom1, haproj, -, hJ⟩ := _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.unitaryComplementMove_of_isotropic r X.toData ξ hξ z0 hz h1 hU hI hUz
 
   have hJsplit : ∀ j : Fin (r - 2),
       X.Jz (X.lmulC h1 z0) (X.ucomp (X.lmulC h1 z0) ξ (X.embV (lam j))) =

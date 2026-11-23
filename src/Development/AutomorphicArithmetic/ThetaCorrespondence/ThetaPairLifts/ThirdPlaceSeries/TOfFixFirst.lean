@@ -108,7 +108,7 @@ theorem line_atG_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : F
       subst hw
       rw [GlobalTheory.AdelicU.splitPrime_under]
       exact ⟨τ⟩
-    have hΛ := (_root_.GlobalTheory.T.selfDual_and_frame_of_pkHyp W hW 0 hm).1
+    have hΛ := (_root_.GlobalTheory.Fam.sdY_frames_alt W hW 0 hm).1
     haveI : Submodule.IsLattice D.host.E ((_root_.GlobalTheory.Fam.pk_z W).ΛY 0) := hΛ.1
     have hfg : ((_root_.GlobalTheory.Fam.pk_z W).ΛY 0).FG := Submodule.IsLattice.fg (A := D.host.E) ((_root_.GlobalTheory.Fam.pk_z W).ΛY 0)
     obtain ⟨α, hα⟩ := GlobalTheory.T.exists_unit_multipliers_line_in_movedLattice_split D v hτ _ ((_root_.GlobalTheory.Fam.pk_z W).ΛY 0)
@@ -124,7 +124,7 @@ theorem line_atG_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : F
       (Iff.trans ?_ (mem_latLoc_line_iff (D.sp.Y 0) ((_root_.GlobalTheory.Fam.pk_z W).ΛY 0) hfg v _ (fun i => W.S.X.ιE (W.S.X.eR ⟨0, hr⟩ (Fin.cast (GlobalTheory.Core.Mi.rank_eq W.S.X W.Q.instEq) i))) (y 0) (hy 0)).symm)
     beta_reduce
     rw [_root_.GlobalTheory.LineAtG.tOf_fix_first_alt W hW hr, _root_.GlobalTheory.LineAtG.tOf_fix_first_alt W hW hr]
-    exact _root_.GlobalTheory.T.placed_bessel_pair_central_alt W hW hr u u₀ f f₀ B B₀ hP hP₀ a₀ a b₀₀ b₀₁ hA hA₀ v hv (y 0) (hy 0)
+    exact _root_.GlobalTheory.LevelLine.line_indep_alt W hW hr u u₀ f f₀ B B₀ hP hP₀ a₀ a b₀₀ b₀₁ hA hA₀ v hv (y 0) (hy 0)
   · exact ⟨1, fun u f B hP a₀ a hA c => absurd ⟨u, f, B, hP, a₀, a, hA⟩ hex⟩
 end GlobalTheory.LineAtG
 end

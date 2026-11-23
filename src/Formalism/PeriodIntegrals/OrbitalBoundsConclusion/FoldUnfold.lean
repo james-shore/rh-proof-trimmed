@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem lintegralTransversalSum : PI.FoldUnfold.FoldUnfold :=
-  PI.FoldUnfold.UnitaryGroupMassFormula.foldUnfold_main

@@ -90,9 +90,7 @@ lemma partialSum_periodic {l : ℕ} (i : Fin r) (v : (Fin r → ℕ) → ℚ) (h
     rw [add_single_eq_update, Function.update_self, Function.update_idem]
   rw [h2, add_zero]
 
-lemma sum_window {l : ℕ} (f : ℕ → ℚ) (hf : ∀ k, f (k + l) = f k) (a : ℕ) :
-    ∑ k ∈ Finset.range l, f (a + k) = ∑ k ∈ Finset.range l, f k :=
-  _root_.UpperTheory.Reformulated.B.DYdd7.main f hf a
+alias sum_window := _root_.UpperTheory.Reformulated.B.DYdd7.main
 
 lemma partialSumMean_add_single (l : ℕ) (i : Fin r) (v : (Fin r → ℕ) → ℚ) (m : Fin r → ℕ) (t : ℕ) :
     meanP l i v (m + (Pi.single i t : Fin r → ℕ)) = meanP l i v m := by

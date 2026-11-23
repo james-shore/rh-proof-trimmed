@@ -56,7 +56,7 @@ theorem stableUnderGeneralization_sectionComponents :
     ∀ (X S : Scheme.{0}) (f : X ⟶ S) (e : S ⟶ X), Smooth f → e ≫ f = 𝟙 _ →
       StableUnderGeneralization {x : X | x ∈ connectedComponentIn (f ⁻¹' {f x}) (e (f x))} := by
   intro X S f e hf hef x x' hxx' hx
-  obtain ⟨V, _, _, _, g, hgc, hgb⟩ := GlobalTheory.T.exists_valuationRing_dominating_specialization X x' x hxx'
+  obtain ⟨V, _, _, _, g, hgc, hgb⟩ := _root_.GlobalTheory.exists_valuationRing_of_specializes X x' x hxx'
   set p : Spec (CommRingCat.of V) ⟶ S := g ≫ f with hp
   have hpb : IsPullback (pullback.fst f p) (pullback.snd f p) f p := IsPullback.of_hasPullback f p
   let σ : Spec (CommRingCat.of V) ⟶ pullback f p := pullback.lift g (𝟙 _) (by simp [hp])

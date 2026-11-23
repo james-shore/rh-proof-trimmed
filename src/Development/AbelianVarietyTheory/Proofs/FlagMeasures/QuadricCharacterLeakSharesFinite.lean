@@ -294,7 +294,7 @@ theorem integral_of_reps (ϖ : 𝒪[F]) (hϖ : Irreducible ϖ) (Λ : Submodule L
     ∀ u ∈ UU, algebraMap F E ((ϖ : F) ^ N) * hf L Hm y u ∈ L.O := by
   obtain ⟨-, -, -, -, hint, -, -, -⟩ := GlobalTheory.UnramOrder.order_facts L ϖ hϖ
   have hp : algebraMap F E ϖ ∈ L.O := (hint _).2 ϖ.2
-  obtain ⟨M, hM⟩ := CongFin.exists_pow_smul_mem hp (CongFin.exists_pow_mul_mem L ϖ hϖ)
+  obtain ⟨M, hM⟩ := _root_.GlobalTheory.PowSmulMem.main hp (CongFin.exists_pow_mul_mem L ϖ hϖ)
     (Submodule.span L.O {y}) Λ (Submodule.fg_span_singleton y) hΛ.1.2
   have hMy := hM y (Submodule.mem_span_singleton_self y)
   simp only [map_pow] at hR hy ⊢

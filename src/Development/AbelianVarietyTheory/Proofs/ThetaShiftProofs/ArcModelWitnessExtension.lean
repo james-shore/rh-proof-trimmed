@@ -66,17 +66,6 @@ theorem omegaStd_single_inl {g : ℕ} (u : Fin g ⊕ Fin g → ℤ) (k : Fin g) 
     omegaStd u (Pi.single (.inl k) 1) = -u (.inr k) := by
   simp [omegaStd, Pi.single_apply]
 
-theorem mem_span_single_inl {g : ℕ} (S : Finset (Fin g)) (u : Fin g ⊕ Fin g → ℤ) :
-    u ∈ Submodule.span ℤ ((fun k => (Pi.single (Sum.inl k) 1 : Fin g ⊕ Fin g → ℤ)) '' (S : Set (Fin g))) ↔
-      (∀ k, u (.inr k) = 0) ∧ ∀ k ∉ S, u (.inl k) = 0 := by
-  first
-  | exact @_root_.GlobalTheory.SpanSingleInlMembership.mem_span_single_inl_iff
-  | exact _root_.GlobalTheory.SpanSingleInlMembership.mem_span_single_inl_iff
-  | (apply _root_.GlobalTheory.SpanSingleInlMembership.mem_span_single_inl_iff <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanSingleInlMembership.mem_span_single_inl_iff <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanSingleInlMembership.mem_span_single_inl_iff <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SpanSingleInlMembership.mem_span_single_inl_iff ..)
-
 theorem exists_adapted {Λ : Type} [AddCommGroup Λ] [Module.Free ℤ Λ] [Module.Finite ℤ Λ]
     (ω : LinearMap.BilinForm ℤ Λ) (hω : ∀ x, ω x x = 0) (hp : Function.Bijective ω) {g : ℕ}
     (hg : Module.finrank ℤ Λ = 2 * g) (K : Λ → Prop)
@@ -99,7 +88,7 @@ theorem exists_adapted {Λ : Type} [AddCommGroup Λ] [Module.Free ℤ Λ] [Modul
   obtain rfl : g' = g := by omega
   have hs' : ∀ u v, ω (bas u) (bas v) = -omegaStd u v := fun u v => by rw [hs]; ring
   have horth : ∀ u, bas u ∈ I ↔ (∀ k, u (.inr k) = 0) ∧ ∀ k ∉ S, u (.inl k) = 0 := fun u => by
-    rw [← mem_span_single_inl, hI]
+    rw [← _root_.GlobalTheory.SpanSingleInlMembership.mem_span_single_inl_iff, hI]
     have : (fun k => bas (Pi.single (Sum.inl k) 1)) '' (S : Set (Fin g')) =
         bas.toLinearMap '' ((fun k => (Pi.single (Sum.inl k) 1 : Fin g' ⊕ Fin g' → ℤ)) '' (S : Set (Fin g'))) := by
       rw [Set.image_image]; rfl
@@ -179,7 +168,7 @@ theorem nonempty_thetaDat : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] 
   have hframe : ∀ w, Ha.T < w.im → ∃ fr, IsThetaFrameAt Xo.univ.t.PP (Fu.u Ha.i (Ha.Pw w))
       (fun z => (Fu.ex Ha.i (Ha.Pw w) z).left) (fun z => thetaChar (τ w) c₁ c₂ (h.mulVec z)) fr := fun w hw =>
     isThetaFrameAt_of_isThetaFrame _ _ _ _ _ hfr (fun _ => w) hw
-  obtain ⟨⟨θ, ⟨s, fam, -, hex, hfam, -⟩, -⟩, -⟩ := GlobalTheory.T.existsUnique_thetaOf_alt hL hL2 E H Dw l Xo c O β Y ℂ (σ.comp β) a χ W th hth
+  obtain ⟨⟨θ, ⟨s, fam, -, hex, hfam, -⟩, -⟩, -⟩ := _root_.GlobalTheory.existsUnique_thetaOf hL hL2 E H Dw l Xo c O β Y ℂ (σ.comp β) a χ W th hth
   obtain ⟨w₂, hw₂⟩ := exists_isRigIso W.m W.P.U.LG W.P.bundle
   obtain ⟨w₁, hw₁⟩ := exists_isRigIso Y.m _ rfl
   obtain ⟨w₃, hw₃⟩ := exists_isRigIso Y.m0.toSABMap _ rfl

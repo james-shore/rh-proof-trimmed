@@ -110,7 +110,7 @@ theorem row_coset_sum_norm_sq : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u
       MovesTo F00 F'0 (lf D (X.Fu u)) t.frame (ρ * n) (U * A) (U' * A') := by
     intro t n m h
     obtain ⟨A, A', -, -, -, -, hM⟩ :=
-      (GlobalTheory.T.rational_unipotent_groups_lattices_global_coordinates D X Y u u' hSt hk w F00 F'0 FP hZ hGv hAt G c t₀ ρ U U' hMv).2.2.2.2.2 t n m h
+      (_root_.GlobalTheory.HL.GrpCoord.grp_coords D X Y u u' hSt hk w F00 F'0 FP hZ hGv hAt G c t₀ ρ U U' hMv).2.2.2.2.2 t n m h
     exact ⟨A, A', hM⟩
   have hdat : ∀ (t : TauC Y u u') n m, (Y.tO u u').rowOf t = (Y.tO u u').rowOf t₀ →
       (n ∈ NRat (lf D (X.Fu u)) ∧ m ∈ NRat (lf D (X.Fu u')) ∧ t.lin = n⁻¹ * t₀.lin * m) →
@@ -192,7 +192,7 @@ theorem row_coset_sum_norm_sq : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u
     have hrel1 : G.LRel (c.lat (ρ * n) t.lam) o.out := by
       have e : Quot.mk G.LRel o.out = Quot.mk G.LRel (c.lat (ρ * n) t.lam) := by rw [Quot.out_eq o, ho]
       exact heqv.symm ((Equivalence.eqvGen_iff heqv).1 (Quot.eqvGen_exact e))
-    have hT : G.IsTerm d₀ o.out := term_of_lrel G hk hex hΓ hrel1
+    have hT : G.IsTerm d₀ o.out := _root_.GlobalTheory.HL.ProdStruct.term_of_LRel G hk hex hΓ hrel1
     obtain ⟨n', m', hr', h', he'⟩ := hτ o hT
     have heq : τ o = t := (hinj (τ o) t n' m' n m hr' hr h' h).2 (by rw [← he']; exact heqv.symm hrel1)
     refine ⟨o, (hmemC o).2 ⟨hT, ?_⟩, heq⟩

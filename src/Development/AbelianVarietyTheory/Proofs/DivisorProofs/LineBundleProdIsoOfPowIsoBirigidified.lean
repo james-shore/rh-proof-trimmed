@@ -78,7 +78,7 @@ theorem cube_rel (hA : IsAbelianScheme A) {P : LB (A ⊗ A).left} (hP : P.IsLB) 
       + CechPic.pull x.left (cls P hP) + CechPic.pull y.left (cls P hP) + CechPic.pull z.left (cls P hP)
       - CechPic.pull (1 : Y ⟶ A ⊗ A).left (cls P hP) = 0 := by
   have hX := AbelianSchemeGerms.isAbelianScheme_tensor A A hA hA
-  have t := GlobalTheory.CubeTop.cubeTheorem S (A ⊗ A) hX P hP Y x y z
+  have t := _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds S (A ⊗ A) hX P hP Y x y z
   have z0 := (cls_linComb hP _ _ (LB.isLB_linComb hP _ _)).symm.trans
     ((cls_eq_zero_iff (LB.isLB_linComb hP _ _)).2 t)
   simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.cons_val_zero, Matrix.cons_val_succ,

@@ -70,14 +70,14 @@ theorem hInv_of_finite_over_aic (q : ℕ) [NeZero q] (d : ℕ) (hH : (∀ (R : T
     [Algebra.IsIntegral D T] (hT : AIC T) (hTq : HInv q T) (E : Type) [CommRing E] [Algebra D E]
     [Algebra.IsIntegral D E] (ι : T →ₐ[D] E) (F : Finset E)
     (hF : Algebra.adjoin D (Set.range ι ∪ (F : Set E)) = ⊤) : HInv q E := by
-  have hlow := GlobalTheory.T.etaleHomotopyInvariant_integral_killed_of_lowerDim q d hH D hq hd
+  have hlow := _root_.GlobalTheory.hInv_of_integral_killed_of_lower q d hH D hq hd
   have hqE : IsUnit (q : E) := by simpa using hq.map (algebraMap D E)
-  set X : Finset (E →ₐ[D] T) := (GlobalTheory.T.finite_retractions_of_adjoin_finset_integral_domain D T E ι F hF).toFinset with hX
+  set X : Finset (E →ₐ[D] T) := (_root_.GlobalTheory.finite_retractions_of_adjoin_finset_integral D T E ι F hF).toFinset with hX
   have hXid : ∀ χ ∈ X, χ.comp ι = AlgHom.id D T := fun χ hχ => by simpa [hX] using hχ
-  obtain ⟨s, hs0, hs⟩ := GlobalTheory.T.exists_ne_zero_isNilpotent_mul_finite_inf_fg_ideals D E (E →ₐ[D] T) X (fun χ => RingHom.ker χ)
-    (fun χ hχ => GlobalTheory.T.ker_retraction_fg_of_adjoin_finset D T E ι F hF χ (hXid χ hχ))
+  obtain ⟨s, hs0, hs⟩ := _root_.GlobalTheory.FinInterNil.main D E (E →ₐ[D] T) X (fun χ => RingHom.ker χ)
+    (fun χ hχ => _root_.GlobalTheory.ker_retraction_fg D T E ι F hF χ (hXid χ hχ))
     (fun Q hQ hQc => by
-      obtain ⟨χ, hχι, hχQ⟩ := GlobalTheory.T.exists_retraction_of_monicPolynomialsHaveRoots D T E hT ι Q hQ hQc
+      obtain ⟨χ, hχι, hχQ⟩ := _root_.GlobalTheory.exists_retraction_of_AIC D T E hT ι Q hQ hQc
       have hmem : χ ∈ X := by simpa [hX] using hχι
       rw [← hχQ]
       exact iInf₂_le χ hmem)
@@ -96,7 +96,7 @@ theorem hInv_of_finite_over_aic (q : ℕ) [NeZero q] (d : ℕ) (hH : (∀ (R : T
     intro K hK
     rw [IsScalarTower.algebraMap_apply D E (E ⧸ K), Ideal.Quotient.algebraMap_eq, Ideal.Quotient.eq_zero_iff_mem]
     exact hK (Ideal.mem_span_singleton_self _)
-  exact GlobalTheory.T.etaleHomotopyInvariantTwists_of_closedCover q E I J hIJ hqE (GlobalTheory.T.hInv_quot_iInf_ker_retractions q D T E hq hTq hlow ι X hXid)
+  exact _root_.GlobalTheory.EtC.ClosedCover.closedCover q E I J hIJ hqE (_root_.GlobalTheory.homotopyInv_quot_iInf_ker_retractions q D T E hq hTq hlow ι X hXid)
     (hlow (E ⧸ J) s hs0 (hJs J le_rfl)) (hlow (E ⧸ (I ⊔ J)) s hs0 (hJs _ le_sup_right))
 
 def subalgebraOfSubringEquiv {R A : Type} [CommRing R] [CommRing A] [Algebra R A] (S : Subalgebra R A) :
@@ -112,10 +112,10 @@ theorem hInv_tensorPower_integralClosure : ∀ (q : ℕ) [NeZero q] (d : ℕ), (
   intro q _ d hH D _ _ _ hq hd k
   have hqDp : IsUnit (q : integralClosure D (AlgebraicClosure (FractionRing D))) := by
     simpa using hq.map (algebraMap D (integralClosure D (AlgebraicClosure (FractionRing D))))
-  have hTq := GlobalTheory.T.etaleHomotopyInvariance_absolutelyIntegrallyClosed q _ (GlobalTheory.T.monicPolynomialsHaveRoots_integralClosure_algClosure D) hqDp
+  have hTq := _root_.GlobalTheory.HInvAic.main q _ (_root_.GlobalTheory.aic_integralClosure_algebraicClosure D) hqDp
   have hqS : ∀ F, IsUnit (q : firstAndFinite D (integralClosure D (AlgebraicClosure (FractionRing D))) k F) :=
     fun F => by simpa using hq.map (algebraMap D (firstAndFinite D (integralClosure D (AlgebraicClosure (FractionRing D))) k F))
-  refine GlobalTheory.T.hInv_of_directed_union_subalgebras q _ (Finset (integralClosure D (AlgebraicClosure (FractionRing D))))
+  refine _root_.GlobalTheory.EtC.hInv_of_directed_union q _ (Finset (integralClosure D (AlgebraicClosure (FractionRing D))))
     (fun F => subalgebraOfSubring (firstAndFinite D (integralClosure D (AlgebraicClosure (FractionRing D))) k F).toSubring)
     ?_ ?_ ?_ ?_
   · intro F G hFG x hx
@@ -123,12 +123,12 @@ theorem hInv_tensorPower_integralClosure : ∀ (q : ℕ) [NeZero q] (d : ℕ), (
     exact Algebra.adjoin_mono (Set.union_subset_union_right _
       (Set.iUnion_mono fun i => Set.image_mono (Finset.coe_subset.mpr hFG))) hx
   · intro x
-    obtain ⟨F, hF⟩ := GlobalTheory.T.exists_finset_mem_tensorPowerFirstFactorAdjoinFinset D _ k x
+    obtain ⟨F, hF⟩ := _root_.GlobalTheory.EtC.exists_finset_mem_firstAndFinite D _ k x
     exact ⟨F, (mem_subalgebraOfSubring).mpr hF⟩
   · intro F
     simpa using (hqS F).map (subalgebraOfSubringEquiv (firstAndFinite D (integralClosure D (AlgebraicClosure (FractionRing D))) k F))
   · intro F
-    haveI := GlobalTheory.T.tensorPowerFirstFactorAdjoinFinset_isIntegral D (integralClosure D (AlgebraicClosure (FractionRing D))) k F
+    haveI := _root_.GlobalTheory.EtC.firstAndFinite_isIntegral D (integralClosure D (AlgebraicClosure (FractionRing D))) k F
     obtain ⟨F', hF'⟩ := GlobalTheory.T.tensorPowerFirstFactorAdjoinFinset_fg_over_first D (integralClosure D (AlgebraicClosure (FractionRing D))) k F
     exact GlobalTheory.T.etaleHomotopyInvariantTwists_of_ringEquiv q _ _ (subalgebraOfSubringEquiv _)
       (hInv_of_finite_over_aic q d hH D hq hd _ (GlobalTheory.T.monicPolynomialsHaveRoots_integralClosure_algClosure D) hTq _ (firstIncl D _ k F) F' hF')

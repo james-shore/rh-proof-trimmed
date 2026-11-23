@@ -141,7 +141,7 @@ theorem GlobalTheory.ChainTw.twist_places : ∀ (D : D7) (c : Com D) (w : Twist 
     have ra := hra PP (hQ PP hPP)
     have rb := hrb PP (hQ PP hPP)
     rw [hw.chiQ _ PP hPP, inv_inv] at ra rb
-    exact GlobalTheory.T.heckeCharUnramifiedAt_quotient_same_residual D _ _ Ha Hb PP _ hca hcb ra rb
+    exact _root_.GlobalTheory.ResUnr.unrAt_div_of_isRes D _ _ Ha Hb PP _ hca hcb ra rb
   have hre : ∀ i ∈ Finset.Icc 1 D.R.m, ∀ j ∈ Finset.Icc 1 D.R.m, ResEta D (c.μ i * (c.μ j)⁻¹) 0 := by
     intro i hi j hj
     obtain ⟨-, ⟨η, hη⟩, hi'⟩ := hw.com.chars.2.2.2.2 i hi
@@ -156,11 +156,11 @@ theorem GlobalTheory.ChainTw.twist_places : ∀ (D : D7) (c : Com D) (w : Twist 
       Formalism.DivisionValues.conjPl PP, hne, fun P => ⟨fun h => ?_, ?_⟩, ParInv.absNorm_conjPl' PP, fun i hi j hj => ?_⟩
     · rcases GlobalTheory.GridPlaces.eq_or_eq_conjP h with h1 | h1
       · exact Or.inl h1
-      · exact Or.inr (h1.trans (ParInv.conjP_eq_conjPl' PP))
+      · exact Or.inr (h1.trans (_root_.GlobalTheory.ChainInv.conjP_eq_conjPl PP))
     · rintro (rfl | rfl)
       · rfl
       · exact hu
-    · exact (GlobalTheory.T.unramified_conjugate_place_inverse_uniformizer_value D _ (hre i hi j hj) PP _ hu.symm hne.symm (hres PP hPP i hi j hj)).2
+    · exact (_root_.GlobalTheory.SplitUnr.unrAt_and_val_inv D _ (hre i hi j hj) PP _ hu.symm hne.symm (hres PP hPP i hi j hj)).2
   · intro i hi j hj W hW
     by_cases hWS : W.under (𝓞 D.host.F) ∈ c.S
     · rcases (hS _).1 hWS with h | ⟨PP, hPP, hPPW⟩
@@ -168,8 +168,8 @@ theorem GlobalTheory.ChainTw.twist_places : ∀ (D : D7) (c : Com D) (w : Twist 
       · rcases GlobalTheory.GridPlaces.eq_or_eq_conjP hPPW.symm with h1 | h1
         · rw [h1]; exact hres PP hPP i hi j hj
         · have hne := hsplit PP (hQ PP hPP)
-          rw [h1, ParInv.conjP_eq_conjPl']
-          exact (GlobalTheory.T.unramified_conjugate_place_inverse_uniformizer_value D _ (hre i hi j hj) PP _ (ParInv.under_conjPl PP).symm hne.symm
+          rw [h1, _root_.GlobalTheory.ChainInv.conjP_eq_conjPl]
+          exact (_root_.GlobalTheory.SplitUnr.unrAt_and_val_inv D _ (hre i hi j hj) PP _ (ParInv.under_conjPl PP).symm hne.symm
             (hres PP hPP i hi j hj)).1
     · obtain ⟨a, rfl⟩ := exists_fin_of_mem hi
       obtain ⟨b, rfl⟩ := exists_fin_of_mem hj

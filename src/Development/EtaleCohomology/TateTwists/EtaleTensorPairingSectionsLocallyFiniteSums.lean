@@ -65,10 +65,7 @@ namespace LateralTheory.EtaleFoundations.GenIsoSurjPf
 
 variable {R : Type} [CommRing R]
 
-theorem loc_mono' {U : Scheme.{0}} {P Q : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (hP : Loc U P)
-    (h : ∀ V g, P V g → Q V g) : Loc U Q := by
-  obtain ⟨S, hS, h'⟩ := hP
-  exact ⟨S, hS, fun V g hg => h V g (h' V g hg)⟩
+alias loc_mono' := _root_.LateralTheory.EtaleFoundations.TwMulPf.loc_mono
 
 theorem loc_top' {U : Scheme.{0}} {P : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : ∀ V g, P V g) : Loc U P :=
   ⟨⊤, Scheme.etaleTopology.top_mem U, fun V g _ => h V g⟩
@@ -97,13 +94,7 @@ theorem res_res {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (x 
     Sec.res k (Sec.res g x) = Sec.res (k ≫ g) x := by
   simp [Sec.res]
 
-theorem res_map {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
-    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  have := LinearMap.congr_fun (congrArg ModuleCat.Hom.hom (φ.hom.naturality g.op)) x
-  simpa using this.symm
-
-theorem map_id' {F : Shv R} {U : Scheme.{0}} (x : Sec F U) : Sec.map (𝟙 F) x = x := by
-  simp [Sec.map]
+alias res_map := _root_.LateralTheory.EtaleFoundations.TwMulPf.sec_res_map
 
 theorem sglι_inj (F : Shv R) {U : Scheme.{0}} {x y : Sec F U}
     (h : Sec.map (sglι F) x = Sec.map (sglι F) y) : x = y := by
@@ -113,7 +104,7 @@ theorem sglι_inj (F : Shv R) {U : Scheme.{0}} {x y : Sec F U}
     change Sec.map (sglι F ≫ (HomologicalComplex.singleObjXSelf (ComplexShape.up ℤ) 0 F).hom) z = z
     rw [sglι]
     erw [Iso.inv_hom_id]
-    exact map_id' z
+    exact _root_.LateralTheory.EtaleFoundations.TwMulPf.sec_map_id z
   rw [← e x, ← e y, h]
 
 end LateralTheory.EtaleFoundations.GenIsoSurjPf
@@ -124,7 +115,7 @@ variable {R : Type} [CommRing R]
 
 theorem sec_zero_of_isZero {F : Shv R} (hF : IsZero F) {U : Scheme.{0}} (x : Sec F U) : x = 0 := by
   have h1 : Sec.map (𝟙 F) x = Sec.map (0 : F ⟶ F) x := by rw [hF.eq_of_src (𝟙 F) 0]
-  rw [map_id'] at h1
+  rw [_root_.LateralTheory.EtaleFoundations.TwMulPf.sec_map_id] at h1
   rw [h1]
   simp [Sec.map]
 
@@ -133,7 +124,7 @@ theorem sglι_surj (F : Shv R) {U : Scheme.{0}} (y : Sec ((sgl F).X 0) U) : ∃ 
   change Sec.map ((HomologicalComplex.singleObjXSelf (ComplexShape.up ℤ) 0 F).hom ≫ sglι F) y = y
   rw [sglι]
   erw [Iso.hom_inv_id]
-  exact map_id' y
+  exact _root_.LateralTheory.EtaleFoundations.TwMulPf.sec_map_id y
 
 def IsSum {F G T : Shv R} (μ : Pair (sgl F) (sgl G) (sgl T)) (V : Scheme.{0}) (z : Sec ((sgl T).X 0) V) : Prop :=
   ∃ (n : ℕ) (a : Fin n → Sec F V) (b : Fin n → Sec G V),

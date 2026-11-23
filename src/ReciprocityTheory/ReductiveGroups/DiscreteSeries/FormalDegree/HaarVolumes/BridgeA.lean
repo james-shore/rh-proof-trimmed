@@ -241,11 +241,7 @@ lemma toM_preimage_exp_ball_eq_upqT_exp_ball (N : ℕ) (r : ℝ) :
       rw [Matrix.conjTranspose_reindex, lie_skew X]
       rfl
 
-lemma volU_pos (N : ℕ) : 0 < volU N := by
-  unfold volU
-  apply Finset.prod_pos
-  intro i _
-  positivity
+alias volU_pos := _root_.ReciprocityTheory.ChartRestriction.DS.volU_pos'
 
 lemma continuous_skMat (N : ℕ) : Continuous (skMat : UCo N → Matrix (Fin N) (Fin N) ℂ) := by
   refine continuous_pi fun a => continuous_pi fun b => ?_

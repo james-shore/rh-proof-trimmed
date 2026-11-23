@@ -156,7 +156,7 @@ theorem dense (y : ∀ q, (D.gat u v hg).P.W q) (N : ℕ) : ∃ x : D.host.F, �
   · exact ⟨0, fun q => (IsEmpty.false q).elim⟩
   have hp0 : ((D.what₂.places.resChar v : ℕ) : D.host.F) ≠ 0 :=
     Nat.cast_ne_zero.2 (((D.gat u v hg).P.setting q1).prime.ne_zero)
-  obtain ⟨a, ha⟩ := weak_approx (fun q => ((Gs u v hg).pl q).1) (pl_inj Gs u v hg)
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.exists_approx_finite_places (fun q => ((Gs u v hg).pl q).1) (pl_inj Gs u v hg)
     (fun q => (Gs u v hg).eQ q _ rfl (algebraMap ((D.gat u v hg).P.W q) ((D.gat u v hg).P.Qq q) (y q)))
     (((D.what₂.places.resChar v : ℕ) : D.host.F) ^ N) (pow_ne_zero _ hp0)
   refine ⟨a, fun q => ?_⟩
@@ -189,7 +189,7 @@ theorem exists_global_lattice (n : ℕ)
           rw [Pi.smul_apply, Pi.smul_apply, Algebra.smul_def, map_mul, ← hc, Algebra.smul_def]
         rw [this]; exact (L q).smul_mem c (hx q) }
   refine ⟨Λ, fun q0 => ?_⟩
-  obtain ⟨B, w, hw, hB, hoff⟩ := matrix_approx (fun q => (D.gat u v hg).P.W q) (fun q => (D.gat u v hg).P.Qq q)
+  obtain ⟨B, w, hw, hB, hoff⟩ := _root_.GlobalTheory.GlobApx.exists_glob_approx (fun q => (D.gat u v hg).P.W q) (fun q => (D.gat u v hg).P.Qq q)
     (fun q => (KerOne.iw0 Gs u v hg q).comp (algebraMap D.host.F D.host.E))
     (fun q => ((D.what₂.places.resChar v : ℕ) : (D.gat u v hg).P.W q)) (fun q => ((D.gat u v hg).P.setting q).p_unif)
     ((D.what₂.places.resChar v : ℕ) : D.host.F) (fun q => by rw [map_natCast, map_natCast])

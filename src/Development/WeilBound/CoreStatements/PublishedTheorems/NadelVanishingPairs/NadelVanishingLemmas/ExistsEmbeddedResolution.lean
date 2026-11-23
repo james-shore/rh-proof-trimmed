@@ -64,13 +64,9 @@ namespace GlobalTheory.LogResStep
 
 
 open GlobalTheory.Cartier.CartierDiv in
-theorem supp_neg_le {X : Scheme.{0}} [IsIntegral X] (D : CartierDiv X) : (-D).supp ≤ D.supp := fun x hx h =>
-  hx (by simpa using h.neg)
+alias supp_neg_le := _root_.GlobalTheory.AmpleUpstairs.supp_neg_le
 
-theorem supp_nsmul_le {X : Scheme.{0}} [IsIntegral X] (D : CartierDiv X) (m : ℕ) : (m • D).supp ≤ D.supp := by
-  induction m with
-  | zero => simp [(CartierDiv.supp_eq_bot_iff (D := (0 : CartierDiv X))).2 rfl]
-  | succ m ih => exact (succ_nsmul D m ▸ CartierDiv.supp_add_le _ _).trans (sup_le ih le_rfl)
+alias supp_nsmul_le := _root_.GlobalTheory.AmpleUpstairs.supp_nsmul_le
 
 theorem sup_ne_top {Y : Scheme.{0}} [IsIntegral Y] {Z W : Closeds Y} (hZ : Z ≠ ⊤) (hW : W ≠ ⊤) : Z ⊔ W ≠ ⊤ := by
   have key : ∀ C : Closeds Y, C ≠ ⊤ → genericPoint Y ∉ C := fun C hC h => hC <| by
@@ -110,7 +106,7 @@ theorem GlobalTheory.exists_logRes_ample : GlobalTheory.Published.Principalisati
   obtain ⟨Y, t, hYi, hsmY, hprojY, -, hiso, heff, hsnc⟩ := hP k n Y₀ (s₀ ≫ p) inferInstance hsm hproj I hI
   haveI := hYi
   have hne := Principalise.nonempty_compl_support hI
-  haveI : IsDominant t := GlobalTheory.T.isDominant_of_isIso_restrict' Y₀ Y t I.support.compl hne hiso
+  haveI : IsDominant t := _root_.GlobalTheory.Discrepancy.isDominant_of_isIso_restrict Y₀ Y t I.support.compl hne hiso
   haveI : SmoothOfRelativeDimension n (t ≫ s₀ ≫ p) := hsmY
   haveI : SmoothOfRelativeDimension n ((t ≫ s₀) ≫ p) := by rw [Category.assoc]; exact hsmY
   haveI : Smooth (t ≫ s₀ ≫ p) := SmoothOfRelativeDimension.smooth n _
@@ -130,7 +126,7 @@ theorem GlobalTheory.exists_logRes_ample : GlobalTheory.Published.Principalisati
     rw [← SetLike.mem_coe, Scheme.IdealSheafData.support_comap]
     change t y ∈ (I.support : Set Y₀) ↔ _
     rw [hIsupp]; rfl
-  have hkiso := GlobalTheory.T.canonical_divisor_birational_compare k Y₀ Y (s₀ ≫ p) n t I.support.compl hne hiso η₀ hη₀ K₀ K hK₀ hK'
+  have hkiso := _root_.GlobalTheory.Discrepancy.CanonIso.not_mem_supp_sub_pullCart k Y₀ Y (s₀ ≫ p) n t I.support.compl hne hiso η₀ hη₀ K₀ K hK₀ hK'
   have heq : pullCart (t ≫ s₀) G - m • K = pullCart t D₀ + m • (-(K - pullCart t K₀)) := by
     rw [hcomp.2.1 G, hD₀]
     change _ = pullCartHom t (pullCart s₀ G - m • K₀) + _
@@ -153,4 +149,4 @@ theorem GlobalTheory.exists_logRes_ample : GlobalTheory.Published.Principalisati
       have : t y ∈ (I.support : Set Y₀) := hm
       rw [hIsupp] at this; exact hc this
   · intro y hy; rw [hB]; exact Or.inl hy
-  · exact GlobalTheory.T.blowup_ample_relative k Y₀ Y (s₀ ≫ p) n t hproj hprojY I hiso heff A hA
+  · exact _root_.GlobalTheory.exists_ample_pull_sub_eff k Y₀ Y (s₀ ≫ p) n t hproj hprojY I hiso heff A hA

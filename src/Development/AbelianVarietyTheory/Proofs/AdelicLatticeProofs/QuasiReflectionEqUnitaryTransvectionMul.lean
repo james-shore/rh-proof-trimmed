@@ -157,7 +157,7 @@ theorem GlobalTheory.UTrans.quasiReflection_eq_tvGen_mul : ∀ (E : Type) [Field
   have hy0 : y ≠ 0 := by
     rintro rfl
     exact hy (by simp [hf])
-  obtain ⟨z, hli, hzp⟩ := GlobalTheory.T.exists_isotropic_basis_nonorthogonal_two_vectors E n σ G hG hiso x y hx0 hy0
+  obtain ⟨z, hli, hzp⟩ := _root_.GlobalTheory.UTrans.IsoBasis.exists_isotropic_basis E n σ G hG hiso x y hx0 hy0
   have : Nonempty (Fin n) := by
     by_contra hne
     exact hx0 (funext fun i => (hne ⟨i⟩).elim)

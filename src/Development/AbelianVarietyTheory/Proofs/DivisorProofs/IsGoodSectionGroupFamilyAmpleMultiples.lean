@@ -70,9 +70,6 @@ theorem mem_H_of_eq (P : Pair p) {a a' b b' : ℤ} {f : X.functionField} (ha : a
     (h : f ∈ P.H a b) : f ∈ P.H a' b' := by
   subst ha hb; exact h
 
-theorem nu_nonneg (P : Pair p) (a b : ℤ) (σ : k →+* ℂ) (y : CxPts p σ) (f : X.functionField) : 0 ≤ P.nu a b σ y f := by
-  rw [Pair.nu]; positivity
-
 theorem mono_mem {D : ℕ} (P : Pair p) (e : ℕ) (x : Fin (D + 1) → X.functionField) (hx : ∀ l, x l ∈ P.H e 0)
     (a b : ℤ) (g : X.functionField) (hg : g ∈ P.H a b) (α : Fin (D + 1) → ℕ) (S : Finset (Fin (D + 1))) :
     (∏ l ∈ S, x l ^ α l) * g ∈ P.H ((e : ℤ) * ((∑ l ∈ S, α l : ℕ) : ℤ) + a) b ∧
@@ -104,7 +101,7 @@ namespace GlobalTheory.HSAmp.GoodH
 theorem goodFam_H : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ),
     IsArithVar p D → ∀ (P : Pair p), IsAmpleLB P.L.B → GoodFam P D (gdeg P.L D / D.factorial) fun m => P.H m 1 := by
   intro hAr k _ X _ p D hX P hL
-  obtain ⟨e, x, hx⟩ := GlobalTheory.T.exists_basepointFreeSectionTuple_ample_arith k X p D hX P hL
+  obtain ⟨e, x, hx⟩ := _root_.GlobalTheory.HSAmp.NoethGens.exists_gens k X p D hX P hL
   have he : 0 < e := hx.pos
 
   have hup : ∀ s : ℕ, ∃ c : ℕ, ∀ q : ℕ, (P.H ((e * q + s : ℕ) : ℤ) 1).FG ∧
@@ -134,7 +131,7 @@ theorem goodFam_H : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k
     have hw : LinearIndependent ℤ w :=
       LinearIndependent.of_comp (P.H ((e : ℤ) * ((q + c : ℕ) : ℤ) + (s : ℤ)) 1).subtype.toIntLinearMap hli
     simpa using hw.fintype_card_le_finrank
-  have hrank := GlobalTheory.T.tendsto_div_pow_of_choose_bounds D e (Module.finrank (ratF x) X.functionField)
+  have hrank := _root_.GlobalTheory.tendsto_rank_div_pow_of_choose_bounds D e (Module.finrank (ratF x) X.functionField)
     (fun m => Module.finrank ℤ (P.H (m : ℤ) 1)) he (fun s _ => by
       obtain ⟨c, hc⟩ := hlow s
       obtain ⟨c', hc'⟩ := hup s
@@ -194,13 +191,13 @@ theorem goodFam_H : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k
     rw [ea] at h1 h2
     refine ⟨h1, fun σ y => ?_⟩
     rw [h2]
-    have hnu0 : ∀ l, 0 ≤ P.nu e 0 σ y (x l) := fun l => nu_nonneg P _ _ σ y _
+    have hnu0 : ∀ l, 0 ≤ P.nu e 0 σ y (x l) := fun l => _root_.GlobalTheory.HSAmp.FLower.nu_nonneg P _ _ σ y _
     have hqe : q ≤ e * q := Nat.le_mul_of_pos_left q he
     have hsum : ∑ l, α l ≤ e * q + s := by omega
     calc (∏ l, P.nu e 0 σ y (x l) ^ α l) * P.nu ((e : ℤ) * (g.1 : ℤ) + s) 1 σ y g.2
         ≤ (∏ l, (1 + ∑ l, Cx l) ^ α l) * (1 + ∑ g ∈ G, Cg g) :=
           mul_le_mul (Finset.prod_le_prod₀ (fun l _ => pow_nonneg (hnu0 l) _)
-            fun l _ => pow_le_pow_left₀ (hnu0 l) (hxl l σ y) _) (hgl g hg σ y) (nu_nonneg P _ _ σ y _)
+            fun l _ => pow_le_pow_left₀ (hnu0 l) (hxl l σ y) _) (hgl g hg σ y) (_root_.GlobalTheory.HSAmp.FLower.nu_nonneg P _ _ σ y _)
             (Finset.prod_nonneg fun _ _ => pow_nonneg (by linarith) _)
       _ = (1 + ∑ l, Cx l) ^ (∑ l, α l) * (1 + ∑ g ∈ G, Cg g) := by rw [Finset.prod_pow_eq_pow_sum]
       _ ≤ (1 + ∑ l, Cx l) ^ (e * q + s) * (1 + ∑ g ∈ G, Cg g) ^ (e * q + s) :=

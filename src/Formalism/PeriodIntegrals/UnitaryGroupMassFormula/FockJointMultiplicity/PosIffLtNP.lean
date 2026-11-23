@@ -60,10 +60,6 @@ namespace PI.FJMS
 
 open PI.FJM PI.FJMP
 
-theorem pos_iff_lt_nP {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i' → 0 < f i' → 0 < f i)
-    (i : Fin n) : 0 < f i ↔ i.val < nP f := by
-  first | exact Bl.general_b_fact_upper_bis_form.goal1 .. | (apply Bl.general_b_fact_upper_bis_form.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_upper_bis_form.goal1 <;> assumption) | (apply @Bl.general_b_fact_upper_bis_form.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_upper_bis_form.goal1 <;> assumption) | (apply @Bl.general_b_fact_upper_bis_form.goal1 <;> first | assumption | infer_instance) | exact @Bl.general_b_fact_upper_bis_form.goal1 n f hseg i | exact @Bl.general_b_fact_upper_bis_form.goal1 n f hseg | exact @Bl.general_b_fact_upper_bis_form.goal1 n f | exact @Bl.general_b_fact_upper_bis_form.goal1 n
-
 theorem neg_iff_nN {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i' → f i < 0 → f i' < 0)
     (i : Fin n) : f i < 0 ↔ n ≤ i.val + nN f := by
   constructor
@@ -100,7 +96,7 @@ theorem neg_iff_nN {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i
 
 theorem idxP {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i' → 0 < f i' → 0 < f i)
     (i : Fin n) (h : 0 < f i) : ∃ x : Fin (nP f), Fin.castLE (nP_le_nW f) x = i :=
-  ⟨⟨i.val, (pos_iff_lt_nP f hseg i).1 h⟩, Fin.ext rfl⟩
+  ⟨⟨i.val, (_root_.Bl.general_b_fact_upper_bis_form.goal1 f hseg i).1 h⟩, Fin.ext rfl⟩
 
 theorem idxN {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i' → f i < 0 → f i' < 0)
     (i : Fin n) (h : f i < 0) : ∃ x : Fin (nN f), Fin.rev (Fin.castLE (nN_le f) x) = i := by
@@ -112,7 +108,7 @@ theorem idxN {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i' → 
 
 theorem pos_of_lt {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i' → 0 < f i' → 0 < f i)
     (x : Fin (nP f)) : 0 < f (Fin.castLE (nP_le_nW f) x) :=
-  (pos_iff_lt_nP f hseg _).2 (by simp only [Fin.val_castLE]; exact x.isLt)
+  (_root_.Bl.general_b_fact_upper_bis_form.goal1 f hseg _).2 (by simp only [Fin.val_castLE]; exact x.isLt)
 
 theorem neg_of_lt {n : ℕ} (f : Fin n → ℚ) (hseg : ∀ i i' : Fin n, i < i' → f i < 0 → f i' < 0)
     (x : Fin (nN f)) : f (Fin.rev (Fin.castLE (nN_le f) x)) < 0 := by

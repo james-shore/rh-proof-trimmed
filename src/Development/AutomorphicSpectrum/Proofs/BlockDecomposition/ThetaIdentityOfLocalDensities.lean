@@ -164,15 +164,12 @@ theorem repr_one_tmul (b : Module.Basis (Fin d) F E) (R : Type) [CommRing R] [Al
     (Algebra.TensorProduct.basis R b).repr ((1 : R) ⊗ₜ[F] e) k = algebraMap F R (b.repr e k) := by
   simp [Algebra.TensorProduct.basis_repr_tmul]
 
-theorem ev_int (c : F) : ∀ᶠ v : HeightOneSpectrum (𝓞 F) in cofinite,
-    algebraMap F (Fv F v) c ∈ v.adicCompletionIntegers F := (algebraMap F (Af F) c).2
-
 def GoodV (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F)) : Prop :=
   ∀ k l m, algebraMap F (Fv F v) (b.repr (b k * b l) m) ∈ v.adicCompletionIntegers F
 
 theorem eventually_goodV (b : Module.Basis (Fin d) F E) : ∀ᶠ v : HeightOneSpectrum (𝓞 F) in cofinite, GoodV b v := by
   simp only [GoodV, eventually_all]
-  exact fun k l m => ev_int _
+  exact fun k l m => _root_.GlobalTheory.CompanionTheory.SW.LatRat.eventually_integral _
 
 def IntE (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F)) (y : Fv F v ⊗[F] E) : Prop :=
   ∀ k, (Algebra.TensorProduct.basis (Fv F v) b).repr y k ∈ v.adicCompletionIntegers F

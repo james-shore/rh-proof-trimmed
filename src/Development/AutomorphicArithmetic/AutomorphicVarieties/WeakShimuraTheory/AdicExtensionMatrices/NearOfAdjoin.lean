@@ -53,11 +53,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open IsLocalRing Polynomial UpperTheory.V.Alg UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws
 
-private theorem near_of_adjoin {P L : Type} [CommRing P] [CommRing L] [Algebra P L] (G : Set L)
-    (hG : ∀ g ∈ G, IsNilpotent g) (x : L) (hx : x ∈ Algebra.adjoin P G) :
-    ∃ p : P, IsNilpotent (x - algebraMap P L p) :=
-  _root_.UpperTheory.Reformulated.B.Qg2.near_of_adjoin G hG x hx
-
 private theorem unit_of_near {S : Type} [CommRing S] {x u : S} (h : IsNilpotent (x - u)) (hu : IsUnit u) :
     IsUnit x := by
   have := h.isUnit_add_right_of_commute hu (Commute.all _ _)
@@ -135,7 +130,7 @@ theorem UpperTheory.V.Ws.sxLaur :
       obtain ⟨k, hk⟩ := hG g hg
       exact ⟨X ^ k, monic_X_pow k, by simp [hk]⟩
   have hnear : ∀ x : S, ∃ p : PowerSeries R, IsNilpotent (x - algebraMap _ S p) := fun x => by
-    obtain ⟨p, k, hk⟩ := near_of_adjoin G hG x.1 x.2
+    obtain ⟨p, k, hk⟩ := _root_.UpperTheory.Reformulated.B.Qg2.near_of_adjoin G hG x.1 x.2
     exact ⟨p, k, Subtype.ext hk⟩
   haveI : IsLocalRing S := local_of_near hnear
   letI : Algebra Λ S := ((algebraMap (PowerSeries R) S).comp (algebraMap Λ (PowerSeries R))).toAlgebra

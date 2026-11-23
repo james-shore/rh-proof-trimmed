@@ -51,9 +51,9 @@ open IsLocalRing Polynomial
 namespace GlobalTheory.KeyOriginCut
 
 theorem keyOrigin : GlobalTheory.LocAcyc.KeyOrigin := by
-  have h₁ := GlobalTheory.T.strict_henselisation_prime_eq
-  have h₂ := GlobalTheory.T.exists_noetherian_model_torsor_origin
-  have h₃ := GlobalTheory.T.torsor_point_over_strictHenselisation_noetherianNormal
+  have h₁ := _root_.GlobalTheory.KeyOriginCut.exists_stage_torsor
+  have h₂ := _root_.GlobalTheory.KeyOriginNoeth.exists_noetherian_model
+  have h₃ := _root_.GlobalTheory.KeyOriginNoeth.torsor_point_of_essFiniteType
   unfold GlobalTheory.LocAcyc.KeyOrigin GlobalTheory.LocAcyc.KeyLocalWith GlobalTheory.LocAcyc.TorsorsTrivial
   intro T O _ _ _ _ _ _ _ _ hT P _ φ hφ hsh hPm hS q hq hqu D _ _ hfin hproj hff act hbij
   obtain ⟨E, _, _, _, _, _, Q, _, hQ, j, hj, ψ, hψ, D₁, _, _, act₁, htors₁, hpull₁⟩ :=

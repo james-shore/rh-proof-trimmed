@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FlippedFiniteTensorOfRepresentingOppositePath
 
 @[expose] public section
 
@@ -66,43 +67,6 @@ theorem zip_append {S S' S'' : Arrow T → Type} (φ : ∀ a, S a → S' a → S
       ((Path.Fam.zip φ d d').append (Path.Fam.zip φ e.1 e'.1), φ a e.2 e'.2)
     rw [zip_append φ d d' q e.1 e'.1]
 
-theorem zip_rowFam {S S' S'' : Arrow T → Type} (φ : ∀ a, S a → S' a → S'' a) (j : ℕ) : ∀ n (f : ∀ i : Fin n, S (.right i j))
-    (g : ∀ i : Fin n, S' (.right i j)), Path.Fam.zip φ (rowFam j n f) (rowFam j n g) = rowFam j n fun i => φ _ (f i) (g i)
-  | 0, _, _ => rfl
-  | n + 1, f, g => by
-    show (Path.Fam.zip φ (rowFam j n fun i => f i.castSucc) (rowFam j n fun i => g i.castSucc), φ _ (f (Fin.last n)) (g (Fin.last n))) =
-      (rowFam j n fun i => φ _ (f i.castSucc) (g i.castSucc), φ _ (f (Fin.last n)) (g (Fin.last n)))
-    rw [zip_rowFam φ j n]
-
-theorem zip_downFam {S S' S'' : Arrow T → Type} (φ : ∀ a, S a → S' a → S'' a) (t : T) (i : ℕ) : ∀ n (f : ∀ j : Fin n, S (.down t i j))
-    (g : ∀ j : Fin n, S' (.down t i j)), Path.Fam.zip φ (downFam t i n f) (downFam t i n g) = downFam t i n fun j => φ _ (f j) (g j)
-  | 0, _, _ => rfl
-  | n + 1, f, g => by
-    show Path.Fam.zip φ (Path.Fam.append (p := Path.one (.down t i n)) ((), f (Fin.last n)) (downFam t i n fun j => f j.castSucc))
-        (Path.Fam.append (p := Path.one (.down t i n)) ((), g (Fin.last n)) (downFam t i n fun j => g j.castSucc)) =
-      Path.Fam.append (p := Path.one (.down t i n)) ((), φ _ (f (Fin.last n)) (g (Fin.last n)))
-        (downFam t i n fun j => φ _ (f j.castSucc) (g j.castSucc))
-    refine (zip_append φ (p := Path.one (.down t i n)) (((), f (Fin.last n)) : (Path.one (.down t i n)).Fam S)
-      (((), g (Fin.last n)) : (Path.one (.down t i n)).Fam S') (downPath t i n) (downFam t i n fun j => f j.castSucc)
-      (downFam t i n fun j => g j.castSucc)).trans ?_
-    rw [zip_downFam φ t i n]
-    rfl
-
-theorem restrictPol_rowPath (P : PolE G) (j : ℕ) : ∀ n, restrictPol P (rowPath T j n) = rowFam j n fun i => polOf P (.right i j)
-  | 0 => rfl
-  | n + 1 => by
-    show (restrictPol P (rowPath T j n), polOf P (.right n j)) = (rowFam j n fun i => polOf P (.right (i.castSucc : Fin (n + 1)) j), _)
-    rw [restrictPol_rowPath P j n]
-    rfl
-
-theorem restrictPol_downPath (P : PolE G) (t : T) (i : ℕ) : ∀ n,
-    restrictPol P (downPath t i n) = downFam t i n fun j => polOf P (.down t i j)
-  | 0 => rfl
-  | n + 1 => by
-    show restrictPol P ((Path.one (.down t i n)).comp (downPath t i n)) = _
-    rw [restrictPol_comp, restrictPol_downPath P t i n]
-    rfl
-
 theorem tensE_single (W : G.Weil) {X Y : Node} (p : Path T X Y) (P : PolE G) (d : PureT G p) (c : ℂ) :
     tensE W p (Finsupp.single P 1) (Finsupp.single d c) =
       Finsupp.single (Path.Fam.zip (fun a (f : Sch G a) Q => W.fock a.pair f Q) d (restrictPol P p)) c := by
@@ -116,7 +80,7 @@ theorem zip_given (W : G.Weil) (t : T) (ρ : G.RealVec) (q : ∀ j : ℕ, PolF D
     Path.Fam.zip (fun a (g : Sch G a) Q => W.fock a.pair g Q) (givenFin W t f Φ) (restrictPol (gPol ρ q) (givenPath t D.R.m)) =
       Path.Fam.append (colPure W t f fun j => q j) (rowDatum W ρ Φ) := by
   unfold givenFin givenPath
-  rw [restrictPol_comp, zip_append, restrictPol_downPath, restrictPol_rowPath, zip_downFam, zip_rowFam]
+  rw [restrictPol_comp, zip_append, _root_.GlobalTheory.OppConv.restrictPol_down, _root_.GlobalTheory.OppConv.restrictPol_row, _root_.GlobalTheory.OppConv.zip_down, _root_.GlobalTheory.OppConv.zip_row]
   congr 1
   unfold rowDatum
   congr 1

@@ -115,17 +115,9 @@ end Gen
 
 variable {n : ℕ}
 
-theorem shc_pos' (u : ℝ) : 0 < shc u := by
-  unfold shc
-  split_ifs with h
-  · exact one_pos
-  · rcases lt_or_gt_of_ne h with hu | hu
-    · exact div_pos_of_neg_of_neg (Real.sinh_neg_iff.mpr hu) hu
-    · exact div_pos (Real.sinh_pos_iff.mpr hu) hu
-
 theorem jac_pos' {ε : Fin n → Bool} (y : PCoord ε → ℂ) : 0 < Jac y := by
   unfold Jac
-  exact Finset.prod_pos (fun a _ => Finset.prod_pos (fun b _ => shc_pos' _))
+  exact Finset.prod_pos (fun a _ => Finset.prod_pos (fun b _ => _root_.ReciprocityTheory.ChartRestriction.DS.pb_shc_pos _))
 
 def pmatLin (ε : Fin n → Bool) : (PCoord ε → ℂ) →ₗ[ℝ] Matrix (Fin n) (Fin n) ℂ where
   toFun := pmat
@@ -183,7 +175,7 @@ theorem shcAd_eq_zero {ε : Fin n → Bool} (y : PCoord ε → ℂ) {W : Matrix 
     have h5 : S i j = 0 := by rw [h3]; rfl
     rw [hS, Matrix.of_apply, mul_eq_zero] at h5
     rcases h5 with h5 | h5
-    · exact absurd (Complex.ofReal_eq_zero.1 h5) (shc_pos' _).ne'
+    · exact absurd (Complex.ofReal_eq_zero.1 h5) (_root_.ReciprocityTheory.ChartRestriction.DS.pb_shc_pos _).ne'
     · exact h5
   calc W = (U * Uᴴ) * W * (U * Uᴴ) := by rw [h2, Matrix.one_mul, Matrix.mul_one]
     _ = U * (Uᴴ * W * U) * Uᴴ := by simp only [Matrix.mul_assoc]

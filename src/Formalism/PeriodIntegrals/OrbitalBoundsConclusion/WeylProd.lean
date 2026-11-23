@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem weyl_product_formula : PI.WeylProd := PI.WeylProdWork.weylProd

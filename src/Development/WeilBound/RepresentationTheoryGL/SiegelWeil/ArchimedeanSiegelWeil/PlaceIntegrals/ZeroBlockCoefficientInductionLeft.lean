@@ -113,14 +113,6 @@ theorem chartS_zero (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (Fin M)
     simp only [tHalf, ht, mul_zero, zero_mul, sub_zero]
     rfl
 
-theorem gramR_e0 (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) :
-    gramR R σ (hypOne J) (e0 (R ⊗[F] E) M) = 0 := by
-  funext a b
-  show hR R σ (hypOne J) (Fin.cons 1 fun _ => 0) (Fin.cons 1 fun _ => 0) = 0
-  simp only [hR, hform, JR]
-  rw [Fin.sum_univ_succ]
-  simp [Fin.sum_univ_succ, hypOne_zero_zero, hypOne_zero_one]
-
 end Local
 
 theorem exists_seq_cover {X G : Type} [TopologicalSpace X] [SecondCountableTopology X] [Nonempty G]
@@ -244,7 +236,7 @@ theorem local_stages : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     set x := actW R σ (hypOne J) (gk k₀)⁻¹ y with hx
     have hxu : IsUnit (x 0 0) := hPsub k₀ hk₀
     have hxg : gramR R σ (hypOne J) x = 0 := by
-      rw [hx, (gAct 1).2.2.2, hy, (gAct 1).2.2.2, gramR_e0]
+      rw [hx, (gAct 1).2.2.2, hy, (gAct 1).2.2.2, _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypWitt.gramR_e0]
     have hxt : hR R σ (hypOne J) (x 0) (x 0) = 0 := congrFun (congrFun hxg 0) 0
     obtain ⟨c, hc⟩ := GlobalTheory.T.unitary_moving_unit_vector F E σ hCM M J hJ R (x 0) hxu
     have hch := chartS_zero (n := n) R σ J x hxt c hc

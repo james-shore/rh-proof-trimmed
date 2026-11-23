@@ -42,6 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-theorem UpperTheory.V.FW.main :
-    UpperTheory.V.Published.FerreroWashington :=
-  UpperTheory.V.FW.ferreroWashington
+alias UpperTheory.V.FW.main := _root_.UpperTheory.V.FW.ferreroWashington

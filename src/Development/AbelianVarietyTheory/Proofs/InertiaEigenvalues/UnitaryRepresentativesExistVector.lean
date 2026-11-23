@@ -58,17 +58,6 @@ open GlobalTheory.DownLift
 
 namespace GlobalTheory.UnitaryToGl
 
-theorem weighted_mem {E : Type} [AddCommGroup E] [Module ℂ E] (V : Submodule ℂ E) {ι : Type} (S : Finset ι)
-    (w : ι → ℤ) (f : ι → E) (h : ∀ z : ℂ, ‖z‖ = 1 → ∑ s ∈ S, (z ^ w s) • f s ∈ V) :
-    ∑ s ∈ S, (w s : ℂ) • f s ∈ V := by
-  first
-  | exact @_root_.GlobalTheory.WeightSum.weight_sum_mem
-  | exact _root_.GlobalTheory.WeightSum.weight_sum_mem
-  | (apply _root_.GlobalTheory.WeightSum.weight_sum_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.WeightSum.weight_sum_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.WeightSum.weight_sum_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.WeightSum.weight_sum_mem ..)
-
 end GlobalTheory.UnitaryToGl
 
 namespace GlobalTheory.UnitaryToGl
@@ -585,7 +574,7 @@ theorem transp_torus
   let wf : (Formalism.IndefR.Datum.FVar D m n →₀ ℕ) ⊕ (Formalism.IndefR.Datum.FVar D m n →₀ ℕ) → ℤ :=
     Sum.elim (wt w.p τ c) (wt w.p τ c)
   have hmem : ∑ i ∈ (ψ x).support.disjSum (φ x).support, (wf i : ℂ) • f i ∈ LinearMap.range (ψ.prod φ) := by
-    refine weighted_mem _ _ wf f fun z hz => ?_
+    refine _root_.GlobalTheory.WeightSum.weight_sum_mem _ _ wf f fun z hz => ?_
     have hz0 : z ≠ 0 := by rintro rfl; simp at hz
     obtain ⟨A, hA⟩ := transp_subst (m := m) (ρ := ρ) (w := w) hr (isUF_tor τ c (Units.mk0 z hz0) (by simpa using hz))
     refine ⟨A x, ?_⟩

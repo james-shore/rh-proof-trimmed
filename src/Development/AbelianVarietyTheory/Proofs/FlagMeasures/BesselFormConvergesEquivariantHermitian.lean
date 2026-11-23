@@ -62,15 +62,9 @@ namespace GlobalTheory.SgInf.BeForm
 variable {k r : ℕ} {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 variable {Wp : Type*} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [CompleteSpace Wp]
 
-theorem isUnit_det_of_mem {g : Mat k r} (hg : g ∈ GG k r) : IsUnit g.det :=
-  ((uHGroup _ (Hpk k r) (Matrix.isUnit_det_of_right_inverse (hpkFacts k r).2.1)).2.2 g hg).1
-
-theorem mul_inv_of_mem {g : Mat k r} (hg : g ∈ GG k r) : g * g⁻¹ = 1 :=
-  Matrix.mul_nonsing_inv g (GlobalTheory.SgInf.BeForm.isUnit_det_of_mem hg)
-
 theorem continuousOn_inv : ContinuousOn (fun g : Mat k r => g⁻¹) (GG k r) := by
   intro g hg
-  obtain ⟨w, hw⟩ := GlobalTheory.SgInf.BeForm.isUnit_det_of_mem hg
+  obtain ⟨w, hw⟩ := _root_.GlobalTheory.SgInf.isUnit_det_of_mem_GG hg
   refine (continuousAt_matrix_inv g ?_).continuousWithinAt
   rw [← hw]
   exact NormedRing.inverse_continuousAt w
@@ -110,7 +104,7 @@ theorem inner_act {t : Mat k r} (ht : t ∈ GG k r) (x y : H) : ⟪σ t x, σ t 
 
 theorem act_inv {t : Mat k r} (ht : t ∈ GG k r) (hti : t⁻¹ ∈ GG k r) (x : H) : σ t (σ t⁻¹ x) = x := by
   have h := hσ.1.2 t ht t⁻¹ hti
-  rw [GlobalTheory.SgInf.BeForm.mul_inv_of_mem ht, hσ.1.1] at h
+  rw [_root_.GlobalTheory.SgInf.OpNormU.mul_inv ht, hσ.1.1] at h
   have h2 := congrArg (fun A : H →L[ℂ] H => A x) h
   simpa using h2.symm
 
@@ -194,7 +188,7 @@ theorem be_left (hS : IsClosedSub k r S) (hσ : IsURepOn (GG k r) σ) (hP : IsUR
   have hof : (Matrix.of (rmulM t s) : Mat k r) = Matrix.of s * t := rfl
   simp only [bint, hof, ContinuousLinearMap.comp_smul]
   rw [GlobalTheory.SgInf.BeForm.coef_act_left hσ hsG htG, Matrix.mul_inv_rev, ← hP.1.2 t ht _ hmem,
-    ← mul_assoc, GlobalTheory.SgInf.BeForm.mul_inv_of_mem htG, one_mul]
+    ← mul_assoc, _root_.GlobalTheory.SgInf.OpNormU.mul_inv htG, one_mul]
 
 theorem be_right (hS : IsClosedSub k r S) (hσ : IsURepOn (GG k r) σ) (hP : IsURepOn S P)
     (hμ : IsHaarOn S μ) {u u' : H} (hI : Integrable (bint σ P u u') μ)
@@ -222,7 +216,7 @@ theorem be_right (hS : IsClosedSub k r S) (hσ : IsURepOn (GG k r) σ) (hP : IsU
   simp only [bint, hof, ContinuousLinearMap.smul_comp]
   rw [GlobalTheory.SgInf.BeForm.coef_act_right hσ hsG htG htiG (hS.1 hm1)]
   congr 1
-  rw [← hP.1.2 _ hm2 _ hti, ← Matrix.mul_inv_rev, ← mul_assoc, GlobalTheory.SgInf.BeForm.mul_inv_of_mem htG,
+  rw [← hP.1.2 _ hm2 _ hti, ← Matrix.mul_inv_rev, ← mul_assoc, _root_.GlobalTheory.SgInf.OpNormU.mul_inv htG,
     one_mul]
 
 def adjR (Wp : Type*) [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [CompleteSpace Wp] :

@@ -93,10 +93,7 @@ theorem hasDerivAt_eval {κ : Type} [Fintype κ] {F : Type} [Field F] [NumberFie
     ((BoundedContinuousFunction.evalCLM ℂ y).comp (SchwartzMap.toBoundedContinuousFunctionCLM ℂ _ ℂ))
   simpa using h
 
-theorem hasDerivAt_clm {κ : Type} [Fintype κ] {F : Type} [Field F] [NumberField F] (c : ℝ → SInf F κ) (f c' : SInf F κ)
-    (hc0 : c 0 = f) (hl : Tendsto (fun t : ℝ => t⁻¹ • (c t - f)) (𝓝[≠] 0) (𝓝 c')) (T : SInf F κ →L[ℂ] ℂ) :
-    HasDerivAt (fun t => T (c t)) (T c') 0 :=
-  hasDerivAt_clm_comp_of_tendsto_slope c f c' hc0 hl T
+alias hasDerivAt_clm := _root_.GlobalTheory.ThetaLineDeriv.hasDerivAt_clm_comp_of_tendsto_slope
 
 end GlobalTheory.ThetaLineDeriv
 

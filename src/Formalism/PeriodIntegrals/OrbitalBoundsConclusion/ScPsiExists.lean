@@ -42,5 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem sc_psi_exists : PI.ScPsiExists.Target :=
-  PI.ScPsiExists.UnitaryGroupMassFormula.norm_units_of_calculation

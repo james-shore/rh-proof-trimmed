@@ -78,7 +78,7 @@ theorem terms_at_point_of_relevant : ∀ (D : D7) (X : HidaSetting D) (Y : Full 
       exact hGv (he.symm.trans hz)
   refine ⟨fun t ht => ?_, ?_⟩
   · obtain ⟨hat, hr⟩ := key t ht
-    have hTF := Formalism.L2.SG.Closed.TermFun_holds D u u' (X.Fu u) t.lam (hrows.1 t.lam t.mem)
+    have hTF := _root_.term_function_const D u u' (X.Fu u) t.lam (hrows.1 t.lam t.mem)
     have hmk : Formalism.L2.SG.TermDef.mk t.toTerm.lam (lf D (X.Fu u)) (PD D t.toTerm.lam (lf D (X.Fu u)) u')
         (Quot.out t.toTerm.cls) = t.toTerm.cls := Quot.out_eq _
     have hA : Formalism.L2.SG.TermDef.AtPt t.toTerm.lam (lf D (X.Fu u)) (PD D t.toTerm.lam (lf D (X.Fu u)) u')
@@ -87,7 +87,7 @@ theorem terms_at_point_of_relevant : ∀ (D : D7) (X : HidaSetting D) (Y : Full 
       rw [hmk]
       exact hat
     exact ⟨hr, (Formalism.L2.SG.TermDef.atPt_mk hTF.1 hTF.2.1 _ _).1 hA⟩
-  · refine (Formalism.L2.SG.TermDef.term_atPt_finite (Formalism.L2.SG.Closed.TermsAtFinite_holds D u u') (D.sp.Y_sig 0)
+  · refine (Formalism.L2.SG.TermDef.term_atPt_finite (_root_.terms_at_point_finite D u u') (D.sp.Y_sig 0)
       (X.Fu u) (Y.what₂ u) hrows (Formalism.L2.SG.PairVal.ptOf t₀.toTerm)).subset ?_
     rintro _ ⟨t, ht, rfl⟩
     exact (key t ht).1

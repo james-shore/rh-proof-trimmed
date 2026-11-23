@@ -280,7 +280,7 @@ theorem complementary_eq_topForms : ∀ (k F K : Type) [Field k] [CharZero k] [F
         zero_mem' := ⟨0, zero_mem _, by simp⟩
         smul_mem' := by
           rintro c c' ⟨y, hy, h⟩
-          refine ⟨(c : K) • y, ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K B d d).2.1 y hy).2.2.2 _ c.2, ?_⟩
+          refine ⟨(c : K) • y, ((_root_.GlobalTheory.PD.omB_alg k K B d d).2.1 y hy).2.2.2 _ c.2, ?_⟩
           rw [map_smul, h, smul_eq_mul, smul_eq_mul]
           push_cast
           ring }
@@ -290,13 +290,13 @@ theorem complementary_eq_topForms : ∀ (k F K : Type) [Field k] [CharZero k] [F
     by_contra hJ
     obtain ⟨P, hPmax, hJP⟩ := Ideal.exists_le_maximal J (fun h => hJ (h ▸ Submodule.mem_top))
     haveI := hPmax.isPrime
-    obtain ⟨f, u', bP, hfP, hb, hc⟩ := GlobalTheory.T.exists_local_kaehlerD_basis_smooth_subalgebra k K B d hrank P
+    obtain ⟨f, u', bP, hfP, hb, hc⟩ := _root_.GlobalTheory.PD.exists_local_dbasis k K B d hrank P
     obtain ⟨hg0, hloc⟩ := local_frame k K B d τ _ hτ f u' bP hb hc
     set g := τ (ExteriorAlgebra.ιMulti K d (fun j => D k K (u' j : K))) with hg
-    obtain ⟨c, hcw⟩ := GlobalTheory.T.mem_of_forall_heightOne_localization_integrallyClosed B K ((f : K) ^ d * z / g) (by
+    obtain ⟨c, hcw⟩ := _root_.GlobalTheory.NormalHeightOne.mem_of_forall_height_eq_one B K ((f : K) ^ d * z / g) (by
       intro Q hQ hQ1
       obtain ⟨p, hp, hp1, hover⟩ := hunder Q hQ hQ1
-      have hcod := (GlobalTheory.T.mem_traceDual_localization_iff_forall_regularForm_alt k F K d u hu A hA B hB hsm τ hτ p hp hp1 z).1 (fun b =>
+      have hcod := (_root_.GlobalTheory.mem_traceDual_localization_iff_forall_regularForm k F K d u hu A hA B hB hsm τ hτ p hp hp1 z).1 (fun b =>
         ⟨1, ⟨_, hz b⟩, (Ideal.ne_top_iff_one p).1 hp.ne_top, by simp⟩)
       obtain ⟨r, hr, y, hy, hyz⟩ := hcod Q hQ hover
       obtain ⟨c, hc'⟩ := hloc y hy
@@ -314,9 +314,9 @@ theorem complementary_eq_topForms : ∀ (k F K : Type) [Field k] [CharZero k] [F
       field_simp
     exact hfP (hPmax.isPrime.mem_of_pow_mem d (hJP hfd))
   · rintro ⟨y, hy, rfl⟩ b
-    obtain ⟨c, hc⟩ := GlobalTheory.T.mem_of_forall_heightOne_localization_integrallyClosed A F (Algebra.trace F K (τ y * b)) (by
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.NormalHeightOne.mem_of_forall_height_eq_one A F (Algebra.trace F K (τ y * b)) (by
       intro p hp hp1
-      exact (GlobalTheory.T.mem_traceDual_localization_iff_forall_regularForm_alt k F K d u hu A hA B hB hsm τ hτ p hp hp1 (τ y)).2
+      exact (_root_.GlobalTheory.mem_traceDual_localization_iff_forall_regularForm k F K d u hu A hA B hB hsm τ hτ p hp hp1 (τ y)).2
         (fun Q hQ _ => ⟨1, (Ideal.ne_top_iff_one Q).1 hQ.ne_top, y, hy, by simp⟩) b)
     rw [hc]
     exact c.2

@@ -50,9 +50,7 @@ open Formalism.BasicNotions Formalism.L2.Pj GlobalTheory GlobalTheory.ProjVar Gl
 
 namespace GlobalTheory.Mean4O.CompModel
 
-theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) :=
-  (Spec.map_comp (CommRingCat.ofHom f) (CommRingCat.ofHom g)).symm
+alias sp_comp := _root_.GlobalTheory.spMap_comp_ring
 
 section Free
 

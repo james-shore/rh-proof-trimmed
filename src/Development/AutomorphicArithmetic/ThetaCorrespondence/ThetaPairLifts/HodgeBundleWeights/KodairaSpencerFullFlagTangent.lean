@@ -73,8 +73,8 @@ theorem kodaira_spencer_full : _root_.GlobalTheory.CovTop.Hypotheses'' → ∀ (
   have hA' := GlobalTheory.PolPull.isAbelianScheme_of_isGrpPullback hU hπ'
   have gA' := (smoothOfRelativeDimension_isStableUnderBaseChange _).of_isPullback hπ'.1 hg
   haveI : IsCommMonObj A := hA.comm
-  obtain ⟨a', ha'⟩ := GlobalTheory.T.exists_ringAction_of_isGrpPullback Xo.univ.t.act hπ'
-  obtain ⟨a, ha⟩ := GlobalTheory.T.exists_ringAction_of_isGrpPullback Xo.univ.t.act hπ
+  obtain ⟨a', ha'⟩ := _root_.GlobalTheory.OActPull.exists_oAct_of_isGrpPullback Xo.univ.t.act hπ'
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.OActPull.exists_oAct_of_isGrpPullback Xo.univ.t.act hπ
   have hc : ∀ z, (a.act z).left ≫ i = i ≫ (a'.act z).left := fun z => by
     apply hπ'.1.hom_ext
     · rw [Category.assoc, Category.assoc, ha' z, ← Category.assoc i π', e, ha z]
@@ -83,7 +83,7 @@ theorem kodaira_spencer_full : _root_.GlobalTheory.CovTop.Hypotheses'' → ∀ (
   obtain rfl : ψ = ψ₀ := IsPolForm.unique P.1 hA gA (pull_isLB Xo.univ.t.PP.isLB π) hpol hpol₀
   have hadj := GlobalTheory.T.polarizationCrystalForm_adjoint_conj_action P Xo hπ a ha hpol
   have hK := GlobalTheory.DeRham.ksRegular_of_isAbelianScheme P h hA' gA'
-  obtain ⟨ub₀, hu₀, ht₀, he₀, hbasis₀⟩ := GlobalTheory.T.exists_frame_tangentVectors_of_isGrpPullback y hπ a ha
+  obtain ⟨ub₀, hu₀, ht₀, he₀, hbasis₀⟩ := _root_.GlobalTheory.KSExist.exists_frame_of_isGrpPullback y hπ a ha
   obtain rfl : ub = ub₀ := by
     funext σ k
     apply ReciprocityTheory.ChartRestriction.G.PullbackSections.push_inj hπ
@@ -99,7 +99,7 @@ theorem kodaira_spencer_full : _root_.GlobalTheory.CovTop.Hypotheses'' → ∀ (
     have h1 := (hl' k).push (a.act z)
     rw [he₀] at h1
     exact h1.sub_mem ((hl' k).smul _)
-  have hsym := _root_.GlobalTheory.T.kodairaSpencer_pairing_symmetric PP E H Dw l Xo K y.x x' A A' π π' i h ψ hπ hπ' e hpol
+  have hsym := _root_.GlobalTheory.KSSym.kodairaSpencer_map_symm PP E H Dw l Xo K y.x x' A A' π π' i h ψ hπ hπ' e hpol
   refine isKSValue_one_of_rows h ψ hiso hlag hperf hpol.isAlt hsym ub hb hl' hspan
     (fun σ => σ ∈ GlobalTheory.FlagTan.psiSet H) conjEmb
     (fun σ hσ => ((GlobalTheory.FlagTan.isHalf_psiSet H) σ).1 hσ) ?_ ?_
@@ -129,11 +129,3 @@ end GlobalTheory.KSFull
 end
 end
 
-section
-open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
-open AlgebraicGeometry CategoryTheory MonObj
-attribute [local instance] Over.cartesianMonoidalCategory
-
-theorem _root_.GlobalTheory.T.kodaira_spencer_full_flag_tangent : _root_.GlobalTheory.CovTop.Hypotheses'' → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (K : Type) [Field K] [Algebra c.F K] (y : FrPt Xo c K) (x' : Sp (DualNumber K) ⟶ Xo.X), 1 ≤ Dw.p + Dw.q → GlobalTheory.FlagTan.IsTanX y x' → GlobalTheory.FlagTan.IsKS (GlobalTheory.FlagTan.psiSet H) y x' 0 → ∃ (A : Over (Sp K)) (_ : GrpObj A) (A' : Over (Sp (DualNumber K))) (_ : GrpObj A') (π : A.left ⟶ Xo.univ.t.G.left) (π' : A'.left ⟶ Xo.univ.t.G.left) (i : A.left ⟶ A'.left) (h : IsGrpPullback A A' (GlobalTheory.DeRham.epsRed K) i), IsGrpPullback A Xo.univ.t.G y.x π ∧ IsGrpPullback A' Xo.univ.t.G x' π' ∧ i ≫ π' = π ∧ ∀ f ∈ GlobalTheory.DeRham.Fil A, GlobalTheory.DeRham.IsKSValue h f 1 := by
-  first | exact @_root_.GlobalTheory.KSFull.kodaira_spencer_full | exact _root_.GlobalTheory.KSFull.kodaira_spencer_full | (intros; apply _root_.GlobalTheory.KSFull.kodaira_spencer_full <;> assumption)
-end

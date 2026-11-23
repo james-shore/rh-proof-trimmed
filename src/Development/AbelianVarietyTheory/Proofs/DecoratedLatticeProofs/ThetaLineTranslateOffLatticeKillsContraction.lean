@@ -62,12 +62,6 @@ namespace GlobalTheory.FinPl.LineVanish
 
 variable {D : D7}
 
-theorem mxAt_mul_right' {P : Pl D → Prop} {m n r : ℕ} {u : Mx D m n} (hu : MxAt P u) (N : Mx D n r) :
-    MxAt P (u * N) := by
-  intro i j
-  simp only [Matrix.mul_apply]
-  exact Ideal.sum_mem _ fun k _ => Ideal.mul_mem_right _ _ (hu i k)
-
 theorem fin_of_mxAt' {P : Pl D → Prop} {m n : ℕ} {u : Mx D m n} (hu : MxAt P u) : u.map (infPart D) = 0 := by
   ext i j
   exact RingHom.mem_ker.1 (Ideal.mem_inf.1 (hu i j)).1
@@ -142,7 +136,7 @@ theorem vanish : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topological
 
   have hyM : MxAt P ((B.o.resS S).symm (0, y)) := by
     rw [OrthDec.resS_symm_apply, Matrix.zero_mul, zero_add]
-    exact mxAt_mul_right' hy _
+    exact _root_.GlobalTheory.LastOpPf.mxAt_mul_r hy _
   obtain ⟨u, hu, ⟨e, he, heu⟩, hψu⟩ := step3 D k ι p I P hP ψ hψ B.V₀ S M LS hM hLS _ hyM hout
   set h := (B.o.resS S u).2 with hh
   have hhN : (B.o.resS S).symm (0, h) ∈ latO B.V₀ S (M : Set _) (LS : Set _) P :=
@@ -151,7 +145,7 @@ theorem vanish : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topological
   have hhmx : MxAt P h := by
     have := ((GlobalTheory.T.mem_homLatticeCompletion_iff_supported_maps D B.V₀ S M LS hM hLS P _).1 hhN).1
     have h2 : (B.o.resS S ((B.o.resS S).symm (0, h))).2 = h := by rw [AddEquiv.apply_symm_apply]
-    rw [← h2]; exact mxAt_mul_right' this _
+    rw [← h2]; exact _root_.GlobalTheory.LastOpPf.mxAt_mul_r this _
   have hpair : symplO B.V₀ S ((B.o.resS S).symm (0, h)) ((B.o.resS S).symm (0, y)) =
       symplO B.V₀ S u ((B.o.resS S).symm (0, y)) := by
     rw [B.o.symplO_resS, B.o.symplO_resS S u, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply,
@@ -169,7 +163,7 @@ theorem vanish : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topological
   have hf₁ : heisO ψ B.V₀ S ((B.o.resS S).symm (0, l.κ S x')) f₁ = f₁ := by
     rw [hkx]
     exact h₁.2.2 e he _ hhN (by
-      rw [OrthDec.resS_symm_apply, Matrix.zero_mul, zero_add]; exact isHalf_mul_right hhalf _)
+      rw [OrthDec.resS_symm_apply, Matrix.zero_mul, zero_add]; exact _root_.GlobalTheory.LinkKapInv.isHalf_mul_r hhalf _)
   have hth : IsThetaFunO ψ B.V₀ S (heisO ψ B.V₀ S ((B.o.resS S).symm (0, y)) f₁) :=
     GlobalTheory.FinTranslate.isTheta_heisO_fin hψ.1 (fin_of_mxAt' hyM) h₁.1
   have hmove := GlobalTheory.T.besselLineContraction_heisenberg_invariant D ψ hψ ρ σ B B' l S vL _ f₂ hth h₂.1 x'

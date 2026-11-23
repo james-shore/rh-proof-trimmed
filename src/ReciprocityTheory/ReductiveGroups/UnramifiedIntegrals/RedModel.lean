@@ -65,7 +65,7 @@ theorem norm_twentySeven_padicComplex_eq_one (h5 : 5 ≤ l) : ‖(27 : ℂ_[l])�
     have h3 : l ∣ 3 := hp.dvd_of_dvd_pow (show l ∣ 3 ^ 3 by simpa using h)
     have := Nat.le_of_dvd (by norm_num) h3
     omega
-  simpa using red_norm_natCast l h
+  simpa using _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd l h
 
 theorem norm_1728_eq_one (h5 : 5 ≤ l) : ‖(1728 : ℂ_[l])‖ = 1 := by
   have hp : l.Prime := Fact.out
@@ -77,7 +77,7 @@ theorem norm_1728_eq_one (h5 : 5 ≤ l) : ‖(1728 : ℂ_[l])‖ = 1 := by
       omega
     · have := Nat.le_of_dvd (by norm_num) (hp.dvd_of_dvd_pow h3)
       omega
-  simpa using red_norm_natCast l h
+  simpa using _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd l h
 
 theorem twentySeven_mem_Kur : (27 : ℂ_[l]) ∈ MaximalUnramifiedExtension l := by
   exact_mod_cast natCast_mem (MaximalUnramifiedExtension l) 27
@@ -95,7 +95,7 @@ theorem model_generic (h5 : 5 ≤ l) (a b J : ℂ_[l]) (ha : a ≠ 0) (hb : b �
   have hx : (0 : ℝ) < (l : ℝ) := by exact_mod_cast hp.pos
   have hl0 : (l : ℂ_[l]) ≠ 0 := by
     intro h
-    have := red_norm_l l
+    have := _root_.ReciprocityTheory.ChartRestriction.L1.norm_l_Cl l
     rw [h, norm_zero] at this
     exact (inv_ne_zero hx.ne') this.symm
   have h27 : (27 : ℂ_[l]) ≠ 0 := by
@@ -129,7 +129,7 @@ theorem model_generic (h5 : 5 ≤ l) (a b J : ℂ_[l]) (ha : a ≠ 0) (hb : b �
   have hn' : ‖J - 1728‖ = Y ^ 2 := by
     rw [hn, mul_comm, zpow_mul]; norm_cast
   have htn : ‖t‖ = Y / X := by
-    rw [ht, norm_zpow, red_norm_l, inv_zpow', neg_sub, zpow_sub₀ hx.ne']
+    rw [ht, norm_zpow, _root_.ReciprocityTheory.ChartRestriction.L1.norm_l_Cl, inv_zpow', neg_sub, zpow_sub₀ hx.ne']
   have hcn : ‖c‖ = X ^ 3 / Y ^ 2 := by
     rw [hc, norm_div, norm_mul, norm_twentySeven_padicComplex_eq_one l h5, hm', hn', one_mul]
   have hc27n : ‖c - 27‖ = 1 / Y ^ 2 := by

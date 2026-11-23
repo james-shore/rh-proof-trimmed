@@ -262,7 +262,7 @@ theorem window_matrices : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsA
     exact (hred m).1 j
   · intro j m
     exact (hperO _ m).unique hCf
-      (GlobalTheory.T.quasiLogarithm_period_eq_tangent_hodgeTate p C v O hv G d c C hCf (e0 (Sum.inr j)) (lb j) (hB0.1 _) (hLie0 j) (tb m))
+      (_root_.GlobalTheory.QLogPeriod.hasPeriod_hodgeTate p C v O hv G d c C hCf (e0 (Sum.inr j)) (lb j) (hB0.1 _) (hLie0 j) (tb m))
   · intro m
     rw [(hfχ m).2.2.2.2.1]
     refine Finset.sum_congr rfl fun i _ => ?_

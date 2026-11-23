@@ -138,7 +138,7 @@ theorem sum_ord_inertiaDeg (R S : Type) [CommRing R] [IsDomain R] [IsNoetherianR
     rw [IsLocalization.finrank_eq A p.primeCompl p.primeCompl_le_nonZeroDivisors]
     exact IsLocalizedModule.finrank_eq p.primeCompl (IsScalarTower.toAlgHom R S B).toLinearMap
       p.primeCompl_le_nonZeroDivisors
-  rw [← hr, ← GlobalTheory.T.finsum_ord_mul_inertiaDeg_eq_finrank_mul_ord' A B hiAB hd _ haA]
+  rw [← hr, ← _root_.GlobalTheory.finsum_ord_mul_inertiaDeg_eq_finrank_mul_ord A B hiAB hd _ haA]
   have hc : ∀ Q : Ideal B, (Q.comap (algebraMap S B)).comap (algebraMap R S) =
       (Q.comap (algebraMap A B)).comap (algebraMap R A) := fun Q => by
     rw [Ideal.comap_comap, Ideal.comap_comap, ← IsScalarTower.algebraMap_eq, ← IsScalarTower.algebraMap_eq]

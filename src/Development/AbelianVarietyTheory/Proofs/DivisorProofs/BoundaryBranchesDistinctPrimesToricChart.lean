@@ -99,7 +99,7 @@ theorem exists_equiv_comp_eq {X X' : Type} [AddCommGroup X] [Module O X] [Module
     e₁.trans ((eB.prodCongr eA).trans (piSumEquiv B A).symm)
   let E₂ : X ≃ₗ[O] ((i : ι ⊕ μ) → ((Sum.elim B'' A i : (Ideal O)⁰) : Ideal O)) :=
     e₂.trans ((eB''.prodCongr eA).trans (piSumEquiv B'' A).symm)
-  have h1 := GlobalTheory.T.prod_classGroup_mk0_eq_of_linearEquiv_pi O (ι ⊕ μ) (Sum.elim B A) (Sum.elim B'' A) ⟨E₁.symm.trans E₂⟩
+  have h1 := _root_.GlobalTheory.prod_classGroup_mk0_eq_of_pi_linearEquiv O (ι ⊕ μ) (Sum.elim B A) (Sum.elim B'' A) ⟨E₁.symm.trans E₂⟩
   rw [Fintype.prod_sum_type, Fintype.prod_sum_type] at h1
   simp only [Sum.elim_inl, Sum.elim_inr] at h1
   obtain ⟨eBB⟩ := GlobalTheory.T.steinitz_pi_ideals_linearEquiv_of_classGroup_prod O ι B B'' (mul_right_cancel h1)
@@ -245,7 +245,7 @@ theorem exists_two_traits {A : Type} [CommRing A] [CharZero k] (θ : A →+* Cha
   set a := algebraMap (ChartRing k m e) V
   set a' := algebraMap (ChartRing k m e) V'
   obtain ⟨B, _, _, g0, g0', hcomp, hg0, hgm, hgm'⟩ :=
-    GlobalTheory.T.exists_local_pushout_unramified_charZero A V V' (a.comp θ) (a'.comp θ) hf' (hcm.trans (hc.trans hcm'.symm)) hmap hmap' hch
+    _root_.GlobalTheory.UnramPushout.exists_local_pushout A V V' (a.comp θ) (a'.comp θ) hf' (hcm.trans (hc.trans hcm'.symm)) hmap hmap' hch
   set ϖ := g0 (a (bdParam k m e i))
   set ϖ' := g0' (a' (bdParam k m e i'))
   have hB : maximalIdeal B = Ideal.span {ϖ} := by

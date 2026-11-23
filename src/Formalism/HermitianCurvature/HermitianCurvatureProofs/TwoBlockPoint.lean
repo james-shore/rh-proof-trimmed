@@ -430,113 +430,19 @@ theorem blk_append_ge (l' : List ℕ) : ∀ (l : List ℕ) (j : ℕ),
 
 variable {K : Type} [CommRing K]
 
-private lemma blk_lt_lemma : ∀ (l : List ℕ) (j : ℕ), j < l.sum → blk l j < l.length := by
-  intro l
-  induction l with
-  | nil =>
-    intro j hj
-    simp at hj
-  | cons x l ih =>
-    intro j hj
-    rw [List.sum_cons] at hj
-    simp only [blk, List.length_cons]
-    by_cases h : j < x
-    · rw [if_pos h]
-      omega
-    · rw [if_neg h]
-      have := ih (j - x) (by omega)
-      omega
-
-private lemma revIn_lt_lemma_2 : ∀ (l : List ℕ) (j : ℕ), j < l.sum → revIn l j < l.sum := by
-  intro l
-  induction l with
-  | nil =>
-    intro j hj
-    simp at hj
-  | cons x l ih =>
-    intro j hj
-    rw [List.sum_cons] at hj ⊢
-    simp only [revIn]
-    by_cases h : j < x
-    · rw [if_pos h]
-      omega
-    · rw [if_neg h]
-      have := ih (j - x) (by omega)
-      omega
-
-private lemma revIn_invol_lemma_3 : ∀ (l : List ℕ) (j : ℕ), j < l.sum → revIn l (revIn l j) = j := by
-  intro l
-  induction l with
-  | nil =>
-    intro j hj
-    simp at hj
-  | cons x l ih =>
-    intro j hj
-    rw [List.sum_cons] at hj
-    by_cases h : j < x
-    · have e1 : revIn (x :: l) j = x - 1 - j := by
-        simp only [revIn]
-        rw [if_pos h]
-      have h' : x - 1 - j < x := by omega
-      have e2 : revIn (x :: l) (x - 1 - j) = x - 1 - (x - 1 - j) := by
-        simp only [revIn]
-        rw [if_pos h']
-      rw [e1, e2]
-      omega
-    · have e1 : revIn (x :: l) j = x + revIn l (j - x) := by
-        simp only [revIn]
-        rw [if_neg h]
-      have h' : ¬ (x + revIn l (j - x) < x) := by omega
-      have e2 : revIn (x :: l) (x + revIn l (j - x)) = x + revIn l (x + revIn l (j - x) - x) := by
-        simp only [revIn]
-        rw [if_neg h']
-      rw [e1, e2, show x + revIn l (j - x) - x = revIn l (j - x) by omega, ih (j - x) (by omega)]
-      omega
-
-private lemma blk_revIn_lemma_4 : ∀ (l : List ℕ) (j : ℕ), j < l.sum → blk l (revIn l j) = blk l j := by
-  intro l
-  induction l with
-  | nil =>
-    intro j hj
-    simp at hj
-  | cons x l ih =>
-    intro j hj
-    rw [List.sum_cons] at hj
-    by_cases h : j < x
-    · have e1 : revIn (x :: l) j = x - 1 - j := by
-        simp only [revIn]
-        rw [if_pos h]
-      have h' : x - 1 - j < x := by omega
-      have e2 : blk (x :: l) (x - 1 - j) = 0 := by
-        simp only [blk]
-        rw [if_pos h']
-      have e3 : blk (x :: l) j = 0 := by
-        simp only [blk]
-        rw [if_pos h]
-      rw [e1, e2, e3]
-    · have e1 : revIn (x :: l) j = x + revIn l (j - x) := by
-        simp only [revIn]
-        rw [if_neg h]
-      have h' : ¬ (x + revIn l (j - x) < x) := by omega
-      have e2 : blk (x :: l) (x + revIn l (j - x)) = 1 + blk l (x + revIn l (j - x) - x) := by
-        simp only [blk]
-        rw [if_neg h']
-      have e3 : blk (x :: l) j = 1 + blk l (j - x) := by
-        simp only [blk]
-        rw [if_neg h]
-      rw [e1, e2, e3, show x + revIn l (j - x) - x = revIn l (j - x) by omega, ih (j - x) (by omega)]
+private alias blk_revIn_lemma_4 := _root_.Formalism.DoubleCosetMeasures.P.Phase.blk_revIn
 
 private lemma pt_unit_lemma_5 (s : List ℕ) (t : ℕ → Kˣ) : IsUnit (pt s t).det := by
   refine Matrix.isUnit_det_of_right_inverse (B := Matrix.of fun b c : Fin s.sum =>
     if (c : ℕ) = revIn s b then (((t (blk s b))⁻¹ : Kˣ) : K) else 0) ?_
   ext a c
-  rw [Matrix.mul_apply, Finset.sum_eq_single ⟨revIn s a, revIn_lt_lemma_2 s a a.2⟩]
+  rw [Matrix.mul_apply, Finset.sum_eq_single ⟨revIn s a, _root_.Formalism.DoubleCosetMeasures.P.Phase.revIn_lt s a a.2⟩]
   · by_cases hca : c = a
     · subst hca
-      simp [pt, revIn_invol_lemma_3 s c c.2, blk_revIn_lemma_4 s c c.2]
+      simp [pt, _root_.Formalism.DoubleCosetMeasures.P.Phase.revIn_revIn s c c.2, blk_revIn_lemma_4 s c c.2]
     · have h1 : (c : ℕ) ≠ a := fun e => hca (Fin.ext e)
       have h2 : a ≠ c := fun e => hca e.symm
-      simp [pt, revIn_invol_lemma_3 s a a.2, blk_revIn_lemma_4 s a a.2, Matrix.one_apply, h1, h2]
+      simp [pt, _root_.Formalism.DoubleCosetMeasures.P.Phase.revIn_revIn s a a.2, blk_revIn_lemma_4 s a a.2, Matrix.one_apply, h1, h2]
   · intro b _ hb
     have : (b : ℕ) ≠ revIn s a := fun e => hb (Fin.ext e)
     simp [pt, this]
@@ -551,11 +457,11 @@ theorem pt_append (l l' : List ℕ) (T T₁ T₂ : ℕ → Kˣ) (h₁ : ∀ b, b
   rcases p with i | i <;> rcases q with j | j
   · rw [blkM_ll]
     simp only [pt, eN_inl]
-    rw [revIn_append_lt l' l i i.2, blk_append_lt l' l i i.2, h₁ _ (blk_lt_lemma l i i.2)]
+    rw [revIn_append_lt l' l i i.2, blk_append_lt l' l i i.2, h₁ _ (_root_.Formalism.FourierDecayAlt.P.A5x7.blk_lt_length l i i.2)]
   · rw [blkM_lr]
     simp only [pt, eN_inl, eN_inr]
     rw [revIn_append_lt l' l i i.2]
-    have := revIn_lt_lemma_2 l i i.2
+    have := _root_.Formalism.DoubleCosetMeasures.P.Phase.revIn_lt l i i.2
     simp [show ¬ (l.sum + (j : ℕ) = revIn l i) by omega]
   · rw [blkM_rl]
     simp only [pt, eN_inl, eN_inr]
@@ -564,7 +470,7 @@ theorem pt_append (l l' : List ℕ) (T T₁ T₂ : ℕ → Kˣ) (h₁ : ∀ b, b
     simp [show ¬ ((j : ℕ) = l.sum + revIn l' i) by omega]
   · rw [blkM_rr]
     simp only [pt, eN_inr]
-    rw [revIn_append_ge l' l i, blk_append_ge l' l i, h₂ _ (blk_lt_lemma l' i i.2)]
+    rw [revIn_append_ge l' l i, blk_append_ge l' l i, h₂ _ (_root_.Formalism.FourierDecayAlt.P.A5x7.blk_lt_length l' i i.2)]
     simp only [Nat.add_left_cancel_iff]
 
 theorem pt_append' (L l l' : List ℕ) (hL : L = l ++ l') (T T₁ T₂ : ℕ → Kˣ)
@@ -991,10 +897,7 @@ end Grp
 section PhiInv
 variable {K : Type} [CommRing K] (R : Subring K)
 
-theorem mem_mul {ι κ μ : Type} [Fintype κ] {A : Matrix ι κ K} {B : Matrix κ μ K}
-    (hA : ∀ i j, A i j ∈ R) (hB : ∀ i j, B i j ∈ R) (i : ι) (j : μ) : (A * B) i j ∈ R := by
-  rw [Matrix.mul_apply]
-  exact sum_mem fun k _ => mul_mem (hA i k) (hB k j)
+alias mem_mul := _root_.Formalism.FourierDecayAlt.P.TwoBlockPoint.int_mul
 
 theorem Fz_uni {n n' : ℕ} (Z' : Matrix (Fin n') (Fin n') K) (a0 b0 Z : Matrix (Fin n) (Fin n) K)
     (haL : IsLowUni a0) (haI : IsInt R a0) (hbU : IsUpUni b0) (hbI : IsInt R b0) :
@@ -1018,17 +921,13 @@ theorem Fz_uni {n n' : ℕ} (Z' : Matrix (Fin n') (Fin n') K) (a0 b0 Z : Matrix 
   · rw [if_pos hc, if_pos (hint.2 hc)]
   · rw [if_neg hc, if_neg (fun h => hc (hint.1 h))]
 
-theorem clsM_outM {ι κ : Type} (x : Matrix ι κ (KR R)) : clsM R (outM R x) = x := by
-  ext i j
-  exact Quotient.out_eq (x i j)
-
 theorem clsM_eq {ι κ : Type} (x x' : Matrix ι κ K) :
     clsM R x = clsM R x' ↔ ∀ i j, (x - x') i j ∈ R := by
   rw [eq_comm, sec_clsM_eq]
 
 theorem outM_clsM {ι κ : Type} (x : Matrix ι κ K) (i : ι) (j : κ) :
     (outM R (clsM R x) - x) i j ∈ R := by
-  exact (clsM_eq R (outM R (clsM R x)) x).1 (clsM_outM R (clsM R x)) i j
+  exact (clsM_eq R (outM R (clsM R x)) x).1 (_root_.Formalism.FourierDecayAlt.P.TwoBlockPoint.sec_clsM_outM R (clsM R x)) i j
 
 theorem cls_leftInv {ι κ : Type} (L L' : Matrix ι κ K → Matrix ι κ K)
     (hadd : ∀ U V, L' (U + V) = L' U + L' V)
@@ -1036,7 +935,7 @@ theorem cls_leftInv {ι κ : Type} (L L' : Matrix ι κ K → Matrix ι κ K)
     (x : Matrix ι κ (KR R)) : clsM R (L' (outM R (clsM R (L (outM R x))))) = x := by
   rw [show outM R (clsM R (L (outM R x))) =
       L (outM R x) + (outM R (clsM R (L (outM R x))) - L (outM R x)) by abel, hadd, hinv]
-  conv_rhs => rw [← clsM_outM R x]
+  conv_rhs => rw [← _root_.Formalism.FourierDecayAlt.P.TwoBlockPoint.sec_clsM_outM R x]
   rw [clsM_eq]
   intro i j
   have := hint _ (outM_clsM R (L (outM R x))) i j

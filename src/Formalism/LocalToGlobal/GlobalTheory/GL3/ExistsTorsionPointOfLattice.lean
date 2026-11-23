@@ -76,7 +76,7 @@ theorem sgStar_spec (L : PeriodPair) :
 theorem sgStar_eq (L : PeriodPair) : Formalism.MainNotions.TaylorLogMetric.sgStar L.lattice.toAddSubgroup = Formalism.L2.Th1.F.sgStar L := by
   have hlat : L.lattice.toAddSubgroup = PI.lat2 L.ω₁ L.ω₂ := Submodule.span_int_eq_addSubgroupClosure _
   have hIm : ((starRingEnd ℂ) L.ω₁ * L.ω₂).im ≠ 0 := by
-    have := Formalism.L2.Th1.F.areaPos L
+    have := _root_.Formalism.L2.Th1.F.areaPos_thm L
     unfold Formalism.L2.Th1.F.area at this
     exact abs_pos.mp this
   have hF := sgStar_spec L

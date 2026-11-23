@@ -63,23 +63,14 @@ namespace GlobalTheory.CMVal.TrivAbove
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem one_coord' (w : HeightOneSpectrum (𝓞 E)) : (1 : Af E) w = 1 := rfl
-
-theorem mul_coord' (x y : Af E) (w : HeightOneSpectrum (𝓞 E)) : (x * y) w = x w * y w := rfl
-
-theorem inv_coord' (z : (Af E)ˣ) (w : HeightOneSpectrum (𝓞 E)) : (↑z⁻¹ : Af E) w = ((z : Af E) w)⁻¹ := by
-  show (((coord w z)⁻¹ : (w.adicCompletion E)ˣ) : w.adicCompletion E) = _
-  rw [Units.val_inv_eq_inv_val, coe_coord]
-
-
 open Classical in
 theorem prod_single_coord (S : Finset (HeightOneSpectrum (𝓞 E)))
     (x : ∀ w : HeightOneSpectrum (𝓞 E), (w.adicCompletion E)ˣ) (w' : HeightOneSpectrum (𝓞 E)) :
     ((∏ w ∈ S, single w (x w) : (Af E)ˣ) : Af E) w' = if w' ∈ S then (x w' : w'.adicCompletion E) else 1 := by
   induction S using Finset.induction_on with
-  | empty => rw [Finset.prod_empty, Units.val_one, one_coord']; simp
+  | empty => rw [Finset.prod_empty, Units.val_one, _root_.GlobalTheory.CMVal.Euler.one_coord]; simp
   | insert a S ha ih =>
-    rw [Finset.prod_insert ha, Units.val_mul, mul_coord', ih]
+    rw [Finset.prod_insert ha, Units.val_mul, _root_.GlobalTheory.CMVal.Euler.mul_coord, ih]
     by_cases h : w' = a
     · subst h; simp [ha, single_self]
     · rw [suppAt_single a (x a) w' h]; simp [h]
@@ -90,7 +81,7 @@ theorem mem_hatOUnits [IsCMField E] {c : Ideal (OF E)} (hc : c ≠ ⊥) (z : (Af
     z ∈ hatOUnits c := by
   have key : ∀ z : Af E, (∀ w : HeightOneSpectrum (𝓞 E), Valued.v (z w - 1) ≤
       WithZero.exp (-(multiplicity w.asIdeal (Ideal.map (algebraMap (OF E) (𝓞 E)) c) : ℤ))) → z ∈ hatO c :=
-    fun z h => (GlobalTheory.T.mem_completedOrder_iff_placewise E c hc z).2 ⟨1, one_mem _, fun w => by rw [one_coord', map_one], h⟩
+    fun z h => (_root_.GlobalTheory.CMVal.HatPlace.mem_hatO_iff E c hc z).2 ⟨1, one_mem _, fun w => by rw [_root_.GlobalTheory.CMVal.Euler.one_coord, map_one], h⟩
   refine ⟨key _ fun w => (hz w).le, key _ fun w => ?_⟩
   have h1 : Valued.v ((z : Af E) w - 1) < Valued.v (1 : w.adicCompletion E) := by
     rw [map_one]
@@ -100,7 +91,7 @@ theorem mem_hatOUnits [IsCMField E] {c : Ideal (OF E)} (hc : c ≠ ⊥) (z : (Af
     rwa [map_one] at this
   have hz0 : (z : Af E) w ≠ 0 := by rw [← coe_coord]; exact (coord w z).ne_zero
   show Valued.v ((↑z⁻¹ : Af E) w - 1) ≤ _
-  rw [inv_coord']
+  rw [_root_.GlobalTheory.CMVal.Euler.inv_coord]
   have he : ((z : Af E) w)⁻¹ - 1 = -(((z : Af E) w - 1) * ((z : Af E) w)⁻¹) := by
     field_simp; ring
   rw [he, Valuation.map_neg, map_mul, map_inv₀, hv, inv_one, mul_one]
@@ -126,7 +117,7 @@ theorem exists_rep_trivial_above : ∀ (E : Type) [Field E] [NumberField E] [IsC
     refine Subgroup.mem_sup_right (mem_hatOUnits hc u fun w => ?_)
     rw [hudef, prod_single_coord]
     split_ifs with hw
-    · rw [coe_coord, hy1, Units.val_mul, mul_coord']
+    · rw [coe_coord, hy1, Units.val_mul, _root_.GlobalTheory.CMVal.Euler.mul_coord]
       have hAw : (A : Af E) w = algebraMap E (w.adicCompletion E) (a : E) := rfl
       have := ha w hw
       rw [hAw]
@@ -136,7 +127,7 @@ theorem exists_rep_trivial_above : ∀ (E : Type) [Field E] [NumberField E] [IsC
   · rw [QuotientGroup.mk_mul, QuotientGroup.mk_inv, hy1, QuotientGroup.mk_mul,
       (QuotientGroup.eq_one_iff A).2 hA, (QuotientGroup.eq_one_iff u).2 hu, one_mul, inv_one, mul_one]
   · have hwT : w ∈ hfin.toFinset := hfin.mem_toFinset.2 hw
-    rw [Units.val_mul, mul_coord', inv_coord', hudef, prod_single_coord, if_pos hwT, coe_coord]
+    rw [Units.val_mul, _root_.GlobalTheory.CMVal.Euler.mul_coord, _root_.GlobalTheory.CMVal.Euler.inv_coord, hudef, prod_single_coord, if_pos hwT, coe_coord]
     exact mul_inv_cancel₀ (by rw [← coe_coord]; exact (coord w y1).ne_zero)
 
 end GlobalTheory.CMVal.TrivAbove

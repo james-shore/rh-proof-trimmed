@@ -108,7 +108,7 @@ theorem prV_inclR (v : HeightOneSpectrum (𝓞 F)) (e : E) :
 theorem ext_comp {d : ℕ} (b : Module.Basis (Fin d) F E) {n M : ℕ} (X Y : Fin n → Fin M → AF F ⊗[F] E)
     (hi : ∀ a i, prInf (X a i) = prInf (Y a i))
     (hv : ∀ (v : HeightOneSpectrum (𝓞 F)) a i, prV v (X a i) = prV v (Y a i)) : X = Y := by
-  apply (GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d b n M).1.injective
+  apply (_root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d b n M).1.injective
   refine Prod.ext ?_ ?_
   · funext a i; exact hi a i
   · funext v a i; exact hv v a i
@@ -124,7 +124,7 @@ theorem exists_mat {d : ℕ} (b : Module.Basis (Fin d) F E) {M : ℕ}
     (Xv : ∀ v : HeightOneSpectrum (𝓞 F), Matrix (Fin M) (Fin M) (Fv F v ⊗[F] E))
     (h : ∀ᶠ v : HeightOneSpectrum (𝓞 F) in Filter.cofinite, ∀ i j, Xv v i j ∈ intV b v) :
     ∃ X : Matrix (Fin M) (Fin M) (AF F ⊗[F] E), X.map prInf = Xi ∧ ∀ v, X.map (prV v) = Xv v := by
-  have := ((Set.ext_iff.1 (GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d b M M).2.1) (Xi, Xv)).2 h
+  have := ((Set.ext_iff.1 (_root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d b M M).2.1) (Xi, Xv)).2 h
   obtain ⟨X, hX⟩ := this
   exact ⟨X, congrArg Prod.fst hX, fun v => congrFun (congrArg Prod.snd hX) v⟩
 
@@ -177,10 +177,10 @@ theorem witt_adelic : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
     (algebraMap F _ β) (ratTup (F := F) (Ainf F) x) (projInf y) (hu.map _)
     (qR_ratTup b _ σ J x β hx) hyi
   have hlat : ∀ᶠ v : HeightOneSpectrum (𝓞 F) in Filter.cofinite, projV v (projFin y) ∈ latV b v := by
-    have h := (GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E 2 b 1 M).2.1 ▸ Set.mem_range_self (f := fun X : (Fin 1 → Fin M → AF F ⊗[F] E) =>
+    have h := (_root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E 2 b 1 M).2.1 ▸ Set.mem_range_self (f := fun X : (Fin 1 → Fin M → AF F ⊗[F] E) =>
       (projInf X, fun v : HeightOneSpectrum (𝓞 F) => projV v (projFin X))) y
     exact h
-  have hae := GlobalTheory.T.integral_witt_theorem_almost_all_places F E σ hCM 2 b M J x β hJ hβ hx
+  have hae := _root_.GlobalTheory.WittIntegral.witt_integral F E σ hCM 2 b M J x β hJ hβ hx
   let P : ∀ v : HeightOneSpectrum (𝓞 F), HA (Fv F v) σ J → Prop := fun v g => ∀ i j,
       (HA.mat (Fv F v) σ J g).val i j ∈ intV b v ∧ (HA.mat (Fv F v) σ J g⁻¹).val i j ∈ intV b v
   have hloc : ∀ v : HeightOneSpectrum (𝓞 F), ∃ g : HA (Fv F v) σ J,

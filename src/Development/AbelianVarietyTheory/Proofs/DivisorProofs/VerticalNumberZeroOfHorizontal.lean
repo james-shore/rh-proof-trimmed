@@ -54,13 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.EZ.HTot
 
-theorem idc_self (n : ℕ) : idc n n = 𝟙 _ := by
-  ext j
-  simp only [idc, clampHom, SimplexCategory.mkHom, SimplexCategory.Hom.toOrderHom_mk]
-  change min n (j : ℕ) = (j : ℕ)
-  have : (j : ℕ) < n + 1 := j.isLt
-  omega
-
 theorem backc_zero : backc 0 0 0 = 𝟙 _ := by
   ext j
   simp only [backc, clampHom, SimplexCategory.mkHom, SimplexCategory.Hom.toOrderHom_mk]
@@ -71,13 +64,13 @@ theorem backc_zero : backc 0 0 0 = 𝟙 _ := by
 theorem bop_id (a b : ℕ) : bop (𝟙 (SimplexCategory.mk a)) (𝟙 (SimplexCategory.mk b)) = 𝟙 (bo a b) := rfl
 
 theorem idO_self (a b : ℕ) : idO a b a b = 𝟙 (bo a b) := by
-  rw [idO, if_pos ⟨rfl, rfl⟩, idc_self, idc_self, bop_id]
+  rw [idO, if_pos ⟨rfl, rfl⟩, _root_.GlobalTheory.EZ.Acyc.idc_self', _root_.GlobalTheory.EZ.Acyc.idc_self', bop_id]
 
 theorem idO_ne {a b c d : ℕ} (h : ¬ (a = c ∧ b = d)) : idO a b c d = 0 := by
   rw [idO, if_neg h]
 
 theorem awO_zero : awO 0 0 0 = 𝟙 (bo 0 0) := by
-  rw [awO, if_pos rfl, idc_self, backc_zero, bop_id]
+  rw [awO, if_pos rfl, _root_.GlobalTheory.EZ.Acyc.idc_self', backc_zero, bop_id]
 
 theorem sum_idO_comp {T : BOp} (k a b : ℕ) (h : a + b = k) (g : ∀ p q : ℕ, bo p q ⟶ T) :
     ∑ y ∈ antidiagonal k, idO a b y.1 y.2 ≫ g y.1 y.2 = g a b := by
@@ -101,16 +94,6 @@ theorem sum_comp_idO {S : BOp} (k c d : ℕ) (h : c + d = k) (f : ∀ p q : ℕ,
   · intro hn
     exact absurd (mem_antidiagonal.2 h) hn
 
-theorem dT_comp_dT (a b c d : ℕ) (h : c + d + 2 = a + b) :
-    ∑ x ∈ antidiagonal (c + d + 1), dT a b x.1 x.2 ≫ dT x.1 x.2 c d = 0 :=
-  GlobalTheory.T.sum_antidiagonal_dT_comp_dT_eq_zero a b c d h
-
-theorem acyclic (a b k : ℕ) (hk : 1 ≤ k) (z : ∀ a' b' : ℕ, bo a b ⟶ bo a' b')
-    (hz : ∀ c d : ℕ, c + d + 1 = k → ∑ x ∈ antidiagonal k, z x.1 x.2 ≫ dT x.1 x.2 c d = 0) :
-    ∃ w : ∀ a' b' : ℕ, bo a b ⟶ bo a' b',
-      ∀ c d : ℕ, c + d = k → ∑ x ∈ antidiagonal (k + 1), w x.1 x.2 ≫ dT x.1 x.2 c d = z c d :=
-  GlobalTheory.T.bisimplicialOperatorChains_acyclic_positiveDegree a b k hk z hz
-
 theorem exists_fill : ∃ H : ∀ a b k : ℕ, (∀ a' b' : ℕ, bo a b ⟶ bo a' b') → (∀ a' b' : ℕ, bo a b ⟶ bo a' b'),
     ∀ a b k (z : ∀ a' b' : ℕ, bo a b ⟶ bo a' b'), 1 ≤ k →
       (∀ c d : ℕ, c + d + 1 = k → ∑ x ∈ antidiagonal k, z x.1 x.2 ≫ dT x.1 x.2 c d = 0) →
@@ -121,7 +104,7 @@ theorem exists_fill : ∃ H : ∀ a b k : ℕ, (∀ a' b' : ℕ, bo a b ⟶ bo a
     intro a b k z
     by_cases hk : 1 ≤ k
     · by_cases hz : ∀ c d : ℕ, c + d + 1 = k → ∑ x ∈ antidiagonal k, z x.1 x.2 ≫ dT x.1 x.2 c d = 0
-      · obtain ⟨w, hw⟩ := acyclic a b k hk z hz
+      · obtain ⟨w, hw⟩ := _root_.GlobalTheory.EZ.totChains_acyclic a b k hk z hz
         exact ⟨w, fun _ _ => hw⟩
       · exact ⟨0, fun _ h => absurd h hz⟩
     · exact ⟨0, fun h => absurd h hk⟩
@@ -170,7 +153,7 @@ theorem kRec_spec (G : ∀ a b n : ℕ, bo a b ⟶ bo n n) (hG0 : G 0 0 0 = 𝟙
       have h1 : ∑ y ∈ antidiagonal (n + 1), (G a b (n + 1) ≫ awO (n + 1) y.1 y.2) ≫ dT y.1 y.2 c d =
           ∑ x ∈ antidiagonal n, dT a b x.1 x.2 ≫ G x.1 x.2 n ≫ awO n c d := by
         simp only [Category.assoc, ← Preadditive.comp_sum]
-        rw [← GlobalTheory.T.dD_comp_awO_eq_sum_awO_comp_dT n c d (by omega), ← Category.assoc, hGd a b n hab, Preadditive.sum_comp]
+        rw [← _root_.GlobalTheory.EZ.awO_comm_d n c d (by omega), ← Category.assoc, hGd a b n hab, Preadditive.sum_comp]
         simp only [Category.assoc]
       have h2 : ∑ y ∈ antidiagonal (n + 1), idO a b y.1 y.2 ≫ dT y.1 y.2 c d = dT a b c d :=
         sum_idO_comp (n + 1) a b hab (fun p q => dT p q c d)
@@ -191,7 +174,7 @@ theorem kRec_spec (G : ∀ a b n : ℕ, bo a b ⟶ bo n n) (hG0 : G 0 0 0 = 𝟙
           have hz' := mem_antidiagonal.1 hz
           simp only [← Category.assoc]
           rw [← Preadditive.sum_comp]
-          have h0 := dT_comp_dT a b z.1 z.2 (by omega)
+          have h0 := _root_.GlobalTheory.EZ.TotSq.dT_sq a b z.1 z.2 (by omega)
           rw [show z.1 + z.2 + 1 = m + 1 by omega] at h0
           rw [h0, Limits.zero_comp]
       have h3 : ∑ y ∈ antidiagonal (n + 1),

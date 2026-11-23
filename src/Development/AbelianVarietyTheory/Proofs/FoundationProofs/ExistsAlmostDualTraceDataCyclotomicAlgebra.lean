@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsArcIsometryTorsionIntegralGauge
 
 @[expose] public section
 
@@ -101,9 +102,9 @@ theorem exists_trData_cycAlg : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (Ω
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed ℚ
   haveI : Algebra.IsAlgebraic ℚ Ω := IsAlgClosure.isAlgebraic
   have hpcoe : ((l : A) : Ω) = l := map_natCast A.subtype l
-  obtain ⟨v, hvint, hvinv, hp0, hp1⟩ := GlobalTheory.T.exists_decomposition_invariant_real_valuation l Ω A hA
-  have hint := GlobalTheory.T.mem_inertiaInvariantsCyclotomicAlgebra_iff l Ω A hA
-  have hR := GlobalTheory.T.approxRoot_fixedField_inertiaCyclotomicKernel l hl2 Ω A hA v hvint hp0 hp1
+  obtain ⟨v, hvint, hvinv, hp0, hp1⟩ := _root_.GlobalTheory.RecOne.exists_real_valuation l Ω A hA
+  have hint := _root_.GlobalTheory.RecOne.mem_cycAlg_iff l Ω A hA
+  have hR := _root_.GlobalTheory.RecOne.CycRoots.approxRoot_fix_ineCyc l hl2 Ω A hA v hvint hp0 hp1
   have hvinv' : ∀ (g : ineCyc l A) (x : Ω), v (g • x) = v x :=
     fun g x => hvinv g (Ine_le_Dec A g.2.1) x
   have hfixB : ∀ s ∈ cycAlg l A, ∀ g : ineCyc l A, g • (s : Ω) = s :=
@@ -115,7 +116,7 @@ theorem exists_trData_cycAlg : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (Ω
   haveI : NeZero (l : Ω) := ⟨hl0⟩
   haveI : NeZero l := ⟨(Fact.out : l.Prime).ne_zero⟩
   obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot Ω l
-  have hζA : ζ ∈ A := mem_of_pow_mem A (Fact.out : l.Prime).ne_zero (by rw [hζ.pow_eq_one]; exact A.one_mem)
+  have hζA : ζ ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A (Fact.out : l.Prime).ne_zero (by rw [hζ.pow_eq_one]; exact A.one_mem)
   have hζB : (⟨ζ, hζA⟩ : A) ∈ cycAlg l A :=
     mem_cycAlg_of_pow (n := 1) (Subtype.ext (by simpa using hζ.pow_eq_one))
   have hUsep : AlmostSep v U :=

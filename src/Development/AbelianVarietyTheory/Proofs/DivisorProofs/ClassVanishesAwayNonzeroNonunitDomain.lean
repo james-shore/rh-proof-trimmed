@@ -157,7 +157,7 @@ theorem GlobalTheory.EtC.classVanishesAway : ∀ (q : ℕ) (B : Type) [CommRing 
     ∀ (n i : ℤ) (x : Ht q (sp B) n i), pull _ (spMap (algebraMap B (FractionRing B))) _ _ x = 0 →
     ∃ f : B, f ≠ 0 ∧ ¬ IsUnit f ∧ pull _ (spMap (algebraMap B (Localization.Away f))) _ _ x = 0 := by
   intro q B _ _ hF hq n i x hx
-  have hB1 := (GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity q (diag B) (cocone B) (isColim B) n i).2
+  have hB1 := (_root_.GlobalTheory.EtC.pairingProperties q (diag B) (cocone B) (isColim B) n i).2
   have hq1 : IsUnit (q : Localization.Away (idx1 : Idx B).val) := by
     have := hq.map (algebraMap B (Localization.Away (idx1 : Idx B).val))
     rwa [map_natCast] at this

@@ -79,7 +79,7 @@ theorem globalSectionsDim_pullback_le_generically_finite : ∀ (F : Type) [Field
       obtain ⟨V, hy, d, hd, hd'⟩ := GlobalTheory.T.exists_open_trace_coefficients_nonvanishing M W f L hL co hco y
       exact ⟨V, hy, d, hd, fun y' hy' V' hV' h z j => hd' y' hy' V' hV' h z j⟩)
   exact ⟨r, lbPow H n, (isAmpleLB_pow_iff hH.isLB hn).2 hH, fun B hB =>
-    GlobalTheory.T.finrank_sections_pullback_le_mul_twist_of_dominant F M W p f hp co hco hinj (lbPow H n) (isLB_lbPow hH.isLB n) t ht
+    _root_.GlobalTheory.Cartier.PullCount.finrank_sections_pullback_le_mul_twist_dominant F M W p f hp co hco hinj (lbPow H n) (isLB_lbPow hH.isLB n) t ht
       (fun y i hi V' hV' h z j => htP y i hi V' hV' h z j) B hB⟩
 
 end GlobalTheory.GlobalSectionsPullback

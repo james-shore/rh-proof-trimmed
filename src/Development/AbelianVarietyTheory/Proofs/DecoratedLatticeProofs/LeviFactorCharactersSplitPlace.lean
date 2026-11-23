@@ -82,9 +82,7 @@ theorem circle_eq_one_of_pos {u : Circle} {t : ℝ} (ht : 0 < t) (h : (u : ℂ) 
 
 variable {D : D7}
 
-theorem suppAt_one (e : AE D) (V : HSp D) : SuppAt e V 1 := by
-  intro i j
-  simp [Formalism.L2.Theta.SuppAt, Formalism.L2.Theta.mt]
+alias suppAt_one := _root_.GlobalTheory.WeilUniq.suppAt_one
 
 theorem isDetAt_one (e : AE D) (V : HSp D) : IsDetAt e V 1 1 := by
   simp [Formalism.L2.Theta.IsDetAt, Formalism.L2.Theta.mt]

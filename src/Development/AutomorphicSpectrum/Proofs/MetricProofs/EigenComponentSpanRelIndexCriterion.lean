@@ -69,37 +69,15 @@ section Riem
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ} {Λ : Type} [AddCommGroup Λ] [Module (𝓞 E) Λ]
   (R : RiemLat E g Λ)
 
-theorem ip_add_right (x y y' : Fin g → ℂ) : R.ip x (y + y') = R.ip x y + R.ip x y' := by
-  simp [RiemLat.ip, add_dotProduct]
-
 theorem ip_smul_right (x : Fin g → ℂ) (c : ℂ) (y : Fin g → ℂ) : R.ip x (c • y) = c * R.ip x y := by
   simp [RiemLat.ip, smul_dotProduct]
-
-theorem ip_add_left (x x' y : Fin g → ℂ) : R.ip (x + x') y = R.ip x y + R.ip x' y := by
-  simp [RiemLat.ip, star_add, mulVec_add, dotProduct_add]
-
-theorem ip_smul_left (c : ℂ) (x y : Fin g → ℂ) : R.ip (c • x) y = starRingEnd ℂ c * R.ip x y := by
-  simp [RiemLat.ip, star_smul, mulVec_smul, dotProduct_smul]
-
-theorem ip_zero_left (y : Fin g → ℂ) : R.ip 0 y = 0 := by
-  simp [RiemLat.ip]
-
-theorem ip_zero_right (x : Fin g → ℂ) : R.ip x 0 = 0 := by
-  simp [RiemLat.ip]
 
 theorem ip_sum_right {ι : Type} (t : Finset ι) (x : Fin g → ℂ) (f : ι → Fin g → ℂ) :
     R.ip x (∑ i ∈ t, f i) = ∑ i ∈ t, R.ip x (f i) := by
   classical
   induction t using Finset.induction_on with
-  | empty => simp [ip_zero_right]
-  | insert i t hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, ip_add_right, ih]
-
-theorem ip_sum_left {ι : Type} (t : Finset ι) (f : ι → Fin g → ℂ) (y : Fin g → ℂ) :
-    R.ip (∑ i ∈ t, f i) y = ∑ i ∈ t, R.ip (f i) y := by
-  classical
-  induction t using Finset.induction_on with
-  | empty => simp [ip_zero_left]
-  | insert i t hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, ip_add_left, ih]
+  | empty => simp [_root_.LevelTowerAlt.ip_zero_right]
+  | insert i t hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, _root_.LevelTowerAlt.ip_add_right, ih]
 
 theorem conj_ip (x y : Fin g → ℂ) : starRingEnd ℂ (R.ip y x) = R.ip x y := by
   show star (x ⬝ᵥ R.Hm *ᵥ star y) = y ⬝ᵥ R.Hm *ᵥ star x
@@ -117,22 +95,22 @@ theorem gram_append_of_frame {r k : ℕ} (f : Fin r → Fin g → ℂ) (q p' : F
   set Y : Matrix (Fin k) (Fin r) ℂ := l.map (starRingEnd ℂ) with hY
   have e2 : ∀ a c, R.ip (f a) (q c) = (A * lᵀ) a c := by
     intro a c
-    rw [hq c, ip_add_right, ho, zero_add, ip_sum_right, Matrix.mul_apply]
+    rw [hq c, _root_.LevelTowerAlt.ip_add_right, ho, zero_add, ip_sum_right, Matrix.mul_apply]
     refine Finset.sum_congr rfl fun b _ => ?_
     rw [ip_smul_right, mul_comm]
     rfl
   have e3 : ∀ c a, R.ip (q c) (f a) = (Y * A) c a := by
     intro c a
-    rw [hq c, ip_add_left, ip_symm_zero R (ho c a), zero_add, ip_sum_left, Matrix.mul_apply]
+    rw [hq c, _root_.LevelTowerAlt.ip_add_left, ip_symm_zero R (ho c a), zero_add, _root_.LevelTowerAlt.ip_sum_left, Matrix.mul_apply]
     refine Finset.sum_congr rfl fun b _ => ?_
-    rw [ip_smul_left]
+    rw [_root_.LevelTowerAlt.ip_smul_left]
     rfl
   have e4 : ∀ c c', R.ip (q c) (q c') = (Y * A * lᵀ + M) c c' := by
     intro c c'
     have h : R.ip (q c) (q c') = R.ip (p' c) (q c') + ∑ b, starRingEnd ℂ (l c b) * R.ip (f b) (q c') := by
       conv_lhs => rw [hq c]
-      rw [ip_add_left, ip_sum_left]
-      simp only [ip_smul_left]
+      rw [_root_.LevelTowerAlt.ip_add_left, _root_.LevelTowerAlt.ip_sum_left]
+      simp only [_root_.LevelTowerAlt.ip_smul_left]
     rw [h, hM, Matrix.add_apply, Matrix.mul_assoc, Matrix.mul_apply, add_comm]
     congr 1
     refine Finset.sum_congr rfl fun b _ => ?_
@@ -157,18 +135,11 @@ theorem exists_eigLin (s : 𝓞 E →+* ℂ) :
            map_smul' := fun c x => by simpa [h0] using hl c x 0 }, fun _ => rfl⟩
 
 
-omit [IsCMField E] in
-theorem emb_injective (s : 𝓞 E →+* ℂ) : Function.Injective s := by
-  have hc : (RingHom.ker s).comap (algebraMap ℤ (𝓞 E)) = ⊥ := by
-    rw [RingHom.comap_ker]
-    exact (RingHom.injective_iff_ker_eq_bot _).1 (RingHom.injective_int _)
-  exact (RingHom.injective_iff_ker_eq_bot s).2 (Ideal.eq_bot_of_comap_eq_bot hc)
-
-def extEmb (s : 𝓞 E →+* ℂ) : E →+* ℂ := IsFractionRing.lift (emb_injective s)
+def extEmb (s : 𝓞 E →+* ℂ) : E →+* ℂ := IsFractionRing.lift (_root_.LevelTowerAlt.emb_inj s)
 
 omit [IsCMField E] in
 theorem extEmb_apply (s : 𝓞 E →+* ℂ) (a : 𝓞 E) : extEmb s (algebraMap (𝓞 E) E a) = s a :=
-  IsFractionRing.lift_algebraMap (emb_injective s) a
+  IsFractionRing.lift_algebraMap (_root_.LevelTowerAlt.emb_inj s) a
 
 
 omit [IsCMField E] in
@@ -186,7 +157,7 @@ theorem eigComp_adjoint (s : 𝓞 E →+* ℂ) (x y : Fin g → ℂ) :
   have hl : R.ip x (eigComp R.B s y) = R.ip (eigComp R.B s x) (eigComp R.B s y) := by
     calc R.ip x (eigComp R.B s y)
         = R.ip (∑ t : E →+* ℂ, eigComp R.B (t.comp (algebraMap (𝓞 E) E)) x) (eigComp R.B s y) := by rw [h2 x]
-      _ = ∑ t : E →+* ℂ, R.ip (eigComp R.B (t.comp (algebraMap (𝓞 E) E)) x) (eigComp R.B s y) := ip_sum_left R _ _ _
+      _ = ∑ t : E →+* ℂ, R.ip (eigComp R.B (t.comp (algebraMap (𝓞 E) E)) x) (eigComp R.B s y) := _root_.LevelTowerAlt.ip_sum_left R _ _ _
       _ = R.ip (eigComp R.B (t₀.comp (algebraMap (𝓞 E) E)) x) (eigComp R.B s y) :=
         Finset.sum_eq_single t₀ (fun t _ ht => h3 _ _ (comp_ne ht₀ ht) _ ((h1 _).1 x) _ ((h1 _).1 y))
           (fun h => absurd (Finset.mem_univ _) h)
@@ -264,9 +235,9 @@ theorem ip_eigComp_eq_zero (I : Submodule (𝓞 E) Λ) (s : 𝓞 E →+* ℂ) {z
     | mem x hx =>
       obtain ⟨w, hw, rfl⟩ := hx
       exact hz w hw
-    | zero => exact ip_zero_left R z
-    | add x x' _ _ hx hx' => rw [ip_add_left, hx, hx', add_zero]
-    | smul c x _ hx => rw [ip_smul_left, hx, mul_zero]
+    | zero => exact _root_.LevelTowerAlt.ip_zero_left R z
+    | add x x' _ _ hx hx' => rw [_root_.LevelTowerAlt.ip_add_left, hx, hx', add_zero]
+    | smul c x _ hx => rw [_root_.LevelTowerAlt.ip_smul_left, hx, mul_zero]
   rw [eigComp_adjoint]
   exact hspan _ (eigComp_mem_span R I s hu)
 

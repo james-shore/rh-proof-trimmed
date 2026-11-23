@@ -133,7 +133,7 @@ theorem main (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) {l c N : ℕ}
     split_ifs with h
     · exact hfg b h
     · by_contra hne
-      exact h (GlobalTheory.T.cuspidal_cell_multiplicity_of_size_matrix x y hxc hyc b (f b) (g b) hne)
+      exact h (_root_.GlobalTheory.CompanionTheory.CuspCell.exists_equiv_of_jhMult_cell_ne_zero x y hxc hyc b (f b) (g b) hne)
   have h2 : jm y hy (prodIrr x hx) = jhMult (piTensor fun j => (y j).rep)
       (jac (stdBlocks (fun a => (y a).1) hy) (parInd (stdBlocks (fun a => (x a).1) hx)
         (piTensor fun i => (x i).rep))) := rfl

@@ -182,9 +182,7 @@ private theorem esymm_scale (c : ℂ) (s : Multiset ℂ) : ∀ j, (s.map (c * ·
       rw [Multiset.map_cons, esymm_cons, ih, ih, esymm_cons]
       ring
 
-private theorem esymm_inv (s : Multiset ℂ) (h : ∀ x ∈ s, x ≠ 0) :
-    ∀ j ≤ Multiset.card s, (s.map (·⁻¹)).esymm j * s.prod = s.esymm (Multiset.card s - j) :=
-  _root_.UpperTheory.Reformulated.B.EsymmMapInvMulProd.esymm_inv s h
+private alias esymm_inv := _root_.UpperTheory.Reformulated.B.EsymmMapInvMulProd.esymm_inv
 
 end Sym
 

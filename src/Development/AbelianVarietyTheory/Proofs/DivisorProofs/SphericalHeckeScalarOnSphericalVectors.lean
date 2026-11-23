@@ -462,7 +462,7 @@ theorem spherical_scalar : ∀ {D : D7} {V : HSp D} {n : ℕ} (hF : D.host.F = m
     rw [principalLevelFrame.heckeG_apply]
     rfl
   obtain ⟨c, hc⟩ : ∃ c : ℂ, ∀ x ∈ fixS (rtHom D.host.E n) π.S K, principalLevelFrame.Hecke₃ Q B x = c • x := by
-    refine abs_scalar (rtHom D.host.E n) π.S (fun g x hx => π.stable g x hx) π.irr (countRank π)
+    refine abs_scalar (rtHom D.host.E n) π.S (fun g x hx => π.stable g x hx) π.irr (_root_.GlobalTheory.FinTyp.rank_le_aleph0 π)
       K Loc Away hdec hcomm R hR (principalLevelFrame.Hecke₃ Q B) ?_ ?_ ?_
     ·
       intro x hx

@@ -78,12 +78,6 @@ open scoped TensorProduct
 
 variable {D : D7}
 
-theorem mul_finOne {z : Formalism.L2.Theta.AE D} (hz : infPart D z = 0) :
-    z * (pairA D.host.F 0 1 ⊗ₜ[D.host.F] (1 : D.host.E)) = z := by
-  have h : finPart D (pairA D.host.F 0 1 ⊗ₜ[D.host.F] (1 : D.host.E)) = 1 := rfl
-  conv_lhs => rw [eq_lift_of_infPart z hz]
-  rw [lift_mul, h, mul_one, ← eq_lift_of_infPart z hz]
-
 theorem one_mem_AA (h : D.host.ccK = ⊤) : (1 : D.host.E) ∈ D.host.AA := by
   have h1 : (1 : D.host.E) ∈ D.host.AA0 := by
     refine FractionalIdeal.one_mem_inv_coe_ideal fun h => ?_
@@ -112,7 +106,7 @@ theorem mem_latO_of_int (hc : D.host.ccK = ⊤) (hG : S.gram = 1) (hS : IsStdLat
     · have : (1 : D.host.E) * (Pi.single k 1 : Fin T.rank → D.host.E) k *
           ∑ m, star ((Pi.single l 1 : Fin S.rank → D.host.E) m) * (1 : Matrix (Fin S.rank) (Fin S.rank) D.host.E) m l = 1 := by
         simp [Matrix.one_apply]
-      rw [this, mul_finOne (h0 k l)]
+      rw [this, _root_.GlobalTheory.PlaceDatum.mul_pair_one (h0 k l)]
     · intro j _ hj
       have : (1 : D.host.E) * (Pi.single k 1 : Fin T.rank → D.host.E) k *
           ∑ m, star ((Pi.single j 1 : Fin S.rank → D.host.E) m) * (1 : Matrix (Fin S.rank) (Fin S.rank) D.host.E) m l = 0 := by
@@ -265,7 +259,7 @@ theorem reads_transl : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFa
   have hA : ∀ i j, (cA D e • finPt hS hT 1 (unitBlock D o a d)) i j = -unitPt S T (cA D e) o i j := fun i j => by
     rw [Matrix.smul_apply, smul_eq_mul, hent, unitPt]
     split_ifs
-    · rw [mul_neg, mul_finOne hinf]
+    · rw [mul_neg, _root_.GlobalTheory.PlaceDatum.mul_pair_one hinf]
     · rw [mul_zero, neg_zero]
   have hΦ : (fun t => cosetFn (cA D e) (D.host.conj • modul P c) (0 : WO S T) (t + cA D e • finPt hS hT 1 (unitBlock D o a d))) =
       cosetFn (cA D e) (D.host.conj • modul P c) (unitPt S T (cA D e) o) := by

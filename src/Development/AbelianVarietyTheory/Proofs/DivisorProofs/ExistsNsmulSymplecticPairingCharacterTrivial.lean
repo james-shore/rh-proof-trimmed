@@ -104,7 +104,7 @@ theorem exists_nsmul_kill {F : Type} [Field F] [NumberField F] {ψ : AddChar (AF
     have h1 : Continuous fun α : Af F => α * (c i).2 := continuous_id.mul continuous_const
     exact h1.continuousAt.preimage_mem_nhds (x := 0) (t := {a | ψ (pairA F 0 a) = 1})
       (by rw [zero_mul]; exact GlobalTheory.FinTranslate.ker_mem_nhds hc hn)
-  obtain ⟨N, hN, h⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F _ hU
+  obtain ⟨N, hN, h⟩ := _root_.GlobalTheory.LocalNormBound.main F _ hU
   refine ⟨N, hN, fun i α hα => ?_⟩
   have h1 : ψ (pairA F 0 ((N • α) * (c i).2)) = 1 := Set.mem_iInter.1 (h α hα) i
   have e : N • (pairA F 0 α * c i) = pairA F 0 ((N • α) * (c i).2) :=

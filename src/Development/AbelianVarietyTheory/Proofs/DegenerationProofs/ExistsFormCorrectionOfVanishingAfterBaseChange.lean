@@ -64,16 +64,7 @@ open MvPolynomial
 
 variable {X X' Z : Scheme.{0}} {R R' : Type} [CommRing R] [CommRing R']
 
-theorem eval₂_scale {σ A : Type} [CommRing A] (φ : R →+* A) (c : A) (x : σ → A) {F : MvPolynomial σ R}
-    {e : ℕ} (hF : F.IsHomogeneous e) : eval₂ φ (fun j => c * x j) F = c ^ e * eval₂ φ x F := by
-  rw [eval₂_eq, eval₂_eq, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun a ha => ?_
-  have hd : ∑ j ∈ a.support, a j = e := by
-    have := hF (mem_support_iff.1 ha)
-    rw [← this, Finsupp.weight_apply, Finsupp.sum]
-    simp
-  simp only [mul_pow, Finset.prod_mul_distrib, Finset.prod_pow_eq_pow_sum, hd]
-  ring
+alias eval₂_scale := _root_.GlobalTheory.Degen.FormOnto.eval₂_scale
 
 def gsHom (r : Z ⟶ X) (z : Z) (U : X.Opens) (h : r z ∈ U) : Γ(X, U) →+* Z.presheaf.stalk z :=
   (Z.presheaf.germ (r ⁻¹ᵁ U) z h).hom.comp (r.app U).hom
@@ -95,19 +86,7 @@ theorem gs_eval {σ : Type} (p : X ⟶ Spec (CommRingCat.of R)) (r : Z ⟶ X) (z
   · ext j
     exact gsHom_apply r z U h _
 
-theorem const_comp (p : X ⟶ Spec (CommRingCat.of R')) (g : R →+* R') (U : X.Opens) :
-    AbLaw.cst (p ≫ Spec.map (CommRingCat.ofHom g)) U = (AbLaw.cst p U).comp g := by
-  ext a
-  have := congrArg (fun q => q.hom a) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom g))
-  simp only [CommRingCat.hom_comp, RingHom.comp_apply, CommRingCat.hom_ofHom] at this
-  simp only [AbLaw.cst, RingHom.comp_apply, Scheme.Hom.comp_appTop, CommRingCat.hom_comp]
-  rw [this]
-
-theorem gs_sec {H : LB X} (s : LB.Sec H) (r : Z ⟶ X) (z : Z) {i j : H.ι} (hi : r z ∈ H.U i) (hj : r z ∈ H.U j) :
-    gs r z _ (s.f i) = (gm r z _ (H.g i j)).val * gs r z _ (s.f j) := by
-  have hm : r z ∈ H.U i ⊓ H.U j := ⟨hi, hj⟩
-  have e := congrArg (gs r z _) (s.compat i j)
-  rwa [gs_res _ z _ hm, gs_mul _ z _ hm, gs_res _ z _ hm, gs_unit _ z _ hm] at e
+alias gs_sec := _root_.GlobalTheory.SecPullIso.gs_sec_trans
 
 def formSec {σ : Type} (p : X ⟶ Spec (CommRingCat.of R)) {H : LB X} (s : σ → LB.Sec H) {F : MvPolynomial σ R}
     {t : ℕ} (hF : F.IsHomogeneous t) : LB.Sec (AbLaw.pw H t) where
@@ -216,7 +195,7 @@ theorem exists_form_correction : ∀ (A : Type) [CommRing A] [IsLocalRing A] [Is
     Eq.trans (fn_ext fun z hz => by
       obtain ⟨k, hk⟩ := exists_chart hM (β z)
       exact (germ_rel hrel hτ' f c z k k' hk hz).1 (congrArg _ (hc' k))) (by
-      rw [hβ.w, const_comp]
+      rw [hβ.w, _root_.GlobalTheory.Degen.FormOnto.cst_specMap]
       rfl)
   have hgc : (fun i => g (c i)) = 0 :=
     (hτ A' g X' β f' hβ _ _ τ' hM' hw' hτ' (formSec (β ≫ f) s' hF)).unique hc'' fun k' =>

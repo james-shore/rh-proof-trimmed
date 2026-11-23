@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MK
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CubeVal
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RosatiAdjointAbelianPartAndClassifyingMapLinear
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMumfordGeneratorAbelianPartAtLevelImports
+import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ExistsUniqueNormPrim
 
 @[expose] public section
 
@@ -21,25 +22,6 @@ noncomputable section
 
 namespace GlobalTheory.HomMum
 
-theorem prod_psum_two {S : Scheme.{0}} {A T : Over S} [GrpObj A] [IsCommMonObj A] (x y : T ⟶ A) {V : Type}
-    [CommGroup V] (h : (T.left ⟶ A.left) → V) :
-    ∏ I : ULift.{0} (Finset (Fin 2)), h (psum A ![x, y] I.down).left ^ ((-1 : ℤ) ^ (2 - I.down.card)) =
-      h (x * y).left * (h x.left)⁻¹ * (h y.left)⁻¹ * h (1 : T ⟶ A).left := by
-  refine (Fintype.prod_equiv Equiv.ulift _ (fun I => h (psum A ![x, y] I).left ^ ((-1 : ℤ) ^ (2 - I.card)))
-    fun _ => rfl).trans ?_
-  rw [show (Finset.univ : Finset (Finset (Fin 2))) = {∅, {0}, {1}, {0, 1}} by decide, Finset.prod_insert (by decide),
-    Finset.prod_insert (by decide), Finset.prod_insert (by decide), Finset.prod_singleton]
-  have p₀ : psum A ![x, y] ∅ = 1 := rfl
-  have p₁ : psum A ![x, y] {0} = x := _root_.mul_one x
-  have p₂ : psum A ![x, y] {1} = y := _root_.mul_one y
-  have p₃ : psum A ![x, y] {0, 1} = x * y := congrArg (x * ·) (_root_.mul_one y)
-  have q₀ : (-1 : ℤ) ^ (2 - (∅ : Finset (Fin 2)).card) = 1 := by decide
-  have q₁ : ∀ i : Fin 2, (-1 : ℤ) ^ (2 - ({i} : Finset (Fin 2)).card) = -1 := by decide
-  have q₃ : (-1 : ℤ) ^ (2 - ({0, 1} : Finset (Fin 2)).card) = 1 := by decide
-  rw [p₀, p₁, p₂, p₃, q₀, q₁, q₁, q₃]
-  simp only [zpow_neg, zpow_one]
-  ac_rfl
-
 theorem prod_mφ {S : Scheme.{0}} {H₁ H₂ : Over S} [GrpObj H₁] [IsCommMonObj H₁] [GrpObj H₂] [IsCommMonObj H₂]
     (a b : H₁ ⟶ H₂) {T : Over S} (x y : T ⟶ H₁) {V : Type} [CommGroup V] (h : (T.left ⟶ H₁.left ⨿ H₂.left) → V) :
     ∏ k, h ((lift x y).left ≫ mφ H₁ H₂ a b k) ^ mε k =
@@ -49,9 +31,9 @@ theorem prod_mφ {S : Scheme.{0}} {H₁ H₂ : Over S} [GrpObj H₁] [IsCommMonO
         h ((1 : T ⟶ H₁).left ≫ coprod.inl))⁻¹ := by
   rw [Fintype.prod_sum_type]
   refine congrArg₂ (· * ·) ((Finset.prod_congr rfl fun I _ => ?_).trans
-    (prod_psum_two (x ≫ a) (y ≫ b) (fun q => h (q ≫ coprod.inr))))
+    (_root_.GlobalTheory.JetSer.prod_lam (x ≫ a) (y ≫ b) (fun q => h (q ≫ coprod.inr))))
     ((Finset.prod_congr rfl fun I _ => ?_).trans ((Finset.prod_inv_distrib _).trans
-      (congrArg (·⁻¹) (prod_psum_two x y (fun q => h (q ≫ coprod.inl))))))
+      (congrArg (·⁻¹) (_root_.GlobalTheory.JetSer.prod_lam x y (fun q => h (q ≫ coprod.inl))))))
   · rw [mφ_comp]; rfl
   · rw [mφ_comp]; exact zpow_neg _ _
 

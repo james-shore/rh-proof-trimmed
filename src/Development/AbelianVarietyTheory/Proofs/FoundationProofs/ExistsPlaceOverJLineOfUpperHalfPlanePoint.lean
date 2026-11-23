@@ -89,17 +89,7 @@ theorem ord_eq (X : Tower Ω ε) {τ : ℂ} (hτ : τ ∈ Hs) {x : X.K} {φ : �
 open Matrix in
 open Filter Topology in
 variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} in
-private theorem an_eq_germ_rep (X : _root_.GlobalTheory.KZ.Tower Ω ε)
-    (x : X.K) :
-    X.an x = (_root_.GlobalTheory.KZ.ValAt.rep X x : _root_.GlobalTheory.KZ.Mero) :=
-  (_root_.GlobalTheory.KZ.ValAt.exists_rep (X.an x)).choose_spec
-
-open Matrix in
-open Filter Topology in
-variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} in
-private theorem isOpen_upperHalfPlaneSet' : IsOpen _root_.GlobalTheory.KZ.Hs := by
-  unfold _root_.GlobalTheory.KZ.Hs
-  exact isOpen_lt continuous_const Complex.continuous_im
+private alias isOpen_upperHalfPlaneSet' := _root_.GlobalTheory.KZ.ValAt.isOpen_Hs
 
 open Matrix in
 open Filter Topology in
@@ -123,7 +113,7 @@ private theorem ord_eq_meromorphicOrderAt_of_an_eq_coe {φ : ℂ → ℂ} (X : _
     (hτ : τ ∈ _root_.GlobalTheory.KZ.Hs) :
     _root_.GlobalTheory.KZ.ValAt.ord X τ x = meromorphicOrderAt φ τ := by
   unfold _root_.GlobalTheory.KZ.ValAt.ord
-  rw [an_eq_germ_rep] at h
+  rw [_root_.GlobalTheory.KZ.ValAt.rep_spec] at h
   exact meromorphicOrderAt_congr (eventuallyEq_nhdsNE_of_mero_coe_eq h hτ)
 
 open Matrix in
@@ -160,7 +150,7 @@ private theorem exists_differentiableOn_rep_eventuallyEq_div (X : _root_.GlobalT
       _root_.GlobalTheory.KZ.ValAt.rep X x =ᶠ[𝓝[≠] τ] a / b := by
   obtain ⟨a, b, ha, hb, hb0, hab⟩ := X.an_mero x
   refine ⟨a, b, ha, hb, ?_⟩
-  rw [an_eq_germ_rep, ← Filter.Germ.coe_mul] at hab
+  rw [_root_.GlobalTheory.KZ.ValAt.rep_spec, ← Filter.Germ.coe_mul] at hab
   filter_upwards [eventuallyEq_nhdsNE_of_mero_coe_eq hab hτ, eventually_ne_zero_nhdsNE_of_mero_coe_ne_zero hb hb0 hτ]
     with z h1 h2
   rw [Pi.div_apply, eq_div_iff h2]
@@ -188,8 +178,8 @@ theorem _root_.GlobalTheory.KZ.ValAt.ord_mul (X : _root_.GlobalTheory.KZ.Tower �
     (φ := _root_.GlobalTheory.KZ.ValAt.rep X x * _root_.GlobalTheory.KZ.ValAt.rep X y) ?_ hτ]
   · exact meromorphicOrderAt_mul (meromorphicAt_rep_of_mem_upperHalfPlaneSet X x hτ)
       (meromorphicAt_rep_of_mem_upperHalfPlaneSet X y hτ)
-  · rw [map_mul, Filter.Germ.coe_mul, ← an_eq_germ_rep,
-      ← an_eq_germ_rep]
+  · rw [map_mul, Filter.Germ.coe_mul, ← _root_.GlobalTheory.KZ.ValAt.rep_spec,
+      ← _root_.GlobalTheory.KZ.ValAt.rep_spec]
 
 open Matrix in
 open Filter Topology in
@@ -202,8 +192,8 @@ theorem _root_.GlobalTheory.KZ.ValAt.ord_add (X : _root_.GlobalTheory.KZ.Tower �
     (φ := _root_.GlobalTheory.KZ.ValAt.rep X x + _root_.GlobalTheory.KZ.ValAt.rep X y) ?_ hτ]
   · exact meromorphicOrderAt_add (meromorphicAt_rep_of_mem_upperHalfPlaneSet X x hτ)
       (meromorphicAt_rep_of_mem_upperHalfPlaneSet X y hτ)
-  · rw [map_add (f := _), Filter.Germ.coe_add, ← an_eq_germ_rep,
-      ← an_eq_germ_rep]
+  · rw [map_add (f := _), Filter.Germ.coe_add, ← _root_.GlobalTheory.KZ.ValAt.rep_spec,
+      ← _root_.GlobalTheory.KZ.ValAt.rep_spec]
 
 open Matrix in
 open Filter Topology in

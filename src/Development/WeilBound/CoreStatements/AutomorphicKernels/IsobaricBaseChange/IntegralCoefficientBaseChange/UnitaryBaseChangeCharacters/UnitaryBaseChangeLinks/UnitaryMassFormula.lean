@@ -285,7 +285,7 @@ theorem exists_norm (γ : UE E n) : ∃ δ : GL (Fin n) E, δ * thE E n δ = γ.
   haveI : T2Space (Af E) := inferInstanceAs (T2Space (RestrictedProduct _ _ _))
   haveI : T2Space (GL (Fin n) (Af E)) := Units.isEmbedding_embedProduct.t2Space
   haveI : T2Space (finU (E := E) (n := n)) := T2Space.of_injective_continuous pU_injective continuous_pU
-  refine GlobalTheory.T.twistedCentralizerMass_eq_of_topEquiv _ _ _ _ _ _ _ _ (isClosed_twCent _ continuous_id _) (isClosed_twCent _ continuous_thF _)
+  refine _root_.GlobalTheory.MassTor.mass_eq_of_equiv _ _ _ _ _ _ _ _ (isClosed_twCent _ continuous_id _) (isClosed_twCent _ continuous_thF _)
     (centEquiv (finPt γ) (ratF E n (B * (PhiU n E)⁻¹)) fun g => ?_) fun t => mem_ratFinU t.1
   rw [map_mul, map_inv, hΦ, pU_finPt]
   refine (mem_twCent _ _ g).trans (grp_iff _ (tau_tau _ conjFin_conjFin) _ _ _ PhiU_sq_comm ?_ (fun g hg => ?_) g)
@@ -307,6 +307,6 @@ theorem mass_unitary : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], U
   intro E _ _ _ hE n _ γ hγ
   obtain ⟨δ, hδ, hm⟩ := exists_norm γ
   rw [hm, ← hδ]
-  exact GlobalTheory.T.twisted_GL_mass_formula E hE n δ (hδ ▸ hγ)
+  exact _root_.GlobalTheory.BCT.mass_eq_kap E hE n δ (hδ ▸ hγ)
 
 end GlobalTheory.BCT.MassU

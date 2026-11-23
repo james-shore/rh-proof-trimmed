@@ -252,7 +252,7 @@ theorem coBlock : InjU → GenCOU → COBlock := by
       exact ⟨_, g1, g2 _ h2, g3.symm⟩
     · simp only [lL, if_neg hpq]
       exact B.zero_mem
-  obtain ⟨ρ, hρ⟩ := GlobalTheory.T.free_algebra_action_on_subquotient (Cn n V) (Fin n × Fin n) (lL lev E) Z B hZs hBs
+  obtain ⟨ρ, hρ⟩ := _root_.GlobalTheory.CompanionTheory.RgCOBlock.QuotAction.descends (Cn n V) (Fin n × Fin n) (lL lev E) Z B hZs hBs
   have hlift : FreeAlgebra.lift ℂ (lL lev E) = evLc lev E := rfl
   rw [hlift] at hρ
   have hzero : ∀ y, (∀ z : Z, evLc lev E y (z : Cn n V) = 0) → ρ y = 0 := fun y hy => by
@@ -351,7 +351,7 @@ theorem coBlock : InjU → GenCOU → COBlock := by
     congr 1
     exact Subtype.ext (by simpa [tZ, hev _ _ rfl] using tw (s ⟨i, p⟩))
   obtain ⟨P, hP, hPe⟩ := L_core _ tb M (sz lev M) Xq (shift (sz lev M)) n χ τ htb hGl hCm hcap htr
-  obtain ⟨σ, hσ⟩ := GlobalTheory.T.capelli_polynomial_permutation_match n M lev χ P (shift (sz lev M)) hM (fun i => ⟨(hP i).1, (hP i).2.1⟩) hPe
+  obtain ⟨σ, hσ⟩ := _root_.GlobalTheory.CompanionTheory.RgCOBlock.exists_perm_of_monic_factors n M lev χ P (shift (sz lev M)) hM (fun i => ⟨(hP i).1, (hP i).2.1⟩) hPe
   refine ⟨σ, fun c => ?_⟩
   by_cases hc : c < M
   · have e := hσ ⟨c, hc⟩

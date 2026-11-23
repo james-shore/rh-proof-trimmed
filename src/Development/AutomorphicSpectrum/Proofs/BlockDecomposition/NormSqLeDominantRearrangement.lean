@@ -252,7 +252,7 @@ theorem dirac_inequality_k_types : DiracInequalityWithoutSplitComponent := by
   intro n lam _ V _ _ E1 E2 σ hc ν hν
   obtain ⟨x, hxh, hx⟩ := (Submodule.ne_bot_iff _).1 hν
   obtain ⟨S, hfd, hvS, -, hKS, -⟩ := hc.der.2 x
-  have hGl : Formalism.REAL.GlRel (kF E1 E2) := GlobalTheory.CompanionTheory.RealMult.DiracProof.kF_gl hc.pair
+  have hGl : Formalism.REAL.GlRel (kF E1 E2) := _root_.GlobalTheory.CompanionTheory.RealCount.InjHw.gl_kF hc.pair
   have hK : Formalism.REAL.KHighest (fun _ => true) (kF E1 E2) ν x := hxh
   have hint : ∀ a, ∃ m : ℤ, ν a = m := fun a =>
     GlobalTheory.CompanionTheory.RealMult.DiracProof.weight_int hc.der a (ν a) hx (hK.1 a)

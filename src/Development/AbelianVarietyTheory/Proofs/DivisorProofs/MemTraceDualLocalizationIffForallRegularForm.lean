@@ -74,15 +74,15 @@ theorem mem_traceDual_localization_iff_forall_regularForm : ∀ (k F K : Type) [
   intro k F K _ _ _ _ _ _ _ _ _ d u hu A _ hA B hB hsm τ hτ p hp hh z
   obtain ⟨t, ht, hpt⟩ := heightOne_eq_span_irreducible k F d u hu A hA p hp hh
   have h2 : ∀ Q : Ideal B, Q.IsPrime → (∀ a : A, ∀ b : B, (b : K) = algebraMap F K a → (b ∈ Q ↔ a ∈ p)) → Q.height = 1 :=
-    fun Q hQ hov => GlobalTheory.T.height_eq_one_of_liesOver_height_one k F K A B hB p hp hh Q hQ hov
-  have h3 := fun Q hQ hov => GlobalTheory.T.exists_uniformizer_ramification_of_height_one k F K d u hu A hA B hB p hp t ht hpt Q hQ (h2 Q hQ hov) hov
-  rw [GlobalTheory.T.trace_mem_localization_iff_forall_prime_alt k F K d u hu A hA B hB p hp hh t ht hpt h2 h3 z]
+    fun Q hQ hov => _root_.GlobalTheory.integralClosure_height_eq_one_of_liesOver k F K A B hB p hp hh Q hQ hov
+  have h3 := fun Q hQ hov => _root_.GlobalTheory.integralClosure_height_one_uniformizer_ramification k F K d u hu A hA B hB p hp t ht hpt Q hQ (h2 Q hQ hov) hov
+  rw [_root_.GlobalTheory.CodimDual.trace_mem_localization_iff_forall_prime k F K d u hu A hA B hB p hp hh t ht hpt h2 h3 z]
   constructor
   · intro hl Q hQ hov
     obtain ⟨s, e, he, hs, hun, htd⟩ := h3 Q hQ hov
-    exact (GlobalTheory.T.regular_topForm_pole_order_height_one_prime k F K d u hu A hA B hB hsm τ hτ Q hQ (h2 Q hQ hov) t s e ht he hs hun htd z).mpr
+    exact (_root_.GlobalTheory.PD.omB_top_coeff_iff_pole k F K d u hu A hA B hB hsm τ hτ Q hQ (h2 Q hQ hov) t s e ht he hs hun htd z).mpr
       (hl Q hQ hov s e he hs hun htd)
   · intro hr Q hQ hov s e he hs hun htd
-    exact (GlobalTheory.T.regular_topForm_pole_order_height_one_prime k F K d u hu A hA B hB hsm τ hτ Q hQ (h2 Q hQ hov) t s e ht he hs hun htd z).mp (hr Q hQ hov)
+    exact (_root_.GlobalTheory.PD.omB_top_coeff_iff_pole k F K d u hu A hA B hB hsm τ hτ Q hQ (h2 Q hQ hov) t s e ht he hs hun htd z).mp (hr Q hQ hov)
 
 end GlobalTheory

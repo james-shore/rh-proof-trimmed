@@ -104,7 +104,7 @@ theorem invCochain_const : ∀ {I : Type} [Fintype I] {g : ℕ} {Λ : Type} [Add
 
   have hD : ∀ {k k' : K.K} (e : K.le l k' k) (a : Fin g), dw a (B k' k e) = 0 := by
     intro k k' e a
-    obtain ⟨χ, hχ, h0, h1, -⟩ := GlobalTheory.T.exists_jet_morphism_extending_translation K e
+    obtain ⟨χ, hχ, h0, h1, -⟩ := _root_.GlobalTheory.AnPer.Charts.jet_sh K e
     have e0 := hB _ _ _ (jet0 k) χ rfl hχ
     have e1 := hB _ _ _ (jet1 k) χ rfl hχ
     rw [h0, hA _ _ _ (ptHom (K.triv k') e) (jet0 k') rfl rfl] at e0
@@ -167,7 +167,7 @@ theorem invCochain_const : ∀ {I : Type} [Fintype I] {g : ℕ} {Λ : Type} [Add
     show 0 + φ.deg = l
     rw [zero_add, hφ]
   have s1 := hB _ _ _ (ptHom T (K.le_refl T.k)) φ rfl hφ
-  have s2 := GlobalTheory.T.cochain_eq_of_same_degree_chartMorphism K h l
+  have s2 := _root_.GlobalTheory.AnPer.Charts.cochain_eq_ptHom K h l
     (fun k T χ hχ ↦ (hB _ _ _ (jet0 k) χ rfl hχ).trans (hB _ _ _ (jet1 k) χ rfl hχ).symm) _ T'
     (ptHom T (K.le_refl T.k) ≫ φ) hd
   rw [← s1, s2]

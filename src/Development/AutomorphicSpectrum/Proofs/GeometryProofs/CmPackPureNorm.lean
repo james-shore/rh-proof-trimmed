@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CmHostRootNegDiscriminantNeNegSelf
 
 @[expose] public section
 
@@ -65,9 +66,6 @@ open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CompanionTheory.Ar GlobalT
 open scoped ComplexOrder
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
-
-theorem rt0_conj_neg_ne_zero (H : Host E) : starRingEnd ℂ H.rt0 = -H.rt0 :=
-  _root_.UpperTheory.Reformulated.B.Ga10.rt0_conj_neg_ne_zero H
 
 theorem card_emb {l : Level H} (c : Coeff l) (K : IntermediateField ℚ ℂ) (hc : c.F ≤ K) :
     Nat.card (E →+* K) = Module.finrank ℚ E := by
@@ -217,7 +215,7 @@ theorem intFrames_fin : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     ComplexEmbedding.conjugate_coe_eq τ a
   have hrt1 : ((σ (H.rt : E) : X.K) : ℂ) = H.rt0 := (hσc _).trans hτ
   have hrt2 : ((σ' (H.rt : E) : X.K) : ℂ) = -H.rt0 := by
-    rw [hσc', hτ, rt0_conj_neg_ne_zero]
+    rw [hσc', hτ, _root_.GlobalTheory.LamF.cmHost_conj_sqrtNegDisc]
   let u : Fin D.p → Fin g → X.K := fun a => lam true ⟨x (.inl a), hx.1 a⟩
   let u' : Fin D.q → Fin g → X.K := fun a => lam false ⟨x (.inr a), hx.2 a⟩
   have hu1 : ∀ a, ρ H.rt (u a) = σ (H.rt : E) • u a := fun a =>

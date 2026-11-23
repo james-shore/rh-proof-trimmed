@@ -54,7 +54,7 @@ theorem exists_sFam_primePow_sq :
       ∃ j : ℕ, 1 ≤ j ∧ Nonempty (SFam g ((l ^ j) ^ 2) (zetaAway ((l ^ j) ^ 2))) := by
   intro g l hg hl _hodd
   obtain ⟨hLaws, hLaws2⟩ := GlobalTheory.abelianSchemeLaws_all
-  obtain ⟨j₀, hj₀⟩ := GlobalTheory.ZM.SiegelArithFamily.nonempty_sFam hLaws hLaws2 GlobalTheory.Moduli.cube_of_isLB
+  obtain ⟨j₀, hj₀⟩ := GlobalTheory.ZM.SiegelArithFamily.nonempty_sFam hLaws hLaws2 _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen
     GlobalTheory.thetaUnifAV_closed g l hg hl _hodd
 
   refine ⟨max j₀ 1, le_max_right _ _, ?_⟩

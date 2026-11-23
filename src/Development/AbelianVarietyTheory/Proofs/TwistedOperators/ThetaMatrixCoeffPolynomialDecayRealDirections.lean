@@ -66,20 +66,11 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ}
 
-theorem symplOH_swap (S T : HSp D) (u v : WO S T) : symplOH S T v u = -symplOH S T u v := by
-  obtain ⟨l1, l2, l3, -⟩ := GlobalTheory.OrientedFormLaws.symplOH_laws D S T
-  have h := l3 (u + v)
-  rw [l1, l2, l2, l3, l3, zero_add, add_zero] at h
-  linear_combination h
-
-theorem symplO_zero_left (S T : HSp D) (w : WO S T) : symplO S T 0 w = 0 := by
-  rw [GlobalTheory.ThetaSquare.symplO_eq, GlobalTheory.ThetaSquare.symplOH_zero_left, add_zero]
-
 theorem heisO_comm (hψ : IsStdChar D ψ (-1)) (S T : HSp D) (u w : WO S T) (f : WO S T → ℂ) :
     heisO ψ S T u (heisO ψ S T w f) = ψ (symplO S T u w) • heisO ψ S T w (heisO ψ S T u f) := by
   have hc := (GlobalTheory.ThetaSquare.heisUnitary (V := S) (W := T) hψ).1
   obtain ⟨-, -, -, l4, -⟩ := GlobalTheory.OrientedFormLaws.symplOH_laws D S T
-  rw [hc, hc, smul_smul, ← AddChar.map_add_eq_mul, add_comm w u, symplOH_swap S T u w, ← l4]
+  rw [hc, hc, smul_smul, ← AddChar.map_add_eq_mul, add_comm w u, _root_.GlobalTheory.MixModel.symplOH_skew S T u w, ← l4]
   congr 2
   ring
 
@@ -104,7 +95,7 @@ theorem dRho_heisO (hψ : IsStdChar D ψ (-1)) {θ : InfFam D} (hθ : IsInfFam �
     rfl
   rw [e] at h2
   rw [(DS.1 _ hw x).unique h2]
-  simp only [map_zero, symplO_zero_left, AddChar.map_zero_eq_one, one_mul, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+  simp only [map_zero, _root_.GlobalTheory.SplitScalar.symplO_zero_left, AddChar.map_zero_eq_one, one_mul, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   rw [GlobalTheory.OrientedHeis.heisO_zero]
 
 theorem step_bound (hψ : IsStdChar D ψ (-1)) {θ : InfFam D} (hθ : IsInfFam θ) (S T : HSp D) {μ : Measure (WO S T)}

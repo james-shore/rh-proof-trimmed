@@ -262,7 +262,7 @@ theorem degenerateWhittakerDim_parabolicInduction (F : Type) [Field F] [Fintype 
       rfl
     · have hs := (Tuple.eq_sort_iff (f := key b J.1)).1 rfl
       unfold leviWh
-      rw [GlobalTheory.T.coindEigen_sorting_perm_eq_levi_whittaker F ψ r V b σ hσ j (Tuple.sort (key b J.1)) _ (pm_conj _ _)]
+      rw [_root_.GlobalTheory.FinGL.SortWh.eig_conj_eq_leviWh F ψ r V b σ hσ j (Tuple.sort (key b J.1)) _ (pm_conj _ _)]
       · exact fun a c hac e => lt_of_le_of_ne (hs.2 (le_of_lt hac) ((key_eq_iff b J.1 _ _).2 e)) (fun h => (ne_of_lt hac) ((Tuple.sort (key b J.1)).injective h))
       · intro a e c h1 h2 h3
         have h4 : key b J.1 _ ≤ key b J.1 _ := hs.1 h1
@@ -292,9 +292,9 @@ theorem degenerateWhittakerDim_parabolicInduction (F : Type) [Field F] [Fintype 
         group
       · push Not at h2
         obtain ⟨a, c, ha, hc, h⟩ := h2
-        exact Or.inr ⟨pm F w, ⟨p, hp, u, hu, e⟩, GlobalTheory.T.coindEigen_eq_bot_of_block_cut_cuspidal F ψ r V b σ hσ j w _ (pm_conj _ _) a c ha hc h⟩
+        exact Or.inr ⟨pm F w, ⟨p, hp, u, hu, e⟩, _root_.GlobalTheory.FinGL.MackeyCut.eig_eq_bot_of_cut F ψ r V b σ hσ j w _ (pm_conj _ _) a c ha hc h⟩
     · push Not at h1
       obtain ⟨a, c, hac, h⟩ := h1
-      exact Or.inr ⟨pm F w, ⟨p, hp, u, hu, e⟩, GlobalTheory.T.coindEigen_eq_bot_of_root_in_unipotent_radical F ψ r V b σ hσ j w _ (pm_conj _ _) hψ a c hac h⟩
+      exact Or.inr ⟨pm F w, ⟨p, hp, u, hu, e⟩, _root_.GlobalTheory.FinGL.MackeyRadical.eig_eq_bot_of_radical F ψ r V b σ hσ j w _ (pm_conj _ _) hψ a c hac h⟩
 
 end GlobalTheory.FinGL.WhCutInd

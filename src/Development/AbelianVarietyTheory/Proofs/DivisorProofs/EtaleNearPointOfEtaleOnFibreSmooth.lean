@@ -66,11 +66,6 @@ open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
-theorem etale_basicOpen_comp_SpecMap_iff (S R : CommRingCat.{0}) (θ : S ⟶ R) (f : R) :
-    Etale ((show (Spec R).Opens from PrimeSpectrum.basicOpen f).ι ≫ Spec.map θ) ↔
-      ((algebraMap R (Localization.Away f)).comp θ.hom).Etale := by
-  exact GlobalTheory.Mum.AffFib.etale_basicOpen_iff S R θ f
-
 theorem etale_image_comp_of_etale (X Z X' Z' : Scheme.{0}) (h : X ⟶ Z) (h' : X' ⟶ Z') (iX : X' ⟶ X) (iZ : Z' ⟶ Z)
     [IsOpenImmersion iX] [IsOpenImmersion iZ] (sh : iX ≫ h = h' ≫ iZ) (U : X'.Opens) :
     Etale (U.ι ≫ h') → Etale ((iX ''ᵁ U).ι ≫ h) := by
@@ -134,7 +129,7 @@ theorem GlobalTheory.Mum.etale_near_of_etale_fibre : ∀ (T X Z : Scheme.{0}) (p
   have hR : ((algebraMap Γ(X, UB) (Localization.Away g)).comp ψ.hom).Etale := by
     have := RingHom.etale_algebraMap.mpr hgEt
     rwa [IsScalarTower.algebraMap_eq Γ(Z, UC) Γ(X, UB) (Localization.Away g)] at this
-  have hV := (etale_basicOpen_comp_SpecMap_iff _ _ ψ g).mpr hR
+  have hV := (_root_.GlobalTheory.Mum.AffFib.etale_basicOpen_iff _ _ ψ g).mpr hR
   refine ⟨hUB'.fromSpec ''ᵁ (PrimeSpectrum.basicOpen g), ?_,
     etale_image_comp_of_etale X Z _ _ h (Spec.map ψ) hUB'.fromSpec hUC'.fromSpec
       (hUC'.SpecMap_appLE_fromSpec h hUB' hBC).symm _ hV⟩

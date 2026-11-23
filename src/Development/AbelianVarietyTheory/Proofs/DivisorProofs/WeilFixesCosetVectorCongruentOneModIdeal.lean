@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Hilbert90IntegralIdelesOfMovedPrimes
 
 @[expose] public section
 
@@ -64,28 +65,15 @@ noncomputable section
 
 namespace GlobalTheory.FunObj.FixKey
 
-theorem hatId_mul {D : D7} {I : Ideal (𝓞 D.host.E)} {s y : AE D} (hs : s ∈ OhE D) (hy : y ∈ hatId D I) :
-    s * y ∈ hatId D I := by
-  induction hy using AddSubgroup.closure_induction with
-  | mem x hx =>
-    obtain ⟨b, hb, t, ht, rfl⟩ := hx
-    exact AddSubgroup.subset_closure ⟨b, hb, s * t, mul_mem hs ht, by ring⟩
-  | zero => simp
-  | add x y _ _ hx hy => rw [mul_add]; exact add_mem hx hy
-  | neg x _ hx => rw [mul_neg]; exact neg_mem hx
-
-theorem zeroAt_zero (D : D7) (q : ℕ) : ZeroAt D q 0 :=
-  fun _ => ⟨1, one_pos, Nat.coprime_one_left q, 0, zero_mem _, by simp⟩
+alias hatId_mul := _root_.GlobalTheory.FunObj.StdDatum.mul_mem_hatId
 
 theorem suppSplit_one (D : D7) (N : ℕ) : SuppSplit D ((1 : GA D N) : GL (Fin N) (AE D)) :=
-  fun q _ _ i j => by rw [OneMemClass.coe_one, Units.val_one, sub_self]; exact zeroAt_zero D q
+  fun q _ _ i j => by rw [OneMemClass.coe_one, Units.val_one, sub_self]; exact _root_.GlobalTheory.NormSum.VacInt.zeroAt_zero D q
 
 theorem suppInert_one (D : D7) (N : ℕ) : SuppInert D ((1 : GA D N) : GL (Fin N) (AE D)) :=
-  fun q _ _ i j => by rw [OneMemClass.coe_one, Units.val_one, sub_self]; exact zeroAt_zero D q
+  fun q _ _ i j => by rw [OneMemClass.coe_one, Units.val_one, sub_self]; exact _root_.GlobalTheory.NormSum.VacInt.zeroAt_zero D q
 
-theorem wd_smul (D : D7) (T : Tor D) {N N' : ℕ} (x : VC D N N') (c : ℂ) (F : VC D N N' → ℂ) :
-    Wd D T x (c • F) = c • Wd D T x F := by
-  funext z; simp only [Wd, U, Pi.smul_apply, smul_eq_mul]; ring
+alias wd_smul := _root_.GlobalTheory.InertSign.Wd_smul
 
 theorem TT_smul {D : D7} {T : Tor D} {N N' : ℕ} (c : ℂ) {F : VC D N N' → ℂ} (hF : F ∈ TT D T N N') :
     c • F ∈ TT D T N N' := by
@@ -131,7 +119,7 @@ theorem om_cosetV_of_congOne : ∀ (D : D7) (δ t0 : ℂ), Crv D ⊤ δ → ∀ 
         simpa using VacMove.moves_mul_int hks (VacMove.moves_one D a)
       have hx : W.chV'.f x = 1 := hch x hxu (by rw [hx1]; exact hatId_mul hη (GlobalTheory.T.unitary_congruent_one_det_sub_one_mem_ideal_mul_conj D 𝔪 hcop k hk hck))
       rw [W.split ks 1 x 1 (stdL D a) (stdL D d) hss (suppSplit_one D d)
-        (fun q hq hi => ⟨hxq q hq hi, by simpa using zeroAt_zero D q⟩) hxd (by simp) hm (VacMove.moves_one D d)]
+        (fun q hq hi => ⟨hxq q hq hi, by simpa using _root_.GlobalTheory.NormSum.VacInt.zeroAt_zero D q⟩) hxd (by simp) hm (VacMove.moves_one D d)]
       simp only [hx, map_one, one_zpow, mul_one, Units.val_one, one_mul]
       exact VacMove.iop_self D _ (La0 D (tor0 D ⊤ δ) a d) he
     have := W.mul ks ki 1 1 e0 hT
@@ -143,7 +131,7 @@ theorem om_cosetV_of_congOne : ∀ (D : D7) (δ t0 : ℂ), Crv D ⊤ δ → ∀ 
   have hJ : W.Om 1 g' e0 = ((W.chV.f x' ^ W.ep * W.chV'.f 1 ^ W.ep' : ℂˣ) : ℂ) •
       Iop D (tor0 D ⊤ δ) (La0 D (tor0 D ⊤ δ) a d) (La D (tor0 D ⊤ δ) (stdL D a) (skewLat D 𝔪 d)) e0 := by
     rw [W.split 1 g' 1 x' (stdL D a) (skewLat D 𝔪 d) (suppSplit_one D a) hg's
-      (fun q hq hi => ⟨by simpa using zeroAt_zero D q, hx'q q hq hi⟩) (by simp) hx'd (VacMove.moves_one D a) hg'm]
+      (fun q hq hi => ⟨by simpa using _root_.GlobalTheory.NormSum.VacInt.zeroAt_zero D q, hx'q q hq hi⟩) (by simp) hx'd (VacMove.moves_one D a) hg'm]
     rfl
   have hc0 : ((W.chV.f x' ^ W.ep * W.chV'.f 1 ^ W.ep' : ℂˣ) : ℂ) ≠ 0 := Units.ne_zero _
   have hJe : Iop D (tor0 D ⊤ δ) (La0 D (tor0 D ⊤ δ) a d) (La D (tor0 D ⊤ δ) (stdL D a) (skewLat D 𝔪 d)) e0 =

@@ -1902,7 +1902,7 @@ export Level (prV prV_apply hT_f_e prV_e prV_f prV_Lb Lb_le projection_preserves
 
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
 
-theorem ksetSplit_holds : KsetSplit X u := Level.ksetSplit_holds X u
+alias ksetSplit_holds := _root_.Formalism.L2.SG.Pf.Level.ksetSplit_holds
 
 theorem psiDd_of_cores (hA : PsiTrCore) (hB : DdTraceCore) : PsiDd X := by
   intro y hy t ht
@@ -1921,7 +1921,7 @@ theorem psiDd_of_cores (hA : PsiTrCore) (hB : DdTraceCore) : PsiDd X := by
 theorem psiDd_holds : PsiDd X :=
   psiDd_of_cores X Formalism.L2.S.Pv.PsiTrCore.psiTrCore_holds Formalism.L2.S.Pv.DdTraceCore.ddTraceCore_holds
 
-theorem unipotent_in_level_of_psi {X : HidaSetting D} {u : D.what₂.Word} (hP : PsiDd X) : UnipotentConjugateInLevel X u := Level.unipotent_in_level_of_psi hP
+alias unipotent_in_level_of_psi := _root_.Formalism.L2.SG.Pf.Level.unipotent_in_level_of_psi
 
 theorem unipotent_in_level : UnipotentConjugateInLevel X u := unipotent_in_level_of_psi (psiDd_holds X)
 
@@ -1929,8 +1929,8 @@ theorem levelDec_holds : LevelDec X u := Level.levelDec_of_psiDd (psiDd_holds X)
 
 theorem phWellDef_holds : PhWellDef X u (level_subgroup_character_unitary X) := Level.phWellDef_of_psiDd (psiDd_holds X)
 
-theorem psiProd_holds : PsiProd X u := Level.psiProd_holds X u
+alias psiProd_holds := _root_.Formalism.L2.SG.Pf.Level.psiProd_holds
 
-theorem ratLevi_holds : RatLevi X u := Level.ratLevi_holds X u
+alias ratLevi_holds := _root_.Formalism.L2.SG.Pf.Level.ratLevi_holds
 
 end Formalism.L2.SG.Pf

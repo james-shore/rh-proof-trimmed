@@ -168,7 +168,7 @@ theorem classSums_deeper : ∀ (O : Type) [CommRing O] (bar : O → O) (q : ℕ)
   intro y₀ N₀
   obtain ⟨𝔗, hN₀⟩ := hdeep N₀
   letI : Algebra (X₁.M.Z.presheaf.stalk z₁) X₁.Ω₁ := (X₁.M.stalkHom z₁).toAlgebra
-  obtain ⟨-, hfr, -, -⟩ := GlobalTheory.T.modelStalk_normal_noetherian_fractionRing X₁ z₁
+  obtain ⟨-, hfr, -, -⟩ := _root_.GlobalTheory.GSep.stalk_isNoetherian_normal_fractionRing X₁ z₁
   haveI := hfr
   letI algAL : Algebra (X₁.M.Z.presheaf.stalk z₁) 𝔗.X₂.Ω₁ :=
     ((algebraMap X₁.Ω₁ 𝔗.X₂.Ω₁).comp (X₁.M.stalkHom z₁)).toAlgebra
@@ -176,7 +176,7 @@ theorem classSums_deeper : ∀ (O : Type) [CommRing O] (bar : O → O) (q : ℕ)
   haveI := 𝔗.gal
   obtain ⟨algFL, tower, hfd, hgal, hfix⟩ :=
     GlobalTheory.finiteGalois_fractionRing_of_isFractionRing (X₁.M.Z.presheaf.stalk z₁) X₁.Ω₁ 𝔗.X₂.Ω₁ (fun _ => rfl)
-  obtain ⟨z₂, j₂, hz₂, hj₂, hmax, hint, hσ₂, hinj⟩ := GlobalTheory.T.exists_deeperPoint_integralClosure_stalk O X₁ act 𝔗 z₁
+  obtain ⟨z₂, j₂, hz₂, hj₂, hmax, hint, hσ₂, hinj⟩ := _root_.GlobalTheory.GSep.Tower.exists_point_integralClosure_stalk O X₁ act 𝔗 z₁
   have hdiv₂ : ∀ w, 𝔗.p w = z₁ → 𝔗.X₂.M.Div 𝔗.X₂.S.th (𝔗.lam x₀) w := fun w hw =>
     (GlobalTheory.T.deeperModel_dividing_label_and_shifts_preserved O X₁ z₁ act hact hunit 𝔗 w hw x₀ hdiv (Φ.V y₀) (Φ.ev y₀) _ _ _ (𝔪 y₀)).1
   have hlab : ∀ c, 𝔗.lam (lab c) ∈ 𝔗.X₂.S.HH 𝔗.X₂.M z₂ := fun c =>

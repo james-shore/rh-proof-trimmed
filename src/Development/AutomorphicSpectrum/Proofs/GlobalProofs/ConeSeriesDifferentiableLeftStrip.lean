@@ -92,7 +92,7 @@ theorem iterate_good_other {r l : ℕ} {i k : Fin r} {v : (Fin r → ℕ) → �
   | zero => exact hg
   | succ c ih =>
     rw [Function.iterate_succ_apply']
-    exact (((@GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.otherVar_main r l i k _ hk).1 ih).1)
+    exact (((@_root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.good_support_other r l i k _ hk).1 ih).1)
 
 theorem iterate_supp_other {r l : ℕ} {i k : Fin r} {v : (Fin r → ℕ) → ℚ} (hk : k ≠ i)
     (hs : ∀ m, m k ≠ 0 → v m = 0) (c : ℕ) : ∀ m, m k ≠ 0 → (Aop l i)^[c] v m = 0 := by
@@ -100,7 +100,7 @@ theorem iterate_supp_other {r l : ℕ} {i k : Fin r} {v : (Fin r → ℕ) → �
   | zero => exact hs
   | succ c ih =>
     rw [Function.iterate_succ_apply']
-    exact (((@GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.otherVar_main r l i k _ hk).2 ih).1)
+    exact (((@_root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.good_support_other r l i k _ hk).2 ih).1)
 
 theorem DL_replicate_succ {r : ℕ} (i : Fin r) (c : ℕ) (g : (Fin r → ℕ) → ℂ) :
     DL (List.replicate (c + 1) i) g = fd i (DL (List.replicate c i) g) := by
@@ -148,13 +148,13 @@ theorem abel_oneVar : ∀ (r l N : ℕ) (i : Fin r) (v : (Fin r → ℕ) → ℚ
   · unfold uW
     beta_reduce
     split_ifs with h
-    · exact goodAt_smul _ ((@GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.otherVar_main r l i k _ hk).1 (iterate_good_other hk hgk c)).2
+    · exact goodAt_smul _ ((@_root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.good_support_other r l i k _ hk).1 (iterate_good_other hk hgk c)).2
     · exact goodAt_smul _ (iterate_good_other hk hgk N)
   · intro m hm
     unfold uW
     beta_reduce
     split_ifs with h
-    · simp [((@GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.otherVar_main r l i k _ hk).2 (iterate_supp_other hk hsk c)).2 m hm]
+    · simp [((@_root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.good_support_other r l i k _ hk).2 (iterate_supp_other hk hsk c)).2 m hm]
     · simp [iterate_supp_other hk hsk N m hm]
   · rw [tsum_iterate hl hg hb hs N, Fin.sum_univ_castSucc, Finset.sum_range]
     congr 1

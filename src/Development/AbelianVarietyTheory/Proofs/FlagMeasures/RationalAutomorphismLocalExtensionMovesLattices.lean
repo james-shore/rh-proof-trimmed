@@ -110,7 +110,7 @@ theorem rat_ext_moves : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.
       ((hmv p) ⟨locEquiv p h, hmem p⟩ (y p) (y' p)).2 rfl
     refine ⟨y', ⟨isLattice_gmap' h Λ hov.1, fun p => ?_⟩, fun p => ⟨locEquiv p h, locEquiv_ext p h, hmoves p⟩⟩
     obtain ⟨τ, hτ, hL⟩ := hov.2 p
-    have hm := (GlobalTheory.T.unitaryComplement_moves_local_terms_with_data (Z.M p) (Z.agree p).1 (locH Z p) D.R.rS D.R.k (FP p)
+    have hm := (_root_.GlobalTheory.HL.LocalMove.main (Z.M p) (Z.agree p).1 (locH Z p) D.R.rS D.R.k (FP p)
       (finrank_Vp_eq p) (hRel p) (locEquiv p h) (hmem p) (y p) (y' p) τ hτ (hmoves p)).1
     refine ⟨_, hm, ?_⟩
     show LocNG.img (locEquiv p h) τ.abelian₂ = _

@@ -134,14 +134,9 @@ theorem compAt_bB (θ : InfFam D) (τ : D.what₂.Tau) {n : ℕ} (M : Mx D (n + 
 theorem compAt_bC (θ : InfFam D) (τ : D.what₂.Tau) {n : ℕ} (M : Mx D (n + n) (n + n)) :
     compAt θ τ (bC M) = bC (compAt θ τ M) := rfl
 
-theorem adj_mul {m n k : ℕ} (x : Mx D m n) (z : Mx D n k) :
-    adj (HMul.hMul x z : Mx D m k) = HMul.hMul (adj z) (adj x) := by
-  unfold adj
-  rw [Matrix.map_mul, Matrix.transpose_mul]
+alias adj_mul := _root_.GlobalTheory.MixModel.adj_mul
 
-theorem adj_one {n : ℕ} : adj (1 : Mx D n n) = 1 := by
-  unfold adj
-  rw [Matrix.map_one _ (map_zero (cA D)) (map_one (cA D)), Matrix.transpose_one]
+alias adj_one := _root_.GlobalTheory.MixModel.adj_one
 
 theorem adelicConjTranspose_blockMatrixTwoByTwoFin {n : ℕ} (a d : Mx D n n) : adj (blk4 a 0 0 d) = blk4 (adj a) 0 0 (adj d) := by
   unfold adj

@@ -77,7 +77,7 @@ theorem triv_slice_of_forall_weilIs_one : ∀ (S : Scheme.{0}) (A : Over S) [Grp
       ext <;> simp [Hom.one_def]
     rw [AbDual.ev, e'] at e
     exact e
-  obtain ⟨t, ht⟩ := WeilIntegral.triv_theta CubeTop.cubeTheorem hB hL
+  obtain ⟨t, ht⟩ := WeilIntegral.triv_theta _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hB hL
   obtain ⟨t', ht', hn'⟩ := AbLaw.Cube.exists_normalised hL t ht
   let M : RigLB (A ⊗ A) := ⟨P, r, hL, hr⟩
   have c : CubicalStr (A ⊗ A) M := AbLaw.Cube.cubicalOfNormalised globalFns_holds hB M t' ht' hn'

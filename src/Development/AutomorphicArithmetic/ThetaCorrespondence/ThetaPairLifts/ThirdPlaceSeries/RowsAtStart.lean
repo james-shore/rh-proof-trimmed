@@ -144,7 +144,7 @@ include l in
 variable (L) in
 theorem grpTie_famR : Formalism.L2.DIV.GrpTie (DL x L) (famR (w.st (oL x L).Z) w.I P.hX (usedOf w.I T P.Wt) (datL x L).Xg (datL x L).tr).A
     (datL x L).F.P0 (datL x L).F.ψ0 (datL x L).F.P1 (datL x L).F.ψ1 ((datL x L).R.eG.trans (datL x L).cG) :=
-  ⟨(by with_unfolding_all exact ((_root_.GlobalTheory.T.grpTie_of_levelC l).card :)), (by with_unfolding_all exact ((_root_.GlobalTheory.T.grpTie_of_levelC l).e0 :)), (by with_unfolding_all exact ((_root_.GlobalTheory.T.grpTie_of_levelC l).lvl0 :)), (by with_unfolding_all exact ((_root_.GlobalTheory.T.grpTie_of_levelC l).psi0 :)), (by with_unfolding_all exact ((_root_.GlobalTheory.T.grpTie_of_levelC l).idxSharp :)),
+  ⟨(by with_unfolding_all exact ((_root_.GlobalTheory.HeightCounting.Fin3.grpTie_of_LC_alt l).card :)), (by with_unfolding_all exact ((_root_.GlobalTheory.HeightCounting.Fin3.grpTie_of_LC_alt l).e0 :)), (by with_unfolding_all exact ((_root_.GlobalTheory.HeightCounting.Fin3.grpTie_of_LC_alt l).lvl0 :)), (by with_unfolding_all exact ((_root_.GlobalTheory.HeightCounting.Fin3.grpTie_of_LC_alt l).psi0 :)), (by with_unfolding_all exact ((_root_.GlobalTheory.HeightCounting.Fin3.grpTie_of_LC_alt l).idxSharp :)),
     (datL x L).pins.keep.psi.lvl⟩
 variable {p0 : BaseLevelRowSide (w.D (oL x L).Z)} (Y : YT x L p0) (hY : YRel L Y)
 def normalizedRowDatum : _root_.GlobalTheory.Mem.Top.Bl.NormRealisationData (D := DL x L) (_root_.GlobalTheory.HeightCounting.Fin3.localAtData l Sp Au ss al hLg) (datL x L).R (datL x L).F (datL x L).cG Y where
@@ -166,7 +166,7 @@ theorem nonempty_nMore_of_xdAll {xd : ThData (Dof x)} (hxd : XdAll xd) : Nonempt
   have e : (_root_.GlobalTheory.HeightCounting.Fin3.localAtData l Sp Au ss al hLg).all.gal.mt = _root_.GlobalTheory.HeightCounting.Fin3.localMultiplicityFamily L l := (by with_unfolding_all exact (al.mt :))
   have H : ∃ ad' : MtAd Y (_root_.GlobalTheory.HeightCounting.Fin3.localAtData l Sp Au ss al hLg).all.gal.mt, ad'.PV = _root_.GlobalTheory.HeightCounting.Fin3.psiVectorLocal L l := by
     rw [e]
-    exact _root_.GlobalTheory.T.exists_mtAd_psiVectorLocal_of_yRel (x := x) L l Y hY
+    exact _root_.GlobalTheory.HeightCounting.Fin3.exists_mtAd_psi_vector_of_yRel (x := x) L l Y hY
   obtain ⟨ad', had'⟩ := H
   have hSer : Nonempty (SerAt (_root_.GlobalTheory.HeightCounting.Fin3.yStructureLocal L l)
       (datL x L).geo.v₀ (expD L al.a.exp) (_root_.GlobalTheory.HeightCounting.Fin3.psiVectorLocal L l)
@@ -176,15 +176,15 @@ theorem nonempty_nMore_of_xdAll {xd : ThData (Dof x)} (hxd : XdAll xd) : Nonempt
   have ser' : SerAt (_root_.GlobalTheory.HeightCounting.Fin3.yStructureLocal L l) (datL x L).geo.v₀ (expD L al.a.exp) ad'.PV (cfD x L) (_root_.GlobalTheory.HeightCounting.Fin3.placeMapLocal L l) := had'.symm ▸ ser
   exact ⟨{ ad := ad'
            fi := _root_.GlobalTheory.HeightCounting.Fin3.yStructureLocal_fi_e_heq L l
-           hecke := _root_.GlobalTheory.T.hecke_expansion_local_of_levelC L l
+           hecke := _root_.GlobalTheory.HeightCounting.Fin3.hecke_expansion_datL_of_levelC L l
            cHk := (by with_unfolding_all exact ((fun i b Q => (⟨l.b.Bs.cHk i b Q, pow_one _⟩ : ∃ u : ((Dof x).ntw.O i)ˣ, (_root_.GlobalTheory.HeightCounting.Fin3.heckeHeightData l).cHk i b 1 Q =
              algebraMap ((Dof x).ntw.O i) (FractionRing ((Dof x).ntw.O i)) u)) :))
-           eig := ⟨_root_.GlobalTheory.HeightCounting.Fin3.smallPlaceSet L l, _root_.GlobalTheory.HeightCounting.Fin3.localEigenvalueDegree L l, (by with_unfolding_all exact (l.b.Sb_le :)), (by with_unfolding_all exact ((HEq.refl l.rat.In.eig) :)), _root_.GlobalTheory.T.eigAd_of_yRel_at_level_c L l Y hY⟩
+           eig := ⟨_root_.GlobalTheory.HeightCounting.Fin3.smallPlaceSet L l, _root_.GlobalTheory.HeightCounting.Fin3.localEigenvalueDegree L l, (by with_unfolding_all exact (l.b.Sb_le :)), (by with_unfolding_all exact ((HEq.refl l.rat.In.eig) :)), _root_.GlobalTheory.HeightCounting.Fin3.eigAd_smallPlaceSet_of_yRel L l Y hY⟩
            ser := (by with_unfolding_all exact (ser' :))
            tau := (by with_unfolding_all exact ((al.exp.tau l.b.tau) :))
            geo := _root_.GlobalTheory.HeightCounting.Fin3.thetaTie_yStructureLocal_nonempty L l
            ok := _root_.GlobalTheory.HeightCounting.Fin3.twist_ok_local L l
-           th := _root_.GlobalTheory.T.emtTheta_of_yRel L l Y hY
+           th := _root_.GlobalTheory.HeightCounting.Fin3.emtTheta_L_alt L l Y hY
            xd := xdD_all L hxd
            large := (by with_unfolding_all exact (hLg :))
            labc := (by with_unfolding_all exact (l.a.labc :))

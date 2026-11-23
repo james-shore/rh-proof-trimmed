@@ -76,12 +76,6 @@ theorem gZ_ne_zero (D : Formalism.BasicNotions.D7) (T T' : D.host.E) (Z : MatZ D
   rw [h0, map_zero, Complex.zero_re] at this
   exact lt_irrefl _ this
 
-theorem gS_ne_zero (D : Formalism.BasicNotions.D7) : ((gS D : D.host.E)) ≠ 0 := by
-  have h1 := (D.host.g_prime 0).pos
-  have h2 := (D.host.g_prime 1).pos
-  unfold gS
-  exact_mod_cast (Nat.mul_pos h1 h2).ne'
-
 theorem prod_tri {c : ℚ} (hc : c ≠ 0) :
     ∀ n : ℕ, (∏ a : Fin n, c ^ (-((n : ℤ) - (a : ℕ)))) ^ 2 = c ^ (-((n * (n + 1) : ℕ) : ℤ))
   | 0 => by simp
@@ -127,7 +121,7 @@ theorem normMM_of (hN : NMPseudo) (hM : MMPseudo) (hΔ : DetGa) : NormMM := by
   rw [hMM] at hint ⊢
   obtain ⟨hcm, hfix, -⟩ := field_dictionary_holds D
   have hG := gZ_ne_zero D _ _ Z hpos
-  have hg := gS_ne_zero D
+  have hg := _root_.PI.UnitaryGroupMassFormula.CntFormula.R6.gS_ne_zero' D
   have hdetGa := hΔ D (Tn u) (Tn u') (star_natCast _) (star_natCast _) Z
   have hdet := det_gram_flagDifference F0 F' Z hZ
   rw [hdetGa] at hdet

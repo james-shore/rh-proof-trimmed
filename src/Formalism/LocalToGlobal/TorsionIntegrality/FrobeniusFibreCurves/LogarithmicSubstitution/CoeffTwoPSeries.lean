@@ -55,7 +55,7 @@ open Formalism.L2.Th1.F (MulStable IsKerReps taylor0 pSeries)
 
 theorem coeff_two_pSeries (L : PeriodPair) :
     PowerSeries.coeff 2 (pSeries L) = L.g₂ / 20 := by
-  rw [Formalism.L2.Th1.F.pSeriesCoeff L 2, if_neg (by norm_num)]
+  rw [_root_.Formalism.L2.Th1.F.weierstrass_p_series_coeff L 2, if_neg (by norm_num)]
   first
     | (simp only [PeriodPair.g₂]; push_cast; ring)
     | (unfold PeriodPair.g₂; push_cast; ring)

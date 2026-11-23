@@ -164,15 +164,7 @@ theorem finite_primes_one_sub (F : Type) [Field F] [NumberField F] (e : FiniteAd
   exact ⟨v, he.mem_toFinset.1 hv,
     (RingHom.ker_isMaximal_of_surjective _ (adEval_surjective F v)).eq_of_le hP.ne_top hvP⟩
 
-theorem infinite_norm_one {F E : Type} [Field F] [Field E] [CharZero E] [Algebra F E] (c : E ≃ₐ[F] E)
-    (hc : ∀ x, c (c x) = x) (hc1 : c ≠ 1) : {l : E | l * c l = 1}.Infinite := by
-  first
-  | exact @_root_.GlobalTheory.NormOneInfinite.normOne_infinite
-  | exact _root_.GlobalTheory.NormOneInfinite.normOne_infinite
-  | (apply _root_.GlobalTheory.NormOneInfinite.normOne_infinite <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NormOneInfinite.normOne_infinite <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NormOneInfinite.normOne_infinite <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NormOneInfinite.normOne_infinite ..)
+alias infinite_norm_one := _root_.GlobalTheory.NormOneInfinite.normOne_infinite
 
 theorem exists_norm_one_isUnit_det : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (c : E ≃ₐ[F] E), Module.finrank F E = 2 → (∀ x, c (c x) = x) → c ≠ 1 → ∀ (n : ℕ) (g : Matrix (Fin n) (Fin n) (RA F E)) (e : FiniteAdeleRing (𝓞 F) F), e * e = e → {v | e v ≠ 0}.Finite → ∃ lam : E, lam * c lam = 1 ∧ IsUnit (1 + ((1 : FiniteAdeleRing (𝓞 F) F) ⊗ₜ[F] lam) • ((e ⊗ₜ[F] (1 : E)) • g + ((1 - e) ⊗ₜ[F] (1 : E)) • (1 : Matrix (Fin n) (Fin n) (RA F E)))).det := by
   intro F E _ _ _ _ _ c hrk hc hc1 n g e he hfin

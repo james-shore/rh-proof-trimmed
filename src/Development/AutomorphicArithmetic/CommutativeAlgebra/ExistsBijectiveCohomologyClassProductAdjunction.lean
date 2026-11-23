@@ -206,14 +206,6 @@ private theorem upL_d (I : Cx R) {T : Scheme.{0}} (g : T ⟶ W) (s t : ℤ) (a :
     Sec.map (I.d s t) (upL I g s a) = upL I g t (Sec.map ((Bc W I).d s t) a) :=
   map_sec_res (I.d s t) (prod.lift g (𝟙 T)) (show Sec (I.X s) (W ⨯ T) from a)
 
-private theorem ev_nat' {E : Spc} {I : Cx R} {n : ℤ} (α : Cochain ((chains R).obj E) I n) (p : ℕ) (s : ℤ)
-    (h : -(p : ℤ) + n = s) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sx E p U) :
-    Sec.res g (ev α p s h U x) = ev α p s h V (x.res g) := by
-  let f := (chainsXIso R E p).inv ≫ α.v _ _ h
-  change Sec.res g (Sec.map f (freeGen R _ U x)) = _
-  rw [CupSpec.map_res, CupSpec.freeGen_res]
-  rfl
-
 private theorem ev_ext' {E : Spc} {I : Cx R} {n : ℤ} {α β : Cochain ((chains R).obj E) I n}
     (h : ∀ p s h U x, ev α p s h U x = ev β p s h U x) : α = β := by
   ext i j hij : 1
@@ -252,7 +244,7 @@ private theorem up_ex {I : Cx R} {n : ℤ} (γ : Cochain ((chains R).obj E) (Bc 
       ∀ p s h T y, ev β p s h T y = upL I (fstW y) s (ev γ p s h T (sndE y)) :=
   cochain_of_natural_values (fun p s h T y => upL I (fstW y) s (ev γ p s h T (sndE y))) (by
     intro p s h V U g y
-    rw [upL_nat, ev_nat', fst_res, snd_res])
+    rw [upL_nat, _root_.GlobalTheory.EtC.CupSpec.ev_res, fst_res, snd_res])
 
 private theorem down_ex {I : Cx R} {n : ℤ} (β : Cochain ((chains R).obj (sch.obj W ⨯ E)) I n) :
     ∃ γ : Cochain ((chains R).obj E) (Bc W I) n, ∀ p s h T x, ev γ p s h T x =
@@ -262,7 +254,7 @@ private theorem down_ex {I : Cx R} {n : ℤ} (β : Cochain ((chains R).obj (sch.
     intro p s h V U g x
     change Sec.res (Limits.prod.map (𝟙 W) g) (ev β p s h (W ⨯ U) (mkP prod.fst (x.res prod.snd))) =
       ev β p s h (W ⨯ V) (mkP prod.fst ((x.res g).res prod.snd))
-    rw [ev_nat']
+    rw [_root_.GlobalTheory.EtC.CupSpec.ev_res]
     congr 1
     apply pair_ext
     · rw [fst_res, fst_mkP, fst_mkP]
@@ -293,7 +285,7 @@ private theorem up_down {I : Cx R} {n : ℤ} (β : Cochain ((chains R).obj (sch.
   intro p s h T y
   rw [ev_up, ev_down]
   change Sec.res (prod.lift (fstW y) (𝟙 T)) (ev β p s h (W ⨯ T) (mkP prod.fst ((sndE y).res prod.snd))) = _
-  rw [ev_nat']
+  rw [_root_.GlobalTheory.EtC.CupSpec.ev_res]
   congr 1
   apply pair_ext
   · rw [fst_res, fst_mkP]
@@ -306,7 +298,7 @@ private theorem down_up {I : Cx R} {n : ℤ} (γ : Cochain ((chains R).obj E) (B
   intro p s h T x
   rw [ev_down]
   change ev (up γ) p s h (W ⨯ T) (mkP prod.fst (x.res prod.snd)) = _
-  rw [ev_up, fst_mkP, snd_mkP, ← ev_nat']
+  rw [ev_up, fst_mkP, snd_mkP, ← _root_.GlobalTheory.EtC.CupSpec.ev_res]
   exact upL_res I s _
 
 private theorem up_add {I : Cx R} {n : ℤ} (a b : Cochain ((chains R).obj E) (Bc W I) n) :

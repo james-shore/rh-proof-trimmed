@@ -259,20 +259,7 @@ theorem exists_torsion_lift {O O' : Type} [CommRing O] [CommRing O'] [IsLocalRin
     exact congrArg Subtype.val hb'
 
 open EtBaseChange in
-theorem mem_nonzeroLocus_of_via {R R' : Type} [CommRing R] [CommRing R'] {x : KeyIn R} {x' : KeyIn R'}
-    {φ : x'.P.A.left ⟶ x.P.A.left} {w : LB.Iso x'.P.L (x.P.L.pull φ)} {l : ℕ} {s' : RR x' l} {s : RR x l}
-    (hs : SecVia x' x φ w s' s) (y : x'.P.A.left) (hy : y ∈ Out.nonzeroLocus s') : φ y ∈ Out.nonzeroLocus s := by
-  obtain ⟨i, hi⟩ := TopologicalSpace.Opens.mem_iSup.1 hy
-  obtain ⟨k, hk⟩ := exists_chart x.P.isLB (φ y)
-  have hle : (x.P.L.pull φ).U (fun _ => k) ⊓ x'.P.L.U i ≤ φ ⁻¹ᵁ x.P.L.U k := fun y hy => mem_pull.1 hy.1
-  have e := hs (fun _ => k) i hle
-  have hm : y ∈ (x.P.L.pull φ).U (fun _ => k) ⊓ x'.P.L.U i := ⟨mem_pull.2 hk, x'.P.A.left.basicOpen_le _ hi⟩
-  let v : Γ(x'.P.A.left, (x.P.L.pull φ).U (fun _ => k) ⊓ x'.P.L.U i)ˣ := w.s (fun _ => k, i)
-  have h1 : y ∈ x'.P.A.left.basicOpen ((φ.appLE _ _ hle).hom (s.f k)) := by
-    refine (congrArg x'.P.A.left.basicOpen e).ge ((Scheme.basicOpen_mul _ _ _).ge ⟨?_, ?_⟩)
-    · exact (x'.P.A.left.basicOpen_of_isUnit (v.isUnit.pow l)).ge hm
-    · exact (Scheme.basicOpen_res _ _ _).ge ⟨hm, hi⟩
-  exact TopologicalSpace.Opens.mem_iSup.2 ⟨k, ((Scheme.basicOpen_appLE φ _ (x.P.L.U k) hle (s.f k)).le h1).2⟩
+alias mem_nonzeroLocus_of_via := _root_.GlobalTheory.HenselZero.map_mem_nonzeroLocus_via
 
 
 open EtBaseChange in

@@ -100,7 +100,7 @@ theorem integrable_hmon_gauss (k : ℤ) :
 
 theorem fourier_gauss (n : I → ℤ) (l : EuclideanSpace ℂ I) :
     𝓕 (fun w : EuclideanSpace ℂ I => gauss n (WithLp.ofLp w)) l = kappa n * gauss n (fun i => l i / 2) := by
-  have h := GlobalTheory.T.fourier_prod_single_coordinate_functions I (fun i z => hmon (n i) z * Complex.exp ((-2 * Real.pi * ‖z‖ ^ 2 : ℝ) : ℂ))
+  have h := _root_.GlobalTheory.fourier_prod_coord_complex I (fun i z => hmon (n i) z * Complex.exp ((-2 * Real.pi * ‖z‖ ^ 2 : ℝ) : ℂ))
     (fun i => integrable_hmon_gauss (n i)) l
   have e : (fun w : EuclideanSpace ℂ I => gauss n (WithLp.ofLp w)) =
       fun w => ∏ i, (hmon (n i) (w i) * Complex.exp ((-2 * Real.pi * ‖w i‖ ^ 2 : ℝ) : ℂ)) := rfl

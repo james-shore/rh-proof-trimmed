@@ -98,7 +98,7 @@ theorem exists_coord_pullAdd_of_pos : ∀ (O : Type) [CommRing O] [IsDedekindDom
     have : s i ∈ (S : Set (Fin m)) := hs ▸ Set.mem_range_self i
     simpa [hS] using this
   have hdesc : ∀ i : Fin S.card, ∃ ε : LinearMap.BilinForm ℤ Y, ∀ x y, ε (f x) (f y) = δ (s i) x y := fun i =>
-    GlobalTheory.T.exists_intBilinForm_descend_along_surjective f hf _ (hvan _ (hspos i)) fun x hx y => by rw [(hδ.mem _).1]; exact hvan _ (hspos i) x hx y
+    _root_.GlobalTheory.exists_bilinForm_descend_of_surjective f hf _ (hvan _ (hspos i)) fun x hx y => by rw [(hδ.mem _).1]; exact hvan _ (hspos i) x hx y
   choose ε hε using hdesc
   have hεm : ∀ i, ε i ∈ balForms bar Y := fun i => mem_balForms_of_descend hb τ hf hsm (hδ.mem _) (hε i)
   have hεn : ∀ i y, 0 ≤ ε i y y := fun i y => by

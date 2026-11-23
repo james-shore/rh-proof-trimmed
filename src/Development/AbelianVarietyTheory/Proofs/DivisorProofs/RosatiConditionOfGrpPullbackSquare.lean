@@ -51,15 +51,11 @@ noncomputable section
 
 namespace GlobalTheory.RosatiPull
 
-theorem sq_left_ext {H : Scheme.{0}} {G : Over H} {Z : Scheme.{0}} {a b : Z ⟶ (G ⊗ G).left}
-    (h1 : a ≫ (fst G G).left = b ≫ (fst G G).left) (h2 : a ≫ (snd G G).left = b ≫ (snd G G).left) : a = b :=
-  pullback.hom_ext h1 h2
-
 theorem rosatiFor_pull : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (S H E : Scheme.{0}) (A₀ : Over S) [GrpObj A₀] (P : LB (G2 A₀).left), P.IsLB → ∀ (AH : Over H) [GrpObj AH] (AE : Over E) [GrpObj AE] (f : E ⟶ H) (φ : AE.left ⟶ AH.left) (φ₂ : (G2 AE).left ⟶ (G2 AH).left) (φ₂H : (G2 AH).left ⟶ (G2 A₀).left) (actH : OActN D.O AH) (actE : OActN D.O AE), IsGrpPullback AE AH f φ → IsSquare φ φ₂ → (∀ a : D.O, (actE.act a).left ≫ φ = φ ≫ (actH.act a).left) → RosatiFor D actH (P.pull φ₂H) → RosatiFor D actE (P.pull (φ₂ ≫ φ₂H)) := by
   intro p _ D S H E A₀ _ P hP AH _ AE _ f φ φ₂ φ₂H actH actE _ hsq hact hR c
   have hu : (lift (fst AE AE ≫ actE.act c) (snd AE AE)).left ≫ φ₂ =
       φ₂ ≫ (lift (fst AH AH ≫ actH.act c) (snd AH AH)).left := by
-    apply sq_left_ext
+    apply _root_.GlobalTheory.GrpSpread.sq_ext
     · simp only [Category.assoc, ← Over.comp_left, lift_fst]
       rw [hsq.1]
       simp only [← Category.assoc, ← Over.comp_left, lift_fst]
@@ -70,7 +66,7 @@ theorem rosatiFor_pull : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (S H E : Sch
       simp only [← Category.assoc, ← Over.comp_left, lift_snd]
   have hv : (lift (fst AE AE) (snd AE AE ≫ actE.act (D.star c).unop)).left ≫ φ₂ =
       φ₂ ≫ (lift (fst AH AH) (snd AH AH ≫ actH.act (D.star c).unop)).left := by
-    apply sq_left_ext
+    apply _root_.GlobalTheory.GrpSpread.sq_ext
     · simp only [Category.assoc, ← Over.comp_left, lift_fst]
       rw [hsq.1]
       simp only [← Category.assoc, ← Over.comp_left, lift_fst]

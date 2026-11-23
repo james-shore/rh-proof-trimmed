@@ -51,6 +51,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import Formalism.LocalRingCardinality.SpanPowerMembership.Places
 
 @[expose] public section
 
@@ -99,17 +100,7 @@ section Val
 
 variable {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K))
 
-theorem vLa_mul {a b : K} (ha : a ≠ 0) (hb : b ≠ 0) : vLa la (a * b) = vLa la a + vLa la b := by
-  simp only [vLa, map_mul]
-  rw [WithZero.log_mul ((Valuation.ne_zero_iff _).2 ha) ((Valuation.ne_zero_iff _).2 hb)]
-  ring
-
 theorem vLa_one : vLa la (1 : K) = 0 := by simp [vLa]
-
-theorem vLa_pow {a : K} (ha : a ≠ 0) (n : ℕ) : vLa la (a ^ n) = n * vLa la a := by
-  induction n with
-  | zero => simp [vLa_one]
-  | succ n ih => rw [pow_succ, vLa_mul la (pow_ne_zero _ ha) ha, ih]; push_cast; ring
 
 theorem vLa_natCast_nonneg {n : ℕ} (hn : n ≠ 0) : 0 ≤ vLa la (n : K) := by
   have e : (n : K) = algebraMap (𝓞 K) K (n : 𝓞 K) := (map_natCast _ n).symm
@@ -121,22 +112,13 @@ theorem vLa_natCast_nonneg {n : ℕ} (hn : n ≠ 0) : 0 ≤ vLa la (n : K) := by
   simp only [vLa]
   omega
 
-theorem exists_prime_mem : ∃ p : ℕ, p.Prime ∧ (p : 𝓞 K) ∈ la.asIdeal := by
-  haveI := la.isMaximal
-  haveI : Finite (𝓞 K ⧸ la.asIdeal) := la.asIdeal.finiteQuotientOfFreeOfNeBot la.ne_bot
-  letI := Ideal.Quotient.field la.asIdeal
-  obtain ⟨p, hp⟩ := CharP.exists (𝓞 K ⧸ la.asIdeal)
-  refine ⟨p, CharP.char_is_prime (𝓞 K ⧸ la.asIdeal) p, ?_⟩
-  rw [← Ideal.Quotient.eq_zero_iff_mem, map_natCast]
-  exact CharP.cast_eq_zero _ p
-
 theorem vLa_prod_ge {S : Finset ℕ} (hS : ∀ p ∈ S, p ≠ 0) (e : ℕ → ℕ) {q : ℕ} (hq : q ∈ S) :
     (e q : ℤ) * vLa la (q : K) ≤ vLa la (((∏ p ∈ S, p ^ e p : ℕ)) : K) := by
   have hM : (∏ p ∈ S.erase q, p ^ e p) ≠ 0 :=
     Finset.prod_ne_zero_iff.2 fun p hp => pow_ne_zero _ (hS p (Finset.mem_of_mem_erase hp))
   have hq0 : (q : K) ≠ 0 := Nat.cast_ne_zero.2 (hS q hq)
   rw [← Finset.mul_prod_erase S _ hq, Nat.cast_mul, Nat.cast_pow,
-    vLa_mul la (pow_ne_zero _ hq0) (Nat.cast_ne_zero.2 hM), vLa_pow la hq0]
+    _root_.Formalism.L2.Pj.Crude.crv_vLa_mul la (pow_ne_zero _ hq0) (Nat.cast_ne_zero.2 hM), _root_.Formalism.L2.Pj.Crude.crv_vLa_pow la hq0]
   have := vLa_natCast_nonneg (K := K) la hM
   omega
 
@@ -217,7 +199,7 @@ theorem clear_integral {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (hH
   have hSp : ∀ p ∈ S, p.Prime := fun p hp => by
     have : p ∈ GlobalTheory.CompHt.htPrimes l Bd := by rw [hS]; exact hp
     exact this.1
-  obtain ⟨p, hp, hpl⟩ := exists_prime_mem la
+  obtain ⟨p, hp, hpl⟩ := _root_.Formalism.BasicNotions.Examples₂.PlacesToy.exists_prime_mem la
   have hval := (GlobalTheory.CompHt.mixVals Xo c Bd).2 la w hw
   have hN0 := clearN_ne_zero (E := E) hSp u
   have hN : ((clearN E S u : ℕ) : c.F) ≠ 0 := Nat.cast_ne_zero.2 hN0
@@ -311,9 +293,9 @@ theorem modelSmall_encard_le [IsGalois ℚ E] (hGv : Top.Given) {r : ℕ} (U : �
     ∃ g : Rul Xo c, (b' : Rul Xo c) = ((clearN E (o.toTowerOrigin.S Bn) ((τ + k₀) • u) : ℕ) : c.F) • g ∧
       evC h Z g = trOf Rd ((τ + k₀) • u) (s * f i)) ?_ ?_
   · intro s hs i
-    have hprod := GlobalTheory.T.model_small_sections_mul E H Dw l Xo c Y T o Bn b (τ • u) (k₀ • u) R R₀ hR hR₀ s hs (f i) (hfs i)
+    have hprod := _root_.GlobalTheory.CompanionTheory.Ar.Plug.modelSmall_mul_mem E H Dw l Xo c Y T o Bn b (τ • u) (k₀ • u) R R₀ hR hR₀ s hs (f i) (hfs i)
     rw [← add_nsmul] at hprod
-    obtain ⟨g, hg, hev, hnorm, hval⟩ := GlobalTheory.T.uniform_norm_all_tower_bound hGv E H Dw l Xo c r U h e hL hUn x hx Y T o Bn b Fr Z Rd hGeo
+    obtain ⟨g, hg, hev, hnorm, hval⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.descent_small hGv E H Dw l Xo c r U h e hL hUn x hx Y T o Bn b Fr Z Rd hGeo
       ((τ + k₀) • u) (R * R₀) (strictAnti_nsmul hanti (by omega)) (mul_nonneg hR hR₀) (s * f i) hprod
     refine ⟨⟨((clearN E (o.toTowerOrigin.S Bn) ((τ + k₀) • u) : ℕ) : c.F) • g, Submodule.smul_mem _ _ hg⟩,
       ⟨clear_integral U hHT hS Z _ g hg hval, fun σ hσ z hz => ?_⟩, g, rfl, hev⟩
@@ -337,13 +319,13 @@ open GlobalTheory.CompanionTheory.Ar.Plug.SlopeVol
 
 theorem slope_sub_cost_le_compVolSlope : GlobalTheory.CompanionTheory.Ar.Pub.NefRR → Top.Given → BirationalPullbackPushforwardFormula → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsGalois ℚ E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (h : GenFrEx Xo c) (e : Comp Xo c → Rul Xo c), CompLaws U h e → Ref.UnifAll Xo c → ∀ x : ℝ, (∀ σ, GoodEmb c σ → ∀ k (τ : E →+* ℂ), ‖τ ((U σ).X k).ξ0‖ = x) → ∀ (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) [DecidableEq (CMType H)] (T : Top.RootTower (CMType H) (Dw.p + Dw.q)) (o : Top.GoodOrigin Y T) (κ : Comp Xo c ≃ T.Comp) (II : IntersectionSystem), CompOf o.toTowerOrigin κ → IsFullIntersectionSystem II → T.Proportional → T.T1 II → ∀ (Z : Comp Xo c) (u : GlobalTheory.AllWt.Weight Dw) (g B : ℝ), (∀ τ, StrictAnti (u τ)) → Top.WeightHyp T.j (reW u) g → Top.bigB0 (reW u) g ≤ B → ((T.slope II ⌊B⌋₊ (κ Z) (reW u) - 2 * costTwo l B * GlobalTheory.CovHt.l1 u : ℝ) : EReal) ≤ GlobalTheory.CompHt.compVolSlope U x 8 (GlobalTheory.CompHt.mixVals Xo c B) Z u := by
   intro hNef hGv h6 E _ _ _ _ H Dw l Xo c r U h e hL hUn x hx Y _ T o κ II hCO hII hProp hT1 Z u g B hanti hW hB
-  obtain ⟨-, hdeg, hpos⟩ := (GlobalTheory.T.uniform_norm_degree_bound hNef hGv E H Dw l Xo c r U h e hL x hx Y T o κ II hCO hII hProp hT1).1 Z u hanti
+  obtain ⟨-, hdeg, hpos⟩ := (_root_.GlobalTheory.CompanionTheory.Ar.Plug.topGrowth hNef hGv E H Dw l Xo c r U h e hL x hx Y T o κ II hCO hII hProp hT1).1 Z u hanti
   have hBn : Top.bigB0 (reW u) g < (⌊B⌋₊ : ℝ) + 1 := lt_of_le_of_lt hB (Nat.lt_floor_add_one B)
-  obtain ⟨Fr, Rd, hGeo⟩ := GlobalTheory.T.tower_origin_component_bound E H Dw l Xo c r U h e hL Y T o.toTowerOrigin κ hCO ⌊B⌋₊ Z
-  obtain ⟨k₀, R₀, f, h8, hR₀, hfs, -, hinj⟩ := GlobalTheory.T.generic_frame_component_bound hGv E H Dw l Xo c h Y T o ⌊B⌋₊ (κ Z) Fr Z Rd II u g hII hT1 hW hBn
-  have hHT : HTLow Xo c := GlobalTheory.T.low_height_of_given hGv E H Dw l Xo c
+  obtain ⟨Fr, Rd, hGeo⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.exists_geoRead E H Dw l Xo c r U h e hL Y T o.toTowerOrigin κ hCO ⌊B⌋₊ Z
+  obtain ⟨k₀, R₀, f, h8, hR₀, hfs, -, hinj⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.exists_small_basis hGv E H Dw l Xo c h Y T o ⌊B⌋₊ (κ Z) Fr Z Rd II u g hII hT1 hW hBn
+  have hHT : HTLow Xo c := _root_.GlobalTheory.CompanionTheory.Ar.Plug.htLow hGv E H Dw l Xo c
   have hdim : GlobalTheory.CompHt.dimFlag Dw = Top.dimFl (CMType H) (Dw.p + Dw.q) :=
-    (GlobalTheory.T.tower_weight_of_zero E H Dw l Xo c (T.M ⌊B⌋₊ (κ Z)) u).2.2.2.2.2.1
+    (_root_.GlobalTheory.CompanionTheory.Ar.Plug.integer_weights_vocab E H Dw l Xo c (T.M ⌊B⌋₊ (κ Z)) u).2.2.2.2.2.1
   have hS : GlobalTheory.CompHt.htPrimes l B = ↑(o.toTowerOrigin.S ⌊B⌋₊) := by
     ext p
     simp only [GlobalTheory.CompHt.htPrimes, Set.mem_setOf_eq, Finset.mem_coe, o.toTowerOrigin.S_iff, Top.RootTower.InS,
@@ -368,7 +350,7 @@ theorem slope_sub_cost_le_compVolSlope : GlobalTheory.CompanionTheory.Ar.Pub.Nef
       (T.slope II ⌊B⌋₊ (κ Z) (reW u) - 2 * costTwo (E := E) l B * GlobalTheory.CovHt.l1 u + t) := rfl
   refine ofReal_mul_le_of_forall_pos fun ε hε => ?_
   set t' : ℝ := t - 2 * costTwo (E := E) l B * GlobalTheory.CovHt.l1 u - ε with ht'
-  have hcount := GlobalTheory.T.full_intersection_weight_bound hGv h6 E H Dw l Xo c Y T o ⌊B⌋₊ (κ Z) II u g hII hT1 hW hBn t'
+  have hcount := _root_.GlobalTheory.CompanionTheory.Ar.Plug.volume_ge_slope hGv h6 E H Dw l Xo c Y T o ⌊B⌋₊ (κ Z) II u g hII hT1 hW hBn t'
   have hev : ∀ᶠ τ : ℕ in atTop, (modelSmall (o.toTowerOrigin.Or ⌊B⌋₊ (κ Z)) (τ • u) (Real.exp (τ * t'))).encard ≤
       (GlobalTheory.CompHt.smallOn U x (GlobalTheory.CompHt.mixVals Xo c B) Z ((τ + k₀) • GlobalTheory.AllWt.wtOf Dw u 0)
         (Real.exp (((τ + k₀ : ℕ) : ℝ) * t))).encard ^ (o.toTowerOrigin.Or ⌊B⌋₊ (κ Z)).Fl.deg := by
@@ -394,7 +376,7 @@ theorem slope_sub_cost_le_compVolSlope : GlobalTheory.CompanionTheory.Ar.Pub.Nef
     rw [← Real.exp_add, Real.exp_le_exp, ht']
     push_cast
     nlinarith [hτ1]
-  have hshift := GlobalTheory.T.count_volume_power_comparison (GlobalTheory.CompHt.dimFlag Dw) (Module.finrank ℚ c.F) (o.toTowerOrigin.Or ⌊B⌋₊ (κ Z)).Fl.deg k₀
+  have hshift := _root_.GlobalTheory.CompanionTheory.Ar.Plug.countVol_le_of_le_shift_pow (GlobalTheory.CompHt.dimFlag Dw) (Module.finrank ℚ c.F) (o.toTowerOrigin.Or ⌊B⌋₊ (κ Z)).Fl.deg k₀
     (fun τ => (modelSmall (o.toTowerOrigin.Or ⌊B⌋₊ (κ Z)) (τ • u) (Real.exp (τ * t'))).encard)
     (fun τ => (GlobalTheory.CompHt.smallOn U x (GlobalTheory.CompHt.mixVals Xo c B) Z (τ • GlobalTheory.AllWt.wtOf Dw u 0) (Real.exp (τ * t))).encard)
     hn hd h8 hev
@@ -411,5 +393,4 @@ theorem slope_sub_cost_le_compVolSlope : GlobalTheory.CompanionTheory.Ar.Pub.Nef
 
 end GlobalTheory.CompanionTheory.Ar.Plug.SlopeVolM
 
-theorem _root_.GlobalTheory.CompanionTheory.Relay.uniform_all_norm_height_bound : GlobalTheory.CompanionTheory.Ar.Pub.NefRR → Top.Given → BirationalPullbackPushforwardFormula → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsGalois ℚ E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (h : GenFrEx Xo c) (e : Comp Xo c → Rul Xo c), CompLaws U h e → Ref.UnifAll Xo c → ∀ x : ℝ, (∀ σ, GoodEmb c σ → ∀ k (τ : E →+* ℂ), ‖τ ((U σ).X k).ξ0‖ = x) → ∀ (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) [DecidableEq (CMType H)] (T : Top.RootTower (CMType H) (Dw.p + Dw.q)) (o : Top.GoodOrigin Y T) (κ : Comp Xo c ≃ T.Comp) (II : IntersectionSystem), CompOf o.toTowerOrigin κ → IsFullIntersectionSystem II → T.Proportional → T.T1 II → ∀ (Z : Comp Xo c) (u : GlobalTheory.AllWt.Weight Dw) (g B : ℝ), (∀ τ, StrictAnti (u τ)) → Top.WeightHyp T.j (reW u) g → Top.bigB0 (reW u) g ≤ B → ((T.slope II ⌊B⌋₊ (κ Z) (reW u) - 2 * costTwo l B * GlobalTheory.CovHt.l1 u : ℝ) : EReal) ≤ GlobalTheory.CompHt.compVolSlope U x 8 (GlobalTheory.CompHt.mixVals Xo c B) Z u :=
-  GlobalTheory.CompanionTheory.Ar.Plug.SlopeVolM.slope_sub_cost_le_compVolSlope
+alias _root_.GlobalTheory.CompanionTheory.Relay.uniform_all_norm_height_bound := _root_.GlobalTheory.CompanionTheory.Ar.Plug.SlopeVolM.slope_sub_cost_le_compVolSlope

@@ -78,9 +78,9 @@ noncomputable def hom : ∀ N, Pr N →₀ ℤ
 lemma step_spec (N : ℕ) (c : Pr N →₀ ℤ) (hc : Pr.Deg (N + 1) c)
     (hd : Pr.bd (Pr.d N c) = Pr.bd (Pr.aw N - Pr.wa N)) :
     Pr.Deg (N + 2) (step N c) ∧ Pr.d (N + 1) (step N c) = Pr.aw (N + 1) - Pr.wa (N + 1) - Pr.bd c := by
-  obtain ⟨-, -, -, hbdeg, -, hdbd, haw⟩ := GlobalTheory.T.prism_chain_complex_boundary_identities
+  obtain ⟨-, -, -, hbdeg, -, hdbd, haw⟩ := _root_.GlobalTheory.EtC.PrCx.pr_complex
   have H : ∃ e, Pr.Deg (N + 2) e ∧ Pr.d (N + 1) e = Pr.aw (N + 1) - Pr.wa (N + 1) - Pr.bd c := by
-    apply GlobalTheory.T.standardSimplexFacePairs_acyclic_positive_degree (N + 1) N
+    apply _root_.GlobalTheory.PrAcyc.pr_acyclic (N + 1) N
     · exact deg_sub (deg_sub (haw (N + 1)).1 (haw (N + 1)).2) (hbdeg _ _ _ hc)
     · obtain ⟨h1, h2⟩ := GlobalTheory.T.alexanderWhitneyDiagonal_and_swap_chain_maps N
       rw [map_sub, map_sub, h1, h2, hdbd, hd, bd_sub, sub_self]
@@ -93,7 +93,7 @@ lemma hom_spec (N : ℕ) : Pr.Deg (N + 1) (hom N) ∧ Pr.bd (Pr.d N (hom N)) = P
   | zero => exact ⟨deg_zero, by simp [hom, aw_zero_eq_wa_zero]⟩
   | succ N ih =>
     obtain ⟨h1, h2⟩ := step_spec N (hom N) ih.1 ih.2
-    obtain ⟨-, -, -, -, hbb, -, -⟩ := GlobalTheory.T.prism_chain_complex_boundary_identities
+    obtain ⟨-, -, -, -, hbb, -, -⟩ := _root_.GlobalTheory.EtC.PrCx.pr_complex
     refine ⟨h1, ?_⟩
     show Pr.bd (Pr.d (N + 1) (step N (hom N))) = _
     rw [h2, bd_sub, hbb, sub_zero]

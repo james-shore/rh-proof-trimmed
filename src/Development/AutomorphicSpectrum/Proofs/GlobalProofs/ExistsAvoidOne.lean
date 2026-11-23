@@ -127,11 +127,11 @@ theorem exists_classZeta (𝔣 : Ideal (𝓞 F)) (h𝔣 : 𝔣 ≠ ⊥) (S : Fin
       rintro rfl
       simp only [Ideal.absNorm_bot] at hl
       exact Nat.not_prime_zero hl
-    obtain ⟨τ, hτ⟩ := GlobalTheory.T.ray_class_prime_multiplication_permutation F 𝔣 𝔠 S h𝔣 hpr h𝔠0 hcop hS hd hc
+    obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.shift_perm F 𝔣 𝔠 S h𝔣 hpr h𝔠0 hcop hS hd hc
     choose T hTd hTs hTq using hWt 𝔠 hpr hl hav
     refine ⟨𝔠, hl, hB, τ, T, hTd, fun c s hs => ?_, hTq⟩
     obtain ⟨e, he⟩ := hτ c
-    exact GlobalTheory.T.partial_zeta_prime_twist_summable F 𝔣 𝔠 (τ c).1 c.1 hl e he s _ hs (hsum _ s hs) (hsum _ s hs) (hTs c s hs)
+    exact _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.classWeight_relation F 𝔣 𝔠 (τ c).1 c.1 hl e he s _ hs (hsum _ s hs) (hsum _ s hs) (hTs c s hs)
   obtain ⟨𝔠, hl, -, τ, T, hTd, hTr, hTq⟩ := key 0
   obtain ⟨𝔠', hl', hB', τ', T', hTd', hTr', -⟩ := key (Ideal.absNorm 𝔠)
   obtain ⟨Z, hZd, hZD, hZq⟩ := GlobalTheory.T.partial_zeta_meromorphic_from_twists S (fun c => classSeries 𝔣 c.1) T T' _ _ τ τ' hl hl' hB'.ne hTd hTd' hTr hTr'
@@ -148,7 +148,7 @@ open GlobalTheory.CompanionTheory.Hypotheses₂.Shintani in
 theorem siegelKlingen : GlobalTheory.Published.SiegelKlingen := by
   classical
   intro F _ _ _ 𝔣 h𝔣 ε hε
-  obtain ⟨S, hS, hd, hc⟩ := GlobalTheory.T.ray_class_group_finite_representatives F 𝔣 h𝔣
+  obtain ⟨S, hS, hd, hc⟩ := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.finRay F 𝔣 h𝔣
   obtain ⟨Z, hZ⟩ := exists_classZeta F 𝔣 h𝔣 S hS hd hc
   have hZ' : ∀ c : S, IsRayL 𝔣 (rayIndicator 𝔣 c.1) (Z c) := fun c => isRayZeta_iff.1 (hZ c).1
   have hind : ∀ I : {I : Ideal (𝓞 F) // CoprimeTo F 𝔣 I}, ∑ c : S, (ε c.1 : ℂ) * ((rayIndicator 𝔣 c.1 I.1 : ℚ) : ℂ) = (ε I.1 : ℂ) := by

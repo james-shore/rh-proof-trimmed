@@ -227,7 +227,7 @@ theorem locExt : ∀ (e : ℕ) (X : Type) [TopologicalSpace X] (A : FinHolAtlas 
   refine ⟨ψ.source ∩ ψ ⁻¹' Metric.ball (ψ x) (r / 2), fun y => (G ∘ ψ) y - th.φ x y,
     ψ.isOpen_inter_preimage Metric.isOpen_ball, ⟨hxψ, Metric.mem_ball_self (half_pos hr)⟩, ?_, ?_⟩
   · intro j
-    have h1 := GlobalTheory.T.smoothOn_of_chart_composition e X A ψ (Metric.ball (ψ x) (r / 2)) G hψ Metric.isOpen_ball
+    have h1 := _root_.GlobalTheory.CompanionTheory.Metric.smoothOn_comp_compatChart e X A ψ (Metric.ball (ψ x) (r / 2)) G hψ Metric.isOpen_ball
       (fun z hz => (hball (hhalf hz)).1.1) hGs
     exact (h1 j).sub ((hth.1 x j).mono fun y hy => ⟨hy.1, hNU hy.2⟩)
   · intro y hy hyb

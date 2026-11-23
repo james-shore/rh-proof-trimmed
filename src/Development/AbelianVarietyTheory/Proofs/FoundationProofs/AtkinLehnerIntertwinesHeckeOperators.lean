@@ -365,6 +365,6 @@ theorem alHecke : ∀ (k N l : ℕ) (χ : DirichletCharacter ℂ N) (a a' : ℕ 
       ⟨by rw [alConjInv_det h hN hl0 δ hδ.2.1]; exact hδ.1, alConjInv_mem δ, fun hd => hδ.2.2 (by
         have := dvd_sub hd (alConjInv_00_l h δ); simpa using this)⟩
     exact slz_alQ_hsum k χ h hk hN hl0 (DU (N * l) l) l hl0 hcop (fun δ hδ => ⟨hδ.1, hδ.2.1⟩) hφU hψU
-      (repU l) ((zrepU (N * l) l hl).1 (dvd_mul_left l N)) (qs a) (qs a') hqs hinv
+      (repU l) ((_root_.GlobalTheory.EisM.lrep_repU (N * l) l hl).1 (dvd_mul_left l N)) (qs a) (qs a') hqs hinv
 
 end GlobalTheory.EisM.AtkinLehner

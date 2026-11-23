@@ -116,7 +116,7 @@ theorem IsSncChart.discrep_eq_formOrd_sub_sum : ∀ (Y : Scheme.{0}) [IsIntegral
   set k0 : Y.functionFieldˣ := Units.mk0 c hc0 with hk0
   have hηk : η = (k0 : Y.functionField) • ω := by rw [hk0, Units.val_mk0]; exact hcη.symm
   have hKy : K.IsEqn y k0 := hK U (dOn q z) hc.frame y hy k0 hηk
-  have hΘy := GlobalTheory.T.snc_chart_divisor_equation ℂ Y q n B y U hy z J w u hc Θ hΘ
+  have hΘy := _root_.GlobalTheory.Discrepancy.IsSncChart.isEqn_monomial ℂ Y q n B y U hy z J w u hc Θ hΘ
   set M : Y.functionFieldˣ := ∏ j ∈ J, u j ^ Θ.mult (w j) with hM
   have hsum : (Θ + m • K).IsEqn y (M * k0 ^ m) := hΘy.add (hKy.nsmul m)
   set v : Y.functionFieldˣ := g * (M * k0 ^ m)⁻¹ with hv

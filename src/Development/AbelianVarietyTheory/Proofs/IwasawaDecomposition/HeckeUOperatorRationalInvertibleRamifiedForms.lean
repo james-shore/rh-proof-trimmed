@@ -298,7 +298,7 @@ theorem commensurable_of_tied (D : D7) (u : D.what₂.Word) (T : Forms0 D u)
   choose p hp hy hok using GlobalTheory.T.exists_equivariant_local_pair_map_adelic D u T.atT 0 _ T.lv0 T.cls0 T.fMe0 T.fv0 (Main.herm T)
   refine GlobalTheory.T.ramifiedForms_commensurable_of_U_stable_injective D u (fun v x hx => ?_) (fun v φ hφ => Main.uop_inj T v (p v) (hp v) (hy v) φ hφ) w
   have h1 := Main.uop_ram T v (p v) (hp v) (hy v) (hok v) _ hx
-  obtain ⟨y, hy'⟩ := GlobalTheory.T.upwardOperator_preserves_rationality D u T h v x (by rw [(D.fm u).Fi_zero]; exact h1.1)
+  obtain ⟨y, hy'⟩ := _root_.GlobalTheory.LevelHecke.uop_rat D u T h v x (by rw [(D.fm u).Fi_zero]; exact h1.1)
   exact ⟨y, by show (D.fm u).emb 0 y ∈ (D.mem u).A.Mram; rw [hy']; exact h1, hy'⟩
 
 theorem commensurable_at_level : ∀ (X : Stages), Nonempty (PreX X.B.toPre) → ∀ (H : Formalism.L2.Herm.ColsHermS X.toD7) (T : ∀ u, Formalism.L2.Forms.Forms0 X.toD7 u), (∀ u, Formalism.L2.Forms.Joint0 H.base.lev0 u (T u)) → (∀ u i v h x, ∃ r : X.B.LL, X.B.embLL r = (T u).gl.psi0 i v h x) → ∀ u (w : X.toD7.what₂.places.Pl), X.toD7.what₂.places.resChar w = (X.toD7.mem u).A.T → ∃ n : ℕ, n ≠ 0 ∧ (∀ x ∈ DV.MramL X.toD7 u, X.toD7.nuIn u (n • x) ∈ LT.Nlam X.toD7 u w) ∧ ∀ x, X.toD7.nuIn u x ∈ LT.Nlam X.toD7 u w → InLoc (X.toD7.plEq w) (DV.MramL X.toD7 u) (n • x) :=

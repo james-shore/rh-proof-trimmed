@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.MaximalMinorsDualThetaTestLatticeBound
 
 @[expose] public section
 
@@ -50,11 +51,6 @@ open scoped CategoryTheory.Obj
 open Classical
 
 namespace GlobalTheory.ZH.PerpKerRank
-
-theorem exists_eStd_eq_addHom (g n : ℕ) (φ : (Fin g ⊕ Fin g → ZMod n) →+ ZMod n) :
-    ∃ a, ∀ b, eStd g n a b = φ b := by
-  obtain ⟨a, ha⟩ := (eStdBilin_bijective (g := g) (n := n)).2 (φ.toZModLinearMap n)
-  exact ⟨a, fun b => LinearMap.congr_fun ha b⟩
 
 theorem nonempty_perp_ker_equiv_hom {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] (S : ThetaSys o Ω)
     {X : Type} [AddCommGroup X]
@@ -81,7 +77,7 @@ theorem nonempty_perp_ker_equiv_hom {o Ω : Type} [CommRing o] [Field Ω] [Algeb
         rintro _ ⟨x, rfl⟩
         show l ((S.r * S.N) • x) = 0
         rw [map_nsmul, nsmul_eq_mul, ZMod.natCast_self, zero_mul])
-    obtain ⟨a, ha⟩ := exists_eStd_eq_addHom S.g _ (l'.comp yy)
+    obtain ⟨a, ha⟩ := _root_.GlobalTheory.ZH.MinorTest.exists_eStd_eq S.g _ (l'.comp yy)
     refine ⟨⟨a, fun h hh => (ha h).trans ?_⟩, AddMonoidHom.ext fun α => (ha (σ α)).trans ?_⟩
     · rw [AddMonoidHom.comp_apply, (AddMonoidHom.mem_ker).1 hh, map_zero]
     · rw [AddMonoidHom.comp_apply, hσ]

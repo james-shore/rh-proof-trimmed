@@ -97,7 +97,7 @@ theorem split_geoTest (hL : GlobalTheory.UT.LL) [ArithBase o Ω] (hB : BaseFacts
     have h4 := crd_lin hF (ψ := RingHom.id _) (hu.trans (Spec.map_id _).symm) hv
     exact ⟨_, CrdCalc.crd_smul k h4, h3⟩
   exact ⟨_, le_of_add_le_right g.mod.dim.le,
-    GlobalTheory.T.exists_torus_action_weighted_charts hL.1 hL.2.1 _ g.mod.Φ S.g S.N (S.r * S.N) _ S.J _ g.mod.F F g.mod.pol m
+    _root_.GlobalTheory.ZH.FibTorus.exists_split hL.1 hL.2.1 _ g.mod.Φ S.g S.N (S.r * S.N) _ S.J _ g.mod.F F g.mod.pol m
     ((ofSec wt 0 s haff hcov).pull φ) (Equiv.refl _) (fun α => cl (g.mod.xe α))
     ⟨(GlobalTheory.ZH.utest_dim_and_split hL o Ω S ρ p y₀ g.u).2.2.2.1, hBig.1, hBig.2.1⟩ g.mod.good g.mod.dim hm hF
     (fun α β => (hcl _ _).trans ⟨fun ⟨n, hn⟩ => ⟨g.mod.xe.symm n, g.mod.xe.injective (by simpa using hn)⟩,

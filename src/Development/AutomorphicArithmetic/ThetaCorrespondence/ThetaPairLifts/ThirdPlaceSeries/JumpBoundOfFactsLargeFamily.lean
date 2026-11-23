@@ -63,6 +63,6 @@ theorem jump_bound_of_facts_large_family_alt : ∀ {eps : ℝ} (Fm : FamP eps), 
     exact le_of_eq (by simpa using h)
   have hA := (hx0 (Fm.D x a) (Fm.L x a) (Fm.params x hx a) (Fm.L_eps x a) hC
     (by rw [Fm.L_x x a hx]; exact hxx)).1
-  exact _root_.GlobalTheory.JumpStatement.holds_all_alt _ _ (hF.admJ _ hA)
+  exact _root_.GlobalTheory.JumpSets.stmtJ_holds_alt _ _ (hF.admJ _ hA)
 end GlobalTheory.LargeJumps
 end

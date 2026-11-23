@@ -94,10 +94,10 @@ theorem vac_pureTensorO {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : 
   refine ⟨hth φ, fun u hu => ?_, fun e he u hu hh => ?_⟩
   · have hu' := hle hu
     exact GlobalTheory.Hk3.FiniteHeis.heisO_pureTensorO_of_finite ψ θ S T hvac.2.inf x.s y.s x.B y.B f₀ hth (2 • u)
-      (GlobalTheory.VacGood.infPart_latO (AddSubgroup.nsmul_mem _ hu' 2)) (hvac.2.lat.1 u hu') φ
+      (_root_.GlobalTheory.SplitScalar.latO_fin (AddSubgroup.nsmul_mem _ hu' 2)) (hvac.2.lat.1 u hu') φ
   · have hu' := hle hu
     exact GlobalTheory.Hk3.FiniteHeis.heisO_pureTensorO_of_finite ψ θ S T hvac.2.inf x.s y.s x.B y.B f₀ hth u
-      (GlobalTheory.VacGood.infPart_latO hu') (hvac.2.lat.2 e he u hu' hh) φ
+      (_root_.GlobalTheory.SplitScalar.latO_fin hu') (hvac.2.lat.2 e he u hu' hh) φ
 
 section Local
 

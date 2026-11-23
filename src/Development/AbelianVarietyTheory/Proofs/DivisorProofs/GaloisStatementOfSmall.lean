@@ -80,14 +80,10 @@ theorem scaleRoots_prod (M : Multiset K) (c : K) :
     rw [Multiset.map_cons, Multiset.map_cons, Multiset.prod_cons, Multiset.prod_cons, mul_scaleRoots_of_noZeroDivisors, ih,
       sub_eq_add_neg, ← C_neg, X_add_C_scaleRoots, neg_mul, C_neg, ← sub_eq_add_neg]
 
-theorem reverse_X_sub (m : K) : (X - C m : K[X]).reverse = 1 - C m * X := by
-  rw [sub_eq_add_neg, ← C_neg, reverse_add_C, natDegree_X, ← one_mul (X : K[X]), reverse_mul_X, ← C_1, reverse_C]
-  simp [sub_eq_add_neg]
-
 theorem reverse_prod (M : Multiset K) : (M.map fun m => X - C m).prod.reverse = (M.map fun m => 1 - C m * X).prod := by
   induction M using Multiset.induction_on with
   | empty => simpa using reverse_C (1 : K)
-  | cons a s ih => rw [Multiset.map_cons, Multiset.map_cons, Multiset.prod_cons, Multiset.prod_cons, reverse_mul_of_domain, ih, reverse_X_sub]
+  | cons a s ih => rw [Multiset.map_cons, Multiset.map_cons, Multiset.prod_cons, Multiset.prod_cons, reverse_mul_of_domain, ih, _root_.Formalism.L2.NR.reverse_X_sub_C]
 
 theorem reverse_prod_eq_hecke {n q : ℕ} (M : Multiset K) (hM : M.card = n) (a : ℕ → K)
     (ha : ∀ k ≤ n, (q : K) ^ (k * (k - 1) / 2) * a k = M.esymm k) :

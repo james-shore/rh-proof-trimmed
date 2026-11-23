@@ -64,7 +64,7 @@ theorem chernTop_pointPoly_nonneg {E : Type} [Field E] [NumberField E] [IsCMFiel
       ∏ τ : GlobalTheory.AllWt.Psi H, (sqPoly (T τ)).det ^ (Dw.p + Dw.q - Dw.mult τ.1) := by
     rw [pointPoly, map_prod]
     refine Finset.prod_congr rfl fun τ _ => ?_
-    rw [map_pow, map_mul, aeval_C, aeval_X, GlobalTheory.T.chernFormPolyCoeff_top_of_neg_hermitianSquare _ _ _ _ (hS τ) (hF τ)]
+    rw [map_pow, map_mul, aeval_C, aeval_X, _root_.GlobalTheory.PointFormSign.chernPoly_top_of_negSq _ _ _ _ (hS τ) (hF τ)]
     congr 1
     simp only [map_pow, map_neg, map_one]
     rw [← mul_assoc, ← mul_pow, neg_one_mul, neg_neg, one_pow, one_mul]

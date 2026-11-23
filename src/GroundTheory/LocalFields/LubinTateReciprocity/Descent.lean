@@ -187,12 +187,6 @@ theorem pow_apply_eq_psEval (σ : Ω ≃ₐ[K] Ω) (a : 𝒪[K]) {x : Ω} (hx : 
       psEval_subst' (fun _ => Hom.constantCoeff_eq_zero' _) _ _ fun _ => hx]
 
 
-omit [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K] [ValuativeRel Ω]
-  [TopologicalSpace Ω] [IsValuativeTopology Ω] [ValuativeExtension K Ω] [Algebra.IsAlgebraic K Ω] in
-theorem exists_pow_apply_eq_self (σ : Ω ≃ₐ[K] Ω) {p : Polynomial K} (hp : p ≠ 0) {x : Ω}
-    (hx : Polynomial.aeval x p = 0) : ∃ N : ℕ, 0 < N ∧ (σ ^ N) x = x :=
-  _root_.GroundTheory.Variant₂.N1.exists_pow_apply_eq_self_of_aeval_eq_zero σ hp hx
-
 end Iterate
 
 section Maps
@@ -392,7 +386,7 @@ theorem exists_fixed_root_ltEisenstein (σ : Ω ≃ₐ[K] Ω)
   have hσl' : σ l = Polynomial.aeval l (h.map (algebraMap 𝒪[K] K)) :=
     hσl.trans (psEval_eq_aeval_of_sub_mem hh hlv hl)
 
-  obtain ⟨N, hN0, hNl⟩ := exists_pow_apply_eq_self σ ((hPmon.map (algebraMap 𝒪[K] K)).ne_zero) hl
+  obtain ⟨N, hN0, hNl⟩ := _root_.GroundTheory.Variant₂.N1.exists_pow_apply_eq_self_of_aeval_eq_zero σ ((hPmon.map (algebraMap 𝒪[K] K)).ne_zero) hl
   obtain ⟨hN', hhN'⟩ := exists_sub_coe_mem_span_ltEisenstein hπ m
     (lubinTateHom hπ (isLubinTateSeries_ltPoly π) (isLubinTateSeries_ltPoly π) (((u⁻¹ : 𝒪[K]ˣ) : 𝒪[K]) ^ N)).toPowerSeries
   have haevalN : Polynomial.aeval l (hN'.map (algebraMap 𝒪[K] K)) = l := by

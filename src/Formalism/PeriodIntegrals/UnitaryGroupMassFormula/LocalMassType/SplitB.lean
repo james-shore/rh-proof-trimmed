@@ -152,7 +152,7 @@ theorem split_reduction : SplitR := by
   have hOE : ∀ x, x ∈ OEv (E := E) v ↔
       π₁ x ∈ v.adicCompletionIntegers F ∧ π₂ x ∈ v.adicCompletionIntegers F := by
     intro x
-    rw [oev_iff_tensInt, split_integral_local F E v spl hspl, hspl_apply]
+    rw [oev_iff_tensInt, _root_.PI.SplitIntLoc.Proof.main F E v spl hspl, hspl_apply]
     simp
   refine ⟨e, π₁, π₂, he, hσe, fun x => ?_, fun x => ?_, he1, he2, hsc, hp2σ, hp1σ, hOE⟩
   · rw [PI.LocMassTypU.sc_mul_eq_smul]

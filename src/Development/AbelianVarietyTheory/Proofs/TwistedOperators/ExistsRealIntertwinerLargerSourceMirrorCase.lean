@@ -226,13 +226,13 @@ theorem exists_locIt_large {X : ProvA} (hX : ChosenSeries X) (h1 : ArchimedeanRa
   obtain ⟨Φ, hΦ⟩ := (h1.2 t al be ga de hd).1
   obtain ⟨Tm, hi, hq, -⟩ := h2.2 t al be ga de hd Φ hΦ
   obtain ⟨B, hB⟩ := exists_isCoverIt_swap _ _ _ _ _ _ _ _ _ _ Tm hi hq
-  obtain ⟨κ, hκ⟩ := GlobalTheory.T.exists_fockPolynomialIso_unitaryPair _ _ _ _ _ _ _ _ e e' he he'
+  obtain ⟨κ, hκ⟩ := _root_.GlobalTheory.Chain.RealIt.PolyIso.exists_isPolyIso _ _ _ _ _ _ _ _ e e' he he'
   obtain ⟨v, hv, -⟩ := (hX _ _ _ p1).1
   have c1 := Fintype.card_congr e
   have c2 := Fintype.card_congr e'
   simp only [Fintype.card_sum, Fintype.card_fin] at c1 c2
   exact ⟨⟨by omega, by omega⟩,
-    GlobalTheory.T.exists_localFockIntertwiner_realPlace_of_coverContraction D V W S S' M M' τ _ _ _ _ _ _ _ _ e e' m m' aS aT U U' κ B hm hm' hU hU' ⟨v, 0, hv⟩ hκ hB⟩
+    _root_.GlobalTheory.Chain.RealIt.LocalFromCover.exists_locIt D V W S S' M M' τ _ _ _ _ _ _ _ _ e e' m m' aS aT U U' κ B hm hm' hU hU' ⟨v, 0, hv⟩ hκ hB⟩
 
 end GlobalTheory.Chain.RealItLarge
 

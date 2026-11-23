@@ -90,10 +90,6 @@ private theorem norm_le_of_int {l : ℕ} [Fact l.Prime] {T : Type} [CommRing T] 
     [Algebra.IsIntegral ℤ_[l] T] (φ : T →ₐ[ℤ_[l]] PadicAlgCl l) (x : T) : ‖φ x‖ ≤ 1 :=
   (int_iff_norm _).1 ((Algebra.IsIntegral.isIntegral x).map φ)
 
-private theorem mem_max_iff {l : ℕ} [Fact l.Prime] {T : Type} [CommRing T] [IsLocalRing T] [Algebra ℤ_[l] T]
-    [Algebra.IsIntegral ℤ_[l] T] (φ : T →ₐ[ℤ_[l]] PadicAlgCl l) (x : T) : x ∈ maximalIdeal T ↔ ‖φ x‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.NormOnValuationRing.mem_max_iff φ x
-
 private theorem exists_dvr {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [Algebra ℤ_[l] O] [Module.Finite ℤ_[l] O]
     [Algebra O (PadicAlgCl l)] [IsScalarTower ℤ_[l] O (PadicAlgCl l)] {σ : Type} [Finite σ] (b : σ → PadicAlgCl l)
     (hb : ∀ i, ‖b i‖ ≤ 1) :
@@ -337,7 +333,7 @@ private theorem norm_facts {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [Alg
   letI : Algebra ℤ_[l] T := ((algebraMap O T).comp (algebraMap ℤ_[l] O)).toAlgebra
   haveI : IsScalarTower ℤ_[l] O T := IsScalarTower.of_algebraMap_eq fun _ => rfl
   haveI : Module.Finite ℤ_[l] T := Module.Finite.trans O T
-  exact ⟨norm_le_of_int (φ.restrictScalars ℤ_[l]) x, mem_max_iff (φ.restrictScalars ℤ_[l]) x⟩
+  exact ⟨norm_le_of_int (φ.restrictScalars ℤ_[l]) x, _root_.UpperTheory.Reformulated.B.NormOnValuationRing.mem_max_iff (φ.restrictScalars ℤ_[l]) x⟩
 
 private theorem zero_facts {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsLocalRing O] [Algebra ℤ_[l] O]
     [Module.Finite ℤ_[l] O] [Algebra O (PadicAlgCl l)] [IsScalarTower ℤ_[l] O (PadicAlgCl l)] {Γ R : Type} [Group Γ]

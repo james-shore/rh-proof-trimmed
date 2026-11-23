@@ -94,7 +94,7 @@ theorem range_resO_eq (hci : IsClosedImmersion i) {g : MvPolynomial (Fin (N + 1)
     refine RingHom.ext fun a => ?_
     simp only [evV, resO, RingHom.comp_apply, ← e0]
     rfl
-  rw [hcomp, RingHom.coe_comp, Set.range_comp, (evV_surjective i hci hg he).range_eq, Set.image_univ]
+  rw [hcomp, RingHom.coe_comp, Set.range_comp, (_root_.GlobalTheory.CompanionTheory.Geo.evV_surjective i hci hg he).range_eq, Set.image_univ]
 
 theorem iSup_preimage_eq_top {m e : ℕ} (he : 0 < e) (y : Fin m → MvPolynomial (Fin (N + 1)) K)
     (hy : ∀ k, (y k).IsHomogeneous e)
@@ -104,11 +104,5 @@ theorem iSup_preimage_eq_top {m e : ℕ} (he : 0 < e) (y : Fin m → MvPolynomia
   first
     | exact GlobalTheory.T.basic_opens_cover_of_finite ..
     | (intros; apply GlobalTheory.T.basic_opens_cover_of_finite <;> assumption)
-
-theorem finiteType_affine (q : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType q] {W : X.Opens}
-    (hW : IsAffineOpen W) : letI := (strV q W).toAlgebra; Algebra.FiniteType K Γ(X, W) := by
-  first
-    | exact GlobalTheory.T.affine_open_finiteType ..
-    | (intros; apply GlobalTheory.T.affine_open_finiteType <;> assumption)
 
 end CrystallineSemistableComparison.Pb

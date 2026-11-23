@@ -65,8 +65,8 @@ theorem spherical_fixes_pure_vacuum_vectors : _root_.GlobalTheory.FunPr.ThetaLoc
       om' (1, k) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f φ) = GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f φ) := by
   classical
   intro P F E _ _ _ _ _ σ B a a' G X om om' hT
-  obtain ⟨S₁, h₁⟩ := _root_.GlobalTheory.T.spherical_vector_fixed_at_almost_all_places P F E σ B a a' G X om om' hT
-  obtain ⟨S₂, h₂⟩ := _root_.GlobalTheory.T.restricted_tensor_spherical_uniqueness_off_finite P F E σ B a a' G X om om' hT
+  obtain ⟨S₁, h₁⟩ := _root_.GlobalTheory.LocVacFix.vacuum_fixed_at_cofinitely_many_places P F E σ B a a' G X om om' hT
+  obtain ⟨S₂, h₂⟩ := _root_.GlobalTheory.SphOffFinite.spherical_vacuum_fixed_off_finite_set P F E σ B a a' G X om om' hT
   refine ⟨S₁ ∪ S₂, fun S hS k hinf hSk hl hl' => ⟨fun f φ hφ hv => ?_, fun f φ hφ hv => ?_⟩⟩
   · exact GlobalTheory.T.latticeStabilizers_fix_vacua_fixes_pureTensor F E σ a (a + a') G.V G.W G.M B.ψ X.β (X.β / X.α) om S (Nat.zero_lt_of_lt hT.geo.lt)
       hT.geo.hV.lat hT.geo.hW.lat.toIsLattice hT.geo.hM hT.weil

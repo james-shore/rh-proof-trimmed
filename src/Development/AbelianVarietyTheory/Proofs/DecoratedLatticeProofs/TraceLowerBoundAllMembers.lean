@@ -99,8 +99,8 @@ theorem admissibleRanks_of_mass_formula (D : D7) (Lv : LevelData D) (C : Formali
   have h4 := Formalism.MainNotions.StandardLattice.HarishChandraReduction.rankFormula_of_classNumber D Lv (GlobalTheory.ColClassNumber.classNumber_all D Lv)
   intro V _ _ _ _ h L _
   refine ⟨fun hL u => ?_, fun hL => ?_⟩
-  · have e := h4 (GlobalTheory.first_type_prime_large_of_record D) (Formalism.MainNotions.Ext.Lw.splitsF_g_all D) u
-      (Formalism.MainNotions.Ext.Lw.splitsF_T_all D u) (Formalism.MainNotions.Ext.Lw.mu0Tie_of_sym C u)
+  · have e := h4 (GlobalTheory.first_type_prime_large_of_record D) (_root_.Formalism.MainNotions.J.splitsF_g D) u
+      (_root_.Formalism.MainNotions.J.level_prime_splits_totally_real D u) (Formalism.MainNotions.Ext.Lw.mu0Tie_of_sym C u)
     have em : Formalism.HermitianLatticesTheory.mass h L = StandardLattice.massI D D.R.k := Formalism.MainNotions.J.mass_ortho_eq hL (Formalism.MainNotions.J.std_ortho D.host.E D.R.k)
     rw [em, ← Formalism.MainNotions.J.idxColTie_holds D]
     exact e

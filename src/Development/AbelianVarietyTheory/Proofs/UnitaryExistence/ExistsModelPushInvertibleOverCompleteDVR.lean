@@ -71,7 +71,7 @@ theorem exists_model_pushInvertible_under_cdvr : PartI → N1ab → ∀ (E : Typ
       apply hinj
       rw [map_mul, ha, map_natCast, map_one, ← map_natCast io p, ← map_mul, inv_mul_cancel₀ hp0, map_one]
     exact (IsLocalRing.mem_maximalIdeal _).1 hpT (IsUnit.of_mul_eq_one_right a h1)
-  obtain ⟨W, hW, hWU⟩ := GlobalTheory.T.exists_valuationSubring_complex_comap_eq c.F (U₀.comap io) p hpU
+  obtain ⟨W, hW, hWU⟩ := _root_.GlobalTheory.exists_valuationSubring_complex_comap_val_eq c.F (U₀.comap io) p hpU
   obtain ⟨Y, hY, -⟩ := hI.2 E H Dw hpos Xf
   have hmem : ∀ x : c.V W, ∃ a : T.V, algebraMap T.V T.Fr a = io x := by
     intro x

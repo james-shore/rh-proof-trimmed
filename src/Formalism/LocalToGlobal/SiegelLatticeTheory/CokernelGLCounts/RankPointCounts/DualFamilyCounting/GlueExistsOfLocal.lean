@@ -134,7 +134,7 @@ theorem badFinite {Λ₀ : Submodule (𝓞 K) V} (hΛ₀ : Submodule.IsFullLatti
     rw [← hM.2]; exact Submodule.subset_span hy
   obtain ⟨n₁, hn₁, h₁⟩ : ∃ n : ℤ, n ≠ 0 ∧ ∀ x ∈ M, n • x ∈ N := by
     refine exists_zsmul_of_fg hM.1 fun y hy => ?_
-    obtain ⟨m, hm, hmy⟩ := Formalism.HermitianLatticesTheory.traceReal_mult Λ₀ hΛ₀ y
+    obtain ⟨m, hm, hmy⟩ := _root_.Bl.general_b_fact_second'''''.goal1 Λ₀ hΛ₀ y
     exact ⟨m, hm, Submodule.mem_inf.2 ⟨hmy, zsmul_mem (hMU y hy) m⟩⟩
   have hNfg : N.FG := Submodule.FG.of_le hΛ₀.fg inf_le_left
   obtain ⟨n₂, hn₂, h₂⟩ : ∃ n : ℤ, n ≠ 0 ∧ ∀ x ∈ N, n • x ∈ M := by

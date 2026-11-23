@@ -54,13 +54,10 @@ noncomputable section
 
 namespace GlobalTheory.EtC.DiscCoch
 
-theorem cotPre_isSheaf (R : Type) [CommRing R] (q N : ℕ) (I : Cx R) (n : ℤ) :
-    Presheaf.IsSheaf Scheme.etaleTopology.{0} (cotPre R q N I n) := GlobalTheory.T.projBundleCochainPresheaf_isSheaf R q N I n
-
 theorem jsec_bij (R : Type) [CommRing R] (q N : ℕ) (I : Cx R) (n : ℤ) (U : Scheme.{0}) :
     Function.Bijective (fun c : Cochain ((chains R).obj (sch.obj U ⨯ fibQ q N)) I n =>
       (Jsec c : Sec ((Jcx R q N I).X n) U)) := by
-  have := isIso_toSheafify Scheme.etaleTopology.{0} (cotPre_isSheaf R q N I n)
+  have := isIso_toSheafify Scheme.etaleTopology.{0} (_root_.GlobalTheory.EtC.CotSheaf.cotPre_isSheaf R q N I n)
   have h2 : IsIso ((toSheafify Scheme.etaleTopology.{0} (cotPre R q N I n)).app (op U)) := inferInstance
   exact ConcreteCategory.bijective_of_isIso ((toSheafify Scheme.etaleTopology.{0} (cotPre R q N I n)).app (op U))
 
@@ -326,7 +323,7 @@ theorem model : ∀ (R : Type) [CommRing R] (q N : ℕ) (I : Cx R) (F : PSh) (n 
     have hc' : ∀ (U : Scheme.{0}) (x : F.obj (op U)), ∃ c : Cochain ((chains R).obj (sch.obj U ⨯ fibQ q N)) I n',
         Jsec c = ev (R := R) β' 0 n' (by simp) U x := fun U x => (jsec_bij R q N I n' U).2 _
     choose c' hc' using hc'
-    obtain ⟨η, hη, -⟩ := glue R q N I F n' c' (hnat n' β' c' hc')
+    obtain ⟨η, hη, -⟩ := _root_.GlobalTheory.EtC.cochain_disc_glue R q N I F n' c' (hnat n' β' c' hc')
     have h2 : ∀ (U : Scheme.{0}) (x : F.obj (op U)), ptPull (δ n' n η) x = ptPull γ.1 x := by
       intro U x
       have h1 : ptPull η x = c' U x := hη U x
@@ -336,19 +333,19 @@ theorem model : ∀ (R : Type) [CommRing R] (q N : ℕ) (I : Cx R) (F : PSh) (n 
       rw [← jsec_d hn', hc', ← ev_δ_zero hn' β' U n' n (by simp) (by simp) x]
       rw [hβ']
       exact hS0 n γ.1 U x
-    have huniq := (glue R q N I F n (fun U x => ptPull γ.1 x) (fun V U g x => ptPull_res γ.1 g x)).unique
+    have huniq := (_root_.GlobalTheory.EtC.cochain_disc_glue R q N I F n (fun U x => ptPull γ.1 x) (fun V U g x => ptPull_res γ.1 g x)).unique
       (y₁ := γ.1) (y₂ := δ n' n η) (fun U x => rfl) h2
     rw [CohomologyClass.mk_eq_zero_iff]
     exact ⟨n', hn', η, huniq.symm⟩
   have hΦsurj : Function.Surjective Φ := by
     intro c
-    obtain ⟨α, hαc, hα0⟩ := GlobalTheory.T.exists_discreteSpace_cocycle_vanishing_pos R F (Jcx R q N I) n c
+    obtain ⟨α, hαc, hα0⟩ := _root_.GlobalTheory.EtC.discRep R F (Jcx R q N I) n c
     have hc' : ∀ (U : Scheme.{0}) (x : F.obj (op U)), ∃ c : Cochain ((chains R).obj (sch.obj U ⨯ fibQ q N)) I n,
         Jsec c = ev (R := R) α.1 0 n (by simp) U x := fun U x => (jsec_bij R q N I n U).2 _
     choose c' hc' using hc'
-    obtain ⟨γ, hγ, -⟩ := glue R q N I F n c' (hnat n α.1 c' hc')
+    obtain ⟨γ, hγ, -⟩ := _root_.GlobalTheory.EtC.cochain_disc_glue R q N I F n c' (hnat n α.1 c' hc')
     have hδ : δ n (n + 1) γ = 0 := by
-      refine (glue R q N I F (n + 1) (fun U x => 0) (fun V U g x => (Cochain.comp_zero _ _).symm)).unique
+      refine (_root_.GlobalTheory.EtC.cochain_disc_glue R q N I F (n + 1) (fun U x => 0) (fun V U g x => (Cochain.comp_zero _ _).symm)).unique
         (fun U x => ?_) (fun U x => Cochain.comp_zero _ _)
       show ptPull (δ n (n + 1) γ) x = 0
       rw [ptPull_δ rfl, show ptPull γ x = c' U x from hγ U x]

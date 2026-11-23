@@ -69,19 +69,19 @@ def rsm (π : CuspSub E a) : Submodule ℂ (Sm E a) := (GlobalTheory.JSW.mspanR 
 
 theorem lie_mem_rsm {π : CuspSub E a} (hπ : π.IsUnitary) (X : Lie E a) {F : Sm E a} (hF : F ∈ rsm π) :
     lie E a X F ∈ rsm π := by
-  obtain ⟨ψ, hψ, hw, -⟩ := GlobalTheory.T.cuspFormRapidKernelSmoothSpan_smooth_cuspidal_bounded E a GlobalTheory.CuspOrth.cuspFormsBounded π hπ F.1 hF
+  obtain ⟨ψ, hψ, hw, -⟩ := _root_.GlobalTheory.JSW.mspanR_smooth E a GlobalTheory.CuspOrth.cuspFormsBounded π hπ F.1 hF
   obtain rfl : ψ = F := Subtype.ext hψ
   simpa [GlobalTheory.GLFin.word, rsm] using hw [X]
 
 theorem bounded_of_mem_rsm {π : CuspSub E a} (hπ : π.IsUnitary) {F : Sm E a} (hF : F ∈ rsm π) :
     ∃ C : ℝ, ∀ g, ‖F.1 g‖ ≤ C :=
-  (GlobalTheory.T.cuspFormRapidKernelSmoothSpan_smooth_cuspidal_bounded E a GlobalTheory.CuspOrth.cuspFormsBounded π hπ F.1 hF).choose_spec.2.2.2
+  (_root_.GlobalTheory.JSW.mspanR_smooth E a GlobalTheory.CuspOrth.cuspFormsBounded π hπ F.1 hF).choose_spec.2.2.2
 
 theorem decays_invT_of_mem_rsm {π : CuspSub E a} (hπ : π.IsUnitary) {F : Sm E a} (hF : F ∈ rsm π) :
     Decays fun g => F.1 (invT a (Ad E) g) := by
-  obtain ⟨ψ, hψ, -, -⟩ := GlobalTheory.T.cuspFormRapidKernelSmoothSpan_smooth_cuspidal_bounded E a GlobalTheory.CuspOrth.cuspFormsBounded π.contra hπ.contra _ (mspanR_invT π hF)
+  obtain ⟨ψ, hψ, -, -⟩ := _root_.GlobalTheory.JSW.mspanR_smooth E a GlobalTheory.CuspOrth.cuspFormsBounded π.contra hπ.contra _ (mspanR_invT π hF)
   intro L hL C₀ hC₀ N
-  obtain ⟨C, h⟩ := GlobalTheory.T.cuspFormSmoothSpan_norm_le_shortRationalVector E a π.contra hπ.contra ψ (Or.inr (hψ ▸ mspanR_invT π hF)) [] L hL C₀ hC₀ N
+  obtain ⟨C, h⟩ := _root_.GlobalTheory.MSpanDecay.norm_le_of_short_vector_mspanR E a π.contra hπ.contra ψ (Or.inr (hψ ▸ mspanR_invT π hF)) [] L hL C₀ hC₀ N
   refine ⟨C, fun g c hc ξ hξ hm => ?_⟩
   have := h g c hc ξ hξ hm
   simpa [GlobalTheory.GLFin.word, hψ] using this
@@ -105,7 +105,7 @@ theorem exists_tsum_norm_rsHat_le (hπ : π.IsUnitary) (hπ' : π'.IsUnitary) (h
         C * (ideleModule E (GeneralLinearGroup.det g) : ℝ) ^ K := by
   set N := K + Module.finrank ℝ (Fin a → Cinf E) with hN
   have had : 1 ≤ a * Module.finrank ℚ E := Nat.mul_pos ℓ.pos Module.finrank_pos
-  obtain ⟨M, C₁, h₁⟩ := GlobalTheory.T.summable_nonzeroRationalVector_le_shortestVector E a (traceDualIdeal E J) (a * Module.finrank ℚ E * N)
+  obtain ⟨M, C₁, h₁⟩ := _root_.GlobalTheory.RSTheta.summable_tsum_norm_le_of_le_shortest E a (traceDualIdeal E J) (a * Module.finrank ℚ E * N)
     ((Nat.le_add_left _ K).trans (Nat.le_mul_of_pos_left _ had))
   obtain ⟨C₂, h₂⟩ := exists_norm_rsHat_le J η
     (ι := {p : GA E a × (Fin a → E) // p.2 ≠ 0 ∧

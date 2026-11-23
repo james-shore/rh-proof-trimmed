@@ -263,11 +263,7 @@ section KMap
 
 variable {Λ : Fin n → ℝ}
 
-theorem ffa_op_mul (T : S7.KType ε Λ) (k₁ k₂ : S7.KG ε) : T.op (k₁ * k₂) = T.op k₁ * T.op k₂ := by
-  exact congrArg Subtype.val (map_mul T.τ k₁ k₂)
-
-theorem ffa_op_one (T : S7.KType ε Λ) : T.op 1 = 1 := by
-  exact congrArg Subtype.val (map_one T.τ)
+alias ffa_op_one := _root_.ReciprocityTheory.ChartRestriction.DS.pdA_op_one
 
 theorem ffa_op_inner (T : S7.KType ε Λ) (k : S7.KG ε) (x y : T.V) :
     inner ℂ (T.op k x) (T.op k y) = inner ℂ x y := by
@@ -281,7 +277,7 @@ theorem ffa_op_inner (T : S7.KType ε Λ) (k : S7.KG ε) (x y : T.V) :
     ContinuousLinearMap.one_apply]
 
 theorem ffa_op_inv_apply (T : S7.KType ε Λ) (k : S7.KG ε) (y : T.V) : T.op k (T.op k⁻¹ y) = y := by
-  rw [← ContinuousLinearMap.mul_apply, ← ffa_op_mul]
+  rw [← ContinuousLinearMap.mul_apply, ← _root_.ReciprocityTheory.ChartRestriction.DS.CompactHaarProbability.op_mul]
   simp [ffa_op_one]
 
 theorem ffa_op_adj' (T : S7.KType ε Λ) (k : S7.KG ε) (x y : T.V) :
@@ -310,7 +306,7 @@ theorem ffaB_equiv (T : S7.KType ε Λ) (a : T.V) (x : L2 ε) (k₀ : S7.KG ε) 
     ffaB T a x (T.op k₀ v) = rreg ε (S7.toMK k₀) (ffaB T a x v) := by
   rw [ffaB_apply, ffaB_apply]
   have h1 : ∀ k : S7.KG ε, inner ℂ (T.op k a) (T.op k₀ v) = inner ℂ (T.op (k₀⁻¹ * k) a) v := fun k => by
-    rw [ffa_op_adj', ffa_op_mul, ContinuousLinearMap.mul_apply]
+    rw [ffa_op_adj', _root_.ReciprocityTheory.ChartRestriction.DS.CompactHaarProbability.op_mul, ContinuousLinearMap.mul_apply]
   simp_rw [h1]
   have h2 := integral_mul_left_eq_self (μ := dk ε)
     (fun k => inner ℂ (T.op (k₀⁻¹ * k) a) v • rreg ε (S7.toMK k) x) k₀
@@ -343,25 +339,14 @@ section Psi
 variable {lam : Fin n → ℝ} {T : S7.KType ε (lowK ε lam)} {Ψ : Matrix (Fin n) (Fin n) ℂ → (T.V →L[ℂ] T.V)}
   {v₀ : T.V}
 
-theorem ffa_memLp (hP : IsPsiFor ε lam T Ψ) (u v : T.V) :
-    MemLp (fun y : Formalism.REAL.UJ ε => jfun Ψ u v (Formalism.MainNotions.S.umat y)) 2 (Formalism.REAL.muG ε) := by
-  have hH : (Formalism.REAL.muG ε).IsHaarMeasure := by
-    unfold Formalism.REAL.muG
-    infer_instance
-  have h := hP.2.2.2.2 (Formalism.REAL.muG ε) hH
-  have h2 := ((innerSL ℂ u).comp (ContinuousLinearMap.apply ℂ T.V v)).comp_memLp' h
-  refine MemLp.ae_eq (ae_of_all _ fun y => ?_) h2
-  simp [jfun]
-  try rfl
-
 theorem uniformisationL2_ae_eq_jfun (hP : IsPsiFor ε lam T Ψ) (u v : T.V) :
     (uniformisationL2 ε Ψ u v : Formalism.REAL.UJ ε → ℂ) =ᵐ[Formalism.REAL.muG ε] fun y => jfun Ψ u v (Formalism.MainNotions.S.umat y) := by
   unfold uniformisationL2 toL2
-  rw [dite_eq_left (ffa_memLp hP u v)]
-  exact (ffa_memLp hP u v).coeFn_toLp
+  rw [dite_eq_left (_root_.ReciprocityTheory.ChartRestriction.DS.dt_memLp hP u v)]
+  exact (_root_.ReciprocityTheory.ChartRestriction.DS.dt_memLp hP u v).coeFn_toLp
 
 theorem ffa_jfun_cont (hP : IsPsiFor ε lam T Ψ) (u v : T.V) : ContinuousOn (jfun Ψ u v) (UJset ε) := by
-  have hΨ : ContinuousOn Ψ (UJset ε) := ffa_continuousOn hP.2.2.1
+  have hΨ : ContinuousOn Ψ (UJset ε) := _root_.ReciprocityTheory.ChartRestriction.DS.dinj_continuousOn_of_smoothOnGV hP.2.2.1
   unfold jfun
   exact continuousOn_const.inner (hΨ.clm_apply continuousOn_const)
 
@@ -522,9 +507,7 @@ theorem ffa_kmap_zero (hgap : StdGap ε lam) (hP : IsPsiFor ε lam T Ψ) (hv₀ 
   rw [LinearMap.zero_apply]
   exact inner_self_eq_zero.1 h7
 
-theorem ffa_form (hP : IsPsiFor ε lam T Ψ) (v' u : T.V) :
-    inner ℂ (uniformisationL2 ε Ψ v₀ v') (uniformisationL2 ε Ψ v₀ u) = ((‖uniformisationL2 ε Ψ v₀ T.w‖ ^ 2 : ℝ) : ℂ) * inner ℂ v' u := by
-  exact inner_uniformisationL2_eq_norm_sq_mul_inner hP v' u
+alias ffa_form := _root_.ReciprocityTheory.ChartRestriction.DS.inner_uniformisationL2_eq_norm_sq_mul_inner
 
 end Psi
 

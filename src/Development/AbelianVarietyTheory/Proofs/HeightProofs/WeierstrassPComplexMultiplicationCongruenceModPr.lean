@@ -68,12 +68,6 @@ open scoped IntermediateField
 
 namespace GlobalTheory.EisensteinCongruence
 
-lemma exists_three_roots {K : Type} [Field K] [IsAlgClosed K] (g₂ g₃ : K) (h2 : (2 : K) ≠ 0)
-    (hd : g₂ ^ 3 - 27 * g₃ ^ 2 ≠ 0) :
-    ∃ x y z : K, x ≠ y ∧ x ≠ z ∧ y ≠ z ∧ 4 * x ^ 3 - g₂ * x - g₃ = 0 ∧
-      4 * y ^ 3 - g₂ * y - g₃ = 0 ∧ 4 * z ^ 3 - g₂ * z - g₃ = 0 := by
-  exact _root_.GlobalTheory.ThreeDistinctRoots.three_distinct_roots g₂ g₃ h2 hd
-
 lemma coeff_of_dvd {k : Type} [Field k] (p : ℕ) [Fact p.Prime] [CharP k p] (g₂ g₃ a b : k)
     (h2 : (2 : k) ≠ 0) (h3 : (3 : k) ≠ 0) (hd : g₂ ^ 3 - 27 * g₃ ^ 2 ≠ 0) (ha : a ≠ 0)
     (hdvd : (4 * X ^ 3 - C g₂ * X - C g₃ : k[X]) ∣
@@ -93,7 +87,7 @@ lemma coeff_of_dvd {k : Type} [Field k] (p : ℕ) [Fact p.Prime] [CharP k p] (g�
   have hd' : ι g₂ ^ 3 - 27 * ι g₃ ^ 2 ≠ 0 := by
     have := (map_ne_zero_iff ι hι).mpr hd
     simpa [map_ofNat] using this
-  obtain ⟨x, y, z, hxy, hxz, hyz, hx, hy, hz⟩ := exists_three_roots (ι g₂) (ι g₃) h2' hd'
+  obtain ⟨x, y, z, hxy, hxz, hyz, hx, hy, hz⟩ := _root_.GlobalTheory.ThreeDistinctRoots.three_distinct_roots (ι g₂) (ι g₃) h2' hd'
   have key : ∀ e : K, 4 * e ^ 3 - ι g₂ * e - ι g₃ = 0 →
       12 * ι a ^ 2 * ι b * (e ^ p) ^ 2 + (12 * ι a * ι b ^ 2 - ι g₂ * ι a + ι a ^ 3 * ι g₂ ^ p) * e ^ p
         + (4 * ι b ^ 3 - ι g₂ * ι b - ι g₃ + ι a ^ 3 * ι g₃ ^ p) = 0 := by

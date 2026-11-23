@@ -55,19 +55,6 @@ open ModularForm (E₄ E₆)
 
 namespace GlobalTheory.FN
 
-private theorem gamma_le_of_dvd' {N N' : ℕ} (hd : N ∣ N') :
-    CongruenceSubgroup.Gamma N' ≤ CongruenceSubgroup.Gamma N := by
-  intro γ hγ
-  rw [CongruenceSubgroup.Gamma_mem] at hγ ⊢
-  have key : ∀ x : ℤ, (x : ZMod N) = ZMod.castHom hd (ZMod N) (x : ZMod N') := fun x => by
-    rw [map_intCast]
-  obtain ⟨h1, h2, h3, h4⟩ := hγ
-  refine ⟨?_, ?_, ?_, ?_⟩
-  · rw [key, h1, map_one]
-  · rw [key, h2, map_zero]
-  · rw [key, h3, map_zero]
-  · rw [key, h4, map_one]
-
 theorem exists_common_lv {E : Subring ℂ} {n : ℕ} (M : ℕ) (hM : 0 < M) (r : Fin n → ℍ → ℂ)
     (hr : ∀ j, InR E (r j)) : ∃ N w : ℕ, 0 < N ∧ M ∣ N ∧ ∀ j, Lv E N w (r j) := by
   choose Nj wj hNj hLv using hr
@@ -114,7 +101,7 @@ theorem inR_of_integral : ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (ε : Ω �
   intro Ω _ _ ε M n h r hM hh hinv hr heq
   obtain ⟨N, w, hN, hMN, hlv⟩ := exists_common_lv M hM r hr
   have hinvN : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, h (γ • τ) = h τ :=
-    fun γ hγ τ => hinv γ (gamma_le_of_dvd' hMN hγ) τ
+    fun γ hγ τ => hinv γ (_root_.GlobalTheory.FN.gamma_le_of_dvd hMN hγ) τ
   refine ⟨N, w, hN, hinvN, fun γ => ?_⟩
   have hH : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (fun τ => DD τ ^ w * h (γ • τ)) :=
     (mdifferentiable_DD.pow w).mul (mdifferentiable_comp_smul hh γ)

@@ -97,7 +97,7 @@ theorem exists_sncData_of_isSncModel : ∀ (K : Type) [Fintype K] (ι : K → Ty
     · rintro ⟨s, hs, hsf⟩
       exact GlobalTheory.T.symbolic_power_from_affine_chart K ι _ _ p f s a n hPm hQm hQp hX hf hs hsf
     · rintro ⟨s', hs, hsf⟩
-      exact GlobalTheory.T.symbolic_power_in_affine_chart K ι _ _ p f a n s' hPm hQm hQp hX hf hs hsf
+      exact _root_.GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Homog.relation_homogenises K ι _ _ p f a n s' hPm hQm hQp hX hf hs hsf
   have hset : {n : ℕ | ∃ s ∉ SncRes.compIdeal (pC (mCoordIdeal y)) (pC J) k,
       s * f ∈ SncRes.compIdeal (pC (mCoordIdeal y)) (pC J) k ^ n ⊔ pC (mCoordIdeal y)} = Set.Iic (mm l) := by
     ext n

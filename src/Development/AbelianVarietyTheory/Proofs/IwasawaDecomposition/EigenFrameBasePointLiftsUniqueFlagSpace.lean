@@ -55,15 +55,6 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Z : Model Xo c β}
   {F : Type} [Field F]
 
-theorem spMap_inj' {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g := by
-  have h1 : CommRingCat.ofHom f = CommRingCat.ofHom g := Spec.map_injective h
-  exact congrArg CommRingCat.Hom.hom h1
-
-private theorem spMap_comp_moduli_spaces {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  show Spec.map (CommRingCat.ofHom (g.comp f)) = Spec.map (CommRingCat.ofHom g) ≫ Spec.map (CommRingCat.ofHom f)
-  rw [CommRingCat.ofHom_comp, Spec.map_comp]
-
 theorem stalkPt_genStr (B : GlobalTheory.ProjVar.Var F) (e : F ≃+* c.F) (j : B.X ⟶ gen Z)
     (hj : j ≫ genStr Z ≫ spMap e.toRingHom = B.str) (z : B.X) (φA : c.F →+* B.X.presheaf.stalk z)
     (hφ : constF e B = (algebraMap (B.X.presheaf.stalk z) B.X.functionField).comp φA) :
@@ -74,8 +65,8 @@ theorem stalkPt_genStr (B : GlobalTheory.ProjVar.Var F) (e : F ≃+* c.F) (j : B
   have hpt : genericPt B ≫ B.str = spMap (algebraMap F B.Fn) := (ratOf B).pt_s
   have key : ((algebraMap (B.X.presheaf.stalk z) B.X.functionField).comp ψ.hom).comp e.toRingHom =
       algebraMap F B.Fn := by
-    apply spMap_inj'
-    rw [spMap_comp_moduli_spaces, spMap_comp_moduli_spaces, ← hpt, ← hj, ← hgen,
+    apply _root_.GlobalTheory.ZM.DenseFib.spMap_inj
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← hpt, ← hj, ← hgen,
       show spMap ψ.hom = stalkPt B z ≫ j ≫ genStr Z from hψ]
     simp only [Category.assoc]
   have hψeq : ψ.hom = φA := by
@@ -210,7 +201,7 @@ theorem coord_iff (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (hT' : Ti
     exact coord_unique' hev hh (coord_comp' hN hh')
   obtain ⟨hxg, hχ, -⟩ := id hh
   have hxg' : x ≫ genι Z = spMap (Scheme.stalkClosedPointTo (R := .of K) p).hom ≫ (stalkPt C.Y (p (IsLocalRing.closedPoint K)) ≫ C.π ≫ genι Z) := by
-    rw [hxC, hxg, hev, spMap_comp_moduli_spaces, Category.assoc]
+    rw [hxC, hxg, hev, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc]
   have hχ' : χ = (Scheme.stalkClosedPointTo (R := .of K) p).hom.comp φ₁ := by
     rw [hχ, hev, hφ₁, RingHom.comp_assoc]
   obtain ⟨h'', hh'', -⟩ := exists_coord_unit_det_of_baseChange f₁ (Scheme.stalkClosedPointTo (R := .of K) p).hom hxg' hχ' g
@@ -240,13 +231,13 @@ theorem flagex_lifts : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
   obtain ⟨-, hφA, -⟩ := id hfA
   have hsg := stalkPt_genStr B e j hj (x' (IsLocalRing.closedPoint K)) φA hφA
   have hχ : χ = (Scheme.stalkClosedPointTo (R := .of K) x').hom.comp φA := by
-    apply spMap_inj'
+    apply _root_.GlobalTheory.ZM.DenseFib.spMap_inj
     calc spMap χ = x ≫ genStr Z := hxs.symm
       _ = (x' ≫ j) ≫ genStr Z := by rw [hx']
       _ = ((spMap (Scheme.stalkClosedPointTo (R := .of K) x').hom ≫ stalkPt B (x' (IsLocalRing.closedPoint K))) ≫ j) ≫ genStr Z := by rw [hx'f]
       _ = spMap (Scheme.stalkClosedPointTo (R := .of K) x').hom ≫ (stalkPt B (x' (IsLocalRing.closedPoint K)) ≫ j ≫ genStr Z) := by simp only [Category.assoc]
       _ = spMap (Scheme.stalkClosedPointTo (R := .of K) x').hom ≫ spMap φA := by rw [hsg]
-      _ = spMap ((Scheme.stalkClosedPointTo (R := .of K) x').hom.comp φA) := (spMap_comp_moduli_spaces _ _).symm
+      _ = spMap ((Scheme.stalkClosedPointTo (R := .of K) x').hom.comp φA) := (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _).symm
   have hxg : x ≫ genι Z = spMap (Scheme.stalkClosedPointTo (R := .of K) x').hom ≫ (stalkPt B (x' (IsLocalRing.closedPoint K)) ≫ j ≫ genι Z) := by
     calc x ≫ genι Z = (x' ≫ j) ≫ genι Z := by rw [hx']
       _ = ((spMap (Scheme.stalkClosedPointTo (R := .of K) x').hom ≫ stalkPt B (x' (IsLocalRing.closedPoint K))) ≫ j) ≫ genι Z := by rw [hx'f]
@@ -259,7 +250,7 @@ theorem flagex_lifts : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
   have key : ∀ q : Sp K ⟶ C.Y.X, q ≫ f = x' → (Bears S' φ A h q ↔ C.Carries q g) := by
     intro q hq
     subst hq
-    rw [GlobalTheory.T.carriesFlags_iff_adaptedFrame_at_image _ _ _ _ _ _ _ _ _ _ e C S' A₁ K χ (x ≫ genι Z) g q hT']
+    rw [_root_.GlobalTheory.ShFam.CarriesAt.carries_iff _ _ _ _ _ _ _ _ _ _ e C S' A₁ K χ (x ≫ genι Z) g q hT']
     constructor
     · rintro ⟨A', hA', hPar'⟩
       obtain ⟨φ₁, f₁, hf₁⟩ := hTie' _ A' hA'

@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem sigma_star_exists : PI.SigmaStarEx := PI.SSE.sigmaStarEx

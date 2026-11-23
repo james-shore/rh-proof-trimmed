@@ -80,21 +80,6 @@ theorem mem_Qbar_of_pow {x : ℂ} {n : ℕ} (hn : 0 < n) (h : x ^ n ∈ Qbar) : 
   rw [mem_algebraicClosure_iff] at h ⊢
   exact h.of_pow hn
 
-theorem norm_int_le {K : Type} [Field K] [NumberField K] {p : ℕ} [Fact p.Prime] (f : K →+* ℂ_[p]) (c : 𝓞 K) :
-    ‖f (c : K)‖ ≤ 1 := by
-  first
-  | exact @_root_.GlobalTheory.RingOfIntegersNormBound.norm_map_ringOfIntegers_le_one
-  | exact _root_.GlobalTheory.RingOfIntegersNormBound.norm_map_ringOfIntegers_le_one
-  | (apply _root_.GlobalTheory.RingOfIntegersNormBound.norm_map_ringOfIntegers_le_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RingOfIntegersNormBound.norm_map_ringOfIntegers_le_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RingOfIntegersNormBound.norm_map_ringOfIntegers_le_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RingOfIntegersNormBound.norm_map_ringOfIntegers_le_one ..)
-
-theorem norm_nat_coprime {p : ℕ} [Fact p.Prime] {s : ℕ} (h : Nat.Coprime s p) : ‖(s : ℂ_[p])‖ = 1 := by
-  have h1 : (s : ℂ_[p]) = algebraMap ℚ_[p] ℂ_[p] (s : ℚ_[p]) := by simp
-  rw [h1, norm_algebraMap', Padic.norm_natCast_eq_one_iff]
-  exact h.symm
-
 theorem norm_det_le {p : ℕ} [Fact p.Prime] {r : ℕ} (M : Matrix (Fin r) (Fin r) ℂ_[p]) (h : ∀ i j, ‖M i j‖ ≤ 1) :
     ‖M.det‖ ≤ 1 := by
   rw [Matrix.det_apply']
@@ -125,12 +110,12 @@ theorem exists_coord {p : ℕ} [Fact p.Prime] (f : D.host.K →+* ℂ_[p])
   have hst : Nat.Coprime (t * s) p := Nat.Coprime.mul_left ht hs
   have h0 : ((t * s : ℕ) : D.host.K) ≠ 0 := by
     intro h
-    have h1 := norm_nat_coprime hst
+    have h1 := _root_.GlobalTheory.HeckeVal.norm_natCast_eq_one hst
     rw [← map_natCast f, h] at h1
     simp at h1
   refine ⟨fun i => ((t * s : ℕ) : D.host.K)⁻¹ * (c i : D.host.K), fun i => ?_, ?_⟩
-  · rw [map_mul, map_inv₀, map_natCast, norm_mul, norm_inv, norm_nat_coprime hst, inv_one, one_mul]
-    exact norm_int_le f _
+  · rw [map_mul, map_inv₀, map_natCast, norm_mul, norm_inv, _root_.GlobalTheory.HeckeVal.norm_natCast_eq_one hst, inv_one, one_mul]
+    exact _root_.GlobalTheory.RingOfIntegersNormBound.norm_map_ringOfIntegers_le_one f _
   · have h2 : ((t * s : ℕ) : D.host.K) • b' j = ∑ i, (c i : D.host.K) • b i := by
       rw [smul_smul, ← Nat.cast_mul, Nat.cast_smul_eq_nsmul] at hc
       rw [Nat.cast_smul_eq_nsmul, hc]

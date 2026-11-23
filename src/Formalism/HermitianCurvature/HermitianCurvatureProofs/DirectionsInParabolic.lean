@@ -313,8 +313,6 @@ theorem slice_z_coordinates : Formalism.FourierDecayAlt.U.SliceZ := by
   simp only [Matrix.mul_assoc]
   rw [← Matrix.mul_assoc (Rn k (p + s) ρ ξ.1.2) (Rn k (p + s) ρ ξ.1.2)⁻¹, Rn_mul_inv, Matrix.one_mul]
 
-theorem level_z_affine : Formalism.FourierDecayAlt.U.ZjAffine := ux_zjAffine
-
 end Formalism.FourierDecayAlt.P
 
 namespace Formalism.FourierDecayAlt.P.Ux4

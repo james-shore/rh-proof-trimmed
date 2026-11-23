@@ -172,8 +172,6 @@ end PositivityTheory.Rg.Rsw.L.LToS
 
 namespace PositivityTheory.Rg.Rsw.L
 
-theorem toS : IdemEx → ToS := LToS.toS_of
-
 end PositivityTheory.Rg.Rsw.L
 
 end

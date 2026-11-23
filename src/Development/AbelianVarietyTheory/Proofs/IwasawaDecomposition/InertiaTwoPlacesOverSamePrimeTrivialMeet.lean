@@ -117,9 +117,9 @@ theorem eq_of_mem_Ine_of_mem_Ine : ∀ (E Ω : Type) [Field E] [NumberField E] [
     (hb.map ((σ : Ω ≃ₐ[E] Ω).toAlgHom.restrictScalars ℤ)).sub hb
   have hc : IsIntegral ℤ ((σ b - b) ^ m) := hbD.pow m
   have hc0 : (σ b - b) ^ m ≠ 0 := pow_ne_zero _ hD0
-  obtain ⟨e0, he0i, he0A, he0A'⟩ := GlobalTheory.T.exists_integer_deep_at_one_place_unit_at_other E Ω A A' P hA hA' (Ne.symm hAA) _ hc hc0
-  obtain ⟨e, hei, hef, heA, heA'⟩ := GlobalTheory.T.exists_inertiaFixed_integral_of_separating_element E Ω A A' σ hσ' e0 _ he0i he0A he0A'
-  obtain ⟨ys, hcard, hys, hprod⟩ := GlobalTheory.T.exists_inertia_fixed_roots_perturbed_polynomial E Ω A' σ hσ' b e m f1 hei hef heA' hmu hf1m hf1d hf1b
+  obtain ⟨e0, he0i, he0A, he0A'⟩ := _root_.GlobalTheory.TwoPlaces.exists_deep_one_sub E Ω A A' P hA hA' (Ne.symm hAA) _ hc hc0
+  obtain ⟨e, hei, hef, heA, heA'⟩ := _root_.GlobalTheory.exists_fixed_of_separating E Ω A A' σ hσ' e0 _ he0i he0A he0A'
+  obtain ⟨ys, hcard, hys, hprod⟩ := _root_.GlobalTheory.exists_roots_fixed_of_mem_Ine E Ω A' σ hσ' b e m f1 hei hef heA' hmu hf1m hf1d hf1b
   have hbm : A.valuation (b ^ m - 1) ≤ 1 :=
     (A.valuation_le_one_iff _).mpr (ReciprocityTheory.Gal.mem_of_isIntegral_int A ((hb.pow m).sub isIntegral_one))
   have h1 : A.valuation (e * (b ^ m - 1)) < A.valuation (σ b - b) ^ m := by
@@ -138,7 +138,7 @@ theorem eq_of_mem_Ine_of_mem_Ine : ∀ (E Ω : Type) [Field E] [NumberField E] [
     have e1 : σ b - b = σ (b - y) - (b - y) := by rw [map_sub, hyf]; ring
     rw [e1, sub_eq_add_neg]
     refine (Valuation.map_add _ _ _).trans ?_
-    rw [Valuation.map_neg, GlobalTheory.T.iwasawaDecomposition_fact E Ω A σ hσA, max_self]
+    rw [Valuation.map_neg, _root_.GlobalTheory.ValuationOfMemIff.valuation_apply_eq E Ω A σ hσA, max_self]
   rw [← hprod] at h2
   exact absurd h2 (not_le.mpr h1)
 

@@ -60,11 +60,6 @@ namespace PositivityTheory.Gud.Fin
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem congrProd' {h N : ℕ} {x y : Fin h → IrrGL (k := k)} (e : x = y) (hx : ∑ a, (x a).1 = N) (hy : ∑ a, (y a).1 = N) :
-    Nonempty ((prodIrr x hx).Equiv (prodIrr y hy)) := by
-  subst e
-  exact ⟨Representation.Equiv.refl _⟩
-
 theorem segs_symm [CharZero k] {h N : ℕ} (δ : Fin h → IrrGL (k := k)) (Δ : Fin h → Segment k) (s : Fin h → ℝ)
     (hL : ∀ j, IsLSeg (Δ j) (δ j).rep) (hU : ∀ j, PositivityTheory.RgUd.UOrder.UnitCC (δ j).rep) (hs : ∀ j, |s j| < 1 / 2)
     (hd : ∑ j, ((δ j).nu (s j)).1 = N) (hi : (prodIrr (fun j => (δ j).nu (s j)) hd).IsIrreducible)
@@ -80,7 +75,7 @@ theorem segs_symm [CharZero k] {h N : ℕ} (δ : Fin h → IrrGL (k := k)) (Δ :
     funext fun j => by rw [GlobalTheory.T.dual_class_twist_neg hA]; push_cast; rfl
   have hd3 : ∑ j, ((Zc.dualCl (δ j)).nu (((fun j => -s j) j : ℝ) : ℂ)).1 = N := by
     rw [← hd2]; exact congrArg (fun f : Fin h → IrrGL (k := k) => ∑ j, (f j).1) hfun.symm
-  obtain ⟨e3⟩ := congrProd' hfun hd2 hd3
+  obtain ⟨e3⟩ := _root_.GlobalTheory.CompanionTheory.LSocle.prodIrr_congr hfun hd2 hd3
   have E := e1.symm.trans (e2.trans e3)
 
   have key : ∀ (t : Fin h → ℝ), (∀ j, |t j| < 1 / 2) → ∀ i j,

@@ -64,11 +64,6 @@ noncomputable section
 
 namespace GlobalTheory.ObjSpread
 
-theorem map_nsmul_of_add {L Q : Type} [AddCommGroup L] [Group Q] {f : L → Q} (h : ∀ a c, f (a + c) = f a * f c)
-    (n : ℕ) (a : L) : f (n • a) = f a ^ n := by
-  let φ : L →+ Additive Q := AddMonoidHom.mk' (fun a => Additive.ofMul (f a)) fun a c => congrArg Additive.ofMul (h a c)
-  exact congrArg Additive.toMul (map_nsmul φ n a)
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H}
 
 section Tate
@@ -96,7 +91,7 @@ theorem ev_div (I : TateIso D k Q act e) {n N : ℕ} (hN : 0 < N) (h : n ∣ N) 
   obtain ⟨d, rfl⟩ := h
   have hn : 0 < n := Nat.pos_of_mul_pos_right hN
   have hd : 0 < d := Nat.pos_of_mul_pos_left hN
-  rw [Nat.mul_div_cancel_left d hn, map_nsmul_of_add (I.add _), I.tower n d hn hd]
+  rw [Nat.mul_div_cancel_left d hn, _root_.GlobalTheory.LevCover.add_map_nsmul (I.add _), I.tower n d hn hd]
 
 theorem zeta_div (I : TateIso D k Q act e) {n N : ℕ} (hN : 0 < N) (h : n ∣ N) :
     (I.ζ N : k) ^ (N / n) = I.ζ n := by
@@ -109,9 +104,6 @@ end Tate
 
 variable {l : Geo.Tor.Level H}
 
-theorem level_pos (l : Geo.Tor.Level H) : 0 < l.M' :=
-  Nat.lcm_pos (by have := l.three_le; omega) l.A_pos
-
 section Tors
 
 variable {B : Type} [CommRing B] {b : Base l B} {S : Scheme.{0}} {s : S ⟶ Sp B}
@@ -122,13 +114,13 @@ theorem eta_pow (o : Obj D l b s) (a : D.La) : o.eta a ^ l.M' = 1 := by
     refine Ideal.mul_le_left (J := l.Mb.map (H.bar : 𝓞 E →+* 𝓞 E)) ?_
     rw [l.prod]
     exact Ideal.subset_span rfl
-  rw [hd, pow_mul, ← map_nsmul_of_add o.eta_add, o.eta_ker _ (by
+  rw [hd, pow_mul, ← _root_.GlobalTheory.LevCover.add_map_nsmul o.eta_add, o.eta_ker _ (by
     rw [← Nat.cast_smul_eq_nsmul (𝓞 E)]
     exact Submodule.smul_mem_smul hM trivial), one_pow]
 
 theorem etaA_pow (o : Obj D l b s) (a : D.La) : o.etaA a ^ l.M' = 1 := by
   obtain ⟨d, hd⟩ : l.A ∣ l.M' := Nat.dvd_lcm_right _ _
-  rw [hd, pow_mul, ← map_nsmul_of_add o.etaA_add, o.etaA_ker, one_pow]
+  rw [hd, pow_mul, ← _root_.GlobalTheory.LevCover.add_map_nsmul o.etaA_add, o.etaA_ker, one_pow]
 
 theorem geom_push (o : Obj D l b s) {X : Scheme.{0}} {t : SAB H X} {f : S ⟶ X} (m : SABMap o.t t f)
     (σ σA : D.La → (𝟙_ (Over X) ⟶ t.G)) (hσ : ∀ a, (o.eta a).left ≫ m.cm.F = f ≫ (σ a).left)
@@ -242,7 +234,7 @@ theorem exists_tateIso {A : Type} [CommRing A] [IsDomain A] [IsNoetherianRing A]
 theorem exists_obj : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} (D : Datum H) (l : Geo.Tor.Level H) (c : Coeff l) (A : Type) [CommRing A] [IsDomain A] [IsNoetherianRing A] [IsIntegrallyClosed A] (b : c.F →+* A) (t : SAB H (Sp A)), IsProper t.G.hom → Out.RelAmple t.G t.PP.L → Out.KTriv t.G t.PP.L → GlobalTheory.TChart.TorsRat t.G l.M' → ∀ (K : Type) [Field K] (g : A →+* K) (sK : Sp K ⟶ Sp (KA l)) (oK : Obj D l (baseKA l) sK), sK = spMap g ≫ spMap (b.comp (IntermediateField.inclusion c.le).toRingHom) → SABMap oK.t t (spMap g) → ∃ o : Obj D l (baseKA l) (spMap (b.comp (IntermediateField.inclusion c.le).toRingHom)), o.t = t ∧ Nonempty (ObjMap oK o (spMap g)) := by
   intro E _ _ _ H D l c A _ _ _ _ b t hp ha hk hT K _ g sK oK hsK m
   generalize (IntermediateField.inclusion c.le).toRingHom = j at hsK ⊢
-  have hN := level_pos l
+  have hN := _root_.GlobalTheory.LevelExist.M'_pos l
   have hdA : l.A ∣ l.M' := Nat.dvd_lcm_right _ _
   have hdM : l.M ∣ l.M' := Nat.dvd_lcm_left _ _
   have hQ : Nonempty (ℚ →+* A) := ⟨b.comp (algebraMap ℚ c.F)⟩

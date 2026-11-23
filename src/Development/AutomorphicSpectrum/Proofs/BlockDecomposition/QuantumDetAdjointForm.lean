@@ -152,6 +152,6 @@ theorem adj_qdet (V : Type) [AddCommGroup V] [Module ℂ V] (B : V →ₗ[ℂ] V
     (h : ∀ (i j : Fin n) (φ ψ : V), B (X i j φ) ψ = -B φ (Y i j ψ)) (v : ℂ) (φ ψ : V) :
     B (qdet X v φ) ψ =
       B φ ((((-1 : ℂ) ^ n) • qdet Y ((n : ℂ) - 1 - (starRingEnd ℂ) v)) ψ) := by
-  rw [hasAdj_qdet h v φ ψ, GlobalTheory.T.quantum_det_opposite_neg (Module.End ℂ V) n Y hY ((starRingEnd ℂ) v)]
+  rw [hasAdj_qdet h v φ ψ, _root_.GlobalTheory.CompanionTheory.CapelliAntipode.unop_qdet_op_neg (Module.End ℂ V) n Y hY ((starRingEnd ℂ) v)]
 
 end GlobalTheory.CompanionTheory.CapelliAdj

@@ -114,14 +114,11 @@ theorem lamC_mul {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ Taylo
   rw [map_mul, ← lamC_coe, ← lamC_coe] at this
   exact this
 
-theorem emb_mem {E : Type} [Field E] [NumberField E] (σ : E →+* ℂ) (x : E) : σ x ∈ TaylorLogMetric.Qbar :=
-  mem_algebraicClosure_iff.2 ((Algebra.IsAlgebraic.isAlgebraic (R := ℚ) x).algHom σ.toRatAlgHom)
-
 def lamHom {E : Type} [Field E] [NumberField E] (σ : E →+* ℂ) : E →+* ℂ_[p] :=
-  lam.comp (σ.codRestrict TaylorLogMetric.Qbar (emb_mem σ))
+  lam.comp (σ.codRestrict TaylorLogMetric.Qbar (_root_.GlobalTheory.MonoJet.emb_mem σ))
 
 theorem lamHom_apply {E : Type} [Field E] [NumberField E] (σ : E →+* ℂ) (x : E) :
-    TaylorLogMetric.lamC lam (σ x) = lamHom lam σ x := dif_pos (emb_mem σ x)
+    TaylorLogMetric.lamC lam (σ x) = lamHom lam σ x := dif_pos (_root_.GlobalTheory.MonoJet.emb_mem σ x)
 
 theorem norm_int_le {E : Type} [Field E] [NumberField E] (ψ : E →+* ℂ_[p]) (a : 𝓞 E) : ‖ψ (a : E)‖ ≤ 1 := by
   have hx : IsIntegral ℤ (ψ (a : E)) := by convert map_isIntegral_int ψ a.isIntegral_coe using 1; exact Subsingleton.elim _ _
@@ -200,14 +197,10 @@ theorem coc_nat (n : ℕ) (x y : HomE X.E a b) : coc A ((n : X.E) • x) ((n : X
 variable (hX : X.Ok) (hδ : A.δ ≠ 0) (hL : LaFacts (X.embC A.σ₀) A.δ A.d A.sc A.AA N N')
 include hX hδ hL
 
-theorem coc_int {x y : HomE X.E a b} (hx : x ∈ per A N N') (hy : y ∈ per A N N') : ∃ n : ℤ, coc A x y = n :=
-  (CocInt.cocycle_integral X A a b N N' hX hδ hL).2.2 x y fun Q =>
-    ⟨1, one_ne_zero, by simpa using le_locP Q _ hx, by simpa using le_locP (conjPrime₂ Q) _ hy⟩
-
 theorem al_unit {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) (ι : X.K →+* ℂ_[p]) {t : HomE X.E a b} {n : ℕ} (hn : n ≠ 0)
     (ht : (n : X.E) • t ∈ per A N N') :
     alV A.d A.sc (emb A t) ∈ TaylorLogMetric.Qbar ∧ ‖TaylorLogMetric.lamC lam (alV A.d A.sc (emb A t))‖ = 1 := by
-  obtain ⟨m, hm⟩ := coc_int A hX hδ hL ht ht
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.MomT.CocInt.coc_int A hX hδ hL ht ht
   rw [coc_nat] at hm
   have hn' : (n : ℝ) ≠ 0 := Nat.cast_ne_zero.2 hn
   have h : coc A t t = -2 * ((-(m : ℚ) / (2 * (n : ℚ) ^ 2) : ℚ) : ℝ) := by
@@ -455,7 +448,7 @@ theorem ptMom : ∀ (D : D7) (X : Fields) (s : Seam D X) (cc : Ideal (𝓞 D.hos
     obtain ⟨hC, hJ⟩ := hM 1 _ (hgood y hy)
     obtain ⟨q, hq⟩ : ∃ q : ℤ, coc (ambOf s B χ cD) (v • y) (v • y) = q := by
       rw [((CocInt.cocycle_integral X _ a b N N' hX hδ hL).1 _ _ _).1, smul_smul, hvv]
-      exact coc_int _ hX hδ hL hy (Submodule.smul_mem _ _ hy)
+      exact _root_.GlobalTheory.MomT.CocInt.coc_int _ hX hδ hL hy (Submodule.smul_mem _ _ hy)
     have h7 := (Heis.calculus X (ambOf s B χ cD) a b).2.2.2.2.2.2.1
     have hjet := jetC_pu B χ cD hs α hα0 _ _ (h7 _ _ (h7 _ _ (hE N N' hN1 hN2))) (Wx_Wx B χ cD hs hp2 N N' (v • y) t q hq) m
     obtain ⟨g₀, hg₀⟩ := exists_cont (p := p)

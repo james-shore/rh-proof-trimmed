@@ -158,7 +158,7 @@ theorem lattice_sum {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
         exact hN
       exact h5.trans (Finset.prod_le_prod₀ (fun _ _ => by positivity) fun p _ => h1 p)
     · simp [h, Set.indicator_of_notMem hξ]
-  refine (GlobalTheory.T.lattice_sum_decay_bound m b hbp h hinj hh).trans (le_of_eq ?_)
+  refine (_root_.GlobalTheory.CompanionTheory.Count.tsum_le_prod_of_injOn m b hbp h hinj hh).trans (le_of_eq ?_)
   rw [← ENNReal.ofReal_prod_of_nonneg fun p _ => by have := hbp p; positivity]
   congr 1
   rw [Fintype.prod_prod_type]

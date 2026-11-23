@@ -424,7 +424,7 @@ theorem stabiliser_acts_on_terms : ∀ {F : Type} [Field F] [ValuativeRel F] [To
   obtain ⟨omA, MA, FrA, levA, -⟩ := GlobalTheory.T.term_invariants_independent_of_witnesses L r k S d Λ n n' W0
   obtain ⟨omB, MB, FrB, levB, -⟩ := GlobalTheory.T.term_invariants_independent_of_witnesses L r k S d (h • Λ) (h * n) (h * n') W2
   obtain ⟨pm, pm', pn, -⟩ := GlobalTheory.FramePsi.psi_unitary_character L r k S
-  have hpp : S.psi h = S.psi' h := GlobalTheory.T.frames_characters_agree_commonStabiliser L r k S h hh
+  have hpp : S.psi h = S.psi' h := _root_.GlobalTheory.HL.CharAgree.psi_eq_psi' L r k S h hh
   have hM : S.M d (h • Λ) = h • S.M d Λ := by
     rw [MB, MA]
     exact mof_smul S h _ _

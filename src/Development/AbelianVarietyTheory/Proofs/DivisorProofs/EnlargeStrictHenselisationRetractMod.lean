@@ -55,23 +55,7 @@ open IsLocalRing Polynomial
 
 namespace GlobalTheory.KeyOriginRetract
 
-theorem mem_originIdeal {R : Type} [CommRing R] [IsLocalRing R] (p : Polynomial R) :
-    p ∈ GlobalTheory.KeyOriginCut.originIdeal R ↔ p.coeff 0 ∈ maximalIdeal R := by
-  unfold GlobalTheory.KeyOriginCut.originIdeal
-  constructor
-  · intro hp
-    obtain ⟨a, ha, b, hb, rfl⟩ := Submodule.mem_sup.1 hp
-    rw [Polynomial.coeff_add]
-    refine Ideal.add_mem _ ((Ideal.mem_map_C_iff.1 ha) 0) ?_
-    obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton.1 hb
-    simp
-  · intro hp
-    have h1 : Polynomial.C (p.coeff 0) ∈ (maximalIdeal R).map (Polynomial.C : R →+* Polynomial R) :=
-      Ideal.mem_map_of_mem _ hp
-    have h2 : p - Polynomial.C (p.coeff 0) ∈ Ideal.span {(Polynomial.X : Polynomial R)} :=
-      Ideal.mem_span_singleton.2 Polynomial.X_dvd_sub_C
-    have := Submodule.add_mem_sup h1 h2
-    simpa using this
+alias mem_originIdeal := _root_.GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff'
 
 theorem sub_coeff_zero_mem {R B : Type} [CommRing R] [CommRing B] [Algebra R B] [Algebra (Polynomial R) B]
     [IsScalarTower R (Polynomial R) B] (p : Polynomial R) :
@@ -187,9 +171,9 @@ theorem enlarge_retract : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRin
       (algebraMap (Polynomial T) O).comp (Polynomial.mapRingHom i) := by
     rw [RingHom.comp_assoc, ← IsScalarTower.algebraMap_eq, hjA]
   obtain ⟨A₁, _, _, _, _, _, _, f, i₁, e, hi₁, hil₁, hfi, he, hag⟩ :=
-    GlobalTheory.T.localRing_mod_t_embeds_strictHenselian T O hT hTO hX A i hi hil EA (jA.comp (algebraMap EA (Localization.AtPrime QA))) hj
+    _root_.GlobalTheory.FibreRetract.fibre_retract T O hT hTO hX A i hi hil EA (jA.comp (algebraMap EA (Localization.AtPrime QA))) hj
   obtain ⟨EA', _, _, _, _, _, QA', _, jA', ψA', DA', _, _, actA', hF', ⟨β, h, hβ, hh⟩, γ, hγ, hjγ, hQ',
-    hex, huniq⟩ := GlobalTheory.T.fittingDatum_baseChange_localEnlargement T O hT P φ hφ hsh hP q hq0 hqT A i EA QA jA ψA DA actA hF0 A₁ f i₁ hi₁ hil₁ hfi
+    hex, huniq⟩ := _root_.GlobalTheory.EnlargeBaseChange.fits_baseChange T O hT P φ hφ hsh hP q hq0 hqT A i EA QA jA ψA DA actA hF0 A₁ f i₁ hi₁ hil₁ hfi
   haveI := hil₁
   obtain ⟨σ, hσC, hσγ⟩ := hex A₁ (Polynomial.evalRingHom 0) e (by
     rw [he]

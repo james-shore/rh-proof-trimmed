@@ -63,6 +63,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteVolumeAdelicUnitaryQuotient
 
 @[expose] public section
 
@@ -128,9 +129,6 @@ theorem hR_one (x y : Fin M → R ⊗[F] E) :
   rw [Matrix.map_one _ (map_zero _) (map_one _)]
   simp [Matrix.one_apply]
 
-theorem sigR_inclR (e : E) : sigR R σ (inclR R e) = inclR R (σ e) := by
-  simp [sigR, inclR]
-
 theorem hR_one_mulVec (J : Matrix (Fin M) (Fin M) E) (x y : Fin M → R ⊗[F] E) :
     hR R σ (1 : Matrix (Fin M) (Fin M) E) x ((JR R J).mulVec y) = hR R σ J x y := by
   rw [hR_one]
@@ -142,7 +140,7 @@ theorem hR_one_mulVec' (J : Matrix (Fin M) (Fin M) E) (hJ : ∀ i j, σ (J j i) 
   rw [hR_one]
 
   simp only [hR, Formalism.UG.hform, Matrix.mulVec, dotProduct, map_sum, map_mul, Finset.sum_mul, JR,
-  Matrix.map_apply, sigR_inclR, hJ]
+  Matrix.map_apply, _root_.GlobalTheory.Mem.VolFin.sigR_inclR, hJ]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 

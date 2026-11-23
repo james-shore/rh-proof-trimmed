@@ -80,7 +80,7 @@ theorem flat_85_bound : ∀ II : IntersectionSystem, ∀ (Ψ : Type) [Fintype Ψ
   unfold RootTower.Proportional at hP
   unfold I9 at hI9
   obtain ⟨τ⟩ := ‹Nonempty Ψ›
-  obtain ⟨⟨Q, hQ, hdeg⟩, -⟩ := testForms_sh_tot Ψ N T.j τ T.j_pos T.j_lt
+  obtain ⟨⟨Q, hQ, hdeg⟩, -⟩ := _root_.RootFieldNumerics.exists_degree_one_class Ψ N T.j τ T.j_pos T.j_lt
   obtain ⟨h, hPP, hbd⟩ := hF
   have hN : 1 ≤ N := le_trans T.j_pos T.j_lt.le
   have hQ' : Q.IsHomogeneous (dimFl Ψ N + 1 - 1) := by simpa using hQ

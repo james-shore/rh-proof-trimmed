@@ -67,18 +67,7 @@ noncomputable section
 
 namespace GlobalTheory.SpreadTorSection
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [spMap, spMap, spMap, ← Spec.map_comp]; rfl
-
-theorem spMap_id' (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 _ := by
-  show Spec.map (𝟙 _) = _
-  exact Spec.map_id _
-
-theorem spMap_injective' {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) :
-    f = g := by
-  have := congrArg (fun u => (Spec.preimage u).hom) h
-  simpa [spMap, Spec.preimage_map] using this
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem range_sub {W κ : Type} [CommRing W] [IsLocalRing W] [Field κ] {B : Scheme.{0}} (ψ : Sp W ⟶ B)
     (Wo : B.Opens) (c : W →+* κ) [IsLocalHom c] (y : Sp κ ⟶ Wo.toScheme) (e : spMap c ≫ ψ = y ≫ Wo.ι) :
@@ -128,7 +117,7 @@ theorem bc_point {W L X : Type} [CommRing W] [CommRing L] [AddCommGroup X] (f : 
     refine GlobalTheory.UU.splitTorus_left_hom_ext _ _ ?_ fun χ => ?_
     · rw [Category.assoc, GlobalTheory.SplitTorus.bcMap_hom, ← Category.assoc, Over.w zL, Category.assoc, Over.w zW]
       change spMap (RingHom.id L) ≫ spMap f = spMap f ≫ spMap (RingHom.id W)
-      rw [spMap_id', spMap_id', Category.id_comp, Category.comp_id]
+      rw [_root_.GlobalTheory.LevelFibre.spMap_id', _root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp, Category.comp_id]
     · rw [Scheme.Hom.comp_appTop, CommRingCat.hom_comp, RingHom.comp_apply, GlobalTheory.UU.bcMap_charUnit,
         Scheme.Hom.comp_appTop, CommRingCat.hom_comp, RingHom.comp_apply]
       have e1 := (GlobalTheory.UU.chV_val zL χ).symm.trans (congrArg Units.val (hzL χ))
@@ -157,9 +146,9 @@ theorem trait_section : ∀ (B : Scheme.{0}) (H : Over B) [GrpObj H] [IsCommMonO
   have hoW : spMap oW = ψ ≫ s := by
     show Spec.map (CommRingCat.ofHom (Spec.preimage (ψ ≫ s)).hom) = _
     rw [CommRingCat.ofHom_hom, Spec.map_preimage]
-  have ho₁ : α.comp oW = b₁.comp o₁ := spMap_injective' (by
+  have ho₁ : α.comp oW = b₁.comp o₁ := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by
     rw [spMap_comp', spMap_comp', hoW, ← Category.assoc, hαψ, Category.assoc, hs₁])
-  have ho₂ : c'.comp oW = b₂.comp o₂ := spMap_injective' (by
+  have ho₂ : c'.comp oW = b₂.comp o₂ := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by
     rw [spMap_comp', spMap_comp', hoW, ← Category.assoc, hc'ψ, Category.assoc, hs₂])
 
   have hζu : IsUnit ζ := IsUnit.of_pow_eq_one hζ (by omega)
@@ -182,7 +171,7 @@ theorem trait_section : ∀ (B : Scheme.{0}) (H : Over B) [GrpObj H] [IsCommMonO
     · simp only [Category.assoc]
       rw [hh, hψ', hψ.1.w, ← Category.assoc, Over.w (zW ≫ j)]
       change ψ = spMap (RingHom.id W) ≫ ψ
-      rw [spMap_id', Category.id_comp]
+      rw [_root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp]
     · rw [← Category.assoc, e₁, Category.assoc, hyp₁, ← hjn, ← hnφ, ← Category.assoc (spMap α), hbcΩ,
         Category.assoc]
 

@@ -97,7 +97,7 @@ theorem diag_index : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
     ext v; rw [AddSubgroup.mem_inf, eP, eL]; simp [AddSubgroup.mem_pi, forall_and]
   rw [eI, eP, eL, relIndex_pi_univ, relIndex_pi_univ]
   have h1 : ∀ i, (Pi i ⊓ L₀).relIndex (Pi i) * (Pi i ⊓ L₀).relIndex L₀ = resCard k ^ (e i).natAbs :=
-    fun i => line_index k ϖ hϖ (e i) L₀ (Pi i) hL₀ (hPi i)
+    fun i => _root_.GlobalTheory.ScaledIdealIndex.relIndex_scaled_maxIdeal k ϖ hϖ (e i) L₀ (Pi i) hL₀ (hPi i)
   rw [← Nat.cast_mul, ← Finset.prod_mul_distrib, Finset.prod_congr rfl (fun i _ => h1 i),
     Finset.prod_pow_eq_pow_sum]
   have hs : sumAbs e = ((∑ i, (e i).natAbs : ℕ) : ℤ) := by

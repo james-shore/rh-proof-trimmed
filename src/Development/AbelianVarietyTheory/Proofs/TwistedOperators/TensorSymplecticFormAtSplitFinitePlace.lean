@@ -80,27 +80,7 @@ theorem pairM_comm {K : Type} [CommRing K] {n d : ℕ} (P Q : Matrix (Fin n) (Fi
     pairM P Q = pairM Q P := by
   simp only [pairM, mul_comm]
 
-theorem pairM_chart {K : Type} [Field K] {n d : ℕ} (A : Matrix (Fin n) (Fin n) K) (B : Matrix (Fin d) (Fin d) K)
-    (b : GL (Fin n) K) (c : GL (Fin d) K) (P Q : Matrix (Fin n) (Fin d) K) :
-    pairM ((b⁻¹).1 * P * (c⁻¹).1ᵀ) (-(b.1ᵀ * A * Q * Bᵀ * c.1)) =
-      -∑ i : Fin n, ∑ j : Fin d, ∑ k : Fin n, ∑ l : Fin d, P i j * A i k * B j l * Q k l := by
-  first
-  | exact @_root_.GlobalTheory.TracePairingBasisChange.pair_change_basis
-  | exact _root_.GlobalTheory.TracePairingBasisChange.pair_change_basis
-  | (apply _root_.GlobalTheory.TracePairingBasisChange.pair_change_basis <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TracePairingBasisChange.pair_change_basis <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TracePairingBasisChange.pair_change_basis <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TracePairingBasisChange.pair_change_basis ..)
-
-theorem sum_four_swap_pairs_alt {R α β : Type} [AddCommMonoid R] [Fintype α] [Fintype β] (f : α → β → α → β → R) :
-    ∑ a, ∑ b, ∑ c, ∑ e, f a b c e = ∑ c, ∑ e, ∑ a, ∑ b, f a b c e := by
-  first
-  | exact @_root_.GlobalTheory.SumFourSwap.sum_four_swap
-  | exact _root_.GlobalTheory.SumFourSwap.sum_four_swap
-  | (apply _root_.GlobalTheory.SumFourSwap.sum_four_swap <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SumFourSwap.sum_four_swap <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SumFourSwap.sum_four_swap <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SumFourSwap.sum_four_swap ..)
+alias pairM_chart := _root_.GlobalTheory.TracePairingBasisChange.pair_change_basis
 
 theorem symp_at_split : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}, IsCMExt F E σ →
     ∀ {n d : ℕ} (X : Spc F E n) (Y : Spc F E d), (∀ r s, σ (X.J s r) = X.J r s) → (∀ r s, σ (Y.J s r) = -Y.J r s) → ∀ (ψ : AddChar (AF F) ℂ) {v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)} (t : E →ₐ[F] Fv F v)
@@ -130,7 +110,7 @@ theorem symp_at_split : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
   rw [sub_eq_add_neg]
   congr 1
   rw [neg_neg]
-  refine Eq.trans ?_ (sum_four_swap_pairs_alt _).symm
+  refine Eq.trans ?_ (_root_.GlobalTheory.SumFourSwap.sum_four_swap _).symm
   simp only [← Finset.sum_neg_distrib]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ =>
     Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_

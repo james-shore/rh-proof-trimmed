@@ -87,7 +87,7 @@ theorem UpperTheory.One.Join.automorphic_inputs_from_literature (O : _root_.Uppe
 theorem UpperTheory.One.Join.v_window_of_depth_zero_residual_bc_cm (O : _root_.UpperTheory.LiteratureTheorems.OpenImageCondition)
  (bc : _root_.PositivityTheory.Rg.BcN.BaseChangeIsobaricN) (gal : _root_.UpperTheory.V.Z.Win.RowT) (cm : _root_.GlobalTheory.Mem.LiteralAutomorphy.LiteratureCMHypothesis) :
     UpperTheory.Top.VWin :=
-  _root_.UpperTheory.V.v_window_of_literal_automorphy_n
+  _root_.UpperTheory.V.HV.DescentVanishingReductions.v_window_of_automorphy_csd_ss_mono_odd
     { loc := _root_.UpperTheory.One.Join.local_inputs_from_literature O
       aut := _root_.UpperTheory.One.Join.automorphic_inputs_from_literature O bc gal
       coh := _root_.UpperTheory.LiteratureTheorems.galois_cohomology_from_literature O

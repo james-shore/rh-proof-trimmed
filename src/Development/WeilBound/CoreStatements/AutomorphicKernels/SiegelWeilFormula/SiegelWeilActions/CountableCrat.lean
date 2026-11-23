@@ -59,7 +59,7 @@ variable {R L}
 theorem continuous_th' (T' : nF σ L.Y L.b) : Continuous fun β : nA σ L.Y L.b => th' (d := d) T' β :=
   kfour.continuous_chr (σ := σ) (Y := L.Y) (b := L.b) d.ok.good.std.1 T'.1.1
 
-theorem countable_crat : Countable (Crat L) := by
+theorem countable_crat : Countable (_root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L) := by
   have : Countable L.ratV := by
     have : Countable E := (Module.finBasis ℚ E).equivFun.injective.countable
     refine Function.Surjective.countable (f := fun v : Fin L.n → E =>
@@ -68,7 +68,7 @@ theorem countable_crat : Countable (Crat L) := by
     exact ⟨v, Subtype.ext hv.symm⟩
   have : Countable F := (Module.finBasis ℚ F).equivFun.injective.countable
   have : Countable (Set.range (algebraMap F (AF F))) := (Set.countable_range _).to_subtype
-  refine Function.Injective.countable (f := fun c : Crat L =>
+  refine Function.Injective.countable (f := fun c : _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L =>
     ((⟨c.1.1, c.2.1⟩ : L.ratV), (⟨c.1.2, c.2.2⟩ : Set.range (algebraMap F (AF F)))))
     fun c c' hcc => ?_
   simp only [Prod.mk.injEq, Subtype.mk.injEq] at hcc

@@ -140,10 +140,10 @@ def trueDtPackQ (C : HFrame H e) : DtPack H :=
     relDet_self := fun N L => relDetQ_self H SQ N L.1
     relDet_mul := fun N L L' L'' => (toDtTMod_bijective H SQ).1 (by
       rw [map_mul, toDtTMod_relDetQ, toDtTMod_relDetQ, toDtTMod_relDetQ]
-      exact (GlobalTheory.T.relativeLatticeDeterminantClass_laws R H N).2.1 L L' L'')
+      exact (_root_.GlobalTheory.Mem.Chr.relDetT_laws R H N).2.1 L L' L'')
     relDet_smul := fun N L L' γ h => (toDtTMod_bijective H SQ).1 (by
       rw [toDtTMod_relDetQ, toDtTMod_mk, toDtT_e1Q]
-      exact (GlobalTheory.T.relativeLatticeDeterminantClass_laws R H N).2.2 L L' γ h) }
+      exact (_root_.GlobalTheory.Mem.Chr.relDetT_laws R H N).2.2 L L' γ h) }
 
 theorem trueDtPackQ_relDet (C : HFrame H e) : letI := H.cmStar
     ∀ (N : ℕ) (L L' : SDLat H.E N), (trueDtPackQ SQ C).relDet N L L' = relDetQ H SQ N L.1 L'.1 :=

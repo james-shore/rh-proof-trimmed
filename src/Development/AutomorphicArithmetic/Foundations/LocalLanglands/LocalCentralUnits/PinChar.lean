@@ -64,9 +64,6 @@ theorem norm_char (χ : G →* ℂˣ) (z : G) : ‖((χ z : ℂˣ) : ℂ)‖ = 1
     rw [← Units.val_pow_eq_pow_val, ← map_pow, pow_card_eq_one, map_one, Units.val_one]
   exact Complex.norm_eq_one_of_pow_eq_one h Fintype.card_ne_zero
 
-theorem sum_char (χ : G →* ℂˣ) (h : χ ≠ 1) : ∑ z, ((χ z : ℂˣ) : ℂ) = 0 :=
-  _root_.UpperTheory.Reformulated.B.Qe46.sum_char χ h
-
 theorem conj_char (χ : G →* ℂˣ) (z : G) : conj ((χ z : ℂˣ) : ℂ) = (((χ⁻¹) z : ℂˣ) : ℂ) := by
   rw [MonoidHom.inv_apply, Units.val_inv_eq_inv_val, Complex.inv_eq_conj (norm_char χ z)]
 
@@ -80,7 +77,7 @@ theorem sum_mul_conj (χ ψ : G →* ℂˣ) :
   split_ifs with h
   · subst h
     simp
-  · exact sum_char _ (fun hh => h (mul_inv_eq_one.mp hh))
+  · exact _root_.UpperTheory.Reformulated.B.Qe46.sum_char _ (fun hh => h (mul_inv_eq_one.mp hh))
 
 noncomputable def dif (A B : Finset (G →* ℂˣ)) (z : G) : ℂ :=
   ∑ χ ∈ A, ((χ z : ℂˣ) : ℂ) - ∑ χ ∈ B, ((χ z : ℂˣ) : ℂ)

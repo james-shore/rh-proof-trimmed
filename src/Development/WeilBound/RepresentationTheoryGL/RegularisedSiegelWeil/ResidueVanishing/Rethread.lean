@@ -159,7 +159,7 @@ theorem downNe_of_core : ResidueKilled.DM → PositivityTheory.Rg.Rsw.ResCore �
       (sZero A B)) (fun g => conj (u g)) (fun g => conj (u g))) ((t : ℂ) / 2) (-1) 0 := by
     rw [← hs0]
     exact hcoef
-  exact GlobalTheory.T.zeta_residue_ne_zero_of_simple_pole_lift_L_function hSP D (under Z) W.rank t c par χW hHyp A.rank B.rank _ C _ hC0 hEq hcoef' rfl
+  exact _root_.GlobalTheory.Core.Rk.Exh.residue_ne_zero_of_simplePole hSP D (under Z) W.rank t c par χW hHyp A.rank B.rank _ C _ hC0 hEq hcoef' rfl
 
 end GlobalTheory.Core.Rk.Exh.Top
 

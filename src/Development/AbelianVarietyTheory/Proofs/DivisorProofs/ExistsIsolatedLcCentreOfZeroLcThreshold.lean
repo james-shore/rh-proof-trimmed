@@ -86,8 +86,8 @@ theorem GlobalTheory.PairStep.exists_isolated_of_lcCut_zero : GlobalTheory.Publi
   have hlam1 : lam ≤ 1 := by
     have : (lam : ℝ) ≤ 1 := (hlam.trans_le hsum).le
     exact_mod_cast this
-  obtain ⟨M, E, hM, hE, hxE, hEnum⟩ := GlobalTheory.T.exists_effective_QDivisor_offPoint_ampleClass X p hp N₀ A x r lam μ hN₀ hnef hA hr hlam1 hμ
-  obtain ⟨hD, hqW, hDnum⟩ := GlobalTheory.T.cartierDivToWeilQDivisor_add_of_effective X p hp D₀ E m' M hm' hM hD₀ hE
+  obtain ⟨M, E, hM, hE, hxE, hEnum⟩ := _root_.GlobalTheory.exists_eff_off_pt_ample_class X p hp N₀ A x r lam μ hN₀ hnef hA hr hlam1 hμ
+  obtain ⟨hD, hqW, hDnum⟩ := _root_.GlobalTheory.QDivSum.sum_eq X p hp D₀ E m' M hm' hM hD₀ hE
   have hoff : ∀ y, y ∉ E.supp → Off (qWeil E M) y := fun y hy =>
     (GlobalTheory.T.weilQDivisorAvoidsPoint_cartier_iff_notMem_supp X E M y hE hM).2 hy
   have heq : Δ + qWeil (M • D₀ + m' • E) (m' * M) = (Δ + qWeil D₀ m') + (1 : ℚ) • qWeil E M := by

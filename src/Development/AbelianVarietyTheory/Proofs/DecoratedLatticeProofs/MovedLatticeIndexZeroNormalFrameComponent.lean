@@ -68,7 +68,7 @@ theorem latV_normalFrame_zero_loc : ∀ {D : D7} {c : Comm D} {v : VCom c} (G : 
   have hb := GlobalTheory.LocMod.liftM_map β.val
   have h1 := hM _ hb
   have h2 := hB1 _ hb
-  rw [GlobalTheory.LocMod.mt_one_gaMat, Matrix.one_mul] at h2
+  rw [_root_.GlobalTheory.BesselCompare.mt_one, Matrix.one_mul] at h2
   rw [Matrix.map_mul, h2] at h1
   let ε := e.symm.trans (GlobalTheory.StepData.stdOrd (Fin D.R.k) (Fin D.R.t) 0 (G.s + 1) hn)
   let X := (G.FY 0 (G.s + 1) hn).β * ((G.S.T (Fin D.R.t)).bas 0 (G.s + 1) hn).val
@@ -77,11 +77,11 @@ theorem latV_normalFrame_zero_loc : ∀ {D : D7} {c : Comm D} {v : VCom c} (G : 
   have h1' : P * B.val = X.submatrix id ε := h1
   have hPPi : P * Pi = 1 := by
     change (mt (c.V 0) b).map G.q.pr * (mt (c.V 0) b⁻¹).map G.q.pr = 1
-    rw [← Matrix.map_mul, ← GlobalTheory.LocMod.mt_mul_gaMat, mul_inv_cancel, GlobalTheory.LocMod.mt_one_gaMat,
+    rw [← Matrix.map_mul, ← _root_.GlobalTheory.BesselCompare.mt_mul, mul_inv_cancel, _root_.GlobalTheory.BesselCompare.mt_one,
       Matrix.map_one _ (map_zero _) (map_one _)]
   have hPiP : Pi * P = 1 := by
     change (mt (c.V 0) b⁻¹).map G.q.pr * (mt (c.V 0) b).map G.q.pr = 1
-    rw [← Matrix.map_mul, ← GlobalTheory.LocMod.mt_mul_gaMat, inv_mul_cancel, GlobalTheory.LocMod.mt_one_gaMat,
+    rw [← Matrix.map_mul, ← _root_.GlobalTheory.BesselCompare.mt_mul, inv_mul_cancel, _root_.GlobalTheory.BesselCompare.mt_one,
       Matrix.map_one _ (map_zero _) (map_one _)]
   have hX : X = (P * B.val).submatrix id ε.symm := by
     rw [h1', submatrix_submatrix, Function.comp_id, Equiv.self_comp_symm, submatrix_id_id]

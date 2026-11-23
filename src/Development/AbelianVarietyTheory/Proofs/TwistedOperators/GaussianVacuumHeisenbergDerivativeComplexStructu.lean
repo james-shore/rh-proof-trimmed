@@ -77,7 +77,7 @@ theorem actsD_zero_of_neg {F E : Type} [Field F] [NumberField F] [Field E] [Numb
     (w : InfinitePlace F) (hw : ε' w = -1) (v : Matrix (Fin n) (Fin d) (AE F E)) (h : SInf F (Fin n × Fin d))
     (hD : ActsD (evI F) (M.heisLine B.ψ v) g h) : h = 0 := by
   by_cases hκ : n = 0 ∨ d = 0
-  · refine GlobalTheory.T.heisenbergDerivative_zero_or_empty_eq_zero M B.ψ g h v hD (Or.inr ?_)
+  · refine _root_.GlobalTheory.HeisDerivZero.actsD_eq_zero M B.ψ g h v hD (Or.inr ?_)
     rcases hκ with hκ | hκ
     · subst hκ; exact ⟨fun p => p.1.elim0⟩
     · subst hκ; exact ⟨fun p => p.2.elim0⟩
@@ -99,7 +99,7 @@ theorem actsD_zero_of_neg {F E : Type} [Field F] [NumberField F] [Field E] [Numb
   have hg0 : g = 0 := by
     refine GlobalTheory.T.schwartz_eq_zero_of_wrong_sign_gaussian_relation g a₁ a₂ (ell b₁) (ell b₂) (fun y => ?_) ?_
     · have e1 := GlobalTheory.T.heisenbergLineDerivative_eq_directional_add_phase M B.ψ hB.std g f u hu hf y
-      have e2 := GlobalTheory.T.heisenbergLineDerivative_eq_directional_add_phase M B.ψ hB.std g f' u' hu' hf' y
+      have e2 := _root_.GlobalTheory.HeisDerivFormula.heisLine_deriv_eq M B.ψ hB.std g f' u' hu' hf' y
       have e3 : f' y = Complex.I * f y := by rw [hff]; rfl
       rw [e1, e2] at e3
       exact e3
@@ -119,7 +119,7 @@ theorem actsD_zero_of_neg {F E : Type} [Field F] [NumberField F] [Field E] [Numb
       have c2 : (ell b₁) a₂ = Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (a₂ ⬝ᵥ b₁) := rfl
       rw [c1, c2]
       exact hneg
-  exact GlobalTheory.T.heisenbergDerivative_zero_or_empty_eq_zero M B.ψ g h v hD (Or.inl hg0)
+  exact _root_.GlobalTheory.HeisDerivZero.actsD_eq_zero M B.ψ g h v hD (Or.inl hg0)
 
 end GlobalTheory.GaussCancel
 

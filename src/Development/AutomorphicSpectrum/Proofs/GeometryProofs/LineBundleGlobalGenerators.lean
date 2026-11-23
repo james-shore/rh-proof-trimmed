@@ -143,7 +143,7 @@ theorem exists_cover (hg : IsCptGen ξ) {U : X.Opens} {R : Subring Ω} (hP : IsP
     let p : Cpt ξ := ⟨z, hP.spec z hz⟩
     obtain ⟨V, hpV, b, -, hfr⟩ := hΛ p trivial
     obtain ⟨g, hgR, hg0, hpu, hgV⟩ := exists_basic hg hP p hz V hpV
-    obtain ⟨U', -, hm⟩ := GlobalTheory.T.piece_localization_at_element X Ω ξ U R g hg hP hgR hg0
+    obtain ⟨U', -, hm⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.exists_basicOpen_piece X Ω ξ U R g hg hP hgR hg0
     refine ⟨(g, b 0), U', (hm p).2 ⟨hz, hpu⟩, ⟨hgR, hg0, (hfr p trivial hpV).1.ne_zero 0, fun q hq hu => ?_⟩,
       fun q hq => ((hm q).1 hq).2⟩
     have := (hfr q trivial (hgV q hq hu)).2
@@ -212,7 +212,7 @@ theorem pair {κ : Type} {x : κ → Ω} {Λ : Lat ξ Ω} (hT : CoordTie ℤ ξ 
   have hw0 : w ≠ 0 := mul_ne_zero hg'0 (mul_ne_zero hu0 hG0)
   have hwR : w ∈ chartSub x c' := mul_mem hg'R (mul_mem hu he)
   obtain ⟨U₀, hU₀, hU₀m⟩ := piece_chart hT hc'
-  obtain ⟨U₁, hU₁, hm⟩ := GlobalTheory.T.piece_localization_at_element X Ω ξ U₀ _ w hT.gen hU₀ hwR hw0
+  obtain ⟨U₁, hU₁, hm⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Sm.exists_basicOpen_piece X Ω ξ U₀ _ w hT.gen hU₀ hwR hw0
   have hreg : ∀ q : Cpt ξ, InChart ξ x c' q → ∀ a ∈ chartSub x c', a ∈ regAt ξ q :=
     fun q hq a ha => (hT.ring c' hc' a).1 ha q hq
   have hf : b / b' ∈ locSub (chartSub x c') w := by

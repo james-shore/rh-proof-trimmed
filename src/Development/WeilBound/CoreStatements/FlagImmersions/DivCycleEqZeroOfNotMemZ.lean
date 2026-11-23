@@ -171,9 +171,6 @@ theorem divCycle_le_of_rel {V W : Ideal (MRing ι)} (hV : V.IsPrime) {a b u : MR
 
 variable {Ω : Type} [Field Ω]
 
-theorem homog_mono (c : ∀ k, ι k) (e : K → ℕ) : IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ e k) e :=
-  LowerBoundFree.VertFactorSmooth.isMultiHomog_prod_X_pow c e
-
 theorem mono_not_mem {W : Ideal (MRing ι)} (hW : W.IsPrime) (c : ∀ k, ι k)
     (hc : ∀ k, (X ⟨k, c k⟩ : MRing ι) ∉ W) (e : K → ℕ) : (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ e k) ∉ W := by
   intro h
@@ -188,7 +185,7 @@ theorem chart_form (y : (Σ k, ι k) → Ω) (c : ∀ k, ι k) (hc : ∀ k, y �
       ∀ e : K → ℕ, e₀ ≤ e → ∃ h : MRing ι, IsMultiHomog h e ∧ aeval y h = x * ∏ k, y ⟨k, c k⟩ ^ e k := by
     rintro x e₀ ⟨h, hh, he⟩ e hle
     refine ⟨h * ∏ k, (X ⟨k, c k⟩ : MRing ι) ^ (e k - e₀ k), ?_, ?_⟩
-    · have := LowerBoundFree.isMultiHomog_mul hh (homog_mono c fun k => e k - e₀ k)
+    · have := LowerBoundFree.isMultiHomog_mul hh (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LocalRep.isMultiHomog_chartMono c fun k => e k - e₀ k)
       convert this using 1
       funext k
       have : e₀ k ≤ e k := hle k
@@ -249,7 +246,7 @@ theorem div_le_of_integral (y : (Σ k, ι k) → Ω) (hP : (mCoordIdeal y).IsPri
   refine divCycle_le_of_rel hP haP hbP (mono_not_mem hW c hcW e) (n := n) h ?_
   refine LowerBoundFree.mem_mCoordIdeal_of_aeval_eq_zero y (d := e + n • d) ?_ ?_
   · refine LowerBoundFree.isMultiHomog_add
-      (LowerBoundFree.isMultiHomog_mul (homog_mono c e) (SectionOrderAtPoint.isMultiHomog_pow' ha n))
+      (LowerBoundFree.isMultiHomog_mul (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LocalRep.isMultiHomog_chartMono c e) (SectionOrderAtPoint.isMultiHomog_pow' ha n))
       (SectionOrderAtPoint.isMultiHomog_sum' _ _ fun j hj => ?_)
     have h1 := LowerBoundFree.isMultiHomog_mul (LowerBoundFree.isMultiHomog_mul
       (hh j hj).1 (SectionOrderAtPoint.isMultiHomog_pow' ha j))
@@ -320,10 +317,10 @@ theorem half_bound (y : (Σ k, ι k) → Ω) (hP : (mCoordIdeal y).IsPrime) (hH 
     (b := (g * ∏ k, (X ⟨k, c k⟩ : MRing ι) ^ df k) ^ q)
     (by
       have := LowerBoundFree.isMultiHomog_mul (LocalRep.isMultiHomog_C (ι := ι) (m : ℤ))
-        (SectionOrderAtPoint.isMultiHomog_pow' (LowerBoundFree.isMultiHomog_mul hf (homog_mono c dg)) q)
+        (SectionOrderAtPoint.isMultiHomog_pow' (LowerBoundFree.isMultiHomog_mul hf (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LocalRep.isMultiHomog_chartMono c dg)) q)
       simpa using this)
     (by
-      have := SectionOrderAtPoint.isMultiHomog_pow' (LowerBoundFree.isMultiHomog_mul hg (homog_mono c df)) q
+      have := SectionOrderAtPoint.isMultiHomog_pow' (LowerBoundFree.isMultiHomog_mul hg (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LocalRep.isMultiHomog_chartMono c df)) q
       rwa [add_comm dg df] at this)
     n5 n4 (by
       have e : (∏ k, y ⟨k, c k⟩ ^ dg k) =
@@ -458,8 +455,8 @@ theorem exists_forms {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (�
       u * aeval y (h * ∏ k, (X ⟨k, c k⟩ : MRing ι) ^ (-a k).toNat) := by
     simp only [map_mul, map_prod, map_pow, aeval_X, e, ← e2]
     ring
-  refine ⟨_, _, _, _, GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul hg (homog_mono c fun k => (a k).toNat),
-    GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul hh (homog_mono c fun k => (-a k).toNat),
+  refine ⟨_, _, _, _, GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul hg (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LocalRep.isMultiHomog_chartMono c fun k => (a k).toNat),
+    GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul hh (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LocalRep.isMultiHomog_chartMono c fun k => (-a k).toNat),
     fun hm => ?_, fun hm => eg (GlobalTheory.CompanionTheory.Ar.Giv.aeval_eq_zero_of_mem_mCoordIdeal y hm), fun k => ?_, ef⟩
   · have := GlobalTheory.CompanionTheory.Ar.Giv.aeval_eq_zero_of_mem_mCoordIdeal y hm
     rw [ef] at this

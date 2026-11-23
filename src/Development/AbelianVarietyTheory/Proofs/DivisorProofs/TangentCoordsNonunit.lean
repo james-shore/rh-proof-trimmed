@@ -61,42 +61,6 @@ set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.TangentIndep
 
-theorem subst_nmul_eq (R : Type) [CommRing R] (d : ℕ) (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R)
-    (hμ : ∀ i, constantCoeff (μ i) = 0) (g : MvPowerSeries (Fin d) R) (n : ℕ) :
-    subst (nmul μ n) g = C (constantCoeff g) + (n : R) • g +
-      ∑ k ∈ Finset.range n, at2 (cob1 μ g) (nmul μ k) (fun i => X i) := _root_.GlobalTheory.QLog.subst_nmul_eq R d μ hμ g n
-
-theorem up_nmul_eq (R S : Type) [CommRing R] [CommRing S] [Algebra R S] (d : ℕ)
-    (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R) (hμ : ∀ i, constantCoeff (μ i) = 0) (n : ℕ) :
-    up S (nmul μ n) = nmul (up S μ) n := _root_.GlobalTheory.QLog.up_nmul R S d μ hμ n
-
-theorem map_at2_eq (R S : Type) [CommRing R] [CommRing S] [Algebra R S] (d : ℕ) (τ : Type)
-    (t : MvPowerSeries (Fin d ⊕ Fin d) R) (u v : Fin d → MvPowerSeries τ R)
-    (hu : ∀ i, constantCoeff (u i) = 0) (hv : ∀ i, constantCoeff (v i) = 0) :
-    map (algebraMap R S) (at2 t u v) = at2 (map (algebraMap R S) t) (up S u) (up S v) := _root_.GlobalTheory.QLog.map_algebraMap_powerSeriesEvalTwoGroups R S d τ t u v hu hv
-
-theorem constantCoeff_subst_eq (R : Type) [CommRing R] (σ τ : Type) [Finite σ] (a : σ → MvPowerSeries τ R)
-    (ha : ∀ i, constantCoeff (a i) = 0) (g : MvPowerSeries σ R) :
-    constantCoeff (subst a g) = constantCoeff g := _root_.GlobalTheory.constantCoeff_subst_of_constantCoeff_zero R σ τ a ha g
-
-theorem coeff_powerSeriesEvalTwoGroups_mem_ideal (R : Type) [CommRing R] (d : ℕ) (τ : Type) (I : Ideal R)
-    (t : MvPowerSeries (Fin d ⊕ Fin d) R) (u v : Fin d → MvPowerSeries τ R)
-    (hu : ∀ i, constantCoeff (u i) = 0) (hv : ∀ i, constantCoeff (v i) = 0)
-    (ht : ∀ α, coeff α t ∈ I) (α : τ →₀ ℕ) : coeff α (at2 t u v) ∈ I := _root_.GlobalTheory.IdealAt2.coeff_powerSeriesEvalTwoGroups_mem_ideal R d τ I t u v hu hv ht α
-
-theorem ev_mem_smul_add (p : ℕ) (O : Type) [CommRing O] (G : PDivGroup p O) (d : ℕ) (c : QLog.Chart G d)
-    (n : ℕ) (I : Ideal O) (h : MvPowerSeries (Fin d) O) (hh : ∀ α, coeff α h ∈ I) :
-    ∃ a ∈ I • (⊤ : Submodule O (G.A n)), ∃ b : G.A n, c.ev n h = a + (p : G.A n) * b := _root_.GlobalTheory.Chart.ev_mem_ideal_smul_add_p p O G d c n I h hh
-
-theorem ev_subst_nmul (p : ℕ) [Fact p.Prime] (O : Type) [CommRing O] [IsAdicComplete (Ideal.span {(p : O)}) O]
-    (G : PDivGroup p O) (d : ℕ) (c : QLog.Chart G d) (n k : ℕ) (h : MvPowerSeries (Fin d) O) :
-    c.ev n (subst (nmul c.μ k) h) = PDiv.mulBy O (G.A n) k (c.ev n h) := _root_.GlobalTheory.EvMul.ev_subst_nmul p O G d c n k h
-
-theorem repr_mem_maximalIdeal (O : Type) [CommRing O] [IsLocalRing O] (M : Type) [AddCommGroup M] [Module O M]
-    [Module.Finite O M] [Module.Projective O M] (k : ℕ) (lb : Module.Basis (Fin k) O (Module.Dual O M))
-    (l : Module.Dual O M) (hl : ∀ w, l w ∈ IsLocalRing.maximalIdeal O) (j : Fin k) :
-    lb.repr l j ∈ IsLocalRing.maximalIdeal O := _root_.GlobalTheory.dualBasis_coord_mem_maximalIdeal O M k lb l hl j
-
 theorem nmul_const (R : Type) [CommRing R] (d : ℕ) (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R)
     (hμ : ∀ i, constantCoeff (μ i) = 0) (k : ℕ) (i : Fin d) : constantCoeff (nmul μ k i) = 0 := by
   induction k generalizing i with
@@ -104,7 +68,7 @@ theorem nmul_const (R : Type) [CommRing R] (d : ℕ) (μ : Fin d → MvPowerSeri
   | succ k ih =>
     have h : nmul μ (k + 1) = op μ (nmul μ k) (fun i => X i) := by
       simp only [nmul]; rw [Function.iterate_succ_apply']
-    rw [h, op, at2, constantCoeff_subst_eq R _ _ _ (fun x => by cases x with | inl a => exact ih a | inr a => simp), hμ]
+    rw [h, op, at2, _root_.GlobalTheory.constantCoeff_subst_of_constantCoeff_zero R _ _ _ (fun x => by cases x with | inl a => exact ih a | inr a => simp), hμ]
 
 theorem powerSeriesEvalTwoGroups_add (R : Type) [CommRing R] (d : ℕ) (τ : Type) (a b : MvPowerSeries (Fin d ⊕ Fin d) R)
     (u v : Fin d → MvPowerSeries τ R)
@@ -117,7 +81,7 @@ theorem constantCoeff_formalGroupLawCoboundaryOne (R : Type) [CommRing R] (d : �
     (hμ : ∀ i, constantCoeff (μ i) = 0) (g : MvPowerSeries (Fin d) R) :
     constantCoeff (cob1 μ g) = - constantCoeff g := by
   simp only [cob1, inL, inR, map_sub]
-  rw [constantCoeff_subst_eq R _ _ _ hμ, constantCoeff_subst_eq R _ _ _ (fun _ => constantCoeff_X _), constantCoeff_subst_eq R _ _ _ (fun _ => constantCoeff_X _)]
+  rw [_root_.GlobalTheory.constantCoeff_subst_of_constantCoeff_zero R _ _ _ hμ, _root_.GlobalTheory.constantCoeff_subst_of_constantCoeff_zero R _ _ _ (fun _ => constantCoeff_X _), _root_.GlobalTheory.constantCoeff_subst_of_constantCoeff_zero R _ _ _ (fun _ => constantCoeff_X _)]
   ring
 
 theorem QL_comb (O E : Type) [CommRing O] [CommRing E] [Algebra O E] (d : ℕ)
@@ -187,15 +151,15 @@ theorem tangent_coords_nonunit : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field 
   have hX : up E (fun i : Fin d => (X i : MvPowerSeries (Fin d) O)) = fun i => X i := by
     funext i; simp [up, map_X]
   have hs' : map (algebraMap O E) s' = defect c.μ (p ^ 1) f := by
-    rw [defect, pow_one, up_nmul_eq O E d c.μ hμ, subst_nmul_eq E d _ hμE f p, hcob, hf0]
+    rw [defect, pow_one, _root_.GlobalTheory.QLog.up_nmul O E d c.μ hμ, _root_.GlobalTheory.QLog.subst_nmul_eq E d _ hμE f p, hcob, hf0]
 
     simp only [s', map_sub, map_neg, map_sum, map_C]
-    rw [Finset.sum_congr rfl (fun k _ => map_at2_eq O E d (Fin d) _ _ _ (hnc k) (fun i => constantCoeff_X i))]
-    simp only [hX, up_nmul_eq O E d c.μ hμ]
+    rw [Finset.sum_congr rfl (fun k _ => _root_.GlobalTheory.QLog.map_algebraMap_powerSeriesEvalTwoGroups O E d (Fin d) _ _ _ (hnc k) (fun i => constantCoeff_X i))]
+    simp only [hX, _root_.GlobalTheory.QLog.up_nmul O E d c.μ hμ]
     abel
   have hs'2 : s' = C (t 0) + (p : O) • s - subst (nmul c.μ p) s -
       ∑ k ∈ Finset.range p, at2 T (nmul c.μ k) (fun i => X i) := by
-    rw [subst_nmul_eq O d c.μ hμ s p]
+    rw [_root_.GlobalTheory.QLog.subst_nmul_eq O d c.μ hμ s p]
     simp only [s']
     rw [Finset.sum_congr rfl (fun k _ => powerSeriesEvalTwoGroups_add O d (Fin d) _ _ _ _ (hnc k) (fun i => constantCoeff_X i)),
       Finset.sum_add_distrib, map_sub]
@@ -219,12 +183,12 @@ theorem tangent_coords_nonunit : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field 
       have hC : c.ev 1 (C (t 0)) = algebraMap O _ (t 0) := (c.ev 1).commutes (t 0)
       rw [hs'2]
 
-      simp only [map_sub, map_add (f := _), map_smul, map_sum, ev_subst_nmul p O G d c 1 p s, h1, hC]
+      simp only [map_sub, map_add (f := _), map_smul, map_sum, _root_.GlobalTheory.EvMul.ev_subst_nmul p O G d c 1 p s, h1, hC]
       have hA' : ∀ r : O, φ.ofConv (algebraMap O (G.A 1) r) = 0 := hA
       rw [hA', hA', zero_add, sub_zero, smul_eq_mul]
       refine Ideal.sub_mem _ (Ideal.mul_mem_right _ _ hpm) (Ideal.sum_mem _ fun k _ => ?_)
-      obtain ⟨a, ha, b', hb'⟩ := ev_mem_smul_add p O G d c 1 (IsLocalRing.maximalIdeal O) _
-        (coeff_powerSeriesEvalTwoGroups_mem_ideal O d (Fin d) _ T _ _ (hnc k) (fun i => constantCoeff_X i) (fun α => (hmem _).2 (ht α).1))
+      obtain ⟨a, ha, b', hb'⟩ := _root_.GlobalTheory.Chart.ev_mem_ideal_smul_add_p p O G d c 1 (IsLocalRing.maximalIdeal O) _
+        (_root_.GlobalTheory.IdealAt2.coeff_powerSeriesEvalTwoGroups_mem_ideal O d (Fin d) _ T _ _ (hnc k) (fun i => constantCoeff_X i) (fun α => (hmem _).2 (ht α).1))
       rw [hb', map_add (f := _)]
       refine Ideal.add_mem _ ?_ ?_
       · have hle : IsLocalRing.maximalIdeal O • (⊤ : Submodule O (G.A 1)) ≤
@@ -240,7 +204,7 @@ theorem tangent_coords_nonunit : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field 
     rw [this]
     exact Ideal.add_mem _ (Ideal.mul_mem_right _ _ (by simpa using hpm)) hev
   obtain ⟨hfin, hproj⟩ := GlobalTheory.PDiv.omega_finite_projective p K v O hv G.dual
-  have h6 := repr_mem_maximalIdeal O G.dual.omega k lb l key j
+  have h6 := _root_.GlobalTheory.dualBasis_coord_mem_maximalIdeal O G.dual.omega k lb l key j
   have hrep : lb.repr l j = b j := by
     have : l = lb.equivFun.symm b := by rw [Module.Basis.equivFun_symm_apply]
     rw [← Module.Basis.equivFun_apply, this, LinearEquiv.apply_symm_apply]

@@ -85,11 +85,6 @@ lemma vV_nonneg_of_mem (b : V) : 0 ≤ vV V (algebraMap V K b) := by
 
 lemma vV_one : vV V (1 : K) = 0 := by simp [vV]
 
-lemma vV_inv {x : K} (hx : x ≠ 0) : vV V x⁻¹ = - vV V x := by
-  have := vV_mul (V := V) hx (inv_ne_zero hx)
-  rw [mul_inv_cancel₀ hx, vV_one] at this
-  omega
-
 lemma vV_eq_zero_of_mul {x y : K} (hx : x ∈ Set.range (algebraMap V K)) (hy : y ∈ Set.range (algebraMap V K))
     (h : x * y = 1) : vV V x = 0 := by
   obtain ⟨a, rfl⟩ := hx
@@ -154,7 +149,7 @@ lemma exists_vV_map (ψ : K →+* K') (hψ : ∀ a : V, ψ (algebraMap V K a) �
   have haK : algebraMap V K a ≠ 0 := by simpa using ha'
   have hbK : algebraMap V K b ≠ 0 := by simpa using hb'
   rw [div_eq_mul_inv, map_mul, map_inv₀, vV_mul ((map_ne_zero ψ).2 haK) (inv_ne_zero ((map_ne_zero ψ).2 hbK)),
-    vV_inv ((map_ne_zero ψ).2 hbK), vV_mul haK (inv_ne_zero hbK), vV_inv hbK, hint a ha', hint b hb']
+    _root_.GlobalTheory.GeoTie.ReadExist.vV_inv ((map_ne_zero ψ).2 hbK), vV_mul haK (inv_ne_zero hbK), _root_.GlobalTheory.GeoTie.ReadExist.vV_inv hbK, hint a ha', hint b hb']
   ring
 
 end Cmp

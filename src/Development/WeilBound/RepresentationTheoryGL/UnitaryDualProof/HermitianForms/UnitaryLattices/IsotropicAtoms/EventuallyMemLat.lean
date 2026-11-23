@@ -399,7 +399,7 @@ theorem split_c (hψ1 : ψ ≠ 1) {B₀ B' : V →ₗ[ℂ] V →ₗ⋆[ℂ] ℂ}
 theorem mem_ker_of_re (x : V) (hx : (B x x).re = 0) : x ∈ LinearMap.ker B := by
   rw [LinearMap.mem_ker]
   ext w
-  exact apply_eq_zero_of_isotropic B hpsd.1 hpsd.2 x hx w
+  exact _root_.GlobalTheory.CompanionTheory.Herm.apply_eq_zero_of_isotropic B hpsd.1 hpsd.2 x hx w
 
 theorem avg_ker (ξ : Fin (m + 1) → k) {A : AddSubgroup (Fin (m + 1) → k)} (hA : IsLat A) {x : V}
     (hx : x ∈ LinearMap.ker B) : avg ψ h π ξ A x ∈ LinearMap.ker B := by
@@ -420,7 +420,7 @@ theorem null_nbhd {A₀ : AddSubgroup (Fin (m + 1) → k)} {B' : V →ₗ[ℂ] V
     (hd : IsDens ψ h π A₀ B B') (hB'0 : ∀ v, B' v v = 0) (u : V) (ξ : Fin (m + 1) → k) (hξ : ξ ≠ 0) :
     ∃ As : AddSubgroup (Fin (m + 1) → k), IsLat As ∧
       ∀ A, IsLat A → As ≤ A → avg ψ h π ξ A u ∈ LinearMap.ker B := by
-  obtain ⟨g, hg⟩ := exists_GL_vecMul m ξ hξ
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.CompanionTheory.Matrixlemmas.exists_GL_vecMul_eq_single_last m ξ hξ
   have hg' : Matrix.vecMul ξ (g : Matrix (Fin (m + 1)) (Fin (m + 1)) k) = xi0 k m := hg
   obtain ⟨A₁, hA₁, hA₀₁, hd1⟩ := hd (π (blkAt k (m + 1) N (by omega) g⁻¹) u) (π (blkAt k (m + 1) N (by omega) g⁻¹) u)
   refine ⟨A₁.comap (Matrix.mulVecLin ((g⁻¹ : GL (Fin (m + 1)) k) : Matrix (Fin (m + 1)) (Fin (m + 1)) k)).toAddMonoidHom,
@@ -458,7 +458,7 @@ theorem decomp (Ξ : AddSubgroup (Fin (m + 1) → k)) (hΞ : IsLat Ξ) (y : V)
       zero_mem' := fun ξ _ => by simp
       neg_mem' := fun {a} ha ξ hξ => by rw [dotProduct_neg, AddChar.map_neg_eq_inv, ha ξ hξ, inv_one] }
   have hLo : IsOpen (L : Set (Fin (m + 1) → k)) := by
-    have := isOpen_ann ψ hψ (m + 1) Ξ hΞ.1
+    have := _root_.GlobalTheory.CompanionTheory.AnnihOpen.isOpen_annihilator_of_isCompact ψ hψ (m + 1) Ξ hΞ.1
     convert this using 1
     exact Set.ext fun t => forall₂_congr fun ξ _ => by rw [dotProduct_comm]
   have hUo : IsOpen ((L ⊓ A : AddSubgroup (Fin (m + 1) → k)) : Set (Fin (m + 1) → k)) := by
@@ -467,7 +467,7 @@ theorem decomp (Ξ : AddSubgroup (Fin (m + 1) → k)) (hΞ : IsLat Ξ) (y : V)
   obtain ⟨T, hT, hTr⟩ := exists_transversal A (L ⊓ A) hA.1 hUo inf_le_right
   have hΞ'o : IsOpen ((Ξ ⊓ annSub k ψ A : AddSubgroup (Fin (m + 1) → k)) : Set (Fin (m + 1) → k)) := by
     rw [AddSubgroup.coe_inf]
-    exact hΞ.2.inter (isOpen_ann ψ hψ (m + 1) A hA.1)
+    exact hΞ.2.inter (_root_.GlobalTheory.CompanionTheory.AnnihOpen.isOpen_annihilator_of_isCompact ψ hψ (m + 1) A hA.1)
   obtain ⟨R, hR, hRtr⟩ := exists_transversal Ξ (Ξ ⊓ annSub k ψ A) hΞ.1 hΞ'o inf_le_left
   have hdata : ∀ ξ ∈ R, AvgData ψ h π ξ A y (L ⊓ A, T) := fun ξ hξ =>
     ⟨inf_le_right, hUo, fun a ha => hy a (AddSubgroup.mem_inf.1 ha).1,
@@ -532,13 +532,13 @@ theorem annulus_null {A₀ : AddSubgroup (Fin (m + 1) → k)} {B' : V →ₗ[ℂ
     · obtain ⟨As, h1, h2⟩ := null_nbhd hψ hπ hpsd hB hA₀ hd hB'0 v η hη
       exact ⟨As, h1, fun _ => h2⟩
   choose As hAsL hAsN using hN
-  have hannO : IsOpen (annSub k ψ A : Set (Fin (m + 1) → k)) := isOpen_ann ψ hψ (m + 1) A hA.1
+  have hannO : IsOpen (annSub k ψ A : Set (Fin (m + 1) → k)) := _root_.GlobalTheory.CompanionTheory.AnnihOpen.isOpen_annihilator_of_isCompact ψ hψ (m + 1) A hA.1
   obtain ⟨K, hKdef⟩ : ∃ K : Set (Fin (m + 1) → k), K = (Ξ : Set (Fin (m + 1) → k)) \ (annSub k ψ A : Set (Fin (m + 1) → k)) :=
     ⟨_, rfl⟩
   have hK : IsCompact K := hKdef ▸ hΞ.1.diff hannO
   let U : (Fin (m + 1) → k) → Set (Fin (m + 1) → k) := fun η => {ζ | ζ - η ∈ annSub k ψ (As η)}
   have hUo : ∀ η, IsOpen (U η) := fun η =>
-    (isOpen_ann ψ hψ (m + 1) (As η) (hAsL η).1).preimage (continuous_id.sub continuous_const)
+    (_root_.GlobalTheory.CompanionTheory.AnnihOpen.isOpen_annihilator_of_isCompact ψ hψ (m + 1) (As η) (hAsL η).1).preimage (continuous_id.sub continuous_const)
   obtain ⟨F, hF⟩ := hK.elim_finite_subcover
     (fun η : K => U η.1) (fun η => hUo η.1)
     (fun ζ hζ => Set.mem_iUnion.2 ⟨⟨ζ, hζ⟩, show ζ - ζ ∈ annSub k ψ (As ζ) by rw [sub_self]; exact zero_mem _⟩)
@@ -554,7 +554,7 @@ theorem annulus_null {A₀ : AddSubgroup (Fin (m + 1) → k)} {B' : V →ₗ[ℂ
   have hA'' : IsLat (A ⊔ F.sup (fun η => As η.1)) :=
     ⟨isCompact_sup _ _ hA.1 hsupc, AddSubgroup.isOpen_mono le_sup_left hA.2⟩
   have hx : ∀ t, (∀ ξ' ∈ Ξ, ψ (ξ' ⬝ᵥ t) = 1) → π (colEl k m N h t) (avg ψ h π ξ A v) = avg ψ h π ξ A v :=
-    fun t ht => by rw [colEl_comm_avg h π ψ hψ hπ ξ hA t v, hv t ht]
+    fun t ht => by rw [_root_.PositivityTheory.RgUd.Form.U.Atom.colEl_comm_avg' h π ψ hψ hπ ξ hA t v, hv t ht]
   obtain ⟨R, c, hR, -, hdec⟩ := decomp hψ hπ hpsd hB Ξ hΞ _ hx hA''
   rw [hdec]
   refine Submodule.smul_mem _ _ (Submodule.sum_mem _ fun η hη => ?_)
@@ -588,7 +588,7 @@ theorem diag_eq {A₀ : AddSubgroup (Fin (m + 1) → k)} {B' : V →ₗ[ℂ] V �
   classical
   have hS : (stabSub h π v : Set (Fin (m + 1) → k)) ∈ 𝓝 (0 : Fin (m + 1) → k) :=
     (isOpen_stabSub h π hπ v).mem_nhds (zero_mem _)
-  obtain ⟨Ξ₀, hΞ₀c, hΞ₀⟩ := exists_small_ann ψ hψ hψ1 (m + 1) _ hS
+  obtain ⟨Ξ₀, hΞ₀c, hΞ₀⟩ := _root_.GlobalTheory.CompanionTheory.CharDual.exists_compact_annihilator_subset ψ hψ hψ1 (m + 1) _ hS
   have hΞ : IsLat (Ξ₀ ⊔ A) := ⟨isCompact_sup _ _ hΞ₀c hA.1, AddSubgroup.isOpen_mono le_sup_right hA.2⟩
   have hv : ∀ t, (∀ ξ ∈ Ξ₀ ⊔ A, ψ (ξ ⬝ᵥ t) = 1) → π (colEl k m N h t) v = v :=
     fun t ht => hΞ₀ t fun ξ hξ => ht ξ (le_sup_left (b := A) hξ)
@@ -641,7 +641,7 @@ theorem split_eq {B₀ B' : V →ₗ[ℂ] V →ₗ⋆[ℂ] ℂ} {A₀ : AddSubgr
   have hdiag : ∀ v, B₀ v v = B v v := fun v =>
     tendsto_nhds_unique (hat v v)
       (tendsto_const_nhds.congr fun A => (diag_eq hψ hπ hpsd hB hψ1 hA₀ hd hB'0 v A.2).symm)
-  have := eq_zero_of_diag (B₀ - B) (fun v => by rw [LinearMap.sub_apply, LinearMap.sub_apply, hdiag, sub_self])
+  have := _root_.GlobalTheory.CompanionTheory.Sesquilinear.eq_zero_of_diag_eq_zero (B₀ - B) (fun v => by rw [LinearMap.sub_apply, LinearMap.sub_apply, hdiag, sub_self])
   exact sub_eq_zero.1 this
 
 end Split

@@ -93,9 +93,9 @@ theorem om_ptP_subst : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Ty
     have := Fintype.card_congr e
     simp only [Fintype.card_fin, Fintype.card_sum] at this
     omega
-  have hev : Even (Vc D i).rank := (D.sp.V_rank _ (Nat.le_add_left _ _) i.2) ▸ (GlobalTheory.ConjTwist.Test.odd_r D).add_odd D.R.t_odd
+  have hev : Even (Vc D i).rank := (D.sp.V_rank _ (Nat.le_add_left _ _) i.2) ▸ (_root_.Formalism.L2.Theta.r_odd D).add_odd D.R.t_odd
   have hη := GlobalTheory.EtaTildeOddParity.isEtaTilde_of_odd D _ _ hC.lev.eta R.C.isEta _ _ _ hW.resS hW.resT
-    (hev.add_odd ((D.sp.W_rank _ (Nat.le_add_left _ _) i.2) ▸ GlobalTheory.ConjTwist.Test.odd_r D))
+    (hev.add_odd ((D.sp.W_rank _ (Nat.le_add_left _ _) i.2) ▸ _root_.Formalism.L2.Theta.r_odd D))
   obtain ⟨x, hx, -⟩ := GlobalTheory.VacuumCharacter.exists_root hθ (Vc D i) (fun τ => by
     have := (hS τ).2.2.det_pos.ne'
     rwa [Matrix.mul_one] at this) u hu

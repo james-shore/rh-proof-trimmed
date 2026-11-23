@@ -279,24 +279,10 @@ theorem pow_mem (L : LocE F E) (ϖ : 𝒪[F]) (j : ℕ) : algebraMap F E ((ϖ : 
   (GlobalTheory.UnramOrder.algebraMap_mem_iff L _).2 (_root_.pow_mem ϖ.2 j)
 
 omit [CharZero F] in
-theorem exists_pow_mul_mem (L : LocE F E) {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ) (x : E) :
-    ∃ e : ℕ, algebraMap F E ((ϖ : F) ^ e) * x ∈ L.O := by
-  have := L.free
-  have : Module.Finite F E := Module.finite_of_finrank_pos (by rw [L.rank]; omega)
-  have hx : IsAlgebraic 𝒪[F] x :=
-    (IsFractionRing.isAlgebraic_iff 𝒪[F] F E).2 (Algebra.IsAlgebraic.isAlgebraic x)
-  obtain ⟨d, hd0, hd⟩ := hx.exists_integral_multiple
-  obtain ⟨e, u, hu⟩ := IsDiscreteValuationRing.associated_pow_irreducible hd0 hϖ
-  refine ⟨e, (L.O_def _).2 ?_⟩
-  have h := hd.smul (u : 𝒪[F])
-  rw [smul_smul, mul_comm, hu, Algebra.smul_def] at h
-  exact h
-
-omit [CharZero F] in
 theorem exists_pow_smul_int (L : LocE F E) {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ)
     (A : Matrix (Fin m) (Fin m) E) :
     ∃ e : ℕ, IsIntM L (algebraMap F E ((ϖ : F) ^ e) • A) := by
-  choose e he using fun p : Fin m × Fin m => exists_pow_mul_mem L hϖ (A p.1 p.2)
+  choose e he using fun p : Fin m × Fin m => _root_.GlobalTheory.PowMulMem.exists_pow_mul_mem L hϖ (A p.1 p.2)
   refine ⟨∑ p, e p, fun i j => ?_⟩
   obtain ⟨k, hk⟩ := Nat.exists_eq_add_of_le' (Finset.single_le_sum (f := e) (fun _ _ => Nat.zero_le _)
     (Finset.mem_univ (i, j)))
@@ -452,7 +438,7 @@ theorem trace_partition : ∀ {F : Type} [Field F] [ValuativeRel F] [Topological
   refine ⟨max i1 i2, fun i hi => ?_⟩
   have hi1' : i1 ≤ i := le_of_max_le_left hi
   have hi2' : i2 ≤ i := le_of_max_le_right hi
-  obtain ⟨-, hgrp, -⟩ := GlobalTheory.T.matrixCongruentOneModUniformizerPow_group_and_orbits L ϖ hϖ m i (hi1.trans hi1')
+  obtain ⟨-, hgrp, -⟩ := _root_.GlobalTheory.CongGrp.congK_group L ϖ hϖ m i (hi1.trans hi1')
   have hkeep : ∀ z : Fin m → Fin n → E, IsPrimT L Hm Λs (rmul z A⁻¹) → ∀ B ∈ congK L ϖ m i,
       IsPrimT L Hm Λs (rmul (rmul z B) A⁻¹) := by
     intro z hz B hB

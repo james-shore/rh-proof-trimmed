@@ -108,7 +108,7 @@ theorem pb_smith_lam {p n' : ℕ} (R : RS p n') (m : ℕ) (lam : Fin (m + 1) →
     rw [map_smul] at h
     rw [LinearMap.smul_apply, LinearMap.smul_apply]
     exact h
-  · rw [← pb_finrank R.Kf (m + 1) (nuOf lam) (nuOf_anti lam hlam), ← hsK, finrank_span_eq_card hli, Fintype.card_fin]
+  · rw [← pb_finrank R.Kf (m + 1) (nuOf lam) (_root_.Formalism.MainNotions.G.LatticeSystems.kp_nuOf_antitone lam hlam), ← hsK, finrank_span_eq_card hli, Fintype.card_fin]
   · intro a' b
     rw [LinearMap.smul_apply, LinearMap.smul_apply, smul_eq_mul]
     exact hdiag a' b

@@ -128,7 +128,7 @@ theorem richAt_ch (c : Cfg) (l N R : ℕ) (hN : 3 ≤ N) (hlen : 6 * (N : ℝ) ^
   · refine ⟨fun _ => Formalism.SA.C.chebPt α (α + ℓ) 1 0, fun i j _ => Fin.ext (by have := i.2; have := j.2; omega), fun j => hmem 1 le_rfl
       (le_max_left _ _) 0, ?_⟩
     simp [Formalism.FourierDecayAlt.F7.lagCo]
-  · have hsharp := Formalism.FourierDecayAlt.P.chebyshev_bound_sharp α (α + ℓ) n (by linarith) hn0
+  · have hsharp := _root_.Formalism.FourierDecayAlt.P.ChebyshevExtremalPolynomials.sharp α (α + ℓ) n (by linarith) hn0
     refine ⟨Formalism.SA.C.chebPt α (α + ℓ) n, hsharp.1, fun j => hmem n hn0 (le_trans hn (le_max_right _ _)) j, ?_⟩
     rw [hsharp.2, show α + ℓ - α = ℓ by ring]
     have h4 : 4 / ℓ ≤ 28 * N / ((c.Del / 2 - c.v l) - (5 / 2 - c.v l)) := by

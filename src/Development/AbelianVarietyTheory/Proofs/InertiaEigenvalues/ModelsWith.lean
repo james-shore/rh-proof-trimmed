@@ -120,9 +120,9 @@ theorem exists_thP (h₃ : GlobalTheory.Published.CuspRapidDecay) (hL : R.toLevC
     (hv : R.thP_vP) (t₀ : T)
     (hI : ∀ i, IsIoW R.θ (R.MW i (sg0 D A)) (R.cV i) (R.ωP i t₀) (R.ptP i t₀) (RealDat.Delta i) (R.ioP i)) :
     ∃ thF thG, ({ R with thF := thF, thG := thG } : RealDat D A Ks).IsThP := by
-  have hp : R.thP_pt_theta := (GlobalTheory.T.exists_lowestKType_fockMap_thetaVectors D G Pl0 T A Ks R hL hF hM hω hv).1
+  have hp : R.thP_pt_theta := (_root_.GlobalTheory.JointHarm.exists_ioP D G Pl0 T A Ks R hL hF hM hω hv).1
   have hio : R.thP_ioP := fun i => GlobalTheory.IoAllTuples.ioP_of_isIoW_at D G Pl0 T A Ks R hL hF hM hω hv i t₀ _ (hI i)
-  obtain ⟨thF, h1, h2⟩ := GlobalTheory.T.exists_thetaLift_linearMap_cuspFormMultiplicity h₃ D G Pl0 T A Ks R hL hF hM hω hv hp hio
+  obtain ⟨thF, h1, h2⟩ := _root_.GlobalTheory.DefLift.ThetaMap.exists_thetaMap h₃ D G Pl0 T A Ks R hL hF hM hω hv hp hio
   obtain ⟨thG, h3⟩ := GlobalTheory.GoodProjLift.exists_thG D G Pl0 T A Ks { R with thF := thF } hL
     (fam_with hF R.ioY R.ioX R.Th thF R.thG) (models_with hM R.ioY R.ioX R.Th thF R.thG) h1
   exact ⟨thF, thG, hω, hv, hp, hio, h1, h2, h3⟩

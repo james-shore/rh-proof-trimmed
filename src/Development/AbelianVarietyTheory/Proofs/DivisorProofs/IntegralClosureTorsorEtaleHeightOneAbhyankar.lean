@@ -114,10 +114,10 @@ theorem closureEtaleAt_of_mem_height_le_one : ∀ (T O : Type) [CommRing T] [Com
   obtain ⟨hRd, hRi⟩ := atPrime_isDomain_injective A EA QA
   obtain ⟨hR₁d, hR₁i⟩ := atPrime_isDomain_injective A₁ (Ext f EA) (ideal₁ f i i₁ EA QA jA hcomp hj)
   have hfa0 : f a ≠ 0 := fun h => ha (hf (by rw [h, map_zero]))
-  obtain ⟨hp₁h, hX₁⟩ := GlobalTheory.T.height_one_contraction_of_etale_prime A₁ (Ext f EA) (ideal₁ f i i₁ EA QA jA hcomp hj) P₁ (f a)
+  obtain ⟨hp₁h, hX₁⟩ := _root_.GlobalTheory.EtaleHeightOne.height_one_and_comap_eq_map_C A₁ (Ext f EA) (ideal₁ f i i₁ EA QA jA hcomp hj) P₁ (f a)
     hfa0 hfa hP₁
   obtain ⟨hph, π, hπ, y, hy⟩ := hhyp _ hp₁h (by rw [Ideal.mem_comap]; exact hfa)
-  obtain ⟨⟨_, hdvr₁⟩, -⟩ := GlobalTheory.T.height_one_prime_over_constant_ideal A₁ (Ext f EA) (ideal₁ f i i₁ EA QA jA hcomp hj) P₁ _
+  obtain ⟨⟨_, hdvr₁⟩, -⟩ := _root_.GlobalTheory.EtalePolyDvr.isDiscreteValuationRing_atPrime_of_etale_polynomial A₁ (Ext f EA) (ideal₁ f i i₁ EA QA jA hcomp hj) P₁ _
     hp₁h hX₁
   have hsq : (locBC f i i₁ EA QA jA hcomp hj).comp (algebraMap A[X] (Localization.AtPrime QA)) =
       (algebraMap A₁[X] (Loc₁ f i i₁ EA QA jA hcomp hj)).comp (Polynomial.mapRingHom f) := by
@@ -133,7 +133,7 @@ theorem closureEtaleAt_of_mem_height_le_one : ∀ (T O : Type) [CommRing T] [Com
       ((P₁.comap (algebraMap A₁ (Loc₁ f i i₁ EA QA jA hcomp hj))).comap f).map
         (Polynomial.C : A →+* A[X]) := by
     rw [Ideal.comap_comap, hsq, ← Ideal.comap_comap, hX₁, comap_map_C_mapRingHom]
-  obtain ⟨⟨_, hdvr⟩, hirr⟩ := GlobalTheory.T.height_one_prime_over_constant_ideal A EA QA (P₁.comap (locBC f i i₁ EA QA jA hcomp hj)) _
+  obtain ⟨⟨_, hdvr⟩, hirr⟩ := _root_.GlobalTheory.EtalePolyDvr.isDiscreteValuationRing_atPrime_of_etale_polynomial A EA QA (P₁.comap (locBC f i i₁ EA QA jA hcomp hj)) _
     hph hPX
   have hsqA : (locBC f i i₁ EA QA jA hcomp hj).comp (algebraMap A (Localization.AtPrime QA)) =
       (algebraMap A₁ (Loc₁ f i i₁ EA QA jA hcomp hj)).comp f := by
@@ -146,7 +146,7 @@ theorem closureEtaleAt_of_mem_height_le_one : ∀ (T O : Type) [CommRing T] [Com
         (locBC f i i₁ EA QA jA hcomp hj) := by
     apply RingHom.ext; intro x
     exact fibBC_algebraMap f i i₁ EA QA jA hcomp hj hf x
-  exact GlobalTheory.T.generic_fibre_base_change_injective A (Localization.AtPrime QA) hRi A₁ (Loc₁ f i i₁ EA QA jA hcomp hj) hR₁i
+  exact _root_.GlobalTheory.AbhHeightOne.closureEtaleAt_of_root_of_uniformiser A (Localization.AtPrime QA) hRi A₁ (Loc₁ f i i₁ EA QA jA hcomp hj) hR₁i
     f hf _ hsqA _ hsqF DA q actA hq hqu htor P₁ hdvr₁ hdvr π (hirr π hπ)
     (algebraMap A₁ _ y) (by rw [← map_pow, hy, ← RingHom.comp_apply, ← hsqA, RingHom.comp_apply])
 

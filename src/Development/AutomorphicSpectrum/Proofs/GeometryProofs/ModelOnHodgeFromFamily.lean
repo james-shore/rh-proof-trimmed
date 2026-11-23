@@ -179,7 +179,7 @@ theorem model_on_hodge_of_family_pos : FamilyExistsPos → HodgeLatticeFlagBound
         exact h
   have hLoc : LabelChernComparison (pointIdeal O' (fun v => algebraMap Ω Ω' (y v))) d p φ
       (fun s => (labelPair D T s).map (Int.castRingHom O')) (fun s => (omPair D T s).map (Int.castRingHom O')) := by
-    refine GlobalTheory.T.local_comparison_of_orbits_holds O' K J (CMType H ⊕ CMType H) _ d p hpP.two_le φ _ _ _ _ fun τ => ?_
+    refine _root_.GlobalTheory.CompanionTheory.Ar.Num.local_comparison_of_orbits O' K J (CMType H ⊕ CMType H) _ d p hpP.two_le φ _ _ _ _ fun τ => ?_
     obtain ⟨hrange, hcomm, -, -⟩ := hDf τ
     exact ⟨Sg τ, inferInstance, ε τ, φ' τ, hrange, hcomm, hRel τ⟩
   have hLoc2 : LabelChernComparison (pointIdeal O' (fun v => algebraMap Ω Ω' (y v))) d p φ

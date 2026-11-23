@@ -55,5 +55,5 @@ theorem UpperTheory.subsingleton_hypercohomology_free_of_subsingleton_cohomology
   obtain ⟨e, -, -⟩ := GlobalTheory.T.exists_natural_homotopyEquiv_chains_constant_presheaf ℤ
   haveI : (res ℤ F).IsKInjective := (GlobalTheory.T.chosenInjectiveResolution_etaleSheaf_properties ℤ F).1
   haveI : QuasiIso (e P).hom := (e P).quasiIso_hom
-  have hb := GlobalTheory.T.hypercohomologyPullback_bijective_of_quasiIso ℤ (e P).hom (res ℤ F) n
+  have hb := _root_.GlobalTheory.EtC.cpull_bijective_of_quasiIso ℤ (e P).hom (res ℤ F) n
   exact hb.2.subsingleton

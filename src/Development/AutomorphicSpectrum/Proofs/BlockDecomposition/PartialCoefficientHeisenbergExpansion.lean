@@ -109,7 +109,7 @@ theorem zc_at {D : D7} {n ρ p : ℕ} {hn : ρ + p = n} (M : Maps D hn) (m : Mea
     have := GlobalTheory.T.shift_conj_heisenberg M (GlobalTheory.CompanionTheory.FJE.rt ξ) c x
     rwa [hc, neg_add_cancel] at this
   have h2 : M.nzx c x = M.nzx c 0 * M.nzx 0 x := by
-    rw [GlobalTheory.CompanionTheory.NzxAdd.nzx_add, add_zero, zero_add]
+    rw [_root_.GlobalTheory.CompanionTheory.PcB.nzx_mul, add_zero, zero_add]
   have h3 : M.nzx 0 x * (M.sh (GlobalTheory.CompanionTheory.FJE.rt ξ) * h) =
       M.sh (GlobalTheory.CompanionTheory.FJE.rt ξ) * (M.nzx c 0 * (M.nzx 0 x * h)) := by
     rw [← mul_assoc, ← h1, h2]

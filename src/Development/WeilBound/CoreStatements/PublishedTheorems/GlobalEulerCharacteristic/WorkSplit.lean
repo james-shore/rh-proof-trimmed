@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenFree
 
 @[expose] public section
 
@@ -56,15 +57,6 @@ open NumberField IsDedekindDomain CategoryTheory GroundTheory.ProfCoh GroundTheo
 namespace PositivityTheory.Lit1.GEN.W_split
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
-
-theorem isTotallyComplex_of_sq_eq_neg_one {E : Type*} [Field E] (x : E) (hx : x ^ 2 = -1) :
-    NumberField.IsTotallyComplex E := by
-  refine ⟨fun w => ?_⟩
-  by_contra hw
-  have hr := InfinitePlace.not_isComplex_iff_isReal.1 hw
-  have h := congrArg (InfinitePlace.embedding_of_isReal hr) hx
-  rw [map_pow, map_neg, map_one] at h
-  nlinarith [sq_nonneg (InfinitePlace.embedding_of_isReal hr x)]
 
 set_option maxHeartbeats 800000 in
 theorem exists_split (ℓ : ℕ) [Fact ℓ.Prime] (K : FiniteSubfield) (S : Set (HeightOneSpectrum (𝓞 K.1)))
@@ -129,7 +121,7 @@ theorem exists_split (ℓ : ℕ) [Fact ℓ.Prime] (K : FiniteSubfield) (S : Set 
   · by_cases h2 : ℓ = 2
     · right
       have hξ4 : IsPrimitiveRoot ξ 4 := by simpa [n, h2] using hξ
-      refine isTotallyComplex_of_sq_eq_neg_one (⟨ξ, hξN⟩ : N.1) ?_
+      refine _root_.GroundTheory.ProfCoh.isTotallyComplex_of_sq_eq_neg_one (⟨ξ, hξN⟩ : N.1) ?_
       apply (algebraMap N.1 ℚ̄).injective
       rw [map_pow, map_neg, map_one]
       change ξ ^ 2 = -1

@@ -58,7 +58,7 @@ theorem classes_mod_rat_norms : ∀ (E : Type) [CommRing E] [Algebra ℚ E] [Fin
       algebraMap ℚ E c * (b * τ b) = y * a ∧ ∃ d : ℕ, ¬ ℓ ∣ d ∧ IsIntegral ℤ ((d : E) * x) ∧ IsIntegral ℤ ((d : E) * y)) →
     ∃ a₀ ∈ A, ∃ (r : ℚˣ) (e : Eˣ), a = algebraMap ℚ E (r : ℚ) * ((e : E) * a₀ * τ e) := by
   intro E _ _ _ _ τ hτ _j _ _ S
-  obtain ⟨A, hA⟩ := GlobalTheory.T.normClassFinite_of_reduced_rat_algebra GlobalTheory.T.exists_finite_classes_modulo_involutionNorms E τ hτ S
-  exact ⟨A, GlobalTheory.T.involution_norm_class_remove_rational_factor E τ S A hA⟩
+  obtain ⟨A, hA⟩ := _root_.GlobalTheory.normClassFinite_of_reduced _root_.GlobalTheory.FixNormField.fixed_classes_mod_norms E τ hτ S
+  exact ⟨A, _root_.GlobalTheory.RatRed.ratred E τ S A hA⟩
 
 end GlobalTheory.EtaleCls

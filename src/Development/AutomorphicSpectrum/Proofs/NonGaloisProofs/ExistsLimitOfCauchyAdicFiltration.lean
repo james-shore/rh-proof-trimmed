@@ -58,11 +58,6 @@ noncomputable section
 namespace GlobalTheory.CompanionTheory.LocDual.CobDetect
 
 
-open CategoryTheory in
-theorem exists_compat {X : ℕ → Type} [∀ n, Finite (X n)] [∀ n, Nonempty (X n)]
-    (f : ∀ n, X (n + 1) → X n) : ∃ x : ∀ n, X n, ∀ n, f n (x (n + 1)) = x n :=
-  _root_.UpperTheory.Reformulated.B.DYdc6.main f
-
 section Lim
 
 variable {G : Type} [Group G] [TopologicalSpace G] {LL : Type} [Field LL] {O : Type} [CommRing O]
@@ -141,7 +136,7 @@ theorem exists_limit (w : G × G → ↥L.T)
   haveI : ∀ n, Nonempty {c // Sol L ϖ w n c} := fun n =>
     let ⟨c, hc⟩ := hne n
     ⟨⟨c, hc⟩⟩
-  obtain ⟨x, hx⟩ := exists_compat (X := fun n => {c // Sol L ϖ w n c})
+  obtain ⟨x, hx⟩ := _root_.UpperTheory.Reformulated.B.DYdc6.main (X := fun n => {c // Sol L ϖ w n c})
     (fun n c => ⟨fun g => proj L ϖ n (c.1 g), c.2.proj⟩)
   choose a ha using fun n g => Submodule.Quotient.mk_surjective (pw L ϖ n) ((x n).1 g)
   have step : ∀ g n, a (n + 1) g - a n g ∈ pw L ϖ n := by

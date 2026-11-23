@@ -86,7 +86,7 @@ theorem mass_le (S : Frames L r k) (d : S.Datum) (j : ℕ) :
     rw [GlobalTheory.T.hermitianMass_eq_sum_frameClasses L r k S d _ (fun h hh Λ hT hP => by
       rw [(GlobalTheory.T.hermitianFrames_stabilizer_acts_on_terms L r k S d Λ hT h hh).2.2.2.2.2.2.1]; exact hP)]
     refine (sumCls_le S _ _ fun C => GlobalTheory.T.hermitianTermCount_frameClass_le L r k S d C j).trans ?_
-    refine (mul_le_mul_left (GlobalTheory.T.hermitianFrameClasses_total_weight_le L r k S ⟨d, Λ₀, h₀⟩) _).trans ?_
+    refine (mul_le_mul_left (_root_.GlobalTheory.HL.TotalWeight.sumCls_one_le L r k S ⟨d, Λ₀, h₀⟩) _).trans ?_
     rw [← ENNReal.ofReal_mul (by positivity)]
     refine ENNReal.ofReal_le_ofReal ?_
     rw [← mul_assoc, ← pow_add]
@@ -101,7 +101,7 @@ theorem mass_le (S : Frames L r k) (d : S.Datum) (j : ℕ) :
 theorem finite_fibre (S : Frames L r k) (d : S.Datum) (C : Set S.FrP) :
     {Λ | S.IsTerm d Λ ∧ S.Fr d Λ = C}.Finite := by
   have h1 : ∀ j : ℕ, {Λ | S.IsTerm d Λ ∧ S.cardI d Λ = j ∧ S.Fr d Λ = C}.Finite := fun j => by
-    have h := (GlobalTheory.T.hermitianTermCount_frameClass_le L r k S d C j).trans_lt ENNReal.ofReal_lt_top
+    have h := (_root_.GlobalTheory.HL.TermCount.nT_cardI_le L r k S d C j).trans_lt ENNReal.ofReal_lt_top
     unfold Frames.nT at h
     rw [← Set.encard_lt_top_iff]
     by_contra hc
@@ -118,12 +118,12 @@ theorem finite_fibre (S : Frames L r k) (d : S.Datum) (C : Set S.FrP) :
 
 theorem finite_cls (S : Frames L r k) (h : ∃ d Λ, S.IsTerm d Λ) :
     {o : MulAction.orbitRel.Quotient S.St (Set S.FrP) | S.IsIntCls o.out}.Finite := by
-  have h1 := ((GlobalTheory.T.hermitianFrameClasses_total_weight_le L r k S h).trans_lt ENNReal.ofReal_lt_top).ne
+  have h1 := ((_root_.GlobalTheory.HL.TotalWeight.sumCls_one_le L r k S h).trans_lt ENNReal.ofReal_lt_top).ne
   unfold Frames.sumCls at h1
   refine (ENNReal.finite_const_le_of_tsum_ne_top h1 (ε := 1) one_ne_zero).subset fun o ho => ?_
   have ho' : S.IsIntCls o.out := ho
   simp only [Set.mem_setOf_eq, if_pos ho', mul_one]
-  exact ENNReal.one_le_ofReal.2 ((GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).2 _ ho'.1).2.2.1
+  exact ENNReal.one_le_ofReal.2 ((_root_.GlobalTheory.HL.volSt L r k S).2 _ ho'.1).2.2.1
 
 theorem finite_orbits (S : Frames L r k) (d : S.Datum) :
     {o : MulAction.orbitRel.Quotient S.St (Submodule L.O S.V) | S.IsTerm d o.out}.Finite := by

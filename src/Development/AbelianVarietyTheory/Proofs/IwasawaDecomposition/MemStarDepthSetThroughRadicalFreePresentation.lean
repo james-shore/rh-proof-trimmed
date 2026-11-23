@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HomExtNormalSt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonnegSumSmulIntBilinFormToRealMemPsdCone
 
 @[expose] public section
 
@@ -48,24 +49,6 @@ open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroi
 namespace GlobalTheory.PolFan
 
 section RadicalFree
-
-theorem bilin_eq_zero_of_self_eq_zero {X : Type} [AddCommGroup X] (β : LinearMap.BilinForm ℤ X)
-    (hs : ∀ y z, β y z = β z y) (hn : ∀ y, 0 ≤ β y y) {x : X} (hx : β x x = 0) (y : X) : β x y = 0 := by
-  have key : ∀ k : ℤ, 0 ≤ 2 * k * β x y + β y y := fun k => by
-    have h := hn (k • x + y)
-    simp only [map_add (f := _), map_zsmul, LinearMap.add_apply, LinearMap.smul_apply, smul_eq_mul, hx, hs y x] at h
-    nlinarith
-  have hc := hn y
-  rcases lt_trichotomy (β x y) 0 with h | h | h
-  · have h1 := key (β y y + 1)
-    have hb : β x y ≤ -1 := by omega
-    have := mul_le_mul_of_nonneg_left hb (by linarith : (0 : ℤ) ≤ β y y + 1)
-    nlinarith
-  · exact h
-  · have h1 := key (-(β y y + 1))
-    have hb : 1 ≤ β x y := by omega
-    have := mul_le_mul_of_nonneg_left hb (by linarith : (0 : ℤ) ≤ β y y + 1)
-    nlinarith
 
 theorem exists_descent {X X₁ M F' : Type} [AddCommGroup X] [AddCommGroup X₁] [AddCommGroup M] [iM : Module ℤ M]
     [FunLike F' X X₁] [AddMonoidHomClass F' X X₁] (q : F') (hq : Function.Surjective q) (F : X →ₗ[ℤ] X →ₗ[ℤ] M)
@@ -190,7 +173,7 @@ theorem mem_depthSet_of_quot {X X₁ : Type} [AddCommGroup X] [Module O X] [Modu
   have hcoef : ∀ c : Fin m → ℝ, (∀ i, 0 ≤ c i) → (∀ x, q x = 0 → (∑ i, c i • toReal (γ i)) x x = 0) →
       ∀ i, c i ≠ 0 → ∃ j, s j = i := fun c hc h i hi =>
     hS i (Finset.mem_filter.2 ⟨Finset.mem_univ _, fun x hx y =>
-      bilin_eq_zero_of_self_eq_zero _ (hs i) (hn i) (self_eq_zero_of_sum hn hc (h x hx) i hi) y⟩)
+      _root_.GlobalTheory.PolFan.ConeSub.eq_zero_of_self_eq_zero _ (hs i) (hn i) (self_eq_zero_of_sum hn hc (h x hx) i hi) y⟩)
 
   have hBs : ∀ y z, B y z = B z y := rcone_symm hs hB
   have hBL : ∀ x, q x = 0 → ∀ y, B x y = 0 := fun x hx => (hq0 x).1 hx
@@ -201,7 +184,7 @@ theorem mem_depthSet_of_quot {X X₁ : Type} [AddCommGroup X] [Module O X] [Modu
     simp only [LinearMap.sub_apply, LinearMap.smul_apply, toReal_apply, smul_eq_mul, h2] at h1
     have h3 : (v x x : ℝ) ≤ 0 := by nlinarith
     have h4 : v x x = 0 := le_antisymm (by exact_mod_cast h3) (hvn x)
-    exact bilin_eq_zero_of_self_eq_zero v hv.1 hvn h4
+    exact _root_.GlobalTheory.PolFan.ConeSub.eq_zero_of_self_eq_zero v hv.1 hvn h4
   have hvR : ∀ x, q x = 0 → ∀ y, v y x = 0 := fun x hx y => by rw [hv.1]; exact hvL x hx y
 
   choose γ₁ hγ₁ using fun j => exists_descent q hq (γ (s j)) (hsS j) fun x hx y => by
@@ -244,7 +227,7 @@ theorem mem_depthSet_of_quot {X X₁ : Type} [AddCommGroup X] [Module O X] [Modu
               LinearMap.sum_apply] at h0
             have h4 := (Finset.sum_eq_zero_iff_of_nonneg fun j _ => nsmul_nonneg (hn j x) _).1 h0.symm i
               (Finset.mem_univ _)
-            exact bilin_eq_zero_of_self_eq_zero _ (hs i) (hn i) ((smul_eq_zero.1 h4).resolve_left hi) y⟩)
+            exact _root_.GlobalTheory.PolFan.ConeSub.eq_zero_of_self_eq_zero _ (hs i) (hn i) ((smul_eq_zero.1 h4).resolve_left hi) y⟩)
         refine ⟨k, fun j => c (s j), hk, LinearMap.ext₂ fun x y => ?_⟩
         obtain ⟨a, rfl⟩ := hq x
         obtain ⟨b, rfl⟩ := hq y

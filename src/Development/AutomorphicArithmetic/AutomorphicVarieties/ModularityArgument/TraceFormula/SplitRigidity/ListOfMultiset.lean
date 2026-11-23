@@ -65,14 +65,6 @@ private theorem cg_sat_ev {E : Type} [Field E] [NumberField E] [_root_.NumberFie
     exact (GlobalTheory.CuspRep.UnrSat.eventually_hasSatGL_locRep UpperTheory.V.Af.formsFiniteGL E m π).mono
       fun w ⟨B, hB⟩ => ⟨B, hB⟩
 
-private theorem list_of_multiset {d : ℕ} (B : Multiset ℂˣ) (hB : Multiset.card B = d) :
-    ∃ f : Fin d → ℂˣ, Finset.univ.val.map f = B := by
-  induction B using Quot.inductionOn with
-  | h l =>
-    have hl : l.length = d := by simpa using hB
-    subst hl
-    exact ⟨l.get, by rw [Fin.univ_val_map, List.ofFn_get]; rfl⟩
-
 private theorem power_sum_map {d : ℕ} (f : Fin d → ℂˣ) (k : ℕ) :
     ((Finset.univ.val.map f).map fun z : ℂˣ => (z : ℂ) ^ k).sum = ∑ a, (f a : ℂ) ^ k := by
   rw [Multiset.map_map, Finset.sum_eq_multiset_sum]
@@ -140,7 +132,7 @@ theorem UpperTheory.V.Z.Tf.SR.splitRigid_of (hSh : ShareBd) (hAS : AbsShare) (hT
       rw [Set.Finite.mem_toFinset]
       exact h
     obtain ⟨B, hB⟩ := hw
-    obtain ⟨f, hf⟩ := list_of_multiset B hB.card
+    obtain ⟨f, hf⟩ := _root_.PositivityTheory.RgJS.RigidityLemmas.exists_fin B hB.card
     exact ⟨f, hf ▸ hB⟩
   choose α hα using hex
   let d : X → ℕ := fun x => x.1.1

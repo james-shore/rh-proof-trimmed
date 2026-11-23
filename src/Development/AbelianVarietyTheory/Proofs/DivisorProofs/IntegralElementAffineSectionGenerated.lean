@@ -49,19 +49,6 @@ open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
-theorem sumForm_add {A C K B : Type} [CommRing A] [CommRing C] [CommRing K] [CommRing B]
-    (φ : A →+* K) (gc : C →+* B) (gk : K →+* B) {x y : B}
-    (hx : ∃ (n : ℕ) (c : Fin n → C) (b : Fin n → K), (∀ m, φ.IsIntegralElem (b m)) ∧ x = ∑ m, gc (c m) * gk (b m))
-    (hy : ∃ (n : ℕ) (c : Fin n → C) (b : Fin n → K), (∀ m, φ.IsIntegralElem (b m)) ∧ y = ∑ m, gc (c m) * gk (b m)) :
-    ∃ (n : ℕ) (c : Fin n → C) (b : Fin n → K), (∀ m, φ.IsIntegralElem (b m)) ∧ x + y = ∑ m, gc (c m) * gk (b m) := by
-  first
-  | exact @_root_.GlobalTheory.IntegralAddSum.add_sum_integral
-  | exact _root_.GlobalTheory.IntegralAddSum.add_sum_integral
-  | (apply _root_.GlobalTheory.IntegralAddSum.add_sum_integral <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralAddSum.add_sum_integral <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralAddSum.add_sum_integral <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralAddSum.add_sum_integral ..)
-
 theorem isAffineOpen_Sp_field (K : Type) [Field K] (V : (Sp K).Opens) : IsAffineOpen V := by
   haveI : Subsingleton (Sp K) := inferInstanceAs (Subsingleton (PrimeSpectrum K))
   by_cases h : (V : Set (Sp K)).Nonempty
@@ -114,6 +101,6 @@ theorem eq_sum_of_isIntegral_genericChart : ∀ (R : Type) [CommRing R] [IsDomai
     exact Algebra.IsPushout.equiv_tmul _ _ _ _ c (b : Γ(Sp (FractionRing R), M.gp ⁻¹ᵁ U))
   | add u v hu hv =>
     rw [map_add (f := _), Subalgebra.coe_add, map_add (f := _)]
-    exact sumForm_add _ _ _ hu hv
+    exact _root_.GlobalTheory.IntegralAddSum.add_sum_integral _ _ _ hu hv
 
 end GlobalTheory.Mum

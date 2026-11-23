@@ -67,9 +67,9 @@ theorem hom_finite_free_rank_le_of_prime (K : Type) [Field K] (l : ℕ) [Fact l.
   refine GlobalTheory.T.finite_free_of_positiveDefinite_form_bounded_rank (A ⟶ B) Q hpar hpos hdef (4 * A.dim * B.dim) ?_
   intro n u hu
   rw [← hrT]
-  refine GlobalTheory.T.rank_le_finrank_of_injective_mod_prime_posDef_form l (A ⟶ B) (Tl l A →ₗ[ℤ_[l]] Tl l B) Q hpar hpos hdef (tmap l A B) ?_ n u hu
+  refine _root_.GlobalTheory.rank_le_finrank_of_injective_mod_prime l (A ⟶ B) (Tl l A →ₗ[ℤ_[l]] Tl l B) Q hpar hpos hdef (tmap l A B) ?_ n u hu
   intro f φ hφ
-  exact GlobalTheory.T.exists_nsmul_eq_of_tateModuleMap_eq_smul K l hl A B f φ hφ
+  exact _root_.GlobalTheory.AV.AbVar.exists_nsmul_eq_of_tmap_eq_smul K l hl A B f φ hφ
 
 theorem hom_finite_free_rank_le : ∀ (K : Type) [Field K] (A B : AbVar K),
     Module.Finite ℤ (A ⟶ B) ∧ Module.Free ℤ (A ⟶ B) ∧

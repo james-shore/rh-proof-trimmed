@@ -236,7 +236,7 @@ theorem off_S (σ : CMType H ⊕ CMType H → (𝓞 E →+* R)) (hσ : ∀ s a, 
   rintro x ⟨hx1, hx2⟩
   refine mem_of_indep _ (eigSp_indep ρC _ hinj) _ hle s ?_ hx2
   haveI : CharZero Ω := charZero_of_injective_ringHom 𝔐.cst.injective
-  obtain ⟨hli, hcard⟩ := GlobalTheory.T.label_embedding_injective E H l c
+  obtain ⟨hli, hcard⟩ := _root_.GlobalTheory.CompanionTheory.Ar.labels_all_once E H l c
   have hσ' : Function.Injective 𝔐.emb := fun s s' h =>
     hli (RingHom.ext fun a => 𝔐.cst.injective (RingHom.congr_fun h a))
   have hlat := (GlobalTheory.T.lie_omega_lattice_vector_bundle 𝔐.X Ω 𝔐.ξ 𝔐.t.G 𝔐.Li 𝔐.M hξ 𝔐.t.semi.smooth).1

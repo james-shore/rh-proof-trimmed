@@ -201,7 +201,7 @@ theorem norm_cmp (𝔐 : HodgeCpt Y S y) (𝔐₀ : HodgeCpt Y S₀ y₀) (Fl : 
       simp [hT, hπ, ite_smul]
     intro x hx
     exact LinearMap.eqOn_span hon hx
-  have fr := GlobalTheory.T.lattice_span_projection_bound Ω Ω₀ i 𝔐.Li 𝔐₀.Li jj hext hspan W (𝔐₀.M.lat q₀ : Set 𝔐₀.Li) (𝔐.M.lat q : Set 𝔐.Li)
+  have fr := _root_.GlobalTheory.CompanionTheory.Ar.Frames.two_frames Ω Ω₀ i 𝔐.Li 𝔐₀.Li jj hext hspan W (𝔐₀.M.lat q₀ : Set 𝔐₀.Li) (𝔐.M.lat q : Set 𝔐.Li)
     (labelRk D s) b b₀ π₀ T 1 1 1 (hlat W q q₀ regW regW₀ hfq)
     (fun e he => by
       rw [hT]

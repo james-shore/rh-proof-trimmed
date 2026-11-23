@@ -82,14 +82,6 @@ namespace GlobalTheory.CompanionTheory.SW.ThW
 
 section Linear
 
-theorem sb_add {V : Type} [TopologicalSpace V] {φ φ' : V → ℂ} (h : SB φ) (h' : SB φ') : SB (φ + φ') :=
-  ⟨h.1.add h'.1, h.2.add h'.2⟩
-
-theorem sb_smul {V : Type} [TopologicalSpace V] (c : ℂ) {φ : V → ℂ} (h : SB φ) : SB (c • φ) :=
-  ⟨by
-    have := h.1.comp (fun z => c * z)
-    exact this, h.2.smul_left⟩
-
 theorem sb_integrable {V : Type} [AddCommGroup V] [TopologicalSpace V] [MeasurableSpace V]
     {χ : V → V → ℂ} {μ : Measure V} (hV : NADual V χ μ) {φ : V → ℂ} (h : SB φ) (y : V) :
     Integrable (fun x => φ x * χ x y) μ := by
@@ -97,13 +89,6 @@ theorem sb_integrable {V : Type} [AddCommGroup V] [TopologicalSpace V] [Measurab
   have hc : Continuous fun x => φ x * χ x y :=
     h.1.continuous.mul (hC.comp (by fun_prop : Continuous fun x : V => (x, y)))
   exact hc.integrable_of_hasCompactSupport h.2.mul_right
-
-theorem fou_add {V : Type} [AddCommGroup V] [TopologicalSpace V] [MeasurableSpace V]
-    {χ : V → V → ℂ} {μ : Measure V} (hV : NADual V χ μ) {φ φ' : V → ℂ} (h : SB φ) (h' : SB φ') :
-    fou χ μ (φ + φ') = fou χ μ φ + fou χ μ φ' := by
-  funext y
-  simp only [fou, Pi.add_apply, add_mul]
-  exact integral_add (sb_integrable hV h y) (sb_integrable hV h' y)
 
 theorem fou_smul {V : Type} [MeasurableSpace V] (χ : V → V → ℂ) (μ : Measure V) (c : ℂ)
     (φ : V → ℂ) : fou χ μ (c • φ) = c • fou χ μ φ := by
@@ -219,8 +204,8 @@ theorem base [MeasurableSpace (A F)] [BorelSpace (A F)] {lf : Measure (A F)}
       (fun w => -(τ w)⁻¹) = theta B ρ P 1 (fun _ => 1) (indC N a) τ := by
   classical
   obtain ⟨hT, -, -, hdet, hemb, -, -⟩ := id hQ
-  obtain ⟨b⟩ := GlobalTheory.T.totally_real_integral_basis_exists F hT
-  have hgd := GlobalTheory.T.lattice_matrix_determinant_formula F ι ρ hT hemb b N
+  obtain ⟨b⟩ := _root_.GlobalTheory.CompanionTheory.SW.ThW.exists_integralBasis_infinitePlace F hT
+  have hgd := _root_.GlobalTheory.CompanionTheory.SW.ThW.abs_det_gM_all F ι ρ hT hemb b N
   set g := gM (ι := ι) ρ (fun v => b v) N with hgdef
   have hdisc : 0 < Real.sqrt |(discr F : ℝ)| :=
     Real.sqrt_pos.mpr (abs_pos.mpr (by exact_mod_cast discr_ne_zero F))
@@ -271,7 +256,7 @@ theorem base [MeasurableSpace (A F)] [BorelSpace (A F)] {lf : Measure (A F)}
     rw [← ei'.tsum_eq, ← tsum_mul_left]
     · refine tsum_congr fun n => ?_
       rw [thTerm_one, hfou, Set.indicator_of_mem ((hperp _).2 ⟨n, rfl⟩),
-        GlobalTheory.T.adelic_character_exponential_formula F ψ hψ ι M B ρ P hQ a (e' n)]
+        _root_.GlobalTheory.CompanionTheory.SW.ThW.chiB_toA_eq_exp F ψ hψ ι M B ρ P hQ a (e' n)]
       ring
     · intro x hx
       by_contra hc
@@ -325,10 +310,10 @@ theorem core [MeasurableSpace (A F)] [BorelSpace (A F)] {lf : Measure (A F)}
       exact ⟨h0, by rw [hf0, ht0, ht0, mul_zero]⟩
     | insert a t ha ih =>
       obtain ⟨ihs, ihe⟩ := ih
-      have hca := sb_smul (c a) (hI a)
+      have hca := _root_.CompanionTheory.PlacePermOperatorBicommutantSpan.sb_smul (c a) (hI a)
       simp only [Finset.sum_insert ha]
-      refine ⟨sb_add hca ihs, ?_⟩
-      rw [fou_add hV hca ihs, theta_add (hsum hτ' (hsb hca)) (hsum hτ' (hsb ihs)),
+      refine ⟨_root_.CompanionTheory.PlacePermOperatorBicommutantSpan.sb_add hca ihs, ?_⟩
+      rw [_root_.CompanionTheory.PlacePermOperatorBicommutantSpan.fou_add hV hca ihs, theta_add (hsum hτ' (hsb hca)) (hsum hτ' (hsb ihs)),
         theta_add (hsum hτ hca) (hsum hτ ihs), mul_add, ihe, fou_smul, theta_smul, theta_smul]
       congr 1
       rw [← base hl h1 hψ hQ hV a hN hτ]
@@ -355,8 +340,8 @@ theorem thetaInvariance : ∀ (F : Type) [Field F] [NumberField F] [MeasurableSp
     exact IsUnit.of_mul_eq_one _ h2
   obtain ⟨-, hfou⟩ := GlobalTheory.T.weil_orthogonal_group_invariance (A F) ι ψ (hf F) (Bf B) (muF B lf) hNA gf hgu hO.1
   obtain ⟨hsb, hfy⟩ := hfou φ hφ
-  have hQ' := GlobalTheory.T.quadratic_setup_invariant_under_isometry F ι M B ρ P gi hQ hO.2
-  obtain ⟨hga, hgc⟩ := GlobalTheory.T.gaussian_change_of_variables_isometry F ι B ρ P gi hdet hO.2
+  have hQ' := _root_.GlobalTheory.CompanionTheory.SW.ThW.qsetup_conj_majorant F ι M B ρ P gi hQ hO.2
+  obtain ⟨hga, hgc⟩ := _root_.GlobalTheory.CompanionTheory.SW.ThW.gauss_orth_closed F ι B ρ P gi hdet hO.2
   have hth : ∀ (f : (ι → A F) → ℂ) (σ : InfinitePlace F → ℂ), theta B ρ P gf gi f σ =
       theta B ρ (fun w => (gi w)ᵀ * P w * gi w) 1 (fun _ => 1) (fun x => f (gf *ᵥ x)) σ := by
     intro f σ

@@ -73,7 +73,7 @@ theorem phaseTieC_holds (hP : Formalism.MainNotions.S.Lat.PrimeHyp D u (Formalis
     Formalism.L2.SG.Pf.RowForm.PhaseTieC X Y u u' κ :=
   Formalism.L2.SG.Pf.PhaseLiftCell.phaseAgreement_of_lift X Y u u' κ (liftAtSomeC_holds X Y u u' κ)
     (Formalism.L2.SG.Pf.FinitePhaseConjugation.finPhaseC_of (hNR := Formalism.L2.SG.Pf.normRepExists_of
-      (Formalism.L2.SG.Pf.NormRepX.norm_representative_holds D u u' hP) (Formalism.L2.SG.Closed.TermFun_holds D u u') (Y.rowsOK u))
+      (Formalism.L2.SG.Pf.NormRepX.norm_representative_holds D u u' hP) (_root_.term_function_const D u u') (Y.rowsOK u))
       (h1 := liftAtSomeC_holds X Y u u' κ))
 
 end Formalism.L2.SG.Pf.LiftedPhaseAgreement

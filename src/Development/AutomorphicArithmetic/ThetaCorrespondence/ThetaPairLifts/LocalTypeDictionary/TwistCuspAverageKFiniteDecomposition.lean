@@ -70,14 +70,14 @@ theorem cusp_average_k_finite_decomposition : ∀ (D : D7) (θ : InfFam D), IsIn
     | nil => exact ⟨hφ, hlev, fun τ h => absurd h List.not_mem_nil⟩
     | cons τ l' ih =>
       rw [GlobalTheory.CuspApproxAll.avgList_cons]
-      refine ⟨_root_.GlobalTheory.T.averaging_preserves_cusp_type D θ hθ hP N _ ih.1 τ (e τ) (he τ), avg_lev D θ hθ N _ U ih.2.1 τ (e τ), fun τ' hτ' => ?_⟩
+      refine ⟨_root_.GlobalTheory.AvgCuspType.cusp_average_isCuspOfType D θ hθ hP N _ ih.1 τ (e τ) (he τ), avg_lev D θ hθ N _ U ih.2.1 τ (e τ), fun τ' hτ' => ?_⟩
       rcases List.mem_cons.1 hτ' with rfl | h
       · exact GlobalTheory.T.averaged_automorphic_function_K_finite D θ hθ N _ ih.1.1 τ' (e τ') (he τ')
       · exact GlobalTheory.T.average_preserves_K_finiteness D θ hθ N _ ih.1.1 τ' τ (e τ) (he τ) (ih.2.2 τ' h)
   obtain ⟨hc, hlv, hk⟩ := key l
   obtain ⟨-, 𝓕, h𝓕⟩ := GlobalTheory.Mem.AdelicGroupFund.rightInvariant_and_exists_fundamentalDomain D N.V
     (Measure.haar : Measure (GA D N.V)) inferInstance
-  obtain ⟨n, T₀, u, hT₀, hsum⟩ := _root_.GlobalTheory.T.cuspForm_decomposes_into_kFinite_components D θ hθ hP N _ hc U hU hlv (fun τ => hk τ (hl τ))
+  obtain ⟨n, T₀, u, hT₀, hsum⟩ := _root_.GlobalTheory.KFinDecomp.cuspForm_kFinite_decomposition D θ hθ hP N _ hc U hU hlv (fun τ => hk τ (hl τ))
     (Measure.haar : Measure (GA D N.V)) 𝓕 inferInstance h𝓕
   have hext := fun j => (GlobalTheory.GKExt.extExists hP.harishChandraModules hP.casselmanWallach D θ hθ N.V N.S N.M
     {k | k ∈ U ∧ k ∈ GfC N.V} 1 (Measure.haar : Measure (GA D N.V)) 𝓕 inferInstance h𝓕 (T₀ j) (hT₀ j)).exists

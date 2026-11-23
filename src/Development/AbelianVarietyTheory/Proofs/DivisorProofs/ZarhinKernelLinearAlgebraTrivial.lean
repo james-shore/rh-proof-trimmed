@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.E8SharpFamilyMatrixRelationsDense
 
 @[expose] public section
 
@@ -50,19 +51,12 @@ open Matrix
 
 namespace GlobalTheory.ZarhinFam
 
-theorem zpow_finset_sum' {G ι : Type} [CommGroup G] (a : G) (s : Finset ι) (e : ι → ℤ) :
-    a ^ (∑ k ∈ s, e k) = ∏ k ∈ s, a ^ e k := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert b s hb ih => rw [Finset.sum_insert hb, Finset.prod_insert hb, _root_.zpow_add, ih]
-
 theorem prod_prod_zpow_mul {G : Type} [CommGroup G] (P Q : Matrix (Fin 4) (Fin 4) ℤ) (w : Fin 4 → G)
     (a : Fin 4) : ∏ k, (∏ i, w i ^ Q k i) ^ P a k = ∏ i, w i ^ (P * Q) a i := by
   simp_rw [← Finset.prod_zpow, ← _root_.zpow_mul]
   rw [Finset.prod_comm]
   refine Finset.prod_congr rfl fun i _ => ?_
-  rw [Matrix.mul_apply, zpow_finset_sum']
+  rw [Matrix.mul_apply, _root_.GlobalTheory.SharpFamRel.zpow_finsetSum]
   refine Finset.prod_congr rfl fun k _ => ?_
   rw [mul_comm]
 

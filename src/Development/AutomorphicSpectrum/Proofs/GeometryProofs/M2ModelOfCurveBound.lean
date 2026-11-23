@@ -224,7 +224,7 @@ theorem m2Model_of_m2Curve : CurveSemiAbelianConjecture → RootLineDeRhamModel 
     congrArg Subtype.val (RingHom.congr_fun e a))
   have hcard : Fintype.card (Ψ ⊕ Ψ) = Module.finrank ℚ E := by
     rw [Fintype.card_sum, ← D.card]; ring
-  obtain ⟨χ, hχ, hχv⟩ := GlobalTheory.T.split_characters_unramified E (regAt D.ξ ⟨centre z, h₀⟩) K (Ψ ⊕ Ψ) p σ' φ hσ' hcard D.unram
+  obtain ⟨χ, hχ, hχv⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Conj.SplitDisc.exists_isSplit E (regAt D.ξ ⟨centre z, h₀⟩) K (Ψ ⊕ Ψ) p σ' φ hσ' hcard D.unram
   have hval : ∀ s a, ValAt D.ξ z (D.σ s a) (algebraMap (algebraicClosure (ZMod p) K) K (χ s a)) := fun s a =>
     (hφ _ _).2 ⟨D.reg _ hz s a, (hχv s a).symm⟩
   have hconj : ∀ τ a, χ (Sum.inr τ) a = χ (Sum.inl τ) (H.bar a) := fun τ a => Subtype.ext (by

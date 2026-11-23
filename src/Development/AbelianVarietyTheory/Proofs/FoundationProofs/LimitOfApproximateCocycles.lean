@@ -53,9 +53,9 @@ theorem qbarLVectorCongruent_integralMatrix_mulVec {l : ℕ} [Fact l.Prime] (c :
   rw [e]
   refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le ?_ ?_)
   · rw [norm_mul]
-    exact (mul_le_of_le_one_left (norm_nonneg _) (norm_le_one_of_mem_coef c (hM i 0))).trans (h 0)
+    exact (mul_le_of_le_one_left (norm_nonneg _) (_root_.UpperTheory.Reformulated.B.Rf3.norm_le_one_of_mem_coef c (hM i 0))).trans (h 0)
   · rw [norm_mul]
-    exact (mul_le_of_le_one_left (norm_nonneg _) (norm_le_one_of_mem_coef c (hM i 1))).trans (h 1)
+    exact (mul_le_of_le_one_left (norm_nonneg _) (_root_.UpperTheory.Reformulated.B.Rf3.norm_le_one_of_mem_coef c (hM i 1))).trans (h 1)
 
 theorem limit_cocycle_mem_cocycles : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : R2 Ω l) (c : Coef l), (∀ s i j, mat W s i j ∈ c.O) → ∀ (a : ℕ → G ℚ Ω → Fin 2 → Qbar l) (z : G ℚ Ω → Fin 2 → Qbar l), (∀ n s t, Cv n (a n (s * t)) (a n s + mat W s *ᵥ a n t)) → (∀ n s, ∀ᶠ t in nhds s, Cv n (a n t) (a n s)) → (∀ n s, Cv n (z s) (a n s)) → z ∈ Z1 (Loc.colRep W) := by
   intro l _ Ω _ _ W c hW a z hco hloc hz

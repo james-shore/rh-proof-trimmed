@@ -168,7 +168,7 @@ theorem fib_conn : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing
     rfl
   let t := i ≫ pullback.fst π ρ
   let kk := i ≫ pullback.snd π ρ
-  obtain ⟨e, l, -, hl1, hl2⟩ := GlobalTheory.T.pullback_iso_baseChange_over_reduced_closedFibre R S π G' hG E T t kk inferInstance inferInstance
+  obtain ⟨e, l, -, hl1, hl2⟩ := _root_.GlobalTheory.Mum.Emb.pullback_iso_of_closed R S π G' hG E T t kk inferInstance inferInstance
     (by show i ≫ pullback.fst π ρ ≫ π = (i ≫ pullback.snd π ρ) ≫ ρ; rw [pullback.condition, Category.assoc])
   apply lsurj l E.f ν
   · intro z

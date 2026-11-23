@@ -96,12 +96,7 @@ variable (hFF : ∀ a b, hJ ε (F a) (F b) = lastDiag (-(T : ℂ)) a b)
   (hgap : 1 - (T : ℂ) * T' * ((Zm ε F G)⁻¹ (Fin.last r) (Fin.last r) *
     starRingEnd ℂ ((Zm ε F G)⁻¹ (Fin.last r) (Fin.last r))) ≠ 0)
 
-theorem Jm_herm : (Formalism.REAL.Jm ε)ᴴ = Formalism.REAL.Jm ε := by
-  unfold Formalism.REAL.Jm
-  rw [diagonal_conjTranspose]
-  congr 1
-  funext a
-  by_cases h : ε a = true <;> simp [h]
+alias Jm_herm := _root_.Formalism.REAL.Jm_conjTranspose
 
 include hFF hGG hπ hZ in
 theorem gram_eq : (Wfg F G)ᴴ * Formalism.REAL.Jm ε * Wfg F G =

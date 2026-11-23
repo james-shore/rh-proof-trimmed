@@ -42,9 +42,5 @@ import Mathlib.Topology.Sheaves.Init
 
 
 
-section
-open NumberField IsDedekindDomain Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 namespace GlobalTheory.JumpStatement
-theorem holds_all_alt : ∀ D : D7, _root_.Formalism.MainNotions.AdmissibleParameterJ.JumpClosed D := _root_.GlobalTheory.JumpSets.stmtJ_holds_alt
 end GlobalTheory.JumpStatement
-end

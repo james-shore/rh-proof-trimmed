@@ -139,7 +139,4 @@ theorem third_polynomial_prime_combination : LeadingBlockSeveralPlacesBound := b
 
 end Formalism.FourierDecayAlt.P.SecondPolynomialClauses
 
-theorem Formalism.FourierDecayAlt.P.third_polynomial_prime_combine : Formalism.FourierDecayAlt.PairingProductCorollary.LeadingBlockSeveralPlacesBound := by
-  exact Formalism.FourierDecayAlt.P.SecondPolynomialClauses.third_polynomial_prime_combination
-
 end

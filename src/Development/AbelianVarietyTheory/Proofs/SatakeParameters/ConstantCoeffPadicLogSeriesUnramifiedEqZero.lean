@@ -69,10 +69,6 @@ theorem constantCoeff_psubst {K κ : Type} [CommRing K] {a : MvPowerSeries κ K}
   have h := GlobalTheory.BeProps.coeff_subst_range ha f 0
   simpa [hf] using h
 
-theorem constantCoeff_padicLogSeries_unramified_eq_zero : PowerSeries.constantCoeff (FormalGroupSystem.logF p) = 0 := by
-  rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
-  simp [FormalGroupSystem.logF]
-
 theorem constantCoeff_logF_C : PowerSeries.constantCoeff (Formalism.MainNotions.GL3Theta.logF p) = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
   simp [Formalism.MainNotions.GL3Theta.logF]
@@ -178,7 +174,7 @@ theorem read_thOne {n' r0 r1 : ℕ} {κ : Type} (B : OmBasis p n') (be : MvPower
 
   have hL0 : ∀ i : Eidx n' r0 r1 ⊕ Eidx n' r0 r1, constantCoeff (PowerSeries.subst
       (MvPowerSeries.X i : MvPowerSeries (Eidx n' r0 r1 ⊕ Eidx n' r0 r1) (FormalGroupSystem.K0 p)) (FormalGroupSystem.logF p)) = 0 :=
-    fun i => constantCoeff_psubst (by simp) constantCoeff_padicLogSeries_unramified_eq_zero
+    fun i => constantCoeff_psubst (by simp) _root_.Formalism.L2.PairingIndexBounds.PowerSeriesNecessity.cc_logF
   have hLm : ∀ i : Eidx n' r0 r1 ⊕ Eidx n' r0 r1, MvPowerSeries.map (Formalism.L2.G.Pend.k0ToC p) (PowerSeries.subst
       (MvPowerSeries.X i : MvPowerSeries (Eidx n' r0 r1 ⊕ Eidx n' r0 r1) (FormalGroupSystem.K0 p)) (FormalGroupSystem.logF p)) =
       PowerSeries.subst (MvPowerSeries.X i) (Formalism.MainNotions.GL3Theta.logF p) := by

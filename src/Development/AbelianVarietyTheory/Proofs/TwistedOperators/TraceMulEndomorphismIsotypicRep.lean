@@ -97,7 +97,7 @@ theorem trace_mul_isotypic : ∀ (G : Type) [Group G] (N X : Type) [AddCommGroup
     have hr : LinearMap.range Hψ.toLinearMap ≤ ⨆ j, LinearMap.range (φ j).toLinearMap := by
       rintro _ ⟨n, rfl⟩
       exact hY ⟨ψ n, rfl⟩
-    exact GlobalTheory.T.exists_eq_sum_smul_of_range_le_iSup_range G N X π ρ hschur _ φ hinj Hψ hr
+    exact _root_.GlobalTheory.intertwiner_mem_iSup_range_eq_sum_smul G N X π ρ hschur _ φ hinj Hψ hr
   choose hc hhc using fun j => hcoef (φ j)
   refine ⟨∑ j, hc j j, fun A B hB b hb => ?_⟩
   obtain ⟨hfin, htr⟩ := hb
@@ -132,7 +132,7 @@ theorem trace_mul_isotypic : ∀ (G : Type) [Group G] (N X : Type) [AddCommGroup
     · intro x y hx hy
       simpa using Z.add_mem hx hy
   haveI : FiniteDimensional ℂ Z := LinearMap.finiteDimensional_range Φ'
-  have hT1 := GlobalTheory.T.hasFiniteRankTraceOf_of_range_le_finiteDimensional X (H ∘ₗ B) Z hrange
+  have hT1 := _root_.GlobalTheory.IndefiniteRowSideFullHecke.RangeTrace.hasFinTrace_of_range_le X (H ∘ₗ B) Z hrange
   let e : (Fin (Module.finrank ℂ S) → R) ≃ₗ[ℂ] Z := LinearEquiv.ofInjective Φ' hinj'
   let A' : R →ₗ[ℂ] R := A.restrict (p := R) (q := R) fun v _ => LinearMap.mem_range_self A v
   let h : Matrix (Fin (Module.finrank ℂ S)) (Fin (Module.finrank ℂ S)) ℂ := Matrix.of fun k j => hc j k

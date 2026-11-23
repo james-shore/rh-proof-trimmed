@@ -327,7 +327,7 @@ theorem Yv_mul_Yv_mul_Dr_le : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → �
   intro k r z z' γ ⟨hz, _, hT, _, hγ, _, hD⟩ x hx
   have hD' : (Zm k r γ).det ≠ 0 := by rw [Dr_eq] at hD; exact norm_ne_zero_iff.1 hD
   have hZ : IsUnit (Zm k r γ).det := hD'.isUnit
-  have h := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.absA (Ppos k r z z' γ x) (Ppos k r z' z γ⁻¹ (γ * x)) r
+  have h := _root_.Formalism.HermitianLatticeCounting.P.absolute_value_bound (Ppos k r z z' γ x) (Ppos k r z' z γ⁻¹ (γ * x)) r
     (fun a => (Ppos k r z z' γ x).orthogonalProjectionOnto (WithLp.toLp 2 (x⁻¹ *ᵥ (γ⁻¹ *ᵥ bvec (eI k r a)))))
     (fun a => (Ppos k r z' z γ⁻¹ (γ * x)).orthogonalProjectionOnto
       (WithLp.toLp 2 ((γ * x)⁻¹ *ᵥ (γ⁻¹⁻¹ *ᵥ bvec (eI k r a))))) (Zm k r γ)⁻¹ᵀ (fun p q => by

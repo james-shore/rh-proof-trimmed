@@ -100,7 +100,7 @@ theorem exists_pow_mul_v_le_one_of_mem {E : Type} [Field E] [NumberField E]
   refine ⟨e, fun d hd => ?_⟩
   have hde : p ^ d = p ^ (d - e) * p ^ e := by rw [← pow_add, Nat.sub_add_cancel hd]
   rw [hde, Nat.cast_mul, mul_assoc, Valuation.map_mul]
-  exact mul_le_one' (natCast_adicCompletion_v_le_one Q _) hex
+  exact mul_le_one' (_root_.GlobalTheory.AdLat.valued_natCast_le_one Q _) hex
 
 theorem exists_pow_clears_denom_over :
     ∀ {E : Type} [Field E] [NumberField E] (p : ℕ), p.Prime → ∀ (n : ℕ) (A : Matrix (Fin n) (Fin n) (FiniteAdeleRing (𝓞 E) E)), ∃ c : ℕ, ∀ d : ℕ, c ≤ d → ∀ Q : HeightOneSpectrum (𝓞 E), (p : 𝓞 E) ∈ Q.asIdeal → ∀ i j, Valued.v ((((p ^ d : ℕ) : FiniteAdeleRing (𝓞 E) E) * A i j) Q) ≤ 1 := by

@@ -59,12 +59,6 @@ set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.TwistBelow
 
-theorem l1 : ∀ (Y : Scheme.{0}) [IsIntegral Y] (J : Y.IdealSheafData), FinalTheorems.EffCartier J → ∃ E : CartierDiv Y, E.Eff ∧ E.supp = J.support ∧ ∀ (y : Y) (U : Y.affineOpens) (f : Γ(Y, U.1)) (hy : y ∈ U.1) (hf : fnOf U.1 (gen_mem hy) f ≠ 0), J.ideal U = Ideal.span {f} → E.IsEqn y (Units.mk0 _ hf) := GlobalTheory.T.effective_cartier_local_equation
-
-theorem l2 : ∀ (X : Scheme.{0}) (M : LB X), M.IsLB → ∀ (I : X.IdealSheafData), IsGloballyGenerated (twist (idealModule I) M) → ∃ (n : ℕ) (σ : Fin n → M.Sec), (∀ (k : Fin n) (i : M.ι) (W : X.affineOpens) (h : W.1 ≤ M.U i), resG X h ((σ k).f i) ∈ I.ideal W) ∧ ∀ (x : X) (i : M.ι) (hx : x ∈ M.U i) (W : X.affineOpens) (hxW : x ∈ W.1) (a : Γ(X, W.1)), a ∈ I.ideal W → X.presheaf.germ W.1 x hxW a ∈ Ideal.span (Set.range fun k => X.presheaf.germ (M.U i) x hx ((σ k).f i)) := GlobalTheory.T.ideal_sections_locally_generated
-
-theorem l3 : ∀ (Y₀ Y₁ : Scheme.{0}) [IsIntegral Y₁] (t : Y₁ ⟶ Y₀) (I : Y₀.IdealSheafData) (y : Y₁) (U : Y₀.Opens) (hx : t y ∈ U) (n : ℕ) (b : Fin n → Γ(Y₀, U)), (∀ (k : Fin n) (W : Y₀.affineOpens) (h : W.1 ≤ U), resG Y₀ h (b k) ∈ I.ideal W) → (∀ (W : Y₀.affineOpens) (hxW : t y ∈ W.1) (a : Γ(Y₀, W.1)), a ∈ I.ideal W → Y₀.presheaf.germ W.1 (t y) hxW a ∈ Ideal.span (Set.range fun k => Y₀.presheaf.germ U (t y) hx (b k))) → ∀ (U' : Y₁.affineOpens) (f : Γ(Y₁, U'.1)) (hyU' : y ∈ U'.1), fnOf U'.1 (gen_mem hyU') f ≠ 0 → (I.comap t).ideal U' = Ideal.span {f} → ∀ (V : Y₁.Opens) (hV : V ≤ t ⁻¹ᵁ U) (hyV : y ∈ V), (∀ k, RegAt y (fnOf V (gen_mem hyV) (t.appLE U V hV (b k)) / fnOf U'.1 (gen_mem hyU') f)) ∧ ∃ k, UnitAt y (fnOf V (gen_mem hyV) (t.appLE U V hV (b k)) / fnOf U'.1 (gen_mem hyU') f) := GlobalTheory.T.ideal_pullback_locally_generated
-
 theorem isGenerated_of_sections {Y : Scheme.{0}} [IsIntegral Y] (D : CartierDiv Y) {n : ℕ}
     (f : Fin n → Y.functionField) (hf : ∀ k, f k ∈ D.sections) (hg : ∀ y, ∃ k, D.GeneratesAt y (f k))
     (P : LB Y) (hP : P.IsLB) (e : cls P hP = toPic D) : IsGenerated P := by
@@ -112,12 +106,12 @@ private theorem Presents_rat_eq_fnOf_div {X : Scheme.{0}} [IsIntegral X] {D : Ca
 
 theorem exists_eff_isGenerated : ∀ (Y₀ Y₁ : Scheme.{0}) [IsNoetherian Y₀] [IsIntegral Y₁] (t : Y₁ ⟶ Y₀) (I : Y₀.IdealSheafData), FinalTheorems.EffCartier (I.comap t) → ∀ (A : LB Y₀) (hA : IsAmpleLB A), ∃ E : CartierDiv Y₁, E.Eff ∧ E.supp = (I.comap t).support ∧ ∀ᶠ c : ℕ in atTop, ∀ (P : LB Y₁) (hP : P.IsLB), cls P hP = c • CechPic.pull t (cls A hA.isLB) - toPic E → IsGenerated P := by
   intro Y₀ Y₁ _ _ t I hEff A hA
-  obtain ⟨E, hEeff, hEsupp, hEq⟩ := l1 Y₁ (I.comap t) hEff
+  obtain ⟨E, hEeff, hEsupp, hEq⟩ := _root_.GlobalTheory.Cartier.IdealDiv.exists_cartierDiv_of_effCartier Y₁ (I.comap t) hEff
   refine ⟨E, hEeff, hEsupp, ?_⟩
   filter_upwards [hA.eventually_isGloballyGenerated_twist (idealModule I)] with c hc
   intro P hP hcls
   have hM : (lbPow A c).IsLB := isLB_lbPow hA.isLB c
-  obtain ⟨n, σ, hσ1, hσ2⟩ := l2 Y₀ (lbPow A c) hM I hc
+  obtain ⟨n, σ, hσ1, hσ2⟩ := _root_.GlobalTheory.Twist.exists_secs_generating_ideal Y₀ (lbPow A c) hM I hc
   have hL : ((lbPow A c).pull t).IsLB := LB.isLB_pull hM t
   have hcov : ∀ y : Y₁, ∃ j, y ∈ ((lbPow A c).pull t).U j := by
     intro y
@@ -142,7 +136,7 @@ theorem exists_eff_isGenerated : ∀ (Y₀ Y₁ : Scheme.{0}) [IsNoetherian Y₀
       exact nonZeroDivisors.ne_zero hfnzd (fnOf_injective _ _ h0)
     have hEy := hEq y U' f hyU' hf hspan
     have hDy := (h.isEqn j y hj).sub hEy
-    obtain ⟨hreg, hunit⟩ := l3 Y₀ Y₁ t I y ((lbPow A c).U (j PUnit.unit)) hx n
+    obtain ⟨hreg, hunit⟩ := _root_.GlobalTheory.IdealPull.regAt_and_unitAt_div_gen Y₀ Y₁ t I y ((lbPow A c).U (j PUnit.unit)) hx n
       (fun k => (σ k).f (j PUnit.unit)) (fun k W hW => hσ1 k _ W hW)
       (fun W hxW a ha => hσ2 (t y) _ hx W hxW a ha) U' f hyU' hf hspan _ hV hj
     have hrat : ∀ k, h.rat (secPull (σ k) t) * ↑(frameRat _ i₀ hi₀ j / Units.mk0 _ hf) =

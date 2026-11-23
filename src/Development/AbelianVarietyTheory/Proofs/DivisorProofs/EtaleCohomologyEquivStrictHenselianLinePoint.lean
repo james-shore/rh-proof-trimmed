@@ -143,14 +143,14 @@ theorem eqv_local : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T
     have hζ : Polynomial.aeval (algebraMap T O z) (Polynomial.cyclotomic q ℤ) = 0 := by
       rw [Polynomial.aeval_algebraMap_apply, Polynomial.aeval_def, Polynomial.eval₂_eq_eval_map,
         Polynomial.map_cyclotomic, hz, map_zero]
-    exact GlobalTheory.T.h_zero_pullback_twist_bijective q O (TensorProduct T (FractionRing T) O)
+    exact _root_.GlobalTheory.EtC.h_zero_pull_bijective q O (TensorProduct T (FractionRing T) O)
       (Algebra.TensorProduct.includeRight (R := T) (A := FractionRing T) (B := O)).toRingHom hqO
       ⟨_, hζ⟩ inferInstance (idem_of_domain) (idem_of_domain) i
-  · haveI : Subsingleton (H (ZMod q) (sp O) (tw q i) n) := GlobalTheory.T.strictlyHenselianLocalRing_acyclic_every_sheaf (ZMod q) O hSH (tw q i) n hn
+  · haveI : Subsingleton (H (ZMod q) (sp O) (tw q i) n) := _root_.GlobalTheory.EtC.b2 (ZMod q) O hSH (tw q i) n hn
     haveI : Subsingleton (H (ZMod q) (sp (TensorProduct T (FractionRing T) O)) (tw q i) n) := by
       rcases (show n = 1 ∨ 2 ≤ n by omega) with rfl | h2
-      · exact GlobalTheory.T.subsingleton_ht_one_genericFibre_of_sh_etale_cover q T hT hq O hSH hfac i
-      · exact GlobalTheory.T.subsingleton_etaleCohomology_genericFibre_henselianLine q T hT hq O hSH hInd n i h2
+      · exact _root_.GlobalTheory.LocAcycDegOne.tateTwistCohomology_genericFibre_henselLine_subsingleton q T hT hq O hSH hfac i
+      · exact _root_.GlobalTheory.EtC.GenFibreLine.genericFibre_subsingleton q T hT hq O hSH hInd n i h2
     exact bijective_of_subsingleton _ 0
 
 end GlobalTheory.EtC.LineLocal

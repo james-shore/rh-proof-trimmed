@@ -87,7 +87,7 @@ theorem nefRR : GlobalTheory.CompanionTheory.Ar.Pub.NefRR := by
       exact GlobalTheory.T.chart_lattice_le_span_norm K ι Ω y a τ
     exact Submodule.finrank_mono hsub
   refine ⟨hfd, ?_⟩
-  apply GlobalTheory.T.tendsto_of_asymptotic_bounds (fun τ => (Module.finrank ℚ (Submodule.span ℚ (chartLatNm y a τ : Set Ω)) : ℝ)) _ D
+  apply _root_.GlobalTheory.CompanionTheory.Analysis.tendsto_factorial_mul_div_pow_of_eps_bounds (fun τ => (Module.finrank ℚ (Submodule.span ℚ (chartLatNm y a τ : Set Ω)) : ℝ)) _ D
   · intro ε hε
     filter_upwards [GlobalTheory.CompanionTheory.NefLower.nef_sections_lower K ι Ω y D a 0 hD hV hB hN ε hε] with n hn
     exact hn.trans (by exact_mod_cast hlow n)

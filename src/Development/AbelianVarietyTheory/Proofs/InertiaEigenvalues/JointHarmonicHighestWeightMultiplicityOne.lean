@@ -112,8 +112,8 @@ theorem joint_line : ∀ (D : D7) (n m : ℕ) (w : GlobalTheory.ExportSeries.Wei
   intro D n m w lam P P' hP0 hH hH' hN hN' hK hK'
   classical
   set κ : D.what₂.Tau → Fin n → ℂ := fun τ a => lam τ a - (m : ℂ) / 2 + ((m - w.p τ : ℕ) : ℂ) with hκ
-  have hJ := GlobalTheory.T.jointHighestWeightHarmonic_of_fock_lowestKType D n m w lam P hH hN hK
-  have hJ' := GlobalTheory.T.jointHighestWeightHarmonic_of_fock_lowestKType D n m w lam P' hH' hN' hK'
+  have hJ := _root_.GlobalTheory.JointDict.jointTop_of_lowestKType D n m w lam P hH hN hK
+  have hJ' := _root_.GlobalTheory.JointDict.jointTop_of_lowestKType D n m w lam P' hH' hN' hK'
   have hU : ∀ τ : D.what₂.Tau, ∃ Q₀ : MvPolynomial (Fin m × Fin n) ℂ, ∀ α β f,
       GlobalTheory.CompactHarm.JointTop (GlobalTheory.HarmLine.zR m n (w.p τ)) (GlobalTheory.HarmLine.yR m n (w.p τ)) (κ τ) α β f →
         ∃ r : ℂ, f = r • Q₀ := fun τ =>

@@ -178,7 +178,7 @@ def HasFlatSection (Xo : Moduli D l) (c : Coeff l) (U : (Xo.XF c).Opens) (τ : E
 theorem exists_of_rank_zero (U : (Xo.XF c).Opens) (τ : E →+* ℂ) (h : D.p + D.q = 0) : HasFlatSection Xo c U τ := by
   have : IsEmpty (Fin D.p) := ⟨fun i => by have := i.2; omega⟩
   have : IsEmpty (Fin D.q) := ⟨fun i => by have := i.2; omega⟩
-  refine ⟨fun e => GlobalTheory.T.hasMarkingPreservingTransport_of_rank_zero E H D l Xo c U e h, fun _ _ _ _ _ => 1,
+  refine ⟨fun e => _root_.GlobalTheory.DetLine.RankZero.hasTransport_of_rank_zero E H D l Xo c U e h, fun _ _ _ _ _ => 1,
     isSection_of_chg fun _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ => by simp [Matrix.det_isEmpty],
     fun _ _ _ _ _ _ _ => isUnit_one, fun e => ?_, fun O _ β Y _ => ⟨fun _ _ _ _ _ => 1,
     isSection_of_chg fun _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ => by simp [Matrix.det_isEmpty],
@@ -219,7 +219,7 @@ theorem exists_of_snc {O : Type} [CommRing O] {β : O →+* c.F} (Z : Model Xo c
     · exact GlobalTheory.T.hasMarkingPreservingTransport_of_conj_embedding E H D l Xo c U e (GlobalTheory.T.hasMarkingTransport_of_cmType_embedding E H D l Xo c O β Z U _ B io hU h1 h2 h3 hr he)
   · rcases good_or c e with he | he
     · exact hflat e he
-    · exact GlobalTheory.T.isHorizontalLieDeterminantSection_of_conj E H D l Xo c U τ σ e hs (hflat _ he)
+    · exact _root_.GlobalTheory.isFlatAt_of_conj E H D l Xo c U τ σ e hs (hflat _ he)
 
 theorem detLineTrivial_of_toroidal (hT : GlobalTheory.Published.ToroidalCompactification) : DetLineTrivial := by
   intro E _ _ _ H D l Xo c U hU hG τ hτ

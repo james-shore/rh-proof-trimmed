@@ -51,7 +51,7 @@ namespace GlobalTheory.EtC
 
 theorem homSh_injective (R : Type) [CommRing R] (J : Shv R) [Injective J] (M : ModuleCat.{1} (ULift.{1} R)) [Projective M] :
     Injective ((homSh J).obj (op M)) := by
-  obtain ⟨e, -, hX⟩ := GlobalTheory.T.exists_sheafHom_linearMapsSheaf_curry_equiv R J
+  obtain ⟨e, -, hX⟩ := _root_.GlobalTheory.EtC.homSh_curry R J
   haveI : Module.Projective (ULift.{1} R) M := (IsProjective.iff_projective (P := M)).2 ‹_›
   constructor
   intro X Y g i _

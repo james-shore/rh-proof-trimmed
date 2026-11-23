@@ -71,7 +71,7 @@ theorem ample_twist_of_blowup : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoet
   obtain ⟨L₀, m, σ, hL₀, hσ⟩ := GlobalTheory.T.exists_lineBundle_sections_generate_idealSheaf R X s J hs
   obtain ⟨c, hc, hprop, hci⟩ := GlobalTheory.T.exists_closedImmersion_blowup_generatingSections R X X' s J b L₀ m σ hs hb hσ
   have hψ : Proportional σ (ν ≫ b) (ν ≫ c) := hprop.comp ν
-  have hiso := GlobalTheory.T.pullback_O1_iso_blowup_twist_dual R X N J L₀ m σ (ν ≫ b) (ν ≫ c) EX hL₀ hσ hψ hEX
+  have hiso := _root_.GlobalTheory.ProjBlowup.lbIso_pull_O1_of_proportional R X N J L₀ m σ (ν ≫ b) (ν ≫ c) EX hL₀ hσ hψ hEX
   have : IsProper s := by
     obtain ⟨n, i, hi, rfl⟩ := hs
     have := isProper_str R n

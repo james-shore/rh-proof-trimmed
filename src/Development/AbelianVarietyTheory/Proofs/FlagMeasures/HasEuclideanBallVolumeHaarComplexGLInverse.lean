@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -88,9 +89,6 @@ theorem hs_inv_compare {j : ℕ} (x : Matrix (Fin j) (Fin j) ℂ) (hx : x.det �
     nlinarith [mul_nonneg (sq_nonneg (1 - a)) hA]
 
 end
-
-theorem hs_nonneg {j : ℕ} (M : Matrix (Fin j) (Fin j) ℂ) : 0 ≤ hs M := by
-  unfold hs; positivity
 
 theorem continuous_hs {j : ℕ} : Continuous (hs : Matrix (Fin j) (Fin j) ℂ → ℝ) := by
   unfold hs; fun_prop
@@ -222,8 +220,8 @@ theorem sandwich (j : ℕ) {a : ℝ} (ha : 0 < a) (ha1 : a < 1) :
     gcongr
     refine le_trans (measure_mono (t := unitBallAt j (a⁻¹ * r / √2)) fun x hx => ?_) ?_
     · have h1 := (Real.sqrt_le_iff.1 hx).2
-      have h0 := hs_nonneg ((Matrix.of x)⁻¹ - 1)
-      have h0' := hs_nonneg (Matrix.of x - 1)
+      have h0 := _root_.Formalism.REAL.frobenius_nonneg_matrix ((Matrix.of x)⁻¹ - 1)
+      have h0' := _root_.Formalism.REAL.frobenius_nonneg_matrix (Matrix.of x - 1)
       have h3 := (H r hr.le hr1 x (show hs (Matrix.of x - 1) ≤ r ^ 2 by linarith)).2.1
       have h6 : a ^ 2 * hs (Matrix.of x - 1) ≤ hs (Matrix.of x - 1) :=
         mul_le_of_le_one_left h0' (by nlinarith)

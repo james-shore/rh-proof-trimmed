@@ -85,11 +85,11 @@ theorem recIn_parts_exists_alt : GlobalTheory.Published.GreenCuspidal → Global
   have htp : HEq tp R.T.n.tp := cast_heq _ _
   have hxi : tp.xi = q.w.I.xi :=
     (tupTied_xi_eq hC.symm htp).trans ((tupTied_xi_eq hchr.1 hchr.2).trans q.x.n.xi)
-  have hgen := _root_.GlobalTheory.T.geometric_parameter_of_reciprocity_alt
+  have hgen := _root_.GlobalTheory.Mem.R3.GenRows.goodGeneric_rows_alt
     hDC hHM hCW hW hDS hHC hCR hGAR hRF hL N Γ p hp hN K q hH hM a
-  have hlam := _root_.GlobalTheory.T.parameter_of_discrete_series_reciprocity_alt
+  have hlam := _root_.GlobalTheory.Mem.R3.ScalarComponentUnique.scal_rows_alt
     hGC hDC hHM hCW hW hDS hHC hCR hGAR hRF hL N Γ p hp hN K q hH hM a
-  have heig := @GlobalTheory.T.partsRow_of_eigensystemIndex_goodCharacters
+  have heig := @_root_.GlobalTheory.Mem.R3.partsRec_of_eig
     hW hDS hHC hCR (q.w.D q.Z) a.x.G a.x.grp a.x.fin a.x.Pl0 a.x.I0 a.x.T a.x.A3
     a.x.core.Q.c.F inferInstance inferInstance a.x.alg
     a.x.R a.x.F a.x.cG q.O.ex.p0 a.x.Y a.x.Z q.O.X a.x.pins a.intersectionNumber_baseChange

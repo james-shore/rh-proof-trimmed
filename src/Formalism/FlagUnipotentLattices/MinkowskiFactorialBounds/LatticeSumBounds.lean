@@ -110,8 +110,7 @@ private theorem finset_prod_real_mono_of_subset_of_one_le {ι : Type*} (s t : Fi
     Finset.prod_nonneg (fun v hv => zero_le_one.trans (h v (hst hv)))
   exact le_mul_of_one_le_left h2 h1
 
-lemma finset_prod_le_prod_of_subset_of_one_le {ι : Type*} (s t : Finset ι) (hst : s ⊆ t) (y : ι → ℝ)
-    (h : ∀ v ∈ t, 1 ≤ y v) : ∏ v ∈ s, y v ≤ ∏ v ∈ t, y v := finset_prod_real_mono_of_subset_of_one_le s t hst y h
+alias finset_prod_le_prod_of_subset_of_one_le := _root_.Formalism.HermitianLatticeCounting.P.finset_prod_real_mono_of_subset_of_one_le
 
 private theorem finset_prod_max_one_nonneg {ι : Type*} (s : Finset ι) (y : ι → ℝ) :
     0 ≤ ∏ v ∈ s, max 1 (y v) :=

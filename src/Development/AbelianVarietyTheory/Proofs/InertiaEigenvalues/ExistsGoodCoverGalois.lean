@@ -126,11 +126,11 @@ theorem exists_goodCover_galois (D : D7) {G : Type} [Group G] [Fintype G] {Pl0 T
     ⟨fun _ _ _ _ => le_rfl, hm⟩
   have hauxd : GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels.IsAuxiliarySplitSquarefreeLevel D T.Q.l.M d.pd := hdpd ▸ haux
   by_cases hn : Even n
-  · obtain ⟨cc₂, hcc⟩ := GlobalTheory.T.uniformisedLevelCover_exists_constants_dominantWeights D T hJ _ hj T.σ₀ hσ C₀ (hU _) n
+  · obtain ⟨cc₂, hcc⟩ := _root_.GlobalTheory.CoverRead.Cover.exists_pinned_dom D T hJ _ hj T.σ₀ hσ C₀ (hU _) n
     refine ⟨⟨c', hle, d, σ₂, U₂, dict₂, cc₂⟩, hdpd, hdI, hfr, hU cc₂, hcc, hauxd, hsm₂, ?_⟩
     show GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels.RayIn D (T.Q.l.M * d.pd) σ₂.fieldRange
     rw [hfr, hdpd]; exact hray
-  · obtain ⟨cc₂, hcc⟩ := GlobalTheory.T.uniformisedLevelCover_exists_constants_dominantWeights D T hJ _ hj T.σ₀ hσ C₀ (hU _) 0
+  · obtain ⟨cc₂, hcc⟩ := _root_.GlobalTheory.CoverRead.Cover.exists_pinned_dom D T hJ _ hj T.σ₀ hσ C₀ (hU _) 0
     refine ⟨⟨c', hle, d, σ₂, U₂, dict₂, cc₂⟩, hdpd, hdI, hfr, hU cc₂, fun a ha => absurd ha.2 hn, hauxd, hsm₂, ?_⟩
     show GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels.RayIn D (T.Q.l.M * d.pd) σ₂.fieldRange
     rw [hfr, hdpd]; exact hray

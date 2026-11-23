@@ -67,9 +67,6 @@ open GlobalTheory.LamPr
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem norm_aut (τ : Qbar l ≃ₐ[ℚ_[l]] Qbar l) (x : Qbar l) : ‖τ x‖ = ‖x‖ :=
-  (spectralNorm_eq_of_equiv τ x).symm
-
 theorem norm_l_pow_mul (k : ℕ) : ‖((l : ℕ) : Qbar l) ^ k‖ * (l : ℝ) ^ k = 1 := by
   have h : ((l : ℕ) : Qbar l) = algebraMap ℚ_[l] (Qbar l) (l : ℚ_[l]) := by simp
   have h0 : (l : ℝ) ≠ 0 := by exact_mod_cast (Fact.out : l.Prime).ne_zero
@@ -199,7 +196,7 @@ theorem act_sgD_one (X : Tower Ω ε) {N w : ℕ} (hN : N ≠ 0) {b : X.Fn l} (h
 theorem mem_Ine_of_restrict {A : ValuationSubring Ω} {j : Ω →+* Qbar l} (hj : ∀ x, x ∈ A ↔ ‖j x‖ ≤ 1)
     (τ : Qbar l ≃ₐ[ℚ_[l]] Qbar l) (hτ : ∀ z : Qbar l, ‖z‖ ≤ 1 → ‖τ z - z‖ < 1) (s : Ω ≃ₐ[ℚ] Ω)
     (hs : ∀ x, j (s x) = τ (j x)) : (∀ x, x ∈ A ↔ s x ∈ A) ∧ s ∈ Ine (F := ℚ) A := by
-  have hsA : ∀ x, x ∈ A ↔ s x ∈ A := fun x => by rw [hj, hj, hs, norm_aut]
+  have hsA : ∀ x, x ∈ A ↔ s x ∈ A := fun x => by rw [hj, hj, hs, _root_.GlobalTheory.PerFix.norm_aut]
   refine ⟨hsA, mem_Dec.2 ?_, fun x hx => ?_⟩
   · ext x
     rw [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, hsA, AlgEquiv.smul_def]

@@ -232,7 +232,7 @@ theorem inf_trivial_of_trivAt_degOne : ∀ (F E : Type) [Field F] [NumberField F
   have hτinj : ∀ {j i : {w : InfinitePlace E // w.IsComplex}}, τ j = τ i → j = i := by
     intro j i h
     apply Subtype.ext
-    apply GlobalTheory.T.infinitePlace_eq_of_embedding_comp_algebraMap_eq' F E
+    apply _root_.GlobalTheory.infinitePlace_eq_of_embedding_comp_algebraMap_eq F E
     ext a
     simp only [RingHom.comp_apply]
     rw [← hτapp, ← hτapp, h]

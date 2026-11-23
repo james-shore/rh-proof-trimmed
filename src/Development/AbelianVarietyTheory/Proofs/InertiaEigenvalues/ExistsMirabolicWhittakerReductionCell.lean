@@ -97,7 +97,7 @@ theorem compV_infGL (w : HeightOneSpectrum (𝓞 E)) (y : GL (Fin n) (Cinf E)) :
 
 theorem comm_of_supp {x y : GA E n} (hinf : GeneralLinearGroup.map (pInf E) x = 1)
     (hw : ∀ w, GlobalTheory.CellDec.compV E n w x = 1 ∨ GlobalTheory.CellDec.compV E n w y = 1) : x * y = y * x := by
-  refine ga_ext (by rw [map_mul, map_mul, hinf, one_mul, mul_one]) (GlobalTheory.CellDec.GL_ext_pLoc fun w => ?_)
+  refine ga_ext (by rw [map_mul, map_mul, hinf, one_mul, mul_one]) (_root_.GlobalTheory.CuspRep.LocUniq.gl_ext fun w => ?_)
   rw [map_mul, map_mul, map_mul, map_mul, ← compV_eq, ← compV_eq]
   rcases hw w with h | h <;> rw [h] <;> simp
 

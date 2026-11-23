@@ -390,7 +390,7 @@ theorem enoughCompact_fixedPart {H : Submodule ℂ (L2 (latticeGL E a) μ)} (hHc
   have hR := isUnitaryRep_R (latticeGL E a) μ
   have hτ : IsUnitaryRep ((R (latticeGL E a) μ).comp (infGL E a)) := isUnitaryRep_comp hR continuous_infGL
   refine enoughCompact_of_testFn (μ := μ) hR (infGL E a) hτ (ContAut.continuous_map_pInf E a) (map_one _)
-    ((fixedPart_le H U).trans hHc) (isSubrep_fixedPart hH U) (isSubrep_L2cusp μ) (GlobalTheory.T.cuspidal_convolution_compact E a μ) fun v hv => ?_
+    ((fixedPart_le H U).trans hHc) (isSubrep_fixedPart hH U) (isSubrep_L2cusp μ) (_root_.GlobalTheory.CompanionTheory.CuspidalCompact.isCompactOperator_repOp_Rcusp E a μ) fun v hv => ?_
   have hρ := (isSubrep_fixedPart hH U).isUnitaryRep hτ
   have hcv : Continuous fun x : GL (Fin a) (Cinf E) => (⟪v, (isSubrep_fixedPart hH U).rep x v⟫_ℂ).re :=
     Complex.continuous_re.comp (continuous_const.inner (hρ.continuous_apply v))

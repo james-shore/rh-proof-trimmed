@@ -95,7 +95,7 @@ theorem decomp_of_isLifted : ∀ (p : ℕ) [Fact p.Prime] {X : Scheme.{0}} [IsIn
   obtain ⟨Kt, _, π, F, hπ, hF, hz, hlog⟩ := hlift
   choose f hf using fun i => exists_isF_of_flatLift p π (F i) hπ (hF i)
   choose h hh using fun i j => exists_isH_of_isFrob p π (F i) (F j) hπ (hF i) (hF j)
-  have hd := GlobalTheory.T.exterior_derivative_is_differential X.functionField
+  have hd := _root_.GlobalTheory.LogDR.isExtD_extD X.functionField
   have hdat := isDatum_of_frobenius_lifts p π F (extD X.functionField) f h hπ hF hd hf hh
   choose γ hγ using fun i => exists_isGamma p (f i) (hf i).1
 
@@ -109,7 +109,7 @@ theorem decomp_of_isLifted : ∀ (p : ℕ) [Fact p.Prime] {X : Scheme.{0}} [IsIn
     intro a' s hs v hv
     have := (mem_latSec_iff _ _ v).1 hv _ (hgenW s hs)
     exact forms_le_of_subset_of_subset a' (Set.subset_univ _) (Set.subset_univ _) this
-  refine GlobalTheory.T.splitting_local_integrality (K := X.functionField) (V := Ω[X.functionField⁄ℤ]) p (extD X.functionField) f h γ
+  refine _root_.GlobalTheory.DI.decomp_pointwise (K := X.functionField) (V := Ω[X.functionField⁄ℤ]) p (extD X.functionField) f h γ
     (P := X) (fun s => {y | ∀ i ∈ s, y ∈ U i}) (fun y => locRing y) (fun y => {c | G.RegularAt y c})
     (fun y => dlog '' {g | LogUnit Z y g}) (fun q s => logSec Z G q (W s)) (fun q s => logSec Z H q (W s))
     hd.toIsOddDer hdat hγ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ a b hHyp
@@ -130,7 +130,7 @@ theorem decomp_of_isLifted : ∀ (p : ℕ) [Fact p.Prime] {X : Scheme.{0}} [IsIn
     exact (mem_latSec_iff _ _ v).1 hv y ((hW s hs y).2 hy)
   · intro q s v hs _ hv
     refine (mem_latSec_iff _ _ v).2 fun y hy => ?_
-    exact forms_le_of_subset_of_subset q (GlobalTheory.T.regular_functions_pth_power_twist p G H y hEff) subset_rfl (hv y ((hW s hs y).1 hy))
+    exact forms_le_of_subset_of_subset q (_root_.GlobalTheory.DI.pow_mul_locRing_subset_regularAt p G H y hEff) subset_rfl (hv y ((hW s hs y).1 hy))
   · rintro s y hy i hi _ ⟨g, hg, rfl⟩
     obtain ⟨hfi, -⟩ := divided_frob_logForm p π F f h s (locRing y) (g : X.functionField) hf hh
       (hlog y s hy g hg)
@@ -138,7 +138,7 @@ theorem decomp_of_isLifted : ∀ (p : ℕ) [Fact p.Prime] {X : Scheme.{0}} [IsIn
     have e : dlog g = ((g : X.functionField))⁻¹ • KaehlerDifferential.D ℤ X.functionField g := by
       simp only [dlog, dK, Units.val_inv_eq_inv_val]
     rw [e, hw g.ne_zero, map_add (f := _), ← e]
-    exact AddSubgroup.add_mem _ ((GlobalTheory.T.log_forms_generated_dlog Z y).2 g hg) ((GlobalTheory.T.log_forms_generated_dlog Z y).1 w hwA)
+    exact AddSubgroup.add_mem _ ((_root_.GlobalTheory.DI.dK_dlog_mem_forms_one Z y).2 g hg) ((_root_.GlobalTheory.DI.dK_dlog_mem_forms_one Z y).1 w hwA)
   · rintro s y hy i hi j hj _ ⟨g, hg, rfl⟩
     obtain ⟨-, hhij⟩ := divided_frob_logForm p π F f h s (locRing y) (g : X.functionField) hf hh
       (hlog y s hy g hg)

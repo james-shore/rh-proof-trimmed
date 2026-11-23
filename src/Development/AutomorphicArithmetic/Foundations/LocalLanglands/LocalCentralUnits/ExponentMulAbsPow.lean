@@ -124,7 +124,7 @@ theorem expo : Expo := by
   have hn : (x.fst : ℝ) ≠ 0 := by exact_mod_cast hx.ne'
   constructor
   · intro s
-    have hc := PositivityTheory.RgUd.UOrder.hasCentralChar_nu_u x (hω₀ x).2.1 (s : ℂ)
+    have hc := _root_.GlobalTheory.LocGL.UnitaryOrder.hasCentralChar_nu x (hω₀ x).2.1 (s : ℂ)
     have heq := (hω₀ (x.nu (s : ℂ))).2.2 _ hc
     have hfst : (x.nu (s : ℂ)).fst = x.fst := by
       unfold IrrGL.nu

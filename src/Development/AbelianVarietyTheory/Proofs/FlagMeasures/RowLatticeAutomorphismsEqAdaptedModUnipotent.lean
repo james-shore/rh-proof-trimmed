@@ -66,12 +66,6 @@ theorem inv_apply' (a : GV D) (x : (VS D).V) : a⁻¹ x = a.symm x := rfl
 theorem Xa_mono {i j : ℕ} (h : i ≤ j) : F0.Xa i ≤ F0.Xa j :=
   Submodule.span_mono (Set.image_mono fun k (hk : k.1 < i) => lt_of_lt_of_le hk h)
 
-theorem Xa_top : F0.Xa D.R.rS = F0.X := by
-  unfold FlagG.Xa FlagG.X
-  congr 1
-  ext x
-  simp
-
 theorem frame_cs (i : Fin D.R.rS) : frame (lf D F0) i.castSucc = F0.e i := by
   simp [frame, FlagG.fvec]
 
@@ -151,7 +145,7 @@ theorem adapt_mapsTo {g : GV D} (hg : Adapt g (lf D F0) (lf D F0)) (j : ℕ) :
 theorem frameAdaptedIsometry_vector_sub_mem_flag {g : GV D} (hg : Adapt g (lf D F0) (lf D F0)) : g F0.z - F0.z ∈ F0.X := by
   have h := hg.2 (Fin.last _)
   rw [frame_last] at h
-  simpa [Xflag, Fin.val_last, Xa_top] using h
+  simpa [Xflag, Fin.val_last, _root_.Formalism.MainNotions.BridgeLemma₂.partial_isotropic_top] using h
 
 end GlobalTheory.AutQuot
 
@@ -183,7 +177,7 @@ def A0 : Subgroup (GV D) where
 variable {F0 Λ}
 
 theorem adaptedLatticeAutomorphism_mapsTo_flag {a : GV D} (ha : a ∈ A0 F0 Λ) : ∀ x ∈ F0.X, a x ∈ F0.X := by
-  rw [← Xa_top]; exact adapt_mapsTo F0 ha.1 _
+  rw [← _root_.Formalism.MainNotions.BridgeLemma₂.partial_isotropic_top]; exact adapt_mapsTo F0 ha.1 _
 
 theorem adaptedLatticeAutomorphism_mapsTo_perp {a : GV D} (ha : a ∈ A0 F0 Λ) : ∀ y ∈ perpS (VS D) F0.X, a y ∈ perpS (VS D) F0.X :=
   isom_mapsTo_perp ha.1.1 (adaptedLatticeAutomorphism_mapsTo_flag ha)
@@ -258,7 +252,7 @@ variable {F0 Λ}
 
 theorem stab_mapsX {γ : GV D} (hγ : γ ∈ stabF D F0) : ∀ x ∈ F0.X, γ x ∈ F0.X := by
   intro x hx
-  rw [← Xa_top] at hx ⊢
+  rw [← _root_.Formalism.MainNotions.BridgeLemma₂.partial_isotropic_top] at hx ⊢
   rw [← hγ.2.1 D.R.rS]
   exact ⟨x, hx, rfl⟩
 
@@ -292,7 +286,7 @@ theorem lift_fix (hΛ : IsRowLat D F0 Λ) {a : GV D} (ha : a ∈ A0 F0 Λ) :
 
 theorem stab_fix (hΛ : IsRowLat D F0 Λ) {γ : GV D} (hγ : γ ∈ stabF D F0) (hγΛ : Formalism.HermitianLatticesTheory.gmap γ Λ = Λ) :
     ∃ a ∈ A0 F0 Λ, ∀ y ∈ perpS (VS D) F0.X, a y - γ y ∈ F0.X := by
-  obtain ⟨t, ht, htP, hσ⟩ := GlobalTheory.T.exists_isometry_unitriangularizing_flag_stabilizer D T F0 γ hγ
+  obtain ⟨t, ht, htP, hσ⟩ := _root_.GlobalTheory.FlagTorus.flag_torus D T F0 γ hγ
   have hγX := stab_mapsX hγ
   have hγP := stab_mapsP hγ
   have htX : ∀ x ∈ F0.X, t x ∈ F0.X := fun x hx => by
@@ -340,7 +334,7 @@ theorem stab_fix (hΛ : IsRowLat D F0 Λ) {γ : GV D} (hγ : γ ∈ stabF D F0) 
         simpa using this
       have := hn.2.2 _ hz
       show _ ∈ F0.Xa (Fin.last D.R.rS).val
-      rw [Fin.val_last, Xa_top]
+      rw [Fin.val_last, _root_.Formalism.MainNotions.BridgeLemma₂.partial_isotropic_top]
       exact this
     · rw [frame_cs]
       have he : (t * γ) (F0.e i) ∈ F0.Xa (i.1 + 1) :=
@@ -450,4 +444,4 @@ theorem GlobalTheory.AutQuot.autQuot : ∀ (D : D7) (X : HidaSetting D) (Y : Ful
   intro D X Y u _ Λ hΛ
   have hR : IsRowLat D (X.Fu u) Λ := (Y.rowsOK u).1 Λ hΛ
   exact GlobalTheory.AutQuot.main_gen hR
-    (_root_.automorphism_lattice_finite D (D.sp.Y_sig 0) _ (D.mem u).A.T_prime.pos (X.Fu u) Λ hR)
+    (_root_.PI.AutLzFinite.SlopeTestRemainingChoices.autLzFin_main D (D.sp.Y_sig 0) _ (D.mem u).A.T_prime.pos (X.Fu u) Λ hR)

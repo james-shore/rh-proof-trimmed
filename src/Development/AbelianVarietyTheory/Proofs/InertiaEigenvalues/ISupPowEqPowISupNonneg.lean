@@ -157,7 +157,7 @@ theorem lead_target : ∀ (l : ℕ) [Fact l.Prime] (x : Formalism.Per.Acris l) (
   have hl : (1 : ℝ) < l := by exact_mod_cast (Fact.out : l.Prime).one_lt
   have hρ₁ : 0 < ρ₁ := lt_of_lt_of_le (by positivity) hl1
   have hG : ∀ ρ ∈ Set.Icc ρ₁ ρ₂, IsGauss l ρ (gC l ρ) := fun ρ hρ =>
-    isGauss_gC_target l ρ (hl1.trans hρ.1) (hρ.2.trans_lt h21)
+    _root_.GlobalTheory.PMon.Gauss.isGauss_gC_of_le l ρ (hl1.trans hρ.1) (hρ.2.trans_lt h21)
   have hGl : ∀ ρ ∈ Set.Icc ρ₁ ρ₂, gC l ρ (l : Formalism.Per.Acris l) = ρ := by
     intro ρ hρ
     rw [← map_natCast (algebraMap (Formalism.Per.Ainf l) (Formalism.Per.Acris l)) l, (hG ρ hρ).2.2.2.2, gA,

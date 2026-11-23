@@ -76,8 +76,8 @@ namespace GlobalTheory.AtP
 theorem main : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (β : G.Cˣ) (K' : Subgroup (Gr G 1)) (f' : Gr G 1 → ℂ), IsTest (sigG G 1) (KHT p G.m G.n 1 G.Fw) K' f' → ∀ (h₂ : Gr G 1), ∃ k : ℕ, ∀ y : grp G β, f' (h₂⁻¹ * toP1 G β y * h₂) ≠ 0 → (∀ i, ((Module.finBasis ℚ G.C).repr (((y : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) i).den.factorization p ≤ k) ∧ (((((y : G.Cˣ × ℚˣ).2)⁻¹ : ℚˣ) : ℚ)).den.factorization p ≤ k := by
   intro p _ G β K' f' hf h₂
   have hp : p.Prime := Fact.out
-  obtain ⟨B, e₁, hB⟩ := GlobalTheory.T.regular_elements_bounded_padic p G K' f' hf β h₂
-  obtain ⟨e₂, he⟩ := GlobalTheory.T.bounded_coordinates_p_power_denominator p G B
+  obtain ⟨B, e₁, hB⟩ := _root_.GlobalTheory.FixBound.bounded_of_support p G K' f' hf β h₂
+  obtain ⟨e₂, he⟩ := _root_.GlobalTheory.CoordP.coord_bound p G B
   refine ⟨max e₁ e₂, fun y hy => ?_⟩
   obtain ⟨hb, k, m, hm, hs⟩ := hB y hy
   refine ⟨fun i => ?_, ?_⟩

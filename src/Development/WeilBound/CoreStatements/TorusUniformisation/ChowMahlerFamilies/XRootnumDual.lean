@@ -354,9 +354,9 @@ theorem PositivityTheory.Xgn.t_rootnum_dual : ∀ (O : Type) [CommRing O] [IsDom
     · have h := hfp.generic i.rev
       rw [Module.Basis.repr_self, Finsupp.single_eq_same, one_mul] at h ⊢
       exact h.symm
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.same_generic_flag_difference O Ω K ι x ϖ hϖ d hM N V E E' hS K' ι' z hm hb _ _ hp hp'
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Num.ck_rootNum_eq_pairNum_on_flagPair O Ω K ι x ϖ hϖ d hM N V E E' hS K' ι' z hm hb _ _ hp hp'
     w w _ _ f g hfp
-  obtain ⟨h3, h4⟩ := GlobalTheory.T.same_generic_flag_difference O Ω K ι x ϖ hϖ d hM N V₁ F F' (sameGeneric_dual hS hD hD')
+  obtain ⟨h3, h4⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Num.ck_rootNum_eq_pairNum_on_flagPair O Ω K ι x ϖ hϖ d hM N V₁ F F' (sameGeneric_dual hS hD hD')
     K' ι' z hm hb _ _ hF hF' w₁ w₁ _ _ _ _ hfp₁
   refine ⟨fun k hk1 hk2 q L Q hQ => ?_, fun j hj q L Q hQ a ha => ?_⟩
   · rw [h1 k hk1 hk2 q L Q hQ, h3 k hk1 hk2 q L Q hQ, Finset.mul_sum]

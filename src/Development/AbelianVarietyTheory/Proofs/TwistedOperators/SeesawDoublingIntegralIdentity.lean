@@ -55,6 +55,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AbelianVarietyTheory.Definitions.Foundations.EqPlaceIdemOfIsPrimeIdem
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilOperatorForLeviMatrix
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RegularisingTranslateCombination
 
 @[expose] public section
 
@@ -75,36 +77,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 noncomputable section
 
 namespace GlobalTheory.RegSo
-
-theorem mem_range_emb_of_conjU_mem_UAt {D : D7} (V : HSp D) (Y : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Spc D.host.F D.host.E V.rank) (c : D.host.E)
-    (hc : Y.J = c • V.gram) (v : HeightOneSpectrum (𝓞 D.host.F)) (g : GA D V)
-    (hg : GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU V c hc g ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.UAt D.sp.cm.sig Y (evFin D.host.F v)) :
-    g ∈ Set.range (emb D.sp.cm.sig V.gram v) := by
-  obtain ⟨α, hε, h1, h2⟩ := GlobalTheory.AdelicU.Supp.isPlaceIdem_placeIdem D v
-  set ε := GlobalTheory.AdelicU.Supp.placeIdem (F := D.host.F) v with hεdef
-  have e1 : evFin D.host.F v ε = 1 := by rw [hε]; exact h1
-  have e2 : ∀ u, u ≠ v → evFin D.host.F u ε = 0 := fun u hu => by rw [hε]; exact h2 u hu
-  have e0 : ∀ w, evInf D.host.F w ε = 0 := fun w => by rw [hε]; rfl
-  have hu : evFin D.host.F v (1 - ε) = 0 := by rw [map_sub, map_one, e1, sub_self]
-  have hz := hg (1 - ε) hu
-  have key := (GlobalTheory.AdelicU.Supp.mul_idem_iff_mem_range_emb D.sp.cm.sig V.gram v ε e0 e1 e2 g).1 (fun i j => ?_)
-  · exact key
-  set M : Matrix (Fin V.rank) (Fin V.rank) (AE D) := (GlobalTheory.AdelicU.matHom (AF D.host.F) D.sp.cm.sig V.gram g).val with hM
-  have hm : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.mat (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU V c hc g) = M.map (Formalism.L2.Theta.cA D) := rfl
-  have hij := congrFun (congrFun hz i) j
-  rw [hm, Matrix.smul_apply, Matrix.sub_apply, Matrix.map_apply, Matrix.zero_apply] at hij
-  have h1' : (1 : Matrix (Fin V.rank) (Fin V.rank) (AE D)) i j = Formalism.L2.Theta.cA D ((1 : Matrix (Fin V.rank) (Fin V.rank) (AE D)) i j) := by
-    rw [Matrix.one_apply]; split_ifs <;> simp
-  have hsm : ∀ (a : AF D.host.F) (x : AE D), Formalism.L2.Theta.cA D (a • x) = a • Formalism.L2.Theta.cA D x :=
-    fun a x => map_smul (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) a x
-  rw [h1', ← map_sub, ← hsm] at hij
-  have hinj : (M - 1) i j - ε • (M - 1) i j = 0 := by
-    have := congrArg (Formalism.L2.Theta.cA D) hij
-    rw [Formalism.L2.Theta.cA_cA, map_zero, sub_smul, one_smul] at this
-    exact this
-  rw [sub_eq_zero] at hinj
-  rw [← Algebra.smul_def]
-  exact hinj.symm
 
 theorem mem_GfC_of_mem_range {D : D7} (V : HSp D) (v : HeightOneSpectrum (𝓞 D.host.F)) (g : GA D V)
     (hg : g ∈ Set.range (emb D.sp.cm.sig V.gram v)) : g ∈ GfC V := by
@@ -164,7 +136,7 @@ theorem homAt : ∀ {D : D7} (W₁ : HSp D) {a : ℕ} (Γ : GlobalTheory.Indefin
     erw [hmat]
     rw [hN₀, add_sub_cancel_left]
     exact at_liftMat hcm t _
-  have hR := mem_range_emb_of_conjU_mem_UAt W₁ Γ.V' (-1) hJW v _ hAt
+  have hR := _root_.GlobalTheory.RegAt.mem_range_emb_of_conjU_mem_UAt W₁ Γ.V' (-1) hJW v _ hAt
   refine ⟨?_, hR, hAt, ?_, ?_⟩
   · exact mem_GfC_of_mem_range W₁ v _ hR
   · erw [hmat]
@@ -353,9 +325,6 @@ def mulHomeo {k : Type} [Field k] [TopologicalSpace k] [IsTopologicalRing k] {n 
 theorem mulHomeo_apply {k : Type} [Field k] [TopologicalSpace k] [IsTopologicalRing k] {n d : ℕ} (A : GL (Fin n) k)
     (C : GL (Fin d) k) (Y : Matrix (Fin n) (Fin d) k) : mulHomeo A C Y = A.val * Y * C.val := rfl
 
-theorem comp_mem_SB {Z : Type} [TopologicalSpace Z] (T : Z ≃ₜ Z) {f : Z → ℂ} (hf : f ∈ GlobalTheory.WeilM.SB Z) :
-    f ∘ T ∈ GlobalTheory.WeilM.SB Z := ⟨hf.1.comp_continuous T.continuous, hf.2.comp_homeomorph T⟩
-
 theorem isLinBar_one {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
     {n d : ℕ} {Y : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Spc F E n} {Wd : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Spc F E d} (M : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Model σ Y Wd)
     (ψ : AddChar (AF F) ℂ) {v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)} (t : E →ₐ[F] Fv F v) (b bt : GL (Fin n) (Fv F v)) (hbt : bt.val = b.valᵀ)
@@ -373,7 +342,7 @@ theorem isLinBar_one {F E : Type} [Field F] [NumberField F] [Field E] [NumberFie
       simp only [mulHomeo_apply, Matrix.mul_add, Matrix.add_mul]
   have hb : Set.BijOn (LinearMap.funLeft ℂ ℂ (mulHomeo bt c)) (GlobalTheory.WeilM.SB (Matrix (Fin n) (Fin d) (Fv F v)) : Set _)
       (GlobalTheory.WeilM.SB (Matrix (Fin n) (Fin d) (Fv F v)) : Set _) := by
-    refine ⟨fun f hf => comp_mem_SB _ hf, fun f _ f' _ e => ?_, fun f hf => ⟨f ∘ (mulHomeo bt c).symm, comp_mem_SB _ hf, ?_⟩⟩
+    refine ⟨fun f hf => _root_.GlobalTheory.LeviOp.sb_comp _ hf, fun f _ f' _ e => ?_, fun f hf => ⟨f ∘ (mulHomeo bt c).symm, _root_.GlobalTheory.LeviOp.sb_comp _ hf, ?_⟩⟩
     · funext Z
       have := congrFun e ((mulHomeo bt c).symm Z)
       simpa [LinearMap.funLeft_apply] using this

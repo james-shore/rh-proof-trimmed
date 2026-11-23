@@ -102,7 +102,7 @@ theorem exists_projective_of_isLocModel : ∀ (L : Type) [Field L] (c : ℂ →+
     rw [← trdeg_add_eq ℂ S (A := L), trdeg_eq_zero (R := S) (A := L), add_zero] at h2
     rw [← h2, Cardinal.mk_fin]
   obtain ⟨Y, hY, p, j, hproj, hj, hlft, hjp⟩ := exists_projective_openImmersion S
-  obtain ⟨e, hc, hloc⟩ := GlobalTheory.T.exists_functionFieldEquiv_openImmersionSpec S Y p j hjp
+  obtain ⟨e, hc, hloc⟩ := _root_.GlobalTheory.OpenSpecField.exists_fieldEquiv S Y p j hjp
   let e2 : FractionRing S ≃ₐ[S] L := IsLocalization.algEquiv (nonZeroDivisors S) (FractionRing S) L
   refine ⟨Y, hY, p, e.trans e2.toRingEquiv, j.base ⟨q, hq⟩, hproj, topologicalKrullDim_eq_of_openImmersion S Y p j n htr, fun a => ?_, ?_⟩
   · change e2 (e (GlobalTheory.Cartier.constFn p a)) = c a

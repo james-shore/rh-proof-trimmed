@@ -81,7 +81,7 @@ theorem frobOpsIdx : SphOps → ∀ (E Ω : Type) [Field E] [NumberField E] [IsC
       int := fun j g => by
         obtain ⟨m, e, he⟩ := (hf j).choose_spec.1 g
         rw [he]
-        exact GlobalTheory.FrobOps.norm_le_one ι m _ e (GlobalTheory.FrobOps.not_dvd_normV hl _ (hW _ j.2.1).2.1)
+        exact GlobalTheory.FrobOps.norm_le_one ι m _ e (_root_.GlobalTheory.NormDivisibility.not_dvd_norm_of_not_mem hl _ (hW _ j.2.1).2.1)
       z := zz
       act := fun j σ v hv => by
         rw [(hW _ j.2.1).2.2] at hv

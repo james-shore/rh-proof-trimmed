@@ -125,11 +125,6 @@ theorem integrable_mul_bc {φ : G → ℂ} (hφ : Integrable φ μ) {F : G → �
     (hM : ∀ y, ‖F y‖ ≤ M) : Integrable (fun y => φ y * F y) μ :=
   hφ.mul_bdd hF.aestronglyMeasurable (Eventually.of_forall hM)
 
-theorem reprod {φ : G → ℂ} (hφ : Integrable φ μ) (hi : ∀ w, ∫ y, φ y * φ (y⁻¹ * w) ∂μ = φ w) {F : G → ℂ}
-    (hF : Continuous F) {M : ℝ} (hM : ∀ y, ‖F y‖ ≤ M) :
-    ∫ y, φ y * ∫ z, φ z * F (y * z) ∂μ ∂μ = ∫ w, φ w * F w ∂μ :=
-  _root_.Bl.FirstLemmaL.goal1 hφ hi hF hM
-
 end
 
 theorem selTw : SelTw := by
@@ -209,7 +204,7 @@ theorem selTw : SelTw := by
   have hQi : ∀ s, Q s * Q s = Q s := fun s => ContinuousLinearMap.ext fun F => Subtype.ext
     (BoundedContinuousFunction.ext fun x => by
       show ∫ y, φ y * (q s F (x * y) * eI (s * (Ht (x * y) - Ht x))) ∂μ = q s F x
-      refine Eq.trans ?_ (reprod hφ hi ((kc s F).comp (continuous_const.prodMk continuous_id)) (kb s F x))
+      refine Eq.trans ?_ (_root_.Bl.FirstLemmaL.goal1 hφ hi ((kc s F).comp (continuous_const.prodMk continuous_id)) (kb s F x))
       refine integral_congr_ae (Eventually.of_forall fun y => ?_)
       simp only [q, k, Function.comp_apply]
       rw [← integral_mul_const]

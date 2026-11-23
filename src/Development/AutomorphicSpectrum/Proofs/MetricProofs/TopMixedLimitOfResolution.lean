@@ -215,7 +215,7 @@ theorem term_tendsto (X : ComponentSetting D O Lt) (B : ℕ) (Θ : LocPot X.M.Xc
     rcases hcases j with ⟨-, hP, -, hT⟩ | ⟨-, -, hP, -, hT⟩ | ⟨-, -, hP, -, hT⟩ <;> rw [hP, hT t]
     · exact ⟨ht.2.1, ht.2.2.2, fun x hx => hbd x hx _ (ht.2.2.1 x hx).1 (ht.2.2.1 x hx).2⟩
     · exact ⟨h₀.2.1, h₀.2.2.2, fun x hx => hbd x hx _ (h₀.2.2.1 x hx).1 (h₀.2.2.1 x hx).2⟩
-    · refine ⟨hsm0, GlobalTheory.T.psh_double_positive_potential _ _ _ _ hΘ hΘp, fun x hx => ?_⟩
+    · refine ⟨hsm0, _root_.GlobalTheory.CompanionTheory.Ar.Giv.Mix.TwicePos.isPsh_add_zero_add _ _ _ _ hΘ hΘp, fun x hx => ?_⟩
       have := hrpos x hx
       have h2 : 0 ≤ b * Real.log (R.r x) := mul_nonneg hb0 this
       simp only [abs_zero]
@@ -299,7 +299,7 @@ theorem mixed_limit : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatemen
   refine hlim.congr' ?_
   filter_upwards [hgood] with t ht
   have ha : ∀ u, (muReg X.H X.S B u).a = muTwDeg X.H B := fun u => smoothRep_a _ _
-  have hT := GlobalTheory.T.intersection_number_telescoping K ι (II K ι) (hII K ι) (mCoordIdeal D.y) D.n (muReg X.H X.S B t) (muReg X.H X.S B t₀) D.A' k
+  have hT := _root_.GlobalTheory.CompanionTheory.Ar.Giv.Mix.Tele.positionTelescope K ι (II K ι) (hII K ι) (mCoordIdeal D.y) D.n (muReg X.H X.S B t) (muReg X.H X.S B t₀) D.A' k
     D.arith ht.1 h₀.1 D.A'_pos.1 ((ha t).trans (ha t₀).symm) (by omega)
   have hm : ∀ u, X.mixN B k u = II K ι (mCoordIdeal D.y) (D.n + 1)
       (fun j => if (j : ℕ) < k then muReg X.H X.S B u else D.A') := fun _ => rfl

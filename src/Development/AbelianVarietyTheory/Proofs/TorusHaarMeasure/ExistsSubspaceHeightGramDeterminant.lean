@@ -73,7 +73,7 @@ theorem exists_height : (∀ (r : ℕ) (X : Data E r), ∃ d : Frame X.Ψ r → 
   let e : Fin (Module.finrank E (Submodule.span E (Set.range w))) ≃ ι :=
     (Fintype.equivFinOfCardEq hc.symm).symm
   have hr : Set.range (fun a => w (e a)) = Set.range w := e.surjective.range_comp w
-  have key := GlobalTheory.T.gramDet_div_index_eq_of_span_eq r X x _ (b (Submodule.span E (Set.range w))) (fun a => w (e a))
+  have key := _root_.GlobalTheory.gram_div_index_eq_of_span_eq r X x _ (b (Submodule.span E (Set.range w))) (fun a => w (e a))
     (hb _) (hΛ _) (hw.comp e e.injective) (fun a => hwΛ _) (by rw [hr, hsp])
   refine key.trans ?_
   rw [hr]

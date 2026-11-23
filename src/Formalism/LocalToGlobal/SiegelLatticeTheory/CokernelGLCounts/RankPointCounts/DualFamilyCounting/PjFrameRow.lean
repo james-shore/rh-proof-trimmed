@@ -125,9 +125,7 @@ section Lin
 
 variable {n : ℕ} (ε : Fin n → Bool)
 
-theorem fr_add_r (x y y' : Fin n → ℂ) : hJ ε x (y + y') = hJ ε x y + hJ ε x y' := by
-  unfold hJ
-  rw [Matrix.mulVec_add, dotProduct_add]
+alias fr_add_r := _root_.Formalism.L2.SG.RealObj.InfCut.ProductExactness.hJ_add_r
 
 theorem fr_smul_r (x : Fin n → ℂ) (c : ℂ) (y : Fin n → ℂ) : hJ ε x (c • y) = c * hJ ε x y := by
   unfold hJ

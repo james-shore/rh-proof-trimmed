@@ -79,7 +79,7 @@ theorem canFun_isCan (t : G.TorsionTower A) (hA : IsAbelianScheme A) (c : primDR
 
 theorem isCan_iff (t : G.TorsionTower A) (hA : IsAbelianScheme A) (c : primDR A) (x : G.RigExt) :
     IsCan t c x ↔ canFun t hA c = x :=
-  ⟨fun h ↦ GlobalTheory.T.canonicalRigidifiedExtensionOfDeRhamClass_unique R A p G t c hA _ _ (canFun_isCan t hA c) h, fun h ↦ h ▸ canFun_isCan t hA c⟩
+  ⟨fun h ↦ _root_.GlobalTheory.PtExt.isCan_unique R A p G t c hA _ _ (canFun_isCan t hA c) h, fun h ↦ h ▸ canFun_isCan t hA c⟩
 
 def canMap (t : G.TorsionTower A) (hA : IsAbelianScheme A) : primDR A →ₗ[R] G.RigExt where
   toFun := canFun t hA

@@ -64,16 +64,6 @@ theorem frame_mapLF {D : D7} {T : D.host.E} (γ : (VS D).V ≃ₗ[D.host.E] (VS 
 theorem upUni_of_uni {N : ℕ} {K : Type} [Field K] {A : Matrix (Fin N) (Fin N) K} (h : GlobalTheory.LocOver.Uni A) :
     IsUpUni A := fun i j => ⟨fun hij => h.1 i j hij, fun hij => by subst hij; exact h.2 i⟩
 
-theorem upUni_mul {N : ℕ} {K : Type} [Field K] {A B : Matrix (Fin N) (Fin N) K} (hA : IsUpUni A)
-    (hB : IsUpUni B) : IsUpUni (A * B) := by
-  first
-  | exact @_root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul
-  | exact _root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul
-  | (apply _root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul ..)
-
 theorem unip_tri {D : D7} {T : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) (n : (VS D).V ≃ₗ[D.host.E] (VS D).V)
     (hn : n ∈ NRat F) : ∃ A : Formalism.L2.SG.PairVal.MatR D, IsUpUni A ∧
       ∀ b, n (frame F b) = ∑ a, A a b • frame F a := by
@@ -103,7 +93,7 @@ theorem step : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what₂.W
   obtain ⟨A', hA', hmA'⟩ := unip_tri _ m hm
   have ht0 : t₀.lin ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := t₀.rep.2.2.1
   have ht1 : t.lin ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := t.rep.2.2.1
-  refine ⟨A, A', hA, hA', hnA, hmA', Subgroup.mul_mem _ hρ hn.1, upUni_mul hU hA, upUni_mul hU' hA', ?_, ?_⟩
+  refine ⟨A, A', hA, hA', hnA, hmA', Subgroup.mul_mem _ hρ hn.1, _root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul hU hA, _root_.GlobalTheory.UpperUnipotentMulFlagMeasures.isUpUni_mul hU' hA', ?_, ?_⟩
   · intro b
     rw [LinearEquiv.mul_apply]
     exact (congrArg ρ (hnA b)).trans (sum_change ρ _ _ U A hf b)

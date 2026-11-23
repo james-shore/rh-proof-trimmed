@@ -199,9 +199,7 @@ theorem KType_norm_op_apply {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KTyp
      have h' : ‖T.op k v‖ ^ 2 = ‖v‖ ^ 2 := by exact_mod_cast h
      nlinarith [norm_nonneg (T.op k v), norm_nonneg v])
 
-theorem KType_continuous_op {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) :
-    Continuous (fun k => T.op k) := by
-  exact continuous_subtype_val.comp T.cont
+alias KType_continuous_op := _root_.ReciprocityTheory.ChartRestriction.DS.CompactHaarProbability.cont_op
 
 theorem integrable_dk_of_continuous {ε : Fin n → Bool} {E : Type*} [NormedAddCommGroup E] {g : KG ε → E} (hg : Continuous g) :
     Integrable g (dk ε) := by
@@ -341,7 +339,7 @@ theorem lintegral_conj_invariant {ε : Fin n → Bool} (lam : Fin n → ℝ) (k 
   have hG : Measurable (fun y : PCoord ε → ℂ => ENNReal.ofReal (Real.exp (-2 * Ph lam (pmat y)) * Jac y)) :=
     ENNReal.measurable_ofReal.comp
       ((Real.continuous_exp.comp (continuous_const.mul (continuous_potential_pmat lam))).mul
-        (jac_continuous ε)).measurable
+        (_root_.ReciprocityTheory.ChartRestriction.DS.pb_jac_continuous ε)).measurable
   rw [← (adK_measurePreserving k⁻¹).lintegral_comp hG]
   refine lintegral_congr (fun z => ?_)
   simp only [conj_pmat_eq_adK, jac_adK]
@@ -372,7 +370,7 @@ theorem lemma6c {ε : Fin n → Bool} {lam : Fin n → ℝ} {H : Type*} [NormedA
     refine Measurable.aemeasurable ?_
     exact (ENNReal.measurable_ofReal.comp (Real.continuous_exp.comp
       (continuous_const.mul (continuous_potential_conj_prod lam))).measurable).mul
-      (ENNReal.measurable_ofReal.comp ((jac_continuous ε).comp continuous_fst).measurable)
+      (ENNReal.measurable_ofReal.comp ((_root_.ReciprocityTheory.ChartRestriction.DS.pb_jac_continuous ε).comp continuous_fst).measurable)
   have hIa : ∫⁻ z : PCoord ε → ℂ, ENNReal.ofReal (hsOp (fF ε lam T (pmat z)) * Jac z) ≤
       ENNReal.ofReal (Module.finrank ℂ T.V : ℝ) *
         ∫⁻ z : PCoord ε → ℂ, ENNReal.ofReal (Real.exp (-2 * Ph lam (pmat z)) * Jac z) := by

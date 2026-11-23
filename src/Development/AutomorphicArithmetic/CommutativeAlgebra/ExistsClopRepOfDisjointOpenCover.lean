@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGlueFinitelyManyCompatibleSmoothModels
 
 @[expose] public section
 
@@ -50,18 +51,9 @@ namespace UpperTheory.ClopSum
 
 variable {S : Scheme.{0}}
 
-private theorem isPullback_wl (T : Over S) {A B : Over S} (i : A ⟶ B) :
-    IsPullback (T ◁ i).left (snd T A).left (snd T B).left i.left := by
-  have eq1 : (T ◁ i).left ≫ (fst T B).left = (fst T A).left := Over.whiskerLeft_left_fst i
-  have eq2 : i.left ≫ B.hom = A.hom := Over.w i
-  have s : IsPullback ((T ◁ i).left ≫ (fst T B).left) (snd T A).left T.hom (i.left ≫ B.hom) := by
-    rw [eq1, eq2]
-    exact IsPullback.of_hasPullback T.hom A.hom
-  exact IsPullback.of_right s (Over.whiskerLeft_left_snd i) (IsPullback.of_hasPullback T.hom B.hom)
-
 private theorem range_wl (T : Over S) {A B : Over S} (i : A ⟶ B) :
     Set.range (T ◁ i).left = (snd T B).left ⁻¹' Set.range i.left := by
-  have h := isPullback_wl T i
+  have h := _root_.GlobalTheory.SS.GlueCompat.pb_snd T i
   rw [← Scheme.Pullback.range_fst, ← h.isoPullback_hom_fst]
   ext x
   constructor
@@ -150,9 +142,9 @@ theorem UpperTheory.exists_clopRep_of_disjoint_open_cover :
     ∀ {S : Scheme.{0}} (G G₁ G₂ Y₁ Y₂ : Over S) (i₁ : G₁ ⟶ G) (i₂ : G₂ ⟶ G) (U₁ : (Y₁ ⊗ G₁).left.Opens) (U₂ : (Y₂ ⊗ G₂).left.Opens), IsOpenImmersion i₁.left → IsOpenImmersion i₂.left → Set.range i₁.left = (Set.range i₂.left)ᶜ → UpperTheory.RepresentationRank.Rep G₁ Y₁ U₁ → UpperTheory.RepresentationRank.Rep G₂ Y₂ U₂ → ∃ U : ((Y₁ ⊗ Y₂) ⊗ G).left.Opens, UpperTheory.RepresentationRank.Rep G (Y₁ ⊗ Y₂) U := by
   intro S G G₁ G₂ Y₁ Y₂ i₁ i₂ U₁ U₂ ho₁ ho₂ hr hU₁ hU₂
   have o1 : ∀ T : Over S, IsOpenImmersion (T ◁ i₁).left := fun T =>
-    MorphismProperty.of_isPullback (UpperTheory.ClopSum.isPullback_wl T i₁).flip ho₁
+    MorphismProperty.of_isPullback (_root_.GlobalTheory.SS.GlueCompat.pb_snd T i₁).flip ho₁
   have o2 : ∀ T : Over S, IsOpenImmersion (T ◁ i₂).left := fun T =>
-    MorphismProperty.of_isPullback (UpperTheory.ClopSum.isPullback_wl T i₂).flip ho₂
+    MorphismProperty.of_isPullback (_root_.GlobalTheory.SS.GlueCompat.pb_snd T i₂).flip ho₂
   have rr : ∀ T : Over S, Set.range (T ◁ i₁).left = (Set.range (T ◁ i₂).left)ᶜ := by
     intro T
     rw [UpperTheory.ClopSum.range_wl, UpperTheory.ClopSum.range_wl, hr]

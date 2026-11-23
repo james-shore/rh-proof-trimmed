@@ -40,6 +40,8 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RevPosRevPos
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThPDatumEq
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.StarPurelyImaginaryEqNeg
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 @[expose] public section
 
@@ -54,14 +56,6 @@ open GlobalTheory.LiftLevel
 noncomputable section
 namespace GlobalTheory.AdjScalar
 variable {D : D7}
-
-theorem cA_cA (z : AE D) : cA D (cA D z) = z := by
-  induction z using TensorProduct.induction_on with
-  | zero => rw [RingHom.map_zero, RingHom.map_zero]
-  | add x y hx hy => rw [RingHom.map_add (f := _), RingHom.map_add (f := _), hx, hy]
-  | tmul a x =>
-    change a ⊗ₜ[D.host.F] star (star x) = _
-    rw [star_star]
 
 theorem map_adj_smul {R K : Type} [CommRing R] [CommRing K] (f : R →+* K) (σ : R →+* R) {m n : ℕ}
     (G1 : Matrix (Fin m) (Fin m) R) (G2 : Matrix (Fin n) (Fin n) R) (P : Matrix (Fin m) (Fin m) K)
@@ -78,8 +72,6 @@ theorem frMapAdj_smul (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (F
     frMapAdj S T βS βT (a • x) = toEAf D (cA D a) • frMapAdj S T βS βT x :=
   map_adj_smul (toEAf D) (cA D) _ _ _ _ x a
 
-theorem cA_incA' (c : D.host.E) : cA D (incA D c) = incA D (star c) := rfl
-
 theorem smul_absorb {K : Type} [CommRing K] {m n : ℕ} (B : Matrix (Fin m) (Fin m) K) (F : Matrix (Fin m) (Fin n) K)
     (u v : K) (hF : u • F = F) : (u * v) • (B * F) = (1 : K) • (B * (v • F)) := by
   rw [one_smul, Matrix.mul_smul, mul_comm, mul_smul, ← Matrix.mul_smul B u F, hF]
@@ -91,9 +83,9 @@ theorem adjA_half_smul (D : D7) (S T : HSp D) (βS : GL (Fin S.rank) (Lev.EAf D)
     ext i j; exact h i j
   have hF : toEAf D e • frMapAdj S T βS βT x = frMapAdj S T βS βT x := by
     conv_rhs => rw [← hx]
-    rw [frMapAdj_smul, cA_cA]
+    rw [frMapAdj_smul, _root_.Formalism.L2.Theta.cA_cA]
   unfold adjA
-  rw [frMapAdj_smul, cA_incA', map_one, map_mul]
+  rw [frMapAdj_smul, _root_.GlobalTheory.DualPairCheck.cA_incA, map_one, map_mul]
   exact smul_absorb _ _ _ _ hF
 
 end GlobalTheory.AdjScalar

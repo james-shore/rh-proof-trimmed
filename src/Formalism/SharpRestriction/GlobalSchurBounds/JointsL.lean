@@ -1176,10 +1176,6 @@ section
 
 open Formalism.FrobeniusOrbits
 
-def SlopesM_at {D : D7} (L : SizeData₂ D) (C : ℝ) : Prop :=
-  ∀ u, -(C * D.host.TT.card * L.sc.a * L.La * (1 + (D.R.m : ℝ) / D.R.k)) ≤ ((D.fm u).lat 0).mu ∧
-    ((D.fm u).lat 0).muMax ≤ C * D.host.TT.card * L.sc.a * L.La
-
 def NumsL (D : D7) (L : SizeData₂ D) (Cn cL : ℝ) : Prop :=
   ∀ u, flipTwoThree.Nums D (flipTwoThree.Tu D u) (D.host.g 0) (D.host.g 1) Cn L.sc.x L.sc.b (cL * L.sc.L) L.sc.b' L.Sc
     L.etaSz
@@ -1329,7 +1325,7 @@ theorem slopesM_at_of (D : D7) (L : SizeData₂ D) (Cn C5 C6 cL Cc : ℝ)
     (hk : Real.log (D.R.k : ℝ) ≤ 5 * Real.log L.sc.x)
     (hfkB : (D.R.f : ℝ) * D.R.k * (L.sc.b' + L.Sc) ≤ D.host.TT.card * L.sc.a)
     (hfk2 : (D.R.f : ℝ) * (D.R.k : ℝ) ^ 2 ≤ D.host.TT.card * L.sc.a) :
-    SlopesM_at L (2 * Cc + max (max C5 C6) 0 * (12 + Cc + cL)) := by
+    _root_.Formalism.MainNotions.Lnk.SlopesM_at L (2 * Cc + max (max C5 C6) 0 * (12 + Cc + cL)) := by
   intro u
   have hv1 : 1 ≤ D.host.v := by
     obtain ⟨-, -, -, -, -, -, -, -, -, -, -, -, -, -, h, -⟩ := hN u
@@ -1503,7 +1499,7 @@ theorem slopesMF_of {eps : ℝ} (Fm : FamP eps) (Cn cL : ℝ) (hcL : 0 ≤ cL)
         ∀ u, Nonempty (flipTwoThree.ColVal (Fm.D x i) u))
     (hT : ∃ Cc x0 : ℝ, 0 ≤ Cc ∧ ∀ x ≥ x0, ∀ (i : Fm.Ix x) u,
       Real.log (((Fm.D x i).mem u).A.T : ℝ) ≤ Cc * (Fm.D x i).R.m * (Fm.L x i).sc.L) :
-    ∃ C x0 : ℝ, 0 ≤ C ∧ ∀ x ≥ x0, ∀ i : Fm.Ix x, SlopesM_at (Fm.L x i) C := by
+    ∃ C x0 : ℝ, 0 ≤ C ∧ ∀ x ≥ x0, ∀ i : Fm.Ix x, _root_.Formalism.MainNotions.Lnk.SlopesM_at (Fm.L x i) C := by
   have heps : 0 < eps := by
     obtain ⟨i0⟩ := Fm.Ix_zero
     have := (Fm.L 0 i0).sc.eps_pos

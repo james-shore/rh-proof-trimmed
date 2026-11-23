@@ -61,17 +61,6 @@ theorem hasDiv_mul_mul {O : Subring L} {d : List ℤ} {g : GL (Fin n) L} (h : Ha
   refine ⟨ϖ, hϖ, a * a', mul_mem ha ha', b' * b, mul_mem hb' hb, ?_⟩
   simp only [Units.val_mul, e, Matrix.mul_assoc]
 
-theorem HasDiv.exists_eq_mul_mul {O : Subring L} (hO : ∀ x : L, Valued.v x ≤ 1 → x ∈ O) {d : List ℤ}
-    {g s : GL (Fin n) L} (hg : HasDiv O d g) (hs : HasDiv O d s) :
-    ∃ a b : GLint (Fin n) O, g = a * s * b := by
-  first
-  | exact @_root_.GlobalTheory.DoubleCosetDivisors.main
-  | exact _root_.GlobalTheory.DoubleCosetDivisors.main
-  | (apply _root_.GlobalTheory.DoubleCosetDivisors.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DoubleCosetDivisors.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DoubleCosetDivisors.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DoubleCosetDivisors.main ..)
-
 end Local
 
 end GlobalTheory.SphGal

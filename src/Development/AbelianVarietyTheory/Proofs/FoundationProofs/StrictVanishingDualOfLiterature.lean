@@ -69,18 +69,8 @@ section Basic
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem norm_le_one_of_mem (c : Coef l) {x : Qbar l} (hx : x ∈ c.O) : ‖x‖ ≤ 1 :=
-  _root_.UpperTheory.Reformulated.B.Rb6.norm_le_one_of_mem c hx
-
-theorem place_eq {p : ℕ} (hp : p.Prime) {v v' : HeightOneSpectrum (𝓞 ℚ)} (hv : ((p : ℕ) : 𝓞 ℚ) ∈ v.asIdeal)
-    (hv' : ((p : ℕ) : 𝓞 ℚ) ∈ v'.asIdeal) : v = v' :=
-  _root_.GlobalTheory.IdealComapPreimage.main hp hv hv'
-
-theorem cg_self (n : ℕ) (a : Qbar l) : Cg n a a := by
-  unfold Cg; rw [sub_self, norm_zero]; exact norm_nonneg _
-
 theorem cv_of_eq (n : ℕ) {a b : Fin 2 → Qbar l} (h : a = b) : Cv n a b := by
-  subst h; intro i; exact cg_self n _
+  subst h; intro i; exact _root_.GlobalTheory.Ord2.TwistTriv.cg_refl n _
 
 theorem norm_l_lt_one : ‖((l : ℕ) : Qbar l)‖ < 1 := by
   rw [← map_natCast (algebraMap ℚ_[l] (PadicAlgCl l)), norm_algebraMap']
@@ -208,9 +198,9 @@ theorem main : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [Fact
   by_contra hzB
   obtain ⟨c, y, S', hWc, hy, hyc, hyU, hyG, hT⟩ := hES
 
-  obtain ⟨c1, k1, hcc1, hy1int, hy1loc, -, -⟩ := GlobalTheory.T.galois_cocycle_integral_after_scaling l Ω S W c y hN.cont hWc hN.unr hy hyU A
+  obtain ⟨c1, k1, hcc1, hy1int, hy1loc, -, -⟩ := _root_.GlobalTheory.CocInt.integral_after_scaling l Ω S W c y hN.cont hWc hN.unr hy hyU A
   have hWc1 : ∀ s i j, mat W s i j ∈ c1.O := fun s i j => hcc1 (hWc s i j)
-  obtain ⟨c2, k2, hc12, hz2int, hz2loc, hz2triv, -⟩ := GlobalTheory.T.galois_cocycle_integral_after_scaling l Ω S (dual1 W) c1 z
+  obtain ⟨c2, k2, hc12, hz2int, hz2loc, hz2triv, -⟩ := _root_.GlobalTheory.CocInt.integral_after_scaling l Ω S (dual1 W) c1 z
     (cont_dual1 W hN.cont hN.det2) (dual_representation_integral_entries c1 W hWc1 hN.det2) (unr_dual1 S W hN.above hN.unr) hz hzU A
   have hWc2 : ∀ s i j, mat W s i j ∈ c2.O := fun s i j => hc12 (hWc1 s i j)
   set a1 : Qbar l := ((l : ℕ) : Qbar l) ^ k1 with ha1def
@@ -244,7 +234,7 @@ theorem main : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [Fact
     intro n v _
     by_cases hlv : ((l : ℕ) : 𝓞 ℚ) ∈ v.asIdeal
     · obtain ⟨v0, hAv0, hlv0⟩ := hN.atL
-      have hv : v = v0 := place_eq (Fact.out : l.Prime) hlv hlv0
+      have hv : v = v0 := _root_.GlobalTheory.PlaceConjQ.eq_of_prime_mem (Fact.out : l.Prime) hlv hlv0
       subst hv
       refine ⟨A, hAv0, ?_⟩
       exact GlobalTheory.T.cup_product_coboundary_mod l Ω c2 n W (Dec (F := ℚ) A) y' z' hN.cont hWc2 hN.det2
@@ -253,7 +243,7 @@ theorem main : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [Fact
     · obtain ⟨B, hB, -⟩ := hyU v hlv
       obtain ⟨x1, hx1, hx1e⟩ := hy1loc v hlv B hB
       obtain ⟨x2, hx2, hx2e⟩ := hz2loc v hlv B hB
-      exact ⟨B, hB, GlobalTheory.T.cupProduct_unramifiedClasses_vanishes hLit l Ω c2 n W v B y' z' hN.cont hWc2 hN.det2 hB hlv
+      exact ⟨B, hB, _root_.GlobalTheory.Ord2.UnrCup.cup_unr_cob hLit l Ω c2 n W v B y' z' hN.cont hWc2 hN.det2 hB hlv
         (isIntegralCocycleOneModPow_of_integral_cocycle c2 n W _ hy' hy'int) (isIntegralCocycleOneModPow_of_integral_cocycle c2 n (dual1 W) _ hz' hz'int)
         ⟨x1, fun i => hc12 (hx1 i), fun s hs => cv_of_eq n (hx1e s hs)⟩
         ⟨x2, hx2, fun s hs => cv_of_eq n (hx2e s hs)⟩⟩
@@ -286,14 +276,14 @@ theorem main : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [Fact
   set de : Qbar l := (mat W φ - 1).det with hdedef
   set de' : Qbar l := om (y' h) (z' g) - om (y' g) (z' h) with hde'def
   have hde' : de' ≠ 0 := sub_ne_zero.mpr hne
-  have hdeO : ‖de‖ ≤ 1 := norm_le_one_of_mem c2 (det_mem c2 (sub_one_mem c2 (hWc2 φ)))
+  have hdeO : ‖de‖ ≤ 1 := _root_.GlobalTheory.BoundedScalarNorm.norm_le_one c2 (det_mem c2 (sub_one_mem c2 (hWc2 φ)))
 
   have key : ∀ n : ℕ, 1 ≤ n → ‖de ^ 2 * de'‖ ≤ ‖((l : ℕ) : Qbar l) ^ n‖ := by
     intro n hn
-    obtain ⟨u, hu, huint, huS, hucup⟩ := GlobalTheory.T.local_cochains_glue_global hLit l Ω c2 n S (cup W y' z') hN.l_odd hN.above
-      (GlobalTheory.T.cupProductDualTwist_isTwoCocycle_unramified l Ω c2 n S W y' z' hN.cont hWc2 hN.det2 hN.above hN.unr hy' hz' hy'int hz'int hy'U hz'U)
+    obtain ⟨u, hu, huint, huS, hucup⟩ := _root_.GlobalTheory.Ord2.TwistTriv.coboundary_of_locTriv hLit l Ω c2 n S (cup W y' z') hN.l_odd hN.above
+      (_root_.GlobalTheory.Ord2.cupProductDualTwist_isTwoCocycle_unramified_alt l Ω c2 n S W y' z' hN.cont hWc2 hN.det2 hN.above hN.unr hy' hz' hy'int hz'int hy'U hz'U)
       (hloc n)
-    have hr := GlobalTheory.T.cohomology_unramified_lift hLit l Ω e S A W hN c2 y' z' u S' n hn hWc2 hy' hz' hy'int hz'int hy'U hz2loc
+    have hr := _root_.GlobalTheory.Ord2.ht_vanish_commutator hLit l Ω e S A W hN c2 y' z' u S' n hn hWc2 hy' hz' hy'int hz'int hy'U hz2loc
       ⟨xA, hxA, hxAe⟩ (hT' n hn) hu huint huS hucup
     have hc := GlobalTheory.T.height_commutator_invariance l Ω n c2 W y' z' u hWc2 hy' hz' hucup φ hφH g hg h hh
     have h0 := hr φ hφ

@@ -54,15 +54,6 @@ open Topology
 
 open MeasureTheory NumberField Matrix Finset in
 open Topology in
-private theorem uMat_one_flag_measures {n : ℕ} {ε : Fin n → Bool} : _root_.Formalism.MainNotions.S.uMat (1 : _root_.Formalism.REAL.UJ ε) = 1 := by
-  have h1 := _root_.GlobalTheory.GaugeSubLoc.uMat_mul (1 : _root_.Formalism.REAL.UJ ε) 1
-  have h2 := _root_.GlobalTheory.GaugeSubLoc.uMat_mul_inv (1 : _root_.Formalism.REAL.UJ ε)
-  rw [mul_one] at h1
-  rw [inv_one, ← h1] at h2
-  exact h2
-
-open MeasureTheory NumberField Matrix Finset in
-open Topology in
 private theorem comap_subtype_val_haar_properties {n : ℕ} {ε : Fin n → Bool}
     (S : Subgroup (_root_.Formalism.REAL.UJ ε)) (hS : IsClosed (S : Set (_root_.Formalism.REAL.UJ ε))) (d : ℕ)
     (μ : Measure (_root_.Formalism.REAL.UJ ε)) (h : _root_.GlobalTheory.FlagMeas.IsGaugeSub (S : Set (_root_.Formalism.REAL.UJ ε)) d μ) :
@@ -93,7 +84,7 @@ private theorem comap_subtype_val_haar_properties {n : ℕ} {ε : Fin n → Bool
     simp only [hfdef, _root_.Formalism.REAL.hs]
     have := _root_.GlobalTheory.GaugeConst.continuous_uMat ε
     fun_prop
-  have hf1 : f 1 = 0 := by simp [hfdef, _root_.Formalism.REAL.hs, uMat_one_flag_measures]
+  have hf1 : f 1 = 0 := by simp [hfdef, _root_.Formalism.REAL.hs, _root_.GlobalTheory.GaugeSubLoc.uMat_one]
   revert h3
   change Filter.Tendsto _ _ (nhds (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1))) → _
   intro h3

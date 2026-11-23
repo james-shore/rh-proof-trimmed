@@ -149,7 +149,7 @@ theorem realise_core (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum p)
   subst tR
   subst hs'
   let tR := (algebraMap k (DualNumber k)).comp β
-  have hZ := GlobalTheory.T.lieConditionHodgeSubspace_le_hodgeFiltration p D R b N k β _ hs o₀
+  have hZ := _root_.GlobalTheory.HTCount.lieZ_le_Fil p D R b N k β _ hs o₀
   have : Module.Finite k (DualNumber k) := inferInstanceAs (Module.Finite k (k × k))
   have : IsArtinianRing (DualNumber k) := IsArtinianRing.of_finite k (DualNumber k)
   have hπ : Function.Surjective (TrivSqZeroExt.fstHom k k k).toRingHom :=
@@ -161,7 +161,7 @@ theorem realise_core (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum p)
     k _ o₀.A o₀.grp (o₀.act.act c) (o₀.act.hom c) f (hf.1 c)
   have hIsotropic := @GlobalTheory.T.dualNumberGraphFiltration_isotropic_of_skew
     k _ o₀.A o₀.grp hA₀ o₀.P o₀.isLB φ hφ f hf.2.2
-  have hLie := GlobalTheory.T.dualNumberGraphFiltration_lie_of_map_into_hodge p D R b N k β _ o₀ f hZ hf.2.1
+  have hLie := _root_.GlobalTheory.HTRealise.eigen_decomp_graphFil p D R b N k β _ o₀ f hZ hf.2.1
   obtain ⟨o', m', hE⟩ := lift_with_filtration p D R b N hN (DualNumber k) k
     (TrivSqZeroExt.fstHom k k k).toRingHom hπ (SqExt.dual k).sq tR o₀ (epsDP k) rfl (graphFil o₀.A f)
     hCompl hReduction hStable hIsotropic hLie

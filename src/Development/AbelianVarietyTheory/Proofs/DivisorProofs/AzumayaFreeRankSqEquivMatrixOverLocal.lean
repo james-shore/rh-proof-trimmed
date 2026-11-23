@@ -137,8 +137,8 @@ theorem azumaya_local_matrix : ∀ (ℓ : ℕ) [Fact ℓ.Prime] (A : Type) [Comm
     exact zero_ne_one (FaithfulSMul.algebraMap_injective A Λ
       (Subsingleton.elim (algebraMap A Λ 0) (algebraMap A Λ 1)))
   set M := (maximalIdeal A) • (⊤ : Submodule A Λ) with hM
-  obtain ⟨x, h1, h2, N, a, b, h3⟩ := GlobalTheory.T.exists_residue_idempotent' A Λ
-  obtain ⟨e, he, hex⟩ := GlobalTheory.T.exists_idempotent_lift_adicComplete_free_algebra A (maximalIdeal A) Λ x h1
+  obtain ⟨x, h1, h2, N, a, b, h3⟩ := _root_.GlobalTheory.AzumayaResidue.exists_residue_idempotent A Λ
+  obtain ⟨e, he, hex⟩ := _root_.GlobalTheory.IdemNewton.exists_idem A (maximalIdeal A) Λ x h1
   have hcorner : ∀ y : Λ, ∃ c : A, e * y * e - c • e ∈ M := by
     intro y
     obtain ⟨c, hc⟩ := h2 y
@@ -153,7 +153,7 @@ theorem azumaya_local_matrix : ∀ (ℓ : ℕ) [Fact ℓ.Prime] (A : Type) [Comm
     rw [this]
     exact M.add_mem h3 (M.sum_mem fun i _ => mem_right _ (mem_left _ hex))
   obtain ⟨v, hv⟩ := GlobalTheory.AzumayaLocal.exists_right_inverse A Λ _ hu
-  exact GlobalTheory.T.nonempty_algEquiv_matrix_of_isAzumaya_of_full_idempotent A Λ n hn e he (GlobalTheory.AzumayaLocal.corner_eq_smul A Λ e he hcorner) ⟨N, a, fun i => b i * v, by
+  exact _root_.GlobalTheory.azumaya_algEquiv_matrix_of_idempotent A Λ n hn e he (GlobalTheory.AzumayaLocal.corner_eq_smul A Λ e he hcorner) ⟨N, a, fun i => b i * v, by
     rw [← hv, Finset.sum_mul]; simp only [mul_assoc]⟩
 
 end GlobalTheory.AzumayaLocal

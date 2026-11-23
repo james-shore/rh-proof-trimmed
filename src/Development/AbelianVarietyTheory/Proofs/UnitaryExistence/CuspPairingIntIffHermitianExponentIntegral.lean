@@ -119,9 +119,9 @@ theorem pairIdeal_ne_zero {N : ℕ} (hN : 0 < N) {A B : FractionalIdeal (𝓞 E)
   mul_ne_zero (mul_ne_zero (FractionalIdeal.spanSingleton_ne_zero_iff.2
     (Nat.cast_ne_zero.2 hN.ne')) hA) (mul_ne_zero coe_different_ne_zero (conjFrac_ne_zero hB))
 
-theorem ccm (a b : E) : cc (a * b) = cc a * cc b := map_mul _ a b
-theorem cca (a b : E) : cc (a + b) = cc a + cc b := map_add _ a b
-theorem ccc (a : E) : cc (cc a) = a := IsCMField.complexConj_apply_apply E a
+alias ccm := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_mul
+alias cca := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_add
+alias ccc := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_cc
 
 theorem conj_mem_pairIdeal {N : ℕ} {A B : FractionalIdeal (𝓞 E)⁰ E} {s : E}
     (hs : s ∈ pairIdeal N A B) : cc s ∈ pairIdeal N B A := by

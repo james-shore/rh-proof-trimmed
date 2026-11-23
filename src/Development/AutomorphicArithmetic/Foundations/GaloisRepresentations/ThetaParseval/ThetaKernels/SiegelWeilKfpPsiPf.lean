@@ -136,7 +136,7 @@ theorem spf_eq_k (x y : Matrix (Fin d.m) (Fin d.n ⊕ Fin d.n) (AE F E)) :
     _root_.PositivityTheory.SiegelWeilFormula.KFP.spf_k d x y = Algebra.trace (AF F) (AE F E)
       (-(xᵀ * incM F d.A.J * y.map (cA σ) * (dbl (incM F d.Y.J))ᵀ).trace) := by
   unfold _root_.PositivityTheory.SiegelWeilFormula.KFP.spf_k symp
-  rw [hTens_trace, neg_one_mul]
+  rw [_root_.GlobalTheory.ThK.Dbl.Dense.hTens_tr, neg_one_mul]
 theorem trace_evI_trace_k (z : AE F E) :
     Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (evI F (Algebra.trace (AF F) (AE F E) z)) =
       ∑ w, 2 * (piInf (d.B.emb w) z).re := by

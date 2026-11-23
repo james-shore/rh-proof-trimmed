@@ -58,7 +58,7 @@ namespace GlobalTheory.MemLoc.CrisUnique
 variable {l : ℕ} [Fact l.Prime]
 
 theorem exists_isEps (l : ℕ) [Fact l.Prime] : ∃ e : Per.Fl l, IsEps e := by
-  obtain ⟨ζ, e, h0, -, h1, h⟩ := GlobalTheory.T.exists_compatible_rootsOfUnity_and_tilt_padic l
+  obtain ⟨ζ, e, h0, -, h1, h⟩ := _root_.GlobalTheory.MemLoc.exists_zeta_eps l
   refine ⟨e, ?_, fun h' => h1 ?_⟩
   · have := h 0
     rw [h0, map_one] at this

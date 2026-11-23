@@ -90,7 +90,7 @@ theorem frame_exists : ∀ (D : D7) (X : HidaSetting D) (u : D.what₂.Word) (wt
               show X.psiEf (ιA.symm (x + y)) = X.psiEf (ιA.symm x) * X.psiEf (ιA.symm y)
               rw [RingEquiv.map_add (e := _), X.psiEf_add]
             psi_int := fun x hx => X.psiEf_int _ ((hI.2 _).2 (by simpa using hx))
-            psi_rat := GlobalTheory.T.transportedFiniteCharacter_inverse_exp_trace D X ιA hI }, rfl, fun i => ?_, fun i => ?_, fun a => rfl⟩
+            psi_rat := _root_.GlobalTheory.St.G.psiEf_transport_rat D X ιA hI }, rfl, fun i => ?_, fun i => ?_, fun a => rfl⟩
   · show embA X wt ιA (b i) - _ ∈ _
     rw [hb i]; exact (hclose i).1
   · show embA X wt ιA (bd i) - _ ∈ _

@@ -129,7 +129,7 @@ theorem comm (hT : TBij) (g : UA σ d.A.J) : ∀ Φ ∈ d.sch, ∀ x, d.om x (d.
     rw [one_mul]
     simpa only [mul_assoc] using e2.symm
   obtain ⟨ε, hε⟩ := signY d
-  have hc1 := GlobalTheory.T.doubledUnitary_character_trivial_of_siegel F E σ (cm d) d.n d.Y.J ε hε (detY d) c hcont hP
+  have hc1 := _root_.GlobalTheory.SiegelChar.eq_one_of_siegel F E σ (cm d) d.n d.Y.J ε hε (detY d) c hcont hP
   intro Φ hΦ x
   have e := hcf x _ ((hS d).pres g Φ hΦ)
   have hcf1 : cf x = 1 := by rw [← hcv, hc1]; rfl

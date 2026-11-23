@@ -220,7 +220,7 @@ theorem cleanSpan : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type)
     unfold avgW
     refine Finset.sum_congr rfl fun g _ => ?_
     rw [hπ, ← pi_lift_indep R i t hP (hκ g) (hκ' g) ((hSm _).1 hw), smul_smul]
-  have key := GlobalTheory.T.mem_span_annihilated_union_class_averages S π hS h1 hmul C hC f hf
+  have key := _root_.GlobalTheory.mem_span_killed_union_averages S π hS h1 hmul C hC f hf
   refine Submodule.span_mono ?_ key
   rintro w (⟨hwS, hw⟩ | ⟨c, ⟨PP, a, ha, tr, ε, hε, rfl⟩, w', hw'S, rfl⟩)
   · exact Or.inl ⟨hwS, fun PP a ha tr ε hε κ' hκ' => by

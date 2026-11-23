@@ -49,6 +49,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Upqcpt
 
 @[expose] public section
 
@@ -621,18 +622,10 @@ theorem infMat_unitary (σ : E →ₐ[F] E) (hσ : ∀ a, σ a = star a)
   rw [e1, e2] at h1
   rw [hX]; exact h1
 
-theorem Jpq_zero (P : ℕ) : Formalism.UG.Jpq P 0 = 1 := by
-  ext i j
-  rcases i with i | i
-  · rcases j with j | j
-    · simp [Formalism.UG.Jpq, Matrix.one_apply]
-    · exact j.elim0
-  · exact i.elim0
-
 theorem upq_of_unitary {P : ℕ} (A : Matrix (Fin P ⊕ Fin 0) (Fin P) ℂ) (Jt X : Matrix (Fin P) (Fin P) ℂ)
     (hJ : IsUnit Jt.det) (hA : A.conjTranspose * Formalism.UG.Jpq P 0 * A = Jt)
     (hX : X.conjTranspose * Jt * X = Jt) : ∃ b : Formalism.BasicNotions.UpqT P 0, Formalism.BasicNotions.UpqT.mat b * A = A * X := by
-  rw [Jpq_zero, Matrix.mul_one] at hA
+  rw [_root_.Formalism.UG.P.Jpq_zero, Matrix.mul_one] at hA
   let L : Matrix (Fin P) (Fin P ⊕ Fin 0) ℂ := Jt⁻¹ * A.conjTranspose
   have hLA : L * A = 1 := by
     simp only [L, Matrix.mul_assoc, hA]
@@ -652,7 +645,7 @@ theorem upq_of_unitary {P : ℕ} (A : Matrix (Fin P ⊕ Fin 0) (Fin P) ℂ) (Jt 
     show Formalism.UG.cT (starRingEnd ℂ) bm * Formalism.UG.Jpq P 0 * bm = Formalism.UG.Jpq P 0
     have e : Formalism.UG.cT (starRingEnd ℂ) bm = bm.conjTranspose := by
       ext i j; simp [Formalism.UG.cT, Matrix.conjTranspose_apply]
-    rw [e, Jpq_zero, Matrix.mul_one, hbb]
+    rw [e, _root_.Formalism.UG.P.Jpq_zero, Matrix.mul_one, hbb]
   refine ⟨(⟨g, hg⟩ : Formalism.UG.Upq P 0), ?_⟩
   show bm * A = A * X
   simp only [bm, Matrix.mul_assoc, hLA, Matrix.mul_one]
@@ -670,7 +663,7 @@ theorem inf_all (σ : E →ₐ[F] E) (hσ : ∀ a, σ a = star a)
     rw [hsig] at h0
     obtain ⟨e, P', hP⟩ := h0
     have hd := congrArg Matrix.det hP
-    rw [Jpq_zero, Matrix.det_one, Matrix.det_mul, Matrix.det_mul, Matrix.det_reindex_self] at hd
+    rw [_root_.Formalism.UG.P.Jpq_zero, Matrix.det_one, Matrix.det_mul, Matrix.det_mul, Matrix.det_reindex_self] at hd
     refine isUnit_iff_ne_zero.mpr fun h0 => ?_
     rw [h0, mul_zero, zero_mul] at hd
     exact zero_ne_one hd

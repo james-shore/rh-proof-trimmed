@@ -124,13 +124,13 @@ theorem isAutFormU_phiFun (hU : Unr E) (S : Set (Pl E)) (lam : InfinitePlace E �
     intro u ℓ
     obtain ⟨w', rfl⟩ := (Module.evalEquiv ℂ (Wsp lam)).surjective ℓ
     simp only [Module.evalEquiv_apply, Module.Dual.eval_apply, dualW_apply]
-    exact (contW E n lam w' u).comp continuous_inv
+    exact (_root_.GlobalTheory.BCT.TrKer.continuous_coef_wInf E n lam w' u).comp continuous_inv
   have hinf : ∀ y ∈ infU E n, ∀ g, (fun g => F (splitFin E n g)) (g * y) = F (splitFin E n g) := by
     intro y hy g
     simp only [map_mul, splitFin_inf ⟨y, hy⟩, mul_one]
   have hrat : ∀ γ ∈ ratU E n, ∀ g, (fun g => F (splitFin E n g)) (γ * g) = dualW lam γ (F (splitFin E n g)) := by
     intro γ hγ g
-    obtain ⟨γ₀, h1, h2⟩ := ratSplit E n γ hγ
+    obtain ⟨γ₀, h1, h2⟩ := _root_.GlobalTheory.BCT.RatSplit.ratU_split E n γ hγ
     simp only [map_mul, h1]
     rw [hF.1 γ₀ (splitFin E n g)]
     refine LinearMap.ext fun u => ?_
@@ -186,7 +186,7 @@ theorem phiFun_mem_forms (hU : Unr E) (S : Set (Pl E)) (lam : InfinitePlace E �
     (K' : ∀ w : Pl E, Subgroup (UL n w)) (hK : IsLevelFam (fun w : Pl E => MonoidHom.id (UL n w)) (KL n) K')
     (F : finU (E := E) (n := n) → Module.Dual ℂ (Wsp lam)) (hF : F ∈ vecM S lam K') (w : Wsp lam) :
     phiFun lam F w ∈ forms S lam K' := by
-  have h := semis E n (Wsp lam) ((wInf lam).comp (infU E n).subtype) (spanW E n lam) (globLev S K')
+  have h := semis E n (Wsp lam) ((wInf lam).comp (infU E n).subtype) (_root_.GlobalTheory.BCT.TrKer.span_range_wInf_comp_infU E n lam) (globLev S K')
     (isOpen_globLev E hU n S K' hK) (phiFun lam F) (fun u => isAutFormU_phiFun hU S lam K' hK F hF u)
     (fun x u => phiFun_wInf lam F x u) (fun u => phiFun_mem_fixed S lam K' F hF u) w
   refine SetLike.le_def.1 ?_ h

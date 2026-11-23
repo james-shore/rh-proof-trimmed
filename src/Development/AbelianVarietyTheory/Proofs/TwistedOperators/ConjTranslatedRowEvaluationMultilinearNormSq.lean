@@ -59,18 +59,6 @@ open GlobalTheory.RowEvalHH
 variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m}
   {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
 
-theorem norm_sq_toLp_eq {X : Formalism.L2.SG.HidaSetting.HidaSetting D} {f : X.B.I.GA → ℂ} (hf : MemLp f 2 (muX X)) :
-    ‖(hf.toLp f : L2X X)‖ ^ 2 = ∫ x, ‖f x‖ ^ 2 ∂(muX X) := by
-  rw [@norm_sq_eq_re_inner ℂ, MeasureTheory.L2.inner_def]
-  have h1 : (fun a => ⟪(hf.toLp f : L2X X) a, (hf.toLp f : L2X X) a⟫_ℂ) =
-      fun a => (((‖(hf.toLp f : L2X X) a‖ ^ 2 : ℝ)) : ℂ) := by
-    funext a; rw [inner_self_eq_norm_sq_to_K]; push_cast; rfl
-  rw [h1, integral_complex_ofReal]
-  simp only [RCLike.re_to_complex, Complex.ofReal_re]
-  refine integral_congr_ae ?_
-  filter_upwards [hf.coeFn_toLp] with a ha
-  rw [ha]
-
 def phi (R : RealDat D A Ks) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D)
     (t : GA D (Yc D 0)) (c : ∀ τ, (MP R).H τ ≃ₗᵢ⋆[ℂ] X.B.H (X.pl.symm τ)) (S : MMap (MP R))
     (y : ∀ τ, Wsub R X c τ) : X.B.I.GA → ℂ :=
@@ -219,7 +207,7 @@ theorem evF_multilinear_norm : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl
     · rfl
     · exact absurd (hmem y) ‹_›
   · show ‖conjL (muX X) (L y)‖ ^ 2 = _
-    rw [LinearIsometryEquiv.norm_map, norm_sq_toLp_eq]
+    rw [LinearIsometryEquiv.norm_map, _root_.Formalism.IndefR.AutomorphicEvaluation.norm_sq_toLp]
     exact (phi_memLp_integral R X h t c S K hK y).2
 
 end GlobalTheory.RowEvalHHNorm

@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VacTheta
+import Formalism.SharpRestriction.GlobalSchurBounds.LocalCountingBounds
 
 @[expose] public section
 
@@ -118,7 +119,7 @@ theorem exists_compact_def (V : HSp D) (hs : V.SigOK) (hd : V.IsDefinite) :
   have hf : GlobalTheory.Mass.FiniteClasses (GQ V) ((GlobalTheory.Mass.stdLevel D.sp.cm.sig V.gram).comap π) := by
     refine (GlobalTheory.Mass.finiteClasses_comap π (GlobalTheory.Mass.ratIn _ _ _) _ hπ.surjective hπ.injOn).2 ?_
     rw [hπ.map_ratIn]
-    exact GlobalTheory.Mass.finiteClasses_unitary (GlobalTheory.DefiniteQuotient.cmExt D) (GlobalTheory.DefiniteQuotient.gram_hermND V)
+    exact GlobalTheory.Mass.finiteClasses_unitary (_root_.Formalism.MainNotions.UnusedSlot34.isCMExt_D D) (GlobalTheory.DefiniteQuotient.gram_hermND V)
       (Formalism.L2.G.gram_totDef D.sp.cm V hs hd)
       (GlobalTheory.Mass.isCompact_stdLevel _ _ (GlobalTheory.DefiniteQuotient.gram_hermND V).2) (GlobalTheory.Mass.isOpen_stdLevel _ _)
   choose R hR using fun τ => exists_bound_definite (definite_gramAt V hs hd τ)

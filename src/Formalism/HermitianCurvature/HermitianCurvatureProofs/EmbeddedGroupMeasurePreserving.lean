@@ -53,6 +53,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.RadicalUnipotentFirstBasisEqOne
 
 @[expose] public section
 
@@ -74,20 +75,11 @@ theorem embedded_group_measure_preserving : EmbGMuP := by
   intro k p ρ y q
   simp only [U.muP, U.embG, Ux5.block3_mul_blocks, Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.mul_one, Matrix.one_mul]
 
-private theorem wMat_mul_self_eq_one (d : ℕ) : G.wMat d * G.wMat d = 1 := by
-  ext i j
-  simp only [G.wMat, Matrix.mul_apply, Matrix.of_apply, Matrix.one_apply, ite_mul, one_mul, zero_mul,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true, Fin.rev_rev]
-  split_ifs <;> simp_all
-
-private theorem wMat_mul_wMat_mul' (d : ℕ) {m : Type*} (X : Matrix (Fin d) m ℂ) : G.wMat d * (G.wMat d * X) = X := by
-  rw [← Matrix.mul_assoc, wMat_mul_self_eq_one, Matrix.one_mul]
-
 theorem embedding_map_lower_unipotent : MMapLZU := by
   intro k p ρ l Z u γ hl
   simp only [U.mMap, U.muP, Ux5.block3_mul_blocks, Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.mul_one, Matrix.one_mul, Matrix.conjTranspose_mul, Matrix.mul_inv_rev,
     Matrix.conjTranspose_nonsing_inv, Matrix.conjTranspose_conjTranspose, Matrix.nonsing_inv_nonsing_inv l hl,
-    Matrix.mul_assoc, wMat_mul_wMat_mul']
+    Matrix.mul_assoc, _root_.Formalism.FourierDecayAlt.P.Ux2.wMat_sq_assoc]
 
 theorem embedded_group_right_action : EmbGRn := by
   intro k p ρ y x hy
@@ -106,9 +98,6 @@ private theorem wP_inv_mul_wP_eq_one {p : ℕ} (σ : Equiv.Perm (Fin p)) : U.wP 
   have h : σ (σ⁻¹ a) = a := σ.apply_symm_apply a
   simp only [U.wP, Matrix.mul_apply, Matrix.of_apply, Matrix.one_apply, ite_mul, one_mul, zero_mul,
     Finset.sum_ite_eq, Finset.mem_univ, if_true, h]
-
-private theorem isUnit_det_wP {p : ℕ} (σ : Equiv.Perm (Fin p)) : IsUnit (U.wP σ).det :=
-  Matrix.isUnit_det_of_left_inverse (wP_inv_mul_wP_eq_one σ)
 
 theorem lh_lower {p : ℕ} (σ : Equiv.Perm (Fin p)) (v : U.LW σ → ℂ) : G.IsLowerUni (lhOf σ v) := by
   have hinv : (U.wP σ)⁻¹ = U.wP σ⁻¹ := Matrix.inv_eq_left_inv (wP_inv_mul_wP_eq_one σ)
@@ -129,22 +118,11 @@ theorem head_hermitian_eq : HeadHEq := by
   intro p σ d v u
   refine ⟨?_, lh_lower σ v⟩
   simp only [U.headH, lhOf, U.hMat, Matrix.mul_assoc]
-  rw [← Matrix.mul_assoc (U.wP σ)⁻¹ (U.wP σ), Matrix.nonsing_inv_mul _ (isUnit_det_wP σ), Matrix.one_mul]
-
-private theorem blk2_fin_zero_eq {p : ℕ} (A : Matrix (Fin p) (Fin p) ℂ) (B' : Matrix (Fin p) (Fin 0) ℂ)
-    (C : Matrix (Fin 0) (Fin p) ℂ) (D : Matrix (Fin 0) (Fin 0) ℂ) : U.blk2 A B' C D = A := by
-  ext i j
-  have hi : finSumFinEquiv.symm i = Sum.inl i := by
-    rw [Equiv.symm_apply_eq]
-    exact Fin.ext (by first | rfl | simp [finSumFinEquiv_apply_left])
-  have hj : finSumFinEquiv.symm j = Sum.inl j := by
-    rw [Equiv.symm_apply_eq]
-    exact Fin.ext (by first | rfl | simp [finSumFinEquiv_apply_left])
-  simp [U.blk2, Matrix.reindex_apply, hi, hj]
+  rw [← Matrix.mul_assoc (U.wP σ)⁻¹ (U.wP σ), Matrix.nonsing_inv_mul _ (_root_.Formalism.FourierDecayAlt.P.Dx2.SL.isUnit_wP σ), Matrix.one_mul]
 
 theorem lower_corner_hermitian_zero : ZjHZero := by
   intro p σ d η Z
-  simp only [U.ZjH, U.Zj, blk2_fin_zero_eq, Matrix.one_mul, Matrix.mul_one]
+  simp only [U.ZjH, U.Zj, _root_.Formalism.FourierDecayAlt.P.PBH.block_two_zero_size_eq, Matrix.one_mul, Matrix.mul_one]
 
 theorem lh_unit {p : ℕ} (σ : Equiv.Perm (Fin p)) (v : U.LW σ → ℂ) : IsUnit (lhOf σ v).det := by
   have hL : (U.lowW σ v).det = 1 := by
@@ -155,7 +133,7 @@ theorem lh_unit {p : ℕ} (σ : Equiv.Perm (Fin p)) (v : U.LW σ → ℂ) : IsUn
       have h2 : ¬ j < i := not_lt.mpr h1.le
       simp [U.lowW, Matrix.one_apply, ne_of_lt h1, h2]
   simp only [lhOf, Matrix.det_mul, hL, mul_one]
-  exact (isUnit_det_wP σ).mul (Matrix.isUnit_nonsing_inv_det _ (isUnit_det_wP σ))
+  exact (_root_.Formalism.FourierDecayAlt.P.Dx2.SL.isUnit_wP σ).mul (Matrix.isUnit_nonsing_inv_det _ (_root_.Formalism.FourierDecayAlt.P.Dx2.SL.isUnit_wP σ))
 
 theorem gamma_xi_split : GaXiSplit := by
   intro k p ρ σ d ξ Z h ν h' ν' g hh hν hh'
@@ -180,7 +158,7 @@ theorem embG_nset {k p ρ : ℕ} {y : B.Mat k ρ} (hy : y ∈ QuantumDeterminant
   refine ⟨?_, ?_⟩
   · show (U.embG k p ρ y)ᴴ * Hpk k (p + ρ) * U.embG k p ρ y = Hpk k (p + ρ)
     have hy1 : yᴴ * Hpk k ρ * y = Hpk k ρ := hy.1
-    rw [Formalism.FourierDecayAlt.P.hermitian_group_blocks k p ρ, U.embG, Ux3.block3_conjTranspose, Ux3.block3_mul, Ux3.block3_mul]
+    rw [_root_.Formalism.FourierDecayAlt.P.Ux2.hpkBlocks k p ρ, U.embG, Ux3.block3_conjTranspose, Ux3.block3_mul, Ux3.block3_mul]
     congr 1 <;> simp [hy1]
   · intro i c hc hi
     obtain ⟨x, rfl⟩ := (U.eB k p ρ).surjective i
@@ -211,7 +189,7 @@ theorem left_factor_mem : LeftMem := by
     rw [← Formalism.FourierDecayAlt.P.PBM.leviElement_inv _ hlu]
     refine hclN.inv_mem _ (Formalism.FourierDecayAlt.P.BigCellDiagonalMap.leviElement_nset _ ⟨fun i j hij => hlH.2 i j hij, hlH.1⟩)
   have hRn : U.Rn k p ρ (rcAct h x) ∈ QuantumDeterminants.Nset k (p + ρ) :=
-    (Formalism.FourierDecayAlt.P.radical_parametrisation k p ρ).2.2 (by rw [← (Formalism.FourierDecayAlt.P.radical_parametrisation k p ρ).2.1]; exact ⟨rcAct h x, rfl⟩)
+    (_root_.Formalism.FourierDecayAlt.P.Ux2.radicalParam k p ρ).2.2 (by rw [← (_root_.Formalism.FourierDecayAlt.P.Ux2.radicalParam k p ρ).2.1]; exact ⟨rcAct h x, rfl⟩)
   have hνN : U.embG k p ρ ν⁻¹ ∈ QuantumDeterminants.Nset k (p + ρ) :=
     embG_nset ((Formalism.FourierDecayAlt.P.unipotent_radical_closed k ρ).inv_mem ν hν)
   have hW : U.embG k p ρ h⁻¹ ∈ UWset k (p + ρ) (liftVec k p ρ z) := by

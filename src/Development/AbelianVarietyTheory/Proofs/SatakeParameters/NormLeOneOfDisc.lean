@@ -219,7 +219,7 @@ theorem goodModelThree : GlobalTheory.ThLoc.Inputs → ∀ (D : D7) (cc : Ideal 
     rw [← e2, ← e3]
     exact h
   have hcm : Formalism.L2.Th1.CM.HasCMBy D.host.d L :=
-    Formalism.L2.Th1.F.hasCMByScale D.host.d _ lam hlam (Formalism.L2.Th1.F.cmPairHasCMBy a₀ b₀ c₀ D.host.d ha hd hok.1
+    Formalism.L2.Th1.F.hasCMByScale D.host.d _ lam hlam (_root_.Formalism.L2.Th1.F.cm_pair_has_cm a₀ b₀ c₀ D.host.d ha hd hok.1
       (Formalism.L2.Th1.H.CmData.odd_b a₀ b₀ c₀ D.host.d hok.1 hok.2.2.1))
   have hd8 := hok.2.2.1
   have hj : IsIntegral ℤ (Formalism.L2.Th1.CM.jInv L) :=

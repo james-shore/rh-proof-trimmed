@@ -102,7 +102,7 @@ theorem lieExact_of_crystallineLift_hodgeDeRham : GlobalTheory.Published.Crystal
       have : e.symm (c1 f) = Submodule.Quotient.mk f := e.symm_apply_eq.2 rfl
       change (LinearMap.ker c1).liftQ (tanVal v) hker (e.symm (c1 f)) = _
       rw [this]; rfl
-    obtain ⟨H, hH'⟩ := GlobalTheory.T.abelianScheme_hodgeFiltration_functional_extends hC hH R A g hab hdim ψ
+    obtain ⟨H, hH'⟩ := _root_.GlobalTheory.AbelianExtend.abelianScheme_hodgeFiltration_functional_extends' hC hH R A g hab hdim ψ
     exact ⟨H ∘ₗ (primDR A).subtype, hv, fun f hf ↦ (hH' (c1 f)).trans (hψ f)⟩
 
 end GlobalTheory.LieHodge

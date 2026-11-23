@@ -67,8 +67,6 @@ namespace GlobalTheory.RowKernel
 
 variable {C : Type} [Field C] {V : VF C}
 
-theorem mm_zero : V.MM (0 : C) := by simp [VF.MM]
-
 theorem mm_sum {ι : Type} {s : Finset ι} {f : ι → C} (h : ∀ i ∈ s, V.MM (f i)) : V.MM (∑ i ∈ s, f i) :=
   V.v.map_lt_sum (by simp) h
 
@@ -77,19 +75,7 @@ theorem mm_int_mul {a b : C} (ha : V.Ge 0 a) (hb : V.MM b) : V.MM (a * b) := by
   have ha' : (0 : WithTop ℝ) ≤ V.v a := ha
   exact lt_of_lt_of_le hb (le_add_of_nonneg_left ha')
 
-theorem mm_mul_int {a b : C} (ha : V.MM a) (hb : V.Ge 0 b) : V.MM (a * b) := by
-  rw [mul_comm]; exact mm_int_mul hb ha
-
 theorem mm_ge {a : C} (h : V.MM a) : V.Ge 0 a := le_of_lt h
-
-theorem not_mm_one : ¬ V.MM (1 : C) := by simp [VF.MM]
-
-theorem ge_of_pow {a : C} {n : ℕ} (hn : n ≠ 0) (h : V.Ge 0 (a ^ n)) : V.Ge 0 a := by
-  have h' : (0 : WithTop ℝ) ≤ V.v (a ^ n) := h
-  show (0 : WithTop ℝ) ≤ V.v a
-  rw [V.v.map_pow] at h'
-  by_contra hc
-  exact absurd (nsmul_neg (not_le.mp hc) hn) (not_lt.mpr h')
 
 theorem ge_div {a b : C} (hb : b ≠ 0) (h : V.v b ≤ V.v a) : V.Ge 0 (a / b) := by
   show (0 : WithTop ℝ) ≤ V.v (a / b)
@@ -168,11 +154,11 @@ theorem card_add_le {σ : Type} [Fintype σ] (p : σ → Prop) [DecidablePred p]
             rw [e1, e3]
             linear_combination (g (Sum.inl ν0))⁻¹ * h1 s hs
           rw [e]
-          exact mm_sum fun μ _ => mm_mul_int (mm_sum fun ν _ => mm_int_mul (hint ν) (hAB ν μ)) (hW s μ)
+          exact mm_sum fun μ _ => _root_.GlobalTheory.RowLaw.GoodPair.mm_mul (mm_sum fun ν _ => mm_int_mul (hint ν) (hAB ν μ)) (hW s μ)
         · simp only [hAp _ s hs, mul_zero, Finset.sum_const_zero]
-          exact mm_zero) ν0
+          exact _root_.GlobalTheory.RowLaw.GoodPair.mm_zero) ν0
       simp only [div_self h0] at key
-      exact not_mm_one key
+      exact _root_.GlobalTheory.RowLaw.GoodPair.not_mm_one key
     intro i
     cases i with
     | inl ν => exact h6 ν
@@ -200,7 +186,7 @@ theorem independenceBoundCondition_of_rankMaximalCondition : ∀ (C : Type) [Fie
   have hind' : IndepMod V (fun ν => (RawChart.cart (H g)).c0' (x ν)) := by
     intro c hc hmm
     choose co hco using fun ν => IsAlgClosed.exists_pow_nat_eq (c ν) (Nat.pos_of_ne_zero hl)
-    have hcoi : ∀ ν, V.Ge 0 (co ν) := fun ν => ge_of_pow hl (by rw [hco]; exact hc ν)
+    have hcoi : ∀ ν, V.Ge 0 (co ν) := fun ν => _root_.GlobalTheory.AdaptedChain.int_of_pow hl (by rw [hco]; exact hc ν)
     have hG := Cart.Good.comb Finset.univ (fun ν _ => hcoi ν) (fun ν _ => hgood ν)
     have h3 := h2 hA g a ha _ _ hG (fun q => by
       rw [Cart.c0'_comb]

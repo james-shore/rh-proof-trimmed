@@ -107,7 +107,7 @@ theorem sig_eq {n : ℕ} (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (L : Matr
 
 theorem sig_sig {n : ℕ} (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (hZ : CR Z) (s t : kˣ) (p : Sp k n) :
     sig Z s (sig Z t p) = sig Z (s * t) p := by
-  obtain ⟨L, hL, hLZ, -, hLc⟩ := piZ_lin k Z hZ
+  obtain ⟨L, hL, hLZ, -, hLc⟩ := _root_.PositivityTheory.RgUd.T.Nil.Asm.piZ_lin' k Z hZ
   have hLL : ∀ x, L (L x) = L x := fun x => hLc _ (hLZ x)
   simp only [sig_eq Z L hL]
   refine Prod.ext ?_ rfl
@@ -115,7 +115,7 @@ theorem sig_sig {n : ℕ} (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (hZ : CR
     Units.val_mul, mul_smul]
 
 theorem sig_one {n : ℕ} (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (hZ : CR Z) (p : Sp k n) : sig Z 1 p = p := by
-  obtain ⟨L, hL, -, -, -⟩ := piZ_lin k Z hZ
+  obtain ⟨L, hL, -, -, -⟩ := _root_.PositivityTheory.RgUd.T.Nil.Asm.piZ_lin' k Z hZ
   rw [sig_eq Z L hL]
   refine Prod.ext ?_ rfl
   simp
@@ -143,7 +143,7 @@ theorem continuous_lin {n : ℕ} (L : Matrix (Fin n) (Fin n) k →ₗ[k] Matrix 
 
 theorem continuous_sig {n : ℕ} (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (hZ : CR Z) (t : kˣ) :
     Continuous (sig Z t) := by
-  obtain ⟨L, hL, -, -, -⟩ := piZ_lin k Z hZ
+  obtain ⟨L, hL, -, -, -⟩ := _root_.PositivityTheory.RgUd.T.Nil.Asm.piZ_lin' k Z hZ
   have h1 : sig Z t = fun p => (L p.1 + (t : k) • (p.1 - L p.1), p.2) := funext (sig_eq Z L hL t)
   rw [h1]
   have hc : Continuous (fun p : Matrix (Fin n) (Fin n) k × (Fin n → k) => p.1) := continuous_fst
@@ -174,7 +174,7 @@ theorem pull_apply {n : ℕ} (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (t : 
 
 theorem pull_supp {n : ℕ} (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (hZ : CR Z) (t : kˣ) (ξ : (Sp k n → ℂ) →ₗ[ℂ] ℂ)
     (h : Supp ξ (Bz Z ×ˢ Set.univ)) : Supp (pull Z t ξ) (Bz Z ×ˢ Set.univ) := by
-  obtain ⟨L, hL, hLZ, -, -⟩ := piZ_lin k Z hZ
+  obtain ⟨L, hL, hLZ, -, -⟩ := _root_.PositivityTheory.RgUd.T.Nil.Asm.piZ_lin' k Z hZ
   intro f hf hvan
   rw [pull_apply]
   have hf' : f ∈ locallyConstantCompactSupport (Sp k n) ℂ ℂ ∧ Function.support f ⊆ Set.univ := hf

@@ -51,20 +51,7 @@ open GlobalTheory.Toroidal GlobalTheory.Cartier GlobalTheory.ShFam
 
 namespace GlobalTheory.CarrySpec
 
-theorem upper_mul {n : ℕ} {R : Type} [CommRing R] {M N : Matrix (Fin n) (Fin n) R}
-    (hM : ∀ a i, i < a → M a i = 0) (hN : ∀ a i, i < a → N a i = 0) :
-    (∀ a i, i < a → (M * N) a i = 0) ∧ ∀ i, (M * N) i i = M i i * N i i := by
-  first
-  | exact @_root_.GlobalTheory.UpperTriangularMul.upperTriangular_mul
-  | exact _root_.GlobalTheory.UpperTriangularMul.upperTriangular_mul
-  | (apply _root_.GlobalTheory.UpperTriangularMul.upperTriangular_mul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UpperTriangularMul.upperTriangular_mul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UpperTriangularMul.upperTriangular_mul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UpperTriangularMul.upperTriangular_mul ..)
-
-theorem spMap_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (ρ : R →+* R') (ψ : R' →+* R'') :
-    spMap (ψ.comp ρ) = spMap ψ ≫ spMap ρ := by
-  simp [spMap, Spec.map_comp]
+alias spMap_comp := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Z : Model Xo c β}
@@ -130,7 +117,7 @@ theorem tri_spec {R V L k : Type} [CommRing R] [CommRing V] [CommRing L] [CommRi
   have key : ∀ τ, (∀ a i, i < a → hkf.co gk τ a i = 0) ∧ ∀ i, hkf.co gk τ i i = r (h.co gV τ i i) * tk τ i := by
     intro τ
     obtain ⟨hN, hNd⟩ := EigFrame.Tri.co τ hk hgVk
-    have hm := upper_mul (M := (h.co gV τ).map r) (fun a i hia => by rw [Matrix.map_apply, hA τ a i hia, map_zero]) hN
+    have hm := _root_.GlobalTheory.UpperTriangularMul.upperTriangular_mul (M := (h.co gV τ).map r) (fun a i hia => by rw [Matrix.map_apply, hA τ a i hia, map_zero]) hN
     rw [hco]
     exact ⟨hm.1, fun i => by rw [hm.2, Matrix.map_apply, hNd]⟩
   refine ⟨fun τ i => ((hAd τ i).map r).unit * tk τ i, tri_of_co hfhk ?_ ?_ _ (fun τ => (key τ).1) fun τ i => ?_⟩

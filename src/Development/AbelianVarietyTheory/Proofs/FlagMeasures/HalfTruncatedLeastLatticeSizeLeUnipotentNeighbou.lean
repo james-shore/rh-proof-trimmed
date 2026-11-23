@@ -137,7 +137,7 @@ theorem half_truncatedLeastLatticeSize_le_unipotentNeighbourhood : ∀ (I : AutI
     rw [this]
     exact Real.exp_le_exp.2 (neg_le_neg hs)
   have ht : 0 ≤ tau1 I x := by
-    obtain ⟨-, hfg, hspan, -, -⟩ := GlobalTheory.T.autPointLatticeIntersection_selfDual_properties I x
+    obtain ⟨-, hfg, hspan, -, -⟩ := _root_.GlobalTheory.PointLattice.lamX_selfDual I x
     haveI := (GlobalTheory.Count.FrameMajorant.frames_give_majorants I x).1
     have hx := (GlobalTheory.Count.FrameMajorant.frames_give_majorants I x).2.2.2.2
     have hne : lamX I x ≠ ⊥ := by

@@ -210,7 +210,7 @@ theorem exists_gen_norm (wP : PrimTy H Xo) (hwP : wP.IsGen) (β : 𝓞 E) (N : �
       (LB.pullGen Xo.univ.t.PP.L _ _ wL (lift (𝟙 _) (Xo.univ.t.act.act (H.w0 * β))).left))
       (LB.invGen Xo.univ.t.PP.L _ _ (LB.mulGen Xo.univ.t.PP.L _ _ _ _
         (LB.pullGen Xo.univ.t.PP.L _ _ wP (Xo.univ.t.act.act β).left) t)))
-    (DVR.mulGen_isGen _ _ _ _ _ _ _ (DVR.mulGen_isGen _ _ _ _ _ _ _ (FrameGeo.powGen_isGen _ _ _ _ hwP N)
+    (DVR.mulGen_isGen _ _ _ _ _ _ _ (DVR.mulGen_isGen _ _ _ _ _ _ _ (_root_.ReciprocityTheory.ChartRestriction.G.DVR.powGen_isGen _ _ _ _ hwP N)
       (DVR.pullGen_isGen _ _ _ _ hwL _)) (DVR.invGen_isGen _ _ _ _
       (DVR.mulGen_isGen _ _ _ _ _ _ _ (DVR.pullGen_isGen _ _ _ _ hwP _) ht)))
   refine ⟨mu, hmu, fun T y z J hJ => ?_⟩
@@ -246,7 +246,7 @@ theorem val_norm (wP : PrimTy H Xo) (hwP : IsPrim wP) (β : 𝓞 E) (N k : ℕ) 
   obtain ⟨nu, hnu, hw⟩ := exists_gen Xo.univ.t.PP.isLB (K' := Fin 2)
     (φ' := ![𝟙 Xo.univ.t.G.left, (Xo.univ.t.act.act β).left]) (ε' := ![((k * N : ℕ) : ℤ), -(k : ℤ)]) (fun U _ h => by
       simp only [Fin.prod_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one, Nat.cast_mul, mul_neg, _root_.mul_one])
-    (GeneratorPullback.powGen Xo.univ.t.PP.L _ _ mu k) (FrameGeo.powGen_isGen _ _ _ _ hmu k)
+    (GeneratorPullback.powGen Xo.univ.t.PP.L _ _ mu k) (_root_.ReciprocityTheory.ChartRestriction.G.DVR.powGen_isGen _ _ _ _ hmu k)
   obtain ⟨a, -, va⟩ := FrameGeo.exists_ratio Xo.univ.t.PP.isLB Xo.univ.t.G.hom η[Xo.univ.t.G].left
     (Over.w η[Xo.univ.t.G]) (GlobalTheory.SemiRigid.globalFns _ _ (isAbelianScheme_univ Xo)).2 hα hnu
   have o : ∀ b, (1 : T ⟶ Xo.univ.t.G) ≫ Xo.univ.t.act.act b = 1 := fun b => by

@@ -104,8 +104,7 @@ private theorem norm_nat_one {m : ℕ} (h : ¬ l ∣ m) : ‖((m : ℕ) : Qbar l
   rw [norm_nat]
   exact Padic.norm_natCast_eq_one_iff.2 (((Fact.out : l.Prime).coprime_iff_not_dvd).2 h)
 
-private theorem norm_l : ‖((l : ℕ) : Qbar l)‖ < 1 := by
-  rw [norm_nat]; exact Padic.norm_p_lt_one
+private alias norm_l := _root_.GlobalTheory.LambdaValuationPowers.norm_natCast_lt_one
 
 private theorem small {a : ℝ} (ha : 0 < a) : ∃ n : ℕ, ∀ m, n ≤ m → ‖((l : ℕ) : Qbar l) ^ m‖ ≤ a := by
   obtain ⟨n, hn⟩ := exists_pow_lt_of_lt_one ha (norm_l (l := l))

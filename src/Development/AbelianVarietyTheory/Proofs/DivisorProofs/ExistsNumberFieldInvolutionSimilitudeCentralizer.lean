@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugatePairRelated
 
 @[expose] public section
 
@@ -62,7 +63,7 @@ theorem commute_conj_sh_sim (G : HTGroup p) (β γ : G.Cˣ) (c₀ : ℚ)
   set Y := sh G (y : G.C)
   set Yi := sh G ((y⁻¹ : G.Cˣ) : G.C)
   have hYYi : Y * Yi = 1 := by
-    simp only [Y, Yi, ← GlobalTheory.CentConj.sh_mul', Units.inv_mul, GlobalTheory.CentConj.sh_one']
+    simp only [Y, Yi, ← GlobalTheory.CentConj.sh_mul', Units.inv_mul, _root_.GlobalTheory.LKMid.sh_one_eq]
   have hzi : Commute z ((y⁻¹ : G.Cˣ) : G.C) := hz.units_inv_right
   have hcomm : Yi * sh G z = sh G z * Yi := by
     simp only [Yi, ← GlobalTheory.CentConj.sh_mul']; rw [hzi.eq]
@@ -102,7 +103,7 @@ theorem centraliser_field_involution : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup
     intro e
     apply hj
     rw [ht, hw]; dsimp only
-    rw [ht, GlobalTheory.CentConj.sh_mul', GlobalTheory.CentConj.sh_mul', GlobalTheory.CentConj.sh_sh', hβ,
+    rw [ht, GlobalTheory.CentConj.sh_mul', GlobalTheory.CentConj.sh_mul', _root_.GlobalTheory.LKMid.PairConj.sh_sh, hβ,
       GlobalTheory.CentConj.sh_inv_of_sym G β hβ]
     simp only [mul_assoc, Units.mul_inv, mul_one]
     rw [← mul_assoc, Units.mul_inv, one_mul]
@@ -121,7 +122,7 @@ theorem centraliser_field_involution : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup
   have h1 : t 1 = 1 := by
     apply hj
     rw [ht, hw]; dsimp only
-    rw [map_one, GlobalTheory.CentConj.sh_one', mul_one, Units.mul_inv]
+    rw [map_one, _root_.GlobalTheory.LKMid.sh_one_eq, mul_one, Units.mul_inv]
   have h0 : t 0 = 0 := by
     have h := ha 0 0
     rw [add_zero] at h

@@ -68,32 +68,18 @@ section Steps
 
 variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (u : D.what₂.Word)
 
-theorem PsiDd_holds : Formalism.L2.SG.Pf.PsiDd X := Formalism.L2.SG.Pf.psiDd_holds X
-theorem unipotent_in_level_subgroup : Formalism.L2.SG.PoincareInHH.Cut.UnipotentConjugateInLevel X u := Formalism.L2.SG.Pf.Level.unipotent_in_level_of_psi (PsiDd_holds X)
-theorem RatLevi_holds : Formalism.L2.SG.PoincareInHH.Cut.RatLevi X u := Formalism.L2.SG.Pf.ratLevi_holds X u
-theorem KsetSplit_holds : Formalism.L2.SG.PoincareInHH.Cut.KsetSplit X u := Formalism.L2.SG.Pf.ksetSplit_holds X u
 theorem NeatKu_holds (hK : X.LevelSubgroupCharacter) : Formalism.L2.SG.PoincareInHH.Cut.NeatKu X u hK := Formalism.L2.SG.PoincareInHH.Cut.neatKu_of_gamUnipKu (X := X) (u := u) (hK := hK)
   (hL := Formalism.L2.SG.PoincareInHH.Cut.latOfLattice_holds X u) (hU := Formalism.L2.SG.PoincareInHH.Cut.gamUnipKu_holds X u hK)
 
 end Steps
 
 theorem HFiniteC_holds : HFiniteC := fun _ X u => Formalism.L2.SG.Pf.hFinite_holds X u
-theorem nilradical_conj_level : NilradicalConjLevel := Formalism.L2.SG.Pf.nilradical_conj_level'
-theorem ChiTrivialC_holds : ChiTrivialC := Formalism.L2.SG.Pf.chiTrivialC_outright
-theorem AvgCore_holds : AvgCore := Formalism.L2.SG.TermOp.Vanish.avgCore
-
-theorem SlabCoverC_holds : Formalism.L2.SG.Pf.Slab.SlabCoverC :=
-  Formalism.L2.SG.Pf.SlabCoverPf.slab_covering_of_strong_approx Formalism.L2.SG.Pf.SlabNDensePf.nilradical_strong_approximation nilradical_conj_level
-    (fun _ X u => RatLevi_holds X u) (fun _ X => PsiDd_holds X)
-
 theorem KExpansionC_holds : KExpansionC :=
-  Formalism.L2.SG.Pf.kExpansionC_holds_of SlabCoverC_holds Formalism.L2.SG.Pf.RegroupPf.regroupC_all
+  Formalism.L2.SG.Pf.kExpansionC_holds_of _root_.Formalism.L2.SG.Pf.RegroupPf.slabCoverC_holds Formalism.L2.SG.Pf.RegroupPf.regroupC_all
     (fun _ X Y u => NeatKu_holds X u Y.hK) (fun _ X => Formalism.L2.SG.Pf.fundBridge_holds X)
     (fun _ X u hK => Formalism.L2.SG.Pf.pserMeas_holds X u hK)
 
-theorem PuLinearC_holds : PuLinearC := Formalism.L2.SG.Pf.puLinearC
-
-theorem FundExistsC_holds : FundExistsC := Formalism.L2.SG.Pf.fundExistsC_holds
+alias PuLinearC_holds := _root_.Formalism.L2.SG.Pf.puLinearC
 
 theorem OOFundIndepC_holds : OOFundIndepC := Formalism.L2.SG.Pf.ooFundIndepC_of_nconj Formalism.L2.SG.Pf.nilradical_conj_level'
 
@@ -104,16 +90,10 @@ theorem VolPosC_holds : VolPosC := Formalism.L2.SG.Pf.volPosC_of'' Formalism.L2.
 theorem LemmaVC_holds : LemmaVC := Formalism.L2.SG.Pf.lemmaVC_of_rest Formalism.L2.SG.TermOp.Vanish.avgCore Formalism.L2.SG.TermOp.Vanish.rational_cocompact_holds
   Formalism.L2.SG.NonRelPf.nonRelCharC_holds
 
-theorem OOIntAllC_holds (h : Formalism.L2.SG.Pf.OOLintSumC) : OOIntAllC := Formalism.L2.SG.Pf.ooIntAllC_holds_of h
-
-theorem AbsConvC_holds (h : Formalism.L2.SG.Pf.OOLintSumC) : AbsConvC := Formalism.L2.SG.Pf.absConvC_holds_of h
-
 theorem FoldOKC_holds (hFL : Formalism.L2.SG.Pf.FinLeviC) : FoldOKC :=
-  Formalism.L2.SG.Pf.foldOKC_holds_of (fun _ X u => KsetSplit_holds X u) (fun _ X u => unipotent_in_level_subgroup X u)
-    (fun _ X u => RatLevi_holds X u) Formalism.L2.SG.Pf.psiProd_all
+  Formalism.L2.SG.Pf.foldOKC_holds_of (fun _ X u => _root_.Formalism.L2.SG.Pf.Level.ksetSplit_holds X u) (fun _ X u => _root_.Formalism.L2.SG.Pf.unipotent_in_level X u)
+    (fun _ X u => _root_.Formalism.L2.SG.Pf.Level.ratLevi_holds X u) Formalism.L2.SG.Pf.psiProd_all
     (Formalism.L2.SG.Pf.iUnfoldAll_of hFL Formalism.L2.SG.Pf.noCocompactC_holds Formalism.L2.SG.Pf.SlabNDensePf.nilradical_strong_approximation)
-
-theorem InHHC_holds : InHHC := Formalism.L2.SG.Pf.inHHC_holds
 
 theorem NeatC_holds : Formalism.L2.SG.TermOp.IdBlocks.NeatC := fun _ X Y u => NeatKu_holds X u Y.hK
 

@@ -61,13 +61,6 @@ namespace GlobalTheory.HatNF
 
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.R Formalism.FourierDecayAlt.Wd Formalism.FourierDecayAlt.Fr Formalism.REAL Formalism.QuantumDeterminants MeasureTheory
 
-noncomputable section
-
-variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
-  [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq]
-
-end
-
 open MvPolynomial in
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
   [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] {k r : ℕ} in
@@ -103,16 +96,6 @@ private lemma polyOp_of_polyOp_cons {n κ : ℕ} {T : _root_.Formalism.FourierDe
 open MvPolynomial in
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
   [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] {k r : ℕ} in
-private lemma totalDegree_lin_le_one {N : ℕ} (X : Matrix (Fin N) (Fin N) ℂ) (i : _root_.PI.UnitaryGroupMassFormula.UsCompose.Vr N) :
-    (_root_.PI.UnitaryGroupMassFormula.UsCompose.lin X i).totalDegree ≤ 1 := by
-  rcases i with x | x <;>
-  · simp only [_root_.PI.UnitaryGroupMassFormula.UsCompose.lin]
-    refine (totalDegree_finsetSum _ _).trans (Finset.sup_le fun c _ => ?_)
-    exact (totalDegree_mul _ _).trans (by simp [totalDegree_C, totalDegree_X])
-
-open MvPolynomial in
-variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-  [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] {k r : ℕ} in
 private lemma totalDegree_pderiv_add_one_le_of_ne_zero {σ : Type*} (q : MvPolynomial σ ℂ) (i : σ)
     (h : pderiv i q ≠ 0) : (pderiv i q).totalDegree + 1 ≤ q.totalDegree := by
   have hne : (pderiv i q).support.Nonempty :=
@@ -131,24 +114,12 @@ private lemma totalDegree_pderiv_add_one_le_of_ne_zero {σ : Type*} (q : MvPolyn
 open MvPolynomial in
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
   [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] {k r : ℕ} in
-private lemma totalDegree_dP_le {N : ℕ} (X : Matrix (Fin N) (Fin N) ℂ)
-    (q : MvPolynomial (_root_.PI.UnitaryGroupMassFormula.UsCompose.Vr N) ℂ) : (_root_.PI.UnitaryGroupMassFormula.UsCompose.dP X q).totalDegree ≤ q.totalDegree := by
-  unfold _root_.PI.UnitaryGroupMassFormula.UsCompose.dP
-  refine (totalDegree_finsetSum _ _).trans (Finset.sup_le fun i _ => ?_)
-  by_cases h : pderiv i q = 0
-  · simp [h]
-  · exact (totalDegree_mul _ _).trans
-      ((Nat.add_le_add_left (totalDegree_lin_le_one X i) _).trans (totalDegree_pderiv_add_one_le_of_ne_zero q i h))
-
-open MvPolynomial in
-variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-  [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] {k r : ℕ} in
 private lemma exists_isPolyDeg_hasDerivAt_comp_crv {X : _root_.Formalism.FourierDecayAlt.B.Mat k r} {κ : ℕ} {Q : _root_.Formalism.FourierDecayAlt.B.Mat k r → ℂ}
     (hQ : _root_.Formalism.FourierDecayAlt.U.IsPolyDeg κ Q) : ∃ Q' : _root_.Formalism.FourierDecayAlt.B.Mat k r → ℂ, _root_.Formalism.FourierDecayAlt.U.IsPolyDeg κ Q' ∧
       ∀ g, HasDerivAt (fun t => Q (_root_.Formalism.FourierDecayAlt.P.BetaSesquilinearity.crv (false, X) g t)) (Q' g) 0 := by
   obtain ⟨q, hq, hQq⟩ := hQ
   refine ⟨fun g => MvPolynomial.eval (_root_.PI.UnitaryGroupMassFormula.UsCompose.vars g) (_root_.PI.UnitaryGroupMassFormula.UsCompose.dP X q),
-    ⟨_root_.PI.UnitaryGroupMassFormula.UsCompose.dP X q, (totalDegree_dP_le X q).trans hq, fun g => rfl⟩, fun g => ?_⟩
+    ⟨_root_.PI.UnitaryGroupMassFormula.UsCompose.dP X q, (_root_.PI.UnitaryGroupMassFormula.UsCompose.degDP X q).trans hq, fun g => rfl⟩, fun g => ?_⟩
   have e : (fun t => Q (_root_.Formalism.FourierDecayAlt.P.BetaSesquilinearity.crv (false, X) g t)) =
       fun t => MvPolynomial.eval (_root_.PI.UnitaryGroupMassFormula.UsCompose.vars (_root_.Formalism.FourierDecayAlt.P.BetaSesquilinearity.crv (false, X) g t)) q := by
     funext t

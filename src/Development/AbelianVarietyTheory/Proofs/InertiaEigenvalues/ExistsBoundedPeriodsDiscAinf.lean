@@ -60,12 +60,9 @@ theorem frobenius_ev_X_eq {l : ℕ} [Fact l.Prime] {K : FinExt l} (bk : BK K) :
     WittVector.frobenius (bk.ev X) = bk.ev X ^ l := by
   rw [← bk.ev_frob, frobS_X, map_pow]
 
-theorem BK.ρ₀_pos' {l : ℕ} [hl : Fact l.Prime] {K : FinExt l} (bk : BK K) : 0 < bk.ρ₀ :=
-  NNReal.rpow_pos (Nat.cast_pos.2 hl.out.pos)
+alias BK.ρ₀_pos' := _root_.GlobalTheory.BSP.BK.rho_zero_pos
 
-theorem BK.ρ₀_lt_one' {l : ℕ} [hl : Fact l.Prime] {K : FinExt l} (bk : BK K) : bk.ρ₀ < 1 :=
-  NNReal.rpow_lt_one_of_one_lt_of_neg (Nat.one_lt_cast.2 hl.out.one_lt)
-    (neg_neg_of_pos (one_div_pos.2 (Nat.cast_pos.2 bk.deg_pos)))
+alias BK.ρ₀_lt_one' := _root_.GlobalTheory.BSP.seedRec_ρ₀_lt_one
 
 theorem tendsto_cofinite_prod_of_finite {ι α E : Type} [Finite α] [TopologicalSpace E] {x : E}
     (f : ι × α → E) (h : ∀ a, Filter.Tendsto (fun i => f (i, a)) Filter.cofinite (nhds x)) :

@@ -50,11 +50,6 @@ noncomputable section
 
 namespace GlobalTheory.PolFan.ConeSpan
 
-theorem exists_margin {ι : Type} [Fintype ι] (M : ι → ι → ℝ)
-    (hM : ∀ c : ι → ℝ, c ≠ 0 → 0 < ∑ i, ∑ j, c i * c j * M i j) :
-    ∃ η : ℝ, 0 < η ∧ ∀ E : ι → ι → ℝ, (∀ i j, |E i j| ≤ η) → ∀ c : ι → ℝ, c ≠ 0 →
-      0 < ∑ i, ∑ j, c i * c j * (M i j + E i j) := GlobalTheory.T.exists_margin_quadForm_pos_of_perturbation M hM
-
 theorem exists_rat_span {L : Type} [AddCommGroup L] [Module.Free ℤ L] [Module.Finite ℤ L]
     (B : L →ₗ[ℤ] L →ₗ[ℤ] ℝ) : ∃ (n : ℕ) (w : Fin n → ℝ) (Q : Fin n → LinearMap.BilinForm ℤ L),
       B = ∑ j, w j • toReal (Q j) ∧ ∀ j, ∃ g : ℝ →+ ℝ, ∀ y z, (Q j y z : ℝ) = g (B y z) := GlobalTheory.T.exists_realBilinForm_eq_sum_additive_image_intForms B
@@ -78,7 +73,7 @@ theorem free_finite_int (O : Type) [CommRing O] [IsDomain O] [CharZero O] [Modul
 theorem nonneg_of_near {ι L : Type} [Fintype ι] [AddCommGroup L] (b : Module.Basis ι ℤ L)
     {B₁ : L →ₗ[ℤ] L →ₗ[ℤ] ℝ} (h : IsPosDef B₁) : ∃ η : ℝ, 0 < η ∧ ∀ (P : LinearMap.BilinForm ℤ L) (D : ℝ), 0 < D →
       (∀ i j, |(P (b i) (b j) : ℝ) / D - B₁ (b i) (b j)| ≤ η) → ∀ x, 0 ≤ P x x := by
-  obtain ⟨η, hη, hE⟩ := exists_margin (fun i j => B₁ (b i) (b j)) ((isPosDef_iff_basis b B₁).1 h)
+  obtain ⟨η, hη, hE⟩ := _root_.GlobalTheory.posDef_quad_margin (fun i j => B₁ (b i) (b j)) ((isPosDef_iff_basis b B₁).1 h)
   refine ⟨η, hη, fun P D hD hP x => ?_⟩
   have hP' : IsPosDef (toReal P) := (isPosDef_iff_basis b _).2 fun c hc => by
     have h1 := hE (fun i j => (P (b i) (b j) : ℝ) / D - B₁ (b i) (b j)) hP c hc
@@ -103,7 +98,7 @@ theorem exists_nonneg_comb_of_mem_psdCone (O : Type) [CommRing O] [IsDedekindDom
   obtain ⟨_, _⟩ := free_finite_int O X₁
   let b := Module.Free.chooseBasis ℤ X₁
   obtain ⟨η, hη, hnear⟩ := nonneg_of_near b hpos
-  obtain ⟨n, w, Q, hw, hg⟩ := exists_rat_span B₁
+  obtain ⟨n, w, Q, hw, hg⟩ := _root_.GlobalTheory.PolFan.exists_sum_toReal_additive_images B₁
   have hwv : ∀ y z, B₁ y z = ∑ k, w k * (Q k y z : ℝ) := fun y z => by
     simpa [LinearMap.sum_apply] using LinearMap.congr_fun₂ hw y z
   have hQ : ∀ k, Q k ∈ balForms bar X₁ := fun k => by

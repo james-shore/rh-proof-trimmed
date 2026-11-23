@@ -164,7 +164,7 @@ private theorem Tj_twist (w : Pl E) (n j : ℕ) (hj : j ≤ n) (ϖ : w.adicCompl
     change (Valued.v (cj w _))⁻¹ = _
     rw [GlobalTheory.PrincCong.v_cj, Matrix.GeneralLinearGroup.val_det_apply]
   have h3 : ordL (thetaGL n (cj w) x).val.det + ordL y.val.det = n := by
-    rw [← GlobalTheory.GramParity.ordL_mul (det_ne n w _) (det_ne n w _)]
+    rw [← _root_.Formalism.UG.P.fSatake_ord_mul (det_ne n w _) (det_ne n w _)]
     have hϖ : ϖ ≠ 0 := hs ▸ s.ne_zero
     have hv : Valued.v ((thetaGL n (cj w) x).val.det * y.val.det) =
         ((Multiplicative.ofAdd (-(n : ℤ)) : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by

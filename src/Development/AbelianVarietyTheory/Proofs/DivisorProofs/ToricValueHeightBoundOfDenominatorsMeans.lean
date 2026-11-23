@@ -111,11 +111,11 @@ theorem height_meanVal [StarRing K] [_root_.NumberField.IsTotallyComplex K] (σ 
       12 * Formalism.PairingDivisionLocalBalance.meanInf K (fun v => Real.log ‖v.embedding a‖) := by
     simp only [pow_zero, inv_one, mul_one, map_pow, norm_pow, Real.log_pow, Formalism.PairingDivisionLocalBalance.meanInf]
     rw [← Finset.mul_sum]; push_cast; ring
-  rw [hm, GlobalTheory.T.meanInf_log_norm_embedding_eq_log_norm_div K a ha0] at HC
+  rw [hm, _root_.GlobalTheory.meanInf_log_norm_embedding K a ha0] at HC
 
   set e := (minpoly ℚ β).natDegree with he
   have he0 : 0 < e := minpoly.natDegree_pos halg.isIntegral
-  have hnorm := GlobalTheory.T.abs_norm_minpoly_coeff_zero_pow_numberField K σ β p hp halg
+  have hnorm := _root_.GlobalTheory.NormTower.abs_norm_coeff_zero_pow K σ β p hp halg
   have hK : (0 : ℝ) < Module.finrank ℚ K := by exact_mod_cast Module.finrank_pos
   have hlogN : (e : ℝ) * Real.log |((Algebra.norm ℚ a : ℚ) : ℝ)| =
       ((d * Module.finrank ℚ K : ℕ) : ℝ) * Real.log |(((minpoly ℚ β).coeff 0 : ℚ) : ℝ)| := by

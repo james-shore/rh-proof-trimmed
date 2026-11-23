@@ -56,11 +56,6 @@ private theorem pow_inter {L M N : Type} [Field L] [AddCommGroup M] [Module L M]
   | zero => simp
   | succ n ih => rw [pow_succ, pow_succ, Module.End.mul_apply, Module.End.mul_apply, ih, h]
 
-private theorem aeval_inter {L M N : Type} [Field L] [AddCommGroup M] [Module L M] [AddCommGroup N] [Module L N]
-    (c : M →ₗ[L] N) (f : End L M) (g : End L N) (h : ∀ x, c (f x) = g (c x)) (Q : Polynomial L) (x : M) :
-    c (Polynomial.aeval f Q x) = Polynomial.aeval g Q (c x) :=
-  _root_.UpperTheory.Reformulated.B.Qi58.aeval_inter c f g h Q x
-
 theorem UpperTheory.Gal.crystallineComparison.nilSubq_of :
     AdmExact → NilEmb → NilSubq := by
   intro hA hE F G B _ _ _ _ σ ψ L _ _ e hB V W _ _ _ _ _ _ _ _ _ ρ ρ' hS hAdm
@@ -85,4 +80,4 @@ theorem UpperTheory.Gal.crystallineComparison.nilSubq_of :
     | zero => simp
     | tmul u b => simp [onPer]
     | add a b ha hb => simp only [map_add (f := _), ha, hb]
-  rw [← pow_inter _ _ _ (fun z => aeval_inter _ _ _ h1 Q z) N x, hN x hx, map_zero]
+  rw [← pow_inter _ _ _ (fun z => _root_.UpperTheory.Reformulated.B.Qi58.aeval_inter _ _ _ h1 Q z) N x, hN x hx, map_zero]

@@ -205,7 +205,7 @@ theorem GlobalTheory.LinSchur.eq_smul_of_commute : ∀ {k : Type} [Field k] [Val
   have stepE : ∀ s : k, s ≠ 0 → ∀ x ∈ V, (∀ Y, ∀ C ∈ latt ψ0 n d s, ι₁ x (Y + C) = ι₁ x Y) →
       ι₂ x = ι₂ (xs s 0) 0 • ι₁ x := by
     intro s hs x hx hper
-    obtain ⟨F, hF⟩ := GlobalTheory.T.exists_finset_eq_sum_addCosetIndicator _ (hLoc s hs).1 (ι₁ x) (maps x hx) hper
+    obtain ⟨F, hF⟩ := _root_.GlobalTheory.LinSchur.exists_finset_eq_sum_cind _ (hLoc s hs).1 (ι₁ x) (maps x hx) hper
     have hxeq : x = ∑ y ∈ F, ι₁ x y • xs s y :=
       inj _ hx _ (V.sum_mem fun y _ => V.smul_mem _ (hxsV s hs y)) (by
 
@@ -232,7 +232,7 @@ theorem GlobalTheory.LinSchur.eq_smul_of_commute : ∀ {k : Type} [Field k] [Val
     rw [hxs1 s hs 0] at e
     simpa [cind] using e
   refine ⟨ι₂ (xs 1 0) 0, fun x hx => ?_⟩
-  obtain ⟨⟨s, hs⟩, hper⟩ := GlobalTheory.T.exists_openSubgroup_periodic (fun s : {s : k // s ≠ 0} => latt ψ0 n d s) (fun s => (hLoc s.1 s.2).1)
+  obtain ⟨⟨s, hs⟩, hper⟩ := _root_.GlobalTheory.WeilM.SB.exists_periodic (fun s : {s : k // s ≠ 0} => latt ψ0 n d s) (fun s => (hLoc s.1 s.2).1)
     (fun W hW => by
       obtain ⟨s, hs, h⟩ := hBasis W hW
       exact ⟨⟨s, hs⟩, h⟩) (ι₁ x) (maps x hx)

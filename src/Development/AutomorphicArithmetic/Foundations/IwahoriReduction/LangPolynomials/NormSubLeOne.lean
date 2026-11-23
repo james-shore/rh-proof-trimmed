@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.LemmaTwoOf
 
 @[expose] public section
 
@@ -68,11 +69,6 @@ private theorem norm_sum_le_one {K ι : Type} [NormedField K] [IsUltrametricDist
     (h : ∀ i ∈ s, ‖f i‖ ≤ 1) : ‖∑ i ∈ s, f i‖ ≤ 1 :=
   IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg zero_le_one h
 
-private theorem norm_sub_le_one {K : Type} [NormedField K] [IsUltrametricDist K] {a b : K} (ha : ‖a‖ ≤ 1) (hb : ‖b‖ ≤ 1) :
-    ‖a - b‖ ≤ 1 := by
-  rw [sub_eq_add_neg]
-  exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le ha (by rwa [norm_neg]))
-
 private theorem nmul {K : Type} [NormedField K] {a b : K} (ha : ‖a‖ ≤ 1) (hb : ‖b‖ ≤ 1) : ‖a * b‖ ≤ 1 := by
   rw [norm_mul]; exact mul_le_one₀ ha (norm_nonneg _) hb
 
@@ -97,7 +93,7 @@ private theorem intg_lin (φ : DirichletCharacter (Qbar l) l) (k r : ℕ) (ξ : 
     φ (x : ZMod l) * ((x : Qbar l) ^ k) * (ξ ^ (l ^ r - (i * x) % l ^ r) * (ξ ^ i - 1) ^ n), fun n => ?_, fun L => ?_⟩
   · refine norm_sum_le_one _ _ fun x _ => norm_sum_le_one _ _ fun i _ => ?_
     exact nmul (nmul (norm_chi φ _) (npow (IsUltrametricDist.norm_natCast_le_one _ _) _))
-      (nmul (npow h1 _) (npow (norm_sub_le_one (npow h1 _) norm_one.le) _))
+      (nmul (npow h1 _) (npow (_root_.Formalism.InvariantFactorPaths.G7.LemTwo.norm_sub_le_one (npow h1 _) norm_one.le) _))
   · simp only [intg, mass, tval, Finset.mul_sum, Finset.sum_mul]
     symm
     rw [Finset.sum_comm]

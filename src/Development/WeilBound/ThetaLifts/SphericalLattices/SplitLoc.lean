@@ -119,7 +119,7 @@ theorem avgL {Φ : Matrix (Fin n) (Fin d) k → ℂ} (hΦ : Φ ∈ GlobalTheory.
       ∀ h : GL (Fin n) k, h ∈ GlobalTheory.SplitWeil.KO k (Fin n) → ∀ Y : Matrix (Fin n) (Fin d) k,
         ∑ i, Φ (((g i)⁻¹).val * (h.val * Y)) = ∑ i, Φ (((g i)⁻¹).val * Y) := by
   have : CompactSpace (GlobalTheory.SplitWeil.KO k (Fin n)) := isCompact_iff_compactSpace.1 isCompact_KO
-  obtain ⟨m, g, hg⟩ := exists_fixed_sum (actL n d) Φ (stabL hΦ)
+  obtain ⟨m, g, hg⟩ := _root_.UpperTheory.Reformulated.B.InvariantSumOfTranslates.main (actL n d) Φ (stabL hΦ)
   refine ⟨m, fun i => g i, fun i => (g i).2, fun h hh Y => ?_⟩
   have := congrFun (hg (⟨h, hh⟩ : GlobalTheory.SplitWeil.KO k (Fin n))⁻¹) Y
   simpa [actL, Finset.sum_apply, Matrix.mul_assoc] using this
@@ -129,7 +129,7 @@ theorem avgR {Φ : Matrix (Fin n) (Fin d) k → ℂ} (hΦ : Φ ∈ GlobalTheory.
       ∀ h : GL (Fin d) k, h ∈ GlobalTheory.SplitWeil.KO k (Fin d) → ∀ Y : Matrix (Fin n) (Fin d) k,
         ∑ i, Φ (Y * h.val * (g i).val) = ∑ i, Φ (Y * (g i).val) := by
   have : CompactSpace (GlobalTheory.SplitWeil.KO k (Fin d)) := isCompact_iff_compactSpace.1 isCompact_KO
-  obtain ⟨m, g, hg⟩ := exists_fixed_sum (actR n d) Φ (stabR hΦ)
+  obtain ⟨m, g, hg⟩ := _root_.UpperTheory.Reformulated.B.InvariantSumOfTranslates.main (actR n d) Φ (stabR hΦ)
   refine ⟨m, fun i => g i, fun i => (g i).2, fun h hh Y => ?_⟩
   have := congrFun (hg (⟨h, hh⟩ : GlobalTheory.SplitWeil.KO k (Fin d))) Y
   simpa [actR, Finset.sum_apply, Matrix.mul_assoc] using this

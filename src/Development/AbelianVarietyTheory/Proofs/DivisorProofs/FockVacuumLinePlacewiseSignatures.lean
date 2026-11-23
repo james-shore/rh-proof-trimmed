@@ -76,7 +76,7 @@ theorem vacLineD : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
   intro F E _ _ _ _ _ σ α β κ _ _ _ _ _ P Q R S ψ τ JA JB d a b A C Φ hCM hStd hFr hΦ f₀ ε hyp
   have hD : DerEx := GlobalTheory.T.archHeisenbergDerivatives_exist
   obtain ⟨D, hDu⟩ := hD F E σ α β κ ψ JA JB d hStd
-  obtain ⟨J, e, e', hJ, he, hJe, he1, he2, hy⟩ := GlobalTheory.T.exists_archimedeanPhaseSpace_complexStructure_signatures F E σ α β κ P Q R S τ JA JB d a b A C ε hCM hFr
+  obtain ⟨J, e, e', hJ, he, hJe, he1, he2, hy⟩ := _root_.GlobalTheory.HoweD.exists_bridgeD F E σ α β κ P Q R S τ JA JB d a b A C ε hCM hFr
   have hDx : ∀ u, At (evI F) u → ∀ (f : SInf F κ) x, D u f x = fderiv ℝ f x (coord d u).1 -
       2 * Real.pi * Complex.I * (trPair F κ x (coord d u).2 : ℝ) * f x := fun u hu f x => (hDu u hu f).2 x
   have hf : ∀ y x, fderiv ℝ f₀ x (J (y - (2 : ℝ) • e y)).1 - 2 * Real.pi * Complex.I *

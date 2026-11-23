@@ -58,7 +58,7 @@ theorem psiIn_maximalIdeal_of_ne_zero : ∀ (V : Type) [CommRing V] [IsDomain V]
   intro V _ _ _ hV D hT hE hfin χ hχ
   have : IsDiscreteValuationRing V := hV.1
   obtain ⟨ga, a, ha⟩ := exists_psiScal V D
-  have hc := GlobalTheory.T.psiScalars_relations_up_to_baseUnits V D ga a ha
+  have hc := _root_.GlobalTheory.PsiScalUnit.main V D ga a ha
   have hm : IsLocalRing.maximalIdeal V ≠ ⊥ := IsDiscreteValuationRing.not_a_field V
   have hiff := fun x => psiIn_iff_scalar_mem V D ga a ha x _ hm
   rw [hiff]

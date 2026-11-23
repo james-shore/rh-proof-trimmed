@@ -66,9 +66,7 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ}
     (W : LocWach PD LL O v n)
 
-theorem map_smulA {T T' : LocLat G Qp LL O} (f : LatHom T.L T'.L) (a : LetA O n) (x : W.DD T) :
-    W.map f (a • x) = a • W.map f x := by
-  rw [← algebraMap_smul W.EE a x, LinearMap.map_smul, algebraMap_smul]
+alias map_smulA := _root_.GlobalTheory.NL.PhiSpanKer.map_smulA
 
 theorem sum_letE [NeZero n] : ∑ i : ZMod n, (letE i : LetA O n) = 1 := by
   funext j
@@ -157,7 +155,7 @@ theorem crystalline_extension_integral_cocycle_all_places : ∀ (D : Formalism.B
         exact GlobalTheory.EtaleExact.isUnit_or_dvd_pow (D.loc l) LL) (by
         rw [hp]
         exact GlobalTheory.EtaleExact.sep_RW LL)) T Tp ((HW l).W K s LL h).one ι π hses).2.1
-  have hsat := GlobalTheory.T.mem_wachN_of_map_mem_saturated D HW F l K s LL h T Tp ((HW l).W K s LL h).one ι π hT hTp
+  have hsat := _root_.GlobalTheory.NL.KerSat.mem_N_of_map_mem D HW F l K s LL h T Tp ((HW l).W K s LL h).one ι π hT hTp
     (GlobalTheory.NL.one_crys (HW l) h) hses
   have hjs := GlobalTheory.NL.JumpsSES.jumps_ses_and_one D HW l K s LL h T Tp ((HW l).W K s LL h).one ι π hTp hses
   have hjTp : JumpsLet ((HW l).W K s LL h) Tp M hh := by

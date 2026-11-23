@@ -87,18 +87,6 @@ theorem bdd_om_core {ψ : AddChar (AF D.host.F) ℂ} {ρ : ℕ} {B : BesLev D ρ
   rw [← key]
   exact hcb _ ⟨γ * h₀, hk, rfl⟩ _
 
-theorem continuous_kappa {ρ : ℕ} {B : BesLev D ρ} {L' : HSp D} {ζ' : Fin L'.rank → D.host.E} (l : Link B L' ζ')
-    (S : HSp D) : Continuous (l.κ S) := by
-  unfold Link.κ GlobalTheory.IndefiniteRowSideFullHecke.SkewGramHalfModule.ofAdj
-  have h1 : Continuous fun w : WO S L' => ((rat l.τ : Mx D B.L.rank L'.rank) ⬝ w : Mx D B.L.rank S.rank) :=
-    continuous_const.matrix_mul continuous_id
-  have h2 : Continuous fun w : WO S L' => (adj ((rat l.τ : Mx D B.L.rank L'.rank) ⬝ w) : Mx D S.rank B.L.rank) :=
-    continuous_adj.comp h1
-  have h3 : Continuous fun w : WO S L' =>
-      (giA S ⬝ (adj ((rat l.τ : Mx D B.L.rank L'.rank) ⬝ w) ⬝ gA B.L) : Mx D S.rank B.L.rank) :=
-    continuous_const.matrix_mul (h2.matrix_mul continuous_const)
-  exact h3.const_smul (incA D (-D.host.xi0⁻¹))
-
 theorem continuous_core {ψ : AddChar (AF D.host.F) ℂ} {ρ : ℕ} {B : BesLev D ρ} {J : JacLev D ρ} (s : StepBF ψ B J)
     {L' : HSp D} {ζ' : Fin L'.rank → D.host.E} (l : Link B L' ζ') {Ξ : WO B.V₀ J.W₀ → ℂ}
     (hΞ : IsThetaFunO ψ B.V₀ J.W₀ Ξ) (h₁ : GA D J.W₀) :
@@ -106,7 +94,7 @@ theorem continuous_core {ψ : AddChar (AF D.host.F) ℂ} {ρ : ℕ} {B : BesLev 
       s.om₀ (B.o.emb (p.2, 1), h₁) Ξ ((B.o.resS J.W₀).symm (0, l.κ J.W₀ p.1)) := by
   have hj := GlobalTheory.T.weilDatum_theta_jointlyContinuous D ψ B.V₀ J.W₀ s.χV s.χW s.om₀ s.weil₀ Ξ hΞ
   exact hj.comp (((B.o.continuous_emb.comp (continuous_snd.prodMk continuous_const)).prodMk continuous_const).prodMk
-    ((B.o.continuous_resS_symm J.W₀).comp (continuous_const.prodMk ((continuous_kappa l J.W₀).comp continuous_fst))))
+    ((B.o.continuous_resS_symm J.W₀).comp (continuous_const.prodMk ((_root_.GlobalTheory.ContrKernel.continuous_kappa l J.W₀).comp continuous_fst))))
 
 end GlobalTheory.Unf.Contr
 

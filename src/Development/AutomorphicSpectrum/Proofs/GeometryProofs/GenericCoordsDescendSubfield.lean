@@ -74,14 +74,6 @@ namespace GlobalTheory.CompanionTheory.Ar.SatModel
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X} {Li : Type} [AddCommGroup Li]
   [Module Ω Li]
 
-theorem flagStep_self {r : ℕ} (b : Fin r → Li) : flagStep Ω b r = Submodule.span Ω (Set.range b) := by
-  have : b '' {k | (k : ℕ) < r} = Set.range b := by
-    rw [← Set.image_univ]
-    congr 1
-    ext k
-    simp [k.2]
-  rw [flagStep, this]
-
 theorem spMap_dualMap_id : spMap (dualMap (RingHom.id Ω)) = 𝟙 (Sp (DualNumber Ω)) := by
   have : dualMap (RingHom.id Ω) = RingHom.id (DualNumber Ω) := by
     ext a <;> simp [dualMap]
@@ -98,7 +90,7 @@ theorem isVBOn_of_isFlagVBOn {L : Lat ξ Li} {T : Set (Cpt ξ)} {r : ℕ} {b₀ 
     L.IsVBOn T r (Submodule.span Ω (Set.range b₀)) := by
   intro p hp
   obtain ⟨U, hU, b, hb, hf⟩ := h p hp
-  exact ⟨U, hU, b, by rw [← flagStep_self, ← flagStep_self, hb], hf⟩
+  exact ⟨U, hU, b, by rw [← _root_.GlobalTheory.CompanionTheory.Ar.FlagGr.step_top, ← _root_.GlobalTheory.CompanionTheory.Ar.FlagGr.step_top, hb], hf⟩
 
 theorem mem_span_gp_iff (hg : IsCptGen ξ) (S : Set Li) (x : Li) :
     x ∈ Submodule.span (regAt ξ (Flat.ZLat.gp ξ)) S ↔ x ∈ Submodule.span Ω S := by
@@ -117,7 +109,7 @@ theorem span_eq_of_isFlagVBOn (hg : IsCptGen ξ) {L : Lat ξ Li} {n : ℕ} (hL :
   obtain ⟨-, hfr⟩ := hf _ hT hU
   obtain ⟨U', hU', c, hc, hf'⟩ := hL (Flat.ZLat.gp ξ) trivial
   obtain ⟨-, hfr'⟩ := hf' _ trivial hU'
-  rw [← flagStep_self, ← hb, flagStep_self]
+  rw [← _root_.GlobalTheory.CompanionTheory.Ar.FlagGr.step_top, ← hb, _root_.GlobalTheory.CompanionTheory.Ar.FlagGr.step_top]
   ext x
   rw [← mem_span_gp_iff hg, ← hfr]
   show x ∈ L (Flat.ZLat.gp ξ) ⊓ V.restrictScalars _ ↔ _
@@ -353,7 +345,7 @@ theorem lat_eq_iSup_of_char0 {E : Type} [Field E] [NumberField E] [IsCMField E] 
     ∀ q : Cpt ξ, (∀ r : ℕ, r.Prime → ¬ InFibre ξ r q) →
       M.lat q = ⨆ s : CMType H ⊕ CMType H, M.lat.inter (eigSp ρ (cst.comp (labelEmb c s))) q := by
   haveI : Fintype (CMType H ⊕ CMType H) := Fintype.ofFinite _
-  have hl := GlobalTheory.T.label_embedding_injective E H l c
+  have hl := _root_.GlobalTheory.CompanionTheory.Ar.labels_all_once E H l c
   have hinj : Function.Injective fun s : CMType H ⊕ CMType H => cst.comp (labelEmb c s) := by
     intro s s' h
     exact hl.1 (RingHom.ext fun a => cst.injective (congrArg (fun φ : 𝓞 E →+* Ω => φ a) h))

@@ -188,7 +188,7 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Cusp.normTw :
       rw [GlobalTheory.T.lie_central_element_trace E N, LinearMap.sum_apply, Finset.sum_congr rfl fun τ _ => hsum τ, ← Finset.sum_smul]
     have hz : ∑ τ : E →+* ℂ, ((m τ).sum + N * s) = 0 := by
       refine GlobalTheory.CompanionTheory.TotalTrace.eq_zero_of_exp_mul_eq_one fun t => ?_
-      have h1 := GlobalTheory.T.central_eigen_exponential E N _ _ hlie t g₀
+      have h1 := _root_.GlobalTheory.CompanionTheory.Clozel.eigen_along_splitCentre E N _ _ hlie t g₀
       rw [hs _ hψ t g₀] at h1
       have h2 : Complex.exp ((∑ τ : E →+* ℂ, ((m τ).sum + N * s)) * t) * (mulChi N (Model.absC E s) φ).1 g₀ =
           1 * (mulChi N (Model.absC E s) φ).1 g₀ := by rw [one_mul]; exact h1.symm

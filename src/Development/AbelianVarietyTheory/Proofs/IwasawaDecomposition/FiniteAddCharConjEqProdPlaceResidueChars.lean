@@ -105,7 +105,7 @@ theorem psiEf_conj_eq_prod : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Forma
   intro D X _h _hι hg
   refine ⟨fun kv => psiK D kv.1, fun kv => psiK_ne_one D kv.1, ?_⟩
   intro s t u ht hu
-  obtain ⟨_, _, hcard0⟩ := GlobalTheory.T.places_over_typePrime_chosen_and_conj D 0
+  obtain ⟨_, _, hcard0⟩ := _root_.GlobalTheory.PlacesOverG.places_over_g_k D 0
   obtain ⟨v0⟩ : Nonempty (D.nd.PlG 0) := by
     by_contra hc
     rw [not_nonempty_iff] at hc
@@ -116,7 +116,7 @@ theorem psiEf_conj_eq_prod : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Forma
     have h2 : (((t ⟨0, v0⟩).val : ℕ) : X.B.I.E ⊗[X.B.I.F] Formalism.MainNotions.S.Af X.B.I.F) ∈ Formalism.MainNotions.S.IntAf X.B.I.F X.B.I.E :=
       natCast_mem _ _
     simpa using add_mem h1 h2
-  obtain ⟨α, hα⟩ := GlobalTheory.T.exists_integer_lift_mod_nat_integralAdeleTensor D X s hs
+  obtain ⟨α, hα⟩ := _root_.GlobalTheory.Mem.LiftModG.exists_lift_mod_g D X s hs
   set a := Formalism.UG.inclE (F := X.B.I.F) (Formalism.MainNotions.S.Af X.B.I.F) (X.ιE.symm (α : D.host.E)) with ha
   have hg0 : X.B.g ≠ 0 := by
     rw [X.g_eq]; exact mul_ne_zero (D.host.g_prime 0).ne_zero (D.host.g_prime 1).ne_zero
@@ -124,7 +124,7 @@ theorem psiEf_conj_eq_prod : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Forma
     conv_lhs => rw [show s = a + (s - a) by ring]
     rw [Formalism.L2.SG.Pf.unitaryCongruence.divN_add, X.psiEf_add,
       Formalism.L2.SG.Pf.unitaryCongruence.psi_Z X.B.I X.B.g X.psiEf_add X.psiEf_int hg0 hα, mul_one]
-  rw [hstep, GlobalTheory.T.star_finiteAddChar_div_nat_eq_exp_trace D X α]
+  rw [hstep, _root_.GlobalTheory.Mem.CharRat.star_psiEf_divN_inclE D X α]
   have hres : ∀ kv : (Σ k : Fin 2, D.nd.PlG k),
       α - (((t kv).val : ℕ) : 𝓞 D.host.E) ∈ (D.naut.plGw kv.1 kv.2).asIdeal ∧
       α - (((u kv).val : ℕ) : 𝓞 D.host.E) ∈ (GlobalTheory.IdemSupport.cP (D := D) (D.naut.plGw kv.1 kv.2)).asIdeal := by
@@ -132,14 +132,14 @@ theorem psiEf_conj_eq_prod : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Forma
     have hZ : s - a ∈ GlobalTheory.Mem.SymChar.wInt X (D.naut.plGw kv.1 kv.2) :=
       GlobalTheory.Mem.SymChar.wInt_of_zmod X kv.1 (hg kv) hα
     constructor
-    · apply GlobalTheory.T.mem_prime_of_inclE_mem_placeIdealIntegralAdelicSpan D X
+    · apply _root_.GlobalTheory.Mem.SymChar.mem_of_inclE_mem_wInt D X
       have e : Formalism.UG.inclE (F := X.B.I.F) (Formalism.MainNotions.S.Af X.B.I.F)
           (X.ιE.symm (((α - (((t kv).val : ℕ) : 𝓞 D.host.E) : 𝓞 D.host.E)) : D.host.E)) =
           (s - (((t kv).val : ℕ) : X.B.I.E ⊗[X.B.I.F] Formalism.MainNotions.S.Af X.B.I.F)) - (s - a) := by
         rw [ha]; push_cast; rw [map_sub, map_natCast, map_sub, map_natCast]; ring
       rw [e]; exact sub_mem (ht kv) hZ
     · rw [GlobalTheory.IdemSupport.mem_cP, map_sub, map_natCast]
-      apply GlobalTheory.T.mem_prime_of_inclE_mem_placeIdealIntegralAdelicSpan D X
+      apply _root_.GlobalTheory.Mem.SymChar.mem_of_inclE_mem_wInt D X
       have hZ' : sigA X.B.I s - sigA X.B.I a ∈ GlobalTheory.Mem.SymChar.wInt X (D.naut.plGw kv.1 kv.2) := by
         rw [← map_sub]
         exact GlobalTheory.Mem.SymChar.wInt_of_zmod X kv.1 (hg kv) (Formalism.L2.SG.Pf.unitaryCongruence.Z_sig X.B.I X.B.g hα)
@@ -175,6 +175,6 @@ theorem psiEf_conj_eq_prod : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Forma
   have hcop : Nat.Coprime (D.host.g 0) (D.host.g 1) :=
     (Nat.coprime_primes (D.host.g_prime 0) (D.host.g_prime 1)).2 D.host.g_ne
   rw [X.g_eq]
-  exact GlobalTheory.T.exp_div_mul_eq_stdAddChar_mul_of_coprime (D.host.g 0) (D.host.g 1) hcop _
+  exact _root_.GlobalTheory.exp_two_pi_I_div_mul_eq_stdAddChar_mul (D.host.g 0) (D.host.g 1) hcop _
 
 end GlobalTheory.Mem.SymChar.CharProd

@@ -214,7 +214,7 @@ theorem exists_arcIn_of_unif {V : ValuationSubring c.F} (Y : Model Xo c V.subtyp
       rw [pullback.condition, Category.assoc, ← Category.assoc z, hz, spMap_comp, spMap_comp])
     have finj : Function.Injective f := by
       rw [hf]; exact (algebraMap T.Fr F).injective.comp (IsFractionRing.injective T.V T.Fr)
-    refine ⟨fun τ => GlobalTheory.T.generic_lie_multiplicities_uniformised_group E H T t P F f finj τ _ ?_, ?_⟩
+    refine ⟨fun τ => _root_.GlobalTheory.LieUnif.lieMult_unif E H T t P F f finj τ _ ?_, ?_⟩
     · rw [LiePull.lieMult_pull _ _ _ _ _ _ _ _ _ m.cart m.act]
       have e : spMap f ≫ χ = (jFK (R := T.V) F ≫ z) ≫ Y.j := by
         rw [Category.assoc, hj, hf, spMap_comp]; exact Category.assoc _ _ _

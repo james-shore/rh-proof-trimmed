@@ -113,9 +113,6 @@ theorem eigenvectors_sum_zero_eq_zero {ι κ A : Type} [DecidableEq ι] [AddComm
       exact ih _ hts v (fun i hi k' => hv i (Finset.filter_subset _ _ hi) k') hsum_t a
         (Finset.mem_filter.mpr ⟨ha, rfl⟩)
 
-theorem GlobalTheory.CompanionTheory.PresRho.eq_zero_of_sum_weightVec :
-    ∀ {ι κ A : Type} [DecidableEq ι] [inst : AddCommGroup A] [inst_1 : _root_.Module ℂ A] (T : κ → Module.End ℂ A) (f : ι → κ → ℂ), Function.Injective f → ∀ (s : Finset ι) (v : ι → A), (∀ i ∈ s, ∀ (k : κ), DFunLike.coe (T k) (v i) = f i k • v i) → ∑ i ∈ s, v i = OfNat.ofNat (nat_lit 0) → ∀ i ∈ s, v i = OfNat.ofNat (nat_lit 0) := by
-  intro ι κ A _ _ _ T f hf s v hv hsum
-  exact eigenvectors_sum_zero_eq_zero T f hf s v hv hsum
+alias GlobalTheory.CompanionTheory.PresRho.eq_zero_of_sum_weightVec := _root_.UpperTheory.Reformulated.B.P6.r14a.eigenvectors_sum_zero_eq_zero
 
 end UpperTheory.Reformulated.B.P6.r14a

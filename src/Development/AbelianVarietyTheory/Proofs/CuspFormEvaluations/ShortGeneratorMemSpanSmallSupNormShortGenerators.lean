@@ -110,7 +110,7 @@ theorem sh_mem_span_small : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartI
     exact mul_le_mul_of_nonneg_left hdf (by positivity)
   have hl1 : l1At σ (Q i).1 ≤ Real.exp (140 * D.R.r * large₂.sc.L * absA w) :=
     (Real.le_exp_log _).trans (Real.exp_le_exp.2 hb)
-  have hsup := GlobalTheory.T.log_supNorm_shortThetaGenerator_le hCI D T h hG large₂ j hj w hP hL hrn (ReciprocityTheory.ChartRestriction.G.PullbackSections.Pf.lastPos_wtA h hj w hlp) hS hA
+  have hsup := _root_.GlobalTheory.RunIn.log_sup_short_generator_le hCI D T h hG large₂ j hj w hP hL hrn (ReciprocityTheory.ChartRestriction.G.PullbackSections.Pf.lastPos_wtA h hj w hlp) hS hA
     Λ N x0 (Q i).1 (gs i) hU hT1 hT2 hLev hAdm (hQ i) (hgs2 i) (hgs1 i) σ _ (by positivity) hl1
   exact hsup.trans (GlobalTheory.T.supBounds_le_generatorConstant_mul_size D (recB h.toLawsCore) large₂ j w 0 hL (by omega)).1
 

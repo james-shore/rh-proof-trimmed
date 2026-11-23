@@ -155,12 +155,6 @@ theorem sEmb_mul_uG (i t : ℕ) (m : Mir k ((i + 1) + t)) (v : Fin ((i + 1) + (t
   apply Subtype.ext
   exact glEmb_mul_unip' k ((i + 1) + t + 1) (m : GL (Fin ((i + 1) + t + 1)) k) (Multiplicative.ofAdd v)
 
-theorem dEmb_add (i t : ℕ) (d e : Fin (t + 1) → k) : dEmb k i t (d + e) = dEmb k i t d * dEmb k i t e := by
-  rw [dEmb_eq, dEmb_eq, dEmb_eq, ← uG_add]
-  congr 1
-  funext x
-  refine Fin.addCases (fun a => ?_) (fun b => ?_) x <;> simp
-
 def keyC {i t : ℕ} (m : Mir k ((i + 1) + t)) (v : Fin ((i + 1) + (t + 1)) → k) : Fin (i + 1) → k :=
   fun a => mv m v (Fin.castAdd (t + 1) a)
 
@@ -179,7 +173,7 @@ theorem key {i t : ℕ} (m : Mir k ((i + 1) + t)) (v : Fin ((i + 1) + (t + 1)) �
       uG (i + 1) (t + 1) (Fin.append (keyC m v) (0 : Fin (t + 1) → k)) *
         (dEmb k i t (d + keyD m v) * sEmb k _ m) := by
   have hs := append_split (i + 1) (t + 1) (mv m v)
-  rw [mul_assoc, sEmb_mul_uG, ← mul_assoc, ← mul_assoc, dEmb_add]
+  rw [mul_assoc, sEmb_mul_uG, ← mul_assoc, ← mul_assoc, _root_.GlobalTheory.CompanionTheory.BZPhiPG.Fib.dEmb_add]
   conv_lhs => rw [hs, uG_add]
   rw [dEmb_eq, dEmb_eq]
   congr 1

@@ -76,22 +76,6 @@ theorem intCast_of_dvd {m n : ℕ} (h : m ∣ n) {x a : ℤ} (hx : ((x : ℤ) : 
   have := congrArg (ZMod.castHom h (ZMod m)) hx
   simpa using this
 
-theorem isDia_mul {N l : ℕ} {d e : ℤ} {σ τ : SL(2, ℤ)} (hσ : GlobalTheory.Hk.IsDia N l d σ)
-    (hτ : GlobalTheory.Hk.IsDia N l e τ) : GlobalTheory.Hk.IsDia N l (d * e) (σ * τ) := by
-  obtain ⟨h1, h2⟩ := hσ
-  obtain ⟨h3, h4⟩ := hτ
-  have h1' : ((σ 1 0 : ℤ) : ZMod N) = 0 := by
-    simpa using intCast_of_dvd (dvd_mul_right N l) (a := 0) (by simpa using h1)
-  refine ⟨?_, ?_⟩
-  · simp only [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
-    push_cast
-    rw [h1, h3]
-    ring
-  · simp only [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
-    push_cast
-    rw [h1', h2, h4]
-    ring
-
 theorem gamma_le_lev (N l : ℕ) : Gamma (N * l) ≤ Lev N l := by
   intro γ hγ
   rw [Gamma_mem] at hγ
@@ -261,8 +245,8 @@ theorem heckeDiamond_commute_mod_coboundaries_gamma1Gamma0_alt : ∀ (N l k : �
     exact GlobalTheory.Hk.uOp_dia_comm N l l k (mat τ 1 1) τ hN0 hl0 hl (dvd_mul_left l N) dτ f
   · intro f
     simp only [eD]
-    exact (GlobalTheory.Hk.dia_mul N l k _ _ τ' τ (τ' * τ) hN0 dτ' dτ (isDia_mul dτ' dτ) f).trans
+    exact (GlobalTheory.Hk.dia_mul N l k _ _ τ' τ (τ' * τ) hN0 dτ' dτ (_root_.GlobalTheory.Hk.isDia_mul dτ' dτ) f).trans
       (GlobalTheory.Hk.dia_mul N l k _ _ τ τ' (τ' * τ) hN0 dτ dτ'
-        (by rw [mul_comm (mat τ 1 1)]; exact isDia_mul dτ' dτ) f).symm
+        (by rw [mul_comm (mat τ 1 1)]; exact _root_.GlobalTheory.Hk.isDia_mul dτ' dτ) f).symm
 
 end GlobalTheory.HeckeFamilyMatrices.Comm

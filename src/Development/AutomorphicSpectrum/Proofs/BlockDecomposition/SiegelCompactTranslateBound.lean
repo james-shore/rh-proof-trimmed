@@ -106,7 +106,7 @@ theorem exists_denom : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     Units.continuous_val.comp (isEmbedding_matHom (Af F) σ J).continuous
   have hf : ∀ q, Continuous (f q) := fun q =>
     ((continuous_const.matrix_mul hcont).matrix_mul continuous_const).matrix_elem _ _
-  obtain ⟨d, hd, h⟩ := GlobalTheory.T.compact_finite_adelic_denominator F E (⋃ q, f q '' Cf) (isCompact_iUnion fun q => hCf.image (hf q))
+  obtain ⟨d, hd, h⟩ := _root_.GlobalTheory.CompanionTheory.AdeleDenom.exists_nat_mul_isIntegral_of_isCompact F E (⋃ q, f q '' Cf) (isCompact_iUnion fun q => hCf.image (hf q))
   refine ⟨d, hd, fun p hp a ha m hm γ hγ α β u v => h _ (Set.mem_iUnion.2 ⟨(α, β, u, v), projFin σ J (ratEmb σ J γ), ⟨(p, m), ⟨hp, hm⟩, ?_⟩, ?_⟩)⟩
   · have ha' : projFin σ J a = 1 := mem_infPts.1 ha
     simp only [hγ, map_mul, map_inv, ha', mul_one, one_mul, inv_one]

@@ -179,7 +179,7 @@ theorem main : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (
   obtain ⟨D', ⟨U'⟩⟩ := GlobalTheory.PowE8.exists_unif_pow8 g n _ _ F W hW T.V hCN T.D T.G T.A T.U T.y T.α T.α₂ T.semi T.cart
     T.sq T.lb P hS
   obtain ⟨pr, hpr, huniv, hL, hε⟩ := exists_proj F W T P ε hD
-  obtain ⟨pG, c, e, hpG, hgen, hc, he⟩ := GlobalTheory.T.eighthPower_projections_extend_uniformisedGroups T.V hB T.dvr T.G T.semi T.D T.A T.U _ hG' D' P U' W hW pr hpr
+  obtain ⟨pG, c, e, hpG, hgen, hc, he⟩ := _root_.GlobalTheory.Poinc.Eq8.e8data T.V hB T.dvr T.G T.semi T.D T.A T.U _ hG' D' P U' W hW pr hpr
     huniv hL
   have hnn : ∀ a, 0 ≤ T.β a a := fun a => by
     by_cases ha : a = 0
@@ -187,12 +187,12 @@ theorem main : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (
     · exact (GlobalTheory.Poinc.Trait.beta_pos g n _ _ F T a ha).le
   refine ⟨powObj T.G 8, inferInstance, inferInstance, hG', D', U', e, fun y => ?_, ?_⟩
   · obtain ⟨r, hr⟩ := (GlobalTheory.PeriodFormCompare.exists_psiCoord_iff _ y).2 (GlobalTheory.PeriodFormCompare.psiIn_top D' y)
-    obtain ⟨-, h⟩ := GlobalTheory.T.eighthPower_psiOrders_projectionLatticeCoordinates T.V hB T.dvr T.G T.semi T.D T.A T.U _ hG' D' P U' W hW pr hpr huniv hL pG hpG hgen c hc
+    obtain ⟨-, h⟩ := _root_.GlobalTheory.Poinc.E8Lattice.main T.V hB T.dvr T.G T.semi T.D T.A T.U _ hG' D' P U' W hW pr hpr huniv hL pG hpG hgen c hc
       e he T.ϖ T.β T.symm hnn (tau_coord T) y r hr
     obtain ⟨v, hv⟩ := h.symm
     exact ⟨v, by rw [mul_comm, hv]; exact hr⟩
   · rintro K _ _ _ m pk pk' x x' E hm h h' rfl
-    exact GlobalTheory.T.matrix_acts_on_torsion_labels_alt T.V hB T.dvr T.G T.semi T.D T.A T.U _ hG' D' P U' W hW pr hpr huniv hL pG hpG hgen c hc e he E (ε E)
+    exact _root_.GlobalTheory.Poinc.Eq8.MatTors.matrix_acts_on_torsion_labels T.V hB T.dvr T.G T.semi T.D T.A T.U _ hG' D' P U' W hW pr hpr huniv hL pG hpG hgen c hc e he E (ε E)
       (hε E) K m pk pk' x hm h h'
 
 end GlobalTheory.EighthTorsion

@@ -53,16 +53,13 @@ open GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects NumberFie
 
 namespace GlobalTheory.RefSum.WFree
 
-theorem conj_eq_neg {z : ℂ} {d : ℕ} (hd : 0 < d) (h : z ^ 2 = -(d : ℂ)) : (starRingEnd ℂ) z = -z ∧ z ≠ 0 :=
-  _root_.GlobalTheory.ClosingLemmaFourth.main hd h
-
 theorem two_mul_sum_mult {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
     (Dw : Datum H) : 2 * ∑ τ : E →+* ℂ, Dw.mult τ = Module.finrank ℚ E * (Dw.p + Dw.q) := by
   have key : ∀ τ : E →+* ℂ, Dw.mult τ + Dw.mult (ComplexEmbedding.conjugate τ) = Dw.p + Dw.q := fun τ => by
     have hs : τ (H.rt : E) ^ 2 = -(H.d : ℂ) := by
       have := congrArg (fun a : 𝓞 E => τ (a : E)) H.rt_sq
       simpa using this
-    obtain ⟨h1, h2⟩ := conj_eq_neg H.d_prime.pos hs
+    obtain ⟨h1, h2⟩ := _root_.GlobalTheory.ClosingLemmaFourth.main H.d_prime.pos hs
     have h3 : ComplexEmbedding.conjugate τ (H.rt : E) = -τ (H.rt : E) := h1
     unfold Datum.mult
     rw [h3]

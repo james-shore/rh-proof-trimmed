@@ -76,7 +76,7 @@ theorem exists_root (A : HodgeCpt Y S y) (x : Sp Ω ⟶ Xo.XF c) (hx : A.ξ ≫ 
   let q : Cpt A.ξ := ⟨_, specializes_rfl⟩
   exact (GlobalTheory.T.full_torsion_integrally_closed E H D l (KA l) (baseKA l) A.X Ω A.ξ s0 o A.t m0 A.Li A.M (p ^ A.R p) q A.tie.gen
     (pow_pos (A.S_prime p hp).pos _) (A.tors p hp) (A.normal q.1).2
-    (HcptPull.noeth_stalk A.tie.gen q ((GlobalTheory.T.regAt_noetherian_model_noetherian A.X Ω A.ξ ℤ _ _ A.tie).1 q))).2.1 hpos
+    (HcptPull.noeth_stalk A.tie.gen q ((_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A.X Ω A.ξ ℤ _ _ A.tie).1 q))).2.1 hpos
 
 theorem exists_flagged (hW : Out.WeilSt) (A : HodgeCpt Y S y) (x : Sp Ω ⟶ Xo.XF c) (hx : A.ξ ≫ A.f = x ≫ Y.j) (dg : ℕ)
     (hcov : A.IsCover dg) (hS : ∀ p : ℕ, p.Prime → (p : ℤ) ∣ discr E → p ∈ S) (hHT : ∀ p ∈ S, HT.HTFree A p) :
@@ -97,7 +97,7 @@ theorem exists_flagged (hW : Out.WeilSt) (A : HodgeCpt Y S y) (x : Sp Ω ⟶ Xo.
       (Category.id_comp _).symm, rfl, hHT, isEmptyElim⟩
   · have hζ := exists_root A x hx hpos
     obtain ⟨Ω', _, _, i, K₂, _, J₂, _, y₂, B, g₂, b, Li₀, a₀, m₀, M₀, j, V₀, hg₂, hBf, hBR, hB, hb, hj, hV, hgen⟩ :=
-      GlobalTheory.T.hodge_cpt_good_reduction_degree hW E H D l Xo c Y S Ω K J y A x dg hx hS hHT hζ hcov
+      _root_.GlobalTheory.CompanionTheory.Ar.GenFlag.exists_genericFlag hW E H D l Xo c Y S Ω K J y A x dg hx hS hHT hζ hcov
     have hBy : B.ξ ≫ B.f = (spMap i ≫ x) ≫ Y.j := by
       rw [hBf, ← Category.assoc, hg₂, Category.assoc, hx, Category.assoc]
     obtain ⟨K₃, _, J₃, _, y₃, bk, bx, ⟨k₀⟩, hinj, hy, hT⟩ := exists_join A.tie B.tie g₂ i hg₂

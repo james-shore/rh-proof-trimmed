@@ -126,7 +126,7 @@ theorem dense_hat (A : X.B.I.Gf) {Λ : Submodule (𝓞 D.host.E) (VS D).V}
     | smul o z _ hz =>
       obtain ⟨v, hv, z', hz', rfl⟩ := hz
       obtain ⟨a, r, hr, ho⟩ := PIW.AdelClassFin.dual_dense X.B.I.F X.B.I.E X.B.g
-        (Nat.pos_of_ne_zero (Formalism.L2.SG.Pf.ChiNMul.gB_ne_zero X)) (o : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) o.2
+        (Nat.pos_of_ne_zero (_root_.Formalism.L2.SG.Pf.modulus_g_ne_zero X)) (o : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) o.2
       refine ⟨a • v, Submodule.smul_mem _ a hv,
         (⟨r, hr⟩ : IntAf X.B.I.F X.B.I.E) • PIW.AdelClassFin.iv X.B.I v + o • z',
         add_mem (Submodule.smul_mem _ _ (Submodule.subset_span ⟨⟨v, hv⟩, rfl⟩)) (Submodule.smul_mem _ _ hz'), ?_⟩

@@ -48,6 +48,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 namespace GlobalTheory.St
 
 theorem mExists_holds : ∀ D : D7, MExists D :=
-  fun D => Formalism.L2.SG.Pf.mExists_of_cuts D weil_measure_compat infinite_measure_transfer
+  fun D => Formalism.L2.SG.Pf.mExists_of_cuts D _root_.PI.UnitaryGroupMassFormula.MeasWCore.measWCore_main infinite_measure_transfer
 
 end GlobalTheory.St

@@ -135,46 +135,11 @@ theorem ringOfIntegers_hom_injective (s : 𝓞 E →+* ℂ) : Function.Injective
   rw [hk] at this
   simpa using this
 
-theorem finrank_eq_two_mul_card {Ψ : Type} [Fintype Ψ] {σ : Ψ → (𝓞 E →+* ℂ)} (hσ : IsCMFam σ) :
-    Module.finrank ℚ E = 2 * Fintype.card Ψ := by
-  classical
-  let e : (E →+* ℂ) ≃ (𝓞 E →+* ℂ) :=
-    { toFun := fun φ => φ.comp (algebraMap (𝓞 E) E)
-      invFun := fun s => IsFractionRing.lift (ringOfIntegers_hom_injective s)
-      left_inv := fun φ => by
-        apply IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 E))
-        ext x
-        simp
-      right_inv := fun s => by
-        ext x
-        simp }
-  haveI : Fintype (𝓞 E →+* ℂ) := Fintype.ofEquiv _ e
-  have hc : Fintype.card (𝓞 E →+* ℂ) = Module.finrank ℚ E := by
-    rw [← Fintype.card_congr e]
-    exact NumberField.Embeddings.card E ℂ
-  let P : (𝓞 E →+* ℂ) → Prop := fun s => ∃ τ, σ τ = s
-  let c : (𝓞 E →+* ℂ) → (𝓞 E →+* ℂ) := fun s => (starRingEnd ℂ).comp s
-  have hcc : ∀ s, c (c s) = s := fun s => by
-    ext x
-    simp [c]
-  have hP : ∀ s, P s ↔ ¬ P (c s) := hσ.2
-  have e1 : {s // P s} ≃ Ψ := (Equiv.ofInjective σ hσ.1).symm
-  have e2 : {s // ¬ P s} ≃ {s // P s} :=
-    { toFun := fun s => ⟨c s.1, by
-        by_contra hn
-        exact s.2 ((hP s.1).2 hn)⟩
-      invFun := fun s => ⟨c s.1, (hP s.1).1 s.2⟩
-      left_inv := fun s => Subtype.ext (hcc s.1)
-      right_inv := fun s => Subtype.ext (hcc s.1) }
-  have := Fintype.card_congr (Equiv.sumCompl P)
-  rw [Fintype.card_sum, Fintype.card_congr e2, Fintype.card_congr e1, hc] at this
-  omega
-
 theorem finrank_real_eq_card {Ψ : Type} [Fintype Ψ] {σ : Ψ → (𝓞 E →+* ℂ)} (hσ : IsCMFam σ) :
     Module.finrank ℚ (maximalRealSubfield E) = Fintype.card Ψ := by
   have h1 := (letI : Module.Free (maximalRealSubfield E) E := Module.Free.of_divisionRing _ _; Module.finrank_mul_finrank ℚ (maximalRealSubfield E) E)
   rw [Algebra.IsQuadraticExtension.finrank_eq_two (maximalRealSubfield E) E,
-    finrank_eq_two_mul_card hσ] at h1
+    _root_.GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec.finrank_eq_two_mul hσ] at h1
   omega
 
 end Card
@@ -273,7 +238,7 @@ theorem group_mean_logPlus_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   have hcard : Module.finrank ℚ (maximalRealSubfield E) = Fintype.card Ψ := finrank_real_eq_card F.cm
   have hdeg : Module.finrank ℚ E = 2 * Module.finrank ℚ (maximalRealSubfield E) := by
     rw [hcard]
-    exact finrank_eq_two_mul_card F.cm
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec.finrank_eq_two_mul F.cm
   have hfam' : ∃ a : Fin (2 * Module.finrank ℚ (maximalRealSubfield E)) → 𝓞 E,
       LinearIndependent ℚ (fun i => (a i : E)) ∧ ∀ i (s : E →+* ℂ), ‖s (a i)‖ ≤ vr := by
     obtain ⟨a, hli, hb⟩ := hfam

@@ -105,25 +105,6 @@ theorem mem_chartLat_congr {y : (Σ k, ι k) → Ω} {a b : K → ℤ} {τ τ' :
   have := hs c hc
   simpa only [h] using this
 
-theorem mul_mem_chartLat {y : (Σ k, ι k) → Ω} {a b : K → ℤ} {s t : Ω} (hs : s ∈ chartLat y a 1)
-    (ht : t ∈ chartLat y b 1) : s * t ∈ chartLat y (a + b) 1 := by
-  intro c hc
-  have h := mul_mem (hs c hc) (ht c hc)
-  have e : s * t * ∏ k, y ⟨k, c k⟩ ^ (-(((1 : ℕ) : ℤ) * (a + b) k)) =
-      (s * ∏ k, y ⟨k, c k⟩ ^ (-(((1 : ℕ) : ℤ) * a k))) * (t * ∏ k, y ⟨k, c k⟩ ^ (-(((1 : ℕ) : ℤ) * b k))) := by
-    have e' : ∏ k, y ⟨k, c k⟩ ^ (-(((1 : ℕ) : ℤ) * (a + b) k)) =
-        (∏ k, y ⟨k, c k⟩ ^ (-(((1 : ℕ) : ℤ) * a k))) * ∏ k, y ⟨k, c k⟩ ^ (-(((1 : ℕ) : ℤ) * b k)) := by
-      rw [← Finset.prod_mul_distrib]
-      refine Finset.prod_congr rfl fun k _ => ?_
-      rw [← zpow_add₀ (hc k)]
-      congr 1
-      simp only [Pi.add_apply]
-      ring
-    rw [e']
-    ring
-  rw [e]
-  exact h
-
 theorem pow_mem_chartLat {y : (Σ k, ι k) → Ω} {a : K → ℤ} {s : Ω} (hs : s ∈ chartLat y a 1) (j : ℕ) :
     s ^ j ∈ chartLat y (fun k => (j : ℤ) * a k) 1 := by
   induction j with
@@ -132,7 +113,7 @@ theorem pow_mem_chartLat {y : (Σ k, ι k) → Ω} {a : K → ℤ} {s : Ω} (hs 
     simpa using one_mem (chartRingZ y c)
   | succ j ih =>
     rw [pow_succ]
-    refine mem_chartLat_congr (fun k => ?_) (mul_mem_chartLat ih hs)
+    refine mem_chartLat_congr (fun k => ?_) (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LiftBirationalAmple.chartLat_mul ih hs)
     simp only [Pi.add_apply]
     push_cast
     ring
@@ -141,7 +122,7 @@ theorem form_mul_pow_mem_chartLat {y : (Σ k, ι k) → Ω} {α : K → ℤ} {k 
     (he : e ∈ chartLat y (fun κ => (k : ℤ) * α κ - 1) 1) {w : MRing ι} (hw : IsMultiHomog w (fun _ => j)) :
     aeval y w * e ^ j ∈ chartLat y α (j * k) := by
   have h1 : aeval y w ∈ chartLat y (fun _ => (j : ℤ)) 1 := LiftBirationalAmple.chartLat_form hw
-  refine mem_chartLat_congr (fun κ => ?_) (mul_mem_chartLat h1 (pow_mem_chartLat he j))
+  refine mem_chartLat_congr (fun κ => ?_) (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LiftBirationalAmple.chartLat_mul h1 (pow_mem_chartLat he j))
   simp only [Pi.add_apply]
   push_cast
   ring

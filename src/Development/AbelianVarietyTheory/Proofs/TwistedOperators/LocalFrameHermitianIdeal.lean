@@ -104,13 +104,6 @@ end Flag
 
 theorem rank_Y (D : D7) : (Yc D 0).rank = D.R.r := Formalism.L2.SG.InstExistsPf.rank_eq D
 
-theorem rank_Y' (D : D7) : (Yc D 0).rank = 2 * D.R.rS + D.R.k + 1 := by
-  rw [rank_Y]
-  obtain ⟨j, hj⟩ := D.R.m_even
-  have := D.R.two_le_m
-  simp only [Formalism.BasicNotions.Ranks.r, Formalism.BasicNotions.Ranks.rS]
-  omega
-
 theorem mem_hat {D : D7} (L : Submodule (𝓞 D.host.E) (Fin (Yc D 0).rank → D.host.E)) (v : Fin (Yc D 0).rank → EAf D) :
     v ∈ lamAf (F := D.host.F) L ↔ v ∈ Formalism.L2.Herm.hatL (F := D.host.F) L :=
   Set.ext_iff.1 (Formalism.IndefR.Eqv.lamAf_eq_hatL (V := Yc D 0) L) v
@@ -335,7 +328,7 @@ theorem core (h : FH (II D) g e0 f0 z0 bw bwd ew) (hβ : IsFrame β (II D).L) (h
   have hm := h.mem
   set s : VA (II D) := flagV D.R.rS D.R.k (Yc D 0).rank e0 f0 (basisOrRevDual w bw bwd) z0 q with hs
   have hsL : s ∈ (II D).Lf := by
-    refine flag_mem e0 f0 (basisOrRevDual w bw bwd) z0 ((II D).Lf : Set (VA (II D))) (rank_Y' D) (fun a => (hm.1 a).1)
+    refine flag_mem e0 f0 (basisOrRevDual w bw bwd) z0 ((II D).Lf : Set (VA (II D))) (_root_.GlobalTheory.SeeConjGroup.CoefRead.rank_val D) (fun a => (hm.1 a).1)
       (fun a => (hm.1 a).2) (fun i => ?_) hm.2.1 q
     cases w
     · exact (hm.2.2 _).2
@@ -371,7 +364,7 @@ theorem tab_loc (h : FH (II D) g e0 f0 z0 bw bwd ew) (hβ : IsFrame β (II D).L)
     (hM : M ∈ St β) (hu : upperLeftBlock (r_le_Y (D := D) 0) (redFn β PP M) ∈ unipSym (kP PP) D.R.r D.R.rS D.R.k) :
     Tab (fun t s => ZD D PP (hA (II D) t (((II D).fmat y - 1) *ᵥ s))) e0 f0 bw bwd z0 := by
   have hm := h.mem
-  refine tab_of _ e0 f0 bw bwd z0 ((II D).Lf : Set (VA (II D))) (rank_Y' D) w (fun a => (hm.1 a).1) hm.2.2 hm.2.1
+  refine tab_of _ e0 f0 bw bwd z0 ((II D).Lf : Set (VA (II D))) (_root_.GlobalTheory.SeeConjGroup.CoefRead.rank_val D) w (fun a => (hm.1 a).1) hm.2.2 hm.2.1
     (core h hβ hl hy hyM hM hu) (fun s hs => ?_) (fun i s hs => ?_) (fun i t ht => ?_)
   · rw [hA_neg_left] at hs
     exact ZD_neg hs

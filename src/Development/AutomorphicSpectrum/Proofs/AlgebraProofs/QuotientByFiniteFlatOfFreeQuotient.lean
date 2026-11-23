@@ -87,7 +87,7 @@ theorem quotientByFiniteFlat_of_freeQuotient (hF : GlobalTheory.CompanionTheory.
   have := hA.smooth
   have := hA.proper
   have := hA.geomConnected
-  obtain ⟨_, hmon, hmono⟩ := GlobalTheory.T.finite_flat_subgroup_scheme R A B h hsub
+  obtain ⟨_, hmon, hmono⟩ := _root_.GlobalTheory.CompanionTheory.Ar.GR.SubGrp.grpObj_of_isFinFlatSub R A B h hsub
   letI := act h
   have hgam : (γ[sp (R₀ := R) B, A] : sp (R₀ := R) B ⊗ A ⟶ A) = (fst _ A ≫ h) * snd _ A := act_smul h
   have hsmul : ∀ {T : Over (Spec (CommRingCat.of R))} (g : T ⟶ sp (R₀ := R) B) (x : T ⟶ A),

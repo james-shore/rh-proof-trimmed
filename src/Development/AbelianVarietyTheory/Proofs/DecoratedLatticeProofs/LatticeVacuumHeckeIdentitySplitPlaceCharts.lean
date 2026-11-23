@@ -72,7 +72,7 @@ lemma opOf_dualC_splitC {D : D7} {V : HSp D} {M : Type} [AddCommGroup M] [Module
 
 theorem hecke_vac_split_chart : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)), IsWeilDatumO ψ S T χS χT om → ∀ t : ℕ, T.rank = S.rank + t → ∀ (v : HeightOneSpectrum (𝓞 D.host.F)) (w : HeightOneSpectrum (𝓞 D.host.E)) (h : w.under (𝓞 D.host.F) = v), IsSplit (E := D.host.E) v → (∀ w' : HeightOneSpectrum (𝓞 D.host.E), w'.under (𝓞 D.host.F) = v → UnrAt χS w' ∧ UnrAt χT w') → ∀ eS eT, IsSplitChart D.sp.cm.sig S.gram (frameLat S) h eS → IsSplitChart D.sp.cm.sig T.gram (frameLat T) h eT → ∀ f, VacFin ψ S T v f → (∀ k ∈ Kv S v, ∀ k' ∈ Kv T v, om (embV S v k, embV T v k') f = f) ∧ ∀ ϖ, IsUnifV D.host.E w ϖ → ∀ k ≤ T.rank, heckeVec (((om.comp (MonoidHom.inr _ _)).comp (embV T v)).comp eT.symm.toMonoidHom) (KGL w (n := T.rank)) (fun g => Tj ℂ T.rank (Ov D.host.E w) ϖ k g⁻¹) f = ∑ j ∈ Finset.range (S.rank + 1), (if j ≤ k then (qV D.host.E w : ℂ) ^ ((S.rank - j) * (k - j)) * (Formalism.L2.Col.gaussBin (qV D.host.E w) t (k - j) : ℂ) * (((val (F := D.host.F) χS w : ℂˣ) : ℂ) * (Real.sqrt (qV D.host.E w) : ℂ) ^ S.rank)⁻¹ ^ k * (((val (F := D.host.F) χT w : ℂˣ) : ℂ) * (Real.sqrt (qV D.host.E w) : ℂ) ^ T.rank) ^ j else 0) • heckeVec (((om.comp (MonoidHom.inl _ _)).comp (embV S v)).comp eS.symm.toMonoidHom) (KGL w (n := S.rank)) (Tj ℂ S.rank (Ov D.host.E w) ϖ j) f := by
   intro D ψ S T χS χT om hW t ht v w h hsp hunr eS eT hcS hcT f hf
-  obtain ⟨hA, hB, hC, hD, hE⟩ := GlobalTheory.T.splitPlace_idempotent_vacuum_hyperspecial_dictionary D v w h
+  obtain ⟨hA, hB, hC, hD, hE⟩ := _root_.GlobalTheory.PlaceDict.dictionary D v w h
   have hconj : Formalism.DivisionValues.conjPl w ≠ w := hA.1 hsp
   have huS : GlobalTheory.Hk3.UnrPl w χS := hB χS (fun w' hw' => (hunr w' hw').1)
   have huT : GlobalTheory.Hk3.UnrPl w χT := hB χT (fun w' hw' => (hunr w' hw').2)
@@ -91,10 +91,10 @@ theorem hecke_vac_split_chart : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S
     intro k hk; simpa using hK 1 (one_mem _) k hk
   have hSfix : ∀ k ∈ Kv S v, (om.comp (MonoidHom.inl _ _)) (embV S v k) f = f := by
     intro k hk; simpa using hK k hk 1 (one_mem _)
-  rw [← (GlobalTheory.T.split_prime_label_operators_eq_chart_hecke_operators D T v w h hsp eT hcT _ (om.comp (MonoidHom.inr _ _)) f hTfix ϖ hϖ k hk).1, ← hM,
+  rw [← (_root_.GlobalTheory.ChainOnto.LabChart.split_label_ops D T v w h hsp eT hcT _ (om.comp (MonoidHom.inr _ _)) f hTfix ϖ hϖ k hk).1, ← hM,
     opOf_dualC_splitC, LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun j hj => ?_
-  rw [LinearMap.smul_apply, (GlobalTheory.T.split_prime_label_operators_eq_chart_hecke_operators D S v w h hsp eS hcS _ (om.comp (MonoidHom.inl _ _)) f hSfix ϖ hϖ j
+  rw [LinearMap.smul_apply, (_root_.GlobalTheory.ChainOnto.LabChart.split_label_ops D S v w h hsp eS hcS _ (om.comp (MonoidHom.inl _ _)) f hSfix ϖ hϖ j
     (Nat.lt_succ_iff.mp (Finset.mem_range.mp hj))).2, hχS, hχT]
   rfl
 

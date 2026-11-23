@@ -81,9 +81,7 @@ noncomputable section
 namespace GlobalTheory.FamGlue
 open ShapePull ThetaClosed
 
-theorem exists_spMap {R R' : Type} [CommRing R] [CommRing R'] (x : Sp R' ⟶ Sp R) : ∃ φ : R →+* R', spMap φ = x := by
-  obtain ⟨φ, rfl⟩ := Spec.map_surjective x
-  exact ⟨φ.hom, rfl⟩
+alias exists_spMap := _root_.GlobalTheory.ZM.DenseFib.exists_spMap
 
 theorem exists_geomPt {S : Scheme.{0}} (p : S) :
     ∃ (K : Type) (_ : Field K) (_ : IsAlgClosed K) (y : Sp K ⟶ S), p ∈ Set.range y :=

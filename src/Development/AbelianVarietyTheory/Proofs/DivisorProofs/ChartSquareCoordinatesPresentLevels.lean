@@ -65,7 +65,7 @@ theorem chart_square_presents : ∀ (p : ℕ) (k : Type) [CommRing k] (d : ℕ) 
       induction t with
       | add x y hx hy => simp only [map_add (f := _), hx, hy]
       | tmul a b => rfl
-    refine GlobalTheory.T.existsUnique_powerSeries_of_compatible_system k (Fin d ⊕ Fin d) (fun n => G.A n ⊗[k] G.A n) c.x₂ c.nil₂ r
+    refine _root_.GlobalTheory.Katz.existsUnique_evA_eq_of_presents k (Fin d ⊕ Fin d) (fun n => G.A n ⊗[k] G.A n) c.x₂ c.nil₂ r
       (fun n i => ?_) ⟨fun n => (ht n).1, fun N => ?_⟩ z (fun n => by rw [hr]; exact hz n)
     · rw [hr]
       cases i with

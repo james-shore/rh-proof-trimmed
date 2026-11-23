@@ -129,7 +129,7 @@ theorem isPullbackBlowupSequence_appendLowerDimReduction
       (List.map (fun Z : (s.obj s.length).IdealSheafData => Z.comap Dt.lastMap)
         (List.drop S.boundary.length (s.boundary s.length)))
       (List.drop (NontrivialBoundary.pullbackWithNontrivialBoundary S q).boundary.length (s'.boundary s'.length)) :=
-    NontrivialBoundary.sameNontrivialBoundary_symm
+    _root_.FunctorialResolution.EmbeddedResolution.MarkedIdealWithBoundary.SameNontrivialBoundary.symm
       (NontrivialBoundary.sameNontrivialBoundary_lastBoundary_drop S q s s' Dt hstar hV hV')
   have e1 : ((MaxContactCoverData.derivedTriple S s hftS [MaxContactReduction.strictTransformAtLength s H]
         S.boundary.length).pullbackAlong (s'.obj s'.length)

@@ -58,37 +58,20 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 namespace UpperTheory.V.Hi.Up
 
-private theorem int_iff {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) : IsIntegral ℤ_[l] x ↔ ‖x‖ ≤ 1 := by
-  have hi : IsIntegral ℚ_[l] x := Algebra.IsIntegral.isIntegral x
-  have h0 : ‖x‖ = spectralValue (minpoly ℚ_[l] x) := rfl
-  rw [h0, spectralValue_le_one_iff (minpoly.monic hi)]
-  constructor
-  · intro h n
-    rw [minpoly.isIntegrallyClosed_eq_field_fractions' ℚ_[l] h, coeff_map]
-    exact PadicInt.norm_le_one _
-  · intro h
-    have hl' : minpoly ℚ_[l] x ∈ lifts (algebraMap ℤ_[l] ℚ_[l]) :=
-      (lifts_iff_coeff_lifts _).mpr fun n => ⟨⟨_, h n⟩, rfl⟩
-    obtain ⟨q, hq, -, hqm⟩ := lifts_and_degree_eq_and_monic hl' (minpoly.monic hi)
-    exact ⟨q, hqm, by rw [← aeval_def, ← aeval_map_algebraMap ℚ_[l], hq, minpoly.aeval]⟩
-
 variable {l : ℕ} [Fact l.Prime] {c : Coef l}
 
 theorem coef_le (a : c.O) : ‖algebraMap c.O (Qbar l) a‖ ≤ 1 :=
-  (int_iff _).1 ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) a).map c.O.val)
+  (_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).1 ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) a).map c.O.val)
 
 section Pt
 
 variable {R : Type} [CommRing R] [Algebra c.O R]
 
-theorem pt_lt [IsLocalRing R] (y : R →ₐ[c.O] Qbar l) (a : R) (ha : a ∈ maximalIdeal R) : ‖y a‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.Gs4b.pt_lt y a ha
-
 variable [Alg.IsCO c.O R] (y : R →ₐ[c.O] Qbar l)
 
 theorem pt_res (b : R) (a : c.O) (h : Alg.res c.O R b = residue c.O a) : ‖y b - algebraMap c.O (Qbar l) a‖ < 1 := by
   rw [← y.commutes, ← map_sub]
-  refine pt_lt y _ ((Alg.res_eq_zero_iff c.O R _).1 ?_)
+  refine _root_.UpperTheory.Reformulated.B.Gs4b.pt_lt y _ ((Alg.res_eq_zero_iff c.O R _).1 ?_)
   rw [map_sub, h, AlgHom.commutes]
   exact sub_self _
 
@@ -96,7 +79,7 @@ theorem pt_le (b : R) : ‖y b‖ ≤ 1 := by
   obtain ⟨a, ha⟩ := Alg.IsCO.res_surj (O := c.O) b
   have h := IsUltrametricDist.norm_add_le_max (y (b - algebraMap c.O R a)) (algebraMap c.O (Qbar l) a)
   rw [← y.commutes, ← map_add (f := _), sub_add_cancel, y.commutes] at h
-  exact h.trans (max_le (pt_lt y _ ha).le (coef_le a))
+  exact h.trans (max_le (_root_.UpperTheory.Reformulated.B.Gs4b.pt_lt y _ ha).le (coef_le a))
 
 theorem pt_unit (b : Rˣ) : ‖y b‖ = 1 := by
   have h : ‖y b‖ * ‖y (b⁻¹ : Rˣ)‖ = 1 := by rw [← norm_mul, ← map_mul, Units.mul_inv, map_one, norm_one]
@@ -117,7 +100,7 @@ theorem pt_small (ε : ℝ) (hε : 0 < ε) : ∃ N : ℕ, ∀ b ∈ maximalIdeal
   obtain ⟨t, t0, t1, ht⟩ : ∃ t : ℝ, 0 ≤ t ∧ t < 1 ∧ ∀ b ∈ maximalIdeal R, ‖y b‖ ≤ t := by
     refine ⟨((S.sup fun b => ‖y b‖₊ : NNReal) : ℝ), NNReal.coe_nonneg _, ?_, ?_⟩
     · have : (S.sup fun b => ‖y b‖₊) < 1 :=
-        (Finset.sup_lt_iff (by simp)).2 fun b hb => pt_lt y b (hS ▸ Ideal.subset_span hb)
+        (Finset.sup_lt_iff (by simp)).2 fun b hb => _root_.UpperTheory.Reformulated.B.Gs4b.pt_lt y b (hS ▸ Ideal.subset_span hb)
       exact_mod_cast this
     · rw [← hS]
       exact key ⊥ _ _ (NNReal.coe_nonneg _) fun b hb => Finset.le_sup (f := fun b => ‖y b‖₊) hb

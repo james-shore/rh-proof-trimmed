@@ -144,7 +144,7 @@ theorem closed_eq_top [_root_.NumberField.IsTotallyComplex K] (H : GlobalTheory.
     exact ⟨_, hk, by
       rw [mul_comm]; exact QuotientGroup.mk_mul_of_mem y (mul_mem (h1 k) (zpow_mem h2 n))⟩⟩
   by_contra hz
-  obtain ⟨χ, hχ⟩ := GroundTheory.Automorphic.CompactAbelianFourier.exists_char_ne_one (C := Ideles K ⧸ M) (g := z)
+  obtain ⟨χ, hχ⟩ := _root_.UpperTheory.Reformulated.B.CharactersSeparatePoints.exists_char_ne_one (C := Ideles K ⧸ M) (g := z)
     fun e => hz ((QuotientGroup.eq_one_iff z).1 e)
   let c : Ideles K →* Circle := χ.toMonoidHom.comp (QuotientGroup.mk' M)
   have cc : Continuous c := χ.continuous.comp QuotientGroup.continuous_mk

@@ -59,15 +59,9 @@ theorem orbit_map_add_natCast (D : D7) (p : ℕ) (z : Pl D) (s : ZMod (nP D p)) 
   unfold orbMap
   rw [posPl_add, ← posPl_mod D p z (s.val + e), ZMod.val_add, ZMod.val_natCast, Nat.add_mod_mod]
 
-theorem base_shift_add_nsmul (X : Inst D L) (h t : HH D) (m : ℕ) : X.bs h (t + m • h) = X.bs h t := by
-  induction m with
-  | zero => simp
-  | succ k ih => rw [succ_nsmul, ← add_assoc, X.bs_step, ih]
+alias base_shift_add_nsmul := _root_.Formalism.MainNotions.OrbitPlaces.bs_iter
 
-theorem base_shift_idempotent (X : Inst D L) (h t : HH D) : X.bs h (X.bs h t) = X.bs h t := by
-  obtain ⟨i, hi⟩ := X.bs_orb h t
-  calc X.bs h (X.bs h t) = X.bs h (X.bs h t + i • h) := (base_shift_add_nsmul X h (X.bs h t) i).symm
-    _ = X.bs h t := by rw [hi]
+alias base_shift_idempotent := _root_.Formalism.MainNotions.OrbitPlaces.bs_idem
 
 theorem posPl_false_eq_odd_add_nsmul {p : ℕ} (hsg : IsSg D p) (t0 : HH D) (n : ℕ) :
     posPl D p (false, t0) n = (decide (Odd n), t0 + n • hP D p) := by

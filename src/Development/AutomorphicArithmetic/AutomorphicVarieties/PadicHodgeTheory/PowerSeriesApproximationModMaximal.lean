@@ -50,11 +50,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra
 
 open IsLocalRing UpperTheory.V.Alg
 
-open MvPowerSeries in
-private theorem mem_span_X {O σ : Type} [CommRing O] [Fintype σ] (f : MvPowerSeries σ O)
-    (hf : constantCoeff f = 0) : f ∈ Ideal.span (Set.range (MvPowerSeries.X : σ → MvPowerSeries σ O)) :=
-  _root_.UpperTheory.Reformulated.B.MemSpanVariable.mem_span_X f hf
-
 section Abstract
 
 variable {O R A : Type} [CommRing O] [IsDomain O] [CommRing R] [Algebra O R] [CommRing A] [Algebra O A]
@@ -146,7 +141,7 @@ theorem UpperTheory.power_series_approximation_mod_maximal :
   have h1 : ∀ g ∈ maximalIdeal (MvPowerSeries (Fin n) E),
       Appr φ (maximalIdeal (MvPowerSeries (Fin n) E) ^ (1 + 1)) g := by
     intro g hg
-    have hs := mem_span_X g ((hmem g).1 hg)
+    have hs := _root_.UpperTheory.Reformulated.B.MemSpanVariable.mem_span_X g ((hmem g).1 hg)
     obtain ⟨r, rfl⟩ := Ideal.mem_span_range_iff_exists_fun.1 hs
     refine Finset.sum_induction _ _ (fun a b ha hb => appr_add ha hb) (appr_zero _ _) fun i _ => ?_
     refine appr_mul (i := 0) (j := 1) (by simp) (by rw [pow_one, hmem]; simp) (h0 _) ⟨t i, c, hc, ?_⟩

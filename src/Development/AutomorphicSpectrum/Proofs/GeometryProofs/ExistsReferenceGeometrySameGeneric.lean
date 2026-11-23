@@ -126,38 +126,6 @@ theorem segDeg {F : Type} [AddCommGroup F] [Module Ω F] {L : Lat ξ F} {a : K �
 
 end Segre
 
-section Ideal
-
-variable {K K' : Type} [Fintype K] [Fintype K'] {J : K → Type} {J' : K' → Type} [∀ k, Fintype (J k)]
-  [∀ k, Fintype (J' k)]
-
-theorem mem_mcPts_map (v : (Σ k, J k) → Σ k, J' k) (bd : Ideal (MRing J)) (w : (Σ k, J' k) → ℂ)
-    (hw : ∀ k, ∃ i, w ⟨k, i⟩ ≠ 0) (hw' : ∀ k, ∃ i, w (v ⟨k, i⟩) ≠ 0) :
-    w ∈ mcPts (bd.map (MvPolynomial.rename v)) ↔ (fun p => w (v p)) ∈ mcPts bd := by
-  have e : ∀ f : MRing J, MvPolynomial.eval w (MvPolynomial.map (Int.castRingHom ℂ)
-      (MvPolynomial.rename v f)) =
-      MvPolynomial.eval (fun p => w (v p)) (MvPolynomial.map (Int.castRingHom ℂ) f) := by
-    intro f
-    rw [MvPolynomial.map_rename, MvPolynomial.eval_rename]
-    rfl
-  constructor
-  · intro h
-    exact ⟨hw', fun f hf => by
-      rw [← e]
-      exact h.2 _ (Ideal.mem_map_of_mem _ hf)⟩
-  · intro h
-    refine ⟨hw, fun f hf => ?_⟩
-    let φ : MRing J' →+* ℂ := (MvPolynomial.eval w).comp (MvPolynomial.map (Int.castRingHom ℂ))
-    have hle : bd.map (MvPolynomial.rename v) ≤ RingHom.ker φ :=
-      Ideal.map_le_iff_le_comap.2 fun g hg => by
-        show φ (MvPolynomial.rename v g) = 0
-        show MvPolynomial.eval w (MvPolynomial.map (Int.castRingHom ℂ) (MvPolynomial.rename v g)) = 0
-        rw [e]
-        exact h.2 g hg
-    exact hle hf
-
-end Ideal
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Tor.Level H}
   {Xo : Moduli D l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F}
 
@@ -217,9 +185,9 @@ theorem exists_refGeo : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatem
     GlobalTheory.T.exists_coords_for_component hRes E H D l Xo c Y Ω₀ ξ₀ hgen
   obtain ⟨Ω, _, _, _, K, _, J, _, y, X, ξ, f, cst, t, m, Li, _, _, M, ρ, Li₀, _, _, M₀, j, V₀, b, bd,
     hall, htie, hnorm, hdom, hcst, hact, hjpt, hV, hflag, hvb, hsnc, hbd⟩ :=
-    GlobalTheory.T.coords_with_constants_map E H D l Xo c Y Ω₀ ξ₀ K₀ J₀ y₀ X₀ ξ' f₀ cst₀ t₀ m₀ Li' M' ρ' L' bd₀ hgen h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉
+    _root_.GlobalTheory.CompanionTheory.Ar.exists_flagStep E H D l Xo c Y Ω₀ ξ₀ K₀ J₀ y₀ X₀ ξ' f₀ cst₀ t₀ m₀ Li' M' ρ' L' bd₀ hgen h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉
   obtain ⟨K', _, J', _, y', bk, bx, 𝔐, g, Fl, xdeg, e, hbk, hy, hξ, hf, hg0, hdeg, hlines, -, hreg, hinj⟩ :=
-    GlobalTheory.T.generic_coords_descend_subfield E H D l Xo c Y Ω K J y X ξ f Ω₀ ξ₀ cst t m Li M ρ Li₀ M₀ j V₀ b 1 hall htie hnorm hgen hdom hcst
+    _root_.GlobalTheory.CompanionTheory.Ar.exists_sat_model E H D l Xo c Y Ω K J y X ξ f Ω₀ ξ₀ cst t m Li M ρ Li₀ M₀ j V₀ b 1 hall htie hnorm hgen hdom hcst
       hact hjpt hV hflag hvb
   have tie₂ := segTie (y := y') 𝔐.tie
   have hy₂ : ∀ k (a : J k), segY y' ⟨Sum.inl (bk k), bx k a⟩ = y ⟨k, a⟩ := hy
@@ -235,7 +203,7 @@ theorem exists_refGeo : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatem
       hall 𝔐.all 𝔐.tie.gen hξ hy₂ hreg hw
     have hne : ∀ k, ∃ i, w ⟨k, i⟩ ≠ 0 := fun k => (hw.1 k).imp fun _ h => h.ne_zero
     have hne' : ∀ k, ∃ i, w (v ⟨k, i⟩) ≠ 0 := fun k => (hw₁.1 k).imp fun _ h => h.ne_zero
-    rw [mem_mcPts_map v bd w hne hne']
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.EigBase.mem_mcPts_rename v bd w hne hne']
     refine (show (fun p => w (v p)) ∈ mcPts bd ↔ _ from hbd (z ≫ g) _ hw₁).trans ?_
     have hab := abLocus_pullback abLocusOne Y.t.semi 𝔐.m.cart.1 (centre z)
     have hc : f (centre (z ≫ g)) = 𝔐.f (centre z) := by

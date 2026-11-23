@@ -93,7 +93,7 @@ theorem pull_zpow : ∀ (K : Type) [Field K] (A : Over (Sp K)) [GrpObj A], IsAbe
   intro K _ A _ hA L hL T z n
   have := hA.comm
   have hΘ : ∃ t : LB.Gen (Theta A L), t.IsGen :=
-    GlobalTheory.SymMulPull.hasGen_theta GlobalTheory.CubeTop.cubeTheorem hA hL
+    GlobalTheory.SymMulPull.hasGen_theta _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hA hL
   have h1 : pull (1 : T ⟶ A).left (cls L hL) = 0 := by
     rw [Hom.one_def, Over.comp_left, pull_comp, GlobalTheory.AmpleStabFinite.pull_spec_local, map_zero]
   let φ : (T ⟶ A) →* Multiplicative (Pic T.left) :=

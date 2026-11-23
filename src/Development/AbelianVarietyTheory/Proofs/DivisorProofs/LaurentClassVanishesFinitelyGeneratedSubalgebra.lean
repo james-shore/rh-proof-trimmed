@@ -201,7 +201,7 @@ theorem kill_colim : ∀ (q : ℕ) (A S : Type) [CommRing A] [CommRing S] [Algeb
   have hy0 : pull _ (spMap ((cocone A S).ι.app ∅).hom) _ _
       (pull _ (spMap (laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S))))) _ _ x) = 0 :=
     (pull_comp _ _ _ _ _ x).symm.trans ((congrArg (fun g => pull _ g (tw q i) n x) e1).trans hx)
-  obtain ⟨k, f, hk⟩ := (GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity q (diag A S) (cocone A S) (coconeIsColimit A S) n i).2 ∅ _ hu hy0
+  obtain ⟨k, f, hk⟩ := (_root_.GlobalTheory.EtC.pairingProperties q (diag A S) (cocone A S) (coconeIsColimit A S) n i).2 ∅ _ hu hy0
   have e2 : spMap ((diag A S).map f).hom ≫
       spMap (laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S)))) =
       spMap (laurentMap (algebraMap A (Algebra.adjoin A (k : Set S)))) :=

@@ -84,7 +84,7 @@ theorem exists_fibre {R : Type} [CommRing R] [IsDomain R] (I : Ideal R) (D : Deg
       Φ.D.q.left ≫ π = r₀ ≫ g.pG.left ∧
       (∀ χ, LBIso (Φ.E.O χ).L (LB.LinComb D.P.L (fun a => π ≫ D.Oφ (𝟙 D.P.A) (xe χ) a) Oε)) ∧
       (∀ χ, GenWt Φ.D.i (LB.pullGen D.P.L _ _ (g.t (xe χ)) r₀) χ) ∧ Nonempty (ChartPull Φ.N₀ (npw D.P.L N) π) := by
-  obtain ⟨E, xe, d, π, h₁, h₂, h₃, h₄⟩ := GlobalTheory.T.exists_gtDatum_of_torusCoords R I D e G g
+  obtain ⟨E, xe, d, π, h₁, h₂, h₃, h₄⟩ := _root_.GlobalTheory.ZH.UFib.exists_gtDatum_of_gtCoord R I D e G g
   obtain ⟨E', xe', d', π', k₁, k₂, k₃, k₄⟩ := GlobalTheory.T.exists_gtDatum_baseChange_maps' _ _ f E _ d
   obtain ⟨N₀, n₁, n₂, n₃, n₄⟩ := GlobalTheory.T.exists_affine_refinement_splitExtCharts _ E' _ (npw D.P.L N) (npw_isLB D.P.isLB N) (π' ≫ π)
   choose ch hch using n₃

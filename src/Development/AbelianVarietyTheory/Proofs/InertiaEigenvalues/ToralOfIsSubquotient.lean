@@ -90,15 +90,6 @@ theorem mem_KO_iff {g : GL (Fin n) k} :
     g ∈ KO k (Fin n) ↔ (∀ i j, valuation k (g.val i j) ≤ 1) ∧ ∀ i j, valuation k ((g⁻¹).val i j) ≤ 1 :=
   GlobalTheory.HeckeScalarSph.mem_GLint_iff (O := 𝒪[k])
 
-theorem ev_mul (χ η : kˣ →* ℂˣ) (x : k) : ev (χ * η) x = ev χ x * ev η x := by
-  unfold ev; split_ifs <;> simp
-
-theorem ev_one (x : k) : ev (1 : kˣ →* ℂˣ) x = 1 := by
-  unfold ev; split_ifs <;> simp
-
-theorem ev_unit (χ : kˣ →* ℂˣ) (d : kˣ) (hd : valuation k (d : k) = 1) : ev χ (d : k) = χ d := by
-  unfold ev; rw [dite_eq_left hd]; simp
-
 def fam (n m : ℕ) (α β : kˣ →* ℂˣ) : Fin n → kˣ →* ℂˣ := fun i => if (i : ℕ) < m then α * β else β
 
 theorem prod_ev_ite (γ : kˣ →* ℂˣ) (h : GL (Fin n) k) (M : ℕ) (hM : M ≤ n) :
@@ -107,15 +98,15 @@ theorem prod_ev_ite (γ : kˣ →* ℂˣ) (h : GL (Fin n) k) (M : ℕ) (hM : M �
   rcases M with _ | M
   · haveI : IsEmpty {i : Fin n // (i : ℕ) < 0} := ⟨fun i => absurd i.2 (Nat.not_lt_zero _)⟩
     rw [Matrix.det_isEmpty]
-    have := ev_unit γ 1 (by simp)
+    have := _root_.GlobalTheory.PsType.rankOne_ev_unit γ 1 (by simp)
     simp only [Units.val_one, map_one] at this
-    simp [ev_one, this]
+    simp [_root_.GlobalTheory.PsType.BlockTheta.ev_one_char, this]
   · rw [Finset.prod_eq_single (⟨M, hM⟩ : Fin n)]
     · rw [if_pos rfl, minor]
       congr 1
       exact det_block_congr _ fun i => by rw [Fin.le_def]; simp only; omega
     · intro j _ hj
-      rw [if_neg (fun e => hj (Fin.ext (by simpa using e))), ev_one]
+      rw [if_neg (fun e => hj (Fin.ext (by simpa using e))), _root_.GlobalTheory.PsType.BlockTheta.ev_one_char]
     · simp
 
 theorem theta_fam (m : ℕ) (α β : kˣ →* ℂˣ) (h : GL (Fin n) k) :
@@ -128,7 +119,7 @@ theorem theta_fam (m : ℕ) (α β : kˣ →* ℂˣ) (h : GL (Fin n) k) :
     simp only
     split_ifs <;> first | omega | simp
   unfold theta
-  simp only [key, ev_mul, Finset.prod_mul_distrib]
+  simp only [key, _root_.GlobalTheory.PsType.BlockTheta.ev_mul_char, Finset.prod_mul_distrib]
   rw [prod_ev_ite α h _ (min_le_right _ _), prod_ev_ite β h n le_rfl]
   congr 2
   · exact det_block_congr _ fun i => by have := i.2; omega
@@ -297,7 +288,7 @@ theorem toral_of_lower (hBZ : GlobalTheory.Published.BernsteinZelevinskyFinitene
       rw [h0, map_zero] at h1; exact zero_ne_one h1
     let e : kˣ := Units.mk0 h.val.det fun h0 => by rw [h0, map_zero] at h2; exact zero_ne_one h2
     have e1 : theta (fam n m α β) h = (α d : ℂ) * (β e : ℂ) := by
-      rw [theta_fam, ← ev_unit α d h1, ← ev_unit β e h2]; rfl
+      rw [theta_fam, ← _root_.GlobalTheory.PsType.rankOne_ev_unit α d h1, ← _root_.GlobalTheory.PsType.rankOne_ev_unit β e h2]; rfl
     have hle : ∀ x : k, valuation k x = 1 → valuation k (x - 1) ≤ valuation k 1 := fun x hx => by
       rw [map_one]; exact Valuation.map_sub_le _ hx.le (by simp)
     refine ⟨by rw [e1]; exact hu h hh hm d e rfl rfl, fun hα => ?_⟩

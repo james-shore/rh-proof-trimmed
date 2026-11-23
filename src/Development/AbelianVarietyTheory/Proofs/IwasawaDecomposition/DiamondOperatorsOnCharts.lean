@@ -185,7 +185,7 @@ theorem isPt_dia (hI : I.Ok) (l : I.Laws) (u : B.Word) (a : I.ι) (i : ℕ) {Ch 
   have hPr := l.pr
   have hover : ∀ w : HeightOneSpectrum (𝓞 B.host.E), w.under (𝓞 B.host.F) = v → w = P.1 ∨ w = conjPrime₂ P.1 := fun w hw =>
     (under_eq_iff B.host P.1 w).1 (hw.trans hP)
-  obtain ⟨d1, d2, d3, d4⟩ := GlobalTheory.T.diamondElement_integral_support_lastRow _ _ B.sp.cm _ _ _ _ J S (X.piT u) P.1 v hv z δ hJ hP.symm hover
+  obtain ⟨d1, d2, d3, d4⟩ := _root_.GlobalTheory.Mem.Dil.dia_data _ _ B.sp.cm _ _ _ _ J S (X.piT u) P.1 v hv z δ hJ hP.symm hover
     (decoFin_mem_of_mem_divs P.2) (hPr.piT_notMem_sq hX u P.2) (conj_piT_notMem hPr u P)
     (fun x => by rw [hL]; exact h.lb _ x) hs hδ
   obtain ⟨p₀, hp₀, hN⟩ := h.k_std (chOf c)

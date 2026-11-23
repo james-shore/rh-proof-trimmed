@@ -609,7 +609,7 @@ theorem _root_.UpperTheory.Lit.Tam.tamagawa_weight_bound : Hypotheses2 → ∃ C
   intro hP
   refine ⟨4000, by norm_num, ?_⟩
   intro D T hT j hp hq hE hj Y e o hY Lb hLb hM hsz hfr ho la hla hS Z
-  have hL := (GlobalTheory.T.deepLevelCover_principalLevel_laws_galois D T j Y e o hT hj hY hY.unit hY.modelW).1
+  have hL := (_root_.GlobalTheory.DeepLaws.laws_galois_pull D T j Y e o hT hj hY hY.unit hY.modelW).1
   set S : ℝ := ∑ τ, ∑ k, |(la τ k : ℝ)| with hSdef
   have hS0 : 0 ≤ S := Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => abs_nonneg _
   set n : ℝ := (Module.finrank ℚ D.host.E : ℝ) with hn
@@ -651,7 +651,7 @@ theorem _root_.UpperTheory.Lit.Tam.tamagawa_weight_bound : Hypotheses2 → ∃ C
     intro σ hσ g
     obtain ⟨th, hr, -, hd⟩ := hY.dictU σ hσ
     exact Formalism.L2.Pj.dict_dom_of hd g
-  · have hrk := GlobalTheory.T.cuspFormRank_le_bergmanBound_goodCover D T.toCore j Y e o hY la Z β (by linarith) hB
+  · have hrk := _root_.GlobalTheory.RankBergman.rkC_le_of_bergLe D T.toCore j Y e o hY la Z β (by linarith) hB
     have hpos : 0 ≤ 4000 * ((D.R.f : ℝ) * D.R.r * Lb) ^ 3 := by positivity
     rcases (show (0 : ℝ) ≤ Y.rkC la Z by unfold Deep.rkC; positivity).eq_or_lt with h0 | h0
     · rw [← h0, Real.log_zero]; exact hpos

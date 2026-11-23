@@ -66,8 +66,7 @@ namespace GlobalTheory.ConjNorm
 noncomputable def torTw (D : D7) (σ : D.host.E ≃ₐ[ℚ] D.host.E) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) : Tor D :=
   ⟨fun τ x => embT D τ (σ x), lamOf D cc δ⟩
 
-theorem U_zero (D : D7) (T : Tor D) {N N' : ℕ} (G : VC D N N' → ℂ) : U D T 0 G = G := by
-  funext z; simp [U, Hf]
+alias U_zero := _root_.GlobalTheory.GalTheta.U_zero
 
 theorem norm_core (D : D7) (σ : D.host.E ≃ₐ[ℚ] D.host.E)
     (hσ : ∀ a : D.host.K, σ (a : D.host.E) = (a : D.host.E))
@@ -105,8 +104,8 @@ theorem norm_core (D : D7) (σ : D.host.E ≃ₐ[ℚ] D.host.E)
     rwa [norm_mul, norm_zpow, norm_neg, norm_one, one_zpow, one_mul] at this)
   have kB : KLat D (tor0 D cc δ) (LaB D (tor0 D cc δ) (fun j => (b j).map σ)) := Or.inl ⟨_, _, hb', rfl⟩
   have kL : KLat D (tor0 D cc δ) (La D (tor0 D cc δ) L₁ L₁') := Or.inr ⟨_, _, h₁, h₁', rfl⟩
-  obtain ⟨-, u2, u3, -⟩ := GlobalTheory.ConjNorm.unitary_all D cc δ hc N N' _ _ kB kL _ hth
-  have u4 := (GlobalTheory.ConjNorm.unitary_all D cc δ hc N N' _ _ kL kL _ u2).1
+  obtain ⟨-, u2, u3, -⟩ := _root_.GlobalTheory.theta_translation_intertwiner_unitary D cc δ hc N N' _ _ kB kL _ hth
+  have u4 := (_root_.GlobalTheory.theta_translation_intertwiner_unitary D cc δ hc N N' _ _ kL kL _ u2).1
   unfold Th
   rw [eLa]
   set F := Iop D (tor0 D cc δ) (LaB D (tor0 D cc δ) (fun j => (b j).map σ)) (La D (tor0 D cc δ) L₁ L₁')

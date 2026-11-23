@@ -56,7 +56,7 @@ theorem ht_subsingleton_of_subsingleton (q : ℕ) (Z : Type) [CommRing Z] [Subsi
   have hfs : RingHom.fst Z Z = RingHom.snd Z Z := RingHom.ext fun _ => Subsingleton.elim _ _
   have key : ∀ z : Ht q (sp Z) n i, z = 0 := by
     intro z
-    obtain ⟨y, hy⟩ := (GlobalTheory.T.etaleCohomology_prod_ring_projections_bijective q Z Z n i).2 (z, 0)
+    obtain ⟨y, hy⟩ := (_root_.GlobalTheory.EtC.ProdCoh.ht_prod_bijective q Z Z n i).2 (z, 0)
     simp only [Prod.mk.injEq] at hy
     rw [← hy.1, ← hy.2, hfs]
   rw [key a, key b]
@@ -78,7 +78,7 @@ theorem main : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClosed k] [
       exact Submodule.mem_top
     · haveI := ht_subsingleton_of_subsingleton q (Localization.Away (0 : B)) n i
       exact Subsingleton.elim _ _
-  · obtain ⟨A', i1, i2, i3, hN, hx⟩ := GlobalTheory.T.etale_local_vanishing_cohomology q k B hq f hf hu n i (by omega) x
+  · obtain ⟨A', i1, i2, i3, hN, hx⟩ := _root_.GlobalTheory.CurveNbhdKill.exists_nbhd_pull_eq_zero q k B hq f hf hu n i (by omega) x
     exact ⟨A', i1, i2, ⟨i3, hN.1, hN.2⟩, hx⟩
 
 end GlobalTheory.EtC.CurveNbhdExcision

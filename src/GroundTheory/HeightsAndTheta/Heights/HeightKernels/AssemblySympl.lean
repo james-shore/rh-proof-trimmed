@@ -70,41 +70,29 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights
 
-theorem SymplOmegaMem.full : SymplOmegaMem.Statement :=
-  SymplOmegaMem.proof
+alias SymplOmegaMem.full := _root_.GroundTheory.Heights₂.Heights.SymplOmegaMem.proof
 
-theorem SymplCons.full : SymplCons.Statement :=
-  SymplCons.proof
+alias SymplCons.full := _root_.GroundTheory.Heights₂.Heights.SymplCons.proof
 
-theorem SymplExtVecMul.full : SymplExtVecMul.Statement :=
-  SymplExtVecMul.proof
+alias SymplExtVecMul.full := _root_.GroundTheory.Heights₂.Heights.SymplExtVecMul.proof
 
-theorem SymplTwoRow.full : SymplTwoRow.Statement :=
-  SymplTwoRow.proof
+alias SymplTwoRow.full := _root_.GroundTheory.Heights₂.Heights.SymplTwoRow.proof
 
-theorem SymplGcd.full : SymplGcd.Statement :=
-  SymplGcd.proof
+alias SymplGcd.full := _root_.GroundTheory.Heights₂.Heights.SymplGcd.proof
 
-theorem SymplQuadDiag.full : SymplQuadDiag.Statement :=
-  SymplQuadDiag.proof
+alias SymplQuadDiag.full := _root_.GroundTheory.Heights₂.Heights.SymplQuadDiag.proof
 
-theorem SymplBoxVolume.full : SymplBoxVolume.Statement :=
-  SymplBoxVolume.proof
+alias SymplBoxVolume.full := _root_.GroundTheory.Heights₂.Heights.SymplBoxVolume.proof
 
-theorem SymplShortPrim.full : SymplShortPrim.Statement :=
-  SymplShortPrim.proof
+alias SymplShortPrim.full := _root_.GroundTheory.Heights₂.Heights.SymplShortPrim.proof
 
-theorem SymplGramMem.full : SymplGramMem.Statement :=
-  SymplGramMem.proof
+alias SymplGramMem.full := _root_.GroundTheory.Heights₂.Heights.SymplGramMem.proof
 
-theorem SymplReducePosDef.full : SymplReducePosDef.Statement :=
-  SymplReducePosDef.proof
+alias SymplReducePosDef.full := _root_.GroundTheory.Heights₂.Heights.SymplReducePosDef.proof
 
-theorem SymplReduceConj.full : SymplReduceConj.Statement :=
-  SymplReduceConj.proof
+alias SymplReduceConj.full := _root_.GroundTheory.Heights₂.Heights.SymplReduceConj.proof
 
-theorem SymplDetSchur.full : SymplDetSchur.Statement :=
-  SymplDetSchur.proof
+alias SymplDetSchur.full := _root_.GroundTheory.Heights₂.Heights.SymplDetSchur.proof
 
 theorem SymplExtMem.full : SymplExtMem.Statement :=
   SymplExtMem.proof SymplOmegaMem.full SymplCons.full

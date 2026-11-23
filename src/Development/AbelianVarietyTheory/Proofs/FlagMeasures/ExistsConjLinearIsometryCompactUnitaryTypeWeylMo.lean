@@ -71,16 +71,6 @@ theorem mem_UJset_of_unitary {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : g 
   have h := mem_unitaryGroup_iff'.mp hg
   rwa [Matrix.star_eq_conjTranspose] at h
 
-theorem transpose_mem_unitary {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : g ∈ unitaryGroup (Fin k) ℂ) :
-    gᵀ ∈ unitaryGroup (Fin k) ℂ := by
-  rw [mem_unitaryGroup_iff]
-  have h := mem_unitaryGroup_iff'.mp hg
-  have h2 : (star g * g)ᵀ = 1 := by rw [h, Matrix.transpose_one]
-  rw [Matrix.transpose_mul] at h2
-  convert h2 using 2
-  ext i j
-  simp [Matrix.star_apply]
-
 theorem star_det_of_unitary {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : g ∈ unitaryGroup (Fin k) ℂ) :
     star g.det = g.det⁻¹ ∧ g.det ≠ 0 := by
   have h := mem_unitaryGroup_iff'.mp hg
@@ -124,22 +114,12 @@ theorem fockF_ext_real {k : ℕ} (lam : DomWeight k) :
     0 < (Formalism.REAL.fockF (extremal ℂ k lam) (extremal ℂ k lam)).re :=
   ⟨(Formalism.GradedWeylDivisibility.fockHerm _ _ _).symm, (Formalism.GradedWeylDivisibility.fockPos _ _ (extremal_ne_zero' lam)).1⟩
 
-private theorem fockF_eq_sum_coeff_mul_star {σ : Type} (f g : MvPolynomial σ ℂ) (S : Finset (σ →₀ ℕ))
-    (hS : f.support ⊆ S) :
-    Formalism.REAL.fockF f g =
-      ∑ m ∈ S, f.coeff m * star (g.coeff m) * ((∏ i ∈ m.support, (m i).factorial : ℕ) : ℂ) := by
-  unfold Formalism.REAL.fockF
-  apply Finset.sum_subset hS
-  intro m _ hm
-  simp only [MvPolynomial.mem_support_iff, not_not] at hm
-  simp [hm]
-
 private theorem fockF_add_left' {σ : Type} (f f' g : MvPolynomial σ ℂ) :
     Formalism.REAL.fockF (f + f') g = Formalism.REAL.fockF f g + Formalism.REAL.fockF f' g := by
   classical
-  rw [fockF_eq_sum_coeff_mul_star (f + f') g (f.support ∪ f'.support) MvPolynomial.support_add,
-    fockF_eq_sum_coeff_mul_star f g (f.support ∪ f'.support) (fun x hx => Finset.mem_union_left _ hx),
-    fockF_eq_sum_coeff_mul_star f' g (f.support ∪ f'.support) (fun x hx => Finset.mem_union_right _ hx),
+  rw [_root_.Formalism.L2.Col.fockF_eq_sum (f + f') g (f.support ∪ f'.support) MvPolynomial.support_add,
+    _root_.Formalism.L2.Col.fockF_eq_sum f g (f.support ∪ f'.support) (fun x hx => Finset.mem_union_left _ hx),
+    _root_.Formalism.L2.Col.fockF_eq_sum f' g (f.support ∪ f'.support) (fun x hx => Finset.mem_union_right _ hx),
     ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [MvPolynomial.coeff_add]
@@ -148,8 +128,8 @@ private theorem fockF_add_left' {σ : Type} (f f' g : MvPolynomial σ ℂ) :
 private theorem fockF_smul_left_eq_mul {σ : Type} (c : ℂ) (f g : MvPolynomial σ ℂ) :
     Formalism.REAL.fockF (c • f) g = c * Formalism.REAL.fockF f g := by
   classical
-  rw [fockF_eq_sum_coeff_mul_star (c • f) g f.support MvPolynomial.support_smul,
-    fockF_eq_sum_coeff_mul_star f g f.support (subset_refl _), Finset.mul_sum]
+  rw [_root_.Formalism.L2.Col.fockF_eq_sum (c • f) g f.support MvPolynomial.support_smul,
+    _root_.Formalism.L2.Col.fockF_eq_sum f g f.support (subset_refl _), Finset.mul_sum]
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [MvPolynomial.coeff_smul, smul_eq_mul]
   ring
@@ -201,7 +181,7 @@ theorem normFock_unitary {k : ℕ} (lam : DomWeight k) {g : Matrix (Fin k) (Fin 
       normFock lam p q := by
   unfold normFock
   congr 1
-  have hT := mem_unitaryGroup_iff.mp (transpose_mem_unitary hg)
+  have hT := mem_unitaryGroup_iff.mp (_root_.GlobalTheory.DualWeyl.transpose_mem_unitaryGroup hg)
   rw [Matrix.star_eq_conjTranspose] at hT
   obtain ⟨hs, h0⟩ := star_det_of_unitary hg
   rw [fockF_smul_left_eq_mul, fockF_smul_right', Formalism.GradedWeylDivisibility.fockRowAdj k k gᵀ p, rowAct_rowAct', hT,
@@ -287,7 +267,7 @@ theorem exists_conj_weyl : ∀ (k n : ℕ) (h : k = n) (lam : DomWeight n) (u : 
     have hst : ∀ g ∈ unitaryGroup (Fin k) ℂ, ∀ p ∈ LinearMap.range e,
         Formalism.GradedWeylDivisibility.rowAct ℂ g p ∈ LinearMap.range e := by
       rintro g hg p ⟨x, rfl⟩
-      have hgT := transpose_mem_unitary hg
+      have hgT := _root_.GlobalTheory.DualWeyl.transpose_mem_unitaryGroup hg
       have h1 := he_eq (glOf gᵀ hgT) hgT x
       unfold sqAct at h1
       rw [detPow_glOf] at h1

@@ -125,7 +125,7 @@ theorem factor_alt (hU : Unr E) {S : Set (Pl E)} (hS : IsSection S) {n : ℕ} {�
     · exact ⟨1, fun h => absurd hs h, fun _ => rfl⟩
     · have hHw := hH (wv v) hs
       rw [hmw _ hs] at hHw
-      obtain ⟨x, hx⟩ := Lem.exists_plus E hU (wv v) hs v (hwv v) n γ₀ hP H₀ h1 h2 h3 (mw (wv v)) hHw.1 hHw.2.1 r Q hQ
+      obtain ⟨x, hx⟩ := _root_.GlobalTheory.CompanionTheory.LocPhiUnit.locPhi_mem_units_plus E hU (wv v) hs v (hwv v) n γ₀ hP H₀ h1 h2 h3 (mw (wv v)) hHw.1 hHw.2.1 r Q hQ
       exact ⟨x, fun _ => hx, fun h => absurd h hs⟩
   choose x hx1 hx2 using hx
 
@@ -142,11 +142,11 @@ theorem factor_alt (hU : Unr E) {S : Set (Pl E)} (hS : IsSection S) {n : ℕ} {�
       simp only [hBdef, Set.mem_ofPred_eq, not_not] at hnB
       obtain ⟨c, hc1, hc2⟩ := hnB hs
       rw [hmw _ hs] at hc2
-      exact Lem.norms_of_conj E hU (wv v) hs v (hwv v) n γ₀ hP H₀ h1 h2 h3 (mw (wv v)) c hc1 hc2 r Q hQ (x v) (hx1 v hs)
+      exact _root_.GlobalTheory.CompanionTheory.NormCongr.mem_norms_locPhi E hU (wv v) hs v (hwv v) n γ₀ hP H₀ h1 h2 h3 (mw (wv v)) c hc1 hc2 r Q hQ (x v) (hx1 v hs)
   set X : GlobalTheory.QuadSymbol.FinFam (maximalRealSubfield E) := fun v => Units.map (Algebra.norm (v.adicCompletion (maximalRealSubfield E)) : (v.adicCompletion (maximalRealSubfield E)) ⊗[(maximalRealSubfield E)] plus Q →* (v.adicCompletion (maximalRealSubfield E))) (x v)
     with hXdef
   have hXn : ∀ v, v ∉ BV → X v ∈ GlobalTheory.QuadSymbol.normGroup (maximalRealSubfield E) E (v.adicCompletion (maximalRealSubfield E)) := fun v hv =>
-    Lem.norm_mem E (v.adicCompletion (maximalRealSubfield E)) r Q (x v) (hgood v hv)
+    _root_.GlobalTheory.CompanionTheory.NormClassNorm.norm_mem_normGroup E (v.adicCompletion (maximalRealSubfield E)) r Q (x v) (hgood v hv)
   have hA : GlobalTheory.QuadSymbol.AlmostNorm (maximalRealSubfield E) E X := hBVf.subset fun v hv => by
     by_contra h
     exact hv (hXn v h)
@@ -159,7 +159,7 @@ theorem factor_alt (hU : Unr E) {S : Set (Pl E)} (hS : IsSection S) {n : ℕ} {�
     · have h1' : X v = 1 := by simp [hXdef, hx2 v hs]
       rw [h1', (GlobalTheory.QuadSymbol.eta_eq_one_iff).2 (one_mem _)]
       simp [hRdef, if_pos hs]
-    · have key := Lem.sign_rel E hU (wv v) hs v (hwv v) n γ₀ hP H₀ h1 h2 h3 hpos (mw (wv v)) r Q hQ (x v) (hx1 v hs)
+    · have key := _root_.GlobalTheory.CompanionTheory.LocalSignInert.main E hU (wv v) hs v (hwv v) n γ₀ hP H₀ h1 h2 h3 hpos (mw (wv v)) r Q hQ (x v) (hx1 v hs)
       rw [← hmw _ hs] at key
       simp only [hRdef, if_neg hs]
       rw [key, mul_assoc, sgnOn_mul_self, mul_one]

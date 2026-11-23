@@ -89,9 +89,6 @@ theorem main {E : Type} [Field E] [NumberField E] {n : ℕ}
     rw [e]
     exact L.smul_mem a h
 
-theorem target : ∀ {E : Type} [inst : Field E] [NumberField E] {n : ℕ}
-    (L : Submodule (NumberField.RingOfIntegers E) (Fin n → E)),
-    Submodule.span E (↑L : Set (Fin n → E)) = ⊤ → ∀ (x : Fin n → E), ∃ (d : ℕ), (0 : ℕ) < d ∧ d • x ∈ L :=
-  fun L hL x => main L hL x
+alias target := _root_.GlobalTheory.NatMulMemUnitaryExistence.main
 
 end GlobalTheory.NatMulMemUnitaryExistence

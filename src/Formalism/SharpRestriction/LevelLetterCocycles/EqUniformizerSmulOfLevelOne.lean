@@ -308,7 +308,7 @@ theorem Pp_tt [IsDomain O] (hR : Formalism.MainNotions.LiftingTheory.lifta_Ring 
       ((PD.p : ℕ) : LetA O n) ^ Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p y * s y = ((PD.p : ℕ) : LetA O n) ^ σ * r y) :
     ∑ y ∈ Finset.range (max M X + 1), s y • ((W.φD T) ^ j) (c y) ∈ Formalism.MainNotions.ArcLiftingSetup.Pp W T i j :=
   (Formalism.MainNotions.ArcLiftingSetup.Pp W T i j).sum_mem fun y _ => Pp_gen W T i j
-    (s_mem W (l_ne W) (rem_mem W hR.πΔ (hrs y).1) (hrs y).2) (hc y)
+    (s_mem W (_root_.Formalism.MainNotions.LiftingTheory.tr_p_ne W) (rem_mem W hR.πΔ (hrs y).1) (hrs y).2) (hc y)
 
 theorem hc_of {T : LocLat G Qp LL O} {i : ZMod n} {ζ : W.DD T} {c : ℕ → W.DD T}
     (hc : Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.IsSerZ W T i ζ c) (y : ℕ) : Formalism.MainNotions.LiftingTheory.InNΔi W T i (c y) :=
@@ -326,7 +326,7 @@ theorem zb [NeZero n] [IsDomain O] (hR : Formalism.MainNotions.LiftingTheory.lif
         ((PD.p : ℕ) : O) ^ σ • ((W.φD T) ^ j) ζ - (W.γ T t - t) = Formalism.MainNotions.CrystallineLiftingInputs.fMX W M X • p := by
   obtain ⟨c, r, s, hc, hrs, rfl⟩ := ht
   have hcN := hc_of W hc
-  have hsA : ∀ y, s y ∈ W.AΔ := fun y => s_mem W (l_ne W) (rem_mem W hR.πΔ (hrs y).1) (hrs y).2
+  have hsA : ∀ y, s y ∈ W.AΔ := fun y => s_mem W (_root_.Formalism.MainNotions.LiftingTheory.tr_p_ne W) (rem_mem W hR.πΔ (hrs y).1) (hrs y).2
   refine ⟨⟨L_sum W _ _ fun y _ => L_smul W (s y)
       (Formalism.MainNotions.UnusedSlot80.PhiPowers.φD_pow_letter W T i (c y) (InNΔi_letter W T i (hcN y)) j), fun δ hδ => ?_⟩,
     Submodule.sum_mem _ fun y _ => Submodule.smul_mem _ _
@@ -334,7 +334,7 @@ theorem zb [NeZero n] [IsDomain O] (hR : Formalism.MainNotions.LiftingTheory.lif
 
   · rw [map_sum]
     refine Finset.sum_congr rfl fun y _ => ?_
-    rw [Formalism.MainNotions.LiftingTheory.frame_γD_smul, hsA y δ hδ,
+    rw [_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear, hsA y δ hδ,
       Formalism.MainNotions.UnusedSlot80.PhiPowers.φD_pow_Δ W T (hcN y).1.2 j δ hδ]
   obtain ⟨z', hz', hζ⟩ := eq_uniformizer_smul_of_level_one W T i hD h1
   set K0 := max M X + 1

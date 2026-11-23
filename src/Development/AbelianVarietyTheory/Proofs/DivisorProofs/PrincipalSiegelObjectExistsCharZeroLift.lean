@@ -62,7 +62,7 @@ theorem exists_lift_domain : ∀ (g n : ℕ), 1 ≤ g → 3 ≤ n → Odd n → 
   obtain ⟨AV, _, _, φ, φ₂, PV, hAV, hpb, hsq, hPV, r₁, r₂, hsy, ham, hker, hiso⟩ :=
     GlobalTheory.T.exists_lift_principal_symmetric_bundle_complete K V hV π hπ c.A c.ab c.P c.isLB c.rig₁ c.rig₂ c.symm hc.1 hc.2
   obtain ⟨lev, hadd, htor, hgeom, hcomp⟩ :=
-    GlobalTheory.T.exists_unique_symplecticLevel_lift_closedPoint g n hn hodd K V hV βV π hπ c hc AV φ φ₂ PV hAV hpb hsq hPV r₁ r₂ hsy ham hker hiso
+    _root_.GlobalTheory.LevLift.exists_level_lift g n hn hodd K V hV βV π hπ c hc AV φ φ₂ PV hAV hpb hsq hPV r₁ r₂ hsy ham hker hiso
   let cV : SiegPre g n (zetaAway n) (spMap βV) :=
     { A := AV, ab := hAV, P := PV, isLB := hPV, rig₁ := r₁, rig₂ := r₂, symm := hsy, lev := lev,
       lev_add := hadd, lev_tors := htor, geom := hgeom }

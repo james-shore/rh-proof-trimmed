@@ -74,10 +74,6 @@ theorem hE_eq_hT (V : HSp D) (a b : Fin V.rank → D.host.E) :
   rw [hT_frame]
   rfl
 
-theorem frameMat_isom (hι : HSpace.IsIsomEmb V' V ι) :
-    cT (D.sp.cm.sig : D.host.E →+* D.host.E) (frameMat V V' ι) * V.gram * frameMat V V' ι = V'.gram := by
-  rw [cT_frameMat_mul_gram, Matrix.mul_assoc, prM_mul_frameMat hι, Matrix.mul_one]
-
 theorem pairing_submatrix (hι : HSpace.IsIsomEmb V' V ι) {m m' : ℕ} {e : Fin m' → Fin m}
     {A B : Matrix (Fin V.rank) (Fin m) D.host.E} {A' B' : Matrix (Fin V'.rank) (Fin m') D.host.E}
     (hA : frameMat V V' ι * A' = A.submatrix id e) (hB : frameMat V V' ι * B' = B.submatrix id e) :
@@ -88,7 +84,7 @@ theorem pairing_submatrix (hι : HSpace.IsIsomEmb V' V ι) {m m' : ℕ} {e : Fin
     simp only [Formalism.UG.cT, Matrix.map_mul, Matrix.transpose_mul]
   have h1 : cT (D.sp.cm.sig : D.host.E →+* D.host.E) A' * V'.gram * B' =
       cT (D.sp.cm.sig : D.host.E →+* D.host.E) (frameMat V V' ι * A') * V.gram * (frameMat V V' ι * B') := by
-    rw [← frameMat_isom hι, hc]
+    rw [← _root_.Formalism.L2.Fam.ThC.frame_rel hι, hc]
     simp only [Matrix.mul_assoc]
   rw [h1, hA, hB]
   ext i j

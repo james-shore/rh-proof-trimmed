@@ -71,61 +71,6 @@ namespace GlobalTheory.Core.Deg.AtRecord
 
 open Formalism.FourierDecayAlt
 
-theorem m_eq (R : Ranks) : R.m = 2 * R.rS + 2 := by
-  obtain ⟨t, ht⟩ := R.m_even
-  have := R.two_le_m
-  simp only [Ranks.rS]; omega
-
-theorem sfac_cast (n : ℕ) : (Sz.sfac n : ℝ) = ∏ i ∈ range n, (i.factorial : ℝ) := by
-  simp [Sz.sfac]
-
-theorem vand_pos {n : ℕ} {x : Fin n → ℝ} (h : StrictAnti x) : 0 < vand x :=
-  prod_pos fun _ _ => prod_pos fun _ hb => sub_pos.2 (h (mem_filter.1 hb).2)
-
-theorem isHCParam_uS (D : D7) (w : D.what₂.Word) (τ : D.what₂.Tau) : Formalism.QuantumDeterminants.IsHCParam (uS D w τ) := by
-  have hk := D.R.m_add_three_le_k
-  obtain ⟨c, hc⟩ := D.R.k_even
-  refine ⟨?_, fun a => ?_⟩
-  · obtain ⟨n, hn⟩ : ∃ n, D.R.k = n + 1 := ⟨D.R.k - 1, by omega⟩
-    have key : ∀ (d i : ℕ) (h : i + d + 1 < D.R.k),
-        (D.hcW w τ).u ⟨i + d + 1, h⟩ < (D.hcW w τ).u ⟨i, by omega⟩ := by
-      have step : ∀ (i : ℕ) (h : i + 1 < D.R.k), (D.hcW w τ).u ⟨i + 1, h⟩ < (D.hcW w τ).u ⟨i, by omega⟩ :=
-        fun i h => lt_trans ((D.hcW w τ).v_gt_u ⟨i, by omega⟩) ((D.hcW w τ).u_gt_v ⟨i, by omega⟩)
-      intro d
-      induction d with
-      | zero => intro i h; exact step i h
-      | succ d ih => intro i h; exact lt_trans (step (i + d + 1) h) (ih i (by omega))
-    intro i j hij
-    have hlt : i.val < j.val := hij
-    have := key (j.val - i.val - 1) i.val (by omega)
-    have e : (D.hcW w τ).u ⟨i.val + (j.val - i.val - 1) + 1, by omega⟩ = (D.hcW w τ).u j :=
-      congrArg _ (Fin.ext (by simp; omega))
-    rw [e] at this
-    unfold uS
-    exact_mod_cast this
-  · obtain ⟨z, hz⟩ := (D.hcW w τ).u_half a
-    refine ⟨z - c + 1, ?_⟩
-    unfold uS
-    rw [hz, hc]; push_cast; ring
-
-theorem tcrit_eq (D : D7) (hv : 0 < D.host.v) (u : D.what₂.Word) (τ : D.what₂.Tau) :
-    Tcrit D u τ = Sz.Tcrit D.R.k D.R.m D.host.ka D.host.rdE (gg D) (VV D τ) (vand (uS D u τ)) := by
-  have hka : 0 < D.host.ka := div_pos Real.pi_pos hv
-  have hg : 0 ≤ gg D := by unfold gg; positivity
-  have hm := m_eq D.R
-  have e0 : D.R.m * (D.R.m - 1) / 2 = (D.R.rS + 1) * (2 * D.R.rS + 1) := by
-    have : D.R.m * (D.R.m - 1) = 2 * ((D.R.rS + 1) * (2 * D.R.rS + 1)) := by
-      rw [hm, show 2 * D.R.rS + 2 - 1 = 2 * D.R.rS + 1 by omega]; ring
-    omega
-  have e1 : D.R.m - 1 = 2 * D.R.rS + 1 := by omega
-  have hmR : (D.R.m : ℝ) = 2 * D.R.rS + 2 := by exact_mod_cast hm
-  unfold Tcrit Sz.Tcrit Sz.TcritPow
-  rw [e0, e1, ← Real.rpow_natCast, ← Real.rpow_natCast, ← Real.rpow_neg hka.le]
-  congr 5
-  · congr 1
-    rw [hmR]; push_cast; ring
-  · rw [hmR]; push_cast; rw [hmR]; ring
-
 def sizeData (D : D7) (u : D.what₂.Word) : Sz.SizeData D.what₂.Tau where
   k := D.R.k
   r := D.R.rS
@@ -139,117 +84,6 @@ def sizeData (D : D7) (u : D.what₂.Word) : Sz.SizeData D.what₂.Tau where
   dsig := D.dsig
   Vu := fun τ => vand (uS D u τ)
   du := D.duS u
-
-theorem gaG_eq (D : D7) : gaG D = Sz.colIdx D.R.k (D.host.g 0) ^ D.R.f * Sz.colIdx D.R.k (D.host.g 1) ^ D.R.f := by
-  have hS : ∀ i, StandardLattice.SplitsF D (D.host.g i) := fun i =>
-    (GlobalTheory.ColClassCompare.split_g_iff D i).2 (GlobalTheory.IndefiniteRowSideFullHecke.SplitColumnClasses.splitsCompletely_g D i)
-  have hp := GlobalTheory.TypedPlacesProduct.finprod_typed_places D (fun x => ∏ i ∈ Icc 1 D.R.k, (x ^ i - 1)) hS
-  have e : ∀ i, Sz.colIdx D.R.k (D.host.g i) = ∏ j ∈ Icc 1 D.R.k, ((D.host.g i : ℝ) ^ j - 1) := fun i => by
-    have : (0 : ℝ) < D.host.g i := by exact_mod_cast (D.host.g_prime i).pos
-    unfold Sz.colIdx Sz.glCard
-    rw [GlobalTheory.prod_pow_sub_pow_eq_mul_prod_Icc]
-    field_simp
-  rw [e, e]
-  exact hp
-
-theorem idxRows_eq (D : D7) : LocalBesselAndTopKernel.idxRows D =
-    Sz.rowIdx D.R.k D.R.rS (D.host.g 0) ^ D.R.f * Sz.rowIdx D.R.k D.R.rS (D.host.g 1) ^ D.R.f := by
-  have hS : ∀ i, StandardLattice.SplitsF D (D.host.g i) := fun i =>
-    (GlobalTheory.ColClassCompare.split_g_iff D i).2 (GlobalTheory.IndefiniteRowSideFullHecke.SplitColumnClasses.splitsCompletely_g D i)
-  have hp := GlobalTheory.TypedPlacesProduct.finprod_typed_places D
-    (fun x => LocalBesselAndTopKernel.cardGL x D.R.r / (x ^ LocalBesselAndTopKernel.dimNS D * x ^ (D.R.k * (D.R.k - 1) / 2))) hS
-  have hr : D.R.k + 2 * D.R.rS + 1 = D.R.r := by have := dimS_eq D.R; omega
-  unfold Sz.rowIdx
-  rw [hr]
-  exact hp
-
-theorem ratio_ranks (D : D7) (hM : UnitaryVolumeMass.stMassRatio D) (hR : LocalBesselAndTopKernel.FamilyMidVolume D) (hv : 0 < D.host.v)
-    (hg0 : 4 ≤ D.host.g 0) (hg1 : 4 ≤ D.host.g 1) : UnitaryVolumeMass.cTvA D := by
-  intro u
-  have hk := D.R.m_add_three_le_k
-  have hm2 := D.R.two_le_m
-  have hm := m_eq D.R
-  have hst := GlobalTheory.Mass.StdMass.main D.host.E D.sp.cm.cmUnram
-  set S := sizeData D u with hS
-  have hf : S.f = D.R.f := D.what₂.card_Tau
-  have hSm : S.m = D.R.m := hm.symm
-  have hn : S.n = D.R.r := by
-    show D.R.k + S.m - 1 = D.R.r
-    rw [hSm]; rfl
-  have hVu : ∀ τ, 0 < vand (uS D u τ) := fun τ => vand_pos (isHCParam_uS D u τ).1
-  have hOk : S.Ok := ⟨show 1 ≤ D.R.k by omega, hv, by rw [hf]; rfl, (D.host.g_prime 0).two_le,
-    (D.host.g_prime 1).two_le, (D.mem u).A.T_prime.two_le, (hst D.R.k).2.2.1, hVu⟩
-  have hMR : S.MassRatios := by
-    intro M h1 _
-    have h1' : D.R.k < M := h1
-    have h := hM M (by omega) _ _ _ _ _ _ (hst M).1 (hst (M - 1)).1 (hst M).2.1 (hst (M - 1)).2.1
-    rw [StandardLattice.mass_ratio_eq] at h
-    replace h := (div_eq_iff (hst (M - 1)).2.2.1.ne').1 h
-    rw [hf]
-    refine h.trans ?_
-    have hdF : 0 ≤ S.dF := by
-      rw [hOk.hdF]
-      exact pow_nonneg (mul_nonneg two_pos.le hOk.hv.le) _
-    unfold StandardLattice.ratioH
-    rw [Real.rpow_neg hdF, ← Real.sqrt_eq_rpow, div_eq_mul_inv]
-    rfl
-  have hLB : S.LBound := by
-    intro M h1 _
-    have h1' : D.R.k < M := h1
-    rw [hf]
-    exact ⟨StandardLattice.lVal_pos D M (by omega), StandardLattice.massIdentity_holds D M (by omega)⟩
-  have hCC : S.ColumnCount := by
-    have h := (hR _ _ _ (hst D.R.k).1).1 (hst D.R.k).2.1 u
-    rw [gaG_eq, ← sfac_cast] at h
-    unfold Sz.SizeData.ColumnCount Sz.SizeData.idxCol
-    rw [hf]
-    exact h
-  have hD : S.Dstar = D.what₂.Dstar := by
-    have h := (hR _ _ _ (hst D.R.r).1).2 (hst D.R.r).2.1
-    rw [idxRows_eq] at h
-    unfold Sz.SizeData.Dstar Sz.SizeData.idxRow
-    rw [hf, hn]
-    exact h.symm
-  have hA := Final.sz_propA _ S hOk hMR hCC
-  obtain ⟨hE0, hE⟩ := Final.sz_eaSize _ S hOk hLB (show 2 ≤ D.R.k by omega) hg0 hg1
-  have hpow : ∀ τ, 0 < S.TcritPow τ ∧ (Tcrit D u τ / Tr D u) ^ D.R.k = S.TcritPow τ / (S.T : ℝ) ^ S.k := by
-    intro τ
-    have hrd : S.rd = D.host.rdE := by
-      show 2 * (D.host.rdE / 2) = _
-      ring
-    have hVV : S.VV τ = VV D τ := by
-      unfold Sz.SizeData.VV VV
-      rw [hn, sfac_cast]; rfl
-    have hpos : 0 < S.TcritPow τ := by
-      have h1 : 0 < S.ka := div_pos Real.pi_pos hv
-      have h2 : 0 < S.rd := mul_pos two_pos hv
-      have h3 : 0 < S.g := by
-        have a : (0 : ℝ) < D.host.g 0 := by exact_mod_cast (D.host.g_prime 0).pos
-        have b : (0 : ℝ) < D.host.g 1 := by exact_mod_cast (D.host.g_prime 1).pos
-        exact mul_pos a b
-      have h4 : 0 < S.VV τ := by
-        rw [hVV]; exact mul_pos (D.dsig_pos τ) (prod_pos fun i _ => by positivity)
-      have h5 : 0 < S.Vu τ := hVu τ
-      unfold Sz.SizeData.TcritPow Sz.TcritPow
-      positivity
-    refine ⟨hpos, ?_⟩
-    have e : Tcrit D u τ = S.TcritPow τ ^ ((1 : ℝ) / (D.R.k : ℝ)) := by
-      rw [tcrit_eq D hv]
-      unfold Sz.SizeData.TcritPow Sz.Tcrit
-      rw [hrd, hVV, hSm]; rfl
-    rw [div_pow, e, one_div, Real.rpow_inv_natCast_pow hpos.le (by omega)]
-    rfl
-  have hP : 0 ≤ ∏ τ, S.TcritPow τ / (S.T : ℝ) ^ S.k :=
-    prod_nonneg fun τ _ => div_nonneg (hpow τ).1.le (by positivity)
-  have e2 : (2 : ℝ) ^ ((3 : ℝ) - D.R.k) = 8 / 2 ^ S.k := by
-    rw [Real.rpow_sub two_pos, Real.rpow_natCast]; norm_num; rfl
-  rw [prod_congr rfl fun τ _ => (hpow τ).2, e2, ← hD, ← hf]
-  change _ ≤ S.Dstar / S.du ∧ S.Dstar / S.du ≤ _
-  rw [hA]
-  rw [abs_le] at hE
-  refine ⟨mul_le_mul_of_nonneg_right ?_ hP, mul_le_mul_of_nonneg_right ?_ hP⟩
-  · exact (Real.le_log_iff_exp_le hE0).1 hE.1
-  · exact (Real.log_le_iff_le_exp hE0).1 hE.2
 
 theorem sq_le_two_pow (k : ℕ) (hk : 4 ≤ k) : k ^ 2 ≤ 2 ^ k := by
   induction k, hk using Nat.le_induction with
@@ -290,7 +124,7 @@ theorem form_of_ranks (D : D7) (hR : LocalBesselAndTopKernel.FamilyMidVolume D) 
   have h1 := (hR _ _ _ hst.1).1 hst.2.1 u
   have h2 := (h3 hp h3T (hT u).1 F0 he hz what₂ hrows).1
   have h4 : dimPi (hc := D.hcW) u = ∏ τ, vand (uS D u τ) / ∏ i ∈ range D.R.k, (i.factorial : ℝ) :=
-    prod_congr rfl fun τ _ => (GlobalTheory.WeylDimU.weyl_dimension _ _ (isHCParam_uS D u τ)).2
+    prod_congr rfl fun τ _ => (GlobalTheory.WeylDimU.weyl_dimension _ _ (_root_.GlobalTheory.CritLevel.isHCParam_uS D u τ)).2
   rw [h1, h2, h4]
   change _ * (Cnt.massU D.host.E D.R.k * (Tr D u ^ D.R.k - 1) ^ D.R.f) * _ =
     Cnt.massU D.host.E D.R.k * _ * _ * _
@@ -317,9 +151,9 @@ theorem smallOn_univ_unconditional : SmallOn Set.univ := by
     fun hH0 u => AtRecord.form_of_ranks D hR u (GlobalTheory.Mass.RowsRawMass.main D u) hH0.2.1⟩
   · intro τ w H _ _ z π hπ
     obtain ⟨g, -, hg⟩ := hπ
-    exact (GlobalTheory.WeylDimU.weyl_dimension _ _ (AtRecord.isHCParam_uS D w τ)).1 H _ hg
+    exact (GlobalTheory.WeylDimU.weyl_dimension _ _ (_root_.GlobalTheory.CritLevel.isHCParam_uS D w τ)).1 H _ hg
   · intro _ w τ
-    exact (GlobalTheory.WeylDimU.weyl_dimension _ _ (AtRecord.isHCParam_uS D w τ)).2
+    exact (GlobalTheory.WeylDimU.weyl_dimension _ _ (_root_.GlobalTheory.CritLevel.isHCParam_uS D w τ)).2
   · intro hH0 w
     obtain ⟨-, -, -, hk, hrd, -⟩ := h1 D large₂ C' Cl Cg cb Cu cT CT hC1 hCl1 hH0.1
     obtain ⟨-, -, -, -, -, -, -, -, -, -, -, hg0, -, hg1, -, -, -, -, hv, -⟩ := hH0.1
@@ -333,7 +167,7 @@ theorem smallOn_univ_unconditional : SmallOn Set.univ := by
       le_trans (by nlinarith) (le_self_pow₀ (by nlinarith) (by norm_num))
     have hg0' : 4 ≤ D.host.g 0 := by exact_mod_cast h4.trans hg0
     have hg1' : 4 ≤ D.host.g 1 := by exact_mod_cast h4.trans hg1
-    exact tprod_mono D (AtRecord.ratio_ranks D (GlobalTheory.MassAtRecord.massRatio_at_record D) hR (by linarith)
+    exact tprod_mono D (_root_.GlobalTheory.CritLevel.ratio_ranks D (GlobalTheory.MassAtRecord.massRatio_at_record D) hR (by linarith)
       hg0' hg1') (AtRecord.err_le D hδ hk) w
 
 end GlobalTheory.Core.Deg

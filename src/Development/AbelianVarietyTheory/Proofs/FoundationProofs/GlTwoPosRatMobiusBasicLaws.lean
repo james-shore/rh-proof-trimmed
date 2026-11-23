@@ -119,11 +119,6 @@ theorem mob_diff (g : GQ) : DifferentiableOn ℂ (mob g) Hs := by
   exact ((differentiableAt_id.const_mul _).add_const _).div
     ((differentiableAt_id.const_mul _).add_const _) (den_ne g hz)
 
-theorem toGQ_SL (γ : SL(2, ℤ)) : toGQ (γ : Matrix (Fin 2) (Fin 2) ℤ) = ofSL γ := by
-  have h : (0 : ℤ) < (γ : Matrix (Fin 2) (Fin 2) ℤ).det := by rw [γ.2]; norm_num
-  apply Subtype.ext; apply Units.ext; ext i j
-  simp [toGQ, h, ofSL]
-
 theorem toGQ_mul (m m' : Matrix (Fin 2) (Fin 2) ℤ) (hm : 0 < m.det) (hm' : 0 < m'.det) :
     toGQ (m * m') = toGQ m * toGQ m' := by
   have h : 0 < (m * m').det := by rw [Matrix.det_mul]; exact mul_pos hm hm'
@@ -138,6 +133,6 @@ namespace GlobalTheory.KZ
 
 theorem mob_laws : (∀ (g : GQ), ∀ z ∈ Hs, mob g z ∈ Hs) ∧ (∀ (g h : GQ), ∀ z ∈ Hs, mob (g * h) z = mob g (mob h z)) ∧ (∀ z, mob 1 z = z) ∧ (∀ g : GQ, DifferentiableOn ℂ (mob g) Hs) ∧ (∀ γ : SL(2, ℤ), toGQ (γ : Matrix (Fin 2) (Fin 2) ℤ) = ofSL γ) ∧ (∀ m m' : Matrix (Fin 2) (Fin 2) ℤ, 0 < m.det → 0 < m'.det → toGQ (m * m') = toGQ m * toGQ m') :=
   ⟨fun g _ hz => MobLaws.mob_mem g hz, fun g h _ hz => MobLaws.mob_mul g h hz, MobLaws.mob_one,
-    MobLaws.mob_diff, MobLaws.toGQ_SL, MobLaws.toGQ_mul⟩
+    MobLaws.mob_diff, _root_.GlobalTheory.KZ.Betti.toGQ_sl, MobLaws.toGQ_mul⟩
 
 end GlobalTheory.KZ

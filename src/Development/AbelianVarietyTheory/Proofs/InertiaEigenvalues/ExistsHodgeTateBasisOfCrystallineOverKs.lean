@@ -120,7 +120,7 @@ theorem basis_of_invariants (P : LocPrime l) (AI : LocAinf l P) (Θ : ThetaL P A
     rw [hc]
     exact mul_left_comm _ _ _
   refine ⟨fun k i => sy (u k) (x k i), u, ?_, fun k => ⟨x k, (hx k).1, hxF k, fun h => ?_⟩, hact⟩
-  · refine GlobalTheory.T.serreTate_linearIndependent_of_weightwise l AI.actC P.χQ (GK E) E.1 ?_ d d _ _ u hact ?_
+  · refine _root_.GlobalTheory.SerreTateIndep.linearIndependent_of_weightwise l AI.actC P.χQ (GK E) E.1 ?_ d d _ _ u hact ?_
     · intro i y hy
       have := GlobalTheory.T.tate_invariants_cyclotomic_twist l AI.actC P.χQ ⟨AI.actC_ext, AI.actC_norm⟩ P.χQ_cyc K s hs i y
         (by intro g hg; apply hy; unfold GK; rw [hE]; exact hg)
@@ -175,13 +175,13 @@ theorem htBasis_of_isCrys (P : LocPrime l) (AI : LocAinf l P) (Θ : ThetaL P AI)
   let AE : GRep ↥(GK E) ℚ_[l] ↥LL.1 ↥(OL LL) :=
     { V := T'.V, ρ := ρ'
       cont := fun x => (T'.cont x).comp (continuous_inclusion (GK_le hle)) }
-  have hK := h7K _ _ (GlobalTheory.T.goodCoefficientRing_padicIntegers_finExt l LL) AK
-  have hE := h7E _ _ (GlobalTheory.T.goodCoefficientRing_padicIntegers_finExt l LL) AE
+  have hK := h7K _ _ (_root_.GlobalTheory.LocalIntegers.goodO_integers l LL) AK
+  have hE := h7E _ _ (_root_.GlobalTheory.LocalIntegers.goodO_integers l LL) AE
   have hanti : ∀ a, FilV (P.PD K) (LL := ↥LL.1) (V := T'.V) (a + 1) ≤ FilV (P.PD K) a := by
-    obtain ⟨Φ, h1, -⟩ := GlobalTheory.T.exists_deRham_tensor_coordinates_of_basis (P.PD K) T'.ρ bV
+    obtain ⟨Φ, h1, -⟩ := _root_.GlobalTheory.exists_coord_tensor_dR (P.PD K) T'.ρ bV
     intro a z hz
     exact (h1 a z).2 fun i => (P.PD K).Fil_anti a ((h1 _ z).1 hz i)
-  refine ⟨GlobalTheory.T.finite_setOf_inf_filtration_ne_succ _ _ (DdR (P.PD K) T'.ρ) (fun a => FilV (P.PD K) a) hK.2.1.1 hanti, ?_⟩
+  refine ⟨_root_.GlobalTheory.finite_jumps_inf_filtration _ _ (DdR (P.PD K) T'.ρ) (fun a => FilV (P.PD K) a) hK.2.1.1 hanti, ?_⟩
   classical
   let M0 : GQ l → Matrix (Fin d) (Fin d) ℚ_[l] := fun g =>
     if hg : g ∈ GK K then Matrix.of fun i j => bV.repr (T'.ρ ⟨g, hg⟩ (bV j)) i else 0
@@ -216,8 +216,8 @@ theorem htBasis_of_isCrys (P : LocPrime l) (AI : LocAinf l P) (Θ : ThetaL P AI)
   refine ⟨e, u, hli, fun k => ?_, fun σ hσ k => ?_⟩
   · obtain ⟨y, hy, hy1, hy2⟩ := hu k
     simp only [hFil] at hy1 hy2
-    obtain ⟨z, hz, hz1, hz2⟩ := GlobalTheory.T.deRhamFil_invariant_jump_descends_finExt l P K E hle d M0 hmul (u k) y (hinv y hy) hy1 hy2
-    obtain ⟨Φ, h1, h2⟩ := GlobalTheory.T.exists_deRham_tensor_coordinates_of_basis (P.PD K) T'.ρ bV
+    obtain ⟨z, hz, hz1, hz2⟩ := _root_.GlobalTheory.InvDescent.jump_descends l P K E hle d M0 hmul (u k) y (hinv y hy) hy1 hy2
+    obtain ⟨Φ, h1, h2⟩ := _root_.GlobalTheory.exists_coord_tensor_dR (P.PD K) T'.ρ bV
     intro heq
     have hmem : Φ.symm z ∈ DdR (P.PD K) T'.ρ ⊓ FilV (P.PD K) (u k) := by
       refine ⟨?_, (h1 _ _).2 (by simpa using hz1)⟩

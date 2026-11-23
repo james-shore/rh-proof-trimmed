@@ -51,17 +51,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formal
 
 namespace GlobalTheory.Mem.BSpan
 
-theorem exists_smul_mem {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Module K V] [Module (𝓞 K) V]
-    [IsScalarTower (𝓞 K) K V] {M : Submodule (𝓞 K) V} {x : V} (hx : x ∈ Submodule.span K (M : Set V)) :
-    ∃ d : 𝓞 K, d ≠ 0 ∧ d • x ∈ M := by
-  first
-  | exact @_root_.GlobalTheory.NonzeroSmulMem.exists_ne_zero_smul_mem
-  | exact _root_.GlobalTheory.NonzeroSmulMem.exists_ne_zero_smul_mem
-  | (apply _root_.GlobalTheory.NonzeroSmulMem.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NonzeroSmulMem.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NonzeroSmulMem.exists_ne_zero_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NonzeroSmulMem.exists_ne_zero_smul_mem ..)
-
 theorem smul_mem_of_dvd {A V : Type} [CommRing A] [AddCommGroup V] [Module A V] {M : Submodule A V} {a b : A} {x : V}
     (hab : a ∣ b) (hx : a • x ∈ M) : b • x ∈ M := by
   obtain ⟨c, rfl⟩ := hab
@@ -97,7 +86,7 @@ theorem exists_smul_mem_latOf {E K ι : Type} [Field E] [NumberField E] [StarRin
     (x : S.FormsK emb lam h) : ∃ d : 𝓞 K, d ≠ 0 ∧ d • x ∈ S.latOf emb lam h M := by
   classical
   haveI := Fintype.ofFinite S.Cl
-  have h1 : ∀ c, ∃ d : 𝓞 K, d ≠ 0 ∧ d • x.1 c ∈ M c := fun c => exists_smul_mem (by rw [hM c]; trivial)
+  have h1 : ∀ c, ∃ d : 𝓞 K, d ≠ 0 ∧ d • x.1 c ∈ M c := fun c => _root_.GlobalTheory.NonzeroSmulMem.exists_ne_zero_smul_mem (by rw [hM c]; trivial)
   choose d hd hdM using h1
   refine ⟨∏ c, d c, Finset.prod_ne_zero_iff.2 fun c _ => hd c, fun c => ?_⟩
   exact smul_mem_of_dvd (Finset.dvd_prod_of_mem d (Finset.mem_univ c)) (hdM c)

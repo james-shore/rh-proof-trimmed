@@ -51,7 +51,7 @@ open scoped TensorProduct
 theorem UpperTheory.Gal.TranscendenceTraces.ringSplit_of :
     FinSec → IndDesc → RingSplit := by
   intro hF hI A B C _ _ _ _ _ _ _ _ P
-  obtain ⟨O, _, _, _, hSH, hInd, hP⟩ := GlobalTheory.T.exists_strictlyHenselian_indEtale_over_prime A P.asIdeal
+  obtain ⟨O, _, _, _, hSH, hInd, hP⟩ := _root_.GlobalTheory.StrictHensPrime.exists_sh_indEt A P.asIdeal
   letI : Algebra B (O ⊗[A] B) := (Algebra.TensorProduct.includeRight : B →ₐ[A] O ⊗[A] B).toRingHom.toAlgebra
   obtain ⟨s⟩ := hF O (O ⊗[A] B) ((O ⊗[A] B) ⊗[B] C) hSH
   have t0 : C →ₐ[B] O ⊗[A] B :=

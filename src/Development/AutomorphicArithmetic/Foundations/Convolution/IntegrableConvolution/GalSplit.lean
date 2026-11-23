@@ -62,11 +62,6 @@ private theorem orderOf_gen (σ : E ≃ₐ[F] E) (hσ : ∀ τ : E ≃ₐ[F] E, 
     (hm : Module.finrank F E = m + 1) : orderOf σ = m + 1 := by
   rw [orderOf_eq_card_of_forall_mem_zpowers hσ, IsGalois.card_aut_eq_finrank, hm]
 
-private theorem det_ne (σ : E ≃ₐ[F] E) (hσ : ∀ τ : E ≃ₐ[F] E, τ ∈ Subgroup.zpowers σ) {m : ℕ}
-    (hm : Module.finrank F E = m + 1) (b : Module.Basis (Fin (m + 1)) F E) :
-    (Matrix.of fun (i j : Fin (m + 1)) => (σ ^ (i : ℕ)) (b j)).det ≠ 0 :=
-  _root_.UpperTheory.Reformulated.B.DeterminantNonzero.det_ne σ hσ hm b
-
 variable {A : Type} [CommRing A] [Algebra F A]
 
 private noncomputable def phi (σ : E ≃ₐ[F] E) (p : E →ₐ[F] A) (m : ℕ) : E ⊗[F] A →ₐ[F] (Fin (m + 1) → A) :=
@@ -82,7 +77,7 @@ private theorem phi_bij (σ : E ≃ₐ[F] E) (hσ : ∀ τ : E ≃ₐ[F] E, τ �
     (hm : Module.finrank F E = m + 1) (p : E →ₐ[F] A) : Function.Bijective (phi σ p m) := by
   let b : Module.Basis (Fin (m + 1)) F E := Module.finBasisOfFinrankEq F E hm
   let M : Matrix (Fin (m + 1)) (Fin (m + 1)) E := Matrix.of fun i j => (σ ^ (i : ℕ)) (b j)
-  have hunit : IsUnit M.det := isUnit_iff_ne_zero.2 (det_ne σ hσ hm b)
+  have hunit : IsUnit M.det := isUnit_iff_ne_zero.2 (_root_.UpperTheory.Reformulated.B.DeterminantNonzero.det_ne σ hσ hm b)
   let N := M⁻¹
   have hMN : M * N = 1 := Matrix.mul_nonsing_inv _ hunit
   have hNM : N * M = 1 := Matrix.nonsing_inv_mul _ hunit

@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsArchSchwartzDerivativeHeisenbergLine
 
 @[expose] public section
 
@@ -60,16 +61,9 @@ variable (F) in
 def evIHom : AF F →+* mixedEmbedding.mixedSpace F :=
   (InfiniteAdeleRing.ringEquiv_mixedSpace F).toRingHom.comp (RingHom.fst _ _)
 
-theorem evI_add (a b : AF F) : evI F (a + b) = evI F a + evI F b := map_add (evIHom F) a b
-
-theorem evI_mul (a b : AF F) : evI F (a * b) = evI F a * evI F b := map_mul (evIHom F) a b
-
 theorem evI_dot {κ : Type} [Fintype κ] (v w : κ → AF F) :
     evI F (v ⬝ᵥ w) = (fun i => evI F (v i)) ⬝ᵥ fun i => evI F (w i) :=
   RingHom.map_dotProduct (evIHom F) v w
-
-theorem evI_realAd (t : ℝ) : evI F (realAd F t) = algebraMap ℝ _ t := by
-  exact (InfiniteAdeleRing.ringEquiv_mixedSpace F).apply_symm_apply _
 
 theorem snd_realAd (t : ℝ) : (realAd F t).2 = 0 := by simp [realAd]
 
@@ -137,7 +131,7 @@ theorem schr_line {κ : Type} [Fintype κ] [Invertible (2 : AF F)] (ψ : AddChar
   have he : evI F (realAd F t * ((fun i => ofInf F (y i)) ⬝ᵥ b + ⅟(2 : AF F) * (realAd F t * (a ⬝ᵥ b)))) =
       t • ((y ⬝ᵥ fun i => evI F (b i)) +
         t • (evI F ⅟(2 : AF F) * ((fun i => evI F (a i)) ⬝ᵥ fun i => evI F (b i)))) := by
-    rw [evI_mul, evI_add, evI_mul, evI_mul, evI_dot, evI_dot, hy, evI_realAd, Algebra.smul_def, Algebra.smul_def]
+    rw [_root_.GlobalTheory.HeisDeriv.evI_mul, _root_.GlobalTheory.HeisDeriv.evI_add, _root_.GlobalTheory.HeisDeriv.evI_mul, _root_.GlobalTheory.HeisDeriv.evI_mul, evI_dot, evI_dot, hy, _root_.GlobalTheory.HeisDeriv.evI_realAd, Algebra.smul_def, Algebra.smul_def]
     ring
   have htr : Algebra.trace ℝ (mixedEmbedding.mixedSpace F)
       (evI F (realAd F t * ((fun i => ofInf F (y i)) ⬝ᵥ b + ⅟(2 : AF F) * (realAd F t * (a ⬝ᵥ b))))) =
@@ -149,7 +143,7 @@ theorem schr_line {κ : Type} [Fintype κ] [Invertible (2 : AF F)] (ψ : AddChar
   have hg : (fun i => evI F (((fun i => ofInf F (y i)) + realAd F t • a) i)) = y + t • fun i => evI F (a i) := by
     funext i
     simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul]
-    rw [evI_add, evI_mul, evI_realAd, evI_ofInf, Algebra.smul_def]
+    rw [_root_.GlobalTheory.HeisDeriv.evI_add, _root_.GlobalTheory.HeisDeriv.evI_mul, _root_.GlobalTheory.HeisDeriv.evI_realAd, evI_ofInf, Algebra.smul_def]
   have hr : rInt F κ ((fun i => ofInf F (y i)) + realAd F t • a) = 1 := by
     refine rInt_eq_one _ fun i => ?_
     show (0 : FiniteAdeleRing (𝓞 F) F) + (realAd F t).2 * (a i).2 = 0

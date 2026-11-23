@@ -60,10 +60,6 @@ open Polynomial
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani
 
-theorem exists_large_prime_dvd_eval (f : ℤ[X]) (hf : 0 < f.natDegree) (N : ℕ) :
-    ∃ (p : ℕ) (m : ℤ), p.Prime ∧ N < p ∧ (p : ℤ) ∣ f.eval m :=
-  _root_.UpperTheory.Reformulated.B.P6.LargePrimeDivisors.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_large_prime_dvd_eval f hf N
-
 theorem exists_exponent_ne_zero (F : Type) [Field F] [NumberField F] :
     ∃ θ : 𝓞 F, RingOfIntegers.exponent θ ≠ 0 := by
   obtain ⟨α, hα⟩ := Field.exists_primitive_element ℚ F
@@ -143,7 +139,7 @@ theorem exists_prime_absNorm_avoiding : ∀ (F : Type) [Field F] [NumberField F]
     ∃ 𝔠 : Ideal (𝓞 F), 𝔠.IsPrime ∧ (Ideal.absNorm 𝔠).Prime ∧ B < Ideal.absNorm 𝔠 ∧ 𝔠 ⊔ 𝔣 = ⊤ ∧ ∀ x ∈ W, x ∉ 𝔠 := by
   intro F _ _ 𝔣 h𝔣 W B hW
   obtain ⟨θ, hθ⟩ := exists_exponent_ne_zero F
-  obtain ⟨p, m, hp, hN, hdvd⟩ := exists_large_prime_dvd_eval (minpoly ℤ θ)
+  obtain ⟨p, m, hp, hN, hdvd⟩ := _root_.UpperTheory.Reformulated.B.P6.LargePrimeDivisors.exists_prime_gt_dvd_eval_of_natDegree_pos (minpoly ℤ θ)
     (minpoly.natDegree_pos θ.isIntegral)
     (B + RingOfIntegers.exponent θ + Ideal.absNorm 𝔣 + ∑ x ∈ W, Ideal.absNorm (Ideal.span {x}))
   have := Fact.mk hp

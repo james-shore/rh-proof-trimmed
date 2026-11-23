@@ -52,15 +52,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 
 variable {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} {j : ℕ}
 
-theorem addL_zero (u wL : WeightFamilies.Wt D j) : addL u wL 0 = u := by
-  unfold addL wadd wsmul
-  cases u
-  simp only [WeightFamilies.Wt.mk.injEq]
-  refine ⟨?_, ?_, ?_⟩
-  · funext τ i; simp
-  · funext τ i; simp
-  · simp
-
 def secP (X : PJ D B P j) {N : ℕ} {wL : WeightFamilies.Wt D j} (w : Fin N → B.Cusp j wL) (i : Fin (WeightFamilies.dimY D j + 1)) :
     MvPolynomial (Idx D j N) X.Forms :=
   ∑ k, MvPolynomial.X (i, k) * MvPolynomial.C (X.inc wL (w k))
@@ -116,7 +107,7 @@ theorem inContainMR_of_anFacts : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : M
       refine ⟨(∏ k, secP X G.w k.succ ^ al k) * (secP X G.w 0 ^ (T - ∑ k, al k) *
         MvPolynomial.C (X.inc wF (G.th' i))), ⟨?_, Or.inl ⟨al, i, hal, ?_⟩⟩, ?_⟩
       · have h0 : OfWt X (addL wF wL 0) (MvPolynomial.C (X.inc wF (G.th' i)) : MvPolynomial (Idx D j G.N) X.Forms) := by
-          rw [addL_zero]; exact hCw _ _
+          rw [_root_.Formalism.MainNotions.Gaps.EtaleWeightGaps.addL_zero]; exact hCw _ _
         have h1 := ofWt_prod_mul hs3 hmul al wF _ (ofWt_pow_mul hs3 hmul 0 wF 0 (T - ∑ k, al k) h0) Finset.univ
         have he : 0 + (T - ∑ k, al k) + ∑ k, al k = T := by
           unfold a0 at hal; omega

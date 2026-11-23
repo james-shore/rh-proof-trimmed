@@ -68,10 +68,6 @@ import ReciprocityTheory.GaloisValuations.GlobalA
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.WeilDeligne GlobalTheory.GalOfCusp GlobalTheory.HeckeGal GlobalTheory.LocLanglands GlobalTheory.Published UpperTheory.V.W
 
-private theorem isCM_of_conj (K : Type) [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K]
-    (h : ∀ x : K, ∃ y : K, ∀ φ : K →+* ℂ, φ y = starRingEnd ℂ (φ x)) : IsCMField K :=
-  _root_.UpperTheory.Reformulated.B.Qh9.isCM_of_conj K h
-
 private theorem exists_root_lift {Ω M : Type} [Field Ω] [CharZero Ω] [IsAlgClosed Ω] [Field M] [CharZero M]
     (j : Ω →+* M) (g : Polynomial ℚ) (hg : g ≠ 0) (β : M) (hβ : Polynomial.aeval β g = 0) :
     ∃ b : Ω, j b = β ∧ Polynomial.aeval b g = 0 := by
@@ -153,7 +149,7 @@ theorem UpperTheory.exists_totally_imaginary_padic_sqrt :
     have h1 : starRingEnd ℂ (w.embedding δ') = w.embedding δ' := congrArg (fun f : E →+* ℂ => f δ') h
     exact (hre w.embedding).2 (Complex.conj_eq_iff_im.mp h1)⟩
   have hCM : IsCMField E := by
-    refine isCM_of_conj _ ?_
+    refine _root_.UpperTheory.Reformulated.B.Qh9.isCM_of_conj _ ?_
     rintro ⟨x, hx⟩
     induction hx using IntermediateField.adjoin_induction with
     | mem x hx =>

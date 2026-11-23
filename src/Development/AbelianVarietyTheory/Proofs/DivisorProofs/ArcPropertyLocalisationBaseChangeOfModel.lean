@@ -117,10 +117,7 @@ theorem mem_range_j_iff (x : (locModel Y b hb).X) :
     refine ⟨u, (pullback.fst Y.s (spMap b)).isEmbedding.injective ?_⟩
     rw [← hu, Scheme.Hom.comp_apply]
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [spMap, spMap, spMap, ← Spec.map_comp]
-  rfl
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem locModel_arc (h : Y.N4) : (locModel Y b hb).N4 := by
   intro O'' _ _ _ b' ϖ a hO

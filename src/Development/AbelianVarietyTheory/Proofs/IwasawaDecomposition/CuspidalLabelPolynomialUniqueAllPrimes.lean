@@ -55,22 +55,10 @@ namespace GlobalTheory.GLq.LabelUniqueAll
 
 open Finset
 
-theorem esymm_eq_of_psum_eq {d : ℕ} (a b : Fin d → ℂ)
-    (h : ∀ k, 1 ≤ k → k ≤ d → ∑ i, a i ^ k = ∑ i, b i ^ k) :
-    ∀ k, k ≤ d → MvPolynomial.aeval a (MvPolynomial.esymm (Fin d) ℂ k) =
-      MvPolynomial.aeval b (MvPolynomial.esymm (Fin d) ℂ k) := by
-  first
-  | exact @_root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq
-  | exact _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq
-  | (apply _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq ..)
-
 theorem map_eq_of_psum_eq {d : ℕ} (a b : Fin d → ℂ)
     (h : ∀ k, 1 ≤ k → k ≤ d → ∑ i, a i ^ k = ∑ i, b i ^ k) :
     Finset.univ.val.map a = Finset.univ.val.map b := by
-  have he := esymm_eq_of_psum_eq a b h
+  have he := _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq a b h
   have hp : ((Finset.univ.val.map a).map fun t => X - C t).prod =
       ((Finset.univ.val.map b).map fun t => X - C t).prod := by
     rw [Multiset.prod_X_sub_X_eq_sum_esymm, Multiset.prod_X_sub_X_eq_sum_esymm]

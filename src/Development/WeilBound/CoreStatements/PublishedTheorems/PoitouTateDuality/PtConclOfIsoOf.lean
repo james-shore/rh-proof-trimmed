@@ -87,7 +87,7 @@ theorem ptConcl_of_iso_of (hL : PositivityTheory.PTN.LocHyp) : ∀ (F Ω F' Ω' 
     obtain ⟨v, rfl⟩ := eI.surjective v'
     exact (hpl _ _ (hAv'' v) v.1).1 (hAv v)
 
-  obtain ⟨Ψ, hΨ⟩ := GlobalTheory.T.galois_quotient_equiv_of_matching_places F Ω F' Ω' e E hE Φ hΦ eV hpl
+  obtain ⟨Ψ, hΨ⟩ := _root_.GlobalTheory.CompanionTheory.PTIso.exists_gsIso F Ω F' Ω' e E hE Φ hΦ eV hpl
     (fun A A' hA σ => (hloc A A' hA σ).2.1) _ _ hSS
   let μ' : GS Ω' (S' : Set (HeightOneSpectrum (𝓞 F'))) →* (ZMod (l ^ r))ˣ :=
     μ.comp (Ψ.symm : GS Ω' (S' : Set (HeightOneSpectrum (𝓞 F'))) →* _)
@@ -111,7 +111,7 @@ theorem ptConcl_of_iso_of (hL : PositivityTheory.PTN.LocHyp) : ∀ (F Ω F' Ω' 
     have hA : ∀ x, E x ∈ A' ↔ x ∈ A := fun x => by simp [A, ValuationSubring.mem_comap]
     have hP0 : IsPlaceOver A v := (hpl A A' hA v).2 hP
     refine ⟨(hinv' A A' hA).1 (hinv A v hP0).1, ?_⟩
-    exact GlobalTheory.T.ring_equiv_transports_residue F Ω F' Ω' e E hE Φ hΦ eO eV heO hV hV2 hN l r hcyc A A' hA (hloc A A' hA) ζ v
+    exact _root_.GlobalTheory.CompanionTheory.PTIso.Norm.isNormalised_transfer F Ω F' Ω' e E hE Φ hΦ eO eV heO hV hV2 hN l r hcyc A A' hA (hloc A A' hA) ζ v
       (inv A) (inv' A') (hinv' A A' hA).2 (hinv A v hP0).2
   have hS' : ContainsAbove S' l := by
     intro v' hv'
@@ -141,7 +141,7 @@ theorem ptConcl_of_iso_of (hL : PositivityTheory.PTN.LocHyp) : ∀ (F Ω F' Ω' 
     have e2 : h' = eD v h := Subtype.ext hh
     subst e1 e2
     exact hz g h
-  · exact (shaDual_iff S Av μ ρ).2 (GlobalTheory.T.tate_shafarevich_transport (locFam S Av) (continuous_locFam S Av) (locFam S' Av')
+  · exact (shaDual_iff S Av μ ρ).2 (_root_.GlobalTheory.CompanionTheory.PTIso.ShaTransfer.shaG_transfer (locFam S Av) (continuous_locFam S Av) (locFam S' Av')
       (continuous_locFam S' Av') μ μ' ρ ρ' Ψ eI eD hcomp hχ hρc ((shaDual_iff S' Av' μ' ρ').1 hsha))
 
 end PositivityTheory.PTN

@@ -90,10 +90,6 @@ theorem card_fix_conj {k Γ : Type} [CommRing k] [Group Γ] (A : Rep.{0} k Γ) (
   · show A.ρ g⁻¹ (A.ρ g a.1) = a.1
     rw [key, inv_mul_cancel, map_one, Module.End.one_apply]
 
-theorem isCCAt_conj {w : InfinitePlace F} (hw : w.IsReal) {c c' : G F Ω} (hc : IsCCAt w c)
-    (hc' : IsCCAt w c') : ∃ g : G F Ω, c' = g * c * g⁻¹ := by
-  exact PositivityTheory.Lit1.GEN.W_dictfwd_b.isCCAt_conj hw hc hc'
-
 theorem exists_fieldTransport :
     ∃ (K : FiniteSubfield) (τ : Ω ≃+* AlgebraicClosure ℚ) (σ : F ≃+* K.1),
       ∀ x : F, τ (algebraMap F Ω x) = ((σ x : K.1) : AlgebraicClosure ℚ) := by
@@ -114,16 +110,6 @@ theorem exists_fieldTransport :
   show τ (algebraMap F Ω x) = _
   rw [τ.commutes]
   rfl
-
-theorem places_transport (K : FiniteSubfield) (τ : Ω ≃+* AlgebraicClosure ℚ) (σ : F ≃+* K.1)
-    (hτ : ∀ x : F, τ (algebraMap F Ω x) = ((σ x : K.1) : AlgebraicClosure ℚ))
-    (S : Finset (HeightOneSpectrum (𝓞 F))) :
-    ∃ (S' : Set (HeightOneSpectrum (𝓞 K.1))) (_ : S'.Finite),
-      (∀ n : ℕ, (∀ v : HeightOneSpectrum (𝓞 F), (n : 𝓞 F) ∈ v.asIdeal → v ∈ S) →
-        ∀ v' : HeightOneSpectrum (𝓞 K.1), (n : 𝓞 K.1) ∈ v'.asIdeal → v' ∈ S') ∧
-      ∀ x : Ω, x ∈ maxUnramifiedOutside F Ω (S : Set (HeightOneSpectrum (𝓞 F))) ↔
-        τ x ∈ maxUnramifiedOutside K.1 (AlgebraicClosure ℚ) S' := by
-  exact PositivityTheory.Lit1.GEN.W_dictfwd_b.places_transport K τ σ hτ S
 
 def tauE (τ : Ω ≃+* AlgebraicClosure ℚ) (S : Set (HeightOneSpectrum (𝓞 F))) {K : FiniteSubfield}
     (S' : Set (HeightOneSpectrum (𝓞 K.1)))
@@ -239,7 +225,7 @@ theorem gsTransport_compat (K : FiniteSubfield) (τ : Ω ≃+* AlgebraicClosure 
       ∀ (g : G F Ω) (g' : G K.1 (AlgebraicClosure ℚ)), (∀ x : Ω, g' (τ x) = τ (g x)) →
         θ (resS (Ω := Ω) (S : Set (HeightOneSpectrum (𝓞 F))) g) =
           resS (Ω := AlgebraicClosure ℚ) S' g' := by
-  obtain ⟨S', hS', hn, hmem⟩ := places_transport K τ σ hτ S
+  obtain ⟨S', hS', hn, hmem⟩ := _root_.PositivityTheory.Lit1.GEN.W_dictfwd_b.places_transport K τ σ hτ S
   obtain ⟨θ, hθ⟩ := galEquiv_transport K τ σ hτ _ S' hmem
   exact ⟨S', hS', θ, hn, hθ⟩
 
@@ -252,14 +238,6 @@ theorem exists_transport_elem (K : FiniteSubfield) (τ : Ω ≃+* AlgebraicClosu
     exact g'.commutes (σ x)
   · show g' (τ x) = τ (τ.symm (g' (τ x)))
     rw [RingEquiv.apply_symm_apply]
-
-theorem realPlaces_transport (K : FiniteSubfield) (τ : Ω ≃+* AlgebraicClosure ℚ) (σ : F ≃+* K.1)
-    (hτ : ∀ x : F, τ (algebraMap F Ω x) = ((σ x : K.1) : AlgebraicClosure ℚ)) :
-    ∃ e : {w : InfinitePlace F // w.IsReal} ≃ {v : InfinitePlace K.1 // v.IsReal},
-      Fintype.card (InfinitePlace F) = Fintype.card (InfinitePlace K.1) ∧
-      ∀ (w : {w : InfinitePlace F // w.IsReal}) (g : G F Ω) (g' : G K.1 (AlgebraicClosure ℚ)),
-        (∀ x : Ω, g' (τ x) = τ (g x)) → IsCCAt (e w).1 g' → IsCCAt w.1 g := by
-  exact PositivityTheory.Lit1.GEN.W_dictfwd_b.realPlaces_transport K τ σ hτ
 
 theorem real_H0_card_eq_fixed (K : FiniteSubfield) (S' : Set (HeightOneSpectrum (𝓞 K.1)))
     (ιr : ∀ v : {v : InfinitePlace K.1 // v.IsReal},
@@ -292,7 +270,7 @@ theorem transport_data {l : ℕ} [Fact l.Prime] (S : Finset (HeightOneSpectrum (
           Nat.card {a : A // A.ρ (resS (Ω := Ω) (S : Set (HeightOneSpectrum (𝓞 F))) (c' w.1)) a = a} := by
   obtain ⟨K, τ, σ, hτ⟩ := exists_fieldTransport (F := F) (Ω := Ω)
   obtain ⟨S', hS', θ, hn, hθ⟩ := gsTransport_compat K τ σ hτ S
-  obtain ⟨e, hcard, hcc⟩ := realPlaces_transport K τ σ hτ
+  obtain ⟨e, hcard, hcc⟩ := _root_.PositivityTheory.Lit1.GEN.W_dictfwd_b.realPlaces_transport K τ σ hτ
   set_option synthInstance.maxHeartbeats 200000 in
     let ιr : ∀ v : {v : InfinitePlace K.1 // v.IsReal},
         AlgebraicClosure ℚ →ₐ[K.1] AlgebraicClosure v.1.Completion := fun v => IsAlgClosed.lift
@@ -349,7 +327,7 @@ theorem ratio_F {l : ℕ} [Fact l.Prime] (h : RatioOne l (fun _ => True))
   obtain ⟨c', hc', hrat⟩ := ratio_F_exists (Ω := Ω) h S hS
   rw [hrat A r hA]
   refine Finset.prod_congr rfl fun w _ => ?_
-  obtain ⟨g, hg⟩ := isCCAt_conj w.2 (hc' w.1 w.2) (hc w.1 w.2)
+  obtain ⟨g, hg⟩ := _root_.PositivityTheory.Lit1.GEN.W_dictfwd_b.isCCAt_conj w.2 (hc' w.1 w.2) (hc w.1 w.2)
   have e := card_fix_conj A (resS (Ω := Ω) (S : Set (HeightOneSpectrum (𝓞 F))) g)
     (resS (Ω := Ω) (S : Set (HeightOneSpectrum (𝓞 F))) (c' w.1))
   rw [← map_inv, ← map_mul, ← map_mul, ← hg] at e

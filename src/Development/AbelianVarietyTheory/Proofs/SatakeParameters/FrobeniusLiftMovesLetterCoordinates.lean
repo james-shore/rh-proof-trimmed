@@ -59,10 +59,6 @@ theorem inv_map_field {E K : Type*} [Field E] [Field K] (f : E →+* K) {n : Typ
   ext i j
   simp [Ring.inverse_eq_inv', map_inv₀]
 
-theorem conj_conj (D : D7) (x : D.host.E) : D.host.conj (D.host.conj x) = x :=
-  D.host.φ₀.injective (by
-    rw [Formalism.HC.HostAx.conjE_apply, Formalism.HC.HostAx.conjE_apply, Complex.conj_conj])
-
 theorem frob_moves_coords : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) (σ : MaximalUnramifiedExtension p →+* MaximalUnramifiedExtension p), UnrOK (MaximalUnramifiedExtension p) p σ → (IsResidueClassZero D p ∨ IsSg D p) → ∀ (N N' : ℕ) (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)) (P : D.what₂.Tau → Matrix (Fin N) (Fin N) D.host.E) (P' : D.what₂.Tau → Matrix (Fin N') (Fin N') D.host.E), StdBases D lam L P → StdBases D lam L' P' → ∀ (r : ℕ) (b : Fin r → Matrix (Fin N') (Fin N) D.host.E), (∀ z a b₀ i, σ (gK D lam P P' b z a b₀ i) = hK D lam P P' b (posPl D p z 1) a b₀ i) ∧ (∀ w a b₀ i, σ (hK D lam P P' b w a b₀ i) = gK D lam P P' b (posPl D p w 1) a b₀ i) := by
   intro D p _ lam σ hσ hcl N N' L L' P P' hP hP' r b
   choose ρ hρ using fun z => exists_ringHom_rhoK D lam σ hσ hcl z
@@ -87,7 +83,7 @@ theorem frob_moves_coords : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (lam : Qbar �
       rw [Matrix.map_mul, Matrix.map_mul]
       congr 1
       ext i j
-      simp [conj_conj]
+      simp [_root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.conj_conj]
     rw [e, hQ z]
     simp
   have K1 : ∀ {n : ℕ} (Q : D.what₂.Tau → Matrix (Fin n) (Fin n) D.host.E),
@@ -106,7 +102,7 @@ theorem frob_moves_coords : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (lam : Qbar �
 
   · simp only [gK, hK, hfun, map_sum, map_mul]
     refine Finset.sum_congr rfl fun b₁ _ => Finset.sum_congr rfl fun a₁ _ => ?_
-    rw [hs, hs, conj_conj, hinv, K1 P hPc z]
+    rw [hs, hs, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.conj_conj, hinv, K1 P hPc z]
     have e2 := congrFun (congrFun (K2 P' hP'c z) b₁) b₀
     simp only [Matrix.map_apply, Matrix.transpose_apply] at e2 ⊢
     rw [e2]; ring

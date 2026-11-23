@@ -95,11 +95,6 @@ theorem kerAll_sat (a : Ainf l) (h : (l : Ainf l) * a ∈ kerAll l) : a ∈ kerA
   rw [← RingHom.coe_pow, map_mul, map_natCast, map_mul, map_natCast, RingHom.coe_pow] at h1
   exact (mul_eq_zero.1 h1).resolve_left (Nat.cast_ne_zero.2 hl.out.ne_zero)
 
-theorem isEps_mem {ε : OCb l} (hε : IsEps ε) :
-    GlobalTheory.MemLoc.IsEps ε := by
-  obtain ⟨h1, δ, hδ, hδ1⟩ := hε
-  exact ⟨h1, by rw [← root_eq hδ]; exact hδ1⟩
-
 theorem ne_one {ε : OCb l} (hε : IsEps ε) : ε ≠ 1 := by
   obtain ⟨-, δ, hδ, hδ1⟩ := hε
   rintro rfl
@@ -158,7 +153,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime], (∃ ε : OCb l, IsEps ε) ∧ ∀ 
   intro l _
   refine ⟨exists_isEps l, fun ε δ hε hδ => ?_⟩
   have hr := root_eq hδ
-  have hE := isEps_mem hε
+  have hE := _root_.GlobalTheory.EpsCoeff.memLoc_isEps hε
   refine ⟨⟨GlobalTheory.MemLoc.xi ε, (GlobalTheory.MemLoc.ker_theta_eq_span_xi hE).symm, ?_⟩, ?_, ?_, ?_, ?_, units_σA hε,
     fun x hx => muOf_dvd hε hx⟩
   · rw [GlobalTheory.MemLoc.xi, ← hr, muOf, muOf, geom_sum_mul, ← map_pow, hδ]

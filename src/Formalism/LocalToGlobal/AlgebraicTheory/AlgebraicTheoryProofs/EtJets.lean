@@ -59,6 +59,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.CurveJetsUnramifiedHolds
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.OpUTh0RootOf
 
 @[expose] public section
 
@@ -77,10 +79,6 @@ section Field
 
 variable {K : Type} [Field K]
 
-theorem mfact_single (n : ℕ) : Formalism.DworkPowerSeriesWeights.mfact (Finsupp.single () n) = n.factorial := by
-  unfold Formalism.DworkPowerSeriesWeights.mfact
-  exact Finsupp.prod_single_index (by simp)
-
 theorem jets_in_iff_factorial_coeff (R : Subring K) (f : PowerSeries K) :
     JetsIn R (f : MvPowerSeries Unit K) ↔
       ∀ n : ℕ, ((n.factorial : ℕ) : K) * coeff n f ∈ R := by
@@ -88,11 +86,11 @@ theorem jets_in_iff_factorial_coeff (R : Subring K) (f : PowerSeries K) :
   constructor
   · intro h n
     have h1 := h (Finsupp.single () n)
-    rw [mfact_single] at h1
+    rw [_root_.Formalism.L2.Th1.G.InflationOneCocycles.mfact_single_unit] at h1
     exact h1
   · intro h κ
     obtain ⟨n, rfl⟩ : ∃ n, κ = Finsupp.single () n := ⟨κ (), Finsupp.ext fun u => by cases u; simp⟩
-    rw [mfact_single]
+    rw [_root_.Formalism.L2.Th1.G.InflationOneCocycles.mfact_single_unit]
     exact h n
 
 theorem jet_derivative (f : PowerSeries K) (n : ℕ) :
@@ -171,7 +169,7 @@ theorem jetsIn_subst_int {R : Subring K} {l e V : PowerSeries K} (h : IsLogPair 
   rw [jets_in_iff_factorial_coeff]
   intro n
   rw [factorial_mul_coeff_subst_eq_jet h]
-  exact Formalism.L2.Th1.G.intDJets K R l V hu hV n
+  exact _root_.Formalism.L2.Th1.G.integral_dist_jets_holds K R l V hu hV n
 
 theorem jetsIn_subst_ph {R : Subring K} {l e ph : PowerSeries K} (h : IsLogPair l e)
     (h0 : constantCoeff ph = 0) (hj : ∀ i, 1 ≤ i → jet l ph i ∈ R) :
@@ -202,7 +200,7 @@ theorem jetsIn_subst_fExp {R : Subring K} {l e ph : PowerSeries K} (h : IsLogPai
     rw [h0] at this
     exact this
   rw [key]
-  exact Formalism.L2.Th1.G.jetsExp K R Unit _ hcc hj
+  exact _root_.Formalism.L2.Th1.G.jets_exp_holds K R Unit _ hcc hj
 
 end Field
 
@@ -223,7 +221,7 @@ theorem core_zero {l e ph Fz G : PowerSeries K} (h : IsLogPair l e)
     ∀ n, ‖((n.factorial : ℕ) : K) * coeff n Fz‖ ≤ 1 := by
   have he0 : constantCoeff e = 0 := h.2.2.1
   have hse : HasSubst e := HasSubst.of_constantCoeff_zero' he0
-  have JR := Formalism.L2.Th1.G.jetsRing K (Formalism.G.unitBall K) Unit
+  have JR := _root_.Formalism.L2.Th1.G.jets_ring_holds K (Formalism.G.unitBall K) Unit
   have hEL := Formalism.L2.Th1.B.expLogRules K Unit
 
   have hexp0 : Formalism.L2.Th1.B.fExp (0 : PowerSeries K) = 1 := by
@@ -401,7 +399,7 @@ theorem etJetsTh0_of (h : EtJetsSigma) : EtJetsTh0 := by
     convert hMω using 1
     push_cast
     ring
-  obtain ⟨ζ, m, hm, hζ, hop⟩ := Formalism.L2.Th1.E.opUTh0Root L t (ω₀ / 2) (2 * M) (by omega) h2t h2t0 hω2
+  obtain ⟨ζ, m, hm, hζ, hop⟩ := _root_.Formalism.L2.Th1.E.OpUTh0Root_of L t (ω₀ / 2) (2 * M) (by omega) h2t h2t0 hω2
   have hc : ‖ι (Formalism.L2.Th1.F.opU L (ω₀ / 2) (Formalism.L2.Th1.F.sgStar L) 0)‖ = 1 := by
     refine (Formalism.L2.Th1.E.analyticTrans p L ι hW (ω₀ / 2) 2 two_pos hp2' ?_ hω2).1
     convert hω using 1

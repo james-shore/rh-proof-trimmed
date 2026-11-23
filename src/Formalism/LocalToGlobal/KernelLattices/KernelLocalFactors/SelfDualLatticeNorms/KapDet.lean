@@ -298,7 +298,7 @@ theorem relIdx_smul_mem_imgLat_of_mem_stdLat (hsd : IsSelfDual (Formalism.L2.Th1
   have hM : dualLat (Formalism.L2.Th1.H.stdH B.L (Ix D)) (imgLat (u : (Ix D → ℂ) →ₗ[ℂ] (Ix D → ℂ)) B.latA)
       = imgLat (u : (Ix D → ℂ) →ₗ[ℂ] (Ix D → ℂ)) B.latA := SO.selfDual_img _ _ u hiso _ hsd
   have hL : dualLat (Formalism.L2.Th1.H.stdH B.L (Ix D)) (stdLat B.L (Ix D)) = stdLat B.L (Ix D) :=
-    Formalism.L2.Th1.H.stdSelfDual B.L (Ix D)
+    _root_.Formalism.L2.Th1.H.StdSelfDual_proof B.L (Ix D)
   have hx' : x ∈ dualLat (Formalism.L2.Th1.H.stdH B.L (Ix D)) (stdLat B.L (Ix D)) := by rw [hL]; exact hx
   have key : ((relIdx (stdLat B.L (Ix D)) (imgLat (u : (Ix D → ℂ) →ₗ[ℂ] (Ix D → ℂ)) B.latA) : ℕ) : ℂ) • x
       ∈ dualLat (Formalism.L2.Th1.H.stdH B.L (Ix D)) (imgLat (u : (Ix D → ℂ) →ₗ[ℂ] (Ix D → ℂ)) B.latA) := by

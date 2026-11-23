@@ -71,9 +71,7 @@ open GlobalTheory.CatH (face toLast)
 
 namespace DlogClassConstruction
 
-theorem mem1 {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) {x : B} (hx : x ∈ J) : x ∈ pdP δ 1 := by
-  have := dpow_mem_pdP δ 1 hx
-  rwa [δ.dpow_one hx] at this
+alias mem1 := _root_.CrystallineSemistableComparison.Pb.LX.mem_pdP_one
 
 theorem mul2 {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) {x y : B} (hx : x ∈ J) (hy : y ∈ J) : x * y ∈ pdP δ 2 :=
   dividedPowerFiltration_mul δ 1 1 (mem1 δ hx) (mem1 δ hy)

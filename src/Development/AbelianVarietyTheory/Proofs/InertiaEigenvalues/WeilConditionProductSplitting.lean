@@ -239,7 +239,7 @@ theorem rel_m (s : A.Kˣ) (s₁ : A₁.Kˣ) (s₂ : A₂.Kˣ) (hs₁ : (s₁ : A
   have t := hf2 (mS s₂) (eL y).2
   rw [e2] at t ⊢
   rw [(hW₁.2 _ t).2.1, smul_split A A₁ A₂ eK eL hS, etaK_split A A₁ A₂ eK s,
-    absK_split F E A A₁ A₂ eK s, hs₁, hs₂]
+    _root_.GlobalTheory.JR.EtProdAbs.absK_prod F E A A₁ A₂ eK s, hs₁, hs₂]
   push_cast
   ring
 
@@ -277,12 +277,12 @@ theorem weilAt_prod : ∀ (F E : Type) [NontriviallyNormedField F] [Nontrivially
   have hc₁ : Continuous eL := IsModuleTopology.continuous_of_linearMap eL.toLinearMap
   have hc₂ : Continuous eL.symm := IsModuleTopology.continuous_of_linearMap eL.symm.toLinearMap
   let eH : A.L ≃ₜ A₁.L × A₂.L := ⟨eL.toEquiv, hc₁, hc₂⟩
-  obtain ⟨c, hc0, hc⟩ := fourB_split eL.toRingEquiv.toAddEquiv hc₁ hc₂ (A.kerL ψ x) (A₁.kerL ψ x₁)
+  obtain ⟨c, hc0, hc⟩ := _root_.GlobalTheory.JR.fourB_prod_iterated eL.toRingEquiv.toAddEquiv hc₁ hc₂ (A.kerL ψ x) (A₁.kerL ψ x₁)
     (A₂.kerL ψ x₂) (continuous_kerL A₁ ψ hψ _) (continuous_kerL A₂ ψ hψ _)
     (fun y' y => kerL_split A A₁ A₂ eK eL hS ψ x y' y) μ μ₁ μ₂ hμ.1 hμ₁.1 hμ₂.1
   let ρ : SpecialLinearGroup (Fin 2) A.K →* SpecialLinearGroup (Fin 2) A₁.K × SpecialLinearGroup (Fin 2) A₂.K :=
     (SpecialLinearGroup.map f₁).prod (SpecialLinearGroup.map f₂)
-  obtain ⟨hT, hfib⟩ := tensor_isTestRep W₁ W₂ hW₁.1 hW₂.1
+  obtain ⟨hT, hfib⟩ := _root_.GlobalTheory.JR.WeilProd.isTestRep_tensorRep W₁ W₂ hW₁.1 hW₂.1
   refine ⟨γ₁ * γ₂ / c, transRep ρ eH.toEquiv (tensorRep W₁ W₂), isTestRep_transRep ρ eH _ hT, fun φ hφ => ?_⟩
   have hf : IsTest (φ ∘ eH.symm) := isTest_comp_homeomorph eH.symm hφ
   obtain ⟨hf1, hf2⟩ := hfib _ hf

@@ -58,11 +58,7 @@ open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.FdegDens
 
-theorem volUn_pos (j : ℕ) : 0 < volUn j := by
-  unfold volUn
-  refine Finset.prod_pos fun i _ => ?_
-  have h2π : (0 : ℝ) < 2 * Real.pi := by positivity
-  exact div_pos (pow_pos h2π _) (by exact_mod_cast Nat.factorial_pos i)
+alias volUn_pos := _root_.GlobalTheory.UnitaryVolume.volUn_pos
 
 theorem exists_sort {n : ℕ} (ε : Fin n → Bool) : ∃ (p q : ℕ) (e : Fin p ⊕ Fin q ≃ Fin n), p + q = n ∧
     (∀ i, ε (e (Sum.inl i)) = true) ∧ ∀ j, ε (e (Sum.inr j)) = false := by

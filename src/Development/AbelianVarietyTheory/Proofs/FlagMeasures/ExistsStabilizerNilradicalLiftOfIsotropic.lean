@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -61,10 +62,6 @@ theorem hs_eq_trace (M : Matrix (Fin n) (Fin n) ℂ) : hs M = (trace (Mᴴ * M))
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   rw [Complex.sq_norm, Complex.normSq_apply]
   simp [Complex.mul_re]
-
-theorem hs_nonneg' (M : Matrix (Fin n) (Fin n) ℂ) : 0 ≤ hs M := by
-  simp only [Formalism.REAL.hs]
-  positivity
 
 theorem exists_proj (W : Submodule ℂ (Fin n → ℂ)) :
     ∃ P : Matrix (Fin n) (Fin n) ℂ, Pᴴ = P ∧ (∀ u, P *ᵥ u ∈ W) ∧ ∀ u ∈ W, P *ᵥ u = u := by
@@ -104,7 +101,7 @@ theorem hs_mul_le (D Q : Matrix (Fin n) (Fin n) ℂ) (h1 : Qᴴ = Q) (h2 : Q * Q
       Matrix.conjTranspose_one, h1, mul_assoc, ← mul_assoc (1 - Q) (1 - Q), hR, ← mul_assoc,
       mul_sub, mul_one, sub_mul, Matrix.trace_sub, Complex.sub_re]
   have hD : hs D = (trace (D * Dᴴ)).re := by rw [hs_eq_trace, Matrix.trace_mul_comm]
-  have h0 := hs_nonneg' (D * Q)
+  have h0 := _root_.Formalism.REAL.frobenius_nonneg_matrix (D * Q)
   linarith
 
 theorem core (J P D : Matrix (Fin n) (Fin n) ℂ) (j1 : J * J = 1) (j2 : Jᴴ = J) (p1 : Pᴴ = P)
@@ -195,23 +192,11 @@ theorem ext_mulVec' {X Y : Matrix (Fin n) (Fin n) ℂ} (h : ∀ u, X *ᵥ u = Y 
   have h1 := congrFun (h (Pi.single j 1)) i
   simpa [Matrix.mulVec_single] using h1
 
-private theorem jm_sq_lemma (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  ext i j
-  simp only [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, Matrix.diagonal_apply, Matrix.one_apply]
-  split_ifs <;> simp
-
-private theorem jm_herm_lemma_2 (ε : Fin n → Bool) : (Jm ε)ᴴ = Jm ε := by
-  simp only [Formalism.REAL.Jm, Matrix.diagonal_conjTranspose]
-  congr 1
-  ext i
-  simp only [Pi.star_apply]
-  split_ifs <;> simp
-
 theorem exists_lift : ∀ (n : ℕ) (ε : Fin n → Bool) (H G D : Matrix (Fin n) (Fin n) ℂ) (W : Submodule ℂ (Fin n → ℂ)), IsUnit G.det → Gᴴ * H * G = Jm ε → (∀ u ∈ W, u ∈ perpSet (starRingEnd ℂ) H W) → (∀ u ∈ W, D *ᵥ u = 0) → (∀ u ∈ perpSet (starRingEnd ℂ) H W, D *ᵥ u ∈ W) → ∃ A : Matrix (Fin n) (Fin n) ℂ, InNil (starRingEnd ℂ) H W A ∧ (∀ u ∈ perpSet (starRingEnd ℂ) H W, A *ᵥ u = D *ᵥ u) ∧ hs (G⁻¹ * A * G) ≤ 2 * hs (G⁻¹ * D * G) := by
   intro n ε H G D W hG hJ hiso hDW hDperp
   classical
-  have j1 : Jm ε * Jm ε = 1 := jm_sq_lemma ε
-  have j2 : (Jm ε)ᴴ = Jm ε := jm_herm_lemma_2 ε
+  have j1 : Jm ε * Jm ε = 1 := _root_.Formalism.REAL.Jm_mul_self ε
+  have j2 : (Jm ε)ᴴ = Jm ε := _root_.Formalism.REAL.Jm_conjTranspose ε
   have hGi : G * G⁻¹ = 1 := Matrix.mul_nonsing_inv G hG
   have hiG : G⁻¹ * G = 1 := Matrix.nonsing_inv_mul G hG
   have hiGX : ∀ X : Matrix (Fin n) (Fin n) ℂ, G⁻¹ * (G * X) = X := fun X => by

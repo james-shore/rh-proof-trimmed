@@ -124,20 +124,6 @@ theorem inTh_tr {Λ Λ₁ : Submodule L.O S.V} {a : S.GLV} (ha : ∀ v, v ∈ Λ
   refine ⟨a⁻¹ y, (ha _).2 (by rwa [app_inv]), ?_⟩
   rw [← map_smul, ← e, inv_app]
 
-theorem isSD_smul {g : S.GLV} (hg : g ∈ isomG L S.Hm) {Λ : Submodule L.O S.V} (h : IsSD L S.Hm Λ) :
-    IsSD L S.Hm (g • Λ) := by
-  refine ⟨⟨?_, ?_⟩, fun y => ?_⟩
-  · exact h.1.1.map _
-  · rw [Submodule.coe_pointwise_smul, Submodule.span_smul, h.1.2, smul_top]
-  · rw [mem_smul, ← h.2]
-    constructor
-    · intro H x hx
-      have := H (g x) ((mem_smul S g Λ _).2 (by rwa [inv_app]))
-      rwa [← app_inv S g y, hg] at this
-    · intro H x hx
-      have := H _ ((mem_smul S g Λ _).1 hx)
-      rwa [(isomG L S.Hm).inv_mem hg] at this
-
 theorem cong {Λ : Submodule L.O S.V} (hΛ : IsSD L S.Hm Λ) {x x' u : S.V} {s t : E}
     (hb : S.InTh Λ (x + x')) (hu : u ∈ Λ) (hs : s • x ∈ Λ)
     (hc : ∃ c ∈ L.O, S.h x' x = algebraMap F E S.th * c) (hx'u : S.h x' u = 0)
@@ -238,7 +224,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
   have hx'u := h_swap0 S hux'
   have hm : ∀ v, v ∈ n₀⁻¹ • Λ ↔ n₀ v ∈ Λ := fun v => by rw [mem_smul, inv_inv]
   have hm' : ∀ v, v ∈ Λ ↔ n₀⁻¹ v ∈ n₀⁻¹ • Λ := fun v => by rw [hm, app_inv]
-  have hSD₁ : IsSD L S.Hm (n₀⁻¹ • Λ) := isSD_smul S ((isomG L S.Hm).inv_mem hn₀.1.1) hSD
+  have hSD₁ : IsSD L S.Hm (n₀⁻¹ • Λ) := _root_.GlobalTheory.HL.TermBasic.isSD_smul S ((isomG L S.Hm).inv_mem hn₀.1.1) hSD
   have H : ∀ v ∈ Λ, v ∈ perp L S.Hm S.X' → S.InTh Λ (n₀ (n₀' v) - v) := fun v hv hp => by
     rw [e₀, e₀']
     exact cong S hSD hb hu hs1 hc hx'u hv (hp _ hx'X)
@@ -259,7 +245,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
     rw [ei₀, ei₀']
     exact cong S hSD₁ hb₁ hu₁ hs₁ hc (by rw [h_neg_r, hx'u, neg_zero]) hv (hp _ hx'X)
   obtain ⟨g, hg, hfix, hgL⟩ := GlobalTheory.HL.SameTrace.exists_isometry_of_same_trace L S.Hm S.herm (n₀' • Λ) (n₀⁻¹ • Λ)
-    (isSD_smul S hn₀'.1.1 hSD) hSD₁ r (fun j : Fin r => S.f' j.castSucc) (f'_li S)
+    (_root_.GlobalTheory.HL.TermBasic.isSD_smul S hn₀'.1.1 hSD) hSD₁ r (fun j : Fin r => S.f' j.castSucc) (f'_li S)
     (fun i j => f'_perp S _ _ (by rw [← X'_eq]; exact Submodule.subset_span ⟨j, rfl⟩)) (by
       rw [X'_eq]
       intro v hv

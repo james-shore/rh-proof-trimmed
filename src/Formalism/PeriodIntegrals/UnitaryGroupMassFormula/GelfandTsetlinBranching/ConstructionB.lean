@@ -49,10 +49,4 @@ noncomputable section
 
 namespace PI.WGB
 
-open Formalism.BasicNotions MvPolynomial
-
-theorem stable_complement_exists : StableCompl := stableCompl_B
-
-theorem highest_weight_vector_exists : HighestVec := highestVec_B
-
 end PI.WGB

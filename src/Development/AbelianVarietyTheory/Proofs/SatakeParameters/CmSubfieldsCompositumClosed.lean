@@ -72,22 +72,6 @@ open GlobalTheory.AboveL
 
 namespace GlobalTheory.CMSub
 
-section Crit
-
-open ComplexEmbedding InfinitePlace IntermediateField
-
-theorem isCMField_of_forall_isConj (K : Type) [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K]
-    {σ : K ≃ₐ[ℚ] K} (hσ : ∀ φ : K →+* ℂ, IsConj φ σ) : IsCMField K := by
-  first
-  | exact @_root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj
-  | exact _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj
-  | (apply _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj ..)
-
-end Crit
-
 def conjStable (Ω : Type) [Field Ω] : Subfield Ω where
   carrier := {x | ∃ y : Ω, ∀ φ : Ω →+* ℂ, φ y = starRingEnd ℂ (φ x)}
   mul_mem' := by
@@ -170,7 +154,7 @@ theorem isCMField_of_le [IsCMField E] (M : IntermediateField E Ω) [NumberField 
     (by ext x; exact congrArg Subtype.val (hff x))
   let σ : M ≃ₐ[ℚ] M := AlgEquiv.ofRingEquiv (f := g) (fun q => by
     rw [eq_ratCast (algebraMap ℚ M) q, map_ratCast])
-  refine isCMField_of_forall_isConj M (σ := σ) fun ψ => ?_
+  refine _root_.GlobalTheory.CMFieldCriterion.isCMField_of_forall_isConj M (σ := σ) fun ψ => ?_
   obtain ⟨φ, hφ⟩ := exists_extend M ψ
   ext x
   rw [ComplexEmbedding.conjugate_coe_eq, RingHom.comp_apply]

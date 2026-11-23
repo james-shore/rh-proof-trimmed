@@ -52,19 +52,15 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.C
 
-theorem mvExpLaws : MvExpLaws := formalExpLaws'
-theorem mvExpSubst : MvExpSubst := formalExpSubst'
+alias mvExpLaws := _root_.Formalism.L2.Th1.C.formalExpLaws'
+alias mvExpSubst := _root_.Formalism.L2.Th1.C.formalExpSubst'
 theorem lGSubgroup : LGSubgroup := lGSubgroup_of mvExpLaws
-theorem lGBinom : LGBinom := expIntegralBinomial'
+alias lGBinom := _root_.Formalism.L2.Th1.C.expIntegralBinomial'
 theorem lGHalf : LGHalf := lGHalf_of mvExpLaws
-theorem intBinomScalar : IntBinomScalar := intBinomialScalar'
+alias intBinomScalar := _root_.Formalism.L2.Th1.C.intBinomialScalar'
 theorem lGSubst : LGSubst := lGSubst_of mvExpSubst
-theorem lGSubstMv : LGSubstMv := expIntegralMvSubst'
-theorem intSubst : IntSubst := coeffsInSubst'
-
 theorem isogenyIffBar : IsogenyIffBar := isogenyIffBar_of mvExpLaws
 
-theorem veluXFromZ : VeluXFromZ := veluXOfSigma'
 theorem isogenyU : IsogenyU := isogenyU_of mvExpLaws mvExpSubst
 theorem phNormUnit : PhNormUnit := phNormUnit_of mvExpLaws mvExpSubst lGHalf isogenyU
 

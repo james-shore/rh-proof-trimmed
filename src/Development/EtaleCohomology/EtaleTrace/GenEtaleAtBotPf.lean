@@ -110,6 +110,4 @@ theorem genEtaleAtBot : GenEtaleAtBot := by
   have := functionField_isFractionRing_of_isAffineOpen X (π ⁻¹ᵁ U) hU'
   exact isEtaleAt_bot (K := X.functionField) hinj
 
-theorem GenEtaleAtBot_of : GenEtaleAtBot := genEtaleAtBot
-
 end LateralTheory.EtaleTrace.Cov.GenEtaleAtBotPf

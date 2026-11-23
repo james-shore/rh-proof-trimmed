@@ -71,21 +71,6 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
   {W : CMType H → Type} [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)]
   {Dc : ComponentData II (CMType H) K J Ω W} {Hd : HodgeData Dc} {S₀ : Finset ℕ}
 
-theorem mem_Vgen (𝔐 : HodgeCpt Y S₀ Dc.y) (t : CMType H ⊕ CMType H) (p : Cpt 𝔐.ξ) {x : 𝔐.Li}
-    (hx : x ∈ 𝔐.V t p) : x ∈ 𝔐.Vgen t := by
-  obtain ⟨U, hU, b, hs, hf⟩ := 𝔐.vb t p trivial
-  have e : 𝔐.V t p = Submodule.span (regAt 𝔐.ξ p) (Set.range b) := (hf p trivial hU).2
-  have hx' : x ∈ Submodule.span (regAt 𝔐.ξ p) (Set.range b) := e ▸ hx
-  clear hx
-  show x ∈ 𝔐.Vgen t
-  have hs' : Submodule.span Ω (Set.range b) = 𝔐.Vgen t := hs
-  rw [← hs']
-  induction hx' using Submodule.span_induction with
-  | mem x h => exact Submodule.subset_span h
-  | zero => exact zero_mem _
-  | add _ _ _ _ h h' => exact add_mem h h'
-  | smul a x _ h => exact Submodule.smul_mem _ (a : Ω) h
-
 theorem disjoint_blocks (Or : CptOrigin Y S₀ Dc Hd) (τ : CMType H) :
     Disjoint (Or.𝔐.Vgen (Or.bg τ)) (Or.𝔐.Vgen (Or.sm τ)) := by
   obtain ⟨-, -, -, -, -, -, hind, -⟩ := GlobalTheory.T.hodge_cpt_interior_generic E H D l Xo c _ _ Y S₀ Ω K J Dc.y Or.𝔐
@@ -113,7 +98,7 @@ theorem frames (Or : CptOrigin Y S₀ Dc Hd) {z : Spec (CommRingCat.of ℂ) ⟶ 
   have hfr := GlobalTheory.T.component_data_hodge_second E H D l Xo c Y II K J Ω W Dc Hd S₀ Or z w τ d.c d.f (d.b τ) h hw (d.adapted τ).1 d.inDom
   have hb := GlobalTheory.T.is_frame_at_tail_of_is_frame_at_comap_sup_lattice Or.𝔐.X Ω Or.𝔐.ξ Or.𝔐.Li (W τ) (Or.i τ) (Or.𝔐.V (Or.bg τ)) (Or.𝔐.V (Or.sm τ))
     (Or.𝔐.Vgen (Or.bg τ)) (Or.𝔐.Vgen (Or.sm τ)) Dc.N Dc.j Dc.j_le_N (d.b τ) (s τ) ⟨centre z, h⟩ (Or.i_inj τ)
-    (Or.i_range τ) (disjoint_blocks Or τ) (fun _ hx => mem_Vgen _ _ _ hx) (fun _ hx => mem_Vgen _ _ _ hx) hfr
+    (Or.i_range τ) (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.MuIndep.blocks_disjoint Or τ) (fun _ hx => _root_.GlobalTheory.CompanionTheory.Ar.Cusp.MuIndep.stalk_le_gen _ _ _ hx) (fun _ hx => _root_.GlobalTheory.CompanionTheory.Ar.Cusp.MuIndep.stalk_le_gen _ _ _ hx) hfr
     (by rw [(d.adapted τ).2.2, Or.F_eq τ]) (hs τ)
   exact ⟨hfr, hb.1, hb.2.1⟩
 

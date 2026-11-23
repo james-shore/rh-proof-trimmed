@@ -50,20 +50,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 namespace GlobalTheory
 
-theorem exists_awayMap_subalgebra (K : Type) [Field K] (S : Type) [CommRing S] [Algebra K S]
-    (S₁ : Subalgebra K S) (x : S) (hx : x ∈ S₁) :
-    ∃ κ : Localization.Away (⟨x, hx⟩ : S₁) →ₐ[K] Localization.Away x,
-      (∀ s : S₁, κ (algebraMap S₁ _ s) = algebraMap S _ (s : S)) ∧ Function.Injective κ ∧
-      ∀ (z : Localization.Away x) (m : ℕ) (s : S), s ∈ S₁ →
-        z * algebraMap S _ x ^ m = algebraMap S _ s → z ∈ κ.range := by
-  first
-  | exact @_root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding
-  | exact _root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding
-  | (apply _root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding ..)
-
 theorem exists_fg_subalgebra_desc_away : ∀ (K : Type) [Field K] (S : Type) [CommRing S] [Algebra K S] (S₀ : Subalgebra K S), S₀.FG → ∀ (n : ℕ) (h : Fin n → S) (A : Fin n → Type) [∀ i, CommRing (A i)] [∀ i, Algebra K (A i)], (∀ i, Algebra.FiniteType K (A i)) → ∀ a : ∀ i, A i →ₐ[K] Localization.Away (h i), Ideal.span (Set.range h) = ⊤ → ∃ (S₁ : Subalgebra K S) (h₁ : Fin n → S₁), S₁.FG ∧ S₀ ≤ S₁ ∧ (∀ i, (h₁ i : S) = h i) ∧ Ideal.span (Set.range h₁) = ⊤ ∧ ∀ i, ∃ (κ : Localization.Away (h₁ i) →ₐ[K] Localization.Away (h i)) (a' : A i →ₐ[K] Localization.Away (h₁ i)), (∀ s : S₁, κ (algebraMap S₁ _ s) = algebraMap S _ (s : S)) ∧ Function.Injective κ ∧ κ.comp a' = a i := by
   classical
   intro K _ S _ _ S₀ hS₀ n h A _ _ hA a hspan
@@ -86,7 +72,7 @@ theorem exists_fg_subalgebra_desc_away : ∀ (K : Type) [Field K] (S : Type) [Co
     refine Ideal.mem_span_range_iff_exists_fun.2 ⟨fun i => ⟨c i, hcm i⟩, Subtype.ext ?_⟩
     simpa using hc
   · intro i
-    obtain ⟨κ, hκ, hinj, hr⟩ := exists_awayMap_subalgebra K S S₁ (h i) (hh i)
+    obtain ⟨κ, hκ, hinj, hr⟩ := _root_.GlobalTheory.AwaySubalgebraEmbedding.exists_away_subalgebra_embedding K S S₁ (h i) (hh i)
     have hmem : ∀ y : A i, a i y ∈ κ.range := by
       intro y
       have : (⊤ : Subalgebra K (A i)) ≤ κ.range.comap (a i) := by

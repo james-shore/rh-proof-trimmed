@@ -176,18 +176,6 @@ theorem weight_int (h : IsDerivK σ Kf) (a : Fin n) (r : ℝ) {v : V} (hv : v �
     linear_combination this
   exact_mod_cast h5
 
-theorem kF_gl {E1 E2 : Fin n → Fin n → Module.End ℂ V} (h : IsPair E1 E2) : Formalism.REAL.GlRel (kF E1 E2) := by
-  intro a b c d
-  have h1 := h.gl1 a b c d
-  have h2 := h.gl2 a b c d
-  have e : kF E1 E2 a b * kF E1 E2 c d - kF E1 E2 c d * kF E1 E2 a b =
-      (E1 a b * E1 c d - E1 c d * E1 a b) + (E2 a b * E2 c d - E2 c d * E2 a b) := by
-    simp only [kF, add_mul, mul_add]
-    rw [h.comm a b c d, h.comm c d a b]
-    abel
-  rw [e, h1, h2]
-  split_ifs <;> simp [kF] <;> abel
-
 end GlobalTheory.CompanionTheory.RealMult.DiracProof
 
 namespace GlobalTheory.CompanionTheory.RealMult

@@ -108,7 +108,7 @@ private lemma toMK_mem_Kset {ε : Fin n → Bool} (k : KG ε) : toMK k ∈ Kset 
 
 private lemma continuous_toMK_inv_mul_mul_toMK' (ε : Fin n → Bool) (Y : Mt) :
     Continuous (fun k : KG ε => (toMK k)⁻¹ * Y * toMK k) :=
-  ((continuous_inv_toMK ε).matrix_mul continuous_const).matrix_mul (GlobalTheory.Dec.PsiEig.continuous_toMK ε)
+  ((continuous_inv_toMK ε).matrix_mul continuous_const).matrix_mul (_root_.GlobalTheory.Dec.FormF.toMK_cont ε)
 
 def dInt {ε : Fin n → Bool} (l : Fin n → Fin n → Mt → ℂ) (X z : Mt) (k : KG ε) : ℂ :=
   ∑ c, ∑ d, ((toMK k)⁻¹ * X * toMK k) c d * l c d ((toMK k)⁻¹ * z * toMK k)
@@ -120,7 +120,7 @@ lemma continuousOn_dInt {ε : Fin n → Bool} {l : Fin n → Fin n → Mt → �
     l c d ((toMK x.2)⁻¹ * x.1 * toMK x.2)) _
   have hc : Continuous (fun x : Mt × KG ε => (toMK x.2)⁻¹ * x.1 * toMK x.2) :=
     (((continuous_inv_toMK ε).comp continuous_snd).matrix_mul continuous_fst).matrix_mul
-      ((GlobalTheory.Dec.PsiEig.continuous_toMK ε).comp continuous_snd)
+      ((_root_.GlobalTheory.Dec.FormF.toMK_cont ε).comp continuous_snd)
   have hX : Continuous (fun x : Mt × KG ε => (toMK x.2)⁻¹ * X * toMK x.2) :=
     (continuous_toMK_inv_mul_mul_toMK' ε X).comp continuous_snd
   have hmaps : Set.MapsTo (fun x : Mt × KG ε => (toMK x.2)⁻¹ * x.1 * toMK x.2) (U1 ε ×ˢ Set.univ) (Omega n) :=
@@ -279,7 +279,7 @@ theorem eab_integral_eq_zero : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [N
   intro n ε H _ _ _ σ V E lam u hσ hD hK hfin G hG y
   obtain ⟨l, hl0, hlc, hd⟩ := GlobalTheory.PhiConjDeriv.exists_deriv_Phi_conj n ε lam
   have hσc : Continuous (fun k : KG ε => σ (toMK k) (u : H)) :=
-    (hσ.2.2 (u : H)).comp_continuous (GlobalTheory.Dec.PsiEig.continuous_toMK ε) fun k => (k : UJ ε).2
+    (hσ.2.2 (u : H)).comp_continuous (_root_.GlobalTheory.Dec.FormF.toMK_cont ε) fun k => (k : UJ ε).2
   have hw : ∀ a b : Fin n, Continuous (fun k : KG ε =>
       ⟪y, σ (toMK k) (u : H)⟫_ℂ * ⟪σ (toMK k) (u : H), (at1 G a b : V)⟫_ℂ) :=
     fun a b => (continuous_const.inner hσc).mul (hσc.inner continuous_const)

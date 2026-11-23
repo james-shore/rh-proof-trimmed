@@ -48,14 +48,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 namespace GlobalTheory.TwU
 
-theorem latBack_seam_lat {D : D7} {X : Fields} (s : Seam D X) {n : ℕ} (N : Submodule (𝓞 X.E) (Sp X.E n)) :
-    latBack s (s.lat N) = N := by
-  first
-  | exact @_root_.GlobalTheory.LatticeBackSeam.latBack_seam_lat
-  | exact _root_.GlobalTheory.LatticeBackSeam.latBack_seam_lat
-  | (apply _root_.GlobalTheory.LatticeBackSeam.latBack_seam_lat <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LatticeBackSeam.latBack_seam_lat <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LatticeBackSeam.latBack_seam_lat <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LatticeBackSeam.latBack_seam_lat ..)
+alias latBack_seam_lat := _root_.GlobalTheory.LatticeBackSeam.latBack_seam_lat
 
 end GlobalTheory.TwU

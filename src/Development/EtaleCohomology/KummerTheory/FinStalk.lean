@@ -44,7 +44,5 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.Stalk
-theorem etale_cohomology_stalk_compatibility_finite_coefficients_holds : LateralTheory.KummerTheory.Stalk := by
-  apply LateralTheory.Fix.Stalk.intersectionNumber_baseChange
-theorem intersectionNumber_baseChange : LateralTheory.KummerTheory.Stalk := etale_cohomology_stalk_compatibility_finite_coefficients_holds
+alias intersectionNumber_baseChange := _root_.LateralTheory.Fix.Stalk.intersectionNumber_baseChange
 end LateralTheory.Fin.Stalk

@@ -65,9 +65,7 @@ namespace GlobalTheory.CompanionTheory.Ar.WeilObj
 def extPt {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Sp Ω ⟶ X) {k : Type} [Field k] (i : Ω →+* k) :
     Over.mk (spMap i ≫ ξ) ⟶ Over.mk ξ := Over.homMk (spMap i) rfl
 
-theorem spMap_comp_of {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]; rfl
+alias spMap_comp_of := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem epi_spMap_field : ∀ (K L : Type) [Field K] [Field L] (i : K →+* L), Epi (spMap i) := by
   intro K L _ _ i

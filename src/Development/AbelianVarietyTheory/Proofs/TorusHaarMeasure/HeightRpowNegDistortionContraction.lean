@@ -77,9 +77,9 @@ theorem height_rpow_neg_distortion_contraction : (∀ (r : ℕ) (X : Data E r) (
   obtain ⟨δ, c, ω, hδ, hc0, hc1, hω, H⟩ := GlobalTheory.T.gramDet_inequalities_closed_forms.2.2.1 r S hS hirr
   refine ⟨δ, c, ω ^ δ, hδ, hc0, hc1, Real.one_le_rpow hω hδ.le, ?_⟩
   intro x hx W
-  obtain ⟨m, hm, hmd⟩ := GlobalTheory.T.exists_pos_le_latticeHeight_at_frame r X d hd x hx
+  obtain ⟨m, hm, hmd⟩ := _root_.GlobalTheory.HeightLower.exists_pos_le_height r X d hd x hx
   have hD : 0 < d x W := lt_of_lt_of_le hm (hmd W)
-  obtain ⟨M, hM, hstep⟩ := GlobalTheory.T.latticeHeight_update_frameComponent r X d hd x hx τ0 W
+  obtain ⟨M, hM, hstep⟩ := _root_.GlobalTheory.HeightStep.height_update r X d hd x hx τ0 W
   obtain ⟨H1, H2⟩ := H _ M hM
   have hω0 : 0 < ω := by linarith
   have hpos : ∀ a ∈ S, 0 < ((a * M)ᴴ * (a * M)).det.re := by

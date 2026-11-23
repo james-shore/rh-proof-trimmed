@@ -103,8 +103,8 @@ theorem rEndo_of (h1 : ArEx) (h2 : LvEx) (h3 : PowRep) (h4 : CmbTest) (h5 : CmbE
   obtain ⟨D, hD⟩ := PositivityTheory.Rg.BcB.E1.growthJ_holds E a b μ₁ μ₂
   obtain ⟨A⟩ := h1 E a b l₁ l₂ D
   obtain ⟨L, hL⟩ := h2 E a b Z φ hφ
-  obtain ⟨u₁, hu₁⟩ := PositivityTheory.Rg.BcB.G8.translation_existence_holds E a
-  obtain ⟨u₂, hu₂⟩ := PositivityTheory.Rg.BcB.G8.translation_existence_holds E b
+  obtain ⟨u₁, hu₁⟩ := _root_.GlobalTheory.CompanionTheory.LocalThetaTranslation.translEx E a
+  obtain ⟨u₂, hu₂⟩ := _root_.GlobalTheory.CompanionTheory.LocalThetaTranslation.translEx E b
   obtain ⟨κ, hκ, hell⟩ := h5 E hE a b l₁ l₂ D A μ₁ μ₂ hμ₁ hμ₂
   obtain ⟨c, hc, htest⟩ := h4 E a b l₁ l₂ D A S Z L hS hZ u₁ u₂ hu₁ hu₂
   haveI : CompleteSpace (⊤ : Submodule ℂ A.blk.Hb) := (isClosed_univ.completeSpace_coe : CompleteSpace (Set.univ : Set A.blk.Hb))

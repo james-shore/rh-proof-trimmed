@@ -76,15 +76,7 @@ private theorem toF_coe (z : Fin (B.dZ ℓ Z) → K) :
     ((B.toF ℓ Z z : B.S.Forms) : B.S.Cl → B.S.V) = B.S.I ((B.fE ℓ Z).mulVec z) := by
   simp [BlockDat.toF, BlockDat.fE, CSD.I, Matrix.mulVec_mulVec]
 
-private theorem toF_mem (z : Fin (B.dZ ℓ Z) → K) : B.toF ℓ Z z ∈ Z := by
-  have h1 : (B.zE ℓ Z).mulVec z ∈ B.Z0 ℓ Z := by
-    rw [BlockDat.zE, subE_mulVec]; exact Submodule.coe_mem _
-  have h2 : (B.vE ℓ).mulVec ((B.zE ℓ Z).mulVec z) ∈ B.coord Z := h1
-  obtain ⟨f, hf, hfe⟩ := Submodule.mem_map.1 h2
-  have : B.toF ℓ Z z = f := by
-    simp only [BlockDat.toF, LinearMap.coe_comp, Function.comp_apply, Matrix.mulVecLin_apply]
-    rw [← hfe]; simp
-  rw [this]; exact hf
+private alias toF_mem := _root_.Formalism.IndefR.Cx.BlockGood.toF_mem
 
 private theorem mem_cutZ (z : Fin (B.dZ ℓ Z) → K) :
     z ∈ B.cutZ ℓ Z ↔ ∀ c, ((B.toF ℓ Z z : B.S.Forms) : B.S.Cl → B.S.V) c ∈ B.S.Nab c := by

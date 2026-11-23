@@ -48,16 +48,10 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing Matrix Filter UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.AlgebraTools UpperTheory.V.Pa UpperTheory.V.Pa.Core
 open scoped TensorProduct
 
-private theorem yPrime_approx {R σ : Type} [CommRing R] {y : σ → R} {f : R} {BB : Type} [CommRing BB]
-    [Algebra R BB] (h : IsYCpl y f BB) (n : ℕ) (J : Ideal R) (x : BB) (hx : x ∈ J.map (algebraMap R BB)) :
-    ∃ (k : ℕ) (a : R), a ∈ J ∧
-      algebraMap R BB f ^ k * x - algebraMap R BB a ∈ (Ideal.span (Set.range y) ^ n).map (algebraMap R BB) :=
-  _root_.UpperTheory.Reformulated.B.PrimeApproximation.yPrime_approx h n J x hx
-
 private theorem yPrime_back {R σ : Type} [CommRing R] {y : σ → R} {f : R} {BB : Type} [CommRing BB]
     [Algebra R BB] (h : IsYCpl y f BB) (n : ℕ) (J : Ideal R) (hJ : Ideal.span (Set.range y) ^ n ≤ J)
     (r : R) (hr : algebraMap R BB r ∈ J.map (algebraMap R BB)) : ∃ k : ℕ, f ^ k * r ∈ J := by
-  obtain ⟨k, a, ha, h1⟩ := yPrime_approx h n J _ hr
+  obtain ⟨k, a, ha, h1⟩ := _root_.UpperTheory.Reformulated.B.PrimeApproximation.yPrime_approx h n J _ hr
   rw [← map_pow, ← map_mul, ← map_sub] at h1
   obtain ⟨m, hm⟩ := h.strict n _ h1
   refine ⟨m + k, ?_⟩

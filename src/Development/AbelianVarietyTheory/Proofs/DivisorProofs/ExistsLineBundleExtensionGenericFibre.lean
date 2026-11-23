@@ -61,6 +61,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntEmbCoe
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsDeRhamSheafIffAlt
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsAdditiveOfUniversal
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.AlWellDefSt
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsOpenImmersionSpMapOfIsDiscreteValuationRing
 
 @[expose] public section
 
@@ -71,30 +72,9 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LBExtDVR
 
-theorem isOpenImmersion_spMap_fractionRing (R K : Type) [CommRing R] [IsDomain R]
-    [IsDiscreteValuationRing R] [Field K] [Algebra R K] [IsFractionRing R K] :
-    IsOpenImmersion (ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (algebraMap R K)) := by
-  obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible R
-  haveI : IsLocalization.Away ϖ K := by
-    refine IsLocalization.Away.mk ϖ ?_ ?_ ?_
-    · exact IsUnit.mk0 _ (by
-        simpa using (IsFractionRing.injective R K).ne_iff.2 hϖ.ne_zero)
-    · intro z
-      obtain ⟨⟨x, y, hy⟩, h⟩ := IsLocalization.surj (nonZeroDivisors R) z
-      obtain ⟨n, u, hu⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
-        (nonZeroDivisors.ne_zero hy) hϖ
-      refine ⟨n, x * ↑u⁻¹, ?_⟩
-      simp only at h
-      rw [map_mul, ← h, hu, _root_.mul_assoc, ← map_mul, ← map_pow]
-      congr 2
-      rw [mul_right_comm, Units.mul_inv, _root_.one_mul]
-    · intro x y h
-      exact ⟨0, by rw [IsFractionRing.injective R K h]⟩
-  exact IsOpenImmersion.of_isLocalization ϖ
-
 theorem exists_lineBundle_extension_genericFibre : ∀ (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K] [IsFractionRing R K] (X Y : Scheme.{0}) (s : X ⟶ Sp R) (t : Y ⟶ Sp K) (a : Y ⟶ X), Smooth s → QuasiCompact s → IsPullback a t s (spMap (algebraMap R K)) → ∀ L : LB Y, L.IsLB → ∃ M : LB X, M.IsLB ∧ LBIso (M.pull a) L := by
   intro R K _ _ _ _ _ _ X Y s t a hs hq hpb L hL
-  haveI := isOpenImmersion_spMap_fractionRing R K
+  haveI := _root_.GlobalTheory.isOpenImmersion_spMap_of_isDiscreteValuationRing R K
   have ha : IsOpenImmersion a := MorphismProperty.of_isPullback hpb.flip this
   haveI : IsRegularRing R := inferInstance
   haveI : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian s

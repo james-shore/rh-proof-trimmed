@@ -76,7 +76,7 @@ theorem localComponent_congr (P : HeightOneSpectrum (𝓞 E)) {v : HeightOneSpec
     have := congrArg (fun g : GL (Fin n) _ => g.1 i j) h
     rw [map_sub, sub_eq_zero]
     exact this
-  have h2 := ((GlobalTheory.T.placeProjection_zero_integral_iff_components_above F E v _).1.1 h1) P hv
+  have h2 := ((_root_.GlobalTheory.Mem.Col2.AdComp.prV_zero_int_iff F E v _).1.1 h1) P hv
   rw [map_sub, sub_eq_zero] at h2
   exact h2
 
@@ -85,7 +85,7 @@ theorem bc_prV_eq_one {v : HeightOneSpectrum (𝓞 F)} {x : GL (Fin n) (AfE F E)
     bc (prV (E := E) v) x = 1 := by
   refine Units.ext (Matrix.ext fun i j => ?_)
   have h1 : prV (E := E) v (x.1 i j - (1 : Matrix (Fin n) (Fin n) (AfE F E)) i j) = 0 := by
-    refine (GlobalTheory.T.placeProjection_zero_integral_iff_components_above F E v _).1.2 fun w hw => ?_
+    refine (_root_.GlobalTheory.Mem.Col2.AdComp.prV_zero_int_iff F E v _).1.2 fun w hw => ?_
     rw [map_sub, h w hw, Matrix.one_apply]
     split_ifs <;> simp only [map_one, map_zero, sub_self]
   rw [map_sub, sub_eq_zero] at h1
@@ -268,7 +268,7 @@ theorem chart_twm : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.
   classical
   have hprimes := GlobalTheory.T.twistPrimes_away_level_and_type_primes I hOk
   have hf := hprimes.2 u a
-  have hlevel := GlobalTheory.T.trueColumn_member_level_read_at_base_point I hOk hPins l Z u a K k hk
+  have hlevel := _root_.GlobalTheory.Mem.Col2.TopCh.kread_member I hOk hPins l Z u a K k hk
   have hU := hlevel.1
   have hχ := hlevel.2.1
   have hLb := hlevel.2.2
@@ -346,7 +346,7 @@ theorem chart_twm : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.
       (I.dTop a) (I.dTop_ne a) N hdN hΘ).2
   have hunder : ∀ P : HeightOneSpectrum (𝓞 B.host.E), (conjPrime₂ P).under (𝓞 B.host.F) = P.under (𝓞 B.host.F) := fun P =>
     (under_eq_iff B.host P _).2 (Or.inr rfl)
-  have hchart := GlobalTheory.T.exists_framed_chart_from_adelic_dictionary B.host.F B.host.E B.LL B.sp.cm (B.R.N B.R.m)
+  have hchart := _root_.GlobalTheory.Mem.Col2.TopCh.exists_clsG_top B.host.F B.host.E B.LL B.sp.cm (B.R.N B.R.m)
     ((B.primes X).vT u) (B.primes X).vGs (I.Q a) (gramN (I.rec7 l Z) B.R.m le_rfl) (B.T u) B.R.f (badG (I.rec7 l Z)) K.lev Q
     ((I.Tp a).levG B.R.m) ((I.Tp a).levQ B.R.m) (topDep B.R (I.cst a).M + 1) (I.dTop a) (I.dTop_ne a) N hdN hΘ (k ()) t
     {c : (I.stp u a B.R.m).Cl // (fun _ : (I.stp u a B.R.m).Cl => ()) c = ()} (fun c => ((I.stp u a B.R.m).rep c.1).1.1) (fun c => y c.1) _
@@ -389,7 +389,7 @@ theorem chart_twm : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.
     have hP2 : conjPrime₂ P.1 ∉ I.Q a := fun h => (hf _ h).1.2.2.1 (by rw [CharValCompare.conjP_conjP]; exact P.2)
     rw [localComponent_mul_inv_entry _ _ _ (localComponent_eq_one _ _ (htw _ hP1 hP2))]
     exact hkT P r j hr
-  have liftPt := GlobalTheory.T.pointOverX_has_adelicPoint_blockExtend_mul I hOk hPins l Z u a (k ()) t hkstd hoff hkT ht htP
+  have liftPt := _root_.GlobalTheory.Mem.Col2.TilQ.pt_tilF_gen I hOk hPins l Z u a (k ()) t hkstd hoff hkT ht htP
   refine ⟨fun _ => ⟨C.lev, C.y, C.y_bij, C.y_lat, C.stabI, C.stabI_inj, C.stabI_range⟩,
     ⟨fun _ => k () * t, ?_, fun _ => liftPt⟩, ?_, hChartUloc, ?_, ?_⟩
   · exact reads_top I u a N hdN hΘ U0 K.lev.chi (k ()) t hkU hkQ ht hU hχ C.lev.Lb C.lev.U C.lev.chi (fun c => (C.y ⟨c, rfl⟩).1)

@@ -99,14 +99,7 @@ theorem exists_form_lift {σ R R' : Type} [CommRing R] [CommRing R'] (g : R →+
   · rw [MvPolynomial.coeff_map]
   · rw [map_zero, hF.coeff_eq_zero h]
 
-theorem cst_comp_spec {X : Scheme.{0}} {R R' : Type} [CommRing R] [CommRing R']
-    (p : X ⟶ Spec (CommRingCat.of R')) (g : R →+* R') (U : X.Opens) :
-    AbLaw.cst (p ≫ Spec.map (CommRingCat.ofHom g)) U = (AbLaw.cst p U).comp g := by
-  ext a
-  have := congrArg (fun q => q.hom a) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom g))
-  simp only [CommRingCat.hom_comp, RingHom.comp_apply, CommRingCat.hom_ofHom] at this
-  simp only [AbLaw.cst, RingHom.comp_apply, Scheme.Hom.comp_appTop, CommRingCat.hom_comp]
-  rw [this]
+alias cst_comp_spec := _root_.GlobalTheory.Degen.FormOnto.cst_specMap
 
 theorem exists_pull_tower {σ R : Type} [CommRing R] (I : Ideal R)
     (Y : ∀ e : ℕ, Over (Spec (CommRingCat.of (R ⧸ I ^ (e + 1)))))

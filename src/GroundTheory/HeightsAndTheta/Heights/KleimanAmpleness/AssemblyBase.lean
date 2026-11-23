@@ -129,21 +129,21 @@ theorem SerreOnto.full : SerreOnto.Statement.{u, v} :=
 
 theorem SerreTail.full : SerreTail.Statement.{u, v} := SerreTail.proof SerreFinite.full SerreOnto.full
 
-theorem Extension.full : Extension.Statement.{u, v, w} := Extension.proof
+alias Extension.full := _root_.GroundTheory.Heights₂.Heights.Kleiman.Extension.proof
 theorem Generated.full : Generated.Statement.{u, w} := Generated.proof Extension.full
 theorem TwistFinite.full : TwistFinite.Statement.{u, w} := TwistFinite.proof Extension.full SerreFinite.full
 theorem TwistSections.full : TwistSections.Statement.{u, w} := TwistSections.proof SerreOnto.full
 theorem ProjDegreePositive.full : ProjDegreePositive.Statement.{u} := ProjDegreePositive.proof
 theorem HilbertPositive.full : HilbertPositive.Statement.{u, w} :=
   HilbertPositive.proof ProjDegreePositive.full TwistSections.full
-theorem PrimeFiltration.Point.full : PrimeFiltration.Point.Statement.{u, w} := PrimeFiltration.Point.proof
+alias PrimeFiltration.Point.full := _root_.GroundTheory.Heights₂.Heights.Kleiman.PrimeFiltration.Point.proof
 theorem PrimeFiltration.Restrict.full : PrimeFiltration.Restrict.Statement.{u, w} :=
   PrimeFiltration.Restrict.proof
 
-theorem StepThree.Away.full : StepThree.Away.Statement.{u, w} := StepThree.Away.proof
+alias StepThree.Away.full := _root_.GroundTheory.Heights₂.Heights.Kleiman.StepThree.Away.proof
 theorem RestrictTwist.full : RestrictTwist.Statement.{u, w} := RestrictTwist.proof
 theorem StepData.JProper.full : StepData.JProper.Statement.{u, w} := StepData.JProper.proof
-theorem SubvarDrop.full : SubvarDrop.Statement.{u, w} := SubvarDrop.proof
+alias SubvarDrop.full := _root_.GroundTheory.Heights₂.Heights.Kleiman.SubvarDrop.proof
 
 theorem TwistVanish.assembled (hS : TwistSplit.Statement.{u, w}) : TwistVanish.Statement.{u, w} :=
   TwistVanish.proof Extension.full SerreVanish.full hS
@@ -151,10 +151,7 @@ theorem TwistVanish.assembled (hS : TwistSplit.Statement.{u, w}) : TwistVanish.S
 theorem NefRestrict.assembled (hRL : RestrLenRestrict.Statement.{u, w}) : NefRestrict.Statement.{u, w} :=
   NefRestrict.proof RestrictTwist.full hRL
 
-theorem SectionCount.Drop.assembled (hF : SectionCount.Drop.Filt.Statement.{u, w})
-    (hT : SectionCount.Drop.Term.Statement.{u, w}) (hH : SectionCount.Drop.HilbW.Statement.{u, w})
-    (hR : GenericPointSectionInput.Statement.{u, w}) : SectionCount.Drop.Statement.{u, w} :=
-  SectionCount.Drop.proof hF hT hH hR
+alias SectionCount.Drop.assembled := _root_.GroundTheory.Heights₂.Heights.Kleiman.SectionCount.Drop.proof
 
 theorem SectionCount.assembled (hTop : SectionCount.Top.Statement.{u, w})
     (hF : SectionCount.Drop.Filt.Statement.{u, w}) (hT : SectionCount.Drop.Term.Statement.{u, w})

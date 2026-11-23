@@ -148,14 +148,6 @@ theorem es_zfull (j : ℕ) (s : Set (ℂ × (Fin j → Fin j → ℂ))) :
   simp only [zfull, U.blk2]
   exact es_reindex _ _ (es_fromBlocks h1 (es_const _ _) (es_const _ _) h4)
 
-theorem castM_mem {k a b : ℕ} (h : a = b) {g : B.Mat k a} (hg : g ∈ B.GV k a) : D.castM h g ∈ B.GV k b := by
-  subst h
-  have e : D.castM rfl g = g := by
-    ext i j
-    simp [D.castM]
-  rw [e]
-  exact hg
-
 private theorem mMap_mem_GV {k j ρ : ℕ} (Z : Matrix (Fin j) (Fin j) ℂ) (hZ : Z.det ≠ 0) {γ : B.Mat k ρ}
     (hγ : γ ∈ B.GV k ρ) : U.mMap k j ρ Z γ ∈ B.GV k (j + ρ) := by
   have hu : IsUnit Z.det := isUnit_iff_ne_zero.mpr hZ
@@ -195,7 +187,7 @@ theorem base_point_facts_holds : BasePointSmoothAndMem := by
   · intro q h1 h2
     apply PBF.mem_level_zero_of_mem_group
     simp only [x0]
-    apply castM_mem
+    apply _root_.Formalism.FourierDecayAlt.P.PBE.castM_GV
     apply mMap_mem_GV _ _ hγ
     rw [det_zfull]
     exact mul_ne_zero h2 h1

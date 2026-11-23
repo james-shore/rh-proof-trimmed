@@ -124,10 +124,8 @@ def Bo (t : kˣ) (x : ℝ) : Module.End ℂ ((Sp k n → ℂ) →ₗ[ℂ] ℂ) :
 def Ao (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (t : kˣ) (x : ℝ) : Module.End ℂ ((Sp k n → ℂ) →ₗ[ℂ] ℂ) :=
   ((((nabs k t)⁻¹ ^ dB Z : ℝ)) : ℂ) • pullH t⁻¹ - (((((nabs k t)⁻¹ : ℝ) ^ x : ℝ)) : ℂ) • LinearMap.id
 
-def Agr (η η' : (Sp k n → ℂ) →ₗ[ℂ] ℂ) : Prop := ∀ f ∈ supportedIn (Set.univ : Set (Sp k n)), η f = η' f
-
 theorem ao_agree (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (t : kˣ) (x : ℝ) {η η' : (Sp k n → ℂ) →ₗ[ℂ] ℂ}
-    (h : Agr η η') : Agr (Ao Z t x η) (Ao Z t x η') := by
+    (h : _root_.PositivityTheory.RgUd.T.Nil.Asm.Agree η η') : _root_.PositivityTheory.RgUd.T.Nil.Asm.Agree (Ao Z t x η) (Ao Z t x η') := by
   intro f hf
   simp only [Ao, LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.id_apply, pullH_apply]
   rw [h f hf, h _ ⟨comp_hom_mem t⁻¹ hf.1, Set.subset_univ _⟩]
@@ -149,7 +147,7 @@ theorem four_prodH {Z : Subalgebra k (Matrix (Fin n) (Fin n) k)}
     (hF5 : ∀ (t : kˣ) ξ, Supp ξ (Bz Z ×ˢ Set.univ) → ∀ f ∈ supportedIn (Set.univ : Set (Sp k n)),
         𝓕 (pullH t ξ) f = ((((nabs k t)⁻¹ ^ dB Z : ℝ)) : ℂ) * pullH t⁻¹ (𝓕 ξ) f)
     (t : kˣ) (a : List ℝ) (ξ : (Sp k n → ℂ) →ₗ[ℂ] ℂ) (hξ : Supp ξ (Bz Z ×ˢ Set.univ)) :
-    Agr (𝓕 ((a.map (Bo t)).prod ξ)) ((a.map (Ao Z t)).prod (𝓕 ξ)) := by
+    _root_.PositivityTheory.RgUd.T.Nil.Asm.Agree (𝓕 ((a.map (Bo t)).prod ξ)) ((a.map (Ao Z t)).prod (𝓕 ξ)) := by
   induction a with
   | nil =>
     intro f hf

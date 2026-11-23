@@ -49,16 +49,6 @@ section
 variable {E V : Type} [Field E] [NumberField E] [AddCommGroup V] [Module E V]
   [Module (𝓞 E) V] [IsScalarTower (𝓞 E) E V]
 
-theorem exists_int_smul_mem (L : Submodule (𝓞 E) V) (hL : Submodule.span E (L : Set V) = ⊤) (v : V) :
-    ∃ n : ℤ, n ≠ 0 ∧ n • v ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem
-  | exact _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem
-  | (apply _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem ..)
-
 theorem finrank_int_eq (L : Submodule (𝓞 E) V) (hL : Submodule.span E (L : Set V) = ⊤) :
     Module.finrank ℤ L = Module.finrank ℚ E * Module.finrank E V := by
   let _i : Module ℚ V := Module.compHom V (algebraMap ℚ E)
@@ -70,7 +60,7 @@ theorem finrank_int_eq (L : Submodule (𝓞 E) V) (hL : Submodule.span E (L : Se
     { map_units := fun s =>
         (isLocalizedModule_id (nonZeroDivisors ℤ) V ℚ).map_units s
       surj := fun v => by
-        obtain ⟨n, hn, h⟩ := exists_int_smul_mem L hL v
+        obtain ⟨n, hn, h⟩ := _root_.GlobalTheory.IntSmulMemLattice.exists_int_smul_mem L hL v
         exact ⟨(⟨n • v, h⟩, ⟨n, mem_nonZeroDivisors_of_ne_zero hn⟩), rfl⟩
       exists_of_eq := fun {x y} h => ⟨1, by
         have : x = y := Subtype.ext h

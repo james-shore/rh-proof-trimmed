@@ -205,20 +205,7 @@ theorem integral_tr' {D : D7} {S : HSp D} {N N' : Subgroup (GA D S)} (hN : N = N
   subst hN
   rfl
 
-theorem psi_frame {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (hψ : IsStdChar D ψ (-1)) {A B S₀ A' Lz : HSp D} {c ρ : ℕ}
-    (a : HermitianOrthogonalExtensionData A B c (-1)) (hc : c = 2 * ρ + 1) (d : HypDec B S₀ ρ) (o : OrthDec S₀ A' Lz) (ζ : Fin Lz.rank → D.host.E)
-    (hd : IsAuxiliaryVectorWittDec a d) (hz : (d.i₀ * o.iB) *ᵥ ζ = (-D.host.xi0) ^ (ρ + 1) • fun k => a.a k ⟨ρ, by omega⟩) :
-    ∀ n ∈ flagN d, psiBes ψ d 1 (vecB o ζ) n = star (besChar ψ (a.besDat (neg_ne_zero.2 one_ne_zero) ρ hc) n) :=
-  GlobalTheory.AscFin.EndsPf.Chr.psiBes_eq_star_besChar ψ hψ a hc d o ζ hd hz
-
-theorem per_scale {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (hψ : IsStdChar D ψ (-1)) {A B : HSp D} {c : ℕ} {ε : D.host.E}
-    (a : HermitianOrthogonalExtensionData A B c ε) (dd : BesDat A B a.ι) (hA : GlobalTheory.Unf.CoCpt A) (μ μ' : Measure (GA D A)) (𝓕 𝓕' : Set (GA D A))
-    (ν ν' : Measure (NFlag B dd.e)) (𝓝 𝓝' : Set (NFlag B dd.e)) (hμ : μ.IsHaarMeasure) (h𝓕 : IsFundamentalDomain (GQ A) 𝓕 μ)
-    (hμ' : μ'.IsHaarMeasure) (h𝓕' : IsFundamentalDomain (GQ A) 𝓕' μ') (hν : GlobalTheory.Per.IsUnitN B dd.e ν 𝓝)
-    (hν' : GlobalTheory.Per.IsUnitN B dd.e ν' 𝓝') (φ : GA D A → ℂ) (F : GA D B → ℂ) (hφ : ∀ γ ∈ GQ A, ∀ g, φ (γ * g) = φ g)
-    (hF : ∀ γ ∈ GQ B, ∀ g, F (γ * g) = F g) :
-    ∃ r : ℝ, 0 < r ∧ GlobalTheory.Per.besPer ψ dd μ 𝓕 ν 𝓝 (stabilizerEmbedding a) φ F = r * GlobalTheory.Per.besPer ψ dd μ' 𝓕' ν' 𝓝' (stabilizerEmbedding a) φ F :=
-  GlobalTheory.Per.besPer_haar_scale ψ hψ a dd hA μ μ' 𝓕 𝓕' ν ν' 𝓝 𝓝' hμ h𝓕 hμ' h𝓕' hν hν' φ F hφ hF
+alias per_scale := _root_.GlobalTheory.Per.besPer_haar_scale
 
 section Parts
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
@@ -244,7 +231,7 @@ theorem psi_eq (W : G.Weil) (h1 : 1 ≤ D.R.m) (h2 : D.R.m ≤ D.R.m) {V₀ Lz :
     (hd : IsAuxiliaryVectorWittDec (G.colDec D.R.m h1 h2) d)
     (hz : (d.i₀ * o.iB) *ᵥ ζ = (-D.host.xi0) ^ ((D.R.m - 2) / 2 + 1) • fun k => (G.colDec D.R.m h1 h2).a k ⟨(D.R.m - 2) / 2, by have := D.R.two_le_m; omega⟩) :
     ∀ n ∈ flagN d, psiBes W.ψ d 1 (vecB o ζ) n = star (besChar W.ψ G.besTop n) :=
-  psi_frame W.ψ W.ψ_std (G.colDec D.R.m h1 h2) (by have := D.R.two_le_m; obtain ⟨a, ha⟩ := D.R.m_even; omega) d o ζ hd hz
+  _root_.GlobalTheory.AscFin.EndsPf.Chr.psiBes_eq_star_besChar W.ψ W.ψ_std (G.colDec D.R.m h1 h2) (by have := D.R.two_le_m; obtain ⟨a, ha⟩ := D.R.m_even; omega) d o ζ hd hz
 
 end Parts
 

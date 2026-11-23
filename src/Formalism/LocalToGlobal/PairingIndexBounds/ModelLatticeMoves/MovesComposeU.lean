@@ -52,15 +52,11 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.PairingIndexBounds.Mv
 
-theorem xiExists : XiExists := xi_existence_holds
-theorem xiInter : XiInter := xi_intersection_holds
-theorem moves : Moves := lattice_moves_hold
-theorem indexDual : IndexDual := index_duality_holds
-theorem extendLin : ExtendLin := linear_extension_holds
-theorem heisU : HeisU := heisenberg_unitary_holds
-theorem interSelf : InterSelf := self_intersection_holds
-theorem movesU : MovesU := MovesU_of moves indexDual
-theorem movesComposeU : MovesComposeU := MovesComposeU_of movesU xiExists xiInter
-theorem genModelXi : GenModelXi := GenModelXi_of xiExists movesU extendLin
+alias xiExists := _root_.Formalism.L2.PairingIndexBounds.Mv.xi_existence_holds
+alias heisU := _root_.Formalism.L2.PairingIndexBounds.Mv.heisenberg_unitary_holds
+alias interSelf := _root_.Formalism.L2.PairingIndexBounds.Mv.self_intersection_holds
+theorem movesU : MovesU := MovesU_of _root_.Formalism.L2.PairingIndexBounds.Mv.lattice_moves_hold _root_.Formalism.L2.PairingIndexBounds.Mv.index_duality_holds
+theorem movesComposeU : MovesComposeU := MovesComposeU_of movesU xiExists _root_.Formalism.L2.PairingIndexBounds.Mv.xi_intersection_holds
+theorem genModelXi : GenModelXi := GenModelXi_of xiExists movesU _root_.Formalism.L2.PairingIndexBounds.Mv.linear_extension_holds
 
 end Formalism.L2.PairingIndexBounds.Mv

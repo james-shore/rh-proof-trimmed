@@ -64,7 +64,7 @@ theorem norm_le_one_at_u : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P : Pai
   rw [hnorm]
   obtain ⟨m, hm0, hm⟩ := exists_pow_mem_conj K (KHT p G.m G.n r G.Fw) g _ hK hw
   obtain ⟨k, hk, hkeq⟩ := hm
-  obtain ⟨v, hv0, hv⟩ := GlobalTheory.T.exists_common_eigenvector_rho_adjoinRoot_embedding p G P i τ' hτ'F
+  obtain ⟨v, hv0, hv⟩ := _root_.GlobalTheory.StabFin.rho_jM_common_eigvec p G P i τ' hτ'F
   have hjm : jM P (a ^ m) = (((w ^ m : P.cent) : G.Cˣ × ℚˣ).1 : G.C) := by
     rw [map_pow, ha]; rfl
   have key : (z * g) * k * (z * g)⁻¹ = inclG G r (locC G ((w ^ m : P.cent) : G.Cˣ × ℚˣ)) := by
@@ -78,7 +78,7 @@ theorem norm_le_one_at_u : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P : Pai
     group
   have hcomp := congrArg (fun x : Gr G r => ((x.2 i : GL (Fin G.n) (KQ p (G.Fw i) r)) : Matrix (Fin G.n) (Fin G.n) (KQ p (G.Fw i) r))) key
   have hk' : k.2 i ∈ Kres p (G.Fw i) G.n r := hk.2 i (Set.mem_univ _)
-  have hb := GlobalTheory.T.eigenvalue_integral_norm_bound p (G.Fw i) G.n r (G.rho i (jM P (a ^ m))) ((z * g).2 i) (k.2 i) hk'
+  have hb := _root_.GlobalTheory.StabFin.norm_eigen_le_one_of_conj_Kres p (G.Fw i) G.n r (G.rho i (jM P (a ^ m))) ((z * g).2 i) (k.2 i) hk'
     (by rw [hjm]; exact hcomp.symm) v (τ' (a ^ m)) hv0 (hv _)
   rw [map_pow, norm_pow] at hb
   exact (pow_le_one_iff_of_nonneg (norm_nonneg _) hm0.ne').1 hb

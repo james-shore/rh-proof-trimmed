@@ -266,11 +266,6 @@ theorem beta_sum_left {g : ℕ} (d : ℕ) (Hm : Matrix (Fin g) (Fin g) ℂ) {I :
   conv_rhs => rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun k _ => by ring
 
-theorem beta_smul_left {g : ℕ} (d : ℕ) (Hm : Matrix (Fin g) (Fin g) ℂ) (c : ℂ)
-    (u w : Fin g → ℂ) : beta d Hm (c • u) w = c * beta d Hm u w := by
-  simp only [beta, hf, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
-
 theorem good_zero (ι : ℂ ≃+* ℂ_[q]) (d s : ℕ) : Good ι d 0 s 0 :=
   ⟨0, ⟨0, 0, by simp⟩, by simp, by simp⟩
 
@@ -360,7 +355,7 @@ theorem moments_of_translates : ∀ (d q : ℕ) [Fact q.Prime] (lam : Qbar →+*
     have h1 := hβ _ hst _ (hx i)
     have h2 : (a i : ℂ) ≠ 0 := by exact_mod_cast (ha i).1.ne'
     refine ⟨s * a i, Nat.mul_pos hs (ha i).1, Nat.Coprime.mul_left hsq (ha i).2, ?_⟩
-    rw [beta_smul_left] at h1
+    rw [_root_.GlobalTheory.MomOne.OrthFrame.beta_smul_left] at h1
     convert h1 using 1
     simp only [hτd]; push_cast; field_simp
   obtain ⟨μ, hμ, hM⟩ := hN τ hτ

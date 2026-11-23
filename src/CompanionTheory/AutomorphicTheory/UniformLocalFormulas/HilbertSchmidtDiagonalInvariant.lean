@@ -136,18 +136,14 @@ theorem hilbert_schmidt_diagonal_invariant (X : HidaSetting D) (u u' : D.what₂
 
 def lamB (D : D7) (a : Fin D.R.rS) : ℝ := (D.host.rdE ^ (2 * (D.R.rS - a.val)))⁻¹
 
-theorem rd_pos (D : D7) : 0 < D.host.rdE := EnergyConst.rdE_pos'
-
-theorem lamB_pos (D : D7) (a : Fin D.R.rS) : 0 < lamB D a := inv_pos.2 (pow_pos (rd_pos D) _)
+theorem lamB_pos (D : D7) (a : Fin D.R.rS) : 0 < lamB D a := inv_pos.2 (pow_pos (_root_.Formalism.MainNotions.S.rdE_pos D) _)
 
 theorem rho_sq (D : D7) (a : Fin (D.R.rS + 1)) (h : a.val < D.R.rS) : rhoF D a * rhoF D a = lamB D ⟨a.val, h⟩ := by
   unfold rhoF lamB
-  rw [← Real.rpow_add (rd_pos D), ← Real.rpow_natCast, ← Real.rpow_neg (rd_pos D).le]
+  rw [← Real.rpow_add (_root_.Formalism.MainNotions.S.rdE_pos D), ← Real.rpow_natCast, ← Real.rpow_neg (_root_.Formalism.MainNotions.S.rdE_pos D).le]
   congr 1
   push_cast [Nat.cast_sub h.le]
   ring
-
-theorem rho_pos (D : D7) (a : Fin (D.R.rS + 1)) : 0 < rhoF D a := Real.rpow_pos_of_pos (rd_pos D) _
 
 theorem place_pt (hB : WuBessel C) (u u' : D.what₂.Word) (τ : D.what₂.Tau)
     {sec : ℂ → Matrix (Fin (D.R.k + 1)) (Fin (D.R.k + 1)) ℂ}
@@ -180,7 +176,7 @@ theorem place_pt (hB : WuBessel C) (u u' : D.what₂.Word) (τ : D.what₂.Tau)
     have h1 := zhat_tr C u u' τ g' a b
     rw [htr, hm, Formalism.QuantumDeterminants.bigCellZhat _ _ _ _ _ _ hz hz'] at h1
     have hρ : ((rhoF D a * rhoF D b : ℝ) : ℂ) ≠ 0 :=
-      Complex.ofReal_ne_zero.2 (mul_pos (rho_pos D a) (rho_pos D b)).ne'
+      Complex.ofReal_ne_zero.2 (mul_pos (_root_.Formalism.L2.SG.LoopTerm.rhoF_pos D a) (_root_.Formalism.L2.SG.LoopTerm.rhoF_pos D b)).ne'
     refine mul_left_cancel₀ hρ ?_
     rw [← h1]
     by_cases hab : a = b
@@ -234,7 +230,7 @@ theorem kpl_pow (D : D7) : Kpl D ^ D.R.f = 2 ^ (D.R.f * (D.R.rS + 1)) *
     (Formalism.FourierDecayAlt.PN.abelian₂ D.host.rdE D.R.rS D.R.k D.R.f *
       D.host.rdE ^ (((D.R.f * D.R.rS * (D.R.rS + 1) * (8 * D.R.rS + 10) : ℕ) : ℝ) / 3)) := by
   have hk : 1 ≤ D.R.k := by have := D.R.m_add_three_le_k; omega
-  have hrd := rd_pos D
+  have hrd := _root_.Formalism.MainNotions.S.rdE_pos D
   set r := D.R.rS
   set S : ℕ := ∑ j ∈ Finset.range r, 4 * (j + 1) * (2 * (j + 1) + D.R.k) with hS
   have h1 : ∏ a : Fin r, (lamB D a ^ (2 * (Formalism.QuantumDeterminants.Mdim D.R.k r a - 1)))⁻¹ = D.host.rdE ^ S := by

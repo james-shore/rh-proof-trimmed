@@ -55,22 +55,12 @@ open scoped ComplexOrder ENNReal
 
 namespace GlobalTheory.FreeOnDomain
 
-theorem exists_conj_first_col {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) :
-    ∃ P B : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ, P.det ≠ 0 ∧ (∀ a : Fin n, B a.succ 0 = 0) ∧ A * P = P * B := by
-  first
-  | exact @_root_.GlobalTheory.FirstColumnConjugation.exists_conj_first_col_zero
-  | exact _root_.GlobalTheory.FirstColumnConjugation.exists_conj_first_col_zero
-  | (apply _root_.GlobalTheory.FirstColumnConjugation.exists_conj_first_col_zero <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FirstColumnConjugation.exists_conj_first_col_zero <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FirstColumnConjugation.exists_conj_first_col_zero <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FirstColumnConjugation.exists_conj_first_col_zero ..)
-
 theorem exists_conj_triangular (n : ℕ) (A : Matrix (Fin n) (Fin n) ℂ) :
     ∃ P T : Matrix (Fin n) (Fin n) ℂ, P.det ≠ 0 ∧ (∀ a c, c < a → T a c = 0) ∧ A * P = P * T := by
   induction n with
   | zero => exact ⟨1, 1, by simp, fun a => a.elim0, Subsingleton.elim _ _⟩
   | succ n ih =>
-    obtain ⟨P, B, hP, hB, e⟩ := exists_conj_first_col A
+    obtain ⟨P, B, hP, hB, e⟩ := _root_.GlobalTheory.FirstColumnConjugation.exists_conj_first_col_zero A
     obtain ⟨Q, T, hQ, hT, e'⟩ := ih (B.submatrix Fin.succ Fin.succ)
     let D : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ :=
       of (Fin.cons (Fin.cons 1 fun _ => 0) fun a => Fin.cons 0 (Q a))

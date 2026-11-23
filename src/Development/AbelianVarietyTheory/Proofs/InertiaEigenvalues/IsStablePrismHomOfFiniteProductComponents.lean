@@ -128,7 +128,7 @@ theorem prodStable : ∀ (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] (n : �
     Function.Bijective (fun (x : Q.A) (i : Fin n) => (π i).f x) → ∀ (B : Obj l R) (h : Hom B Q),
     (∀ i, Stable ((π i).comp h)) → Stable h := by
   intro l _ R _ n C hC Q π hbij B h hs
-  have hQI : ∀ i, Q.I.map (π i).f = (C i).I := fun i => GlobalTheory.T.prism_hom_map_ideal_eq l R Q (C i) (π i)
+  have hQI : ∀ i, Q.I.map (π i).f = (C i).I := fun i => _root_.GlobalTheory.Prism.Rigid.map_I_eq l R Q (C i) (π i)
   refine ⟨fun m => ?_, fun B' k => ?_⟩
   · exact flat_of_pi (qmap h m) (fun i => qmap (π i) m) (qmap_pi_bij π hbij hQI m)
       fun i => by rw [← qmap_comp]; exact (hs i).flat m

@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.NotLineLatAtZero
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceCharacterConductorIntegers
 
 @[expose] public section
 
@@ -182,17 +183,13 @@ theorem exists_modify {ι : Type} {p : ι → SplitPt D k} (hp : Function.Inject
       rw [latV_eq_at h4 (fun e' => e (hp e'))]
       exact h1 i' ((List.mem_cons.1 hi').resolve_left e) x
 
-theorem pr_mem_of_intAt (p : SplitPt D k) {a : AE D} (ha : finPart D a ∈ intAE D) : p.pr a ∈ 𝒪[k] := by
-  rw [p.int_iff, p.sec_pr, RingHom.map_mul]
-  exact mul_mem_intAE (e_mem_intAt p).2 ha
-
 theorem eq_sec_add (p : SplitPt D k) {a : AE D} (ha : a ∈ idAt D (· = p.v)) :
     a = p.sec (p.pr a) + cA D (p.sec (p.pr (cA D a))) := by
   rw [p.sec_pr, p.sec_pr, RingHom.map_mul, cA_cA, ← add_mul, (idem_iff p a).1 ha]
 
 theorem mem_intAt_iff (p : SplitPt D k) {a : AE D} (ha : a ∈ idAt D (· = p.v)) :
     a ∈ intAt D (· = p.v) ↔ p.pr a ∈ 𝒪[k] ∧ p.pr (cA D a) ∈ 𝒪[k] := by
-  refine ⟨fun h => ⟨pr_mem_of_intAt p h.2, pr_mem_of_intAt p ((cA_int_iff a).2 h.2)⟩, fun h => ⟨ha, ?_⟩⟩
+  refine ⟨fun h => ⟨_root_.GlobalTheory.SplitCharCond.pr_int p h.2, _root_.GlobalTheory.SplitCharCond.pr_int p ((cA_int_iff a).2 h.2)⟩, fun h => ⟨ha, ?_⟩⟩
   rw [eq_sec_add p ha, RingHom.map_add (f := _)]
   exact add_mem ((p.int_iff _).1 h.1) ((cA_int_iff _).2 ((p.int_iff _).1 h.2))
 

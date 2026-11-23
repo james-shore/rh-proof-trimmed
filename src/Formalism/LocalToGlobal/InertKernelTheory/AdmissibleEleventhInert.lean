@@ -48,7 +48,7 @@ namespace Formalism.L2.KerInert
 open Formalism.MainNotions.GL3Theta Formalism.L2.G.Pend
 
 theorem inert_facts_first_hold : FactsA :=
-  ⟨Sigma.invAlg', Sigma.secondEisensteinAlgebraic, endomorphisms_integral_inert, phi_norm_inert_prime⟩
+  ⟨_root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic, Sigma.secondEisensteinAlgebraic, endomorphisms_integral_inert, _root_.Formalism.L2.KerInert.PN.phNormOKInert_of⟩
 
 theorem admissible_second_inert (D : Formalism.BasicNotions.D7) (cc : Ideal (NumberField.RingOfIntegers D.host.K)) (δ : ℂ) (p : ℕ)
     [Fact p.Prime] (g : G1 p) (hLT : LTIso g) (hAt : At D cc δ g) (h5 : 5 ≤ p) (hin : InertK D p)

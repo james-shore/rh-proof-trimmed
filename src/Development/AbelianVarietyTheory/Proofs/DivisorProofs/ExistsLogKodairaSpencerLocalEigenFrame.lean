@@ -68,6 +68,6 @@ theorem exists_genKS_local : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   obtain ⟨ε, b, hKS⟩ := GlobalTheory.T.exists_logKS_symPair_basis_alt E H Dw l Xo c TF U n e v φU htan hbas heig
   obtain ⟨D, hD⟩ := GlobalTheory.T.exists_logVectorField_extend_functionFieldDerivation E H Dw l Xo c TF Z U hU ρ hρ (fun j => b j)
   exact ⟨D, ⟨U, hU, ρ, n, e, v, ε, fun j => b j, hρ, htan, hbas, fun τ i => hw τ i, hKS, hD⟩,
-    fun U' ω hω hx => GlobalTheory.T.exists_logVectorField_topForm_pairing_regular_at_point E H Dw l Xo c TF Z x U hU hxU ρ hρ b D hD U' ω hω hx⟩
+    fun U' ω hω hx => _root_.GlobalTheory.LogKSDiv.local_topPair E H Dw l Xo c TF Z x U hU hxU ρ hρ b D hD U' ω hω hx⟩
 
 end GlobalTheory.LogKSDiv

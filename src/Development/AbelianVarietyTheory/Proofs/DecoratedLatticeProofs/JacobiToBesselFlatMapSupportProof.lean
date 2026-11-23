@@ -157,9 +157,7 @@ theorem eps_int (v : Pl D) : finPart D (eps v) ∈ intAE D := int_of_idem (eps_m
 def intSub (v : Pl D) : AddSubgroup (AE D) :=
   (idAt D (· = v)).toAddSubgroup ⊓ (intAE D).comap (finPart D).toAddMonoidHom
 
-theorem heisO_zero (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (f : WO S T → ℂ) : heisO ψ S T 0 f = f := by
-  funext w
-  rw [heisO, symplOH_zero_right, AddChar.map_zero_eq_one, one_mul, add_zero]
+alias heisO_zero := _root_.GlobalTheory.SplitScalar.heisO_zero
 
 
 
@@ -236,9 +234,7 @@ theorem mulVec_colMul {l m n : ℕ} (A : Mx D l m) (x : Mx D m n) (i : Fin n) (a
   simp only [Matrix.mulVec, dotProduct, colMul, Matrix.mul_apply, Finset.mul_sum]
   exact Finset.sum_congr rfl fun _ _ => by ring
 
-theorem pX_colMul {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (i : Fin ρ) (a : AE D) :
-    (d.pX *ᵥ colMul d.jX i a) i = a := by
-  rw [mulVec_colMul, d.pX_jX, colMul, Matrix.one_apply_eq, mul_one]
+alias pX_colMul := _root_.GlobalTheory.FinPl.RootKeep.pX_colMul_jX
 
 theorem idAt_of_colMul {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) {L : Lat S} {P : Pl D → Prop} {i : Fin ρ} {a : AE D}
     (h : colMul d.jX i a ∈ latV S L P) : a ∈ idAt D P := by

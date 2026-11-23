@@ -149,13 +149,13 @@ theorem reduce_embed (hBZ : GlobalTheory.Published.BernsteinZelevinskyFiniteness
     by_contra h
     push_neg at h
     exact hc ⟨π.smooth, fun s d e hne => h s d e hne⟩
-  obtain ⟨Y, _, _, τ, hτi, hτs, hτq, φ, hφ⟩ := GlobalTheory.CuspSupportExist.L_jacq hBZ k n π s d e hns
-  obtain ⟨σ, hσ⟩ := GlobalTheory.CuspSupportExist.L_tens hGL k n π s d e Y τ hτi hτq
+  obtain ⟨Y, _, _, τ, hτi, hτs, hτq, φ, hφ⟩ := _root_.GlobalTheory.exists_embedding_parInd_of_jacquet_nontrivial hBZ k n π s d e hns
+  obtain ⟨σ, hσ⟩ := _root_.GlobalTheory.JacTensor.exists_irr_tensor_of_isSubquotient_jac hGL k n π s d e Y τ hτi hτq
   have hirr : (piTensor fun a => (σ a).π).IsIrreducible :=
     GlobalTheory.T.piExteriorTensor_smoothIrreducible_isIrreducible hBZ k (Fin s) (fun a => Fin (d a)) fun a => (σ a).toIrrRep
   obtain ⟨ε⟩ := hσ.nonempty_equiv hτi hirr
   let ψ := parIndEquiv e ε.symm
-  exact ⟨s, d, e, σ, GlobalTheory.CuspSupportExist.L_lt k n s d e hne,
+  exact ⟨s, d, e, σ, _root_.GlobalTheory.UnipRadProper.blocks_lt_of_unipRad_ne_bot k n s d e hne,
     ψ.toIntertwiningMap.comp φ, ψ.toLinearEquiv.injective.comp hφ⟩
 
 theorem glue_embed (n : ℕ) (π : Irr k n) (s : ℕ) (d : Fin s → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin n)

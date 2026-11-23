@@ -63,10 +63,6 @@ variable {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω]
 theorem mem_stdLat_iff (R : Subalgebra o Ω) {Ix : Type} (x : Ix → Ω) : x ∈ stdLat R Ix ↔ ∀ i, x i ∈ R := by
   simp [stdLat, AddSubgroup.mem_pi]
 
-theorem mem_dotDual_iff (R : Subalgebra o Ω) {m : ℕ} (L : AddSubgroup (Fin m → Ω)) (x : Fin m → Ω) :
-    x ∈ dotDual R L ↔ ∀ l ∈ L, l ⬝ᵥ x ∈ R := by
-  simp [dotDual, AddSubgroup.mem_iInf]
-
 theorem exists_uniform {Ix : Type} [Fintype Ix] (Rt : Subalgebra o Ω) {f : Ω} (hf : f ∈ Rt) (z : Ix → Ω)
     (h : ∀ j, ∃ m : ℕ, f ^ m * z j ∈ Rt) : ∃ m : ℕ, ∀ j, f ^ m * z j ∈ Rt := by
   classical
@@ -171,7 +167,7 @@ theorem del_key {V : Type} [AddCommGroup V] [Module Ω V] {s N : ℕ} (Rs Rt : S
   obtain ⟨m', hΔ'⟩ := hΔ
   choose u hu huE using hΔ'
   refine ⟨m₁ + m', ?_⟩
-  rw [mem_dotDual_iff]
+  rw [_root_.PositivityTheory.Xgn.DualLatticeFamily.mem_dotDual]
   intro l hl
   have e : l ⬝ᵥ (f ^ (m₁ + m') • (Fintype.linearCombination Ω (fun (i : Fin N) (k : Fin s) => Hs i (v k)) a -
       Fintype.linearCombination Ω (fun (i : Fin N) (k : Fin s) => Ht i (v k)) a)) =

@@ -54,9 +54,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace GlobalTheory.EtC.KummerStep
 
-noncomputable abbrev gU (A : Type) [CommRing A] : Aˣ →* (Γ(Spec (CommRingCat.of A), ⊤))ˣ :=
-  Units.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom.toMonoidHom
-
 theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap (g.comp f) = spMap g ≫ spMap f := by
   simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp, Functor.map_comp]
@@ -66,35 +63,35 @@ theorem isUnit_natCast_of {k R : Type} [Field k] [CommRing R] (φ : k →+* R) {
   simpa using hq.map φ
 
 theorem kum_spMap (q : ℕ) [NeZero q] {A B : Type} [CommRing A] [CommRing B] (φ : A →+* B) (hq : IsUnit (q : A))
-    (u : Aˣ) : pull _ (spMap φ) _ _ (kum q (gU A u)) = kum q (gU B (Units.map φ.toMonoidHom u)) := by
+    (u : Aˣ) : pull _ (spMap φ) _ _ (kum q (_root_.GlobalTheory.EtC.KummerLoc.gU A u)) = kum q (_root_.GlobalTheory.EtC.KummerLoc.gU B (Units.map φ.toMonoidHom u)) := by
   have hq' : IsUnit (q : Γ(Spec (CommRingCat.of A), ⊤)) := by
     simpa using hq.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom
-  rw [(GlobalTheory.T.cup_chern_kummer_pullback_naturality q).2.2.2 (Spec.map (CommRingCat.ofHom φ)) (gU A u) hq']
+  rw [(_root_.GlobalTheory.EtC.a6nat_holds q).2.2.2 (Spec.map (CommRingCat.ofHom φ)) (_root_.GlobalTheory.EtC.KummerLoc.gU A u) hq']
   congr 1
   ext
   have h := Scheme.ΓSpecIso_naturality (CommRingCat.ofHom φ)
   have h2 : (Spec.map (CommRingCat.ofHom φ)).appTop = (Scheme.ΓSpecIso (CommRingCat.of A)).hom ≫ CommRingCat.ofHom φ ≫
       (Scheme.ΓSpecIso (CommRingCat.of B)).inv := by
     rw [← Category.assoc, ← h]; simp
-  simp only [gU, Units.coe_map, MonoidHom.coe_coe]
+  simp only [_root_.GlobalTheory.EtC.KummerLoc.gU, Units.coe_map, MonoidHom.coe_coe]
   rw [h2]
   simp only [CommRingCat.hom_comp, RingHom.coe_comp, Function.comp_apply, CommRingCat.hom_ofHom]
   simp
 
 theorem kum_pow_eq (q : ℕ) [NeZero q] {A : Type} [CommRing A] (hq : IsUnit (q : A)) (u v : Aˣ) :
-    kum q (gU A (u * v ^ q)) = kum q (gU A u) := by
+    kum q (_root_.GlobalTheory.EtC.KummerLoc.gU A (u * v ^ q)) = kum q (_root_.GlobalTheory.EtC.KummerLoc.gU A u) := by
   have hq' : IsUnit (q : Γ(Spec (CommRingCat.of A), ⊤)) := by
     simpa using hq.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom
-  rw [map_mul, map_pow, ((GlobalTheory.T.chernClass_kummerClass_additive q).2 (gU A u) _ hq').1, ((GlobalTheory.T.chernClass_kummerClass_additive q).2 (gU A v) (gU A v) hq').2, add_zero]
+  rw [map_mul, map_pow, ((_root_.GlobalTheory.EtC.a6add_holds q).2 (_root_.GlobalTheory.EtC.KummerLoc.gU A u) _ hq').1, ((_root_.GlobalTheory.EtC.a6add_holds q).2 (_root_.GlobalTheory.EtC.KummerLoc.gU A v) (_root_.GlobalTheory.EtC.KummerLoc.gU A v) hq').2, add_zero]
 
 theorem kum_pow (q : ℕ) [NeZero q] {A : Type} [CommRing A] (hq : IsUnit (q : A)) (v : Aˣ) :
-    kum q (gU A (v ^ q)) = 0 := by
+    kum q (_root_.GlobalTheory.EtC.KummerLoc.gU A (v ^ q)) = 0 := by
   have := kum_pow_eq q hq 1 v
   rw [one_mul] at this
   rw [this, map_one]
   have hq' : IsUnit (q : Γ(Spec (CommRingCat.of A), ⊤)) := by
     simpa using hq.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom
-  have h := ((GlobalTheory.T.chernClass_kummerClass_additive q).2 (1 : (Γ(Spec (CommRingCat.of A), ⊤))ˣ) 1 hq').1
+  have h := ((_root_.GlobalTheory.EtC.a6add_holds q).2 (1 : (Γ(Spec (CommRingCat.of A), ⊤))ˣ) 1 hq').1
   rw [one_mul] at h
   simpa using h
 
@@ -103,8 +100,8 @@ theorem of_steps (L1 : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClo
   obtain ⟨A₂, _, _, _, _, hA₂, c, hc⟩ := L1 q k B hq f hf A' hA' w
   set c₀ : (Localization.Away (algebraMap B A₂ f))ˣ :=
     Units.map (Scheme.ΓSpecIso (CommRingCat.of (Localization.Away (algebraMap B A₂ f)))).hom.hom.toMonoidHom c with hc₀
-  have hcc : gU _ c₀ = c := by
-    ext; simp [c₀, gU]
+  have hcc : _root_.GlobalTheory.EtC.KummerLoc.gU _ c₀ = c := by
+    ext; simp [c₀, _root_.GlobalTheory.EtC.KummerLoc.gU]
   obtain ⟨g, hfg, u, ⟨A₃, _, _, _, _, hA₃, hg, v, hv⟩, C, _, _, hC, v', hv'⟩ := L2 q k B hq f hf A₂ hA₂ c₀
   letI : Algebra A' A₃ := ((algebraMap A₂ A₃).comp (algebraMap A' A₂)).toAlgebra
   haveI : IsScalarTower B A' A₃ := IsScalarTower.of_algebraMap_eq (fun b => by
@@ -113,7 +110,7 @@ theorem of_steps (L1 : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClo
   have hkB : ∀ (R : Type) [CommRing R] [Algebra B R], IsUnit (q : R) := fun R _ _ =>
     isUnit_natCast_of ((algebraMap B R).comp (algebraMap k B)) hq
   refine ⟨g, hfg, A₃, C, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance,
-    hA₃, hg, hC, kum q (gU _ u), ?_, ?_⟩
+    hA₃, hg, hC, kum q (_root_.GlobalTheory.EtC.KummerLoc.gU _ u), ?_, ?_⟩
   · rw [kum_spMap q _ (hkB _)]
     have : Units.map (Localization.awayMap (algebraMap B C) (f * g)).toMonoidHom u = v' ^ q := by
       ext; simpa using hv'
@@ -147,6 +144,6 @@ theorem of_steps (L1 : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClo
       kum_spMap q ψ (hkB _)]
 
 theorem exists_class_agreeing_near_zeros : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] [IsDedekindDomain B] [Algebra k B] [Algebra.FiniteType k B], IsUnit (q : k) → ∀ f : B, f ≠ 0 → ∀ (A' : Type) [CommRing A'] [Algebra B A'], IsExcisionNbhd B A' f → ∀ w : Ht q (sp (Localization.Away (algebraMap B A' f))) 1 1, ∃ g : B, IsCoprime f g ∧ ∃ (A₂ C : Type) (_ : CommRing A₂) (_ : CommRing C) (_ : Algebra B A₂) (_ : Algebra A' A₂) (_ : IsScalarTower B A' A₂) (_ : Algebra B C), IsExcisionNbhd B A₂ f ∧ IsUnit (algebraMap B A₂ g) ∧ IsExcisionNbhd B C g ∧ ∃ a : Ht q (sp (Localization.Away (f * g))) 1 1, pull _ (spMap (Localization.awayMap (algebraMap B C) (f * g))) _ _ a = 0 ∧ ∀ (φ : Localization.Away (algebraMap B A' f) →+* Localization.Away (algebraMap B A₂ f)) (ψ : Localization.Away (f * g) →+* Localization.Away (algebraMap B A₂ f)), φ.comp (algebraMap A' _) = (algebraMap A₂ _).comp (algebraMap A' A₂) → ψ.comp (algebraMap B _) = (algebraMap A₂ _).comp (algebraMap B A₂) → pull _ (spMap φ) _ _ w = pull _ (spMap ψ) _ _ a :=
-  of_steps GlobalTheory.T.exists_kummerClass_on_finer_etaleNbhd_curve GlobalTheory.T.unit_localization_etaleNbhd_eq_unit_mul_pow
+  of_steps _root_.GlobalTheory.EtC.KummerLoc.exists_kummer_on_finer_nbhd _root_.GlobalTheory.EtC.kummer_divisor_step
 
 end GlobalTheory.EtC.KummerStep

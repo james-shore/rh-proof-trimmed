@@ -102,8 +102,8 @@ theorem polarisation_squares_agree_at_level : GlobalFnsSt → ∀ (R : Type) [Co
       gw_sqIso (U.w e) r z (fun _ => jM) (fun _ _ => jL) a₁ a₃,
       gw_isoPullId wL rfl _ z (fun _ => jL) (fun _ => jL') (mem_sq.2 a₃) (mem_sq.2 a₄)] at h
     exact h
-  have inv := GlobalTheory.T.square_comparison_torus_invariant hG R I hI D D' A A' G hS U U' wL hwL (GlobalTheory.T.square_iso_carries_square_cubical hG R I hI D D' A A' G hS U U' wL hwL)
-    (GlobalTheory.T.square_iso_respects_symmetry_pointwise hG R I hI D D' A A' G hS U U' wL hwL) e β hβ hq u hu sqrel
+  have inv := _root_.GlobalTheory.comparison_sq_torus_invariant hG R I hI D D' A A' G hS U U' wL hwL (_root_.GlobalTheory.sq_iso_carries_sq_cube hG R I hI D D' A A' G hS U U' wL hwL)
+    (_root_.GlobalTheory.sq_iso_respects_symmetry_pointwise hG R I hI D D' A A' G hS U U' wL hwL) e β hβ hq u hu sqrel
   haveI := (U'.gt e).q_flat
   haveI := (U'.gt e).q_surj
   haveI := (U'.gt e).q_affine

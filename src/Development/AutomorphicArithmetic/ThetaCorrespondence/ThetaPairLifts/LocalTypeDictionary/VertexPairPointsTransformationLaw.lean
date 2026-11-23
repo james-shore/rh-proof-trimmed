@@ -59,7 +59,7 @@ theorem pair_points_first_vertex_law : _root_.GlobalTheory.FunPr.ThetaLocalInput
         ((((levEnv D.sp.X' R.βX (R.datXt t)).χ ⟨toXf k, hk⟩ : ℂˣ) : ℂ) • w) =
       GlobalTheory.ExpansionInvariance.pairPts ch.S.toGridChoice τ x y v w := by
   intro hP hS
-  obtain ⟨a₁, h₁⟩ := _root_.GlobalTheory.T.twist_first_coefficient_law hP hS
+  obtain ⟨a₁, h₁⟩ := _root_.GlobalTheory.FirstRowDatum.first_coefficient_datum_law hP hS
   obtain ⟨a₂, h₂⟩ := hS
   refine ⟨max a₁ a₂, fun ε CF hC => ?_⟩
   have hb₁ := h₁ ε CF (le_of_max_le_left hC)

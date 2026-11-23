@@ -97,7 +97,7 @@ theorem cg_inv {N : ℕ} (hN : 1 ≤ N) (π : K) (hπ : Valued.v π = exp (-(N :
     fun i j => (val_le_iff π _ hπ).2 (hX i j)
   have h2 : ∀ i j, Valued.v (π⁻¹ * (((1 : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) - 1) i j) ≤ 1 :=
     fun i j => by simp
-  have h3 := GlobalTheory.FrameAgree.inv_mul_cong π hπ0 hπ1 X 1 h1 h2
+  have h3 := _root_.GlobalTheory.GL_inv_mul_congr_one π hπ0 hπ1 X 1 h1 h2
   simp only [mul_one] at h3
   intro r s
   exact (val_le_iff π _ hπ).1 (h3 r s)
@@ -302,7 +302,7 @@ theorem core (P : HeightOneSpectrum (𝓞 E)) (hq : Valued.v ((qOf P : ℕ) : P.
     rw [e]
     exact cg_mul (cg_mono (le_max_left D N0) d2) s1
   have hhm : h ∈ Formalism.L2.Col.GLint E n P := by
-    refine (GlobalTheory.FrameAgree.glint_of_cong P D h (fun a b => ?_) (fun a b => ?_)).1
+    refine (_root_.GlobalTheory.Proof.mem_integralGLAtPrime_of_congruent_one_mod_pow.glint_of_cong P D h (fun a b => ?_) (fun a b => ?_)).1
     · rw [← hG]; exact toIntAt _ e1 a b
     · have := toIntAt _ e2 a b
       rw [hG] at this

@@ -71,7 +71,7 @@ theorem step5Arch_cm : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     (fun b => (Y b).transpose) 1 (fun b => by
       have := hdet b
       rwa [← Matrix.det_transpose] at this)
-  have hm' := GlobalTheory.T.metric_change_of_frame E H Dw l Xo c _ yσ y' _ _ Y 1 one_ne_zero hy' hmet
+  have hm' := _root_.GlobalTheory.MetricChange.isMetric_frChg E H Dw l Xo c _ yσ y' _ _ Y 1 one_ne_zero hy' hmet
   have e1 : (fun b => (Y b).conjTranspose * gramBlock z.e z.U Hm σ b * Y b) = fun _ => 1 := funext hY
   rw [e1, norm_one, one_pow, _root_.one_mul] at hm'
   have hb := GlobalTheory.T.cuspForm_bounded_by_supNorm_at_good_embedding_all_embeddings E H Dw l Xo c r U ξ hU hξ hpq a n hD F hF _ y' _ hm'

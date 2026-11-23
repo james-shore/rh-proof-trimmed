@@ -68,7 +68,7 @@ theorem mk_eq_iff (α β : Cocycle ((chains R).obj (sch.obj X)) (res R F) 0) :
   have hsub : ev (α - β).1 0 0 (by simp) X (𝟙 X) = ev α.1 0 0 (by simp) X (𝟙 X) - ev β.1 0 0 (by simp) X (𝟙 X) := by
     have := ((GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R (E := sch.obj X) (I := res R F) (n := 0)).1 α.1 β.1 0 0 (by simp) X (𝟙 X)).2.1
     simpa using this
-  have hss : Subsingleton (Sec ((res R F).X (-1)) X) := (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness R F X).2.2.2 (-1) (by norm_num)
+  have hss : Subsingleton (Sec ((res R F).X (-1)) X) := (_root_.GlobalTheory.EtC.resSec R F X).2.2.2 (-1) (by norm_num)
   rw [← sub_eq_zero, ← CohomologyClass.mk_sub, h2, hsub]
   have hz : Sec.map ((res R F).d (-1) 0) (0 : Sec ((res R F).X (-1)) X) = 0 := map_zero _
   constructor
@@ -101,7 +101,7 @@ theorem GlobalTheory.EtC.secClass_props : ∀ (R : Type) [CommRing R] (F : Shv R
   · intro s t hst
     obtain ⟨α, h1, h2⟩ := secClass_spec R F X s
     have h3 := (spec_iff R F X t α).2 (h1.trans hst)
-    exact (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness R F X).2.1 (h2.symm.trans h3)
+    exact (_root_.GlobalTheory.EtC.resSec R F X).2.1 (h2.symm.trans h3)
   · intro c
     obtain ⟨α, rfl⟩ := c.mk_surjective
     have hd := ((GlobalTheory.T.cocycle_ev_d_eq_zero_and_mk_eq_zero_iff R X (res R F) (-1) 0 1 (by norm_num) (by norm_num)).2 α).1

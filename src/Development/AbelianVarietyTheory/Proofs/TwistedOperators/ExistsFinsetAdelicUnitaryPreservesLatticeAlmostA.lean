@@ -69,17 +69,13 @@ theorem smul_mem_latAt (X : Spc F E n) (w : Pl (F := F)) {b : AF F} (hb : evFin 
   | add x y _ _ hx hy => rw [smul_add]; exact add_mem hx hy
   | neg x _ hx => rw [smul_neg]; exact neg_mem hx
 
-theorem exists_int_smul_mem (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFullLattice E) (v : Fin n → E) :
-    ∃ c : ℤ, c ≠ 0 ∧ c • v ∈ L := by
-  exact _root_.GlobalTheory.IntSmulMemLatticeTwistedOperators.exists_nonzero_int_smul_mem_of_isLattice L hL v
-
 theorem exists_int_mulVec_mem (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFullLattice E) (N : Matrix (Fin n) (Fin n) E) :
     ∃ c : ℤ, c ≠ 0 ∧ ∀ y ∈ L, c • (N *ᵥ y) ∈ L := by
   have key : ∀ L' : Submodule (𝓞 E) (Fin n → E), L'.FG → ∃ c : ℤ, c ≠ 0 ∧ ∀ y ∈ L', c • (N *ᵥ y) ∈ L := by
     intro L' hL'
     induction L', hL' using Submodule.fg_induction with
     | singleton x =>
-      obtain ⟨c, hc, hx⟩ := exists_int_smul_mem L hL (N *ᵥ x)
+      obtain ⟨c, hc, hx⟩ := _root_.GlobalTheory.IntSmulMemLatticeTwistedOperators.exists_int_smul_mem L hL (N *ᵥ x)
       refine ⟨c, hc, fun y hy => ?_⟩
       obtain ⟨r, rfl⟩ := Submodule.mem_span_singleton.1 hy
       rw [Matrix.mulVec_smul, smul_comm]

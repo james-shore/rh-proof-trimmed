@@ -50,15 +50,9 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCanon
 
-theorem spMap_isDominant_of_injective {A B : Type} [CommRing A] [CommRing B] (f : A →+* B)
-    (hf : Function.Injective f) : IsDominant (spMap f) :=
-  ⟨(PrimeSpectrum.denseRange_comap_iff_ker_le_nilRadical f).2 (by
-    rw [(RingHom.injective_iff_ker_eq_bot _).1 hf]
-    exact bot_le)⟩
-
 theorem spMap_ext_of_injective {A B : Type} [CommRing A] [IsDomain A] [CommRing B] {S : Scheme.{0}} [S.IsSeparated]
     (f : A →+* B) (hf : Function.Injective f) {a b : Sp A ⟶ S} (h : spMap f ≫ a = spMap f ≫ b) : a = b := by
-  haveI := spMap_isDominant_of_injective f hf
+  haveI := _root_.GlobalTheory.Ex.GoodTrait.isDominant_spMap f hf
   exact ext_of_isDominant_of_isSeparated (terminal.from S) (terminal.hom_ext _ _) (spMap f) h
 
 theorem isSeparated_of_projOver {R : Type} [CommRing R] {X : Scheme.{0}} {f : X ⟶ Sp R} (h : IsProjOver f) :

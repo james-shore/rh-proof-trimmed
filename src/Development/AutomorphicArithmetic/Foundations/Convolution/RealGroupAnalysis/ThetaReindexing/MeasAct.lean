@@ -59,18 +59,6 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 
 attribute [local instance] AdeleBaseChange.algebraAdeleRing
 
-private theorem aE_mul_nU {K : Type} [Field K] [NumberField K] (a : (A K)ˣ) (b : A K) :
-    aE a * gl (nU b) = gl (nU ((a : A K) * b)) * aE a := by
-  apply Units.ext
-  change !![(a : A K), 0; 0, 1] * !![1, b; 0, 1] = !![1, (a : A K) * b; 0, 1] * !![(a : A K), 0; 0, 1]
-  simp [Matrix.mul_fin_two]
-
-private theorem nU_add {K : Type} [Field K] [NumberField K] (b c : A K) :
-    nU (b + c) = nU b * nU c := by
-  apply Subtype.ext
-  change !![1, b + c; 0, 1] = !![1, b; 0, 1] * !![1, c; 0, 1]
-  simp [Matrix.mul_fin_two, add_comm]
-
 private theorem w_rel (K : Type) [Field K] [NumberField K] :
     nU 1 * wW K * nU 1 = wW K * nU (-1) * wW K := by
   apply Subtype.ext
@@ -83,13 +71,12 @@ private def twoU (K : Type) [Field K] [NumberField K] : (A K)ˣ :=
 private theorem coe_twoU (K : Type) [Field K] [NumberField K] : ((twoU K : (A K)ˣ) : A K) = 2 := by
   simp [twoU, map_ofNat]
 
-private theorem gl_mul {K : Type} [Field K] [NumberField K] (x y : G1 K) : gl (x * y) = gl x * gl y :=
-  map_mul _ _ _
+private alias gl_mul := _root_.UpperTheory.ConvolutionTheory.R2.gl_mul
 
 private theorem hom_nU {K G : Type} [Field K] [NumberField K] [CommGroup G] (f : GL (Fin 2) (A K) →* G) (b : A K) :
     f (gl (nU b)) = 1 := by
-  have h1 := congrArg f (aE_mul_nU (twoU K) b)
-  rw [map_mul, map_mul, mul_comm, coe_twoU, two_mul, nU_add, gl_mul, map_mul] at h1
+  have h1 := congrArg f (_root_.UpperTheory.ConvolutionTheory.R2.aE_mul_nU (twoU K) b)
+  rw [map_mul, map_mul, mul_comm, coe_twoU, two_mul, _root_.UpperTheory.ConvolutionTheory.R2.nU_add, gl_mul, map_mul] at h1
   have h2 := mul_right_cancel h1
   exact (mul_eq_left.mp h2.symm)
 

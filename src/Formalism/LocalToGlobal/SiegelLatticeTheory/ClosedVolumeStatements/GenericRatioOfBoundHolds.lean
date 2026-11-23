@@ -69,33 +69,23 @@ section Terms
 
 variable (D : D7) (u u' : D.what₂.Word)
 
-theorem TermEqIff_holds : Formalism.L2.SG.TermDef.TermEqIff D u u' := term_eq_iff_relation D u u'
-theorem TermStable_holds : Formalism.L2.SG.TermDef.TermStable D u u' := term_carrier_stable D u u'
-theorem TermFun_holds : Formalism.L2.SG.TermDef.TermFun D u u' := term_function_const D u u'
-
-theorem TermInSFun_holds : Formalism.L2.SG.FourParts.TermInSFun D u u' := in_s_class_constant D u u'
-theorem TermInSRel_holds : Formalism.L2.SG.FourParts.TermInSRel D u u' := in_s_relevant D u u'
-theorem TermIdIffInS_holds : Formalism.L2.SG.FourParts.TermIdIffInS D u u' := term_id_iff_in_s D u u'
-
-theorem ScalarEquiv_holds : Formalism.L2.SG.Corank.ScalarEquiv D u u' := Formalism.L2.SG.Corank.scalarEquiv_of_G (D := D) scalar_equiv_general u u'
+theorem ScalarEquiv_holds : Formalism.L2.SG.Corank.ScalarEquiv D u u' := Formalism.L2.SG.Corank.scalarEquiv_of_G (D := D) _root_.PI.UnitaryGroupMassFormula.ScalEquivGen.scalarEquivG_holds u u'
 theorem ScalarRepFree_holds : Formalism.L2.SG.Corank.ScalarRepFree D u u' := scalar_rep_free D u u'
 theorem BetaFree_holds : Formalism.L2.SG.Corank.BetaFree D u u' := scalPairs_betaFree D u u'
 
 theorem ScalarDr_holds : Formalism.L2.SG.Corank.ScalarDr D u u' := by
   intro F0 what₂ hrows p hp
-  exact scalar_pair_dr D u u' F0 what₂ hrows p.lam p.mem p.fst p.snd p.G_fst p.G_snd p.beta p.isPair
+  exact _root_.PI.ScalarPairDr.W.scalarDr D u u' F0 what₂ hrows p.lam p.mem p.fst p.snd p.G_fst p.G_snd p.beta p.isPair
     hp.1 hp.2
 
 end Terms
 
 theorem CorankPosG_holds : PI.PairCorankPos.CorankPosG := pair_corank_pos
-theorem ScalarEquivG_holds : Formalism.L2.SG.Corank.ScalarEquivG := scalar_equiv_general
+theorem ScalarEquivG_holds : Formalism.L2.SG.Corank.ScalarEquivG := _root_.PI.UnitaryGroupMassFormula.ScalEquivGen.scalarEquivG_holds
 
-theorem GelfandGraevMultOne_holds : Formalism.L2.SG.GGMirabolic.GelfandGraevMultOne := whittaker_functional_dual Formalism.IrreducibleCountingLemmas.GaloisIrreducibility.gelfand_graev_multiplicity_one
-theorem MirabolicBound_holds : Formalism.L2.SG.GGMirabolic.MirabolicBound := mirabolic_bound
-theorem GGMatrixBoundOfLit_holds : Formalism.L2.SG.GGMirabolic.GGMatrixBoundOfLit := gg_matrix_bound
+theorem GelfandGraevMultOne_holds : Formalism.L2.SG.GGMirabolic.GelfandGraevMultOne := _root_.PI.WhitFunctDualWork.whitFunctDual_main Formalism.IrreducibleCountingLemmas.GaloisIrreducibility.gelfand_graev_multiplicity_one
 theorem GGMatrixBound_holds : Formalism.L2.SG.GGMirabolic.GGMatrixBound :=
-  GGMatrixBoundOfLit_holds GelfandGraevMultOne_holds MirabolicBound_holds
+  _root_.gg_matrix_bound GelfandGraevMultOne_holds _root_.PI.GGMirBoundW.mirabolicBound
 theorem TermsGGBound_holds : Formalism.L2.SG.GGMirabolic.TermsGGBound :=
   Formalism.L2.SG.GGMirabolic.termsGGBound_of_matrix GGMatrixBound_holds
 

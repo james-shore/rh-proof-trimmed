@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -314,9 +315,6 @@ def Unip (F : FlagG S r T) (n : S.V ≃ₗ[E] S.V) : Prop :=
   n ∈ Formalism.HermitianLatticesTheory.isom S.hT ∧ (∀ j : ℕ, ∀ x ∈ F.Xa (j + 1), n x - x ∈ F.Xa j) ∧
     ∀ x ∈ orth S F.X, n x - x ∈ F.X
 
-lemma mem_orth (U : Submodule E S.V) (x : S.V) : x ∈ orth S U ↔ ∀ u ∈ U, S.hT u x = 0 := by
-  simp [orth, Submodule.mem_iInf]
-
 lemma Fix.onM {F : FlagG S r T} {F' : FlagG S r T'} {h : S.V ≃ₗ[E] S.V} (hh : Fix F F' h) :
     ∀ m ∈ Msp F F', h m = m := by
   rintro _ ⟨⟨c, c'⟩, rfl⟩
@@ -332,7 +330,7 @@ lemma unip_of {s h : S.V ≃ₗ[E] S.V} (hi : s ∈ Formalism.HermitianLatticesT
   refine ⟨mul_mem (inv_mem hh) hi, fun j x hx => ?_, fun x hx => ?_⟩
   · rw [LinearEquiv.mul_apply, hM' _ (hX (hs.map_X x (Xa_le_X F _ hx)))]
     exact hs.sub_Xa j x hx
-  · rw [mem_orth] at hx
+  · rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth] at hx
     have : x ∈ M ⊔ W := by rw [hc.sup_eq_top]; trivial
     obtain ⟨m, hm, w, hw, rfl⟩ := Submodule.mem_sup.mp this
     have hm2 : ∀ u ∈ F.X, S.hT u m = 0 := fun u hu => by
@@ -394,7 +392,7 @@ theorem inter_gen (F : FlagG S r T) (F' : FlagG S r T') (hD : (Zhat F F').det �
       rw [LinearEquiv.coe_inv, LinearEquiv.symm_apply_eq, hg.onM m hm]
     have h1 : g⁻¹ (s w) ∈ Wsp F F' :=
       mapsTo_twoFlagFramesOrthogonal_of_isometry (inv_mem hg.1) (fun m hm => by rw [hgM m hm]; exact hm) _ (hsW w hw)
-    have h2 : g⁻¹ (s w) - w ∈ F.X := hn.2.2 w ((mem_orth _ _).mpr fun u hu => hMW w hw u (hXM hu))
+    have h2 : g⁻¹ (s w) - w ∈ F.X := hn.2.2 w ((_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth _ _).mpr fun u hu => hMW w hw u (hXM hu))
     have h3 : g⁻¹ (s w) - w = 0 := Submodule.disjoint_def.mp hc.disjoint _ (hXM h2) (sub_mem h1 hw)
     rw [sub_eq_zero, LinearEquiv.coe_inv, LinearEquiv.symm_apply_eq] at h3
     show g (m + w) = h0 (m + w)

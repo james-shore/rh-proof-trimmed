@@ -155,11 +155,6 @@ end GlobalTheory.AdForm.DeepMove
 
 namespace GlobalTheory.AdForm.DeepMove
 
-theorem map_sub_one_apply {R R' : Type} [CommRing R] [CommRing R'] {n : ℕ} (f : R →+* R') (A : Matrix (Fin n) (Fin n) R)
-    (r s : Fin n) : f ((A - 1) r s) = (A.map f - 1) r s := by
-  simp only [Matrix.sub_apply, Matrix.one_apply, Matrix.map_apply, map_sub]
-  split_ifs <;> simp
-
 theorem exists_den_mat {D : D7} {m n : ℕ} (M : Matrix (Fin m) (Fin n) (AE D)) : ∃ d : ℕ, 0 < d ∧
     ∀ r s, toEAf D ((d : AE D) * M r s) ∈ Formalism.L2.DIV.RInt D.host.F D.host.E := by
   choose x y hy e using fun r s => GlobalTheory.AdeleBaseChange.exists_approx (F := D.host.F) (E := D.host.E) (toEAf D (M r s))
@@ -232,15 +227,15 @@ theorem actO_deep : ∀ (D : D7) (S T : HSp D) {a b : ℕ} (ha : S.rank = a) (hb
     have hXw : ∀ r s, Valued.v (((Formalism.L2.Theta.mt S w).map φ - 1) r s) ≤ WithZero.exp (-(N₀ : ℤ)) := fun r s => by
       have h := hA P r s
       rw [GlobalTheory.AdForm.CongAtIdem.finM_rfl] at h
-      rw [← map_sub_one_apply]
+      rw [← _root_.GlobalTheory.SplitCharTrivial.map_sub_one]
       simpa [φ, Matrix.sub_apply, Matrix.one_apply, Matrix.map_apply, apply_ite] using h
     have hXw' : ∀ r s, Valued.v (((Formalism.L2.Theta.mt T w').map φ - 1) r s) ≤ WithZero.exp (-(N₀ : ℤ)) := fun r s => by
       have h := hB P r s
       rw [GlobalTheory.AdForm.CongAtIdem.finM_rfl] at h
-      rw [← map_sub_one_apply]
+      rw [← _root_.GlobalTheory.SplitCharTrivial.map_sub_one]
       simpa [φ, Matrix.sub_apply, Matrix.one_apply, Matrix.map_apply, apply_ite] using h
     have hinv : (Formalism.L2.Theta.mt T w').map φ * (Formalism.L2.Theta.mt T w'⁻¹).map φ = 1 := by
-      rw [← Matrix.map_mul, ← GlobalTheory.AdForm.CongAtIdem.mt_mul', mul_inv_cancel, GlobalTheory.AdForm.CongAtIdem.mt_one',
+      rw [← Matrix.map_mul, ← GlobalTheory.AdForm.CongAtIdem.mt_mul', mul_inv_cancel, _root_.GlobalTheory.BesselCompare.mt_one,
         Matrix.map_one _ (map_zero _) (map_one _)]
     have hY' := inv_entry_le Valued.v _ _ hinv hε hXw'
     let Md : Matrix (Fin T.rank) (Fin S.rank) (AE D) := Matrix.of fun r s => (d : AE D) * M r s

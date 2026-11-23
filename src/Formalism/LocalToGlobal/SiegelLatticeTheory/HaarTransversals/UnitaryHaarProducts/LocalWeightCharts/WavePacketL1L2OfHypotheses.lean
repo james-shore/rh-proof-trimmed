@@ -109,20 +109,6 @@ theorem opn_rpow_mul (a b : Mat k r) : opn (a * b) ^ N1H k r ≤ opn a ^ N1H k r
   rw [← Real.mul_rpow (opn_nonneg _) (opn_nonneg _)]
   exact Real.rpow_le_rpow (opn_nonneg _) (opn_mul _ _) nilradical_half_sum_nonneg
 
-theorem ae_fst {μW μN : Measure (Formalism.QuantumDeterminants.Mt k r)} [SFinite μN] {U : Set (Mat k r)}
-    (hU : μW {x | Matrix.of x ∉ U} = 0) : ∀ᵐ p ∂(μW.prod μN), Matrix.of p.1 ∈ U := by
-  rw [ae_iff]
-  have : {p : Formalism.QuantumDeterminants.Mt k r × Formalism.QuantumDeterminants.Mt k r | ¬ Matrix.of p.1 ∈ U} =
-      {x | Matrix.of x ∉ U} ×ˢ Set.univ := by ext p; simp
-  rw [this, Measure.prod_prod, hU, zero_mul]
-
-theorem ae_snd {μW μN : Measure (Formalism.QuantumDeterminants.Mt k r)} [SFinite μN] {U : Set (Mat k r)}
-    (hU : μN {x | Matrix.of x ∉ U} = 0) : ∀ᵐ p ∂(μW.prod μN), Matrix.of p.2 ∈ U := by
-  rw [ae_iff]
-  have : {p : Formalism.QuantumDeterminants.Mt k r × Formalism.QuantumDeterminants.Mt k r | ¬ Matrix.of p.2 ∈ U} =
-      Set.univ ×ˢ {x | Matrix.of x ∉ U} := by ext p; simp
-  rw [this, Measure.prod_prod, hU, mul_zero]
-
 section Int
 
 variable {z : Fin (2 * r + k + 1) → ℂ} {c : Fin r → ℂ} {H : Type} [NormedAddCommGroup H]
@@ -256,8 +242,8 @@ theorem A_bound (hSG : SGrp) (hPU : PiUnit) (hSig : SigmaG) (hyp : Hyp k r z c u
   obtain ⟨hσ, hWG, hNG, hWinv, hψ, hπ⟩ := facts hSG hPU hSig hyp
   obtain ⟨-, -, -, -, -, -, -, hW, hN, -⟩ := hyp
   have := hN.1
-  have hWc := ae_fst (μN := μN) hW.2.2.1
-  have hNc := ae_snd (μW := μW) hN.2.2.1
+  have hWc := _root_.WlocSk.AE.ae_fst (μN := μN) hW.2.2.1
+  have hNc := _root_.WlocSk.AE.ae_snd (μW := μW) hN.2.2.1
   show ‖∫ p, bInt z c σ π (σ x₀ w) ξ (σ (Matrix.of x) w) p ∂(μW.prod μN)‖ₑ * ENNReal.ofReal q ≤ _
   calc ‖∫ p, bInt z c σ π (σ x₀ w) ξ (σ (Matrix.of x) w) p ∂(μW.prod μN)‖ₑ * ENNReal.ofReal q
       ≤ (∫⁻ p, ‖bInt z c σ π (σ x₀ w) ξ (σ (Matrix.of x) w) p‖ₑ ∂(μW.prod μN)) * ENNReal.ofReal q := by
@@ -419,8 +405,8 @@ theorem aF_eq (hSG : SGrp) (hPU : PiUnit) (hSig : SigmaG) (hyp : Hyp k r z c u v
   obtain ⟨hσ, hWG, hNG, hWinv, hψ, hπ⟩ := facts hSG hPU hSig hyp
   obtain ⟨-, -, -, -, -, -, -, hW, hN, -⟩ := hyp
   have := hN.1
-  have hWc := ae_fst (μN := μN) hW.2.2.1
-  have hNc := ae_snd (μW := μW) hN.2.2.1
+  have hWc := _root_.WlocSk.AE.ae_fst (μN := μN) hW.2.2.1
+  have hNc := _root_.WlocSk.AE.ae_snd (μW := μW) hN.2.2.1
   unfold aF
   rw [← lintegral_const_mul' _ _ enorm_ne_top]
   apply lintegral_congr_ae
@@ -451,8 +437,8 @@ theorem wave_packet_l2_finite (hSG : SGrp) (hPU : PiUnit) (hSig : SigmaG) (hSP :
   have hN := hyp.2.2.2.2.2.2.2.2.1
   have := hW.1
   have := hN.1
-  have hWc := ae_fst (μN := μN) hW.2.2.1
-  have hNc := ae_snd (μW := μW) hN.2.2.1
+  have hWc := _root_.WlocSk.AE.ae_fst (μN := μN) hW.2.2.1
+  have hNc := _root_.WlocSk.AE.ae_snd (μW := μW) hN.2.2.1
   have hf₀m : Measurable (wcoef σ (σ x₀ w) w 0) := wcoef_meas hσ _ _ le_rfl
   have hFm : Measurable (Fq σ (σ x₀ w) w μW μN ξ) :=
     hf₀m.mul ((aF_meas hσ _ _ μW μN).const_mul _)

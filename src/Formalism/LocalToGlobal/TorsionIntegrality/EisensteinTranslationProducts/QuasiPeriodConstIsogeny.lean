@@ -47,7 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.F
 
-theorem quasiPeriodConstIsogeny : QuasiPeriodConstIsogeny := quasiPeriodConstIsogeny_thm
-theorem cmTheta0 : CmTheta0 := cm_even_theta
-
 end Formalism.L2.Th1.F

@@ -65,14 +65,6 @@ namespace GlobalTheory.AdForm.RamCont
 
 variable {D : D7}
 
-theorem infM_mul' (θ : InfFam D) (V : HSp D) {n : ℕ} (hn : V.rank = n) (g h : GA D V) (τ : D.what₂.Tau) :
-    infM θ V hn (g * h) τ = infM θ V hn g τ * infM θ V hn h τ := by
-  subst hn; exact GlobalTheory.AdForm.RdLaw.infM_mul θ V g h τ
-
-theorem infM_fin' (θ : InfFam D) (V : HSp D) {n : ℕ} (hn : V.rank = n) (k : GA D V) (hk : k ∈ GfC V) (τ : D.what₂.Tau) :
-    infM θ V hn k τ = 1 := by
-  subst hn; exact GlobalTheory.AdForm.RdLaw.infM_fin θ V k hk τ
-
 theorem continuous_infM' (θ : InfFam D) (hθ : IsInfFam θ) (V : HSp D) {n : ℕ} (hn : V.rank = n) (τ : D.what₂.Tau) :
     Continuous fun g : GA D V => infM θ V hn g τ := by
   subst hn; exact GlobalTheory.AdForm.RdLaw.continuous_infM θ hθ V τ
@@ -98,7 +90,7 @@ theorem pf_inv_mul_mem (V : HSp D) (g : GA D V) : (GlobalTheory.AdForm.RdLaw.pf 
 
 theorem infM_mul_pf (θ : InfFam D) (V : HSp D) {n : ℕ} (hn : V.rank = n) (k d : GA D V) (τ : D.what₂.Tau) :
     infM θ V hn (k * ((GlobalTheory.AdForm.RdLaw.pf V d)⁻¹ * d)) τ = infM θ V hn k τ * infM θ V hn d τ := by
-  rw [infM_mul' θ V hn k, infM_mul' θ V hn _ d, infM_fin' θ V hn _ (inv_mem (GlobalTheory.AdForm.RdLaw.pf_fin V d)), one_mul]
+  rw [_root_.GlobalTheory.AdForm.Model.infM_mul θ V hn k, _root_.GlobalTheory.AdForm.Model.infM_mul θ V hn _ d, _root_.GlobalTheory.AdForm.ChartVal.infM_fin' θ V hn _ (inv_mem (GlobalTheory.AdForm.RdLaw.pf_fin V d)), one_mul]
 
 end GlobalTheory.AdForm.RamCont
 

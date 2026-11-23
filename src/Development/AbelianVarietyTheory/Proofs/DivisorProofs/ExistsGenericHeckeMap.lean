@@ -295,8 +295,7 @@ theorem tate_transl (G : GDatum) (g : G.La →ₗ[G.O] G.La) (c k N : ℕ) (cpos
 
 variable {p : ℕ} [Fact p.Prime] {D : Datum p} {R R' : Type} [CommRing R] [CommRing R'] [Algebra ℚ R']
 
-theorem toUnit_left {S : Scheme.{0}} (T : Over S) : (toUnit T).left = T.hom := by
-  simpa using Over.w (toUnit T)
+alias toUnit_left := _root_.GlobalTheory.ObjPull.toUnit_left'
 
 theorem spMap_comp_ring {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap g ≫ spMap f = spMap (g.comp f) := by

@@ -113,14 +113,9 @@ theorem subst_expMv {σ τ : Type} {b : σ → MvPowerSeries τ ℂ_[p]} (hb : M
 section G
 variable (g : G1 p)
 
-theorem cc_l : PowerSeries.constantCoeff g.l = 0 := by
-  unfold G1.l flog
-  rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, PowerSeries.coeff_mk]
-  simp
-
 theorem cc_lg {σ : Type} {a : MvPowerSeries σ ℂ_[p]} (ha : MvPowerSeries.constantCoeff a = 0) :
     MvPowerSeries.constantCoeff (g.lg a) = 0 :=
-  PowerSeries.constantCoeff_subst_eq_zero ha _ (cc_l g)
+  PowerSeries.constantCoeff_subst_eq_zero ha _ (_root_.Formalism.MainNotions.Ext.CutA.l0 g)
 
 theorem cc_pt (hOk : g.Ok) {σ : Type} {y : MvPowerSeries σ ℂ_[p]} (hy : MvPowerSeries.constantCoeff y = 0) :
     MvPowerSeries.constantCoeff (g.pt y) = 0 :=
@@ -359,9 +354,7 @@ end Formalism.L2.KerInert.IntegralUnitSubstitution
 
 namespace Formalism.L2.KerInert
 
-theorem unitSubstLoc_of (hC : CcPrime) (hE : EndIntInertAll) (hN : PhNormOKInertAll) (hB : BiaddInertAll) :
-    UnitSubstLoc :=
-  IntegralUnitSubstitution.unitSubstLoc_of hC hE hN hB
+alias unitSubstLoc_of := _root_.Formalism.L2.KerInert.IntegralUnitSubstitution.unitSubstLoc_of
 
 theorem unitSubstLoc_of_model (hE : EndIntInertAll) (hN : PhNormOKInertAll) (hB : BiaddInertAll) : UnitSubstLoc :=
   unitSubstLoc_of curve_ideal_prime hE hN hB

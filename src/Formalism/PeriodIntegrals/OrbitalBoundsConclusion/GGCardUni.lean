@@ -42,4 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem mirabolic_card_unipotent : Formalism.L2.SG.GGMirabolic.CardUni := PI.GGCardUniWork.cardUni

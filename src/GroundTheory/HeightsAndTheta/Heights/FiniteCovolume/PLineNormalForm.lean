@@ -96,16 +96,10 @@ theorem exists_nat_mul_isIntegral (x : E) : ∃ n : ℕ, 0 < n ∧ IsIntegral �
     exact hyx.neg
 
 
-omit [Field E] [NumberField E] in
-theorem exists_common_multiple {ι : Type*} (s : Finset ι) (P : ι → ℕ → Prop)
-    (hP : ∀ i a b, P i a → a ∣ b → P i b) (hex : ∀ i ∈ s, ∃ a, 0 < a ∧ P i a) :
-    ∃ d, 0 < d ∧ ∀ i ∈ s, P i d :=
-  _root_.UpperTheory.Reformulated.B.Qm7.exists_common_multiple s P hP hex
-
 theorem exists_den_of_fg {J : AddSubgroup E} (hJ : J.FG) :
     ∃ d : ℕ, 0 < d ∧ ∀ j ∈ J, IsIntegral ℤ ((d : E) * j) := by
   obtain ⟨S, rfl⟩ := AddSubgroup.isAddFG_iff.mp hJ
-  obtain ⟨d, hd, hS⟩ := exists_common_multiple S (fun s n => IsIntegral ℤ ((n : E) * s))
+  obtain ⟨d, hd, hS⟩ := _root_.UpperTheory.Reformulated.B.Qm7.exists_common_multiple S (fun s n => IsIntegral ℤ ((n : E) * s))
     (fun _ _ _ h hab => isIntegral_mul_of_dvd h hab) (fun s _ => exists_nat_mul_isIntegral s)
   refine ⟨d, hd, fun j hj => ?_⟩
   induction hj using AddSubgroup.closure_induction with
@@ -150,7 +144,7 @@ theorem LineNormalForm.proof (h : HermitianForm F E W) : LineNormalForm.Statemen
     rw [LinearMap.map_smulₛₗ₂, smul_eq_mul]
 
   obtain ⟨T, hT, hTJ⟩ := IdealClassesFinite.proof E
-  obtain ⟨d, hd, hdT⟩ := exists_common_multiple hT.toFinset
+  obtain ⟨d, hd, hdT⟩ := _root_.UpperTheory.Reformulated.B.Qm7.exists_common_multiple hT.toFinset
     (fun J n => J.FG → J ≠ ⊥ → (∀ j ∈ J, IsIntegral ℤ ((n : E) * j)) ∧
         ∃ j₀ ∈ J, j₀ ≠ 0 ∧ IsIntegral ℤ ((n : E) * j₀⁻¹))
     (fun J a b hJ hab hfg hne => by

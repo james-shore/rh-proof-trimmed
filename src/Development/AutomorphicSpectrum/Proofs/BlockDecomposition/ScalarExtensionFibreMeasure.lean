@@ -148,7 +148,7 @@ theorem fibre_block_stages_free : ∀ (F E : Type) [Field F] [NumberField F] [Fi
     exact hm
   rw [hU'] at hfib
   have hmT : fib (hermOf R σ _ hT') = m (hermOf R σ _ hT') :=
-    GlobalTheory.T.measurable_embedding_of_injective_proper _ _ _ (coordW R b lam (n + 1) (M + 1)) (coordHerm R σ b lam (n + 1))
+    _root_.GlobalTheory.CompanionTheory.SW.FibreUniq.fibreFamily_eq_inter _ _ _ (coordW R b lam (n + 1) (M + 1)) (coordHerm R σ b lam (n + 1))
       (gramR R σ (blockOne (algebraMap F E t) J)) g Subtype.val Subtype.val_injective hgc hg _ hfree
       Set.univ B isOpen_univ hBo (Set.subset_univ _) m fib hm₀ hfib _ hTB
   have hBa := hBorel (n + 1) (M + 1)

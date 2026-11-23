@@ -76,30 +76,14 @@ lemma coeff_expY_subst {a : ℂ_[q]⟦X⟧} (ha : constantCoeff a = 0) (f : ℂ_
   rw [map_mul, cc_subst ha] at e
   simpa [← coeff_zero_eq_constantCoeff_apply, coeff_derivative] using e
 
-lemma const_log (ω : ℂ_[q]) : constantCoeff (C ω * logS : ℂ_[q]⟦X⟧) = 0 := by
-  have : constantCoeff (logS : ℂ_[q]⟦X⟧) = 0 := by
-    rw [← coeff_zero_eq_constantCoeff_apply]
-    simp [logS]
-  simp [this]
-
-lemma hat_scale (ι : ℂ ≃+* ℂ_[q]) (ω : ℂ_[q]) (G : ℂ → ℂ) (a : ℤ_[q]) :
-    hat ι (C (ω * zc a) * logS) G = (hat ι (C ω * logS) G).subst (mulS a : ℂ_[q]⟦X⟧) := by
-  obtain ⟨hm, -⟩ := MulSeries.mulS_laws q
-  obtain ⟨-, h0, -, hl⟩ := hm a
-  have hsub : HasSubst (mulS a : ℂ_[q]⟦X⟧) := HasSubst.of_constantCoeff_zero' h0
-  have hs : HasSubst (C ω * logS : ℂ_[q]⟦X⟧) := HasSubst.of_constantCoeff_zero' (const_log ω)
-  unfold hat
-  rw [subst_comp_subst_apply hs hsub, ← smul_eq_C_mul (a := ω), subst_smul hsub, hl, smul_eq_C_mul,
-    map_mul, mul_assoc]
-
 lemma mchart_scale (M : Mdl q) {ω : ℂ_[q]} (h : M.MChart ω) {a : ℤ_[q]} (ha : ‖a‖ = 1) :
     M.MChart (ω * zc a) := by
   obtain ⟨hm, -, -, hb, -, hn⟩ := MulSeries.mulS_laws q
   obtain ⟨-, h0, h1, -⟩ := hm a
   obtain ⟨ok, -, bd, c1⟩ := h
-  refine ⟨ok, const_log _, ?_, ?_⟩
-  · rw [hat_scale, hb a _ _ ha]; exact bd
-  · rw [hat_scale, coeff_expY_subst h0, norm_mul, c1, h1, hn, ha, one_mul]
+  refine ⟨ok, _root_.GlobalTheory.MomOne.hatmul_const_log _, ?_, ?_⟩
+  · rw [_root_.GlobalTheory.MomOne.hatmul_subst, hb a _ _ ha]; exact bd
+  · rw [_root_.GlobalTheory.MomOne.hatmul_subst, coeff_expY_subst h0, norm_mul, c1, h1, hn, ha, one_mul]
 
 lemma at_scale (M : Mdl q) {ω : ℂ_[q]} (h : M.MChart ω) {a : ℤ_[q]} {ξ : ℂ_[q]} {n k : ℕ} {y : ℂ}
     (hξ : ξ ^ (q ^ n) = 1) (hk : ‖a - (k : ℤ_[q])‖ ≤ (q : ℝ) ^ (-(n : ℤ))) (hy : M.At ω (ξ ^ k) y) :
@@ -109,7 +93,7 @@ lemma at_scale (M : Mdl q) {ω : ℂ_[q]} (h : M.MChart ω) {a : ℤ_[q]} {ξ : 
   obtain ⟨h1, h2⟩ := (GlobalTheory.T.cpSeriesMultiplicativeShift_comp_and_subst q).2 ξ n k a _ hξ hk ⟨1, h.2.2.1⟩
   obtain ⟨s, h3, h4⟩ := hy
   refine ⟨s, h1, ?_⟩
-  rw [hat_scale, ← (Shift.shift_laws q ξ h1).2.2.2.2.1, h2, cc_subst h0,
+  rw [_root_.GlobalTheory.MomOne.hatmul_subst, ← (Shift.shift_laws q ξ h1).2.2.2.2.1, h2, cc_subst h0,
     (Shift.shift_laws q _ h3).2.2.2.2.1, h4]
 
 lemma at_pow (M : Mdl q) {ω : ℂ_[q]} (h : M.MChart ω) {ξ : ℂ_[q]} {p : ℂ} (hp : M.At ω ξ p) (k : ℕ) :

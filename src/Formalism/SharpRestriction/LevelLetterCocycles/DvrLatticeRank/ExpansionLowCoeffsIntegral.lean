@@ -116,9 +116,6 @@ theorem alg_apply (o : O) (c : ZMod n) : (algebraMap O (LetA O n) o) c = C o := 
   show algebraMap O (PowerSeries O) o = C o
   rw [PowerSeries.algebraMap_apply]; rfl
 
-theorem lev_letE (c : ZMod n) (ζ : LL) : W.lev c ζ (letE c : LetA O n) = 1 := by
-  rw [lev_congr W c ζ (b := 1) (by simp [letE]), map_one]
-
 theorem levπ01 (c : ZMod n) (ζ : LL) (hζ : IsPrimitiveRoot ζ PD.p) :
     constantCoeff (W.lev c ζ letπ) = ζ - 1 ∧ coeff 1 (W.lev c ζ letπ) = ζ ∧
       (ζ - 1) * coeff 1 (W.lev c ζ W.q) = PD.p ∧ constantCoeff (W.lev c ζ W.q) = 0 := by

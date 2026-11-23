@@ -132,7 +132,7 @@ theorem GlobalTheory.RowEvalHH.Re_evF : ∀ {D : D7} {G : Type} [Group G] [Finty
         rw [hfY, hfY, e2]
         exact hl
       rw [h1, star_mul', star_star, mul_comm]
-    have hK := Formalism.L2.SG.Closed.level_subgroup_is_group X
+    have hK := _root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X
     have hKL := Formalism.L2.SG.Closed.level_subgroup_properties X
     have hKM : MeasurableSet X.K2 := (Formalism.L2.SG.PoincareInHH.Cut.level_subgroup_isClopen X hK hKL).isOpen.measurableSet
     have hfix : ∀ᵐ z ∂(X.B.I.muA X.B.μf), ∫ g, X.B.e g * star (f (z * (1, g))) ∂X.B.μf = star (f z) := by

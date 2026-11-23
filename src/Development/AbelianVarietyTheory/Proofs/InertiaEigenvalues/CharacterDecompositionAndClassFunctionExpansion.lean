@@ -191,7 +191,7 @@ theorem class_eq_zero_of_orth {G : Type} [Group G] [Fintype G] (f : G → ℂ) (
       show _ = LinearMap.trace ℂ V (V.ρ (x⁻¹ * y))
       rw [map_mul, Module.End.mul_eq_comp]
     rw [← hy, hT0, LinearMap.zero_comp, map_zero]
-  obtain ⟨hS, hsum⟩ := GlobalTheory.T.finite_irrCharacters_and_finsum_centralIdempotents_eq_one G
+  obtain ⟨hS, hsum⟩ := _root_.GlobalTheory.GLq.irr_finite_and_finsum_zOf_eq_one G
   rw [finsum_mem_eq_finite_toFinset_sum _ hS] at hsum
   have hB : ∀ w : G, ∑ ρ ∈ hS.toFinset, ρ 1 / (Fintype.card G : ℂ) * ρ w⁻¹ = if w = 1 then 1 else 0 := by
     intro w
@@ -221,7 +221,7 @@ theorem isChar_of_isIrr {G : Type} [Group G] {ρ : G → ℂ} (h : IsIrr ρ) : I
 
 theorem class_expand {G : Type} [Group G] [Fintype G] (χ : G → ℂ) (hχ : IsClass χ) :
     χ = ∑ᶠ ρ ∈ {ρ : G → ℂ | IsIrr ρ}, ip χ ρ • ρ := by
-  have hS := (GlobalTheory.T.finite_irrCharacters_and_finsum_centralIdempotents_eq_one G).1
+  have hS := (_root_.GlobalTheory.GLq.irr_finite_and_finsum_zOf_eq_one G).1
   rw [finsum_mem_eq_finite_toFinset_sum _ hS]
   set F := hS.toFinset with hF
   have hmem : ∀ ρ, ρ ∈ F ↔ IsIrr ρ := fun ρ => by simp [F]
@@ -250,7 +250,7 @@ theorem list_sum_flatMap {α M : Type} [AddCommMonoid M] (l : List α) (f : α �
 
 theorem char_decomp {G : Type} [Group G] [Fintype G] (χ : G → ℂ) (hχ : IsChar χ) :
     ∃ L : List (G → ℂ), (∀ ρ ∈ L, IsIrr ρ) ∧ χ = L.sum := by
-  have hS := (GlobalTheory.T.finite_irrCharacters_and_finsum_centralIdempotents_eq_one G).1
+  have hS := (_root_.GlobalTheory.GLq.irr_finite_and_finsum_zOf_eq_one G).1
   have hE := class_expand χ (isClass_of_isChar hχ)
   rw [finsum_mem_eq_finite_toFinset_sum _ hS] at hE
   set F := hS.toFinset with hF

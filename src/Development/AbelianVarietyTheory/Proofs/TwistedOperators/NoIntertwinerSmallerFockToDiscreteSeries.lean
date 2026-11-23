@@ -84,7 +84,7 @@ theorem intw_eq_zero (X : ProvA) (h2 : admH2 X) (hD : DiscreteSeriesBlattner X) 
 
   have hmin : ∀ ν w, IsHW (X.ds r s lam).HK.act ν w →
       degW (cPair p q) (blattner lam) ≤ degW (cPair p q) ν :=
-    GlobalTheory.T.degW_blattner_le_of_blattnerCone r s (X.ds r s lam).HK lam (cPair p q) θ hcone hsign
+    _root_.GlobalTheory.FlowLemma.degW_blattner_le r s (X.ds r s lam).HK lam (cPair p q) θ hcone hsign
 
   obtain ⟨⟨μ, P, hPJ, hP1, hP2, hfP⟩, -⟩ :=
     GlobalTheory.T.fock_minimal_KType_second_member p q r s MM (X.ds r s lam).HK f hAI.2 hAI.1 hI hf0 (blattner lam) hex hmin

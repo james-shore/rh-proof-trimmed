@@ -123,7 +123,7 @@ theorem theta_iff (hL : Laws) {E : Type} [Field E] [NumberField E] [IsCMField E]
     o.Theta m v' ↔ ∃ c : Kˣ, v' = (c : K) • v := by
   haveI := o.closed
   haveI := o.charZero
-  obtain ⟨-, h2, h3, -⟩ := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL K (Sp K) o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') D.La
+  obtain ⟨-, h2, h3, -⟩ := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL K (Sp K) o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') D.La
     (o.I.ev (m ^ 2)) (fun a => (o.I.onto _ (pow_pos hm.pos 2) _).2 ⟨a, rfl⟩)
   exact (h3 v').trans (h2 1 v v' ((h3 v).1 hv))
 

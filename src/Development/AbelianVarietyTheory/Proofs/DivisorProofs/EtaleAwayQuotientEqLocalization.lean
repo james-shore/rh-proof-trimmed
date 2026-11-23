@@ -97,7 +97,7 @@ theorem etale_away_quotient_eq_localization :
       have : (1 : D) = algebraMap B D c * x - (algebraMap B D c * x - 1) := by ring
       rw [this]
       exact J.sub_mem h3 (hQJ h2)
-  obtain ⟨g, hgQ, hQ'⟩ := GlobalTheory.T.isolate_maximal_among_primes_containing_etale B D f hf Q hQmax
+  obtain ⟨g, hgQ, hQ'⟩ := _root_.GlobalTheory.EtaleIsolate.exists_isolating B D f hf Q hQmax
   refine ⟨g, ?_⟩
   haveI : Algebra.Etale D (Localization.Away g) := Algebra.Etale.of_isLocalizationAway g
   haveI : Algebra.Etale B (Localization.Away g) := Algebra.Etale.comp B D (Localization.Away g)
@@ -105,7 +105,7 @@ theorem etale_away_quotient_eq_localization :
       algebraMap D (Localization.Away g) (algebraMap B D b) := fun b =>
     IsScalarTower.algebraMap_apply B D (Localization.Away g) b
 
-  have hunit := GlobalTheory.T.localization_inverse_mod_f B D f P Q g hQP hQ'
+  have hunit := _root_.GlobalTheory.unitsMod_away_of_unique_prime B D f P Q g hQP hQ'
 
   have hker : ∀ b : B, (∃ s : B, s ∉ P ∧ s * b ∈ Ideal.span {f}) →
       algebraMap B (Localization.Away g) b ∈
@@ -124,7 +124,7 @@ theorem etale_away_quotient_eq_localization :
     exact Ideal.sub_mem _ (Ideal.mul_mem_right _ _ h1) (Ideal.mul_mem_right _ _ ht)
   refine ⟨?_, fun b => ⟨fun hb => ?_, hker b⟩⟩
   ·
-    obtain ⟨N, hN⟩ := GlobalTheory.T.dedekind_power_localization B f hf P hP
+    obtain ⟨N, hN⟩ := _root_.GlobalTheory.dedekind_pow_maximal_mul_mem_span B f hf P hP
     have hPN : (P ^ N).map (algebraMap B (Localization.Away g)) ≤
         Ideal.span {algebraMap B (Localization.Away g) f} := by
       rw [Ideal.map_le_iff_le_comap]
@@ -144,10 +144,10 @@ theorem etale_away_quotient_eq_localization :
             (IsLocalization.Away.algebraMap_isUnit g))
       rw [← hc]
       exact (IsLocalization.map_under (Submonoid.powers g) (Localization.Away g) Q').symm
-    have hle := GlobalTheory.T.etale_unique_prime_le_map_maximal B (Localization.Away g) P hP
+    have hle := _root_.GlobalTheory.etale_prime_le_map_of_unique B (Localization.Away g) P hP
       (Q.map (algebraMap D (Localization.Away g))) hfib
-    have hres' := GlobalTheory.T.localization_residue_approximation B D P hP Q g hgQ hQP hres
-    refine GlobalTheory.T.nilpotent_approximation_surjective B (Localization.Away g) P _ N (fun a => ?_) hPN
+    have hres' := _root_.GlobalTheory.residue_surj_localizationAway B D P hP Q g hgQ hQP hres
+    refine _root_.GlobalTheory.surj_mod_of_surj_mod_map_sup_of_pow_map_le B (Localization.Away g) P _ N (fun a => ?_) hPN
     obtain ⟨b, hb⟩ := hres' a
     exact ⟨b, Ideal.mem_sup_left (hle hb)⟩
   ·
@@ -166,7 +166,7 @@ theorem etale_away_quotient_eq_localization :
       rw [Ideal.mem_span_singleton] at hb ⊢
       obtain ⟨c, hc⟩ := hb
       exact ⟨ρ c, by rw [e, e, hc, map_mul]⟩
-    obtain ⟨s, hs, hsb⟩ := GlobalTheory.T.flat_localization_membership B D Q f b hloc
+    obtain ⟨s, hs, hsb⟩ := _root_.GlobalTheory.localFlat_dvd_descends B D Q f b hloc
     rw [hQP] at hs
     exact ⟨s, hs, hsb⟩
 

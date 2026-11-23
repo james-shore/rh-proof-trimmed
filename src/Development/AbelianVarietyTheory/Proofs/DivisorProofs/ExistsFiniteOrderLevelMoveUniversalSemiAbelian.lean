@@ -62,7 +62,7 @@ namespace GlobalTheory.MoveOrder
 theorem finite_order : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) («γ» : LevelAut Dw l) (ρ : Xo.X ⟶ Xo.X) (ν : SABMap Xo.univ.t Xo.univ.t ρ), 1 ≤ Dw.p + Dw.q → l.A = 1 → IsIso ρ → IsLevMove ρ ν (liftLa «γ») LinearMap.id → ∃ n : ℕ, 0 < n ∧ (fun f : Xo.univ.t.G.left ⟶ Xo.univ.t.G.left => f ≫ ν.φ)^[n] (𝟙 _) = 𝟙 _ := by
   intro E _ _ _ H Dw l Xo c γ ρ ν hpq hl hρ hm
   have hA : l.A.Coprime l.M := by rw [hl]; exact Nat.coprime_one_left _
-  obtain ⟨⟨ι, hι, -⟩, hmul, -⟩ := GlobalTheory.T.framedPointMove_calculus E H Dw l Xo c
+  obtain ⟨⟨ι, hι, -⟩, hmul, -⟩ := _root_.GlobalTheory.MoveCalc.frMove_calculus E H Dw l Xo c
   have h₀ : IsLevMove (𝟙 Xo.X) ι (liftLa (1 : LevelAut Dw l)) LinearMap.id := by
     refine ⟨Category.id_comp _, fun a => ?_, fun a => ?_⟩
     · rw [hι, Category.comp_id, Category.id_comp]

@@ -63,13 +63,7 @@ namespace MuPos
 
 variable {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)]
 
-theorem isOpen_blockNonzero : IsOpen {z : (Σ k, J k) → ℂ | ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0} := by
-  have : {z : (Σ k, J k) → ℂ | ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0} =
-      ⋂ k, ⋃ i, {z : (Σ k, J k) → ℂ | z ⟨k, i⟩ ≠ 0} := by
-    ext z; simp
-  rw [this]
-  exact isOpen_iInter_of_finite fun k => isOpen_iUnion fun i =>
-    isOpen_ne_fun (continuous_apply _) continuous_const
+alias isOpen_blockNonzero := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.G1.isOpen_blocksNonzero
 
 theorem contDiffAt_logH {A : HermLine J} (hA : IsSmoothHerm A) {n : ℕ}
     {g : (Fin n → ℂ) → (Σ k, J k) → ℂ} {t : Fin n → ℂ} (hg : AnalyticAt ℂ g t)

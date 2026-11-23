@@ -135,7 +135,7 @@ theorem main : ∀ (P R₁ R₂ R₀ : CommRingCat.{0}) (f₁ : P ⟶ R₁) (f�
           (a₂.appLE U.1 _ hz u) (a₁.appLE U.1 _ hx u) (by
             have e1 := Scheme.Hom.appLE_comp_appLE i₂ a₂ U.1 _ (i₂ ⁻¹ᵁ (j₂ ⁻¹ᵁ W)) hz le_rfl
             have e2 := Scheme.Hom.appLE_comp_appLE i₁ a₁ U.1 _ (i₂ ⁻¹ᵁ (j₂ ⁻¹ᵁ W)) hx hpre.le
-            have e3 := GlobalTheory.Pinch.appLE_congr_hom ha.symm U.1 (i₂ ⁻¹ᵁ (j₂ ⁻¹ᵁ W))
+            have e3 := _root_.GlobalTheory.SS.FrobField.appLE_congr_hom ha.symm U.1 (i₂ ⁻¹ᵁ (j₂ ⁻¹ᵁ W))
               (fun w hw => hz hw) (fun w hw => hx (hpre.le hw))
             have := congrArg (fun q => q.hom u) (e1.trans (e3.trans e2.symm))
             simp only [CommRingCat.hom_comp, RingHom.comp_apply] at this

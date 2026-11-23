@@ -129,7 +129,7 @@ theorem UpperTheory.V.Loc.torAut :
     · rw [hI]; trivial
     haveI : Nontrivial (U.R ⧸ D.It U) := Ideal.Quotient.nontrivial_iff.2 hI
     haveI : IsCO O (U.R ⧸ D.It U) := co_quot O U.R _ (Ideal.Quotient.mkₐ O _) (Ideal.Quotient.mkₐ_surjective O _)
-    obtain ⟨f, hf, hfI⟩ := rtConj hP D U (U.R ⧸ D.It U) (push (Ideal.Quotient.mkₐ O _) U.r.hom)
+    obtain ⟨f, hf, hfI⟩ := _root_.GlobalTheory.OrdLoc.rtConj hP D U (U.R ⧸ D.It U) (push (Ideal.Quotient.mkₐ O _) U.r.hom)
       (tor _ (Units.map (algebraMap O (U.R ⧸ D.It U) : O →* _) t)) (fun a b => by
         rw [← res_eq_zero_iff O, Matrix.sub_apply, tor_val]
         by_cases hab : a = b

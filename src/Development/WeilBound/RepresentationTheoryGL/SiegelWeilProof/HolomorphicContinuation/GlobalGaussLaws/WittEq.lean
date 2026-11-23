@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.BitVec
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FiniteResidueFieldAdicCompletionIntegers
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLagrangianDecompositionInert
+import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.FirstCoordinateAdmissible
 
 @[expose] public section
 
@@ -213,7 +214,7 @@ theorem wittLBeq : WittLBeq := by
       ReciprocityTheory.ChartRestriction.G.FD.cc z ∈ (1 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) := by
     intro z hz
     rw [mem_one_iff_isIntegral] at hz ⊢
-    exact cc_isIntegral hz
+    exact _root_.GlobalTheory.SW.Base.isIntegral_cc hz
   haveI : Algebra.Unramified (𝓞 (maximalRealSubfield D.host.E)) (𝓞 D.host.E) :=
     Formalism.L2.Pj.unramBridge D.host.E (Formalism.L2.Pj.cmUnram_conj D)
   obtain ⟨P, hP, hPG⟩ := GlobalTheory.SelfDualGenus.congr_of_modular (G := G₁) (G' := dSgn r k) (L := L)
@@ -241,6 +242,6 @@ end PositivityTheory.Rg.Sw.Glob.WEq
 
 namespace PositivityTheory.Rg.Sw.Glob
 
-theorem wittLBeq : WittLBeq := WEq.wittLBeq
+alias wittLBeq := _root_.PositivityTheory.Rg.Sw.Glob.WEq.wittLBeq
 
 end PositivityTheory.Rg.Sw.Glob

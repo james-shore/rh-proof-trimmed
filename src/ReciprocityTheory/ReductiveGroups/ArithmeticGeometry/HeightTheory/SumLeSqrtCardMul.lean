@@ -58,13 +58,13 @@ namespace ReciprocityTheory.ChartRestriction.G.T0
 open MvPolynomial
 
 theorem card_support_le {R : Type*} [CommSemiring R] {D N n n' : ℕ}
-    (Q : MvPolynomial (UXVar D N) R) (hx : XHom n Q) (hu : UDegLE n' Q) :
+    (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R) (hx : XHom n Q) (hu : UDegLE n' Q) :
     Q.support.card ≤
       (n + D + 1).choose (D + 1) * (n' + (D + 2) * (N + 1)).choose ((D + 2) * (N + 1)) := by
   classical
-  let fx : (UXVar D N →₀ ℕ) → (Fin (D + 2) →₀ ℕ) := fun s =>
+  let fx : (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) → (Fin (D + 2) →₀ ℕ) := fun s =>
     Finsupp.equivFunOnFinite.symm (fun i => s (Sum.inr i))
-  let fu : (UXVar D N →₀ ℕ) → (Option (Fin (D + 2) × Fin (N + 1)) →₀ ℕ) := fun s =>
+  let fu : (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) → (Option (Fin (D + 2) × Fin (N + 1)) →₀ ℕ) := fun s =>
     Finsupp.equivFunOnFinite.symm (fun o => Option.elim o (n' - uDeg s) (fun p => s (Sum.inl p)))
   have hmaps : ∀ s ∈ Q.support, (fun s => (fx s, fu s)) s ∈
       (Finset.univ.finsuppAntidiag n) ×ˢ (Finset.univ.finsuppAntidiag n') := by
@@ -98,7 +98,7 @@ theorem card_support_le {R : Type*} [CommSemiring R] {D N n n' : ℕ}
         exact Nat.choose_symm_of_eq_add (by omega)
 
 noncomputable def Ey {D N : ℕ} (y : Fin (N + 1) → ℂ) :
-    MvPolynomial (UXVar D N) ℂ →ₐ[ℂ] MvPolynomial (Fin (D + 2) × Fin (N + 1)) ℂ :=
+    MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ →ₐ[ℂ] MvPolynomial (Fin (D + 2) × Fin (N + 1)) ℂ :=
   aeval (Sum.elim X fun i => ∑ j, X (i, j) * C (y j))
 
 theorem sum_le_sqrt_card_mul {α : Type*} (s : Finset α) (a : α → ℝ) :
@@ -108,7 +108,7 @@ theorem sum_le_sqrt_card_mul {α : Type*} (s : Finset α) (a : α → ℝ) :
     _ ≤ Real.sqrt (s.card * ∑ i ∈ s, a i ^ 2) := Real.sqrt_le_sqrt sq_sum_le_card_mul_sum_sq
     _ = Real.sqrt s.card * Real.sqrt (∑ i ∈ s, a i ^ 2) := Real.sqrt_mul (Nat.cast_nonneg _) _
 
-theorem coeff_Ey_le {D N n n' : ℕ} (R : MvPolynomial (UXVar D N) ℂ) (hx : XHom n R)
+theorem coeff_Ey_le {D N n n' : ℕ} (R : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ) (hx : XHom n R)
     (hu : UDegLE n' R) (y : Fin (N + 1) → ℂ) (β : Fin (D + 2) × Fin (N + 1) →₀ ℕ) :
     ‖AddMonoidAlgebra.coeff (Ey y R) β‖ ≤ ReciprocityTheory.MultiplicativeHeights.polyL2 R *
       Real.sqrt ((n + D + 1).choose (D + 1) *
@@ -121,7 +121,7 @@ theorem coeff_Ey_le {D N n n' : ℕ} (R : MvPolynomial (UXVar D N) ℂ) (hx : XH
     rw [Complex.norm_exp]
     simp
   set Y := ∑ j, ‖y j‖ with hY
-  set pt : UXVar D N → ℂ := fun v => eval z (Sum.elim X (fun i => ∑ j, X (i, j) * C (y j)) v)
+  set pt : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N → ℂ := fun v => eval z (Sum.elim X (fun i => ∑ j, X (i, j) * C (y j)) v)
     with hpt
   have hev : eval z (Ey y R) = eval pt R := by
     have := congrArg (fun φ => φ R)

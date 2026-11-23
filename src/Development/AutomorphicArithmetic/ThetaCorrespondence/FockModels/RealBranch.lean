@@ -127,19 +127,6 @@ theorem heWord_of (hP : Par e ε lam ε' mu B) : GlobalTheory.CompanionTheory.Pa
   simp only [ne_eq] at h
   tauto
 
-private theorem exists_uj_umat_eq_of_mem_UJset {m : ℕ} {ε : Fin m → Bool} {h : Mat m} (hh : h ∈ UJset ε) :
-    ∃ g : UJ ε, umat g = h := by
-  have hJ : Jm ε * Jm ε = 1 := by
-    rw [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-    congr 1
-    funext a
-    split_ifs <;> norm_num
-  have hh' : hᴴ * Jm ε * h = Jm ε := hh
-  have h1 : (Jm ε * hᴴ * Jm ε) * h = 1 := by
-    calc (Jm ε * hᴴ * Jm ε) * h = Jm ε * (hᴴ * Jm ε * h) := by simp only [Matrix.mul_assoc]
-      _ = 1 := by rw [hh', hJ]
-  exact ⟨⟨⟨h, Jm ε * hᴴ * Jm ε, mul_eq_one_comm.mp h1, h1⟩, hh⟩, rfl⟩
-
 private theorem embH_mem_UJset_of_signs {e : Option (Fin n) ≃ Fin (n + 1)} {ε : Fin (n + 1) → Bool}
     {ε' : Fin n → Bool} (hs : Signs e ε ε') {h : Mat n} (hh : h ∈ UJset ε') : embH e h ∈ UJset ε := by
   have hJ : Jm ε = embH e (Jm ε') := by
@@ -170,7 +157,7 @@ private theorem isU_comp_umat_of_isURepOn {m : ℕ} {ε : Fin m → Bool} {K : T
   · intro g x
     exact hρ.2.1 _ (GlobalTheory.SepReal.RealAsm.umat_mem ε g) x
   · intro x
-    exact (hρ.2.2 x).comp_continuous (GlobalTheory.SepReal.RealAsm.continuous_umat ε)
+    exact (hρ.2.2 x).comp_continuous (_root_.ReciprocityTheory.ChartRestriction.DS.continuous_umatA ε)
       (GlobalTheory.SepReal.RealAsm.umat_mem ε)
 
 private theorem isURepOn_embH_of_signs {e : Option (Fin n) ≃ Fin (n + 1)} {ε : Fin (n + 1) → Bool}
@@ -221,7 +208,7 @@ theorem projLarge_of (hS : PositivityTheory.RgHe.A.SchurEigenProjectionExists) (
     ⟨?_, hiso, fun v y => (ContinuousLinearMap.adjoint_inner_right i y v).symm⟩,
     umat g₀, GlobalTheory.SepReal.RealAsm.umat_mem ε g₀, ?_, ?_⟩
   · intro h hh y
-    obtain ⟨g, rfl⟩ := exists_uj_umat_eq_of_mem_UJset hh
+    obtain ⟨g, rfl⟩ := _root_.GlobalTheory.SepReal.IntBd.exists_umat hh
     have h2 := hieq g y
     rwa [emb_sumNum] at h2
   · rw [show (10 : ℝ) * ((n : ℝ) + 1) = ((10 * (n + 1) : ℕ) : ℝ) by push_cast; ring,
@@ -270,7 +257,7 @@ theorem eigMap_of (hE : PositivityTheory.RgHe.A.EigA) (hT : PositivityTheory.RgH
     hU' hU hFd v hv w c hcpos.ne' (fun b => (hb b).2)
   refine ⟨w, c, T, hw0, hc, fun b => (hb b).2, ?_, hTv⟩
   intro h hh x
-  obtain ⟨g, rfl⟩ := exists_uj_umat_eq_of_mem_UJset hh
+  obtain ⟨g, rfl⟩ := _root_.GlobalTheory.SepReal.IntBd.exists_umat hh
   exact hT g x
 
 end UpperTheory.Lit.Branch
@@ -281,7 +268,7 @@ namespace UpperTheory.Lit
 
 theorem realInputE_holds : Branch.RealInputE :=
   Branch.realInputE
-    (Branch.projLarge_of (PositivityTheory.RgHe.A.Pf.seedB_of PositivityTheory.RgHe.LowestKTypeModel.seed PositivityTheory.RgHe.occ)
+    (Branch.projLarge_of (PositivityTheory.RgHe.A.Pf.seedB_of _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.lowestKTypeModel PositivityTheory.RgHe.occ)
       (PositivityTheory.RgHe.A.Pf.bigProjP PositivityTheory.RgHe.A.Pf.momentP CompanionTheory.Lime.T3.analytic_estimates))
     (Branch.eigMap_of GlobalTheory.CompanionTheory.RgHeA.eigA GlobalTheory.CompanionTheory.RgHeA.TMapPf.tMap)
 

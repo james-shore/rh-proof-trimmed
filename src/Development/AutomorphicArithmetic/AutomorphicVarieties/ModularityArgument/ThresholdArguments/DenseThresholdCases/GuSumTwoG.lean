@@ -182,5 +182,5 @@ theorem UpperTheory.V.Z.Win.Gu.sumTwoG_of_printsH_gdLaws_sumAway_sumHTAt :
         rfl
       have p3 := isPstAt_sum Bw T p1 p2
       rw [e]
-      exact ⟨p3, by rw [GlobalTheory.T.weilDeligneParamAboveL_directSum_potSemistable l _ _ ⟨T⟩ ι E Ω A w O Bw h hj a b _ _ p1 p2 p3, e1, e2]⟩
+      exact ⟨p3, by rw [_root_.GlobalTheory.Pst.SumParam.wdAt_sumRep l _ _ ⟨T⟩ ι E Ω A w O Bw h hj a b _ _ p1 p2 p3, e1, e2]⟩
 end

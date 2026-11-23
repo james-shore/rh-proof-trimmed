@@ -76,7 +76,7 @@ theorem rig_exists {R : Type} [CommRing R] [IsDomain R] {B : Over (Spec (CommRin
     simp only [GlobalTheory.LamBiext.flatφ, GlobalTheory.LamBiext.flatε, GlobalTheory.Mum.TensRig.eSec_tensφ pr hpr, _root_.one_mul, Finset.univ_eq_empty,
       Finset.prod_empty, Fintype.prod_prod_type, Fin.prod_univ_four, tensε, Oε]
     simp
-  obtain ⟨t, ht, htv⟩ := exists_gen hM hform (LB.oneGen M) (GlobalTheory.Mum.TensRig.oneGen_isGen' _)
+  obtain ⟨t, ht, htv⟩ := exists_gen hM hform (LB.oneGen M) (_root_.GlobalTheory.SelfUnif.oneGen_isGen _)
   obtain ⟨a, ha, hmaps⟩ := Transport.exists_transport
     (DVR.linComb_isLB L' hL' (fun _ : PUnit => eSec A') (fun _ => 1))
     (DVR.linComb_isLB _ (DVR.linComb_isLB M hM (tensφ pr) (tensε W)) (fun _ : PUnit => eSec A') (fun _ => 1))

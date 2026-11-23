@@ -84,17 +84,17 @@ theorem GlobalTheory.AV.AbVar.multilinear_quadratic_isHomogeneous' (P : Type*) [
 theorem GlobalTheory.AV.AbVar.deg_isHomogeneousPoly : ∀ (K : Type) [Field K] (A B : AbVar K), A.dim = B.dim → ∀ (n : ℕ) (f : Fin n → (A ⟶ B)), ∃ F : MvPolynomial (Fin n) ℚ, F.IsHomogeneous (2 * A.dim) ∧ ∀ m : Fin n → ℤ, MvPolynomial.eval (fun i => (m i : ℚ)) F = (deg (∑ i, m i • f i) : ℚ) := by
   intro K _ A B hAB n f
   obtain ⟨c, hamp, hsym⟩ := GlobalTheory.AV.AbVar.exists_symm_ample K B
-  obtain ⟨⟨M, hM⟩, -⟩ := GlobalTheory.T.intersection_number_multilinear_symm K A (Fin A.dim) (Fintype.card_fin _)
+  obtain ⟨⟨M, hM⟩, -⟩ := _root_.GlobalTheory.AV.AbVar.inter_multilinear_and_symm K A (Fin A.dim) (Fintype.card_fin _)
   set D : ℤ := inter B (fun _ : Fin A.dim => c) with hD
-  have hDpos : 0 < D := GlobalTheory.T.abelianVariety_topSelfIntersection_ample_pos K B c hamp (Fin A.dim) (by rw [Fintype.card_fin, hAB])
+  have hDpos : 0 < D := _root_.GlobalTheory.AV.AmpleTopPos.inter_top_pos K B c hamp (Fin A.dim) (by rw [Fintype.card_fin, hAB])
   obtain ⟨F, hFh, hFe⟩ := GlobalTheory.AV.AbVar.multilinear_quadratic_isHomogeneous' (Pic A.X.left) A.dim n M
     (fun i j => AbVar.lam c (f i).hom (f j).hom)
   refine ⟨MvPolynomial.C ((1 : ℚ) / ((2 : ℚ) ^ A.dim * D)) * MvPolynomial.map (Int.castRingHom ℚ) F, ?_, ?_⟩
   · have := (MvPolynomial.isHomogeneous_C (Fin n) ((1 : ℚ) / ((2 : ℚ) ^ A.dim * D))).mul (hFh.map (Int.castRingHom ℚ))
     rwa [zero_add] at this
   · intro m
-    have hq := GlobalTheory.T.two_smul_pullback_symmetric_class_integral_combination K A B c hsym n f m
-    have hp := GlobalTheory.T.intersection_pullback_eq_degree_mul_intersection K A B (show A ⟶ B from ∑ i, m i • f i) hAB (Fin A.dim) (Fintype.card_fin _) (fun _ => c)
+    have hq := _root_.GlobalTheory.AV.QuadSum.pull_sum_smul K A B c hsym n f m
+    have hp := _root_.GlobalTheory.AV.AbVar.inter_pull_eq_deg_mul_inter K A B (show A ⟶ B from ∑ i, m i • f i) hAB (Fin A.dim) (Fintype.card_fin _) (fun _ => c)
     have key : MvPolynomial.eval m F = 2 ^ A.dim * ((deg (show A ⟶ B from ∑ i, m i • f i) : ℤ) * D) := by
       rw [hFe m, ← hq, ← hp, ← hM]
       simpa only [RingHom.id_apply, Finset.prod_const, Finset.card_univ, Fintype.card_fin,

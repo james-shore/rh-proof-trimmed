@@ -55,10 +55,10 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.GradedWeylDivisibility
 
-theorem sSIdxFinite : SSIdxFinite := semistandard_index_finite
-theorem sSBasis : SSBasis := semistandard_basis
+alias sSIdxFinite := _root_.Formalism.GradedWeylDivisibility.semistandard_index_finite
+alias sSBasis := _root_.Formalism.GradedWeylDivisibility.semistandard_basis
 theorem rowActDiagWeight : RowActDiagWeight := row_action_diagonal_weight
-theorem rowActMul : RowActMul := row_action_mul
+alias rowActMul := _root_.Formalism.GradedWeylDivisibility.row_action_mul
 theorem nablaLLe : NablaLLe := nabla_weight_le
 theorem nablaLBasis : NablaLBasis := nablaLBasis_of rowActMul
 theorem nablaLKBasis : NablaLKBasis := nablaLKBasis_of rowActMul sSBasis

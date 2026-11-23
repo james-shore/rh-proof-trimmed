@@ -114,31 +114,6 @@ lemma le_preimage_nonzeroLocus {L : LB X} (s : L.Sec) (j : L.ι) (hj : ⊤ ≤ x
 
 end Values
 
-section Criterion
-
-variable {X Y : Scheme.{0}} (p : X ⟶ Sp ℂ) [LocallyOfFiniteType p] [IsReduced X] {Z : Type}
-  (ex : Z → (Sp ℂ ⟶ X)) (ey : Z → (Sp ℂ ⟶ Y))
-  (hon : ∀ x : Sp ℂ ⟶ X, x ≫ p = 𝟙 _ → ∃ z, ex z = x)
-
-
-
-include hon in
-lemma exists_hom_of_values {S : Scheme.{0}} (q : Y ⟶ S) [IsSeparated q] [IsAffine S]
-    (h : ∀ z, ∃ (W : X.Opens) (D : Y.Opens), IsAffineOpen D ∧ ⊤ ≤ ex z ⁻¹ᵁ W ∧
-      (∀ w, ⊤ ≤ ex w ⁻¹ᵁ W → ⊤ ≤ ey w ⁻¹ᵁ D) ∧
-      ∀ f : Γ(Y, D), ∃ h : Γ(X, W), ∀ w, ⊤ ≤ ex w ⁻¹ᵁ W → valAt' (ex w) W h = valAt' (ey w) D f) :
-    ∃ g : X ⟶ Y, ∀ z, ex z ≫ g = ey z := by
-  first
-  | (rename_i h_3 h_4 h_11 h_12; revert X Y p h_3 h_4 Z ex ey hon S q h_11 h_12 h; exact @_root_.GlobalTheory.SchemeHomsFromPoints.exists_hom)
-  | exact @_root_.GlobalTheory.SchemeHomsFromPoints.exists_hom
-  | exact _root_.GlobalTheory.SchemeHomsFromPoints.exists_hom
-  | (apply _root_.GlobalTheory.SchemeHomsFromPoints.exists_hom <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SchemeHomsFromPoints.exists_hom <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SchemeHomsFromPoints.exists_hom <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SchemeHomsFromPoints.exists_hom ..)
-
-end Criterion
-
 section Transport
 
 variable {X Y : Scheme.{0}} (L : LB X) (κ : Y ⟶ X) (σ : X ⟶ Y) (e : σ ≫ κ = 𝟙 X) (N : ℕ)
@@ -300,7 +275,7 @@ lemma exists_hom [Smooth A.hom] [Smooth A'.hom] [IsSeparated A'.hom] (hL : L.IsL
   have hon : ∀ x : Sp ℂ ⟶ A.left, x ≫ A.hom = 𝟙 _ → ∃ z, (u.ex z).left = x := fun x hx => by
     obtain ⟨z, hz⟩ := u.ex_onto (Over.homMk x hx)
     exact ⟨z, by rw [hz]; rfl⟩
-  refine (exists_hom_of_values A.hom (fun z => (u.ex z).left)
+  refine (_root_.GlobalTheory.SchemeHomsFromPoints.exists_hom A.hom (fun z => (u.ex z).left)
     (fun z => (u'.ex (F z)).left ≫ σ) hon ((A'.hom ⁻¹ᵁ ⊤).ι ≫ A'.hom) (fun z => ?_)).elim
     fun G hG => ⟨G ≫ (A'.hom ⁻¹ᵁ ⊤).ι, fun z => by
       rw [← Category.assoc, hG, Category.assoc, hσ, Category.comp_id]⟩

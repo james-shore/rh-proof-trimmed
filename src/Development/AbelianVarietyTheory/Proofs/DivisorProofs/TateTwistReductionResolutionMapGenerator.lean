@@ -121,7 +121,7 @@ theorem twRed_sec : ∀ (Q q : ℕ) [NeZero Q] [NeZero q], q ∣ Q → ∀ (i : 
   intro Q q _ _ hq i
   let M : Shv (ZMod Q) := (GlobalTheory.EtC.restr (ZMod.castHom hq (ZMod q))).obj (tw q i)
   let e : ∀ U : Scheme.{0}, Prim Q Γ(U, ⊤) → Sec M U := fun U ζ => (twGen i (powPrim hq ζ) : Sec (tw q i) U)
-  have ts := GlobalTheory.T.tateTwist_sections_locally_generated q i
+  have ts := _root_.GlobalTheory.EtC.twist_sections q i
   have he1 : ∀ (V U : Scheme.{0}) (g : V ⟶ U) (ζ : Prim Q Γ(U, ⊤)), Sec.res g (e U ζ) = e V (ζ.map g.appTop.hom) := by
     intro V U g ζ
     have := ts.2.2.2.1 V U g (powPrim hq ζ)
@@ -147,7 +147,7 @@ theorem twRed_sec : ∀ (Q q : ℕ) [NeZero Q] [NeZero q], q ∣ Q → ∀ (i : 
     have hm : (((ZMod.unitsMap hq a) ^ i : (ZMod q)ˣ) : ZMod q).val % q = ((a ^ i : (ZMod Q)ˣ) : ZMod Q).val % q := by
       rw [show (ZMod.unitsMap hq a) ^ i = ZMod.unitsMap hq (a ^ i) from (map_zpow _ _ _).symm, hcast, Nat.mod_mod]
     rw [h5, nsmul_mod_of (q := q) (twGen i (powPrim hq ζ)), hm, ← nsmul_mod_of (q := q)]
-  obtain ⟨β, hβ, -⟩ := (GlobalTheory.T.tateTwist_sections_locally_generated Q i).2.2.2.2.2 M e he1 he2
+  obtain ⟨β, hβ, -⟩ := (_root_.GlobalTheory.EtC.twist_sections Q i).2.2.2.2.2 M e he1 he2
   refine ⟨fun U => ⟨⟨fun a => ((β.hom.app (op U)).hom a : Sec (tw q i) U), (β.hom.app (op U)).hom.map_zero⟩,
     fun a b => (β.hom.app (op U)).hom.map_add a b⟩, ?_, ?_⟩
   · intro V U g a

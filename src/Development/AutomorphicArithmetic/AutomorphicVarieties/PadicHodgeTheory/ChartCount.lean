@@ -160,7 +160,7 @@ theorem UpperTheory.V.Loc.chartCount :
       have : (F ((U.r.hom g).mat a b)).snd = (γ g * (D.rz E g).mat) a b :=
         congrArg TrivSqZeroExt.snd ((hγ g).2 a b)
       rw [this, hd, Matrix.mul_diagonal, mul_assoc, hdd, mul_one]
-    refine ⟨γ, (rtTangent hP D U E γ ⟨?_, hc⟩ _ hγ).1 ⟨F, rfl, fun y hy => ?_⟩, he⟩
+    refine ⟨γ, (_root_.GlobalTheory.OrdLoc.rtTangent hP D U E γ ⟨?_, hc⟩ _ hγ).1 ⟨F, rfl, fun y hy => ?_⟩, he⟩
     · refine continuous_pi fun a => continuous_pi fun b => ?_
       simp only [he]
       refine Continuous.mul ?_ ((hdc b).comp continuous_inv)

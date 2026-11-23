@@ -218,7 +218,7 @@ theorem cocycles_fg_mod_l : Formalism.GaloisCohomology.LocalTateDualityK → ∀
     haveI : Module.Finite O ↥LA.T := Module.Finite.iff_fg.2 LA.fg
     obtain ⟨n, f, hf⟩ := Module.Finite.exists_fin' O ↥LA.T
     haveI : Finite (O ⧸ Ideal.span {ϖ}) := by
-      have := (GlobalTheory.T.coefficient_ring_integers_compact_adic_properties l LL O hO).2.2.1 1
+      have := (_root_.GlobalTheory.PowerImageOpen.main l LL O hO).2.2.1 1
       simpa [pow_one] using this
     have hqs : Function.Surjective (Ideal.Quotient.mk (Ideal.span {ϖ})) :=
       Ideal.Quotient.mk_surjective

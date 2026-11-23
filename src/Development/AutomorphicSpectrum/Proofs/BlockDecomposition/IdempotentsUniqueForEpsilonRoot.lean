@@ -120,7 +120,7 @@ theorem sharp_s_eq (t : PAlg l) (x : Ob l) :
 
 theorem eq_zero_of_sharp (t : PAlg l) {e : t.A} (he : IsIdempotentElem e) (h : t.sharp e = 0) :
     e = 0 :=
-  (RL.idem_au t 0 IsIdempotentElem.zero).unique ⟨he, h⟩ ⟨IsIdempotentElem.zero, sharp_zero t⟩
+  (RL.idem_au t 0 IsIdempotentElem.zero).unique ⟨he, h⟩ ⟨IsIdempotentElem.zero, _root_.GlobalTheory.CompanionTheory.RootsLC.sharp_zero t⟩
 
 theorem idem_unique : ∀ {l : ℕ} [Fact l.Prime] (ε : Eps l) (t : PAlg l) (m : ℕ) (x : t.U)
     (e e' : ZMod (l ^ m) → t.A),
@@ -128,7 +128,7 @@ theorem idem_unique : ∀ {l : ℕ} [Fact l.Prime] (ε : Eps l) (t : PAlg l) (m 
     (∀ c, t.sharp (e c) * (x - t.sharp (t.s (ε.e m)) ^ c.val) = 0) →
     (∀ c, t.sharp (e' c) * (x - t.sharp (t.s (ε.e m)) ^ c.val) = 0) → e = e' := by
   intro l _ ε t m x e e' he he' h h'
-  have hζ := (GlobalTheory.T.epsilon_cyclotomic_element_properties ε).2.2.2.2 m
+  have hζ := (_root_.GlobalTheory.CompanionTheory.EpsFacts.eps_facts ε).2.2.2.2 m
   refine coi_eq_of_mul_eq_zero he he' fun c c' hc => ?_
   have hn : ((l ^ m : ℕ) : t.U) ∈ nonZeroDivisors t.U := by
     rw [Nat.cast_pow]

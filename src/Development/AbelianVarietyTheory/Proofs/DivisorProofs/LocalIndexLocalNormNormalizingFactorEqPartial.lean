@@ -71,9 +71,6 @@ noncomputable section
 
 namespace GlobalTheory.NormRatio
 
-theorem conj_smul_le {D : D7} {I J : Ideal (𝓞 D.host.E)} (h : I ≤ J) : D.host.conj • I ≤ D.host.conj • J :=
-  EigUnit.conj_smul_mono D h
-
 theorem exists_conj_place {D : D7} (w : HeightOneSpectrum (𝓞 D.host.E)) :
     ∃ w' : HeightOneSpectrum (𝓞 D.host.E), w'.asIdeal = D.host.conj • w.asIdeal ∧
       w'.under (𝓞 D.host.F) = w.under (𝓞 D.host.F) ∧
@@ -101,7 +98,7 @@ theorem exists_conj_place {D : D7} (w : HeightOneSpectrum (𝓞 D.host.E)) :
 
 theorem eq_top_of_eq_conj {D : D7} {𝔪 A B : Ideal (𝓞 D.host.E)} (hcop : 𝔪 ⊔ D.host.conj • 𝔪 = ⊤) (hA : 𝔪 ≤ A)
     (hB : 𝔪 ≤ B) (h : A = D.host.conj • B) : A = ⊤ :=
-  top_le_iff.1 (hcop ▸ sup_le hA (h ▸ conj_smul_le hB))
+  top_le_iff.1 (hcop ▸ sup_le hA (h ▸ _root_.GlobalTheory.FunObj.StdDatum.TwBig.conj_smul_mono hB))
 
 theorem prod_Ioc_shift {M : Type} [CommMonoid M] (g : ℕ → M) (a a' : ℕ) :
     ∏ n ∈ Finset.Ioc a' (a + a'), g n = ∏ i ∈ Finset.Icc 1 a, g (a' + i) := by

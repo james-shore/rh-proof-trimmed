@@ -144,36 +144,12 @@ theorem tcoord_bound {ι : Type} (B : Module.Basis ι F E) (m : ℤ)
     refine ⟨-u1, neg_mem hu1, ?_⟩
     rw [mul_neg, map_neg, mul_neg, e1, mul_neg]
 
-private theorem exists_int_mul_isIntegral' {E : Type} [Field E] [NumberField E] (e : E) :
-    ∃ m : ℤ, m ≠ 0 ∧ IsIntegral ℤ ((m : E) * e) := by
-  obtain ⟨n, d, hd, hnd⟩ := IsFractionRing.div_surjective (A := 𝓞 E) e
-  have hd0 : d ≠ 0 := nonZeroDivisors.ne_zero hd
-  have hI : Ideal.span {d} ≠ ⊥ := by
-    rwa [Ne, Ideal.span_singleton_eq_bot]
-  have hc : (Ideal.span {d}).comap (algebraMap ℤ (𝓞 E)) ≠ ⊥ := fun h =>
-    hI (Ideal.eq_bot_of_comap_eq_bot h)
-  obtain ⟨m, hm, hm0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hc
-  rw [Ideal.mem_comap, Ideal.mem_span_singleton'] at hm
-  obtain ⟨k, hk⟩ := hm
-  have hdE : algebraMap (𝓞 E) E d ≠ 0 := by
-    rwa [Ne, map_eq_zero_iff _ (IsFractionRing.injective (𝓞 E) E)]
-  have hmE : (m : E) = algebraMap (𝓞 E) E k * algebraMap (𝓞 E) E d := by
-    rw [← map_mul, hk]
-    simp
-  have hw : algebraMap (𝓞 E) E (k * n) = (m : E) * e := by
-    rw [← hnd, hmE, map_mul]
-    field_simp
-    try ring
-  refine ⟨m, hm0, ?_⟩
-  rw [← hw]
-  exact NumberField.RingOfIntegers.isIntegral_coe (k * n)
-
 theorem coordBound {ι : Type} [Fintype ι] (B : Module.Basis ι F E) :
     ∃ m : ℤ, m ≠ 0 ∧ ∀ x ∈ PI.UnitaryApproxDefs.intOE E, ∀ k, IsIntegral ℤ ((m : F) * B.coord k x) := by
   classical
   let bw := NumberField.RingOfIntegers.basis E
   choose m hm hmi using fun (p : Module.Free.ChooseBasisIndex ℤ (𝓞 E) × ι) =>
-    exists_int_mul_isIntegral' (B.coord p.2 (algebraMap (𝓞 E) E (bw p.1)))
+    _root_.PI.UnitaryApproxFinWork.bd_int_mult (B.coord p.2 (algebraMap (𝓞 E) E (bw p.1)))
   refine ⟨∏ p, m p, Finset.prod_ne_zero_iff.2 fun p _ => hm p, fun x hx k => ?_⟩
   obtain ⟨w, rfl⟩ := hx
   have hx' : algebraMap (𝓞 E) E w = ∑ i, ((bw.repr w i : ℤ) : E) * algebraMap (𝓞 E) E (bw i) := by
@@ -199,7 +175,7 @@ theorem coordBound {ι : Type} [Fintype ι] (B : Module.Basis ι F E) :
 theorem basisInt {ι : Type} [Fintype ι] (B : Module.Basis ι F E) :
     ∃ n : ℤ, n ≠ 0 ∧ ∀ k, IsIntegral ℤ ((n : E) * B k) := by
   classical
-  choose m hm hmi using fun k => exists_int_mul_isIntegral' (B k)
+  choose m hm hmi using fun k => _root_.PI.UnitaryApproxFinWork.bd_int_mult (B k)
   refine ⟨∏ k, m k, Finset.prod_ne_zero_iff.2 fun k _ => hm k, fun k => ?_⟩
   obtain ⟨q, hq⟩ := Finset.dvd_prod_of_mem m (Finset.mem_univ k)
   have hq' : IsIntegral ℤ ((q : E)) := by

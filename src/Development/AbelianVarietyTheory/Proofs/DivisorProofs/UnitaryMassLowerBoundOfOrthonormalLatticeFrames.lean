@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Formalism.SharpRestriction.GlobalSchurBounds.LocalCountingBounds
 
 @[expose] public section
 
@@ -232,7 +233,7 @@ theorem massLower_of_stdV : ∀ D : D7, StdV D → MassLower D := by
     rw [e]
     exact Matrix.PosDef.one
   have hK := GlobalTheory.Mass.Levels.latStab_compact_open (Vc D i)
-  have hfc := GlobalTheory.Mass.finiteClasses_unitary (GlobalTheory.DefiniteQuotient.cmExt D)
+  have hfc := GlobalTheory.Mass.finiteClasses_unitary (_root_.Formalism.MainNotions.UnusedSlot34.isCMExt_D D)
     (GlobalTheory.DefiniteQuotient.gram_hermND (Vc D i)) (GlobalTheory.DefiniteQuotient.isTotDef_of_posDef (Vc D i) hpd) hK.1 hK.2
   have hle := hfc.inv_card_le 1
   have hpos := hfc.stabOrder_pos (DoubleCoset.mk _ _ 1)

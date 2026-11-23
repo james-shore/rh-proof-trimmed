@@ -54,11 +54,7 @@ open GlobalTheory.UU
 
 namespace GlobalTheory.UU.SchurConst
 
-theorem gs_zero {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) : gs f y U 0 = 0 := by
-  unfold gs
-  split_ifs with h
-  · simp only [map_zero]
-  · rfl
+alias gs_zero := _root_.GlobalTheory.UU.SchurComp.gs_zero
 
 theorem sec_zero_of_val {X Y : Scheme.{0}} {L : LB X} (hL : L.IsLB) {K : Type} [Fintype K] {φ : K → (Y ⟶ X)}
     {ε : K → ℤ} (s : LB.Sec (LB.LinComb L φ ε)) (h : ∀ y J, Good L y J → sval s (𝟙 Y) y J = 0)

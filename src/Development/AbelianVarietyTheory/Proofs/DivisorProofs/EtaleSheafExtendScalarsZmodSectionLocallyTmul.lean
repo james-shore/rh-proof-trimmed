@@ -75,7 +75,7 @@ theorem ext_onto : ∀ (Q q : ℕ) [NeZero Q] (hq : q ∣ Q) (M : Shv (ZMod Q)) 
     Loc U fun V g => ∃ x : Sec M V, extSh.sec (ZMod.castHom hq (ZMod q)) M V x = Sec.res g y := by
   intro Q q _ hq M U y
   have hs := uliftHom_surjective (ZMod.castHom hq (ZMod q)) (ZMod.ringHom_surjective _)
-  have h1 := (GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift (ZMod q)
+  have h1 := (_root_.GlobalTheory.EtC.toSheafify_loc_bij_lift (ZMod q)
     (M.obj ⋙ ModuleCat.extendScalars.{1, 1, 1} (uliftHom (ZMod.castHom hq (ZMod q))))).1 U y
   refine GlobalTheory.EtC.loc_calculus.2.1 _ _ _ h1 ?_
   rintro V g ⟨z, hz⟩

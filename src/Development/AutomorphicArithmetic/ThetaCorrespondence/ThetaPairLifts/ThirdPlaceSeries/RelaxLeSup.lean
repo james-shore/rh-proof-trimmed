@@ -112,7 +112,7 @@ theorem GlobalTheory.PenLev.relax_le_sup_alt : ∀ {B : GlobalTheory.Mem.Base} {
   have hgeq : x * n = uo * wp * wr := by
     rw [hx', hgw, hww, mul_assoc]
   have hwp' : wp ∈ J'.A.U j (J'.ι j α') := by
-    refine _root_.GlobalTheory.T.true_geometry_row_step_relation_alt W hW u a ha hat j hj t J hJ t' J' hJ' α' P (fun p hp => ?_) wp hwp (fun i hi => ?_)
+    refine _root_.GlobalTheory.PenBridge.supp_mem_level_alt W hW u a ha hat j hj t J hJ t' J' hJ' α' P (fun p hp => ?_) wp hwp (fun i hi => ?_)
     · rw [hP, Finset.mem_sdiff] at hp
       exact ⟨(hQJ p).2 hp.1, fun h => hp.2 ((hQJ' p).1 h)⟩
     · have hiQ : (J.G i).q.v ∈ Q := by

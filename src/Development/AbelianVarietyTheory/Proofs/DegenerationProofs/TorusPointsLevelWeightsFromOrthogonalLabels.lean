@@ -67,7 +67,7 @@ theorem torus_points_level_weights : Laws → Laws2 → UTorsSt → ∀ (o Ω : 
   intro h₁ h₂ hT o Ω _ _ _ _ S ρ p _ y₀ u l hy x hx t
   obtain ⟨hc, -, hA, -, -, -⟩ := GlobalTheory.T.uniformisedModel_valuation_data o Ω S ρ p y₀ u l hy
   obtain ⟨hadd, -⟩ := (GlobalTheory.T.uniformisedModel_torsionPoints_group_pairing h₁ o Ω S ρ p y₀ u).2 x hx
-  obtain ⟨τ, q, hq0, hqτ, hq, hval⟩ := GlobalTheory.T.thetaSystem_orthogonal_labels_are_torus_points h₁ h₂ hT o Ω S ρ p y₀ u l hy x hx t
+  obtain ⟨τ, q, hq0, hqτ, hq, hval⟩ := _root_.GlobalTheory.TestFibre.perp_torus_point h₁ h₂ hT o Ω S ρ p y₀ u l hy x hx t
   have hL : LL := (laws_all h₁ h₂).1
   letI := gtGroup u.D.toPre (PadicAlgCl p)
   have hB := u.D.tau_bimult

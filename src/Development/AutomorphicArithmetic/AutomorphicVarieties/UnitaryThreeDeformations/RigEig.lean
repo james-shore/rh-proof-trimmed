@@ -52,10 +52,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicCases.A
 
 open NumberField Matrix IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.Aut UpperTheory.V.UnitaryThreeInertia
 
-private theorem norm_le_one_of_int (l : ℕ) [Fact l.Prime] (x : PadicAlgCl l) (hx : IsIntegral ℤ_[l] x) :
-    ‖x‖ ≤ 1 :=
-  _root_.UpperTheory.Reformulated.B.NormLeOneOfIsIntegral.norm_le_one_of_isIntegral l x hx
-
 private theorem dvr_norm {l : ℕ} [Fact l.Prime] {A : Type} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     (f : A →+* PadicAlgCl l) (hle : ∀ x, ‖f x‖ ≤ 1) :
     (∀ u : A, IsUnit u → ‖f u‖ = 1) ∧
@@ -127,7 +123,7 @@ theorem UpperTheory.V.UnitaryThreeInertia.rig_eig :
   intro l _ c G' Γ ι _ _ _ _ F g₁ r hr g hη hΨ P
   obtain ⟨A, hA, hfin, t, r', hpt, hp⟩ := hr
   have hle : ∀ x : A, ‖A.val x‖ ≤ 1 := fun x =>
-    norm_le_one_of_int l _ (isIntegral_trans (A := c.O) _ ((Algebra.IsIntegral.isIntegral (R := c.O) x).map A.val))
+    _root_.UpperTheory.Reformulated.B.NormLeOneOfIsIntegral.norm_le_one_of_isIntegral l _ (isIntegral_trans (A := c.O) _ ((Algebra.IsIntegral.isIntegral (R := c.O) x).map A.val))
   obtain ⟨hu, q, hq0, hq1, hq⟩ := dvr_norm (A.val : A →+* PadicAlgCl l) hle
   simp only [RingHom.coe_coe] at hu hq
   have hO : ∀ x : c.O, IsUnit x → ‖algebraMap c.O (PadicAlgCl l) x‖ = 1 := fun x hx => by

@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContDiffDerivSnoc
 
 @[expose] public section
 
@@ -57,50 +58,22 @@ namespace GlobalTheory.SeeSaw.DenseRel
 
 variable {D : D7}
 
-theorem sobCont_zero {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-    (Lie : Set (Matrix (Fin n) (Fin n) ℂ)) (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) : Sobolev₂ Lie σ 0 :=
-  ⟨[], 0, by simp, by simp⟩
-
-theorem sobCont_smul {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-    {Lie : Set (Matrix (Fin n) (Fin n) ℂ)} {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {ℓ : H →ₗ[ℂ] ℂ} (c : ℂ)
-    (h : Sobolev₂ Lie σ ℓ) : Sobolev₂ Lie σ (c • ℓ) := by
-  obtain ⟨S, C, h1, h2⟩ := h
-  refine ⟨S, ‖c‖ * C, h1, fun w hw => ?_⟩
-  rw [LinearMap.smul_apply, norm_smul, mul_assoc]
-  exact mul_le_mul_of_nonneg_left (h2 w hw) (norm_nonneg c)
-
-theorem sobCont_add {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-    {Lie : Set (Matrix (Fin n) (Fin n) ℂ)} {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {ℓ ℓ' : H →ₗ[ℂ] ℂ}
-    (h : Sobolev₂ Lie σ ℓ) (h' : Sobolev₂ Lie σ ℓ') : Sobolev₂ Lie σ (ℓ + ℓ') := by
-  obtain ⟨S, C, h1, h2⟩ := h
-  obtain ⟨S', C', h1', h2'⟩ := h'
-  refine ⟨S ++ S', max C C', fun l hl => (List.mem_append.1 hl).elim (h1 l) (h1' l), fun w hw => ?_⟩
-  have p : ∀ S : List (List (Matrix (Fin n) (Fin n) ℂ)), 0 ≤ (S.map fun l => ‖l.foldr (dRep σ) w‖).sum := by
-    intro S
-    refine List.sum_nonneg fun x hx => ?_
-    obtain ⟨l, -, rfl⟩ := List.mem_map.1 hx
-    exact norm_nonneg _
-  rw [LinearMap.add_apply, List.map_append, List.sum_append, mul_add]
-  refine (norm_add_le _ _).trans (add_le_add ((h2 w hw).trans ?_) ((h2' w hw).trans ?_))
-  · exact mul_le_mul_of_nonneg_right (le_max_left _ _) (p S)
-  · exact mul_le_mul_of_nonneg_right (le_max_right _ _) (p S')
-
 section Sep
 
 variable {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSModel V S)
 
-theorem sepCont_zero : GlobalTheory.Core.Mi.SepCont M 0 := fun τ _ => ⟨0, sobCont_zero _ _, fun _ => by simp⟩
+theorem sepCont_zero : GlobalTheory.Core.Mi.SepCont M 0 := fun τ _ => ⟨0, _root_.GlobalTheory.Survey.SobolevContinuityLowGeneration.sobCont_zero _ _, fun _ => by simp⟩
 
 theorem sepCont_add {Λ Λ' : SmT M →ₗ[ℂ] ℂ} (h : GlobalTheory.Core.Mi.SepCont M Λ) (h' : GlobalTheory.Core.Mi.SepCont M Λ') :
     GlobalTheory.Core.Mi.SepCont M (Λ + Λ') := fun τ v => by
   obtain ⟨ℓ, hℓ, e⟩ := h τ v
   obtain ⟨ℓ', hℓ', e'⟩ := h' τ v
-  exact ⟨ℓ + ℓ', sobCont_add hℓ hℓ', fun w => by simp [e, e']⟩
+  exact ⟨ℓ + ℓ', _root_.GlobalTheory.MultMem.sobCont_add hℓ hℓ', fun w => by simp [e, e']⟩
 
 theorem sepCont_smul (a : ℂ) {Λ : SmT M →ₗ[ℂ] ℂ} (h : GlobalTheory.Core.Mi.SepCont M Λ) : GlobalTheory.Core.Mi.SepCont M (a • Λ) :=
   fun τ v => by
     obtain ⟨ℓ, hℓ, e⟩ := h τ v
-    exact ⟨a • ℓ, sobCont_smul a hℓ, fun w => by simp [e]⟩
+    exact ⟨a • ℓ, _root_.GlobalTheory.Survey.SobolevContinuityLowGeneration.sobCont_smul a hℓ, fun w => by simp [e]⟩
 
 theorem sepCont_sum {ι : Type} (s : Finset ι) (Λ : ι → SmT M →ₗ[ℂ] ℂ) (h : ∀ i ∈ s, GlobalTheory.Core.Mi.SepCont M (Λ i)) :
     GlobalTheory.Core.Mi.SepCont M (∑ i ∈ s, Λ i) :=
@@ -123,13 +96,6 @@ end Sep
 theorem isContAut_zero (V : HSp D) : IsContAut V (0 : GA D V → ℂ) :=
   ⟨fun _ _ _ => rfl, continuous_const⟩
 
-theorem isContAut_add {V : HSp D} {f g : GA D V → ℂ} (hf : IsContAut V f) (hg : IsContAut V g) :
-    IsContAut V (f + g) :=
-  ⟨fun γ hγ x => by simp only [Pi.add_apply, hf.1 γ hγ x, hg.1 γ hγ x], hf.2.add hg.2⟩
-
-theorem isContAut_smul {V : HSp D} {f : GA D V → ℂ} (hf : IsContAut V f) (c : ℂ) : IsContAut V (c • f) :=
-  ⟨fun γ hγ x => by simp only [Pi.smul_apply, hf.1 γ hγ x], hf.2.const_smul c⟩
-
 theorem isContAut_multT {V : HSp D} {S : D.what₂.Tau → SPar} {θ : InfFam D} {M : DSModel V S} {J : Set (GA D V)}
     {χ : GA D V → ℂ} {G : SmT M →ₗ[ℂ] (GA D V → ℂ)} (hG : G ∈ MultT θ M J χ) (x : SmT M) : IsContAut V (G x) := by
   obtain ⟨T, hT, rfl⟩ := hG
@@ -138,11 +104,11 @@ theorem isContAut_multT {V : HSp D} {S : D.what₂.Tau → SPar} {θ : InfFam D}
     induction x using PiTensorProduct.induction_on with
     | smul_tprod r v =>
       rw [map_smul, LinearEquiv.coe_coe, PiTensorProduct.lift.tprod]
-      exact isContAut_smul ⟨(hT.aut v).left, (hT.aut v).cont⟩ r
-    | add x y hx hy => rw [map_add (f := _)]; exact isContAut_add hx hy
+      exact _root_.GlobalTheory.SeeSaw.TrcProof.contAut_smul ⟨(hT.aut v).left, (hT.aut v).cont⟩ r
+    | add x y hx hy => rw [map_add (f := _)]; exact _root_.GlobalTheory.SeeSaw.TrcProof.contAut_add hx hy
   | zero => simpa using isContAut_zero V
-  | add T₁ T₂ _ _ h₁ h₂ => rw [map_add (f := _), LinearMap.add_apply]; exact isContAut_add (h₁ x) (h₂ x)
-  | smul c T _ h => rw [map_smul, LinearMap.smul_apply]; exact isContAut_smul (h x) c
+  | add T₁ T₂ _ _ h₁ h₂ => rw [map_add (f := _), LinearMap.add_apply]; exact _root_.GlobalTheory.SeeSaw.TrcProof.contAut_add (h₁ x) (h₂ x)
+  | smul c T _ h => rw [map_smul, LinearMap.smul_apply]; exact _root_.GlobalTheory.SeeSaw.TrcProof.contAut_smul (h x) c
 
 end GlobalTheory.SeeSaw.DenseRel
 

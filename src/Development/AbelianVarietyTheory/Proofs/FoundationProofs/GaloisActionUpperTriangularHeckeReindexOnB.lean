@@ -163,7 +163,7 @@ theorem galB_act_upper : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosu
   set v : Fin 2 → ℤ_[l] := mZl l !![1, j; 0, (q : ℤ)] *ᵥ ![u 0, χ * u 1] with hv
   obtain ⟨M, hM, hred⟩ := GlobalTheory.T.towerPadicCompletionMap_eval_depends_on_level X l (b v) n
   have hL : 0 < M * q * l ^ n := Nat.mul_pos (Nat.mul_pos hM hq) (pow_pos hlp.pos n)
-  obtain ⟨d, hd, hdχ⟩ := GlobalTheory.T.exists_int_exponent_congr_cyclotomicCharacter l s n (M * q * l ^ n) hL (dvd_mul_left _ _)
+  obtain ⟨d, hd, hdχ⟩ := _root_.GlobalTheory.KZ.exists_int_exponent_cyclotomic l s n (M * q * l ^ n) hL (dvd_mul_left _ _)
   have hd' : ∀ ω : Ω, ω ^ (M * q) = 1 → s ω = ω ^ d := fun ω hω =>
     map_eq_zpow_of_pow_eq_one s hL hd (by rw [pow_mul, hω, one_pow])
   obtain ⟨ξ, hξ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot Ω q
@@ -184,7 +184,7 @@ theorem galB_act_upper : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosu
     hred _ ((X.gal s).trans (X.sl (toGQ !![1, j * d; 0, (q : ℤ)])).toRingEquiv)
       (fun f hf => gal_sl_upper ε X s M q hq d hd' j f hf), ← sub_eq_zero, ← map_sub, ← map_sub]
   apply eval_eq_zero_of_mem
-  refine GlobalTheory.T.bettiFunction_sub_mem_of_columns_congr X N l w b hb n _ _ ?_
+  refine _root_.GlobalTheory.KZ.Tower.B_sub_mem X N l w b hb n _ _ ?_
   intro i
   fin_cases i
   · have h := Ideal.mul_mem_left _ (-((j : ℤ_[l]) * u 1)) hdχ

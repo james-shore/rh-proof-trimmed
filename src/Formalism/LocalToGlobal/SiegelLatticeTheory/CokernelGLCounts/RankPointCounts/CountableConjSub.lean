@@ -295,13 +295,10 @@ section Shift
 
 variable {G : Type*} [Group G] [MeasurableSpace G] [MeasurableMul G]
 
-theorem fd_instances (Γ : Subgroup G) (ν : Measure G) (hν : ∀ s ∈ Γ, ν.map (fun x => s * x) = ν) :
-    MeasurableSMul Γ G ∧ SMulInvariantMeasure Γ G ν := measurableSMul_and_smulInvariantMeasure_subgroup Γ ν hν
-
 theorem SF_measure_univ (Γ : Subgroup G) [Countable Γ] (ν : Measure G)
     (hν : ∀ s ∈ Γ, ν.map (fun x => s * x) = ν) {Ω : Set G} (hΩ : SF (Γ : Set G) Ω) :
     ν Set.univ = ∑' _g : Γ, ν Ω := by
-  obtain ⟨i1, i2⟩ := fd_instances Γ ν hν
+  obtain ⟨i1, i2⟩ := _root_.Formalism.L2.SG.MeasureShiftInvariance.measurableSMul_and_smulInvariantMeasure_subgroup Γ ν hν
   have hfd := isFD_of_SF Γ hΩ ν
   first
   | (rw [hfd.measure_eq_tsum Set.univ]; simp [Set.smul_set_univ])
@@ -310,7 +307,7 @@ theorem SF_measure_univ (Γ : Subgroup G) [Countable Γ] (ν : Measure G)
 theorem SF_measure_cover (Γ : Subgroup G) [Countable Γ] (ν : Measure G)
     (hν : ∀ s ∈ Γ, ν.map (fun x => s * x) = ν) {Ω T K : Set G} (hΩ : SF (Γ : Set G) Ω)
     (hT : ∀ x ∈ T, ∃ s ∈ Γ, s * x ∈ K) : ν (Ω ∩ T) ≤ ν K := by
-  obtain ⟨i1, i2⟩ := fd_instances Γ ν hν
+  obtain ⟨i1, i2⟩ := _root_.Formalism.L2.SG.MeasureShiftInvariance.measurableSMul_and_smulInvariantMeasure_subgroup Γ ν hν
   have hfd := isFD_of_SF Γ hΩ ν
   calc ν (Ω ∩ T) ≤ ν (⋃ g : Γ, g⁻¹ • (K ∩ g • Ω)) := by
         refine measure_mono ?_

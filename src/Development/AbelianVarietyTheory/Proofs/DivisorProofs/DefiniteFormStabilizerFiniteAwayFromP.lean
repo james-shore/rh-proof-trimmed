@@ -71,7 +71,7 @@ theorem psi_bound (G : HTGroup p) (B : GlobalTheory.LKDef.DForm G) : ∃ K : ℝ
   have hK : ∀ w, ∃ K : ℝ, ∀ (A : Matrix (Fin G.n) (Fin G.n) ℂ) (s : ℝ), 0 ≤ s →
       (∀ x, f w (A *ᵥ x) = s * f w x) → ∀ a b, ‖A a b‖ ≤ K * Real.sqrt s := by
     intro w
-    apply GlobalTheory.LKCx.PsiBound.bound_of_form
+    apply _root_.GlobalTheory.LowerTriangularEntryBound.entry_bound
     · by_cases h : sigPosH (G.gram_herm w) = 1
       · simp only [f, h, if_true]; fun_prop
       · simp only [f, h, if_false]; fun_prop

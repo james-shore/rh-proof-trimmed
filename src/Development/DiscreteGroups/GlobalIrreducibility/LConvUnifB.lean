@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import GroundTheory.AutomorphicForms.CuspidalAdmissible
 
 @[expose] public section
 
@@ -61,21 +62,6 @@ section Local
 
 variable {F : Type*} [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F]
   {n : ℕ}
-
-theorem diagPow_add (μ ν : Fin n → ℤ) : diagPow F n (μ + ν) = diagPow F n μ * diagPow F n ν := by
-  refine Units.ext ?_
-  rw [Units.val_mul, coe_diagPow, coe_diagPow, coe_diagPow, diagonal_mul_diagonal]
-  congr 1
-  funext i
-  rw [Pi.add_apply, zpow_add₀ (GroundTheory.Automorphic.Cartan.uniformizer_ne_zero F)]
-
-theorem diagPow_zero : diagPow F n 0 = 1 := by
-  refine Units.ext ?_
-  rw [coe_diagPow, Units.val_one]
-  simp
-
-theorem diagPow_neg (μ : Fin n → ℤ) : diagPow F n (-μ) = (diagPow F n μ)⁻¹ := by
-  rw [eq_inv_iff_mul_eq_one, ← diagPow_add, neg_add_cancel, diagPow_zero]
 
 theorem diagPow_conj_apply (c : Fin n → ℤ) (x : GL (Fin n) F) (i j : Fin n) :
     ((diagPow F n c * x * (diagPow F n c)⁻¹ : GL (Fin n) F) : Matrix (Fin n) (Fin n) F) i j =
@@ -190,7 +176,7 @@ theorem dominant_conj {r : ℕ} (hr : 1 ≤ r) {μ ν : Fin n → ℤ} (hμ : Is
       diagPow_comm_of_mem_levi ν (inv_mem hy.2)
     have hb : y⁻¹ = diagPow F n ν * y⁻¹ * (diagPow F n ν)⁻¹ := by
       rw [hc, mul_inv_cancel_right]
-    rw [diagPow_neg, hκ']
+    rw [_root_.GroundTheory.Automorphic.Parabolic.diagPow_neg, hκ']
     conv_lhs => rw [hb]
     group
 

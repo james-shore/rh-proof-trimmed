@@ -71,16 +71,14 @@ variable {K : Type} [Field K] [NumberField K] {ι : Type} [Fintype ι]
   [∀ c, Algebra (𝓞 K) (A c)]
   {𝒜 : (c : ι) → WT → Submodule (Ω c) (A c)}
 
-abbrev UXVar (D N : ℕ) : Type := (Fin (D + 2) × Fin (N + 1)) ⊕ Fin (D + 2)
+def xDeg {D N : ℕ} (s : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : ℕ := ∑ i, s (Sum.inr i)
 
-def xDeg {D N : ℕ} (s : UXVar D N →₀ ℕ) : ℕ := ∑ i, s (Sum.inr i)
+def uDeg {D N : ℕ} (s : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : ℕ := ∑ p, s (Sum.inl p)
 
-def uDeg {D N : ℕ} (s : UXVar D N →₀ ℕ) : ℕ := ∑ p, s (Sum.inl p)
-
-def XHom {R : Type*} [CommSemiring R] {D N : ℕ} (n : ℕ) (Q : MvPolynomial (UXVar D N) R) : Prop :=
+def XHom {R : Type*} [CommSemiring R] {D N : ℕ} (n : ℕ) (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R) : Prop :=
   ∀ s ∈ Q.support, xDeg s = n
 
-def UDegLE {R : Type*} [CommSemiring R] {D N : ℕ} (n : ℕ) (Q : MvPolynomial (UXVar D N) R) :
+def UDegLE {R : Type*} [CommSemiring R] {D N : ℕ} (n : ℕ) (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R) :
     Prop :=
   ∀ s ∈ Q.support, uDeg s ≤ n
 
@@ -93,7 +91,7 @@ namespace Data
 variable (d : Data K ι Ω WT A)
 
 noncomputable def evc (c : ι) :
-    MvPolynomial (UXVar d.D d.N) K →ₐ[K] MvPolynomial (Fin (d.D + 2) × Fin (d.N + 1)) (A c) :=
+    MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K →ₐ[K] MvPolynomial (Fin (d.D + 2) × Fin (d.N + 1)) (A c) :=
   MvPolynomial.aeval fun v =>
     match v with
     | Sum.inl p => MvPolynomial.X p
@@ -121,7 +119,7 @@ theorem lineSection_pow_ne_zero (hd : d.AxH 𝒜) (c : ι) (n : ℕ) : d.w (d.jc
     rw [pow_succ]
     exact hd.mul_ne_zero c (SetLike.pow_mem_graded n hw) hw ih hw0
 
-private theorem sum_support_inr_eq_xDeg {D N : ℕ} (s : UXVar D N →₀ ℕ) :
+private theorem sum_support_inr_eq_xDeg {D N : ℕ} (s : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) :
     ∑ x ∈ s.support, Sum.elim (fun _ => 0) (fun i => s (Sum.inr i)) x = xDeg s := by
   rw [xDeg, Finset.sum_subset (Finset.subset_univ _), Fintype.sum_sum_type]
   · simp
@@ -130,7 +128,7 @@ private theorem sum_support_inr_eq_xDeg {D N : ℕ} (s : UXVar D N →₀ ℕ) :
     | inl p => rfl
     | inr i => simpa using hx
 
-theorem lineEval_eq_zero_iff (hd : d.AxH 𝒜) (c : ι) (n : ℕ) (Q : MvPolynomial (UXVar d.D d.N) K)
+theorem lineEval_eq_zero_iff (hd : d.AxH 𝒜) (c : ι) (n : ℕ) (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K)
     (hQ : XHom n Q) : d.evc c Q = 0 ↔ d.linearSubstitution c Q = 0 := by
   haveI := hd.tower c
   have hw0 := d.lineSection_pow_ne_zero hd c n
@@ -171,10 +169,10 @@ theorem lineEval_eq_zero_iff (hd : d.AxH 𝒜) (c : ι) (n : ℕ) (Q : MvPolynom
 theorem irreducible_factor_height_bound (hd : d.AxH 𝒜) (h : d.S1) (F : ι → KTp K d.D d.N)
     (hF : ∀ c, algebraMap (KTp K d.D d.N) (KTf K d.D d.N) (F c) = d.fZ h c) (c : ι)
     (hpos : 0 < ReciprocityTheory.MultiplicativeHeights.h0 (F c)) :
-    ∃ (F1 : MvPolynomial (UXVar d.D d.N) K) (m deF : ℕ), 1 ≤ m ∧ 1 ≤ deF ∧
+    ∃ (F1 : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K) (m deF : ℕ), 1 ≤ m ∧ 1 ≤ deF ∧
       m * deF ≤ d.delc c ∧ Irreducible F1 ∧ XHom deF F1 ∧ UDegLE ((d.D + 1) * d.delc c) F1 ∧
       ReciprocityTheory.MultiplicativeHeights.h0 (F c) ≤ m * hT F1 ∧
-      ∀ (n : ℕ) (Q : MvPolynomial (UXVar d.D d.N) K), XHom n Q → (d.evc c Q = 0 ↔ F1 ∣ Q) := by
+      ∀ (n : ℕ) (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K), XHom n Q → (d.evc c Q = 0 ↔ F1 ∣ Q) := by
   obtain ⟨F1, κ, a, m, deF, hκ, hm, hmd, hirr, hx, hu, hG, hphiG, hmh⟩ :=
     d.irreducible_factor_structure hd h F hF c hpos
   have hy : d.affineCoord c (d.jc c) ≠ 0 := by
@@ -215,7 +213,7 @@ theorem irreducible_factor_height_bound (hd : d.AxH 𝒜) (h : d.S1) (F : ι →
     by_contra h0
     have h0' : deF = 0 := by omega
     exact hF1ne (d.eq_zero_of_xhom_zero c F1 (fun s hs => (hx s hs).trans h0') hF1)
-  have hkey : ∀ (n : ℕ) (Q : MvPolynomial (UXVar d.D d.N) K), XHom n Q →
+  have hkey : ∀ (n : ℕ) (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V d.D d.N) K), XHom n Q →
       (d.evc c Q = 0 ↔ F1 ∣ Q) := by
     intro n Q hQ
     rw [d.lineEval_eq_zero_iff hd c n Q hQ, ← Ideal.mem_span_singleton, heq, RingHom.mem_ker,

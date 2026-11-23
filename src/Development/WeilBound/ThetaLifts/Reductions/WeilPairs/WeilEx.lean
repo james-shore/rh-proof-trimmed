@@ -40,4 +40,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem PositivityTheory.ThKW.weilEx : PositivityTheory.ThKG.Tow.WeilEx := PositivityTheory.ThKW.S.weilEx

@@ -66,16 +66,6 @@ open MvPolynomial Formalism.L2.DIV
 
 variable {K : Type} [Field K] {ι : Type} [Fintype ι] {a b n : ℕ}
 
-theorem prod_castLE {M : Type} [CommMonoid M] (h : a ≤ b) (f : Fin b → M) (h0 : ∀ r : Fin b, a ≤ r.1 → f r = 1) :
-    ∏ r, f r = ∏ r : Fin a, f (Fin.castLE h r) := by
-  first
-  | exact @_root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE
-  | exact _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE
-  | (apply _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE ..)
-
 theorem sum_castLE {M : Type} [AddCommMonoid M] (h : a ≤ b) (f : Fin b → M) (h0 : ∀ r : Fin b, a ≤ r.1 → f r = 0) :
     ∑ r, f r = ∑ r : Fin a, f (Fin.castLE h r) := by
   have e : ∑ r : Fin a, f (Fin.castLE h r) = ∑ r ∈ Finset.univ.map (Fin.castLEEmb h), f r := by
@@ -165,7 +155,7 @@ theorem jet_weight : JetWt := by
   rw [jetMap_zero, ← jetLin_liftL, liftL_subD h hβ, hQ _ (isBor_resB h hβ), map_smul, map_smul]
   congr 1
   refine Finset.prod_congr rfl fun τ _ => ?_
-  rw [prod_castLE h]
+  rw [_root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE h]
   · refine Finset.prod_congr rfl fun r _ => ?_
     simp only [resB, extNu]
     rw [dif_pos (show ((Fin.castLE h r : Fin b) : ℕ) < a from r.2)]

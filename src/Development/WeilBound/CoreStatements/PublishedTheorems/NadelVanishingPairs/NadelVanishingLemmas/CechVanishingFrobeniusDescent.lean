@@ -69,7 +69,7 @@ theorem descend_vanishing : ∀ (p : ℕ) [Fact p.Prime] (X : Scheme.{0}) [IsInt
       simp only [latSec, AddSubgroup.mem_iInf] at hx ⊢
       exact fun y hy => hx y (hle hy)
     · intro q s x hx
-      have := GlobalTheory.T.log_sections_differential_closed p 𝒜 (G e) ρ hρ q (inter 𝒜.U s) x (by rw [← hGe]; exact hx)
+      have := _root_.GlobalTheory.LogDR.extD_mem_logSec_roundedTwist p 𝒜 (G e) ρ hρ q (inter 𝒜.U s) x (by rw [← hGe]; exact hx)
       rw [← hGe] at this
       exact this
     · intro q b' hqb

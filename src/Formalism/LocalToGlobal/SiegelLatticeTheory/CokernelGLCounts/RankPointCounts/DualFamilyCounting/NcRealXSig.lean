@@ -44,6 +44,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InHHDef
 
 @[expose] public section
 
@@ -65,9 +66,6 @@ theorem hJ_add_l (ε : Fin n → Bool) (x y w : Fin n → ℂ) : hJ ε (x + y) w
 
 theorem hJ_add_r (ε : Fin n → Bool) (x y w : Fin n → ℂ) : hJ ε w (x + y) = hJ ε w x + hJ ε w y := by
   simp only [hJ, mulVec_add, dotProduct_add]
-
-theorem hJ_sub_l (ε : Fin n → Bool) (x y w : Fin n → ℂ) : hJ ε (x - y) w = hJ ε x w - hJ ε y w := by
-  simp only [hJ, star_sub, sub_dotProduct]
 
 theorem hJ_sub_r (ε : Fin n → Bool) (x y w : Fin n → ℂ) : hJ ε w (x - y) = hJ ε w x - hJ ε w y := by
   simp only [hJ, mulVec_sub, dotProduct_sub]
@@ -216,11 +214,11 @@ theorem negF_gram (hF : IsFrameJ ε e f wf z0) (i j : Fin r ⊕ Unit) :
     refine Finset.sum_congr rfl fun i _ => ?_
     split_ifs <;> simp <;> ring
   rcases i with a | u <;> rcases j with b | w
-  · simp only [negF, hJ_sub_l, hJ_sub_r, hF.ee, hF.ff, hF.ef, hJ_fe hF, Sum.inl.injEq]
+  · simp only [negF, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left, hJ_sub_r, hF.ee, hF.ff, hF.ef, hJ_fe hF, Sum.inl.injEq]
     by_cases h : a = b
     · subst h; simp; norm_num
     · simp [h]
-  · simp [negF, hJ_sub_l, hF.ez, hF.fz]
+  · simp [negF, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left, hF.ez, hF.fz]
   · simp [negF, hJ_sub_r, hs (e _) z0, hs (f _) z0, hF.ez, hF.fz]
   · simp [negF, hF.zz]
 

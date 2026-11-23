@@ -258,7 +258,7 @@ theorem coefLat_le_span (hB : B.Good) (R O : Subring ℂ) (h : Bridge.Gf S) {P :
     refine Submodule.span_le.2 ?_
     rintro _ ⟨F, hF, rfl⟩
     have h2 : coefFn σ B.w.lam (F : VV K B.w.lam) ∈ (harm T.rank B.w B.F.BS).map (harmFn T.rank B.w B.F.BS) := by
-      rw [GlobalTheory.T.fockHarmonicValueSpace_map_eq_dualWeylModuleFunctions D _ _ B.w B.F.BS hB.wt (pq_le hB)]
+      rw [_root_.GlobalTheory.ExportSeries.Onto.map_harm_eq D _ _ B.w B.F.BS hB.wt (pq_le hB)]
       exact Submodule.subset_span ⟨_, HarmLattice.coefFn_eq σ B.w.lam F⟩
     obtain ⟨Q, hQ, e⟩ := h2
     refine ⟨Q, Submodule.subset_span ((mem_harmLat _ _ _).2 ⟨hQ, ?_⟩), e⟩

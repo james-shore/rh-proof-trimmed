@@ -45,6 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.DIV.C
 
-theorem hostIntFree : HostIntFree := integralFree_holds
-
 end Formalism.L2.DIV.C

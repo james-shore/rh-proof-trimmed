@@ -80,7 +80,7 @@ theorem exists_quasi_inverse (c : O)
     have := f.equiv g (e.symm y)
     change e _ = T.ρ g (e _) at this
     rw [this, e.apply_symm_apply]
-  obtain ⟨m, hm⟩ := GlobalTheory.WachSat.exists_pow_smul_le (LL := LL) c hc T'.L.T
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.PowerScalarMembership.main (LL := LL) c hc T'.L.T
     (T.L.T.map (e.symm.toLinearMap.restrictScalars O)) T'.L.span (T.L.fg.map _)
   haveI : ContinuousSMul LL T'.V := IsModuleTopology.toContinuousSMul LL T'.V
   let g : LatHom T.L T'.L :=

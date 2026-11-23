@@ -52,37 +52,7 @@ noncomputable section
 
 namespace GlobalTheory.UPoinc.UDeepEx
 
-theorem big_ge (g n : ℕ) (hn : 2 ≤ n) (B : ℕ) : ∃ k j₁ : ℕ, 2 ≤ k ∧ B ≤ (n ^ k) ^ 2 ∧ 1 ≤ j₁ ∧ ∀ j ≥ j₁,
-    ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] (S : ThetaSys o Ω),
-      S.g = g → S.N = (n ^ k) ^ 2 → S.r = n ^ j → S.Big := by
-  have lt : ∀ m : ℕ, m < n ^ m := fun m => Nat.lt_pow_self hn
-  obtain ⟨k₀, hk₀⟩ := exists_nat_gt (1 + 2 * (g : ℝ) * (2 : ℝ) ^ ((g : ℝ) / 2))
-  set K := max k₀ B with hK
-  set N := (n ^ (K + 2)) ^ 2 with hN
-  have hN₁ : K + 2 < N := (lt _).trans_le (Nat.le_self_pow two_ne_zero _)
-  obtain ⟨j₀, hj₀⟩ := exists_nat_gt
-    (2 * ((N ^ g * g.factorial : ℕ) : ℝ) * ((g : ℝ) * (3 / 2 : ℝ) ^ g * (2 : ℝ) ^ ((g : ℝ) / 2 - 1)))
-  refine ⟨K + 2, j₀ + 6 * (N ^ g * g.factorial) + 1, by omega, ?_, by omega, fun j hj o Ω _ _ _ S hg hS hr => ?_⟩
-  · have : B ≤ K := le_max_right _ _
-    omega
-  have hj' := lt j
-  unfold ThetaSys.Big
-  rw [hg, hS, hr, ← hN]
-  have hk₀K : k₀ ≤ K := le_max_left _ _
-  refine ⟨hk₀.trans (by exact_mod_cast (by omega : k₀ < N)), ?_, ?_⟩
-  · rw [Nat.cast_mul (n ^ j)]
-    exact mul_lt_mul_of_pos_right (hj₀.trans (by exact_mod_cast (by omega : j₀ < n ^ j)))
-      (by exact_mod_cast (by omega : 0 < N))
-  · exact lt_of_lt_of_le (by omega) (Nat.le_mul_of_pos_right _ (by omega))
-
-theorem lbIso_pull_comp {X Y Z : Scheme.{0}} {L : LB X} {M : LB Y} {a : Y ⟶ X} (h : LBIso M (L.pull a)) (j : Z ⟶ Y)
-    {a' : Z ⟶ X} (e : a' = j ≫ a) : LBIso (M.pull j) (L.pull a') :=
-  LBIso.chartPull (ReciprocityTheory.ChartRestriction.G.Geo.Tor.chartPullPull M j j rfl)
-    (ReciprocityTheory.ChartRestriction.G.Geo.Tor.chartPullSame L _ (fun _ => a) _ j fun _ => e) h
-
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) :=
-  (Spec.map_comp (CommRingCat.ofHom f) (CommRingCat.ofHom g)).symm
+alias lbIso_pull_comp := _root_.GlobalTheory.Ex.GenericFibre.lbIso_pull
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Geo.Tor.Level H}
   {Xo : Moduli Dw l} {cf : Coeff l} {C : UCompact Xo cf}

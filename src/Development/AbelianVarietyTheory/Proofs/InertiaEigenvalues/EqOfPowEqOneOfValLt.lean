@@ -53,17 +53,6 @@ namespace GlobalTheory.TameCharDet
 
 open scoped Pointwise
 
-theorem eq_of_pow_eq_one_of_val_lt {Ω : Type} [Field Ω] (A : ValuationSubring Ω) (n : ℕ)
-    (hn : ¬ A.valuation (n : Ω) < 1) {ξ ξ' : Ω} (h : ξ ^ n = 1) (h' : ξ' ^ n = 1)
-    (hlt : A.valuation (ξ - ξ') < 1) : ξ = ξ' := by
-  first
-  | exact @_root_.GlobalTheory.RootValuationOne.main
-  | exact _root_.GlobalTheory.RootValuationOne.main
-  | (apply _root_.GlobalTheory.RootValuationOne.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RootValuationOne.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RootValuationOne.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RootValuationOne.main ..)
-
 theorem eq_of_tameChar : ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (v : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ γ : Formalism.ConjugateSelfDual.G E Ω, TameGenAt A γ → ∀ (K : Type) [Field K] [TopologicalSpace K] [T2Space K] (r : Formalism.ConjugateSelfDual.G E Ω →* Kˣ), Continuous r → ∀ n : ℕ, 0 < n → ((n : ℕ) : 𝓞 E) ∉ v.asIdeal → (∀ σ ∈ Ine (F := E) A, r σ ^ n = 1) → ∀ (π : Ω) (e : E), π ≠ 0 → π ^ n = algebraMap E Ω e → orderOf (γ π / π) = n → ∀ σ ∈ Ine (F := E) A, A.valuation (σ π / π - γ π / π) < 1 → r σ = r γ := by
   intro E Ω _ _ _ _ _ v A hA γ hγ K _ _ _ r hr n hn hnv hI π e hπ he hord σ hσ hσv
   have hn0 : n ≠ 0 := hn.ne'
@@ -87,7 +76,7 @@ theorem eq_of_tameChar : ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] 
 
   have hfixζ : ∀ τ ∈ Ine (F := E) A, τ ζ = ζ := by
     intro τ hτ
-    refine eq_of_pow_eq_one_of_val_lt A n hnA ?_ hζn (hτ.2 ζ hvζ.le)
+    refine _root_.GlobalTheory.RootValuationOne.main A n hnA ?_ hζn (hτ.2 ζ hvζ.le)
     rw [← map_pow, hζn, map_one]
 
   have hfixπ : ∀ τ : Formalism.ConjugateSelfDual.G E Ω, (∀ y : Ω, y ≠ 0 → A.valuation (τ y / y - 1) < 1) → τ π = π := by
@@ -95,7 +84,7 @@ theorem eq_of_tameChar : ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] 
     have h1 : (τ π / π) ^ n = 1 := by
       rw [div_pow, ← map_pow, he, AlgEquiv.commutes, div_self]
       rw [← he]; exact pow_ne_zero _ hπ
-    have h2 := eq_of_pow_eq_one_of_val_lt A n hnA h1 (one_pow n) (hτ π hπ)
+    have h2 := _root_.GlobalTheory.RootValuationOne.main A n hnA h1 (one_pow n) (hτ π hπ)
     rwa [div_eq_one_iff_eq hπ] at h2
 
   have hw : ∀ τ : Formalism.ConjugateSelfDual.G E Ω, (∀ y : Ω, y ≠ 0 → A.valuation (τ y / y - 1) < 1) → r τ = 1 := by
@@ -208,7 +197,7 @@ theorem eq_of_tameChar : ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] 
   have hq : σ π / π = ζ ^ a := by rw [haπ, mul_div_assoc, div_self hπ, mul_one]
   rw [hq] at hσv
   have hζa : ζ ^ a = ζ := by
-    refine eq_of_pow_eq_one_of_val_lt A n hnA ?_ hζn hσv
+    refine _root_.GlobalTheory.RootValuationOne.main A n hnA ?_ hζn hσv
     rw [← pow_mul, mul_comm, pow_mul, hζn, one_pow]
   have hmod : a ≡ 1 [MOD n] := by
     rcases Nat.eq_zero_or_pos a with rfl | ha0

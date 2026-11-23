@@ -55,8 +55,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 namespace UpperTheory.V.Z.Kato.Joint
 
 theorem kato_global_admissibility_of_admissible (hA : AdmTop) : AdmFR := by
-  have hK : NewformPartOfTowerModule := fun {Ω} _ _ _ ε X => GlobalTheory.T.heckeProjector_newform_galoisImage ε X
-  have hR : AdmRho := GlobalTheory.T.untwisted_representation_ordinary_triangular_shape
+  have hK : NewformPartOfTowerModule := fun {Ω} _ _ _ ε X => _root_.GlobalTheory.KZ.HeckeProj.heckeProj_newform ε X
+  have hR : AdmRho := _root_.GlobalTheory.RhoAdm.rho_ordinary_shape
   exact admissibleFunctional_of_projection hA hK hR jEx rhoFrob unif LocFacts₂ finP coefUb thLin thOp chiStab thP lamEig2 chiQuad aqBd
 
 end UpperTheory.V.Z.Kato.Joint

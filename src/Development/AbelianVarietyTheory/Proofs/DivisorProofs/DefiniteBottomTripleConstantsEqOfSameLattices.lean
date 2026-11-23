@@ -66,21 +66,15 @@ open GlobalTheory.Grid
 
 variable {D : D7}
 
-theorem heisO_smul {S T : HSp D} (ψ : AddChar (AF D.host.F) ℂ) (w : WO S T) (ζ : ℂ) (g : WO S T → ℂ) :
-    heisO ψ S T w (ζ • g) = ζ • heisO ψ S T w g := by
-  funext x
-  simp only [heisO, Pi.smul_apply, smul_eq_mul]
-  ring
-
 theorem thetaAt_smul {S T : HSp D} {ψ : AddChar (AF D.host.F) ℂ} {e : AE D} {Λ : AddSubgroup (WO S T)} {c : ℂ}
     {f₀ Φ f f' : WO S T → ℂ} (ζ : ℂ) (h : IsThetaAt ψ (symplO S T) (heisO ψ S T) e Λ c f₀ Φ f)
     (h' : IsThetaAt ψ (symplO S T) (heisO ψ S T) e Λ c (ζ • f₀) Φ f') : f' = ζ • f := by
   obtain ⟨⟨Tm, hT⟩, hall⟩ := h
   have hT' : IsPlaceModel ψ (symplO S T) (heisO ψ S T) e Λ c (ζ • f₀) (ζ • Tm) :=
     { trans := fun Φ hΦ x hx => by
-        rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.trans Φ hΦ x hx, heisO_smul]
+        rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.trans Φ hΦ x hx, _root_.GlobalTheory.LatVac.heisO_smul]
       modul := fun Φ hΦ y hy => by
-        rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.modul Φ hΦ y hy, heisO_smul]
+        rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.modul Φ hΦ y hy, _root_.GlobalTheory.LatVac.heisO_smul]
       vac := by rw [LinearMap.smul_apply, hT.vac] }
   rw [h'.2 _ hT', hall Tm hT, LinearMap.smul_apply]
 

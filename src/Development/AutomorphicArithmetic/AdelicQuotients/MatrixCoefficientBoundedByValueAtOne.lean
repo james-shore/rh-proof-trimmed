@@ -55,10 +55,6 @@ open scoped Pointwise
 variable {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [MeasurableSpace G] [BorelSpace G]
   {μ : Measure G} [μ.IsHaarMeasure] [μ.IsMulRightInvariant] {Γ : Subgroup G} [Countable Γ] {D : Set G}
 
-private theorem sq_shift (hD : IsFundamentalDomain Γ D μ) {f : G → ℝ} (hi : ∀ γ ∈ Γ, ∀ y, f (γ * y) = f y) (g : G) :
-    ∫ y in D, f (y * g) ∂μ = ∫ y in D, f y ∂μ :=
-  _root_.UpperTheory.Reformulated.B.Qk59.sq_shift hD hi g
-
 private theorem coef_le (hfin : μ D < ⊤) (hD : IsFundamentalDomain Γ D μ) {φ : G → ℂ} (hc : Continuous φ)
     (hi : ∀ γ ∈ Γ, ∀ y, φ (γ * y) = φ y) {C : ℝ} (hC : ∀ y, ‖φ y‖ ≤ C) (g : G) :
     ‖∫ y in D, φ (y * g) * star (φ y) ∂μ‖ ≤ ∫ y in D, ‖φ y‖ ^ 2 ∂μ := by
@@ -69,7 +65,7 @@ private theorem coef_le (hfin : μ D < ⊤) (hD : IsFundamentalDomain Γ D μ) {
   have hcg : Continuous fun y => φ (y * g) := hc.comp (continuous_mul_const g)
   have i1 := hb hcg fun y => hC _
   have i2 := hb hc hC
-  have e := sq_shift (μ := μ) hD (f := fun y => ‖φ y‖ ^ 2) (fun γ hγ y => by simp only [hi γ hγ y]) g
+  have e := _root_.UpperTheory.Reformulated.B.Qk59.sq_shift (μ := μ) hD (f := fun y => ‖φ y‖ ^ 2) (fun γ hγ y => by simp only [hi γ hγ y]) g
   calc ‖∫ y in D, φ (y * g) * star (φ y) ∂μ‖ ≤ ∫ y in D, ‖φ (y * g) * star (φ y)‖ ∂μ := norm_integral_le_integral_norm _
     _ ≤ ∫ y in D, (‖φ (y * g)‖ ^ 2 + ‖φ y‖ ^ 2) / 2 ∂μ := by
       refine integral_mono_of_nonneg (Eventually.of_forall fun y => norm_nonneg _) ((i1.add i2).div_const 2) (Eventually.of_forall fun y => ?_)

@@ -56,7 +56,7 @@ private theorem map_epow {n : ℕ} {U W : Type} [NormedAddCommGroup U] [InnerPro
     by_cases hab : a = b <;> simp [PositivityTheory.RgBcC.RealD.epow, Formalism.REAL.epow, hab]
   | succ m ih =>
     intro a b u
-    rw [PositivityTheory.RgBcC.Bridge.epow_succ']
+    rw [_root_.GlobalTheory.TracedComatrix.epow_succ_left]
 
     simp only [PositivityTheory.RgBcC.RealD.epow, LinearMap.sum_apply, map_sum, Module.End.mul_apply, h, ih]
 

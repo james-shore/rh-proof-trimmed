@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.NeZeroOfNotMem
 
 @[expose] public section
 
@@ -201,9 +202,9 @@ theorem exactAt_locRing (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF
     have h1 := (WA.isUnitIn_div_iff hPp (ι c) (U0.mem_hcompl_of_notMem hF hPp hs₀)).1 hu'
     exact ((WA.mem_hcompl_iff hPp _).1 h1).1 hc
   have hcs𝔭 : c * s ∉ 𝔭 := fun hm => (hp.mem_or_mem hm).elim hc₀ hs₀
-  have hD0 : κ (ι d₀) ≠ 0 := κι_ne_zero (notMem_zero hd₀)
-  have hS0 : κ (ι s) ≠ 0 := κι_ne_zero (notMem_zero hs₀)
-  have hE0 : κ (ι (d i₀)) ≠ 0 := κι_ne_zero (notMem_zero (hd i₀))
+  have hD0 : κ (ι d₀) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (notMem_zero hd₀)
+  have hS0 : κ (ι s) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (notMem_zero hs₀)
+  have hE0 : κ (ι (d i₀)) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (notMem_zero (hd i₀))
 
   let bb : J → V := fun i => κ (ι (d i)) • b i
   let A : Submodule (𝓞 K) V := Submodule.span (𝓞 K) (Set.range bb)
@@ -213,7 +214,7 @@ theorem exactAt_locRing (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF
     · subst hij
       refine Submodule.mem_one.2 ⟨ι (d i * f i), ?_⟩
       show κ (ι (d i * f i)) = h (κ (ι (d i)) • b i) (κ (ι (d i)) • b i)
-      have hdi : κ (ι (d i)) ≠ 0 := κι_ne_zero (notMem_zero (hd i))
+      have hdi : κ (ι (d i)) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (notMem_zero (hd i))
       rw [h_smul_smul, hfd i, localizedQuotients.star_ι hF]
       simp only [map_mul]
       field_simp
@@ -224,7 +225,7 @@ theorem exactAt_locRing (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF
     rintro y ⟨t, ht, hty⟩
     rw [pow_zero, Ideal.one_eq_top, Submodule.top_smul] at hty
     obtain ⟨g, hg⟩ := (Submodule.mem_span_range_iff_exists_fun (𝓞 K)).1 hty
-    have ht0 : κ (ι t) ≠ 0 := κι_ne_zero (notMem_zero ht)
+    have ht0 : κ (ι t) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (notMem_zero ht)
     refine ⟨fun i => κ (g i * ι (d i)) / κ (ι t),
       fun i => U0.div_mem_locRing hPp _ (U0.mem_hcompl_of_notMem hF hPp ht), ?_⟩
     have e1 : y = (κ (ι t))⁻¹ • (ι t • y) := by
@@ -257,7 +258,7 @@ theorem exactAt_locRing (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF
       simp only [bb, smul_smul]
       congr 1
       rw [← Finset.mul_prod_erase Finset.univ sj (Finset.mem_univ j)]
-      have hdj : κ (ι (d j)) ≠ 0 := κι_ne_zero (notMem_zero (hd j))
+      have hdj : κ (ι (d j)) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (notMem_zero (hd j))
       have h1 := hrj j
       simp only [map_mul] at h1 ⊢
       rw [← h1]

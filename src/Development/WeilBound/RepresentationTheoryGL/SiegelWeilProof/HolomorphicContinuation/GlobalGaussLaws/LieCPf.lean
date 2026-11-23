@@ -135,18 +135,13 @@ theorem isAtTau_atTau {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (τ : D.wh
   rw [dite_eq_left hex]
   exact hex.choose_spec
 
-theorem compAt_mul_gen (θ : InfFam D) (τ : D.what₂.Tau) {a b c : ℕ} (A : Mx D a b) (B : Mx D b c) :
-    compAt θ τ (A * B) = compAt θ τ A * compAt θ τ B := by
-  unfold compAt
-  exact Matrix.map_mul (f := (θ τ).comp (infPart D))
-
 theorem tens_comp {V : HSp D} {θ : InfFam D} {τ : D.what₂.Tau} {fr : Matrix (Fin V.rank) (Fin V.rank) ℂ}
     (hfu : IsUnit fr.det) {Ψ : Mx D V.rank n → ℂ} (hΨ : AwayCls θ τ fr Ψ)
     (E : Matrix (Fin V.rank) (Fin V.rank) ℂ) (h : GA D V) (hh : IsAtTau θ V τ (fr * E * fr⁻¹) h)
     (f : (Fin V.rank → Fin n → ℂ) → ℂ) (x : Mx D V.rank n) :
     tens θ τ fr f Ψ (HMul.hMul (mt V h) x : Mx D V.rank n) = f (E * (fr⁻¹ * compAt θ τ x)) * Ψ x := by
   have hc : ∀ ρ, compAt θ ρ (HMul.hMul (mt V h) x : Mx D V.rank n) = compAt θ ρ (mt V h) * compAt θ ρ x := fun ρ =>
-    compAt_mul_gen θ ρ (mt V h) x
+    _root_.GlobalTheory.WeilVacMove.compAt_mul θ ρ (mt V h) x
   have hτ : compAt θ τ (mt V h) = fr * E * fr⁻¹ := hh.2.1
   have hρ : ∀ ρ, ρ ≠ τ → compAt θ ρ (mt V h) = 1 := fun ρ hρ => hh.2.2 ρ hρ
   have hfin : (HMul.hMul (mt V h) x : Mx D V.rank n).map (finPart D) = x.map (finPart D) := by

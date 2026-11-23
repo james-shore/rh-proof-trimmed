@@ -60,7 +60,7 @@ theorem abPart_exists (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Ho
   have : CharZero L' := charZero_of_injective_algebraMap (algebraMap L L').injective
   have : NumberField L' := NumberField.of_module_finite L L'
   obtain ⟨PP', cub, sym, adj, prim, m, -⟩ := sabPull Out.proved_CubePullSt (spMap (algebraMap L L') ≫ z) t
-  obtain ⟨tB, e, he, ha, hp⟩ := GlobalTheory.T.torus_extension_abelian_quotient E H L'
+  obtain ⟨tB, e, he, ha, hp⟩ := _root_.GlobalTheory.CompanionTheory.Ar.AbB.exists_triple E H L'
     ⟨(Over.pullback (spMap (algebraMap L L') ≫ z)).obj t.G, IsSemiAbelian.pullback _ t.G t.semi,
       OAct.pullback _ t.G t.act, PP', cub, sym, adj, prim⟩ τ
   exact ⟨L', _, inferInstance, algebraMap L L', ⟨⟨_, m, τ, tB, e, he, ha, hp⟩⟩⟩

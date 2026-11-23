@@ -68,7 +68,6 @@ theorem main {R α β : Type} [AddCommMonoid R] [Fintype α] [Fintype β]
         refine Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun e _ => ?_
         exact Finset.sum_comm
 
-theorem target : ∀ {R α β : Type} [inst : AddCommMonoid R] [inst_1 : Fintype α] [inst_2 : Fintype β] (f : α → β → α → β → R), ∑ a : α, ∑ b : β, ∑ c : α, ∑ e : β, f a b c e = ∑ c : α, ∑ e : β, ∑ b : β, ∑ a : α, f a b c e :=
-  fun f => main f
+alias target := _root_.GlobalTheory.TargetEquivalence.main
 
 end GlobalTheory.TargetEquivalence

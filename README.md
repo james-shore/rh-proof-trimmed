@@ -20,13 +20,22 @@ mechanical steps only.
 | S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | yes | yes | 0 statements changed |
 | S2 | remove syntax Lean's own linters flag as unused | 150,632 | 14,453,805 | 858,404 | yes | yes | yes | 0 statements changed |
 | S3 | keep one copy of each duplicate theorem or definition | coming | | | | | | |
-| S4 | remove import lines each file doesn't need | coming | | | | | | |
+| S4 | remove import lines each file doesn't need, on branch [`s4-on-s1`](https://github.com/james-shore/rh-proof-trimmed/tree/s4-on-s1) | 150,632 | 14,252,250 | 858,404 | yes | yes | yes | 0 statements changed |
 
 - Compiles means Lean 4.33.1 builds every module
 - Kernel-accepted means an independent kernel (nanoda) accepts the exported proof
 - Same statements means con-leche `--compare` accepts the export against the published challenge
 - Term diff compares each statement in the exported proof with the original archive's
 - Files and lines exclude `Challenge.lean`
+
+## Lean 4.37
+
+- S2 is ported to Lean 4.37 as [PR #243](https://github.com/leanprover-community/riemann-hypothesis/pull/243) on
+  leanprover-community/riemann-hypothesis, stacked on [#185](https://github.com/leanprover-community/riemann-hypothesis/pull/185).
+  Its lists are at tag [`s2-pr-185-4`](https://github.com/james-shore/rh-proof-trimmed/tree/s2-pr-185-4)
+- It compiles on [#134](https://github.com/leanprover-community/riemann-hypothesis/pull/134) under Lean 4.36 and cuts the
+  warnings from the three linters by 94%
+- S3 is coming as a PR on #185 too
 
 ## Base
 

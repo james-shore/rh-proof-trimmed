@@ -47,4 +47,4 @@ open GlobalTheory.EvenOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.even_theta_chain_spanned_params_of_value_independent : GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, FinDim D → MetEx D → EigSpan D ∧ ParOfVal D ∧ ParIndep D := by
-  first | exact @GlobalTheory.EvenOnto.eig_parOfVal_indep | exact GlobalTheory.EvenOnto.eig_parOfVal_indep | (intros; apply GlobalTheory.EvenOnto.eig_parOfVal_indep <;> assumption)
+  first | exact @GlobalTheory.EvenOnto.eig_parOfVal_indep

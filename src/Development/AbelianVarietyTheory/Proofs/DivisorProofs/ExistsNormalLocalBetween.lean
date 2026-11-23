@@ -95,11 +95,7 @@ theorem isIntegrallyClosed_of_absIntClosed (T : Type) [CommRing T] [IsDomain T]
 theorem isAlgClosed_fractionRing (T : Type) [CommRing T] [IsDomain T]
     (hT : GlobalTheory.LocAcyc.AbsIntClosed T) : IsAlgClosed (FractionRing T) := by
   first
-  | exact @_root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing
-  | exact _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing
   | (apply _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing ..)
 
 end GlobalTheory.LocAcycEmbed

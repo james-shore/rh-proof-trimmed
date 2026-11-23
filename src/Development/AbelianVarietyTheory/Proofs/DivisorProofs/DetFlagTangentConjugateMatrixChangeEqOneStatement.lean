@@ -54,4 +54,4 @@ open GlobalTheory.LogPole
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.det_flagTangentConjugateMatrixChange_eq_one : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} (K : Type) [Field K] (g : ∀ σ : E →+* ℂ, Matrix (Fin (Dw.mult σ)) (Fin (Dw.mult σ)) K), (∀ σ, (g σ).det = 1) → ∀ (o : Fin Dw.dim ≃ HIx Dw (psiSet H)), (Matrix.of fun i j => FlagTan.ksChg (psiSet H) g ((Pi.single (o j) 1 : HIx Dw (psiSet H) → K)) (o i)).det = 1 := by
-  first | exact @GlobalTheory.KSChgDet.det_ksChg_eq_one | exact GlobalTheory.KSChgDet.det_ksChg_eq_one | (intros; apply GlobalTheory.KSChgDet.det_ksChg_eq_one <;> assumption)
+  first | exact @GlobalTheory.KSChgDet.det_ksChg_eq_one

@@ -812,7 +812,7 @@ theorem eval_neg_x_coeff {S : Type*} [CommRing S] (φ : S →+* S) (p : Polynomi
     · subst h
       simp
       ring
-    · simp [h, Ne.symm h]
+    · simp [Ne.symm h]
 
 theorem adjugate_transvection' {S : Type*} [CommRing S] {n : Type*} [Fintype n] [DecidableEq n] (i j : n)
     (h : i ≠ j) (c : S) : (Matrix.transvection i j c).adjugate = Matrix.transvection i j (-c) := by

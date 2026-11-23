@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
 theorem _root_.GlobalTheory.T.exists_isotropicFrame_lagrangian_first_summand : ∀ (D : D7) (W : HSp D) (Y : Lag W), Y.1.comap (LinearMap.inl D.host.E _ _) ≠ ⊥ → ∃ (s : ℕ) (I : Matrix (Fin W.rank) (Fin s) D.host.E), IsIsoFrame W I ∧ Submodule.span D.host.E (Set.range I.transpose) = Y.1.comap (LinearMap.inl D.host.E _ _) := by
-  first | exact @GlobalTheory.RawLift.exists_isoFrame_comap_inl | exact GlobalTheory.RawLift.exists_isoFrame_comap_inl | (intros; apply GlobalTheory.RawLift.exists_isoFrame_comap_inl <;> assumption)
+  first | exact @GlobalTheory.RawLift.exists_isoFrame_comap_inl

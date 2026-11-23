@@ -221,7 +221,7 @@ theorem kills_insert_of_evalLaw : ∀ (k : Type) [Field k] [ValuativeRel k] [Top
     rw [← integral_const_mul]
     congr 1
     funext y
-    simp [P, p, fillAt_apply_of_notMem β hE hI, mul_assoc]
+    simp [P, p, fillAt_apply_of_notMem β hE hI]
   have hP : ∀ q, L (P q) = 0 := by
     intro q
     induction q using QuotientAddGroup.induction_on with | H a => ?_

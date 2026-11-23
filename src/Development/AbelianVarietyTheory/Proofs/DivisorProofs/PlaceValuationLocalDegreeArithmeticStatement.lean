@@ -70,4 +70,4 @@ theorem _root_.GlobalTheory.T.placeValuation_localDegree_arithmetic : ∀ {K : T
     (∀ d : ℕ, 0 < d → {w : HeightOneSpectrum (𝓞 K) | Formalism.DivisionValues.vw w (d : K) ≠ 0}.Finite) ∧
     (∀ d : ℕ, 0 < d → ∀ s : Finset (HeightOneSpectrum (𝓞 K)),
       ∑ w ∈ s, Formalism.DivisionValues.lw w * (Formalism.DivisionValues.vw w (d : K) : ℝ) ≤ Real.log d) := by
-  first | exact @GlobalTheory.vw_lw_arith | exact GlobalTheory.vw_lw_arith | (intros; apply GlobalTheory.vw_lw_arith <;> assumption)
+  first | exact @GlobalTheory.vw_lw_arith

@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.specialPrimeThreshold_numerics_along_family : ∀ 
     2 * (Fm.L x a).etaSz + (Fm.D x a).R.t + 8 * ((Fm.L x a).sc.b / LevelStarExponents.lStar (Fm.L x a)) + 7 < LevelStarExponents.lStar (Fm.L x a) ∧
     ((Fm.L x a).sc.b + (Fm.L x a).Sc + 2 * (Fm.L x a).etaSz + 3) * LevelStarExponents.lStar (Fm.L x a) ≤
       2 * (Fm.L x a).sc.b * (LevelStarExponents.lStar (Fm.L x a) - 1) := by
-  first | exact @GlobalTheory.lStar_numerics_at_record | exact GlobalTheory.lStar_numerics_at_record | (intros; apply GlobalTheory.lStar_numerics_at_record <;> assumption)
+  first | exact @GlobalTheory.lStar_numerics_at_record

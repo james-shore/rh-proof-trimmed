@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.isPrincipalIdealRing_wittPowerSeries_away_prime : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K), IsPrincipalIdealRing (Localization.Away (l : bk.S)) := by
-  first | exact @GlobalTheory.BSP.isPrincipalIdealRing_away_l | exact GlobalTheory.BSP.isPrincipalIdealRing_away_l | (intros; apply GlobalTheory.BSP.isPrincipalIdealRing_away_l <;> assumption)
+  first | exact @GlobalTheory.BSP.isPrincipalIdealRing_away_l

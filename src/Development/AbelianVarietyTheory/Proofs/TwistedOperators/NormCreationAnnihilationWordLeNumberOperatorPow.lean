@@ -57,13 +57,13 @@ theorem norm_word_le_number_pow : ∀ (T H κ : Type) [AddCommGroup T] [Module �
   have hreal : ∀ (s : ℝ) (x : T), RCLike.re (inner ℂ (Φ x) (Φ ((s : ℂ) • x))) = s * ‖Φ x‖ ^ 2 := by
     intro s x
     rw [map_smul, inner_smul_right, inner_self_eq_norm_sq_to_K]
-    simp [Complex.mul_re]
+    simp
     left; rw [← Complex.ofReal_pow, Complex.ofReal_re]
   have hca : ∀ j x, RCLike.re (inner ℂ (Φ x) (Φ (c j (a j x)))) = ‖Φ (a j x)‖ ^ 2 := by
     intro j x
     rw [← inner_conj_symm, hadj, RCLike.conj_re, inner_self_eq_norm_sq]
   have hMx : ∀ x, M x = ∑ j, c j (a j x) + (r : ℂ) • x := by
-    intro x; subst hM; simp [Module.End.mul_apply]
+    intro x; subst hM; simp
   have hQeq : ∀ x, RCLike.re (inner ℂ (Φ x) (Φ (M x))) = ∑ j, ‖Φ (a j x)‖ ^ 2 + r * ‖Φ x‖ ^ 2 := by
     intro x
 

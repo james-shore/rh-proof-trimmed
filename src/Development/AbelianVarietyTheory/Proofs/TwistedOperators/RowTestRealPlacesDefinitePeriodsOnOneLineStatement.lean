@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.RowClaim GlobalTheory.RowReal
 
 theorem _root_.GlobalTheory.T.rowTest_realPlaces_definitePeriods_onOneLine : Big fun ch => PeriodsOnLine ch := by
-  first | exact @GlobalTheory.RowReal.periodsOnLine_big | exact GlobalTheory.RowReal.periodsOnLine_big | (intros; apply GlobalTheory.RowReal.periodsOnLine_big <;> assumption)
+  first | exact @GlobalTheory.RowReal.periodsOnLine_big

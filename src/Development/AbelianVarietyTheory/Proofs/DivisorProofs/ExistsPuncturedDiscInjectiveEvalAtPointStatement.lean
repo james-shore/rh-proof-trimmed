@@ -66,4 +66,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_puncturedDisc_injective_evalAtPoint : ∀ (ε : ℝ) (S : Set (PowerSeries ℂ)), 0 < ε → S.Countable → (∀ Φ ∈ S, ∀ u : ℂ, u ≠ 0 → ‖u‖ < ε → Summable fun n => ‖PowerSeries.coeff n Φ * u ^ n‖) → ∃ (u : ℂ) (i : Subring.closure S →+* ℂ), u ≠ 0 ∧ ‖u‖ < ε ∧ Function.Injective i ∧ ∀ Φ : Subring.closure S, i Φ = ∑' n, PowerSeries.coeff n (Φ : PowerSeries ℂ) * u ^ n := by
-  first | exact @GlobalTheory.exists_injective_evalAt_closure | exact GlobalTheory.exists_injective_evalAt_closure | (intros; apply GlobalTheory.exists_injective_evalAt_closure <;> assumption)
+  first | exact @GlobalTheory.exists_injective_evalAt_closure

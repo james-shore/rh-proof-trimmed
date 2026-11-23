@@ -456,7 +456,7 @@ theorem exists_frame_good (S T : HSp D) (hS : S.SigOK) (hpos : S.IsPosDef) (hT :
       show IsLocalization.IsInteger (𝓞 D.host.E) (pairing x ((d : 𝓞 D.host.E) • y))
       have hscale (z : Fin V.rank → D.host.E) :
           pairing z ((d : 𝓞 D.host.E) • y) = (d : 𝓞 D.host.E) • pairing z y := by
-        simp only [pairing, Pi.smul_apply, Algebra.smul_def, Finset.mul_sum, Finset.sum_mul,
+        simp only [pairing, Pi.smul_apply, Algebra.smul_def, Finset.sum_mul,
           mul_assoc, mul_left_comm, mul_comm]
       rw [hscale]
       refine Submodule.span_induction

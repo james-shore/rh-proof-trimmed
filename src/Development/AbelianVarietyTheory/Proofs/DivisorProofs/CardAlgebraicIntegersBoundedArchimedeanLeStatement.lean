@@ -50,4 +50,4 @@ import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.CuspQuot GlobalTheory.AutomorphicL2Unitary GlobalTheory.OpTrace MeasureTheory
 
 theorem _root_.GlobalTheory.T.card_algebraic_integers_bounded_archimedean_le : ∀ (E : Type) [Field E] [NumberField E], ∃ (m : ℕ) (C : ℝ), 0 ≤ C ∧ ∀ T : ℝ, 1 ≤ T → {ξ : 𝓞 E | ∀ w : InfinitePlace E, w (ξ : E) ≤ T}.Finite ∧ ({ξ : 𝓞 E | ∀ w : InfinitePlace E, w (ξ : E) ≤ T}.ncard : ℝ) ≤ C * T ^ m := by
-  first | exact @GlobalTheory.IntCount.card_bounded_integers_le | exact GlobalTheory.IntCount.card_bounded_integers_le | (intros; apply GlobalTheory.IntCount.card_bounded_integers_le <;> assumption)
+  first | exact @GlobalTheory.IntCount.card_bounded_integers_le

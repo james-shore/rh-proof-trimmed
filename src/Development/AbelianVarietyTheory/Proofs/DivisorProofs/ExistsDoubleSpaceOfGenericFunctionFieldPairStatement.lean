@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.ZH GlobalTheory.CechPic GlobalTheory.Cartier Glob
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_doubleSpace_of_genericFunctionFieldPair : ∀ (F : Type) [Field F] (Y : Var F) (K : Type) [Field K] (ψ₁ ψ₂ : Y.Fn →+* K), GenPair Y ψ₁ ψ₂ → ∃ (W : Dbl Y) (j : W.Z.functionField →+* K), j.comp W.α₁ = ψ₁ ∧ j.comp W.α₂ = ψ₂ := by
-  first | exact @GlobalTheory.FlagPush.exists_dbl_of_genPair | exact GlobalTheory.FlagPush.exists_dbl_of_genPair | (intros; apply GlobalTheory.FlagPush.exists_dbl_of_genPair <;> assumption)
+  first | exact @GlobalTheory.FlagPush.exists_dbl_of_genPair

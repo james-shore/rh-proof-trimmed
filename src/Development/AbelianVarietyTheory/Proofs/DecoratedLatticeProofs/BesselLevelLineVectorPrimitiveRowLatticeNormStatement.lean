@@ -50,4 +50,4 @@ open ValuativeRel
 open GlobalTheory.Core.Mi.LatMatch
 
 theorem _root_.GlobalTheory.T.besselLevelLineVector_primitive_rowLattice_norm : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (u : D.what₂.Word) (ψ : AddChar (AF D.host.F) ℂ) (A : HSp D) (B : SBes X h u ψ A) (μ lam : D.host.E), GlobalTheory.Core.Mi.IdE X → B.FrameAt μ lam → (∀ t : D.host.E, t • vecB B.o B.ζ ∈ coreLat B.d (latS D) ↔ μ * t ∈ (1 : FI D)) ∧ star B.ζ ⬝ᵥ B.L.gram *ᵥ B.ζ = -(μ * star μ * (((D.mem u).A.T : ℕ) : D.host.E)) ∧ vecB B.o B.ζ ≠ 0 := by
-  first | exact @GlobalTheory.Core.Mi.LatMatch.sz_tied | exact GlobalTheory.Core.Mi.LatMatch.sz_tied | (intros; apply GlobalTheory.Core.Mi.LatMatch.sz_tied <;> assumption)
+  first | exact @GlobalTheory.Core.Mi.LatMatch.sz_tied

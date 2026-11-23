@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.exists_heckeElement_idempotentPart_splitPlace_latt
     ∃ a₀ : GA D V, Formalism.L2.NTheta.IsHeckeElt V e (ϖ : D.host.E) k a₀ ∧ ∀ v ∈ latG V g,
       (finPart D e • finVec V v ∈ latGHat V (g * a₀) ↔
         finPart D e • finVec V v ∈ GlobalTheory.AdLat.hat D.host.F (M : Set (Fin V.rank → D.host.E))) := by
-  first | exact @GlobalTheory.HeckeLocLift.exists_hecke_ePart | exact GlobalTheory.HeckeLocLift.exists_hecke_ePart | (intros; apply GlobalTheory.HeckeLocLift.exists_hecke_ePart <;> assumption)
+  first | exact @GlobalTheory.HeckeLocLift.exists_hecke_ePart

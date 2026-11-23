@@ -46,4 +46,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.fibrePeriod_eq_familyPeriod_value : PFix := by
-  first | exact @GlobalTheory.AnPer.period_fibre_eq_value | exact GlobalTheory.AnPer.period_fibre_eq_value | (intros; apply GlobalTheory.AnPer.period_fibre_eq_value <;> assumption)
+  first | exact @GlobalTheory.AnPer.period_fibre_eq_value

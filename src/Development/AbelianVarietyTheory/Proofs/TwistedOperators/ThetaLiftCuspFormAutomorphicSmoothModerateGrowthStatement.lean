@@ -43,4 +43,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaLift_cuspForm_automorphic_smooth_moderateGrowth : GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.RapidDecayLift.LiftProps D := by
-  first | exact @GlobalTheory.Chain.LiftReg.liftProps_obj | exact GlobalTheory.Chain.LiftReg.liftProps_obj | (intros; apply GlobalTheory.Chain.LiftReg.liftProps_obj <;> assumption)
+  first | exact @GlobalTheory.Chain.LiftReg.liftProps_obj

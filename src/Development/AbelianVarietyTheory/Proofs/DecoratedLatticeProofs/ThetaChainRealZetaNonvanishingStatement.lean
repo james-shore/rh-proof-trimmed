@@ -47,4 +47,4 @@ open scoped TensorProduct InnerProductSpace ComplexConjugate
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaChain_realZeta_nonvanishing : GlobalTheory.Published.HarishChandraModules → ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.ThetaSourceAction.ArchOnRecord D → GlobalTheory.ChainOnto.RealZeta D := by
-  first | exact @GlobalTheory.RealZetaProof.realZeta | exact GlobalTheory.RealZetaProof.realZeta | (intros; apply GlobalTheory.RealZetaProof.realZeta <;> assumption)
+  first | exact @GlobalTheory.RealZetaProof.realZeta

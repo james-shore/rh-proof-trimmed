@@ -49,4 +49,4 @@ open NumberField Module Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.R
 open scoped nonZeroDivisors
 
 theorem _root_.GlobalTheory.T.minPadicValPowSubOneCoprime_eq_closedFormula : Formalism.PairingDivisionLocalBalance.MinVal → ∀ l n : ℕ, l.Prime → 2 ≤ n → Even n → mMin l n = Formalism.PairingDivisionLocalBalance.mE l n := by
-  first | exact @GlobalTheory.MinValClosed.mMin_eq_mE | exact GlobalTheory.MinValClosed.mMin_eq_mE | (intros; apply GlobalTheory.MinValClosed.mMin_eq_mE <;> assumption)
+  first | exact @GlobalTheory.MinValClosed.mMin_eq_mE

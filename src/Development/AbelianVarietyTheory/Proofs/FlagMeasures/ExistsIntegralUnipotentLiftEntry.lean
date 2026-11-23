@@ -154,7 +154,7 @@ theorem lift_entry : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
             (s a : ℂ) * star (-(star (w.embedding u)) * ((s b)⁻¹ : ℂ)) else 0) := by
       intro w a' j
       rw [GlobalTheory.T.rowIsometry_entries_in_modelCoordinates F E σ k r J Λ P f T A s hV a y 0 w, hv w, herm_single]
-      simp [bvec, Pi.single_apply, eI_ne_esI, eI_inj, ite_and]
+      simp [bvec, eI_ne_esI, eI_inj, ite_and]
     refine ⟨fun w => ?_, fun β hβ _ w => ?_⟩
     · change gM A _ w (eI k r a) (eI k r b) = l w
       rw [key, hlu]

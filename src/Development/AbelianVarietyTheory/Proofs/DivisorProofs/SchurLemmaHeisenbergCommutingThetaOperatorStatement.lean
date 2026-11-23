@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.schur_lemma_heisenberg_commuting_thetaOperator : �
         MeasureTheory.IsAddFundamentalDomain (ratLF F E nS nT) 𝓕 μ → ∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f →
           ∫⁻ w in 𝓕, ‖M f w‖ₑ ^ 2 ∂μ = ∫⁻ w in 𝓕, ‖f w‖ₑ ^ 2 ∂μ) →
       ∃ c : ℂ, ∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → M f = c • f := by
-  first | exact @GlobalTheory.ThetaSchurF.schur | exact GlobalTheory.ThetaSchurF.schur | (intros; apply GlobalTheory.ThetaSchurF.schur <;> assumption)
+  first | exact @GlobalTheory.ThetaSchurF.schur

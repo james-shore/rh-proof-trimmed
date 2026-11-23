@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
 theorem _root_.GlobalTheory.T.hodgeFiltration_lift_determines_mod_fil : ∀ (k : Type) [Field k] (A₀ : Over (Sp k)) [GrpObj A₀] (A' : Over (Sp (DualNumber k))) [GrpObj A'] (i : A₀.left ⟶ A'.left) (h : IsGrpPullback A₀ A' (spMap (TrivSqZeroExt.fstHom k k k).toRingHom) i), IsAbelianScheme A' → ∀ x ∈ Fil A₀, ∀ y y' : HdR A₀, IsFilLift h x y → (IsFilLift h x y' ↔ y' - y ∈ Fil A₀) := by
-  first | exact @GlobalTheory.KSGraph.isFilLift_iff_sub_mem | exact GlobalTheory.KSGraph.isFilLift_iff_sub_mem | (intros; apply GlobalTheory.KSGraph.isFilLift_iff_sub_mem <;> assumption)
+  first | exact @GlobalTheory.KSGraph.isFilLift_iff_sub_mem

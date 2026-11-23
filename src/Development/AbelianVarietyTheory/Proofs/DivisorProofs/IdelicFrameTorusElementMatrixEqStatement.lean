@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.idelicFrameTorusElement_matrix_eq : ∀ {F E : Typ
     ∀ {l : Fin r → (AF F ⊗[F] E)ˣ} {a : GAd σ J}, IsIdTorusElt σ J X Y l a →
     (matHom _ σ J a).1 = 1 + adMat F X * diagonal (fun k => ((l k : (AF F ⊗[F] E)ˣ) : AF F ⊗[F] E) - 1) * adMat F (cT (σ : E →+* E) Y * J)
       + adMat F Y * diagonal (fun k => (((conjUnit σ (l k))⁻¹ : (AF F ⊗[F] E)ˣ) : AF F ⊗[F] E) - 1) * adMat F (cT (σ : E →+* E) X * J) := by
-  first | exact @GlobalTheory.IdTorus.mat_eq_of_isIdTorusElt | exact GlobalTheory.IdTorus.mat_eq_of_isIdTorusElt | (intros; apply GlobalTheory.IdTorus.mat_eq_of_isIdTorusElt <;> assumption)
+  first | exact @GlobalTheory.IdTorus.mat_eq_of_isIdTorusElt

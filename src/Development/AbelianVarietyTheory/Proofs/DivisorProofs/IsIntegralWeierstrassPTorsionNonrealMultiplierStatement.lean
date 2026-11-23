@@ -46,4 +46,4 @@ open GlobalTheory.CMVal GlobalTheory.HeckeGal
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.isIntegral_weierstrassP_torsion_nonreal_multiplier : ∀ (L : PeriodPair) (β Ω : ℂ) (M : ℕ), MulStable L β → β.im ≠ 0 → Ω ^ 12 = latDisc L → 0 < M → (∀ P, (M : ℂ) * P ∈ L.lattice → IsIntegral ℤ (12 * (M : ℂ) ^ 2 * L.weierstrassP P / Ω ^ 2) ∧ IsIntegral ℤ ((M : ℂ) ^ 3 * L.derivWeierstrassP P / Ω ^ 3)) ∧ ∀ P Q, P ∉ L.lattice → Q ∉ L.lattice → (M : ℂ) * P ∈ L.lattice → (M : ℂ) * Q ∈ L.lattice → IsIntegral ℤ ((M : ℂ) ^ 2 * (L.weierstrassP P - L.weierstrassP Q) / Ω ^ 2) := by
-  first | exact @GlobalTheory.WpFam.LatTorsVal.main | exact GlobalTheory.WpFam.LatTorsVal.main | (intros; apply GlobalTheory.WpFam.LatTorsVal.main <;> assumption)
+  first | exact @GlobalTheory.WpFam.LatTorsVal.main

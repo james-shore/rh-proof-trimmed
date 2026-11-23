@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_descended_rays_marked_form_pieces : ∀ (E 
     ∀ i, 0 < t i → pull (CarDim.orad v : Submodule (𝓞 E) X₀).mkQ (u i) = δ₀ i ∧ pullAdd f (u i) ∈ balForms H.bar X ∧
       (∀ y, 0 ≤ pullAdd f (u i) y y) ∧ (∀ (k : ℕ) (β' : LinearMap.BilinForm ℤ X), (k : ℤ) • β' = pullAdd f (u i) → k = 1) ∧
       ∀ lab : InvFun (𝓞 E), IsTwInv H lab → lab.evalZ (pullAdd f (u i)) = lab.evalZ (δ₀ i) := by
-  first | exact @GlobalTheory.PolFan.OrbMark.exists_desc_rays_pullAdd | exact GlobalTheory.PolFan.OrbMark.exists_desc_rays_pullAdd | (intros; apply GlobalTheory.PolFan.OrbMark.exists_desc_rays_pullAdd <;> assumption)
+  first | exact @GlobalTheory.PolFan.OrbMark.exists_desc_rays_pullAdd

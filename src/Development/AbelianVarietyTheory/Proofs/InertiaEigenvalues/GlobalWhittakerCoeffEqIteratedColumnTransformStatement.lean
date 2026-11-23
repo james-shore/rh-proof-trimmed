@@ -49,4 +49,4 @@ open scoped ENNReal NNReal ComplexConjugate
 theorem _root_.GlobalTheory.T.globalWhittakerCoeff_eq_iteratedColumnTransform : ∀ (E : Type) [Field E] [NumberField E] (m : ℕ) (f : GA E (m + 1) → ℂ), Continuous f →
     (∀ γ ∈ mirU E (m + 1) 0, ∀ g, f (ratGL E (m + 1) γ * g) = f g) →
     ∀ g, GlobalTheory.JSW.whit f g = GlobalTheory.CuspGeneric.whit (GlobalTheory.StdCharConductor.psi E) m f g := by
-  first | exact @GlobalTheory.WhitCols.whit_eq_colWhit | exact GlobalTheory.WhitCols.whit_eq_colWhit | (intros; apply GlobalTheory.WhitCols.whit_eq_colWhit; all_goals assumption)
+  first | exact @GlobalTheory.WhitCols.whit_eq_colWhit

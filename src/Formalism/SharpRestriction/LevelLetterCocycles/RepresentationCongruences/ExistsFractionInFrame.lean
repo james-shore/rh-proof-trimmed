@@ -66,12 +66,7 @@ theorem ArcLengthFourSecond.isUnit_ps (W : LocWach PD LL O v n) (hR : GS.RD W) (
     IsUnit (algebraMap (LetA O n) W.EE (ps W t)) := by
   have hp : PD.p.Prime := by
     first
-      | exact PD.hp.out
       | exact PD.hp
-      | exact PD.p_prime
-      | exact PD.prime
-      | exact PD.hprime
-      | exact Fact.out
   obtain ⟨⟨w1, hw1⟩, ⟨w2, hw2⟩, -, -⟩ := hR
   have hπ0 : IsUnit (algebraMap (LetA O n) W.EE W.π₀) := by
     rw [hw1, map_mul, map_pow]

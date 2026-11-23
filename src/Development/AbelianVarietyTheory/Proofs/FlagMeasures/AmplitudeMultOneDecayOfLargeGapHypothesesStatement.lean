@@ -46,4 +46,4 @@ open MeasureTheory Matrix Formalism.BasicNotions Formalism.QuantumDeterminants F
 open scoped InnerProductSpace ENNReal
 
 theorem _root_.GlobalTheory.T.amplitudeMultOneDecay_of_largeGapHypotheses : GlobalTheory.GapIn.Hyp → ∀ Cg cb Cu cT CT C0 : ℝ, ∃ m₀ : ℝ, ∀ (D : D7) (large₂ : SizeData₂ D) (C' Cl : ℝ), Big D large₂ Cl m₀ → LocIn D large₂ C' Cl Cg cb Cu cT CT C0 := by
-  first | exact @GlobalTheory.Amp.LocalInputsGap.locIn_of_hypGap | exact GlobalTheory.Amp.LocalInputsGap.locIn_of_hypGap | (intros; apply GlobalTheory.Amp.LocalInputsGap.locIn_of_hypGap <;> assumption)
+  first | exact @GlobalTheory.Amp.LocalInputsGap.locIn_of_hypGap

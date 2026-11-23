@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.type_prime_frames_right_translate_differ_integral_
       InFrame t.seam (A.fb i hi β) dep P κ.1 Gg.1 →
       ∃ k : GLint t.X.E (D.R.N i) P.1, frsF t.sel (t.tup μ) p₁ P = frsF t.sel (t.tup μ) p P * k.1 ∧
         redGL _ P.1 k = redGL _ P.1 Gg) := by
-  first | exact @GlobalTheory.LevFrame.frame_lev | exact GlobalTheory.LevFrame.frame_lev | (intros; apply GlobalTheory.LevFrame.frame_lev <;> assumption)
+  first | exact @GlobalTheory.LevFrame.frame_lev

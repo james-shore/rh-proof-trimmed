@@ -100,7 +100,7 @@ private theorem addHaar_singleton_zero_eq_zero {m : ℕ} {ψ : AddChar k Circle}
       (by simp [Matrix.det_smul])
   have hdet : Matrix.GeneralLinearGroup.det g = x⁻¹ ^ (m + 1) := by
     ext
-    simp [g, Matrix.GeneralLinearGroup.val_det_apply, Matrix.det_smul]
+    simp [g, Matrix.GeneralLinearGroup.val_det_apply]
   have hg : md g = (nabs k x)⁻¹ ^ (m + 1) := by
     show nabs k (Matrix.GeneralLinearGroup.det g) = _
     rw [hdet]

@@ -51,4 +51,4 @@ open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 
 theorem _root_.GlobalTheory.T.matrixSupported_splitPlace_of_isHalf_conjSum : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (q : SplitPt D k) {m n : ℕ} (x : Mx D m n), IsHalf (q.e + cA D q.e) x → MxAt (· = q.v) x := by
-  first | exact @GlobalTheory.FinPl.SplitHalfSuppImp.mxAt_of_isHalf | exact GlobalTheory.FinPl.SplitHalfSuppImp.mxAt_of_isHalf | (intros; apply GlobalTheory.FinPl.SplitHalfSuppImp.mxAt_of_isHalf <;> assumption)
+  first | exact @GlobalTheory.FinPl.SplitHalfSuppImp.mxAt_of_isHalf

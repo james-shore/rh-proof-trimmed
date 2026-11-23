@@ -153,7 +153,7 @@ theorem weilIs_pull_of_proper (hA : IsSemiAbelian A) (hL : L.IsLB) {T T' : Over 
     have hl := congrArg Over.Hom.left key
     simp only [Over.comp_left, overResι, Over.homMk_left] at hl
     ext
-    simp only [unitRes, Units.coe_map, MonoidHom.coe_coe]
+    simp only [unitRes, Units.coe_map]
     have hv := congrArg (fun f => f.appTop.hom (c : Γ(T.left, ⊤))) hl
     simp only [Scheme.Hom.comp_appTop, CommRingCat.hom_comp, RingHom.comp_apply] at hv
     exact hv.symm
@@ -191,7 +191,6 @@ theorem exists_section_of_finite {Z : Scheme.{0}} {k K : Type} [Field k] [IsAlgC
     have hm : z ∈ closure ({z} : Set Z) ∩ closedPoints Z := by
       rw [h1]
       first
-        | exact subset_closure (Set.mem_singleton z)
         | exact subset_closure (subset_closure (Set.mem_singleton z))
     exact hm.2
   refine ⟨pointOfClosedPoint f _ hz, pointOfClosedPoint_comp f _ hz, ?_⟩

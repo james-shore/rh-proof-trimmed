@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.downwardVertexMap_lastVertex_mul_of_frame : ∀ {k
     (g : GL (Fin (Γ.rank (Γ.m, j + 1))) k) (κ : GL (Fin (topRank Γ (j + 1))) k),
     toFrame hs hj g = embX (Γ.m - 1 - (j + 1)) κ → ∀ (x x' : ColArgs Γ) (e e' : Vars Γ), x' (j + 1) = x (j + 1) * κ.val →
     downMap hs x' e' (j + 1) = downMap hs x e (j + 1) * g.val := by
-  first | exact @GlobalTheory.TopLevelInv.downMap_last_mul_of_toFrame_eq | exact GlobalTheory.TopLevelInv.downMap_last_mul_of_toFrame_eq | (intros; apply GlobalTheory.TopLevelInv.downMap_last_mul_of_toFrame_eq <;> assumption)
+  first | exact @GlobalTheory.TopLevelInv.downMap_last_mul_of_toFrame_eq

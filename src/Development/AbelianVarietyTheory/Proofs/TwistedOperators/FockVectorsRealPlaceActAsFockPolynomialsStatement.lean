@@ -54,4 +54,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ArchRec
 
 theorem _root_.GlobalTheory.T.fockVectors_realPlace_act_as_fockPolynomials : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (S T : HSp D) (ω : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)) (τ : D.what₂.Tau), IsInfFam θ → ∀ (sS frS : Mn S.rank) (εS : Fin S.rank → Bool) (sT frT : Mn T.rank) (εT : Fin T.rank → Bool), IsFrameOf (gramAt D S τ) sS εS frS → IsFrameOf (gramAt D T τ) sT εT frT → ∀ (aS aT : ℚ) (pt : LPol T.rank S.rank →ₗ[ℂ] (WO S T → ℂ)), Function.Injective pt → LieAt ψ θ τ ω εS frS εT frT aS aT pt → ∀ (p q r s : ℕ) (e : Ix p q ≃ Fin S.rank) (e' : Ix r s ≃ Fin T.rank), SignCompat εS e → SignCompat εT e' → ∀ κ : LPol T.rank S.rank ≃ₗ[ℂ] Pol p q r s, IsPolyIso εS εT e e' κ → Side (actSrc θ ω τ) pt κ (phiFr frS true e) aT (fockAct1 p q r s) ∧ Side (actTgt θ ω τ) pt κ (phiFr frT false e') aS (fockAct2 p q r s) := by
-  first | exact @GlobalTheory.ArchRec.SideAt.side_at | exact GlobalTheory.ArchRec.SideAt.side_at | (intros; apply GlobalTheory.ArchRec.SideAt.side_at <;> assumption)
+  first | exact @GlobalTheory.ArchRec.SideAt.side_at

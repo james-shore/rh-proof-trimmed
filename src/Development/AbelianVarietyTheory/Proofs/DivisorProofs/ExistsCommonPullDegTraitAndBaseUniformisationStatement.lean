@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_common_pullDeg_trait_and_base_uniformisatio
     ∀ (D₂ : DegData R (maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (U₂ : Unif (maximalIdeal R) D₂ A G),
     U₂.LG.L = L → ∃ (W : Type) (_ : CommRing W) (_ : IsDomain W) (φ : R →+* W) (D' : DegPre W),
       Function.Injective φ ∧ Nonempty (IsPullDeg φ D.toPre D') ∧ Nonempty (IsPullDeg φ D₂.toPre D') := by
-  first | exact @GlobalTheory.Mum.CommonPull.exists_common_pull | exact GlobalTheory.Mum.CommonPull.exists_common_pull | (intros; apply GlobalTheory.Mum.CommonPull.exists_common_pull <;> assumption)
+  first | exact @GlobalTheory.Mum.CommonPull.exists_common_pull

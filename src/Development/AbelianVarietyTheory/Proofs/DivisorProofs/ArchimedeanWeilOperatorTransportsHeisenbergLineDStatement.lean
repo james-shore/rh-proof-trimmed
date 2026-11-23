@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.archimedeanWeilOperator_transports_heisenbergLineD
     (∀ f : SInf F (Fin n × Fin d), Acts (evI F) (om (g, h)) f (T f)) → (∀ f : SInf F (Fin n × Fin d), Acts (evI F) (om (g⁻¹, h⁻¹)) f (T.symm f)) →
     ∀ u, At (evI F) u → ∀ f f₁ : SInf F (Fin n × Fin d), ActsD (evI F) (M.heisLine B.ψ u) f f₁ →
       ActsD (evI F) (M.heisLine B.ψ (mat g * u * (mat h).transpose)) (T f) (T f₁) := by
-  first | exact @GlobalTheory.HeisTransport.actsD_heisLine_transport | exact GlobalTheory.HeisTransport.actsD_heisLine_transport | (intros; apply GlobalTheory.HeisTransport.actsD_heisLine_transport <;> assumption)
+  first | exact @GlobalTheory.HeisTransport.actsD_heisLine_transport

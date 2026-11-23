@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.definiteBottom_deepPoints_fix_lattice_stdFirst : �
       ∀ x, GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle.stdFst (L.mu t (j + 1) * L.eta ^ (rankV D i j % 2) / (G.ch.chi (D.R.m - i) * L.eta ^ (rankV D i j % 2))) (X.e t) (X.ideal (locPl G) t) A WW X.rA.β X.rW.β
           (actO (GlobalTheory.Grid.neg A) WW ((GlobalTheory.Grid.ofSgn true A).symm k)⁻¹ 1⁻¹ x) =
         GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle.stdFst (L.mu t (j + 1) * L.eta ^ (rankV D i j % 2) / (G.ch.chi (D.R.m - i) * L.eta ^ (rankV D i j % 2))) (X.e t) (X.ideal (locPl G) t) A WW X.rA.β X.rW.β x := by
-  first | exact @GlobalTheory.StdFstFix.stdFst_fixed | exact GlobalTheory.StdFstFix.stdFst_fixed | (intros; apply GlobalTheory.StdFstFix.stdFst_fixed <;> assumption)
+  first | exact @GlobalTheory.StdFstFix.stdFst_fixed

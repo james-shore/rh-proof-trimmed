@@ -127,7 +127,6 @@ theorem rowsDomAtP_of (hN : SupportG.NormProd D) (hTU : TopUnram D) (hRD : RowsD
       unfold n0
       push_cast
       field_simp
-      try ring
     rw [e]
     exact hFC w hG γ₀ w₀ h0
   have hnc' : 0 < nc * α := mul_pos hnc.1 hα

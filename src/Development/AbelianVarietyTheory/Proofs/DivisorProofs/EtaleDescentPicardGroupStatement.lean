@@ -46,4 +46,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex TensorProduct GlobalTheory.EtC
 
 theorem _root_.GlobalTheory.T.etale_descent_picard_group : GlobalTheory.EtC.DivisorPicardCompatibility := by
-  first | (exact @GlobalTheory.EtC.b6pic_holds) | (exact GlobalTheory.EtC.b6pic_holds) | (intros; apply GlobalTheory.EtC.b6pic_holds <;> assumption)
+  first | (exact @GlobalTheory.EtC.b6pic_holds)

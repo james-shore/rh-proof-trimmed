@@ -114,7 +114,6 @@ variable {F E ι : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Al
 
 theorem infinitePlace_liesOver_comap (w : InfinitePlace E) : w.LiesOver (w.comap (algebraMap F E)) := by
   first
-    | exact inferInstance
     | exact ⟨rfl⟩
 
 theorem ncard_places_over_eq_finrank [_root_.NumberField.IsTotallyComplex F] (v : InfinitePlace F) :

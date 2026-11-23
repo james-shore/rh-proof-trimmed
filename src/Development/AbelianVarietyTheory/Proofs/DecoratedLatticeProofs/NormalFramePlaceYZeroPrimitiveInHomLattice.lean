@@ -281,7 +281,7 @@ theorem normalFr_incAdj_yZero_mem_latO_iff : ∀ {D : D7} (ψ : AddChar (AF D.ho
       rw [Finset.sum_comm]
       exact Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun c _ => by ring
     simp only [map_mul, map_add (f := _), GlobalTheory.LastPrimSplit.pr_e, pr_cA_e, GlobalTheory.LocSympl.conj_conj, FrameLat.cA_incA, hzz, hpz,
-      add_zero, zero_add, mul_one, one_mul] at h3 h4
+      add_zero, zero_add, one_mul] at h3 h4
     rw [GlobalTheory.SplitLine.mem_intAt_iff_pr l.q ht]
     rw [Valuation.mem_integer_iff] at h3 h4
     rw [map_mul, map_mul, hxiv, hhz1, mul_one, mul_one] at h3

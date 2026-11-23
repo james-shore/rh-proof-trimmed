@@ -150,7 +150,7 @@ private theorem pt_ex {c : Coef l} [Fr.IsCoef l c.O] {F : Fr.Frame l (ResidueFie
     rw [Matrix.charpoly]
     congr 1
     ext i j
-    by_cases h : i = j <;> simp [W.GDet.repAlg, h, Matrix.charmatrix_apply, Matrix.one_apply]
+    by_cases h : i = j <;> simp [W.GDet.repAlg, h]
   refine (W.exists_determinantPair_over_algebraicIntegers l T.G c.O n T.r T.B ρ ψ hc ⟨P, fun g => ?_⟩ (fun i g a ha => ?_) h2 (fun v i g a ha => ?_)
     (fun v i g => ?_) hf).exists
   · have h := congrArg (fun u : c.Oˣ => algebraMap c.O (Qbar l) u) (T.K.κ_conj g)

@@ -52,4 +52,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 theorem _root_.GlobalTheory.T.exists_siegelFamily_over_numberField : Out.Laws → Out.Laws2 → ThetaUnifAV → ∀ h : ℕ, 1 ≤ h → ∃ (k : ℕ) (K : Type) (_ : Field K) (_ : NumberField K) (ζ : K) (σ : K →+* ℂ), 3 ≤ k ∧ Odd k ∧ σ ζ = Complex.exp (-(2 * Real.pi * Complex.I) / k) ∧ Nonempty (SFam h k ζ) := by
-  first | exact @GlobalTheory.SiegelFamilyNumberField.exists_sFam_numberField | exact GlobalTheory.SiegelFamilyNumberField.exists_sFam_numberField | (intros; apply GlobalTheory.SiegelFamilyNumberField.exists_sFam_numberField <;> assumption)
+  first | exact @GlobalTheory.SiegelFamilyNumberField.exists_sFam_numberField

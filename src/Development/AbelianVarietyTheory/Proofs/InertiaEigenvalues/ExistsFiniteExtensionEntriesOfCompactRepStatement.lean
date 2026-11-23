@@ -51,4 +51,4 @@ import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 open Formalism.MainNotions.N GlobalTheory.Cong GlobalTheory.PsChar
 
 theorem _root_.GlobalTheory.T.exists_finiteExtension_entries_of_compact_rep : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [CompactSpace Γ] (a : ℕ) (r : Γ →* GL (Fin a) (PadicAlgCl l)), Continuous r → ∃ L : IntermediateField ℚ_[l] (PadicAlgCl l), FiniteDimensional ℚ_[l] L ∧ ∀ g i j, ((r g : GL (Fin a) (PadicAlgCl l)) : Matrix (Fin a) (Fin a) (PadicAlgCl l)) i j ∈ L := by
-  first | exact @GlobalTheory.CompactRepField.exists_finiteDimensional_entries_mem_of_continuous | exact GlobalTheory.CompactRepField.exists_finiteDimensional_entries_mem_of_continuous | (intros; apply GlobalTheory.CompactRepField.exists_finiteDimensional_entries_mem_of_continuous <;> assumption)
+  first | exact @GlobalTheory.CompactRepField.exists_finiteDimensional_entries_mem_of_continuous

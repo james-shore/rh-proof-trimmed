@@ -48,4 +48,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.adicCompletion_distribHaarChar_eq_absHalf_sq : ∀ (E : Type) [Field E] [NumberField E] (w : Pl E) (x : w.adicCompletion E) (hx : x ≠ 0), (((MeasureTheory.distribHaarChar (w.adicCompletion E) (Units.mk0 x hx) : NNReal) : ℝ) : ℂ) = absHalf w x ^ 2 := by
-  first | exact @GlobalTheory.ModAbs.haar_eq_absHalf_sq | exact GlobalTheory.ModAbs.haar_eq_absHalf_sq | (intros; apply GlobalTheory.ModAbs.haar_eq_absHalf_sq <;> assumption)
+  first | exact @GlobalTheory.ModAbs.haar_eq_absHalf_sq

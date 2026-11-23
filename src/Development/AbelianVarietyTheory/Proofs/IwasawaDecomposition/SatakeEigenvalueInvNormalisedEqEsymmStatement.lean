@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.satakeEigenvalue_inv_normalised_eq_esymm : ∀ (q 
     (q : ℂ) ^ (k * (k - 1) / 2) * (((q : ℂ) ^ (k * (n - 1)))⁻¹ *
         GlobalTheory.LFun.satEig q n ((Finset.univ.val.map α).map (·⁻¹)) k) =
       ((Finset.univ.val.map fun i => ((α i : ℂ))⁻¹).map (· * (q : ℂ) ^ (((1 - (n : ℝ)) / 2 : ℝ) : ℂ))).esymm k := by
-  first | exact @GlobalTheory.SatEigArith.satEig_inv_normalised | exact GlobalTheory.SatEigArith.satEig_inv_normalised | (intros; apply GlobalTheory.SatEigArith.satEig_inv_normalised <;> assumption)
+  first | exact @GlobalTheory.SatEigArith.satEig_inv_normalised

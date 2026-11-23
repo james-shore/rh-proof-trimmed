@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.heisenberg_family_expand_creation_annihilation : �
     ∀ c : W → Matrix (Ix P Q) (Ix R S) ℂ, H c = ∑ j : W × (Ix P Q × Ix R S),
       ((((Real.sqrt (2 * Real.pi) : ℝ) : ℂ) * GlobalTheory.CCRFock.coefM (c j.1 j.2.1 j.2.2) (lineSign j.2.1 j.2.2)) • GlobalTheory.CCRFock.fockM H j +
         (((Real.sqrt (2 * Real.pi) : ℝ) : ℂ) * GlobalTheory.CCRFock.coefD (c j.1 j.2.1 j.2.2) (lineSign j.2.1 j.2.2)) • GlobalTheory.CCRFock.fockD H j) := by
-  first | exact @GlobalTheory.CCRFock.heis_expand | exact GlobalTheory.CCRFock.heis_expand | (intros; apply GlobalTheory.CCRFock.heis_expand <;> assumption)
+  first | exact @GlobalTheory.CCRFock.heis_expand

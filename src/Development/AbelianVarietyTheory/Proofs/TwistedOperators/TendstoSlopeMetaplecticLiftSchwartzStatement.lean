@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.tendsto_slope_metaplecticLift_schwartz : ∀ (l : 
     (∀ f : GlobalTheory.RealWeil.Sch l, HasDerivAt (fun t => om (γ t) (f.toLp 2)) ((GlobalTheory.RealWeil.quad X f).toLp 2) 0) →
     ∀ f : GlobalTheory.RealWeil.Sch l,
       Filter.Tendsto (fun t : ℝ => t⁻¹ • (omS (γ t) f - f)) (nhdsWithin 0 {0}ᶜ) (nhds (GlobalTheory.RealWeil.quad X f)) := by
-  first | exact @GlobalTheory.RealWeil.tendsto_slope_omS_schwartz | exact GlobalTheory.RealWeil.tendsto_slope_omS_schwartz | (intros; apply GlobalTheory.RealWeil.tendsto_slope_omS_schwartz <;> assumption)
+  first | exact @GlobalTheory.RealWeil.tendsto_slope_omS_schwartz

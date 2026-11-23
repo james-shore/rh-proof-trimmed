@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.parameter_size_constraints : ∀ (Ca Cg cb Cw cT C
     2 ≤ large₂.sc.b ∧ 1 ≤ Formalism.HermitianLatticesTheory.vInv D.host.E ∧ 2 * Formalism.HermitianLatticesTheory.vInv D.host.E ≤ large₂.sc.b ∧
     ((D.R.k : ℝ) * large₂.sc.b) ^ 8 ≤ (gS D : ℝ) ∧
     ∀ u : D.what₂.Word, 1 ≤ Tu D u ∧ (Tu D u : ℝ) ≤ large₂.sc.b ^ (Ca * (D.R.m : ℝ)) := by
-  first | exact @GlobalTheory.TypeAsm.pairsPar | exact GlobalTheory.TypeAsm.pairsPar | (intros; apply GlobalTheory.TypeAsm.pairsPar <;> assumption)
+  first | exact @GlobalTheory.TypeAsm.pairsPar

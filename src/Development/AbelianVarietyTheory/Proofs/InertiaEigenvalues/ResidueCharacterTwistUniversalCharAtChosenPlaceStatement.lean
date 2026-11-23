@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.residueCharacter_twist_universalChar_at_chosen_pla
       (((ρ.tw i b k Q (χ.comp (Y.delU i Q M))).resC PP.1 x : ℂˣ) : ℂ) =
         ρ.eOk i b k ((χ (Multiplicative.ofAdd (spread Y i Q M (ρ.ch i)
           (Pi.single PP (Multiplicative.toAdd ((univOf Y i (admissibleConjugatePairPlaces X i Q M) M ρ.rc).kap PP.1 x))))) : (X.Ok i k)ˣ) : X.Ok i k) := by
-  first | exact @GlobalTheory.ResTwist.res_twist_spec | exact GlobalTheory.ResTwist.res_twist_spec | (intros; apply GlobalTheory.ResTwist.res_twist_spec <;> assumption)
+  first | exact @GlobalTheory.ResTwist.res_twist_spec

@@ -383,7 +383,7 @@ theorem inertia_twist [FiniteDimensional LL V] [FiniteDimensional LL W]
     hχ hA hc hI fun b => by simpa using hs b
   · intro g v u
     obtain ⟨v, rfl⟩ := e.surjective v
-    simp [he, WeaklyAdmissibleFiltrations.charRep, smul_smul, mul_comm, mul_left_comm]
+    simp [he, WeaklyAdmissibleFiltrations.charRep, smul_smul, mul_comm]
   · intro v v' hv
     simpa using LinearMap.congr_fun hv 1
 

@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.finitePoints_rowPeriod_conjLevel_fubini : Big fun 
       0 < κ ∧ la.IsHaarMeasure ∧ ν.IsHaarMeasure ∧ ∀ b : GfC (ch.G.V (.grid D.R.m j)),
         ρ.real {r | b⁻¹ * r.1 * b ∈ (latGrp ch.G j).subgroupOf (GfC _)} =
           κ * la.real {n | b⁻¹ * n.1 * b ∈ (latGrp ch.G j).subgroupOf (GfC _)} * ν.real (prSet ch.G j b) := by
-  first | exact @GlobalTheory.CellMass.cell_fubini | exact GlobalTheory.CellMass.cell_fubini | (intros; apply GlobalTheory.CellMass.cell_fubini <;> assumption)
+  first | exact @GlobalTheory.CellMass.cell_fubini

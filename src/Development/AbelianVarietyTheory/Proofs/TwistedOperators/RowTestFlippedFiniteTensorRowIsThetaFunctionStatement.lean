@@ -53,4 +53,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.rowTest_flippedFiniteTensor_row_isThetaFunction : Big fun ch => ∀ t Φ τ, IsFlipFin t ch.S.B ch.rm Φ τ → ∀ d ∈ τ.support, ∀ i, IsThetaFunO ch.W.ψ _ _ (d.1 i) := by
-  first | exact @GlobalTheory.FlipRowTheta.row_isThetaFunO | exact GlobalTheory.FlipRowTheta.row_isThetaFunO | (intros; apply GlobalTheory.FlipRowTheta.row_isThetaFunO <;> assumption)
+  first | exact @GlobalTheory.FlipRowTheta.row_isThetaFunO

@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.contDiffOn_invSet_of_smooth_along_prod_exp : ∀ (
       ∀ y ∈ GlobalTheory.CuspRep.invSet E d, ContDiff ℝ ∞ fun t : Fin k → ℝ =>
         f (GlobalTheory.CuspRep.toL (Matrix.of y * (List.ofFn fun i => NormedSpace.exp (t i • X i)).prod))) →
     ContDiffOn ℝ ∞ f (GlobalTheory.CuspRep.invSet E d) := by
-  first | exact @GlobalTheory.SecondKind.contDiffOn_of_prodExp | exact GlobalTheory.SecondKind.contDiffOn_of_prodExp | (intros; apply GlobalTheory.SecondKind.contDiffOn_of_prodExp <;> assumption)
+  first | exact @GlobalTheory.SecondKind.contDiffOn_of_prodExp

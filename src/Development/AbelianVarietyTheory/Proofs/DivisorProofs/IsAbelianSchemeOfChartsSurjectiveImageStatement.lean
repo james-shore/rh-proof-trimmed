@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.isAbelianScheme_of_charts_surjective_image : ∀ (
     (B : ∀ j, Over (𝒰.X j)) [∀ j, GrpObj (B j)] (ψ : ∀ j, (B j).left ⟶ G.left),
     IsAbelianScheme A → IsCommMonObj G → Surjective Q.left → (∀ j, IsPullback (ψ j) (B j).hom G.hom (𝒰.f j)) →
     (∀ j, IsAbelianScheme (B j)) → IsAbelianScheme G := by
-  first | exact @GlobalTheory.QuotAbelian.isAbelianScheme_of_charts_of_surjective | exact GlobalTheory.QuotAbelian.isAbelianScheme_of_charts_of_surjective | (intros; apply GlobalTheory.QuotAbelian.isAbelianScheme_of_charts_of_surjective <;> assumption)
+  first | exact @GlobalTheory.QuotAbelian.isAbelianScheme_of_charts_of_surjective

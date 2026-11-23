@@ -43,4 +43,4 @@ open NumberField IsDedekindDomain Formalism.L2.Host GlobalTheory.NT GlobalTheory
 open scoped nonZeroDivisors IntermediateField
 
 theorem _root_.GlobalTheory.T.ellipticTorsionPointCoordinates_finite : ∀ (W : WeierstrassCurve ℂ) [W.IsElliptic] (n : ℕ), n ≠ 0 → (torsionCoords W n).Finite := by
-  first | exact @GlobalTheory.finite_torsionCoords | exact GlobalTheory.finite_torsionCoords | (intros; apply GlobalTheory.finite_torsionCoords <;> assumption)
+  first | exact @GlobalTheory.finite_torsionCoords

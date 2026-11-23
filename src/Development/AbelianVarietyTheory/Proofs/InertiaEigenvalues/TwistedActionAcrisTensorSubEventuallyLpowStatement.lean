@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.twistedAction_acrisTensor_sub_eventually_lpow : ∀ {l : ℕ} [Fact l.Prime] {O K : Type} [CommRing O] [Algebra ℤ_[l] O] [Field K] [Algebra ℚ_[l] K] [Algebra O K] [TopologicalSpace K] {G : Type} [Group G] [TopologicalSpace G] (s : G →* GQ l), Continuous s → ∀ (T : LocLat G ℚ_[l] K O), (∀ t ∈ T.L.T, ∀ m : ℕ, ∀ᶠ g in nhds (1 : G), ∃ t' ∈ T.L.T, T.ρ g t - t = ((l : O) ^ m) • t') → ∀ (β : TW (GlobalTheory.BKReal.OCr l O) T) (m : ℕ), ∀ᶠ g in nhds (1 : G), ∃ γ : TW (GlobalTheory.BKReal.OCr l O) T, TWact (GlobalTheory.BKReal.galOCr O (s g)) T g β - β = ((l : O) ^ m) • γ := by
-  first | exact @GlobalTheory.OCrCont.twact_sub_smul_eventually | exact GlobalTheory.OCrCont.twact_sub_smul_eventually | (intros; apply GlobalTheory.OCrCont.twact_sub_smul_eventually <;> assumption)
+  first | exact @GlobalTheory.OCrCont.twact_sub_smul_eventually

@@ -45,4 +45,4 @@ open Formalism Formalism.MainNotions Formalism.BasicNotions Formalism.BasicNotio
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.comparisonMap_intertwines_groupAlgebra_action : ∀ (D : D7) (i : D.nd.Loc) (S : Sec D i), OnMtPreservesTypeV D → ∀ (c : MonoidAlgebra ℂ (G0g D.nd)) (x y : D.what₂.MtL (D.nd.mu i) (D.nd.j i)), D.what₂.jMt _ _ y = D.ntypes.onMt (D.nd.mu i) (D.nd.j i) c (D.what₂.jMt _ _ x) → S.Φ (D.nd.prMt i y) = D.ntypes.onMt (D.nd.mu i) (D.nd.j i) c (S.Φ (D.nd.prMt i x)) := by
-  first | exact @GlobalTheory.PendOf.CenKey.phi_onMt | exact GlobalTheory.PendOf.CenKey.phi_onMt | (intros; apply GlobalTheory.PendOf.CenKey.phi_onMt <;> assumption)
+  first | exact @GlobalTheory.PendOf.CenKey.phi_onMt

@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.cover_lift_through_normal : ∀ (F : Type) [Field 
     [IsIntegral G] [GlobalTheory.IsNormalScheme G] (g : G ⟶ V.G) [IsFinite g] [IsDominant g] (k : G ⟶ V₂.G),
     k ≫ V₂.π = g ≫ V.π →
     ∃ (W : Mean4O.Cover Y) (a : W.X ⟶ V.X) (k' : W.G ⟶ V₂.G), a ≫ V.p = W.p ∧ Lies W V a ∧ k' ≫ V₂.π = W.π := by
-  first | exact @GlobalTheory.Mean4O.NormCoverFin.exists_cover | exact GlobalTheory.Mean4O.NormCoverFin.exists_cover | (intros; apply GlobalTheory.Mean4O.NormCoverFin.exists_cover <;> assumption)
+  first | exact @GlobalTheory.Mean4O.NormCoverFin.exists_cover

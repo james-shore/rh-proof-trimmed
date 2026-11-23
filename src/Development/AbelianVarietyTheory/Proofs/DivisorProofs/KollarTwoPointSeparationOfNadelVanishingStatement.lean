@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.kollarTwoPointSeparation_of_nadelVanishing : GlobalTheory.Published.Principalisation → GlobalTheory.Published.NadelVanishingPair → GlobalTheory.Published.NefNumerics → GlobalTheory.Published.PointSeparationPair := by
-  first | exact @GlobalTheory.pointSeparationPair_of_vanishing | exact GlobalTheory.pointSeparationPair_of_vanishing | (intros; apply GlobalTheory.pointSeparationPair_of_vanishing <;> assumption)
+  first | exact @GlobalTheory.pointSeparationPair_of_vanishing

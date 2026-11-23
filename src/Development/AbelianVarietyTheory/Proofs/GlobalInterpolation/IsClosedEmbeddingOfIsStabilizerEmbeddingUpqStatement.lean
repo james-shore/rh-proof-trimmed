@@ -48,4 +48,4 @@ open NumberField MeasureTheory Matrix Topology Formalism.BasicNotions Formalism.
 open scoped ENNReal TensorProduct
 
 theorem _root_.GlobalTheory.T.isClosedEmbedding_of_isStabilizerEmbeddingUpq : ∀ (P Q P' Q' : ℕ), P' + Q' + 1 = P + Q → ∀ (x₀ : Fin P ⊕ Fin Q → ℂ), star x₀ ⬝ᵥ Formalism.UG.Jpq P Q *ᵥ x₀ ≠ 0 → ∀ j : UpqT P' Q' →* UpqT P Q, IsStabEmb x₀ j → IsClosedEmbedding j := by
-  first | exact @GlobalTheory.StabEmbClosed.isClosedEmbedding_of_isStabEmb | exact GlobalTheory.StabEmbClosed.isClosedEmbedding_of_isStabEmb | (intros; apply GlobalTheory.StabEmbClosed.isClosedEmbedding_of_isStabEmb <;> assumption)
+  first | exact @GlobalTheory.StabEmbClosed.isClosedEmbedding_of_isStabEmb

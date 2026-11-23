@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_siegel_fock_form_of_complex_structure : ∀
     (∀ w, w ≠ 0 → 0 < β w.1 (J w).2 - β (J w).1 w.2) →
     ∃ (Q : V →L[ℝ] V →L[ℝ] ℂ) (c : ℝ), 0 < c ∧ (∀ x, c * ‖x‖ ^ 2 ≤ (Q x x).re) ∧ (∀ x y, Q x y = Q y x) ∧
       ∀ w x, Q x (J w).1 + (Real.pi : ℂ) * Complex.I * (β x (J w).2 : ℂ) = Complex.I * (Q x w.1 + (Real.pi : ℂ) * Complex.I * (β x w.2 : ℂ)) := by
-  first | exact @GlobalTheory.siegel_fock_exists | exact GlobalTheory.siegel_fock_exists | (intros; apply GlobalTheory.siegel_fock_exists <;> assumption)
+  first | exact @GlobalTheory.siegel_fock_exists

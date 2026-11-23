@@ -47,4 +47,4 @@ open Formalism.L2.Th1.D (F1 F2 OwOK TrDual addC thetaInZ sumE)
 open Formalism.InvariantFactorPaths.G7 (UnrOK IsLawOfLog cob)
 
 theorem _root_.GlobalTheory.T.kvalGe_orbitGainWithoutOperator : ∀ (Lc : product_zeroth_first_parts.Loc) (ep : ℂ_[Lc.l]) (be : MvPowerSeries (ZMod Lc.d) ℂ_[Lc.l]), ‖ep‖ = 1 → BeStd Lc.l Lc.d be → OrbitPlaces.OrbitThetaExpansion Lc ep (-1) be → product_zeroth_first_parts.KvalGe Lc.N0 Lc.N1 Lc.l Lc.nu Lc.Th (gainA Lc) := by
-  first | exact @GlobalTheory.KerGaussA.kvalGe_gainA | exact GlobalTheory.KerGaussA.kvalGe_gainA | (intros; apply GlobalTheory.KerGaussA.kvalGe_gainA <;> assumption)
+  first | exact @GlobalTheory.KerGaussA.kvalGe_gainA

@@ -53,4 +53,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.disjoint_Pg_Q_of_core : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Hk3.Core R F → ∀ t : T, Disjoint R.Pg (R.Q t) := by
-  first | exact @GlobalTheory.TwistPlaces.typePlaces_disjoint_twistPlaces | exact GlobalTheory.TwistPlaces.typePlaces_disjoint_twistPlaces | (intros; apply GlobalTheory.TwistPlaces.typePlaces_disjoint_twistPlaces <;> assumption)
+  first | exact @GlobalTheory.TwistPlaces.typePlaces_disjoint_twistPlaces

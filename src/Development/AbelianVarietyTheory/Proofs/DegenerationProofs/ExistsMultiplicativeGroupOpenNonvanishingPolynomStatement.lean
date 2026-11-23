@@ -53,4 +53,4 @@ open GlobalTheory.SS
 open GlobalTheory.SS.ArcInf
 
 theorem _root_.GlobalTheory.T.exists_multiplicativeGroup_open_nonvanishing_polynomial : ∀ (k : Type) [Field k] (q : Polynomial k), ∃ jj : algOver k (Localization.Away (Polynomial.X * q)) ⟶ Gm (Sp k), IsOpenImmersion jj.left ∧ ∀ x y z : Localization.Away (Polynomial.X * q) →ₐ[k] k, (algOverHom x ≫ jj) * (algOverHom y ≫ jj) = algOverHom z ≫ jj → x (algebraMap (Polynomial k) _ Polynomial.X) * y (algebraMap (Polynomial k) _ Polynomial.X) = z (algebraMap (Polynomial k) _ Polynomial.X) := by
-  first | exact @GlobalTheory.SS.TorOpen.exists_open_part | exact GlobalTheory.SS.TorOpen.exists_open_part | (intros; apply GlobalTheory.SS.TorOpen.exists_open_part <;> assumption)
+  first | exact @GlobalTheory.SS.TorOpen.exists_open_part

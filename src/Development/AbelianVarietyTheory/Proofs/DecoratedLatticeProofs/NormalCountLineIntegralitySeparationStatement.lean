@@ -55,4 +55,4 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.normalCount_line_integrality_separation : Formalism.L2.SG.NGCut.NormalVectorPairings.NmlLine ∧ Formalism.L2.SG.NGCut.NormalVectorPairings.NmlInt ∧ Formalism.L2.SG.NGCut.NormalVectorPairings.NmlSep := by
-  first | exact @GlobalTheory.Core.One.normalCountSteps | exact GlobalTheory.Core.One.normalCountSteps | (intros; apply GlobalTheory.Core.One.normalCountSteps <;> assumption)
+  first | exact @GlobalTheory.Core.One.normalCountSteps

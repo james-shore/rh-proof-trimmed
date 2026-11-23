@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.doubleStepSmallPairsValueAllGluedSplitPlaces_proof : ∀ D : D7, GlobalTheory.FinPl.VertexAll D := by
-  first | exact @GlobalTheory.FinPl.vertexAll | exact GlobalTheory.FinPl.vertexAll | (intros; apply GlobalTheory.FinPl.vertexAll <;> assumption)
+  first | exact @GlobalTheory.FinPl.vertexAll

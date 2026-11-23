@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.chartPointFrames_move_rationalIsometry : UnderTie 
       ∀ g : UF t.X.E (D.R.N i), seamGL t.seam g.1 = A.crd i hi * γ * (A.crd i hi)⁻¹ →
       ∀ p, IsPtAd A a i hi β x p → ∀ P : SB t μ, NearAt (seamP t.seam P.1) ((t.cst μ).D P)
         (ratA D.host.F (A.crd i hi) * x₁.1 * ratA D.host.F (A.fb i hi β P)) (seamGL t.seam (frsF t.sel (t.tup μ) (((g, 1, 1) : UF t.X.E (D.R.N i) × GLG (E := t.X.E) (n := D.R.N i) (SG := t.Pr.vGs) × GLQ t.X.E (D.R.N i) (QE t.sel (t.tup μ : Chr t.X.F t.X.E t.X.K))) • p) P))) := by
-  first | exact @GlobalTheory.RatFrame.frame_rat | exact GlobalTheory.RatFrame.frame_rat | (intros; apply GlobalTheory.RatFrame.frame_rat <;> assumption)
+  first | exact @GlobalTheory.RatFrame.frame_rat

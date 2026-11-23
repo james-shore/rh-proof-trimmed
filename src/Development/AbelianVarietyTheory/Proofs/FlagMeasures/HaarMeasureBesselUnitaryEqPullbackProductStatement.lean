@@ -46,4 +46,4 @@ open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotio
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.haarMeasure_besselUnitary_eq_pullback_product : ∀ (D : D7) (X : HidaSetting D) (C : Choice X 1) (hB : WuBessel C), GoodLoc C hB → ∀ u : D.what₂.Word, ∃ c : ℝ≥0∞, c ≠ 0 ∧ c ≠ ⊤ ∧ X.muH u Set.univ = c ∧ ∀ A : Set X.B.I.Ginf, MeasurableSet A → X.muH u A = c * Measure.pi (C.muW u) (trI C '' A) := by
-  first | exact @GlobalTheory.PullHaarW.pullH | exact GlobalTheory.PullHaarW.pullH | (intros; apply GlobalTheory.PullHaarW.pullH <;> assumption)
+  first | exact @GlobalTheory.PullHaarW.pullH

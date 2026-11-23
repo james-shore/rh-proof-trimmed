@@ -72,4 +72,4 @@ theorem _root_.GlobalTheory.T.one_parameter_weil_operator_derivative : ∀ {F E 
       ∀ (t : ℝ) (p q : Fin a × Fin (a + a') → mixedEmbedding.mixedSpace F) (f g : SInf F (Fin a × Fin (a + a'))),
         ⇑g = GlobalTheory.GaussLine.heisFun (GlobalTheory.GaussLine.pairInf F (Fin a × Fin (a + a'))) p q ⇑f →
         ⇑(T t g) = GlobalTheory.GaussLine.heisFun (GlobalTheory.GaussLine.pairInf F (Fin a × Fin (a + a'))) (A t (p, q)).1 (A t (p, q)).2 ⇑(T t f) := by
-  first | exact @GlobalTheory.ArchLineAct.intertwine | exact GlobalTheory.ArchLineAct.intertwine | (intros; apply GlobalTheory.ArchLineAct.intertwine <;> assumption)
+  first | exact @GlobalTheory.ArchLineAct.intertwine

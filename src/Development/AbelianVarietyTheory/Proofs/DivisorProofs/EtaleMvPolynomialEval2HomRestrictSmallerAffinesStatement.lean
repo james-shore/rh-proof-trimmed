@@ -62,4 +62,4 @@ open scoped Classical
 
 
 theorem _root_.GlobalTheory.T.etale_mvPolynomial_eval2Hom_restrict_smaller_affines : ∀ (X Y : Scheme.{0}) (q : Y ⟶ X) (ι : Type) (U U' : X.Opens) (hU' : U' ≤ U), IsAffineOpen U → IsAffineOpen U' → ∀ (W W' : Y.Opens) (hW' : W' ≤ W), IsAffineOpen W → IsAffineOpen W' → ∀ (hWU : W ≤ q ⁻¹ᵁ U) (hW'U' : W' ≤ q ⁻¹ᵁ U') (N : ι → Γ(Y, W)), (MvPolynomial.eval₂Hom (q.appLE U W hWU).hom N).Etale → (MvPolynomial.eval₂Hom (q.appLE U' W' hW'U').hom (fun a ↦ resG Y hW' (N a))).Etale := by
-  first | exact @GlobalTheory.EtaleRestrict.etale_eval₂_res | exact GlobalTheory.EtaleRestrict.etale_eval₂_res | (intros; apply GlobalTheory.EtaleRestrict.etale_eval₂_res <;> assumption)
+  first | exact @GlobalTheory.EtaleRestrict.etale_eval₂_res

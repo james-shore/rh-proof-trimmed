@@ -187,7 +187,6 @@ lemma compress_of_formula (hF : FormulaGap) {ε : Fin n → Bool} {lam : Fin n �
       Phi lam ((toMK k')ᴴ * NormedSpace.exp X * toMK k') :=
     Complex.ext (by simp [Complex.star_def]) (by simp [Complex.star_def, him])
   rw [hreal]
-  try rfl
 
 lemma two_mul_lt_gap {ε : Fin n → Bool} {lam : Fin n → ℝ} {h : ℝ} (hgap : GapAtLeast ε lam h)
     (hh : 120 * (n : ℝ) * ((rkR ε : ℕ) : ℝ) ^ ((3 : ℝ) / 2) ≤ h) (a b : Fin n) (hab : ε a ≠ ε b) :

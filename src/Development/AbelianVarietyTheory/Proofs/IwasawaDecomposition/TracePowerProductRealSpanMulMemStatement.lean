@@ -47,4 +47,4 @@ open MvPolynomial GlobalTheory.FlagBundle GlobalTheory.GoodMetric GlobalTheory.G
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.tracePowerProductRealSpan_mul_mem : ∀ {ι : Type} (m : ι → ℕ) (S : Type) [CommRing S] [Algebra ℝ S] (w w' : ℕ) (f g : Mat m S → S), f ∈ TrSpan m w S → g ∈ TrSpan m w' S → f * g ∈ TrSpan m (w + w') S := by
-  first | exact @GlobalTheory.GoodMetric.ChernSpan.trSpan_mul | exact GlobalTheory.GoodMetric.ChernSpan.trSpan_mul | (intros; apply GlobalTheory.GoodMetric.ChernSpan.trSpan_mul <;> assumption)
+  first | exact @GlobalTheory.GoodMetric.ChernSpan.trSpan_mul

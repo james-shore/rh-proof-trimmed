@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.inertPlace_vacuum_isLocalVacuum_chart : ∀ (F E :
         (m : (Fin a' × Fin (a + a') → Fv F v) → ℂ) ((ρ x m : SB (Fin a' × Fin (a + a') → Fv F v)) : (Fin a' × Fin (a + a') → Fv F v) → ℂ)) →
     ∃ s : SB (Fin a' × Fin (a + a') → Fv F v), (s : (Fin a' × Fin (a + a') → Fv F v) → ℂ) = G.M'.vac v ∧ s ≠ 0 ∧
       GlobalTheory.Hk3.LocVac ρ s := by
-  first | exact @GlobalTheory.InertBridgeVac.vac_locVac | exact GlobalTheory.InertBridgeVac.vac_locVac | (intros; apply GlobalTheory.InertBridgeVac.vac_locVac <;> assumption)
+  first | exact @GlobalTheory.InertBridgeVac.vac_locVac

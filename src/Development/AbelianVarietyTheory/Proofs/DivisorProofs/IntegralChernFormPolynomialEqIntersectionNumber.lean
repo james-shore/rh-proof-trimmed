@@ -81,7 +81,7 @@ theorem integral_evalF_c1W_eq_interPoly : GlobalTheory.Published.ChernDegree →
       evalF (atlas X σ) (fun a => c1W (ψ a)) (t • G) =
         (t : ℂ) • evalF (atlas X σ) (fun a => c1W (ψ a)) G := by
     funext x
-    simp [evalF, fld, MvPolynomial.smul_eq_C_mul, Algebra.smul_def]
+    simp [evalF, fld, Algebra.smul_def]
   have hadd : ∀ G₁ G₂ : MvPolynomial κ ℝ,
       (atlas X σ).integral (evalF (atlas X σ) (fun a => c1W (ψ a)) (G₁ + G₂)) =
         (atlas X σ).integral (evalF (atlas X σ) (fun a => c1W (ψ a)) G₁) +

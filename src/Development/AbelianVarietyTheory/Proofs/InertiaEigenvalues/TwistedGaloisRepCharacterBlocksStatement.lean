@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism Formalism.MainNotions Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module GlobalTheory.Pass
 
 theorem _root_.GlobalTheory.T.twisted_galois_rep_character_blocks : StepSub := by
-  first | exact @GlobalTheory.Pass.stepSub_holds | exact GlobalTheory.Pass.stepSub_holds | (intros; apply GlobalTheory.Pass.stepSub_holds <;> assumption)
+  first | exact @GlobalTheory.Pass.stepSub_holds

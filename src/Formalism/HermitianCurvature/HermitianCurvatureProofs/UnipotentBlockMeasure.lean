@@ -213,7 +213,6 @@ theorem step1 (L : LocalNG Cl Nu) (hU : L.Unfold) (S : Finset (Cl × Nu)) :
   · intro x d h
     unfold LocalNG.a2
     simp only [h]
-    try rfl
 
 theorem core (hS4 : Formalism.HermitianLatticeCounting.S4.Step4) (L : LocalNG Cl Nu) (κ : ℕ) (Xp Yp : L.P → ℝ)
     (hX : ∀ p, 1 ≤ Xp p) (hY : ∀ p, 1 ≤ Yp p) (hb : L.Basic)
@@ -239,7 +238,6 @@ theorem core (hS4 : Formalism.HermitianLatticeCounting.S4.Step4) (L : LocalNG Cl
   · unfold LocalNG.ampNG
     first
     | rfl
-    | congr!
   · simp only [Finset.prod_const_one, one_pow, mul_one, Finset.prod_mul_distrib] <;> ring
 
 theorem pow_card_eq {P : Type} [Fintype P] (Om : Finset P) (a : ℝ) :
@@ -918,7 +916,7 @@ theorem occ_of_ne {τ Rw I H H₁ : Type} [Fintype I] [NormedAddCommGroup H] [In
     · rw [Set.indicator_of_mem ht]
       by_contra hv
       exact hno ⟨t, ht.1, hv, ht.2.1, ht.2.2.1, ht.2.2.2⟩
-    · simp [Set.indicator_apply, ht]
+    · simp [ht]
   unfold Formalism.FourierDecayAlt.PN.grp
   simp only [hz, tsum_zero]
 

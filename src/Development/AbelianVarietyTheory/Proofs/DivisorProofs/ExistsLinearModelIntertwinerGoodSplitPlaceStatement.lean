@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_linearModel_intertwiner_goodSplitPlace : �
     (X : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Chars D.host.F D.host.E) (om : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep D.sp.cm.sig Γ.V Γ.W)
     (om' : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep D.sp.cm.sig Γ.V' Γ.W) (hTr : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsTriple Bs Γ X om om'),
     ∃ ι : ((Fin a' × Fin (a + a') → Fv D.host.F Bs.v₁) → ℂ) →ₗ[ℂ] (Matrix (Fin a') (Fin (a + a')) (Fv D.host.F Bs.v₁) → ℂ), Γ.M'.IsLinBar Bs.ψ Bs.τ₁ 1 1 ι := by
-  first | exact @GlobalTheory.LinBarExist.exists_isLinBar | exact GlobalTheory.LinBarExist.exists_isLinBar | (intros; apply GlobalTheory.LinBarExist.exists_isLinBar <;> assumption)
+  first | exact @GlobalTheory.LinBarExist.exists_isLinBar

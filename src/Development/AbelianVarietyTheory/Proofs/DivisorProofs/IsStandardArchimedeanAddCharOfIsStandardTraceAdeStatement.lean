@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 
 theorem _root_.GlobalTheory.T.isStandardArchimedeanAddChar_of_isStandardTraceAdelic : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsStd ψ → GlobalTheory.WeilL2Words.IsStdInf F ψ := by
-  first | exact @GlobalTheory.WeilL2Words.StdArch.isStdInf_of_isStd | exact GlobalTheory.WeilL2Words.StdArch.isStdInf_of_isStd | (intros; apply GlobalTheory.WeilL2Words.StdArch.isStdInf_of_isStd <;> assumption)
+  first | exact @GlobalTheory.WeilL2Words.StdArch.isStdInf_of_isStd

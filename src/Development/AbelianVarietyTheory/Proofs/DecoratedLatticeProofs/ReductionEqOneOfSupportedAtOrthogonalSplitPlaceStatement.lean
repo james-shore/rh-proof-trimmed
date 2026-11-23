@@ -47,4 +47,4 @@ open scoped TensorProduct Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.reduction_eq_one_of_supportedAt_orthogonal_splitPlace : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (q : GlobalTheory.FinPl.SplitPt D k) (PP : Pl D.host.E), Formalism.L2.NTheta.IsIdemAt q.e PP → ∀ (e : Formalism.L2.Theta.AE D), (e + cA D e) * (q.e + cA D q.e) = 0 → ∀ (V : HSp D) (β : GL (Fin V.rank) (Formalism.IndefR.Lev.EAf D)) (g : GA D V), Formalism.L2.Theta.SuppAt e V g → finE V g ∈ St β → redFn β PP (finE V g) = 1 := by
-  first | exact @GlobalTheory.OffPlaceRed.redFn_eq_one_of_suppAt | exact GlobalTheory.OffPlaceRed.redFn_eq_one_of_suppAt | (intros; apply GlobalTheory.OffPlaceRed.redFn_eq_one_of_suppAt <;> assumption)
+  first | exact @GlobalTheory.OffPlaceRed.redFn_eq_one_of_suppAt

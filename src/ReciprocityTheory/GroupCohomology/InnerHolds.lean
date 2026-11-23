@@ -64,7 +64,6 @@ theorem inner_holds : InnerStatement.{u} := by
       M.rho (x 0 * s) (F.1 fun i => (x i.castSucc * s)⁻¹ * (x i.succ * s))
     rw [hu, map_mul]
     first
-    | rw [LinearMap.mul_apply]
     | rw [Module.End.mul_apply]
     congr 1
     congr 1

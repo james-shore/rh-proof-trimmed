@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.chartLevel_component_fixes_standardPair : ∀ {B :
     (p : ι → SplitPt (I.rec7 l Z) k) (β : ∀ j i, Frame (p i) ((I.rec7 l Z).sp.X j) (Fin ((I.rec7 l Z).sp.X j).rank))
     (Q : ∀ j, ι → Pair k (Fin ((I.rec7 l Z).sp.X j).rank)) (L : ∀ j, Lat ((I.rec7 l Z).sp.X j)),
     GlobalTheory.AdForm.StdT I l Z u p β Q L → ∀ j, j ≤ B.R.m → ∀ b, ∀ κ ∈ A.U j b, ∀ i (g : GL (Fin ((I.rec7 l Z).sp.X j).rank) k), κ * ((β j i).gl g)⁻¹ ∈ grpOff ((I.rec7 l Z).sp.X j) (· = (p i).v) → g • Q j i = Q j i := by
-  first | exact @GlobalTheory.AdForm.comp_fixes_stdPair | exact GlobalTheory.AdForm.comp_fixes_stdPair | (intros; apply GlobalTheory.AdForm.comp_fixes_stdPair <;> assumption)
+  first | exact @GlobalTheory.AdForm.comp_fixes_stdPair

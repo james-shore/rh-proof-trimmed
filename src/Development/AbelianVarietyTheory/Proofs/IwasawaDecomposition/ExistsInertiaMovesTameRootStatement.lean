@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.exists_inertia_moves_tame_root : ∀ (W : Type) [C
       IsLocalHom φ ∧ (∀ w, (φ w : F) = algebraMap (FractionRing W) F (algebraMap W (FractionRing W) w)) ∧
       (∀ x ∈ O, O.valuation (σ x - x) < 1) ∧ π ^ k = algebraMap (FractionRing W) F (algebraMap W (FractionRing W) ϖ) ∧
       IsPrimitiveRoot (σ π / π) k := by
-  first | exact @GlobalTheory.InertiaTameRoot.exists_inertia_moves_root | exact GlobalTheory.InertiaTameRoot.exists_inertia_moves_root | (intros; apply GlobalTheory.InertiaTameRoot.exists_inertia_moves_root <;> assumption)
+  first | exact @GlobalTheory.InertiaTameRoot.exists_inertia_moves_root

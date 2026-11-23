@@ -49,4 +49,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_very_ample_power : ∀ (A : Type) [CommRing A] (X : Over (Spec (CommRingCat.of A))) (L : LB X.left), L.IsLB → RelAmple X L → ∀ (K : Type) [CommRing K] [IsNoetherianRing K] (g₀ : A →+* K) (X₀ : Scheme.{0}) (π : X₀ ⟶ X.left) (f₀ : X₀ ⟶ Spec (CommRingCat.of K)), IsPullback π f₀ X.hom (Spec.map (CommRingCat.ofHom g₀)) → ∃ d : ℕ, 1 ≤ d ∧ FirstCohomologyVanishes ((pw L d).pull π) ∧ ∃ (n : ℕ) (s : Fin (n + 1) → LB.Sec (pw L d)), VeryAmpleBy X.hom (pw L d) s := by
-  first | exact @GlobalTheory.Algebraise.exists_veryAmple_h1Zero_pull | exact GlobalTheory.Algebraise.exists_veryAmple_h1Zero_pull | (intros; apply GlobalTheory.Algebraise.exists_veryAmple_h1Zero_pull <;> assumption)
+  first | exact @GlobalTheory.Algebraise.exists_veryAmple_h1Zero_pull

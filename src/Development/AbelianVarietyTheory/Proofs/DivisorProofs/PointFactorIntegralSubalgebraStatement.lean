@@ -51,4 +51,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_factor_through_integral_subalgebra : ∀ (K B E : Type) [Field K] [CommRing B] [CommRing E] [Algebra K B] [Algebra K E] (i : E →ₐ[K] B), Function.Injective i → (∀ b : B, _root_.IsIntegral K b → b ∈ i.range) → ∀ (T : Scheme.{0}) (p : T ⟶ Sp K) [IsFinite p] (t : Sp B ⟶ T), t ≫ p = spMap (algebraMap K B) → ∃ u : Sp E ⟶ T, u ≫ p = spMap (algebraMap K E) ∧ t = spMap i.toRingHom ≫ u := by
-  first | exact @GlobalTheory.point_factor_integral_subalgebra | exact GlobalTheory.point_factor_integral_subalgebra | (intros; apply GlobalTheory.point_factor_integral_subalgebra <;> assumption)
+  first | exact @GlobalTheory.point_factor_integral_subalgebra

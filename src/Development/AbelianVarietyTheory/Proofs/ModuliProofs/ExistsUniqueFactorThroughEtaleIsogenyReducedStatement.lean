@@ -52,4 +52,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.HkFam
 
 theorem _root_.GlobalTheory.T.exists_unique_factor_through_etale_isogeny_reduced : ∀ (S : Scheme.{0}) [IsReduced S] (A B B' : Over S) [GrpObj A] [GrpObj B] [GrpObj B'] (ψ : A ⟶ B) (g : A ⟶ B'), IsAbelianScheme A → IsAbelianScheme B → IsSeparated B'.hom → IsMonHom ψ → IsFinite ψ.left → Etale ψ.left → Surjective ψ.left → IsMonHom g → (∀ (k : Type) [Field k] [IsAlgClosed k] (t : Sp k ⟶ S) (x : Over.mk t ⟶ A), x ≫ ψ = 1 → x ≫ g = 1) → ∃ g' : B ⟶ B', IsMonHom g' ∧ ψ ≫ g' = g ∧ ∀ g'' : B ⟶ B', ψ ≫ g'' = g → g'' = g' := by
-  first | exact @GlobalTheory.HkFactor.exists_unique_factor | exact GlobalTheory.HkFactor.exists_unique_factor | (intros; apply GlobalTheory.HkFactor.exists_unique_factor <;> assumption)
+  first | exact @GlobalTheory.HkFactor.exists_unique_factor

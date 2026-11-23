@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_toric_torsion_sections_uniformisation : ∀
       ∀ (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing R) F] (a : R →+* F) τ h (q : QkPt P.D.toPre F k),
         a = (algebraMap (FractionRing R) F).comp (algebraMap R (FractionRing R)) → q.y = 0 → GlobalTheory.UT.IsTor τ q.g →
         GlobalTheory.FlatTors.IsImage P F k q (s F a τ h).left := by
-  first | exact @GlobalTheory.ToricTorsionSec.main | exact GlobalTheory.ToricTorsionSec.main | (intros; apply GlobalTheory.ToricTorsionSec.main <;> assumption)
+  first | exact @GlobalTheory.ToricTorsionSec.main

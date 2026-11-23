@@ -45,4 +45,4 @@ open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.siegelFamily_classifies_noetherian : ∀ (g n : ℕ), 1 ≤ g → 3 ≤ n → Odd n → ∀ F : SFam g n (zetaAway n), ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (β : cycAway n →+* R) (c : SiegPre g n (zetaAway n) (spMap β)), c.Principal → ∃ f : Sp R ⟶ F.X, f ≫ F.s = spMap β ∧ SiegPB c F.univ f := by
-  first | exact @GlobalTheory.SiegelNoeth.classify_noetherian | exact GlobalTheory.SiegelNoeth.classify_noetherian | (intros; apply GlobalTheory.SiegelNoeth.classify_noetherian <;> assumption)
+  first | exact @GlobalTheory.SiegelNoeth.classify_noetherian

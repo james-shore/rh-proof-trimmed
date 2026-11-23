@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.harrisTaylor_lie_condition_of_basicOpen_cover : �
   (x : Sp R' ⟶ S) (t : Finset R'), Ideal.span (t : Set R') = ⊤ →
   (∀ r ∈ t, LieAt b act ((algebraMap R' (Localization.Away r)).comp β) (spMap (algebraMap R' (Localization.Away r)) ≫ x)) →
   LieAt b act β x := by
-  first | exact @GlobalTheory.UPel.HT.LieLoc.lieAt_of_cover | exact GlobalTheory.UPel.HT.LieLoc.lieAt_of_cover | (intros; apply GlobalTheory.UPel.HT.LieLoc.lieAt_of_cover; all_goals assumption)
+  first | exact @GlobalTheory.UPel.HT.LieLoc.lieAt_of_cover

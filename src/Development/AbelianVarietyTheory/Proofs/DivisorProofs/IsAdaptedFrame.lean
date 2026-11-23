@@ -103,7 +103,7 @@ theorem atPl_mul (w : ι) (L L' : Module.End ℂ (V w)) : atPl w (L * L') = atPl
   funext i
   by_cases h : i = w
   · subst h; simp
-  · simp only [Function.update_of_ne h]; first | rfl | simp [Module.End.mul_eq_comp]
+  · simp only [Function.update_of_ne h]; first | rfl
 
 theorem atPl_comm {w w' : ι} (hw : w ≠ w') (L : Module.End ℂ (V w)) (L' : Module.End ℂ (V w')) :
     atPl w L * atPl w' L' = atPl w' L' * atPl w L := by
@@ -112,9 +112,9 @@ theorem atPl_comm {w w' : ι} (hw : w ≠ w') (L : Module.End ℂ (V w)) (L' : M
   congr 1
   funext i
   by_cases h : i = w
-  · subst h; simp only [Function.update_self, Function.update_of_ne hw]; first | rfl | simp [Module.End.mul_eq_comp]
+  · subst h; simp only [Function.update_self, Function.update_of_ne hw]; first | rfl
   · by_cases h' : i = w'
-    · subst h'; simp only [Function.update_self, Function.update_of_ne h]; first | rfl | simp [Module.End.mul_eq_comp]
+    · subst h'; simp only [Function.update_self, Function.update_of_ne h]; first | rfl
     · simp only [Function.update_of_ne h, Function.update_of_ne h']
 
 end Place

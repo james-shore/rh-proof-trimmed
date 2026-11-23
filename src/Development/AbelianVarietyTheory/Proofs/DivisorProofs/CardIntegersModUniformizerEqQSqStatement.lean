@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.UG GlobalTheory.SatakeWeyl
 
 theorem _root_.GlobalTheory.T.card_integers_mod_uniformizer_eq_q_sq : GlobalTheory.SatakeWeyl.IntIndex := by
-  first | exact @GlobalTheory.SatakeWeyl.intIndex | exact GlobalTheory.SatakeWeyl.intIndex | (intros; apply GlobalTheory.SatakeWeyl.intIndex <;> assumption)
+  first | exact @GlobalTheory.SatakeWeyl.intIndex

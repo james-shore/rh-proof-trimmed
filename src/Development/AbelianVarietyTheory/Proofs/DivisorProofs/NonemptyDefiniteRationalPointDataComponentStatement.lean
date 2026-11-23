@@ -41,4 +41,4 @@ open CategoryTheory NumberField IsDedekindDomain Module Formalism.BasicNotions F
 open scoped Matrix Classical
 
 theorem _root_.GlobalTheory.T.nonempty_definiteRationalPointData_component : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (ξ : ℝ), DefCase U ξ → ∀ Z : Comp Xo c, Nonempty (PtData Z) := by
-  first | exact @GlobalTheory.DefPt.PtExist.main | exact GlobalTheory.DefPt.PtExist.main | (intros; apply GlobalTheory.DefPt.PtExist.main <;> assumption)
+  first | exact @GlobalTheory.DefPt.PtExist.main

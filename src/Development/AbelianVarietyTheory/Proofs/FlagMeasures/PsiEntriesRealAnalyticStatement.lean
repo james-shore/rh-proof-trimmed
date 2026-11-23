@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.Dec
 
 theorem _root_.GlobalTheory.T.psi_entries_real_analytic : PsiAnalytic := by
-  first | exact @GlobalTheory.Dec.psiAnalytic | exact GlobalTheory.Dec.psiAnalytic | (intros; apply GlobalTheory.Dec.psiAnalytic <;> assumption)
+  first | exact @GlobalTheory.Dec.psiAnalytic

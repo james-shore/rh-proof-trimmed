@@ -129,7 +129,6 @@ theorem dsig_eq_dRep (ρ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (X : 
     PI.PhMeasCore.dsig ρ X v = dRep ρ X v := by
   unfold PI.PhMeasCore.dsig dRep
   congr 1
-  try (funext t; rw [Complex.coe_smul])
 
 theorem differentiableAt_orbit {ρ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {v : H}
     (hv : SmoothVec (lieSet ε) ρ v) {X : Matrix (Fin n) (Fin n) ℂ} (hX : X ∈ lieSet ε) :
@@ -258,7 +257,6 @@ theorem cre_I (Y : Matrix (Fin n) (Fin n) ℂ) : cre ε (Complex.I • Y) = -cim
   have h : (1 / 2 : ℂ) * Complex.I = -(1 / (2 * Complex.I)) := by
     field_simp
     try rw [Complex.I_sq]
-    try ring
   rw [smul_add, smul_smul, neg_smul, smul_neg, smul_smul, h, smul_sub]
   module
 

@@ -56,7 +56,6 @@ theorem mono_eq_prod_pow {n : ℕ} (ε : Fin n → Bool) (s : List (Fin n × Fin
   have h := Finset.prod_subset (M := ℂ) (f := fun c => coord ε c k ^ s.count c) (Finset.subset_univ (s.toFinset))
     (fun c _ hc => by rw [List.count_eq_zero_of_not_mem (by simpa using hc), pow_zero])
   convert h using 4
-  all_goals exact lawful_beq_subsingleton _ _
 
 theorem finrank_polyV_le {n : ℕ} (ε : Fin n → Bool) (d : ℕ) :
     Module.finrank ℂ (polyV ε d) ≤ (d + 1) ^ (2 * n ^ 2) := by
@@ -76,7 +75,7 @@ theorem finrank_polyV_le {n : ℕ} (ε : Fin n → Bool) (d : ℕ) :
         Submodule.finrank_mono hle
     _ ≤ Fintype.card ((Fin n × Fin n × Bool) → Fin (d + 1)) := finrank_range_le_card b
     _ = (d + 1) ^ (2 * n ^ 2) := by
-        simp [Fintype.card_fun, Fintype.card_prod, Fintype.card_fin, Fintype.card_bool]
+        simp [Fintype.card_prod, Fintype.card_fin, Fintype.card_bool]
         ring
 
 end GlobalTheory.KFourier

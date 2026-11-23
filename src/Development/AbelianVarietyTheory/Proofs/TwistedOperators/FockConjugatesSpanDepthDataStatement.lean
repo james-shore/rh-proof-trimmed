@@ -46,4 +46,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
 theorem _root_.GlobalTheory.T.fockConjugates_span_depth_data : FockTot := by
-  first | exact @GlobalTheory.ConjDataTotal.fockTot | exact GlobalTheory.ConjDataTotal.fockTot | (intros; apply GlobalTheory.ConjDataTotal.fockTot <;> assumption)
+  first | exact @GlobalTheory.ConjDataTotal.fockTot

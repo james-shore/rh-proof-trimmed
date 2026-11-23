@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_idealSheafData_of_isClopen_family : ∀ (Z 
       (F U).map (Z.presheaf.map (homOfLE (Z.basicOpen_le f)).op).hom = F (Z.affineBasicOpen f)) →
     ∃ J : Z.IdealSheafData, (∀ U : Z.affineOpens, (U : Set Z) ⊆ W → J.ideal U = F U) ∧
       (J.support : Set Z) ⊆ W := by
-  first | exact @GlobalTheory.ClopenIdealSheaf.exists_idealSheafData_of_isClopen | exact GlobalTheory.ClopenIdealSheaf.exists_idealSheafData_of_isClopen | (intros; apply GlobalTheory.ClopenIdealSheaf.exists_idealSheafData_of_isClopen <;> assumption)
+  first | exact @GlobalTheory.ClopenIdealSheaf.exists_idealSheafData_of_isClopen

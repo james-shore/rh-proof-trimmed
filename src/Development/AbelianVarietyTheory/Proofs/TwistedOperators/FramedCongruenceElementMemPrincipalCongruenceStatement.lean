@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.framedCongruenceElement_mem_principalCongruence : 
   β.IsLat (G.Λ X) (Submodule.pi Set.univ fun _ : n => (1 : Submodule 𝒪[k] k)) → ∀ k₀ : GL n 𝒪[k],
   (∀ i j, (k₀.1 - 1) i j ∈ IsLocalRing.maximalIdeal 𝒪[k] ^ G.pl.depth sc v) →
   β.gl (Matrix.GeneralLinearGroup.map (algebraMap 𝒪[k] k) k₀) ∈ lev G X := by
-  first | exact @GlobalTheory.LevFrame.gl_mem_lev | exact GlobalTheory.LevFrame.gl_mem_lev | (intros; apply GlobalTheory.LevFrame.gl_mem_lev <;> assumption)
+  first | exact @GlobalTheory.LevFrame.gl_mem_lev

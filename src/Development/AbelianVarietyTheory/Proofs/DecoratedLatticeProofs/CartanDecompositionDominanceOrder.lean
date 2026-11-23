@@ -93,11 +93,7 @@ theorem pot_nonneg {N : ℕ} {ν : Fin N → ℤ} (h : ∀ i, 0 ≤ ν i) : 0 �
 theorem pos_iff_lt {N : ℕ} {e : Fin N → ℤ} (ha : Antitone e) (i : Fin N) :
     0 < e i ↔ (i : ℕ) < (Finset.univ.filter fun j => 0 < e j).card := by
   first
-  | exact @_root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card
-  | exact _root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card
   | (apply _root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card ..)
 
 theorem nonneg_of_dom {N : ℕ} {ν e : Fin N → ℤ} (hν : Antitone ν) (he : ∀ i, 0 ≤ e i)

@@ -70,7 +70,7 @@ theorem GlobalTheory.LiftCoker.vPow_mem_imL_add_lPow : ∀ (O K : Type) [CommRin
     have h2 := congrFun hm' τ
     simp only [LinearMap.restrictScalars_apply, BK.Hom.app_apply] at h2
     rw [h2]
-    simp [Submodule.coe_smul, Subalgebra.smul_def]
+    simp [Subalgebra.smul_def]
   have key := GlobalTheory.T.X_pow_mem_map_sup_span_pow_of_frobenius_bound (O := O) l hl2 (PowerSeries.expand l (Fact.out : l.Prime).ne_zero)
     (fun f m => PowerSeries.coeff_expand _ _ f) a e (H + η) b (fun τ => colon O K (F.mat τ)) hb hlb
     (fun τ => ⟨n, Ideal.mem_sup_left (hX τ)⟩)

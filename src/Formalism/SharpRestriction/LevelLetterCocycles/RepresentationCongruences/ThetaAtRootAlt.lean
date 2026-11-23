@@ -82,13 +82,11 @@ theorem root_eq (l : ℕ) [hp : Fact l.Prime] {x₀ y w : O} (hx : x₀ ≠ 0)
     rwa [orderOf_eq_prime hrx hζ1] at h
   have hζu : IsUnit (1 + x₀) := by
     first
-    | exact hprim.isUnit hl0
     | exact hprim.isUnit hl0.ne'
   have hwu : ¬ IsUnit w := (IsLocalRing.mem_maximalIdeal w).1 hw
   obtain ⟨i, hil, hi⟩ : ∃ i < l, (1 + x₀) ^ i = 1 + y := by
     first
     | exact hprim.eq_pow_of_pow_eq_one hry
-    | exact hprim.eq_pow_of_pow_eq_one hry hl0
   rcases i with _ | j
   · exfalso
     have hy0 : y = 0 := by linear_combination -hi
@@ -110,7 +108,6 @@ theorem root_eq (l : ℕ) [hp : Fact l.Prime] {x₀ y w : O} (hx : x₀ ≠ 0)
       obtain ⟨m, -, hm⟩ : ∃ m < l, ((1 + x₀) ^ (j + 1)) ^ m = 1 + x₀ := by
         first
         | exact hprim'.eq_pow_of_pow_eq_one hrx
-        | exact hprim'.eq_pow_of_pow_eq_one hrx hl0
       have e1 := geom_sum_mul ((1 + x₀) ^ (j + 1)) m
       have e2 := geom_sum_mul (1 + x₀) (j + 1)
       rw [hm] at e1
@@ -143,8 +140,6 @@ theorem mem_max (l : ℕ) [hp : Fact l.Prime] (hl : ((l : ℕ) : O) ∈ IsLocalR
   haveI : CharP (IsLocalRing.ResidueField O) l := by
     first
     | exact (CharP.charP_iff_prime_eq_zero hp.out).2 hk
-    | exact ringChar.of_eq ((hp.out.eq_one_or_self_of_dvd _ (ringChar.dvd hk)).resolve_left
-        CharP.ringChar_ne_one)
   have h := congrArg (IsLocalRing.residue O) hroot
   simp only [map_pow, map_add (f := _), map_one] at h
   rw [add_pow_char, one_pow] at h
@@ -170,14 +165,12 @@ theorem decomp {x₀ : O} (hx : x₀ ∈ IsLocalRing.maximalIdeal O) (p : O⟦X�
   have hdeg := hqr.1
   first
   | rw [map_mk hx, PowerSeries.order_X] at hdeg
-  | rw [map_res hx, PowerSeries.order_X] at hdeg
   simp at hdeg
   have hrc : (r : O⟦X⟧) = C (r.coeff 0) := by
     first
     | (have hr0 : r.degree ≤ 0 := by
           first
           | exact Nat.WithBot.lt_one_iff_le_zero.1 hdeg
-          | exact Order.le_of_lt_succ hdeg
        conv_lhs => rw [Polynomial.eq_C_of_degree_le_zero hr0]
        exact Polynomial.coe_C _)
     | (ext n
@@ -214,7 +207,6 @@ theorem uniq {x₀ : O} (hx : x₀ ∈ IsLocalRing.maximalIdeal O) {c : O}
   have hcoef0 : coeff 0 f = 0 := by
     first
     | exact IsHausdorff.haus inferInstance _ hall
-    | exact IsHausdorff.haus' _ hall
   have h0 := congrArg (fun g => coeff 0 g) hf
   simp only [mul_sub, map_sub, PowerSeries.coeff_zero_mul_X, PowerSeries.coeff_mul_C, hcoef0,
     PowerSeries.coeff_zero_C] at h0

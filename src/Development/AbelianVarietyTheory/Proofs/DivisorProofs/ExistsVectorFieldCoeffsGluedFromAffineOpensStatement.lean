@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_vectorField_coeffs_glued_from_affineOpens :
     (∀ V V' : X.Opens, IsAffineOpen V → IsAffineOpen V' → V ≤ W → V' ≤ V →
       ∃! c : Fin n → Γ(X, V'), ∀ f : Γ(X, V), rsT (δ V f) V' = ∑ a, c a * rsT (dd a V f) V') →
     ∃ c : Fin n → Γ(X, W), ∀ O, O ≤ W → ∀ f, δ O f = ∑ a, rsT (c a) O * dd a O f := by
-  first | exact @GlobalTheory.VertCoeffGlue.exists_coeff | exact GlobalTheory.VertCoeffGlue.exists_coeff | (intros; apply GlobalTheory.VertCoeffGlue.exists_coeff <;> assumption)
+  first | exact @GlobalTheory.VertCoeffGlue.exists_coeff

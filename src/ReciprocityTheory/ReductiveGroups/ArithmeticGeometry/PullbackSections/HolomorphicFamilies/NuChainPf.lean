@@ -100,7 +100,7 @@ theorem regUnif_of (hN : NuDataSt) (hT : ThetaNuSt) (hM : MulNuSt) (hF : FinNuSt
     hα₀ hnorm hαc htw
   have hk : 0 < M ^ 2 := pow_pos hM1 2
   have n2 := hF E H V t P hTor ϖ hϖ Q hQ vK hvK tK m w hrig ((M : ℤ) ^ 2) (M ^ 2) (natCast_sq M) hk s₁ F t' U n1
-    (by first | exact hok1 | exact hok2) hsym hact
+    (by first | exact hok2) hsym hact
   exact nuReg E H V t P hTor ϖ hϖ Q hQ vK hvK tK m w hrig (M ^ 2) hk (zCast tK.G (natCast_sq M) F) n2
 
 theorem nuData : NuDataSt := by

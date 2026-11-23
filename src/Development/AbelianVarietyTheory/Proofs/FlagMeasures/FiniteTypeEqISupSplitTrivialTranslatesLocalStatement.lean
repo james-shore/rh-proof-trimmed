@@ -46,4 +46,4 @@ open GlobalTheory.LabPin
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.finiteType_eq_iSup_splitTrivial_translates_local : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (π : NG.FinTyp L n) (s : SplitPlace L) (V : Type) [AddCommGroup V] [Module ℂ V] [Nontrivial V] (T : V →ₗ[ℂ] (GAf L n → ℂ)), Function.Injective T → (∀ a, T a ∈ π.S) → (∀ x : GAf L n, TrivOutside {s.v} x → ∀ a, ∃ b, NG.rt L n x (T a) = T b) → π.S = ⨆ y : {y : GAf L n // TrivOutside {s.v}ᶜ y}, LinearMap.range ((NG.rt L n y.1).comp T) := by
-  first | exact @GlobalTheory.SerSys.finTyp_eq_iSup_rt_local | exact GlobalTheory.SerSys.finTyp_eq_iSup_rt_local | (intros; apply GlobalTheory.SerSys.finTyp_eq_iSup_rt_local <;> assumption)
+  first | exact @GlobalTheory.SerSys.finTyp_eq_iSup_rt_local

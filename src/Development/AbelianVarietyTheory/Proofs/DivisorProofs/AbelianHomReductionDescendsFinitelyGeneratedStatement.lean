@@ -72,4 +72,4 @@ theorem _root_.GlobalTheory.T.abelian_hom_reduction_descends_finitely_generated 
     IsGrpPullback A AS (spMap S.subtype) φA ∧ IsGrpPullback B BS (spMap S.subtype) φB ∧
     IsGrpPullback A₀ AS₀ (spMap ι₀) ψA ∧ IsGrpPullback B₀ BS₀ (spMap ι₀) ψB ∧
     i ≫ φA = ψA ≫ iS ∧ j ≫ φB = ψB ≫ jS ∧ f₀.left ≫ ψB = ψA ≫ fS₀.left := by
-  first | exact @GlobalTheory.AbHomDesc.abelian_hom_reduction_descends | exact GlobalTheory.AbHomDesc.abelian_hom_reduction_descends | (intros; apply GlobalTheory.AbHomDesc.abelian_hom_reduction_descends <;> assumption)
+  first | exact @GlobalTheory.AbHomDesc.abelian_hom_reduction_descends

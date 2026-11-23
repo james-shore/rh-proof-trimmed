@@ -60,4 +60,4 @@ open GlobalTheory.LogPole
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.dvd_derivation_of_mem_span_prod_params' : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [IsRegularLocalRing R] (m : ℕ) (r : Fin m → R), ReciprocityTheory.AnForm.R.FinalTheorems.Rsp R m r → ∀ (J : Finset (Fin m)) (D : Derivation ℤ R R), D (∏ j ∈ J, r j) ∈ Ideal.span {∏ j ∈ J, r j} → ∀ j ∈ J, r j ∣ D (r j) := by
-  first | exact @GlobalTheory.dvd_derivation_of_mem_span_prod_params | exact GlobalTheory.dvd_derivation_of_mem_span_prod_params | (intros; apply GlobalTheory.dvd_derivation_of_mem_span_prod_params <;> assumption)
+  first | exact @GlobalTheory.dvd_derivation_of_mem_span_prod_params

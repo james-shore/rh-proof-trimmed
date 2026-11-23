@@ -51,4 +51,4 @@ open GlobalTheory.Core.Rk.IP
 
 
 theorem _root_.GlobalTheory.T.siegelWeilSection_integrable_and_continuous : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A B : HSp D) (χB : (AE D)ˣ →* Circle) (omh : WRep (dblSp A) B), IsWeilDatumO ψ (dblSp A) B 1 χB omh → ∀ (ν : Measure (WO A B)) (𝓕 : Set (WO A B)), IsCovolOne (ratL B A) ν 𝓕 → ∀ φ, IsThetaFunO ψ (dblSp A) B φ → IntegrableOn (fun w => φ (GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero.lagr A B w)) 𝓕 ν ∧ Continuous (swSec A B omh ν 𝓕 φ) := by
-  first | exact @GlobalTheory.Core.Rk.IP.swSec_integrable_continuous | exact GlobalTheory.Core.Rk.IP.swSec_integrable_continuous | (intros; apply GlobalTheory.Core.Rk.IP.swSec_integrable_continuous <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.IP.swSec_integrable_continuous

@@ -87,7 +87,7 @@ theorem capDet_intertwine {R S M M' : Type*} [CommRing R] [CommRing S] [AddCommG
   refine ofFn_intertwine ψ _ _ (fun k y => ?_) x
   simp only [Formalism.BranchingDeterminantCap.bmF, LinearMap.sub_apply, map_sub, h]
   split_ifs
-  · simp [Module.End.intCast_apply, map_zsmul]
+  · simp [map_zsmul]
   · simp
 
 theorem capDet_dualWeyl_domain (O : Type) [CommRing O] [IsDomain O] [CharZero O] (N : ℕ) (ν : Fin N → ℕ)

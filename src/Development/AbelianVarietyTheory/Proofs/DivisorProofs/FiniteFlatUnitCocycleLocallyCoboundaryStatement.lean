@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.finiteFlat_unitCocycle_locally_coboundary : ∀ {X
     ∀ y ∈ V, ∃ V' : Y.Opens, V' ≤ V ∧ y ∈ V' ∧ ∃ u : Γ(X, f ⁻¹ᵁ V')ˣ,
       ∀ z : ↥(pullback f f), f (pullback.fst f f z) ∈ V' →
         gm (pullback.fst f f) z _ u * gm (𝟙 _) z _ c = gm (pullback.snd f f) z _ u := by
-  first | exact @GlobalTheory.LBDescent.coboundary_locally_of_cocycle | exact GlobalTheory.LBDescent.coboundary_locally_of_cocycle | (intros; apply GlobalTheory.LBDescent.coboundary_locally_of_cocycle <;> assumption)
+  first | exact @GlobalTheory.LBDescent.coboundary_locally_of_cocycle

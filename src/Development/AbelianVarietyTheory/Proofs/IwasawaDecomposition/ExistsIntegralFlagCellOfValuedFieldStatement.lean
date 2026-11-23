@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestrictio
 open Formalism.MainNotions.DIV.Cons (intO)
 
 theorem _root_.GlobalTheory.T.exists_integral_flagCell_of_valuedField : ∀ (T : Type) (m : T → ℕ) (K : Type) [Field K] (A : ValuationSubring K) (M : ℕ) (c u : Let m → Fin (M + 1) → K), InBlock c u → (∀ τ, LinearIndependent K fun j : Fin (m τ) => u ⟨τ, j⟩) → ∃ (w : Pm m) (x : CellVar m → K) (d : Let m → K), (∀ v, x v ∈ A) ∧ (∀ z, d z ≠ 0) ∧ Tri (cellVec c w x) u d := by
-  first | exact @GlobalTheory.FlagEmb.exists_integral_cell | exact GlobalTheory.FlagEmb.exists_integral_cell | (intros; apply GlobalTheory.FlagEmb.exists_integral_cell <;> assumption)
+  first | exact @GlobalTheory.FlagEmb.exists_integral_cell

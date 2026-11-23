@@ -78,7 +78,7 @@ theorem SliceMassFinite.exists_projClosure {n e : ℕ} (I : Ideal (MvPolynomial 
     have h00 := hW.isHomog _ (Ideal.Quotient.eq_zero_iff_mem.mp h0) 0
     rw [homogeneousComponent_zero] at h00
     have hc : AddMonoidAlgebra.coeff (linForm ℓ - 1) 0 = -1 := by
-      simp [linForm, coeff_sum, coeff_C_mul, coeff_X]
+      simp [linForm, coeff_C_mul, coeff_X]
     rw [hc, map_neg, map_one, Ideal.neg_mem_iff] at h00
     exact (Ideal.eq_top_iff_one W).mpr h00
   have h1 := ringKrullDim_quotient_succ_le_of_nonZeroDivisor hx

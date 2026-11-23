@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.unitNormVectors_one_orbit_selfDualLattice_split : ∀ D : D7, GlobalTheory.FinPl.OrbitSplit D := by
-  first | exact @GlobalTheory.FinPl.SplitOrbit.orbitSplit | exact GlobalTheory.FinPl.SplitOrbit.orbitSplit | (intros; apply GlobalTheory.FinPl.SplitOrbit.orbitSplit <;> assumption)
+  first | exact @GlobalTheory.FinPl.SplitOrbit.orbitSplit

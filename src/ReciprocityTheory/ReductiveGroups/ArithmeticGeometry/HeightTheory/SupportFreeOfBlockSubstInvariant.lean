@@ -122,7 +122,6 @@ theorem sigF_alg (b : Fin (D + 1)) (u : Kˣ) (g : KTp K D N) :
       algebraMap (KTp K D N) (KTf K D N) (sigP b u g) := by
   first
   | exact IsFractionRing.ringEquivOfRingEquiv_algebraMap _ _
-  | simp [sigF, IsFractionRing.ringEquivOfRingEquiv_algebraMap]
 
 theorem one_block (b : Fin (D + 1)) (z : KTf K D N)
     (hz : ∀ u : Kˣ, sigF (K := K) (D := D) (N := N) b u z = z)

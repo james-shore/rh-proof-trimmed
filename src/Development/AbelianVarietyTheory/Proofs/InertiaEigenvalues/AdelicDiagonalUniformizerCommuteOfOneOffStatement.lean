@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.adelicDiagonalUniformizer_commute_of_one_off : ∀
     (ϖ : ∀ v : HeightOneSpectrum (𝓞 E), (v.adicCompletion E)ˣ) (l : GlobalTheory.CellDec.abelian₂ E n S) (p : GA E n),
     (∀ w ∉ S, Matrix.GeneralLinearGroup.map ((pLoc E w).comp (pFin E)) p = 1) →
     p * GlobalTheory.CellDec.tl n ϖ l.1 = GlobalTheory.CellDec.tl n ϖ l.1 * p := by
-  first | exact @GlobalTheory.CellDec.TlComm.tl_commute_of_one_off | exact GlobalTheory.CellDec.TlComm.tl_commute_of_one_off | (intros; apply GlobalTheory.CellDec.TlComm.tl_commute_of_one_off <;> assumption)
+  first | exact @GlobalTheory.CellDec.TlComm.tl_commute_of_one_off

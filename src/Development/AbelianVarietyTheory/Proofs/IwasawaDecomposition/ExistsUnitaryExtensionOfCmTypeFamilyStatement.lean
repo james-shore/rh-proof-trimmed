@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_unitary_extension_of_cmType_family : ∀ (L
     (emb : ι → L →+* K), GlobalTheory.AlgWtF.CMDist emb → ∀ g : ι → GL (Fin n) K, ∃ B : (L →+* K) → GL (Fin n) K,
     (∀ σ : L →+* K, ((B (σ.comp (IsCMField.complexConj L : L →+* L)) : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) =
         Matrix.transpose (((B σ)⁻¹ : GL (Fin n) K) : Matrix (Fin n) (Fin n) K)) ∧ ∀ τ, B (emb τ) = g τ := by
-  first | exact @GlobalTheory.cmType_family_extend | exact GlobalTheory.cmType_family_extend | (intros; apply GlobalTheory.cmType_family_extend <;> assumption)
+  first | exact @GlobalTheory.cmType_family_extend

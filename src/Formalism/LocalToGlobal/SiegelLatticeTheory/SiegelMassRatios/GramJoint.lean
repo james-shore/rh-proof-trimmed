@@ -137,12 +137,11 @@ theorem hT_fvec (F : FlagG S r T) (i j : Fin (r + 1)) : S.hT (F.fvec i) (F.fvec 
     | cast j =>
       have h1 : S.hT F.z (F.e j) = 0 := by
         first
-          | rw [← S.herm (F.e j) F.z, F.z_orth j, map_zero]
           | rw [← S.herm.eq (F.e j) F.z, F.z_orth j, map_zero]
       simp [FlagG.fvec, TF, h1, Matrix.diagonal_apply_ne _ (hne j).symm]
   | cast i =>
     induction j using Fin.lastCases with
-    | last => simp [FlagG.fvec, TF, F.z_orth i, Matrix.diagonal_apply_ne _ (hne i)]
+    | last => simp [FlagG.fvec, TF, F.z_orth i]
     | cast j =>
       simp only [FlagG.fvec, Fin.snoc_castSucc, F.e_iso i j, TF, Matrix.diagonal_apply]
       split_ifs <;> simp_all
@@ -172,7 +171,6 @@ theorem gramBlocks : GramBlocks := by
   · simp only [gramFF, pairVec, brS, Zhat, Matrix.fromBlocks_apply₂₁, Matrix.conjTranspose_apply, Sum.elim_inl,
       Sum.elim_inr]
     first
-      | exact (S.herm _ _).symm
       | exact (S.herm.eq _ _).symm
   · simp [gramFF, pairVec, brS, hT_fvec]
 

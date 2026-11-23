@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.SumSize GlobalTheory.RowClaim
 
 theorem _root_.GlobalTheory.T.archimedeanSumSizeBound_largeData_from_factors : SumOKK → DepthK → InfScalK → InfTensK → InfCountK → InfClassK → InfTopK → InfRowK → InfPairK → InfPsiK → InfFormK → InfK := by
-  first | exact @GlobalTheory.Adopt.archimedeanSumSizeBound_largeData_from_factors | exact GlobalTheory.Adopt.archimedeanSumSizeBound_largeData_from_factors | (intros; apply GlobalTheory.Adopt.archimedeanSumSizeBound_largeData_from_factors <;> assumption)
+  first | exact @GlobalTheory.Adopt.archimedeanSumSizeBound_largeData_from_factors

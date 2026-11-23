@@ -41,4 +41,4 @@ import Mathlib.Topology.Sheaves.Init
 
 
 theorem _root_.GlobalTheory.T.meanLogPeriod_chowlaSelberg : GlobalTheory.IndefiniteRowSideFullHecke.MeanPeriodLogarithms.MeanPeriod := by
-  first | exact @GlobalTheory.MeanPeriodClosed.meanPeriod | exact GlobalTheory.MeanPeriodClosed.meanPeriod | (intros; apply GlobalTheory.MeanPeriodClosed.meanPeriod <;> assumption)
+  first | exact @GlobalTheory.MeanPeriodClosed.meanPeriod

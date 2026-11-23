@@ -53,4 +53,4 @@ open GlobalTheory.ChiGrid GlobalTheory.LeafRestExamples GlobalTheory.FunObj.SqNu
 open GlobalTheory.Mem.Col2.SplitChar (finIdl)
 
 theorem _root_.GlobalTheory.T.heckeCharacter_nonInert_bounded_level_kills_units : ∀ (D : D7) (χ : HChar D.host.E) (S : Finset ℕ) (k : ℕ), (∀ q ∈ S, q.Prime ∧ ¬ InertQ D q) → (∀ v, χ.UnrAt v ∨ ∃ q ∈ S, Formalism.L2.Host.OverP D.host q v ∧ χ.LevelLe v k) → ∀ u, IntU D u → (∀ q : ℕ, q.Prime → ¬ InertQ D q → ZeroAt D q ((u : AE D) - 1)) → χ.1 (finIdl D u) = 1 := by
-  first | exact @GlobalTheory.FunObj.SqNum.hchar_finIdl_eq_one_of_zeroAt | exact GlobalTheory.FunObj.SqNum.hchar_finIdl_eq_one_of_zeroAt | (intros; apply GlobalTheory.FunObj.SqNum.hchar_finIdl_eq_one_of_zeroAt <;> assumption)
+  first | exact @GlobalTheory.FunObj.SqNum.hchar_finIdl_eq_one_of_zeroAt

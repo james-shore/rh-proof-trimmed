@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isSmoothAt_of_smooth_mod_ideal_powers : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (I : Ideal R), I ≠ ⊤ → ∀ (C : Type) [CommRing C] [Algebra R C] [Algebra.FiniteType R C], (∀ e : ℕ, Algebra.Smooth (R ⧸ I ^ (e + 1)) (TensorProduct R (R ⧸ I ^ (e + 1)) C)) → ∀ (q : Ideal C) [q.IsPrime], q.comap (algebraMap R C) = IsLocalRing.maximalIdeal R → Algebra.IsSmoothAt R q := by
-  first | exact @GlobalTheory.SmoothAdic.isSmoothAt_of_smooth_quotient_pow | exact GlobalTheory.SmoothAdic.isSmoothAt_of_smooth_quotient_pow | (intros; apply GlobalTheory.SmoothAdic.isSmoothAt_of_smooth_quotient_pow <;> assumption)
+  first | exact @GlobalTheory.SmoothAdic.isSmoothAt_of_smooth_quotient_pow

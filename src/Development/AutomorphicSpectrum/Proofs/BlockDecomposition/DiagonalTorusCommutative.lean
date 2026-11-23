@@ -128,7 +128,7 @@ theorem mem_of_offDiag {N : ℕ} (x : GL (Fin N) k)
       simpa using hh.symm
     simp [leviEmb, stdBlocks_ones_eq, Matrix.GeneralLinearGroup.scalar, hs]
   · rw [h _ _ (fun heq => hab (congrArg Sigma.fst ((stdBlocks (ones N) (sum_ones N)).injective heq)))]
-    simp [leviEmb, Matrix.blockDiagonal'_apply, hab]
+    simp [leviEmb, hab]
 
 theorem eq_diagonal {N : ℕ} (M : Matrix (Fin N) (Fin N) k)
     (h : ∀ i j : Fin N, i ≠ j → M i j = 0) : M = Matrix.diagonal fun i => M i i := by

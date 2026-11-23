@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.thetaKernel_downward_arrow_left_invariant : ∀ {D
     i ≤ D.R.m → j < D.R.m → ∀ Ψ : WO (G.pS (.mu t i j)) (G.pT (.mu t i j)) → ℂ,
     IsThetaFunO W.ψ (G.pS (.mu t i j)) (G.pT (.mu t i j)) Ψ → ∀ h : GA D (G.V (.grid i j)),
     ∀ γ ∈ GQ (G.V (.grid i (j + 1))), ∀ g, W.kerA (.down t i j) Ψ (γ * g) h = W.kerA (.down t i j) Ψ g h := by
-  first | exact @GlobalTheory.DownKer.kerA_down_left_inv | exact GlobalTheory.DownKer.kerA_down_left_inv | (intros; apply GlobalTheory.DownKer.kerA_down_left_inv <;> assumption)
+  first | exact @GlobalTheory.DownKer.kerA_down_left_inv

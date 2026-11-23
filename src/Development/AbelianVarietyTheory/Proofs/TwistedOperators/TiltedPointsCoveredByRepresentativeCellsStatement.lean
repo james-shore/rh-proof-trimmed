@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.tiltedPoints_covered_by_representativeCells : Big fun ch => ∀ s, CoverAt ch s := by
-  first | exact @GlobalTheory.RowVal.cover_at | exact GlobalTheory.RowVal.cover_at | (intros; apply GlobalTheory.RowVal.cover_at <;> assumption)
+  first | exact @GlobalTheory.RowVal.cover_at

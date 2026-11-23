@@ -58,4 +58,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_keyDatum_polarisedAbelian_localDomain : ∀ (W : Type) [CommRing W] [IsDomain W] [IsNoetherianRing W] [IsLocalRing W] (P : PolAV (Sp W)), 1 ≤ P.g → ∃ y : KeyIn W, y.P = P := by
-  first | exact @GlobalTheory.MBLow.exists_keyIn_local | exact GlobalTheory.MBLow.exists_keyIn_local | (intros; apply GlobalTheory.MBLow.exists_keyIn_local <;> assumption)
+  first | exact @GlobalTheory.MBLow.exists_keyIn_local

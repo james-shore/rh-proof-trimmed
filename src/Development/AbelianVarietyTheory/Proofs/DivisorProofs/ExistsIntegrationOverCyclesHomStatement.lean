@@ -44,4 +44,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.AnPer
 
 theorem _root_.GlobalTheory.T.exists_integrationOverCyclesHom : PHom := by
-  first | exact @GlobalTheory.AnPer.pHom | exact GlobalTheory.AnPer.pHom | (intros; apply GlobalTheory.AnPer.pHom <;> assumption)
+  first | exact @GlobalTheory.AnPer.pHom

@@ -45,4 +45,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.siteFrames_and_changedFrames_invertible : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => FrInv (J.fd std) ∧ ∀ d : Dec J std, FrInv d.fd2) := by
-  first | exact @GlobalTheory.TwV.DelB.frames_invertible | exact GlobalTheory.TwV.DelB.frames_invertible | (intros; apply GlobalTheory.TwV.DelB.frames_invertible <;> assumption)
+  first | exact @GlobalTheory.TwV.DelB.frames_invertible

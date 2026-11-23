@@ -132,7 +132,7 @@ theorem lagrange_projector_acts_scalar (E : GLOps n K V) (mu ka : Fin n → ℤ)
     obtain ⟨d, hd⟩ := lagrange_factor_acts_scalar E mu nu ka hx
     refine ⟨c * d, ?_⟩
     have : lagrangeProjector E mu (nu :: L) x = lagrangeFactor E mu nu (lagrangeProjector E mu L x) := by
-      simp [lagrangeProjector, Module.End.mul_apply]
+      simp [lagrangeProjector]
     rw [this, hc, map_smul, hd, smul_smul]
 
 theorem lagrange_projector_fixes_weight [CharZero K] (E : GLOps n K V) (mu : Fin n → ℤ) (L : List (Fin n → ℤ)) {x : V}
@@ -141,7 +141,7 @@ theorem lagrange_projector_fixes_weight [CharZero K] (E : GLOps n K V) (mu : Fin
   | nil => simp [lagrangeProjector]
   | cons nu L ih =>
     have : lagrangeProjector E mu (nu :: L) x = lagrangeFactor E mu nu (lagrangeProjector E mu L x) := by
-      simp [lagrangeProjector, Module.End.mul_apply]
+      simp [lagrangeProjector]
     rw [this, ih, lagrange_factor_fixes_weight E mu nu hx]
 
 theorem lagrange_projector_kills_other (E : GLOps n K V) {mu ka : Fin n → ℤ} (h : ka ≠ mu) (L : List (Fin n → ℤ)) (hL : ka ∈ L)
@@ -150,7 +150,7 @@ theorem lagrange_projector_kills_other (E : GLOps n K V) {mu ka : Fin n → ℤ}
   | nil => simp at hL
   | cons nu L ih =>
     have e : lagrangeProjector E mu (nu :: L) x = lagrangeFactor E mu nu (lagrangeProjector E mu L x) := by
-      simp [lagrangeProjector, Module.End.mul_apply]
+      simp [lagrangeProjector]
     rw [e]
     rcases List.mem_cons.1 hL with rfl | hL'
     · obtain ⟨c, hc⟩ := lagrange_projector_acts_scalar E mu ka L hx
@@ -163,7 +163,7 @@ theorem lagrange_projector_preserves_stable (E : GLOps n K V) (mu : Fin n → �
   | nil => simpa [lagrangeProjector] using hx
   | cons nu L ih =>
     have e : lagrangeProjector E mu (nu :: L) x = lagrangeFactor E mu nu (lagrangeProjector E mu L x) := by
-      simp [lagrangeProjector, Module.End.mul_apply]
+      simp [lagrangeProjector]
     rw [e]
     exact lagrange_factor_preserves_stable E mu nu U hU ih
 
@@ -296,7 +296,7 @@ theorem exists_highest_weight_vector (E : GLOps n K V)
 omit [CharZero K] in
 theorem isotypic_stable_under_operators (E : GLOps n K V) (mu : Fin n → ℤ) (a b : Fin n) {x : V} (hx : x ∈ isoSub E mu) :
     E a b x ∈ isoSub E mu := by
-  first | exact UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators .. | (apply UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators <;> assumption) | (intros; apply UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators <;> assumption) | (apply @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators <;> assumption) | (intros; apply @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators <;> assumption) | (apply @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators <;> first | assumption | infer_instance) | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a b x hx | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a b x | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a b | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n
+  first | (apply UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators <;> assumption) | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a b x hx | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a b x | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a b | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu a | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E mu | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› E | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› ‹_› | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V ‹_› | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K V | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n K | exact @UpperTheory.Reformulated.B.Qf30.isotypic_stable_under_operators n
 
 end
 

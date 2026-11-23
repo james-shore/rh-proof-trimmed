@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.lastRow_unfolding_basicHypotheses : Big fun ch => BasicAt ch := by
-  first | exact @GlobalTheory.RowBasic.basicAt | exact GlobalTheory.RowBasic.basicAt | (intros; apply GlobalTheory.RowBasic.basicAt <;> assumption)
+  first | exact @GlobalTheory.RowBasic.basicAt

@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.eq_of_markedForms_in_same_cell_simplicialFan : ∀
       ∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → ∀ β' ∈ balForms H.bar X, (∀ y, 0 ≤ β' y y) →
         (OrbMark.orbFun (𝓞 E) H.w0 v).evalZ β = 1 → (OrbMark.orbFun (𝓞 E) H.w0 v).evalZ β' = 1 →
         InRCone γ β → InRCone γ β' → β = β' := by
-  first | exact @GlobalTheory.PolFan.eq_of_orbMark_of_inRCone_cell | exact GlobalTheory.PolFan.eq_of_orbMark_of_inRCone_cell | (intros; apply GlobalTheory.PolFan.eq_of_orbMark_of_inRCone_cell <;> assumption)
+  first | exact @GlobalTheory.PolFan.eq_of_orbMark_of_inRCone_cell

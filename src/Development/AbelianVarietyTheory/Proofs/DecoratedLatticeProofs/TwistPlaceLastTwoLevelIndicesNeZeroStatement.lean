@@ -49,4 +49,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.twistPlace_last_two_level_indices_ne_zero : ∀ (D : D7) (c : Comm D) (v : VCom c) (χ : ℕ → (AE D)ˣ →* Circle) (Q : QAt v χ), Q.idx (Q.s + 1) ≠ 0 ∧ Q.idx (Q.s + 1 + 1) ≠ 0 := by
-  first | exact @GlobalTheory.QPl.QAt.idx_last_ne_zero | exact GlobalTheory.QPl.QAt.idx_last_ne_zero | (intros; apply GlobalTheory.QPl.QAt.idx_last_ne_zero <;> assumption)
+  first | exact @GlobalTheory.QPl.QAt.idx_last_ne_zero

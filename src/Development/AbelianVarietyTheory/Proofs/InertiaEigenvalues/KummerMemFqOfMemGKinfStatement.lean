@@ -49,4 +49,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.exists_root_of_unity_kummer_eq : ∀ (l : ℕ) [Fact l.Prime] (a e : ℕ) [NeZero a] [NeZero e] (ϖ : PiSys l e), e + 1 = l ^ a → ∀ k ∈ ϖ.GKinf, ∃ z : Fq l a, z ^ e = 1 ∧ ϖ.kummer k = Fq.val l a z := by
-  first | exact @GlobalTheory.BKReal.kummer_mem_Fq_of_mem_GKinf | exact GlobalTheory.BKReal.kummer_mem_Fq_of_mem_GKinf | (intros; apply GlobalTheory.BKReal.kummer_mem_Fq_of_mem_GKinf <;> assumption)
+  first | exact @GlobalTheory.BKReal.kummer_mem_Fq_of_mem_GKinf

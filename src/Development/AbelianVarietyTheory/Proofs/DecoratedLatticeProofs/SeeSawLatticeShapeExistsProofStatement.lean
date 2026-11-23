@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.seeSawLatticeShapeExists_proof : ∀ D : D7, GlobalTheory.SeeSaw.ShapeEx D := by
-  first | exact @GlobalTheory.SeeSaw.ShapeExProof.shapeEx | exact GlobalTheory.SeeSaw.ShapeExProof.shapeEx | (intros; apply GlobalTheory.SeeSaw.ShapeExProof.shapeEx <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.ShapeExProof.shapeEx

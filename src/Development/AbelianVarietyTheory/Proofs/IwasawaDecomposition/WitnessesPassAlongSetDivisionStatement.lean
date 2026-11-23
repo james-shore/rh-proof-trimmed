@@ -41,4 +41,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Fo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.witnesses_pass_along_set_division : ∀ 𝒮 : Slots, PositionMv 𝒮 → WitMv 𝒮 := by
-  first | exact @GlobalTheory.Mem.Top.Bl.witMv_of_positionMv | exact GlobalTheory.Mem.Top.Bl.witMv_of_positionMv | (intros; apply GlobalTheory.Mem.Top.Bl.witMv_of_positionMv <;> assumption)
+  first | exact @GlobalTheory.Mem.Top.Bl.witMv_of_positionMv

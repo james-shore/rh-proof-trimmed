@@ -69,7 +69,7 @@ structure MorQ (T : V →ₗ[ℂ] W) (E1 E2 : Fin n → Fin n → Module.End ℂ
 theorem adLq_apply (s : Bool) (p q : Fin n) (x : Cq n V) :
     adLq s p q x = ∑ t : Bool, ∑ i : Pos n, ∑ k : Pos n,
       CompanionTheory.RgExh.U.adC p q i k • creq ((s == t), k) (annq (t, i) x) := by
-  simp [adLq, Module.End.mul_apply, LinearMap.sum_apply]
+  simp [adLq, LinearMap.sum_apply]
 
 theorem lift_adLq (T : V →ₗ[ℂ] W) (s : Bool) (p q : Fin n) (x : Cq n V) :
     liftq n T (adLq s p q x) = adLq s p q (liftq n T x) := by
@@ -141,7 +141,7 @@ theorem MorQ.ev (h : MorQ T E1 E2 F1 F2) (a : FreeAlgebra ℂ (Bool × Fin n × 
   · intro a b ha hb y
     simp only [map_mul, Module.End.mul_apply, ha, hb]
   · intro a b ha hb y
-    simp only [map_add (f := _), LinearMap.add_apply, map_add (f := _), ha, hb]
+    simp only [LinearMap.add_apply, map_add (f := _), ha, hb]
 
 theorem MorQ.lift_ev (h : MorQ T E1 E2 F1 F2) (a : FreeAlgebra ℂ (Bool × Fin n × Fin n)) (x : Cq n V) :
     liftq n T (liftq n (ev2 E1 E2 a) x) = liftq n (ev2 F1 F2 a) (liftq n T x) := by
@@ -232,7 +232,7 @@ theorem lift_single (T : V →ₗ[ℂ] W) (v : V) :
   by_cases h : A = ∅
   · subst h
     simp [lift_apply]
-  · simp [lift_apply, Pi.single_apply, h]
+  · simp [lift_apply, h]
 
 theorem lF_single (E1 E2 : Fin n → Fin n → Module.End ℂ V) (s : Bool) (p q : Fin n) (v : V) :
     lFq E1 E2 s p q (Pi.single ∅ v : Cq n V) = Pi.single ∅ (Ts E1 E2 s p q v) := by
@@ -285,7 +285,7 @@ theorem ann_single (k i : Lt n) (y : V) :
     rw [if_pos rfl, ann_apply]
     by_cases hA : k ∈ A
     · have : A ≠ ∅ := fun h0 => by simp [h0] at hA
-      simp [hA, Pi.single_apply, this]
+      simp [hA, this]
     · by_cases h0 : A = ∅
       · subst h0
         simp [sgL]
@@ -295,7 +295,7 @@ theorem ann_single (k i : Lt n) (y : V) :
           have := h ▸ mem_insert_of_mem hl
           rw [mem_singleton] at this
           exact hA (this ▸ hl)
-        simp [hA, Pi.single_apply, this, h0]
+        simp [hA, this, h0]
   · rw [if_neg hk, ann_apply]
     by_cases hA : k ∈ A
     · simp [hA]
@@ -303,7 +303,7 @@ theorem ann_single (k i : Lt n) (y : V) :
         intro h
         have := h ▸ mem_insert_self k A
         exact hk (mem_singleton.mp this)
-      simp [hA, Pi.single_apply, this]
+      simp [hA, this]
 
 theorem bd_single (E1 E2 : Fin n → Fin n → Module.End ℂ V) (i : Lt n) (y : V) :
     bdq E1 E2 (Pi.single {i} y : Cq n V) = Pi.single ∅ (Tl E1 E2 i y) := by

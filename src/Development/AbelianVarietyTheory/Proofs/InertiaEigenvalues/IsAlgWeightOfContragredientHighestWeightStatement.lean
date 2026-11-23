@@ -55,4 +55,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.isAlgWeight_of_contragredient_highestWeight : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (K : Type) [Field K] (e : K →+* ℂ) (c : L →+* L), (∀ x, c x = IsCMField.complexConj L x) → ∀ (W : Type) [AddCommGroup W] [Module K W] [FiniteDimensional K W] (ρ : Representation K (ReciprocityTheory.Aut.GQ L n) W) (κ : Type) [Fintype κ] [DecidableEq κ] (b : Module.Basis κ K W) (ρC : Representation ℂ (ReciprocityTheory.Aut.GQ L n) (κ → ℂ)), (∀ γ, LinearMap.toMatrix' (ρC γ) = (LinearMap.toMatrix b b (ρ γ)).map e) → ∀ (τ : L →+* K) (lam : Fin n → ℤ), NX.HWAtF c ρ.dual τ lam → Formalism.AUTREP.IsAlgWeight L n ρC := by
-  first | exact @GlobalTheory.AlgWtDualRead.isAlgWeight_of_hwAtF_dual | exact GlobalTheory.AlgWtDualRead.isAlgWeight_of_hwAtF_dual | (intros; apply GlobalTheory.AlgWtDualRead.isAlgWeight_of_hwAtF_dual <;> assumption)
+  first | exact @GlobalTheory.AlgWtDualRead.isAlgWeight_of_hwAtF_dual

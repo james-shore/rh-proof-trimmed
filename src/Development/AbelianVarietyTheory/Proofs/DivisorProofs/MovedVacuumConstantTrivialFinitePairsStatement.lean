@@ -75,4 +75,4 @@ theorem _root_.GlobalTheory.T.movedVacuum_constant_trivial_finite_pairs : ∀ {D
   Reads ψ θ hS hT cc δ r (W.Om x y e0) (om (g, h) f₀)) →
   ∀ (x : Formalism.MainNotions.StandardLatticesGL3.GA D a) (y : Formalism.MainNotions.StandardLatticesGL3.GA D d) (g : GA D S) (h : GA D T), IsFinPt S g x → IsFinPt T h y →
   Reads ψ θ hS hT cc δ r (W.Om x y e0) (om (g, h) f₀) := by
-  first | exact @GlobalTheory.VacTriv.vacuum_const_trivial | exact GlobalTheory.VacTriv.vacuum_const_trivial | (intros; apply GlobalTheory.VacTriv.vacuum_const_trivial <;> assumption)
+  first | exact @GlobalTheory.VacTriv.vacuum_const_trivial

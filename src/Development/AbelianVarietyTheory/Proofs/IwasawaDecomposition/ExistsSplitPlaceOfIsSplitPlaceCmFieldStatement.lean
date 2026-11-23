@@ -50,4 +50,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.exists_splitPlace_of_isSplitPlace_cmField : ∀ (D : D7) (P : PlE D.host), IsSplitPl D.host P → ∃ s : SplitPlace D.host.E, s.w = P := by
-  first | exact @GlobalTheory.HeightCounting.SplitPlaceOf.exists_splitPlace | exact GlobalTheory.HeightCounting.SplitPlaceOf.exists_splitPlace | (intros; apply GlobalTheory.HeightCounting.SplitPlaceOf.exists_splitPlace <;> assumption)
+  first | exact @GlobalTheory.HeightCounting.SplitPlaceOf.exists_splitPlace

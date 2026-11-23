@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.exists_retract_of_smConn_idempotent : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G], SmConn G → ∀ e : G ⟶ G, IsMonHom e → e ≫ e = e → ∃ (G₁ : Over S) (_ : GrpObj G₁) (i : G₁ ⟶ G) (r : G ⟶ G₁), SmConn G₁ ∧ IsMonHom i ∧ IsMonHom r ∧ i ≫ r = 𝟙 G₁ ∧ r ≫ i = e := by
-  first | exact @GlobalTheory.SS.smConn_idempotent_splits | exact GlobalTheory.SS.smConn_idempotent_splits | (intros; apply GlobalTheory.SS.smConn_idempotent_splits <;> assumption)
+  first | exact @GlobalTheory.SS.smConn_idempotent_splits

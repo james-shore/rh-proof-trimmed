@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_finite_unitary_point_selfDual_to_orthonorma
     cT (D.sp.cm.sig : D.host.E →+* D.host.E) M * V.gram * M = 1 →
     ∃ h₀ ∈ GfC V, ∀ y, y ∈ latHat D.host.F D.host.E (L0c D V) ↔
       IntVec (Matrix.mulVec (M⁻¹.map (Algebra.TensorProduct.includeRight : D.host.E →ₐ[D.host.F] Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)) (Matrix.mulVec (finMat D.sp.cm.sig V.gram h₀) y)) := by
-  first | exact @GlobalTheory.DefTransfer.LatMove.exists_finite_point | exact GlobalTheory.DefTransfer.LatMove.exists_finite_point | (intros; apply GlobalTheory.DefTransfer.LatMove.exists_finite_point <;> assumption)
+  first | exact @GlobalTheory.DefTransfer.LatMove.exists_finite_point

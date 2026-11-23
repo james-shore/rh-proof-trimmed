@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_thetaTriple_baseData_characters : ∀ (D : 
       Bs.ψ = ψ ∧ Xc.α = α ∧ Xc.β = β ∧ Bs.IsGood D.sp.cm.sig ∧ Xc.IsGood Bs W.rank W₁.rank ∧
       (∀ w, ∃ τ, ∀ x, (Bs.emb w).1 x = starRingEnd ℂ (tauE D τ x)) ∧
       ∀ w, ((W.rank + W₁.rank : ℕ) : ℤ) < Bs.mα w - Bs.mβ w := by
-  first | exact @GlobalTheory.TripleBaseChars.exists_base_chars | exact GlobalTheory.TripleBaseChars.exists_base_chars | (intros; apply GlobalTheory.TripleBaseChars.exists_base_chars <;> assumption)
+  first | exact @GlobalTheory.TripleBaseChars.exists_base_chars

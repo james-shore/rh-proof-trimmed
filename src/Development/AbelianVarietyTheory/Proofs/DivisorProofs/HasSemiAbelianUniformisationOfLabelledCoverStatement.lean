@@ -46,4 +46,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.hasSemiAbelianUniformisation_of_labelledCover : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D : DegData R (maximalIdeal R)), Nonempty (LabCover D) → HasFin D := by
-  first | exact @GlobalTheory.Mum.hasFin_of_labCover | exact GlobalTheory.Mum.hasFin_of_labCover | (intros; apply GlobalTheory.Mum.hasFin_of_labCover <;> assumption)
+  first | exact @GlobalTheory.Mum.hasFin_of_labCover

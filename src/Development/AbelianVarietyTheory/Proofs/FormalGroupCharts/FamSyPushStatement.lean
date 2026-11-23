@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChartCmp
 
 theorem _root_.GlobalTheory.T.famSy_of_pushFr_cubIso : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (V : Type) [CommRing V] (t t' : SAB H (Sp V)) (n : SABMap t t' (𝟙 (Sp V))) (w : LB.Iso t.PP.L (t'.PP.L.pull n.φ)) (d : ℕ) (x : ∀ m, jOG (𝟙 (Sp V)) d m 1 ⟶ t.G) (x' : ∀ m, jOG (𝟙 (Sp V)) d m 1 ⟶ t'.G) (e : ∀ m, FrTyG t (𝟙 (Sp V)) d x m) (e' : ∀ m, FrTyG t' (𝟙 (Sp V)) d x' m), CubIso n w → (∀ m, (x' m).left = (x m).left ≫ n.φ) → (∀ m, (e m).IsGen) → PushFr n w x x' e e' → ∀ sy : PS V 2 d, FamSy t (𝟙 (Sp V)) d x sy e → FamSy t' (𝟙 (Sp V)) d x' sy e' := by
-  first | exact @GlobalTheory.PushSym.famSy_push | exact GlobalTheory.PushSym.famSy_push | (intros; apply GlobalTheory.PushSym.famSy_push <;> assumption)
+  first | exact @GlobalTheory.PushSym.famSy_push

@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_glued_lineBundleSection_over_cover : ∀ (S
       resG _ (fun _ hx => ⟨hx.1, hx.2.2⟩ : L.U i ⊓ G.hom ⁻¹ᵁ (N k ⊓ N k') ≤ L.U i ⊓ G.hom ⁻¹ᵁ N k') (s k' i)) →
     ∃ s' : LocSec G L V, IsLocSec s' ∧ ∀ k i,
       resG _ (fun _ hx => ⟨hx.1, hN k hx.2⟩ : L.U i ⊓ G.hom ⁻¹ᵁ N k ≤ L.U i ⊓ G.hom ⁻¹ᵁ V) (s' i) = s k i := by
-  first | exact @GlobalTheory.UMin.ThBdl.locSec_glue | exact GlobalTheory.UMin.ThBdl.locSec_glue | (intros; apply GlobalTheory.UMin.ThBdl.locSec_glue <;> assumption)
+  first | exact @GlobalTheory.UMin.ThBdl.locSec_glue

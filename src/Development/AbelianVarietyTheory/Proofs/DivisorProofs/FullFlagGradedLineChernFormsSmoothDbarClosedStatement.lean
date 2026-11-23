@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.fullFlagGradedLineChernForms_smooth_dbarClosed : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (X : Var F) (ι : Type) [Finite ι] (m : ι → ℕ) (E : Fr (ratOf X) m m) (H : Mat m X.Fn → CxPts X.str σ → Mat m ℂ), IsMetricFr E H → ∀ x : Root m, DbarCoh (atlas X σ) (grF E H x) (grF E H x) := by
-  first | exact @GlobalTheory.ChernCalc.GradedForm.dbarCoh_grF | exact GlobalTheory.ChernCalc.GradedForm.dbarCoh_grF | (intros; apply GlobalTheory.ChernCalc.GradedForm.dbarCoh_grF <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.GradedForm.dbarCoh_grF

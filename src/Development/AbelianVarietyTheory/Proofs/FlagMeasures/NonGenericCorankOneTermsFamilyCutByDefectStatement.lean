@@ -45,4 +45,4 @@ open scoped Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.non_generic_corank_one_terms_family_cut_by_defect : GlobalTheory.SnFam.FamNG := by
-  first | exact @GlobalTheory.SnFam.famNG_holds | exact GlobalTheory.SnFam.famNG_holds | (intros; apply GlobalTheory.SnFam.famNG_holds <;> assumption)
+  first | exact @GlobalTheory.SnFam.famNG_holds

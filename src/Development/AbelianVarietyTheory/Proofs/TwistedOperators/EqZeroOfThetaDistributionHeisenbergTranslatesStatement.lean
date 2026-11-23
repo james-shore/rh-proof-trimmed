@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.eq_zero_of_thetaDistribution_heisenbergTranslates 
     {Y : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Spc F E n} {Wd : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Spc F E d} (M : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Model σ Y Wd)
     (ψ : AddChar (AF F) ℂ), GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsStd ψ → ∀ Φ ∈ GlobalTheory.WeilM.schA F (Fin n × Fin d),
     (∀ u, GlobalTheory.WeilM.thetaSum F (M.co.rho ψ u Φ) = 0) → Φ = 0 := by
-  first | exact @GlobalTheory.ThetaSeparates.eq_zero_of_thetaSum_rho | exact GlobalTheory.ThetaSeparates.eq_zero_of_thetaSum_rho | (intros; apply GlobalTheory.ThetaSeparates.eq_zero_of_thetaSum_rho <;> assumption)
+  first | exact @GlobalTheory.ThetaSeparates.eq_zero_of_thetaSum_rho

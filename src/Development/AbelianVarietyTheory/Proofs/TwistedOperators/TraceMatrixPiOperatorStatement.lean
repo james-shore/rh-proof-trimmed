@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.trace_sum_single_comp_proj_eq : ∀ (W : Type) [Ad
     (h : Matrix (Fin m) (Fin m) ℂ) (A : W →ₗ[ℂ] W),
     LinearMap.trace ℂ (Fin m → W) (∑ k, ∑ j, h k j • (LinearMap.single ℂ (fun _ : Fin m => W) k ∘ₗ A ∘ₗ
       LinearMap.proj j)) = h.trace * LinearMap.trace ℂ W A := by
-  first | exact @GlobalTheory.trace_matrix_pi_operator | exact GlobalTheory.trace_matrix_pi_operator | (intros; apply GlobalTheory.trace_matrix_pi_operator <;> assumption)
+  first | exact @GlobalTheory.trace_matrix_pi_operator

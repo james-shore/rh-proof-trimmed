@@ -71,7 +71,7 @@ theorem exists_casimir (τ : A →ₗ[ℚ] ℚ) (y : A) (hy : ∀ a, a ≠ 0 →
   classical
   let β : LinearMap.BilinForm ℚ A := ((LinearMap.mul ℚ A).compr₂ (τ ∘ₗ LinearMap.mulLeft ℚ y))
   have hβ : ∀ a b, β a b = τ (y * (a * b)) := fun a b => rfl
-  have hs : β.IsSymm := ⟨fun a b => by simp only [hβ, mul_comm a b, RingHom.id_apply]⟩
+  have hs : β.IsSymm := ⟨fun a b => by simp only [hβ, mul_comm a b]⟩
   obtain ⟨v, hv⟩ := LinearMap.BilinForm.exists_orthogonal_basis (K := ℚ) (V := A) (B := β) ⟨hs.eq⟩
   have hpos : ∀ i, 0 < β (v i) (v i) := fun i => by
     rw [hβ, ← sq]; exact hy _ (v.ne_zero i)
@@ -197,9 +197,9 @@ theorem aeval_map_eq {n : ℕ} (T : Matrix (Fin n) (Fin n) ℚ) (P Q : Matrix (F
   induction p using Polynomial.induction_on with
   | C a =>
     have : (diagonal fun _ : Fin n => (a : ℝ)) = (a : ℝ) • (1 : Matrix (Fin n) (Fin n) ℝ) := by
-      ext i j; by_cases h : i = j <;> simp [h, one_apply]
+      ext i j; by_cases h : i = j <;> simp [h]
     simp only [aeval_C, eq_ratCast, this, Matrix.mul_smul, Matrix.smul_mul, mul_one, h1]
-    ext i j; by_cases h : i = j <;> simp [h, one_apply, Matrix.algebraMap_matrix_apply]
+    ext i j; by_cases h : i = j <;> simp [h, Matrix.algebraMap_matrix_apply]
   | add p q hp hq =>
     simp only [map_add (f := _)]
     rw [hm, map_add (f := _), ← hm, ← hm, hp, hq, ← diagonal_add, mul_add, add_mul]

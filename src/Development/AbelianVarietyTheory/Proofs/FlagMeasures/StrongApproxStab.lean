@@ -140,7 +140,6 @@ theorem strong_approx_stab : ∀ {F E : Type} [Field F] [NumberField F] [Field E
   have hclose := by
     first
     | exact GlobalTheory.T.frameMatrix_close_gives_lattice_close_integral A r k G Λ hΛ
-    | exact GlobalTheory.T.frameMatrix_close_gives_lattice_close_integral A r k G Λ hΛ.toIsLattice
   obtain ⟨d, hd0, hdfin, hd⟩ := hclose
   choose s hsP hsf hsI using fun p => GlobalTheory.T.localCommonStabiliser_blockUnitriangular_on_frame A r k G p (n p) (hnSt p)
   let c' : ∀ p, ((A.loc p).Fp)ˣ := fun p => c p * Units.mk0 (d p) (hd0 p)

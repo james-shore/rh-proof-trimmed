@@ -51,4 +51,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.exists_ainf_linear_retraction_breuilKisin : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K), ∃ c : Ainf l →+ bk.S, (∀ (s : bk.S) (a : Ainf l), c (bk.ev s * a) = s * c a) ∧ c 1 = 1 := by
-  first | exact @GlobalTheory.BKLim.AinfRetraction.main | exact GlobalTheory.BKLim.AinfRetraction.main | (intros; apply GlobalTheory.BKLim.AinfRetraction.main <;> assumption)
+  first | exact @GlobalTheory.BKLim.AinfRetraction.main

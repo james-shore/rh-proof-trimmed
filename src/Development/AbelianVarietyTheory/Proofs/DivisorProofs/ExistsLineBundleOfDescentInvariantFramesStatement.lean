@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.exists_lineBundle_of_descentInvariant_frames : ∀
         pullback.snd f f z ∈ L.U j →
         gm (pullback.fst f f) z _ (s i) * gm (𝟙 _) z _ (φ i j) = gm (pullback.snd f f) z _ (s j)) →
     ∃ L' : LB Y, L'.IsLB ∧ LBIso L (L'.pull f) := by
-  first | exact @GlobalTheory.LBDescent.exists_lb_of_invariant_frames | exact GlobalTheory.LBDescent.exists_lb_of_invariant_frames | (intros; apply GlobalTheory.LBDescent.exists_lb_of_invariant_frames <;> assumption)
+  first | exact @GlobalTheory.LBDescent.exists_lb_of_invariant_frames

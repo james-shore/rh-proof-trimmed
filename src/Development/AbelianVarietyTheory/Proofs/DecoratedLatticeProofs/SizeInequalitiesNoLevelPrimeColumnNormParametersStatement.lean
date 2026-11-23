@@ -47,4 +47,4 @@ open GlobalTheory.ColumnNormCompare (numDatumOfParameters codeRec plRec)
 attribute [local instance] GlobalTheory.Mem.Col2.starE
 
 theorem _root_.GlobalTheory.T.sizeInequalitiesNoLevelPrime_columnNormParameters : ∀ (D : D7) (L : SizeData₂ D) (CY : ℝ), HtRowsS L CY → ∀ (u : D.what₂.Word), SizeRowsS CY (numDatumOfParameters D L) (codeRec L u) := by
-  first | exact @GlobalTheory.CoreHt.SizeRowsRec.sizeRowsS_numRec | exact GlobalTheory.CoreHt.SizeRowsRec.sizeRowsS_numRec | (intros; apply GlobalTheory.CoreHt.SizeRowsRec.sizeRowsS_numRec <;> assumption)
+  first | exact @GlobalTheory.CoreHt.SizeRowsRec.sizeRowsS_numRec

@@ -92,11 +92,7 @@ omit [NumberField E] [IsCMField E] in
 theorem lact_mul' {Ψ : Finset (E →+* ℂ)} (γ' γ : GL (Fin r) E) (x : Frame Ψ r) :
     lact (γ' * γ) x = lact γ' (lact γ x) := by
   first
-  | exact @_root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame
-  | exact _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame
   | (apply _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame ..)
 
 theorem isUn_mul {γ' γ : GL (Fin r) E} (h' : IsUn X γ') (h : IsUn X γ) : IsUn X (γ' * γ) := by

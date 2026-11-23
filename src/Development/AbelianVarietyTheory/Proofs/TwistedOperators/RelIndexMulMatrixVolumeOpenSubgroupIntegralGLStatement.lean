@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.relIndex_mul_matrixVolume_open_subgroup_integralGL
     0 < (volM ν n n (Units.val '' (H : Set (GL n k)))).toReal ∧
     (H.relIndex L : ℝ) * (volM ν n n (Units.val '' (H : Set (GL n k)))).toReal =
       (volM ν n n (Units.val '' (L : Set (GL n k)))).toReal := by
-  first | exact @GlobalTheory.IndexVolume.relIndex_mul_volM | exact GlobalTheory.IndexVolume.relIndex_mul_volM | (intros; apply GlobalTheory.IndexVolume.relIndex_mul_volM <;> assumption)
+  first | exact @GlobalTheory.IndexVolume.relIndex_mul_volM

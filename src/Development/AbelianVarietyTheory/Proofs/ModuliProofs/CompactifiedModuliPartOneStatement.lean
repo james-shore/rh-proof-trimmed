@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.compactifiedModuli_partOne : PartI := by
-  first | exact @GlobalTheory.partI_closed | exact GlobalTheory.partI_closed | (intros; apply GlobalTheory.partI_closed <;> assumption)
+  first | exact @GlobalTheory.partI_closed

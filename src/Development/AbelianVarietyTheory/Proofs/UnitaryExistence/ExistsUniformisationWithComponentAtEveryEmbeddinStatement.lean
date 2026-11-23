@@ -47,4 +47,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Member
 
 theorem _root_.GlobalTheory.T.exists_uniformisation_with_component_at_every_embedding : ∀ (D : D7) (Q : Par D), Q.Pins → (∀ j, 1 ≤ (Q.Dw j).p + (Q.Dw j).q) → ∀ j (σ : Q.c.F →+* ℂ), ∃ U : Unf (Q.Xo j) Q.c σ D.R.r, Nonempty U.Comp := by
-  first | exact @GlobalTheory.exists_unf_nonempty_comp_all | exact GlobalTheory.exists_unf_nonempty_comp_all | (intros; apply GlobalTheory.exists_unf_nonempty_comp_all <;> assumption)
+  first | exact @GlobalTheory.exists_unf_nonempty_comp_all

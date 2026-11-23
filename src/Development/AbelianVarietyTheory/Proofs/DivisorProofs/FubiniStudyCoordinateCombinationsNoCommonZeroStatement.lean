@@ -70,4 +70,4 @@ theorem _root_.GlobalTheory.T.fubiniStudy_coordinate_combinations_noCommonZero :
     (∀ lam : Fin (m + 1) → 𝓞 K, ∑ k, lam k • u k = 0 → ∑ k, algX p ⊤ (lam k) • GlobalTheory.Cartier.secPull (ProjSpace.coord (𝓞 K) m k) g = 0) →
     (∀ j, b j = ∑ k, c k j • u k) → (∀ σ, (A σ).det ≠ 0) →
     ∀ τ : 𝓞 K →+* ℂ, Weight.NoCommonZero fun a => ∑ k, (c.map (OfLattice.extEmb τ) * A (OfLattice.extEmb τ)) k a • secVal p τ (GlobalTheory.Cartier.secPull (ProjSpace.coord (𝓞 K) m k) g) := by
-  first | exact @GlobalTheory.FubiniStudyFrame.noCommonZero_comb | exact GlobalTheory.FubiniStudyFrame.noCommonZero_comb | (intros; apply GlobalTheory.FubiniStudyFrame.noCommonZero_comb <;> assumption)
+  first | exact @GlobalTheory.FubiniStudyFrame.noCommonZero_comb

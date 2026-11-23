@@ -46,4 +46,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.siegelIntegralToroidal_of_polarisedChartsForFan : GlobalTheory.Published.SiegelToroidalPolCharts → GlobalTheory.Published.SiegelToroidalIntegral := by
-  first | exact @GlobalTheory.siegelToroidalIntegral_of_polCharts | exact GlobalTheory.siegelToroidalIntegral_of_polCharts | (intros; apply GlobalTheory.siegelToroidalIntegral_of_polCharts <;> assumption)
+  first | exact @GlobalTheory.siegelToroidalIntegral_of_polCharts

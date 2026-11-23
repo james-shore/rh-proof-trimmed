@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.compactChainTopRowRealPoint_inOrthonormalBasis : �
     (W.onb (.top n) τ)⁻¹ * compAt W.θ τ (mt _ (GlobalTheory.RowReal.ptTop W g n)) * W.onb (.top n) τ =
       (rowComp (GlobalTheory.RowReal.rowSizes D) g n τ).1.submatrix (Fin.cast (GlobalTheory.RowReal.rank_top G (Nat.lt_succ_iff.1 n.2)))
         (Fin.cast (GlobalTheory.RowReal.rank_top G (Nat.lt_succ_iff.1 n.2))) := by
-  first | exact @GlobalTheory.RowReal.ptTop_inOnb | exact GlobalTheory.RowReal.ptTop_inOnb | (intros; apply GlobalTheory.RowReal.ptTop_inOnb <;> assumption)
+  first | exact @GlobalTheory.RowReal.ptTop_inOnb

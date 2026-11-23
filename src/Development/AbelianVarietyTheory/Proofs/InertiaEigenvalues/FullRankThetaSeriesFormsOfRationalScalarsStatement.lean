@@ -46,4 +46,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.fullRank_thetaSeries_forms_of_rational_scalars : GlobalTheory.Published.CuspRapidDecay → ∀ (D : D7) (X : RealSide D) (E : IntegralHeckeForms.XD D) (Y : SerSide X E), ∀ i, BaseTup Y i → (∀ j b, RatRow Y.YS X.geo.v₀ Y.Z.good i j b) → ∀ j ∈ Finset.Icc 1 D.R.m, ∀ b, FullRk D.nexp E i j b (SgJ D.nexp E i j b) := by
-  first | exact @GlobalTheory.TieRank.rank_of_ties | exact GlobalTheory.TieRank.rank_of_ties | (intros; apply GlobalTheory.TieRank.rank_of_ties <;> assumption)
+  first | exact @GlobalTheory.TieRank.rank_of_ties

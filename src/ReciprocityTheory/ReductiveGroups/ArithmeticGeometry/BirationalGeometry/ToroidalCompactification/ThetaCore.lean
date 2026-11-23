@@ -156,11 +156,8 @@ theorem gs_compat (s : LB.Sec L) {Z : Scheme.{0}} (r : Z ⟶ X) (z : Z) {j j' : 
   rw [map_mul, map_mul]
   congr 1
   first
-  | rfl
   | (unfold gm; rfl)
   | (unfold gm; simp only [dif_pos hjj]; rfl)
-  | (unfold gm; simp only [dif_pos hjj, Units.coe_map, MonoidHom.coe_coe]; rfl)
-  | (unfold gm; simp [hjj]; done)
 
 theorem sec_pull_down {w : LB.Iso L' (L.pull F)} (hw : PGen w) (hL : L.IsLB) (hL' : L'.IsLB) (s : LB.Sec L) :
     ∃ s' : LB.Sec L', ∀ (Z : Scheme.{0}) (r : Z ⟶ X') (z : Z) j k, F (r z) ∈ L.U j → r z ∈ L'.U k →
@@ -213,7 +210,6 @@ theorem sec_eq_iff {V : Type} [CommRing V] (p : X ⟶ Sp V) (s t : LB.Sec L) (a 
     rw [dif_pos (show (𝟙 X : X ⟶ X) y ∈ W from hy)]
     first
     | rfl
-    | (simp only [Scheme.id_app, CommRingCat.hom_id, RingHom.id_apply]; rfl)
   have G2 : ∀ i (y : X) (hy : y ∈ L.U i),
       cst p y a = (X.presheaf.germ (L.U i) y hy).hom (constFn p (L.U i) a) := by
     intro i y hy
@@ -250,8 +246,6 @@ theorem gs_of_id {Z : Scheme.{0}} {U : X.Opens} {f g : Γ(X, U)} {V : Type} [Com
     rw [e]
     first
     | rfl
-    | (simp only [Scheme.comp_app, CommRingCat.hom_comp, RingHom.comp_apply]; rfl)
-    | (simp only [Scheme.comp_app, CommRingCat.hom_comp, RingHom.comp_apply]; done)
   have A : ∀ (W : X.Opens) (t : Γ(X, W)) (hw : r z ∈ W),
       gs r z W t = (r.stalkMap z).hom (gs (𝟙 X) (r z) W t) := by
     intro W t hw
@@ -284,8 +278,6 @@ theorem cst_comp {A C : Type} [CommRing A] [CommRing C] {Z : Scheme.{0}} (q : Z 
   first
   | (rw [key]; simp only [Scheme.comp_app, CommRingCat.hom_comp, RingHom.comp_apply]; rfl)
   | (rw [key]; rfl)
-  | (rw [key]; simp only [Scheme.comp_app, CommRingCat.hom_comp, RingHom.comp_apply]; done)
-  | (exact (key : False).elim)
 
 theorem cst_not_isUnit {V : Type} [CommRing V] [IsLocalRing V] (p : X ⟶ Sp V) (x : X) (hx : p x = closedPoint V) {r : V}
     (hr : r ∈ maximalIdeal V) : ¬ IsUnit (cst p x r) := by
@@ -303,11 +295,7 @@ theorem cst_not_isUnit {V : Type} [CommRing V] [IsLocalRing V] (p : X ⟶ Sp V) 
   have hmem := ((Sp V).mem_basicOpen (U := ⊤) _ (p x) trivial).2 hu2
   have hb : (Sp V).basicOpen ((Scheme.ΓSpecIso (CommRingCat.of V)).inv.hom r) = PrimeSpectrum.basicOpen r := by
     first
-    | exact AlgebraicGeometry.basicOpen_eq_of_affine r
-    | exact AlgebraicGeometry.Scheme.basicOpen_eq_of_affine r
-    | exact AlgebraicGeometry.basicOpen_eq_of_affine' r
     | (simp; rfl)
-    | (simp; exact rfl)
   rw [hb, hx] at hmem
   exact (PrimeSpectrum.mem_basicOpen _ _).1 hmem hr
 

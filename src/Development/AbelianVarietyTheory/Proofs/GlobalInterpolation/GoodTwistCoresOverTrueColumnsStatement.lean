@@ -43,4 +43,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Fo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.goodTwistCores_over_trueColumns : ∀ (𝒮 : Slots) (R : V4.Slot), OverCols (IsGoodE 𝒮) ∧ OverCols (sAnd (IsGoodE 𝒮) R) := by
-  first | exact @GlobalTheory.Fc.Cv.overCols_goodE | exact GlobalTheory.Fc.Cv.overCols_goodE | (intros; apply GlobalTheory.Fc.Cv.overCols_goodE <;> assumption)
+  first | exact @GlobalTheory.Fc.Cv.overCols_goodE

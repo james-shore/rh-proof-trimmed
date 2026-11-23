@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.unfoldedRankinSelbergIntegrand_ne_zero_identity : 
     (ϖ : ∀ w : HeightOneSpectrum (𝓞 E), (w.adicCompletion E)ˣ) (F : GA E (m + 1) → ℂ) (Φ : (Fin (m + 1) → Cinf E) → ℂ)
     (J : (FractionalIdeal (𝓞 E)⁰ E)ˣ) (l₀ : GlobalTheory.CellDec.abelian₂ E (m + 1) T), (∀ w, l₀.1 w (Fin.last m) = 0) →
     GlobalTheory.JSW.whit F (GlobalTheory.CellDec.tl (m + 1) ϖ l₀.1) ≠ 0 → Φ (Pi.single (Fin.last m) 1) ≠ 0 → ∀ x : ℝ, GlobalTheory.RSCell.bInt (Fin.last m) F Φ J (Pi.single (Fin.last m) 1) x (GlobalTheory.CellDec.tl (m + 1) ϖ l₀.1) ≠ 0 := by
-  first | exact @GlobalTheory.RSCell.bInt_tl_last_ne_zero | exact GlobalTheory.RSCell.bInt_tl_last_ne_zero | (intros; apply GlobalTheory.RSCell.bInt_tl_last_ne_zero <;> assumption)
+  first | exact @GlobalTheory.RSCell.bInt_tl_last_ne_zero

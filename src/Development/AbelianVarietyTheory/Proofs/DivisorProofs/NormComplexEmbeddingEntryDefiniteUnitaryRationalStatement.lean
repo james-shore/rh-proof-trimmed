@@ -44,4 +44,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.norm_complexEmbedding_entry_definiteUnitaryRational_le_one : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (γ : UE E n) (τ : E →+* ℂ) (i j : Fin n), ‖τ (γ.1.val i j)‖ ≤ 1 := by
-  first | exact @GlobalTheory.BCT.SuppFin.norm_emb_entry_le_one | exact GlobalTheory.BCT.SuppFin.norm_emb_entry_le_one | (intros; apply GlobalTheory.BCT.SuppFin.norm_emb_entry_le_one <;> assumption)
+  first | exact @GlobalTheory.BCT.SuppFin.norm_emb_entry_le_one

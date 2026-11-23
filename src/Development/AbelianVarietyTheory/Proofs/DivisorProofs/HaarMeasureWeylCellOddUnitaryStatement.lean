@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.haar_measure_weyl_cell_odd_unitary : ∀ (L : Type
     ∀ [MeasurableSpace (cellU y)] [BorelSpace (cellU y)] (μ : Measure (cellU y)) [μ.IsHaarMeasure],
       μ ((KU σ n).subgroupOf (cellU y)) = 1 →
     ∀ j : ℕ, μ (shellU k y j) = (q : ENNReal) ^ (j + 2 * (j / 2)) := by
-  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.measure_shellU | exact GlobalTheory.WeylCell.WeylUnipotentShell.measure_shellU | (intros; apply GlobalTheory.WeylCell.WeylUnipotentShell.measure_shellU <;> assumption)
+  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.measure_shellU

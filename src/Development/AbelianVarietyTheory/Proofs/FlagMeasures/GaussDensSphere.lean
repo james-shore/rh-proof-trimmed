@@ -152,6 +152,5 @@ theorem gaussDens_sphere (n : ℕ) :
   refine (hF.deriv_eq.trans hd.deriv).trans ?_
   simp only [hh, hC, Real.sqrt_one, one_pow, one_mul]
   field_simp
-  try ring
 
 end GlobalTheory.GaussMean.Sphere

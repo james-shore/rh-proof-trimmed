@@ -53,4 +53,4 @@ open GlobalTheory.LiftLevel
 
 
 theorem _root_.GlobalTheory.T.exists_global_scalar_prime_to_conj_polarisationLattice' : ∀ (D : D7) (n : ℕ) (Λ ΛT : Lt D.host.E n), IsAA Λ ΛT → ∀ P : Finset (Formalism.L2.DIV.Pl D.host.E), ∃ γ : D.host.E, γ ≠ 0 ∧ ∃ s : 𝓞 D.host.E, (∀ PP ∈ P, s ∉ conjI PP.asIdeal) ∧ (∀ v ∈ Λ, ((s : D.host.E) * γ⁻¹) • v ∈ ΛT) ∧ (∀ v ∈ ΛT, ((s : D.host.E) * γ) • v ∈ Λ) := by
-  first | exact @GlobalTheory.GenChoice.exists_global_scalar_prime_to_conj_polarisationLattice | exact GlobalTheory.GenChoice.exists_global_scalar_prime_to_conj_polarisationLattice | (intros; apply GlobalTheory.GenChoice.exists_global_scalar_prime_to_conj_polarisationLattice <;> assumption)
+  first | exact @GlobalTheory.GenChoice.exists_global_scalar_prime_to_conj_polarisationLattice

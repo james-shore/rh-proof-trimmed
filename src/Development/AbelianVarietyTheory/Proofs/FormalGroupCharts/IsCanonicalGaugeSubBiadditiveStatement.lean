@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChartCmp
 
 theorem _root_.GlobalTheory.T.isCanonicalGauge_sub_biadditive : ∀ (R : Type) [CommRing R] (d : ℕ) (O : Type) [CommRing O] [StarRing O] (B : FB R d O) (k : Type) [CommRing k] [Algebra ℚ k] [Algebra R k] (h g : PS k 2 d), B.IsCanonGauge k h → (∀ m, Biadd m B k g) → B.IsCanonGauge k (h - g) := by
-  first | exact @GlobalTheory.ChartCmp.Regauge.isCanonGauge_sub | exact GlobalTheory.ChartCmp.Regauge.isCanonGauge_sub | (intros; apply GlobalTheory.ChartCmp.Regauge.isCanonGauge_sub <;> assumption)
+  first | exact @GlobalTheory.ChartCmp.Regauge.isCanonGauge_sub

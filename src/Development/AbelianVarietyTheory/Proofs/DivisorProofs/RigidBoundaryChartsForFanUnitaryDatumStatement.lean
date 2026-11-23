@@ -51,4 +51,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.rigidBoundaryChartsForFan_unitaryDatum : GlobalTheory.RigChart.RigidForFan := by
-  first | exact @GlobalTheory.RigChart.rigidForFan_holds | exact GlobalTheory.RigChart.rigidForFan_holds | (intros; apply GlobalTheory.RigChart.rigidForFan_holds <;> assumption)
+  first | exact @GlobalTheory.RigChart.rigidForFan_holds

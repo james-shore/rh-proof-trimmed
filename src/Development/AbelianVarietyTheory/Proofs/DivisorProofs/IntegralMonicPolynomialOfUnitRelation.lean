@@ -79,7 +79,7 @@ theorem exists_eq_of_finite (O : Type) {S : Type} [CommRing O] [HenselianLocalRi
   haveI : Finite (T ⧸ I) := Module.finite_of_finite (O ⧸ maximalIdeal O)
   have hc : ∀ s : S, starRingEnd T (algebraMap S T s) = algebraMap S T s := by
     intro s
-    ext <;> simp [T, starRingEnd_apply, QuadraticAlgebra.re_one, QuadraticAlgebra.im_one]
+    ext <;> simp [T, starRingEnd_apply]
   have hcO : (starRingEnd T).comp (algebraMap O T) = algebraMap O T := by
     ext1 r
     rw [RingHom.comp_apply, IsScalarTower.algebraMap_apply O S T, hc]
@@ -99,7 +99,7 @@ theorem exists_eq_of_finite (O : Type) {S : Type} [CommRing O] [HenselianLocalRi
     (algebraMap S T m) (hc m) (hm.map _)
   refine ⟨x.re, x.im, ?_⟩
   have := congrArg QuadraticAlgebra.re hx
-  simp [T, starRingEnd_apply, QuadraticAlgebra.re_one, QuadraticAlgebra.im_one] at this
+  simp [T, starRingEnd_apply] at this
   linear_combination -this
 
 theorem exists_eq_of_isIntegral (O : Type) {A : Type} [CommRing O] [HenselianLocalRing O]

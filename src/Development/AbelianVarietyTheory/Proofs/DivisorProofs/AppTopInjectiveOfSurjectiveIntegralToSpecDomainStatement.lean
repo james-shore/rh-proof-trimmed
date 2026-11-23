@@ -53,4 +53,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.appTop_injective_of_surjective_integral_toSpecDomain : ∀ (R : Type) [CommRing R] [IsDomain R] (S : Scheme.{0}) (π : S ⟶ Sp R), Surjective π → IsIntegral S → Function.Injective π.appTop.hom := by
-  first | exact @GlobalTheory.appTop_injective_of_surjective_toSpec_domain | exact GlobalTheory.appTop_injective_of_surjective_toSpec_domain | (intros; apply GlobalTheory.appTop_injective_of_surjective_toSpec_domain <;> assumption)
+  first | exact @GlobalTheory.appTop_injective_of_surjective_toSpec_domain

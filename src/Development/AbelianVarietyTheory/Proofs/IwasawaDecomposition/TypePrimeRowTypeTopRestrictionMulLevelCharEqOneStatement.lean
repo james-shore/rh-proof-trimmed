@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.typePrime_rowType_topRestriction_mul_levelChar_eq_
     CongE w.1 1 g g' →
     LocE.lamGBS (qOf w.1) (psi0P Ch w.1) (chiP Ch w.1) R.k R.r R.t R.m (R.N R.m - 1) 0 g''.toLinearMap *
       (((rowTyG Ch (rPsymF Ch) w).lam ⟨h0, hh0⟩ : X.Kˣ) : X.K) = 1 := by
-  first | exact @GlobalTheory.Mem.Col2.AdT.lamGBS_top_mul_lam_eq_one | exact GlobalTheory.Mem.Col2.AdT.lamGBS_top_mul_lam_eq_one | (intros; apply GlobalTheory.Mem.Col2.AdT.lamGBS_top_mul_lam_eq_one <;> assumption)
+  first | exact @GlobalTheory.Mem.Col2.AdT.lamGBS_top_mul_lam_eq_one

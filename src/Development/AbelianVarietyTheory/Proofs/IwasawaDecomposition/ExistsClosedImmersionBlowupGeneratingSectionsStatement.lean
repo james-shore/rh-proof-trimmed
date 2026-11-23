@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.exists_closedImmersion_blowup_generatingSections :
     (b : X' ⟶ X) (L₀ : LB X) (m : ℕ) (σ : Fin (m + 1) → L₀.Sec), IsProjOver s → FinalTheorems.Blowup b J →
     GlobalTheory.ProjBlowup.Generates J σ → ∃ (c : X' ⟶ PSpace R m) (hc : b ≫ s = c ≫ PSpace.str R m),
       GlobalTheory.ProjBlowup.Proportional σ b c ∧ IsClosedImmersion (pullback.lift b c hc) := by
-  first | exact @GlobalTheory.ProjBlowup.exists_closedImmersion_of_generates | exact GlobalTheory.ProjBlowup.exists_closedImmersion_of_generates | (intros; apply GlobalTheory.ProjBlowup.exists_closedImmersion_of_generates <;> assumption)
+  first | exact @GlobalTheory.ProjBlowup.exists_closedImmersion_of_generates

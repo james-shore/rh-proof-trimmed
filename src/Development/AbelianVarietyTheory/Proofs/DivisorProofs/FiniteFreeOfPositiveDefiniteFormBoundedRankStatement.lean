@@ -61,4 +61,4 @@ open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheor
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.finite_free_of_positiveDefinite_form_bounded_rank : ∀ (H : Type) [AddCommGroup H] (Q : H → ℤ), (∀ f g, Q (f + g) + Q (f - g) = 2 * Q f + 2 * Q g) → (∀ f, 0 ≤ Q f) → (∀ f, Q f = 0 → f = 0) → ∀ r : ℕ, (∀ (n : ℕ) (u : Fin n → H), LinearIndependent ℤ u → n ≤ r) → Module.Finite ℤ H ∧ Module.Free ℤ H ∧ Module.finrank ℤ H ≤ r := by
-  first | exact @GlobalTheory.finite_free_of_definite_form_of_rank_le | exact GlobalTheory.finite_free_of_definite_form_of_rank_le | (intros; apply GlobalTheory.finite_free_of_definite_form_of_rank_le <;> assumption)
+  first | exact @GlobalTheory.finite_free_of_definite_form_of_rank_le

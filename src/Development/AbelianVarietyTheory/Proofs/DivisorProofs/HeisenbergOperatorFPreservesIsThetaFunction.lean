@@ -102,7 +102,7 @@ theorem contDiff_char {k : ℕ} (χ : (Fin k → ℝ) → ℂ) (hc : Continuous 
   rw [hsplit]
   refine contDiff_prod fun i _ => ?_
   have hsc : Continuous fun s : ℝ => (Pi.single i s : Fin k → ℝ) := by
-    first | fun_prop | exact continuous_single i | exact (LinearMap.single ℝ (fun _ : Fin k => ℝ) i).continuous_of_finiteDimensional
+    first | exact (LinearMap.single ℝ (fun _ : Fin k => ℝ) i).continuous_of_finiteDimensional
   have hi : ContDiff ℝ ∞ fun s : ℝ => χ (Pi.single i s) :=
     contDiff_real_char _ (hc.comp hsc) (fun s t => by rw [Pi.single_add, hm])
       (by rw [Pi.single_zero, h0])

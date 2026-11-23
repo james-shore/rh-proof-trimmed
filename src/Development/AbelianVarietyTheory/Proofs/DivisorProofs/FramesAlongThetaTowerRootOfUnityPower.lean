@@ -304,7 +304,7 @@ theorem frames_along_tower : ∀ {g n : ℕ} {F : SFam g n (zetaAway n)} {W : Ma
         (gw w₀ (y ≫ 𝔪₂.φ) zz (J₁ (y ≫ ψ ≫ 𝔪.φ)) (J₂ (y ≫ 𝔪₂.φ)) *
           val (𝔗.X₂.ρ.fr (𝔗.lam b)) (show (TFK (R := V') (FractionRing V')).left ⟶ (baseOver (Sp 𝔗.X₂.S.R)).left from spMap 𝔪₂.yK) zz J₂) := by
     rw [eq_inv_mul_of_mul_eq hd, ← ha']
-    first | rfl | simp only [mul_assoc] | group
+    first | group
   have hU : gs (show (TFK (R := V') (FractionRing V')).left ⟶ (baseOver (Sp 𝔗.X₂.S.R)).left from spMap 𝔪₂.yK) zz ⊤ (fn (u₀ * ⟨algebraMap 𝔗.X₂.o₁ 𝔗.X₂.Ω₁ 𝔗.X₂.S.ζ, 𝔗.X₂.S.R.algebraMap_mem _⟩ ^ k b)) =
       GlobalTheory.Poinc.TorsRatio.cstK zz (𝔪₂.yK (u₀ * ⟨algebraMap 𝔗.X₂.o₁ 𝔗.X₂.Ω₁ 𝔗.X₂.S.ζ, 𝔗.X₂.S.R.algebraMap_mem _⟩ ^ k b)) :=
     (GlobalTheory.FrameMove.gs_spMap 𝔪₂.yK zz _).trans (GlobalTheory.Poinc.TorsRatio.cst_eq_cstK zz _)

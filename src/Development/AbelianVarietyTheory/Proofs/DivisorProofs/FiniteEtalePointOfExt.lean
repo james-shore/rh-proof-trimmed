@@ -96,7 +96,6 @@ theorem endo_descent (B : Over (Sp k₀)) [GrpObj B] (hB : IsAbelianScheme B)
     letI : Algebra k₀ Ω := ((algebraMap K Ω).comp (algebraMap k₀ K)).toAlgebra
     have hιj : qΩ ≫ spMap (algebraMap k₀ K) = spMap (algebraMap k₀ Ω) := by
       simp only [qΩ, spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
-      try rfl
     haveI := hf₀
     haveI := hΨ
     apply ActDescent.pullback_map_injective qΩ

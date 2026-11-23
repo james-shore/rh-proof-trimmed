@@ -48,4 +48,4 @@ open scoped Formalism.Per NNReal
 open Matrix
 
 theorem _root_.GlobalTheory.T.breuilKisin_exists_adic_sum_of_null_family : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (ι : Type) (TB : TopBasis bk.ev bk.J ι) (σ : ι → bk.S), (∀ n : ℕ, {i | σ i ∉ bk.J ^ n}.Finite) → ∃ L : Ainf l, ∀ n : ℕ, ∃ F : Finset ι, ∀ G : Finset ι, F ⊆ G → L - ∑ i ∈ G, bk.ev (σ i) * TB.b i ∈ (bk.J ^ n).map bk.ev := by
-  first | exact @GlobalTheory.BSP.exists_sum_null_ev | exact GlobalTheory.BSP.exists_sum_null_ev | (intros; apply GlobalTheory.BSP.exists_sum_null_ev <;> assumption)
+  first | exact @GlobalTheory.BSP.exists_sum_null_ev

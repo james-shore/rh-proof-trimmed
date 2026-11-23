@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.locallyOfFiniteType_near_generisation_of_point : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (f : R) (P A : Scheme.{0}) [IsIntegral P] [Nonempty A] (p : P ⟶ Sp R) (ιA : A ⟶ P) (a : A ⟶ Sp (Localization.Away f)), IsPullback ιA a p (awayMap f) → LocallyOfFiniteType a → ∀ (x : Sp R) (V : P.Opens), LocallyOfFiniteType (Limits.pullback.snd (V.ι ≫ p) ((Sp R).fromSpecStalk x)) → ∀ z : P, z ∈ V → (p z).asIdeal ≤ x.asIdeal → ∃ W : P.Opens, z ∈ W ∧ W ≤ V ∧ LocallyOfFiniteType (W.ι ≫ p) := by
-  first | exact @GlobalTheory.USpread.locally_finiteType_near | exact GlobalTheory.USpread.locally_finiteType_near | (intros; apply GlobalTheory.USpread.locally_finiteType_near <;> assumption)
+  first | exact @GlobalTheory.USpread.locally_finiteType_near

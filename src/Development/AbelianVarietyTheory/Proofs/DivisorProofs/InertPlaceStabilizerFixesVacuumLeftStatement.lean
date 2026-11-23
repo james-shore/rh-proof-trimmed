@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.inertPlace_stabilizer_fixes_vacuum_left : ∀ (F E
     (a a' : ℕ) (G : Geo σ a a') (X : Chars F E) (om : Rep σ G.V G.W) (om' : Rep σ G.V' G.W), IsTriple B G X om om' →
     ∀ (v : Pl (F := F)) (w : HeightOneSpectrum (𝓞 E)), Formalism.UG.IsInertAt F E v w → v ∉ X.T →
     ∀ k ∈ GlobalTheory.InertSph.KAt σ G.V' v, Acts (evFin F v) (om' (k, 1)) (G.M'.vac v) (G.M'.vac v) := by
-  first | exact @GlobalTheory.InertSphLeft.vac_fixed_left | exact GlobalTheory.InertSphLeft.vac_fixed_left | (intros; apply GlobalTheory.InertSphLeft.vac_fixed_left <;> assumption)
+  first | exact @GlobalTheory.InertSphLeft.vac_fixed_left

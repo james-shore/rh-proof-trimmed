@@ -57,4 +57,4 @@ open GlobalTheory.InertFrameLoc
 
 
 theorem _root_.GlobalTheory.T.exists_integralFramePoint_of_inertHalf_latticePoint : ∀ (D : D7) (v : HeightOneSpectrum (𝓞 D.host.F)) (w : HeightOneSpectrum (𝓞 D.host.E)) (hw : IsInertAt D.host.F D.host.E v w) (h : w.under (𝓞 D.host.F) = v) (S T : HSp D) (k : w.adicCompletion D.host.E) (aS : GL (Fin S.rank) (w.adicCompletion D.host.E)) (aT : GL (Fin T.rank) (w.adicCompletion D.host.E)), GlobalTheory.InertLoc.IsGen D w k → IsFrameAt w (frameLat S) aS → IsFrameAt w (frameLat T) aT → ∀ e e', IsPrimeIdem w e e' → ∀ u ∈ latO S T (L0c D S) (L0c D T) (fun _ => True), IsHalf e u ∨ IsHalf (cA D e) u → ∃ x : Matrix (Fin T.rank) (Fin S.rank) (w.adicCompletion D.host.E), (∀ i j, x i j ∈ Formalism.UG.intL (w.adicCompletion D.host.E)) ∧ uPt hw h k aS aT x = u := by
-  first | exact @GlobalTheory.InertFrameLoc.exists_uPt_of_half | exact GlobalTheory.InertFrameLoc.exists_uPt_of_half | (intros; apply GlobalTheory.InertFrameLoc.exists_uPt_of_half <;> assumption)
+  first | exact @GlobalTheory.InertFrameLoc.exists_uPt_of_half

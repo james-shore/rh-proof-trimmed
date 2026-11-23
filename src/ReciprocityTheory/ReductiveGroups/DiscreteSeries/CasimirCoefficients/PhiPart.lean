@@ -289,15 +289,15 @@ theorem phiM_part (μ : Fin n → ℤ) {z B : Matrix (Fin n) (Fin n) ℂ} (hz : 
   have e1 : B + lowMinusUp B = X1 := by
     ext a b
     rcases lt_trichotomy a b with h | rfl | h
-    · simp [lowMinusUp, hX1, h, lt_asymm h, ne_of_lt h] <;> ring
+    · simp [lowMinusUp, hX1, h, lt_asymm h, ne_of_lt h]
     · simp [lowMinusUp, hX1]
-    · simp [lowMinusUp, hX1, h, lt_asymm h, (ne_of_lt h).symm] <;> ring
+    · simp [lowMinusUp, hX1, h] <;> ring
   have e2 : B - lowMinusUp B = X2 := by
     ext a b
     rcases lt_trichotomy a b with h | rfl | h
-    · simp [lowMinusUp, hX2, h, lt_asymm h, ne_of_lt h] <;> ring
+    · simp [lowMinusUp, hX2, h, lt_asymm h] <;> ring
     · simp [lowMinusUp, hX2]
-    · simp [lowMinusUp, hX2, h, lt_asymm h, (ne_of_lt h).symm] <;> ring
+    · simp [lowMinusUp, hX2, h, lt_asymm h, (ne_of_lt h).symm]
   have hL : IsLowerTri X1 := fun a b hab => by simp [hX1, lt_asymm hab, ne_of_lt hab]
   have hU : IsUpperTri X2 := fun a b hab => by simp [hX2, lt_asymm hab, (ne_of_lt hab).symm]
   have hsplit : B * z + z * B = (z * lowMinusUp B - lowMinusUp B * z) + (X1 * z + z * X2) := by

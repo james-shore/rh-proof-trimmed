@@ -47,4 +47,4 @@ open NumberField IsDedekindDomain ReciprocityTheory.Aut
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.splitPlaceProjection_eq_zero_of_placeComponent_eq_zero : ∀ (L : Type) [Field L] [NumberField L] (s : ReciprocityTheory.Aut.SplitPlace L) (a : ReciprocityTheory.Aut.AL L), ReciprocityTheory.Aut.compAt L s.v a = 0 → s.proj a = 0 := by
-  first | exact @GlobalTheory.SplitProj.proj_eq_zero_of_compAt_eq_zero | exact GlobalTheory.SplitProj.proj_eq_zero_of_compAt_eq_zero | (intros; apply GlobalTheory.SplitProj.proj_eq_zero_of_compAt_eq_zero <;> assumption)
+  first | exact @GlobalTheory.SplitProj.proj_eq_zero_of_compAt_eq_zero

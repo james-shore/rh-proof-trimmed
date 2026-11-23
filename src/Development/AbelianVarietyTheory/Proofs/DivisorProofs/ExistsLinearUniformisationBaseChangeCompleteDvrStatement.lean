@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_linear_uniformisation_base_change_complete_
     ∀ tW : SAB H (Sp W), Nonempty (SABMap tW t (spMap f)) →
       ∃ (PW : PELUnif (maximalIdeal W) tW) (e : PW.D.toPre.X ≃ₗ[𝓞 E] P.D.toPre.X),
         ∀ y r, PsiCoord P.D.toPre (e y) r → ∃ u : Wˣ, PsiCoord PW.D.toPre y (u * f r) := by
-  first | exact @GlobalTheory.UnifDvrBaseChange.exists_pelUnif | exact GlobalTheory.UnifDvrBaseChange.exists_pelUnif | (intros; apply GlobalTheory.UnifDvrBaseChange.exists_pelUnif <;> assumption)
+  first | exact @GlobalTheory.UnifDvrBaseChange.exists_pelUnif

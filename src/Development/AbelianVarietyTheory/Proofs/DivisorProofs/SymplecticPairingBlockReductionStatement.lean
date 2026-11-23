@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.symplectic_pairing_block_reduction : ∀ {R S : Ty
       symp c ξ J₀ K (Matrix.of fun i l => z (Sum.inl i) l) (Matrix.of fun i l => z' (Sum.inl i) l) +
       ∑ i, (Algebra.trace R S (ξ * ∑ j, ∑ l, z (Sum.inr (Sum.inl i)) j * K j l * c (z' (Sum.inr (Sum.inr i)) l)) +
         Algebra.trace R S (ξ * ∑ j, ∑ l, z (Sum.inr (Sum.inr i)) j * K j l * c (z' (Sum.inr (Sum.inl i)) l))) := by
-  first | exact @GlobalTheory.WeilM.symp_fromBlocks_hyperbolic | exact GlobalTheory.WeilM.symp_fromBlocks_hyperbolic | (intros; apply GlobalTheory.WeilM.symp_fromBlocks_hyperbolic <;> assumption)
+  first | exact @GlobalTheory.WeilM.symp_fromBlocks_hyperbolic

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.isSchwartzBruhatHalf_split_datum_completed_lattice
     ∀ Ψ ∈ SB (Matrix n n' k),
       IsSBHalf p.e (latO S T (LS : Set (Fin S.rank → D.host.E)) (LT : Set (Fin T.rank → D.host.E)) (· = p.v))
         (extFun α β Ψ) := by
-  first | exact @GlobalTheory.FinPl.SBHalfAt.isSBHalf_extFun_latO | exact GlobalTheory.FinPl.SBHalfAt.isSBHalf_extFun_latO | (intros; apply GlobalTheory.FinPl.SBHalfAt.isSBHalf_extFun_latO <;> assumption)
+  first | exact @GlobalTheory.FinPl.SBHalfAt.isSBHalf_extFun_latO

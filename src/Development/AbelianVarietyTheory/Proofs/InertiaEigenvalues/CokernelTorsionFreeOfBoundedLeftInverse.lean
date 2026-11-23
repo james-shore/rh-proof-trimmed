@@ -188,7 +188,6 @@ theorem mem_imM_of_smul_mem (F : Hom P Q)
       conv_rhs => rw [← hFx]
       rw [app_apply, Matrix.mulVec_mulVec, hY0 τ]
       first
-        | rw [Matrix.smul_mulVec_assoc, Matrix.one_mulVec]
         | rw [Matrix.smul_mulVec, Matrix.one_mulVec]
     have h4 : g τ * x τ i = (Y0 τ *ᵥ v τ) i := by rw [← h3]; rfl
     rw [h4]

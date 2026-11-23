@@ -63,4 +63,4 @@ open GlobalTheory GlobalTheory.ZH GlobalTheory.CechPic GlobalTheory.Cartier Glob
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_valuationSubring_ratFunc_X_residue_zero : ∀ (k : Type) [Field k], ∃ (V : ValuationSubring (RatFunc k)) (c : k →+* V) (t : V), (algebraMap V (RatFunc k)).comp c = algebraMap k (RatFunc k) ∧ (t : RatFunc k) = RatFunc.X ∧ IsLocalRing.residue V t = 0 := by
-  first | exact @GlobalTheory.FlagPush.exists_valuationSubring_ratFunc_residue_X_eq_zero | exact GlobalTheory.FlagPush.exists_valuationSubring_ratFunc_residue_X_eq_zero | (intros; apply GlobalTheory.FlagPush.exists_valuationSubring_ratFunc_residue_X_eq_zero <;> assumption)
+  first | exact @GlobalTheory.FlagPush.exists_valuationSubring_ratFunc_residue_X_eq_zero

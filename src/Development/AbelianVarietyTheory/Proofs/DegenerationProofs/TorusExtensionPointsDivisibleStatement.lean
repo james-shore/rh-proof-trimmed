@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.torusExtension_points_divisible' : ∀ (k : Type) [Field k] [IsAlgClosed k] (G : Over (Sp k)) [GrpObj G] [IsCommMonObj G], Nonempty (TorusExtension G) → ∀ (n : ℕ), 1 ≤ n → ∀ y : (𝟙_ (Over (Sp k)) ⟶ G), ∃ x : (𝟙_ (Over (Sp k)) ⟶ G), x ^ n = y := by
-  first | exact @GlobalTheory.SS.torusExtension_points_divisible | exact GlobalTheory.SS.torusExtension_points_divisible | (intros; apply GlobalTheory.SS.torusExtension_points_divisible <;> assumption)
+  first | exact @GlobalTheory.SS.torusExtension_points_divisible

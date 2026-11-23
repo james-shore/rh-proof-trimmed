@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.partialFourierSum_firstBlock_blockDiagonal : ∀ {
     ∀ Φ : Matrix A (D₁ ⊕ D₂) k → ℂ, IsNatDatum ϖ e Φ → ∀ M₁ ∈ KO k D₁, ∀ M₂ ∈ KO k D₂, ∀ Y : Matrix A (D₁ ⊕ D₂) k,
       fourierSum ψ ϖ e (Assignment.one.block D₁ D₂) (fun Z => Φ (Z * fromBlocks M₁.val 0 0 M₂.val)) Y =
         fourierSum ψ ϖ e (Assignment.one.block D₁ D₂) Φ (Y * fromBlocks (invT M₁).val 0 0 M₂.val) := by
-  first | exact @GlobalTheory.BlockSubst.fourierSum_blockDiag_one | exact GlobalTheory.BlockSubst.fourierSum_blockDiag_one | (intros; apply GlobalTheory.BlockSubst.fourierSum_blockDiag_one <;> assumption)
+  first | exact @GlobalTheory.BlockSubst.fourierSum_blockDiag_one

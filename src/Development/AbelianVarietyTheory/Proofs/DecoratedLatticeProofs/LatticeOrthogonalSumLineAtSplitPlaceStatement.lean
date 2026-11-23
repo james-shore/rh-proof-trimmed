@@ -47,4 +47,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.AppendedVectorData (lastKer)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.lattice_orthogonal_sum_line_at_split_place : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (p : SplitPt D k) (n' : Type) [Fintype n'] [DecidableEq n'] (S A L : HSp D) (o : OrthDec S A L) (ζ : Fin L.rank → D.host.E), IsLineVec L ζ → ∀ (α : Frame p A n') (α₀ : Frame p S (n' ⊕ Fin 1)), IsSumFrame o ζ α α₀ → p.UnitAA → ∀ (LA : Lat A) (LS : Lat S) (ΛA : Submodule 𝒪[k] (n' → k)), IsSelfDualC A LA → IsSelfDualC S LS → α.IsLat LA ΛA → α₀.IsLat LS (lastKer ΛA) → ∃ LL : Lat L, OrthAt o LS LA LL p.v := by
-  first | exact @GlobalTheory.LineSplitAt.orthAt_of_frames | exact GlobalTheory.LineSplitAt.orthAt_of_frames | (intros; apply GlobalTheory.LineSplitAt.orthAt_of_frames <;> assumption)
+  first | exact @GlobalTheory.LineSplitAt.orthAt_of_frames

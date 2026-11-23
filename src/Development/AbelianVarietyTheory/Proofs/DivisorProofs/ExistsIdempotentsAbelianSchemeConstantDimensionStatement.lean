@@ -55,4 +55,4 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestric
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_idempotents_abelianScheme_constant_dimension : ∀ (R₀ : Type) [CommRing R₀] (A : Over (Sp R₀)) [GrpObj A], IsAbelianScheme A → ∃ (n : ℕ) (e : Fin n → R₀), CompleteOrthogonalIdempotents e ∧ ∀ k, ∃ g : ℕ, SmoothOfRelativeDimension g (Limits.pullback.snd A.hom (spMap (Ideal.Quotient.mk (Ideal.span {1 - e k})))) := by
-  first | exact @GlobalTheory.DimSplit.exists_idempotents_smoothOfRelativeDimension | exact GlobalTheory.DimSplit.exists_idempotents_smoothOfRelativeDimension | (intros; apply GlobalTheory.DimSplit.exists_idempotents_smoothOfRelativeDimension <;> assumption)
+  first | exact @GlobalTheory.DimSplit.exists_idempotents_smoothOfRelativeDimension

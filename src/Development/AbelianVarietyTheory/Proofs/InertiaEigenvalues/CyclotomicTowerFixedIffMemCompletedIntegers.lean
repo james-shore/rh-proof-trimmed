@@ -81,11 +81,7 @@ theorem sum_reps_invariant {G M : Type} [Group G] [AddCommMonoid M] (H N : Subgr
     (f : G → M) (hf : ∀ g, ∀ n ∈ N, f (g * n) = f g) (h : G) (hh : h ∈ H) :
     ∑ s ∈ S, f (h * s) = ∑ s ∈ S, f s := by
   first
-  | exact @_root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal
-  | exact _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal
   | (apply _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal ..)
 
 variable {l : ℕ} [Fact l.Prime]

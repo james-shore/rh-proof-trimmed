@@ -50,4 +50,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.exists_trivial_cocycle_crystalline_period_data : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (τ : Ainf l), bk.IsPer τ → ∀ (d : ℕ) (ρ : ↥(GK K) → Matrix (Fin d) (Fin d) (ℤ_[l])) (s : Seed bk d ρ τ), ∃ s' : WSeed bk d ρ τ, ∀ g, s'.κ g = 1 := by
-  first | exact @GlobalTheory.BKLim.wseed_of_seed | exact GlobalTheory.BKLim.wseed_of_seed | (intros; apply GlobalTheory.BKLim.wseed_of_seed <;> assumption)
+  first | exact @GlobalTheory.BKLim.wseed_of_seed

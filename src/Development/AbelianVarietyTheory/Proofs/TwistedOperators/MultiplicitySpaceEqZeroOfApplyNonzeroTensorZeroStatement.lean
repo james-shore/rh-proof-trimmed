@@ -48,4 +48,4 @@ open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.multiplicitySpace_eq_zero_of_apply_nonzero_tensor_zero : ∀ {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (θ : InfFam D) (M : DSModel V S), ∀ J χ (μ : Measure (GA D V)) (𝓕 : Set (GA D V)), IsInfFam θ → μ.IsHaarMeasure → IsFundamentalDomain (GQ V) 𝓕 μ → SchurMult θ M J χ μ 𝓕 → ∀ u ∈ MultT θ M J χ, ∀ x : ⨂[ℂ] τ, M.sm τ, x ≠ 0 → u x = 0 → u = 0 := by
-  first | exact @GlobalTheory.multT_eq_zero_of_apply_eq_zero | exact GlobalTheory.multT_eq_zero_of_apply_eq_zero | (intros; apply GlobalTheory.multT_eq_zero_of_apply_eq_zero <;> assumption)
+  first | exact @GlobalTheory.multT_eq_zero_of_apply_eq_zero

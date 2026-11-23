@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.archimedean_weilOperator_intertwines_schroedinger 
     ∀ h ∈ UAt σ W (evI F), ∀ (v : (Fin n × Fin d → mixedEmbedding.mixedSpace F) × (Fin n × Fin d → mixedEmbedding.mixedSpace F))
       (f f₁ : SInf F (Fin n × Fin d)), ⇑f₁ = schrF (trP F (Fin n × Fin d)) v ⇑f →
       ⇑(archOp om h f₁) = schrF (trP F (Fin n × Fin d)) (archAct M h v) ⇑(archOp om h f) := by
-  first | exact @GlobalTheory.ArchHeis.archOp_schrF | exact GlobalTheory.ArchHeis.archOp_schrF | (intros; apply GlobalTheory.ArchHeis.archOp_schrF <;> assumption)
+  first | exact @GlobalTheory.ArchHeis.archOp_schrF

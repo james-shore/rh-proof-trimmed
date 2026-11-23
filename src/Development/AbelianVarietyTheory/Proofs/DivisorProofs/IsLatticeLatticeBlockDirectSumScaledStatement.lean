@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.isLattice_latticeBlockDirectSum_scaled : ∀ {E : 
     ∀ {ΛA : Submodule (𝓞 E) (Fin a → E)} {ΛB : Submodule (𝓞 E) (Fin b → E)}, Submodule.IsLattice E ΛA →
     Submodule.IsLattice E ΛB → ∀ (e : Fin a ⊕ Fin b ≃ Fin d),
     Submodule.IsLattice E (GlobalTheory.SkewLat.pairLat (GlobalTheory.SkewLat.scLat 𝔞 ΛA) (GlobalTheory.SkewLat.scLat 𝔞 ΛB) e) := by
-  first | exact @GlobalTheory.SkewLat.pairLat_scLat_isLattice | exact GlobalTheory.SkewLat.pairLat_scLat_isLattice | (intros; apply GlobalTheory.SkewLat.pairLat_scLat_isLattice <;> assumption)
+  first | exact @GlobalTheory.SkewLat.pairLat_scLat_isLattice

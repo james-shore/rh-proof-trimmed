@@ -53,4 +53,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.exists_normScale_curveIdeal : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)), Formalism.MainNotions.TaylorLogMetric.IsCurveIdeal D cc → ∃ r : D.host.E, IsScale D cc r := by
-  first | exact @GlobalTheory.NormRatio.exists_scale | exact GlobalTheory.NormRatio.exists_scale | (intros; apply GlobalTheory.NormRatio.exists_scale <;> assumption)
+  first | exact @GlobalTheory.NormRatio.exists_scale

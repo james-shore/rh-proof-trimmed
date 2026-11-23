@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.bigRoute_kernel_integrableOn_unitary_quotient : �
     (W : G.Weil) (B : Frames G) (ρ : RealMatch W) (t : T) (i j : Fin D.R.m) (hT : SquareTriple W t i j)
     (M : Vol G) (hM : M.Is t) (Θ : TotT G (routeBig t i j)) (Θ' : TotT G (routeSmall t i j)) (hΘ : IsMatched B t ρ i j Θ Θ') (g₁ : GA D (G.V (.grid (i + 1) j))),
     ∀ g : GA D (G.V (.grid i (j + 1))), IntegrableOn (kerBig W Θ g g₁) (M.fd (.grid (i + 1) (j + 1))) (M.ν (.grid (i + 1) (j + 1))) := by
-  first | exact @GlobalTheory.FunObj.routeBig_kerBig_integrableOn | exact GlobalTheory.FunObj.routeBig_kerBig_integrableOn | (intros; apply GlobalTheory.FunObj.routeBig_kerBig_integrableOn <;> assumption)
+  first | exact @GlobalTheory.FunObj.routeBig_kerBig_integrableOn

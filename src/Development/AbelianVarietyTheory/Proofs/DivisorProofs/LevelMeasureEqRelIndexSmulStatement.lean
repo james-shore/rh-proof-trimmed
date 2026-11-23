@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.levelMeasure_eq_relIndex_smul : ∀ {D : D7} (V : 
   (K K₀ : Subgroup (GL (Fin V.rank) (Lev.EAf D))) (μ μ₀ : Measure (GA D V)), ι.range = GfC V → J ≤ J₀ → J.relIndex J₀ ≠ 0 →
   IsOpenCompactLevel V K → IsOpenCompactLevel V K₀ → (∀ x, Lev.finE V (ι x) ∈ K ↔ x ∈ J) → (∀ x, Lev.finE V (ι x) ∈ K₀ ↔ x ∈ J₀) →
   Lev.IsMeasLevDef V K μ → Lev.IsMeasLevDef V K₀ μ₀ → μ = (J.relIndex J₀ : ENNReal) • μ₀ := by
-  first | exact @GlobalTheory.LevelIndexMeasure.measure_eq_relIndex_smul | exact GlobalTheory.LevelIndexMeasure.measure_eq_relIndex_smul | (intros; apply GlobalTheory.LevelIndexMeasure.measure_eq_relIndex_smul <;> assumption)
+  first | exact @GlobalTheory.LevelIndexMeasure.measure_eq_relIndex_smul

@@ -49,4 +49,4 @@ open AlgebraicGeometry CategoryTheory Limits ReciprocityTheory.ChartRestriction.
 open scoped Matrix nonZeroDivisors
 
 theorem _root_.GlobalTheory.T.normalised_points_satisfy_single_frame : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (k : Fin F.n) (T : ThetaData e F M k) (un : (M.X k).dom → FrPt Xo c (CAt σ)), GoodEmb c σ → ModelBase M → NegXi M → IsNormUn T un → ∀ x, FrameOK e F M k x (un x) := by
-  first | exact @GlobalTheory.NormFrame.frameOK_of_isNormUn | exact GlobalTheory.NormFrame.frameOK_of_isNormUn | (intros; apply GlobalTheory.NormFrame.frameOK_of_isNormUn <;> assumption)
+  first | exact @GlobalTheory.NormFrame.frameOK_of_isNormUn

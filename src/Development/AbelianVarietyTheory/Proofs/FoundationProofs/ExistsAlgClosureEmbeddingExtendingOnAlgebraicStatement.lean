@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.exists_algClosure_embedding_extending_on_algebraic : ∀ (M : IntermediateField ℚ ℂ) (ρ : M →ₐ[ℚ] ℂ), ∃ ρ' : Qbar →ₐ[ℚ] ℂ, ∀ x : ℂ, x ∈ Qbar → x ∈ M → cj M ρ x = cj Qbar ρ' x := by
-  first | exact @GlobalTheory.ThetaConj.exists_cj_Qbar_eq | exact GlobalTheory.ThetaConj.exists_cj_Qbar_eq | (intros; apply GlobalTheory.ThetaConj.exists_cj_Qbar_eq <;> assumption)
+  first | exact @GlobalTheory.ThetaConj.exists_cj_Qbar_eq

@@ -47,4 +47,4 @@ open scoped TensorProduct Pointwise
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.splitPlace_stdChar_continuous_nontrivial : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (p : SplitPt D k) (ψ : AddChar (AF D.host.F) ℂ) (χ : AddChar k Circle), p.IsChar ψ χ → IsStdChar D ψ (-1) → Continuous χ ∧ χ ≠ 1 := by
-  first | exact @GlobalTheory.FinPl.SplitChar.cont_ne_one | exact GlobalTheory.FinPl.SplitChar.cont_ne_one | (intros; apply GlobalTheory.FinPl.SplitChar.cont_ne_one <;> assumption)
+  first | exact @GlobalTheory.FinPl.SplitChar.cont_ne_one

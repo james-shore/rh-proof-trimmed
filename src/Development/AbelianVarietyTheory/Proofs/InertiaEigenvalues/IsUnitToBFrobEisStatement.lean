@@ -44,4 +44,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.isUnit_toB_frobOA_eis : ∀ (l : ℕ) [Fact l.Prime] (a e : ℕ) [NeZero a] [NeZero e] (O : Type) [CommRing O] [Algebra ℤ_[l] O] [Module.Free ℤ_[l] O] [Module.Finite ℤ_[l] O] (ϖ : PiSys l e), IsUnit (toB l O (frobOA l O (1 ⊗ₜ ϖ.ev a (eis l a e)))) := by
-  first | exact @GlobalTheory.BKGal.FrobEis.isUnit_toB_frob_eis | exact GlobalTheory.BKGal.FrobEis.isUnit_toB_frob_eis | (intros; apply GlobalTheory.BKGal.FrobEis.isUnit_toB_frob_eis <;> assumption)
+  first | exact @GlobalTheory.BKGal.FrobEis.isUnit_toB_frob_eis

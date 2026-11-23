@@ -67,7 +67,7 @@ theorem foldr_eq_prod (χ : End ℂ V → ℂ) (zs : List (End ℂ V)) (v : V) :
       (zs.map (fun z => z - algebraMap ℂ (End ℂ V) (χ z))).prod v := by
   induction zs with
   | nil => simp
-  | cons z zs ih => simp [ih, Module.End.mul_apply]
+  | cons z zs ih => simp [ih]
 
 theorem map_lt_of_pow_eq_zero {N : Submodule ℂ V} (g : End ℂ V) (K : ℕ)
     (hg : N.map g ≤ N) (hK : ∀ n ∈ N, (g ^ K) n = 0) (hN : N ≠ ⊥) : N.map g < N := by

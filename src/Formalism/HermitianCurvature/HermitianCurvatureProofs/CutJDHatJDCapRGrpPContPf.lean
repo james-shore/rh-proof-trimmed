@@ -192,12 +192,12 @@ theorem cp_td (h : Sep a c d) (r : ℕ) : ∀ m, m ≤ r →
   | 1, hm => by
     refine ⟨by simp [td, K, hm], ?_⟩
     by_cases h2 : 2 ≤ r
-    · simp only [td, show 0 + 2 ≤ r from h2, if_true, h2, show (1 : ℕ) ≤ r by omega, one_ne_zero, if_false]
-      simp only [show ¬ (1 : Fin 2) = 0 from by decide, if_false, mul_zero, sub_zero]
+    · simp only [td, show 0 + 2 ≤ r from h2, if_true, show (1 : ℕ) ≤ r by omega, one_ne_zero, if_false]
+      simp only [mul_zero, sub_zero]
       have hc := (h (r - (0 + 2)) (r - 1) (by omega)).2.2.1
       rw [hc.eq]
       simp [K]
-    · simp only [td, show ¬ (0 + 2 ≤ r) by omega, if_false, show ¬ (1 + 1 ≤ r) by omega]
+    · simp only [td, show ¬ (0 + 2 ≤ r) by omega, if_false]
   | m + 2, hm => by
     have ih1 := cp_td h r (m + 1) (by omega)
     have ih0 := cp_td h r m (by omega)
@@ -279,7 +279,7 @@ theorem cp_vAB (Y : ℂ) : ∀ i, i ≤ r → ∀ f : WSm r X,
   | i + 1, hi, f => by
     have ih := cp_vAB Y i (by omega) f
     have hir : i < r := by omega
-    simp only [Q.vAB, dif_pos hir, bu, aS, eS, dif_pos hir]
+    simp only [Q.vAB, bu, aS, eS, dif_pos hir]
     refine ⟨?_, ?_⟩
     · rw [ih.1, ih.2]
       rfl
@@ -411,7 +411,6 @@ theorem cp_cutoff (O : Set (Fin r → ℂ)) (hO : IsOpen O) (hOm : O ⊆ OmX r) 
     · have hn : x ∉ tsupport φ := fun h => hx (hts h)
       have hz : (φ : (Fin r → ℂ) → ℝ) =ᶠ[nhds x] 0 := by
         first
-          | exact not_mem_tsupport_iff_eventuallyEq.1 hn
           | exact notMem_tsupport_iff_eventuallyEq.1 hn
       apply (contDiffAt_const (c := (0 : X))).congr_of_eventuallyEq
       filter_upwards [hz] with y hy
@@ -420,7 +419,6 @@ theorem cp_cutoff (O : Set (Fin r → ℂ)) (hO : IsOpen O) (hOm : O ⊆ OmX r) 
     have hxO : x ∉ O := fun h => hx (hOm h)
     have h0 : φ x = 0 := by
       first
-        | exact image_eq_zero_of_nmem_tsupport (fun h => hxO (hts h))
         | exact image_eq_zero_of_notMem_tsupport (fun h => hxO (hts h))
     simp [h0]
   · filter_upwards [Metric.ball_mem_nhds c φ.rIn_pos] with y hy

@@ -147,7 +147,6 @@ theorem mem_ballV_iff (v : HeightOneSpectrum (𝓞 F)) (k : ℕ) (t : F) :
   show Valued.v (algebraMap F (Fv F v) t) ≤ _ ↔ _
   rw [show Valued.v (algebraMap F (Fv F v) t) = v.valuation F t by
     first
-      | exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation v t
       | exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v t
       | rfl]
 
@@ -225,9 +224,7 @@ theorem exists_near (v : HeightOneSpectrum (𝓞 F)) (k : ℕ) (c : Fv F v) :
   have hd : DenseRange (algebraMap F (Fv F v)) := HeightOneSpectrum.denseRange_algebraMap F v
   have hval : ∀ t : F, Valued.v (algebraMap F (Fv F v) t) = v.valuation F t := fun t => by
     first
-      | exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation v t
       | exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v t
-      | rfl
   obtain ⟨π, hπ⟩ := HeightOneSpectrum.valuation_exists_uniformizer (K := F) v
   have hvp : Valued.v (algebraMap F (Fv F v) (π ^ k)) = WithZero.exp (-(k : ℤ)) := by
     rw [hval, map_pow, hπ, ← WithZero.exp_nsmul, nsmul_eq_mul, mul_neg, mul_one]

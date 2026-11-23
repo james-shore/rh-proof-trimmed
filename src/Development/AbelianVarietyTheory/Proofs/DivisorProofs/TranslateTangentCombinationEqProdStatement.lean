@@ -75,4 +75,4 @@ theorem _root_.GlobalTheory.T.translate_tangent_combination_eq_prod : ∀ {E : T
     (∀ c, smT (g₀ ≫ t.G.hom) 0 (y c) = 1) ∧
       ∀ w, GlobalTheory.LogKS.IsTranslate t φ g₀ va w →
         w = (g' * (List.ofFn fun c => smT (g₀ ≫ t.G.hom) (φ (cf c)) (y c)).prod).left := by
-  first | exact @GlobalTheory.LogKSDiv.translate_comb | exact GlobalTheory.LogKSDiv.translate_comb | (intros; apply GlobalTheory.LogKSDiv.translate_comb <;> assumption)
+  first | exact @GlobalTheory.LogKSDiv.translate_comb

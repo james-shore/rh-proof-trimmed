@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.goodIdempotent_coefficients_agree_enlarged_base : 
   (z : Dat (w.st Z) w.I hX T Wt) (Wt' : Set B'.places.Pl)
   (R' : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) Ks), Enl0 B B' → HEq f' f → HEq w'.px w.px → GrpTrue Z.N f → GrpTrue Z'.N f' → RSideW z Wt' R' →
   ∀ cG : G0 R'.Pg (w'.st Z').toD7.R.r ≃* G0g (w'.st Z').toD7.nd, Keep R'.toRealDat (face0 (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr).lv2 cG → IdemSame z Xg := by
-  first | exact @GlobalTheory.Mem.R3.Rw.WeilExt.idemSame_of_keep | exact GlobalTheory.Mem.R3.Rw.WeilExt.idemSame_of_keep | (intros; apply GlobalTheory.Mem.R3.Rw.WeilExt.idemSame_of_keep <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.WeilExt.idemSame_of_keep

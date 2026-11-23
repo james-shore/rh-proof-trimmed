@@ -48,4 +48,4 @@ open NumberField Matrix GlobalTheory.Mass Formalism.HermitianLatticesTheory
 open scoped ENNReal Classical
 
 theorem _root_.GlobalTheory.T.maximalHermitianLattice_massRatio : MaxMass := by
-  first | exact @GlobalTheory.Mass.MaxFormula.main | exact GlobalTheory.Mass.MaxFormula.main | (intros; apply GlobalTheory.Mass.MaxFormula.main <;> assumption)
+  first | exact @GlobalTheory.Mass.MaxFormula.main

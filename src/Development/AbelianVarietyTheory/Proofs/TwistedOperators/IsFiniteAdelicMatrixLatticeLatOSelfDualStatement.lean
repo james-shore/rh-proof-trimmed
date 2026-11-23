@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.isFiniteAdelicMatrixLattice_latO_selfDual : ∀ {D : D7} (S T : HSp D) (ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)) (ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)), IsSelfDualC S ΛS → IsSelfDualC T ΛT → FinLat (latO S T (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E)) fun _ => True) := by
-  first | exact @GlobalTheory.AscFin.finLat_latO_selfDual | exact GlobalTheory.AscFin.finLat_latO_selfDual | (intros; apply GlobalTheory.AscFin.finLat_latO_selfDual <;> assumption)
+  first | exact @GlobalTheory.AscFin.finLat_latO_selfDual

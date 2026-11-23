@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions Formalism.BasicNotions.LevelStarExponents Formalism.MainNotions Formalism.MainNotions.Inhab GlobalTheory.EX NumberField
 
 theorem _root_.GlobalTheory.T.sizes_sizeW_sizeBm_sizeXpp : SzRow (fun _ _ L => SizeW L ∧ SizeBm L ∧ SizeXpp L) := by
-  first | exact @GlobalTheory.EX.szRow_sizeW_sizeBm_sizeXpp | exact GlobalTheory.EX.szRow_sizeW_sizeBm_sizeXpp | (intros; apply GlobalTheory.EX.szRow_sizeW_sizeBm_sizeXpp <;> assumption)
+  first | exact @GlobalTheory.EX.szRow_sizeW_sizeBm_sizeXpp

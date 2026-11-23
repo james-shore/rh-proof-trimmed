@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.columnLevel_of_stepZeroFormsLevel_trueColumns : �
       (fun c => (L.y c).1) (fun c => ((F.cls 0 (Nat.zero_le _) (Or.inl rfl)).y c).1)
       (fun c s => (L.stabI c s).1) (fun c s => ((F.cls 0 (Nat.zero_le _) (Or.inl rfl)).stabI c s).1) ∧
     F.gl.sp = L.splitG ∧ ∀ i v h, F.glev0.fr i v h = reGL (rank_eq_first_level (I.rec7 l Z).R) _ (L.frG i v h) := by
-  first | exact @GlobalTheory.Mem.LevZero.colLevel_of_forms | exact GlobalTheory.Mem.LevZero.colLevel_of_forms | (intros; apply GlobalTheory.Mem.LevZero.colLevel_of_forms <;> assumption)
+  first | exact @GlobalTheory.Mem.LevZero.colLevel_of_forms

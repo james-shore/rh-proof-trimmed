@@ -190,7 +190,6 @@ lemma mqk_induction (F : Type*) [Field F] [Algebra F E] {k : ℕ} (a : Fin k →
     have hfr := mqk_finrank_two K (α j) (a j : E) hb (hα j) hsq_a
     have hcard : (insert j T).card = T.card + 1 := by
       first
-      | exact Finset.card_insert_of_not_mem hj
       | exact Finset.card_insert_of_notMem hj
     refine ⟨?_, ?_⟩
     · rw [mqk_insert, hcard, pow_succ, ← ihr, ← hfr]
@@ -236,7 +235,6 @@ theorem mqKummer_of (hG : MQGalois) : MQKummer := by
       rw [← hfr]
       first
       | (rw [← Nat.card_eq_fintype_card]; exact IsGalois.card_aut_eq_finrank (F := ℚ) (E := E))
-      | (convert IsGalois.card_aut_eq_finrank (F := ℚ) (E := E) using 1)
     rw [h1]
     simp [Fintype.card_units_int]
   · intro d

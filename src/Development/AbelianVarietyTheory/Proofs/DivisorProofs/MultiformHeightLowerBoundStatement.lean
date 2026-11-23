@@ -46,4 +46,4 @@ open NumberField MvPolynomial ReciprocityTheory.MultiplicativeHeights Reciprocit
 open GlobalTheory GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.HermTools GlobalTheory.HilbertSamuel GlobalTheory.HSChoice GlobalTheory.HSShort
 
 theorem _root_.GlobalTheory.T.multiformHeight_lowerBound : HtLow := by
-  first | exact @GlobalTheory.HtLowProof.htLow | exact GlobalTheory.HtLowProof.htLow | (intros; apply GlobalTheory.HtLowProof.htLow <;> assumption)
+  first | exact @GlobalTheory.HtLowProof.htLow

@@ -48,4 +48,4 @@ open GlobalTheory
 open Classical
 
 theorem _root_.GlobalTheory.T.unitary_integral_compactifications_exist : UMinSt := by
-  first | exact @GlobalTheory.UPoinc.uMinSt_holds | exact GlobalTheory.UPoinc.uMinSt_holds | (intros; apply GlobalTheory.UPoinc.uMinSt_holds <;> assumption)
+  first | exact @GlobalTheory.UPoinc.uMinSt_holds

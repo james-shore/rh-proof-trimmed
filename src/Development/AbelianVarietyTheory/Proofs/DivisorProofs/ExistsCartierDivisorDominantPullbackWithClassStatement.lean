@@ -65,4 +65,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.OrbitSep
 
 theorem _root_.GlobalTheory.T.exists_cartierDivisor_dominant_pullback_with_class : ∀ (X X' : Scheme.{0}) [IsIntegral X] [IsIntegral X'] (φ : X' ⟶ X) [IsDominant φ] (D : CartierDiv X), ∃ D' : CartierDiv X', cls (toLB D') (isLB_toLB D') = cls ((toLB D).pull φ) (LB.isLB_pull (isLB_toLB D) φ) ∧ ∀ (x : X') (g : X.functionFieldˣ), D.IsEqn (φ x) g → D'.IsEqn x (Units.map (GlobalTheory.functionFieldMap φ).toMonoidHom g) := by
-  first | exact @GlobalTheory.Cartier.exists_pullback_cartierDiv | exact GlobalTheory.Cartier.exists_pullback_cartierDiv | (intros; apply GlobalTheory.Cartier.exists_pullback_cartierDiv <;> assumption)
+  first | exact @GlobalTheory.Cartier.exists_pullback_cartierDiv

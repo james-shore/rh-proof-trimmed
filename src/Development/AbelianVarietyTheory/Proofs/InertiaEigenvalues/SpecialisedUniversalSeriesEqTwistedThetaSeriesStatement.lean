@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.specialised_universal_series_eq_twisted_thetaSerie
     TwOK i k Q (χ.comp (Y.delU i Q M)) →
     ∀ (h : GA D (Vc D j)) (P : PolF D (Wc D j).rank (Vc D j).rank),
       specXi ρ Y i j b k Q M χ h P = specSer ρ Y i j b k Q M χ h P := by
-  first | exact @GlobalTheory.SpecFac.specXi_eq_specSer | exact GlobalTheory.SpecFac.specXi_eq_specSer | (intros; apply GlobalTheory.SpecFac.specXi_eq_specSer <;> assumption)
+  first | exact @GlobalTheory.SpecFac.specXi_eq_specSer

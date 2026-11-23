@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.eq_pow_of_baseChange_eq_pow_principalAbelianCMTrip
     0 < n → Serre.IsLinearHom A.t.act B.t.act g → Serre.IsLinearHom A'.t.act B'.t.act f' →
     (f' ^ n).left ≫ mB.φ = mA.φ ≫ g.left →
     ∃ f : A.t.G ⟶ B.t.G, Serre.IsLinearHom A.t.act B.t.act f ∧ f ^ n = g ∧ f'.left ≫ mB.φ = mA.φ ≫ f.left := by
-  first | exact @GlobalTheory.eq_pow_of_baseChange_eq_pow | exact GlobalTheory.eq_pow_of_baseChange_eq_pow | (intros; apply GlobalTheory.eq_pow_of_baseChange_eq_pow <;> assumption)
+  first | exact @GlobalTheory.eq_pow_of_baseChange_eq_pow

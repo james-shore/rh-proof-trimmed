@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem _root_.GlobalTheory.T.complex_forms_base_level_le_span_integral : ∀ (D : D7) (X : RealSide D) (E : IntegralHeckeForms.XD D) (Y : SerSide X E) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool),
     ∀ F ∈ (Y.Z.ρ.B i j b).formsC (Y.Z.ρ.tw i b 0 ∅ 1),
       F ∈ Submodule.span ℂ (Y.Z.ρ.mt i j b 0 ∅ 1 : Set (Bridge.Gf (Vc D j) → PolF D (Wc D j).rank (Vc D j).rank)) := by
-  first | exact @GlobalTheory.BaseSpan.formsC_le_span_mt | exact GlobalTheory.BaseSpan.formsC_le_span_mt | (intros; apply GlobalTheory.BaseSpan.formsC_le_span_mt <;> assumption)
+  first | exact @GlobalTheory.BaseSpan.formsC_le_span_mt

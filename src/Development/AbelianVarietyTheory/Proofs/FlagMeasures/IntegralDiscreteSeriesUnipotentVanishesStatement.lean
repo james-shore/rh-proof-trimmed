@@ -46,4 +46,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ComplexOrder ContDiff
 
 theorem _root_.GlobalTheory.T.integral_discreteSeries_unipotent_vanishes : StrictLow → ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (h : ℝ), IsDSData B d → LocDec B h → (∀ v, 120 * (B.I.n : ℝ) * ((rkR (B.I.ε v) : ℕ) : ℝ) ^ ((3 : ℝ) / 2) ≤ h) → ∀ (v : InfinitePlace B.I.F) (Wv : Submodule ℂ (Fin B.I.n → ℂ)), IsIsoC (B.I.ε v) Wv → ∀ ν : Measure (UJ (B.I.ε v)), IsHaarSub (NW (B.I.ε v) Wv) ν → ∀ x y : B.I.GA, ∫ m, phe B d (x * (open Classical in ((Pi.mulSingle v m, 1) : B.I.GA)) * y) ∂ν = 0 := by
-  first | exact @GlobalTheory.RealFibre.integral_phe_eq_zero | exact GlobalTheory.RealFibre.integral_phe_eq_zero | (intros; apply GlobalTheory.RealFibre.integral_phe_eq_zero <;> assumption)
+  first | exact @GlobalTheory.RealFibre.integral_phe_eq_zero

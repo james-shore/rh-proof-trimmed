@@ -58,11 +58,7 @@ theorem exists_sum_mul {X Y : Type} (V : Submodule ℂ (X → ℂ)) [FiniteDimen
     ∃ (n : ℕ) (h : Fin n → X → ℂ) (k : Fin n → Y → ℂ), (∀ i, h i ∈ V ∧ k i ∈ L) ∧
       ∀ x y, F x y = ∑ i, h i x * k i y := by
   first
-  | exact @_root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul
-  | exact _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul
   | (apply _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul ..)
 
 theorem left_mem {g : ℕ} (τ : Matrix (Fin g) (Fin g) ℂ) (N : ℕ) {f f' : (Fin g → ℂ) → ℂ}

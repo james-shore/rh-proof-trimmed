@@ -53,4 +53,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.eqOn_ball_of_eqOn_punctPolydiscCoveringExp_image : ∀ (n a : ℕ) (ρ₁ : ℝ) (X : Type) [TopologicalSpace X] [T2Space X] (f h : (Fin n → ℂ) → X), ρ₁ ≤ 1 → ContinuousOn f (Metric.ball 0 ρ₁) → ContinuousOn h (Metric.ball 0 ρ₁) → (∀ s ∈ logDom n a, logExp a s ∈ Metric.ball (0 : Fin n → ℂ) ρ₁ → f (logExp a s) = h (logExp a s)) → ∀ z ∈ Metric.ball (0 : Fin n → ℂ) ρ₁, f z = h z := by
-  first | exact @GlobalTheory.eq_on_ball_of_eq_on_logExp_image | exact GlobalTheory.eq_on_ball_of_eq_on_logExp_image | (intros; apply GlobalTheory.eq_on_ball_of_eq_on_logExp_image <;> assumption)
+  first | exact @GlobalTheory.eq_on_ball_of_eq_on_logExp_image

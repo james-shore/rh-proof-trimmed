@@ -49,4 +49,4 @@ open scoped TensorProduct InnerProductSpace Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_lowestKType_le_smoothVectors : ∀ (D : D7) (V : HSp D) (Sp : D.what₂.Tau → SPar) (M : DSModel V Sp) (τ : D.what₂.Tau), ∃ S : Submodule ℂ (M.H τ), IsKTypeOf (M.ε τ) (M.σ τ) (Formalism.QuantumDeterminants.lowK (M.ε τ) (M.lam τ)) S ∧ S ≤ M.sm τ := by
-  first | exact @GlobalTheory.SmoothLowType.exists_lowK_le_sm | exact GlobalTheory.SmoothLowType.exists_lowK_le_sm | (intros; apply GlobalTheory.SmoothLowType.exists_lowK_le_sm <;> assumption)
+  first | exact @GlobalTheory.SmoothLowType.exists_lowK_le_sm

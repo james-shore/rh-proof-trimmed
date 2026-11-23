@@ -92,11 +92,7 @@ theorem exists_pow_smul_mem {p : E} (hp : p ∈ O) (hdiv : ∀ e : E, ∃ a : �
     (Λ Λ' : Submodule O V) (hΛ : Λ.FG) (hΛ' : Submodule.span E (Λ' : Set V) = ⊤) :
     ∃ a : ℕ, ∀ v ∈ Λ, p ^ a • v ∈ Λ' := by
   first
-  | exact @_root_.GlobalTheory.PowSmulMem.main
-  | exact _root_.GlobalTheory.PowSmulMem.main
   | (apply _root_.GlobalTheory.PowSmulMem.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowSmulMem.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowSmulMem.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PowSmulMem.main ..)
 
 def congSub (Λ : Submodule O V) (c : E) : Subgroup (V ≃ₗ[E] V) where

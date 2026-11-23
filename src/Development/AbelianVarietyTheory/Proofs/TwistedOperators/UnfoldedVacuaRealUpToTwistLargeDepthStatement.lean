@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.unfolded_vacua_real_up_to_twist_large_depth : Big fun ch => VacAt ch := by
-  first | exact @GlobalTheory.RowVal.OneVac.big_vacAt | exact GlobalTheory.RowVal.OneVac.big_vacAt | (intros; apply GlobalTheory.RowVal.OneVac.big_vacAt <;> assumption)
+  first | exact @GlobalTheory.RowVal.OneVac.big_vacAt

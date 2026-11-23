@@ -116,7 +116,7 @@ theorem sw_last (w : Vc k n) (hw : w (Fin.last n) ≠ 0) (j : Fin (n + 1)) :
   · subst h
     simp [rE, eN, vecMulVec]
   · have h' : Fin.last n ≠ j := fun e => h e.symm
-    simp [rE, eN, vecMulVec, Matrix.one_apply, h, h']
+    simp [rE, eN, vecMulVec, h, h']
 
 end Near
 

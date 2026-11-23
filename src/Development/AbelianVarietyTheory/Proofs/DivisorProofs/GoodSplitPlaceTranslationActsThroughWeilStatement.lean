@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.goodSplitPlace_translation_acts_through_weil : ∀
         ∀ φ ∈ GlobalTheory.WeilM.SB _, ∀ r, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rest (evFin D.host.F Bs.v₁) φ r → ∃ φ₁ ∈ GlobalTheory.WeilM.SB _,
           om' (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU _ (-1) h.JW₁ k, 1) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens (evFin D.host.F Bs.v₁) φ r) =
             GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens (evFin D.host.F Bs.v₁) φ₁ r ∧ ι φ₁ = omB ν α g 1 (ι φ) := by
-  first | exact @GlobalTheory.LocWeilAct.act_omB | exact GlobalTheory.LocWeilAct.act_omB | (intros; apply GlobalTheory.LocWeilAct.act_omB <;> assumption)
+  first | exact @GlobalTheory.LocWeilAct.act_omB

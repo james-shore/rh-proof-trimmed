@@ -46,4 +46,4 @@ open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.hahnSeries_commonDenominator_eq_monomial_mul_powerSeries : ∀ (Ω : Type) [Field Ω] (h : HahnSeries ℚ Ω), Den h → h ≠ 0 → ∃ (N : ℕ) (n₀ : ℤ) (a : ℕ → Ω), 0 < N ∧ a 0 ≠ 0 ∧ (∀ k : ℕ, h.coeff (((n₀ + k : ℤ) : ℚ) / N) = a k) ∧ ∀ r : ℚ, (∀ k : ℕ, r ≠ ((n₀ + k : ℤ) : ℚ) / N) → h.coeff r = 0 := by
-  first | exact @GlobalTheory.fnShape | exact GlobalTheory.fnShape | (intros; apply GlobalTheory.fnShape <;> assumption)
+  first | exact @GlobalTheory.fnShape

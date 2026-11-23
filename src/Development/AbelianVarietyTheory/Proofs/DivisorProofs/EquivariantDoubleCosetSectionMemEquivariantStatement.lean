@@ -44,4 +44,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.equivariantDoubleCosetSection_mem_equivariant : ∀ (G H V : Type) [Group G] [Group H] [AddCommGroup V] [Module ℂ V] (ι : H →* G) (ρ : Representation ℂ H V) (K' : Subgroup G) (x : G) (v : V), secM ι ρ K' x v ∈ eqvM ι ρ K' := by
-  first | exact @GlobalTheory.BCT.TraceBlocks.secM_mem_eqvM | exact GlobalTheory.BCT.TraceBlocks.secM_mem_eqvM | (intros; apply GlobalTheory.BCT.TraceBlocks.secM_mem_eqvM <;> assumption)
+  first | exact @GlobalTheory.BCT.TraceBlocks.secM_mem_eqvM

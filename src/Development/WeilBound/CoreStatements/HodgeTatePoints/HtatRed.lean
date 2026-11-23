@@ -127,7 +127,7 @@ theorem isBaseChange_dual [Module.Finite A M] [Module.Projective A M] (hg : IsBa
     have h3 : y (g m) = ∑ i, algebraMap A B (f i m) * y (g (e i)) := by
       conv_lhs => rw [← hef m]
 
-      simp [map_sum, Algebra.smul_def, ← IsScalarTower.algebraMap_smul B]
+      simp [map_sum, ← IsScalarTower.algebraMap_smul B]
 
     rw [h3, map_sum, LinearMap.sum_apply]
     refine Finset.sum_congr rfl fun i _ => ?_

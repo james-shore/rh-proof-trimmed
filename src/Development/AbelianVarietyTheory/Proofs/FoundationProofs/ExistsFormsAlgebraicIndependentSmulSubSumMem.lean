@@ -229,7 +229,7 @@ theorem exists_C_mul_eq_C_mul_coeff_notMem {ι o : Type*} [CommRing o] [IsDedeki
   have hcoeff : ∀ m, (∑ m ∈ G.support, monomial m (c m)).coeff m =
       if m ∈ G.support then c m else 0 := by
     intro m
-    simp [coeff_sum, coeff_monomial]
+    simp [coeff_monomial]
   refine ⟨b, u, ∑ m ∈ G.support, monomial m (c m), hb0, ?_, m, ?_⟩
   · ext m
     rw [coeff_C_mul, coeff_C_mul, hcoeff]

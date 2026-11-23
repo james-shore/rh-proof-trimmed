@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.thetaFunction_smoothVector_realHeisenberg : ∀ (F
       IsInfFamF (fun w : InfinitePlace F => (B.emb w).1) θ → ∀ ι : (InfinitePlace F → ℂ) →+ AEF F E, IsChartF θ ι →
       ∀ (hψ : IsCharAF F B.ψ) (f : BBF σ JS JT ξ₀ B.ψ), IsThetaFunOF σ JS JT ξ₀ B.ψ f.1 →
         Sm (rhoVF σ JS JT ξ₀ B.ψ hψ ι) f := by
-  first | exact @GlobalTheory.ThetaSmoothF.sm_of_thetaF | exact GlobalTheory.ThetaSmoothF.sm_of_thetaF | (intros; apply GlobalTheory.ThetaSmoothF.sm_of_thetaF <;> assumption)
+  first | exact @GlobalTheory.ThetaSmoothF.sm_of_thetaF

@@ -47,4 +47,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.norm_cmEmbedding_normOne_localUnit_eq_one : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => S.Pos → ∀ ι : ℂ →+* ℂ_[D.what₂.places.resChar w], (∀ z : TaylorLogMetric.Qbar, ι z = S.lam z) → ∀ b : D.host.E, b * D.host.conj b = 1 → (∀ v, ∃ y : ((sysS H X std).G.P.W v)ˣ, J.rho std v b = algebraMap _ _ (y : (sysS H X std).G.P.W v)) → ∀ τ, ‖ι (TaylorLogMetric.embT D τ b)‖ = 1) := by
-  first | exact @GlobalTheory.TwV.UnitPos.norm_embT_unit | exact GlobalTheory.TwV.UnitPos.norm_embT_unit | (intros; apply GlobalTheory.TwV.UnitPos.norm_embT_unit <;> assumption)
+  first | exact @GlobalTheory.TwV.UnitPos.norm_embT_unit

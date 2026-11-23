@@ -51,4 +51,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.firstRow_data_have_depth : GlobalTheory.SepRows.DatumDep := by
-  first | exact @GlobalTheory.FirstRowDepth.datumDep | exact GlobalTheory.FirstRowDepth.datumDep | (intros; apply GlobalTheory.FirstRowDepth.datumDep <;> assumption)
+  first | exact @GlobalTheory.FirstRowDepth.datumDep

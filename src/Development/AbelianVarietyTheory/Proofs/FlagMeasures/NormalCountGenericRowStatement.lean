@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.L2.SG.Pf.MainEqSteps
 
 theorem _root_.GlobalTheory.T.normalCount_genericRow : StepNormalsG := by
-  first | exact @GlobalTheory.stepNormalsG_holds | exact GlobalTheory.stepNormalsG_holds | (intros; apply GlobalTheory.stepNormalsG_holds <;> assumption)
+  first | exact @GlobalTheory.stepNormalsG_holds

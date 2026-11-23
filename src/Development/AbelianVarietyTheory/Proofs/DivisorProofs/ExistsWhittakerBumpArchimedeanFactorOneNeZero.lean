@@ -96,7 +96,7 @@ theorem continuous_toL_nu : Continuous fun t : Vp E n => toL (nu t) := by
 theorem nu_zero : nu (0 : Vp E n) = 1 := by
   ext i j
   by_cases hij : i < j
-  · simp [nu, hij, Matrix.one_apply, hij.ne]
+  · simp [nu, hij, hij.ne]
   · simp [nu, hij, Matrix.one_apply]
 
 theorem exists_bumpInf_oneL_ne_zero (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (n : ℕ) :
@@ -144,7 +144,7 @@ theorem exists_bumpInf_oneL_ne_zero (E : Type) [Field E] [NumberField E] [_root_
     rw [this]
     congr 1
     funext t
-    simp [hG, hh, Complex.re_ofReal_mul]
+    simp [hG, hh]
   haveI : (volume : Measure (InfinitePlace E → ℂ)).IsOpenPosMeasure := Measure.pi.isOpenPosMeasure _
   haveI : (volume : Measure (Vp E n)).IsOpenPosMeasure := Measure.pi.isOpenPosMeasure _
   have hpos : 0 < ∫ t, f (φ t) * h (φ t) := by

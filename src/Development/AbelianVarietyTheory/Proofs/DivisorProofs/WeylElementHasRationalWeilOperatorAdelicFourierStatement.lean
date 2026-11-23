@@ -45,4 +45,4 @@ open NumberField IsDedekindDomain MeasureTheory Filter Formalism.MainNotions.Glo
 
 theorem _root_.GlobalTheory.T.weylElement_hasRationalWeilOperator_adelicFourier : ∀ (F : Type) [Field F] [NumberField F], IsTotallyReal F → ∀ (ψ : AddChar (AF F) ℂ), IsStd ψ → ∀ (κ : Type) [Fintype κ] [DecidableEq κ],
     HasOp ψ (Matrix.fromBlocks 0 1 (-1) 0 : Matrix (κ ⊕ κ) (κ ⊕ κ) F) := by
-  first | exact @GlobalTheory.WeylFourier.weyl_hasOp | exact GlobalTheory.WeylFourier.weyl_hasOp | (intros; apply GlobalTheory.WeylFourier.weyl_hasOp <;> assumption)
+  first | exact @GlobalTheory.WeylFourier.weyl_hasOp

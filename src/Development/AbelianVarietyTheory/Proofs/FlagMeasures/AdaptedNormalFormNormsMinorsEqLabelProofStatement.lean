@@ -42,4 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 
 theorem _root_.GlobalTheory.T.adaptedNormalForm_normsMinors_eq_label : GlobalTheory.TypeAsm.LabC := by
-  first | exact @GlobalTheory.TypeAsm.labC | exact GlobalTheory.TypeAsm.labC | (intros; apply GlobalTheory.TypeAsm.labC <;> assumption)
+  first | exact @GlobalTheory.TypeAsm.labC

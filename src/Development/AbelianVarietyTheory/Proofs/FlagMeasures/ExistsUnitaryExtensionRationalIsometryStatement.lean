@@ -51,4 +51,4 @@ open scoped Pointwise ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_unitary_extension_rational_isometry : ∀ (D : D7) (Z : LocDat D) (p : PlF D) (ρ : (VS D).V ≃ₗ[D.host.E] (VS D).V), ρ ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT → ∃ g : Vp D p ≃ₗ[(D.s.atP p).Ep] Vp D p, GlobalTheory.LocOver.Ext p ρ g ∧ Formalism.MainNotions.S.LocNG.IsUnitary (locH Z p) g := by
-  first | exact @GlobalTheory.LocOver.exists_ext_unitary | exact GlobalTheory.LocOver.exists_ext_unitary | (intros; apply GlobalTheory.LocOver.exists_ext_unitary <;> assumption)
+  first | exact @GlobalTheory.LocOver.exists_ext_unitary

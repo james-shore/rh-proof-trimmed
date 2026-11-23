@@ -95,7 +95,6 @@ theorem step1Kill_cO (hV : Formalism.MainNotions.WachCoordinates.Br.ValRing O v)
       rw [h]
       first
         | exact WithTop.coe_nonneg.mpr (by positivity)
-        | (rw [← WithTop.coe_zero]; exact WithTop.coe_le_coe.mpr (by positivity))
   have hex : ∀ x : ℤ, ∃ o : O, algebraMap O LL o = Formalism.MainNotions.CrystallineLiftingInputs.cR W x := fun x => hV.2.1 _ (hnn x)
   refine ⟨fun x => Classical.choose (hex x), ?_, ?_, ?_⟩
   · intro x
@@ -104,8 +103,6 @@ theorem step1Kill_cO (hV : Formalism.MainNotions.WachCoordinates.Br.ValRing O v)
     unfold Formalism.MainNotions.CrystallineLiftingInputs.cR
     first
       | (rw [div_neg, mul_neg, mul_div_assoc', mul_div_cancel_left₀ _ hp0, neg_sub])
-      | (field_simp; ring)
-      | field_simp
   · apply hV.1
     rw [Classical.choose_spec (hex 0), hRN.1, map_zero]
   · intro x hx
@@ -113,10 +110,8 @@ theorem step1Kill_cO (hV : Formalism.MainNotions.WachCoordinates.Br.ValRing O v)
     rw [hRN.1, sub_zero] at h
     rw [Classical.choose_spec (hex x), h]
     first
-      | exact WithTop.coe_natCast _
       | (norm_cast; done)
       | (simp; done)
-      | (push_cast; rfl)
 
 theorem step1Kill_kill [NeZero n] (hR : Formalism.MainNotions.LiftingTheory.lifta_Ring W) (hDS : DerivationPreservesQLattice W)
     (hD : Formalism.MainNotions.RamifiedCoefficientChains.DssLet W) (hA : Formalism.MainNotions.LiftingTheory.CaseA W) (hT : IsCrys PD T.ρ) (Mi hi : ZMod n → ℕ)
@@ -206,7 +201,6 @@ theorem step1Kill_norm (hV : Formalism.MainNotions.WachCoordinates.Br.ValRing O 
       have hq : ((∑ x ∈ Sx, padicValInt PD.p x : ℕ) : ℚ) ≤ (s : ℚ) := by exact_mod_cast hs
       first
         | exact WithTop.coe_nonneg.mpr (by linarith)
-        | (rw [← WithTop.coe_zero]; exact WithTop.coe_le_coe.mpr (by linarith))
   have hw'0 : 0 ≤ v (((PD.p : ℕ) : LL) ^ s / algebraMap O LL (∏ x ∈ Sx, -(cO x))) := by
     apply aux
     rw [← hvc, ← AddValuation.map_mul, div_mul_cancel₀ _ hc0, hvps]

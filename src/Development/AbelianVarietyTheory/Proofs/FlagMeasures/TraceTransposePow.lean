@@ -154,7 +154,7 @@ theorem trace_transpose_pow {V : Type} [AddCommGroup V] [Module ℂ V] {n : ℕ}
       · by_cases hab : a = b
         · subst hab
           simp
-        · simp [Matrix.one_apply, hab, Ne.symm hab]
+        · simp [hab, Ne.symm hab]
       · simp
     | succ m ih =>
       obtain ⟨α, h1, h2⟩ := ih
@@ -177,7 +177,7 @@ theorem trace_transpose_pow {V : Type} [AddCommGroup V] [Module ℂ V] {n : ℕ}
         · by_cases hab : a = b
           · subst hab
             simp [hφ, Finset.sum_smul, smul_smul]
-          · simp [hab, Ne.symm hab, Matrix.one_apply_ne (Ne.symm hab)]
+          · simp [hab, Matrix.one_apply_ne (Ne.symm hab)]
       · rw [sum_range_shift_smul_eq_sub_add α m (n : ℂ) φ (fun j => Am ^ j), pow_succ', ← Matrix.mulVec_mulVec, ← h2,
           Matrix.mulVec_mulVec]
         have hP : ∑ j ∈ Finset.range (m + 1), α j • Am ^ (j + 1) = Am * ∑ j ∈ Finset.range (m + 1), α j • Am ^ j := by

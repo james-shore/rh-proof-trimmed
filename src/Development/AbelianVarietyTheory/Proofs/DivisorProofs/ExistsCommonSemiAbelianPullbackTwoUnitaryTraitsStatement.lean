@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_common_semiAbelian_pullback_two_unitary_tra
     IsLocalHom f' → (∀ a, fK (algebraMap T.V _ a) = algebraMap W _ (f a)) →
     (∀ a, fK' (algebraMap T'.V _ a) = algebraMap W _ (f' a)) → spMap fK ≫ T.y = spMap fK' ≫ T'.y →
     ∃ tW : SAB H (Sp W), Nonempty (SABMap tW T.t (spMap f)) ∧ Nonempty (SABMap tW T'.t (spMap f')) := by
-  first | exact @GlobalTheory.UPoinc.TraitUniq.exists_common_pull | exact GlobalTheory.UPoinc.TraitUniq.exists_common_pull | (intros; apply GlobalTheory.UPoinc.TraitUniq.exists_common_pull <;> assumption)
+  first | exact @GlobalTheory.UPoinc.TraitUniq.exists_common_pull

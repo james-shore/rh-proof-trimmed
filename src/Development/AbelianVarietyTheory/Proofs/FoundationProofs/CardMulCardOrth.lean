@@ -154,11 +154,7 @@ theorem sum_comp_surj {G Q : Type} [AddCommGroup G] [AddCommGroup Q] [Fintype G]
     (π : G →+ Q) (hπ : Function.Surjective π) (g : Q → ℂ) :
     ∃ n : ℕ, 0 < n ∧ ∑ y, g (π y) = n * ∑ q, g q := by
   first
-  | exact @_root_.GlobalTheory.SumCompSurjective.sum_comp_surjective
-  | exact _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective
   | (apply _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SumCompSurjective.sum_comp_surjective <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective ..)
 
 end

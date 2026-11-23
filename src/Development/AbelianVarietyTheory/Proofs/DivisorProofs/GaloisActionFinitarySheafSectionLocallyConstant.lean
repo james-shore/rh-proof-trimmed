@@ -95,7 +95,7 @@ def cocone : Cocone (diag Ω) where
   pt := CommRingCat.of Ω
   ι := { app := fun s => CommRingCat.ofHom (sr Ω s).subtype
          naturality := fun s t h => by
-           simp only [Functor.const_obj_map, Category.comp_id]
+           simp only [Functor.const_obj_map]
            exact incl_comp_subtype Ω h.le }
 
 theorem cocone_ι (s : Finset Ω) : (cocone Ω).ι.app s = CommRingCat.ofHom (sr Ω s).subtype := rfl

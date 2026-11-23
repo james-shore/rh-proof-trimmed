@@ -57,7 +57,7 @@ theorem eq_sum_single {R : Type} [Semiring R] (a : MonoidAlgebra R G) : a = ∑ 
   classical
   apply MonoidAlgebra.ext
   ext g
-  simp [MonoidAlgebra.coeff_sum, Finsupp.single_apply]
+  simp [MonoidAlgebra.coeff_sum]
 
 noncomputable def conjSum (R : Type) [Semiring R] (g : G) : MonoidAlgebra R G := ∑ h, single (h * g * h⁻¹) 1
 
@@ -66,7 +66,7 @@ theorem conjSum_mem_center (R : Type) [CommSemiring R] (g : G) : conjSum R g ∈
   intro b
   induction b using MonoidAlgebra.induction_on with
   | of k =>
-    simp only [conjSum, MonoidAlgebra.of_apply, Finset.mul_sum, Finset.sum_mul, single_mul_single, one_mul, mul_one]
+    simp only [conjSum, MonoidAlgebra.of_apply, Finset.mul_sum, Finset.sum_mul, single_mul_single, mul_one]
     refine Fintype.sum_equiv (Equiv.mulLeft k) _ _ fun h => ?_
     simp only [Equiv.coe_mulLeft]
     congr 1
@@ -107,7 +107,7 @@ theorem coeff_mapRingHom {R S : Type} [Semiring R] [Semiring S] (f : R →+* S) 
   classical
   conv_lhs => rw [eq_sum_single a]
 
-  simp [map_sum, MonoidAlgebra.mapRingHom_single, MonoidAlgebra.coeff_sum, Finsupp.single_apply, apply_ite f]
+  simp [map_sum, MonoidAlgebra.mapRingHom_single, MonoidAlgebra.coeff_sum, Finsupp.single_apply]
 
 section Act
 

@@ -91,7 +91,7 @@ theorem UpperTheory.Gal.LocalSmoothExtension.traceSemi_of :
       by_cases hjk : j = k
       · subst hjk
         simp
-      · simp [Finsupp.single_apply, hjk]
+      · simp [hjk]
 
     rw [LinearMap.trace_eq_matrix_trace ℂ b, LinearMap.trace_eq_matrix_trace ℂ b', Matrix.trace,
     Matrix.trace, map_sum]

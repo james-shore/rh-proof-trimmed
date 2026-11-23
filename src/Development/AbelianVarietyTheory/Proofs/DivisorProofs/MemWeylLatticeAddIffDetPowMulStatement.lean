@@ -55,4 +55,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.mem_weylLattice_add_iff_det_pow_mul : ∀ (R : Type) [CommRing R] (n k : ℕ) (ν : Fin n → ℕ) (f : MvPolynomial (Fin n × Fin n) R), f ∈ weyl R n n le_rfl (fun a => ν a + k) ↔ ∃ g ∈ weyl R n n le_rfl ν, f = detPol R n ^ k * g := by
-  first | exact @GlobalTheory.WeylShift.mem_weyl_add | exact GlobalTheory.WeylShift.mem_weyl_add | (intros; apply GlobalTheory.WeylShift.mem_weyl_add <;> assumption)
+  first | exact @GlobalTheory.WeylShift.mem_weyl_add

@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.tateIso_spread_generic_noetherian_domain : ∀ {E 
   ∀ (K : Type) [Field K] [IsAlgClosed K] [CharZero K] (x : Sp K ⟶ Sp R) (β : o →+* K), x ≫ s = spMap β →
   ∃ I : TateIso D K (Over.mk x ⟶ P.A) (fun a g => g ≫ act a) (fun n g g' c => Out.WeilIs P.A P.L n g g' (unitOn c)),
     (I.ζ k : K) = β z ∧ ∀ a, toUnit _ ≫ pt a = I.ev k a := by
-  first | exact @GlobalTheory.LowDat.tateIso_spread | exact GlobalTheory.LowDat.tateIso_spread | (intros; apply GlobalTheory.LowDat.tateIso_spread <;> assumption)
+  first | exact @GlobalTheory.LowDat.tateIso_spread

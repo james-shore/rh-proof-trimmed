@@ -210,7 +210,7 @@ theorem tendsto_zero (X : DataX E r) (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ)
 
 theorem spread_nonneg' (X : Data E r) (la : Wt X.Ψ r) (τ : X.Ψ) : 0 ≤ X.spread la τ := by
   rcases isEmpty_or_nonempty (Fin r) with h | ⟨⟨i⟩⟩
-  · simp [Data.spread, Real.iSup_of_isEmpty, Real.iInf_of_isEmpty]
+  · simp [Data.spread]
   · unfold Data.spread
     have h1 := ciInf_le (Set.finite_range fun i => (la τ i : ℝ)).bddBelow i
     have h2 := le_ciSup (Set.finite_range fun i => (la τ i : ℝ)).bddAbove i

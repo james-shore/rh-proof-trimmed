@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.heckeCombination_scalarForm_values_mem_weylModule 
       (∀ g ∈ c.support, g ∈ grpAt _ fun x => ∃ i, x = (p i).v) → ∀ φ ∈ (I.fm l u a).Fi j,
       (∀ b y i g, g • Q j i = Q j i → rTrans ((β j i).gl g) (trc c (A.rd θ j hj b φ y)) = trc c (A.rd θ j hj b φ y)) →
       ∀ e : (I.stp u a j).Cl, (fun (e : (I.stp u a j).Cl) (z : (I.chain l u a).Y j) => trc c (A.rd θ j hj (A.chOf j e) φ z) (A.h j (A.chOf j e) ⟨e, rfl⟩)) e ∈ ValC (Gr B.fields.emb B.embLL (B.R.N j)) (Col2.lamT (B.hcW u) j) := by
-  first | exact @GlobalTheory.AdForm.TransAct.trc_val_mem | exact GlobalTheory.AdForm.TransAct.trc_val_mem | (intros; apply GlobalTheory.AdForm.TransAct.trc_val_mem <;> assumption)
+  first | exact @GlobalTheory.AdForm.TransAct.trc_val_mem

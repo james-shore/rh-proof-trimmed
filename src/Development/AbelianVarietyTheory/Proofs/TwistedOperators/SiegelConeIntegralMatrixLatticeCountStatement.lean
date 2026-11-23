@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.siegelCone_integral_matrix_lattice_count : ∀ {D 
           (fun ξ => ENNReal.ofReal ((1 + ∑ τ, ∑ i, ∑ j,
             ‖(compAt θ τ (ξ.map (incA D) : Mx D m r) * diagonal (fun k => (t k : ℂ))) i j‖) ^ N)⁻¹) ξ ≤
         ENNReal.ofReal (C * (L : ℝ) ^ A) := by
-  first | exact @GlobalTheory.LatCount.lattice_count | exact GlobalTheory.LatCount.lattice_count | (intros; apply GlobalTheory.LatCount.lattice_count <;> assumption)
+  first | exact @GlobalTheory.LatCount.lattice_count

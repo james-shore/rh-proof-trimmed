@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.normSq_productDatumTheta_conjugateHalf : ∀ {D : 
         Gd (fun PP => redM PP (frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) x)) else 0) f' →
   ∀ (μ : Measure (WO (Vc D i) (Wc D i))) (𝓧 : Set (WO (Vc D i) (Wc D i))), IsCovolOne (ratL (Wc D i) (Vc D i)) μ 𝓧 →
     nrm2 μ 𝓧 f' = ∏ PP ∈ R.Pg ∪ R.Q t, (∑ᶠ z, h PP z ^ 2) / (Nat.card (kP PP) : ℝ) ^ ((Vc D i).rank * (Wc D i).rank) := by
-  first | exact @GlobalTheory.PlancherelHalf.normSq_thetaAt_halfProd | exact GlobalTheory.PlancherelHalf.normSq_thetaAt_halfProd | (intros; apply GlobalTheory.PlancherelHalf.normSq_thetaAt_halfProd <;> assumption)
+  first | exact @GlobalTheory.PlancherelHalf.normSq_thetaAt_halfProd

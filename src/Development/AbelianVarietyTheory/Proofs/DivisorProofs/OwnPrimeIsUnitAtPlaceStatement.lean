@@ -40,4 +40,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp GlobalTheory.BigOn.Exp.SerBase
 
 theorem _root_.GlobalTheory.T.ownPrime_isUnit_at_place : OwnUnit := by
-  first | exact @GlobalTheory.BigOn.Exp.SerBase.ownUnit | exact GlobalTheory.BigOn.Exp.SerBase.ownUnit | (intros; apply GlobalTheory.BigOn.Exp.SerBase.ownUnit <;> assumption)
+  first | exact @GlobalTheory.BigOn.Exp.SerBase.ownUnit

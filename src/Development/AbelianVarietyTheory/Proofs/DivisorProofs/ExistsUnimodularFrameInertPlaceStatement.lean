@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_unimodular_frame_inertPlace : ∀ {F E : Ty
       (b : Matrix (Fin d) (Fin d) (w.adicCompletion E)).map (GlobalTheory.InertBigCell.conjW σ hw))).det ≠ 0 ∧
     (δ • ((b : Matrix (Fin d) (Fin d) (w.adicCompletion E))ᵀ * W.J.map (algebraMap E (w.adicCompletion E)) *
       (b : Matrix (Fin d) (Fin d) (w.adicCompletion E)).map (GlobalTheory.InertBigCell.conjW σ hw))).det⁻¹ ∈ w.adicCompletionIntegers E := by
-  first | exact @GlobalTheory.InertFrameUnimod.exists_frame_unimod | exact GlobalTheory.InertFrameUnimod.exists_frame_unimod | (intros; apply GlobalTheory.InertFrameUnimod.exists_frame_unimod <;> assumption)
+  first | exact @GlobalTheory.InertFrameUnimod.exists_frame_unimod

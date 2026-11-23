@@ -57,11 +57,7 @@ theorem loc_gen {E : Type} [Field E] [NumberField E] (P : IsDedekindDomain.Heigh
     (J : Ideal (𝓞 E)) (hJ : J ≠ ⊥) :
     ∃ d ∈ J, d ≠ 0 ∧ ∃ s, s ∉ P.asIdeal ∧ ∀ y ∈ J, ∃ o : 𝓞 E, s * y = o * d := by
   first
-  | exact @_root_.GlobalTheory.LocalGenerators.main
-  | exact _root_.GlobalTheory.LocalGenerators.main
   | (apply _root_.GlobalTheory.LocalGenerators.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LocalGenerators.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LocalGenerators.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LocalGenerators.main ..)
 
 end GlobalTheory.FixConvRow

@@ -103,7 +103,7 @@ theorem trace_sandwich {W H : Type} [AddCommGroup W] [Module ℂ W]
     apply TensorProduct.ext'
     intro φ h
     ext v
-    simp [e, M, sandwich, dualTensorHomEquiv, dualTensorHomEquivOfBasis_apply, dualTensorHom_apply,
+    simp [e, M, sandwich, dualTensorHomEquiv, dualTensorHom_apply,
       Module.Dual.transpose_apply]
   have hconj : e.conj M = sandwich a b := by
     rw [LinearEquiv.conj_apply]

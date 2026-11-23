@@ -57,4 +57,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.measurableSet_det_im_pos_at_index : ∀ (κ : Type) [Fintype κ] (p q : κ → ℕ) (ρ₀ : κ), MeasurableSet {b : ∀ ρ, UpqT (p ρ) (q ρ) | 0 < (UpqT.mat (b ρ₀)).det.im} := by
-  first | exact @GlobalTheory.CovTop.VolUp.DetImMeas.measurableSet_det_im_pos | exact GlobalTheory.CovTop.VolUp.DetImMeas.measurableSet_det_im_pos | (intros; apply GlobalTheory.CovTop.VolUp.DetImMeas.measurableSet_det_im_pos <;> assumption)
+  first | exact @GlobalTheory.CovTop.VolUp.DetImMeas.measurableSet_det_im_pos

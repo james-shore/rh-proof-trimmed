@@ -45,4 +45,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ComplexOrder ContDiff
 
 theorem _root_.GlobalTheory.T.smooth_continuous_convolution_realPointsUnitary : ∀ (I : AutInst) (a F : I.Ginf → ℂ), SmoothInf I a → HasCompactSupport a → LocallyIntegrable F (muInf I) → SmoothInf I (fun y => ∫ g, F g * a (y⁻¹ * g) ∂(muInf I)) ∧ Continuous (fun y => ∫ g, F g * a (y⁻¹ * g) ∂(muInf I)) := by
-  first | exact @GlobalTheory.SmoothConv.smooth_convolution | exact GlobalTheory.SmoothConv.smooth_convolution | (intros; apply GlobalTheory.SmoothConv.smooth_convolution <;> assumption)
+  first | exact @GlobalTheory.SmoothConv.smooth_convolution

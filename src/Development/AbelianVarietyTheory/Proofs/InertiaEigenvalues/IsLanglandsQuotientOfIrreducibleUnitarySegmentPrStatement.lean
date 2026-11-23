@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.isLanglandsQuotient_of_irreducible_unitary_segment
       (∀ j, IsUnitarisable (δ j).rep) → (∀ j, |s j| < 1 / 2) → ∀ hd : ∑ j, ((δ j).nu (s j)).1 = a,
       Nonempty (σ.Equiv (prodIrr (fun j => (δ j).nu (s j)) hd)) →
       IsL ↑(List.ofFn fun j => (Δ j).nu (s j)) σ := by
-  first | exact @GlobalTheory.isL_of_irreducible_prod_unitarisable_nu | exact GlobalTheory.isL_of_irreducible_prod_unitarisable_nu | (intros; apply GlobalTheory.isL_of_irreducible_prod_unitarisable_nu <;> assumption)
+  first | exact @GlobalTheory.isL_of_irreducible_prod_unitarisable_nu

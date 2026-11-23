@@ -59,4 +59,4 @@ open GlobalTheory.LatVal (OneOver)
 open GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds (a0)
 
 theorem _root_.GlobalTheory.T.nat_mul_integral_mem_cmLattice_prime_to : ∀ (E : Type) [Field E] [NumberField E] (l : ℕ) (c : Ideal (OF E)) (y : (Af E)ˣ) (R : ℕ), l.Prime → OneOver l y → 0 < R → (R : OF E) ∈ c → ∃ M : ℕ, ¬ l ∣ M ∧ ∀ x : E, IsIntegral ℤ x → ((M * R : ℕ) : E) * x ∈ lattice c y := by
-  first | exact @GlobalTheory.HilbFam.LatDen.nat_mul_integral_mem_lattice | exact GlobalTheory.HilbFam.LatDen.nat_mul_integral_mem_lattice | (intros; apply GlobalTheory.HilbFam.LatDen.nat_mul_integral_mem_lattice <;> assumption)
+  first | exact @GlobalTheory.HilbFam.LatDen.nat_mul_integral_mem_lattice

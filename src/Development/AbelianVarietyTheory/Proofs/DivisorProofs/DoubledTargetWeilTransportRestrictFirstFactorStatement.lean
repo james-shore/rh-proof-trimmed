@@ -69,4 +69,4 @@ theorem _root_.GlobalTheory.T.doubled_target_weil_transport_restrict_first_facto
       ∀ (g : UG (cA σ) (incM F JA)) (gd : UG (cA σ) (incM F (GlobalTheory.WeilSchrodinger.DblTargetF.dblG JT)ᵀ)),
         gd.1.1 = Matrix.reindex finSumFinEquiv finSumFinEquiv (Matrix.fromBlocks g.1.1 0 0 1) →
         ∀ φ₁ ∈ schA F κ, ∀ φ₂ ∈ schA F κ, omp (gd, 1) (boxFun φ₁ φ₂) = boxFun (om (g, 1) φ₁) φ₂ := by
-  first | exact @GlobalTheory.DblTargetRestrict.restrict_boxFun | exact GlobalTheory.DblTargetRestrict.restrict_boxFun | (intros; apply GlobalTheory.DblTargetRestrict.restrict_boxFun <;> assumption)
+  first | exact @GlobalTheory.DblTargetRestrict.restrict_boxFun

@@ -73,8 +73,8 @@ theorem centralRatio_red_eq_one_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : Gat
     have := ((hconj k).1).1 hk
     simpa using this
   obtain ⟨Γ, hΓ⟩ := _root_.GlobalTheory.T.base_moves_vector_z_alt_alt W hP hr PP hPP
-  obtain ⟨θ, hθ, hθ1, hm⟩ := hΓ u f B (by first | exact hPl | exact _root_.GlobalTheory.MiTop.PlacedConditions.placed f B hPl) a₀ a hA
-  obtain ⟨θ', hθ', hθ1', hm'⟩ := hΓ u' f' B' (by first | exact hPl' | exact _root_.GlobalTheory.MiTop.PlacedConditions.placed f' B' hPl') a₀' a' hA'
+  obtain ⟨θ, hθ, hθ1, hm⟩ := hΓ u f B (by first | exact _root_.GlobalTheory.MiTop.PlacedConditions.placed f B hPl) a₀ a hA
+  obtain ⟨θ', hθ', hθ1', hm'⟩ := hΓ u' f' B' (by first | exact _root_.GlobalTheory.MiTop.PlacedConditions.placed f' B' hPl') a₀' a' hA'
   have hmul : ∀ x y : GA D (D.sp.Y 0), Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from (x * y : GA D (D.sp.Y 0))) =
       Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from x) * Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from y) :=
     fun x y => map_mul (Formalism.IndefR.Lev.finE (Yc D 0)) x y

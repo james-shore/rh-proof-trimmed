@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.liftResidueTwistCharacter_eq_resChar : ∀ (X : St
     I.Ok → ValsIn I → LevOf X I U L → ∀ (t : TupU I U) (PP : HeightOneSpectrum (𝓞 X.B.fields.E)), PP ∈ Formalism.L2.Col.QE I.sel t.1 →
       ∀ c : (𝓞 X.B.fields.E ⧸ PP.asIdeal)ˣ, L.xiR t PP c = Units.map X.toD7.what₂.embLL.toMonoidHom
         (Formalism.L2.DIV.resChar (t.1 : Formalism.L2.DIV.Chr X.B.fields.F X.B.fields.E X.B.fields.K) PP c) := by
-  first | exact @GlobalTheory.Mem.LevResXi.xiR_eq_map_resChar | exact GlobalTheory.Mem.LevResXi.xiR_eq_map_resChar | (intros; apply GlobalTheory.Mem.LevResXi.xiR_eq_map_resChar <;> assumption)
+  first | exact @GlobalTheory.Mem.LevResXi.xiR_eq_map_resChar

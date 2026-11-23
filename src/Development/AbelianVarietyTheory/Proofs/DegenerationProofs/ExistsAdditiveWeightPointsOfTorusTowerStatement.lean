@@ -53,4 +53,4 @@ open GlobalTheory.UU
 open GlobalTheory.LN
 
 theorem _root_.GlobalTheory.T.exists_additive_weightPoints_of_torusTower : Laws → Laws2 → Ega → ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (I : Ideal R), admitted R I → ∀ (G : Over (Spec (CommRingCat.of R))) [GrpObj G] [IsCommMonObj G] (P : CP G) (X : Type) [AddCommGroup X] (T : TowerR I P X) (a : T.Alg), KTriv a.B a.M.L.L → ∃ c : X → (𝟙_ _ ⟶ a.B), (∀ χ χ', c (χ + χ') = c χ * c χ') ∧ ∀ χ e, a.RepWt (c χ) χ e := by
-  first | exact @GlobalTheory.WeightPoint.exists_weightPoints | exact GlobalTheory.WeightPoint.exists_weightPoints | (intros; apply GlobalTheory.WeightPoint.exists_weightPoints <;> assumption)
+  first | exact @GlobalTheory.WeightPoint.exists_weightPoints

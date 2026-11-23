@@ -49,4 +49,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.chainTwistEulerFactorsRestore_proof : ∀ D : D7, Restore D := by
-  first | exact @GlobalTheory.ChainTw.restore_holds | exact GlobalTheory.ChainTw.restore_holds | (intros; apply GlobalTheory.ChainTw.restore_holds <;> assumption)
+  first | exact @GlobalTheory.ChainTw.restore_holds

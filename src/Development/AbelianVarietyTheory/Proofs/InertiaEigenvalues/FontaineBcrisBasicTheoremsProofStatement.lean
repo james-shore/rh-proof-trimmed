@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 
 theorem _root_.GlobalTheory.T.fontaineBcrisBasicTheorems_proof : GlobalTheory.Published.FontaineBcris := by
-  first | exact @GlobalTheory.MemLoc.fontaineBcris | exact GlobalTheory.MemLoc.fontaineBcris | (intros; apply GlobalTheory.MemLoc.fontaineBcris <;> assumption)
+  first | exact @GlobalTheory.MemLoc.fontaineBcris

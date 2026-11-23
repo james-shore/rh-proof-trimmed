@@ -115,7 +115,7 @@ theorem wtv_single {p q r s : ℕ} (l : Ln p q r s) (c : Ix p q) :
       simp
     · rw [if_neg h1]
       have hne : l ≠ ((c, d) : Ln p q r s) := fun he => h1 ⟨by rw [he], by rw [he]⟩
-      simp [Finsupp.single_apply, hne]
+      simp [hne]
   simp_rw [key]
   by_cases h : l.1 = c <;> simp [h]
 

@@ -51,4 +51,4 @@ open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.Conju
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.isLanglandsClassification_detCharacter : StandardCosocleGL → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [CharZero k] (t : ℕ) (χ : kˣ →* ℂˣ) (hχ : IsSmoothChar χ), IsL (((List.range t).map fun j : ℕ => Segment.single ((IrrGL.ofChar χ hχ).nu ((((t : ℝ) - 1) / 2 - j : ℝ) : ℂ)) ((IrrGL.isCusp_ofChar χ hχ).nu _) : List (Segment k)) : Multiset (Segment k)) (IrrRep.det (Fin t) χ hχ).ρ := by
-  first | exact @GlobalTheory.LocGL.isL_det | exact GlobalTheory.LocGL.isL_det | (intros; apply GlobalTheory.LocGL.isL_det <;> assumption)
+  first | exact @GlobalTheory.LocGL.isL_det

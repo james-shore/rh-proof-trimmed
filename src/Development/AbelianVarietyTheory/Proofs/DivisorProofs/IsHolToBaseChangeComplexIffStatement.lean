@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.isHolTo_baseChange_complex_iff : ∀ (R : Type) [CommRing R] (σ : R →+* ℂ) (X X' : Scheme.{0}) (s : X ⟶ Sp R) (s' : X' ⟶ Sp ℂ) (f : X' ⟶ X), IsPullback f s' s (spMap σ) → ∀ (V : Type) [NormedAddCommGroup V] [NormedSpace ℂ V] (B : Set V) (y : V → (Sp ℂ ⟶ X')), (∀ b ∈ B, y b ≫ s' = spMap (RingHom.id ℂ)) → (IsHolTo B y ↔ IsHolTo B (fun b => y b ≫ f)) := by
-  first | exact @GlobalTheory.PELU.isHolTo_bc_iff | exact GlobalTheory.PELU.isHolTo_bc_iff | (intros; apply GlobalTheory.PELU.isHolTo_bc_iff <;> assumption)
+  first | exact @GlobalTheory.PELU.isHolTo_bc_iff

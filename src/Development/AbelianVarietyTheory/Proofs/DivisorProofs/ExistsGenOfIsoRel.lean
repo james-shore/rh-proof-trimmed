@@ -462,7 +462,7 @@ theorem cub_mem (H : Desc f q ev k₀ u) (x x' y : Over.mk (spMap ev) ⟶ D.P.A)
     (fun U _ h => by simp [Fin.prod_univ_eight])
     (fun U _ h => by
       simp only [← Over.comp_left, MonObj.comp_mul, MonObj.comp_one, lift_fst_assoc, lift_snd, Category.id_comp,
-        _root_.mul_one, _root_.one_mul]
+        _root_.mul_one]
       simp)
     (fun z J hJ => by
       simp only [lift_snd]
@@ -635,7 +635,7 @@ theorem exists_omega
   refine Finset.prod_congr rfl fun a _ => Finset.prod_congr rfl fun b _ => congrArg (· ^ W a b) ?_
   refine (isoV_isoPull _ _ _ _ z _ _ (Set.mem_iInter.1 (c₃.le _ (hJ₀.mem _ x)) (a, b))
     (Set.mem_iInter.1 (c₂.le _ (hJQ.mem _ x)) (a, b))).trans ?_
-  simp only [lamVal, Category.assoc]
+  simp only [lamVal]
   rfl
 
 theorem piB_congr {β : Q.B.left ⟶ B₀.left} (hsq : IsSquare β β₂) (Z : Scheme.{0}) (x y : Z ⟶ D.P.A.left)

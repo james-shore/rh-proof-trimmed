@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.translatedStdLattice_eq_decoratedLattice_reindexed
       Bridge.hLat (Vc X.toD7 i) (eG x) =
         (Formalism.L2.Col.decoPt X.toD7.sp.cm X.B.R.nV ∅ SG (QuotientGroup.mk x)).1.N.map
           (LinearEquiv.funCongrLeft (𝓞 X.toD7.host.E) X.toD7.host.E (finCongr (LiftBrg.rkEq X i)).symm).toLinearMap := by
-  first | exact @GlobalTheory.Mem.R3.LiftLatStd.hLat_eq_decoPt_N | exact GlobalTheory.Mem.R3.LiftLatStd.hLat_eq_decoPt_N | (intros; apply GlobalTheory.Mem.R3.LiftLatStd.hLat_eq_decoPt_N <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.LiftLatStd.hLat_eq_decoPt_N

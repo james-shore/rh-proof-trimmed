@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.flat_and_surjective_of_surjective_points' : ∀ (k : Type) [Field k] [IsAlgClosed k] (G G' : Over (Sp k)) [GrpObj G] [GrpObj G'], SmConn G → SmConn G' → ∀ i : G ⟶ G', IsMonHom i → (∀ y : (𝟙_ (Over (Sp k)) ⟶ G'), ∃ x : (𝟙_ (Over (Sp k)) ⟶ G), x ≫ i = y) → Flat i.left ∧ Surjective i.left := by
-  first | exact @GlobalTheory.SS.flat_and_surjective_of_surjective_points | exact GlobalTheory.SS.flat_and_surjective_of_surjective_points | (intros; apply GlobalTheory.SS.flat_and_surjective_of_surjective_points <;> assumption)
+  first | exact @GlobalTheory.SS.flat_and_surjective_of_surjective_points

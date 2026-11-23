@@ -53,4 +53,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.pointValue_section_in_chart_of_frame_value : ∀ (X : Scheme.{0}) (L : LB X), L.IsLB → ∀ (Ω : Type) [CommRing Ω] [IsLocalRing Ω] (x : Sp Ω ⟶ X) (g : GlobalTheory.RayEv.Transport.Frame L (x ≫ 𝟙 X)) (k : ℕ) (σ : SecM (𝟙 X) L k) (ω : Ω), IsValue (𝟙 X) L x g k σ ω → ∀ i, ⊤ ≤ x ⁻¹ᵁ L.U i → valR x _ (σ.f fun _ => i) = ω * (valR (𝟙 (Sp Ω)) _ (g.s fun _ => i).val) ^ k := by
-  first | exact @GlobalTheory.HeatV.valR_of_isValue | exact GlobalTheory.HeatV.valR_of_isValue | (intros; apply GlobalTheory.HeatV.valR_of_isValue <;> assumption)
+  first | exact @GlobalTheory.HeatV.valR_of_isValue

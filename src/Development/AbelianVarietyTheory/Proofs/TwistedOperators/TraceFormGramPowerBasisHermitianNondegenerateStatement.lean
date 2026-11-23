@@ -48,4 +48,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups (mapH diagH)
 open scoped TensorProduct ComplexConjugate Matrix
 
 theorem _root_.GlobalTheory.T.traceFormGramPowerBasis_hermitian_nondegenerate : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (r : ℕ) (P : PPol σ r), IsHermND σ (GlobalTheory.TrUnitLat.gramOne P) := by
-  first | exact @GlobalTheory.TrUnitLat.gramOne_herm_nd | exact GlobalTheory.TrUnitLat.gramOne_herm_nd | (intros; apply GlobalTheory.TrUnitLat.gramOne_herm_nd <;> assumption)
+  first | exact @GlobalTheory.TrUnitLat.gramOne_herm_nd

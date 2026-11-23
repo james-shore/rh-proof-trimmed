@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.deRham_crystal_two_reductions_agree : AbelianDeRha
     ∃ N : GrpMor (divided₂ hJ) (spMap ρ) A₁ κ (spMap π) A₀ (RingHom.id R) (spMap π₁) i₁,
       Function.Bijective (N.pull : prim (divided₂ hJ) (spMap ρ) A₁ →ₗ[R] prim κ (spMap π) A₀) ∧
       ∀ d : Crys κ (spMap π) A₀, crysToDR κ h d = crysToDR (divided₂ hJ) h₂ ((N.pull : prim (divided₂ hJ) (spMap ρ) A₁ →ₗ[R] prim κ (spMap π) A₀).dualMap d) := by
-  first | exact @GlobalTheory.SqLift.crys_two_reductions | exact GlobalTheory.SqLift.crys_two_reductions | (intros; apply GlobalTheory.SqLift.crys_two_reductions <;> assumption)
+  first | exact @GlobalTheory.SqLift.crys_two_reductions

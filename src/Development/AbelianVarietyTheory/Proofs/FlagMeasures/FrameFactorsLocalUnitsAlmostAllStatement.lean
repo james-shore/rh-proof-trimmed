@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.frame_factors_local_units_almost_all : ∀ (D : D7) (Z : LocDat D) (a : Fin (D.R.rS + 1)),
     {p : PlF D | ¬ Formalism.MainNotions.S.LocNG.IsUnitO (Z.M p) (frFac Z.δ p a)}.Finite := by
-  first | exact @GlobalTheory.FrameFactorUnit.frFac_isUnitO_finite | exact GlobalTheory.FrameFactorUnit.frFac_isUnitO_finite | (intros; apply GlobalTheory.FrameFactorUnit.frFac_isUnitO_finite <;> assumption)
+  first | exact @GlobalTheory.FrameFactorUnit.frFac_isUnitO_finite

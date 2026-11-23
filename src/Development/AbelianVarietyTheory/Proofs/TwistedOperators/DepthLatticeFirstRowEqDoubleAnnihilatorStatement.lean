@@ -49,4 +49,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.depthLatticeFirstRow_eq_doubleAnnihilator : All fun {D} _ _ {sc} {G} W _ => ∀ i, i < D.R.m → ∀ u : WO (G.V (.grid (i + 1) 0)) (G.V (.grid i 0)), MxAt (fun _ => True) u → (∀ u' : WO (G.V (.grid (i + 1) 0)) (G.V (.grid i 0)), MxAt (fun _ => True) u' → (∀ v ∈ latRow G i, W.ψ (symplO _ _ v u') = 1) → W.ψ (symplO _ _ u u') = 1) → u ∈ latRow G i := by
-  first | exact @GlobalTheory.AscFin.LatticeBidual.latRow_bidual | exact GlobalTheory.AscFin.LatticeBidual.latRow_bidual | (intros; apply GlobalTheory.AscFin.LatticeBidual.latRow_bidual <;> assumption)
+  first | exact @GlobalTheory.AscFin.LatticeBidual.latRow_bidual

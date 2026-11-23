@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_baseField_generator_localDifferent_inertPla
     (∀ e : E, (∀ o : 𝓞 E, IsIntegral ℤ (Algebra.trace ℚ E ((o : E) * e))) →
       s₁ * algebraMap F E t * e ∈ (algebraMap (𝓞 E) E).range) ∧
     (∀ o : 𝓞 E, IsIntegral ℤ (Algebra.trace ℚ E ((o : E) * (s₂ * (algebraMap F E t)⁻¹)))) := by
-  first | exact @GlobalTheory.InertDifferentGen.exists_generator_different_of_isInertAt | exact GlobalTheory.InertDifferentGen.exists_generator_different_of_isInertAt | (intros; apply GlobalTheory.InertDifferentGen.exists_generator_different_of_isInertAt <;> assumption)
+  first | exact @GlobalTheory.InertDifferentGen.exists_generator_different_of_isInertAt

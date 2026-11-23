@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_even_multiple_hermitian_positive_combinatio
       (∀ i, Even (a i)) ∧ (∀ i, ∀ l ∈ Λ, F i l ∈ Λ) ∧
       ∀ z w : Fin g → ℂ, (N : ℂ) * (z ⬝ᵥ H₁.mulVec (star w)) =
         (a₀ : ℂ) * (z ⬝ᵥ H₂.mulVec (star w)) + ∑ i, (a i : ℂ) * (F i z ⬝ᵥ H₂.mulVec (star (F i w))) := by
-  first | exact @GlobalTheory.Desc.HermComb.main | exact GlobalTheory.Desc.HermComb.main | (intros; apply GlobalTheory.Desc.HermComb.main <;> assumption)
+  first | exact @GlobalTheory.Desc.HermComb.main

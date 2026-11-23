@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.inertPlace_bigCell_local_unitary_decomposition : (
     ∃ N : Matrix (Fin d) (Fin d) K,
       N * ((2 : K)⁻¹ • ((P * M).toBlocks₁₁ + (P * M).toBlocks₁₂ + (P * M).toBlocks₂₁ + (P * M).toBlocks₂₂)) = 1 ∧
       ∀ u, GlobalTheory.InertBigCell.InLat O b u → GlobalTheory.InertBigCell.InLat O b (N *ᵥ u) := by
-  first | exact @GlobalTheory.InertCellLocal.bigCell_local_step | exact GlobalTheory.InertCellLocal.bigCell_local_step | (intros; apply GlobalTheory.InertCellLocal.bigCell_local_step <;> assumption)
+  first | exact @GlobalTheory.InertCellLocal.bigCell_local_step

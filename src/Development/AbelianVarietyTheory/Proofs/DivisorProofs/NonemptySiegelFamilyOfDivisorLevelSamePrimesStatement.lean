@@ -45,4 +45,4 @@ open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.nonempty_siegelFamily_of_divisor_level_same_primes : ∀ h n N : ℕ, 3 ≤ n → Odd N → n ∣ N → (∃ a, N ∣ n ^ a) → Nonempty (SFam h N (zetaAway N)) → Nonempty (SFam h n (zetaAway n)) := by
-  first | exact @GlobalTheory.SiegLev.sFam_down | exact GlobalTheory.SiegLev.sFam_down | (intros; apply GlobalTheory.SiegLev.sFam_down <;> assumption)
+  first | exact @GlobalTheory.SiegLev.sFam_down

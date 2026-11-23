@@ -92,7 +92,6 @@ theorem transpC (v : InfinitePlace X.B.I.F) : IsTranspC X v (cfS D) D.R.k D.R.rS
     rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
     congr 1
     funext i
-    beta_reduce
     split_ifs
     · rw [← mul_pow, inv_mul_cancel₀ hμ, one_pow]
     · rw [← mul_inv, ← star_mul', ← mul_pow, inv_mul_cancel₀ hμ, one_pow, star_one, inv_one]
@@ -102,7 +101,6 @@ theorem transpC (v : InfinitePlace X.B.I.F) : IsTranspC X v (cfS D) D.R.k D.R.rS
     rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
     congr 1
     funext i
-    beta_reduce
     split_ifs
     · rw [← mul_pow, mul_inv_cancel₀ hμ, one_pow]
     · rw [← mul_inv, ← star_mul', ← mul_pow, mul_inv_cancel₀ hμ, one_pow, star_one, inv_one]
@@ -121,7 +119,7 @@ theorem transpC (v : InfinitePlace X.B.I.F) : IsTranspC X v (cfS D) D.R.k D.R.rS
          rw [e, mul_one, mul_inv_cancel₀ (star_ne_zero.mpr (hμm _))])
       | (have e : 2 * D.R.rS + D.R.k - (i : ℕ) = j := by omega
          rw [e, mul_one]
-         first | rw [star_inv₀] | rw [star_inv']
+         first | rw [star_inv₀]
          rw [star_star, inv_mul_cancel₀ (hμm _)])
       | (have e : 2 * D.R.rS + D.R.k - (j : ℕ) = i := by omega
          rw [e]; simp [hμm, hsm]; done)

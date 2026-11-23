@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.adelicHomAction_realCoordinates_eq : ∀ (F E : Ty
       IsInfFamF (fun w : InfinitePlace F => (B.emb w).1) θ → ∀ ι : (InfinitePlace F → ℂ) →+ AEF F E, IsChartF θ ι →
       ∀ (g : GAF σ JS) (h : GAF σ JT) (v : IxF F nS nT → ℂ),
         actOF σ JS JT g h (iotaVF ι v) = iotaVF ι (mMF σ JS JT θ (g, h) *ᵥ v) := by
-  first | exact @GlobalTheory.RealWeilF.actOF_iotaVF | exact GlobalTheory.RealWeilF.actOF_iotaVF | (intros; apply GlobalTheory.RealWeilF.actOF_iotaVF <;> assumption)
+  first | exact @GlobalTheory.RealWeilF.actOF_iotaVF

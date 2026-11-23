@@ -45,4 +45,4 @@ open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S 
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.exists_continuous_besselMap_smoothVectors : ∀ (k r : ℕ) {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [FiniteDimensional ℂ Wp] [CompleteSpace Wp] (σ : Mat k r → (H →L[ℂ] H)) (w : H) (a : ℝ) (μG : Measure (Mt k r)) (d : ℝ) (z : Fin (2 * r + k + 1) → ℂ) (c : Fin r → ℂ) (π : Mat k r → (Wp →L[ℂ] Wp)) (μS : Measure (Mt k r)) , Std σ w a μG d → Side z π μS → IsSmoothVec σ w → ∀ v ∈ DD σ w, ∀ ξ : Wp, ∃ l : H → Wp, IsBesselMapSm z (psiGen k r z c) σ π l ∧ ∀ u ∈ DD σ w, l u = be (psiGen k r z c) π μS σ u v ξ := by
-  first | exact @GlobalTheory.SgInf.exists_besselExt | exact GlobalTheory.SgInf.exists_besselExt | (intros; apply GlobalTheory.SgInf.exists_besselExt <;> assumption)
+  first | exact @GlobalTheory.SgInf.exists_besselExt

@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.realisation_extends_by_newTuples_keeping_laws : Gl
         (v₀' : ∀ (i : Fin D.R.m) (σ : D.what₂.LL →+* ℂ), (R'.MW i σ).Vec) (O' : ∀ i, OMDat T.toCore R' i Unit (fun _ => A'.μ0)),
         GlobalTheory.BigOn.Exp.TwConj.Laws T R' F' κ v₀' O' ph j B ∧ GlobalTheory.BigOn.Exp.TwConj.Ext T R κ v₀ O j R' v₀' O' ∧
           ∀ n, ∃ t', R'.xi t' = xi n ∧ R'.Q t' = Q n := by
-  first | exact @GlobalTheory.TupExt.extend_tuples | exact GlobalTheory.TupExt.extend_tuples | (intros; apply GlobalTheory.TupExt.extend_tuples <;> assumption)
+  first | exact @GlobalTheory.TupExt.extend_tuples

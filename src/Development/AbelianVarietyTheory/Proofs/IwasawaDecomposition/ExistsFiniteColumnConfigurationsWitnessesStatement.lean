@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_finite_columnConfigurations_witnesses : ∀
     (∀ i, (Wt i).1.fields.Ok ∧ (Wt i).2.2.Ok) ∧
     ∀ (B : Base) (px : PreX B.toPre) (I : Col2.ColIn B px), B.fields.Ok → I.Ok → B.toPre = P → HEq I.C f → B.KsC = F →
       B.fixedCoefficientFieldInComplex = F₀ → HEq (Set.range I.xi) Ξ → ∃ i, GlobalTheory.Mem.HFld.SameCfg B px I (Wt i).1 (Wt i).2.1 (Wt i).2.2 := by
-  first | exact @GlobalTheory.Mem.HFld.exists_finite_cfg | exact GlobalTheory.Mem.HFld.exists_finite_cfg | (intros; apply GlobalTheory.Mem.HFld.exists_finite_cfg <;> assumption)
+  first | exact @GlobalTheory.Mem.HFld.exists_finite_cfg

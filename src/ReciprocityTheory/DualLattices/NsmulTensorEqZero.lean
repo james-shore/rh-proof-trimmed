@@ -269,7 +269,6 @@ theorem ht_gen (hB2 : HighestWeightVectorUniformBounds B) (N : ℕ) (hN : (N : (
       ·
         rw [Units.coe_map, MonoidHom.coe_coe, hzinv, evalT_tmul, map_sub, map_one, map_mul, hfσ, Dp.fr_η, hk]
         try simp only [LinearMap.coe_comp, Function.comp_apply, AlgHom.toLinearMap_apply]
-        try ring
       ·
         have h1 : HEq (B.nsmul2 (B.tr2 hfy (B.tr1 hfx (B.pmap f u'))) N) (B.nsmul2 (B.pmap f u') N) :=
           B.nsmul2_hcongr hfx.symm hfy.symm N ((tr2h hfy _).trans (tr1h hfx _))

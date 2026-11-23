@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_section_expansion_weightZero_coefficient : 
       ∀ σ : D.toPre.SecB k 0, ∃ (s : H0 U.LG.L k) (f : ∀ α : D.toPre.X, D.toPre.SecB k α), f 0 = σ ∧
         (∀ α, α ≠ 0 → ∀ j : Fin 4 → D.toPre.P.L.ι, ((U.gt 0).pG.left.app _).hom ((f α).f j) = 0) ∧
         U.toUnifPre.ExpandsAt 0 k s f := by
-  first | exact @GlobalTheory.Mum.LeadZero.exists_expandsAt_lead_zero | exact GlobalTheory.Mum.LeadZero.exists_expandsAt_lead_zero | (intros; apply GlobalTheory.Mum.LeadZero.exists_expandsAt_lead_zero <;> assumption)
+  first | exact @GlobalTheory.Mum.LeadZero.exists_expandsAt_lead_zero

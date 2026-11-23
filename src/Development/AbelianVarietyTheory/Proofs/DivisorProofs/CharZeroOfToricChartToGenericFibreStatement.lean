@@ -57,4 +57,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.charZero_of_toricChart_to_genericFibre : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (Y : Model Xo c (RingHom.id c.F)) (k : Type) [Field k] (m d : ℕ) (ξ : Sp (ChartRing k m d) ⟶ gen Y), CharZero k := by
-  first | exact @GlobalTheory.LocReg.charZero_of_chart | exact GlobalTheory.LocReg.charZero_of_chart | (intros; apply GlobalTheory.LocReg.charZero_of_chart <;> assumption)
+  first | exact @GlobalTheory.LocReg.charZero_of_chart

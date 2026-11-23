@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.selfDualModulusShift_half_mem_completedModulusHom : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {μ₀ : T}, L.Is μ₀ → OffQ D → ∀ (G : GridData L sc) (i : ℕ), i < D.R.m → ∀ e : AE D, IsIdemSum e G.pl.W0 → ∀ u ∈ latBig G i, e • u ∈ hatMx (G.modul • homLat (G.Λ (.grid (i + 1) 0)) (G.Λ (.grid i 0))) := by
-  first | exact @GlobalTheory.HalfOut.smul_mem_hatMx_of_mem_latBig | exact GlobalTheory.HalfOut.smul_mem_hatMx_of_mem_latBig | (intros; apply GlobalTheory.HalfOut.smul_mem_hatMx_of_mem_latBig <;> assumption)
+  first | exact @GlobalTheory.HalfOut.smul_mem_hatMx_of_mem_latBig

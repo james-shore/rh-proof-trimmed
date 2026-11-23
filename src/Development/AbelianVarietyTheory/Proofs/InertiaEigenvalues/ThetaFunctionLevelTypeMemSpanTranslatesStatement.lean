@@ -51,4 +51,4 @@ open GlobalTheory.DownLift
 open GlobalTheory.DownLift.GenFinite
 
 theorem _root_.GlobalTheory.T.thetaFunction_levelType_mem_span_translates : GlobalTheory.Hk3.HoweUnram → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → R.FullP → ∀ (i : Fin D.R.m) (t : T) (f : WO (Vc D i) (Wc D i) → ℂ), GlobalTheory.DownLift.GenFinite.TypeVec R i t f → GlobalTheory.DownLift.GenFinite.Clean R i t f → f ∈ Submodule.span ℂ (GlobalTheory.DownLift.GenFinite.Gen R i t) := by
-  first | exact @GlobalTheory.DownLift.GenFinite.gen_of_type_clean | exact GlobalTheory.DownLift.GenFinite.gen_of_type_clean | (intros; apply GlobalTheory.DownLift.GenFinite.gen_of_type_clean <;> assumption)
+  first | exact @GlobalTheory.DownLift.GenFinite.gen_of_type_clean

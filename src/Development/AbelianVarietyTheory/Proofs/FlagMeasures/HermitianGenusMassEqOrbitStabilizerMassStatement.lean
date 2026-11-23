@@ -52,5 +52,3 @@ theorem _root_.GlobalTheory.T.hermitianGenusMass_eq_orbitStabilizerMass : ∀ (K
   first
   | exact @GlobalTheory.Mass.GenusOrb.main
   | intro K V _ _ _ _ _ _ _ _ h hK hs hp L hL
-    obtain ⟨a, b, c, d, e⟩ := GlobalTheory.Mass.GenusOrb.main K V h hK hs hp L hL.toIsLattice
-    exact ⟨a, b, c, fun M hM => d M hM.toIsLattice, e⟩

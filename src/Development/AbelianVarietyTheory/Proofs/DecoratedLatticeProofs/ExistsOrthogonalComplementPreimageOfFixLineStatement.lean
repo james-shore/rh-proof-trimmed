@@ -57,4 +57,4 @@ open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 
 theorem _root_.GlobalTheory.T.exists_orthogonalComplement_preimage_of_fix_line : ∀ {D : D7} {S₀ A L : HSp D} (o : OrthDec S₀ A L) (ζ : Fin L.rank → D.host.E), IsLineVec L ζ → ∀ (b : GA D S₀), (mt S₀ b *ᵥ (fun k => incA D (vecB o ζ k)) = fun k => incA D (vecB o ζ k)) → ∃ a : GA D A, o.emb (a, 1) = b := by
-  first | exact @GlobalTheory.LineFix.exists_emb_of_fix_line | exact GlobalTheory.LineFix.exists_emb_of_fix_line | (intros; apply GlobalTheory.LineFix.exists_emb_of_fix_line <;> assumption)
+  first | exact @GlobalTheory.LineFix.exists_emb_of_fix_line

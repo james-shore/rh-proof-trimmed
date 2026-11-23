@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 theorem _root_.GlobalTheory.T.height_add_mul_geometricDegree_nonneg_of_smallSection : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → 1 ≤ D → ∀ (C : HermLB p) (h : X → ℝ), C.SemiPos D → C.IsArithHeight h → (∀ z, z ≠ genericPoint X → 0 ≤ h z) → ∀ (m : ℕ) (u : ℝ), 0 < m → 0 ≤ u → (∃ s ∈ ((C.shift (fun _ => u) fun _ => rfl).pow m).smallSec, s ≠ 0) → 0 ≤ h (genericPoint X) + u * gdeg C D := by
-  first | exact @GlobalTheory.HSNef.height_add_mul_gdeg_nonneg_of_smallSec | exact GlobalTheory.HSNef.height_add_mul_gdeg_nonneg_of_smallSec | (intros; apply GlobalTheory.HSNef.height_add_mul_gdeg_nonneg_of_smallSec <;> assumption)
+  first | exact @GlobalTheory.HSNef.height_add_mul_gdeg_nonneg_of_smallSec

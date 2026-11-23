@@ -318,6 +318,6 @@ theorem coset : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [
     rw [hh, hcancel, hy, hκ₁]
     group
   rw [hg, ← hκ', hκeq, map_mul, map_mul, map_mul, incl_permO, incl_diagO_one]
-  simp only [Subgroup.coe_mk, mul_assoc]
+  simp only [mul_assoc]
 
 end GlobalTheory.TypeDim.Coset

@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 theorem _root_.GlobalTheory.T.geom_integral_base_change_and_localization : ∀ (K K' R : Type) [Field K] [Field K'] [Algebra K K'] [CommRing R] [Algebra K R], GeomInt K R → GeomInt K' (K' ⊗[K] R) ∧ ∀ r : R, r ≠ 0 → GeomInt K (Localization.Away r) := by
-  first | exact @GlobalTheory.KeyFam.geomInt_baseChange_and_away | exact GlobalTheory.KeyFam.geomInt_baseChange_and_away | (intros; apply GlobalTheory.KeyFam.geomInt_baseChange_and_away <;> assumption)
+  first | exact @GlobalTheory.KeyFam.geomInt_baseChange_and_away

@@ -52,4 +52,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.exists_prime_natCast_mem_pow_of_ringHom' : ∀ (F H : Type) [Field F] [NumberField F] [Field H] [NumberField H] (f : F →+* H) (w : HeightOneSpectrum (𝓞 F)) (p n : ℕ), (p : 𝓞 F) ∈ w.asIdeal ^ n → ∃ P : Ideal (𝓞 H), P.IsPrime ∧ P ≠ ⊥ ∧ (p : 𝓞 H) ∈ P ^ n := by
-  first | exact @GlobalTheory.CMModel.exists_prime_natCast_mem_pow_of_ringHom | exact GlobalTheory.CMModel.exists_prime_natCast_mem_pow_of_ringHom | (intros; apply GlobalTheory.CMModel.exists_prime_natCast_mem_pow_of_ringHom <;> assumption)
+  first | exact @GlobalTheory.CMModel.exists_prime_natCast_mem_pow_of_ringHom

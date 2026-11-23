@@ -54,4 +54,4 @@ open GlobalTheory GlobalTheory.CM
 
 
 theorem _root_.GlobalTheory.T.relAmple_of_generic_isogenous_dedekind : Out.Laws → Out.Laws2 → ∀ (R K : Type) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K] (P : Out.PolAV (Sp R)) (B : Over (Sp R)) [GrpObj B] (Ψ : P.A ⟶ B) (M : LB B.left) (B₀ : Over (Sp K)) [GrpObj B₀] (φ : B₀.left ⟶ B.left) (M₀ : LB B₀.left), IsAbelianScheme B → M.IsLB → M₀.IsLB → IsFinite Ψ.left → Flat Ψ.left → Surjective Ψ.left → IsGrpPullback B₀ B (spMap (algebraMap R K)) φ → LBIso M₀ (M.pull φ) → Out.RelAmple B₀ M₀ → Out.RelAmple B M := by
-  first | exact @GlobalTheory.AmpleDedekind.relAmple_of_generic_of_isogenous | exact GlobalTheory.AmpleDedekind.relAmple_of_generic_of_isogenous | (intros; apply GlobalTheory.AmpleDedekind.relAmple_of_generic_of_isogenous <;> assumption)
+  first | exact @GlobalTheory.AmpleDedekind.relAmple_of_generic_of_isogenous

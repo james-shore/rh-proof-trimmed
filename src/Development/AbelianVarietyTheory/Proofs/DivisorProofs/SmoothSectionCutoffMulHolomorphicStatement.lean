@@ -50,4 +50,4 @@ open MeasureTheory Filter Topology Metric ReciprocityTheory.L2DbarEstimates Reci
 open scoped ENNReal ContDiff
 
 theorem _root_.GlobalTheory.T.smoothSection_cutoff_mul_holomorphic : ∀ (n : ℕ) (Y : Type) [TopologicalSpace Y] [T2Space Y] [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y] (ι La : Type) [AddCommGroup La] (A : WeightedAtlas n Y ι La), ∀ (la : La) (W : Set Y) (χ : Y → ℝ) (h : ι → Y → ℂ), IsOpen W → A.SmoothFn χ → tsupport χ ⊆ W → A.IsSecOn la W h → A.IsSSec la (fun i y => (χ y : ℂ) * h i y) := by
-  first | exact @GlobalTheory.smooth_cutoff_mul_sec | exact GlobalTheory.smooth_cutoff_mul_sec | (intros; apply GlobalTheory.smooth_cutoff_mul_sec <;> assumption)
+  first | exact @GlobalTheory.smooth_cutoff_mul_sec

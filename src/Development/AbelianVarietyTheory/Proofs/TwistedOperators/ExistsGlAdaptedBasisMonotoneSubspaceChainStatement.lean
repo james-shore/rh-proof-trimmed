@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.exists_gl_adaptedBasis_monotoneSubspaceChain : ∀
     ∃ (d : Fin m → ℕ) (h : ∑ j, d j = n) (g : GL (Fin n) K), ∀ (j : Fin (m + 1)) (y : Fin n → K),
       y ∈ Y j ↔ ∀ i : Fin n, (j : ℕ) ≤ ((GlobalTheory.SmGL.blk (GlobalTheory.SmGL.stdBlocks d h) i : Fin m) : ℕ) →
         (((g⁻¹ : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) *ᵥ y) i = 0 := by
-  first | exact @GlobalTheory.Flag.exists_gl_adapted_chain | exact GlobalTheory.Flag.exists_gl_adapted_chain | (intros; apply GlobalTheory.Flag.exists_gl_adapted_chain <;> assumption)
+  first | exact @GlobalTheory.Flag.exists_gl_adapted_chain

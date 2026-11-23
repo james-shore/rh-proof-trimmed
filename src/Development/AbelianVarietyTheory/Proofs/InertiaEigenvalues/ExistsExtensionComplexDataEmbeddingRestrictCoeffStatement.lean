@@ -54,4 +54,4 @@ open GlobalTheory.HeightCounting.Up (PrN)
 
 theorem _root_.GlobalTheory.T.exists_extension_complexDataEmbedding_restrict_coeffField : ∀ (D : D7) (c : NChoice D) (w : D.what₂.places.Pl) (ρ : Setup D.ntw), ρ.Good → (∃ ε : KE c w →+* ℂ, Extends ρ ε) ∧
   (NChTie D c → ∀ ε : KE c w →+* ℂ, Extends ρ ε → ∀ x : D.LL0, ε (c.embW w (x : D.what₂.LL)) = embLL0 D x) := by
-  first | exact @GlobalTheory.PlaceRead.exists_extends_and_emb | exact GlobalTheory.PlaceRead.exists_extends_and_emb | (intros; apply GlobalTheory.PlaceRead.exists_extends_and_emb <;> assumption)
+  first | exact @GlobalTheory.PlaceRead.exists_extends_and_emb

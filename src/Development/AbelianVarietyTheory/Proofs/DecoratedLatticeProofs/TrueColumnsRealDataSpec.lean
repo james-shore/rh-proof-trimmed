@@ -122,7 +122,7 @@ theorem GlobalTheory.AdForm.realOf_is : ∀ {B : GlobalTheory.Mem.Base} {X : Pre
   refine ⟨huni, ?_, hrk, ?_, ?_, ?_, ?_⟩
   · exact huniT
   · intro i τ
-    simp only [realOf]
+    simp only
     split_ifs with h
     · exact one_ne_zero
     · exact div_ne_zero h (hstd.2.2.2.1 τ)
@@ -154,5 +154,4 @@ theorem GlobalTheory.AdForm.realOf_is : ∀ {B : GlobalTheory.Mem.Base} {X : Pre
     show GlobalTheory.BranchFormula.IsBlock hN (inN R.θ _ (g.x B.R.m).B (rankN (I.rec7 l Z) B.R.m le_rfl) ((g.oT B.R.m rfl).emb (k, 1)) τ) (inN R.θ _ (fun _ => 1) (rankP (I.rec7 l Z)) k τ) 1
     rw [hB]
     first
-      | simpa only [inN_one] using hb
       | simpa [inN, GlobalTheory.SeeSaw.inB, infM] using hb

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_continuous_hom_unitary_realPlaces_placewise
     ∃ k : UG (cA σ) J →* (∀ w : InfinitePlace F, Mat (R w) (S w)), Continuous k ∧
       (∀ g w, (g.1 : Matrix β β (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))).map (piInf (τ w)) * C w = C w * k g w) ∧
       (∀ g w, (k g w)ᴴ * Jm (R w) (S w) * k g w = Jm (R w) (S w)) ∧ ∀ w (M M' : Mat (R w) (S w)), C w * M = C w * M' → M = M' := by
-  first | exact @GlobalTheory.RealLiftCompD.exists_compD | exact GlobalTheory.RealLiftCompD.exists_compD | (intros; apply GlobalTheory.RealLiftCompD.exists_compD <;> assumption)
+  first | exact @GlobalTheory.RealLiftCompD.exists_compD

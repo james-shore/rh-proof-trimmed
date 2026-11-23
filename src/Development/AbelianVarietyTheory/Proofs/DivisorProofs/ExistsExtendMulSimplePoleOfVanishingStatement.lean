@@ -57,4 +57,4 @@ open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
 
 theorem _root_.GlobalTheory.T.exists_extend_mul_simplePole_of_vanishing : ∀ {k : Type} [CommRing k] {Y : Scheme.{0}} {p : Y ⟶ Sp k} [IsReduced Y] {O : Y.Opens}, Dense (O : Set Y) → ∀ {P B N : LB Y} (C : ProdChart P B N) (ω : H0 p P O), GlobalTheory.LogCanonicalReflexive.SimplePoleAlong O C ω → ∀ g : H0 p B ⊤, (∀ y, y ∉ O → ∀ i hi, H0.germ i y (memTop y) hi g ∈ IsLocalRing.maximalIdeal (Y.presheaf.stalk y)) → ∃ G : H0 p N ⊤, H0.restr le_top G = C.mul ω (H0.restr le_top g) := by
-  first | exact @GlobalTheory.LogCanonicalReflexive.exists_extend_mul_of_simplePole | exact GlobalTheory.LogCanonicalReflexive.exists_extend_mul_of_simplePole | (intros; apply GlobalTheory.LogCanonicalReflexive.exists_extend_mul_of_simplePole <;> assumption)
+  first | exact @GlobalTheory.LogCanonicalReflexive.exists_extend_mul_of_simplePole

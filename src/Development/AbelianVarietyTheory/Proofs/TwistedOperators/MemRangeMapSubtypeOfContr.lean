@@ -54,11 +54,7 @@ theorem mem_range_map_subtype_of_contr (ι : Type) [Fintype ι] (K : ι → Type
     (h : ∀ i (L : (⨂[ℂ] j, K j) →ₗ[ℂ] K i), (∀ f : Module.End ℂ (K i), L ∘ₗ intersection_update_fsHerm_neg_one i f = f ∘ₗ L) → L x ∈ N i) :
     x ∈ LinearMap.range (PiTensorProduct.map fun i => (N i).subtype) := by
   first
-  | exact @_root_.GlobalTheory.TensorContraction.mem_range_map
-  | exact _root_.GlobalTheory.TensorContraction.mem_range_map
   | (apply _root_.GlobalTheory.TensorContraction.mem_range_map <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TensorContraction.mem_range_map <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TensorContraction.mem_range_map <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TensorContraction.mem_range_map ..)
 
 end GlobalTheory.Chain.IoLift

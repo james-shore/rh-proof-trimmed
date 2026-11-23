@@ -49,4 +49,4 @@ open ValuativeRel
 open GlobalTheory.Core.Mi.LatMatch
 
 theorem _root_.GlobalTheory.T.sMoves_emb0_of_sMoves_selfDual : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S S₀ ρ) (z : Fin S₀.rank → D.host.E) (L L' : Lat S) (M M' : Lat S₀) (v : GlobalTheory.FinPl.Pl D) (c : AE D) (γ : GA D S₀), IsSelfDualC S L → IsSelfDualC S L' → IsSelfDualC S₀ M → z ≠ 0 → MonoAt d L M v → MonoAt d L' M' v → PrimAt ψ d L v → PrimAt ψ d L' v → LastAt ψ d z L M v → LastAt ψ d z L' M' v → NormOneAt v c → Formalism.L2.Theta.mt S₀ γ *ᵥ ratV z = ratV z → SMoves S₀ c γ M M' v → SMoves S c (d.emb0 γ) L L' v := by
-  first | exact @GlobalTheory.Core.Mi.LatMatch.homothetic_of_monomial_primitive_selfDual_cores | exact GlobalTheory.Core.Mi.LatMatch.homothetic_of_monomial_primitive_selfDual_cores | (intros; apply GlobalTheory.Core.Mi.LatMatch.homothetic_of_monomial_primitive_selfDual_cores <;> assumption)
+  first | exact @GlobalTheory.Core.Mi.LatMatch.homothetic_of_monomial_primitive_selfDual_cores

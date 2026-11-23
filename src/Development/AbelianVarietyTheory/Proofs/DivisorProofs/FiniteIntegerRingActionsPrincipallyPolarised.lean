@@ -89,7 +89,7 @@ theorem finite_oActs : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     have := h₂ g (cn a) M (key _ (Finset.le_sup ha)) K hK P P rfl rfl (Iso.refl _)
       (ThetaPtDet.isPolIso_refl P) (𝓞 E) ρ₁ ρ₂ a (hcn a) fun y hy => by
         have e := congrFun (congrFun hF ⟨a, ha⟩) ⟨y, hy⟩
-        simp only [F, h₁, h₂'] at e
+        simp only [F] at e
         rw [dite_eq_left (h₁ a ▸ tor ρ₁ a ⟨y, hy⟩), dite_eq_left (h₂' a ▸ tor ρ₂ a ⟨y, hy⟩)] at e
         have e' := congrArg Subtype.val (Option.some_injective _ e)
         simp only [Iso.refl_hom, Category.comp_id, Category.id_comp, h₁, h₂']

@@ -200,7 +200,7 @@ theorem dualLat_span {O Kf V : Type} [CommRing O] [Field Kf] [Algebra O Kf] [Add
           Finsupp.single_eq_same, map_one, smul_eq_mul, smul_eq_mul, mul_one, inv_mul_cancel₀ (ha k)]
       · refine ⟨0, ?_⟩
         rw [LinearMap.smul_apply, map_smul, Module.Basis.coord_apply, Module.Basis.repr_self,
-          Finsupp.single_eq_of_ne (by first | exact hik | exact Ne.symm hik), map_zero, smul_zero, smul_zero]
+          Finsupp.single_eq_of_ne (by first | exact Ne.symm hik), map_zero, smul_zero, smul_zero]
     | zero => exact ⟨0, by simp⟩
     | add u v _ _ hu hv =>
       obtain ⟨a1, h1⟩ := hu
@@ -312,7 +312,7 @@ theorem lb_D_sq {K : Type} [Field K] (k r : ℕ) (c : K) : lb_D k r c * lb_D k r
   rw [Matrix.diagonal_mul_diagonal]
   congr 1
   funext a
-  split_ifs <;> simp [sq, mul_inv]
+  split_ifs <;> simp [sq]
 
 theorem elementary_divisor_basis (h : HidaSetting p n' W Qq O Kf ι σ j w) (m r : ℕ) (lam0 : Fin n' → Fin (m + 1) → ℤ)
     (hd : IsDominant lam0) (e : Edge W Qq (m + 1)) (he : IsEdge p n' r e) :

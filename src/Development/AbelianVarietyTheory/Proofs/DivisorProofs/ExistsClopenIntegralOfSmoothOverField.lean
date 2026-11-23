@@ -57,7 +57,7 @@ theorem exists_clopen_integral_of_smooth_over_field :
         z ∈ Set.range j := by
   intro F _ Z q hq z
   obtain ⟨hR, hN, hL⟩ := isReduced_isNormalScheme_isLocallyNoetherian_of_smooth_over_field F Z q hq
-  have : GlobalTheory.IsNormalScheme Z := by first | exact hN | exact IsNormalScheme.of_pred hN
+  have : GlobalTheory.IsNormalScheme Z := by first | exact IsNormalScheme.of_pred hN
   have hC : irreducibleComponent z ∈ irreducibleComponents Z := irreducibleComponent_mem_irreducibleComponents z
   let C : Z.Opens := ⟨irreducibleComponent z, IsNormalScheme.isOpen_of_mem_irreducibleComponents hC⟩
   have hzC : z ∈ C := mem_irreducibleComponent

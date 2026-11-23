@@ -53,4 +53,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 theorem _root_.GlobalTheory.T.mem_finiteUnitIdeles_of_map_maxRealSubfield : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (b : Neutral.B1.Ideles (maximalRealSubfield E)),
     GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.ideleMap (maximalRealSubfield E) E b ∈ GlobalTheory.Mem.Chr.unitIdl E → b ∈ GlobalTheory.Mem.Chr.unitIdl (maximalRealSubfield E) := by
-  first | exact @GlobalTheory.UnitDown.unit_down | exact GlobalTheory.UnitDown.unit_down | (intros; apply GlobalTheory.UnitDown.unit_down <;> assumption)
+  first | exact @GlobalTheory.UnitDown.unit_down

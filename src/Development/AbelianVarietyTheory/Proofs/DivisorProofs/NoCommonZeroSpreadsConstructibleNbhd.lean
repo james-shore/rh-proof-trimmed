@@ -133,7 +133,7 @@ theorem no_common_zero_spreads : ∀ (A : Type) [CommRing A] (τ J : Type) [Fini
     · rfl
     · rw [MvPolynomial.notMem_support_iff.1 hn]; simp
   have hPadd : ∀ h₁ h₂, P (h₁ + h₂) = P h₁ + P h₂ := by
-    intro h₁ h₂; ext n; simp [hPc, MvPolynomial.coeff_add]
+    intro h₁ h₂; ext n; simp [hPc]
   have hP1 : P 1 = 1 := by
     ext n
     rw [hPc, MvPolynomial.coeff_one]

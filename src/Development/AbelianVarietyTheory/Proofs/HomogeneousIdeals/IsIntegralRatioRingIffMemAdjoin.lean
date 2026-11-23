@@ -214,7 +214,7 @@ theorem coeff_spread {L : Type*} [CommRing L] (p : L[X]) (n : ℕ) :
       ← mul_assoc, ← C_mul, coeff_C_mul_X_pow, coeff_monomial]
     by_cases h : n = m
     · simp [h]
-    · simp [h, Ne.symm h]
+    · simp [h]
 
 theorem isIntegral_cone_iff {p : L[X]} :
     IsIntegral (cone o t) p ↔ ∀ n, p.coeff n ∈ piece o t n := by

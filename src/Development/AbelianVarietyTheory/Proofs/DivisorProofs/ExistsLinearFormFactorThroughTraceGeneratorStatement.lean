@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_linearForm_factor_through_traceGenerator : 
     (Z' : Submodule (𝓞 E) D.La) (θ : 𝓞 E →+ ℤ) (s : 𝓞 E) (hs : s ≠ 0)
     (hgen : ∀ ψ : 𝓞 E →+ ℤ, ∃ t : 𝓞 E, ∀ u, ψ (s * u) = θ (t * u)) (w : D.La),
     ∃ ℓ : Z' →ₗ[𝓞 E] 𝓞 E, ∀ x : Z', θ (ℓ x) = D.EF x (H.bar s • w) := by
-  first | exact @GlobalTheory.LowFilt.exists_linear_theta_factor | exact GlobalTheory.LowFilt.exists_linear_theta_factor | (intros; apply GlobalTheory.LowFilt.exists_linear_theta_factor <;> assumption)
+  first | exact @GlobalTheory.LowFilt.exists_linear_theta_factor

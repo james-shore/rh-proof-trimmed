@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Matrix
 
 theorem _root_.GlobalTheory.T.absDetOnStableSubspace_exp_smul : ∀ (n : ℕ) (A : Matrix (Fin n) (Fin n) ℂ) (V : Submodule ℂ (Fin n → ℂ)), (∀ y ∈ V, A *ᵥ y ∈ V) → ∃ c : ℝ, ∀ t : ℝ, GlobalTheory.FlagMeas.detOn (NormedSpace.exp (t • A)) V = Real.exp (t * c) := by
-  first | exact @GlobalTheory.FlagMeas.detOn_exp_smul | exact GlobalTheory.FlagMeas.detOn_exp_smul | (intros; apply GlobalTheory.FlagMeas.detOn_exp_smul <;> assumption)
+  first | exact @GlobalTheory.FlagMeas.detOn_exp_smul

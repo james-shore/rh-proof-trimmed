@@ -41,4 +41,4 @@ open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.L2.Pj 
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.latticeSlopeSq_localMatrices_eq_determinants : ∀ (K : Type) [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K] (ι : Type) [Fintype ι] [DecidableEq ι] [Nonempty ι] (A : HeightOneSpectrum (𝓞 K) → Matrix ι ι K) (Y : (K →+* ℂ) → Matrix ι ι ℂ), IsAdelic A → (∀ σ, (Y σ).det ≠ 0) → (∀ σ, ‖(Y ((starRingEnd ℂ).comp σ)).det‖ = ‖(Y σ).det‖) → slope_sq (matNorm Y) (locLat A) = 2 * detDeg A Y / (Fintype.card ι : ℝ) := by
-  first | exact @GlobalTheory.LocMatSlope.slope_sq_locLat | exact GlobalTheory.LocMatSlope.slope_sq_locLat | (intros; apply GlobalTheory.LocMatSlope.slope_sq_locLat <;> assumption)
+  first | exact @GlobalTheory.LocMatSlope.slope_sq_locLat

@@ -45,4 +45,4 @@ open NumberField GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.DegCmp Glob
 open scoped ENNReal NNReal
 
 theorem _root_.GlobalTheory.T.flagSpaceComponent_functionField_fg : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r), UnfAll U → ∀ Z : Comp Xo c, (⊤ : IntermediateField c.F (Om Z)).FG := by
-  first | exact @GlobalTheory.DegVal.om_fg | exact GlobalTheory.DegVal.om_fg | (intros; apply GlobalTheory.DegVal.om_fg <;> assumption)
+  first | exact @GlobalTheory.DegVal.om_fg

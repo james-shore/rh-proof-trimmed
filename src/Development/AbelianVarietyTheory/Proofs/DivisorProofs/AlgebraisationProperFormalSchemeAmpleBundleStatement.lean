@@ -45,4 +45,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 theorem _root_.GlobalTheory.T.algebraisation_properFormalScheme_ampleBundle : GlobalTheory.Published.FormalAlgebraisation.Schemes := by
-  first | exact @GlobalTheory.FormalAlg.formalAlgebraisation_schemes | exact GlobalTheory.FormalAlg.formalAlgebraisation_schemes | (intros; apply GlobalTheory.FormalAlg.formalAlgebraisation_schemes <;> assumption)
+  first | exact @GlobalTheory.FormalAlg.formalAlgebraisation_schemes

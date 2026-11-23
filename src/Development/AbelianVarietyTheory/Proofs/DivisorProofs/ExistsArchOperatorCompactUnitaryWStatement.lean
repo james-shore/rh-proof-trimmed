@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_archOperator_compact_unitaryW : ∀ (F E : 
     B.IsGood σ → M.IsGood B.ψ → M.IsWeil B.ψ χ₁ χ₂ om → ∀ k ∈ KInf σ W B.emb,
     ∃ A : SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d), ∀ f : SInf F (Fin n × Fin d),
       Acts (evI F) (om (1, k)) (⇑f) (⇑(A f)) := by
-  first | exact @GlobalTheory.ArchLocalAct.exists_op_of_KInf | exact GlobalTheory.ArchLocalAct.exists_op_of_KInf | (intros; apply GlobalTheory.ArchLocalAct.exists_op_of_KInf <;> assumption)
+  first | exact @GlobalTheory.ArchLocalAct.exists_op_of_KInf

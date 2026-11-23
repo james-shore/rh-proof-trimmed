@@ -47,4 +47,4 @@ open scoped TensorProduct nonZeroDivisors Pointwise
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_weilRepresentation_vacuum_cosetVectors_grid : GlobalTheory.Published.WeilRepresentationUnitaryPair → ∀ (D : D7) (T : Type) (L : LevCh D T) (μ0 : T), L.Is μ0 → ∀ (sc : Consts) (G : GridData L sc) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∃ W : G.Weil, W.ψ = ψ := by
-  first | exact @GlobalTheory.GridWeil.exists_weil | exact GlobalTheory.GridWeil.exists_weil | (intros; apply GlobalTheory.GridWeil.exists_weil <;> assumption)
+  first | exact @GlobalTheory.GridWeil.exists_weil

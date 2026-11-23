@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_integralTensorTorsion_cocycle_of_torsion_lo
     f ∈ divisibleCocycles (latC C N) → (∀ g, lam ^ a • f g = 0) →
     ∃ z' : Br.G D.nbr i w hw → ↥(latC C (twistM N θ)).T ⊗[↥(OL C.LL)] ↥(Xq ↥C.LL.1 lam a),
       tableLineDegreeTwo.IsCoc (latC C (twistM N θ)) ↥(Xq ↥C.LL.1 lam a) (chiT C θ 1) z' ∧ ∀ g, iotaW ↥C.LL.1 lam a k (z' g) = f g := by
-  first | exact @GlobalTheory.UseLoc.Cases.LiftW.lift_cocycle | exact GlobalTheory.UseLoc.Cases.LiftW.lift_cocycle | (intros; apply GlobalTheory.UseLoc.Cases.LiftW.lift_cocycle <;> assumption)
+  first | exact @GlobalTheory.UseLoc.Cases.LiftW.lift_cocycle

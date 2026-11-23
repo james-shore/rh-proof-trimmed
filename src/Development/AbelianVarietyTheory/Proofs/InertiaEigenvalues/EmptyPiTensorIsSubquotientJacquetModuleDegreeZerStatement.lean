@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.emptyPiTensor_isSubquotient_jacquetModule_degreeZe
     (π : Representation ℂ (GL (Fin N) k) V) (d : Fin 0 → ℕ) (X : Fin 0 → Type) [∀ a, AddCommGroup (X a)]
     [∀ a, Module ℂ (X a)] (ρ : ∀ a, Representation ℂ (GL (Fin (d a)) k) (X a)) (e : (Σ a, Fin (d a)) ≃ Fin N),
     IsSubquotient (piTensor ρ) (jac e π) := by
-  first | exact @GlobalTheory.piTensor_isSubquotient_jac_degZero | exact GlobalTheory.piTensor_isSubquotient_jac_degZero | (intros; apply GlobalTheory.piTensor_isSubquotient_jac_degZero <;> assumption)
+  first | exact @GlobalTheory.piTensor_isSubquotient_jac_degZero

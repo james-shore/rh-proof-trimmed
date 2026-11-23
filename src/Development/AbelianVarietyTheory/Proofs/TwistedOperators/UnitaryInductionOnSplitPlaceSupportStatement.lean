@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.unitary_induction_on_splitPlaceSupport : ∀ {D : 
     (∀ (e : AE D) (P : Pl D.host.E), Formalism.L2.NTheta.IsIdemAt e P → ((N : ℕ) : 𝓞 D.host.E) ∉ P.asIdeal →
       ∀ x ∈ GfC V, Formalism.L2.Theta.SuppAt e V x → Q x) →
     ∀ g ∈ GfC V, GlobalTheory.UnRep.SuppSplit (GlobalTheory.Member.cF D) N ((finHom V) g : Matrix (Fin V.rank) (Fin V.rank) _) → Q g := by
-  first | exact @GlobalTheory.SplitInduct.induct_suppSplit | exact GlobalTheory.SplitInduct.induct_suppSplit | (intros; apply GlobalTheory.SplitInduct.induct_suppSplit <;> assumption)
+  first | exact @GlobalTheory.SplitInduct.induct_suppSplit

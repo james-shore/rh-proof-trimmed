@@ -59,4 +59,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.typePrime_large_and_one_mod_sixteen_q_d : ∀ (D : D7) (L : SizeData₂ D), ParameterChoice' D L → ∀ k : Fin 2, Module.finrank ℚ D.host.E * D.R.r + 1 < D.host.g k ∧ GlobalTheory.BadShare.PrimeOK (D.host.g k) D.host.q D.host.d := by
-  first | exact @GlobalTheory.TypePrimeSize.typePrime_large_and_ok | exact GlobalTheory.TypePrimeSize.typePrime_large_and_ok | (intros; apply GlobalTheory.TypePrimeSize.typePrime_large_and_ok <;> assumption)
+  first | exact @GlobalTheory.TypePrimeSize.typePrime_large_and_ok

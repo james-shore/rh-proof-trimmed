@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 
 
 theorem _root_.GlobalTheory.T.host_ideal_unit_at_places_prime_to_level : ∀ (D : D7) (w : Pl D.host.E), ((D.host.QS * D.host.q * D.host.d : ℕ) : 𝓞 D.host.E) ∉ w.asIdeal → ((Ideal.absNorm D.host.ccK : ℕ) : 𝓞 D.host.E) ∉ w.asIdeal → ((∀ a ∈ D.host.AA, Valued.v (algebraMap D.host.E (Kw w) a) ≤ 1) ∧ ∃ a ∈ D.host.AA, Valued.v (algebraMap D.host.E (Kw w) a) = 1) := by
-  first | exact @GlobalTheory.AAUnit.aa_unit | exact GlobalTheory.AAUnit.aa_unit | (intros; apply GlobalTheory.AAUnit.aa_unit <;> assumption)
+  first | exact @GlobalTheory.AAUnit.aa_unit

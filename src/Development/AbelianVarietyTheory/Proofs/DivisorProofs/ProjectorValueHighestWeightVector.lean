@@ -108,7 +108,7 @@ theorem adjE_pow (E F H T : Module.End ℚ V) (v : V) (n : ℕ)
     have hstep : ∀ y, (((adj E) ^ (k + 1)) T) y = E ((((adj E) ^ k) T) y) - (((adj E) ^ k) T) (E y) := by
       intro y
       rw [pow_succ', Module.End.mul_apply, adj_apply']
-      simp [Module.End.mul_apply]
+      simp
     refine ⟨fun i hi => ?_, ?_⟩
     · obtain ⟨i', rfl⟩ : ∃ i', i = i' + 1 := ⟨i - 1, by omega⟩
       rw [hstep, hEp, map_smul, ih1 i' (by omega), ih1 (i' + 1) (by omega)]

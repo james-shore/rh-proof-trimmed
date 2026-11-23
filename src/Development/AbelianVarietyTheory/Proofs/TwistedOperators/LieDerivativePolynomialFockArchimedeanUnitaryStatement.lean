@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.lieDerivative_polynomialFock_archimedeanUnitary : 
         ∀ γ ∈ Lines σ W, ∀ f ∈ M.Pol ψ τ,
           (∃ f₁ : SInf F (Fin n × Fin d), ActsD (evI F) (fun t => om (1, γ (Multiplicative.ofAdd t))) f f₁) ∧
           ∀ f₁ : SInf F (Fin n × Fin d), ActsD (evI F) (fun t => om (1, γ (Multiplicative.ofAdd t))) f f₁ → f₁ ∈ M.Pol ψ τ := by
-  first | exact @GlobalTheory.RealLieFock.lie_deriv_pol | exact GlobalTheory.RealLieFock.lie_deriv_pol | (intros; apply GlobalTheory.RealLieFock.lie_deriv_pol <;> assumption)
+  first | exact @GlobalTheory.RealLieFock.lie_deriv_pol

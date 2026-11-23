@@ -57,4 +57,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.coeff_eq_zero_of_sum_trace_projections_inequivalent_irreps : ∀ (G : Type) [Group G] (n : ℕ) (W : Fin n → Type) [∀ i, AddCommGroup (W i)] [∀ i, Module ℂ (W i)] (σ : ∀ i, Representation ℂ G (W i)), (∀ i, (σ i).IsIrreducible) → (∀ i j, i ≠ j → IsEmpty ((σ i).Equiv (σ j))) → ∀ (P : ∀ i, W i →ₗ[ℂ] W i), (∀ i, P i ∘ₗ P i = P i) → (∀ i, FiniteDimensional ℂ (LinearMap.range (P i))) → ∀ a : Fin n → ℂ, (∀ (g : G) (c : Fin n → ℂ), (∀ i, GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets.HasFinTrace (P i ∘ₗ σ i g ∘ₗ P i) (c i)) → ∑ i, a i * c i = 0) → ∀ i, P i ≠ 0 → a i = 0 := by
-  first | exact @GlobalTheory.TraceSep.coeff_eq_zero_of_sum_trace_eq_zero | exact GlobalTheory.TraceSep.coeff_eq_zero_of_sum_trace_eq_zero | (intros; apply GlobalTheory.TraceSep.coeff_eq_zero_of_sum_trace_eq_zero <;> assumption)
+  first | exact @GlobalTheory.TraceSep.coeff_eq_zero_of_sum_trace_eq_zero

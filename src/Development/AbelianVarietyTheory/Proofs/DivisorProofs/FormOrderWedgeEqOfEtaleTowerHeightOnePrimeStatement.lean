@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.formOrder_wedge_eq_of_etaleTower_heightOnePrime : 
   IsEtTower cK R cL T ι ψ τ → TrBasis cK (fun i => (x i : K)) → P.IsPrimeOf T → P0.IsPrimeOf R →
   (∀ g : R, g ≠ 0 → P.ord (ι g : L) = P0.ord (g : K)) →
   (fun ω => @dite ℤ (∃ a, P.IsFormOrd ω a) (Classical.propDecidable _) (fun h => h.choose) (fun _ => 0)) (dForm cL (Fin.append (fun i => (τ i : L)) (fun i => (ι (x i) : L)))) = (fun ω => @dite ℤ (∃ a, P0.IsFormOrd ω a) (Classical.propDecidable _) (fun h => h.choose) (fun _ => 0)) (dForm cK (fun i => (x i : K))) := by
-  first | exact @GlobalTheory.FieldPair.formOrd_append_of_ord_eq | exact GlobalTheory.FieldPair.formOrd_append_of_ord_eq | (intros; apply GlobalTheory.FieldPair.formOrd_append_of_ord_eq <;> assumption)
+  first | exact @GlobalTheory.FieldPair.formOrd_append_of_ord_eq

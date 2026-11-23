@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.first_column_type_twist_datum_eq_given_function : 
     ∀ (t : T) {e e' : AE D}, IsIdemSum e (locPl G t) → IsIdemSum e' (GlobalTheory.FlipTop.topPl L t) → (∀ w ∈ locPl G t, w ∉ GlobalTheory.FlipTop.topPl L t → ((∀ a ∈ D.host.AA, Valued.v (algebraMap D.host.E (Kw w) a) ≤ 1) ∧ ∃ a ∈ D.host.AA, Valued.v (algebraMap D.host.E (Kw w) a) = 1)) → ∀ (Φ : G.Datum) (j : ℕ) (hj : j < D.R.m),
     GlobalTheory.HalfProd.prodHalf e' (e - e') (halfInd (e - e') (latO (G.pS (.mu t 0 j)) (G.pT (.mu t 0 j)) (G.latS (.mu t 0 j) : Set _) (G.latT (.mu t 0 j) : Set _) fun _ => True)) (GlobalTheory.FlipTop.topFn B t e' j (GlobalTheory.FlipTop.rank_col G hj.le) (GlobalTheory.FlipTop.rank_col G hj)) =
       GlobalTheory.FlipStart.givenFn B t Φ e (.down t 0 j) := by
-  first | exact @GlobalTheory.FlipTop.prodHalf_topFn_eq_givenFn | exact GlobalTheory.FlipTop.prodHalf_topFn_eq_givenFn | (intros; apply GlobalTheory.FlipTop.prodHalf_topFn_eq_givenFn <;> assumption)
+  first | exact @GlobalTheory.FlipTop.prodHalf_topFn_eq_givenFn

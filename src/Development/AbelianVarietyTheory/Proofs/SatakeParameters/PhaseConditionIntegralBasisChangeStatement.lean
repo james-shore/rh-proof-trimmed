@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.phaseCondition_integral_basisChange : ∀ (L : Typ
       ψ ((δ * Matrix.trace (C * (x * A * Matrix.transpose ((x).map σ))) + σ (δ * Matrix.trace (C * (x * A * Matrix.transpose ((x).map σ))))) / 2) = 1) → (∀ C : Matrix (Fin n') (Fin n') L, (∀ i j, σ (C i j) = - C j i) → (∀ i j, Valued.v (C i j) < 1) →
       (∀ i j, (C * (P * x * Q)) i j ∈ Formalism.UG.intL L) →
       ψ ((δ * Matrix.trace (C * ((P * x * Q) * (Q' * A * Matrix.transpose (Q'.map σ)) * Matrix.transpose (((P * x * Q)).map σ))) + σ (δ * Matrix.trace (C * ((P * x * Q) * (Q' * A * Matrix.transpose (Q'.map σ)) * Matrix.transpose (((P * x * Q)).map σ))))) / 2) = 1) := by
-  first | exact @GlobalTheory.phaseCondition_basisChange | exact GlobalTheory.phaseCondition_basisChange | (intros; apply GlobalTheory.phaseCondition_basisChange <;> assumption)
+  first | exact @GlobalTheory.phaseCondition_basisChange

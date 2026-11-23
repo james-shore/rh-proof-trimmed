@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.isComplementedSubrep_localMatrixRep_twistedSum : �
     ∀ (Xs : Set (D.nd.X i)) (w : HeightOneSpectrum (𝓞 D.host.E)) (hw : w ∈ placesOver D.host.E (D.nd.l i))
     (k : ℕ) (M : GE D.nd →* Matrix (Fin k) (Fin k) (D.nd.O i)) (hSub : SubTw i r Xs M),
       IsSummandTw i w hw r Xs (locU i w hw M hSub.1) := by
-  first | exact @GlobalTheory.Pass.LocDual.isSummandTw_locU | exact GlobalTheory.Pass.LocDual.isSummandTw_locU | (intros; apply GlobalTheory.Pass.LocDual.isSummandTw_locU <;> assumption)
+  first | exact @GlobalTheory.Pass.LocDual.isSummandTw_locU

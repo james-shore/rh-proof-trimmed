@@ -61,4 +61,4 @@ open GlobalTheory.ThetaDens
 
 
 theorem _root_.GlobalTheory.T.theta_word_limits_smooth_along_real_points : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ θ : InfFam D, IsInfFam θ → ∀ (S T : HSp D) (u : ℕ → WO S T → ℂ), (∀ j, IsThetaFunO ψ S T (u j)) → ∀ F : List (D.what₂.Tau × Fin T.rank × Fin S.rank × Bool) → WO S T → ℂ, (∀ l, TendstoUniformly (fun j => GlobalTheory.Size.wordAct (GlobalTheory.Size.heisDer ψ θ) l (u j)) (F l) Filter.atTop) → ∀ (l : List (D.what₂.Tau × Fin T.rank × Fin S.rank × Bool)) (k : ℕ) (L : (Fin k → ℝ) →+ WO S T), Continuous L → (∀ t, (L t).map (finPart D) = 0) → ∀ w, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) fun t => F l (w + L t) := by
-  first | exact @GlobalTheory.ThetaDens.contDiff_of_tendstoUniformly_words | exact GlobalTheory.ThetaDens.contDiff_of_tendstoUniformly_words | (intros; apply GlobalTheory.ThetaDens.contDiff_of_tendstoUniformly_words <;> assumption)
+  first | exact @GlobalTheory.ThetaDens.contDiff_of_tendstoUniformly_words

@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH
 attribute [local instance] SplitExt.free SplitExt.finite
 
 theorem _root_.GlobalTheory.T.exists_affine_refinement_splitExtCharts : ∀ (S : Scheme.{0}) (E : SplitExt S) (Y : Scheme.{0}) (A : LB Y), A.IsLB → ∀ π : E.B.left ⟶ Y, ∃ N₀ : LB E.B.left, N₀.IsLB ∧ (∀ l, IsAffineOpen (N₀.U l)) ∧ (∀ l, ∃ j, N₀.U l ≤ E.chart j) ∧ Nonempty (ChartPull N₀ A π) := by
-  first | exact @GlobalTheory.ZH.UFib.exists_affine_refinement | exact GlobalTheory.ZH.UFib.exists_affine_refinement | (intros; apply GlobalTheory.ZH.UFib.exists_affine_refinement <;> assumption)
+  first | exact @GlobalTheory.ZH.UFib.exists_affine_refinement

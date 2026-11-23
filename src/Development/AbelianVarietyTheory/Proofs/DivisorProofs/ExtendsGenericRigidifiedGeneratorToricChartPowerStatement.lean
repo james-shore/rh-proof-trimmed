@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.extendsGenericRigidifiedGenerator_toricChartPowerSeriesRing : ∀ (k : Type) [Field k] (m n : ℕ), GlobalTheory.ChartCubExt.ExtendGenAt (ChartRing k m n) (FractionRing (ChartRing k m n)) := by
-  first | exact @GlobalTheory.ChartCubExt.extendGenAt_chartRing | exact GlobalTheory.ChartCubExt.extendGenAt_chartRing | (intros; apply GlobalTheory.ChartCubExt.extendGenAt_chartRing <;> assumption)
+  first | exact @GlobalTheory.ChartCubExt.extendGenAt_chartRing

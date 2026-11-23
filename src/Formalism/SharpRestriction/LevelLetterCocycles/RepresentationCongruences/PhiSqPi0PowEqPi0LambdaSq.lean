@@ -132,7 +132,7 @@ theorem dvO_single (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (e : ℕ) {d
   funext m
   by_cases h : m = k
   · subst h; simp
-  · simp [Pi.single_apply, h]
+  · simp [h]
 
 theorem dv_sum (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (e : ℕ) {d : ℕ} (b : Fin d → W.DD T)
     {I : Type*} (s : Finset I) (a : I → LL) (c₀ : I → Fin d → LL) :

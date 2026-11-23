@@ -49,4 +49,4 @@ open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.essFiniteType_of_localRingOfVarietyPoint : ∀ {K : Type} [Field K] [Algebra ℂ K] (R : Subring K),
   IsLocModel (algebraMap ℂ K) R → Algebra.EssFiniteType ℂ K := by
-  first | exact @GlobalTheory.essFiniteType_of_isLocModel | exact GlobalTheory.essFiniteType_of_isLocModel | (intros; apply GlobalTheory.essFiniteType_of_isLocModel <;> assumption)
+  first | exact @GlobalTheory.essFiniteType_of_isLocModel

@@ -91,7 +91,7 @@ theorem LateralTheory.EtaleFoundations.simplicial_subinterval_of_subinterval_alo
       first
         | (have hm := ConcreteCategory.congr_hom hn x
            simp only [ConcreteCategory.comp_apply] at hm
-           first | exact hm | exact hm.symm)
+           first | exact hm.symm)
         | exact (congrFun hn x).symm
         | (rw [← types_comp_apply, ← hn]; rfl)
   · intro p r a b

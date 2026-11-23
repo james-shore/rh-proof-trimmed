@@ -47,4 +47,4 @@ open GlobalTheory.ChainOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaLiftChain_fockVector_levelLaws : ∀ D : D7, LevelLaw D := by
-  first | exact @GlobalTheory.ChainOnto.levelLaw | exact GlobalTheory.ChainOnto.levelLaw | (intros; apply GlobalTheory.ChainOnto.levelLaw <;> assumption)
+  first | exact @GlobalTheory.ChainOnto.levelLaw

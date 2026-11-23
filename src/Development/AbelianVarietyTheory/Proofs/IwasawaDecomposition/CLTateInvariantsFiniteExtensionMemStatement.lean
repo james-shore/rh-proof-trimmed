@@ -49,4 +49,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.Me
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.cLTate_invariants_finiteExtension_mem : ∀ (l : ℕ) [Fact l.Prime], ∀ (K : FinExt l) (x : ℂ_[l]), (∀ g ∈ GK K, Per.σC g x = x) → ∃ y ∈ K.1, ((y : Om l) : ℂ_[l]) = x := by
-  first | exact @GlobalTheory.MemLoc.invariants_finExt | exact GlobalTheory.MemLoc.invariants_finExt | (intros; apply GlobalTheory.MemLoc.invariants_finExt <;> assumption)
+  first | exact @GlobalTheory.MemLoc.invariants_finExt

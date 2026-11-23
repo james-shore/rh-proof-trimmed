@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.whittaker_diagonalUniformizer_eq_zero_of_not_antit
     ∀ (l : HeightOneSpectrum (𝓞 E) →₀ (Fin (m + 1) → ℤ)), ¬ Antitone (l w) →
     ∀ p : GA E (m + 1), Matrix.GeneralLinearGroup.map ((pLoc E w).comp (pFin E)) p = 1 →
     W (p * GlobalTheory.CellDec.tl (m + 1) ϖ l) = 0 := by
-  first | exact @GlobalTheory.CellVanish.eq_zero_of_not_antitone | exact GlobalTheory.CellVanish.eq_zero_of_not_antitone | (intros; apply GlobalTheory.CellVanish.eq_zero_of_not_antitone <;> assumption)
+  first | exact @GlobalTheory.CellVanish.eq_zero_of_not_antitone

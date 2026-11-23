@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_placewise_seesaw_triple_over_hermitian : �
       (cA : Matrix (Fin W.rank) (Fin (W.rank + W₁.rank)) (AE D) ≃+ WO W X)
       (cB : Matrix (Fin W₁.rank) (Fin (W.rank + W₁.rank)) (AE D) ≃+ WO W₁ X),
       IsOver ψ θ A A₁ B α β ν 𝓕 ν₁ 𝓕₁ ωA ωB e Bs Γ Xc om om' cA cB ∧ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsTriple Bs Γ Xc om om' := by
-  first | exact @GlobalTheory.SquareAgree.exists_isOver | exact GlobalTheory.SquareAgree.exists_isOver | (intros; apply GlobalTheory.SquareAgree.exists_isOver <;> assumption)
+  first | exact @GlobalTheory.SquareAgree.exists_isOver

@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.thetaCombinationJets_algebraic_conj_eq_conjSeries 
                 (Iop D (tor0 D D.host.ccK δ) (La0 D (tor0 D D.host.ccK δ) _ _) (La D (tor0 D D.host.ccK δ) Ls Lt) e0) z)) =
         GL3Theta.applyAt0 D (MvPolynomial.monomial m 1) (fnConj D Qbar ρ' fun z => κ * ∑ i, (r i : ℂ) * U D (tor0 D D.host.ccK δ) (s i)
           (Iop D (tor0 D D.host.ccK δ) (La0 D (tor0 D D.host.ccK δ) _ _) (La D (tor0 D D.host.ccK δ) Ls Lt) e0) z) := by
-  first | exact @GlobalTheory.ConjJetComb.conj_jet | exact GlobalTheory.ConjJetComb.conj_jet | (intros; apply GlobalTheory.ConjJetComb.conj_jet <;> assumption)
+  first | exact @GlobalTheory.ConjJetComb.conj_jet

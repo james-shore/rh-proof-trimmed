@@ -75,4 +75,4 @@ theorem _root_.GlobalTheory.T.integral_expression_values_at_descended_point : �
     ∀ (K : Type) [Field K] [IsAlgClosed K] (ev : V₁ →+* K) (k₀ : Subfield K), IsAlgClosed k₀ →
     ∀ (W₀ : Type) [CommRing W₀] (ib : W₀ →+* V₁), GlobalTheory.UChart.FromBase D τ₀ ib → (∀ a, ev (ib a) ∈ k₀) →
     ∃ Λ : K, ∀ mu c, ∃ r ∈ k₀, ev (G mu c) = Λ * r := by
-  first | exact @GlobalTheory.USep.EvG.ev_values | exact GlobalTheory.USep.EvG.ev_values | (intros; apply GlobalTheory.USep.EvG.ev_values <;> assumption)
+  first | exact @GlobalTheory.USep.EvG.ev_values

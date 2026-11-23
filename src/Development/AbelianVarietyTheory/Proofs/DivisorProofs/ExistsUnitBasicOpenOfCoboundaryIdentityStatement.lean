@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_unit_basicOpen_of_coboundary_identity : ∀
     m * s = (f.app V₀).hom r ^ n →
     ∃ u : Γ(X, f ⁻¹ᵁ Y.basicOpen r)ˣ, ∀ z : ↥(pullback f f), f (pullback.fst f f z) ∈ Y.basicOpen r →
       gm (pullback.fst f f) z _ u * gm (𝟙 _) z _ c = gm (pullback.snd f f) z _ u := by
-  first | exact @GlobalTheory.LBDescent.coboundary_unit_basicOpen | exact GlobalTheory.LBDescent.coboundary_unit_basicOpen | (intros; apply GlobalTheory.LBDescent.coboundary_unit_basicOpen <;> assumption)
+  first | exact @GlobalTheory.LBDescent.coboundary_unit_basicOpen

@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.torsionPointClassAtStalk_smul_action : ∀ {E : Ty
     (PT RT : Sp K ⟶ (torsion G n).left) (hPT : PT ≫ (torsion.ι G n).left = P.left)
     (hRT : RT ≫ (torsion.ι G n).left = (P ≫ act.act r).left) (x : Sp K) (cP cR : M)
     (hcP : GlobalTheory.TorsSpec.ValAt G n ℓ w (PT x) cP) (hcR : GlobalTheory.TorsSpec.ValAt G n ℓ w (RT x) cR), cR = r • cP := by
-  first | exact @GlobalTheory.TorsSpec.class_act | exact GlobalTheory.TorsSpec.class_act | (intros; apply GlobalTheory.TorsSpec.class_act <;> assumption)
+  first | exact @GlobalTheory.TorsSpec.class_act

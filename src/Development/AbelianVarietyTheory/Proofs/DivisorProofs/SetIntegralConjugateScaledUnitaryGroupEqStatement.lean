@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.setIntegral_conjugate_scaled_unitaryGroup_eq : ∀
     ∀ dom : Set (UB J), IsFundamentalDomain (ratU D.sp.cm.sig J) dom (ν.map (conjU V c h)) →
     ∀ f : UB J → ℂ, (∀ γ ∈ ratU D.sp.cm.sig J, ∀ x, f (γ * x) = f x) →
       ∫ u in fd, f (conjU V c h u) ∂ν = ∫ x in dom, f x ∂(ν.map (conjU V c h)) := by
-  first | exact @GlobalTheory.ConjUIntegral.setIntegral_conjU_eq | exact GlobalTheory.ConjUIntegral.setIntegral_conjU_eq | (intros; apply GlobalTheory.ConjUIntegral.setIntegral_conjU_eq <;> assumption)
+  first | exact @GlobalTheory.ConjUIntegral.setIntegral_conjU_eq

@@ -113,7 +113,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] in
 private lemma mul_iInf_le_iInf_of_mul_le {ι : Type*} [Finite ι] {f g : ι → ℝ} {k : ℝ} (hk : 0 ≤ k)
     (h : ∀ i, k * g i ≤ f i) : k * ⨅ i, g i ≤ ⨅ i, f i := by
   cases isEmpty_or_nonempty ι with
-  | inl _ => simp [Real.iInf_of_isEmpty]
+  | inl _ => simp
   | inr _ =>
     exact le_ciInf fun i =>
       (mul_le_mul_of_nonneg_left (ciInf_le (Set.finite_range g).bddBelow i) hk).trans (h i)

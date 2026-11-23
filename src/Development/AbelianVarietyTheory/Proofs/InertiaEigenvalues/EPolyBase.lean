@@ -160,11 +160,7 @@ theorem aeval_red {M V : Type} [AddCommGroup M] [Module O M] [AddCommGroup V] [M
     (hν : ∀ y, J (ν y) = μ (J y)) (f : Polynomial O) (y : M) :
     J (Polynomial.aeval ν f y) = Polynomial.aeval μ (f.map (algebraMap O k)) (J y) := by
   first
-  | exact @_root_.GlobalTheory.AevalCommute.main
-  | exact _root_.GlobalTheory.AevalCommute.main
   | (apply _root_.GlobalTheory.AevalCommute.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AevalCommute.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AevalCommute.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AevalCommute.main ..)
 
 variable {W} {l n : ℕ} {R : RingPG k l} {F : DFun R n G} {ι : k⸨X⸩ →ₐ[k] k⸨X⸩} {τ : ZMod n → ZMod n₀}
@@ -185,7 +181,7 @@ theorem red_smul (hq : Onto T A q) (c : O) (y : ↥(W.NΔ T)) :
   · rw [algebraMap_smul] at this; exact this
   · have h1 : PowerSeries.map (algebraMap O k) (algebraMap O (LetA O n₀) c (τ i)) =
         algebraMap k k⟦X⟧ (algebraMap O k c) := by
-      simp [PowerSeries.algebraMap_apply]
+      simp
     rw [h1]
     exact ι.commutes _
 

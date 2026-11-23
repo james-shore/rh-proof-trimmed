@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.thetaTransform_doubledCoords_boxProduct : ∀ (D :
           fun w : Formalism.IndefR.Datum.WO S (GlobalTheory.Doubling.dblSp T) =>
             GlobalTheory.WeilSchrodinger.thetaTr D.host.F co ψ φ₁ (w.submatrix (finSumFinEquiv ∘ Sum.inl) id) *
               star (GlobalTheory.WeilSchrodinger.thetaTr D.host.F co ψ (fun x => star (φ₂ x)) (w.submatrix (finSumFinEquiv ∘ Sum.inr) id)) := by
-  first | exact @GlobalTheory.WeilSchrodinger.DblTarget.thetaTr_coDbl_boxFun | exact GlobalTheory.WeilSchrodinger.DblTarget.thetaTr_coDbl_boxFun | (intros; apply GlobalTheory.WeilSchrodinger.DblTarget.thetaTr_coDbl_boxFun <;> assumption)
+  first | exact @GlobalTheory.WeilSchrodinger.DblTarget.thetaTr_coDbl_boxFun

@@ -45,4 +45,4 @@ open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.UG For
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.adelicPointLattice_mul_rationalGL : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E] {N : ℕ} (y : GL (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) (g : GL (Fin N) E) (M : Submodule (𝓞 E) (Fin N → E)), latAd (y * ratA F g) M = latAd y (mvL g M) := by
-  first | exact @GlobalTheory.TwV.latAd_mul_ratA | exact GlobalTheory.TwV.latAd_mul_ratA | (intros; apply GlobalTheory.TwV.latAd_mul_ratA <;> assumption)
+  first | exact @GlobalTheory.TwV.latAd_mul_ratA

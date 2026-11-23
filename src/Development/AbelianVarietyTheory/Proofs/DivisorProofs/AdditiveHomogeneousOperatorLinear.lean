@@ -145,7 +145,7 @@ theorem eq_smul_of_invariant
   have hdec : f = ∑ q ∈ S, f q.out • g q := by
     funext Y
     simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, hgq, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq', Finset.sum_ite_eq]
+      Finset.sum_ite_eq]
     split_ifs with hS
     · have h1 : (QuotientAddGroup.mk (Quotient.out (QuotientAddGroup.mk Y : V ⧸ U)) : V ⧸ U)
           = QuotientAddGroup.mk Y := Quotient.out_eq' _

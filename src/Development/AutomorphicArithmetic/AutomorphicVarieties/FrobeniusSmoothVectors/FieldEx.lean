@@ -128,7 +128,7 @@ theorem UpperTheory.V.Fr.field_ex :
       exact mul_inv_eq_iff_eq_mul.mp (mul_inv_eq_one.mp hc)⟩⟩
     exact ⟨⟩
   haveI : IsAbelianGalois ℚ L := by
-    convert hAb <;> exact Subsingleton.elim _ _
+    convert hAb
   have hδL : δ ∈ L := by
     rw [IntermediateField.mem_fixedField_iff]
     intro s hs

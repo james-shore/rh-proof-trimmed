@@ -54,4 +54,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_lift_of_isReduced_of_isImmersion_range : ∀ (X Y P : Scheme.{0}) (f : X ⟶ P) (j : Y ⟶ P), IsReduced X → IsImmersion j → Set.range f ⊆ Set.range j → ∃ g : X ⟶ Y, g ≫ j = f := by
-  first | exact @GlobalTheory.Mum.lift_immersion_of_reduced | exact GlobalTheory.Mum.lift_immersion_of_reduced | (intros; apply GlobalTheory.Mum.lift_immersion_of_reduced <;> assumption)
+  first | exact @GlobalTheory.Mum.lift_immersion_of_reduced

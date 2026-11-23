@@ -48,4 +48,4 @@ open scoped CategoryTheory.Obj TensorProduct
 open GlobalTheory.ZM
 
 theorem _root_.GlobalTheory.T.isQProjOver_target_of_isGaloisCover : ∀ (K : Type) [Field K] (X Y : Scheme.{0}) (π : X ⟶ Y) (sY : Y ⟶ Sp K) (Ga : Type) [Group Ga] (ρ : Ga → (X ⟶ X)), IsGaloisCover Ga ρ π → IsSeparated sY → LocallyOfFiniteType sY → IsQProjOver (π ≫ sY) → IsQProjOver sY := by
-  first | exact @GlobalTheory.GaloisQuotient.isQProjOver_of_isGaloisCover | exact GlobalTheory.GaloisQuotient.isQProjOver_of_isGaloisCover | (intros; apply GlobalTheory.GaloisQuotient.isQProjOver_of_isGaloisCover <;> assumption)
+  first | exact @GlobalTheory.GaloisQuotient.isQProjOver_of_isGaloisCover

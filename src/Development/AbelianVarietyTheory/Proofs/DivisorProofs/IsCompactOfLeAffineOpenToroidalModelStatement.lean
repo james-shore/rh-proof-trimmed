@@ -58,4 +58,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isCompact_of_le_affineOpen_toroidalModel : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (Y : Model Xo c (RingHom.id c.F)) (U : Y.X.affineOpens) (W : Y.X.Opens), W ≤ U.1 → IsCompact (W : Set Y.X) := by
-  first | exact @GlobalTheory.ModelQC.isCompact_of_le_affineOpen | exact GlobalTheory.ModelQC.isCompact_of_le_affineOpen | (intros; apply GlobalTheory.ModelQC.isCompact_of_le_affineOpen <;> assumption)
+  first | exact @GlobalTheory.ModelQC.isCompact_of_le_affineOpen

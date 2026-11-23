@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.WeaklyAdmissibleFiltrations
 
 theorem _root_.GlobalTheory.T.tateFinitenessAll_of_localTateDuality : Formalism.GaloisCohomology.LocalTateDualityK → ∀ D : D7, Formalism.MainNotions.N.K.Rows.FinAll D := by
-  first | exact @GlobalTheory.finAll_of_localTateDuality | exact GlobalTheory.finAll_of_localTateDuality | (intros; apply GlobalTheory.finAll_of_localTateDuality <;> assumption)
+  first | exact @GlobalTheory.finAll_of_localTateDuality

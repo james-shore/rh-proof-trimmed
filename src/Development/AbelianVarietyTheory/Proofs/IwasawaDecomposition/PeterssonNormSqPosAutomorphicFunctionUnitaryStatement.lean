@@ -45,4 +45,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.petersson_normSq_pos_automorphicFunction_unitary : ∀ (D : D7) (V : HSp D) (μ : Measure (GA D V)) (𝓕 : Set (GA D V)), IsQuot V μ 𝓕 → ∀ φ, IsAutFun V φ → φ ≠ 0 → IntegrableOn (fun h => star (φ h) * φ h) 𝓕 μ → 0 < (∫ h in 𝓕, star (φ h) * φ h ∂μ).re := by
-  first | exact @GlobalTheory.Mem.PetPos.petersson_pos | exact GlobalTheory.Mem.PetPos.petersson_pos | (intros; apply GlobalTheory.Mem.PetPos.petersson_pos <;> assumption)
+  first | exact @GlobalTheory.Mem.PetPos.petersson_pos

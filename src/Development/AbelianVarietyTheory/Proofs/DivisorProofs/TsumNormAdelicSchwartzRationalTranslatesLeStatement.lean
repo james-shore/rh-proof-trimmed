@@ -58,4 +58,4 @@ open MeasureTheory
 
 theorem _root_.GlobalTheory.T.tsum_norm_adelicSchwartz_rationalTranslates_le : ∀ (F : Type) [Field F] [NumberField F] (ι : Type) [Fintype ι], ∀ Φ ∈ GlobalTheory.WeilM.schA F ι,
     ∃ B : ℝ, ∀ z : ι → AF F, ∑' ξ : ι → F, ‖Φ ((fun i => algebraMap F (AF F) (ξ i)) + z)‖ ≤ B := by
-  first | exact @GlobalTheory.UniformTranslateBound.tsum_norm_translate_le | exact GlobalTheory.UniformTranslateBound.tsum_norm_translate_le | (intros; apply GlobalTheory.UniformTranslateBound.tsum_norm_translate_le <;> assumption)
+  first | exact @GlobalTheory.UniformTranslateBound.tsum_norm_translate_le

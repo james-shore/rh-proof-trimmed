@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.isAffineCombination_independent_of_chart : ∀ (Y 
     ∀ (ι : Type) [Fintype ι] (u c : Sp S ⟶ Y) (w : ι → (Sp S ⟶ Y)) (a : ι → S),
     (∀ i, spMap q ≫ w i = spMap q ≫ u) → GlobalTheory.SecGlue.IsCombIn V u c w a → u ⁻¹ᵁ V' = ⊤ →
     GlobalTheory.SecGlue.IsCombIn V' u c w a := by
-  first | exact @GlobalTheory.SecGlue.isCombIn_of_chart | exact GlobalTheory.SecGlue.isCombIn_of_chart | (intros; apply GlobalTheory.SecGlue.isCombIn_of_chart <;> assumption)
+  first | exact @GlobalTheory.SecGlue.isCombIn_of_chart

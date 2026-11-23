@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.exists_iso_definiteUnitary_adelicUnitaryGroup : �
       ((x : GL (Fin V.rank) (Ad D.host.E)) : Matrix (Fin V.rank) (Fin V.rank) (Ad D.host.E)).map
         (fun a => (GlobalTheory.LFun.finAdEquiv D.host.F D.host.E).symm (pFin D.host.E a)) *
       M⁻¹.map (Algebra.TensorProduct.includeRight : D.host.E →ₐ[D.host.F] Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)) := by
-  first | exact @GlobalTheory.DefTransfer.Glob.exists_iso | exact GlobalTheory.DefTransfer.Glob.exists_iso | (intros; apply GlobalTheory.DefTransfer.Glob.exists_iso <;> assumption)
+  first | exact @GlobalTheory.DefTransfer.Glob.exists_iso

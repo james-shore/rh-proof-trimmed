@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.archimedean_weilOperators_linear_one_mul : ∀ {F 
     (∀ f : SInf F (Fin n × Fin d), archOp om 1 f = f) ∧
     (∀ h ∈ UAt σ W (evI F), ∀ h' ∈ UAt σ W (evI F), ∀ f : SInf F (Fin n × Fin d),
       archOp om (h * h') f = archOp om h (archOp om h' f)) := by
-  first | exact @GlobalTheory.ArchLine.archOp_laws | exact GlobalTheory.ArchLine.archOp_laws | (intros; apply GlobalTheory.ArchLine.archOp_laws <;> assumption)
+  first | exact @GlobalTheory.ArchLine.archOp_laws

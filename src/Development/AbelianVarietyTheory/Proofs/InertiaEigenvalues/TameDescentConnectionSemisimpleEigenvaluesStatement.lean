@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open PowerSeries GlobalTheory.BK
 
 theorem _root_.GlobalTheory.T.tameDescent_connection_semisimple_eigenvalues : ∀ (O K : Type) [CommRing O] [NormedField K] [IsUltrametricDist K] [CompleteSpace K] [Algebra O K] [IsUnitBall O K] (l e a : ℕ) (ι : Type) [Fintype ι] [DecidableEq ι] [Fact l.Prime] [NormedAlgebra ℚ_[l] K] [NeZero e] [NeZero a] [TameDescentExponentData K l e a] (η H : ℕ) (D : BKDat O K l e a ι η H), ∀ U : Finset ℤ, D.jumps ⊆ U → GlobalTheory.IndefiniteRowSideFullHecke.ImagePolynomialAction.Semisimple D U := by
-  first | exact @GlobalTheory.LcSemisimple.lc_semisimple | exact GlobalTheory.LcSemisimple.lc_semisimple | (intros; apply GlobalTheory.LcSemisimple.lc_semisimple <;> assumption)
+  first | exact @GlobalTheory.LcSemisimple.lc_semisimple

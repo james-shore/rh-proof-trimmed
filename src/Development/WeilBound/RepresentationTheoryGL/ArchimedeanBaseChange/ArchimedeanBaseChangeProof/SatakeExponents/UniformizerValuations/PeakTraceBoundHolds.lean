@@ -439,7 +439,7 @@ theorem PositivityTheory.Rg.BcB.F.peak_trace_bound_holds : PositivityTheory.Rg.B
   obtain ⟨C, N, j, hC⟩ := hbound (a₀ * g) (Ideal.mul_mem_right _ _ (Ideal.subset_span rfl))
   refine trace_contra (u * ρ (a₀ * g)) v hv0 (p a₀) ?_ (‖p a₀‖ / 2) (max C 0) N j (by positivity)
     (by linarith) ?_
-  · simp [Module.End.mul_apply, map_mul, hρv, hg1, huv, map_smul]
+  · simp [map_mul, hρv, hg1, huv, map_smul]
   · filter_upwards [hC, Filter.eventually_gt_atTop j] with k hk hkj
     refine hk.trans ?_
     have hX : ∀ s, ‖(β s ^ m * R s (a₀ * g)) ^ (k - j)‖ ≤ (‖p a₀‖ / 2) ^ (k - j) := by

@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_linear_sectionValue_abelianPower : ∀ (K :
     y ≫ (fst (baseOver (Sp K)) x.P.A).left = spMap (algebraMap K B) →
     ∃ f : EA x.P (𝟙 (Sp K)) N →ₗ[K] B, ∀ s : EA x.P (𝟙 (Sp K)) N,
       f s = valR y ((LPow x.P.A x.P.L ((N : ℕ) : ℤ) (baseOver (Sp K))).U i) (s.sec.f i) := by
-  first | exact @GlobalTheory.SecValLin.exists_linear_valR_sec | exact GlobalTheory.SecValLin.exists_linear_valR_sec | (intros; apply GlobalTheory.SecValLin.exists_linear_valR_sec <;> assumption)
+  first | exact @GlobalTheory.SecValLin.exists_linear_valR_sec

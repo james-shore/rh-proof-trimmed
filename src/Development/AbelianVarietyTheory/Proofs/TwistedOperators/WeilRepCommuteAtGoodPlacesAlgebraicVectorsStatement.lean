@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.weilRep_commute_at_good_places_algebraic_vectors :
     ∃ P : Finset (HeightOneSpectrum (𝓞 D.host.F)), ∀ v ∉ P, ∀ z : GA D W₁ →₀ ℂ,
       (∀ k ∈ z.support, k ∈ Set.range (GlobalTheory.AdelicU.emb D.sp.cm.sig W₁.gram v)) → ∀ i, ∃ u' ∈ GfC W₁,
         (z.sum fun k c => c • ωB (k, 1)) (ωB (u i, 1) (Ψ i)) = ωB (u', 1) ((z.sum fun k c => c • ωB (k, 1)) (Ψ i)) := by
-  first | exact @GlobalTheory.GoodComm.comm_at_good_place | exact GlobalTheory.GoodComm.comm_at_good_place | (intros; apply GlobalTheory.GoodComm.comm_at_good_place <;> assumption)
+  first | exact @GlobalTheory.GoodComm.comm_at_good_place

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.traceSymplecticForm_eq_orientedHomSymplecticForm :
     ∀ x y : Formalism.IndefR.Datum.WO S T,
       GlobalTheory.WeilM.symp (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) ξ (incM D.host.F JA) (incM D.host.F JB) x y =
         Formalism.IndefR.Datum.symplO S T x y := by
-  first | exact @GlobalTheory.WeilSchrodinger.symp_eq_symplO | exact GlobalTheory.WeilSchrodinger.symp_eq_symplO | (intros; apply GlobalTheory.WeilSchrodinger.symp_eq_symplO <;> assumption)
+  first | exact @GlobalTheory.WeilSchrodinger.symp_eq_symplO

@@ -166,7 +166,7 @@ theorem selfDual_isFull : ∀ (V : HSp D) (Λ : Submodule (𝓞 D.host.E) (Fin V
       refine ⟨b + c, ?_⟩
       change (b : D.host.E) + c = _
       rw [hb, hc]
-      simp [f, map_add, add_mul, Finset.sum_add_distrib, mul_add]
+      simp [f, add_mul, Finset.sum_add_distrib, mul_add]
     smul_mem' := by
       rintro c x ⟨b, hb⟩
       refine ⟨RingOfIntegers.mapRingHom (starRingEnd D.host.E) c * b, ?_⟩
@@ -209,7 +209,6 @@ theorem latV_eq_ae : ∀ (D : D7) (S : HSp D) (L M : Lat S), Submodule.IsFullLat
   intro D S L M hL hM
   first
   | exact GlobalTheory.T.lattices_agree_almost_everywhere D S L M hL hM
-  | exact GlobalTheory.T.lattices_agree_almost_everywhere D S L M hL.toIsLattice hM.toIsLattice
 
 end GlobalTheory.FinPl.PlacesAdeles
 

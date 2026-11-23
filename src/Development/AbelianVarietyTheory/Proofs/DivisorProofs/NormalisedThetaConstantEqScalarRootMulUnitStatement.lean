@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.normalisedThetaConstant_eq_scalar_root_mul_unit : 
   ∀ (th : LB.Sec (LPow D.P.A D.P.L ((1 : ℕ) : ℤ) (Over.mk (spMap ev)))), IsGenSec D.P.A D.P.L ((1 : ℕ) : ℤ) th →
   ∃ (M : ℕ) (lam : K), 1 ≤ M ∧ ∀ (y : Over.mk (spMap ev) ⟶ D.P.A) (c : K),
     GlobalTheory.Ex.OneGen.ThG D.P.A D.P.L ρ₀ (n ^ j) th y (GlobalTheory.Ex.fnOf c) → ∃ (c₀ : C) (ζ : K), ζ ^ M = 1 ∧ c = lam * ζ * ev (u 0 c₀) := by
-  first | exact @GlobalTheory.USep.thetaConst_eq_lam_root_mul_unit | exact GlobalTheory.USep.thetaConst_eq_lam_root_mul_unit | (intros; apply GlobalTheory.USep.thetaConst_eq_lam_root_mul_unit <;> assumption)
+  first | exact @GlobalTheory.USep.thetaConst_eq_lam_root_mul_unit

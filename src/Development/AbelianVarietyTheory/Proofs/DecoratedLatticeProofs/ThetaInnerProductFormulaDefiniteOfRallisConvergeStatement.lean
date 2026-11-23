@@ -48,4 +48,4 @@ open GlobalTheory.LiftRows GlobalTheory.AdelicScalar GlobalTheory.IndefiniteRowS
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaInnerProductFormulaDefinite_of_rallisConvergent : GlobalTheory.Published.CuspRapidDecay → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift.Convergent D → (∃ L : SizeData₂ D, Nonempty (ParameterChoice' D L)) → InnerProductFormulaC R F := by
-  first | exact @GlobalTheory.IPFConv.innerProductFormulaC_of_convergent | exact GlobalTheory.IPFConv.innerProductFormulaC_of_convergent | (intros; apply GlobalTheory.IPFConv.innerProductFormulaC_of_convergent <;> assumption)
+  first | exact @GlobalTheory.IPFConv.innerProductFormulaC_of_convergent

@@ -75,4 +75,3 @@ private theorem step (l : ℕ) [Fact l.Prime] (X : Type) [AddCommGroup X] [Modul
   rw [Submodule.card_eq_card_quotient_mul_card R]
   first
     | exact Nat.mul_le_mul h1 h2
-    | exact (Nat.mul_le_mul h2 h1).trans_eq (mul_comm _ _)

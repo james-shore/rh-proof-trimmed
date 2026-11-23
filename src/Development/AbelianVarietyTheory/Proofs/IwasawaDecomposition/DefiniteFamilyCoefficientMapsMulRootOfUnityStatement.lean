@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.definiteFamilyCoefficientMaps_mul_rootOfUnity : �
     (c0L : ∀ i : Fin D.R.m, Formalism.IndefR.FWT.VsV D i D.what₂.LL →ₛₗ[D.what₂.embLL] (R.cV i).W),
     GlobalTheory.Mem.R3.Rw.OmExt.CoefFam R c0L → ∀ (i : Fin D.R.m) (a : D.what₂.LL) (n : ℕ), n ≠ 0 → a ^ n = 1 →
     GlobalTheory.Mem.R3.Rw.OmExt.CoefFam R (Function.update c0L i (D.what₂.embLL a • c0L i)) := by
-  first | exact @GlobalTheory.Mem.R3.Rw.OmExt.coefFam_update_root | exact GlobalTheory.Mem.R3.Rw.OmExt.coefFam_update_root | (intros; apply GlobalTheory.Mem.R3.Rw.OmExt.coefFam_update_root <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.OmExt.coefFam_update_root

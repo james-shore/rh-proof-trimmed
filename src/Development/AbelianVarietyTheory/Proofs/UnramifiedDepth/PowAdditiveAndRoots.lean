@@ -91,7 +91,6 @@ theorem mm_add_pow (e : ℕ) {a b : C} (ha : V.Ge 0 a) (hb : V.Ge 0 b) :
   apply mm_of_ge_one
   have hr0 : V.Ge 0 (r : C) := r.2
   first
-    | simpa using hr0.l_mul
     | simpa [mul_assoc] using (ha.mul_int (hb.mul_int hr0)).l_mul
 
 theorem mm_sum_pow (e : ℕ) {ι : Type} (s : Finset ι) (x : ι → C) (hx : ∀ i ∈ s, V.Ge 0 (x i)) :

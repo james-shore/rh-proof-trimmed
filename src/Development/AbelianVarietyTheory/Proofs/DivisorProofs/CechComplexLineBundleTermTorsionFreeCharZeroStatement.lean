@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.LB (toMod)
 
 theorem _root_.GlobalTheory.T.cechComplexLineBundle_term_torsionFree_charZero : ∀ {X : Scheme.{0}} [AlgebraicGeometry.IsIntegral X], CharZero Γ(X, ⊤) → ∀ (f : X ⟶ Sp ℤ) (M : LB X) {κ : Type} [LinearOrder κ] (D : κ → X.Opens) (n : ℕ) (m : ℤ), m ≠ 0 → ∀ x : (GlobalTheory.AbLaw.cechLB f M D).X n, m • x = 0 → x = 0 := by
-  first | exact @GlobalTheory.CechPic.cechLB_X_noZSMulDivisors | exact GlobalTheory.CechPic.cechLB_X_noZSMulDivisors | (intros; apply GlobalTheory.CechPic.cechLB_X_noZSMulDivisors <;> assumption)
+  first | exact @GlobalTheory.CechPic.cechLB_X_noZSMulDivisors

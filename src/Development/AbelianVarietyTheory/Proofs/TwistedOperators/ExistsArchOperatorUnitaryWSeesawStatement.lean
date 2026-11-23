@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_archOperator_unitaryW_seesaw : ∀ {F E : T
     {a a' : ℕ} (B : Base F E) (G : Geo σ a a') (X : Chars F E) (om : Rep σ G.V G.W) (om' : Rep σ G.V' G.W),
     GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsTriple B G X om om' → ∀ h ∈ UAt σ G.W (evI F),
     ∃ T : SInf F (Fin a × Fin (a + a')) →ₗ[ℂ] SInf F (Fin a × Fin (a + a')), ∀ f : SInf F (Fin a × Fin (a + a')), Acts (evI F) (om (1, h)) f (T f) := by
-  first | exact @GlobalTheory.ArchFactor.exists_archOperator | exact GlobalTheory.ArchFactor.exists_archOperator | (intros; apply GlobalTheory.ArchFactor.exists_archOperator <;> assumption)
+  first | exact @GlobalTheory.ArchFactor.exists_archOperator

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.detPowerProduct_mul_mem_delW_shift_iff : ∀ (p : 
     (Φ : MvPolynomial (T × Fin N × Fin N) ℂ_[p]),
     ((fun y => (∏ τ, (y τ).det ^ k τ) * polFun Φ y) ∈ WeylLatticeDuality.DelW p T N (fun τ r => ν τ r + k τ) ↔
       polFun Φ ∈ WeylLatticeDuality.DelW p T N ν) := by
-  first | exact @GlobalTheory.DetShiftWeyl.detPow_mul_mem_delW_iff | exact GlobalTheory.DetShiftWeyl.detPow_mul_mem_delW_iff | (intros; apply GlobalTheory.DetShiftWeyl.detPow_mul_mem_delW_iff <;> assumption)
+  first | exact @GlobalTheory.DetShiftWeyl.detPow_mul_mem_delW_iff

@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open CategoryTheory GlobalTheory.CxCoh
 
 theorem _root_.GlobalTheory.T.vertical_h2_injective_three_universe_pairs : VertHas.{1,1} (fun m ↦ Function.Injective m.h2) ∧ VertHas.{1,0} (fun m ↦ Function.Injective m.h2) ∧ VertHas.{0,0} (fun m ↦ Function.Injective m.h2) := by
-  first | exact @GlobalTheory.CxCoh.vertical_h2_injective_universes | exact GlobalTheory.CxCoh.vertical_h2_injective_universes | (intros; apply GlobalTheory.CxCoh.vertical_h2_injective_universes <;> assumption)
+  first | exact @GlobalTheory.CxCoh.vertical_h2_injective_universes

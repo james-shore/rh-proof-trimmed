@@ -49,4 +49,4 @@ open ValuativeRel Formalism.L2.Host
 
 
 theorem _root_.GlobalTheory.T.normalisedAbsComplexPow_half_mem_subfield_of_sqrt_norm : ∀ {D : D7} (F : Subfield ℂ) (w : Pl D.host.E), ((Real.sqrt (Ideal.absNorm w.asIdeal) : ℝ) : ℂ) ∈ F → ∀ u : (Kw w)ˣ, apow u (1 / 2) ∈ F := by
-  first | exact @GlobalTheory.HalfPowField.apow_half_mem_of_sqrt | exact GlobalTheory.HalfPowField.apow_half_mem_of_sqrt | (intros; apply GlobalTheory.HalfPowField.apow_half_mem_of_sqrt <;> assumption)
+  first | exact @GlobalTheory.HalfPowField.apow_half_mem_of_sqrt

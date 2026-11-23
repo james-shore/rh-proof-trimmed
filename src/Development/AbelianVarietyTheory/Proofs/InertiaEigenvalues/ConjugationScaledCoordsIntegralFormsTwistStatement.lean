@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.conjugation_scaled_coords_integral_forms_twist : �
   ∀ τ : ℂ ≃+* ℂ, (∀ a, τ (embLL0 D a) = embLL0 D a) → ∀ ψ ψ' : Twist D Circle, ψ.Good → ψ'.Good → ConjChar τ ψ ψ' → FixDat B τ →
   ∃ C : Amb D j →ₛₗ[(τ : ℂ →+* ℂ)] Amb D j, (∀ F, (∀ h, F h ∈ B.valSpace) → ConjAt Φ κ τ F (C F) ∧ (C F = 0 → F = 0)) ∧
     ∀ O : Subring ℂ, IsCoefRing (embLL0 D) (labLL0 D) O → C '' (B.mtLat (embLL0 D) (labLL0 D) O ψ : Set (Amb D j)) = (B.mtLat (embLL0 D) (labLL0 D) (O.map (τ : ℂ →+* ℂ)) ψ' : Set (Amb D j)) := by
-  first | exact @GlobalTheory.PlaceConj.conj_lat | exact GlobalTheory.PlaceConj.conj_lat | (intros; apply GlobalTheory.PlaceConj.conj_lat <;> assumption)
+  first | exact @GlobalTheory.PlaceConj.conj_lat

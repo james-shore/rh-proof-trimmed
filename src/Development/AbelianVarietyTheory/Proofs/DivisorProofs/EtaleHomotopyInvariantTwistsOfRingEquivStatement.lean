@@ -47,4 +47,4 @@ open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.etaleHomotopyInvariantTwists_of_ringEquiv : ∀ (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRing B], (A ≃+* B) → HInv q A → HInv q B := by
-  first | exact @GlobalTheory.EtC.hInv_of_ringEquiv | exact GlobalTheory.EtC.hInv_of_ringEquiv | (intros; apply GlobalTheory.EtC.hInv_of_ringEquiv; all_goals assumption)
+  first | exact @GlobalTheory.EtC.hInv_of_ringEquiv

@@ -74,7 +74,7 @@ theorem ListMonoDens.proof : ListMonoDens.Statement := by
   have hopen : IsOpen ((A.chart j).target ∩ (A.chart j).symm ⁻¹' Yo) :=
     (A.chart j).isOpen_inter_preimage_symm hYo
   have hvC : ∀ i, ContDiffAt ℝ 2 (v i) y := fun i =>
-    ((hu i j).contDiffAt (hopen.mem_nhds ⟨hy, hyY⟩)).of_le (by first | simp | exact_mod_cast (le_top : ((2 : ℕ) : ℕ∞) ≤ ⊤) | exact WithTop.coe_le_coe.mpr le_top)
+    ((hu i j).contDiffAt (hopen.mem_nhds ⟨hy, hyY⟩)).of_le (by first | simp)
   have hgC : ∀ i, ContDiffAt ℝ 2 (fun y' => o y' + (-1) * f i y') y := fun i =>
     hoC.add (contDiffAt_const.mul (hfC i))
 

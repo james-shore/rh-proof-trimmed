@@ -46,4 +46,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.ordered_prod_local_parts_separates_place : ∀ {D : D7} {c : Comm D} {v : VCom c} {n : ℕ} (G : Fin n → GLoc v), GPin G → ∀ (j' : ℕ) (xs : Fin n → GA D (c.V j')), (∀ i, SuppAt (G i).q.e (c.V j') (xs i)) → ∀ (i : Fin n), ∃ y ∈ grpOff (c.V j') (· = (G i).q.v), (List.ofFn xs).prod = xs i * y := by
-  first | exact @GlobalTheory.SeeSaw.SepProd.prod_sep | exact GlobalTheory.SeeSaw.SepProd.prod_sep | (intros; apply GlobalTheory.SeeSaw.SepProd.prod_sep <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.SepProd.prod_sep

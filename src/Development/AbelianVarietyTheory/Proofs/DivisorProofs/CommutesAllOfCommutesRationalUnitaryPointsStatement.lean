@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.commutes_all_of_commutes_rationalUnitaryPoints : �
     (∀ (γ : GQ V) (γE : GL (Fin V.rank) D.host.E), Bridge.IsRatMat V γ γE →
       ∀ v, g (rhoVr tauL lam γE v) = rhoVr tauL lam γE (g v)) →
     ∀ (h : D.what₂.Tau → GL (Fin V.rank) D.what₂.LL) v, g (rhoK lam h v) = rhoK lam h (g v) := by
-  first | exact @GlobalTheory.RatDenseEnd.comm_all | exact GlobalTheory.RatDenseEnd.comm_all | (intros; apply GlobalTheory.RatDenseEnd.comm_all <;> assumption)
+  first | exact @GlobalTheory.RatDenseEnd.comm_all

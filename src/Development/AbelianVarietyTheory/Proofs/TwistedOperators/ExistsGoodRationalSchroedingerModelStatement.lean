@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_good_rational_schroedingerModel : ∀ (D : 
     ∀ (μ : Measure (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.UA D.sp.cm.sig V.J)) (dom : Set (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.UA D.sp.cm.sig V.J)),
       μ.IsHaarMeasure → IsFundamentalDomain (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ratU D.sp.cm.sig V.J) dom μ →
     ∃ M : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Model D.sp.cm.sig V Ws, M.μ = μ ∧ M.dom = dom ∧ M.IsGood Bs.ψ := by
-  first | exact @GlobalTheory.SquareAgree.exists_good_model | exact GlobalTheory.SquareAgree.exists_good_model | (intros; apply GlobalTheory.SquareAgree.exists_good_model <;> assumption)
+  first | exact @GlobalTheory.SquareAgree.exists_good_model

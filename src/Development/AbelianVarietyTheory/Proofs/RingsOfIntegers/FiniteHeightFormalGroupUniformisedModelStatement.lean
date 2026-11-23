@@ -47,4 +47,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.PlaceInt
 
 theorem _root_.GlobalTheory.T.finiteHeight_formalGroup_uniformisedModel : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (T : CDVR) (io : c.F →+* T.Fr) (y : IntFr Xo c T io) (C : IntegralChartA3 Xo c T io y), Good3 C → ∀ B : FB T.V (chD C.ch) (𝓞 E), IsBT C B → FinHt B := by
-  first | exact @GlobalTheory.PlaceFinHt.finHt_of_good | exact GlobalTheory.PlaceFinHt.finHt_of_good | (intros; apply GlobalTheory.PlaceFinHt.finHt_of_good <;> assumption)
+  first | exact @GlobalTheory.PlaceFinHt.finHt_of_good

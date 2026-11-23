@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.flat_dictionary_relative_base_vacua_large_depth : Big fun ch => ∀ s, PlaceAt ch s → ConLin ch → LocAt ch s := by
-  first | exact @GlobalTheory.LocAsm.locAt_of_placeAt | exact GlobalTheory.LocAsm.locAt_of_placeAt | (intros; apply GlobalTheory.LocAsm.locAt_of_placeAt <;> assumption)
+  first | exact @GlobalTheory.LocAsm.locAt_of_placeAt

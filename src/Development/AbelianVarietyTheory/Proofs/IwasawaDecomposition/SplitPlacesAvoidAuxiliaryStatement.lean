@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.split_places_avoid_auxiliary : ∀ (D : D7) (T : T
       (P' ∈ qpOf D Pq Q ∨ P' ∈ qpOf D Pq (T.pD i) ∨ ∃ kv, P' = NX.pG D kv) → (sp P).v = (sp P').v → P = P') ∧
     (∀ P ∈ qpOf D Pq Q, P ∉ qpOf D Pq (T.pD i)) ∧ (∀ kv, NX.pG D kv ∉ qpOf D Pq Q ∧ NX.pG D kv ∉ qpOf D Pq (T.pD i)) ∧
     ∀ kv kv', NX.pG D kv = NX.pG D kv' → kv = kv' := by
-  first | exact @GlobalTheory.LevelPlaceSep.levelPlaces_sep | exact GlobalTheory.LevelPlaceSep.levelPlaces_sep | (intros; apply GlobalTheory.LevelPlaceSep.levelPlaces_sep <;> assumption)
+  first | exact @GlobalTheory.LevelPlaceSep.levelPlaces_sep

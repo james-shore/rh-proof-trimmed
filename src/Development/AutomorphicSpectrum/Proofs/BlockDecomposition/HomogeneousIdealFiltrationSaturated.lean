@@ -177,7 +177,7 @@ theorem phi_lift {d : ℕ} {t : MvPolynomial (Fin (N + 1)) R}
   by_cases hd : d' = d
   · subst hd
     simp
-  · simp [Finsupp.single_apply, hd, Ne.symm hd]
+  · simp [hd]
 
 theorem lift_isHomogeneous {d n : ℕ} {t : MvPolynomial (Fin (N + 1)) R}
     {τ : MvPolynomial (Fin (N + 1)) (reesAlgebra I)}

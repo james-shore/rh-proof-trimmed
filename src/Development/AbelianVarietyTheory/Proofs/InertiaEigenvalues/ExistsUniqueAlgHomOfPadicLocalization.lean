@@ -132,7 +132,7 @@ theorem existsUnique_algHom_of_padic_localization {O A E B : Type} [CommRing O] 
     have := dvd_sub (dvd_sub h1 ((hg y k a m h).mul_left (g y')))
       ((hg y' k a' m' h').mul_left (f a * v ^ m))
     convert this using 1
-    simp only [map_add (f := _), map_mul, map_pow, pow_add]
+    simp only [map_mul, pow_add]
     ring
   refine ⟨
     { toFun := g

@@ -133,7 +133,7 @@ theorem GlobalTheory.CovMass.covol_eq_mass : ∀ (D : D7) (X : HidaSetting D) (Y
   obtain ⟨KA, ⟨hKAm, hKAu⟩, hKA⟩ :=
     GlobalTheory.T.covolume_integralStabiliser_normalisedHaar D X Y u u' hSt hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hMv hrel μR hPin
   have hRO := GlobalTheory.T.realPoints_termAutomorphisms_eq_movedStabilizer D X Y u u' hSt hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hMv
-  obtain ⟨hfin1, hfin2⟩ := GlobalTheory.T.latticeStabiliser_commensurable_integralPoints (placesOf (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D)) _ _ G hk (c.lat ρ t₀.lam) (by first | exact GlobalTheory.HL.ProdStruct.full_lattice_of_term G hterm | exact hterm.1)
+  obtain ⟨hfin1, hfin2⟩ := GlobalTheory.T.latticeStabiliser_commensurable_integralPoints (placesOf (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D)) _ _ G hk (c.lat ρ t₀.lam) (by first | exact GlobalTheory.HL.ProdStruct.full_lattice_of_term G hterm)
 
   let cj : ((VS D).V ≃ₗ[D.host.E] (VS D).V) →* G.GLV :=
     { toFun := c.grp ρ

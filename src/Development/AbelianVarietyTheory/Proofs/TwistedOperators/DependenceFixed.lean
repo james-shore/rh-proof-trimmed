@@ -242,11 +242,7 @@ theorem Sm.sub {m n : Type} {c : Γ} {M N : Matrix m n R} (h : Sm v φ c M) (h' 
 theorem prod_sub_le {ι : Type} (s : Finset ι) {c : Γ} {a b : ι → K} (ha : ∀ i, v (a i) ≤ 1) (hb : ∀ i, v (b i) ≤ 1)
     (h : ∀ i, v (a i - b i) ≤ c) : v (∏ i ∈ s, a i - ∏ i ∈ s, b i) ≤ c := by
   first
-  | exact @_root_.GlobalTheory.ProdSubProdBound.main
-  | exact _root_.GlobalTheory.ProdSubProdBound.main
   | (apply _root_.GlobalTheory.ProdSubProdBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProdSubProdBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProdSubProdBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ProdSubProdBound.main ..)
 
 theorem Sm.det {n : Type} [Fintype n] [DecidableEq n] {c : Γ} (hc : c ≤ 1) {M : Matrix n n R} (h : Sm v φ c (M - 1)) :

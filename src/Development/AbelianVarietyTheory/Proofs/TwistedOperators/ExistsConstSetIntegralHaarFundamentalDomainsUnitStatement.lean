@@ -49,4 +49,4 @@ open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheor
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 
 theorem _root_.GlobalTheory.T.exists_const_setIntegral_haar_fundamentalDomains_unitary : ∀ {D : D7} {V : HSp D} (ν₁ ν₂ : Measure (GA D V)) (fd₁ fd₂ : Set (GA D V)), ν₁.IsHaarMeasure → ν₂.IsHaarMeasure → IsFundamentalDomain (GQ V) fd₁ ν₁ → IsFundamentalDomain (GQ V) fd₂ ν₂ → ∃ c : ℂ, ∀ f : GA D V → ℂ, (∀ γ ∈ GQ V, ∀ g, f (γ * g) = f g) → (IntegrableOn f fd₁ ν₁ ↔ IntegrableOn f fd₂ ν₂) ∧ ∫ g in fd₁, f g ∂ν₁ = c * ∫ g in fd₂, f g ∂ν₂ := by
-  first | exact @GlobalTheory.HaarFundDom.setIntegral_eq_const_mul | exact GlobalTheory.HaarFundDom.setIntegral_eq_const_mul | (intros; apply GlobalTheory.HaarFundDom.setIntegral_eq_const_mul <;> assumption)
+  first | exact @GlobalTheory.HaarFundDom.setIntegral_eq_const_mul

@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.mem_of_closedSubmodule_gaussian_convolution : ∀ 
     ∀ (h u : SchwartzMap E ℂ),
       (∀ y, u y = ∫ a, Complex.exp (-((b * ‖a‖ ^ 2 : ℝ) : ℂ)) * h a * Complex.exp (-((c * ‖y - a‖ ^ 2 : ℝ) : ℂ))) →
       u ∈ M := by
-  first | exact @GlobalTheory.ConvSeries.mem_of_conv_gaussian | exact GlobalTheory.ConvSeries.mem_of_conv_gaussian | (intros; apply GlobalTheory.ConvSeries.mem_of_conv_gaussian <;> assumption)
+  first | exact @GlobalTheory.ConvSeries.mem_of_conv_gaussian

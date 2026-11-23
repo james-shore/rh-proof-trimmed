@@ -75,8 +75,8 @@ theorem exists_equalizer_ideal {Z Y S : Scheme.{0}} (z : Y ⟶ S) [IsSeparated z
   · rw [← IsClosedImmersion.lift_fac i t ht, Category.assoc, Category.assoc, hi]
   · have e : t ≫ pullback.lift a b h = (t ≫ a) ≫ pullback.diagonal z := by
       apply pullback.hom_ext
-      · simp [pullback.lift_fst]
-      · simp [pullback.lift_snd, ht]
+      · simp
+      · simp [ht]
     rw [← pullback.lift_fst t (t ≫ a) e]
     exact Scheme.Hom.le_ker_comp _ _
 

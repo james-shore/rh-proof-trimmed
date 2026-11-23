@@ -157,7 +157,7 @@ private theorem gsp_map' {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R
   have e : adj (X.map f) = (adj X).map f := by ext i j; simp [adj_apply]
   rw [IsGSp, e, ← Matrix.map_mul, h]
   ext i j
-  by_cases hij : i = j <;> simp [Matrix.one_apply, hij]
+  by_cases hij : i = j <;> simp [hij]
 
 private theorem conj_trans {H R : Type} [Group H] [CommRing R] {r r' r'' : H →* M4 R} (h : IsConj4 r r') (h' : IsConj4 r' r'') :
     IsConj4 r r'' := by
@@ -304,7 +304,6 @@ theorem UpperTheory.V.Th.spPt :
       exact ⟨T₀, e, ⟨ok, .inl ⟨hD, two⟩⟩, tame⟩
     · obtain ⟨T₀, e, ok, three, tame⟩ := exists_tame_tower_ok_three D hD pr hl
       first
-        | exact ⟨T₀, e, ⟨ok, .inr ⟨hD, three⟩⟩, tame⟩
         | exact ⟨T₀, e, ⟨ok, .inr ⟨hD, three.five, three.sb, three.psi⟩⟩, tame⟩
   obtain ⟨P, qP, nP, cP, sP⟩ := hP _ hF₀.1.dist
   obtain ⟨P', qP', cP', lP'⟩ := lat hC D hG 𝔞 _ _ hl hF₀.1.dist P qP nP (sP (Or.inl hirr))

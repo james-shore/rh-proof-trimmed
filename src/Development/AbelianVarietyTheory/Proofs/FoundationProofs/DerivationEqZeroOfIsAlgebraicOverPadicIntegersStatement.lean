@@ -49,4 +49,4 @@ open GlobalTheory.K5
 theorem _root_.GlobalTheory.T.derivation_eq_zero_of_isAlgebraicOverPadicIntegers : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0 p) Ω], IsClo p Ω →
     ∀ E : Derivation ℤ Ω Ω, (∀ r : ℤ_[p], E (algebraMap (O0 p) Ω (algebraMap ℤ_[p] (O0 p) r)) = 0) →
     ∀ x : Ω, IsAlgZp (p := p) x → E x = 0 := by
-  first | exact @GlobalTheory.K5.DerAlg.der_algZp | exact GlobalTheory.K5.DerAlg.der_algZp | (intros; apply GlobalTheory.K5.DerAlg.der_algZp <;> assumption)
+  first | exact @GlobalTheory.K5.DerAlg.der_algZp

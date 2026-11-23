@@ -54,4 +54,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.logb_norm_uniformizer_normalisation : ∀ (K : Type) [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) (T : CDVR) (io : K →+* T.Fr) (e : ℕ), OverLa la T.V io e → ∀ (ϖ : T.V), Irreducible ϖ → ∀ (C : SCF (Formalism.MainNotions.WeightAlgebra.resCh la)) (f : T.V →+* ↥C.S), (∀ a, ‖f a‖ ≤ 1) → -Real.logb (Formalism.MainNotions.WeightAlgebra.resCh la) ‖f ϖ‖ * ((e : ℝ) * Formalism.BasicNotions.eWL K la) = 1 ∧ 0 < Formalism.BasicNotions.eWL K la := by
-  first | exact @GlobalTheory.EtaVal.UnitNorm.logb_norm_uniformiser | exact GlobalTheory.EtaVal.UnitNorm.logb_norm_uniformiser | (intros; apply GlobalTheory.EtaVal.UnitNorm.logb_norm_uniformiser <;> assumption)
+  first | exact @GlobalTheory.EtaVal.UnitNorm.logb_norm_uniformiser

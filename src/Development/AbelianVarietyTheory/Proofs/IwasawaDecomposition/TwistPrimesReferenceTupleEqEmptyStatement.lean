@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.q_mu0_eq_empty : ∀ (B : Base) (X : PreX B.toPre) (I : ColIn B X), I.Q I.mu0 = ∅ := by
-  first | exact @GlobalTheory.Mem.Col2.RefTup.twistPrimes_reference_tuple_eq_empty | exact GlobalTheory.Mem.Col2.RefTup.twistPrimes_reference_tuple_eq_empty | (intros; apply GlobalTheory.Mem.Col2.RefTup.twistPrimes_reference_tuple_eq_empty <;> assumption)
+  first | exact @GlobalTheory.Mem.Col2.RefTup.twistPrimes_reference_tuple_eq_empty

@@ -47,4 +47,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits Opposite
 
 theorem _root_.GlobalTheory.T.affineHilbert_valuativeCriterion_uniqueness : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra A B] [Module.Free A B] [Module.Finite A B] (r : ℕ) (H : Scheme.{0}) (R : (GlobalTheory.HilbAff.functor A B r).RepresentableBy H), ValuativeCriterion.Uniqueness (R.homEquiv (𝟙 H)).1 := by
-  first | exact @GlobalTheory.HilbAff.valuativeCriterion_uniqueness | exact GlobalTheory.HilbAff.valuativeCriterion_uniqueness | (intros; apply GlobalTheory.HilbAff.valuativeCriterion_uniqueness <;> assumption)
+  first | exact @GlobalTheory.HilbAff.valuativeCriterion_uniqueness

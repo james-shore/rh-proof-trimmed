@@ -62,4 +62,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.OrbitSep
 
 theorem _root_.GlobalTheory.T.exists_complexFramedPoint_over_componentGenericPoint : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (Z : Comp Xo c), ∃ y : FrPt Xo c ℂ, ∀ s, ptF y s = genPt Z := by
-  first | exact @GlobalTheory.GenCxPt.exists_frPt_ptF_eq_genPt | exact GlobalTheory.GenCxPt.exists_frPt_ptF_eq_genPt | (intros; apply GlobalTheory.GenCxPt.exists_frPt_ptF_eq_genPt <;> assumption)
+  first | exact @GlobalTheory.GenCxPt.exists_frPt_ptF_eq_genPt

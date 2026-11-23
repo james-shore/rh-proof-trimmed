@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.siegelUnitAtScaledArgument_twoVariableExpansion : 
     (∀ n : ℕ, smF c 1 (N * p ^ L) (eOm ε (1 / ((N * p ^ L : ℕ) : ℚ))) A₁ a₂ n ∈ Subring.closure {zt ε p L}) ∧
     (∃ r m : ℤ, (X.exp (sgN X c N (N * p ^ L) (A₁, a₂))).coeff ((r : ℚ) / (p : ℚ) ^ L) = zt ε p L ^ m ∨
       (X.exp (sgN X c N (N * p ^ L) (A₁, a₂))).coeff ((r : ℚ) / (p : ℚ) ^ L) = -(zt ε p L ^ m)) := by
-  first | exact @GlobalTheory.SiegTwo.sgN_two_variable | exact GlobalTheory.SiegTwo.sgN_two_variable | (intros; apply GlobalTheory.SiegTwo.sgN_two_variable ; all_goals assumption)
+  first | exact @GlobalTheory.SiegTwo.sgN_two_variable

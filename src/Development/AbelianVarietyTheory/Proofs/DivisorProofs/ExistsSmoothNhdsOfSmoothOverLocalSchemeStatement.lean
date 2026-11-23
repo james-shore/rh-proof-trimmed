@@ -57,4 +57,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.exists_smooth_nhds_of_smooth_over_local_scheme : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (P : Scheme.{0}) (p : P ⟶ Sp R) (x : Sp R) (V W : P.Opens), W ≤ V → Smooth (Limits.pullback.snd (V.ι ≫ p) ((Sp R).fromSpecStalk x)) → LocallyOfFiniteType (W.ι ≫ p) → ∀ z : P, z ∈ W → (p z).asIdeal ≤ x.asIdeal → ∃ W' : P.Opens, z ∈ W' ∧ W' ≤ W ∧ Smooth (W'.ι ≫ p) := by
-  first | exact @GlobalTheory.Desc.exists_smooth_nhds_of_smooth_fromSpecStalk | exact GlobalTheory.Desc.exists_smooth_nhds_of_smooth_fromSpecStalk | (intros; apply GlobalTheory.Desc.exists_smooth_nhds_of_smooth_fromSpecStalk <;> assumption)
+  first | exact @GlobalTheory.Desc.exists_smooth_nhds_of_smooth_fromSpecStalk

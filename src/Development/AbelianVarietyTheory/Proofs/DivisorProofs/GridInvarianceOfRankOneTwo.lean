@@ -96,11 +96,7 @@ lemma proj_neg {A : Type} [Ring A] [Algebra ℚ A] (K j : ℕ) (X Y : A) : proj 
 lemma comm_pow_of {A : Type} [Ring A] [Algebra ℚ A] {H X : A} {s : ℚ} (h : H * X - X * H = s • X) (k : ℕ) :
     H * X ^ k - X ^ k * H = ((k : ℚ) * s) • X ^ k := by
   first
-  | exact @_root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul
-  | exact _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul
   | (apply _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul ..)
 
 lemma commute_pair_pow {A : Type} [Ring A] [Algebra ℚ A] {H X Y : A} {s : ℚ} (hX : H * X - X * H = s • X)

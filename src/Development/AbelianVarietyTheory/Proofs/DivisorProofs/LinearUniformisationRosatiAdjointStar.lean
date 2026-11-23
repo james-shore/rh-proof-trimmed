@@ -60,8 +60,7 @@ theorem thickMap_pullback_map {G : Over (Sp R)} (b : G ⟶ G) (e : ℕ) :
     thickMap R I e G ≫ ((Over.pullback (thick R I (e + 1))).map b).left =
       ((Over.pullback (thick R I e)).map b).left ≫ thickMap R I e G := by
   apply pullback.hom_ext <;>
-    simp [thickMap, pullback.map, pullback.lift_fst, pullback.lift_snd, pullback.lift_fst_assoc,
-      pullback.lift_snd_assoc]
+    simp [thickMap, pullback.map]
 
 theorem linEnd_act {D : DegData R I} {O : Type} [Ring O] [StarRing O] [Module O D.toPre.X] {o : D.toPre.OAct O}
     {A : PolAV (Sp (FractionRing R))} {G : Over (Sp R)} [GrpObj G] [IsCommMonObj G] {U : UnifPre I D A G}

@@ -51,4 +51,4 @@ open scoped Formalism.Per
 open GlobalTheory.BaseCoef
 
 theorem _root_.GlobalTheory.T.characterSetMapCoefficientField_properties : ∀ {G LL LL' : Type} [Group G] [Field LL] [Field LL'] (f : LL →+* LL') (I : Subgroup G) (Fr : G) (Sig : Finset (I →* LLˣ)), (FrobStable I Fr Sig → FrobStable I Fr (mapSig f Sig)) ∧ Formalism.MainNotions.ElementDenominator.rPrime I Fr (mapSig f Sig) = Formalism.MainNotions.ElementDenominator.rPrime I Fr Sig ∧ (mapSig f Sig).card ≤ Sig.card ∧ (1 ∈ Sig → 1 ∈ mapSig f Sig) := by
-  first | exact @GlobalTheory.BaseCoef.mapSig_props | exact GlobalTheory.BaseCoef.mapSig_props | (intros; apply GlobalTheory.BaseCoef.mapSig_props <;> assumption)
+  first | exact @GlobalTheory.BaseCoef.mapSig_props

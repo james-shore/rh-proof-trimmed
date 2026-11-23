@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.UChart
 
 theorem _root_.GlobalTheory.T.unitaryToroidalSeparation_of_base : UStB := by
-  first | exact @GlobalTheory.UPoincTop.uStB | exact GlobalTheory.UPoincTop.uStB | (intros; apply GlobalTheory.UPoincTop.uStB <;> assumption)
+  first | exact @GlobalTheory.UPoincTop.uStB

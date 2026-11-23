@@ -86,7 +86,7 @@ theorem exists_local_basis {F : Type} [Field F] [NumberField F] (p : HeightOneSp
     rw [← hB, ← he1 (B i)]
     congr 1
     funext k
-    simp [Module.Basis.equivFun_apply, Pi.single_apply, Finsupp.single_apply, eq_comm]
+    simp [Pi.single_apply, eq_comm]
   let S : Set (Fin (Module.finrank F C) → F) := {x | Int (e x)}
   obtain ⟨d, hd⟩ := IsLocalization.exist_integer_multiples_of_finite (nonZeroDivisors (𝓞 F))
     (fun ki : Fin M × Fin (Module.finrank F C) => B.equivFun ⟨g ki.1, hg ki.1⟩ ki.2)
@@ -195,7 +195,7 @@ theorem intForm_descent_below (l e : ℕ) (hl : l.Prime) : ∃ c₀ : ℕ, ∀ (
     refine ⟨cc, ?_⟩
     rw [← hfe, hcc]
     set_option synthInstance.maxHeartbeats 100000 in
-      simp only [CoreJ.phiJ, map_sum, map_smulₛₗ, map_smul, Finset.smul_sum]
+      simp only [CoreJ.phiJ, map_sum, map_smulₛₗ, Finset.smul_sum]
     exact Finset.sum_congr rfl fun k _ => smul_comm _ _ _
   choose cc hcc using hcc'
   have hσ₂ : ∀ z, C.σ₂ (C.inc z) = T.σ₀ z := fun z => congrArg (fun f => f z) hU.2.2.1

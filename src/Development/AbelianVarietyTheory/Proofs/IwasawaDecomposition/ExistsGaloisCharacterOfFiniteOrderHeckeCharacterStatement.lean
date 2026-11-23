@@ -61,4 +61,4 @@ open GlobalTheory.TwistChoice (Reading ReadsAt)
 
 
 theorem _root_.GlobalTheory.T.exists_galoisCharacter_of_finiteOrder_heckeCharacter : GlobalTheory.Published.GlobalArtinReciprocity → ∀ (D : D7) (χ : HChar D.host.E) (n : ℕ), 0 < n → χ.OrderDvd n → (∃ z : D.what₂.LL, IsPrimitiveRoot z n) → ∃ ψ₀, GalOf D χ ψ₀ ∧ ∀ g, ψ₀ g ^ n = 1 := by
-  first | exact @GlobalTheory.LevCmp.galOf_of_orderDvd | exact GlobalTheory.LevCmp.galOf_of_orderDvd | (intros; apply GlobalTheory.LevCmp.galOf_of_orderDvd <;> assumption)
+  first | exact @GlobalTheory.LevCmp.galOf_of_orderDvd

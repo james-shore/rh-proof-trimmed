@@ -55,4 +55,4 @@ open scoped ComplexOrder
 
 
 theorem _root_.GlobalTheory.T.chernPoly_conj_linearSubst_curvature : ∀ {n r : ℕ} (F : ReciprocityTheory.L2DbarEstimates.V n → Matrix (Fin r) (Fin r) ℂ) (v v' : ReciprocityTheory.L2DbarEstimates.V n) (J : Matrix (Fin n) (Fin n) ℂ) (S : Matrix (Fin r) (Fin r) ℂ), IsUnit S.det → (∀ a b, curv F v (coordVec a) (coordVec b) = S⁻¹ * (∑ c, ∑ d, (J c a * starRingEnd ℂ (J d b)) • curv F v' (coordVec c) (coordVec d)) * S) → ∀ k, chernPoly F v k = aeval (fun x : Fin n × Fin n => ∑ a, ∑ b, C (J x.1 a * starRingEnd ℂ (J x.2 b)) * X (a, b)) (chernPoly F v' k) := by
-  first | exact @GlobalTheory.ChernConj.chernPoly_conj_subst | exact GlobalTheory.ChernConj.chernPoly_conj_subst | (intros; apply GlobalTheory.ChernConj.chernPoly_conj_subst <;> assumption)
+  first | exact @GlobalTheory.ChernConj.chernPoly_conj_subst

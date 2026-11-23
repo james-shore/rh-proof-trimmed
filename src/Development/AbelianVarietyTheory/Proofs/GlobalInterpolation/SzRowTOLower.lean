@@ -103,7 +103,7 @@ theorem szRow_TO_lower : SzRow (fun C D L => ((C.T.CP * zBase L ^ C.T.eP) ^ 4 * 
   have hx0 : 0 < x := by linarith
   have cast : ∀ n : ℕ, x ^ ((n : ℕ) : ℝ) = x ^ n := fun n => Real.rpow_natCast x n
   have hPe : zBase L ^ C.T.eP = zBase L ^ (12 : ℕ) := by
-    rw [heP]; first | rfl | exact_mod_cast Real.rpow_natCast _ 12
+    rw [heP]; first | exact_mod_cast Real.rpow_natCast _ 12
   have hd' : 1 / x ≤ L.de2 := by
     refine le_trans ?_ hd
     rw [one_div, ← Real.rpow_neg_one]
@@ -126,6 +126,5 @@ theorem szRow_TO_lower : SzRow (fun C D L => ((C.T.CP * zBase L ^ C.T.eP) ^ 4 * 
   rw [hPe, hCp]
   first
     | (rw [Real.rpow_one]; exact a.trans hT')
-    | (rw [pow_one]; exact a.trans hT')
 
 end GlobalTheory.EX

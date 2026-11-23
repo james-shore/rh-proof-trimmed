@@ -47,4 +47,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.norm_derivation_generators_eq_one_at_site : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ∀ ι : ℂ →+* ℂ_[D.what₂.places.resChar w], (∀ z : TaylorLogMetric.Qbar, ι z = S.lam z) → ∀ τ, ‖ι ((t.O u μ).dgen τ)‖ = 1) := by
-  first | exact @GlobalTheory.TwV.DelB.dgen_unit | exact GlobalTheory.TwV.DelB.dgen_unit | (intros; apply GlobalTheory.TwV.DelB.dgen_unit <;> assumption)
+  first | exact @GlobalTheory.TwV.DelB.dgen_unit

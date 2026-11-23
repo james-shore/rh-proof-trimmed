@@ -43,4 +43,4 @@ open NumberField IsDedekindDomain Formalism.L2.Host GlobalTheory.NT GlobalTheory
 open scoped nonZeroDivisors IntermediateField
 
 theorem _root_.GlobalTheory.T.isAlgebraic_of_ellipticTorsionCoordinates_finite : ∀ (F : IntermediateField ℚ ℂ) [FiniteDimensional ℚ F] (A : WeierstrassCurve F) (n : ℕ), (torsionCoords (A.baseChange ℂ) n).Finite → ∀ z ∈ torsionCoords (A.baseChange ℂ) n, IsAlgebraic ℚ z := by
-  first | exact @GlobalTheory.Mem.FieldsEx.isAlgebraic_of_torsionCoords_finite | exact GlobalTheory.Mem.FieldsEx.isAlgebraic_of_torsionCoords_finite | (intros; apply GlobalTheory.Mem.FieldsEx.isAlgebraic_of_torsionCoords_finite <;> assumption)
+  first | exact @GlobalTheory.Mem.FieldsEx.isAlgebraic_of_torsionCoords_finite

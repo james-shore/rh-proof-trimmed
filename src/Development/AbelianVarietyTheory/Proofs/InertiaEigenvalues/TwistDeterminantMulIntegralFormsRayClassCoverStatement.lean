@@ -59,4 +59,4 @@ open GlobalTheory.LevelSeries
 
 
 theorem _root_.GlobalTheory.T.twistDeterminant_mul_integralForms_rayClassCover : ∀ (D : D7) (T : CoreJ D), LawsJ T → ∀ j, Formalism.L2.Pj.InR D j → ∀ C : Cover T j T.σ₀, C.IsUnif → (∃ φ : D.host.K →+* C.d.c₂.F, GlobalTheory.IndefiniteRowSideFullHecke.RayFieldTheta.ContainsRayField φ C.d.l₂.M) → ∀ xi : (GlobalTheory.FinalJoin.AfE D)ˣ →* ℂˣ, GlobalTheory.IndefiniteRowSideFullHecke.TwistSeries.IsTwist C.σ₂ C.d.pd xi → ∀ (wa : (D.host.E →+* ℂ) × ℕ → ℕ) (n : ℕ) (S : Set (HeightOneSpectrum (𝓞 C.d.c₂.F))), ∀ φ ∈ C.intForms wa n S, (fun g => ((xi (Matrix.GeneralLinearGroup.det (finHom (T.V j T.σ₀) g)) : ℂˣ) : ℂ) * φ g) ∈ C.intForms wa n S := by
-  first | exact @GlobalTheory.TwistInt.mul_twist_mem_intForms | exact GlobalTheory.TwistInt.mul_twist_mem_intForms | (intros; apply GlobalTheory.TwistInt.mul_twist_mem_intForms <;> assumption)
+  first | exact @GlobalTheory.TwistInt.mul_twist_mem_intForms

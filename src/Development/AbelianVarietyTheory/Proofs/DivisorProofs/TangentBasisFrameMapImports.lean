@@ -87,7 +87,7 @@ theorem exists_unit {G' : Over (Sp O)} [GrpObj G'] {π : G'.left ⟶ t.G.left}
     change Spec.map (CommRingCat.ofHom (algebraMap O O)) = _
     rw [Algebra.algebraMap_self]
     exact Spec.map_id _
-  let c : S ⟶ specO O O := Over.homMk S.hom (by rw [hid, Category.comp_id]; try rfl)
+  let c : S ⟶ specO O O := Over.homMk S.hom (by rw [hid, Category.comp_id])
   refine ⟨c ≫ ptOf P' x0 hu β₀ hβ₀, ?_⟩
   have hz : ptOf P' x0 hu β₀ hβ₀ ≫ aH P' x0 hu hg.1 = 1 := by
     refine Over.OverMorphism.ext (hg.1.hom_ext ?_ ?_)

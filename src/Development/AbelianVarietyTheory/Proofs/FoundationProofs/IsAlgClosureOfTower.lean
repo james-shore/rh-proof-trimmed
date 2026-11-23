@@ -351,7 +351,7 @@ theorem isAlgClosure_of_tower [Algebra ℚ Ω] [IsAlgClosed Ω] {ε : Ω →+* �
   have hc : (X.exp (algebraMap Ω X.K c)).coeff 0 = c := by
     rw [X.exp.commutes, HahnSeries.algebraMap_apply', PowerSeries.algebraMap_apply, Algebra.algebraMap_self,
       RingHom.id_apply, HahnSeries.ofPowerSeries_C]
-    simp [HahnSeries.C_apply, HahnSeries.coeff_single, Pi.single_apply]
+    simp [HahnSeries.C_apply]
   rw [hc] at hint
   have h1 : IsIntegral ℚ ((D : Ω) ^ k * c) := hint.tower_top
   have h2 : IsIntegral ℚ (algebraMap ℚ Ω (((D : ℚ) ^ k)⁻¹)) := isIntegral_algebraMap

@@ -58,4 +58,4 @@ open NumberField IsDedekindDomain Polynomial Neutral.B1 ReciprocityTheory.Neutra
 theorem _root_.GlobalTheory.T.exists_integer_approx_unit_adicCompletion : ∀ {E' : Type} [Field E'] [NumberField E'] (w' : HeightOneSpectrum (𝓞 E'))
     (u : (w'.adicCompletion E')ˣ) (hu : IsUnitAt w' u),
     ∃ x : 𝓞 E', Valued.v ((u : w'.adicCompletion E') - algebraMap E' (w'.adicCompletion E') (x : E')) < 1 := by
-  first | exact @GlobalTheory.unit_completion_approx_integer | exact GlobalTheory.unit_completion_approx_integer | (intros; apply GlobalTheory.unit_completion_approx_integer <;> assumption)
+  first | exact @GlobalTheory.unit_completion_approx_integer

@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_pow_eq_one_of_poincareKernel_complex : ∀ 
     ∀ x : 𝟙_ (Over (Sp ℂ)) ⟶ A,
       (∃ t : (P.pull (lift (snd A (𝟙_ (Over (Sp ℂ))) ≫ x) (fst A (𝟙_ (Over (Sp ℂ))))).left).Gen, t.IsGen) →
       ∃ k : ℕ, 0 < k ∧ x ^ k = 1 := by
-  first | exact @GlobalTheory.KerPoincare.exists_pow_eq_one_of_kernel | exact GlobalTheory.KerPoincare.exists_pow_eq_one_of_kernel | (intros; apply GlobalTheory.KerPoincare.exists_pow_eq_one_of_kernel <;> assumption)
+  first | exact @GlobalTheory.KerPoincare.exists_pow_eq_one_of_kernel

@@ -51,4 +51,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.levelVector_finiteDatum_isTheta_vacuum_off : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A) i t σ s P cμ cη m ω BW f₀ f c io, IsLiftDataC R F i t σ s P cμ cη m ω BW f₀ f c io → IsThetaFunO R.ψ (Vc D i) (Wc D i) f ∧ ∀ v ∉ finS R t, VacFin R.ψ (Vc D i) (Wc D i) v f := by
-  first | exact @GlobalTheory.FinZeta.levVec_vacFin | exact GlobalTheory.FinZeta.levVec_vacFin | (intros; apply GlobalTheory.FinZeta.levVec_vacFin <;> assumption)
+  first | exact @GlobalTheory.FinZeta.levVec_vacFin

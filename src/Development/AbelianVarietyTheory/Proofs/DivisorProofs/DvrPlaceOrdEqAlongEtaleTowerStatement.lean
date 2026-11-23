@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.dvrPlace_ord_eq_along_etaleTower : ∀ {K L : Type
   IsEtTower cK R cL T ι ψ τ → P.IsPrimeOf T → P0.IsPrimeOf R →
   (∀ g : R, g ≠ 0 → (P0.ord (g : K) = 0 ↔ P.ord (ι g : L) = 0)) →
   ∀ g : R, g ≠ 0 → P.ord (ι g : L) = P0.ord (g : K) := by
-  first | exact @GlobalTheory.FieldPair.UnramOrd.ord_eq_of_etTower | exact GlobalTheory.FieldPair.UnramOrd.ord_eq_of_etTower | (intros; apply GlobalTheory.FieldPair.UnramOrd.ord_eq_of_etTower <;> assumption)
+  first | exact @GlobalTheory.FieldPair.UnramOrd.ord_eq_of_etTower

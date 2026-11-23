@@ -52,4 +52,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DownLift
 
 theorem _root_.GlobalTheory.T.liftInj_and_properties_of_rallis_of_nonVan : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Hk3.HoweUnram → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → R.FullP → GlobalTheory.RawLift.RallisConv D → (∀ i t, NonVan R i t) → GlobalTheory.LiftRows.LiftInj R ∧ ∀ i t, TypeNZ R i t ∧ GoodMem R i t ∧ DownEig R i t ∧ UnrCorr R i t (fun _ => True) ∧ Saturated R i t := by
-  first | exact @GlobalTheory.DownLift.liftRows_injective_and_typeProperties_of_nonvanishing | exact GlobalTheory.DownLift.liftRows_injective_and_typeProperties_of_nonvanishing | (intros; apply GlobalTheory.DownLift.liftRows_injective_and_typeProperties_of_nonvanishing <;> assumption)
+  first | exact @GlobalTheory.DownLift.liftRows_injective_and_typeProperties_of_nonvanishing

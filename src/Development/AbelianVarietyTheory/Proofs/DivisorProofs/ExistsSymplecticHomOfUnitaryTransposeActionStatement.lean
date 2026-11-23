@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_symplectic_hom_of_unitary_transpose_action 
     (∀ g w, (k g w)ᴴ * Jm (R w) (S w) * k g w = Jm (R w) (S w)) →
     ∃ s : G →* Matrix.symplecticGroup l ℝ, Continuous s ∧
       ∀ g c, (s g : Matrix (l ⊕ l) (l ⊕ l) ℝ) *ᵥ φ c = φ fun w => c w * (k g w)ᵀ := by
-  first | exact @GlobalTheory.ColActionD.exists_symplectic_hom_of_unitary_dep | exact GlobalTheory.ColActionD.exists_symplectic_hom_of_unitary_dep | (intros; apply GlobalTheory.ColActionD.exists_symplectic_hom_of_unitary_dep <;> assumption)
+  first | exact @GlobalTheory.ColActionD.exists_symplectic_hom_of_unitary_dep

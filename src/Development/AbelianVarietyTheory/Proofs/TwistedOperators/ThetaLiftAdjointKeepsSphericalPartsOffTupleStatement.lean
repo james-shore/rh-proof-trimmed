@@ -49,4 +49,4 @@ open GlobalTheory.LiftRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaLift_adjoint_keeps_spherical_parts_off_tuple : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Hk3.HoweUnram → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Hk3.Core R F → (∀ t P, GlobalTheory.Hk3.Good R t P → Formalism.DivisionValues.conjPl P = P → GlobalTheory.Hk3.FixAll R t P) → Kept R := by
-  first | exact @GlobalTheory.KeptRows.kept | exact GlobalTheory.KeptRows.kept | (intros; apply GlobalTheory.KeptRows.kept <;> assumption)
+  first | exact @GlobalTheory.KeptRows.kept

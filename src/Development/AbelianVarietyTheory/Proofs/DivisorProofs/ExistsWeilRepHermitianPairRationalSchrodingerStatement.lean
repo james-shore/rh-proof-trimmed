@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_weilRep_hermitianPair_rationalSchrodinger :
             co.e (incM D.host.F x) = (fun i => algebraMap D.host.F (AF D.host.F) (y i), fun i => algebraMap D.host.F (AF D.host.F) (z i))) →
           ∃ om, GlobalTheory.WeilM.IsUWeilPair (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (GlobalTheory.WeilM.adeleClass D.host.F) ψ ξ
             (incM D.host.F JA) (incM D.host.F JB) co χT χS om := by
-  first | exact @GlobalTheory.WeilSchrodinger.exists_isUWeilPair_hsp | exact GlobalTheory.WeilSchrodinger.exists_isUWeilPair_hsp | (intros; apply GlobalTheory.WeilSchrodinger.exists_isUWeilPair_hsp <;> assumption)
+  first | exact @GlobalTheory.WeilSchrodinger.exists_isUWeilPair_hsp

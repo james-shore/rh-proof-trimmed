@@ -122,7 +122,7 @@ theorem UpperTheory.V.AlgebraTools.der_inner :
       · intro h
         exact absurd (Finset.mem_univ _) h
     have hS2 : ∑ s, ∑ k, j (u s k (i0 s)) * j (u s (i0 s) k) = 1 := by
-      simp only [← map_mul, hsame, eq_self_iff_true, if_true]
+      simp only [← map_mul, hsame, if_true]
 
       simp only [← map_sum]
       rw [hone, map_one]

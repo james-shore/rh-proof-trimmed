@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.DIV.Cons Formalism.L2.Pj GlobalTheory.PtTie GlobalTheory.PlaceTop
 
 theorem _root_.GlobalTheory.T.thetaGenerator_place_valuation_bound : ThBoundSt := by
-  first | exact @GlobalTheory.ThetaBound.thBound | exact GlobalTheory.ThetaBound.thBound | (intros; apply GlobalTheory.ThetaBound.thBound <;> assumption)
+  first | exact @GlobalTheory.ThetaBound.thBound

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.mem_subfield_of_bilinForm_basis_monomials : ∀ (X
     (ε : Module.Basis I ℤ S) (K : Type) [Field K] (k₀ : Subfield K), IsAlgClosed k₀ → ∀ (n : ℤ), n ≠ 0 →
     ∀ (t : I → Kˣ), (∀ a b : X, ((∏ k, t k ^ (n * (ε k : LinearMap.BilinForm ℤ X) a b) : Kˣ) : K) ∈ k₀) →
     ∀ k, (t k : K) ∈ k₀ := by
-  first | exact @GlobalTheory.mem_subfield_of_bilinForm_monomials | exact GlobalTheory.mem_subfield_of_bilinForm_monomials | (intros; apply GlobalTheory.mem_subfield_of_bilinForm_monomials <;> assumption)
+  first | exact @GlobalTheory.mem_subfield_of_bilinForm_monomials

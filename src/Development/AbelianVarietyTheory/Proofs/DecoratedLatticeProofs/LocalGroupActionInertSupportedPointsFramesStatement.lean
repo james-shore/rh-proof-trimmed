@@ -56,4 +56,4 @@ open GlobalTheory.InertFrameLoc
 
 
 theorem _root_.GlobalTheory.T.local_group_action_inert_supported_points_frames : ∀ (D : D7) (v : HeightOneSpectrum (𝓞 D.host.F)) (w : HeightOneSpectrum (𝓞 D.host.E)) (hw : IsInertAt D.host.F D.host.E v w) (h : w.under (𝓞 D.host.F) = v) (S T : HSp D) (k : w.adicCompletion D.host.E) (aS : GL (Fin S.rank) (w.adicCompletion D.host.E)) (aT : GL (Fin T.rank) (w.adicCompletion D.host.E)) (gS : Gv S v) (gT : Gv T v) (x : Matrix (Fin T.rank) (Fin S.rank) (w.adicCompletion D.host.E)), actO S T (embV S v gS) (embV T v gT) (uPt hw h k aS aT x) = uPt hw h k aS aT ((aT⁻¹ * locMat D.sp.cm.sig T.gram h gT * aT).1 * x * (aS⁻¹ * locMat D.sp.cm.sig S.gram h gS⁻¹ * aS).1) := by
-  first | exact @GlobalTheory.InertFrameAct.actO_uPt | exact GlobalTheory.InertFrameAct.actO_uPt | (intros; apply GlobalTheory.InertFrameAct.actO_uPt <;> assumption)
+  first | exact @GlobalTheory.InertFrameAct.actO_uPt

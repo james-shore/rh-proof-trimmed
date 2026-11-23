@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.transportedLattices_two_classes_admissible : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : G.Inst D L} {Gl : G.LatInst D} {Kc : G.Consts} {Dx : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Dx cX} (t : KerEntTied ex) u μ i j c c', TaylorLogMetric.admitted D _ _ (t.seam.lat ((t.rd u μ).N i c)) (t.seam.lat ((t.rd u μ).N j c')) := by
-  first | exact @GlobalTheory.TwV.adm_seam_lat_rd_pair | exact GlobalTheory.TwV.adm_seam_lat_rd_pair | (intros; apply GlobalTheory.TwV.adm_seam_lat_rd_pair <;> assumption)
+  first | exact @GlobalTheory.TwV.adm_seam_lat_rd_pair

@@ -130,12 +130,12 @@ theorem diagG_schr (ψ : AddChar (Fv F v) ℂ) (μ : @Measure (κ → Fv F v) (b
   rw [← integral_sub_right_eq_self _ p₂, ← integral_const_mul]
   congr 1
   funext x
-  simp only [schr, elim_dot_elim, elim_add_elim, Prod.fst_add, Prod.snd_add, Prod.fst, Prod.snd]
+  simp only [schr, elim_dot_elim, elim_add_elim, Prod.fst_add, Prod.snd_add]
   have e : Sum.elim (x - p₂ + w.1 + p₁) (x - p₂ + p₂) = Sum.elim (x + (w.1 + (p₁ - p₂))) x := by
     congr 1 <;> abel
   rw [e, ← mul_assoc, ← mul_assoc, ← AddChar.map_add_eq_mul, ← AddChar.map_add_eq_mul]
   congr 2
-  simp only [add_dotProduct, sub_dotProduct, dotProduct_add, dotProduct_sub]
+  simp only [add_dotProduct, sub_dotProduct, dotProduct_add]
   ring
 
 theorem sb_mul {X : Type} [TopologicalSpace X] {f g : X → ℂ} (hf : IsLocallyConstant f) (hg : g ∈ SB X) :

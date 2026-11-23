@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.ZH GlobalTheory.CechPic GlobalTheory.Cartier Glob
 open Classical
 
 theorem _root_.GlobalTheory.T.isAlmostLowerTriangular_of_shear_parabolic : ∀ (ι : Type) (m : ι → ℕ) (τ : ι) (a b : Fin (m τ)), (b : ℕ) = a + 1 → ∀ (L K : Type) [Field L] [Field K] (j : L →+* K) (t : K), t ≠ 0 → ∀ C : Mat m L, Par m ⊤ (shear τ a b t * C.map j) → AlmostLow τ a b C := by
-  first | exact @GlobalTheory.FlagPush.almostLow_of_shear | exact GlobalTheory.FlagPush.almostLow_of_shear | (intros; apply GlobalTheory.FlagPush.almostLow_of_shear <;> assumption)
+  first | exact @GlobalTheory.FlagPush.almostLow_of_shear

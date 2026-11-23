@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.inertPlace_tensorLattice_selfDual_symplectic : ∀
     ∀ z : Matrix (Fin n) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), At (evFin F v) z →
       (z ∈ latAtV X Y v ↔ ∀ γ ∈ latAtV X Y v,
         B.ψ (symp (R := AF F) (_root_.Algebra.TensorProduct.map (_root_.AlgHom.id (AF F) (AF F)) σ) (-1) ((_root_.Matrix.map · (_root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F))) X.J) ((_root_.Matrix.map · (_root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F))) Y.J) z γ) = 1) := by
-  first | exact @GlobalTheory.InertLatSelfDual.latAtV_selfDual_inert | exact GlobalTheory.InertLatSelfDual.latAtV_selfDual_inert | (intros; apply GlobalTheory.InertLatSelfDual.latAtV_selfDual_inert <;> assumption)
+  first | exact @GlobalTheory.InertLatSelfDual.latAtV_selfDual_inert

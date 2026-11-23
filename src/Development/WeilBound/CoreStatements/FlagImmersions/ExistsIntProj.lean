@@ -124,7 +124,7 @@ private theorem exists_eigSp_projector_sum_mem_and_discr_smul (E : Type) [Field 
     intro a
     calc ρ a (∑ k, χ (z k) • ρ (B k) w) = ∑ k, χ (z k) • ρ (a * B k) w := by
 
-          simp [map_sum, map_smul, map_mul, Module.End.mul_apply]
+          simp [map_sum, map_smul, map_mul]
       _ = ∑ k, χ (z k) • ∑ j, ((B.repr (a * B k) j : ℤ) : K) • ρ (B j) w := by
           refine Finset.sum_congr rfl fun k _ => ?_
           conv_lhs => rw [hB a k]
@@ -138,7 +138,7 @@ private theorem exists_eigSp_projector_sum_mem_and_discr_smul (E : Type) [Field 
           refine Finset.sum_congr rfl fun j _ => ?_
 
           rw [hza a j, map_sum, Finset.sum_smul]
-          simp only [map_zsmul, zsmul_eq_mul, map_mul, map_intCast]
+          simp only [zsmul_eq_mul, map_mul, map_intCast]
       _ = χ a • ∑ k, χ (z k) • ρ (B k) w := by
           simp [Finset.smul_sum, smul_smul, map_mul]
   · intro hw
@@ -294,7 +294,7 @@ private theorem mem_lat_of_specializes {X : Scheme.{0}} {G : Over X} [GrpObj G] 
           (X.presheaf.stalk q.1) (X.presheaf.stalk q.1) (X.presheaf.stalk q.1)).toRingHom) := by
         rw [hφl, ← Spec.map_comp, ← Spec.map_comp]
         congr 1
-        ext a <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap] <;> first | rfl | exact map_zero _
+        ext a <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap] <;> first | rfl
       rw [Over.comp_left, ← Category.assoc, key, Category.assoc, hv1]
       let ψ : Over.mk (X.fromSpecStalk q'.1) ⟶ Over.mk (X.fromSpecStalk q.1) := Over.homMk _ hψ
       have h1 : ψ ≫ (1 : Over.mk (X.fromSpecStalk q.1) ⟶ G) = 1 := by
@@ -306,7 +306,7 @@ private theorem mem_lat_of_specializes {X : Scheme.{0}} {G : Over X} [GrpObj G] 
       congr 2
       have hg : ∀ s, genMap ξ q' ((X.presheaf.stalkSpecializes hs).hom s) = genMap ξ q s :=
         fun s => ProjectiveLinePlaces.genMap_specializes hs q'.2 q.2 s
-      ext a <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, hg] <;> first | rfl | exact (hg _).symm
+      ext a <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, hg]
   unfold LieModel.lat at he ⊢
   induction he using Submodule.span_induction with
   | mem x hx =>

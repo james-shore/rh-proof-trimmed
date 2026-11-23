@@ -67,7 +67,7 @@ theorem UpperTheory.V.Odd.resKill :
   refine ⟨max n r + 2, fun m hm M _ h hM u hu => ?_⟩
   have key : ∀ b : (ZMod M)ˣ, (actRep D (↑e) ρ).asAlgebraHom (((MonoidAlgebra.lift ℤ (MonoidAlgebra ℤ_[l] (Gq ρ)) (Gq ρ)) (MonoidAlgebra.of ℤ_[l] (Gq ρ))).toRingHom (MonoidAlgebra.single (((piQ ρ)⁻¹.comp (ZMod.unitsMap h)) b)⁻¹ (↑(↑b : ZMod M).val ^ e * Eone M a ↑b))) = (((↑(↑b : ZMod M).val ^ e * Eone M a ↑b : ℤ) : ℤ_[l])) • galoisActionOnCohomology D (↑e) (ρ (ZMod.unitsMap h b)).toRingEquiv := by
     intro b
-    simp only [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, MonoidAlgebra.lift_single, MonoidHom.comp_apply, MonoidHom.inv_apply, inv_inv, MonoidAlgebra.of_apply, MonoidAlgebra.smul_single, map_zsmul]
+    simp only [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, MonoidAlgebra.lift_single, MonoidHom.comp_apply, MonoidHom.inv_apply, inv_inv, MonoidAlgebra.of_apply, MonoidAlgebra.smul_single]
     rw [Representation.asAlgebraHom_single, zsmul_eq_mul, mul_one]
     rfl
 

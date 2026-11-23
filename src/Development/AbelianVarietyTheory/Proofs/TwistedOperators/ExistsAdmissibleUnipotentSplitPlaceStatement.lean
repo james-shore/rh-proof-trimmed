@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_admissible_unipotent_splitPlace : ∀ {F E 
         ∃ M : Matrix (Fin d) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), M * (GlobalTheory.DblVac.diagonalBlockOfMatrix g + Y * (⅟(2 : AF F) • ((GlobalTheory.DblVac.matD g).toBlocks₁₁ +
           (GlobalTheory.DblVac.matD g).toBlocks₁₂ - (GlobalTheory.DblVac.matD g).toBlocks₂₁ - (GlobalTheory.DblVac.matD g).toBlocks₂₂))) = 1 ∧
           ∀ z ∈ GlobalTheory.InertSph.latAt W v, M *ᵥ z ∈ GlobalTheory.InertSph.latAt W v := by
-  first | exact @GlobalTheory.SplitChoose.exists_admissible_unipotent_splitPlace_alt | exact GlobalTheory.SplitChoose.exists_admissible_unipotent_splitPlace_alt | (intros; apply GlobalTheory.SplitChoose.exists_admissible_unipotent_splitPlace_alt <;> assumption)
+  first | exact @GlobalTheory.SplitChoose.exists_admissible_unipotent_splitPlace_alt

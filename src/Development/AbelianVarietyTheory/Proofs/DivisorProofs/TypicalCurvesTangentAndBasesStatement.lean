@@ -47,4 +47,4 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatFrame
 open MvPowerSeries ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.Sh GlobalTheory.FGDepth
 
 theorem _root_.GlobalTheory.T.typicalCurveEigenspace_and_basisExists : TypicalCurveEigenspace ∧ TypicalCurveBasisExists := by
-  first | exact @GlobalTheory.TypicalCurveBases.typical_curves_tangent_and_bases | exact GlobalTheory.TypicalCurveBases.typical_curves_tangent_and_bases | (intros; apply GlobalTheory.TypicalCurveBases.typical_curves_tangent_and_bases <;> assumption)
+  first | exact @GlobalTheory.TypicalCurveBases.typical_curves_tangent_and_bases

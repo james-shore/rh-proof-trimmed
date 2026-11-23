@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.inertPlace_doubledUnitary_vacuumTensor_eigen : ∀
     ∀ R : (Fin a' × Fin (a + a') → AF F) → ℂ, Rest (evFin F v) (G.M'.vac v) R →
     ∀ g ∈ GlobalTheory.InertDbl.KAtD σ G.W v, ∃ c : ℂ, omd g (GlobalTheory.InertDbl.dblFun (tens (evFin F v) (G.M'.vac v) R)) =
       c • GlobalTheory.InertDbl.dblFun (tens (evFin F v) (G.M'.vac v) R) := by
-  first | exact @GlobalTheory.InertDblLine.line | exact GlobalTheory.InertDblLine.line | (intros; apply GlobalTheory.InertDblLine.line <;> assumption)
+  first | exact @GlobalTheory.InertDblLine.line

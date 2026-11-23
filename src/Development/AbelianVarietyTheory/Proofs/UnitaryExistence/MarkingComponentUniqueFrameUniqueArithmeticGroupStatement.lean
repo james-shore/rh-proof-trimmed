@@ -46,4 +46,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Member
 
 theorem _root_.GlobalTheory.T.marking_component_unique_frame_unique_arithmeticGroup : ∀ (D : D7) (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host D.host.E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (V : HSp D) (r : ℕ) (C : Ctx Xo c σ V r), C.OK → ∀ h, (∀ k k' γ γ', C.Mark h k γ → C.Mark h k' γ' → k = k') ∧ ∀ k γ γ', C.Mark h k γ → C.Mark h k γ' → ∃ δ ∈ (C.M.X k).Γ, C.fr (γ' * h) k = lact δ (C.fr (γ * h) k) := by
-  first | exact @GlobalTheory.MarkUniq.mark_unique | exact GlobalTheory.MarkUniq.mark_unique | (intros; apply GlobalTheory.MarkUniq.mark_unique <;> assumption)
+  first | exact @GlobalTheory.MarkUniq.mark_unique

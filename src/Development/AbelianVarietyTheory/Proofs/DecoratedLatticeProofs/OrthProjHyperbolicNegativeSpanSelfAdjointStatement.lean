@@ -50,4 +50,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.orthProjHyperbolicNegativeSpan_selfAdjoint : ∀ (D : D7) (X : HidaSetting D) (u : D.what₂.Word) (x y : VA X.B.I), hA X.B.I (GlobalTheory.ScalW.prj X u x) y = hA X.B.I x (GlobalTheory.ScalW.prj X u y) := by
-  first | exact @GlobalTheory.ScalW.prj_selfAdjoint | exact GlobalTheory.ScalW.prj_selfAdjoint | (intros; apply GlobalTheory.ScalW.prj_selfAdjoint <;> assumption)
+  first | exact @GlobalTheory.ScalW.prj_selfAdjoint

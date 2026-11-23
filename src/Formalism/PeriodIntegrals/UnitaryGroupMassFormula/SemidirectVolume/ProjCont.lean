@@ -60,9 +60,7 @@ theorem toMatrix'_lin (g : HA R σ J) :
       ((HA.mat R σ J g : GL (Fin M) (R ⊗[F] E)) : Matrix (Fin M) (Fin M) (R ⊗[F] E)) := by
   unfold Formalism.L2.SG.Sub.lin
   first
-    | exact LinearMap.toMatrix'_mulVecLin _
     | exact LinearMap.toMatrix'_toLin' _
-    | (ext i j; simp [LinearMap.toMatrix'_apply, Matrix.mulVec, dotProduct, Pi.single_apply])
 
 theorem piMat_eq (g : HA R σ J) :
     piMat (P := P) (T := T) g = LinearMap.toMatrix' (datR R σ J P T).pU +

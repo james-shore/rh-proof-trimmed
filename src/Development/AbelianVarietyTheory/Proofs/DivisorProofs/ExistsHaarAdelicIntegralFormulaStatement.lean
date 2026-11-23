@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_haar_adelic_integral_formula : ∀ (F : Typ
         Integrable (fun x => g (fun i => evI F (x i)) * ∏ᶠ v, φ v (fun i => evFin F v (x i))) μ ∧
         ∫ x, g (fun i => evI F (x i)) * ∏ᶠ v, φ v (fun i => evFin F v (x i)) ∂μ =
           (∫ z, g z ∂(measI F κ)) * ∏ᶠ v, ∫ z, φ v z ∂(Measure.pi fun _ : κ => measV ψ v) := by
-  first | exact @GlobalTheory.WeylMeas.exists_meas | exact GlobalTheory.WeylMeas.exists_meas | (intros; apply GlobalTheory.WeylMeas.exists_meas <;> assumption)
+  first | exact @GlobalTheory.WeylMeas.exists_meas

@@ -113,7 +113,7 @@ theorem wAt_lineAt_ne {θ : InfFam D} (hθ : IsInfFam θ) {m n : ℕ} (τ : D.wh
   funext i j
   obtain ⟨hf, hr⟩ := lineAt_fin_eq_zero_and_inf_other_eq_zero hθ τ z t i j
   have hid := GlobalTheory.T.cmAdeleIdempotentOfPlace_properties D
-  simp only [wAt, Matrix.zero_apply, Pi.zero_apply]
+  simp only [wAt, Matrix.zero_apply]
   apply ae_eq_zero_of_fin_zero_of_theta_inf_zero hθ
   · simp [map_mul, hf]
   · intro ρ

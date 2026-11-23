@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.nsmul_aeval_mem_lattice_of_int_rational_matrix : �
     Tq.map (Rat.cast : ℚ → ℝ) = LinearMap.toMatrix e e (γ.restrictScalars ℝ) →
     ∀ (p : Polynomial ℚ) (D : ℕ), (∀ k l, ∃ m : ℤ, (D : ℚ) * Polynomial.aeval Tq p k l = m) →
     ∀ x ∈ Λ, (D • Polynomial.aeval γ p) x ∈ Λ := by
-  first | exact @GlobalTheory.nsmul_aeval_mem_lattice_of_intMatrix | exact GlobalTheory.nsmul_aeval_mem_lattice_of_intMatrix | (intros; apply GlobalTheory.nsmul_aeval_mem_lattice_of_intMatrix <;> assumption)
+  first | exact @GlobalTheory.nsmul_aeval_mem_lattice_of_intMatrix

@@ -86,14 +86,6 @@ lemma lowMinusUp_expand {B : Matrix (Fin n) (Fin n) ℂ} (hB : IsBlock ε B) :
     first
     | simp only [Matrix.sum_apply, Matrix.smul_apply, Matrix.single_apply, smul_eq_mul, mul_ite,
         mul_one, mul_zero]
-    | (simp only [Matrix.sum_apply]
-       refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
-       by_cases h : a = i ∧ b = j
-       · rw [if_pos h]
-         obtain ⟨rfl, rfl⟩ := h
-         simp
-       · rw [if_neg h]
-         simp [Matrix.single_apply, h])
   rw [hsum]
   rw [Finset.sum_eq_single i (fun a _ ha => Finset.sum_eq_zero fun b _ => if_neg fun h => ha h.1)
     (fun h => absurd (Finset.mem_univ i) h)]
@@ -123,9 +115,6 @@ lemma isBlock_single {a b : Fin n} (h : ε b = ε a) : IsBlock ε (Matrix.single
     exact absurd h.symm hne
   · first
     | rw [Matrix.single_apply, if_neg h']
-    | simp [Matrix.single_apply, h']
-    | (simp only [Matrix.single_apply]
-       exact if_neg h')
 
 lemma scal (μ : Fin n → ℤ) (hμ : IsMu lam μ) (B : Matrix (Fin n) (Fin n) ℂ) :
     2 * ∑ a, (μ a : ℂ) * B a a =
@@ -135,18 +124,12 @@ lemma scal (μ : Fin n → ℤ) (hμ : IsMu lam μ) (B : Matrix (Fin n) (Fin n) 
     have hgt1 : (univ.filter (fun b => a < b ∧ ε b = ε a)).card +
         (univ.filter (fun b => a < b ∧ ε b ≠ ε a)).card = (univ.filter (fun b => a < b)).card := by
       first
-      | (have h1 := Finset.filter_card_add_filter_neg_card_eq_card
-            (s := univ.filter (fun b => a < b)) (fun b => ε b = ε a)
-         simpa only [Finset.filter_filter, ne_eq] using h1)
       | (have h1 := Finset.card_filter_add_card_filter_not
             (s := univ.filter (fun b => a < b)) (fun b => ε b = ε a)
          simpa only [Finset.filter_filter, ne_eq] using h1)
     have hlt1 : (univ.filter (fun b => b < a ∧ ε b = ε a)).card +
         (univ.filter (fun b => b < a ∧ ε b ≠ ε a)).card = (univ.filter (fun b => b < a)).card := by
       first
-      | (have h1 := Finset.filter_card_add_filter_neg_card_eq_card
-            (s := univ.filter (fun b => b < a)) (fun b => ε b = ε a)
-         simpa only [Finset.filter_filter, ne_eq] using h1)
       | (have h1 := Finset.card_filter_add_card_filter_not
             (s := univ.filter (fun b => b < a)) (fun b => ε b = ε a)
          simpa only [Finset.filter_filter, ne_eq] using h1)
@@ -155,12 +138,9 @@ lemma scal (μ : Fin n → ℤ) (hμ : IsMu lam μ) (B : Matrix (Fin n) (Fin n) 
       first
       | (rw [Finset.filter_lt_eq_Ioi, Fin.card_Ioi]
          omega)
-      | (simp only [Finset.filter_lt_eq_Ioi, Fin.card_Ioi]
-         omega)
     have hc2 : (univ.filter (fun b : Fin n => b < a)).card = (a : ℕ) := by
       first
       | rw [Finset.filter_gt_eq_Iio, Fin.card_Iio]
-      | simp [Finset.filter_gt_eq_Iio]
     have hr : ((μ a : ℤ) : ℝ) = lowK ε lam a + 2 * rhoC ε a := by
       rw [hμ a]
       delta lowK rhoC rhoN rho

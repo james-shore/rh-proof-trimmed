@@ -63,7 +63,7 @@ omit [NumberField E] [IsCMField E] in
 theorem _root_.GlobalTheory.Ker.ConjDatum.conjugate_twice (τ : E →+* ℂ) :
     ComplexEmbedding.conjugate (ComplexEmbedding.conjugate τ) = τ := by
   ext x
-  simp [ComplexEmbedding.conjugate_coe_eq]
+  simp
 
 open Matrix Complex NumberField in
 open scoped ComplexConjugate Classical in

@@ -65,7 +65,6 @@ theorem kq_norm_l_lt : ‖(l : ℂ_[l])‖ < 1 := by
   rw [e, norm_algebraMap']
   first
   | exact Padic.norm_p_lt_one
-  | (rw [Padic.norm_p]; exact inv_lt_one_of_one_lt₀ (by exact_mod_cast (Fact.out : l.Prime).one_lt))
 
 theorem kq_add_le (x y : ℂ_[l]) (r : ℝ) (hx : ‖x‖ ≤ r) (hy : ‖y‖ ≤ r) : ‖x + y‖ ≤ r := (IsUltrametricDist.norm_add_le_max x y).trans (max_le hx hy)
 
@@ -77,7 +76,6 @@ private theorem kq_intnorm_lemma (n : ℤ) : ‖(n : ℂ_[l])‖ = ‖(n : ℚ_[
 theorem kq_int_le (n : ℤ) : ‖(n : ℂ_[l])‖ ≤ 1 := by
   rw [kq_intnorm_lemma]
   first
-  | exact padicNormE.norm_int_le_one n
   | exact Padic.norm_int_le_one n
 
 theorem kq_int_dvd (n : ℤ) (h : (l : ℤ) ∣ n) : ‖(n : ℂ_[l])‖ ≤ ‖(l : ℂ_[l])‖ := by
@@ -92,7 +90,6 @@ theorem kq_int_unit (n : ℤ) (h : ¬ (l : ℤ) ∣ n) : ‖(n : ℂ_[l])‖ = 1
   have hc : IsCoprime (l : ℤ) n := by
     first
     | exact (Irreducible.coprime_iff_not_dvd hp.irreducible).mpr h
-    | exact (Prime.coprime_iff_not_dvd hp).mpr h
   obtain ⟨a, b, hab⟩ := hc
   have e : (a : ℂ_[l]) * (l : ℂ_[l]) + (b : ℂ_[l]) * (n : ℂ_[l]) = 1 := by exact_mod_cast hab
   have h1 := IsUltrametricDist.norm_add_le_max ((a : ℂ_[l]) * (l : ℂ_[l])) ((b : ℂ_[l]) * (n : ℂ_[l]))
@@ -290,8 +287,6 @@ theorem kur_quad (d : ℕ) (hd : d % 4 = 3) (hl : l ≠ 2) (hld : ¬ l ∣ d)
   have e2 : ((2 : MaximalUnramifiedExtension l) : ℂ_[l]) = 2 := by
     first
     | rfl
-    | norm_cast
-    | simp
   have hA2 : (⟨a, haK⟩ : MaximalUnramifiedExtension l) * 2 = 1 - D := by
     apply Subtype.ext
     show a * ((2 : MaximalUnramifiedExtension l) : ℂ_[l]) = ((1 - D : MaximalUnramifiedExtension l) : ℂ_[l])

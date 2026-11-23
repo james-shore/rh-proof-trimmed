@@ -50,4 +50,4 @@ open GlobalTheory.Unf
 
 
 theorem _root_.GlobalTheory.T.exists_rational_wittFlagCoordinates_of_mem_unipotent : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ) (d : HypDec V V₀ ρ) (γ : GA D V), γ ∈ GQ V → γ ∈ flagN d → ∃ (c : skewA D ρ) (b : Mx D ρ V₀.rank) (u : UX D ρ), γ = d.nC c * (d.nB b * d.levi u.1) ∧ c.1 ∈ ratMx D ρ ρ ∧ b ∈ ratMx D ρ V₀.rank ∧ u ∈ UXQ D ρ := by
-  first | exact @GlobalTheory.RatCoord.rat_coords_of_mem_flagN | exact GlobalTheory.RatCoord.rat_coords_of_mem_flagN | (intros; apply GlobalTheory.RatCoord.rat_coords_of_mem_flagN <;> assumption)
+  first | exact @GlobalTheory.RatCoord.rat_coords_of_mem_flagN

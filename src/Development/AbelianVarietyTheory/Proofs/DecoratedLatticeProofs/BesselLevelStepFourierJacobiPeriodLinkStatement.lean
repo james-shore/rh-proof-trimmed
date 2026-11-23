@@ -47,4 +47,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Unf
 
 theorem _root_.GlobalTheory.T.bessel_level_step_fourierJacobi_period_link : ∀ D : D7, LinkLaw D := by
-  first | exact @GlobalTheory.UnfLink.link | exact GlobalTheory.UnfLink.link | (intros; apply GlobalTheory.UnfLink.link <;> assumption)
+  first | exact @GlobalTheory.UnfLink.link

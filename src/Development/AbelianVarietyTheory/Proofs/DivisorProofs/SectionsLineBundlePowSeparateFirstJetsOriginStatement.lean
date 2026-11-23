@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.sections_lineBundlePow_separate_firstJets_origin :
         ∑ j, c j * (valR (epsLift (x.v (j.cast hg.symm))) ((LPow x.P.A x.P.L (N : ℤ) (baseOver (Sp K))).U fun _ => i₀)
           (s.f fun _ => i₀)).snd = 0) →
     a = 0 ∧ c = 0 := by
-  first | exact @GlobalTheory.MBLow.JetSep.sep | exact GlobalTheory.MBLow.JetSep.sep | (intros; apply GlobalTheory.MBLow.JetSep.sep <;> assumption)
+  first | exact @GlobalTheory.MBLow.JetSep.sep

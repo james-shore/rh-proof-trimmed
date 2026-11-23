@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.invariant_mem_of_orbit_height_separation : ∀ {G 
     (∀ i, (∃ w : M, w ≠ 0 ∧ (∀ g, π g w = w) ∧ w ∈ ⨆ g : G, V (g • i)) →
       ∃ v ∈ S, ∃ u ∈ ⨆ (j) (_ : μ j < μ i), V j, v - u ∈ (⨆ g : G, V (g • i)) ∧ v - u ≠ 0) →
     ∀ w : M, (∀ g, π g w = w) → w ∈ S := by
-  first | exact @GlobalTheory.fixed_mem_of_orbit_height | exact GlobalTheory.fixed_mem_of_orbit_height | (intros; apply GlobalTheory.fixed_mem_of_orbit_height <;> assumption)
+  first | exact @GlobalTheory.fixed_mem_of_orbit_height

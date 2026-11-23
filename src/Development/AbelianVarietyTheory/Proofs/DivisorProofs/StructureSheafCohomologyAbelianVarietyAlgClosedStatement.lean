@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.O
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.structureSheafCohomology_abelianVariety_algClosed : ∀ (K : Type) [Field K] [IsAlgClosed K] (A : Over (Sp K)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → Module.Finite K (HO1 A.hom) ∧ Module.finrank K (HO1 A.hom) = g ∧ GlobalTheory.AbCoh.WedgeO (OAff A.hom) ∧ GlobalTheory.AbCoh.NoPrimitiveStructureSheafH2 A ∧ GlobalTheory.AbCoh.AxesVanishingStructureSheafDegOne A := by
-  first | exact @GlobalTheory.AbCoh.structureSheafCoh_abelianVariety_algClosed | exact GlobalTheory.AbCoh.structureSheafCoh_abelianVariety_algClosed | (intros; apply GlobalTheory.AbCoh.structureSheafCoh_abelianVariety_algClosed <;> assumption)
+  first | exact @GlobalTheory.AbCoh.structureSheafCoh_abelianVariety_algClosed

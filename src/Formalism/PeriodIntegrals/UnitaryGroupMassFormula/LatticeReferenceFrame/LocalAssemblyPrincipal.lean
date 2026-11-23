@@ -194,8 +194,7 @@ theorem local_assembly_principal : PPAssemble := by
         + (T : I.E) ^ 2 * (1 - (θ : I.E) - star (θ : I.E))
         + (1 - (T : I.E) ^ 2) := by
       rw [hzdef]
-      simp only [hG_smul_left, hG_smul_right, hG_sub_left, hG_sub_right, star_natCast, star_star, star_sub,
-        star_smul]
+      simp only [hG_smul_left, hG_smul_right, hG_sub_left, hG_sub_right, star_natCast, star_star]
       rw [hl1, hl2]
       ring
     rw [hzz]
@@ -213,7 +212,7 @@ theorem local_assembly_principal : PPAssemble := by
       have h : (θ : I.E) * hG I z ((T : I.E) • w i.castSucc) =
           ((T : I.E) ^ 2 * hG I (w (Fin.last k)) (w i.castSucc)) * ((θ : I.E) * star (θ : I.E)) := by
         rw [hzdef]
-        simp only [hG_smul_left, hG_smul_right, hG_sub_left, star_natCast, star_star, star_sub]
+        simp only [hG_smul_left, hG_smul_right, hG_sub_left, star_natCast, star_star]
         rw [hl3]
         ring
       rw [h]
@@ -224,7 +223,7 @@ theorem local_assembly_principal : PPAssemble := by
       have h : star (θ : I.E) * hG I z ((T : I.E) • wd i.castSucc) =
           -((T : I.E) ^ 2 * hG I (wd (Fin.last k)) (wd i.castSucc)) * ((θ : I.E) * star (θ : I.E)) := by
         rw [hzdef]
-        simp only [hG_smul_left, hG_smul_right, hG_sub_left, star_natCast, star_star, star_sub]
+        simp only [hG_smul_left, hG_smul_right, hG_sub_left, star_natCast, star_star]
         rw [hl4]
         ring
       rw [h]

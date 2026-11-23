@@ -51,4 +51,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.derivWeierstrassP_mul_prod_translate_of_kernel_reps : ∀ (L : PeriodPair) (α : ℂ) (S : Finset ℂ), α ≠ 0 → MulStable L α → IsKerReps L α S → Even S.card → ∀ z, α * z ∉ L.lattice → L.derivWeierstrassP z * ∏ t ∈ S, L.derivWeierstrassP (z + t) = (∏ t ∈ S, L.derivWeierstrassP t) * α ^ 3 * L.derivWeierstrassP (α * z) := by
-  first | exact @GlobalTheory.CMModel.derivWeierstrassP_mul_prod_translate_kernel | exact GlobalTheory.CMModel.derivWeierstrassP_mul_prod_translate_kernel | (intros; apply GlobalTheory.CMModel.derivWeierstrassP_mul_prod_translate_kernel <;> assumption)
+  first | exact @GlobalTheory.CMModel.derivWeierstrassP_mul_prod_translate_kernel

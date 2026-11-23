@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.gramLowerTriangularFactor_gradedLength_smooth : ∀ (n s : ℕ) (G : V n → Matrix (Fin s) (Fin s) ℂ) (v : V n), MContDiffAt ∞ G v → (G v).PosDef → MContDiffAt ∞ (fun x => ldPart (G x)) v ∧ ∀ i, ContDiffAt ℝ ∞ (fun x => grD (G x) i) v := by
-  first | exact @GlobalTheory.ChernCalc.ldPart_grD_smooth | exact GlobalTheory.ChernCalc.ldPart_grD_smooth | (intros; apply GlobalTheory.ChernCalc.ldPart_grD_smooth <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.ldPart_grD_smooth

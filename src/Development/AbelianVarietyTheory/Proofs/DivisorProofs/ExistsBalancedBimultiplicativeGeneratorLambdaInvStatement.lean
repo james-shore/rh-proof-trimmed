@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_balanced_bimultiplicative_generator_lambda_
     ∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Projective O X] [Module.Finite O X] [Module.Free ℤ X]
       (c : X → (𝟙_ (Over (Sp R)) ⟶ B)), (∀ y y', c (y + y') = c y * c y') → (∀ (a : O) (y : X), c (a • y) = c y ≫ act.act a) →
     ∃ τ : ∀ y z : X, LB.Gen (LB.LinComb M.L (GlobalTheory.PolDeg.lamPts (c y) (c z)) GlobalTheory.PolDeg.negε), GlobalTheory.UTau0.BalTau M cub act c τ := by
-  first | exact @GlobalTheory.UBalA.exists_balTau | exact GlobalTheory.UBalA.exists_balTau | (intros; apply GlobalTheory.UBalA.exists_balTau <;> assumption)
+  first | exact @GlobalTheory.UBalA.exists_balTau

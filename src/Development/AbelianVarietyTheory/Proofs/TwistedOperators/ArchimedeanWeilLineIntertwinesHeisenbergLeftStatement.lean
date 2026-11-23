@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.archimedean_weil_line_intertwines_heisenberg_left 
           ∀ (t : ℝ) (p q : (Fin n × Fin d → mixedEmbedding.mixedSpace F)) (f g : SInf F (Fin n × Fin d)),
             ⇑g = GlobalTheory.GaussLine.heisFun (GlobalTheory.GaussLine.pairInf F (Fin n × Fin d)) p q ⇑f →
             ⇑(T t g) = GlobalTheory.GaussLine.heisFun (GlobalTheory.GaussLine.pairInf F (Fin n × Fin d)) (A t (p, q)).1 (A t (p, q)).2 ⇑(T t f) := by
-  first | exact @GlobalTheory.ArchLineAct.intertwine_pair_left | exact GlobalTheory.ArchLineAct.intertwine_pair_left | (intros; apply GlobalTheory.ArchLineAct.intertwine_pair_left <;> assumption)
+  first | exact @GlobalTheory.ArchLineAct.intertwine_pair_left

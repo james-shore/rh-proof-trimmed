@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.fockReading_translatedForm_mem_complexForms : ∀ 
       (fun ρ => (u ρ : ↥((X.R.MW j (sg0 D X.A3.A)).sm ρ))) = X.geo.v₀ j (sg0 D X.A3.A) →
     ∀ (z : Bridge.Gf (Vc D j)), z ∈ Subgroup.center (Bridge.Gf (Vc D j)) →
     (fun h => X.R.ioP j (PiTensorProduct.tprod ℂ u) ((X.R.HV j t).e y (h * z))) ∈ (Y.Z.ρ.B i j b).formsC (Y.Z.ρ.tw i b 0 ∅ 1) := by
-  first | exact @GlobalTheory.FockReadForms.fockRead_mem_formsC | exact GlobalTheory.FockReadForms.fockRead_mem_formsC | (intros; apply GlobalTheory.FockReadForms.fockRead_mem_formsC <;> assumption)
+  first | exact @GlobalTheory.FockReadForms.fockRead_mem_formsC

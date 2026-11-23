@@ -77,4 +77,4 @@ theorem _root_.GlobalTheory.T.exists_eigenCoordinates_idempotentRange_quotient :
     (∀ k c x, ℓ k (σ c x) = Ideal.Quotient.mk I (χ (κ k) c) * ℓ k x) ∧
     (∀ x ∈ LinearMap.range π, x ∈ F ↔ ∀ k, ℓ k x = 0) ∧
     (∀ k, y k ∈ LinearMap.range π) ∧ ∀ j k, ℓ j (y k) = if j = k then 1 else 0 := by
-  first | exact @GlobalTheory.exists_eigen_coordinates_range_quot | exact GlobalTheory.exists_eigen_coordinates_range_quot | (intros; apply GlobalTheory.exists_eigen_coordinates_range_quot <;> assumption)
+  first | exact @GlobalTheory.exists_eigen_coordinates_range_quot

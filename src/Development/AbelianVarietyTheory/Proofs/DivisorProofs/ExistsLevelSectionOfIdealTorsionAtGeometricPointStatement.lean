@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.exists_levelSection_of_ideal_torsion_at_geometricP
     (hP : P ≫ (GlobalTheory.EqvAct.pullG TF Z φ).hom = x ≫ ℓ)
     (hT : ∀ a ∈ I, P ≫ ((GlobalTheory.EqvAct.pullAct TF Z φ).act a).left =
       P ≫ (GlobalTheory.EqvAct.pullG TF Z φ).hom ≫ (MonObj.one : 𝟙_ (Over X') ⟶ GlobalTheory.EqvAct.pullG TF Z φ).left), ∃ c, P = x ≫ GlobalTheory.TorsSpec.etaSecL TF Z φ ℓ hℓ c := by
-  first | exact @GlobalTheory.TorsSpec.exists_etaSecL_of_torsI | exact GlobalTheory.TorsSpec.exists_etaSecL_of_torsI | (intros; apply GlobalTheory.TorsSpec.exists_etaSecL_of_torsI <;> assumption)
+  first | exact @GlobalTheory.TorsSpec.exists_etaSecL_of_torsI

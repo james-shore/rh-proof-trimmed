@@ -46,4 +46,4 @@ open GlobalTheory.SepRows GlobalTheory.CoreOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.adjointExchange_laws_thetaHeisenberg : ∀ D : D7, ExchLaw D := by
-  first | exact @GlobalTheory.ExchPf.exchLaw | exact GlobalTheory.ExchPf.exchLaw | (intros; apply GlobalTheory.ExchPf.exchLaw <;> assumption)
+  first | exact @GlobalTheory.ExchPf.exchLaw

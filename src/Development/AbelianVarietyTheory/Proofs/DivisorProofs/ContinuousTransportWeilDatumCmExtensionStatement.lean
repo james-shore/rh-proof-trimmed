@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.continuous_transport_weil_datum_cm_extension : ∀
               co.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) →
             ∀ om : UG (cA σ) (incM F JA) × UG (cA σ) (incM F JB) →* Module.End ℂ ((κ → AF F) → ℂ),
               GlobalTheory.WeilSchrodinger.IsTransportF σ B.ψ co ω om → IsContOn (adeleClass F) om := by
-  first | exact @GlobalTheory.WeilContF.continuous_transportF | exact GlobalTheory.WeilContF.continuous_transportF | (intros; apply GlobalTheory.WeilContF.continuous_transportF <;> assumption)
+  first | exact @GlobalTheory.WeilContF.continuous_transportF

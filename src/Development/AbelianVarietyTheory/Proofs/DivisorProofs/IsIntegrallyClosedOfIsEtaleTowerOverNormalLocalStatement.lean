@@ -49,4 +49,4 @@ open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.isIntegrallyClosed_of_isEtaleTowerOverNormalLocal : ∀ {K L : Type} [Field K] [Field L] (cK : ℂ →+* K) (cL : ℂ →+* L) (r : ℕ) (R : Subring K) (T : Subring L)
     (ι : R →+* T) (ψ : T →+* R) (τ : Fin r → T), IsEtTower cK R cL T ι ψ τ → IsIntegrallyClosed T := by
-  first | exact @GlobalTheory.FieldPair.isIntegrallyClosed_of_isEtTower | exact GlobalTheory.FieldPair.isIntegrallyClosed_of_isEtTower | (intros; apply GlobalTheory.FieldPair.isIntegrallyClosed_of_isEtTower <;> assumption)
+  first | exact @GlobalTheory.FieldPair.isIntegrallyClosed_of_isEtTower

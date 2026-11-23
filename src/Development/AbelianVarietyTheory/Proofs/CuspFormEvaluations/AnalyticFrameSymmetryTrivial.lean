@@ -118,7 +118,7 @@ theorem tay_coord {g : ℕ} (k : Fin g) :
     congr 2
     by_cases h : k = j
     · subst h; simp
-    · simp [h, Ne.symm h, Pi.single_apply]
+    · simp [h]
 
 
 theorem psJet_X {κ : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) (s : κ) :

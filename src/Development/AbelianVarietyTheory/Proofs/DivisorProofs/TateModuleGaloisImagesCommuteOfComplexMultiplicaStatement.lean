@@ -50,4 +50,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.tateModule_galoisImages_commute_of_complexMultiplication : ∀ (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω] [IsSepClosure K Ω] (A : Over (Sp K)) [GrpObj A] [IsCommMonObj A], IsAbelianScheme A → ∀ (F : Type) [Field F] [NumberField F], HasCMBy A F → ∀ (l : ℕ) [Fact l.Prime], (l : K) ≠ 0 → ∀ σ τ : Ω ≃ₐ[K] Ω, galTate A l σ * galTate A l τ = galTate A l τ * galTate A l σ := by
-  first | exact @GlobalTheory.CMComm.galTate_commute_of_hasCMBy | exact GlobalTheory.CMComm.galTate_commute_of_hasCMBy | (intros; apply GlobalTheory.CMComm.galTate_commute_of_hasCMBy <;> assumption)
+  first | exact @GlobalTheory.CMComm.galTate_commute_of_hasCMBy

@@ -51,11 +51,6 @@ theorem absFin_latLoc_le : ∀ {F E : Type} [Field F] [NumberField F] [Field E] 
   first
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc
-  | exact @_root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc
-  | exact _root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc
-  | (apply _root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LocalLatticeBound.exists_bound_latLoc ..)
 
 end GlobalTheory

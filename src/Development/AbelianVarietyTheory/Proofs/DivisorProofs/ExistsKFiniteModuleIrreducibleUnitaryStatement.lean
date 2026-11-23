@@ -53,4 +53,4 @@ open CompanionTheory.D.LK (IsKMod IsMin)
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.exists_kFiniteModule_irreducible_unitary : CompanionTheory.D.LK.KModExists := by
-  first | exact @GlobalTheory.CompanionTheory.KModExistsStep.kModExists_holds | exact GlobalTheory.CompanionTheory.KModExistsStep.kModExists_holds | (intros; apply GlobalTheory.CompanionTheory.KModExistsStep.kModExists_holds <;> assumption)
+  first | exact @GlobalTheory.CompanionTheory.KModExistsStep.kModExists_holds

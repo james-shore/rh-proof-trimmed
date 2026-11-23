@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.fockMap_of_canonicalCommutation_placewise_signatur
       (lineSign a b * Complex.I) • H (Pi.single w (Matrix.single a b Complex.I)) f₀ = 0) →
     ∃ Φ : (⨂[ℂ] w : W, Formalism.BasicNotions.TH.Pol (P w) (Q w) (R w) (S w)) →ₗ[ℂ] V, Function.Injective Φ ∧
       ∀ c T, Φ (sumPl (fun w => heisOp (c w)) T) = H c (Φ T) := by
-  first | exact @GlobalTheory.CCRFock.fock_map_of_ccr_dep | exact GlobalTheory.CCRFock.fock_map_of_ccr_dep | (intros; apply GlobalTheory.CCRFock.fock_map_of_ccr_dep <;> assumption)
+  first | exact @GlobalTheory.CCRFock.fock_map_of_ccr_dep

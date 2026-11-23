@@ -46,4 +46,4 @@ open GlobalTheory GlobalTheory.CM
 
 
 theorem _root_.GlobalTheory.T.cmPointObject_exists_of_laws : CMCurve → CMPoint → ThetaUnifAV → Out.Laws → Out.Laws2 → HomExtDvr → Published.KernelFiniteFlatSt → CMExistsSt := by
-  first | exact @GlobalTheory.CM.ExObj.cmExists | exact GlobalTheory.CM.ExObj.cmExists | (intros; apply GlobalTheory.CM.ExObj.cmExists <;> assumption)
+  first | exact @GlobalTheory.CM.ExObj.cmExists

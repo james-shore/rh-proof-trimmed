@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.reduction_conj_frame_eq_cast_reduction_at_level_pr
       LiftBrg.ActQ.redZ X I U L i t A k κ w =
         LiftBrg.castGL (LiftBrg.rkEq X i).symm (Formalism.L2.DIV.redFn (L.βV i) w.1
           (Formalism.UG.bc (swapAE X.toD7) ((κ : Bridge.Gf (Vc X.toD7 i)) : GL (Fin (Vc X.toD7 i).rank) _))) := by
-  first | exact @GlobalTheory.Mem.R3.LiftBrg.ActQ.redZ_eq_castGL_redFn | exact GlobalTheory.Mem.R3.LiftBrg.ActQ.redZ_eq_castGL_redFn | (intros; apply GlobalTheory.Mem.R3.LiftBrg.ActQ.redZ_eq_castGL_redFn <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.LiftBrg.ActQ.redZ_eq_castGL_redFn

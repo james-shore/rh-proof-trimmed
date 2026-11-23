@@ -56,4 +56,4 @@ open scoped TensorProduct
 
 
 theorem _root_.GlobalTheory.T.exists_unitary_carry_hyperbolicFamily_wittFrame : ∀ {D : D7} {V : HSp D} (Φ : WittFrame V) {a : ℕ} (ha : a ≤ wittIndex V) (x x' : Fin a → V.V), LinearIndependent D.host.E (Sum.elim x x') → (∀ i j, V.hD (x i) (x j) = 0) → (∀ i j, V.hD (x' i) (x' j) = 0) → (∀ i j, V.hD (x i) (x' j) = if i = j then 1 else 0) → ∃ g : GF V, ∀ i, GlobalTheory.Cusp.ratAct D.sp.cm V g (x i) = Φ.e (Fin.castLE ha i) ∧ GlobalTheory.Cusp.ratAct D.sp.cm V g (x' i) = Φ.f (Fin.castLE ha i) := by
-  first | exact @GlobalTheory.WittCarry.exists_GF_carry_hyperbolic | exact GlobalTheory.WittCarry.exists_GF_carry_hyperbolic | (intros; apply GlobalTheory.WittCarry.exists_GF_carry_hyperbolic <;> assumption)
+  first | exact @GlobalTheory.WittCarry.exists_GF_carry_hyperbolic

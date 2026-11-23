@@ -45,4 +45,4 @@ open scoped TensorProduct InnerProductSpace ContDiff
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.transvectionCuspidal_of_rapidDecay_holomorphicType : ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (w : D.what₂.Tau → Fin V.rank → ℤ), IsInfFam θ → HolShape M → ∀ φ : GA D V → ℂ, IsAutFun V φ → HolAd θ M w φ → GlobalTheory.CuspDecay.IsRapidDecay θ V φ → ZCusp V φ := by
-  first | exact @GlobalTheory.HolDict.ZDecay.zCusp_of_rapidDecay | exact GlobalTheory.HolDict.ZDecay.zCusp_of_rapidDecay | (intros; apply GlobalTheory.HolDict.ZDecay.zCusp_of_rapidDecay <;> assumption)
+  first | exact @GlobalTheory.HolDict.ZDecay.zCusp_of_rapidDecay

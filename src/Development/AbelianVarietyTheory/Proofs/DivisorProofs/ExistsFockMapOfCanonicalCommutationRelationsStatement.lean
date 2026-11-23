@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_fockMap_of_canonicalCommutationRelations : 
       (lineSign a b * Complex.I) • H (Pi.single w (Matrix.single a b Complex.I)) f₀ = 0) →
     ∃ Φ : (⨂[ℂ] _ : W, Pol P Q R S) →ₗ[ℂ] V, Function.Injective Φ ∧
       ∀ c T, Φ (sumPl (fun w => heisOp (c w)) T) = H c (Φ T) := by
-  first | exact @GlobalTheory.CCRFock.fock_map_of_ccr | exact GlobalTheory.CCRFock.fock_map_of_ccr | (intros; apply GlobalTheory.CCRFock.fock_map_of_ccr <;> assumption)
+  first | exact @GlobalTheory.CCRFock.fock_map_of_ccr

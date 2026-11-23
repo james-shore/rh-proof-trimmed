@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.reset_modelsMeasuresForms_enlargedCoefficientBase 
     HEq core'.Q.H z.core.Q.H → HEq core'.Q.l z.core.Q.l → HEq core'.Q.c z.core.Q.c →
     ∀ {Xg : Finset (Gc B' w'.px → B'.LL)} {tr : TrI B' w'.px} (R : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) core'.Q.c.F) (cG : G0 R.Pg (w'.st Z').toD7.R.r ≃* G0g (w'.st Z').toD7.nd), Kept T' w' Z' hX' Wt' R cG → RSideA z Wt' R →
     ∃ (R₁ : RealDat3 (w'.st Z').toD7 (famR (w'.st Z') w'.I hX' (usedOf w'.I T' Wt') Xg tr) core'.Q.c.F) (cG₁ : G0 R₁.Pg (w'.st Z').toD7.R.r ≃* G0g (w'.st Z').toD7.nd), Kept T' w' Z' hX' Wt' R₁ cG₁ ∧ RSideW z Wt' R₁ := by
-  first | exact @GlobalTheory.Mem.R3.Rw.resetW | exact GlobalTheory.Mem.R3.Rw.resetW | (intros; apply GlobalTheory.Mem.R3.Rw.resetW <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.resetW

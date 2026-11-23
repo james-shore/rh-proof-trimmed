@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_maps_of_relations_alt : GlobalTheory.Publis
       ∑ i, c i • wordE τ (u i) m₀ = 0) →
     ∃ T : Fin d → (H →ₗ[ℂ] M), (∀ a v, IsKFin ε σ v → ∀ x, T a (ltrV σ x v) = τ x (T a v)) ∧ ∑ a, T a (w a) = m₀ ∧
       ∀ a v, IsKFin ε σ v → ∃ (m : ℕ) (c : Fin m → ℂ) (u : Fin m → List (Ltr ε)), T a v = ∑ i, c i • wordE τ (u i) m₀ := by
-  first | exact @GlobalTheory.TypeSum.CoefClos.exists_maps_of_relations | exact GlobalTheory.TypeSum.CoefClos.exists_maps_of_relations | (intros; apply GlobalTheory.TypeSum.CoefClos.exists_maps_of_relations <;> assumption)
+  first | exact @GlobalTheory.TypeSum.CoefClos.exists_maps_of_relations

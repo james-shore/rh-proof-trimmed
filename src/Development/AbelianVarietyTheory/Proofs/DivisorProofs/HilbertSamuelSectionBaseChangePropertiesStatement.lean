@@ -51,4 +51,4 @@ open GlobalTheory
 open GlobalTheory.HSShort GlobalTheory.HSChoice MvPolynomial
 
 theorem _root_.GlobalTheory.T.hilbertSamuelSectionBaseChange_properties : ∀ (F : Type) [Field F] [NumberField F] (X : Data F) (Λ₀ : ℝ) (E : Type) [Field E] [NumberField E] [Algebra F E], (∀ (m : ℕ) (v : Fin m → (sysOf X Λ₀).V X.T), LinearIndependent F v → LinearIndependent E fun i => totExt X.toGeo E (v i)) ∧ (∀ u x, shift (X.toGeo.baseChange E) (fun k => algebraMap F E (u k)) (totExt X.toGeo E x) = totExt X.toGeo E (shift X.toGeo u x)) ∧ ∀ j, Submodule.span E (totExt X.toGeo E '' (sysOf X Λ₀).V j) = LinearMap.range (incl (X.baseChange E) j) := by
-  first | exact @GlobalTheory.HSShort.totExt_props | exact GlobalTheory.HSShort.totExt_props | (intros; apply GlobalTheory.HSShort.totExt_props <;> assumption)
+  first | exact @GlobalTheory.HSShort.totExt_props

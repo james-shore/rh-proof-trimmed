@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.linearHom_kills_torsion_of_weilPairing_divisible :
       ∃ r : 𝓞 E, GlobalTheory.CM.WeilEq X.B.t.PP.L f ψ (X.A true).t.PP.L ((X.A true).t.act.act ((n : 𝓞 E) * r)) (𝟙 _)
         (spMap (σ₁.comp (algebraMap (𝓞 K) K)))) →
     ∀ u : Over.mk (spMap (σ₁.comp (algebraMap (𝓞 K) K))) ⟶ (X.A true).t.G, u ^ n = 1 → u ≫ ψ = 1 := by
-  first | exact @GlobalTheory.FlatCM.TorsKill.kill | exact GlobalTheory.FlatCM.TorsKill.kill | (intros; apply GlobalTheory.FlatCM.TorsKill.kill <;> assumption)
+  first | exact @GlobalTheory.FlatCM.TorsKill.kill

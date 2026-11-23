@@ -64,4 +64,4 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
 
 theorem _root_.GlobalTheory.T.piExteriorTensor_isSubquotient_of_forall : ∀ (α : Type) [Fintype α] [DecidableEq α] (Γ : α → Type) [∀ a, Group (Γ a)] (X Y : α → Type) [∀ a, AddCommGroup (X a)] [∀ a, Module ℂ (X a)] [∀ a, AddCommGroup (Y a)] [∀ a, Module ℂ (Y a)] (ρ : ∀ a, Representation ℂ (Γ a) (X a)) (ρ' : ∀ a, Representation ℂ (Γ a) (Y a)), (∀ a, IsSubquotient (ρ a) (ρ' a)) → IsSubquotient (piTensor ρ) (piTensor ρ') := by
-  first | exact @GlobalTheory.piTensor_isSubquotient_of_forall | exact GlobalTheory.piTensor_isSubquotient_of_forall | (intros; apply GlobalTheory.piTensor_isSubquotient_of_forall <;> assumption)
+  first | exact @GlobalTheory.piTensor_isSubquotient_of_forall

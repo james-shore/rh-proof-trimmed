@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.unitaryDualPair_global_to_local_tensor_transfer : 
       (∀ w : T, ∀ g ∈ GlobalTheory.HoweGlobalPair.opFin om w.1, ∀ t, L t ∈ N →
         L (TensorProduct.map LinearMap.id (PiTensorProduct.map (Function.update
           (fun w' : T => (LinearMap.id : ↥(GlobalTheory.WeilM.SB (Fin n × Fin d → Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Fv F w'.1)) →ₗ[ℂ] _)) w g)) t) ∈ N) := by
-  first | exact @GlobalTheory.HoweGlobalPair.tensor_transfer | exact GlobalTheory.HoweGlobalPair.tensor_transfer | (intros; apply GlobalTheory.HoweGlobalPair.tensor_transfer <;> assumption)
+  first | exact @GlobalTheory.HoweGlobalPair.tensor_transfer

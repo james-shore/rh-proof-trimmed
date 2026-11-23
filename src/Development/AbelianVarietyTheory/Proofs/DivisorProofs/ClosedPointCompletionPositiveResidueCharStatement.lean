@@ -50,4 +50,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.closedPoint_completion_positive_residueChar : ∀ (o' Ω : Type) [CommRing o'] [Field Ω] [Algebra o' Ω] [ArithBase o' Ω] (M : RatModel o' Ω) (x : M.Z), IsClosed ({x} : Set M.Z) → Algebra.EssFiniteType ℤ (M.Z.presheaf.stalk x) ∧ ∀ (R : Type) [CommRing R] [IsLocalRing R] (j : M.Z.presheaf.stalk x →+* R), IsCpl j → IsLocalHom j ∧ ∃ p : ℕ, p.Prime ∧ (p : R) ∈ maximalIdeal R := by
-  first | exact @GlobalTheory.UPoinc.ClosedPt.closedPoint_cpl_residueChar | exact GlobalTheory.UPoinc.ClosedPt.closedPoint_cpl_residueChar | (intros; apply GlobalTheory.UPoinc.ClosedPt.closedPoint_cpl_residueChar <;> assumption)
+  first | exact @GlobalTheory.UPoinc.ClosedPt.closedPoint_cpl_residueChar

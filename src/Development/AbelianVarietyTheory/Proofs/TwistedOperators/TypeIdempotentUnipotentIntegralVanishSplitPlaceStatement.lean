@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.typeIdempotent_unipotentIntegral_vanish_splitPlace
       (f = GlobalTheory.AutomorphicL2Unitary.conv μ ((T.frame v).idem μ (T.τ v)) φ ∨ f = GlobalTheory.AutomorphicL2Unitary.conv μ φ ((T.frame v).idem μ (T.τ v))) →
     ∀ (ν : Measure (NLoc 𝔉 v.1)) [ν.IsHaarMeasure] (x y : GLoc D.sp.cm.sig V.gram v.1),
       Integrable (fun n : NLoc 𝔉 v.1 => f (x * n * y)) ν ∧ ∫ n : NLoc 𝔉 v.1, f (x * n * y) ∂ν = 0 := by
-  first | exact @GlobalTheory.LocConst.unip_integral_vanish | exact GlobalTheory.LocConst.unip_integral_vanish | (intros; apply GlobalTheory.LocConst.unip_integral_vanish <;> assumption)
+  first | exact @GlobalTheory.LocConst.unip_integral_vanish

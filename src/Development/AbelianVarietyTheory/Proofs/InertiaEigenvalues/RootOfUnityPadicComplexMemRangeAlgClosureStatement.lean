@@ -54,4 +54,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.rootOfUnity_padicComplex_mem_range_algClosure : ∀ (l : ℕ) [Fact l.Prime] (x : ℂ_[l]) (m : ℕ), 0 < m → x ^ m = 1 → ∃ z : Om l, (z : ℂ_[l]) = x := by
-  first | exact @GlobalTheory.rootOfUnity_mem_range_Om | exact GlobalTheory.rootOfUnity_mem_range_Om | (intros; apply GlobalTheory.rootOfUnity_mem_range_Om; all_goals assumption)
+  first | exact @GlobalTheory.rootOfUnity_mem_range_Om

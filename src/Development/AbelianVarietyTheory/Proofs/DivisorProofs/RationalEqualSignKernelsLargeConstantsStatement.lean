@@ -44,4 +44,4 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.SumSize GlobalTheory.KerConjMean
 
 theorem _root_.GlobalTheory.T.rationalEqualSignKernels_largeConstants : BigC fun _ ch _ _ => RatTopAt ch := by
-  first | exact @GlobalTheory.KerConjMean.ratTopAt_big | exact GlobalTheory.KerConjMean.ratTopAt_big | (intros; apply GlobalTheory.KerConjMean.ratTopAt_big <;> assumption)
+  first | exact @GlobalTheory.KerConjMean.ratTopAt_big

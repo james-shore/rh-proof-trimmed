@@ -221,9 +221,9 @@ private theorem lh_pullback_map_fst_snd_of_lh (q : ℕ) {U V E X : Spc} (f : U �
         · simp only [Category.assoc, Category.id_comp, pullback.lift_fst, pullback.lift_fst_assoc, pullback.lift_snd, pullback.lift_snd_assoc, pullback.map]
         · simp only [Category.assoc, Category.id_comp, pullback.lift_fst, pullback.lift_fst_assoc, pullback.lift_snd, pullback.lift_snd_assoc, pullback.map]
       · apply pullback.hom_ext
-        · simp only [Category.assoc, Category.id_comp, pullback.lift_fst, pullback.lift_fst_assoc, pullback.lift_snd, pullback.lift_snd_assoc, pullback.map]
+        · simp only [Category.assoc, Category.id_comp, pullback.lift_fst, pullback.lift_snd, pullback.map]
           exact pullback.condition
-        · simp only [Category.assoc, Category.id_comp, pullback.lift_fst, pullback.lift_fst_assoc, pullback.lift_snd, pullback.lift_snd_assoc, pullback.map])
+        · simp only [Category.assoc, Category.id_comp, pullback.lift_snd, pullback.lift_snd_assoc, pullback.map])
     (by
       apply pullback.hom_ext
       · simp only [Category.assoc, Category.id_comp, pullback.lift_fst, pullback.lift_fst_assoc, pullback.lift_snd, pullback.lift_snd_assoc, pullback.map]

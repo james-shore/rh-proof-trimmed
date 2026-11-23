@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.vacuumBasePoint_unique_all_tuples : Big fun ch => ∀ t t' b b', IsBase t ch.S.B b → IsBase t' ch.S.B b' → b = b' := by
-  first | exact @GlobalTheory.RowBaseUniq.isBase_unique | exact GlobalTheory.RowBaseUniq.isBase_unique | (intros; apply GlobalTheory.RowBaseUniq.isBase_unique <;> assumption)
+  first | exact @GlobalTheory.RowBaseUniq.isBase_unique

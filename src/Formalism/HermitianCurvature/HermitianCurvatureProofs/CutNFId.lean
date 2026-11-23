@@ -61,7 +61,7 @@ theorem normC_one (w : List C.Letter) : TBB.normC (fun _ => (1 : ℝ)) w = 1 := 
   unfold TBB.normC
   induction w with
   | nil => simp
-  | cons a w ih => simp [ih]
+  | cons a w ih => simp
 
 
 end place

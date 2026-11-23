@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.FD (cc herm)
 open scoped ComplexConjugate ComplexOrder Real Classical
 
 theorem _root_.GlobalTheory.T.siegelWeil_formula_degree_succ : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (Ψ : Finset (E →+* ℂ)), IsType Ψ → ∀ (n N : ℕ), Even n → 4 * (N + 1) < n → SWAt Ψ n N → SWAt Ψ n (N + 1) := by
-  first | exact @GlobalTheory.SW.swAt_succ | exact GlobalTheory.SW.swAt_succ | (intros; apply GlobalTheory.SW.swAt_succ <;> assumption)
+  first | exact @GlobalTheory.SW.swAt_succ

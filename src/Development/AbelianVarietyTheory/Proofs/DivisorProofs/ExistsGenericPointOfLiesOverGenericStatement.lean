@@ -48,4 +48,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.exists_genericPoint_of_lies_over_generic : ∀ (R : Type) [CommRing R] [IsDomain R] (M' : Modif R) (W : Type) [CommRing W] [IsDomain W] (φ : R →+* W) (ξ : Sp W ⟶ M'.S), Function.Injective φ → ξ ≫ M'.π = spMap φ → ∃ (w : Sp W) (k : Sp (FractionRing R)), ξ w = M'.gp k := by
-  first | exact @GlobalTheory.Mum.modif_pt_over_gen | exact GlobalTheory.Mum.modif_pt_over_gen | (intros; apply GlobalTheory.Mum.modif_pt_over_gen <;> assumption)
+  first | exact @GlobalTheory.Mum.modif_pt_over_gen

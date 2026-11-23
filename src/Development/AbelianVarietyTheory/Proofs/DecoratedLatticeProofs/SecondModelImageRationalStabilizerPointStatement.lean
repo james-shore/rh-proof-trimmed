@@ -45,4 +45,4 @@ open scoped TensorProduct InnerProductSpace Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.secondModel_image_rational_stabilizerPoint : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (u : D.what₂.Word) (ψ : AddChar (AF D.host.F) ℂ) (B : SBes X h u ψ (D.sp.X 0)) (a : GA D (D.sp.X 0)), a ∈ GQ (D.sp.X 0) → ∃ γ : Gam X u, iotaI X u γ = (B.toH a).1 ∧ iotaF X u γ = (B.toH a).2 := by
-  first | exact @GlobalTheory.Core.Mi.toH_rat | exact GlobalTheory.Core.Mi.toH_rat | (intros; apply GlobalTheory.Core.Mi.toH_rat <;> assumption)
+  first | exact @GlobalTheory.Core.Mi.toH_rat

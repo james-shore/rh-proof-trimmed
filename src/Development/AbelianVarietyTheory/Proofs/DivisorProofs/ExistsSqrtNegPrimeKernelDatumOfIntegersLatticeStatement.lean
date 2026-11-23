@@ -43,4 +43,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.exists_sqrtNegPrimeKernelDatum_of_integersLattice : ∀ (p : ℕ) (L₀ : PeriodPair), p.Prime → p % 4 = 3 → 3 < p → IsIntegersLattice p L₀ → ∃ (L : PeriodPair) (t : ℂ), Datum p ℚ⟮(latticeCurve L₀).j⟯ L t ∧ (latticeCurve L).j = (latticeCurve L₀).j := by
-  first | exact @GlobalTheory.CMModel.exists_datum_of_isIntegersLattice | exact GlobalTheory.CMModel.exists_datum_of_isIntegersLattice | (intros; apply GlobalTheory.CMModel.exists_datum_of_isIntegersLattice <;> assumption)
+  first | exact @GlobalTheory.CMModel.exists_datum_of_isIntegersLattice

@@ -46,4 +46,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.realThetaIntertwiners_proportional_of_discreteSeries : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → ∀ D : D7, GlobalTheory.Chain.ItLine D := by
-  first | exact @GlobalTheory.Chain.RealLine.itLine_of_discreteSeries | exact GlobalTheory.Chain.RealLine.itLine_of_discreteSeries | (intros; apply GlobalTheory.Chain.RealLine.itLine_of_discreteSeries <;> assumption)
+  first | exact @GlobalTheory.Chain.RealLine.itLine_of_discreteSeries

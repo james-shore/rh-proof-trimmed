@@ -53,4 +53,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
 theorem _root_.GlobalTheory.T.exists_rational_translate_flagUnipotent_height_le : ∀ (D : D7) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S S₀ ρ), ∃ C : ℝ, ∀ n ∈ flagN d, ∃ γ ∈ GQ S, γ ∈ flagN d ∧ height S (γ * n) ≤ C := by
-  first | exact @GlobalTheory.FlagHeight.exists_rat_translate_height_le | exact GlobalTheory.FlagHeight.exists_rat_translate_height_le | (intros; apply GlobalTheory.FlagHeight.exists_rat_translate_height_le <;> assumption)
+  first | exact @GlobalTheory.FlagHeight.exists_rat_translate_height_le

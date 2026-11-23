@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.exists_specialisation_coefficientSpace_to_dualWeyl
       (∀ P ∈ Formalism.L2.DIV.VV K lam, φ P ∈ nablaSq K n (lam τ₀)) ∧
       ∀ (M : Matrix (Fin n) (Fin n) K) (P : Formalism.L2.DIV.Pol K ι n),
         φ (Formalism.GradedWeylDivisibility.blockAct K (fun τ => if τ = τ₀ then M else 1) P) = Formalism.GradedWeylDivisibility.rowAct K M (φ P) := by
-  first | exact @GlobalTheory.specialise_factor | exact GlobalTheory.specialise_factor | (intros; apply GlobalTheory.specialise_factor <;> assumption)
+  first | exact @GlobalTheory.specialise_factor

@@ -111,7 +111,7 @@ theorem phase_eq_of_lastMove {k : Type} [Field k] [ValuativeRel k] [TopologicalS
       intro z f s
       simp only [rowVar]
       rw [dite_eq_right (by omega)]
-    simp only [hrow, hx1, colVar, Fin.val_mk, hst, map_inv]
+    simp only [hrow, hx1, colVar, Fin.val_mk, hst]
     rw [← map_inv]
     have hv : ∀ (g : GL (Fin (topRank Γ (i + 1))) k) a b,
         (embX (Γ.m - 2 - i) g).val (Sum.inl a) (Sum.inl b) = g.val a b := fun _ _ _ => rfl

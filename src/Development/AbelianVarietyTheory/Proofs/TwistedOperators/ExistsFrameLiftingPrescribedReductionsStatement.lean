@@ -51,4 +51,4 @@ open GlobalTheory.SeeConjRead
 
 
 theorem _root_.GlobalTheory.T.exists_frame_lifting_prescribed_reductions : ∀ {D : D7} {n : ℕ} (β₀ : GL (Fin n) (EAf D)) (S : Finset (Pl D.host.E)) (W : Pl D.host.E → Fin n → Fin n → EAf D), (∀ Q ∈ S, ∀ i j, ((β₀⁻¹).val * colMat (W Q)) i j ∈ Formalism.L2.Herm.intAf D.host.F D.host.E) → (∀ Q ∈ S, Valued.v (GlobalTheory.StdFrames.cpt Q ((β₀⁻¹).val * colMat (W Q)).det) = 1) → ∃ β : GL (Fin n) (EAf D), GlobalTheory.NormSum.AdLattice.lat β = GlobalTheory.NormSum.AdLattice.lat β₀ ∧ ∀ Q ∈ S, RedIs β Q (W Q) := by
-  first | exact @GlobalTheory.SeeConjRead.exists_lift_redIs | exact GlobalTheory.SeeConjRead.exists_lift_redIs | (intros; apply GlobalTheory.SeeConjRead.exists_lift_redIs <;> assumption)
+  first | exact @GlobalTheory.SeeConjRead.exists_lift_redIs

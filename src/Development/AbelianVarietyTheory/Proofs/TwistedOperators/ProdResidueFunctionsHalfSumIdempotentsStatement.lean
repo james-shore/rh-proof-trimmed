@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.prod_residueFunctions_half_sum_idempotents : ∀ (
       IsHalf (∑ PP ∈ s, es PP) t →
       (open Classical in (if IsIntM (frMapO S T βS βT t) then ∏ PP ∈ s, ω PP (redM PP (frMapO S T βS βT t)) else 0)) =
         ∏ PP ∈ s, locFn S T βS βT (es PP) PP (ω PP) (es PP • t) := by
-  first | exact @GlobalTheory.StepVec.prod_locFn_half | exact GlobalTheory.StepVec.prod_locFn_half | (intros; apply GlobalTheory.StepVec.prod_locFn_half <;> assumption)
+  first | exact @GlobalTheory.StepVec.prod_locFn_half

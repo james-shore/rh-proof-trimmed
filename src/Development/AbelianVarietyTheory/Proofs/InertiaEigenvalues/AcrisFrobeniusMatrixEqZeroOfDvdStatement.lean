@@ -51,4 +51,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.acris_frobenius_matrix_eq_zero_of_dvd : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (d c : ℕ) (D₀ F F' : Matrix (Fin d) (Fin d) (Per.Acris l)), (∀ i j, ((algebraMap (Ainf l) (Per.Acris l)).comp bk.ev) X ∣ D₀ i j) → (l : Per.Acris l) ^ c • D₀ = F * D₀.map (phiA l) * F' → D₀ = 0 := by
-  first | exact @GlobalTheory.BKLim.acris_frob_eq_zero | exact GlobalTheory.BKLim.acris_frob_eq_zero | (intros; apply GlobalTheory.BKLim.acris_frob_eq_zero <;> assumption)
+  first | exact @GlobalTheory.BKLim.acris_frob_eq_zero

@@ -44,4 +44,4 @@ open Formalism.L2.Pj Formalism.L2.PjFree Formalism.L2.Pj.QAt Formalism.L2.LamCM 
 open scoped LaurentSeries
 
 theorem _root_.GlobalTheory.T.arithmeticCMKnownTheorems_proof : Known := by
-  first | exact @GlobalTheory.ArcCM.known_holds | exact GlobalTheory.ArcCM.known_holds | (intros; apply GlobalTheory.ArcCM.known_holds <;> assumption)
+  first | exact @GlobalTheory.ArcCM.known_holds

@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.bezout_eisenstein_derivative_prime_pow : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K), ∃ (c : ℕ) (a b : Polynomial (Wq l bk.a)), a * bk.Ep + b * Polynomial.derivative bk.Ep = Polynomial.C ((l : Wq l bk.a) ^ c) := by
-  first | exact @GlobalTheory.BSP.bezout_Ep_derivative | exact GlobalTheory.BSP.bezout_Ep_derivative | (intros; apply GlobalTheory.BSP.bezout_Ep_derivative <;> assumption)
+  first | exact @GlobalTheory.BSP.bezout_Ep_derivative

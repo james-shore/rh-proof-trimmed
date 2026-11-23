@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.span_thetaTranslates_torsion_eq_top : ∀ (K : Typ
     (∀ i, SymLift x.P.A x.P.L ((m ^ 2 : ℕ) : ℤ) (m ^ 2) (pt i) (U i) ∧ Tr x.P x.rig m th (U i) (t i)) →
     Submodule.span K (Set.range fun i =>
       (SecMod.mk (fst (baseOver (Sp K)) x.P.A).left (t i) : EA x.P (𝟙 (Sp K)) (m ^ 2))) = ⊤ := by
-  first | exact @GlobalTheory.TSpan.span_eq_top | exact GlobalTheory.TSpan.span_eq_top | (intros; apply GlobalTheory.TSpan.span_eq_top <;> assumption)
+  first | exact @GlobalTheory.TSpan.span_eq_top

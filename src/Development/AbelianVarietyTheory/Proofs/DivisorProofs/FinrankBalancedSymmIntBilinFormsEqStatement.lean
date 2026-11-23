@@ -48,4 +48,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.finrank_balancedSymmIntBilinForms_eq : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Free ℤ X] [Module.Finite ℤ X], Module.finrank ℤ (balForms H.bar X) = Module.finrank ℚ E / 2 * Module.finrank (𝓞 E) X * Module.finrank (𝓞 E) X := by
-  first | exact @GlobalTheory.BalRank.finrank_balForms | exact GlobalTheory.BalRank.finrank_balForms | (intros; apply GlobalTheory.BalRank.finrank_balForms <;> assumption)
+  first | exact @GlobalTheory.BalRank.finrank_balForms

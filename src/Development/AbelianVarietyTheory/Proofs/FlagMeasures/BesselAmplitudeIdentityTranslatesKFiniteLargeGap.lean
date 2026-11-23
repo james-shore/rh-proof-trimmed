@@ -216,7 +216,7 @@ theorem oneAt : GlobalTheory.GapIn.Hyp → ∀ (k r : ℕ) (L : Formalism.MainNo
     ext η
     conv_lhs => rw [← e.sum_repr' η]
 
-    simp [ContinuousLinearMap.sum_apply, map_sum]
+    simp [map_sum]
   have hFe : ∀ g ∈ UH (Hpk k r), F g = ∑ i, ∑ j, coefF L (x i) (y i) (X i (e j)) (e j) g := by
     intro g hg
     rw [hF g hg]

@@ -46,4 +46,4 @@ open Formalism.MainNotions.SchurIrreducible (IrrU IrrGK IsHCMod)
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.isKilledByLowerNilradical_act_blockDiagonal : ∀ (p q : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (act : Mat p q →ₗ[ℂ] Module.End ℂ V), IsLieAct act → ∀ Z : Mat p q, IsKC Z → ∀ x : V, KilledByLower act x → KilledByLower act (act Z x) := by
-  first | exact @GlobalTheory.KilledByLowerStable.killedByLower_act | exact GlobalTheory.KilledByLowerStable.killedByLower_act | (intros; apply GlobalTheory.KilledByLowerStable.killedByLower_act <;> assumption)
+  first | exact @GlobalTheory.KilledByLowerStable.killedByLower_act

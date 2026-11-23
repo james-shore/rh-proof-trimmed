@@ -49,4 +49,4 @@ open AlgebraicGeometry CategoryTheory Limits ReciprocityTheory.ChartRestriction.
 open scoped Matrix nonZeroDivisors
 
 theorem _root_.GlobalTheory.T.cuspForms_dominantWeight_finiteDimensional : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (σ : c.F →+* ℂ), GoodEmb c σ → IsUnf (U σ) → CuspFD Xo c U := by
-  first | exact @GlobalTheory.cuspForms_finiteDimensional_of_isUnf | exact GlobalTheory.cuspForms_finiteDimensional_of_isUnf | (intros; apply GlobalTheory.cuspForms_finiteDimensional_of_isUnf <;> assumption)
+  first | exact @GlobalTheory.cuspForms_finiteDimensional_of_isUnf

@@ -50,4 +50,4 @@ open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestrictio
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_half_uniformiser_frameMatrix_prescribed_reductions : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) (Q : Finset (Pl D.host.E)) (e : AE D), IsIdemSum e Q → ∀ ϖ : 𝓞 D.host.E, ϖ ≠ 0 → ∀ y : ∀ PP : Pl D.host.E, Matrix (Fin T.rank) (Fin S.rank) (kP PP), ∃ u : WO S T, IsHalf e u ∧ IsIntM (frMapO S T βS βT (u.map fun w => incA D (ϖ : D.host.E) * w)) ∧ ∀ PP ∈ Q, redM PP (frMapO S T βS βT (u.map fun w => incA D (ϖ : D.host.E) * w)) = y PP := by
-  first | exact @GlobalTheory.HalfFrameLift.exists_half_redM_frMapO | exact GlobalTheory.HalfFrameLift.exists_half_redM_frMapO | (intros; apply GlobalTheory.HalfFrameLift.exists_half_redM_frMapO <;> assumption)
+  first | exact @GlobalTheory.HalfFrameLift.exists_half_redM_frMapO

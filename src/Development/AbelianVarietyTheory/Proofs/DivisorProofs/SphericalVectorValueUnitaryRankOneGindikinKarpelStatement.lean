@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.sphericalVector_value_unitaryRankOne_gindikinKarpe
     φ (y⁻¹ * u) = if Valued.v (((u : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) (lo k) (lo k).rev) ≤ 1 then 1
       else α k ^ (-ordL (((u : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) (lo k) (lo k).rev)) *
         (q : ℂ) ^ (ordL (((u : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) (lo k) (lo k).rev)) := by
-  first | exact @GlobalTheory.GKUnitaryRankOne.value_rankOne | exact GlobalTheory.GKUnitaryRankOne.value_rankOne | (intros; apply GlobalTheory.GKUnitaryRankOne.value_rankOne <;> assumption)
+  first | exact @GlobalTheory.GKUnitaryRankOne.value_rankOne

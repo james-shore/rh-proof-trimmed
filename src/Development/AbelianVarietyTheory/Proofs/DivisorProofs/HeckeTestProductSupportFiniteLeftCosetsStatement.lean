@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.heckeTestProduct_support_finite_leftCosets : ∀ (
       (∀ k ∈ K', ∀ k' ∈ K', ∀ g, f' (k * g * k') = f' g) →
       (Function.support (fun q : (G.GAf × Gr G 1) ⧸ (L.K.toSubgroup.prod K' : Subgroup (G.GAf × Gr G 1)) =>
         f q.out.1 * f' q.out.2)).Finite := by
-  first | exact @GlobalTheory.testProd_support_finite | exact GlobalTheory.testProd_support_finite | (intros; apply GlobalTheory.testProd_support_finite <;> assumption)
+  first | exact @GlobalTheory.testProd_support_finite

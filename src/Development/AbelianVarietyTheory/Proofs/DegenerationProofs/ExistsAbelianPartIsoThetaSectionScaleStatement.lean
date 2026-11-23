@@ -50,4 +50,4 @@ open GlobalTheory GlobalTheory.Ex
 open GlobalTheory.Ex.AbPartIso
 
 theorem _root_.GlobalTheory.T.exists_abelianPartIso_theta_section_scale : AllIso fun {_} _ _ {_} {_} {F} _ _ {N} {N'} ν ν' {_} w f => ∃ lm : F, ∀ x, N'.th (f x) = lm * wVal ν ν' w f x * N.th x := by
-  first | exact @GlobalTheory.Ex.AbPartIso.exists_th_scale | exact GlobalTheory.Ex.AbPartIso.exists_th_scale | (intros; apply GlobalTheory.Ex.AbPartIso.exists_th_scale <;> assumption)
+  first | exact @GlobalTheory.Ex.AbPartIso.exists_th_scale

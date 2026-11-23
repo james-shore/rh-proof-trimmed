@@ -50,4 +50,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh Gl
 
 theorem _root_.GlobalTheory.T.isIntegrallyClosed_pointLocalRing_normalScheme : ∀ (X : Scheme.{0}) [IsIntegral X] [GlobalTheory.IsNormalScheme X] (x : X),
     IsIntegrallyClosed (locRing x) := by
-  first | exact @GlobalTheory.FieldPair.isIntegrallyClosed_locRing | exact GlobalTheory.FieldPair.isIntegrallyClosed_locRing | (intros; apply GlobalTheory.FieldPair.isIntegrallyClosed_locRing <;> assumption)
+  first | exact @GlobalTheory.FieldPair.isIntegrallyClosed_locRing

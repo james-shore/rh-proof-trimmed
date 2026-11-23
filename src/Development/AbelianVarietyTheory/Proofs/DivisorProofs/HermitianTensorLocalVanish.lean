@@ -55,7 +55,7 @@ theorem hTens_dbl {R E : Type} [CommRing R] [CommRing E] [Algebra R E] (c : E �
     (x y : Matrix α (β ⊕ β) E) :
     hTens c JA (dbl JB) x y = hTens c JA JB x.toCols₁ y.toCols₁ + hTens c JA (-JB) x.toCols₂ y.toCols₂ := by
   simp only [hTens, dbl, Fintype.sum_sum_type, fromBlocks_apply₁₁, fromBlocks_apply₁₂, fromBlocks_apply₂₁,
-    fromBlocks_apply₂₂, Matrix.zero_apply, mul_zero, zero_mul, Finset.sum_const_zero, add_zero, zero_add, toCols₁, toCols₂,
+    fromBlocks_apply₂₂, Matrix.zero_apply, mul_zero, zero_mul, add_zero, zero_add, toCols₁, toCols₂,
     of_apply, ← Finset.sum_add_distrib]
 
 theorem rhs_dbl {K : Type} [CommRing K] {m n : Type} [Fintype m] [Fintype n] (A : Matrix m m K)

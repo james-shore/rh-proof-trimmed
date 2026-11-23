@@ -121,12 +121,12 @@ theorem partCharInv_of (hfin : FinPart) : PartCharInv := by
           rw [← map_add (f := _)]
           congr 1
           funext x
-          simp [pureA, add_mul, mul_assoc, mul_comm, mul_left_comm]
+          simp [pureA, add_mul, mul_comm]
         map_smul' := fun s h => by
           rw [RingHom.id_apply, ← map_smul]
           congr 1
           funext x
-          simp [pureA, add_mul, mul_assoc, mul_comm, mul_left_comm] }
+          simp [pureA, mul_assoc, mul_comm] }
     have hB : a g = a g₁ := by
       have h := hfin F ψ hψ κ' κ'' a (fun y h hh => by
         show l (pureA F f₁ _) = l (pureA F f₁ h)

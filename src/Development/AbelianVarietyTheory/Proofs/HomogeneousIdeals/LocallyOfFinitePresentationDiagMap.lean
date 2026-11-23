@@ -536,7 +536,7 @@ theorem isMonHom_of_comp {B : Scheme.{u}} (h : S ⟶ B) (g : S' ⟶ B) (e : g = 
     · rw [hφ]
       simp [m, Over.pullbackComp]
       erw [Category.id_comp]
-      simp [Over.mapComp, pullback.lift_fst_assoc, pullback.lift_fst]
+      simp [Over.mapComp]
     · exact (Over.w φ).trans (Over.w m.inv.hom).symm
   rw [hφ']
   exact m.inv.isMonHom_hom

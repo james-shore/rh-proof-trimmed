@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.card_hecke_cosets_eq_card_submodules_split_place :
       GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues.IsUnitaryHeckeOperatorSplitPrimeData T R i P p k α Rc →
       Rc.card = Nat.card (GlobalTheory.HeckeCount.LatCount (T.Q.Dw ((i : ℕ) + 1)) p (GlobalTheory.IndefiniteRowSideFullHecke.HeckeIsogenyKernels.conjIdeal T.Q.H P.asIdeal)
         (Ideal.absNorm P.asIdeal ^ k)) := by
-  first | exact @GlobalTheory.HeckeCosetCount.card_eq_latCount | exact GlobalTheory.HeckeCosetCount.card_eq_latCount | (intros; apply GlobalTheory.HeckeCosetCount.card_eq_latCount <;> assumption)
+  first | exact @GlobalTheory.HeckeCosetCount.card_eq_latCount

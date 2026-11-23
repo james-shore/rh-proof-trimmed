@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.lefschetz_fixedPoint_finite_etale_correspondence :
   ∀ a : ℕ, (∀ b, FiniteDimensional ℂ (hodgeH s a b)) ∧
     ∑ b ∈ Finset.range (d + 1), (-1 : ℂ) ^ b * LinearMap.trace ℂ _ (hodgeTrace h1 a b ∘ₗ hodgePull h2 a b) =
       ∑ y ∈ F, (Matrix.det (1 + (Polynomial.X : Polynomial ℂ) • (A y).map Polynomial.C)).coeff a / (1 - A y).det := by
-  first | exact @UpperTheory.Cb.lefschetz_fixedPoint_finite_etale_correspondence | exact UpperTheory.Cb.lefschetz_fixedPoint_finite_etale_correspondence
+  first | exact @UpperTheory.Cb.lefschetz_fixedPoint_finite_etale_correspondence

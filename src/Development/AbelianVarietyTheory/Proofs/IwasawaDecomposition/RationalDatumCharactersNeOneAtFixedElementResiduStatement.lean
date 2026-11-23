@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.rationalDatum_characters_ne_one_at_fixedElement_re
     (hL : ∀ j, ℕ → PlE D.host → Module.End D.what₂.LL (S.WL j)) (eig : ℕ → D.what₂.FT → ℕ → PlE D.host → ↥D.LL0)
     (θ : ∀ kk : Fin 2, Multiplicative (ZMod (D.host.g kk)) →* (↥D.LL0)ˣ), SideB D cf Rw low Pq S hL eig θ →
     2 ≤ D.R.r → D.ntw.Tw → ∀ kv : (Σ k : Fin 2, D.nd.PlG k), θ kv.1 (Multiplicative.ofAdd (NX.xiRed D kv)) ≠ 1 := by
-  first | exact @GlobalTheory.HeightCounting.theta_xiRed_ne_one | exact GlobalTheory.HeightCounting.theta_xiRed_ne_one | (intros; apply GlobalTheory.HeightCounting.theta_xiRed_ne_one <;> assumption)
+  first | exact @GlobalTheory.HeightCounting.theta_xiRed_ne_one

@@ -160,11 +160,7 @@ theorem joint_upper {Φ : (ι → GL (Fin n) ℂ) → Matrix κ κ ℂ} (hone : 
     (g : ι → GL (Fin n) ℂ) (hg : ∀ τ, (g τ).val.BlockTriangular id) :
     Φ g *ᵥ v = (∏ τ, ∏ i, ((g τ).val i i) ^ (lam τ i)) • v := by
   first
-  | exact @_root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul
-  | exact _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul
   | (apply _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.MulVecProduct.mulVec_eq_prod_smul ..)
 
 def trGL (B : GL (Fin n) ℂ) : GL (Fin n) ℂ :=

@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_unitaryPair_partner_cmExtension : ∀ (F E 
         ξ • incM F JB = incM F (ξ₀ • JS⁻¹) →
         ∀ (a : UG (cA σ) (incM F JA)) (b : UG (cA σ) (incM F JB)),
           ∃ (g : GAF σ JS) (h : GAF σ JT), mtF σ JT h = a.1.1 ∧ mtF σ JS g = (b⁻¹).1.1ᵀ := by
-  first | exact @GlobalTheory.WeilPairPartnerF.pair_partnerF | exact GlobalTheory.WeilPairPartnerF.pair_partnerF | (intros; apply GlobalTheory.WeilPairPartnerF.pair_partnerF <;> assumption)
+  first | exact @GlobalTheory.WeilPairPartnerF.pair_partnerF

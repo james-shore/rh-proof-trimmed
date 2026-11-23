@@ -183,11 +183,7 @@ theorem decomp {M : Type} [AddCommMonoid M] (R K : Subgroup G) (T : Finset G) : 
     (∀ x, φ x ≠ 0 → ∃ t ∈ T, x ∈ cell R K t) →
     ∃ c : G → M, (∀ t, c t = 0 ∨ c t = φ t) ∧ ∀ x, φ x = ∑ t ∈ T, (cell R K t).indicator (fun _ => c t) x := by
   first
-  | exact @_root_.GlobalTheory.DoubleCosetIndicator.main
-  | exact _root_.GlobalTheory.DoubleCosetIndicator.main
   | (apply _root_.GlobalTheory.DoubleCosetIndicator.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DoubleCosetIndicator.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DoubleCosetIndicator.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DoubleCosetIndicator.main ..)
 
 theorem indicator_fun_apply {X Y : Type} (s : Set X) (c : Y → ℂ) (x : X) (y : Y) :

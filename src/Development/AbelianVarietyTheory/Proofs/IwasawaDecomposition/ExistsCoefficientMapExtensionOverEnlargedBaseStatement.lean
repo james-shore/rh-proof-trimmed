@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_coefficientMap_extension_over_enlarged_base
       ∃ c0L', GlobalTheory.Mem.R3.Rw.OmExt.CoefFam R'.toRealDat c0L' ∧
         ∀ (v : Formalism.IndefR.FWT.VsV (w.st Z).toD7 i (w.st Z).toD7.what₂.LL) (v' : Formalism.IndefR.FWT.VsV (w'.st Z').toD7 i' (w'.st Z').toD7.what₂.LL),
           HEq (MvPolynomial.map (w'.st Z').toD7.what₂.embLL v'.1) (MvPolynomial.map (w.st Z).toD7.what₂.embLL v.1) → HEq (c0L' i' v') (c0L i v) := by
-  first | exact @GlobalTheory.Mem.R3.Rw.OmCoef.exists_coefFam_ext | exact GlobalTheory.Mem.R3.Rw.OmCoef.exists_coefFam_ext | (intros; apply GlobalTheory.Mem.R3.Rw.OmCoef.exists_coefFam_ext <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.OmCoef.exists_coefFam_ext

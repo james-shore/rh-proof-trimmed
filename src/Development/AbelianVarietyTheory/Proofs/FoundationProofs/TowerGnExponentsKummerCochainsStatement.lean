@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.towerGn_exponents_kummer_cochains : ∀ (p : ℕ) 
   IsKum T n (Gn T n) (T.ζ (2 * n)) lz → IsKum T n (Gn T n) (T.qq (2 * n)) lq → ∀ g ∈ Gn T n,
   ∃ (i j : ℕ) (s t : ℤ), g (T.ζ m) = T.ζ m ^ i ∧ g (T.qq m) = T.ζ m ^ j * T.qq m ∧
     (i : ℤ) = 1 + p ^ n * ((lz g).val : ℤ) + p ^ (2 * n) * s ∧ (j : ℤ) = p ^ n * ((lq g).val : ℤ) + p ^ (2 * n) * t := by
-  first | exact @GlobalTheory.KumExpo.exponents | exact GlobalTheory.KumExpo.exponents | (intros; apply GlobalTheory.KumExpo.exponents <;> assumption)
+  first | exact @GlobalTheory.KumExpo.exponents

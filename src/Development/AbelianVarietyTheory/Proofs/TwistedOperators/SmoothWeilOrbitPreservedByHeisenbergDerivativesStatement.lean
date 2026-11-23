@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.smooth_weilOrbit_preserved_by_heisenbergDerivative
     (∀ (t : ℝ) (f : SInf F (Fin a × Fin (a + a'))), Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (T t f)) → ∀ u, At (evI F) u → ∀ f ∈ G.M.Pol B.ψ B.emb,
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun p : ℝ × (Fin a × Fin (a + a') → mixedEmbedding.mixedSpace F) => T p.1 f p.2) → (∃ f' ∈ G.M.Pol B.ψ B.emb, ∀ x, HasDerivAt (fun t => T t f x) (f' x) 0) → ∀ f₁ : SInf F (Fin a × Fin (a + a')), ActsD (evI F) (G.M.heisLine B.ψ u) f f₁ →
     ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun p : ℝ × (Fin a × Fin (a + a') → mixedEmbedding.mixedSpace F) => T p.1 f₁ p.2) ∧ ∃ f₁' ∈ G.M.Pol B.ψ B.emb, ∀ x, HasDerivAt (fun t => T t f₁ x) (f₁' x) 0 := by
-  first | exact @GlobalTheory.HeisOrbit.orbit_heis | exact GlobalTheory.HeisOrbit.orbit_heis | (intros; apply GlobalTheory.HeisOrbit.orbit_heis <;> assumption)
+  first | exact @GlobalTheory.HeisOrbit.orbit_heis

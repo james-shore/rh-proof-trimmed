@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.firstCoupledStep_adelicDatum_source_level_law : Un
     IsPtAd A a i (Nat.le_of_succ_le hi) β x₁ p₁ → ∀ w,
     ((((St i (Nat.le_of_succ_le hi)).K β).lev.chi κ : ℂˣ) : ℂ) * t.seam.σ₀ (xiPt A i hi β β' p₁ p' w) =
       muOf t u μ dtU (i + 1) (Matrix.GeneralLinearGroup.det κ.1) * t.seam.σ₀ (xiPt A i hi β β' p p' w)) := by
-  first | exact @GlobalTheory.LevSrcCpl.levSrc_cpl | exact GlobalTheory.LevSrcCpl.levSrc_cpl | (intros; apply GlobalTheory.LevSrcCpl.levSrc_cpl <;> assumption)
+  first | exact @GlobalTheory.LevSrcCpl.levSrc_cpl

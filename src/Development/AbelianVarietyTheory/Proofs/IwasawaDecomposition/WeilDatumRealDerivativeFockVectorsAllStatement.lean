@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.weilDatum_realDerivative_fockVectors_all : ∀ D : D7, Formalism.IndefR.WeilFull.RealAllO D := by
-  first | exact @GlobalTheory.WeilReal.realAllO | exact GlobalTheory.WeilReal.realAllO | (intros; apply GlobalTheory.WeilReal.realAllO <;> assumption)
+  first | exact @GlobalTheory.WeilReal.realAllO

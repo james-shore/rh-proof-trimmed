@@ -44,4 +44,4 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.hom_padicInt_trivial_of_irreducible_compact_rep : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) (Γ : Type) [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [CompactSpace Γ] (r : Γ →* GL (Fin 2) (Qbar l)) (lam : Γ →* Multiplicative ℤ_[l]), Continuous r → (∀ g i j, (r g : Matrix (Fin 2) (Fin 2) (Qbar l)) i j ∈ c.O) → (∀ g, (r g : Matrix (Fin 2) (Fin 2) (Qbar l)).det ^ 2 = 1) → IsIrr r → Continuous lam → r.ker ≤ lam.ker → lam = 1 := by
-  first | exact @GlobalTheory.Ord2.hom_padicInt_trivial | exact GlobalTheory.Ord2.hom_padicInt_trivial | (intros; apply GlobalTheory.Ord2.hom_padicInt_trivial <;> assumption)
+  first | exact @GlobalTheory.Ord2.hom_padicInt_trivial

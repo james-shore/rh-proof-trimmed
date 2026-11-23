@@ -63,4 +63,4 @@ open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
 
 theorem _root_.GlobalTheory.T.dense_open_eq_univ_of_smooth_relDim_zero : ∀ (k : Type) [Field k] (Y : Scheme.{0}) (p : Y ⟶ Sp k), SmoothOfRelativeDimension 0 p → ∀ (U : Y.Opens), Dense (U : Set Y) → U = ⊤ := by
-  first | exact @GlobalTheory.dense_open_eq_top_of_smoothOfRelativeDimension_zero | exact GlobalTheory.dense_open_eq_top_of_smoothOfRelativeDimension_zero | (intros; apply GlobalTheory.dense_open_eq_top_of_smoothOfRelativeDimension_zero <;> assumption)
+  first | exact @GlobalTheory.dense_open_eq_top_of_smoothOfRelativeDimension_zero

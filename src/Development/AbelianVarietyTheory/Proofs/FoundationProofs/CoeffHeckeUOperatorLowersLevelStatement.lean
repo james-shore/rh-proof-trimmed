@@ -47,4 +47,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.coeffHeckeUOperator_lowers_level : ∀ (k L l : ℕ) (χ : ℤ → ℂ) (a : ℕ → ℂ), 1 ≤ k → l.Prime → l ∣ L → (∀ d, χ (d + L) = χ d) → MF k (L * l) χ a → MF k L χ (Uo l a) := by
-  first | exact @GlobalTheory.Uo_lowers_level | exact GlobalTheory.Uo_lowers_level | (intros; apply GlobalTheory.Uo_lowers_level <;> assumption)
+  first | exact @GlobalTheory.Uo_lowers_level

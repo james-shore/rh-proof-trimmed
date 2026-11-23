@@ -299,7 +299,7 @@ theorem locChar_nu {μ₀ : T} (hL : L.Is μ₀) (t : T) (i j : Fin D.R.m) (w : 
   rw [e1, GlobalTheory.LFun.locChar_eq_of_chrEq (SqNum.chrEq_nu G t i j hL)]
   have hj : (j : ℕ) < D.R.m := j.2
   ext x
-  simp only [SqNum.nuH, Grid.nu, locGrid, muBase, dif_pos hj, MonoidHom.div_apply, div_eq_mul_inv]
+  simp only [SqNum.nuH, Grid.nu, locGrid, muBase, dif_pos hj, div_eq_mul_inv]
   rfl
 
 theorem val_colX_ordX (t : T) (i j : Fin D.R.m) (w : Pl D.host.E)

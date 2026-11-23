@@ -51,4 +51,4 @@ open GlobalTheory.PhiGam GlobalTheory.AdmLoc GlobalTheory.Models GlobalTheory.To
 open scoped LaurentSeries PowerSeries
 
 theorem _root_.GlobalTheory.T.exists_frobenius_gen_degree_hom_to_Zl : ∀ {l : ℕ} [Fact l.Prime] (K : FinExt l), ∃ (F : ↥(GK K)) (ν : ↥(GK K) →* Multiplicative ℤ_[l]), Continuous ν ∧ (∀ σ ∈ IK K, ν σ = 1) ∧ ν F = Multiplicative.ofAdd 1 ∧ (Subgroup.closure (insert F (IK K : Set ↥(GK K)))).topologicalClosure = ⊤ := by
-  first | exact @GlobalTheory.UnramGen.exists_gen_degree | exact GlobalTheory.UnramGen.exists_gen_degree | (intros; apply GlobalTheory.UnramGen.exists_gen_degree <;> assumption)
+  first | exact @GlobalTheory.UnramGen.exists_gen_degree

@@ -150,7 +150,6 @@ theorem torus_mod_intUnits_structure : ∀ (K : UQ) (B : InvAlg K), B.LieReg →
       linarith [ha1 m]
   · exact Int.lt_toNat.mpr (hαpos (e j))
   · rw [← GlobalTheory.T.torus_inv_mul_pow_valuation_nonneg_iff B.Aˣ τ B.T hT _ s w hswap r e he3 α hτα hαpos, ← hP]
-    congr 2
     rw [Units.val_mul, Units.val_pow_eq_pow_val, hαv]
 
 end GlobalTheory.UnitLemma

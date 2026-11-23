@@ -50,4 +50,4 @@ open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
 theorem _root_.GlobalTheory.T.mixedChernFormSignedPartMeasure_eq_of_isometric_projOver : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) (p : X ⟶ Sp k) (σ : k →+* ℂ), IsProjOver p → ∀ (D : ℕ) (L M : Fin D → MLine p σ), (∀ i, (L i).Isom (M i)) → ∀ ε : ℤˣ, part L ε = part M ε := by
-  first | exact @GlobalTheory.Mix.part_eq_of_isom | exact GlobalTheory.Mix.part_eq_of_isom | (intros; apply GlobalTheory.Mix.part_eq_of_isom <;> assumption)
+  first | exact @GlobalTheory.Mix.part_eq_of_isom

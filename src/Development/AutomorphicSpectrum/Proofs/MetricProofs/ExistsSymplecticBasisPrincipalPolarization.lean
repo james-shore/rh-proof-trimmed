@@ -192,11 +192,11 @@ theorem exists_symplectic_basis : ∀ (g : ℕ) (Λ : Submodule ℤ (Fin g → �
   rintro (i | i) (j | j)
   · rw [hval, hee]; simp [Matrix.J]
   · rw [hval, hef]
-    by_cases h : i = j <;> simp [Matrix.J, h, Matrix.one_apply]
+    by_cases h : i = j <;> simp [Matrix.J, h]
   · rw [hval, hanti, hef]
     by_cases h : i = j
     · subst h; simp [Matrix.J]
-    · simp [Matrix.J, h, Ne.symm h, Matrix.one_apply]
+    · simp [Matrix.J, h, Ne.symm h]
   · rw [hval, hff]; simp [Matrix.J]
 
 end GlobalTheory.CompanionTheory.Ar.Sl.SymplecticLattice

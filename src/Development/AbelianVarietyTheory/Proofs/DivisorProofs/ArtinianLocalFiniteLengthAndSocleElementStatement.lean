@@ -59,4 +59,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 set_option autoImplicit false
 
 theorem _root_.GlobalTheory.T.isArtinianLocal_length_finite_and_exists_socle_elem : ∀ (R : Type) [CommRing R] [IsArtinianRing R] [IsLocalRing R], (∃ n : ℕ, Module.length R R = n) ∧ (¬ IsField R → ∃ t : R, t ≠ 0 ∧ (∀ a ∈ IsLocalRing.maximalIdeal R, a * t = 0) ∧ Module.length (R ⧸ Ideal.span {t}) (R ⧸ Ideal.span {t}) < Module.length R R) := by
-  first | exact @GlobalTheory.artinianLocal_finiteLength_and_socle_element | exact GlobalTheory.artinianLocal_finiteLength_and_socle_element | (intros; apply GlobalTheory.artinianLocal_finiteLength_and_socle_element <;> assumption)
+  first | exact @GlobalTheory.artinianLocal_finiteLength_and_socle_element

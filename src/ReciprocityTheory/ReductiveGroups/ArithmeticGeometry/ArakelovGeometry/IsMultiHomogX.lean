@@ -95,9 +95,9 @@ theorem isMultiHomog_X' [DecidableEq K] (b : K) (i : ι b) :
       apply Finsupp.single_eq_of_ne
       intro h
       simp only [Sigma.mk.inj_iff, heq_eq_eq, true_and] at h
-      exact hj (by first | exact h.symm | exact h)
+      exact hj (by first | exact h)
     · intro h; exact absurd (Finset.mem_univ i) h
-  · simp [Finsupp.single_apply, hk, Ne.symm hk]
+  · simp [hk]
 
 theorem lg_step {J : Ideal (MRing ι)} (hJ : IsMultiHomogIdeal J) {f : MRing ι} {c : K → ℕ}
     (hf : IsMultiHomog f c) {q : Ideal (MRing ι)} (hq : ∀ g, g ∈ q ↔ g * f ∈ J) {a : K → ℕ}

@@ -59,7 +59,7 @@ private theorem low_ne {Γ R : Type} [Group Γ] [Field R] (y a : Γ → R) (hy :
 private theorem conj_res {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] (F : IntermediateField ℚ Ω) [hF : IsGalois ℚ F]
     (g : G ℚ Ω) (s : G F Ω) : ∃ t : G F Ω, resQ F t = g * resQ F s * g⁻¹ := by
   haveI : IsGalois ℚ Ω := {}
-  have hN : F.fixingSubgroup.Normal := (InfiniteGalois.normal_iff_isGalois F).2 (by convert hF <;> exact Subsingleton.elim _ _)
+  have hN : F.fixingSubgroup.Normal := (InfiniteGalois.normal_iff_isGalois F).2 (by convert hF)
   have hs : resQ F s ∈ F.fixingSubgroup := by
     rw [IntermediateField.mem_fixingSubgroup_iff]
     intro x hx

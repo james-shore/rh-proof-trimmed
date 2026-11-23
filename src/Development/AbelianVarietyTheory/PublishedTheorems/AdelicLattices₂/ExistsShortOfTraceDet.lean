@@ -61,11 +61,7 @@ theorem exists_int_vecMul_lt {ι : Type} [Fintype ι] [DecidableEq ι] (A : Matr
     (hA : A.det ≠ 0) {t : ℝ} (ht : 0 < t) (h : |A.det| < t ^ Fintype.card ι) :
     ∃ z : ι → ℤ, z ≠ 0 ∧ ∀ j, |∑ i, (z i : ℝ) * A i j| < t := by
   first
-  | exact @_root_.GlobalTheory.MinkowskiLinearForms.minkowski_linear_forms
-  | exact _root_.GlobalTheory.MinkowskiLinearForms.minkowski_linear_forms
   | (apply _root_.GlobalTheory.MinkowskiLinearForms.minkowski_linear_forms <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MinkowskiLinearForms.minkowski_linear_forms <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MinkowskiLinearForms.minkowski_linear_forms <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.MinkowskiLinearForms.minkowski_linear_forms ..)
 
 theorem det_ne_zero_and_abs_le {ι : Type} [Fintype ι] [DecidableEq ι] (T : Matrix ι ι ℚ)

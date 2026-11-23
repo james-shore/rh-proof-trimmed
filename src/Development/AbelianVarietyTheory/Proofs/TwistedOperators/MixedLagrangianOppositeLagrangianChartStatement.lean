@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.mixedLagrangian_oppositeLagrangian_chart : ∀ {D 
         (fun u => (xiAt w)⁻¹ • chart jj (finCongr (rankW₁ G t i j w)) (colsEq t e w) (invT g) (invT cc)
           (coX (Bs.τ v) (Γ.V'.bas v) (Γ.W.bas v) u))
         (Assignment.one.block _ _) := by
-  first | exact @GlobalTheory.FlipMatch.chartOpp_isMixChart | exact GlobalTheory.FlipMatch.chartOpp_isMixChart | (intros; apply GlobalTheory.FlipMatch.chartOpp_isMixChart <;> assumption)
+  first | exact @GlobalTheory.FlipMatch.chartOpp_isMixChart

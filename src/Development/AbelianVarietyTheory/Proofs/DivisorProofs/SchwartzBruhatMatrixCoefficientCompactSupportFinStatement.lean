@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.schwartzBruhat_matrixCoefficient_compactSupport_fi
     ∀ φ ∈ SB (κ → Fv F v), ∀ g ∈ SB (κ → Fv F v),
     ∃ C : Set ((κ → Fv F v) × (κ → Fv F v)), IsCompact C ∧
       ∀ w, ∫ y, schr ψ₀ w φ y * (starRingEnd ℂ) (g y) ∂μ ≠ 0 → w ∈ C := by
-  first | exact @GlobalTheory.SchrSuppFin.support_compact | exact GlobalTheory.SchrSuppFin.support_compact | (intros; apply GlobalTheory.SchrSuppFin.support_compact <;> assumption)
+  first | exact @GlobalTheory.SchrSuppFin.support_compact

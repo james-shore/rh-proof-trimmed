@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.bar_gap_parameter_inequality : ∀ (T D c0 h0 N f 
     4 * (c0 + 2 * N + T + D + 1) ≤ h0 → 0 ≤ c0 → c0 ≤ 22 * f ^ 2 * N ^ 4 → D = f * (N * (N - 1) / 2) → 40 ≤ PP →
     N + 4 ≤ 2 * k → 2 ≤ m → 6 ≤ N → 8 ≤ f →
     (T + c0) * (T + D + 1) + c0 + 2 * N - 2 ≤ h0 ∧ 2 * N + D ≤ T := by
-  first | exact @GlobalTheory.bar_gap_param_ineq | exact GlobalTheory.bar_gap_param_ineq | (intros; apply GlobalTheory.bar_gap_param_ineq <;> assumption)
+  first | exact @GlobalTheory.bar_gap_param_ineq

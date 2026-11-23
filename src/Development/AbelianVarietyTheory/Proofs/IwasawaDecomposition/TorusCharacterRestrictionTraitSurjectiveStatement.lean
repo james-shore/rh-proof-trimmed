@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.torusCharacterRestriction_trait_surjective : ∀ (
     m₀'.φ = m₀.φ ≫ mV.φ →
     GlobalTheory.TorusPart.pullTorus m₀.cart j = GlobalTheory.SplitTorus.torusMap _ ρ ≫ GlobalTheory.TorusPart.PELUnif.torus P h₀ m₀' →
     Function.Surjective ρ := by
-  first | exact @GlobalTheory.TorusOnto.restrict_surjective | exact GlobalTheory.TorusOnto.restrict_surjective | (intros; apply GlobalTheory.TorusOnto.restrict_surjective <;> assumption)
+  first | exact @GlobalTheory.TorusOnto.restrict_surjective

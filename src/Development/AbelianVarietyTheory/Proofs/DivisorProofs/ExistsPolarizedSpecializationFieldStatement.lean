@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.exists_polarized_specialization_field : ∀ (W : M
       ∀ q : Sp K ⟶ ((Over.pullback (spMap ev)).obj D.P.A).left,
       q ≫ pullback.fst D.P.A.hom (spMap ev) = y.left → q ≫ pullback.snd D.P.A.hom (spMap ev) = 𝟙 _ →
       ∃ y' : Out.baseOver (Sp K) ⟶ P'.A, y'.left = q ≫ ψ ∧ y' ^ n = 1 := by
-  first | exact @GlobalTheory.Poinc.Sep.E8Fibration.fibre_exists | exact GlobalTheory.Poinc.Sep.E8Fibration.fibre_exists | (intros; apply GlobalTheory.Poinc.Sep.E8Fibration.fibre_exists <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.E8Fibration.fibre_exists

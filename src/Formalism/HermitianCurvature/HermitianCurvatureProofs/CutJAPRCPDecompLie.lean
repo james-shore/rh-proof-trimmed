@@ -90,7 +90,7 @@ private lemma Hpk_apply_wI_right_eq_ite (i : Fin (2 * r + k + 1)) (m : Fin (k + 
     Hpk k r i (wI k r m) = if i = wI k r m then Hb k m m else 0 := by
   have hm := m.isLt
   simp only [Formalism.QuantumDeterminants.Hpk, Formalism.QuantumDeterminants.Hb, Matrix.diagonal_apply_eq, wI, Fin.ext_iff, Fin.val_mk, Fin.val_last]
-  split_ifs <;> first | rfl | omega | (exfalso; omega)
+  split_ifs <;> first | rfl | omega
 
 private lemma Hpk_wI_apply_left_eq_ite (j : Fin (2 * r + k + 1)) (m : Fin (k + 1)) :
     Hpk k r (wI k r m) j = if j = wI k r m then Hb k m m else 0 := by
@@ -168,7 +168,7 @@ lemma wbPart_e (a : Fin r) : wbPart k r (bvec (eI k r a)) = 0 := by
   simp only [wbPart, bvec, Pi.zero_apply]
   rw [Pi.single_eq_of_ne]
   intro h
-  simp only [wI, eI, Fin.ext_iff, Fin.val_mk] at h
+  simp only [wI, eI, Fin.ext_iff] at h
   omega
 
 lemma wbPart_es (a : Fin r) : wbPart k r (bvec (esI k r a)) = 0 := by
@@ -178,7 +178,7 @@ lemma wbPart_es (a : Fin r) : wbPart k r (bvec (esI k r a)) = 0 := by
   simp only [wbPart, bvec, Pi.zero_apply]
   rw [Pi.single_eq_of_ne]
   intro h
-  simp only [wI, esI, Fin.ext_iff, Fin.val_mk] at h
+  simp only [wI, esI, Fin.ext_iff] at h
   omega
 
 lemma embed_mem_unitary_lie_algebra (z : Fin (2 * r + k + 1) → ℂ) (Y : Mb k) (hY : Yᴴ * Hb k + Hb k * Y = 0)

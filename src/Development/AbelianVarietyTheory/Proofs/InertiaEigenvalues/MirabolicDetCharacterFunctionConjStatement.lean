@@ -50,4 +50,4 @@ open GlobalTheory.DownLift
 open GlobalTheory.DownLift.GenFinite
 
 theorem _root_.GlobalTheory.T.mirabolicDetCharacterFunction_conj : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (i : Fin D.R.m) (PP : R.Pg) (a : Fin D.R.r → kP PP.1), a ≠ 0 → ∀ (tr : Bool) (ε : ℤ) (x : G), ∃ a' : Fin D.R.r → kP PP.1, a' ≠ 0 ∧ ∀ g, mirC R i PP a tr ε (x * g * x⁻¹) = mirC R i PP a' tr ε g := by
-  first | exact @GlobalTheory.DownLift.GenFinite.mirC_conj | exact GlobalTheory.DownLift.GenFinite.mirC_conj | (intros; apply GlobalTheory.DownLift.GenFinite.mirC_conj <;> assumption)
+  first | exact @GlobalTheory.DownLift.GenFinite.mirC_conj

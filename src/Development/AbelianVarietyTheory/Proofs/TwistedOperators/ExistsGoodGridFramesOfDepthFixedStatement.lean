@@ -49,4 +49,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.existsGoodGridFrames_of_depthFixed : GlobalTheory.SepRows.DepFixed → GlobalTheory.Asc.TowerEx := by
-  first | exact @GlobalTheory.AscFin.towerEx_of_depFixed | exact GlobalTheory.AscFin.towerEx_of_depFixed | (intros; apply GlobalTheory.AscFin.towerEx_of_depFixed <;> assumption)
+  first | exact @GlobalTheory.AscFin.towerEx_of_depFixed

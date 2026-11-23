@@ -57,4 +57,4 @@ open scoped Classical
 theorem _root_.GlobalTheory.T.adelic_l2_eq_zero_imp_eq_zero : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ]
     (μ : @MeasureTheory.Measure (κ → FiniteAdeleRing (𝓞 F) F) (borel _)), @MeasureTheory.Measure.IsAddHaarMeasure _ _ _ (borel _) μ →
     ∀ D ∈ GlobalTheory.WeilM.schA F κ, GlobalTheory.WeilL2Words.l2A F μ D = 0 → D = 0 := by
-  first | exact @GlobalTheory.WeilL2Words.eq_zero_of_l2A_eq_zero | exact GlobalTheory.WeilL2Words.eq_zero_of_l2A_eq_zero | (intros; apply GlobalTheory.WeilL2Words.eq_zero_of_l2A_eq_zero <;> assumption)
+  first | exact @GlobalTheory.WeilL2Words.eq_zero_of_l2A_eq_zero

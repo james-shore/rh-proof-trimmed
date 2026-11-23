@@ -88,7 +88,7 @@ theorem recip : ∀ (F : Type) [Field F] [NumberField F] [MeasurableSpace (A F)]
     rw [mul_smul, ← fou_smul (m : ℂ), map_neg]
     congr 2
     funext x
-    simp [opU, opD, uA, hc, mul_assoc, mul_left_comm, mul_comm]
+    simp [opU, opD, uA, hc, mul_left_comm, mul_comm]
   have hO : IsOrth B ρ 1 fun _ => 1 := ⟨by simp, fun _ => by simp⟩
   have hU := fun φ τ => (GlobalTheory.T.theta_function_modularity F ψ hψ ι M B ρ P hQ _ _ hO φ τ)
   have hW := GlobalTheory.T.theta_function_automorphy F lf hlf h1 ψ hψ ι M B ρ P hQ _ _ hO

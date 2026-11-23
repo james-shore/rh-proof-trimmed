@@ -58,4 +58,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.le_of_injOn_differentiableOn_complex : ∀ (d d' : ℕ) (U : Set (Fin d → ℂ)) (f : (Fin d → ℂ) → (Fin d' → ℂ)), IsOpen U → U.Nonempty → DifferentiableOn ℂ f U → Set.InjOn f U → d ≤ d' := by
-  first | exact @GlobalTheory.InjHol.le_of_injOn_differentiableOn | exact GlobalTheory.InjHol.le_of_injOn_differentiableOn | (intros; apply GlobalTheory.InjHol.le_of_injOn_differentiableOn <;> assumption)
+  first | exact @GlobalTheory.InjHol.le_of_injOn_differentiableOn

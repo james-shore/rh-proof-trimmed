@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_skew_cayley_inertPlace_stabilizer : ∀ (F 
       ∀ z ∈ GlobalTheory.InertSph.latAt G.W v, M *ᵥ z ∈ GlobalTheory.InertSph.latAt G.W v) ∧
     (∃ M : Matrix (Fin (a + a')) (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), (1 + Y + mat k * (1 - Y)) * M = 1 ∧
       M * (1 + Y + mat k * (1 - Y)) = 1 ∧ ∀ z ∈ GlobalTheory.InertSph.latAt G.W v, M *ᵥ z ∈ GlobalTheory.InertSph.latAt G.W v) := by
-  first | exact @GlobalTheory.TwoFacCore.exists_skew_cayley | exact GlobalTheory.TwoFacCore.exists_skew_cayley | (intros; apply GlobalTheory.TwoFacCore.exists_skew_cayley <;> assumption)
+  first | exact @GlobalTheory.TwoFacCore.exists_skew_cayley

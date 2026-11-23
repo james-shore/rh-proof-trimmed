@@ -193,7 +193,7 @@ theorem C2ConvergencePullback.proof : C2ConvergencePullback.Statement := by
   have hOo : IsOpen ((B.chart j).target ∩ (B.chart j).symm ⁻¹' (f ⁻¹' V)) :=
     (B.chart j).isOpen_inter_preimage_symm (hV.preimage hf.1)
   have h2 : (2 : WithTop ℕ∞) ≤ ∞ := by
-    first | exact_mod_cast (le_top : (2 : ℕ∞) ≤ ⊤) | simp | exact WithTop.coe_le_coe.2 le_top
+    first | simp
   have hloc : ∀ y0 ∈ (B.chart j).target ∩ (B.chart j).symm ⁻¹' (f ⁻¹' V), ∃ N ∈ 𝓝 y0,
       TendstoUniformlyOn (fun t y => (g t ∘ f) ((B.chart j).symm y))
         (fun y => φ' ((B.chart j).symm y)) (𝓝[>] 0) N ∧

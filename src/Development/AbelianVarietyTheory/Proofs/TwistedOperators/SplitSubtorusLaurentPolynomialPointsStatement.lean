@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.RegSS
 
 theorem _root_.GlobalTheory.T.split_subtorus_laurentPolynomial_points : GlobalTheory.RegSS.SubtorusLaurent := by
-  first | exact @GlobalTheory.RegSS.subtorusLaurent | exact GlobalTheory.RegSS.subtorusLaurent | (intros; apply GlobalTheory.RegSS.subtorusLaurent <;> assumption)
+  first | exact @GlobalTheory.RegSS.subtorusLaurent

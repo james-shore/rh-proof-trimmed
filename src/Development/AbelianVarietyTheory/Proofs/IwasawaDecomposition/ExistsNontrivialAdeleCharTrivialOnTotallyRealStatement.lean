@@ -49,4 +49,4 @@ open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.G
 open scoped TensorProduct NNReal ENNReal
 
 theorem _root_.GlobalTheory.T.exists_nontrivial_adeleChar_trivial_on_totallyReal : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F], ∃ ψ, IsCharAF F ψ := by
-  first | exact @GlobalTheory.GaugeEx.CharZero.exists_isCharAF | exact GlobalTheory.GaugeEx.CharZero.exists_isCharAF | (intros; apply GlobalTheory.GaugeEx.CharZero.exists_isCharAF <;> assumption)
+  first | exact @GlobalTheory.GaugeEx.CharZero.exists_isCharAF

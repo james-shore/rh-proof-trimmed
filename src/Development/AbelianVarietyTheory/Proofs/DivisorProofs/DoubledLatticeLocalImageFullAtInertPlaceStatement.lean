@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.doubled_lattice_local_image_full_at_inert_place : 
       (∀ b, ((0 : (Fin a × Fin (a + a')) ⊕ (Fin a × Fin (a + a')) → Fv F v), b) ∈ (latDbl G.V G.W v).map (GlobalTheory.LatVac.locCo dd v) →
         GlobalTheory.LatVac.psiAt B.ψ v (η ⬝ᵥ b) = 1) →
       ∃ y, (η, y) ∈ (latDbl G.V G.W v).map (GlobalTheory.LatVac.locCo dd v) := by
-  first | exact @GlobalTheory.DblFill.latDbl_fill | exact GlobalTheory.DblFill.latDbl_fill | (intros; apply GlobalTheory.DblFill.latDbl_fill <;> assumption)
+  first | exact @GlobalTheory.DblFill.latDbl_fill

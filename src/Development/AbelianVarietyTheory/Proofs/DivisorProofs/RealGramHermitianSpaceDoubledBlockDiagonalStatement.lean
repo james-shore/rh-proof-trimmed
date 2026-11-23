@@ -75,4 +75,4 @@ theorem _root_.GlobalTheory.T.realGram_hermitianSpaceDoubled_blockDiagonal : ∀
             gd.1.1 = Matrix.fromBlocks g.1.1 0 0 1 →
             ∀ φ₁ ∈ GlobalTheory.WeilM.schA D.host.F κ, ∀ φ₂ ∈ GlobalTheory.WeilM.schA D.host.F κ,
               GlobalTheory.DblSchr.omdOf omd₀ gd (GlobalTheory.WeilM.boxFun φ₁ φ₂) = GlobalTheory.WeilM.boxFun (om (1, g) φ₁) φ₂ := by
-  first | exact @GlobalTheory.DblRestr.restr_boxFun | exact GlobalTheory.DblRestr.restr_boxFun | (intros; apply GlobalTheory.DblRestr.restr_boxFun <;> assumption)
+  first | exact @GlobalTheory.DblRestr.restr_boxFun

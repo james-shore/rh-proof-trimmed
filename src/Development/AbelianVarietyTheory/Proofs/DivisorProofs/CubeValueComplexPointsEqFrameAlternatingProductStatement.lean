@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.cubeValue_complexPoints_eq_frameAlternatingProduct
     (∀ I : thK.{0}, ⊤ ≤ (ν.eA (d.ex (∑ i ∈ I.down, ![x, y, z] i))).left ⁻¹ᵁ D.P.L.U (j I)) →
     valF (lift (ν.eA (d.ex x)) (lift (ν.eA (d.ex y)) (ν.eA (d.ex z)))).left (LB.wchart D.P.L (thφ D.P.A (x3 D.P.A)) j)
       (D.cub.t.s j).val = ∏ I : thK.{0}, G.frG (j I) (∑ i ∈ I.down, ![x, y, z] i) ^ thε I := by
-  first | exact @GlobalTheory.MBLow.Cl.cube_val_frame | exact GlobalTheory.MBLow.Cl.cube_val_frame | (intros; apply GlobalTheory.MBLow.Cl.cube_val_frame <;> assumption)
+  first | exact @GlobalTheory.MBLow.Cl.cube_val_frame

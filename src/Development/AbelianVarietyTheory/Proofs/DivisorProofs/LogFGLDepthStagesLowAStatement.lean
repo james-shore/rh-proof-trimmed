@@ -47,4 +47,4 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatFrame
 open MvPowerSeries ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.Sh GlobalTheory.FGDepth
 
 theorem _root_.GlobalTheory.T.logFGL_depth_stages_lowA : LowAStatement := by
-  first | exact @GlobalTheory.DepthStages.lowA_statement | exact GlobalTheory.DepthStages.lowA_statement | (intros; apply GlobalTheory.DepthStages.lowA_statement <;> assumption)
+  first | exact @GlobalTheory.DepthStages.lowA_statement

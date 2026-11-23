@@ -50,4 +50,4 @@ open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
 theorem _root_.GlobalTheory.T.mixedChernFormDensity_change_of_chart : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) (p : X ⟶ Sp k) (σ : k →+* ℂ) (D : ℕ) (L : Fin D → MLine p σ) (c c' : AlgChart p σ D) (y : CxPts p σ), y ∈ c.e.source → y ∈ c'.e.source → dens L c y = ‖transDet c.e c'.e y‖ ^ 2 * dens L c' y := by
-  first | exact @GlobalTheory.Mix.ChartChange.dens_change_chart | exact GlobalTheory.Mix.ChartChange.dens_change_chart | (intros; apply GlobalTheory.Mix.ChartChange.dens_change_chart <;> assumption)
+  first | exact @GlobalTheory.Mix.ChartChange.dens_change_chart

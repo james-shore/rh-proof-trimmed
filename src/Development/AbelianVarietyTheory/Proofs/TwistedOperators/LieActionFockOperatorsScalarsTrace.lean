@@ -137,9 +137,9 @@ theorem cc_rai_low (i i' : Fin b) (j j' : Fin a) :
       simp [raiO, h2, MvPolynomial.smul_eq_C_mul]
     · by_cases h3 : i = i' ∧ j = j'
       · obtain ⟨rfl, rfl⟩ := h3
-        simp [raiO, h2, MvPolynomial.smul_eq_C_mul, MvPolynomial.pderiv_X_self, sgn_sq]
+        simp [raiO, h2, MvPolynomial.smul_eq_C_mul, sgn_sq]
       · have : (τ, i, j) ≠ (τ, i', j') := fun h => h3 (by simpa using h)
-        simp [raiO, h2, MvPolynomial.smul_eq_C_mul, MvPolynomial.pderiv_X_of_ne this.symm]
+        simp [raiO, h2, MvPolynomial.pderiv_X_of_ne this.symm]
         tauto
 
 theorem sum_half (e : Bool) {m : ℕ} (ε₁ : Fin m → Bool) :
@@ -155,19 +155,19 @@ theorem cc_fockS (Y : Matrix (Fin a) (Fin a) ℂ) :
   classical
   unfold fockS
 
-  simp only [LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.add_apply, map_sum, map_add (f := _)]
+  simp only [LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.add_apply, map_sum]
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [Finset.sum_eq_single j]
   · rw [MvPolynomial.smul_eq_C_mul, map_mul, MvPolynomial.constantCoeff_C, ← sum_half]
 
-    simp only [LinearMap.sum_apply, LinearMap.add_apply, map_sum, map_add (f := _), cc_rai_low, if_true]
+    simp only [map_sum, map_add (f := _), cc_rai_low, if_true]
     congr 1
     refine Finset.sum_congr rfl fun i _ => ?_
     simp [MvPolynomial.smul_eq_C_mul]
   · intro k _ hk
     rw [MvPolynomial.smul_eq_C_mul, map_mul]
 
-    simp only [LinearMap.sum_apply, LinearMap.add_apply, map_sum, map_add (f := _), cc_rai_low]
+    simp only [map_sum, map_add (f := _), cc_rai_low]
     simp [Ne.symm hk]
   · simp
 
@@ -176,19 +176,19 @@ theorem cc_fockT (Y : Matrix (Fin b) (Fin b) ℂ) :
   classical
   unfold fockT
 
-  simp only [LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.add_apply, map_sum, map_add (f := _)]
+  simp only [LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.add_apply, map_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Finset.sum_eq_single i]
   · rw [MvPolynomial.smul_eq_C_mul, map_mul, MvPolynomial.constantCoeff_C, ← sum_half]
 
-    simp only [LinearMap.sum_apply, LinearMap.add_apply, map_sum, map_add (f := _), cc_rai_low, if_true]
+    simp only [map_sum, map_add (f := _), cc_rai_low, if_true]
     congr 1
     refine Finset.sum_congr rfl fun j _ => ?_
-    simp [MvPolynomial.smul_eq_C_mul, ne_comm, eq_comm]
+    simp [MvPolynomial.smul_eq_C_mul, eq_comm]
   · intro k _ hk
     rw [MvPolynomial.smul_eq_C_mul, map_mul]
 
-    simp only [LinearMap.sum_apply, LinearMap.add_apply, map_sum, map_add (f := _), cc_rai_low]
+    simp only [map_sum, map_add (f := _), cc_rai_low]
     simp [Ne.symm hk]
   · simp
 

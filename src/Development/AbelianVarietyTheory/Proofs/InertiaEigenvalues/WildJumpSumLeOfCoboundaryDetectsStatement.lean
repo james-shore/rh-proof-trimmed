@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions Formalism.BasicNotions.Loc ValuativeRel GroundTheory.LocalField GlobalTheory.PMon.Ram
 
 theorem _root_.GlobalTheory.T.wild_jumpSum_le_of_coboundary_detects : ∀ (F L : Type) [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F] [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L] [Algebra F L] [ValuativeExtension F L] [FiniteDimensional F L] [IsGalois F L] (p E r : ℕ) (B : Subgroup (L ≃ₐ[F] L)), p.Prime → 0 < E → OrdIs L p E → AxIn F L p → Detects p r ⊤ B → jumpSum (wild F L) ⊤ B ≤ 6 * E := by
-  first | exact @GlobalTheory.PMon.Ram.jumpSum_wild_top_le_of_detects | exact GlobalTheory.PMon.Ram.jumpSum_wild_top_le_of_detects | (intros; apply GlobalTheory.PMon.Ram.jumpSum_wild_top_le_of_detects <;> assumption)
+  first | exact @GlobalTheory.PMon.Ram.jumpSum_wild_top_le_of_detects

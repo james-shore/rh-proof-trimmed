@@ -205,7 +205,7 @@ theorem exists_gl_conj_of_trace_eq :
       ext a b
       by_cases hb : j = b
       · subst hb; simp [Matrix.sum_apply, Matrix.single_apply]
-      · simp [Matrix.sum_apply, Matrix.single_apply, Matrix.mul_apply, hb]
+      · simp [Matrix.sum_apply, Matrix.mul_apply, hb]
     have := congrFun (congrFun (hφ g (Matrix.single q j 1)) p) k
 
     rw [e, map_sum] at this

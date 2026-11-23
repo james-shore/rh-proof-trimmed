@@ -85,13 +85,9 @@ theorem idl_two_le_one (g : ℕ) (ν : ℤ) : S6.idl E g 2 ν ≤ S6.idl E g 1 �
     rw [h2, ← FractionalIdeal.spanSingleton_mul_spanSingleton]
     calc _ ≤ 1 * FractionalIdeal.spanSingleton (nonZeroDivisors (𝓞 E)) ((g : E) ^ (1 : ℤ)) := by
           first
-            | exact FractionalIdeal.mul_right_mono _ hg1
-            | exact FractionalIdeal.mul_le_mul_right hg1 _
             | gcongr
       _ = _ := one_mul _
   first
-    | exact FractionalIdeal.mul_left_mono _ key
-    | exact FractionalIdeal.mul_le_mul_left key _
     | gcongr
 
 theorem frame_facts (g : ℕ) (hg : 0 < g) (ν : ℤ) :

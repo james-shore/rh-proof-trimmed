@@ -85,12 +85,10 @@ theorem mtwInc_injective : Function.Injective (mtwInc (L := L) (n := n)) := by
   have hij := congrArg (fun g : GL (Fin n) (AL L) => (g : Matrix (Fin n) (Fin n) (AL L)) i j) h
   first
     | exact hf hij
-    | exact hf (by simpa using hij)
 
 theorem mtw_mem (γ : GQ L n) : ((γ : GAf L n) : GL (Fin n) (AL L)) ∈ (GQ0 L n).map mtwInc := by
   first
     | exact Subgroup.mem_subgroupOf.1 γ.2
-    | exact γ.2
 
 def mtwRatFun (γ : GQ L n) : GL (Fin n) L := (Subgroup.mem_map.1 (mtw_mem γ)).choose
 
@@ -117,8 +115,6 @@ theorem mtwRat_eq_of_match (γ : GQ L n) (γ₀ : GL (Fin n) L)
   rw [show mtwRat (L := L) (n := n) γ = mtwRatFun γ from rfl, mtwInc_mtwRatFun]
   first
     | exact Units.ext h.symm
-    | (apply Units.ext; rw [h]; rfl)
-    | (apply Units.ext; ext i j; simp [h])
 
 end MtwRat
 
@@ -151,7 +147,6 @@ def mtRep (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) : Representation
 private theorem embedding_complexConj_eq_conjugate (φ : L →+* ℂ) (x : L) :
     φ ((IsCMField.complexConj L : L →+* L) x) = ComplexEmbedding.conjugate φ x := by
   first
-    | exact (IsCMField.complexEmbedding_complexConj φ x).trans (ComplexEmbedding.conjugate_coe_eq φ x).symm
     | (rw [ComplexEmbedding.conjugate_coe_eq]; exact IsCMField.complexEmbedding_complexConj φ x)
     | simp [ComplexEmbedding.conjugate_coe_eq]
 
@@ -320,8 +315,6 @@ theorem tenRep_toMatrix (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) (�
     intro j
     first
       | simp only [bVV, Module.Basis.map_apply, LinearEquiv.coe_ofEq_apply, Module.Basis.span_apply]
-      | simp [bVV]
-      | rfl
   let γL := mtwRat (L := L) (n := n) γ
   have htw : eval (fun p : (L →+* ℂ) × Fin n × Fin n =>
       p.1 ((γL : Matrix (Fin n) (Fin n) L) p.2.1 p.2.2)) (mtwTwP emb lam) =
@@ -337,9 +330,7 @@ theorem tenRep_alg (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) : IsAlg
   refine ⟨?_, VVIdx lam, inferInstance, inferInstance, bVV ℂ lam, tenP emb lam,
     fun γ γ₀ hm => tenRep_toMatrix emb lam γ γ₀ hm⟩
   first
-    | exact FiniteDimensional.of_fintype_basis (bVV ℂ lam)
     | exact Module.Finite.of_basis (bVV ℂ lam)
-    | infer_instance
 
 theorem mtRep_alg (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) : IsAlgWeight L n (mtRep emb lam) := by
   rw [mtRep_eq_tenRep]
@@ -362,7 +353,6 @@ variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ} {ι : Type
 theorem mtwConj_conj (emb : ι → L →+* ℂ) : mtwConj (mtwConj emb) = emb := by
   funext τ
   first
-    | exact ComplexEmbedding.conjugate_conjugate (emb τ)
     | simp [mtwConj]
 
 theorem tenRep_eq_mtRep (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) : tenRep emb lam = mtRep (mtwConj emb) lam := by
@@ -389,16 +379,6 @@ private theorem lpMinor_complex_eq (s r m : ℕ) (hr : s ≤ r) (hm : s ≤ m) :
   have hX : Matrix.det (Matrix.mvPolynomialX (Fin s) (Fin s) ℂ) ≠ 0 := by
     first
       | exact Matrix.det_mvPolynomialX_ne_zero (Fin s) ℂ
-      | exact Matrix.det_mvPolynomialX_ne_zero ℂ
-      | (intro h
-         have h5 := congrArg (MvPolynomial.eval fun v : Fin s × Fin s => (1 : Matrix (Fin s) (Fin s) ℂ) v.1 v.2) h
-         rw [RingHom.map_det, map_zero] at h5
-         have hm : (MvPolynomial.eval fun v : Fin s × Fin s => (1 : Matrix (Fin s) (Fin s) ℂ) v.1 v.2).mapMatrix
-             (Matrix.mvPolynomialX (Fin s) (Fin s) ℂ) = 1 := by
-           ext i j
-           simp [Matrix.mvPolynomialX]
-         rw [hm, Matrix.det_one] at h5
-         exact one_ne_zero h5)
   have he : Formalism.GradedWeylDivisibility.lpMinor ℂ (r := r) (n := m) s hr hm =
       rename (fun v : Fin s × Fin s => (Fin.castLE hr v.1, Fin.castLE hm v.2))
         (Matrix.det (Matrix.mvPolynomialX (Fin s) (Fin s) ℂ)) := by
@@ -512,14 +492,11 @@ theorem mtw_evPt_conj (τ : L →+* ℂ) (B : GL (Fin n) ℂ) (h : ComplexEmbedd
     (Matrix.of fun a b => NG.evPt τ B (ComplexEmbedding.conjugate τ, a, b)) = ((B⁻¹ : GL (Fin n) ℂ) : Matrix (Fin n) (Fin n) ℂ)ᵀ := by
   first
     | (ext a b; simp [NG.evPt, h])
-    | (ext a b; simp [NG.evPt, h, Matrix.transpose_apply])
 
 theorem mtw_evPt_other (τ σ : L →+* ℂ) (B : GL (Fin n) ℂ) (h1 : σ ≠ τ) (h2 : σ ≠ ComplexEmbedding.conjugate τ) :
     (Matrix.of fun a b => NG.evPt τ B (σ, a, b)) = (1 : Matrix (Fin n) (Fin n) ℂ) := by
   first
     | (ext a b; simp [NG.evPt, h1, h2]; rfl)
-    | (ext a b; simp [NG.evPt, h1, h2]; rw [Matrix.one_apply])
-    | (ext a b; simp [NG.evPt, h1, h2, Matrix.one_apply])
 
 end HW
 

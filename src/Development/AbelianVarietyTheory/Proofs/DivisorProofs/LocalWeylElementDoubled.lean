@@ -106,8 +106,8 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
     rw [hM, dbl, Matrix.fromBlocks_transpose, Matrix.fromBlocks_map, Matrix.fromBlocks_multiply,
       Matrix.fromBlocks_multiply]
     simp only [Matrix.transpose_smul, Matrix.transpose_one, hmap, hcp, Matrix.smul_mul, Matrix.mul_smul,
-      Matrix.one_mul, Matrix.mul_one, Matrix.zero_mul, Matrix.mul_zero, add_zero, zero_add, Matrix.mul_neg,
-      Matrix.neg_mul, smul_smul, smul_neg]
+      Matrix.one_mul, Matrix.mul_one, Matrix.mul_zero, add_zero, zero_add, Matrix.mul_neg,
+      smul_smul, smul_neg]
     congr 1 <;> ext i j <;>
       simp only [Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, Matrix.zero_apply, Matrix.neg_apply]
     all_goals
@@ -116,8 +116,6 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
         | linear_combination incM F J i j * (hfc - hpp - hp)
         | linear_combination incM F J i j * (hpcf - hpf)
         | linear_combination incM F J i j * (hpf - hpcf)
-        | linear_combination incM F J i j * (hpcf + hpf)
-        | linear_combination incM F J i j * (-hpcf - hpf)
 
   refine ⟨⟨⟨M, M, hMM, hMM⟩, hU⟩, rfl, ?_, Subtype.ext (Units.ext hMM), ?_⟩
   · intro u hu
@@ -135,10 +133,6 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
       first
           | linear_combination 1 * ((ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp - (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
           | linear_combination 1 * ((1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huf)
-          | linear_combination 1 * (-((1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huf))
-          | linear_combination 1 * (- (ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp + (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
-          | linear_combination 1 * ((ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp + (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
-          | linear_combination 1 * (-(ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp - (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
   · intro k hk gd gd' hgd hgd'
     apply Subtype.ext
     apply Units.ext
@@ -153,8 +147,8 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
       simp only [Matrix.smul_apply, Matrix.sub_apply, Matrix.zero_apply, smul_eq_mul] at h
       linear_combination h
     rw [hgd, hgd', hM, Matrix.fromBlocks_multiply, Matrix.fromBlocks_multiply]
-    simp only [Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, Matrix.mul_one, Matrix.zero_mul, Matrix.mul_zero,
-      add_zero, zero_add, smul_smul, smul_zero]
+    simp only [Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, Matrix.mul_one, Matrix.mul_zero,
+      add_zero, zero_add, smul_smul]
     congr 1 <;> ext i j <;>
       simp only [Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, Matrix.zero_apply]
     all_goals

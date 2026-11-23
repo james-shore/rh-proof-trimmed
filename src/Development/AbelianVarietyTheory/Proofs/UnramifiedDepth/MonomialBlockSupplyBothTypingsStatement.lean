@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.L2.FormalSeriesBounds
 
 theorem _root_.GlobalTheory.T.monomialBlock_supply_both_typings : MONSupply ∧ RF.MONSupply := by
-  first | exact @GlobalTheory.MonBlock.monSupply | exact GlobalTheory.MonBlock.monSupply | (intros; apply GlobalTheory.MonBlock.monSupply <;> assumption)
+  first | exact @GlobalTheory.MonBlock.monSupply

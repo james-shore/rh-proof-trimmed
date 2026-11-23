@@ -300,8 +300,7 @@ theorem adjoint_smooth : ∀ {D : D7} {V W : HSp D} {S S' : D.what₂.Tau → SP
   · simp only [LinearMap.compMultilinearMap_apply, PiTensorProduct.lift.tprod, LinearMap.add_apply, hmm]
     refine char _ _ _ fun v => ?_
     rw [map_add (f := _), LinearMap.add_apply, map_add (f := _), map_add (f := _), hU, hU, map_add (f := _), map_add (f := _), map_add (f := _)]
-  · simp only [LinearMap.compMultilinearMap_apply, PiTensorProduct.lift.tprod, LinearMap.smul_apply, hmm,
-      RingHom.id_apply]
+  · simp only [LinearMap.compMultilinearMap_apply, PiTensorProduct.lift.tprod, LinearMap.smul_apply, hmm]
     refine char _ _ _ fun v => ?_
     rw [map_smul, LinearMap.smul_apply, map_smul, map_smul, hU, map_smul, map_smul, smul_eq_mul, smul_eq_mul, map_mul,
       Complex.conj_conj]

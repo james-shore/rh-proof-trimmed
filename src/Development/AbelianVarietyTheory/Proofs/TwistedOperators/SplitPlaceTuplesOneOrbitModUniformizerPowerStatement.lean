@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.splitPlace_tuples_one_orbit_mod_uniformizer_power 
   MxOff (· = p.v) (mt W g⁻¹ ⬝ (x ⬝ u.1.1) - x - a) →
   ∃ k₀ : GL (Fin W.rank) 𝒪[k], (∀ i j, (k₀.1 - 1) i j ∈ IsLocalRing.maximalIdeal 𝒪[k] ^ e) ∧
     MxOff (· = p.v) (mt W (β.gl (Matrix.GeneralLinearGroup.map (algebraMap 𝒪[k] k) k₀)) ⬝ x - mt W g⁻¹ ⬝ (x ⬝ u.1.1)) := by
-  first | exact @GlobalTheory.AscFin.OneOrbitAt.one_orbit | exact GlobalTheory.AscFin.OneOrbitAt.one_orbit | (intros; apply GlobalTheory.AscFin.OneOrbitAt.one_orbit <;> assumption)
+  first | exact @GlobalTheory.AscFin.OneOrbitAt.one_orbit

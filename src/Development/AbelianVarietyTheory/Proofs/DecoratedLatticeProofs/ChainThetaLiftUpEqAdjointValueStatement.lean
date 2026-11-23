@@ -49,4 +49,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.chain_theta_lift_up_eq_adjoint_value : ∀ D : D7, SoftQ D → UpSpanQ D → UpAdjQ D → UpVal D := by
-  first | exact @GlobalTheory.ChainTw.upVal_of_span_adj | exact GlobalTheory.ChainTw.upVal_of_span_adj | (intros; apply GlobalTheory.ChainTw.upVal_of_span_adj <;> assumption)
+  first | exact @GlobalTheory.ChainTw.upVal_of_span_adj

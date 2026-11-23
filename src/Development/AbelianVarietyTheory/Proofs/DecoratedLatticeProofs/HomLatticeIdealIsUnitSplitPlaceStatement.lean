@@ -55,4 +55,4 @@ open GlobalTheory.LiftRows (Given)
 open GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting (FinPl IsBase onHalf phiQ rdQ)
 
 theorem _root_.GlobalTheory.T.homLatticeIdeal_isUnit_splitPlace : ∀ (D : D7) (PP : Pl D.host.E), ((D.host.QS * D.host.q * Ideal.absNorm D.host.ccK : ℕ) : 𝓞 D.host.E) ∉ PP.asIdeal → ∀ (v : FinPl D) (φ : SplitProj D v), IsProjAt φ PP → ((∃ a : D.host.E, a ∈ D.host.AA ∧ Valued.v (rdQ φ a) = 1) ∧ ∀ a : D.host.E, a ∈ D.host.AA → Valued.v (rdQ φ a) ≤ 1) := by
-  first | exact @GlobalTheory.NormIdealUnit.unit_at_split_place | exact GlobalTheory.NormIdealUnit.unit_at_split_place | (intros; apply GlobalTheory.NormIdealUnit.unit_at_split_place <;> assumption)
+  first | exact @GlobalTheory.NormIdealUnit.unit_at_split_place

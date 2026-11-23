@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
 theorem _root_.GlobalTheory.T.sphericalKernel_normSq_mul_latticeIndex_eq_one : ∀ (D : D7) (T : HSp D) (N : ℕ) (χ : (AE D)ˣ →* Circle) (v : HeightOneSpectrum (𝓞 D.host.F)) (φ : GlobalTheory.FinZeta.Gv T v → ℂ), GlobalTheory.FinZeta.IsLocKer T N (GlobalTheory.LFun.val χ) v φ → (∀ w : HeightOneSpectrum (𝓞 D.host.E), w.under (𝓞 D.host.F) = v → GlobalTheory.LFun.UnrAt χ w) → ∀ a : GlobalTheory.FinZeta.Gv T v, ‖φ a‖ ^ 2 * (latIndex T (GlobalTheory.FinZeta.embV T v a) : ℝ) ^ N = 1 := by
-  first | exact @GlobalTheory.LocKerMod.sq_norm_mul_latIndex | exact GlobalTheory.LocKerMod.sq_norm_mul_latIndex | (intros; apply GlobalTheory.LocKerMod.sq_norm_mul_latIndex <;> assumption)
+  first | exact @GlobalTheory.LocKerMod.sq_norm_mul_latIndex

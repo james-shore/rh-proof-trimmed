@@ -64,11 +64,7 @@ theorem finrank_span_reduction_le {O K I A B : Type} [CommRing O] [IsDomain O] [
     Module.finrank (IsLocalRing.ResidueField O) (Submodule.span (IsLocalRing.ResidueField O) (Set.range g)) ≤
       Module.finrank K (Submodule.span K (Set.range f)) := by
   first
-  | exact @_root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le
-  | exact _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le
   | (apply _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ResidueSpanScale.finrank_span_residue_le ..)
 
 theorem hilb_eq_finrank_span {k J : Type} [Field k] [Finite J] (C : Set (J → k)) (d : ℕ) :

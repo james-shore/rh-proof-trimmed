@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.cayleyTransform_mem_unitaryLatticeStabilizer : ∀
     (∃ M : Matrix (Fin d) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), (1 - Y) * M = 1 ∧ M * (1 - Y) = 1 ∧
       ∀ z ∈ GlobalTheory.InertSph.latAt W v, M *ᵥ z ∈ GlobalTheory.InertSph.latAt W v) →
     ∃ h ∈ GlobalTheory.InertSph.KAt σ W v, mat h * (1 + Y) = 1 - Y := by
-  first | exact @GlobalTheory.CayleyStab.cayley_mem_KAt | exact GlobalTheory.CayleyStab.cayley_mem_KAt | (intros; apply GlobalTheory.CayleyStab.cayley_mem_KAt <;> assumption)
+  first | exact @GlobalTheory.CayleyStab.cayley_mem_KAt

@@ -81,7 +81,7 @@ theorem det_unip (n : ℕ) (v : Multiplicative (Fin n → k)) :
     have hj : j ≠ Fin.last n := fun h => by
       subst h
       exact absurd hij' (not_lt.2 (Fin.le_last i))
-    simp [unip, colMat, hj, one_apply, hij'.ne']
+    simp [unip, colMat, hj, hij'.ne']
   rw [Matrix.det_of_upperTriangular htri]
   refine Finset.prod_eq_one fun i _ => ?_
   induction i using Fin.lastCases with

@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.realIntertwiner_downArrow_transport_adjoint : ∀ 
       IsVacVec ψ θ T.M S.M f₀ ∧
       ∀ It : PolF D S.V.rank T.V.rank →ₗ[ℂ] SmT S.M →ₗ[ℂ] SmT T.M, IsItW θ T.M S.M ω₀ (ptOf ψ θ T.M S.M f₀) It →
         GlobalTheory.Grid.IsIntw θ T.M S.M ω.swap (GlobalTheory.Grid.fock ψ θ true S T f) (It ∘ₗ e.toLinearMap) := by
-  first | exact @GlobalTheory.AdjTr.downArrow_transport | exact GlobalTheory.AdjTr.downArrow_transport | (intros; apply GlobalTheory.AdjTr.downArrow_transport <;> assumption)
+  first | exact @GlobalTheory.AdjTr.downArrow_transport

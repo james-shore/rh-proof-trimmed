@@ -68,11 +68,7 @@ variable {K : Type} [Field K] [NumberField K] {V : Type} [AddCommGroup V] [Modul
 theorem exists_smul_mem_of_mem_span (T : Submodule (𝓞 K) V) {x : V} (hx : x ∈ Submodule.span K (T : Set V)) :
     ∃ s : 𝓞 K, s ≠ 0 ∧ s • x ∈ T := by
   first
-  | exact @_root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span
-  | exact _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span
   | (apply _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span ..)
 
 theorem exists_smul_mem_of_fg (T A : Submodule (𝓞 K) V) (hA : A.FG)

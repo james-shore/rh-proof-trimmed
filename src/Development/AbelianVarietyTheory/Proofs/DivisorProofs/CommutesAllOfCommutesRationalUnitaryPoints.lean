@@ -228,8 +228,6 @@ theorem ratDense (D : D7) (V : Formalism.BasicNotions.TH.HSp D)
           γ ∈ Formalism.UG.UJ (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram ∧
             (γ : Matrix (Fin V.rank) (Fin V.rank) D.host.E) = (1 + S) * (1 - S)⁻¹ := by
         first
-          | exact GlobalTheory.T.cayleyTransform_skew_mem_unitaryGroup (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram S hS h0
-          | exact GlobalTheory.T.cayleyTransform_skew_mem_unitaryGroup (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram S hS hJ h0
           | exact GlobalTheory.T.cayleyTransform_skew_mem_unitaryGroup (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram S hJ hS h0
       have hne : ∀ τ, (1 - y τ).det ≠ 0 := fun τ => by
         rw [hdS]; exact (map_ne_zero _).2 h0

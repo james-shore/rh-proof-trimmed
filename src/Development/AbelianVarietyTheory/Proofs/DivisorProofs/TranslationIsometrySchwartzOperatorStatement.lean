@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.translation_isometry_schwartz_operator : ∀ (V : 
     ∀ (χ ψ h : SchwartzMap V ℂ), HasCompactSupport (χ : V → ℂ) → ∀ M : ℕ, ∃ C : ℝ,
       ∀ (v : V) (k ψv : SchwartzMap V ℂ), (∀ x, k x = χ (x - v) * h x) → (∀ x, ψv x = ψ (x - v)) →
         ‖∫ x, T k x * starRingEnd ℂ (T ψv x) ∂μ‖ ≤ C * ((1 + ‖v‖) ^ M)⁻¹ := by
-  first | exact @GlobalTheory.TransDecay.decay | exact GlobalTheory.TransDecay.decay | (intros; apply GlobalTheory.TransDecay.decay <;> assumption)
+  first | exact @GlobalTheory.TransDecay.decay

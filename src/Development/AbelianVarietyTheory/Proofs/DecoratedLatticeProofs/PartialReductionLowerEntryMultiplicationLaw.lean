@@ -162,8 +162,8 @@ theorem embA_elem_mem (r l : Fin c) (h : r ≠ l) (hrl : r.val < l.val) (a : k) 
   rw [embA_elem_val]
   rcases r' with r' | r' <;> rcases s with s | s
   · simp [Matrix.one_apply]
-  · simp [Matrix.one_apply]
-  · simp [Matrix.one_apply]
+  · simp
+  · simp
   · simp only [lev, Sum.elim_inr] at hrs
     simp only [fromBlocks_apply₂₂, transvection, Matrix.add_apply, single_apply, Matrix.one_apply, Sum.inr.injEq]
     have : ¬ (r = r' ∧ l = s) := by

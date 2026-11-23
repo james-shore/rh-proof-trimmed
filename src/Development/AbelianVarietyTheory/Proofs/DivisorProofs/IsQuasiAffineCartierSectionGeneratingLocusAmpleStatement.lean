@@ -54,4 +54,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.isQuasiAffine_cartierSectionGeneratingLocus_ample : ∀ (Y : Scheme.{0}) [IsIntegral Y] [CompactSpace Y] [QuasiSeparatedSpace Y] (D : CartierDiv Y), AmpleDiv D → ∀ (k : ℕ), 1 ≤ k → ∀ s ∈ Sec D k, ∀ V : Y.Opens, (V : Set Y) = locus D k s → V.toScheme.IsQuasiAffine := by
-  first | exact @GlobalTheory.Desc.LocusQA.isQuasiAffine_locus | exact GlobalTheory.Desc.LocusQA.isQuasiAffine_locus | (intros; apply GlobalTheory.Desc.LocusQA.isQuasiAffine_locus <;> assumption)
+  first | exact @GlobalTheory.Desc.LocusQA.isQuasiAffine_locus

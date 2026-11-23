@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.rowPeriodGroups_split_real_finite_large_depth : Big fun ch => GrpAt ch := by
-  first | exact @GlobalTheory.RowGrpSplit.grpAt_big | exact GlobalTheory.RowGrpSplit.grpAt_big | (intros; apply GlobalTheory.RowGrpSplit.grpAt_big <;> assumption)
+  first | exact @GlobalTheory.RowGrpSplit.grpAt_big

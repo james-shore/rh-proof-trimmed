@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.hermitianClassCondition_of_chartClasses : ∀ (D :
   ∃ C : Formalism.L2.Herm.ClassTie D.sp.cm (D.sp.X i) L.Lb L.U (fun c' => stab (e c')) (fun c' => lat (e c')),
     (∀ c', (K.y (e c')).1 = reGL (rankN D i hi) _ (C.y c').1) ∧
     ∀ c' s, (K.stabI (e c') s).1 = reGL (rankN D i hi) _ (C.stabI c' s).1 := by
-  first | exact @GlobalTheory.HermTransport.classTie_of_chart | exact GlobalTheory.HermTransport.classTie_of_chart | (intros; apply GlobalTheory.HermTransport.classTie_of_chart <;> assumption)
+  first | exact @GlobalTheory.HermTransport.classTie_of_chart

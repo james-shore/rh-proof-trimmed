@@ -57,4 +57,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.isFiniteAdelicPointOfUnitaryGroup_one : ∀ {D : D7} (V : HSp D) {n : ℕ}, V.rank = n → IsFinPt V (1 : GA D V) (1 : Formalism.MainNotions.StandardLatticesGL3.GA D n) := by
-  first | exact @GlobalTheory.BotFormula.isFinPt_one | exact GlobalTheory.BotFormula.isFinPt_one | (intros; apply GlobalTheory.BotFormula.isFinPt_one <;> assumption)
+  first | exact @GlobalTheory.BotFormula.isFinPt_one

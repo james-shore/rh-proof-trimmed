@@ -54,11 +54,7 @@ variable {l : ℕ} [Fact l.Prime]
 
 theorem norm_le_one_of_mem (c : Coef l) {x : Qbar l} (hx : x ∈ c.O) : ‖x‖ ≤ 1 := by
   first
-  | exact @_root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem
-  | exact _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem
   | (apply _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegralElementNorm.norm_le_one_of_mem ..)
 
 theorem mulVec_mem (c : Coef l) {M : Matrix (Fin 2) (Fin 2) (Qbar l)} {x : Fin 2 → Qbar l}

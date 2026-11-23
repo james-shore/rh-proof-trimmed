@@ -53,4 +53,4 @@ open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.adelicUnitaryHaar_eq_map_prod_real_finite : ∀ (D : D7) (Y : HSp D) (ν : Measure (GA D Y)), ν.IsHaarMeasure → ∃ (m : Measure (GinfC Y)) (μ : Measure (GfC Y)), m.IsHaarMeasure ∧ μ.IsHaarMeasure ∧ SigmaFinite m ∧ SigmaFinite μ ∧ MeasurableEmbedding (fun q : GinfC Y × GfC Y => (q.1 : GA D Y) * q.2) ∧ ν = (m.prod μ).map (fun q : GinfC Y × GfC Y => (q.1 : GA D Y) * q.2) := by
-  first | exact @GlobalTheory.HaarSplit.haar_eq_map_prod | exact GlobalTheory.HaarSplit.haar_eq_map_prod | (intros; apply GlobalTheory.HaarSplit.haar_eq_map_prod <;> assumption)
+  first | exact @GlobalTheory.HaarSplit.haar_eq_map_prod

@@ -47,4 +47,4 @@ open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.Basi
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.etaleRing_image_saturated_adicClosed : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL) (W : Wach P K LL) (E : EtSit P AI K s LL h W), (∀ (x : RW LL) (e : W.EE), (l : RW LL) * x = E.tie.ioE e → ∃ e', x = E.tie.ioE e') ∧ ∀ x : RW LL, (∀ k : ℕ, ∃ e r, x - E.tie.ioE e = (l : RW LL) ^ k * r) → ∃ e, x = E.tie.ioE e := by
-  first | exact @GlobalTheory.Decompl.Sat.ioE_saturated_closed | exact GlobalTheory.Decompl.Sat.ioE_saturated_closed | (intros; apply GlobalTheory.Decompl.Sat.ioE_saturated_closed <;> assumption)
+  first | exact @GlobalTheory.Decompl.Sat.ioE_saturated_closed

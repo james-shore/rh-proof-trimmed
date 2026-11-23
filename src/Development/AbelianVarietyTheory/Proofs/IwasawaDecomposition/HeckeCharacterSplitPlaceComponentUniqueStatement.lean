@@ -68,4 +68,4 @@ open GlobalTheory.TwistChoice (Reading ReadsAt)
 
 
 theorem _root_.GlobalTheory.T.heckeCharacter_splitPlaceComponent_unique : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (χ : HChar L) (s : SplitPlace L) (ξ ξ' : (s.v.adicCompletion (maximalRealSubfield L))ˣ →* ℂˣ), NG.IsCompAt χ s ξ → NG.IsCompAt χ s ξ' → ξ = ξ' := by
-  first | exact @GlobalTheory.CompAtUniq.main | exact GlobalTheory.CompAtUniq.main | (intros; apply GlobalTheory.CompAtUniq.main <;> assumption)
+  first | exact @GlobalTheory.CompAtUniq.main

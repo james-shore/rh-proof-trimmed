@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_finite_algebra_splitting_normForm : ∀ (A 
         ∀ (m : ℕ) (g : Fin m → B), ∃ P : MvPolynomial (Fin m) A,
           P.map (algebraMap A K) = GlobalTheory.NormSheaf.normForm K L (fun i => algebraMap B L (g i)) ∧
           P.map (algebraMap A R) = ∏ j, ∑ i, C (σ j (g i)) * X i := by
-  first | exact @GlobalTheory.NormSheaf.exists_finite_split_normForm | exact GlobalTheory.NormSheaf.exists_finite_split_normForm | (intros; apply GlobalTheory.NormSheaf.exists_finite_split_normForm <;> assumption)
+  first | exact @GlobalTheory.NormSheaf.exists_finite_split_normForm

@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.uniformization_laws_and_expansion_statements : GlobalTheory.UT.LL ∧ DVR.TwistBCSpanStatement ∧ DVR.TWM.VRatioGtStatement ∧ DVR.TWStatement ∧ DVR.UUStatement := by
-  first | exact @GlobalTheory.lawsAndExpansions | exact GlobalTheory.lawsAndExpansions | (intros; apply GlobalTheory.lawsAndExpansions <;> assumption)
+  first | exact @GlobalTheory.lawsAndExpansions

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.unitaryHeckeChar_eq_one_of_trivial_over_split_plac
     B.IsGood σ → ∀ ν : (AF F ⊗[F] E)ˣ →* Circle, IsHeckeCharF ν →
       (∀ e, IsSplitIdemF σ e → ∀ x : (AF F ⊗[F] E)ˣ, (e + cAF σ e) * ((x : AF F ⊗[F] E) - 1) = (x : AF F ⊗[F] E) - 1 →
         ν x = 1) → ∀ x, ν x = 1 := by
-  first | exact @GlobalTheory.HeckeSplitBase.heckeChar_eq_one_of_split | exact GlobalTheory.HeckeSplitBase.heckeChar_eq_one_of_split | (intros; apply GlobalTheory.HeckeSplitBase.heckeChar_eq_one_of_split <;> assumption)
+  first | exact @GlobalTheory.HeckeSplitBase.heckeChar_eq_one_of_split

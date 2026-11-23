@@ -53,4 +53,4 @@ open GlobalTheory.MBLow.TanGauge
 
 theorem _root_.GlobalTheory.T.dualNumber_field_point_mem_open_of_reduction : ∀ (C : Type) [Field C] {X : Scheme.{0}} (y : Sp (DualNumber C) ⟶ X) (U : X.Opens),
     ⊤ ≤ (redE C ≫ y) ⁻¹ᵁ U → ⊤ ≤ y ⁻¹ᵁ U := by
-  first | exact @GlobalTheory.MBLow.TanGauge.top_le_of_redE | exact GlobalTheory.MBLow.TanGauge.top_le_of_redE | (intros; apply GlobalTheory.MBLow.TanGauge.top_le_of_redE <;> assumption)
+  first | exact @GlobalTheory.MBLow.TanGauge.top_le_of_redE

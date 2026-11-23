@@ -198,7 +198,7 @@ theorem grp_conj (ρ l n : (VS D).V ≃ₗ[D.host.E] (VS D).V) :
     apply ρ.injective
     rw [← LinearEquiv.mul_apply, LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply]
   ext x
-  simp [GCoord.grp, LinearEquiv.mul_apply, hs]
+  simp [GCoord.grp, hs]
 
 theorem lat_map_grp (ρ n : (VS D).V ≃ₗ[D.host.E] (VS D).V) (Λ : Submodule (𝓞 D.host.E) (VS D).V) :
     (c.lat ρ Λ).map (((c.grp ρ n : G.GLV) : G.V →ₗ[D.host.E] G.V).restrictScalars (𝓞 D.host.E)) =

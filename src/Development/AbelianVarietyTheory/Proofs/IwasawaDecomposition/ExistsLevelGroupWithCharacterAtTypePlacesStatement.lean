@@ -73,4 +73,4 @@ theorem _root_.GlobalTheory.T.exists_levelGroup_with_character_at_type_places : 
           (NX.tameVal ψ P 1 (NX.resRep (sp P) P (NX.detT D.R.r (NX.locM (sp P) κ)))).1) *
         (∏ P ∈ DP, baseCoeffToExtFractionRing D T i k (NX.tameVal (T.delta i) P (if b then 1 else -1)
           (NX.resRep (sp P) P (NX.detT D.R.r (NX.locM (sp P) κ)))).1) := by
-  first | exact @GlobalTheory.LevGChar.levGroup_exists | exact GlobalTheory.LevGChar.levGroup_exists | (intros; apply GlobalTheory.LevGChar.levGroup_exists <;> assumption)
+  first | exact @GlobalTheory.LevGChar.levGroup_exists

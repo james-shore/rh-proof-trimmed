@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.cellSumRelationsPassToIntegrals_proof : CellVan := by
-  first | exact @GlobalTheory.RowVal.cellVan_holds | exact GlobalTheory.RowVal.cellVan_holds | (intros; apply GlobalTheory.RowVal.cellVan_holds <;> assumption)
+  first | exact @GlobalTheory.RowVal.cellVan_holds

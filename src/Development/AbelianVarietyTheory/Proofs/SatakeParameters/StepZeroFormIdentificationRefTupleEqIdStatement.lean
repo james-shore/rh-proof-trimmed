@@ -45,4 +45,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.tw_e0_mu0_eq_eMu0_zero : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (l0 : I.Law0 l) (u : B.Word), (I.tw l l0 Z).e0 u (I.rec7 l Z).what₂.mu0 = (I.tw l l0 Z).eMu0 u 0 (Nat.zero_le _) := by
-  first | exact @GlobalTheory.TwU.AtTrue.stepZeroFormIdentification_refTuple_eq_id | exact GlobalTheory.TwU.AtTrue.stepZeroFormIdentification_refTuple_eq_id | (intros; apply GlobalTheory.TwU.AtTrue.stepZeroFormIdentification_refTuple_eq_id <;> assumption)
+  first | exact @GlobalTheory.TwU.AtTrue.stepZeroFormIdentification_refTuple_eq_id

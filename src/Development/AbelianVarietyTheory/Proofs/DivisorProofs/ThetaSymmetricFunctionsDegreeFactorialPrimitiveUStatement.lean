@@ -50,4 +50,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.thetaSymmetricFunctionsDegreeFactorial_primitive_unit : ∀ (V K : Type) [CommRing V] [IsDomain V] [IsLocalRing V] [IsIntegrallyClosed V] [Field K] (io : FractionRing V →+* K) (N : ℕ) (c : Fin N → K) (e : Fin N → FractionRing V), Prim (io.comp (algebraMap V (FractionRing V))) c → (∀ j, io (e j) = symTup c j) → ∃ e' : Fin N → V, (∀ j, algebraMap V (FractionRing V) (e' j) = e j) ∧ ∃ j, IsUnit (e' j) := by
-  first | exact @GlobalTheory.UMin.symTup_unit_of_prim | exact GlobalTheory.UMin.symTup_unit_of_prim | (intros; apply GlobalTheory.UMin.symTup_unit_of_prim <;> assumption)
+  first | exact @GlobalTheory.UMin.symTup_unit_of_prim

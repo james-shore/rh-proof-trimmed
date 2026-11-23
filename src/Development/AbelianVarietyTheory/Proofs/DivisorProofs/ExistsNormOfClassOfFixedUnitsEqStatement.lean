@@ -50,4 +50,4 @@ open NumberField GlobalTheory.UnitaryBC IsDedekindDomain Matrix Polynomial Globa
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.exists_norm_of_classOfFixedUnits_eq : ∀ (K : GlobalTheory.UnitLemma.UQ) (B : GlobalTheory.UnitLemma.InvAlg K) (x y : {x : B.Aˣ // B.σ (x : B.A) = x}), (Quot.mk _ x : B.Cl) = Quot.mk _ y → ∃ a : B.Aˣ, (y.1 : B.A) = x.1 * (a * B.σ a) := by
-  first | exact @GlobalTheory.UnitLemma.InvAlg.ClRel.eq_of_mk_eq | exact GlobalTheory.UnitLemma.InvAlg.ClRel.eq_of_mk_eq | (intros; apply GlobalTheory.UnitLemma.InvAlg.ClRel.eq_of_mk_eq <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.InvAlg.ClRel.eq_of_mk_eq

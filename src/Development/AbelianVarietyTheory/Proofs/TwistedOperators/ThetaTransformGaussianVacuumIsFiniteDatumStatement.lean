@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.thetaTransform_gaussianVacuum_isFiniteDatum : ∀ 
       ∀ (g : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.SInf D.host.F (Fin S.rank × Fin d)) (φ : ∀ v : IsDedekindDomain.HeightOneSpectrum (𝓞 D.host.F), (Fin S.rank × Fin d → v.adicCompletion D.host.F) → ℂ), M.IsGauss Bs.ψ Bs.emb g →
         (∀ v, φ v ∈ GlobalTheory.WeilM.SB _) → (∀ᶠ v in Filter.cofinite, φ v = M.vac v) →
         ∃ f : WO S X → ℂ, IsFinF ψ θ ε A B f ∧ IsDatum M ψ cS (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure g φ) f := by
-  first | exact @GlobalTheory.GaussThetaFinite.isFinF_of_isGauss | exact GlobalTheory.GaussThetaFinite.isFinF_of_isGauss | (intros; apply GlobalTheory.GaussThetaFinite.isFinF_of_isGauss <;> assumption)
+  first | exact @GlobalTheory.GaussThetaFinite.isFinF_of_isGauss

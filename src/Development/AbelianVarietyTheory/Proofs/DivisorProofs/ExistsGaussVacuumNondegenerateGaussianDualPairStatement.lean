@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_gaussVacuum_nondegenerate_gaussian_dualPair
     IsPair B M χX χW om r s r' s' → ∃ g : SInf F (Fin n × Fin d), M.IsGauss B.ψ B.emb g ∧
       ∃ (Q : (Fin n × Fin d → mixedEmbedding.mixedSpace F) →L[ℝ] (Fin n × Fin d → mixedEmbedding.mixedSpace F) →L[ℝ] ℂ) (c : ℝ),
         0 < c ∧ (∀ x, c * ‖x‖ ^ 2 ≤ (Q x x).re) ∧ ∀ x, g x = Complex.exp (-(Q x x)) := by
-  first | exact @GlobalTheory.GaussVacPair.exists_gauss_vacuum | exact GlobalTheory.GaussVacPair.exists_gauss_vacuum | (intros; apply GlobalTheory.GaussVacPair.exists_gauss_vacuum <;> assumption)
+  first | exact @GlobalTheory.GaussVacPair.exists_gauss_vacuum

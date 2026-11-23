@@ -87,7 +87,7 @@ private theorem selfDualK_full {K : Type} [Field K] [NumberField K] [StarRing K]
       refine ⟨b + c, ?_⟩
       change (b : K) + c = _
       rw [hb, hc]
-      simp [f, dotProduct, Matrix.mulVec, map_add, add_mul, Finset.sum_add_distrib, mul_add]
+      simp [f, dotProduct, Matrix.mulVec, add_mul, Finset.sum_add_distrib, mul_add]
     smul_mem' := by
       rintro c x ⟨b, hb⟩
       refine ⟨RingOfIntegers.mapRingHom (starRingEnd K) c * b, ?_⟩

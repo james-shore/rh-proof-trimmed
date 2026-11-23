@@ -76,10 +76,7 @@ theorem locK_eq_one (D : D7) (H : Formalism.L2.Host.HChar D.host.E) (PP : Pl D.h
     have h1 : PP.valuation D.host.E ((k : D.host.E) - 1) < PP.valuation D.host.E 1 := by rwa [map_one]
     rw [e]
     first
-      | rw [Valuation.map_add_eq_of_lt_right _ h1, map_one]
       | rw [Valuation.map_add_eq_of_lt_left _ h1, map_one]
-      | rw [add_comm, Valuation.map_add_eq_of_lt_right _ h1, map_one]
-      | rw [add_comm, Valuation.map_add_eq_of_lt_left _ h1, map_one]
   obtain ⟨a, s, h⟩ := PP.exists_primeCompl_mul_eq_of_integer (k : D.host.E) hv1.le
   have hs : (s : 𝓞 D.host.E) ∉ PP.asIdeal := s.2
   have hsv := valuation_eq_one_of_not_mem PP _ hs

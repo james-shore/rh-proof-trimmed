@@ -75,7 +75,7 @@ private theorem res_frob (hk : (p : k) = 0) (hT : (p : DualNumber k) = 0)
   have M := F'.comp (resMor h)
   refine (GrpMor.pull_pull F' (resMor h) M (fun _ ↦ rfl) rfl c).trans
     (GrpMor.pull_pull (resMor h) F₀ M (fun r ↦ ?_) (frob_sq hk hT) c).symm
-  simp [frobR_apply, TrivSqZeroExt.fst_pow]
+  simp [TrivSqZeroExt.fst_pow]
 
 private theorem lift_frob (hk : (p : k) = 0) (hT : (p : DualNumber k) = 0)
     (h : IsGrpPullback A₀ A' (epsRed k) i) (c : primDR A') :

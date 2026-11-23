@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_dual_pair_isUnit_det_blocks' : ∀ {R : Typ
           X₁ * (G₁.toBlocks₁₁ + G₁.toBlocks₁₂ - G₁.toBlocks₂₁ - G₁.toBlocks₂₂)).det ∧
         IsUnit (G₂.toBlocks₁₁ + G₂.toBlocks₁₂ + G₂.toBlocks₂₁ + G₂.toBlocks₂₂ +
           X₂ * (G₂.toBlocks₁₁ + G₂.toBlocks₁₂ - G₂.toBlocks₂₁ - G₂.toBlocks₂₂)).det := by
-  first | exact @GlobalTheory.exists_dual_pair_isUnit_det_blocks | exact GlobalTheory.exists_dual_pair_isUnit_det_blocks | (intros; apply GlobalTheory.exists_dual_pair_isUnit_det_blocks <;> assumption)
+  first | exact @GlobalTheory.exists_dual_pair_isUnit_det_blocks

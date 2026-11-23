@@ -50,4 +50,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.mem_completion_of_mem_modulus_and_conj_quotients : ∀ {D : D7} {T : Type} {L : LevCh D T} (P : Places L) (sc : Consts) (v : GlobalTheory.FinPl.Pl D) (𝔞 : GlobalTheory.SeeSaw.FI D) (s : AE D), s ∈ GlobalTheory.SeeSaw.idV (𝔞 * ((P.modul sc : Ideal (𝓞 D.host.E)) : GlobalTheory.SeeSaw.FI D)⁻¹) v → s ∈ GlobalTheory.SeeSaw.idV (𝔞 * ((P.modulBar sc : Ideal (𝓞 D.host.E)) : GlobalTheory.SeeSaw.FI D)⁻¹) v → s ∈ GlobalTheory.SeeSaw.idV 𝔞 v := by
-  first | exact @GlobalTheory.ModulInter.mem_idV_of_inter | exact GlobalTheory.ModulInter.mem_idV_of_inter | (intros; apply GlobalTheory.ModulInter.mem_idV_of_inter <;> assumption)
+  first | exact @GlobalTheory.ModulInter.mem_idV_of_inter

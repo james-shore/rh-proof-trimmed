@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_coset_same_localCosetSets_other_baseLattice
     G'.pl.v0 = G.pl.v0 → G'.pl.w = G.pl.w → G'.sp.Vs 1 0 = G.sp.Vs 1 0 → HEq (B'.βs 1 0) (B.βs 1 0) →
     ∀ (h : 0 < D.R.m) (κ' : G'.CosAt 0), ∃ κ : G.CosAt 0, ∀ (t : T') (t₀ : T) (w : Pl D.host.E),
       GlobalTheory.FunObj.cosetSet t w B' h κ' = GlobalTheory.FunObj.cosetSet t₀ w B h κ := by
-  first | exact @GlobalTheory.FunObj.CosFlip.exists_cos_cosetSet_eq | exact GlobalTheory.FunObj.CosFlip.exists_cos_cosetSet_eq | (intros; apply GlobalTheory.FunObj.CosFlip.exists_cos_cosetSet_eq <;> assumption)
+  first | exact @GlobalTheory.FunObj.CosFlip.exists_cos_cosetSet_eq

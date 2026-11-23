@@ -74,7 +74,7 @@ theorem hD_finset_sum {G R : Type} [AddCommGroup G] [NormedAddCommGroup R] [Norm
   funext w
   rw [Finset.sum_apply]
 
-  simp only [hD_eq_fderiv ι π om f hf, map_sum, ContinuousLinearMap.sum_apply]
+  simp only [hD_eq_fderiv ι π om f hf, map_sum]
   push_cast
   rw [Finset.mul_sum, Finset.sum_mul, ← Finset.sum_add_distrib]
 

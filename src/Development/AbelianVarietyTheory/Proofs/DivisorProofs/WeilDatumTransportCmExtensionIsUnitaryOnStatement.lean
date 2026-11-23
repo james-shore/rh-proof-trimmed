@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.weilDatumTransport_cmExtension_isUnitaryOn : ∀ (
               co.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) →
             ∀ om : UG (cA σ) (incM F JA) × UG (cA σ) (incM F JB) →* Module.End ℂ ((κ → AF F) → ℂ),
               GlobalTheory.WeilSchrodinger.IsTransportF σ B.ψ co ω om → IsUnitaryOn (adeleClass F) om := by
-  first | exact @GlobalTheory.WeilAdmCMUnit.isUnitaryOn_transport | exact GlobalTheory.WeilAdmCMUnit.isUnitaryOn_transport | (intros; apply GlobalTheory.WeilAdmCMUnit.isUnitaryOn_transport <;> assumption)
+  first | exact @GlobalTheory.WeilAdmCMUnit.isUnitaryOn_transport

@@ -75,7 +75,7 @@ theorem exists_compact_adeleE : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
     rw [Module.Basis.equivFun_apply]
     show (B.repr ((1 : AF F) ⊗ₜ[F] (∑ k, x k • b k))) k = _
     rw [Algebra.TensorProduct.basis_repr_tmul]
-    simp [b, Module.Basis.repr_sum_self]
+    simp [b]
     rw [Finset.sum_eq_single k (fun j _ hj => by simp [Finsupp.single_apply, hj]) (by simp)]
     simp
   simp only [map_sub, Pi.sub_apply, h1]

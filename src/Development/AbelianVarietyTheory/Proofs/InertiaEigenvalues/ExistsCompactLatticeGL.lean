@@ -61,11 +61,7 @@ theorem exists_bound_log (E : Type) [Field E] [NumberField E] :
     ∃ R : ℝ, ∀ t : InfinitePlace E → ℝ, ∃ (u : (𝓞 E)ˣ) (n : ℤ), ∀ w : InfinitePlace E,
       |t w + Real.log (w (u : E)) + n| ≤ R := by
   first
-  | exact @_root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le
-  | exact _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le
   | (apply _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le ..)
 
 theorem isCompact_units {A : Type} [Monoid A] [TopologicalSpace A] [ContinuousMul A] [T1Space A] {C : Set A}

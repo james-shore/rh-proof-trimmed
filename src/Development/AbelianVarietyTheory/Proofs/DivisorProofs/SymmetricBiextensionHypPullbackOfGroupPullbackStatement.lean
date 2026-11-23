@@ -49,4 +49,4 @@ open GlobalTheory.EndLoc GlobalTheory.ActFin
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.symmetricBiextensionHyp_pullback_of_groupPullback : ∀ (S S' : Scheme.{0}) (f : S' ⟶ S) (A : Over S) [GrpObj A] [IsCommMonObj A] (A' : Over S') [GrpObj A'] (φ : A'.left ⟶ A.left) (φ₂ : (A' ⊗ A').left ⟶ (A ⊗ A).left) (Q : LB (A ⊗ A).left), IsGrpPullback A' A f φ → IsSquare φ φ₂ → QHyp A Q → QHyp A' (Q.pull φ₂) := by
-  first | exact @GlobalTheory.ActFin.qHyp_pull_of_isGrpPullback | exact GlobalTheory.ActFin.qHyp_pull_of_isGrpPullback | (intros; apply GlobalTheory.ActFin.qHyp_pull_of_isGrpPullback <;> assumption)
+  first | exact @GlobalTheory.ActFin.qHyp_pull_of_isGrpPullback

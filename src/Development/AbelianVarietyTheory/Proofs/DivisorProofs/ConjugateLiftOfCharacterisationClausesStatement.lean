@@ -95,4 +95,4 @@ theorem _root_.GlobalTheory.T.conjugateLift_of_characterisationClauses : (∀ {D
     ℂ))), LiftData R i σ μ' η' c H ω f₀ f B io thP → ∀ v : ∀ ρ, lowT (R.MW i σ) ρ, IsExtVec (R.MW i
     σ) (fun ρ => v ρ) → (∀ x, ∃ t : (R.HW i σ).H, (R.HW i σ).e t (fun ρ => v ρ) = thP ((c.ext ∘ₗ
     H.e).rangeRestrict (j x)) (PiTensorProduct.tprod ℂ v)) → ∃ th, IsProjOf R i σ thP th) := by
-  first | exact @GlobalTheory.GalLift.conjLift_five | exact GlobalTheory.GalLift.conjLift_five | (intros; apply GlobalTheory.GalLift.conjLift_five <;> assumption)
+  first | exact @GlobalTheory.GalLift.conjLift_five

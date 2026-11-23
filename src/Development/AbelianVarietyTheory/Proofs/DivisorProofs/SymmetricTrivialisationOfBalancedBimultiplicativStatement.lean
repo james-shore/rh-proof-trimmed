@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.symmetric_trivialisation_of_balanced_bimultiplicat
     ∀ τ : ∀ y z : X, LB.Gen (LB.LinComb M.L (GlobalTheory.PolDeg.lamPts (c y) (c z)) GlobalTheory.PolDeg.negε), GlobalTheory.UTau0.BalTau M cub act c τ →
     ∃ τ' : ∀ y z : X, LB.Gen (LB.LinComb M.L (GlobalTheory.PolDeg.lamPts (c y) (c z)) GlobalTheory.PolDeg.negε), GlobalTheory.UTau0.BalTau M cub act c τ' ∧
       ∀ y z p J, Good M.L p J → val (τ' y z) (𝟙 _) p J = val (τ' z y) (𝟙 _) p J := by
-  first | exact @GlobalTheory.SymTau.symm_of_bal | exact GlobalTheory.SymTau.symm_of_bal | (intros; apply GlobalTheory.SymTau.symm_of_bal <;> assumption)
+  first | exact @GlobalTheory.SymTau.symm_of_bal

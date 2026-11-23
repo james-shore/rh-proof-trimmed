@@ -129,7 +129,7 @@ private theorem II_update_combLine (hML : MetricLocalStatement) (II : Intersecti
       rw [combLine_h, Finset.prod_eq_single a]
       · simp
       · intro b _ hb
-        simp [Pi.single_apply, hb]
+        simp [hb]
       · simp
   let Gh : (σ → ℤ) →+ ℝ := AddMonoidHom.mk' G hadd
   have hd : d = ∑ a, d a • Pi.single a (1 : ℤ) := by
@@ -182,7 +182,7 @@ private theorem II_combLine_eq_polar (hML : MetricLocalStatement) (II : Intersec
       refine Finset.induction_on S ?_ ?_
       · have h0 : Fintype.piFinset (t ∅) = {fun _ => a0} := by
           ext w
-          simp [t, Fintype.mem_piFinset, funext_iff]
+          simp [t, funext_iff]
         rw [h0, Finset.sum_singleton]
         simp [line]
       · intro j S hj ih
@@ -205,7 +205,7 @@ private theorem II_combLine_eq_polar (hML : MetricLocalStatement) (II : Intersec
             by_cases h : r = j
             · subst h
               simp [line]
-            · simp [line, Function.update_of_ne h, Finset.mem_insert, h]
+            · simp [line, Finset.mem_insert, h]
           rw [hupd, Finset.prod_insert hj, Function.update_self]
           have hprod : ∏ r ∈ S, (c r (Function.update w j a r) : ℝ) = ∏ r ∈ S, (c r (w r) : ℝ) :=
             Finset.prod_congr rfl fun r hr => by
@@ -216,7 +216,7 @@ private theorem II_combLine_eq_polar (hML : MetricLocalStatement) (II : Intersec
         rw [Finset.sum_congr rfl hexp, ← Finset.sum_product']
         apply Finset.sum_nbij' (fun p => Function.update p.1 j p.2) (fun w => (Function.update w j a0, w j))
         · rintro ⟨w, a⟩ hp
-          simp only [Finset.mem_coe, Finset.mem_product, Fintype.mem_piFinset] at hp ⊢
+          simp only [Finset.mem_product, Fintype.mem_piFinset] at hp ⊢
           intro r
           by_cases h : r = j
           · subst h
@@ -225,7 +225,7 @@ private theorem II_combLine_eq_polar (hML : MetricLocalStatement) (II : Intersec
             have := hp.1 r
             simpa [t, Finset.mem_insert, h] using this
         · intro w hw
-          simp only [Finset.mem_coe, Finset.mem_product, Finset.mem_univ, and_true, Fintype.mem_piFinset] at hw ⊢
+          simp only [Finset.mem_product, Finset.mem_univ, and_true, Fintype.mem_piFinset] at hw ⊢
           intro r
           by_cases h : r = j
           · subst h
@@ -234,7 +234,7 @@ private theorem II_combLine_eq_polar (hML : MetricLocalStatement) (II : Intersec
             have := hw r
             simpa [t, Finset.mem_insert, h] using this
         · rintro ⟨w, a⟩ hp
-          simp only [Finset.mem_coe, Finset.mem_product, Fintype.mem_piFinset] at hp
+          simp only [Finset.mem_product, Fintype.mem_piFinset] at hp
           have hwj : w j = a0 := by simpa [t, hj] using hp.1 j
           simp [Function.update_idem, ← hwj]
         · intro w _

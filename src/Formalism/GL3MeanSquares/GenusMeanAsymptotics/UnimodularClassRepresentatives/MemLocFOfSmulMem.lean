@@ -69,7 +69,7 @@ namespace RedC
 
 theorem index_eq_card {G T : Type*} [Group G] (N : Subgroup G) (f : G → T) (hs : Function.Surjective f)
     (hf : ∀ a b, f a = f b ↔ a⁻¹ * b ∈ N) : N.index = Nat.card T := by
-  first | exact Bl.general_b_fact_left_rest.goal1 .. | (apply Bl.general_b_fact_left_rest.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_left_rest.goal1 <;> assumption)
+  first | (apply Bl.general_b_fact_left_rest.goal1 <;> assumption)
 
 def redEnd (A : Submodule (𝓞 K) V) (𝔭 : Ideal (𝓞 F)) (k : ℕ) (X : V ≃ₗ[K] V) (hX : X ∈ glSub A) :
     Module.End (𝓞 K) (↥A ⧸ ((extP K 𝔭) ^ k • ⊤ : Submodule (𝓞 K) ↥A)) :=
@@ -227,7 +227,7 @@ theorem exists_redEnd_eq (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (h
       Submodule.Quotient.mk y' = Y (Submodule.Quotient.mk y) →
       CongrP 𝔭 k (h (x' : V) (y' : V)) (h (x : V) (y : V))) :
     ∃ (X : V ≃ₗ[K] V) (hX : X ∈ sSub h (locF 𝔭 A₀) 𝔭 k), redEnd (locF 𝔭 A₀) 𝔭 k X hX.1 = Y := by
-  obtain ⟨g, hg, hgY⟩ := exists_isom_lift hK hF hs hd (by first | exact hA₀ | exact hA₀.toIsLattice) hA₀i h𝔭 hk Y hY
+  obtain ⟨g, hg, hgY⟩ := exists_isom_lift hK hF hs hd (by first | exact hA₀) hA₀i h𝔭 hk Y hY
   have hgA : g ∈ glSub (locF 𝔭 A₀) := hg.2
   obtain ⟨D, hD⟩ := exists_lift hA₀ h𝔭 k Y
   have hle : extP K 𝔭 ^ (k - eA h (locF 𝔭 A₀) 𝔭) • locF 𝔭 A₀ ≤ extP K 𝔭 • locF 𝔭 A₀ :=

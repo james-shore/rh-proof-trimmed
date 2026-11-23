@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.fockSubstitution_homogeneous_coeff_mem_after_scali
       z * ((u τ : GL (Fin n) ℂ) : Matrix (Fin n) (Fin n) ℂ) x y ∈ O) →
     ∀ (d : ℕ) (P : MvPolynomial (FVar D m n) ℂ), P.IsHomogeneous d → (∀ mo, P.coeff mo ∈ O) →
       ∀ mo, z ^ d * (GlobalTheory.ExportSeries.fockSubst p u P).coeff mo ∈ O := by
-  first | exact @GlobalTheory.FockCoefInt.fockSubst_coeff_mem | exact GlobalTheory.FockCoefInt.fockSubst_coeff_mem | (intros; apply GlobalTheory.FockCoefInt.fockSubst_coeff_mem <;> assumption)
+  first | exact @GlobalTheory.FockCoefInt.fockSubst_coeff_mem

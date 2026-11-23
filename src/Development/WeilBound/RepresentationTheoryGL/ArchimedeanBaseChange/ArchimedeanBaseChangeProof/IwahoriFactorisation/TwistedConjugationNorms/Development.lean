@@ -84,7 +84,6 @@ variable {G : Type} [Group G] [TopologicalSpace G]
 theorem g0 (θ : G →* G) (K : Subgroup G) (δ : G) (f : G → ℂ) (h : ∀ p : G, f (p⁻¹ * δ * θ p) = 0) :
     twOrb θ K δ f = 0 := by
   first
-    | exact twisted_orbital_integral_eq_zero_of_vanish
     | (apply twisted_orbital_integral_eq_zero_of_vanish <;> assumption)
 
 theorem g1 [IsTopologicalGroup G] [T2Space G] (θ : G →* G) (K I : Subgroup G) (hKo : IsOpen (K : Set G))
@@ -93,7 +92,6 @@ theorem g1 [IsTopologicalGroup G] [T2Space G] (θ : G →* G) (K I : Subgroup G)
     (hC : CentOK θ K I δ) (p₀ : G) (h1 : OneCoset θ I δ X p₀) :
     twOrb θ K δ (X.indicator 1) = ((I.relIndex K : ℕ) : ℂ)⁻¹ := by
   first
-    | exact twisted_orbital_integral_indicator_inv_index
     | (apply twisted_orbital_integral_indicator_inv_index <;> assumption)
 
 theorem g1prod [IsTopologicalGroup G] [T2Space G] {G' : Type} [Group G'] [TopologicalSpace G']
@@ -103,7 +101,6 @@ theorem g1prod [IsTopologicalGroup G] [T2Space G] {G' : Type} [Group G'] [Topolo
       OneCoset (θ.prodMap θ') (I.prod I') (δ, δ') (X ×ˢ X') (p₀, p₀')) ∧
     (CentOK θ K I δ → CentOK θ' K' I' δ' → CentOK (θ.prodMap θ') (K.prod K') (I.prod I') (δ, δ')) := by
   first
-    | exact g1prod_pf
     | (apply g1prod_pf <;> assumption)
 
 theorem g2 (θ : G →* G) (K : Subgroup G) (S : Set G) (wt f : G → ℂ) (δ₀ : G) (c : ℂ) (hS : δ₀ ∈ S)
@@ -112,19 +109,16 @@ theorem g2 (θ : G →* G) (K : Subgroup G) (S : Set G) (wt f : G → ℂ) (δ�
     (hone : ∀ δ ∈ S, wt δ * twOrb θ K δ f ≠ 0 → ∃ g : G, δ = g⁻¹ * δ₀ * θ g) :
     clSum θ K S wt f = c := by
   first
-    | exact twisted_class_sum_eq_single_orbit
     | (apply twisted_class_sum_eq_single_orbit <;> assumption)
 
 theorem g2zero (θ : G →* G) (K : Subgroup G) (S : Set G) (wt f : G → ℂ)
     (h : ∀ δ ∈ S, wt δ * twOrb θ K δ f = 0) : clSum θ K S wt f = 0 := by
   first
-    | exact g2zero_pf
     | (apply g2zero_pf <;> assumption)
 
 theorem g3 (θ : G →* G) (K : Subgroup G) (δ : G) (f₁ f₂ : G → ℂ) (c : ℂ)
     (h : ∀ p : G, f₁ (p⁻¹ * δ * θ p) = c * f₂ (p⁻¹ * δ * θ p)) : twOrb θ K δ f₁ = c * twOrb θ K δ f₂ := by
   first
-    | exact twisted_orbital_integral_proportional
     | (apply twisted_orbital_integral_proportional <;> assumption)
 
 end Generic
@@ -136,7 +130,6 @@ theorem r1 (w : Pl E) (n : ℕ) (v : Fin n → ℤ) (hv : Function.Injective v) 
     (hd' : (∀ i j : Fin n, i ≠ j → d'.val i j = 0) ∧ ∀ i, ordL (d'.val i i) = v i)
     (hh : h⁻¹ * d * h = d') : d = d' ∧ ∀ i j : Fin n, i ≠ j → h.val i j = 0 := by
   first
-    | exact diagonal_conj_distinct_valuations_eq
     | (apply diagonal_conj_distinct_valuations_eq <;> assumption)
 
 theorem r2 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (a : ℕ) (x : Fin a → ℤ)
@@ -144,7 +137,6 @@ theorem r2 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion
     (hh : h⁻¹ * (tdiag ϖ x * τ) * thL a w h = tdiag ϖ x * τ') :
     ∃ z ∈ twCent (thL a w) (tdiag ϖ x * τ), ∃ s ∈ TO a w, h = z * s := by
   first
-    | exact le_and_half_le_prod_one_sub_exp_neg_of_bounds
     | (apply le_and_half_le_prod_one_sub_exp_neg_of_bounds <;> assumption)
 
 theorem iw_facts (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (t : GLw a w) :
@@ -153,7 +145,6 @@ theorem iw_facts (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (t : GLw a w) :
     IsLevel (MonoidHom.id _) (GlobalTheory.LFun.KGL w (n := a)) (iwGL a w) ∧ (iwGL a w).relIndex (GlobalTheory.LFun.KGL w (n := a)) ≠ 0 ∧
     IsCompact {g : GLw a w | dcos a w t g ≠ 0} := by
   first
-    | exact iw_facts_pf
     | (apply iw_facts_pf <;> assumption)
 
 theorem iwU_facts (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
@@ -162,14 +153,12 @@ theorem iwU_facts (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb :
     IsLevel (MonoidHom.id _) (KL n w) (iwU n w b) ∧ (iwU n w b).relIndex (KL n w) ≠ 0 ∧
     IsCompact {g : UL n w | fU n w b ϖ l g ≠ 0} := by
   first
-    | exact iwU_facts_pf
     | (apply iwU_facts_pf <;> assumption)
 
 theorem nrm_twconj (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (g δ : GLw a w) :
     (nrmL a w (g⁻¹ * δ * thL a w g)).val.charpoly = (nrmL a w δ).val.charpoly := by
   first
     | exact nrm_twconj_pf w hw a g δ
-    | (apply nrm_twconj_pf w hw a g δ <;> assumption)
 
 namespace S1
 
@@ -520,7 +509,6 @@ theorem s2 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w)
     (∃ p₀, OneCoset (MonoidHom.id (UL n w)) (iwU n w b) γ {g | fU n w b ϖ l g ≠ 0} p₀) ∧
       CentOK (MonoidHom.id (UL n w)) (KL n w) (iwU n w b) γ ∧ HasVals γ.1.val.charpoly (wexp n l) := by
   first
-    | exact unitary_hecke_orbit_single_coset
     | (apply unitary_hecke_orbit_single_coset <;> assumption)
 
 theorem k1 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
@@ -538,7 +526,6 @@ theorem v1 (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) (x : Fin 
     (Q₁ Q₂ : (w.adicCompletion E)[X]) (s : Finset (Fin (n / 2))) (hA : CaseA w n a x Q₁ Q₂ s) :
     delta w 1 Q₁ Q₂ = (-qh w) ^ (-vRes n a (lOf x) s) := by
   first
-    | exact inert_delta_first_case_eq_power
     | (apply inert_delta_first_case_eq_power <;> assumption)
 
 theorem ext (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (a : ℕ)
@@ -546,7 +533,6 @@ theorem ext (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletio
     (hv : HasVals Q (nv y)) :
     ∃ δ : GLw a w, dcos a w (tdiag ϖ y) δ ≠ 0 ∧ (nrmL a w δ).val.charpoly = Q := by
   first
-    | exact ext_pf
     | (apply ext_pf <;> assumption)
 
 theorem exu (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
@@ -554,14 +540,12 @@ theorem exu (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w
     (hm : Q.Monic) (hQ : IsCsr w Q) (hv : HasVals Q (wexp n l)) :
     ∃ γ : UL n w, fU n w b ϖ l γ ≠ 0 ∧ γ.1.val.charpoly = Q := by
   first
-    | exact exu_pf
     | (apply exu_pf <;> assumption)
 
 theorem combine_caseA (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) (x : Fin n → ℤ) (hx : StrictAnti x)
     (Q₁ Q₂ : (w.adicCompletion E)[X]) (s : Finset (Fin (n / 2))) (hA : CaseA w n a x Q₁ Q₂ s) :
     HasVals (Q₁ * Q₂) (wexp n (lOf x)) := by
   first
-    | exact combine_caseA_pf
     | (apply combine_caseA_pf <;> assumption)
 
 theorem split_caseA (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) (x : Fin n → ℤ) (hx : StrictAnti x)
@@ -569,7 +553,6 @@ theorem split_caseA (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) 
     (hd₂ : Q₂.natDegree = n - a) (hc₁ : IsCsr w Q₁) (hc₂ : IsCsr w Q₂) (hv : HasVals (Q₁ * Q₂) (wexp n (lOf x))) :
     ∃ s, CaseA w n a x Q₁ Q₂ s := by
   first
-    | exact split_caseA_pf
     | (apply split_caseA_pf <;> assumption)
 
 theorem aL_relIndex_prod {G G' : Type} [Group G] [Group G'] (H K : Subgroup G) (H' K' : Subgroup G') :

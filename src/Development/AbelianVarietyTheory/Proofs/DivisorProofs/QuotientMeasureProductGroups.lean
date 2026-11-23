@@ -204,5 +204,3 @@ theorem GlobalTheory.Cusp.constTermOn_eq_integral_semidirect : ∀ (G G₁ : Typ
   first
   | (rw [ENNReal.smul_def, smul_eq_mul, mul_one, ENNReal.coe_toReal, NNReal.smul_def, smul_smul,
       inv_mul_cancel₀ (NNReal.coe_ne_zero.2 hc0), one_smul]; done)
-  | (simp [hc0, NNReal.smul_def, smul_smul]; done)
-  | (field_simp; done)

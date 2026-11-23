@@ -51,4 +51,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.natDegree_minpoly_root_neg_prime_unramified : ∀ (l : ℕ) [Fact l.Prime] (N : ℕ) (π : Om l), 0 < N → π ^ N = -(l : Om l) → ∀ (E : Type) [Field E] [Algebra E (Om l)], (∀ y : E, algebraMap E (Om l) y ∈ MaximalUnramifiedExtension l) → (minpoly E π).natDegree = N := by
-  first | exact @GlobalTheory.InertiaDeg.natDegree_minpoly_root_neg_l | exact GlobalTheory.InertiaDeg.natDegree_minpoly_root_neg_l | (intros; apply GlobalTheory.InertiaDeg.natDegree_minpoly_root_neg_l <;> assumption)
+  first | exact @GlobalTheory.InertiaDeg.natDegree_minpoly_root_neg_l

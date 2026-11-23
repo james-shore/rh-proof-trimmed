@@ -57,4 +57,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.exists_completeNormal_galois_cover_of_finite : ∀ (A R : Type) [CommRing A] [IsDomain A] [IsLocalRing A] [CommRing R] [IsDomain R] (b : A →+* R), IsCN A → b.Finite → Function.Injective b → ∃ (R' : Type) (_ : CommRing R') (_ : IsDomain R') (_ : IsLocalRing R') (θ : R →+* R'), IsCN R' ∧ IsLocalHom θ ∧ Function.Injective θ ∧ θ.Finite ∧ ∀ r : R, (∀ σ : R' ≃+* R', IsOfFinOrder σ → (∀ a, σ (θ (b a)) = θ (b a)) → σ (θ r) = θ r) → r ∈ b.range := by
-  first | exact @GlobalTheory.GalCover.exists_isCN_galois_of_finite | exact GlobalTheory.GalCover.exists_isCN_galois_of_finite | (intros; apply GlobalTheory.GalCover.exists_isCN_galois_of_finite <;> assumption)
+  first | exact @GlobalTheory.GalCover.exists_isCN_galois_of_finite

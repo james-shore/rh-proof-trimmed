@@ -49,4 +49,4 @@ open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalC
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.BT
 
 theorem _root_.GlobalTheory.CompanionTheory.Relay.exists_character_section : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [IsNoetherianRing R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (χ : T →* Rˣ), ∃ s : Γ(Γ.G.left, ⊤), Γ.HasValues s (fun t => ((χ t : Rˣ) : R)) := by
-  first | exact @PositivityTheory.UnitarySelfGeneration.ht_char_section | exact PositivityTheory.UnitarySelfGeneration.ht_char_section
+  first | exact @PositivityTheory.UnitarySelfGeneration.ht_char_section

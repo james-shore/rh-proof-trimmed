@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_continuous_symplecticHom_of_indefiniteUnita
     (∀ g w, (k g w)ᴴ * Jm R S * k g w = Jm R S) →
     ∃ s : G →* Matrix.symplecticGroup l ℝ, Continuous s ∧
       ∀ g c, (s g : Matrix (l ⊕ l) (l ⊕ l) ℝ) *ᵥ φ c = φ fun w => c w * (k g w)ᵀ := by
-  first | exact @GlobalTheory.ColAction.exists_symplectic_hom_of_unitary | exact GlobalTheory.ColAction.exists_symplectic_hom_of_unitary | (intros; apply GlobalTheory.ColAction.exists_symplectic_hom_of_unitary <;> assumption)
+  first | exact @GlobalTheory.ColAction.exists_symplectic_hom_of_unitary

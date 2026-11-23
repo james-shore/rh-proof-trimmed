@@ -124,7 +124,6 @@ theorem GlobalTheory.Mem.R3.Rw.chiR_of_enlarged : ∀ (B B' : Base) (f : Fr B.to
   · have hσ' : (σ'.comp ι).comp (algebraMap z.core.Q.c.F (w.st Z).toD7.what₂.LL) =
         (w.st Z).toD7.what₂.embLL.comp (algebraMap z.core.Q.c.F (w.st Z).toD7.what₂.LL) := by
       first
-        | exact hσ.trans hE2
         | exact (hcomp.symm.trans hσ).trans hE2
     refine (a5 hσ').trans ?_
     rw [hmu']

@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_smul_vac_eq_of_localVacuum_linearModel : �
         (m : (Fin a' × Fin (a + a') → Fv F v) → ℂ) ((ρ x m : SB (Fin a' × Fin (a + a') → Fv F v)) : (Fin a' × Fin (a + a') → Fv F v) → ℂ)) →
     ∀ s m : SB (Fin a' × Fin (a + a') → Fv F v), (s : (Fin a' × Fin (a + a') → Fv F v) → ℂ) = G.M'.vac v →
       GlobalTheory.Hk3.LocVac ρ m → ∃ c : ℂ, m = c • s := by
-  first | exact @GlobalTheory.InertBridgeLine.locVac_line | exact GlobalTheory.InertBridgeLine.locVac_line | (intros; apply GlobalTheory.InertBridgeLine.locVac_line <;> assumption)
+  first | exact @GlobalTheory.InertBridgeLine.locVac_line

@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj TensorProduct
 
 theorem _root_.GlobalTheory.T.finite_flat_surjective_mul_by_n_abelianScheme : Out.Laws → ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] [IsCommMonObj A], IsAbelianScheme A → ∀ M : LB A.left, M.IsLB → Out.RelAmple A M → ∀ n : ℕ, 1 ≤ n → IsFinite ((𝟙 A) ^ n : A ⟶ A).left ∧ Flat ((𝟙 A) ^ n : A ⟶ A).left ∧ Surjective ((𝟙 A) ^ n : A ⟶ A).left := by
-  first | exact @GlobalTheory.MulAmple.finite_flat_surjective_pow | exact GlobalTheory.MulAmple.finite_flat_surjective_pow | (intros; apply GlobalTheory.MulAmple.finite_flat_surjective_pow <;> assumption)
+  first | exact @GlobalTheory.MulAmple.finite_flat_surjective_pow

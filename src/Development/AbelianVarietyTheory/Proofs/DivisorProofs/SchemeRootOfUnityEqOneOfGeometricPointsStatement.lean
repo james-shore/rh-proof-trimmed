@@ -51,4 +51,4 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT
 
 theorem _root_.GlobalTheory.T.scheme_rootOfUnity_eq_one_of_geometric_points : ∀ (R : Type) [CommRing R] (S : Scheme.{0}) (s : S ⟶ Sp R) (k : ℕ) (u : Γ(S, ⊤)ˣ), IsUnit (k : R) → u ^ k = 1 → (∀ (K : Type) [Field K] [IsAlgClosed K] (x : Sp K ⟶ S) (β : R →+* K), x ≫ s = spMap β → Units.map x.appTop.hom.toMonoidHom u = 1) → u = 1 := by
-  first | exact @GlobalTheory.rootOfUnity_eq_one_of_geom | exact GlobalTheory.rootOfUnity_eq_one_of_geom | (intros; apply GlobalTheory.rootOfUnity_eq_one_of_geom <;> assumption)
+  first | exact @GlobalTheory.rootOfUnity_eq_one_of_geom

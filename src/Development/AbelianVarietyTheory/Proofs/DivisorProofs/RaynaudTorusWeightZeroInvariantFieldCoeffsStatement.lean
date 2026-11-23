@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.raynaudTorusWeight_zero_invariantField_coeffs : �
     (∀ (α : Q.X) (V' : Q.P.A.left.Opens), V' ≤ V → ∀ f, IsWt Y α (Y.q.left ⁻¹ᵁ V') f → IsWt Y α (Y.q.left ⁻¹ᵁ V') (δ _ f)) →
     ∀ c : Fin n → Γ(Y.H.left, Y.q.left ⁻¹ᵁ V), (∀ O, O ≤ Y.q.left ⁻¹ᵁ V → ∀ f, δ O f = ∑ a, rsT (c a) O * dd a O f) →
     ∀ a, IsWt Y 0 _ (c a) := by
-  first | exact @GlobalTheory.Heat.CoeffWt.isWt_coeff | exact GlobalTheory.Heat.CoeffWt.isWt_coeff | (intros; apply GlobalTheory.Heat.CoeffWt.isWt_coeff <;> assumption)
+  first | exact @GlobalTheory.Heat.CoeffWt.isWt_coeff

@@ -51,4 +51,4 @@ open GlobalTheory.KeyKa
 
 
 theorem _root_.GlobalTheory.T.basisBaseChange_relativeBasis_pulledBackSections : ∀ (R R' : Type) [CommRing R] [CommRing R'] (x : KeyIn R) (x' : KeyIn R') (f : R →+* R') φ w (l N : ℕ) (b : Fin N → RR x l) (b' : Fin N → RR x' l), KeyVia x' x f φ w → (∀ k, SecVia x' x φ w (b' k) (b k)) → IsBasis x' b' → GlobalTheory.RelBasis.IndepOn b x'.P.A.hom φ ⊤ ∧ GlobalTheory.RelBasis.SpanOn b x'.P.A.hom φ ⊤ := by
-  first | exact @GlobalTheory.RelBasisFibre.main | exact GlobalTheory.RelBasisFibre.main | (intros; apply GlobalTheory.RelBasisFibre.main <;> assumption)
+  first | exact @GlobalTheory.RelBasisFibre.main

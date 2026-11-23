@@ -64,4 +64,4 @@ open GlobalTheory.LiftLevel
 
 
 theorem _root_.GlobalTheory.T.prod_primes_squarefree_conjugateIdeal_prod : ∀ (D : D7) (P : Finset (Formalism.L2.DIV.Pl D.host.E)), Squarefree (∏ PP ∈ P, PP.asIdeal) ∧ (∀ PP' : Formalism.L2.DIV.Pl D.host.E, (∏ PP ∈ P, PP.asIdeal) ≤ PP'.asIdeal ↔ PP' ∈ P) ∧ conjI (∏ PP ∈ P, PP.asIdeal) = ∏ PP ∈ P, conjI PP.asIdeal := by
-  first | exact @GlobalTheory.primeProd_squarefree_le_conj | exact GlobalTheory.primeProd_squarefree_le_conj | (intros; apply GlobalTheory.primeProd_squarefree_le_conj <;> assumption)
+  first | exact @GlobalTheory.primeProd_squarefree_le_conj

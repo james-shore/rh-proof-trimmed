@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.weil_datum_finite_part_moves_vacuum_as_theta_model
   HasFinPart χS W.chV W.ep → HasFinPart χT W.chV' (-W.ep') →
   ∀ (x : Formalism.MainNotions.StandardLatticesGL3.GA D a) (y : Formalism.MainNotions.StandardLatticesGL3.GA D d) (g : GA D S) (h : GA D T), IsFinPt S g x → IsFinPt T h y →
   ∀ f₀ : WO S T → ℂ, Reads ψ θ hS hT cc δ r e0 f₀ → Reads ψ θ hS hT cc δ r (W.Om x y e0) (om (g, h) f₀) := by
-  first | exact @GlobalTheory.VacMoveFin.vacuum_move_reads | exact GlobalTheory.VacMoveFin.vacuum_move_reads | (intros; apply GlobalTheory.VacMoveFin.vacuum_move_reads <;> assumption)
+  first | exact @GlobalTheory.VacMoveFin.vacuum_move_reads

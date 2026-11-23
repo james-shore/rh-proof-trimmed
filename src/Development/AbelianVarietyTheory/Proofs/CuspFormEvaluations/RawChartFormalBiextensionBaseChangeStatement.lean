@@ -46,4 +46,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.rawChart_formalBiextension_baseChange : RawBCSt := by
-  first | exact @GlobalTheory.rawChart_baseChange | exact GlobalTheory.rawChart_baseChange | (intros; apply GlobalTheory.rawChart_baseChange <;> assumption)
+  first | exact @GlobalTheory.rawChart_baseChange

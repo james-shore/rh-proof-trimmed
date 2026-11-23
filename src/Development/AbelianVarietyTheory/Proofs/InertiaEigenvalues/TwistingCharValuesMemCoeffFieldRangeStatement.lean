@@ -47,4 +47,4 @@ open Formalism.IndefR.Lev Formalism.L2.DIV Formalism.IndefR.Mult
 
 
 theorem _root_.GlobalTheory.T.twisting_char_values_mem_coeff_field_range : ∀ {D : D7} {N : NData D.R D.host D.what₂} {X : NTw D.R D.host D.what₂ D.LL0 N} {ρ : Setup X}, ρ.Good → ∀ (i : X.Tw) (j : Fin D.R.m) (b : Bool) (z : (AE D)ˣ), ∃ a : FractionRing (X.O i), ρ.e i b a = (((ρ.B i j b).de.chi z : Circle) : ℂ) := by
-  first | exact @GlobalTheory.DeltaRange.delta_value_mem_range | exact GlobalTheory.DeltaRange.delta_value_mem_range | (intros; apply GlobalTheory.DeltaRange.delta_value_mem_range <;> assumption)
+  first | exact @GlobalTheory.DeltaRange.delta_value_mem_range

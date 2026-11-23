@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.levelDatumValue_eq_prod_localResidueValues : ∀ (
     L.P = Formalism.L2.DIV.LevelP.ofLocal Hl cl →
     ∀ y : ∀ PP : Formalism.L2.DIV.Pl D.host.E, Matrix (Fin b) (Fin a) (Formalism.L2.DIV.kP PP),
       omegaG L χ y = ∏ PP : ↥L.Pg, gLoc L PP.1 (Hl PP) (cl PP) (χ PP.1) (y PP.1) := by
-  first | exact @GlobalTheory.StepVec.omegaG_eq_prod_gLoc | exact GlobalTheory.StepVec.omegaG_eq_prod_gLoc | (intros; apply GlobalTheory.StepVec.omegaG_eq_prod_gLoc <;> assumption)
+  first | exact @GlobalTheory.StepVec.omegaG_eq_prod_gLoc

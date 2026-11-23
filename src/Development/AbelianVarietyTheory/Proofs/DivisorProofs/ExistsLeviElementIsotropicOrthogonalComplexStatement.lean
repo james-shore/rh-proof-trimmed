@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_unipotent_unitary_shift_making_complement_o
       (∀ v : Fin n → ℂ, Matrix.mulVec (X₁.conjTranspose * J) v = 0 →
         Matrix.mulVec u₂.1 v = v + Matrix.mulVec X₁ (Matrix.mulVec A (Matrix.mulVec (Yb.conjTranspose * J) v))) ∧
       X₁.conjTranspose * Q * (Xb + X₁ * A) = 0 := by
-  first | exact @GlobalTheory.levi_element_cpx | exact GlobalTheory.levi_element_cpx | (intros; apply GlobalTheory.levi_element_cpx <;> assumption)
+  first | exact @GlobalTheory.levi_element_cpx

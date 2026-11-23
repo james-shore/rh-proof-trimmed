@@ -89,9 +89,6 @@ theorem khw_layer_succ_bound (hE : IsGlRep E) (hU : IsInfUnitary ε E)
     first
     | (rw [inner_smul_left, Complex.conj_ofReal, RCLike.re_to_complex, Complex.re_ofReal_mul,
           ← RCLike.re_to_complex, inner_self_eq_norm_sq]; done)
-    | (rw [inner_smul_real_left, RCLike.smul_re, inner_self_eq_norm_sq, smul_eq_mul]; done)
-    | (simp [inner_smul_left, inner_self_eq_norm_sq_to_K]; done)
-    | (simp [inner_smul_left, inner_self_eq_norm_sq_to_K]; ring)
   rw [hcas, hre] at hB
   have hpos : 0 < ‖P‖ ^ 2 := by
     have := norm_pos_iff.mpr hP0

@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.unfolding_cell_mass_eq_const_mul_local_coefficient
       ∀ M M' : Vol ch.G, M.Is t → IsTermVol t ch.S.toGridChoice Φ β M' → ∀ x : ℝ≥0, M.ν (.top j) = x • M'.ν (.top j) →
         ∀ hb : b j ∈ GfC _, cellWt (ρ j) (μ j) ((latGrp ch.G j).subgroupOf _) ⟨b j, hb⟩ * ((x : ℝ) : ℂ) =
           c * (GlobalTheory.RowWt.colCoef ch t β j : ℂ) := by
-  first | exact @GlobalTheory.CellMass.cell_mass | exact GlobalTheory.CellMass.cell_mass | (intros; apply GlobalTheory.CellMass.cell_mass <;> assumption)
+  first | exact @GlobalTheory.CellMass.cell_mass

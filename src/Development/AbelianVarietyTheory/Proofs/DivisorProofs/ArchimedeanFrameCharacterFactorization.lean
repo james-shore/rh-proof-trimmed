@@ -180,7 +180,7 @@ theorem charUpq : ∀ (R S : ℕ) (χ : Mat R S → ℂ),
 
 theorem jm_map_star : (Jm R S).map star = Jm R S := by
   ext a b; rcases a with i | i <;> rcases b with j | j <;>
-    simp [Jm, Formalism.UG.Jpq, Matrix.fromBlocks, Matrix.one_apply] <;> split_ifs <;> simp
+    simp [Jm, Formalism.UG.Jpq, Matrix.fromBlocks, Matrix.one_apply] <;> split_ifs
 
 theorem form_iff (h : Mat R S) : hᴴ * Jm R S * h = Jm R S ↔ hᵀ * Jm R S * h.map star = Jm R S := by
   have e1 : (hᴴ).map star = hᵀ := by ext i j; simp [Matrix.conjTranspose_apply]
@@ -253,7 +253,7 @@ theorem prod_char {ι : Type} [Fintype ι] [DecidableEq ι] (χ : (ι → Mat R 
         funext v
         by_cases hv : v = a
         · subst hv; simp [Finset.piecewise, ha]
-        · simp [Finset.piecewise, hv, Function.update_of_ne hv]
+        · simp [Finset.piecewise, hv]
       rw [e, hmul _ _ (upd a (g a) (hg a)) (pc s), hn a (g a) (hg a), ih, Finset.prod_insert ha]
   simpa using ind Finset.univ
 

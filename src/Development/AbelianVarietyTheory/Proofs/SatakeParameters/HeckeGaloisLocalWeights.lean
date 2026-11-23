@@ -134,7 +134,7 @@ theorem crys_unram_of_lgc : ∀ D : D7, SumRepresentations.tie0 D → SumReprese
       rw [e, map_mul, map_mul, h2, mul_one, ← map_mul, mul_inv_cancel, map_one]
     apply Units.ext
     have h4 := congrArg (fun u : GL (Fin D.R.nV) (Qbar (D.nd.l i)) => u.val) h3
-    simp only [mapRep, MonoidHom.comp_apply, Units.coe_map, MonoidHom.coe_coe, Units.val_one] at h4
+    simp only [mapRep, MonoidHom.comp_apply, Units.coe_map, Units.val_one] at h4
     refine Matrix.map_injective (SumRepresentations.iotaOQ_injective D.nd D.naut i) ?_
     show (r x σ).val.map (iotaOQ D.nd D.naut i) = (1 : Matrix (Fin D.R.nV) (Fin D.R.nV) (D.nd.O i)).map (iotaOQ D.nd D.naut i)
     rw [Matrix.map_one _ (map_zero _) (map_one _)]

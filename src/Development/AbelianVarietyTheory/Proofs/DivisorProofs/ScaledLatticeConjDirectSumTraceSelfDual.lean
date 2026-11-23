@@ -143,7 +143,7 @@ theorem bwd' (hc : ∀ c ∈ D.host.AAbar, star c ∈ D.host.AA) (S : HSp D)
   refine ⟨conjO b, ?_⟩
   have e : ((conjO b : 𝓞 D.host.E) : D.host.E) = hS S s (star c • y) := by
     rw [coe_conjO, hb, star_mul', star_star, hS_smul_right]
-  first | exact e | exact e.symm
+  first | exact e
 
 end GlobalTheory.SkewLat.DualPairConj
 
@@ -159,7 +159,7 @@ theorem GlobalTheory.SkewLat.pairLat_conj_trace_selfDual : ∀ {D : D7} (A B : H
   have hs : ∀ c ∈ D.host.AA, star c ∈ D.host.AAbar := fun c h => by
     rw [Formalism.BasicNotions.Examples₂.star_eq_conj]; exact Formalism.L2.Pj.conj_mem_AAbar D h
   have hc : ∀ c ∈ D.host.AAbar, star c ∈ D.host.AA := by
-    first | exact GlobalTheory.star_mem_AA_of_mem_AAbar | exact GlobalTheory.star_mem_AA_of_mem_AAbar D | (intros; apply GlobalTheory.star_mem_AA_of_mem_AAbar; assumption)
+    first | (intros; apply GlobalTheory.star_mem_AA_of_mem_AAbar; assumption)
   constructor
   · intro hy x hx o
     have hy' := GlobalTheory.SkewLat.mem_pairLat.1 hy

@@ -119,8 +119,7 @@ private lemma exists_bound_fderiv_logCutoff_mul_norm_mul_log :
   have hlog : Real.log ‖z‖ = (x - 2) * ((k : ℝ) + 1) := by
     simp only [x]; field_simp; ring
   have hNc : ‖N c‖ ≤ ‖c‖ := (N.le_opNorm c).trans (by simpa using mul_le_mul_of_nonneg_right hN (norm_nonneg c))
-  simp only [ContinuousLinearMap.smul_apply, ContinuousLinearMap.coe_smul', Pi.smul_apply,
-    smul_eq_mul, Real.norm_eq_abs]
+  simp only [ContinuousLinearMap.smul_apply, smul_eq_mul, Real.norm_eq_abs]
   rw [hlog]
   have e : |deriv Real.smoothTransition x * (‖z‖⁻¹ / ((k : ℝ) + 1)) * N c| *
       (‖z‖ * |(x - 2) * ((k : ℝ) + 1)|) = |deriv Real.smoothTransition x| * |x - 2| * |N c| := by
@@ -200,7 +199,7 @@ private lemma fderiv_prod_logCutoff_coordVec {n : ℕ} (k : ℕ) (S : Finset (Fi
     simp only [_root_.GlobalTheory.GoodMetric.coordVec, PiLp.add_apply, PiLp.smul_apply, PiLp.single_apply]
     split_ifs with h
     · subst h; simp [Complex.real_smul]
-    · simp [h]
+    · simp
   have hψline : HasDerivAt (fun t : ℝ => _root_.GlobalTheory.GoodTop.logCutoff k (v b + (t : ℂ) * c))
       (fderiv ℝ (_root_.GlobalTheory.GoodTop.logCutoff k) (v b) c) 0 := by
     have hl : HasDerivAt (fun t : ℝ => v b + (t : ℂ) * c) c 0 := by

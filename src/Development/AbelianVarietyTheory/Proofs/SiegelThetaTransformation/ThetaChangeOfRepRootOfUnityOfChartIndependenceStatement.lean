@@ -53,4 +53,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Dict GlobalTheory.Phase GlobalTheory.IndefiniteRowSideFullHecke.UnitaryAdjointCongruence
 
 theorem _root_.GlobalTheory.T.thetaChangeOfRepRootOfUnity_of_chartIndependence : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepSt2 → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) [StarRing (𝓞 E)] (nab : NabV Xo c) (n : ℕ), ChangeRoot Xo c nab n := by
-  first | exact @GlobalTheory.changeRoot_of_chartIndep | exact GlobalTheory.changeRoot_of_chartIndep | (intros; apply GlobalTheory.changeRoot_of_chartIndep <;> assumption)
+  first | exact @GlobalTheory.changeRoot_of_chartIndep

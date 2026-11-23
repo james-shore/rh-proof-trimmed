@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.twistedSourceValue_read_in_changed_bases : ∀ {B 
       (∏ τ, (g τ).det ^ (-((I.rec7 l Z).chTw u μ).sSharp i τ)) * ((∏ τ, (g τ * y τ).det ^ k τ) *
         polFun (MvPolynomial.map (Pl.iL w) (twSubK (Formalism.L2.G.Cmp.tEL (I.rec7 l Z)) Bm (shiftOf (lamTG (I.fm l u μ) i)) R0))
           (fun τ => g τ * y τ)) := by
-  first | exact @GlobalTheory.Mem.SrcFunRead.srcFun_secC_read | exact GlobalTheory.Mem.SrcFunRead.srcFun_secC_read | (intros; apply GlobalTheory.Mem.SrcFunRead.srcFun_secC_read <;> assumption)
+  first | exact @GlobalTheory.Mem.SrcFunRead.srcFun_secC_read

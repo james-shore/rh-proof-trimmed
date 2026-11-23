@@ -84,11 +84,11 @@ def ι {D E : CommRingCat.{0}} (e : D ⟶ E) : (p : ℕ) → Fin (p+1) → (E �
 
 lemma ι_last {D E : CommRingCat.{0}} (e : D ⟶ E) (p : ℕ) :
     ι e (p+1) (Fin.last _) = pushout.inr (tp e p).2 e := by
-  first | rfl | (dsimp only [ι]; exact Fin.lastCases_last) | (dsimp only [ι]; rw [Fin.lastCases_last])
+  first | (dsimp only [ι]; exact Fin.lastCases_last)
 
 lemma ι_cast {D E : CommRingCat.{0}} (e : D ⟶ E) (p : ℕ) (i : Fin (p+1)) :
     ι e (p+1) (Fin.castSucc i) = ι e p i ≫ pushout.inl (tp e p).2 e := by
-  first | rfl | (dsimp only [ι]; exact Fin.lastCases_castSucc i) | (dsimp only [ι]; rw [Fin.lastCases_castSucc])
+  first | (dsimp only [ι]; exact Fin.lastCases_castSucc i)
 
 lemma ι_w {D E : CommRingCat.{0}} (e : D ⟶ E) : ∀ (p : ℕ) (i : Fin (p+1)), e ≫ ι e p i = (tp e p).2
   | 0, i => Category.comp_id e

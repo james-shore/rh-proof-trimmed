@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.standardPairFirstMember_movedDatum_splittingScale 
         X.rA.β X.rW.β)
       (((splitFacO (GlobalTheory.BotFrames.botBeta G i j) (GlobalTheory.BotFrames.botBeta G i j / GlobalTheory.BotFrames.botAlpha L i j t) x y : Circle) : ℂ) •
         Y.ω t (g⁻¹, h⁻¹) (Y.f t)) := by
-  first | exact @GlobalTheory.BotFrames.move_fst | exact GlobalTheory.BotFrames.move_fst | (intros; apply GlobalTheory.BotFrames.move_fst <;> assumption)
+  first | exact @GlobalTheory.BotFrames.move_fst

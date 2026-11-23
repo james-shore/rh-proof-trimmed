@@ -47,4 +47,4 @@ open Formalism.IndefR.DatumF GlobalTheory.HeckeExtend
 
 theorem _root_.GlobalTheory.T.exists_integer_of_algebraMap_mem_adelesFiniteMultiple : ∀ (F : Type) [Field F] [NumberField F] (y : F) (m : ℕ), 0 < m →
     algebraMap F (AF F) y ∈ intF F m → ∃ r : 𝓞 F, y = m * r := by
-  first | exact @GlobalTheory.HeckeExtend.exists_int_of_mem_intF | exact GlobalTheory.HeckeExtend.exists_int_of_mem_intF | (intros; apply GlobalTheory.HeckeExtend.exists_int_of_mem_intF <;> assumption)
+  first | exact @GlobalTheory.HeckeExtend.exists_int_of_mem_intF

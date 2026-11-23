@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField IsDedekindDomain Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 
 theorem _root_.GlobalTheory.T.hodgeTateJumpsReading_rowAdm : ∀ D : D7, AdmissibleParameterJ.AdmRead D := by
-  first | exact @GlobalTheory.AdmReadBridge.main | exact GlobalTheory.AdmReadBridge.main | (intros; apply GlobalTheory.AdmReadBridge.main <;> assumption)
+  first | exact @GlobalTheory.AdmReadBridge.main

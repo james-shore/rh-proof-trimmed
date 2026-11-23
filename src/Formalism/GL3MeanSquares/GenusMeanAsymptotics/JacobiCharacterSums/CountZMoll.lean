@@ -111,13 +111,10 @@ lemma mco_norm_le (Y N : ℕ) {n : ℕ} (hn : 1 ≤ n) : ‖mco Y N n‖ ≤ (n.
     have h1 := abs_moebius_le_one (n := p.1)
     first
       | (rw [Complex.norm_intCast]; exact_mod_cast h1)
-      | (rw [Complex.norm_int]; exact_mod_cast h1)
-      | (rw [← Complex.ofReal_intCast, Complex.norm_real, Real.norm_eq_abs]; exact_mod_cast h1)
   · rw [sum_const, nsmul_eq_mul, mul_one]
     have hc := card_le_card (mco_filter_subset_antidiag (Y := Y) (N := N) hn)
     have he : n.divisorsAntidiagonal.card = n.divisors.card := by
       first
-        | exact Nat.card_divisorsAntidiagonal_eq_card_divisors n
         | (rw [← Nat.map_div_right_divisors, card_map])
     rw [he] at hc
     exact_mod_cast hc
@@ -206,11 +203,6 @@ theorem coefficient_square_bound : CoeffSqOf := by
     have h3 : (n : ℝ) ^ (-(199 / 200 : ℝ)) ≤ (U : ℝ) ^ (-(199 / 200 : ℝ)) := by
       first
         | exact Real.rpow_le_rpow_of_nonpos hUpos hUn (by norm_num)
-        | exact Real.rpow_le_rpow_of_exponent_nonpos hUpos hUn (by norm_num)
-        | (rw [Real.rpow_neg hnpos.le, Real.rpow_neg hUpos.le]
-           exact inv_anti₀ (Real.rpow_pos_of_pos hUpos _) (Real.rpow_le_rpow hUpos.le hUn (by norm_num)))
-        | (rw [Real.rpow_neg hnpos.le, Real.rpow_neg hUpos.le]
-           exact inv_le_inv_of_le (Real.rpow_pos_of_pos hUpos _) (Real.rpow_le_rpow hUpos.le hUn (by norm_num)))
     have h4 : 0 ≤ ‖mco Y N n‖ * (n : ℝ) ^ (-s0) := mul_nonneg (norm_nonneg _) (Real.rpow_nonneg hnpos.le _)
     have h5 : ‖mco Y N n‖ * (n : ℝ) ^ (-s0) ≤ C * (U : ℝ) ^ (-(199 / 200 : ℝ)) := by
       calc ‖mco Y N n‖ * (n : ℝ) ^ (-s0) ≤ C * (n : ℝ) ^ (1 / 400 : ℝ) * (n : ℝ) ^ (-s0) :=
@@ -218,9 +210,7 @@ theorem coefficient_square_bound : CoeffSqOf := by
         _ = C * (n : ℝ) ^ (-(199 / 200 : ℝ)) := by rw [mul_assoc, h2]
         _ ≤ C * (U : ℝ) ^ (-(199 / 200 : ℝ)) := mul_le_mul_of_nonneg_left h3 (by linarith)
     first
-      | exact pow_le_pow_left h4 h5 2
       | exact pow_le_pow_left₀ h4 h5 2
-      | nlinarith
   have e1 : ((U : ℝ) ^ (-(199 / 200 : ℝ))) ^ 2 = (U : ℝ) ^ (-(199 / 100 : ℝ)) := by
     rw [← Real.rpow_natCast, ← Real.rpow_mul hUpos.le]
     norm_num

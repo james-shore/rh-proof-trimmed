@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.ZJ
 
 theorem _root_.GlobalTheory.T.exists_norms_of_tests : Semi.extend_existsSt.{0} → ∀ (C : Core) (L : C.Law) (T : C.Theta), C.HasTests → T.BTest L → ∃ ν, T.Norms (T.Om L) ν := by
-  first | exact @GlobalTheory.ZJ.Core.Theta.exists_norms | exact GlobalTheory.ZJ.Core.Theta.exists_norms | (intros; apply GlobalTheory.ZJ.Core.Theta.exists_norms <;> assumption)
+  first | exact @GlobalTheory.ZJ.Core.Theta.exists_norms

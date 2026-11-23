@@ -139,7 +139,7 @@ theorem lift_corner : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
         (if i = eI k r b ∧ j = esI k r a then (s b : ℂ) * star (w.embedding c * (s a : ℂ)) else 0) := by
     intro w i j
     rw [GlobalTheory.T.rowIsometry_entries_in_modelCoordinates F E σ k r J Λ P f T A s hV b y 0 w i j, hAy w, herm_bvec]
-    simp only [bvec, Pi.smul_apply, Pi.single_apply, smul_eq_mul, map_zero, mul_zero, add_zero, ite_and]
+    simp only [bvec, Pi.smul_apply, Pi.single_apply, smul_eq_mul, map_zero, mul_zero, ite_and]
     split_ifs <;> ring
   refine ⟨_, hG, fun w => ?_, fun β hβ _ w => ?_⟩
   · show gM A _ w (eI k r a) (esI k r b) = l w

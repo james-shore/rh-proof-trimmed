@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_compatible_generators_tower_local_ring : �
   (∀ n, LinearMap.ker (t n) ≤ IsLocalRing.maximalIdeal Λ • (⊤ : Submodule Λ (M (n + 1)))) →
   ∃ (a : ℕ) (p : ∀ n, (Fin a → Λ) →ₗ[Λ] M n), (∀ n, Function.Surjective (p n)) ∧ (∀ n, (t n) ∘ₗ (p (n + 1)) = p n) ∧
     ∀ x, p 0 x = 0 → ∀ i, x i ∈ IsLocalRing.maximalIdeal Λ := by
-  first | exact @GlobalTheory.exists_compatible_generators_tower | exact GlobalTheory.exists_compatible_generators_tower | (intros; apply GlobalTheory.exists_compatible_generators_tower <;> assumption)
+  first | exact @GlobalTheory.exists_compatible_generators_tower

@@ -47,21 +47,3 @@ theorem _root_.GlobalTheory.T.exists_biorthogonal_frame_of_saturated_flag : ∀ 
   first
   | exact @GlobalTheory.RadCov.exists_biorth_of_saturated_flag
   | intro E _ _ n m F r hmono h0 hm hL hsat hrk
-    obtain ⟨T, T', Λ, hB, hΛ, hmem⟩ :=
-      GlobalTheory.RadCov.exists_biorth_of_saturated_flag E n m F r hmono h0 hm
-        hL.toIsLattice hsat hrk
-    refine ⟨T, T', Λ, hB, ?_, hmem⟩
-    intro b
-    let : Submodule.IsLattice E (Λ b) := hΛ b
-    refine { span_eq_top := ?_ }
-    apply eq_top_iff.mpr
-    intro v _
-    have hle : Submodule.span E (F m : Set (Fin n → E)) ≤
-        (Submodule.span E (Λ b : Set (Fin (r b) → E))).comap (T' b).mulVecLin := by
-      apply Submodule.span_le.mpr
-      intro x hx
-      exact Submodule.subset_span ((hmem m x).1 hx b).1
-    have hx : T' b *ᵥ (T b *ᵥ v) ∈ Submodule.span E (Λ b : Set (Fin (r b) → E)) :=
-      hle (by rw [hL.span_eq_top]; trivial)
-    rw [Matrix.mulVec_mulVec, hB.1 b, Matrix.one_mulVec] at hx
-    exact hx

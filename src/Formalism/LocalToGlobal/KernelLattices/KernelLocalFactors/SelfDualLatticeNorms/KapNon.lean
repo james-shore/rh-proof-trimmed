@@ -255,7 +255,6 @@ theorem norm_p_lt (p : ℕ) [Fact p.Prime] : ‖(p : ℂ_[p])‖ < 1 := by
   have h := PadicComplex.norm_extends' p (p : ℚ_[p])
   have h2 : ‖(p : ℚ_[p])‖ < 1 := by
     first
-      | exact padicNormE.norm_p_lt_one
       | exact Padic.norm_p_lt_one
   rw [← h] at h2
   simpa using h2

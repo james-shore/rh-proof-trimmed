@@ -92,11 +92,7 @@ theorem exists_pow_smul_mem (L : LocE F E) {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ)
     {Λ : Submodule L.O (Fin n → E)} (hΛ : IsLat L Λ) (v : Fin n → E) :
     ∃ k : ℕ, algebraMap F E ((ϖ : F) ^ k) • v ∈ Λ := by
   first
-  | exact @_root_.GlobalTheory.PowMulMem.exists_pow_smul_mem
-  | exact _root_.GlobalTheory.PowMulMem.exists_pow_smul_mem
   | (apply _root_.GlobalTheory.PowMulMem.exists_pow_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowMulMem.exists_pow_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowMulMem.exists_pow_smul_mem <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PowMulMem.exists_pow_smul_mem ..)
 
 theorem exists_pow_le (L : LocE F E) {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ) {n : ℕ}

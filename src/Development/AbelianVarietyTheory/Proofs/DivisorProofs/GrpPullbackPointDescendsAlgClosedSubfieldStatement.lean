@@ -56,4 +56,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.grpPullback_point_descends_algClosed_subfield : ∀ (K : Type) [Field K] [CharZero K] (k₀ : Subfield K), IsAlgClosed k₀ → ∀ (B₀ : Over (Sp k₀)) [GrpObj B₀] (G : Over (Sp K)) [GrpObj G] (π : G.left ⟶ B₀.left), IsAbelianScheme B₀ → IsGrpPullback G B₀ (spMap k₀.subtype) π → ∀ (n : ℕ), 0 < n → ∀ (y : 𝟙_ (Over (Sp K)) ⟶ G) (z₀ : Sp k₀ ⟶ B₀.left), (y ^ n).left ≫ π = spMap k₀.subtype ≫ z₀ → ∃ y₀ : Sp k₀ ⟶ B₀.left, y.left ≫ π = spMap k₀.subtype ≫ y₀ := by
-  first | exact @GlobalTheory.AlgClosedDescent.grpPullback_point_descends | exact GlobalTheory.AlgClosedDescent.grpPullback_point_descends | (intros; apply GlobalTheory.AlgClosedDescent.grpPullback_point_descends <;> assumption)
+  first | exact @GlobalTheory.AlgClosedDescent.grpPullback_point_descends

@@ -67,4 +67,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.isClosed_singleton_of_isFinite_of_isClosed_image : ∀ (X Z : Scheme.{0}) (f : X ⟶ Z), IsFinite f → ∀ x : X, IsClosed ({f x} : Set Z) → IsClosed ({x} : Set X) := by
-  first | exact @GlobalTheory.isClosed_singleton_of_isFinite | exact GlobalTheory.isClosed_singleton_of_isFinite | (intros; apply GlobalTheory.isClosed_singleton_of_isFinite <;> assumption)
+  first | exact @GlobalTheory.isClosed_singleton_of_isFinite

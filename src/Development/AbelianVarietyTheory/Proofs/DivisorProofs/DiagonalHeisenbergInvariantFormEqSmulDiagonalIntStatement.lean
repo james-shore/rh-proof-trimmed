@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.diagonalHeisenbergInvariant_form_eq_smul_diagonalI
       ∀ μ : @MeasureTheory.Measure (κ → AF D.host.F) (borel _),
         @MeasureTheory.Measure.IsAddHaarMeasure _ _ _ (borel _) μ →
         ∃ c : ℂ, ∀ Φ ∈ GlobalTheory.WeilM.schA D.host.F (κ ⊕ κ), l Φ = c * GlobalTheory.DiagSiegel.diagInt μ Φ := by
-  first | exact @GlobalTheory.HostDiagUniq.eq_smul_diagInt | exact GlobalTheory.HostDiagUniq.eq_smul_diagInt | (intros; apply GlobalTheory.HostDiagUniq.eq_smul_diagInt <;> assumption)
+  first | exact @GlobalTheory.HostDiagUniq.eq_smul_diagInt

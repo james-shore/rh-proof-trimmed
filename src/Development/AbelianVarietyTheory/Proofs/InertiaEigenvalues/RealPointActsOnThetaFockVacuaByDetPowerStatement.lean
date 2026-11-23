@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.realPoint_acts_on_thetaFockVacua_by_det_power : �
     ∃ k : D.what₂.Tau → ℤ, ∀ a ∈ GinfC V, ∀ f : WO V W → ℂ, IsThetaFunO ψ V W f →
       (∀ τ, IsFockVacAt (heisO ψ V W) θ τ (cplxO 1 (sW τ)) f) →
       om (a, 1) f = (∏ τ, (Formalism.IndefR.Datum.compAt θ τ (Formalism.L2.Theta.mt V a)).det ^ k τ) • f := by
-  first | exact @GlobalTheory.RealVacPow.vacuum_det_power | exact GlobalTheory.RealVacPow.vacuum_det_power | (intros; apply GlobalTheory.RealVacPow.vacuum_det_power <;> assumption)
+  first | exact @GlobalTheory.RealVacPow.vacuum_det_power

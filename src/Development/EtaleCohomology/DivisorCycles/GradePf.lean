@@ -160,7 +160,7 @@ theorem Grade_of : Grade := by
   have heig : ∀ kl : Fin n × Fin n, adX X (p kl.1 * Y * p kl.2) = (e kl.1 - e kl.2) • (p kl.1 * Y * p kl.2) := by
     intro kl
     rw [adX_apply, ← mul_assoc, ← mul_assoc, hXp, mul_assoc (p kl.1 * Y), hpX]
-    simp [sub_smul, smul_mul_assoc, mul_smul_comm]
+    simp [sub_smul]
   have hstab : ∀ Z ∈ g, adX X Z ∈ g := fun Z hZ => by rw [adX_apply]; exact hg Z hZ
   let q : C[X] := ∏ kl ∈ (Finset.univ : Finset (Fin n × Fin n)).erase (i, j), (Polynomial.X - Polynomial.C (e kl.1 - e kl.2))
   have hq : aeval (adX X) q Y = q.eval (e i - e j) • (p i * Y * p j) := by

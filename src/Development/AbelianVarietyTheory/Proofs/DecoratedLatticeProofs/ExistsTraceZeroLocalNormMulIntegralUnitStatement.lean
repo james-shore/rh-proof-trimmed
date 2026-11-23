@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.exists_traceZero_localNorm_mul_integralUnit : ∀ D : D7, ∃ μ : D.host.E, IsSkew μ ∧ ∃ u ε : (AE D)ˣ, (ε : AE D) * u * cA D u = incA D μ ∧ IntA (ε : AE D) ∧ IntA ((ε⁻¹ : (AE D)ˣ) : AE D) := by
-  first | exact @GlobalTheory.StdUnn.SkewNorm.exists_skew_norm_mul_unit | exact GlobalTheory.StdUnn.SkewNorm.exists_skew_norm_mul_unit | (intros; apply GlobalTheory.StdUnn.SkewNorm.exists_skew_norm_mul_unit <;> assumption)
+  first | exact @GlobalTheory.StdUnn.SkewNorm.exists_skew_norm_mul_unit

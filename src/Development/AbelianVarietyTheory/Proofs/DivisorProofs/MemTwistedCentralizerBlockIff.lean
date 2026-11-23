@@ -54,11 +54,7 @@ theorem intertwiner_eq_zero {K : Type} [Field K] {a b : ℕ}
     (A : Matrix (Fin a) (Fin a) K) (B : Matrix (Fin b) (Fin b) K) (C : Matrix (Fin b) (Fin a) K)
     (hc : IsCoprime A.charpoly B.charpoly) (hC : C * A = B * C) : C = 0 := by
   first
-  | exact @_root_.GlobalTheory.IntertwinerCoprimeCharpoly.main
-  | exact _root_.GlobalTheory.IntertwinerCoprimeCharpoly.main
   | (apply _root_.GlobalTheory.IntertwinerCoprimeCharpoly.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntertwinerCoprimeCharpoly.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntertwinerCoprimeCharpoly.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntertwinerCoprimeCharpoly.main ..)
 
 variable {E : Type} [Field E] [NumberField E]

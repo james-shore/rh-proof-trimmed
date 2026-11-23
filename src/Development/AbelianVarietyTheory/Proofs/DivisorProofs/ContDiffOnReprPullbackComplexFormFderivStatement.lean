@@ -47,4 +47,4 @@ open scoped ContDiff ComplexConjugate Topology
 
 theorem _root_.GlobalTheory.T.contDiffOn_repr_pullbackComplexForm_fderiv : ∀ (m n : ℕ) (τ : V m → V n) (U : Set (V m)) (γ : Alt n), IsOpen U → DifferentiableOn ℂ τ U →
     ∀ S, ContDiffOn ℝ ∞ (fun x => (bas m).repr (pull (fderiv ℂ τ x) γ) S) U := by
-  first | exact @GlobalTheory.PullSmooth.contDiffOn_repr_pull_fderiv | exact GlobalTheory.PullSmooth.contDiffOn_repr_pull_fderiv | (intros; apply GlobalTheory.PullSmooth.contDiffOn_repr_pull_fderiv <;> assumption)
+  first | exact @GlobalTheory.PullSmooth.contDiffOn_repr_pull_fderiv

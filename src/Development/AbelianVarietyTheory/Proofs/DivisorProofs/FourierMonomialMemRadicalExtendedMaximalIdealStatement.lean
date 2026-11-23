@@ -48,4 +48,4 @@ open ReciprocityTheory.AnForm.R GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.fourierMonomial_mem_radical_extended_maximalIdeal : ∀ (O : Type) [CommRing O] (bar : O → O) (q s : ℕ) (W : Matrix (Fin s) (Fin s) ℤ) (A : Type) [CommRing A] [IsLocalRing A] (Φ : VPre bar q W A) (N₁ : ℕ), 3 ≤ N₁ → Φ.Exact N₁ → ∀ (y : Φ.Y) (nu : Fin s → Φ.X y), nu ≠ 0 → mono W (Φ.t y) (Φ.δ y) nu ∈ ((maximalIdeal A).map (Φ.ev y)).radical := by
-  first | exact @GlobalTheory.Poinc.RadQ.mono_mem_radical | exact GlobalTheory.Poinc.RadQ.mono_mem_radical | (intros; apply GlobalTheory.Poinc.RadQ.mono_mem_radical <;> assumption)
+  first | exact @GlobalTheory.Poinc.RadQ.mono_mem_radical

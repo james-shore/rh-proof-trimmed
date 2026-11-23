@@ -60,11 +60,7 @@ open ReciprocityTheory.ChartRestriction.G.PullbackSections.Pf
 theorem exists_prime_dvd_natCast_mem {R : Type*} [CommRing R] {P : Ideal R} (hP : P.IsPrime) :
     ∀ N : ℕ, N ≠ 0 → (N : R) ∈ P → ∃ p : ℕ, p.Prime ∧ p ∣ N ∧ (p : R) ∈ P := by
   first
-  | exact @_root_.GlobalTheory.CuspFormEvaluationSupplement.main
-  | exact _root_.GlobalTheory.CuspFormEvaluationSupplement.main
   | (apply _root_.GlobalTheory.CuspFormEvaluationSupplement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CuspFormEvaluationSupplement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CuspFormEvaluationSupplement.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CuspFormEvaluationSupplement.main ..)
 
 theorem span_natCast_dvd_differentIdeal_sq (E : Type) [Field E] [NumberField E] [IsGalois ℚ E] (N : ℕ)

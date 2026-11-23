@@ -55,4 +55,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.pow_mul_sub_mem_pow_of_eval_mem_pow : ∀ (R : Type) [CommRing R] (I : Ideal R) (p : Polynomial R) (x y b lam : R) (n : ℕ), p.eval x ∈ I ^ n → p.eval y ∈ I ^ n → x - y ∈ I → b * (Polynomial.derivative p).eval x - lam ∈ I → lam ^ n * (x - y) ∈ I ^ n := by
-  first | exact @GlobalTheory.pow_mul_sub_mem_of_roots_mod_pow | exact GlobalTheory.pow_mul_sub_mem_of_roots_mod_pow | (intros; apply GlobalTheory.pow_mul_sub_mem_of_roots_mod_pow <;> assumption)
+  first | exact @GlobalTheory.pow_mul_sub_mem_of_roots_mod_pow

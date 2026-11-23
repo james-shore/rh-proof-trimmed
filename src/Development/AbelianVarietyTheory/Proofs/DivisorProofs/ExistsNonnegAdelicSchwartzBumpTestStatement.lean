@@ -55,4 +55,4 @@ open Formalism.IndefR.DatumF
 
 theorem _root_.GlobalTheory.T.exists_nonneg_adelicSchwartz_bump_test : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] (U : Set (κ → AF F)), U ∈ nhds 0 →
     ∃ Φ ∈ schA F κ, Continuous Φ ∧ (∀ x, Φ x ≠ 0 → x ∈ U) ∧ (∀ x, (Φ x).im = 0 ∧ 0 ≤ (Φ x).re) ∧ Φ 0 = 1 := by
-  first | exact @GlobalTheory.AdelicBumpTest.exists_nonneg_test | exact GlobalTheory.AdelicBumpTest.exists_nonneg_test | (intros; apply GlobalTheory.AdelicBumpTest.exists_nonneg_test <;> assumption)
+  first | exact @GlobalTheory.AdelicBumpTest.exists_nonneg_test

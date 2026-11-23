@@ -72,7 +72,7 @@ theorem centre_commutes_embedded_block {R : Type} [CommRing R] (hn : ρ + p = n)
         (blk4 1 (bl hn z 0 0 0) 0 1) := by
   have h1 : HMul.hMul (bl hn z 0 0 0) (bl hn 0 0 0 c) = 0 := by
     simp only [bl, Matrix.submatrix_mul_equiv, Matrix.fromBlocks_multiply]
-    simp [bl]
+    simp
   have h2 : HMul.hMul (bl hn z 0 0 0) (bl hn 1 0 0 d) = bl hn z 0 0 0 := by
     simp only [bl, Matrix.submatrix_mul_equiv, Matrix.fromBlocks_multiply]
     simp
@@ -81,7 +81,7 @@ theorem centre_commutes_embedded_block {R : Type} [CommRing R] (hn : ρ + p = n)
     simp
   have h4 : HMul.hMul (bl hn 0 0 0 c) (bl hn z 0 0 0) = 0 := by
     simp only [bl, Matrix.submatrix_mul_equiv, Matrix.fromBlocks_multiply]
-    simp [bl]
+    simp
   rw [submatrix_fromBlocks_mul, submatrix_fromBlocks_mul, h1, h2, h3, h4]
   congr 1 <;> simp [add_comm]
 

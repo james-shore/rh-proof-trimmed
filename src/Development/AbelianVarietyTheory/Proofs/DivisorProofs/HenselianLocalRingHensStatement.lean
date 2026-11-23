@@ -48,4 +48,4 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing GlobalTheory.Henselisation
 
 theorem _root_.GlobalTheory.T.henselianLocalRing_hens' : ∀ (R : Type) [CommRing R] [IsLocalRing R], HenselianLocalRing (Hens R) := by
-  first | exact @GlobalTheory.Henselisation.henselianLocalRing_hens | exact GlobalTheory.Henselisation.henselianLocalRing_hens | (intros; apply GlobalTheory.Henselisation.henselianLocalRing_hens <;> assumption)
+  first | exact @GlobalTheory.Henselisation.henselianLocalRing_hens

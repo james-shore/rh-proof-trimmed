@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.localWeilOperator_normalises_schroedingerOperator 
           φ₁ = ((ω g φ : SB (Fin a × Fin (a + a') → Fv F v)) : (Fin a × Fin (a + a') → Fv F v) → ℂ)) →
       ∀ actY : Γ → Y → Y, (∀ g x, actAB (cA σ) (j g) (Xm x) = Xm (actY g x)) →
       ∀ g x, ω g * ρ x = ρ (actY g x) * ω g := by
-  first | exact @GlobalTheory.InertLocModel.weil_normalises_schr | exact GlobalTheory.InertLocModel.weil_normalises_schr | (intros; apply GlobalTheory.InertLocModel.weil_normalises_schr <;> assumption)
+  first | exact @GlobalTheory.InertLocModel.weil_normalises_schr

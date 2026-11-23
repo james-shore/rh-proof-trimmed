@@ -69,7 +69,6 @@ theorem colv_uM_mul_levi (n : ℕ) (y : Fin n → k) (b : GL (Fin n) k) :
       1 + GlobalTheory.BZMir.colMat k n y := by
     first
     | rfl
-    | (ext a c; simp [GlobalTheory.CompanionTheory.BZPsiPG.uM, GlobalTheory.BZMir.unip])
   have hL : ((GlobalTheory.BZMir.levi k n b : GL (Fin (n + 1)) k) : Matrix (Fin (n + 1)) (Fin (n + 1)) k) =
       GlobalTheory.BZMir.glEmbMat k n (b : Matrix (Fin n) (Fin n) k) := rfl
   funext i
@@ -109,8 +108,8 @@ theorem eq_uM_colv_mul_levi (n : ℕ) (p : Mir k n) :
     rcases Fin.eq_castSucc_or_eq_last i with ⟨i, rfl⟩ | rfl <;>
       rcases Fin.eq_castSucc_or_eq_last j with ⟨j, rfl⟩ | rfl
     · simp [Matrix.one_apply, Fin.castSucc_ne_last, hblock]
-    · simp [Matrix.one_apply, Fin.castSucc_ne_last]
-    · simp [Matrix.one_apply, Fin.castSucc_ne_last, (Fin.castSucc_ne_last _).symm, hrow, GlobalTheory.BZMir.eLast]
+    · simp [Fin.castSucc_ne_last]
+    · simp [Fin.castSucc_ne_last, (Fin.castSucc_ne_last _).symm, hrow, GlobalTheory.BZMir.eLast]
     · simp [hrow, GlobalTheory.BZMir.eLast]
   obtain ⟨y, hy⟩ := GlobalTheory.CompanionTheory.BZPsiPG.exists_uM_of_mem k n hm
   have hp : p = GlobalTheory.CompanionTheory.BZPsiPG.uM k n y *
@@ -130,9 +129,6 @@ theorem continuous_colv (n : ℕ) : Continuous (GlobalTheory.CompanionTheory.Mir
   first
   | exact continuous_pi fun i =>
       (Units.continuous_val.comp continuous_subtype_val).matrix_elem (Fin.castSucc i) (Fin.last n)
-  | exact continuous_pi fun i => (continuous_apply (Fin.last n)).comp
-      ((continuous_apply (Fin.castSucc i)).comp (Units.continuous_val.comp continuous_subtype_val))
-  | fun_prop
 
 theorem coe_Bgrp_eq (n : ℕ) (c : kˣ) (K₁ : Subgroup (GL (Fin n) k)) (h : K₁ ≤ KO k (Fin n)) :
     (Bgrp n c K₁ h : Set (Mir k n)) =

@@ -41,4 +41,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Ker Formalism.L2.Forms GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc GlobalTheory.Svd NumberField IsDedekindDomain
 
 theorem _root_.GlobalTheory.T.tuplesHaveLocalModels_of_standardColumnObjects : GlobalTheory.TwV.Lt.AdmAtEnt2 → GlobalTheory.TwV.Lt.CurveEx → ∀ (B : GlobalTheory.Mem.Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T) (Z : w.Lt) (O : Obj (w.D Z)), GlobalTheory.Svd.Part w Z (ofObj O) → ModelsAt (w.D Z) O := by
-  first | exact @GlobalTheory.Svd.modelsAt_of_part | exact GlobalTheory.Svd.modelsAt_of_part | (intros; apply GlobalTheory.Svd.modelsAt_of_part <;> assumption)
+  first | exact @GlobalTheory.Svd.modelsAt_of_part

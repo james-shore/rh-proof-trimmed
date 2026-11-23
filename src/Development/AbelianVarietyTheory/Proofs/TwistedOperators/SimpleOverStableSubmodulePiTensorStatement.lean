@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.simpleOverStableSubmodule_piTensor : ∀ {ι : Typ
     (∀ i, Module.rank ℂ (M i) ≤ Cardinal.aleph0) → (∀ i, GlobalTheory.TensHead.Stab (Op i) (K i)) →
     (∀ i, GlobalTheory.TensHead.SimpleOver (Op i) (K i)) →
     GlobalTheory.TensHead.SimpleOver (GlobalTheory.TensHead.piOps Op) (GlobalTheory.TensHead.piKer K) := by
-  first | exact @GlobalTheory.PiSimple.simpleOver_piKer | exact GlobalTheory.PiSimple.simpleOver_piKer | (intros; apply GlobalTheory.PiSimple.simpleOver_piKer <;> assumption)
+  first | exact @GlobalTheory.PiSimple.simpleOver_piKer

@@ -115,7 +115,7 @@ theorem muMax_le_mon {V κ : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K
     intro m _
     by_cases hm : m = s
     · subst hm
-      simp [Pi.single_apply, hst]
+      simp [hst]
     · simp [Pi.single_apply, hm]
   have hline : ∀ m, muMaxDef (Pi.basisFun K (MonI lam)) (fun _ : InfinitePlace K => (monD lam)⁻¹)
       (𝓞 K ∙ (Pi.single m (1 : K) : MonI lam → K)) ≤ -Real.log c0 := by

@@ -94,7 +94,7 @@ theorem coeffIn_add_alt (i : V) (k : ℕ) (p q : MvPolynomial V R) :
     coeffIn_eq_sum i k q (p.support ∪ q.support) Finset.subset_union_right,
     ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun s _ => ?_
-  split_ifs <;> simp [MvPolynomial.coeff_add, map_add (f := _)]
+  split_ifs <;> simp [map_add (f := _)]
 
 theorem polyIn_monomial_of_eq_zero (i : V) (t : V →₀ ℕ) (ht : t i = 0) (a : R) :
     asPolyInVar i (MvPolynomial.monomial t a) = Polynomial.C (MvPolynomial.monomial t a) := by
@@ -160,7 +160,7 @@ theorem coeff_prod_pow_linear {B : Type*} [CommRing B] {T : Type*} (s : Finset T
     (e : T → ℕ) (hp : ∀ t, (p t).natDegree ≤ 1) :
     (∏ t ∈ s, p t ^ e t).natDegree ≤ ∑ t ∈ s, e t ∧
       (∏ t ∈ s, p t ^ e t).coeff (∑ t ∈ s, e t) = ∏ t ∈ s, (p t).coeff 1 ^ e t := by
-  first | exact GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow .. | (apply GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (intros; apply GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (apply @GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (intros; apply @GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption) | (apply @GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> first | assumption | infer_instance)
+  first | (apply GlobalTheory.ProductDegreeCoefficient.natDegree_le_and_coeff_prod_pow <;> assumption)
 
 theorem polyIn_substitution_leading {D N : ℕ} (f : KTp K D N) (a : Fin (D + 1) → ℕ)
     (hmh : ReciprocityTheory.MultiplicativeHeights.IsMultiHomogeneous a f) :

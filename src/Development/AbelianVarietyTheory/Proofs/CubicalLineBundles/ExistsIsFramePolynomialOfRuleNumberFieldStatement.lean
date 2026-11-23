@@ -45,4 +45,4 @@ open GlobalTheory GlobalTheory.CM GlobalTheory.Frames GlobalTheory.LamT
 
 
 theorem _root_.GlobalTheory.T.exists_isFramePolynomialOfRule_numberField : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (K : Type) [Field K] [NumberField K] [Algebra c.F K] (y : FrPt Xo c K) (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ), ∀ F ∈ sec Xo c a n, ∃ G : MvPolynomial (FrVar Dw.mult) K, IsFrPoly F y G := by
-  first | exact @GlobalTheory.LamT.exists_isFrPoly | exact GlobalTheory.LamT.exists_isFrPoly | (intros; apply GlobalTheory.LamT.exists_isFrPoly <;> assumption)
+  first | exact @GlobalTheory.LamT.exists_isFrPoly

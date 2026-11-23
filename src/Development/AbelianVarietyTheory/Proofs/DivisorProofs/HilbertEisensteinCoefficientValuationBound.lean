@@ -201,7 +201,7 @@ private theorem absNorm_mul_norm_mul_discr_eq_natCast_of_mem_dual {F : Type} [Fi
     rintro rfl
     rw [coeIdeal_bot] at hI
     have := hI.symm
-    simp [mul_eq_zero, spanSingleton_eq_zero_iff, ht0, h0] at this
+    simp [mul_eq_zero, ht0, h0] at this
     exact (differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F)) this
   · have := congrArg absNorm hI
     rw [coeIdeal_absNorm (R := 𝓞 F) (K := F) I, map_mul, map_mul, absNorm_span_singleton (𝓞 F),
@@ -388,7 +388,7 @@ theorem _root_.GlobalTheory.HilbFam.sz_hfun_coef : _root_.GlobalTheory.LatJet.Ei
   unfold _root_.GlobalTheory.HilbFam.hser
 
   rw [PowerSeries.coeff_smul, map_sum]
-  simp only [PowerSeries.coeff_smul, smul_eq_mul, zsmul_eq_mul]
+  simp only [PowerSeries.coeff_smul, smul_eq_mul]
   have hsum : _root_.GlobalTheory.LatVal.Sz l lam (e + (∑ i, κ i : ℕ) * ρ)
       (∑ μ ∈ Finset.Iic κ, ((∏ i, _root_.GlobalTheory.HilbFam.rco (2 * s) (κ i) (μ i) *
         (-1) ^ μ i : ℤ) : ℂ) * PowerSeries.coeff n ((PowerSeries.mk c ^ ∑ i, (κ i - μ i)) *

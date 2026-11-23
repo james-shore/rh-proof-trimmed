@@ -105,7 +105,7 @@ theorem part1 (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNona
       ip ν (om (μ₀ * ξ) g (1 : GL (A ⊕ E) k) (datum ξ)) (datum ξ : Matrix (A ⊕ E) (A ⊕ D) k → ℂ)) := by
   haveI := hν.1
   have hμ' : ∀ x, ‖((μ₀ * ξ) x : ℂ)‖ = 1 := fun x => by
-    simp [MonoidHom.mul_apply, Units.val_mul, norm_mul, hξu x, hμn x]
+    simp [MonoidHom.mul_apply, Units.val_mul, hξu x, hμn x]
   have hL1 := GlobalTheory.T.parahoricDatum_eigenvector_twoBlockParahoric k A D E ξ μ₀ hξt hμu
   intro j hj d hd g
   have hu : (ξ d : ℂ) * starRingEnd ℂ (ξ d) = 1 := by
@@ -216,7 +216,7 @@ theorem part3 (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNona
     push_cast
     ring_nf
   rw [hc, ← key]
-  simp only [Fintype.card_sum, Fintype.card_fin, Complex.real_smul, smul_eq_mul, mul_one]
+  simp only [Fintype.card_sum, Fintype.card_fin, Complex.real_smul, mul_one]
   push_cast
   ring
 

@@ -50,4 +50,4 @@ open NumberField MeasureTheory Matrix Filter Topology GlobalTheory.SUVol GlobalT
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.leftMul_near_one_lu_split_small_chart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (x : Frame X.Ψ r), IsOrth X x → ∀ δ : ℝ, 0 < δ → ∃ ε : ℝ, 0 < ε ∧ ∀ m : X.Ψ → Matrix (Fin r) (Fin r) ℂ, (∀ τ a b, ‖m τ a b - (1 : Matrix (Fin r) (Fin r) ℂ) a b‖ < ε) → ∃ z : V (nd X), ‖z‖ < δ ∧ ∃ b ∈ Bor X.Ψ r, X.lmulC m x = rmul (cpt X x z) b := by
-  first | exact @GlobalTheory.LUNear.lmulC_split_near_one | exact GlobalTheory.LUNear.lmulC_split_near_one | (intros; apply GlobalTheory.LUNear.lmulC_split_near_one <;> assumption)
+  first | exact @GlobalTheory.LUNear.lmulC_split_near_one

@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open NumberField ReciprocityTheory.ChartRestriction.G.FD
 
 theorem _root_.GlobalTheory.T.holomorphicRestrictionSubalgebraFrameDomain_isDomain : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r), X.dom.Nonempty → IsDomain (GlobalTheory.FlatPair.holAlg X) := by
-  first | exact @GlobalTheory.FlatPair.holAlg_isDomain | exact GlobalTheory.FlatPair.holAlg_isDomain | (intros; apply GlobalTheory.FlatPair.holAlg_isDomain <;> assumption)
+  first | exact @GlobalTheory.FlatPair.holAlg_isDomain

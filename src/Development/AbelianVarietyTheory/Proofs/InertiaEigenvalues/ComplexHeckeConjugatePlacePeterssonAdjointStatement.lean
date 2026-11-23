@@ -70,4 +70,4 @@ theorem _root_.GlobalTheory.T.complexHecke_conjugatePlace_petersson_adjoint : �
         (Rl.HW i (Formalism.IndefR.Links.sg0 D A3.A)).e y' =
           Formalism.IndefR.Mult.heckeOn (Rl.MW i (Formalism.IndefR.Links.sg0 D A3.A)) R' ((Rl.HW i (Formalism.IndefR.Links.sg0 D A3.A)).e y) →
         ⟪x', y⟫_ℂ = ⟪x, y'⟫_ℂ := by
-  first | exact @GlobalTheory.CxHeckeAdj.hecke_adjoint | exact GlobalTheory.CxHeckeAdj.hecke_adjoint | (intros; apply GlobalTheory.CxHeckeAdj.hecke_adjoint <;> assumption)
+  first | exact @GlobalTheory.CxHeckeAdj.hecke_adjoint

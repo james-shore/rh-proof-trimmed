@@ -77,11 +77,7 @@ theorem exists_smul_mem {M : Submodule (𝓞 K) (Fin n → K)}
     {x : Fin n → K} (hx : x ∈ Submodule.span K (M : Set (Fin n → K))) :
     ∃ d : 𝓞 K, d ≠ 0 ∧ d • x ∈ M := by
   first
-  | exact @_root_.GlobalTheory.DeterminantSimpLemma.main
-  | exact _root_.GlobalTheory.DeterminantSimpLemma.main
   | (apply _root_.GlobalTheory.DeterminantSimpLemma.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DeterminantSimpLemma.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DeterminantSimpLemma.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DeterminantSimpLemma.main ..)
 
 theorem isLattice_dualFr (M : Submodule (𝓞 K) (Fin n → K)) (hM : Submodule.IsFullLattice K M) :

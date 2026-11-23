@@ -49,4 +49,4 @@ open ValuativeRel
 open GlobalTheory.Core.Mi.LatMatch
 
 theorem _root_.GlobalTheory.T.lastWittLine_of_besselJacobiLatticesGood : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (ρ : ℕ) (B : BesLev D ρ) (J : JacLev D ρ) (LV : Lat B.V) (LV₀ : Lat B.V₀) (LW : Lat J.W) (LW₀ : Lat J.W₀) (v : GlobalTheory.FinPl.Pl D), GoodBF ψ B J LV LV₀ LW LW₀ v → LastAt ψ B.d (vecB B.o B.ζ) LV LV₀ v := by
-  first | exact @GlobalTheory.Core.Mi.LatMatch.lastAt_of_goodBF | exact GlobalTheory.Core.Mi.LatMatch.lastAt_of_goodBF | (intros; apply GlobalTheory.Core.Mi.LatMatch.lastAt_of_goodBF <;> assumption)
+  first | exact @GlobalTheory.Core.Mi.LatMatch.lastAt_of_goodBF

@@ -57,4 +57,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.card_subspaces_ker_transpose_eq_card_range : ∀ (k : Type) [Field k] (m n j : ℕ) (z : Matrix (Fin m) (Fin n) k), Nat.card {W : Submodule k (Fin m → k) // Module.finrank k W + j = m ∧ W ≤ LinearMap.ker zᵀ.mulVecLin} = Nat.card {W' : Submodule k (Fin m → k) // Module.finrank k W' = j ∧ LinearMap.range z.mulVecLin ≤ W'} := by
-  first | exact @GlobalTheory.SplitHecke.card_le_ker_transpose_eq_card_range_le | exact GlobalTheory.SplitHecke.card_le_ker_transpose_eq_card_range_le | (intros; apply GlobalTheory.SplitHecke.card_le_ker_transpose_eq_card_range_le <;> assumption)
+  first | exact @GlobalTheory.SplitHecke.card_le_ker_transpose_eq_card_range_le

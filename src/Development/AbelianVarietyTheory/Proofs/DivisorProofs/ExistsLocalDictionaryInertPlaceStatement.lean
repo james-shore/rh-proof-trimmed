@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_local_dictionary_inertPlace : ∀ (F E : Ty
       ι 1 • P = P ∧ ι 1 • Q = Q ∧
       (∀ i j, c (JL j i) = JL i j) ∧ IsUnit JL.det ∧ Pᵀ * incM F X.J * P.map (cA σ) = JL.map ι ∧
       ∀ z : Fin n → _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E), z ∈ GlobalTheory.InertSph.latAt X v ↔ ∃ a : Fin n → O, z = P *ᵥ fun i => ι (a i) := by
-  first | exact @GlobalTheory.InertLocDict.exists_local_dictionary | exact GlobalTheory.InertLocDict.exists_local_dictionary | (intros; apply GlobalTheory.InertLocDict.exists_local_dictionary <;> assumption)
+  first | exact @GlobalTheory.InertLocDict.exists_local_dictionary

@@ -64,7 +64,7 @@ theorem UpperTheory.hasLevel_of_unitIdele_congruent_one :
     intro v
     simp [Dv]
   refine ⟨fun i j => ?_, fun v => ⟨?_, fun i j => ?_⟩⟩
-  · fin_cases i <;> fin_cases j <;> simp [aE, h1] <;> rfl
+  · fin_cases i <;> fin_cases j <;> simp [aE, h1]
   · rw [H.KAt, GlobalTheory.LFun.KGL, GlobalTheory.AdelicU.mem_GLint_iff]
     have e1 : (1 : H.Kv v) ∈ Formalism.UG.Ov ℚ v := one_mem _
     have e0 : (0 : H.Kv v) ∈ Formalism.UG.Ov ℚ v := zero_mem _

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.dilatedFlatDatum_isSBHalf_tameKernel : ∀ (D : D7
     [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Hk3.Core R F → QGuard R → ∀ (i : Fin D.R.m), VStd D i → ∀ (ξR : ∀ PP : Pl D.host.E, (kP PP)ˣ →* ℂˣ) (Q : Finset (Pl D.host.E)),
     (∃ t, Q ⊆ R.Q t) → ∀ eQ : AE D, IsIdemSum eQ Q → ∀ ϖ : 𝓞 D.host.E, ϖ ≠ 0 → (∀ PP ∈ Q, ϖ ∈ PP.asIdeal ∧ ϖ ∉ PP.asIdeal ^ 2) →
     ∀ Gc : ℂ, IsSBHalf eQ (lattice₂ R i) (fun x => Gc * flatDat R i Q ξR eQ (dil i (ϖ : D.host.E) x)) := by
-  first | exact @GlobalTheory.DilFlat.isSBHalf_dilFlat | exact GlobalTheory.DilFlat.isSBHalf_dilFlat | (intros; apply GlobalTheory.DilFlat.isSBHalf_dilFlat <;> assumption)
+  first | exact @GlobalTheory.DilFlat.isSBHalf_dilFlat

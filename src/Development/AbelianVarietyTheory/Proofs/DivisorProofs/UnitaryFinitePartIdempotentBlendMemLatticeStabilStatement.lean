@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.unitaryFinitePart_idempotentBlend_mem_latticeStabi
     (Formalism.L2.Theta.mt V g⁻¹).map (toEAf D) = (1 - ε - φ) • (1 : Matrix (Fin V.rank) (Fin V.rank) (Lev.EAf D)) +
       ε • (β₀ * β₁⁻¹).val + φ • ((β₁ * β₀⁻¹).val.map (GlobalTheory.AdelicLatMove.cF D)).transpose →
     Formalism.IndefR.Lev.finE V g ∈ Formalism.L2.DIV.St β₁ := by
-  first | exact @GlobalTheory.StabMove.finE_mem_St | exact GlobalTheory.StabMove.finE_mem_St | (intros; apply GlobalTheory.StabMove.finE_mem_St <;> assumption)
+  first | exact @GlobalTheory.StabMove.finE_mem_St

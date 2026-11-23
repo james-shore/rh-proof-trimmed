@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_splitPlace_basis_hyperbolicPlane_complement
     ∃ β : GL (Fin n) (v.adicCompletion F), (∀ i : Fin n, (i.1 = i₀ → ∀ r, β.1 r i = τ (x r)) ∧
       (i.1 = i₁ → ∀ r, β.1 r i = τ (y r)) ∧ ∀ j : Fin n₁, i.1 = skip i₀ i₁ j → ∀ r, β.1 r i = (ι.map τ * β₁.1) r j) ∧
       IsSplitBasis τ L β := by
-  first | exact @GlobalTheory.PlaneBasis.exists_isSplitBasis_plane | exact GlobalTheory.PlaneBasis.exists_isSplitBasis_plane | (intros; apply GlobalTheory.PlaneBasis.exists_isSplitBasis_plane <;> assumption)
+  first | exact @GlobalTheory.PlaneBasis.exists_isSplitBasis_plane

@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.exists_nsmul_padded_lattice_mem_basis_product : ∀ (D : D7), admG1 D → ∀ (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), Crv D cc δ → ∀ (N N' m r : ℕ) (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)) (b : Fin r → Matrix (Fin N') (Fin (N + m)) D.host.E), OnB D b → (La D (tor0 D cc δ) L L').FG → ∃ R : ℕ, 0 < R ∧ ∀ y ∈ La D (tor0 D cc δ) L L', R • pad D m y ∈ LaB D (tor0 D cc δ) b := by
-  first | exact @GlobalTheory.PadCommensurable.nsmul_pad_mem | exact GlobalTheory.PadCommensurable.nsmul_pad_mem | (intros; apply GlobalTheory.PadCommensurable.nsmul_pad_mem <;> assumption)
+  first | exact @GlobalTheory.PadCommensurable.nsmul_pad_mem

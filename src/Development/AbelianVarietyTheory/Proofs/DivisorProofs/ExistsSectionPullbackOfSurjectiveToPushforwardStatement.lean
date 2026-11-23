@@ -52,4 +52,4 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 
 
 theorem _root_.GlobalTheory.T.exists_sectionPullback_of_surjective_toPushforward : ∀ (X T : Scheme.{0}) (i : T ⟶ X) (M : LB X), M.IsLB → Function.Surjective ((GlobalTheory.LB.toPushforward M i).app ⊤) → ∀ σ : (M.pull i).Sec, ∃ u : M.Sec, GlobalTheory.secPull u i = σ := by
-  first | exact @GlobalTheory.LB.exists_secPull_eq_of_surjective_toPushforward | exact GlobalTheory.LB.exists_secPull_eq_of_surjective_toPushforward | (intros; apply GlobalTheory.LB.exists_secPull_eq_of_surjective_toPushforward <;> assumption)
+  first | exact @GlobalTheory.LB.exists_secPull_eq_of_surjective_toPushforward

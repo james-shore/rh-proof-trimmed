@@ -45,4 +45,4 @@ open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.exists_siegelFamily_cyclotomicAway_odd_level : ∀ g n : ℕ, 1 ≤ g → 3 ≤ n → Odd n → Nonempty (SFam g n (zetaAway n)) := by
-  first | exact @GlobalTheory.SiegelTor.exists_sFam_cycAway | exact GlobalTheory.SiegelTor.exists_sFam_cycAway | (intros; apply GlobalTheory.SiegelTor.exists_sFam_cycAway <;> assumption)
+  first | exact @GlobalTheory.SiegelTor.exists_sFam_cycAway

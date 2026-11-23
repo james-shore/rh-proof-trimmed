@@ -102,8 +102,6 @@ theorem top_mul_descMod_eq_top (A B : Type) [CommRing A] [CommRing B] [Algebra A
   obtain ⟨w, hw⟩ := hvu.exists_left_inv
   have hle : (⊤ : Submodule A B) * ((⊤ : Submodule A B) * descMod A B u) ≤ (⊤ : Submodule A B) * descMod A B u := by
     rw [← mul_assoc]; first
-      | exact Submodule.mul_le_mul le_top le_rfl
-      | exact mul_le_mul_right' le_top _
       | (gcongr; exact le_top)
   rw [eq_top_iff]
   intro b _

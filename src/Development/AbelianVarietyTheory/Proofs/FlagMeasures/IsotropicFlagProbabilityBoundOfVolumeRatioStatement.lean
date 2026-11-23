@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
 theorem _root_.GlobalTheory.T.isotropicFlagProbabilityBound_of_volumeRatio : VolumeStep → FlagMeasureBound := by
-  first | exact @GlobalTheory.FlagMeas.Bound.flagMeasureBound | exact GlobalTheory.FlagMeas.Bound.flagMeasureBound | (intros; apply GlobalTheory.FlagMeas.Bound.flagMeasureBound <;> assumption)
+  first | exact @GlobalTheory.FlagMeas.Bound.flagMeasureBound

@@ -51,4 +51,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 open Formalism.L2.Fam.NPC Formalism.L2.Fam.NPC.BaseC GlobalTheory.HeckeLocN
 
 theorem _root_.GlobalTheory.T.finiteDimensional_localisation_space_all : ∀ {R : Ranks} {H : Host R} {what₂ : Rows.Data R} (B : LocBase0 H what₂), FinDimV B := by
-  first | exact @GlobalTheory.FinDimVProof.finDimV_all | exact GlobalTheory.FinDimVProof.finDimV_all | (intros; apply GlobalTheory.FinDimVProof.finDimV_all <;> assumption)
+  first | exact @GlobalTheory.FinDimVProof.finDimV_all

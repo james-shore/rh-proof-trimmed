@@ -50,4 +50,4 @@ open GlobalTheory GlobalTheory.AbLaw GlobalTheory.UU GlobalTheory.LN GlobalTheor
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.abelianVariety_potential_semiAbelian_splitTorus : ∀ (V K : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (maximalIdeal V) V] [Field K] [CharZero K] [Algebra V K] [IsFractionRing V K] (A : Over (Sp K)) [GrpObj A], IsAbelianScheme A → GlobalTheory.SS.PotModel V K A (fun _ _ _ G _ => IsSemiAbelian G ∧ Nonempty (TorusExtension (GlobalTheory.SS.spFibre G))) := by
-  first | exact @GlobalTheory.SS.potModel_semiAbelian_torusExtension | exact GlobalTheory.SS.potModel_semiAbelian_torusExtension | (intros; apply GlobalTheory.SS.potModel_semiAbelian_torusExtension <;> assumption)
+  first | exact @GlobalTheory.SS.potModel_semiAbelian_torusExtension

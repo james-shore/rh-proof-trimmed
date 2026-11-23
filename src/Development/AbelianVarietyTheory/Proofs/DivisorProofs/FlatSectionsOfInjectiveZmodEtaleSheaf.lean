@@ -63,7 +63,6 @@ instance evalLeft_preservesMono (S : Type 1) [Ring S] (c : Scheme.{0}ᵒᵖ) :
       intro g
       simp only [evaluationLeftAdjoint_map_app]
       erw [colimit.ι_desc]
-      try rfl
     rw [h]
     have : HasExactColimitsOfShape (Discrete (c ⟶ t)) (ModuleCat.{1} S) := inferInstance
     have : PreservesFiniteLimits (colim : (Discrete (c ⟶ t) ⥤ ModuleCat.{1} S) ⥤ _) := inferInstance

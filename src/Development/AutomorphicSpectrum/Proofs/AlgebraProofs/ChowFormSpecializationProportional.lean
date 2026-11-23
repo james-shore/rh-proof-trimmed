@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.chow_form_specialization_propo
   (∀ x ∈ P, ∀ x' ∈ P, ∀ t : ℂ, x' = t • x → x' = x) →
   P.card = δ → eval (consGroup u₀ v) g ≠ 0 →
     ∃ c : ℂ, c ≠ 0 ∧ ∀ u : Fin n → ℂ, eval (consGroup u v) g = c * ∏ x ∈ P, ∑ j, u j * x j := by
-  first | exact @ModelDimension.chow_form_product_formula | exact ModelDimension.chow_form_product_formula
+  first | exact @ModelDimension.chow_form_product_formula

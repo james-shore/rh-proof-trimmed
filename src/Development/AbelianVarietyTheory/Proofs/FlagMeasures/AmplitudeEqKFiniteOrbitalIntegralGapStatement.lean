@@ -45,4 +45,4 @@ open BranchingSupport GlobalTheory.CellAmp Formalism.BasicNotions Formalism.Main
 open scoped InnerProductSpace ENNReal
 
 theorem _root_.GlobalTheory.T.amplitude_eq_kFiniteOrbitalIntegral_gap : GlobalTheory.GapIn.Hyp → GlobalTheory.GapIn.AmpKF0 := by
-  first | exact @GlobalTheory.AmpOrbGap.ampKF | exact GlobalTheory.AmpOrbGap.ampKF | (intros; apply GlobalTheory.AmpOrbGap.ampKF <;> assumption)
+  first | exact @GlobalTheory.AmpOrbGap.ampKF

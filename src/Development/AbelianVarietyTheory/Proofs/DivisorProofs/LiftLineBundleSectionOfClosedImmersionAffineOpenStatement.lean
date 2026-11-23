@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.lift_lineBundle_section_of_closedImmersion_affineO
         X'.presheaf.germ _ x hk (θ k) =
           X'.presheaf.germ (L'.U k ⊓ L'.U l) x ⟨hk.1, hl.1⟩ (L'.g k l).val * X'.presheaf.germ _ x hl (θ l)) ∧
       ∀ k, (i'.app (L'.U k ⊓ Y')).hom (θ k) = τ k := by
-  first | exact @GlobalTheory.PinchLift.lift_section_of_closedImm | exact GlobalTheory.PinchLift.lift_section_of_closedImm | (intros; apply GlobalTheory.PinchLift.lift_section_of_closedImm <;> assumption)
+  first | exact @GlobalTheory.PinchLift.lift_section_of_closedImm

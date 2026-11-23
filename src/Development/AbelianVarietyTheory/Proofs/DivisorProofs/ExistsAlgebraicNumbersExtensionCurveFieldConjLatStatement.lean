@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.exists_algebraicNumbers_extension_curveField_conjL
     ∀ (σ : D.what₂.LL →+* ℂ), ∀ ρ ∈ GlobalTheory.KerConjMean.ext D δ t0 σ, ∃ ρ' : Qbar →ₐ[ℚ] ℂ,
       (∀ x, Formalism.MainNotions.StandardLatticesGL3.cj Qbar ρ' (D.what₂.embLL x) = σ x) ∧
       lamConj Qbar ρ' (lamOf D D.host.ccK δ) = lamConj (GlobalTheory.KerConjMean.fld D δ t0) ρ (GlobalTheory.KerConjMean.lat D δ) := by
-  first | exact @GlobalTheory.ConjExtend.exists_extension_conj | exact GlobalTheory.ConjExtend.exists_extension_conj | (intros; apply GlobalTheory.ConjExtend.exists_extension_conj <;> assumption)
+  first | exact @GlobalTheory.ConjExtend.exists_extension_conj

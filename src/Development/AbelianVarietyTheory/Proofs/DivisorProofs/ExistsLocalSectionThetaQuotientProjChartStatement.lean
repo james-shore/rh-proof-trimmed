@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_localSection_thetaQuotient_projChart : ∀ 
     ∀ (a : Fin (n + 1)) (z : M.Z), z ∈ h ⁻¹ᵁ chart k n a → ∃ N : M.Z.Opens, z ∈ N ∧ N ≤ h ⁻¹ᵁ chart k n a ∧
       ∃ s : LocSec t.G t.PP.L N, IsLocSec s ∧
         GenIs M.pt s ((Scheme.ΓSpecIso (CommRingCat.of Ω)).inv.hom (c a)⁻¹ • SecM.ofSec t.G θ) ∧ FibNz s N := by
-  first | exact @GlobalTheory.UMin.ThBdl.exists_locSec_theta_chart | exact GlobalTheory.UMin.ThBdl.exists_locSec_theta_chart | (intros; apply GlobalTheory.UMin.ThBdl.exists_locSec_theta_chart <;> assumption)
+  first | exact @GlobalTheory.UMin.ThBdl.exists_locSec_theta_chart

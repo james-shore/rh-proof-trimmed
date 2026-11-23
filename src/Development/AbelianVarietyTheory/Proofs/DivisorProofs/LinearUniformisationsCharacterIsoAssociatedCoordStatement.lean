@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.linear_uniformisations_character_iso_associated_co
     [IsLocalRing W], GlobalTheory.Mum.Base W → ∀ (t : SAB H (Sp W)) (P P' : PELUnif (maximalIdeal W) t),
       ∃ e : P.D.toPre.X ≃ₗ[𝓞 E] P'.D.toPre.X, ∀ y r r', PsiCoord P.D.toPre y r → PsiCoord P'.D.toPre (e y) r' →
         Associated (r ^ 2) (r' ^ 2) := by
-  first | exact @GlobalTheory.PelUnifUniqCoord.main | exact GlobalTheory.PelUnifUniqCoord.main | (intros; apply GlobalTheory.PelUnifUniqCoord.main <;> assumption)
+  first | exact @GlobalTheory.PelUnifUniqCoord.main

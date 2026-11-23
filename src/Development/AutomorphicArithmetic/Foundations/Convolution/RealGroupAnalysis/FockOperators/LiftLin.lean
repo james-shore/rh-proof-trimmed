@@ -67,7 +67,7 @@ theorem UpperTheory.ConvolutionTheory.R2.Fo.liftLin :
     simp only [lift, Pi.add_apply, e, add_mul]
     exact integral_add (hI f hf φ hφ h) (hI f' hf' φ hφ h)
   · funext h
-    simp only [lift, Pi.add_apply, map_add (f := _), LinearMap.add_apply, th_add, mul_add]
+    simp only [lift, Pi.add_apply, map_add (f := _), th_add, mul_add]
     exact integral_add (hI f hf φ hφ h) (hI f hf φ' hφ' h)
   · funext h
     have e : ∀ x, (c • f).1 x = c * f.1 x := fun x => rfl

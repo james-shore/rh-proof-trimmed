@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.eq_comp_section_of_proper_smooth_nilpotent_rigidit
     Smooth P.hom → IsProper P.hom → GeometricallyConnected P.hom →
     ∀ (ε : Sp R ⟶ P.left), ε ≫ P.hom = 𝟙 _ → ∀ (f : P ⟶ X) (s₀ : Sp R₀ ⟶ X.left), l ≫ f.left = P₀.hom ≫ s₀ →
     f.left = P.hom ≫ ε ≫ f.left := by
-  first | exact @GlobalTheory.Rigidity.eq_comp_section | exact GlobalTheory.Rigidity.eq_comp_section | (intros; apply GlobalTheory.Rigidity.eq_comp_section <;> assumption)
+  first | exact @GlobalTheory.Rigidity.eq_comp_section

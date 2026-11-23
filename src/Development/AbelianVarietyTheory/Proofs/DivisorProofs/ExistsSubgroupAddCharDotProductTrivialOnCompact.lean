@@ -53,11 +53,7 @@ namespace GlobalTheory.CharDotKill
 
 theorem pow_near_one {z : ℂ} (h : ∀ n : ℕ, ‖z ^ n - 1‖ < 1 / 2) : z = 1 := by
   first
-  | exact @_root_.GlobalTheory.KeyLemmaTwo.main
-  | exact _root_.GlobalTheory.KeyLemmaTwo.main
   | (apply _root_.GlobalTheory.KeyLemmaTwo.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.KeyLemmaTwo.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.KeyLemmaTwo.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.KeyLemmaTwo.main ..)
 
 theorem exists_open_ker {K : Type} [AddCommGroup K] [TopologicalSpace K] [NonarchimedeanAddGroup K]

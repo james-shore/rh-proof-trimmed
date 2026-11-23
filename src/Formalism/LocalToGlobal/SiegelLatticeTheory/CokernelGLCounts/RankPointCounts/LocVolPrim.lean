@@ -163,7 +163,7 @@ theorem mem_diff_iff (x : 𝓞 K) : x ∈ differentIdeal ℤ (𝓞 K) ↔
     · intro hx
       exact ⟨x, hx, rfl⟩
   rw [← h1, coeIdeal_differentIdeal ℤ ℚ K (𝓞 K),
-    FractionalIdeal.mem_inv_iff (by first | exact FractionalIdeal.dual_ne_zero ℤ ℚ one_ne_zero | exact FractionalIdeal.dual_ne_zero one_ne_zero)]
+    FractionalIdeal.mem_inv_iff (by first | exact FractionalIdeal.dual_ne_zero ℤ ℚ one_ne_zero)]
   constructor
   · intro H b hb
     have := H b ((mem_dual_one_iff b).2 hb)
@@ -450,9 +450,7 @@ theorem cinv_sum {ι : Type} (s : Finset ι) (x : ι → Fin X.B.I.n → X.B.I.E
 theorem fe (a b : Fin D.R.rS) : (VS D).hT (X.fY b) (X.eX a) = if a = b then 1 else 0 := by
   have h : starRingEnd D.host.E ((VS D).hT (X.eX a) (X.fY b)) = (VS D).hT (X.fY b) (X.eX a) := by
     first
-      | exact (VS D).herm (X.eX a) (X.fY b)
       | exact (VS D).herm.eq (X.eX a) (X.fY b)
-      | exact LinearMap.IsSymm.eq (VS D).herm (X.eX a) (X.fY b)
   rw [← h, X.ef]
   split_ifs <;> simp
 

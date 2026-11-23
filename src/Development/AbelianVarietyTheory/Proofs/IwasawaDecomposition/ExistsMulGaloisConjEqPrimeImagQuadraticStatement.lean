@@ -57,4 +57,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 theorem _root_.GlobalTheory.T.exists_mul_galois_conj_eq_prime_imagQuadratic : ∀ (K : Type) [Field K] [NumberField K], IsEmpty (K →+* ℝ) → Module.finrank ℚ K = 2 →
     ∀ (j : K →+* Qb) (π : 𝓞 K) (p : ℕ), Ideal.absNorm (Ideal.span {π}) = p →
       ∃ σ : Qb →ₐ[ℚ] Qb, j (π : K) * σ (j (π : K)) = (p : Qb) := by
-  first | exact @GlobalTheory.RayFieldNorm.exists_mul_conj_eq_norm | exact GlobalTheory.RayFieldNorm.exists_mul_conj_eq_norm | (intros; apply GlobalTheory.RayFieldNorm.exists_mul_conj_eq_norm <;> assumption)
+  first | exact @GlobalTheory.RayFieldNorm.exists_mul_conj_eq_norm

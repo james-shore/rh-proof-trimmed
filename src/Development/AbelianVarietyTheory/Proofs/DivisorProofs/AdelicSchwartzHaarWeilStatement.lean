@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.adelic_schwartz_haar_weil : ∀ (F : Type) [Field 
       Filter.Tendsto (fun n : ℕ => GlobalTheory.WeilL2Words.l2A F μ (fun a => ((n : ℂ) + 1) *
         (GlobalTheory.WeilM.schr ψ (GlobalTheory.WeilL2Words.archPair F (((n : ℝ) + 1)⁻¹ • h)) φ a - φ a) - GlobalTheory.WeilL2Words.dS F ψ h φ a))
         Filter.atTop (nhds 0) := by
-  first | exact @GlobalTheory.WeilL2Convergence.tendsto_l2A_diffQuot | exact GlobalTheory.WeilL2Convergence.tendsto_l2A_diffQuot | (intros; apply GlobalTheory.WeilL2Convergence.tendsto_l2A_diffQuot <;> assumption)
+  first | exact @GlobalTheory.WeilL2Convergence.tendsto_l2A_diffQuot

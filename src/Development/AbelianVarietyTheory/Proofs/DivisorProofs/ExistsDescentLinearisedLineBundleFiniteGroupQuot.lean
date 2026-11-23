@@ -159,7 +159,7 @@ theorem descent : ∀ (F : Type) [Field F] [NumberField F] (X W : Scheme.{0}) [I
       haveI : IsIso (ρ γ).asIso.hom := Iso.isIso_hom (ρ γ).asIso
       have h1 := (genericPoint_spec X).image (ρ γ).asIso.hom.continuous
       have hs : Function.Surjective (ρ γ).asIso.hom.base := (ρ γ).asIso.hom.surjective
-      simp only [Set.top_eq_univ, Set.image_univ, hs.range_eq, closure_univ] at h1
+      simp only [Set.image_univ, hs.range_eq, closure_univ] at h1
       exact h1.eq (genericPoint_spec X)
     have hfix := descent_fromSpecResidueField_comp_eq_of_fixes X Γ ρ γ (genericPoint X) hη (fun u _ => by rw [hσu, hγ, sub_self]; exact zeroAt_zero _)
     have h0 := hin γ _ 1 hfix (D.isEqn_genericPoint 1)

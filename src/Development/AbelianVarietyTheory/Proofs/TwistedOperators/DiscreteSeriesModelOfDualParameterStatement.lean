@@ -48,4 +48,4 @@ open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.discrete_series_model_of_dual_parameter : ∀ {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSModel V S), ∃ (M' : DSModel V (fun τ => dualPar (S τ))) (c : ∀ τ, M'.H τ ≃ₗᵢ⋆[ℂ] M.H τ), ∀ τ, ∀ g ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ), ∀ w, c τ (M'.rep τ g w) = M.rep τ g (c τ w) := by
-  first | exact @GlobalTheory.ConjDS.exists_conjModel | exact GlobalTheory.ConjDS.exists_conjModel | (intros; apply GlobalTheory.ConjDS.exists_conjModel <;> assumption)
+  first | exact @GlobalTheory.ConjDS.exists_conjModel

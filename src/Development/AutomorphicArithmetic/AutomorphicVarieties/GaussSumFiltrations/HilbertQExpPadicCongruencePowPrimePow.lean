@@ -73,15 +73,15 @@ private theorem hasQ_const (c : ℂ) :
       (f := fun ξ : F => (({0} : Set F).indicator (fun _ => c) ξ) * ez ξ z) 0
       (fun b hb => by simp [Set.indicator_apply, hb])
     convert h using 1
-    simp [Set.indicator_apply, ez, reAt]
+    simp [ez, reAt]
 
 theorem small_const {r : ℝ} {g : Hn F → ℂ} (h : Small ι r g) (c : ℂ) :
     Small (F := F) ι ‖ι.symm c‖ (fun _ : Hn F => c) := by
   classical
   refine ⟨_, hasQ_const c, fun ξ => ?_⟩
   by_cases hξ : ξ = 0
-  · simp [Set.indicator_apply, hξ]
-  · simp [Set.indicator_apply, hξ]
+  · simp [hξ]
+  · simp [hξ]
 
 theorem small_mono {r s : ℝ} {g : Hn F → ℂ} (h : Small ι r g) (hrs : r ≤ s) : Small ι s g := by
   obtain ⟨a, ha, hb⟩ := h
@@ -219,4 +219,4 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.hilbertQExp_padicCongruence_pow_prime_pow : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ) (f : Hn F → ℂ), Small ι (p : ℝ)⁻¹ (f - 1) → ∀ N m : ℕ, Small ι ((p : ℝ)⁻¹ ^ (N + 1)) (f ^ (p ^ N * m) - 1) := by
-  first | exact @GlobalTheory.QPow.main | exact GlobalTheory.QPow.main | (intros; apply GlobalTheory.QPow.main <;> assumption)
+  first | exact @GlobalTheory.QPow.main

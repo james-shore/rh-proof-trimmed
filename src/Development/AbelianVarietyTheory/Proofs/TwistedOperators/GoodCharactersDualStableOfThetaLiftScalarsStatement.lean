@@ -54,4 +54,4 @@ open Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.
 open GlobalTheory.LiftRows
 
 theorem _root_.GlobalTheory.T.goodCharacters_dual_stable_of_thetaLift_scalars : GlobalTheory.Published.GreenCuspidal → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Given R F → Formalism.L2.DIV.GoodStable A.X := by
-  first | exact @GlobalTheory.GoodStableGiven.goodStable_of_given | exact GlobalTheory.GoodStableGiven.goodStable_of_given | (intros; apply GlobalTheory.GoodStableGiven.goodStable_of_given <;> assumption)
+  first | exact @GlobalTheory.GoodStableGiven.goodStable_of_given

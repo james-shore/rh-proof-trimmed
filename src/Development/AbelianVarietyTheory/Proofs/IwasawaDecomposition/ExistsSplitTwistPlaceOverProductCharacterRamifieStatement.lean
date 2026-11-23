@@ -45,4 +45,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.exists_splitTwistPlace_over_productCharacter_ramified : ∀ (D : D7) (T : Type) (L : LevCh D T) (μ0 : T), L.Is μ0 → ∀ (i : Fin D.R.m) (t : T), ∀ v ∈ qPl D (L.C.mu0 i * L.xiH t), ∃ s : ReciprocityTheory.Aut.SplitPlace D.host.E, s.v = v ∧ s.w ∈ L.Q t := by
-  first | exact @GlobalTheory.TwistSplitPlace.exists_splitPlace_of_mem_qPl | exact GlobalTheory.TwistSplitPlace.exists_splitPlace_of_mem_qPl | (intros; apply GlobalTheory.TwistSplitPlace.exists_splitPlace_of_mem_qPl <;> assumption)
+  first | exact @GlobalTheory.TwistSplitPlace.exists_splitPlace_of_mem_qPl

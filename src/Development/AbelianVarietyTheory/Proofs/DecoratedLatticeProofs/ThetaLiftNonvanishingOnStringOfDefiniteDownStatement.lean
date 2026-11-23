@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DownLift GlobalTheory.Core.Rk.Exh
 
 theorem _root_.GlobalTheory.T.thetaLift_nonvanishing_onString_of_definiteDown : ∀ (D : D7) (_ : DownNe D) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → R.FullP → ∀ i t, NonVan R i t := by
-  first | exact @GlobalTheory.Core.Rk.NonVanAt.nonVan_of_downNe | exact GlobalTheory.Core.Rk.NonVanAt.nonVan_of_downNe | (intros; apply GlobalTheory.Core.Rk.NonVanAt.nonVan_of_downNe <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.NonVanAt.nonVan_of_downNe

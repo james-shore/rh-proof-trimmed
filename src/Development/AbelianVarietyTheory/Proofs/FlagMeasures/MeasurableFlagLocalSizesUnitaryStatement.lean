@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
 theorem _root_.GlobalTheory.T.measurable_flagLocalSizes_unitary : ∀ (n : ℕ) (ε : Fin n → Bool) (a : ℕ) (j : Fin a → ℕ) (W : Fin (a + 1) → Submodule ℂ (Fin n → ℂ)) (i : Fin a), Measurable fun g : Formalism.REAL.UJ ε => locSize j W (uMat g) i := by
-  first | exact @GlobalTheory.FlagMeas.measurable_locSize_uMat | exact GlobalTheory.FlagMeas.measurable_locSize_uMat | (intros; apply GlobalTheory.FlagMeas.measurable_locSize_uMat <;> assumption)
+  first | exact @GlobalTheory.FlagMeas.measurable_locSize_uMat

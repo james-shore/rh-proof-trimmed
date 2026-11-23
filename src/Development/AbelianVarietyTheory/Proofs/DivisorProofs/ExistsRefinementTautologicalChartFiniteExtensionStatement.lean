@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 theorem _root_.GlobalTheory.T.exists_refinement_tautologicalChart_finiteExtension : ∀ {o : Type} [CommRing o] {ζ : o} {g n : ℕ} {φ : InvFun ℤ}, 1 ≤ n → ∀ C : Taut ζ g n φ, IsCN C.R → ∃ (R₁ : Type) (_ : CommRing R₁) (_ : IsDomain R₁) (_ : IsLocalRing R₁) (ρ : C.R →+* R₁) (D : DegData R₁ (maximalIdeal R₁)) (e' : D.toPre.X ≃+ C.Q.X), IsCN R₁ ∧ Function.Injective ρ ∧ ρ.Finite ∧ IsLocalHom ρ ∧ Refines C.Q ρ D.toPre e' := by
-  first | exact @GlobalTheory.TInj.taut_refine | exact GlobalTheory.TInj.taut_refine | (intros; apply GlobalTheory.TInj.taut_refine <;> assumption)
+  first | exact @GlobalTheory.TInj.taut_refine

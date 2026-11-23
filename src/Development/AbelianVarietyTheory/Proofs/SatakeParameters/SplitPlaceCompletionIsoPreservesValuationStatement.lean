@@ -56,4 +56,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.splitPlace_completionIso_preserves_valuation : ∀ {L : Type} [Field L] [NumberField L] [IsCMField L] (s : SplitPlace L) (c : s.v.adicCompletion (maximalRealSubfield L) ≃+* s.w.adicCompletion L), Continuous c → (∀ x : L, c (s.i x) = algebraMap L (s.w.adicCompletion L) x) → ∀ x : s.v.adicCompletion (maximalRealSubfield L), Valued.v (c x) = Valued.v x := by
-  first | exact @GlobalTheory.SplitConjVal.valuation_eq | exact GlobalTheory.SplitConjVal.valuation_eq | (intros; apply GlobalTheory.SplitConjVal.valuation_eq <;> assumption)
+  first | exact @GlobalTheory.SplitConjVal.valuation_eq

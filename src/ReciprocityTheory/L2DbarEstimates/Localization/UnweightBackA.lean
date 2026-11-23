@@ -245,7 +245,6 @@ theorem unwBack_smooth_exp {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M →
   intro e he
   have hg : ContDiff ℝ ∞ (fun w : ℂ => ((Real.exp w.re : ℝ) : ℂ)) := by
     first
-    | fun_prop
     | exact Complex.ofRealCLM.contDiff.comp (Real.contDiff_exp.comp Complex.reCLM.contDiff)
   refine (hg.comp_contDiffOn (hu e he)).congr fun p _ => ?_
   simp [Function.comp]

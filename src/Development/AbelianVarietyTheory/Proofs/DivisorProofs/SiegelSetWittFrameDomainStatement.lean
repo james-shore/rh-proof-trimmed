@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.siegel_set_witt_frame_domain : ∀ (F E : Type) [F
           ‖theta om (pureA F f φ) g h‖ ≤
             C * (T.sup (schwartzSeminormFamily ℂ (Fin n × Fin d → mixedEmbedding.mixedSpace F) ℂ)) f *
               (ht h : ℝ) ^ N * ∏ i, t i ^ (Module.finrank ℚ F * d) := by
-  first | exact @GlobalTheory.SiegelTheta.theta_le_seminorm_height_torus | exact GlobalTheory.SiegelTheta.theta_le_seminorm_height_torus | (intros; apply GlobalTheory.SiegelTheta.theta_le_seminorm_height_torus <;> assumption)
+  first | exact @GlobalTheory.SiegelTheta.theta_le_seminorm_height_torus

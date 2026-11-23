@@ -218,7 +218,6 @@ theorem UpperTheory.V.AlgebraTools.almost_selfdual :
       ∃ s : ℕ, maximalIdeal A ^ s • Z ≤ Y₀ ⊓ Bf.dualSubmodule Y₀ := by
     first
     | exact (UpperTheory.V.AlgebraTools.dual_lattice Bf hs hnd _ hY₁).2.2
-    | exact (UpperTheory.V.AlgebraTools.dual_lattice Bf hs hnd _ hY₁.toIsLattice).2.2
   have hdual : Submodule.IsFullLattice F (Bf.dualSubmodule (Y₀ ⊓ Bf.dualSubmodule Y₀)) :=
     UpperTheory.V.AlgebraTools.almost_selfdual_dual_full Bf hnd _ hY₁
   obtain ⟨s, hs'⟩ := hbound _ hdual.toIsLattice

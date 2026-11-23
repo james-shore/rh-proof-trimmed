@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.topForms_graphLocalRing_freelyGenerated : ∀ {K �
   TrBasis (algebraMap ℂ K) x → TrBasis (algebraMap ℂ κ') τ' →
   IsFreeGen (GlobalTheory.DiagLoc.loc L σ) (dForm ((algebraMap ℂ L).codRestrict (GlobalTheory.DiagLoc.loc L σ) hc)
     (Fin.append (fun i => GlobalTheory.DiagLoc.toLoc L σ (1 ⊗ₜ[ℂ] τ' i)) (fun i => GlobalTheory.DiagLoc.toLoc L σ (x i ⊗ₜ[ℂ] 1)))) := by
-  first | exact @GlobalTheory.DiagLoc.isFreeGen_dForm_graph | exact GlobalTheory.DiagLoc.isFreeGen_dForm_graph | (intros; apply GlobalTheory.DiagLoc.isFreeGen_dForm_graph <;> assumption)
+  first | exact @GlobalTheory.DiagLoc.isFreeGen_dForm_graph

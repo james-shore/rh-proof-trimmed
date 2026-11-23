@@ -84,7 +84,6 @@ theorem eis_half_plane : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
     apply Summable.hasSum
     have hg := (hsum (s.re + (n : ℝ) / 2) (by linarith) x).mul_left (max C₀ 0)
     first
-      | exact Summable.of_norm_bounded _ hg (fun q => hC s _)
       | exact Summable.of_norm_bounded hg (fun q => hC s _)
   · intro x s₀ hs₀
     have hs₀' : σ₀ - (n : ℝ) / 2 < s₀.re := hs₀

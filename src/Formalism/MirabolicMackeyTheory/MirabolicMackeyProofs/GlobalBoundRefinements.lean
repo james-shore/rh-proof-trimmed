@@ -165,13 +165,10 @@ theorem constant_b_bound : ConstB := by
   have hinv : g'⁻¹ ≤ qmin⁻¹ := by
     first
       | exact inv_anti₀ hq hqg
-      | exact inv_le_inv_of_le hq hqg
-      | exact (inv_le_inv hg hq).2 hqg
   calc n1 * d' * (RR * d' ^ 3) / (4 * g') + 2 * (RR * d' ^ 3) * DF ^ 2 / g'
       = (n1 * d' * (RR * d' ^ 3) / 4 + 2 * (RR * d' ^ 3) * DF ^ 2) * g'⁻¹ := by
         first
           | ring
-          | (field_simp; ring)
     _ ≤ RR * PP * DF ^ 2 * g'⁻¹ := mul_le_mul_of_nonneg_right hC (inv_nonneg.mpr hg.le)
     _ ≤ RR * PP * DF ^ 2 * qmin⁻¹ := mul_le_mul_of_nonneg_left hinv hN
     _ = RR * PP * DF ^ 2 / qmin := by rw [div_eq_mul_inv]

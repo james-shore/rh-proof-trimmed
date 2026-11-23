@@ -378,7 +378,7 @@ theorem crossT_leibniz {E : Spc} {N : ℕ} (V : E ⟶ ofCat (glCat N)) {B : Spc}
   generalize sg n = σn at *
   generalize sg (a : ℤ) = σa at *
   generalize sg (m * (a : ℤ)) = σ at *
-  match_scalars <;> first | ring1 | linear_combination (-(σ * σn)) * q1 | linear_combination (σ * σn) * q1
+  match_scalars <;> first | ring1 | linear_combination (-(σ * σn)) * q1
 
 end GlobalTheory.PBFc
 

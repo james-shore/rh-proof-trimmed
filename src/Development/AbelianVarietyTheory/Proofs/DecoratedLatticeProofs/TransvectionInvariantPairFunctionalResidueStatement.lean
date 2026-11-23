@@ -61,4 +61,4 @@ open GlobalTheory.Core.Mi.LatMatch
 open IsLocalRing
 
 theorem _root_.GlobalTheory.T.transvectionInvariant_pair_functional_residue : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : Type) [Fintype n] [DecidableEq n] (i : n) (P : GlobalTheory.LatPair.Pair k n) (c : k), 2 ≤ Fintype.card n → c ≠ 0 → (∀ x : n → k, x ∈ P.lat ↔ ∀ j, c⁻¹ * x j ∈ 𝒪[k]) → (∀ (x : n → k) (a : 𝓀[k]), P.HasVal x a → ∀ (b d : n) (t : 𝒪[k]), b ≠ d → (b ≠ i ∨ t ∈ IsLocalRing.maximalIdeal 𝒪[k]) → P.HasVal (x + Pi.single b ((t : k) * x d)) a) → ∃ ε : 𝓀[k], ε ≠ 0 ∧ ∀ (x : n → k) (hx : ∀ j, c⁻¹ * x j ∈ 𝒪[k]), P.HasVal x (IsLocalRing.residue 𝒪[k] ⟨c⁻¹ * x i, hx i⟩ * ε) := by
-  first | exact @GlobalTheory.latPair_hasVal_residue_of_transvections | exact GlobalTheory.latPair_hasVal_residue_of_transvections | (intros; apply GlobalTheory.latPair_hasVal_residue_of_transvections <;> assumption)
+  first | exact @GlobalTheory.latPair_hasVal_residue_of_transvections

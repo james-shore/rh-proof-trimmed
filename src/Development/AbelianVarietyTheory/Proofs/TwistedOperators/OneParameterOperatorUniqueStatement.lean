@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.one_parameter_operator_unique : ∀ {F E : Type} [
     (∀ (t : ℝ) (f : SInf F (Fin a × Fin (a + a'))), Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (T t f)) →
     ∀ (μ : Measure (Fin a × Fin (a + a') → mixedEmbedding.mixedSpace F)), μ.IsAddHaarMeasure →
     ∀ (t : ℝ) (f : SInf F (Fin a × Fin (a + a'))), ∫ x, ‖T t f x‖ ^ 2 ∂μ = ∫ x, ‖f x‖ ^ 2 ∂μ := by
-  first | exact @GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq | exact GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq | (intros; apply GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq <;> assumption)
+  first | exact @GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq

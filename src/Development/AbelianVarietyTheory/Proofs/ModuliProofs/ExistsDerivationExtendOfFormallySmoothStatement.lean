@@ -57,4 +57,4 @@ open scoped CategoryTheory.Obj TensorProduct ContDiff
 open GlobalTheory.KS
 
 theorem _root_.GlobalTheory.T.exists_derivation_extend' : ∀ (R B C : Type) [CommRing R] [CommRing B] [CommRing C] [Algebra R B] [Algebra.FormallySmooth R B] (φ : B →+* C) (D : R → C), (∀ a b, D (a + b) = D a + D b) → (∀ a b, D (a * b) = φ (algebraMap R B a) * D b + φ (algebraMap R B b) * D a) → ∃ d : B → C, (∀ a b, d (a + b) = d a + d b) ∧ (∀ a b, d (a * b) = φ a * d b + φ b * d a) ∧ ∀ r, d (algebraMap R B r) = D r := by
-  first | exact @GlobalTheory.KS.exists_derivation_extend_of_formallySmooth | exact GlobalTheory.KS.exists_derivation_extend_of_formallySmooth | (intros; apply GlobalTheory.KS.exists_derivation_extend_of_formallySmooth <;> assumption)
+  first | exact @GlobalTheory.KS.exists_derivation_extend_of_formallySmooth

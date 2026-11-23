@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.projectedThetaLift_extremalVector_eq_classSum : �
         (X.R.HV j t).e y (h * (k : Bridge.Gf (Vc D j))) = (((Y.Z.ρ.B i j b).levLam (Y.Z.ρ.tw i b 0 ∅ 1) k : ℂˣ) : ℂ) • (X.R.HV j t).e y h) →
     ∃ F ∈ (Y.Z.ρ.B i j b).formsC (Y.Z.ρ.tw i b 0 ∅ 1),
       (X.R.HW j (sg0 D X.A3.A)).e (X.R.thG j t y) (X.geo.v₀ j _) = Y.Z.ρ.sum i j b 0 ∅ 1 F := by
-  first | exact @GlobalTheory.LiftClassSum.exists_projected_thetaLift_eq_sum | exact GlobalTheory.LiftClassSum.exists_projected_thetaLift_eq_sum | (intros; apply GlobalTheory.LiftClassSum.exists_projected_thetaLift_eq_sum <;> assumption)
+  first | exact @GlobalTheory.LiftClassSum.exists_projected_thetaLift_eq_sum

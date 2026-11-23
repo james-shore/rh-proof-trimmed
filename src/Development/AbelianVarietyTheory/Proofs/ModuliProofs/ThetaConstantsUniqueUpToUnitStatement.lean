@@ -49,4 +49,4 @@ open scoped CategoryTheory.Obj TensorProduct
 open GlobalTheory.ZM
 
 theorem _root_.GlobalTheory.T.thetaConstants_unique_up_to_unit : Out.Laws → Out.Laws2 → ∀ (o : Type) [CommRing o] (g N' : ℕ) (J : Type) (b : TBase o (N' ^ 2)) (S : Scheme.{0}) (s : S ⟶ Sp o) (t : TObj g (N' ^ 2) J b s) (R : Type) [CommRing R] (x : Sp R ⟶ S) (v v' : Ix g (N' ^ 2) → R), t.HasTh x v → t.HasTh x v' → Ideal.span (Set.range v) = ⊤ → ∃ u : Rˣ, ∀ a, v' a = u * v a := by
-  first | exact @GlobalTheory.hasTh_unique_unit | exact GlobalTheory.hasTh_unique_unit | (intros; apply GlobalTheory.hasTh_unique_unit <;> assumption)
+  first | exact @GlobalTheory.hasTh_unique_unit

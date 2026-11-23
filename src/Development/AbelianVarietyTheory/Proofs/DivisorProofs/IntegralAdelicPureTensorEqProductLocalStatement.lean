@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.integral_adelic_pureTensor_eq_product_local : ∀ 
       ∀ (f : (κ → mixedEmbedding.mixedSpace F) → ℂ) (φ : ∀ v : Pl (F := F), (κ → Fv F v) → ℂ), Continuous f → Integrable f μi → IsFam φ →
         Integrable (fun x : κ → AF F => f (fun i => evI F (x i)) * ∏ᶠ v, φ v fun i => evFin F v (x i)) μ ∧
         ∫ x, f (fun i => evI F (x i)) * ∏ᶠ v, φ v (fun i => evFin F v (x i)) ∂μ = c * (∫ x, f x ∂μi) * ∏ᶠ v, ∫ x, φ v x ∂(μv v) := by
-  first | exact @GlobalTheory.AdelicHaarPure.integral_pure_haar | exact GlobalTheory.AdelicHaarPure.integral_pure_haar | (intros; apply GlobalTheory.AdelicHaarPure.integral_pure_haar <;> assumption)
+  first | exact @GlobalTheory.AdelicHaarPure.integral_pure_haar

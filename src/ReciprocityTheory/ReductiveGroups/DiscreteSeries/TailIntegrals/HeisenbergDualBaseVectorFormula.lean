@@ -74,9 +74,9 @@ private theorem Hpk_mulVec_apply_eq_ite (k r : ℕ) (y : Fin (2 * r + k + 1) →
   by_cases h1 : (v : ℕ) < r ∨ r + k < (v : ℕ)
   · rw [if_pos h1, Finset.sum_eq_single ⟨2 * r + k - v, by omega⟩]
     · rcases h1 with h1 | h1
-      · simp only [Hpk, Fin.val_mk]
+      · simp only [Hpk]
         rw [if_pos ⟨h1, by omega⟩, one_mul]
-      · simp only [Hpk, Fin.val_mk]
+      · simp only [Hpk]
         rw [if_neg (by omega), if_pos ⟨by omega, by omega⟩, one_mul]
     · intro j _ hj
       have hj' : (j : ℕ) ≠ 2 * r + k - v := fun e => hj (Fin.ext e)
@@ -128,13 +128,13 @@ theorem isotropic_vector_ne_zero (k r' : ℕ) : eI k (1 + r') (a0 r') ≠ esI k 
   omega
 
 @[simp] theorem d_es_es (k r' : ℕ) : star (es0 k r') ⬝ᵥ es0 k r' = 1 := by
-  simp [es0, bvec, Pi.single_apply]
+  simp [es0, bvec]
 @[simp] theorem d_e_e (k r' : ℕ) : star (e0 k r') ⬝ᵥ e0 k r' = 1 := by
-  simp [e0, bvec, Pi.single_apply]
+  simp [e0, bvec]
 @[simp] theorem d_es_e (k r' : ℕ) : star (es0 k r') ⬝ᵥ e0 k r' = 0 := by
-  simp [es0, e0, bvec, Pi.single_apply, isotropic_vector_ne_zero k r']
+  simp [es0, e0, bvec, isotropic_vector_ne_zero k r']
 @[simp] theorem d_e_es (k r' : ℕ) : star (e0 k r') ⬝ᵥ es0 k r' = 0 := by
-  simp [es0, e0, bvec, Pi.single_apply, (isotropic_vector_ne_zero k r').symm]
+  simp [es0, e0, bvec, (isotropic_vector_ne_zero k r').symm]
 @[simp] theorem d_es_l (k r' : ℕ) (w : Fin (2 * r' + k + 1) → ℂ) : star (es0 k r') ⬝ᵥ liftVec k 1 r' w = 0 := by
   have h := lift_kills_last_basis k r' w
   simp [es0, bvec, Pi.single_apply, dotProduct, h]
@@ -190,7 +190,6 @@ private theorem liftVec_apply_mk_succ (k r' : ℕ) (w : Fin (2 * r' + k + 1) →
   unfold liftVec
   rw [dite_eq_left (by simp only [Fin.val_mk]; omega)]
   congr 1
-  all_goals (ext; simp only [Fin.val_mk]; omega)
 
 private theorem star_liftVec_dotProduct_liftVec (k r' : ℕ) (a b : Fin (2 * r' + k + 1) → ℂ) :
     star (liftVec k 1 r' a) ⬝ᵥ liftVec k 1 r' b = star a ⬝ᵥ b := by
@@ -214,12 +213,11 @@ private theorem Hpk_one_add_mulVec_liftVec (k r' : ℕ) (w : Fin (2 * r' + k + 1
   funext p
   have hp := p.isLt
   simp only [Hpk_mulVec_apply_eq_ite, liftVec]
-  split_ifs <;> (try simp only [Fin.val_mk] at *) <;>
+  split_ifs <;> (try simp only at *) <;>
     first
     | rfl
     | (exfalso; omega)
-    | (congr 1; ext; simp only [Fin.val_mk]; omega)
-    | (congr 2; ext; simp only [Fin.val_mk]; omega)
+    | (congr 1; ext; simp only; omega)
 
 private theorem star_bvec_dotProduct {m : ℕ} (i : Fin m) (v : Fin m → ℂ) : star (bvec i) ⬝ᵥ v = v i := by
   have h : star (bvec i : Fin m → ℂ) = bvec i := by

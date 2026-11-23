@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.definiteBottom_tower_constants_differ_by_factor : 
   IsBottomTri W i j X → GlobalTheory.SqTower.IsStageC W i j 0 0 Y →
   Y.rA.Λ = X.rA.Λ → Y.rA'.Λ = X.rA'.Λ → Y.rW.Λ = X.rW.Λ → Y.rA.β = X.rA.β → Y.rA'.β = X.rA'.β → Y.rW.β = X.rW.β →
   ∀ c : T → ℂ, Y.IsConst W.ψ W.θ c → ∃ κ : ℂ, κ ≠ 0 ∧ X.IsConst W.ψ W.θ (fun t => κ * c t) := by
-  first | exact @GlobalTheory.SqTower.bottom_const_normal | exact GlobalTheory.SqTower.bottom_const_normal | (intros; apply GlobalTheory.SqTower.bottom_const_normal <;> assumption)
+  first | exact @GlobalTheory.SqTower.bottom_const_normal

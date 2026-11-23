@@ -175,7 +175,7 @@ theorem sum_neg_mul_rootCoef [Fintype Ψ] (lam : Ψ × Fin N → ℝ) (p : Ψ ×
   have h3 : GlobalTheory.CompanionTheory.Ar.PB.gap lam (τ, l) =
       lam (τ, l) - if h : (l : ℕ) + 1 < N then lam (τ, ⟨(l : ℕ) + 1, h⟩) else 0 := by
     unfold GlobalTheory.CompanionTheory.Ar.PB.gap gapX
-    split_ifs with h <;> simp [h]
+    split_ifs with h <;> simp
   rw [h3, ← h1, ← h2, ← Finset.sum_sub_distrib]
   refine Finset.sum_congr rfl fun r _ => ?_
   simp only [rootCoef]

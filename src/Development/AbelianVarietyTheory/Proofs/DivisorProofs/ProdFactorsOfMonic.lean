@@ -103,7 +103,7 @@ theorem coeff_eU (ψ : AddChar (ZMod g) ℂ) (hψ : ψ ≠ 1) (hN : 0 < N) (x : 
       (Finset.univ.filter fun u : GG g N => Formalism.MainNotions.ArithmeticCylinders.IsUniUp (u : Matrix (Fin N) (Fin N) (ZMod g))).card := by
     rw [Nat.card_eq_fintype_card, Fintype.card_subtype]
     congr 1; ext u; simp [levGen_mem_iff]
-  simp only [Lev.e, eps, hc, levGen_chi, levGen_mem_iff, Formalism.MainNotions.ArithmeticCylinders.eU, Formalism.MainNotions.ArithmeticCylinders.eDat]
+  simp only [Lev.e, eps, levGen_chi, levGen_mem_iff, Formalism.MainNotions.ArithmeticCylinders.eU, Formalism.MainNotions.ArithmeticCylinders.eDat]
   simp [MonoidAlgebra.coeff_sum, MonoidAlgebra.coeff_single, Finsupp.single_apply, div_eq_inv_mul, Fintype.card_subtype]
 
 end Generic
@@ -137,7 +137,7 @@ theorem genericOfWh : ∀ (g : ℕ) [Fact g.Prime] (N : ℕ), 0 < N → ∀ (V :
     · have h2 : ¬ Lv.Mem (u⁻¹ * γ) := fun h => hγ (by simpa using GlobalTheory.BadShare.Basic.mem_mul Lv hm h)
       rw [if_neg h2, if_neg hγ, mul_zero]
   calc V.ρ u (GlobalTheory.BadShare.op V.ρ Lv.e y) = ∑ γ, Lv.e γ • V.ρ (u * γ) y := by
-        simp [GlobalTheory.BadShare.op, map_mul, Module.End.mul_apply]
+        simp [GlobalTheory.BadShare.op, map_mul]
     _ = ∑ γ, Lv.e (u⁻¹ * γ) • V.ρ γ y :=
         Fintype.sum_equiv (Equiv.mulLeft u) _ _ fun γ => by simp
     _ = Lv.chi u • GlobalTheory.BadShare.op V.ρ Lv.e y := by

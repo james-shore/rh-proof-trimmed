@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.nonempty_torusExtension_of_surjective_points' : ∀ (k : Type) [Field k] [IsAlgClosed k] (G G₁ : Over (Sp k)) [GrpObj G] [GrpObj G₁], SmConn G₁ → Nonempty (TorusExtension G) → ∀ r : G ⟶ G₁, IsMonHom r → (∀ y : (𝟙_ (Over (Sp k)) ⟶ G₁), ∃ x : (𝟙_ (Over (Sp k)) ⟶ G), x ≫ r = y) → Nonempty (TorusExtension G₁) := by
-  first | exact @GlobalTheory.SS.nonempty_torusExtension_of_surjective_points | exact GlobalTheory.SS.nonempty_torusExtension_of_surjective_points | (intros; apply GlobalTheory.SS.nonempty_torusExtension_of_surjective_points <;> assumption)
+  first | exact @GlobalTheory.SS.nonempty_torusExtension_of_surjective_points

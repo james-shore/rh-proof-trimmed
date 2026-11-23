@@ -49,4 +49,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.finiteIndex_of_isOpen_absGalois_finExt : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (H : Subgroup ↥(GK K)), IsOpen (H : Set ↥(GK K)) → H.FiniteIndex := by
-  first | exact @GlobalTheory.OpenFiniteIndex.finiteIndex_of_isOpen | exact GlobalTheory.OpenFiniteIndex.finiteIndex_of_isOpen | (intros; apply GlobalTheory.OpenFiniteIndex.finiteIndex_of_isOpen <;> assumption)
+  first | exact @GlobalTheory.OpenFiniteIndex.finiteIndex_of_isOpen

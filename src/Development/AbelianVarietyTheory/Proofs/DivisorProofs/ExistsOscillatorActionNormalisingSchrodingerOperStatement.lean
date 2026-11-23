@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_oscillator_action_normalising_schrodingerOp
     (∀ g w, (k g w)ᴴ * Jm R S * k g w = Jm R S) →
     ∃ ω : G →* (L2 l ≃ₗᵢ[ℂ] L2 l), (∀ v, Continuous fun g => ω g v) ∧
       ∀ g c v, ω g (rho (φ c) v) = rho (φ fun w => c w * (k g w)ᵀ) (ω g v) := by
-  first | exact @GlobalTheory.SchrodOsc.exists_osc | exact GlobalTheory.SchrodOsc.exists_osc | (intros; apply GlobalTheory.SchrodOsc.exists_osc <;> assumption)
+  first | exact @GlobalTheory.SchrodOsc.exists_osc

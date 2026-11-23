@@ -44,4 +44,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.periodClassSumWeyl_of_rowInt : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)), GlobalTheory.PerQ.RowInt I l Z → Formalism.MainNotions.WeightDegreeSizes.PeriodClassSumWeyl (I.rec7 l Z) := by
-  first | exact @GlobalTheory.PerAdm0.periodAdmissible_of_integralPeriodRows | exact GlobalTheory.PerAdm0.periodAdmissible_of_integralPeriodRows | (intros; apply GlobalTheory.PerAdm0.periodAdmissible_of_integralPeriodRows <;> assumption)
+  first | exact @GlobalTheory.PerAdm0.periodAdmissible_of_integralPeriodRows

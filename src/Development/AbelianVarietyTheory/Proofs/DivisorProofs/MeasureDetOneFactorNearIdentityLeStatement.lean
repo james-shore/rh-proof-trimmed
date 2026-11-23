@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.measure_detOneFactor_nearIdentity_le : ∀ (p q : ℕ) (a₀ : Fin p ⊕ Fin q) (m : Measure (UpqT p q)), IsMinf m → ∃ ε₀ : ℝ, 0 < ε₀ ∧ ∀ ε : ℝ, 0 < ε → ε < ε₀ → m {u | ∀ a b, ‖(sMat a₀ u - 1) a b‖ < ε} ≤ ENNReal.ofReal ((200 * ((p + q : ℕ) : ℝ)) ^ ((p + q) ^ 2) * ε ^ ((p + q) ^ 2 - 1)) := by
-  first | exact @GlobalTheory.CovTop.VolUp.OneMeasure.measure_sMat_near_le | exact GlobalTheory.CovTop.VolUp.OneMeasure.measure_sMat_near_le | (intros; apply GlobalTheory.CovTop.VolUp.OneMeasure.measure_sMat_near_le <;> assumption)
+  first | exact @GlobalTheory.CovTop.VolUp.OneMeasure.measure_sMat_near_le

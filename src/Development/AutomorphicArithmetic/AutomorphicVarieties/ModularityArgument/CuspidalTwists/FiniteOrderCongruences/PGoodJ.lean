@@ -65,7 +65,6 @@ theorem infChar_twist {K : Type} [Field K] [NumberField K] [_root_.NumberField.I
   rw [e]
   refine Multiset.map_congr rfl fun z _ => ?_
   simp only [(InfType.expo_of_infType K κ).1 m (isAlg_of_pos hκ) τ]
-  try ring
 
 end GoodJ
 

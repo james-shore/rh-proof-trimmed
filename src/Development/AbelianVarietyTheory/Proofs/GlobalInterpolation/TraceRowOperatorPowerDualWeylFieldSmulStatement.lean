@@ -47,4 +47,4 @@ import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 open MvPolynomial Formalism.GradedWeylDivisibility Formalism.BasicNotions GlobalTheory.Alc
 
 theorem _root_.GlobalTheory.T.traceRowOperatorPower_dualWeyl_field_smul : ∀ (k : Type) [Field k] (N : ℕ) (ν : Fin N → ℕ), Antitone ν → ∀ j : ℕ, ∀ f ∈ dualWeyl k N N ν, gel k N N j f = hcVal k (fun i => (ν i : k)) j • f := by
-  first | exact @GlobalTheory.Alc.gel_dualWeyl_field | exact GlobalTheory.Alc.gel_dualWeyl_field | (intros; apply GlobalTheory.Alc.gel_dualWeyl_field <;> assumption)
+  first | exact @GlobalTheory.Alc.gel_dualWeyl_field

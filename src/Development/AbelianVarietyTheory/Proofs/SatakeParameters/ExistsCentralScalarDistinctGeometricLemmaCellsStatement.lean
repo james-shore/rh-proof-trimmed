@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_central_scalar_distinct_geometricLemma_cell
         b.1 1 0 = 0 → ∀ (f : ∀ i, (Σ j, Fin (b.1 i j)) ≃ Fin (d i))
           (g : ∀ j, (Σ i, Fin (b.1 i j)) ≃ Fin (d (Equiv.swap 0 1 j))) y,
           cellFunctor f g (piTensor fun i => (σ i).π) z y = c' • y := by
-  first | exact @GlobalTheory.CellCentral.exists_central_scalar_ne_cell | exact GlobalTheory.CellCentral.exists_central_scalar_ne_cell | (intros; apply GlobalTheory.CellCentral.exists_central_scalar_ne_cell <;> assumption)
+  first | exact @GlobalTheory.CellCentral.exists_central_scalar_ne_cell

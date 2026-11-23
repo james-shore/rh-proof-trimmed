@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.exists_unitary_hom_conjInverseTranspose_at_place :
         mat (iV g) = (1 - ι 1) • (1 : Matrix (Fin n) (Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) +
           ((P : Matrix (Fin n) (Fin n) L) * (((g : GL (Fin n) L)⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L)ᵀ *
             ((P⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L)).map ι := by
-  first | exact @GlobalTheory.InertLocHomV.exists_homV | exact GlobalTheory.InertLocHomV.exists_homV | (intros; apply GlobalTheory.InertLocHomV.exists_homV <;> assumption)
+  first | exact @GlobalTheory.InertLocHomV.exists_homV

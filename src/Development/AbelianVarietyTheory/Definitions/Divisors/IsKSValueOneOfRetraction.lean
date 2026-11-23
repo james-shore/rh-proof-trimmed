@@ -812,7 +812,7 @@ theorem evalAt_pull_g {X X' : Scheme.{0}} (L : LB X) (φ : X' ⟶ X) {B : Type} 
     evalAt (x ≫ φ) _ h (L.g (j PUnit.unit) (j' PUnit.unit)).val =
       evalAt x _ h' ((L.pull φ).g j j').val := by
   unfold LB.pull LB.LinComb
-  simp only [Fintype.prod_unique, zpow_one, pow_one]
+  simp only [Fintype.prod_unique, zpow_one]
   exact evalAt_pull φ x _ h h' _
 
 theorem isChern_pull {X X' : Scheme.{0}} {κ : DividedPowers I} {κ' : DividedPowers I'} {s : X ⟶ Sp R}

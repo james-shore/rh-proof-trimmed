@@ -50,4 +50,4 @@ open GlobalTheory.Poinc.Sep
 
 
 theorem _root_.GlobalTheory.T.neg_mem_dividingLabels_thetaSystem : ∀ (X₁ : GlobalTheory.GSep.GSet) (z₁ : X₁.M.Z) (a : X₁.S.Gam), a ∈ X₁.S.supI X₁.M z₁ → -a ∈ X₁.S.supI X₁.M z₁ := by
-  first | exact @GlobalTheory.GSep.neg_mem_supI | exact GlobalTheory.GSep.neg_mem_supI | (intros; apply GlobalTheory.GSep.neg_mem_supI <;> assumption)
+  first | exact @GlobalTheory.GSep.neg_mem_supI

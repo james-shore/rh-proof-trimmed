@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField IsDedekindDomain Polynomial
 
 theorem _root_.GlobalTheory.T.exists_prime_dvd_sub_one_cyclotomic_irreducible_over : ∀ (K : Type) [Field K] [NumberField K] (n : ℕ), n ≠ 0 → ∃ m : ℕ, m.Prime ∧ n ∣ m - 1 ∧ Irreducible (cyclotomic m K) := by
-  first | exact @GlobalTheory.exists_prime_dvd_sub_one_irreducible_cyclotomic | exact GlobalTheory.exists_prime_dvd_sub_one_irreducible_cyclotomic | (intros; apply GlobalTheory.exists_prime_dvd_sub_one_irreducible_cyclotomic <;> assumption)
+  first | exact @GlobalTheory.exists_prime_dvd_sub_one_irreducible_cyclotomic

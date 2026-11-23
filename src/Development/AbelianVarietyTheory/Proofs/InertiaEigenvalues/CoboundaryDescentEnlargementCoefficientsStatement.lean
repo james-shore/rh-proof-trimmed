@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.coboundary_descent_enlargement_coefficients : ∀ 
     (C : TruncatedSeriesCountingIdentities.CoefExt D i w hw) (k : ℕ) (M : GE D.nd →* Matrix (Fin k) (Fin k) (D.nd.O i))
     (z : Br.G D.nbr i w hw → (Fin k → Br.LL D.nbr i w hw) ⧸ (Br.locLat D.nbr i w hw M).T),
     (fun g => liftQ C.le k (z g)) ∈ BD (latC C (locOC C M)) → z ∈ BD (Br.locLat D.nbr i w hw M) := by
-  first | exact @GlobalTheory.UseLoc.DescBD.main | exact GlobalTheory.UseLoc.DescBD.main | (intros; apply GlobalTheory.UseLoc.DescBD.main <;> assumption)
+  first | exact @GlobalTheory.UseLoc.DescBD.main

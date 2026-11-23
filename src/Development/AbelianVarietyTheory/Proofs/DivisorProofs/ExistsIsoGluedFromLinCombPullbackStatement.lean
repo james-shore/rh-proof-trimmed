@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_iso_glued_from_linComb_pullback : ∀ {X X'
     ∃ w : LB.Iso (LB.LinComb M ψ e) (L'.pull F), w.IsGen ∧
       ∀ (Z : Scheme.{0}) (f : Z ⟶ X) (z : Z) (J : (Z ⟶ Y) → M.ι), Good M z J → ∀ j' : L'.ι, F (f z) ∈ L'.U j' →
         gw w f z j' (fun i => J (f ≫ ψ i)) = (gv w₁ (f ≫ F) z (fun k => J ((f ≫ F) ≫ φ k)) j')⁻¹ * val u f z J := by
-  first | exact @GlobalTheory.Mum.iso_linComb_pull_glue | exact GlobalTheory.Mum.iso_linComb_pull_glue | (intros; apply GlobalTheory.Mum.iso_linComb_pull_glue <;> assumption)
+  first | exact @GlobalTheory.Mum.iso_linComb_pull_glue

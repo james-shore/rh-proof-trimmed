@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.isUnitTau_scaledGenerator_torusMonomial : ∀ {E :
       GlobalTheory.RigChart.IsUnitTau C.P.D.toPre C.s (fun i => (l.M' : ℤ) • C.δ i) a b
         (ReciprocityTheory.ChartRestriction.G.DVR.scaleGen
           (unitOn (∏ k, u k ^ ((l.M' : ℤ) * (ε (.inr k) : LinearMap.BilinForm ℤ C.P.D.toPre.X) a b))) (τ₀ a b)) := by
-  first | exact @GlobalTheory.UCanon.ScaleTorus.isUnitTau_scaleGen | exact GlobalTheory.UCanon.ScaleTorus.isUnitTau_scaleGen | (intros; apply GlobalTheory.UCanon.ScaleTorus.isUnitTau_scaleGen <;> assumption)
+  first | exact @GlobalTheory.UCanon.ScaleTorus.isUnitTau_scaleGen

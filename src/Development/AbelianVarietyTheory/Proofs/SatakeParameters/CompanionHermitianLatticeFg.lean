@@ -74,11 +74,7 @@ theorem exists_smul_mem {E : Type} [Field E] [NumberField E] {N : ℕ} (Lb : Sub
     (hsp : Submodule.span E (Lb : Set (Fin N → E)) = ⊤) (v : Fin N → E) :
     ∃ c : 𝓞 E, c ≠ 0 ∧ c • v ∈ Lb := by
   first
-  | exact @_root_.GlobalTheory.ExistsSmulMem.exists_smul_mem
-  | exact _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem
   | (apply _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ExistsSmulMem.exists_smul_mem <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem ..)
 
 theorem hform_single {E : Type} [Field E] {N : ℕ} (σ : E →+* E) (J : Matrix (Fin N) (Fin N) E)

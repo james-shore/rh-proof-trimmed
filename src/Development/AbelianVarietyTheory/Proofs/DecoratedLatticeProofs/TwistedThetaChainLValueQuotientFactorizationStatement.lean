@@ -49,4 +49,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.twistedThetaChain_LValue_quotientFactorization : ∀ D : D7, LFull D := by
-  first | exact @GlobalTheory.ChainTw.lFull_holds | exact GlobalTheory.ChainTw.lFull_holds | (intros; apply GlobalTheory.ChainTw.lFull_holds <;> assumption)
+  first | exact @GlobalTheory.ChainTw.lFull_holds

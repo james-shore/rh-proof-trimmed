@@ -45,4 +45,4 @@ open scoped TensorProduct InnerProductSpace Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.coefficientSpace_le_span_unitary_orbit_extremal : ∀ (ι : Type) [Fintype ι] (n : ℕ) (lam : ι → DomWeight n), VV ℂ lam ≤ Submodule.span ℂ {F | ∃ u : ι → Matrix (Fin n) (Fin n) ℂ, (∀ τ, u τ ∈ Formalism.REAL.Kset (allPos n)) ∧ F = vact lam u (ten fun τ => extremal ℂ n (lam τ))} := by
-  first | exact @GlobalTheory.JointHarm.VV_le_span_vact_extremal | exact GlobalTheory.JointHarm.VV_le_span_vact_extremal | (intros; apply GlobalTheory.JointHarm.VV_le_span_vact_extremal <;> assumption)
+  first | exact @GlobalTheory.JointHarm.VV_le_span_vact_extremal

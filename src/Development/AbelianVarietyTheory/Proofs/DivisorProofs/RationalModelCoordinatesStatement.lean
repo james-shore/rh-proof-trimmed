@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.rational_model_coordinates : ∀ (F E : Type) [Fie
       M.co.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) →
     ∃ f : Matrix (Fin n) (Fin d) E →ₗ[F] (Fin n × Fin d → F) × (Fin n × Fin d → F),
       Function.Injective f ∧ ∀ x, hat (f x) = M.co.e (incM F x) := by
-  first | exact @GlobalTheory.MixedLagr.ratCoord_linear_injective | exact GlobalTheory.MixedLagr.ratCoord_linear_injective | (intros; apply GlobalTheory.MixedLagr.ratCoord_linear_injective <;> assumption)
+  first | exact @GlobalTheory.MixedLagr.ratCoord_linear_injective

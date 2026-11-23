@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.integral_eq_rankOneFactorSL2_of_geometric_on_shell
     (∀ j, μ (H j) = (q : ENNReal) ^ j) → ∀ (F : X → ℂ), (∀ x ∈ H 0, F x = 1) →
     (∀ j x, x ∈ H (j + 1) → x ∉ H j → F x = (a / q) ^ (j + 1)) →
     Integrable F μ ∧ ∫ x, F x ∂μ = cSL q a ∧ ∫⁻ x, ‖F x‖ₑ ∂μ = ‖cSL q ((‖a‖ : ℝ) : ℂ)‖ₑ := by
-  first | exact @GlobalTheory.integral_geometric_shells | exact GlobalTheory.integral_geometric_shells | (intros; apply GlobalTheory.integral_geometric_shells <;> assumption)
+  first | exact @GlobalTheory.integral_geometric_shells

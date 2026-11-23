@@ -44,4 +44,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.galStar_complexMultiplication_points : ∀ D : D7, galStar D := by
-  first | exact @GlobalTheory.ConjPoint.galStar_holds | exact GlobalTheory.ConjPoint.galStar_holds | (intros; apply GlobalTheory.ConjPoint.galStar_holds <;> assumption)
+  first | exact @GlobalTheory.ConjPoint.galStar_holds

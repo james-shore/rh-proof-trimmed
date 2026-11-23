@@ -49,4 +49,4 @@ open GlobalTheory.Mem Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Forma
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.smoothPureTensors_separate_tensorProduct : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (x : SmT M), x ≠ 0 → ∃ w : M.Vec, ellT M (fun τ => (w τ : M.H τ)) (inclT M x) ≠ 0 := by
-  first | exact @GlobalTheory.Mem.PureSep.exists_ellT_ne_zero | exact GlobalTheory.Mem.PureSep.exists_ellT_ne_zero | (intros; apply GlobalTheory.Mem.PureSep.exists_ellT_ne_zero <;> assumption)
+  first | exact @GlobalTheory.Mem.PureSep.exists_ellT_ne_zero

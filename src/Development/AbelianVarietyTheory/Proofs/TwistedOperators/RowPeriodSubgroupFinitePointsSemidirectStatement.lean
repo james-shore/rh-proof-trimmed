@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.rowPeriodSubgroup_finitePoints_semidirect : ∀ {D
       (σ : GfC (ch.G.V (.top j)) →* (rowGrp ch.G j).subgroupOf (GfC (ch.G.V (.grid D.R.m j)))),
       Continuous π ∧ Continuous σ ∧ (∀ y, π (σ y) = y) ∧ (∀ r, π r = 1 ↔ r.1 ∈ (rowN ch.G j).subgroupOf (GfC _)) ∧
       ∀ b : GfC (ch.G.V (.grid D.R.m j)), prSet ch.G j b = π '' {r | b⁻¹ * r.1 * b ∈ (latGrp ch.G j).subgroupOf (GfC _)} := by
-  first | exact @GlobalTheory.CellMass.rowGrp_finite_semidirect | exact GlobalTheory.CellMass.rowGrp_finite_semidirect | (intros; apply GlobalTheory.CellMass.rowGrp_finite_semidirect <;> assumption)
+  first | exact @GlobalTheory.CellMass.rowGrp_finite_semidirect

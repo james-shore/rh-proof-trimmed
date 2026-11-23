@@ -53,4 +53,4 @@ open GlobalTheory.ChiGrid GlobalTheory.LeafRestExamples GlobalTheory.FunObj.SqNu
 open GlobalTheory.Mem.Col2.SplitChar (finIdl)
 
 theorem _root_.GlobalTheory.T.exists_nat_heckeCharacter_trivial_congruent_units : ∀ (L : Type) [Field L] [NumberField L] (χ : Formalism.L2.Host.HChar L), ∃ M : ℕ, 0 < M ∧ ∀ a : Neutral.B1.Ideles L, a ∈ GlobalTheory.Mem.Chr.unitIdl L → (∀ w, (a : AdeleRing (𝓞 L) L).1 w = 1) → (∀ P : HeightOneSpectrum (𝓞 L), Valued.v ((a : AdeleRing (𝓞 L) L).2 P - 1) ≤ Valued.v ((M : L) : P.adicCompletion L)) → χ.1 a = 1 := by
-  first | exact @GlobalTheory.Mem.HeckeLevel.exists_level_nat | exact GlobalTheory.Mem.HeckeLevel.exists_level_nat | (intros; apply GlobalTheory.Mem.HeckeLevel.exists_level_nat <;> assumption)
+  first | exact @GlobalTheory.Mem.HeckeLevel.exists_level_nat

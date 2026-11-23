@@ -56,7 +56,7 @@ theorem exists_unit_kills {A B : Type} [CommRing A] [CommRing B] [IsNoetherianRi
     (hφ : φ.Finite) (J : Ideal A) (hsurj : ∀ b, ∃ a, b - φ a ∈ J.map φ)
     (hinj : ∀ a, φ a = 0 → ∀ n : ℕ, a ∈ J ^ n) :
     ∃ s : A, s - 1 ∈ J ∧ (∀ k, φ k = 0 → s * k = 0) ∧ ∀ b, ∃ a, φ s * b = φ a := by
-  first | exact @KrullIntersectionUnits.KrullIntersectionLemmas.GlobalTheory.CompanionTheory.Formal.IsoThick.exists_unit_kills | exact KrullIntersectionUnits.KrullIntersectionLemmas.GlobalTheory.CompanionTheory.Formal.IsoThick.exists_unit_kills | (intros; apply KrullIntersectionUnits.KrullIntersectionLemmas.GlobalTheory.CompanionTheory.Formal.IsoThick.exists_unit_kills <;> assumption)
+  first | (intros; apply KrullIntersectionUnits.KrullIntersectionLemmas.GlobalTheory.CompanionTheory.Formal.IsoThick.exists_unit_kills <;> assumption)
 
 theorem bijective_of_away {A B A' B' : Type} [CommRing A] [CommRing B] [CommRing A'] [CommRing B']
     (φ : A →+* B) (ρA : A →+* A') (ρB : B →+* B') (ψ : A' →+* B')

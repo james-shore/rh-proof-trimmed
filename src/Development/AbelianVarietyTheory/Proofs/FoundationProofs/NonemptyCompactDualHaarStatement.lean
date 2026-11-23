@@ -49,4 +49,4 @@ import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta MeasureTheory
 
 theorem _root_.GlobalTheory.T.nonempty_compactDualHaar : Nonempty CDHaar := by
-  first | exact @GlobalTheory.CompactDualExists.nonempty_cdHaar | exact GlobalTheory.CompactDualExists.nonempty_cdHaar | (intros; apply GlobalTheory.CompactDualExists.nonempty_cdHaar <;> assumption)
+  first | exact @GlobalTheory.CompactDualExists.nonempty_cdHaar

@@ -108,7 +108,7 @@ variable (a : X ⟶ T) (g : T ⟶ Z) [IsIntegralHom g] (b : Y ⟶ Z) (H : a ≫ 
 @[reassoc (attr := simp)]
 theorem toNormalization_normalizationLift :
     f.toNormalization ≫ normalizationLift f a g b H = a := by
-  simp [normalizationLift, pullback.lift_fst]
+  simp [normalizationLift]
 
 theorem normalizationLift_comp :
     normalizationLift f a g b H ≫ g = f.fromNormalization ≫ b := by

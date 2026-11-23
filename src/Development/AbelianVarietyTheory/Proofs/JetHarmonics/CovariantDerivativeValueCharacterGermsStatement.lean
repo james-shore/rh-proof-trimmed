@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.covariantDerivative_value_character_germs : (∀ (
     ∃ g : Fin n → PS R 1 d, ∃ r ∈ I, ∑ mo ∈ P.support, algebraMap R k (P.coeff mo) *
       ∏ b, B.nabVal k h w0 m (FB.toK k (g b)) (fun l i => algebraMap R k (u l i)) (MvPolynomial.monomial (colM mo b) 1) =
         algebraMap R k (MvPolynomial.eval y P + r)) := by
-  first | exact @GlobalTheory.nabVal_character_columns_of_canonGauge | exact GlobalTheory.nabVal_character_columns_of_canonGauge | (intros; apply GlobalTheory.nabVal_character_columns_of_canonGauge <;> assumption)
+  first | exact @GlobalTheory.nabVal_character_columns_of_canonGauge

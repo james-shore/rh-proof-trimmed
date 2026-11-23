@@ -46,4 +46,4 @@ open Classical NumberField IsDedekindDomain Formalism.L2.FormalSeriesBounds Form
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 theorem _root_.GlobalTheory.T.splitPrimeDepthDataExistsAtPoints_proof : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF.UpFSt p) → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (lv : Level H) (Xo : Moduli Dw lv) (c : Coeff lv) [StarRing (𝓞 E)], PkgSplitSt Xo c := by
-  first | exact @GlobalTheory.SplitPackage.pkgSplit | exact GlobalTheory.SplitPackage.pkgSplit | (intros; apply GlobalTheory.SplitPackage.pkgSplit <;> assumption)
+  first | exact @GlobalTheory.SplitPackage.pkgSplit

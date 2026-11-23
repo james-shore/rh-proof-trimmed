@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
 theorem _root_.GlobalTheory.T.unitaryLieElements_generate_oneParamLines : GlobalTheory.RealLift.LineEx := by
-  first | exact @GlobalTheory.RealLift.exists_line_of_upq | exact GlobalTheory.RealLift.exists_line_of_upq | (intros; apply GlobalTheory.RealLift.exists_line_of_upq <;> assumption)
+  first | exact @GlobalTheory.RealLift.exists_line_of_upq

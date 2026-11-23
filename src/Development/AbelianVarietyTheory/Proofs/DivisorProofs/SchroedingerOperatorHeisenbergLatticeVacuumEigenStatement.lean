@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.schroedingerOperator_heisenbergLatticeVacuum_eigen
     (∀ y : κ → K, ((0 : κ → K), y) ∈ Λ → χ (0, y) = ψ₀ (x₀ ⬝ᵥ y)) →
     (∀ u ∈ Λ, ∀ w ∈ Λ, ψ₀ (u.1 ⬝ᵥ w.2 - w.1 ⬝ᵥ u.2) = 1) →
     ∀ w ∈ Λ, GlobalTheory.WeilM.schr ψ₀ w (GlobalTheory.HeisLatVac.vacFn ψ₀ Λ χ x₀) = χ w • GlobalTheory.HeisLatVac.vacFn ψ₀ Λ χ x₀ := by
-  first | exact @GlobalTheory.HeisLatVac.schr_vacFn | exact GlobalTheory.HeisLatVac.schr_vacFn | (intros; apply GlobalTheory.HeisLatVac.schr_vacFn <;> assumption)
+  first | exact @GlobalTheory.HeisLatVac.schr_vacFn

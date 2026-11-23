@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.injective_sum_of_linIndep_intertwiners : ∀ (G : 
     (∀ φ : π.IntertwiningMap π, ∃ c : ℂ, φ.toLinearMap = c • LinearMap.id) →
     ∀ (m : ℕ) (φ : Fin m → π.IntertwiningMap ρ), LinearIndependent ℂ φ →
     Function.Injective (fun w : Fin m → N => ∑ j, φ j (w j)) := by
-  first | exact @GlobalTheory.intertwiners_indep_injective | exact GlobalTheory.intertwiners_indep_injective | (intros; apply GlobalTheory.intertwiners_indep_injective <;> assumption)
+  first | exact @GlobalTheory.intertwiners_indep_injective

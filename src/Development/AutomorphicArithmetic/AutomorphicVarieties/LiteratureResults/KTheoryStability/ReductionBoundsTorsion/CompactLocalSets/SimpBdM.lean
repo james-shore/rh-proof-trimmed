@@ -153,7 +153,7 @@ def iS {q : ℕ} (ω : V → V [⋀^Fin q]→L[ℝ] ℝ) (y : Fin (q + 1) → V)
   ∫ t in Sx q, ω (y 0 + ∑ j, t j • (y j.succ - y 0)) fun j => y j.succ - y 0
 
 lemma nm_prob (μ : Measure V) (B : Set V) (h0 : μ B ≠ 0) (ht : μ B ≠ ⊤) : IsProbabilityMeasure (nm μ B) :=
-  ⟨by simp [nm, Measure.smul_apply, ENNReal.inv_mul_cancel h0 ht]⟩
+  ⟨by simp [nm, ENNReal.inv_mul_cancel h0 ht]⟩
 
 lemma nm_fin (μ : Measure V) (B : Set V) (ht : μ B ≠ ⊤) : IsFiniteMeasure (nm μ B) := by
   constructor

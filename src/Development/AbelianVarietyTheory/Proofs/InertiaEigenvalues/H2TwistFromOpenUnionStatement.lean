@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.exists_H2_preimage_of_monotone_open_exhaustion : �
     [ContinuousSMul O M] (N : ℕ → Submodule O M), Monotone N → (∀ n, IsOpen (N n : Set M)) → (∀ x, ∃ n, x ∈ N n) →
     ∀ z : H2 (twist ε M), ∃ n, ∃ z' : H2 (twist ε (N n)),
       mapH2 (twist ε (N n)) (twist ε M) (N n).subtype continuous_subtype_val (twist_map ε (N n).subtype) z' = z := by
-  first | exact @GlobalTheory.h2_twist_exists_of_iUnion_open | exact GlobalTheory.h2_twist_exists_of_iUnion_open | (intros; apply GlobalTheory.h2_twist_exists_of_iUnion_open <;> assumption)
+  first | exact @GlobalTheory.h2_twist_exists_of_iUnion_open

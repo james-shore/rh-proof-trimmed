@@ -51,4 +51,4 @@ open GlobalTheory.Doubling (absE)
 
 theorem _root_.GlobalTheory.T.skew_determinant_ne_zero_first_space : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (σ : E →ₐ[F] E) (B : Base F E) (n : ℕ) (X : Spc F E n) (r s : ℕ), X.IsSkew σ B r s → X.J.det ≠ 0 := by
-  first | exact @GlobalTheory.SkewGram.det_ne_zero | exact GlobalTheory.SkewGram.det_ne_zero | (intros; apply GlobalTheory.SkewGram.det_ne_zero <;> assumption)
+  first | exact @GlobalTheory.SkewGram.det_ne_zero

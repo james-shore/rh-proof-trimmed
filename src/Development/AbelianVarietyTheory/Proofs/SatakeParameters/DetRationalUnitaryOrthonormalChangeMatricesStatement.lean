@@ -45,4 +45,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.det_rational_unitary_orthonormalChange_matrices : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ∀ k (hk : k ≤ D.R.m), (gMat J k hk 1).det * D.host.conj (gMat J k hk 1).det = 1 ∧ ∀ γ ∈ UJ (sigD D : D.host.E →+* D.host.E) (gramN D k hk), (gMat J k hk γ).det = γ.1.det * (gMat J k hk 1).det ∧ γ.1.det * D.host.conj γ.1.det = 1) := by
-  first | exact @GlobalTheory.TwV.DelB.gMat_det | exact GlobalTheory.TwV.DelB.gMat_det | (intros; apply GlobalTheory.TwV.DelB.gMat_det <;> assumption)
+  first | exact @GlobalTheory.TwV.DelB.gMat_det

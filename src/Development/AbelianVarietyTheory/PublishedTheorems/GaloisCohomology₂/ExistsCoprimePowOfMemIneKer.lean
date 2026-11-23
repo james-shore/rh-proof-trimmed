@@ -184,11 +184,7 @@ theorem exists_pow_of_finite {K L : Type} [Field K] [Fintype K] [Field L] [Algeb
     [Algebra.IsAlgebraic K L] (σ : L ≃ₐ[K] L) (X : Finset L) :
     ∃ i : ℕ, ∀ x ∈ X, σ x = x ^ Fintype.card K ^ i := by
   first
-  | exact @_root_.GlobalTheory.CardinalPower.exists_pow_card_eq
-  | exact _root_.GlobalTheory.CardinalPower.exists_pow_card_eq
   | (apply _root_.GlobalTheory.CardinalPower.exists_pow_card_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CardinalPower.exists_pow_card_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CardinalPower.exists_pow_card_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CardinalPower.exists_pow_card_eq ..)
 
 theorem mem_Ine_of_integral {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω]

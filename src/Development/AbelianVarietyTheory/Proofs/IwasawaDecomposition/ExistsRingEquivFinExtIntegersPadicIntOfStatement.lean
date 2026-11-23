@@ -50,4 +50,4 @@ import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.L2.NT Formalism.L2.TwC GlobalTheory.HeightCounting NumberField IsDedekindDomain Polynomial GlobalTheory.GalChar Neutral.B1 ReciprocityTheory.Neutral.Bridge.HCFR GlobalTheory.HeckeGal
 
 theorem _root_.GlobalTheory.T.exists_ringEquiv_finExtIntegers_padicIntOf : ∀ (l : ℕ) [Fact l.Prime] (K : Loc.FinExt l), ∃ e : ↥(Loc.OL K) ≃+* ↥(intOf l K.1), ∀ y, (e y : PadicAlgCl l) = ((y : ↥K.1) : PadicAlgCl l) := by
-  first | exact @GlobalTheory.IntOfFinExt.exists_ringEquiv_intOf | exact GlobalTheory.IntOfFinExt.exists_ringEquiv_intOf | (intros; apply GlobalTheory.IntOfFinExt.exists_ringEquiv_intOf <;> assumption)
+  first | exact @GlobalTheory.IntOfFinExt.exists_ringEquiv_intOf

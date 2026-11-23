@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.minorProductPairing_determined_by_canonicalMap : �
     (h : ∀ y' : D.what₂.Tau → Matrix (Fin N1) (Fin N1) ℂ_[p],
       ph' (GL3Columns.DeX N1 nu fun s => GL3Columns.colsOf (y' (tauPl D s))) = κ * GL3Columns.applyQ p N0 N1 Th Q (fun s => GL3Columns.colsOf (y' (tauPl D s))))
     (I : KM.ColChoice N1 nu), ph' (MvPolynomial.map (Int.castRingHom _) (KM.nablaX N1 nu I)) = κ * ph (KM.applyAt0 N0 N1 p Th (KM.Gxz N0 N1 nu I)) := by
-  first | exact @GlobalTheory.KForm.WWUnique.ww_unique | exact GlobalTheory.KForm.WWUnique.ww_unique | (intros; apply GlobalTheory.KForm.WWUnique.ww_unique <;> assumption)
+  first | exact @GlobalTheory.KForm.WWUnique.ww_unique

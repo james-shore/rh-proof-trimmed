@@ -45,4 +45,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Fo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LabPin.instCM
 
 theorem _root_.GlobalTheory.T.exists_splitPlace_eq_fixedTypePrimePlace : ∀ (D : D7) (kv : Σ k : Fin 2, D.nd.PlG k), ∃ s : ReciprocityTheory.Aut.SplitPlace D.host.E, s.w = D.naut.plGw kv.1 kv.2 := by
-  first | exact @GlobalTheory.SplitPlaceOfFixed.exists_splitPlace_plGw | exact GlobalTheory.SplitPlaceOfFixed.exists_splitPlace_plGw | (intros; apply GlobalTheory.SplitPlaceOfFixed.exists_splitPlace_plGw <;> assumption)
+  first | exact @GlobalTheory.SplitPlaceOfFixed.exists_splitPlace_plGw

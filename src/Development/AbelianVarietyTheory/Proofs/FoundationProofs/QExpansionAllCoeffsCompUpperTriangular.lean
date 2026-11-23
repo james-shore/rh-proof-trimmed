@@ -63,7 +63,7 @@ theorem qAll_affine : ∀ (E : Subring ℂ) (N a d : ℕ) (b : ℤ) (f : ℍ →
   · intro τ
     have hz : 0 < (((a : ℂ) * τ + b) / d).im := by
       have : (((a : ℂ) * τ + b) / d).im = a * τ.im / d := by
-        simp [Complex.div_ofReal_im]
+        simp
       rw [this]; have := τ.im_pos; positivity
     have hτ := hc (UpperHalfPlane.ofComplex (((a : ℂ) * τ + b) / d))
     rw [UpperHalfPlane.ofComplex_apply_of_im_pos hz] at hτ

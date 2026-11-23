@@ -53,4 +53,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.charZero_fractionRing_coefficientRing : ∀ (D : D7) (T : TwR D.LL0 D.nd) (i : T.Tw), CharZero (FractionRing (T.O i)) := by
-  first | exact @GlobalTheory.HeightCounting.TwR.charZero_fractionRing_O | exact GlobalTheory.HeightCounting.TwR.charZero_fractionRing_O | (intros; apply GlobalTheory.HeightCounting.TwR.charZero_fractionRing_O <;> assumption)
+  first | exact @GlobalTheory.HeightCounting.TwR.charZero_fractionRing_O

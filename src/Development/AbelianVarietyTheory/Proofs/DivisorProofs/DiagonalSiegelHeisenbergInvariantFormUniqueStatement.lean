@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.diagonalSiegel_heisenbergInvariant_form_unique : �
                   (GlobalTheory.DiagSiegel.diagMat z) Φ) = l Φ) →
             ∃ c : ℂ, ∀ Φ ∈ GlobalTheory.WeilM.schA D.host.F κ, l Φ = c * GlobalTheory.DiagSiegel.thetaDiagInt ν 𝓕
               (GlobalTheory.WeilSchrodinger.thetaTr D.host.F (GlobalTheory.WeilSchrodinger.transD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) co) ψ Φ) := by
-  first | exact @GlobalTheory.DiagSiegelUniq.uniq | exact GlobalTheory.DiagSiegelUniq.uniq | (intros; apply GlobalTheory.DiagSiegelUniq.uniq <;> assumption)
+  first | exact @GlobalTheory.DiagSiegelUniq.uniq

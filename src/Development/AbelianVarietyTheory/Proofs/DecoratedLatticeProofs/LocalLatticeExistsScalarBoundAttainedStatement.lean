@@ -65,4 +65,3 @@ theorem _root_.GlobalTheory.T.localLattice_exists_scalar_bound_attained : ∀ (k
   intro k _ _ _ _ n _ L hL hn
   first
   | exact GlobalTheory.lattice_exists_scalar_bound_attained k n L hL hn
-  | exact GlobalTheory.lattice_exists_scalar_bound_attained k n L hL.toIsLattice hn

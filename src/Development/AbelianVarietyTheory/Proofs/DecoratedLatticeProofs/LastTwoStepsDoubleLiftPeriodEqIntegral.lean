@@ -232,10 +232,10 @@ theorem flatBF_rankZero : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (B : Bes
   have hT := (GlobalTheory.Unf.mixRankZero D ψ).2.1 B.V₀ J.W J.W₀ J.d s.vT.μ s.vT.𝓕 s.vT.covol
   change ∀ f x, _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source B.d J.W ψ s.vS.μ s.vS.𝓕 f x = fun w => f (B.d.ext0 J.W w) at hS
   change ∀ f y, _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.target J.d B.V₀ ψ s.vT.μ s.vT.𝓕 f y = fun w => f (J.d.inc0 B.V₀ w) at hT
-  simp only [flatBF, flat, flatAt, flatFun, evalAt, hS, hT]
+  simp only [flatBF, flat, flatAt, flatFun, evalAt, hS]
   have hpsi : ∀ u : UX D 0, psiUni ψ u.1 = 1 := fun u => by
     simp [psiUni, upSum, psiE]
-  simp only [hpsi, star_one, one_mul, integral_const, smul_eq_mul]
+  simp only [hpsi, star_one, one_mul, integral_const]
   obtain ⟨-, 𝓤, -, h𝓤⟩ := s.vU.unit
   have hsub : Subsingleton (UX D 0) := by
     refine ⟨fun x y => Subtype.ext (Units.ext (Subsingleton.elim _ _))⟩

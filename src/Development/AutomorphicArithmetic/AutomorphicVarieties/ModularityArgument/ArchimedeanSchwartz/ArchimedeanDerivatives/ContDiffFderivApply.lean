@@ -96,7 +96,7 @@ private theorem rmul_eDir (τ : K →+* ℂ) (a b : Fin n) (z : ℂ) (y : Lie K 
       Matrix.single_apply_same, GlobalTheory.CapAdInv.mul_atEmb]
     rfl
   · rw [Matrix.mul_single_apply_of_ne _ _ _ _ _ hj]
-    simp [Matrix.single_apply, Ne.symm hj]
+    simp [Ne.symm hj]
 
 private theorem map_eDir (L : Lie K n →L[ℝ] ℂ) (τ : K →+* ℂ) (a b : Fin n) (z : ℂ) :
     L (eDir τ a b z) = (z.re : ℂ) * L (eDir τ a b 1) + (z.im : ℂ) * L (eDir τ a b Complex.I) := by
@@ -248,7 +248,7 @@ private theorem lhs_op (τ : K →+* ℂ) (p : Equiv.Perm (Fin n)) (j : Fin n) (
   funext y
   rw [rd_eq_sum, LinearMap.add_apply, Submodule.coe_add, Pi.add_apply, sum_apply_val]
   congr 1
-  split_ifs <;> simp [Module.End.natCast_apply]
+  split_ifs <;> simp
 
 private theorem capelli_glob (τ : K →+* ℂ) (G : Smth K n) (x : Lie K n) :
     detAt τ x * detD τ G.1 x = ∑ p : Equiv.Perm (Fin n), (((Equiv.Perm.sign p : ℤˣ) : ℤ) : ℂ) *

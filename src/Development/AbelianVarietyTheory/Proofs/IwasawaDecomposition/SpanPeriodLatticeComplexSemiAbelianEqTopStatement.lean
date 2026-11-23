@@ -52,4 +52,4 @@ open ReciprocityTheory.ChartRestriction.G.FD (Data Frame Bor rmul lact mat col d
 open scoped CategoryTheory.MonObj
 
 theorem _root_.GlobalTheory.T.span_periodLattice_complexSemiAbelian_eq_top : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G] (y : Sp ℂ ⟶ X) (g : ℕ) (e : (Fin g → ℂ) → (Over.mk y ⟶ G)), IsSemiAbelian G → ((∀ z w, e (z + w) = e z * e w) ∧ Function.Surjective (e) ∧ IsHolTo Set.univ (fun z => (show Sp ℂ ⟶ G.left from (e z).left)) ∧ (∀ w, ∃! v : epsPt (y) ⟶ G, IsDerivAt0 (fun z => (e z).left) w v.left) ∧ (∀ v : epsPt (y) ⟶ G, spMap (TrivSqZeroExt.fstHom ℂ ℂ ℂ).toRingHom ≫ v.left = (e 0).left → ∃! w, IsDerivAt0 (fun z => (e z).left) w v.left)) → Submodule.span ℂ {z | e z = 1} = ⊤ := by
-  first | exact @GlobalTheory.PeriodSpan.span_ker_eq_top | exact GlobalTheory.PeriodSpan.span_ker_eq_top | (intros; apply GlobalTheory.PeriodSpan.span_ker_eq_top <;> assumption)
+  first | exact @GlobalTheory.PeriodSpan.span_ker_eq_top

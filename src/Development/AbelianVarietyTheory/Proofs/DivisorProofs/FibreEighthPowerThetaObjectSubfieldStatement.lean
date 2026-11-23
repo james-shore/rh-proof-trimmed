@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.fibre_eighth_power_theta_object_subfield : ∀ (W 
       ∀ q : Sp K ⟶ ((Over.pullback (spMap ev)).obj D.P.A).left,
       q ≫ pullback.fst D.P.A.hom (spMap ev) = y.left → q ≫ pullback.snd D.P.A.hom (spMap ev) = 𝟙 _ →
       ∃ a, q ≫ ψ = (t.lab a).left := by
-  first | exact @GlobalTheory.Poinc.Sep.sharp_fibre_theta_object | exact GlobalTheory.Poinc.Sep.sharp_fibre_theta_object | (intros; apply GlobalTheory.Poinc.Sep.sharp_fibre_theta_object <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.sharp_fibre_theta_object

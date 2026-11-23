@@ -61,4 +61,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.abelianScheme_dualNumber_endo_eq_translation : ∀ (k : Type) [Field k] (B : Over (Sp (DualNumber k))) [GrpObj B], IsAbelianScheme B → ∀ (α : B ⟶ B), (∀ (Z : Scheme.{0}) (z : Z ⟶ B.left) (y : Z ⟶ Sp k), z ≫ B.hom = y ≫ spMap (TrivSqZeroExt.fstHom k k k).toRingHom → z ≫ α.left = z) → α = lift (toUnit B ≫ η[B] ≫ α) (𝟙 B) ≫ μ[B] := by
-  first | exact @GlobalTheory.RigidEndo.eq_translate | exact GlobalTheory.RigidEndo.eq_translate | (intros; apply GlobalTheory.RigidEndo.eq_translate <;> assumption)
+  first | exact @GlobalTheory.RigidEndo.eq_translate

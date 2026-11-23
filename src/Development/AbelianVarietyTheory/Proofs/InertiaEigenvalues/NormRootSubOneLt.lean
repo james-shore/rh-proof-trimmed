@@ -91,21 +91,13 @@ theorem sum_shift {G M : Type*} [Group G] [AddCommMonoid M] (H V : Subgroup G) (
     (hf : ∀ g, ∀ v ∈ H, v ∈ V → f (g * v) = f g) (h : G) (hh : h ∈ H) :
     ∑ s ∈ S, f (h * s) = ∑ s ∈ S, f s := by
   first
-  | exact @_root_.GlobalTheory.TranslateSum.sum_translate_eq
-  | exact _root_.GlobalTheory.TranslateSum.sum_translate_eq
   | (apply _root_.GlobalTheory.TranslateSum.sum_translate_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TranslateSum.sum_translate_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TranslateSum.sum_translate_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TranslateSum.sum_translate_eq ..)
 
 theorem norm_pow_sub_pow_le {C : Type*} [NormedField C] [IsUltrametricDist C] {x y : C}
     (hx : ‖x‖ ≤ 1) (hy : ‖y‖ ≤ 1) (n : ℕ) : ‖x ^ n - y ^ n‖ ≤ ‖x - y‖ := by
   first
-  | exact @_root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le
-  | exact _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le
   | (apply _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PowerDifferenceNormInertiaEigenvalues.norm_pow_sub_pow_le ..)
 
 variable {l : ℕ} [Fact l.Prime]

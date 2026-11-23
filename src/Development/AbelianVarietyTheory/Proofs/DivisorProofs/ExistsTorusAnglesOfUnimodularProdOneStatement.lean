@@ -50,4 +50,4 @@ open NumberField MeasureTheory Matrix Filter Topology GlobalTheory.SUVol GlobalT
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.exists_torusAngles_of_unimodular_prod_one : ∀ (r : ℕ) (z : Fin r → ℂ), (∀ a, ‖z a‖ = 1) → ∏ a, z a = 1 → ∃ φ : Fin (r - 1) → ℝ, ∀ a, Complex.exp (Complex.I * (angles φ a : ℂ)) = z a := by
-  first | exact @GlobalTheory.TorusAngles.exists_angles_of_prod_eq_one | exact GlobalTheory.TorusAngles.exists_angles_of_prod_eq_one | (intros; apply GlobalTheory.TorusAngles.exists_angles_of_prod_eq_one <;> assumption)
+  first | exact @GlobalTheory.TorusAngles.exists_angles_of_prod_eq_one

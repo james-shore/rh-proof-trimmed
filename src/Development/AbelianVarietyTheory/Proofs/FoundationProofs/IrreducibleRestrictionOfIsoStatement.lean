@@ -42,4 +42,4 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.irreducible_restriction_of_iso : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] (l : ℕ) [Fact l.Prime] (W W' : R2 Ω l), RepIso W W' → IsIrr (W.comp (H0g W).subtype) → IsIrr (W'.comp (H0g W').subtype) := by
-  first | exact @GlobalTheory.IrrConj.irr_of_repIso | exact GlobalTheory.IrrConj.irr_of_repIso | (intros; apply GlobalTheory.IrrConj.irr_of_repIso <;> assumption)
+  first | exact @GlobalTheory.IrrConj.irr_of_repIso

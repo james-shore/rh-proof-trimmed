@@ -112,7 +112,7 @@ theorem exists_coeff_le_of_linearIndependent : ∀ (k : Type) [CommRing k] (X : 
     rw [hsum, ratVal_fnOf (hy (x s)), ev_eq (hy (x s)), hyx] at e
     have hv : v s = x s (∑ l, cc l • g l) := by
 
-      simp [v, M, Matrix.mulVec, dotProduct, map_sum, map_zsmul, mul_comm]
+      simp [v, M, Matrix.mulVec, dotProduct, map_sum, mul_comm]
     have hb := hR.2 (σ (x s)) (y (x s))
     rw [e] at hb
     rw [hv]

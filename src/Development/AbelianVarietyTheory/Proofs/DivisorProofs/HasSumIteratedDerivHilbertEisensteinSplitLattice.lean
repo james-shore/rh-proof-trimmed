@@ -93,7 +93,7 @@ theorem hasSum_iterD_gval_split : ∀ (F : Type) [Field F] [NumberField F] [IsTo
       rw [div_eq_inv_mul] at this
       exact this)
   have hc := GlobalTheory.T.iteratedPartialDeriv_const_mul_reindex (Emb F) (Emb F) (Equiv.refl _) u G D⁻¹ 0
-  simp only [Equiv.refl_symm, Equiv.coe_refl, id_eq, List.map_id, List.map_id_fun] at hc
+  simp only [Equiv.refl_symm, Equiv.coe_refl, id_eq, List.map_id] at hc
   have hc' : iterD u (fun z ↦ D⁻¹ * G z) 0 = iterD u G 0 / D := by
     rw [div_eq_inv_mul]; exact hc
   rw [hc'] at key

@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.integrableOn_vertical_ray_norm_integral_le : ∀ (
     IntegrableOn (fun s : ℝ => g (τ + s * Complex.I)) (Ioi 0) ∧
       ‖∫ s in Ioi (0:ℝ), g (τ + s * Complex.I)‖ ≤
         K * Real.exp (-c * τ.im) * (1 + ‖τ‖) ^ m * ∫ s in Ioi (0:ℝ), Real.exp (-c * s) * (1 + s) ^ m := by
-  first | exact @GlobalTheory.vertRay_integral_expPow_bound | exact GlobalTheory.vertRay_integral_expPow_bound | (intros; apply GlobalTheory.vertRay_integral_expPow_bound <;> assumption)
+  first | exact @GlobalTheory.vertRay_integral_expPow_bound

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.exists_hermitianModel_of_orthonormal_basis : ∀ (
     ∀ (n : ℕ) (B : GlobalTheory.UnitLemma.InvAlg K) (u x : B.A), u * B.σ u = 1 →
     ∀ b : Module.Basis (Fin n) K.E B.A, (∀ i j, B.herm x (b i) (b j) = if i = j then 1 else 0) →
     ∃ γ : GLw n w, γ ∈ UL n w ∧ IsModel w e B u x γ := by
-  first | exact @GlobalTheory.KapLat.exists_model_of_orthonormal_basis | exact GlobalTheory.KapLat.exists_model_of_orthonormal_basis | (intros; apply GlobalTheory.KapLat.exists_model_of_orthonormal_basis <;> assumption)
+  first | exact @GlobalTheory.KapLat.exists_model_of_orthonormal_basis

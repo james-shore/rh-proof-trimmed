@@ -126,7 +126,7 @@ theorem transvection_smul_stdPair : ∀ (k : Type) [Field k] [ValuativeRel k] [T
     show (g⁻¹ : GL n k).val *ᵥ x = _
     rw [hinv, transvection_mulVec']
   rw [Pair.smul_hasVal, hsm, stdPair_hasVal, stdPair_hasVal]
-  have hd : y d = x d := by rw [hyj]; simp [Pi.single_apply, Ne.symm hbd]
+  have hd : y d = x d := by rw [hyj]; simp [Ne.symm hbd]
   have hint : (∀ j, y j ∈ 𝒪[k]) ↔ ∀ j, x j ∈ 𝒪[k] := by
     constructor
     · intro hy j
@@ -164,7 +164,7 @@ theorem transvection_smul_stdPair : ∀ (k : Type) [Field k] [ValuativeRel k] [T
         apply Subtype.ext
         show y i - x i = 0
         rw [hyj]
-        simp [Pi.single_apply, Ne.symm hb]
+        simp [Ne.symm hb]
       rw [this]
       exact zero_mem _
   constructor
@@ -203,7 +203,6 @@ theorem eq_scalar_smul_of_stab : ∀ (k : Type) [Field k] [ValuativeRel k] [Topo
       ∃ x ∈ Q.lat, ∃ j, x j = c := by
     first
     | exact GlobalTheory.T.localLattice_exists_scalar_bound_attained k n Q.lat Q.isLat ⟨i⟩
-    | exact GlobalTheory.T.localLattice_exists_scalar_bound_attained k n Q.lat Q.isLat.toIsLattice ⟨i⟩
   obtain ⟨c, hc0, hcb, hca⟩ := hbound
   rcases GlobalTheory.T.transvectionStable_localLattice_shape k n i Q.lat c hn hc0 hlat hcb hca with hA | hB
   swap

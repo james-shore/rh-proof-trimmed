@@ -51,4 +51,4 @@ open GlobalTheory.SeeConjRead
 
 
 theorem _root_.GlobalTheory.T.exists_diagonal_conj_edgeSum_addChar_finiteField : ∀ {κf : Type} [CommRing κf] [Finite κf], IsField κf → ∀ {r : ℕ} (ρ k : ℕ) (ψ' ψ0 : AddChar κf ℂ), ψ' ≠ 1 → ψ0 ≠ 1 → ∀ a : Fin r → Fin r → κfˣ, ∃ d : Fin r → κfˣ, ∀ u : GL (Fin r) κf, u ∈ unipSym κf r ρ k → ψ' (∑ i, ∑ j, if symEdge ρ k i j then (a i j : κf) * u.val i j else 0) = ψ0 (edgeSum (symEdge ρ k) ((diagGL d)⁻¹ * u * diagGL d)) := by
-  first | exact @GlobalTheory.SeeConjScale.scale_conj | exact GlobalTheory.SeeConjScale.scale_conj | (intros; apply GlobalTheory.SeeConjScale.scale_conj <;> assumption)
+  first | exact @GlobalTheory.SeeConjScale.scale_conj

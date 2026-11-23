@@ -48,4 +48,4 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 open GlobalTheory.FrameTransport
 
 theorem _root_.GlobalTheory.T.frameConj_standardRational_mem_unitaryRational : ∀ {D : D7} (V : HSp D) (fr : GL (Fin V.rank) D.host.E), Formalism.UG.cT (↑D.sp.cm.sig) (fr : Matrix (Fin V.rank) (Fin V.rank) D.host.E) * V.gram * (fr : Matrix (Fin V.rank) (Fin V.rank) D.host.E) = 1 → ∀ γ ∈ GlobalTheory.NormSum.ratG D V.rank, ∃ q ∈ ratFin V, finG V q = GlobalTheory.FrameTransport.frConj fr γ.1 := by
-  first | exact @GlobalTheory.FrameTransport.frConj_ratG | exact GlobalTheory.FrameTransport.frConj_ratG | (intros; apply GlobalTheory.FrameTransport.frConj_ratG <;> assumption)
+  first | exact @GlobalTheory.FrameTransport.frConj_ratG

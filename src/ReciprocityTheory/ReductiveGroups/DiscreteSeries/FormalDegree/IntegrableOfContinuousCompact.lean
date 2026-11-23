@@ -90,7 +90,6 @@ theorem continuous_leading_minor (i : ℕ) : Continuous (fun A : Matrix (Fin n) 
   · simp only [Del, dif_pos h]
     first
     | exact (continuous_id.matrix_submatrix _ _).matrix_det
-    | fun_prop
   · simp only [Del, dif_neg h]
     exact continuous_const
 
@@ -100,9 +99,6 @@ theorem continuous_matrix_exp :
     Continuous (NormedSpace.exp : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ) := by
   first
   | exact NormedSpace.exp_continuous
-  | exact NormedSpace.exp_continuous ℂ
-  | exact NormedSpace.exp_continuous (𝕂 := ℂ)
-  | fun_prop
 end
 
 theorem continuousAt_potential {ε : Fin n → Bool} (lam : Fin n → ℝ) (y : PCoord ε → ℂ) :
@@ -132,10 +128,6 @@ theorem continuous_potential_comp {ε : Fin n → Bool} (lam : Fin n → ℝ) {�
 theorem continuous_toMK_formal_degree (ε : Fin n → Bool) : Continuous (fun k : KG ε => toMK k) := by
   first
   | fun_prop
-  | exact continuous_subtype_val.comp continuous_subtype_val
-  | (unfold toMK; fun_prop)
-  | (unfold toMK; exact continuous_subtype_val.comp continuous_subtype_val)
-  | (unfold toMK; exact continuous_subtype_val.comp (continuous_subtype_val.comp continuous_subtype_val))
 
 theorem continuous_potential_conj {ε : Fin n → Bool} (lam : Fin n → ℝ) (z : PCoord ε → ℂ) :
     Continuous (fun k : KG ε => Ph lam (toMK k⁻¹ * pmat z * toMK k)) := by
@@ -188,16 +180,6 @@ theorem KType_norm_op_apply {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KTyp
     ‖T.op k v‖ = ‖v‖ := by
   first
   | exact ContinuousLinearMap.norm_map_of_mem_unitary (T.τ k).2 v
-  | exact unitary.norm_map (T.τ k) v
-  | (have hu : ContinuousLinearMap.adjoint (T.op k) * T.op k = 1 := by
-        rw [← ContinuousLinearMap.star_eq_adjoint]
-        exact unitary.star_mul_self_of_mem (T.τ k).2
-     have h : ((‖T.op k v‖ : ℂ)) ^ 2 = ((‖v‖ : ℂ)) ^ 2 := by
-        rw [← inner_self_eq_norm_sq_to_K, ← inner_self_eq_norm_sq_to_K,
-          ← ContinuousLinearMap.adjoint_inner_right, ← ContinuousLinearMap.mul_apply, hu,
-          ContinuousLinearMap.one_apply]
-     have h' : ‖T.op k v‖ ^ 2 = ‖v‖ ^ 2 := by exact_mod_cast h
-     nlinarith [norm_nonneg (T.op k v), norm_nonneg v])
 
 theorem KType_continuous_op {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) :
     Continuous (fun k => T.op k) := by
@@ -225,8 +207,6 @@ theorem conj_projection_apply {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KT
     (T.op k * projW T * T.op k⁻¹) v = ⟪T.op k T.w, v⟫_ℂ • T.op k T.w := by
   rw [KType_op_inv_eq_adjoint]
   first
-  | (simp only [ContinuousLinearMap.mul_apply, projW, ContinuousLinearMap.smulRight_apply,
-      innerSL_apply, ContinuousLinearMap.adjoint_inner_right, map_smul]; done)
   | (simp [projW, ContinuousLinearMap.adjoint_inner_right]; done)
 
 theorem inner_fF_eq_integral {ε : Fin n → Bool} (lam : Fin n → ℝ) {Λ : Fin n → ℝ} (T : KType ε Λ) (z : PCoord ε → ℂ)

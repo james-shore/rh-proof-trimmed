@@ -52,4 +52,4 @@ open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Forma
 
 theorem _root_.GlobalTheory.T.tprod_constant_polynomials_ne_zero : ∀ (F : Type) [Field F] [NumberField F] (P Q R S : ℕ),
     (PiTensorProduct.tprod ℂ fun _ : InfinitePlace F => (1 : Formalism.BasicNotions.TH.Pol P Q R S)) ≠ 0 := by
-  first | exact @GlobalTheory.tprod_one_pol_ne_zero | exact GlobalTheory.tprod_one_pol_ne_zero | (intros; apply GlobalTheory.tprod_one_pol_ne_zero <;> assumption)
+  first | exact @GlobalTheory.tprod_one_pol_ne_zero

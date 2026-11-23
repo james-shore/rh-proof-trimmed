@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.heisenbergTranslate_fixed_integralUnitary : ∀ (L
     ρ x s ≠ 0 ∧ ∀ h : Formalism.UG.UJ σ (JT : Matrix (Fin n') (Fin n') L), (h : GL (Fin n') L) ∈ Formalism.UG.GLint (Fin n') (Formalism.UG.intL L) →
       (∀ i j, ((((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x - x) i j ∈ Formalism.UG.intL L)) →
       ρ (((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) s = ρ x s := by
-  first | exact @GlobalTheory.Hk3.class_fixed_phase | exact GlobalTheory.Hk3.class_fixed_phase | (intros; apply GlobalTheory.Hk3.class_fixed_phase <;> assumption)
+  first | exact @GlobalTheory.Hk3.class_fixed_phase

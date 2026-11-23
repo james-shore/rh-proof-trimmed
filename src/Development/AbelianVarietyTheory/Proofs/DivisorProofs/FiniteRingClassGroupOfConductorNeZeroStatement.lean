@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField IsDedekindDomain GlobalTheory.CMVal
 
 theorem _root_.GlobalTheory.T.finite_ringClassGroup_of_conductor_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (c : Ideal (OF E)), c ≠ ⊥ → Finite (PicO c) := by
-  first | exact @GlobalTheory.CMVal.PicFin.finite_picO | exact GlobalTheory.CMVal.PicFin.finite_picO | (intros; apply GlobalTheory.CMVal.PicFin.finite_picO <;> assumption)
+  first | exact @GlobalTheory.CMVal.PicFin.finite_picO

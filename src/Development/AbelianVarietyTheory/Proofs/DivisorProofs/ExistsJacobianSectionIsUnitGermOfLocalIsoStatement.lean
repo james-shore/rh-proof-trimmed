@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.exists_jacobian_section_isUnit_germ_of_localIso : 
     ∃ J : H0 (σ ≫ p) (LB.div K'.bundle (K.bundle.pull σ)) ⊤, ∀ x : X, Function.Bijective (σ.stalkMap x).hom →
       ∀ (a : (LB.div K'.bundle (K.bundle.pull σ)).ι) (ha : x ∈ (LB.div K'.bundle (K.bundle.pull σ)).U a),
         IsUnit (H0.germ a x (memTop x) ha J) := by
-  first | exact @GlobalTheory.exists_jacobian_section_isUnit_germ | exact GlobalTheory.exists_jacobian_section_isUnit_germ | (intros; apply GlobalTheory.exists_jacobian_section_isUnit_germ <;> assumption)
+  first | exact @GlobalTheory.exists_jacobian_section_isUnit_germ

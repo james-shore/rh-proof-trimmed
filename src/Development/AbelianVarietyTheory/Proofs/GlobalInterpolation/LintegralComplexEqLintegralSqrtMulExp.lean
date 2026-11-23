@@ -60,11 +60,7 @@ theorem lintegral_Ioi_mul_eq_lintegral_Ioi_sqrt (G : ℝ → ENNReal) :
     ∫⁻ r in Set.Ioi (0 : ℝ), ENNReal.ofReal r * G r
       = ∫⁻ u in Set.Ioi (0 : ℝ), (2 : ENNReal)⁻¹ * G (Real.sqrt u) := by
   first
-  | exact @_root_.GlobalTheory.SquareImageInterval.main
-  | exact _root_.GlobalTheory.SquareImageInterval.main
   | (apply _root_.GlobalTheory.SquareImageInterval.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SquareImageInterval.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SquareImageInterval.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SquareImageInterval.main ..)
 
 theorem lintegral_complex_eq_lintegral_sqrt_mul_exp (ε c : ℝ) (hε : ε = 1 ∨ ε = -1)

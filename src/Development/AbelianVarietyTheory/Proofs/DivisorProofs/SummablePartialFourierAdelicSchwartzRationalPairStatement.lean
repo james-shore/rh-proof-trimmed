@@ -52,4 +52,4 @@ open scoped Matrix TensorProduct FourierTransform
 open MeasureTheory GroundTheory.Automorphic.GJMatrix
 
 theorem _root_.GlobalTheory.T.summable_partialFourier_adelicSchwartz_rationalPairs : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] (φ : (κ ⊕ κ → AF F) → ℂ), φ ∈ schA F (κ ⊕ κ) → Summable fun uv : (κ → F) × (κ → F) => ‖adelicFourierPi F (fun t : κ → AF F => φ (Sum.elim (t + fun i => algebraMap F (AF F) (uv.1 i)) t)) (fun i => algebraMap F (AF F) (uv.2 i))‖ := by
-  first | exact @GlobalTheory.PartialFourierSum.summable_partial_fourier | exact GlobalTheory.PartialFourierSum.summable_partial_fourier | (intros; apply GlobalTheory.PartialFourierSum.summable_partial_fourier <;> assumption)
+  first | exact @GlobalTheory.PartialFourierSum.summable_partial_fourier

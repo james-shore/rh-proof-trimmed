@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.local_fourier_inversion_up_to_constant : ∀ (F : 
     χ ≠ 1 → ∀ (κ : Type) [Fintype κ] [MeasurableSpace (κ → Fv F v)] [BorelSpace (κ → Fv F v)]
     (μ : Measure (κ → Fv F v)) [μ.IsAddHaarMeasure], ∃ d : ℂ, d ≠ 0 ∧ ∀ φ ∈ SB (κ → Fv F v), ∀ a : κ → Fv F v,
       ∫ y, (∫ x, φ x * χ (x ⬝ᵥ y) ∂μ) * χ (y ⬝ᵥ a) ∂μ = d * φ (-a) := by
-  first | exact @GlobalTheory.FourierLocInv.fourier_inversion | exact GlobalTheory.FourierLocInv.fourier_inversion | (intros; apply GlobalTheory.FourierLocInv.fourier_inversion <;> assumption)
+  first | exact @GlobalTheory.FourierLocInv.fourier_inversion

@@ -1,0 +1,63 @@
+# S2 receipt (on #185)
+
+Remove proof syntax that Lean's linters flag as unused.
+
+- Removes `simp` arguments that `unusedSimpArgs` flagged when the Lean 4.36 port was built
+- Removes tactic alternatives that `unreachableTactic` flagged (they never run)
+- Removes tactics that `unusedTactic` flagged (they do nothing)
+- Only deletions, all inside tactic blocks
+- Deletions that broke a trial build are left out, and so are deletions that would conflict with leanprover-community
+  PRs #87 and #126
+- Every deletion is one that #134's own Lean 4.36 build also flags
+- Where #185 builds on Lean 4.37, every deletion is one that Lean 4.37's linters also flag. Deletions expected to
+  fail on Lean 4.37 are left out
+- Deletions inside declarations that #134 or #185 rewrote are left out
+- No edit inside the statement cone (`statement-cone.tsv`). `Main.lean`, `Statements.lean` and `Challenge.lean` are
+  unchanged
+- Every declaration is kept. There is no S1 underneath
+
+| Edit list | Edits |
+|---|---|
+| `simp-args.tsv.gz` (unused `simp` arguments) | 18,268 |
+| `unreachable.tsv.gz` (alternatives that never run) | 89,072 |
+| `unused-tactics.tsv.gz` (tactics that do nothing) | 4,364 |
+| **Total** | **111,704**, all applied |
+
+| | #185 | S2 | Change |
+|---|---|---|---|
+| Files | 149,216 | 149,216 | 0 |
+| Lines | 20,788,840 | 20,772,868 | −15,972 (−0.1%) |
+| Files changed | | 50,868 | |
+
+- Files and lines exclude `Challenge.lean`
+- `git diff --stat --no-renames` on `src/` against #185 gives 50,868 files changed, 56,756 insertions and 72,728
+  deletions (all modified)
+- On #134 under Lean 4.36 there are 220,352 stored warnings from these three linters, and 12,391 after this change
+  (-94.4%)
+- By linter, unusedSimpArgs 25,751 → 1,616, unreachableTactic 92,889 → 3,016, unusedTactic 101,712 → 7,759
+- Every other linter's count is unchanged, apart from one more `introMerge` entry
+
+| Check | Result |
+|---|---|
+| Compiles | [ ] |
+| Kernel-accepted | [ ] |
+| Same statements | [ ] |
+| Term diff against #185 | [ ] |
+
+- S2 on #134 under Lean 4.36 (`e6b999ca`, 111,808 deletions) compiles every module, 149,217 of 149,217
+- This tree leaves out 104 of those deletions. 63 are where #185 changed the lines or rewrote the proof, and 41 are
+  ones that Lean 4.37's linters no longer flag or that are expected to fail on Lean 4.37. The other deletions are the
+  same
+
+## Regenerate
+
+```
+for f in keep statement-cone simp-args unreachable unused-tactics; do gunzip -c cleaning/S2/$f.tsv.gz > $f.tsv; done
+python3 cleaning/transform/transform.py BASE/src DEST --keep keep.tsv --level L0 \
+  --lib-namespaces cleaning/transform/mathlib-namespaces.txt.gz --statement-cone statement-cone.tsv \
+  --edits simp-args.tsv --edits unreachable.tsv --edits unused-tactics.tsv
+```
+
+- BASE is #185's branch at `b1ea8255`
+- The last line printed is the tree fingerprint
+  `9cb96a24557d372942c6dad62076c50a2f090b9371a98affd176f6c17a59f12d` (149,217 files including `Challenge.lean`)

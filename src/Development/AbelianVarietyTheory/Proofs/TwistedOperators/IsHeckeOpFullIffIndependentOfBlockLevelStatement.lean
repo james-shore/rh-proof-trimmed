@@ -54,4 +54,4 @@ open Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.
 open GlobalTheory.LiftRows
 
 theorem _root_.GlobalTheory.T.isHeckeOpFull_iff_independent_of_blockLevel : ∀ (D : D7) (V : HSp D) (β : GL (Fin V.rank) (Formalism.IndefR.Lev.EAf D)) (L : LevDat D.host.E ℂ V.rank) (P P' : LevelP L.Pg L.r ℂ) (SF : Finset (HeightOneSpectrum (𝓞 D.host.F))), (∀ PP ∈ L.Pg, ∃ v ∈ SF, PP.asIdeal.comap (algebraMap (𝓞 D.host.F) (𝓞 D.host.E)) = v.asIdeal) → ∀ (Q : HeightOneSpectrum (𝓞 D.host.E)) (d : List ℤ) (Rp : Finset (GA D V)), Hecke₂ V (levS V β (withP L P)) (levChi V β (withP L P)) SF Q d Rp ↔ Hecke₂ V (levS V β (withP L P')) (levChi V β (withP L P')) SF Q d Rp := by
-  first | exact @GlobalTheory.HeckeLevelFree.isHeckeOpFull_withP_iff | exact GlobalTheory.HeckeLevelFree.isHeckeOpFull_withP_iff | (intros; apply GlobalTheory.HeckeLevelFree.isHeckeOpFull_withP_iff <;> assumption)
+  first | exact @GlobalTheory.HeckeLevelFree.isHeckeOpFull_withP_iff

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.flippedLocalTotalTensor_fixed_by_innerVertex_level
     ∀ (κ : GL (Fin ((locGrid G t w).rank (j + 1, D.R.m))) (Kw w)), κ ∈ givenLevel G t w (j + 1, D.R.m) →
     (locGrid G t w).pathAct .one (oppositePath D.R.m) (Pi.mulSingle (j + 1, D.R.m) κ) (Tflip W S.B t Φ w) =
       Tflip W S.B t Φ w := by
-  first | exact @GlobalTheory.FlipVertexInv.main | exact GlobalTheory.FlipVertexInv.main | (intros; apply GlobalTheory.FlipVertexInv.main <;> assumption)
+  first | exact @GlobalTheory.FlipVertexInv.main

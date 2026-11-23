@@ -48,4 +48,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 theorem _root_.GlobalTheory.T.torsionPairImage_latticePart_eq_of_match : ∀ (V : Type) [CommRing V] [IsDomain V] [CharZero V] (J : Ideal V), AdmBase V J → ∀ (D₁ D₂ : DegData V J) (b : D₁.toPre.P.A ⟶ D₂.toPre.P.A) (φ : D₁.toPre.X ≃+ D₂.toPre.X) (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing V) F], Match D₁.toPre D₂.toPre b φ F → ∀ (k : ℕ) (p : QkPt D₁.toPre F k) (p' : QkPt D₂.toPre F k), Act D₁.toPre D₂.toPre b φ.symm.toAddMonoidHom p.g p'.g → p'.y = φ p.y := by
-  first | exact @GlobalTheory.TInj.qImg_lattice | exact GlobalTheory.TInj.qImg_lattice | (intros; apply GlobalTheory.TInj.qImg_lattice <;> assumption)
+  first | exact @GlobalTheory.TInj.qImg_lattice

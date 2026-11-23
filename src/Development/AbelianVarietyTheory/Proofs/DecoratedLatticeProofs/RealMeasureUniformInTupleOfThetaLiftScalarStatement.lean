@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 open GlobalTheory.LiftRows (Given)
 
 theorem _root_.GlobalTheory.T.realMeasureUniformInTuple_of_thetaLiftScalar : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Given R F → (∀ h : RangeX R, RChain R h) → RangeX R → RMeas R := by
-  first | exact @GlobalTheory.RealMeasOne.one_real_measure | exact GlobalTheory.RealMeasOne.one_real_measure | (intros; apply GlobalTheory.RealMeasOne.one_real_measure <;> assumption)
+  first | exact @GlobalTheory.RealMeasOne.one_real_measure

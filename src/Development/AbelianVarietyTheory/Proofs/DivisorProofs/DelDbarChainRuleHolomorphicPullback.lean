@@ -62,7 +62,7 @@ variable {n : ℕ}
 theorem repr_algebraMap (t : ℂ) (S : Finset (Fin (n + n))) :
     (bas n).repr (algebraMap ℂ (Alt n) t) S = if S = ∅ then t else 0 := by
   rw [Algebra.algebraMap_eq_smul_one, ← bas_empty, map_smul, Module.Basis.repr_self]
-  by_cases h : S = ∅ <;> simp [Finsupp.single_apply, h, eq_comm]
+  by_cases h : S = ∅ <;> simp [h]
 
 theorem delAt_dbarAt_algebraMap (g : V n → ℂ) (v : V n) :
     delAt (fun x => algebraMap ℂ (Alt n) (g x)) v = ∑ a, del g v (coordVec a) • dz a ∧
@@ -106,7 +106,7 @@ theorem delAt_dbarAt_pull_comp (m n : ℕ) (τ : V m → V n) (U : Set (V m)) (�
     funext x
     conv_lhs => rw [← (bas n).sum_repr (β (τ x))]
 
-    simp only [map_sum, map_smul, Algebra.smul_def, map_mul, AlgHom.commutes]
+    simp only [map_sum, Algebra.smul_def, map_mul, AlgHom.commutes]
   have hsum := (GlobalTheory.T.delOperatorAt_dbarOperatorAt_linear_local m v).2.2.1 (Finset (Fin (n + n))) Finset.univ
     (fun S x => algebraMap ℂ (Alt m) ((bas n).repr (β (τ x)) S) * pull (fderiv ℂ τ x) (bas n S))
     (fun S _ => hprod S)

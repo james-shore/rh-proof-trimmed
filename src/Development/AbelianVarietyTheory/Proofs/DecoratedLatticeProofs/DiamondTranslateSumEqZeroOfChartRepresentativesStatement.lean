@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.diamondTranslateSum_eq_zero_of_chartRepresentative
     StdT I l Z u p β Q L → ∀ j (hj : j ≤ B.R.m), ∀ φ ∈ (I.fm l u a).Fi j, ∀ (i : ι) (v : (I.atT l u a).vT), Formalism.L2.NTheta.IsIdemAt (p i).e v.1 →
     ∀ g : 𝓀[k]ˣ → GL (Fin ((I.rec7 l Z).sp.X j).rank) k, (∀ s, g s • Q j i = s • Q j i) →
       ∀ b y, (∀ (c : {c // A.chOf j c = b}) y', ∑ᶠ s, A.rd θ j hj b φ y' (A.h j b c * (β j i).gl (g s)) = 0) → ∀ x, ∑ᶠ s, A.rd θ j hj b φ y (x * (β j i).gl (g s)) = 0 := by
-  first | exact @GlobalTheory.AdForm.diaSum_eq_zero_of_reps | exact GlobalTheory.AdForm.diaSum_eq_zero_of_reps | (intros; apply GlobalTheory.AdForm.diaSum_eq_zero_of_reps <;> assumption)
+  first | exact @GlobalTheory.AdForm.diaSum_eq_zero_of_reps

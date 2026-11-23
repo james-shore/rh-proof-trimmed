@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.rowTest_definitePeriod_change_of_measures : Big fun ch => VolAt ch := by
-  first | exact @GlobalTheory.RowVal.volAt_big | exact GlobalTheory.RowVal.volAt_big | (intros; apply GlobalTheory.RowVal.volAt_big <;> assumption)
+  first | exact @GlobalTheory.RowVal.volAt_big

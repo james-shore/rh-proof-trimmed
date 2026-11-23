@@ -117,9 +117,9 @@ theorem macof_swap {n : ℕ} (M : Matrix (Fin n) (Fin n) ℂ) {i j : Fin n} (h :
     ext a b
     simp only [Matrix.submatrix_apply, id]
     rcases eq_or_ne a i with rfl | ha
-    · simp [Matrix.updateRow_apply, h]
+    · simp [Matrix.updateRow_apply]
     rcases eq_or_ne a j with rfl | hb
-    · simp [Matrix.updateRow_apply, h, ha, Ne.symm h]
+    · simp [Matrix.updateRow_apply, h, ha]
     · simp [Matrix.updateRow_apply, ha, hb, Equiv.swap_apply_of_ne_of_ne ha hb]
   rw [hB, Matrix.det_permute, Equiv.Perm.sign_swap h]
   simp
@@ -128,10 +128,10 @@ private theorem wd_wd_comm_of_contDiffOn {n : ℕ} {U : Set (V n)} (hU : IsOpen 
     (hG : ContDiffOn ℝ ∞ G U) (i j : Fin n) {y : V n} (hy : y ∈ U) :
     wd n j (wd n i G) y = wd n i (wd n j G) y := by
   have hGa : ContDiffAt ℝ ∞ G y := hG.contDiffAt (hU.mem_nhds hy)
-  have hsym := hGa.isSymmSndFDerivAt (by first | (simp; norm_cast) | simp | norm_cast)
+  have hsym := hGa.isSymmSndFDerivAt (by first | (simp; norm_cast) | simp)
   have hD2 : HasFDerivAt (fderiv ℝ G) (fderiv ℝ (fderiv ℝ G) y) y :=
-    ((hGa.fderiv_right (m := 1) (by first | norm_cast | simp)).differentiableAt
-      (by first | simp | decide)).hasFDerivAt
+    ((hGa.fderiv_right (m := 1) (by first | norm_cast)).differentiableAt
+      (by first | simp)).hasFDerivAt
   have key : ∀ (a : Fin n) (v : V n), fderiv ℝ (wd n a G) y v =
       (fderiv ℝ (fderiv ℝ G) y v (bas n a) -
         Complex.I * fderiv ℝ (fderiv ℝ G) y v (Complex.I • bas n a)) / 2 := by
@@ -173,7 +173,7 @@ theorem macof_main (n : ℕ) : MACofStatement n := by
   have hent : ∀ i l, ContDiffOn ℝ ∞ (fun w => cHess n (fun w' => (f w' : ℂ)) w i l) U :=
     fun i l => macof_wd_contDiffOn hU (macof_wdb_contDiffOn hU hg l) i
   have hd : ∀ i l, DifferentiableAt ℝ (fun w => cHess n (fun w' => (f w' : ℂ)) w i l) y :=
-    fun i l => ((hent i l).contDiffAt (hU.mem_nhds hy)).differentiableAt (by first | simp | decide)
+    fun i l => ((hent i l).contDiffAt (hU.mem_nhds hy)).differentiableAt (by first | simp)
   have hwd : ∀ (j : Fin n) (F : V n → ℂ), wd n j F y =
       (fderiv ℝ F y (bas n j) - Complex.I * fderiv ℝ F y (Complex.I • bas n j)) / 2 :=
     fun j F => rfl
@@ -209,7 +209,7 @@ theorem macof_main (n : ℕ) : MACofStatement n := by
     by_cases hij : i = j
     · simp only [if_pos hij, ContinuousLinearMap.zero_apply]
       simp only [← Pi.zero_def, hdz]
-      first | ring | simp
+      first | ring
     · simp only [if_neg hij]
       rw [← macofRow_apply, ← macofRow_apply, ← macofRow_apply]
       have hρ : (fun l => wd n j (fun w => cHess n (fun w' => (f w' : ℂ)) w i l) y) =

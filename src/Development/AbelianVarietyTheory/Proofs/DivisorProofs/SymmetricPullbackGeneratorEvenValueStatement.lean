@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.symmetricPullbackGenerator_even_value : ∀ (R : T
     ∀ (T : Over (Sp R)) (x : T ⟶ D₀.P.A) (z : T.left) (J : (T.left ⟶ D₀.P.A.left) → D₀.P.L.ι), Good D₀.P.L z J →
       val uw x⁻¹.left z J * val D₀.sym x.left z J * cubV D₀.cub z J (x ≫ f) (x ≫ f)⁻¹ x⁻¹ =
         val uw x.left z J * cubV D₀.cub z J x x⁻¹ (x ≫ f) := by
-  first | exact @GlobalTheory.UTau0.uw_even_val | exact GlobalTheory.UTau0.uw_even_val | (intros; apply GlobalTheory.UTau0.uw_even_val <;> assumption)
+  first | exact @GlobalTheory.UTau0.uw_even_val

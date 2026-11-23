@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.local_models_unsplit_almost_all : ∀ (D : D7) (Z : LocDat D), {p : PlF D | (Z.M p).split ≠ none}.Finite := by
-  first | exact @GlobalTheory.LocSplitFinite.split_finite | exact GlobalTheory.LocSplitFinite.split_finite | (intros; apply GlobalTheory.LocSplitFinite.split_finite <;> assumption)
+  first | exact @GlobalTheory.LocSplitFinite.split_finite

@@ -273,6 +273,6 @@ theorem invariant_measure_unique :
   refine ⟨c.toNNReal, ?_⟩
   rw [hμν]
   ext s hs
-  simp [Measure.smul_apply, ENNReal.smul_def, ENNReal.coe_toNNReal hct]
+  simp [ENNReal.smul_def, ENNReal.coe_toNNReal hct]
 
 end GlobalTheory.CompanionTheory.SW.AbsUniq

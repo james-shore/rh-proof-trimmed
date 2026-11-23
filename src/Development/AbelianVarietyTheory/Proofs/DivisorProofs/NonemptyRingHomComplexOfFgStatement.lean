@@ -67,4 +67,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.nonempty_ringHom_complex_of_fg' : ∀ (K : Type) [Field K] [CharZero K] (k : IntermediateField ℚ K), k.FG → Nonempty (k →+* ℂ) := by
-  first | exact @GlobalTheory.FGFieldEmb.nonempty_ringHom_complex_of_fg | exact GlobalTheory.FGFieldEmb.nonempty_ringHom_complex_of_fg | (intros; apply GlobalTheory.FGFieldEmb.nonempty_ringHom_complex_of_fg <;> assumption)
+  first | exact @GlobalTheory.FGFieldEmb.nonempty_ringHom_complex_of_fg

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.archimedean_intertwiner_unique : GlobalTheory.FunP
         @Measure.IsAddHaarMeasure _ _ _ (borel _) μ → ∀ f f' : SInf F κ,
           @integral _ ℂ _ _ (borel _) μ (fun x => T f x * starRingEnd ℂ (T f' x)) =
             (c : ℂ) * @integral _ ℂ _ _ (borel _) μ (fun x => f x * starRingEnd ℂ (f' x)) := by
-  first | exact @GlobalTheory.ArchInvForm.const_of_intertwines | exact GlobalTheory.ArchInvForm.const_of_intertwines | (intros; apply GlobalTheory.ArchInvForm.const_of_intertwines <;> assumption)
+  first | exact @GlobalTheory.ArchInvForm.const_of_intertwines

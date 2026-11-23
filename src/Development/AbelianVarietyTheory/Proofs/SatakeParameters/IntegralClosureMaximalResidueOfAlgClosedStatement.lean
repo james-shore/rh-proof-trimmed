@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.integralClosure_maximal_residue_of_algClosed : ∀
     (∀ x : K, ∃ d : D, d ≠ 0 ∧ IsIntegral D ((d : K) * x)) →
     ∃ (R : Subring K) (𝔪 : Ideal R), φ.range ≤ R ∧ 𝔪.IsMaximal ∧ (∀ r : R, ∃ c : k, ∃ h : φ c ∈ R, r - ⟨φ c, h⟩ ∈ 𝔪) ∧
       (∀ x : K, ∃ d : R, d ≠ 0 ∧ (d : K) * x ∈ R) ∧ ∀ x : K, IsIntegral R x → x ∈ R := by
-  first | exact @GlobalTheory.integralClosure_maximal_residue_algClosed | exact GlobalTheory.integralClosure_maximal_residue_algClosed | (intros; apply GlobalTheory.integralClosure_maximal_residue_algClosed <;> assumption)
+  first | exact @GlobalTheory.integralClosure_maximal_residue_algClosed

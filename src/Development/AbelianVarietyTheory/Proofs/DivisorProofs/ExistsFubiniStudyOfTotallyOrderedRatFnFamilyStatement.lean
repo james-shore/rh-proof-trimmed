@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 theorem _root_.GlobalTheory.T.exists_fubiniStudy_of_totallyOrdered_ratFnFamily : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k), ∀ (J : Type) [Fintype J] [Nonempty J] (f : J → X.functionField) (w : J → ℝ), Total f → ∃ M : HermLB p, IsFS M f w := by
-  first | exact @GlobalTheory.HSNef.exists_isFS | exact GlobalTheory.HSNef.exists_isFS | (intros; apply GlobalTheory.HSNef.exists_isFS <;> assumption)
+  first | exact @GlobalTheory.HSNef.exists_isFS

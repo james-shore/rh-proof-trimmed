@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_dvr_centred_point_generic_both_models : ∀
       (ξ : Sp V ⟶ M.Z) (τ : Sp V ⟶ Y.Z) (κ : Ω →+* FractionRing V), z ∈ Set.range ξ ∧
       spMap (algebraMap V (FractionRing V)) ≫ ξ = spMap κ ≫ M.pt ∧
       spMap (algebraMap V (FractionRing V)) ≫ τ = spMap κ ≫ Y.pt := by
-  first | exact @GlobalTheory.DvrTrait.exists_trait | exact GlobalTheory.DvrTrait.exists_trait | (intros; apply GlobalTheory.DvrTrait.exists_trait <;> assumption)
+  first | exact @GlobalTheory.DvrTrait.exists_trait

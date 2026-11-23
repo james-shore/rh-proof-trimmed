@@ -59,4 +59,4 @@ open Formalism.IndefR.RecTie Formalism.IndefR.Lev Formalism.L2.Rows GlobalTheory
 open GlobalTheory.Mem.R3.LiftBrg
 
 theorem _root_.GlobalTheory.T.conj_uniformizer_isUniformizer_conjPrime : ∀ {E : Type} [Field E] [NumberField E] [StarRing E] (Pb : Formalism.L2.DIV.Pl E) (Ut : Formalism.L2.Col.MhlUnif Pb), Formalism.L2.Col.cO E Ut.π ∈ (Formalism.L2.Col.conjPrime₂ Pb).asIdeal ∧ Formalism.L2.Col.cO E Ut.π ∉ (Formalism.L2.Col.conjPrime₂ Pb).asIdeal ^ 2 := by
-  first | exact @GlobalTheory.Mem.UnifConj.conj_unif_isUnif | exact GlobalTheory.Mem.UnifConj.conj_unif_isUnif | (intros; apply GlobalTheory.Mem.UnifConj.conj_unif_isUnif <;> assumption)
+  first | exact @GlobalTheory.Mem.UnifConj.conj_unif_isUnif

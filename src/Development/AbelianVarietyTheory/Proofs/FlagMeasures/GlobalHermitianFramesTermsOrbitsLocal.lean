@@ -225,7 +225,6 @@ theorem lrel_of_local (G : GFrames A r k) {d : G.Dat} {Γ Γ' : G.Lt} (hT : G.Is
   have happrox := by
     first
     | exact GlobalTheory.T.exists_mem_St_approximating_local_elements A r k G Γ hfull (fun _ => 1) hc n (fun p => (hn p).1) hfin
-    | exact GlobalTheory.T.exists_mem_St_approximating_local_elements A r k G Γ hfull.toIsLattice (fun _ => 1) hc n (fun p => (hn p).1) hfin
   obtain ⟨g, hg, hgp⟩ := happrox
   have hloc : ∀ p, A.lat p Γ' = A.lat p (Γ.map ((g : G.V →ₗ[E] G.V).restrictScalars (𝓞 E))) := by
     intro p

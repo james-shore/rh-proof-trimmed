@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.torsionTranslate_mem_thetaPullbackSpan : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), Crv D cc δ → ∀ (N N' r : ℕ) (b : Fin r → Matrix (Fin N') (Fin N) D.host.E), OnB D b → ∀ F ∈ Tr D (tor0 D cc δ) b, ∀ (t : VC D N N') (m : ℕ), 0 < m → m • t ∈ LaB D (tor0 D cc δ) b → U D (tor0 D cc δ) t F ∈ Tr D (tor0 D cc δ) b := by
-  first | exact @GlobalTheory.TorsionTranslate.translate_mem | exact GlobalTheory.TorsionTranslate.translate_mem | (intros; apply GlobalTheory.TorsionTranslate.translate_mem <;> assumption)
+  first | exact @GlobalTheory.TorsionTranslate.translate_mem

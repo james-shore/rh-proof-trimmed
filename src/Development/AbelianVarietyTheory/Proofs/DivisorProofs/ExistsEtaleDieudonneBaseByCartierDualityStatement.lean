@@ -46,4 +46,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open CategoryTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 theorem _root_.GlobalTheory.T.exists_etaleDieudonneBase_by_cartierDuality : ∀ (p : ℕ) [Fact p.Prime] (Bc : GlobalTheory.Dieu.Base p (fun _ _ G => G.IsConn)), ∃ Be : GlobalTheory.Dieu.Base p (fun _ _ G => G.IsEt), Be.EtDual Bc := by
-  first | exact @GlobalTheory.dieuBase_isEt_of_isConn | exact GlobalTheory.dieuBase_isEt_of_isConn | (intros; apply GlobalTheory.dieuBase_isEt_of_isConn <;> assumption)
+  first | exact @GlobalTheory.dieuBase_isEt_of_isConn

@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.torsion_kaehler_span_dlog_indep : ∀ (p : ℕ) [F
        (y * qi) • KaehlerDifferential.D (O0 p) (integralClosure (O0 p) Ω) qn = 0 →
      (∃ t, (p : integralClosure (O0 p) Ω) ^ c * x = (p : integralClosure (O0 p) Ω) ^ (n - 1) * t) ∧
      (∃ t, (p : integralClosure (O0 p) Ω) ^ c * y = (p : integralClosure (O0 p) Ω) ^ n * t)) := by
-  first | exact @GlobalTheory.K5.TorsionDiff.torsion_span_and_indep | exact GlobalTheory.K5.TorsionDiff.torsion_span_and_indep | (intros; apply GlobalTheory.K5.TorsionDiff.torsion_span_and_indep <;> assumption)
+  first | exact @GlobalTheory.K5.TorsionDiff.torsion_span_and_indep

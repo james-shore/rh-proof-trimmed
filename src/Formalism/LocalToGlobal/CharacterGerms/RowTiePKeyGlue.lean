@@ -85,7 +85,6 @@ theorem tends_pow_zero {a : C} (ha : V.MM a) : Tends V (fun n => a ^ V.l ^ n) 0 
       WithTop.coe_le_coe, nsmul_eq_mul]
     have h1 : (n : ℝ) ≤ ((V.l ^ n : ℕ) : ℝ) := by
       first
-        | exact_mod_cast (Nat.lt_pow_self V.l_prime.one_lt n).le
         | exact_mod_cast (Nat.lt_pow_self V.l_prime.one_lt).le
     have h2 : w / r ≤ n := le_trans (Nat.le_ceil _) (by exact_mod_cast hn)
     exact (div_mul_cancel₀ w hr0.ne').ge.trans (mul_le_mul_of_nonneg_right (h2.trans h1) hr0.le)

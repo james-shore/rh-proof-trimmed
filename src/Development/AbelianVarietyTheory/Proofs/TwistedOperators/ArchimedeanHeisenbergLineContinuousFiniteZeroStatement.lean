@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.archimedeanHeisenbergLine_continuous_finite_zero :
     (∀ u, cS u = (HMul.hMul (uᵀ.submatrix e id) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM g) : Matrix (Fin X.rank) (Fin S.rank) (AE D))) →
     ∀ u : Matrix (Fin S.rank) (Fin d) (AE D),
       Continuous (GlobalTheory.VacTransfer.archLine cS u) ∧ ∀ t, (GlobalTheory.VacTransfer.archLine cS u t).map (finPart D) = 0 := by
-  first | exact @GlobalTheory.ArchLineCont.archLine_continuous_finPart | exact GlobalTheory.ArchLineCont.archLine_continuous_finPart | (intros; apply GlobalTheory.ArchLineCont.archLine_continuous_finPart <;> assumption)
+  first | exact @GlobalTheory.ArchLineCont.archLine_continuous_finPart

@@ -59,4 +59,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.nontrivial_weylCoefficientSpace : ∀ (K : Type) [Field K] (ι : Type) [Fintype ι] (n : ℕ) (lam : ι → DomWeight n), Nontrivial (Formalism.L2.DIV.VV K lam) := by
-  first | exact @GlobalTheory.CoeffSpace.nontrivial_VV | exact GlobalTheory.CoeffSpace.nontrivial_VV | (intros; apply GlobalTheory.CoeffSpace.nontrivial_VV <;> assumption)
+  first | exact @GlobalTheory.CoeffSpace.nontrivial_VV

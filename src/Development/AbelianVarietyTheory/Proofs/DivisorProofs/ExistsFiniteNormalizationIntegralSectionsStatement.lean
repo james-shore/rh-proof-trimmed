@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_finite_normalization_integral_sections : �
       IsFinite h ∧ IsIntegral S' ∧ IsDominant gp' ∧
       ∀ V : S.Opens, IsAffineOpen V → ∀ x ∈ F V, ∃ c : Γ(S', h ⁻¹ᵁ V),
         (gp'.appLE (h ⁻¹ᵁ V) (gp ⁻¹ᵁ V) (le_preimage_of_comp_eq gp gp' h hgp V)).hom c = x := by
-  first | exact @GlobalTheory.Mum.exists_finite_of_isFinSub | exact GlobalTheory.Mum.exists_finite_of_isFinSub | (intros; apply GlobalTheory.Mum.exists_finite_of_isFinSub <;> assumption)
+  first | exact @GlobalTheory.Mum.exists_finite_of_isFinSub

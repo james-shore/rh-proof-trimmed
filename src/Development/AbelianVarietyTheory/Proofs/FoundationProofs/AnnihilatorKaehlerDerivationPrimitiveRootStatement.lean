@@ -46,4 +46,4 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open scoped Matrix NNReal
 
 theorem _root_.GlobalTheory.T.annihilator_kaehlerDerivation_primitiveRoot : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (A : ValuationSubring Ω), OverL l A → ∀ (N : ℕ) (z : A), IsPrimitiveRoot (z : Ω) (l ^ N) → ∀ a : A, a • dA A z = 0 → ∃ w ∈ A, (l : Ω) ^ 4 * (a : Ω) = (l : Ω) ^ N * w := by
-  first | exact @GlobalTheory.RecOne.pow_four_mul_mem_of_smul_dA_eq_zero | exact GlobalTheory.RecOne.pow_four_mul_mem_of_smul_dA_eq_zero | (intros; apply GlobalTheory.RecOne.pow_four_mul_mem_of_smul_dA_eq_zero <;> assumption)
+  first | exact @GlobalTheory.RecOne.pow_four_mul_mem_of_smul_dA_eq_zero

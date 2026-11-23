@@ -101,7 +101,7 @@ theorem comp_lift (e e' : ℕ) (P : MvPolynomial σ R) (hP : ∀ m, AddMonoidAlg
   rw [Polynomial.coeff_monomial]
   by_cases h : e' = e
   · subst h; simp
-  · simp [Finsupp.single_apply, h, Ne.symm h]
+  · simp [h]
 
 theorem comp_sub (e : ℕ) (Q₁ Q₂ : MvPolynomial σ (reesAlgebra I)) :
     comp e (Q₁ - Q₂) = comp e Q₁ - comp e Q₂ := by

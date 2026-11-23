@@ -71,4 +71,4 @@ theorem _root_.GlobalTheory.T.kodairaSpencer_change_of_tangent_frame : ∀ (E : 
     (∀ a, IsTanAtG t (GlobalTheory.LogKS.chart U) (v a)) → (∀ c, IsTanAtG t (GlobalTheory.LogKS.chart U) (v' c)) →
     (∀ a, IsCombAtG t (GlobalTheory.LogKS.chart U) v' (B a) (v a)) → GlobalTheory.LogKS.IsKS t V U v D Θ →
     GlobalTheory.LogKS.IsKS t V U v' D (_root_.Matrix.transpose B * Θ * B) := by
-  first | exact @GlobalTheory.KSFrameChange.isKS_frame_change | exact GlobalTheory.KSFrameChange.isKS_frame_change | (intros; apply GlobalTheory.KSFrameChange.isKS_frame_change <;> assumption)
+  first | exact @GlobalTheory.KSFrameChange.isKS_frame_change

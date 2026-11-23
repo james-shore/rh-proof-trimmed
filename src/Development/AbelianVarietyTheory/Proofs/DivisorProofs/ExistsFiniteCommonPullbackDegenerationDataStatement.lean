@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_finite_common_pullback_degenerationData : ∀ (K L : Type) [Field K] [CharZero K] [Field L] (β : K →+* L) (E₁ E₂ : DegPre K) (E' : DegPre L), IsPullDeg β E₁ E' → IsPullDeg β E₂ E' → ∃ (K' : Type) (_ : Field K') (io : K →+* K') (E₃ : DegPre K'), io.Finite ∧ Nonempty (IsPullDeg io E₁ E₃) ∧ Nonempty (IsPullDeg io E₂ E₃) := by
-  first | exact @GlobalTheory.FieldDesc.exists_finite_common_pull | exact GlobalTheory.FieldDesc.exists_finite_common_pull | (intros; apply GlobalTheory.FieldDesc.exists_finite_common_pull <;> assumption)
+  first | exact @GlobalTheory.FieldDesc.exists_finite_common_pull

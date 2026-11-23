@@ -60,4 +60,4 @@ open scoped Matrix
 
 
 theorem _root_.GlobalTheory.T.unipotentLevel_moves_dualVector_upper : ∀ (I : AutInst) (g : ℕ) {r k : ℕ} (e0 f0 : Fin r → VA I) (z0 : VA I) (bw bwd : Fin k → VA I) (ew : I.E ⊗[I.F] Af I.F), Formalism.L2.SG.Pf.BunEx.Unip.FH I g e0 f0 z0 bw bwd ew → ∀ x : I.Gf, x ∈ I.Kset → K2cong I g e0 z0 bw x → ∀ j : Fin k, (I.fmat x - 1) *ᵥ bwd j ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo I g (Set.range e0 ∪ bwd '' {l | j < l}) := by
-  first | exact @GlobalTheory.SeeConjBwd.bwd_move | exact GlobalTheory.SeeConjBwd.bwd_move | (intros; apply GlobalTheory.SeeConjBwd.bwd_move <;> assumption)
+  first | exact @GlobalTheory.SeeConjBwd.bwd_move

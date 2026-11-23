@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
 theorem _root_.GlobalTheory.T.harrisTaylor_exists_deRham_pairing : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum p) (R : Type) [CommRing R] (b : GlobalTheory.UPel.HT.Base D R) (N : ℕ), 3 ≤ N → N.Coprime p → ∀ (k : Type) [Field k] [IsAlgClosed k] (t : Sp k ⟶ Sp R) (o₀ : GlobalTheory.UPel.HT.Obj b N t), ∃ φ : LinearMap.BilinForm k (HdR o₀.A), GlobalTheory.AbDual.IsCorrForm (dp0 k) (𝟙 _) o₀.A o₀.A o₀.P φ := by
-  first | exact @GlobalTheory.UPel.HT.CorrForm.exists_isCorrForm_obj | exact GlobalTheory.UPel.HT.CorrForm.exists_isCorrForm_obj | (intros; apply GlobalTheory.UPel.HT.CorrForm.exists_isCorrForm_obj <;> assumption)
+  first | exact @GlobalTheory.UPel.HT.CorrForm.exists_isCorrForm_obj

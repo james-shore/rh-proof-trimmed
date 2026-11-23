@@ -45,4 +45,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
 
 theorem _root_.GlobalTheory.T.eventually_spacesV_definite_columnChoices : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w : ColW B f T) (Z : w.Lt), ∀ j, 1 ≤ j → j ≤ (w.D Z).R.m → ((w.D Z).sp.V j).IsDefinite := by
-  first | exact @GlobalTheory.Mem.DefSpaces.v_isDefinite | exact GlobalTheory.Mem.DefSpaces.v_isDefinite | (intros; apply GlobalTheory.Mem.DefSpaces.v_isDefinite <;> assumption)
+  first | exact @GlobalTheory.Mem.DefSpaces.v_isDefinite

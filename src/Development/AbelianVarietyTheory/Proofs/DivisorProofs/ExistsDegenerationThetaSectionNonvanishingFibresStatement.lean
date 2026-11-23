@@ -58,4 +58,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.MBLow.Cl Matrix
 
 theorem _root_.GlobalTheory.T.exists_degenerationThetaSection_nonvanishingFibres : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRing R] (D : DegPre R) (F : Type) [Field F] [Algebra (FractionRing R) F] (N : NumD F) (ν : NumOf D F N), ∃ th : D.P.L.Sec, (∀ s : Sp R, ∃ x : D.P.A.left, D.P.A.hom x = s ∧ x ∈ Out.nonzeroLocus th) ∧ ∀ i : D.P.L.ι, ∀ h : LB.wchart D.P.L (fun _ : Fin 1 => 𝟙 D.P.A.left) (fun _ => i) ≤ D.P.L.U i, ν.th.f (fun _ => i) = resG _ h (th.f i) := by
-  first | exact @GlobalTheory.DegTheta.exists_sec_nonvanishing | exact GlobalTheory.DegTheta.exists_sec_nonvanishing | (intros; apply GlobalTheory.DegTheta.exists_sec_nonvanishing <;> assumption)
+  first | exact @GlobalTheory.DegTheta.exists_sec_nonvanishing

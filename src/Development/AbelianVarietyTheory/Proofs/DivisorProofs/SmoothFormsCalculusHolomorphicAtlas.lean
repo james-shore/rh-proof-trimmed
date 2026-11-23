@@ -83,7 +83,7 @@ theorem formCalculus : ∀ (M : Type) [TopologicalSpace M] (n : ℕ) (A : HolAtl
       have e : evalF A w (C r) = ((r : ℂ) • (1 : A.Fld)) := by
         funext x
         simp [evalF, fld, Algebra.algebraMap_eq_smul_one]
-        first | rfl | exact Subalgebra.coe_smul _ _ _ | (rw [SetLike.val_smul]; simp) | simp [Subalgebra.coe_algebraMap]
+        first | rfl
       have h1 := (GlobalTheory.T.isForm_one_add_mul_smul M n A).1
       have hf := ((GlobalTheory.T.isForm_one_add_mul_smul M n A).2 (r : ℂ) 1 1 h1 h1).2.2
       obtain ⟨⟨z1, z2⟩, hl⟩ := GlobalTheory.T.del_dbar_additive_complexLinear_one M n A

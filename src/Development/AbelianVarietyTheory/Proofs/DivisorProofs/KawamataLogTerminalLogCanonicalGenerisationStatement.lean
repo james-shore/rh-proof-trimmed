@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.kawamataLogTerminal_logCanonical_generisation : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (p : X ⟶ Sp ℂ) (n : ℕ), ∀ (Γ : X → ℚ) (x z : X), z ⤳ x → (KltAt p n Γ x → KltAt p n Γ z) ∧ (LcAt p n Γ x → LcAt p n Γ z) := by
-  first | exact @GlobalTheory.Discrepancy.kltAt_lcAt_generisation | exact GlobalTheory.Discrepancy.kltAt_lcAt_generisation | (intros; apply GlobalTheory.Discrepancy.kltAt_lcAt_generisation <;> assumption)
+  first | exact @GlobalTheory.Discrepancy.kltAt_lcAt_generisation

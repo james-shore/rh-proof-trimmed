@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.dualPointOverOrigin_lifts_tangentVector_uniformise
     eSec x.P.A ≫ φ = spMap ((algebraMap (FractionRing R) ℂ).comp (algebraMap R (FractionRing R))) ≫ eSec D.P.A →
     ∀ b : TE R ℂ ⟶ D.P.A, redE ℂ ≫ b.left = (DegPre.zeroF D ℂ).left →
       ∃ b' : epsR ℂ ⟶ x.P.A, IsTangent b' ∧ b'.left ≫ φ = b.left := by
-  first | exact @GlobalTheory.MBLow.Cl.tangent_lift_of_pullback | exact GlobalTheory.MBLow.Cl.tangent_lift_of_pullback | (intros; apply GlobalTheory.MBLow.Cl.tangent_lift_of_pullback <;> assumption)
+  first | exact @GlobalTheory.MBLow.Cl.tangent_lift_of_pullback

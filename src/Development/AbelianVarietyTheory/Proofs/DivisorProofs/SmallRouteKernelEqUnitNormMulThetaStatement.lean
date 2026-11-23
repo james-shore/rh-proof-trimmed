@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.small_route_kernel_eq_unit_norm_mul_theta : ∀ {D
     ∃ ξ : GA D (G.V (.grid i (j + 1))) × GA D (G.V (.grid (i + 1) j)) → ℂ, (∀ x, ‖ξ x‖ = 1) ∧
       ∀ g u, kerSmall W Θ' g g₁ u =
         ξ (g, g₁) * GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.theta om' ΦB (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU _ (-1) h.JW₁ u) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blkU _ _ e h.JWW (g, g₁)) := by
-  first | exact @GlobalTheory.SmallKernel.kerSmall_eq_theta | exact GlobalTheory.SmallKernel.kerSmall_eq_theta | (intros; apply GlobalTheory.SmallKernel.kerSmall_eq_theta <;> assumption)
+  first | exact @GlobalTheory.SmallKernel.kerSmall_eq_theta

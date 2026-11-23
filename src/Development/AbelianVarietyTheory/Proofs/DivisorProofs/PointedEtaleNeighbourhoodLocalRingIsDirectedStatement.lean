@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing GlobalTheory.Henselisation
 
 theorem _root_.GlobalTheory.T.pointedEtaleNeighbourhoodLocalRing_isDirected : ∀ (R : Type) [CommRing R] [IsLocalRing R], IsDirected (EtNbhd R) (· ≤ ·) := by
-  first | exact @GlobalTheory.Henselisation.etNbhd_isDirected | exact GlobalTheory.Henselisation.etNbhd_isDirected | (intros; apply GlobalTheory.Henselisation.etNbhd_isDirected <;> assumption)
+  first | exact @GlobalTheory.Henselisation.etNbhd_isDirected

@@ -46,4 +46,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.torsion_weierstrassP_mem_valuationSubring : ∀ (L : PeriodPair) (β u : ℂ) (V : ValuationSubring ℂ) (N : ℕ), MulStable L β → β.im ≠ 0 → V.valuation u ^ 12 = V.valuation (latticeCurve L).Δ → V.valuation (N : ℂ) = 1 → ∀ z w, z ∉ L.lattice → w ∉ L.lattice → (N : ℂ) * z ∈ L.lattice → (N : ℂ) * w ∈ L.lattice → L.derivWeierstrassP z / u ^ 3 ∈ V ∧ (L.weierstrassP z - L.weierstrassP w) / u ^ 2 ∈ V := by
-  first | exact @GlobalTheory.CMModel.TorsMemVal.main | exact GlobalTheory.CMModel.TorsMemVal.main | (intros; apply GlobalTheory.CMModel.TorsMemVal.main <;> assumption)
+  first | exact @GlobalTheory.CMModel.TorsMemVal.main

@@ -92,7 +92,7 @@ theorem centralRatio_stab_atT_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTi
     refine GlobalTheory.LineUnit.smul_mem_latV_iff D (D.sp.Y 0) _
       (by
         have hfull := GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd
-        first | exact hfull | exact hfull.toIsLattice) v _ h5 c _ hunit ?_ y hy
+        first | exact hfull) v _ h5 c _ hunit ?_ y hy
     intro b hb
     have h3b := h3 b
     have h3b' := h3' b

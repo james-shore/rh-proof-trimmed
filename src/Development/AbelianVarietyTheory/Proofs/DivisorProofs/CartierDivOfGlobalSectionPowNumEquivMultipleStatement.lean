@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.cartierDivOfGlobalSection_pow_numEquiv_multiple : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (p : X ⟶ Sp ℂ), IsProjOver p → ∀ (N : LB X) (hN : N.IsLB) (l m : ℕ) (s : (lbPow N l).Sec) (hs : genericPoint X ∈ nonzeroLocus s), 0 < m → (divOfSec (isLB_lbPow hN l) s hs).Eff ∧ QNum p N ((l : ℚ) / m) (qWeil (divOfSec (isLB_lbPow hN l) s hs) m) := by
-  first | exact @GlobalTheory.PairStep.qNum_divOfSec | exact GlobalTheory.PairStep.qNum_divOfSec | (intros; apply GlobalTheory.PairStep.qNum_divOfSec <;> assumption)
+  first | exact @GlobalTheory.PairStep.qNum_divOfSec

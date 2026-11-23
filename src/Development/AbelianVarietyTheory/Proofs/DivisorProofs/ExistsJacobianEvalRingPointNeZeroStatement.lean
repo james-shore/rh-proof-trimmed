@@ -52,4 +52,4 @@ open GlobalTheory.FlagTan (dimFlag psiSet TIx IsTanFrame)
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.exists_jacobian_evalRingPoint_ne_zero : ∀ {k : Type} [CommRing k] {Y : Scheme.{0}} {p : Y ⟶ Sp k} {D : ℕ} [SmoothOfRelativeDimension D p] (K : GlobalTheory.CanonLB p D) (i : K.bundle.ι) {F : Type} [Field F] (z : Sp F ⟶ Y) (hz : ⊤ ≤ z ⁻¹ᵁ K.bundle.U i), ∃ g : Fin D → Γ(Y, K.bundle.U i), evalPt z _ hz (K.jacobian i le_rfl g) ≠ 0 := by
-  first | exact @GlobalTheory.CanonLB.exists_jacobian_evalPt_ne_zero | exact GlobalTheory.CanonLB.exists_jacobian_evalPt_ne_zero | (intros; apply GlobalTheory.CanonLB.exists_jacobian_evalPt_ne_zero <;> assumption)
+  first | exact @GlobalTheory.CanonLB.exists_jacobian_evalPt_ne_zero

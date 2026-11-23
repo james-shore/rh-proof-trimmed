@@ -52,4 +52,4 @@ open GlobalTheory.DownLift
 open GlobalTheory.ExportSeries GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators GlobalTheory.IndefiniteRowSideFullHecke.InfinityTypes
 
 theorem _root_.GlobalTheory.T.realPoints_act_fock_scalar_linear_substitution : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → ∀ (i : Fin D.R.m) (t : T), ∀ u ∈ GinfC (Vc D i), ∃ (c : ℂ) (g : GLR D (Vc D i).rank), ∀ P : PolF D (Wc D i).rank (Vc D i).rank, R.ωP i t (u, 1) (R.ptP i t P) = c • R.ptP i t (fockSubst (pS D i) g P) := by
-  first | exact @GlobalTheory.RealFockSubst.om_ptP_subst | exact GlobalTheory.RealFockSubst.om_ptP_subst | (intros; apply GlobalTheory.RealFockSubst.om_ptP_subst <;> assumption)
+  first | exact @GlobalTheory.RealFockSubst.om_ptP_subst

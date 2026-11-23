@@ -66,4 +66,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.ringHom_finite_of_quasiFinite_complete_local : ∀ (A R : Type) [CommRing A] [IsLocalRing A] [IsNoetherianRing A] [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (b : A →+* R) [IsLocalHom b], IsAdicComplete (maximalIdeal A) A → (∀ p : Ideal R, p.IsPrime → (maximalIdeal A).map b ≤ p → p = maximalIdeal R) → ((residue R).comp b).Finite → b.Finite := by
-  first | exact @GlobalTheory.QuasiFiniteLocal.finite_of_quasiFinite | exact GlobalTheory.QuasiFiniteLocal.finite_of_quasiFinite | (intros; apply GlobalTheory.QuasiFiniteLocal.finite_of_quasiFinite <;> assumption)
+  first | exact @GlobalTheory.QuasiFiniteLocal.finite_of_quasiFinite

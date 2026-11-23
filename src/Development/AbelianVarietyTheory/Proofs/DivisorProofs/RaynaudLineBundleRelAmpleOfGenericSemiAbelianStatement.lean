@@ -54,4 +54,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.raynaud_lineBundle_relAmple_of_generic_semiAbelian : ∀ (R : Type) [CommRing R] [IsRegularLocalRing R] [IsDomain R] [CharZero R], IsAdicComplete (maximalIdeal R) R → ∀ (G : Over (Sp R)) [GrpObj G], IsSemiAbelian G → IsAbelianScheme ((Over.pullback (jK R)).obj G) → ∀ L : LB G.left, L.IsLB → RelAmple ((Over.pullback (jK R)).obj G) (L.pull (pullback.fst G.hom (jK R))) → LBIso (L.pull (GrpObj.inv : G ⟶ G).left) L → IsAmpleLB L := by
-  first | exact @GlobalTheory.AmpleGenericSemiAb.isAmpleLB_of_generic | exact GlobalTheory.AmpleGenericSemiAb.isAmpleLB_of_generic | (intros; apply GlobalTheory.AmpleGenericSemiAb.isAmpleLB_of_generic <;> assumption)
+  first | exact @GlobalTheory.AmpleGenericSemiAb.isAmpleLB_of_generic

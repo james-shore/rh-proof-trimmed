@@ -93,7 +93,6 @@ theorem G_lift (T : Thick (smFun Z q)) (w : Spec (CommRingCat.of (T.B ⧸ T.J)) 
   change Thick.mk _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ = _
   congr 1
   all_goals first
-    | exact RingHom.comp_id _
     | (funext j; exact (j : Empty).elim)
     | (apply Subtype.ext; apply Prod.ext; rfl; exact hw)
     | (have h1 : s = 1 := hs1

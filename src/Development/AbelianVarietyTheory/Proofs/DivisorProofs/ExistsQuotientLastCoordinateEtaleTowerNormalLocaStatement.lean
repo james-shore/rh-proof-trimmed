@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_quotient_lastCoordinate_etaleTowerNormalLoc
     Function.Surjective π ∧ RingHom.ker π = Ideal.span {τ (Fin.last r)} ∧ τ (Fin.last r) ≠ 0 ∧
     IsEtTower cK R cL' T' ι' ψ' (fun i => π (τ (Fin.castSucc i))) ∧ ψ'.comp π = ψ ∧ π.comp ι = ι' ∧
     ∀ a, (π ⟨cL a, hT.top.const_mem a⟩ : L') = cL' a := by
-  first | exact @GlobalTheory.FieldPair.IsEtTower.exists_quotient_last | exact GlobalTheory.FieldPair.IsEtTower.exists_quotient_last | (intros; apply GlobalTheory.FieldPair.IsEtTower.exists_quotient_last <;> assumption)
+  first | exact @GlobalTheory.FieldPair.IsEtTower.exists_quotient_last

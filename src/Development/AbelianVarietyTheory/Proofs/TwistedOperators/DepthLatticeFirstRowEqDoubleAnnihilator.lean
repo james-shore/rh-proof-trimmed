@@ -87,13 +87,13 @@ theorem latRow_bidual : All fun {D} _ _ {sc} {G} W _ => ∀ i, i < D.R.m → ∀
   have finO := (GlobalTheory.AscFinWit.finLat_latO
     (S := G.V (.grid (i + 1) 0)) (T := G.V (.grid i 0))
     (LS := G.Λ (.grid (i + 1) 0)) (LT := G.Λ (.grid i 0))
-    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdS | exact (GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdS).toIsLattice)
-    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdT | exact (GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdT).toIsLattice)).fin
+    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdS)
+    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdT)).fin
   have finB := (GlobalTheory.AscFinWit.finLat_latO
     (S := G.V (.grid (i + 1) 0)) (T := G.V (.grid i 0))
     (LS := G.Λ (.grid (i + 1) 0)) (LT := idLat (shiftId G) (G.Λ (.grid i 0)))
-    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdS | exact (GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdS).toIsLattice)
-    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdB | exact (GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdB).toIsLattice)).fin
+    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdS)
+    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ sdB)).fin
   have uO : u ∈ latO (G.V (.grid (i + 1) 0)) (G.V (.grid i 0)) (G.Λ (.grid (i + 1) 0) : Set _)
       (G.Λ (.grid i 0) : Set _) (fun _ => True) := by
     refine (GlobalTheory.SelfDualAt.latO_ann_at D W.ψ W.ψ_std _ _ _ _ sdS sdT (fun _ => True) u hu).2 fun u' hu' => ?_

@@ -153,10 +153,7 @@ theorem st_partsHyp_piece (w ψ : X → ℝ) (hw : A.Smooth w) (hψ : A.Smooth �
       ((A.chart j).target ∩ (A.chart j).symm ⁻¹' G) := by
   have h3 : (3 : WithTop ℕ∞) ≤ ∞ := by
     first
-    | exact_mod_cast (le_top : (3 : ℕ∞) ≤ ⊤)
     | exact WithTop.coe_le_coe.mpr le_top
-    | norm_num
-    | simp
   have hUo : IsOpen ((A.chart j).target ∩ (A.chart j).symm ⁻¹' G) :=
     (A.chart j).isOpen_inter_preimage_symm hGo
   have hKc : IsCompact (tsupport ψ) := (isClosed_tsupport ψ).isCompact
@@ -196,9 +193,6 @@ theorem st_nonpos_piece (hP : PartsStatement) (v θ : X → ℝ) (hv : A.Smooth 
   have h1 : (1 : WithTop ℕ∞) ≤ ∞ := by
     first
     | exact_mod_cast (le_top : (1 : ℕ∞) ≤ ⊤)
-    | exact WithTop.coe_le_coe.mpr le_top
-    | norm_num
-    | simp
   have hUo : IsOpen ((A.chart j).target ∩ (A.chart j).symm ⁻¹' G) :=
     (A.chart j).isOpen_inter_preimage_symm hGo
   have hUm := hUo.measurableSet
@@ -333,10 +327,7 @@ theorem st_byPartsNonpos_of (hP : PartsStatement) (hN : GradDensNonnegStatement)
   intro e X _ _ _ A v hv Φ hΦ hpsh
   have h2 : (2 : WithTop ℕ∞) ≤ ∞ := by
     first
-    | exact_mod_cast (le_top : (2 : ℕ∞) ≤ ⊤)
     | exact WithTop.coe_le_coe.mpr le_top
-    | norm_num
-    | simp
   obtain ⟨M, θ, G, j, x0, hθs, hθ0, hθ1, hθG, hGo, hGs, hGU⟩ := st_exists_good_partition A Φ
   have hvc := st_smooth_continuous A hv
   have hvv : A.Smooth (fun x => v x * v x) := st_smooth_mul A hv hv

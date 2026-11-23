@@ -62,4 +62,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues GlobalTheory.AdelicScalar GlobalTheory.LiftRows GlobalTheory.LowRow
 
 theorem _root_.GlobalTheory.T.integral_unitary_matrices_finite_card_le : ∀ (D : D7) (n : ℕ), {g : Matrix (Fin n) (Fin n) D.host.E | gᴴ * g = 1 ∧ ∀ a b, IsIntegral ℤ (g a b)}.Finite ∧ {g : Matrix (Fin n) (Fin n) D.host.E | gᴴ * g = 1 ∧ ∀ a b, IsIntegral ℤ (g a b)}.ncard ≤ NumberField.Units.torsionOrder D.host.E ^ n * n.factorial := by
-  first | exact @GlobalTheory.LowRow.SignedPerm.finite_and_ncard_le | exact GlobalTheory.LowRow.SignedPerm.finite_and_ncard_le | (intros; apply GlobalTheory.LowRow.SignedPerm.finite_and_ncard_le <;> assumption)
+  first | exact @GlobalTheory.LowRow.SignedPerm.finite_and_ncard_le

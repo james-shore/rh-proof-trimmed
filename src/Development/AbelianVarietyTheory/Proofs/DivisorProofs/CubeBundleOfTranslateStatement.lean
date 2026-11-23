@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.mumfordBundle_translate_iso_cubical : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : RigLB G), CubicalStr G L → ∀ (a : 𝟙_ (Over S) ⟶ G) (N : LB G.left), N.IsLB → LBIso N (L.L.pull ((toUnit G ≫ a) * 𝟙 G).left) → LBIso (abelian₂ G N) (abelian₂ G L.L) := by
-  first | exact @GlobalTheory.Mum.lam_transl_iso | exact GlobalTheory.Mum.lam_transl_iso | (intros; apply GlobalTheory.Mum.lam_transl_iso <;> assumption)
+  first | exact @GlobalTheory.Mum.lam_transl_iso

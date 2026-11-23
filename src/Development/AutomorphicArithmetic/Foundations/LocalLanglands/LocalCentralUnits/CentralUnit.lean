@@ -187,17 +187,17 @@ theorem parEx : ParEx := by
       have hred : GlobalTheory.GLp.red g n (GeneralLinearGroup.scalar (Fin n) u) =
           GeneralLinearGroup.scalar (Fin n) (Units.map (PadicInt.toZMod : ℤ_[g] →+* ZMod g).toMonoidHom u) := by
         ext p q
-        by_cases hpq : p = q <;> simp [GlobalTheory.GLp.red, GeneralLinearGroup.scalar, Matrix.diagonal_apply, hpq]
+        by_cases hpq : p = q <;> simp [GlobalTheory.GLp.red, GeneralLinearGroup.scalar, hpq]
       set z : (HeightOneSpectrum.adicCompletion E w)ˣ :=
         Units.map (i.toRingHom.comp PadicInt.Coe.ringHom).toMonoidHom u with hz
       have hinc : GeneralLinearGroup.map i.toRingHom (GlobalTheory.GLp.inc g n (GeneralLinearGroup.scalar (Fin n) u)) =
           GeneralLinearGroup.scalar (Fin n) z := by
         ext p q
-        by_cases hpq : p = q <;> simp [GlobalTheory.GLp.inc, GeneralLinearGroup.scalar, Matrix.diagonal_apply, hpq, z] <;> rfl
+        by_cases hpq : p = q <;> simp [GlobalTheory.GLp.inc, GeneralLinearGroup.scalar, hpq, z]
       rw [hred, MonoidHom.comp_apply, hinc, hNC, map_smul] at key
       rw [hω z (ψ v)] at key
       have heq := smul_left_injective ℂ hv key
-      have hzeq : a (ineIncl h t) = z := Units.ext (by rw [hu1]; simp [z] <;> rfl)
+      have hzeq : a (ineIncl h t) = z := Units.ext (by rw [hu1]; simp [z])
       have hpeq : ∏ j ∈ Finset.range n, R t ^ g ^ j = Units.map (algebraMap (ZMod g) D.K : ZMod g →* D.K)
           (Units.map (PadicInt.toZMod : ℤ_[g] →+* ZMod g).toMonoidHom u) := Units.ext (by simp [hu2])
       rw [hzeq, hpeq]

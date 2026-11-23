@@ -99,10 +99,8 @@ theorem halfCoset_reps_card : ∀ {D : D7} (S T : HSp D) (ΛS : Submodule (𝓞 
       ← Finset.prod_attach P]
     refine Finset.prod_congr rfl fun Q _ => ?_
     exact GlobalTheory.T.relIndex_nsmul_idempotentHalf_at_splitPlace S T ΛS ΛT
-      (by first | exact GlobalTheory.FinPl.PlacesAdeles.selfDual_isFull S ΛS hS
-                | exact (GlobalTheory.FinPl.PlacesAdeles.selfDual_isFull S ΛS hS).toIsLattice)
-      (by first | exact GlobalTheory.FinPl.PlacesAdeles.selfDual_isFull T ΛT hT
-                | exact (GlobalTheory.FinPl.PlacesAdeles.selfDual_isFull T ΛT hT).toIsLattice) _ (v Q) (π Q)
+      (by first | exact GlobalTheory.FinPl.PlacesAdeles.selfDual_isFull S ΛS hS)
+      (by first | exact GlobalTheory.FinPl.PlacesAdeles.selfDual_isFull T ΛT hT) _ (v Q) (π Q)
       (GlobalTheory.PlaceModelSum.isSplitIdem_cA (hes Q Q.2).1) (hπ Q) k hk
   have hdvd : (AddSubgroup.map (nsmulAddMonoidHom k) (Λ ⊓ GlobalTheory.PlaceModel.half S T c)).relIndex
       (Λ ⊓ GlobalTheory.PlaceModel.half S T c) ∣ k ^ (D.R.f * S.rank * T.rank) := by

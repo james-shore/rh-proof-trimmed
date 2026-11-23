@@ -419,11 +419,7 @@ section Local
 
 theorem eq_one_of_pow_near {u : ℂ} (hu : ∀ n : ℕ, ‖u ^ n - 1‖ < 1 / 2) : u = 1 := by
   first
-  | exact @_root_.GlobalTheory.EqOneOfPowerClose.eq_one_of_pow_close
-  | exact _root_.GlobalTheory.EqOneOfPowerClose.eq_one_of_pow_close
   | (apply _root_.GlobalTheory.EqOneOfPowerClose.eq_one_of_pow_close <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EqOneOfPowerClose.eq_one_of_pow_close <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EqOneOfPowerClose.eq_one_of_pow_close <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.EqOneOfPowerClose.eq_one_of_pow_close ..)
 
 theorem finite_quot {W : Type} [AddCommGroup W] [TopologicalSpace W] [IsTopologicalAddGroup W] (A U : AddSubgroup W)

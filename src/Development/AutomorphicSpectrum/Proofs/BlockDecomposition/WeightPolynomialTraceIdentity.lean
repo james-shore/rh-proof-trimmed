@@ -107,8 +107,7 @@ theorem evL_frL (z : Fin n → ℂˣ) (f : LP n) : evL z (frL n f) = evL (fun a 
     refine AddMonoidAlgebra.algHom_ext (fun μ => ?_) (Subsingleton.elim _ _)
     simp only [AlgHom.comp_apply, frL, AddMonoidAlgebra.mapDomainAlgHom_apply, AddMonoidAlgebra.mapDomain_single]
     rw [evL_single, evL_single]
-    simp only [one_mul, AddMonoidHom.smul_apply, AddMonoidHom.id_apply, Pi.smul_apply, smul_eq_mul,
-      Units.val_pow_eq_pow_val]
+    simp only [one_mul, AddMonoidHom.smul_apply, AddMonoidHom.id_apply, Pi.smul_apply, Units.val_pow_eq_pow_val]
     refine Finset.prod_congr rfl fun a _ => ?_
     rw [← zpow_natCast, ← _root_.zpow_mul]; push_cast; ring_nf
   exact congrArg (fun φ : LP n →ₐ[ℂ] ℂ => φ f) this

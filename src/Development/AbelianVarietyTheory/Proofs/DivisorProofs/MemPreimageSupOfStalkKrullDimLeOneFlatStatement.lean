@@ -57,4 +57,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.mem_preimage_sup_of_stalk_krullDim_le_one_flat : ∀ (X S : Scheme.{0}) [IsIntegral S] (f : X ⟶ S) [Flat f] [GeometricallyIntegral f] (V : X.Opens) (U : S.Opens), (∀ s : S, ∃ x ∈ V, f x = s) → (U : Set S).Nonempty → (∀ z : X, ringKrullDim ((X).presheaf.stalk z) ≤ 1 → z ∈ f ⁻¹ᵁ U ⊔ V) := by
-  first | exact @GlobalTheory.CodimOne.mem_preimage_sup_of_ringKrullDim_stalk_le_one | exact GlobalTheory.CodimOne.mem_preimage_sup_of_ringKrullDim_stalk_le_one | (intros; apply GlobalTheory.CodimOne.mem_preimage_sup_of_ringKrullDim_stalk_le_one <;> assumption)
+  first | exact @GlobalTheory.CodimOne.mem_preimage_sup_of_ringKrullDim_stalk_le_one

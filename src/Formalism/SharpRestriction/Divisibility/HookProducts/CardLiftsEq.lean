@@ -188,7 +188,6 @@ theorem logX_le (hN : SizeN L) (hK : SizeK L) :
   have hXeq : L.sc.X'' D.R.n = L.sc.x * D.R.n * L.sc.X' := by
     simp only [Scale.X'', Scale.w'', Scale.b']
     field_simp [ha.ne', hX'0.ne', hx0.ne', hnpos.ne']
-    try ring
   have hbound : L.sc.X'' D.R.n + 1 ≤ (L.sc.x + 1) * ((D.R.n : ℝ) + 1) * L.sc.X' := by
     rw [hXeq]
     nlinarith [mul_nonneg (add_nonneg (add_nonneg hx0.le hnpos.le) zero_le_one) (sub_nonneg.mpr hX'1)]

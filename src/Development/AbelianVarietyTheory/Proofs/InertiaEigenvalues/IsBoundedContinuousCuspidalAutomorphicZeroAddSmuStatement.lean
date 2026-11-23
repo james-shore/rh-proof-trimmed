@@ -46,4 +46,4 @@ open NumberField MeasureTheory Matrix GlobalTheory.CuspRep GlobalTheory.JSW
 
 theorem _root_.GlobalTheory.T.isBoundedContinuousCuspidalAutomorphic_zero_add_smul : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ), IsBCC (0 : GA E a → ℂ) ∧
     ∀ (c : ℂ) (F G : GA E a → ℂ), IsBCC F → IsBCC G → IsBCC (c • F + G) := by
-  first | exact @GlobalTheory.JSW.isBCC_zero_and_add | exact GlobalTheory.JSW.isBCC_zero_and_add | (intros; apply GlobalTheory.JSW.isBCC_zero_and_add <;> assumption)
+  first | exact @GlobalTheory.JSW.isBCC_zero_and_add

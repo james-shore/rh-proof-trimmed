@@ -53,4 +53,4 @@ open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.smoothOfRelativeDimension_descent_etaleCover : ∀ (K : Type) [CommRing K] [IsNoetherianRing K] (X Y : Scheme.{0}) (π : X ⟶ Y) (s : Y ⟶ Sp K) (d : ℕ), Etale π → Surjective π → LocallyOfFiniteType s → SmoothOfRelativeDimension d (π ≫ s) → SmoothOfRelativeDimension d s := by
-  first | exact @GlobalTheory.SmoothDescent.smoothOfRelativeDimension_of_etale_cover_noetherian | exact GlobalTheory.SmoothDescent.smoothOfRelativeDimension_of_etale_cover_noetherian | (intros; apply GlobalTheory.SmoothDescent.smoothOfRelativeDimension_of_etale_cover_noetherian <;> assumption)
+  first | exact @GlobalTheory.SmoothDescent.smoothOfRelativeDimension_of_etale_cover_noetherian

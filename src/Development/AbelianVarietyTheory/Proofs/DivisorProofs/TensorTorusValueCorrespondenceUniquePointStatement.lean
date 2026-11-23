@@ -48,4 +48,4 @@ open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 theorem _root_.GlobalTheory.T.tensorTorusValueCorrespondence_unique_point : ∀ (F : Type) [Field F] (N N' : NumD F) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ) (φ : N'.A → Fin r → N.A) (e : N'.X → Fin r → N.X) (wv : N'.A → F), TensFacts W φ e wv → ∀ (v' u' : N'.Gt) (vs : Fin r → N.Gt), GtRelV W φ e wv v' vs → GtRelV W φ e wv u' vs → v' = u' := by
-  first | exact @GlobalTheory.Mum.TensTor.gtRelV_unique | exact GlobalTheory.Mum.TensTor.gtRelV_unique | (intros; apply GlobalTheory.Mum.TensTor.gtRelV_unique <;> assumption)
+  first | exact @GlobalTheory.Mum.TensTor.gtRelV_unique

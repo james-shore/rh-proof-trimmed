@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.localFlatMapContraction_support_finitelyManyCells 
     ∃ T : Finset (GL (n₂ ⊕ Fin c) k), ∀ y : GL (n₂ ⊕ Fin c) k,
       GlobalTheory.LocFlat.contr ψ ν (GlobalTheory.LocFlat.flCol ψ ν (ρ + 1) (om μ a x Φ₁.1)) (GlobalTheory.LocFlat.flRow ψ ν ρ (om μ' x y Φ₂.1)) ≠ 0 →
       ∃ r ∈ R k n₂ c ρ, ∃ t ∈ T, ∃ j ∈ J, y = r * t * j := by
-  first | exact @GlobalTheory.LocFlat.contr_support_finite_cells | exact GlobalTheory.LocFlat.contr_support_finite_cells | (intros; apply GlobalTheory.LocFlat.contr_support_finite_cells <;> assumption)
+  first | exact @GlobalTheory.LocFlat.contr_support_finite_cells

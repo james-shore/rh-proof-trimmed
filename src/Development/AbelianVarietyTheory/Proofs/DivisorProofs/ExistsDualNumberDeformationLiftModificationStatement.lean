@@ -46,4 +46,4 @@ open GlobalTheory.AllWt (exOf)
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.exists_dualNumber_deformation_lift_modification : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {Y : Model Xo c (RingHom.id c.F)} {X : GlobalTheory.FlagMod.FlagCover Y} {Z : Comp Xo c} (M : Modif (str₀ X Z) (U₀ X Z) (GlobalTheory.FlagTan.dimFlag Dw)) {K : Type} [Field K] [Algebra c.F K] (z : Sp K ⟶ M.X) (ho : ⊤ ≤ z ⁻¹ᵁ M.off) {Q : FrPt Xo c K} (hz : z ≫ toFlag M = X.ptY Q) (zw : Sp (DualNumber K) ⟶ M.X) (hw : spMap (TrivSqZeroExt.fstHom K K K).toRingHom ≫ zw = z), ∃ w : FrPt Xo c (DualNumber K), IsDef Q w ∧ zw ≫ toFlag M = X.ptY w := by
-  first | exact @GlobalTheory.CompHS.exists_isDef_lift_dualNumber | exact GlobalTheory.CompHS.exists_isDef_lift_dualNumber | (intros; apply GlobalTheory.CompHS.exists_isDef_lift_dualNumber <;> assumption)
+  first | exact @GlobalTheory.CompHS.exists_isDef_lift_dualNumber

@@ -61,7 +61,6 @@ theorem extNu_anti {n : ℕ} {ν : Fin n → ℕ} (hν : Antitone ν) {i j : ℕ
     rw [dite_eq_left hj, dite_eq_left hi]
     first
     | exact hν (Fin.mk_le_mk.2 hij)
-    | exact hν (show (⟨i, hi⟩ : Fin n) ≤ ⟨j, hj⟩ from hij)
   · rw [dite_eq_right hj]
     exact Nat.zero_le _
 
@@ -111,7 +110,6 @@ theorem highestWeightVectorRowWeight : HWRowWeight := by
       have hs : hwrowExtNu ν s.val = ν s := by
         first
         | simp [hwrowExtNu, s.isLt]
-        | (unfold hwrowExtNu; rw [dite_eq_left s.isLt])
       have hs' : nuNext ν s = hwrowExtNu ν (s.val + 1) := rfl
       rw [hs', ← hs]
       by_cases h : a.val ≤ s.val
@@ -124,7 +122,6 @@ theorem highestWeightVectorRowWeight : HWRowWeight := by
         if a.val < n then hwrowExtNu ν a.val - hwrowExtNu ν n else 0 := by
       first
       | rw [Finset.sum_apply]
-      | simp only [Finset.sum_apply]
       refine Eq.trans ?_ ((Fin.sum_univ_eq_sum_range
         (fun i : ℕ => if a.val ≤ i then hwrowExtNu ν i - hwrowExtNu ν (i + 1) else 0) n).trans
         (sum_range_tsub_from (hwrowExtNu ν) hg a.val n))
@@ -136,9 +133,8 @@ theorem highestWeightVectorRowWeight : HWRowWeight := by
     · have h0 : hwrowExtNu ν n = 0 := by
         first
         | simp [hwrowExtNu]
-        | (unfold hwrowExtNu; rw [dite_eq_right (lt_irrefl n)])
       rw [if_pos ha, h0, Nat.sub_zero]
-      all_goals first | rfl | simp [rowNu, hwrowExtNu, ha]
+      all_goals first | rfl
     · rw [if_neg ha]
       simp [rowNu, ha]
   rw [key]

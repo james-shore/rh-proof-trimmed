@@ -55,4 +55,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.coordinate_divides_on_nonzeroLocus_section : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] (M : ZH.RatModel o Ω) (δ : LB M.Z) {I : Type} (t : I → δ.Sec) (th : I → Ω), δ.IsLB → ZM.SecCoord δ t M.pt th → ∀ (a : I) (z : M.Z), z ∈ nonzeroLocus (t a) → M.Div th a z := by
-  first | exact @GlobalTheory.ThetaDiv.div_of_mem_nonzeroLocus | exact GlobalTheory.ThetaDiv.div_of_mem_nonzeroLocus | (intros; apply GlobalTheory.ThetaDiv.div_of_mem_nonzeroLocus <;> assumption)
+  first | exact @GlobalTheory.ThetaDiv.div_of_mem_nonzeroLocus

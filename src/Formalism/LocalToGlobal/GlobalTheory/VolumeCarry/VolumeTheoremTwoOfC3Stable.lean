@@ -58,7 +58,7 @@ theorem hE_repr (D : D7) (W : HSpace D.host.E) (x y : W.V) :
   conv_rhs => rw [← W.frame.sum_repr x, ← W.frame.sum_repr y]
 
   simp only [hE, Formalism.UG.hform, HSpace.gram, map_sum, LinearMap.map_smulₛₗ₂, LinearMap.sum_apply,
-  map_smul, smul_eq_mul, sig_apply, starRingEnd_apply, Finset.mul_sum, Finset.sum_mul]
+  map_smul, smul_eq_mul, sig_apply, starRingEnd_apply, Finset.mul_sum]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   ring

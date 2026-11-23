@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.exists_algebraicVector_thetaTransform_heisenbergDe
         ∀ g₁ : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.SInf D.host.F (Fin S.rank × Fin d),
           GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ActsD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI D.host.F) (M.heisLine Bs.ψ u) g g₁ →
         ∃ f₁ ∈ algF ψ θ ε A B, IsDatum M ψ cS (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure g₁ φ) f₁ := by
-  first | exact @GlobalTheory.SquareAgree.SchDeriv.exists_mem_algF_deriv | exact GlobalTheory.SquareAgree.SchDeriv.exists_mem_algF_deriv | (intros; apply GlobalTheory.SquareAgree.SchDeriv.exists_mem_algF_deriv <;> assumption)
+  first | exact @GlobalTheory.SquareAgree.SchDeriv.exists_mem_algF_deriv

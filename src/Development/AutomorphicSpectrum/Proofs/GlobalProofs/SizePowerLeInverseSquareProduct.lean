@@ -62,7 +62,6 @@ theorem sizeE_zpow_le_prod_inv_sq (r n B N : ℕ) (cs : List (Fin r)) (m : Fin r
   have hcount : ∀ l : List (Fin r), ∑ i, l.count i = l.length := by
     intro l
     first
-      | simpa using Multiset.sum_count_eq_card (l : Multiset (Fin r))
       | (induction l with
           | nil => simp
           | cons a t ih => simp [List.count_cons, Finset.sum_add_distrib, ih])

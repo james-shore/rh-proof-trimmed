@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.localFormsTensorSection_genericFibre_transitionGer
     (t t' : (KeyVals.bL L (KeyVals.genPt S)).L.Sec), KeyVals.IsLocSec σ i (KeyVals.genPt S) t →
     KeyVals.IsLocSec σ i' (KeyVals.genPt S) t' → ∀ j, t.f j =
       constFn (KeyVals.bG G (KeyVals.genPt S)).hom _ (S.presheaf.germ _ (genericPoint S) h2 (δ.g i i' : Γ(S, δ.U i ⊓ δ.U i'))) * t'.f j := by
-  first | exact @GlobalTheory.KeySecRel.locSec_eq_germ_mul | exact GlobalTheory.KeySecRel.locSec_eq_germ_mul | (intros; apply GlobalTheory.KeySecRel.locSec_eq_germ_mul <;> assumption)
+  first | exact @GlobalTheory.KeySecRel.locSec_eq_germ_mul

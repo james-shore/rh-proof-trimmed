@@ -126,7 +126,7 @@ theorem cab_core (hP : Ext.PackingCount) (hGT : Ext.GaussianTailBound) (hA : Pro
       rw [hsum]
       exact Submodule.sum_mem _ fun k _ => Submodule.smul_mem _ _ (Col.ob (IR I) k).2
     have hnorm : ‖Col.wmap (IR I) x‖ = ‖x - Col.p1 (IR I) x‖ := by
-      first | rw [Col.norm_wmap (Col.hK_of hI)] | rw [Col.norm_wmap]
+      first | rw [Col.norm_wmap (Col.hK_of hI)]
       rw [Col.p2]
     have hxI : x ∉ I := by
       intro hxI
@@ -140,7 +140,7 @@ theorem cab_core (hP : Ext.PackingCount) (hGT : Ext.GaussianTailBound) (hA : Pro
             ((inner ℝ ((Col.ob (IR I)) k) (⟨x, hxK⟩ : IR I) : ℝ) : ℂ) := by
           apply Complex.ext
           · simp only [Complex.ofReal_re, Submodule.coe_inner]
-            simp [Col.z, Col.e, Hf, real_inner_eq_re_inner, PiLp.inner_apply, mul_comm]
+            simp [Col.z, Col.e, Hf, real_inner_eq_re_inner, PiLp.inner_apply]
           · simpa using hz k
         rw [hzk, RCLike.real_smul_eq_coe_smul (K := ℂ)]
         all_goals rfl

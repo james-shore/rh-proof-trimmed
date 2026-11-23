@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.holAtlas_pullback_eq_chart_expression : ∀ (M M' 
     (f : M' → M) (α : A.Fld), A.IsHolo A' f → A.IsForm α →
     ∀ (x : A'.Pt) (i : A.ι) (h : f x.pt ∈ (A.e i).source),
       A.pullback A' f α x = pull (fderiv ℂ (A.e i ∘ f ∘ x.ch.symm) x.crd) (α ⟨(i, f x.pt), h⟩) := by
-  first | exact @GlobalTheory.CxForm.pullback_eq_chart | exact GlobalTheory.CxForm.pullback_eq_chart | (intros; apply GlobalTheory.CxForm.pullback_eq_chart <;> assumption)
+  first | exact @GlobalTheory.CxForm.pullback_eq_chart

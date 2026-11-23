@@ -56,4 +56,4 @@ open scoped Pointwise
 theorem _root_.GlobalTheory.T.squareNuChar_conductorExponents_pos_prod_modulus : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} (G : GridData L sc) {μ₀ : T}, L.Is μ₀ →
     ∀ (t : T) (i j : Fin D.R.m) (c : Formalism.L2.DIV.Pl D.host.E → ℕ), (∀ w ∈ locPl G t, GlobalTheory.CMVal.ExpAt (nuH G t i j) w (c w)) →
     (∀ w ∈ locPl G t, 1 ≤ c w) ∧ modul (locPl G t) c = GlobalTheory.SqTop.modT G t := by
-  first | exact @GlobalTheory.SqTop.CondExpo.expo_modul | exact GlobalTheory.SqTop.CondExpo.expo_modul | (intros; apply GlobalTheory.SqTop.CondExpo.expo_modul <;> assumption)
+  first | exact @GlobalTheory.SqTop.CondExpo.expo_modul

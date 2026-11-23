@@ -354,7 +354,6 @@ lemma le_exp_mul_of_near_bound (N D A δ c : ℝ) (hNA : N ≤ A) (hD : A - δ �
     have e : (1 + 2 * δ / A) * (A - δ) = A + δ - 2 * δ ^ 2 / A := by
       first
       | (field_simp; ring)
-      | field_simp
     rw [e]
     have : 2 * δ ^ 2 / A ≤ δ := by
       rw [div_le_iff₀ hA]

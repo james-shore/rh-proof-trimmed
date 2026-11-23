@@ -115,7 +115,7 @@ theorem szRow_nodeGap_blockLength : SzRow (fun C D L => (4 * ((TOv L.sc : ℕ) :
     rw [← cast]
     exact hZ.trans (Real.rpow_le_rpow_of_exponent_le hx1' (by norm_num))
   have hPe : zBase L ^ C.T.eP = zBase L ^ (12 : ℕ) := by
-    rw [heP]; first | rfl | exact_mod_cast Real.rpow_natCast _ 12
+    rw [heP]; first | exact_mod_cast Real.rpow_natCast _ 12
   refine nodeGap_blockLength_poly x _ _ _ _ _ _ _ _ _ _ hx6 (Nat.cast_nonneg _) ?_ ?_ ?_ ?_ (Nat.cast_nonneg _) ?_
     (Nat.cast_nonneg _) ?_ hm1' hm (Nat.cast_nonneg _) ?_ (Nat.cast_nonneg _) ?_ hxC ?_
   · have h1 : x ^ (377 : ℝ) = x ^ 377 := by exact_mod_cast cast 377

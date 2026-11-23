@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_hermitian_lattice_local_bases : ∀ {D : D7
       Spc.IsHerm D.sp.cm.sig B
         (Spc.mk ((1 : D.host.E) • (spW G i j).gram) Λ (fun w => W.cart (.grid ((i : ℕ) + 1) ((j : ℕ) + 1)) (τf w)) bas)
         ((spW G i j).rank - (D.R.m - j - 1) / 2) ((D.R.m - j - 1) / 2) := by
-  first | exact @GlobalTheory.FunObj.isHerm_spaceW | exact GlobalTheory.FunObj.isHerm_spaceW | (intros; apply GlobalTheory.FunObj.isHerm_spaceW <;> assumption)
+  first | exact @GlobalTheory.FunObj.isHerm_spaceW

@@ -50,4 +50,4 @@ open MvPolynomial Formalism.GradedWeylDivisibility GlobalTheory.HighWtEmb
 
 
 theorem _root_.GlobalTheory.T.mem_smul_top_of_dualWeylTensorReduction_eq_zero : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] (N : ℕ) (ι : Type) [Fintype ι] [DecidableEq ι] (mu : ι → ℕ → ℕ) (ϖ : O), Irreducible ϖ → (∀ τ, Antitone (res N (mu τ))) → GlobalTheory.HighWt.BaseChange → ∀ y : NablaT O N mu, redT O N mu ϖ y = 0 → y ∈ (Ideal.span {ϖ} • ⊤ : Submodule O (NablaT O N mu)) := by
-  first | exact @GlobalTheory.HighWtEmb.mem_smul_top_of_redT_eq_zero | exact GlobalTheory.HighWtEmb.mem_smul_top_of_redT_eq_zero | (intros; apply GlobalTheory.HighWtEmb.mem_smul_top_of_redT_eq_zero <;> assumption)
+  first | exact @GlobalTheory.HighWtEmb.mem_smul_top_of_redT_eq_zero

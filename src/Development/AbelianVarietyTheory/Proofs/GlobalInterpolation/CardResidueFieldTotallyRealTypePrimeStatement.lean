@@ -46,4 +46,4 @@ open Formalism.BasicNotions Formalism.L2.Forms NumberField IsDedekindDomain Matr
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.card_residue_field_totally_real_type_prime : ∀ (D : D7) (i : Fin 2) (v : HeightOneSpectrum (𝓞 D.host.F)), (D.host.g i : 𝓞 D.host.F) ∈ v.asIdeal → Nat.card (kv D.host.F v) = D.host.g i := by
-  first | exact @GlobalTheory.SplitResidueCard.card_kv | exact GlobalTheory.SplitResidueCard.card_kv | (intros; apply GlobalTheory.SplitResidueCard.card_kv <;> assumption)
+  first | exact @GlobalTheory.SplitResidueCard.card_kv

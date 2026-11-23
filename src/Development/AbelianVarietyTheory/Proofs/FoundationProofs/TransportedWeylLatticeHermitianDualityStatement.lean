@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain MvPolynomial Formalism.BasicNotions Formalism.
 open scoped Matrix ComplexOrder
 
 theorem _root_.GlobalTheory.T.transported_weylLattice_hermitianDuality : NabDelDual := by
-  first | exact @GlobalTheory.TransDual.nabDelDual | exact GlobalTheory.TransDual.nabDelDual | (intros; apply GlobalTheory.TransDual.nabDelDual <;> assumption)
+  first | exact @GlobalTheory.TransDual.nabDelDual

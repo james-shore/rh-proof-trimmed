@@ -47,4 +47,4 @@ open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
 open scoped MatrixGroups ModularForm Manifold
 
 theorem _root_.GlobalTheory.T.diamondOperatorOfMatrix_cuspForm_gamma1InterGamma0 : ∀ (N l : ℕ) (k d : ℤ) (σ : SL(2, ℤ)), 0 < N → GlobalTheory.Hk.IsDia N l d σ → ∀ f : CuspForm (GlobalTheory.Hk.lev N l) k, ∃ g : CuspForm (GlobalTheory.Hk.lev N l) k, ⇑g = GlobalTheory.Hk.dia k σ ⇑f := by
-  first | exact @GlobalTheory.Hk.dia_cuspForm | exact GlobalTheory.Hk.dia_cuspForm | (intros; apply GlobalTheory.Hk.dia_cuspForm <;> assumption)
+  first | exact @GlobalTheory.Hk.dia_cuspForm

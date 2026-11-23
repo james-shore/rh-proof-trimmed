@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.valued_one_sub_le_of_moves_idealCompletion : ∀ {
   (∀ (s : FiniteAdeleRing (𝓞 E) E) (i j : Fin a), InHat I s → (∀ k, InHat I (s * H i k)) →
     InHat 1 (algebraMap E (FiniteAdeleRing (𝓞 E) E) n * (s * (1 - H) i j))) →
   ∀ i j, Valued.v ((1 - H) i j w) ≤ WithZero.exp (-c) := by
-  first | exact @GlobalTheory.CosetOrth.valued_one_sub_le_of_moves_integral | exact GlobalTheory.CosetOrth.valued_one_sub_le_of_moves_integral | (intros; apply GlobalTheory.CosetOrth.valued_one_sub_le_of_moves_integral <;> assumption)
+  first | exact @GlobalTheory.CosetOrth.valued_one_sub_le_of_moves_integral

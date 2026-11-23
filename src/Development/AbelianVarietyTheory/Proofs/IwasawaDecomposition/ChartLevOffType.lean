@@ -127,7 +127,6 @@ theorem GlobalTheory.Mem.Col2.TC.chartLev_stab_vec : ∀ {B : Base} {X : PreX B.
         first
           | (convert this using 2; exact (rll_put_self _ v x).symm)
           | exact (congrArg (· ∈ F.levJ.Uloc v) (rll_put_self ((I.rec7 l Z).R.N (B.R.m - 1)) v x)).mp this
-          | exact (rll_put_self ((I.rec7 l Z).R.N (B.R.m - 1)) v x) ▸ this
       exact ⟨hxJ, (hw v hv x hxJ).1 hx⟩
     · rintro ⟨hxJ, hs⟩
       exact (hw v hv x hxJ).2 hs

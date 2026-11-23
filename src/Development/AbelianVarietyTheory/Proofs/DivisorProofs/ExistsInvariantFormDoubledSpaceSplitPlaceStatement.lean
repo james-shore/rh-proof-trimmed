@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_invariant_form_doubled_space_split_place : 
               ℓ (Formalism.IndefR.DatumF.heisOF σ JS (GlobalTheory.WeilSchrodinger.DblTargetF.dblG JT) ξ₀ B.ψ u f) = ℓ f) ∧
           ∃ f₁ f₂ : Formalism.IndefR.DatumF.WOF F E nS nT → ℂ, Formalism.IndefR.DatumF.IsThetaFunOF σ JS JT ξ₀ B.ψ f₁ ∧
             Formalism.IndefR.DatumF.IsThetaFunOF σ JS JT ξ₀ B.ψ f₂ ∧ ℓ (GlobalTheory.DblTargetDelta.deltaT f₁ f₂) ≠ 0 := by
-  first | exact @GlobalTheory.DblSplitForm.exists_invForm_dbl | exact GlobalTheory.DblSplitForm.exists_invForm_dbl | (intros; apply GlobalTheory.DblSplitForm.exists_invForm_dbl <;> assumption)
+  first | exact @GlobalTheory.DblSplitForm.exists_invForm_dbl

@@ -49,4 +49,4 @@ open Formalism.IndefR.RecTie Formalism.IndefR.Lev Formalism.L2.Rows GlobalTheory
 
 theorem _root_.GlobalTheory.T.typePrimes_disjoint_twistChosenPrimes : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B px) (U : Set I.ι) (L : Formalism.IndefR.Links.LevCh X.toD7 (TupU I U)),
     I.Ok → ValsIn I → LevOf X I U L → ∀ t : TupU I U, Disjoint (X.B.primes px).vGs (Formalism.L2.Col.QE I.sel t.1) := by
-  first | exact @GlobalTheory.Mem.LevDisj.places_disjoint | exact GlobalTheory.Mem.LevDisj.places_disjoint | (intros; apply GlobalTheory.Mem.LevDisj.places_disjoint <;> assumption)
+  first | exact @GlobalTheory.Mem.LevDisj.places_disjoint

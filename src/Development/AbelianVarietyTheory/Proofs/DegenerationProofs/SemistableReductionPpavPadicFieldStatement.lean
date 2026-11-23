@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.semistableReduction_ppav_padicField : GlobalTheory.Published.SemistableReductionSt := by
-  first | exact @GlobalTheory.SS.semistableReductionSt | exact GlobalTheory.SS.semistableReductionSt | (intros; apply GlobalTheory.SS.semistableReductionSt <;> assumption)
+  first | exact @GlobalTheory.SS.semistableReductionSt

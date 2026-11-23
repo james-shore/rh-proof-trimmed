@@ -46,4 +46,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.isProper_uniformisedSemiAbelian_over_open_in_abLocus : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D : DegData R (maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G], IsSemiAbelian G → Unif (maximalIdeal R) D A G → ∀ W : (Sp R).Opens, (W : Set (Sp R)) ⊆ abLocus G → IsProper (G.hom ∣_ W) := by
-  first | exact @GlobalTheory.UnifProperOpen.isProper_restrict | exact GlobalTheory.UnifProperOpen.isProper_restrict | (intros; apply GlobalTheory.UnifProperOpen.isProper_restrict <;> assumption)
+  first | exact @GlobalTheory.UnifProperOpen.isProper_restrict

@@ -83,11 +83,7 @@ theorem exists_trait (R R₂ W : Type) [CommRing R] [IsDomain R] [IsLocalRing R]
       IsLocalHom φ₂ ∧ φ₂.comp ρ = σ.comp φ ∧ (∀ w, j₂ (algebraMap W₂ _ (σ w)) = j (algebraMap W _ w)) ∧
       ∀ r, j₂ (algebraMap W₂ _ (φ₂ r)) = m r := by
   first
-  | exact @_root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension
-  | exact _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension
   | (apply _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FiniteCompletionLocalHom.exists_extension ..)
 
 end GlobalTheory.FieldTraitExt

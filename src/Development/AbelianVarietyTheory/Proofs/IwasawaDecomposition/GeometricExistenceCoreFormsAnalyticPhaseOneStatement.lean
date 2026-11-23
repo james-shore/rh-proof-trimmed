@@ -44,4 +44,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.geometricExistence_core_forms_analytic_phaseOne : GlobalTheory.Published.CuspRapidDecay → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I0 T0 : Type) (A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T0 D.R.m) (C : CoreJ D) [Algebra C.Q.c.F D.what₂.LL] (F : Face D A3.A), VolTieG D → LawsJ C → LawsCore C.toCore → AlgTie C → Finite T0 → (∀ i, VStd D i) → 8 * D.R.f * D.R.r + 4 ≤ D.R.nV → GlobalTheory.Mem.R3.GeoExV A3 C F := by
-  first | exact @GlobalTheory.Mem.R3.GeoExProof.geoExV_of_top | exact GlobalTheory.Mem.R3.GeoExProof.geoExV_of_top | (intros; apply GlobalTheory.Mem.R3.GeoExProof.geoExV_of_top <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.GeoExProof.geoExV_of_top

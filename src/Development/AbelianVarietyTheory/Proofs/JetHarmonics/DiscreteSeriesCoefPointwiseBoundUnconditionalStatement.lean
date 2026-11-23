@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open BpJoin
 
 theorem _root_.GlobalTheory.T.discreteSeriesCoef_pointwiseBound_unconditional : ThmBpDS := by
-  first | exact @GlobalTheory.discreteSeriesCoef_pointwiseBound | exact GlobalTheory.discreteSeriesCoef_pointwiseBound | (intros; apply GlobalTheory.discreteSeriesCoef_pointwiseBound <;> assumption)
+  first | exact @GlobalTheory.discreteSeriesCoef_pointwiseBound

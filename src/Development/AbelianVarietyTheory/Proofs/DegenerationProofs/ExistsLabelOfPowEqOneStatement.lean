@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G.Out
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_label_of_pow_eq_one' : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (p : ℕ) [Fact p.Prime] (y₀ : S.R →+* PadicAlgCl p) (u : ρ.UTest p y₀) (m : ℕ), m ∣ S.r * S.N → ∀ h : baseOver (Sp u.V) ⟶ u.G, h ^ m = 1 → ∃ b : S.Gam, m • b = 0 ∧ GlobalTheory.UnitTheta.Extends u b h := by
-  first | exact @GlobalTheory.UnitTheta.exists_label_of_pow_eq_one | exact GlobalTheory.UnitTheta.exists_label_of_pow_eq_one | (intros; apply GlobalTheory.UnitTheta.exists_label_of_pow_eq_one <;> assumption)
+  first | exact @GlobalTheory.UnitTheta.exists_label_of_pow_eq_one

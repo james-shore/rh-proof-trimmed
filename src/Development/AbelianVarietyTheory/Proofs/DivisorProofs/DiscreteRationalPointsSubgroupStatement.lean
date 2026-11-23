@@ -47,4 +47,4 @@ open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNo
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK GlobalTheory.UnipMass
 
 theorem _root_.GlobalTheory.T.discrete_rational_points_subgroup : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (n : ℕ) (J : Matrix (Fin n) (Fin n) E) (N : Subgroup (UA σ J)), DiscreteTopology ((ratU σ J).subgroupOf N) := by
-  first | exact @GlobalTheory.RatUDiscreteSub.discreteTopology_subgroupOf | exact GlobalTheory.RatUDiscreteSub.discreteTopology_subgroupOf | (intros; apply GlobalTheory.RatUDiscreteSub.discreteTopology_subgroupOf <;> assumption)
+  first | exact @GlobalTheory.RatUDiscreteSub.discreteTopology_subgroupOf

@@ -143,7 +143,7 @@ theorem twOrb_level_eq_stSum : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       have h2 : mulMat e b u = (LinearMap.toMatrix b b (LinearMap.mulLeft K.E u)).map (e : K.E →+* w.adicCompletion E) := rfl
       rw [h2, h1, LinearMap.charpoly_toMatrix, hP, Polynomial.map_map]
       ext n
-      simp [Polynomial.coeff_map]
+      simp
     obtain ⟨hΛK, hlat⟩ := GlobalTheory.T.latticeSpannedByGLColumns_eq_iff_GLint_coset E hE w hw K e hc hint hval B m b
     have hOrb : ∀ x : B.Aˣ, B.σ (x : B.A) = x →
         twOrb (thL m w) (GlobalTheory.LFun.KGL w (n := m)) (dlt e b ((β₀ : B.A) * x)) f = ((B.N x : ℚ) : ℂ) := by
@@ -187,7 +187,7 @@ theorem twOrb_level_eq_stSum : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
         refine ⟨c, g'⁻¹ * g, ?_⟩
         show _ = _ * dlt e b ((β₀ : B.A) * ((Quot.out c).1 : B.Aˣ)) * _
         rw [hg']
-        simp only [map_mul, map_inv, _root_.mul_inv_rev, inv_inv, mul_assoc, mul_inv_cancel_left, inv_mul_cancel_left])
+        simp only [map_mul, map_inv, _root_.mul_inv_rev, inv_inv, mul_assoc, mul_inv_cancel_left])
       (by
         intro c c' hcc
         obtain ⟨a, ha⟩ := (GlobalTheory.T.twistedConj_iff_mul_norm_invAlg E hE w hw K e hc hint hval B m b u hadj β₀ hβ₀' hgram (Quot.out c).1

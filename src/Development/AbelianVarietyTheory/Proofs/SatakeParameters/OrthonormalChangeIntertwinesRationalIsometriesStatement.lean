@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.orthonormalChange_intertwines_rationalIsometries :
         (toStdCo (D.sp.cm.sig : D.host.E →+* D.host.E) (gramN D (i + 1) hi) (A.crd (i + 1) hi))
         (inFr (stdG (D.sp.cm.sig : D.host.E →+* D.host.E) (gramN D i (Nat.le_of_succ_le hi)) γ)
           (stdG (D.sp.cm.sig : D.host.E →+* D.host.E) (gramN D (i + 1) hi) γ') z)) ∘ₗ g.1.symm.toLinearMap) := by
-  first | exact @GlobalTheory.TwV.seamHom_inFr_stdG | exact GlobalTheory.TwV.seamHom_inFr_stdG | (intros; apply GlobalTheory.TwV.seamHom_inFr_stdG <;> assumption)
+  first | exact @GlobalTheory.TwV.seamHom_inFr_stdG

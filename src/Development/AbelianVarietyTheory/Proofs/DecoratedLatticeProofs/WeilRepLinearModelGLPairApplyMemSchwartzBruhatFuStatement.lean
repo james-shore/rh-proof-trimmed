@@ -71,4 +71,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem _root_.GlobalTheory.T.weilRepLinearModelGLPair_apply_mem_schwartzBruhatFunctions : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (a b : Type) [Fintype a]
     [DecidableEq a] [Fintype b] [DecidableEq b] (μ : kˣ →* ℂˣ) (g : GL a k) (h : GL b k) (Φ : SB (Matrix b a k)),
     om μ g h Φ.1 ∈ SB (Matrix b a k) := by
-  first | exact @GlobalTheory.SplitWeil.ValOne.om_val_mem_SB | exact GlobalTheory.SplitWeil.ValOne.om_val_mem_SB | (intros; apply GlobalTheory.SplitWeil.ValOne.om_val_mem_SB <;> assumption)
+  first | exact @GlobalTheory.SplitWeil.ValOne.om_val_mem_SB

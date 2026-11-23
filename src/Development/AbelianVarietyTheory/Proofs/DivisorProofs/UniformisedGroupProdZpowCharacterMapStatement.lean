@@ -51,4 +51,4 @@ open GlobalTheory.UT GlobalTheory.Mum GlobalTheory.Mum.Two GlobalTheory.PolDeg G
 open GlobalTheory.Mum.PowData
 
 theorem _root_.GlobalTheory.T.uniformisedGroup_prod_zpow_characterMap : ∀ (R : Type) [CommRing R] [IsDomain R] (I : Ideal R), ∀ (D D₀ : DegData R I) (A A₀ : PolAV (Sp (FractionRing R))) (G G₀ : Over (Sp R)) [GrpObj G] [IsCommMonObj G] [GrpObj G₀] [IsCommMonObj G₀], ∀ (U : UnifPre I D A G) (U₀ : UnifPre I D₀ A₀ G₀) (K : Type) [Fintype K] (n : K → ℤ) (a : K → (G ⟶ G₀)) (h : K → D₀.toPre.X → D.toPre.X), (∀ i, OnTorus U U₀ (a i) (h i)) → OnTorus U U₀ (∏ i, a i ^ n i) (fun χ => ∑ i, n i • h i χ) := by
-  first | exact @GlobalTheory.Mum.PowData.onTorus_prod_zpow | exact GlobalTheory.Mum.PowData.onTorus_prod_zpow | (intros; apply GlobalTheory.Mum.PowData.onTorus_prod_zpow <;> assumption)
+  first | exact @GlobalTheory.Mum.PowData.onTorus_prod_zpow

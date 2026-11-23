@@ -105,7 +105,7 @@ theorem coTup_mulVec {n M d : ℕ} (b : Module.Basis (Fin d) F E) (G : Matrix (F
   have h0 : (G.map (inclR R) *ᵥ X a) i = ∑ j, inclR R (G i j) * X a j := by
     simp [Matrix.mulVec, dotProduct]
 
-  simp only [coTup, h0, map_sum, Finset.sum_apply, repr_incl_mul]
+  simp only [coTup, h0, map_sum]
   simp only [Matrix.mulVec, dotProduct, Matrix.map_apply, actMat, Fintype.sum_prod_type]
   rw [Finset.sum_eq_single a]
   · simp [coTup, repr_incl_mul]

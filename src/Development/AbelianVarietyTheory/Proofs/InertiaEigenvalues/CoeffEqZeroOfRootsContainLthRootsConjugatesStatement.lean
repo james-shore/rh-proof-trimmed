@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.coeff_eq_zero_of_roots_contain_lth_roots_conjugate
     (∀ z' : Om l, Polynomial.aeval z' (minpoly (↥(Kunr l a)) z) = 0 → ∀ y : Om l, y ^ l = z' →
       (E.map (GlobalTheory.TameFrob.iotaO l a)).IsRoot y) →
     ∀ i, ¬ l ∣ i → E.coeff i = 0 := by
-  first | exact @GlobalTheory.ExpandCoeff.coeff_eq_zero_of_roots | exact GlobalTheory.ExpandCoeff.coeff_eq_zero_of_roots | (intros; apply GlobalTheory.ExpandCoeff.coeff_eq_zero_of_roots <;> assumption)
+  first | exact @GlobalTheory.ExpandCoeff.coeff_eq_zero_of_roots

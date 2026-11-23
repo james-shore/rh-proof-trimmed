@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.idealRepresents_of_away_cover : ∀ (A : Type) [Co
     Represents (fun (R' : Type) [CommRing R'] (h : Localization.Away a →+* R') ↦
       Q R' (h.comp (algebraMap A (Localization.Away a)))) J) →
   ∃ J : Ideal A, Represents Q J := by
-  first | exact @GlobalTheory.PtClosed.represents_of_away_cover | exact GlobalTheory.PtClosed.represents_of_away_cover | (intros; apply GlobalTheory.PtClosed.represents_of_away_cover; all_goals assumption)
+  first | exact @GlobalTheory.PtClosed.represents_of_away_cover

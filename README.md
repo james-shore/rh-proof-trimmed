@@ -1,81 +1,60 @@
-# riemann-hypothesis
+# rh-proof-trimmed (S2 on #185)
 
-[![checks](https://github.com/leanprover-community/riemann-hypothesis/actions/workflows/checks.yml/badge.svg)](https://github.com/leanprover-community/riemann-hypothesis/actions/workflows/checks.yml)
+The Lean 4 proof of RH and GRH for Dirichlet L-functions ([remark.pdf](https://alpo.ge/remark.pdf)), made smaller by
+mechanical steps only. This branch has one stage on
+[leanprover-community/riemann-hypothesis #185](https://github.com/leanprover-community/riemann-hypothesis/pull/185)
+(#134 on Lean v4.37.0-rc1). The Lean 4.33.1 stages are on [main](https://github.com/james-shore/rh-proof-trimmed).
 
+- The five theorems in `src/Main.lean` and their statements are unchanged
+- No proof is written by hand or by a model
+- S2 is one commit on top of #185 at `b1ea8255`, with no other stage underneath
+- Its receipt is in `cleaning/S2/RECEIPT.md`
 
-A community-led effort to clean up and maintain a Lean formalization of the Riemann Hypothesis,
-and of GRH for Dirichlet L-functions. The `original` branch contains the first commit as retrieved on 2026-11-20 from <https://alpo.ge/remark.pdf>
+## Stage
 
-## Theorem Statements
+| Stage | What | Files | Lines | Compiles | Kernel-accepted | Same statements | Term diff |
+|---|---|---|---|---|---|---|---|
+| Base | #185 at `b1ea8255` | 149,216 | 20,788,840 | | | | |
+| S2 | remove syntax Lean's own linters flag as unused | 149,216 | 20,772,868 | [ ] | [ ] | [ ] | [ ] |
 
-`src/Main.lean` proves the following theorems (see [`src/Challenge.lean`](src/Challenge.lean)):
+- Compiles means Lean v4.37.0-rc1 builds every module
+- Kernel-accepted means an independent kernel (nanoda) accepts the exported proof
+- Same statements means con-leche `--compare` accepts the export against the published challenge
+- Term diff compares each statement in the exported proof with the base's
+- Files and lines exclude `Challenge.lean`
 
-| Theorem | Statement |
-|---|---|
-| `riemannHypothesis` | Mathlib's `RiemannHypothesis` |
-| `LFunction_ne_zero_of_half_lt_re` | L(χ, s) ≠ 0 for Re s > 1/2, for every modulus and every Dirichlet character, except the trivial character at s = 1 |
-| `LFunction_eq_zero_re` | every zero of L(χ, s) with 0 < Re s < 1 has Re s = 1/2 |
+## Base
 
- states the same five with `sorry` in place of the
-proofs, in a file that imports only Mathlib. Comparator checks that `Main.lean` proves exactly
-those statements, that it uses no axioms other than `propext`, `Quot.sound` and
-`Classical.choice`, and that Lean's kernel and nanoda both accept the proof.
+- #185 is #134 moved to Lean v4.37.0-rc1. #134 speeds up the build. It removes heartbeat overrides, narrows imports
+  and speeds up slow proofs
+- `b1ea8255` is #185's head when this stage was made
 
-## Cache
+## Regenerate
 
-A full build takes hours, so you should use the cache:
-
-```bash
-lake exe cache get
-lake build --no-build
+```
+for f in keep statement-cone simp-args unreachable unused-tactics; do gunzip -c cleaning/S2/$f.tsv.gz > $f.tsv; done
+python3 cleaning/transform/transform.py BASE/src DEST --keep keep.tsv --level L0 \
+  --lib-namespaces cleaning/transform/mathlib-namespaces.txt.gz --statement-cone statement-cone.tsv \
+  --edits simp-args.tsv --edits unreachable.tsv --edits unused-tactics.tsv
 ```
 
-## Checking the proof
+- BASE is #185's branch at `b1ea8255`
+- The last line printed is the tree fingerprint, which must match the receipt
+- The edit format is in `cleaning/transform/EDIT-LISTS.md`
 
-To check the proof yourself, without the cache, take a fresh clone on a Linux machine with
-[bubblewrap](https://github.com/containers/bubblewrap) installed and run:
+## Layout
 
-```bash
-MATHLIB_CACHE_GET_URL=https://cache.mathlib.org/mathlib4 lake exe mathlib/cache get
-lake comparator
-```
+- `src/` is the source after S2
+- `cleaning/` has the transform, the keep list, the edit lists and the receipt
+- Everything else is the base, unchanged. Its README is `README-base.md`
 
-The first command fetches Mathlib's compiled files and nothing of ours. Don't use
-`lake exe cache get` here, because that also downloads our prebuilt copy of the submission. The
-second reads `comparator.json`, builds `Challenge` and `Main` in a sandbox with no network, and
-makes the checks described under [What is claimed](#what-is-claimed).
+## Inputs
 
-```bash
-export LEAN_ABORT_ON_PANIC=1        # as Comparator does
-export LAKE_ARTIFACT_CACHE=false    # in case cache-env.sh was sourced
+- Base `b1ea82553942da642b968c2caaf63273260cb25f`
+- Lean v4.37.0-rc1 and Mathlib `31ce06eaadf4a200c0e1407c5f10953cf606b8f8`
+- `cleaning/transform/` follows [keithadler/rh-trim](https://github.com/keithadler/rh-trim) `tools/prune.py`
+  (Apache-2.0)
 
-# in a clone where the submission has not been compiled
-lake build Challenge
-lake env leanexport Challenge -- $(cat export-targets.txt) > challenge.export
+## Licence
 
-# wherever you build the submission
-lake build Main
-lake env leanexport Main -- $(cat export-targets.txt) > solution.export
-
-# from an empty directory, with the same Lean release and comparator.json from the first clone
-lake comparator --config comparator.json \
-  --challenge-from-export challenge.export --solution-from-export solution.export
-```
-
-The published source was written for Lean 4.33.1, which has neither `lake comparator` nor
-`leanexport`, so checking `40e56bab` itself takes two toolchains.
-[An older version of this README](https://github.com/leanprover-community/riemann-hypothesis/blob/7cce738ba719a32964ca3822d0994f4c6952c7ae/README.md#checking-it)
-has those steps.
-
-## CI
-
-If you have a Linux machine with
-plenty of memory and disk to spare, [CI-RUNNERS.md](verification/CI-RUNNERS.md) explains how to
-lend it. The scripts behind all this are in [`scripts/`](scripts/) and
-[`tools/ci_native/`](tools/ci_native/README.md).
-
-## License
-
-The submission belongs to its author and was published without a license. It is mirrored here
-so that it can be checked. Commit `40e56bab` is the unmodified copy.
-
+[LICENSE.md](LICENSE.md)

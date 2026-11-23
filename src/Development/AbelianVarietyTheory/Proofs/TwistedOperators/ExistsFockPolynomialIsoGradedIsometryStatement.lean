@@ -54,4 +54,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ArchRec
 
 theorem _root_.GlobalTheory.T.exists_fockPolynomialIso_graded_isometry : ∀ (p q r s a b : ℕ) (ε : Fin a → Bool) (ε' : Fin b → Bool) (e : Ix p q ≃ Fin a) (e' : Ix r s ≃ Fin b), SignCompat ε e → SignCompat ε' e' → ∃ κ : LPol b a ≃ₗ[ℂ] Pol p q r s, IsPolyIso ε ε' e e' κ ∧ Graded κ ∧ ∀ P Q, fockIp (κ P) (κ Q) = fockIp P Q := by
-  first | exact @GlobalTheory.ArchRec.SignedRename.exists_isPolyIso_graded_isometry | exact GlobalTheory.ArchRec.SignedRename.exists_isPolyIso_graded_isometry | (intros; apply GlobalTheory.ArchRec.SignedRename.exists_isPolyIso_graded_isometry <;> assumption)
+  first | exact @GlobalTheory.ArchRec.SignedRename.exists_isPolyIso_graded_isometry

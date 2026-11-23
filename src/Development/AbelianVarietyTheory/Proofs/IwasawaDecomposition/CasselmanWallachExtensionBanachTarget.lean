@@ -253,7 +253,6 @@ theorem casselmanWallach_banach : GlobalTheory.Published.CasselmanWallach → �
       funext l
       rw [show (dπ X (J ⟨v, hv⟩)).1 l = (J ⟨v, hv⟩).1 (l ++ [⟨X, hX⟩]) from hdπ ⟨X, hX⟩ _ l, hJ, hJ]
       simp only [List.map_append, List.map_cons, List.map_nil, happ, hcons, hnil]
-      try rfl
   obtain ⟨T', hT'0, hSG, -⟩ := hCW n ε H σ hσ.1 hσ.2.1 (Fam ε ρ) p π dπ hsm T₁ hGK
   unfold IsSmoothGMap at hSG
   obtain ⟨hTeq, hTbd⟩ := hSG

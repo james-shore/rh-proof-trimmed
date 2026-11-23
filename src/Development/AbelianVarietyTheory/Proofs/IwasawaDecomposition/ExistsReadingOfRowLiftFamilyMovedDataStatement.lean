@@ -45,4 +45,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.IndefR.p
 open GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.Mem.R3.Tr
 
 theorem _root_.GlobalTheory.T.exists_reading_of_rowLiftFamily_movedData : ∀ (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B f T) (Z₀ : w.Lt) (hX : B.fields.Ok) (Wt : Set B.places.Pl) (z₀ : Dat (w.st Z₀) w.I hX T Wt), ∀ (q : RowPk w z₀) (o : q.Over), Inputs (w.D o.Z) → o.Fits → ∀ m : Moved o, ∃ (s : Side0 o) (r : ReadPk m s), r.Pin := by
-  first | exact @GlobalTheory.Mem.R3.Rw.readPk_pin_exists | exact GlobalTheory.Mem.R3.Rw.readPk_pin_exists | (intros; apply GlobalTheory.Mem.R3.Rw.readPk_pin_exists <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.readPk_pin_exists

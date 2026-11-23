@@ -52,4 +52,4 @@ open scoped Classical
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.TrIdem
 
 theorem _root_.GlobalTheory.T.smoothRepIntegratedOperator_normalizedIndicator_fixed : ∀ (G : Type) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G] [MeasurableSpace G] [BorelSpace G] (μ : Measure G) [μ.IsHaarMeasure] (H : Subgroup G), IsOpen (H : Set G) → IsCompact (H : Set G) → ∀ (W : Type) [AddCommGroup W] [Module ℂ W] (ρ : Representation ℂ G W), GlobalTheory.PRep.IsSmooth ρ → ∀ x : W, (∀ h ∈ H, ρ h x = x) → smoothOp ρ μ (normInd μ (H : Set G)) x = x := by
-  first | exact @GlobalTheory.TrIdem.smoothOp_normInd_of_fixed | exact GlobalTheory.TrIdem.smoothOp_normInd_of_fixed | (intros; apply GlobalTheory.TrIdem.smoothOp_normInd_of_fixed <;> assumption)
+  first | exact @GlobalTheory.TrIdem.smoothOp_normInd_of_fixed

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.mem_isotropic_flag_unipotent_iff_split_chain_trivi
     g ∈ 𝔉.unip hc (Fv F v) ↔ ∀ j : Fin (2 * 𝔉.k + 1), ∀ u ∈ GlobalTheory.SplitFlag.flagChain 𝔉 τ j.succ,
       ((GlobalTheory.AdelicU.splitHom hc.sig V.gram τ g : GL (Fin V.rank) (Fv F v)) : Matrix (Fin V.rank) (Fin V.rank) (Fv F v)) *ᵥ u - u ∈
         GlobalTheory.SplitFlag.flagChain 𝔉 τ j.castSucc := by
-  first | exact @GlobalTheory.SplitFlag.mem_unip_iff_flagChain | exact GlobalTheory.SplitFlag.mem_unip_iff_flagChain | (intros; apply GlobalTheory.SplitFlag.mem_unip_iff_flagChain <;> assumption)
+  first | exact @GlobalTheory.SplitFlag.mem_unip_iff_flagChain

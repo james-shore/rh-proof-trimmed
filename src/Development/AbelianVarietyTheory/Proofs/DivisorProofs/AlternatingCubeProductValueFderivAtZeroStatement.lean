@@ -74,4 +74,4 @@ theorem _root_.GlobalTheory.T.alternatingCubeProduct_value_fderiv_at_zero : ∀ 
         fderiv ℂ (fr (ULift.up {2})) 0 W / fr (ULift.up {2}) 0 -
         fderiv ℂ (fr (ULift.up {0, 2})) x W / fr (ULift.up {0, 2}) x -
         fderiv ℂ (fr (ULift.up {1, 2})) y W / fr (ULift.up {1, 2}) y := by
-  first | exact @GlobalTheory.AltJet.value_and_fderiv_at_zero | exact GlobalTheory.AltJet.value_and_fderiv_at_zero | (intros; apply GlobalTheory.AltJet.value_and_fderiv_at_zero <;> assumption)
+  first | exact @GlobalTheory.AltJet.value_and_fderiv_at_zero

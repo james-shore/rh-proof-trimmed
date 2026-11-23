@@ -106,7 +106,7 @@ theorem levelFacts : LevelFacts := by
           rw [Submodule.map_smul'', hs] at h
           simpa [p, sub_mul, smul_mulVec] using h)
       have e' : ((1 + a : 𝓞 E) : E) = s := by
-        have : algebraMap (𝓞 E) E a = s - 1 := by first | exact e | exact e.symm
+        have : algebraMap (𝓞 E) E a = s - 1 := by first | exact e.symm
         show algebraMap (𝓞 E) E (1 + a) = s
         rw [map_add (f := _), map_one, this]
         ring

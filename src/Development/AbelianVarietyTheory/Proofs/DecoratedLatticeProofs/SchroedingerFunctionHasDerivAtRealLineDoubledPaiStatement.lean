@@ -53,4 +53,4 @@ open scoped ContDiff
 
 
 theorem _root_.GlobalTheory.T.schroedingerFunction_hasDerivAt_real_line_doubledPair : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (A B : HSp D) (ν : Measure (WO A B)) (𝓨 : Set (WO A B)), IsCovolOne (ratL B A) ν 𝓨 → ∀ f, IsThetaFunO ψ (dblSp A) B f → ∀ M : ℝ →+ Mx D B.rank A.rank, Continuous M → (∀ t, (M t).map (finPart D) = 0) → ∃ f', IsThetaFunO ψ (dblSp A) B f' ∧ ∀ x, HasDerivAt (fun t : ℝ => sch ψ A B ν 𝓨 f (x + M t)) (sch ψ A B ν 𝓨 f' x) 0 := by
-  first | exact @GlobalTheory.SchLine.sch_hasDerivAt_line | exact GlobalTheory.SchLine.sch_hasDerivAt_line | (intros; apply GlobalTheory.SchLine.sch_hasDerivAt_line <;> assumption)
+  first | exact @GlobalTheory.SchLine.sch_hasDerivAt_line

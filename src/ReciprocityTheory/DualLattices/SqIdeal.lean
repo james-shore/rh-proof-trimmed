@@ -170,7 +170,7 @@ private theorem augIdeal_eq_span_pow_of_span_pow {p : ℕ} [Fact p.Prime] {C : T
       subst hj0
       have hz : cf ⟨0, hpos⟩ • x ^ ((⟨0, hpos⟩ : Fin p) : ℕ) = 0 := by
         funext a
-        simp only [Pi.smul_apply, Pi.pow_apply, Fin.val_mk, pow_zero, Pi.zero_apply,
+        simp only [Pi.smul_apply, pow_zero, Pi.zero_apply,
           Algebra.smul_def, hc0, zero_mul]
       rw [hz]
       exact Submodule.zero_mem _

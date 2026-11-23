@@ -142,10 +142,6 @@ theorem qm_mem {a b : Lsq K Δ} (ha : IsIntegral O a) (hb : IsIntegral O b) : qm
   fin_cases i <;> fin_cases j <;> simp [qm]
   all_goals first
     | assumption
-    | exact int_star O hb
-    | exact int_star O ha
-    | simpa using (int_star O hb).neg
-    | simpa using (int_star O ha).neg
 
 theorem mem_KD (g : DX Δ) : g ∈ KD Δ O ↔ mt g ∈ RL Δ O ∧ mt g⁻¹ ∈ RL Δ O := by
   rw [KD, Subgroup.mem_subgroupOf, MonoidHom.mem_range]
@@ -299,7 +295,7 @@ theorem shape_nat (n : ℕ) {m : Matrix (Fin 2) (Fin 2) (Lsq K Δ)} (h : Shape m
     Shape ((n : Matrix (Fin 2) (Fin 2) (Lsq K Δ)) * m) := by
   obtain ⟨h1, h2⟩ := h
   rw [← Matrix.diagonal_natCast']
-  constructor <;> simp [Matrix.diagonal_mul, h1, h2, mul_comm]
+  constructor <;> simp [Matrix.diagonal_mul, h1, h2]
 
 theorem den_mat {c : ℕ} (hc0 : (c : K) ≠ 0) (hc : IsIntegral O ((c : K) * Δ)) (hd : ∀ x : K, ∃ n : ℕ, n ≠ 0 ∧ IsIntegral O ((n : K) * x))
     {m : Matrix (Fin 2) (Fin 2) (Lsq K Δ)} (h : Shape m) :

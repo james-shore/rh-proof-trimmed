@@ -108,8 +108,8 @@ theorem exists_fibrePower {G Z : Scheme.{0}} (f : G ⟶ Z) [UniversallyOpen f]
       obtain ⟨h, hp, hπ⟩ := h4 T x (fun k => g k.succ) fun k => hg _
       refine ⟨pullback.lift (g 0) h (by rw [hg, hp]), by rw [pullback.lift_snd_assoc, hp], ?_⟩
       refine Fin.cases ?_ fun k => ?_
-      · simp [pullback.lift_fst]
-      · simp [pullback.lift_snd_assoc, hπ]
+      · simp
+      · simp [hπ]
 
 theorem exists_lift {W Z : Scheme.{0}} (q : W ⟶ Z) [LocallyOfFiniteType q] {K : Type} [Field K]
     [IsAlgClosed K] (x : Sp K ⟶ Z) (w : W) (t : Sp K) (hw : q w = x t) :

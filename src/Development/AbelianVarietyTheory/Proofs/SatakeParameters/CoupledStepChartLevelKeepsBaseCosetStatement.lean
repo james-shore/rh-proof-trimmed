@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.coupledStepChartLevel_keeps_baseCoset : UnderTie (
     (∀ P, InFrame t.seam (A.fb (t.m2 + 1) (cpl_lt t μ).le β') (t.cst μ).D P κ'.1 ((κ'' P)⁻¹).1) →
     ∀ P (y : Sp t.X.E (D.R.N (t.m2 + 1))), SameCoset t.sel (t.tup μ) (t.cst μ) P ((κ'' P).1 y) (A.y0 β' P) ↔
       SameCoset t.sel (t.tup μ) (t.cst μ) P y (A.y0 β' P)) := by
-  first | exact @GlobalTheory.CplCoset.sameCoset_kappa | exact GlobalTheory.CplCoset.sameCoset_kappa | (intros; apply GlobalTheory.CplCoset.sameCoset_kappa <;> assumption)
+  first | exact @GlobalTheory.CplCoset.sameCoset_kappa

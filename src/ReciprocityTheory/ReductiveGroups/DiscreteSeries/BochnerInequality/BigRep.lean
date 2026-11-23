@@ -104,7 +104,7 @@ theorem mAct_rel (hE : IsGlRep E) (k : ℕ) (a b c d : Fin n) :
   have h := LinearMap.congr_fun (hE a b c d) (F κ)
   clear hE
   by_cases hbc : b = c <;> by_cases hda : d = a <;>
-    simp_all [mAct_apply, Module.End.mul_apply, PiLp.sub_apply]
+    simp_all [mAct_apply, PiLp.sub_apply]
 
 theorem mAct_factorAd_comm (k : ℕ) (i : Fin k) (a b c d : Fin n) :
     mAct E k a b * factorAd k i c d = factorAd k i c d * mAct E k a b := by
@@ -139,7 +139,7 @@ theorem factorAd_commutator (k : ℕ) (i : Fin k) (a b c d : Fin n) :
   generalize κ i = p <;>
   obtain ⟨p1, p2⟩ := p <;>
   simp only <;>
-  split_ifs <;> subst_vars <;> first | rfl | abel1 | (simp_all <;> abel1) | simp_all
+  split_ifs <;> subst_vars <;> first | rfl | abel1 | (simp_all <;> abel1)
 
 end BigRepA
 section BigRepB

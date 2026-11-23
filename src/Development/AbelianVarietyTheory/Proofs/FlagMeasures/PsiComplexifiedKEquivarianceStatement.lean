@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.Dec
 
 theorem _root_.GlobalTheory.T.psi_complexifiedK_equivariance : PsEquiv := by
-  first | exact @GlobalTheory.Dec.Equivar.psEquiv | exact GlobalTheory.Dec.Equivar.psEquiv | (intros; apply GlobalTheory.Dec.Equivar.psEquiv <;> assumption)
+  first | exact @GlobalTheory.Dec.Equivar.psEquiv

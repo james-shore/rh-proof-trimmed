@@ -46,4 +46,4 @@ open GlobalTheory GlobalTheory.CM GlobalTheory.LamF
 
 
 theorem _root_.GlobalTheory.T.exists_rosatiAction_weilPairing_balanced_triple : Out.Laws → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [StarRing (𝓞 E)] (H : Host E), (∀ a : 𝓞 E, star a = H.bar a) → ∀ (K : Type) [Field K] [NumberField K] (T : PAT H (Sp (𝓞 K))), ∃ oa : T.pol.OAct (𝓞 E), oa.act = T.t.act.act ∧ RosatiConj T.pol oa := by
-  first | exact @GlobalTheory.LamF.exists_oAct_rosatiConj | exact GlobalTheory.LamF.exists_oAct_rosatiConj | (intros; apply GlobalTheory.LamF.exists_oAct_rosatiConj <;> assumption)
+  first | exact @GlobalTheory.LamF.exists_oAct_rosatiConj

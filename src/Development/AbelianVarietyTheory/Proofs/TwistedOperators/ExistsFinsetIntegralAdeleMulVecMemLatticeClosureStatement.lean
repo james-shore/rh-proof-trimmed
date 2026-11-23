@@ -60,4 +60,3 @@ theorem _root_.GlobalTheory.T.exists_finset_integral_adele_mulVec_mem_lattice_cl
   intro F E _ _ _ _ _ n M L hL
   first
   | exact GlobalTheory.AdelicLatticeIntegral.exists_finset_smul_mulVec_mem_closure F E n M L hL
-  | exact GlobalTheory.AdelicLatticeIntegral.exists_finset_smul_mulVec_mem_closure F E n M L hL.toIsLattice

@@ -61,4 +61,4 @@ open scoped TensorProduct
 open GlobalTheory.Pst.TwistLetters
 
 theorem _root_.GlobalTheory.T.exists_invertible_dPst_potSemistableCharacter : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ {K L : FinExt l} (ρm : Representation ↥L.1 ↥(GK K) (Fin 1 → ↥L.1)) (χ : ↥(GK K) → ↥L.1), (∀ g v, ρm g v = χ g • v) → IsPst P ρm → ∃ y ∈ Dpst P ρm, ∃ y' : (Fin 1 → ↥L.1) ⊗[ℚ_[l]] Bst P, GlobalTheory.Pst.TwistLetters.mulB P (Fin 1 → ↥L.1) y' y = (fun _ => (1 : ↥L.1)) ⊗ₜ (1 : Bst P) := by
-  first | exact @GlobalTheory.Pst.UnitLetter.exists_unit_Dpst | exact GlobalTheory.Pst.UnitLetter.exists_unit_Dpst | (intros; apply GlobalTheory.Pst.UnitLetter.exists_unit_Dpst <;> assumption)
+  first | exact @GlobalTheory.Pst.UnitLetter.exists_unit_Dpst

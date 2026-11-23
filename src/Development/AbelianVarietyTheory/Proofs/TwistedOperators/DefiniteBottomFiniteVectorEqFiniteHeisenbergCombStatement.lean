@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.definiteBottom_finiteVector_eq_finite_heisenbergCo
     {A A' WW : HSp D} {X : Tri T A A' WW}, IsBottomTri W i j X → ∀ t : T,
     ∃ (n : ℕ) (c : Fin n → ℂ) (x : Fin n → WO A' WW), (∀ k, (x k).map (infPart D) = 0) ∧
       X.f' t = ∑ k, c k • heisO W.ψ A' WW (x k) X.vac' := by
-  first | exact @GlobalTheory.BottomFinComb.finVec_isFinComb | exact GlobalTheory.BottomFinComb.finVec_isFinComb | (intros; apply GlobalTheory.BottomFinComb.finVec_isFinComb <;> assumption)
+  first | exact @GlobalTheory.BottomFinComb.finVec_isFinComb

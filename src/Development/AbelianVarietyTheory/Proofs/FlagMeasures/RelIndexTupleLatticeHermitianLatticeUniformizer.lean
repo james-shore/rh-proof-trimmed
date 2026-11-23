@@ -313,7 +313,7 @@ theorem relIndex_tupLat_hermLat : ∀ {F : Type} [Field F] [ValuativeRel F] [Top
     intro g
     ext a b
     simp only [DistribSMul.toAddMonoidHom_apply, Matrix.smul_apply, hermOf_apply,
-      AddMonoidHom.coe_prodMap, Prod.map_fst, Prod.map_snd, Prod.map_apply]
+      AddMonoidHom.coe_prodMap, Prod.map_fst, Prod.map_snd]
     split_ifs <;> simp [smul_eq_mul, MulMemClass.coe_mul, hsO, cj_alg, map_mul]
   have hR2 : ((DistribSMul.toAddMonoidHom (Fin m → 𝒪[F]) (ϖ ^ j)).prodMap
       (DistribSMul.toAddMonoidHom ({p : Fin m × Fin m // p.1 < p.2} → L.O) sO)).range =

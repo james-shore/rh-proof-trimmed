@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.UnitLemma Polynomial
 
 theorem _root_.GlobalTheory.T.finite_classes_of_separable_charPoly : ∀ (K : UQ) (B : InvAlg K), B.P.Separable → Finite B.Cl := by
-  first | exact @GlobalTheory.UnitLemma.ClFin.finite_Cl_of_separable | exact GlobalTheory.UnitLemma.ClFin.finite_Cl_of_separable | (intros; apply GlobalTheory.UnitLemma.ClFin.finite_Cl_of_separable <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.ClFin.finite_Cl_of_separable

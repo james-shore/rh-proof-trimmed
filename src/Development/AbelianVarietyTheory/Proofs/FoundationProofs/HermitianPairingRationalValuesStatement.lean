@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.hermitian_pairing_integral_values : ∀ (D : D7) (N N' : ℕ) (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)), SD D L → SD D L' → ∀ x ∈ YYl D L L', ∀ y ∈ YYl D L L', hYY D x y ∈ (algebraMap (𝓞 D.host.K) D.host.K).range := by
-  first | exact @GlobalTheory.NormSum.TraceInt.hYY_integral | exact GlobalTheory.NormSum.TraceInt.hYY_integral | (intros; apply GlobalTheory.NormSum.TraceInt.hYY_integral <;> assumption)
+  first | exact @GlobalTheory.NormSum.TraceInt.hYY_integral

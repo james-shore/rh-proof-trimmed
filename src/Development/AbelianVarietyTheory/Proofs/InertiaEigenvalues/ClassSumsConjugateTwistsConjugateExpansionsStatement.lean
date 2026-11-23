@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.classSums_conjugate_twists_conjugate_expansions : 
   ∃ ζ : ℂ, IsRoot1 ζ ∧ ∀ (I : Type) [Fintype I] (rep : I → GA D (Vc D j)), (∀ a, rep a ∈ GfC (Vc D j)) → ∀ F F' : Amb D j,
     ConjAt (X.R.ioP j (PiTensorProduct.tprod ℂ u) ∘ₗ cc) κ τ F F' →
     ConjFun (X.geo.O j) (X.geo.κ j) τ ζ (κ • B.classSum ω ψ rep F) (κ • B.classSum ω' ψ' rep F') := by
-  first | exact @GlobalTheory.PlaceClassSum.classSum_conj_place | exact GlobalTheory.PlaceClassSum.classSum_conj_place | (intros; apply GlobalTheory.PlaceClassSum.classSum_conj_place <;> assumption)
+  first | exact @GlobalTheory.PlaceClassSum.classSum_conj_place

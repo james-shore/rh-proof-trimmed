@@ -51,4 +51,4 @@ open GlobalTheory.EndLoc
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.exists_closed_subscheme_trivial_locus_rigidified : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (L₀ N : LB A.left), IsAbelianScheme A → L₀.IsLB → Out.RelAmple A L₀ → N.IsLB → Out.Rigidified A N → ∃ (Z : Scheme.{0}) (i : Z ⟶ Sp R), IsClosedImmersion i ∧ ∀ (T : Scheme.{0}) (t : T ⟶ Sp R) (A' : Over T) [GrpObj A'] (φ' : A'.left ⟶ A.left), IsGrpPullback A' A t φ' → ((∃ s : (N.pull φ').Gen, s.IsGen) ↔ ∃ z : T ⟶ Z, z ≫ i = t) := by
-  first | exact @GlobalTheory.AffineTrivLocus.exists_closed_triv | exact GlobalTheory.AffineTrivLocus.exists_closed_triv | (intros; apply GlobalTheory.AffineTrivLocus.exists_closed_triv <;> assumption)
+  first | exact @GlobalTheory.AffineTrivLocus.exists_closed_triv

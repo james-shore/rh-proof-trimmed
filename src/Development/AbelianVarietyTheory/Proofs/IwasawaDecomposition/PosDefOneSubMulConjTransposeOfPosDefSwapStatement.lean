@@ -64,4 +64,4 @@ open scoped ComplexOrder
 
 
 theorem _root_.GlobalTheory.T.posDef_one_sub_mul_conjTranspose_of_posDef_swap : ∀ {p q : ℕ} (z : Matrix (Fin p) (Fin q) ℂ), (1 - zᴴ * z).PosDef → (1 - z * zᴴ).PosDef := by
-  first | exact @GlobalTheory.PosDefSwap.main | exact GlobalTheory.PosDefSwap.main | (intros; apply GlobalTheory.PosDefSwap.main <;> assumption)
+  first | exact @GlobalTheory.PosDefSwap.main

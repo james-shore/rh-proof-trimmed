@@ -44,4 +44,4 @@ open scoped TensorProduct InnerProductSpace ContDiff
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.multiplicityMap_extremalVector_holomorphicType : ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (w : D.what₂.Tau → Fin V.rank → ℤ) (v : M.Vec), IsInfFam θ → HolShape M → WtIs M w → IsExtVec M v → ∀ (J : Set (GA D V)) (χ : GA D V → ℂ) (T : MMap M), IsMultMap θ M J χ T → HolAd θ M w (T v) := by
-  first | exact @GlobalTheory.MultHol.holAd_of_isMultMap | exact GlobalTheory.MultHol.holAd_of_isMultMap | (intros; apply GlobalTheory.MultHol.holAd_of_isMultMap <;> assumption)
+  first | exact @GlobalTheory.MultHol.holAd_of_isMultMap

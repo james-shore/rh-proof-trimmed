@@ -74,7 +74,7 @@ theorem exists_clm_of_inner_eq {ι H K : Type} [NormedAddCommGroup H] [InnerProd
     intro f
     have h := congrArg norm (hin f f)
     rw [inner_self_eq_norm_sq_to_K, inner_self_eq_norm_sq_to_K, norm_mul, norm_pow, norm_pow] at h
-    simp only [RCLike.norm_ofReal, Complex.norm_real, abs_norm, norm_norm] at h
+    simp only [RCLike.norm_ofReal, abs_norm] at h
     rw [← Real.sqrt_sq (norm_nonneg (p' f)), h, Real.sqrt_mul (norm_nonneg c), Real.sqrt_sq (norm_nonneg _)]
   have hker : LinearMap.ker p ≤ LinearMap.ker p' := fun f hf => by
     rw [LinearMap.mem_ker] at hf ⊢

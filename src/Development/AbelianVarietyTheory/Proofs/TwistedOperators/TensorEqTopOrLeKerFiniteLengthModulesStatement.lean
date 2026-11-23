@@ -70,4 +70,4 @@ theorem _root_.GlobalTheory.T.tensor_eq_top_or_le_ker_finiteLength_modules : ∀
       (∀ i, ∀ g ∈ Op i, ∀ t ∈ N, TensorProduct.map LinearMap.id
         (PiTensorProduct.map (Function.update (fun j => (LinearMap.id : M j →ₗ[ℂ] M j)) i g)) t ∈ N) →
       N = ⊤ ∨ N ≤ LinearMap.ker (TensorProduct.map p₀ (PiTensorProduct.map p)) := by
-  first | exact @GlobalTheory.TensHead.tensor_eq_top_or_le_ker_map | exact GlobalTheory.TensHead.tensor_eq_top_or_le_ker_map | (intros; apply GlobalTheory.TensHead.tensor_eq_top_or_le_ker_map <;> assumption)
+  first | exact @GlobalTheory.TensHead.tensor_eq_top_or_le_ker_map

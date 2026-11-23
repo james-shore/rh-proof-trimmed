@@ -101,16 +101,13 @@ theorem geometricallyConnected_of_generic : ∀ (R K : Type) [CommRing R] [IsDom
   set φ := (𝟙 G ^ n).left with hφ
   have hsq : (𝟙 GK ^ n).left ≫ pullback.fst G.hom f = pullback.fst G.hom f ≫ φ := by
     rw [← hmap]
-    simp [F, φ] <;> exact pullback.lift_fst _ _ _
+    simp [F, φ]
   have hw : φ ≫ G.hom = G.hom := Over.w (𝟙 G ^ n)
   have hcomp : IsProper (φ ≫ G.hom) := by rw [hw]; exact hpr
   have hsep : IsSeparated G.hom := inferInstance
   have hprop : UniversallyClosed φ := by
     first
     | exact (MorphismProperty.of_postcomp (W := @IsProper) (W' := @IsSeparated) φ G.hom hsep hcomp).toUniversallyClosed
-    | exact MorphismProperty.of_postcomp (W := @UniversallyClosed) (W' := @IsSeparated) φ G.hom hsep inferInstance
-    | exact UniversallyClosed.of_comp_of_isSeparated φ G.hom
-    | exact (IsProper.of_comp φ G.hom).toUniversallyClosed
   have hcl : IsClosed (Set.range φ) := φ.isClosedMap.isClosed_range
   have hop : IsOpenMap G.hom := G.hom.isOpenMap
   have hdense := dense_range_fst_generic R K G.hom hop

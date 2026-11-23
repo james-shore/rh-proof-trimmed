@@ -57,4 +57,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.exists_irreducible_algebraicWeight_subrep : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] [Nontrivial V] (ρ : Representation ℂ (ReciprocityTheory.Aut.GQ L n) V), Formalism.AUTREP.IsAlgWeight L n ρ → ∃ (a : NG.AlgWt L n) (j : a.W →ₗ[ℂ] V), Function.Injective j ∧ ∀ γ x, j (a.ρ γ x) = ρ γ (j x) := by
-  first | exact @GlobalTheory.AlgSubrep.exists_irreducible_algWt | exact GlobalTheory.AlgSubrep.exists_irreducible_algWt | (intros; apply GlobalTheory.AlgSubrep.exists_irreducible_algWt <;> assumption)
+  first | exact @GlobalTheory.AlgSubrep.exists_irreducible_algWt

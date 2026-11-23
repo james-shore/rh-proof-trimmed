@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S
 
 theorem _root_.GlobalTheory.T.oneBessel_torusTranslates_largeGap : GlobalTheory.GapIn.Hyp → ∃ Cgf : ℝ, ∀ D : D7, Formalism.MainNotions.FrameBoundFromBesselTorus.OneBesselTor D Cgf := by
-  first | exact @GlobalTheory.AmpTKGapOne.oneBesselTor_of_gapHyp | exact GlobalTheory.AmpTKGapOne.oneBesselTor_of_gapHyp | (intros; apply GlobalTheory.AmpTKGapOne.oneBesselTor_of_gapHyp <;> assumption)
+  first | exact @GlobalTheory.AmpTKGapOne.oneBesselTor_of_gapHyp

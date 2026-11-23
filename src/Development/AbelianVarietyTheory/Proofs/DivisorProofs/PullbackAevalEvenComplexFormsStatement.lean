@@ -52,4 +52,4 @@ open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
 theorem _root_.GlobalTheory.T.pullback_aeval_evenComplexForms : ∀ (n n' : ℕ) (L : V n →L[ℂ] V n') (κ : Type) (w : κ → Ev n) (w' : κ → Ev n') (P : MvPolynomial κ ℂ), (∀ x, (w x : Alt n) = pull L (w' x : Alt n')) → ((aeval w P : Ev n) : Alt n) = pull L ((aeval w' P : Ev n') : Alt n') := by
-  first | exact @GlobalTheory.FlagCell2.pull_aeval_even | exact GlobalTheory.FlagCell2.pull_aeval_even | (intros; apply GlobalTheory.FlagCell2.pull_aeval_even <;> assumption)
+  first | exact @GlobalTheory.FlagCell2.pull_aeval_even

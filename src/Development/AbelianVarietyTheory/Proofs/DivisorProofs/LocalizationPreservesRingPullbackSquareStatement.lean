@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.localization_preserves_ring_pullback_square : ∀ 
     Aα.comp (algebraMap R₀ LR) = (algebraMap B₀ LB).comp α →
     Kκ.comp (algebraMap A' LA') = (algebraMap B₀ LB).comp κ →
     (∀ t, Φ t = 0 → Ψ t = 0 → t = 0) ∧ ∀ a b, Aα a = Kκ b → ∃ t, Φ t = a ∧ Ψ t = b := by
-  first | exact @GlobalTheory.locPullback | exact GlobalTheory.locPullback | (intros; apply GlobalTheory.locPullback <;> assumption)
+  first | exact @GlobalTheory.locPullback

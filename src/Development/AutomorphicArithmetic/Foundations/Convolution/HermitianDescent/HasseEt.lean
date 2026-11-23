@@ -140,7 +140,7 @@ private theorem field_case (F E K A : Type) [Field F] [NumberField F] [Field E] 
       (InfinitePlace.Completion.extensionEmbeddingOfIsReal hv) (fun b => ?_) x (hi v)
     simp only [AbsoluteValue.Completion.algebraMap_def v.1, WithAbs.algebraMap_right_apply,
       Algebra.algebraMap_self_apply, InfinitePlace.Completion.extensionEmbeddingOfIsReal_coe,
-      WithAbs.equiv_apply, WithAbs.ofAbs_toAbs, hσ, RingHom.comp_apply]
+      WithAbs.equiv_apply, hσ, RingHom.comp_apply]
 
 end UpperTheory.ConvolutionTheory.D
 

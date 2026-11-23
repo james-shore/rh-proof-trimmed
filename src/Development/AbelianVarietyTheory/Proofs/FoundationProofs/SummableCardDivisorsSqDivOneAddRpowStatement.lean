@@ -51,4 +51,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.summable_card_divisors_sq_div_one_add_rpow : ∀ s : ℝ, 0 < s → Summable fun n : ℕ => ((n.divisors.card : ℝ)) ^ 2 / (n : ℝ) ^ (1 + s) := by
-  first | exact @GlobalTheory.DivSq.summable_card_divisors_sq_div_rpow | exact GlobalTheory.DivSq.summable_card_divisors_sq_div_rpow | (intros; apply GlobalTheory.DivSq.summable_card_divisors_sq_div_rpow <;> assumption)
+  first | exact @GlobalTheory.DivSq.summable_card_divisors_sq_div_rpow

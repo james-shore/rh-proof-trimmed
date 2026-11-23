@@ -46,4 +46,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open TensorProduct Coalgebra Bialgebra CategoryTheory WithConv GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 theorem _root_.GlobalTheory.T.pDivCocycle_mem_range_cob_of_pullback_mulP : ∀ {p : ℕ} [Fact p.Prime] {R : Type} [CommRing R] (G : PDivGroup p R) (c : G.cocycles) (B : G.funs), G.cob B = cocyclesMap ((p : ℤ_[p]) • 𝟙 G) c → B.1 1 = 0 → c ∈ LinearMap.range G.cob := by
-  first | exact @GlobalTheory.cocycle_mem_range_cob_of_pullback_mulP | exact GlobalTheory.cocycle_mem_range_cob_of_pullback_mulP | (intros; apply GlobalTheory.cocycle_mem_range_cob_of_pullback_mulP <;> assumption)
+  first | exact @GlobalTheory.cocycle_mem_range_cob_of_pullback_mulP

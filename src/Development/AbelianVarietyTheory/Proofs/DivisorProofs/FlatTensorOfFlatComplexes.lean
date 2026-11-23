@@ -80,11 +80,7 @@ theorem loc_trans {P : ∀ V : Scheme.{0}, (V ⟶ U) → Prop}
 theorem loc_finset {ι : Type*} (s : Finset ι) {P : ι → ∀ V : Scheme.{0}, (V ⟶ U) → Prop}
     (h : ∀ i ∈ s, Loc U (P i)) : Loc U fun V g => ∀ i ∈ s, P i V g := by
   first
-  | exact @_root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset
-  | exact _root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset
   | (apply _root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset ..)
 
 end Loc
@@ -112,7 +108,7 @@ def tensP {ι : Type} (A B : ι → Scheme.{0}ᵒᵖ ⥤ ModuleCat.{1} (ULift.{1
     classical
     ext1
     refine DirectSum.linearMap_ext _ fun i => TensorProduct.ext' fun a b => ?_
-    simp [DirectSum.lof_eq_of, DirectSum.lmap_of]
+    simp [DirectSum.lof_eq_of]
   map_comp f g := by
     classical
     ext1

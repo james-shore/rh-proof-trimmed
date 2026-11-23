@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.derivative_along_kodairaSpencer_deformation_lift :
     (hM : GlobalTheory.FlagTan.IsKS (psiSet H) Q w.x Mx) {zw : Sp (DualNumber K) ⟶ M.X} (hlw : zw ≫ toFlag M = X.ptY w), ∃ C : VIx Dw → K, ∀ (O : M.X.Opens) (g : Γ(M.X, O)) (hzw : ⊤ ≤ zw ⁻¹ᵁ O) (hzv : ∀ b, ⊤ ≤ zv b ⁻¹ᵁ O),
       (evalPt zw O hzw g).snd = ∑ k, Mx k * (evalPt (zv (.inl k)) O (hzv _) g).snd +
         ∑ k, C k * (evalPt (zv (.inr k)) O (hzv _) g).snd := by
-  first | exact @GlobalTheory.CompHS.der_fun_hor | exact GlobalTheory.CompHS.der_fun_hor | (intros; apply GlobalTheory.CompHS.der_fun_hor <;> assumption)
+  first | exact @GlobalTheory.CompHS.der_fun_hor

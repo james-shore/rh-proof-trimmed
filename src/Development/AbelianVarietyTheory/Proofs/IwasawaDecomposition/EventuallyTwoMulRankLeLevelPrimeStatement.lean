@@ -45,4 +45,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
 
 theorem _root_.GlobalTheory.T.eventually_two_mul_rank_le_levelPrime : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w : ColW B f T) (Z : w.Lt), ∀ k, 2 * (w.D Z).R.r ≤ (w.D Z).host.g k := by
-  first | exact @GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level | exact GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level | (intros; apply GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level <;> assumption)
+  first | exact @GlobalTheory.Mem.Top.Bl.two_mul_r_le_g_level

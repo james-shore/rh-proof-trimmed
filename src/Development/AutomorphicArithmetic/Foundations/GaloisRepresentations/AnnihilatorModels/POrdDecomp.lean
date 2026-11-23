@@ -195,7 +195,6 @@ theorem UpperTheory.Gal.crystallineComparison.ordDecomp_of :
     all_goals first
       | rfl
       | simp
-      | (ext x; simp)
   · intro j
     rw [key j.succ]
     simp only [Fin.val_succ]
@@ -210,7 +209,3 @@ theorem UpperTheory.Gal.crystallineComparison.ordDecomp_of :
       rfl
     rw [← h4]
     convert congrArg₂ (· + ·) h2 h3
-    all_goals first
-      | rfl
-      | simp
-      | (ext x; simp)

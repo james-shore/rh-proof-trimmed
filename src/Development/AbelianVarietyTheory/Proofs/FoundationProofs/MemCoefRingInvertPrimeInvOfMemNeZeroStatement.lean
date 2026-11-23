@@ -42,4 +42,4 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.memCoefRingInvertPrime_inv_of_mem_ne_zero : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) (d : Qbar l), d ∈ c.O → d ≠ 0 → MemE c d⁻¹ := by
-  first | exact @GlobalTheory.Ord2.memE_inv_of_mem | exact GlobalTheory.Ord2.memE_inv_of_mem | (intros; apply GlobalTheory.Ord2.memE_inv_of_mem <;> assumption)
+  first | exact @GlobalTheory.Ord2.memE_inv_of_mem

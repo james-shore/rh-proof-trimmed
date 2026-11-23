@@ -193,7 +193,7 @@ theorem isDerivAt0_all (e : Flat.FamExp G M B ψ) {b : Fin n → ℂ} (hb : b �
       funext c
       by_cases h : c = a
       · subst h; simp
-      · simp [Pi.single_apply, h]
+      · simp [h]
     have := hpt (Pi.single a 1)
     rwa [h3] at this
   have hsm : ∀ (c : ℂ) (w : Fin g → ℂ), IsDerivAt0 (fun z => (e.ex b z).left) w (N.pt w).left →
@@ -281,7 +281,6 @@ theorem eig_of_value (hξ : IsCptGen ξ) (M : LieModel G ξ Li) (z : Sp ℂ ⟶ 
   rw [hs, ← mem_eig he a] at e2
   have e3 := e1.unique (hξ.inj _) e2
   apply Over.OverMorphism.ext
-  change (Mz.pt (Bz a y)).left = (Mz.pt (c a • y)).left
   rw [hB, Mz.pt_smul, Over.comp_left, hw]
   have e3' := congrArg (fun q => q.left) e3
   change v.left ≫ (act.act a).left = _ at e3'

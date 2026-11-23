@@ -326,7 +326,7 @@ theorem exists_emb (hG : GlobalTheory.Published.GeometricLemma) (hBZ : GlobalThe
       by_cases ha : a = c
       · subst ha
         simpa [ψ] using hω z v
-      · simp [ψ, Pi.mulSingle_eq_of_ne ha, ha])
+      · simp [ψ, ha])
   obtain ⟨σ, hσ⟩ := GlobalTheory.CuspSupportExist.L_tens hG k _ π _ _ e U ν hνi (.of_surjective p hp)
   obtain ⟨φ, hφ⟩ := GlobalTheory.injective_of_jacquet_surjective π e hνi p hp
   have hirr : (piTensor fun a => (σ a).π).IsIrreducible :=

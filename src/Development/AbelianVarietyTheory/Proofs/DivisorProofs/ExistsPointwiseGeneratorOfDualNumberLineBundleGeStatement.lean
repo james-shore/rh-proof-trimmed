@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham Glob
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_pointwiseGenerator_of_dualNumberLineBundleGenerator : ∀ (R : Type) [CommRing R] (A B : Over (Sp R)) [GrpObj A] [GrpObj B] (P : LB (A ⊗ B).left), P.IsLB → ∀ v : epsR R ⟶ B, IsTangent v → ∀ T, IsEpsGen P v T → ∃ t, IsPtGen P (lift (fst A (epsR R)) (snd A (epsR R) ≫ v)) t := by
-  first | exact @GlobalTheory.PtExt.exists_isPtGen_of_isEpsGen | exact GlobalTheory.PtExt.exists_isPtGen_of_isEpsGen | (intros; apply GlobalTheory.PtExt.exists_isPtGen_of_isEpsGen <;> assumption)
+  first | exact @GlobalTheory.PtExt.exists_isPtGen_of_isEpsGen

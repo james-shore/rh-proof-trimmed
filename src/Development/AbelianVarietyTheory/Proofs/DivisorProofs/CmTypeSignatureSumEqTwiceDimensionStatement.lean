@@ -58,4 +58,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.cmType_signature_sum_eq_twice_dimension : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (p q : ℕ), ∑ τ : E →+* ℂ, (if τ (H.rt : E) = H.rt0 then p else q) * (if NumberField.ComplexEmbedding.conjugate τ (H.rt : E) = H.rt0 then p else q) = 2 * (Module.finrank ℚ E / 2 * p * q) := by
-  first | exact @GlobalTheory.BalProj.signature_count | exact GlobalTheory.BalProj.signature_count | (intros; apply GlobalTheory.BalProj.signature_count <;> assumption)
+  first | exact @GlobalTheory.BalProj.signature_count

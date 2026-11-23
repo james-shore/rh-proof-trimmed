@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_weilRep_orientedPair_rationalSchrodinger : 
     ∃ om : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep D.sp.cm.sig Vs Ws, M.IsWeil Bs.ψ χ χ' om ∧
       ∀ Φ f, IsDatum M ψ cS Φ f → ∀ g h,
         IsDatum M ψ cS (om (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU S _ hJ g, kapX X e hJW h) Φ) (ω (g, h) f) := by
-  first | exact @GlobalTheory.SquareAgree.exists_weil_of_oriented | exact GlobalTheory.SquareAgree.exists_weil_of_oriented | (intros; apply GlobalTheory.SquareAgree.exists_weil_of_oriented <;> assumption)
+  first | exact @GlobalTheory.SquareAgree.exists_weil_of_oriented

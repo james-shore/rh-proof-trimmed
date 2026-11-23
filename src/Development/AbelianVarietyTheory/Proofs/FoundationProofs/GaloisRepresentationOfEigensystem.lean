@@ -111,7 +111,7 @@ theorem galB_mul (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (s s' : Ω ≃ₐ[�
   simp only [Tower.galB, LinearMap.coe_mk, AddHom.coe_mk, LinearMap.comp_apply]
   rw [← LinearMap.comp_apply (X.kmap l (X.gal s)), kmap_comp, ← hg, hr, map_mul, Units.val_mul]
   congr 2
-  ext i; fin_cases i <;> simp [mul_comm, mul_left_comm, mul_assoc]
+  ext i; fin_cases i <;> simp [mul_comm, mul_left_comm]
 
 theorem galB_one (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] : X.galB l 1 = LinearMap.id := by
   have hg : X.gal 1 = RingEquiv.refl X.K := RingEquiv.ext (gal_one_apply X)
@@ -158,18 +158,14 @@ theorem adj_eigen (A : Set Letter) (f : Letter → Module.End E V) (lam : Letter
     simp [FreeAlgebra.lift_ι_apply, hy T hT]
   | algebraMap r => simp
   | add a b _ _ ha hb => simp [ha, hb, add_smul]
-  | mul a b _ _ ha hb => simp [Module.End.mul_apply, ha, hb, smul_smul, mul_comm]
+  | mul a b _ _ ha hb => simp [ha, hb, smul_smul, mul_comm]
 
 theorem adj_stab (A : Set Letter) (f : Letter → Module.End E V) (W : Submodule E V) (g : G → Module.End E V)
     (hs : ∀ T ∈ A, ∀ x ∈ W, f T x ∈ W) (hc : ∀ T ∈ A, ∀ s, ∀ x ∈ W, f T (g s x) = g s (f T x))
     (Q : FreeAlgebra E Letter) (hQ : Q ∈ Algebra.adjoin E (FreeAlgebra.ι E '' A)) :
     ∀ x ∈ W, FreeAlgebra.lift E f Q x ∈ W ∧ ∀ s, g s (FreeAlgebra.lift E f Q x) = FreeAlgebra.lift E f Q (g s x) := by
   first
-  | exact @_root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes
-  | exact _root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes
   | (apply _root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes ..)
 
 end Gen
@@ -223,7 +219,7 @@ theorem heckeProj_main : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosu
       map_one' := by
         ext u; simp [LinearMap.restrict_apply, hg1]
       map_mul' := by
-        intro s s'; ext u; simp [LinearMap.restrict_apply, hgm, Module.End.mul_apply] }
+        intro s s'; ext u; simp [LinearMap.restrict_apply, hgm] }
   have hσU : ∀ s (u : U), ((σU s u : U) : E ⊗[ℤ_[l]] X.Fn l) = X.galV l E s u := fun s u => rfl
   have h2 : (2 : E) ≠ 0 := by
     intro h

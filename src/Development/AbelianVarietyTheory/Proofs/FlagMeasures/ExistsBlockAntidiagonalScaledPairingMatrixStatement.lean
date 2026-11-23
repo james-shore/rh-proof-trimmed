@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.exists_blockAntidiagonal_scaled_pairing_matrix : �
       GlobalTheory.Amp.BlockAnti (fun a : Fin j => β (Fin.castLE hj a))
         (Matrix.of fun a b : Fin j => (((ρ ^ (r - b.val))⁻¹ * (ρ ^ (r - a.val))⁻¹ : ℝ) : ℂ) *
           σ (w.mat b a * ((sgn a : ℤ) : K))) := by
-  first | exact @GlobalTheory.Amp.BlockFrame.blockAnti_scaled_pairing | exact GlobalTheory.Amp.BlockFrame.blockAnti_scaled_pairing | (intros; apply GlobalTheory.Amp.BlockFrame.blockAnti_scaled_pairing <;> assumption)
+  first | exact @GlobalTheory.Amp.BlockFrame.blockAnti_scaled_pairing

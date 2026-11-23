@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open PowerSeries GlobalTheory.BK
 
 theorem _root_.GlobalTheory.T.maxFrobeniusOrbitLengthDiff_bounds_zmod : ∀ (l e a : ℕ), l.Prime → 1 ≤ a → e + 1 = l ^ a → ∀ (Sig : Finset (ZMod e)) (N : ℕ), (∀ c ∈ Sig, (l : ZMod e) * c ∈ Sig) → (0 : ZMod e) ∈ Sig → Sig.card ≤ N → 2 ≤ N → 1 ≤ maxPeriod l Sig ∧ 4 * maxPeriod l Sig ≤ N ^ 2 ∧ ∀ c ∈ Sig, frobPeriod l c ≤ maxPeriod l Sig := by
-  first | exact @GlobalTheory.BK.maxPeriod_bounds | exact GlobalTheory.BK.maxPeriod_bounds | (intros; apply GlobalTheory.BK.maxPeriod_bounds <;> assumption)
+  first | exact @GlobalTheory.BK.maxPeriod_bounds

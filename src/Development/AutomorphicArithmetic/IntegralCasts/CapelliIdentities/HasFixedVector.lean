@@ -81,7 +81,7 @@ private lemma core {G W V : Type} [Group G] [TopologicalSpace G] [IsTopologicalG
          mul_mem' := by
            intro a b ha hb
            simp only [Set.mem_setOf_eq] at ha hb ⊢
-           simp [map_mul, Module.End.mul_apply, ha, hb]
+           simp [map_mul, ha, hb]
          one_mem' := by simp
          inv_mem' := by
            intro a ha

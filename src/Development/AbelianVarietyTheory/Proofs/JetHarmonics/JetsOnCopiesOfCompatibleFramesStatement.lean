@@ -52,4 +52,4 @@ open Formalism.MainNotions.ModuliIntegralCharts.H1.BoxTuple Formalism.MainNotion
 open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 
 theorem _root_.GlobalTheory.T.jets_on_copies_of_compatible_frames : Laws → Laws2 → Laws4 → TwistBaseChangeStatement → JetsOnCopiesCompatibleFrames := by
-  first | exact @GlobalTheory.PowJets.jets_on_copies | exact GlobalTheory.PowJets.jets_on_copies | (intros; apply GlobalTheory.PowJets.jets_on_copies <;> assumption)
+  first | exact @GlobalTheory.PowJets.jets_on_copies

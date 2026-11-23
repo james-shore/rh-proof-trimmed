@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.exists_realPoint_standardSource_unitaryComponents : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (v : D.what₂.Tau → Matrix (Fin S.rank) (Fin S.rank) ℂ), (∀ τ, (v τ)ᴴ * v τ = 1) → ∃ h ∈ GinfC S, ∀ τ, compAt C.θ τ (mt S h) = v τ := by
-  first | exact @GlobalTheory.StdRealLift.exists_real_point | exact GlobalTheory.StdRealLift.exists_real_point | (intros; apply GlobalTheory.StdRealLift.exists_real_point <;> assumption)
+  first | exact @GlobalTheory.StdRealLift.exists_real_point

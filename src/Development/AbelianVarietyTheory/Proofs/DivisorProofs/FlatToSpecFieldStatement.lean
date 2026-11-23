@@ -51,4 +51,4 @@ open AlgebraicGeometry CategoryTheory TopologicalSpace Limits NumberField Recipr
 open GlobalTheory.FlagMod.LowRank (ECh Proj str)
 
 theorem _root_.GlobalTheory.T.flat_to_spec_field' : ∀ (K : Type) [Field K] (Z : Scheme.{0}) (f : Z ⟶ Sp K), Flat f := by
-  first | exact @GlobalTheory.flat_to_spec_field | exact GlobalTheory.flat_to_spec_field | (intros; apply GlobalTheory.flat_to_spec_field <;> assumption)
+  first | exact @GlobalTheory.flat_to_spec_field

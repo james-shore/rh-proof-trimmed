@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.exists_lagrangian_skewHermitian_completionTensor :
     (∃ x : Fv F v ⊗[F] E, (1 : Fv F v) ⊗ₜ[F] J.det = x * Algebra.TensorProduct.map (AlgHom.id (Fv F v) (Fv F v)) σ x) →
     ∃ Cy : Matrix (Fin n) (Fin (n / 2)) (Fv F v ⊗[F] E),
       IsLagr (Algebra.TensorProduct.map (AlgHom.id (Fv F v) (Fv F v)) σ) (JR (Fv F v) J) Cy := by
-  first | exact @GlobalTheory.SkewLagr.exists_isLagr_tensor | exact GlobalTheory.SkewLagr.exists_isLagr_tensor | (intros; apply GlobalTheory.SkewLagr.exists_isLagr_tensor <;> assumption)
+  first | exact @GlobalTheory.SkewLagr.exists_isLagr_tensor

@@ -49,4 +49,4 @@ open NumberField IsDedekindDomain MvPolynomial Formalism.BasicNotions Formalism.
 open scoped Matrix ComplexOrder
 
 theorem _root_.GlobalTheory.T.nablaDeltaOperator_lattice_preserved : NabDelLattice := by
-  first | exact @GlobalTheory.TransLattice.nabDelLattice | exact GlobalTheory.TransLattice.nabDelLattice | (intros; apply GlobalTheory.TransLattice.nabDelLattice <;> assumption)
+  first | exact @GlobalTheory.TransLattice.nabDelLattice

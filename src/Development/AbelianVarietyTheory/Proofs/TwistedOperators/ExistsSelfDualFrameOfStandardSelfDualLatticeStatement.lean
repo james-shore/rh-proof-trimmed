@@ -51,4 +51,4 @@ open scoped Pointwise TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_selfDual_frame_of_standard_selfDual_lattice : ∀ (D : D7) (V : HSp D) (Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E)), (Λ : Set (Fin V.rank → D.host.E)) = L0c D V → IsSelfDualC V Λ → ∃ β, IsSDFrame V β Λ 1 := by
-  first | exact @GlobalTheory.SDFrameCompletion.exists_isSDFrame_of_isSelfDualC | exact GlobalTheory.SDFrameCompletion.exists_isSDFrame_of_isSelfDualC | (intros; apply GlobalTheory.SDFrameCompletion.exists_isSDFrame_of_isSelfDualC <;> assumption)
+  first | exact @GlobalTheory.SDFrameCompletion.exists_isSDFrame_of_isSelfDualC

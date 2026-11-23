@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.thetaCosetIndicatorReading_spherical_off_modulus :
   ∀ f₀ φ, Reads X.ψ X.θ X.rkA X.rkB ⊤ δ r P.e0 f₀ → IsSphOff X.ψ X.A X.B (stdLat X.A) LB ∅ f₀ →
     Reads X.ψ X.θ X.rkA X.rkB ⊤ δ r (cosetVec P 𝔪 o) φ →
     IsSphOff X.ψ X.A X.B (stdLat X.A) LB Sf φ := by
-  first | exact @GlobalTheory.NormRatio.SphCoset.sph | exact GlobalTheory.NormRatio.SphCoset.sph | (intros; apply GlobalTheory.NormRatio.SphCoset.sph <;> assumption)
+  first | exact @GlobalTheory.NormRatio.SphCoset.sph

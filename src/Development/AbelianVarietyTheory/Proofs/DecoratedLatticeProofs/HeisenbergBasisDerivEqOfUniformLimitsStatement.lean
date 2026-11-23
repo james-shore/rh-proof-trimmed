@@ -61,4 +61,4 @@ open GlobalTheory.ThetaDens
 
 
 theorem _root_.GlobalTheory.T.heisenbergBasisDeriv_eq_of_uniform_limits : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ θ : InfFam D, IsInfFam θ → ∀ (S T : HSp D) (G : ℕ → WO S T → ℂ) (F F' : WO S T → ℂ), (∀ j, IsThetaFunO ψ S T (G j)) → TendstoUniformly G F Filter.atTop → ∀ a : (D.what₂.Tau × Fin T.rank × Fin S.rank × Bool), TendstoUniformly (fun j => GlobalTheory.Size.heisDer ψ θ a (G j)) F' Filter.atTop → GlobalTheory.Size.heisDer ψ θ a F = F' := by
-  first | exact @GlobalTheory.ThetaLimDeriv.heisDer_of_tendstoUniformly | exact GlobalTheory.ThetaLimDeriv.heisDer_of_tendstoUniformly | (intros; apply GlobalTheory.ThetaLimDeriv.heisDer_of_tendstoUniformly <;> assumption)
+  first | exact @GlobalTheory.ThetaLimDeriv.heisDer_of_tendstoUniformly

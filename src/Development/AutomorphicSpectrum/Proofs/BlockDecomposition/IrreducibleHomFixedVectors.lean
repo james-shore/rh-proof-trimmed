@@ -190,7 +190,7 @@ theorem hk_cosetFn {K L : Subgroup (GL ι F)} [Fintype (K ⧸ L.subgroupOf K)] (
   · simp only [avg, LinearMap.sum_apply]
     refine Finset.sum_congr rfl fun q _ => ?_
     rw [finsum_eq_single _ (QuotientGroup.mk (((q.out : K) : GL ι F) * g))]
-    · simp [map_mul, Module.End.mul_apply]
+    · simp [map_mul]
     · intro p hp
       exact if_neg hp
   · intro q _

@@ -206,7 +206,6 @@ theorem fullLat_of [Algebra (𝓞 K) R] [IsScalarTower (𝓞 K) K R] (C : Submod
      span_eq_top := span_latOf_eq_top hV C h }
   first
   | exact hfull
-  | exact hfull.toIsLattice
 
 omit hV in
 theorem exists_prime_mem (la : HeightOneSpectrum (𝓞 K)) {N : ℕ} (h0 : N ≠ 0) (h : (N : 𝓞 K) ∈ la.asIdeal) :

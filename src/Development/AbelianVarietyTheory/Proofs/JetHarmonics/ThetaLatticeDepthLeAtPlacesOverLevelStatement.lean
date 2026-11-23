@@ -47,4 +47,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons
 open GlobalTheory.PtTie
 
 theorem _root_.GlobalTheory.T.thetaLatticeDepth_le_at_places_over_level : (∀ (p : ℕ) [Fact p.Prime], Pdiv.ChartF.HTFSt p) → ∀ (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (hj : InR D j) (hinj : Function.Injective D.what₂.OtoLL) (EX : ErrX D) (w : WeightFamilies.Wt D j) (c : ℝ), Oriented T EX → RunNum D w c → ∀ (la : HeightOneSpectrum (𝓞 T.Q.c.F)) (i : Fin 2), ((D.host.g i : ℕ) : 𝓞 T.Q.c.F) ∈ la.asIdeal → ∀ y : T.PtA j la, (recPJ h j hj).depth (sWt (recB h.toLawsCore) hinj EX w) w la y ≤ ((nusOf (recB h.toLawsCore) w (nuWt T w) la + c * (recPJ h j hj).phiC la y : ℝ) : EReal) := by
-  first | exact @GlobalTheory.DepthOverLevel.depth_le_over_level | exact GlobalTheory.DepthOverLevel.depth_le_over_level | (intros; apply GlobalTheory.DepthOverLevel.depth_le_over_level <;> assumption)
+  first | exact @GlobalTheory.DepthOverLevel.depth_le_over_level

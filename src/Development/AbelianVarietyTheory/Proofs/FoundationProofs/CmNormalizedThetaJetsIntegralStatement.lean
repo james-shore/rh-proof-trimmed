@@ -45,4 +45,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.cm_normalized_theta_jets_integral : ∀ D : D7, GL3Theta.jetsPh D := by
-  first | exact @GlobalTheory.ThetaJets.jetsPh_all | exact GlobalTheory.ThetaJets.jetsPh_all | (intros; apply GlobalTheory.ThetaJets.jetsPh_all <;> assumption)
+  first | exact @GlobalTheory.ThetaJets.jetsPh_all

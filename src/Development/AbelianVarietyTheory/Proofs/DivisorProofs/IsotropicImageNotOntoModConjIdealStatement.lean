@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.isotropicImage_not_onto_mod_conj_ideal : ∀ {E : 
     (hr : Module.finrank (𝓞 E) Z = Module.finrank (𝓞 E) X) (𝔭 : Ideal (𝓞 E)) (h𝔭 : 𝔭.IsMaximal)
     (hn𝔭 : (n : 𝓞 E) ∈ 𝔭) (hi : img D y Z' 𝔭 ≠ ⊤) (hL : (perp D Z ⊓ perp D Z').map y ≤ img D y Z' 𝔭),
     img D y Z' (𝔭.map (H.bar : 𝓞 E →+* 𝓞 E)) ≠ ⊤ := by
-  first | exact @GlobalTheory.LowFilt.CoisBar.img_bar_ne_top | exact GlobalTheory.LowFilt.CoisBar.img_bar_ne_top | (intros; apply GlobalTheory.LowFilt.CoisBar.img_bar_ne_top <;> assumption)
+  first | exact @GlobalTheory.LowFilt.CoisBar.img_bar_ne_top

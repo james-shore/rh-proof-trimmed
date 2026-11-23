@@ -47,4 +47,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.gramLowerTriangularFactor_lowerTriangular_conj : ∀ (s : ℕ) (G g : Matrix (Fin s) (Fin s) ℂ), G.PosDef → (∀ i j, i < j → g i j = 0) → IsUnit g.det → ldPart (g * G * gᴴ) = g * ldPart G * (Matrix.diagonal fun i => g i i)ᴴ ∧ ∀ i, grD (g * G * gᴴ) i = ‖g i i‖ ^ 2 * grD G i := by
-  first | exact @GlobalTheory.ChernCalc.ldPart_conj_lower | exact GlobalTheory.ChernCalc.ldPart_conj_lower | (intros; apply GlobalTheory.ChernCalc.ldPart_conj_lower <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.ldPart_conj_lower

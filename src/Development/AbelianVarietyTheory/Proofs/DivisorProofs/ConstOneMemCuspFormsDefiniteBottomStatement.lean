@@ -55,4 +55,4 @@ open GlobalTheory.Core.Rk.IP (Pair Unram SphFun openOff integrand wcoef rcoef up
 
 theorem _root_.GlobalTheory.T.const_one_mem_cuspForms_definiteBottom : GBig fun {D} T Lc _ G _ _ _ _ => ∀ (W : G.Weil) (i j : Fin D.R.m) (A A' WW : HSp D) (X : Tri T A A' WW),
   IsBottomTri W i j X → ∀ t : T, ∀ cA : CptF (GlobalTheory.Grid.neg A), HidaSetting W.θ (GlobalTheory.Grid.neg A) WW (fun τ => -X.rA.s τ) X.rW.s A'.rank cA → (fun _ => (1 : ℂ)) ∈ A0 W.θ (GlobalTheory.Grid.neg A) cA := by
-  first | exact @GlobalTheory.BottomCusp.one_mem_A0_of_isBottomTri | exact GlobalTheory.BottomCusp.one_mem_A0_of_isBottomTri | (intros; apply GlobalTheory.BottomCusp.one_mem_A0_of_isBottomTri <;> assumption)
+  first | exact @GlobalTheory.BottomCusp.one_mem_A0_of_isBottomTri

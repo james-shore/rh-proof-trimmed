@@ -53,4 +53,4 @@ open GlobalTheory.TrMult
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.cuspidalMultiplicity_eq_discreteSeriesModel_maps : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.HarishChandraFinite → GlobalTheory.Published.DixmierMalliavinFactorisation → ∀ (D : D7) (θ : D.what₂.Tau → (TensorProduct D.host.F (Ainf D.host.F) D.host.E →+* ℂ)), IsInfFam θ → ∀ (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (μ : Measure (GA D V)) [μ.IsHaarMeasure] [μ.IsMulRightInvariant] (W : Type) [AddCommGroup W] [Module ℂ W] (σ : Representation ℂ (GfC V) W), GlobalTheory.PRep.IsSmooth σ → GlobalTheory.CuspMult.cuspMult θ M σ = mCuspDS μ σ M := by
-  first | exact @GlobalTheory.AutMult.cuspMult_eq_mCuspDS | exact GlobalTheory.AutMult.cuspMult_eq_mCuspDS | (intros; apply GlobalTheory.AutMult.cuspMult_eq_mCuspDS <;> assumption)
+  first | exact @GlobalTheory.AutMult.cuspMult_eq_mCuspDS

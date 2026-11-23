@@ -49,4 +49,4 @@ open scoped Matrix
 open GlobalTheory.UPel.HT
 
 theorem _root_.GlobalTheory.T.exists_harrisTaylorModuliObject_pullback : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] (b : Base D R) (N : ℕ) (S S' : Scheme.{0}) (s : S ⟶ Sp R) (s' : S' ⟶ Sp R) (f : S' ⟶ S), f ≫ s = s' → ∀ o : Obj b N s, ∃ o' : Obj b N s', Nonempty (ObjMap o' o f) := by
-  first | exact @GlobalTheory.HTPullEvery.exists_objMap | exact GlobalTheory.HTPullEvery.exists_objMap | (intros; apply GlobalTheory.HTPullEvery.exists_objMap <;> assumption)
+  first | exact @GlobalTheory.HTPullEvery.exists_objMap

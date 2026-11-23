@@ -80,7 +80,7 @@ theorem parFun_lintegral_sq : ∀ (F : Type) [Field F] [CharZero F] [ValuativeRe
       ((D ^ Fintype.card α : NNReal) : ENNReal) * ‖φ (x * (A : Matrix ν ν E))‖ₑ ^ 2 := by
     intro x
     have hψe : ∀ t, ‖ψ t‖ₑ = 1 := fun t => by
-      rw [enorm_eq_nnnorm]; simp [← NNReal.coe_eq_one, coe_nnnorm, hψ1 t]
+      rw [enorm_eq_nnnorm]; simp [← NNReal.coe_eq_one, hψ1 t]
     simp only [parFun, enorm_mul, hψe, one_mul, mul_pow, hsc, hA]
   haveI := htop
   let e : Matrix α ν E ≃ₜ Matrix α ν E :=

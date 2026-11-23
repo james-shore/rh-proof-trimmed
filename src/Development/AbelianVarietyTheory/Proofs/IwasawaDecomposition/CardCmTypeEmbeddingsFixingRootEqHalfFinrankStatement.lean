@@ -51,4 +51,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 
 
 theorem _root_.GlobalTheory.T.card_cmTypeEmbeddingsFixingRoot_eq_half_finrank : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E), Fintype.card (GlobalTheory.AllWt.Psi H) = Module.finrank ℚ E / 2 := by
-  first | exact @GlobalTheory.CMTypeCard.card_psi_eq_half | exact GlobalTheory.CMTypeCard.card_psi_eq_half | (intros; apply GlobalTheory.CMTypeCard.card_psi_eq_half <;> assumption)
+  first | exact @GlobalTheory.CMTypeCard.card_psi_eq_half

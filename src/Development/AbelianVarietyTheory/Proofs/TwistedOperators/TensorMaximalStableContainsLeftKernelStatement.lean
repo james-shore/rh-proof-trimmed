@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.tensor_maximalStable_contains_leftKernel : ∀ {M�
       (∀ x ∈ Rel₀, ∀ y, x ⊗ₜ[ℂ] y ∈ N') → GlobalTheory.TensHead.Stab (GlobalTheory.TensHead.tensOps Op₀ B) N' →
       (∀ U, GlobalTheory.TensHead.Stab (GlobalTheory.TensHead.tensOps Op₀ B) U → N' ≤ U → U = N' ∨ U = ⊤) →
       ∀ x ∈ K₀, ∀ y, x ⊗ₜ[ℂ] y ∈ N' := by
-  first | exact @GlobalTheory.TensHead.tens_maxStab_contains_left_ker | exact GlobalTheory.TensHead.tens_maxStab_contains_left_ker | (intros; apply GlobalTheory.TensHead.tens_maxStab_contains_left_ker <;> assumption)
+  first | exact @GlobalTheory.TensHead.tens_maxStab_contains_left_ker

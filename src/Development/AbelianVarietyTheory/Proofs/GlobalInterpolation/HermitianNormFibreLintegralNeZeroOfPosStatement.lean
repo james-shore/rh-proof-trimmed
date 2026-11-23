@@ -50,4 +50,4 @@ open scoped ENNReal TensorProduct
 
 
 theorem _root_.GlobalTheory.T.hermitianNormFibre_lintegral_ne_zero_of_pos : ActionCoordinates.QuotientMeasure → CDHaar → ∀ (P Q : ℕ) (β : ℝ), (β = 1 ∨ β = -1) → ∀ x₀ : ActionCoordinates.Wsp P Q, ActionCoordinates.qf x₀ = β → ∀ fib : ℝ → Measure (ActionCoordinates.Wsp P Q), ActionCoordinates.IsDxDq β fib → ∀ φ : ActionCoordinates.Wsp P Q → ℝ, Continuous φ → 0 < φ x₀ → ∫⁻ y, ENNReal.ofReal (φ y) ∂(fib β) ≠ 0 := by
-  first | exact @GlobalTheory.FibrePositive.fibre_lintegral_ne_zero | exact GlobalTheory.FibrePositive.fibre_lintegral_ne_zero | (intros; apply GlobalTheory.FibrePositive.fibre_lintegral_ne_zero <;> assumption)
+  first | exact @GlobalTheory.FibrePositive.fibre_lintegral_ne_zero

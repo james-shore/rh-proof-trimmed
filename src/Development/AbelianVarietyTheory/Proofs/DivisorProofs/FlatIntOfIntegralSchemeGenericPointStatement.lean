@@ -64,4 +64,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
 theorem _root_.GlobalTheory.T.flat_int_of_integral_scheme_generic_point : ∀ {X : Scheme.{0}} [IsIntegral X] (s : X ⟶ Spec (CommRingCat.of ℤ)) (x : X), (s x).asIdeal = ⊥ → Flat s := by
-  first | exact @GlobalTheory.IntFlat.flat_of_generic_zero | exact GlobalTheory.IntFlat.flat_of_generic_zero | (intros; apply GlobalTheory.IntFlat.flat_of_generic_zero <;> assumption)
+  first | exact @GlobalTheory.IntFlat.flat_of_generic_zero

@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.log_shortThetaSeriesDenominatorBound_le : ∃ C : 
     (a : (D.host.E →+* ℂ) × ℕ → ℕ) (n : ℕ), GlobalTheory.CovGmin.Hyp D T j Y e o Lb a n →
     0 < intZ D (T.Q.Dw j) Y.d.l₂ n a ∧
     Real.log (intZ D (T.Q.Dw j) Y.d.l₂ n a) ≤ C * ((D.R.f : ℝ) * D.R.r * Lb) ^ 2 * sizeK (T.Q.Dw j) a n := by
-  first | exact @GlobalTheory.CovIntNum.intZ_log_le | exact GlobalTheory.CovIntNum.intZ_log_le | (intros; apply GlobalTheory.CovIntNum.intZ_log_le <;> assumption)
+  first | exact @GlobalTheory.CovIntNum.intZ_log_le

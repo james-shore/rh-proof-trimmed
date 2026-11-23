@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 theorem _root_.GlobalTheory.T.addGroupFG_lineBundleSections_arithmeticVariety : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ B : LB X, B.IsLB → AddGroup.FG B.Sec := by
-  first | exact @GlobalTheory.addGroupFG_sec_of_isArithVar | exact GlobalTheory.addGroupFG_sec_of_isArithVar | (intros; apply GlobalTheory.addGroupFG_sec_of_isArithVar <;> assumption)
+  first | exact @GlobalTheory.addGroupFG_sec_of_isArithVar

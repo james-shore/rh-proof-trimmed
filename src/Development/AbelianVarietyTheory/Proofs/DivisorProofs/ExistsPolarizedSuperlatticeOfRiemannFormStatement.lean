@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_polarized_superlattice_of_riemann_form : �
       Λ ≤ Λ₁ ∧ 0 < N ∧ (∀ x ∈ Λ₁, (N : ℂ) • x ∈ Λ) ∧ DiscreteTopology Λ₁ ∧
       Submodule.span ℝ (Λ₁ : Set (Fin g → ℂ)) = ⊤ ∧
       (∀ a b : Λ₁, (Ef a b : ℝ) = (hermForm Hm a b).im) ∧ Function.Bijective Ef := by
-  first | exact @GlobalTheory.UnimodOver.exists_unimodular_overlattice | exact GlobalTheory.UnimodOver.exists_unimodular_overlattice | (intros; apply GlobalTheory.UnimodOver.exists_unimodular_overlattice <;> assumption)
+  first | exact @GlobalTheory.UnimodOver.exists_unimodular_overlattice

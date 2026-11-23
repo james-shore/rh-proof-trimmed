@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.cosetVector_orthogonal_translate_finite_point : �
   o + P.a ≤ P.d → ∀ (ν : Measure (WO X.A X.B)) (𝓕 : Set (WO X.A X.B)), IsCovolOne (ratL X.B X.A) ν 𝓕 →
   ∀ y, X.ιA y ∈ openOff X.A (stdLat X.A) Sf → ¬ (y ∈ intG D P.a ∧ CongOne D 𝔪 y) →
     ip X.A X.B ν 𝓕 (X.om (X.ιA y, 1) φ) φ = 0 := by
-  first | exact @GlobalTheory.NormRatio.ip_om_cosetVec_eq_zero | exact GlobalTheory.NormRatio.ip_om_cosetVec_eq_zero | (intros; apply GlobalTheory.NormRatio.ip_om_cosetVec_eq_zero <;> assumption)
+  first | exact @GlobalTheory.NormRatio.ip_om_cosetVec_eq_zero

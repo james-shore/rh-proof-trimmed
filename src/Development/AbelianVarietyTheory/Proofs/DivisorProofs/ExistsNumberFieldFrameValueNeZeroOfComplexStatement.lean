@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.exists_numberFieldFrame_value_ne_zero_of_complex :
     (y : FrPt Xo c K) (e : Ix Dw → ℤ), ∀ F ∈ GlobalTheory.AllWt.secZ Xo c e, ∀ (σ : c.F →+* ℂ) (σ₁ : K →ₐ[c.F] CAt σ)
     (w : FrPt Xo c (CAt σ)), spMap σ₁.toRingHom ≫ y.x = w.x → evR Xo c F w ≠ 0 →
     ∃ y' : FrPt Xo c K, y'.x = y.x ∧ evR Xo c F y' ≠ 0 := by
-  first | exact @GlobalTheory.FrameDenseZ.exists_frame_evR_ne_zero_of_complex | exact GlobalTheory.FrameDenseZ.exists_frame_evR_ne_zero_of_complex | (intros; apply GlobalTheory.FrameDenseZ.exists_frame_evR_ne_zero_of_complex <;> assumption)
+  first | exact @GlobalTheory.FrameDenseZ.exists_frame_evR_ne_zero_of_complex

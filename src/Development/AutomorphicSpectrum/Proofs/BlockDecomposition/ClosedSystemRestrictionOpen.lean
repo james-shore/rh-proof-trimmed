@@ -99,7 +99,7 @@ lemma isNoetherian_of_proper {A : Type} [CommRing A] [IsNoetherianRing A] {X : S
     [X.Over (Spec (.of A))] [IsProper (X ↘ Spec (.of A))] : IsNoetherian X := by
   haveI : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian (X ↘ Spec (.of A))
   haveI : CompactSpace X := QuasiCompact.compactSpace_of_compactSpace (X ↘ Spec (.of A))
-  first | infer_instance | exact {}
+  first | exact {}
 
 lemma isClosed_image {A : Type} [CommRing A] [IsNoetherianRing A] {X : Scheme.{0}}
     [X.Over (Spec (.of A))] [IsProper (X ↘ Spec (.of A))] (O : X.Opens) :

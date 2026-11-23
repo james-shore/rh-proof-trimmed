@@ -59,4 +59,4 @@ open GlobalTheory.Core.Rk.Exh GlobalTheory.RegSW
 open GlobalTheory.AdelicU Formalism.UG
 
 theorem _root_.GlobalTheory.T.wittHyperbolic_isotropic_columns_at_real_place : ∀ {D : D7} {T T₀ : HSp D} {r : ℕ} (d : HypDec T T₀ r) (w : InfinitePlace D.host.F), (Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR w.Completion D.sp.cm.sig) (Matrix.map d.jX (compInf D.host.F D.host.E w)) * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.JR w.Completion T.gram : Matrix (Fin r) (Fin T.rank) (TensorProduct D.host.F w.Completion D.host.E)) * Matrix.map d.jX (compInf D.host.F D.host.E w) = 0 := by
-  first | exact @GlobalTheory.IsoColReal.isotropic_at_real | exact GlobalTheory.IsoColReal.isotropic_at_real | (intros; apply GlobalTheory.IsoColReal.isotropic_at_real <;> assumption)
+  first | exact @GlobalTheory.IsoColReal.isotropic_at_real

@@ -143,7 +143,7 @@ theorem GlobalTheory.coeff_eq_zero_of_evA_eq_zero_of_le_finrank :
     intro a
 
     rw [hP, map_sum, Finset.sum_eq_single a]
-    · simp [coeff_monomial]
+    · simp
     · intro b _ hb
       simp [coeff_monomial, boxPt_injective.ne (Ne.symm hb)]
     · simp

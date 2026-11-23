@@ -130,13 +130,11 @@ theorem det_eq_norm (K : Type) [Field K] [Algebra (ZMod g) K] (hK : Nat.card K =
   letI : Fintype K := Fintype.ofFinite K
   haveI : Module.Finite (ZMod g) K := by
     first
-    | exact Module.finite_of_finite (ZMod g)
     | exact inferInstance
   have hfr : Module.finrank (ZMod g) K = n := by
     have h1 : Fintype.card K = Fintype.card (ZMod g) ^ Module.finrank (ZMod g) K := by
       first
       | exact Module.card_eq_pow_finrank
-      | exact card_eq_pow_finrank
     rw [ZMod.card] at h1
     have h2 : Fintype.card K = g ^ n := by rw [← Nat.card_eq_fintype_card, hK]
     exact Nat.pow_right_injective hg (h1.symm.trans h2)

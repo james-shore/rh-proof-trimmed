@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.modularFunctionFractionField_expansion_converges : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (T : Frac Ω ε) (f : T.K), Den (T.exp f) ∧ ∃ (φ : ℂ → ℂ) (C : ℝ), T.an f = (φ : Mero) ∧ HS ε C φ (T.exp f) := by
-  first | exact @GlobalTheory.FN.frac_exp_converges | exact GlobalTheory.FN.frac_exp_converges | (intros; apply GlobalTheory.FN.frac_exp_converges <;> assumption)
+  first | exact @GlobalTheory.FN.frac_exp_converges

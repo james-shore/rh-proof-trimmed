@@ -193,7 +193,7 @@ theorem exists_liftScheme : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
       have hG := tateAt_congr o N' (x' := (x ≫ h.left) ≫ Z.hom)
         (by rw [Category.assoc, Over.w h]) _
         (fun a => (Over.homMk (x ≫ h.left) rfl : Over.mk ((x ≫ h.left) ≫ Z.hom) ⟶ Z) ≫ et a)
-        (fun a => by rw [← hh a, ← Category.assoc, ← Category.assoc]; congr 1; try (ext; simp)) (hgeo k x)
+        (fun a => by rw [← hh a, ← Category.assoc, ← Category.assoc]; congr 1) (hgeo k x)
       refine (key k (x ≫ h.left)).1 hG ⟨u, ?_⟩
       rw [Scheme.Hom.comp_apply, hu]
     obtain ⟨h', hh'⟩ := (Hi T h).1 hr
@@ -214,6 +214,5 @@ theorem exists_liftScheme : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
     rw [hf' a]
     simp only [← Category.assoc]
     congr 1
-    try (ext; simp)
 
 end GlobalTheory.UPel.HT

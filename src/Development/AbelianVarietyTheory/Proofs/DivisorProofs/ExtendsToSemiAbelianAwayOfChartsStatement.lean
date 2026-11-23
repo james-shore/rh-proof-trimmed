@@ -49,4 +49,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.extendsToSemiAbelian_away_of_charts : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R] (f : R), f ≠ 0 → ∀ (A : Over (Sp (Localization.Away f))) [GrpObj A], IsAbelianScheme A → ∀ L : LB A.left, L.IsLB → RelAmple A L → (∀ x : Sp R, Nonempty (Chart (awayMap f) A x)) → HasExt (awayMap f) A := by
-  first | exact @GlobalTheory.Desc.hasExt_awayMap_of_charts | exact GlobalTheory.Desc.hasExt_awayMap_of_charts | (intros; apply GlobalTheory.Desc.hasExt_awayMap_of_charts <;> assumption)
+  first | exact @GlobalTheory.Desc.hasExt_awayMap_of_charts

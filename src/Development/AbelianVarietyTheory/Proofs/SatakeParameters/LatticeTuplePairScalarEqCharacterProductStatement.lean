@@ -45,4 +45,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.latticeTuplePairScalar_eq_characterProduct : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => J.Dict std → ∀ (d : Dec J std), ∀ j < D.R.m, d.ScalAt S j) := by
-  first | exact @GlobalTheory.TwV.DelB.scalAt_all | exact GlobalTheory.TwV.DelB.scalAt_all | (intros; apply GlobalTheory.TwV.DelB.scalAt_all <;> assumption)
+  first | exact @GlobalTheory.TwV.DelB.scalAt_all

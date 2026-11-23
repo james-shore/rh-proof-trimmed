@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.modularFunctionFractionField_an_sl_germ : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (T : Frac Ω ε) (g : GQ) (f : T.K) (φ : ℂ → ℂ), T.an f = (φ : Mero) → T.an (T.sl g f) = ((fun z => φ (mob g z)) : Mero) := by
-  first | exact @GlobalTheory.FN.an_sl_germ | exact GlobalTheory.FN.an_sl_germ | (intros; apply GlobalTheory.FN.an_sl_germ <;> assumption)
+  first | exact @GlobalTheory.FN.an_sl_germ

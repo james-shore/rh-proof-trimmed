@@ -55,4 +55,4 @@ open scoped TensorProduct InnerProductSpace ContDiff
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.voganNormSq_holomorphicLowestKType_sub_root_lt : ∀ (n p : ℕ) (ε : Fin n → Bool) (lam : Fin n → ℝ), Formalism.QuantumDeterminants.IsHCParam lam → (∀ a, ε a = decide ((a : ℕ) < p)) → ∀ a c : Fin n, ε a = true → ε c = false → vNormSq ε (Formalism.QuantumDeterminants.lowK ε lam - Formalism.REAL.root a c) < vNormSq ε (Formalism.QuantumDeterminants.lowK ε lam) := by
-  first | exact @GlobalTheory.HolDict.vNormSq_lowK_sub_noncompact_root_lt | exact GlobalTheory.HolDict.vNormSq_lowK_sub_noncompact_root_lt | (intros; apply GlobalTheory.HolDict.vNormSq_lowK_sub_noncompact_root_lt <;> assumption)
+  first | exact @GlobalTheory.HolDict.vNormSq_lowK_sub_noncompact_root_lt

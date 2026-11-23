@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.definiteBottom_splitPlace_stabiliser_vacuum : ∀ 
     (k : GA D WW), k ∈ KsphC (GlobalTheory.SplitVacAlg.stdLatSp WW hX.stdW.1) ∅ → Formalism.L2.Theta.SuppAt e WW k →
       X.ω t (1, k) X.vac =
         (((G.ch.chi (D.R.m - i) * L.eta ^ (rankV D i j % 2)) (GlobalTheory.VecInv.detAt e he.1 WW k) : Circle) : ℂ) • X.vac := by
-  first | exact @GlobalTheory.StabVacSplit.stab_vac_split | exact GlobalTheory.StabVacSplit.stab_vac_split | (intros; apply GlobalTheory.StabVacSplit.stab_vac_split <;> assumption)
+  first | exact @GlobalTheory.StabVacSplit.stab_vac_split

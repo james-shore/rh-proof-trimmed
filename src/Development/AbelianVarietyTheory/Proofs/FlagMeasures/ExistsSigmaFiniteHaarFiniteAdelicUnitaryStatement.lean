@@ -46,4 +46,4 @@ open MeasureTheory Formalism.MainNotions.S
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.exists_sigmaFinite_haar_finiteAdelicUnitary : ∀ (I : AutInst), ∃ μf : Measure I.Gf, μf.IsHaarMeasure ∧ SigmaFinite μf := by
-  first | exact @GlobalTheory.CongTop.exists_haar_sigmaFinite | exact GlobalTheory.CongTop.exists_haar_sigmaFinite | (intros; apply GlobalTheory.CongTop.exists_haar_sigmaFinite <;> assumption)
+  first | exact @GlobalTheory.CongTop.exists_haar_sigmaFinite

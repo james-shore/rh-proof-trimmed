@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.O
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.AbLaw
 theorem _root_.GlobalTheory.T.exists_nonzeroLocus_eq_affineOpen_locallyFactorial : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] [X.IsSeparated] (U : X.Opens), IsAffineOpen U → (U : Set X).Nonempty → (∀ x : X, UniqueFactorizationMonoid (X.presheaf.stalk x)) → ∃ (L : LB X) (σ : LB.Sec L), L.IsLB ∧ nonzeroLocus σ = U := by
-  first | exact @GlobalTheory.AffineComplement.exists_nonzeroLocus_eq | exact GlobalTheory.AffineComplement.exists_nonzeroLocus_eq | (intros; apply GlobalTheory.AffineComplement.exists_nonzeroLocus_eq <;> assumption)
+  first | exact @GlobalTheory.AffineComplement.exists_nonzeroLocus_eq

@@ -48,4 +48,4 @@ open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
 theorem _root_.GlobalTheory.T.contDiffAt_flagCellGradedLinePotential : ∀ (ι : Type) (m : ι → ℕ) (n d : ℕ) (ε : Fin n ≃ Fin d ⊕ Cell m) (G : V d → Mat m ℂ) (w : V n) (x : Root m), (G (bsL ε w) x.1).PosDef → MContDiffAt 2 (fun v => G v x.1) (bsL ε w) → ContDiffAt ℝ 2 (cellPot ε G x) w ∧ 0 < grD (upM (fb ε w) x.1 * G (bsL ε w) x.1 * (upM (fb ε w) x.1)ᴴ) x.2 := by
-  first | exact @GlobalTheory.CellPotSmooth.cellPot_contDiffAt | exact GlobalTheory.CellPotSmooth.cellPot_contDiffAt | (intros; apply GlobalTheory.CellPotSmooth.cellPot_contDiffAt <;> assumption)
+  first | exact @GlobalTheory.CellPotSmooth.cellPot_contDiffAt

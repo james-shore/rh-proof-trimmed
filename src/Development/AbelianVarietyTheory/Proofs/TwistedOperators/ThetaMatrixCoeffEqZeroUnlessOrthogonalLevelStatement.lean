@@ -48,4 +48,4 @@ open GlobalTheory.Asc
 
 
 theorem _root_.GlobalTheory.T.thetaMatrixCoeff_eq_zero_unless_orthogonal_level : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (S T : HSp D) (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ f f₀ : WO S T → ℂ, IsThetaFunO ψ S T f → IsThetaFunO ψ S T f₀ → ∃ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) ∧ ∀ w : WO S T, thPair μ 𝓕 f (heisO ψ S T w f₀) ≠ 0 → ∀ u ∈ U, u.map (infPart D) = 0 → ψ (symplO S T w u) = 1 := by
-  first | exact @GlobalTheory.MatCoefLevel.matCoef_level | exact GlobalTheory.MatCoefLevel.matCoef_level | (intros; apply GlobalTheory.MatCoefLevel.matCoef_level <;> assumption)
+  first | exact @GlobalTheory.MatCoefLevel.matCoef_level

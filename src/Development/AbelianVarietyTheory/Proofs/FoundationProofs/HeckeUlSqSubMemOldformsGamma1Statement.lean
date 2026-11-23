@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.hecke_Ul_sq_sub_mem_oldforms_Gamma1 : ∀ (N l k :
     (∀ γ : SL(2, ℤ), γ ∈ CongruenceSubgroup.Gamma0 N → ⇑f₁ ∣[(k : ℤ)] γ = χ ((mat γ 1 1 : ℤ) : ZMod N) • ⇑f₁) ∧
     (∀ γ : SL(2, ℤ), γ ∈ CongruenceSubgroup.Gamma0 N → ⇑f₂ ∣[(k : ℤ)] γ = χ ((mat γ 1 1 : ℤ) : ZMod N) • ⇑f₂) ∧
     UlF (k : ℤ) l (UlF (k : ℤ) l ⇑f) - (χ l * (l : ℂ) ^ (k - 2)) • ⇑f = ⇑f₁ + ⇑f₂ ∣[(k : ℤ)] toGL (dg l 1) := by
-  first | exact @GlobalTheory.HeckeFamilyMatrices.ulSq_old | exact GlobalTheory.HeckeFamilyMatrices.ulSq_old | (intros; apply GlobalTheory.HeckeFamilyMatrices.ulSq_old <;> assumption)
+  first | exact @GlobalTheory.HeckeFamilyMatrices.ulSq_old

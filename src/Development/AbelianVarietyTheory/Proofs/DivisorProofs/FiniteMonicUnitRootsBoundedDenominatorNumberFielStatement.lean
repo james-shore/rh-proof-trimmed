@@ -57,4 +57,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.finite_monic_unitRoots_bounded_denominator_numberField : ∀ (E : Type) [Field E] [NumberField E] (n d : ℕ), d ≠ 0 → {P : E[X] | P.Monic ∧ P.natDegree = n ∧ (∀ τ : E →+* ℂ, ∀ z ∈ (P.map τ).roots, ‖z‖ = 1) ∧ ∀ k, ∃ a : 𝓞 E, (a : E) = d * P.coeff k}.Finite := by
-  first | exact @GlobalTheory.monic_roots_norm_one_coeff_denom_finite | exact GlobalTheory.monic_roots_norm_one_coeff_denom_finite | (intros; apply GlobalTheory.monic_roots_norm_one_coeff_denom_finite <;> assumption)
+  first | exact @GlobalTheory.monic_roots_norm_one_coeff_denom_finite

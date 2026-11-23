@@ -49,4 +49,4 @@ open Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVo
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.exists_nhds_one_unitaryGroup_rationalPoint_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (M : ℕ) (J : Matrix (Fin M) (Fin M) E), ∃ U ∈ nhds (1 : HA (AF F) σ J), ∀ g ∈ U, (∃ γ : HFinIn (AF F) σ J, γ • (1 : HA (AF F) σ J) = g) → g = 1 := by
-  first | exact @GlobalTheory.Mem.Vol.exists_nhds_one_rational_eq_one | exact GlobalTheory.Mem.Vol.exists_nhds_one_rational_eq_one | (intros; apply GlobalTheory.Mem.Vol.exists_nhds_one_rational_eq_one <;> assumption)
+  first | exact @GlobalTheory.Mem.Vol.exists_nhds_one_rational_eq_one

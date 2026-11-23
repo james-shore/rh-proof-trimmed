@@ -59,19 +59,16 @@ variable {K : Type} [Field K] {X : Scheme.{0}} {N : ℕ} (i : X ⟶ PSpace K N)
 
 theorem homIdeal_homog : ∀ f ∈ homIdeal i, ∀ n : ℕ, MvPolynomial.homogeneousComponent n f ∈ homIdeal i := by
   first
-    | exact GlobalTheory.T.homogeneous_ideal_component_mem ..
     | (intros; apply GlobalTheory.T.homogeneous_ideal_component_mem <;> assumption)
 
 theorem homIdeal_ne_top [Nonempty X] : homIdeal i ≠ ⊤ := by
   first
-    | exact GlobalTheory.T.homogeneous_ideal_ne_top ..
     | (intros; apply GlobalTheory.T.homogeneous_ideal_ne_top <;> assumption)
 
 theorem preimage_basicOpen_nonempty [IsIntegral X] {g : MvPolynomial (Fin (N + 1)) K} {e : ℕ} (he : 0 < e)
     (hg : g ∈ grK K N e) (hg0 : Ideal.Quotient.mk (homIdeal i) g ≠ 0) :
     ((i ⁻¹ᵁ Proj.basicOpen (grK K N) g : X.Opens) : Set X).Nonempty := by
   first
-    | exact GlobalTheory.T.basic_open_nonempty_of_ne_zero ..
     | (intros; apply GlobalTheory.T.basic_open_nonempty_of_ne_zero <;> assumption)
 
 end CrystallineSemistableComparison.Pb

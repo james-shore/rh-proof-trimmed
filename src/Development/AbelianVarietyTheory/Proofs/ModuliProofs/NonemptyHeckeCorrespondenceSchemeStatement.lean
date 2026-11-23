@@ -48,4 +48,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.HkFam
 
 theorem _root_.GlobalTheory.T.nonempty_heckeCorrespondenceScheme : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (𝔓 : Ideal (𝓞 E)) (p i : ℕ), 1 ≤ D.p + D.q → admitted l 𝔓 p → Nonempty (Corr Xo 𝔓 p i) := by
-  first | exact @GlobalTheory.HkFam.corr_nonempty | exact GlobalTheory.HkFam.corr_nonempty | (intros; apply GlobalTheory.HkFam.corr_nonempty <;> assumption)
+  first | exact @GlobalTheory.HkFam.corr_nonempty

@@ -43,4 +43,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.two_mul_card_sq_add_one_eq_and_odd_of_mod_four_eq_three : ∀ (p : ℕ), p.Prime → p % 4 = 3 → 2 * Fintype.card (Sq p) + 1 = p ∧ Odd (Fintype.card (Sq p)) := by
-  first | exact @GlobalTheory.CMModel.card_sq_mod_prime | exact GlobalTheory.CMModel.card_sq_mod_prime | (intros; apply GlobalTheory.CMModel.card_sq_mod_prime <;> assumption)
+  first | exact @GlobalTheory.CMModel.card_sq_mod_prime

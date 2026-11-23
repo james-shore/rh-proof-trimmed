@@ -123,9 +123,6 @@ theorem sum_sgnL_succ {r : ℕ} {α : Type*} [Fintype α] [DecidableEq α] {M : 
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [mul_assoc]
     congr 2
-    all_goals first
-      | (simp [Matrix.of_apply]; done)
-      | (congr 1; ext k j'; simp [Matrix.submatrix_apply, Matrix.of_apply])
   have step : ∀ (x0 : α) (y : Fin r → α),
       sgnL (Fin.cons x0 y : Fin (r + 1) → α) e • H (Fin.cons x0 y) =
         ∑ j : Fin (r + 1), if x0 = e j then
@@ -150,15 +147,15 @@ theorem skip_two_of_lt {m : ℕ} (j : Fin (m + 2)) (j' : Fin (m + 1)) (h : Fin.c
     (fun k : Fin m => j.succAbove (j'.succAbove k)) = skip2 (Fin.castSucc j') j := by
   funext k
   apply Fin.ext
-  simp only [skip2, Fin.succAbove, Fin.lt_def, Fin.coe_castSucc, Fin.val_succ] at h ⊢
-  split_ifs <;> (try simp only [Fin.coe_castSucc, Fin.val_succ, Fin.val_mk, Fin.lt_def] at *) <;> omega
+  simp only [skip2, Fin.succAbove, Fin.lt_def, Fin.coe_castSucc] at h ⊢
+  split_ifs <;> (try simp only [Fin.coe_castSucc, Fin.val_succ] at *) <;> omega
 
 theorem skip_two_of_ge {m : ℕ} (j : Fin (m + 2)) (j' : Fin (m + 1)) (h : j ≤ Fin.castSucc j') :
     (fun k : Fin m => j.succAbove (j'.succAbove k)) = skip2 j j'.succ := by
   funext k
   apply Fin.ext
   simp only [skip2, Fin.succAbove, Fin.lt_def, Fin.le_def, Fin.coe_castSucc, Fin.val_succ] at h ⊢
-  split_ifs <;> (try simp only [Fin.coe_castSucc, Fin.val_succ, Fin.val_mk, Fin.lt_def, Fin.le_def] at *) <;> omega
+  split_ifs <;> (try simp only [Fin.coe_castSucc, Fin.val_succ] at *) <;> omega
 
 theorem sum_two {m : ℕ} {α : Type*} [Fintype α] [DecidableEq α] {M : Type*} [AddCommGroup M]
     [Module ℂ M] (e : Fin (m + 2) → α) (F : (Fin m → α) → M)

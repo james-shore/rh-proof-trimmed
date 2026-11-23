@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.coboundary_tmul_of_column_deRham : ∀ (l : ℕ) [
       ((ρ₀ g : Matrix ι ι ℚ_[l]).map (algebraMap ℚ_[l] P.R.BdR)).mulVec (fun x => P.actQdR (g : GQ l) (β x)) - β) →
     ∃ b : (ι → ℚ_[l]) ⊗[ℚ_[l]] P.R.BdR, ∀ g,
       c₀ g ⊗ₜ[ℚ_[l]] (1 : P.R.BdR) = actVdR (P.PD K) (repOf ρ₀) g b - b := by
-  first | exact @GlobalTheory.CobColumn.coboundary_tmul_of_column | exact GlobalTheory.CobColumn.coboundary_tmul_of_column | (intros; apply GlobalTheory.CobColumn.coboundary_tmul_of_column <;> assumption)
+  first | exact @GlobalTheory.CobColumn.coboundary_tmul_of_column

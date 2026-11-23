@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.mem_cartierMultiple_chart_iff_regular_codimOne : ∀ (σ : Setup) (x : Sp σ.R) (k : ℕ) (v : (σ.C x).G.left.functionField), v ∈ Sec (σ.D₁ x) k ↔ (∀ z : (σ.V x).toScheme, (k • σ.D₁ x).RegularAt ((σ.V x).ι z) v) ∧ ∀ z, Vert (σ.C x).G.hom (σ.ρ x σ.f) z → RegAt z v := by
-  first | exact @GlobalTheory.Desc.ChartHartogs.mem_sec_iff | exact GlobalTheory.Desc.ChartHartogs.mem_sec_iff | (intros; apply GlobalTheory.Desc.ChartHartogs.mem_sec_iff <;> assumption)
+  first | exact @GlobalTheory.Desc.ChartHartogs.mem_sec_iff

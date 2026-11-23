@@ -51,4 +51,4 @@ open scoped CategoryTheory.Obj RatFunc
 
 
 theorem _root_.GlobalTheory.T.exists_lineBundle_pow_section_vanishing_degree_pos : ∀ (k : Type) [Field k] (C : Scheme.{0}) [Algebra k Γ(C, ⊤)], IsCurve k C → ∀ L : LB C, L.IsLB → 0 < interNum k (GlobalTheory.structureModule C) ![L] → ∃ (m : ℕ) (σ : (lbPow L m).Sec) (c : C), 0 < m ∧ σ ≠ 0 ∧ c ∉ Out.nonzeroLocus σ := by
-  first | exact @GlobalTheory.Nef.exists_sec_lbPow_vanishing_of_degree_pos | exact GlobalTheory.Nef.exists_sec_lbPow_vanishing_of_degree_pos | (intros; apply GlobalTheory.Nef.exists_sec_lbPow_vanishing_of_degree_pos <;> assumption)
+  first | exact @GlobalTheory.Nef.exists_sec_lbPow_vanishing_of_degree_pos

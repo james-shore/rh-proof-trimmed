@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.weilDatum_splitSupported_eq_intertwiner_mul_halfDe
   ∀ (g : GA D S) (h : GA D T), SuppAt ε S g → SuppAt ε T h → ∀ x y : (AE D)ˣ, IsDetAt ε S g x → IsDetAt ε T h y →
   ∀ f : GlobalTheory.FinWeilO.thetaSub ψ S T,
     om (g, h) f = ((splitFacO χS χT x y : Circle) : ℂ) • (Om (g, h) f : WO S T → ℂ) := by
-  first | exact @GlobalTheory.SplitWeilDict.splitWeil_eq | exact GlobalTheory.SplitWeilDict.splitWeil_eq | (intros; apply GlobalTheory.SplitWeilDict.splitWeil_eq <;> assumption)
+  first | exact @GlobalTheory.SplitWeilDict.splitWeil_eq

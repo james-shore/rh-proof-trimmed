@@ -56,4 +56,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.det_ne_zero_of_real_independent_isotropic_hermitian : ∀ (g : ℕ) (Hm : Matrix (Fin g) (Fin g) ℂ) (E : Fin g → Fin g → ℂ), (∀ z : Fin g → ℂ, z ≠ 0 → 0 < (hermForm Hm z z).re) → LinearIndependent ℝ E → (∀ i j, (hermForm Hm (E i) (E j)).im = 0) → (Matrix.of fun k i => E i k).det ≠ 0 := by
-  first | exact @GlobalTheory.det_ne_zero_of_real_indep_isotropic | exact GlobalTheory.det_ne_zero_of_real_indep_isotropic | (intros; apply GlobalTheory.det_ne_zero_of_real_indep_isotropic <;> assumption)
+  first | exact @GlobalTheory.det_ne_zero_of_real_indep_isotropic

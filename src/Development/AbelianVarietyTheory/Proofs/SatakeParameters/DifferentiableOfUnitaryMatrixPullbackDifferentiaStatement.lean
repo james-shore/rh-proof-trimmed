@@ -54,4 +54,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.differentiable_of_unitary_matrixPullback_differentiable : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) {a b : ℕ} (e : Matrix (Fin a) (Fin a) D.host.E) (e' : Matrix (Fin b) (Fin b) D.host.E) (Θ K : TaylorLogMetric.VC D a b → ℂ) (s : ℂ), e * star e = 1 → e' * star e' = 1 → s ≠ 0 → Differentiable ℂ K → (∀ z, K z = s * TaylorLogMetric.pull D (TaylorLogMetric.tor0 D cc δ) e e' Θ z) → Differentiable ℂ Θ := by
-  first | exact @GlobalTheory.TwU.XbEntire.entire_of_pull | exact GlobalTheory.TwU.XbEntire.entire_of_pull | (intros; apply GlobalTheory.TwU.XbEntire.entire_of_pull <;> assumption)
+  first | exact @GlobalTheory.TwU.XbEntire.entire_of_pull

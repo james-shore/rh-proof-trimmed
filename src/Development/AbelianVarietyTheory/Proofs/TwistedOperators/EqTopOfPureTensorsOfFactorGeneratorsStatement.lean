@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.eq_top_of_pure_tensors_of_factor_generators : ∀ 
       GlobalTheory.TensHead.Stab (GlobalTheory.TensHead.tensOps Op₀ (GlobalTheory.TensHead.piOps Op)) N →
       (∀ x₀ ∈ F₀, ∀ y : ∀ i, M i, (∀ i, y i ∈ F i) → x₀ ⊗ₜ[ℂ] PiTensorProduct.tprod ℂ y ∈ N) →
       N = ⊤ := by
-  first | exact @GlobalTheory.TensHead.eq_top_of_pure_generators | exact GlobalTheory.TensHead.eq_top_of_pure_generators | (intros; apply GlobalTheory.TensHead.eq_top_of_pure_generators <;> assumption)
+  first | exact @GlobalTheory.TensHead.eq_top_of_pure_generators

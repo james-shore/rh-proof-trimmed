@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.upperParahoric_character_inv_eq_inv_det_block : �
     (hy : y ∈ Formalism.L2.DIV.blockTri (Formalism.L2.DIV.blk2 r)) (χ : κˣ →* Kˣ)
     (hz : (LiftBrg.castGL h y)⁻¹ * 1 ∈ Formalism.L2.Col.HQ κ n r b),
     Formalism.L2.Col.lamQ χ n r b ⟨_, hz⟩ = (χ (Formalism.L2.DIV.dBlk (Formalism.L2.DIV.blk2 r) 1 y))⁻¹ := by
-  first | exact @GlobalTheory.Mem.R3.LiftBrg.LamQInv.lamQ_castGL_inv | exact GlobalTheory.Mem.R3.LiftBrg.LamQInv.lamQ_castGL_inv | (intros; apply GlobalTheory.Mem.R3.LiftBrg.LamQInv.lamQ_castGL_inv <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.LiftBrg.LamQInv.lamQ_castGL_inv

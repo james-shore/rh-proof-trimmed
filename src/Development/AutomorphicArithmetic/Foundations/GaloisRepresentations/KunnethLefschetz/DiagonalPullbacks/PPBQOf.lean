@@ -140,7 +140,7 @@ theorem UpperTheory.Gal.KunnethLefschetz.Di.pBQOf_holds :
       if h0 : (j : ℕ) = 0 then tr (by rw [h0]; norm_num) u
       else if h1 : (j : ℕ) = 1 then tr (by rw [h1]; norm_num) v else 0
     have ha0 : a 0 = tr (by simp) u := by simp [a]
-    have ha1 : a 1 = tr (by norm_num [Fin.val_one]) v := by simp [a, Fin.val_one]
+    have ha1 : a 1 = tr (by norm_num [Fin.val_one]) v := by simp [a]
     have hzero : a = 0 := by
       apply (hPBV 2).1
       beta_reduce

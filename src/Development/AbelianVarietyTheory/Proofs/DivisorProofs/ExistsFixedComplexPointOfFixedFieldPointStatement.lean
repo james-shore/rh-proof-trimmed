@@ -57,4 +57,4 @@ open AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj 
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_fixed_complexPoint_of_fixed_fieldPoint : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (k : Type) [Field k] (x : Sp k ⟶ Xo.X) (ρ : Xo.X ⟶ Xo.X), x ≫ ρ = x → ∃ x' : Sp ℂ ⟶ Xo.X, x' ≫ ρ = x' := by
-  first | exact @GlobalTheory.FixedCx.exists_fixed_complex_point | exact GlobalTheory.FixedCx.exists_fixed_complex_point | (intros; apply GlobalTheory.FixedCx.exists_fixed_complex_point <;> assumption)
+  first | exact @GlobalTheory.FixedCx.exists_fixed_complex_point

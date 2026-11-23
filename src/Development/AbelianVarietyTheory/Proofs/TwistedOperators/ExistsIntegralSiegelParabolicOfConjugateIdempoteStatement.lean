@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_integralSiegelParabolic_of_conjugateIdempot
         diagCols (Fin d) * ((1 - (⅟2 : AF F) • Eid) • (1 : Matrix (Fin d) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)))) ∧
       GlobalTheory.InertDbl.matD s * GlobalTheory.InertDbl.antiCols d =
         GlobalTheory.InertDbl.antiCols d * ((1 + cA σ Eid) • (1 : Matrix (Fin d) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)))) := by
-  first | exact @GlobalTheory.SplitConjPar.exists_par | exact GlobalTheory.SplitConjPar.exists_par | (intros; apply GlobalTheory.SplitConjPar.exists_par <;> assumption)
+  first | exact @GlobalTheory.SplitConjPar.exists_par

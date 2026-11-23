@@ -50,4 +50,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.Hec
 
 theorem _root_.GlobalTheory.T.heckeEisensteinFourierTerm_move_unit : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (σ : ℂ) (z : Emb F → ℂ) (b ν : F) (ε : (𝓞 F)ˣ),
     fTerm σ z (((ε : 𝓞 F) : F) * b) ν = fTerm σ z b (((ε : 𝓞 F) : F) * ν) := by
-  first | exact @GlobalTheory.HeckeTwoUnit.fTerm_unit_move | exact GlobalTheory.HeckeTwoUnit.fTerm_unit_move | (intros; apply GlobalTheory.HeckeTwoUnit.fTerm_unit_move <;> assumption)
+  first | exact @GlobalTheory.HeckeTwoUnit.fTerm_unit_move

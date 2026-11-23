@@ -62,11 +62,6 @@ theorem exists_jet_factor {I : Type} [Fintype I] {g : ℕ} {Λ : Type} [AddCommG
   first
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet
-  | exact @_root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet
-  | exact _root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet
-  | (apply _root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet ..)
 
 end GlobalTheory.AnPer.Charts

@@ -85,7 +85,7 @@ theorem sum_comm_of_antiInv (K L : Subgroup G) (hKL : K ≤ L) (θ : G → G)
   intro φ
   have hF : ∀ (k : K) (h : G), (fun g => φ (π g u)) (h * k) = ((1 : K →* ℂˣ) k : ℂ) • (fun g => φ (π g u)) h := by
     intro k h
-    simp [map_mul, Module.End.mul_apply, hu k k.2]
+    simp [map_mul, hu k k.2]
   have key := (GlobalTheory.DoubleCosetComm.dcOp_comm_and_card (W := ℂ) K L 1 x y A B A' (fun g => φ (π g u))
     (fun k hk => ⟨k, hk, 1, one_mem _, hKL hk, (mul_one k).symm, fun l _ => Commute.one_left l⟩)
     (fun k _ => rfl) hθ (memL hA hx) (memL hB hy) (memL hA' (inv_mem hx)) (isDC_of_reps hA) (isDC_of_reps hB)
@@ -93,7 +93,7 @@ theorem sum_comm_of_antiInv (K L : Subgroup G) (hKL : K ≤ L) (θ : G → G)
   have e := congrFun key 1
   simp only [Formalism.IndefR.Bridge.dcOp, one_mul, map_mul, Module.End.mul_apply] at e
 
-  simp only [map_sub, map_sum, LinearMap.zero_apply]
+  simp only [map_sub, map_sum]
   rw [sub_eq_zero]
   exact e
 

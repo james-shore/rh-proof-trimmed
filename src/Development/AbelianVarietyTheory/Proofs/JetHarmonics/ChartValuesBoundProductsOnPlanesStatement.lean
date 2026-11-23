@@ -47,4 +47,4 @@ open Classical NumberField IsDedekindDomain Formalism.L2.FormalSeriesBounds Form
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 theorem _root_.GlobalTheory.T.chartValues_bound_products_on_planes : ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O : Type) [CommRing O] [StarRing O] (dd : ℕ) (Y : FBChart C V O dd) (d : ℕ) [NeZero d] (Orb : Type) [Fintype Orb] (I0 : Orb → Type) [∀ o, Fintype (I0 o)] (p : ∀ o, SelfData Y d (I0 o)) (H : ∀ o, (Y.rawSelf (p o)).Hyps V) (Ls : LetSys C dd) (N n : ℕ) (pl : Fin N × Fin 2 ↪ Fin n) (ν : ℝ), SelfSep Y p → (ν : EReal) ≤ Y.nuPlE Ls n → RF.ValO (fun o => (Y.rawSelf (p o)).rowData (H o)) N (imgFamS Y p Ls pl) ν := by
-  first | exact @GlobalTheory.RowAt.valO_self | exact GlobalTheory.RowAt.valO_self | (intros; apply GlobalTheory.RowAt.valO_self <;> assumption)
+  first | exact @GlobalTheory.RowAt.valO_self

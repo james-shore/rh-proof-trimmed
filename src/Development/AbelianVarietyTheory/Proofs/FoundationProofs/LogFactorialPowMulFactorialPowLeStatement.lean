@@ -53,4 +53,4 @@ open NumberField IsDedekindDomain MvPolynomial Formalism.BasicNotions Formalism.
 open scoped Matrix ComplexOrder
 
 theorem _root_.GlobalTheory.T.log_factorial_pow_mul_factorial_pow_le' : ∀ (n R₀ : ℕ) (R : ℝ), 1 ≤ R → (R₀ : ℝ) ≤ R → Real.log (((n.factorial) ^ (2 * R₀) * (R₀.factorial) ^ n : ℕ) : ℝ) ≤ 4 * (n : ℝ) * R * Real.log (n * R) := by
-  first | exact @GlobalTheory.log_factorial_pow_mul_factorial_pow_le | exact GlobalTheory.log_factorial_pow_mul_factorial_pow_le | (intros; apply GlobalTheory.log_factorial_pow_mul_factorial_pow_le <;> assumption)
+  first | exact @GlobalTheory.log_factorial_pow_mul_factorial_pow_le

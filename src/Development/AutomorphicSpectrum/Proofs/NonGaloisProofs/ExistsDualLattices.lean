@@ -79,7 +79,7 @@ theorem mem_span_basis {ι : Type} [Fintype ι] (b : Basis ι LL W) (y : W) :
       intro i
       by_cases h : j = i
       · subst h; exact ⟨1, by simp⟩
-      · exact ⟨0, by simp [Finsupp.single_apply, h]⟩
+      · exact ⟨0, by simp [h]⟩
     | zero => intro i; exact ⟨0, by simp⟩
     | add x z _ _ hx hz =>
       intro i
@@ -290,7 +290,7 @@ theorem exists_stable (hO : IsOpen (Set.range (algebraMap O LL)))
     | mem x hx =>
       obtain ⟨⟨g, i⟩, rfl⟩ := hx
       refine Submodule.subset_span ⟨(h * g, i), ?_⟩
-      simp [map_mul, Module.End.mul_apply]
+      simp [map_mul]
     | zero => simp
     | add x z _ _ hx hz => rw [map_add (f := _)]; exact T.add_mem hx hz
     | smul c x _ hx =>

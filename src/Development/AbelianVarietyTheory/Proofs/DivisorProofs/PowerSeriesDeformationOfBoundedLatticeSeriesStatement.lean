@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.powerSeriesDeformation_of_boundedLatticeSeries : �
         ThJet x₀ hg₀ m (levelPoint lev₀ hg₀) (fun i => ∑' α, e (a i α) * u ^ n α)
           (fun i j => ∑' α, e (b i j α) * u ^ n α) ∧ (κ ℂ x₀ : ℂ) = e k) →
     Deform κ e x hg m ζ lev k := by
-  first | exact @GlobalTheory.MBLow.deform_of_lattice_series | exact GlobalTheory.MBLow.deform_of_lattice_series | (intros; apply GlobalTheory.MBLow.deform_of_lattice_series <;> assumption)
+  first | exact @GlobalTheory.MBLow.deform_of_lattice_series

@@ -183,7 +183,7 @@ theorem inclAt (X : Fields) (Pr : Primes X) (R : Ranks) : InclAt Pr R := by
     refine ⟨k.symm y', ?_, ?_⟩
     · rw [← hk']
       simpa using hy'
-    · simp [LinearEquiv.mul_apply]
+    · simp
   · intro x hx
     have h1 : h (k x) ∈ nfLat P (R.N j) (cOf R j) e z := by
       rw [← himg]

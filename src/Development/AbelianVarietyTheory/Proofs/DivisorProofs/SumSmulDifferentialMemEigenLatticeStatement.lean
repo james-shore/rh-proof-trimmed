@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.sum_smul_differential_mem_eigenLattice : ∀ (E : 
         ∀ τ : 𝓞 E →+* 𝓞 K, τ H.rt = ρ → ∀ τE : E →+* K, (∀ x : 𝓞 E, τE x = ((τ x : 𝓞 K) : K)) →
           ∀ c ∈ GlobalTheory.FlatCM.HomLat.coords X, ∀ e ∈ FP.eigLat (X.A true).t.act τ,
             ∑ a, τE (c a) • MP a e ∈ FB.eigLat X.B.t.act τ := by
-  first | exact @GlobalTheory.FlatCM.HomLat.sum_smul_diff_mem_eigLat | exact GlobalTheory.FlatCM.HomLat.sum_smul_diff_mem_eigLat | (intros; apply GlobalTheory.FlatCM.HomLat.sum_smul_diff_mem_eigLat <;> assumption)
+  first | exact @GlobalTheory.FlatCM.HomLat.sum_smul_diff_mem_eigLat

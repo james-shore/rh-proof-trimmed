@@ -130,7 +130,6 @@ theorem local_extension (u : HolUnif A L g) (hL : L.IsLB) {I : Type} (O : I → 
   have hxk : x ∈ (lbPow L n).U k := Set.mem_iInter.mpr fun _ => by simpa using hxj
   have hB : TopologicalSpace.Opens.IsBasis A.left.affineOpens := by
     first
-      | exact AlgebraicGeometry.isBasis_affineOpens A.left
       | exact AlgebraicGeometry.Scheme.isBasis_affineOpens A.left
   obtain ⟨V, hVa, hxV, hVle⟩ :=
     (TopologicalSpace.Opens.isBasis_iff_nbhd.mp hB) (show x ∈ O i' ⊓ (lbPow L n).U k from ⟨hxi', hxk⟩)

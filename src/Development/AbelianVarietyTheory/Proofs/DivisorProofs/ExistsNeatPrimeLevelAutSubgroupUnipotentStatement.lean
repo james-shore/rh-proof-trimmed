@@ -53,4 +53,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.OrbitSep
 
 theorem _root_.GlobalTheory.T.exists_neatPrime_levelAutSubgroup_unipotent : ∀ (D : D7) (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host D.host.E) (Dw : Datum H) (l : Level H), D.host.g 0 * D.host.g 1 ∣ l.M → (∀ k, Dw.p + Dw.q + 1 < D.host.g k) → ∀ (fr : TypeFrame Dw l) (S : Subgroup (LevelAut Dw l)), (S = grpHR fr ∨ ∃ k, S = grpGHR fr k) → ∃ (I : Ideal (𝓞 D.host.E)) (g : ℕ), NeatPrime I g (Dw.p + Dw.q) ∧ l.Mb ≤ I ∧ ∀ γ ∈ S, UnipAt I γ := by
-  first | exact @GlobalTheory.OrbitSep.exists_neatPrime_unipAt | exact GlobalTheory.OrbitSep.exists_neatPrime_unipAt | (intros; apply GlobalTheory.OrbitSep.exists_neatPrime_unipAt <;> assumption)
+  first | exact @GlobalTheory.OrbitSep.exists_neatPrime_unipAt

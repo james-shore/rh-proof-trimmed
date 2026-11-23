@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.Me
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.teichmullerTiltMinusOne_dvd_of_theta_frobenius_zero : ∀ (l : ℕ) [Fact l.Prime], ∀ e : Per.Fl l, IsEps e → ∀ a : Per.Ainf l, (∀ n : ℕ, Per.θ l ((Per.φA l)^[n] a) = 0) → mu e ∣ a := by
-  first | exact @GlobalTheory.MemLoc.mu_dvd_of_theta_frob | exact GlobalTheory.MemLoc.mu_dvd_of_theta_frob | (intros; apply GlobalTheory.MemLoc.mu_dvd_of_theta_frob <;> assumption)
+  first | exact @GlobalTheory.MemLoc.mu_dvd_of_theta_frob

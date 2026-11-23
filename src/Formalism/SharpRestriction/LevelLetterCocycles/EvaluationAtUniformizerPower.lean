@@ -177,7 +177,7 @@ theorem invariant_letter_eq_evaluation (hR : Ring9 W) {a : LetA O n} (ha : a ∈
   · subst hi
     simp only [Pi.mul_apply, letE, Pi.single_eq_same, mul_one, evaluation_apply]
     exact hF i
-  · simp [letE, Pi.single_apply, hi]
+  · simp [letE, hi]
 
 theorem EE_p_nzd (hO : ∀ c : O, ((PD.p : ℕ) : O) * c = 0 → c = 0) (y : W.EE)
     (hy : ((PD.p : ℕ) : W.EE) * y = 0) : y = 0 := by
@@ -453,7 +453,7 @@ theorem evaluation_single_sum (hR : Ring9 W) (T : LocLat G Qp LL O) {r : ℕ} (k
   rw [Finset.sum_eq_single k]
   · simp [evaluation_eq_homomorphism W hR]
   · intro k' _ hk'
-    simp [evaluation_eq_homomorphism W hR, Pi.single_apply, hk']
+    simp [evaluation_eq_homomorphism W hR, hk']
   · simp
 
 theorem pullback_coordinates (hR : Ring9 W) (T : LocLat G Qp LL O) (hT : IsCrys PD T.ρ) (hs : W.s = 1) {R : ℕ}
@@ -531,7 +531,7 @@ theorem pullback_coordinates (hR : Ring9 W) (T : LocLat G Qp LL O) (hT : IsCrys 
           rw [hstar k k']
           by_cases hk : k' = k
           · subst hk; simp [evaluation_eq_homomorphism W hR]
-          · simp [evaluation_eq_homomorphism W hR, Pi.single_apply, hk]
+          · simp [evaluation_eq_homomorphism W hR, hk]
 
   obtain ⟨f, hf⟩ := exist_bL W hR T b hb i hb' j hli hx hxD
   have hex : x = ∑ k, at0 W (∑ m, f m * ψD m k) • ((W.φD T) ^ j) (e k) := by

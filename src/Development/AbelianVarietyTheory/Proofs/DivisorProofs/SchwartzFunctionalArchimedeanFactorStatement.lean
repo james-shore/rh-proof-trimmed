@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.schwartz_functional_archimedean_factor : ∀ (F : 
     (∀ a b : κ → F, ∀ Φ ∈ schA F κ,
       L (schr ψ ((fun i => algebraMap F (AF F) (a i)), (fun i => algebraMap F (AF F) (b i))) Φ) = L Φ) →
     ∃ c : ℂ, ∀ Φ ∈ schA F κ, L Φ = c * thetaSum F Φ := by
-  first | exact @GlobalTheory.ThetaFunctionalUnique.main | exact GlobalTheory.ThetaFunctionalUnique.main | (intros; apply GlobalTheory.ThetaFunctionalUnique.main <;> assumption)
+  first | exact @GlobalTheory.ThetaFunctionalUnique.main

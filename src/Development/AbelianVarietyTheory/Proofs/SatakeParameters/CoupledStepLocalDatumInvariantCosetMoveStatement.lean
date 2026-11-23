@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.coupledStep_localDatum_invariant_coset_move : ∀ 
     (∀ s l, IntAt P.1 ((((qOf P.1 : ℕ) : X.E) ^ (cst.D P))⁻¹ * (k.1 (Pi.single s 1) l - (Pi.single s 1 : Sp X.E (R.N (m2 + 1))) l))) →
     SameCoset sel mu cst P (k.1.symm w₁) w →
     PsiAt Ch sel mu cst m2 P (L.h m2 al P) x₀ w₁ = PsiAt Ch sel mu cst m2 P (L.h m2 al P) x₀ w := by
-  first | exact @GlobalTheory.PsiCosetInv.psiAt_coset | exact GlobalTheory.PsiCosetInv.psiAt_coset | (intros; apply GlobalTheory.PsiCosetInv.psiAt_coset <;> assumption)
+  first | exact @GlobalTheory.PsiCosetInv.psiAt_coset

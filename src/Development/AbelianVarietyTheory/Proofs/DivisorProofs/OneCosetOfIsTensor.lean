@@ -182,7 +182,7 @@ private theorem inv_smul_mem_integers_of_valuation_le (u : kˣ) (q : k) (hq : va
   rw [Units.smul_def, smul_eq_mul, Valuation.mem_integer_iff, map_mul, Units.val_inv_eq_inv_val, map_inv₀]
   have hu : valuation k (u : k) ≠ 0 := by simp
   calc (valuation k (u : k))⁻¹ * valuation k q ≤ (valuation k (u : k))⁻¹ * valuation k (u : k) :=
-        by first | exact mul_le_mul_left hq _ | exact mul_le_mul_of_nonneg_left hq (zero_le _) | gcongr
+        by first | gcongr
     _ = 1 := inv_mul_cancel₀ hu
 
 theorem moved_shift (hs : 1 ≤ G.s) (hT : G.IsTensor ϖ e (oppositePath G.m) T) (g : G.VertexGroup) (x : ColArgs G)

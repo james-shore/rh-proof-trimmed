@@ -47,4 +47,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.exists_compactBox_of_unitaryTranslate_compact : ∀ (D : D7) (V : HSp D) (n : ℕ) (Q : Set (GA D V)), IsCompact Q → ∀ K : Set (Mx D V.rank n), IsCompact K → ∃ K' : Set (Mx D V.rank n), IsCompact K' ∧ ∀ y ∈ Q, ∀ x : Mx D V.rank n, GlobalTheory.Unf.InBox K (HMul.hMul (Formalism.L2.Theta.mt V y⁻¹) x : Mx D V.rank n) → GlobalTheory.Unf.InBox K' x := by
-  first | exact @GlobalTheory.BoxMove.inBox_image_mul | exact GlobalTheory.BoxMove.inBox_image_mul | (intros; apply GlobalTheory.BoxMove.inBox_image_mul <;> assumption)
+  first | exact @GlobalTheory.BoxMove.inBox_image_mul

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.smallRoute_combination_mul_lift_by_degree : ∀ {D
     (∀ d ∈ Θ'.support, ∀ k, IntegrableOn (fun u => GlobalTheory.SmallRoute.outer W M d F g₁ (u * k)) (M.fd (.grid i j)) (M.ν (.grid i j))) ∧
     zdeg z * liftT W M (routeSmall t i j) Θ' F g₁ =
       Θ'.sum fun d c => c * ∫ u in M.fd (.grid i j), translates z (GlobalTheory.SmallRoute.outer W M d F g₁) u ∂M.ν (.grid i j) := by
-  first | exact @GlobalTheory.SmallRoute.zdeg_mul_liftT | exact GlobalTheory.SmallRoute.zdeg_mul_liftT | (intros; apply GlobalTheory.SmallRoute.zdeg_mul_liftT <;> assumption)
+  first | exact @GlobalTheory.SmallRoute.zdeg_mul_liftT

@@ -228,7 +228,6 @@ theorem idx_formula (hU : ∀ P ∈ S, localization₂ P.asIdeal AA = localizati
       ((Ideal.absNorm P.asIdeal : ℕ) : ℚ) ^ (volExp P M₁ M₁' - volExp P M₂ M₂') := by
     first
     | exact GlobalTheory.IdxHom.relIndex_homAt E a b P M₁ M₂ M₁' M₂' h₁ h₂ h₁' h₂' hle
-    | exact GlobalTheory.IdxHom.relIndex_homAt E a b P M₁ M₂ M₁' M₂' h₁.1 h₂.1 h₁'.1 h₂'.1 hle
   simpa using congrArg (fun q : ℚ => (q : ℝ)) hidx
 
 omit [StarRing E] in

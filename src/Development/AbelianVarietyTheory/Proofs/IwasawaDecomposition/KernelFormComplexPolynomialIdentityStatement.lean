@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.kernelForm_complex_polynomial_identity : ∀ (D : 
       MvPolynomial.C (((GL3Theta.rhoOf D (O u μ).mt i ((O u μ).dt i c) : ℂˣ) : ℂ) * ((GL3Theta.rhoOf' D (O u μ).mt i ((O u μ).dt (i + 1) c') : ℂˣ) : ℂ)) *
         jetMap (jetC (O u μ).dgen ((O u μ).Th i c c')) (fun _ => 0)
           (MvPolynomial.map D.what₂.embLL (srcPol u μ i (secC O u μ i v : MvPolynomial (GL3Theta.FrV D (D.R.N i)) D.what₂.LL))) := by
-  first | exact @GlobalTheory.Mem.KerForm.complex_kform | exact GlobalTheory.Mem.KerForm.complex_kform | (intros; apply GlobalTheory.Mem.KerForm.complex_kform <;> assumption)
+  first | exact @GlobalTheory.Mem.KerForm.complex_kform

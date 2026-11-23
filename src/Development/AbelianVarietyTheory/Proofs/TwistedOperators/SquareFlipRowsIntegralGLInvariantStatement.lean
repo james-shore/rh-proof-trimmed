@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.squareFlip_rows_integralGL_invariant : ∀ {k : Ty
       (ν (gdet u) : ℂ) * squareFlip μ σ ψ ν ϖ e (Assignment.one.block D₁ D₂) Φ
           (fromCols (u.valᵀ * X.toCols₁) ((u⁻¹).val * X.toCols₂)) =
         squareFlip μ σ ψ ν ϖ e (Assignment.one.block D₁ D₂) Φ X := by
-  first | exact @GlobalTheory.SquareFlipRows.squareFlip_one_rows | exact GlobalTheory.SquareFlipRows.squareFlip_one_rows | (intros; apply GlobalTheory.SquareFlipRows.squareFlip_one_rows <;> assumption)
+  first | exact @GlobalTheory.SquareFlipRows.squareFlip_one_rows

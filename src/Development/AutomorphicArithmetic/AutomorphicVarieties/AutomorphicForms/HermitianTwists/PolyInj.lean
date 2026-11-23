@@ -59,5 +59,3 @@ theorem UpperTheory.V.Af.Rn.polyInj :
   have hq' : (0 : ℝ) < q := by exact_mod_cast hq
   first
     | exact Complex.ofReal_ne_zero.mpr (Real.rpow_pos_of_pos hq' _).ne'
-    | simp [hq.ne']
-    | exact_mod_cast (Real.rpow_pos_of_pos hq' _).ne'

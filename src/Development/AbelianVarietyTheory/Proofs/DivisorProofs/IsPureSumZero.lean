@@ -79,11 +79,7 @@ theorem IsPureSum.add {κ : Type} [Fintype κ] {vac : ∀ v : GlobalTheory.Indef
     {v₁ : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)} {φ₀ : (κ → Fv F v₁) → ℂ} {Φ Ψ : (κ → AF F) → ℂ} (h : IsPureSum vac v₁ φ₀ Φ)
     (h' : IsPureSum vac v₁ φ₀ Ψ) : IsPureSum vac v₁ φ₀ (Φ + Ψ) := by
   first
-  | exact @_root_.GlobalTheory.ClosingLemmaThird.main
-  | exact _root_.GlobalTheory.ClosingLemmaThird.main
   | (apply _root_.GlobalTheory.ClosingLemmaThird.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ClosingLemmaThird.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ClosingLemmaThird.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ClosingLemmaThird.main ..)
 
 theorem IsPureSum.sum {κ : Type} [Fintype κ] {vac : ∀ v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F), (κ → Fv F v) → ℂ}

@@ -41,4 +41,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.rayClassFieldsInCoefficientField_constructedPoint : ∀ (K : Ctx) (β : BPt K), β.Is RayPosition → RayRec β.D β.O.ex.nch := by
-  first | exact @GlobalTheory.PlugPt.rayClassFields_in_coefficients | exact GlobalTheory.PlugPt.rayClassFields_in_coefficients | (intros; apply GlobalTheory.PlugPt.rayClassFields_in_coefficients <;> assumption)
+  first | exact @GlobalTheory.PlugPt.rayClassFields_in_coefficients

@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.unitaryToDoubledFirstFactor_bigCell_inertPlace : �
     (∃ M : Matrix (Fin (a + a')) (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), (1 + mat k) * M = 1 ∧ M * (1 + mat k) = 1 ∧
       ∀ z ∈ GlobalTheory.InertSph.latAt G.W v, M *ᵥ z ∈ GlobalTheory.InertSph.latAt G.W v) →
     ∃ n ∈ GlobalTheory.InertDbl.NabD σ G.W v, ∃ p ∈ GlobalTheory.InertDbl.ParD σ G.W v, GlobalTheory.InertDbl.inlD σ G.W k = n * p := by
-  first | exact @GlobalTheory.InertBigCell.inlD_bigCell | exact GlobalTheory.InertBigCell.inlD_bigCell | (intros; apply GlobalTheory.InertBigCell.inlD_bigCell <;> assumption)
+  first | exact @GlobalTheory.InertBigCell.inlD_bigCell

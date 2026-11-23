@@ -95,7 +95,7 @@ theorem exists_good_nat {k : Type} [Field k] (h2 : (2 : k) ≠ 0) (h3 : (3 : k) 
   have hQ1 : Q1 ≠ 0 := by
     intro h
     have := congrArg (fun p => _root_.AddMonoidAlgebra.coeff (M := ℕ) p 0) h
-    simp [Q1, Polynomial.coeff_one, Polynomial.coeff_X_pow] at this
+    simp [Q1, Polynomial.coeff_X_pow] at this
   have hQ2 : Q2 ≠ 0 := by
     intro h
     have e0 := congrArg (fun p => _root_.AddMonoidAlgebra.coeff (M := ℕ) p 0) h

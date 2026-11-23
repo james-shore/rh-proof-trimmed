@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_coords_range_idempotent_of_retract : ∀ {C
     (∀ k, b k ∈ LinearMap.range p) ∧ (∀ k w, f k (p w) = f k w) ∧
     (∀ j k, f j (b k) = if j = k then 1 else 0) ∧
     (∀ w ∈ LinearMap.range p, (∀ k, f k w = 0) → w = 0) := by
-  first | exact @GlobalTheory.idem_retract_coords | exact GlobalTheory.idem_retract_coords | (intros; apply GlobalTheory.idem_retract_coords <;> assumption)
+  first | exact @GlobalTheory.idem_retract_coords

@@ -60,4 +60,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_complete_dvr_algClosed_residue_injective_local : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] [IsNoetherianRing V], ¬ IsField V → Nonempty (ℚ →+* V) → ∃ (W : Type) (_ : CommRing W) (_ : IsDomain W) (_ : IsDiscreteValuationRing W) (ρ : V →+* W), IsAdicComplete (maximalIdeal W) W ∧ IsAlgClosed (ResidueField W) ∧ Function.Injective ρ ∧ IsLocalHom ρ := by
-  first | exact @GlobalTheory.CompleteClosedDvr.exists_complete_dvr_isAlgClosed | exact GlobalTheory.CompleteClosedDvr.exists_complete_dvr_isAlgClosed | (intros; apply GlobalTheory.CompleteClosedDvr.exists_complete_dvr_isAlgClosed <;> assumption)
+  first | exact @GlobalTheory.CompleteClosedDvr.exists_complete_dvr_isAlgClosed

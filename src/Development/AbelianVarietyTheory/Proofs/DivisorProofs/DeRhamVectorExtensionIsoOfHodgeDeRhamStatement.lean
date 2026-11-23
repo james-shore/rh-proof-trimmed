@@ -49,4 +49,4 @@ open GlobalTheory GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham Glob
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.deRhamVectorExtensionIso_of_hodgeDeRham : GlobalTheory.Published.AbelianHodgeDeRham → GlobalTheory.Published.DeRhamVectorExtension := by
-  first | exact @GlobalTheory.deRhamVectorExtension_of_abelianHodgeDeRham | exact GlobalTheory.deRhamVectorExtension_of_abelianHodgeDeRham | (intros; apply GlobalTheory.deRhamVectorExtension_of_abelianHodgeDeRham <;> assumption)
+  first | exact @GlobalTheory.deRhamVectorExtension_of_abelianHodgeDeRham

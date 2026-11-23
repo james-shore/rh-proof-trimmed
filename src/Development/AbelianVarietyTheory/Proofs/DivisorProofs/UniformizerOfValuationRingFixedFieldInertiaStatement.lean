@@ -50,4 +50,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.uniformizer_of_valuationRing_fixedField_inertia : ∀ (R K Ω : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [PerfectField (ResidueField R)] [Field K] [Algebra R K] [IsFractionRing R K] [Field Ω] [Algebra K Ω] [IsSepClosure K Ω] (V : ValuationSubring Ω), IsAbove R K V.toSubring → ∀ π : R, Irreducible π → V.valuation (algebraMap K Ω (algebraMap R K π)) < 1 ∧ ∀ y : IntermediateField.fixedField (inertia K V), V.valuation (y : Ω) < 1 → ∃ z : IntermediateField.fixedField (inertia K V), (z : Ω) ∈ V ∧ y = algebraMap K _ (algebraMap R K π) * z := by
-  first | exact @GlobalTheory.InertiaFixedUniformizer.uniformizer_fixedField_inertia | exact GlobalTheory.InertiaFixedUniformizer.uniformizer_fixedField_inertia | (intros; apply GlobalTheory.InertiaFixedUniformizer.uniformizer_fixedField_inertia <;> assumption)
+  first | exact @GlobalTheory.InertiaFixedUniformizer.uniformizer_fixedField_inertia

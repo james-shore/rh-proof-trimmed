@@ -43,4 +43,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.DetHT
 
 theorem _root_.GlobalTheory.T.RegularLocalStatement : RegLocSt := by
-  first | exact @GlobalTheory.DetHT.RegLoc.main | exact GlobalTheory.DetHT.RegLoc.main | (intros; apply GlobalTheory.DetHT.RegLoc.main <;> assumption)
+  first | exact @GlobalTheory.DetHT.RegLoc.main

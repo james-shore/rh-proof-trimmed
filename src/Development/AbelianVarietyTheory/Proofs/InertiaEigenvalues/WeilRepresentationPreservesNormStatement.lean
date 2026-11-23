@@ -63,4 +63,4 @@ open GlobalTheory.LevelSeries
 
 
 theorem _root_.GlobalTheory.T.weil_representation_preserves_norm : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)), IsWeilDatumO ψ S T χS χT om → ∀ (μ : MeasureTheory.Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ (p : GA D S × GA D T) (f : WO S T → ℂ), IsThetaFunO ψ S T f → nrm2 μ 𝓕 f = 1 → nrm2 μ 𝓕 (om p f) = 1 := by
-  first | exact @GlobalTheory.WeilUnitNorm.weil_norm_one_of_unit_norm | exact GlobalTheory.WeilUnitNorm.weil_norm_one_of_unit_norm | (intros; apply GlobalTheory.WeilUnitNorm.weil_norm_one_of_unit_norm <;> assumption)
+  first | exact @GlobalTheory.WeilUnitNorm.weil_norm_one_of_unit_norm

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.lieEigenLattice_le_span_cmHom_images : ∀ (E : Ty
         ∀ τ : 𝓞 E →+* 𝓞 K, τ H.rt = ρ → ∀ τE : E →+* K, (∀ x : 𝓞 E, τE x = ((τ x : 𝓞 K) : K)) →
           FB.eigLat X.B.t.act τ ≤ Submodule.span (𝓞 K)
             {w | ∃ c ∈ GlobalTheory.FlatCM.HomLat.lat X, ∃ e ∈ FP.eigLat (X.A true).t.act τ, w = ∑ a, τE (c a) • MP a e} := by
-  first | exact @GlobalTheory.FlatCM.HomLat.LieSpan.eigLat_le_span | exact GlobalTheory.FlatCM.HomLat.LieSpan.eigLat_le_span | (intros; apply GlobalTheory.FlatCM.HomLat.LieSpan.eigLat_le_span <;> assumption)
+  first | exact @GlobalTheory.FlatCM.HomLat.LieSpan.eigLat_le_span

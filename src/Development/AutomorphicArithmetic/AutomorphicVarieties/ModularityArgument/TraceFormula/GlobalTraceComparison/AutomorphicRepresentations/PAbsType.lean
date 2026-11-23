@@ -80,7 +80,7 @@ private lemma orbit_stable {Γ F : Type} [Group Γ] [AddCommGroup F] [Module ℂ
   | mem a h =>
     obtain ⟨k, rfl⟩ := h
     refine Submodule.subset_span ⟨g * k, ?_⟩
-    simp [map_mul, Module.End.mul_apply]
+    simp [map_mul]
   | zero => simp
   | add a b _ _ ha hb => rw [map_add (f := _)]; exact Submodule.add_mem _ ha hb
   | smul c a _ ha => rw [map_smul]; exact Submodule.smul_mem _ c ha
@@ -114,7 +114,7 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.absType_pf :
   have hTR : ∀ g, ∀ x ∈ T, R g x ∈ T := fun g x hx l => by
     have h := hW _ (hx l) g
     convert h using 1
-    ext k; simp [map_mul, Module.End.mul_apply]
+    ext k; simp [map_mul]
   haveI : FiniteDimensional ℂ Y := hY
   haveI : FiniteDimensional ℂ (V ⊓ T : Submodule ℂ F) :=
     Submodule.finiteDimensional_of_le (S₂ := Y) fun x hx => hYV x hx.1 hx.2

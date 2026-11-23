@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.tendsto_unitaryGroupIdempotentLocalization_finiteS
     (∀ u : AF F, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.At (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI F) u → u • (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.mat K - 1) = 0) →
     Filter.Tendsto (fun T : Finset (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) =>
       GlobalTheory.FinDecomp.loc (GlobalTheory.FinDecomp.idemS F T) (GlobalTheory.FinDecomp.idemS_mul_self T) K) Filter.atTop (nhds K) := by
-  first | exact @GlobalTheory.FinDecompLim.tendsto_loc_idemS | exact GlobalTheory.FinDecompLim.tendsto_loc_idemS | (intros; apply GlobalTheory.FinDecompLim.tendsto_loc_idemS <;> assumption)
+  first | exact @GlobalTheory.FinDecompLim.tendsto_loc_idemS

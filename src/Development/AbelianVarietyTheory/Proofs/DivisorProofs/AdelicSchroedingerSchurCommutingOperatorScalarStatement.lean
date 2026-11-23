@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.adelicSchroedinger_schur_commuting_operator_scalar
     (∀ μ : @Measure (κ → AF F) (borel _), @Measure.IsAddHaarMeasure _ _ _ (borel _) μ →
       ∀ φ ∈ schA F κ, ∫⁻ x, ‖M φ x‖ₑ ^ 2 ∂μ = ∫⁻ x, ‖φ x‖ₑ ^ 2 ∂μ) →
     ∃ z : ℂ, ∀ φ ∈ schA F κ, M φ = z • φ := by
-  first | exact @GlobalTheory.HoweD.AdelicSchur.schur | exact GlobalTheory.HoweD.AdelicSchur.schur | (intros; apply GlobalTheory.HoweD.AdelicSchur.schur <;> assumption)
+  first | exact @GlobalTheory.HoweD.AdelicSchur.schur

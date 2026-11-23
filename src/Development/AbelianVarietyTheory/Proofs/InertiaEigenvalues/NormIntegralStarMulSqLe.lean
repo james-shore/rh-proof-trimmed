@@ -268,7 +268,7 @@ theorem transLaws_of {F : Face D A} (hL : Laws R F) (hLP : LevProd R i) : TransL
     simp only [mul_inv_cancel_right, Complex.star_def] at hs
     rw [← hs, ← integral_conj]
     congr 1; funext g
-    simp only [map_mul, Complex.star_def, Complex.conj_conj]; ring
+    simp only [map_mul, Complex.conj_conj]; ring
   refine ⟨ha, hb, ?_, hd, hsym, h1⟩
 
   intro γ hγ
@@ -297,7 +297,6 @@ theorem transLaws_of {F : Face D A} (hL : Laws R F) (hLP : LevProd R i) : TransL
       rw [div_mul_div_comm, ← mul_pow, mul_mul_mul_comm, ← sq]
       gcongr
       all_goals first
-        | positivity
         | exact (sq _).ge
         | (rw [mul_pow]; exact mul_le_mul_of_nonneg_left (hab x y) (by positivity))
     rw [htp γ hγ, norm_div, norm_mul, one_mul]

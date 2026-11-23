@@ -64,4 +64,4 @@ open GlobalTheory.Poinc.ThetaOne GlobalTheory.Poinc.Sep GlobalTheory.FieldBaseCh
 open ReciprocityTheory.ChartRestriction.G.DVR GlobalTheory.Poinc.Sep.Frames GlobalTheory.UT.CoefBasic
 
 theorem _root_.GlobalTheory.T.exists_generator_translatedBundle_integralPoint : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (D : DegPre V) (b : 𝟙_ (Over (Sp V)) ⟶ D.P.A), ∃ t : LB.Gen (LB.LinComb D.P.L ![(η[D.P.A]).left, b.left] (DegPre.lineε 1)), t.IsGen := by
-  first | exact @GlobalTheory.GenLocal.exists_gen_unit_point | exact GlobalTheory.GenLocal.exists_gen_unit_point | (intros; apply GlobalTheory.GenLocal.exists_gen_unit_point <;> assumption)
+  first | exact @GlobalTheory.GenLocal.exists_gen_unit_point

@@ -49,4 +49,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD
 open scoped Classical MatrixGroups nonZeroDivisors
 
 theorem _root_.GlobalTheory.T.iteratedDeriv_zero_eq_laguerreDerivativePolynomialValue : ∀ (k n : ℕ) (c y : ℂ), iteratedDeriv n (fun z : ℂ ↦ (1 + z * c)⁻¹ ^ k * Complex.exp (y * z / (1 + z * c))) 0 = lag k n c y := by
-  first | exact @GlobalTheory.HilbFam.LagDeriv.iteratedDeriv_zero_eq_lag | exact GlobalTheory.HilbFam.LagDeriv.iteratedDeriv_zero_eq_lag | (intros; apply GlobalTheory.HilbFam.LagDeriv.iteratedDeriv_zero_eq_lag <;> assumption)
+  first | exact @GlobalTheory.HilbFam.LagDeriv.iteratedDeriv_zero_eq_lag

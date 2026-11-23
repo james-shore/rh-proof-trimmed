@@ -169,7 +169,7 @@ private theorem twistedAction_single_of_lt {V : Type} [AddCommGroup V] [Module �
   by_cases hxa : x = a
   · subst hxa
     simp [ne_of_gt hta]
-  · simp [Pi.single_apply, hxa]
+  · simp [hxa]
 
 theorem CharId_sub_lsh_apply_single {V : Type} [AddCommGroup V] [Module ℂ V] {n : ℕ}
     (E : Fin n → Fin n → Module.End ℂ V) (ν : Fin n → ℂ) (v : V) (hv : IsHW E ν v) (t : Fin n) :
@@ -183,7 +183,7 @@ theorem CharId_sub_lsh_apply_single {V : Type} [AddCommGroup V] [Module ℂ V] {
     rw [Finset.sum_eq_single t]
     · simp
     · intro c _ hc
-      simp [Pi.single_apply, hc]
+      simp [hc]
     · simp
   simp only [LinearMap.sub_apply, Module.algebraMap_end_apply, Pi.sub_apply, Pi.smul_apply,
     CharId_M_apply, hs, Finset.mem_filter, Finset.mem_univ, true_and]
@@ -192,7 +192,7 @@ theorem CharId_sub_lsh_apply_single {V : Type} [AddCommGroup V] [Module ℂ V] {
   · subst h
     rw [← Nat.cast_smul_eq_nsmul ℂ, CharId_card]
     simp [hv.1 x, lsh, add_smul, sub_smul]
-  · simp [h.ne', h, Pi.single_apply]
+  · simp [h.ne', h]
 
 theorem CharId_kill {V : Type} [AddCommGroup V] [Module ℂ V] {n : ℕ}
     (E : Fin n → Fin n → Module.End ℂ V) (hE : GlRel E) (ν : Fin n → ℂ) (v : V)
@@ -232,7 +232,7 @@ theorem CharId_single {V : Type} [AddCommGroup V] [Module ℂ V] {n : ℕ}
   rw [Finset.sum_eq_single b]
   · simp
   · intro c _ hc
-    simp [Pi.single_apply, hc]
+    simp [hc]
   · simp
 
 theorem CharId_on_v {V : Type} [AddCommGroup V] [Module ℂ V] {n : ℕ}
@@ -275,7 +275,7 @@ theorem CharId_P_commutator {V : Type} [AddCommGroup V] [Module ℂ V] {n : ℕ}
     rw [mul_smul_comm, smul_mul_assoc, ← smul_sub, generatorPowCovariance_holds _ n E hE i a b c d]
     split_ifs <;> simp [smul_sub]
   rw [Finset.sum_congr rfl h, Finset.sum_sub_distrib]
-  split_ifs <;> simp [smul_sub]
+  split_ifs <;> simp
 
 theorem characteristicIdentity_holds : CharId := by
   intro V _ _ n E ν v hE hv x hx a b

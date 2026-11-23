@@ -205,7 +205,7 @@ theorem prod_locUnit_eq_prod_locUnit_norm : ∀ (E K : Type) [Field E] [NumberFi
       · intro h
         exact ⟨(memTK w).mpr (h ▸ hv), h⟩
     have key := GlobalTheory.T.intValuation_norm_eq_sum_residueDegree_mul E K v a _ hs
-    simp only [ordF, hNa, Units.coe_map, MonoidHom.coe_coe] at key ⊢
+    simp only [ordF, hNa, Units.coe_map] at key ⊢
     rw [key, ← Finset.sum_neg_distrib]
     refine Finset.sum_congr rfl fun w _ => ?_
     ring

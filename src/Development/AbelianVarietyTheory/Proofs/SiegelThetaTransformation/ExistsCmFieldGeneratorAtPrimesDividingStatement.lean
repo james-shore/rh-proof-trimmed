@@ -58,4 +58,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Dict
 
 theorem _root_.GlobalTheory.T.exists_cmField_generator_at_primes_dividing : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (𝔍 : Ideal (𝓞 E)) (M : ℕ), 𝔍 ≠ ⊥ → 0 < M → ∃ (α : 𝓞 E) (𝔞 : Ideal (𝓞 E)), α ≠ 0 ∧ Ideal.span {α} = 𝔍 * 𝔞 ∧ IsCoprime 𝔞 (Ideal.span {(M : 𝓞 E)}) := by
-  first | exact @GlobalTheory.Dict.exists_generator_at_primes_dividing | exact GlobalTheory.Dict.exists_generator_at_primes_dividing | (intros; apply GlobalTheory.Dict.exists_generator_at_primes_dividing <;> assumption)
+  first | exact @GlobalTheory.Dict.exists_generator_at_primes_dividing

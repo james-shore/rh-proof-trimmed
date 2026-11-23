@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.highestWeight_doubleDual_upperTriangular_eigenvect
         ∀ B : GL (Fin n) K, (B : Matrix (Fin n) (Fin n) K).BlockTriangular id →
           Formalism.GradedWeylDivisibility.blockAct K (fun τ => if τ = τ₀ then (B : Matrix (Fin n) (Fin n) K).transpose else 1) w =
             ((detPow K n B (lam τ₀).detShift)⁻¹ * ∏ a, (B : Matrix (Fin n) (Fin n) K) a a ^ mu a) • w := by
-  first | exact @GlobalTheory.AlgWtF.DDHwT.hw_eigvec_transport | exact GlobalTheory.AlgWtF.DDHwT.hw_eigvec_transport | (intros; apply GlobalTheory.AlgWtF.DDHwT.hw_eigvec_transport <;> assumption)
+  first | exact @GlobalTheory.AlgWtF.DDHwT.hw_eigvec_transport

@@ -192,7 +192,6 @@ theorem hsNormSq_nonneg {Wp Wq : Type*} [NormedAddCommGroup Wp] [InnerProductSpa
   first
     | (rw [inner_self_eq_norm_sq_to_K, ← Complex.ofReal_pow, Complex.ofReal_re]; positivity)
     | exact inner_self_nonneg (𝕜 := ℂ)
-    | simp
 
 theorem hsNormSq_smul {Wp Wq : Type*} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
     [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] (c : ℂ) (A : Wq →L[ℂ] Wp) :
@@ -203,7 +202,7 @@ theorem hsNormSq_smul {Wp Wq : Type*} [NormedAddCommGroup Wp] [InnerProductSpace
     rw [← mul_assoc, Complex.normSq_eq_conj_mul_self]
   have hy : ∀ z : ℂ, c * ((starRingEnd ℂ) c * z) = (Complex.normSq c : ℂ) * z := fun z => by
     rw [← mul_assoc, Complex.mul_conj]
-  simp only [hx, hy]
+  simp only [hy]
   rw [← Finset.mul_sum, Complex.re_ofReal_mul]
 
 theorem isQuotMeas_smul {k r : ℕ} {μG μS ν : Measure (Formalism.QuantumDeterminants.Mt k r)} (h : IsQuotMeas μG μS ν) {c : ENNReal}
@@ -353,7 +352,6 @@ theorem star_dot_conjT {n m : Type*} [Fintype n] [Fintype m] (Q : Matrix n m ℂ
     star x ⬝ᵥ (Qᴴ *ᵥ y) = star (Q *ᵥ x) ⬝ᵥ y := by
   first
     | rw [Matrix.dotProduct_mulVec, Matrix.star_mulVec]
-    | rw [dotProduct_mulVec, Matrix.star_mulVec]
 
 theorem hJ_smul_real {n : ℕ} (ε : Fin n → Bool) (r s : ℝ) (x y : Fin n → ℂ) :
     hJ ε ((r : ℂ) • x) ((s : ℂ) • y) = ((r * s : ℝ) : ℂ) * hJ ε x y := by
@@ -459,12 +457,6 @@ theorem tau_nonempty (D : D7) : Nonempty D.what₂.Tau := by
   first
     | (unfold Formalism.BasicNotions.Ranks.f Formalism.BasicNotions.Ranks.n; positivity)
     | (unfold Formalism.BasicNotions.Ranks.f Formalism.BasicNotions.Ranks.n; omega)
-    | (simp [Formalism.BasicNotions.Ranks.f, Formalism.BasicNotions.Ranks.n]; omega)
-    | (simp [Formalism.BasicNotions.Ranks.f, Formalism.BasicNotions.Ranks.n])
-    | (unfold Formalism.BasicNotions.Ranks.f Formalism.HC.Frame.n; positivity)
-    | (unfold Formalism.BasicNotions.Ranks.f Formalism.HC.Frame.n; omega)
-    | (simp [Formalism.BasicNotions.Ranks.f, Formalism.HC.Frame.n])
-    | (unfold Formalism.BasicNotions.Ranks.f; positivity)
 
 end Witt
 
@@ -915,11 +907,9 @@ theorem stInf_conj_inv {u u' : D.what₂.Word} {γ γw s s' : X.B.I.Ginf} (hs : 
   have hsi : s⁻¹ ∈ X.SinfU u := by
     first
       | exact (Formalism.L2.SG.Pf.SinfSub X.B.I X.eR (X.zR u)).inv_mem hs
-      | exact (Formalism.L2.SG.Pf.SinfSub X.eR (X.zR u)).inv_mem hs
   have hs'i : s'⁻¹ ∈ X.SinfU u' := by
     first
       | exact (Formalism.L2.SG.Pf.SinfSub X.B.I X.eR (X.zR u')).inv_mem hs'
-      | exact (Formalism.L2.SG.Pf.SinfSub X.eR (X.zR u')).inv_mem hs'
   show s⁻¹ * y * s ∈ X.NinfU u ∧ γw⁻¹ * (s⁻¹ * y * s) * γw ∈ X.NinfU u'
   refine ⟨?_, ?_⟩
   · have h1 := sinf_norm hsi hy1

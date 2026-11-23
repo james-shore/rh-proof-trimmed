@@ -60,4 +60,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.lineBundleIso_of_generic_semiAbelian_completeDVR : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V], CDvr V → ∀ (G₁ : Over (Sp V)) [GrpObj G₁] [IsCommMonObj G₁], IsSemiAbelian G₁ → ∀ (GK : Over (Sp (FractionRing V))) [GrpObj GK] (φ : GK.left ⟶ G₁.left), IsGrpPullback GK G₁ (jK V) φ → ∀ L L' : LB G₁.left, L.IsLB → L'.IsLB → LBIso (L.pull φ) (L'.pull φ) → LBIso L L' := by
-  first | exact @GlobalTheory.lbIso_of_generic_semiAbelian_cdvr | exact GlobalTheory.lbIso_of_generic_semiAbelian_cdvr | (intros; apply GlobalTheory.lbIso_of_generic_semiAbelian_cdvr <;> assumption)
+  first | exact @GlobalTheory.lbIso_of_generic_semiAbelian_cdvr

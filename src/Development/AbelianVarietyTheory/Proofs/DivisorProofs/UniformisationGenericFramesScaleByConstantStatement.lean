@@ -53,4 +53,4 @@ open GlobalTheory.UT.CoefBasic
 theorem _root_.GlobalTheory.T.uniformisation_generic_frames_scale_by_constant : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ : X₁.M.Z) (act : I → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)) (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (ev : X₁.M.Z.presheaf.stalk z₁ →+* V) (Y : Type) [AddCommGroup Y] (t : Y → V) (δ : I → Y → Y) (𝔪 : GlobalTheory.GSep.GMem X₁ z₁ act V ev Y t δ) (w₀ w₀₂ : W0 𝔪.U.toUnifPre), w₀.IsGen → w₀₂.IsGen →
   ∃ u : FractionRing V, u ≠ 0 ∧ ∀ (k : ℕ) (th : SecA 𝔪.A (FractionRing V) k) (s : Fam 𝔪.D.toPre (FractionRing V) k),
     𝔪.U.ExpandsF (FractionRing V) k w₀ th s → 𝔪.U.ExpandsF (FractionRing V) k w₀₂ th (u ^ k • s) := by
-  first | exact @GlobalTheory.GenFrameScale.frames_scale | exact GlobalTheory.GenFrameScale.frames_scale | (intros; apply GlobalTheory.GenFrameScale.frames_scale <;> assumption)
+  first | exact @GlobalTheory.GenFrameScale.frames_scale

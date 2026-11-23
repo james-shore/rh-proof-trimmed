@@ -51,4 +51,4 @@ open GlobalTheory.KeyKa
 
 
 theorem _root_.GlobalTheory.T.exists_squareDeterminantComparison_isAlgClosed : Out.Laws → ∀ (K : Type) [Field K] [IsAlgClosed K] (x : KeyIn K) (m : ℕ) (al : Matrix (Fin 4) (Fin 4) ℤ) (b : Fin (m ^ x.P.g) → RR x m), (m : K) ≠ 0 → al.transpose * al = (m : ℤ) • (1 : Matrix (Fin 4) (Fin 4) ℤ) → IsBasis x b → ∃ lam, IsSquareDeterminantComparison x m al b lam := by
-  first | exact @GlobalTheory.SimilDet.exists_l2Val | exact GlobalTheory.SimilDet.exists_l2Val | (intros; apply GlobalTheory.SimilDet.exists_l2Val <;> assumption)
+  first | exact @GlobalTheory.SimilDet.exists_l2Val

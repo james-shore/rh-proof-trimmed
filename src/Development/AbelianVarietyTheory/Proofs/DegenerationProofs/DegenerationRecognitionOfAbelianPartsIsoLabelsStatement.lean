@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex
 
 theorem _root_.GlobalTheory.T.degenerationRecognition_of_abelianPartsIsoLabels : UrCSt → URecSt := by
-  first | exact @GlobalTheory.Ex.Recognition.urec_of_abelian | exact GlobalTheory.Ex.Recognition.urec_of_abelian | (intros; apply GlobalTheory.Ex.Recognition.urec_of_abelian <;> assumption)
+  first | exact @GlobalTheory.Ex.Recognition.urec_of_abelian

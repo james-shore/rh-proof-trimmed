@@ -55,4 +55,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
 theorem _root_.GlobalTheory.T.unitaryQuotientHeight_orthogonalSum_comparable : ∀ (D : D7) (S A B : HSp D) (o : OrthDec S A B), ∃ (C : ℝ) (a : ℕ), ∀ h, quotHeight A h ≤ C * quotHeight S (o.emb (h, 1)) ^ a ∧ quotHeight S (o.emb (h, 1)) ≤ C * quotHeight A h ^ a := by
-  first | exact @GlobalTheory.HtOrth.quotHeight_orthDec_cmp | exact GlobalTheory.HtOrth.quotHeight_orthDec_cmp | (intros; apply GlobalTheory.HtOrth.quotHeight_orthDec_cmp <;> assumption)
+  first | exact @GlobalTheory.HtOrth.quotHeight_orthDec_cmp

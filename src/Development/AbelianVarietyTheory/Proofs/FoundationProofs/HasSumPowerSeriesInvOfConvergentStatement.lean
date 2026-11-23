@@ -60,4 +60,4 @@ open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.hasSum_powerSeries_inv_of_convergent : ∀ (a : ℕ → ℂ) (ρ : ℝ), 0 < ρ → a 0 ≠ 0 → (∀ x : ℂ, ‖x‖ < ρ → Summable fun n => a n * x ^ n) → ∃ ρ' : ℝ, 0 < ρ' ∧ ∀ x : ℂ, ‖x‖ < ρ' → (∑' n, a n * x ^ n) ≠ 0 ∧ HasSum (fun n => PowerSeries.coeff n (PowerSeries.mk a)⁻¹ * x ^ n) (∑' n, a n * x ^ n)⁻¹ := by
-  first | exact @GlobalTheory.PowerSeriesInv.hasSum_inv | exact GlobalTheory.PowerSeriesInv.hasSum_inv | (intros; apply GlobalTheory.PowerSeriesInv.hasSum_inv <;> assumption)
+  first | exact @GlobalTheory.PowerSeriesInv.hasSum_inv

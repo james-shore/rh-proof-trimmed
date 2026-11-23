@@ -44,4 +44,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.twisted_centralizer_block_le_parabolic : ∀ (E : Type) [Field E] [NumberField E] (n a b : ℕ) (h : a + b = n) (w : Pl E) (m : GLw a w × GLw b w), (m.1.val.charpoly * m.2.val.charpoly).Separable → twCent (MonoidHom.id (GLw n w)) (blk h w m 0) ≤ GlobalTheory.LeviDesc.parP a n w := by
-  first | exact @GlobalTheory.LeviDesc.twCent_blk_le_parP | exact GlobalTheory.LeviDesc.twCent_blk_le_parP | (intros; apply GlobalTheory.LeviDesc.twCent_blk_le_parP <;> assumption)
+  first | exact @GlobalTheory.LeviDesc.twCent_blk_le_parP

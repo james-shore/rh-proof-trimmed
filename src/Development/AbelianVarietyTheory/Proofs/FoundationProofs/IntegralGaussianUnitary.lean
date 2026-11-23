@@ -60,7 +60,7 @@ theorem sesq_eq_sum_repr {V : Type} [AddCommGroup V] [Module ℂ V] (H : Sesq V)
   conv_lhs => rw [← e.sum_repr z, ← e.sum_repr w]
 
   simp only [map_sum, map_smul, LinearMap.map_smulₛₗ, LinearMap.sum_apply, LinearMap.smul_apply, he,
-  smul_eq_mul, RingHom.id_apply, mul_ite, mul_one, mul_zero]
+  smul_eq_mul, mul_ite, mul_one, mul_zero]
   refine Finset.sum_congr rfl fun i _ => ?_
   simp [mul_comm]
 

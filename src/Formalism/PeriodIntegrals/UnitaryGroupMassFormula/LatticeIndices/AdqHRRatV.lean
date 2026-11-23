@@ -68,7 +68,7 @@ theorem adq_hR_ratV {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [C
     hR R σ J (ratV (F := F) R x) (ratV (F := F) R y) = inclR R (hE σ J x y) := by
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [hR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE, Formalism.UG.hform, ratV, JR, Matrix.map_apply, map_sum, map_mul,
-    sigR_inclR_lattice_indices, AlgHom.toRingHom_eq_coe, RingHom.coe_coe]
+    sigR_inclR_lattice_indices, RingHom.coe_coe]
 
 section Loc
 

@@ -53,4 +53,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.goodMajorantLevel_conj_unitaryAdelicMaximalCompact : ∀ (D : D7) (T T₀ : HSp D) (r : ℕ) (d : HypDec T T₀ r) (b : GL (Fin T.rank) (AE D)), IsMaj T b → HasIw d (Kmax T b) → ∀ l : Lvl T, l.Good → HasIw d l.K ∧ IsCompact (l.K : Set (GA D T)) ∧ ∃ q : stab d, ConjBy (q : GA D T) l.K (Kmax T b) := by
-  first | exact @GlobalTheory.RegSch.good_level_conj_stab | exact GlobalTheory.RegSch.good_level_conj_stab | (intros; apply GlobalTheory.RegSch.good_level_conj_stab <;> assumption)
+  first | exact @GlobalTheory.RegSch.good_level_conj_stab

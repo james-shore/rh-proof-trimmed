@@ -48,4 +48,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 theorem _root_.GlobalTheory.T.exists_nonempty_open_thetaRing_regular : ∀ X₁ : GlobalTheory.GSep.GSet, ∃ U : X₁.M.Z.Opens, (U : Set X₁.M.Z).Nonempty ∧ ∀ z ∈ U, X₁.S.R ≤ X₁.M.O z := by
-  first | exact @GlobalTheory.GSep.exists_opens_R_le_O | exact GlobalTheory.GSep.exists_opens_R_le_O | (intros; apply GlobalTheory.GSep.exists_opens_R_le_O <;> assumption)
+  first | exact @GlobalTheory.GSep.exists_opens_R_le_O

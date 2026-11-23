@@ -45,4 +45,4 @@ open GlobalTheory.GLq Formalism.MainNotions.ArithmeticCylinders Polynomial
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.admLq_of_green_of_eSerTie : Green → ∀ D : Formalism.BasicNotions.D7, ESerTie D → admLq D := by
-  first | exact @GlobalTheory.GLq.lemmaL_series_weights_of_greenCuspidalParametrisation | exact GlobalTheory.GLq.lemmaL_series_weights_of_greenCuspidalParametrisation | (intros; apply GlobalTheory.GLq.lemmaL_series_weights_of_greenCuspidalParametrisation <;> assumption)
+  first | exact @GlobalTheory.GLq.lemmaL_series_weights_of_greenCuspidalParametrisation

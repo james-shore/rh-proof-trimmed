@@ -93,11 +93,7 @@ theorem list_prod_mulSingle {ι : Type*} [DecidableEq ι] {M : ι → Type*} [�
     (l : List ι) (hl : l.Nodup) (w : ι) :
     (l.map fun i => Pi.mulSingle i (x i)).prod w = if w ∈ l then x w else 1 := by
   first
-  | exact @_root_.GlobalTheory.ProdMapMulSingle.prod_map_mulSingle_apply
-  | exact _root_.GlobalTheory.ProdMapMulSingle.prod_map_mulSingle_apply
   | (apply _root_.GlobalTheory.ProdMapMulSingle.prod_map_mulSingle_apply <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProdMapMulSingle.prod_map_mulSingle_apply <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProdMapMulSingle.prod_map_mulSingle_apply <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ProdMapMulSingle.prod_map_mulSingle_apply ..)
 
 theorem conj_cancel {n : ℕ} {P M N : Matrix (Fin n) (Fin n) ℂ} (hP : IsUnit P) (h : P * M * P⁻¹ = P * N * P⁻¹) :

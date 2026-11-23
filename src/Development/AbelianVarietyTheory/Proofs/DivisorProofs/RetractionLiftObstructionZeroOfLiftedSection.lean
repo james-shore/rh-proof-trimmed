@@ -61,7 +61,7 @@ namespace GlobalTheory.Obs
 theorem appLE_apply_of_eq_id {X : Scheme.{0}} {g : X ⟶ X} (hg : g = 𝟙 X) {U V : X.Opens} (e : V ≤ g ⁻¹ᵁ U)
     (e' : V ≤ U) (x : Γ(X, U)) : (g.appLE U V e).hom x = (X.presheaf.map (homOfLE e').op).hom x := by
   subst hg
-  simp only [Scheme.Hom.appLE, Scheme.Hom.id_app, Category.id_comp]
+  simp only [Scheme.Hom.appLE, Scheme.Hom.id_app]
   rfl
 
 theorem appLE_appLE_of_retr {X₀ Z₀ : Scheme.{0}} {j₀ : X₀ ⟶ Z₀} {f₀ : Z₀ ⟶ X₀} (hjf : j₀ ≫ f₀ = 𝟙 X₀)

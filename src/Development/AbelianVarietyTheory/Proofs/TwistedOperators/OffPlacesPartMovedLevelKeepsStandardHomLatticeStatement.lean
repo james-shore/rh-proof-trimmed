@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.offPlacesPart_movedLevel_keeps_standardHomLattice 
       u ∈ stdLatO S (.top t (j + 1)) ↔ ∃ u₀ ∈ stdLatO S (.top t (j + 1)),
         u = actO _ _ (cutPart (1 - (e + cA D e)) (G.V (.top (j + 1)))
           ((((S.N.u (.top (j + 1)))⁻¹ * k * S.N.u (.top (j + 1)) : FinPt G (.top (j + 1))) : GA D (G.V (.top (j + 1)))))) 1 u₀ := by
-  first | exact @GlobalTheory.OffPartLattice.offPart_keeps_stdLatO | exact GlobalTheory.OffPartLattice.offPart_keeps_stdLatO | (intros; apply GlobalTheory.OffPartLattice.offPart_keeps_stdLatO <;> assumption)
+  first | exact @GlobalTheory.OffPartLattice.offPart_keeps_stdLatO

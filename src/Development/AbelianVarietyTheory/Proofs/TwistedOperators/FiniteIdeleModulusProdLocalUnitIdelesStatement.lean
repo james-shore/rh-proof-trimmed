@@ -53,4 +53,4 @@ open Formalism.IndefR.Fin.LevelGroupLemmas (resG detAt)
 theorem _root_.GlobalTheory.T.finiteIdeleModulus_prod_localUnitIdeles : ∀ {D : D7} (P : Finset (Pl D.host.E)) (y : ∀ w : P, (Kw w.1)ˣ),
     (∀ w, valuation (Kw w.1) (y w : Kw w.1) = 1) →
     GlobalTheory.IndefiniteRowSideFullHecke.SplitLinearModelNorm.absFin D (∏ w : P, GlobalTheory.LFun.locIdele D.host.F w.1 (y w)) = 1 := by
-  first | exact @GlobalTheory.TopLevelInv.absFin_prod_locIdele_unit | exact GlobalTheory.TopLevelInv.absFin_prod_locIdele_unit | (intros; apply GlobalTheory.TopLevelInv.absFin_prod_locIdele_unit <;> assumption)
+  first | exact @GlobalTheory.TopLevelInv.absFin_prod_locIdele_unit

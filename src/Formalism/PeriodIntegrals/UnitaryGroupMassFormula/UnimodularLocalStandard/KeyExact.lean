@@ -277,11 +277,9 @@ theorem keyExact : KeyExact := by
     have e1 : (N₁:ℂ) * (2 * (Q₀:ℂ) + Q₀ * ((l:ℂ) ^ k * p / q)) - γ' = (l:ℂ) ^ j * E₀ / q := by
       rw [← hEc, hEc2]
       field_simp
-      try ring
     rw [e1, hrcdef, hP, hpow]
     push_cast
     field_simp
-    try ring
   refine ⟨w' + rc • (Pi.single i₀ φ - w'), ?_, ?_, ?_⟩
   · have hmem : (E₀ * n₁ * M₃ : ℤ) • (w' + rc • (Pi.single i₀ φ - w')) ∈ Λ := by
       have key : (E₀ * n₁ * M₃ : ℤ) • (w' + rc • (Pi.single i₀ φ - w')) =

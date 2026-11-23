@@ -64,7 +64,7 @@ private theorem kap_eq (δ : F) (w : InfinitePlace F) (i : Fin 4) :
 
 private theorem form_step (δ : F) (v : V4 F) (i : Fin 4) (s : A F) :
     qG δ (v + Pi.single i s) = qG δ v + kA δ i * (2 * v i * s + s * s) := by
-  fin_cases i <;> simp [qG, kA, Pi.single_apply] <;> ring
+  fin_cases i <;> simp [qG, kA] <;> ring
 
 private theorem sum_step (w : InfinitePlace F) (K b : InfinitePlace F → ℝ) (t : ℝ) :
     ∑ w', (K * (2 * b * Pi.single w t + Pi.single w t * Pi.single w t) : InfinitePlace F → ℝ) w' =

@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.torsion_lift_pairing_in_orthogonal_frame :
           kap S.Hm (vecA n b A) ((s : ℂ) • liftY q n eps b y) ∈ Qbar ∧
             ι (kap S.Hm (vecA n b A) ((s : ℂ) • liftY q n eps b y)) =
               ∏ i, ι (kap1 S.d 1 (y' i)) ^ (PadicInt.toZModPow n (A' i)).val := by
-  first | exact @GlobalTheory.MomOne.kapFrame | exact GlobalTheory.MomOne.kapFrame | (intros; apply GlobalTheory.MomOne.kapFrame <;> assumption)
+  first | exact @GlobalTheory.MomOne.kapFrame

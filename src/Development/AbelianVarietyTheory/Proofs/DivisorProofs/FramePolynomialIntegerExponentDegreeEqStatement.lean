@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.framePolynomial_integerExponent_degree_eq : ∀ (E
           (∏ b, (Y b).det ^ k b) * evR Xo c F y' = Formalism.L2.LamCM.evalFr G Y) →
       ∀ μ, AddMonoidAlgebra.coeff G μ ≠ 0 →
         (μ.degree : ℤ) = ∑ b, ((Dw.mult b : ℤ) * (k b : ℤ) + ∑ i : Fin (Dw.mult b), e (some ⟨b, i⟩)) := by
-  first | exact @GlobalTheory.FrameHom.frPoly_secZ_degree_eq | exact GlobalTheory.FrameHom.frPoly_secZ_degree_eq | (intros; apply GlobalTheory.FrameHom.frPoly_secZ_degree_eq <;> assumption)
+  first | exact @GlobalTheory.FrameHom.frPoly_secZ_degree_eq

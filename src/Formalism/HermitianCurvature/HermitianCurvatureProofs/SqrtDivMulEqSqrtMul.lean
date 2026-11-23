@@ -79,7 +79,6 @@ theorem nk_pos (hdet : Zm.det ≠ 0) : 0 < nk Zm := by
     simp [h] at h2
     first
       | exact hdet h2.symm
-      | exact hdet h2
   exact Finset.sum_pos' (fun i _ => Complex.normSq_nonneg _)
     ⟨b, Finset.mem_univ _, Complex.normSq_pos.mpr hb⟩
 
@@ -110,7 +109,6 @@ theorem sum_kap_be (hdet : Zm.det ≠ 0) :
 theorem sqrt_div_mul_eq_sqrt_mul (hT : 0 < T) (hT' : 0 < T') : Real.sqrt (T / T') * T' = Real.sqrt (T * T') := by
   have h1 : T * T' = (T / T') * T' ^ 2 := by
     field_simp
-    try ring
   rw [h1, Real.sqrt_mul (div_nonneg hT.le hT'.le), Real.sqrt_sq hT'.le]
 
 theorem xco_fco (hT : 0 < T) (hT' : 0 < T') (hdet : Zm.det ≠ 0) (a b : Fin (r + 1)) :

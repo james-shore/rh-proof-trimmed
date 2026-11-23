@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.Me
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.exists_isBdRPlusSectionOfTheta : ∀ (l : ℕ) [Fact l.Prime], ∃ o : Om l →+* Per.BdRp l, IsSec o := by
-  first | exact @GlobalTheory.MemLoc.SecEx.exists_isSec | exact GlobalTheory.MemLoc.SecEx.exists_isSec | (intros; apply GlobalTheory.MemLoc.SecEx.exists_isSec <;> assumption)
+  first | exact @GlobalTheory.MemLoc.SecEx.exists_isSec

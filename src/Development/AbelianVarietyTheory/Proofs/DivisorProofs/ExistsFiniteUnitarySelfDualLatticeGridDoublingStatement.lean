@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_finiteUnitary_selfDual_lattice_grid_doublin
           ∃ u₀ ∈ latO S (spX G i j) ΛS (latX G i j) (fun _ => True), u = actO S (spX G i j) 1 h u₀) ∧
       (latO (GlobalTheory.Grid.neg (spW G i j)) (spX G i j) (G.Λ (.grid (i + 1) (j + 1))) Λ (fun _ => True) : Set _) = orderingsOnSpW G i j ∧
       (latO (spW₁ G i j) (spX G i j) (G.Λ (.grid i j)) Λ (fun _ => True) : Set _) = orderingsOnSpWOne G i j := by
-  first | exact @GlobalTheory.TopFlip.exists_twistElt | exact GlobalTheory.TopFlip.exists_twistElt | (intros; apply GlobalTheory.TopFlip.exists_twistElt <;> assumption)
+  first | exact @GlobalTheory.TopFlip.exists_twistElt

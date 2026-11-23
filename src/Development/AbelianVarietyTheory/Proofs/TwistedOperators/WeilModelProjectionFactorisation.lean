@@ -72,11 +72,7 @@ theorem exists_sep (vac : ∀ v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTe
     ∃ Λ : ((κ → AF F) → ℂ) →ₗ[ℂ] ℂ, ∀ (f : SInf F κ) (φ : ∀ v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F), (κ → Fv F v) → ℂ),
       (∀ᶠ v in Filter.cofinite, φ v = vac v) → Λ (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f φ) = lam f * ∏ᶠ v, l v (φ v) := by
   first
-  | exact @_root_.GlobalTheory.FiniteAdelicPoints.exists_functional_pure
-  | exact _root_.GlobalTheory.FiniteAdelicPoints.exists_functional_pure
   | (apply _root_.GlobalTheory.FiniteAdelicPoints.exists_functional_pure <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteAdelicPoints.exists_functional_pure <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteAdelicPoints.exists_functional_pure <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FiniteAdelicPoints.exists_functional_pure ..)
 
 theorem exists_pureLift : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) {n d : ℕ}

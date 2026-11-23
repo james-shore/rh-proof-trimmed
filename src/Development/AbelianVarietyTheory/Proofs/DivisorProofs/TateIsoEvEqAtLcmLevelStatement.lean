@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.tateIso_ev_eq_at_lcm_level : ∀ {E : Type} [Field
   (∀ a, J.ev l.A a = J'.ev l.A a) →
   (∀ a ∈ l.Mb.map (H.bar : 𝓞 E →+* 𝓞 E) • (⊤ : Submodule (𝓞 E) D.La), J.ev l.M a = J'.ev l.M a) →
   ∀ a, J.ev l.M' a = J'.ev l.M' a := by
-  first | exact @GlobalTheory.LowDat.tateIso_ev_lcm_eq | exact GlobalTheory.LowDat.tateIso_ev_lcm_eq | (intros; apply GlobalTheory.LowDat.tateIso_ev_lcm_eq <;> assumption)
+  first | exact @GlobalTheory.LowDat.tateIso_ev_lcm_eq

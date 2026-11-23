@@ -46,4 +46,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.exists_conj_same_separable_charpoly_split_place : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ), ∀ P ∈ Ell E n, ∀ w : Pl E, IsSplitAt w → ∀ γ γ' : UL n w, γ.1.val.charpoly = atPl w P → γ'.1.val.charpoly = atPl w P → ∃ g : UL n w, γ' = g⁻¹ * γ * g := by
-  first | exact @GlobalTheory.BCT.SplitConj.exists_conj_of_isSplitAt | exact GlobalTheory.BCT.SplitConj.exists_conj_of_isSplitAt | (intros; apply GlobalTheory.BCT.SplitConj.exists_conj_of_isSplitAt <;> assumption)
+  first | exact @GlobalTheory.BCT.SplitConj.exists_conj_of_isSplitAt

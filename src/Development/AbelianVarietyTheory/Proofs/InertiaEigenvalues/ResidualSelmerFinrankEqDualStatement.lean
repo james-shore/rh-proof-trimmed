@@ -48,4 +48,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published GlobalTheory.ResSel
 
 theorem _root_.GlobalTheory.T.residual_selmer_finrank_eq_dual : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLocal → LocalFiniteness → LocalTateDuality → LocalEulerChar → GlobalFiniteness → GlobalEulerChar → UnramifiedOrthogonality → Gen.ArchimedeanSignatureMatching → ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host D.what₂) (X : NTw D.R D.host D.what₂ D.LL0 N) (bkP : BKPh X) (i : X.Tw) (s : X.Sig i), GalHyp bkP i s → EqDim bkP i s := by
-  first | exact @GlobalTheory.ResDual.eqDim | exact GlobalTheory.ResDual.eqDim | (intros; apply GlobalTheory.ResDual.eqDim <;> assumption)
+  first | exact @GlobalTheory.ResDual.eqDim

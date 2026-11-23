@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_algebraicDatum_not_matched_zero_by_localMap
     (om : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep σ G.V G.W) (om' : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep σ G.V' G.W) (R : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.RealMaps F a a')
     (Rf : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.FinMaps F a a'), GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsMatched B G X om om' R Rf →
     ∃ Φ ∈ GlobalTheory.SquareAgree.algD G.M' B.ψ B.emb, ¬ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.PolMatch B G X R Rf 0 Φ := by
-  first | exact @GlobalTheory.SquareAgree.exists_algD_not_polMatch_zero | exact GlobalTheory.SquareAgree.exists_algD_not_polMatch_zero | (intros; apply GlobalTheory.SquareAgree.exists_algD_not_polMatch_zero <;> assumption)
+  first | exact @GlobalTheory.SquareAgree.exists_algD_not_polMatch_zero

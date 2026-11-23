@@ -42,4 +42,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.fockVectorsOverVacuumIsometry_of_skeletonDatum : ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.VacuumFockVectors.VacuumFock D := by
-  first | exact @GlobalTheory.vacuumFock_all_records | exact GlobalTheory.vacuumFock_all_records | (intros; apply GlobalTheory.vacuumFock_all_records <;> assumption)
+  first | exact @GlobalTheory.vacuumFock_all_records

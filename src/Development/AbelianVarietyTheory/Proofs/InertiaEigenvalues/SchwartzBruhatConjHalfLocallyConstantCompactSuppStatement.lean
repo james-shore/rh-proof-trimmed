@@ -59,4 +59,3 @@ theorem _root_.GlobalTheory.T.schwartzBruhat_conjHalf_locallyConstant_compactSup
   intro D S T βS βT e PP v φ ι he hL ΛS ΛT hS hT Φ hΦ ϖ hϖ
   first
   | exact GlobalTheory.DownLift.SplitCoef.sbHalf_locConst_cptSupp D S T βS βT e PP v φ ι he hL ΛS ΛT hS hT Φ hΦ ϖ hϖ
-  | exact GlobalTheory.DownLift.SplitCoef.sbHalf_locConst_cptSupp D S T βS βT e PP v φ ι he hL ΛS ΛT hS.toIsLattice hT.toIsLattice Φ hΦ ϖ hϖ

@@ -52,4 +52,4 @@ open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.divPowerEnvelope_mem_ainfAdjoinBeta : ∀ (l : ℕ) [Fact l.Prime] (ϖ : Per.Fl l), ϖ.untilt = ((l : ℕ) : Per.OC l) →
   ∀ a : Per.Acris0 l, (a : Per.AinfP l) ∈ Sa ϖ := by
-  first | exact @GlobalTheory.Pst.StLat.acris0_le_sa | exact GlobalTheory.Pst.StLat.acris0_le_sa | (intros; apply GlobalTheory.Pst.StLat.acris0_le_sa <;> assumption)
+  first | exact @GlobalTheory.Pst.StLat.acris0_le_sa

@@ -73,4 +73,4 @@ theorem _root_.GlobalTheory.T.principalCongruence_conj_mem_arithmeticGroup : ∀
       ∃ γ ∈ (X k).Γ, ∀ (τ : D.host.E →+* ℂ) (hτ : τ ∈ (X k).Ψ),
         archM V (th k ⟨τ, hτ⟩) g * (γ : Matrix (Fin V.rank) (Fin V.rank) D.host.E).map τ =
           (γ' : Matrix (Fin V.rank) (Fin V.rank) D.host.E).map τ * archM V (th k ⟨τ, hτ⟩) g := by
-  first | exact @GlobalTheory.RepConv.conj_mem_of_cong | exact GlobalTheory.RepConv.conj_mem_of_cong | (intros; apply GlobalTheory.RepConv.conj_mem_of_cong <;> assumption)
+  first | exact @GlobalTheory.RepConv.conj_mem_of_cong

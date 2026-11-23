@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH Classical
 attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
 
 theorem _root_.GlobalTheory.T.exists_torusExtensionPoint_of_integralModelPoint : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (p : ℕ) [Fact p.Prime] (y₀ : S.R →+* PadicAlgCl p) (u : ρ.UTest p y₀) (c : Sp (OO p) ⟶ u.G.left), c ≫ u.G.hom = spMap u.j → ∃ g, u.Lev c g := by
-  first | exact @GlobalTheory.IntegralGt.exists_lev | exact GlobalTheory.IntegralGt.exists_lev | (intros; apply GlobalTheory.IntegralGt.exists_lev <;> assumption)
+  first | exact @GlobalTheory.IntegralGt.exists_lev

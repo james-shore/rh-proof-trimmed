@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.twoBlockParahoric_lowerBlock_det_tameCharacter : �
   ∀ j ∈ parahoric k A D, (j : Matrix (A ⊕ D) (A ⊕ D) k).toBlocks₂₂.det ≠ 0 ∧
     ∀ d d' : kˣ, (d : k) = (j : Matrix (A ⊕ D) (A ⊕ D) k).toBlocks₂₂.det →
       (d' : k) = ((j⁻¹ : GL (A ⊕ D) k) : Matrix (A ⊕ D) (A ⊕ D) k).toBlocks₂₂.det → (ξ d : ℂ) * ξ d' = 1 := by
-  first | exact @GlobalTheory.ParahoricLowerBlock.lower_block_tame | exact GlobalTheory.ParahoricLowerBlock.lower_block_tame | (intros; apply GlobalTheory.ParahoricLowerBlock.lower_block_tame <;> assumption)
+  first | exact @GlobalTheory.ParahoricLowerBlock.lower_block_tame

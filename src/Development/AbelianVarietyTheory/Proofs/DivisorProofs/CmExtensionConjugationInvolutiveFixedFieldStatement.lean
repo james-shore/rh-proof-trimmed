@@ -56,4 +56,4 @@ open Formalism.IndefR.DatumF GlobalTheory.HeckeExtend
 
 theorem _root_.GlobalTheory.T.cmExtension_conjugation_involutive_fixedField : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E),
     IsCMExt F E σ → (∀ x, σ (σ x) = x) ∧ ∀ x, σ x = x → ∃ f : F, algebraMap F E f = x := by
-  first | exact @GlobalTheory.CMConjInvol.cm_conj_invol_fixed | exact GlobalTheory.CMConjInvol.cm_conj_invol_fixed | (intros; apply GlobalTheory.CMConjInvol.cm_conj_invol_fixed <;> assumption)
+  first | exact @GlobalTheory.CMConjInvol.cm_conj_invol_fixed

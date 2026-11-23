@@ -293,8 +293,8 @@ theorem step_twist : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type
   refine step_of_shape R hW i t hv ha hε hae' dS dT hth hΦ hs hT hC hL fun ℓ hℓ => ?_
   obtain ⟨c, hB⟩ := hc.lev.βV i
   refine GlobalTheory.T.mem_span_translates_conjugateHalf_twistPlace D _ _ (R.βV i) (R.βW i) hr _ _ _ hB
-    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ dS | exact dS.1)
-    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ dT | exact dT.1) (es PP) PP h0 (R.xiR t)
+    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ dS)
+    (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ dT) (es PP) PP h0 (R.xiR t)
     (GlobalTheory.ChainTw.RModel.xiR_ne R hc.lev t PP hPP) _
     ((GlobalTheory.T.thetaCoefficient_isSchwartzBruhat_uniform_split D R.ψ _ _ hψ _ _ dS dT _ ha f hT.1).2.1 ℓ hℓ) fun κ k1 k2 k3 k4 _ x x' hx hx' => ?_
   have k5 : ∀ P' ∈ P, P' ≠ PP → redFn (R.βV i) P' (finE (Vc D i) κ) = 1 := fun P' h h' =>

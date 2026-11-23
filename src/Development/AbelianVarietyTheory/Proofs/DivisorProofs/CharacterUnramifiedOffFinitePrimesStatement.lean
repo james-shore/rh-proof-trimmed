@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.character_unramified_off_finite_primes : ∀ (D : D7) (c : (AE D)ˣ →* Circle), Continuous c →
     ∃ S : Finset ℕ, (∀ q ∈ S, q.Prime) ∧ ∀ w : Pl D.host.E, Off S w → ∀ e, Formalism.L2.NTheta.IsIdemAt e w → UnrIdem c e := by
-  first | exact @GlobalTheory.UnrOff.unr_off | exact GlobalTheory.UnrOff.unr_off | (intros; apply GlobalTheory.UnrOff.unr_off <;> assumption)
+  first | exact @GlobalTheory.UnrOff.unr_off

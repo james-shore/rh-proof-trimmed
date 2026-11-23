@@ -45,4 +45,4 @@ open NumberField GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.DegCmp Glob
 open scoped ENNReal NNReal
 
 theorem _root_.GlobalTheory.T.isIntegralInConeDegree_of_valuativeBound : ∀ (K V Ω : Type) [Field K] [AddCommGroup V] [Module K V] [Field Ω] [Algebra K Ω] (ev : V →ₗ[K] Ω), CharZero K → FiniteDimensional K V → (⊤ : IntermediateField K Ω).FG → ∀ (τ : ℕ) (t : Ω), ValBound ev τ t → IsIntDeg ev τ t := by
-  first | exact @GlobalTheory.DegVal.ValInt.isIntDeg_of_valBound | exact GlobalTheory.DegVal.ValInt.isIntDeg_of_valBound | (intros; apply GlobalTheory.DegVal.ValInt.isIntDeg_of_valBound <;> assumption)
+  first | exact @GlobalTheory.DegVal.ValInt.isIntDeg_of_valBound

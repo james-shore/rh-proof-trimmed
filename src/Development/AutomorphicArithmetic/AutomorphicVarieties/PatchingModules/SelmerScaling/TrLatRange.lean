@@ -167,7 +167,7 @@ theorem UpperTheory.V.Pa.trLat :
       have e : algebraMap S.Bh S.U.AA (S.pr0 (algebraMap S.Bh S.U.AA (algebraMap S.B S.Bh b)) - algebraMap S.B S.Bh b) ∈ S.U.N := by
         have h := (S.pr1 (algebraMap S.Bh S.U.AA (algebraMap S.B S.Bh b))).2
         rw [map_sub]
-        convert S.U.N.neg_mem h using 1 <;> simp [Ctx.pr1] <;> ring
+        convert S.U.N.neg_mem h using 1 <;> simp [Ctx.pr1]
       have hz := Submodule.disjoint_def.1 S.U.compl.disjoint _ (Submodule.mem_one.2 ⟨_, rfl⟩) e
       exact sub_eq_zero.1 (S.U.inj (by rw [hz, map_zero]))
     rw [RingHom.mem_ker, map_sub, heA, hφ, T.res, this, S.rF_f, sub_eq_zero]

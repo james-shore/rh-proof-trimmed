@@ -115,7 +115,7 @@ theorem exists_indicator {Y : Scheme.{0}} {Z : Set Y} (hZ : IsClopen Z) :
   let W : Y.Opens := ⟨Zᶜ, hZ.isClosed.isOpen_compl⟩
   have hVW : V ⊔ W = ⊤ := by
     apply TopologicalSpace.Opens.ext
-    simp [V, W, Set.union_compl_self]
+    simp [V, W]
   have hdis : Disjoint V W := by
     rw [disjoint_iff]
     apply TopologicalSpace.Opens.ext

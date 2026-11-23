@@ -207,9 +207,9 @@ theorem idC {a b q : ℕ} (f : bo a b ⟶ bo 0 (q + 1)) :
 
     simp only [Preadditive.comp_sum, Preadditive.comp_zsmul, bop_comp, map_sum, map_zsmul, bisimplicialChainConeSecondIndex_operatorOfSimplexMaps]
     rw [Finset.sum_range_succ' _ (q + 1 + 1)]
-    simp only [Finset.sum_range_succ, Finset.sum_range_zero, zero_add, face_zero_cone_identity, simplexClampedFaceHom_one_comp_simplexConeMap_zero, simplexClampedFaceHom_zero_comp_simplexConeMap,
+    simp only [Finset.sum_range_succ, Finset.sum_range_zero, zero_add, simplexClampedFaceHom_one_comp_simplexConeMap_zero, simplexClampedFaceHom_zero_comp_simplexConeMap,
       faceSucc_cone, pow_succ, mul_neg_one, neg_smul, Finset.sum_neg_distrib, pow_zero, one_smul, idc_self',
-      Category.id_comp, smul_neg]
+      Category.id_comp]
     abel
 
 theorem idD {a b q : ℕ} (f : bo a b ⟶ bo 1 q) : H2 (f ≫ dT 1 q 0 q) = 0 := by
@@ -220,7 +220,7 @@ theorem idD {a b q : ℕ} (f : bo a b ⟶ bo 1 q) : H2 (f ≫ dT 1 q 0 q) = 0 :=
   · intro α β
     rw [bisimplicialTotalDifferentialOperator_one_zero_eq_sum]
 
-    simp [Preadditive.comp_sum, Preadditive.comp_zsmul, bop_comp, map_sum, map_zsmul, bisimplicialChainConeSecondIndex_operatorOfSimplexMaps,
+    simp [bop_comp, bisimplicialChainConeSecondIndex_operatorOfSimplexMaps,
     Finset.sum_range_succ]
 
 theorem sum_dT {a b : ℕ} (u : ∀ a' b' : ℕ, bo a b ⟶ bo a' b') (c d : ℕ) :

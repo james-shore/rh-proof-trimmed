@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.birigidified_lift_symmetric_of_symmetric_reduction
     ∀ (P : LB (A ⊗ A).left), P.IsLB → HasGen (P.pull (lift (1 : A ⟶ A) (𝟙 A)).left) →
       HasGen (P.pull (lift (𝟙 A) (1 : A ⟶ A)).left) → LBIso (P.pull l) P₀ →
       LBIso P (P.pull (lift (snd A A) (fst A A)).left) := by
-  first | exact @GlobalTheory.BirigidLift.symm_of_lift | exact GlobalTheory.BirigidLift.symm_of_lift | (intros; apply GlobalTheory.BirigidLift.symm_of_lift <;> assumption)
+  first | exact @GlobalTheory.BirigidLift.symm_of_lift

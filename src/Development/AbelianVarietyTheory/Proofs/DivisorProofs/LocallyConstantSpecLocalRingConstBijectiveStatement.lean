@@ -50,4 +50,4 @@ import Mathlib.Algebra.Homology.HomotopyCategory.HomComplex
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex TensorProduct GlobalTheory.EtC
 
 theorem _root_.GlobalTheory.T.locallyConstant_spec_localRing_const_bijective : ∀ (R : Type) (A : Type) [CommRing A] [IsLocalRing A], Function.Bijective (fun c : R => LocallyConstant.const (Spec (CommRingCat.of A)) c) := by
-  first | (exact @GlobalTheory.locallyConstant_spec_local_bijective) | (exact GlobalTheory.locallyConstant_spec_local_bijective) | (intros; apply GlobalTheory.locallyConstant_spec_local_bijective  <;> assumption)
+  first | (exact @GlobalTheory.locallyConstant_spec_local_bijective)

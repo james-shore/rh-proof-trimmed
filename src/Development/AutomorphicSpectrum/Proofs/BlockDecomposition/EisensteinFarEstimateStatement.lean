@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open PositivityTheory.Rg.SwEis
 
 theorem _root_.GlobalTheory.T.eisenstein_far_estimate : EFar := by
-  first | exact @GlobalTheory.CompanionTheory.FarSeries.eFar | exact GlobalTheory.CompanionTheory.FarSeries.eFar | (intros; apply GlobalTheory.CompanionTheory.FarSeries.eFar <;> assumption)
+  first | exact @GlobalTheory.CompanionTheory.FarSeries.eFar

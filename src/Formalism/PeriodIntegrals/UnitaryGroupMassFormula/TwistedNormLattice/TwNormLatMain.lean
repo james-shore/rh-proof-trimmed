@@ -100,7 +100,7 @@ theorem twNormLat_main : PI.TwNormLat.TwNormLat := by
       rcases Nat.lt_or_eq_of_le hl with hlt | heq
       · rw [hUT _ l (by rw [Fin.lt_def]; exact hlt)]
         have : l ≠ ⟨N, hN⟩ := fun e => by rw [e] at hlt; exact lt_irrefl _ hlt
-        simp [Pi.single_apply, this]
+        simp [this]
       · have : l = ⟨N, hN⟩ := Fin.ext heq.symm
         rw [this, hbl]
         simp only [d, lt_irrefl, if_false, Pi.single_eq_same]
@@ -124,7 +124,6 @@ theorem twNormLat_main : PI.TwNormLat.TwNormLat := by
     · simp only [c', if_neg h1, d, if_neg (not_lt.2 hl), Pi.sub_apply, Pi.smul_apply, smul_eq_mul, hbl,
         Pi.zero_apply, sub_zero]
       field_simp
-      try simp
   have hcd : ∀ l, c' l l ≠ 0 := by
     intro l
     by_cases hl : N ≤ l.1

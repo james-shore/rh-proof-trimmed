@@ -54,4 +54,4 @@ open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.squareBottomPairs_weights_eq : ∀ {D : D7} {T : Type} {Lc : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} (G : GridData Lc sc) (t : T) (i j : Fin D.R.m)
     (𝔪 : Ideal (𝓞 D.host.E)) {δ t0 : ℂ} {Q : ℕ} (P P' : Pair D ⊤ δ t0 Q), IsBottom G t i j 𝔪 P P' → P'.n = P.n := by
-  first | exact @GlobalTheory.BottomWeights.isBottom_n_eq | exact GlobalTheory.BottomWeights.isBottom_n_eq | (intros; apply GlobalTheory.BottomWeights.isBottom_n_eq <;> assumption)
+  first | exact @GlobalTheory.BottomWeights.isBottom_n_eq

@@ -45,4 +45,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ComplexOrder ContDiff
 
 theorem _root_.GlobalTheory.T.globalConvolutionOrthogonalProjector_proof : GlobalProj := by
-  first | exact @GlobalTheory.GlobProj.globalProj_holds | exact GlobalTheory.GlobProj.globalProj_holds | (intros; apply GlobalTheory.GlobProj.globalProj_holds <;> assumption)
+  first | exact @GlobalTheory.GlobProj.globalProj_holds

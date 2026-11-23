@@ -46,4 +46,4 @@ open scoped InnerProductSpace
 open GlobalTheory.SepReal
 
 theorem _root_.GlobalTheory.T.translateCoefficientIntegralBounds_of_unitary_laws : EmbLaws → Boost → PowInt → DecPow → IntBounds := by
-  first | exact @GlobalTheory.SepReal.intBounds_main | exact GlobalTheory.SepReal.intBounds_main | (intros; apply GlobalTheory.SepReal.intBounds_main <;> assumption)
+  first | exact @GlobalTheory.SepReal.intBounds_main

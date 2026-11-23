@@ -47,4 +47,4 @@ open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_common_denominator_selfDual_level : ∀ (D : D7) (V : HSp D) (Λ : Lat V), IsSelfDualC V Λ → ∃ b : ℕ, 0 < b ∧ ∀ k ∈ congLev D.sp.cm V.gram Λ ⊤, ∀ i j, (b : Lev.EAf D) * k.1 i j ∈ Formalism.L2.Herm.intAf D.host.F D.host.E := by
-  first | exact @GlobalTheory.LevelDenom.exists_denom_congLev | exact GlobalTheory.LevelDenom.exists_denom_congLev | (intros; apply GlobalTheory.LevelDenom.exists_denom_congLev <;> assumption)
+  first | exact @GlobalTheory.LevelDenom.exists_denom_congLev

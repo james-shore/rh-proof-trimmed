@@ -60,4 +60,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.preimage_eq_of_agree_on_closedFibre_dualNumbers : ∀ (k : Type) [Field k] (X B : Scheme.{0}) (h : B ⟶ Sp (DualNumber k)) (π₁ π₂ : B ⟶ X), (∀ (Z : Scheme.{0}) (x : Z ⟶ B) (y : Z ⟶ Sp k), x ≫ h = y ≫ spMap (TrivSqZeroExt.fstHom k k k).toRingHom → x ≫ π₁ = x ≫ π₂) → ∀ W : X.Opens, π₁ ⁻¹ᵁ W = π₂ ⁻¹ᵁ W := by
-  first | exact @GlobalTheory.LogKS.preimage_eq_of_agree_closedFibre | exact GlobalTheory.LogKS.preimage_eq_of_agree_closedFibre | (intros; apply GlobalTheory.LogKS.preimage_eq_of_agree_closedFibre <;> assumption)
+  first | exact @GlobalTheory.LogKS.preimage_eq_of_agree_closedFibre

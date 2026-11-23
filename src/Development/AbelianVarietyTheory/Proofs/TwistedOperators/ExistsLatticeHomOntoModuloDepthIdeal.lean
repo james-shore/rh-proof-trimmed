@@ -80,7 +80,7 @@ theorem selfDual_isFullLattice {D : D7} : ∀ (V : HSp D) (Λ : Submodule (𝓞 
       refine ⟨b + c, ?_⟩
       change (b : D.host.E) + c = _
       rw [hb, hc]
-      simp [f, map_add, add_mul, Finset.sum_add_distrib, mul_add]
+      simp [f, add_mul, Finset.sum_add_distrib, mul_add]
     smul_mem' := by
       rintro c x ⟨b, hb⟩
       refine ⟨RingOfIntegers.mapRingHom (starRingEnd D.host.E) c * b, ?_⟩
@@ -135,7 +135,7 @@ theorem exists_basis_in_lattice {n : ℕ} (Λ : Submodule (𝓞 K) (Fin n → K)
     have h := Submodule.mem_map_of_mem (f := Λ.subtype) (hspan ⟨w, hw⟩)
     rw [Submodule.map_span, ← Set.range_comp] at h
     have e : (Λ.subtype (c • (⟨w, hw⟩ : Λ))) = (c : K) • w := by
-      simp [Submodule.coe_smul, algebraMap_smul]
+      simp [algebraMap_smul]
     rw [e] at h
     exact h
   have hcK : (c : K) ≠ 0 := by exact_mod_cast hc0

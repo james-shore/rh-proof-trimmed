@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open PowerSeries GlobalTheory.BK
 
 theorem _root_.GlobalTheory.T.zeta_mem_pow_inv_phiModule_lattice : GlobalTheory.IndefiniteRowSideFullHecke.AdmissibleSignatures.ZetaBound := by
-  first | exact @GlobalTheory.ZetaDenominator.zetaBound | exact GlobalTheory.ZetaDenominator.zetaBound | (intros; apply GlobalTheory.ZetaDenominator.zetaBound <;> assumption)
+  first | exact @GlobalTheory.ZetaDenominator.zetaBound

@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 theorem _root_.GlobalTheory.T.hermitianLineBundle_positivity_preserved_isometric : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ L M : HermLB p, L.Isometric M → (L.SemiPos D → M.SemiPos D) ∧ (L.IsNef D → M.IsNef D) ∧ (HtNef L D → HtNef M D) ∧ (∀ a, L.IsSelfInter a → M.IsSelfInter a) ∧ (IsAmpleLB L.B → IsAmpleLB M.B) := by
-  first | exact @GlobalTheory.HSNef.isometric_keeps | exact GlobalTheory.HSNef.isometric_keeps | (intros; apply GlobalTheory.HSNef.isometric_keeps <;> assumption)
+  first | exact @GlobalTheory.HSNef.isometric_keeps

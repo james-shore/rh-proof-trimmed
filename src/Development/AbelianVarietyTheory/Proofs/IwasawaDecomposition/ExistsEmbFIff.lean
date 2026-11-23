@@ -175,7 +175,7 @@ theorem lat_iff (hS : S.Ok) {G : ι → Matrix (Fin n) (Fin n) ℂ} {sh : ι →
       ∃ Q ∈ Sp w, (show Frames G → ℂ from S.embF emb σ lam h x c) =
         fnOf G (shiftOf lam) (Formalism.L2.Forms.atInf (embAt σ emb) (B⁻¹ : GL (Fin n) E).1) Q) := by
     intro w c B hB
-    refine (BwLat.mem_localization_delAtr_fn emb σ lam (pl w) (by first | exact hfull c | exact (hfull c).toIsLattice) (fun _ => B) (fun τ => BwLat.isBasisAt_of_isLocBasis (hrc w) _
+    refine (BwLat.mem_localization_delAtr_fn emb σ lam (pl w) (by first | exact hfull c) (fun _ => B) (fun τ => BwLat.isBasisAt_of_isLocBasis (hrc w) _
       ((bc_mem_below _ _ _).2 (by rw [map_natCast]; exact hm w)) hB) (x.1 c)).trans ⟨?_, ?_⟩
     · rintro ⟨z, hz, e⟩
       exact ⟨_, (hSp w _).2 ⟨z, hz, rfl⟩, e⟩

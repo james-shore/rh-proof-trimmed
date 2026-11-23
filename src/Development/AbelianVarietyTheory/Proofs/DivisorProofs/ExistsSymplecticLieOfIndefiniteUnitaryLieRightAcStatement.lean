@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_symplecticLie_of_indefiniteUnitaryLie_right
     ∀ Y : ι → Mat R S, (∀ w, Y w ∈ upq R S) →
     ∃ Z ∈ LieAlgebra.Symplectic.sp l ℝ, (∀ c, Z *ᵥ φ c = φ fun w => c w * (Y w)ᵀ) ∧
       ∀ (t : ℝ) c, NormedSpace.exp (t • Z) *ᵥ φ c = φ fun w => c w * (NormedSpace.exp (t • Y w))ᵀ := by
-  first | exact @GlobalTheory.RealLift.SpLie.exists_sp_rightAct | exact GlobalTheory.RealLift.SpLie.exists_sp_rightAct | (intros; apply GlobalTheory.RealLift.SpLie.exists_sp_rightAct <;> assumption)
+  first | exact @GlobalTheory.RealLift.SpLie.exists_sp_rightAct

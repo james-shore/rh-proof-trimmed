@@ -231,7 +231,7 @@ theorem val_add (hclo : IsClo p Ωl) (hreb : IsReb T n ψ) {φ χ : HahnSeries �
   refine ⟨x' + y', ?_⟩
   convert h using 1
   funext r
-  simp only [HahnSeries.coeff_add, map_add, hC, hD, Pi.add_apply]
+  simp only [HahnSeries.coeff_add, map_add, hC, hD]
 
 theorem val_mul (hclo : IsClo p Ωl) (hreb : IsReb T n ψ) {φ χ : HahnSeries ℚ Ω} {x y : Ωl}
     (hφ : Supp p n φ) (hχ : Supp p n χ)

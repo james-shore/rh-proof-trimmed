@@ -130,8 +130,8 @@ private theorem exists_orthonormal_basis_unimodular [IsLocalRing R] (hR : UnramD
     ext i j
     refine Fin.cases ?_ (fun i => ?_) i <;> refine Fin.cases ?_ (fun j => ?_) j
     · simp [gram, hx]
-    · simp [gram, h2, Matrix.one_apply, (Fin.succ_ne_zero j).symm]
-    · simp [gram, h1, Matrix.one_apply]
+    · simp [gram, h2, (Fin.succ_ne_zero j).symm]
+    · simp [gram, h1]
     · simp [gram, h3, Matrix.one_apply]
 
 theorem exists_congr_one [IsLocalRing R] (hR : UnramDatum R) {n : Type*} [Fintype n]

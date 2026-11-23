@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.compactRealPlace_torusClasses_signVectors : ∀ {D
         (∀ q a, Complex.exp (θ q a * Complex.I) = cxRoots (embOverOf D ρ).1 P ((y q)⁻¹ a)) ∧
         ∀ q, ∃ g : GArch D.sp.cm.sig V.gram (placeOf D ρ), frameMat M ρ (g⁻¹ * gam q.2.choose_spec.choose_spec.2 * g) =
           Matrix.diagonal fun a => Complex.exp (θ q a * Complex.I) := by
-  first | exact @GlobalTheory.RealSigns.signs_real | exact GlobalTheory.RealSigns.signs_real | (intros; apply GlobalTheory.RealSigns.signs_real <;> assumption)
+  first | exact @GlobalTheory.RealSigns.signs_real

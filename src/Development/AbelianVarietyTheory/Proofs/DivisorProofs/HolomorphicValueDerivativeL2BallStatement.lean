@@ -53,4 +53,4 @@ open MeasureTheory Filter Topology Metric ReciprocityTheory.L2DbarEstimates Reci
 open scoped ENNReal ContDiff
 
 theorem _root_.GlobalTheory.T.holomorphic_value_derivative_l2_ball : ∀ (n : ℕ) (r : ℝ), 0 < r → ∃ C : ℝ, 0 ≤ C ∧ ∀ (p : V n) (u : V n → ℂ), DifferentiableOn ℂ u (ball p r) → ENNReal.ofReal (‖u p‖ ^ 2 + ‖fderiv ℂ u p‖ ^ 2) ≤ ENNReal.ofReal C * ∫⁻ v in ball p r, ENNReal.ofReal (‖u v‖ ^ 2) := by
-  first | exact @GlobalTheory.l2_value_deriv_ball | exact GlobalTheory.l2_value_deriv_ball | (intros; apply GlobalTheory.l2_value_deriv_ball <;> assumption)
+  first | exact @GlobalTheory.l2_value_deriv_ball

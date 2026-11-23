@@ -50,4 +50,4 @@ open ReciprocityTheory.AnForm.M
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
 
 theorem _root_.GlobalTheory.T.chernMass_eq_selfIntersection_of_generated : ∀ (Y : Var ℂ) (L : LB Y.X) (φ : Weight Y.str (RingHom.id ℂ) L), φ.IsCInf → ∀ (n : ℕ) (u : Fin n → L.Sec), ⨆ i, nonzeroLocus (u i) = ⊤ → Weight.chernInt φ Y.dim Set.univ (fun _ => 1) = (topSelfIntersection ℂ L Y.dim : ℝ) := by
-  first | exact @GlobalTheory.chernInt_eq_topSelf_of_generated | exact GlobalTheory.chernInt_eq_topSelf_of_generated | (intros; apply GlobalTheory.chernInt_eq_topSelf_of_generated <;> assumption)
+  first | exact @GlobalTheory.chernInt_eq_topSelf_of_generated

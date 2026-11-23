@@ -54,4 +54,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.eq_of_same_generic_projective_coords : ∀ (o : Type) [CommRing o] (n : ℕ) (X : Scheme.{0}) [IsIntegral X] [IsReduced X] (s : X ⟶ Sp o) (h h' : X ⟶ PSpace o n) (K : Type) [Field K] (x : Sp K ⟶ X) (c : Fin (n + 1) → K), h ≫ PSpace.str o n = s → h' ≫ PSpace.str o n = s → Set.range x = {genericPoint X} → PCrd (x ≫ h) c → PCrd (x ≫ h') c → h = h' := by
-  first | exact @GlobalTheory.SiegCrd.eq_of_generic_pCrd | exact GlobalTheory.SiegCrd.eq_of_generic_pCrd | (intros; apply GlobalTheory.SiegCrd.eq_of_generic_pCrd <;> assumption)
+  first | exact @GlobalTheory.SiegCrd.eq_of_generic_pCrd

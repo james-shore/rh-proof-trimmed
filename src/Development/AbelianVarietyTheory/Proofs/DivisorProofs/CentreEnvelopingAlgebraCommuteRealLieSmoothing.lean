@@ -213,7 +213,7 @@ theorem exists_good {D : Module.End ℂ (Sm E a)} (hD : D ∈ Algebra.adjoin ℂ
   | mul x y _ _ hx hy =>
     obtain ⟨D1, g1, c1⟩ := hx
     obtain ⟨D2, g2, c2⟩ := hy
-    exact ⟨D1 * D2, good_mul ν g1 g2, fun g φ => by simp [Module.End.mul_apply, c1, c2]⟩
+    exact ⟨D1 * D2, good_mul ν g1 g2, fun g φ => by simp [c1, c2]⟩
 
 theorem Eop_mem (τ : E →+* ℂ) (i j : Fin a) : Eop (a := a) τ i j ∈ Algebra.adjoin ℂ (Set.range (lie E a)) := by
   unfold Eop

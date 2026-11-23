@@ -82,11 +82,7 @@ omit [NumberField E] [IsCMField E] in
 theorem lact_mul {Ψ : Finset (E →+* ℂ)} (γ' γ : GL (Fin r) E) (x : Frame Ψ r) :
     lact (γ' * γ) x = lact γ' (lact γ x) := by
   first
-  | exact @_root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame
-  | exact _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame
   | (apply _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame ..)
 
 omit [NumberField E] [IsCMField E] in
@@ -110,11 +106,7 @@ omit [IsCMField E] in
 theorem exists_den {L : Lt E r} (hL : L.FG) :
     ∃ d : 𝓞 E, d ≠ 0 ∧ ∀ v ∈ L, ∀ a, ∃ c : 𝓞 E, (c : E) = (d : E) * v a := by
   first
-  | exact @_root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator
-  | exact _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator
   | (apply _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator ..)
 
 theorem eq_zero_of_small (X : Data E r) (c : 𝓞 E) (h : ∀ τ : X.Ψ, ‖τ.1 (c : E)‖ < 1) : c = 0 := by

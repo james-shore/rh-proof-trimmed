@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField
 
 theorem _root_.GlobalTheory.T.finite_lattices_between_of_smul_le' : ∀ {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] (M : Submodule (𝓞 K) V), M.FG → ∀ N : ℕ, 0 < N → {Λ : Submodule (𝓞 K) V | M ≤ Λ ∧ ∀ x ∈ Λ, (N : K) • x ∈ M}.Finite := by
-  first | exact @GlobalTheory.finite_lattices_between_of_smul_le | exact GlobalTheory.finite_lattices_between_of_smul_le | (intros; apply GlobalTheory.finite_lattices_between_of_smul_le <;> assumption)
+  first | exact @GlobalTheory.finite_lattices_between_of_smul_le

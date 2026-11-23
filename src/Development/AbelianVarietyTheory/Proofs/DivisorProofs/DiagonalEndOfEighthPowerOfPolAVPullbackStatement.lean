@@ -47,4 +47,4 @@ open GlobalTheory.Poinc
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.diagonalEndOfEighthPower_of_polAV_pullback : ∀ {g n : ℕ} (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (Fin 8) ℤ) {T T' : Scheme.{0}} (P : PolAV T) (P' : PolAV T') (u : T ⟶ F.X) (f : T' ⟶ T) (ψ : P'.A.left ⟶ P.A.left) (ε : Matrix (Fin 8) (Fin 8) ℤ → (P.A ⟶ P.A)), IsDiagEnd F W P u ε → IsGrpPullback P'.A P.A f ψ → LBIso P'.L (P.L.pull ψ) → ∃ ε' : Matrix (Fin 8) (Fin 8) ℤ → (P'.A ⟶ P'.A), IsDiagEnd F W P' (f ≫ u) ε' ∧ ∀ E, (ε' E).left ≫ ψ = ψ ≫ (ε E).left := by
-  first | exact @GlobalTheory.Poinc.isDiagEnd_pullback | exact GlobalTheory.Poinc.isDiagEnd_pullback | (intros; apply GlobalTheory.Poinc.isDiagEnd_pullback <;> assumption)
+  first | exact @GlobalTheory.Poinc.isDiagEnd_pullback

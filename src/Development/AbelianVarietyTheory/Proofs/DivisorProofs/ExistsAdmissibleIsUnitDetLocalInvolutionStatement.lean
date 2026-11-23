@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_admissible_isUnit_det_local_involution : �
       (Matrix.fromBlocks A B C D)ᵀ * Matrix.fromBlocks 0 S S 0 * (Matrix.fromBlocks A B C D).map c =
         Matrix.fromBlocks 0 S S 0 →
       ∃ X : Matrix (Fin n) (Fin n) O, Xᵀ * S + S * X.map c = 0 ∧ IsUnit (A + X * C).det := by
-  first | exact @GlobalTheory.LocalLift.exists_admissible_isUnit_det | exact GlobalTheory.LocalLift.exists_admissible_isUnit_det | (intros; apply GlobalTheory.LocalLift.exists_admissible_isUnit_det <;> assumption)
+  first | exact @GlobalTheory.LocalLift.exists_admissible_isUnit_det

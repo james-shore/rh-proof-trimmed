@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.rational_unipotentRadical_eq_levi_mul_unipotent : 
     ∀ (n : ℕ) (J : Matrix (Fin n) (Fin n) E), IsHermND σ J → ∀ (r : ℕ) (X Y : Matrix (Fin n) (Fin r) E), IsWittFrame σ J X Y →
       ∀ S T : Finset (Fin r), S ⊆ T → ∀ γ ∈ ratPts σ J, γ ∈ GlobalTheory.StdPar.unip σ J X T →
         ∃ m ∈ ratPts σ J, m ∈ GlobalTheory.StdPar.levi σ J X Y S ∧ ∃ ν ∈ GlobalTheory.StdPar.unip σ J X S, γ = m * ν := by
-  first | exact @GlobalTheory.RatLevi.rat_unip_eq_levi_mul_unip | exact GlobalTheory.RatLevi.rat_unip_eq_levi_mul_unip | (intros; apply GlobalTheory.RatLevi.rat_unip_eq_levi_mul_unip <;> assumption)
+  first | exact @GlobalTheory.RatLevi.rat_unip_eq_levi_mul_unip

@@ -55,4 +55,4 @@ open Formalism.UG (cT bc)
 
 
 theorem _root_.GlobalTheory.T.covolume_ne_top_of_continuousMulEquiv_subgroup : ∀ (G : Type) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [SecondCountableTopology G] [T2Space G] [MeasurableSpace G] [BorelSpace G] (H : Type) [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [LocallyCompactSpace H] [SecondCountableTopology H] [T2Space H] [MeasurableSpace H] [BorelSpace H] (e : G ≃ₜ* H) (Γ : Subgroup G) (Λ : Subgroup H) [Countable Γ], (∀ g, g ∈ Γ ↔ e g ∈ Λ) → (∀ μ : Measure G, μ.IsHaarMeasure → ∀ 𝓕, IsFundamentalDomain Γ 𝓕 μ → μ 𝓕 < ⊤) → ∀ (π : Measure H) (𝓜 : Set H), π.IsHaarMeasure → IsFundamentalDomain Λ 𝓜 π → π 𝓜 ≠ ⊤ := by
-  first | exact @GlobalTheory.SphEis.covolume_ne_top_of_continuousMulEquiv | exact GlobalTheory.SphEis.covolume_ne_top_of_continuousMulEquiv | (intros; apply GlobalTheory.SphEis.covolume_ne_top_of_continuousMulEquiv <;> assumption)
+  first | exact @GlobalTheory.SphEis.covolume_ne_top_of_continuousMulEquiv

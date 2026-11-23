@@ -153,7 +153,7 @@ theorem cas_tensor {K I J : Type} [Fintype K] [Fintype I] [DecidableEq I] [Finty
     smul_eq_mul, hΨ', hΨe, h3, Matrix.conjTranspose_apply, starRingEnd_apply, star_star,
     Finset.mul_sum, mul_add, Finset.sum_add_distrib] at h
     simp only [PositivityTheory.KReal.positionA, sum_inner, inner_smul_left, h3, Matrix.conjTranspose_apply,
-      starRingEnd_apply, star_star, Finset.mul_sum, mul_add, Finset.sum_add_distrib]
+      starRingEnd_apply, star_star, Finset.mul_sum, Finset.sum_add_distrib]
     linear_combination h - h'
   have hsum : ∑ k, PositivityTheory.KReal.formT (PositivityTheory.KReal.positionA (c (σ k)) Ψ) (fun w => ρ (σ k) (Ψ w)) +
       ∑ k, PositivityTheory.KReal.formT (PositivityTheory.KReal.positionA (c k) Ψ) (fun w => ρ k (Ψ w)) +

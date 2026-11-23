@@ -46,4 +46,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Member
 
 theorem _root_.GlobalTheory.T.exists_dictionary_by_marking_rule : ∀ (D : D7) (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host D.host.E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (V : HSp D) (r : ℕ) (C : Ctx Xo c σ V r), C.OK → ∃ dict, C.IsDict dict := by
-  first | exact @GlobalTheory.Member.Ctx.exists_isDict | exact GlobalTheory.Member.Ctx.exists_isDict | (intros; apply GlobalTheory.Member.Ctx.exists_isDict <;> assumption)
+  first | exact @GlobalTheory.Member.Ctx.exists_isDict

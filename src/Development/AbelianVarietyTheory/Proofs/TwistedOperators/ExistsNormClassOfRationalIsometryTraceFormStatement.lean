@@ -48,4 +48,4 @@ open scoped TensorProduct ComplexConjugate Matrix
 
 
 theorem _root_.GlobalTheory.T.exists_normClass_of_rationalIsometry_traceForm : ∀ (F E : Type) [Field F] [Field E] [Algebra F E] (σ : E →ₐ[F] E) (n : ℕ) (P : PPol σ n) (J : Matrix (Fin n) (Fin n) E) (φ : Fld P ≃ₗ[E] (Fin n → E)) (x : Fld P), x ≠ 0 → star' P x = x → (∀ y y', Formalism.UG.hform (σ : E →+* E) J (φ y') (φ y) = Algebra.trace E (Fld P) (x * y * star' P y')) → ∀ γ : GRat σ J, (∀ y, γ.1.1 *ᵥ φ y = φ (alpha P * y)) → ∃ q, HasCls P F J (diagH σ J F γ) q := by
-  first | exact @GlobalTheory.RatCls.hasCls_of_ratIsom | exact GlobalTheory.RatCls.hasCls_of_ratIsom | (intros; apply GlobalTheory.RatCls.hasCls_of_ratIsom <;> assumption)
+  first | exact @GlobalTheory.RatCls.hasCls_of_ratIsom

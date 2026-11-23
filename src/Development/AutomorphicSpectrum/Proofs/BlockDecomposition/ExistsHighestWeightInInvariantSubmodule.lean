@@ -76,7 +76,7 @@ theorem weight_shift_real {V : Type} [AddCommGroup V] [Module ℂ V] {K : Fin n 
   have e : K c c (K a b v) = K a b (K c c v) +
       ((if c = a then K c b else 0) - (if b = c then K a c else 0)) v := by
     rw [← hg c c a b]
-    simp [Module.End.mul_apply]
+    simp
   rw [e, hv c, map_smul]
   by_cases h1 : c = a
   · subst h1

@@ -48,4 +48,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.mul_mem_crystallinePrismDividedPowerFamilies : ∀ (l : ℕ) [Fact l.Prime] (a e : ℕ) [NeZero a] [NeZero e] (O K : Type) [CommRing O] [Algebra ℤ_[l] O] [NormedField K] [IsUltrametricDist K] [Algebra O K] [IsUnitBall O K] [NormedAlgebra ℚ_[l] K] (t : Wq l a →ₐ[ℤ_[l]] O), ∀ x ∈ QSet t K e, ∀ y ∈ QSet t K e, x * y ∈ QSet t K e := by
-  first | exact @GlobalTheory.CrysPrism.mul_mem_QSet_of_mem | exact GlobalTheory.CrysPrism.mul_mem_QSet_of_mem | (intros; apply GlobalTheory.CrysPrism.mul_mem_QSet_of_mem <;> assumption)
+  first | exact @GlobalTheory.CrysPrism.mul_mem_QSet_of_mem

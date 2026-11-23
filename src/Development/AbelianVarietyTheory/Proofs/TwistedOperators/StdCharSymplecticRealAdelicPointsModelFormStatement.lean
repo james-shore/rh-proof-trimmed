@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.stdChar_symplectic_realAdelicPoints_modelForm : �
     ψ (symplOH V W (GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues.realPt V W Xm) (GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues.realPt V W Ym)) =
       Complex.exp (Real.pi * Complex.I * ∑ a, ((Algebra.trace ℚ D.host.E (-X.ξ0 * ReciprocityTheory.ChartRestriction.G.FD.herm X.Gm
         (fun m => ∑ n, Xm (Fin.cast hr.symm m) n * b n a) (fun m => ∑ n, Ym (Fin.cast hr.symm m) n * b n a)) : ℚ) : ℂ)) := by
-  first | exact @GlobalTheory.ArchPhase.psi_symplOH_realPt | exact GlobalTheory.ArchPhase.psi_symplOH_realPt | (intros; apply GlobalTheory.ArchPhase.psi_symplOH_realPt <;> assumption)
+  first | exact @GlobalTheory.ArchPhase.psi_symplOH_realPt

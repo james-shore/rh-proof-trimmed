@@ -105,7 +105,7 @@ theorem bounded_a : ∀ (F : Type) [Field F] [NumberField F] [MeasurableSpace (A
       simp only [Nat.cast_one, one_mul, Pi.smul_apply, smul_eq_mul, map_natCast]
     simp only [opD, indL, Set.indicator, Complex.ofReal_one, one_mul]
     classical
-    convert if_congr h (rfl : (1 : ℂ) = 1) (rfl : (0 : ℂ) = 0) <;> rfl
+    convert if_congr h (rfl : (1 : ℂ) = 1) (rfl : (0 : ℂ) = 0)
   have e2 : (fun w => ((ρ w (a : F) : ℝ) : ℂ) ^ 2 * τ w) = fun w => (x w : ℂ) + Complex.I := by
     funext w; simp only [hτ, map_natCast]; push_cast; field_simp
   have e3 := fun ω => (GlobalTheory.T.theta_function_modularity F ψ hψ ι M B ρ P hQ _ _ (hC.2.2.2.1 ω) (indL 1) τ).2.1 a ha'

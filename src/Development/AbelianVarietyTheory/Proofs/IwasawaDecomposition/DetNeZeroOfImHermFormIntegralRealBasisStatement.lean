@@ -55,4 +55,4 @@ open scoped Matrix CategoryTheory.Obj Topology
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.det_ne_zero_of_imHermForm_integral_real_basis : ∀ (g r : ℕ) (Hm : Matrix (Fin g) (Fin g) ℂ) (lam : Fin r → Fin g → ℂ) (M : Matrix (Fin r) (Fin r) ℤ), (∀ u : Fin g → ℂ, u ≠ 0 → 0 < (ReciprocityTheory.ChartRestriction.G.Geo.Tor.hermForm Hm u u).re) → LinearIndependent ℝ lam → Submodule.span ℝ (Set.range lam) = ⊤ → (∀ i j, (ReciprocityTheory.ChartRestriction.G.Geo.Tor.hermForm Hm (lam i) (lam j)).im = M i j) → M.det ≠ 0 := by
-  first | exact @GlobalTheory.det_ne_zero_of_im_hermForm_eq_int | exact GlobalTheory.det_ne_zero_of_im_hermForm_eq_int | (intros; apply GlobalTheory.det_ne_zero_of_im_hermForm_eq_int <;> assumption)
+  first | exact @GlobalTheory.det_ne_zero_of_im_hermForm_eq_int

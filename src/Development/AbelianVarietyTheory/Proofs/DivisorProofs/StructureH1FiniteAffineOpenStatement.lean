@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.CatCoh GlobalTheory.CechDR GlobalTheory.CechFin
 
 theorem _root_.GlobalTheory.T.structure_h1_finite_affine_open : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (X : Scheme.{0}) (t : SAB H X), IsProper t.G.hom → ∀ U : X.affineOpens, Module.Finite Γ(X, U.1) (HO1 (GlobalTheory.DeRhamSheaf.onAff t.G U.2).hom) := by
-  first | exact @GlobalTheory.CechFinGen.finite_HO1_onAff | exact GlobalTheory.CechFinGen.finite_HO1_onAff | (intros; apply GlobalTheory.CechFinGen.finite_HO1_onAff <;> assumption)
+  first | exact @GlobalTheory.CechFinGen.finite_HO1_onAff

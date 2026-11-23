@@ -51,4 +51,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
 
 theorem _root_.GlobalTheory.T.weilDeligneLabels_all_places_of_fixed_and_conj : ∀ (D : D7) (T : GlobalTheory.RowTie.WDTie D.nd D.naut), LabTrue D T → LabConj D T → GlobalTheory.PendOf.LabAll D T := by
-  first | exact @GlobalTheory.LabAllOf.labAll_of_labTrue_labConj | exact GlobalTheory.LabAllOf.labAll_of_labTrue_labConj | (intros; apply GlobalTheory.LabAllOf.labAll_of_labTrue_labConj <;> assumption)
+  first | exact @GlobalTheory.LabAllOf.labAll_of_labTrue_labConj

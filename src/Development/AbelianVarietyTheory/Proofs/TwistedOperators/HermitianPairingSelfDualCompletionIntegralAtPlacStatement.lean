@@ -58,4 +58,4 @@ open GlobalTheory.AscFin
 
 
 theorem _root_.GlobalTheory.T.hermitianPairing_selfDual_completion_integral_at_place : ∀ (D : D7) (S : HSp D) (L : GlobalTheory.FinPl.Lat S), IsSelfDualC S L → ∀ (v : GlobalTheory.FinPl.Pl D) (z w : Fin S.rank → AE D), z ∈ latV S L (· = v) → w ∈ latV S L (· = v) → (∑ k, ∑ l, cA D (w k) * incA D (S.gram k l) * z l) ∈ intAt D (· = v) := by
-  first | exact @GlobalTheory.LatPairInt.pairing_mem_at | exact GlobalTheory.LatPairInt.pairing_mem_at | (intros; apply GlobalTheory.LatPairInt.pairing_mem_at <;> assumption)
+  first | exact @GlobalTheory.LatPairInt.pairing_mem_at

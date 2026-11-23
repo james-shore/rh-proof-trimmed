@@ -37,7 +37,8 @@ mechanical steps only.
   under Lean 4.36, and cuts the warnings from the three linters by 94%
 - S3 is [PR #295](https://github.com/leanprover-community/riemann-hypothesis/pull/295) on leanprover-community/riemann-hypothesis,
   built on [#185](https://github.com/leanprover-community/riemann-hypothesis/pull/185), now merged. Its lists are at tag
-  [`s3-pr-185-2`](https://github.com/james-shore/rh-proof-trimmed/tree/s3-pr-185-2)
+  [`s3-pr-185-4`](https://github.com/james-shore/rh-proof-trimmed/tree/s3-pr-185-4)
+- It compiles and verifies on Lean 4.37, and a version of it compiles and verifies on #134 under Lean 4.36
 
 ## Base
 

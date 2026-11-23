@@ -357,7 +357,7 @@ theorem countable_Term (u u' : D.what₂.Word) (F0 : FlagG (VS D) D.R.rS ((Lat.T
 theorem rowLabelExists_of (hG : Corank.ScalarEquivG) (hR : ∀ u u' : D.what₂.Word, Corank.ScalarRepFree D u u') :
     RowLabelExists D := by
   intro u u' F0 what₂ hrows
-  have e := Corank.scalarEquivT_of (Formalism.L2.SG.Pf.term_equivalence_iff D u u') (Corank.scalarEquiv_of_G hG u u') (hR u u')
+  have e := Corank.scalarEquivT_of (_root_.term_eq_iff_relation D u u') (Corank.scalarEquiv_of_G hG u u') (hR u u')
     F0 what₂ hrows
   letI s : Setoid {t : TermDef.Term D u u' F0 what₂ // t.G ≠ 0} := ⟨_, e⟩
   have := countable_Term u u' F0 what₂

@@ -181,7 +181,7 @@ theorem actLev_mem_th : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndep
     rw [hp, hq]
     simp only [Ranks.sigW]
     omega
-  have hA := (GlobalTheory.T.actLev_full_level_group_framedPoints D T.Q j hr h.pins.2.1.2).total
+  have hA := (_root_.GlobalTheory.FullLevelAction.actLev_levFull D T.Q j hr h.pins.2.1.2).total
   refine ⟨fun b => liftLa γ (x b), P, hP, fun p y => ?_⟩
   obtain ⟨ρ, ν, -, hlev, hmv⟩ := mvPt_spec hA γ y
   exact thValAt_move GlobalTheory.firstFiveLaws.1 hCI hnab hlev hmv hP.1 (hf p _)

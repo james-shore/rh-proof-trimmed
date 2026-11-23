@@ -53,6 +53,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerAffineHilbertTensorPullbackEqMap
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerAffineHilbertTensorToSubschemeSectionsRestric
 
 @[expose] public section
 
@@ -86,7 +88,7 @@ theorem exists_unique_lift (A B : Type) [CommRing A] [CommRing B] [Algebra A B] 
         J.map (Algebra.TensorProduct.map ψ (AlgHom.id A B)) → ψ.toRingHom = φ := by
     intro U
     letI := (secAlg A g U).toAlgebra
-    obtain ⟨-, hli', hsp'⟩ := (GlobalTheory.T.tensor_basis_criterion A B Γ(Z, U) _ _ (fun k => e (σ k))).mp (hy U)
+    obtain ⟨-, hli', hsp'⟩ := (_root_.GlobalTheory.tensorSum_bijective_iff A B Γ(Z, U) _ _ (fun k => e (σ k))).mp (hy U)
     obtain ⟨φ, hφ, hφu⟩ := huniv Γ(Z, U) _ hli' hsp'
     exact ⟨φ.toRingHom, φ.commutes, hφ, fun ψ hψ => congrArg AlgHom.toRingHom (hφu ψ hψ)⟩
   choose φ hφA hφ hφu using hch
@@ -95,7 +97,7 @@ theorem exists_unique_lift (A B : Type) [CommRing A] [CommRing B] [Algebra A B] 
     intro U V hUV
     letI iU := (secAlg A g U).toAlgebra
     letI iV := (secAlg A g V).toAlgebra
-    obtain ⟨ρ, hρ, hle⟩ := GlobalTheory.T.ker_affineHilbertTensorToSubschemeSections_restrict A B g I U V hUV
+    obtain ⟨ρ, hρ, hle⟩ := _root_.GlobalTheory.HilbAff.kappa_res A B g I U V hUV
     let φV : C →ₐ[A] Γ(Z, V) := { toRingHom := φ V, commutes' := hφA V }
     have hmap : J.map (Algebra.TensorProduct.map (ρ.comp φV) (AlgHom.id A B)) =
         (RingHom.ker (kappa A B g I V)).map (Algebra.TensorProduct.map ρ (AlgHom.id A B)) := by
@@ -105,19 +107,19 @@ theorem exists_unique_lift (A B : Type) [CommRing A] [CommRing B] [Algebra A B] 
         rw [← Algebra.TensorProduct.map_comp, AlgHom.comp_id]]
       exact (Ideal.map_map (Algebra.TensorProduct.map φV (AlgHom.id A B)).toRingHom
         (Algebra.TensorProduct.map ρ (AlgHom.id A B)).toRingHom).symm
-    have hsp2 := (GlobalTheory.T.basis_quotient_tensor_base_change A B C Γ(Z, U) (fun k => e (σ k)) J (ρ.comp φV) hli hsp).2
-    have hliU := ((GlobalTheory.T.tensor_basis_criterion A B Γ(Z, U) _ _ (fun k => e (σ k))).mp (hy U)).2.1
-    have heq := GlobalTheory.T.ideals_eq_of_span_independent A B Γ(Z, U) (fun k => e (σ k)) _ _ (hmap ▸ hle) hsp2 hliU
+    have hsp2 := (_root_.GlobalTheory.quotient_basis_baseChange A B C Γ(Z, U) (fun k => e (σ k)) J (ρ.comp φV) hli hsp).2
+    have hliU := ((_root_.GlobalTheory.tensorSum_bijective_iff A B Γ(Z, U) _ _ (fun k => e (σ k))).mp (hy U)).2.1
+    have heq := _root_.GlobalTheory.tensor_ideal_eq_of_span_of_linearIndependent A B Γ(Z, U) (fun k => e (σ k)) _ _ (hmap ▸ hle) hsp2 hliU
     rw [← hφu U (ρ.comp φV) heq.symm, ← hρ]
     rfl
-  obtain ⟨Φ, hΦ, hΦu⟩ := GlobalTheory.T.ring_map_from_affine_opens Z C φ compat
-  obtain ⟨h, hh⟩ := GlobalTheory.T.exists_hom_affineHilbertBaseSectionRingHom Z C Φ
+  obtain ⟨Φ, hΦ, hΦu⟩ := _root_.GlobalTheory.AffGlue.existsUnique_ringHom_of_affineOpens Z C φ compat
+  obtain ⟨h, hh⟩ := _root_.GlobalTheory.HilbAff.exists_hom_secAlg_top Z C Φ
   have hhU : ∀ U : Z.affineOpens, secAlg C h U = φ U := fun U => by
     rw [← secAlg_res C h (le_top : (U : Z.Opens) ≤ ⊤), hh, hΦ U]
   have hgA : h ≫ Spec.map (CommRingCat.ofHom (algebraMap A C)) = g := by
     apply eq_of_secAlg_top
     rw [secAlg_comp, hh]
-    obtain ⟨Ψ, -, hΨu⟩ := GlobalTheory.T.ring_map_from_affine_opens Z A (fun U => secAlg A g U) (fun U V hUV => secAlg_res A g hUV)
+    obtain ⟨Ψ, -, hΨu⟩ := _root_.GlobalTheory.AffGlue.existsUnique_ringHom_of_affineOpens Z A (fun U => secAlg A g U) (fun U V hUV => secAlg_res A g hUV)
     have h1 := hΨu (Φ.comp (algebraMap A C)) (fun U => by
       rw [← RingHom.comp_assoc, hΦ U]; ext a; exact hφA U a)
     have h2 := hΨu (secAlg A g ⊤) (fun U => secAlg_res A g le_top)
@@ -125,9 +127,9 @@ theorem exists_unique_lift (A B : Type) [CommRing A] [CommRing B] [Algebra A B] 
   refine ⟨h, ?_, ?_⟩
   · subst hgA
     refine Sigma.ext rfl (heq_of_eq (Subtype.ext ?_))
-    apply GlobalTheory.T.idealSheaf_eq_of_ker_tensorToSubschemeSections
+    apply _root_.GlobalTheory.HilbAff.IdealDet.eq_of_ker_kappa_eq
     intro U
-    obtain ⟨φ', hφ', hker⟩ := GlobalTheory.T.ker_affineHilbertTensor_pullback_eq_map A B C J Z h U
+    obtain ⟨φ', hφ', hker⟩ := _root_.GlobalTheory.HilbAff.ker_kappa_xI_comap A B C J Z h U
     letI := (secAlg A (h ≫ Spec.map (CommRingCat.ofHom (algebraMap A C))) U).toAlgebra
     refine (hker.trans ?_).trans (hφ U).symm
     congr 2
@@ -135,7 +137,7 @@ theorem exists_unique_lift (A B : Type) [CommRing A] [CommRing B] [Algebra A B] 
   · intro h' hh'
     have hU : ∀ U : Z.affineOpens, secAlg C h' U = φ U := by
       intro U
-      obtain ⟨φ', hφ', hker⟩ := GlobalTheory.T.ker_affineHilbertTensor_pullback_eq_map A B C J Z h' U
+      obtain ⟨φ', hφ', hker⟩ := _root_.GlobalTheory.HilbAff.ker_kappa_xI_comap A B C J Z h' U
       cases hh'
       rw [← hφ']
       exact hφu U φ' hker
@@ -149,7 +151,7 @@ theorem chart_represents (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (N
         ∃! g : Z ⟶ X, (functor A B r).map g.op x = y := by
   obtain ⟨C, _, _, J, hfp, hli, hsp, huniv⟩ := GlobalTheory.hilbChart_representable A B N r e σ
   have hgood : Good A B r (Spec.map (CommRingCat.ofHom (algebraMap A C))) (xI A B C J) :=
-    GlobalTheory.T.isFiniteFlatRankClosedSubscheme_of_quotient_basis A B C J (fun k => e (σ k)) hli hsp
+    _root_.GlobalTheory.HilbAff.good_xI A B C J (fun k => e (σ k)) hli hsp
   let x : (functor A B r).obj (op (Spec (CommRingCat.of C))) :=
     ⟨Spec.map (CommRingCat.ofHom (algebraMap A C)), ⟨xI A B C J, hgood⟩⟩
   have hBx : ∀ (Z : Scheme.{0}) (h : Z ⟶ Spec (CommRingCat.of C)),
@@ -157,10 +159,10 @@ theorem chart_represents (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (N
     intro Z h
     rw [functor_map, basic_iff_kappa]
     intro U
-    obtain ⟨φ, -, hker⟩ := GlobalTheory.T.ker_affineHilbertTensor_pullback_eq_map A B C J Z h U
+    obtain ⟨φ, -, hker⟩ := _root_.GlobalTheory.HilbAff.ker_kappa_xI_comap A B C J Z h U
     letI := (secAlg A (h ≫ Spec.map (CommRingCat.ofHom (algebraMap A C))) U).toAlgebra
-    obtain ⟨hli', hsp'⟩ := GlobalTheory.T.basis_quotient_tensor_base_change A B C Γ(Z, U) (fun k => e (σ k)) J φ hli hsp
-    refine (GlobalTheory.T.tensor_basis_criterion A B Γ(Z, U) _ _ (fun k => e (σ k))).mpr ⟨GlobalTheory.T.affineHilbertTensorToSubschemeSections_surjective A B _ _ U, ?_, ?_⟩
+    obtain ⟨hli', hsp'⟩ := _root_.GlobalTheory.quotient_basis_baseChange A B C Γ(Z, U) (fun k => e (σ k)) J φ hli hsp
+    refine (_root_.GlobalTheory.tensorSum_bijective_iff A B Γ(Z, U) _ _ (fun k => e (σ k))).mpr ⟨_root_.GlobalTheory.HilbAff.kappa_surjective A B _ _ U, ?_, ?_⟩
     · rw [hker]; exact hli'
     · rw [hker]; exact hsp'
   have hBasic : Basic A B e σ x := by

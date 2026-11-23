@@ -236,14 +236,14 @@ end Formalism.FourierDecayAlt.P.A6x2
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem parsevalGroup_statement : Formalism.FourierDecayAlt.A6.ParsevalGroup := A6x2.parsevalGroup
+alias parsevalGroup_statement := _root_.Formalism.FourierDecayAlt.P.A6x2.parsevalGroup
 
-theorem gramRealisation : Formalism.FourierDecayAlt.A6.GramRealiseCut := A6x2.gramRealiseCut
+alias gramRealisation := _root_.Formalism.FourierDecayAlt.P.A6x2.gramRealiseCut
 
-theorem posSemidefEntryBound : Formalism.FourierDecayAlt.A6.PSDEntryBound := A6x2.pSDEntryBound
+alias posSemidefEntryBound := _root_.Formalism.FourierDecayAlt.P.A6x2.pSDEntryBound
 
-theorem posSemidefClosed : Formalism.FourierDecayAlt.A6.PSDClosed := A6x2.pSDClosed
+alias posSemidefClosed := _root_.Formalism.FourierDecayAlt.P.A6x2.pSDClosed
 
-theorem boundedSubsequence : Formalism.FourierDecayAlt.A6.BoundedSubseq := A6x2.boundedSubseq
+alias boundedSubsequence := _root_.Formalism.FourierDecayAlt.P.A6x2.boundedSubseq
 
 end Formalism.FourierDecayAlt.P

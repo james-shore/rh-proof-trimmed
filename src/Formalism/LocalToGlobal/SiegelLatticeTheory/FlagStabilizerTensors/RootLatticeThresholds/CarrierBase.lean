@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.BigCellConjI
 
 @[expose] public section
 
@@ -221,18 +222,6 @@ theorem herm_Qi (hQ : IsTransp X v g k r Qm Qim) (x y : Fin X.B.I.n → ℂ) :
     Matrix.mulVec_mulVec _ Qm Qim, Matrix.mulVec_mulVec _ Qm Qim, hQ.2.1, Matrix.one_mulVec, Matrix.one_mulVec]
   rfl
 
-theorem hpk_row_esI (a : Fin r) (b : Fin (2 * r + k + 1)) :
-    Formalism.QuantumDeterminants.Hpk k r (Formalism.QuantumDeterminants.esI k r a) b = if b = Formalism.QuantumDeterminants.eI k r a then 1 else 0 := by
-  simp only [Formalism.QuantumDeterminants.Hpk, Formalism.QuantumDeterminants.esI, Formalism.QuantumDeterminants.eI, Fin.ext_iff]
-  have ha := a.2
-  split_ifs <;> first | rfl | (exfalso; omega)
-
-theorem hpk_row_eI (a : Fin r) (b : Fin (2 * r + k + 1)) :
-    Formalism.QuantumDeterminants.Hpk k r (Formalism.QuantumDeterminants.eI k r a) b = if b = Formalism.QuantumDeterminants.esI k r a then 1 else 0 := by
-  simp only [Formalism.QuantumDeterminants.Hpk, Formalism.QuantumDeterminants.esI, Formalism.QuantumDeterminants.eI, Fin.ext_iff]
-  have ha := a.2
-  split_ifs <;> first | rfl | (exfalso; omega)
-
 theorem herm_bvec (y : Fin (2 * r + k + 1) → ℂ) (j : Fin (2 * r + k + 1)) :
     Formalism.QuantumDeterminants.herm (Formalism.QuantumDeterminants.Hpk k r) y (Formalism.QuantumDeterminants.bvec j) = (Formalism.QuantumDeterminants.Hpk k r *ᵥ y) j := by
   unfold Formalism.QuantumDeterminants.herm Formalism.QuantumDeterminants.bvec
@@ -240,11 +229,11 @@ theorem herm_bvec (y : Fin (2 * r + k + 1) → ℂ) (j : Fin (2 * r + k + 1)) :
 
 theorem hpk_mulVec_esI (y : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
     (Formalism.QuantumDeterminants.Hpk k r *ᵥ y) (Formalism.QuantumDeterminants.esI k r a) = y (Formalism.QuantumDeterminants.eI k r a) := by
-  simp [Matrix.mulVec, dotProduct, hpk_row_esI]
+  simp [Matrix.mulVec, dotProduct, _root_.Formalism.MainNotions.S.Pv.Frames.Hpk_esI_row]
 
 theorem hpk_mulVec_eI (y : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
     (Formalism.QuantumDeterminants.Hpk k r *ᵥ y) (Formalism.QuantumDeterminants.eI k r a) = y (Formalism.QuantumDeterminants.esI k r a) := by
-  simp [Matrix.mulVec, dotProduct, hpk_row_eI]
+  simp [Matrix.mulVec, dotProduct, _root_.Formalism.MainNotions.S.Pv.Frames.Hpk_eI_row]
 
 theorem inWb_Qi (hr : r = D.R.rS) (hQ : IsTransp X v g k r Qm Qim) (w : Fin X.B.I.n → ℂ)
     (hwe : ∀ a, hJ (X.B.I.ε v) (rv X.B.I v (X.eR a)) w = 0) (hwf : ∀ a, hJ (X.B.I.ε v) (rv X.B.I v (X.fR a)) w = 0) :

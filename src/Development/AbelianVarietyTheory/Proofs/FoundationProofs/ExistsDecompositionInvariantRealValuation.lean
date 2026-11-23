@@ -65,7 +65,7 @@ theorem exists_real_valuation : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field 
     intro x
     rw [hv, A.valuation_le_one_iff]
   refine ⟨v, hv, fun s hs x => ?_, ?_, ?_⟩
-  · exact he.eq_iff.2 (GlobalTheory.Dec_valuation_apply_eq ℚ Ω A s hs x)
+  · exact he.eq_iff.2 (_root_.GlobalTheory.ValuationOfMemIff.valuation_apply_eq ℚ Ω A s hs x)
   · have : CharZero Ω := j.charZero
     have hl : (l : Ω) ≠ 0 := Nat.cast_ne_zero.mpr (Fact.out : l.Prime).ne_zero
     exact zero_lt_iff.mpr ((v.ne_zero_iff).2 hl)

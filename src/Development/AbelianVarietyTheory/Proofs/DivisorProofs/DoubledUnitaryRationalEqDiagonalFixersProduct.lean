@@ -99,7 +99,7 @@ theorem exists_anti {σ : E →ₐ[F] E} (h : IsCMExt F E σ) : ∃ ρ : E, ρ �
     push_neg at hc
     exact hne (AlgHom.ext hc)
   refine ⟨x - σ x, sub_ne_zero.mpr (Ne.symm hx), ?_⟩
-  rw [map_sub, invol h]
+  rw [map_sub, _root_.GlobalTheory.AdelicU.cm_conj_conj h]
   ring
 
 variable (F) in

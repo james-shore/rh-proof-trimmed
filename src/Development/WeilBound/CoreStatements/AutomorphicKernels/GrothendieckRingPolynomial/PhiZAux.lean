@@ -100,8 +100,8 @@ theorem msupp_eq_of_isL (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (h
     {x : IrrGL (k := k)} (hx : IsL 𝔫 x.rep) (w : List (IrrGL (k := k))) (hc : ∀ c ∈ w, c.IsCusp) (hw : Wd x.rep w) :
     (w : Multiset (IrrGL (k := k))) = msupp 𝔫 := by
   obtain ⟨h, y, hd, ⟨Δ, hΔ, hL⟩, hcos⟩ := hx
-  have h1 : Wd (prodIrr y hd) w := GlobalTheory.T.word_occurs_of_subquotient _ _ (isSmooth_prodIrr y hd) hcos.isSubquotient w hw
-  have h2 := GlobalTheory.T.segment_product_word_in_shuffle hA hj y hd Δ hL w hc h1
+  have h1 : Wd (prodIrr y hd) w := _root_.GlobalTheory.CompanionTheory.Words.wd_of_isSubquotient _ _ (isSmooth_prodIrr y hd) hcos.isSubquotient w hw
+  have h2 := _root_.GlobalTheory.CompanionTheory.CuspShuffle.inShW_of_wd hA hj y hd Δ hL w hc h1
   rw [hΔ.1] at h2
   exact coe_eq_msupp_of_inShW h2
 

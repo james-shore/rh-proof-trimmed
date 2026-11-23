@@ -136,8 +136,6 @@ end GlobalTheory.UMin.ThNe
 
 namespace GlobalTheory.UMin.ThNe
 
-theorem spMap_id_self (R : Type) [CommRing R] : spMap (RingHom.id R) = 𝟙 (Sp R) := Spec.map_id _
-
 theorem th_ne_zero : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : LB G.left)
     (ρ : LB.Gen (L.pull (eSec G))), L.IsLB → ρ.IsGen → ∀ (g m N : ℕ) (K : Type) [Field K] (x : Sp K ⟶ S)
     (c : Fin N → K), Odd m → 3 ≤ m → (m : K) ≠ 0 → PolFib G L g x → HasTh G L ρ m x c → ∃ a, c a ≠ 0 := by
@@ -172,7 +170,7 @@ theorem th_ne_zero : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj 
     apply Over.OverMorphism.ext
     have := ha
     simp only [π, Over.comp_left, Over.homMk_left] at this
-    rwa [spMap_id_self, Category.id_comp, Category.id_comp] at this
+    rwa [_root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp, Category.id_comp] at this
   refine ⟨a, fun h0 => ?_⟩
   have hth := hl'.2.1 a
   rw [← hya] at hth

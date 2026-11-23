@@ -88,7 +88,7 @@ noncomputable section
 
 universe u
 
-theorem ReducedBasisBound.full : ReducedBasisBound.Statement := ReducedBasisBound.proof
+alias ReducedBasisBound.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.ReducedBasisBound.proof
 
 section Closed
 
@@ -108,25 +108,23 @@ theorem ArchCovolumeBound.full : ArchCovolumeBound.Statement h v :=
 
 
 omit [NumberField F] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] in
-theorem MajorantTransport.full : MajorantTransport.Statement h v := MajorantTransport.proof h v
+alias MajorantTransport.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.MajorantTransport.proof
 
 
 omit [NumberField F] [NumberField E] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] in
-theorem ComplementExtension.full : ComplementExtension.Statement h := ComplementExtension.proof h
+alias ComplementExtension.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.ComplementExtension.proof
 
 
 omit [NumberField F] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] in
-theorem LineNormalForm.full : LineNormalForm.Statement h := LineNormalForm.proof h
+alias LineNormalForm.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.LineNormalForm.proof
 
 
 omit [NumberField F] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] in
-theorem ComplementLattice.full [FiniteDimensional E W] : ComplementLattice.Statement h :=
-  ComplementLattice.proof h
+alias ComplementLattice.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.ComplementLattice.proof
 
 
 omit [NumberField F] [IsTotallyReal F] [_root_.NumberField.IsTotallyComplex E] in
-theorem LatticePointsBelowFinite.full : LatticePointsBelowFinite.Statement h v :=
-  LatticePointsBelowFinite.proof h v
+alias LatticePointsBelowFinite.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.LatticePointsBelowFinite.proof
 
 theorem ArchimedeanUnitaryEquiv.full : ArchimedeanUnitaryEquiv.Statement h v :=
   ArchimedeanUnitaryEquiv.proof h v

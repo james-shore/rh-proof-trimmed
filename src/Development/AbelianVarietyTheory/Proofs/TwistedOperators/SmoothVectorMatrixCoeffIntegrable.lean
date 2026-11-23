@@ -121,17 +121,11 @@ theorem integral_translate_le {G : Type} [Group G] [TopologicalSpace G] [IsTopol
   · rw [integral_undef hI]
     exact mul_nonneg (abs_nonneg _) (integral_nonneg fun _ => norm_nonneg _)
 
-private theorem jm_sq_lemma {k : ℕ} (δ : Fin k → Bool) : Formalism.REAL.Jm δ * Formalism.REAL.Jm δ = 1 := by
-  rw [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> norm_num
-
 private theorem exp_preserves_Jm_of_skew {k : ℕ} (δ : Fin k → Bool) (A : Matrix (Fin k) (Fin k) ℂ)
     (hA : Aᴴ * Formalism.REAL.Jm δ + Formalism.REAL.Jm δ * A = 0) :
     (NormedSpace.exp A)ᴴ * Formalism.REAL.Jm δ * NormedSpace.exp A = Formalism.REAL.Jm δ := by
   set J := Formalism.REAL.Jm δ with hJdef
-  have hJ : J * J = 1 := jm_sq_lemma δ
+  have hJ : J * J = 1 := _root_.Formalism.REAL.Jm_mul_self δ
   have hJi : J⁻¹ = J := Matrix.inv_eq_left_inv hJ
   have hJu : IsUnit J := ⟨⟨J, J, hJ, hJ⟩, rfl⟩
   have hAc : Aᴴ = J * (-A) * J⁻¹ := by

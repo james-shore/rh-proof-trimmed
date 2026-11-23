@@ -86,24 +86,6 @@ theorem bijective_of_bijective_lTensor_residueField {R M N : Type*} [CommRing R]
     rw [← LinearMap.range_eq_top]
     exact Submodule.Quotient.subsingleton_iff.mp hsub
 
-theorem formallyEtale_of_bijective_mapBaseChange (R P B : Type*) [CommRing R] [CommRing P]
-    [CommRing B] [Algebra R P] [Algebra R B] [Algebra P B] [IsScalarTower R P B]
-    [Algebra.FormallySmooth R B] (h : Function.Bijective (mapBaseChange R P B)) :
-    Algebra.FormallyEtale P B := by
-  have h1 : Subsingleton Ω[B⁄P] := by
-    refine subsingleton_of_forall_eq 0 fun x => ?_
-    obtain ⟨y, rfl⟩ := map_surjective R P B x
-    exact (exact_mapBaseChange_map R P B y).mpr (h.2 y)
-  have h2 : Subsingleton (Algebra.H1Cotangent P B) := by
-    refine subsingleton_of_forall_eq 0 fun x => ?_
-    have h3 : Algebra.H1Cotangent.δ R P B x = 0 := by
-      apply h.1
-      rw [map_zero]
-      exact (Algebra.H1Cotangent.exact_δ_mapBaseChange R P B _).mpr ⟨x, rfl⟩
-    obtain ⟨y, rfl⟩ := (Algebra.H1Cotangent.exact_map_δ R P B x).mp h3
-    rw [Subsingleton.elim y 0, map_zero]
-  exact ⟨h1, h2⟩
-
 theorem bijective_lTensor_baseChange_of_bijective {B M N : Type*} [CommRing B]
     [AddCommGroup M] [Module B M] [AddCommGroup N] [Module B N] (Q : Ideal B) [Q.IsPrime]
     (φ : M →ₗ[B] N) (h : Function.Bijective (φ.lTensor Q.ResidueField)) :
@@ -172,7 +154,7 @@ theorem exists_etale_away_of_bijective_mapBaseChange : ∀ (A C B : Type) [CommR
     exact eN.bijective.comp (hψ₀.comp eM.symm.bijective)
   haveI : Algebra.FormallySmooth B BQ := Algebra.FormallySmooth.of_isLocalization Q.primeCompl
   haveI : Algebra.FormallySmooth A BQ := Algebra.FormallySmooth.comp A B BQ
-  haveI : Algebra.IsEtaleAt C Q := formallyEtale_of_bijective_mapBaseChange A C BQ hψ
+  haveI : Algebra.IsEtaleAt C Q := _root_.GlobalTheory.SmoothDescent.formallyEtale_of_bijective_mapBaseChange A C BQ hψ
   haveI : Algebra.FinitePresentation C B :=
     Algebra.FinitePresentation.of_restrict_scalars_finitePresentation A C B
   exact Algebra.exists_etale_of_isEtaleAt Q

@@ -121,14 +121,14 @@ theorem ym_mem (γ : Fin (WeightFamilies.dimY D j) → ℕ) :
 
 theorem hasse_mem_HK (u : WeightFamilies.Wt D j) (β : Idx D j G.N →₀ ℕ) {z : Lw X la G.w} (hz : z ∈ HK X la G.w u) :
     hs G la β z ∈ HK X la G.w u :=
-  (mem_HK X la G.w).2 (hasse_presentation X la G.w u β z ((mem_HK X la G.w).1 hz))
+  (mem_HK X la G.w).2 (_root_.PI.UnitaryGroupMassFormula.HassePresH.main X la G.w u β z ((mem_HK X la G.w).1 hz))
 
 theorem bcol_size {N : ℕ} (jj : Fin N) (α : Fin (WeightFamilies.dimY D j) → ℕ) :
     ((bcol (D := D) (j := j) jj α).sum fun _ n => n) = ∑ i, α i := by
   rw [Finsupp.sum_fintype _ _ (fun _ => rfl), Fintype.sum_prod_type, Fin.sum_univ_succ]
   simp [bcol]
 
-theorem size_eq_degree {N : ℕ} (f : Idx D j N →₀ ℕ) : (f.sum fun _ n => n) = Finsupp.degree f := rfl
+alias size_eq_degree := _root_.PI.HJP.sum_eq_degree
 
 end THs
 

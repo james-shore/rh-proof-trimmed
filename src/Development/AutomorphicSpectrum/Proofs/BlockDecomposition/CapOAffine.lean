@@ -167,8 +167,8 @@ theorem van_coord (hLoc : KH.LocGr) (hPoly : KH.PolyTf) (l s : ℕ) (hb : TFBase
     (q : X ⟶ Spec (CommRingCat.of O)) {W : X.Opens} {d : ℕ} (c : Coord q W d) (r : ℕ) (hr : r < s) (b : ℕ) (hne : b ≠ r) :
     Subsingleton (HU (sq (thFil (smFun X q) r) (thFil (smFun X q) ((r : ℤ) + 1)))
       (St (γ := dividedPowersBot O) (p := 0) (q := q) (κ := Ideal.Quotient.mk ⊥) (TF l s) {W}) b) := by
-  obtain ⟨c', e, hTF, -, -, -⟩ := GlobalTheory.T.exists_chart_from_coordinates (dividedPowersBot O) l s hb q (Ideal.Quotient.mk ⊥) (fun _ => rfl) c
-  have hg := GlobalTheory.T.chart_is_good c'
+  obtain ⟨c', e, hTF, -, -, -⟩ := _root_.GlobalTheory.CompanionTheory.ChartAlg.chart_exists (dividedPowersBot O) l s hb q (Ideal.Quotient.mk ⊥) (fun _ => rfl) c
+  have hg := _root_.GlobalTheory.CompanionTheory.ChartMaps.good c'
   let Q : ObjectProperty (Thick (nlFun (dividedPowersBot O) 0 X q (Ideal.Quotient.mk ⊥))) := St (TF l s) {W}
   have hQ : ∀ T, Q T → InU W T := fun T hT => by
     obtain ⟨_, V, hV, h⟩ := hT

@@ -214,10 +214,7 @@ section AxTools
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {X0 : Scheme.{0}} (t : SAB H X0)
 variable {S : Type} [CommRing S] (x0 : Sp S ⟶ X0) (d : ℕ) (x : ∀ m, jOG x0 d m 1 ⟶ t.G)
 
-theorem subst_jpt {n n' : ℕ} (m : ℕ) (ψ : Fin n × Fin d → MvPolynomial (Fin n' × Fin d) S) (i : Fin n) (k : Fin n')
-    (h : ∀ j, ψ (i, j) = X (k, j)) :
-    homAt x0 (jetSubstP m ψ) ≫ jptG t x0 d x m i = jptG t x0 d x m k := by
-  exact subst_jpt_lemma_3 t x0 d x m ψ i k h
+alias subst_jpt := _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdPh.subst_jpt_lemma_3
 
 end AxTools
 

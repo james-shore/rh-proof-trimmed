@@ -193,17 +193,7 @@ private theorem valAt'_finset_sum {X : Scheme.{0}} (x : Sp ℂ ⟶ X) (U : X.Ope
 
   simp only [valAt', dif_pos hx, valAt, map_sum]
 
-private theorem valAt'_comp' {Y X : Scheme.{0}} (y : Sp ℂ ⟶ Y) (m : Y ⟶ X) (W : X.Opens) (f : Γ(X, W)) :
-    valAt' (y ≫ m) W f = valAt' y (m ⁻¹ᵁ W) ((m.app W).hom f) := by
-  by_cases hy : ⊤ ≤ (y ≫ m) ⁻¹ᵁ W
-  · have hy' : ⊤ ≤ y ⁻¹ᵁ (m ⁻¹ᵁ W) := hy
-    rw [valAt', dif_pos hy, valAt', dif_pos hy', valAt, valAt]
-    first
-      | (rw [Scheme.comp_appLE]; rfl)
-      | simp [Scheme.comp_appLE]
-      | simp [Scheme.Hom.comp_appLE]
-  · have hy' : ¬ ⊤ ≤ y ⁻¹ᵁ (m ⁻¹ᵁ W) := hy
-    rw [valAt', dite_eq_right hy, valAt', dite_eq_right hy']
+private alias valAt'_comp' := _root_.GlobalTheory.KS.VertField.valAt'_comp
 
 private theorem valAt'_resG_of_top_le {X : Scheme.{0}} (x : Sp ℂ ⟶ X) {U V : X.Opens} (h : V ≤ U) (hx : ⊤ ≤ x ⁻¹ᵁ V)
     (a : Γ(X, U)) : valAt' x V (resG X h a) = valAt' x U a := by

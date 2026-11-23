@@ -313,11 +313,7 @@ theorem isLocalRing_quot (hI : I ≠ ⊤) (e : ℕ) : IsLocalRing (R ⧸ I ^ (e 
 
 
 omit [IsDomain R] [IsLocalRing R] [IsCommMonObj G] in
-theorem isGrpPullback_thickMap (e : ℕ) :
-    IsGrpPullback (thickObj R I e G) (thickObj R I (e + 1) G) (thickTrans R I e) (thickMap R I e G) :=
-  (isGrpPullback_pullback G (thick R I (e + 1))).cancel
-    ((isGrpPullback_pullback G (thick R I e)).congr (thickTrans_comp R I e).symm
-      ((pullback.lift_fst _ _ _).trans (Category.comp_id _)).symm) (pullback.lift_snd _ _ _)
+alias isGrpPullback_thickMap := _root_.GlobalTheory.WeightPoint.isGrpPullback_thickMap
 
 theorem exists_preU (hG : GlobalFnsSt)
     (hc : ∀ (D : DegPre R) (e : ℕ) (g : GtCoord I D e G) (g' : GtCoord I D (e + 1) G),

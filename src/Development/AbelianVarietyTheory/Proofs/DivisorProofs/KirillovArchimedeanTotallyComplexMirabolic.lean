@@ -68,20 +68,11 @@ open GlobalTheory.JSW
 
 variable {E : Type} [Field E] [NumberField E] {n : ℕ}
 
-theorem isOpenEmbedding_valGLInf :
-    Topology.IsOpenEmbedding (fun g : GL (Fin n) (Cinf E) => fun i j => (g : Matrix (Fin n) (Fin n) (Cinf E)) i j) := by
-  open scoped Matrix.Norms.Operator in exact Units.isOpenEmbedding_val (R := Matrix (Fin n) (Fin n) (Cinf E))
+alias isOpenEmbedding_valGLInf := _root_.GlobalTheory.JSW.MirCinf.SmoothGrowth.isOpenEmbedding_valGLInf
 
-theorem isOpen_isUnit_ofInf : IsOpen {x : Fin n → Fin n → Cinf E | IsUnit (Matrix.of x)} := by
-  have := (isOpenEmbedding_valGLInf (E := E) (n := n)).isOpen_range
-  convert this using 1
-  ext x
-  exact ⟨fun ⟨u, hu⟩ => ⟨u, hu⟩, fun ⟨u, hu⟩ => ⟨u, hu⟩⟩
+alias isOpen_isUnit_ofInf := _root_.GlobalTheory.JSW.MirCinf.SecFamInf.isOpen_isUnit_ofInf
 
-theorem continuousOn_toGLInf :
-    ContinuousOn (fun x : Fin n → Fin n → Cinf E => toGLInf (Matrix.of x)) {x | IsUnit (Matrix.of x)} := by
-  rw [isOpenEmbedding_valGLInf.isInducing.continuousOn_iff]
-  exact continuousOn_id.congr fun x hx => val_toGLInf hx
+alias continuousOn_toGLInf := _root_.GlobalTheory.JSW.MirCinf.SmoothGrowth.continuousOn_toGLInf
 
 theorem isWhitInf_smoothMatInf {W : GL (Fin n) (Cinf E) → ℂ} (hW : IsWhitInf W) (α : (Fin n → Fin n → Cinf E) → ℂ) :
     IsWhitInf (smoothMatInf α W) := by
@@ -139,7 +130,7 @@ theorem step_chart (ρ : Fin n) (hρ : (ρ : ℕ) + 1 < n) {lam : (GL (Fin n) (C
       ∀ W, IsModGrowthInf W → IsWhitInf W → ∀ y, ∀ g ∈ levSetInf E n (ρ + 1),
         T W y g = φ (y, rowCutInf ρ (g : Matrix (Fin n) (Fin n) (Cinf E))) * B (y, matInf g) *
           lam (smoothMatInf α W) := by
-  obtain ⟨hs1, hs2, L, hL⟩ := GlobalTheory.T.archimedeanSectionMatrix_invertible_level_reduction E n ρ j hj
+  obtain ⟨hs1, hs2, L, hL⟩ := _root_.GlobalTheory.JSW.MirCinf.secMatInf_main E n ρ j hj
   have hU : IsOpen {z : Y × (Fin n → Cinf E) | ∀ w, z.2 (j w) w ≠ 0} := by
     simp only [Set.setOf_forall]
     exact isOpen_iInter_of_finite fun w => isOpen_ne_fun (by fun_prop) continuous_const
@@ -207,7 +198,7 @@ theorem step_chart (ρ : Fin n) (hρ : (ρ : ℕ) + 1 < n) {lam : (GL (Fin n) (C
   rw [hT4 W hW hWe y g hg]
   simp only [ContinuousLinearMap.comp_apply, ContinuousLinearMap.coe_snd', ← hL]
   by_cases hv : ∀ w, rowCutInf ρ (g : Matrix (Fin n) (Fin n) (Cinf E)) (j w) w ≠ 0
-  · rw [hT' _ (GlobalTheory.T.isArchimedeanModerateGrowth_matrixSmoothingIntegral E n α hα.continuous hαc hαs W hW) (isWhitInf_smoothMatInf hWe α) _ _ (hs2 g hg hv),
+  · rw [hT' _ (_root_.GlobalTheory.JSW.MirCinf.isModGrowthInf_smoothMatInf E n α hα.continuous hαc hαs W hW) (isWhitInf_smoothMatInf hWe α) _ _ (hs2 g hg hv),
       hB'v _ _ hv, inv_mul_cancel_right]
     by_cases a1 : φ (y, rowCutInf ρ (g : Matrix (Fin n) (Fin n) (Cinf E))) = 0
     · simp [a1]
@@ -245,7 +236,7 @@ theorem levRepInf_succ (ρ : Fin n) (hρ : (ρ : ℕ) + 1 < n) {lam : (GL (Fin n
       exact Set.mem_iUnion.2 ⟨fun w => ⟨j w, hj w⟩, hj'⟩)
   choose T hT hT' using fun j : InfinitePlace E → {j : Fin n // j ≤ ρ} => step_chart ρ hρ ih hα hαc hαs hB hBe hC
     (fun y g hg h => (hDC y g hg h).2) (j := fun w => (j w).1) (fun w => (j w).2) (hφ j).1 (hφ j).2.1 (hφ j).2.2
-  refine ⟨_, GlobalTheory.T.isArchimedeanRapidKernelOperator_finset_sum E n Y _ T hT, fun W hW hWe y g hg => ?_⟩
+  refine ⟨_, _root_.GlobalTheory.JSW.MirCinf.isKerOpInf_fintype_sum E n Y _ T hT, fun W hW hWe y g hg => ?_⟩
   simp only [hT' _ W hW hWe y g hg, ← Finset.sum_mul]
   by_cases h : B (y, matInf g) = 0
   · simp [h]

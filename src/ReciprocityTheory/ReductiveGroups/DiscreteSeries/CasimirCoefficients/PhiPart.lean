@@ -49,6 +49,7 @@ public import Mathlib.Analysis.Calculus.ContDiff.Operations
 public import Mathlib.Analysis.Calculus.Deriv.Add
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Calculus.Deriv.ZPow
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PhiCasA
 
 @[expose] public section
 
@@ -65,43 +66,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-private theorem contDiff_lead_casimir_coefficients (j : ℕ) :
-    ContDiff ℂ 1 (fun w : Matrix (Fin n) (Fin n) ℂ => lead j w) := by
-  by_cases h : j ≤ n
-  · have e : (fun w : Matrix (Fin n) (Fin n) ℂ => lead j w) =
-        fun w => (w.submatrix (Fin.castLE h) (Fin.castLE h)).det := funext fun w => dif_pos h
-    rw [e]
-    simp only [Matrix.det_apply, Matrix.submatrix_apply, Units.smul_def, zsmul_eq_mul]
-    refine ContDiff.sum fun σ _ => contDiff_const.mul ?_
-    refine contDiff_prod fun p _ => ?_
-    exact contDiff_pi.1 (contDiff_pi.1 (contDiff_id (𝕜 := ℂ) (E := Matrix (Fin n) (Fin n) ℂ))
-      (Fin.castLE h (σ p))) (Fin.castLE h p)
-  · have e : (fun w : Matrix (Fin n) (Fin n) ℂ => lead j w) = fun _ => 0 := funext fun w => dif_neg h
-    rw [e]
-    exact contDiff_const
-
-private theorem differentiableAt_PhiM_of_mem_OmegaSet (μ : Fin n → ℤ) {z : Matrix (Fin n) (Fin n) ℂ} (hz : z ∈ OmegaSet n) :
-    DifferentiableAt ℂ (PhiM μ) z := by
-  have hz' : ∀ i : Fin n, lead ((i : ℕ) + 1) z ≠ 0 := hz
-  have key : ∀ i : Fin n, ContDiffAt ℂ 1
-      (fun w : Matrix (Fin n) (Fin n) ℂ => lead ((i : ℕ) + 1) w ^ (-(μ i - muNext μ i))) z := by
-    intro i
-    have hd : ContDiffAt ℂ 1 (fun w : Matrix (Fin n) (Fin n) ℂ => lead ((i : ℕ) + 1) w) z :=
-      (contDiff_lead_casimir_coefficients ((i : ℕ) + 1)).contDiffAt
-    have key' : ∀ k : ℤ,
-        ContDiffAt ℂ 1 (fun w : Matrix (Fin n) (Fin n) ℂ => lead ((i : ℕ) + 1) w ^ k) z := by
-      intro k
-      cases k with
-      | ofNat p => simpa using hd.pow p
-      | negSucc p =>
-        simp only [zpow_negSucc]
-        exact (hd.pow (p + 1)).inv (pow_ne_zero _ (hz' i))
-    exact key' _
-  have hc : ContDiffAt ℂ 1 (fun w : Matrix (Fin n) (Fin n) ℂ =>
-      ∏ i : Fin n, lead ((i : ℕ) + 1) w ^ (-(μ i - muNext μ i))) z :=
-    contDiffAt_prod fun i _ => key i
-  exact hc.differentiableAt one_ne_zero
-
 private theorem fderiv_PhiM_of_lead_curve (μ : Fin n → ℤ) {z V : Matrix (Fin n) (Fin n) ℂ} (hz : z ∈ OmegaSet n)
     (D : ℕ → ℂ) (hlead : ∀ (t : ℂ) (i : Fin n), lead ((i : ℕ) + 1) (z + t • V) =
       (∏ a ∈ Finset.range ((i : ℕ) + 1), (1 + t * D a)) * lead ((i : ℕ) + 1) z) :
@@ -112,7 +76,7 @@ private theorem fderiv_PhiM_of_lead_curve (μ : Fin n → ℤ) {z V : Matrix (Fi
     exact (((hasDerivAt_id (0 : ℂ)).smul_const V).const_add z).congr_deriv (one_smul ℂ V)
   have hΦ : HasFDerivAt (PhiM μ) (fderiv ℂ (PhiM μ) z) (z + (0 : ℂ) • V) := by
     rw [zero_smul, add_zero]
-    exact (differentiableAt_PhiM_of_mem_OmegaSet μ hz).hasFDerivAt
+    exact (_root_.ReciprocityTheory.ChartRestriction.DS.S7.differentiableAt_phiM μ hz).hasFDerivAt
   have h1 := hΦ.comp_hasDerivAt (0 : ℂ) hc
   set p : Fin n → ℂ → ℂ := fun i t => ∏ a ∈ Finset.range ((i : ℕ) + 1), (1 + t * D a) with hp
   have hfun : (PhiM μ ∘ fun t : ℂ => z + t • V) =

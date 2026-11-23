@@ -261,8 +261,7 @@ theorem exists_const (X : Data E r) (la : Wt X.Ψ r) (ρ : ℝ) (hρ : 0 < ρ)
   rw [(h3 x hx b hb).2, mul_eq_zero, or_iff_right (bchar_ne_zero_of_mem_bor la hb)] at h6
   rw [h5 x hx, h6, mul_zero, mul_zero]
 
-theorem isSB_smul_tf (a : ℂ) {φ : TF n g} (h : IsSB φ) : IsSB (a • φ) :=
-  (isSB_algebra_haar_linear ℚ _ _ φ φ h h).2.1 a
+alias isSB_smul_tf := _root_.GlobalTheory.Dict.ShortVal.isSB_smul
 
 theorem isSB_gphi {X : Data E r} {bas : (Fin g ⊕ Fin g → ℤ) ≃ₗ[ℤ] X.Λ} (idx : Fin g ≃ X.Ψ × Fin r)
     (hs : IsSympl X bas) (hn : Even n) {w : E} (hw : IsIntegral ℤ w) (hw' : w + cc w = 1) {L : Lt E r}

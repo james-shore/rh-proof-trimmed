@@ -63,12 +63,6 @@ open GlobalTheory.IdemSupport GlobalTheory.ResLoc
 
 variable {D : D7}
 
-theorem eq_of_ev {Φ : AE D →+* FiniteAdeleRing (𝓞 D.host.E) D.host.E} (hΦ : Comp D Φ) {a b : AE D}
-    (hi : infPart D a = infPart D b) (hf : ∀ Q, Φ a Q = Φ b Q) : a = b := by
-  refine sub_eq_zero.1 (hΦ.ext (a - b) (by rw [RingHom.map_sub, hi, sub_self]) (FiniteAdeleRing.ext _ fun Q => ?_))
-  rw [ev_sub, hf Q, sub_self]
-  rfl
-
 theorem eq_one_of_supp {w : HeightOneSpectrum (𝓞 D.host.E)} {e f : AE D} {χ : (AE D)ˣ →* Circle}
     (h : Formalism.IndefR.Mult.IsPrimeIdem w e f) (hu : GlobalTheory.LFun.UnrAt χ w) (x : (AE D)ˣ)
     (hx : e * ((x : AE D) - 1) = (x : AE D) - 1) (h1 : finPart D (x : AE D) ∈ intAE D)
@@ -109,7 +103,7 @@ theorem unramAt_of_unrAt_one : ∀ (D : D7) (ν : (AE D)ˣ →* Circle), IsHecke
   have pc' := place_comp hΦ hε'
   have hfε : f = algebraMap (AF D.host.F) (AE D) ε := by
     rw [hf]
-    refine eq_of_ev hΦ (by rw [pc.1, pc'.1]) fun Q => ?_
+    refine _root_.GlobalTheory.IdemSupport.Comp.ext' hΦ (by rw [pc.1, pc'.1]) fun Q => ?_
     by_cases hQ : Q.under (𝓞 D.host.F) = v
     · rw [pc.2.1 Q hQ, pc'.2.1 Q hQ]
     · rw [pc.2.2 Q hQ, pc'.2.2 Q hQ]
@@ -117,7 +111,7 @@ theorem unramAt_of_unrAt_one : ∀ (D : D7) (ν : (AE D)ˣ →* Circle), IsHecke
     split_ifs with hQ
     · rw [hQ]; exact hd.2.1
     · exact hd.2.2 Q hQ
-  have hee : e * e = e := eq_of_ev hΦ (by rw [RingHom.map_mul, hd.1, zero_mul]) fun Q => by
+  have hee : e * e = e := _root_.GlobalTheory.IdemSupport.Comp.ext' hΦ (by rw [RingHom.map_mul, hd.1, zero_mul]) fun Q => by
     rw [ev_mul, hev Q]
     split_ifs <;> simp
   have key : (1 - e) * (1 - cA D e) * f = 0 := by

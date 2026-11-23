@@ -58,27 +58,6 @@ noncomputable section
 variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq]
 
-private theorem herm_hpk_bvec_esI (v : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
-    herm (Hpk k r) v (bvec (esI k r a)) = v (eI k r a) := by
-  have ha := a.isLt
-  have he : (eI k r a).val = a.val := rfl
-  have hs : (esI k r a).val = 2 * r + k - a.val := rfl
-  unfold herm bvec
-  rw [← Pi.single_star, star_one, single_dotProduct, one_mul, Matrix.mulVec, dotProduct,
-    Finset.sum_eq_single (eI k r a)]
-  · have h1 : Hpk k r (esI k r a) (eI k r a) = 1 := by
-      simp only [Hpk]
-      rw [if_neg (fun h => absurd h.1 (by omega)), if_pos ⟨by omega, by omega⟩]
-    rw [h1, one_mul]
-  · intro j _ hj
-    have hj' : j.val ≠ a.val := fun h => hj (Fin.ext (h.trans he.symm))
-    have h0 : Hpk k r (esI k r a) j = 0 := by
-      simp only [Hpk]
-      rw [if_neg (fun h => absurd h.1 (by omega)), if_neg (fun h => hj' (by have := h.2; omega)),
-        if_neg (fun h => absurd h.2.1 (by omega))]
-    rw [h0, zero_mul]
-  · simp
-
 theorem ell_eq (z : Fin (2 * r + k + 1) → ℂ) (g : B.Mat k r) : ell k r z g = C2.simpleUp (C2.uMap k r z g) := by
   unfold ell C2.simpleUp
   rw [Fin.sum_univ_castSucc]
@@ -87,7 +66,7 @@ theorem ell_eq (z : Fin (2 * r + k + 1) → ℂ) (g : B.Mat k r) : ell k r z g =
   have ha : a.val + 1 < r + 1 := by omega
   rw [dite_eq_left ha]
   simp only [C2.uMap, Fin.val_castSucc, a.isLt, dite_true]
-  rw [herm_hpk_bvec_esI]
+  rw [_root_.PI.StabPairsW.herm_es]
   simp only [fvec]
   by_cases h1 : a.val + 1 < r
   · simp [h1, bvec, Matrix.mulVec_single]

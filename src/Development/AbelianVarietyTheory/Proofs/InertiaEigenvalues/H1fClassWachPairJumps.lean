@@ -55,15 +55,6 @@ open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.Basi
 namespace GlobalTheory.NL.CrystallineDescent
 
 
-private theorem descend_element_of_le_of_eq_K0 (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (l : ℕ) [Fact l.Prime]
-    (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL) (K' : FinExt l) (h' : Good K' s LL)
-    (hle : K.1 ≤ K'.1) (hK0 : K0 K' = K0 K) (T : Lt K LL) (hT : IsCrys ((D.loc l).PD K) T.ρ) (m : ℕ)
-    (y' : ((HW l).W K' s LL h').DD (resLt (K := K) (K' := K') (LL := LL) hle T))
-    (hy' : y' ∈ invN ((HW l).W K' s LL h') (resLt (K := K) (K' := K') (LL := LL) hle T) (((HW l).W K' s LL h').Q ^ m)) :
-    ∃ y ∈ invN ((HW l).W K s LL h) T (((HW l).W K s LL h).Q ^ m),
-      ((F l).E K s LL h).tie.jD T y = toTW hle T (((F l).E K' s LL h').tie.jD (resLt (K := K) (K' := K') (LL := LL) hle T) y') :=
-  GlobalTheory.T.inv_Q_pow_nygaard_ext_comes_from_base_field D HW F l K s LL h K' h' hle hK0 T hT m y' hy'
-
 set_option maxHeartbeats 60000000 in
 private theorem descend_of_eq_K0_of_isCrys (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (l : ℕ) [Fact l.Prime]
     (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL) (K' : FinExt l) (h' : Good K' s LL)
@@ -84,8 +75,8 @@ private theorem descend_of_eq_K0_of_isCrys (D : Formalism.BasicNotions.D7) (HW :
   let toBase := @toTW l _ K K' LL hle T
   let f := @fMap l _ K K' W.GKs W'.GKs hm' htop
   -- Direct elimination avoids the cost of `cases` on the dependent goal.
-  refine (descend_element_of_le_of_eq_K0 D HW F l K s LL h K' h' hle hK0 T hT m y' hy').elim fun y hy => ?_
-  refine (GlobalTheory.T.X_nygaard_ext_comes_from_base_field D HW F l K s LL h K' h' hle hK0 T hT z' hz').elim fun z hz => ?_
+  refine (_root_.GlobalTheory.NL.TransitionThirdCase.main D HW F l K s LL h K' h' hle hK0 T hT m y' hy').elim fun y hy => ?_
+  refine (_root_.GlobalTheory.NL.XNTransfer.main D HW F l K s LL h K' h' hle hK0 T hT z' hz').elim fun z hz => ?_
   refine ((GlobalTheory.WittTensorFixed.main l K' LL T').1
     (((F l).E K' s LL h').tie.jD T' y')).elim fun b' hb' => ?_
   refine (@cl_fit l _ D HW F K' s LL h' T' y' z' hyz' b' hb').elim fun c' hc' => ?_
@@ -121,21 +112,6 @@ private theorem descend_of_eq_K0_of_isCrys (D : Formalism.BasicNotions.D7) (HW :
   exact ⟨y, z₀, hyz, hy.1, hz₀.1, c, c', hcl, hc'.1, hc.1⟩
 
 
-set_option maxHeartbeats 4000000 in
-theorem descend (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (l : ℕ) [Fact l.Prime]
-    (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL) (K' : FinExt l) (h' : Good K' s LL)
-    (hle : K.1 ≤ K'.1) (hK0 : K0 K' = K0 K) (htop : ((HW l).W K' s LL h').GKs = ⊤)
-    (hm : ∀ g : ↥(GK K'), (⟨(g : GQ l), GK_le hle g.2⟩ : ↥(GK K)) ∈ ((HW l).W K s LL h).GKs)
-    (hm' : ∀ g : ↥((HW l).W K s LL h).GKs, ((g : ↥(GK K)) : GQ l) ∈ GK K')
-    (T : Lt K LL) (hT : IsCrys ((D.loc l).PD K) T.ρ)
-    (m : ℕ) (y' z' : ((HW l).W K' s LL h').DD (resLt (K := K) (K' := K') (LL := LL) hle T)) (hyz' : (y', z') ∈ ((HW l).W K' s LL h').divisibleCocycles (resLt (K := K) (K' := K') (LL := LL) hle T))
-    (hy' : y' ∈ invN ((HW l).W K' s LL h') (resLt (K := K) (K' := K') (LL := LL) hle T) (((HW l).W K' s LL h').Q ^ m)) (hz' : z' ∈ aN ((HW l).W K' s LL h') (resLt (K := K) (K' := K') (LL := LL) hle T) ((HW l).W K' s LL h').X) :
-    ∃ (y z : ((HW l).W K s LL h).DD T) (hyz : (y, z) ∈ ((HW l).W K s LL h).divisibleCocycles T), y ∈ invN ((HW l).W K s LL h) T (((HW l).W K s LL h).Q ^ m) ∧ z ∈ aN ((HW l).W K s LL h) T ((HW l).W K s LL h).X ∧
-      ∃ (c : ↥(latticeCocycles (resLat T ((HW l).W K s LL h).GKs))) (c' : ↥(latticeCocycles (resLat (resLt (K := K) (K' := K') (LL := LL) hle T) ((HW l).W K' s LL h').GKs))),
-        Submodule.Quotient.mk c = ((HW l).W K s LL h).cl T ⟨(y, z), hyz⟩ ∧
-        Submodule.Quotient.mk c' = ((HW l).W K' s LL h').cl (resLt (K := K) (K' := K') (LL := LL) hle T) ⟨(y', z'), hyz'⟩ ∧
-        ∀ g, (c : ↥((HW l).W K s LL h).GKs → T.V) g = (c' : ↥((HW l).W K' s LL h').GKs → (resLt (K := K) (K' := K') (LL := LL) hle T).V) (fMap ((HW l).W K s LL h).GKs ((HW l).W K' s LL h').GKs hm' htop g) := descend_of_eq_K0_of_isCrys D HW F l K s LL h K' h' hle hK0 htop hm hm' T hT m y' z' hyz' hy' hz'
-
 set_option maxHeartbeats 60000000 in
 private theorem wach_pow_smul_of_good_ext : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F) (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let W := (HW l).W K s LL h; let E := ((F l).E K s LL h).tie; let C := Cm l; ∀ T : Lt K LL, IsCrys ((D.loc l).PD K) T.ρ → ∀ (M hh : Let K → ℕ), JumpsLet W T M hh → ∀ κ ∈ H1fIntegralCyclotomicLayer W T, ∃ (c : ℕ) (y z : W.DD T) (hyz : (y, z) ∈ W.divisibleCocycles T), y ∈ invN W T (W.Q ^ mx M) ∧ z ∈ aN W T W.X ∧ W.cl T ⟨(y, z), hyz⟩ = (l ^ c : ℕ) • κ := by
   intro D HW F Cm l p K s LL h W E C T hT M hh hJ κ hκ
@@ -154,13 +130,13 @@ private theorem wach_pow_smul_of_good_ext : ∀ (D : Formalism.BasicNotions.D7) 
       K K' LL hle T.V T.acg T.modLL T.modQp T.towQp T.fdim T.ρ hT)
   refine (@pull_h1f l p (D.loc l) K K' LL hle T W.GKs W'.GKs hm κ hκ).elim fun cκ hcκ =>
     hcκ.elim fun cκ' hκ' => ?_
-  refine (@GlobalTheory.T.H1f_class_of_wach_pair D HW F Cm l p K' s LL h' T' hT' htop
+  refine (@_root_.GlobalTheory.NL.ExtClassKs.main D HW F Cm l p K' s LL h' T' hT' htop
     (fun _ => mx M) (fun _ => mx hh) hJ' (Submodule.Quotient.mk cκ') hκ'.2.1).elim
     fun n hn => hn.elim fun y' hy' => hy'.elim fun z' hz' => hz'.elim fun hyz' hpair' => ?_
   have : Nonempty (Let K') := ⟨0⟩
   have hmx : mx (fun _ : Let K' => mx M) = mx M := ciSup_const
   have hy'mx := (congrArg (fun k : ℕ => y' ∈ invN W' T' (W'.Q ^ k)) hmx).mp hpair'.1
-  refine (@descend D HW F l p K s LL h K' h' hle hbase.1 htop hm hm' T hT (mx M) y' z' hyz' hy'mx hpair'.2.1).elim
+  refine (@_root_.GlobalTheory.NL.CrystallineDescent.descend_of_eq_K0_of_isCrys D HW F l p K s LL h K' h' hle hbase.1 htop hm hm' T hT (mx M) y' z' hyz' hy'mx hpair'.2.1).elim
     fun y hy => hy.elim fun z hz => hz.elim fun hyz hpair => ?_
   refine hpair.2.2.elim fun c hc => hc.elim fun c' hcc' => ?_
   have hpush := @push_class l p K K' LL hle T W.GKs W'.GKs hm hm' htop c cκ c' cκ' hcc'.2.2 hκ'.2.2

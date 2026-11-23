@@ -67,7 +67,7 @@ theorem lamLow_of_hypotheses_alt_alt : GlobalTheory.Published.CuspRapidDecay →
   obtain ⟨x0, hx0⟩ := GlobalTheory.T.thetaLift_weightSizes_eventually_along_family eps Fm
   refine ⟨x0, fun x hx hle i p hp C => ?_⟩
   have hS : ∀ j, Sizes (Fm.D x i) j (Fm.L x i).sc.b := hx0 x hx hle i
-  refine _root_.GlobalTheory.T.finiteness_inputs_real_data_three_alt h1 h2 h3 h4 h5 h6 h7 (T := p.T) (R := p.R) (F := p.F) p.κ p.v₀ p.O 1 (Fm.L x i).sc.b C CH
+  refine _root_.GlobalTheory.LowRow.lamLow_closing_alt h1 h2 h3 h4 h5 h6 h7 (T := p.T) (R := p.R) (F := p.F) p.κ p.v₀ p.O 1 (Fm.L x i).sc.b C CH
     hp.ok hp.sep p.charW hp.exAt hp.prim p.phsOne p.stdChar p.fw p.bar hp.ioExt p.pins (fun j => (hp.oneMap j).1) p.phase hS
     ?_ ?_ ⟨_, ⟨Fm.params x hx i⟩⟩ p.stdV
   · intro j

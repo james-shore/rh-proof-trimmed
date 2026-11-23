@@ -156,12 +156,12 @@ theorem exists_ne_one {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) : ∃ x, ψ x �
 theorem norm_psi {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (x : AF F) : ‖ψ x‖ = 1 := by
   obtain ⟨s, hs⟩ := exists_ne_one hψ
   have hne : ψ ≠ 1 := fun h1 => hs (by rw [h1]; rfl)
-  exact (GlobalTheory.CompanionTheory.AdeleAnn.unitary_and_annihilator_eq F ψ hψ.1 hne hψ.2.1).1 x
+  exact (_root_.UpperTheory.Reformulated.B.UnitaryAnnihilator.unitary_and_annihilator_eq F ψ hψ.1 hne hψ.2.1).1 x
 
 theorem nondeg {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (x : AF F) (h : ∀ y, ψ (x * y) = 1) : x = 0 := by
   obtain ⟨s, hs⟩ := exists_ne_one hψ
   have hne : ψ ≠ 1 := fun h1 => hs (by rw [h1]; rfl)
-  obtain ⟨b, rfl⟩ := (GlobalTheory.CompanionTheory.AdeleAnn.unitary_and_annihilator_eq F ψ hψ.1 hne hψ.2.1).2 x fun a => h _
+  obtain ⟨b, rfl⟩ := (_root_.UpperTheory.Reformulated.B.UnitaryAnnihilator.unitary_and_annihilator_eq F ψ hψ.1 hne hψ.2.1).2 x fun a => h _
   by_cases hb : b = 0
   · rw [hb, map_zero]
   · refine absurd ?_ hs

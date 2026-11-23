@@ -78,10 +78,6 @@ open GlobalTheory.Mem.Col2 (afIso mem_rInt_iff mem_suppAt_iff)
 
 section Cut
 
-theorem apply_mul (a b : FiniteAdeleRing (𝓞 E) E) (P : HeightOneSpectrum (𝓞 E)) : (a * b) P = a P * b P := rfl
-
-theorem apply_one (P : HeightOneSpectrum (𝓞 E)) : (1 : FiniteAdeleRing (𝓞 E) E) P = 1 := rfl
-
 theorem int_val {x : (AfE F E)ˣ} (hx : x ∈ intU F E) (P : HeightOneSpectrum (𝓞 E)) :
     Valued.v (afIso F E (x : AfE F E) P) ≤ 1 :=
   (mem_rInt_iff F E _).1 hx.1 P
@@ -92,7 +88,7 @@ theorem int_inv {x : (AfE F E)ˣ} (hx : x ∈ intU F E) (P : HeightOneSpectrum (
 
 theorem afIso_mul_inv (x : (AfE F E)ˣ) (P : HeightOneSpectrum (𝓞 E)) :
     afIso F E (x : AfE F E) P * afIso F E ((x⁻¹ : (AfE F E)ˣ) : AfE F E) P = 1 := by
-  rw [← apply_mul, ← map_mul, Units.mul_inv, map_one, apply_one]
+  rw [← _root_.Formalism.UG.P.afsplit_mul_apply, ← map_mul, Units.mul_inv, map_one, _root_.Formalism.UG.P.afsplit_one_apply]
 
 theorem eq_of_afIso {y y' : (AfE F E)ˣ} (h : ∀ P, afIso F E (y : AfE F E) P = afIso F E (y' : AfE F E) P) : y = y' :=
   Units.ext ((afIso F E).injective (FiniteAdeleRing.ext _ h))
@@ -103,14 +99,14 @@ def cutU (x : (AfE F E)ˣ) (hx : x ∈ intU F E) (S : Set (HeightOneSpectrum (�
   val_inv := by
     rw [← map_mul, (afIso F E).symm_apply_eq, map_one]
     refine FiniteAdeleRing.ext _ fun P => ?_
-    rw [apply_mul, cutA_apply, cutA_apply, apply_one]
+    rw [_root_.Formalism.UG.P.afsplit_mul_apply, cutA_apply, cutA_apply, _root_.Formalism.UG.P.afsplit_one_apply]
     split_ifs
     · exact afIso_mul_inv x P
     · exact one_mul 1
   inv_val := by
     rw [← map_mul, (afIso F E).symm_apply_eq, map_one]
     refine FiniteAdeleRing.ext _ fun P => ?_
-    rw [apply_mul, cutA_apply, cutA_apply, apply_one]
+    rw [_root_.Formalism.UG.P.afsplit_mul_apply, cutA_apply, cutA_apply, _root_.Formalism.UG.P.afsplit_one_apply]
     split_ifs
     · rw [mul_comm]; exact afIso_mul_inv x P
     · exact one_mul 1
@@ -142,7 +138,7 @@ theorem cutU_mem_intU (x : (AfE F E)ˣ) (hx : x ∈ intU F E) (S : Set (HeightOn
 theorem cutU_union (x : (AfE F E)ˣ) (hx : x ∈ intU F E) {S S' : Set (HeightOneSpectrum (𝓞 E))} (hd : Disjoint S S') :
     cutU x hx (S ∪ S') = cutU x hx S * cutU x hx S' := by
   refine eq_of_afIso fun P => ?_
-  rw [Units.val_mul, map_mul, apply_mul, afIso_cutU, afIso_cutU, afIso_cutU]
+  rw [Units.val_mul, map_mul, _root_.Formalism.UG.P.afsplit_mul_apply, afIso_cutU, afIso_cutU, afIso_cutU]
   by_cases h : P ∈ S
   · have h' : P ∉ S' := Set.disjoint_left.1 hd h
     simp [h, h']
@@ -152,7 +148,7 @@ theorem cutU_univ (x : (AfE F E)ˣ) (hx : x ∈ intU F E) : cutU x hx Set.univ =
   eq_of_afIso fun P => by rw [afIso_cutU]; simp
 
 theorem cutU_empty (x : (AfE F E)ˣ) (hx : x ∈ intU F E) : cutU x hx ∅ = 1 :=
-  eq_of_afIso fun P => by rw [afIso_cutU, Units.val_one, map_one, apply_one]; simp
+  eq_of_afIso fun P => by rw [afIso_cutU, Units.val_one, map_one, _root_.Formalism.UG.P.afsplit_one_apply]; simp
 
 theorem cutU_mem_inertAt (x : (AfE F E)ˣ) (hx : x ∈ intU F E) (v : HeightOneSpectrum (𝓞 F)) :
     cutU x hx {P | P.under (𝓞 F) = v} ∈ inertAt E v :=
@@ -223,7 +219,7 @@ theorem map_eq_one_of_one_at_ramified : ∀ (F E L : Type) [Field F] [NumberFiel
       rw [e, cutU_union x hx hd, map_mul, ih, mul_one]
       by_cases hq : v ∈ Qprime ξ
       · have e1 : cutU x hx {P | P.under (𝓞 F) = v} = 1 := eq_of_afIso fun P => by
-          rw [afIso_cutU, Units.val_one, map_one, apply_one]
+          rw [afIso_cutU, Units.val_one, map_one, _root_.Formalism.UG.P.afsplit_one_apply]
           split_ifs with hP
           · have h2 : P.under (𝓞 F) = v := hP
             exact h1 P (by rw [h2]; exact hq)

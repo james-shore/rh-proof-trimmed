@@ -98,18 +98,6 @@ end GlobalTheory.SqStepArith
 namespace GlobalTheory.SqStepArith
 
 open Formalism.L2.Host in
-theorem levelLe_mul {L : Type} [Field L] [NumberField L] {a b : HChar L} {w : HeightOneSpectrum (𝓞 L)} {n : ℕ}
-    (ha : a.LevelLe w n) (hb : b.LevelLe w n) : (a * b).LevelLe w n := fun x hx h => by
-  change a.loc w x * b.loc w x = 1
-  rw [ha x hx h, hb x hx h, one_mul]
-
-open Formalism.L2.Host in
-theorem levelLe_inv {L : Type} [Field L] [NumberField L] {a : HChar L} {w : HeightOneSpectrum (𝓞 L)} {n : ℕ}
-    (ha : a.LevelLe w n) : (a⁻¹).LevelLe w n := fun x hx h => by
-  change (a.loc w x)⁻¹ = 1
-  rw [ha x hx h, inv_one]
-
-open Formalism.L2.Host in
 theorem levelLe_mono {L : Type} [Field L] [NumberField L] {a : HChar L} {w : HeightOneSpectrum (𝓞 L)} {m n : ℕ}
     (ha : a.LevelLe w m) (hmn : m ≤ n) : a.LevelLe w n := fun x hx h =>
   ha x hx (h.trans (WithZero.exp_le_exp.2 (by omega)))
@@ -123,11 +111,11 @@ theorem nuH_levelLe_two {D : D7} {T : Type} {Lc : LevCh D T} {sc : Consts} (G : 
   have hxi : (Lc.xiH t).LevelLe PP 1 := hL.xi_tame t PP
   refine ⟨?_, fun h => hchi.2 ?_⟩
   · rw [nuH, div_eq_mul_inv]
-    exact levelLe_mul (levelLe_mul (levelLe_mono hmu (by omega)) (levelLe_mono hxi (by omega))) (levelLe_inv hchi.1)
+    exact _root_.Formalism.L2.Host.HChar.LevelLe.mul (_root_.Formalism.L2.Host.HChar.LevelLe.mul (levelLe_mono hmu (by omega)) (levelLe_mono hxi (by omega))) (_root_.Formalism.L2.Host.HChar.LevelLe.inv hchi.1)
   · have e : G.ch.chiH (D.R.m - i) = Lc.C.mu0 j * Lc.xiH t / nuH G t i j := by
       rw [nuH, div_div_cancel]
     rw [e, div_eq_mul_inv]
-    exact levelLe_mul (levelLe_mul hmu hxi) (levelLe_inv h)
+    exact _root_.Formalism.L2.Host.HChar.LevelLe.mul (_root_.Formalism.L2.Host.HChar.LevelLe.mul hmu hxi) (_root_.Formalism.L2.Host.HChar.LevelLe.inv h)
 
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField in

@@ -198,11 +198,6 @@ private theorem phi_inv (ω : Fin n → kˣ →* ℂˣ) : IsInvOn (phi ω) ω :=
   refine (phi_diag ω _ hu).trans ?_
   rw [torusChar_apply, Fintype.prod_eq_single i (fun j hj => by simp [Pi.mulSingle_eq_of_ne hj])]
   simp
-private theorem upow_add (a b : Fin n → ℤ) : upow k n (a + b) = upow k n a * upow k n b := by
-  rw [upow, upow, upow, ← map_mul]
-  congr 1
-  funext i
-  simp [_root_.zpow_add]
 private theorem upow_mem {a : Fin n → ℤ} (ha : Antitone a) : upow k n a ∈ (glIwa k n).P := ⟨a, ha, rfl⟩
 private theorem uOp_upow {T : Type} [AddCommGroup T] [Module ℂ T] (τ : Representation ℂ (GL (Fin n) k) T)
     (ψ : Fin n → kˣ →* ℂˣ) {v : T} (hv : v ∈ fixd τ (glIwa k n).N)
@@ -227,7 +222,7 @@ private theorem uOp_upow {T : Type} [AddCommGroup T] [Module ℂ T] (τ : Repres
       add_mem' := by
         rintro a b ⟨ha, ea⟩ ⟨hb, eb⟩
         refine ⟨ha.add hb, ?_⟩
-        rw [upow_add, ← (mulOp _ _ (upow_mem ha) (upow_mem hb)).2.1, eb, map_smul, ea, smul_smul, E_add, Units.val_mul,
+        rw [_root_.UpperTheory.V.Hi.GlAx.upow_add, ← (mulOp _ _ (upow_mem ha) (upow_mem hb)).2.1, eb, map_smul, ea, smul_smul, E_add, Units.val_mul,
           mul_comm]
       zero_mem' := by
         refine ⟨fun _ _ _ => le_rfl, ?_⟩
@@ -250,7 +245,7 @@ private theorem uOp_upow {T : Type} [AddCommGroup T] [Module ℂ T] (τ : Repres
     have anti : Antitone (1 : Fin n → ℤ) := fun _ _ _ => le_rfl
     have anti' : Antitone (-1 : Fin n → ℤ) := fun _ _ _ => le_rfl
     have hinv : (upow k n (1 : Fin n → ℤ))⁻¹ = upow k n (-1) := by
-      rw [inv_eq_iff_mul_eq_one, ← upow_add]
+      rw [inv_eq_iff_mul_eq_one, ← _root_.UpperTheory.V.Hi.GlAx.upow_add]
       rw [upow, ← (diagT k (Fin n)).map_one]
       congr 1
       funext i

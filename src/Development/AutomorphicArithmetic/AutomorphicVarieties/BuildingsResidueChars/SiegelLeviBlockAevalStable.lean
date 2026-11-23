@@ -52,11 +52,6 @@ open NumberField NumberField.mixedEmbedding Matrix MeasureTheory GroundTheory.Au
 open scoped TensorProduct
 attribute [local instance 100] LieRing.ofAssociativeRing
 
-private theorem aeval_inter {M N : Type} [AddCommGroup M] [Module ℂ M] [AddCommGroup N] [Module ℂ N]
-    (f : M →ₗ[ℂ] N) (T : Module.End ℂ M) (T' : Module.End ℂ N) (h : ∀ x, f (T x) = T' (f x))
-    (p : Polynomial ℂ) (x : M) : f (Polynomial.aeval T p x) = Polynomial.aeval T' p (f x) :=
-  _root_.UpperTheory.Reformulated.B.Qe22.aeval_inter f T T' h p x
-
 theorem UpperTheory.siegelLevi_block_aeval_stable :
     ∀ (K : Type) [Field K] [NumberField K] (a n : ℕ) (e : Fin a ↪ Fin n) (Γ : Set (AdelicGLn.AdelicGL K n)) (S Z : Submodule ℂ (archSmooth K n)) (ι : Type) [Fintype ι] (D : Idem (mixedSpace K) ι), (∀ ψ ∈ Z, ∀ g ∈ Γ, ∀ m, ψ.1 (g * emb e m) = 0) → (∀ τ u, AlgMod S Z (archCapBlock D e τ u)) → Centre (slSp e Γ S) := by
   intro K _ _ a n e Γ S Z ι _ D hZ hS z hz
@@ -79,6 +74,6 @@ theorem UpperTheory.siegelLevi_block_aeval_stable :
       have hq : ∀ y, f (archCapBlock D e τ u y) = capOp D a τ u (f y) :=
         UpperTheory.algMod_of_injective_intertwining _ _ a f _ _ hgen u
       change Polynomial.aeval (capOp D a τ u) p φ = 0
-      rw [hfφ, ← aeval_inter f _ _ hq]
+      rw [hfφ, ← _root_.UpperTheory.Reformulated.B.Qe22.aeval_inter f _ _ hq]
       exact Subtype.ext (funext fun m => (hf _ m).trans (hZ _ (hpS ψ hψ) g hg m))
     exact hle hx

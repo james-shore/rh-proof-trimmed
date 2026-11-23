@@ -59,21 +59,12 @@ theorem gram_det_unit : IsUnit (Hpk k r).det :=
 theorem mul_mem {g h : Mat k r} (hg : g ∈ GG k r) (hh : h ∈ GG k r) : g * h ∈ GG k r :=
   (unitary_group_holds _ _ gram_det_unit).2.1 g hg h hh
 
-theorem inv_mem {g : Mat k r} (hg : g ∈ GG k r) : g⁻¹ ∈ GG k r :=
-  ((unitary_group_holds _ _ gram_det_unit).2.2 g hg).2
-
 theorem det_unit {g : Mat k r} (hg : g ∈ GG k r) : IsUnit g.det :=
   ((unitary_group_holds _ _ gram_det_unit).2.2 g hg).1
 
 theorem mem_of_S {z : Fin (2 * r + k + 1) → ℂ} {s : Mat k r} (hs : s ∈ Sset k r z) : s ∈ GG k r := by
   obtain ⟨h, hh, m, hm, rfl⟩ := hs
   exact mul_mem hh.1 hm.1
-
-theorem inv_eq {g : Mat k r} (hg : g ∈ GG k r) : g⁻¹ = Hpk k r * gᴴ * Hpk k r := by
-  apply Matrix.inv_eq_left_inv
-  have h : gᴴ * Hpk k r * g = Hpk k r := hg
-  rw [Matrix.mul_assoc (Hpk k r), Matrix.mul_assoc (Hpk k r), h]
-  exact (hermitian_pos_facts_hold k r).2.1
 
 theorem left_bound (z z' : Fin (2 * r + k + 1) → ℂ) (C : Set (Mat k r)) (hz : inWb k r z)
     (hz' : inWb k r z') (hT : 0 < Tz k r z) (hT' : 0 < Tz k r z') (hC : IsCompact C)
@@ -88,7 +79,7 @@ theorem left_bound (z z' : Fin (2 * r + k + 1) → ℂ) (C : Set (Mat k r)) (hz 
   have hsG := mem_of_S hs
   have hs'G := mem_of_S hs'
   have hγG : γ ∈ GG k r := (hCr hγ).1
-  have hxG : s * γ * s'⁻¹ ∈ GG k r := mul_mem (mul_mem hsG hγG) (inv_mem hs'G)
+  have hxG : s * γ * s'⁻¹ ∈ GG k r := mul_mem (mul_mem hsG hγG) (_root_.GlobalTheory.SgInf.RegInv.inv_mem hs'G)
   have hx1 : 1 ≤ opn (s * γ * s'⁻¹) := (hN1 _ hxG).2
   have hxs : (s * γ * s'⁻¹) * s' = s * γ := by
     rw [Matrix.mul_assoc, Matrix.nonsing_inv_mul _ (det_unit hs'G), Matrix.mul_one]
@@ -122,20 +113,20 @@ theorem poly_proper : ∀ (k r : ℕ) (z z' : Fin (2 * r + k + 1) → ℂ) (C : 
     rintro _ ⟨γ, hγ, rfl⟩
     have hγG : γ ∈ GG k r := (hCr hγ).1
     show Hpk k r * γᴴ * Hpk k r ∈ _
-    rw [← inv_eq hγG]
-    exact (GlobalTheory.T.besselZhat_inv_and_regular_iff k r z z' γ hγG).2.1 (hCr hγ)
+    rw [← _root_.GlobalTheory.SgInf.OpNormU.inv_eq hγG]
+    exact (_root_.GlobalTheory.SgInf.RegInv.zhat_inv_and_reg k r z z' γ hγG).2.1 (hCr hγ)
   obtain ⟨C2, h2⟩ := left_bound z' z _ hz' hz hT' hT (hC.image hcont) hCr'
   obtain ⟨hN1, -⟩ := GlobalTheory.T.besselModelUnitaryGroup_opNorm_properties k r
   refine ⟨max 1 (max C1 C2), le_max_left _ _, fun γ hγ s hs s' hs' => ?_⟩
   have hsG := mem_of_S hs
   have hs'G := mem_of_S hs'
   have hγG : γ ∈ GG k r := (hCr hγ).1
-  have hxG : s * γ * s'⁻¹ ∈ GG k r := mul_mem (mul_mem hsG hγG) (inv_mem hs'G)
+  have hxG : s * γ * s'⁻¹ ∈ GG k r := mul_mem (mul_mem hsG hγG) (_root_.GlobalTheory.SgInf.RegInv.inv_mem hs'G)
   have hinv : s' * γ⁻¹ * s⁻¹ = (s * γ * s'⁻¹)⁻¹ := by
     rw [Matrix.mul_inv_rev, Matrix.mul_inv_rev, Matrix.nonsing_inv_nonsing_inv _ (det_unit hs'G),
       Matrix.mul_assoc]
   have ha := h1 γ hγ s hs s' hs'
-  have hb := h2 γ⁻¹ ⟨γ, hγ, (inv_eq hγG).symm⟩ s' hs' s hs
+  have hb := h2 γ⁻¹ ⟨γ, hγ, (_root_.GlobalTheory.SgInf.OpNormU.inv_eq hγG).symm⟩ s' hs' s hs
   rw [hinv, (hN1 _ hxG).1] at hb
   have hp : 0 ≤ opn (s * γ * s'⁻¹) ^ (2 * (r ^ 2 + r + 1)) := pow_nonneg (opn_nonneg _) _
   refine max_le (ha.trans ?_) (hb.trans ?_)

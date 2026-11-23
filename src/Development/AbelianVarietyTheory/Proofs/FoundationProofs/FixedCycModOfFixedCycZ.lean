@@ -83,7 +83,7 @@ theorem fixed_cycMod_of_fixed_cycZ : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [F
   have hCc : ∀ m, IsClosed (C m) := by
     intro m
     have hc : Continuous fun s : G ℚ Ω => PadicInt.toZModPow m ((cycZ ℚ Ω l s : ℤ_[l]ˣ) : ℤ_[l]) :=
-      (GroundTheory.Global.Cyclotomic.continuous_toZModPow m).comp
+      (_root_.UpperTheory.Reformulated.B.Yde3.continuous_toZModPow m).comp
         (Units.continuous_val.comp (continuous_cycZ ℚ Ω l))
     exact (hH0c.inter ((isClosed_discrete ({1} : Set (ZMod (l ^ m)))).preimage hc)).inter
       hSo.isClosed_compl

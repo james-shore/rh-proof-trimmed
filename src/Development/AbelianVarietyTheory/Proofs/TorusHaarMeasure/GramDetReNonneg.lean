@@ -107,6 +107,6 @@ theorem height_submodular : (∀ (r : ℕ) (X : Data E r) (d : Frame X.Ψ r → 
       exact (GlobalTheory.T.gramDet_inequalities_closed_forms).1 (Fin r) (Fin a) (Fin b) (Fin c) _
   · exact hI _ i1
   · exact hI _ i2
-  · exact (GlobalTheory.T.relIndex_integralSpan_supermultiplicative) r X (Fin a) (Fin b) (Fin c) w hli hmem
+  · exact (_root_.GlobalTheory.SpanIndex.relIndex_span_mul_le) r X (Fin a) (Fin b) (Fin c) w hli hmem
 
 end GlobalTheory.HeightSubmodular

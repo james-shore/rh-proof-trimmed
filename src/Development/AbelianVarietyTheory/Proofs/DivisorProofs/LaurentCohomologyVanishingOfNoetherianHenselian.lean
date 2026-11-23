@@ -181,10 +181,10 @@ theorem GlobalTheory.EtC.laurent_vanishing_of_noetherian : ∀ (q : ℕ) [NeZero
   obtain ⟨hc⟩ := cocone_isColimit u
   have hqL : IsUnit (q : LaurentPolynomial A) := by
     have := hq.map (LaurentPolynomial.C : A →+* LaurentPolynomial A); simpa using this
-  obtain ⟨j, y, hy⟩ := (GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity q (diag u) (cocone u) hc n i).1 x hqL
+  obtain ⟨j, y, hy⟩ := (_root_.GlobalTheory.EtC.pairingProperties q (diag u) (cocone u) hc n i).1 x hqL
   haveI : Algebra.FiniteType ℤ (sub u j) := (Subalgebra.fg_iff_finiteType _).1 (sub_fg u j)
   haveI : IsNoetherianRing (sub u j) := Algebra.FiniteType.isNoetherianRing ℤ _
-  obtain ⟨C, _, hCn, hCsh, f, g, hfg⟩ := GlobalTheory.T.exists_noetherian_sh_factorization (sub u j) A hA (sub u j).val.toRingHom
+  obtain ⟨C, _, hCn, hCsh, f, g, hfg⟩ := _root_.GlobalTheory.NoethSHFactor.exists_noetherian_sh_factor (sub u j) A hA (sub u j).val.toRingHom
   haveI := hCn
   have hqS : IsUnit (q : sub u j) := by
     refine isUnit_iff_exists_inv.2 ⟨⟨u, mem_sub u j (Finset.mem_insert_self u j)⟩, ?_⟩

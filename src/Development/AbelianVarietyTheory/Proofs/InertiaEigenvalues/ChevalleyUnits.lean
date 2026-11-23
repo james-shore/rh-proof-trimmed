@@ -152,7 +152,7 @@ theorem core (E : Type) [Field E] [NumberField E] (l r b : ℕ) (hl : l.Prime) (
     rw [hw]; rfl
   have hfix : ∀ g : L ≃ₐ[K] L, g ⟨w, hwL⟩ = ⟨w, hwL⟩ := by
     intro g
-    have h1 := GlobalTheory.T.isFrob_fixes_root_of_one_mod_place K Ω M ζK hζK (v g) (hvM g) (B g) (hB g) (σ g) (hσ g) x (hx1 g) w hwx
+    have h1 := _root_.GlobalTheory.frob_fixes_root_of_one_mod K Ω M ζK hζK (v g) (hvM g) (B g) (hB g) (σ g) (hσ g) x (hx1 g) w hwx
     rw [← hg g]
     apply Subtype.ext
     rw [AlgEquiv.restrictNormalHom_apply]

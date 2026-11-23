@@ -63,7 +63,7 @@ theorem isCrys_of_letters : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : 
       cont := fun x => (hμ.mul continuous_const :
         Continuous fun g : ↥(GK K) => ((μ g : (↥LL.1)ˣ) : ↥LL.1) * x) }
   obtain ⟨⟨hfin, hle⟩, -, -⟩ :=
-    GlobalTheory.Per.FontaineTied.fontCore_all_of_tied l P AI hT K ↥LL.1 ↥(OL LL) hgood A
+    _root_.GlobalTheory.Per.FontaineAll.fontCore_of_tied l P AI hT K ↥LL.1 ↥(OL LL) hgood A
   haveI : Module.Finite ↥LL.1 ↥(Dcris (P.PD K) (charRep μ)) := hfin
   unfold IsCrys
   refine le_antisymm hle ?_

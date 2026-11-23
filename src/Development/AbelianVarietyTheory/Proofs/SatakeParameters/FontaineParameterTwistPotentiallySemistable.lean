@@ -69,7 +69,7 @@ theorem wdPst_twist_one_field : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (A
   haveI := hs.finite
   haveI := hm.finite
   haveI := ht.finite
-  obtain ⟨e, he1, he2⟩ := GlobalTheory.T.dpstLetter_twist_tensor_equiv P AI hT ι Bw h hj s m hs hm ht
+  obtain ⟨e, he1, he2⟩ := _root_.GlobalTheory.Pst.TwistLetters.wdSpace_twist_equiv P AI hT ι Bw h hj s m hs hm ht
   have f1 := isFrobSS_wdRep P ι Bw h hj (Bw.repE L s)
   have f2 := isFrobSS_wdRep P ι Bw h hj (Bw.repE L m)
   have f3 := isFrobSS_wdRep P ι Bw h hj (Bw.repE L (Formalism.MainNotions.SumRepresentations.At.twGL s (Matrix.GeneralLinearGroup.det.comp m)))
@@ -90,7 +90,7 @@ theorem wdAt_twist : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf
   have hu := IsModel.unique Bw (r := Formalism.MainNotions.SumRepresentations.At.twGL r (Matrix.GeneralLinearGroup.det.comp c)) (hm₃.enlarge l₃) hmt
   have q₃ := GlobalTheory.PstExt.isPst_enlarge P Bw l₃ t₃ hp₃
   rw [hu] at q₃
-  rw [e₁, e₂, e₃, ← GlobalTheory.T.potSemistableParameter_coefficientField_enlarge P ι Bw h hj l₃ t₃ hp₃, hu, ← GlobalTheory.T.potSemistableParameter_coefficientField_enlarge P ι Bw h hj l₁ r₁ hp₁, ← GlobalTheory.T.potSemistableParameter_coefficientField_enlarge P ι Bw h hj l₂ c₂ hp₂]
+  rw [e₁, e₂, e₃, ← _root_.GlobalTheory.Pst.EnlargeParam.wdPst_enlarge P ι Bw h hj l₃ t₃ hp₃, hu, ← _root_.GlobalTheory.Pst.EnlargeParam.wdPst_enlarge P ι Bw h hj l₁ r₁ hp₁, ← _root_.GlobalTheory.Pst.EnlargeParam.wdPst_enlarge P ι Bw h hj l₂ c₂ hp₂]
   exact wdPst_twist_one_field P AI hT ι Bw h hj _ _ (GlobalTheory.PstExt.isPst_enlarge P Bw l₁ r₁ hp₁)
     (GlobalTheory.PstExt.isPst_enlarge P Bw l₂ c₂ hp₂) q₃
 

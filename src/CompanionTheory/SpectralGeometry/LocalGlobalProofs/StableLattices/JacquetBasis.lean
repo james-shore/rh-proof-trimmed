@@ -52,13 +52,6 @@ namespace GlobalTheory.CompanionTheory.GradEig
 
 variable {n : ℕ}
 
-theorem Jm_mul_self (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  unfold Jm
-  rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> norm_num
-
 theorem trace_eq_zero {ε : Fin n → Bool} {A : Matrix (Fin n) (Fin n) ℂ} (h : IsGrad ε A) : A.trace = 0 := by
   obtain ⟨hG, hH, -, -⟩ := h
   have hG' : A.conjTranspose * Jm ε + Jm ε * A = 0 := hG
@@ -66,7 +59,7 @@ theorem trace_eq_zero {ε : Fin n → Bool} {A : Matrix (Fin n) (Fin n) ℂ} (h 
   have h1 : A * Jm ε = -(Jm ε * A) := eq_neg_of_add_eq_zero_left hG'
   have h2 : (A * Jm ε * Jm ε).trace = -(Jm ε * A * Jm ε).trace := by
     rw [h1, Matrix.neg_mul, Matrix.trace_neg]
-  rw [Matrix.mul_assoc A, Jm_mul_self, Matrix.mul_one, Matrix.trace_mul_cycle, Jm_mul_self,
+  rw [Matrix.mul_assoc A, _root_.Formalism.REAL.Jm_mul_self, Matrix.mul_one, Matrix.trace_mul_cycle, _root_.Formalism.REAL.Jm_mul_self,
     Matrix.one_mul] at h2
   linear_combination h2 / 2
 

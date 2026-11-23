@@ -47,6 +47,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.SameIdIff
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ClsLinCombSingle
 import Development.AbelianVarietyTheory.PublishedTheorems.AbelianLaws.PrincipalPolarisationOneSection
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsAdditiveOfUniversal
+import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.InvariantFunctionsDescend
 
 @[expose] public section
 
@@ -87,14 +88,6 @@ theorem evU_val_restrict {X Z : Scheme.{0}} (W : X.Opens) (y : Z ⟶ W.toScheme)
   have e := congrArg (fun φ => φ.hom r.val) (topIso_inv_appTop W y (fun z _ => h z))
   exact e.symm
 
-theorem appTop_injective_of_epi {X Y : Scheme.{0}} (Q : X ⟶ Y) [Epi Q] :
-    Function.Injective Q.appTop.hom := by
-  intro a b hab
-  have e : Q ≫ Out.TLinPf.mOf a = Q ≫ Out.TLinPf.mOf b := by
-    rw [Out.TLinPf.comp_mOf, Out.TLinPf.comp_mOf, hab]
-  rw [cancel_epi] at e
-  rw [← Out.TLinPf.fnOf_mOf a, e, Out.TLinPf.fnOf_mOf]
-
 theorem unit_descends : ∀ {X Y : Scheme.{0}} (π : X ⟶ Y) [Flat π] [Surjective π] [IsAffineHom π] (U : Y.Opens) (r : Γ(X, π ⁻¹ᵁ U)ˣ),
     (∀ (Z : Scheme.{0}) (g₁ g₂ : Z ⟶ X) (h₁ : ∀ z, g₁ z ∈ π ⁻¹ᵁ U) (h₂ : ∀ z, g₂ z ∈ π ⁻¹ᵁ U),
       g₁ ≫ π = g₂ ≫ π → evU g₁ h₁ r = evU g₂ h₂ r) →
@@ -121,7 +114,7 @@ theorem unit_descends : ∀ {X Y : Scheme.{0}} (π : X ⟶ Y) [Flat π] [Surject
     simp only [evU, map_inv] at k ⊢
     rw [k])
   have hvv : v * v' = 1 := by
-    apply appTop_injective_of_epi (π ∣_ U)
+    apply _root_.GlobalTheory.FunDescent.appTop_injective (π ∣_ U)
     rw [map_mul, hv, hv', ← map_mul, Units.mul_inv, map_one, map_one]
   have h1 : U.topIso.hom.hom v * U.topIso.hom.hom v' = 1 := by
     rw [← map_mul, hvv, map_one]

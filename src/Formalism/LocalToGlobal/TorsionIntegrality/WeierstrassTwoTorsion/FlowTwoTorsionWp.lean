@@ -60,24 +60,16 @@ universe u v
 
 namespace Formalism.L2.Th1.A
 
-theorem compInvSpec : CompInvSpec.{u} := composition_inverse_spec
-theorem compInvMap : CompInvMap.{u, v} := composition_inverse_map
-theorem integSpec : IntegSpec.{u} := integration_spec
+alias compInvSpec := _root_.Formalism.L2.Th1.A.composition_inverse_spec
+alias compInvMap := _root_.Formalism.L2.Th1.A.composition_inverse_map
+alias integSpec := _root_.Formalism.L2.Th1.A.integration_spec
 
-theorem flowNegUW : FlowNegUW.{u} := chartFlowNegation
-theorem chordRegular : ChordRegular.{u} := chordFormula
-theorem flowLogDeriv : FlowLogDeriv.{u} := flowLogDerivative
-theorem flowTwoTorsion : FlowTwoTorsion.{u} := twoTorsionTranslation
-theorem flowTwoTorsionWp : FlowTwoTorsionWp.{u} := twoTorsionTranslationWeierstrassForm
-
-theorem wSerSpec : WSerSpec.{u} := w_series_spec
-theorem wSerFactor : WSerFactor.{u} := w_series_factorization
-theorem unitSpec : UnitSpec.{u} := invariant_differential_units
-theorem seriesMap : SeriesMap.{u, v} := series_map
-theorem flowU : FlowU.{u} := unit_flow
-theorem dLSpec : DLSpec.{u} := invariant_derivation_spec
-theorem flowL : FlowL.{u} := invariant_flow
-theorem iSerSpec : ISerSpec.{u} := iSerSpec_of wSerSpec wSerFactor unitSpec flowU flowNegUW
+alias wSerSpec := _root_.Formalism.L2.Th1.A.w_series_spec
+alias wSerFactor := _root_.Formalism.L2.Th1.A.w_series_factorization
+alias unitSpec := _root_.Formalism.L2.Th1.A.invariant_differential_units
+alias seriesMap := _root_.Formalism.L2.Th1.A.series_map
+alias flowU := _root_.Formalism.L2.Th1.A.unit_flow
+theorem iSerSpec : ISerSpec.{u} := iSerSpec_of wSerSpec wSerFactor unitSpec flowU _root_.Formalism.L2.Th1.A.chartFlowNegation
 
 theorem logSpec : LogSpec.{u} := logSpec_of integSpec unitSpec
 theorem expSpec : ExpSpec.{u} := expSpec_of integSpec compInvSpec unitSpec
@@ -86,13 +78,8 @@ theorem logNeg : LogNeg.{u} := logNeg_of integSpec compInvSpec unitSpec iSerSpec
 theorem flowZ : FlowZ.{u} := flowZ_of expSpec chainZ
 theorem wpODE : WpODE.{u} := wpODE_of expSpec chainZ
 
-theorem fglMap : FglMap.{u, v} := formal_group_map
-theorem fglChord : FglChord.{u} := formal_group_chord
-theorem fglSum : FglSum.{u} := formal_group_sum
-
+alias fglChord := _root_.Formalism.L2.Th1.A.formal_group_chord
 theorem tSpec : TSpec.{u} := tSpec_of iSerSpec
-theorem plusChord : PlusChord.{u} := plusChord_of flowL
-theorem plusFlow : PlusFlow.{u} := plusFlow_of dLSpec flowL
-theorem plusMap : PlusMap.{u, v} := addition_map
-
+theorem plusChord : PlusChord.{u} := plusChord_of _root_.Formalism.L2.Th1.A.invariant_flow
+theorem plusFlow : PlusFlow.{u} := plusFlow_of _root_.Formalism.L2.Th1.A.invariant_derivation_spec _root_.Formalism.L2.Th1.A.invariant_flow
 end Formalism.L2.Th1.A

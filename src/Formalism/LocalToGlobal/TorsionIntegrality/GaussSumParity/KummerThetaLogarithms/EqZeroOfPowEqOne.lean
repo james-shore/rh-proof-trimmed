@@ -68,10 +68,7 @@ def gLog (K : Type) [Field K] (l : ℕ) (φ : ZMod d → τ) (s : ZMod d) : MvPo
   fun n => ∑ e ∈ Finset.range (n.degree + 1),
     if n = Finsupp.single (φ (s - 2 * (e : ZMod d))) ((l ^ 2) ^ e) then ((l : K) ^ e)⁻¹ else 0
 
-lemma pow_inj (hl : 2 ≤ l) {a b : ℕ} (h : (l ^ 2) ^ a = (l ^ 2) ^ b) : a = b := by
-  first
-  | exact Nat.pow_right_injective (by nlinarith) h
-  | exact Nat.pow_right_injective (le_trans hl (Nat.le_self_pow (by norm_num) l)) h
+alias pow_inj := _root_.Formalism.InvariantFactorPaths.G7.powq_inj
 
 lemma coeff_gLog (φ : ZMod d → τ) (s : ZMod d) (n : τ →₀ ℕ) :
     coeff n (gLog K l φ s) = ∑ e ∈ Finset.range (n.degree + 1),

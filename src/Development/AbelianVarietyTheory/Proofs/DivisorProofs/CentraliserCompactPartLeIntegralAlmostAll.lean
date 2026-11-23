@@ -50,16 +50,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 namespace GlobalTheory.BCT.GoodCpt
 
-theorem pow_mem_of_mem {K : Type} [Field K] (O : Subring K) {n : ℕ} (M : Matrix (Fin n) (Fin n) K)
-    (hM : ∀ i j, M i j ∈ O) : ∀ k : ℕ, ∀ i j, (M ^ k) i j ∈ O := by
-  intro k
-  induction k with
-  | zero => intro i j; rw [pow_zero, Matrix.one_apply]; split_ifs <;> simp [O.one_mem, O.zero_mem]
-  | succ k ih =>
-    intro i j
-    rw [pow_succ, Matrix.mul_apply]
-    exact O.sum_mem fun m _ => O.mul_mem (ih i m) (hM m j)
-
 theorem gram_map {K L : Type} [Field K] [Field L] (f : K →+* L) {n : ℕ} (g : Matrix (Fin n) (Fin n) K) :
     (Matrix.of fun i j : Fin n => ((g.map f) ^ ((i : ℕ) + j)).trace) =
       (Matrix.of fun i j : Fin n => (g ^ ((i : ℕ) + j)).trace).map f := by
@@ -73,7 +63,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
   intro E _ _ _ hU n γ hs
   set g : Matrix (Fin n) (Fin n) E := γ.1.val with hgdef
   set G : Matrix (Fin n) (Fin n) E := Matrix.of fun i j : Fin n => (g ^ ((i : ℕ) + j)).trace with hGdef
-  have hd : G.det ≠ 0 := GlobalTheory.T.det_trace_pow_matrix_ne_zero_of_separable g hs
+  have hd : G.det ≠ 0 := _root_.GlobalTheory.TraceGram.det_trace_pow_gram_ne_zero g hs
   have h1 : ∀ᶠ w in (cofinite : Filter (Pl E)), ∀ i j, w.valuation E (g i j) ≤ 1 := by
     simp only [Filter.eventually_all]
     exact fun i j => GlobalTheory.LocRatPt.eventually_valuation_le_one _
@@ -106,7 +96,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
     rw [hcm.mul_pow, ← pow_mul, Matrix.mul_apply, Finset.mul_sum]
     refine (Ov E w).sum_mem fun m _ => ?_
     rw [← mul_assoc, ← hpow]
-    exact (Ov E w).mul_mem (hb _ i m) (pow_mem_of_mem _ gw hgwO _ m l)
+    exact (Ov E w).mul_mem (hb _ i m) (_root_.GlobalTheory.TraceGram.pow_entry_mem _ gw hgwO _ m l)
   rw [cptPart, Subgroup.closure_le]
   rintro t ⟨ht, hc⟩
   have ht' : t * locPt w γ = locPt w γ * t := ht

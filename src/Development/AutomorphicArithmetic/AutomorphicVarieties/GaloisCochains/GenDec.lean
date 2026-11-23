@@ -58,12 +58,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisCocha
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module UpperTheory.V UpperTheory.V.Fr UpperTheory.V.GC
 
-private theorem pick {k D : Type} [Field k] (P : Set D) {p0 : D} (hp0 : p0 ∈ P) (W : Submodule k (D → k))
-    (hW : ∀ f, f ∈ W ↔ ∀ p ∈ P, f p = 0) : ∀ (n : ℕ) (Y : Submodule k (D → k)) [FiniteDimensional k Y],
-    finrank k Y ≤ n + finrank k (Y ⊓ W : Submodule k (D → k)) →
-    ∃ u : Fin n → D, (∀ a, u a ∈ P) ∧ ∀ f ∈ Y, (∀ a, f (u a) = 0) → f ∈ W :=
-  _root_.UpperTheory.Reformulated.B.InterpolationPointsOfFinrankBound.pick P hp0 W hW
-
 private theorem cyc1 {D : Type} [Group D] [TopologicalSpace D] [IsTopologicalGroup D] [CompactSpace D]
     {l : ℕ} [Fact l.Prime] (hl : l ≠ 2) (J : Subgroup D) (hJ : IsClosed (J : Set D)) (e : D →* ℤ_[l]ˣ)
     (he : Continuous e) (N : Set D) (hN : IsOpen N) (hJN : ∀ g ∈ J, e g = 1 → g ∈ N) :
@@ -216,14 +210,14 @@ private theorem core {D : Type} [Group D] [TopologicalSpace D] [IsTopologicalGro
     Submodule.finiteDimensional_of_le inf_le_left
   have h1 := Submodule.finrank_lt_finrank_of_lt hlt
   by_cases hYW : Y ⊓ W = ⊥
-  · obtain ⟨u, hu, hu'⟩ := pick P hP W hW (n + 1) Y (by omega)
+  · obtain ⟨u, hu, hu'⟩ := _root_.UpperTheory.Reformulated.B.InterpolationPointsOfFinrankBound.pick P hP W hW (n + 1) Y (by omega)
     refine ⟨u, fun a => (hu a).1, fun a _ => (hu a).2, fun f c1 c2 c3 c4 => ?_⟩
     have hf : f ∈ Y := ⟨(hX f).mpr ⟨c1, c2⟩, c3⟩
     have : f ∈ Y ⊓ W := ⟨hf, hu' f hf c4⟩
     rwa [hYW] at this
   · have h2 : finrank (ZMod l) (Y ⊓ W : Submodule (ZMod l) (D → ZMod l)) ≠ 0 := fun h =>
       hYW (Submodule.finrank_eq_zero.mp h)
-    obtain ⟨u, hu, hu'⟩ := pick P hP W hW n Y (by omega)
+    obtain ⟨u, hu, hu'⟩ := _root_.UpperTheory.Reformulated.B.InterpolationPointsOfFinrankBound.pick P hP W hW n Y (by omega)
     haveI : Finite (Y ⊓ W : Submodule (ZMod l) (D → ZMod l)) := Module.finite_of_finite (ZMod l)
     let N : Set D := ⋂ f : (Y ⊓ W : Submodule (ZMod l) (D → ZMod l)), f.1 ⁻¹' {0}
     have hN : IsOpen N := isOpen_iInter_of_finite fun f =>

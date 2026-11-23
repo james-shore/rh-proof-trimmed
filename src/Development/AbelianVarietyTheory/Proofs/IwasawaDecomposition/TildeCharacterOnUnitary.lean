@@ -91,7 +91,7 @@ theorem chi_laws (R : Ranks) (H : Formalism.BasicNotions.Host R) (χ : HChar H.E
     exact ha v
   · letI := H.cmStar
     intro z
-    obtain ⟨h1, h2⟩ := GlobalTheory.T.exists_conj_quotient_of_rationalUnitaryDeterminantMap R H
+    obtain ⟨h1, h2⟩ := _root_.GlobalTheory.Mem.RatPts.rat_points R H
     obtain ⟨k, hk⟩ := h2 z
     rw [← h1 k z hk, tildeD_mk H hK]
     have e := congrArg χ.1 (infDiag_mul_finPart k)

@@ -76,7 +76,7 @@ theorem reading_alt : _root_.GlobalTheory.CovTop.LiftsCondition fun Fm x _ ι p 
     ∀ s : ℤ, (s = -(cZero (Fm.D x ι) ((i : ℕ) + 1)) ∨ s = 0 ∨ s = cZero (Fm.D x ι) ((i : ℕ) + 1)) →
       (∀ τ, Antitone ((laOf (dat p i) (wtA (p.κ i)) (p.κ i).n + s • hodgeWt (dat p i)) τ)) ∧
       ∀ τ, 1 ≤ gap ((laOf (dat p i) (wtA (p.κ i)) (p.κ i).n + s • hodgeWt (dat p i)) τ) ((dat p i).p - 1) := by
-  have hA := _root_.GlobalTheory.T.weight_parameter_strict_antitone_alt _root_.GlobalTheory.T.cov_size_bound
+  have hA := _root_.GlobalTheory.QuoWt.weights_at_point_alt _root_.GlobalTheory.CovTop.SizeRows.size_alt_bis
   have hB := _root_.GlobalTheory.CovTop.WtShape.wtN_z
   unfold _root_.GlobalTheory.CovTop.LiftWeightNumerator at hB
   unfold _root_.GlobalTheory.CovTop.LiftsCondition at hA hB ⊢

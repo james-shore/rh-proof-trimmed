@@ -201,7 +201,7 @@ theorem stRegular : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf 
       exact charZero_of_injective_algebraMap this
     have hA : ∀ (g : GQ l) (p : Bst P), actSt P g p = (p.map ((P.actQ g).toRingEquiv : P.R.B →+* P.R.B)).comp (X + C ((kummer P g : ℚ_[l]) • P.tB)) :=
       fun g p => stHom_apply P (P.actQ g) _ p
-    obtain ⟨d, d', hd, e, hf⟩ := GlobalTheory.T.twistedShift_fixed_ratio_const_domain (fun g : ↥(GK K) => (P.actQ (g : GQ l)).toRingEquiv)
+    obtain ⟨d, d', hd, e, hf⟩ := _root_.GlobalTheory.InvRatFun.fixed_ratio_const (fun g : ↥(GK K) => (P.actQ (g : GQ l)).toRingEquiv)
       (fun g => (kummer P (g : GQ l) : ℚ_[l]) • P.tB)
       (fun d d' hd hh => StLat.kummer_not_frac l P AI T K d d' hd fun g hg => hh ⟨g, hg⟩) b' b hb (fun g => by
         rw [← hA, ← hA]; exact h g)

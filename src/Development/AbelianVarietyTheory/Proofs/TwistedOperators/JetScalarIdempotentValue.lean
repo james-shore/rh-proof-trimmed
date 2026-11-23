@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FrT
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntStd
 
 @[expose] public section
 
@@ -71,33 +72,30 @@ theorem mod1All_root {ζ : ℂ} {n : ℕ} (hn : 0 < n) (hζ : ζ ^ n = 1) : Mod1
   have h2 : (σ ⟨ζ, qbar_of_root hn hζ⟩) ^ n = 1 := by rw [← map_pow, h1, map_one]
   exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hn.ne').1 (by rw [← norm_pow, h2, norm_one])
 
-theorem lamC_mem {q : ℕ} [Fact q.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[q]) {x : ℂ} (h : x ∈ TaylorLogMetric.Qbar) :
-    TaylorLogMetric.lamC lam x = lam ⟨x, h⟩ := dif_pos h
-
 theorem unitAt_mul {q : ℕ} [Fact q.Prime] {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ TaylorLogMetric.Qbar)
     (ux : GlobalTheory.MovedKappaEx.UnitAt q x) (uy : GlobalTheory.MovedKappaEx.UnitAt q y) : GlobalTheory.MovedKappaEx.UnitAt q (x * y) := by
   intro lam
   have e : (⟨x * y, mul_mem hx hy⟩ : TaylorLogMetric.Qbar) = ⟨x, hx⟩ * ⟨y, hy⟩ := rfl
   have hx' := ux lam
   have hy' := uy lam
-  rw [lamC_mem lam hx] at hx'
-  rw [lamC_mem lam hy] at hy'
-  rw [lamC_mem lam (mul_mem hx hy), e, map_mul, norm_mul, hx', hy', one_mul]
+  rw [_root_.Formalism.L2.KerInert.ISd.lamC_of_mem lam hx] at hx'
+  rw [_root_.Formalism.L2.KerInert.ISd.lamC_of_mem lam hy] at hy'
+  rw [_root_.Formalism.L2.KerInert.ISd.lamC_of_mem lam (mul_mem hx hy), e, map_mul, norm_mul, hx', hy', one_mul]
 
 theorem unitAt_inv {q : ℕ} [Fact q.Prime] {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar)
     (ux : GlobalTheory.MovedKappaEx.UnitAt q x) : GlobalTheory.MovedKappaEx.UnitAt q x⁻¹ := by
   intro lam
   have e : (⟨x⁻¹, inv_mem hx⟩ : TaylorLogMetric.Qbar) = (⟨x, hx⟩ : TaylorLogMetric.Qbar)⁻¹ := rfl
   have hx' := ux lam
-  rw [lamC_mem lam hx] at hx'
-  rw [lamC_mem lam (inv_mem hx), e, map_inv₀, norm_inv, hx', inv_one]
+  rw [_root_.Formalism.L2.KerInert.ISd.lamC_of_mem lam hx] at hx'
+  rw [_root_.Formalism.L2.KerInert.ISd.lamC_of_mem lam (inv_mem hx), e, map_inv₀, norm_inv, hx', inv_one]
 
 theorem unitAt_root (q : ℕ) [Fact q.Prime] {ζ : ℂ} {n : ℕ} (hn : 0 < n) (hζ : ζ ^ n = 1) :
     GlobalTheory.MovedKappaEx.UnitAt q ζ := by
   intro lam
   have h1 : (⟨ζ, qbar_of_root hn hζ⟩ : TaylorLogMetric.Qbar) ^ n = 1 := by ext; simpa using hζ
   have h2 : (lam ⟨ζ, qbar_of_root hn hζ⟩) ^ n = 1 := by rw [← map_pow, h1, map_one]
-  rw [lamC_mem lam (qbar_of_root hn hζ)]
+  rw [_root_.Formalism.L2.KerInert.ISd.lamC_of_mem lam (qbar_of_root hn hζ)]
   exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hn.ne').1 (by rw [← norm_pow, h2, norm_one])
 
 end GlobalTheory.SplitMoveKappa

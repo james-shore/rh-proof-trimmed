@@ -83,9 +83,6 @@ lemma rr_prod_ite {l : ℕ} (w x : Fin l → Fin n × Fin n) :
   · obtain ⟨i, hi⟩ := Function.ne_iff.mp h
     exact Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi)
 
-lemma rr_op_one {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) : T.op 1 = 1 := by
-  simp [KType.op]
-
 lemma rr_op_mul {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) (k k' : KG ε) (v : T.V) :
     T.op (k * k') v = T.op k (T.op k' v) := by
   simp [KType.op]
@@ -95,7 +92,7 @@ theorem rho_representation_holds : PositivityTheory.RgDs.K.RhoRep := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · intro a
     funext x'
-    simp only [rhoA, rr_toMK_one, rr_adC_one, rr_prod_ite, rr_op_one, ite_smul, one_smul, zero_smul,
+    simp only [rhoA, rr_toMK_one, rr_adC_one, rr_prod_ite, _root_.ReciprocityTheory.ChartRestriction.DS.pdA_op_one, ite_smul, one_smul, zero_smul,
       Finset.sum_ite_eq', Finset.mem_univ, if_true]
     rfl
   · intro k k' a

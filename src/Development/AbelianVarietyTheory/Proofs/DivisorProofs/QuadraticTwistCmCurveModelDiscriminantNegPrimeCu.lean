@@ -63,9 +63,7 @@ theorem modelAt_of_val {V : ValuationSubring ℂ} {F : IntermediateField ℚ ℂ
   obtain ⟨C, h1, h2, h3, h4, h5, h6⟩ := h
   exact ⟨C, h1, h2, h3, h4, h5, h6.trans hv⟩
 
-theorem mem_of_isIntegral (V : ValuationSubring ℂ) {y : ℂ} (hy : IsIntegral ℤ y) : y ∈ V := by
-  obtain ⟨z, hz⟩ := IsIntegrallyClosed.algebraMap_eq_of_integral (R := V) (K := ℂ) (hy.tower_top (A := V))
-  exact hz ▸ z.2
+alias mem_of_isIntegral := _root_.GlobalTheory.CMModel.TorsMemVal.mem_of_isIntegral
 
 theorem short_Δ (d a b : ℂ) : (⟨0, 0, 0, d ^ 2 * a, d ^ 3 * b⟩ : WeierstrassCurve ℂ).Δ =
     d ^ 6 * (⟨0, 0, 0, a, b⟩ : WeierstrassCurve ℂ).Δ := by
@@ -107,11 +105,11 @@ theorem GlobalTheory.CMModel.twist_modelAt_all : ∀ (p : ℕ) (F : Intermediate
         have h2 : Nat.Coprime p 2 := (Nat.coprime_primes hp Nat.prime_two).2 (by omega)
         have h3' : Nat.Coprime p 3 := (Nat.coprime_primes hp Nat.prime_three).2 (by omega)
         simpa using Nat.Coprime.mul_right h2 h3'
-      rcases GlobalTheory.T.valuation_natCast_eq_one_or_of_coprime V p 6 hc with h | h
+      rcases _root_.GlobalTheory.CMModel.valuation_natCast_eq_one_of_coprime V p 6 hc with h | h
       · exact absurd h hv
       · exact_mod_cast h
-    obtain ⟨A, hAF, hA0, hA⟩ := GlobalTheory.T.exists_cube_valuation_eq_discriminant p F L t hp h4 h3 hD V
-    have hsq8 := GlobalTheory.T.prodDerivWeierstrassPOverSquares_pow_eight_mul p F L t hp h4 h3 hD
+    obtain ⟨A, hAF, hA0, hA⟩ := _root_.GlobalTheory.CMModel.exists_mem_valuation_cube_eq_Δ p F L t hp h4 h3 hD V
+    have hsq8 := _root_.GlobalTheory.CMModel.sqProd_pow_eight_mul p F L t hp h4 h3 hD
     have hΔF : (latticeCurve L).Δ ∈ F := by
       rw [latticeCurve_Δ]
       exact sub_mem (pow_mem hD.g₂_mem 3) (mul_mem h27 (pow_mem hD.g₃_mem 2))

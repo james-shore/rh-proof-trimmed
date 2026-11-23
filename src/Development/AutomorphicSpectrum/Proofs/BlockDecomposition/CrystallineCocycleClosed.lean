@@ -72,7 +72,7 @@ theorem dlog_rel (δ : DividedPowers J) (N : ℕ)
     (hN : ∀ k, N ≤ k → ∀ x ∈ J, (k.factorial : A) * δ.dpow (k + 1) x = 0) {a b c e : A}
     (ha : a - 1 ∈ J) (hb : b - 1 ∈ J) (hc : c - 1 ∈ J) (he : e - 1 ∈ J) (h : a * b = c * e) :
     dlog δ N a + dlog δ N b = dlog δ N c + dlog δ N e := by
-  rw [← GlobalTheory.T.divided_power_log_multiplicative δ N hN a b ha hb, ← GlobalTheory.T.divided_power_log_multiplicative δ N hN c e hc he, h]
+  rw [← _root_.GlobalTheory.CompanionTheory.TruncLog.dlog_mul δ N hN a b ha hb, ← _root_.GlobalTheory.CompanionTheory.TruncLog.dlog_mul δ N hN c e hc he, h]
 
 theorem divided_power_log_three_term_relation (δ : DividedPowers J) (N : ℕ)
     (hN : ∀ k, N ≤ k → ∀ x ∈ J, (k.factorial : A) * δ.dpow (k + 1) x = 0) {a b c e f : A}
@@ -83,7 +83,7 @@ theorem divided_power_log_three_term_relation (δ : DividedPowers J) (N : ℕ)
     have : a * b - 1 = (a - 1) * b + (b - 1) := by ring
     rw [this]
     exact J.add_mem (J.mul_mem_right _ ha) hb
-  rw [← GlobalTheory.T.divided_power_log_multiplicative δ N hN a b ha hb, ← GlobalTheory.T.divided_power_log_multiplicative δ N hN _ c hab hc, ← GlobalTheory.T.divided_power_log_multiplicative δ N hN e f he hf, h]
+  rw [← _root_.GlobalTheory.CompanionTheory.TruncLog.dlog_mul δ N hN a b ha hb, ← _root_.GlobalTheory.CompanionTheory.TruncLog.dlog_mul δ N hN _ c hab hc, ← _root_.GlobalTheory.CompanionTheory.TruncLog.dlog_mul δ N hN e f he hf, h]
 
 theorem unit_lift (J : Ideal A) (hJ : ∀ x ∈ J, IsNilpotent x) (u : (A ⧸ J)ˣ) :
     ∃ w : Aˣ, Units.map (Ideal.Quotient.mk J).toMonoidHom w = u := by

@@ -131,7 +131,7 @@ theorem map_unit (lam : Measure (Fv F v)) (h : IsStdV v lam) (u : Fv F v) (hu : 
   have hu0 : u ≠ 0 := by
     rintro rfl
     simp at hu
-  refine (GlobalTheory.T.map_addHaar_addEquiv_eq_smul_and_eq_of_compact_open (Fv F v) (Fv F v) lam lam (mulAdd v u hu0) (mulAdd_continuous v u hu0)
+  refine (_root_.GlobalTheory.CompanionTheory.SW.HaarTransport.map_addEquiv_haar (Fv F v) (Fv F v) lam lam (mulAdd v u hu0) (mulAdd_continuous v u hu0)
     (mulAdd_symm_continuous v u hu0)).2 (v.adicCompletionIntegers F : Set (Fv F v))
     (v.adicCompletionIntegers F : Set (Fv F v)) (isCompact_integers v) (isOpen_integers v)
     ⟨0, zero_mem _⟩ (fun x => ?_) rfl
@@ -160,7 +160,7 @@ theorem map_unif (lam : Measure (Fv F v)) (h : IsStdV v lam) (π : Fv F v)
     exact WithZero.exp_ne_zero hπ.symm
   haveI : ((Ideal.absNorm v.asIdeal : ℝ≥0∞) • lam).IsAddHaarMeasure :=
     Measure.IsAddHaarMeasure.smul lam hq0 hqt
-  refine (GlobalTheory.T.map_addHaar_addEquiv_eq_smul_and_eq_of_compact_open (Fv F v) (Fv F v) lam ((Ideal.absNorm v.asIdeal : ℝ≥0∞) • lam)
+  refine (_root_.GlobalTheory.CompanionTheory.SW.HaarTransport.map_addEquiv_haar (Fv F v) (Fv F v) lam ((Ideal.absNorm v.asIdeal : ℝ≥0∞) • lam)
     (mulAdd v π hπ0) (mulAdd_continuous v π hπ0) (mulAdd_symm_continuous v π hπ0)).2
     (v.adicCompletionIntegers F : Set (Fv F v)) {t | Valued.v t < 1} (isCompact_integers v)
     (isOpen_integers v) ⟨0, zero_mem _⟩ (fun x => ?_) ?_

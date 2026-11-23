@@ -116,7 +116,7 @@ theorem symLift_acts_as_phi : LL → AllUF fun {R} _ _ {I} {D} {A} {G} _ _ U F _
   obtain ⟨c, hc, hcΦ⟩ := exists_ratio gf p hw.1 hw'
   have e : Φ' = c • Φ := LinearMap.ext fun u => ((hΦ' _ _).1 (hcΦ u _ ((hΦ _ _).2 rfl))).symm
   have h₁ : ∀ u, (Φ ^ N) u = u := fun u => by
-    have := GlobalTheory.T.symmetricFrame_phi_pow_order_eq_id hL R I hI D F N hN p w hw (fun i => (Φ ^ (i : ℕ)) u) (fun i => (hΦ _ _).2 (by
+    have := _root_.GlobalTheory.UT.PhiOrder.main hL R I hI D F N hN p w hw (fun i => (Φ ^ (i : ℕ)) u) (fun i => (hΦ _ _).2 (by
       simp [pow_succ']))
     simpa using this
   have h₂ : ∀ u, (Φ' ^ N) u = u := fun u => by
@@ -138,7 +138,7 @@ theorem symLift_acts_as_phi : LL → AllUF fun {R} _ _ {I} {D} {A} {G} _ _ U F _
     rw [hp'] at kN
     exact (b₁ v).unique kN hv
   by_cases hcN : c ^ N = 1
-  · have hT : TXFrame N p w' := ⟨hw', GlobalTheory.T.frame_sq_eq_of_symmetric_thetaElement hL R I hI D A G hG U F N hN1 p θ w₀ w' hw₀ hw' H hθ.sym,
+  · have hT : TXFrame N p w' := ⟨hw', _root_.GlobalTheory.SymFrame.sq_frame_of_symmetric hL R I hI D A G hG U F N hN1 p θ w₀ w' hw₀ hw' H hθ.sym,
       fun κ hκ z J hJ => by
         have a := hc z J hJ
         rw [hcN, map_one, gs_eq _ z ⊤ trivial, map_one, map_one, _root_.one_mul,

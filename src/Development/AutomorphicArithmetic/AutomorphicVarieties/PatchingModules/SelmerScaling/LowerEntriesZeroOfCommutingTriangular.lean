@@ -82,11 +82,6 @@ private theorem lower_entries_zero_of_commuting_triangular {K ι : Type} [Field 
     have h4 : (T g i i - T g j j) * Y i j = 0 := by linear_combination h3
     exact (mul_eq_zero.1 h4).resolve_left (sub_ne_zero.2 hg)
 
-private theorem upper_triangular_mul {K : Type} [Field K] {n : ℕ} (U T : Matrix (Fin n) (Fin n) K)
-    (hU : ∀ i j, j < i → U i j = 0) (hT : ∀ i j, j < i → T i j = 0) :
-    ∀ i j, j < i → (U * T) i j = 0 :=
-  _root_.UpperTheory.Reformulated.B.Qe38.upper_triangular_mul U T hU hT
-
 private theorem conjugate_commutator_identity {K : Type} [Field K] {n : ℕ} (w wi r r' Y : Matrix (Fin n) (Fin n) K)
     (h1 : w * wi = 1) (h2 : r' * r = 1) :
     (wi * (r * Y * r' - Y) * w) * (wi * r * w) =
@@ -114,7 +109,7 @@ theorem UpperTheory.V.Pa.localInvariants_eq_zero :
     have hinv : x.ρX x.Fr (G0.φ v g)⁻¹ * x.ρX x.Fr (G0.φ v g) = 1 := by
       rw [← h5, inv_mul_cancel, h6]
     have e := conjugate_commutator_identity (x.wX x.Fr v) (x.wiX x.Fr v) _ _ Y h1 hinv
-    have z := upper_triangular_mul _ _ (H g) (h4 g).1 a b hab
+    have z := _root_.UpperTheory.Reformulated.B.Qe38.upper_triangular_mul _ _ (H g) (h4 g).1 a b hab
     unfold dY at z
     rw [e, Matrix.sub_apply] at z
     exact sub_eq_zero.1 z

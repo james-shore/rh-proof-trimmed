@@ -216,8 +216,8 @@ theorem main : ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommG
   obtain ⟨iW, dW⟩ := dual_latIn h hs hp W hsW hpW q (Submodule.projectionOnto_surjective hc.symm)
     (fun x a => by conv_rhs => rw [← hpq x, map_add (f := _), LinearMap.add_apply, horth, zero_add]) L hL
   have hLd : L ≤ dual h L := by rw [ht]; exact le_sup_left
-  have nL := (GlobalTheory.T.hermitianLatticeDiscriminantOrder_ne_zero_unimodular K V h hK hs (nondeg h hp) L hL).1
-  have nU := (GlobalTheory.T.hermitianLatticeDiscriminantOrder_ne_zero_unimodular K U _ hK hsU (nondeg _ hpU) _ iU).1
+  have nL := (_root_.GlobalTheory.Mass.DiscOrder.main K V h hK hs (nondeg h hp) L hL).1
+  have nU := (_root_.GlobalTheory.Mass.DiscOrder.main K U _ hK hsU (nondeg _ hpU) _ iU).1
   have mU := idx_mul _ _ _ (latIn_le U p hp1 L) (Submodule.map_mono hLd)
   have mW := idx_mul _ _ _ (latIn_le W q hq1 L) (Submodule.map_mono hLd)
   have sw := idx_swap U W p q hpq L

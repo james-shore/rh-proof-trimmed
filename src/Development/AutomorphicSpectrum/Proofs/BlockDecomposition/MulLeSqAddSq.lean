@@ -42,6 +42,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IsotropicMahlerBounds.LogAbsoluteWedges.WedgeSub
+import GroundTheory.AutomorphicForms.HilbertSchmidt
 
 @[expose] public section
 
@@ -56,15 +57,6 @@ namespace GlobalTheory.CompanionTheory.LBoundProof
 attribute [local instance] borelH
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {a b : ℕ}
-
-theorem mul_le_sq_add_sq (p q : ℝ≥0∞) : p * q ≤ p ^ 2 + q ^ 2 := by
-  rcases le_total p q with h | h
-  · calc p * q ≤ q * q := by gcongr
-      _ = q ^ 2 := (sq q).symm
-      _ ≤ _ := le_add_self
-  · calc p * q ≤ p * p := by gcongr
-      _ = p ^ 2 := (sq p).symm
-      _ ≤ _ := le_self_add
 
 theorem lInt_eq {ι : Type} [Fintype ι] (D : Dom E a b) (k₁ k₂ : H E a b → ι → Hs (ι := ι) D) (τ : ℝ)
     (U : Hs (ι := ι) D →L[ℂ] Hs (ι := ι) D) :
@@ -83,7 +75,7 @@ theorem enorm_inner_le {ι : Type} (D : Dom E a b) (U : Hs (ι := ι) D →L[ℂ
   calc ‖inner ℂ u (U v)‖ₑ ≤ ‖u‖ₑ * ‖U v‖ₑ := h1
     _ ≤ ‖u‖ₑ * (‖U‖ₑ * ‖v‖ₑ) := by gcongr; exact U.le_opENorm v
     _ = ‖U‖ₑ * (‖u‖ₑ * ‖v‖ₑ) := by ring
-    _ ≤ ‖U‖ₑ * (‖u‖ₑ ^ 2 + ‖v‖ₑ ^ 2) := by gcongr; exact mul_le_sq_add_sq _ _
+    _ ≤ ‖U‖ₑ * (‖u‖ₑ ^ 2 + ‖v‖ₑ ^ 2) := by gcongr; exact _root_.GroundTheory.Automorphic.ennreal_mul_le_sq_add_sq _ _
     _ ≤ ‖U‖ₑ * (C + C) := by gcongr
     _ = ‖U‖ₑ * (2 * C) := by rw [two_mul]
 

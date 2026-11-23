@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.UnitaryIsometries
 
 @[expose] public section
 
@@ -52,18 +53,6 @@ namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.MainNotions.S Formalism.L2.SG.Pf.NcReal.JX
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem hJ_add_l {n : ℕ} (ε : Fin n → Bool) (x y z : Fin n → ℂ) : hJ ε (x + y) z = hJ ε x z + hJ ε y z := by
-  first
-    | simp only [hJ, star_add, Matrix.add_dotProduct]
-    | simp only [hJ, star_add, add_dotProduct]
-    | simp [hJ, Matrix.add_dotProduct]
-    | simp [hJ, add_dotProduct]
-
-theorem hJ_conj' {n : ℕ} (ε : Fin n → Bool) (x y : Fin n → ℂ) : hJ ε y x = star (hJ ε x y) := by
-  simp only [hJ, Formalism.REAL.Jm, dotProduct, Matrix.mulVec_diagonal, star_sum, Pi.star_apply]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  by_cases h : ε i <;> simp [h, mul_comm]
 
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
 
@@ -92,7 +81,7 @@ theorem rowV_add (x y : (VS D).V) : rowV X u (x + y) = rowV X u x + rowV X u y :
     funext i
     simp only [Pi.add_apply, map_add]
   simp only [rowV, Pi.add_apply, hc, hr]
-  split_ifs <;> exact hJ_add_l _ _ _ _
+  split_ifs <;> exact _root_.Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.hJ_add_left _ _ _ _
 
 theorem rowV_zero : rowV X u 0 = 0 := by
   have h := rowV_add X u 0 0

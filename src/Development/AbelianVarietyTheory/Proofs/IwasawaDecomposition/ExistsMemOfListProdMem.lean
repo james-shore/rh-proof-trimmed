@@ -59,23 +59,6 @@ namespace GlobalTheory.SupPowNorm
 
 open Formalism.IndefR.Arith
 
-section Clear
-
-variable {Ks : Type} [Field Ks] [NumberField Ks] {WL : Type} [AddCommGroup WL] [Module Ks WL] [Module (𝓞 Ks) WL]
-  [IsScalarTower (𝓞 Ks) Ks WL]
-
-theorem exists_smul_mem_span_int {T : Set WL} {g : WL} (hg : g ∈ Submodule.span Ks T) :
-    ∃ d : 𝓞 Ks, d ≠ 0 ∧ d • g ∈ Submodule.span (𝓞 Ks) T := by
-  first
-  | exact @_root_.GlobalTheory.SmulMemSpanIntegers.exists_smul_mem_span_integers
-  | exact _root_.GlobalTheory.SmulMemSpanIntegers.exists_smul_mem_span_integers
-  | (apply _root_.GlobalTheory.SmulMemSpanIntegers.exists_smul_mem_span_integers <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SmulMemSpanIntegers.exists_smul_mem_span_integers <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SmulMemSpanIntegers.exists_smul_mem_span_integers <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SmulMemSpanIntegers.exists_smul_mem_span_integers ..)
-
-end Clear
-
 section Forms
 
 variable {LL Ks : Type} [Field LL] [NumberField LL] [Field Ks] [NumberField Ks] [Algebra Ks LL]
@@ -92,7 +75,7 @@ theorem exists_pow_smul_mem_MK (hL : WL →ₗ[LL] WL) (T : Finset WL) (hT : ∀
     {t : WL} (ht : t ∈ A.MK) : ∃ n : ℕ, ∀ m, n ≤ m → N ^ m • hL t ∈ A.MK := by
   obtain ⟨htW, htb⟩ := ht
   have hg := hW t htW
-  obtain ⟨d, hd, hdg⟩ := exists_smul_mem_span_int (hspan _ hg)
+  obtain ⟨d, hd, hdg⟩ := _root_.GlobalTheory.SmulMemSpanIntegers.exists_smul_mem_span_integers (hspan _ hg)
   have hdM : d • hL t ∈ A.MK := (Submodule.span_le.2 fun x hx => hT x hx) hdg
   have hb : ∀ la y, FinitePlace.mk la (algebraMap (𝓞 Ks) Ks d) * A.nrm la y ⟨hL t, hg⟩ ≤ 1 := by
     intro la y

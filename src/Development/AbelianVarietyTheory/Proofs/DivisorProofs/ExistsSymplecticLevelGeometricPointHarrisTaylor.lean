@@ -65,11 +65,11 @@ theorem exists_sympCond_geom : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
   obtain ⟨I, -⟩ := o.geom K x β hβ
   haveI := D.freeLa
   haveI := D.finLa
-  obtain ⟨L, hLker, hLonto, hLω⟩ := GlobalTheory.T.exists_lattice_map_mod_of_perfect_alternating D.La D.EF D.alt D.nondeg e M hperf hMe
+  obtain ⟨L, hLker, hLonto, hLω⟩ := _root_.GlobalTheory.exists_lattice_map_mod_of_perfect D.La D.EF D.alt D.nondeg e M hperf hMe
   have hMK : IsUnit (M : K) := by simpa using (b.unit M hMp).map β
   have hprim : IsPrimitiveRoot ((I.ζ M : Kˣ) : K) M :=
     IsPrimitiveRoot.coe_units_iff.2 (I.ζ_prim M hM0 hMp)
-  obtain ⟨β₀, hβ₀⟩ := GlobalTheory.T.exists_ringHom_cyclotomicAway_to_field_primitiveRoot M (by omega) K _ hprim hMK
+  obtain ⟨β₀, hβ₀⟩ := _root_.GlobalTheory.CycLift.exists_hom_to_field M (by omega) K _ hprim hMK
   refine ⟨spMap β₀, fun a => I.ev M (L a), fun a c => by show I.ev M (L (a + c)) = I.ev M (L a) * I.ev M (L c); rw [map_add (f := _), I.add],
     fun a => (I.onto M hM0 hMp _).2 ⟨L a, rfl⟩, ?_⟩
   intro k _ _ x' β' z hx' hz
@@ -85,7 +85,7 @@ theorem exists_sympCond_geom : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
     ⟨(Spec.preimage ((spMap φ ≫ x) ≫ t)).hom, (Spec.map_preimage _).symm⟩
   obtain ⟨I', -⟩ := o.geom k (spMap φ ≫ x) β'' hβ''
   let h : Over.mk (spMap φ ≫ (Over.mk x).hom) ⟶ Over.mk x := Over.homMk (spMap φ) rfl
-  have : Epi h.left := GlobalTheory.UPel.GeometricLevelExistence.epi_spMap_field φ
+  have : Epi h.left := _root_.GlobalTheory.ArcExt.epi_spMap φ
   have : Epi h := Over.epi_of_epi_left h
   change (∀ a, h ≫ I.ev M (L a) = 1 ↔ _) ∧ (∀ g : Over.mk (spMap φ ≫ (Over.mk x).hom) ⟶ o.A, g ^ M = 1 →
       ∃ a, h ≫ I.ev M (L a) = g) ∧ ∀ a c, Out.WeilIs o.A (o.P.pull (lift (𝟙 o.A) (𝟙 o.A)).left) M
@@ -122,7 +122,7 @@ theorem exists_sympCond_geom : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
         rw [hk₀, show (2 : ℤ) * (omegaStd a c + M * k₀) = 2 * omegaStd a c + M * (2 * k₀) by ring, zpow_add,
           zpow_mul (I.ζ M) (M : ℤ), hζM, one_zpow, _root_.mul_one]
       rw [hK, ← map_zpow]
-      exact GlobalTheory.UPel.GeometricLevelExistence.unitOn_pull_spMap φ _
+      exact _root_.GlobalTheory.ZH.TorusPerp.map_unitOn φ _
     rw [e] at H
     exact H
 

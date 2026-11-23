@@ -116,7 +116,7 @@ lemma sum_comp_le_window (ℓ : ℕ) [Fact ℓ.Prime] (A : Finset ℤ) (f : ℤ 
     ((∑ j ∈ A, padicValInt ℓ (f j) : ℕ) : ℝ) ≤ (L : ℝ) / ((ℓ : ℝ) - 1) + Real.logb ℓ D := by
   have h := Finset.sum_image (f := padicValInt ℓ) hf
   rw [← h]
-  apply Formalism.WindowSums.arc_WindowSum ℓ lo L D
+  apply _root_.Formalism.WindowSums.sum_padicValInt_le ℓ lo L D
   · intro t ht
     obtain ⟨j, hj, rfl⟩ := Finset.mem_image.mp ht
     obtain ⟨h1, h2, -, -⟩ := hA j hj
@@ -229,7 +229,7 @@ theorem gapG_proof : GapG := by
     obtain ⟨hne, hv⟩ := hc i j hij
     rw [← hv]
     exact assoc_pow_valuation hne
-  have hI := Formalism.LIFT.lift_LagrangeIdealInt ℓ ℤ_[ℓ] R₁ R₂ c hdisj hassoc
+  have hI := _root_.Formalism.LIFT.lagrangian_ideal_integral_holds ℓ ℤ_[ℓ] R₁ R₂ c hdisj hassoc
   have hkill := kill_of_mem_span T _ _ _ x hI hx1 hx2
   have hle : (R₁.sup fun i => (∑ j ∈ R₂, padicValInt ℓ (i - j)) +
       ∑ j ∈ R₁.erase i, padicValInt ℓ (i - j)) ≤ E := by
@@ -271,7 +271,7 @@ theorem rRVal_proof : RRVal := by
   refine ⟨hp, ?_⟩
   rw [hval, Finset.sum_congr rfl hv,
     ← Finset.sum_filter_add_sum_filter_not J (fun j => 1 - (η : ℤ) ≤ j ∧ j ≤ η + a), Nat.cast_add]
-  have hA := Formalism.WindowSums.arc_WindowSum ℓ (1 - (η : ℤ)) (a + 2 * η) (η + a)
+  have hA := _root_.Formalism.WindowSums.sum_padicValInt_le ℓ (1 - (η : ℤ)) (a + 2 * η) (η + a)
     (J.filter fun j => 1 - (η : ℤ) ≤ j ∧ j ≤ η + a)
     (by
       intro j hj
@@ -285,7 +285,7 @@ theorem rRVal_proof : RRVal := by
       intro j hj
       simp only [hJ, Finset.mem_filter, Finset.mem_erase, Finset.mem_union, Finset.mem_Icc] at hj
       rw [abs_le]; push_cast; constructor <;> omega)
-  have hB := Formalism.WindowSums.arc_WindowSum ℓ (1 - ((b : ℤ) + S)) (a + S) (b + S)
+  have hB := _root_.Formalism.WindowSums.sum_padicValInt_le ℓ (1 - ((b : ℤ) + S)) (a + S) (b + S)
     (J.filter fun j => ¬ (1 - (η : ℤ) ≤ j ∧ j ≤ η + a))
     (by
       intro j hj

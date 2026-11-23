@@ -135,24 +135,6 @@ private theorem re_star_dotProduct_self_eq_nsq (v : Fin N → ℂ) : (star v ⬝
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Complex.star_def, Complex.conj_mul', ← Complex.ofReal_pow, Complex.ofReal_re]
 
-private theorem actL_one_eq_hB_iv (x : Gp L N) : actL x (one L N) = hB (iv x) := by
-  apply Subtype.ext
-  funext w
-  show (((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ)ᴴ * 1 *
-      (((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ) =
-    (((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ)ᴴ *
-      (((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ)
-  rw [Matrix.mul_one]
-
-private theorem lam_hB_eq_lm (B : InfinitePlace L → Matrix (Fin N) (Fin N) ℂ) : lam (hB B) = lm B := by
-  unfold lam lm
-  refine iInf_congr fun y => ?_
-  show qR (hB B) (toR y.1) = tv B y.1
-  unfold qR tv
-  refine Finset.sum_congr rfl fun w _ => ?_
-  show (star (toR y.1 w) ⬝ᵥ ((B w)ᴴ * B w) *ᵥ toR y.1 w).re = nsq (B w *ᵥ toR y.1 w)
-  rw [← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec, ← Matrix.star_mulVec, re_star_dotProduct_self_eq_nsq]
-
 private theorem dualH_hB_iv_eq_hB_tp (x : Gp L N) : dualH (hB (iv x)) = hB (tp x) := by
   apply Subtype.ext
   funext w
@@ -168,10 +150,6 @@ private theorem dualH_hB_iv_eq_hB_tp (x : Gp L N) : dualH (hB (iv x)) = hB (tp x
       Matrix.conjTranspose_one]
   rw [hinv, Matrix.transpose_mul]
   rfl
-
-private theorem ht_eq_inv_lm_iv_mul_lm_tp (x : Gp L N) : ht x = (lm (iv x) * lm (tp x))⁻¹ := by
-  unfold ht
-  rw [actL_one_eq_hB_iv, dualH_hB_iv_eq_hB_tp, lam_hB_eq_lm, lam_hB_eq_lm]
 
 theorem ht_emb (γ : Gm L N) (x : Gp L N) : ht (emb L N γ * x) = ht x := by
   rw [ht_eq, ht_eq, lm_iv_emb, lm_tp_emb]
@@ -234,7 +212,7 @@ theorem ht_lower [_root_.NumberField.IsTotallyComplex L] (hN : 1 ≤ N) :
   refine ⟨(max 1 ((I0 L N : ℝ) ^ 2))⁻¹, by positivity, fun x => ?_⟩
   have ha := lm_iv_pos hN x
   have hb := lm_tp_pos hN x
-  rw [ht_eq_inv_lm_iv_mul_lm_tp]
+  rw [_root_.PositivityTheory.KB.HeightDistance.ht_eq]
   exact inv_anti₀ (mul_pos ha hb) (lm_prod_le hN x)
 
 theorem ht_mul_le [_root_.NumberField.IsTotallyComplex L] (hN : 1 ≤ N) (x g : Gp L N) :
@@ -256,7 +234,7 @@ theorem ht_mul_le [_root_.NumberField.IsTotallyComplex L] (hN : 1 ≤ N) (x g : 
     _ = _ := by ring
 
 theorem ht_pos [_root_.NumberField.IsTotallyComplex L] (hN : 1 ≤ N) (x : Gp L N) : 0 < ht x := by
-  rw [ht_eq_inv_lm_iv_mul_lm_tp]
+  rw [_root_.PositivityTheory.KB.HeightDistance.ht_eq]
   exact inv_pos.mpr (mul_pos (lm_iv_pos hN x) (lm_tp_pos hN x))
 
 private theorem continuous_dist1_mul_dist1_tp_inv :
@@ -277,11 +255,6 @@ private theorem dist1_one_mul_dist1_tp_one_eq_one :
     rw [Units.val_one, Matrix.transpose_one]
   rw [h]
   simp [dist1]
-
-private theorem dist1_pos {ι : Type} [Fintype ι] (f : ι → Matrix (Fin N) (Fin N) ℂ) :
-    0 < dist1 f := by
-  unfold dist1
-  positivity
 
 theorem continuous_ht [_root_.NumberField.IsTotallyComplex L] (hN : 1 ≤ N) : Continuous (ht : Gp L N → ℝ) := by
   have hEc := continuous_dist1_mul_dist1_tp_inv (L := L) (N := N)
@@ -312,7 +285,7 @@ theorem continuous_ht [_root_.NumberField.IsTotallyComplex L] (hN : 1 ≤ N) : C
   refine tendsto_of_tendsto_of_tendsto_of_le_of_le hlo hup (fun y => ?_) (fun y => ?_)
   · have h := ht_mul_le hN y (x⁻¹ * y)⁻¹
     rw [_root_.mul_inv_rev, inv_inv, mul_inv_cancel_left] at h
-    rw [div_le_iff₀ (mul_pos (dist1_pos _) (dist1_pos _)), mul_comm]
+    rw [div_le_iff₀ (mul_pos (_root_.PositivityTheory.KB.HeightDistance.matrixTupleDistortion_pos _) (_root_.PositivityTheory.KB.HeightDistance.matrixTupleDistortion_pos _)), mul_comm]
     simpa only [_root_.mul_inv_rev, inv_inv] using h
   · have h := ht_mul_le hN x (x⁻¹ * y)
     rw [mul_inv_cancel_left] at h

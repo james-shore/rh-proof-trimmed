@@ -64,11 +64,6 @@ open Polynomial Matrix
 
 namespace UpperTheory.V.AlgebraTools.RegFour
 
-private theorem diagz {K : Type} [Field K] (M : Matrix (Fin 4) (Fin 4) K) (a : Fin 4 → K)
-    (ha : Function.Injective a) (h : M.charpoly = ∏ i, (X - C (a i))) :
-    ∃ P Q : Matrix (Fin 4) (Fin 4) K, P * Q = 1 ∧ Q * P = 1 ∧ Q * M * P = diagonal a :=
-  _root_.UpperTheory.Reformulated.B.Qh2.diagz M a ha h
-
 private theorem sortw {n : ℕ} (w : Fin n → ℤ) (hw : Function.Injective w) :
     ∃ π : Equiv.Perm (Fin n), StrictAnti (fun i => w (π i)) := by
   refine ⟨Tuple.sort (fun i => - w i), ?_⟩
@@ -403,7 +398,7 @@ theorem UpperTheory.V.AlgebraTools.regCosetFour :
     apply ha i j h
     rw [Units.ext hij, div_self']
     exact IsOfFinOrder.one
-  obtain ⟨P, Q, hPQ, hQP, hD⟩ := RegFour.diagz (r u) _ hinj hu
+  obtain ⟨P, Q, hPQ, hQP, hD⟩ := _root_.UpperTheory.Reformulated.B.Qh2.diagz (r u) _ hinj hu
   have hmul : ∀ x y : Matrix (Fin 4) (Fin 4) K, Q * (x * y) * P = Q * x * P * (Q * y * P) := by
     intro x y
     calc Q * (x * y) * P = Q * x * (P * Q) * y * P := by rw [hPQ]; simp only [Matrix.mul_one, Matrix.mul_assoc]

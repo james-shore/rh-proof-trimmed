@@ -78,7 +78,7 @@ theorem outer_int (S : B.RealPlaceData k r Wp Wq) (hN : S.μN = D.muN k r) (hW1 
   have hfW' : IsFiniteMeasure S.μW' := ⟨by rw [hW1']; exact ENNReal.one_lt_top⟩
   set γ := U.mMap k r 0 (U.hMat σ d) γ0 with hγ
   have hγG : γ ∈ B.GV k r := by
-    have := (Formalism.FourierDecayAlt.P.slice_membership k r 0).1 (U.hMat σ d) γ0 (hMat_det_ne σ d hd) hγ0
+    have := (_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k r 0).1 (U.hMat σ d) γ0 (_root_.Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne σ d hd) hγ0
     exact this
   set f : B.SS k r → (Wq →L[ℂ] Wp) := fun p => theta0 S.z σ.symm p • D.orbIntegrand S γ F p with hf
   have hfm : AEStronglyMeasurable f S.μSS :=
@@ -145,7 +145,7 @@ theorem orbJ_mMap (S : B.RealPlaceData k r Wp Wq) (hN : S.μN = D.muN k r) (hW1 
   obtain ⟨M, Bs, hBs, hBsf, hdom⟩ := slice_dom k r hr σ d hd F hFc R hFs
   obtain ⟨hint, heq⟩ := outer_int S hN hW1 hW1' z0 z0' hz hz' σ d hd γ0 hγ0 hrel F hFc M Bs hBs hBsf hdom
   have hγG : U.mMap k r 0 (U.hMat σ d) γ0 ∈ B.GV k r :=
-    (Formalism.FourierDecayAlt.P.slice_membership k r 0).1 (U.hMat σ d) γ0 (hMat_det_ne σ d hd) hγ0
+    (_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k r 0).1 (U.hMat σ d) γ0 (_root_.Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne σ d hd) hγ0
   have hw' : ∀ a : Fin r, w.symm a.castSucc = (σ.symm.symm a).castSucc := by simpa using hw
   have hnc := theta0_normCut S hγG hdd hZw σ.symm hw'
   have hex : ∃ θ, D.IsNormCut S (U.mMap k r 0 (U.hMat σ d) γ0) (D.muR S (U.mMap k r 0 (U.hMat σ d) γ0) w) θ ∧

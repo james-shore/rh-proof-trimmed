@@ -59,8 +59,6 @@ namespace GlobalTheory.CompanionTheory.HermSum
 
 open GlobalTheory.StdUnn.Model (submatrix_fromBlocks_mul block_matrix_one)
 
-theorem mat_mul_block_decomposition {D : D7} {n : ℕ} (g h : G D n) : mat (g * h) = mat g * mat h := rfl
-
 theorem weyl_mul_inv {R : Type} [CommRing R] {k : ℕ} :
     blk4 (0 : Matrix (Fin k) (Fin k) R) 1 (-1) 0 * blk4 0 (-1) 1 0 = 1 := by
   rw [submatrix_fromBlocks_mul]
@@ -71,12 +69,9 @@ theorem weyl_conj {R : Type} [CommRing R] {k : ℕ} (d : Matrix (Fin k) (Fin k) 
   rw [submatrix_fromBlocks_mul, submatrix_fromBlocks_mul]
   simp
 
-private theorem mat_one_eq_one {D : D7} {n : ℕ} : mat (1 : G D n) = 1 := by
-  simp only [GlobalTheory.StdUnn.mat, map_one, Units.val_one]
-
 private theorem mat_inv_eq_of_mat_mul_eq_one {D : D7} {n : ℕ} (g : G D n) (M : Mx D (n + n) (n + n))
     (h : mat g * M = 1) : mat g⁻¹ = M := by
-  have h1 : mat g⁻¹ * mat g = 1 := by rw [← mat_mul_block_decomposition, inv_mul_cancel, mat_one_eq_one]
+  have h1 : mat g⁻¹ * mat g = 1 := by rw [← _root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul, inv_mul_cancel, _root_.GlobalTheory.StdUnn.LeftInvSect.mat_one]
   calc mat g⁻¹ = mat g⁻¹ * (mat g * M) := by rw [h, mul_one]
     _ = M := by rw [← mul_assoc, h1, one_mul]
 
@@ -178,7 +173,7 @@ theorem summable_height_rpow : ∀ (D : D7) (ρ : ℕ) (H : G D ρ → ℝ≥0),
     have h2 : (w * nb ζ'.1) * (w * nb ζ.1)⁻¹ ∈ P D ρ := Subgroup.mem_subgroupOf.mp h1
     have hm : mat ((w * nb ζ'.1) * (w * nb ζ.1)⁻¹) =
         blk4 1 0 (-(((ζ'.1 : hermA D ρ) : Mx D ρ ρ) + -((ζ.1 : hermA D ρ) : Mx D ρ ρ))) 1 := by
-      rw [mul_inv_rev, mat_mul_block_decomposition, mat_mul_block_decomposition, mat_mul_block_decomposition, hw, hnb, hwinv, hnbinv ζ, ← mul_assoc,
+      rw [mul_inv_rev, _root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul, _root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul, _root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul, hw, hnb, hwinv, hnbinv ζ, ← mul_assoc,
         mul_assoc (blk4 0 1 (-1) 0), GlobalTheory.CompanionTheory.PcB.block_unipotent_mul]
       exact weyl_conj _
     have h3 := eq_zero_of_mem_P_of_mat_eq_blk4 _ h2 _ hm

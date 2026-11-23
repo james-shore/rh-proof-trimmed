@@ -53,6 +53,7 @@ import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.StdBases
 public import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementB
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.IsDiscriminantTwelfthRootOfIdealLattice
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.NotDvdChoosePowMul
 
 @[expose] public section
 
@@ -316,11 +317,6 @@ section Main
 
 variable {K : Type} [NormedField K] [IsUltrametricDist K] [CharZero K]
 
-omit [CharZero K] in
-theorem norm_sub_le_max'' (x y : K) : ‖x - y‖ ≤ max ‖x‖ ‖y‖ := by
-  rw [sub_eq_add_neg]
-  exact (IsUltrametricDist.norm_add_le_max _ _).trans (by rw [norm_neg])
-
 theorem norm_root_sub_pow (l : ℕ) (hl : 2 ≤ l) (hlt1 : ‖(l : K)‖ < 1) {ζ : K}
     (hζ : IsPrimitiveRoot ζ (l ^ 2 - 1)) : ‖ζ - ζ ^ l‖ = 1 := by
   have hq0 : l * 2 ≤ l * l := Nat.mul_le_mul_left l hl
@@ -332,16 +328,16 @@ theorem norm_root_sub_pow (l : ℕ) (hl : 2 ≤ l) (hlt1 : ‖(l : K)‖ < 1) {�
     have hq : ‖(l : K) ^ 2‖ < 1 := by
       rw [norm_pow]; exact pow_lt_one₀ (norm_nonneg _) hlt1 (by norm_num)
     apply le_antisymm
-    · exact (norm_sub_le_max'' _ _).trans (max_le hq.le (by simp))
+    · exact (_root_.Formalism.InvariantFactorPaths.G7.LemOne.norm_sub_le_max _ _).trans (max_le hq.le (by simp))
     · by_contra hc
       push_neg at hc
       have h1 : ‖(1 : K)‖ ≤ max ‖(l : K) ^ 2‖ ‖(l : K) ^ 2 - 1‖ := by
-        have := norm_sub_le_max'' ((l : K) ^ 2) ((l : K) ^ 2 - 1)
+        have := _root_.Formalism.InvariantFactorPaths.G7.LemOne.norm_sub_le_max ((l : K) ^ 2) ((l : K) ^ 2 - 1)
         simpa using this
       rw [norm_one] at h1
       exact absurd h1 (not_le.2 (max_lt hq hc))
   have hle : ‖ζ - ζ ^ l‖ ≤ 1 :=
-    (norm_sub_le_max'' _ _).trans (max_le hnζ.le (by rw [norm_pow, hnζ, one_pow]))
+    (_root_.Formalism.InvariantFactorPaths.G7.LemOne.norm_sub_le_max _ _).trans (max_le hnζ.le (by rw [norm_pow, hnζ, one_pow]))
   refine le_antisymm hle (not_lt.1 fun hlt => ?_)
   have hζl : (ζ ^ l) ^ (l ^ 2 - 1) = 1 := by rw [← pow_mul, mul_comm, pow_mul, hζ1, one_pow]
   have heq := Formalism.L2.Th1.D.FormalExponential.root_eq_of_norm_lt hN hζ1 hζl hlt

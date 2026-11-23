@@ -76,12 +76,6 @@ namespace GlobalTheory.MixCondT
 
 variable {D : D7}
 
-theorem incAdj_surj {T T₀ : HSp D} {ρ : ℕ} (d : HypDec T T₀ ρ) (S : HSp D) (η : Mx D ρ S.rank) :
-    ∃ y, d.incAdj S y = d.incY S η := by
-  refine ⟨adj (incA D (-D.host.xi0) • (η ⬝ giA S)), ?_⟩
-  rw [HypDec.incAdj_apply, adj_adj, Matrix.smul_mul, Matrix.mul_assoc, giA_mul_gA, Matrix.mul_one, smul_smul,
-    ← map_mul, neg_mul_neg, inv_mul_cancel₀ (GlobalTheory.DualPairCompare.embedding_xi_zero_ne_zero D), map_one, one_smul]
-
 theorem heisO_smul (ψ : AddChar (AF D.host.F) ℂ) {S T : HSp D} (u : WO S T) (c : ℂ) (f : WO S T → ℂ) :
     heisO ψ S T u (c • f) = c • heisO ψ S T u f := by
   funext z
@@ -146,7 +140,7 @@ theorem main : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1
       rw [Matrix.add_mul, Matrix.add_mul, mul_eq_zero_real_fin hr hξf, add_zero, Matrix.trace_add, map_add (f := _), neg_add]
     rw [e1, AddChar.map_add_eq_mul, hη1, mul_one]
   · intro η hη
-    obtain ⟨b, hb⟩ := incAdj_surj dW V₀ η
+    obtain ⟨b, hb⟩ := _root_.GlobalTheory.ThetaMixInj.incAdj_surj dW V₀ η
     rw [← hb]
     refine inj _ _ (th _) hg' fun y' => ?_
     change dW.mixT V₀ ψ vT.μ vT.𝓕 (heisO ψ V₀ W (dW.incAdj V₀ b) g') y' = dW.mixT V₀ ψ vT.μ vT.𝓕 g' y'

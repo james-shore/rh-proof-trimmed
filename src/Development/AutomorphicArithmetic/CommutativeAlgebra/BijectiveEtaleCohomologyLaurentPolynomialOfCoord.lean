@@ -132,13 +132,13 @@ private theorem root_tors {X : Scheme.{0}} [Nonempty X] (ζ : Prim q Γ(X, ⊤))
   rw [root_eq, ← map_nsmul] at h
   have hinj : Function.Injective (secHom (q := q) i X) := (GlobalTheory.T.degreeZeroSectionClass_properties (ZMod q) (tw q i) X).2.1.1
   have h0 : c • twGen i ζ = 0 := hinj (h.trans (map_zero _).symm)
-  exact (GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.1 X ζ c h0
+  exact (_root_.GlobalTheory.EtC.twist_sections q i).2.2.1 X ζ c h0
 
 private theorem pull_root {Y X : Scheme.{0}} (f : Y ⟶ X) (ζ : Prim q Γ(X, ⊤)) (i : ℤ) :
     pull _ (sch.map f) _ _ (rootClass i ζ) = rootClass i (ζ.map f.appTop.hom) := by
   rw [root_eq, root_eq]
   refine ((GlobalTheory.T.degreeZeroSectionClass_properties (ZMod q) (tw q i) X).2.2.2.1 f _).trans ?_
-  rw [(GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.2.1 Y X f ζ]
+  rw [(_root_.GlobalTheory.EtC.twist_sections q i).2.2.2.1 Y X f ζ]
   rfl
 
 private theorem deg0 {X Y : Scheme.{0}} [ConnectedSpace X] [ConnectedSpace Y] (f : Y ⟶ X) (ζ : Prim q Γ(X, ⊤)) (i n : ℤ) (hn : n = 0) :

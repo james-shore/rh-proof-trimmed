@@ -99,7 +99,7 @@ theorem tensorTrace_hasTrace : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Hs
 
   have hperp : ∀ x : H, (∀ j, ⟪u j, x⟫_ℂ = 0) → ∀ y, ⟪Φ y, x⟫_ℂ = 0 := by
     intro x hx y
-    have hL := GlobalTheory.T.continuousMultilinearMap_ext_hilbertBasis' ι Hs J e ℂ
+    have hL := _root_.GlobalTheory.continuousMultilinearMap_ext_hilbertBasis ι Hs J e ℂ
       ((innerSL ℂ x).compContinuousMultilinearMap Φ) 0 fun j => by
         simp only [compContinuousMultilinearMap_coe, Function.comp_apply, innerSL_apply_apply,
           ContinuousMultilinearMap.zero_apply]
@@ -129,7 +129,7 @@ theorem tensorTrace_hasTrace : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Hs
     obtain ⟨G, hG1, hG2, hG3⟩ := GlobalTheory.T.exists_isHilbertSchmidt_orthonormal_apply_alt H H (∀ i, J i) u
       (fun j => Ψ (fun i => A i (e i (j i)))) hu (tensorTrace_summable_sq Ψ c hΨ A hA)
     refine ⟨G, fun y => ?_, fun v hv => hG2 v fun j => hv _, hG3⟩
-    have := GlobalTheory.T.continuousMultilinearMap_ext_hilbertBasis' ι Hs J e H (G.compContinuousMultilinearMap Φ)
+    have := _root_.GlobalTheory.continuousMultilinearMap_ext_hilbertBasis ι Hs J e H (G.compContinuousMultilinearMap Φ)
       (Ψ.compContinuousLinearMap A) fun j => by simpa using hG1 j
     simpa using congrArg (fun L : ContinuousMultilinearMap ℂ Hs H => L y) this
   have hΦ1 : ∀ y y', ⟪Φ y', Φ y⟫_ℂ = 1 * ∏ i, ⟪y' i, y i⟫_ℂ := fun y y' => by rw [one_mul, hΦ]

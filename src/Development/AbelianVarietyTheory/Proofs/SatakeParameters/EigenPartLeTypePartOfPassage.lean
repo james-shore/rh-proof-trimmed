@@ -66,18 +66,6 @@ theorem exists_level_vec_in_parts : ∀ {D : D7} {G : Type} [Group G] [Fintype G
   obtain ⟨w, hw, hw0, hws⟩ := GlobalTheory.T.exists_baseLevel_vector_in_goodAlgebraicForms_span R F hCW hEx hSch s hOk hGG hLU j c h0
   exact ⟨w, hw, hw0, GlobalTheory.T.mem_iSup_type_parts_of_good_base_forms R F hParts j w hws⟩
 
-theorem blockProd_ne_zero {K : Type} [Field K] [NumberField K] [StarRing K] {G : Type} [Group G] [Fintype G] {Pl0 : Type}
-    (B : BlockDat K G Pl0) (P : B.Pl) : B.blockProd P ≠ 0 := by
-  unfold BlockDat.blockProd
-  rw [ne_eq, List.prod_eq_zero_iff]
-  simp only [List.mem_map, not_exists, not_and]
-  intro ν _ h
-  unfold Formalism.L2.Col.blockPoly at h
-  rw [Finset.prod_eq_zero_iff] at h
-  obtain ⟨c, _, hc⟩ := h
-  have := congrArg (fun q => _root_.AddMonoidAlgebra.coeff (M := ℕ) q 0) hc
-  simp at this
-
 theorem eig_in_sum {H : Type} [AddCommGroup H] [Module ℂ H] [FiniteDimensional ℂ H] {Q J K : Type} (ok : Q → Prop)
     (h : Q → J → Module.End ℂ H) (ev : K → Q → J → ℂ) (V : K → Submodule ℂ H) (S : K → Prop) (k0 : K)
     (hc : ∀ P P', ok P → ok P' → ∀ c c', Commute (h P c) (h P' c'))
@@ -119,7 +107,7 @@ theorem types_eq {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type}
     have h1 := hx.1 P
     have h2 := hx'.1 P
     rw [h1] at h2
-    exact mul_right_cancel₀ (blockProd_ne_zero _ P) h2
+    exact mul_right_cancel₀ (_root_.Formalism.L2.DIV.BlockDat.blockProd_ne_zero _ P) h2
   · exact hk ((hx.2 k).symm.trans (hx'.2 k))
 
 theorem wc_le_wp_of_passage : HoweUnram → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} {A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3), GlobalTheory.Chain.LiftInteg D → R.WeakCharacterisation F → R.toRealDat.ExAt → SchurAll R.toRealDat → InertJunk A3 → ∀ s, A3.fam3.Ok3 s → GoodGeneric A3.A.X F.P0 F.ψ0⁻¹ → R.toRealDat.LUnif → R.PGUnit F → R.PGEquiv F → R.PLevW F → R.PThmA → (0 < R.kap ∧ ∀ i t p, 0 < R.lam3 i t p A3.A.v0) → R.PThmB → R.TrISem F A3.trI → (R.toCx3 F).PartsW false → A3.fam3.TypesSep3 → ∀ j pl cV cW, LiftDict R j A3.A.μ0 pl cV cW → ∀ (p : A3.fam3.base3.Ix) c, cxSys D.what₂.embLL ((A3.liftI j A3.A.μ0).HasRes3 (A3.fam3.tr3 j p.1)) (labW j pl cW c) → R.Wc' j c ≤ R.Wp3 j p := by

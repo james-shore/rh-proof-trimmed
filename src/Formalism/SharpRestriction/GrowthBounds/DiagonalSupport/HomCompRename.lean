@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.LevImgCoeffBigM
 
 @[expose] public section
 
@@ -102,28 +103,6 @@ section Big
 variable {n' r K m : ℕ} [NeZero n'] (Fr : Frames n' r) (p : ℕ) (O : Type) [CommRing O] [IsDomain O]
   (hk : m + 1 = r + K) {J : ℕ} [NeZero J] (nL : ZMod J → ℕ)
 
-private theorem upPl_monomial_eq_monomial_mPl (bp : TL J nL r × Fin r →₀ ℕ) (c : KK O) :
-    upPl Fr p O hk nL (monomial bp c) = monomial (mPl Fr p hk nL bp) c := by
-  rw [show monomial (mPl Fr p hk nL bp) c = C c * monomial (mPl Fr p hk nL bp) 1 by
-      rw [C_mul_monomial, mul_one]]
-  simp only [upPl, aeval_monomial, algebraMap_eq]
-  rw [Finsupp.prod_fintype _ _ (fun _ => pow_zero _), mPl, MvPolynomial.monomial_sum_one]
-  congr 1
-  apply Finset.prod_congr rfl
-  intro v _
-  rw [← pow_mul, X_pow_eq_monomial]
-
-private theorem upNo_monomial_eq_monomial_mNo (bn : TL J nL r × Fin K →₀ ℕ) (c : KK O) :
-    upNo Fr p O hk nL (monomial bn c) = monomial (mNo Fr p hk nL bn) c := by
-  rw [show monomial (mNo Fr p hk nL bn) c = C c * monomial (mNo Fr p hk nL bn) 1 by
-      rw [C_mul_monomial, mul_one]]
-  simp only [upNo, aeval_monomial, algebraMap_eq]
-  rw [Finsupp.prod_fintype _ _ (fun _ => pow_zero _), mNo, MvPolynomial.monomial_sum_one]
-  congr 1
-  apply Finset.prod_congr rfl
-  intro v _
-  rw [← pow_mul, X_pow_eq_monomial]
-
 theorem asm_support (rho : TL J nL r × Fin (r + K) → ℕ) (A : MvPolynomial (TL J nL r × Fin r) (KK O))
     (N : MvPolynomial (TL J nL r × Fin K) (KK O)) (mm : TV n' (m + 1) →₀ ℕ)
     (h : mm ∈ (asm Fr p O hk nL rho A N).support) :
@@ -133,7 +112,7 @@ theorem asm_support (rho : TL J nL r × Fin (r + K) → ℕ) (A : MvPolynomial (
       monomial (bigM Fr p hk nL rho bp bn) (A.coeff bp * N.coeff bn) := by
     conv_lhs => rw [asm, A.as_sum, N.as_sum]
 
-    simp only [map_sum, upPl_monomial_eq_monomial_mPl, upNo_monomial_eq_monomial_mNo, Finset.mul_sum, Finset.sum_mul]
+    simp only [map_sum, _root_.Formalism.MainNotions.Proposition5Numerics.upPl_monomial, _root_.Formalism.MainNotions.Proposition5Numerics.upNo_monomial, Finset.mul_sum, Finset.sum_mul]
     rw [Finset.sum_comm]
     apply Finset.sum_congr rfl
     intro bp _

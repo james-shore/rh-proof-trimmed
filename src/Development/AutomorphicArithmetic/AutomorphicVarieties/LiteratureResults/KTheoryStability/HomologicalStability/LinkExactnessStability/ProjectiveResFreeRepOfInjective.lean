@@ -80,11 +80,3 @@ theorem GlobalTheory.HomStab.projective_res_free_of_injective : ∀ (k G H : Typ
   intro k G H _ _ _ φ hφ ι
   exact GlobalTheory.HomStab.projective_res_of_injective φ hφ _
 
-section
-open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab
-theorem _root_.GlobalTheory.T.projective_res_free_rep_of_injective : ∀ (k G H : Type) [CommRing k] [Group G] [Group H] (φ : H →* G), Function.Injective φ → ∀ ι : Type, Projective (Rep.res φ (Rep.free k G ι)) := by
-  first
-  | exact @GlobalTheory.HomStab.projective_res_free_of_injective
-  | exact @GlobalTheory.HomStab.projective_res_of_injective
-  | exact @GlobalTheory.HomStab.resFunctor_isEquivalence_of_bijective
-end

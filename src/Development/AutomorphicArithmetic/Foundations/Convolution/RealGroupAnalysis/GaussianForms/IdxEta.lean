@@ -52,19 +52,9 @@ open UpperTheory.ConvolutionTheory.R2
 open scoped Classical
 open UpperTheory.ConvolutionTheory.R2.C
 
-private theorem ab_mul_idx {F : Type} [Field F] [NumberField F] (a b : (A F)ˣ) : ab (a * b) = ab a * ab b := by
-  unfold ab
-  rw [map_mul]
-  rfl
-
 private theorem ab_one {F : Type} [Field F] [NumberField F] : ab (1 : (A F)ˣ) = 1 := by
   unfold ab
   rw [map_one]
-  rfl
-
-private theorem ab_diag {F : Type} [Field F] [NumberField F] (k : Fˣ) : ab (IdeleGroup.diagonal F k) = 1 := by
-  unfold ab
-  rw [IdeleGroup.ideleModule_diagonal]
   rfl
 
 private theorem idx_unique {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {δ : F} (hδ : δ ≠ 0)
@@ -97,7 +87,7 @@ private theorem idx_ker {F E : Type} [Field F] [NumberField F] [Field E] [Number
     rw [hb, Units.val_mul]
     rfl
   have hab : ab b = ab (ideleNorm F E z) := by
-    rw [hd, ab_mul_idx, ab_diag, one_mul]
+    rw [hd, _root_.UpperTheory.ConvolutionTheory.R2.ab_mul, _root_.UpperTheory.ConvolutionTheory.R2.ab_diagonal, one_mul]
   rw [hb, hab]
   simpa using h
 
@@ -145,6 +135,6 @@ theorem UpperTheory.ConvolutionTheory.R2.C.idxEta :
     have i := step2 _ _ (step1 (a * b) h1)
     have e : a * (a * b) = b := by
       rw [← mul_assoc, haa, one_mul]
-    rw [e, ab_mul_idx, hab, one_mul] at i
+    rw [e, _root_.UpperTheory.ConvolutionTheory.R2.ab_mul, hab, one_mul] at i
     rw [hb']
     simpa using i

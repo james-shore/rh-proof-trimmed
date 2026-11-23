@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.GroupCohomology.ComapZeroCoboundariesEqBot
+import ReciprocityTheory.ClassFieldTheory.LocalClassField.RecPairA
 
 @[expose] public section
 
@@ -80,14 +81,6 @@ theorem exists_defect {t : G → ℚ} (χ : Additive G →+ QZ)
   choose m hm using this
   exact ⟨m, hm⟩
 
-theorem isLocallyConstant_defect {t : G → ℚ} (ht : IsLocallyConstant t) {m : (Fin 2 → G) → ℤ}
-    (hm : ∀ g, (m g : ℚ) = t (g 0) + t (g 1) - t (g 0 * g 1)) : IsLocallyConstant m := by
-  refine IsLocallyConstant.desc m (Int.cast : ℤ → ℚ) ?_ Int.cast_injective
-  have : ((Int.cast : ℤ → ℚ) ∘ m) = fun g => t (g 0) + t (g 1) - t (g 0 * g 1) := funext hm
-  rw [this]
-  exact ((ht.comp_continuous (continuous_apply 0)).add (ht.comp_continuous (continuous_apply 1))).sub
-    (ht.comp_continuous ((continuous_apply 0).mul (continuous_apply 1)))
-
 theorem defect_cocycle {t : G → ℚ} {m : (Fin 2 → G) → ℤ}
     (hm : ∀ g, (m g : ℚ) = t (g 0) + t (g 1) - t (g 0 * g 1)) (x y w : G) :
     m ![y, w] - m ![x * y, w] + m ![x, y * w] = m ![x, y] := by
@@ -101,7 +94,7 @@ theorem exists_defect_cocycle {t : G → ℚ} (ht : IsLocallyConstant t) {m : (F
     (hm : ∀ g, (m g : ℚ) = t (g 0) + t (g 1) - t (g 0 * g 1)) (a : M.V) (ha : ∀ g, M.rho g a = a) :
     ∃ z : M.coch.X 2, M.coch.d 2 z = 0 ∧ ∀ g, z.1 g = m g • a := by
   have hc : Continuous fun g => m g • a :=
-    ((isLocallyConstant_defect ht hm).comp (fun k : ℤ => k • a)).continuous
+    ((_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.defect_isLocallyConstant ht hm).comp (fun k : ℤ => k • a)).continuous
   refine ⟨⟨fun g => m g • a, hc⟩, Subtype.ext (funext fun v => ?_), fun _ => rfl⟩
   show ReciprocityTheory.Gal.dn M.rho 2 (fun g => m g • a) v = 0
   rw [LowDeg.dn_two_apply, map_zsmul, ha, ← sub_smul, ← add_smul, ← sub_smul,

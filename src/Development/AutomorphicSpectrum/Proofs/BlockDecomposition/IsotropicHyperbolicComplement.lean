@@ -57,7 +57,7 @@ theorem exists_comp_frame : ∀ {n D : ℕ} (ε : Fin n → Bool) (C : Matrix (F
       C * Cᴴ + Formalism.REAL.Jm ε * C * Cᴴ * Formalism.REAL.Jm ε + R * Rᴴ = 1 := by
   intro n D ε C h1 h2
   have hJJ : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := Formalism.REAL.Jm_mul_self ε
-  have hJh : (Formalism.REAL.Jm ε)ᴴ = Formalism.REAL.Jm ε := GlobalTheory.CompanionTheory.HCSide.CentreNone.Jm_herm ε
+  have hJh : (Formalism.REAL.Jm ε)ᴴ = Formalism.REAL.Jm ε := _root_.Formalism.REAL.Jm_conjTranspose ε
   generalize hJ : Formalism.REAL.Jm ε = J at *
   have hAA : C * Cᴴ * (C * Cᴴ) = C * Cᴴ := by
     rw [Matrix.mul_assoc, ← Matrix.mul_assoc Cᴴ, h1, Matrix.one_mul]

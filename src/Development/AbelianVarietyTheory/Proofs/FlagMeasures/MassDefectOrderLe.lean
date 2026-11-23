@@ -87,7 +87,7 @@ theorem mass_defect_order_le : ∀ {F : Type} [Field F] [ValuativeRel F] [Topolo
   split_ifs with hC
   · rw [mul_left_comm]
     refine mul_le_mul_right ?_ _
-    refine (GlobalTheory.T.hermitianFrames_defectOrder_share_le L r k S hk _ hC.1 β hβ).trans ?_
+    refine (_root_.GlobalTheory.HL.DefectShare.share_le L r k S hk _ hC.1 β hβ).trans ?_
     refine mul_le_mul' (ENNReal.ofReal_le_ofReal hconst) ?_
     unfold Frames.sumData
     refine ENNReal.tsum_le_tsum fun o' => mul_le_mul' le_rfl ?_

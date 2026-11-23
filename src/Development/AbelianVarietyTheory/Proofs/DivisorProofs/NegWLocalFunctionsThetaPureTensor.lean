@@ -200,12 +200,12 @@ theorem datum_of_placeModel (M : Model D.sp.cm.sig Y Z) {ψ : AddChar (AF D.host
       (congrArg (b * ·) (hD.2 u))⟩
   let R : Submodule ℂ ((Matrix (Fin n) (Fin d) (AE D) → ℂ) × ((Fin n × Fin d → AF D.host.F) → ℂ)) :=
     { carrier := {q | ∃ g, IsSBHalf ε Λ g ∧ q.1 = g ∘ p ∧ GlobalTheory.SquareAgree.IsDatum M ψ p q.2 (T g)}
-      zero_mem' := ⟨0, GlobalTheory.PlaceModelOnto.isSBHalf_zero _ _, rfl, by
+      zero_mem' := ⟨0, _root_.GlobalTheory.SymmetricBilinearHalf.sb_zero _ _, rfl, by
         have := hsmul 0 hf
         rwa [zero_smul, zero_smul, ← map_zero T] at this⟩
       add_mem' := by
         rintro q q' ⟨g, h1, h2, h3⟩ ⟨g', h1', h2', h3'⟩
-        refine ⟨g + g', GlobalTheory.PlaceModelOnto.isSBHalf_add h1 h1', by rw [Prod.fst_add, h2, h2']; rfl, add_mem h3.1 h3'.1, fun u => ?_⟩
+        refine ⟨g + g', _root_.GlobalTheory.SymmetricBilinearHalf.sb_add h1 h1', by rw [Prod.fst_add, h2, h2']; rfl, add_mem h3.1 h3'.1, fun u => ?_⟩
         refine ((congrArg (thetaSum D.host.F) (show M.co.rho ψ u (q.2 + q'.2) = M.co.rho ψ u q.2 + M.co.rho ψ u q'.2 from
             funext fun _ => mul_add _ _ _)).trans
           (thetaSum_add _ (GlobalTheory.HeisSchA.rho_mem_schA M ψ hstd u _ h3.1) (GlobalTheory.HeisSchA.rho_mem_schA M ψ hstd u _ h3'.1))).trans ?_
@@ -213,7 +213,7 @@ theorem datum_of_placeModel (M : Model D.sp.cm.sig Y Z) {ψ : AddChar (AF D.host
         rfl
       smul_mem' := by
         rintro b q ⟨g, h1, h2, h3⟩
-        refine ⟨b • g, GlobalTheory.PlaceModelOnto.isSBHalf_smul b h1, by rw [Prod.smul_fst, h2]; rfl, ?_⟩
+        refine ⟨b • g, _root_.GlobalTheory.SymmetricBilinearHalf.sb_smul b h1, by rw [Prod.smul_fst, h2]; rfl, ?_⟩
         rw [map_smul]
         exact hsmul b h3 }
   let H : AddSubgroup (Matrix (Fin n) (Fin d) (AE D)) := (GlobalTheory.PlaceModel.half S X ε).comap p.toLinearMap.toAddMonoidHom
@@ -262,7 +262,7 @@ theorem datum_of_placeModel (M : Model D.sp.cm.sig Y Z) {ψ : AddChar (AF D.host
         sb_modul_latO hψ hS hX (GlobalTheory.PlaceVec.infPart_cA hinf) h1 (hA' w hw _ hx), funext fun u => ?_, ?_⟩
       · rw [h2]; exact congrArg (fun z => ψ z * g (p u)) (hs u x)
       · rw [hT.modul g h1 _ (hA' w hw _ hx)]; exact hrho h3 x)
-    ⟨c • halfInd ε Λ, GlobalTheory.PlaceModelOnto.isSBHalf_smul c (GlobalTheory.isSBHalf_halfInd ε _), hbase, by
+    ⟨c • halfInd ε Λ, _root_.GlobalTheory.SymmetricBilinearHalf.sb_smul c (GlobalTheory.isSBHalf_halfInd ε _), hbase, by
       rw [map_smul, (congrArg T (one_smul ℂ _).symm).trans hT.vac]
       exact (show GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure (c • f) M.vac = c • GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f M.vac from
         funext fun _ => mul_assoc _ _ _) ▸ hsmul c hf⟩

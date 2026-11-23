@@ -64,11 +64,6 @@ theorem rt_mul (a b : GAf L n) (f : GAf L n → ℂ) :
   show f (g * (a * b)) = f (g * a * b)
   rw [mul_assoc]
 
-theorem rt_one (f : GAf L n → ℂ) : Formalism.L2.NG.rt L n 1 f = f := by
-  funext g
-  show f (g * 1) = f g
-  rw [mul_one]
-
 theorem exists_lifts (n : ℕ) (s : SplitPlace L) (g : ℕ) (hg : g.Prime) :
     ∃ ℓ : GL (Fin n) (ZMod g) → GAf L n, ∀ γ, IsLift s (ℓ γ) γ := by
   classical
@@ -164,7 +159,7 @@ theorem sum_serCoef_rt : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Formalism
   set φ' := Formalism.L2.NG.rt D.host.E D.R.r c⁻¹ φ with hφ'
   have hφ'S : φ' ∈ π.S := π.stable _ _ hφ
   have back : Formalism.L2.NG.rt D.host.E D.R.r c φ' = φ := by
-    rw [hφ', ← rt_mul, mul_inv_cancel, rt_one]
+    rw [hφ', ← rt_mul, mul_inv_cancel, _root_.Formalism.IndefR.principalLevelFrame.rt_one]
   have fix1 : ∀ (kv : (Σ k : Fin 2, D.nd.PlG k)) (s : SplitPlace D.host.E), s.w = D.naut.plGw kv.1 kv.2 →
       ∀ x, IsLift s x (1 : GL (Fin D.R.r) (ZMod (D.host.g kv.1))) → Formalism.L2.NG.rt D.host.E D.R.r x φ' = φ' := by
     intro kv s hs x hx
@@ -214,7 +209,7 @@ theorem sum_serCoef_rt : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Formalism
           set_option synthInstance.maxHeartbeats 100000 in
             simp only [map_sum, map_smul]
       _ = Formalism.L2.NG.rt D.host.E D.R.r (lf γ) φ := by rw [hser, back]
-  have hfin := GlobalTheory.T.sum_prod_fixed_place_average_alt (ι := Σ k : Fin 2, D.nd.PlG k) (G := fun kv => GL (Fin D.R.r) (ZMod (D.host.g kv.1)))
+  have hfin := _root_.GlobalTheory.sum_prod_fixed_place_average (ι := Σ k : Fin 2, D.nd.PlG k) (G := fun kv => GL (Fin D.R.r) (ZMod (D.host.g kv.1)))
     (fun kv β => (D.ntypes.eSer kv.1 (τ kv.1 kv.2)).coeff β) (fun γ => Formalism.L2.NG.rt D.host.E D.R.r (lf γ) φ) step
   have h1 : Formalism.L2.NG.rt D.host.E D.R.r (lf 1) φ = φ :=
     hfix (sec 1) ((hker _ (hsec 1).1).1 ((hsec 1).2)) _ (hlf 1)

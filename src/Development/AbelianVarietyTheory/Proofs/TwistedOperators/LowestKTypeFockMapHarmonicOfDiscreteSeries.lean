@@ -355,9 +355,6 @@ theorem wts {D : D7} (i : Fin D.R.m) {P : D.what₂.Tau → SPar} (hP : P = parA
   obtain ⟨x₁, x₂, x₃, hx⟩ := GlobalTheory.JointHarm.weights_of_minors D i _ rfl M h
   exact ⟨x₁, x₂, x₃, fun τ => ⟨(hx τ).1, (hx τ).2.1, (hx τ).2.2.1⟩⟩
 
-theorem one_mem_K {n : ℕ} (ε : Fin n → Bool) : (1 : Matrix (Fin n) (Fin n) ℂ) ∈ Formalism.REAL.Kset ε :=
-  ⟨one_mem _, by simp⟩
-
 theorem ioHarm_holds (D : D7) : IoHarm D := by
   classical
   rintro i M M' ψ θ χS χT ω hθ hω hχ c hc hpr BV f hf io hio
@@ -461,7 +458,7 @@ theorem ioHarm_holds (D : D7) : IoHarm D := by
   have hρ : ∀ u ∈ GinfC (Vc D i), ∀ x w, io x w ∈ N → io x (c.ρ u w) ∈ N := by
     intro u hu x w hm
     obtain ⟨-, b⟩ := hact u hu 1 (one_mem _) fun τ => by
-      rw [hc1, Matrix.mul_one, hfr]; exact one_mem_K _
+      rw [hc1, Matrix.mul_one, hfr]; exact _root_.GlobalTheory.Dec.FormF.one_K _
     have e : io x (c.ρ u w) = GlobalTheory.JointHarm.fact M'.ε x₁ x₂ x₃
         (fun τ => M'.fr τ * compAt θ τ (Formalism.L2.Theta.mt (Wc D i) 1) * (M'.fr τ)⁻¹)
         (fun τ => (BV τ)⁻¹ * compAt θ τ (Formalism.L2.Theta.mt (Vc D i) u) * BV τ) (io x w) :=
@@ -515,7 +512,7 @@ theorem ioHarm_holds (D : D7) : IoHarm D := by
           rw [this]
           exact hk
         · rw [hs.2.2 ρ hρ, Matrix.mul_one, hfr]
-          exact one_mem_K _
+          exact _root_.GlobalTheory.Dec.FormF.one_K _
       obtain ⟨-, b⟩ := hact 1 (one_mem _) h hs.1 hcomp
       have e : io (PiTensorProduct.tprod ℂ (Function.update v τ u)) w = GlobalTheory.JointHarm.fact M'.ε x₁ x₂ x₃
           (fun ρ => M'.fr ρ * compAt θ ρ (Formalism.L2.Theta.mt (Wc D i) h) * (M'.fr ρ)⁻¹)

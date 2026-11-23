@@ -402,7 +402,7 @@ theorem avg_rapid : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (V : HSp D
   have hR : ∀ ψ ∈ 𝒟, ∀ τ' X, X ∈ lieAt V τ' → Rder θ V τ' X ψ ∈ 𝒟 := fun ψ h τ' X hX => h.rder hX
   set F0 : KG ε → GA D V → ℂ := fun k x => e k * f (x * atTau θ V τ (κ k))
   have hF0 : F0 ∈ famSpan θ V τ κ 𝒟 := Submodule.subset_span ⟨e, he, f, hf, rfl⟩
-  have FAM := GlobalTheory.T.compactAverage_smoothFamily_closedUnderDerivatives D θ hθ V (KG ε) (muK ε) (famSpan θ V τ κ 𝒟) (famSpan_cont' hθ hκ hU h𝒟)
+  have FAM := _root_.GlobalTheory.AvgFam.avg_closed D θ hθ V (KG ε) (muK ε) (famSpan θ V τ κ 𝒟) (famSpan_cont' hθ hκ hU h𝒟)
     (famSpan_sm' hθ hU h𝒟) (famSpan_Rder' hθ hκ hU h𝒟 hR) F0 hF0
   have hwords : ∀ l : List (D.what₂.Tau × Matrix (Fin V.rank) (Fin V.rank) ℂ), (∀ p ∈ l, p.2 ∈ lieAt V p.1) →
       (fun k => l.foldr (fun p g => Rder θ V p.1 p.2 g) (F0 k)) ∈ famSpan θ V τ κ 𝒟 := by
@@ -449,7 +449,7 @@ theorem famSpan_glDer {F : KG ε → GA D V → ℂ} (hF : F ∈ famSpan θ V τ
   obtain ⟨h1, h2⟩ := GlobalTheory.SmoothAutCheck.parts_mem V a.1 (Matrix.single a.2.1 a.2.2 1)
   have m1 := famSpan_Rder' hθ hκ hU h𝒟 hR F hF a.1 _ h1
   have m2 := famSpan_Rder' hθ hκ hU h𝒟 hR F hF a.1 _ h2
-  have FAM := GlobalTheory.T.compactAverage_smoothFamily_closedUnderDerivatives D θ hθ V (KG ε) (muK ε) (famSpan θ V τ κ 𝒟) (famSpan_cont' hθ hκ hU h𝒟)
+  have FAM := _root_.GlobalTheory.AvgFam.avg_closed D θ hθ V (KG ε) (muK ε) (famSpan θ V τ κ 𝒟) (famSpan_cont' hθ hκ hU h𝒟)
     (famSpan_sm' hθ hU h𝒟) (famSpan_Rder' hθ hκ hU h𝒟 hR) F hF
   have r1 := FAM.2.2.1 [(a.1, (1 / 2 : ℂ) • (Matrix.single a.2.1 a.2.2 1 + conjAt V a.1 (Matrix.single a.2.1 a.2.2 1)))]
     (fun p hp => by rw [List.mem_singleton.1 hp]; exact h1)

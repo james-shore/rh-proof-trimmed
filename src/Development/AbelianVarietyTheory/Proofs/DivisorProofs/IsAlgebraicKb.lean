@@ -52,10 +52,6 @@ namespace GlobalTheory.Mum.LabBC
 
 open GlobalTheory GlobalTheory.ArcPull GlobalTheory.TorusExt
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]; rfl
-
 theorem qkExt_id' {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} {C : Type} [Field C]
     [Algebra (FractionRing R) C] {k : ℕ} (p : QkPt D C k) : QkExt (RingHom.id C) p p := by
   have e : spMap (RingHom.id C) = 𝟙 _ := Spec.map_id _
@@ -160,9 +156,9 @@ theorem galEqN_of_rel {R R₁ : Type} [CommRing R] [IsDomain R] [IsLocalRing R] 
   have h₂ := hrel _ hk _ _ _ (hpq q') ((eq_pullQk_iff hD hG hF hB hB₁ q' _).1 rfl).1
     ((eq_pullQk_iff hD hG hF hB hB₁ q' _).1 rfl).2
   apply hpb.1.hom_ext
-  · rw [h₂, Category.assoc, h₁, hgal, ← Category.assoc, ← Category.assoc, spMap_comp', spMap_comp', hes]
+  · rw [h₂, Category.assoc, h₁, hgal, ← Category.assoc, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring, hes]
   · rw [Category.assoc, Over.w (lab₁ (n ^ j) (pullQk hD hG hF hB hB₁ q')), Over.w (lab₁ (n ^ j) (pullQk hD hG hF hB hB₁ q))]
     show jFK (R := R₁) (Kb R₁) = spMap s₁ ≫ jFK (R := R₁) (Kb R₁)
-    rw [spMap_comp', hfσ₁]
+    rw [_root_.GlobalTheory.spMap_comp_ring, hfσ₁]
 
 end GlobalTheory.Mum.LabBC

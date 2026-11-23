@@ -66,8 +66,8 @@ theorem locSurj_of_iso_on_finiteType : ∀ (N M : CommRingCat.{0} ⥤ AbCx) (ε 
     refine ⟨A, 𝟙 A, etFF_id A, 0, 0, by simp, Subsingleton.elim _ _⟩
   ·
     obtain ⟨x, rfl⟩ := ((hι A).2 z).1 hz
-    obtain ⟨J, _, _, D, κ, ⟨hc⟩, hft⟩ := GlobalTheory.T.exists_filteredColimit_finiteType_int_rings A
-    obtain ⟨j, x0, hx0⟩ := ((GlobalTheory.T.preservesFilteredColimits_addCommGrp_iff_elements CommRingCat.{0} F0).1 hF0 J D (Cocone.mk A κ) hc).1 x
+    obtain ⟨J, _, _, D, κ, ⟨hc⟩, hft⟩ := _root_.GlobalTheory.FiniteTypeColimit.exists_filtered_colimit_finiteType A
+    obtain ⟨j, x0, hx0⟩ := ((_root_.GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_iff_elements CommRingCat.{0} F0).1 hF0 J D (Cocone.mk A κ) hc).1 x
     haveI := hiso (D.obj j) (hft j)
     set z0 : (M.obj (D.obj j)).X 0 := ι.app (D.obj j) x0 with hz0
     set c0 : (N.obj (D.obj j)).X 0 := (inv (ε.app (D.obj j))).f 0 z0 with hc0

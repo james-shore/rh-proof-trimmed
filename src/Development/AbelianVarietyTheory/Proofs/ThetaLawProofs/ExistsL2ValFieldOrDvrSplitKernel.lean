@@ -112,7 +112,7 @@ theorem det_ne_zero : Out.Laws → ∀ (K : Type) [Field K] [IsAlgClosed K] (x :
         rw [Submonoid.coe_mul, _root_.mul_assoc, hu, hu, ← _root_.mul_assoc] at this
         exact ((Units.mul_left_inj (u I 1)).1 this).symm }
   have hχ : Function.Injective χ := fun I I' h => by
-    have e := GlobalTheory.T.eq_of_similitudeIso_quotient_kernel_invariant laws K x m al (ξ I) (ξ I') (w I) (w I') hm hal (hw I) (hw I') (fun v hv Z r z J hJ => by
+    have e := _root_.GlobalTheory.KeyKa.eq_of_similitude_invariant laws K x m al (ξ I) (ξ I') (w I) (w I') hm hal (hw I) (hw I') (fun v hv Z r z J hJ => by
       have e₁ : a I ⟨v, hv⟩ = a I' ⟨v, hv⟩ := fn_ext (X := S.left) fun y _ => by
         obtain rfl : y = p := Subsingleton.elim _ _
         exact (gs_eq (𝟙 S.left) p ⊤ trivial _).trans ((DFunLike.congr_fun h ⟨v, hv⟩).trans
@@ -160,7 +160,7 @@ theorem exists_coords_pow (laws : Out.Laws) (R : Type) [CommRing R] [IsLocalRing
       Good x.P.L z J → sval s r z J = ∑ I, gs r z ⊤ (cst (Out.powObj x.P.A n).hom ⊤ (q I)) *
         ∏ c, gs (r ≫ (Out.powPr x.P.A c).left) z (x.P.L.U (J (r ≫ (Out.powPr x.P.A c).left)))
           ((b (I c)).f (J (r ≫ (Out.powPr x.P.A c).left))) := by
-  refine GlobalTheory.T.boxProducts_span_external_powers_of_boxSpan R x.P.A x.P.L m _ b x.P.isLB (fun T => ?_) n s
+  refine _root_.GlobalTheory.PowSpan.boxProducts_span_of_boxSpan R x.P.A x.P.L m _ b x.P.isLB (fun T => ?_) n s
   refine GlobalTheory.T.pullbackSectionsSpanTwisted_of_indep_span _ _ _ _ _ _ b _ _ x.P.isLB (GlobalTheory.T.pullbackSections_basis_of_affine_opens _ _ _ _ _ _ b _ _ ?_)
   refine GlobalTheory.T.pullbackSections_basis_affine_baseChange_of_affine R _ x.P.A.hom x.P.L _ _ b (fun R' _ f => ?_) _ _ T.hom _ _
     (IsPullback.of_hasPullback x.P.A.hom T.hom)
@@ -207,7 +207,7 @@ theorem exists_l2Val : Out.Laws → ∀ (R : Type) [CommRing R] [IsDomain R] [Is
     choose b' hb' using fun j => ((h₂ φ u hv).1 m (b j)).exists
     choose ξ' hξ' using fun I r => ((h₂ φ u hv).2.1 (ξ I r)).exists
     choose w' hw' hE' using fun I =>
-      GlobalTheory.T.similitudeIso_thetaProduct_baseChange R k x x' f φ u m _ al b b' (ξ I) (ξ' I) (w I) (Q I) hv hb' (hξ' I) (hw I) (hZ I)
+      _root_.GlobalTheory.KeyRow.main R k x x' f φ u m _ al b b' (ξ I) (ξ' I) (w I) (Q I) hv hb' (hξ' I) (hw I) (hZ I)
     have hinj : Function.Injective ξ' := fun I I' e => by
       by_contra hne
       obtain ⟨r, hr⟩ := hξ I I' hne (spMap f (IsLocalRing.closedPoint k))

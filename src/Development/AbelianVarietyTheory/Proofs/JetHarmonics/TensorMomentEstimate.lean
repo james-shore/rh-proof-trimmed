@@ -78,8 +78,8 @@ theorem kappa_dual : Hyps → ∀ (k r : ℕ) (ι κ : Type) [Fintype ι] [Decid
   refine ⟨GlobalTheory.T.bessel_functional_side_growth hH k r ε mu R Wp z π u μW μN μG νq l _ hR hS hl.1 hnz (hbes lI hlI.1), ?_⟩
   intro κ₀ hκ y hy
   obtain ⟨v, hvTK, hv0⟩ := GlobalTheory.T.exists_K_type_nonzero_bessel hH k r ε mu R Wp z π l hR hl.1 hnz
-  obtain ⟨-, -, -, -, hTKsm, -⟩ := GlobalTheory.T.discreteSeries_unitary_smooth_basic hK k r ε mu R hR
-  obtain ⟨-, -, -, hIsm, -⟩ := GlobalTheory.T.discreteSeries_unitary_smooth_basic hK k r ε (muI I) (RI I) (hRI I)
+  obtain ⟨-, -, -, -, hTKsm, -⟩ := _root_.GlobalTheory.rep_basic_of_isDS hK k r ε mu R hR
+  obtain ⟨-, -, -, hIsm, -⟩ := _root_.GlobalTheory.rep_basic_of_isDS hK k r ε (muI I) (RI I) (hRI I)
   obtain ⟨hadj, -, hev, -⟩ := GlobalTheory.T.frep_discrete_series_sum hK k r ι κ ρ Γ d R RI io pr ep ε mu muI hR hRI hF hT
   obtain ⟨-, -, -, hprTK⟩ := GlobalTheory.T.tensor_raw_of_frep hK k r ι κ ρ Γ d R RI io pr ε mu muI hR hRI hF hT.raw
   have hvsm : v ∈ R.sm := hTKsm v hvTK

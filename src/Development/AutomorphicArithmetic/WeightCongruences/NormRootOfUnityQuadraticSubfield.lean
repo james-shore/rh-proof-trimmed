@@ -84,15 +84,10 @@ private lemma finrank_eq {F E : Type} [Field F] [Field E] [Algebra F E] (t : E) 
   rw [IntermediateField.adjoin.finrank (isInt t c ht), minpoly_eq t c ht hc,
     natDegree_X_pow_sub_C _]
 
-private lemma repr_mem {F E : Type} [Field F] [Field E] [Algebra F E] (t : E) (c : F)
-    (ht : t ^ 2 = algebraMap F E c) (x : E) (hx : x ∈ F⟮t⟯) :
-    ∃ a b : F, x = algebraMap F E a + algebraMap F E b * t :=
-  _root_.UpperTheory.Reformulated.B.ReprMem.repr_mem t c ht x hx
-
 private lemma sq_cases {F E : Type} [Field F] [CharZero F] [Field E] [Algebra F E] (t : E) (c : F)
     (ht : t ^ 2 = algebraMap F E c) (hc : ∀ b : F, b ^ 2 ≠ c) (x : E) (hx : x ∈ F⟮t⟯) (e : F)
     (he : x ^ 2 = algebraMap F E e) : (∃ a : F, e = a ^ 2) ∨ ∃ b : F, e = c * b ^ 2 := by
-  obtain ⟨a, b, rfl⟩ := repr_mem t c ht x hx
+  obtain ⟨a, b, rfl⟩ := _root_.UpperTheory.Reformulated.B.ReprMem.repr_mem t c ht x hx
   have inj := (algebraMap F E).injective
   by_cases ha : a = 0
   · right

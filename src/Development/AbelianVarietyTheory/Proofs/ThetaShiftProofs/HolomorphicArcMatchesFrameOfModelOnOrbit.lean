@@ -55,7 +55,7 @@ theorem tieC_of_onOrbit : Known → ∀ (E : Type) [Field E] [NumberField E] [Is
   intro hK E _ _ _ H Dw l Xo c _ _ σ r U Uw k ξ' x aC Λ ξC hσ hU hξ hx hA gam ξ hO hξC hL O _ β Y χ W Ha
   let := H.starRing
   let Λ' : GtAn₀ (aC.restrict β) := ⟨Λ.toGtDict, Λ.be_eq⟩
-  obtain ⟨g₁, h₁, e1, e2, e3, e4⟩ := GlobalTheory.T.holomorphicArc_agrees_analyticDictionary hK E H Dw l Xo c σ O β Y (aC.restrict β) χ W Uw.g _ Uw.F Ha Λ'
+  obtain ⟨g₁, h₁, e1, e2, e3, e4⟩ := _root_.GlobalTheory.ArcCompare.holArc_agrees hK E H Dw l Xo c σ O β Y (aC.restrict β) χ W Uw.g _ Uw.F Ha Λ'
   obtain ⟨o1, ⟨t', o2, o3⟩, T₀, o4⟩ := hO
   have hw : max Ha.T T₀ < (((max Ha.T T₀ + 1 : ℝ) : ℂ) * Complex.I).im := by simp
   generalize (((max Ha.T T₀ + 1 : ℝ) : ℂ) * Complex.I) = w at hw

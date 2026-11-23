@@ -120,7 +120,7 @@ theorem cutAt_mem_U_of_mem_relax_not_twAt (hW : _root_.GlobalTheory.Fam.AllFamil
     have hy : _root_.GlobalTheory.LevProd.localHomProduct J j hj g i ∈ KO (J.G i).k _ := (Subgroup.mem_pi _).1 (Subgroup.mem_comap.1 hphi) i (Set.mem_univ _)
     rw [h2 (cutAt _ (J.G i).q.v g) (_root_.GlobalTheory.LevProd.localHomProduct J j hj g i) (suppAt_cutAt _ _ g)
       ((GlobalTheory.LevIdx.eq_locHom_iff _ _ _ _ _).2 (locHom_cutAt _ _ _ hgf).symm)]
-    exact _root_.GlobalTheory.T.true_geometry_lattice_open_alt W hW u a ha hTr j hj t' J' hJ' α' t J hJ i hv' gl h1 _ hy
+    exact _root_.GlobalTheory.LevProd.OffTwist.gl_mem_level_alt W hW u a ha hTr j hj t' J' hJ' α' t J hJ i hv' gl h1 _ hy
   · have hle : J.A.U j (J.ι j α) ⊔ GlobalTheory.FinPl.grpAt _ (_root_.GlobalTheory.LevProd.quadraticTwistAtPlace J) ≤ (J.A.U j (J.ι j α)).comap (cutAt _ v) := by
       refine sup_le (fun x hx => ((mem_U_iff hJ.is j (by omega) _ x).1 hx).2 v) fun x hx => ?_
       rw [Subgroup.mem_comap, cutAt_eq_one _ hv hx]

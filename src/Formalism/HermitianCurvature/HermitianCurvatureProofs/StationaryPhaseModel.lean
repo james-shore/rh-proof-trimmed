@@ -806,11 +806,6 @@ theorem C_line_hasDerivAt {f : E → F} {y v : E} {ζ : ℂ} (h : Differentiable
     simpa using ((hasDerivAt_id ζ).smul_const v).const_add y
   exact h.hasFDerivAt.comp_hasDerivAt ζ h1
 
-theorem C_norm_fderiv_le {f : E → F} {y : E} {δ M : ℝ} (hδ : 0 < δ)
-    (hf : DifferentiableOn ℂ f (ball y δ)) (hM : ∀ z ∈ ball y δ, ‖f z‖ ≤ M) :
-    ‖fderiv ℂ f y‖ ≤ M / δ := by
-  first | exact Bl.general_b_fact_second_bis_form.goal1 .. | (apply Bl.general_b_fact_second_bis_form.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_second_bis_form.goal1 <;> assumption)
-
 theorem C_continuousOn_fderiv [FiniteDimensional ℂ E] {U : Set E} (hU : IsOpen U) {f : E → F}
     (hf : DifferentiableOn ℂ f U) : ContinuousOn (fderiv ℂ f) U := by
   have := FiniteDimensional.proper ℂ E
@@ -849,7 +844,7 @@ theorem C_continuousOn_fderiv [FiniteDimensional ℂ E] {U : Set E} (hU : IsOpen
     rw [h0.fderiv]; congr 2; abel
   rw [dist_eq_norm, ← hfd]
   have hle : ‖fderiv ℂ (fun z => f (z + (x' - x)) - f z) x‖ ≤ (ε * ρ / 2) / ρ := by
-    refine C_norm_fderiv_le hρpos ?_ ?_
+    refine _root_.Bl.general_b_fact_second_bis_form.goal1 hρpos ?_ ?_
     · intro z hz
       exact ((hd2 z hz).differentiableAt.sub (hdf z (hsub (hin1 z hz)))).differentiableWithinAt
     · intro z hz
@@ -1010,7 +1005,7 @@ theorem holo_bound {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [Fin
           rw [mem_ball] at hy
           push_cast at hy ⊢
           linarith
-        have h4 := C_norm_fderiv_le hδ (hf.mono hyb) (fun z hz => hM z (hyb hz))
+        have h4 := _root_.Bl.general_b_fact_second_bis_form.goal1 hδ (hf.mono hyb) (fun z hz => hM z (hyb hz))
         exact (ContinuousLinearMap.le_opNorm _ _).trans (by gcongr))
     rw [h1, (Filter.EventuallyEq.iteratedFDeriv (𝕜 := ℝ) h2 i).eq_of_nhds]
     calc ‖iteratedFDeriv ℝ i (fun y => fderiv ℂ f y v) x (Fin.init m)‖
@@ -1520,11 +1515,6 @@ theorem D_gau_integrable (d : ℕ) (β : ℂ) (hβ : β ≠ 0) (δ : ℝ) (hδ :
   rw [D_gau_scale d δ hδ.le]
   exact h1.comp_smul (Real.sqrt_pos.2 hδ).ne'
 
-theorem D_osc_norm {E : Type*} (φ : E → ℝ) (τ : ℝ) (x : E) : ‖osc φ τ x‖ = 1 := by
-  unfold osc
-  rw [mul_comm]
-  exact Complex.norm_exp_ofReal_mul_I _
-
 theorem D_osc_continuous {E : Type*} [TopologicalSpace E] {φ : E → ℝ} (hφ : Continuous φ) (τ : ℝ) :
     Continuous (osc φ τ) := by
   unfold osc
@@ -1594,7 +1584,7 @@ theorem D_compare (d : ℕ) (hd : 0 < d) (β : ℂ) (hβ : β ≠ 0) (ρ Γ Λ :
         ((D_cut_contDiff d two_pos 0).continuous).comp (continuous_const_smul _)
       exact hoscc.smul (Complex.continuous_ofReal.comp (h2.mul hbcont))
     · refine Filter.Eventually.of_forall fun x => ?_
-      rw [norm_smul, D_osc_norm, one_mul, Complex.norm_real, norm_mul]
+      rw [norm_smul, _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.B_norm_osc, one_mul, Complex.norm_real, norm_mul]
       have h3 : ‖cutB d 2 (((n : ℝ) + 1)⁻¹ • x)‖ ≤ 1 := by
         rw [Real.norm_of_nonneg (D_cut_nonneg d two_pos _)]
         exact D_cut_le_one d two_pos _
@@ -1617,11 +1607,11 @@ theorem D_compare (d : ℕ) (hd : 0 < d) (β : ℂ) (hβ : β ≠ 0) (ρ Γ Λ :
   have hI1 : Integrable (fun x : Fin d → ℂ => osc φ τ x * ((cutB d ρ x : ℝ) : ℂ)) (muPi β (Fin d)) := by
     refine hχint.norm.mono' (hoscc.mul (Complex.continuous_ofReal.comp
       (D_cut_contDiff d hρ 0).continuous)).aestronglyMeasurable (Filter.Eventually.of_forall fun x => ?_)
-    rw [norm_mul, D_osc_norm, one_mul, Complex.norm_real]
+    rw [norm_mul, _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.B_norm_osc, one_mul, Complex.norm_real]
   have hI2 : Integrable (fun x : Fin d → ℂ => ((D_gau d δ x : ℝ) : ℂ) * osc φ τ x) (muPi β (Fin d)) := by
     refine hGint.norm.mono' ((Complex.continuous_ofReal.comp (D_gau_continuous d δ)).mul
       hoscc).aestronglyMeasurable (Filter.Eventually.of_forall fun x => ?_)
-    rw [norm_mul, D_osc_norm, mul_one, Complex.norm_real]
+    rw [norm_mul, _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.B_norm_osc, mul_one, Complex.norm_real]
   have hid : ∫ x : Fin d → ℂ, psi β ((x ⬝ᵥ (H *ᵥ x)) / (2 * t)) * ((cutB d ρ x : ℝ) : ℂ) ∂(muPi β (Fin d)) -
       gaussInt β d H t δ = ∫ x, osc φ τ x • ((b x : ℝ) : ℂ) ∂(muPi β (Fin d)) := by
     unfold gaussInt
@@ -1678,16 +1668,6 @@ section TaylorInS
 
 variable {d : ℕ} {β : ℂ} {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [CompleteSpace V]
 
-theorem norm_oscillatory_factor {E : Type*} (φ : E → ℝ) (τ : ℝ) (x : E) : ‖osc φ τ x‖ = 1 := by
-  unfold osc
-  rw [mul_comm]
-  exact Complex.norm_exp_ofReal_mul_I _
-
-theorem continuous_oscillatory_factor {E : Type*} [TopologicalSpace E] {φ : E → ℝ} (hφ : Continuous φ) (τ : ℝ) :
-    Continuous (osc φ τ) := by
-  unfold osc
-  fun_prop
-
 theorem hasDerivAt_exp_linear_phase (a p τ s : ℝ) :
     HasDerivAt (fun s : ℝ => Complex.exp (Complex.I * (((a + s * p) / τ : ℝ) : ℂ)))
       ((Complex.I * ((p / τ : ℝ) : ℂ)) * Complex.exp (Complex.I * (((a + s * p) / τ : ℝ) : ℂ))) s := by
@@ -1705,10 +1685,10 @@ theorem hasDerivAt_oscillatory_integral (hβ : β ≠ 0) (φ₀ P : (Fin d → �
       (∫ x, osc (fun y => φ₀ y + s * P y) τ x • ((Complex.I * ((P x / τ : ℝ) : ℂ)) • c x) ∂(muPi β (Fin d))) s := by
   have := isAddHaar_muPi d β hβ
   have hcont : ∀ s : ℝ, Continuous (fun x => osc (fun y => φ₀ y + s * P y) τ x • c x) := fun s =>
-    (continuous_oscillatory_factor (by fun_prop) τ).smul hc
+    (_root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.D_osc_continuous (by fun_prop) τ).smul hc
   have hcont' : ∀ s : ℝ, Continuous
       (fun x => osc (fun y => φ₀ y + s * P y) τ x • ((Complex.I * ((P x / τ : ℝ) : ℂ)) • c x)) := fun s =>
-    (continuous_oscillatory_factor (by fun_prop) τ).smul ((by fun_prop : Continuous fun x => (Complex.I * ((P x / τ : ℝ) : ℂ))).smul hc)
+    (_root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.D_osc_continuous (by fun_prop) τ).smul ((by fun_prop : Continuous fun x => (Complex.I * ((P x / τ : ℝ) : ℂ))).smul hc)
   have hb : Continuous (fun x => ‖P x / τ‖ * ‖c x‖) := by fun_prop
   have hbs : HasCompactSupport (fun x => ‖P x / τ‖ * ‖c x‖) := hcs.norm.mul_left
   have key := hasDerivAt_integral_of_dominated_loc_of_deriv_le (μ := muPi β (Fin d)) (𝕜 := ℝ)
@@ -1719,7 +1699,7 @@ theorem hasDerivAt_oscillatory_integral (hβ : β ≠ 0) (φ₀ P : (Fin d → �
     ((hcont s).integrable_of_hasCompactSupport hcs.smul_left)
     (hcont' s).aestronglyMeasurable
     (Filter.Eventually.of_forall fun x s _ => by
-      rw [norm_smul, norm_smul, norm_oscillatory_factor, one_mul, norm_mul, Complex.norm_I, one_mul, Complex.norm_real])
+      rw [norm_smul, norm_smul, _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.B_norm_osc, one_mul, norm_mul, Complex.norm_I, one_mul, Complex.norm_real])
     (hb.integrable_of_hasCompactSupport hbs)
     (Filter.Eventually.of_forall fun x s _ => by
       have h := (hasDerivAt_exp_linear_phase (φ₀ x) (P x) τ s).smul_const (c x)
@@ -2118,11 +2098,6 @@ theorem E_ph_sym {φ : E → ℝ} {N : ℕ} (hN : 1 ≤ N) (hφ : ContDiff ℝ (
   have e2 : |s| * (Γ * (r + 1) ^ N) ≤ 1 * (Γ * (r + 1) ^ N) := mul_le_mul_of_nonneg_right a2 p
   linarith
 
-theorem E_norm_dirv {d : ℕ} (l : Fin d × Bool) : ‖(dirv l : Fin d → ℂ)‖ = 1 := by
-  unfold dirv
-  rw [Pi.norm_single]
-  split_ifs <;> simp
-
 theorem E_ph_low {d : ℕ} {φ : (Fin d → ℂ) → ℝ} {n : ℕ} (h3n : 3 ≤ n) (hφ : ContDiff ℝ n φ) {r Γ c₁ ρ : ℝ}
     (hr : 0 < r) (hc : fderiv ℝ φ 0 = 0)
     (hb : ∀ x ∈ Metric.closedBall (0 : Fin d → ℂ) r, ∀ i : ℕ, i ≤ n → ‖iteratedFDeriv ℝ i φ x‖ ≤ Γ)
@@ -2144,7 +2119,7 @@ theorem E_ph_low {d : ℕ} {φ : (Fin d → ℂ) → ℝ} {n : ℕ} (h3n : 3 ≤
     positivity
   have h2 : |fderiv ℝ (E_P φ) x (dirv l)| ≤ K * ‖x‖ ^ 2 := by
     have := (fderiv ℝ (E_P φ) x).le_opNorm (dirv l)
-    rw [E_norm_dirv, mul_one, Real.norm_eq_abs] at this
+    rw [_root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.B_norm_dirv, mul_one, Real.norm_eq_abs] at this
     exact this.trans h1
   have a1 : |1 - s| ≤ 1 := by rw [abs_le]; constructor <;> linarith [hs.1, hs.2]
   have h3 : |(1 - s) * fderiv ℝ (E_P φ) x (dirv l)| ≤ K * ‖x‖ ^ 2 := by
@@ -2365,7 +2340,7 @@ theorem E_integrable (hβ : β ≠ 0) {ψ : (Fin d → ℂ) → ℝ} (hψ : Cont
     (hg : Continuous g) (hgc : HasCompactSupport g) :
     Integrable (fun x => osc ψ τ x • g x) (muPi β (Fin d)) := by
   have := isAddHaar_muPi d β hβ
-  exact ((continuous_oscillatory_factor hψ τ).smul hg).integrable_of_hasCompactSupport hgc.smul_left
+  exact ((_root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.D_osc_continuous hψ τ).smul hg).integrable_of_hasCompactSupport hgc.smul_left
 
 theorem E_cut_continuous (hρ0 : 0 < ρ) : Continuous (cutB d ρ) := (E_cut_contDiff hρ0 0).continuous
 
@@ -3173,11 +3148,6 @@ open Formalism.FourierDecayAlt.G MeasureTheory Filter Topology Matrix
 
 namespace Formalism.FourierDecayAlt.P.StationaryPhaseModel
 
-theorem norm_psi_alt (β w : ℂ) : ‖psi β w‖ = 1 := by
-  unfold psi
-  rw [mul_comm]
-  exact Complex.norm_exp_ofReal_mul_I _
-
 theorem cutoff_eq_contDiffBump (d : ℕ) (ρ : ℝ) (h : 0 < ρ) :
     cutB d ρ = fun x => (⟨ρ / 2, ρ, half_pos h, half_lt_self h⟩ : ContDiffBump (0 : Fin d → ℂ)) x := by
   funext x
@@ -3274,13 +3244,13 @@ theorem F_zero (d : ℕ) (hd : 0 < d) (β : ℂ) (hβ : β ≠ 0) (r Λ : ℝ) (
     have hdet : 1 / ‖H.det‖ ≤ D₁ := by
       have h2 := h₀ g dg H hg hb hdg hdg0 hH hgrad ℂ (fun x : Fin d → ℂ => ((cutB d r x : ℝ) : ℂ)) Sχ hχc hχs hSχ 1
         one_ne_zero (by simp)
-      have h3 := oscillatory_integral_trivial_bound d β hβ r (fun x => psi β (g x / 1)) (fun x => norm_psi_alt β _)
+      have h3 := oscillatory_integral_trivial_bound d β hβ r (fun x => psi β (g x / 1)) (fun x => _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.F_norm_psi β _)
         (fun x : Fin d → ℂ => ((cutB d r x : ℝ) : ℂ)) Sχ hχs (fun x => by
           have := hSχ 0 (Nat.zero_le _) x
           rwa [norm_iteratedFDeriv_zero] at this)
       have h4 : ‖(psi β (g 0 / 1) * ((‖(1 : ℂ)‖ ^ d / ‖H.det‖ : ℝ) : ℂ)) • ((cutB d r (0 : Fin d → ℂ) : ℝ) : ℂ)‖ =
           1 / ‖H.det‖ := by
-        rw [hχ0, norm_smul, norm_mul, norm_psi_alt, norm_one, one_pow, Complex.norm_real, mul_one, one_mul,
+        rw [hχ0, norm_smul, norm_mul, _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.F_norm_psi, norm_one, one_pow, Complex.norm_real, mul_one, one_mul,
           Real.norm_of_nonneg (by positivity)]
       rw [← h4]
       have h5 := norm_sub_norm_le
@@ -3289,9 +3259,9 @@ theorem F_zero (d : ℕ) (hd : 0 < d) (β : ℂ) (hβ : β ≠ 0) (r Λ : ℝ) (
       rw [norm_sub_rev] at h5
       simp only [norm_one, one_pow, mul_one] at h2 h5 ⊢
       linarith
-    have h6 := oscillatory_integral_trivial_bound d β hβ r (fun x => psi β (g x / t)) (fun x => norm_psi_alt β _) a S hsupp haS
+    have h6 := oscillatory_integral_trivial_bound d β hβ r (fun x => psi β (g x / t)) (fun x => _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.F_norm_psi β _) a S hsupp haS
     have h7 : ‖(psi β (g 0 / t) * ((‖t‖ ^ d / ‖H.det‖ : ℝ) : ℂ)) • a 0‖ ≤ ‖t‖ ^ d * D₁ * S := by
-      rw [norm_smul, norm_mul, norm_psi_alt, one_mul, Complex.norm_real, Real.norm_of_nonneg (by positivity)]
+      rw [norm_smul, norm_mul, _root_.Formalism.FourierDecayAlt.P.StationaryPhaseModel.F_norm_psi, one_mul, Complex.norm_real, Real.norm_of_nonneg (by positivity)]
       have : ‖t‖ ^ d / ‖H.det‖ = ‖t‖ ^ d * (1 / ‖H.det‖) := by ring
       rw [this]
       gcongr

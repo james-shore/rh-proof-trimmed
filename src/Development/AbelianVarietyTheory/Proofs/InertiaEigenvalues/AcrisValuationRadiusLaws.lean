@@ -68,7 +68,7 @@ lemma vrlaw_rad (r : ℝ) (h0 : 0 < r) (h1 : r ≤ 1) :
   · exact Real.rpow_lt_one_of_one_lt_of_neg hl (by linarith)
 
 lemma vrlaw_gC_zero (ρ : ℝ) (h0 : (l : ℝ)⁻¹ ≤ ρ) (h1 : ρ < 1) : gC l ρ 0 = 0 := by
-  have hG := isGauss_gC_target l ρ h0 h1
+  have hG := _root_.GlobalTheory.PMon.Gauss.isGauss_gC_of_le l ρ h0 h1
   have hm := hG.2.2.2.1 0 (l : Formalism.Per.Acris l)
   rw [zero_mul, (GlobalTheory.T.gaussNormAcris_basic_values l ρ h0 h1).2.1] at hm
   have : gC l ρ 0 * (1 - ρ) = 0 := by linarith

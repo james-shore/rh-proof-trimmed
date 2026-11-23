@@ -129,7 +129,7 @@ theorem height_sq_lintegral_lt_top : ∀ (F E : Type) [NontriviallyNormedField F
   haveI : SecondCountableTopology A.K := b.equivFunL.toHomeomorph.secondCountableTopology
   obtain ⟨-, -, -, -, -, -, -, -, -, hOo, hOc, R, hR⟩ := GlobalTheory.T.etaleHermitianPair_structure_facts F E A
   obtain ⟨m, f, hid, hor, hsum, hsc, hvp⟩ :=
-    GlobalTheory.T.idempotent_decomposition_of_integrality F E A (fun k _ _ _ y hy => GlobalTheory.T.isIntegral_or_inv_isIntegral_finite_ext_ultrametric F k y hy)
+    _root_.GlobalTheory.JR.Et.Idem.main F E A (fun k _ _ _ y hy => _root_.GlobalTheory.JR.Spec.isIntegral_or_isIntegral_inv F k y hy)
   have hOR : ∀ x, x ∈ A.OK ↔ x ∈ R := fun x => by rw [← hR, SetLike.mem_coe]
   have hfR : ∀ i, f i ∈ R := fun i => by
     rw [← hOR, Et.mem_OK_iff_isIntegral]

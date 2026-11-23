@@ -76,7 +76,7 @@ theorem pull_unif_tors : ∀ (R : Type) [CommRing R] [IsDomain R] [CharZero R] (
       algebraMap (FractionRing V) F (algebraMap V _ (f r)) := hj
   obtain ⟨p₁, hp₁⟩ := qkExtExists R D₀.toPre F₀ F σ.toRingHom (fun r => σ.commutes r) k p₀
   let x₁ : TFK (R := R) F ⟶ A₀.A := extPt σ x₀
-  have hx₁ : QkToAkU U₀.toUnifPre F k p₁ x₁ := (GlobalTheory.T.qkToAkU_iff_galois_equivariant hL R J hR D₀ A₀ G₀ hG U₀ F₀ F σ k hk p₀ p₁ x₀ x₁
+  have hx₁ : QkToAkU U₀.toUnifPre F k p₁ x₁ := (_root_.GlobalTheory.TorsionExt.qkToAkU_iff_of_qkExt hL R J hR D₀ A₀ G₀ hG U₀ F₀ F σ k hk p₀ p₁ x₀ x₁
     hp₁ rfl).1 hx₀
   obtain ⟨ex, -, io, ns⟩ := hpt F hF
   obtain ⟨g, hg, -⟩ := ex p₁.g

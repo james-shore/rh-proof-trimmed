@@ -115,14 +115,6 @@ theorem ratM_one (W : HSp D) : ratM W (1 : GQ W) = 1 := by
   rw [← ratM_spec, Matrix.map_one _ (map_zero _) (map_one _)]
   exact congrArg Units.val (map_one (matHom W))
 
-private theorem heisO_zero_twisted_operators {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (V W : HSp D) (u : WO V W → ℂ) :
-    heisO ψ V W 0 u = u := by
-  funext w
-  unfold heisO
-  simp only [symplOH]
-  unfold symplO hO
-  simp
-
 def ratAct (W : HSp D) (r : ℕ) : MulAction (GQ W) {y : Matrix (Fin W.rank) (Fin r) D.host.E // y ≠ 0} where
   smul γ y := ⟨ratM W γ * y.1, fun h => y.2 (by
     have := congrArg (ratM W γ⁻¹ * ·) h
@@ -147,7 +139,7 @@ theorem GlobalTheory.TowerCT.towerConstTermOfCompatible_holds : ∀ D : D7, Glob
   obtain ⟨C', h1, h2, h3⟩ := GlobalTheory.T.exists_isotropicDualFrame_of_splitEmbedding D V V' r C B hS
   have hstd : IsStdChar D ψ (-1) := hω.std
   obtain ⟨θ, hθ⟩ := (GlobalTheory.Ker.exists_infFam_and_stdChar D).1
-  have hG := GlobalTheory.KernelSeminorm.thetaGrowth_onObjects D
+  have hG := _root_.GlobalTheory.KernelSeminorm.thetaGrowth D
 
   have hωm : ∀ (p q : GA D V × GA D W) (u : WO V W → ℂ), ω (p * q) u = ω p (ω q u) := by
     intro p q u
@@ -240,7 +232,7 @@ theorem GlobalTheory.TowerCT.towerConstTermOfCompatible_holds : ∀ D : D7, Glob
   set a : Matrix (Fin W.rank) (Fin r) D.host.E → ℂ :=
     fun y => ∫ h in 𝓕, (∫ n in 𝓝, tm y (ω ((n : GA D V) * g, h) f) ∂κ) * F h ∂ν with ha
 
-  have heis0 : ∀ u : WO V W → ℂ, heisO ψ V W 0 u = u := fun u => heisO_zero_twisted_operators ψ V W u
+  have heis0 : ∀ u : WO V W → ℂ, heisO ψ V W 0 u = u := fun u => _root_.GlobalTheory.SplitScalar.heisO_zero ψ V W u
   have hT0 : ∀ (n : NI V C) (h : GA D W),
       tm 0 (ω ((n : GA D V) * g, h) f) = thetaKO ω' 1 h (res V V' W C B μ 𝓨 (ω (g, 1) f)) := by
     intro n h

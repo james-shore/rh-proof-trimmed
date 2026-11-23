@@ -72,7 +72,7 @@ theorem finite_semisimple (k R : Type) [Field k] [CharZero k] [IsAlgClosed k] [R
     exact ⟨p, hp, hnd _ hT⟩
   · refine hnd x fun y => ?_
     rw [show T (x * y) = T (y * x) from h.comm x y]
-    exact GlobalTheory.T.pseudoCharacter_eq_zero_of_isNilpotent k R d T h _ (hx y)
+    exact _root_.GlobalTheory.PsChar.apply_eq_zero_of_isNilpotent k R d T h _ (hx y)
   · have hv : ∀ i, ∃ a : ℕ, 1 ≤ a ∧ T (e i) = a := fun i => by
       obtain ⟨⟨a, -, ha⟩, h0⟩ := GlobalTheory.T.pseudoCharacter_apply_idempotent_nat_le k R d T h (e i) (he.idem i)
       refine ⟨a, Nat.one_le_iff_ne_zero.2 fun h' => hne i (hnd _ (h0 ?_)), ha⟩

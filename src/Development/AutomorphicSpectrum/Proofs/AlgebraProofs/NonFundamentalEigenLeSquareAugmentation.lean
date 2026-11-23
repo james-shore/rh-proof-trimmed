@@ -148,7 +148,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.non_fundamental_eigen_le_squar
       by_contra h; exact hcon ⟨n, h⟩
     simp only [h0, zero_mul, Finset.sum_const_zero] at hd
     omega
-  have hx := (GlobalTheory.T.fundamental_ideal_frobenius_powers p C v R hv hp F f hc AA hA σ hσ c hcx).2 d hne
+  have hx := (_root_.PositivityTheory.HtPt.Pmono.r_mono p C v R hv hp F f hc AA hA σ hσ c hcx).2 d hne
   rw [hd] at hx
   have hs : 2 ≤ ∑ n, (d n : ℕ) := by
     by_contra hs

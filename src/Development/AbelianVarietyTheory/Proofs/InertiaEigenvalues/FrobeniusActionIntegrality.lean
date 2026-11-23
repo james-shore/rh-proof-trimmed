@@ -92,10 +92,6 @@ theorem isHalf_smul {m n : ℕ} {e : AE D} (s : AE D) {w : Mx D m n} (hw : IsHal
   simp only [Matrix.smul_apply, smul_eq_mul]
   rw [mul_left_comm, hw i j]
 
-theorem isHalf_sub {m n : ℕ} {e : AE D} {w w' : Mx D m n} (hw : IsHalf e w) (hw' : IsHalf e w') : IsHalf e (w - w') := by
-  intro i j
-  simp only [Matrix.sub_apply, mul_sub, hw i j, hw' i j]
-
 theorem redM_sub (PP : Pl D.host.E) {b a : ℕ} {N M : Matrix (Fin b) (Fin a) (EAf D)} (hN : IsIntM N) (hM : IsIntM M) :
     redM PP (N - M) = redM PP N - redM PP M := by
   ext i j
@@ -297,7 +293,7 @@ theorem GlobalTheory.ZRep.central_reps : ∀ (D : D7) (G : Type) [Group G] [Fint
   have H2e : ∀ w ∈ Λ, ∀ w' ∈ Λ, IsHalf e w → IsHalf e w' → (w - w' ∈ Λe ↔ ∀ PP ∈ R.Q t,
       redM PP (frMapO (Vc D i) (Wc D i) (R.βV i) (R.βW i) w) = redM PP (frMapO (Vc D i) (Wc D i) (R.βV i) (R.βW i) w')) := by
     intro w hw w' hw' hh hh'
-    have hd := isHalf_sub hh hh'
+    have hd := _root_.GlobalTheory.SplitScalar.isHalf_sub hh hh'
     have hi := (H1e w hh).1 hw
     have hi' := (H1e w' hh').1 hw'
     have hN : IsIntM (frMapO (Vc D i) (Wc D i) (R.βV i) (R.βW i) (w - w')) := (H1e _ hd).1 (sub_mem hw hw')
@@ -316,7 +312,7 @@ theorem GlobalTheory.ZRep.central_reps : ∀ (D : D7) (G : Type) [Group G] [Fint
   have H2c : ∀ w ∈ Λ, ∀ w' ∈ Λ, IsHalf (cA D e) w → IsHalf (cA D e) w' → (w - w' ∈ Λc ↔ ∀ PP ∈ R.Q t,
       redM PP (frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) w) = redM PP (frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) w')) := by
     intro w hw w' hw' hh hh'
-    have hd := isHalf_sub hh hh'
+    have hd := _root_.GlobalTheory.SplitScalar.isHalf_sub hh hh'
     have hi := (H1c w hh).1 hw
     have hi' := (H1c w' hh').1 hw'
     have hN : IsIntM (frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) (w - w')) := (H1c _ hd).1 (sub_mem hw hw')
@@ -401,7 +397,7 @@ theorem GlobalTheory.ZRep.central_reps : ∀ (D : D7) (G : Type) [Group G] [Fint
       have := hxd.2; rwa [actsub, zz] at this⟩, ?_⟩
     rintro v ⟨hv, hvw⟩
     obtain ⟨x', hx', rfl⟩ := Finset.mem_image.1 hv
-    rw [hxu x' ⟨hx', isHalf_sub (Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_actO _ _ _ hwh) (hXc1 x' hx').2, by
+    rw [hxu x' ⟨hx', _root_.GlobalTheory.SplitScalar.isHalf_sub (Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_actO _ _ _ hwh) (hXc1 x' hx').2, by
       rw [actsub, zz]; exact hvw⟩]
   have cl13c : ∀ w, actO (Vc D i) (Wc D i) z 1 w ∈ Λ → IsHalf (cA D (cA D e)) w →
       ∃! v, v ∈ Xe.image (actO (Vc D i) (Wc D i) z⁻¹ 1) ∧ w - v ∈ Λ := by
@@ -412,7 +408,7 @@ theorem GlobalTheory.ZRep.central_reps : ∀ (D : D7) (G : Type) [Group G] [Fint
       have := hxd.2; rwa [actsub, z'z] at this⟩, ?_⟩
     rintro v ⟨hv, hvw⟩
     obtain ⟨x', hx', rfl⟩ := Finset.mem_image.1 hv
-    rw [hxu x' ⟨hx', isHalf_sub (Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_actO _ _ _ hwh) (hXe1 x' hx').2, by
+    rw [hxu x' ⟨hx', _root_.GlobalTheory.SplitScalar.isHalf_sub (Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_actO _ _ _ hwh) (hXe1 x' hx').2, by
       rw [actsub, z'z]; exact hvw⟩]
   have injz : Function.Injective (actO (Vc D i) (Wc D i) z 1) := fun x y h => by rw [← z'z x, h, z'z]
   have injz' : Function.Injective (actO (Vc D i) (Wc D i) z⁻¹ 1) := fun x y h => by rw [← zz x, h, zz]

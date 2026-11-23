@@ -100,7 +100,7 @@ theorem evR_eq {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {σ
     (hev : IsFullLev Xo (R ^ 4) y.x ev) (hw : ∀ q, IsNullVal Xo c (R ^ 2) y (ev q) (w q)) :
     evR Xo c f y = etaExpr (R ^ 4) cf xs w := by
   haveI : _root_.IsReduced (CAt σ) := inferInstanceAs (_root_.IsReduced ℂ)
-  have h₁ := (GlobalTheory.T.etaProductRule_value_eq_productForm_of_testRing E H Dw l Xo c R hR J n cf xs f hf (CAt σ) y (hA _ y)).1
+  have h₁ := (_root_.GlobalTheory.EtaForm.etaValAt_evR_of_fromTest E H Dw l Xo c R hR J n cf xs f hf (CAt σ) y (hA _ y)).1
   have h₂ : EtaValAt Xo c R cf xs y (etaExpr (R ^ 4) cf xs w) :=
     ⟨CAt σ, inferInstance, inferInstance, AlgHom.id c.F _, y, ev, w,
       RingHom.FaithfullyFlat.of_bijective Function.bijective_id, GlobalTheory.FramedBaseChange.refl y, hev, hw, rfl⟩
@@ -195,7 +195,7 @@ theorem norm_productForm_le_at_unit_frame : ∀ (E : Type) [Field E] [NumberFiel
         Real.exp (-(i : ℝ) * (T.ph (I2.th (E := E) P.q P.R0) - p16 E r P.q P.m R N)) := by
     intro r' hr' hJ' w' a'
     subst hr'
-    exact GlobalTheory.T.norm_prod_sum_theta_le_exp_torus E T DF P R i N h1R hN _ hsec hl2' (LevGrp Dw (R ^ 4)) J
+    exact _root_.GlobalTheory.norm_prod_sum_theta_le_exp_of_card E T DF P R i N h1R hN _ hsec hl2' (LevGrp Dw (R ^ 4)) J
       (by rw [← Nat.card_eq_fintype_card, hcard]) hJ' cf w' a' hcf
   exact key r hr hJ (fun g j b => toC (w (g (xs j b)))) (fun g j b => ψ (z (g (xs j b))))
     (fun g j b => hmem _) hgen' (fun g j b => hwn _)

@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -65,13 +66,10 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : �
 def IA (P : HeightOneSpectrum (𝓞 E)) (x : E) : Prop :=
   ∃ s : 𝓞 E, s ∉ P.asIdeal ∧ ∃ o : 𝓞 E, (s : E) * x = o
 
-theorem one_nmem (P : HeightOneSpectrum (𝓞 E)) : (1 : 𝓞 E) ∉ P.asIdeal :=
-  fun h => P.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 h)
-
 theorem mul_nmem (P : HeightOneSpectrum (𝓞 E)) {s t : 𝓞 E} (hs : s ∉ P.asIdeal) (ht : t ∉ P.asIdeal) :
     s * t ∉ P.asIdeal := fun h => (P.isPrime.mem_or_mem h).elim hs ht
 
-theorem IA_coe (P : HeightOneSpectrum (𝓞 E)) (o : 𝓞 E) : IA P (o : E) := ⟨1, one_nmem P, o, by simp⟩
+theorem IA_coe (P : HeightOneSpectrum (𝓞 E)) (o : 𝓞 E) : IA P (o : E) := ⟨1, _root_.Formalism.MainNotions.LatticeGluingRadicals.d_one_notMem P, o, by simp⟩
 
 theorem IA_zero (P : HeightOneSpectrum (𝓞 E)) : IA P (0 : E) := by simpa using IA_coe P 0
 
@@ -219,7 +217,7 @@ theorem adapt_mat (Λ : Submodule (𝓞 E) S.V) (g : ℕ) {T : E} (F : LFlag S r
       (∀ P : HeightOneSpectrum (𝓞 E), (g : 𝓞 E) ∈ P.asIdeal → ∀ c b, IA P (W c b)) ∧
       ∀ b, a (frame F b) = ∑ c, W c b • frame F c := by
   have hloc := frame_locP Λ g F hconv hl
-  have h := fun b : Fin (r + 1) => GlobalTheory.T.flag_coef_integral_of_local_integral Λ g F hconv b.val (a (frame F b) - frame F b) (haf b)
+  have h := fun b : Fin (r + 1) => _root_.GlobalTheory.FlagCoef.coef_integral_of_flag Λ g F hconv b.val (a (frame F b) - frame F b) (haf b)
     (fun P hP => sub_mem (mem_localization_aut P haΛ (hloc P hP b)) (hloc P hP b))
   choose w hw0 hw1 hw2 using h
   refine ⟨triM w, triM_lower w hw1, triM_diag w hw1, fun P hP => triM_IA P w (fun b c => hw2 b P hP c), fun b => ?_⟩
@@ -243,7 +241,7 @@ theorem isAdmissible_flagPair_of_unitriangular_left_automorphism (Λ : Submodule
   rw [haΛ] at hA2
   obtain ⟨ξ, hξ0, hξ1, hξc⟩ := hA2
   obtain ⟨W, hW0, hW1, hWi, hWe⟩ := adapt_mat Λ g F hconv hl a haΛ haf
-  refine GlobalTheory.T.frame_admissible_of_congr_unitriangular Λ g hg F _ (W * ξ.map (fun x : 𝓞 E => (x : E)))
+  refine _root_.GlobalTheory.admissible_of_congr_unitriangular Λ g hg F _ (W * ξ.map (fun x : 𝓞 E => (x : E)))
     (mul_lower _ _ hW0 (map_lower ξ hξ0)) (mul_diag _ _ hW0 (map_lower ξ hξ0) hW1 (map_diag ξ hξ1))
     (fun P hP => mul_IA P _ _ (hWi P hP) (fun a b => by simpa using IA_coe P (ξ a b)))
     (frame_locP Λ g F hconv hl) (fun b => ?_)

@@ -63,17 +63,6 @@ namespace GlobalTheory.UnRep.Correct
 
 variable {E : Type} [Field E] {n : ℕ}
 
-theorem exists_nat_mulVec_mem [NumberField E] (L : Submodule (𝓞 E) (Fin n → E)) (hfg : L.FG)
-    (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤) (M : Matrix (Fin n) (Fin n) E) :
-    ∃ d : ℕ, 0 < d ∧ ∀ v ∈ L, d • (M *ᵥ v) ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem
-  | exact _root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem
-  | (apply _root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem ..)
-
 theorem congAt_mul {L : Submodule (𝓞 E) (Fin n → E)} {N D : ℕ} {A B : Matrix (Fin n) (Fin n) E}
     (hA : CongAt L N D A) (hB : CongAt L N D B) : CongAt L N D (A * B) := by
   obtain ⟨t₁, c₁, h₁⟩ := hA
@@ -130,13 +119,13 @@ theorem exists_unitary_correction : ∀ (F E : Type) [Field F] [NumberField F] [
     obtain ⟨x, u⟩ := p
     obtain ⟨hx, hu⟩ := hl (x, u) List.mem_cons_self
     simp only at hx hu
-    obtain ⟨-, r1, rmul, run⟩ := GlobalTheory.T.unitaryQuasiReflection_laws F E c n G hG x hx
+    obtain ⟨-, r1, rmul, run⟩ := _root_.GlobalTheory.UnRep.ReflLaws.refl_laws F E c n G hG x hx
     have hu0 : u ≠ 0 := left_ne_zero_of_mul_eq_one hu
     let R : (a : E) → a ≠ 0 → GL (Fin n) E := fun a ha =>
       ⟨refl c G x a, refl c G x a⁻¹, by rw [rmul, mul_inv_cancel₀ ha, r1],
         by rw [rmul, inv_mul_cancel₀ ha, r1]⟩
-    obtain ⟨d, hd, hRd⟩ := exists_nat_mulVec_mem L hfg hL (R u hu0).1
-    obtain ⟨e, he, hRe⟩ := exists_nat_mulVec_mem L hfg hL ((R u hu0)⁻¹).1
+    obtain ⟨d, hd, hRd⟩ := _root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem L hfg hL (R u hu0).1
+    obtain ⟨e, he, hRe⟩ := _root_.GlobalTheory.IntegralMultipleOfVectors.exists_nsmul_mulVec_mem L hfg hL ((R u hu0)⁻¹).1
     obtain ⟨γ₁, hγ₁, hc₁, s₁, hs₁, hL₁⟩ := ih ((R u hu0)⁻¹ * γ₀) (D * d * e)
       (Nat.mul_pos (Nat.mul_pos hD hd) he) (fun p hp => hl p (List.mem_cons_of_mem _ hp)) (by
         rw [Units.val_mul, hprod, List.map_cons, List.prod_cons, ← mul_assoc]

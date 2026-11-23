@@ -321,7 +321,7 @@ theorem norm_cfOf_le : Known → ∀ (E : Type) [Field E] [NumberField E] [IsCMF
   have hβ := ArcId.betaAt_comp f s.ξ hp.2.2.1 s.beta
   have hw : Ha.T < (((Ha.T + 1 : ℝ) : ℂ) * Complex.I).im := by simp
   generalize ((Ha.T + 1 : ℝ) : ℂ) * Complex.I = w at hw
-  obtain ⟨k, ξ', sE, C, hiso, hsE, -, -, hC, hCle, hmain⟩ := GlobalTheory.T.laurentCoeff_sectionValue_arc_eq_fourierJacobi h1 h2 E H Dw l Xo c _ r U Uw _ _ d.Y a₁ _ W₁
+  obtain ⟨k, ξ', sE, C, hiso, hsE, -, -, hC, hCle, hmain⟩ := _root_.GlobalTheory.ArcCoeff.coeff_evR_eq_fj h1 h2 E H Dw l Xo c _ r U Uw _ _ d.Y a₁ _ W₁
     Ha th₁ _ s.ν₀ d.jj a' n hev hgood hunf (fun _ => rfl) hover₁ (mono_spMap_subtype _) hpush (hnz _ _ hth₁ hth) hrk hξ hβ
     hdom htv w hw
   obtain ⟨v₁, v₂, -, v₄⟩ := GlobalTheory.T.torusExt_exponential_derivative_bijective_tangent h1.globalFns E H Dw l Xo c _ _ _ d.Y a₁ _ W₁ _ _ Uw.F Ha

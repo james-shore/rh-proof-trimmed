@@ -54,26 +54,19 @@ section Fock
 
 variable {σ : Type}
 
-theorem tf_eq_sum (f g : MvPolynomial σ ℂ) (S : Finset (σ →₀ ℕ)) (hS : f.support ⊆ S) :
-    Formalism.REAL.fockF f g = ∑ m ∈ S, f.coeff m * star (g.coeff m) * ((∏ k ∈ m.support, (m k).factorial : ℕ) : ℂ) := by
-  unfold Formalism.REAL.fockF
-  refine Finset.sum_subset hS fun m _ hm => ?_
-  rw [notMem_support_iff.mp hm]
-  simp
-
 theorem tf_add_left (f f' g : MvPolynomial σ ℂ) :
     Formalism.REAL.fockF (f + f') g = Formalism.REAL.fockF f g + Formalism.REAL.fockF f' g := by
   classical
-  rw [tf_eq_sum (f + f') g (f.support ∪ f'.support) support_add,
-    tf_eq_sum f g (f.support ∪ f'.support) Finset.subset_union_left,
-    tf_eq_sum f' g (f.support ∪ f'.support) Finset.subset_union_right, ← Finset.sum_add_distrib]
+  rw [_root_.Formalism.L2.Col.fockF_eq_sum (f + f') g (f.support ∪ f'.support) support_add,
+    _root_.Formalism.L2.Col.fockF_eq_sum f g (f.support ∪ f'.support) Finset.subset_union_left,
+    _root_.Formalism.L2.Col.fockF_eq_sum f' g (f.support ∪ f'.support) Finset.subset_union_right, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [MvPolynomial.coeff_add]
   ring
 
 theorem tf_smul_left (c : ℂ) (f g : MvPolynomial σ ℂ) :
     Formalism.REAL.fockF (c • f) g = c * Formalism.REAL.fockF f g := by
-  rw [tf_eq_sum (c • f) g f.support support_smul, tf_eq_sum f g f.support le_rfl, Finset.mul_sum]
+  rw [_root_.Formalism.L2.Col.fockF_eq_sum (c • f) g f.support support_smul, _root_.Formalism.L2.Col.fockF_eq_sum f g f.support le_rfl, Finset.mul_sum]
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [MvPolynomial.coeff_smul, smul_eq_mul]
   ring
@@ -101,7 +94,7 @@ theorem tfB_apply (f g : MvPolynomial σ ℂ) : tfB f g = Formalism.REAL.fockF f
 
 theorem tf_eq_fockS (f g : MvPolynomial σ ℂ) : Formalism.REAL.fockF f g = Formalism.L2.DIV.fockS g f := by
   classical
-  rw [tf_eq_sum f g (f.support ∪ g.support) Finset.subset_union_left,
+  rw [_root_.Formalism.L2.Col.fockF_eq_sum f g (f.support ∪ g.support) Finset.subset_union_left,
     Formalism.L2.DIV.fockS_eq_sum g f (f.support ∪ g.support) Finset.subset_union_right]
   refine Finset.sum_congr rfl fun m _ => ?_
   unfold Formalism.L2.DIV.mfact

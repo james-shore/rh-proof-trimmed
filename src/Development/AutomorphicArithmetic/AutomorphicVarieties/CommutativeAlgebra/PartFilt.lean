@@ -50,11 +50,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open IsLocalRing MvPowerSeries UpperTheory.V.Alg
 
-private theorem UpperTheory.V.Alg.part_filt_coeff {O σ : Type} [CommRing O] [IsLocalRing O] (M : ℕ) :
-    ∀ f ∈ maximalIdeal (MvPowerSeries σ O) ^ M, ∀ n : σ →₀ ℕ,
-      coeff n f ∈ maximalIdeal O ^ (M - n.degree) :=
-  _root_.UpperTheory.Reformulated.B.PartialFiltrationCoeff.part_filt_coeff M
-
 private theorem UpperTheory.V.Alg.part_filt_split {σ X : Type} [Finite σ] [AddCommGroup X] [Module.Free ℤ X]
     [Module.Finite ℤ X] (wt : σ → X) (j : X) :
     ∃ D : ℕ, ∀ n : σ →₀ ℕ, Finsupp.weight wt n = j → D < n.degree →
@@ -180,7 +175,7 @@ theorem UpperTheory.V.Alg.part_filt :
     intro n hn
     rw [hh, coeff_wcomp]
     split_ifs
-    · exact Ideal.pow_le_pow_right (by omega) (UpperTheory.V.Alg.part_filt_coeff _ g hg n)
+    · exact Ideal.pow_le_pow_right (by omega) (_root_.UpperTheory.Reformulated.B.PartialFiltrationCoeff.part_filt_coeff _ g hg n)
     · exact zero_mem _
   have hfin : {n : W.σ →₀ ℕ | n.degree < N}.Finite :=
     (Finsupp.finite_of_degree_le N).subset fun n (hn : n.degree < N) => hn.le

@@ -45,16 +45,6 @@ import Mathlib.Tactic.TypeStar
 open UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi DiscreteGroups.T1.G
 open MeasureTheory
 
-private theorem twist_general {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    [LocallyCompactSpace G] [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]
-    (μ : Measure G) [μ.IsHaarMeasure] (Γ : Subgroup G) [Countable Γ] {F : Set G}
-    (fd : IsFundamentalDomain Γ F μ) (θ : G →* G) (hc : Continuous θ) (hi : ∀ x, θ (θ x) = x)
-    (hΓ : ∀ γ ∈ Γ, θ γ ∈ Γ) (f : G → ℂ) (hf : ∀ (γ : Γ) x, f ((γ : G) * x) = f x)
-    (hI : Integrable f (μ.restrict F)) :
-    Integrable (fun x => f (θ x)) (μ.restrict F) ∧
-      ∫ x, f (θ x) ∂(μ.restrict F) = ∫ x, f x ∂(μ.restrict F) :=
-  _root_.UpperTheory.Reformulated.B.Qh1.twist_general μ Γ fd θ hc hi hΓ f hf hI
-
 theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.thetaInt_pf :
     Basic → ThetaInt := by
   intro _ E _ _ _ n D f hf hI
@@ -85,4 +75,4 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.thetaInt_pf :
       toIsOpenPosMeasure := D.haar.2.2.1 }
   haveI : Countable (PositivityTheory.Rg.BcB.E.ratH E n 0) :=
     (((GlobalTheory.CuspRep.ratGL E n).prodMap (GlobalTheory.CuspRep.ratGL E 0)).rangeRestrict_surjective).countable
-  exact twist_general D.μ _ D.fd θ hc hi hΓ f hf hI
+  exact _root_.UpperTheory.Reformulated.B.Qh1.twist_general D.μ _ D.fd θ hc hi hΓ f hf hI

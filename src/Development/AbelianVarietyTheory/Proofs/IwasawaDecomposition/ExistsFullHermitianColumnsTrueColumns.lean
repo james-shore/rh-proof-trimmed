@@ -104,7 +104,7 @@ theorem detPt_of_reads (hI : I.Ok) (u : B.Word) (i : ℕ) {Ch : Type} {chOf : (I
     (hx : Matrix.GeneralLinearGroup.det x.1 = Matrix.GeneralLinearGroup.det (y c)) :
     detPt B.host I.SQ ((I.stp u I.mu0 i).rep c).1.1 = u1Dt B.host I.SQ x := by
   obtain ⟨p, hp, hN⟩ := hR.k_std (chOf c)
-  refine GlobalTheory.T.pointDeterminant_eq_normOneClass_of_level B.R B.host _ _ _ _ I.SQ _ (y c) (k (chOf c)) x (GlobalTheory.Mem.LevTwist.levOk_twists B X I hI).1 (hR.pt c) hp.uni
+  refine _root_.GlobalTheory.Mem.Col2.FullDt.detPt_eq_u1Dt_of_level B.R B.host _ _ _ _ I.SQ _ (y c) (k (chOf c)) x (GlobalTheory.Mem.LevTwist.levOk_twists B X I hI).1 (hR.pt c) hp.uni
     (hN ▸ hp.lat) (fun P hP => ?_) hx
   refine hR.k_off _ _ (GlobalTheory.T.memberLevelPrime_not_mem_under_levelPrimes B X I hI u P hP) ?_ (Or.inl rfl)
   rintro ⟨Q, hQ, -⟩
@@ -161,7 +161,7 @@ def hermS (hI : I.Ok) (hS : I.StdC l Z C) : Formalism.L2.Herm.SymmetricHermitian
     dt := u1Dt B.host I.SQ
     dt_surj := normOneFiniteAdeleDetClass_surjective B.host I.SQ
     dt_ker := mem_integralNormOne_of_normOneDetClass_eq_one B.host I.SQ
-    dt_open := GlobalTheory.T.isOpen_ker_normOneFiniteAdeleDetClass B.R B.host _ I.SQ (GlobalTheory.Mem.LevTwist.levOk_twists B X I hI).1
+    dt_open := _root_.GlobalTheory.Mem.Col2.FullDt.isOpen_ker_u1Dt B.R B.host _ I.SQ (GlobalTheory.Mem.LevTwist.levOk_twists B X I hI).1
     dt_UO := unitIdeleImage_eq_map_integralNormOne B.host I.SQ
     dt_rat := fun z x h => GlobalTheory.T.rationalNormOne_class_eq_finiteAdelic_det_class B.R B.host I.SQ z x h
     det0 := fun u c x h => det_normOne_classStepZero_trueColumns I l Z C hI hS u c x h

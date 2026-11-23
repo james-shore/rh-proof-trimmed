@@ -75,7 +75,7 @@ theorem nilpB_of (fourP : FourP (k := k)) (orbP : OrbP (k := k)) (locQ : LocQ (k
   have hξK := hP ξ hξ hinv (hH ξ hξB hinv)
   have hc : 1 < (nabs k t)⁻¹ := one_lt_inv_iff₀.2 ⟨ht0, ht1⟩
   have key : ξ ∈ (supportedIn (UU : Set (Sp k n))).dualAnnihilator := by
-    refine bez _ (pull Z t) (pull Z t⁻¹) (pull_inv Z hCR t).1 (pull_inv Z hCR t).2 ?_
+    refine _root_.PositivityTheory.RgUd.T.Nil.Asm.bez' _ (pull Z t) (pull Z t⁻¹) (pull_inv Z hCR t).1 (pull_inv Z hCR t).2 ?_
       ((nabs k t)⁻¹) hc (dB0 Z) a ha ξ ?_ ?_
     · intro m hm
       rw [Submodule.mem_dualAnnihilator] at hm ⊢

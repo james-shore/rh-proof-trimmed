@@ -52,6 +52,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ModulusLocallyConstant
 
 @[expose] public section
 
@@ -67,12 +68,6 @@ noncomputable section
 namespace GlobalTheory.SplitAlgForm
 
 open GlobalTheory.SplitScalar GlobalTheory.LevelSeries.IdemSumForm GlobalTheory.AlgWave
-
-theorem psi_ne_zero {G : Type} [AddGroup G] (ψ : AddChar G ℂ) (x : G) : ψ x ≠ 0 := by
-  intro h
-  have := ψ.map_add_eq_mul x (-x)
-  rw [add_neg_cancel, AddChar.map_zero_eq_one, h, zero_mul] at this
-  exact one_ne_zero this
 
 theorem fin_smul {D : D7} {m n : ℕ} (a : AE D) {x : Mx D m n} (hx : x.map (infPart D) = 0) :
     (a • x).map (infPart D) = 0 := by
@@ -151,7 +146,7 @@ theorem exists_alg_form : ∀ {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ : In
         ε * ℓ (heisO ψ S T (e • x) v) := by
       rw [hinv _ hxc _ (hth _ _ hvth), e1, map_smul, smul_eq_mul]
     rw [e2, map_smul, smul_eq_mul] at e3
-    have hx0 := psi_ne_zero ψ (symplOH S T ((cA D e) • x) (e • x + (1 - (e + (cA D e))) • x))
+    have hx0 := _root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero ψ (symplOH S T ((cA D e) • x) (e • x + (1 - (e + (cA D e))) • x))
     have hpq : ψ (symplOH S T ((cA D e) • x) (e • x + (1 - (e + (cA D e))) • x)) ∈ Qb :=
       hpsiH _ _ (fin_smul _ hx) (fin_add (fin_smul _ hx) (fin_smul _ hx))
     have e4 : ℓ (heisO ψ S T x v) = (ψ (symplOH S T ((cA D e) • x) (e • x + (1 - (e + (cA D e))) • x)))⁻¹ *

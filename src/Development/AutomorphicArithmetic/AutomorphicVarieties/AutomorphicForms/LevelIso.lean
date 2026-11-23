@@ -93,7 +93,7 @@ theorem FrobEig.of_iso {ι : Qbar l ≃+* ℂ} {w : HeightOneSpectrum (𝓞 F)} 
 theorem PotCrysAt.of_iso {A : ValuationSubring Ω} (H : PotCrysAt r A) (h : RepIso r r') : PotCrysAt r' A := by
   obtain ⟨g, hg⟩ := h
   obtain ⟨O, i1, i2, i3, Bw, hj, hp⟩ := H
-  exact ⟨O, i1, i2, i3, Bw, hj, (GlobalTheory.T.padicHodgeProperties_conj_invariant l (Loc.PP l) F Ω O _ Bw n _ _ g fun s => hg s).2.2.1 hp⟩
+  exact ⟨O, i1, i2, i3, Bw, hj, (_root_.GlobalTheory.ConjLocal.local_conj l (Loc.PP l) F Ω O _ Bw n _ _ g fun s => hg s).2.2.1 hp⟩
 
 theorem LevelAt.of_iso {M : ℕ} {m : Fin n → ℤ} (H : LevelAt l M m r) (h : RepIso r r') : LevelAt l M m r' := fun w hw => by
   obtain ⟨A, hA, χ, κ, h1, h2, h3, h4⟩ := H w hw

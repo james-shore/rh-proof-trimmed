@@ -168,7 +168,7 @@ theorem GlobalTheory.ThPFock.fock_sph_prin : ∀ (D : D7) (G : Type) [Group G] [
         (fun v => v ∉ under (R.Pg ∪ R.Q t)), heisO R.ψ (Vc D i) (Wc D i) u (R.vacP i) = R.vacP i →
         heisO R.ψ (Vc D i) (Wc D i) u (R.ptP i t P) = R.ptP i t P := fun u hu h0 =>
       GlobalTheory.Hk3.FiniteHeis.heisO_pureTensorO_of_finite R.ψ R.θ (Vc D i) (Wc D i) hθ (fun _ => 1) (cart (R.MW i (sg0 D A)))
-        (R.BV i) (onb (R.MW i (sg0 D A))) (R.vP i t) hpt u (GlobalTheory.VacGood.infPart_latO (hle hu))
+        (R.BV i) (onb (R.MW i (sg0 D A))) (R.vP i t) hpt u (_root_.GlobalTheory.SplitScalar.latO_fin (hle hu))
         (GlobalTheory.Hk3.heisO_fix_thetaAt_off R.ψ (Vc D i) (Wc D i) (cA D e) _ 1 (R.vacP i) _ (R.vP i t) hth u
           (fun a b => ⟨(hz u hu a b).2, (hz u hu a b).1⟩) h0) P
     exact ⟨fun u hu => fix (2 • u) (AddSubgroup.nsmul_mem _ hu 2) (hlat.1 u (hle hu)),

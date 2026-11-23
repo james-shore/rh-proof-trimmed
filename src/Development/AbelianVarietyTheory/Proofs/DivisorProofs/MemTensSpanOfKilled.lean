@@ -352,7 +352,7 @@ theorem exists_harm (q : (⨂[ℂ] _ : ι, Formalism.BasicNotions.TH.Pol P Q R S
       | empty => exact ⟨f, by simp, rfl⟩
       | insert w s hws ih =>
         obtain ⟨g, hg, e⟩ := ih
-        obtain ⟨h, hh, e'⟩ := GlobalTheory.HarmLift.lemA P Q R S Z (q ∘ₗ intersection_update_fsHerm_neg_one g w) (fun X hX v => by
+        obtain ⟨h, hh, e'⟩ := _root_.GlobalTheory.FockAlg.HarmLift.exists_harm2_rep P Q R S Z (q ∘ₗ intersection_update_fsHerm_neg_one g w) (fun X hX v => by
           rw [LinearMap.comp_apply, ← atPl_tprod_update]; exact h1 w X hX _) (g w)
         refine ⟨Function.update g w h, fun i hi => ?_, ?_⟩
         · by_cases hiw : i = w
@@ -360,7 +360,7 @@ theorem exists_harm (q : (⨂[ℂ] _ : ι, Formalism.BasicNotions.TH.Pol P Q R S
           · rw [Function.update_of_ne hiw]; exact hg i ((Finset.mem_insert.1 hi).resolve_left hiw)
         · rw [← e, ← position_self g w, ← position_apply]; exact e'
     obtain ⟨g, hg, e⟩ := key Finset.univ
-    choose H fH hH hHh _ sH using fun w => GlobalTheory.HarmLift.lemB P Q R S (g w) (hg w (Finset.mem_univ w))
+    choose H fH hH hHh _ sH using fun w => _root_.GlobalTheory.FockAlg.fin_harm P Q R S (g w) (hg w (Finset.mem_univ w))
     refine ⟨tensSpan H, tensSpan_fin H, fun w Y hY T hT => atPl_tensSpan w (sH w Y hY) hT,
       tensSpan_mono fun w v hv => Submodule.subset_span (hHh w v hv), r • PiTensorProduct.tprod ℂ g,
       Submodule.smul_mem _ _ (tprod_mem_tensSpan _ _ hH), by rw [map_smul, map_smul, e]⟩

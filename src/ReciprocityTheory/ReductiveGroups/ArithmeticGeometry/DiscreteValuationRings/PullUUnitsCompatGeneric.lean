@@ -60,16 +60,7 @@ open ReciprocityTheory.ChartRestriction.G.Semi
 
 variable {X Y Z : Scheme.{0}} {L : LB X} {K K' : Type} [Fintype K] [Fintype K']
 
-private lemma res_res_lemma {S : Scheme.{0}} {U V W : S.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (x : Γ(S, U)ˣ) :
-    res h2 (res h1 x) = res (h2.trans h1) x := by
-  have hc : S.presheaf.map (homOfLE h1).op ≫ S.presheaf.map (homOfLE h2).op =
-      S.presheaf.map (homOfLE (h2.trans h1)).op := by
-    rw [← Functor.map_comp]
-    rfl
-  ext
-  simp only [res, Units.coe_map, MonoidHom.coe_coe]
-  rw [← hc]
-  rfl
+private alias res_res_lemma := _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'
 
 private lemma res_pullU_res_eq_res_pullU {S T : Scheme.{0}} (h : T ⟶ S) {U V : S.Opens} {W : T.Opens} (hVU : V ≤ U)
     (hW : W ≤ h ⁻¹ᵁ V) (hW' : W ≤ h ⁻¹ᵁ U) (t : Γ(S, U)ˣ) :
@@ -149,11 +140,7 @@ theorem exists_value (hL : L.IsLB) (φ : K → (Y ⟶ X)) (ε : K → ℤ) (t : 
   erw [res_res']
   exact e3
 
-private lemma pullU_comp_lemma_3 {S T R : Scheme.{0}} (g : R ⟶ T) (f : T ⟶ S) (U : S.Opens) (x : Γ(S, U)ˣ) :
-    pullU (g ≫ f) U x = pullU g (f ⁻¹ᵁ U) (pullU f U x) := by
-  first
-  | rfl
-  | (ext; simp [pullU, Scheme.comp_app])
+private alias pullU_comp_lemma_3 := _root_.ReciprocityTheory.ChartRestriction.G.DVR.pullU_comp_eq_pullU_pullU
 
 lemma pull_pull_id (z : Z ⟶ Y) (p : Y ⟶ Z) (hzp : z ≫ p = 𝟙 Z) {W : Y.Opens} {V : Z.Opens}
     (hW : W ≤ p ⁻¹ᵁ ⊤) (hV : V ≤ z ⁻¹ᵁ W) (c : Γ(Z, ⊤)ˣ) :

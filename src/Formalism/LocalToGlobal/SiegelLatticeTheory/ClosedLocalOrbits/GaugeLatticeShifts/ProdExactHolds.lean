@@ -88,7 +88,7 @@ theorem ProdExact_holds : Formalism.L2.SG.Pf.NcReal.ProdExact := by
   have hzp : ∀ w v b, hJ (X.B.I.ε v) (zV X w v) (pV X v b) = 0 := fun w v b => by
     have h0 : hJ (X.B.I.ε v) (pV X v b) (zV X w v) = 0 :=
       (hJ_X X v _ _).trans (by rw [(X.zu_orth w b).2]; simp)
-    rw [hJ_cj, h0, map_zero]
+    rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_conj, h0, map_zero]
   have hSH : ∀ w v, IsHaarS (SLoc (X.B.I.ε v) (eV X v) (zV X w v)) (muSv X w v) := fun w v =>
     NilradicalHermitianFrames.NH.NHLoc_holds _ _ _ _ _ _ _ _ _ _ (frameLoc_X X w u v) (hep v) (hpp v) (hzp w v) _ _
       (muNv_haar X w v) (muHv_haar X w v)

@@ -70,10 +70,6 @@ theorem clPfUV_one {k : Type} [CommRing k] (χ : kˣ →* Kˣ) : clPfUV χ (1 : 
   have : (isUnit_one : IsUnit (1 : k)).unit = 1 := Units.ext rfl
   rw [this, map_one, Units.val_one]
 
-private theorem fIdx_lt' {k₀ c n s : ℕ} (hk : k₀ ≤ n) (hs : s < n + c) : LocE.fIdx k₀ c n s < n + c := by
-  unfold LocE.fIdx
-  split_ifs <;> omega
-
 private theorem fIdx_injective {k₀ c n s s' : ℕ} (hk : k₀ ≤ n) (hs : s < n + c) (hs' : s' < n + c)
     (h : LocE.fIdx k₀ c n s = LocE.fIdx k₀ c n s') : s = s' := by
   unfold LocE.fIdx at h
@@ -82,7 +78,7 @@ private theorem fIdx_injective {k₀ c n s s' : ℕ} (hk : k₀ ≤ n) (hs : s <
 private theorem clPfRed_one_eq_ite {k₀ n c : ℕ} (hk : k₀ ≤ n) {p p' : ℕ} (hp : p < n + c) (hp' : p' < n + c) :
     clPfRed P q k₀ c n c n (1 : Sp E (n + c) ≃ₗ[E] Sp E (n + c)).toLinearMap p p' = if p = p' then 1 else 0 := by
   unfold clPfRed LocE.entB
-  have hf := fIdx_lt' (k₀ := k₀) (c := c) hk hp
+  have hf := _root_.Formalism.L2.Col.symFIdx_lt (k₀ := k₀) (c := c) hk hp
   simp only [LinearEquiv.coe_toLinearMap, LinearEquiv.coe_one, id]
   unfold Loc.atN Loc.eN
   rw [dite_eq_left hf]
@@ -107,15 +103,6 @@ theorem clPfT_lamGBS_one (hq0 : (q : E) ≠ 0) (ψ₀ : AddChar (𝓞 E ⧸ P.as
   unfold clPfLam
   simp only [hb, Matrix.det_one, clPfUV_one, Finset.prod_const_one, mul_one]
   simp [clPfS]
-
-private theorem reduction_mul_of_integral' {F : Type} [Field F] [NumberField F] {Q : HeightOneSpectrum (𝓞 F)} {a b : F}
-    (ha : IntAt Q a) (hb : IntAt Q b) : redP Q (a * b) = redP Q a * redP Q b := by
-  have h := redP_prod (P := Q) (Finset.univ : Finset (Fin 2)) ![a, b] (by
-    intro i _
-    fin_cases i
-    · exact ha
-    · exact hb)
-  simpa [Fin.prod_univ_two] using h
 
 theorem clPfT_lamGBS_symm (hq : ((q : ℕ) : 𝓞 E) ∈ P.asIdeal) (hu : ((q : ℕ) : 𝓞 E) ∉ P.asIdeal ^ 2) (ψ₀ : AddChar (𝓞 E ⧸ P.asIdeal) K)
     (χ : ℕ → (𝓞 E ⧸ P.asIdeal)ˣ →* Kˣ) {k₀ rS r t J n c : ℕ} (hk : k₀ ≤ n) (hr : k₀ + rS < r) (hJ : r + J * t ≤ n + c) (ht : 0 < t)
@@ -148,7 +135,7 @@ theorem clPfT_lamGBS_symm (hq : ((q : ℕ) : 𝓞 E) ∈ P.asIdeal) (hu : ((q : 
       (frameEntry_integral_of_stabilizer hq0 hk (Finset.mem_range.mp hu') hp' hγL))]
     unfold clPfMul
     refine Finset.sum_congr rfl (fun u hu' => ?_)
-    exact (reduction_mul_of_integral' (frameEntry_integral_of_stabilizer hq0 hk hp (Finset.mem_range.mp hu') hsL)
+    exact (_root_.Formalism.L2.Col.reduction_mul (frameEntry_integral_of_stabilizer hq0 hk hp (Finset.mem_range.mp hu') hsL)
       (frameEntry_integral_of_stabilizer hq0 hk (Finset.mem_range.mp hu') hp' hγL)).symm
   have hmul : clPfLam ψ₀ χ k₀ r t J (clPfRed P q k₀ c n c n γ.symm.toLinearMap) *
       clPfLam ψ₀ χ k₀ r t J (clPfRed P q k₀ c n c n γ.toLinearMap) =
@@ -180,15 +167,6 @@ private theorem intAt_of_redP_ne_zero {F : Type} [Field F] {Q : HeightOneSpectru
     exact ⟨r, s, hs, h1⟩
   · exact absurd rfl h
 
-private theorem redP_mul_of_intAt {F : Type} [Field F] [NumberField F] {Q : HeightOneSpectrum (𝓞 F)} {a b : F}
-    (ha : IntAt Q a) (hb : IntAt Q b) : redP Q (a * b) = redP Q a * redP Q b := by
-  have h := redP_prod (P := Q) (Finset.univ : Finset (Fin 2)) ![a, b] (by
-    intro i _
-    fin_cases i
-    · exact ha
-    · exact hb)
-  simpa [Fin.prod_univ_two] using h
-
 theorem clPfT_unitV_symm (hq0 : (q : E) ≠ 0) (χ : (𝓞 E ⧸ P.asIdeal)ˣ →* Kˣ) {k₀ n c : ℕ} (hk : k₀ ≤ n)
     {γ : Sp E (n + c) ≃ₗ[E] Sp E (n + c)} (hγ : γ ∈ stabL E (n + c) (LocE.lamY P q n c fun i => i + 1)) :
     (LocE.unitV χ ((LinearEquiv.det γ.symm : Eˣ) : E))⁻¹ = LocE.unitV χ ((LinearEquiv.det γ : Eˣ) : E) := by
@@ -207,7 +185,7 @@ theorem clPfT_unitV_symm (hq0 : (q : E) ≠ 0) (χ : (𝓞 E ⧸ P.asIdeal)ˣ �
       simp
     rw [h1, map_one, Units.val_one]
   apply inv_eq_of_mul_eq_one_right
-  rw [clPf_unitV, clPf_unitV, ← clPfUV_mul, ← redP_mul_of_intAt i2 i1, hm, redP_one, clPfUV_one]
+  rw [clPf_unitV, clPf_unitV, ← clPfUV_mul, ← _root_.Formalism.L2.Col.reduction_mul i2 i1, hm, redP_one, clPfUV_one]
 
 theorem control_phi_law : CtlPhiLaw := by
   intro E K _ _ _ _ P q ψ₀ χ k₀ rS t j n' n hq hu hj ht hn' hn γ κ hγ hκ x

@@ -67,7 +67,6 @@ theorem prod_sub_prod_le {K Γ : Type} [Field K] [LinearOrderedCommGroupWithZero
       calc v (a j - b j) * v (∏ i ∈ s, b i) ≤ c * 1 := mul_le_mul' (hab j) hB
         _ = c := mul_one c
 
-theorem main : ∀ {K Γ : Type} [inst : Field K] [inst_1 : LinearOrderedCommGroupWithZero Γ] {v : Valuation K Γ} {ι : Type} (s : Finset ι) {c : Γ} {a b : ι → K}, (∀ (i : ι), (v : K → Γ) (a i) ≤ (1 : Γ)) → (∀ (i : ι), (v : K → Γ) (b i) ≤ (1 : Γ)) → (∀ (i : ι), (v : K → Γ) (a i - b i) ≤ c) → (v : K → Γ) (∏ i ∈ s, a i - ∏ i ∈ s, b i) ≤ c :=
-  fun s => prod_sub_prod_le s
+alias main := _root_.GlobalTheory.ProdSubProdBound.prod_sub_prod_le
 
 end GlobalTheory.ProdSubProdBound

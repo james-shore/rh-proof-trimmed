@@ -56,18 +56,13 @@ section SlopeTestRemainingChoices
 
 variable {L : Type} [NontriviallyNormedField L] [IsUltrametricDist L] {n : ℕ}
 
-theorem norm_prod_sub_prod_le {ι : Type} (s : Finset ι) (f g : ι → L) {r : ℝ} (h0 : 0 ≤ r)
-    (hf : ∀ i, ‖f i‖ ≤ 1) (hg : ∀ i, ‖g i‖ ≤ 1) (hfg : ∀ i, ‖f i - g i‖ ≤ r) :
-    ‖∏ i ∈ s, f i - ∏ i ∈ s, g i‖ ≤ r :=
-  _root_.Bl.FirstLemmaE.goal1 s f g h0 hf hg hfg
-
 theorem norm_det_sub_det_le {A B : Matrix (Fin n) (Fin n) L} {r : ℝ} (h0 : 0 ≤ r)
     (hA : ∀ i j, ‖A i j‖ ≤ 1) (hB : ∀ i j, ‖B i j‖ ≤ 1) (hAB : ∀ i j, ‖(A - B) i j‖ ≤ r) :
     ‖A.det - B.det‖ ≤ r := by
   rw [Matrix.det_apply, Matrix.det_apply, ← Finset.sum_sub_distrib]
   refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg h0 fun σ _ => ?_
   rw [← smul_sub]
-  have h := norm_prod_sub_prod_le Finset.univ (fun i => A (σ i) i) (fun i => B (σ i) i) h0
+  have h := _root_.Bl.FirstLemmaE.goal1 Finset.univ (fun i => A (σ i) i) (fun i => B (σ i) i) h0
     (fun i => hA _ _) (fun i => hB _ _) (fun i => by simpa using hAB (σ i) i)
   have h' : ‖∏ i, B (σ i) i - ∏ i, A (σ i) i‖ ≤ r := by
     rw [norm_sub_rev]

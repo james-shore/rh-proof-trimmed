@@ -515,12 +515,4 @@ theorem exists_finset_classes (L : Type) [Field L] [NumberField L] (c : L →ₐ
   rw [hab, hb', hε', map_mul]
   ring
 
-theorem finite_classes_mod_rat_norms : ∀ (L : Type) [Field L] [NumberField L] (c : L →ₐ[ℚ] L), (∀ x, c (c x) = x) →
-    ∀ (S : Finset (IsDedekindDomain.HeightOneSpectrum ℤ)) (X : Set L),
-    (∀ a ∈ X, a ≠ 0 ∧ c a = a ∧ ∀ v ∉ S, ∃ (r : (v.adicCompletion ℚ)ˣ) (y : (v.adicCompletion ℚ ⊗[ℚ] L)ˣ),
-          (1 : v.adicCompletion ℚ) ⊗ₜ[ℚ] a = algebraMap (v.adicCompletion ℚ) (v.adicCompletion ℚ ⊗[ℚ] L) (r : v.adicCompletion ℚ) *
-            ((y : v.adicCompletion ℚ ⊗[ℚ] L) * Algebra.TensorProduct.map (AlgHom.id ℚ (v.adicCompletion ℚ)) c y)) →
-    ∃ R : Finset L, ∀ a ∈ X, ∃ b ∈ R, ∃ (q : ℚ) (z : L), q ≠ 0 ∧ z ≠ 0 ∧ a = algebraMap ℚ L q * b * (z * c z) :=
-  fun L _ _ c hc S X hX => exists_finset_classes L c hc S X hX
-
 end GlobalTheory.FixedNormCls

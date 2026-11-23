@@ -57,12 +57,6 @@ theorem zOf_repr {d : ℕ} (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum
 
   simp [zOf, map_sum, Finsupp.single_apply]
 
-theorem zOf_mem' {d : ℕ} (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F))
-    (w : Fin 1 × Fin d → v.adicCompletionIntegers F) : zOf b v w ∈ Rv b v := by
-  intro k
-  rw [zOf_repr]
-  exact (w (0, k)).2
-
 theorem form_res (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (J : Matrix (Fin 1) (Fin 1) E) (hJ : IsHermND σ J) (d : ℕ)
     (b : Module.Basis (Fin d) F E) (B : Matrix (Fin 1 × Fin d) (Fin 1 × Fin d) F)
     (hBt : ∀ (R : Type) [CommRing R] [Algebra F R] (x y : Fin 1 → R ⊗[F] E),
@@ -112,7 +106,7 @@ theorem form_res (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (J : Matrix (Fin 1)
     rw [Algebra.algebraMap_eq_smul_one, map_smul, Finsupp.smul_apply, smul_eq_mul]
     exact Subring.mul_mem _ hu (hR1 k)
   set z := zOf b v w with hz
-  have hzR : z ∈ Rv b v := zOf_mem' b v w
+  have hzR : z ∈ Rv b v := _root_.PositivityTheory.SiegelWeilFormula.MOne.zOf_mem b v w
   have hsig2 : ∀ x, sigR (Fv F v) σ (sigR (Fv F v) σ x) = x := by
     intro x
     induction x using TensorProduct.induction_on with

@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 
 @[expose] public section
 
@@ -64,7 +65,7 @@ theorem liftOneFormsToCompatible_apply {p : ℕ} [Fact p.Prime] (ι : ℂ ≃+* 
 
 theorem conjugate_embedding_apply {p : ℕ} [Fact p.Prime] (ι : ℂ ≃+* ℂ_[p]) (x : D.host.K) :
     f2 ι x = ι (D.host.φ₀ (D.host.conj (x : D.host.E))) := by
-  rw [phi_conj]; rfl
+  rw [_root_.Formalism.BasicNotions.Examples₂.emb_conj]; rfl
 
 section Kap
 

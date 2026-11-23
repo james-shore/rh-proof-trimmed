@@ -81,7 +81,7 @@ theorem gProxy_eq (L : LocBessel k r) (γ : Matrix (Fin (2 * r + k + 1)) (Fin (2
     {x : PairSp k r} (hx : Good L x) : gProxy γ b x = Formalism.MainNotions.S.Pv.AmpDD.pairMaj γ b x := by
   obtain ⟨h12, h22, h11, h21⟩ := hx
   have e11 := uh_inv_eq (Formalism.L2.SG.Pf.WFL.Sset_sub_UH (uw_in_sset _ h11))
-  have e12 := uh_inv_eq (Formalism.L2.SG.Pf.WFL.Sset_sub_UH (n_in_sset L.z h12))
+  have e12 := uh_inv_eq (Formalism.L2.SG.Pf.WFL.Sset_sub_UH (_root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset L.z h12))
   simp only [gProxy, Formalism.MainNotions.S.Pv.AmpDD.pairMaj, e11, e12]
 
 private theorem gProxy_nonneg (γ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (b : ℝ) (x : PairSp k r) :
@@ -188,5 +188,4 @@ theorem cell_convergence : Formalism.MainNotions.S.Pv.AmpDD.CellConv := by
 
 end Formalism.MainNotions.S.Pv.AmpDDPf.CC
 
-theorem Formalism.MainNotions.S.Pv.AmpDDPf.cell_convergence : Formalism.MainNotions.S.Pv.AmpDD.CellConv :=
-  Formalism.MainNotions.S.Pv.AmpDDPf.CC.cell_convergence
+alias Formalism.MainNotions.S.Pv.AmpDDPf.cell_convergence := _root_.Formalism.MainNotions.S.Pv.AmpDDPf.CC.cell_convergence

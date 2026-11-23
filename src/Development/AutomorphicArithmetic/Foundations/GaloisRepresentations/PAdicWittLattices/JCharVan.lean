@@ -94,7 +94,7 @@ private theorem sec_subsingleton {k : Type} [Field k] {q : ℕ} (hq : (q : k) = 
 
 private theorem ht_subsingleton {k : Type} [Field k] {q : ℕ} (hq : (q : k) = 0) {X : Scheme.{0}} (p : X ⟶ sp k) (n i : ℤ) :
     Subsingleton (Ht q (sch.obj X) n i) := by
-  have hbij := GlobalTheory.T.etaleCohomology_bijective_of_support_bijective (ZMod q) (sch.obj X) (0 : tw q i ⟶ tw q i) (fun U hU => by
+  have hbij := _root_.GlobalTheory.EtC.a10 (ZMod q) (sch.obj X) (0 : tw q i ⟶ tw q i) (fun U hU => by
     obtain ⟨g⟩ := hU
     have g' : U ⟶ X := g
     haveI := sec_subsingleton hq i (g' ≫ p)

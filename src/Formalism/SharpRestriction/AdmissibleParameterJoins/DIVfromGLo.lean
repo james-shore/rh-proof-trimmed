@@ -48,27 +48,6 @@ namespace Formalism.MainNotions.J
 
 open Formalism.BasicNotions
 
-theorem lam_entry (D : D7) (u : D.what₂.Word) (i : ℕ) (hi : i ≤ D.R.m) (τ : D.what₂.Tau) (a : Fin (D.R.N i)) :
-    ((((D.fm u).lam i τ).w a : ℤ) : ℚ) = flipTwoThree.lamLiftN D u τ a.1 := by
-  rw [(D.fm u).lam_eq i hi τ a]
-  unfold flipTwoThree.lamLiftN flipTwoThree.lamCol flipTwoThree.wJ
-  by_cases h : a.1 < D.R.k
-  · simp [h]
-  · have hj : (a.1 - D.R.k) / (D.R.t + 1) < D.R.m := D.R.blk_lt hi a h
-    simp [h, hj]
-
-theorem lam_entryR (D : D7) (u : D.what₂.Word) (i : ℕ) (hi : i ≤ D.R.m) (τ : D.what₂.Tau) (a : Fin (D.R.N i)) :
-    ((((D.fm u).lam i τ).w a : ℤ) : ℝ) = ((flipTwoThree.lamLiftN D u τ a.1 : ℚ) : ℝ) := by
-  rw [← lam_entry D u i hi τ a]
-  norm_cast
-
-theorem wJ_mono {D : D7} {u : D.what₂.Word} {τ : D.what₂.Tau}
-    (h : ∀ j, j + 1 < D.R.m → flipTwoThree.wJ D u τ j ≤ flipTwoThree.wJ D u τ (j + 1)) (c : ℕ) (hc : c < D.R.m) :
-    flipTwoThree.wJ D u τ 0 ≤ flipTwoThree.wJ D u τ c := by
-  induction c with
-  | zero => exact le_refl _
-  | succ n ih => exact le_trans (ih (by omega)) (h n hc)
-
 theorem top_not_thick (D : D7) (τ : D.what₂.Tau) (h : flipTwoThree.IsTop D τ) : ¬ flipTwoThree.IsThick D τ := by
   unfold flipTwoThree.IsTop at h
   unfold flipTwoThree.IsThick
@@ -118,7 +97,7 @@ theorem entry_top_le {D : D7} {L : SizeData₂ D} {Cn cL : ℝ} (hcL : 1 ≤ cL)
   obtain ⟨-, hTop, -, hmono, hthin, -, hk1, -⟩ := hW u τ
   obtain ⟨-, -, hb1, hb2, hmid⟩ := hTop htop
   have hthick : ¬ flipTwoThree.IsThick D τ := top_not_thick D τ htop
-  rw [lam_entryR D u i hi' τ a]
+  rw [_root_.Formalism.MainNotions.GlobalTheoryTheory.Alc.entryR D u i hi' τ a]
   unfold flipTwoThree.lamLiftN
   split_ifs with hak
   · by_cases hlast : a.1 = D.R.k - 1
@@ -133,7 +112,7 @@ theorem entry_top_le {D : D7} {L : SizeData₂ D} {Cn cL : ℝ} (hcL : 1 ≤ cL)
   · set j := (a.1 - D.R.k) / (D.R.t + 1) with hj
     have hjm : j < D.R.m := D.R.blk_lt hi' a hak
     have hup : (flipTwoThree.wJ D u τ j : ℝ) ≤ 2 * L.sc.b' := hthin hthick j hjm
-    have hmon : flipTwoThree.wJ D u τ 0 ≤ flipTwoThree.wJ D u τ j := wJ_mono hmono j hjm
+    have hmon : flipTwoThree.wJ D u τ 0 ≤ flipTwoThree.wJ D u τ j := _root_.Formalism.MainNotions.GlobalTheoryTheory.Alc.wJ_mono hmono j hjm
     have hlowR : ((-(flipTwoThree.lamCol D u τ (D.R.k - 1)) : ℚ) : ℝ) ≤ (flipTwoThree.wJ D u τ j : ℝ) := by
       exact_mod_cast hk1.trans hmon
     push_cast at hlowR ⊢
@@ -177,15 +156,12 @@ theorem Wt_top_le {D : D7} {L : SizeData₂ D} {Cn cL : ℝ} (hcL : 1 ≤ cL) (h
   calc (product_first_zeroth_parts.Wt D u τ : ℝ) ≤ (⌊3 * L.sc.b'⌋₊ : ℝ) := by exact_mod_cast key
     _ ≤ 3 * L.sc.b' := Nat.floor_le (by linarith)
 
-theorem N_zero (R : Ranks) : R.N 0 = R.k := by
-  simp [Ranks.N]
-
 theorem aTop_eq (D : D7) (u : D.what₂.Word) (τ : D.what₂.Tau) :
     (((D.fm u).aTop τ : ℤ) : ℝ) = ((flipTwoThree.lamCol D u τ 0 : ℚ) : ℝ) := by
   have hk : 0 < D.R.k := by
     have h0 := D.R.N_pos 0
-    rwa [N_zero] at h0
-  have h := lam_entryR D u 0 (Nat.zero_le _) τ ⟨0, D.R.N_pos 0⟩
+    rwa [_root_.Formalism.BasicNotions.Ranks.N_zero] at h0
+  have h := _root_.Formalism.MainNotions.GlobalTheoryTheory.Alc.entryR D u 0 (Nat.zero_le _) τ ⟨0, D.R.N_pos 0⟩
   simp only [flipTwoThree.lamLiftN, Fin.val_mk, hk, ↓reduceIte] at h
   unfold MemberForms.aTop
   exact h
@@ -195,14 +171,14 @@ theorem bTop_eq (D : D7) (u : D.what₂.Word) (τ : D.what₂.Tau) :
   have hN : 0 < D.R.N 0 := D.R.N_pos 0
   have hk : D.R.N 0 - 1 < D.R.k := by
     have h0 := hN
-    rw [N_zero] at h0 ⊢
+    rw [_root_.Formalism.BasicNotions.Ranks.N_zero] at h0 ⊢
     omega
-  have h := lam_entryR D u 0 (Nat.zero_le _) τ ⟨D.R.N 0 - 1, by omega⟩
+  have h := _root_.Formalism.MainNotions.GlobalTheoryTheory.Alc.entryR D u 0 (Nat.zero_le _) τ ⟨D.R.N 0 - 1, by omega⟩
   simp only [flipTwoThree.lamLiftN, Fin.val_mk, hk, ↓reduceIte] at h
   unfold MemberForms.bTop DomWeight.detShift
   rw [dite_eq_left hN]
   push_cast
-  rw [h, N_zero]
+  rw [h, _root_.Formalism.BasicNotions.Ranks.N_zero]
 
 theorem amax_le {D : D7} {L : SizeData₂ D} {Cn : ℝ} (hW : WtsL D L Cn) (u : D.what₂.Word) :
     (product_first_zeroth_parts.amax D u : ℝ) ≤ 2 * L.sc.a := by

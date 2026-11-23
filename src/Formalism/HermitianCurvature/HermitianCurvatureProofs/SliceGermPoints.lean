@@ -118,7 +118,7 @@ theorem slice_germ_points : Formalism.FourierDecayAlt.P.FormNormSumIdentities.YG
       · subst hb; exact ⟨by omega, ht⟩
       · subst hb; exact ⟨le_rfl, hc0⟩
     have hle : D.ptSize (ptG h' m (Sum.inl (t, c))) ≤ r := by rw [ptSize_ptG]; omega
-    have hSB := Formalism.FourierDecayAlt.P.slice_orbital_block k r E z z' F h' (ptG h' m (Sum.inl (t, c))) m t c rfl hle
+    have hSB := _root_.Formalism.FourierDecayAlt.P.FormNormSumIdentities.GlobalTheory.sliceOmBlock k r E z z' F h' (ptG h' m (Sum.inl (t, c))) m t c rfl hle
       (D.castM (by rw [ptSize_ptG]; omega) γ) hloc hint
     rw [hSB]
     congr 1
@@ -159,7 +159,7 @@ theorem slice_germ_points : Formalism.FourierDecayAlt.P.FormNormSumIdentities.YG
       · exact hh'.1 b hb
       · subst hb; exact ⟨by omega, hz0⟩
     have hle : D.ptSize (ptG h' m (Sum.inr w0)) ≤ r := by rw [ptSize_ptG]; omega
-    have hSO := Formalism.FourierDecayAlt.P.slice_measure_identity k r E z z' F h' (ptG h' m (Sum.inr w0)) (m + 1) w0 rfl hle
+    have hSO := _root_.Formalism.FourierDecayAlt.P.Dx2.SL.sliceOm k r E z z' F h' (ptG h' m (Sum.inr w0)) (m + 1) w0 rfl hle
       (D.castM (by rw [ptSize_ptG]; omega) γ) hloc hint
     rw [hSO]
     congr 1

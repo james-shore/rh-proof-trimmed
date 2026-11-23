@@ -40,5 +40,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem PositivityTheory.PfDR.deligneRibet_holds : GlobalTheory.Published.DeligneRibet :=
-  PositivityTheory.PfDRL.deligneRibet

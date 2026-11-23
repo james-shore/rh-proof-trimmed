@@ -59,15 +59,6 @@ open MvPolynomial (X)
 
 namespace GlobalTheory
 
-theorem shortSum_toΓ_injective (S : Type) [CommRing S] : Function.Injective (toΓ S) := by
-  intro a b h
-  have hinv : ∀ x : S, (Scheme.ΓSpecIso (CommRingCat.of S)).hom.hom (toΓ S x) = x := by
-    intro x
-    unfold toΓ
-    rw [← CommRingCat.comp_apply, Iso.inv_hom_id]
-    rfl
-  rw [← hinv a, ← hinv b, h]
-
 private theorem eq_one_of_sq_eq_one_of_pow_odd_sq_eq_one {M : Type*} [CommMonoid M] (x : M) (N : ℕ) (hN : Odd N)
     (h2 : x ^ 2 = 1) (hN2 : x ^ (N ^ 2) = 1) : x = 1 := by
   obtain ⟨k, hk⟩ := hN.pow (n := 2)
@@ -162,13 +153,13 @@ theorem shortSum_indep_local : Laws → ∀ (E : Type) [Field E] [NumberField E]
         have h1 := hF1 q (ρ i) b
         rw [hρ i] at h1
         exact h1
-      obtain ⟨r, hr1, hr2, hr3⟩ := GlobalTheory.T.thetaGroup_shift_halfTorsion_root hL E H Dw l Xo T y.x N hNodd y.s (tp1 q b) (u b) (z2 i b)
+      obtain ⟨r, hr1, hr2, hr3⟩ := _root_.GlobalTheory.isUUOver_shift hL E H Dw l Xo T y.x N hNodd y.s (tp1 q b) (u b) (z2 i b)
         (e b) (ht2 b) (hsq _ (hu1 b)) ((hz2 i).1 b) hW1 (he b) _ _ hA hB
-      exact ⟨r, hr1, hr2, GlobalTheory.T.connection_linear_in_section E H Dw l Xo c nab hnab T y N _ _ r hr3⟩
+      exact ⟨r, hr1, hr2, _root_.GlobalTheory.nab_smul_section E H Dw l Xo c nab hnab T y N _ _ r hr3⟩
     choose r hr using hr
     have hprod : ∏ b, r b = 1 := by
       apply eq_one_of_sq_eq_one_of_pow_odd_sq_eq_one _ N hNodd
-      · apply shortSum_toΓ_injective T
+      · apply _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.GermFun.toΓ_injective T
         rw [map_one, map_pow, map_prod, ← Finset.prod_pow,
           Finset.prod_congr rfl (fun b _ => (hr b).1), ← Units.coe_prod, hpe, Units.val_one]
       · rw [← Finset.prod_pow]

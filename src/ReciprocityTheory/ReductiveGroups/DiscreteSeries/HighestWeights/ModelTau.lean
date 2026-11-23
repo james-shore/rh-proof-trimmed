@@ -177,15 +177,6 @@ theorem inK_add' (ε : Fin n → Bool) {X Y : Matrix (Fin n) (Fin n) ℂ} (hX : 
       _ = 0 := by rw [h1, h3, add_zero]
   · rw [Matrix.add_mul, Matrix.mul_add, h2, h4]
 
-theorem inK_rsmul' (ε : Fin n → Bool) {X : Matrix (Fin n) (Fin n) ℂ} (hX : inK ε X) (r : ℝ) :
-    inK ε ((r : ℂ) • X) := by
-  obtain ⟨h1, h2⟩ := hX
-  refine ⟨?_, ?_⟩
-  · unfold inG at h1 ⊢
-    rw [Matrix.conjTranspose_smul, Complex.star_def, Complex.conj_ofReal, Matrix.smul_mul,
-      Matrix.mul_smul, ← smul_add, h1, smul_zero]
-  · rw [Matrix.smul_mul, Matrix.mul_smul, h2]
-
 theorem derOp_fn_eq (ε : Fin n → Bool) (m : Fin n → ℤ) {X : Matrix (Fin n) (Fin n) ℂ} (hX : inK ε X)
     (f : MV ε m) (x : KG ε) {F : Matrix (Fin n) (Fin n) ℂ → ℂ} (hF : Differentiable ℂ F)
     (hfF : ∀ k, f.fn k = F (toMK k)) :
@@ -203,7 +194,7 @@ theorem rLinOnK_derOp (ε : Fin n → Bool) (m : Fin n → ℤ) : RLinOnK ε (de
   · refine ContinuousLinearMap.ext fun f => MV.ext (funext fun x => ?_)
     obtain ⟨F, hF, hfF⟩ := Vsp_holo ε m f.mem
     rw [_root_.smul_apply, MV.fn_smul, Pi.smul_apply, smul_eq_mul,
-      derOp_fn_eq ε m (inK_rsmul' ε hX r) f x hF hfF, derOp_fn_eq ε m hX f x hF hfF, Matrix.mul_smul, map_smul,
+      derOp_fn_eq ε m (_root_.ReciprocityTheory.ChartRestriction.DS.HW.inK_ofReal_smul ε hX r) f x hF hfF, derOp_fn_eq ε m hX f x hF hfF, Matrix.mul_smul, map_smul,
       smul_eq_mul]
 
 def dTau (ε : Fin n → Bool) (m : Fin n → ℤ) : Matrix (Fin n) (Fin n) ℂ →ₗ[ℂ] (MV ε m →L[ℂ] MV ε m) :=

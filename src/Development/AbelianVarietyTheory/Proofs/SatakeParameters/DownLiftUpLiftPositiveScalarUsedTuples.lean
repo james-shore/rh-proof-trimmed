@@ -72,7 +72,7 @@ theorem main : GlobalTheory.Published.WeilRepresentationUnitaryPair → GlobalTh
   have hpre : ∀ y ∈ D.what₂.isot ((i : ℕ) + 1) σ, ∃ x ∈ (LinearMap.ker θ)ᗮ, θ x = y ∧
       ∀ x', ⟪θ x, θ x'⟫_ℂ = (c : ℂ) * ⟪x, x'⟫_ℂ := by
     intro y hy
-    obtain ⟨x, rfl⟩ := GlobalTheory.T.liftThetaMap_surjective_onto_cuspForms_usedTuple h1 h2 h3 h4 D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hD i t hU y
+    obtain ⟨x, rfl⟩ := _root_.GlobalTheory.Mem.LiftOnto.thetaMap_surjective h1 h2 h3 h4 D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hD i t hU y
     set K := (LinearMap.ker θ)ᗮ
     have hx0 : x - K.starProjection x ∈ LinearMap.ker θ := by
       have := K.sub_starProjection_mem_orthogonal x
@@ -82,7 +82,7 @@ theorem main : GlobalTheory.Published.WeilRepresentationUnitaryPair → GlobalTh
     have hW : Y.mj.eW i (θ (K.starProjection x)) ∈ R.Wp3 i p := by
       rw [he]; exact hL.1 i ⟨θ x, hy, rfl⟩
     exact ⟨K.starProjection x, K.starProjection_apply_mem x, he,
-      GlobalTheory.T.liftThetaMap_inner_eq_lambda_labelPart_baseLevel h1 h2 h3 h4 D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hD i t p hU (K.starProjection x)
+      _root_.GlobalTheory.Mem.R3.LamMetric.inner_theta_eq_lam h1 h2 h3 h4 D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH hD i t p hU (K.starProjection x)
         (K.starProjection_apply_mem x) hW⟩
 
   have heig : ∀ y ∈ D.what₂.isot ((i : ℕ) + 1) σ,

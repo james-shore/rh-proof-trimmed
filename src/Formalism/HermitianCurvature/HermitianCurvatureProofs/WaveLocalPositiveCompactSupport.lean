@@ -100,7 +100,7 @@ theorem Formalism.FourierDecayAlt.P.wave_local_compact_support_route : Formalism
   have hCI := Formalism.FourierDecayAlt.P.PBCut.cutInside_of_built hB
   obtain ⟨grid, hinj, hl1, hnodes, hlp, hlm⟩ := nodes_level hB v a ha' C.Kst haK' j hj
   have hwa : KB.CutWord (D.parOf S v) (S.l + 1) a :=
-    (Formalism.FourierDecayAlt.P.new_letters_admissible E Wp Wq S hGo hGr hCI v a C.Kst 0 ha' haK' (by omega)).1
+    (_root_.Formalism.FourierDecayAlt.P.PBD.newLetters E Wp Wq S hGo hGr hCI v a C.Kst 0 ha' haK' (by omega)).1
   refine ⟨PBD.pushU grid (fun ys => KB.plusW ys a), PBD.pushTh grid (fun ys => KB.plusW ys a),
     PBD.pushU grid (fun ys => KB.minusW ys a), PBD.pushTh grid (fun ys => KB.minusW ys a), hlp, hlm,
     fun ε hε l Y hY => ⟨?_, Complex.I ^ C.Kst, by simp, ?_⟩⟩

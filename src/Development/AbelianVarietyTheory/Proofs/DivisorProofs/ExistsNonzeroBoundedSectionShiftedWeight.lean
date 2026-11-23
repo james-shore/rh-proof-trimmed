@@ -347,7 +347,7 @@ theorem exists_bddSec_shift : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
       (pair_G X.toData hp _ s (by omega) hsT hT1 h0 hr) hP
   obtain ⟨F, hF, hv⟩ := GlobalTheory.InterpWeight.interp_weight (E := E)
     ⟨normFactor_rightBorel_holds, normFactor_leftAction_holds, pointwiseNorm_invariance_holds⟩ poin_holds extFStatement_holds measInv_holds
-    vanishAtS_holds KapPf.kappa_statement_holds r X.toData Xa Fl _ (GlobalTheory.ClosedDiscontinuity.propDisc_closed _ _)
+    _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.vanishAtS_holds KapPf.kappa_statement_holds r X.toData Xa Fl _ (GlobalTheory.ClosedDiscontinuity.propDisc_closed _ _)
     hmar hstr hcusp (fun _ => 1)
   exact ⟨F, hF.1.1, Fl.xs ⟨0, hδ⟩, Fl.xs_mem _, by rw [hv]; exact one_ne_zero⟩
 

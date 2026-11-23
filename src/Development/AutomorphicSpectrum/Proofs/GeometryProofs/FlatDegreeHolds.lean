@@ -150,7 +150,7 @@ theorem flatDegree : FlatDegree := by
     (fun ℓ j => ht1 ℓ j) hfinite
     (fun ℓ j => ht3 ℓ j _ (hNfin ℓ (j.comp (IntermediateField.inclusion hc).toRingHom)))
   obtain ⟨hAd, hdeg⟩ := key
-  obtain ⟨hdeg', hAd'⟩ := GlobalTheory.CompanionTheory.Ar.Fl.logNorms_ext_deg_isAdelic (↥c.F) (↥k)
+  obtain ⟨hdeg', hAd'⟩ := _root_.PositivityTheory.Xgf.logNorms_ext_degree_adelic (↥c.F) (↥k)
     (IntermediateField.inclusion hc).toRingHom N
   refine ⟨hAd'.mp hAd, ?_⟩
   rw [← hdeg', hdeg, flatDegree_logOm_re E χ (hxv true)]

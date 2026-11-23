@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Formalism.PolynomialDimension.WeylDim
+import Formalism.PolynomialDimension.MultinomialDepth.BinomialSeriesBound
 
 @[expose] public section
 
@@ -257,7 +258,7 @@ theorem threshold_density_facts (K : Cst) (hK : K.Pos) : TransportedAlt K (fun _
       push_cast
       have := Wf.bule
       linarith
-    have key := Formalism.CountingSumsFrames.Top.densityLower X.m al be La' X.b' hm5 hal0 hb hLa'0 hcond
+    have key := _root_.Formalism.CountingSumsFrames.density_lower_bound X.m al be La' X.b' hm5 hal0 hb hLa'0 hcond
     have e1 : (X.m : ℝ) * (La' * X.b' / ((X.m : ℝ) + 1)) = (X.m : ℝ) * X.J0 K := by rw [hJ0]; rfl
     have e2 : ⌊La' * X.b' / ((X.m : ℝ) + 1)⌋₊ = X.Jn K := by
       unfold Dat.Jn

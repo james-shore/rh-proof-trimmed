@@ -61,7 +61,7 @@ theorem gC_pos_of_ne_zero : ∀ (l : ℕ) [Fact l.Prime] (x : Formalism.Per.Acri
     ρ < 1 → 0 < gC l ρ x := by
   intro l _ x hx ρ hρ0 hρ1
   have hN : ∀ r : ℝ, (l : ℝ)⁻¹ ≤ r → r < 1 → IsGauss l r (gC l r) :=
-    fun r h0 h1 => isGauss_gC_target l r h0 h1
+    fun r h0 h1 => _root_.GlobalTheory.PMon.Gauss.isGauss_gC_of_le l r h0 h1
   have hl : (1 : ℝ) < l := by exact_mod_cast (Fact.out : l.Prime).one_lt
   have hi0 : (0 : ℝ) < (l : ℝ)⁻¹ := by positivity
   have hi1 : (l : ℝ)⁻¹ < 1 := inv_lt_one_of_one_lt₀ hl

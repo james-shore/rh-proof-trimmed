@@ -61,6 +61,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.Foundations.HahnPowOrderLeadingCoeff
 import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.NormProducts.InvMod
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsMatrixBasisAllPlacesTorsionDet
 
 @[expose] public section
 
@@ -70,24 +71,9 @@ open scoped Matrix MatrixGroups
 
 
 
-private theorem val_one_iff {K : Type} [Field K] (A : ValuationSubring K) (x : K) :
-    A.valuation x = 1 ↔ x ≠ 0 ∧ x ∈ A ∧ x⁻¹ ∈ A := by
-  constructor
-  · intro h
-    refine ⟨?_, ?_, ?_⟩
-    · rintro rfl
-      simp at h
-    · rw [← A.valuation_le_one_iff, h]
-    · rw [← A.valuation_le_one_iff, map_inv₀, h, inv_one]
-  · rintro ⟨h0, h1, h2⟩
-    rw [← A.valuation_le_one_iff] at h1 h2
-    rw [map_inv₀] at h2
-    have h3 : A.valuation x ≠ 0 := by simpa using h0
-    exact le_antisymm h1 ((inv_le_one₀ (zero_lt_iff.2 h3)).1 h2)
-
 private theorem val_comap {K : Type} [Field K] (F : Subfield K) (W : ValuationSubring K) (x : F) :
     (W.comap F.subtype).valuation x = 1 ↔ W.valuation (x : K) = 1 := by
-  rw [val_one_iff, val_one_iff]
+  rw [_root_.GlobalTheory.OneBasis.Places.val_eq_one_iff, _root_.GlobalTheory.OneBasis.Places.val_eq_one_iff]
   simp [ValuationSubring.mem_comap]
 
 private theorem exists_ext {K : Type} [Field K] (F : Subfield K) (B : ValuationSubring F) :
@@ -309,7 +295,7 @@ theorem UpperTheory.Kd.K4.step :
     @abs_step Ω X.K SL(2, ℤ) _ _ _ _ _ (fun γ => (X.sl (ofSL γ)).toRingEquiv)
       (fun g => by simp [X.sl_one]) (fun x y g => by simp [X.sl_mul]) H H' hn (lev X H) (lev X H') (lev_anti X hle)
       (mem_lev_iff X H) (mem_lev_iff X H') (algPoly X H) (algRat X H) (isScalarTower_poly_rat X H)
-      (GlobalTheory.T.finiteDimensional_lev_of_gamma_le Ω ε X H M hM (hΓ.trans hle)) (algPoly X H') (algRat X H') (isScalarTower_poly_rat X H')
-      (GlobalTheory.T.finiteDimensional_lev_of_gamma_le Ω ε X H' M hM hΓ) (fun p => (coe_jPoly X H p).trans (coe_jPoly X H' p).symm) hfaith ι _ δ hδ.1 hδ.2
+      (_root_.GlobalTheory.K4.finiteDimensional_lev Ω ε X H M hM (hΓ.trans hle)) (algPoly X H') (algRat X H') (isScalarTower_poly_rat X H')
+      (_root_.GlobalTheory.K4.finiteDimensional_lev Ω ε X H' M hM hΓ) (fun p => (coe_jPoly X H p).trans (coe_jPoly X H' p).symm) hfaith ι _ δ hδ.1 hδ.2
       m m' hm hm' ⟨f, hfH⟩ hF0 ((lun_iff X H m ⟨f, hfH⟩).1 hfW)
   exact ⟨f', ⟨fun e => hf'0 (Subtype.ext e), f'.2, (lun_iff X H' (m * m') f').2 hf'⟩, h, hh0, hprod⟩

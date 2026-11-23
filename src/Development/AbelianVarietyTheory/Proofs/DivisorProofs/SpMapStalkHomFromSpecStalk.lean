@@ -56,10 +56,6 @@ noncomputable section
 
 namespace GlobalTheory.Poinc.Sep
 
-theorem spMap_comp_spMap {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R' →+* R'') (g : R →+* R') :
-    spMap f ≫ spMap g = spMap (f.comp g) := by
-  rw [← Spec.map_comp]; rfl
-
 theorem spMap_stalkHom_fromSpecStalk {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] (M : RatModel o Ω) (z : M.Z) :
     spMap (M.stalkHom z) ≫ M.Z.fromSpecStalk z = M.pt := by
   have h1 := Scheme.Spec_stalkClosedPointTo_fromSpecStalk (R := CommRingCat.of Ω) M.pt
@@ -86,7 +82,7 @@ theorem exists_uMem_injective : ∀ g : ℕ, 1 ≤ g → ∀ n : ℕ, 3 ≤ n �
   have hpt : jK V₀ ≫ spMap φ₀ ≫ X₁.M.Z.fromSpecStalk z₁ = spMap emb ≫ X₁.M.pt := by
     rw [← spMap_stalkHom_fromSpecStalk, ← Category.assoc, ← Category.assoc]
     congr 1
-    rw [show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, spMap_comp_spMap, spMap_comp_spMap]
+    rw [show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, _root_.Formalism.L2.Pj.spMap_comp_ring, _root_.Formalism.L2.Pj.spMap_comp_ring]
     congr 1
     ext r
     exact (hemb r).symm
@@ -101,8 +97,8 @@ theorem exists_uMem_injective : ∀ g : ℕ, 1 ≤ g → ∀ n : ℕ, 3 ≤ n �
   have hev : Function.Injective ev := hf.comp hinj₀
   have hkey : jK T.V ≫ spMap ev = spMap fK ≫ jK V₀ ≫ spMap φ₀ := by
     rw [show jK T.V = spMap (algebraMap T.V (FractionRing T.V)) from rfl,
-      show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, spMap_comp_spMap, spMap_comp_spMap,
-      spMap_comp_spMap]
+      show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, _root_.Formalism.L2.Pj.spMap_comp_ring, _root_.Formalism.L2.Pj.spMap_comp_ring,
+      _root_.Formalism.L2.Pj.spMap_comp_ring]
     congr 1
     ext a
     simp only [RingHom.comp_apply]

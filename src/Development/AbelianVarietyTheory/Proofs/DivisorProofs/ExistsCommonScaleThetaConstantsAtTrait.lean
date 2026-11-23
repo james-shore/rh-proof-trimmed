@@ -111,9 +111,9 @@ theorem exists_scale : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] 
   have hS : (letI := P.isAb.comm; HypS P.A P.L) := by
     letI := P.isAb.comm
     exact GlobalTheory.SymBaseChange.hypS_baseChange _ _ ρ.P.A P.A y α ρ.P.L P.L ρ.P.isLB P.isLB hα hiso ρ.hypS
-  obtain ⟨a, ha, h₁, h₂⟩ := GlobalTheory.T.thetaConstants_two_levels_primitive_at_trait _ ρ.P.A ρ.P.L ρ.rig ρ.P.isLB ρ.rig_gen V hV y P α hα hiso hS K io m (S.r * S.N)
+  obtain ⟨a, ha, h₁, h₂⟩ := _root_.GlobalTheory.SiegCmp.theta_two_levels_prim _ ρ.P.A ρ.P.L ρ.rig ρ.P.isLB ρ.rig_gen V hV y P α hα hiso hS K io m (S.r * S.N)
     _ _ c c' hm hm3 hmV hko hk3 hkV H2
-  obtain ⟨r₁, r₂⟩ := GlobalTheory.T.thetaConstantList_realisedSystem_up_to_rootsOfUnity o Ω S ρ K i _ pt' c' H'
+  obtain ⟨r₁, r₂⟩ := _root_.GlobalTheory.UMin.thList_real o Ω S ρ K i _ pt' c' H'
   refine ⟨K, inferInstance, io, _, c, c', a, ha, h₁, h₂, ?_, r₁, r₂⟩
   have hz : spMap i ≫ 𝟙 (Sp S.R) = spMap (io.comp emb) ≫ spMap S.R.val.toRingHom ≫ 𝟙 (Sp S.R) := by
     rw [← Category.assoc, ← spMap_comp]

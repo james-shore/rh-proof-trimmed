@@ -400,20 +400,6 @@ theorem lie_bracket (X Y : Lie E a) :
   rw [lieD_lieD, lieD_lieD, hs X Y]
   abel
 
-theorem lieS_bracket (i j k l : Fin a) (c d : Cinf E) :
-    lieS E a i j c * lieS E a k l d - lieS E a k l d * lieS E a i j c =
-      (if j = k then lieS E a i l (c * d) else 0) - (if l = i then lieS E a k j (c * d) else 0) := by
-  have key : ∀ (i j k l : Fin a) (c d : Cinf E), lie E a (mulL (Matrix.single i j c) (Matrix.single k l d)) =
-      if j = k then lieS E a i l (c * d) else 0 := by
-    intro i j k l c d
-    split_ifs with h
-    · subst h
-      exact congrArg (lie E a) (Matrix.single_mul_single_same c i j l d)
-    · exact (congrArg (lie E a) (Matrix.single_mul_single_of_ne c i j k h d)).trans (map_zero _)
-  have := lie_bracket (E := E) (a := a) (Matrix.single i j c) (Matrix.single k l d)
-  rw [key, key, mul_comm d c] at this
-  exact this
-
 theorem Eop_bracket (τ τ' : E →+* ℂ) (i j k l : Fin a) :
     Eop τ i j * Eop τ' k l - Eop τ' k l * Eop τ i j =
       (1 / 4 : ℂ) • ((lieS E a i j (atEmb τ 1) * lieS E a k l (atEmb τ' 1) - lieS E a k l (atEmb τ' 1) * lieS E a i j (atEmb τ 1))
@@ -428,29 +414,11 @@ theorem Eop_bracket (τ τ' : E →+* ℂ) (i j k l : Fin a) :
   module
 
 omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
-theorem atEmb_mul (τ : E →+* ℂ) (z w : ℂ) : atEmb τ z * atEmb τ w = atEmb τ (z * w) := by
-  classical
-  unfold atEmb
-  rw [← Pi.single_mul]
-  split_ifs <;> simp
-
-omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
 theorem atEmb_neg (τ : E →+* ℂ) (z : ℂ) : atEmb τ (-z) = - atEmb τ z := by
   classical
   unfold atEmb
   rw [← Pi.single_neg]
   split_ifs <;> simp
-
-omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
-theorem atEmb_mul_of_ne {τ τ' : E →+* ℂ} (h : InfinitePlace.mk τ ≠ InfinitePlace.mk τ') (z w : ℂ) :
-    atEmb τ z * atEmb τ' w = 0 := by
-  classical
-  unfold atEmb
-  funext v
-  by_cases hv : v = InfinitePlace.mk τ
-  · subst hv
-    simp [Pi.single_eq_of_ne h]
-  · simp [Pi.single_eq_of_ne hv]
 
 omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
 theorem atEmb_conj {τ τ' : E →+* ℂ} (h : InfinitePlace.mk τ = InfinitePlace.mk τ') (hne : τ ≠ τ') (w : ℂ) :
@@ -471,18 +439,18 @@ theorem atEmb_conj {τ τ' : E →+* ℂ} (h : InfinitePlace.mk τ = InfinitePla
 theorem glRel_Eop (τ : E →+* ℂ) : GlRel (Eop (a := a) τ) := by
   intro i j k l
   rw [Eop_bracket]
-  simp only [lieS_bracket, atEmb_mul, Complex.I_mul_I, mul_one, one_mul, atEmb_neg, map_neg]
+  simp only [_root_.GlobalTheory.CuspRep.lieS_comm, _root_.GlobalTheory.CuspRep.atEmb_mul, Complex.I_mul_I, mul_one, one_mul, atEmb_neg, map_neg]
   unfold Eop
   split_ifs <;> module
 
 theorem commute_Eop {τ τ' : E →+* ℂ} (hne : τ ≠ τ') (i j k l : Fin a) : Commute (Eop τ i j) (Eop τ' k l) := by
   rw [Commute, SemiconjBy, ← sub_eq_zero, Eop_bracket]
   by_cases h : InfinitePlace.mk τ = InfinitePlace.mk τ'
-  · simp only [lieS_bracket]
-    simp only [atEmb_conj h hne, atEmb_mul, Complex.I_mul_I, mul_one, one_mul, atEmb_neg, map_neg,
+  · simp only [_root_.GlobalTheory.CuspRep.lieS_comm]
+    simp only [atEmb_conj h hne, _root_.GlobalTheory.CuspRep.atEmb_mul, Complex.I_mul_I, mul_one, one_mul, atEmb_neg, map_neg,
       map_one, Complex.conj_I, mul_neg, neg_neg]
     split_ifs <;> module
-  · simp [lieS_bracket, atEmb_mul_of_ne h]
+  · simp [_root_.GlobalTheory.CuspRep.lieS_comm, _root_.GlobalTheory.CuspRep.atEmb_mul_of_ne h]
 
 theorem commute_cap (τ τ' : E →+* ℂ) (u v : ℂ) : Commute (cap (a := a) τ u) (cap τ' v) := by
   unfold cap

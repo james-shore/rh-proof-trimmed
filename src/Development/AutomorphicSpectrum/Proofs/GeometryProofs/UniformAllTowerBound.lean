@@ -73,7 +73,7 @@ theorem vs_fin : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     letI := io.toAlgebra
     by_contra hc
     exact hy0 (GlobalTheory.AllWt.mem_suppOn.1 hfZ T₀.Fr y.1 ((GlobalTheory.AllWt.liesOff_iff Z y.1).2 hc))
-  have hLk := GlobalTheory.T.good_origin_model_component_bound hG E H Dw l Xo c r U h e hL Y T o _ _ Y _ _ _ _ (o.toTowerOrigin.Or B b) Fr Z Rd
+  have hLk := _root_.GlobalTheory.CompanionTheory.Ar.Plug.FinLink.linked hG E H Dw l Xo c r U h e hL Y T o _ _ Y _ _ _ _ (o.toTowerOrigin.Or B b) Fr Z Rd
   have hram : ∀ p : ℕ, p.Prime → (p : ℤ) ∣ discr E → p ∈ o.toTowerOrigin.S B := fun p hp hd => by
     rw [o.toTowerOrigin.S_iff]
     refine ⟨hp, Or.inr ((o.toTowerOrigin.bad_iff p).2 ⟨hp, ?_⟩)⟩
@@ -85,20 +85,20 @@ theorem vs_fin : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   let sc : (∀ k, RM.ι k) → RM.Ω := fun c' => s * ∏ k, RM.y ⟨k, c' k⟩ ^ (-(((1 : ℕ) : ℤ) * degOf RM u k))
   let rt : (∀ k, RM.ι k) × (Σ k, RM.ι k) → RM.Ω := fun q => RM.y q.2 / RM.y ⟨q.2.1, q.1 q.2.1⟩
   let B₁ : Finset RM.Ω := {x, Rd.φ (evC h Z f)} ∪ Finset.univ.image sc ∪ Finset.univ.image rt
-  obtain ⟨B₂, B₃, hR⟩ := GlobalTheory.T.uniform_all_root_origin_bound hG E H Dw l Xo c r U h e hL hUn _ _ Y _ RM _ _ Ow Fr Z Rd (o.omVB B b) hram hLk B₁
+  obtain ⟨B₂, B₃, hR⟩ := _root_.GlobalTheory.CompanionTheory.Relay.uniform_all_root_origin_bound hG E H Dw l Xo c r U h e hL hUn _ _ Y _ RM _ _ Ow Fr Z Rd (o.omVB B b) hram hLk B₁
   have hfinr : 0 < (letI := Rd.φ.toAlgebra; Module.finrank (Om Z) RM.Ω) := by
     rw [Rd.deg]; exact Test.deg_pos Ow
   have hfin : (letI := Rd.φ.toAlgebra; FiniteDimensional (Om Z) RM.Ω) := by
     letI := Rd.φ.toAlgebra
     exact Module.finite_of_finrank_pos hfinr
   haveI : CharZero (Om Z) := charZero_of_injective_algebraMap (algebraMap c.F (Om Z)).injective
-  obtain ⟨Btr, hTr⟩ := GlobalTheory.T.trace_integral_subring_extension (Om Z) RM.Ω Rd.φ (B₁ ∪ B₂) x hfin
+  obtain ⟨Btr, hTr⟩ := _root_.GlobalTheory.CompanionTheory.TraceSpec.trace_specialisation (Om Z) RM.Ω Rd.φ (B₁ ∪ B₂) x hfin
   obtain ⟨T', io', e', y', A', ev, ho', hy', hval, hB, -, halg, hreg⟩ :=
-    GlobalTheory.T.weight_section_component_value hG E H Dw l Xo c r U h e hL Y Z u f hf (Btr ∪ B₃) la T₀ io e₀ ho y hy hon hy0
+    _root_.GlobalTheory.CompanionTheory.Ar.Plug.FinTr.Approx.approx_main hG E H Dw l Xo c r U h e hL Y Z u f hf (Btr ∪ B₃) la T₀ io e₀ ho y hy hon hy0
 
   have hB3 : (↑B₃ : Set (Om Z)) ⊆ A' := fun b hb =>
     hB (Finset.mem_coe.2 (Finset.mem_union_right _ (Finset.mem_coe.1 hb)))
-  obtain ⟨ι, hι⟩ := GlobalTheory.T.complete_dvr_padic_embedding E H l c la T' io' e' p ho' hy' hla
+  obtain ⟨ι, hι⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Embed.exists_isometric_embedding E H l c la T' io' e' p ho' hy' hla
   obtain ⟨A, hA, hB0, hx, ht, hspec⟩ := hTr A' (fun b hb =>
     hB (Finset.mem_coe.2 (Finset.mem_union_left _ (Finset.mem_coe.1 hb))))
   have halgC : ∀ a, IsAlgebraic ℤ ((ι.comp ev) a) := fun a => by
@@ -115,7 +115,7 @@ theorem vs_fin : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   have hy'0 : evI y' f ≠ 0 := fun h0 => by
     rw [h0, nval_zero, nval_of_ne hy0] at hval
     exact EReal.coe_ne_top _ hval.symm
-  have hW0 := GlobalTheory.T.integral_frame_component_value E H Dw l Xo c r U h e hL Z _ f hf T' io' y' A' ev hreg hy'0 hcf
+  have hW0 := _root_.GlobalTheory.CompanionTheory.Ar.Plug.FinTr.ev_genValue_ne_zero E H Dw l Xo c r U h e hL Z _ f hf T' io' y' A' ev hreg hy'0 hcf
   obtain ⟨W, hWdef⟩ : ∃ W, W = ι (ev ⟨_, hcf⟩) := ⟨_, rfl⟩
   have hW : W ≠ 0 := by rw [hWdef]; exact (map_ne_zero ι).2 hW0
   have hWsum : W = ∑ j, ev' j ⟨x, hx⟩ := by
@@ -127,7 +127,7 @@ theorem vs_fin : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   obtain ⟨s₀, hs₀⟩ : ∃ s₀ : ℝ, nval T'.V e' (evI y' f) = ((ramOverZ la * s₀ : ℝ) : EReal) :=
     ⟨((vV T'.V (evI y' f) : ℝ) / e') / ramOverZ la, by
       rw [nval_of_ne hy'0]; congr 1; field_simp⟩
-  obtain ⟨hw1, -, -, hw4, hw5, -⟩ := GlobalTheory.T.tower_weight_of_zero E H Dw l Xo c RM u
+  obtain ⟨hw1, -, -, hw4, hw5, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.integer_weights_vocab E H Dw l Xo c RM u
   have hn : ∀ j, (nOf u j : ℝ) = RM.coef (towerWt Dw (GlobalTheory.AllWt.wtOf Dw u 0).1) 0 j := by
     rw [hw1]; exact hw4
   have hL1 : ∑ r : RootIx Dw, |((-u r.1 r.2 : ℤ) : ℝ)| = GlobalTheory.CovHt.l1 u := by

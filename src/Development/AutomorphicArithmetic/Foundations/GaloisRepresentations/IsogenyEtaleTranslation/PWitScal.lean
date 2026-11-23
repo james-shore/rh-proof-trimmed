@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTorusAbelianQuotientPDivisibleSmoothGroup
 
 @[expose] public section
 
@@ -55,13 +56,6 @@ private theorem ev_nsmul {G : GDatum} {k : Type} [Field k] {Q : Type} [Group Q] 
   | zero => rw [zero_smul, pow_zero, h0]
   | succ d ih => rw [succ_nsmul, I.add, ih, pow_succ]
 
-private theorem isMonHom_pow {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonObj A] (n : ℕ) :
-    IsMonHom ((𝟙 A) ^ n : A ⟶ A) := by
-  constructor
-  · rw [MonObj.comp_pow, Category.comp_id, MonObj.one_eq_one, one_pow]
-  · rw [MonObj.comp_pow, Category.comp_id, MonObj.mul_eq_mul, MonObj.comp_mul, tensorHom_fst,
-      tensorHom_snd, MonObj.comp_pow, MonObj.comp_pow, Category.comp_id, Category.comp_id, mul_pow]
-
 private theorem pow_comp_hom {S : Scheme.{0}} {A B Z : Over S} [MonObj A] [MonObj B] (f : A ⟶ B) [IsMonHom f]
     (x : Z ⟶ A) (n : ℕ) : (x ^ n) ≫ f = (x ≫ f) ^ n := MonObj.pow_comp x n f
 
@@ -73,14 +67,14 @@ theorem UpperTheory.Gal.FixZ.witScal_of :
     ⟨{ φ := 𝟙 _, φ₂ := 𝟙 _, cart := GlobalTheory.SiegLower.isGrpPullback_id X.univ.A, sq := ⟨by simp, by simp⟩,
        act := fun c => by simp, pol := GlobalTheory.SiegLower.lbIso_pull_id X.univ.isLB, eta := fun y => by simp }, rfl⟩
   obtain ⟨m, hm⟩ := hid
-  have hmon : IsMonHom ((𝟙 X.univ.A) ^ d) := isMonHom_pow _ d
+  have hmon : IsMonHom ((𝟙 X.univ.A) ^ d) := _root_.GlobalTheory.SS.DivSemi.isMonHom_id_pow _ d
   have hcomm : ∀ c : D.O, X.univ.act.act c ≫ ((𝟙 X.univ.A) ^ d) = ((𝟙 X.univ.A) ^ d) ≫ X.univ.act.act c := by
     intro c
     haveI := X.univ.act.hom c
     rw [MonObj.comp_pow, pow_comp_hom, Category.comp_id, Category.id_comp]
   refine ⟨Category.id_comp _, X.univ, (𝟙 X.univ.A) ^ d, m, ?_, by rw [hm]; simp⟩
   refine ⟨hmon, hcomm, ⟨𝟙 _, d, inferInstance, fun c => ?_, Category.comp_id _, Category.id_comp _, hdp⟩,
-    ⟨d ^ 2, hdp.pow_left 2, ⟨GlobalTheory.T.lbIso_lbPow_sq_pull_sq2_of_isGen_of_relAmple _ _ X.univ.ab X.univ.P X.univ.isLB X.univ.rig₁ X.univ.rig₂ X.univ.ample d⟩, hmul⟩,
+    ⟨d ^ 2, hdp.pow_left 2, ⟨_root_.GlobalTheory.BirigidPow.birigidified_pullback_mulPair_iso_tensorPowSq _ _ X.univ.ab X.univ.P X.univ.isLB X.univ.rig₁ X.univ.rig₂ X.univ.ample d⟩, hmul⟩,
     fun k _ _ t β ht => ?_⟩
   · rw [Category.comp_id, Category.id_comp]
   · obtain ⟨I, hI⟩ := X.univ.geom k t β ht

@@ -120,20 +120,6 @@ private theorem skip1_val_eq_ite {n : ℕ} (a : Fin n) (b : Fin (n - 1)) :
   unfold skip1
   split_ifs <;> rfl
 
-private theorem skip2_val_eq_ite {n : ℕ} (a b : Fin n) (j : Fin (n - 2)) :
-    ((skip2 a b j : Fin n) : ℕ) = if (j : ℕ) < a then (j : ℕ) else if (j : ℕ) + 1 < b then j + 1 else j + 2 := by
-  unfold skip2
-  split_ifs <;> rfl
-
-private theorem skip1_eq_succAbove {t : ℕ} (s : Fin (t + 1)) (w : Fin t) : skip1 s w = s.succAbove w := by
-  apply Fin.ext
-  rw [skip1_val_eq_ite]
-  by_cases h : (w : ℕ) < s
-  · rw [if_pos h, Fin.succAbove_of_castSucc_lt s w (by rw [Fin.lt_def, Fin.coe_castSucc]; exact h)]
-    simp
-  · rw [if_neg h, Fin.succAbove_of_le_castSucc s w (by rw [Fin.le_def, Fin.coe_castSucc]; omega)]
-    simp
-
 private theorem skip1_skip1_val_eq_skip2_min_max {t : ℕ} (s : Fin (t + 1)) (w : Fin t) (j : Fin (t + 1 - 2)) :
     ((skip1 s (skip1 w j) : Fin (t + 1)) : ℕ) = (skip2 (min (skip1 s w) s) (max (skip1 s w) s) j : ℕ) := by
   have hmin : ((min (skip1 s w) s : Fin (t + 1)) : ℕ) = min ((skip1 s w : Fin (t + 1)) : ℕ) (s : ℕ) := by
@@ -147,7 +133,7 @@ private theorem skip1_skip1_val_eq_skip2_min_max {t : ℕ} (s : Fin (t + 1)) (w 
   have hj := j.isLt
   have hw := w.isLt
   have hs := s.isLt
-  rw [skip2_val_eq_ite, hmin, hmax, skip1_val_eq_ite s (skip1 w j), skip1_val_eq_ite s w, skip1_val_eq_ite w j]
+  rw [_root_.PI.QnHermHaar.valSkip2, hmin, hmax, skip1_val_eq_ite s (skip1 w j), skip1_val_eq_ite s w, skip1_val_eq_ite w j]
   simp only [Nat.min_def, Nat.max_def]
   split_ifs <;> omega
 
@@ -206,14 +192,14 @@ theorem comb {M : Type*} [AddCommGroup M] [Module ℂ M] {t : ℕ} (β α' : Fin
   rw [← Finset.sum_neg_distrib]
   refine Finset.sum_congr rfl fun j _ => ?_
   have hTj : ¬T = T.succAbove j := (Fin.succAbove_ne T j).symm
-  rw [if_pos hTj, ← skip1_eq_succAbove s i, ← skip1_eq_succAbove T j]
+  rw [if_pos hTj, ← _root_.PI.QnHermHaar.skip1Eq s i, ← _root_.PI.QnHermHaar.skip1Eq T j]
   have h1 : (skip1 s ∘ skip1 i : Fin (t + 1 - 2) → Fin (t + 1)) = skip2 (min (skip1 s i) s) (max (skip1 s i) s) :=
     funext fun k => Fin.ext (skip1_skip1_val_eq_skip2_min_max s i k)
   have h2 : (skip1 T ∘ skip1 j : Fin (t + 1 - 2) → Fin (t + 1)) = skip2 (min T (skip1 T j)) (max T (skip1 T j)) := by
     rw [_root_.min_comm, _root_.max_comm]
     exact funext fun k => Fin.ext (skip1_skip1_val_eq_skip2_min_max T j k)
   have hne : s ≠ skip1 s i := by
-    rw [skip1_eq_succAbove s i]
+    rw [_root_.PI.QnHermHaar.skip1Eq s i]
     exact (Fin.succAbove_ne s i).symm
   rw [h1, h2, sign_antisymmetric hne, ← neg_smul]
   congr 1

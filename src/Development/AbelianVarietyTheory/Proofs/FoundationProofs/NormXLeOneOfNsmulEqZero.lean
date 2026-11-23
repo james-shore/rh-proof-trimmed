@@ -63,28 +63,14 @@ lemma norm_sub_le_max' (a b : K) : ‖a - b‖ ≤ max ‖a‖ ‖b‖ := by
   have := norm_add_le_max a (-b)
   rwa [norm_neg, ← sub_eq_add_neg] at this
 
-lemma norm_add_eq_of_lt {a b : K} (h : ‖b‖ < ‖a‖) : ‖a + b‖ = ‖a‖ := by
-  rw [norm_add_eq_max_of_norm_ne_norm h.ne', max_eq_left h.le]
-
-lemma norm_y_sq {A B x y : K} (hA : ‖A‖ ≤ 1) (hB : ‖B‖ ≤ 1) (hx : 1 < ‖x‖)
-    (h : y ^ 2 = x ^ 3 + A * x + B) : ‖y‖ ^ 2 = ‖x‖ ^ 3 := by
-  have h1 : ‖x‖ < ‖x‖ ^ 3 := by
-    have := pow_lt_pow_right₀ hx (show 1 < 3 by norm_num)
-    simpa using this
-  rw [← norm_pow, h, add_assoc, norm_add_eq_of_lt, norm_pow]
-  rw [norm_pow]
-  refine (norm_add_le_max _ _).trans_lt (max_lt ?_ (by linarith))
-  rw [norm_mul]
-  nlinarith [norm_nonneg A]
+alias norm_add_eq_of_lt := _root_.GlobalTheory.UltrametricLineBounds.norm_add_of_lt
 
 lemma norm_sum_three_le (a b c : K) : ‖a + b + c‖ ≤ max (max ‖a‖ ‖b‖) ‖c‖ :=
   (norm_add_le_max _ _).trans (max_le_max (norm_add_le_max _ _) le_rfl)
 
-lemma norm_two_le : ‖(2 : K)‖ ≤ 1 := by
-  simpa using IsUltrametricDist.norm_natCast_le_one K 2
+alias norm_two_le := _root_.GlobalTheory.UltrametricLineBounds.norm_two_le
 
-lemma norm_three_le : ‖(3 : K)‖ ≤ 1 := by
-  simpa using IsUltrametricDist.norm_natCast_le_one K 3
+alias norm_three_le := _root_.GlobalTheory.UltrametricLineBounds.norm_three_le
 
 noncomputable def param {W : Affine K} : W.Point → K
   | .zero => 0
@@ -138,7 +124,7 @@ theorem norm_x_le_one_of_nsmul_eq_zero (K : Type) [NormedField K] [IsUltrametric
     have := (Affine.equation_iff _ _).1 h.1
     simp only at this
     linear_combination this
-  have hy := norm_y_sq hA hB hx he
+  have hy := _root_.GlobalTheory.UltrametricLineBounds.norm_y_sq hA hB hx he
   have x0 : 0 < ‖x‖ := by linarith
   have y0 : 0 < ‖y‖ := by
     refine lt_of_le_of_ne (norm_nonneg _) fun h => ?_

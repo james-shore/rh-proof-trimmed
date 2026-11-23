@@ -73,7 +73,7 @@ namespace GlobalTheory.CompanionTheory.HeckeFE
 variable {E : Type} [Field E] [NumberField E]
 
 theorem L_cond (χ : HChar E) (hu : IsUnitary χ) (v : HeightOneSpectrum (𝓞 E)) (m : ℕ) (h : ExpAt χ v m) :
-    multiplicity v.asIdeal (toHecke χ hu).conductor = m := GlobalTheory.T.hecke_character_conductor_exponent E χ hu v m h
+    multiplicity v.asIdeal (toHecke χ hu).conductor = m := _root_.GlobalTheory.CompanionTheory.HeckeBridge.multiplicity_conductor_toHecke E χ hu v m h
 
 theorem L_inf {I : Type} [Fintype I] (φ : I → E →+* ℂ) (hφ : IsCMType φ) [_root_.NumberField.IsTotallyComplex E] (χ : HChar E) (hu : IsUnitary χ)
     (n : I → ℤ) (hi : Formalism.L2.Host.HChar.HasInf χ φ n) (i : I) :
@@ -188,31 +188,12 @@ theorem L_locRam (χ : HChar E) (hu : IsUnitary χ) (v : HeightOneSpectrum (𝓞
     field_simp
   linear_combination (((χ.loc v (atFin v (unif v ^ (m + diffExp v))) : ℂˣ) : ℂ) * gaussSumAt χ v m (unif v ^ (m + diffExp v))) * (h5 - h3)
 
-theorem bijective_mk {I : Type} {φ : I → E →+* ℂ} (hφ : IsCMType φ) :
-    Function.Bijective fun i => InfinitePlace.mk (φ i) := by
-  constructor
-  · intro i j h
-    have h' : InfinitePlace.mk (φ i) = InfinitePlace.mk (φ j) := h
-    obtain ⟨k, -, hk⟩ := hφ (φ i)
-    have h1 := hk i (Or.inl rfl)
-    rcases InfinitePlace.mk_eq_iff.1 h' with e | e
-    · exact h1.trans (hk j (Or.inl e)).symm
-    · exact h1.trans (hk j (Or.inr (by rw [← e]; ext x; simp))).symm
-  · intro w
-    obtain ⟨i, hi, -⟩ := hφ w.embedding
-    refine ⟨i, ?_⟩
-    rcases hi with e | e
-    · show InfinitePlace.mk (φ i) = w
-      rw [← e, InfinitePlace.mk_embedding]
-    · show InfinitePlace.mk (φ i) = w
-      rw [← InfinitePlace.mk_conjugate_eq, ← e, InfinitePlace.mk_embedding]
-
 section
 variable {I : Type} [Fintype I] {φ : I → E →+* ℂ} [_root_.NumberField.IsTotallyComplex E] {χ : HChar E} {n : I → ℤ}
 
 theorem gammaFactor_toHecke (hφ : IsCMType φ) (hu : IsUnitary χ) (hi : Formalism.L2.Host.HChar.HasInf χ φ n) (s : ℂ) :
     (toHecke χ hu).gammaFactor s = archFactor n s := by
-  rw [HeckeCharacter.gammaFactor, archFactor, ← (Equiv.ofBijective _ (bijective_mk hφ)).prod_comp]
+  rw [HeckeCharacter.gammaFactor, archFactor, ← (Equiv.ofBijective _ (_root_.GlobalTheory.CMTypeCard.bijective_mk_of_isCMType hφ)).prod_comp]
   refine Finset.prod_congr rfl fun i _ => ?_
   obtain ⟨h1, h2⟩ := L_inf φ hφ χ hu n hi i
   have hc : ¬ (InfinitePlace.mk (φ i)).IsReal := InfinitePlace.not_isReal_iff_isComplex.2 (IsTotallyComplex.isComplex _)
@@ -224,7 +205,7 @@ theorem gammaFactor_toHecke (hφ : IsCMType φ) (hu : IsUnitary χ) (hi : Formal
 
 theorem prod_weight_toHecke (hφ : IsCMType φ) (hu : IsUnitary χ) (hi : Formalism.L2.Host.HChar.HasInf χ φ n) :
     (∏ w, (-Complex.I) ^ ((toHecke χ hu).infiniteWeight w).natAbs) = archEps n := by
-  rw [archEps, ← Finset.prod_pow_eq_pow_sum, ← (Equiv.ofBijective _ (bijective_mk hφ)).prod_comp]
+  rw [archEps, ← Finset.prod_pow_eq_pow_sum, ← (Equiv.ofBijective _ (_root_.GlobalTheory.CMTypeCard.bijective_mk_of_isCMType hφ)).prod_comp]
   refine Finset.prod_congr rfl fun i _ => ?_
   show (-Complex.I) ^ ((toHecke χ hu).infiniteWeight (InfinitePlace.mk (φ i))).natAbs = _
   rw [(L_inf φ hφ χ hu n hi i).2]
@@ -303,10 +284,10 @@ end GlobalTheory.CompanionTheory.HeckeFE
 
 theorem GlobalTheory.CompanionTheory.HeckeFE.heckeTateFunctionalEquation : GlobalTheory.Published.HeckeTateFunctionalEquation := by
   intro E _ _ _ I _ φ hφ χ n a hu hi hn ha
-  have hu' := GlobalTheory.Published.HeckeFEModel.isUnitary_inv hu
+  have hu' := _root_.Formalism.L2.Host.HChar.IsUnitary.inv hu
   have hi' := GlobalTheory.Published.HeckeFEModel.hasInf_inv hi
   have hn' : ∃ i, -n i ≠ 0 := hn.imp fun i h => neg_ne_zero.2 h
   refine ⟨conductorNormalizedCompletedLFunction χ hu, conductorNormalizedCompletedLFunction χ⁻¹ hu', isCompletedL_completed hφ hu hi hn,
     isCompletedL_completed hφ hu' hi' hn', fun s => ?_⟩
-  rw [L_shift χ a s, ← discrNormConductor_toHecke hu ha, completed_eq hφ hu hi hn hu' s, rootNumber_toHecke hφ hu hi ha]
+  rw [_root_.GlobalTheory.HeckeEpsAbs.finEps_eq χ a s, ← discrNormConductor_toHecke hu ha, completed_eq hφ hu hi hn hu' s, rootNumber_toHecke hφ hu hi ha]
   ring

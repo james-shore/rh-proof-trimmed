@@ -76,23 +76,6 @@ theorem map_ev {R S : Type} [CommRing R] [Algebra ℚ R] [CommRing S] [Algebra �
   rw [← AlgHom.comp_apply, MvPolynomial.comp_aeval]
   rfl
 
-theorem map_rat {R S : Type} [CommRing R] [Algebra ℚ R] [CommRing S] [Algebra ℚ S] (φ : R →ₐ[ℚ] S)
-    (e : Matrix ι ι ℚ) : φ.mapMatrix (e.map (algebraMap ℚ R)) = e.map (algebraMap ℚ S) := by
-  ext i j
-  exact φ.commutes _
-
-theorem map_blk {R S : Type} [CommRing R] [Algebra ℚ R] [CommRing S] [Algebra ℚ S] (φ : R →ₐ[ℚ] S)
-    (e : Matrix ι ι ℚ) (x : Matrix ι ι R) : φ.mapMatrix (blk e x) = blk e (φ.mapMatrix x) := by
-  simp only [blk, map_add (f := _), map_mul, map_sub, map_one, map_rat]
-
-theorem map_linExt {R S : Type} [CommRing R] [Algebra ℚ R] [CommRing S] [Algebra ℚ S] (φ : R →ₐ[ℚ] S)
-    (c : ι × ι → ι × ι → ℚ) (x : Matrix ι ι R) : φ.mapMatrix (linExt c x) = linExt c (φ.mapMatrix x) := by
-  ext i j
-  show φ (∑ kl : ι × ι, algebraMap ℚ R (c (i, j) kl) * x kl.1 kl.2) =
-    ∑ kl : ι × ι, algebraMap ℚ S (c (i, j) kl) * φ (x kl.1 kl.2)
-
-  simp only [map_sum, map_mul, AlgHom.commutes]
-
 theorem map_poly {R S : Type} [CommRing R] [Algebra ℚ R] [CommRing S] [Algebra ℚ S] (φ : R →ₐ[ℚ] S)
     (b : ι → ι → MvPolynomial (ι × ι) ℚ) (x : Matrix ι ι R) :
     φ.mapMatrix (Matrix.of fun i j => ev (b i j) x) = Matrix.of fun i j => ev (b i j) (φ.mapMatrix x) := by
@@ -152,15 +135,15 @@ theorem exists_section : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Γ : Set
   refine ⟨c, b, fun R _ _ => ⟨fun X => ?_, fun X Y => ?_, fun y hy hy1 => ?_, fun x hx => ⟨?_, ?_⟩,
     fun y hy => ⟨?_, ?_⟩⟩⟩
   · have h := transfer_mem (F := fun R _ _ X => 1 + linExt c X)
-      (fun R S _ _ _ _ φ x => by simp only [map_add (f := _), map_one, map_linExt])
+      (fun R S _ _ _ _ φ x => by simp only [map_add (f := _), map_one, _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_linExt])
       (fun g _ => (hc g).1) (mem_pts_univ X)
     exact h
   · have hp : ∀ X : Matrix ι ι R,
         e.map (algebraMap ℚ R) * linExt c X * (1 - e.map (algebraMap ℚ R)) = linExt c X := fun X => by
       have h := transfer_eq (F := fun R _ _ X => e.map (algebraMap ℚ R) * linExt c X * (1 - e.map (algebraMap ℚ R)))
         (G := fun R _ _ X => linExt c X)
-        (fun R S _ _ _ _ φ x => by simp only [map_mul, map_sub, map_one, map_linExt, map_rat])
-        (fun R S _ _ _ _ φ x => by simp only [map_linExt])
+        (fun R S _ _ _ _ φ x => by simp only [map_mul, map_sub, map_one, _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_linExt, _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_rat])
+        (fun R S _ _ _ _ φ x => by simp only [_root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_linExt])
         (by intro g _; beta_reduce; exact (hc g).2) (mem_pts_univ X)
       exact h
     have hE : (1 - e.map (algebraMap ℚ R)) * e.map (algebraMap ℚ R) = 0 := by
@@ -186,18 +169,18 @@ theorem exists_section : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Γ : Set
         (blk e g).adjugate)) * (Matrix.of fun i j => ev (b i j) (blk e g)))
       (fun R S _ _ _ _ φ x => rfl)
       (fun R S _ _ _ _ φ x => by
-        simp only [map_mul, map_add (f := _), map_sub, map_one, map_linExt, map_rat, map_poly, map_blk,
+        simp only [map_mul, map_add (f := _), map_sub, map_one, _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_linExt, _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_rat, map_poly, _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_blk,
           AlgHom.map_adjugate])
       (Γ := Γ) (by intro g hg; beta_reduce; exact (hb g hg).2.2) hy
     simp only [hy1, hone, mul_one] at h
     exact ⟨_, h⟩
   · have h := transfer_eq (F := fun R _ _ x => (1 - e.map (algebraMap ℚ R)) * x * e.map (algebraMap ℚ R))
       (G := fun R _ _ _ => 0)
-      (fun R S _ _ _ _ φ x => by simp only [map_mul, map_sub, map_one, map_rat])
+      (fun R S _ _ _ _ φ x => by simp only [map_mul, map_sub, map_one, _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_rat])
       (fun R S _ _ _ _ φ x => by simp only [map_zero])
       (by intro g hg; beta_reduce; exact htri g hg) hx
     exact h
-  · have h := transfer_mem (F := fun R _ _ x => blk e x) (fun R S _ _ _ _ φ x => map_blk φ e x)
+  · have h := transfer_mem (F := fun R _ _ x => blk e x) (fun R S _ _ _ _ φ x => _root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_blk φ e x)
       (Γ' := blk e '' Γ) (fun g hg => ⟨g, hg, rfl⟩) hx
     exact h
   · have h := transfer_mem (F := fun R _ _ x => Matrix.of fun i j => ev (b i j) x)
@@ -206,7 +189,7 @@ theorem exists_section : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Γ : Set
     exact h
   · have h := transfer_eq (F := fun R _ _ x => blk e (Matrix.of fun i j => ev (b i j) x))
       (G := fun R _ _ x => x)
-      (fun R S _ _ _ _ φ x => by simp only [map_blk, map_poly])
+      (fun R S _ _ _ _ φ x => by simp only [_root_.GlobalTheory.ClassFin.IdempotentCornerSection.map_blk, map_poly])
       (fun R S _ _ _ _ φ x => rfl)
       (by rintro _ ⟨g, hg, rfl⟩; beta_reduce; exact (hb g hg).2.1) hy
     exact h

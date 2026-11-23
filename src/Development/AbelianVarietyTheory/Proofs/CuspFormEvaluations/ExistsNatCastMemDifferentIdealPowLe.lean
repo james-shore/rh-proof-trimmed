@@ -57,16 +57,6 @@ namespace GlobalTheory
 
 open ReciprocityTheory.ChartRestriction.G.PullbackSections.Pf
 
-theorem exists_prime_dvd_natCast_mem {R : Type*} [CommRing R] {P : Ideal R} (hP : P.IsPrime) :
-    ∀ N : ℕ, N ≠ 0 → (N : R) ∈ P → ∃ p : ℕ, p.Prime ∧ p ∣ N ∧ (p : R) ∈ P := by
-  first
-  | exact @_root_.GlobalTheory.CuspFormEvaluationSupplement.main
-  | exact _root_.GlobalTheory.CuspFormEvaluationSupplement.main
-  | (apply _root_.GlobalTheory.CuspFormEvaluationSupplement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CuspFormEvaluationSupplement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CuspFormEvaluationSupplement.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CuspFormEvaluationSupplement.main ..)
-
 theorem span_natCast_dvd_differentIdeal_sq (E : Type) [Field E] [NumberField E] [IsGalois ℚ E] (N : ℕ)
     (hN0 : 0 < N) (hN : ((N : ℕ) : 𝓞 E) ∈ differentIdeal ℤ (𝓞 E))
     (hmin : ∀ M : ℕ, 0 < M → M < N → ((M : ℕ) : 𝓞 E) ∉ differentIdeal ℤ (𝓞 E)) :
@@ -84,7 +74,7 @@ theorem span_natCast_dvd_differentIdeal_sq (E : Type) [Field E] [NumberField E] 
   · rw [emultiplicity_eq_zero.2 hPN]
     exact zero_le
   have hPp : P.IsPrime := Ideal.isPrime_of_prime hP
-  obtain ⟨p, hp, ⟨M, rfl⟩, hpP⟩ := exists_prime_dvd_natCast_mem hPp N hN0.ne' (Ideal.dvd_span_singleton.1 hPN)
+  obtain ⟨p, hp, ⟨M, rfl⟩, hpP⟩ := _root_.GlobalTheory.CuspFormEvaluationSupplement.main hPp N hN0.ne' (Ideal.dvd_span_singleton.1 hPN)
   have hM0 : 0 < M := Nat.pos_of_mul_pos_left hN0
   have hMD := hmin M hM0 ((Nat.lt_mul_iff_one_lt_left hM0).2 hp.one_lt)
   rw [← Ideal.dvd_span_singleton, UniqueFactorizationMonoid.dvd_iff_emultiplicity_le hD0] at hMD

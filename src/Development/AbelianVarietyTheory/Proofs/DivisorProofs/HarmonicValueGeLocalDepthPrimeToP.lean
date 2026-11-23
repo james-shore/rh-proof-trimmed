@@ -78,7 +78,7 @@ theorem harmonic_value_ge_local_depth : ∀ (E : Type) [Field E] [NumberField E]
   have hg := fun b => (GlobalTheory.T.regular_section_integral_germ_unique_scale E H Dw l Xo c hst T io y C hC.1 _ (hh b)).1
     (GlobalTheory.T.reachedSection_regular_on_integralModel E H Dw l Xo c hst T io y C hC _ (hh b) (hre b))
   choose f hf using hg
-  obtain ⟨B, hB1, -⟩ := GlobalTheory.T.integralChart_formalBiextension_gauge_bound E H Dw l Xo c hst T io y C
+  obtain ⟨B, hB1, -⟩ := _root_.GlobalTheory.PlaceInt.integralBiext_gauge_eig_bound E H Dw l Xo c hst T io y C
   have hHH : P ∈ HH c w n := hP.1
   have hni := GlobalTheory.T.harmonicValue_integralPoint_eq_value_on_biextensionCopies E H Dw l Xo c hst T io y C nab hnab B hB1 _ n hh f hf w P hHH
   have hch := GlobalTheory.T.harmonic_value_chain_rule_normalized_pullback E H Dw l Xo c hst nab hnab T.Fr y.1 1 1 (N ^ 2 * 1) (N ^ 2) (by simp) (by ring) n hh
@@ -90,12 +90,12 @@ theorem harmonic_value_ge_local_depth : ∀ (E : Type) [Field E] [NumberField E]
   have eF : B.FK T.Fr = C.ch.B.FK T.Fr := by
     funext i
     change MvPowerSeries.map _ (B.G.F i) = MvPowerSeries.map _ (C.ch.B.G.F i)
-    rw [GlobalTheory.ChartBiext.toK_self, hF', e1]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_map_id, hF', e1]
   have eA : ∀ a, B.actK T.Fr a = C.ch.B.actK T.Fr a := by
     intro a
     funext i
     change MvPowerSeries.map _ (B.A.act a i) = MvPowerSeries.map _ (C.ch.B.A.act a i)
-    rw [GlobalTheory.ChartBiext.toK_self, hA', e2]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_map_id, hA', e2]
   rw [GlobalTheory.ChartBiext.nabValN_congr B C.ch.B eF eA]
   refine (hloc (N ^ 2 * 1)).trans ?_
   unfold nuLocOf

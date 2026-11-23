@@ -392,8 +392,8 @@ open GaussPow in
 theorem gaussSum_pow_eight : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] [DecidableEq κ] (G : Matrix κ κ ℤ), EvenPos G → ∀ t : ℕ, G.det = (t : ℤ) ^ 2 → ∀ k : ℕ, Fintype.card κ = 2 * k → ∀ (N : ℕ) (a b c d : F) (T : Finset (κ → F)), 0 < N → (∀ y ∈ dualL F G, (N : F) • y ∈ LL F κ ∧ IsIntegral ℤ ((N : F) * QF G y)) → IsIntegral ℤ a → IsIntegral ℤ b → IsIntegral ℤ (c / N) → IsIntegral ℤ d → a * d - b * c = 1 → c ≠ 0 → IsReps (aL κ c) (aL κ (1 : F)) T → (wC k t c c * ∑ x ∈ T, et (a / c * QF G x)) ^ 8 = 1 := by
   intro F _ _ κ _ _ G hG t ht k hk N a b c d T hN hdual ha hb hcN hd hadbc hc0 hT
   classical
-  obtain ⟨hsym, hlin, hadd, hint, hLL, haL, het, hLd⟩ := GlobalTheory.T.evenPos_gramForm_integral_lattice_properties F κ G hG
-  obtain ⟨-, -, -, hdsmul, hidx⟩ := GlobalTheory.T.dualLattice_index_eq_discr_pow_mul_det_pow F κ G hG
+  obtain ⟨hsym, hlin, hadd, hint, hLL, haL, het, hLd⟩ := _root_.GlobalTheory.HilbertThetaSeries.formLatticeProps F κ G hG
+  obtain ⟨-, -, -, hdsmul, hidx⟩ := _root_.GlobalTheory.HilbertThetaSeries.DualLevel.dual_level_index F κ G hG
   have hN0 : (N : F) ≠ 0 := by exact_mod_cast hN.ne'
   have hNI : IsIntegral ℤ (N : F) := by
     simpa using (isIntegral_algebraMap (R := ℤ) (A := F) (x := (N : ℤ)))
@@ -557,7 +557,7 @@ theorem gaussSum_pow_eight : ∀ (F : Type) [Field F] [NumberField F] (κ : Type
         exact hdsmul a y ha hy
   have hrel : (aL κ c).relIndex C = (LL F κ).relIndex (dualL F G) := by
     rw [hAeq, AddSubgroup.relIndex_comap, hdeq]
-  obtain ⟨T', hT', -, -, hT'c⟩ := GlobalTheory.T.exists_finite_reps_scaled_lattice_card_norm F κ c 1 hc0 one_ne_zero (by simpa using hcI)
+  obtain ⟨T', hT', -, -, hT'c⟩ := _root_.GlobalTheory.HilbertThetaSeries.exists_isReps_aL F κ c 1 hc0 one_ne_zero (by simpa using hcI)
   have hTc : (T.card : ℚ) = |Algebra.norm ℚ c| ^ (2 * k) := by
     rw [GaussPow.reps_card hT, ← GaussPow.reps_card hT', hT'c, div_one, hk]
   have hdet : G.det ≠ 0 := by
@@ -605,5 +605,3 @@ end GlobalTheory.HilbertThetaSeries
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.lattice_normalized_gaussSum_eighth_root : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] [DecidableEq κ] (G : Matrix κ κ ℤ), EvenPos G → ∀ t : ℕ, G.det = (t : ℤ) ^ 2 → ∀ k : ℕ, Fintype.card κ = 2 * k → ∀ (N : ℕ) (a b c d : F) (T : Finset (κ → F)), 0 < N → (∀ y ∈ dualL F G, (N : F) • y ∈ LL F κ ∧ IsIntegral ℤ ((N : F) * QF G y)) → IsIntegral ℤ a → IsIntegral ℤ b → IsIntegral ℤ (c / N) → IsIntegral ℤ d → a * d - b * c = 1 → c ≠ 0 → IsReps (aL κ c) (aL κ (1 : F)) T → (wC k t c c * ∑ x ∈ T, et (a / c * QF G x)) ^ 8 = 1 := by
-  first | exact @GlobalTheory.HilbertThetaSeries.gaussSum_pow_eight | exact GlobalTheory.HilbertThetaSeries.gaussSum_pow_eight | (intros; apply GlobalTheory.HilbertThetaSeries.gaussSum_pow_eight <;> assumption)

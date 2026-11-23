@@ -167,14 +167,14 @@ theorem UpperTheory.Gal.Ord.dims :
       ((LinearMap.charpoly (LinearMap.mulLeft ℤ c)) ^ (D.m * D.n)).map (Int.castRingHom k) := by
     intro c
     haveI := o.act.hom (algebraMap (𝓞 D.F) D.O c)
-    have e := GlobalTheory.T.charpoly_deRhamHomology_endomorphism_eq_map_ladic k o.A o.ab (o.act.act (algebraMap (𝓞 D.F) D.O c)) D.La
+    have e := _root_.GlobalTheory.DeRham.charpoly_push_eq k o.A o.ab (o.act.act (algebraMap (𝓞 D.F) D.O c)) D.La
       (DistribSMul.toLinearMap ℤ D.La (algebraMap (𝓞 D.F) D.O c)) l hl hlk (fun j => I.ev (l ^ j))
       (fun j x y => I.add (l ^ j) x y) (fun j x => I.lin (l ^ j) _ x)
       (fun j x => I.ker (l ^ j) (hposj j) (hcopj j) x) (fun j q => I.onto (l ^ j) (hposj j) (hcopj j) q)
-    rw [GlobalTheory.T.charpoly_la_eq_pow p D c] at e
+    rw [_root_.GlobalTheory.UPel.HT.Datum.charpoly_La_eq_pow p D c] at e
     rw [← e]
     exact (GlobalTheory.DeRhamCharpolyP.charpoly_dualMap _).symm
-  have key := fun χ : 𝓞 D.F →+* k => GlobalTheory.T.finrank_jointWeightSpace_eq_of_charpoly k (𝓞 D.F) ↥(primDR o.A) (cohHom o) (D.m * D.n) hc χ
+  have key := fun χ : 𝓞 D.F →+* k => _root_.GlobalTheory.WeightCount.finrank_weight_eq k (𝓞 D.F) ↥(primDR o.A) (cohHom o) (D.m * D.n) hc χ
   have e1 := key ((iterateFrobenius k p j).comp (β.comp (b.t i)))
   have e2 := key (β.comp (b.t i))
   have hW : ∀ (j : ℕ) , Module.finrank k ↥(W (C := 𝓞 D.F) (fun c => β (b.t i c) ^ p ^ j)) =

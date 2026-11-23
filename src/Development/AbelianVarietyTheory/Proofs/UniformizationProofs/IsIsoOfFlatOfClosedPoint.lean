@@ -137,7 +137,7 @@ theorem exists_geometric_point (hL : Laws) {S : Scheme.{0}} (P : PolAV S) {O : L
     rw [pull_lam, lift_fst, lift_snd, map_zero, lam, ← hm, ← one] at e
     rw [cls_pull hO, lam, ← pull_comp, ← pull_comp, ← pull_comp, ← pull_comp]
     exact e
-  obtain ⟨x', hx'⟩ := GlobalTheory.T.exists_point_primitiveBundle_eq_translate_ppav hL K P' (O.pull g) hO'
+  obtain ⟨x', hx'⟩ := _root_.GlobalTheory.PrimitiveOverField.exists_point_translate hL K P' (O.pull g) hO'
     ((cls_eq_zero_iff (LB.isLB_linComb hO' _ _)).1 ((cls_cube_two hO' _ _ (LB.isLB_linComb hO' _ _)).trans lamO'))
   have e := ((cls_eq_iff hO' (LB.isLB_linComb P'.isLB _ _)).2 hx').trans (cls_pair P'.isLB _ _ _)
   let T : Over S := Over.mk f

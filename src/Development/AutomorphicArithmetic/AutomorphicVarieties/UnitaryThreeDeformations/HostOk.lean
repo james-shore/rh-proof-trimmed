@@ -67,10 +67,6 @@ section SlopeTestRemainingChoices
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.Base
 
-private theorem ho_locConst {Γ A : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group A] (ψ : Γ →* A)
-    (h : IsOpen (ψ.ker : Set Γ)) : IsLocallyConstant ψ :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantOfOpen.ho_locConst ψ h
-
 private theorem ho_exists_prime (v : Pl) (n : ℕ) (hn : n ≠ 0) (h : (n : 𝓞 ℚ) ∈ v.asIdeal) :
     ∃ p : ℕ, p.Prime ∧ p ∣ n ∧ (p : 𝓞 ℚ) ∈ v.asIdeal :=
   _root_.UpperTheory.Reformulated.B.Qj17.ho_exists_prime v n hn h
@@ -203,7 +199,7 @@ private theorem ho_frob (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure ℚ �
       exact ⟨k, rfl⟩
     have hc : Nat.card (Subgroup.zpowers (Chr.cls ℚ Ω m γ)) = n := by rw [Nat.card_zpowers, hord]
     have hf1 : ∀ s : Dec (F := ℚ) A, Chr.cls ℚ Ω m s = 1 → f s = 1 := fun s hs => Subtype.ext hs
-    refine ⟨(zmodMulEquivOfGenerator hg hc).symm.toMonoidHom.comp f, ho_locConst _ ?_, fun s hs => ?_, ?_⟩
+    refine ⟨(zmodMulEquivOfGenerator hg hc).symm.toMonoidHom.comp f, _root_.UpperTheory.Reformulated.B.LocallyConstantOfOpen.ho_locConst _ ?_, fun s hs => ?_, ?_⟩
     · refine Subgroup.isOpen_mono (H₁ := (Chr.cls ℚ Ω m).ker.subgroupOf _) (fun s hs => ?_)
         (hopen.preimage continuous_subtype_val)
       rw [MonoidHom.mem_ker, MonoidHom.comp_apply, hf1 s hs, map_one]
@@ -225,7 +221,7 @@ private theorem ho_psi_cont (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure �
     intro h
     rw [← map_natCast (algebraMap ℤ_[l] O)] at h
     exact PadicInt.p_nonunit (IsUnit.of_map _ _ h)
-  refine (ho_locConst (r.comp (Chr.Psi l e (Chr.dirG ℚ Ω ψ))) ?_).comp Units.val
+  refine (_root_.UpperTheory.Reformulated.B.LocallyConstantOfOpen.ho_locConst (r.comp (Chr.Psi l e (Chr.dirG ℚ Ω ψ))) ?_).comp Units.val
   have ho : IsOpen {g : G ℚ Ω | ‖((cycZ ℚ Ω l g : ℤ_[l]ˣ) : ℤ_[l]) - 1‖ < (l : ℝ) ^ (-(n : ℤ) + 1)} :=
     isOpen_lt ((Units.continuous_val.comp (continuous_cycZ ℚ Ω l)).sub continuous_const).norm continuous_const
   have hpos : (0 : ℝ) < (l : ℝ) ^ (-(n : ℤ) + 1) := zpow_pos (by exact_mod_cast (Fact.out : l.Prime).pos) _
@@ -314,7 +310,7 @@ theorem UpperTheory.V.UnitaryThreeInertia.hostFrame_ok :
       teich := fun v hv s hs => ?_ }
   · rw [← hF.π]
     simp only [hη]
-    exact ho_locConst _ (ho_dir_open Ω _)
+    exact _root_.UpperTheory.Reformulated.B.LocallyConstantOfOpen.ho_locConst _ (ho_dir_open Ω _)
   · rw [← hF.π]
     simp only [hΨ]
     exact ho_psi_cont Ω e ψ n

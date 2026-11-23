@@ -44,7 +44,5 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.LeafSemi
-theorem etale_purity_semilocal_of_reduction : LateralTheory.CohomologicalPurity.LeafSemi := by
-  apply LateralTheory.CohomologicalPurity.LeafSemi_of
-theorem intersectionNumber_baseChange : LateralTheory.CohomologicalPurity.LeafSemi := etale_purity_semilocal_of_reduction
+alias intersectionNumber_baseChange := _root_.LateralTheory.CohomologicalPurity.LeafSemi_of
 end LateralTheory.Fin.LeafSemi

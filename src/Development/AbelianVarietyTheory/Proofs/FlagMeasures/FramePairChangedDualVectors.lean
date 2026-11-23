@@ -61,20 +61,6 @@ def swapEs (Fr : LocNG.FrameD H r) (es₂ : Fin r → V) (h1 : ∀ i j, H.h (es�
     (h3 : ∀ i, H.h (es₂ i) (Fr.f (Fin.last r)) = 0) : LocNG.FrameD H r :=
   ⟨Fr.f, es₂, Fr.T, Fr.h_iso, Fr.h_zz, h1, h2, h3⟩
 
-lemma mem_img (g : V ≃ₗ[E] V) (Λ : Submodule M.L.O V) (x : V) :
-    x ∈ LocNG.img g Λ ↔ ∃ y ∈ Λ, g y = x := by
-  simp [LocNG.img, Submodule.mem_map]
-
-lemma img_mul (g k : V ≃ₗ[E] V) (Λ : Submodule M.L.O V) :
-    LocNG.img (g * k) Λ = LocNG.img g (LocNG.img k Λ) := by
-  ext x
-  simp only [mem_img]
-  constructor
-  · rintro ⟨y, hy, rfl⟩
-    exact ⟨k y, ⟨y, hy, rfl⟩, rfl⟩
-  · rintro ⟨_, ⟨y, hy, rfl⟩, rfl⟩
-    exact ⟨y, hy, rfl⟩
-
 lemma h_sum_left (H : HermSp M V) {ι : Type} (s : Finset ι) (c : ι → E) (v : ι → V) (y : V) :
     H.h (∑ i ∈ s, c i • v i) y = ∑ i ∈ s, c i * H.h (v i) y := by
   induction s using Finset.induction_on with
@@ -152,18 +138,18 @@ lemma side_iff (hM : M.OK) (Fr : LocNG.FrameD H r) (es₂ : Fin r → V) (h1 : �
     (∃ n ∈ Fr.N, f = (fun b => n (Fr.f b)) ∧ Λ = LocNG.img n (Fr.LamStd L)) ↔
       ∃ n ∈ (swapEs Fr es₂ h1 h2 h3).N, f = (fun b => n ((swapEs Fr es₂ h1 h2 h3).f b)) ∧
         Λ = LocNG.img n ((swapEs Fr es₂ h1 h2 h3).LamStd L) := by
-  obtain ⟨m, hm, hmf, hmΛ⟩ := std_swap M hM H r Fr es₂ h1 h2 h3 hT L hL
+  obtain ⟨m, hm, hmf, hmΛ⟩ := _root_.GlobalTheory.SwapStd.lamStd_swap M hM H r Fr es₂ h1 h2 h3 hT L hL
   have e : (swapEs Fr es₂ h1 h2 h3).LamStd L = LocNG.img m (Fr.LamStd L) := hmΛ
   rw [e]
   constructor
   · rintro ⟨n, hn, hf, hΛ⟩
     refine ⟨n * m⁻¹, Fr.N.mul_mem hn (Fr.N.inv_mem hm), ?_, ?_⟩
     · rw [hf]; funext b; show n (Fr.f b) = n (m⁻¹ (Fr.f b)); rw [inv_fix (hmf b)]
-    · rw [← img_mul, mul_assoc, inv_mul_cancel, mul_one]; exact hΛ
+    · rw [← _root_.Formalism.MainNotions.KappaEndpoints.ng_img_mul, mul_assoc, inv_mul_cancel, mul_one]; exact hΛ
   · rintro ⟨n, hn, hf, hΛ⟩
     refine ⟨n * m, Fr.N.mul_mem hn hm, ?_, ?_⟩
     · rw [hf]; funext b; show n (Fr.f b) = n (m (Fr.f b)); rw [hmf b]
-    · rw [img_mul]; exact hΛ
+    · rw [_root_.Formalism.MainNotions.KappaEndpoints.ng_img_mul]; exact hΛ
 
 end
 

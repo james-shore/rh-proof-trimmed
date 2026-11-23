@@ -238,7 +238,7 @@ theorem dens_mir {ψ : AddChar k Circle} {m N : ℕ} {h : m + 2 ≤ N} {V : Type
 
   have hidx : ((A₀.relIndex A : ℕ) : ℝ) =
       (MeasureTheory.distribHaarChar k (Matrix.GeneralLinearGroup.det p) : ℝ) * ((A₀.relIndex A' : ℕ) : ℝ) := by
-    have := GlobalTheory.T.relIndex_lattice_eq_haar_det k (m + 1) p A₀ A hAl.1 hA₀.2 (h01.trans h1A)
+    have := _root_.GlobalTheory.CompanionTheory.IndexDet.relIndex_eq_distribHaarChar_det_mul k (m + 1) p A₀ A hAl.1 hA₀.2 (h01.trans h1A)
       (by rw [comap_gLat]; exact h02.trans h2A')
     rwa [comap_gLat] at this
   rw [e1, ← hconj, hBP, e2]

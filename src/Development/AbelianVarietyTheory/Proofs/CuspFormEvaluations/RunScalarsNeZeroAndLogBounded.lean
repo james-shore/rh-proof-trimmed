@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.QuotientParamNonneg
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.VanishingOrderLeWeightSize
 
 @[expose] public section
 
@@ -53,10 +54,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 namespace GlobalTheory.RunIn.ScalSize
 
 variable {D : D7} {j : ℕ}
-
-theorem one_le_f (D : D7) : (1 : ℝ) ≤ D.R.f := by
-  have : 1 ≤ D.R.f := by unfold Ranks.f Ranks.n; have := And.intro (Nat.one_le_two_pow (n := D.R.e)) D.R.ord_pos; omega
-  exact_mod_cast this
 
 theorem one_le_r (D : D7) : (1 : ℝ) ≤ D.R.r := by
   have : 1 ≤ D.R.r := by unfold Ranks.r; have := D.R.two_le_m; omega
@@ -73,13 +70,6 @@ theorem size_ge (w : WeightFamilies.Wt D j) : (WeightAlgebra.DF w : ℝ) + (D.R.
   have h1 : (1 : ℝ) ≤ ((max (D.R.sigW j).2 1 : ℕ) : ℝ) := by exact_mod_cast le_max_right _ _
   have h2 : 0 ≤ (D.R.f : ℝ) * (D.R.r : ℝ) * (w.n : ℝ) := by positivity
   nlinarith [mul_le_mul_of_nonneg_left h1 h2]
-
-theorem n_le_size (w : WeightFamilies.Wt D j) : (w.n : ℝ) ≤ w.size := by
-  have h := size_ge w
-  have h1 : (1 : ℝ) ≤ (D.R.f : ℝ) * D.R.r := one_le_mul_of_one_le_of_one_le (one_le_f D) (one_le_r D)
-  have h2 : (0 : ℝ) ≤ w.n := by positivity
-  have h3 : (0 : ℝ) ≤ WeightAlgebra.DF w := by positivity
-  nlinarith [mul_le_mul_of_nonneg_right h1 h2]
 
 theorem size_comb (T : ℕ) (wL wF : WeightFamilies.Wt D j) :
     (wadd wF (wsmul T wL)).size + T = T * wL.size + wF.size := by
@@ -154,7 +144,7 @@ theorem log_comb_le' (B : WeightFamilies.Prov D) (hinj : Function.Injective D.wh
       2 * (lamStar D + 2 * Real.log p) * (wadd wF (wsmul T wL)).size := by
   have h := log_comb_le B hinj EX p hp (wadd wF (wsmul T wL)) wL wF T σ
   rw [← size_comb] at h
-  have h1 := n_le_size (wadd wF (wsmul T wL))
+  have h1 := _root_.Formalism.MainNotions.Gaps.EtaleWeightGaps.n_le_sizeW (wadd wF (wsmul T wL))
   have h2 : T ≤ (wadd wF (wsmul T wL)).n := by
     simp only [wadd, wsmul]
     nlinarith

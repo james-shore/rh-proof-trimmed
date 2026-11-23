@@ -64,16 +64,12 @@ open Simplicial
 
 namespace GlobalTheory.EtC.GalSec
 
-theorem freePresheaf_map_freeMk {R : Type} [CommRing R] (P : PSh) {U V : Scheme.{0}ᵒᵖ} (g : U ⟶ V) (x : P.obj U) :
-    (((freeP R).obj P).map g).hom (ModuleCat.freeMk (ULift.up x)) = ModuleCat.freeMk (ULift.up (P.map g x)) := by
-  exact ModuleCat.free_map_apply (uliftFunctor.{1, 0}.map (P.map g)) (ULift.up x)
-
 theorem val_nat {R : Type} [CommRing R] {P : PSh} {F : Shv R} (s : (free R).obj P ⟶ F) {U V : Scheme.{0}} (g : V ⟶ U)
     (x : P.obj (op U)) : val s V (P.map g.op x) = Sec.res g (val s U x) := by
   unfold val freeGen
   calc _ = (s.hom.app (op V)).hom (((toSheafify Scheme.etaleTopology ((freeP R).obj P)).app (op V)).hom
         ((((freeP R).obj P).map g.op).hom (ModuleCat.freeMk (ULift.up x)))) := by
-          rw [freePresheaf_map_freeMk]
+          rw [_root_.GlobalTheory.EtC.FreeHom.freePresheaf_map_freeMk]
     _ = _ := ?_
   have e1 := congrArg (fun φ => φ.hom (ModuleCat.freeMk (ULift.up x)))
     ((toSheafify Scheme.etaleTopology ((freeP R).obj P)).naturality g.op)
@@ -111,8 +107,7 @@ theorem res_comp {R : Type} [CommRing R] {F : Shv R} {U V W : Scheme.{0}} (a : W
     Sec.res (a ≫ b) t = Sec.res a (Sec.res b t) := by
   simp [Sec.res]
 
-theorem res_id {R : Type} [CommRing R] {F : Shv R} {U : Scheme.{0}} (t : Sec F U) : Sec.res (𝟙 U) t = t := by
-  simp [Sec.res]
+alias res_id := _root_.GlobalTheory.EtC.sec_res_id'
 
 end GlobalTheory.EtC.GalSec
 

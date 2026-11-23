@@ -106,23 +106,14 @@ theorem gen_ratio {Y : Scheme.{0}} (M : LB Y) (hcov : (⊤ : Y.Opens) ≤ ⨆ j,
   rw [hres]
   simp only [r, div_mul_cancel]
 
-private theorem res_res_lemma {X : Scheme.{0}} {U V W : X.Opens} (h1 : V ≤ U) (h2 : W ≤ V)
-    (x : Γ(X, U)ˣ) : res h2 (res h1 x) = res (h2.trans h1) x := by
-  apply Units.ext
-  change ((X.presheaf.map (homOfLE h1).op ≫ X.presheaf.map (homOfLE h2).op).hom (x : Γ(X, U))) = _
-  rw [← Functor.map_comp]
-  rfl
-
 theorem pull_res_val {X Y : Scheme.{0}} (h : Y ⟶ X) {V : X.Opens} {W : Y.Opens} (hWV : W ≤ h ⁻¹ᵁ V)
     (u : Γ(X, ⊤)ˣ) :
     ((res hWV (pullU h V (res (le_top : V ≤ ⊤) u)) : Γ(Y, W)ˣ) : Γ(Y, W)) =
       (Y.presheaf.map (homOfLE (le_top : W ≤ h ⁻¹ᵁ ⊤)).op).hom ((h.app ⊤).hom (u : Γ(X, ⊤))) := by
-  rw [ReciprocityTheory.ChartRestriction.G.DVR.pullU_res, res_res_lemma]
+  rw [ReciprocityTheory.ChartRestriction.G.DVR.pullU_res, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
   rfl
 
-theorem res_res {X : Scheme.{0}} {U V W : X.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (x : Γ(X, U)ˣ) :
-    res h2 (res h1 x) = res (h2.trans h1) x := by
-  exact res_res_lemma h1 h2 x
+alias res_res := _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'
 
 theorem pull_restrict_unit_value {X Y : Scheme.{0}} (h : Y ⟶ X) {V : X.Opens} {W W' : Y.Opens} (hWV : W ≤ h ⁻¹ᵁ V)
     (hW' : W' ≤ W) (u : Γ(X, ⊤)ˣ) :

@@ -63,18 +63,6 @@ theorem form_smul {n : ℕ} (M : Matrix (Fin n) (Fin n) ℂ) (t : ℝ) (x y : Fi
   simp only [smul_eq_mul, Complex.coe_algebraMap, Complex.star_def, Complex.conj_ofReal]
   push_cast; ring
 
-theorem bound_of_form {n : ℕ} (f : (Fin n → ℂ) → ℝ) (hc : Continuous f)
-    (hh : ∀ (t : ℝ) (x : Fin n → ℂ), f (t • x) = t ^ 2 * f x) (hp : ∀ x, x ≠ 0 → 0 < f x) :
-    ∃ K : ℝ, ∀ (A : Matrix (Fin n) (Fin n) ℂ) (s : ℝ), 0 ≤ s → (∀ x, f (A *ᵥ x) = s * f x) →
-      ∀ a b, ‖A a b‖ ≤ K * Real.sqrt s := by
-  first
-  | exact @_root_.GlobalTheory.LowerTriangularEntryBound.entry_bound
-  | exact _root_.GlobalTheory.LowerTriangularEntryBound.entry_bound
-  | (apply _root_.GlobalTheory.LowerTriangularEntryBound.entry_bound <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LowerTriangularEntryBound.entry_bound <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LowerTriangularEntryBound.entry_bound <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LowerTriangularEntryBound.entry_bound ..)
-
 end GlobalTheory.LKCx.PsiBound
 
 namespace GlobalTheory.LKCx

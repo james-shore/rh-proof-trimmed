@@ -127,7 +127,7 @@ theorem hyp_step : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
   have hLv : ∀ v, IsLocR (Fv F v) := GlobalTheory.T.completion_is_local_ring F
   haveI hBi : BorelSpace (Ainf F) := ⟨rfl⟩
   haveI hBv : ∀ v, BorelSpace (Fv F v) := fun v => ⟨rfl⟩
-  obtain ⟨hJ', he0⟩ := GlobalTheory.T.hyperbolic_sum_nondegenerate_frame F E σ hCM M J hJ
+  obtain ⟨hJ', he0⟩ := _root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.hypOne_isHermND_and_e0_mem F E σ hCM M J hJ
   have h₂ : ∀ a b : Fin 1, σ ((0 : Matrix (Fin 1) (Fin 1) E) b a) = (0 : Matrix (Fin 1) (Fin 1) E) a b :=
     fun a b => by simp
   obtain ⟨m₁inf, hm₁inf⟩ := fam_inf σ hCM (hypOne J) hJ' b laminf hinf.1 1

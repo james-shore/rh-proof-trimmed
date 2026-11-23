@@ -65,12 +65,6 @@ lemma levWeight_nonneg (P : M.Par) (j : ℕ) (t : ℂ) : 0 ≤ KB.levW P j t := 
   · exact Formalism.FourierDecayAlt.P.JCx2.rb_zWeight_nonneg _ _ _ _
   · positivity
 
-lemma ofFn_snoc_unit {j : ℕ} (c : Fin j → ℂ) (t : ℂ) :
-    (List.ofFn fun l : Fin (j + 1) => ((1 : ℕ), Fin.snoc (α := fun _ => ℂ) c t l)) =
-      (List.ofFn fun l : Fin j => ((1 : ℕ), c l)) ++ [((1 : ℕ), t)] := by
-  rw [List.ofFn_succ']
-  simp
-
 lemma isLocPt_ofFn_unit {j : ℕ} (c : Fin j → ℂ) (hc : ∀ i, c i ≠ 0) :
     D.IsLocPt (List.ofFn fun l : Fin j => ((1 : ℕ), c l)) j := by
   refine ⟨?_, ?_⟩
@@ -100,7 +94,7 @@ theorem levelZero_eq_integral_topVector_of_cpt :
       have h3 := h1.re
       have h4 := integral_re h1
       simp only [RCLike.re_to_complex, Complex.re_ofReal_mul] at h3 h4
-      simp only [hR, ofFn_snoc_unit]
+      simp only [hR, _root_.GlobalTheory.LevelFormsReal.ofFn_snoc]
       exact ⟨h3, by rw [h4, ← h2]⟩)
   refine ⟨(memLp_two_iff_integrable_sq_norm hmeas).2 (hint.congr hae), ?_⟩
   rw [← integral_congr_ae hae, ← heq]

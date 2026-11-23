@@ -82,10 +82,6 @@ theorem exists_int_smul_mem {K : Type u_1} {V : Type u_2} [Field K] [NumberField
     rw [key]
     exact L.smul_mem r hmx
 
-theorem main : ∀ {K : Type u_1} {V : Type u_2} [inst : Field K] [NumberField K] [inst_2 : AddCommGroup V]
-    [inst_3 : Module K V] [inst_4 : Module (NumberField.RingOfIntegers K) V]
-    [IsScalarTower (NumberField.RingOfIntegers K) K V] (L : Submodule (NumberField.RingOfIntegers K) V),
-    Submodule.span K (↑L : Set V) = ⊤ → ∀ (y : V), ∃ (m : ℤ), m ≠ (0 : ℤ) ∧ m • y ∈ L :=
-  fun L hL y => exists_int_smul_mem L hL y
+alias main := _root_.GlobalTheory.IntegerScalarIntegral.exists_int_smul_mem
 
 end GlobalTheory.IntegerScalarIntegral

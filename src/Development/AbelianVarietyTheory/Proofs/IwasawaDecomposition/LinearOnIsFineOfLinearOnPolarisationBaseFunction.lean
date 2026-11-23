@@ -48,10 +48,7 @@ open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroi
 
 namespace GlobalTheory.PolFan.LinOn
 
-theorem finrank_int_eq' (E : Type) [Field E] [NumberField E] (X : Type) [AddCommGroup X] [Module (𝓞 E) X] :
-    Module.finrank ℤ X = Module.finrank ℚ E * Module.finrank (𝓞 E) X := by
-  rw [← (TensorProduct.isBaseChange ℤ X ℚ).finrank_eq, ← (TensorProduct.isBaseChange (𝓞 E) X E).finrank_eq,
-    Module.finrank_mul_finrank, (Algebra.IsPushout.cancelBaseChange ℤ ℚ (𝓞 E) E X).finrank_eq]
+alias finrank_int_eq' := _root_.GlobalTheory.ToricRank.finrank_int_eq
 
 variable {X : Type} [AddCommGroup X] {m : ℕ}
 

@@ -137,8 +137,8 @@ theorem exists_rat (x : I.GA) (g : ℕ) (R : Submodule (𝓞 I.E) (Fin I.n → I
     nil_add (nil_smul (by simp [map_ofNat]) hY.1) (cen_smul (by simp) hZ.1).1
   let γ : GL (Fin I.n) I.E := ⟨ex ((2 * g : I.E) • Y₀ + (g : I.E) • Z₀), ex (-((2 * g : I.E) • Y₀ + (g : I.E) • Z₀)),
     ex_mul_ex_neg hN, ex_neg_mul_ex hN⟩
-  obtain ⟨a, ha, h1, h2⟩ := GlobalTheory.T.rational_unipotentRadical_mem_adelic I _ γ (ex_unitary hN) (ex_unip hN)
-  refine ⟨a, ha, GlobalTheory.T.pointConj_mem_congruenceSubgroup_of_congr_lattice I x a g γ h2 (hcong hY hZ) fun y hy => ?_, fun v => ?_⟩
+  obtain ⟨a, ha, h1, h2⟩ := _root_.GlobalTheory.Proof.rational_unipotentRadical_mem_adelic.rational_mem_adelic I _ γ (ex_unitary hN) (ex_unip hN)
+  refine ⟨a, ha, _root_.GlobalTheory.PointLattice.conj_mem_Kg_of_congr I x a g γ h2 (hcong hY hZ) fun y hy => ?_, fun v => ?_⟩
   · have hY' : -Y₀ ∈ nilInt I x R :=
       ⟨nil_neg hY.1, fun u hu => by rw [neg_mulVec]; exact neg_mem (hY.2 u hu)⟩
     have hZ' : -Z₀ ∈ cenInt I x R :=

@@ -78,17 +78,9 @@ theorem lbIso_pull_pull_of_third {Q Y X Z Z' B : Scheme.{0}} {c : Q ⟶ Y} {κ :
       (LBIso.trans (pull_isLB hL' _) (pull_isLB hN _) (pull_isLB hP _) e₂
         (GlobalTheory.GenSpread.lbIso_pull_pull hN q rfl)))
 
-theorem exists_fractionRing_map {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [IsDomain R'] (ρ : R →+* R')
-    (hρ : Function.Injective ρ) : ∃ g : FractionRing R →+* FractionRing R',
-      g.comp (algebraMap R (FractionRing R)) = (algebraMap R' (FractionRing R')).comp ρ := by
-  have hinj : Function.Injective ((algebraMap R' (FractionRing R')).comp ρ) :=
-    fun a b h => hρ (IsFractionRing.injective R' (FractionRing R') h)
-  exact ⟨IsFractionRing.lift (K := FractionRing R) hinj,
-    RingHom.ext fun r => IsFractionRing.lift_algebraMap (K := FractionRing R) hinj r⟩
-
 theorem lbIso_generic_descend : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (R' : Type) [CommRing R'] [IsDomain R'] [IsLocalRing R'] (ρ : R →+* R'), FinExt ρ → ∀ (G' : Over (Sp R')) [GrpObj G'] [IsCommMonObj G'] (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G] (β : G'.left ⟶ G.left), IsSemiAbelian G' → IsSemiAbelian G → IsGrpPullback G' G (spMap ρ) β → ∀ (A : PolAV (Sp (FractionRing R))) (gen : (Over.pullback (jK R)).obj G ≅ A.A) (κ : pullback G'.hom (jK R') ⟶ pullback G.hom (jK R)), IsMonHom gen.hom → κ ≫ pullback.fst _ _ = pullback.fst _ _ ≫ β → ∀ (L' : LB G'.left), L'.IsLB → LBIso (L'.pull (pullback.fst G'.hom (jK R'))) (A.L.pull (κ ≫ gen.hom.left)) → ∀ P : GlobalTheory.UU.CP G, LBIso L' (P.L.L.pull β) → LBIso (A.L.pull gen.hom.left) (P.L.L.pull (pullback.fst G.hom (jK R))) := by
   intro R _ _ _ _ R' _ _ _ ρ hρ G' _ _ G _ _ β _ _ pb A gen κ hgen hκ L' hL' h₁ P h₂
-  obtain ⟨gam, hgam⟩ := exists_fractionRing_map ρ hρ.2.1
+  obtain ⟨gam, hgam⟩ := _root_.GlobalTheory.Ex.OneGenBasis.exists_fractionMap ρ hρ.2.1
   have sq : spMap gam ≫ jK R = jK R' ≫ spMap ρ :=
     (spMap_comp _ gam).symm.trans ((congrArg spMap hgam).trans (spMap_comp ρ _))
   have hX : IsAbelianScheme ((Over.pullback (jK R)).obj G) :=

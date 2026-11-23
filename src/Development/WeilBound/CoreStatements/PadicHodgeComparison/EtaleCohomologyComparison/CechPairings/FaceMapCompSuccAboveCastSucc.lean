@@ -425,8 +425,7 @@ theorem CrystallineSemistableComparison.P.pull_comp : ∀ {R R' R'' : Type} [Com
     obtain ⟨a, ha, rfl⟩ := (CrystallineSemistableComparison.P.cls_surj _ n).1 x
     exact CrystallineSemistableComparison.P.mapH_cls _ n a ha ha⟩
 
-theorem CrystallineSemistableComparison.P.prism : ∀ {R R' : Type} [CommRing R] [CommRing R'] {σ : R →+* R'} {C : Type u} [Category.{v} C] {C' : Type u'} [Category.{v'} C'] {F : C ⥤ ModuleCat.{w} R} {F' : C' ⥤ ModuleCat.{w'} R'} (m m' : Mor F F' σ) (η : m.G ⟶ m'.G), (∀ T x, m'.τ T ((F.map (η.app T)).hom x) = m.τ T x) → ∀ n x, m.pull n x = m'.pull n x :=
-  fun m m' η hτ n x => CrystallineSemistableComparison.Auxfc.prism_main m m' η hτ n x
+alias CrystallineSemistableComparison.P.prism := _root_.CrystallineSemistableComparison.Auxfc.prism_main
 
 theorem CrystallineSemistableComparison.P.adj : ∀ {R : Type} [CommRing R] {C : Type u} [Category.{v} C] {C' : Type u'} [Category.{v'} C'] (F : C ⥤ ModuleCat.{w} R) (L : C' ⥤ C) (U : C ⥤ C') (a : L ⊣ U) (n : ℕ), Function.Bijective ((Mor.restrict F L).pull n) := by
   intro R _ C _ C' _ F L U a n
@@ -461,6 +460,5 @@ theorem CrystallineSemistableComparison.P.adj_mor : ∀ {R R' : Type} [CommRing 
   choose f hf using fun s : ComposableArrows C' k => (h _).2 (g s)
   exact ⟨f, funext hf⟩
 
-theorem CrystallineSemistableComparison.P.initial : ∀ {R : Type} [CommRing R] {C : Type u} [Category.{v} C] (F : C ⥤ ModuleCat.{w} R) (T₀ : C) (h : Limits.IsInitial T₀), (cx F).ResUpTo 1 (aug F fun T => (F.map (h.to T)).hom) := GlobalTheory.T.initial_object_augmented_resolution
+alias CrystallineSemistableComparison.P.initial := _root_.GlobalTheory.CompanionTheory.InitialCoh.resUpTo_one
 
-theorem CrystallineSemistableComparison.P.el_iso : ∀ {R : Type} [CommRing R] {C : Type u} [Category.{v} C] {E' E : C ⥤ Type t} (p : E' ⟶ E) (F : C ⥤ ModuleCat.{w} R), (∀ T, Function.Bijective (p.app T)) → ∀ n, Function.Bijective ((elMor p F).hom.f n) := GlobalTheory.T.elements_bijective_of_bijective_app

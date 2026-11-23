@@ -90,12 +90,12 @@ theorem label_zero_of_mem_supI : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W 
     obtain ⟨v, hv⟩ := ratio 𝔪 ha' b₀
     rw [h0, mul_zero] at hv
     exact hb₀ hv
-  obtain ⟨ν, hν1, hνm⟩ := GlobalTheory.T.exists_discreteValuation_centred_completeNormal V 𝔪.cn
+  obtain ⟨ν, hν1, hνm⟩ := _root_.GlobalTheory.DivVal.exists_valuation_centre V 𝔪.cn
   have hmax : ∀ b, ν (𝔪.yK ⟨X₁.S.th b, X₁.S.th_mem b⟩) ≤ ν (𝔪.yK ⟨X₁.S.th a, X₁.S.th_mem a⟩) := fun b => by
     obtain ⟨v, hv⟩ := ratio 𝔪 ha' b
     rw [hv, map_mul]
     exact mul_le_of_le_one_left' (hν1 v)
-  obtain ⟨w, hw, hle⟩ := GlobalTheory.T.thetaConstant_le_commonBound_monomial g n F W Z i X₁ z₁ act V ev X m t δ 𝔪 ν hν1 hνm _ hmax a
+  obtain ⟨w, hw, hle⟩ := _root_.GlobalTheory.Poinc.Sep.DivBound.theta_pow_le g n F W Z i X₁ z₁ act V ev X m t δ 𝔪 ν hν1 hνm _ hmax a
   have h0 : ν (𝔪.yK ⟨X₁.S.th a, X₁.S.th_mem a⟩) ^ ((X₁.S.r * X₁.S.N) ^ 2) ≠ 0 :=
     pow_ne_zero _ ((Valuation.ne_zero_iff ν).2 hane)
   have h1 : 1 ≤ ν (algebraMap V (FractionRing V) (mono W t δ w)) := by

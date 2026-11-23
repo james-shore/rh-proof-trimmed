@@ -174,14 +174,6 @@ theorem contAction_sub (hc : ContAction ρ) (U : Subgroup Γ) : ContAction (ρ.c
 
 end Abstract
 
-theorem tors_of_finite (A : Type) [CommRing A] [IsLocalRing A] [Finite A] (B : Type) [AddCommGroup B] [Module A B] :
-    Tors A B := by
-  obtain ⟨n, hn⟩ := IsArtinianRing.isNilpotent_jacobson_bot (R := A)
-  rw [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top] at hn
-  refine fun b => ⟨n, fun x hx => ?_⟩
-  rw [hn, Ideal.zero_eq_bot, Ideal.mem_bot] at hx
-  rw [hx, zero_smul]
-
 theorem finite_places (F : Type) [Field F] [NumberField F] (l : ℕ) (hl : l ≠ 0) : (placesOver F l).Finite := by
   have h : Ideal.span {((l : ℕ) : 𝓞 F)} ≠ 0 := by
     simpa using hl
@@ -195,7 +187,7 @@ theorem locCountFin : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host 
   have hcont : ∀ (B : Type) [AddCommGroup B] [Module A B] [TopologicalSpace B] [DiscreteTopology B] (v : PlE D.host),
       ContAction ((repOn (Tgl i s) κ B).comp (DecV N v).subtype) := fun B _ _ _ _ v =>
     contAction_sub _ (GlobalTheory.SelLeftExact.contAction_of_tors (X.twistBaseCoefficientRing_isAdic i) _ (GlobalTheory.SelLeftExact.continuous_Tgl i s) κ
-      hS.2.2.2.1 (tors_of_finite A B)) _
+      hS.2.2.2.1 (_root_.GlobalTheory.NewPrime.tors_of_finite_local A B)) _
   induction hn : Nat.card Y using Nat.strong_induction_on generalizing Y with
   | _ n ih =>
   subst hn
@@ -232,7 +224,7 @@ theorem locCountFin : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host 
         (fun x y h => funext fun a => Subtype.ext (congrFun h a)) (K.mkQ.compLeft (Fin D.R.r))
         (fun g m => repOn_map (Tgl i s) κ K.mkQ g.1 m) (fun m => ⟨fun hm => ?_, ?_⟩) (fun m => ?_)
         (hcont _ v) (hcont _ v) (hcont _ v) _ _ _
-        (fun x => ⟨hL v hv' K Y (tors_of_finite A Y) K.subtype K.subtype_injective x,
+        (fun x => ⟨hL v hv' K Y (_root_.GlobalTheory.NewPrime.tors_of_finite_local A Y) K.subtype K.subtype_injective x,
           localConditionAboveL_coeffMap_functorial bkP i _ κ K.subtype v x⟩)
         (localConditionAboveL_coeffMap_functorial bkP i _ κ K.mkQ v)
         (GlobalTheory.T.bkOn_le_map_h1MapSubgroup_of_surjective D N X bkP i s A κ Q hS hK Y (Y ⧸ K) K.mkQ K.mkQ_surjective v)

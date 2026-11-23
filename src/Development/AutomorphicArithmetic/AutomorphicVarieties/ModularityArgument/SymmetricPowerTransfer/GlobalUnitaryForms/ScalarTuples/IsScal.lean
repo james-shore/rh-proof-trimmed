@@ -93,7 +93,7 @@ theorem UpperTheory.V.Z.Sym.Glob.gqK :
   have f2 : ∀ v ∉ D.Sg, D.fKv t v = fZD (Ov v) (D.χ v) := fun v hv => funext fun g => if_neg hv
   have J1 : ∀ v ∈ D.Sg, D.J2v v = (D.S v).J2 := fun v hv => if_pos hv
   have J2 : ∀ v ∉ D.Sg, D.J2v v = KD _ (Ov v) := fun v hv => if_neg hv
-  choose zv hzv using fun v => zEx (cv_reg hr v)
+  choose zv hzv using fun v => _root_.UpperTheory.V.Z.Sym.Loc.exists_unit_one_add_generator (cv_reg hr v)
   have ez : ∀ v jv, IsEmb (cv v τ) ((ι γ).1 v) jv → (ι (j z)).1 v = jv (zv v) := fun v jv hjv =>
     dx_ext ((hι (j z) v).trans (emb_map _ (hι γ v) hj hjv z _ (by
       rw [hzv, hz]; ext <;> simp [emap, QuadraticAlgebra.re_one, QuadraticAlgebra.im_one])).symm)

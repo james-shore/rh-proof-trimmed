@@ -160,7 +160,7 @@ theorem normalise_at_smooth_point : ∀ {κ' : Type} [Field κ'] [Algebra ℂ κ
     rcases hn.2 with h | h
     · exact h0 h
     · exact h (inv_mem_of_isField hF hf h0)
-  · obtain ⟨F, hFO, hpos⟩ := GlobalTheory.T.exists_place_dominating_local_domain_complex O hO hF
+  · obtain ⟨F, hFO, hpos⟩ := _root_.GlobalTheory.DvrDom.exists_place_dominating O hO hF
     obtain ⟨j₀, hj₀, hdiv⟩ : ∃ j₀, a j₀ ≠ 0 ∧ ∀ i, a i / a j₀ ∈ F.ring := by
       obtain ⟨j₀, hj₀s, hmin⟩ := (Finset.univ.filter (fun i => a i ≠ 0)).exists_min_image
         (fun i => F.ord (a i)) ⟨j, by simpa using hj⟩

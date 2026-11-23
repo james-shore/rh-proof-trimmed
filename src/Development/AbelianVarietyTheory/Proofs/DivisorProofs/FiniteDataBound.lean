@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MovedTensorChosenPlaceCoeffValuationLossLe
 
 @[expose] public section
 
@@ -60,23 +61,6 @@ variable {D : D7}
 
 theorem lossLe_one (w : PlL D) : LossLe w 1 0 := ⟨1, map_one _, Or.inr (by simp [Formalism.DivisionValues.ValuationRepresentative.vw_one])⟩
 
-theorem lossLe_mul {w : PlL D} {z z' : ℂ} {a a' : ℝ} (h : LossLe w z a) (h' : LossLe w z' a') :
-    LossLe w (z * z') (a + a') := by
-  obtain ⟨y, rfl, hy⟩ := h
-  obtain ⟨y', rfl, hy'⟩ := h'
-  refine ⟨y * y', map_mul _ _ _, ?_⟩
-  by_cases h0 : y = 0
-  · exact Or.inl (by simp [h0])
-  by_cases h0' : y' = 0
-  · exact Or.inl (by simp [h0'])
-  rcases hy with h1 | h1
-  · exact absurd h1 h0
-  rcases hy' with h2 | h2
-  · exact absurd h2 h0'
-  refine Or.inr ?_
-  rw [Formalism.DivisionValues.ValuationRepresentative.vw_mul w _ _ h0 h0', Int.cast_add]
-  linarith
-
 theorem lossLe_prod {w : PlL D} {ι : Type*} (s : Finset ι) (z : ι → ℂ) (a : ι → ℝ) (h : ∀ i ∈ s, LossLe w (z i) (a i)) :
     LossLe w (∏ i ∈ s, z i) (∑ i ∈ s, a i) := by
   classical
@@ -84,7 +68,7 @@ theorem lossLe_prod {w : PlL D} {ι : Type*} (s : Finset ι) (z : ι → ℂ) (a
   | empty => simpa using lossLe_one w
   | insert i s hi ih =>
     rw [Finset.prod_insert hi, Finset.sum_insert hi]
-    exact lossLe_mul (h i (Finset.mem_insert_self _ _)) (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
+    exact _root_.GlobalTheory.UnfoldLoss.MovedChosen.lossLe_mul (h i (Finset.mem_insert_self _ _)) (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
 
 theorem loss_mono {dl : PlL D → ℝ} {B B' : ℝ} (h : Loss dl B) (hB : B ≤ B') : Loss dl B' :=
   ⟨h.1, h.2.1, fun s => (h.2.2 s).trans hB⟩

@@ -194,14 +194,6 @@ theorem Hf_nsmul (D : D7) (T : Tor D) {N N' : ℕ} (n : ℕ) (x y : VC D N N') :
   refine Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => ?_
   ring
 
-theorem Hf_add_left (D : D7) (T : Tor D) {N N' : ℕ} (x y z : VC D N N') :
-    Hf D T (x + y) z = Hf D T x z + Hf D T y z := by
-  simp only [Hf, Pi.add_apply, add_mul, Finset.sum_add_distrib, add_div]
-
-theorem Hf_add_right (D : D7) (T : Tor D) {N N' : ℕ} (x y z : VC D N N') :
-    Hf D T x (y + z) = Hf D T x y + Hf D T x z := by
-  simp only [Hf, Pi.add_apply, map_add (f := _), mul_add, Finset.sum_add_distrib, add_div]
-
 theorem Hf_conj (D : D7) (T : Tor D) {N N' : ℕ} (x y : VC D N N') :
     Hf D T y x = (starRingEnd ℂ) (Hf D T x y) := by
   set_option synthInstance.maxHeartbeats 100000 in
@@ -210,7 +202,7 @@ theorem Hf_conj (D : D7) (T : Tor D) {N N' : ℕ} (x y : VC D N N') :
 theorem U_U (D : D7) (T : Tor D) {N N' : ℕ} (x y : VC D N N') (G : VC D N N' → ℂ) (z : VC D N N') :
     U D T x (U D T y G) z =
       Complex.exp (-(Real.pi : ℂ) * Complex.I * ((Hf D T x y).im : ℂ)) * U D T (x + y) G z := by
-  simp only [U, Hf_add_left, Hf_add_right, add_assoc]
+  simp only [U, _root_.GlobalTheory.NormSum.VacMove.hf_add_left, _root_.GlobalTheory.NormSum.VacMove.hf_add_right, add_assoc]
   rw [mul_assoc, ← Complex.exp_add, mul_left_comm, ← Complex.exp_add]
   congr 2
   have h := Complex.sub_conj (Hf D T x y)

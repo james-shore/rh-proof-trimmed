@@ -210,7 +210,7 @@ theorem lowers (I : AutInst) (x : I.GA) (de : ℝ) (hde : 0 < de) (γ : GL (Fin 
     (stepLe I x t).map ((Matrix.toLin' ((γ : Matrix (Fin I.n) (Fin I.n) I.E) - 1)).restrictScalars (𝓞 I.E)) ≤
       stepLe I x (de * t) := by
   have : IsTotallyComplex I.E := I.cm.cmUnram.1
-  obtain ⟨-, -, -, -, -, hK, hw⟩ := GlobalTheory.T.autPoint_rational_equivariance I x γ a h1 h2 h3
+  obtain ⟨-, -, -, -, -, hK, hw⟩ := _root_.GlobalTheory.PointEquivariance.equivariance I x γ a h1 h2 h3
   have hΛ := hK.1 ha.2.1
   obtain ⟨hA, -, -, -, hAt, -⟩ := GlobalTheory.T.canonicalLatticeFiltration_size_properties I x t ht
   obtain ⟨hS, -, -, -, -, -, hSt, -⟩ := GlobalTheory.T.canonicalLatticeFiltration_size_properties I x (de * t) (mul_pos hde ht)

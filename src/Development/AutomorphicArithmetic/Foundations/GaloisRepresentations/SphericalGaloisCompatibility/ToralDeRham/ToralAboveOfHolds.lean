@@ -71,7 +71,7 @@ theorem toralAbove_of_holds : UpperTheory.Gal.ToralGalois.Inq → GlobalTheory.R
       (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol g = ∏ j, (X - C ((ξ j (a g) : ℂˣ) : ℂ)) := by
     intro g hg
     obtain ⟨M, _, _, _, _, _, _, _, u, h', Q, χ', hQ, hlift, hfix, B, hB, hchar⟩ :=
-      GlobalTheory.T.frobenius_charpoly_of_unlinked_unramified_support hI Ω E l ι n hn π χ hπ r hr w A h σ hσ ξ hξ hsupp hunl a ha g hg
+      _root_.GalTw.GlobalTheory.RoadU.exists_sph_lift_of_toral hI Ω E l ι n hn π χ hπ r hr w A h σ hσ ξ hξ hsupp hunl a ha g hg
     have hr' : Weak Q ι (resTo M r) := GlobalTheory.GalCut.weak_comp_res E M Ω l ι n π Q hlift r hr
     obtain ⟨τ, hτ, -⟩ := GlobalTheory.CuspRep.LocEx.exists_isLocComp GlobalTheory.automorphicFormsFiniteGL M n Q u
     have hsph : IsSpherical τ.ρ :=

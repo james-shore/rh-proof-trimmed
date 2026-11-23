@@ -128,7 +128,7 @@ theorem realOf (h1 : Vol.DiscreteSeriesExist) (h2 : Vol.FormalDegreeFormula₂) 
   intro D hv hs hd
   refine ⟨?_, ?_, ?_, hv⟩
   · rw [Vol.cdScaleTie_iff, hs]
-    exact GlobalTheory.Mem.Vol.ScaleExists.trueScale_isScale D.cd
+    exact _root_.GlobalTheory.Mem.Vol.Scale.cdScaleIs_trueScale D.cd
   · intro τ
     unfold Formalism.L2.Theta.IsDsig
     rw [hs, hd τ]

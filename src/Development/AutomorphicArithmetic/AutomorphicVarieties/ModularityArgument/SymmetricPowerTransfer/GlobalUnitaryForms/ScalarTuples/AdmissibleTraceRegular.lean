@@ -255,7 +255,7 @@ theorem sideG : SideG := by
       ∃ i : (Σ τ : {τ // GI D t τ}, {x : (Fˣ ⧸ (powMonoidHom 2 : Fˣ →* Fˣ).range) × (Fˣ ⧸ NE τ.1) //
         ∃ δ ι P, Models (x.1.out : F) (d τ) ((x.2.out : F) • m τ) δ ι P}), s.Rel (δf i.1 i.2) γ := by
     rintro γ ⟨y, hy⟩
-    obtain ⟨τ, hγτ, hcm⟩ := tauEx F Δ D hD γ
+    obtain ⟨τ, hγτ, hcm⟩ := _root_.UpperTheory.Reformulated.B.CubicCharpolyDiscriminant.tauEx F Δ D hD γ
     have hsupp := sideGSupp F Δ D hD B.ι hB.ι s.θ.toMonoidHom hB.θ t ht γ τ y.out hγτ hy
     have hG : GI D t τ := ⟨⟨hcm (aux_statement_10 D hD t ht τ hsupp.1), hsupp.1⟩, hsupp.2⟩
     obtain ⟨c, u, ι, P, hMod⟩ := classG F Δ τ (d ⟨τ, hG⟩) (m ⟨τ, hG⟩) hΔ (hdm ⟨τ, hG⟩).1 γ hγτ

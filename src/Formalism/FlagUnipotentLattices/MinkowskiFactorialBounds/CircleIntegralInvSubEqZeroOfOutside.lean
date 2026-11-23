@@ -293,7 +293,7 @@ theorem degree_set_cardinality_bound : Formalism.HermitianLatticeCounting.Expans
     · exact ⟨m + 1, by simp only [ha, hb, if_true, if_false]; push_cast; linarith⟩
     · exact ⟨m - 1, by simp only [ha, hb, if_true, if_false]; push_cast; linarith⟩
     · exact ⟨m, by simp only [ha, hb, if_false]; linarith⟩
-  have fμ := Formalism.QuantumDeterminants.fdegPos n μ hμ.injective
+  have fμ := _root_.Formalism.QuantumDeterminants.formal_degree_pos_holds n μ hμ.injective
   induction I using Finset.induction_on with
   | empty =>
     have : (fun a => μ a + if a ∈ (∅ : Finset (Fin n)) then (1 : ℝ) else 0) = μ := by
@@ -308,7 +308,7 @@ theorem degree_set_cardinality_bound : Formalism.HermitianLatticeCounting.Expans
       · subst ha; simp [hs]
       · simp [ha]
     set ν : Fin n → ℝ := fun a => μ a + if a ∈ J then (1 : ℝ) else 0 with hν
-    have fν := Formalism.QuantumDeterminants.fdegPos n ν (hanti J).injective
+    have fν := _root_.Formalism.QuantumDeterminants.formal_degree_pos_holds n ν (hanti J).injective
     have hinj' : Function.Injective (ν + Pi.single s 1) := by
       rw [← hstep]; exact (hanti _).injective
     have hr := Formalism.QuantumDeterminants.fdegRatio n ν s (hanti J).injective (hintJ J) hinj'

@@ -117,7 +117,7 @@ theorem exp_neg_bound_mul_l2_le_l2_twist (h : IsFam μ v) (hw : ∀ σ, Measurab
     Real.exp (-C) * l2 μ v c ≤ l2 μ (twist v w) c := by
   have hS := h.finite
   haveI := Fintype.ofFinite S
-  obtain ⟨-, hc⟩ := GlobalTheory.T.gram_isHermitian_l2_eq_double_sum S Y ι μ v h
+  obtain ⟨-, hc⟩ := _root_.GlobalTheory.HSAmp.gram_isHermitian_and_l2_eq_quadratic_form S Y ι μ v h
   rw [l2_twist_eq_finsum_integral_mul_exp_neg]
   simp only [l2, finsum_eq_sum_of_fintype, Finset.mul_sum]
   refine Finset.sum_le_sum fun σ _ => ?_
@@ -137,7 +137,7 @@ theorem posDef_twist (h : IsFam μ v) (hG : (gram μ v).PosDef) (hw : ∀ σ, Me
   by_contra hne
   have hx : star c ≠ 0 := fun h' => hne (by simpa using congrArg star h')
   have hpos := hG.dotProduct_mulVec_pos hx
-  obtain ⟨-, hl⟩ := GlobalTheory.T.gram_isHermitian_l2_eq_double_sum S Y ι μ v h
+  obtain ⟨-, hl⟩ := _root_.GlobalTheory.HSAmp.gram_isHermitian_and_l2_eq_quadratic_form S Y ι μ v h
   rw [quad_vec, star_star, ← (hl c).2.2] at hpos
   have hp : 0 < l2 μ v c := by exact_mod_cast hpos
   have := exp_neg_bound_mul_l2_le_l2_twist h hw hC c
@@ -214,7 +214,7 @@ theorem jensen_gram (h : IsFam μ v) (hG : (gram μ v).PosDef) (hw : ∀ σ, Mea
   haveI := Fintype.ofFinite S
   obtain ⟨T, d, -, hT, hT'⟩ := GlobalTheory.T.exists_simultaneous_diagonalisation_posDef_hermitian ι _ _ hG hG'.1
   obtain ⟨-, hl⟩ := GlobalTheory.T.gram_isHermitian_l2_eq_double_sum S Y ι μ v h
-  obtain ⟨-, hl'⟩ := GlobalTheory.T.gram_isHermitian_l2_eq_double_sum S Y ι μ _ hF
+  obtain ⟨-, hl'⟩ := _root_.GlobalTheory.HSAmp.gram_isHermitian_and_l2_eq_quadratic_form S Y ι μ _ hF
   have hl1 : ∀ a, l2 μ v (col T a) = 1 := fun a => by
     have := (hl (col T a)).2.2
     rw [quad, hT, Matrix.one_apply_eq] at this; exact_mod_cast this

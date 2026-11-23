@@ -50,6 +50,6 @@ namespace GlobalTheory
 
 theorem nefProductNonneg : GlobalTheory.Published.NefProductNonneg := by
   intro k _ _ X _ d hp hd N hN
-  exact GlobalTheory.T.nef_intersection_nonneg_all_dims k X hp d (structureModule X) (by rw [suppDim_structureModule, hd]) N hN
+  exact _root_.GlobalTheory.kleiman_interNum_nonneg k X hp d (structureModule X) (by rw [suppDim_structureModule, hd]) N hN
 
 end GlobalTheory

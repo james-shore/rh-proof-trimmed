@@ -91,7 +91,7 @@ theorem entry_eq_sgn_mul (hI : I.Ok) : ∀ (c : Comm (I.rec7 l Z)) (v : VCom c) 
   have hAt := hR.tw
   have hs : G.s = B.R.m - 2 := by have := hAt.steps; omega
   have hL : (I.idx a).Ok I.Ch I.sel (I.tup a) (I.cst a) I.glob G.s := by rw [hs]; exact hI.idx_ok a
-  have hEA := GlobalTheory.T.twistPrime_parahoricEntries_eq_columnData B.fields (B.primes X) B.R I.Ch I.sel _ (I.tup a) (I.cst a) B.embLL P G.k
+  have hEA := _root_.GlobalTheory.EntryAtTwist.entryAgree B.fields (B.primes X) B.R I.Ch I.sel _ (I.tup a) (I.cst a) B.embLL P G.k
     (G.q.pr.comp (incA (I.rec7 l Z))) G.s (E.tw hψ sg) G.ν G.unitVol (hI.idx_ok a).cst_ok hAt (I.idx a) I.glob hL
   have h2 := hEA j d H ((A.b0 j α).get hj) ((A.b0 (j + 1) γ).get hj') _ _ (hR.rep j (d + 1) (by omega) hj α)
     (hR.rep (j + 1) d H hj' γ) e' e he' he

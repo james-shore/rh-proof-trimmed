@@ -80,7 +80,7 @@ theorem mcOm : MCOm := by
     rw [Ux3.z_hat_of_block3 _ _ hz hz', Formalism.QuantumDeterminants.Zhat_eq, lowV_lift, lowV_lift]
     congr 1
     simp [← Matrix.mul_assoc, Ux3.wMat_mul_self]
-  refine ⟨(Formalism.FourierDecayAlt.P.slice_membership k 1 ρ).1 Z γ (by rw [hZdet]; exact hc) hγ, ?_, ?_⟩
+  refine ⟨(_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k 1 ρ).1 Z γ (by rw [hZdet]; exact hc) hγ, ?_, ?_⟩
   · intro l hl
     obtain ⟨lv, hlv⟩ := l
     rcases Nat.eq_zero_or_pos lv with h0 | hpos

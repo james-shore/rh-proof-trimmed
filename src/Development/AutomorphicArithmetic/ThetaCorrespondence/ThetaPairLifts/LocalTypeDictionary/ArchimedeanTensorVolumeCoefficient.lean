@@ -66,9 +66,3 @@ end GlobalTheory.ArchTens.VolSize
 end
 end
 
-section
-open GlobalTheory.SumSize GlobalTheory.RowClaim GlobalTheory.ArchTens
-
-theorem _root_.GlobalTheory.T.archimedean_tensor_volume_bound : _root_.GlobalTheory.FunPr.ThetaLocalInputs → BigC fun _ ch C _ => CoefAt ch C := by
-  first | exact @_root_.GlobalTheory.ArchTens.VolSize.archimedean_tensor_volume_coefficient | exact _root_.GlobalTheory.ArchTens.VolSize.archimedean_tensor_volume_coefficient | (intros; apply _root_.GlobalTheory.ArchTens.VolSize.archimedean_tensor_volume_coefficient <;> assumption)
-end

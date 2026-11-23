@@ -81,7 +81,7 @@ theorem exists_rat_sub_bounded_small :
         pFin E (x - algebraMap E (Ad E) ξ) ∈ U := by
   intro E _ _ _ U hU
   obtain ⟨C, hC, hcov⟩ := exists_compact_integral E
-  obtain ⟨N, hN, hNU⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele E U hU
+  obtain ⟨N, hN, hNU⟩ := _root_.GlobalTheory.LocalNormBound.main E U hU
   have hc : Continuous (infEq E).symm := by
     refine continuous_pi fun w => ?_
     exact (InfinitePlace.Completion.isometryEquivComplexOfIsComplex

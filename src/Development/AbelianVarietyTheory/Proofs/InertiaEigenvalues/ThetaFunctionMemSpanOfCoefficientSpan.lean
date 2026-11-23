@@ -180,7 +180,7 @@ theorem mem_span_of_coef_mem_span : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ
   choose! φ hφm hφe using hφ
   have hsum : (∑ x₁ ∈ X, φ x₁) ∈ Submodule.span ℂ 𝒯 := Submodule.sum_mem _ hφm
   have h0 : IsThetaFunO ψ S T 0 := by simpa using theta_sub hf hf
-  have hzero := GlobalTheory.T.splitPlace_invariantForms_separate_thetaFunctions D ψ S T hψ a ha (f - ∑ x₁ ∈ X, φ x₁)
+  have hzero := _root_.GlobalTheory.DownLift.SplitSep.invForms_separate D ψ S T hψ a ha (f - ∑ x₁ ∈ X, φ x₁)
     (theta_sub hf (theta_of_mem_span h0 h𝒯 hsum)) (by
       intro ℓ hℓ x hx
 

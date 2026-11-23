@@ -64,10 +64,6 @@ private theorem smul_congr {K K' Ω : Type} [Field K] [Field K'] [Field Ω] [Alg
   ext x
   simp only [Set.mem_smul_set, AlgEquiv.smul_def, hg]
 
-private theorem mem_real_of_sq {Y : Type} [Field Y] {δ : Y} {q : ℕ} (hq : 0 < q) (hδ : δ ^ 2 = (q : Y)) :
-    δ ∈ maximalRealSubfield Y :=
-  _root_.UpperTheory.Reformulated.B.Qh55.mem_real_of_sq hq hδ
-
 private theorem algebraMap_mem_real {E Y : Type} [Field E] [Field Y] [Algebra E Y] {x : E}
     (hx : x ∈ maximalRealSubfield E) : algebraMap E Y x ∈ maximalRealSubfield Y :=
   (mem_maximalRealSubfield_iff _).2 fun φ => (mem_maximalRealSubfield_iff x).1 hx (φ.comp (algebraMap E Y))
@@ -84,7 +80,7 @@ private theorem apart_of_moves {E Y Ω : Type} [Field E] [NumberField E] [IsCMFi
   have h2 := over_under (F := maximalRealSubfield Y) hw₂
   rw [← hv] at h2
   obtain ⟨ρ, hρ⟩ := exists_smul_eq_of_isPlaceOver h1 h2
-  have hδr : δ ∈ maximalRealSubfield Y := mem_real_of_sq hq hδ
+  have hδr : δ ∈ maximalRealSubfield Y := _root_.UpperTheory.Reformulated.B.Qh55.mem_real_of_sq hq hδ
   have hρδ : ρ (algebraMap Y Ω δ) = algebraMap Y Ω δ := ρ.commutes (⟨δ, hδr⟩ : maximalRealSubfield Y)
   have hρF : ∀ x : maximalRealSubfield E, ρ.toRingEquiv (algebraMap (maximalRealSubfield E) Ω x) =
       algebraMap (maximalRealSubfield E) Ω x := fun x => by

@@ -53,7 +53,7 @@ theorem exists_lift_pair_natTrans (D D' : Data) (Λ : Lift D) (Λ' : Lift D') (�
     ∃ θ : pairSnd φ ⋙ Λ.L ⟶ (pairB Λ' φ m).G, ∀ (p : (Pair φ)ᵒᵖ) a,
       (θ.app p).φ (Λ.e (Opposite.op p.unop.1.2) a) =
         Λ'.e (Opposite.op p.unop.1.1) (GlobalTheory.CechDR.secPull D.s D'.s p.unop a) := by
-  choose θ hθ using GlobalTheory.T.exists_smoothLift_hom_affinePair D D' Λ Λ' σ φ φ₀ hφ m hi
+  choose θ hθ using _root_.GlobalTheory.PDForm.exists_lift_pair_hom D D' Λ Λ' σ φ φ₀ hφ m hi
   refine ⟨⟨fun p ↦ θ p.unop, fun p q a ↦ ?_⟩, fun p a ↦ hθ p.unop a⟩
   apply Thick.Hom.ext'
   apply AlgHom.ext

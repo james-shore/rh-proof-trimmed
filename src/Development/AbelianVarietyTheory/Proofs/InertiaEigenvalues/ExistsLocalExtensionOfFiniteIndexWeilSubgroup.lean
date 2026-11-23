@@ -95,9 +95,9 @@ theorem exists_localExt_of_finiteIndex : ∀ (E Ω : Type) [Field E] [NumberFiel
     · exact ⟨1, one_ne_zero, fun d hd hdβ =>
         absurd ⟨d β, Finset.mem_erase.mpr ⟨hdβ, (hS _).mpr ⟨d, hd, rfl⟩⟩⟩ hne⟩
   obtain ⟨g, hgm, hgdeg, β', hβ'g, hβ'⟩ :=
-    GlobalTheory.T.exists_monic_base_polynomial_root_near_decomposition E Ω A (GlobalTheory.T.exists_base_near_of_decomposition_fixed E Ω A w h) f hfm hfinv β hfβ r hr0
-  have hkr := GlobalTheory.T.krasnerLemma_decompositionGroup_stabilizer_version E Ω A β β' (fun d hd hdβ => lt_of_lt_of_le hβ' (hr d hd hdβ))
-  obtain ⟨hall, hback⟩ := GlobalTheory.T.decompositionGroup_orbit_root_same_stabilizer E Ω A β β' S hS g hgm (hgdeg.trans hfdeg) hβ'g hkr
+    _root_.GlobalTheory.WeilDeligne.exists_monic_base_root_near E Ω A (_root_.GlobalTheory.exists_base_near_of_dec_fixed E Ω A w h) f hfm hfinv β hfβ r hr0
+  have hkr := _root_.GlobalTheory.krasner_stabiliser E Ω A β β' (fun d hd hdβ => lt_of_lt_of_le hβ' (hr d hd hdβ))
+  obtain ⟨hall, hback⟩ := _root_.GlobalTheory.Count.decOrbit_root_count E Ω A β β' S hS g hgm (hgdeg.trans hfdeg) hβ'g hkr
   have hint : IsIntegral E β' := Algebra.IsIntegral.isIntegral β'
   have agree : ∀ σ τ : G E Ω, σ β' = τ β' → ∀ x ∈ IntermediateField.adjoin E {β'}, σ x = τ x := by
     intro σ τ e x hx
@@ -108,7 +108,7 @@ theorem exists_localExt_of_finiteIndex : ∀ (E Ω : Type) [Field E] [NumberFiel
   refine ⟨IntermediateField.adjoin E {β'}, IntermediateField.adjoin.finiteDimensional hint, ?_, ?_⟩
   · intro σ
     obtain ⟨d, hd, hσd⟩ := hall σ
-    obtain ⟨τ, hτ, hτd⟩ := GlobalTheory.T.weilGroupAtPlace_dense_in_decompositionGroup E Ω A w h d hd β'
+    obtain ⟨τ, hτ, hτd⟩ := _root_.GlobalTheory.WeilDeligne.exists_weil_apply_eq E Ω A w h d hd β'
     exact ⟨⟨τ, hτ⟩, fun x => agree τ σ (hτd.trans hσd.symm) x x.2⟩
   · intro σ
     rw [← hβH σ]

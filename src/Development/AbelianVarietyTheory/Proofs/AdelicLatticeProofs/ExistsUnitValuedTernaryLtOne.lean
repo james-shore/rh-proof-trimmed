@@ -58,15 +58,7 @@ namespace TernaryResidue
 
 
 open MvPolynomial in
-theorem exists_ne_zero_sum_eq_zero {k : Type*} [Field k] [Finite k] (a : Fin 3 → Fin 3 → k) :
-    ∃ x : Fin 3 → k, x ≠ 0 ∧ ∑ i, ∑ j, a i j * x i * x j = 0 := by
-  first
-  | exact @_root_.GlobalTheory.NonzeroIsotropic.exists_nonzero_isotropic
-  | exact _root_.GlobalTheory.NonzeroIsotropic.exists_nonzero_isotropic
-  | (apply _root_.GlobalTheory.NonzeroIsotropic.exists_nonzero_isotropic <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NonzeroIsotropic.exists_nonzero_isotropic <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NonzeroIsotropic.exists_nonzero_isotropic <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NonzeroIsotropic.exists_nonzero_isotropic ..)
+alias exists_ne_zero_sum_eq_zero := _root_.GlobalTheory.NonzeroIsotropic.exists_nonzero_isotropic
 
 end TernaryResidue
 

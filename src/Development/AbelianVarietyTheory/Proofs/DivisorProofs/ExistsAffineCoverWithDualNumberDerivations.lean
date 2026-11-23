@@ -77,19 +77,6 @@ def derivHom {k A : Type} [CommRing k] [CommRing A] [Algebra k A] (δ : Derivati
   map_zero' := by ext <;> simp
   map_add' a b := by ext <;> simp [add_comm, add_left_comm, add_assoc]
 
-theorem snd_eq_sum_of_basis {k A : Type} [CommRing k] [CommRing A] [Algebra k A] {D : ℕ}
-    (f : Fin D → A) (B : Module.Basis (Fin D) A Ω[A⁄k]) (hB : ∀ i, B i = KaehlerDifferential.D k A (f i))
-    {K : Type} [Field K] (θ : A →+* DualNumber K) (h : ∀ a, (θ (algebraMap k A a)).snd = 0) (s : A) :
-    (θ s).snd = ∑ b, (θ (f b)).snd *
-      (θ (((B.coord b).compDer (KaehlerDifferential.D k A)) s)).fst := by
-  first
-  | exact @_root_.GlobalTheory.SecondComponentSum.snd_eq_sum
-  | exact _root_.GlobalTheory.SecondComponentSum.snd_eq_sum
-  | (apply _root_.GlobalTheory.SecondComponentSum.snd_eq_sum <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SecondComponentSum.snd_eq_sum <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SecondComponentSum.snd_eq_sum <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SecondComponentSum.snd_eq_sum ..)
-
 theorem snd_eq_zero_of_isAlgebraic {F K : Type} [Field F] [CharZero F] [Algebra.IsAlgebraic ℚ F] [Field K]
     (φ : F →+* DualNumber K) (a : F) : (φ a).snd = 0 := by
   letI : Algebra ℚ (DualNumber K) := (φ.comp (algebraMap ℚ F)).toAlgebra
@@ -133,7 +120,7 @@ theorem exists_derivFrame (M : Modif (str₀ X Z) (U₀ X Z) (GlobalTheory.FlagT
   refine ⟨_, IsAffineOpen.basicOpen hV _, fun b => derivHom ((B.coord b).compDer (KaehlerDifferential.D c.F _)),
     hxt, (M.X.basicOpen_le _).trans (hVW.trans le_rfl), fun b s => by simp [derivHom], fun K _ θ =>
     ⟨fun b => (θ (f b)).snd, fun s => ?_⟩⟩
-  rw [snd_eq_sum_of_basis f B hB θ (fun a => snd_eq_zero_of_isAlgebraic (θ.comp (algebraMap c.F _)) a) s]
+  rw [_root_.GlobalTheory.SecondComponentSum.snd_eq_sum f B hB θ (fun a => snd_eq_zero_of_isAlgebraic (θ.comp (algebraMap c.F _)) a) s]
   simp [derivHom]
 
 end GlobalTheory.CompHS

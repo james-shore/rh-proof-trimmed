@@ -62,20 +62,9 @@ noncomputable section
 
 namespace GlobalTheory.RawLift.GoodFactor
 
-theorem mt_mul' {D : D7} (V : HSp D) (a b : GA D V) : mt V (a * b) = mt V a * mt V b := by
-  unfold Formalism.L2.Theta.mt
-  rw [map_mul, Units.val_mul]
-
-theorem mt_one' {D : D7} (V : HSp D) : mt V 1 = 1 := by
-  unfold Formalism.L2.Theta.mt
-  rw [map_one, Units.val_one]
-
-theorem mt_inj {D : D7} (V : HSp D) {a b : GA D V} (h : mt V a = mt V b) : a = b :=
-  Subtype.val_injective (Units.ext h)
-
 theorem comm_of_supp_triv {D : D7} {V : HSp D} {f : AE D} {a b : GA D V} (ha : SuppF V f a) (hb : TrivAt V f b) :
     a * b = b * a := by
-  apply mt_inj
+  apply _root_.GlobalTheory.IdemSupport.mt_inj
   have hAB : (mt V a - 1) * (mt V b - 1) = 0 := by
     ext i j
     rw [Matrix.mul_apply, Matrix.zero_apply]
@@ -88,7 +77,7 @@ theorem comm_of_supp_triv {D : D7} {V : HSp D} {f : AE D} {a b : GA D V} (ha : S
     rw [← ha l j, mul_left_comm, ← mul_assoc, hb i l, zero_mul]
   have e1 : mt V a * mt V b = (mt V a - 1) * (mt V b - 1) + mt V a + mt V b - 1 := by noncomm_ring
   have e2 : mt V b * mt V a = (mt V b - 1) * (mt V a - 1) + mt V b + mt V a - 1 := by noncomm_ring
-  rw [mt_mul', mt_mul', e1, e2, hAB, hBA, zero_add, zero_add, add_comm (mt V a)]
+  rw [_root_.GlobalTheory.BesselCompare.mt_mul, _root_.GlobalTheory.BesselCompare.mt_mul, e1, e2, hAB, hBA, zero_add, zero_add, add_comm (mt V a)]
 
 theorem actO_one_of_trivAt {D : D7} {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {LT : Set (Fin T.rank → D.host.E)}
     {v : HeightOneSpectrum (𝓞 D.host.F)} {f : AE D} (hf : IsFinIdem D v f) {γ : GA D T} (hγ : TrivAt T f γ)
@@ -102,7 +91,7 @@ theorem actO_one_of_trivAt {D : D7} {S T : HSp D} {LS : Set (Fin S.rank → D.ho
   have h0 : HMul.hMul (mt T γ - 1) (u : Matrix (Fin T.rank) (Fin S.rank) (AE D)) = (0 : Matrix (Fin T.rank) (Fin S.rank) (AE D)) := by
     rw [← hu', Matrix.mul_smul, ← Matrix.smul_mul, hz, Matrix.zero_mul]
   unfold actO
-  rw [inv_one, mt_one', Matrix.mul_one]
+  rw [inv_one, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.mul_one]
   rw [Matrix.sub_mul, Matrix.one_mul, sub_eq_zero] at h0
   exact h0
 

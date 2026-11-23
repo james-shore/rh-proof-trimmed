@@ -56,7 +56,7 @@ theorem smallSt_alt : _root_.GlobalTheory.ExpTie.SmallnessCondition := by
   have hin := DefFam3.toSub2_inBlock hR.prim.block
   refine ⟨Formalism.EigenvalueLevelCeiling.plc_prime w, ?_, ?_, fun k => DefFam.stable_lifts hst j _ k, DefFam.inBlock_lifts hin j _⟩
   · exact (Formalism.CohomologicalDescent.LogSmallConstantBounds.paramsLargePrime_holds P hN.1 hN.2.1 _ hWR.1).2.2.2.2.2.1
-  · refine not_dvd_discr_host _ (Formalism.EigenvalueLevelCeiling.plc_prime w) ?_
+  · refine _root_.UpperTheory.ExcSet.not_dvd_discr _ (Formalism.EigenvalueLevelCeiling.plc_prime w) ?_
     rw [← hD.special]
     exact hWR.2.2.2
 end GlobalTheory.ExpTie

@@ -189,11 +189,4 @@ end GlobalTheory.OrbFinAf.KottAlmost
 
 namespace GlobalTheory.OrbFinAf.KottAlmost
 
-theorem starT_starT {p : ℕ} [Fact p.Prime] (G : HTGroup p) (R : Type) [CommRing R] [Algebra ℚ R] (a : R ⊗[ℚ] G.C) :
-    (starT G.star R (starT G.star R a).unop).unop = a := by
-  induction a using TensorProduct.induction_on with
-  | zero => simp
-  | tmul r y => rw [starT_tmul, starT_tmul, G.star_star]
-  | add a b ha hb => rw [map_add (f := _), MulOpposite.unop_add, map_add (f := _), MulOpposite.unop_add, ha, hb]
-
 end GlobalTheory.OrbFinAf.KottAlmost

@@ -80,6 +80,6 @@ theorem rowGen1P_of_siegelWeil_of_points : PI.VolStabS.MassDataS.SWXS → Formal
     GlobalTheory.Core.One.stepNormals1_of hEq hLine hInt hSep Formalism.L2.SG.NGCut.NormalCount.NormCount_holds hN1
   have hVan : StepTermVanishG :=
     Formalism.L2.SG.Pf.MainEqVanish.stepTermVanishG_of_form (Formalism.L2.SG.Pf.formGC_of_rel Formalism.L2.SG.Pf.formRelC_holds)
-  exact rowGen1P_of_steps Formalism.FourierDecayAlt.P.norm_chain (stepClass1_of hEq) hNml hPts hN1 hTie hCh hPin hVan hLoc hThm
+  exact rowGen1P_of_steps _root_.Formalism.FourierDecayAlt.P.NormChainLemmas.nGChain (stepClass1_of hEq) hNml hPts hN1 hTie hCh hPin hVan hLoc hThm
 
 end GlobalTheory.Core.One

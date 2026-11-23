@@ -197,7 +197,7 @@ theorem continuous_pol (ε : Fin n → Bool) : Continuous (pol ε) :=
 def den (ε : Fin n → Bool) (B : Mode ε → ℂ) : ℝ≥0 := (Jac (low ε B)).toNNReal
 
 theorem continuous_den (ε : Fin n → Bool) : Continuous (den ε) :=
-  continuous_real_toNNReal.comp ((ReciprocityTheory.ChartRestriction.DS.jac_continuous ε).comp (continuous_low ε))
+  continuous_real_toNNReal.comp ((_root_.ReciprocityTheory.ChartRestriction.DS.pb_jac_continuous ε).comp (continuous_low ε))
 
 def rho (ε : Fin n → Bool) : Measure (KG ε × (Mode ε → ℂ)) :=
   (muK ε).prod (volume.withDensity fun B => (den ε B : ℝ≥0∞))
@@ -206,7 +206,7 @@ theorem map_pol (ε : Fin n → Bool) : ∃ c : ℝ≥0, c ≠ 0 ∧ muCD ε = c
   obtain ⟨c0, hc0, hlow⟩ := map_low ε
   have hl : Measurable (low ε) := (continuous_low ε).measurable
   have hJm : Measurable (fun z : PCoord ε → ℂ => ENNReal.ofReal (Jac z)) :=
-    ENNReal.measurable_ofReal.comp (ReciprocityTheory.ChartRestriction.DS.jac_continuous ε).measurable
+    ENNReal.measurable_ofReal.comp (_root_.ReciprocityTheory.ChartRestriction.DS.pb_jac_continuous ε).measurable
   have hden : Measure.map (low ε) (volume.withDensity fun B => (den ε B : ℝ≥0∞)) =
       c0 • volume.withDensity (fun z : PCoord ε → ℂ => ENNReal.ofReal (Jac z)) := by
     rw [ENNReal.smul_def] at hlow ⊢

@@ -144,14 +144,9 @@ theorem comp_left_of_map {S' S : Scheme.{0}} (x : S' ⟶ S) {P G B : Over S} (v 
       rw [h, Over.comp_left, Category.assoc, ← Category.assoc, ← Category.assoc, ← Category.assoc, hw2,
         Category.assoc]
 
-theorem mulN_eq_pow {S : Scheme.{0}} (P : Over S) [GrpObj P] (n : ℕ) : mulN P n = (𝟙 P) ^ n := by
-  induction n with
-  | zero => simp [mulN, Hom.one_def]
-  | succ n ih => rw [pow_succ, ← ih, mulN, Hom.mul_def]
-
 theorem finiteMulTorus : ∀ (S : Scheme.{0}) (X : Type) [AddCommGroup X] [Module.Free ℤ X] [Module.Finite ℤ X] (N : ℕ), 1 ≤ N → IsFinite ((𝟙 (splitTorus S X)) ^ N).left := by
   intro S X _ _ _ N hN
-  rw [← mulN_eq_pow]
+  rw [← _root_.GlobalTheory.GrpTangent.mulN_eq_pow]
   exact GlobalTheory.Diag.isFinite_mulN S X (by omega)
 
 theorem kernelOf : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (P : Over S) [GrpObj P], IsSemiAbelian P → ∀ N : ℕ, 1 ≤ N → IsFinite ((𝟙 P) ^ N).left → ∃ (A : Over S) (_ : GrpObj A) (_ : IsCommMonObj A) (j : A ⟶ P), IsMonHom j ∧ IsPullback j (toUnit A) ((𝟙 P) ^ N) η[P] ∧ IsFinite A.hom ∧ Flat A.hom := by
@@ -241,7 +236,7 @@ theorem finitePart_extension_core : ∀ (R : Type) [CommRing R] [IsDomain R] [Is
   rw [Functor.obj.η_def AB] at hpk
   have flatG : Flat Γf.G.hom := Γf.flat
   have hab : a ≫ b = toUnit AT ≫ η[AB] := by
-    refine GlobalTheory.T.finite_map_eq_of_thickenings_eq R (IsLocalRing.maximalIdeal R) AT AB _ _ (fun e => ?_)
+    refine _root_.GlobalTheory.CompanionTheory.Ar.BT.EqRed.eq_of_reductions R (IsLocalRing.maximalIdeal R) AT AB _ _ (fun e => ?_)
     have hm : Mono ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) e)).map jB) :=
       Tors.mono_of_pullback (kernel_pull (thick R (IsLocalRing.maximalIdeal R) e) hpB)
     rw [← cancel_mono ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) e)).map jB)]

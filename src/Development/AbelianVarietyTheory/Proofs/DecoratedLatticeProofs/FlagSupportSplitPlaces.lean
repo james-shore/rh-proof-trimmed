@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvolutionSphericalHeckeAnti
 
 @[expose] public section
 
@@ -80,31 +81,6 @@ theorem hA_fR_nxt_zero (X : HidaSetting D) (u : D.what₂.Word) (a : Fin D.R.rS)
       simp at this
     · exact (X.zu_orth u a).2
   rw [e1, e2, map_zero]
-
-theorem mem_GfC_of_suppAt {e : AE D} (he : IsSplitIdem D e) {V : HSp D} {g : GA D V} (hs : SuppAt e V g) :
-    g ∈ GfC V := by
-  obtain ⟨-, -, v, ε, ⟨α, rfl, -, -⟩, hε⟩ := he
-  show g ∈ (infHom V).ker
-  rw [MonoidHom.mem_ker]
-  apply Units.ext
-  ext i j
-  have h1 := congrArg (infPart D) (hs i j)
-  rw [map_mul, hε] at h1
-  have h0 : infPart D (algebraMap (AF D.host.F) (AE D) (pairA D.host.F 0 α)) = 0 := by
-    rw [Algebra.TensorProduct.algebraMap_apply]
-    show (fstA D.host.F) (pairA D.host.F 0 α) ⊗ₜ[D.host.F] (1 : D.host.E) = 0
-    rw [show (fstA D.host.F) (pairA D.host.F 0 α) = 0 from rfl, TensorProduct.zero_tmul]
-  rw [h0, zero_mul] at h1
-  have e : (infHom V g).1 i j = infPart D (mt V g i j) := rfl
-  change (infHom V g).1 i j = (1 : GL (Fin V.rank) (Ainf D.host.F ⊗[D.host.F] D.host.E)).1 i j
-  rw [e, Units.val_one]
-  have h2 : infPart D ((mt V g - 1) i j) = infPart D (mt V g i j) - (1 : Matrix (Fin V.rank) (Fin V.rank) _) i j := by
-    rw [Matrix.sub_apply, RingHom.map_sub]
-    by_cases hij : i = j
-    · subst hij; rw [Matrix.one_apply_eq, Matrix.one_apply_eq, RingHom.map_one]
-    · rw [Matrix.one_apply_ne hij, Matrix.one_apply_ne hij, RingHom.map_zero]
-  rw [h2] at h1
-  exact sub_eq_zero.1 h1.symm
 
 theorem smul_fact {R : Type} [CommRing R] {k : ℕ} (M : Matrix (Fin k) (Fin k) R) (ε : R)
     (h : ∀ i j, M i j = ε * M i j) (v : Fin k → R) : M *ᵥ v = ε • (M *ᵥ v) := by
@@ -299,7 +275,7 @@ theorem besselLevel_chi_conj_eq_finite_bessel_character (X : HidaSetting D) (u :
 
 theorem rowChi_conj_eq_psiBes : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (u : D.what₂.Word) (ψ : AddChar (AF D.host.F) ℂ) (A : HSp D) (B : SBes X h u ψ A), GlobalTheory.Core.Mi.IdE X → ∀ (PP : Formalism.L2.DIV.Pl D.host.E) (e : AE D), IsSplitIdem D e → Formalism.L2.NTheta.IsIdemAt e PP → ((D.host.g 0 * D.host.g 1 : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal → ∀ n ∈ flagN B.d, Formalism.L2.Theta.SuppAt e (D.sp.Y 0) n → ((iotaX X h).symm (1, X.xu u))⁻¹ * n * ((iotaX X h).symm (1, X.xu u)) ∈ rowJ X h → rowChi X h (((iotaX X h).symm (1, X.xu u))⁻¹ * n * ((iotaX X h).symm (1, X.xu u))) = psiBes ψ B.d 1 (vecB B.o B.ζ) n := by
   intro D X h u ψ A B _hE PP e hsp hid hg n hn hsupp hJ
-  have hGf : n ∈ GfC (D.sp.Y 0) := mem_GfC_of_suppAt hsp hsupp
+  have hGf : n ∈ GfC (D.sp.Y 0) := _root_.GlobalTheory.SplitPlace.mem_GfC hsp hsupp
   have h1 : (iotaX X h n).1 = 1 := (GlobalTheory.SeeConjRead.iotaX_fst_eq_one_iff X h n).2 hGf
   have hix : iotaX X h ((iotaX X h).symm (1, X.xu u)) = (1, X.xu u) :=
     ContinuousMulEquiv.apply_symm_apply _ _

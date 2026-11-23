@@ -61,10 +61,6 @@ section Alg
 
 variable {K : Type} [Field K] {n r : ℕ}
 
-theorem exists_factor (e : Matrix (Fin n) (Fin n) K) (he : e * e = e) :
-    ∃ (r : ℕ) (M : Matrix (Fin n) (Fin r) K) (N : Matrix (Fin r) (Fin n) K), N * M = 1 ∧ M * N = e :=
-  _root_.UpperTheory.Reformulated.B.ExistsFactor.exists_factor e he
-
 variable {R : Type*} [CommRing R] [Algebra K R] {R' : Type*} [CommRing R'] [Algebra K R']
 
 theorem comm_aeval (γ : Matrix (Fin n) (Fin n) K) (X : Matrix (Fin n) (Fin n) R)
@@ -290,7 +286,7 @@ theorem exists_pos_le_height :
     ∀ (K : Type) [Field K] [NumberField K] (n : ℕ) (γ : Matrix (Fin n) (Fin n) K) (v : Fin n → K), (∀ y : Fin n → K, ∃ h : K[X], y = v ᵥ* aeval γ h) → ∀ e : Matrix (Fin n) (Fin n) K, IsPrim γ e → ∀ c : ℝ, 0 < c → ∃ ε : ℝ, 0 < ε ∧ ∀ g : GroundTheory.Automorphic.AdelicGLn.AdelicGL K n, g.val * γ.map (algebraMap K (AdeleRing (𝓞 K) K)) = γ.map (algebraMap K (AdeleRing (𝓞 K) K)) * g.val → ∀ s : (AdeleRing (𝓞 K) K)ˣ, (s : AdeleRing (𝓞 K) K) = (1 + e.map (algebraMap K (AdeleRing (𝓞 K) K)) * (g.val - 1)).det → c ≤ (GroundTheory.Global.IdeleGroup.ideleModule K s : ℝ) → ∀ x : Fin n → K, x ᵥ* e ≠ 0 → ε ≤ GroundTheory.Automorphic.Reduction.height g x := by
   intro K _ _ n γ v hcyc e he c hc
   choose h hs using fun j : Fin n => hcyc (Pi.single j 1)
-  obtain ⟨r, M, N, hNM, hMN⟩ := exists_factor e he.idem
+  obtain ⟨r, M, N, hNM, hMN⟩ := _root_.UpperTheory.Reformulated.B.ExistsFactor.exists_factor e he.idem
   have hr : 0 < r := by
     refine Nat.pos_of_ne_zero fun h0 => ?_
     subst h0

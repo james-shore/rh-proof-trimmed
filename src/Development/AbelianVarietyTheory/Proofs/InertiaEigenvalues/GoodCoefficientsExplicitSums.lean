@@ -88,7 +88,7 @@ theorem goodO_coeff_explicit_sums : ∀ (l : ℕ) [Fact l.Prime] (LL : Type) [Fi
       a - ∑ j ∈ Finset.range n, ((l : ℕ) : O) ^ j * x j = ((l : ℕ) : O) ^ n * b) ∧
     (∀ a : O, (∀ n : ℕ, ∃ b : O, a = ((l : ℕ) : O) ^ n * b) → a = 0) := by
   intro l _ LL _ _ _ O _ _ hG
-  have hc := (GlobalTheory.T.coefficient_ring_integers_compact_adic_properties l LL O hG).2.2.2
+  have hc := (_root_.GlobalTheory.PowerImageOpen.main l LL O hG).2.2.2
   exact adicComplete_explicit_sums (h := hc) ((l : ℕ) : O)
 
 end GlobalTheory

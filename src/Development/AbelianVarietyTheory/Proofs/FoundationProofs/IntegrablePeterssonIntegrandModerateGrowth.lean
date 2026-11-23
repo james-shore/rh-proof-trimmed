@@ -69,14 +69,6 @@ theorem petInt_emb (γ : SL(2, ℤ)) : MeasurableEmbedding (fun z : ℍ => γ �
   ext z
   simp
 
-theorem petInt_fd_meas : MeasurableSet ModularGroup.fd := by
-  unfold ModularGroup.fd
-  apply IsClosed.measurableSet
-  change IsClosed ({z : ℍ | 1 ≤ Complex.normSq (z : ℂ)} ∩ {z : ℍ | |z.re| ≤ 1 / 2})
-  apply IsClosed.inter
-  · exact isClosed_le continuous_const (Complex.continuous_normSq.comp UpperHalfPlane.continuous_coe)
-  · exact isClosed_le (continuous_abs.comp (Complex.continuous_re.comp UpperHalfPlane.continuous_coe)) continuous_const
-
 theorem petInt_im_bd (γ : SL(2, ℤ)) (σ : ℍ) (hσ : σ ∈ ModularGroup.fd) :
     (γ • σ).im ≤ 2 * σ.im ∧
       ((γ • σ).im)⁻¹ ≤ (3 * ((γ 1 0 : ℤ) : ℝ) ^ 2 + 8 * ((γ 1 1 : ℤ) : ℝ) ^ 2) * σ.im := by
@@ -199,7 +191,7 @@ theorem integrable_pet_integrand : ∀ (k L L' N : ℕ) (ε : DirichletCharacter
   · exact ((integrableOn_fd_im_pow_mul_exp (δ / 2) 0 (by positivity)).const_mul _).add
       ((integrableOn_fd_im_pow_mul_exp (δ / 2) (2 * A + k) (by positivity)).const_mul _)
   · exact (hgm.comp_measurePreserving (petInt_mp γ⁻¹)).restrict
-  · refine (ae_restrict_iff' petInt_fd_meas).mpr (Filter.Eventually.of_forall fun σ hσ => ?_)
+  · refine (ae_restrict_iff' _root_.GlobalTheory.EisM.fd_measurableSet).mpr (Filter.Eventually.of_forall fun σ hσ => ?_)
     have hy : 1 / 2 ≤ σ.im := by
       have := ModularGroup.three_le_four_mul_im_sq_of_mem_fd hσ
       nlinarith [σ.im_pos]

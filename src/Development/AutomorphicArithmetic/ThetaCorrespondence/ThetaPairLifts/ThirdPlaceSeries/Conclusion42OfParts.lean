@@ -54,7 +54,7 @@ theorem conclusion42_of_parts (D : D7) (a : _root_.Formalism.MainNotions.SumRepr
   intro i σ hσ
   obtain ⟨P, hP⟩ := th i σ hσ
   obtain ⟨Pa, hPa⟩ := a1 i P
-  obtain ⟨Sig, h1, h2⟩ := GlobalTheory.T.row_param_of_thetaLift_baseChange D t0 a3 a4 a5 i σ P Pa hP hPa (_root_.GlobalTheory.T.twisted_mu_piece_mem_base_change D t0 a3 a5 a7 s hk i σ P Pa hσ hP hPa)
+  obtain ⟨Sig, h1, h2⟩ := _root_.GlobalTheory.RowThetaParam.param_of_theta D t0 a3 a4 a5 i σ P Pa hP hPa (_root_.GlobalTheory.MuBlock.mu_block_mem_alt D t0 a3 a5 a7 s hk i σ P Pa hσ hP hPa)
   refine ⟨⟨⟨_, (l i σ).2 hσ, (l i σ).1⟩, P, hP⟩, Sig, h1, fun P' hP' => ?_⟩
   obtain rfl : P = P' := by
     by_contra hne

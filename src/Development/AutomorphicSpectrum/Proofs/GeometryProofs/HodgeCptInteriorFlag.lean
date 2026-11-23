@@ -511,15 +511,6 @@ theorem interior_pol (𝔐 : HodgeCpt Y S y) (hβ : Function.Injective β) (z : 
   have := GlobalTheory.GenericPol.proper_ample_kTriv Y.m Y.oF.proper Y.oF.ample Y.oF.ktriv n hr
   exact ⟨_, m₁, this.1, this.2.1⟩
 
-theorem spec_dual_fst {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) :
-    Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom B B B).toRingHom) ≫
-        Spec.map (CommRingCat.ofHom (dualMap f)) =
-      Spec.map (CommRingCat.ofHom f) ≫ Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom A A A).toRingHom) := by
-  rw [← Spec.map_comp, ← Spec.map_comp]
-  congr 1
-  refine CommRingCat.hom_ext (RingHom.ext fun a => ?_)
-  simp [dualMap]
-
 theorem tan_of_valAt {X : Scheme.{0}} {Ω' : Type} [Field Ω'] {ξ : Sp Ω' ⟶ X} {G : Over X} [GrpObj G]
     {Li : Type} [AddCommGroup Li] [Module Ω' Li] {M : LieModel G ξ Li} {z : Sp ℂ ⟶ X} {e : Li}
     {w : epsAt z ⟶ G} (h : M.ValAt z e w) : IsTanAt G z w := by
@@ -533,7 +524,7 @@ theorem tan_of_valAt {X : Scheme.{0}} {Ω' : Type} [Field Ω'] {ξ : Sp Ω' ⟶ 
   refine Eq.trans ?_ h2
   change _ = Spec.map (Scheme.stalkClosedPointTo z) ≫ (1 : Over.mk (X.fromSpecStalk (centre z)) ⟶ G).left
   refine Eq.trans ?_ (congrArg (fun k => Spec.map (Scheme.stalkClosedPointTo z) ≫ k) hv)
-  have key := spec_dual_fst (Scheme.stalkClosedPointTo z).hom
+  have key := _root_.GlobalTheory.CompanionTheory.Ar.LieTangent.spec_fst_dual (Scheme.stalkClosedPointTo z).hom
   exact (Category.assoc _ _ _).symm.trans ((congrArg (fun k => k ≫ v.left) key).trans (Category.assoc _ _ _))
 
 theorem exists_sub_mem_flagStep {Ω' : Type} [Field Ω'] {E' : Type} [AddCommGroup E'] [Module Ω' E'] {r : ℕ}

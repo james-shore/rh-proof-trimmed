@@ -59,7 +59,7 @@ theorem Wtop_smul (pr : P →* Q) {n : ℕ} (r : ℝ) (b : (Fin n → Q) → ℝ
 theorem QC.smul {n : ℕ} {b : (Fin (n + 1) → Q) → ℝ} (hb : QC b) (r : ℝ) : QC (r • b) := by
   refine ⟨fun g x => ?_, ?_⟩
   · simp only [Pi.smul_apply, smul_eq_mul, hb.1 g x]
-  · rw [dc_smul, hb.2, smul_zero]
+  · rw [_root_.PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_smul, hb.2, smul_zero]
 
 def GoodS (pr : P →* Q) {p q : ℕ} (x : Bi P Q (p + 2) (q + 2)) : Prop :=
   ∃ n : ℕ, n = p + q + 2 ∧ ∃ b : (Fin (n + 1) → Q) → ℝ, QC b ∧

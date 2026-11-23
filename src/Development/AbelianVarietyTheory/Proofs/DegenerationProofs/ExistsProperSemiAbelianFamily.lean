@@ -67,11 +67,7 @@ theorem exists_factor {S S' S'' : Scheme.{0}} {G : Over S} {G' : Over S'} {G'' :
   have w : ψ ≫ G.hom = (G''.hom ≫ g) ≫ f := by rw [n.1.w, Category.assoc]
   exact ⟨h.1.lift ψ (G''.hom ≫ g) w, h.cancel (n.congr rfl (h.1.lift_fst _ _ w).symm) (h.1.lift_snd _ _ w)⟩
 
-theorem isProper_of_isProjOver {R : Type} [CommRing R] {X : Scheme.{0}} {f : X ⟶ Sp R} (h : IsProjOver f) :
-    IsProper f := by
-  obtain ⟨m, i, hi, rfl⟩ := h
-  have := isProper_str R m
-  infer_instance
+alias isProper_of_isProjOver := _root_.GlobalTheory.SpreadAb.isProper_of_isProjOver
 
 theorem finite_ratios {o Ω I : Type} [CommRing o] [Field Ω] [Algebra o Ω] (s : Finset Ω)
     (hΩ : ∀ x : Ω, ∃ a ∈ Algebra.adjoin o (s : Set Ω), ∃ b ∈ Algebra.adjoin o (s : Set Ω), x = a / b)

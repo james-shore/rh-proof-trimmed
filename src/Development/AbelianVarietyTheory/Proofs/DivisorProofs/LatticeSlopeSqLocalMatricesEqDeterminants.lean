@@ -285,7 +285,7 @@ theorem GlobalTheory.LocMatSlope.slope_sq_locLat : ∀ (K : Type) [Field K] [Num
   unfold lineDeg at hnum
   have hsplit : ∀ w, (vAdd w ((d : K) ^ n * (A w).det) : ℝ) = n * (vAdd w (d : K) : ℝ) + (vAdd w (A w).det : ℝ) :=
     fun w => by
-      rw [GlobalTheory.LatDetDeg.vAdd_mul' w (pow_ne_zero _ hdK) (hA.1 w), GlobalTheory.LatDetDeg.vAdd_pow' w hdK]
+      rw [_root_.Formalism.BasicNotions.Examples₂.PlacesToy.vAdd_mul w (pow_ne_zero _ hdK) (hA.1 w), GlobalTheory.LatDetDeg.vAdd_pow' w hdK]
       push_cast; ring
   have hfd := finite_vAdd (K := K) hdK
   have hfdet : (Function.support fun w => (vAdd w (A w).det : ℝ)).Finite := by

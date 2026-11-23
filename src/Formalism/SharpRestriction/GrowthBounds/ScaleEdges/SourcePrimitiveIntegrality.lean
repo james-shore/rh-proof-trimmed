@@ -232,20 +232,6 @@ def RemainingInputsAfter (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg CLa' C
   tableLineDegreeFive.admitted D CLa Ck Crk Cdeg → SourceCleaning.aux₃ D CLa' CD Csz → PlaneGramData.aux₃ D CH CE C6 C18 →
     ∃ Ct0 CD1 C₁ : ℝ, 0 < Ct0 ∧ 0 < CD1 ∧ 0 < C₁ ∧ ∀ C : ℝ, C₁ ≤ C → TestStep C Ct0 CD1 CLa
 
-private lemma isFlat_flW_lemma {n' m : ℕ} (d : Fin n' → ℕ) : IsFlat (m := m) (vecE n') d (flW d) := by
-  intro s
-  by_cases hs : Even s.val
-  · simp [lamAt, vecE, flW, hs]
-  · funext i
-    by_cases hi : i = Fin.last m
-    · subst hi
-      simp [lamAt, vecE, flW, hs, Pi.single_apply]
-    · have hr : i.rev ≠ 0 := by
-        intro h0
-        apply hi
-        rw [← Fin.rev_rev i, h0, Fin.rev_zero]
-      simp [lamAt, vecE, flW, hs, Pi.single_apply, hi, hr]
-
 theorem restCloudY_of (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg CLa' CD Csz CH CE C6 C18 : ℝ)
     (h6a : SourcePrimitiveIntegrality D CLa Ck Crk Cdeg) (h6b : RemainingInputsAfter D CLa Ck Crk Cdeg CLa' CD Csz CH CE C6 C18) :
     RestCloudY D CLa Ck Crk Cdeg CLa' CD Csz CH CE C6 C18 := by
@@ -265,7 +251,7 @@ theorem restCloudY_of (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg CLa' CD C
     have := NeZero.ne K
     omega
   obtain ⟨Θ, hΘ1, hΘ2⟩ := theta_exists p n' W Qq O Kf ι σ j w hSet.1 φ hφ m r (vecE n') (dT TT lam0)
-    (flW (dT TT lam0)) hr1 hr2 (isFlat_flW_lemma (dT TT lam0)) hm hmdet
+    (flW (dT TT lam0)) hr1 hr2 (_root_.Formalism.MainNotions.Pf14.isFlat_flW (dT TT lam0)) hm hmdet
   obtain ⟨n2, sh, hsh, hn2, hprim⟩ := hPrim p W Qq O Kf ι σ j w n' m r TT L₁ L₂ de h x lam0 aT bT a Y
     cpp c0 Dp cStar hSet hHyps φ hφ K hk hrk F hF E' hE' nb B hB hLI hT e he het hm g hmdet hg heb
     FsB hFsB Θ hΘ2

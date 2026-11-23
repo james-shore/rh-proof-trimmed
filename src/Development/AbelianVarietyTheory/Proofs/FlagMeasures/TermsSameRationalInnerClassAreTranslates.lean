@@ -58,27 +58,10 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
-theorem gmap_mul (a b : GV D) (M : LV D) :
-    Formalism.HermitianLatticesTheory.gmap (a * b) M = Formalism.HermitianLatticesTheory.gmap a (Formalism.HermitianLatticesTheory.gmap b M) := by
-  ext x
-  simp only [Formalism.HermitianLatticesTheory.gmap, Submodule.mem_map, LinearMap.coe_restrictScalars, LinearEquiv.coe_coe]
-  constructor
-  · rintro ⟨y, hy, rfl⟩
-    exact ⟨b y, ⟨y, hy, rfl⟩, rfl⟩
-  · rintro ⟨z, ⟨y, hy, rfl⟩, rfl⟩
-    exact ⟨y, hy, rfl⟩
-
-theorem gmap_one (M : LV D) : Formalism.HermitianLatticesTheory.gmap (1 : GV D) M = M := by
-  ext x
-  simp only [Formalism.HermitianLatticesTheory.gmap, Submodule.mem_map, LinearMap.coe_restrictScalars, LinearEquiv.coe_coe]
-  constructor
-  · rintro ⟨y, hy, rfl⟩
-    exact hy
-  · intro hx
-    exact ⟨x, hx, rfl⟩
+alias gmap_mul := _root_.GlobalTheory.Unfold.SideEq.gmap_mul
 
 theorem gmap_inv_of {a : GV D} {M N : LV D} (h : Formalism.HermitianLatticesTheory.gmap a M = N) : Formalism.HermitianLatticesTheory.gmap a⁻¹ N = M := by
-  rw [← h, ← gmap_mul, inv_mul_cancel, gmap_one]
+  rw [← h, ← gmap_mul, inv_mul_cancel, _root_.GlobalTheory.Unfold.SideEq.gmap_one]
 
 theorem adapt_mul {T : D.host.E} {F G H : LFlag (D.sp.Y 0) D.R.rS T} {g g' : GV D} (hg : Adapt g F G)
     (hg' : Adapt g' G H) : Adapt (g' * g) F H := by
@@ -139,8 +122,8 @@ theorem translates : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wha
   obtain ⟨h, ⟨hhi, hhF, hhF'⟩, hgd⟩ := hR
   rw [← gmap_mul] at hgd
   set ψ₀ := h * g₀ with hψ₀
-  have hψ₀a : Adapt ψ₀ (lf D (X.Fu u)) F := adapt_mul hg₀a (adapt_fix hhi hhF)
-  have hψ₀b : Adapt ψ₀ t₀.frame F' := adapt_mul hg₀b (adapt_fix hhi hhF')
+  have hψ₀a : Adapt ψ₀ (lf D (X.Fu u)) F := _root_.GlobalTheory.Unfold.SideEq.adapt_mul hg₀a (adapt_fix hhi hhF)
+  have hψ₀b : Adapt ψ₀ t₀.frame F' := _root_.GlobalTheory.Unfold.SideEq.adapt_mul hg₀b (adapt_fix hhi hhF')
   have li₀ : t₀.lin ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := t₀.rep.2.2.1
   have lg₀ : Formalism.HermitianLatticesTheory.gmap t₀.lin t₀.lam' = t₀.lam := t₀.rep.2.2.2.1
   have li : t.lin ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := t.rep.2.2.1
@@ -186,7 +169,7 @@ theorem translates : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wha
   have hΨ₀b : Adapt (ψ₁ * n⁻¹) (mapLF (n * t.lin * n'⁻¹) (lf D (X.Fu u'))) F' := by
     refine (adapt_mapLF (F := lf D (X.Fu u')) (G := F') (g := ψ₁ * n⁻¹) hγi).2 ?_
     have : ψ₁ * n⁻¹ * (n * t.lin * n'⁻¹) = ψ₁ * t.lin * n'⁻¹ := by group
-    have key := adapt_mul hn'iN.1 hψ₁b'
+    have key := _root_.GlobalTheory.Unfold.SideEq.adapt_mul hn'iN.1 hψ₁b'
     rw [← this] at key
     exact key
   have hg1 : Formalism.HermitianLatticesTheory.gmap (ψ₁ * n⁻¹) t₀.lam = Formalism.HermitianLatticesTheory.gmap ψ₀ t₀.lam := by
@@ -194,8 +177,8 @@ theorem translates : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wha
     rw [this, gmap_mul, gmap_inv_of hA2]
   refine GlobalTheory.T.innerLatticeIdentification_compat_of_graph_eq D _ _ (lf D (X.Fu u)) F (mapLF (n * t.lin * n'⁻¹) (lf D (X.Fu u')))
     (mapLF t.lin (lf D (X.Fu u'))) F' t₀.lam (ψ₁ * n⁻¹) ψ₁ (t.lin * (n * t.lin * n'⁻¹)⁻¹)
-    (mul_mem hψ₁a.1 hni) hψ₁a.1 (GlobalTheory.T.frameAdaptedIsometry_map_flagSpaces D _ _ _ _ hΨ₀a).2 (GlobalTheory.T.frameAdaptedIsometry_map_flagSpaces D _ _ _ _ hψ₁a).2
-    (GlobalTheory.T.frameAdaptedIsometry_map_flagSpaces D _ _ _ _ hΨ₀b).2 (GlobalTheory.T.frameAdaptedIsometry_map_flagSpaces D _ (mapLF t.lin (lf D (X.Fu u'))) F' ψ₁ hψ₁b).2
+    (mul_mem hψ₁a.1 hni) hψ₁a.1 (_root_.GlobalTheory.adapt_map_flag D _ _ _ _ hΨ₀a).2 (_root_.GlobalTheory.adapt_map_flag D _ _ _ _ hψ₁a).2
+    (_root_.GlobalTheory.adapt_map_flag D _ _ _ _ hΨ₀b).2 (_root_.GlobalTheory.adapt_map_flag D _ (mapLF t.lin (lf D (X.Fu u'))) F' ψ₁ hψ₁b).2
     ?_ (mul_mem li (inv_mem hγi)) ?_ ?_ ?_ ?_
   · exact (congrArg (fun Λ => (gdat F F' Λ).2.2) hg1).trans
       (e3.trans (congrArg (fun Λ => (gdat F F' (Formalism.HermitianLatticesTheory.gmap ψ₁ Λ)).2.2) hlam))

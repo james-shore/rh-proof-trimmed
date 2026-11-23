@@ -54,12 +54,6 @@ open UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.C UpperTheory.C
 open UpperTheory.Gal.LocD UpperTheory.Gal.InertialTypesAlt.G UpperTheory.Gal.Join
 open scoped Classical
 
-private lemma exists_common_eigenvector {ι M : Type} [AddCommGroup M] [Module ℂ M] [FiniteDimensional ℂ M]
-    (f : ι → Module.End ℂ M) (hc : ∀ i j, f i * f j = f j * f i) (W : Submodule ℂ M) (hW : W ≠ ⊥)
-    (hst : ∀ i, ∀ y ∈ W, f i y ∈ W) :
-    ∃ y ∈ W, y ≠ 0 ∧ ∀ i, ∃ c : ℂ, f i y = c • y :=
-  _root_.UpperTheory.Reformulated.B.CommonEigenvectorInInvariantComplexSubspace.exists_common_eigenvector f hc W hW hst
-
 theorem UpperTheory.Gal.Join.twExp :
     UpperTheory.Gal.Join.TwExp := by
   intro T X _ _ _ ρ P _ s A hρ hA hAρ t₁ htr
@@ -146,7 +140,7 @@ theorem UpperTheory.Gal.Join.twExp :
   have hNst : ∀ t, ∀ y ∈ N χ, r t y ∈ N χ := by
     intro t y hy
     exact (Submodule.mem_iInf _).mpr fun t' => hmaps t t' _ ((Submodule.mem_iInf _).mp hy t')
-  obtain ⟨y, hyN, hy0, hy⟩ := exists_common_eigenvector r hcomm (N χ) hN hNst
+  obtain ⟨y, hyN, hy0, hy⟩ := _root_.UpperTheory.Reformulated.B.CommonEigenvectorInInvariantComplexSubspace.exists_common_eigenvector r hcomm (N χ) hN hNst
   choose c hc using hy
   have hcχ : ∀ t, c t = χ t := by
     intro t

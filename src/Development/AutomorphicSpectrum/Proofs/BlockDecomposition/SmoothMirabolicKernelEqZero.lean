@@ -66,7 +66,7 @@ theorem eq_zero_of_forall_twKer : ∀ (k : Type) [Field k] [ValuativeRel k] [Top
     by_cases ha : a = 0
     · subst ha
       exact mem_chi_zero ψ τ h0
-    · obtain ⟨g, hgr⟩ := GlobalTheory.T.exists_invertible_matrix_last_line_given k m a ha
+    · obtain ⟨g, hgr⟩ := _root_.GlobalTheory.CompanionTheory.MirFourier.exists_GL_lastRow_eq k m a ha
       have e : (fun j => (g : Matrix (Fin (m + 1)) (Fin (m + 1)) k) (Fin.last m) j) = a := funext hgr
       have := mem_chi_row ψ τ g (hg g)
       rw [e, ← Module.End.mul_apply, ← map_mul, ← map_mul, inv_mul_cancel, map_one, map_one,

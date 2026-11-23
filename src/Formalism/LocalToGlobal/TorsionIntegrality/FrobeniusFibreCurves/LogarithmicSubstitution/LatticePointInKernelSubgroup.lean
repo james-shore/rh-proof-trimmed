@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.TransW
 
 @[expose] public section
 
@@ -134,20 +135,20 @@ theorem mem_kernel_subgroup_iff_norm (hU : Unif 2 L ι W) (t : ℂ) (ht : t ∉ 
   exact Iff.rfl
 
 theorem lattice_point_in_kernel_subgroup (hU : Unif 2 L ι W) (t : ℂ) (ht : t ∈ L.lattice) : InFormalGroupPoints (ptW 2 L ι W t) := by
-  rw [(Formalism.L2.Th1.E.ptWZero 2 L ι W hU t).2 ht]
+  rw [(_root_.Formalism.L2.Th1.E.analytic_point_eq_zero_iff 2 L ι W hU t).2 ht]
   trivial
 
 open Classical in
 theorem ptW_neg (hU : Unif 2 L ι W) (t : ℂ) : ptW 2 L ι W (-t) = - ptW 2 L ι W t := by
   apply eq_neg_of_add_eq_zero_left
-  rw [← Formalism.L2.Th1.E.ptWAdd 2 L ι W hU, neg_add_cancel]
-  exact (Formalism.L2.Th1.E.ptWZero 2 L ι W hU 0).2 L.lattice.zero_mem
+  rw [← _root_.Formalism.L2.Th1.E.analytic_point_map_add 2 L ι W hU, neg_add_cancel]
+  exact (_root_.Formalism.L2.Th1.E.analytic_point_eq_zero_iff 2 L ι W hU 0).2 L.lattice.zero_mem
 
 open Classical in
 theorem kernel_subgroup_add_mem (hU : Unif 2 L ι W) (hW : IntCurve W) (s t : ℂ) (hs : InFormalGroupPoints (ptW 2 L ι W s))
     (ht : InFormalGroupPoints (ptW 2 L ι W t)) : InFormalGroupPoints (ptW 2 L ι W (s + t)) := by
   obtain ⟨a1, a2, a3, a4, a6, hΔ⟩ := hW
-  rw [Formalism.L2.Th1.E.ptWAdd 2 L ι W hU]
+  rw [_root_.Formalism.L2.Th1.E.analytic_point_map_add 2 L ι W hU]
   exact (Formalism.ELL.formal_group_points_subgroup.{0} ℂ_[2] W ⟨a1, a2, a3, a4, a6⟩ hΔ _ _ hs ht).1
 
 open Classical in
@@ -239,8 +240,8 @@ theorem PointsTwoFinal_of (hK : KernelIntegral) (hS : KernelStableUnderMultiplie
   intro L ι W hU hW ha1 α ω₀ b b' hα hmul hb hb' hnb hnb' hω hc
   have hK' := hK L ι W hU hW ha1 α b hα hmul hb hnb
   have hS' := hS L ι W hU hW ha1 α b hα hmul hb hnb
-  have hadd := Formalism.L2.Th1.E.ptWAdd 2 L ι W hU
-  have hzero := Formalism.L2.Th1.E.ptWZero 2 L ι W hU
+  have hadd := _root_.Formalism.L2.Th1.E.analytic_point_map_add 2 L ι W hU
+  have hzero := _root_.Formalism.L2.Th1.E.analytic_point_eq_zero_iff 2 L ι W hU
   obtain ⟨tr, n, htr, hn, -⟩ := Formalism.L2.Th1.F.mulStableIntegral L α hmul
   have hcm : MulStable L (conj α) := by
     intro ω hω'
@@ -321,6 +322,6 @@ theorem Th0TwoFinal_of (hP : PointsTwoFinal) : ThetaZeroAtTwo := by
   have hI : Formalism.L2.Th1.A.IntModel W := ⟨hW.1, hW.2.1, hW.2.2.1, hW.2.2.2.1, hW.2.2.2.2.1⟩
   obtain ⟨q1, q2⟩ := th0TwoAnalytic L ι W hU hI α ω₀ b b' hα hmul hω ht0 hb hb' hnb hnb' p3 hx
     (fun z hz => Half.norm_x_le_one_of_not_in_kernel _ (p2 z hz))
-  exact ⟨q1, q2, Formalism.L2.Th1.E.shiftAnalyticW 2 L ι W hU hW ω₀ hω ht0 hx q2⟩
+  exact ⟨q1, q2, _root_.Formalism.L2.Th1.E.shift_analytic_model 2 L ι W hU hW ω₀ hω ht0 hx q2⟩
 
 end Formalism.L2.Th1.B.KFin

@@ -57,10 +57,6 @@ namespace Formalism.L2.SG.RealObj.InfCut
 
 open Formalism.L2.SG.RealObj Formalism.L2.SG.HidaSetting
 
-def StepPtRepDiag : Prop :=
-  ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (u u' : D.what₂.Word) (sc : ℝ), 0 < sc →
-    ∀ (i0 : ∀ _ : InfinitePlace X.B.I.F, Fin D.R.k), PtRepExists X u u' sc i0 i0
-
 namespace PtRepPf
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -122,7 +118,7 @@ end PtRepPf
 
 
 open PtRepPf in
-theorem real_point_representative_diagonal : StepPtRepDiag := by
+theorem real_point_representative_diagonal : _root_.Formalism.L2.SG.RealObj.InfCut.StepPtRep := by
   intro D X u u' sc hsc i0 w hw
   have hloc := fun v => locMain (frU X u v) (frU X u' v) rfl (i0 v) (ZhatO (ptC X v w)) (hw v) sc hsc
   choose g hgZ φ hφ hD using hloc

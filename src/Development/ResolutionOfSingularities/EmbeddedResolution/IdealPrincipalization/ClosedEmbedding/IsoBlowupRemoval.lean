@@ -55,7 +55,7 @@ noncomputable section
 namespace FunctorialResolution.EmbeddedResolution
 
 private theorem imageIdealSheaf_top {S X : Scheme.{u}} (σ : S ⟶ X) :
-    imageIdealSheaf σ (⊤ : S.IdealSheafData) = ⊤ := by
+    _root_.FunctorialResolution.Blowup.schemeImageIdeal σ (⊤ : S.IdealSheafData) = ⊤ := by
   have hemp : IsEmpty ↥(⊤ : S.IdealSheafData).subscheme := inferInstance
   have hqc : QuasiCompact ((⊤ : S.IdealSheafData).subschemeι ≫ σ) := by
     constructor
@@ -70,10 +70,10 @@ private theorem imageIdealSheaf_top {S X : Scheme.{u}} (σ : S ⟶ X) :
   simp
 
 private theorem imageIdealSheaf_eq_top_iff {S X : Scheme.{u}} (σ : S ⟶ X) [IsClosedImmersion σ]
-    (I : S.IdealSheafData) : imageIdealSheaf σ I = ⊤ ↔ I = ⊤ := by
+    (I : S.IdealSheafData) : _root_.FunctorialResolution.Blowup.schemeImageIdeal σ I = ⊤ ↔ I = ⊤ := by
   constructor
   · intro hI
-    have h2 : (imageIdealSheaf σ I).comap σ = I := Blowup.comap_schemeImageIdeal σ I
+    have h2 : (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ I).comap σ = I := Blowup.comap_schemeImageIdeal σ I
     rw [hI] at h2
     rw [← h2]
     simp
@@ -103,8 +103,8 @@ private theorem isClosedImmersion_comp_eqToHom {Sc A : Scheme.{u}} (t : Sequence
 
 private theorem center_eq_imageIdealSheaf_comp_eqToHom {Sc A : Scheme.{u}} (t : SequenceOfBlowups Sc)
     (I : A.IdealSheafData) {a a' : ℕ} (ha : a = a') (f : A ⟶ t.schemeAt a)
-    (hf : t.center a = imageIdealSheaf f I) :
-    t.center a' = imageIdealSheaf (f ≫ eqToHom (congrArg t.schemeAt ha)) I := by
+    (hf : t.center a = _root_.FunctorialResolution.Blowup.schemeImageIdeal f I) :
+    t.center a' = _root_.FunctorialResolution.Blowup.schemeImageIdeal (f ≫ eqToHom (congrArg t.schemeAt ha)) I := by
   subst ha
   simpa using hf
 
@@ -226,7 +226,7 @@ theorem isPushforwardSequenceOfBlowups_withoutIsoBlowups {S X : Scheme.{u}} (j :
         (B.nontrivialIndex_monotone (Nat.le_succ i) : B.nontrivialIndex i ≤ B.nontrivialIndex (i + 1))
         (B.nontrivialIndex_le_length hi))
   have h4 : ∀ (i : ℕ) (hi : i < B.lengthWithoutIsoBlowups),
-      t.withoutIsoBlowups.center i = imageIdealSheaf (σ (B.nontrivialIndex i) (B.nontrivialIndex_le_length (le_of_lt hi)) ≫
+      t.withoutIsoBlowups.center i = _root_.FunctorialResolution.Blowup.schemeImageIdeal (σ (B.nontrivialIndex i) (B.nontrivialIndex_le_length (le_of_lt hi)) ≫
         eqToHom (congrArg t.schemeAt (hret i))) (B.withoutIsoBlowups.center i) := by
     intro i hi
     simp only [SequenceOfBlowups.withoutIsoBlowups_center]

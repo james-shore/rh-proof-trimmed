@@ -54,9 +54,9 @@ theorem UpperTheory.Gal.TranscendenceTraces.coverOne_of :
       (∃ a : Sec F V', Sec.map f a = Sec.res g b) → ∃ a : Sec F W, Sec.map f a = Sec.res (k ≫ g) b := by
     rintro V' W g k ⟨a, ha⟩
     exact ⟨Sec.res k a, by rw [map_res, ha, res_res]⟩
-  have h2 := (GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover V (fun W k => ∃ a : Sec F W, Sec.map f a = Sec.res k b) hd).1 h
+  have h2 := (_root_.GlobalTheory.EtC.loc_iff_etale_affine_points V (fun W k => ∃ a : Sec F W, Sec.map f a = Sec.res k b) hd).1 h
   choose Wf k _ het hx a ha using h2
-  obtain ⟨a', ha'⟩ := (GlobalTheory.T.sec_sigma_res_bijective R F Wf).2 a
+  obtain ⟨a', ha'⟩ := (_root_.GlobalTheory.EtC.sec_sigma_bijective R F Wf).2 a
   refine ⟨∐ Wf, Sigma.desc k, a', ?_, ?_, ?_⟩
   · have : IsZariskiLocalAtSource @Etale := HasRingHomProperty.instIsZariskiLocalAtSource
     exact IsZariskiLocalAtSource.sigmaDesc (P := @Etale) fun i => het i
@@ -64,7 +64,7 @@ theorem UpperTheory.Gal.TranscendenceTraces.coverOne_of :
     obtain ⟨y, hy⟩ := hx x
     refine ⟨Sigma.ι Wf x y, ?_⟩
     rw [← Scheme.Hom.comp_apply, Sigma.ι_desc, hy]
-  · refine (GlobalTheory.T.sec_sigma_res_bijective R G Wf).1 (funext fun i => ?_)
+  · refine (_root_.GlobalTheory.EtC.sec_sigma_bijective R G Wf).1 (funext fun i => ?_)
     show Sec.res (Sigma.ι Wf i) (Sec.map f a') = Sec.res (Sigma.ι Wf i) (Sec.res (Sigma.desc k) b)
     have e : Sec.res (Sigma.ι Wf i) a' = a i := congrFun ha' i
     rw [← map_res, e, ha, res_res, Sigma.ι_desc]

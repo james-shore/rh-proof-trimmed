@@ -52,18 +52,6 @@ open AlgebraicGeometry CategoryTheory Limits NumberField Topology ReciprocityThe
 
 namespace GlobalTheory.Reg.GenericFlagInj
 
-theorem unitri_eq_of_lower {S : Type} [CommRing S] {n : ℕ} (A A' L : Matrix (Fin n) (Fin n) S)
-    (hA : ∀ i j, j < i → A i j = 0) (hAd : ∀ i, A i i = 1)
-    (hA' : ∀ i j, j < i → A' i j = 0) (hAd' : ∀ i, A' i i = 1)
-    (hL : ∀ i j, i < j → L i j = 0) (e : A' = L * A) : A' = A := by
-  first
-  | exact @_root_.GlobalTheory.UnitriangularLowerMulEq.eq_of_unitriangular_of_eq_lower_mul
-  | exact _root_.GlobalTheory.UnitriangularLowerMulEq.eq_of_unitriangular_of_eq_lower_mul
-  | (apply _root_.GlobalTheory.UnitriangularLowerMulEq.eq_of_unitriangular_of_eq_lower_mul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitriangularLowerMulEq.eq_of_unitriangular_of_eq_lower_mul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitriangularLowerMulEq.eq_of_unitriangular_of_eq_lower_mul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UnitriangularLowerMulEq.eq_of_unitriangular_of_eq_lower_mul ..)
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
   {Xo : Moduli Dw l} {c : Coeff l}
 
@@ -141,7 +129,7 @@ theorem eq_of_frBor {T : Type} [CommRing T] [Nontrivial T] [Algebra c.F T] (h : 
     intro τ
     choose cf hd hz hcf using hb.2.1 τ
     have hyx : y.x = spMap (resKap φ).toRingHom ≫ y₀.x := by rw [hx, hy₀]
-    have key := unitri_eq_of_lower (Matrix.of fun i j => φ (genCoef Z τ i j))
+    have key := _root_.GlobalTheory.UnitriangularLowerMulEq.eq_of_unitriangular_of_eq_lower_mul (Matrix.of fun i j => φ (genCoef Z τ i j))
       (Matrix.of fun i j => φ' (genCoef Z τ i j)) (Matrix.of cf)
       (fun i j hij => by simp [genCoef, not_lt.2 hij.le, hij.ne'])
       (fun i => by simp [genCoef])

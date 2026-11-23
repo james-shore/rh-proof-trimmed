@@ -92,8 +92,7 @@ noncomputable section
 
 variable (P : Par)
 
-theorem kap_eq (f : Ty P → ℂ) :
-    kap P f = Matrix.diagonal fun π => algebraMap ℂ (Pr P.r) (f π) := rfl
+alias kap_eq := _root_.Formalism.FourierDecayAlt.P.Mx4.kap_eq
 
 theorem kap_mul (f g : Ty P → ℂ) : kap P f * kap P g = kap P (f * g) := (map_mul _ _ _).symm
 

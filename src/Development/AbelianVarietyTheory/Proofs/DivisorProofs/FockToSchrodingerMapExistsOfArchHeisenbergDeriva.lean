@@ -95,14 +95,14 @@ theorem fockEx_of_derEx : DerEx → FockEx := by
     intro c c'
     ext1 f
     have h1 := hcom _ _ (huOf c).1 (huOf c').1 f
-    rw [GlobalTheory.T.archimedeanTrace_symplecticForm_orthonormalFrames σ τ JA JB a b A C hCM hFr _ _ c c' (huOf c).1 (huOf c').1 (huOf c).2 (huOf c').2] at h1
+    rw [_root_.GlobalTheory.SympFrames.symp_frames σ τ JA JB a b A C hCM hFr _ _ c c' (huOf c).1 (huOf c').1 (huOf c).2 (huOf c').2] at h1
     simp only [H, LinearMap.sub_apply, Module.End.mul_apply, ContinuousLinearMap.coe_coe, LinearMap.smul_apply,
       Module.End.one_apply]
     rw [h1]
     congr 1
     push_cast
     ring
-  obtain ⟨f₀, hf₀, hv⟩ := GlobalTheory.T.exists_fock_vacuum_gaussian_frames σ τ JA JB d a b A C D hCM hFr hDf
+  obtain ⟨f₀, hf₀, hv⟩ := _root_.GlobalTheory.FockVacuum.exists_vacuum σ τ JA JB d a b A C D hCM hFr hDf
   have hHvac : ∀ w a b, H (Pi.single w (Matrix.single a b 1)) f₀ +
       (lineSign a b * Complex.I) • H (Pi.single w (Matrix.single a b Complex.I)) f₀ = 0 := fun w a b =>
     hv w a b _ _ (huOf _).1 (huOf _).1 (huOf _).2 (huOf _).2

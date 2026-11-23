@@ -77,22 +77,22 @@ theorem exists_canonical_section_ne_zero_at : _root_.GlobalTheory.CovTop.Hypothe
   have hmu : GapGe 0 (la - FlagTan.kap Dw - m • std) := gapGe_sub_smul m _ hg
   letI := algebraΓOfHom (str₀ TF.X Z)
   have nef : ∀ w : AllWt.Weight Dw, GapGe 0 w → IsNef c.F (L₀ TF.X Z w) :=
-    fun w hw => _root_.GlobalTheory.T.base_weight_line_bundle_is_nef hP hN hL E H Dw l Xo c TF Z hF w hw
-  obtain ⟨mu, hmu0, m', hm', hA⟩ := _root_.GlobalTheory.T.hodge_bundle_ample_on_regular_locus hP hN hS hT E H Dw l Xo c TF Z hF std hstd y hy
+    fun w hw => _root_.GlobalTheory.NefWt.weight_line_bundle_isNef hP hN hL E H Dw l Xo c TF Z hF w hw
+  obtain ⟨mu, hmu0, m', hm', hA⟩ := _root_.GlobalTheory.HSApp.hodge_bundle_ample_at_regular_point hP hN hS hT E H Dw l Xo c TF Z hF std hstd y hy
   have C := common₀ TF.X Z
   have e₁ : m' • cls (L₀ TF.X Z std) (isLB_L₀ TF.X Z std) =
       cls (L₀ TF.X Z (m' • std - mu)) (isLB_L₀ TF.X Z _) + cls (L₀ TF.X Z mu) (isLB_L₀ TF.X Z mu) := by
     have h := cls_common_add (common₀ TF.X Z) (m' • std - mu) mu
     rw [sub_add_cancel] at h
     rw [← h]
-    exact (cls_common_nsmul (common₀ TF.X Z) m' std).symm
+    exact (_root_.GlobalTheory.HSApp.AmpleTwist.cls_nsmul_of_common (common₀ TF.X Z) m' std).symm
   have e₂ : cls (L₀ TF.X Z (la - FlagTan.kap Dw)) (isLB_L₀ TF.X Z _) =
       m • cls (L₀ TF.X Z std) (isLB_L₀ TF.X Z std) + cls (L₀ TF.X Z (la - FlagTan.kap Dw - m • std)) (isLB_L₀ TF.X Z _) := by
     have h := cls_common_add (common₀ TF.X Z) (m • std) (la - FlagTan.kap Dw - m • std)
     rw [add_sub_cancel] at h
     rw [h]
-    exact congrArg (· + _) (cls_common_nsmul (common₀ TF.X Z) m std)
-  obtain ⟨s, hs⟩ := GlobalTheory.T.effective_generation_canonical_nef_numberField hNa hN c.F (Y₀ TF.X Z) (str₀ TF.X Z) (dimFlag Dw) hV.2.1 hV.2.2 hD
+    exact congrArg (· + _) (_root_.GlobalTheory.HSApp.AmpleTwist.cls_nsmul_of_common (common₀ TF.X Z) m std)
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.EffGen.effective_generation hNa hN c.F (Y₀ TF.X Z) (str₀ TF.X Z) (dimFlag Dw) hV.2.1 hV.2.2 hD
     (CanonLB.all _ _) (L₀ TF.X Z std) (L₀ TF.X Z (la - FlagTan.kap Dw - m • std)) (L₀ TF.X Z (la - FlagTan.kap Dw))
     (isLB_L₀ TF.X Z _) (isLB_L₀ TF.X Z _) (isLB_L₀ TF.X Z _) m' m y (nef std (hstd.mono (by norm_num))) (nef _ hmu)
     (by omega) ⟨_, _, isLB_L₀ TF.X Z (m' • std - mu), isLB_L₀ TF.X Z mu, hm', e₁, hA, nef mu hmu0⟩ e₂
@@ -110,7 +110,7 @@ theorem globally_generated_on_open_of_weight_gap_ge : _root_.GlobalTheory.CovTop
       simp
     omega
   let M : Modif (str₀ TF.X Z) (U₀ TF.X Z) (dimFlag Dw) := Modif.refl hV.1 hV.2.1 (dense_U₀ TF.X Z)
-  obtain ⟨ω⟩ := GlobalTheory.CompHS.canId_nonempty hP.p5 E H Dw l Xo c TF.Y TF.X Z M (fun K _ _ y => _root_.GlobalTheory.T.flag_tangent_kodaira_spencer_iso hP hG E H Dw l Xo c K y hpq)
+  obtain ⟨ω⟩ := GlobalTheory.CompHS.canId_nonempty hP.p5 E H Dw l Xo c TF.Y TF.X Z M (fun K _ _ y => _root_.GlobalTheory.FlagTan.kodaira_spencer_iso_flag_tangent_psi_set hP hG E H Dw l Xo c K y hpq)
   intro y hy
   rw [mem_support_baseIdeal]
   push_neg
@@ -121,7 +121,7 @@ theorem globally_generated_on_open_of_weight_gap_ge : _root_.GlobalTheory.CovTop
   have hyM : (y : M.X) ∈ M.off := by
     rw [M.off_eq]
     exact hy
-  obtain ⟨s, hs, hsy⟩ := _root_.GlobalTheory.T.exists_form_nonvanishing_at_cusp hP hG E H Dw l Xo c TF Z hF M ω la g' y hyM hg'
+  obtain ⟨s, hs, hsy⟩ := _root_.GlobalTheory.CuspNonvanishing.exists_vanBd_section_nonzero_of_canonical_twist_nonzero hP hG E H Dw l Xo c TF Z hF M ω la g' y hyM hg'
   exact ⟨s, hC.2 hs, hsy⟩
 end GlobalTheory.HSApp
 end

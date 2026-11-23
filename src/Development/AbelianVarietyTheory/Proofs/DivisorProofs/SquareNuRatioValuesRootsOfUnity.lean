@@ -85,7 +85,7 @@ theorem _root_.GlobalTheory.T.squareNu_ratio_values_roots_of_unity : GBig fun {D
       subst hy
       rw [mul_one, div_div_div_cancel_right, mul_div_mul_right_eq_div, mul_div_cancel_left]
     exact key (Lc.mu0 ((j : ℕ) + 1) k) (Lc.xi t k) (Lc.xi μ₀ k) ((Lc.eta ^ (rankV D i j % 2)) k) (G.ch.chi (D.R.m - i) k) hc1
-  obtain ⟨y, hy⟩ := GlobalTheory.Adopt.heckeCharacter_finiteOrder_values_in_field D (Lc.xi t) (Lc.xiH t) n _ D.what₂.embLL (hL.xi t) hn ho ((hN.chars.xi t).valuesIn) k
+  obtain ⟨y, hy⟩ := _root_.HeckeCharacterValueBounds.GlobalTheory.CompanionTheory.CharValues.main D (Lc.xi t) (Lc.xiH t) n _ D.what₂.embLL (hL.xi t) hn ho ((hN.chars.xi t).valuesIn) k
   have h1 : ((Lc.xi t k : Circle) : ℂ) ^ n = 1 := by
     have := DFunLike.congr_fun (exists_prime_power_pow_eq_one (hL.xi t) ho) k
     rw [MonoidHom.pow_apply, MonoidHom.one_apply] at this

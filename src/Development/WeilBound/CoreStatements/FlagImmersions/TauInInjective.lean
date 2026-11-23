@@ -163,7 +163,7 @@ theorem core (hSm : SmoothLine) (hLc : LocalCmp) (hNu : Numerics) (hF : HT.Fargu
     (d₁ / d₂ / ∏ i, e (τ, i)) r (fun σ => Real.exp (N.inf (σ.comp ι))) hroot hAa hbir hAc (div_ne_zero hd0 he)
     (by rw [hc₁]; exact hgn) (by rw [hc₁]; exact hr) (fun _ => Real.exp_pos _) hAn
   refine ⟨F', inferInstance, inferInstance, ψ, A, Sf, hO, hAs, hAa, fun z w hw hz hint => ?_, ?_⟩
-  · obtain ⟨σ, hσ, -⟩ := GlobalTheory.T.complex_point_existsUnique_embedding K J Ω F' y ψ hO w hw
+  · obtain ⟨σ, hσ, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.existsUnique_ptOver K J Ω F' y ψ hO w hw
     obtain ⟨g, h, dg, dh, hg, hh, hdg, hgh, hne⟩ := hAf w hw
     let A₀ : HermLine J := Top.combLine (fun i => hx (τ, i)) fun _ => 1
     have hA₀a : A₀.a = ∑ i, xdeg (τ, i) := by

@@ -162,7 +162,7 @@ theorem kills_iff_conv : ∀ (G : Type) [Group G] [Finite G] (φ Y : G → ℂ),
     simp only [star_sum, star_mul', star_star] at h2
     rw [← h2]
   · rintro ⟨h, hφ⟩ V _ _ _ ρ hV
-    have hY0 := GlobalTheory.T.isInCharacterIsotypicPart_self G Y hY V ρ hV
+    have hY0 := _root_.GlobalTheory.Shin.kills_self G Y hY V ρ hV
     rw [finsum_eq_sum_of_fintype] at hY0 ⊢
     simp_rw [hφ, finsum_eq_sum_of_fintype]
     rw [conv_op_eq, hY0, zero_mul]

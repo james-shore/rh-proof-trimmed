@@ -73,11 +73,11 @@ theorem cov_blow : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ
     rw [← map_natCast Polynomial.C, hA.char, map_zero]
   have hpL : ((p : A[T;T⁻¹])) = 0 := by
     rw [← map_natCast LaurentPolynomial.C, hA.char, map_zero]
-  obtain ⟨T₁, _, i₁, hP1⟩ := Leaf.pq_ex p (Polynomial A)
+  obtain ⟨T₁, _, i₁, hP1⟩ := _root_.GlobalTheory.CompanionTheory.PerfClos.exists_PQ p (Polynomial A)
     (Ideal.span {Polynomial.C f - Polynomial.X * Polynomial.C g}) hpA
-  obtain ⟨T₂, _, i₂, hP2⟩ := Leaf.pq_ex p (Polynomial A)
+  obtain ⟨T₂, _, i₂, hP2⟩ := _root_.GlobalTheory.CompanionTheory.PerfClos.exists_PQ p (Polynomial A)
     (Ideal.span {Polynomial.C g - Polynomial.X * Polynomial.C f}) hpA
-  obtain ⟨T₃, _, i₃, hP3⟩ := Leaf.pq_ex p A[T;T⁻¹]
+  obtain ⟨T₃, _, i₃, hP3⟩ := _root_.GlobalTheory.CompanionTheory.PerfClos.exists_PQ p A[T;T⁻¹]
     (Ideal.span {LaurentPolynomial.C f - LaurentPolynomial.T 1 * LaurentPolynomial.C g}) hpL
   have k1 : i₁ (Polynomial.C f - Polynomial.X * Polynomial.C g) = 0 :=
     (hP1.ker _).2 ⟨0, by rw [pow_zero, pow_one]; exact Ideal.subset_span (Set.mem_singleton _)⟩
@@ -116,8 +116,8 @@ theorem cov_blow : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ
       show i₃ (LaurentPolynomial.invert (Polynomial.toLaurent _)) = 0
       rw [e2, map_mul, k3, mul_zero]
     rw [map_mul, this, mul_zero]
-  obtain ⟨ψ₁, hψ₁, -⟩ := Leaf.pq_lift p (Polynomial A) T₁ T₃ i₁ _ φ₁ hP1 hP3.pf hs1
-  obtain ⟨ψ₂, hψ₂, -⟩ := Leaf.pq_lift p (Polynomial A) T₂ T₃ i₂ _ φ₂ hP2 hP3.pf hs2
+  obtain ⟨ψ₁, hψ₁, -⟩ := _root_.GlobalTheory.CompanionTheory.PerfectRing.pq_lift p (Polynomial A) T₁ T₃ i₁ _ φ₁ hP1 hP3.pf hs1
+  obtain ⟨ψ₂, hψ₂, -⟩ := _root_.GlobalTheory.CompanionTheory.PerfectRing.pq_lift p (Polynomial A) T₂ T₃ i₂ _ φ₂ hP2 hP3.pf hs2
   have hρ1 : ∀ α, ψ₁ (i₁ α) = i₃ (Polynomial.toLaurent α) := fun α => RingHom.congr_fun hψ₁ α
   have hρ2 : ∀ β, ψ₂ (i₂ β) = i₃ (LaurentPolynomial.invert (Polynomial.toLaurent β)) :=
     fun β => RingHom.congr_fun hψ₂ β
@@ -143,14 +143,14 @@ theorem cov_blow : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ
   let ρ₂ : T₂ →ₐ[A] T₃ := { ψ₂ with commutes' := d2' }
   refine ⟨T₁ × T₂, inferInstance, inferInstance, perfectoid_prod p T₁ T₂ hP1.pf hP2.pf, ?_,
     (1, 0), (i₁ Polynomial.X, 0), (0, i₂ Polynomial.X), ?_, ?_, ?_⟩
-  · refine Leaf.mv_prod p A T₁ T₂ T₃ r ρ₁ ρ₂ hr hP3.pf
-      (Leaf.b_surj p A T₁ T₂ T₃ f g i₁ i₂ i₃ ψ₁ ψ₂ hA hP1 hP2 hP3 hρ1 hρ2) ?_
+  · refine _root_.GlobalTheory.CompanionTheory.SnakeCov.mv_prod p A T₁ T₂ T₃ r ρ₁ ρ₂ hr hP3.pf
+      (_root_.GlobalTheory.CompanionTheory.PerfectRing.b_surj p A T₁ T₂ T₃ f g i₁ i₂ i₃ ψ₁ ψ₂ hA hP1 hP2 hP3 hρ1 hρ2) ?_
     intro K _ _ hK
-    obtain ⟨j₁, hj1, hj1C, hj1X⟩ := Leaf.bc_poly p A T₁ K i₁'
+    obtain ⟨j₁, hj1, hj1C, hj1X⟩ := _root_.GlobalTheory.CompanionTheory.Perfection.pq_baseChange_polynomial p A T₁ K i₁'
       (Polynomial.C f - Polynomial.X * Polynomial.C g) hA hK hP1
-    obtain ⟨j₂, hj2, hj2C, hj2X⟩ := Leaf.bc_poly p A T₂ K i₂'
+    obtain ⟨j₂, hj2, hj2C, hj2X⟩ := _root_.GlobalTheory.CompanionTheory.Perfection.pq_baseChange_polynomial p A T₂ K i₂'
       (Polynomial.C g - Polynomial.X * Polynomial.C f) hA hK hP2
-    obtain ⟨j₃, hj3, hj3C, hj3T⟩ := Leaf.bc_laur p A T₃ K i₃' f g hA hK hP3
+    obtain ⟨j₃, hj3, hj3C, hj3T⟩ := _root_.GlobalTheory.CompanionTheory.PerfBC.bc_laur p A T₃ K i₃' f g hA hK hP3
     rw [Polynomial.map_sub, Polynomial.map_mul, Polynomial.map_C, Polynomial.map_C, Polynomial.map_X] at hj1 hj2
     refine ⟨fun a h1 h2 k => ?_, fun w₁ w₂ hw => ?_⟩
     · have hr' : IsRt p (fun k => algebraMap A K (r k)) := fun k => by
@@ -160,7 +160,7 @@ theorem cov_blow : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ
         have := Ideal.mem_map_of_mem (algebraMap A K) hN
         rwa [Ideal.map_span, Set.image_pair, map_pow] at this
       rw [Algebra.smul_def]
-      exact Leaf.b_inj p K _ _ _ _ j₁ j₂ (fun k => algebraMap A K (r k)) N hK hr' hN' hj1 hj2 a
+      exact _root_.GlobalTheory.CompanionTheory.PerfectRing.b_inj p K _ _ _ _ j₁ j₂ (fun k => algebraMap A K (r k)) N hK hr' hN' hj1 hj2 a
         (by rw [hj1C]; exact h1) (by rw [hj2C]; exact h2) k
     · let σ₁ : T₁ ⊗[A] K →+* T₃ ⊗[A] K := (Algebra.TensorProduct.map ρ₁ (AlgHom.id A K)).toRingHom
       let σ₂ : T₂ ⊗[A] K →+* T₃ ⊗[A] K := (Algebra.TensorProduct.map ρ₂ (AlgHom.id A K)).toRingHom
@@ -191,7 +191,7 @@ theorem cov_blow : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ
             congr 1
             exact (hρ2 _).trans (by rw [Polynomial.toLaurent_X, LaurentPolynomial.invert_T]; rfl)
         exact fun β => RingHom.congr_fun this β
-      obtain ⟨a, ha1, ha2⟩ := Leaf.b_mid p K _ _ _ _ _ j₁ j₂ j₃ σ₁ σ₂ hK hj1 hj2 hj3 c1 c2 w₁ w₂ hw
+      obtain ⟨a, ha1, ha2⟩ := _root_.GlobalTheory.CompanionTheory.BMid.exists_const_of_rho_eq p K _ _ _ _ _ j₁ j₂ j₃ σ₁ σ₂ hK hj1 hj2 hj3 c1 c2 w₁ w₂ hw
       exact ⟨a, by rw [← ha1, hj1C], by rw [← ha2, hj2C]⟩
   · ext <;> simp
   · refine Prod.ext ?_ ?_

@@ -82,7 +82,7 @@ def AllLab (L : LabelDatum g) : Prop := ∀ (d : ℕ) (χ : Gn g d → ℂ), IsC
 
 theorem label_exists (L : LabelDatum g) (hA : AllLab L) {n : ℕ} (χ : Gn g n → ℂ)
     (hχ : IsIrr χ) : ∃ f, HasLabel L χ f := by
-  obtain ⟨C, hC, hd, hi⟩ := GlobalTheory.T.exists_cuspidal_list_harishChandra_pairing_ne_zero g n χ hχ
+  obtain ⟨C, hC, hd, hi⟩ := _root_.GlobalTheory.GLq.SuppCusp.exists_cusp_list g n χ hχ
   have hs : (C.map fun c => (Label.lab L c, c)).map Prod.snd = C := by
     rw [List.map_map]; exact List.map_id' C
   refine ⟨_, C.map fun c => (Label.lab L c, c), ?_, ?_, rfl, ?_⟩
@@ -238,7 +238,7 @@ theorem isCuspOf_of_series (L : LabelDatum g) (h5 : 5 ≤ g) (hA : AllLab L) {d 
 
 theorem eSerC_mul_zOf (L : LabelDatum g) {n : ℕ} {χ : Gn g n → ℂ} {f : (ZMod g)[X]} (hχ : IsIrr χ)
     (hf : HasLabel L χ f) : eSerC L n f * zOf χ = zOf χ := by
-  have hfin := (GlobalTheory.T.finite_irrCharacters_and_finsum_centralIdempotents_eq_one (Gn g n)).1
+  have hfin := (_root_.GlobalTheory.GLq.irr_finite_and_finsum_zOf_eq_one (Gn g n)).1
   rw [eSerC_eq_sum L n hfin, Finset.sum_mul, Finset.sum_eq_single_of_mem χ (by simp [hχ, hf])]
   · simpa using (GlobalTheory.T.centralIdempotentOfIrrCharacter_orthogonal_central _ χ χ hχ hχ).1
   · intro b hb hne

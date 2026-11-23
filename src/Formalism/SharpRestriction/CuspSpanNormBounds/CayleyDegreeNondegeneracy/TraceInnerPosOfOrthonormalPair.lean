@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianLattices.HermitianLatticesProofs.GenusCovol
 
 @[expose] public section
 
@@ -350,7 +351,7 @@ theorem short_vector_every_place (K : Type) [Field K] [NumberField K] [StarRing 
     { hLlat with span_eq_top := by rw [Submodule.span_span_of_tower, hsp] }
   obtain ⟨iL1, iL2⟩ := hlat _ hLfull
   obtain ⟨familyMassRatio, familyMassSecondLine⟩ := hlat M hM.1
-  have hcov := Formalism.HermitianLatticesTheory.final_genusCovol K V h hsymm hpos N ι hι _ M hLlat hM
+  have hcov := _root_.Formalism.HermitianLatticesTheory.genusCovol K V h hsymm hpos N ι hι _ M hLlat hM
   obtain ⟨hcL, hN⟩ := covolume_trace_lattice hK h e hli hsp he N ι hι
   set n := Module.finrank ℚ K with hn_def
   subst hN

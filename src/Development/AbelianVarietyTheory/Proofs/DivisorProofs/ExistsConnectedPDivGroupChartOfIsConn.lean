@@ -59,11 +59,11 @@ theorem evA_comp_coe {K A : Type} [Field K] [CommRing A] [Algebra K A] {d : ℕ}
   intro i
   rw [AlgHom.comp_apply, MvPolynomial.coeToMvPowerSeries.algHom_apply, MvPolynomial.aeval_X]
   simp only [MvPolynomial.coe_X, map_X]
-  exact GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate K (Fin d) A x hx i
+  exact _root_.GlobalTheory.Katz.evA_X K (Fin d) A x hx i
 
 theorem exists_chart_of_isConn (p : ℕ) [Fact p.Prime] (K : Type) [Field K] (h : (p : K) = 0)
     (G : PDivGroup p K) (hG : G.IsConn) : ∃ d, Nonempty (Chart G d) := by
-  obtain ⟨x, hres, haug, hsurj⟩ := GlobalTheory.T.exists_coordinates_generate_connected_levels p K h G hG
+  obtain ⟨x, hres, haug, hsurj⟩ := _root_.GlobalTheory.PDivGroup.exists_coords_generate p K h G hG
   have hmem : ∀ n i, x n i ∈ augIdeal K (G.A n) := fun n i => by
     simp [augIdeal, haug n i]
   have hnil : ∀ n i, IsNilpotent (x n i) := fun n i => hG n _ (hmem n i)

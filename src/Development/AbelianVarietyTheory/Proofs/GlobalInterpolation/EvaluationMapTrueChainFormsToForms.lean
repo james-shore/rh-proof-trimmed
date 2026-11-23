@@ -58,7 +58,7 @@ theorem GlobalTheory.PerQ.ptT_forms_built : ∀ {B : Base} {X : PreX B.toPre} (I
       (I.per l u a).lowerMap ((I.per l u a).evz (M.emb B.R.m x)) := by
     intro x hx
     obtain ⟨y, -, hy⟩ := GlobalTheory.LvT.BuiltChain.exists_image (Q := I.perIn u a) B.fields.emb B.embLL (B.hcW u)
-      GlobalTheory.LvT.BuiltChain.branching_ok (l.ch u a) (l.per u a)
+      _root_.Formalism.L2.DIV.BrJ.branching_interlacing_pairs (l.ch u a) (l.per u a)
       (fun τ => (hW τ).2.2.1) (fun τ => (hW τ).2.2.2.1) ((l.fmL u a).fam B.R.m) (l.fmL u a).famP x hx
     exact ⟨y, hy⟩
   have rat : ∀ x, ∃ y, M.ptEmb y = (I.per l u a).lowerMap ((I.per l u a).evz (M.emb B.R.m x)) := by

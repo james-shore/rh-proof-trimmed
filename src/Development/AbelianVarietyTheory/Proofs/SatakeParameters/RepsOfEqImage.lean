@@ -89,28 +89,16 @@ theorem xiL_map (hH : ∀ x y, H₁ (T x) (T y) = H x y) (hα : ∀ x, α₁ (T 
 
 
 omit [Module ℂ V] [Module ℂ W] in
-theorem isReps_image {Λ₁ Λ₂ : AddSubgroup V} {M₁ M₂ : AddSubgroup W} {S : Finset V} (hS : IsReps Λ₁ Λ₂ S)
-    (h1 : ∀ x, T x ∈ M₁ ↔ x ∈ Λ₁) (h2 : ∀ x, T x ∈ M₂ ↔ x ∈ Λ₂) : IsReps M₁ M₂ (S.image T) := by
-  first
-  | exact @_root_.GlobalTheory.RepresentativesImage.isReps_image
-  | exact _root_.GlobalTheory.RepresentativesImage.isReps_image
-  | (apply _root_.GlobalTheory.RepresentativesImage.isReps_image <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RepresentativesImage.isReps_image <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RepresentativesImage.isReps_image <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RepresentativesImage.isReps_image ..)
-
-
-omit [Module ℂ V] [Module ℂ W] in
 theorem repsOf_eq_image {Λ₁ Λ₂ : AddSubgroup V} {M₁ M₂ : AddSubgroup W} (hS : ∃ S, IsReps Λ₁ Λ₂ S)
     (h1 : ∀ x, T x ∈ M₁ ↔ x ∈ Λ₁) (h2 : ∀ x, T x ∈ M₂ ↔ x ∈ Λ₂) :
     ∃ S : Finset V, IsReps Λ₁ Λ₂ S ∧ repsOf M₁ M₂ = S.image T := by
   classical
   obtain ⟨S, hS⟩ := hS
-  have hex : ∃ S₁, IsReps M₁ M₂ S₁ := ⟨_, isReps_image T hS h1 h2⟩
+  have hex : ∃ S₁, IsReps M₁ M₂ S₁ := ⟨_, _root_.GlobalTheory.RepresentativesImage.isReps_image T hS h1 h2⟩
   have hR : IsReps M₁ M₂ (repsOf M₁ M₂) := by
     unfold repsOf
     exact Classical.epsilon_spec hex
-  refine ⟨(repsOf M₁ M₂).image T.symm, isReps_image T.symm hR (fun x => ?_) (fun x => ?_), ?_⟩
+  refine ⟨(repsOf M₁ M₂).image T.symm, _root_.GlobalTheory.RepresentativesImage.isReps_image T.symm hR (fun x => ?_) (fun x => ?_), ?_⟩
   · rw [← h1, AddEquiv.apply_symm_apply]
   · rw [← h2, AddEquiv.apply_symm_apply]
   · rw [Finset.image_image]

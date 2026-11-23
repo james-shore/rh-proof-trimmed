@@ -80,7 +80,7 @@ theorem vert_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
           valR (spMap ρ ≫ g₀) O (e O f) = ∑ a, ρ (c a) * (valR (wt a) O f).snd := by
     intro S _ g₀ hg
     obtain ⟨φ, hφg⟩ := hφ S g₀ hg
-    obtain ⟨w, hred, hw⟩ := exists_epsPt t.G.left W e he S g₀ hg
+    obtain ⟨w, hred, hw⟩ := _root_.GlobalTheory.EpsPoint.exists_epsPoint t.G.left W e he S g₀ hg
     have hwW : ⊤ ≤ w ⁻¹ᵁ W := GlobalTheory.CechKS.le_preimage_of_red hred hg
     have hid : spMap (RingHom.id S) = 𝟙 _ := Spec.map_id _
     have hid' : spMap (dualMap (RingHom.id S)) = 𝟙 _ := by
@@ -108,7 +108,7 @@ theorem vert_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
         simp [TrivSqZeroExt.algebraMap_eq_inl]
       · rw [h₂]
         simp [TrivSqZeroExt.algebraMap_eq_inl]
-    obtain ⟨c, hc⟩ := exists_coeffs E H X t U n v hv hb S φ g₀ w hφg hred hover
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.VertSpan.exists_coeffs_translate E H X t U n v hv hb S φ g₀ w hφg hred hover
     exact ⟨c, fun S' _ ρ φ' wt h₁ h₂ O hO hgO f => by
       rw [← hw S' ρ O hO hgO f, hc S' ρ φ' wt h₁ h₂ O hgO f]⟩
   let F : ∀ (S : Type) [CommRing S], (Sp S ⟶ t.G.left) → Fin n → S := fun S _ g =>
@@ -131,7 +131,7 @@ theorem vert_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
       ⊤ ≤ g ⁻¹ᵁ W → F S' (spMap ρ ≫ g) = fun a => ρ (F S g a) := by
     intro S S' _ _ ρ g hg
     have hg' : ⊤ ≤ (spMap ρ ≫ g) ⁻¹ᵁ W := fun p _ => hg (Set.mem_univ (spMap ρ p))
-    have hz := coeffs_eq_zero E H X t U n v hv hb S' (spMap ρ ≫ g) W hW hg'
+    have hz := _root_.GlobalTheory.VertSpan.coeffs_zero E H X t U n v hv hb S' (spMap ρ ≫ g) W hW hg'
       (fun a => F S' (spMap ρ ≫ g) a - ρ (F S g a)) (fun S'' _ ρ' φ' wt h₁ h₂ O hO hgO f => by
         have hc : spMap (ρ'.comp ρ) ≫ g = spMap ρ' ≫ spMap ρ ≫ g := by
           rw [← Category.assoc, GlobalTheory.LogKSLoc.spMap_comp']
@@ -172,7 +172,7 @@ theorem vert_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
   have key : ∀ (S : Type) [CommRing S] (g : Sp S ⟶ t.G.left), ⊤ ≤ g ⁻¹ᵁ W →
       (fun a => valR g W (c' a) - valR g W (cs a)) = 0 := by
     intro S _ g hg
-    refine coeffs_eq_zero E H X t U n v hv hb S g W hW hg _ fun S' _ ρ φ' wt h₁ h₂ O hO hgO f => ?_
+    refine _root_.GlobalTheory.VertSpan.coeffs_zero E H X t U n v hv hb S g W hW hg _ fun S' _ ρ φ' wt h₁ h₂ O hO hgO f => ?_
     simp only [map_sub, sub_mul, Finset.sum_sub_distrib, ← GlobalTheory.Points.valR_spMap_comp ρ g W hg]
     rw [← hval S' (spMap ρ ≫ g) φ' wt h₁ h₂ O hO hgO c' f, ← hval S' (spMap ρ ≫ g) φ' wt h₁ h₂ O hO hgO cs f,
       ← hc' O hO f, ← hex O hO f, sub_self]

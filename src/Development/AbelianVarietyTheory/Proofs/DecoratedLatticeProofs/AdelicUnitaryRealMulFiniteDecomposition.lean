@@ -60,9 +60,6 @@ namespace GlobalTheory.AdelicSplitParts
 
 variable {D : D7}
 
-theorem infMat_eq_map (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (h : GA D V) :
-    infMat D.sp.cm.sig V.gram θ h = (infHom V h).1.map θ := rfl
-
 theorem split_parts : ∀ (D : D7) (V : HSp D), (∀ h : GA D V, ∃ a ∈ GinfC V, ∃ k ∈ GfC V, h = a * k) ∧ ∀ a ∈ GinfC V, ∀ k ∈ GfC V, Lev.finE V (a * k) = Lev.finE V k ∧ ∀ θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ, infMat D.sp.cm.sig V.gram θ (a * k) = infMat D.sp.cm.sig V.gram θ a := by
   intro D V
   refine ⟨fun h => ?_, fun a ha k hk => ⟨?_, fun θ => ?_⟩⟩
@@ -73,6 +70,6 @@ theorem split_parts : ∀ (D : D7) (V : HSp D), (∀ h : GA D V, ∃ a ∈ GinfC
       simp only [finE, MonoidHom.comp_apply, this, map_one]
     rw [map_mul, h1, one_mul]
   · have h1 : infHom V k = 1 := hk
-    rw [infMat_eq_map, infMat_eq_map, map_mul, h1, mul_one]
+    rw [_root_.GlobalTheory.SmoothForms.RealPts.infMat_eq, _root_.GlobalTheory.SmoothForms.RealPts.infMat_eq, map_mul, h1, mul_one]
 
 end GlobalTheory.AdelicSplitParts

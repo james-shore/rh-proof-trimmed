@@ -46,6 +46,6 @@ import Mathlib.Topology.Sheaves.Init
 namespace Formalism.FourierDecayAlt.P
 
 theorem z_only : LevelPointCoordinates.ZOnly :=
-  z_only_of_levi_curve levi_curve hermitian_part_levi
+  z_only_of_levi_curve _root_.Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential.curveLevi _root_.Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential.hpartLevi
 
 end Formalism.FourierDecayAlt.P

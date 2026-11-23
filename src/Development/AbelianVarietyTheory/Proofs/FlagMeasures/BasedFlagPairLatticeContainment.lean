@@ -93,14 +93,9 @@ theorem exists_nat_mul_fin {ι : Type} [Fintype ι] (f : ι → D.host.E) :
   rw [← Finset.mul_prod_erase Finset.univ m (Finset.mem_univ i), Nat.cast_mul, mul_comm ((m i : ℕ) : D.host.E), mul_assoc]
   exact range_mul (natCast_mem _) (hm i)
 
-theorem iota_mem_O (Z : LocDat D) (p : PlF D) (o : 𝓞 D.host.E) :
-    (D.s.atP p).ιE (o : D.host.E) ∈ (Z.M p).L.O := by
-  rw [(Z.M p).L.O_def]
-  exact ((NumberField.RingOfIntegers.isIntegral_coe o).map ((D.s.atP p).ιE.toIntAlgHom)).tower_top
-
 theorem iota_mem_O' (Z : LocDat D) (p : PlF D) {z : D.host.E}
     (h : z ∈ Set.range (algebraMap (𝓞 D.host.E) D.host.E)) : (D.s.atP p).ιE z ∈ (Z.M p).L.O := by
-  obtain ⟨o, rfl⟩ := h; exact iota_mem_O Z p o
+  obtain ⟨o, rfl⟩ := h; exact _root_.Formalism.L2.SG.Pf.BBTie.bt_iota_int Z p o
 
 open ValuativeRel in
 theorem cj_mem (Z : LocDat D) (p : PlF D) {x : (D.s.atP p).Ep} (hx : x ∈ (Z.M p).L.O) :
@@ -123,49 +118,15 @@ theorem complement_unitary_preserves_form {Z : LocDat D} {p : PlF D} (P : LocNG.
     change LocFacts₂ Z.M p (x.symm a) (x.symm b) = _
     rw [← hx, LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply]
 
-theorem localForm_add_left (Z : LocDat D) (p : PlF D) (x x' y : Vp D p) :
-    LocFacts₂ Z.M p (x + x') y = LocFacts₂ Z.M p x y + LocFacts₂ Z.M p x' y := (locH Z p).h_add_left x x' y
-
-theorem localForm_smul_left (Z : LocDat D) (p : PlF D) (a : (D.s.atP p).Ep) (x y : Vp D p) :
-    LocFacts₂ Z.M p (a • x) y = a * LocFacts₂ Z.M p x y := (locH Z p).h_smul_left a x y
-
-theorem localForm_zero_left (Z : LocDat D) (p : PlF D) (y : Vp D p) : LocFacts₂ Z.M p 0 y = 0 := by
-  simp [LocFacts₂]
-
 theorem localForm_sub_left (Z : LocDat D) (p : PlF D) (x x' y : Vp D p) :
     LocFacts₂ Z.M p (x - x') y = LocFacts₂ Z.M p x y - LocFacts₂ Z.M p x' y := by
-  have h := localForm_add_left Z p (x - x') x' y
+  have h := _root_.Formalism.L2.SG.Pf.LocFacts.localForm_add_left₂ Z p (x - x') x' y
   rw [sub_add_cancel] at h
   rw [h, add_sub_cancel_right]
-
-theorem localForm_smul_right₂ (Z : LocDat D) (p : PlF D) (a : (D.s.atP p).Ep) (x y : Vp D p) :
-    LocFacts₂ Z.M p x (a • y) = (Z.M p).L.cj a * LocFacts₂ Z.M p x y := by
-  have h1 := (locH Z p).h_herm (a • y) x
-  have h2 := (locH Z p).h_herm y x
-  change LocFacts₂ Z.M p x (a • y) = (Z.M p).L.cj (LocFacts₂ Z.M p (a • y) x) at h1
-  change LocFacts₂ Z.M p x y = (Z.M p).L.cj (LocFacts₂ Z.M p y x) at h2
-  rw [h1, localForm_smul_left, map_mul, ← h2]
-
-theorem localForm_add_right₂ (Z : LocDat D) (p : PlF D) (x y y' : Vp D p) :
-    LocFacts₂ Z.M p x (y + y') = LocFacts₂ Z.M p x y + LocFacts₂ Z.M p x y' := by
-  have h1 := (locH Z p).h_herm (y + y') x
-  have h2 := (locH Z p).h_herm y x
-  have h3 := (locH Z p).h_herm y' x
-  change LocFacts₂ Z.M p x (y + y') = (Z.M p).L.cj (LocFacts₂ Z.M p (y + y') x) at h1
-  change LocFacts₂ Z.M p x y = (Z.M p).L.cj (LocFacts₂ Z.M p y x) at h2
-  change LocFacts₂ Z.M p x y' = (Z.M p).L.cj (LocFacts₂ Z.M p y' x) at h3
-  rw [h1, localForm_add_left, map_add (f := _), ← h2, ← h3]
-
-theorem localForm_zero_right₂ (Z : LocDat D) (p : PlF D) (x : Vp D p) : LocFacts₂ Z.M p x 0 = 0 := by
-  simp [LocFacts₂]
 
 theorem mem_of_loc (Z : LocDat D) (Λ : LV D) (hΛ : Submodule.IsLattice D.host.E Λ) (x : (VS D).V)
     (h : ∀ p, baseChange₂ D p x ∈ lattice₂ D Z.M p Λ) : x ∈ Λ :=
   GlobalTheory.Unfold.LsubG.mem_of_local Z Λ hΛ x h
-
-theorem exists_nat_smul_mem (Λ : LV D) (hΛ : Submodule.IsFullLattice D.host.E Λ) (v : (VS D).V) :
-    ∃ n : ℕ, 0 < n ∧ (n : D.host.E) • v ∈ Λ :=
-  _root_.GlobalTheory.NatSmulMemOfSpan.exists_nat_smul_mem Λ hΛ v
 
 end GlobalTheory.CompScale
 
@@ -188,8 +149,8 @@ theorem localForm_sum_left (Z : LocDat D) (p : PlF D) {ι : Type} (s : Finset ι
     LocFacts₂ Z.M p (∑ j ∈ s, f j) z = ∑ j ∈ s, LocFacts₂ Z.M p (f j) z := by
   classical
   induction s using Finset.induction_on with
-  | empty => simp [localForm_zero_left]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, localForm_add_left, ih]
+  | empty => simp [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_zero_left₂]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, _root_.Formalism.L2.SG.Pf.LocFacts.localForm_add_left₂, ih]
 
 end GlobalTheory.CompScale
 
@@ -248,15 +209,15 @@ theorem scale_part : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wha
         obtain ⟨b, hb, rfl⟩ := hb
         rw [hform, ← map_natCast (D.s.atP p).ιE, ← map_mul]
         exact iota_mem_O' Z p (hint0 b hb a ha)
-      | zero => rw [localForm_zero_right₂, mul_zero]; exact (Z.M p).L.O.zero_mem
-      | add x y _ _ hx hy => rw [localForm_add_right₂, mul_add]; exact (Z.M p).L.O.add_mem hx hy
+      | zero => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_zero_right, mul_zero]; exact (Z.M p).L.O.zero_mem
+      | add x y _ _ hx hy => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_add_right, mul_add]; exact (Z.M p).L.O.add_mem hx hy
       | smul o x _ hx =>
-        rw [Subring.smul_def, localForm_smul_right₂, mul_left_comm]
+        rw [Subring.smul_def, _root_.Formalism.L2.SG.Pf.LocFacts.localForm_smul_right, mul_left_comm]
         exact (Z.M p).L.O.mul_mem (cj_mem Z p o.2) hx
-    | zero => rw [localForm_zero_left, mul_zero]; exact (Z.M p).L.O.zero_mem
-    | add x y _ _ hx hy => rw [localForm_add_left, mul_add]; exact (Z.M p).L.O.add_mem hx hy
+    | zero => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_zero_left₂, mul_zero]; exact (Z.M p).L.O.zero_mem
+    | add x y _ _ hx hy => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_add_left₂, mul_add]; exact (Z.M p).L.O.add_mem hx hy
     | smul o x _ hx =>
-      rw [Subring.smul_def, localForm_smul_left, mul_left_comm]
+      rw [Subring.smul_def, _root_.Formalism.L2.SG.Pf.LocFacts.localForm_smul_left₂, mul_left_comm]
       exact (Z.M p).L.O.mul_mem o.2 hx
   exact hloc0 y₀ hy₀ x₀ hx₀
 
@@ -288,7 +249,7 @@ theorem dual_part : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what
     rw [hbspan]; apply le_antisymm
     · rw [Submodule.span_le]; exact fun x hx => hx.2
     · intro x hx
-      obtain ⟨n, hn, hnx⟩ := exists_nat_smul_mem Λ₀ h0 x
+      obtain ⟨n, hn, hnx⟩ := _root_.GlobalTheory.NatSmulMemOfSpan.exists_nat_smul_mem Λ₀ h0 x
       have hmem : (n : D.host.E) • x ∈ Submodule.span D.host.E
           ((Λ₀ ⊓ toO (VS D) (orth (VS D) U) : LV D) : Set (VS D).V) :=
         Submodule.subset_span ⟨hnx, (orth (VS D) U).smul_mem _ hx⟩
@@ -342,9 +303,9 @@ theorem dual_part : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what
     intro s hs x hx
     induction hs using Submodule.span_induction with
     | mem s hs => obtain ⟨i, rfl⟩ := hs; exact horthW _ (hvW i) x hx
-    | zero => exact localForm_zero_left Z p _
-    | add a a' _ _ ha ha' => rw [localForm_add_left, ha, ha', add_zero]
-    | smul e a _ ha => rw [localForm_smul_left, ha, mul_zero]
+    | zero => exact _root_.Formalism.L2.SG.Pf.LocFacts.localForm_zero_left₂ Z p _
+    | add a a' _ _ ha ha' => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_add_left₂, ha, ha', add_zero]
+    | smul e a _ ha => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_smul_left₂, ha, mul_zero]
   have hbcW : ∀ a ∈ orth (VS D) U, baseChange₂ D p a ∈ Sb := by
     intro a ha
     rw [← hspanW] at ha
@@ -384,10 +345,10 @@ theorem dual_part : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what
     | mem s hs =>
       obtain ⟨k, hk, rfl⟩ := hs
       rw [hform]; exact iota_mem_O' Z p (hy k hk)
-    | zero => rw [localForm_zero_right₂]; exact (Z.M p).L.O.zero_mem
-    | add a a' _ _ ha ha' => rw [localForm_add_right₂]; exact (Z.M p).L.O.add_mem ha ha'
+    | zero => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_zero_right]; exact (Z.M p).L.O.zero_mem
+    | add a a' _ _ ha ha' => rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_add_right]; exact (Z.M p).L.O.add_mem ha ha'
     | smul o a _ ha =>
-      rw [Subring.smul_def, localForm_smul_right₂]
+      rw [Subring.smul_def, _root_.Formalism.L2.SG.Pf.LocFacts.localForm_smul_right]
       exact (Z.M p).L.O.mul_mem (cj_mem Z p o.2) ha
   have hrel : (fun i : b => LocFacts₂ Z.M p (baseChange₂ D p y) (h (baseChange₂ D p (i : (VS D).V)))) =
       Matrix.vecMul β (B.map (D.s.atP p).ιE) := by
@@ -399,7 +360,7 @@ theorem dual_part : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what
     rw [e1, ← hβ, localForm_sum_left]
     simp only [Matrix.vecMul, dotProduct, Matrix.map_apply]
     refine Finset.sum_congr rfl fun j _ => ?_
-    rw [localForm_smul_left, hform]
+    rw [_root_.Formalism.L2.SG.Pf.LocFacts.localForm_smul_left₂, hform]
   have hβeq : β = Matrix.vecMul (fun i : b => LocFacts₂ Z.M p (baseChange₂ D p y) (h (baseChange₂ D p (i : (VS D).V))))
       (B⁻¹.map (D.s.atP p).ιE) := by
     rw [hrel, Matrix.vecMul_vecMul, ← Matrix.map_mul, Matrix.mul_nonsing_inv _ hBu,

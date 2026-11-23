@@ -56,15 +56,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.EtC.CechDescHInv
 
-theorem yoneda_spec_widePullback (A B T : Type) [CommRing A] [CommRing B] [CommRing T] (a : A →+* B) (k : ℕ)
-    (ι : Fin (k + 1) → (B →+* T)) (hι : ∀ j, (ι j).comp a = (ι 0).comp a)
-    (hu : ∀ (R : Type) [CommRing R] (g : Fin (k + 1) → (B →+* R)), (∀ j, (g j).comp a = (g 0).comp a) →
-      ∃! φ : T →+* R, ∀ j, φ.comp (ι j) = g j) :
-    ∃ e : yoneda.obj (Spec (CommRingCat.of T)) ≅ widePullback (yoneda.obj (Spec (CommRingCat.of A)))
-        (fun _ : Fin (k + 1) => yoneda.obj (Spec (CommRingCat.of B))) (fun _ => yoneda.map (Spec.map (CommRingCat.ofHom a))),
-      ∀ j, e.hom ≫ WidePullback.π _ j = yoneda.map (Spec.map (CommRingCat.ofHom (ι j))) :=
-  GlobalTheory.T.spec_widePushout_iso_widePullback_yoneda A B T a k ι hι hu
-
 theorem tensor_univ (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (k : ℕ) (R : Type) [CommRing R]
     (g : Fin (k + 1) → (B →+* R)) (hg : ∀ j, (g j).comp (algebraMap A B) = (g 0).comp (algebraMap A B)) :
     ∃! φ : PiTensorProduct A (fun _ : Fin (k + 1) => B) →+* R,
@@ -177,7 +168,7 @@ theorem hInv_of_integral (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRin
   obtain ⟨hf1', hf2'⟩ := spec_integral_surj _ _ (Polynomial.mapRingHom (algebraMap A B))
     (poly_isIntegral A B _ hi) (poly_ker A B _ hker)
   have hq' : IsUnit (q : Polynomial A) := by simpa using hq.map (Polynomial.C : A →+* Polynomial A)
-  have E := GlobalTheory.T.etaleCohomologyEquivalence_basic_properties (ZMod q) (tw q i)
+  have E := _root_.GlobalTheory.EtC.eqv_basic (ZMod q) (tw q i)
   have h1 := GlobalTheory.EtC.b4 q (Spec.map (CommRingCat.ofHom (algebraMap A B))) (isUnit_gamma q A hq) i
   have h1' := GlobalTheory.EtC.b4 q (Spec.map (CommRingCat.ofHom (Polynomial.mapRingHom (algebraMap A B))))
     (isUnit_gamma q _ hq') i
@@ -198,7 +189,7 @@ theorem hInv_of_integral (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRin
     change WidePullback.lift _ _ _ ≫ WidePullback.base _ = WidePullback.base _ ≫ yoneda.map (Spec.map _)
     apply WidePullback.lift_base
   have hm : Eqv _ m (tw q i) := by
-    refine GlobalTheory.T.levelwiseEquivalence_isEquivalence _ m _ (fun n => ?_)
+    refine _root_.GlobalTheory.EtC.levelwise_eqv _ m _ (fun n => ?_)
     clear h1 h1' hf1 hf2 hf1' hf2' hint hker hq hq' hi hsq
     set k := n.unop.len
     let T := PiTensorProduct A (fun _ : Fin (k + 1) => B)
@@ -207,11 +198,11 @@ theorem hInv_of_integral (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRin
     have hι : ∀ j, (ι j).comp (algebraMap A B) = (ι 0).comp (algebraMap A B) := by
       intro j; ext x; simp [ι]
     have hu := tensor_univ A B k
-    obtain ⟨e, he⟩ := yoneda_spec_widePullback A B T (algebraMap A B) k ι hι hu
+    obtain ⟨e, he⟩ := _root_.GlobalTheory.SpecWidePullback.yoneda_spec_isoWidePullback A B T (algebraMap A B) k ι hι hu
     have hι' : ∀ j, (Polynomial.mapRingHom (ι j)).comp (Polynomial.mapRingHom (algebraMap A B)) =
         (Polynomial.mapRingHom (ι 0)).comp (Polynomial.mapRingHom (algebraMap A B)) := by
       intro j; rw [Polynomial.mapRingHom_comp, Polynomial.mapRingHom_comp, hι j]
-    obtain ⟨e', he'⟩ := yoneda_spec_widePullback (Polynomial A) (Polynomial B) (Polynomial T)
+    obtain ⟨e', he'⟩ := _root_.GlobalTheory.SpecWidePullback.yoneda_spec_isoWidePullback (Polynomial A) (Polynomial B) (Polynomial T)
       (Polynomial.mapRingHom (algebraMap A B)) k (fun j => Polynomial.mapRingHom (ι j)) hι'
       (poly_univ A B T (algebraMap A B) k ι (fun R _ g hg => hu R g hg))
     let mn : widePullback (yoneda.obj (Spec (CommRingCat.of (Polynomial A))))

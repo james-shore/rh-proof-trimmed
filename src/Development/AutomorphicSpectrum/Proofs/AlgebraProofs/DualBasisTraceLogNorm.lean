@@ -116,12 +116,8 @@ theorem two_weight_eq_one_add_root (H : Host E) : 2 * (H.w0 : E) = 1 + (H.rt : E
 
 theorem rt_integral (H : Host E) : IsIntegral ℚ (H.rt : E) := Algebra.IsIntegral.isIntegral _
 
-theorem exists_coord' (H : Host E) {y : E} (hy : y ∈ Algebra.adjoin ℚ {(H.rt : E)}) :
-    ∃ u v : ℚ, y = u + v * (H.rt : E) :=
-  _root_.UpperTheory.Reformulated.B.ExistsCoordinate.exists_coord H hy
-
 theorem exists_coord (H : Host E) (x : Kf H) : ∃ u v : ℚ, (x : E) = u + v * (H.rt : E) := by
-  refine exists_coord' H ?_
+  refine _root_.UpperTheory.Reformulated.B.ExistsCoordinate.exists_coord H ?_
   rw [← IntermediateField.adjoin_simple_toSubalgebra_of_isAlgebraic (rt_integral H).isAlgebraic]
   exact x.2
 

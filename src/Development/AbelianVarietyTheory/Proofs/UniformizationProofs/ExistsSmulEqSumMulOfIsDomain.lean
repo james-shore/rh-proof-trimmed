@@ -160,7 +160,7 @@ theorem exists_smul_eq_sum_mul_of_isDomain : ∀ (V : Type) [CommRing V] [IsDoma
         rw [← Category.assoc, g₁, Category.assoc]
       · simp only [Sum.elim_inr]
         rw [← Category.assoc, g₂, Category.assoc])) (pullSec L _ _ v g)
-  obtain ⟨n, a', b', hab⟩ := (GlobalTheory.T.section_lin_comb_fiber_product_separated (FractionRing V) Z L hL G₁ G₂ K₁ K₂
+  obtain ⟨n, a', b', hab⟩ := (_root_.GlobalTheory.SectionsProduct.main (FractionRing V) Z L hL G₁ G₂ K₁ K₂
     (fun k => (snd (TK V) Y₁).left ≫ φ₁ k) ε₁ (fun k => (snd (TK V) Y₂).left ≫ φ₂ k) ε₂).1 v'
   choose r hr σ hσ using fun i => exists_sec_of_generic_fibre V Z L hL Y₁ K₁ φ₁ ε₁ (a' i)
   choose s hs τ hτ using fun i => exists_sec_of_generic_fibre V Z L hL Y₂ K₂ φ₂ ε₂ (b' i)

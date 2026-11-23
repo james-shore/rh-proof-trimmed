@@ -69,11 +69,6 @@ private theorem torsSat_coeff {M ι : Type} [AddCommGroup M] (L : Set M) (v : ι
   rw [hcd, Finsupp.smul_apply, smul_eq_mul, mul_eq_zero] at this
   exact this.resolve_left hn
 
-private theorem torsSat_mult {M : Type} [AddCommGroup M] (L : Set M) (N : Submodule ℤ M)
-    (h : ∀ x ∈ L, ∃ n : ℤ, n ≠ 0 ∧ n • x ∈ N) (x : M) (hx : x ∈ Submodule.span ℤ L) :
-    ∃ n : ℤ, n ≠ 0 ∧ n • x ∈ N :=
-  _root_.UpperTheory.Reformulated.B.Qi35.torsSat_mult L N h x hx
-
 private theorem torsSat_tors {M : Type} [AddCommGroup M] (N : Submodule ℤ M) (x : M)
     (hx : (Submodule.Quotient.mk x : M ⧸ N) ∈ AddCommGroup.torsion (M ⧸ N)) :
     ∃ n : ℤ, n ≠ 0 ∧ n • x ∈ N := by
@@ -102,7 +97,7 @@ theorem UpperTheory.V.KH.torsSat :
       rw [Submodule.Quotient.mk_sub, hlift, hlift]
       exact sub_mem t.2 s.2
     obtain ⟨n, hn, hnx⟩ := torsSat_tors _ _ h2
-    obtain ⟨m, hm, hmx⟩ := torsSat_mult L _ hL _ hnx
+    obtain ⟨m, hm, hmx⟩ := _root_.UpperTheory.Reformulated.B.Qi35.torsSat_mult L _ hL _ hnx
     rw [smul_smul] at hmx
     have h3 := torsSat_coeff L v hv _ h1 _ (mul_ne_zero hm hn) hmx
     have h4 : lift t.1 - lift s.1 ∈ Submodule.span ℤ L :=

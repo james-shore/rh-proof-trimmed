@@ -72,7 +72,7 @@ private theorem coneDim₃ : GroundTheory.Heights₂.Heights.ConeDimOfChowForm.S
 
 theorem ChartPointTrdeg.full : ChartPointTrdeg.Statement :=
   ChartPointTrdeg.proof coneDim₃ GroundTheory.Heights₂.Heights.AffineChartTrdeg.proof
-theorem SpecChart.full : SpecChart.Statement := SpecChart.proof
+alias SpecChart.full := _root_.GroundTheory.Heights₂.Heights.Vertical.SpecChart.proof
 theorem GenericFormsKer.full : GenericFormsKer.Statement := GenericFormsKer.proof
 theorem DerivSpanTrdeg.full : DerivSpanTrdeg.Statement := DerivSpanTrdeg.proof
 

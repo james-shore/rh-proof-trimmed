@@ -104,8 +104,8 @@ theorem psi_of_etale_basis {R E M Γ : Type*} [CommRing R] [CommRing E] [Algebra
 set_option maxHeartbeats 2000000 in
 theorem psiD_exists : ∀ (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let W := (HW l).W K s LL h; ∀ T : LocLat ↥(GK K) ℚ_[l] ↥LL.1 ↥(OL LL), ∃ ψ : W.DD T →ₗ[↥(OL LL)] W.DD T, (∀ x, ψ (W.φD T x) = x) ∧ (∀ (a : W.EE) x, ψ (W.φE a • x) = a • ψ x) ∧ ∀ g x, ψ (W.γD T g x) = W.γD T g (ψ x) := by
   intro D HW F l _ K s LL h W T
-  obtain ⟨r, b, b', hb⟩ := GlobalTheory.T.wachEtaleModule_frobenius_basis D HW F l K s LL h T
-  obtain ⟨ψE, hψφ, hψγ, hψ1⟩ := GlobalTheory.T.wachFunctorRing_psiOperator_exists_of_good D HW F l K s LL h
+  obtain ⟨r, b, b', hb⟩ := _root_.GlobalTheory.EtaleFrob.phi_basis D HW F l K s LL h T
+  obtain ⟨ψE, hψφ, hψγ, hψ1⟩ := _root_.GlobalTheory.psiE_exists D HW F l K s LL h
   have hψone : ψE 1 = 1 := by
     have := hψ1 0 (Fact.out : l.Prime).pos 1
     set_option synthInstance.maxHeartbeats 200000 in

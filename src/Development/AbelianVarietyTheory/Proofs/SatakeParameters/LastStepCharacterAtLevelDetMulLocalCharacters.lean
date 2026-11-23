@@ -230,7 +230,7 @@ theorem GlobalTheory.TwTop.muOf_det_top : UnderTie (fun {D L hT Gi Gl Kc Y cX ex
   intro D L hT Gi Gl Kc Y cX ex t u μ St A dtU a hPin hTie hMu hi β β' κ κ' g z g' z' hg hg'
   have hlt : t.m2 + 1 < D.R.m := by omega
   have hok := (t.idx_ok μ).cst_ok
-  obtain ⟨h1, -⟩ := GlobalTheory.T.muCharacter_det_level_eq_local_tame_product A dtU a hPin hTie hMu (t.m2 + 1) hlt (t.m2 + 1) (Nat.le_of_succ_le hi) β κ
+  obtain ⟨h1, -⟩ := _root_.GlobalTheory.LevMuDet.muOf_det_lev A dtU a hPin hTie hMu (t.m2 + 1) hlt (t.m2 + 1) (Nat.le_of_succ_le hi) β κ
     (fun P => ((LinearEquiv.det (g P) : t.X.Eˣ) : t.X.E))
     (fun P => GlobalTheory.TopMuDet.det_inFrame t.seam _ _ (hok.D_pos P) (hg P).2)
   have hdep : ∀ P : SB t μ, 1 ≤ topDep t.sel (t.tup μ) (t.cst μ) P := by
@@ -240,7 +240,7 @@ theorem GlobalTheory.TwTop.muOf_det_top : UnderTie (fun {D L hT Gi Gl Kc Y cX ex
     · exact le_rfl
     · have := hok.M_pos
       omega
-  obtain ⟨-, h2⟩ := GlobalTheory.T.muCharacter_det_level_eq_local_tame_product A dtU a hPin hTie hMu (t.m2 + 1) hlt (t.m2 + 1 + 1) hi β' κ'
+  obtain ⟨-, h2⟩ := _root_.GlobalTheory.LevMuDet.muOf_det_lev A dtU a hPin hTie hMu (t.m2 + 1) hlt (t.m2 + 1 + 1) hi β' κ'
     (fun P => ((LinearEquiv.det (g' P) : t.X.Eˣ) : t.X.E))
     (fun P => GlobalTheory.TopMuDet.det_inFrame t.seam _ _ (hdep P) (hg' P).2)
   rw [Finset.prod_mul_distrib, map_mul, ← mul_assoc, h1, one_mul, h2]

@@ -256,7 +256,7 @@ theorem move_fibre {r : Xo₂.X ⟶ Xo.X} {m : SABMap Xo₂.univ.t Xo.univ.t r} 
   have e : (x ≫ ρ) ≫ r = z := (Xo.rep (Sp ℂ) (z ≫ Xo.s) inferInstance o).unique ⟨hs, ⟨q⟩⟩ ⟨rfl, ⟨p⟩⟩
   refine ⟨e, fun a => ?_⟩
   obtain ⟨q', hq'⟩ := LevelFibre.sab_cast e q.toSABMap
-  have e₂ : q'.φ = p.toSABMap.φ := sabMap_eq_of_level_eq firstFiveLaws.1 obj_isAbelianScheme_dim_rigidified_sym E H D l
+  have e₂ : q'.φ = p.toSABMap.φ := _root_.GlobalTheory.obj_rigid_of_laws firstFiveLaws.1 obj_isAbelianScheme_dim_rigidified_sym E H D l
     _ _ _ _ _ _ _ _ Xo.univ o _ (Or.inl inferInstance) q' p.toSABMap fun a =>
       ⟨_, by rw [hq']; exact (q.eta a).trans (by rw [e]), p.eta a⟩
   rw [hq', hq, hn₂', ← hn] at e₂

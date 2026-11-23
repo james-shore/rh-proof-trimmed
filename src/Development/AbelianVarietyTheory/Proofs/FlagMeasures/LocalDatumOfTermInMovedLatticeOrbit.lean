@@ -346,7 +346,7 @@ theorem local_orbit (hM : M.OK) (c : WCoord P S) {d d' : LocNG.Datum P} (hdd : L
     rw [hφ, hφ, c.h_eq, c.h_eq, hu]
   have DO := GlobalTheory.T.hermitian_lattice_datum_equivariant_flag_isometries M.L r k S
   obtain ⟨s, hs, h, hh, hsh⟩ := DO.2.2.2.2 _ hiso hf1 hf2
-  have W := GlobalTheory.T.terms_orbits_heights_amplitudes_in_coordinates M hM H r k P S c
+  have W := _root_.GlobalTheory.HL.WCoordTerms.terms_orbits_heights_amps M hM H r k P S c
   obtain ⟨h1, hh1, hd⟩ := (W.2.1 d d').1 hdd
   have hterm := (W.1 d' t ht).1
   have hM' := DO.1 _ _ hterm
@@ -434,7 +434,7 @@ theorem datum_in_orbit : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D
     have s4 := ut_moves _ _ ρ U' hMv.2.2.1 hMv.2.2.2.2
     exact UT.comp ρ (UT.trans_id (UT.comp n⁻¹ s1 s2) s3) s4
   have hγ : ρ * n⁻¹ ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := Subgroup.mul_mem _ hMv.1 (nlamPf_inv hn).1.1
-  obtain ⟨ρp, hρe, hρu, -, -, -⟩ := GlobalTheory.T.rational_isometry_extends_local_isometry D ⟨Y.δ, Y.M, Y.agree⟩ p (ρ * n⁻¹) hγ
+  obtain ⟨ρp, hρe, hρu, -, -, -⟩ := _root_.GlobalTheory.LocExt.ext_isometry D ⟨Y.δ, Y.M, Y.agree⟩ p (ρ * n⁻¹) hγ
 
   have UA : UT (D.s.atP p).Ep ρp
       (locU ⟨Y.δ, Y.M, Y.agree⟩ p t₀.toTerm.lam (lf D (X.Fu u)) (Quot.out t₀.toTerm.cls).1 (Tu D u) (Tu D u')).f

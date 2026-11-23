@@ -67,11 +67,11 @@ theorem re_one_div (a b : ℝ) : (1 / ((a : ℂ) + b * I)).re = a / (a ^ 2 + b ^
 theorem re_le_one {𝓕 : LFam} {χ : AddChar 𝓕.G ℂ} {w : ℂ} (hw : 𝓕.F χ w = 0) : w.re ≤ 1 := by
   by_contra h
   push_neg at h
-  exact (GlobalTheory.T.rayClassFamily_logDeriv_re_gt_one 𝓕 χ w h).2.2.1 hw
+  exact (_root_.GlobalTheory.Hk.LogDeriv.logDeriv_F 𝓕 χ w h).2.2.1 hw
 
 theorem one_le_order {𝓕 : LFam} {χ : AddChar 𝓕.G ℂ} {ρ : ℂ} (h : 1 / 2 < ρ.re)
     (hρ : 𝓕.F χ ρ = 0) : 1 ≤ analyticOrderNatAt (𝓕.F χ) ρ := by
-  have hU := (GlobalTheory.T.rayClassLFunctionFamily_continuation_growth 𝓕 χ).1
+  have hU := (_root_.GlobalTheory.Hk.RayCont.continuation_growth 𝓕 χ).1
   have hA : AnalyticAt ℂ (𝓕.F χ) ρ := hU ρ h
   have htop : analyticOrderAt (𝓕.F χ) ρ ≠ ⊤ := by
     intro ht
@@ -79,7 +79,7 @@ theorem one_le_order {𝓕 : LFam} {χ : AddChar 𝓕.G ℂ} {ρ : ℂ} (h : 1 /
     have hc : Convex ℝ {s : ℂ | 1 / 2 < s.re} := convex_halfSpace_re_gt _
     have hE := hU.eqOn_zero_of_preconnected_of_eventuallyEq_zero hc.isPreconnected h ht
     have h2 : (1 : ℝ) < (2 : ℂ).re := by norm_num
-    exact (GlobalTheory.T.rayClassFamily_logDeriv_re_gt_one 𝓕 χ 2 h2).2.2.1 (hE (show (1 : ℝ) / 2 < (2 : ℂ).re by norm_num))
+    exact (_root_.GlobalTheory.Hk.LogDeriv.logDeriv_F 𝓕 χ 2 h2).2.2.1 (hE (show (1 : ℝ) / 2 < (2 : ℂ).re by norm_num))
   have hz : analyticOrderAt (𝓕.F χ) ρ ≠ 0 := hA.analyticOrderAt_ne_zero.mpr hρ
   rw [Nat.one_le_iff_ne_zero]
   intro h0
@@ -99,7 +99,7 @@ theorem re_LSeries_le : ∃ C : ℝ, 0 < C ∧ ∀ (𝓕 : LFam) (χ : AddChar �
   set s : ℂ := ((1 + a : ℝ) : ℂ) + t * I with hs
   have hsre : s.re = 1 + a := by simp [hs]
   have hsre1 : 1 < s.re := by rw [hsre]; linarith
-  obtain ⟨-, -, hFne, hL⟩ := GlobalTheory.T.rayClassFamily_logDeriv_re_gt_one 𝓕 χ s hsre1
+  obtain ⟨-, -, hFne, hL⟩ := _root_.GlobalTheory.Hk.LogDeriv.logDeriv_F 𝓕 χ s hsre1
   have hsd : ‖s - (5 / 4 + t * I)‖ ≤ 1 / 2 := by
     have e : s - (5 / 4 + t * I) = ((a - 1 / 4 : ℝ) : ℂ) := by rw [hs]; push_cast; ring
     rw [e, Complex.norm_real, Real.norm_eq_abs, abs_le]
@@ -213,7 +213,7 @@ theorem inv_le_ell : ∃ K : ℝ, 0 < K ∧ ∀ (𝓕 : LFam) (χ : AddChar 𝓕
     have ha2 : 60 * ε ≤ 1 / 2 := by linarith
     set ρ' : ℂ := ((1 - δ : ℝ) : ℂ) + ((-γ : ℝ) : ℂ) * I with hρ'
     have hz' : 𝓕.F χ ρ' = 0 := by
-      have hc := (GlobalTheory.T.rayClassLFunctionFamily_continuation_growth 𝓕 χ).2.2.2 hχ2 ρ
+      have hc := (_root_.GlobalTheory.Hk.RayCont.continuation_growth 𝓕 χ).2.2.2 hχ2 ρ
       have e : (starRingEnd ℂ) ρ = ρ' := by
         rw [hρ, hρ']
         apply Complex.ext <;> simp

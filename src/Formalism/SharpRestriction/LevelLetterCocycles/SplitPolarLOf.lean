@@ -83,7 +83,7 @@ theorem splitPolar_of [FiniteDimensional Qp LL] (C : LevC.Ctx W) (hArc : ArcCore
   have hxe : x = p - W.map ι w := by rw [hpx]; abel
   have hxN : InFNc W Y c 1 x := by
     refine ⟨x, ⟨Formalism.MainNotions.UnusedSlot80.Split2.N_of_Nl W hx, fun δ hδ => ?_⟩,
-      Formalism.MainNotions.UnusedSlot80.ArcF.letter_of_Nl W Y c hx, (one_smul _ _).symm⟩
+      _root_.Formalism.MainNotions.LiftingTheory.frame_letE_fix W Y c hx, (one_smul _ _).symm⟩
     rw [hxe, map_sub, Formalism.MainNotions.UnusedSlot80.Relay2.Pp_Δ W Y _ _ p hp δ hδ, ← W.map_γ, hI.2.1 δ hδ]
   exact polar_core W C h9 A hA _ hc' (A.len c) c hac T₂ Y ι π hT₂ hWY hses b sol hb bY solY hbY hind2 hspan2
     hindY hspanY hNY w p x hP hp hxN hpx

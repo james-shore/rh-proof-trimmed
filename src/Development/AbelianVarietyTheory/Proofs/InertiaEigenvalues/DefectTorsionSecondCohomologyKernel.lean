@@ -75,12 +75,6 @@ theorem isUnit_φ (a : LetA O n) (ha : IsUnit (algebraMap (LetA O n) W.EE a)) :
   rw [← W.φE_ext a]
   exact ha.map W.φE
 
-theorem isUnit_X : IsUnit (algebraMap (LetA O n) W.EE W.X) := by
-  show IsUnit (algebraMap (LetA O n) W.EE ((W.φA ^ (W.s - 1)) letπ))
-  induction W.s - 1 with
-  | zero => exact W.EE_π
-  | succ k ih => rw [pow_succ']; exact isUnit_φ W _ ih
-
 private theorem letπ_dvd_phiA_of_dvd (a : LetA O n) (h : (letπ : LetA O n) ∣ a) :
     (letπ : LetA O n) ∣ W.φA a := by
   obtain ⟨c, rfl⟩ := h
@@ -108,12 +102,12 @@ theorem isUnit_of_sub_one (w : LetA O n) (hw : w - 1 ∈ Ideal.span {W.X}) : IsU
   simp
 
 theorem exists_X_smul (T : LocLat G Qp LL O) (x : W.DD T) : ∃ y, W.X • y = x := by
-  obtain ⟨u, hu⟩ := isUnit_X W
+  obtain ⟨u, hu⟩ := _root_.Formalism.MainNotions.LiftingTheory.liftb_X_unit W
   refine ⟨(↑u⁻¹ : W.EE) • x, ?_⟩
   rw [← algebraMap_smul W.EE W.X ((↑u⁻¹ : W.EE) • x), smul_smul, ← hu, Units.mul_inv, one_smul]
 
 theorem X_smul_inj (T : LocLat G Qp LL O) {x y : W.DD T} (h : W.X • x = W.X • y) : x = y := by
-  obtain ⟨u, hu⟩ := isUnit_X W
+  obtain ⟨u, hu⟩ := _root_.Formalism.MainNotions.LiftingTheory.liftb_X_unit W
   rw [← algebraMap_smul W.EE W.X x, ← algebraMap_smul W.EE W.X y, ← hu] at h
   have h' := congrArg (fun z => (↑u⁻¹ : W.EE) • z) h
   simpa only [smul_smul, Units.inv_mul, one_smul] using h'
@@ -125,21 +119,6 @@ theorem mem_aN (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) :
 theorem mem_invN (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) :
     x ∈ invN W T a ↔ a • x ∈ W.N T := by
   simp only [invN, smulA, Submodule.mem_comap, LinearMap.smul_apply, LinearMap.id_apply]
-
-theorem map_smulA {T T' : LocLat G Qp LL O} (f : LatHom T.L T'.L) (a : LetA O n) (x : W.DD T) :
-    W.map f (a • x) = a • W.map f x := by
-  rw [← algebraMap_smul W.EE a x, (W.map f).map_smul, algebraMap_smul]
-
-theorem φD_smulA (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) :
-    W.φD T (a • x) = W.φA a • W.φD T x := by
-  rw [← algebraMap_smul W.EE a x, W.φD_smul, W.φE_ext, algebraMap_smul]
-  rfl
-
-theorem γ_smulA (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) :
-    W.γ T (a • x) = W.γA W.gam a • W.γ T x := by
-  show W.γD T W.gam (a • x) = W.γA W.gam a • W.γD T W.gam x
-  rw [← algebraMap_smul W.EE a x, W.γD_smul, W.γE_ext, algebraMap_smul]
-  rfl
 
 theorem mem_Z1D (T : LocLat G Qp LL O) (y z : W.DD T) :
     (y, z) ∈ W.divisibleCocycles T ↔ (W.γ T y - y) - (W.φD T z - z) = 0 := by
@@ -157,14 +136,10 @@ theorem mem_X_invN (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) (hx : a �
   rw [smul_comm a W.X y] at hmx
   exact (X_smul_inj W T hmx) ▸ hm
 
-private theorem sum_letE_eq_one' [NeZero n] : ∑ j : ZMod n, (letE j : LetA O n) = 1 := by
-  funext i
-  simp [letE, Finset.sum_apply, Pi.single_apply]
-
 theorem φ_mem [NeZero n] (T : LocLat G Qp LL O) (M h : ZMod n → ℕ) (h5 : p5 W T M h) (x : W.DD T)
     (hx : x ∈ W.N T) : W.Q ^ mx M • W.φD T x ∈ W.N T := by
   have hx' : x = ∑ j, (letE j : LetA O n) • x := by
-    rw [← Finset.sum_smul, sum_letE_eq_one', one_smul]
+    rw [← Finset.sum_smul, _root_.GlobalTheory.NL.NygaardFrobeniusPower.sum_letE, one_smul]
 
   rw [hx', map_sum, Finset.smul_sum]
   refine Submodule.sum_mem _ (fun j _ => ?_)
@@ -197,7 +172,7 @@ theorem differential_one_mem_scaled_lattice (T : LocLat G Qp LL O) (M : ℕ) (h2
   have hm : W.Q ^ M • y ∈ W.N T := (mem_invN W T _ y).1 hy
   obtain ⟨m', hm', rfl⟩ := (mem_aN W T W.X z).1 hz
   have hA : W.Q ^ M • W.γ T y = (↑(u⁻¹ ^ M) : LetA O n) • W.γ T (W.Q ^ M • y) := by
-    rw [γ_smulA, map_pow, hw, mul_pow, ← smul_smul, smul_smul (↑(u⁻¹ ^ M) : LetA O n),
+    rw [_root_.GlobalTheory.NL.GamSat.γ_smul, map_pow, hw, mul_pow, ← smul_smul, smul_smul (↑(u⁻¹ ^ M) : LetA O n),
       Units.val_pow_eq_pow_val, ← mul_pow, Units.inv_mul, one_pow, one_smul]
   have hX1 : W.X ∣ (↑u⁻¹ : LetA O n) - 1 := by
     have e : (↑u⁻¹ : LetA O n) - 1 = -(↑u⁻¹ : LetA O n) * (↑u - 1) := by
@@ -222,7 +197,7 @@ theorem differential_one_mem_scaled_lattice (T : LocLat G Qp LL O) (M : ℕ) (h2
     exact (mem_aN W T W.X _).2 ⟨_, Submodule.smul_mem _ c hm, rfl⟩
   · rw [smul_sub]
     refine Submodule.sub_mem _ ?_ ?_
-    · rw [φD_smulA, phiA_X_eq_X_mul_Q W]
+    · rw [_root_.Formalism.MainNotions.LiftingTheory.wmap_φD_smul, phiA_X_eq_X_mul_Q W]
       refine (mem_aN W T W.X _).2 ⟨W.Q • (W.Q ^ M • W.φD T m'), Submodule.smul_mem _ _ (hφ m' hm'), ?_⟩
       simp only [smul_smul]
       congr 1
@@ -235,7 +210,7 @@ theorem aN_sat (hsat : ∀ x : W.DD T₀, W.map ι x ∈ W.N T₁ → x ∈ W.N 
     (hx : W.map ι x ∈ aN W T₁ W.X) : x ∈ aN W T₀ W.X := by
   obtain ⟨y, rfl⟩ := exists_X_smul W T₀ x
   obtain ⟨m, hm, hmx⟩ := (mem_aN W T₁ W.X _).1 hx
-  rw [map_smulA] at hmx
+  rw [_root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul] at hmx
   have e := X_smul_inj W T₁ hmx
   exact (mem_aN W T₀ W.X _).2 ⟨y, hsat y (e ▸ hm), rfl⟩
 
@@ -280,12 +255,12 @@ private theorem lift_multiple_lemma (l M : ℕ) (c₁ : IsCrys PD T₁.ρ) (c₂
       rw [h1, hcl, map_nsmul, hres, smul_smul]
     rw [e2, e3, sub_self]
   have hyD : W.map π y - (l ^ c' * l ^ c) • y₂ ∈ invN W T₂ (W.Q ^ M) := by
-    rw [mem_invN, smul_sub, ← map_smulA, smul_comm (W.Q ^ M) (l ^ c' * l ^ c)]
+    rw [mem_invN, smul_sub, ← _root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul, smul_comm (W.Q ^ M) (l ^ c' * l ^ c)]
     exact Submodule.sub_mem _ (W.map_N π c₁ c₂ _ ((mem_invN W T₁ _ _).1 hy))
       (Submodule.smul_of_tower_mem _ _ ((mem_invN W T₂ _ _).1 hy₂))
   have hπz : W.map π z ∈ aN W T₂ W.X := by
     obtain ⟨m, hm, rfl⟩ := (mem_aN W T₁ W.X z).1 hz
-    exact (mem_aN W T₂ W.X _).2 ⟨_, W.map_N π c₁ c₂ _ hm, (map_smulA W π _ _).symm⟩
+    exact (mem_aN W T₂ W.X _).2 ⟨_, W.map_N π c₁ c₂ _ hm, (_root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul W π _ _).symm⟩
   have hzD : W.map π z - (l ^ c' * l ^ c) • z₂ ∈ aN W T₂ W.X :=
     Submodule.sub_mem _ hπz (Submodule.smul_of_tower_mem _ _ hz₂)
   obtain ⟨m, hm, hym, hzm⟩ := (hc' _ _ hyD hzD hD).2 hcl0
@@ -311,20 +286,6 @@ private theorem lift_multiple_lemma (l M : ℕ) (c₁ : IsCrys PD T₁.ρ) (c₂
   · simp only [map_sub, map_nsmul, mγ, hπm₁]
     rw [← smul_sub, ← smul_sub, ← hzm, sub_sub_cancel, smul_smul, pow_add, pow_add]
 
-theorem lift_multiple (l M : ℕ) (c₁ : IsCrys PD T₁.ρ) (c₂ : IsCrys PD T₂.ρ)
-    (hnat : W.ClNat) (h2 : p2 W T₁) (hφ : ∀ x ∈ W.N T₁, W.Q ^ M • W.φD T₁ x ∈ W.N T₁)
-    (hc : p2c W T₂ M)
-    (hcok : ∃ c : ℕ, ∀ z ∈ W.N T₂, ∃ y ∈ W.N T₁, W.map π y = ((l : ℕ) : LetA O n) ^ c • z)
-    (hrex : ∀ κ₂ ∈ H1fIntegralCyclotomicLayer W T₂, ∃ (c : ℕ), ∃ κ₁ ∈ H1fIntegralCyclotomicLayer W T₁,
-      (resHom π W.GKs).H1map κ₁ = (l ^ c : ℕ) • κ₂)
-    (hc3 : ∀ κ ∈ H1fIntegralCyclotomicLayer W T₁, ∃ (c : ℕ) (y z : W.DD T₁) (hyz : (y, z) ∈ W.divisibleCocycles T₁),
-      y ∈ invN W T₁ (W.Q ^ M) ∧ z ∈ aN W T₁ W.X ∧ W.cl T₁ ⟨(y, z), hyz⟩ = (l ^ c : ℕ) • κ)
-    (y₂ z₂ : W.DD T₂) (hy₂ : y₂ ∈ invN W T₂ (W.Q ^ M)) (hz₂ : z₂ ∈ aN W T₂ W.X)
-    (hyz₂ : (y₂, z₂) ∈ W.divisibleCocycles T₂) :
-    ∃ (k : ℕ) (y z : W.DD T₁), (y, z) ∈ W.divisibleCocycles T₁ ∧ y ∈ invN W T₁ (W.Q ^ M) ∧ z ∈ aN W T₁ W.X ∧
-      W.map π y = (l ^ k : ℕ) • y₂ ∧ W.map π z = (l ^ k : ℕ) • z₂ := by
-  exact lift_multiple_lemma W π l M c₁ c₂ hnat h2 hφ hc hcok hrex hc3 y₂ z₂ hy₂ hz₂ hyz₂
-
 theorem defect_of_lift (M : ℕ) (hinj : Function.Injective (W.map ι))
     (hex : Function.Exact (W.map ι) (W.map π))
     (hsat : ∀ x : W.DD T₀, W.map ι x ∈ W.N T₁ → x ∈ W.N T₀) (h2 : p2 W T₁)
@@ -345,7 +306,7 @@ theorem defect_of_lift (M : ℕ) (hinj : Function.Injective (W.map ι))
     exact (mem_Z1D W T₂ _ _).1 hyz₂
   obtain ⟨w, hw⟩ := (hex _).1 hπd
   have hdX := differential_one_mem_scaled_lattice W T₁ M h2 hφ hQ y₁ z₁ hy₁ hz₁
-  rw [← hw, ← map_smulA] at hdX
+  rw [← hw, ← _root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul] at hdX
   have hw0 := mem_X_invN W T₀ _ w (aN_sat W ι hsat _ hdX)
   obtain ⟨k, y, z, hyz, hy, hz, hπy, hπz⟩ := hl _ _ hy₂ hz₂ hyz₂
   have ey : W.map π ((PD.p ^ k : ℕ) • y₁ - y) = 0 := by rw [map_sub, map_nsmul, hπy, sub_self]
@@ -355,7 +316,7 @@ theorem defect_of_lift (M : ℕ) (hinj : Function.Injective (W.map ι))
   have hy₀m : y₀ ∈ invN W T₀ (W.Q ^ M) := by
     rw [mem_invN]
     apply hsat
-    rw [map_smulA, hy₀, smul_sub, smul_comm (W.Q ^ M) (PD.p ^ k : ℕ)]
+    rw [_root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul, hy₀, smul_sub, smul_comm (W.Q ^ M) (PD.p ^ k : ℕ)]
     exact Submodule.sub_mem _ (Submodule.smul_of_tower_mem _ _ ((mem_invN W T₁ _ _).1 hy₁))
       ((mem_invN W T₁ _ _).1 hy)
   have hz₀m : z₀ ∈ aN W T₀ W.X := by
@@ -364,7 +325,7 @@ theorem defect_of_lift (M : ℕ) (hinj : Function.Injective (W.map ι))
     exact Submodule.sub_mem _ (Submodule.smul_of_tower_mem _ _ hz₁) hz
   refine ⟨w, hw, hw0, k, y₀, hy₀m, z₀, hz₀m, ?_⟩
   apply hinj
-  rw [map_smulA, hw, ← Nat.cast_pow, Nat.cast_smul_eq_nsmul]
+  rw [_root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul, hw, ← Nat.cast_pow, Nat.cast_smul_eq_nsmul]
   simp only [map_sub, mγ, mφ, hy₀, hz₀, map_nsmul]
   have hyz' := (mem_Z1D W T₁ y z).1 hyz
   have e3 : W.φD T₁ z = W.γ T₁ y - y + z := by
@@ -392,7 +353,7 @@ theorem defect_torsion : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (
   have hp : ((D.loc l).PD K).p = l := (D.loc l).PD_p K
   obtain ⟨hinj, hex, -⟩ := GlobalTheory.EtaleExact.DD_exact D HW F (GlobalTheory.HerrFull.fontaine_decompletion D HW F)
     l K s LL h T₀ T₁ T₂ ι π hses
-  have hsat := GlobalTheory.T.mem_wachN_of_map_mem_saturated D HW F l K s LL h T₀ T₁ T₂ ι π c₀ c₁ c₂ hses
+  have hsat := _root_.GlobalTheory.NL.KerSat.mem_N_of_map_mem D HW F l K s LL h T₀ T₁ T₂ ι π c₀ c₁ c₂ hses
   have h2 := GlobalTheory.NL.WachLatticeTrivialModUniformizer.wachLattice_galois_trivial_mod_uniformizer D HW F Cm l K s LL h T₁ c₁
   have hP5 := GlobalTheory.T.wachLattice_heights_from_hodgeJumps D HW F Cm l K s LL h T₁ M hh c₁ hJ
   have hφ : ∀ x ∈ ((HW l).W K s LL h).N T₁,
@@ -404,12 +365,12 @@ theorem defect_torsion : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (
   have hc₂ := GlobalTheory.T.wachIntegralComplex_cocycle_class_finite D HW F l K s LL h T₂ M hh c₂ hJ₂
   obtain ⟨cc, hcz⟩ := GlobalTheory.T.wachN_cokernel_killed_by_power D HW F Cm l K s LL h T₀ T₁ T₂ ι π c₀ c₁ c₂ hses
   have hrex := GlobalTheory.NL.RightExactKs.h1fKs_onto_up_to_pow D HW l K s LL h T₁ T₂ π hses.2.1 c₁ c₂
-  have hc3 := GlobalTheory.T.H1f_class_wach_pair_filtration_jumps D HW F Cm l K s LL h T₁ c₁ M hh hJ
+  have hc3 := _root_.GlobalTheory.NL.CrystallineDescent.pow_smul_from_complex D HW F Cm l K s LL h T₁ c₁ M hh hJ
   have hnat : ((HW l).W K s LL h).ClNat := (GlobalTheory.HerrFull.herr_a_and_natural D HW F l K s LL h).2.2
   refine defect_of_lift ((HW l).W K s LL h) ι π (mx M) hinj hex hsat h2 hφ hc₁.1 ?_ hses
   intro y₂ z₂ hy₂ hz₂ hyz₂
   rw [hp]
-  exact lift_multiple ((HW l).W K s LL h) π l (mx M) c₁ c₂ hnat h2 hφ hc₂ ⟨cc, fun z hz => (hcz z hz).1⟩
+  exact _root_.GlobalTheory.NL.DefectTorsion.lift_multiple_lemma ((HW l).W K s LL h) π l (mx M) c₁ c₂ hnat h2 hφ hc₂ ⟨cc, fun z hz => (hcz z hz).1⟩
     hrex hc3 y₂ z₂ hy₂ hz₂ hyz₂
 
 end GlobalTheory.NL.DefectTorsion

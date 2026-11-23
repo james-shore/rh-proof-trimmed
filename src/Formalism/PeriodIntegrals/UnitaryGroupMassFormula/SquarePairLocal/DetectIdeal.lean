@@ -194,6 +194,6 @@ end PI.SqPairLocal.Mdl
 
 namespace PI.SqPairLocal
 
-theorem modelEx_of (hF : FixedDVR) (hU : RealUnif) : ModelEx := Mdl.modelEx_of hF hU
+alias modelEx_of := _root_.PI.SqPairLocal.Mdl.modelEx_of
 
 end PI.SqPairLocal

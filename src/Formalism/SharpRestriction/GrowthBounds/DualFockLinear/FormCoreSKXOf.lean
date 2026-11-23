@@ -206,6 +206,6 @@ theorem formCoreSKX_of (h : FormCoreGX) : FormCoreSKX := by
     exact hbd _ (Or.inl (nuOf_le_ellWt hlam)) Q hQ P hP
 
 theorem formCoreSKX : FormCoreSKX := by
-  exact formCoreSKX_of (formCoreGX_of Top.fockRBilin Top.fockRRowAct Top.hWNorm Top.weylPair Top.dualWeylIn Top.nondegK)
+  exact formCoreSKX_of (formCoreGX_of Top.fockRBilin Top.fockRRowAct Top.hWNorm _root_.Formalism.L2.G.Model.TS.weyl_pairing Top.dualWeylIn Top.nondegK)
 
 end Formalism.L2.G.Model.TS

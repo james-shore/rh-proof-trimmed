@@ -95,7 +95,7 @@ theorem exists_cut_prod (ψ : ∀ w : HeightOneSpectrum (𝓞 E), AddChar (w.adi
     intro hK hC
     obtain ⟨T₁, hT₁s, hT₁⟩ := ih (fun v hv => hK v (Finset.mem_insert_of_mem hv))
       (fun v hv => hC v (Finset.mem_insert_of_mem hv))
-    obtain ⟨T₂, hT₂s, hT₂⟩ := GlobalTheory.T.localCutOperator_transfer_adelicWhittaker E m w (ψ w) (hψ w) K (U w) (hK w (Finset.mem_insert_self _ _))
+    obtain ⟨T₂, hT₂s, hT₂⟩ := _root_.GlobalTheory.JSW.CutTransfer.transfer E m w (ψ w) (hψ w) K (U w) (hK w (Finset.mem_insert_self _ _))
       (cell (z w) (U w : Set (GL (Fin (m + 1)) (w.adicCompletion E)))) {p | GlobalTheory.JSW.KirFin.lr p = GlobalTheory.JSW.KirFin.lr 1}
       (hC w (Finset.mem_insert_self _ _))
     refine ⟨comp T₁ T₂, fun k hk => ?_, fun W hN hKW y hy => ?_⟩

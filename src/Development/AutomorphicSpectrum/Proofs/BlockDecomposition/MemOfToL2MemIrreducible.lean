@@ -68,7 +68,7 @@ theorem enoughCompact_Rcusp : EnoughCompact (Rcusp μ) := by
   obtain ⟨φ, hφ, hs, h0, h1, hsupp⟩ := GlobalTheory.CompanionTheory.Bump.exists_nonneg_bump (1 : GA E a) N hN
   have hf : Continuous fun g => (φ g : ℂ) := Complex.continuous_ofReal.comp hφ
   have hfs : HasCompactSupport fun g => (φ g : ℂ) := hs.comp_left (g := Complex.ofReal) Complex.ofReal_zero
-  exact ⟨_, GlobalTheory.T.cuspidal_convolution_compact E a μ _ hf hfs, fun S hS x =>
+  exact ⟨_, _root_.GlobalTheory.CompanionTheory.CuspidalCompact.isCompactOperator_repOp_Rcusp E a μ _ hf hfs, fun S hS x =>
     (DFunLike.congr_fun ((isUnitaryRep_Rcusp μ).comp_repOp (isUnitaryRep_Rcusp μ) hf hfs S hS.2) x).symm,
     h φ hφ hs h0 h1 hsupp⟩
 

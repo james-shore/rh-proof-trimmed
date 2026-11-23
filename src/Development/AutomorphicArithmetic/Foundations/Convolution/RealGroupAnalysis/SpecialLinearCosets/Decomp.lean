@@ -129,8 +129,6 @@ private theorem sg_zero (v : P F) : sg v 0 = 0 := by
   have := hadd 0 0
   simpa using this
 
-private theorem mk_zero (D : Dat F E) : D.mkE 0 0 = 0 := by simp [Dat.mkE]
-
 private theorem pm (D : Dat F E) (v : P F) (θ : Kv v) (hθ : θ ^ 2 = algebraMap F (Kv v) D.δ) (a b c d : Kv v) :
     D.mkE (sg v a) (sg v b) * D.mkE (sg v c) (sg v d) =
       D.mkE (sg v (a * c + θ ^ 2 * (b * d))) (sg v (a * d + b * c)) := by
@@ -156,7 +154,7 @@ private theorem ee_sE (D : Dat F E) (v : P F) (θ : Kv v) (hθ : θ ^ 2 = algebr
   rw [ee, sE, pm D v θ hθ]
   have e1 : (1 / 2 * (k / 2) + θ ^ 2 * (-(1 / (2 * θ)) * (k / (2 * θ))) : Kv v) = 0 := by field_simp; ring
   have e2 : (1 / 2 * (k / (2 * θ)) + -(1 / (2 * θ)) * (k / 2) : Kv v) = 0 := by field_simp; ring
-  rw [e1, e2, sg_zero, mk_zero]
+  rw [e1, e2, sg_zero, _root_.UpperTheory.ConvolutionTheory.R2.Dat.mkE_zero]
 
 private theorem squareRoot_idempotent_embed (D : Dat F E) (v : P F) (θ : Kv v) (hθ : θ ^ 2 = algebraMap F (Kv v) D.δ) (h0 : θ ≠ 0) (s : Kv v) :
     ee D v θ * D.mkE (sg v (s / 2)) (sg v (-(s / (2 * θ)))) = D.mkE (sg v (s / 2)) (sg v (-(s / (2 * θ)))) := by

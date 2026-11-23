@@ -110,10 +110,6 @@ theorem span_eq_of_unit {B ι' : Type*} [CommRing B] (a b : ι' → B) (u : ι' 
     rw [this]
     exact Ideal.mul_mem_right _ _ (Ideal.subset_span ⟨i, rfl⟩)
 
-theorem exists_perm (n a : ℕ) (G : Finset (Fin n)) (hG : G.card = a) :
-    ∃ τ : Equiv.Perm (Fin n), ∀ j : Fin n, (j : ℕ) < a ↔ τ j ∈ G :=
-  _root_.UpperTheory.Reformulated.B.DYdc4.main n a G hG
-
 end GlobalTheory.CompanionTheory.Ar.SncCpt
 
 namespace GlobalTheory.CompanionTheory.Ar.SncCpt
@@ -315,7 +311,7 @@ theorem snc_params : ∀ (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype
     exact hl0
   let Gd : Finset (Fin n) := Finset.univ.filter fun i => (i : ℕ) < nn ∧ φ0 (z i) = 0
   let Bad : Finset (Fin n) := Finset.univ.filter fun i => (i : ℕ) < nn ∧ φ0 (z i) ≠ 0
-  obtain ⟨τ, hτ⟩ := exists_perm n Gd.card Gd rfl
+  obtain ⟨τ, hτ⟩ := _root_.UpperTheory.Reformulated.B.DYdc4.main n Gd.card Gd rfl
   refine ⟨Gd.card, fun i => r0 (τ i), Fr * ∏ i ∈ Bad, Zr i, by simpa using Gd.card_le_univ, ?_, ?_, ?_, ?_⟩
   · rw [← hm, ← hspan0]
     apply congrArg

@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyHomFixRepTrivial
+import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.RelAmpleOfLocallyOnBase
 
 @[expose] public section
 
@@ -54,10 +55,6 @@ noncomputable section
 namespace GlobalTheory.KerGermInj
 
 open GlobalTheory.AbLaw
-
-theorem gs_id {P : Scheme.{0}} (O : P.Opens) (y : P) (hy : y ∈ O) (a : Γ(P, O)) :
-    gs (𝟙 P) y O a = (P.presheaf.germ O y hy).hom a := by
-  rw [gs_eq _ y O hy]; rfl
 
 theorem gs_comp {Y Z X : Scheme.{0}} (f : Z ⟶ Y) (h : Y ⟶ X) (z : Z) (U : X.Opens) (hU : h (f z) ∈ U)
     (a : Γ(X, U)) : gs (f ≫ h) z U a = (f.stalkMap z).hom (gs h (f z) U a) := by
@@ -115,12 +112,12 @@ theorem eq_zero : ∀ (R : Type) [CommRing R] (X T X' : Scheme.{0}) (f : X ⟶ S
     intro y hy
     have hyi : φ (fst y) ∈ Q.W i := hy
 
-    rw [gs_id _ y hy, gs_id _ y hy, map_zero, map_sum]
+    rw [_root_.GlobalTheory.AmpleLocal.gs_id _ y hy, _root_.GlobalTheory.AmpleLocal.gs_id _ y hy, map_zero, map_sum]
     simp only [map_mul]
     have hu : ∀ k, ((pullback p g).presheaf.germ (π ⁻¹ᵁ Q.W i) y hy).hom ((π.app (Q.W i)).hom (Q.u k i)) =
         (fst.stalkMap y).hom (gs φ (fst y) (Q.W i) (Q.u k i)) := by
       intro k
-      rw [← gs_id _ y hy, gs_pull (𝟙 _) π y (Q.W i) hyi, Category.id_comp]
+      rw [← _root_.GlobalTheory.AmpleLocal.gs_id _ y hy, gs_pull (𝟙 _) π y (Q.W i) hyi, Category.id_comp]
       exact gs_comp fst φ y (Q.W i) hyi _
     have hc : ∀ k, ((pullback p g).presheaf.germ (π ⁻¹ᵁ Q.W i) y hy).hom (cst snd (π ⁻¹ᵁ Q.W i) (ψ (e k))) =
         (fst.stalkMap y).hom (gs p (fst y) ⊤ (e k)) := by
@@ -128,7 +125,7 @@ theorem eq_zero : ∀ (R : Type) [CommRing R] (X T X' : Scheme.{0}) (f : X ⟶ S
       have hcond : fst ≫ p = snd ≫ g := pullback.condition
       have hA := congrArg (fun h => h.hom (e k)) (Scheme.fromSpecStalk_appTop (X := T) (x := x))
       simp only [CommRingCat.hom_comp, RingHom.comp_apply] at hA
-      rw [← gs_id _ y hy, ← gs_comp fst p y ⊤ trivial, hcond]
+      rw [← _root_.GlobalTheory.AmpleLocal.gs_id _ y hy, ← gs_comp fst p y ⊤ trivial, hcond]
       refine Eq.trans ?_ (gs_pull snd g y ⊤ trivial (e k))
       refine Eq.trans ?_ (congrArg (gs snd y (g ⁻¹ᵁ ⊤)) hA.symm)
       refine Eq.trans ?_ (gs_res snd y _ (show snd y ∈ g ⁻¹ᵁ ⊤ from trivial) _).symm

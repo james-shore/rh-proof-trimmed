@@ -63,26 +63,6 @@ namespace GlobalTheory.UPoinc.GApprox
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Geo.Tor.Level H}
   {Xo : Moduli D l} {c : Coeff l} {C : UCompact Xo c}
 
-theorem sc_pos {X₁ : USetup C} {p : ℕ} [Fact p.Prime] {z₁ : X₁.M.Z} (t : UCTrait X₁ p z₁) : 0 < t.sc := by
-  set u := algebraMap t.T.V (FractionRing t.T.V) t.T.ϖ with hu
-  have h0 : t.T.ϖ ≠ 0 := t.T.irr.ne_zero
-  have hu0 : u ≠ 0 := by
-    rw [hu]; exact (IsFractionRing.injective t.T.V (FractionRing t.T.V)).ne_iff' (map_zero _) |>.2 h0
-  have hι0 : t.ι u ≠ 0 := (map_ne_zero t.ι).2 hu0
-  have hle : ‖t.ι u‖ ≤ 1 := (t.int u).2 ⟨_, rfl⟩
-  have hlt : ‖t.ι u‖ < 1 := by
-    refine lt_of_le_of_ne hle fun h1 => ?_
-    have : ‖t.ι u⁻¹‖ ≤ 1 := by rw [map_inv₀, norm_inv, h1, inv_one]
-    obtain ⟨v, hv⟩ := (t.int _).1 this
-    apply t.T.irr.not_isUnit
-    refine IsUnit.of_mul_eq_one v ?_
-    apply IsFractionRing.injective t.T.V (FractionRing t.T.V)
-    rw [map_mul, hv, ← hu, mul_inv_cancel₀ hu0, map_one]
-  have hpos : 0 < ‖t.ι u‖ := norm_pos_iff.2 hι0
-  unfold UCTrait.sc
-  rw [← hu]
-  linarith [Real.log_neg hpos hlt]
-
 theorem sc_evalZ_eq_of_equiv {O : Type} [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] {bar : O → O}
     {φ : InvFun O} {X Y : Type} [AddCommGroup X] [Module O X] [Module.Finite O X] [AddCommGroup Y] [Module O Y]
     [Module.Finite O Y] (hP : IsPolFanOn bar φ X) {β : LinearMap.BilinForm ℤ X} (hβ : β ∈ balForms bar X)
@@ -99,13 +79,7 @@ theorem sc_evalZ_eq_of_equiv {O : Type} [CommRing O] [IsDedekindDomain O] [CharZ
   rw [← h1, ← evalR_toReal φ (pull _ _), hform, hP.homog _ hmem _ (div_nonneg hs0 hs'.le), evalR_toReal]
   field_simp
 
-theorem posW_one : PosW (!![(1 : ℤ)] : Matrix (Fin 1) (Fin 1) ℤ) := by
-  unfold PosW
-  have : ((!![(1 : ℤ)] + (!![(1 : ℤ)] : Matrix (Fin 1) (Fin 1) ℤ).transpose).map (Int.cast : ℤ → ℝ)) =
-      Matrix.diagonal fun _ => (2 : ℝ) := by
-    ext i j; fin_cases i; fin_cases j; norm_num [Matrix.vecHead, Function.swap]
-  rw [this]
-  exact Matrix.PosDef.diagonal (fun _ => by norm_num)
+alias posW_one := _root_.GlobalTheory.UPoinc.posW_one_one
 
 end GlobalTheory.UPoinc.GApprox
 
@@ -122,7 +96,7 @@ theorem sc_evalZ_eq {X₁ : USetup C} {p : ℕ} [Fact p.Prime] {z₁ : X₁.M.Z}
   sc_evalZ_eq_of_equiv (hpol _ (Φ.rank_le y)) (Φ.bal y) (fun x => by
       by_cases hx : x = 0
       · simp [hx]
-      · exact (Φ.pos y x hx).le) (Φ.sc_pos y).le (sc_pos t) e he
+      · exact (Φ.pos y x hx).le) (Φ.sc_pos y).le (_root_.GlobalTheory.UPoinc.ShortBound.sc_pos t) e he
 
 theorem exists_hasSupports_cm (q : ℕ) (φ : InvFun (𝓞 E)) (hpol : IsPolFan H.bar q φ) :
     ∃ d, 1 ≤ d ∧ HasSupports (H.bar : 𝓞 E → 𝓞 E) q φ d :=

@@ -59,7 +59,7 @@ section
 variable {R : Type*} [CommRing R] {B : Type*} [CommRing B] [Algebra R B] {D N : ℕ}
 
 noncomputable def evW (w : Fin (N + 1) → B) :
-    MvPolynomial (UXVar D N) R →ₐ[R] MvPolynomial (Fin (D + 2) × Fin (N + 1)) B :=
+    MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R →ₐ[R] MvPolynomial (Fin (D + 2) × Fin (N + 1)) B :=
   aeval (Sum.elim X fun i => ∑ j, X (i, j) * C (w j))
 
 def CoeffIn (W : Submodule R B) (m : ℕ) (p : MvPolynomial (Fin (D + 2) × Fin (N + 1)) B) : Prop :=
@@ -117,7 +117,7 @@ theorem coeffIn_lin (w : Fin (N + 1) → B) (hw : ∀ j, w j ∈ W) (i : Fin (D 
   · rw [mul_zero]
     exact zero_mem _
 
-private theorem sum_support_inr_eq_xDeg {D N : ℕ} (s : UXVar D N →₀ ℕ) :
+private theorem sum_support_inr_eq_xDeg {D N : ℕ} (s : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) :
     ∑ x ∈ s.support, Sum.elim (fun _ => 0) (fun i => s (Sum.inr i)) x = xDeg s := by
   rw [xDeg, Finset.sum_subset (Finset.subset_univ _), Fintype.sum_sum_type]
   · simp
@@ -127,7 +127,7 @@ private theorem sum_support_inr_eq_xDeg {D N : ℕ} (s : UXVar D N →₀ ℕ) :
     | inr i => simpa using hx
 
 theorem coeffIn_evW (w : Fin (N + 1) → B) (hw : ∀ j, w j ∈ W) {n : ℕ}
-    (Q : MvPolynomial (UXVar D N) R) (hx : XHom n Q) : CoeffIn W n (evW w Q) := by
+    (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R) (hx : XHom n Q) : CoeffIn W n (evW w Q) := by
   intro β
 
   rw [Q.as_sum, map_sum, coeff_sum]
@@ -142,7 +142,7 @@ theorem coeffIn_evW (w : Fin (N + 1) → B) (hw : ∀ j, w j ∈ W) {n : ℕ}
     | inr i => simpa using coeffIn_pow W (coeffIn_lin W w hw i) (s (Sum.inr i))
   exact hterm β
 
-theorem coeff_evW_mem (w : Fin (N + 1) → B) {n : ℕ} (Q : MvPolynomial (UXVar D N) R)
+theorem coeff_evW_mem (w : Fin (N + 1) → B) {n : ℕ} (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R)
     (hx : XHom n Q) (β : Fin (D + 2) × Fin (N + 1) →₀ ℕ) :
     AddMonoidAlgebra.coeff (evW w Q) β ∈
       Submodule.span R (Set.range fun s : Fin n → Fin (N + 1) => ∏ k, w (s k)) := by
@@ -162,7 +162,7 @@ end
 
 theorem evW_factor {R S B : Type*} [CommRing R] [CommRing S] [CommRing B] [Algebra R S]
     [Algebra R B] [Algebra S B] [IsScalarTower R S B] {D N n : ℕ} (y : Fin (N + 1) → S) (w0 : B)
-    (Q : MvPolynomial (UXVar D N) R) (hx : XHom n Q) :
+    (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R) (hx : XHom n Q) :
     evW (fun j => algebraMap S B (y j) * w0) Q =
       MvPolynomial.map (algebraMap S B) (evW y Q) * C (w0 ^ n) := by
 
@@ -187,7 +187,7 @@ theorem evW_factor {R S B : Type*} [CommRing R] [CommRing S] [CommRing B] [Algeb
 
 theorem map_evW_eq {K S : Type*} [Field K] [CommRing S] [Algebra K S] {D N : ℕ} (P : S →+* ℂ)
     (sg : K →+* ℂ) (hP : P.comp (algebraMap K S) = sg) (y : Fin (N + 1) → S)
-    (R : MvPolynomial (UXVar D N) K) :
+    (R : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) K) :
     MvPolynomial.map P (evW (R := K) y R) = Ey (fun j => P (y j)) (MvPolynomial.map sg R) := by
   have h : (MvPolynomial.map P).comp (evW (R := K) (D := D) y).toRingHom =
       (Ey (D := D) (fun j => P (y j))).toRingHom.comp (MvPolynomial.map sg) := by

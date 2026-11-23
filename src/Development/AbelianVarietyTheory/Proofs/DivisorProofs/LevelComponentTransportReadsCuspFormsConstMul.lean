@@ -139,7 +139,7 @@ theorem transp_reads_const_mul : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies 
     rw [(hpins.2.2.2 _ hj).1, (hpins.2.2.2 _ hj).2.1]
     have := hj.1; have := hj.2; have := D.R.m_add_three_le_k
     simp only [Ranks.sigW]; omega
-  have hL := GlobalTheory.T.actLev_full_level_group_framedPoints D (r.used v).full.Q ((i : ℕ) + 1) hpq hpins.2.1.2
+  have hL := _root_.GlobalTheory.FullLevelAction.actLev_levFull D (r.used v).full.Q ((i : ℕ) + 1) hpq hpins.2.1.2
   have hsecF : ∀ F : (recB (h.laws v).p.toLawsCore).Cusp ((i : ℕ) + 1) (p.κ i),
       F.1 ∈ sec ((r.used v).full.Q.Xo ((i : ℕ) + 1)) (r.used v).full.Q.c (wtA (p.κ i)) (p.κ i).n := fun F =>
     ((mem_cusp _ _ _ _ _ _).1 (Submodule.mem_inf.1 F.2).1).1

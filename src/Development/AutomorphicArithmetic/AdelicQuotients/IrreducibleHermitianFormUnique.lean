@@ -56,14 +56,6 @@ public import Mathlib.MeasureTheory.Group.Integral
 
 open MeasureTheory
 
-private lemma exists_orthonormal_basis_sesquilinear {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
-    (B : V →ₗ[ℂ] V →ₗ⋆[ℂ] ℂ) (hh : ∀ a b, B b a = star (B a b))
-    (hp : ∀ a, a ≠ 0 → 0 < (B a a).re) :
-    ∃ e : Fin (Module.finrank ℂ V) → V,
-      (∀ i, B (e i) (e i) = 1) ∧ (∀ x y, B x y = ∑ i, B x (e i) * B (e i) y) ∧
-      (∀ x y, ‖B x y‖ ^ 2 ≤ (B x x).re * (B y y).re) :=
-  _root_.UpperTheory.Reformulated.B.Qh52.exists_orthonormal_basis_sesquilinear B hh hp
-
 theorem UpperTheory.irreducible_hermitian_form_unique :
     ∀ {G V : Type} [Group G] [MeasurableSpace G] [MeasurableMul G] (μ : Measure G) [IsFiniteMeasure μ] [μ.IsMulLeftInvariant] [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V] [Nontrivial V] (ρ : G →* Module.End ℂ V)
       (_hI : ∀ W : Submodule ℂ V, (∀ g, ∀ w ∈ W, ρ g w ∈ W) → W = ⊥ ∨ W = ⊤)
@@ -71,7 +63,7 @@ theorem UpperTheory.irreducible_hermitian_form_unique :
       (_hinv : ∀ g a b, B (ρ g a) (ρ g b) = B a b) (_hm : ∀ a b, Measurable fun g => B (ρ g a) b) (a b c d : V),
       ∫ g, B (ρ g a) b * star (B (ρ g c) d) ∂μ = ((μ.real Set.univ / (Module.finrank ℂ V : ℝ) : ℝ) : ℂ) * B a c * star (B b d) := by
   intro G V _ _ _ μ _ _ _ _ _ _ ρ hI B hh hp hinv hm a b c d
-  obtain ⟨e, he1, hpar, hcs⟩ := exists_orthonormal_basis_sesquilinear B hh hp
+  obtain ⟨e, he1, hpar, hcs⟩ := _root_.UpperTheory.Reformulated.B.Qh52.exists_orthonormal_basis_sesquilinear B hh hp
   have hshift : ∀ (h g : G) (x y : V), B (ρ g x) (ρ h y) = B (ρ (h⁻¹ * g) x) y := by
     intro h g x y
     rw [← hinv h (ρ (h⁻¹ * g) x) y, ← Module.End.mul_apply, ← map_mul, mul_inv_cancel_left]

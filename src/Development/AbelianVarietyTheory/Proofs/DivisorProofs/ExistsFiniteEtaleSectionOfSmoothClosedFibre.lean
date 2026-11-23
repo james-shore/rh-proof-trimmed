@@ -59,7 +59,7 @@ theorem exists_finEtale_section_of_smooth : ∀ (R : Type) [CommRing R] [IsDomai
     rw [Category.assoc, hx, ← hσ, ← Spec.map_comp]; rfl
   have hr : Set.range (spMap σ ≫ x) ⊆ O := by
     rintro _ ⟨p, rfl⟩; exact hxO ⟨_, rfl⟩
-  obtain ⟨a, ha, haO⟩ := GlobalTheory.T.exists_lift_residueFieldPoint_smooth_completeLocal R R' hc ρ U hU (spMap σ ≫ x) hx₀ O hr
+  obtain ⟨a, ha, haO⟩ := _root_.GlobalTheory.HenselLift.exists_lift_mem_open R R' hc ρ U hU (spMap σ ≫ x) hx₀ O hr
   exact ⟨R', _, inferInstance, inferInstance, ρ, a, hF, hE, ha, haO⟩
 
 end GlobalTheory.Mum

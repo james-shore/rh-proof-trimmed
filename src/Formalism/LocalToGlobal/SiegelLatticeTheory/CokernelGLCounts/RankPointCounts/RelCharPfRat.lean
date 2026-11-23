@@ -104,19 +104,6 @@ theorem lieN_map (γ : S.V ≃ₗ[E] S.V) (hγ : γ ∈ Formalism.HermitianLatti
       exact hx2 (γ w) (by rw [hXX]; exact Submodule.mem_map_of_mem hw)
     exact Submodule.mem_map.2 ⟨_, h2 _ hx', by simp⟩
 
-theorem z_mem_perp (F : FlagG S r T) : F.z ∈ perpS S F.X := by
-  unfold perpS
-  show ∀ x ∈ F.X, (S.hT x) F.z = 0
-  intro x hx
-  unfold FlagG.X at hx
-  induction hx using Submodule.span_induction with
-  | mem y hy =>
-    obtain ⟨a, rfl⟩ := hy
-    exact F.z_orth a
-  | zero => simp
-  | add y w _ _ hy hw => simp [hy, hw]
-  | smul c y _ hy => simp [hy]
-
 theorem lieN_fvec_mem (F : FlagG S r T) {Z : S.V →ₗ[E] S.V} (hZ : Z ∈ F.LieN) (a : Fin r) :
     Z (F.fvec a.succ) ∈ F.X := by
   unfold FlagG.LieN at hZ
@@ -140,7 +127,7 @@ theorem lieN_fvec_mem (F : FlagG S r T) {Z : S.V →ₗ[E] S.V} (hZ : Z ∈ F.Li
       have hs : a.succ = Fin.last r := Fin.ext (by simp only [Fin.val_succ, Fin.val_last]; omega)
       rw [hs, Fin.snoc_last]
     rw [he]
-    exact h2 _ (z_mem_perp F)
+    exact h2 _ (_root_.PI.TermAttrConst.UnitaryGroupMassFormula.z_mem_perp F)
 
 theorem ell_eq_dual (F : FlagG S r T) (fd : Fin r → S.V) (hfd : ∀ a b, S.hT (fd a) (F.e b) = if b = a then 1 else 0)
     {Z : S.V →ₗ[E] S.V} (hZ : Z ∈ F.LieN) : F.ell Z = ∑ a, S.hT (fd a) (Z (F.fvec a.succ)) := by
@@ -274,7 +261,7 @@ theorem ratVanish_holds : RatVanish := by
   set F' := mapFlag t.lin hiso (X.Fu u') with hF'
   have hfr : t.frame = ⟨F', t.lin (X.Fu u').z⟩ := by
     unfold GTerm.frame mapLF; rw [dite_eq_left hiso]
-  have hRF := (Formalism.L2.SG.Closed.TermFun_holds D u u' (X.Fu u) t.lam ((Yf.rowsOK u).1 t.lam t.mem)).2.2.1
+  have hRF := (_root_.term_function_const D u u' (X.Fu u) t.lam ((Yf.rowsOK u).1 t.lam t.mem)).2.2.1
   have hrel0 := (TermDef.isRel_mk D.host.F hRF ⟨t.frame, t.rep.2.2.2.2⟩).1 ht
   have hrel : Relevant D.host.F (X.Fu u) F' := by
     have e : t.frame.fl = F' := by rw [hfr]

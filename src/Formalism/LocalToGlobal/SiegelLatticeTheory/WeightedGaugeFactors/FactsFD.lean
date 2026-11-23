@@ -53,6 +53,7 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.Laplace
 public import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeGapDS
 public import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeLitG
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.EqZeroOfDatumEmbeddingEqZero
+import Formalism.SharpRestriction.CuspSpanNormBounds.HCFiniteKMultiplicityGapped
 
 @[expose] public section
 
@@ -118,7 +119,7 @@ theorem dsig_eq {large₂ : SizeData₂ D} {C' Cl Cg cb Cu cT CT : ℝ} (hT : Ti
       unfold ReciprocityTheory.ChartRestriction.DS.thrStar Formalism.MainNotions.GapDS.thrE Formalism.MainNotions.GapDS.thrDS ReciprocityTheory.ChartRestriction.DS.S7.q0
       rfl
     linarith
-  obtain ⟨H, i1, i2, σ, hσ⟩ := Formalism.MainNotions.BesselDiscreteSeries.discrete_series_exists_of_fact _ (epsSH D.R) _ hlam _ hg hthE
+  obtain ⟨H, i1, i2, σ, hσ⟩ := _root_.Formalism.MainNotions.BridgeDS3.discrete_series_exists_gapped _ (epsSH D.R) _ hlam _ hg hthE
   have : CompleteSpace H := hσ.1
   have : Nontrivial H := hσ.2.1
   obtain ⟨v, hv⟩ := exists_ne (0 : H)

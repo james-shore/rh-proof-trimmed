@@ -132,7 +132,7 @@ private theorem lat_of_isBundle {F : Type} [Field F] [Algebra ℂ F] {d : ℕ} {
     (hM : ∀ m ∈ M, ∃ w, e w = m) (hML : ∀ w, w ∈ L I ↔ e w ∈ M) :
     Lat (rA ℂ x I) M ∧ ∀ w, e w ∈ Submodule.span F (M : Set V) := by
   classical
-  haveI : IsFractionRing (rA ℂ x {i}) F := (GlobalTheory.T.standardOpenCoordinateRing_isFractionRing_isNoetherianRing ℂ F d x hx {i} (Finset.singleton_nonempty i)).1
+  haveI : IsFractionRing (rA ℂ x {i}) F := (_root_.GlobalTheory.PD.rA_isFractionRing_isNoetherianRing ℂ F d x hx {i} (Finset.singleton_nonempty i)).1
   obtain ⟨s, hs, hsF⟩ := hL.fg i
   let P : Submodule (rA ℂ x {i}) W := Submodule.span (rA ℂ x {i}) (L {i} : Set W)
   have hPs : P = Submodule.span (rA ℂ x {i}) (s : Set W) := by
@@ -205,7 +205,7 @@ theorem UpperTheory.Gal.productCup_of_system.latOm_of :
     LatOm := by
   intro F K _ _ _ _ _ _ d x hc a I hI
   obtain ⟨i, hi⟩ := hI
-  have hB := GlobalTheory.T.regularForms_isBundle_projectiveCover ℂ F K d (xv x) hc a (⋀[K]^a Ω[K⁄ℂ]) (⋀[K]^a Ω[K⁄ℂ]).subtype
+  have hB := _root_.GlobalTheory.PD.omB_isBundle ℂ F K d (xv x) hc a (⋀[K]^a Ω[K⁄ℂ]) (⋀[K]^a Ω[K⁄ℂ]).subtype
     Subtype.val_injective (Submodule.range_subtype _)
   have hle : omB ℂ K (rB ℂ K (xv x) I) a ≤ (⋀[K]^a Ω[K⁄ℂ]).restrictScalars ℂ := by
     refine Submodule.span_le.2 ?_

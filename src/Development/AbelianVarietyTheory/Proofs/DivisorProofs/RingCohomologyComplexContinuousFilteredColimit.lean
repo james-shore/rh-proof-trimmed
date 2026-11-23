@@ -77,14 +77,14 @@ theorem main : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → (∀ (J :
   intro R _ F hF J _ _ D c hc n
   obtain ⟨ι, hι⟩ := GlobalTheory.T.etaleSheafSections_equiv_degreeZeroCocycles R F
   have hF0 : PreservesFilteredColimitsOfSize.{0, 0} (onRings F ⋙ forget₂ _ AddCommGrpCat.{1}) :=
-    ((GlobalTheory.T.preservesFilteredColimits_moduleCat_iff_forget_iff_elements (ULift.{1} R) (onRings F)).1.1 hF)
-  exact GlobalTheory.T.cohomology_filteredColimit_of_etaleDescent (MC R F) (onRings F ⋙ forget₂ _ AddCommGrpCat.{1})
+    ((_root_.GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_modules_iff_elements (ULift.{1} R) (onRings F)).1.1 hF)
+  exact _root_.GlobalTheory.EtC.ContAlg.cohomology_filteredColimit_of_descent (MC R F) (onRings F ⋙ forget₂ _ AddCommGrpCat.{1})
     (Functor.whiskerLeft Scheme.Spec.rightOp ι) hF0
     (fun A => hι (op (Spec A)))
     (fun n hn A => (GlobalTheory.T.cohomologyComplexOfSheaf_cocycle_class_properties R F).1 _ n hn)
     (locVan R F)
-    (fun A B g hg n => GlobalTheory.T.complexFunctorDegreeTerm_augmented_exact_resolution R F CommRingCat.{0} (Scheme.Spec.rightOp ⋙ sch.op) A _ (coAug g)
-      (GlobalTheory.T.cechConerve_resolution_of_etaleFaithfullyFlat R A B g hg) n)
+    (fun A B g hg n => _root_.GlobalTheory.EtC.wExact_term_HC R F CommRingCat.{0} (Scheme.Spec.rightOp ⋙ sch.op) A _ (coAug g)
+      (_root_.GlobalTheory.EtC.hyp_spec_coAug_of_etFF R A B g hg) n)
     J D c hc n
 
 end GlobalTheory.EtC.RingCont

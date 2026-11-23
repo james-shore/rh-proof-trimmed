@@ -65,8 +65,8 @@ theorem UpperTheory.exists_cocycle_product_eq_pull_add_cup :
   let A := zcomp (Cocycle.ofHom ((chains R).map (sch.map (prod.snd : W ⨯ X ⟶ X)))) α₂ (zero_add m)
   let B := zcomp (Cocycle.ofHom ((chains R).map (sch.map (prod.fst : W ⨯ X ⟶ W)))) κ (zero_add 1)
   let C := zcomp (Cocycle.ofHom ((chains R).map (sch.map (prod.snd : W ⨯ X ⟶ X)))) α₁ (zero_add n)
-  obtain ⟨γ, hγ⟩ := (GlobalTheory.T.cup_eq_class_of_isAW R μ h).1 A B
-  have hc := (GlobalTheory.T.cup_eq_class_of_isAW R μ h).2 A B γ hγ
+  obtain ⟨γ, hγ⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ h).1 A B
+  have hc := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ h).2 A B γ hγ
   refine ⟨C + γ, ?_, ?_⟩
   · rw [CohomologyClass.mk_add, ← hc]
     rfl

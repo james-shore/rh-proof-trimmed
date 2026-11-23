@@ -72,9 +72,6 @@ theorem toStk_vF {F : Type} [Field F] {Y X : Scheme.{0}} {L : LB X} {K : Type} [
     toStk z (vF t r J) = (val t r z J).val :=
   toStk_valF r _ z (hJ.mem φ r) _
 
-theorem toUnit_left {S : Scheme.{0}} (X : Over S) : (toUnit X).left = X.hom := by
-  simpa using Over.w (toUnit X)
-
 theorem stalkU {Z Y X : Scheme.{0}} {L : LB X} {K : Type} [Fintype K] {φ : K → (Y ⟶ X)} {ε : K → ℤ}
     (t : LB.Gen (LB.LinComb L φ ε)) (f : Z ⟶ Y) (z : Z) (J : (Z ⟶ X) → L.ι) (hJ : Good L z J) :
     Units.map (f.stalkMap z).hom.toMonoidHom (val t (𝟙 Y) (f z) (fun ψ => J (f ≫ ψ))) = val t f z J :=
@@ -82,8 +79,6 @@ theorem stalkU {Z Y X : Scheme.{0}} {L : LB X} {K : Type} [Fintype K] {φ : K �
 
 variable {R : Type} [CommRing R] [IsDomain R] {D D' : DegPre R} {r : ℕ} {W : Matrix (Fin r) (Fin r) ℤ}
   {F : Type} [Field F] [Algebra (FractionRing R) F] {N N' : NumD F}
-
-theorem good_of (ν : NumOf D F N) (z : Sp F) : Good D.P.L z ν.J := fun ψ => (top_le_iff_mem ψ _ z).1 (ν.good ψ)
 
 theorem goodK_of (ν : NumOf D F N) (z : Sp F) : Good D.P.L (jFK (R := R) F z) (fun ψ => ν.J (jFK (R := R) F ≫ ψ)) :=
   fun ψ => (top_le_iff_mem (jFK (R := R) F ≫ ψ) _ z).1 (ν.good _)
@@ -93,23 +88,23 @@ theorem wv_toStk (T : Tens D D' W) (ν : NumOf D F N) (ν' : NumOf D' F N') (x :
     toStk z (wv T ν ν' x) = (gm p z _ (T.w.s (fun k => ν.J (p ≫ tensφ T.pr k), ν'.J p))).val := by
   subst hp
   exact toStk_valF _ _ z (show (ν'.eA x).left z ∈ LB.wchart D.P.L (tensφ T.pr) (fun k => ν.J ((ν'.eA x).left ≫ tensφ T.pr k)) ⊓
-    D'.P.L.U (ν'.J (ν'.eA x).left) from ⟨(good_of ν z).mem _ _, good_of ν' z _⟩) _
+    D'.P.L.U (ν'.J (ν'.eA x).left) from ⟨(_root_.GlobalTheory.ValuesPullIso.good ν z).mem _ _, _root_.GlobalTheory.ValuesPullIso.good ν' z _⟩) _
 
 theorem rig_val (ν : NumOf D F N) (z : Sp F) :
     val (LB.pullGen D.P.L _ _ D.rig (toUnit (TK R)).left) (jFK (R := R) F) z ν.J = val D.rig (jFK (R := R) F ≫ jK R) z ν.J := by
-  rw [val_pull (good_of ν z), toUnit_left]
+  rw [val_pull (_root_.GlobalTheory.ValuesPullIso.good ν z), _root_.GlobalTheory.ObjPull.toUnit_left']
   rfl
 
 theorem psi_m (ν : NumOf D F N) (z : Sp F) (χ : N.X) :
     Units.map (toStk z).toMonoidHom (N.ψ χ) = val (D.psi (ν.eX χ)) (jFK (R := R) F) z ν.J * val D.rig (jFK (R := R) F ≫ jK R) z ν.J := by
   apply Units.ext
   change toStk z (N.ψ χ : F) = _
-  rw [ν.ψ_eq χ, map_mul, toStk_vF _ _ z _ (good_of ν z), toStk_vF _ _ z _ (good_of ν z)]
+  rw [ν.ψ_eq χ, map_mul, toStk_vF _ _ z _ (_root_.GlobalTheory.ValuesPullIso.good ν z), toStk_vF _ _ z _ (_root_.GlobalTheory.ValuesPullIso.good ν z)]
   rfl
 
 theorem tau_m (ν : NumOf D F N) (z : Sp F) (a b : N.X) :
     val (D.tau (ν.eX a) (ν.eX b)) (jFK (R := R) F) z ν.J = Units.map (toStk z).toMonoidHom (N.τ a b) := by
-  have hG := good_of ν z
+  have hG := _root_.GlobalTheory.ValuesPullIso.good ν z
   unfold DegPre.tau DegPre.rigK
   rw [val_mul hG, val_mul hG, val_mul hG, val_inv, val_inv, val_inv, rig_val ν z]
   rw [NumD.τ, map_div, map_div, psi_m ν z, psi_m ν z, psi_m ν z, map_add (f := _)]
@@ -119,7 +114,7 @@ theorem tau_m (ν : NumOf D F N) (z : Sp F) (a b : N.X) :
 
 theorem pt_eq (ν' : NumOf D' F N') (χ : N'.X) : (ν'.eA (N'.c χ)).left = jFK (R := R) F ≫ D'.xK (ν'.eX χ) := by
   rw [ν'.c_eq]
-  simp only [DegPre.cF, DegPre.xK, ptK, Over.comp_left, toUnit_left]
+  simp only [DegPre.cF, DegPre.xK, ptK, Over.comp_left, _root_.GlobalTheory.ObjPull.toUnit_left']
   rfl
 
 theorem w_stalk (T : Tens D D' W) (ν : NumOf D F N) (ν' : NumOf D' F N') (z : Sp F) (y : D'.X) :
@@ -135,8 +130,8 @@ theorem w_stalk (T : Tens D D' W) (ν : NumOf D F N) (ν' : NumOf D' F N') (z : 
   refine stalk_gm (jFK (R := R) F) (D'.xK y) z _ ?_ _
   exact (show (jFK (R := R) F ≫ D'.xK y) z ∈ LB.wchart D.P.L (tensφ T.pr) (fun k => ν.J (jFK (R := R) F ≫ D'.xK y ≫ tensφ T.pr k)) ⊓
     D'.P.L.U (ν'.J (jFK (R := R) F ≫ D'.xK y)) from ⟨Set.mem_iInter.2 fun k => by
-      have := good_of ν z ((jFK (R := R) F ≫ D'.xK y) ≫ tensφ T.pr k)
-      rwa [Category.assoc] at this, good_of ν' z _⟩)
+      have := _root_.GlobalTheory.ValuesPullIso.good ν z ((jFK (R := R) F ≫ D'.xK y) ≫ tensφ T.pr k)
+      rwa [Category.assoc] at this, _root_.GlobalTheory.ValuesPullIso.good ν' z _⟩)
 
 theorem psi_stk (T : Tens D D' W) (ν : NumOf D F N) (ν' : NumOf D' F N') (z : Sp F) (χ' : N'.X) :
     toStk z (N'.ψ χ' : F) = toStk z (wv T ν ν' (N'.c χ')) *
@@ -145,8 +140,8 @@ theorem psi_stk (T : Tens D D' W) (ν : NumOf D F N) (ν' : NumOf D' F N') (z : 
   have key := T.psi (ν'.eX χ') (jFK (R := R) F z) (fun ψ => ν.J (jFK (R := R) F ≫ ψ)) (fun ψ => ν'.J (jFK (R := R) F ≫ ψ))
     (goodK_of ν z) (goodK_of ν' z)
   have key2 := congrArg (Units.map (Scheme.Hom.stalkMap (jFK (R := R) F) z).hom.toMonoidHom) key
-  rw [map_mul, stalkU _ _ z _ (good_of ν' z), w_stalk] at key2
-  simp only [map_prod, map_zpow, stalkU _ _ z ν.J (good_of ν z)] at key2
+  rw [map_mul, stalkU _ _ z _ (_root_.GlobalTheory.ValuesPullIso.good ν' z), w_stalk] at key2
+  simp only [map_prod, map_zpow, stalkU _ _ z ν.J (_root_.GlobalTheory.ValuesPullIso.good ν z)] at key2
   have hL : toStk z (N'.ψ χ' : F) = (Units.map (toStk z).toMonoidHom (N'.ψ χ')).val := rfl
   have hP : toStk z ((∏ i, ∏ j, N.τ (chi T ν ν' χ' i) (chi T ν ν' χ' j) ^ W i j : Fˣ) : F) =
       (∏ i, ∏ j, val (D.tau (T.xe (ν'.eX χ') i) (T.xe (ν'.eX χ') j)) (jFK (R := R) F) z ν.J ^ W i j).val := by

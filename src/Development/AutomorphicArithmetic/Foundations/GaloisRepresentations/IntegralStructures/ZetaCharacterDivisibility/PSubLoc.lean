@@ -75,6 +75,6 @@ theorem UpperTheory.Gal.Int.Div.subLoc_of :
   have pr := ((hC l P AI hT E Ω A O Bw a _ (r.comp (Dec (F := E) A).subtype)).1 cr).2
   have ps := ((hC l P AI hT E Ω A O Bw b _ (s.comp (Dec (F := E) A).subtype)).1 cs).2
   have pT := ((hC l P AI hT E Ω A O Bw (a + b) _ (ρ.comp (Dec (F := E) A).subtype)).1 hcS).2
-  have hw := GlobalTheory.T.weilDeligneParamAboveL_directSum_potSemistable l P AI hT ι E Ω A w O Bw h hj a b _ _ pr ps pT
+  have hw := _root_.GlobalTheory.Pst.SumParam.wdAt_sumRep l P AI hT ι E Ω A w O Bw h hj a b _ _ pr ps pT
   rw [← hconj.2.2.2 ι w h hj hc, hw, (UpperTheory.Gal.TP.Sub.wDFacts_holds E Ω A w h _ _).2.1 x]
   exact Dvd.intro _ rfl

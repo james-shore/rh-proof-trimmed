@@ -49,12 +49,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open Polynomial Matrix IsLocalRing TensorProduct
 
-private theorem UpperTheory.V.AlgebraTools.dual_lattice_denom {A : Type} [CommRing A] [IsDomain A]
-    {F V : Type} [Field F] [Algebra A F] [IsFractionRing A F] [AddCommGroup V] [Module F V]
-    [Module A V] [IsScalarTower A F V] (Y : Submodule A V) (hY : Submodule.IsFullLattice F Y)
-    (z : V) : ∃ a : A, a ≠ 0 ∧ a • z ∈ Y :=
-  _root_.UpperTheory.Reformulated.B.ExistsSmulMemOfIsLattice₂.dual_lattice_denom Y hY z
-
 private theorem UpperTheory.V.AlgebraTools.dual_lattice_pow {A : Type} [CommRing A] [IsDomain A]
     [IsDiscreteValuationRing A] (a : A) (ha : a ≠ 0) :
     ∃ s : ℕ, maximalIdeal A ^ s ≤ Ideal.span {a} := by
@@ -88,7 +82,7 @@ theorem UpperTheory.V.AlgebraTools.dual_lattice :
     clear hZ
     induction Z, hfg using Submodule.fg_induction with
     | singleton x =>
-      obtain ⟨a, ha, hax⟩ := UpperTheory.V.AlgebraTools.dual_lattice_denom Y hY x
+      obtain ⟨a, ha, hax⟩ := _root_.UpperTheory.Reformulated.B.ExistsSmulMemOfIsLattice₂.dual_lattice_denom Y hY x
       obtain ⟨s, hs⟩ := UpperTheory.V.AlgebraTools.dual_lattice_pow a ha
       refine ⟨s, (Submodule.smul_mono_left hs).trans ?_⟩
       refine Submodule.smul_le.mpr fun r hr y hy => ?_

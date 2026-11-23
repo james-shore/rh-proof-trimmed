@@ -77,7 +77,7 @@ def isoN (k : ℕ) : chainsN R ⋙ HomologicalComplex.eval _ _ k ≅
 instance pres_N (k : ℕ) : PreservesColimitsOfShape WalkingSpan (chainsN R ⋙ HomologicalComplex.eval _ _ k) :=
   preservesColimitsOfShape_of_natIso (isoN R k).symm
 
-theorem hk (k : ℕ) : ComplexShape.embeddingDownNat.f k = -(k : ℤ) := by simp
+alias hk := _root_.ComplexShape.embeddingDownNat_f
 
 def isoC (k : ℕ) : chains R ⋙ HomologicalComplex.eval _ _ (-(k : ℤ)) ≅ chainsN R ⋙ HomologicalComplex.eval _ _ k :=
   NatIso.ofComponents (fun X => HomologicalComplex.extendXIso _ _ (hk k))

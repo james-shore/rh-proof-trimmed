@@ -85,7 +85,7 @@ theorem link : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E
     exact (GlobalTheory.T.valuation_le_iff_norm_embedding φ hφ a b).symm⟩
   haveI hclosed : IsSepClosed (Om l) := IsSepClosure.sep_closed (w.adicCompletion E)
   haveI halg : Algebra.IsAlgebraic (w.adicCompletion E) (Om l) := hsep.separable.isAlgebraic
-  obtain ⟨π, hπ, H⟩ := GlobalTheory.T.exists_uniformizer_galois_action hχ hr
+  obtain ⟨π, hπ, H⟩ := _root_.GlobalTheory.CompanionTheory.LTHodge.UnitAct.main hχ hr
   let g' := Bw.e σ
   have hfix : ∀ y, (g' : GQ l) (algebraMap (w.adicCompletion E) (Om l) y) = algebraMap (w.adicCompletion E) (Om l) y := by
     intro y
@@ -96,8 +96,8 @@ theorem link : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E
   let g : Om l ≃ₐ[w.adicCompletion E] Om l := { (g' : GQ l).toRingEquiv with commutes' := hfix }
   have hg : ∀ y, g y = (g' : GQ l) y := fun _ => rfl
   obtain ⟨u, hu, hact⟩ := H g g' hg
-  have hdeg : unramifiedDegree (w.adicCompletion E) (Om l) g = 1 := GlobalTheory.T.local_bridge_lubin_tate_field Bw hI σ hσ g hg
-  have hloc := GlobalTheory.T.lubin_tate_unramified_degree_one hπ (isLubinTateSeries_ltPoly π) u g hdeg hact
+  have hdeg : unramifiedDegree (w.adicCompletion E) (Om l) g = 1 := _root_.GlobalTheory.CompanionTheory.LTLink.unramifiedDegree_eq_one_of_mem_inertia Bw hI σ hσ g hg
+  have hloc := _root_.GlobalTheory.CompanionTheory.LTLink.lt_local_artin_inertia hπ (isLubinTateSeries_ltPoly π) u g hdeg hact
   have hres := fun (L : IntermediateField E Ω) [FiniteDimensional E L] [IsAbelianGalois E L] =>
     GlobalTheory.T.local_global_artin_compatible w Bw.j (fun y => (hφj y).symm) (unitsIncl _ u⁻¹) (σ : G E Ω) g
       (fun z => by rw [hg]; exact Bw.e_comm σ z) hloc L

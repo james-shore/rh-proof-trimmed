@@ -123,10 +123,7 @@ namespace GlobalTheory.MBLow.Cl.GeoOne
 
 open GlobalTheory.CubeValues GlobalTheory.SymmetricSemicharacter GlobalTheory.EigenNorm GlobalTheory.FrameValue
 
-theorem tf_hom (R : Type) [CommRing R] [IsDomain R] [Algebra (FractionRing R) ℂ] :
-    (TF (R := R) ℂ).hom = spMap ((algebraMap (FractionRing R) ℂ).comp (algebraMap R (FractionRing R))) := by
-  simp only [TF, jFK, jK, spMap, Over.mk_hom]
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
+alias tf_hom := _root_.GlobalTheory.UnifTan.tf_hom
 
 theorem eq_dualMap {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) (F : DualNumber A →+* DualNumber B)
     (h1 : ∀ a, F (algebraMap A _ a) = algebraMap B _ (f a)) (h2 : F DualNumber.eps = DualNumber.eps) : F = dualMap f := by
@@ -173,7 +170,7 @@ theorem exists_ab_geo_of_nf : AllC fun {R} _ _ {D} _ {N} ν => ∀ (y : KeyIn R)
   have hrg0 : frW w u (ν.J (spMap ((algebraMap (FractionRing R) ℂ).comp (algebraMap R (FractionRing R))) ≫ eSec D.P.A)) 0 = ν.rg := by
     unfold NumOf.rg vF
     rw [tf_hom]
-    exact GlobalTheory.T.uniformisedFibre_frame_at_origin_eq_rigidification R D x φ he w hw hrigm _ u hrigu _ _ (le_chartAt _ _) (hJ _)
+    exact _root_.GlobalTheory.RigAtOrigin.frame_at_origin R D x φ he w hw hrigm _ u hrigu _ _ (le_chartAt _ _) (hJ _)
   have hrgne : ν.rg ≠ 0 := by
     rw [← hrg0]
     refine frW_ne u _ 0 ?_

@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem quotient_invariant : PI.QuotInv := PI.QuotInvW.quotInv

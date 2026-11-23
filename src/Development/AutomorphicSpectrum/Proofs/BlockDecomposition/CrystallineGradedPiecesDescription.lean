@@ -98,21 +98,13 @@ theorem xi_mul_divided_power (r : ℕ) :
   simp only [Nat.factorial_one, Nat.cast_one, one_mul, pow_one] at h1
   rw [← h1, divided_power_xi_mul, add_comm 1 r, Nat.choose_one_right]
 
-theorem exists_factorial_mul_eq_pow (k : ℕ) :
-    ∃ (N : ℕ) (c : A.W), (k.factorial : A.W) * c = (l : A.W) ^ N := by
-  obtain ⟨c, hc⟩ := ACris.exists_natCast_mul_eq_pow (K := ℂ_[l]) (p := l)
-    (Nat.factorial_ne_zero k) (le_refl _)
-  refine ⟨k.factorial.factorization l, A.sW c, ?_⟩
-  have := congrArg A.sW hc
-  simpa using this
-
 theorem filtration_element_power_multiple_xi (r : ℕ) {z : A.Acr0} (hz : z ∈ A.Fil0 r) :
     ∃ (N : ℕ) (w : A.W), (l : A.Acr0) ^ N * z = algebraMap A.W A.Acr0 (A.xi ^ r * w) := by
   rw [mem_crystalline_filtration_iff_span] at hz
   induction hz using Submodule.span_induction with
   | mem x hx =>
     obtain ⟨k, hk, rfl⟩ := hx
-    obtain ⟨N, c, hc⟩ := exists_factorial_mul_eq_pow A k
+    obtain ⟨N, c, hc⟩ := _root_.GlobalTheory.CompanionTheory.PerfFil.exists_factorial_mul_eq_pow' A k
     refine ⟨N, A.xi ^ (k - r) * c, ?_⟩
     have h := factorial_mul_divided_power_xi A k
     calc (l : A.Acr0) ^ N * A.dxi0 k = algebraMap A.W A.Acr0 ((l : A.W) ^ N) * A.dxi0 k := by simp

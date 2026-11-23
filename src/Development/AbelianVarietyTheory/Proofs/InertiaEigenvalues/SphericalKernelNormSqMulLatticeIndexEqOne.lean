@@ -77,7 +77,6 @@ theorem idxAt_frame : ∀ (D : D7) (T : HSp D) (v : HeightOneSpectrum (𝓞 D.ho
 
 theorem latIndex_inert : ∀ (D : D7) (T : HSp D) (v : HeightOneSpectrum (𝓞 D.host.F)) (w : HeightOneSpectrum (𝓞 D.host.E)) (h : w.under (𝓞 D.host.F) = v), IsInertAt D.host.F D.host.E v w → ∀ g : GlobalTheory.FinZeta.Gv T v, latIndex T (GlobalTheory.FinZeta.embV T v g) = idxAt T w h g := GlobalTheory.T.selfDualLatticeIndex_inertPlace_eq_localIndex
 
-theorem latIndex_split : ∀ (D : D7) (T : HSp D) (v : HeightOneSpectrum (𝓞 D.host.F)) (w w' : HeightOneSpectrum (𝓞 D.host.E)) (h : w.under (𝓞 D.host.F) = v) (h' : w'.under (𝓞 D.host.F) = v), IsSplit (E := D.host.E) v → w ≠ w' → ∀ g : GlobalTheory.FinZeta.Gv T v, latIndex T (GlobalTheory.FinZeta.embV T v g) = idxAt T w h g * idxAt T w' h' g := GlobalTheory.T.selfDualLatticeIndex_splitPlace_eq_mul
 end GlobalTheory.LocKerMod
 
 namespace GlobalTheory.LocKerMod
@@ -89,8 +88,8 @@ theorem idx_inert : ∀ (D : D7) (T : HSp D) (v : HeightOneSpectrum (𝓞 D.host
   have hϖ : IsUnifV D.host.E w ϖ := hU.2.2.2.1
   have hK : ∀ k ∈ KU c T.rank, (k : GL (Fin T.rank) (w.adicCompletion D.host.E)) ∈ KGL w (n := T.rank) :=
     fun k hk => (Subgroup.mem_subgroupOf.1 hk).2
-  rw [latIndex_inert D T v w h hw]
-  refine idxAt_frame D T v w h a ha ϖ hϖ d (t : GL (Fin T.rank) (w.adicCompletion D.host.E)) ht _ (hK k₁ hk₁) _
+  rw [_root_.GlobalTheory.LocKerMod.latIndex_embV_inert D T v w h hw]
+  refine _root_.GlobalTheory.LocKerMod.FrameIdx.idxAt_eq_pow D T v w h a ha ϖ hϖ d (t : GL (Fin T.rank) (w.adicCompletion D.host.E)) ht _ (hK k₁ hk₁) _
     (hK k₂ hk₂) _ ?_
   have h1 := hea (e.symm (k₁ * t * k₂))
   rw [MulEquiv.apply_symm_apply] at h1
@@ -166,7 +165,7 @@ theorem idx_split : ∀ (D : D7) (T : HSp D) (v : HeightOneSpectrum (𝓞 D.host
   have hK : ∀ k ∈ KGL w (n := T.rank), invT c T.rank k ∈ KGL w' (n := T.rank) := fun k hk => (mem_iff_invT c hO k).1 hk
   obtain ⟨⟨a, ha, hea⟩, -⟩ := he
   obtain ⟨⟨a', ha', hea'⟩, -⟩ := he'
-  rw [latIndex_split D T v w w' h h' hv hne]
+  rw [_root_.GlobalTheory.SplitLatIdx.latIndex_split D T v w w' h h' hv hne]
   have e1 : GlobalTheory.LFun.locMat D.sp.cm.sig T.gram h (e.symm (k₁ * t * k₂)) = a * (k₁ * t * k₂) * a⁻¹ := by
     have := hea (e.symm (k₁ * t * k₂))
     rw [MulEquiv.apply_symm_apply] at this
@@ -184,8 +183,8 @@ theorem idx_split : ∀ (D : D7) (T : HSp D) (v : HeightOneSpectrum (𝓞 D.host
     rcases le_total 0 (d i) with hd | hd
     · rw [abs_of_nonneg hd, max_eq_left hd, max_eq_right (by omega), add_zero]
     · rw [abs_of_nonpos hd, max_eq_right hd, max_eq_left (by omega), zero_add]
-  rw [idxAt_frame D T v w h a ha ϖ hϖ d t ht k₁ hk₁ k₂ hk₂ _ e1,
-    idxAt_frame D T v w' h' a' ha' (c ϖ) hunif (fun i => -d i) _ hdiag _ (hK k₁ hk₁) _ (hK k₂ hk₂) _ e2, hqc,
+  rw [_root_.GlobalTheory.LocKerMod.FrameIdx.idxAt_eq_pow D T v w h a ha ϖ hϖ d t ht k₁ hk₁ k₂ hk₂ _ e1,
+    _root_.GlobalTheory.LocKerMod.FrameIdx.idxAt_eq_pow D T v w' h' a' ha' (c ϖ) hunif (fun i => -d i) _ hdiag _ (hK k₁ hk₁) _ (hK k₂ hk₂) _ e2, hqc,
     ← pow_add, hs, Int.toNat_add (Finset.sum_nonneg fun i _ => le_max_right _ _) (Finset.sum_nonneg fun i _ => le_max_right _ _)]
 end GlobalTheory.LocKerMod
 

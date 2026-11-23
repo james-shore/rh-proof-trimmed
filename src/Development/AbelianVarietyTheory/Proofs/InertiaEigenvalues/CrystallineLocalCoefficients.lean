@@ -82,8 +82,8 @@ theorem twist_crys (D : D7) (i : D.nd.Loc) (r : D.nd.X i → (GE D.nd →* GL (F
     (D.nbr i w hw).Kw C.LL _ (matRep (TruncatedSeriesCountingIdentities.locC C (rO D.nd i r x))) _
     (matRep (twistM (TruncatedSeriesCountingIdentities.locC C (rO D.nd i r x)) (TruncatedSeriesCountingIdentities.chi1C C)⁻¹)) (TruncatedSeriesCountingIdentities.chi1C C)⁻¹
     ⟨LinearEquiv.refl _ _, fun g v => ?_⟩ hchi hcC).1
-  rw [LinearEquiv.refl_apply, LinearEquiv.refl_apply, GlobalTheory.TateDualCrys.matRep_apply,
-    GlobalTheory.TateDualCrys.matRep_apply]
+  rw [LinearEquiv.refl_apply, LinearEquiv.refl_apply, _root_.GlobalTheory.SummandJumps.matRep_apply,
+    _root_.GlobalTheory.SummandJumps.matRep_apply]
   exact Matrix.smul_mulVec _ _ _
 
 theorem crys_coef (D : D7) (i : D.nd.Loc) (r : D.nd.X i → (GE D.nd →* GL (Fin D.R.nV) (D.nd.O i)))

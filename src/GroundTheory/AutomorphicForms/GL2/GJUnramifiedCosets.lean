@@ -291,10 +291,6 @@ theorem normalGL_injective (l : Fin n → ℕ) :
   obtain ⟨⟨i, j⟩, hij⟩ := p
   exact (key _ i j hij rfl).2
 
-theorem diag_mul_torusPow' {u : GL (Fin n) F} (hu : u ∈ unipotent F n) (l : Fin n → ℤ) (i j : Fin n) :
-    ((u * torusPow F n l : GL (Fin n) F) : Matrix (Fin n) (Fin n) F) i j = u i j * ϖ ^ l j := by
-  rw [Units.val_mul, coe_torusPow, mul_diagonal]
-
 theorem exists_reduce_row (l : Fin n → ℕ) {h : GL (Fin n) F} (hB : h ∈ Iwasawa.borel F n)
     (hd : ∀ a, h a a = ϖ ^ l a) (hO : ∀ a b, h a b ∈ 𝒪[F]) (i : Fin n) :
     ∃ k ∈ integralGL F n, h * k ∈ Iwasawa.borel F n ∧ (∀ a, (h * k) a a = ϖ ^ l a) ∧
@@ -382,7 +378,7 @@ theorem exists_normalGL {g : GL (Fin n) F} (hg : ∀ i j, g i j ∈ 𝒪[F]) :
       ((mem_integralGL_iff F n).1 ((integralGL F n).inv_mem hk₀)).1 i j
   have hdiag : ∀ i, h i i = ϖ ^ L i := fun i => by
     change ((u * torusPow F n L : GL (Fin n) F) : Matrix (Fin n) (Fin n) F) i i = _
-    rw [diag_mul_torusPow' hu, hu.2 i, one_mul]
+    rw [_root_.GroundTheory.Automorphic.Spherical.diag_mul_torusPow hu, hu.2 i, one_mul]
   have hL : ∀ i, 0 ≤ L i := fun i => by
     have := bdd_of_mem (hO i i)
     rw [hdiag] at this

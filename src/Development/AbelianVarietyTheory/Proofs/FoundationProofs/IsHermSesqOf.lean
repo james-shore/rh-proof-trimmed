@@ -224,24 +224,3 @@ theorem klat_facts (hc : Crv D cc δ) {A : AddSubgroup (VC D N N')} (hA : KLat D
 end GlobalTheory.ConjNorm.Inter
 
 
-open GlobalTheory.ThetaInter GlobalTheory.ConjNorm.Inter in
-theorem GlobalTheory.ConjNorm.unitary_all : ∀ D : D7, IntertwinerUnitary D := by
-  intro D cc δ hc N N' A₁ A₂ h₁ h₂ th hth
-  obtain ⟨f₁, s₁, d₁, c₁⟩ := klat_facts hc h₁
-  obtain ⟨f₂, s₂, d₂, c₂⟩ := klat_facts hc h₂
-  have hH := isHerm_sesqOf D (tor0 D cc δ) N N'
-  have hψ := (GlobalTheory.InducedType.induced_type D).1.1
-  have := klat_finite hψ hc.1.1 h₁ h₂ f₂
-  have := klat_finite hψ hc.1.1 h₂ h₁ f₁
-  have : (MeasureTheory.volume : MeasureTheory.Measure (Fin N' → Fin N → ℂ)).IsAddHaarMeasure :=
-    MeasureTheory.Measure.pi.isAddHaarMeasure _
-  have : (MeasureTheory.volume : MeasureTheory.Measure (VC D N N')).IsAddHaarMeasure :=
-    MeasureTheory.Measure.pi.isAddHaarMeasure _
-  have t₁ := discrete_of_selfDual hH d₁ f₁
-  have t₂ := discrete_of_selfDual hH d₂ f₂
-  have hF : th ∈ Formalism.L2.Th1.H.fixedBy (sesqOf D (tor0 D cc δ) N N') (al D (tor0 D cc δ)) A₁ := hth.2
-  exact ⟨fun x => mean_opU MeasureTheory.volume hH t₁ s₁ c₁ hth.1.continuous hF x,
-    ⟨differentiable_inter (H := sesqOf D (tor0 D cc δ) N N') (α := al D (tor0 D cc δ)) A₁ A₂ hth.1,
-      inter_mem_fixedBy hH c₁ d₂ c₂ hF⟩,
-    mean_inter MeasureTheory.volume hH t₁ s₁ t₂ s₂ d₁ c₁ d₂ c₂ hth.1 hF,
-    inter_inter hH d₁ d₂ c₁ hF⟩

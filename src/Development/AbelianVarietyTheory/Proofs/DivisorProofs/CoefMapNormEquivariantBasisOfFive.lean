@@ -523,7 +523,7 @@ theorem framed_point_at_ofFive : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {
   have hU := L.unf _ hj _ hσ
   have hU' := (Formalism.L2.PjFree.isUnf_ofPj _).2 hU
   obtain ⟨hm, hdom, hun, g₀, e₀, F₀, ik, φ, th, hth, hD⟩ := laws_cast L hj hσ hV (rank_Wc i)
-  obtain ⟨γ, hγ, -, hlat, hfr, hmk⟩ := GlobalTheory.T.dictionary_rational_element_analytic_point D _ _ _ _ _ (sOf O σ') (Wc D i) _ (rank_Wc i)
+  obtain ⟨γ, hγ, -, hlat, hfr, hmk⟩ := _root_.GlobalTheory.OneMapRef.DictPt.dict_point D _ _ _ _ _ (sOf O σ') (Wc D i) _ (rank_Wc i)
     (T.U ((i : ℕ) + 1) (sOf O σ'))
     (dictS hV) (iotaW T i) g₀ e₀ F₀ ik φ th _ R.θ (zAt R i σ) hσ hU hr1 hC.models.inf hth hD hx0 h
   obtain ⟨W⟩ := nonempty_uw hU'

@@ -118,6 +118,4 @@ theorem main_alt_alt : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7
 end GlobalTheory.PtLocalPin
 
 
-theorem _root_.GlobalTheory.T.ptLocal_theta_exhaustion : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7) (P : _root_.GlobalTheory.NPin.CharacterChoiceData hL D), ∀ i, GlobalTheory.ThetaExh.PtLocal D.nd D.naut i := by
-  exact _root_.GlobalTheory.PtLocalPin.main_alt_alt
 end

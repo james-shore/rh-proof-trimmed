@@ -73,7 +73,7 @@ theorem inner_left (W : G.Weil) (M : Vol G) (hM : M.IsRow) {φ : Fn G (.top 0)} 
     (hφ : φ ∈ contLeft (G.V (.top 0))) (hF : F ∈ contLeft (G.V (.grid D.R.m 0))) {γ : GA D (G.V (.top 0))}
     (hγ : γ ∈ GQ (G.V (.top 0))) (h : GA D (G.V (.top 0))) :
     ∫ n in M.fdN, besInt W φ F (γ * h) n ∂M.νN = ∫ n in M.fdN, besInt W φ F h n ∂M.νN := by
-  obtain ⟨_, _, _, _⟩ := GlobalTheory.Per.Inhab.flag_topology _ G.besTop.e_iso
+  obtain ⟨_, _, _, _⟩ := _root_.GlobalTheory.Mem.TrueRecord.top_NFlag _ G.besTop.e_iso
   obtain ⟨-, -, -, -, _, -, -⟩ := GlobalTheory.Mem.AdelicGroupTop.adelic_unitary_topology D (G.V (.grid D.R.m 0))
   obtain ⟨s, -, hs, hq⟩ := GlobalTheory.Mem.UnitaryEmb.exists_embHom D _ _ _
     (G.rowDec 0 (by have := D.R.two_le_m; omega)).isom

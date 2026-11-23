@@ -172,8 +172,8 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.uniform_all_root_origin_bound 
   let x : (Ref.pjSys Xo c).Pt la := (show Ref.PtU Xo c la from PtV.mk la ho₂ yy hyA τ hτ)
   have hval : ∀ f, (Ref.pjSys Xo c).val x f = nval T₂.V (r₂ * (r₀ * e₀)) (evI yy f) :=
     fun f => Ref.pjSys_val_mk Xo c la ho₂ yy hyA τ hτ f
-  have hS := GlobalTheory.T.root_origin_frame_section_bound E H Dw l Xo c O β Y SS RM Sys Fx Or Fr A₂ p z ev₂ hzalg hev la T₂ _ _ yy evT zT t hI x hval
-  have hR := GlobalTheory.T.root_origin_frame_degree_bound hG E H Dw l Xo c O β Y SS RM Sys Fx Or Fr hOm hram A₂ p z ev₂ hzalg hev hGood hrat
+  have hS := _root_.GlobalTheory.CompanionTheory.Ar.Rec.FinRd.readsZ_of_isIntPt E H Dw l Xo c O β Y SS RM Sys Fx Or Fr A₂ p z ev₂ hzalg hev la T₂ _ _ yy evT zT t hI x hval
+  have hR := _root_.GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.reads_roots hG E H Dw l Xo c O β Y SS RM Sys Fx Or Fr hOm hram A₂ p z ev₂ hzalg hev hGood hrat
     la T₂ _ _ yy evT zT t hI
   obtain ⟨rec, h1, h2⟩ := FinRd.read_of_reads hz x (FinRd.tOf_pos la T₂ _ t) hS hR
   refine ⟨z, hzalg, rec, fun b hb hb1 => hev ⟨b, hBA (by simp [hb1])⟩, fun r' => ⟨(h1 r').1, ?_⟩,

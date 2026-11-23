@@ -45,6 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 @[expose] public section
 
 namespace Formalism.GM.Top
-open Formalism.GM
-theorem detBlockLead : DetBlockLead := determinant_block_leading_term
 end Formalism.GM.Top

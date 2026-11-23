@@ -188,7 +188,7 @@ theorem local_bound {D : ℕ} (hX : IsArithVar p D) (hs : GenSmooth p D) (P : Pa
   have hFd : DifferentiableOn ℂ F U := by
     refine DifferentiableOn.fun_sum (𝕜 := ℂ) (u := Finset.univ)
       (A := fun l v => c l * ratVal (P.loc m 1 (f l) i j) (C.e.symm v)) fun l _ => ?_
-    exact (((GlobalTheory.T.sectionLocalFunction_continuousOn_holomorphicChart k X p P m 1 σ (f l) (hf l) i j).2 D C).mono fun v hv =>
+    exact (((_root_.GlobalTheory.HSAmp.loc_continuousOn_holo k X p P m 1 σ (f l) (hf l) i j).2 D C).mono fun v hv =>
       ⟨(hUO v hv).2, (hUO v hv).1.1.2, (hUO v hv).1.2⟩).const_mul (c l)
   have hid : ∀ v ∈ U, ‖F v‖ ^ 2 * Real.exp (-((m : ℝ) * (P.L.φ σ).φ i (C.e.symm v))) *
       (Real.exp (-(P.A.φ σ).φ j (C.e.symm v)) * (ω σ).dens C (C.e.symm v)) =

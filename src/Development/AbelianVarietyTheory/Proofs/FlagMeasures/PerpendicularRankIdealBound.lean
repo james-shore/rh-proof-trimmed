@@ -205,8 +205,8 @@ theorem key (h : V →ₗ⋆[K] V →ₗ[K] K) (hs : h.IsSymm) (hn : h.Nondegene
       L ⊓ (⨅ p ∈ P, LinearMap.ker (h p) : Submodule K V).restrictScalars (𝓞 K) := by
   have hc := isCompl_perp h ha P
   have hT := mem_perp h P
-  have hsA := span_inf L hL (Submodule.span K (P : Set V))
-  have hsT := span_inf L hL (⨅ p ∈ P, LinearMap.ker (h p) : Submodule K V)
+  have hsA := _root_.GlobalTheory.SpanInfEq.span_inf_eq L hL (Submodule.span K (P : Set V))
+  have hsT := _root_.GlobalTheory.SpanInfEq.span_inf_eq L hL (⨅ p ∈ P, LinearMap.ker (h p) : Submodule K V)
   set A := Submodule.span K (P : Set V) with hA
   set T := (⨅ p ∈ P, LinearMap.ker (h p) : Submodule K V) with hTdef
   obtain ⟨-, hdd, -⟩ := Formalism.HermitianLatticesTheory.dualLattice (𝓞 K) K V h hs hn star_range L hL
@@ -326,7 +326,7 @@ theorem main : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D),
   · have h1 := Submodule.finrank_add_eq_of_isCompl (isCompl_perp (D.sp.X 0).hT ha P)
     unfold rkW at hrk ⊢
     unfold perpW
-    rw [span_inf L hLfull]
+    rw [_root_.GlobalTheory.SpanInfEq.span_inf_eq L hLfull]
     unfold perpE
     omega
   · obtain ⟨a1, a2, -⟩ := GlobalTheory.LoopC.DetCard.main D L hL.fg hpd hi
@@ -335,7 +335,7 @@ theorem main : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D),
     obtain ⟨b1, b2, b3⟩ := GlobalTheory.LoopC.DetCard.main D (sat D L P) hMfg hpd hMi
     obtain ⟨c1, c2⟩ := b3 P (fun x hx => ⟨hPL hx, Submodule.subset_span hx⟩) (by
       unfold rkW sat
-      rw [span_inf L hLfull])
+      rw [_root_.GlobalTheory.SpanInfEq.span_inf_eq L hLfull])
     obtain ⟨I₁, p1, p2, p3⟩ := exists_ideal_smul_le _ _ a1
     obtain ⟨I₂, q1, q2, q3⟩ := exists_ideal_smul_le _ _ b1
     refine ⟨_, ?_, ?_, key (D.sp.X 0).hT (D.sp.X 0).herm (D.sp.X 0).nondeg ha L P hLfull hi hPL I₁ I₂ p3 q3⟩

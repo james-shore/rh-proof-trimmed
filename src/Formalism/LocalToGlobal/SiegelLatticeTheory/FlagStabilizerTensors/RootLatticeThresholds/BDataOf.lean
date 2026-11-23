@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.StandardHypothesesOfScaleHyp
 
 @[expose] public section
 
@@ -322,13 +323,6 @@ def ampInOf {large₂ : SizeData₂ D} {C' Cl Cg cb Cu cT CT C0 C1 Ca : ℝ}
     hMM := fun τ μsec hs => ((h τ).choose_spec.choose_spec.2.2.1 μsec hs).2,
     hJ := fun τ => (h τ).choose_spec.choose_spec.2.2.2 }
 
-theorem m_eq' (D : D7) : ((2 * D.R.rS + 2 : ℕ) : ℝ) = (D.R.m : ℝ) := by
-  have h1 := dimS_eq D.R
-  have h2 := D.R.two_le_m
-  unfold Ranks.r at h1
-  have h3 : 2 * D.R.rS + 2 = D.R.m := by omega
-  exact_mod_cast h3
-
 theorem card_Tau (D : D7) : Fintype.card D.what₂.Tau = D.R.f := by
   rw [← Nat.card_eq_fintype_card, Nat.card_congr D.eTau]
   exact (Formalism.BasicNotions.factCardPsi D.R D.host).1
@@ -371,7 +365,7 @@ theorem normTie_bdOf {large₂ : SizeData₂ D} {C1 Ca Ch Cg Cβ Cb Cn Cfac Ire 
   have hb0 : 0 < large₂.sc.b := by linarith
   have hlog : 0 ≤ Real.log large₂.sc.b := (Real.log_pos hb1).le
   have hcard : (Fintype.card D.what₂.Tau : ℝ) = D.R.f := by exact_mod_cast card_Tau D
-  have hm := m_eq' D
+  have hm := _root_.Formalism.MainNotions.BridgeLemma.std_castM D
   set c : ℝ := large₂.sc.b ^ (Ca * (D.R.m : ℝ) ^ 2) with hc
   have hc0 : 0 < c := Real.rpow_pos_of_pos hb0 _
   have hK0 : 0 ≤ ∏ τ, I.K τ := Finset.prod_nonneg fun τ _ => (I.hK τ).le
@@ -480,16 +474,5 @@ def StepThmBG : Prop :=
           (Real.exp (CB * ((2 * D.R.rS + 2 : ℕ) : ℝ) ^ 5 * D.R.f * Real.log large₂.sc.b) * Ire)
 
 end GenStep
-
-section Comparison₂
-
-open scoped Classical
-open Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full
-  Formalism.L2.SG.RowsConc Formalism.L2.SG.NGData Formalism.L2.SG.NGCut Formalism.L2.SG.NGAnalytic Formalism.L2.SG.LocWSOf Formalism.QuantumDeterminants NumberField
-  Formalism.L2.SG.Pf.MainEqCut
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-end Comparison₂
 
 end Formalism.L2.SG.Pf.BDat

@@ -65,17 +65,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.PlaceInt
 namespace GlobalTheory.PlaceInt.KerTrace
 
-theorem exists_basis {A R : Type} [CommRing A] [CommRing R] [Algebra A R] {r : ℕ} (b : Fin r → R)
-    (h : ∀ f, ∃! cf : Fin r → A, f = ∑ i, algebraMap A R (cf i) * b i) :
-    ∃ e : Module.Basis (Fin r) A R, ∀ i, e i = b i := by
-  first
-  | exact @_root_.GlobalTheory.SmoothEvaluation.main
-  | exact _root_.GlobalTheory.SmoothEvaluation.main
-  | (apply _root_.GlobalTheory.SmoothEvaluation.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SmoothEvaluation.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SmoothEvaluation.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SmoothEvaluation.main ..)
-
 theorem sum_tower {A₀ A₁ R : Type} [CommRing A₀] [IsDomain A₀] [CommRing A₁] [IsDomain A₁] [CommRing R] [IsDomain R]
     (φ : A₀ →+* A₁) (ψ : A₁ →+* R) {r r' r'' : ℕ} (b : Fin r → A₁) (b' : Fin r' → R) (b'' : Fin r'' → R)
     (h : ∀ f, ∃! cf : Fin r → A₀, f = ∑ i, φ (cf i) * b i)
@@ -91,9 +80,9 @@ theorem sum_tower {A₀ A₁ R : Type} [CommRing A₀] [IsDomain A₀] [CommRing
   letI := ψ.toAlgebra
   letI := (ψ.comp φ).toAlgebra
   haveI : IsScalarTower A₀ A₁ R := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  obtain ⟨e, he⟩ := exists_basis (A := A₀) b h
-  obtain ⟨e', -⟩ := exists_basis (A := A₁) b' h'
-  obtain ⟨e'', -⟩ := exists_basis (A := A₀) b'' h''
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.SmoothEvaluation.main (A := A₀) b h
+  obtain ⟨e', -⟩ := _root_.GlobalTheory.SmoothEvaluation.main (A := A₁) b' h'
+  obtain ⟨e'', -⟩ := _root_.GlobalTheory.SmoothEvaluation.main (A := A₀) b'' h''
   haveI := Module.Free.of_basis e
   haveI := Module.Free.of_basis e'
   haveI := Module.Free.of_basis e''
@@ -247,7 +236,7 @@ theorem sum_shift_kerM_mul : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscret
   have hsq := splitKer_right B p q hsp
   obtain ⟨f', rfl⟩ := GlobalTheory.T.formalSeries_descends_of_splitKernel_invariant V d O B hB n q _ N hN hq hjq hsq f hf
   obtain ⟨hfin, hcard⟩ := GlobalTheory.T.formalMatrixKernel_finite_ncard_eq_rank V d O B hB n (p * q) s N hN h1 hj hsp
-  obtain ⟨-, hcardq⟩ := GlobalTheory.T.formalMatrixKernel_finite_ncard_eq_rank V d O B hB n q _ N hN hq hjq hsq
+  obtain ⟨-, hcardq⟩ := _root_.GlobalTheory.KerCard.finite_ncard_kerM V d O B hB n q _ N hN hq hjq hsq
   have cp := GlobalTheory.T.exists_pow_span_X_le_span_formalModuleMatrix V d O B hB n p _ N hN hp
   obtain ⟨r, b, -, hb⟩ := GlobalTheory.T.exists_finite_basis_powerSeries_subst_finite_colength V _ (crd B p) (crd_const B p) cp
   obtain ⟨r', b', hr', hb'⟩ := GlobalTheory.T.exists_finite_basis_powerSeries_subst_finite_colength V _ (crd B q) (crd_const B q) (GlobalTheory.T.exists_pow_span_X_le_span_formalModuleMatrix V d O B hB n q _ N hN hq)

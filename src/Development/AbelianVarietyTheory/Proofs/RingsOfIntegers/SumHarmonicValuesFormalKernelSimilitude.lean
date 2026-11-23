@@ -243,7 +243,7 @@ theorem sum_hv_formal_kernel : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   intro E _ _ _ H Dw l Xo c _ hstar T io y C hG nab hnab e ρ w n he hCh ℓ hℓ hℓu N k M p q hN hsim hNk hkℓ hrat J _ a ha
     hiff F G hF hmove hkill P s hP hFF
   let _ := io.toAlgebra
-  obtain ⟨B, hB, hBall⟩ := GlobalTheory.T.integralChart_formalBiextension_gauge_bound E H Dw l Xo c hstar T io y C
+  obtain ⟨B, hB, hBall⟩ := _root_.GlobalTheory.PlaceInt.integralBiext_gauge_eig_bound E H Dw l Xo c hstar T io y C
   obtain ⟨hcan, hg0, heig, hbd⟩ := hBall B hB
   obtain ⟨⟨Θ, hΘ⟩, jo, hjo⟩ := GlobalTheory.T.gauge_thirdDifference_symmetry_integral_exponentials T.V (chD C.ch) (𝓞 E) B T.Fr (gaugeOf C) H.w0 hcan
   have hNpos : N ^ 2 ≠ 0 := pow_ne_zero 2 (Odd.pos hN).ne'
@@ -262,7 +262,7 @@ theorem sum_hv_formal_kernel : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     split_ifs <;> simp
   obtain ⟨hdet, hsM'⟩ := sim_two_sided sM (p * q) _ hN2 hsM
 
-  have h51 := fun (kk : ℕ) (Fk : SecN Xo (xOf y) kk) => GlobalTheory.T.regular_section_integral_germ_unique_scale E H Dw l Xo c hstar T io y C hG.1 kk Fk
+  have h51 := fun (kk : ℕ) (Fk : SecN Xo (xOf y) kk) => _root_.GlobalTheory.RegularGerm.regular_germ E H Dw l Xo c hstar T io y C hG.1 kk Fk
   choose f hf using fun b => (h51 (N ^ 2) (F b)).1 (hF b)
   have hkpq : ∀ i, Kills Xo (p * q) (a i) := fun i => ((hiff (a i)).mp ⟨i, rfl⟩).1
   choose α hα using fun i b => ((hiff (a i)).mp ⟨i, rfl⟩).2 b
@@ -297,7 +297,7 @@ theorem sum_hv_formal_kernel : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   choose u hu hgerm using fun i b => h70 (a i b) (α i b) (hα i b) (htor i b)
   obtain ⟨κ, hκ, hκ1⟩ := GlobalTheory.T.exists_integral_exponential_similitude_gauge T.V (chD C.ch) (𝓞 E) B T.Fr (gaugeOf C) H.w0 hcan n (p * q) (N ^ 2) hsimS
   have hU : ∀ i, (∏ b, evV (n := n) ![pt T.V (chD C.ch) b] (u i b)) * shift B.G.F (α i) κ = κ := fun i =>
-    GlobalTheory.T.prod_symmetricTranslationUnits_eq_kappa_ratio T.V (chD C.ch) (𝓞 E) B T.Fr (gaugeOf C) H.w0 hcan Θ jo hΘ hjo n (p * q) (N ^ 2) hN.pow hsimS κ hκ
+    _root_.GlobalTheory.PlaceInt.prod_trUnit_mul_shift_kappa T.V (chD C.ch) (𝓞 E) B T.Fr (gaugeOf C) H.w0 hcan Θ jo hΘ hjo n (p * q) (N ^ 2) hN.pow hsimS κ hκ
       (α i) (hker i) (u i) (fun b => hu i b)
   have hq : ∀ i, α i ∈ kerM B q → (∏ b, evV (n := n) ![pt T.V (chD C.ch) b] (u i b)) *
       shift B.G.F (α i) (∏ b, evV (n := n) ![pt T.V (chD C.ch) b] (f b)) =
@@ -353,7 +353,7 @@ theorem sum_hv_formal_kernel : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       (fun ℓ : LtN Dw n => ℓ.2.2) (fun ℓ => C.ch.uvec ⟨ℓ.1, ℓ.2.1⟩) (MvPolynomial.map io P) := by
     intro i
     rw [← box_shift B (hsm i) (u i) f]
-    exact GlobalTheory.T.harmonicValue_integralPoint_eq_value_on_biextensionCopies E H Dw l Xo c hstar T io y C nab hnab B hB (N ^ 2) n (G i) _
+    exact _root_.GlobalTheory.PlaceInt.hv_eq_nabValN E H Dw l Xo c hstar T io y C nab hnab B hB (N ^ 2) n (G i) _
       (fun b => hgerm i b (F b) (G i b) (f b) (hF b) (hf b) (hmove i b)) w P hP
   have hlin := isLinearMap_nabValN B T.Fr (gaugeOf C) H.w0 (N ^ 2) (fun ℓ : LtN Dw n => ℓ.2.2)
     (fun ℓ => C.ch.uvec ⟨ℓ.1, ℓ.2.1⟩) (MvPolynomial.map io P)

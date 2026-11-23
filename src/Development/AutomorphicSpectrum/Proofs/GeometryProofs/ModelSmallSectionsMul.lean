@@ -67,15 +67,6 @@ theorem homog_mul {f g : MRing ι} {a b : K → ℕ} (hf : IsMultiHomog f a) (hg
   simp only [Finsupp.add_apply, Finset.sum_add_distrib, Pi.add_apply]
   rw [hf m1 hm1 k, hg m2 hm2 k]
 
-theorem homog_one : IsMultiHomog (1 : MRing ι) (0 : K → ℕ) := by
-  classical
-  intro m hm k
-  rw [MvPolynomial.mem_support_iff, MvPolynomial.coeff_one] at hm
-  split_ifs at hm with h
-  · subst h
-    simp
-  · exact absurd rfl hm
-
 theorem homog_X [DecidableEq K] (k₀ : K) (i₀ : ι k₀) :
     IsMultiHomog (MvPolynomial.X ⟨k₀, i₀⟩ : MRing ι) (Pi.single k₀ 1) := by
   classical
@@ -100,7 +91,7 @@ theorem homog_pow {f : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f a) (e : �
       ext k
       simp
     rw [pow_zero, h0]
-    exact homog_one
+    exact _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_one
   | succ n ih =>
     have h1 : ((n + 1) • a : K → ℕ) = n • a + a := by
       ext k
@@ -115,7 +106,7 @@ theorem homog_mon (c : ∀ k, ι k) (m : K → ℕ) : IsMultiHomog (mon c m) m :
     intro s
     refine Finset.induction_on s ?_ ?_
     · rw [Finset.prod_empty, Finset.sum_empty]
-      exact homog_one
+      exact _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_one
     · intro j s hj ih
       rw [Finset.prod_insert hj, Finset.sum_insert hj]
       exact homog_mul (homog_pow (homog_X j (c j)) (m j)) ih
@@ -143,28 +134,13 @@ private theorem mConeMap_monomial' (y : (Σ k, ι k) → Ω) (m : (Σ k, ι k) �
     ring
   all_goals simp
 
-theorem cone_form (y : (Σ k, ι k) → Ω) {h : MRing ι} {d : K → ℕ} (hh : IsMultiHomog h d) :
-    mConeMap y h = MvPolynomial.C (aeval y h) * ∏ k, (MvPolynomial.X k : MvPolynomial K Ω) ^ d k := by
-  classical
-  have key : ∀ m ∈ MvPolynomial.support h, mConeMap y (MvPolynomial.monomial m (AddMonoidAlgebra.coeff h m)) =
-      MvPolynomial.C (aeval y (MvPolynomial.monomial m (AddMonoidAlgebra.coeff h m) : MRing ι)) *
-        ∏ k, (MvPolynomial.X k : MvPolynomial K Ω) ^ d k := by
-    intro m hm
-    rw [mConeMap_monomial']
-    simp only [hh m hm]
-  conv_lhs => rw [MvPolynomial.as_sum h]
-  conv_rhs => rw [MvPolynomial.as_sum h]
-
-  simp only [map_sum, Finset.sum_mul]
-  exact Finset.sum_congr rfl key
-
 theorem sub_mem_coord (y : (Σ k, ι k) → Ω) {f g : MRing ι} {d : K → ℕ} (hf : IsMultiHomog f d)
     (hg : IsMultiHomog g d) (e : aeval y f = aeval y g) : f - g ∈ mCoordIdeal y := by
-  rw [mCoordIdeal, RingHom.mem_ker, map_sub, cone_form y hf, cone_form y hg, e, sub_self]
+  rw [mCoordIdeal, RingHom.mem_ker, map_sub, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog y hf, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog y hg, e, sub_self]
 
 theorem aeval_eq_zero (y : (Σ k, ι k) → Ω) {f : MRing ι} {d : K → ℕ} (hf : IsMultiHomog f d)
     (hm : f ∈ mCoordIdeal y) : aeval y f = 0 := by
-  rw [mCoordIdeal, RingHom.mem_ker, cone_form y hf] at hm
+  rw [mCoordIdeal, RingHom.mem_ker, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog y hf] at hm
   have hM : (∏ k, (MvPolynomial.X k : MvPolynomial K Ω) ^ d k) ≠ 0 :=
     Finset.prod_ne_zero_iff.mpr (fun k _ => pow_ne_zero _ (MvPolynomial.X_ne_zero k))
   exact MvPolynomial.C_eq_zero.mp ((mul_eq_zero.mp hm).resolve_right hM)

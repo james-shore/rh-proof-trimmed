@@ -46,6 +46,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ImportsMore
 
 @[expose] public section
 
@@ -54,29 +55,6 @@ noncomputable section
 open NumberField IsDedekindDomain GlobalTheory.LatHecke Formalism.UG
 
 namespace GlobalTheory.ElemCartan
-
-section Dvr
-
-variable {O K : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field K] [Algebra O K]
-  [IsFractionRing O K] {r : ℕ}
-
-theorem coord_of_mem_std {x : Fin r → K} (hx : x ∈ (std O K r).1) (i : Fin r) :
-    ∃ a : O, algebraMap O K a = x i := by
-  induction hx using Submodule.span_induction with
-  | mem x hx =>
-    obtain ⟨j, rfl⟩ := hx
-    by_cases h : i = j
-    · exact ⟨1, by simp [h]⟩
-    · exact ⟨0, by simp [h]⟩
-  | zero => exact ⟨0, by simp⟩
-  | add x y _ _ hx hy =>
-    obtain ⟨a, ha⟩ := hx; obtain ⟨b, hb⟩ := hy
-    exact ⟨a + b, by simp [ha, hb]⟩
-  | smul c x _ hx =>
-    obtain ⟨a, ha⟩ := hx
-    exact ⟨c * a, by simp [ha, Algebra.smul_def]⟩
-
-end Dvr
 
 section Adic
 
@@ -89,28 +67,13 @@ theorem zpow_mem_iff {ϖ : w.adicCompletion E} (hϖ : IsUnifV E w ϖ) (m : ℤ) 
     smul_eq_mul]
   omega
 
-theorem ne_zero_of_unif {ϖ : w.adicCompletion E} (hϖ : IsUnifV E w ϖ) : ϖ ≠ 0 := by
-  intro h
-  rw [IsUnifV, h, map_zero] at hϖ
-  exact WithZero.zero_ne_coe hϖ
-
-theorem antitone_zero_one {n j : ℕ} (a : Fin n → ℤ) (ha : Antitone a)
-    (h01 : ∀ i, a i = 0 ∨ a i = 1)
-    (hS : (Finset.univ.filter fun i => a i = 1).card = j) (i : Fin n) :
-    a i = 1 ↔ (i : ℕ) < j := by
-  rw [← hS]
-  refine (Fin.lt_card_filter_univ_iff_apply_of_imp (fun k => a k = 1) ?_).symm
-  intro k l hlk hk
-  have hle := ha hlk
-  rcases h01 l with hl | hl <;> omega
-
 end Adic
 
 theorem mem_doubleCoset_of_subElem :
     ∀ (E : Type) [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E))
       (n : ℕ) (ϖ : w.adicCompletion E), IsUnifV E w ϖ →
       ∀ (j : ℕ), j ≤ n → ∀ (g : GL (Fin n) (w.adicCompletion E)),
-        (haveI := GlobalTheory.RowSatakeBound.finite_residue w
+        (haveI := _root_.Formalism.UG.P.glint_finite_residueField w
          glMap g (std (w.adicCompletionIntegers E) (w.adicCompletion E) n).1 ∈
            Subtype.val '' subElem j (std (w.adicCompletionIntegers E) (w.adicCompletion E) n) →
          ∃ a ∈ GLint (Fin n) (Ov E w), ∃ b ∈ GLint (Fin n) (Ov E w),
@@ -118,11 +81,11 @@ theorem mem_doubleCoset_of_subElem :
              (a : Matrix (Fin n) (Fin n) (w.adicCompletion E)) * diagJ n ϖ j *
                (b : Matrix (Fin n) (Fin n) (w.adicCompletion E))) := by
   intro E _ _ w n ϖ hϖ j _ g hg
-  have := GlobalTheory.RowSatakeBound.finite_residue w
+  have := _root_.Formalism.UG.P.glint_finite_residueField w
   obtain ⟨M₀, hM, hMg⟩ := hg
   set L := std (w.adicCompletionIntegers E) (w.adicCompletion E) n with hLdef
   set M : Lat (w.adicCompletionIntegers E) (w.adicCompletion E) n := M₀ with hMdef
-  have hϖ0 := ne_zero_of_unif w hϖ
+  have hϖ0 := _root_.Formalism.UG.P.satake_unif_ne_zero w hϖ
   have hϖO : ϖ ∈ Ov E w := by
     have := (zpow_mem_iff w hϖ 1).2 zero_le_one
     simpa using this
@@ -152,7 +115,7 @@ theorem mem_doubleCoset_of_subElem :
     intro i
     have hmem : Matrix.toLin' (D : Matrix (Fin n) (Fin n) (w.adicCompletion E)) (Pi.basisFun (w.adicCompletion E) (Fin n) i) ∈ glMap D L.1 :=
       ⟨_, Submodule.subset_span ⟨i, rfl⟩, rfl⟩
-    obtain ⟨c, hc⟩ := coord_of_mem_std (hle hmem) i
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.LatHecke.coord_of_mem_std (hle hmem) i
     rw [hDe] at hc
     simp only [Pi.basisFun_apply, Pi.single_eq_same, mul_one] at hc
     rw [← zpow_mem_iff w hϖ, ← hc]
@@ -168,7 +131,7 @@ theorem mem_doubleCoset_of_subElem :
     have hmem : (⟨ϖ, hϖO⟩ : w.adicCompletionIntegers E) • Pi.basisFun (w.adicCompletion E) (Fin n) i ∈ IsLocalRing.maximalIdeal (w.adicCompletionIntegers E) • L.1 :=
       Submodule.smul_mem_smul hϖm (Submodule.subset_span ⟨i, rfl⟩)
     obtain ⟨x, hx, hxe⟩ := hmax hmem
-    obtain ⟨c, hc⟩ := coord_of_mem_std hx i
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.LatHecke.coord_of_mem_std hx i
     have hxi := congrFun hxe i
     simp only [LinearMap.coe_restrictScalars] at hxi
     rw [hDe] at hxi
@@ -189,12 +152,12 @@ theorem mem_doubleCoset_of_subElem :
     rcases h01 i with h | h <;> simp [hSdef, h]
   have hD' : (D : Matrix (Fin n) (Fin n) (w.adicCompletion E)) = Matrix.diagonal fun i => if i ∈ S then ϖ else 1 := by
     rw [hD, diagPow, hdiag]
-  obtain ⟨M₂, ⟨⟨-, hidx₂⟩, -⟩, hM₂⟩ := GlobalTheory.T.glMap_diagUniformizer_elementarySublattice E w n ϖ hϖ S D hD'
+  obtain ⟨M₂, ⟨⟨-, hidx₂⟩, -⟩, hM₂⟩ := _root_.GlobalTheory.DiagElem.glMap_diag_mem_subElem E w n ϖ hϖ S D hD'
   rw [hM₂] at hidx₂
   have hcard : S.card = j := by
     have h := hidx₂.symm.trans hidx
     exact Nat.pow_right_injective (two_le_qRes (O := w.adicCompletionIntegers E)) h
-  have hkey := antitone_zero_one a ha h01 hcard
+  have hkey := _root_.GlobalTheory.ClosedSubgroupCriterion.main a ha h01 hcard
   refine ⟨k₁, hk₁, k₂, hk₂, ?_⟩
   rw [e]
   congr 2

@@ -137,7 +137,7 @@ theorem exists_open_levSurj : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (M : 
     let y := w ≫ i
     have hy : Set.range y.left.base ⊆ (C : Set (torsion G M).left) := (hV _ y).2 ⟨w, rfl⟩
     have hg : (y ≫ torsion.ι G M) ^ M = 1 := by
-      rw [← MonObj.comp_pow, GlobalTheory.TorsionFamily.torsion_ι_pow, MonObj.comp_one]
+      rw [← MonObj.comp_pow, _root_.GlobalTheory.KernelNoTorsion.torsionι_pow, MonObj.comp_one]
     obtain ⟨a, ha⟩ := hx₀ _ hg
     have e1 : (toUnit (Over.mk x₀) ≫ ℓ (rep ⟨q a, a, rfl⟩)) ≫ torsion.ι G M = toUnit _ ≫ lev a := by
       rw [Category.assoc, hℓ, hrep]

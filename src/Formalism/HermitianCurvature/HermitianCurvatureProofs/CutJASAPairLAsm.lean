@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutRegFF
 
 @[expose] public section
 
@@ -66,7 +67,7 @@ theorem sAPairOne_of_parts (hZ : SAZero) (hL : SALocal) (hE : SAExh) (hJC : SAJC
   refine ⟨max C1 (max C2 (max C3 (max C4 C5))), ?_⟩
   intro E _ _ _ Wp Wq _ _ _ _ _ _ S T f χ ν' m₀ top A₀ hB v e he Θ hΘ K hK J hJ hΘK hΘJ hKt
   have mono : ∀ c : ℝ, c ≤ max C1 (max C2 (max C3 (max C4 C5))) → BuiltOW c S T f χ ν' m₀ top A₀ :=
-    fun c h => ⟨isBuiltPlace_mono h hB.1, hB.2⟩
+    fun c h => ⟨_root_.Formalism.FourierDecayAlt.P.CutMP.isBuiltPlace_mono3 h hB.1, hB.2⟩
   have hB1 := mono C1 (le_max_left _ _)
   have hB2 := mono C2 (le_trans (le_max_left _ _) (le_max_right _ _))
   have hB3 := mono C3 (le_trans (le_max_left _ _) (le_trans (le_max_right _ _) (le_max_right _ _)))
@@ -109,7 +110,7 @@ theorem sAPairOne_of_parts (hZ : SAZero) (hL : SALocal) (hE : SAExh) (hJC : SAJC
       · simp only [MA.ext]
         unfold trJ
         rw [En.toSm_val_of_mem _ hsm]
-        simp [hΘK0 y hyQ hyC, GA.hsVec_zero']
+        simp [hΘK0 y hyQ hyC, _root_.Formalism.FourierDecayAlt.P.JCx1.needs.hsVec_zero]
       · simp only [MA.ext]
         first
         | exact fun h => absurd h hyQ

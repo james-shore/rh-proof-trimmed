@@ -64,7 +64,7 @@ theorem polyFun_mem (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F
 
 theorem lieDer_polyFun (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)) (V : HSp D)
     (R : RealPoints θ V) (τ : D.what₂.Tau) (X : LieAt V τ) (P : PolyE V) :
-    lieDer V (expInf θ V) (atPlace V τ X) (polyFun θ V P) = polyFun θ V (matDer τ X.1 P) := GlobalTheory.T.rightLieDerivative_realEntryPolynomialFunction D θ V R τ X P
+    lieDer V (expInf θ V) (atPlace V τ X) (polyFun θ V P) = polyFun θ V (matDer τ X.1 P) := _root_.GlobalTheory.PolyRightDeriv.lieDer_polyFun D θ V R τ X P
 
 
 open Classical in
@@ -232,7 +232,7 @@ theorem envRepAll_injective (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[
     rintro ⟨τ, a', b'⟩ ⟨τ', c, d⟩
     rw [hπe]
     exact aeval_matDer_single τ τ' a' b' c d
-  refine GlobalTheory.T.faithful_of_derivations_dualFamily _ _ _ e hgen hbr (polyRep V) hder χ a ha0 hδ u fun x => ?_
+  refine _root_.GlobalTheory.faithful_of_derivations_dual_family _ _ _ e hgen hbr (polyRep V) hder χ a ha0 hδ u fun x => ?_
   have h1 := congrFun (envRepAll_polyFun R u x) 1
   rw [hu, LinearMap.zero_apply, ZeroMemClass.coe_zero, Pi.zero_apply] at h1
   have h2 : polyFun θ V (polyRep V u x) 1 = χ (polyRep V u x) := by

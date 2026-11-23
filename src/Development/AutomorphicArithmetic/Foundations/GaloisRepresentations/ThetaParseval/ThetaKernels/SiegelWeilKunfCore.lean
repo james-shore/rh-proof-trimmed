@@ -121,7 +121,7 @@ theorem unfoldCore_k (B : Base F E) (hB : _root_.UpperTheory.TP.W.GoodK σ B) (h
       have e : (w * nb ν'.1) = (γ : rat2 σ Y).1 * (w * nb ν.1) := (congrArg Subtype.val hγ).symm
       rw [e, mul_inv_cancel_right]
       exact Subgroup.mem_subgroupOf.1 γ.2
-    exact (Subtype.ext (big_inj hb hw hnb hP)).symm
+    exact (Subtype.ext (_root_.PositivityTheory.SiegelWeilFormula.kunf.big_inj' hb hw hnb hP)).symm
   have hAq₀ : ∀ β, A q₀ β = φ (w * nb β * x) := fun β => by
     rw [hAmk, mul_assoc]
   have hI := abs_integrable lam (nF σ Y b) 𝓖 h𝓖 act hact0 hact A hA hAact C hC hcov u hu hAu q₀ hinj
@@ -138,7 +138,7 @@ theorem unfoldCore_k (B : Base F E) (hB : _root_.UpperTheory.TP.W.GoodK σ B) (h
     simp only [χ₀, AddChar.map_neg_eq_inv, psi_rat hB.std T ν, inv_one]
   have hsmall : ∀ q, (∀ ν, act q₀ ν ≠ q) →
       ∃ β₀, χ₀ β₀ ≠ 1 ∧ ∀ ν β, A (act q ν) (β + β₀) = A (act q ν) β := fun q hq => by
-    rcases _root_.PositivityTheory.SiegelWeilFormula.kunf.cells_k B hB hb hw hnb T hT (q.out : rat2 σ Y).1 (q.out : rat2 σ Y).2 with
+    rcases _root_.PositivityTheory.SiegelWeilFormula.kunf.cells'_k B hB hb hw hnb T hT (q.out : rat2 σ Y).1 (q.out : rat2 σ Y).2 with
       ⟨p, hpP, hpΓ, ν, hνF, hγ⟩ | ⟨β₀, hψ, t, hpar, hdet⟩
     · exfalso
       refine hq ⟨ν, hνF⟩ ?_

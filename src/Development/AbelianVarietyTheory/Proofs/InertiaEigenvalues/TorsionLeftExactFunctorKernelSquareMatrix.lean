@@ -373,12 +373,7 @@ theorem few_relations [IsNoetherianRing Λ] [Finite (ResidueField Λ)] (F : Modu
           Nat.card_le_card_of_injective _ Subtype.val_injective
       _ = Nat.card (ResidueField Λ) ^ a := by
           rw [Nat.card_fun, Nat.card_eq_fintype_card (α := Fin a), Fintype.card_fin]
-  exact GlobalTheory.T.exists_generators_of_card_hom_residueField_le Λ N a (hle1.trans (hcard.trans hle2))
-
-theorem residue_kill : ∀ r ∈ maximalIdeal Λ, ∀ y : ResidueField Λ, r • y = 0 := by
-  intro r hr y
-  rw [Algebra.smul_def, IsLocalRing.ResidueField.algebraMap_eq,
-    (IsLocalRing.residue_eq_zero_iff r).mpr hr, zero_mul]
+  exact _root_.GlobalTheory.exists_span_eq_top_of_card_hom_residueField_le Λ N a (hle1.trans (hcard.trans hle2))
 
 theorem residue_simple : IsSimpleModule Λ (ResidueField Λ) :=
   isSimpleModule_iff_isCoatom.mpr (IsLocalRing.maximalIdeal.isMaximal Λ).out
@@ -387,7 +382,7 @@ theorem kernelRep : KernelRep := by
   unfold KernelRep
   intro Λ _ _ _ _ _ F _ _ hlex hcol hobs
   classical
-  have hres := residue_kill (Λ := Λ)
+  have hres := _root_.GlobalTheory.SelFun.residue_smul_eq_zero (Λ := Λ)
   have hsimple := residue_simple (Λ := Λ)
   have htors : ∀ (B : ModuleCat.{0} Λ) (n : ℕ), (∀ x ∈ maximalIdeal Λ ^ n, ∀ y : B, x • y = 0) → Tors Λ B :=
     fun B n h y => ⟨n, fun x hx => h x hx y⟩

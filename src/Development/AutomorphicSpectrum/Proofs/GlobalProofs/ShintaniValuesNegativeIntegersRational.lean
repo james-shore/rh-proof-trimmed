@@ -126,7 +126,7 @@ theorem diff_bound (ι : Type) [Fintype ι] [DecidableEq ι] (r : ℕ) (a : ι �
       (f' := fun τ => ∑ j, (-s - (β j : ℂ)) * (a j c : ℂ) *
         DLR cs (Fr a b s (β + Pi.single j 1)) (x + τ • (Pi.single c 1 : Fin r → ℝ)))
       (C := (∑ j, ((R : ℝ) + β j) * a j c * C j) * 2 ^ z.natAbs * sizeE x ^ z)
-      (fun τ hτ => (GlobalTheory.T.cone_series_real_derivative_formula ι r a b ha hb s β cs c x τ hx hτ.1).hasDerivWithinAt)
+      (fun τ hτ => (_root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.DerivDLR.hasDerivAt_DLR_Fr ι r a b ha hb s β cs c x τ hx hτ.1).hasDerivWithinAt)
       (fun τ hτ => ?_)
     · simpa [DLR, fdR] using hmv
     · have hu1 : sizeE x ≤ sizeE (x + τ • (Pi.single c 1 : Fin r → ℝ)) := by

@@ -78,17 +78,6 @@ theorem exists_rep {E W : Type} [Field E] [StarRing E] [AddCommGroup W] [Module 
   have := key f (h.flip (w : W)) (fun i => by simpa [L] using (congrFun hw i).symm) σ hσ
   simpa using this
 
-theorem exists_smul_mem {E W : Type} [Field E] [NumberField E] [AddCommGroup W] [Module E W]
-    [Module (𝓞 E) W] [IsScalarTower (𝓞 E) E W] (L : Submodule (𝓞 E) W) (v : W)
-    (hv : v ∈ Submodule.span E (L : Set W)) : ∃ c : 𝓞 E, c ≠ 0 ∧ c • v ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.ClearingDenominatorsInOrder.main
-  | exact _root_.GlobalTheory.ClearingDenominatorsInOrder.main
-  | (apply _root_.GlobalTheory.ClearingDenominatorsInOrder.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ClearingDenominatorsInOrder.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ClearingDenominatorsInOrder.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ClearingDenominatorsInOrder.main ..)
-
 variable {E : Type} [Field E] [NumberField E] [StarRing E]
 
 theorem exists_vec (S : HSpace E) (φ : S.V →ₗ[E] E) : ∃ w, ∀ x, φ x = S.hT w x := by
@@ -255,14 +244,14 @@ theorem norm_cof {E : Type} [Field E] [NumberField E] [StarRing E] {S : Formalis
     T * S.hT w w = leadMinorE (Zhat F F') (r + 1) * star (leadMinorE (Zhat F F') (r + 1)) -
       T * T' * (leadMinorE (Zhat F F') r * star (leadMinorE (Zhat F F') r)) := by
   have hZ : Formalism.HermitianLatticeCounting.LatticeSumBounds.crossGram S.hT.flip F.fvec F'.fvec = Zhat F F' := rfl
-  have h := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.omegaNorm E S.V S.hT.flip (fun x y => hT_symm S y x) r F.fvec F'.fvec T T'
+  have h := _root_.Formalism.HermitianLatticeCounting.P.complementNormIdentity E S.V S.hT.flip (fun x y => hT_symm S y x) r F.fvec F'.fvec T T'
     (((-1 : E) ^ r) • x) (((-1 : E) ^ r) • w) ((-1 : E) ^ r * ζ) (fun a b => fvec_gram F a b)
     (fun a b => fvec_gram F' a b) hT
     (Submodule.smul_mem _ _ (by simpa [FlagG.fvec, FlagG.X] using (show x ∈ Submodule.span E (Set.range fun a => F.e a) from hx)))
     (fun a => by simp [hw a])
     (by
       rw [hZ]
-      simp only [Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.cofVecAdjugate E r (Zhat F F'), mul_smul]
+      simp only [_root_.Formalism.HermitianLatticeCounting.P.adjugateLastColumnEqCofactor E r (Zhat F F'), mul_smul]
       rw [← Finset.smul_sum, hom, smul_add, smul_add]
       simp [FlagG.fvec])
   rw [hZ] at h
@@ -301,7 +290,7 @@ theorem main : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D),
     rw [← (hw b).2 σ hσ.2]
     have huni : Formalism.HermitianLatticesTheory.dual (hS D).hT Λ = Λ := hrow.2.1.2.1
     exact (mem_dual _ _ _).1 (huni.symm ▸ hfΛ b) _ (iXY_mem D F0 Λ hb.1 hsp σ hσ.1)
-  · obtain ⟨c, hc, hcΛ⟩ := exists_smul_mem Λ (D.sp.iXY 0 (w b))
+  · obtain ⟨c, hc, hcΛ⟩ := _root_.GlobalTheory.ClearingDenominatorsInOrder.main Λ (D.sp.iXY 0 (w b))
       (by rw [span_eq_top_of_unimodular Λ hrow.2.1.1 hrow.2.1.2.1]; trivial)
     have hworth : D.sp.iXY 0 (w b) ∈ orth (hS D) (Xplus (lf D F0)) :=
       hW.1.le (Submodule.mem_sup_left ⟨w b, rfl⟩)
@@ -336,7 +325,7 @@ theorem main : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D),
       have := hst.2.2.2.1
       exact Nat.cast_ne_zero.2 (by omega)
     have hE : ∀ a, (hS D).hT (F0.e a) om = 0 := fun a => by
-      have h := congrFun (Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.kernelRowSpace _ _
+      have h := congrFun (_root_.Formalism.HermitianLatticeCounting.P.cofactorVectorKernel _ _
         ((Zhat F0 F'.fl).submatrix Fin.castSucc id)).1 a
 
       rw [hom, map_sum]

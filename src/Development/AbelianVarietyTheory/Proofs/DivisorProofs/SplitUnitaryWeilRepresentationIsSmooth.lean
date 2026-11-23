@@ -68,12 +68,12 @@ theorem isKW_isSmoothRep : ∀ (F : Type) [Field F] [CharZero F] [ValuativeRel F
         rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply] }
   have key : ∀ u : SB (Matrix α ν E), ∀ᶠ g in nhds (1 : UG c (stdJ ν E)), g ∈ sieg c ν → ω g u = u := by
     intro u
-    filter_upwards [GlobalTheory.T.schwartzBruhat_fixed_near_one_siegelParabolic F E c δ hE α ν Q hQ ψ hψ hψ1 hψne χ hχ hη (u : Matrix α ν E → ℂ) u.2] with g hg hs
+    filter_upwards [_root_.GlobalTheory.KSp.parFun_fixed_near_one F E c δ hE α ν Q hQ ψ hψ hψ1 hψne χ hχ hη (u : Matrix α ν E → ℂ) u.2] with g hg hs
     apply Subtype.ext
     rw [hKW.par g hs u]
     exact hg hs
   have hU : IsOpen (U : Set (UG c (stdJ ν E))) := by
-    refine GlobalTheory.T.isOpen_subgroup_of_siegel_and_opposite_nhds F E c δ hE ν U (key v) ?_
+    refine _root_.GlobalTheory.KSp.isOpen_of_sieg_of_opp F E c δ hE ν U (key v) ?_
     filter_upwards [key (ω (weyl c ν) v)] with g hg hs
     change ω ((weyl c ν)⁻¹ * g * weyl c ν) v = v
     rw [map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, hg hs, ← Module.End.mul_apply, ← map_mul,

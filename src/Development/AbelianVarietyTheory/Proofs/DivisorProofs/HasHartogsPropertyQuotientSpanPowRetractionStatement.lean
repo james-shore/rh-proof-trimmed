@@ -48,8 +48,3 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing
 open scoped TensorProduct
 
-theorem _root_.GlobalTheory.T.hasHartogsProperty_quotient_span_pow_retraction : ∀ (A R : Type) [CommRing A] [IsDomain A] [IsNoetherianRing A] [IsIntegrallyClosed A]
-    [CommRing R] [Algebra A R] (ρ : R →+* A), ρ.comp (algebraMap A R) = RingHom.id A →
-    ∀ t : R, RingHom.ker ρ = Ideal.span {t} → t ∈ nonZeroDivisors R →
-    ∀ n : ℕ, GlobalTheory.GoodEtale.Hart A R (R ⧸ Ideal.span {t} ^ n) := by
-  first | (exact @GlobalTheory.GoodEtaleSection.hart_quot) | (exact GlobalTheory.GoodEtaleSection.hart_quot) | (intros; apply GlobalTheory.GoodEtaleSection.hart_quot  <;> assumption)

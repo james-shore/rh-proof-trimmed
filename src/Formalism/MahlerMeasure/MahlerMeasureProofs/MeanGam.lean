@@ -417,7 +417,7 @@ lemma lead_part (hDeg : GamDeg) (hLead : GamLead) {p : ℕ} [hp : Fact p.Prime] 
     simp only [betaT, gramT, Matrix.of_apply]
     push_cast
     ring
-  obtain ⟨hdeg1, hcoef, hlead⟩ := Formalism.GM.Top.detBlockLead ℚ_[p] n₀ Aq (S + o) ord
+  obtain ⟨hdeg1, hcoef, hlead⟩ := _root_.Formalism.GM.determinant_block_leading_term ℚ_[p] n₀ Aq (S + o) ord
     (fun i => (hord_le i).trans (by omega)) hAdeg
   set B := Matrix.of fun i j => if ord i = ord j then (Aq i j).coeff (S + o - ord i) else 0 with hBdef
   have hB : ∀ i j, B i j = if ord i = ord j then betaT p (m + cI) z o S (ord i) * gramT p LLw ρ f ord i j

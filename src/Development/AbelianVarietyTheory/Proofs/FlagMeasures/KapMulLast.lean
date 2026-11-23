@@ -102,7 +102,7 @@ theorem sec_mul_neg (hη : η = 1 ∨ η = -1) {β : Fin k → ℂ} (h : nsq β 
   obtain ⟨d, hdd⟩ : ∃ d, d = ((dd η β : ℝ) : ℂ) := ⟨_, rfl⟩
   rw [← ha, ← hdd] at h4
   rw [← hdd] at h3
-  refine blk_ext (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_
+  refine _root_.GlobalTheory.MatrixExtLast.matrix_ext_last (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_
   · have e : ∀ l, ((1 : Matrix (Fin k) (Fin k) ℂ) i l - a * (conj (β i) * β l)) *
         ((1 : Matrix (Fin k) (Fin k) ℂ) l j - a * (conj (β l) * β j)) =
         (1 : Matrix (Fin k) (Fin k) ℂ) i l * ((1 : Matrix (Fin k) (Fin k) ℂ) l j - a * (conj (β l) * β j))
@@ -144,7 +144,7 @@ theorem neg_mul_sec (hη : η = 1 ∨ η = -1) {β : Fin k → ℂ} (h : nsq β 
 theorem sec_herm (hη : η = 1 ∨ η = -1) (β : Fin k → ℂ) : (sec η β)ᴴ * Hd k η = Hd k η * sec η (-β) := by
   have h2 : (η : ℂ) * η = 1 := by rcases hη with h | h <;> simp [h]
   unfold Hd
-  refine blk_ext (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
+  refine _root_.GlobalTheory.MatrixExtLast.matrix_ext_last (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
     simp only [Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.conjTranspose_apply, sec_cc, sec_cl, sec_lc, sec_ll,
       dd_neg, Fin.castSucc_ne_last, if_false, if_true, Pi.neg_apply, map_neg]
   · simp [Matrix.one_apply, eq_comm, mul_comm]
@@ -157,11 +157,11 @@ theorem sec_mem (hη : η = 1 ∨ η = -1) {β : Fin k → ℂ} (h : nsq β < 1)
   rw [sec_herm hη, Matrix.mul_assoc, neg_mul_sec hη h, Matrix.mul_one]
 
 theorem sec_zero : sec η (0 : Fin k → ℂ) = 1 := by
-  refine blk_ext (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
+  refine _root_.GlobalTheory.MatrixExtLast.matrix_ext_last (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
     simp [sec_cc, sec_cl, sec_lc, sec_ll, dd, nsq, Matrix.one_apply, Fin.castSucc_ne_last, (Fin.castSucc_ne_last _).symm]
 
 theorem kap_one : kap (1 : Matrix (Fin k) (Fin k) ℂ) 1 = 1 := by
-  refine blk_ext (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
+  refine _root_.GlobalTheory.MatrixExtLast.matrix_ext_last (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
     simp [kap, Matrix.one_apply, Fin.castSucc_ne_last, (Fin.castSucc_ne_last _).symm]
 
 theorem kap_mul_last (A : Matrix (Fin k) (Fin k) ℂ) (u : ℂ) (g : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (j : Fin (k + 1)) :
@@ -177,7 +177,7 @@ theorem kap_mem_iff (hη : η = 1 ∨ η = -1) (A : Matrix (Fin k) (Fin k) ℂ) 
   have hu' : conj u * u = 1 := by rw [Complex.conj_mul', hu]; simp
   have e : (kap A u)ᴴ * Hd k η * kap A u = blk (Aᴴ * 1 * A) 0 0 (η : ℂ) := by
     unfold Hd
-    refine blk_ext (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
+    refine _root_.GlobalTheory.MatrixExtLast.matrix_ext_last (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_ <;>
       rw [Matrix.mul_apply] <;>
       simp only [Matrix.mul_diagonal, Fin.sum_univ_castSucc, kap, Matrix.conjTranspose_apply, blk_cc, blk_cl, blk_lc, blk_ll,
         Fin.castSucc_ne_last, if_false, if_true, Matrix.mul_one]
@@ -300,7 +300,7 @@ theorem decomp (hη : η = 1 ∨ η = -1) {g : Matrix (Fin (k + 1)) (Fin (k + 1)
   simp only [Matrix.one_apply_eq, mul_one, hp, one_pow, if_true, add_eq_right] at hc
   rw [Finset.sum_eq_zero_iff_of_nonneg (fun _ _ => by positivity)] at hc
   have e : g * sec η (-bet g) = kap (top η g) (ph g) := by
-    refine blk_ext (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_
+    refine _root_.GlobalTheory.MatrixExtLast.matrix_ext_last (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_
     · simp only [kap, blk_cc]; rfl
     · simpa [kap] using hc i (Finset.mem_univ i)
     · rw [hl]; simp [kap, (Fin.castSucc_ne_last _).symm]

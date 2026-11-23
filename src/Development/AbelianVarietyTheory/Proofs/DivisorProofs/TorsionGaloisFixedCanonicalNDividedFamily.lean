@@ -84,7 +84,7 @@ theorem galois_fixed : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLocalRing W
   obtain ⟨f, hT, -⟩ := GlobalTheory.TorsionIso.torsion_clause R (maximalIdeal R) hadm D' A' G' hG' U'
     (AlgebraicClosure (FractionRing R)) n hn
   obtain ⟨p, hp⟩ := hT.2.1 a ha
-  obtain ⟨p₁, hy₁, hg₁, he₁⟩ := GlobalTheory.T.exists_equivalent_idempotent_image_fixed_torsion R hCN n hn hnu Q D' F A' G' U' oA oG hG' hlin a ha hae p ((hT.1 p a).2 hp.symm)
+  obtain ⟨p₁, hy₁, hg₁, he₁⟩ := _root_.GlobalTheory.Mum.EFix.exists_equiv_act_of_fixed R hCN n hn hnu Q D' F A' G' U' oA oG hG' hlin a ha hae p ((hT.1 p a).2 hp.symm)
   have hf₁ : f p₁ = a := ((hT.2.2.1 p₁ p).2 he₁).trans hp
   obtain ⟨⟨p₁', hext⟩, hpt, hiff⟩ := GlobalTheory.UT.Cl.galois_holds R (maximalIdeal R) hadm D' A' G' hG' U'
     (AlgebraicClosure (FractionRing R)) (AlgebraicClosure (FractionRing R)) σ.toAlgHom n hn p₁

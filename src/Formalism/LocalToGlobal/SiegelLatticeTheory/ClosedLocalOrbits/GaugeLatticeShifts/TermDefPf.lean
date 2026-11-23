@@ -536,15 +536,4 @@ end Props
 
 end Gen
 
-section D7
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-variable (D : D7)
-
-theorem term_equivalence_iff (u u' : D.what₂.Word) : TermEqIff D u u' :=
-  fun F0 Λ _ => double_coset_equivalence Λ (lf D F0) _
-
-end D7
-
 end Formalism.L2.SG.Pf

@@ -44,6 +44,7 @@ import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RangeSndRel
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.RealPlaceImaginaryGeneratorReEqZero
 
 @[expose] public section
 
@@ -58,17 +59,6 @@ namespace GlobalTheory.ColLiftAut
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} {χS χT : (AE D)ˣ →* Circle}
   {om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)} {Φ : WO S T → ℂ}
-
-theorem isThetaFunO_smul (hΦ : IsThetaFunO ψ S T Φ) (c : ℂ) : IsThetaFunO ψ S T (c • Φ) := by
-  refine ⟨fun γ w => ?_, ?_, continuous_const.mul hΦ.cont, fun k L hL hf w => ?_⟩
-  · simp only [Pi.smul_apply, smul_eq_mul, hΦ.quasi γ w]; ring
-  · obtain ⟨U, hU, h⟩ := hΦ.level
-    refine ⟨U, hU, fun u hu hu' => ?_⟩
-    funext w
-    have := congrFun (h u hu hu') w
-    simp only [heisO, Pi.smul_apply, smul_eq_mul] at this ⊢
-    rw [← this]; ring
-  · exact contDiff_const.mul (hΦ.smooth k L hL hf w)
 
 theorem kernel_left (hW : IsWeilDatumO ψ S T χS χT om) (hΦ : IsThetaFunO ψ S T Φ) (g : GA D S) {γ : GA D T}
     (hγ : γ ∈ GQ T) (h : GA D T) : thetaKO om g (γ * h) Φ = thetaKO om g h Φ := by
@@ -87,7 +77,7 @@ theorem lift_continuous (hW : IsWeilDatumO ψ S T χS χT om) (hΦ : IsThetaFunO
     (h𝓕 : IsFundamentalDomain (GQ S) 𝓕 ν) {φ : GA D S → ℂ} (hφ : IsAutFun S φ) :
     Continuous fun h : GA D T => ∫ g in 𝓕, thetaKO om g h Φ * φ g ∂ν := by
   have := GlobalTheory.ThetaIntegralCont.continuous_theta_integral_vector ψ S T χS χT om hW hS ν 𝓕 hν h𝓕 ℂ
-    (LinearMap.toSpanSingleton ℂ _ Φ) (fun x => isThetaFunO_smul hΦ x) φ hφ.cont hφ.left
+    (LinearMap.toSpanSingleton ℂ _ Φ) (fun x => _root_.Formalism.IndefR.Fock.CCR.theta_smul hΦ x) φ hφ.cont hφ.left
   refine this.congr fun h => ?_
   refine integral_congr_ae (Filter.Eventually.of_forall fun g => ?_)
   simp only [LinearMap.toSpanSingleton_apply, thetaKO, map_smul, Pi.smul_apply, smul_eq_mul, mul_comm]

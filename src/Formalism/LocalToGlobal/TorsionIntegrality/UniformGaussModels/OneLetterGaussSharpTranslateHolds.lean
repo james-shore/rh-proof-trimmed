@@ -53,12 +53,10 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.Top
 
-theorem calcC : CalcC := CalcC_proof
-theorem cmDatum : CMDatum := CMDatum_proof
-theorem jetsCM : JetsCM := JetsCM_of cmDatum
-theorem calcP : CalcP := CalcP_of cmDatum
-theorem kappa_integral : uniformGaussModelConditionReformulated := kappa_integral_of_calculation calcC
-theorem hypShape : HypShape := HypShape_of calcC
+theorem jetsCM : JetsCM := JetsCM_of _root_.Formalism.L2.Th1.Top.CMDatum_proof
+theorem calcP : CalcP := CalcP_of _root_.Formalism.L2.Th1.Top.CMDatum_proof
+theorem kappa_integral : uniformGaussModelConditionReformulated := kappa_integral_of_calculation _root_.Formalism.L2.Th1.Top.CalcC_proof
+theorem hypShape : HypShape := HypShape_of _root_.Formalism.L2.Th1.Top.CalcC_proof
 
 
 
@@ -72,9 +70,8 @@ theorem modelInert (dK : ℕ) (L : PeriodPair) (hsq : Squarefree dK) (hmod : dK 
 
 
 
-theorem ltNormExists : LTNormExists := lubin_tate_norm_exists
-theorem transIntLT : TransIntLT := lubin_tate_transfer_integral
-theorem local_kappa_shape_holds : uniformGaussModelConditionReformulated₂ := local_kappa_shape_of_transfer_integrality transIntLT
-theorem theta_kappa_shape_holds : uniformGaussModelConditionEquivalent := theta_kappa_shape_of_transfer_integrality transIntLT
+alias ltNormExists := _root_.Formalism.L2.Th1.Top.lubin_tate_norm_exists
+theorem local_kappa_shape_holds : uniformGaussModelConditionReformulated₂ := local_kappa_shape_of_transfer_integrality _root_.Formalism.L2.Th1.Top.lubin_tate_transfer_integral
+theorem theta_kappa_shape_holds : uniformGaussModelConditionEquivalent := theta_kappa_shape_of_transfer_integrality _root_.Formalism.L2.Th1.Top.lubin_tate_transfer_integral
 
 end Formalism.L2.Th1.Top

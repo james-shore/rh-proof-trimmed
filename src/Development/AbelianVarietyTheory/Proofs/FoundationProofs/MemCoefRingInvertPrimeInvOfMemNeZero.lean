@@ -62,7 +62,7 @@ theorem memE_inv_of_mem : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) (d : Qbar l)
     rintro ⟨u, hu⟩
     have h1 : ((u : c.O) : Qbar l) * ((u⁻¹ : c.Oˣ) : c.O) = 1 := by
       rw [← Subalgebra.coe_mul, Units.mul_inv]; rfl
-    have hn2 : ‖(((u⁻¹ : c.Oˣ) : c.O) : Qbar l)‖ ≤ 1 := norm_le_one_of_mem_coef c (SetLike.coe_mem _)
+    have hn2 : ‖(((u⁻¹ : c.Oˣ) : c.O) : Qbar l)‖ ≤ 1 := _root_.UpperTheory.Reformulated.B.Rf3.norm_le_one_of_mem_coef c (SetLike.coe_mem _)
     have hu' : ((u : c.O) : Qbar l) = ((l : ℕ) : Qbar l) := by rw [hu, hLval]
     rw [hu'] at h1
     have h2 := congrArg norm h1

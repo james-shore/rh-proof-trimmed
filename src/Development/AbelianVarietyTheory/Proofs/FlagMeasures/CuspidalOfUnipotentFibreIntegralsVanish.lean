@@ -271,7 +271,7 @@ theorem cusp_of_fibre_vanish : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → �
     exact h0
   refine ⟨part1, ?_⟩
   intro W hW ν hν
-  have hn : 1 ≤ B.I.n := one_le_of_isIsot B.I W hW
+  have hn : 1 ≤ B.I.n := _root_.GlobalTheory.Dec.one_le_rank_of_isIsot B.I W hW
   have hbig32 : HBig B 32 h := by
     intro v
     have h1 : (0:ℝ) ≤ (B.I.n : ℝ) ^ 2 * Real.sqrt (rkR (B.I.ε v)) := by positivity

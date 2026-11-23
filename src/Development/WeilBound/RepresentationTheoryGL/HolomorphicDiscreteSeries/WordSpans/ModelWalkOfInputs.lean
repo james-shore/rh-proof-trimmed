@@ -81,12 +81,12 @@ theorem stepM_of (hKey : KeyId) (hZ : Zero) (hPhi : PhiEq) (hIrr : Irr) :
   have gH : Formalism.QuantumDeterminants.GapAtLeast ε' mu (200 * ((N + 1 : ℕ) : ℝ) ^ 3) :=
     gap_mono hG.gap' (by have : ((N + 1 : ℕ) : ℝ) ≤ ((N + 1 : ℕ) : ℝ) + 1 := by linarith
                          have := pow_le_pow_left₀ hc1 this 3; linarith)
-  obtain ⟨H, i1, i2, π, hπ⟩ := exists_ds ε lam (by omega) hG.hc gG
-  obtain ⟨H', i3, i4, σ, hσ⟩ := exists_ds ε' mu hN1 hG.hc' gH
+  obtain ⟨H, i1, i2, π, hπ⟩ := _root_.PositivityTheory.RgHe.SM.LowWeightDensity.exists_ds ε lam (by omega) hG.hc gG
+  obtain ⟨H', i3, i4, σ, hσ⟩ := _root_.PositivityTheory.RgHe.SM.LowWeightDensity.exists_ds ε' mu hN1 hG.hc' gH
   haveI : CompleteSpace H := hπ.1
   haveI : CompleteSpace H' := hσ.1
   obtain ⟨j0, hj0, hj0m⟩ := hOcc H H' π σ hπ hσ
-  obtain ⟨P, hP, hP0⟩ := exists_P hG.fits hπ hσ hj0 hj0m
+  obtain ⟨P, hP, hP0⟩ := _root_.PositivityTheory.RgHe.SM.LowWeightDensity.exists_P hG.fits hπ hσ hj0 hj0m
   obtain ⟨S, E, hS⟩ := hSmMod (N + 2) ε H π hπ.2.2.1
   obtain ⟨S', E', hS'⟩ := hSmMod (N + 1) ε' H' σ hσ.2.2.1
   obtain ⟨X, hXS, hXκ⟩ := hDec (N + 1) ε' mu H' σ (signs hG).1 (signs hG).2 hG.hc' hσ gH
@@ -117,7 +117,7 @@ theorem stepM_of (hKey : KeyId) (hZ : Zero) (hPhi : PhiEq) (hIrr : Irr) :
   have hpr2 := right_ne_zero_of_mul hprod
   have hpry : X.pr j (Pi.single l (X.p j (phi E e P η₀) l)) ≠ 0 := fun h0 => hpr2 (by rw [h0, inner_zero_left])
   have hprφ : X.pr j (phi E e P η₀) ≠ 0 := fun h0 => hpr2 (by rw [h0, inner_zero_right])
-  obtain ⟨w', hw', hw'1⟩ := exists_low hσ'
+  obtain ⟨w', hw', hw'1⟩ := _root_.PositivityTheory.RgHe.SM.LowWeightDensity.exists_low hσ'
   have hw'0 : w' ≠ 0 := fun h0 => by rw [h0, norm_zero] at hw'1; exact zero_ne_one hw'1
   obtain ⟨h₁, hh₁⟩ := hIrr (N + 1) ε' _ (X.πs j) hσ'.2.2.1 hσ'.2.2.2.1 _ w' hprφ hw'0
   obtain ⟨h₂, hh₂⟩ := hIrr (N + 1) ε' _ (X.πs j) hσ'.2.2.1 hσ'.2.2.2.1 _ w' hpry hw'0
@@ -136,7 +136,7 @@ theorem stepM_of (hKey : KeyId) (hZ : Zero) (hPhi : PhiEq) (hIrr : Irr) :
     rw [hpry₂, ← inner_conj_symm]; exact (map_ne_zero _).2 hh₂
   have hB : ⟪w', X.pr j (phi E e P η₁)⟫_ℂ ≠ 0 := by rw [hprφ₁]; exact hh₁
   obtain ⟨κ', hκ', hsch⟩ := schur_haar hσ' (muG ε')
-  obtain ⟨hcont, C, hCb⟩ := decay_low hN1 hG'.hc' hσ' hG'.gap' hw' hw'1
+  obtain ⟨hcont, C, hCb⟩ := _root_.PositivityTheory.RgHe.SM.LowWeightDensity.decay_low hN1 hG'.hc' hσ' hG'.gap' hw' hw'1
   by_contra hnot
   have hall : ∀ a b : H, ∫ h : UJ ε', conj ⟪w', X.πs j (um h) w'⟫_ℂ * ⟪b, π (emb e (um h)) a⟫_ℂ ∂(muG ε') = 0 := by
     intro a b

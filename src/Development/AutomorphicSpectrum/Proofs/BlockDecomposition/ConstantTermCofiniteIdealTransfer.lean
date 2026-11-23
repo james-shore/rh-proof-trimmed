@@ -58,7 +58,7 @@ theorem slice_mem_genSpace : ∀ (E : Type) [Field E] [NumberField E] [_root_.Nu
   obtain ⟨hN, hM, hLv, hC, hG, hZ⟩ := hF
   let h : GA E (r + s) := lev (Ad E) r s (1, m₂) * finGL E (r + s) t * infGL E (r + s) (Unitary.toUnits κ)
   let F' := rt E (r + s) h F
-  let G : Sm E r := ⟨_, GlobalTheory.T.levi_restriction_smooth E r s F'.1 F'.2⟩
+  let G : Sm E r := ⟨_, _root_.GlobalTheory.CompanionTheory.CTFin.Slice1.sm_lev_slice E r s F'.1 F'.2⟩
   have hGv : ∀ m₁, G.1 m₁ = F.1 (lev (Ad E) r s (m₁, m₂) * finGL E (r + s) t * infGL E (r + s) (Unitary.toUnits κ)) := by
     intro m₁
     change F.1 (lev (Ad E) r s (m₁, 1) * h) = _

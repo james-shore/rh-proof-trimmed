@@ -89,7 +89,7 @@ theorem coef_map : ∀ {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} (q : X
       CrystallineSemistableComparison.Pb.Rep (sFil (KS q s {W}) r) (sFil (KS q s {W}) (r + 1)) (E.form σ id (ε y)) c → φ c = y := by
   intro K _ _ X q W d t s E ε hL σ r hr hs
   letI := (strV q W).toAlgebra
-  obtain ⟨hE, hU⟩ := GlobalTheory.T.local_graded_class_representative q t s E ε hL σ d r hr hs
+  obtain ⟨hE, hU⟩ := _root_.GlobalTheory.CompanionTheory.ConeLocal.loc_coef q t s E ε hL σ d r hr hs
   have ex : ∀ c : HQ (KS q s {W}) r (r + 1) d, ∃ y : Γ(X, W),
       CrystallineSemistableComparison.Pb.Rep (sFil (KS q s {W}) r) (sFil (KS q s {W}) (r + 1)) (E.form σ id (ε y)) c := by
     intro c

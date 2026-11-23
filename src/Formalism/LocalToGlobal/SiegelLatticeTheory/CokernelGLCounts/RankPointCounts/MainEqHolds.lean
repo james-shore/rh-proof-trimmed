@@ -56,6 +56,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 namespace Formalism.L2.SG.Pf
 
 theorem normExpDegC_holds : NormExpDegC :=
-  normExpDegC_of_leaves Formalism.L2.SG.Closed.FinLeviC_holds Formalism.L2.SG.Closed.OOLintSumC_holds
+  normExpDegC_of_leaves _root_.Formalism.L2.SG.Pf.FinLeviPf.finLeviC_holds Formalism.L2.SG.Closed.OOLintSumC_holds
 
 end Formalism.L2.SG.Pf

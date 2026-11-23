@@ -58,7 +58,7 @@ theorem split_components :
     rintro ⟨⟨y₁, h₁, e₁⟩, y₂, h₂, e₂⟩
     have hint : ∀ x, x ∈ intV E v ↔
         (sp x).1 ∈ v.adicCompletionIntegers F ∧ (sp x).2 ∈ v.adicCompletionIntegers F :=
-      split_integral_local F E v sp hdiag
+      _root_.PI.SplitIntLoc.Proof.main F E v sp hdiag
     have ha : sp.symm (1, 0) ∈ intV E v := by
       rw [hint, sp.apply_symm_apply]; exact ⟨one_mem _, zero_mem _⟩
     have hb : sp.symm (0, 1) ∈ intV E v := by

@@ -112,7 +112,7 @@ theorem join_normal {K₁ : Type} [Fintype K₁] {ι₁ : K₁ → Type} [∀ k,
   have I2 : mCoordIdeal (y ∘ v₂) = mCoordIdeal y₂ := by rw [y2, mCoordIdeal_map]
   refine ⟨K₁ ⊕ K₂ ⊕ Unit, inferInstance, J, inst, Sum.inl, v₁, fun k => .inr (.inl k), v₂, y, Z, ξ, h₁, h₂, hv₁, hv₂,
     congrFun y1, congrFun y2, I1, I2, ?_, hb, hg, ht, hN, hd₁, hd₂, ?_⟩
-  · exact GlobalTheory.T.isArithVar_of_block_algebraic K₁ ι₁ _ J Sum.inl v₁ Ω y d hv₁
+  · exact _root_.GlobalTheory.CompanionTheory.Ar.Cmp.isArithVar_of_isAlgebraic_image K₁ ι₁ _ J Sum.inl v₁ Ω y d hv₁
       (fun k => ⟨c k, Finset.prod_ne_zero_iff.1 hc k (Finset.mem_univ k)⟩) (I1 ▸ ha₁)
       (fun t _ => Algebra.IsAlgebraic.isAlgebraic t)
   · rw [relfinrank_eq i₁ _ _ F₁ F]

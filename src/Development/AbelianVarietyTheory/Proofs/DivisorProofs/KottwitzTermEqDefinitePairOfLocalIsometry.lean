@@ -235,7 +235,7 @@ theorem term_eq_of_local_isom : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P 
   split_ifs with h
   · have hQ := Q.trivAf.choose_spec.choose_spec
     have hx' := triv_mul_inv (P.β : G.C) (Q.β : G.C) _ u _ hQ huβ
-    rw [GlobalTheory.T.kottwitzPair_term_eq_pointSum_any_trivialisation p G P Kf f r K φ hr hf hφ _ _ hx' h.choose.1 h.choose.2 (by rw [hat]; exact h.choose_spec)]
+    rw [_root_.GlobalTheory.LKMid.Pair.term_eq_termAt p G P Kf f r K φ hr hf hφ _ _ hx' h.choose.1 h.choose.2 (by rw [hat]; exact h.choose_spec)]
     exact termAt_eq P Q hγ hc _ u _ hQ hx' huγ Kf f r K φ _ _
   · unfold Pair.term
     rw [dite_eq_right]

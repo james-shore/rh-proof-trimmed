@@ -86,7 +86,7 @@ theorem absIrr_of_algClosed {Γ : Type} [Group Γ] {k K k' : Type} [Field k] [Fi
     AbsIrrSub (mapRep φ rb) ⊤ := by
   have hsp := span_top_of_irred_algClosed hr rb ι h
   letI : Algebra k (AlgebraicClosure k') := ((algebraMap k' (AlgebraicClosure k')).comp φ).toAlgebra
-  have hirr := GlobalTheory.BurnsideIff.eq_bot_or_top_of_span_eq_top (K := AlgebraicClosure k') _ hsp
+  have hirr := _root_.GlobalTheory.InvariantBotOrTop.bot_or_top (K := AlgebraicClosure k') _ hsp
   have : Nonempty (Fin r) := ⟨⟨0, hr⟩⟩
   rw [AbsIrrSub, span_image_top]
   refine ⟨top_ne_bot, fun _ _ _ => Submodule.mem_top, fun W _ hW => hirr W fun g v hv => ?_⟩

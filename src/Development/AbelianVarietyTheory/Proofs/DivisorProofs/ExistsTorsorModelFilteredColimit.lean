@@ -110,7 +110,7 @@ theorem exists_torsor_model_of_elements : ∀ (ι : Type) [Preorder ι] [IsDirec
       exact hl
   have hT' : GlobalTheory.LocAcyc.IsZModTorsor B D q act := hT
   obtain ⟨j, Dj, i1, i2, actj, hTj, ⟨e⟩⟩ :=
-    @GlobalTheory.T.exists_zmodTorsor_model_of_filtered_colimit ι _ _ F c hc q hq D _ ‹Algebra B D› act hT'
+    @_root_.GlobalTheory.TorsorColim.exists_torsor_model_of_isColimit ι _ _ F c hc q hq D _ ‹Algebra B D› act hT'
   exact ⟨j, Dj, i1, i2, actj, hTj, ⟨e⟩⟩
 
 end GlobalTheory.TorsorColimElem

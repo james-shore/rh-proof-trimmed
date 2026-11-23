@@ -246,7 +246,7 @@ theorem om_pt {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : HSp D} {χ
           (pureTensorO ψ θ S T (fun _ => 1) (cart M) BS (onb M) f P) =
         pureTensorO ψ θ S T (fun _ => 1) (cart M) BS (onb M) f
           (χ k • sub (Function.update (fun _ => 1) τ (tw (M.ε τ) k)) P) := by
-  obtain ⟨x₁, x₂, y₁, y₂, h⟩ := GlobalTheory.T.maximalCompact_acts_on_realVacua_by_detPowers D ψ θ S T χS χT om hW hθ kS kT (fun _ => 1) (cart M) hS
+  obtain ⟨x₁, x₂, y₁, y₂, h⟩ := _root_.GlobalTheory.VacuumChar.vacuum_char D ψ θ S T χS χT om hW hθ kS kT (fun _ => 1) (cart M) hS
     (GlobalTheory.Chain.VacVec.cart_isCartanInv M)
   refine ⟨fun k => ((1 / 2 : ℂ) • (1 + cart M τ) * ((M.fr τ)⁻¹ * k * M.fr τ) + (1 / 2 : ℂ) • (1 - cart M τ)).det ^ x₁ τ *
     ((1 / 2 : ℂ) • (1 - cart M τ) * ((M.fr τ)⁻¹ * k * M.fr τ) + (1 / 2 : ℂ) • (1 + cart M τ)).det ^ x₂ τ, x₁ τ, x₂ τ,

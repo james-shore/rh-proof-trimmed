@@ -73,7 +73,7 @@ theorem false_of_dependent_derivatives {k A κ : Type} [Field k] [CharZero k] [C
     intro h
     rw [h, mul_zero, zero_sub, neg_eq_zero] at r4s
     exact one_ne_zero r4s
-  have hlin := GlobalTheory.T.linearIndependent_kaehlerD_of_algebraicIndependent k κ t ht
+  have hlin := _root_.GlobalTheory.BertiniAlg.linearIndependent_D_of_algebraicIndependent k κ t ht
   set m : Fin n → KaehlerDifferential k κ := fun l => KaehlerDifferential.map k k A κ (ω l) with hm
   have hdψ : ∀ a : A, D k κ (algebraMap A κ a) = ∑ l, algebraMap A κ (δ l a) • m l := by
     intro a

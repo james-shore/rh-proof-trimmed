@@ -120,8 +120,8 @@ theorem card_mul_phiC_le_valuation : ∀ (E : Type) [Field E] [NumberField E] [I
   obtain ⟨th, hth⟩ := GlobalTheory.T.exists_abelianSection_of_universalFibreSection E H Dw l Xo V y.x P.A Φ F z.x hzx z.s
   obtain ⟨ϑ, hϑ, hν⟩ := GlobalTheory.T.exists_expandsF_nuGe_zero_of_intTh V hcpl ϖ hϖ P.D Q hQ F v hv P.A G.G G.semi P.U w₀ hN.1 th
     (hint F ψ z th hψ hz hth)
-  obtain ⟨tr, htr, htra⟩ := GlobalTheory.T.exists_mulEquiv_ptO_hom_of_eq_spMap_comp E H Dw l Xo V y.x P.A Φ F z.x hzx
-  obtain ⟨pt, hpt, hspan⟩ := GlobalTheory.T.exists_heisenbergLifts_span_latticeClasses E H V G P htors F ((R ^ 2) ^ 2) (pow_pos (pow_pos hR0 2) 2)
+  obtain ⟨tr, htr, htra⟩ := _root_.GlobalTheory.EtaVal.fib_points_mulEquiv E H Dw l Xo V y.x P.A Φ F z.x hzx
+  obtain ⟨pt, hpt, hspan⟩ := _root_.GlobalTheory.EtaVal.exists_qkPt_span E H V G P htors F ((R ^ 2) ^ 2) (pow_pos (pow_pos hR0 2) 2)
     (LatMod Dw (R ^ 4)) (fun a => tr (ev a)) (fun a b => by rw [hev.1, map_mul])
     (fun o a => by rw [hev.2.1]; exact htra _ _ (hact o) _)
     (fun a => by rw [← map_pow, hevt, map_one])
@@ -131,7 +131,7 @@ theorem card_mul_phiC_le_valuation : ∀ (E : Type) [Field E] [NumberField E] [I
   have hb : ∀ a (q : ℚ), (∀ χ, q ≤ (Q ((R ^ 2) • χ + (pt a).y) : ℚ) / ((R ^ 2) ^ 2 : ℕ)) →
       (q : WithTop ℚ) ≤ v (w a) := by
     intro a q hq
-    obtain ⟨t, ht⟩ := GlobalTheory.T.normalisedThetaConstant_of_universal_origin_value E H Dw l Xo c V y.x P.A Φ F z hzx th hth (R ^ 2) hR2 (ev a) (tr (ev a)) (w a)
+    obtain ⟨t, ht⟩ := _root_.GlobalTheory.EtaVal.NullMove.thC_of_isNullVal E H Dw l Xo c V y.x P.A Φ F z hzx th hth (R ^ 2) hR2 (ev a) (tr (ev a)) (w a)
       (hevt a) (htr _) (hw a)
     exact GlobalTheory.T.le_valuation_oddLevel_thetaConstant_integralExpansion V hcpl ϖ hϖ P.D Q hQ F v hv P.A G.G G.semi P.U w₀ Φ.ρ hN th ϑ hϑ hν (R ^ 2) hR2 (pt a)
       (tr (ev a)) t (w a) (hpt a) ht q hq

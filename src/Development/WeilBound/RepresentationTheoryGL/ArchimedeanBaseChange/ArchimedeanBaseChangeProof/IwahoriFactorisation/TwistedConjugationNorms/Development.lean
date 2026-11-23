@@ -81,12 +81,6 @@ section Generic
 
 variable {G : Type} [Group G] [TopologicalSpace G]
 
-theorem g0 (θ : G →* G) (K : Subgroup G) (δ : G) (f : G → ℂ) (h : ∀ p : G, f (p⁻¹ * δ * θ p) = 0) :
-    twOrb θ K δ f = 0 := by
-  first
-    | exact twisted_orbital_integral_eq_zero_of_vanish
-    | (apply twisted_orbital_integral_eq_zero_of_vanish <;> assumption)
-
 theorem g1 [IsTopologicalGroup G] [T2Space G] (θ : G →* G) (K I : Subgroup G) (hKo : IsOpen (K : Set G))
     (hKc : IsCompact (K : Set G)) (hθK : ∀ k ∈ K, θ k ∈ K) (hI : IsLevel θ K I) (δ : G) (X : Set G)
     (hXc : IsCompact X) (hXI : ∀ i ∈ I, ∀ g : G, (i * g ∈ X ↔ g ∈ X) ∧ (g * i ∈ X ↔ g ∈ X))
@@ -96,16 +90,6 @@ theorem g1 [IsTopologicalGroup G] [T2Space G] (θ : G →* G) (K I : Subgroup G)
     | exact twisted_orbital_integral_indicator_inv_index
     | (apply twisted_orbital_integral_indicator_inv_index <;> assumption)
 
-theorem g1prod [IsTopologicalGroup G] [T2Space G] {G' : Type} [Group G'] [TopologicalSpace G']
-    [IsTopologicalGroup G'] [T2Space G'] (θ : G →* G) (θ' : G' →* G') (K I : Subgroup G) (K' I' : Subgroup G')
-    (δ : G) (δ' : G') (X : Set G) (X' : Set G') (p₀ : G) (p₀' : G') :
-    (OneCoset θ I δ X p₀ → OneCoset θ' I' δ' X' p₀' →
-      OneCoset (θ.prodMap θ') (I.prod I') (δ, δ') (X ×ˢ X') (p₀, p₀')) ∧
-    (CentOK θ K I δ → CentOK θ' K' I' δ' → CentOK (θ.prodMap θ') (K.prod K') (I.prod I') (δ, δ')) := by
-  first
-    | exact g1prod_pf
-    | (apply g1prod_pf <;> assumption)
-
 theorem g2 (θ : G →* G) (K : Subgroup G) (S : Set G) (wt f : G → ℂ) (δ₀ : G) (c : ℂ) (hS : δ₀ ∈ S)
     (hinv : ∀ δ ∈ S, ∀ g : G, g⁻¹ * δ * θ g ∈ S)
     (hval : ∀ g : G, wt (g⁻¹ * δ₀ * θ g) * twOrb θ K (g⁻¹ * δ₀ * θ g) f = c)
@@ -114,18 +98,6 @@ theorem g2 (θ : G →* G) (K : Subgroup G) (S : Set G) (wt f : G → ℂ) (δ�
   first
     | exact twisted_class_sum_eq_single_orbit
     | (apply twisted_class_sum_eq_single_orbit <;> assumption)
-
-theorem g2zero (θ : G →* G) (K : Subgroup G) (S : Set G) (wt f : G → ℂ)
-    (h : ∀ δ ∈ S, wt δ * twOrb θ K δ f = 0) : clSum θ K S wt f = 0 := by
-  first
-    | exact g2zero_pf
-    | (apply g2zero_pf <;> assumption)
-
-theorem g3 (θ : G →* G) (K : Subgroup G) (δ : G) (f₁ f₂ : G → ℂ) (c : ℂ)
-    (h : ∀ p : G, f₁ (p⁻¹ * δ * θ p) = c * f₂ (p⁻¹ * δ * θ p)) : twOrb θ K δ f₁ = c * twOrb θ K δ f₂ := by
-  first
-    | exact twisted_orbital_integral_proportional
-    | (apply twisted_orbital_integral_proportional <;> assumption)
 
 end Generic
 
@@ -138,38 +110,6 @@ theorem r1 (w : Pl E) (n : ℕ) (v : Fin n → ℤ) (hv : Function.Injective v) 
   first
     | exact diagonal_conj_distinct_valuations_eq
     | (apply diagonal_conj_distinct_valuations_eq <;> assumption)
-
-theorem r2 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (a : ℕ) (x : Fin a → ℤ)
-    (hx : StrictAnti x) (τ τ' h : GLw a w) (hτ : τ ∈ TO a w) (hτ' : τ' ∈ TO a w)
-    (hh : h⁻¹ * (tdiag ϖ x * τ) * thL a w h = tdiag ϖ x * τ') :
-    ∃ z ∈ twCent (thL a w) (tdiag ϖ x * τ), ∃ s ∈ TO a w, h = z * s := by
-  first
-    | exact le_and_half_le_prod_one_sub_exp_neg_of_bounds
-    | (apply le_and_half_le_prod_one_sub_exp_neg_of_bounds <;> assumption)
-
-theorem iw_facts (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (t : GLw a w) :
-    IsOpen (GlobalTheory.LFun.KGL w (n := a) : Set (GLw a w)) ∧ IsCompact (GlobalTheory.LFun.KGL w (n := a) : Set (GLw a w)) ∧
-    (∀ k ∈ GlobalTheory.LFun.KGL w (n := a), thL a w k ∈ GlobalTheory.LFun.KGL w (n := a)) ∧ IsLevel (thL a w) (GlobalTheory.LFun.KGL w (n := a)) (iwGL a w) ∧
-    IsLevel (MonoidHom.id _) (GlobalTheory.LFun.KGL w (n := a)) (iwGL a w) ∧ (iwGL a w).relIndex (GlobalTheory.LFun.KGL w (n := a)) ≠ 0 ∧
-    IsCompact {g : GLw a w | dcos a w t g ≠ 0} := by
-  first
-    | exact iw_facts_pf
-    | (apply iw_facts_pf <;> assumption)
-
-theorem iwU_facts (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
-    (ϖ : (w.adicCompletion E)ˣ) (l : Fin (n / 2) → ℤ) :
-    IsOpen (KL n w : Set (UL n w)) ∧ IsCompact (KL n w : Set (UL n w)) ∧
-    IsLevel (MonoidHom.id _) (KL n w) (iwU n w b) ∧ (iwU n w b).relIndex (KL n w) ≠ 0 ∧
-    IsCompact {g : UL n w | fU n w b ϖ l g ≠ 0} := by
-  first
-    | exact iwU_facts_pf
-    | (apply iwU_facts_pf <;> assumption)
-
-theorem nrm_twconj (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (g δ : GLw a w) :
-    (nrmL a w (g⁻¹ * δ * thL a w g)).val.charpoly = (nrmL a w δ).val.charpoly := by
-  first
-    | exact nrm_twconj_pf w hw a g δ
-    | (apply nrm_twconj_pf w hw a g δ <;> assumption)
 
 namespace S1
 
@@ -225,46 +165,18 @@ section Ord
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem ordL_of_eq' {x : L} {u : Multiplicative ℤ} (h : Valued.v x = (u : WithZero (Multiplicative ℤ))) :
-    ordL x = -Multiplicative.toAdd u := by
-  have h0 : Valued.v x ≠ 0 := by rw [h]; exact WithZero.coe_ne_zero
-  unfold ordL
-  rw [dite_eq_right h0]
-  congr 2
-  apply WithZero.coe_injective
-  rw [WithZero.coe_unzero, h]
-
-theorem ordL_mul' {a b : L} (ha : a ≠ 0) (hb : b ≠ 0) : ordL (a * b) = ordL a + ordL b := by
-  have ha' : Valued.v a ≠ 0 := (Valuation.ne_zero_iff _).2 ha
-  have hb' : Valued.v b ≠ 0 := (Valuation.ne_zero_iff _).2 hb
-  obtain ⟨u, hu⟩ := WithZero.ne_zero_iff_exists.1 ha'
-  obtain ⟨w, hw⟩ := WithZero.ne_zero_iff_exists.1 hb'
-  have hab : Valued.v (a * b) = ((u * w : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by
-    rw [map_mul, ← hu, ← hw, WithZero.coe_mul]
-  rw [ordL_of_eq' hab, ordL_of_eq' hu.symm, ordL_of_eq' hw.symm, toAdd_mul]
-  ring
-
-theorem ordL_congr' {a b : L} (h : Valued.v a = Valued.v b) : ordL a = ordL b := by
-  unfold ordL
-  simp only [h]
-
 theorem ordL_unit {a : L} (h : Valued.v a = 1) : ordL a = 0 := by
   have h' : Valued.v a = ((1 : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by rw [h, WithZero.coe_one]
-  rw [ordL_of_eq' h']
+  rw [_root_.GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_of_eq h']
   simp
-
-theorem ordL_inv' {a : L} (ha : a ≠ 0) : ordL a⁻¹ = -ordL a := by
-  have h := ordL_mul' ha (inv_ne_zero ha)
-  rw [mul_inv_cancel₀ ha, ordL_unit (map_one _)] at h
-  omega
 
 theorem ordL_zpow' (ϖ : Lˣ) (hϖ : ordL (ϖ : L) = 1) (k : ℤ) : ordL ((ϖ ^ k : Lˣ) : L) = k := by
   have h0 : Valued.v (ϖ : L) ≠ 0 := (Valuation.ne_zero_iff _).2 ϖ.ne_zero
   obtain ⟨u, hu⟩ := WithZero.ne_zero_iff_exists.1 h0
-  have h1 := ordL_of_eq' hu.symm
+  have h1 := _root_.GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_of_eq hu.symm
   have h2 : Valued.v ((ϖ ^ k : Lˣ) : L) = ((u ^ k : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by
     rw [Units.val_zpow_eq_zpow_val, map_zpow₀, ← hu, WithZero.coe_zpow]
-  rw [ordL_of_eq' h2, toAdd_zpow]
+  rw [_root_.GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_of_eq h2, toAdd_zpow]
   rw [hϖ] at h1
   have : Multiplicative.toAdd u = -1 := by omega
   rw [this]
@@ -291,21 +203,15 @@ theorem tw_transport {G : Type} [Group G] (θ : G →* G) (δ q z : G) :
       _ = q * (q⁻¹ * δ * θ q * ((θ q)⁻¹ * θ z * θ q)) * (θ q)⁻¹ := h2
       _ = δ * θ z := by group
 
-theorem mem_twCent' {G : Type} [Group G] (θ : G →* G) (δ z : G) : z ∈ twCent θ δ ↔ z * δ = δ * θ z := Iff.rfl
-
-theorem thL_val (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) (g : GLw a w) (i j : Fin a) :
-    (thL a w g).val i j = (-1) ^ ((i : ℕ) + j) * cj w ((g⁻¹).val j.rev i.rev) := by
-  unfold thL
-  rw [if_neg hw]
-  exact GlobalTheory.ThetaPull.thetaGL_apply _ g i j
+alias mem_twCent' := _root_.GlobalTheory.TwOrbConj.mem_twCent
 
 theorem thL_diag (w : Pl E) (hw : ¬ IsSplitAt w) (a : ℕ) {g : GLw a w} (hg : IsDiag g) :
     IsDiag (thL a w g) ∧ ∀ i, (thL a w g).val i i = cj w ((g.val i.rev i.rev)⁻¹) := by
   refine ⟨fun i j hij => ?_, fun i => ?_⟩
-  · rw [thL_val w hw, diag_inv_val hg, diagonal_apply_ne]
+  · rw [_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.thL_apply w hw, diag_inv_val hg, diagonal_apply_ne]
     · simp
     · exact fun h => hij (Fin.rev_injective h).symm
-  · rw [thL_val w hw, diag_inv_val hg, diagonal_apply_eq]
+  · rw [_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.thL_apply w hw, diag_inv_val hg, diagonal_apply_eq]
     have : (-1 : w.adicCompletion E) ^ ((i : ℕ) + i) = 1 := Even.neg_one_pow ⟨i, rfl⟩
     rw [this, one_mul]
 
@@ -340,9 +246,9 @@ theorem nrm_d (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicComplet
   refine ⟨hN, fun i => ⟨diag_entry_ne hN i, ?_⟩⟩
   have hτu : ∀ j, ordL (τ.val j j) = 0 := fun j => ordL_unit (hτ.2 j)
   have hdo : ∀ j, ordL ((tdiag ϖ y * τ).val j j) = y j := fun j => by
-    rw [hde j, ordL_mul' (Units.ne_zero _) (diag_entry_ne hτ.1 j), ordL_zpow' ϖ hϖ.1, hτu, add_zero]
-  rw [hNe i, ordL_mul' (diag_entry_ne hd i) (diag_entry_ne hθ i), hdo i, hθe i,
-    ordL_congr' (hv _), ordL_inv' (diag_entry_ne hd _), hdo]
+    rw [hde j, _root_.Formalism.UG.P.fSatake_ord_mul (Units.ne_zero _) (diag_entry_ne hτ.1 j), ordL_zpow' ϖ hϖ.1, hτu, add_zero]
+  rw [hNe i, _root_.Formalism.UG.P.fSatake_ord_mul (diag_entry_ne hd i) (diag_entry_ne hθ i), hdo i, hθe i,
+    _root_.Formalism.UG.P.fSatake_ord_of_v (hv _), _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.ordL_inv'' (diag_entry_ne hd _), hdo]
   unfold nv
   ring
 
@@ -376,11 +282,7 @@ theorem cpt_top {G : Type} [Group G] [TopologicalSpace G] (t : G)
   rw [hemb.isInducing.closure_eq_preimage_closure_image, himg]
   exact hemb.isCompact_preimage h
 
-theorem relIndex_ne_zero_of_isOpen' {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    {K K' : Subgroup G} (hK : IsCompact (K : Set G)) (hK' : IsOpen (K' : Set G)) : K'.relIndex K ≠ 0 := by
-  haveI : CompactSpace K := isCompact_iff_compactSpace.1 hK
-  haveI := Subgroup.quotient_finite_of_isOpen (K'.subgroupOf K) (hK'.preimage continuous_subtype_val)
-  exact Subgroup.index_ne_zero_of_finite
+alias relIndex_ne_zero_of_isOpen' := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.relIndex_ne_zero_of_compact_open
 
 theorem continuous_conj {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] (x : G) :
     Continuous fun y : G => (MulAut.conj x).toMonoidHom y := by
@@ -398,8 +300,8 @@ theorem s1 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion
     (∃ p₀, OneCoset (thL a w) (iwGL a w) δ {g | dcos a w (tdiag ϖ y) g ≠ 0} p₀) ∧
       CentOK (thL a w) (GlobalTheory.LFun.KGL w (n := a)) (iwGL a w) δ ∧ HasVals (nrmL a w δ).val.charpoly (nv y) := by
   obtain ⟨p, hp⟩ := hP
-  obtain ⟨m, hm, τ, hτ, hmτ⟩ := contr_tw hU w hw ϖ hϖ a y hy _ hp
-  obtain ⟨hKo, hKc, -, hIlev, -, -, -⟩ := iw_facts w hw a (tdiag ϖ y)
+  obtain ⟨m, hm, τ, hτ, hmτ⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.contr_tw_tl hU w hw ϖ hϖ a y hy _ hp
+  obtain ⟨hKo, hKc, -, hIlev, -, -, -⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.iw_facts_pf w hw a (tdiag ϖ y)
   have hIo : IsOpen (iwGL a w : Set (GLw a w)) := hIlev.1
   have hIc : IsCompact (iwGL a w : Set (GLw a w)) :=
     hKc.of_isClosed_subset (Subgroup.isClosed_of_isOpen _ hIo) hIlev.2.1
@@ -440,7 +342,7 @@ theorem s1 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion
     have htc : t = (p * m) * GlobalTheory.SmGL.diagT _ (Fin a) (fun i => Units.mk0 (c.val i i) (diag_entry_ne hcd i)) *
         (p * m)⁻¹ := by
       rw [← eq_diagT hcd, hcdef]; group
-    have hu := GlobalTheory.T.compact_element_eigenvalues_units E w a ⊤ ⟨t, Subgroup.mem_top t⟩ (p * m) _ htc (cpt_top t hcpt)
+    have hu := _root_.GlobalTheory.CompanionTheory.DiagBd.valued_eq_one_of_isCompact_closure_zpowers E w a ⊤ ⟨t, Subgroup.mem_top t⟩ (p * m) _ htc (cpt_top t hcpt)
     have hcTO : c ∈ TO a w := ⟨hcd, fun i => by simpa using hu i⟩
     refine Subgroup.mem_map.2 ⟨c, hTI c hcTO, ?_⟩
     simp only [MulEquiv.coe_toMonoidHom, MulAut.conj_apply, hcdef]
@@ -450,12 +352,12 @@ theorem s1 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion
     simp only [Set.mem_ofPred_eq]
     constructor
     · intro hq
-      obtain ⟨m', hm', τ', hτ', e'⟩ := contr_tw hU w hw ϖ hϖ a y hy _ hq
+      obtain ⟨m', hm', τ', hτ', e'⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.contr_tw_tl hU w hw ϖ hϖ a y hy _ hq
       have hh : ((p * m)⁻¹ * q * m')⁻¹ * (tdiag ϖ y * τ) * thL a w ((p * m)⁻¹ * q * m') = tdiag ϖ y * τ' := by
         rw [← e', ← h0]
         simp only [map_mul, map_inv]
         group
-      obtain ⟨c, hc, s, hs, hcs⟩ := r2 hU w hw ϖ hϖ a y hy τ τ' _ hτ hτ' hh
+      obtain ⟨c, hc, s, hs, hcs⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.le_and_half_le_prod_one_sub_exp_neg_of_bounds hU w hw ϖ hϖ a y hy τ τ' _ hτ hτ' hh
       refine ⟨(p * m) * c * (p * m)⁻¹, (hcent _).2 ?_, s * m'⁻¹, mul_mem (hTI s hs) (inv_mem hm'), ?_⟩
       · have : (p * m)⁻¹ * ((p * m) * c * (p * m)⁻¹) * (p * m) = c := by group
         rw [this]; exact hc
@@ -508,20 +410,13 @@ theorem s1 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion
     exact h3 (Nat.eq_zero_of_zero_dvd hd)
   ·
     refine ⟨fun i => (tdiag ϖ y * τ * thL a w (tdiag ϖ y * τ)).val i i, ?_, fun i => hNe i⟩
-    rw [← nrm_twconj w hw a (p * m) δ, h0]
+    rw [← _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.nrm_twconj_pf w hw a (p * m) δ, h0]
     have : nrmL a w (tdiag ϖ y * τ) = tdiag ϖ y * τ * thL a w (tdiag ϖ y * τ) := by
       unfold nrmL thL; rw [if_neg hw, if_neg hw]
     rw [this, diag_val hNd, charpoly_diagonal]
     simp only [diagonal_apply_eq]
 
-theorem s2 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
-    (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (l : Fin (n / 2) → ℤ) (hl : Cone l) (γ : UL n w)
-    (hP : ∃ p : UL n w, fU n w b ϖ l (p⁻¹ * γ * p) ≠ 0) :
-    (∃ p₀, OneCoset (MonoidHom.id (UL n w)) (iwU n w b) γ {g | fU n w b ϖ l g ≠ 0} p₀) ∧
-      CentOK (MonoidHom.id (UL n w)) (KL n w) (iwU n w b) γ ∧ HasVals γ.1.val.charpoly (wexp n l) := by
-  first
-    | exact unitary_hecke_orbit_single_coset
-    | (apply unitary_hecke_orbit_single_coset <;> assumption)
+alias s2 := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.unitary_hecke_orbit_single_coset
 
 theorem k1 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
     (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (l : Fin (n / 2) → ℤ) (hl : Cone l) (γ : UL n w)
@@ -534,51 +429,9 @@ theorem k1 (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w)
   intro i j h
   exact hanti.injective (h.trans (hrev i).symm)
 
-theorem v1 (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) (x : Fin n → ℤ) (hx : StrictAnti x)
-    (Q₁ Q₂ : (w.adicCompletion E)[X]) (s : Finset (Fin (n / 2))) (hA : CaseA w n a x Q₁ Q₂ s) :
-    delta w 1 Q₁ Q₂ = (-qh w) ^ (-vRes n a (lOf x) s) := by
-  first
-    | exact inert_delta_first_case_eq_power
-    | (apply inert_delta_first_case_eq_power <;> assumption)
+alias v1 := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.inert_delta_first_case_eq_power
 
-theorem ext (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (a : ℕ)
-    (y : Fin a → ℤ) (hy : StrictAnti y) (Q : (w.adicCompletion E)[X]) (hm : Q.Monic) (hQ : IsCsr w Q)
-    (hv : HasVals Q (nv y)) :
-    ∃ δ : GLw a w, dcos a w (tdiag ϖ y) δ ≠ 0 ∧ (nrmL a w δ).val.charpoly = Q := by
-  first
-    | exact ext_pf
-    | (apply ext_pf <;> assumption)
-
-theorem exu (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
-    (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (l : Fin (n / 2) → ℤ) (hl : Cone l) (Q : (w.adicCompletion E)[X])
-    (hm : Q.Monic) (hQ : IsCsr w Q) (hv : HasVals Q (wexp n l)) :
-    ∃ γ : UL n w, fU n w b ϖ l γ ≠ 0 ∧ γ.1.val.charpoly = Q := by
-  first
-    | exact exu_pf
-    | (apply exu_pf <;> assumption)
-
-theorem combine_caseA (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) (x : Fin n → ℤ) (hx : StrictAnti x)
-    (Q₁ Q₂ : (w.adicCompletion E)[X]) (s : Finset (Fin (n / 2))) (hA : CaseA w n a x Q₁ Q₂ s) :
-    HasVals (Q₁ * Q₂) (wexp n (lOf x)) := by
-  first
-    | exact combine_caseA_pf
-    | (apply combine_caseA_pf <;> assumption)
-
-theorem split_caseA (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) (x : Fin n → ℤ) (hx : StrictAnti x)
-    (Q₁ Q₂ : (w.adicCompletion E)[X]) (hm₁ : Q₁.Monic) (hm₂ : Q₂.Monic) (hd₁ : Q₁.natDegree = a)
-    (hd₂ : Q₂.natDegree = n - a) (hc₁ : IsCsr w Q₁) (hc₂ : IsCsr w Q₂) (hv : HasVals (Q₁ * Q₂) (wexp n (lOf x))) :
-    ∃ s, CaseA w n a x Q₁ Q₂ s := by
-  first
-    | exact split_caseA_pf
-    | (apply split_caseA_pf <;> assumption)
-
-theorem aL_relIndex_prod {G G' : Type} [Group G] [Group G'] (H K : Subgroup G) (H' K' : Subgroup G') :
-    (H.prod H').relIndex (K.prod K') = H.relIndex K * H'.relIndex K' := by
-  unfold Subgroup.relIndex
-  rw [← Subgroup.index_prod,
-    ← Subgroup.index_comap_of_surjective ((H.subgroupOf K).prod (H'.subgroupOf K'))
-      (f := (Subgroup.prodEquiv K K').toMonoidHom) (Subgroup.prodEquiv K K').surjective]
-  congr 1
+alias ext := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.ext_pf
 
 theorem aL_cancel (K A B : ℂ) (hA : A ≠ 0) (hB : B ≠ 0) : K * A * B * (A * B)⁻¹ = K := by
   rw [mul_assoc K A B, mul_assoc, mul_inv_cancel₀ (mul_ne_zero hA hB), mul_one]
@@ -765,9 +618,9 @@ theorem aL_orb_val (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (a b : ℕ) (ϖ
   have hp₂ : dcos b w (tdiag ϖ y₂) (p₂⁻¹ * δ₂ * thL b w p₂) ≠ 0 := hp.2
   obtain ⟨⟨q₁, hq₁⟩, hC₁, -⟩ := s1 hU w hw ϖ hϖ a y₁ hy₁ δ₁ ⟨p₁, hp₁⟩
   obtain ⟨⟨q₂, hq₂⟩, hC₂, -⟩ := s1 hU w hw ϖ hϖ b y₂ hy₂ δ₂ ⟨p₂, hp₂⟩
-  obtain ⟨ho₁, hk₁, hθ₁, hI₁, -, -, hX₁⟩ := iw_facts w hw a (tdiag ϖ y₁)
-  obtain ⟨ho₂, hk₂, hθ₂, hI₂, -, -, hX₂⟩ := iw_facts w hw b (tdiag ϖ y₂)
-  have hpr := g1prod (thL a w) (thL b w) (GlobalTheory.LFun.KGL w (n := a)) (iwGL a w) (GlobalTheory.LFun.KGL w (n := b)) (iwGL b w) δ₁ δ₂
+  obtain ⟨ho₁, hk₁, hθ₁, hI₁, -, -, hX₁⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.iw_facts_pf w hw a (tdiag ϖ y₁)
+  obtain ⟨ho₂, hk₂, hθ₂, hI₂, -, -, hX₂⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.iw_facts_pf w hw b (tdiag ϖ y₂)
+  have hpr := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.g1prod_pf (thL a w) (thL b w) (GlobalTheory.LFun.KGL w (n := a)) (iwGL a w) (GlobalTheory.LFun.KGL w (n := b)) (iwGL b w) δ₁ δ₂
     {g | dcos a w (tdiag ϖ y₁) g ≠ 0} {g | dcos b w (tdiag ϖ y₂) g ≠ 0} q₁ q₂
   have hKo : IsOpen (((GlobalTheory.LFun.KGL w (n := a)).prod (GlobalTheory.LFun.KGL w (n := b)) : Subgroup _) : Set (GLw a w × GLw b w)) := by
     rw [Subgroup.coe_prod]; exact ho₁.prod ho₂
@@ -796,8 +649,8 @@ theorem aL_orb_val (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (a b : ℕ) (ϖ
     simp only [Set.mem_prod, Set.mem_setOf_eq, Prod.fst_mul, Prod.snd_mul]
     exact ⟨and_congr (aL_dcos_left _ _ _ hi.1) (aL_dcos_left _ _ _ hi.2),
       and_congr (aL_dcos_right _ _ _ hi.1) (aL_dcos_right _ _ _ hi.2)⟩
-  rw [g1 ((thL a w).prodMap (thL b w)) _ _ hKo hKc hθK hI (δ₁, δ₂) _ (hX₁.prod hX₂) hXI (hpr.2 hC₁ hC₂) (q₁, q₂)
-    (hpr.1 hq₁ hq₂), aL_relIndex_prod]
+  rw [_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_orbital_integral_indicator_inv_index ((thL a w).prodMap (thL b w)) _ _ hKo hKc hθK hI (δ₁, δ₂) _ (hX₁.prod hX₂) hXI (hpr.2 hC₁ hC₂) (q₁, q₂)
+    (hpr.1 hq₁ hq₂), _root_.GlobalTheory.BCT.OrbProd.relIndex_prod_prod]
 
 theorem aL_phiX_val (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (b : GLw n w)
     (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (x : Fin n → ℤ) (hx : StrictAnti x)
@@ -830,10 +683,10 @@ theorem aL_unqT (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (ϖ : (w.adicCompl
     (h' : dcos a w (tdiag ϖ y) δ' ≠ 0)
     (hQ : (nrmL a w δ').val.charpoly = (nrmL a w δ).val.charpoly) :
     ∃ g : GLw a w, δ' = g⁻¹ * δ * thL a w g := by
-  obtain ⟨m, -, τ, hτ, hmτ⟩ := contr_tw hU w hw ϖ hϖ a y hy δ h
-  obtain ⟨m', -, τ', hτ', hmτ'⟩ := contr_tw hU w hw ϖ hϖ a y hy δ' h'
+  obtain ⟨m, -, τ, hτ, hmτ⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.contr_tw_tl hU w hw ϖ hϖ a y hy δ h
+  obtain ⟨m', -, τ', hτ', hmτ'⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.contr_tw_tl hU w hw ϖ hϖ a y hy δ' h'
   have hc : (nrmL a w (tdiag ϖ y * τ)).val.charpoly = (nrmL a w (tdiag ϖ y * τ')).val.charpoly := by
-    rw [← hmτ, ← hmτ', nrm_twconj w hw, nrm_twconj w hw, hQ]
+    rw [← hmτ, ← hmτ', _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.nrm_twconj_pf w hw, _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.nrm_twconj_pf w hw, hQ]
   obtain ⟨g, -, hg⟩ := unq_diag hU w hw ϖ hϖ a y hy τ τ' hτ hτ' hc
   refine ⟨m * g * m'⁻¹, ?_⟩
   rw [← hmτ, ← hmτ'] at hg
@@ -854,8 +707,8 @@ theorem asmL_A (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
   have hy₂ := aL_restr_anti x hx _ h₂
   obtain ⟨δ₁, hδ₁, hQδ₁⟩ := ext hU w hw ϖ hϖ a _ hy₁ Q₁ hm₁ hc₁ hv₁
   obtain ⟨δ₂, hδ₂, hQδ₂⟩ := ext hU w hw ϖ hϖ (n - a) _ hy₂ Q₂ hm₂ hc₂ hv₂
-  obtain ⟨-, -, -, -, -, hr₁, -⟩ := iw_facts w hw a (tdiag ϖ (restr x _ h₁))
-  obtain ⟨-, -, -, -, -, hr₂, -⟩ := iw_facts w hw (n - a) (tdiag ϖ (restr x _ h₂))
+  obtain ⟨-, -, -, -, -, hr₁, -⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.iw_facts_pf w hw a (tdiag ϖ (restr x _ h₁))
+  obtain ⟨-, -, -, -, -, hr₂, -⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.iw_facts_pf w hw (n - a) (tdiag ϖ (restr x _ h₂))
   set X : Set (GLw a w × GLw (n - a) w) :=
     {g | dcos a w (tdiag ϖ (restr x _ h₁)) g ≠ 0} ×ˢ {g | dcos (n - a) w (tdiag ϖ (restr x _ h₂)) g ≠ 0}
     with hXdef
@@ -864,7 +717,7 @@ theorem asmL_A (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
     {y | (nrmL a w y.1).val.charpoly = Q₁ ∧ (nrmL (n - a) w y.2).val.charpoly = Q₂} with hS
   have hinv : ∀ δ ∈ S, ∀ g : GLw a w × GLw (n - a) w, g⁻¹ * δ * θ g ∈ S := by
     rintro δ ⟨e1, e2⟩ g
-    exact ⟨(nrm_twconj w hw a g.1 δ.1).trans e1, (nrm_twconj w hw (n - a) g.2 δ.2).trans e2⟩
+    exact ⟨(_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.nrm_twconj_pf w hw a g.1 δ.1).trans e1, (_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.nrm_twconj_pf w hw (n - a) g.2 δ.2).trans e2⟩
   have hval : ∀ y ∈ S, phiX n w b ϖ x a y =
       (-qh w) ^ (-vRes n a (lOf x) s) * (((iwU n w b).relIndex (KL n w) : ℕ) : ℂ)⁻¹ *
         ((iwGL a w).relIndex (GlobalTheory.LFun.KGL w (n := a)) : ℕ) *
@@ -875,12 +728,12 @@ theorem asmL_A (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
       twOrb θ ((GlobalTheory.LFun.KGL w (n := a)).prod (GlobalTheory.LFun.KGL w (n := (n - a)))) δ (phiX n w b ϖ x a) =
         (-qh w) ^ (-vRes n a (lOf x) s) * (((iwU n w b).relIndex (KL n w) : ℕ) : ℂ)⁻¹ := by
     intro δ hδ hP
-    rw [g3 _ _ δ _ (X.indicator 1) _ (fun p => hval _ (hinv δ hδ p)),
+    rw [_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_orbital_integral_proportional _ _ δ _ (X.indicator 1) _ (fun p => hval _ (hinv δ hδ p)),
       aL_orb_val hU w hw a (n - a) ϖ hϖ _ _ hy₁ hy₂ δ hP, Nat.cast_mul]
     exact aL_cancel _ _ _ (Nat.cast_ne_zero.mpr hr₁) (Nat.cast_ne_zero.mpr hr₂)
   have hδ₀ : ((δ₁, δ₂) : GLw a w × GLw (n - a) w) ∈ S := ⟨hQδ₁, hQδ₂⟩
   unfold stTw2
-  apply g2 θ _ S 1 (phiX n w b ϖ x a) (δ₁, δ₂) _ hδ₀ hinv
+  apply _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_class_sum_eq_single_orbit θ _ S 1 (phiX n w b ϖ x a) (δ₁, δ₂) _ hδ₀ hinv
   · intro g
     rw [Pi.one_apply, one_mul]
     apply horb _ (hinv _ hδ₀ g)
@@ -894,7 +747,7 @@ theorem asmL_A (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
     obtain ⟨p, hp⟩ : ∃ p, phiX n w b ϖ x a (p⁻¹ * δ * θ p) ≠ 0 := by
       by_contra hcon
       push_neg at hcon
-      exact hne (g0 θ _ δ _ hcon)
+      exact hne (_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_orbital_integral_eq_zero_of_vanish θ _ δ _ hcon)
     have hyS := hinv δ hδ p
     rw [hval _ hyS] at hp
     have hyX : p⁻¹ * δ * θ p ∈ X := by
@@ -909,9 +762,6 @@ theorem asmL_A (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
       _ = ((g₁, g₂) * p⁻¹)⁻¹ * (δ₁, δ₂) * θ ((g₁, g₂) * p⁻¹) := by
         rw [hy, map_mul, map_inv]; group
 
-theorem aLB_restr_anti {n m : ℕ} (x : Fin n → ℤ) (hx : StrictAnti x) (S : Finset (Fin n)) (h : S.card = m) :
-    StrictAnti (restr x S h) := fun _ _ hij => hx ((S.orderEmbOfFin h).strictMono hij)
-
 theorem asmL_B (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a ≤ n) (b : GLw n w)
     (hb : IsWitt n w b) (ϖ : (w.adicCompletion E)ˣ) (hϖ : IsUnifAt ϖ) (x : Fin n → ℤ) (hx : StrictAnti x)
     (hc : Cone (lOf x)) (Q₁ Q₂ : (w.adicCompletion E)[X]) (hm₁ : Q₁.Monic) (hm₂ : Q₂.Monic)
@@ -919,15 +769,15 @@ theorem asmL_B (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
     (hc₂ : IsCsr w Q₂) (hB : ∀ s, ¬ CaseA w n a x Q₁ Q₂ s) :
     stTw2 a (n - a) w Q₁ Q₂ (phiX n w b ϖ x a) = 0 := by
   unfold stTw2
-  apply g2zero
+  apply _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.g2zero_pf
   intro δ hδ
   rw [Pi.one_apply, one_mul]
-  apply g0
+  apply _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_orbital_integral_eq_zero_of_vanish
   intro p
   have hy1 : (nrmL a w (p⁻¹ * δ * (thL a w).prodMap (thL (n - a) w) p).1).val.charpoly = Q₁ :=
-    (nrm_twconj w hw a p.1 δ.1).trans hδ.1
+    (_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.nrm_twconj_pf w hw a p.1 δ.1).trans hδ.1
   have hy2 : (nrmL (n - a) w (p⁻¹ * δ * (thL a w).prodMap (thL (n - a) w) p).2).val.charpoly = Q₂ :=
-    (nrm_twconj w hw (n - a) p.2 δ.2).trans hδ.2
+    (_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.nrm_twconj_pf w hw (n - a) p.2 δ.2).trans hδ.2
   unfold phiX
   apply Finset.sum_eq_zero
   intro s' _
@@ -935,9 +785,9 @@ theorem asmL_B (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
   by_contra hne
   have hd2 := right_ne_zero_of_mul hne
   have hd1 := right_ne_zero_of_mul (left_ne_zero_of_mul hne)
-  have v1 := (s1 hU w hw ϖ hϖ a _ (aLB_restr_anti x hx _ h₁)
+  have v1 := (s1 hU w hw ϖ hϖ a _ (_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.aL_restr_anti x hx _ h₁)
     (p⁻¹ * δ * (thL a w).prodMap (thL (n - a) w) p).1 ⟨1, by simpa using hd1⟩).2.2
-  have v2 := (s1 hU w hw ϖ hϖ (n - a) _ (aLB_restr_anti x hx _ h₂)
+  have v2 := (s1 hU w hw ϖ hϖ (n - a) _ (_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.aL_restr_anti x hx _ h₂)
     (p⁻¹ * δ * (thL a w).prodMap (thL (n - a) w) p).2 ⟨1, by simpa using hd2⟩).2.2
   rw [hy1] at v1
   rw [hy2] at v2
@@ -950,7 +800,7 @@ theorem meets_of_ne (K : Subgroup G) (δ : G) (f : G → ℂ) (h : twOrb (Monoid
     ∃ p : G, f (p⁻¹ * δ * p) ≠ 0 := by
   by_contra hcon
   push_neg at hcon
-  exact h (g0 (MonoidHom.id G) K δ f (fun p => by simpa using hcon p))
+  exact h (_root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_orbital_integral_eq_zero_of_vanish (MonoidHom.id G) K δ f (fun p => by simpa using hcon p))
 
 end
 
@@ -1014,9 +864,9 @@ theorem orbR (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n 
     (hP : ∃ p : UL n w, fU n w b ϖ l (p⁻¹ * γ * p) ≠ 0) :
     twOrb (MonoidHom.id (UL n w)) (KL n w) γ (fU n w b ϖ l) = (((iwU n w b).relIndex (KL n w) : ℕ) : ℂ)⁻¹ := by
   obtain ⟨⟨p₀, h1⟩, hC, -⟩ := s2 hU w hw n b hb ϖ hϖ l hl γ hP
-  obtain ⟨hKo, hKc, hI, -, hXc⟩ := iwU_facts w hw n b hb ϖ l
+  obtain ⟨hKo, hKc, hI, -, hXc⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.iwU_facts_pf w hw n b hb ϖ l
   rw [fU_eq_ind w n b ϖ l]
-  exact g1 (MonoidHom.id _) (KL n w) (iwU n w b) hKo hKc (fun k hk => hk) hI γ _ hXc
+  exact _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_orbital_integral_indicator_inv_index (MonoidHom.id _) (KL n w) (iwU n w b) hKo hKc (fun k hk => hk) hI γ _ hXc
     (fun i hi g => fU_biinv w n b ϖ l i hi g) hC p₀ h1
 
 theorem uniqR (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) (b : GLw n w) (hb : IsWitt n w b)
@@ -1045,9 +895,9 @@ theorem asmR_A (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
     delta w 1 Q₁ Q₂ * kapOrb n w Q₁ Q₂ (fU n w b ϖ (lOf x)) =
       (-qh w) ^ (-vRes n a (lOf x) s) * (((iwU n w b).relIndex (KL n w) : ℕ) : ℂ)⁻¹ := by
   have hdel := v1 w hw n a ha x hx Q₁ Q₂ s hA
-  have hvals := combine_caseA w hw n a ha x hx Q₁ Q₂ s hA
+  have hvals := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.combine_caseA_pf w hw n a ha x hx Q₁ Q₂ s hA
   obtain ⟨γ₀, hγ₀, hγ₀Q⟩ :=
-    exu hU w hw n b hb ϖ hϖ (lOf x) hc (Q₁ * Q₂) (hm₁.mul hm₂) (isCsr_mul w hc₁ hc₂) hvals
+    _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.exu_pf hU w hw n b hb ϖ hϖ (lOf x) hc (Q₁ * Q₂) (hm₁.mul hm₂) (isCsr_mul w hc₁ hc₂) hvals
   have key : ∀ γ : UL n w, γ.1.val.charpoly = Q₁ * Q₂ → (∃ p : UL n w, fU n w b ϖ (lOf x) (p⁻¹ * γ * p) ≠ 0) →
       kapSign n w Q₁ γ.1 * twOrb (MonoidHom.id (UL n w)) (KL n w) γ (fU n w b ϖ (lOf x)) =
         1 * (((iwU n w b).relIndex (KL n w) : ℕ) : ℂ)⁻¹ := fun γ hQ hP => by
@@ -1055,7 +905,7 @@ theorem asmR_A (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
       orbR hU w hw n b hb ϖ hϖ (lOf x) hc γ hP]
   have hkap : kapOrb n w Q₁ Q₂ (fU n w b ϖ (lOf x)) = 1 * (((iwU n w b).relIndex (KL n w) : ℕ) : ℂ)⁻¹ := by
     unfold kapOrb
-    refine g2 (MonoidHom.id _) (KL n w) _ _ _ γ₀ _ hγ₀Q ?_ ?_ ?_
+    refine _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.twisted_class_sum_eq_single_orbit (MonoidHom.id _) (KL n w) _ _ _ γ₀ _ hγ₀Q ?_ ?_ ?_
     · intro δ hδ g
       have hδ' : δ.1.val.charpoly = Q₁ * Q₂ := hδ
       show (g⁻¹ * δ * (MonoidHom.id _) g).1.val.charpoly = Q₁ * Q₂
@@ -1078,13 +928,13 @@ theorem asmR_B (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
     (hc₂ : IsCsr w Q₂) (hB : ∀ s, ¬ CaseA w n a x Q₁ Q₂ s) :
     kapOrb n w Q₁ Q₂ (fU n w b ϖ (lOf x)) = 0 := by
   unfold kapOrb
-  refine g2zero (MonoidHom.id _) (KL n w) _ _ _ ?_
+  refine _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.g2zero_pf (MonoidHom.id _) (KL n w) _ _ _ ?_
   intro δ hδ
   by_contra hne
   have hδ' : δ.1.val.charpoly = Q₁ * Q₂ := hδ
   obtain ⟨-, -, hv⟩ := s2 hU w hw n b hb ϖ hϖ (lOf x) hc δ (meets_of_ne _ _ _ (right_ne_zero_of_mul hne))
   rw [hδ'] at hv
-  obtain ⟨s, hs⟩ := split_caseA w hw n a ha x hx Q₁ Q₂ hm₁ hm₂ hd₁ hd₂ hc₁ hc₂ hv
+  obtain ⟨s, hs⟩ := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.split_caseA_pf w hw n a ha x hx Q₁ Q₂ hm₁ hm₂ hd₁ hd₂ hc₁ hc₂ hv
   exact hB s hs
 
 theorem asmReg_mem_symIdx {n : ℕ} {mid : Prop} [Decidable mid] {s : Finset (Fin (n / 2))} {k : Fin n} :
@@ -1104,15 +954,6 @@ theorem asmReg_mem_symIdx {n : ℕ} {mid : Prop} [Decidable mid] {s : Finset (Fi
       refine Or.inr (Or.inl ⟨by omega, ?_⟩)
       rwa [show (⟨n - 1 - k.val, by omega⟩ : Fin (n / 2)) = j from Fin.ext hjk.symm]
     · exact Or.inr (Or.inr hmid)
-
-theorem asmReg_symIdx_rev {n : ℕ} {mid : Prop} [Decidable mid] {s : Finset (Fin (n / 2))} {k : Fin n}
-    (hk : k ∈ symIdx n mid s) : k.rev ∈ symIdx n mid s := by
-  rw [asmReg_mem_symIdx] at hk ⊢
-  have hr : (k.rev : ℕ) = n - (k + 1) := Fin.val_rev k
-  have hkn := k.isLt
-  rcases hk with ⟨j, hj, hjk⟩ | ⟨hm, hn, hkm⟩
-  · exact Or.inl ⟨j, hj, by omega⟩
-  · exact Or.inr ⟨hm, hn, by omega⟩
 
 theorem asmReg_disj {n : ℕ} {s : Finset (Fin (n / 2))} {m1 m2 : Prop} [Decidable m1] [Decidable m2]
     (hm : ¬ (m1 ∧ m2)) : Disjoint (symIdx n m1 s) (symIdx n m2 sᶜ) := by
@@ -1203,7 +1044,7 @@ theorem asmReg (hU : Unr E) (w : Pl E) (hw : ¬ IsSplitAt w) (n a : ℕ) (ha : a
   have hv₂ := (s1 hU w hw ϖ hϖ (n - a) (restr x _ h₂)
     (fun i j hij => hx ((Finset.orderEmbOfFin _ h₂).strictMono hij)) y.2
     ⟨1, by rw [inv_one, one_mul, map_one, mul_one]; exact hd₂⟩).2.2
-  exact asmReg_sep x hx _ _ (fun k hk => asmReg_symIdx_rev hk) (fun k hk => asmReg_symIdx_rev hk)
+  exact asmReg_sep x hx _ _ (fun k hk => _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.V1.mem_rev hk) (fun k hk => _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.V1.mem_rev hk)
     (asmReg_disj (fun hm => by omega)) h₁ h₂ _ _ hv₁ hv₂
 
 theorem m4 : M4 := by

@@ -78,14 +78,6 @@ theorem radius_nonneg {p : ℕ} (hp : 3 ≤ p) (k : ℤ) : 0 ≤ radius p k := b
   have : (0 : ℝ) < (p : ℝ) ^ (-(2 * k + 1)) := zpow_pos (by linarith) _
   linarith
 
-theorem radius_anti {p : ℕ} (hp : 3 ≤ p) {k l : ℤ} (h : k ≤ l) : radius p l ≤ radius p k := by
-  have h3 : (3 : ℝ) ≤ p := by exact_mod_cast hp
-  unfold radius
-  refine div_le_div_of_nonneg_right ?_ (by nlinarith)
-  have : (p : ℝ) ^ (-(2 * l + 1)) ≤ (p : ℝ) ^ (-(2 * k + 1)) :=
-    zpow_le_zpow_right₀ (by linarith) (by omega)
-  linarith
-
 theorem ordGe_mono {M : ℕ} {ρ : Fin M → ℝ} {g : MvPowerSeries (Fin M) C} {r r' : ℝ}
     (h : OrdGe v ρ g r) (hr : r' ≤ r) : OrdGe v ρ g r' := fun α =>
   le_trans (WithTop.coe_le_coe.2 (by linarith)) (h α)
@@ -286,7 +278,7 @@ theorem detDepth_lower : ∀ (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (
     intro a
     simp only [hρ]
     split_ifs
-    · exact radius_anti hp3 (by omega)
+    · exact _root_.GlobalTheory.DepthRadii.radius_anti hp3 (by omega)
     · exact le_rfl
   have hz : ∀ b, OrdGe v ρ (∑ a, x' a b • (X a : MvPowerSeries (Fin i) C)) (radius p (dp b)) := by
     intro b
@@ -300,10 +292,10 @@ theorem detDepth_lower : ∀ (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (
           by_contra hacr
           exact ha (hgS a (not_lt.1 hacr) b (Finset.mem_filter.2 ⟨Finset.mem_univ _, hb, hK⟩))
         simp only [hρ, if_pos hacr]
-        exact radius_anti hp3 (hdp b).1
-      · exact (radius_anti hp3 (not_lt.1 hK)).trans (hρK a)
+        exact _root_.GlobalTheory.DepthRadii.radius_anti hp3 (hdp b).1
+      · exact (_root_.GlobalTheory.DepthRadii.radius_anti hp3 (not_lt.1 hK)).trans (hρK a)
   obtain ⟨t, ht0, hteq, htord, -⟩ := GlobalTheory.DepthRadii.exists_solution_ordGe_radius C v p hp hp3 hvp d i dp cc (fun a => (hdp a).1)
-    hc0 hcv hcdp ρ (fun a => (radius_nonneg hp3 _).trans (hρK a))
+    hc0 hcv hcdp ρ (fun a => (_root_.GlobalTheory.DepthRadii.radius_pos hp3 _).trans (hρK a))
     (fun b => ∑ a, x' a b • (X a : MvPowerSeries (Fin i) C))
     (fun b α hα => coeff_lin_eq_zero _ α hα) hz
   have heq : ∀ e, subst t (subst (basisMap G γ) (G.lg e)) =

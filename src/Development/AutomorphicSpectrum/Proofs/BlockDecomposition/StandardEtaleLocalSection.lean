@@ -71,7 +71,7 @@ theorem exists_section_standardEtale : ∀ {S : Type} [CommRing S] , Aic (S := S
       Nonempty (B →ₐ[S] Localization.Away e) := by
   intro S _ hA hL B _ _ _ Q hQ hm
   obtain ⟨P⟩ := Algebra.IsStandardEtale.nonempty_standardEtalePresentation (R := S) (S := B)
-  obtain ⟨s, hs⟩ := GlobalTheory.T.absolutely_closed_polynomial_splits hA P.f P.monic_f
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.CompanionTheory.MonicSplit.monic_splits hA P.f P.monic_f
 
   have hprod : (s.map fun b => P.x - algebraMap S B b).prod ∈ Q := by
     have h0 : Polynomial.aeval P.x P.f = 0 := P.hasMap.1

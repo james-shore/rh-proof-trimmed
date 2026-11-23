@@ -42,4 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem sc_pi_frame : PI.ScPiExists.Frame := PI.ScPiFrameW.frame_holds

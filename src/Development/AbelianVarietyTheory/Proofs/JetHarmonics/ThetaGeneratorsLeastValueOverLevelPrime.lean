@@ -260,7 +260,7 @@ theorem least_value_le : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartR
   obtain ⟨I⟩ := GlobalTheory.T.nonempty_tateIsometry_integralFramedPoint_chart E H Dw l Xo c T io y C P F
   obtain ⟨n₂, rfl⟩ : ∃ n₂, n = (Dw.p + Dw.q) + n₂ := ⟨n - (Dw.p + Dw.q), by omega⟩
   obtain ⟨D', A', G', _, _, pD, pA, pG, U', PU, _, oD', hx1, hx2, -⟩ :=
-    (GlobalTheory.T.exists_productData_copies_trivialisation_valuation E H Dw l Xo c T io y C P ϖ hϖ).2 ((Dw.p + Dw.q) + n₂)
+    (_root_.GlobalTheory.PowData.exists_powData E H Dw l Xo c T io y C P ϖ hϖ).2 ((Dw.p + Dw.q) + n₂)
   have hmult : ∀ τ, Dw.mult τ ≤ Dw.p + Dw.q := fun τ => by unfold Datum.mult; split_ifs <;> omega
   have hmult2 : ∀ τ, Dw.mult τ ≤ n₂ := fun τ => (hmult τ).trans (by omega)
   have hg0 : ((g : ℕ) : T.Fr) ≠ 0 := Nat.cast_ne_zero.2 hg.ne_zero
@@ -327,7 +327,7 @@ theorem least_value_le : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartR
     rw [star_mul, star_star, star_star, hM, Nat.cast_mul, ← hπ, ← hπ']; ring
   have hMb' : l.Mb = Ideal.span {star (star π * star π')} := by
     rw [star_mul, star_star, star_star, hMb, mul_comm]
-  have key := GlobalTheory.T.value_translate_pullback_eq_generator' E H Dw l Xo c nab hnab hTot T io y C hTr P hP hy ϖ hϖ Q hQ F v hv _ D' A' G' pD pA pG U' PU
+  have key := _root_.GlobalTheory.value_translate_pullback_eq_generator E H Dw l Xo c nab hnab hTot T io y C hTr P hP hy ϖ hϖ Q hQ F v hv _ D' A' G' pD pA pG U' PU
     oD' hx1 hx2 (star π * star π') hα hMb' θ
   rw [hM] at key
   obtain ⟨f, hf, ee, hee, heq⟩ := key θα c1 c2 c3 p₂ w₂ ζ₂ x₂ r₀ r₂ σ₃ (hh i) d3 d4 d5 d1 d2 d6 d7 d8' d9' a Ppol hPpol

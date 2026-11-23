@@ -277,10 +277,6 @@ theorem eSgn_isLeft (i : Fin (VS D).rank) : (eSgn D i).isLeft = epsV D i := by
     rw [h]
     simp [eSgn, h]
 
-theorem cT_eq {m p : Type} (M : Matrix m p ℂ) : Formalism.UG.cT (starRingEnd ℂ) M = Mᴴ := by
-  ext i j
-  simp [Formalism.UG.cT]
-
 theorem Jpq_sub (p q : ℕ) {n : Type} [DecidableEq n] (e : n ≃ Fin p ⊕ Fin q) (ε : n → Bool) (he : ∀ i, (e i).isLeft = ε i) :
     (Formalism.UG.Jpq p q).submatrix e e = Matrix.diagonal fun a => if ε a then (1 : ℂ) else -1 := by
   ext a b
@@ -300,7 +296,7 @@ theorem exists_P (τ : D.what₂.Tau) : ∃ P : Matrix (Fin (VS D).rank) (Fin (V
     rw [D.sp.baseSpace_signature_eq] at h0
     exact h0
   obtain ⟨e, P, hP⟩ := hs
-  rw [cT_eq] at hP
+  rw [_root_.Formalism.UG.P.cT_conj_eq] at hP
   refine ⟨P.val.submatrix e (eSgn D), ?_, ?_⟩
   · have h1 : P.val.submatrix e (eSgn D) * (P⁻¹).val.submatrix (eSgn D) e = 1 := by
       rw [Matrix.submatrix_mul_equiv, ← Units.val_mul, mul_inv_cancel, Units.val_one,

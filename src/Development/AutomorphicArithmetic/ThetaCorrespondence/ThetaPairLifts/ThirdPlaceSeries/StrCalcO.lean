@@ -93,10 +93,10 @@ theorem is_split_of_cusp_iso_bcv : GlobalTheory.Published.AutomorphicFormsFinite
         twistIso D.nd D.naut ([⟨D.R.r, π, 1⟩] ++ [muPart D.nd D.naut i]) D.naut.etaTinv := by
       simp [twistIso]
     obtain ⟨hcsd, hralg⟩ := GlobalTheory.LocalInv.part_alg D.nd D.naut hEta (GlobalTheory.LocalInv.weightRegular_definite D) i P0 _ hB _ hmem
-      (odd_rank D.R) odd_one
+      (_root_.Formalism.L2.NTheta.odd_r D.R) odd_one
     intro a haB
     obtain ⟨α, hα, rfl⟩ := Multiset.mem_map.mp haB
-    simpa only [normV_eq_absNorm] using (((_root_.UpperTheory.GalN.tempo' h7 D.R.r _ (odd_rank D.R).pos hcsd hralg w).part_tw hTie ha α hα).1.inv
+    simpa only [normV_eq_absNorm] using (((_root_.UpperTheory.GalN.tempo' h7 D.R.r _ (_root_.Formalism.L2.NTheta.odd_r D.R).pos hcsd hralg w).part_tw hTie ha α hα).1.inv
       (UpperTheory.GalN.one_lt_q w)).le_rpow (UpperTheory.GalN.one_lt_q w) (UpperTheory.GalN.half_le_r D.R)
 end GlobalTheory.EigStrCalc
 end

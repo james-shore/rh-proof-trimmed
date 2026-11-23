@@ -105,9 +105,6 @@ section Riem
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ} {Λ : Type} [AddCommGroup Λ] [Module (𝓞 E) Λ]
   (R : RiemLat E g Λ)
 
-theorem ip_add_right (x y y' : Fin g → ℂ) : R.ip x (y + y') = R.ip x y + R.ip x y' := by
-  simp [RiemLat.ip, add_dotProduct]
-
 theorem ip_sub_right (x y y' : Fin g → ℂ) : R.ip x (y - y') = R.ip x y - R.ip x y' := by
   simp [RiemLat.ip, sub_dotProduct]
 
@@ -117,31 +114,12 @@ theorem ip_smul_right (x : Fin g → ℂ) (c : ℂ) (y : Fin g → ℂ) : R.ip x
 theorem ip_sub_left (x x' y : Fin g → ℂ) : R.ip (x - x') y = R.ip x y - R.ip x' y := by
   simp [RiemLat.ip, star_sub, mulVec_sub, dotProduct_sub]
 
-theorem ip_add_left (x x' y : Fin g → ℂ) : R.ip (x + x') y = R.ip x y + R.ip x' y := by
-  simp [RiemLat.ip, star_add, mulVec_add, dotProduct_add]
-
-theorem ip_smul_left (c : ℂ) (x y : Fin g → ℂ) : R.ip (c • x) y = starRingEnd ℂ c * R.ip x y := by
-  simp [RiemLat.ip, star_smul, mulVec_smul, dotProduct_smul]
-
-theorem ip_zero_left (y : Fin g → ℂ) : R.ip 0 y = 0 := by
-  simp [RiemLat.ip]
-
-theorem ip_zero_right (x : Fin g → ℂ) : R.ip x 0 = 0 := by
-  simp [RiemLat.ip]
-
 theorem ip_sum_right {ι : Type} (t : Finset ι) (x : Fin g → ℂ) (f : ι → Fin g → ℂ) :
     R.ip x (∑ i ∈ t, f i) = ∑ i ∈ t, R.ip x (f i) := by
   classical
   induction t using Finset.induction_on with
-  | empty => simp [ip_zero_right]
-  | insert i t hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, ip_add_right, ih]
-
-theorem ip_sum_left {ι : Type} (t : Finset ι) (f : ι → Fin g → ℂ) (y : Fin g → ℂ) :
-    R.ip (∑ i ∈ t, f i) y = ∑ i ∈ t, R.ip (f i) y := by
-  classical
-  induction t using Finset.induction_on with
-  | empty => simp [ip_zero_left]
-  | insert i t hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, ip_add_left, ih]
+  | empty => simp [_root_.LevelTowerAlt.ip_zero_right]
+  | insert i t hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, _root_.LevelTowerAlt.ip_add_right, ih]
 
 theorem eq_zero_of_ip_self (y : Fin g → ℂ) (h : R.ip y y = 0) : y = 0 := by
   by_contra hy
@@ -158,8 +136,8 @@ theorem gram_det_ne_zero {r : ℕ} (w : Fin r → Fin g → ℂ) (hw : LinearInd
     simp only [ip_smul_right]
     simpa [mulVec, dotProduct, RiemLat.gram, mul_comm] using e
   have h2 : R.ip (∑ b, c b • w b) (∑ b, c b • w b) = 0 := by
-    rw [ip_sum_left]
-    simp only [ip_smul_left, h1, mul_zero, Finset.sum_const_zero]
+    rw [_root_.LevelTowerAlt.ip_sum_left]
+    simp only [_root_.LevelTowerAlt.ip_smul_left, h1, mul_zero, Finset.sum_const_zero]
   exact hc (funext (Fintype.linearIndependent_iff.mp hw c (eq_zero_of_ip_self R _ h2)))
 
 theorem gram_append_det {r k : ℕ} (w : Fin r → Fin g → ℂ) (x : Fin k → Fin g → ℂ) (hw : LinearIndependent ℂ w) :
@@ -198,8 +176,8 @@ theorem gram_append_det {r k : ℕ} (w : Fin r → Fin g → ℂ) (x : Fin k →
     simp [D, C, RiemLat.gram, M, mul_comm]
   have e2 : R.ip (x i - ∑ a, M a i • w a) (x j - ∑ a, M a j • w a) =
       R.ip (x i) (x j) - ∑ a, M a j * R.ip (x i) (w a) := by
-    rw [ip_sub_left, ip_sum_left]
-    simp only [ip_smul_left, horth, mul_zero, Finset.sum_const_zero, sub_zero]
+    rw [ip_sub_left, _root_.LevelTowerAlt.ip_sum_left]
+    simp only [_root_.LevelTowerAlt.ip_smul_left, horth, mul_zero, Finset.sum_const_zero, sub_zero]
     rw [ip_sub_right, ip_sum_right]
     simp only [ip_smul_right]
   rw [e1]
@@ -290,14 +268,14 @@ theorem gram_append_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
       refine Finset.sum_congr rfl fun a _ => ?_
       rw [R.act, hLs, (h1 s).2.2.2, hw]
     have e3 : starRingEnd ℂ (n : ℂ) * R.ip (eigComp R.B s (R.P u)) (z j) = 0 := by
-      rw [← ip_smul_left, e1, ip_sum_left]
-      simp only [ip_smul_left]
+      rw [← _root_.LevelTowerAlt.ip_smul_left, e1, _root_.LevelTowerAlt.ip_sum_left]
+      simp only [_root_.LevelTowerAlt.ip_smul_left]
       exact Finset.sum_eq_zero fun a _ => by rw [hz a j, mul_zero]
     refine (mul_eq_zero.1 e3).resolve_left ?_
     simpa using hn.ne'
   have horth : ∀ j, ∀ u ∈ I, R.ip (R.P u) (z j) = 0 := by
     intro j u hu
-    rw [← h2 (R.P u), ip_sum_left]
+    rw [← h2 (R.P u), _root_.LevelTowerAlt.ip_sum_left]
     refine Finset.sum_eq_zero fun t _ => ?_
     by_cases ht : t.comp (algebraMap (𝓞 E) E) = s
     · rw [ht]

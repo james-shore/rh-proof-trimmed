@@ -240,11 +240,8 @@ private lemma euler_product_le_zeta (M : ℕ) (hM : 2 ≤ M) (S : Finset ℕ) (h
 
 private noncomputable def negLogOneSubInvPow (M p : ℕ) : ℝ := -Real.log (1 - ((p : ℝ)⁻¹) ^ M)
 
-private lemma inv_prime_pow_lt_one (M : ℕ) (hM : 1 ≤ M) (p : ℕ) (hp : p.Prime) : ((p : ℝ)⁻¹) ^ M < 1 := by
-  exact inv_prime_pow_lt_one' M hM p hp
-
 private lemma neg_log_one_sub_inv_pow_nonneg (M : ℕ) (hM : 1 ≤ M) (p : ℕ) (hp : p.Prime) : 0 ≤ negLogOneSubInvPow M p := by
-  have h := inv_prime_pow_lt_one M hM p hp
+  have h := _root_.Formalism.HermitianLattices.GenusMassVolumes.inv_prime_pow_lt_one' M hM p hp
   have h0 : 0 ≤ ((p : ℝ)⁻¹) ^ M := by positivity
   unfold negLogOneSubInvPow
   have : Real.log (1 - ((p : ℝ)⁻¹) ^ M) ≤ 0 := Real.log_nonpos (by linarith) (by linarith)
@@ -253,7 +250,7 @@ private lemma neg_log_one_sub_inv_pow_nonneg (M : ℕ) (hM : 1 ≤ M) (p : ℕ) 
 private lemma sum_neg_log_le_log_zeta (M : ℕ) (hM : 2 ≤ M) (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) :
     ∑ p ∈ S, negLogOneSubInvPow M p ≤ Real.log (zetaR M) := by
   have hpos : ∀ p ∈ S, 0 < 1 - ((p : ℝ)⁻¹) ^ M := fun p hp => by
-    linarith [inv_prime_pow_lt_one M (by omega) p (hS p hp)]
+    linarith [_root_.Formalism.HermitianLattices.GenusMassVolumes.inv_prime_pow_lt_one' M (by omega) p (hS p hp)]
   have hsum : ∑ p ∈ S, negLogOneSubInvPow M p = Real.log (∏ p ∈ S, (1 - ((p : ℝ)⁻¹) ^ M)⁻¹) := by
     rw [Real.log_prod (fun p hp => (inv_pos.mpr (hpos p hp)).ne')]
     refine Finset.sum_congr rfl (fun p _ => ?_)
@@ -285,7 +282,7 @@ private lemma euler_factor_inert_prime_bound (M : ℕ) (hM : 1 ≤ M) (p : ℕ) 
   have hy0 : 0 ≤ ((Real.sqrt (N : ℝ))⁻¹) ^ M := by positivity
   have hyx : ((Real.sqrt (N : ℝ))⁻¹) ^ M ≤ ((p : ℝ)⁻¹) ^ M :=
     pow_le_pow_left₀ (by positivity) (inv_anti₀ (by linarith) hpN) M
-  have hx := inv_prime_pow_lt_one M hM p hp
+  have hx := _root_.Formalism.HermitianLattices.GenusMassVolumes.inv_prime_pow_lt_one' M hM p hp
   have hs := neg_one_pow_eq_or ℝ M
   rw [hzp]
   refine ⟨?_, abs_log_inv_one_sub_le_real _ _ _ hs hy0 hyx hx⟩
@@ -302,7 +299,7 @@ private lemma euler_factor_split_prime_bound (M : ℕ) (hM : 1 ≤ M) (p : ℕ) 
   have hyx : ((N : ℝ)⁻¹) ^ M ≤ ((p : ℝ)⁻¹) ^ M :=
     pow_le_pow_left₀ (by positivity) (inv_anti₀ (by linarith) hpN) M
   have hy0 : 0 ≤ ((N : ℝ)⁻¹) ^ M := by positivity
-  have hx := inv_prime_pow_lt_one M hM p hp
+  have hx := _root_.Formalism.HermitianLattices.GenusMassVolumes.inv_prime_pow_lt_one' M hM p hp
   have hb : 0 < 1 - ((N : ℝ)⁻¹) ^ M := by linarith
   refine ⟨Real.rpow_pos_of_pos hb _, ?_⟩
   rw [Real.log_rpow hb, abs_mul]

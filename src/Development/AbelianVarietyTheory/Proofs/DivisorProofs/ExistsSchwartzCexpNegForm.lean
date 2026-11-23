@@ -65,7 +65,7 @@ theorem exists_schwartz_cexp_neg_form : ∀ (V : Type) [NormedAddCommGroup V] [N
     Complex.contDiff_exp.comp hq
   refine ⟨⟨fun y => Complex.exp (B y y), hg, ?_⟩, fun x => ?_, fun x p => ?_⟩
   · intro k n
-    obtain ⟨C, hC⟩ := GlobalTheory.GaussExpSeries.exists_bound_poly_mul_exp c hc (k + 2 * n)
+    obtain ⟨C, hC⟩ := _root_.GlobalTheory.PolynomialGaussianBounded.poly_mul_gaussian_bounded c hc (k + 2 * n)
     refine ⟨n ! * (2 * (‖B‖ + 1)) ^ n * C, fun x => ?_⟩
     have hx0 := norm_nonneg x
     have hB0 := norm_nonneg B

@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsLocModelIsPrimeOf
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CartierDivisorMultCharacterize
 
 @[expose] public section
 
@@ -75,14 +76,9 @@ theorem supp_nsmul_le' (D : CartierDiv Z) (r : ℕ) : (r • D).supp ≤ D.supp 
 
 variable [IsLocallyNoetherian Z]
 
-theorem mult_zero'' (z : Z) : (0 : CartierDiv Z).mult z = 0 := by
-  have h₀ := CartierDiv.mult_add (0 : CartierDiv Z) 0 z
-  rw [add_zero] at h₀
-  omega
-
 theorem mult_nsmul''' (E : CartierDiv Z) (r : ℕ) (z : Z) : (r • E).mult z = r * E.mult z := by
   induction r with
-  | zero => rw [zero_nsmul, mult_zero'']; simp
+  | zero => rw [zero_nsmul, _root_.GlobalTheory.Cartier.MultEff.mult_zero]; simp
   | succ r ih => rw [succ_nsmul, CartierDiv.mult_add, ih]; push_cast; ring
 
 theorem mult_sub'' (D E : CartierDiv Z) (z : Z) : (D - E).mult z = D.mult z - E.mult z := by
@@ -149,7 +145,7 @@ theorem GlobalTheory.Discrepancy.neg_one_lt_discrep_add_ord_of_logRes : ∀ (X :
       have h2 : (0 : ℤ) ≤ m * Scheme.ord ((fnPull s f : Y.functionFieldˣ) : Y.functionField) w :=
         mul_nonneg (Int.natCast_nonneg m) h0
       linarith
-  have hcrit := (GlobalTheory.T.klt_of_snc_coefficients ℂ Y (s ≫ p) n (EtaleKlt.ratPull p s n η) hη' K (G - m • F) m B hm
+  have hcrit := (_root_.GlobalTheory.Discrepancy.coeff_criterion_snc ℂ Y (s ≫ p) n (EtaleKlt.ratPull p s n η) hη' K (G - m • F) m B hm
     hres.div hres.snc hsupp y' _ hEqn E' hE').1 hlt'
   have hd : discrep E' (EtaleKlt.ratPull p s n η) m (fnPull s g / fnPull s f ^ m) =
       discrep E η m g + E.ord f := by

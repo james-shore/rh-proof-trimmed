@@ -89,8 +89,7 @@ open GlobalTheory.ZM
 noncomputable section
 namespace GlobalTheory.ThetaCrit
 
-theorem spMap_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R') (f' : R' →+* R'') :
-    spMap (f'.comp f) = spMap f' ≫ spMap f := Spec.map_comp _ _
+alias spMap_comp := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem exists_model (hS : GlobalTheory.SS.SemistablePol) {o : Type} [CommRing o] {g k : ℕ} {J : Type} {b : TBase o k}
     (V K : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (IsLocalRing.maximalIdeal V) V]

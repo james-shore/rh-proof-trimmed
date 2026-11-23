@@ -86,11 +86,6 @@ private theorem pres_new_low {R S σ : Type} [CommRing R] [CommRing S] [Finite �
     rfl)
   rwa [AlgEquiv.symm_apply_apply, map_sub] at h
 
-private theorem pres_new_coeff {O σ : Type} [CommRing O] [IsLocalRing O] (N : ℕ) :
-    ∀ h ∈ maximalIdeal (MvPowerSeries σ O) ^ N, ∀ a : σ →₀ ℕ,
-      coeff a h ∈ maximalIdeal O ^ (N - a.degree) :=
-  _root_.UpperTheory.Reformulated.B.PreservedCoefficient.pres_new_coeff N
-
 private theorem pres_new_wcomp {O σ X : Type} [CommRing O] [AddCommGroup X] [DecidableEq X] (wt : σ → X)
     {i : X} (j : X) {h : MvPowerSeries σ O} (hh : h ∈ wtPart O wt i) :
     wcomp O wt j h = if i = j then h else 0 := by
@@ -144,8 +139,8 @@ private theorem pres_new_comm {O σ τ Y : Type} [CommRing O] [IsLocalRing O] [I
   rw [← sub_eq_zero]
   refine IsHausdorff.haus (I := maximalIdeal O) inferInstance _ fun k => ?_
   rw [SModEq.zero, smul_eq_mul, Ideal.mul_top]
-  have h1 := pres_new_coeff _ _ (hl (k + a.degree) g) a
-  have h2 := pres_new_coeff _ _ (hl (k + a.degree) (wcomp O wt j g)) a
+  have h1 := _root_.UpperTheory.Reformulated.B.PreservedCoefficient.pres_new_coeff _ _ (hl (k + a.degree) g) a
+  have h2 := _root_.UpperTheory.Reformulated.B.PreservedCoefficient.pres_new_coeff _ _ (hl (k + a.degree) (wcomp O wt j g)) a
   have h3 : ((truncTotal (k + a.degree) (wcomp O wt j g) : MvPolynomial τ O) : MvPowerSeries τ O) =
       wcomp O wt j (truncTotal (k + a.degree) g : MvPolynomial τ O) := by
     ext b

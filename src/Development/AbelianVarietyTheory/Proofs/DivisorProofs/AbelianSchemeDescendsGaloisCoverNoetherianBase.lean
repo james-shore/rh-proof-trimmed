@@ -84,11 +84,6 @@ theorem cover_ext (hc : IsGaloisCover Ga ρ π) {Z : Scheme.{0}} {f g : Y ⟶ Z}
     f = g :=
   ((GlobalTheory.T.galoisCover_descent_and_cartesian_squares X Y π Ga ρ hc).1 Z (π ≫ g) fun a ↦ by rw [← Category.assoc, hc.inv]).unique h rfl
 
-theorem up_injective (hc : IsGaloisCover Ga ρ π) (H : IsPullback φ G.hom G'.hom π) {T : Over Y}
-    {x y : T ⟶ G'} (e : up H x = up H y) : x = y := by
-  refine Over.OverMorphism.ext (cover_ext (isGaloisCover_act hc T) ?_)
-  rw [← up_left H, ← up_left H, e]
-
 noncomputable def equivariant [GrpObj G] (hc : IsGaloisCover Ga ρ π)
     (hν : ∀ a, IsGrpPullback G G (ρ a) (ν a)) (T : Over Y) : Subgroup ((Over.pullback π).obj T ⟶ G) :=
   ⨅ a : Ga, (preHom (Over.homMk (act hc T a) (act_snd hc T a))).eqLocus
@@ -106,7 +101,7 @@ theorem exists_up [GrpObj G] (hc : IsGaloisCover Ga ρ π) (H : IsPullback φ G.
   have hc' := isGaloisCover_act hc T
   obtain ⟨z, hz, -⟩ := (GlobalTheory.T.galoisCover_descent_and_cartesian_squares _ _ _ Ga _ hc').1 _ (w.left ≫ φ) fun a ↦ by
     rw [← Category.assoc, (mem_equivariant hc hν).mp hw a, Category.assoc, hφ]
-  refine ⟨Over.homMk z (cover_ext hc' ?_), QuotientDescent.hom_ext H ((up_left H _).trans hz)⟩
+  refine ⟨Over.homMk z (_root_.GlobalTheory.GaloisDescent.cover_ext hc' ?_), QuotientDescent.hom_ext H ((up_left H _).trans hz)⟩
   rw [reassoc_of% hz, H.w, pullback.condition]
   exact (Category.assoc _ _ _).symm.trans (congrArg (· ≫ π) (Over.w w))
 

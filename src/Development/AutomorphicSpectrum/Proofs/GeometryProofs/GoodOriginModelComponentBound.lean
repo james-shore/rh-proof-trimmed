@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.FrMapComp
 public import Development.AbelianVarietyTheory.Definitions.RegularCharts.ModelAt
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormStabilizerFiniteAwayFromP
+import Formalism.LocalToGlobal.ProjectiveLattices.AxHLAM
 
 @[expose] public section
 
@@ -95,52 +96,10 @@ theorem prod_exZ_zero {M : Type} [CommGroup M] (t : Ix Dw → M) : ∏ i, t i ^ 
   · simp [GlobalTheory.CompanionTheory.Ar.Rec.exZ]
   · simp [GlobalTheory.CompanionTheory.Ar.Rec.exZ]
 
-private theorem mul_mem_secZ' {a b : WZ E} {f g : Rul Xo c} (hf : f ∈ GlobalTheory.CompanionTheory.Ar.Rec.secZ Xo c a)
-    (hg : g ∈ GlobalTheory.CompanionTheory.Ar.Rec.secZ Xo c b) : f * g ∈ GlobalTheory.CompanionTheory.Ar.Rec.secZ Xo c (a + b) := by
-  obtain ⟨hfn, hfb⟩ := hf
-  obtain ⟨hgn, hgb⟩ := hg
-  refine ⟨fun p q φ y z hyz => ?_, fun p t y y' hb => ?_⟩
-  · show f q z * g q z = φ (f p y * g p y)
-    rw [hfn p q φ y z hyz, hgn p q φ y z hyz, map_mul]
-  · show f p y' * g p y' = _ * (f p y * g p y)
-    rw [hfb p t y y' hb, hgb p t y y' hb]
-    have hex : ∀ i, GlobalTheory.CompanionTheory.Ar.Rec.exZ Dw (a + b) i =
-        GlobalTheory.CompanionTheory.Ar.Rec.exZ Dw a i + GlobalTheory.CompanionTheory.Ar.Rec.exZ Dw b i := by
-      intro i
-      rcases i with _ | x <;> simp [GlobalTheory.CompanionTheory.Ar.Rec.exZ]
-    simp only [hex, zpow_add, Units.val_mul, Finset.prod_mul_distrib]
-    ring
-
-private theorem one_mem_secZ_zero' : (1 : Rul Xo c) ∈ GlobalTheory.CompanionTheory.Ar.Rec.secZ Xo c (0 : WZ E) := by
-  refine ⟨fun p q φ y z _ => ?_, fun p t y y' _ => ?_⟩
-  · show (1 : q.R) = φ 1
-    exact (map_one φ).symm
-  · show (1 : p.R) = _ * 1
-    rw [mul_one, ← Units.coe_prod, prod_exZ_zero, Units.val_one]
-
 private theorem evC_mul_geometry (h : GenFrEx Xo c) (Z : Comp Xo c) (f g : Rul Xo c) :
     evC h Z (f * g) = evC h Z f * evC h Z g := by
   unfold Formalism.L2.Pj.evC Formalism.L2.Pj.evR
   exact Formalism.L2.Pj.evalAt_mul _ _ f g _
-
-private theorem evC_add' (h : GenFrEx Xo c) (Z : Comp Xo c) (f g : Rul Xo c) :
-    evC h Z (f + g) = evC h Z f + evC h Z g := by
-  unfold Formalism.L2.Pj.evC Formalism.L2.Pj.evR
-  exact Formalism.L2.Pj.evalAt_add _ _ f g _
-
-private theorem evC_zero' (h : GenFrEx Xo c) (Z : Comp Xo c) : evC h Z (0 : Rul Xo c) = 0 := by
-  unfold Formalism.L2.Pj.evC Formalism.L2.Pj.evR
-  exact Formalism.L2.Pj.evalAt_zero _ _ _
-
-private theorem evC_one_of_genFromTest {h : GenFrEx Xo c} (hT : GenFromTest Xo c h) (Z : Comp Xo c) :
-    evC h Z (1 : Rul Xo c) = 1 := by
-  unfold Formalism.L2.Pj.evC Formalism.L2.Pj.evR
-  exact Formalism.L2.Pj.evalAt_one _ _ _ (hT Z)
-
-private theorem evC_smul' (h : GenFrEx Xo c) (Z : Comp Xo c) (k : c.F) (f : Rul Xo c) :
-    evC h Z (k • f) = algebraMap c.F (Om Z) k * evC h Z f := by
-  unfold Formalism.L2.Pj.evC Formalism.L2.Pj.evR
-  exact Formalism.L2.Pj.evalAt_smul _ _ k f _
 
 theorem exists_ratio {h : GenFrEx Xo c} (hT : GenFromTest Xo c h) {Z : Comp Xo c} {a : WZ E} {N : ℕ}
     {g : Fin (N + 1) → Rul Xo c} (hg : ∀ j, g j ∈ GlobalTheory.CompanionTheory.Ar.Rec.secZ Xo c a) (hB : BirOn h Z g) (x : Om Z) :
@@ -153,28 +112,28 @@ theorem exists_ratio {h : GenFrEx Xo c} (hT : GenFromTest Xo c h) {Z : Comp Xo c
     obtain ⟨j, rfl⟩ := hx
     exact ⟨a, g j, g 0, hg j, hg 0, hB.1, div_mul_cancel₀ _ hB.1⟩
   | algebraMap k =>
-    refine ⟨0, k • 1, 1, Submodule.smul_mem _ k one_mem_secZ_zero', one_mem_secZ_zero', ?_, ?_⟩
-    · rw [evC_one_of_genFromTest hT]; exact one_ne_zero
-    · rw [evC_smul', evC_one_of_genFromTest hT]
+    refine ⟨0, k • 1, 1, Submodule.smul_mem _ k _root_.GlobalTheory.CompanionTheory.Ar.Rec.one_mem_secZ_zero, _root_.GlobalTheory.CompanionTheory.Ar.Rec.one_mem_secZ_zero, ?_, ?_⟩
+    · rw [_root_.GlobalTheory.CompanionTheory.Ar.Rec.evC_one_of_test hT]; exact one_ne_zero
+    · rw [_root_.Formalism.L2.Pj.evC_smul, _root_.GlobalTheory.CompanionTheory.Ar.Rec.evC_one_of_test hT]
   | add x y _ _ ihx ihy =>
     obtain ⟨u1, f1, f1', hf1, hf1', h1, e1⟩ := ihx
     obtain ⟨u2, f2, f2', hf2, hf2', h2, e2⟩ := ihy
     refine ⟨u1 + u2, f1 * f2' + f2 * f1', f1' * f2',
-      add_mem (mul_mem_secZ' hf1 hf2') (by rw [add_comm u1 u2]; exact mul_mem_secZ' hf2 hf1'),
-      mul_mem_secZ' hf1' hf2', ?_, ?_⟩
+      add_mem (_root_.GlobalTheory.CompanionTheory.Ar.Rec.secZ_mul hf1 hf2') (by rw [add_comm u1 u2]; exact _root_.GlobalTheory.CompanionTheory.Ar.Rec.secZ_mul hf2 hf1'),
+      _root_.GlobalTheory.CompanionTheory.Ar.Rec.secZ_mul hf1' hf2', ?_, ?_⟩
     · rw [evC_mul_geometry]; exact mul_ne_zero h1 h2
-    · rw [evC_add', evC_mul_geometry, evC_mul_geometry, evC_mul_geometry, ← e1, ← e2]; ring
+    · rw [_root_.Formalism.L2.Pj.evC_add, evC_mul_geometry, evC_mul_geometry, evC_mul_geometry, ← e1, ← e2]; ring
   | inv x _ ihx =>
     obtain ⟨u, f, f', hf, hf', h0, e⟩ := ihx
     by_cases hx0 : x = 0
-    · exact ⟨u, 0, f', Submodule.zero_mem _, hf', h0, by rw [hx0, inv_zero, zero_mul, evC_zero']⟩
+    · exact ⟨u, 0, f', Submodule.zero_mem _, hf', h0, by rw [hx0, inv_zero, zero_mul, _root_.Formalism.L2.Pj.evC_zero]⟩
     · refine ⟨u, f', f, hf', hf, ?_, ?_⟩
       · rw [← e]; exact mul_ne_zero hx0 h0
       · rw [← e, ← mul_assoc, inv_mul_cancel₀ hx0, one_mul]
   | mul x y _ _ ihx ihy =>
     obtain ⟨u1, f1, f1', hf1, hf1', h1, e1⟩ := ihx
     obtain ⟨u2, f2, f2', hf2, hf2', h2, e2⟩ := ihy
-    refine ⟨u1 + u2, f1 * f2, f1' * f2', mul_mem_secZ' hf1 hf2, mul_mem_secZ' hf1' hf2', ?_, ?_⟩
+    refine ⟨u1 + u2, f1 * f2, f1' * f2', _root_.GlobalTheory.CompanionTheory.Ar.Rec.secZ_mul hf1 hf2, _root_.GlobalTheory.CompanionTheory.Ar.Rec.secZ_mul hf1' hf2', ?_, ?_⟩
     · rw [evC_mul_geometry]; exact mul_ne_zero h1 h2
     · rw [evC_mul_geometry, evC_mul_geometry, ← e1, ← e2]; ring
 
@@ -250,7 +209,7 @@ end Read
 
 theorem linked : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (h : GenFrEx Xo c) (e : Comp Xo c → Rul Xo c), CompLaws U h e → ∀ (Y₀ : Model Xo c (algebraMap (𝓞 c.F) c.F)) [DecidableEq (CMType H)] (T : Top.RootTower (CMType H) (Dw.p + Dw.q)), Top.GoodOrigin Y₀ T → ∀ (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (SS : Finset ℕ) (RM : Top.RootModel (CMType H) (Dw.p + Dw.q)) (Sys : PB.AnSys (Top.dimFl (CMType H) (Dw.p + Dw.q)) (Option (RootIx Dw))) (Fx : FixedData Y Sys) (Or : RootOrigin Y SS RM Fx) (Fr : Small.GenFrame Or) (Z : Comp Xo c) (Rd : Reading Fr h Z), FinTr.Linked Rd := by
   intro hG E _ _ _ H Dw l Xo c r U h e hC Y₀ _ T hO O _ β Y SS RM Sys Fx Or Fr Z Rd
-  obtain ⟨a, N, g, hg, hB⟩ := GlobalTheory.T.good_origin_component_sections hG E H Dw l Xo c r U h e hC Y₀ T hO Z
+  obtain ⟨a, N, g, hg, hB⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.BirEx.bir_exists hG E H Dw l Xo c r U h e hC Y₀ T hO Z
   exact linked_of_birOn hC Rd hg hB
 
 end GlobalTheory.CompanionTheory.Ar.Plug.FinLink

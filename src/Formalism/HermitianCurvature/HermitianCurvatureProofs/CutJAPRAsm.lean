@@ -139,7 +139,7 @@ theorem polynomial_radial_base_holds : PolynomialRadialAtSectionOfPhaseInvarianc
     simp
   have hKπ : (d.κ (Pi.single π 1)).1 Φ = Φ := by
     apply Subtype.ext
-    refine Formalism.FourierDecayAlt.P.radical_reduction_injective Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hRB _
+    refine _root_.Formalism.FourierDecayAlt.P.NFRadRedA.radRedInj Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hRB _
       ((d.κ (Pi.single π 1)).1 Φ).2 _ Φ.2 (funext fun q => ?_)
     by_cases hq : q ∈ NF.QR P.k P.r Bs.z Bs.z'
     · simp only [NF.radR, Set.indicator_of_mem hq]

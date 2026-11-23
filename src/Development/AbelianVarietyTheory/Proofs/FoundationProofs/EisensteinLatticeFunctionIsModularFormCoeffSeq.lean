@@ -221,7 +221,7 @@ theorem eis_latF_mf : ∀ (j L₁ L₂ : ℕ) (b χ₁ χ₂ : ℤ → ℂ) (φ 
   have hk1 : Kills L₁ ((L₁ : ℤ) * L₂ * k, γ 1 1) Φ := latF_kills L₁ L₂ hL₁ b φ hb hhat k (γ 1 1) hunit
   have hk0 : Kills L₁ (0, 1) Φ := by
     simpa using latF_kills L₁ L₂ hL₁ b φ hb hhat 0 1 (by simp)
-  rw [hq', hq', GlobalTheory.T.regularizedEisensteinLatticeSum_slTwo_smul j L₁ (0, 1) Φ (fun y => χd * Φ y) γ τ htr, hlin]
+  rw [hq', hq', _root_.GlobalTheory.EisM.lat_smul j L₁ (0, 1) Φ (fun y => χd * Φ y) γ τ htr, hlin]
   simp only [Prod.fst, Prod.snd]
   rw [hw, GlobalTheory.T.regularizedEisensteinLatticeSum_direction_indep j L₁ _ (0, 1) Φ τ hj hL₁ hΦb hk1 hk0]
   ring

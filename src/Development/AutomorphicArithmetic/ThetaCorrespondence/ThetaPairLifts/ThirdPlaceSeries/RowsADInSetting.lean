@@ -57,8 +57,8 @@ theorem rowsAD_in_setting_alt : Hypotheses₂ → ∀ (D : D7) (L : SizeData₂ 
     KillingConditions.StarAD L X ∧ KillingConditions.BBLe L X 7200 := by
   intro hP D L P nch HW F Cm X C₂ hS hC hp2 hBCD
   have hstep : KillingConditions.StepAD L X :=
-    { a09 := _root_.GlobalTheory.T.adm_at_inert_of_range hP D L P nch HW F Cm X C₂ hS hC hp2 hBCD
-      a78 := _root_.GlobalTheory.T.unramified_places_declared' hP D L P nch HW F Cm X C₂ hS
+    { a09 := _root_.GlobalTheory.NLink.InertStep.main_alt_alt hP D L P nch HW F Cm X C₂ hS hC hp2 hBCD
+      a78 := _root_.GlobalTheory.NLink.splitPrime_hyps_alt hP D L P nch HW F Cm X C₂ hS
       goodR := hS.canon.fam.good }
   have hst1 : TruncatedSeriesCountingIdentities.IntegralityFromMetric D := GlobalTheory.T.integralityFromMetric_of_designConditionAll hP.artin hP.bk hP.tate hP.euler D hS.facts.duties.2.2.1
   have h78 := GlobalTheory.T.splitCase_bound_at_point_of_admitted_items_alt hP.artin hP.tate hP.euler D

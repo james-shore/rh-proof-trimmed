@@ -60,20 +60,13 @@ namespace GlobalTheory.JR.WeilQuad.FourierTest
 
 variable {F E : Type} [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E]
 
-theorem finite_F_L [Unram F E] (A : Et F E) : Module.Finite F A.L := by
-  haveI : Module.Finite F E :=
-    Module.finite_of_finrank_pos (by rw [Unram.finrank_eq (F := F) (E := E)]; norm_num)
-  haveI : Module.Finite A.K A.L := Module.Finite.equiv A.push.symm.out.equiv
-  exact Module.Finite.trans A.K A.L
-
-theorem star_smul_F (A : Et F E) (c : F) (y : A.L) : star (c • y) = c • star y := by
-  rw [Algebra.smul_def, Algebra.smul_def, star_mul, mul_comm, IsScalarTower.algebraMap_apply F A.K A.L, A.star_K]
+alias finite_F_L := _root_.GlobalTheory.JR.EtMeas.finite_L
 
 def beta (A : Et F E) (x : A.K) : LinearMap.BilinForm F A.L :=
   LinearMap.mk₂ F (fun y' y => Algebra.trace F A.K (x * Algebra.trace A.K A.L (star y' * y)))
     (by intro a b c; simp only [star_add, add_mul, map_add (f := _), mul_add])
     (by intro c a b
-        rw [star_smul_F, smul_mul_assoc, LinearMap.map_smul_of_tower, mul_smul_comm, LinearMap.map_smul])
+        rw [_root_.GlobalTheory.JR.EtMeas.star_smul_F, smul_mul_assoc, LinearMap.map_smul_of_tower, mul_smul_comm, LinearMap.map_smul])
     (by intro a b c; simp only [mul_add, map_add (f := _)])
     (by intro c a b
         rw [mul_smul_comm, LinearMap.map_smul_of_tower, mul_smul_comm, LinearMap.map_smul])
@@ -142,15 +135,7 @@ theorem beta_nondeg [Unram F E] (A : Et F E) (hK : IsField A.K) (hL : IsField A.
     (beta A x).Nondegenerate :=
   ((beta_isSymm A hK hL x).isRefl.nondegenerate_iff_separatingLeft).2 (beta_sepLeft A hK hL x)
 
-theorem cont_psi {ψ : AddChar F ℂ} (hψ : IsStdChar ψ) : Continuous ψ := by
-  refine continuous_iff_continuousAt.2 fun a => ?_
-  have h : (fun b => ψ b) =ᶠ[𝓝 a] fun _ => ψ a := by
-    filter_upwards [Metric.ball_mem_nhds a one_pos] with b hb
-    have h1 : ψ (b - a) = 1 := hψ.1 _ (by rw [← dist_eq_norm]; exact le_of_lt hb)
-    calc ψ b = ψ (a + (b - a)) := by rw [add_sub_cancel]
-      _ = ψ a * ψ (b - a) := AddChar.map_add_eq_mul ψ _ _
-      _ = ψ a := by rw [h1, mul_one]
-  exact continuousAt_const.congr h.symm
+alias cont_psi := _root_.GlobalTheory.JR.DualLattice.stdChar_continuous
 
 end GlobalTheory.JR.WeilQuad.FourierTest
 

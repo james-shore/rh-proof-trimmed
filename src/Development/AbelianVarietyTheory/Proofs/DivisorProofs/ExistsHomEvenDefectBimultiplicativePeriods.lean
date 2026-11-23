@@ -54,15 +54,10 @@ namespace GlobalTheory.DefectHom
 
 variable {R : Type} [CommRing R] [IsDomain R]
 
-theorem c_zero (D : DegPre R) : D.c 0 = 1 := by
-  have h : D.c (0 + 0) = D.c 0 * D.c 0 := D.c_add 0 0
-  rw [add_zero] at h
-  exact (mul_eq_left.1 h.symm)
-
 theorem c_neg (D : DegPre R) (a : D.X) : D.c (-a) = (D.c a)⁻¹ := by
   refine eq_inv_of_mul_eq_one_left ?_
   have h : D.c (-a + a) = D.c (-a) * D.c a := D.c_add _ _
-  rw [neg_add_cancel, c_zero] at h
+  rw [neg_add_cancel, _root_.GlobalTheory.IndivisibleSection.c_zero_eq_one] at h
   exact h.symm
 
 theorem pt_neg (D : DegPre R) (a : D.X) : toUnit (TK R) ≫ D.c (-a) = (toUnit (TK R) ≫ D.c a)⁻¹ := by

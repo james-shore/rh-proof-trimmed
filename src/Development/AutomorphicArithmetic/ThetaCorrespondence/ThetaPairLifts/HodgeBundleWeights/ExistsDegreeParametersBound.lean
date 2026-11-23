@@ -95,12 +95,12 @@ theorem hilbertSamuel_estimate_at_level (hP : _root_.GlobalTheory.CovTop.Hypothe
     1 ≤ (f₁.n : ℝ) ∧ Formalism.NormVectorIdentities.Items.HSClaimS 26 P.T (CompHt.dimFlag (T.Q.Dw j)) f₁.n 1 Λ β (Real.exp (PP * κ))
       (Real.exp (PP * κ)) (CompHt.dimFlag (T.Q.Dw j) * PP * (κ / P.T + 1)) (Y.dg P.u₁ Z) (Y.ht P.u₁ Z)
       (Y.rkC (P.wt P.T) Z) (Y.degC (P.wt P.T) Z) := by
-  obtain ⟨TF, R, ω, h⟩ := _root_.GlobalTheory.T.exists_weight_hodge_bundle_generated hP hG hQ hN hPr hS hC hL D T j Y e o hY hE Z P hW hA
+  obtain ⟨TF, R, ω, h⟩ := _root_.GlobalTheory.HSApp.exists_weight_sections_nonvanishing hP hG hQ hN hPr hS hC hL D T j Y e o hY hE Z P hW hA
   have hPk : 0 ≤ PP * κ := mul_nonneg hPP hκ
   let k : Consts := ⟨Λ, β, Real.exp (PP * κ), Real.exp (PP * κ), 0, hβ, Real.one_le_exp hPk, Real.one_le_exp hPk⟩
   let th : R.L.Sec := 0
-  have r₁ := GlobalTheory.T.cuspForm_ratios_generate_at_flagSpace_genericPoint TF.X Z Y.U P.u₁ ⟨R.toModif⟩ hBir.1
-  have r₂ := GlobalTheory.T.cuspForm_ratios_generate_at_flagSpace_genericPoint TF.X Z Y.U P.u₂ ⟨R.toModif⟩ hBir.2
+  have r₁ := _root_.GlobalTheory.HSApp.ratGen_of_birOn TF.X Z Y.U P.u₁ ⟨R.toModif⟩ hBir.1
+  have r₂ := _root_.GlobalTheory.HSApp.ratGen_of_birOn TF.X Z Y.U P.u₂ ⟨R.toModif⟩ hBir.2
   have hΛ₀ : 1 ≤ Real.exp (CompHt.dimFlag (T.Q.Dw j) * PP * (κ / P.T + 1)) := Real.one_le_exp (by positivity)
   have sh : ∀ i ≤ P.T, (h.data f₁ f₂ th k).ShortFamily i (Real.exp (PP * κ)) := fun i hi => by
     obtain ⟨m, v, l, s, n⟩ := hsh i hi
@@ -109,7 +109,7 @@ theorem hilbertSamuel_estimate_at_level (hP : _root_.GlobalTheory.CovTop.Hypothe
     obtain ⟨m, v, l, s, n⟩ := h0
     exact GlobalTheory.HSApp.shortFamily_of_spanning _ _ _ _ _ _ TF Z _ Y.U P R ω _ _ _ _ h f₁ f₂ th k 0 P.T.zero_le _ m v l s n
   have hDT : FlagTan.dimFlag (T.Q.Dw j) ≤ P.T := (Nat.le_succ _).trans h.le_T
-  have hyp := _root_.GlobalTheory.T.hermitian_geometric_hypothesis_holds hP hG hQ hN hPr hS hC hL D T j Y e o hY hE Z TF P R ω h f₁ f₂ th k _ hW r₁ r₂ hberg hΛ hfr hΛ₀ s0
+  have hyp := _root_.GlobalTheory.HSApp.geometric_hypothesis_of_components hP hG hQ hN hPr hS hC hL D T j Y e o hY hE Z TF P R ω h f₁ f₂ th k _ hW r₁ r₂ hberg hΛ hfr hΛ₀ s0
     (sh _ hDT) (sh _ le_rfl)
   have hC := GlobalTheory.T.hilbertSamuel_component_short_basis_bound hQ _ _ _ _ _ _ _ TF.X Z _ Y.U P R ω _ _ _ _ h f₁ f₂ th k _ hyp
   have hrk : Y.rkC (P.wt P.T) Z = Module.finrank Y.d.c₂.F (cuspOn Y.U Z (wtOf _ (P.wt P.T) 0)) := by

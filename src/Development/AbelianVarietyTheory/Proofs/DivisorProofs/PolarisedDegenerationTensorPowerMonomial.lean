@@ -65,13 +65,6 @@ theorem tensForm_apply {X Y : Type} [AddCommGroup X] [AddCommGroup Y] {r : ℕ} 
     tensForm S xe b y z = ∑ i, ∑ j, S i j * b (xe y i) (xe z j) := by
   simp [tensForm, LinearMap.sum_apply]
 
-theorem zpow_sum_local {G κ : Type} [CommGroup G] (a : G) (s : Finset κ) (f : κ → ℤ) :
-    a ^ (∑ i ∈ s, f i) = ∏ i ∈ s, a ^ f i := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert i s hi ih => rw [Finset.sum_insert hi, Finset.prod_insert hi, zpow_add, ih]
-
 theorem tensForm_self {X Y : Type} [AddCommGroup X] [AddCommGroup Y] {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ)
     (xe : Y ≃+ (Fin r → X)) (b : LinearMap.BilinForm ℤ X) (hb : ∀ y z, b y z = b z y) (y : Y) :
     tensForm (W + W.transpose) xe b y y = 2 * ∑ i, ∑ j, W i j * b (xe y i) (xe y j) := by
@@ -120,9 +113,9 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (Q : Dat
             Finset.prod_congr rfl fun i _ => Finset.prod_comm
         _ = ∏ l, ∏ i, ∏ j, a l ^ (β l (xe y i) (xe y j) * W i j) := Finset.prod_comm
         _ = _ := Finset.prod_congr rfl fun l _ => by
-            rw [zpow_sum_local]
+            rw [_root_.GlobalTheory.SharpFamRel.zpow_finsetSum]
             refine Finset.prod_congr rfl fun i _ => ?_
-            rw [zpow_sum_local]
+            rw [_root_.GlobalTheory.SharpFamRel.zpow_finsetSum]
             exact Finset.prod_congr rfl fun j _ => by rw [mul_comm]
     refine ⟨u, fun l => (∑ i, ∑ j, W i j * β l (xe y i) (xe y j)).toNat, fun l => by
       rw [tensForm_self W xe (β l) (hsym l), hn l], (GlobalTheory.PeriodFormCompare.psiCoord_iff D' y _).2 ⟨x, hx, ?_⟩⟩

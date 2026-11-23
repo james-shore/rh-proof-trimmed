@@ -157,8 +157,8 @@ theorem awThen_homotopic : ∀ G : ∀ a b n : ℕ, bo a b ⟶ bo n n, G 0 0 0 =
       ∑ x ∈ Finset.HasAntidiagonal.antidiagonal n, awO n x.1 x.2 ≫ G x.1 x.2 n =
         𝟙 (bo n n) + H n (n + 1) ≫ dD (n + 1) n + dD n (n - 1) ≫ H (n - 1) n := by
   intro G hG0 hG
-  obtain ⟨cone, ε, -, -, hcone⟩ := GlobalTheory.T.cone_contracting_homotopy
-  have haw := GlobalTheory.T.dD_comp_awO_eq_sum_awO_comp_dT
+  obtain ⟨cone, ε, -, -, hcone⟩ := _root_.GlobalTheory.EZ.Cone.coneContraction
+  have haw := _root_.GlobalTheory.EZ.awO_comm_d
   refine ⟨fun n m => if h : m = n + 1 then awHtpy G cone n ≫ eqToHom (by rw [h]) else 0, fun n => ?_⟩
   cases n with
   | zero =>

@@ -81,7 +81,7 @@ theorem mem_subfield_of_forall_ringEquiv_fixed_of_isAlgClosed :
     apply hx
     rw [← hr]
     exact r.2
-  obtain ⟨σ, hσk, hσx⟩ := GlobalTheory.FixedRoots.exists_ringEquiv_add_one k₀ x htr
+  obtain ⟨σ, hσk, hσx⟩ := _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one k₀ x htr
   have h := hfix σ hσk
   rw [hσx] at h
   simp at h

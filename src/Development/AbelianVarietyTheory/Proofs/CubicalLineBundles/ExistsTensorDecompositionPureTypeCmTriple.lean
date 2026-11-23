@@ -80,12 +80,6 @@ theorem ontoAt_of_isGrpPullback {S S' : Scheme.{0}} {f : S' ⟶ S} {I : Type} {B
         rw [he, Over.comp_left, Over.comp_left, Category.assoc, hψ]
         rfl
 
-private lemma spMap_comp_moduli_spaces {A B C' : Type} [CommRing A] [CommRing B] [CommRing C'] (f : A →+* B) (g : B →+* C') :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  unfold spMap
-  rw [← Spec.map_comp]
-  rfl
-
 theorem exists_isTen_of_hasType : ThetaUnifAV → Out.Laws → HomExtDvr → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (k : IntermediateField ℚ ℂ) [NumberField k] (ω : 𝓞 k) (C : Ell H (𝓞 k) ω) (T : PAT H (Sp (𝓞 k))) (r : ℕ), C.IsPrincipalAt ((algebraMap k ℂ).comp (algebraMap (𝓞 k) k)) → HasType H T.t.act (2 * ω - 1) r 0 →
   ∃ (k₁ : IntermediateField ℚ ℂ) (_ : NumberField k₁) (hk : k ≤ k₁) (ω₁ : 𝓞 k₁) (C₁ : Ell H (𝓞 k₁) ω₁) (φ : C₁.P.A.left ⟶ C.P.A.left) (T₁ : PAT H (Sp (𝓞 k₁))) (_ : SABMap T₁.t T.t (spMap (RingOfIntegers.mapRingHom (IntermediateField.inclusion hk).toRingHom))) (D : Datum H) (ε : ℤˣ) (h : D.La → D.La → OK H), EllMap C₁ C (RingOfIntegers.mapRingHom (IntermediateField.inclusion hk).toRingHom) φ ∧ D.p + D.q = r ∧ IsKForm D ε h ∧ (∀ x : D.La, x ≠ 0 → 0 < (ε : ℤ) * D.EF (H.w0 • x) x) ∧ Nonempty (IsTen C₁ D h T₁) := by
   intro hU hL hD E _ _ _ H k _ ω C T r hP hT
@@ -100,7 +94,7 @@ theorem exists_isTen_of_hasType : ThetaUnifAV → Out.Laws → HomExtDvr → ∀
   have hPc : Cc.IsPrincipalAt (RingHom.id ℂ) :=
     (GlobalTheory.CM.EllComp.ellMap_comp E H k _ Ck ℂ _ Cc (algebraMap k ℂ) φc hCc).2.1 _ (by rwa [RingHom.id_comp])
   obtain ⟨nc, -⟩ := GlobalTheory.ObjMaps.exists_sab_comp mk mc
-  rw [spMap_comp_moduli_spaces] at nc
+  rw [_root_.GlobalTheory.HomDescent.spMap_comp] at nc
   have hinj : Function.Injective ((algebraMap k ℂ).comp (algebraMap (𝓞 k) k)) := by
     rw [RingHom.coe_comp]
     exact (algebraMap k ℂ).injective.comp (IsFractionRing.injective (𝓞 k) k)
@@ -136,9 +130,9 @@ theorem exists_isTen_of_hasType : ThetaUnifAV → Out.Laws → HomExtDvr → ∀
   obtain ⟨n21, -⟩ := GlobalTheory.ObjMaps.exists_sab_comp m₁ ma
   obtain ⟨m₂, -⟩ := (GlobalTheory.CM.Factor.ellMap_cancel_and_sabMap_cancel E H k k k₁ (RingHom.id k)
     (IntermediateField.inclusion hk).toRingHom).2 _ _ _ T.t Tk.t T₂.t mk n21
-    (by rw [spMap_comp_moduli_spaces, spMap_comp_moduli_spaces, hring])
+    (by rw [_root_.GlobalTheory.HomDescent.spMap_comp, _root_.GlobalTheory.HomDescent.spMap_comp, hring])
   obtain ⟨m₃, hm₃⟩ := (GlobalTheory.CM.Factor.ellMap_cancel_and_sabMap_cancel E H k₁ k₁ ℂ (RingHom.id k₁)
-    (algebraMap k₁ ℂ)).2 _ _ _ Tk.t T₂.t Tc.t m₂ mc (by rw [spMap_comp_moduli_spaces, hring'])
+    (algebraMap k₁ ℂ)).2 _ _ _ Tk.t T₂.t Tc.t m₂ mc (by rw [_root_.GlobalTheory.HomDescent.spMap_comp, hring'])
   obtain ⟨ψ₂, hF₂, hψ₂⟩ := huniv k₁ hk le_rfl _ C₂ φ₂ φ₃ T₂ m₂ m₃ hφ₂ hφ₃ hφ₃c hm₃
 
   obtain ⟨ψ₁, hF₁, hψ₁⟩ := GlobalTheory.T.cmFamily_extends_over_dedekindDomain hL hD E H (𝓞 k₁) k₁ _ C₁ D h T₁ ⊤ _ C₂ φa T₂ ma ψ₂ hC₂ hF₂
@@ -150,7 +144,7 @@ theorem exists_isTen_of_hasType : ThetaUnifAV → Out.Laws → HomExtDvr → ∀
     refine ontoAt_of_isGrpPullback (φ := φ₃ ≫ φa) (χ := n1.φ) ?_ n1.cart (fun a => ?_) ?_ hOc
     · rw [Category.assoc, hsqa.w, ← Category.assoc, hsq3.w, Category.assoc]
     · rw [hn1, ← Category.assoc, hψ₂ a, Category.assoc, hψ₁ a, Category.assoc]
-    · rw [spMap_comp_moduli_spaces, spMap_comp_moduli_spaces, RingHom.id_comp]
+    · rw [_root_.GlobalTheory.HomDescent.spMap_comp, _root_.GlobalTheory.HomDescent.spMap_comp, RingHom.id_comp]
   have hinj₁ : Function.Injective ((algebraMap k₁ ℂ).comp (algebraMap (𝓞 k₁) k₁)) := by
     rw [RingHom.coe_comp]
     exact (algebraMap k₁ ℂ).injective.comp (IsFractionRing.injective (𝓞 k₁) k₁)

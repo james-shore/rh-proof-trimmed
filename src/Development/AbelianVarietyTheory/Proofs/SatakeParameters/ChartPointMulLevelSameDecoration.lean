@@ -106,7 +106,7 @@ theorem ptAd_mul_lev_deco : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A 
       exact Submodule.subset_span ⟨_, h2, rfl⟩
     let z : latS (F := D.host.F) (v.adicCompletion D.host.F) (intV D.host.E v)
         (Submodule.span (𝓞 D.host.E) (dualSet (sigD D : D.host.E →+* D.host.E) (gramN D j hj) ((St j hj).K β).lev.Lb)) :=
-      ⟨_, GlobalTheory.T.pulledLatticeVector_mem_dualBaseLatticeCompletion D.sp (gramN D j hj) (Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.bwB_gramN_det D j hj) (A.crd j hj) a x₁.1 x₁.2
+      ⟨_, _root_.GlobalTheory.MemDual.mem_latS_dual_of_latCo D.sp (gramN D j hj) (Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.bwB_gramN_det D j hj) (A.crd j hj) a x₁.1 x₁.2
         _ ((St j hj).K β).lev.Lb_fin ((St j hj).K β).lev.Lb_span ((St j hj).K β).lev.Lb_int v _ hy⟩
     have H1 := GlobalTheory.CplPt.funMoved_mul_lev t.seam ((St j hj).K β).lev P v hTv _ _ p.deco.1 κ (hp.fnl P v hTv hov)
     rw [mul_assoc, ← hx] at H1

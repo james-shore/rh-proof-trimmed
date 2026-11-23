@@ -271,7 +271,7 @@ def towersOf (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.what₂.T
 
 theorem towersOf_base (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (j : Fin (nfE D)) :
     (towersOf X C u u' e j).base = baseOf X C u u' (tauE X e j) :=
-  (Formalism.FourierDecayAlt.P.exists_level_tower _ _ _ _ (baseOf X C u u' (tauE X e j)) (baseOf_μW1 X C u u' _)
+  (_root_.Formalism.FourierDecayAlt.P.Dx2.Tower.towerExists _ _ _ _ (baseOf X C u u' (tauE X e j)) (baseOf_μW1 X C u u' _)
     (baseOf_μW'1 X C u u' _) rfl).choose_spec.1
 
 theorem Tz_towersOf_base_eq_T (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (j : Fin (nfE D)) :

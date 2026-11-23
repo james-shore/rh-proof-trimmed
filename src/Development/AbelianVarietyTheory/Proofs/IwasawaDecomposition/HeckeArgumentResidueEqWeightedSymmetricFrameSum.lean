@@ -135,7 +135,7 @@ theorem resid_at_w : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Formalism.L2.
       · have hs : side X w = false := by simp [side, hw]
         rw [if_neg (by simp [hs])]
         rw [QuotientAddGroup.mk'_apply, QuotientAddGroup.eq_zero_iff]
-        have hew := GlobalTheory.T.idempotent_mem_placeIdealSpan_of_ne_one D X kv hw
+        have hew := _root_.GlobalTheory.Mem.SymChar.EwZero.ew_mem_wInt D X kv hw
         have hbw : X.B.I.fmat k *ᵥ X.bw ⟨i.1 + 1, hi⟩ ∈ X.B.I.Lf :=
           Formalism.L2.SG.Pf.unitaryCongruence.K_mv X.B.I hk (X.vectorsInLattice.2.2 _).1
         have hint := Formalism.L2.SG.Pf.unitaryCongruence.hA_int X.B.I (X.vectorsInLattice.2.2 i).2 hbw

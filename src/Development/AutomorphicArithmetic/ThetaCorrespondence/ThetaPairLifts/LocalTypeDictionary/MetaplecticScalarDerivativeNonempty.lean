@@ -77,7 +77,7 @@ theorem metaplectic_scalar_derivative_nonempty (hP : _root_.GlobalTheory.FunPr.T
     rw [← hγpr t, Matrix.mulVec_mulVec, e', Matrix.one_mulVec]
   have hU : ∀ t, ∃ a : ℂ, ‖a‖ = 1 ∧ ∀ h, (T t ∘ₗ (omS (γ (-t)) : Sch l →ₗ[ℂ] Sch l)) h = a • h := by
     intro t
-    refine _root_.GlobalTheory.T.real_weil_representation_schur_scalar hP l _ (fun w h h₁ hh => ?_) (fun h => ?_)
+    refine _root_.GlobalTheory.RealWeil.SchurSchwartz.weil_schwartz_schur_lemma hP l _ (fun w h h₁ hh => ?_) (fun h => ?_)
     · simp only [LinearMap.comp_apply, ContinuousLinearMap.coe_coe]
       rw [hTrho t _ _ _ (intertwine_fun l _ (om (γ (-t))) (omS (γ (-t))) (h3 _) (h4 _) w h h₁ hh), hmat]
     · simp only [LinearMap.comp_apply, ContinuousLinearMap.coe_coe]

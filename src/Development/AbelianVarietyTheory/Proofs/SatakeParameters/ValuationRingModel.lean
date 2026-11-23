@@ -248,17 +248,6 @@ theorem exists_cover [TopologicalSpace K] (hO : IsOpen (O : Set K)) {Γ : Type} 
   obtain ⟨s, hs, hgs⟩ := hg
   exact ⟨s, Finset.mem_insert_of_mem hs, hgs⟩
 
-theorem res_algClosed [IsAlgClosed K] : IsAlgClosed (IsLocalRing.ResidueField O) := by
-  first
-  | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
-  | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
-  | exact @_root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
-  | exact _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
-  | (apply _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField ..)
-
 end Top
 
 section Ball
@@ -304,7 +293,7 @@ end Ball
 theorem valRingModel : ValRingModel := by
   intro l _
   let O : ValuationSubring (Qbar l) := unitBall
-  refine ⟨O, inferInstance, inferInstance, res_algClosed O, algebraMap O (Qbar l), fun a b h => Subtype.ext h,
+  refine ⟨O, inferInstance, inferInstance, _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField O, algebraMap O (Qbar l), fun a b h => Subtype.ext h,
     ?_, fun x => mem_maximalIdeal_unitBall x, ?_⟩
   · ext x
     constructor

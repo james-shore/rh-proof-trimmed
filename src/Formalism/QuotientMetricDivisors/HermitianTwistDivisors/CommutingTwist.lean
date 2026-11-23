@@ -352,11 +352,7 @@ theorem exists_proj {v0 : InfinitePlace K} (hv0 : IsConjAt v0) {n : ℕ}
     rw [Matrix.mulVec_mulVec,
       show B * (G⁻¹ * (Bᴴ * H)) * B = B by simp only [Matrix.mul_assoc, R0, hGi1, Matrix.mul_one]]
 
-private theorem hform_eq_lemma {n : ℕ} (H : Matrix (Fin n) (Fin n) K) (x y : Fin n → K) :
-    hform H x y = star x ⬝ᵥ H *ᵥ y := by
-  simp only [hform, Matrix.toLinearMapₛₗ₂'_apply, Matrix.mulVec, dotProduct, Finset.mul_sum,
-    Pi.star_apply, starRingEnd_apply, RingHom.id_apply, smul_eq_mul]
-  exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun k _ => by ring
+private alias hform_eq_lemma := _root_.Formalism.DivisionValues.RationalHermitianForm.hform_eq_dot
 
 theorem adj_matrix {n : ℕ} {H T T' : Matrix (Fin n) (Fin n) K}
     (h : ∀ x y : Fin n → K, hform H (T *ᵥ x) y = hform H x (T' *ᵥ y)) : Tᴴ * H = H * T' := by

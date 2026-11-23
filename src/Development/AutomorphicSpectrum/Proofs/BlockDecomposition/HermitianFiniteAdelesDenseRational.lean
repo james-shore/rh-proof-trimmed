@@ -64,6 +64,8 @@ import Formalism.LocalRingCardinality.DataTheta
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteVolumeAdelicUnitaryQuotient
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TensTop
 
 @[expose] public section
 
@@ -86,14 +88,6 @@ theorem sig_sig_of_isCM {F E : Type} [Field F] [NumberField F] [Field E] [Number
   rw [hCM.2.2.2 τ, hCM.2.2.2 τ]
   simp
 
-theorem sigR_sigR {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R]
-    [Algebra F R] (σ : E →ₐ[F] E) (hσ : ∀ x, σ (σ x) = x) (t : R ⊗[F] E) :
-    sigR R σ (sigR R σ t) = t := by
-  induction t using TensorProduct.induction_on with
-  | zero => simp
-  | tmul r e => simp [sigR, hσ]
-  | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-
 theorem sigR_smul {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R]
     [Algebra F R] (σ : E →ₐ[F] E) (h : F) (t : R ⊗[F] E) :
     sigR R σ (h • t) = h • sigR R σ t :=
@@ -102,10 +96,6 @@ theorem sigR_smul {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [Com
 theorem inclR_smul {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R]
     [Algebra F R] (h : F) (e : E) : inclR (F := F) R (h • e) = h • inclR (F := F) R e :=
   map_smul (Algebra.TensorProduct.includeRight : E →ₐ[F] R ⊗[F] E) h e
-
-theorem sigR_inclR {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R]
-    [Algebra F R] (σ : E →ₐ[F] E) (e : E) : sigR R σ (inclR R e) = inclR R (σ e) := by
-  simp [sigR, inclR]
 
 theorem denseRange_inclR (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E]
     [Algebra F E] (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (R : Type) [CommRing R] [Algebra F R]
@@ -148,7 +138,7 @@ theorem hermE_dense_finite : ∀ (F E : Type) [Field F] [NumberField F] [Field E
   have hPm : ∀ m, Pm m ∈ HermR (Af F) σ n := by
     intro m a b
     show sigR (Af F) σ (h • (m b a + sigR (Af F) σ (m a b))) = h • (m a b + sigR (Af F) σ (m b a))
-    rw [sigR_smul, map_add (f := _), sigR_sigR _ _ hσ, add_comm]
+    rw [sigR_smul, map_add (f := _), _root_.PI.VolStabS.sigR_invol _ _ hσ, add_comm]
   have hsmul : Continuous fun x : Af F ⊗[F] E => h • x := by
     simp_rw [Algebra.smul_def]
     exact continuous_const.mul continuous_id
@@ -179,7 +169,7 @@ theorem hermE_dense_finite : ∀ (F E : Type) [Field F] [NumberField F] [Field E
     ext a b
     show inclR (Af F) (h • (c₀ a b + σ (c₀ b a))) =
       h • (inclR (Af F) (c₀ a b) + sigR (Af F) σ (inclR (Af F) (c₀ b a)))
-    rw [inclR_smul, map_add (f := _), sigR_inclR]
+    rw [inclR_smul, map_add (f := _), _root_.GlobalTheory.Mem.VolFin.sigR_inclR]
   rw [hcP]
   exact hc₀
 

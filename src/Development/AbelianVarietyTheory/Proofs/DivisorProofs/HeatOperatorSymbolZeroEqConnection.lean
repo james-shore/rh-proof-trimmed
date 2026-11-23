@@ -125,13 +125,6 @@ theorem prod_one_add_eps {S : Type} [CommRing S] (ee : S) (hee : ee * ee = 0) {I
     rw [Finset.prod_insert ha, Finset.sum_insert ha, ih]
     linear_combination (b a * ∑ j ∈ s, b j) * hee
 
-theorem zpow_sum_u {G I : Type} [CommGroup G] (a : G) (s : Finset I) (f : I → ℤ) :
-    a ^ (∑ i ∈ s, f i) = ∏ i ∈ s, a ^ f i := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert b s hb ih => rw [Finset.sum_insert hb, Finset.prod_insert hb, zpow_add, ih]
-
 theorem prod3 {G : Type} [CommGroup G] (f g h : Fin 4 → G) (n : Fin 4 → ℤ) :
     ∏ j, (f j * (g j)⁻¹ * h j) ^ n j = (∏ j, f j ^ n j) * (∏ j, g j ^ n j)⁻¹ * ∏ j, h j ^ n j := by
   simp only [mul_zpow, inv_zpow, Finset.prod_mul_distrib, Finset.prod_inv_distrib]
@@ -310,7 +303,7 @@ theorem core {R : Type} [CommRing R] {k : Type} [Field k] [CharZero k] (A : Over
       fun j => (mul_inv_cancel_left κu _).symm
     rw [Finset.prod_congr rfl fun j _ => by rw [hsplit j]]
     simp only [mul_zpow, Finset.prod_mul_distrib]
-    rw [← zpow_sum_u, hes, zpow_natCast, Units.val_mul, hκu, Units.coe_prod]
+    rw [← _root_.GlobalTheory.SharpFamRel.zpow_finsetSum, hes, zpow_natCast, Units.val_mul, hκu, Units.coe_prod]
     simp only [fun j => val_zpow_eps E hEE _ (a j) (hEj j) (es j)]
     rw [← prod_one_add_eps E hEE Finset.univ (fun j => (es j : Z.presheaf.stalk z) * a j)]
     congr 1
@@ -369,7 +362,7 @@ theorem uconn : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host
           (TrivSqZeroExt.inr ((2 * (e : k))⁻¹))) * sval σ' (x ≫ π₂) z J) := by
     intro e
     by_cases he : 1 ≤ e
-    · obtain ⟨V, ed, pb, hconn, -, hF⟩ := GlobalTheory.T.heatOperator_connection_closedFibre E H k m d t P gam hmon hlin hab Y n' v' dd hdd D q hq h hB
+    · obtain ⟨V, ed, pb, hconn, -, hF⟩ := _root_.GlobalTheory.HeatConn.heat_connection E H k m d t P gam hmon hlin hab Y n' v' dd hdd D q hq h hB
         hdef hΘ ρ hρ e he A₀ m₀ hA₀
       obtain ⟨hA, κ, hκ⟩ := GlobalTheory.T.connection_closedFibre_eq_derivation_identification k (ChartRing k m d) P.D.toPre.P ρ B' π₁ π₂ hπ₁ hπ₂ hcl A₀ m₀ hA₀ pr hpr
         hpr' V h.j ed pb hconn w hw

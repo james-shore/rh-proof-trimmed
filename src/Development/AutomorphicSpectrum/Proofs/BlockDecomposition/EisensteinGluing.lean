@@ -50,10 +50,6 @@ open PositivityTheory.Rg.SwEis
 
 namespace GlobalTheory.CompanionTheory.PolyDenominator
 
-theorem exists_pow_mul (B : ℂ → ℂ) (hB : Differentiable ℂ B) (hz : ∃ z, B z ≠ 0) (a : ℂ) :
-    ∃ (k : ℕ) (v : ℂ → ℂ), Differentiable ℂ v ∧ v a ≠ 0 ∧ ∀ z, B z = (z - a) ^ k * v z :=
-  _root_.UpperTheory.Reformulated.B.GaloisBoundFirst.main B hB hz a
-
 theorem finite_zeros (B : ℂ → ℂ) (hB : Differentiable ℂ B) (hz : ∃ z, B z ≠ 0) {Q : Set ℂ} (hQ : IsCompact Q) :
     {z | z ∈ Q ∧ B z = 0}.Finite := by
   obtain ⟨z₀, hz₀⟩ := hz
@@ -78,7 +74,7 @@ theorem factor_of_finset {Q : Set ℂ} (F : Finset ℂ) :
     simpa using hF z hz h0
   | insert a F _ ih =>
     intro B hB hz hF
-    obtain ⟨k, v, hv, hva, hBv⟩ := exists_pow_mul B hB hz a
+    obtain ⟨k, v, hv, hva, hBv⟩ := _root_.UpperTheory.Reformulated.B.GaloisBoundFirst.main B hB hz a
     obtain ⟨d, u, hd, hu, hvu, huQ⟩ := ih v hv ⟨a, hva⟩ (by
       intro z hzQ h0
       have hza : z ≠ a := fun h => hva (h ▸ h0)

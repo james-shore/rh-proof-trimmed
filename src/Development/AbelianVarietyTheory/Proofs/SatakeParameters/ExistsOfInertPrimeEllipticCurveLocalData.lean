@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.TraceDualExists
 
 @[expose] public section
 
@@ -68,7 +69,7 @@ theorem BeData.exists_of_curveData : ∀ (p : ℕ) [Fact p.Prime] (g2 g3 s2 ε :
       have := Nat.dvd_sub h2 hdv
       rwa [Nat.sub_sub_self h1.le] at this
     exact hp.one_lt.ne' (Nat.dvd_one.1 h3))
-  obtain ⟨om, oms, hO, hT⟩ := Formalism.L2.Th1.D.trDualExists (MaximalUnramifiedExtension p) p d σ hσ hd ζ hζ
+  obtain ⟨om, oms, hO, hT⟩ := _root_.Formalism.L2.Th1.D.trace_dual_exists (MaximalUnramifiedExtension p) p d σ hσ hd ζ hζ
   exact ⟨om, oms, ζ, hσ, hF, hff.1, hff.2.1, hO, hT, hζ⟩
 
 end GlobalTheory.KerStd

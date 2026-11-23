@@ -63,6 +63,7 @@ import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TripleAtt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.Distinct
+import Formalism.LocalRingCardinality.SpanPowerMembership.NDLocC
 
 @[expose] public section
 
@@ -95,10 +96,6 @@ private theorem alg_cont (wt : Emb l w → ℤ) : Continuous (alg wt) := by
     funext x; simp [alg]
   rw [this]
   exact continuous_finsetProd _ fun τ _ => (Continuous.units_map _ τ.2).zpow _
-
-private theorem cont_gq (s : GQ l) : Continuous s := by
-  refine (AddMonoidHomClass.isometry_of_norm s fun x => ?_).continuous
-  exact (spectralNorm_eq_of_equiv s x).symm
 
 private theorem norm_lt (τ : Emb l w) (u : w.adicCompletion F) (hu : Valued.v u < 1) : ‖τ.1 u‖ < 1 := by
   have h1 := (τ.2.tendsto 0).comp (Valued.tendsto_zero_pow_of_v_lt_one hu)
@@ -233,7 +230,7 @@ private theorem df_coef (hC : ChCoef) [DecidableEq (Emb l w)] {d d' : Weil h →
     rw [finprod_eq_single _ τ fun t ht => by simp [Pi.single_eq_of_ne ht, hf]]
     simp
   let S : (Qbar l)ˣ →* (Qbar l)ˣ := Units.map (s : Qbar l →* Qbar l)
-  have hν' : Continuous (S.comp ν) := (Continuous.units_map _ (cont_gq s)).comp hν
+  have hν' : Continuous (S.comp ν) := (Continuous.units_map _ (_root_.Formalism.BasicNotions.Examples₂.LB.continuous_aut s)).comp hν
   have H2 : IsLocAlg h (S.comp ν) (Pi.single τ' 1) := by
     refine ⟨S.comp ph, Subgroup.isOpen_mono (fun x hx => ?_) Hν.1, fun b hb x => ?_⟩
     · rw [MonoidHom.mem_ker] at hx ⊢

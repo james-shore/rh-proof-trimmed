@@ -260,8 +260,6 @@ theorem rank_V (i : Fin D.R.m) : (Vc D i).rank = D.R.nV := D.sp.V_rank _ (Nat.le
 
 theorem t_pos (D : D7) : 0 < D.R.t := by have := D.R.rank_add_five_le; omega
 
-theorem two_le_r (D : D7) : 2 ≤ D.R.r := by have := D.R.m_add_three_le_k; have := D.R.two_le_m; unfold Ranks.r; omega
-
 theorem r_lt_nV (D : D7) : D.R.r < D.R.nV := by have := t_pos D; unfold Ranks.nV; omega
 
 
@@ -286,7 +284,7 @@ theorem local_red (hL : R.toLevCh.Is A.μ0) (hPg : ∀ PP ∈ R.Pg, ∃ kv : (Σ
   rw [one_pow] at hβ
   obtain ⟨φ, b, hφ, hb⟩ := GlobalTheory.FrameRedSplit.frameRed_exists D (Vc D i) D.R.nV (rank_V i) hF P (R.βV i) _ hP hβ s
   have hpar : ∀ a c : Fin D.R.nV, D.R.r ≤ (a : ℕ) → (c : ℕ) < D.R.r → b.val a c = 0 := by
-    refine GlobalTheory.ParaForce.para_of_colMat_fixed D.host.E D.R.nV D.R.r s (kP s.w) φ (Field.toIsField _) hφ (two_le_r D) (r_lt_nV D) W f hf J χ ψ₀ ξ h0 hu hJ b ?_
+    refine GlobalTheory.ParaForce.para_of_colMat_fixed D.host.E D.R.nV D.R.r s (kP s.w) φ (Field.toIsField _) hφ (_root_.Formalism.L2.Geo.two_le_r D) (r_lt_nV D) W f hf J χ ψ₀ ξ h0 hu hJ b ?_
     intro κ y ht hy m v hm hv he x
     have hU := mem_Umax_of_isCompOf s ht hy
     obtain ⟨hSt, hoff⟩ := GlobalTheory.FrameOff.stdFrame_stab_red D (Vc D i) D.R.nV hF P (R.βV i) _ hP hβ κ hU

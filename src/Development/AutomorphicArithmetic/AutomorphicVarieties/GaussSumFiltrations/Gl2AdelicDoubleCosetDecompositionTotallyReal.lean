@@ -84,17 +84,13 @@ theorem exists_sl_aff (K : Subgroup (GL (Fin 2) (Af F)))
 
 variable [IsTotallyReal F]
 
-theorem reAt_eq (v : InfinitePlace F) (x : F) :
-    reAt v x = InfinitePlace.embedding_of_isReal (IsTotallyReal.isReal v) x := by
-  rw [reAt, ← InfinitePlace.embedding_of_isReal_apply, Complex.ofReal_re]
-
 theorem TP_mul {x y : F} (hx : TP x) (hy : TP y) : TP (x * y) := fun v => by
   have := mul_pos (hx v) (hy v)
-  rw [reAt_eq, reAt_eq] at this; rw [reAt_eq, map_mul]; exact this
+  rw [_root_.GlobalTheory.HilbertThetaSeries.NarrowCls.reAt_eq, _root_.GlobalTheory.HilbertThetaSeries.NarrowCls.reAt_eq] at this; rw [_root_.GlobalTheory.HilbertThetaSeries.NarrowCls.reAt_eq, map_mul]; exact this
 
 theorem TP_inv {x : F} (hx : TP x) : TP x⁻¹ := fun v => by
   have := inv_pos.2 (hx v)
-  rw [reAt_eq] at this; rw [reAt_eq, map_inv₀]; exact this
+  rw [_root_.GlobalTheory.HilbertThetaSeries.NarrowCls.reAt_eq] at this; rw [_root_.GlobalTheory.HilbertThetaSeries.NarrowCls.reAt_eq, map_inv₀]; exact this
 
 end GlobalTheory.HilbertThetaSeries.Reps
 
@@ -102,8 +98,8 @@ open GlobalTheory.HilbertThetaSeries.Reps in
 theorem GlobalTheory.HilbertThetaSeries.finite_reps : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ), p.Prime → ∀ δ : F, IsDel p δ → ∃ Y : Finset (Af F)ˣ, (∀ y ∈ Y, AtP p δ y) ∧ ∀ g : GL (Fin 2) (Af F), ∃ γ : GL (Fin 2) F, TP γ.val.det ∧ ∃ y ∈ Y, ∃ u ∈ KLev F 2 1, toFin γ * g = aff y 0 * u := by
   intro F _ _ _ p hp δ hδ
   classical
-  obtain ⟨Y0, hY0⟩ := (GlobalTheory.T.finite_narrowIdeleClasses_and_units_mod_squares F).1
-  choose ξf hξf using (GlobalTheory.T.exists_different_generator_totallyPositive_translate F p hp).2 δ hδ
+  obtain ⟨Y0, hY0⟩ := (_root_.GlobalTheory.HilbertThetaSeries.NarrowCls.narrowClass_unitsSq_finite F).1
+  choose ξf hξf using (_root_.GlobalTheory.HilbertThetaSeries.del_exists_and_move F p hp).2 δ hδ
   set ι := Units.map (algebraMap F (Af F)).toMonoidHom with hι
   refine ⟨Y0.image (fun y => ι (ξf y) * y), ?_, ?_⟩
   · intro z hz
@@ -112,7 +108,7 @@ theorem GlobalTheory.HilbertThetaSeries.finite_reps : ∀ (F : Type) [Field F] [
   · intro g
     obtain ⟨σ, y, u, hu, hσ, e⟩ := exists_sl_aff (KLev F 2 1) (isOpen_KLev le_rfl) g
     obtain ⟨y0, hy0, ξ, u0, hξ, hu0, hy⟩ := hY0 y
-    have hK := (GlobalTheory.T.maximalCompactGL2_finiteAdele_characterization F).2.1 u0 0 hu0 (fun w => by simp)
+    have hK := (_root_.GlobalTheory.HilbertThetaSeries.kMem F).2.1 u0 0 hu0 (fun w => by simp)
     refine ⟨aff (ξ⁻¹ * ξf y0) 0 * σ⁻¹, ?_, ι (ξf y0) * y0, Finset.mem_image_of_mem _ hy0, aff u0 0 * u, mul_mem hK.1 hu, ?_⟩
     · have hd : (aff (ξ⁻¹ * ξf y0) 0 * σ⁻¹ : GL (Fin 2) F).val.det = ((ξ⁻¹ * ξf y0 : Fˣ) : F) := by
         rw [← Matrix.GeneralLinearGroup.val_det_apply, map_mul, map_inv, hσ, det_aff', inv_one, mul_one]
@@ -128,5 +124,3 @@ theorem GlobalTheory.HilbertThetaSeries.finite_reps : ∀ (F : Type) [Field F] [
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.gl2_adelic_double_coset_decomposition_totally_real : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ), p.Prime → ∀ δ : F, IsDel p δ → ∃ Y : Finset (Af F)ˣ, (∀ y ∈ Y, AtP p δ y) ∧ ∀ g : GL (Fin 2) (Af F), ∃ γ : GL (Fin 2) F, TP γ.val.det ∧ ∃ y ∈ Y, ∃ u ∈ KLev F 2 1, toFin γ * g = aff y 0 * u := by
-  first | exact @GlobalTheory.HilbertThetaSeries.finite_reps | exact GlobalTheory.HilbertThetaSeries.finite_reps | (intros; apply GlobalTheory.HilbertThetaSeries.finite_reps <;> assumption)

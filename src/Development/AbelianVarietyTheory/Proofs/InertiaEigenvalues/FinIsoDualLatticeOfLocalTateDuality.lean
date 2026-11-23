@@ -63,7 +63,7 @@ theorem finIso_of_localTateDuality (hT : Formalism.GaloisCohomology.LocalTateDua
   haveI := hFin; haveI := hFree
   obtain ⟨hcpl, hsep⟩ := GlobalTheory.T.compact_dvr_adic_complete_separated_uniformizer hA ϖ hϖ
   obtain ⟨hcT, hsT⟩ := GlobalTheory.freeModule_adicComplete_separated ϖ hcpl hsep (↥D.T')
-  obtain ⟨hcomp, hopen, hemb⟩ := GlobalTheory.T.finite_free_module_compact_adic_dvr hA (M := ↥D.T') ϖ hϖ
+  obtain ⟨hcomp, hopen, hemb⟩ := _root_.GlobalTheory.finite_free_compact_adic_dvr hA (M := ↥D.T') ϖ hϖ
   haveI := hcomp
   have hρ : ContAction D.ρTl' := sub_contAction D.contT' D.T' D.stT'
   have hpϖ : (p : O) ∈ Ideal.span {ϖ} := by

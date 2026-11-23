@@ -62,7 +62,7 @@ theorem normOp_comp : ∀ {R X M : Type} [CommRing R] [AddCommGroup X] [Module R
   · have hAB' : A = B := by
       refine le_antisymm (fun x hx => (hB x).2 fun b hb => h.iso hA hx (hle hb)) hle
     subst hAB'
-    obtain ⟨h1, h2⟩ := (GlobalTheory.T.sumOp_transversal_fixes_linear_and_of_le h A A hA).2.2 le_rfl
+    obtain ⟨h1, h2⟩ := (_root_.GlobalTheory.FinWeil.sumOp_transversal h A A hA).2.2 le_rfl
     have : normOp lam W A A v = v := by
       rw [normOp, h1, map_one, inv_one, one_smul, h2 v hv]
     rw [this]

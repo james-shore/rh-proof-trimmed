@@ -98,9 +98,9 @@ theorem iInf_thRule_le_nuLocOf_charZero : ∀ (E : Type) [Field E] [NumberField 
     obtain ⟨v, hv⟩ := GlobalTheory.ValClosure.exists_valuation_closure T.V ϖ hϖ
     exact ⟨AlgebraicClosure T.Fr, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance,
       inferInstance, v, hv⟩
-  obtain ⟨TI⟩ := GlobalTheory.T.nonempty_tateIsometry_integralFramedPoint_chart E H Dw l Xo c T io y C P F
+  obtain ⟨TI⟩ := _root_.GlobalTheory.IntegralTate.nonempty_tateIso_of_intChart E H Dw l Xo c T io y C P F
   obtain ⟨D', A', G', _, _, pD, pA, pG, U', PU, _, oD', hx, hact, hθ⟩ :=
-    (GlobalTheory.T.exists_productData_copies_trivialisation_valuation E H Dw l Xo c T io y C P ϖ hϖ).2 n
+    (_root_.GlobalTheory.PowData.exists_powData E H Dw l Xo c T io y C P ϖ hϖ).2 n
   have hq0 : 0 < q := by omega
   obtain ⟨θ, θα, hθ1, hθ2, hθ3⟩ := hθ F v hv Q hQ α q hq0 hα
   have hcop : ∃ u u' : 𝓞 E, u * α + u' * star α = 1 := by
@@ -127,7 +127,7 @@ theorem iInf_thRule_le_nuLocOf_charZero : ∀ (E : Type) [Field E] [NumberField 
     exact Finset.sup_le fun m' hm' => (key m' hm').le
   unfold nuLocOf
   refine le_iInf_add_coe fun f => le_iInf_add_coe fun hf => ?_
-  obtain ⟨f', hf', hff'⟩ := GlobalTheory.T.harmonic_value_integral_germ_frame_power_charZero E H Dw l Xo c T io y C hchar a n l.M q P₁ hP₁ f hf
+  obtain ⟨f', hf', hff'⟩ := _root_.GlobalTheory.FramePower.exists_nabValN_eq_of_harmonic E H Dw l Xo c T io y C hchar a n l.M q P₁ hP₁ f hf
   set Pp : MvPolynomial (LtN Dw n) T.Fr := MvPolynomial.map io P₁ with hPp
   set x0 := nabValN C.ch.B T.Fr C.ch.h H.w0 l.M f (fun ℓ : LtN Dw n => ℓ.2.2)
     (fun ℓ : LtN Dw n => C.ch.uvec ⟨ℓ.1, ℓ.2.1⟩) Pp with hx0def
@@ -150,7 +150,7 @@ theorem iInf_thRule_le_nuLocOf_charZero : ∀ (E : Type) [Field E] [NumberField 
       (fun _ => algebraMap T.Fr F (algebraMap T.V T.Fr 1)) (fun _ => val_algebraMap_nonneg T v hvx _)
       (by rw [hmap]; exact hdeg) f' hf' ((vV T.V x0 : ℤ) : ℚ)
       (by rw [hmap, Nat.one_mul, hval, ← hx0']; exact hvx x0 hx0)
-  obtain ⟨xx, u, hu0, hrel⟩ := GlobalTheory.T.harmonicValue_translate_divisor_level_integral_chart E H Dw l Xo c nab hnab T io y C hTr P hP hchar ϖ hϖ Q hQ
+  obtain ⟨xx, u, hu0, hrel⟩ := _root_.GlobalTheory.DivLevel.harmonicValue_translate_dvd E H Dw l Xo c nab hnab T io y C hTr P hP hchar ϖ hϖ Q hQ
     F v hv n D' A' G' pD pA pG U' PU oD' hx hact α q hqM hα hMb θ θα hθ2 hθ3 p w ζ x t₀ t σ' h
     h1 h2 h3 h4' h6 h7 h8 h9 h5 a P₁ hP₁
   obtain ⟨g, hg, -⟩ := existsUnique_thRule Xo c nab hth xx hP₁

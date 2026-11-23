@@ -51,9 +51,6 @@ theorem mul_rpow_self_mono {x C C' : ℝ} (hx : 1 ≤ x) (h : C ≤ C') (h0 : 0 
   · have : C * x ^ C ≤ 0 := mul_nonpos_of_nonpos_of_nonneg hC.le (Real.rpow_nonneg hxp.le _)
     exact this.trans (mul_nonneg h0 (Real.rpow_nonneg hxp.le _))
 
-theorem rpow_mono {x C C' : ℝ} (hx : 1 ≤ x) (h : C ≤ C') : x ^ C ≤ x ^ C' :=
-  Real.rpow_le_rpow_of_exponent_le hx h
-
 theorem main : ∀ (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (X : KillingConditions.HubData D) (C C' : ℝ), C ≤ C' → 0 ≤ C' → (StarF L X.ρ C → StarF L X.ρ C') ∧ (StarH L C → StarH L C') ∧ (KillingConditions.BBLe L X C → KillingConditions.BBLe L X C') ∧ (TwistedPlaces.ParametersPolynomiallyBounded L C P → TwistedPlaces.ParametersPolynomiallyBounded L C' P) := by
   intro D L P X C C' h h0
   have hx : 1 ≤ L.sc.x := L.sc.one_lt_alt.le
@@ -89,7 +86,7 @@ theorem main : ∀ (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (X : 
     have := mul_le_mul_of_nonneg_right h hk
     simpa only [mul_assoc] using this
   · rintro ⟨h1, h2, h3, h4, h5, h6, h7, h8⟩
-    have hr := rpow_mono hx h
+    have hr := _root_.Real.rpow_le_rpow_of_exponent_le hx h
     refine ⟨h1.trans h, h2.trans h, h3.trans hr, h4.trans hr, h5.trans hr, h6, h7.trans hCx, h8.trans ?_⟩
     exact mul_le_mul_of_nonneg_right hCx hLg
 

@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.GroupLattices.FockModels.SwRowGenMonomial
 
 @[expose] public section
 
@@ -190,16 +191,6 @@ theorem pairD_mem [Infinite Kc] (W : Submodule Kc (XspC (X.Pj (j + 1)) Kc)) (P :
   rw [pairing_series_linear_form_holds p X Kc j P f l 0 fun d0 => by rw [map_zero, LinearMap.mem_ker.1 (hW (h d0))]]
   simp
 
-theorem map_bidet {K K' : Type} [CommRing K] [CommRing K'] (φ : K →+* K') {r n c : ℕ} (sz : Fin c → ℕ) (hsz : ∀ k, sz k ≤ n)
-    (I : ∀ k, Fin (sz k) → Fin r) : map φ (bideterminant K sz hsz I) = bideterminant K' sz hsz I := by
-  unfold bideterminant initMinor
-  rw [map_prod]
-  refine Finset.prod_congr rfl fun k _ => ?_
-  rw [RingHom.map_det]
-  congr 1
-  ext a b
-  simp
-
 theorem tgtN_mem [CharZero Kc] (hS : XShape) (b : BX X) (z : Fin (NJ X (j + 1)) → ℕ → Kc) :
     tgtN X Kc j b z ∈ dualWeyl Kc (NJ X (j + 1)) (NJ X (j + 1)) (nuT X j b) := by
   obtain ⟨-, -, hanti, hle, -⟩ := hS p X j b
@@ -228,7 +219,7 @@ theorem xSpanN_of (hS : XShape) : XSpanN := by
       exact bidetMem X.G.Kf _ _ _ _ _ _
     · rw [map_prod]
       refine Finset.prod_congr rfl fun b _ => ?_
-      rw [hgb b, map_rename, XAAux.map_bidet]
+      rw [hgb b, map_rename, _root_.Formalism.L2.G.Model.sw_bidet_map]
   · have h1 := XAAux.tgtN_mem X Kc j hS b
       (mulC (dM X Kc j b d0).transpose fun a i => algebraMap X.G.Kf Kc (x b a i))
     rw [standardMonomialSpanDomain Kc] at h1

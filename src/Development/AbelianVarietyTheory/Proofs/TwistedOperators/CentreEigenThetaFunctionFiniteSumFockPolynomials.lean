@@ -51,6 +51,7 @@ import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RangeSndRel
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BilinearVacuumCentralCharacter
 
 @[expose] public section
 
@@ -83,12 +84,6 @@ theorem heisO_pureTensorO_fin {D : D7} {ψ : AddChar (AF D.host.F) ℂ} (hψ : I
       rw [Finsupp.support_single_ne_zero _ one_ne_zero, Finset.mem_singleton] at hv
       rw [hv]; exact hu) x hx P
   simpa [Finsupp.sum_single_index] using h
-
-theorem comb_smul' {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} (c : WO S T →₀ ℂ) (r : ℂ) (f : WO S T → ℂ) :
-    comb ψ S T c (r • f) = r • comb ψ S T c f := by
-  funext w
-  simp only [comb, heisO, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  exact Finset.sum_congr rfl fun _ _ => by ring
 
 theorem theta_comb {D : D7} {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S T : HSp D} {c : WO S T →₀ ℂ}
     {f : WO S T → ℂ} (hf : IsThetaFunO ψ S T f) : IsThetaFunO ψ S T (comb ψ S T c f) :=
@@ -123,14 +118,14 @@ theorem cenFock_fin : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam
   obtain ⟨χS', χT', hW⟩ := hk.weil
   obtain ⟨Wf, -, hWf⟩ := GlobalTheory.SeeSaw.CenFockPf.cenFock D ψ θ hθ S.V T.V x y hx hy k hk χ
   obtain ⟨n, u, c, hu, hc, hlat, hsum⟩ :=
-    GlobalTheory.T.orientedTheta_eq_finite_heisenbergTranslates_vacua D ψ θ S.V T.V x.s y.s x.L y.L k.vac hx.sd hy.sd hk.vac f hf
+    _root_.GlobalTheory.FinDecomp.theta_eq_sum_latVac D ψ θ S.V T.V x.s y.s x.L y.L k.vac hx.sd hy.sd hk.vac f hf
   have hg : ∀ i, ∃ P, comb ψ S.V T.V (c i) f = pureTensorO ψ θ S.V T.V x.s y.s x.B y.B k.vac P := by
     intro i
     have he : ∀ z ∈ GinfC S.V, z ∈ Subgroup.center (GA D S.V) →
         k.om (z, 1) (comb ψ S.V T.V (c i) f) = χ z • comb ψ S.V T.V (c i) f := by
       intro z hz hzc
       rw [GlobalTheory.SeeSaw.RealComm.om_comb D ψ S.V T.V χS' χT' k.om hW z hz (c i) (hc i) f hf, hkom, hχ z hz hzc,
-        comb_smul']
+        _root_.GlobalTheory.AvgMid.comb_smul]
     obtain ⟨P, -, hP⟩ := hWf _ (theta_comb hstd hf) (hlat i) he
     exact ⟨P, hP⟩
   choose P hP using hg

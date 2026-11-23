@@ -363,9 +363,7 @@ theorem Ex_neg_mul {f : MvPowerSeries ι K} (hf : constantCoeff f = 0) : Ex (-f)
   rw [← Ex_add hn hf]
   simp [Ex_zero]
 
-theorem coeff_Ex {f : MvPowerSeries ι K} (hf : constantCoeff f = 0) (n : ι →₀ ℕ) :
-    coeff n (Ex f) = ∑ k ∈ Finset.range (n.degree + 1), ((k.factorial : K))⁻¹ * coeff n (f ^ k) := by
-  exact coeff_Ex_eq_sum_inv_factorial_coeff_pow hf n
+alias coeff_Ex := _root_.Formalism.MainNotions.J.coeff_Ex_eq_sum_inv_factorial_coeff_pow
 
 end Exp
 

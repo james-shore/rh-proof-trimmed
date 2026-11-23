@@ -101,7 +101,7 @@ private theorem opOne_pow (l : ℕ) [Fact l.Prime] (n : ℕ) (y : Per.Acris l) :
   | zero => simp
   | succ n ih =>
     rw [pow_succ, pow_succ, RingHom.mul_def, RingHom.mul_def, RingHom.comp_apply, RingHom.comp_apply]
-    rw [show Per.φB l (iB l y) = iB l (phiA l y) from GlobalTheory.MemLoc.PhiInj.φB_alg l y, ih]
+    rw [show Per.φB l (iB l y) = iB l (phiA l y) from _root_.GlobalTheory.CrisMaps.φB_phiA l y, ih]
 
 theorem UpperTheory.Gal.ClosedPhiFromClosedTrace.opOne_holds :
     OpOne2 := by

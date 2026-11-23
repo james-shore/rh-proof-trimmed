@@ -505,9 +505,9 @@ theorem theta_mem (H : Desc f q ev k₀ u) (θ : LB.Sec (LB.LinComb D.P.L (D.fam
     fin_cases k
     · exact Category.comp_id _
     · show (y ≫ (𝟙 D.P.A * (toUnit D.P.A ≫ D.c 0))).left = y.left
-      rw [ThetaOne.c_zero, MonObj.comp_one, _root_.mul_one, Category.comp_id]
+      rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, MonObj.comp_one, _root_.mul_one, Category.comp_id]
     · show (y ≫ toUnit D.P.A ≫ D.c 0).left = (1 : T ⟶ D.P.A).left
-      rw [ThetaOne.c_zero, MonObj.comp_one, MonObj.comp_one]
+      rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, MonObj.comp_one, MonObj.comp_one]
     · show (y ≫ (1 : D.P.A ⟶ D.P.A)).left = (1 : T ⟶ D.P.A).left
       rw [MonObj.comp_one]
   obtain ⟨κ, hκ, hval⟩ := galois_sec H.hk₀ H.hP H.hk D.P.isLB H.hL₂ u H.hu H.hπ

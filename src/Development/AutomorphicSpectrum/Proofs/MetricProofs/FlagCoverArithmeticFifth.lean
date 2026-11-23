@@ -71,40 +71,13 @@ section Orbits
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
-theorem basePart_orbit {σ : Type} (blk : σ → Option K) {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') :
-    SameOrbit (basePart blk z) (basePart blk z') := by
-  obtain ⟨c, hc, rfl⟩ := h
-  exact ⟨fun k => c k.1, fun k => hc k.1, rfl⟩
+alias basePart_orbit := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.sameOrbit_basePart
 
-theorem comp_orbit {K' : Type} [Fintype K'] {ι' : K' → Type} [∀ k, Fintype (ι' k)] {κ : K → K'}
-    {v : (Σ k, ι k) → (Σ k, ι' k)} (hv : IsBlockMap κ v) {b b' : (Σ k, ι' k) → ℂ} (h : SameOrbit b b') :
-    SameOrbit (b ∘ v) (b' ∘ v) := by
-  obtain ⟨c, hc, rfl⟩ := h
-  refine ⟨fun k => c (κ k), fun k => hc _, ?_⟩
-  funext p
-  simp only [Function.comp]
-  rw [hv.2.2.1 p]
+alias comp_orbit := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.comp_orbit
 
-theorem mCoordIdeal_le_of_orbit {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') :
-    mCoordIdeal z' ≤ mCoordIdeal z := by
-  obtain ⟨c, hc, rfl⟩ := h
-  intro f hf
-  let φ : MvPolynomial K ℂ →ₐ[ℂ] MvPolynomial K ℂ := aeval fun k => C (c k) * X k
-  have e : mConeMap (fun p : Σ k, ι k => c p.1 * z' p) = (φ.restrictScalars ℤ).comp (mConeMap z') := by
-    apply MvPolynomial.algHom_ext
-    intro p
-    simp [mConeMap, φ, mul_left_comm, mul_assoc]
-  have h0 : mConeMap z' f = 0 := hf
-  show mConeMap _ f = 0
-  rw [e, AlgHom.comp_apply, h0, map_zero]
+alias mCoordIdeal_eq_of_orbit := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.ideal_orbit
 
-theorem mCoordIdeal_eq_of_orbit {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') :
-    mCoordIdeal z = mCoordIdeal z' :=
-  le_antisymm (mCoordIdeal_le_of_orbit (Cj.sameOrbit_symm h)) (mCoordIdeal_le_of_orbit h)
-
-theorem chart_ne {z : (Σ k, ι k) → ℂ} {q : Σ k, ι k} (h : (X q : MRing ι) ∉ mCoordIdeal z) : z q ≠ 0 := fun h0 => h (by
-  show mConeMap z (X q) = 0
-  rw [mConeMap, aeval_X, h0, map_zero, zero_mul])
+alias chart_ne := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.coord_ne
 
 theorem exists_normal (c : ∀ k, ι k) (z : (Σ k, ι k) → ℂ) (hc : ∀ k, z ⟨k, c k⟩ ≠ 0) :
     ∃ z₁, SameOrbit z₁ z ∧ ∀ k, z₁ ⟨k, c k⟩ = 1 :=

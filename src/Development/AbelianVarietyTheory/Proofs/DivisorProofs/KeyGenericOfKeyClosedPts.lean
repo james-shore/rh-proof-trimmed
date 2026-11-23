@@ -54,33 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.LocAcyc
 
-private theorem spread_torsor : ∀ (T O : Type) [CommRing T] [CommRing O] [Algebra T O]
-    [Algebra (Polynomial T) O] [IsScalarTower T (Polynomial T) O]
-    (P : Ideal (Polynomial T)) [P.IsPrime] (φ : Localization.AtPrime P →+* O),
-    φ.comp (algebraMap (Polynomial T) _) = algebraMap (Polynomial T) O →
-    GlobalTheory.IndefiniteRowSideFullHecke.ProjectiveSpaceOverSpec.IsIndEtale φ →
-    ∀ (q : ℕ), 0 < q → ∀ (D : Type) [CommRing D] [Algebra (GlobalTheory.LocAcyc.GenFib T O) D]
-      (act : Multiplicative (ZMod q) →* (D ≃ₐ[GlobalTheory.LocAcyc.GenFib T O] D)),
-      GlobalTheory.LocAcyc.IsZModTorsor (GlobalTheory.LocAcyc.GenFib T O) D q act →
-    ∃ (E : Type) (_ : CommRing E) (_ : Algebra (Polynomial T) E) (_ : Algebra T E)
-      (_ : IsScalarTower T (Polynomial T) E) (_ : Algebra.Etale (Polynomial T) E)
-      (ψ : E →ₐ[Polynomial T] O) (DE : Type) (_ : CommRing DE)
-      (_ : Algebra (GlobalTheory.LocAcyc.GenFib T E) DE)
-      (actE : Multiplicative (ZMod q) →* (DE ≃ₐ[GlobalTheory.LocAcyc.GenFib T E] DE)),
-      GlobalTheory.LocAcyc.IsZModTorsor (GlobalTheory.LocAcyc.GenFib T E) DE q actE ∧
-      ∀ s : DE →+* GlobalTheory.LocAcyc.GenFib T O,
-        (∀ e : E, s (algebraMap (GlobalTheory.LocAcyc.GenFib T E) DE (algebraMap E _ e)) =
-          algebraMap O (GlobalTheory.LocAcyc.GenFib T O) (ψ e)) →
-        Nonempty (D →ₐ[GlobalTheory.LocAcyc.GenFib T O] GlobalTheory.LocAcyc.GenFib T O) := GlobalTheory.T.spread_torsor_to_etale_algebra
-private theorem exists_maximal_over_closedPt : ∀ (T E : Type) [CommRing T] [IsLocalRing T] [CommRing E] [Algebra (Polynomial T) E]
-    [Algebra.FiniteType (Polynomial T) E] (Q : Ideal E) [Q.IsPrime],
-    Q.comap (algebraMap (Polynomial T) E) =
-      (IsLocalRing.maximalIdeal T).map (Polynomial.C : T →+* Polynomial T) →
-    ∃ y : Ideal E, y.IsMaximal ∧ Q ≤ y ∧
-      y.comap (algebraMap (Polynomial T) E) ≠
-        (IsLocalRing.maximalIdeal T).map (Polynomial.C : T →+* Polynomial T) ∧
-      (y.comap (algebraMap (Polynomial T) E)).comap (Polynomial.C : T →+* Polynomial T) =
-        IsLocalRing.maximalIdeal T := GlobalTheory.T.exists_maximal_over_closedPoint_closedFibre
 private theorem section_at_closedPt : GlobalTheory.LocAcyc.KeyClosedPts →
     ∀ (T E : Type) [CommRing T] [IsDomain T] [IsLocalRing T] [CommRing E]
       [Algebra (Polynomial T) E] [Algebra T E] [IsScalarTower T (Polynomial T) E]
@@ -112,7 +85,7 @@ theorem keyGeneric_of_keyClosedPts : KeyClosedPts → KeyGeneric := by
   intro hC T O _ _ _ _ _ _ _ _ hAIC P _ φ hφ hSH hP hPeq q hq hqu
   rw [torsorsTrivial_iff]
   intro D _ _ act hD
-  obtain ⟨E, _, _, _, _, _, ψ, DE, _, _, actE, hDE, hred⟩ := spread_torsor T O P φ hφ hSH.2.2.2 q hq D act hD
+  obtain ⟨E, _, _, _, _, _, ψ, DE, _, _, actE, hDE, hred⟩ := _root_.GlobalTheory.LocAcyc.spread_torsor_to_etale T O P φ hφ hSH.2.2.2 q hq D act hD
 
   set Q : Ideal E := (maximalIdeal O).comap ψ.toRingHom with hQdef
   haveI : Q.IsPrime := Ideal.comap_isPrime _ _
@@ -130,14 +103,14 @@ theorem keyGeneric_of_keyClosedPts : KeyClosedPts → KeyGeneric := by
       rw [hφ]; exact ψ.comp_algebraMap
     rw [h1, ← Ideal.comap_comap, hloc]
     exact Localization.AtPrime.under_maximalIdeal (R := Polynomial T) (I := P)
-  obtain ⟨y, hymax, hQy, hyne, hyT⟩ := exists_maximal_over_closedPt T E Q (hQP.trans hPeq)
+  obtain ⟨y, hymax, hQy, hyne, hyT⟩ := _root_.GlobalTheory.exists_maximal_over_closedPt T E Q (hQP.trans hPeq)
   haveI : y.IsPrime := hymax.isPrime
   obtain ⟨S, _, _, _, _, _, hSy, hSflat, hSpieces, s, hs⟩ :=
-    section_at_closedPt hC T E hAIC y hyT hyne q hq hqu DE actE hDE
+    _root_.GlobalTheory.LocAcyc.exists_section_strictHenselisation_at_closed hC T E hAIC y hyT hyne q hq hqu DE actE hDE
   letI : Algebra E O := ψ.toRingHom.toAlgebra
   haveI : HenselianLocalRing O := hSH.1
   haveI : IsSepClosed (ResidueField O) := hSH.2.1
-  obtain ⟨σ⟩ := specialisation_map E S O Q y hQy hSy rfl hSflat hSpieces
+  obtain ⟨σ⟩ := _root_.GlobalTheory.Specialise.specialisation_exists E S O Q y hQy hSy rfl hSflat hSpieces
   have hσT : ∀ t : T, σ (algebraMap T S t) = algebraMap T O t := by
     intro t
     rw [IsScalarTower.algebraMap_apply T E S, σ.commutes, IsScalarTower.algebraMap_apply T (Polynomial T) E]

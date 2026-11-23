@@ -127,7 +127,7 @@ theorem exists_gen_isValueAt_origin : ∀ (P : Out.PolAV (Sp ℂ)) (u : HolUnif 
     rw [u.fr_compat _ _ _ hij, mul_zpow]
     congr 1
     simp only [LB.LinComb, Fin.prod_univ_one]
-    refine Eq.trans ?_ (valAt'_zpow x h _ a).symm
+    refine Eq.trans ?_ (_root_.GlobalTheory.valAt'_units_zpow x h _ a).symm
     congr 1
     refine Eq.trans ?_ (valAt'_res x _ _ h).symm
     refine Eq.trans ?_ (valAt'_comp x (1 : T ⟶ P.A).left (P.L.U (i 0) ⊓ P.L.U (j 0)) (P.L.g (i 0) (j 0)).val).symm

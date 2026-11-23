@@ -57,10 +57,6 @@ noncomputable section
 
 namespace GlobalTheory.GSep.Thru
 
-theorem spMap_spMap {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R' →+* R'') (g : R →+* R') :
-    spMap f ≫ spMap g = spMap (f.comp g) := by
-  rw [← Spec.map_comp]; rfl
-
 theorem spMap_stalkHom {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] (M : RatModel o Ω) (z : M.Z) :
     spMap (M.stalkHom z) ≫ M.Z.fromSpecStalk z = M.pt := by
   have h1 := Scheme.Spec_stalkClosedPointTo_fromSpecStalk (R := CommRingCat.of Ω) M.pt
@@ -107,7 +103,7 @@ theorem exists_cdvr_thru {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] [I
   refine ⟨V₀, inferInstance, inferInstance, hdvr, φ₀, emb, hcpl, hchar, hl, hemb, ?_⟩
   rw [← spMap_stalkHom, ← Category.assoc, ← Category.assoc]
   congr 1
-  rw [show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, spMap_spMap, spMap_spMap]
+  rw [show jK V₀ = spMap (algebraMap V₀ (FractionRing V₀)) from rfl, _root_.Formalism.L2.Pj.spMap_comp_ring, _root_.Formalism.L2.Pj.spMap_comp_ring]
   congr 1
   ext r
   exact (hemb r).symm
@@ -154,7 +150,7 @@ theorem exists_gMem_of_trait : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z
     A := A
     U := U
     φ := β ≫ ψ
-    cart := (hβ.comp hψ).congr (spMap_spMap e X₁.S.R.val.toRingHom) rfl
+    cart := (hβ.comp hψ).congr (_root_.Formalism.L2.Pj.spMap_comp_ring e X₁.S.R.val.toRingHom) rfl
     wl := wl
     wl_gen := hwl
     equiv := fun a => ⟨E a, hE a, fun _ => rfl⟩
@@ -182,7 +178,7 @@ theorem exists_gMem_thru : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ 
   haveI hsl : IsLocalHom s := inferInstanceAs (IsLocalHom (πY.stalkMap y).hom)
   let ev : X₁.M.Z.presheaf.stalk (πY y) →+* V := φ₀.comp s
   have hξ : (spMap φ₀ ≫ Y.Z.fromSpecStalk y) ≫ πY = spMap ev ≫ X₁.M.Z.fromSpecStalk (πY y) := by
-    rw [Category.assoc, ← hs, ← Category.assoc, spMap_spMap]
+    rw [Category.assoc, ← hs, ← Category.assoc, _root_.Formalism.L2.Pj.spMap_comp_ring]
   have hjξ : jK V ≫ spMap φ₀ ≫ Y.Z.fromSpecStalk y = spMap emb ≫ Y.pt := hptY
   have hpt' : jK V ≫ spMap ev ≫ X₁.M.Z.fromSpecStalk (πY y) = spMap emb ≫ X₁.M.pt := by
     calc jK V ≫ spMap ev ≫ X₁.M.Z.fromSpecStalk (πY y) = jK V ≫ (spMap φ₀ ≫ Y.Z.fromSpecStalk y) ≫ πY := by rw [hξ]
@@ -192,7 +188,7 @@ theorem exists_gMem_thru : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ 
   have hinj : Function.Injective ev := by
     have h1 : spMap ((algebraMap V (FractionRing V)).comp ev) ≫ X₁.M.Z.fromSpecStalk (πY y) =
         spMap (emb.comp (X₁.M.stalkHom (πY y))) ≫ X₁.M.Z.fromSpecStalk (πY y) := by
-      rw [← spMap_spMap (algebraMap V (FractionRing V)) ev, ← spMap_spMap emb (X₁.M.stalkHom (πY y)), Category.assoc,
+      rw [← _root_.Formalism.L2.Pj.spMap_comp_ring (algebraMap V (FractionRing V)) ev, ← _root_.Formalism.L2.Pj.spMap_comp_ring emb (X₁.M.stalkHom (πY y)), Category.assoc,
         Category.assoc, spMap_stalkHom]
       exact hpt'
     have h2 := (cancel_mono _).1 h1

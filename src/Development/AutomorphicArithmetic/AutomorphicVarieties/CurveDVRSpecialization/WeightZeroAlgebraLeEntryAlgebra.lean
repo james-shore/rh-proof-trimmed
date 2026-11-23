@@ -59,21 +59,6 @@ section SlopeTestRemainingChoices
 
 open Matrix IsLocalRing UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.HV
 
-private theorem int_iff_norm {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) : IsIntegral ℤ_[l] x ↔ ‖x‖ ≤ 1 := by
-  have hi : IsIntegral ℚ_[l] x := Algebra.IsIntegral.isIntegral x
-  have h0 : ‖x‖ = spectralValue (minpoly ℚ_[l] x) := rfl
-  rw [h0, spectralValue_le_one_iff (minpoly.monic hi)]
-  constructor
-  · intro h n
-    rw [minpoly.isIntegrallyClosed_eq_field_fractions' ℚ_[l] h, Polynomial.coeff_map]
-    exact PadicInt.norm_le_one _
-  · intro h
-    have hl' : minpoly ℚ_[l] x ∈ Polynomial.lifts (algebraMap ℤ_[l] ℚ_[l]) :=
-      (Polynomial.lifts_iff_coeff_lifts _).mpr fun n => ⟨⟨_, h n⟩, rfl⟩
-    obtain ⟨q, hq, -, hqm⟩ := Polynomial.lifts_and_degree_eq_and_monic hl' (minpoly.monic hi)
-    exact ⟨q, hqm, by
-      rw [← Polynomial.aeval_def, ← Polynomial.aeval_map_algebraMap ℚ_[l], hq, minpoly.aeval]⟩
-
 private theorem exists_dvr {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [Algebra ℤ_[l] O] [Module.Finite ℤ_[l] O]
     [Algebra O (PadicAlgCl l)] [IsScalarTower ℤ_[l] O (PadicAlgCl l)] {σ : Type} [Finite σ] (b : σ → PadicAlgCl l)
     (hb : ∀ i, ‖b i‖ ≤ 1) :
@@ -105,7 +90,7 @@ private theorem exists_dvr {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [Alg
   let A : Subalgebra O (PadicAlgCl l) := { B.toSubsemiring with algebraMap_mem' := hO }
   have d1 : IsDiscreteValuationRing B := IsDiscreteValuationRing.RingEquivClass.isDiscreteValuationRing e
   have d2 : Module.Finite ℤ_[l] B := Module.Finite.equiv e.toLinearEquiv
-  refine ⟨A, d1, ?_, fun i => hB _ (Or.inl ⟨i, rfl⟩) ((int_iff_norm _).2 (hb i))⟩
+  refine ⟨A, d1, ?_, fun i => hB _ (Or.inl ⟨i, rfl⟩) ((_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).2 (hb i))⟩
   haveI : Module.Finite ℤ_[l] A := d2
   exact Module.Finite.of_restrictScalars_finite ℤ_[l] O A
 
@@ -329,7 +314,7 @@ private theorem exists_range {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [A
       IsAdicComplete (@maximalIdeal A _ h.toIsLocalRing) A ∧ ∀ x, (f x : PadicAlgCl l) = Ξ x := by
   obtain ⟨n, p, hp⟩ := Module.Finite.exists_fin' O Ξ.range
   have hint : ∀ x : Ξ.range, ‖(x : PadicAlgCl l)‖ ≤ 1 := fun x =>
-    (int_iff_norm _).1 (isIntegral_trans (A := O) _ ((IsIntegral.of_finite O x).map Ξ.range.val))
+    (_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).1 (isIntegral_trans (A := O) _ ((IsIntegral.of_finite O x).map Ξ.range.val))
   obtain ⟨A, hA1, hA2, hbA⟩ := exists_dvr (O := O) (fun i => (p (Pi.single i 1) : PadicAlgCl l)) fun i => hint _
   have hmem : ∀ x, Ξ x ∈ A := fun x => by
     obtain ⟨v, hv⟩ := hp ⟨Ξ x, x, rfl⟩

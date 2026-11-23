@@ -133,7 +133,7 @@ theorem exists_derivative_nontrivial (k : Type) [Field k] [ValuativeRel k] [Topo
       obtain ⟨g, hg⟩ := hex
       haveI := nontrivial_quot_of_not_mem _ _ hg
       have hs : IsSmooth (phiMinus k ψ τ) :=
-        GlobalTheory.T.twisted_action_smooth τ hτ _ _ _ (continuous_levi_comp_subtype m) (levi_stab ψ m)
+        _root_.GlobalTheory.CompanionTheory.BZMir.twAct_isSmooth τ hτ _ _ _ (continuous_levi_comp_subtype m) (levi_stab ψ m)
       obtain ⟨n, hn, hnt⟩ := ih _ (phiMinus k ψ τ) hs inferInstance
       obtain ⟨e⟩ := GlobalTheory.T.twisted_jacquet_phi_minus_equiv k ψ m n hn V τ
       exact ⟨n, hn.trans (Nat.le_succ m), e.injective.nontrivial⟩

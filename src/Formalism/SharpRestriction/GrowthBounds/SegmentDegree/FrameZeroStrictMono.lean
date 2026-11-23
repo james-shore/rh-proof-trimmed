@@ -276,7 +276,7 @@ theorem sum_compW (hX : X.Hyp p K) (hLa : (1088 : ℝ) ≤ X.CLa) (hk : (1088 : 
   have hY0 : (0 : ℝ) < X.Y := by linarith [B.Y1]
   have hu : 0 < Dat.k (r := r) K * X.Y := by positivity
   have hrr : r - 1 < r := Nat.sub_lt (NeZero.pos r) Nat.one_pos
-  have hvle : X.F.fr j i.val ≤ X.F.fr j (r - 1) := sum_fr_le hX.valid j i.val (r - 1) (by have := i.isLt; omega) hrr
+  have hvle : X.F.fr j i.val ≤ X.F.fr j (r - 1) := _root_.Formalism.MainNotions.SelectionLemmas.Pf.bk_fr_le hX.valid j i.val (r - 1) (by have := i.isLt; omega) hrr
   have hvlet : X.F.fr j i.val ∈ X.F.letters (j + 1) := by
     unfold Frames.letters
     rw [Finset.mem_filter, Finset.mem_Icc, add_sub_cancel_right]

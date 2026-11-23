@@ -43,6 +43,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeG
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalModelStructureMap
 import Development.AbelianVarietyTheory.Definitions.Divisors.RigidForFan
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.IsAdicCompleteIdealEps
 
 @[expose] public section
 
@@ -64,12 +65,6 @@ namespace GlobalTheory.Heat.FormalDer
 
 open TrivSqZeroExt (inl inr)
 open ReciprocityTheory.ChartRestriction.G.Chart (sp)
-
-theorem isLocalRing_dual (Ω : Type) [CommRing Ω] [IsLocalRing Ω] : IsLocalRing (DualNumber Ω) := by
-  have : Nontrivial (DualNumber Ω) := (TrivSqZeroExt.inl_injective (R := Ω) (M := Ω)).nontrivial
-  refine IsLocalRing.of_isUnit_or_isUnit_one_sub_self fun y => ?_
-  rw [TrivSqZeroExt.isUnit_iff_isUnit_fst, TrivSqZeroExt.isUnit_iff_isUnit_fst]
-  simpa using IsLocalRing.isUnit_or_isUnit_one_sub_self y.fst
 
 theorem mem_pow_map {Ω : Type} [CommRing Ω] (K : Ideal Ω) (n : ℕ) (y : DualNumber Ω)
     (hy : y ∈ (K.map (algebraMap Ω (DualNumber Ω))) ^ n) : y.fst ∈ K ^ n ∧ y.snd ∈ K ^ n := by
@@ -100,7 +95,7 @@ theorem isHausdorff_dual {R Ω : Type} [CommRing R] [CommRing Ω] (φ : R →+* 
 
 theorem exists_tangent_lift {R : Type} [CommRing R] (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G]
     (v : TanM (𝟙 (Sp R)) G) : ∃ u : epsR R ⟶ G, u.left = (tv v).left ∧ IsTangent u := by
-  have h := CoeffWt.isGrpPullback_self G
+  have h := _root_.GlobalTheory.ObjComp.isGrpPullback_id G
   obtain ⟨u, e⟩ := PullbackSections.push_surj h (tv v)
   exact ⟨u, (Category.comp_id _).symm.trans (congrArg (fun q => q.left) e),
     (PullbackSections.isTangent_iff h _).2 (by rw [e]; exact PullbackSections.tv_mem _)⟩
@@ -123,7 +118,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host 
   intro Y n vH dd hdd v' hv' dd' hdd' Ω _ _ _ φ x δ hcomp hx hδφ hδ x' hx' hxx' a O f hO
   letI : Algebra R Ω := φ.toAlgebra
   have hε : (inr 1 : DualNumber Ω) * inr 1 = 0 := TrivSqZeroExt.inr_mul_inr _ _ _
-  haveI := isLocalRing_dual Ω
+  haveI := _root_.GlobalTheory.ConstTan.isLocalRing_dual Ω
   haveI : IsHausdorff ((maximalIdeal R).map (algebraMap R (DualNumber Ω))) (DualNumber Ω) :=
     isHausdorff_dual φ (maximalIdeal R)
   let jη : epsR R ⟶ overAt (𝟙 (Sp R)) (DualNumber R) := Over.homMk (𝟙 _) (by simp)

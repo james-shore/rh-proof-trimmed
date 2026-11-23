@@ -69,12 +69,12 @@ theorem unit_point (L : PeriodPair) (l : ℕ) [Fact l.Prime] (ι : ℂ ≃+* ℂ
     rintro rfl
     simp at hμ
   have h2 : ‖(2 : ℂ_[l])‖ = 1 := by
-    have := red_norm_natCast l (n := 2) (fun h => by have := Nat.le_of_dvd (by norm_num) h; omega)
+    have := _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd l (n := 2) (fun h => by have := Nat.le_of_dvd (by norm_num) h; omega)
     simpa using this
   have h3 : ‖(3 : ℂ_[l])‖ = 1 := by
-    have := red_norm_natCast l (n := 3) (fun h => by have := Nat.le_of_dvd (by norm_num) h; omega)
+    have := _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd l (n := 3) (fun h => by have := Nat.le_of_dvd (by norm_num) h; omega)
     simpa using this
-  have hN : ‖(N : ℂ_[l])‖ = 1 := red_norm_natCast l hlN
+  have hN : ‖(N : ℂ_[l])‖ = 1 := _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd l hlN
   have hΔ : ‖(μ ^ 4 * ι L.g₂) ^ 3 - 27 * (μ ^ 6 * ι L.g₃) ^ 2‖ = 1 := by
     have : (μ ^ 4 * ι L.g₂) ^ 3 - 27 * (μ ^ 6 * ι L.g₃) ^ 2 = μ ^ 12 * ι (L.g₂ ^ 3 - 27 * L.g₃ ^ 2) := by
       simp only [map_sub, map_mul, map_pow, map_ofNat]

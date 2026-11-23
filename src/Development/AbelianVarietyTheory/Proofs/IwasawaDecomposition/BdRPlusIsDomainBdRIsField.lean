@@ -129,7 +129,7 @@ theorem general {R S : Type} [CommRing R] [CommRing S] [Algebra R S] [Nontrivial
     rw [← map_pow, hc, map_mul, map_mul, ← mul_assoc, hy]
 
 theorem exists_isEps (l : ℕ) [Fact l.Prime] : ∃ e : Per.Fl l, IsEps e := by
-  obtain ⟨ζ, ε, h0, -, h1, h⟩ := GlobalTheory.T.exists_compatible_rootsOfUnity_and_tilt_padic l
+  obtain ⟨ζ, ε, h0, -, h1, h⟩ := _root_.GlobalTheory.MemLoc.exists_zeta_eps l
   refine ⟨ε, ?_, ?_⟩
   · have := h 0
     rw [h0, map_one] at this

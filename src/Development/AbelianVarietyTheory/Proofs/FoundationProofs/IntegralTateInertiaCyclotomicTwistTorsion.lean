@@ -285,9 +285,6 @@ theorem emb_mem (a : ℤ_[l]) : emb l a ∈ W := W.algebraMap_mem _
 theorem map_emb (σ : PadicAlgCl l ≃ₐ[W] PadicAlgCl l) (a : ℤ_[l]) : σ (emb l a) = emb l a :=
   σ.commutes ⟨_, emb_mem a⟩
 
-theorem norm_gal (σ : PadicAlgCl l ≃ₐ[W] PadicAlgCl l) (x : PadicAlgCl l) : ‖σ x‖ = ‖x‖ :=
-  ReciprocityTheory.Neutral.Cmp.norm_map (σ.restrictScalars ℚ_[l]) x
-
 theorem norm_le_of_toZModPow (n : ℕ) (a : ℤ_[l]) (h : PadicInt.toZModPow n a = 0) : ‖a‖ ≤ ((l : ℝ)⁻¹) ^ n := by
   have h1 : a ∈ RingHom.ker (PadicInt.toZModPow (p := l) n) := h
   rw [PadicInt.ker_toZModPow, ← PadicInt.norm_le_pow_iff_mem_span_pow] at h1
@@ -467,7 +464,7 @@ theorem small_top (hW : IntVal W) (j : ℕ) (hj : 1 ≤ j) : Small (W := W) j �
       rw [map_sub]; ring
     rw [e]
     refine (norm_add_le _ _).trans ((add_le_add_left (norm_sub_le _ _) _).trans ?_)
-    rw [norm_gal, norm_mul, norm_chi_pow, one_mul]
+    rw [_root_.GroundTheory.PAdicHodge.norm_gal_apply, norm_mul, norm_chi_pow, one_mul]
     have := H γ trivial
     nlinarith
   have k5 : ‖x‖ ≤ ‖b‖ + D * u := by
@@ -546,7 +543,7 @@ theorem small_inf (j : ℕ) (H : Subgroup (PadicAlgCl l ≃ₐ[W] PadicAlgCl l))
           = (t' : PadicAlgCl l) ^ k * (c (τ t)⁻¹ * τ t' (((τ t')⁻¹ * σ * τ t) x - c ((τ t')⁻¹ * σ * τ t) * x)) := by
         rw [map_sub, e2, map_mul, map_mul, map_mul, map_pow, cf, cf, ← e1]
         linear_combination ((t' : PadicAlgCl l) ^ k * τ t' x) * e3
-      rw [e4, norm_mul, norm_mul, c1, one_mul, norm_gal, norm_pow, ← hτ t', norm_gal]
+      rw [e4, norm_mul, norm_mul, c1, one_mul, _root_.GroundTheory.PAdicHodge.norm_gal_apply, norm_pow, ← hτ t', _root_.GroundTheory.PAdicHodge.norm_gal_apply]
       exact mul_le_mul_of_nonneg_left h2 (by positivity)
   let t₀ : MulAction.orbit H α := ⟨α, MulAction.mem_orbit_self α⟩
   obtain ⟨D, hD⟩ := key (∏ t ∈ Finset.univ.erase t₀, (X - Polynomial.C (t : PadicAlgCl l)))
@@ -557,7 +554,7 @@ theorem small_inf (j : ℕ) (H : Subgroup (PadicAlgCl l ≃ₐ[W] PadicAlgCl l))
     exact fun e => Finset.ne_of_mem_erase ht (Subtype.ext e.symm)
   refine ⟨D / ‖(∏ t ∈ Finset.univ.erase t₀, (X - Polynomial.C (t : PadicAlgCl l))).eval (t₀ : PadicAlgCl l)‖, fun x ε h => ?_⟩
   have := hD x ε h
-  rw [Finset.sum_eq_single t₀, norm_mul, norm_mul, c1, one_mul, norm_gal] at this
+  rw [Finset.sum_eq_single t₀, norm_mul, norm_mul, c1, one_mul, _root_.GroundTheory.PAdicHodge.norm_gal_apply] at this
   · rw [div_mul_eq_mul_div, le_div_iff₀ (norm_pos_iff.2 hne), mul_comm]
     exact this
   · intro t _ ht
@@ -595,7 +592,7 @@ theorem inert_Kur (σ : PadicAlgCl l ≃ₐ[MaximalUnramifiedExtension l (⊥ : 
   have key : ∀ y : PadicAlgCl l, ‖y‖ < 1 → ‖σ y - y‖ < 1 := fun y hy => by
     rw [sub_eq_add_neg]
     refine (IsUltrametricDist.norm_add_le_max _ _).trans_lt (max_lt ?_ ?_)
-    · rwa [norm_gal]
+    · rwa [_root_.GroundTheory.PAdicHodge.norm_gal_apply]
     · rwa [norm_neg]
   rcases hx.lt_or_eq with h | h
   · exact key x h

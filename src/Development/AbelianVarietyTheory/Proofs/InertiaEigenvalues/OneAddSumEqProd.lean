@@ -160,7 +160,7 @@ theorem GlobalTheory.FlatConst.flat_const : ∀ (D : D7) (G : Type) [Group G] [F
     refine Finset.prod_congr rfl fun PP hP => ?_
     rw [map_pow, map_inv₀]
     congr 2
-    exact GlobalTheory.T.fixesUntwistedLiftData_conjugatePrime_value_sqrtNorm T R i τ PP hτ (hg PP hP)
+    exact _root_.GlobalTheory.ConjFix.fixBase_split_conj T R i τ PP hτ (hg PP hP)
   · intro t'
     have h1 := chrW_val R i t' x
     have h2 := chr_inv_val (R.xi t') x

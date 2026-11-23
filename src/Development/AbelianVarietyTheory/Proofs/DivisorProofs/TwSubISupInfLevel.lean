@@ -66,9 +66,6 @@ open GlobalTheory.Hk3 (Core Good IsSF SchurAll TwoSided FixAll EEc Wcc eH IsLab 
 
 namespace GlobalTheory.DimPartsFull
 
-theorem dualLab_dualLab' (d : List ℤ) : dualLab (dualLab d) = d := by
-  simp [dualLab, List.map_reverse, List.map_map]
-
 section Tw
 variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℂ E] (s : Bool)
 
@@ -189,7 +186,7 @@ theorem dimParts_of_schur {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : 
     intro c c' hcc x hx
     refine hEchar c' x fun P d hP hd => ?_
     rw [hEev c P hP _ x hx, evC_single, if_pos hd]
-    have hl : IsLab (Wc D j) P (dualLab d) := (hlab P (dualLab d) hP).2 (by rwa [dualLab_dualLab'])
+    have hl : IsLab (Wc D j) P (dualLab d) := (hlab P (dualLab d) hP).2 (by rwa [_root_.GlobalTheory.SphLabelOps.dualLab_dualLab])
     exact congrArg (· • x) (congrFun hcc ⟨(P, dualLab d), hP, hl⟩)
   have hWcle : ∀ c c', lab c = lab c' → Wcc R.toRealDat R.SF j c ≤ Wcc R.toRealDat R.SF j c' := by
     intro c c' hcc x hx
@@ -201,7 +198,7 @@ theorem dimParts_of_schur {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : 
     (fun i => hE i.1.1 (Finsupp.single (dualLab i.1.2) 1)) (fun i => hWo i.1.1 (Finsupp.single i.1.2 1))
     (fun c => EEc R.toRealDat R.SF c ⊓ LevE) (fun c => Wcc R.toRealDat R.SF j c ⊓ LevW) lab ?_ ?_ ?_ ?_ (R.Carries p)
   · rintro c x hx ⟨⟨P, d⟩, hP, hd⟩
-    rw [hEev c P hP _ x hx.1, evC_single, if_pos ((hlab P d hP).1 hd), dualLab_dualLab']
+    rw [hEev c P hP _ x hx.1, evC_single, if_pos ((hlab P d hP).1 hd), _root_.GlobalTheory.SphLabelOps.dualLab_dualLab]
   · rintro c x hx ⟨⟨P, d⟩, hP, hd⟩
     rw [hWev c P hP _ x hx.1, evC_single, if_pos hd]
   · intro c c' hcc

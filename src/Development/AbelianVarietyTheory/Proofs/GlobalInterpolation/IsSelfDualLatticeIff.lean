@@ -176,14 +176,14 @@ theorem null_and_exists (hσ : IsCMExt F E σ) (hM : 1 ≤ M) (hJ : IsHermND σ 
       fun x => hy (x 0)
   refine ⟨hnull, ?_⟩
   haveI : CharZero (Fv F v) := charZero_of_injective_ringHom (algebraMap F (Fv F v)).injective
-  obtain ⟨U, s, hs⟩ := GlobalTheory.T.exists_compact_open_units_subgroup_continuous_sqrt (Fv F v) two_ne_zero
+  obtain ⟨U, s, hs⟩ := _root_.GlobalTheory.QuadFibre.exists_isSqrtOn (Fv F v) two_ne_zero
   refine ⟨GlobalTheory.QuadFibre.fibOf μ ν (fun X => qR (Fv F v) σ J (X 0)) U s, fun b => ?_,
     fun φ hφ => ?_, fun φ h1 h2 _ => ?_⟩
   · rw [Set.inter_univ]
     exact GlobalTheory.T.averagedFibreMeasure_compl_fibre_eq_zero (Fv F v) _ μ ν _ hq (q_smul v σ J) U s hs b
   · rw [Measure.restrict_univ]
-    exact GlobalTheory.T.haar_disintegration_averagedFibreMeasures (Fv F v) _ μ ν _ hq (q_smul v σ J) U s hs (GlobalTheory.T.map_smul_addHaar_of_norm_eq_one (Fv F v) _ μ) hnull φ hφ
-  · exact GlobalTheory.T.integrable_continuousOn_averagedFibreIntegral (Fv F v) _ μ ν _ hq (q_smul v σ J) U s hs φ h1 h2
+    exact _root_.GlobalTheory.QuadFibre.disintegration (Fv F v) _ μ ν _ hq (q_smul v σ J) U s hs (_root_.GlobalTheory.addHaar_map_smul_of_norm_eq_one (Fv F v) _ μ) hnull φ hφ
+  · exact _root_.GlobalTheory.QuadFibre.integrable_and_continuousOn_fibOf (Fv F v) _ μ ν _ hq (q_smul v σ J) U s hs φ h1 h2
 
 end Top
 
@@ -279,7 +279,7 @@ theorem localDensity_iff :
       rw [dens_eq v c M η hη', fib_inter _ _ _ (hfib.1 β)] at b1
       exact ⟨b1, b2⟩
     refine ⟨fun U B fib hU hB hfib => key fib
-      (GlobalTheory.T.isFibreFamily_univ_of_null_cone' (Fv F v) _ μ ν _ hq hnull U B fib hU hB hfib), fun g hg t ht => ?_⟩
+      (_root_.GlobalTheory.isFibreFamily_univ_of_null_cone (Fv F v) _ μ ν _ hq hnull U B fib hU hB hfib), fun g hg t ht => ?_⟩
     obtain ⟨hLc, hLo⟩ := lattice_compact_open v σ hσ L hL.1 hL.2.1
     have ht0 : t ≠ 0 := by
       rintro rfl

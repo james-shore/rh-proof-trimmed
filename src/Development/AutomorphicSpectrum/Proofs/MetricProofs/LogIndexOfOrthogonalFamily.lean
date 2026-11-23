@@ -666,7 +666,7 @@ theorem torusPartDegree : ∀ (E L Ψ : Type) [Field E] [NumberField E] [Field L
       rintro y ⟨hy, -⟩
       simpa using hy
     simp [logIdx, hF, hO, hI0]
-  · have hg := genIndex_tor GlobalTheory.T.eigen_lattices_different_statement_holds hcard A.ρ hr hv A.I_stable A.I_basis t
+  · have hg := genIndex_tor _root_.GlobalTheory.CompanionTheory.Ar.EigLat.eigenLat_eq_diffLat hcard A.ρ hr hv A.I_stable A.I_basis t
     have hi : (((oSpan A.ρ v).relIndex A.I : ℕ) : ℝ) ≠ 0 := by exact_mod_cast hv.2.2
     have hip : 0 < (((oSpan A.ρ v).relIndex A.I : ℕ) : ℝ) :=
       lt_of_le_of_ne (Nat.cast_nonneg _) hi.symm

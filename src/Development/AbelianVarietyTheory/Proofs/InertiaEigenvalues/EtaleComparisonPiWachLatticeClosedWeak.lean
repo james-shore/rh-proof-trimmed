@@ -97,9 +97,9 @@ theorem jD_piN_closed : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F
   obtain ⟨r, y, hy⟩ := GlobalTheory.T.exists_image_aN_eq_range_sum ((F l).E K s LL h) T
   rw [hy]
   letI := aTop (K := K) bO
-  haveI := GlobalTheory.T.compactSpace_aTop' (K := K) bO
+  haveI := _root_.GlobalTheory.WeakClosed.compactSpace_aTop (K := K) bO
   refine (isCompact_range ?_).isClosed
   refine continuous_finsetSum _ fun i _ => ?_
-  exact (GlobalTheory.T.continuous_wittCbInclusion_smul_weakTopology ((F l).E K s LL h) T b bO (y i)).comp (continuous_apply i)
+  exact (_root_.GlobalTheory.WeakClosed.continuous_inclR_io_smul ((F l).E K s LL h) T b bO (y i)).comp (continuous_apply i)
 
 end GlobalTheory.WeakClosed

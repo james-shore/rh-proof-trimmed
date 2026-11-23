@@ -51,16 +51,7 @@ open GlobalTheory.UnitLemma Polynomial
 
 namespace GlobalTheory.UnitLemma.LinPair
 
-theorem exists_smul_mem_of_mem_span (K : UQ) {V : Type} [AddCommGroup V] [Module K.E V] [Module K.O V]
-    [IsScalarTower K.O K.E V] (M : Submodule K.O V) {x : V} (hx : x ∈ Submodule.span K.E (M : Set V)) :
-    ∃ d : K.O, d ≠ 0 ∧ d • x ∈ M := by
-  first
-  | exact @_root_.GlobalTheory.ClearDenominatorsIntegral.main
-  | exact _root_.GlobalTheory.ClearDenominatorsIntegral.main
-  | (apply _root_.GlobalTheory.ClearDenominatorsIntegral.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ClearDenominatorsIntegral.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ClearDenominatorsIntegral.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ClearDenominatorsIntegral.main ..)
+alias exists_smul_mem_of_mem_span := _root_.GlobalTheory.ClearDenominatorsIntegral.clear_denominators
 
 end GlobalTheory.UnitLemma.LinPair
 

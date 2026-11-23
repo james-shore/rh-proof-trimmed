@@ -180,7 +180,7 @@ theorem exists_qDer (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0
     exact sub_eq_zero.1 hspan
   have hmono : Monotone (fun m => levelAlg T (m + 1)) :=
     monotone_nat_of_le_succ fun m => levelAlg_le_succ T (m + 1)
-  obtain ⟨D, hD, hag⟩ := GlobalTheory.T.exists_derivationOn_iSup_of_compatible (O0 p) (integralClosure (O0 p) Ω) (Frac p Ω)
+  obtain ⟨D, hD, hag⟩ := _root_.GlobalTheory.AlmostEt.isDerOn_iSup_glue (O0 p) (integralClosure (O0 p) Ω) (Frac p Ω)
     (fun m => levelAlg T (m + 1)) hmono Dl hDl hcomp
   refine ⟨D, isDerOn_mono hD (towerAlg_le_iSup T), fun m => ⟨?_, ?_⟩⟩
   · rw [hag m _ (levelAlg_le_succ T m (zS_mem_levelAlg T m)), hz']

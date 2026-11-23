@@ -145,9 +145,7 @@ theorem smulS_one {m : ℤ} {f : ℤ → V} (hf : LB m f) : smulS (1 : PowerSeri
   | simpa using smulS_C_eq_smul_of_LB hf (1 : LL)
   | (have h1 := smulS_C_eq_smul_of_LB hf (1 : LL); rwa [map_one, one_smul] at h1)
 
-theorem smulS_C {m : ℤ} {f : ℤ → V} (hf : LB m f) (c : LL) :
-    smulS (PowerSeries.C c) f = c • f := by
-  exact smulS_C_eq_smul_of_LB hf c
+alias smulS_C := _root_.Formalism.MainNotions.N.Pv.LocalLengthBound.Ser.smulS_C_eq_smul_of_LB
 
 theorem smulS_X_pow {m : ℤ} {f : ℤ → V} (hf : LB m f) (K : ℕ) :
     smulS ((PowerSeries.X : PowerSeries LL) ^ K) f = fun k => f (k - K) := by

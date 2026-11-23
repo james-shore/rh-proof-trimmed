@@ -70,16 +70,6 @@ def Tr (ι : ℂ ≃+* ℂ_[q]) (ℓ : ℂ_[q]⟦X⟧) (ζ : ℂ_[q]) (p : ℂ) 
   AnalyticAt ℂ F 0 ∧ AnalyticAt ℂ (fun z => F (z + p)) 0 ∧ Bdd (hat ι ℓ F) ∧
     hat ι ℓ (fun z => F (z + p)) = shiftS ζ (hat ι ℓ F)
 
-lemma bdd_add {f g : ℂ_[q]⟦X⟧} (hf : Bdd f) (hg : Bdd g) : Bdd (f + g) := by
-  obtain ⟨A, hf⟩ := hf
-  obtain ⟨B, hg⟩ := hg
-  exact ⟨_, ((sup_norm_laws q).1 f g A B hf hg).1⟩
-
-lemma bdd_mul {f g : ℂ_[q]⟦X⟧} (hf : Bdd f) (hg : Bdd g) : Bdd (f * g) := by
-  obtain ⟨A, hf⟩ := hf
-  obtain ⟨B, hg⟩ := hg
-  exact ⟨_, ((sup_norm_laws q).1 f g A B hf hg).2⟩
-
 section
 variable {ι : ℂ ≃+* ℂ_[q]} {ℓ : ℂ_[q]⟦X⟧} {ζ : ℂ_[q]} {p : ℂ}
 
@@ -96,7 +86,7 @@ lemma Tr.add (h0 : constantCoeff ℓ = 0) (hζ : ‖ζ - 1‖ < 1) {F G : ℂ �
   obtain ⟨f1, f2, f3, f4⟩ := hF
   obtain ⟨g1, g2, g3, g4⟩ := hG
   refine ⟨f1.add g1, f2.add g2, ?_, ?_⟩
-  · rw [(h _ _ f1 g1).1]; exact bdd_add f3 g3
+  · rw [(h _ _ f1 g1).1]; exact _root_.GlobalTheory.MomOne.SmallTranslate.bdd_add f3 g3
   · rw [(h _ _ f1 g1).1, (h _ _ f2 g2).1, f4, g4, Shift.shiftS_add hζ f3 g3]
 
 lemma Tr.mul (h0 : constantCoeff ℓ = 0) (hζ : ‖ζ - 1‖ < 1) {F G : ℂ → ℂ} (hF : Tr ι ℓ ζ p F)
@@ -105,7 +95,7 @@ lemma Tr.mul (h0 : constantCoeff ℓ = 0) (hζ : ‖ζ - 1‖ < 1) {F G : ℂ �
   obtain ⟨f1, f2, f3, f4⟩ := hF
   obtain ⟨g1, g2, g3, g4⟩ := hG
   refine ⟨f1.mul g1, f2.mul g2, ?_, ?_⟩
-  · rw [(h _ _ f1 g1).2.1]; exact bdd_mul f3 g3
+  · rw [(h _ _ f1 g1).2.1]; exact _root_.GlobalTheory.MomOne.SmallTranslate.bdd_mul f3 g3
   · rw [(h _ _ f1 g1).2.1, (h _ _ f2 g2).2.1, f4, g4, Shift.shiftS_mul hζ f3 g3]
 
 lemma Tr.pow (h0 : constantCoeff ℓ = 0) (hζ : ‖ζ - 1‖ < 1) {F : ℂ → ℂ} (hF : Tr ι ℓ ζ p F) (n : ℕ) :

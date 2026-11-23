@@ -60,6 +60,7 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ClsLinCombSingle
 import Formalism.LocalRingCardinality.SpanPowerMembership.HasStrictFDerivAtExpZero
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidStA
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.CanonGenIsGen
+import Formalism.LocalToGlobal.ProjectiveLattices.HeightF1OfData
 
 @[expose] public section
 
@@ -74,15 +75,6 @@ open GlobalTheory.HSApp
 set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.HSApp
-
-theorem vV_algebraMap_unit (T : CDVR) (u : T.Vˣ) : vV T.V (algebraMap T.V T.Fr (u : T.V)) = 0 := by
-  have h1 : valV T.V (algebraMap T.V T.Fr (u : T.V)) = 1 := by
-    unfold valV
-    rw [IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap]
-    refine (IsDedekindDomain.HeightOneSpectrum.intValuation_eq_one_iff).2 ?_
-    show (u : T.V) ∉ IsLocalRing.maximalIdeal T.V
-    exact fun h => h u.isUnit
-  simp [vV, h1]
 
 theorem log_ofAdd_neg (m : ℤ) :
     WithZero.log ((Multiplicative.ofAdd (-m) : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) = -m := by
@@ -105,7 +97,7 @@ theorem isLocalHom_of_centred {Y : Scheme.{0}} {y : Y} {ν : Valuation (Y.preshe
     simpa using this
   have hv := hval a h0
   obtain ⟨u, hu⟩ := ha
-  rw [← hu, vV_algebraMap_unit] at hv
+  rw [← hu, _root_.Formalism.L2.Pj.extVal_unit_zero] at hv
   have : (0 : ℝ) < -((WithZero.log (ν a) : ℤ) : ℝ) := by
     have : ((WithZero.log (ν a) : ℤ) : ℝ) < 0 := by exact_mod_cast hlog
     linarith

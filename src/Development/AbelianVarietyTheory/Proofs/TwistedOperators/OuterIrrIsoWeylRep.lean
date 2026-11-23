@@ -192,13 +192,8 @@ theorem hwVec_eq (n : ℕ) (hn : 0 < n) (lam : ι → ℕ → ℤ) (μ : ι → 
     have h0 : (μ τ).natW s = 0 := by omega
     rw [Formalism.GradedWeylDivisibility.nuNext, h0, Nat.zero_sub, pow_zero]
 
-private theorem domWeight_natW_antitone {n : ℕ} (μ : DomWeight n) : Antitone μ.natW := by
-  intro i k hik
-  have := μ.anti hik
-  exact Int.toNat_le_toNat (by linarith)
-
 private theorem extremal_mem_nablaSq (n : ℕ) (μ : DomWeight n) : extremal ℂ n μ ∈ nablaSq ℂ n μ :=
-  Formalism.GradedWeylDivisibility.hwMem ℂ n n le_rfl μ.natW (domWeight_natW_antitone μ)
+  Formalism.GradedWeylDivisibility.hwMem ℂ n n le_rfl μ.natW (_root_.Formalism.L2.Col.natW_anti μ)
 
 private theorem extremal_ne_zero_twisted_operators (n : ℕ) (μ : DomWeight n) : extremal ℂ n μ ≠ 0 :=
   Formalism.GradedWeylDivisibility.hwNe ℂ n n le_rfl μ.natW
@@ -211,7 +206,7 @@ private theorem coe_irr_apply_eq_detU_pow_smul_act (n : ℕ) (μ : DomWeight n) 
 
 private theorem span_irr_orbit_extremal_eq_univ (n : ℕ) (μ : DomWeight n) :
     Submodule.span ℂ (Set.range fun g : U n => irr n μ g ⟨extremal ℂ n μ, extremal_mem_nablaSq n μ⟩) = ⊤ := by
-  let a : GlobalTheory.GLDuality.Part n := ⟨μ.natW, domWeight_natW_antitone μ⟩
+  let a : GlobalTheory.GLDuality.Part n := ⟨μ.natW, _root_.Formalism.L2.Col.natW_anti μ⟩
   have hirr := (GlobalTheory.GLDuality.irreducibleDistinct_unitary (m := n) (n := n) le_rfl).1 a
   have h1 : ∀ k : Fin n, (GlobalTheory.GLDuality.pad n a).w k = μ.natW k := fun k => GlobalTheory.GLDuality.pad_w_of_lt a k k.2
   have hpad0 : (GlobalTheory.GLDuality.pad n a).detShift = 0 := by

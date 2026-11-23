@@ -88,7 +88,7 @@ theorem exists_locSec_theta_chart : ∀ (E : Type) [Field E] [NumberField E] [Is
   obtain ⟨hca, hdiv⟩ := GlobalTheory.T.projective_chart_coordinate_ratio_mem_model_ring k Ω M n c h a z hcrd hz
   obtain ⟨W, hWa, hzW, hWV, hnoeth, hic⟩ := GlobalTheory.T.exists_affine_nbhd_noetherian_integrallyClosed k Ω M hN (h ⁻¹ᵁ chart k n a) z hz
   have hne : (W : Set M.Z).Nonempty := ⟨z, hzW⟩
-  obtain ⟨χ, hoi, hrange, hgenpt⟩ := GlobalTheory.T.exists_openImmersion_spec_ringOn_affine k Ω M W hWa hne
+  obtain ⟨χ, hoi, hrange, hgenpt⟩ := _root_.GlobalTheory.Div.AffChart.exists_openImm_spec_ringOn k Ω M W hWa hne
   haveI := M.isFractionRing_ringOn hWa hne
   let c'' : Fin (n + 1) → M.ringOn W := fun b =>
     ⟨c b / c a, RatModel.mem_ringOn.2 fun z' hz' => hdiv z' (hWV hz') b⟩

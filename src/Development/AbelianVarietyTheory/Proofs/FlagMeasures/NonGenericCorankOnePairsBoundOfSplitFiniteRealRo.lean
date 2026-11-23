@@ -54,8 +54,8 @@ namespace GlobalTheory.NGRow
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem rowNG_of_cut2P (hc : NGCut2P) : RowNGP := by
-  have hR : PN.RowNGJoint := Formalism.FourierDecayAlt.Final.pn_rowNGJoint
-  have hC : PN.NGChain := Formalism.FourierDecayAlt.P.norm_chain
+  have hR : PN.RowNGJoint := _root_.Formalism.FourierDecayAlt.P.HermitianFormNormLemmas.F.t_RowNGJoint
+  have hC : PN.NGChain := _root_.Formalism.FourierDecayAlt.P.NormChainLemmas.nGChain
   intro Cg cb Cw cT CT C0 hcb hcT
   obtain ⟨C1, C0n, A, CB, CSt, Cgs, CTs, h1, h2, h3, h4, hA, C'₀, Cl₀, h⟩ := hc Cg cb Cw cT CT C0 hcb hcT
   obtain ⟨Cn, hCn, hK⟩ := Formalism.L2.SG.RowsOther.rowNG_of_cut hR hC C1 C0n A CB CSt Cgs CTs h1 h2 h3 h4 hA

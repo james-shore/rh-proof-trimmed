@@ -85,15 +85,6 @@ theorem diag_conj_weylRep {R : Type} [CommRing R] {n : ℕ} {s : Equiv.Perm (Fin
   · intro b _ hb; rw [hy b i hb, mul_zero]
   · simp
 
-theorem ordL_congr {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {x y : L}
-    (h : Valued.v x = Valued.v y) : ordL x = ordL y := by
-  have key : ∀ z : L, ordL z = (fun w : WithZero (Multiplicative ℤ) =>
-      if h : w = 0 then (0 : ℤ) else -Multiplicative.toAdd (WithZero.unzero h)) (Valued.v z) := fun _ => rfl
-  rw [key x, key y, h]
-
-theorem ordL_one' {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] : ordL (1 : L) = 0 :=
-  Formalism.UG.P.fIwasawa_ordL_unit 1 1 (by simp) (by simp) (by simp)
-
 theorem chiDeltaU_conj_simpleU_long :
     ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicative ℤ))] (ϖ : L) (σ : L →+* L) (q : ℕ),
     IsUnramInv ϖ σ q → ∀ (n : ℕ) (k : Fin (n / 2)), ¬ k.val + 1 < n / 2 → Even n →
@@ -128,7 +119,7 @@ theorem chiDeltaU_conj_simpleU_long :
   have hb0 : σ (T (lo k).rev (lo k).rev) ≠ 0 := left_ne_zero_of_mul_eq_one hprod
   have hord : ordL (T (lo k).rev (lo k).rev) = -ordL (T (lo k) (lo k)) := by
     have h := Formalism.UG.P.fIwasawa_ordL_mul _ _ hb0 ha0
-    rw [hprod, ordL_one', ordL_congr (hσv _)] at h
+    rw [hprod, _root_.Formalism.UG.P.fSatake_ord_one, _root_.Formalism.UG.P.fSatake_ord_of_v (hσv _)] at h
     omega
   unfold chiDeltaU
   rw [← hT]

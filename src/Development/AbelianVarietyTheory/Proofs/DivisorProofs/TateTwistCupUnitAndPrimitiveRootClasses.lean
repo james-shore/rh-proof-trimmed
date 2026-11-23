@@ -98,31 +98,14 @@ theorem factor_cochain {R : Type} [CommRing R] {E : Spc} {D C : Cx R} (ι : D �
   refine ⟨β', (GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R).2.2.1 _ _ fun p s h U x => ?_⟩
   rw [(GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R).2.2.2.2, hβ', hb]
 
-theorem supp_twres (q : ℕ) [NeZero q] (i : ℤ) (D : Cx (ZMod q)) (ι : D ⟶ res _ (tw q i))
-    (hinj : ∀ n U, Function.Injective (Sec.map (ι.f n) (U := U)))
-    (hD : ∀ n U (a : Sec ((res _ (tw q i)).X n) U), (∃ b, Sec.map (ι.f n) b = a) ↔
-      Loc U fun V g => IsUnit (q : Γ(V, ⊤)) ∨ Sec.res g a = 0) :
-    ∃ e : ∀ U : Scheme.{0}, Prim q Γ(U, ⊤) → Sec (D.X 0) U, IsTwRes q i D e ∧
-      ∀ U ζ, Sec.map (ι.f 0) (e U ζ) = resGen i ζ := GlobalTheory.T.supportedSections_tateTwist_resolution q i D ι hinj hD
-
-theorem exists_unit_map (q : ℕ) [NeZero q] (i k : ℤ) (μ : Pair (res _ (tw q 0)) (res _ (tw q i)) (res _ (tw q k)))
-    (D : Cx (ZMod q)) (ι : D ⟶ res _ (tw q i))
-    (hD : ∀ n U (a : Sec ((res _ (tw q i)).X n) U), (∃ b, Sec.map (ι.f n) b = a) ↔
-      Loc U fun V g => IsUnit (q : Γ(V, ⊤)) ∨ Sec.res g a = 0) :
-    ∃ u : D ⟶ res _ (tw q k), ∀ (U : Scheme.{0}) (ζ : Prim q Γ(U, ⊤)) (s : ℤ) (b : Sec (D.X s) U),
-      Sec.map (u.f s) b = μ.mul U 0 s s (zero_add s) (resGen 0 ζ) (Sec.map (ι.f s) b) := GlobalTheory.T.unitSection_multiplication_chainMap q i k μ D ι hD
-
-theorem loc_all {U : Scheme.{0}} {P : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : ∀ V g, P V g) : Loc U P :=
-  ⟨⊤, Scheme.etaleTopology.top_mem U, fun V g _ => h V g⟩
-
 theorem root_mul (q : ℕ) [NeZero q] (X : Scheme.{0}) (ζ : Prim q Γ(X, ⊤)) (i j : ℤ) :
     cup q (rootClass i ζ) (rootClass j ζ) = (rootClass (i + j) ζ).cast (by ring) rfl ∧
       rootClass 0 ζ = one q (sch.obj X) := by
   refine ⟨?_, ?_⟩
   · obtain ⟨α, hα, hαv⟩ := rootClass_spec i ζ
     obtain ⟨β, hβ, hβv⟩ := rootClass_spec j ζ
-    obtain ⟨γ, hγ⟩ := (GlobalTheory.T.cup_eq_class_of_isAW (ZMod q) (twPair q i j) (E := sch.obj X) (rfl : (0 : ℤ) + 0 = 0 + 0)).1 α β
-    have hc := (GlobalTheory.T.cup_eq_class_of_isAW (ZMod q) (twPair q i j) (E := sch.obj X) (rfl : (0 : ℤ) + 0 = 0 + 0)).2 α β γ hγ
+    obtain ⟨γ, hγ⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full (ZMod q) (twPair q i j) (E := sch.obj X) (rfl : (0 : ℤ) + 0 = 0 + 0)).1 α β
+    have hc := (_root_.GlobalTheory.EtC.Pair.cup_spec_full (ZMod q) (twPair q i j) (E := sch.obj X) (rfl : (0 : ℤ) + 0 = 0 + 0)).2 α β γ hγ
     change (twPair q i j).cup (sch.obj X) rfl (rootClass i ζ) (rootClass j ζ) = rootClass (i + j) ζ
     rw [← hα, ← hβ, hc, (GlobalTheory.T.tateTwistUnitClass_rootClass_spec q).2.2.2]
     refine ((GlobalTheory.T.degreeZeroSectionClass_properties (ZMod q) (tw q (i + j)) X).1 _ γ).1 ?_
@@ -136,7 +119,7 @@ theorem root_mul (q : ℕ) [NeZero q] (X : Scheme.{0}) (ζ : Prim q Γ(X, ⊤)) 
     rw [res_id] at a1 b1
     change (twPair q i j).mul X 0 0 0 (add_zero 0) (ev α.1 0 0 (by simp) X (𝟙 X)) (ev β.1 0 0 (by simp) X (𝟙 X)) = _
     rw [a1, b1]
-    exact (GlobalTheory.T.tateTwistResolutionPairing_spec_and_cup_unique q i j).1 X ζ
+    exact (_root_.GlobalTheory.EtC.TwPairUniq.main q i j).1 X ζ
   · obtain ⟨α, hα, hαv⟩ := rootClass_spec 0 ζ
     have hE : Inv q (sch.obj X) := fun U ⟨x⟩ => unit_res (x : U ⟶ X) ζ.2.1
     rw [← hα]
@@ -149,20 +132,20 @@ theorem one_mul_of_pair (q : ℕ) [NeZero q] (E : Spc) (hE : Inv q E) (n i : ℤ
     μ.cup E hn (one q E) a = a := by
   obtain ⟨α, hα1, hαv⟩ := (GlobalTheory.T.tateTwistUnitClass_rootClass_spec q).1 E hE
   obtain ⟨β, rfl⟩ := a.mk_surjective
-  obtain ⟨γ, hγ⟩ := (GlobalTheory.T.cup_eq_class_of_isAW (ZMod q) μ hn).1 α β
-  rw [← hα1, (GlobalTheory.T.cup_eq_class_of_isAW (ZMod q) μ hn).2 α β γ hγ]
+  obtain ⟨γ, hγ⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full (ZMod q) μ hn).1 α β
+  rw [← hα1, (_root_.GlobalTheory.EtC.Pair.cup_spec_full (ZMod q) μ hn).2 α β γ hγ]
   obtain ⟨D, ι, hinj, hD⟩ := GlobalTheory.EtC.SuppSub.exists_supp_sub (ZMod q) (res _ (tw q i))
     (fun U => IsUnit (q : Γ(U, ⊤))) (fun V U g h => unit_res g h)
-  obtain ⟨e, he, heι⟩ := supp_twres q i D ι hinj hD
-  obtain ⟨u, hu⟩ := exists_unit_map q i i μ D ι hD
-  have hom : Nonempty (Homotopy u ι) := ((GlobalTheory.T.tateTwistResolution_map_exists_unique_homotopy q i).2.2 e he).2 u ι fun U ζ => by
+  obtain ⟨e, he, heι⟩ := _root_.GlobalTheory.EtC.SuppRes.supp_res q i D ι hinj hD
+  obtain ⟨u, hu⟩ := _root_.GlobalTheory.EtC.unit_mul_chain_map q i i μ D ι hD
+  have hom : Nonempty (Homotopy u ι) := ((_root_.GlobalTheory.EtC.TwResExt.twRes_ext q i).2.2 e he).2 u ι fun U ζ => by
     rw [hu U ζ 0 (e U ζ), heι]
     exact hμ U ζ
 
   have hunit : ∀ (p : ℕ) (U : Scheme.{0}) (x : Sx E p U), IsUnit (q : Γ(U, ⊤)) :=
     fun p U x => hE U ⟨x.sub 0 0 (by omega)⟩
   obtain ⟨β', hβ'⟩ := factor_cochain ι hinj β.1 fun p s h U x =>
-    (hD s U _).2 (loc_all fun V g => Or.inl (unit_res g (hunit p U x)))
+    (hD s U _).2 (_root_.GlobalTheory.TwSec.loc_all fun V g => Or.inl (unit_res g (hunit p U x)))
   have hδ : δ n (n + 1) β' = 0 := by
     refine (GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q)).2.2.1 _ _ fun p s h U x => hinj s U ?_
     rw [← (GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q)).2.2.2.2, ← δ_comp_ofHom, hβ', Cocycle.δ_eq_zero, ev_zero, ev_zero, smap_zero]
@@ -176,7 +159,7 @@ theorem one_mul_of_pair (q : ℕ) [NeZero q] (E : Spc) (hE : Inv q E) (n i : ℤ
     congr 1
     refine Cocycle.ext ((GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q)).2.2.1 _ _ fun N w hw U x => ?_)
     change ev γ.1 N w hw U x = ev (β'.comp (Cochain.ofHom u) (add_zero n)) N w hw U x
-    rw [(GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q)).2.2.2.2, aw_zero_left μ hn (fun s U hs => (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness (ZMod q) (tw q 0) U).2.2.2 s hs)
+    rw [(GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q)).2.2.2.2, aw_zero_left μ hn (fun s U hs => (_root_.GlobalTheory.EtC.resSec (ZMod q) (tw q 0) U).2.2.2 s hs)
       α.1 β.1 γ.1 hγ N w hw U x]
     refine ClsSpec.sep (ClsSpec.loc_mono ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q U).1 (hunit N U x)) fun V g hz => ?_)
     obtain ⟨ζ⟩ := hz
@@ -194,6 +177,6 @@ theorem main : ∀ (q : ℕ) [NeZero q], (∀ E : Spc, Inv q E → ∀ {n i : �
     subst hk
     obtain rfl : m = n := by omega
     exact one_mul_of_pair q E hE _ i hm μ hμ a
-  exact key (0 + i) (by ring) (0 + n) rfl (twPair q 0 i) ((GlobalTheory.T.tateTwistResolutionPairing_spec_and_cup_unique q 0 i).1)
+  exact key (0 + i) (by ring) (0 + n) rfl (twPair q 0 i) ((_root_.GlobalTheory.EtC.TwPairUniq.main q 0 i).1)
 
 end GlobalTheory.EtC.CupGen

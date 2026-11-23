@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyDegreePolynomialMapEqCharpolyRatio
 
 @[expose] public section
 
@@ -64,8 +65,8 @@ theorem linTrace_eq_neg_nextCoeff {F W : Type} [Field F] [AddCommGroup W] [Modul
 theorem charpoly_map_vmap {K : Type} [Field K] (l : ℕ) [Fact l.Prime] (hl : (l : K) ≠ 0) (A : AbVar K)
     [Module.Finite ℚ_[l] (Vl l A)] (f : End A) :
     (charpoly f).map (algebraMap ℤ ℚ_[l]) = (vmap l f.asHom).charpoly := by
-  obtain ⟨⟨hm, hd, hev⟩, -⟩ := GlobalTheory.T.abelianVarietyEndCharpoly_spec K A f
-  have key := GlobalTheory.T.abelianVariety_degreePolynomial_map_eq_charpoly_rationalTate K l hl A f ((charpoly f).map (algebraMap ℤ ℚ)) (hm.map _)
+  obtain ⟨⟨hm, hd, hev⟩, -⟩ := _root_.GlobalTheory.AV.AbVar.isCharpoly_charpoly_unique K A f
+  have key := _root_.GlobalTheory.AV.AbVar.map_eq_charpoly_vmap K l hl A f ((charpoly f).map (algebraMap ℤ ℚ)) (hm.map _)
     (by rw [Polynomial.natDegree_map_eq_of_injective (RingHom.injective_int (algebraMap ℤ ℚ)), hd])
     (fun n => by
       rw [Polynomial.eval_intCast_map, Int.cast_id, hev n]
@@ -96,7 +97,7 @@ theorem charpoly_tate_det_trace :
     have hneg : vmap l f.asHom = (-1 : ℚ_[l]) • vmap l (-f).asHom := by
       have h : (-f).asHom = -f.asHom := map_neg (End.addEquiv (X := A)) f
       simp only [h, vmap, map_neg, LinearMap.baseChange_neg, neg_one_smul, neg_neg]
-    have hev := (GlobalTheory.T.abelianVarietyEndCharpoly_spec K A (-f)).1.2.2 0
+    have hev := (_root_.GlobalTheory.AV.AbVar.isCharpoly_charpoly_unique K A (-f)).1.2.2 0
     rw [Int.cast_zero, zero_sub, neg_neg] at hev
     rw [hneg, LinearMap.det_smul, LinearMap.det_eq_sign_charpoly_coeff, ← charpoly_map_vmap l hl A (-f),
       Polynomial.coeff_map, Polynomial.coeff_zero_eq_eval_zero, hev, hrk, pow_mul, neg_one_sq, one_pow]

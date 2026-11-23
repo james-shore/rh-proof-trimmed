@@ -60,15 +60,6 @@ open Formalism.BasicNotions Formalism.MainNotions.product_first_zeroth_parts For
   Formalism.UG
 open scoped TensorProduct Classical
 
-theorem mul_lattice_one {E : Type} [Field E] [NumberField E] {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) :
-    mulLat (1 : Matrix (Fin n) (Fin n) E) L = L := by
-  ext x
-  constructor
-  · rintro ⟨y, hy, rfl⟩
-    simpa [Matrix.one_mulVec] using hy
-  · intro hx
-    exact ⟨x, hx, by simp [Matrix.one_mulVec]⟩
-
 variable {D : D7} {u : D.what₂.Word}
 
 
@@ -139,8 +130,8 @@ theorem valTe_pt (T : Forms0 D u) : ValTe T := by
     rw [Nat.cast_smul_eq_nsmul, ← Nat.cast_smul_eq_nsmul D.host.E, inv_smul_smul₀ hTne]
   have H3 : IsCompMv T v c c ((((D.mem u).A.T : ℕ) : 𝓞 D.host.E) • z0.1) g 1 1 1 := by
     refine ⟨fun v' _ => by simp, by simp, ?_, ?_, ?_⟩
-    · rw [e1, mul_lattice_one]
-    · rw [e1, mul_lattice_one, hw3v]
+    · rw [e1, _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.ddl_mulLat_one]
+    · rw [e1, _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.ddl_mulLat_one, hw3v]
       exact ld_locP T v c z0 (by rw [hz0]; exact one_ne_zero)
     · intro x hx
       have hx' : (((D.mem u).A.T : ℕ) : 𝓞 D.host.E) • x.1 ∈ Lk T.atT 0 (Nat.zero_le _) v c :=

@@ -108,7 +108,7 @@ theorem actB_rot_vline' (R : RD d) (t : ℝ) {W : Mx F E d.m d.n} (hW : finOne F
       cw_realAd_smul', cw_realAd_smul', show d.cw w (tw R W) = _ from htw.2 w]
     have hinv : d.cw w (incM F ((d.b⁻¹ : GL (Fin d.n ⊕ Fin d.n) E) : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E)) *
         d.cw w (incM F d.b.1) = 1 := by
-      rw [← cw_mul', incM_b_inv_mul, cw_one']
+      rw [← cw_mul', _root_.PositivityTheory.SiegelWeilFormula.Krd.bb', cw_one']
     rw [Matrix.transpose_mul, Matrix.transpose_mul, ← Matrix.mul_assoc, ← Matrix.mul_assoc,
       Matrix.mul_assoc _ (d.cw w (incM F d.b.1))ᵀ, ← Matrix.transpose_mul, hinv, Matrix.transpose_one, Matrix.mul_one,
       rot_cols' d.n d.m hζ (R.sg w) t z.re z.im (d.cw w W) _ (dZ_cw_rot' R t w)]

@@ -319,11 +319,4 @@ theorem closed_coords (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X)
   have := hval _ hj
   rwa [hφ c' hj] at this
 
-theorem closed_coords' : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (K : Type) [Fintype K] (J : K → Type)
-    [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω),
-    (∀ q : X, genPt ξ ⤳ q) → CoordTie ℤ ξ (fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) →
-    ∀ w : (Σ k, J k) → ℂ, w ∈ closure {w' : (Σ k, J k) → ℂ | ∃ z : Sp ℂ ⟶ X, CoordsAt ξ y z w'} →
-      (∀ k, ∃ i, w ⟨k, i⟩ ≠ 0) → ∃ z : Sp ℂ ⟶ X, CoordsAt ξ y z w :=
-  fun X Ω _ ξ K _ J _ y hall tie w hw hne => closed_coords X Ω ξ K J y hall tie w hw hne
-
 end GlobalTheory.CompanionTheory.Ar.RootHt.ArchC

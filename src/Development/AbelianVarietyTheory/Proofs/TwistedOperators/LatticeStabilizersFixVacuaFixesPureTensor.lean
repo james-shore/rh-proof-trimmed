@@ -143,11 +143,11 @@ theorem GlobalTheory.SphGlob.fixes_pure : ∀ (F E : Type) [Field F] [NumberFiel
   have hcut : ∀ v, v ∉ S → loc (idem F v) (idem_mul_self v) k ∈ GlobalTheory.InertSph.KAt σ W v := by
     intro v hv
     refine loc_mem_KAt F E σ d W v k fun z hz => ⟨?_, ?_⟩
-    · refine GlobalTheory.T.mem_adelicLatticeAtPlace_of_tensor_with_lattice F E n d X W v _ hn (by letI := hXL; infer_instance) fun x hx => ?_
+    · refine _root_.GlobalTheory.LatExtract.main F E n d X W v _ hn (by letI := hXL; infer_instance) fun x hx => ?_
       have h0 := GlobalTheory.InertSphStab.vecMulVec_mem X W v hx hz
       rw [← GlobalTheory.InertSphStab.vecMulVec_mul_transpose]
       exact (hlat v hv _).2 h0
-    · refine GlobalTheory.T.mem_adelicLatticeAtPlace_of_tensor_with_lattice F E n d X W v _ hn (by letI := hXL; infer_instance) fun x hx => ?_
+    · refine _root_.GlobalTheory.LatExtract.main F E n d X W v _ hn (by letI := hXL; infer_instance) fun x hx => ?_
       have h0 := GlobalTheory.InertSphStab.vecMulVec_mem X W v hx hz
       refine (hlat v hv _).1 ?_
       rw [GlobalTheory.InertSphStab.vecMulVec_mul_transpose, Matrix.mulVec_mulVec, mat_mul_inv, Matrix.one_mulVec]

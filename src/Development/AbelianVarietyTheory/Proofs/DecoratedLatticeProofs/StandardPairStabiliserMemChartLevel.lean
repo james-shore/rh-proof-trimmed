@@ -70,8 +70,8 @@ theorem stab_mem_level : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok �
     · subst hv
       have hT := GlobalTheory.T.standardDatum_splitPlaces_over_levelPrime I hOk hPins l Z u k ι p β Q L hStd i
       exact GlobalTheory.T.splitPlace_component_keeps_level_functional I hOk hPins l Z u a Ch A hA k ι p β Q L hStd j hj b i g hg x hx hT
-        (GlobalTheory.T.splitPlace_component_mem_baseLattice_level_of_fixes_pair I hOk hPins l Z u a Ch A hA k ι p β Q L hStd j hj b i g hg x hx)
-    · rw [GlobalTheory.T.splitFrameGL_finiteMatrix_offPlace_eq_one _ _ _ _ _ _ g _ (rankN (I.rec7 l Z) j hj) x.1 hx v hv]
+        (_root_.GlobalTheory.AdForm.std_comp_mem_levelVL I hOk hPins l Z u a Ch A hA k ι p β Q L hStd j hj b i g hg x hx)
+    · rw [_root_.GlobalTheory.StabOff.bc_prV_finM_eq_one _ _ _ _ _ _ g _ (rankN (I.rec7 l Z) j hj) x.1 hx v hv]
       exact Subgroup.one_mem _
   exact ⟨⟨x.1, hmem⟩, hx⟩
 

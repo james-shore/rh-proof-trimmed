@@ -58,7 +58,7 @@ theorem vac_fixed : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
   obtain ⟨hSB, hne, θ, hθ, hfix⟩ := hT.geo.hM.vac v
   obtain ⟨φ₁, hφ₁, hact⟩ := GlobalTheory.T.weilRepresentationLocality_unitaryGroupW_pairVW F E σ B a a' G X om om' hT v k hk.1 _ hSB
   have hfix₁ := GlobalTheory.T.weilOperator_latticeStabiliser_right_preserves_vacuumType F E σ B a a' G X om om' hT v k hk θ hθ _ hSB φ₁ hφ₁ hfix hact
-  obtain ⟨c, rfl⟩ := GlobalTheory.T.heisenbergSelfDualLattice_fixedFunctions_line F E σ B a a' G X om om' hT v (hT.base.inert v w hin).2.2
+  obtain ⟨c, rfl⟩ := _root_.GlobalTheory.LatVacLine.vacuum_line F E σ B a a' G X om om' hT v (hT.base.inert v w hin).2.2
     (GlobalTheory.T.tensorLattice_inertPlace_selfDual F E σ B a a' G X om om' hT v w hin) θ hθ _ hSB hne hfix φ₁ hφ₁ hfix₁
   have hc := GlobalTheory.T.latticeStabilizer_vacuum_eigenvalue_eq_one_inertPlace F E σ B a a' G X om om' hT v w hin hvT k hk c hact
   rw [hc, one_smul] at hact

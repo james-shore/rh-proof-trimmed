@@ -100,12 +100,12 @@ theorem divConst_origin_noeth : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLo
   intro T O _ _ _ _ _ _ _ _ hT P _ φ hφ hsh hP A _ _ _ _ _ _ i hi hil EA _ _ _ _ _ QA _ hQA jA hjA
     bA cA sA hs hbc
   obtain ⟨A', _, _, _, _, B', _, _, _, _, _, _, _, ι, α, β, γ, h1, h2, h3, h4, h5⟩ :=
-    GlobalTheory.T.divisorsOfConstants_flat_normal_stage_at_origin T O hT P φ hφ hsh hP A i hi hil EA QA hQA jA hjA sA hs
+    _root_.GlobalTheory.GoodStageOrigin.good_stage T O hT P φ hφ hsh hP A i hi hil EA QA hQA jA hjA sA hs
   have hbc' : β bA * β cA = algebraMap A' B' (ι sA) := by
     have e := congrArg (fun g => g sA) h1
     simp only [RingHom.comp_apply] at e
     rw [e, ← hbc, map_mul]
-  have hmem := GlobalTheory.T.divisor_descent_flat_normal_domains A' B' (ι sA) h4 h5 (β bA) (β cA) hbc'
+  have hmem := _root_.GlobalTheory.DivDescent.divisor_descent A' B' (ι sA) h4 h5 (β bA) (β cA) hbc'
   obtain ⟨d, w, hdw⟩ := exists_unit_of_mem_map_comap (algebraMap A' B') (β bA) hmem
   have e3 := congrArg (fun g => g d) h3
   simp only [RingHom.comp_apply] at e3

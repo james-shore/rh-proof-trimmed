@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimplicialCochainCoboundaryOfClassZero
 
 @[expose] public section
 
@@ -211,7 +212,7 @@ theorem laurent_univ (R : Type) [CommRing R] (g : Fin (1 + 1) → (LaurentPolyno
 
 theorem level_one : ∃ e : yoneda.obj (Spec (CommRingCat.of (LaurentPolynomial (A' ⊗[A] A')))) ≅ (cech (fT A A')).obj (op ⦋1⦌),
     e.hom ≫ (cP A A' ≫ cS A A').app (op ⦋1⦌) = yoneda.map (Spec.map (CommRingCat.ofHom (flat (A' ⊗[A] A')))) ≫ e.hom := by
-  obtain ⟨e, he⟩ := GlobalTheory.T.spec_widePushout_iso_widePullback_yoneda (LaurentPolynomial A) (LaurentPolynomial A') (LaurentPolynomial (A' ⊗[A] A'))
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.SpecWidePullback.yoneda_spec_isoWidePullback (LaurentPolynomial A) (LaurentPolynomial A') (LaurentPolynomial (A' ⊗[A] A'))
     (laurentMap (algebraMap A A')) 1 (fun j => laurentMap (inc A A' j))
     (fun j => by rw [← GmPhiNat.laurentMap_comp, ← GmPhiNat.laurentMap_comp, inc_comp]) (laurent_univ A A')
   refine ⟨e, ?_⟩
@@ -245,10 +246,10 @@ theorem cobd_pull {R : Type} [CommRing R] {E E' : Spc} {F : Shv R} {n : ℕ} (φ
 theorem cobd_of_h1_zero {R : Type} [CommRing R] (F : Shv R) {Y X : Scheme.{0}} (f : Y ⟶ X) (hE : Eqv R (cechAug f) F)
     (hX : ∀ x : H R (sch.obj X) F 1, x = 0) (σ : (free R).obj ((cech f).obj (op ⦋1⦌)) ⟶ F) (hσ : cobd σ = 0) :
     ∃ τ, σ = cobd τ := by
-  obtain ⟨y, hy⟩ := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F (cech f) 1).1 σ hσ
+  obtain ⟨y, hy⟩ := (_root_.GlobalTheory.EtC.isCls_basic R F (cech f) 1).1 σ hσ
   obtain ⟨x, rfl⟩ := (hE 1).2 y
   rw [hX x, map_zero] at hy
-  exact GlobalTheory.T.simplicialCochain_coboundary_of_class_zero R F _ σ hy
+  exact _root_.GlobalTheory.CechOne.cobd_of_isCls_zero R F _ σ hy
 
 theorem cobd_of_retract {R : Type} [CommRing R] {F : Shv R} {E E' : Spc} (P : E' ⟶ E) (S : E ⟶ E')
     (hinv : ∀ σ : (free R).obj (E'.obj (op ⦋1⦌)) ⟶ F, (free R).map ((P ≫ S).app (op ⦋1⦌)) ≫ σ = σ)
@@ -279,18 +280,13 @@ theorem fixed_of_iso {R : Type} [CommRing R] {F : Shv R} {P : PSh} {X : Scheme.{
     rw [← Category.assoc, ← Functor.map_comp, he, Functor.map_comp, Category.assoc, key]
   exact (cancel_epi _).1 this
 
-theorem tateTwistCohomology_zero_laurent_from_base (q : ℕ) [NeZero q] (T : Type) [CommRing T] (hq : IsUnit (q : T)) (i : ℤ)
-    (y : Ht q (sp (LaurentPolynomial T)) 0 i) :
-    ∃ z : Ht q (sp T) 0 i, pull _ (spMap (LaurentPolynomial.C : T →+* LaurentPolynomial T)) _ 0 z = y :=
-  GlobalTheory.T.tateTwistCohomology_zero_laurent_surjective q T hq i y
-
 theorem sec_flat (q : ℕ) [NeZero q] (T : Type) [CommRing T] (hq : IsUnit (q : T)) (i : ℤ)
     (s : Sec (tw q i) (Spec (CommRingCat.of (LaurentPolynomial T)))) :
     Sec.res (Spec.map (CommRingCat.ofHom (flat T))) s = s := by
   obtain ⟨-, e, he, -⟩ := GlobalTheory.T.etaleCohomology_negative_vanishing_degree_zero (ZMod q) (tw q i)
   apply (e _).injective
   rw [← he]
-  obtain ⟨y, hy⟩ := tateTwistCohomology_zero_laurent_from_base q T hq i (e _ s)
+  obtain ⟨y, hy⟩ := _root_.GlobalTheory.EtC.MultiplicativeGroupGlobalSections.exists_ht_zero_pull_laurent_eq q T hq i (e _ s)
   rw [← hy]
   change pull _ (spMap (flat T)) _ 0 (pull _ (spMap LaurentPolynomial.C) _ 0 y) = _
   rw [← GmPhiNat.pull_spMap_comp, flat_comp_C]
@@ -335,7 +331,7 @@ theorem GlobalTheory.EtC.kerLaurent : ∀ (q : ℕ) [NeZero q] (A A' : Type) [Co
   obtain ⟨hf1, hf2⟩ := GmStep.spec_integral_surj (laurentMap (algebraMap A A'))
     (hlm ▸ GmStep.laurentMap_isIntegral _ hi) (hlm ▸ GmStep.laurentMap_ker _ hker)
   have hE := GlobalTheory.EtC.b4 q (fT A A') (GmPhiNat.isUnit_gamma q A hq) i
-  obtain ⟨σ, hσ, hcls⟩ := GlobalTheory.T.etaleCohomology_one_cechCocycle_of_pullback_zero (ZMod q) (tw q i) _ _ (fT A A') x hx
+  obtain ⟨σ, hσ, hcls⟩ := _root_.GlobalTheory.EtC.LerayOne.cech_cocycle_of_pull_eq_zero (ZMod q) (tw q i) _ _ (fT A A') x hx
   obtain ⟨τ, rfl⟩ := cobd_laurent A A' q hint hker hq hA i σ hσ
-  have h0 := (GlobalTheory.T.simplicialCochain_classes_basic_properties (ZMod q) (tw q i) (cech (fT A A')) 0).2.2.2.1 τ _ hcls
+  have h0 := (_root_.GlobalTheory.EtC.isCls_basic (ZMod q) (tw q i) (cech (fT A A')) 0).2.2.2.1 τ _ hcls
   exact (hE 1).1 (by rw [map_zero]; exact h0)

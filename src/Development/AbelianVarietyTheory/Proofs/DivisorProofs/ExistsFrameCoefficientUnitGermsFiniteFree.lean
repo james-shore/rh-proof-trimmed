@@ -66,7 +66,7 @@ theorem exists_isUnit_gs_of_frame_eq_sum : ∀ (R R₁ : Type) [CommRing R] [Com
   rw [hτ z k₀ hz hk₀] at hu
   obtain ⟨l, -, hl⟩ := IsLocalRing.exists_of_isUnit_sum hu
   have hl2 := isUnit_of_mul_isUnit_right hl
-  rw [gs_eq_map_gs _ z _ hm'] at hl2
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gs_stalkMap _ z _ hm'] at hl2
   have hl3 := (isUnit_map_iff _ _).1 hl2
   refine ⟨l, fun k hk => ?_⟩
   rw [hs l _ k k₀ hz hk hk₀]

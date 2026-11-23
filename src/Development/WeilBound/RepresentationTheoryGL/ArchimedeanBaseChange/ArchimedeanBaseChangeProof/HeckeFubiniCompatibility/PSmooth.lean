@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelUniqueness
 
 @[expose] public section
 
@@ -79,7 +80,7 @@ theorem continuous_entA [MeasurableSpace (G n)] {μ : Measure (G n)} {M : Mods E
     Continuous fun g : GA E n => entA k I J g :=
   continuous_finsetProd _ fun v _ => (entL (M v) (I v) (J v)).continuous.comp
     ((mult_contDiffOn (h v)).continuousOn.comp_continuous (Units.continuous_val.comp (continuous_gI v))
-      fun _ => val_mem_GLs₀ _)
+      fun _ => _root_.GlobalTheory.CompanionTheory.KerUniq.val_mem _)
 
 omit [IsCMField E] in
 theorem continuous_gFin₀ : Continuous (gFin : GA E n → GL (Fin n) (Af E)) :=

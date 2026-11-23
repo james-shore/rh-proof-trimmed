@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsUnifUnit
 
 @[expose] public section
 
@@ -72,17 +73,9 @@ theorem tmul_split (x : AF D.host.F) (b : D.host.E) :
   change _ = (x ⊗ₜ[D.host.F] (1 : D.host.E)) * ((1 : AF D.host.F) ⊗ₜ[D.host.F] b)
   rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]
 
-theorem cA_tmul (a : AF D.host.F) (e : D.host.E) : cA D (a ⊗ₜ[D.host.F] e) = a ⊗ₜ[D.host.F] star e := rfl
-
-theorem cA_incA (e : D.host.E) : cA D (incA D e) = incA D (star e) := rfl
-
-theorem pr_one_int {α : Af D.host.F} (hα : α ∈ intAf D.host.F) :
-    p.pr (pairA D.host.F 0 α ⊗ₜ[D.host.F] (1 : D.host.E)) ∈ 𝒪[k] :=
-  GlobalTheory.SplitCharCond.pr_int p (AddSubgroup.subset_closure ⟨α, hα, 1, rfl⟩)
-
 theorem exists_factor {α : Af D.host.F} (hα : α ∈ intAf D.host.F) : ∃ ε : AE D, cA D ε = ε ∧ p.pr ε ∈ 𝒪[k] ∧
     ∀ b : D.host.E, (pairA D.host.F 0 α ⊗ₜ[D.host.F] b : AE D) = ε * incA D b :=
-  ⟨pairA D.host.F 0 α ⊗ₜ[D.host.F] (1 : D.host.E), (cA_tmul _ _).trans (by rw [star_one]), pr_one_int p hα,
+  ⟨pairA D.host.F 0 α ⊗ₜ[D.host.F] (1 : D.host.E), (_root_.GlobalTheory.FinPl.SplitApprox.cA_tmul _ _).trans (by rw [star_one]), _root_.GlobalTheory.LocMod.FullLatFrame.pr_pair_mem p hα,
     fun b => tmul_split _ b⟩
 
 theorem pr_star_int (b : 𝓞 D.host.E) : p.pr (incA D (star (b : D.host.E))) ∈ 𝒪[k] :=
@@ -106,7 +99,7 @@ theorem pair_rat_int {T : HSp D} {LT : Lat T} (hT : IsSelfDualC T LT) {P : Globa
       rw [one_mul, tmul_split _ (x l), RingHom.map_mul]
       ring
     rw [e]
-    exact mul_mem (pr_one_int p hα) (GlobalTheory.LocMod.FullLatFrame.pr_int_mem p b)
+    exact mul_mem (_root_.GlobalTheory.LocMod.FullLatFrame.pr_pair_mem p hα) (GlobalTheory.LocMod.FullLatFrame.pr_int_mem p b)
   | zero => simp
   | add x y _ _ hx hy =>
     simp only [Pi.add_apply, RingHom.map_add (f := _), mul_add, Finset.sum_add_distrib]; exact add_mem hx hy
@@ -136,7 +129,7 @@ theorem pair_int {S T : HSp D} {LS : Lat S} {LT : Lat T} (hS : IsSelfDualC S LS)
     have e2 : ∀ j, p.pr (cA D (ε * incA D (a * (b : D.host.E) * t j))) =
         p.pr ε * p.pr (incA D (star a)) *
           p.pr (incA D (star (b : D.host.E))) * p.pr (incA D (star (t j))) := fun j => by
-      rw [(cA D).map_mul, hε, cA_incA, star_mul', star_mul', (incA D).map_mul, (incA D).map_mul, p.pr.map_mul,
+      rw [(cA D).map_mul, hε, _root_.GlobalTheory.DualPairCheck.cA_incA, star_mul', star_mul', (incA D).map_mul, (incA D).map_mul, p.pr.map_mul,
         p.pr.map_mul, p.pr.map_mul]
       ring
     simp only [Matrix.of_apply, hs, e, e2]
@@ -243,14 +236,12 @@ theorem bd_of_mul {I : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E} (h0 : I ≠ 
 
 variable {T : Type} {L : LevCh D T} {sc : Consts}
 
-theorem star_eq (x : D.host.E) : star x = D.host.conj x := bridge_star_holds D.R D.host x
-
 theorem aa_int (hO : OffQ D) (G : GridData L sc) {v : GlobalTheory.FinPl.Pl D} (hv : v ∈ G.pl.S0)
     (hw : Formalism.L2.NTheta.IsIdemAt p.e (G.pl.w v)) {a : D.host.E} (ha : a ∈ D.host.AA ∨ a ∈ D.host.AAbar) :
     p.pr (incA D (star a)) ∈ 𝒪[k] := by
   refine int_of_val hw (GlobalTheory.FunObj.Good.valuation_le_one_of_mem
     (GlobalTheory.HalfOut.two_q_notMem hO G ((GlobalTheory.DepthFix.mem_orthogonal_frame_iff G).2 ⟨v, hv, rfl⟩)) ?_)
-  rw [star_eq]
+  rw [_root_.Formalism.L2.Herm.star_conj]
   exact ha.symm.imp (Formalism.L2.Pj.conj_mem_AA D) (Formalism.L2.Pj.conj_mem_AAbar D)
 
 theorem stair_bd (hO : OffQ D) (G : GridData L sc) {v : GlobalTheory.FinPl.Pl D} (hv : v ∈ G.pl.S0)
@@ -262,7 +253,7 @@ theorem stair_bd (hO : OffQ D) (G : GridData L sc) {v : GlobalTheory.FinPl.Pl D}
       rw [← G.pl.under_w hv]
       change algebraMap (𝓞 D.host.F) (𝓞 D.host.E) _ ∈ (G.pl.w v).asIdeal
       rwa [map_natCast])
-  have hNA := GlobalTheory.HostClear.absNorm_mem_AA D
+  have hNA := _root_.Formalism.L2.Pj.normK_mem_AA D
   have hN0 : ((Ideal.absNorm D.host.ccK : ℕ) : D.host.E) ≠ 0 :=
     Nat.cast_ne_zero.2 fun h => D.host.ccK_ne_bot (Ideal.absNorm_eq_zero_iff.1 h)
   have hA : D.host.AA ≠ 0 := fun h => by
@@ -281,7 +272,7 @@ theorem stair_bd (hO : OffQ D) (G : GridData L sc) {v : GlobalTheory.FinPl.Pl D}
       map_natCast (algebraMap (𝓞 D.host.E) D.host.E) _
     rw [this, star_natCast]; exact hNA)
   have hcc : ∀ o : 𝓞 D.host.E, star ((D.host.conj • o : 𝓞 D.host.E) : D.host.E) = (o : D.host.E) := fun o => by
-    rw [star_eq]
+    rw [_root_.Formalism.L2.Herm.star_conj]
     exact (congrArg D.host.conj (Formalism.L2.Pj.algebraMap_conj_smul D o)).trans (Formalism.L2.Pj.conj_conj D _)
   have hex : ∀ o ∈ G.pl.modulBar sc, ∃ o' ∈ G.pl.modul sc, D.host.conj • o' = o := fun o ho =>
     ⟨_, Ideal.mem_pointwise_smul_iff_inv_smul_mem.1 ho, smul_inv_smul _ _⟩
@@ -361,7 +352,7 @@ theorem bessel_step_conj_place_column_functional_bound : OnStd fun {D} _ _ {sc} 
       have : xZero (F.dJ (σ + 1) h) j q = incA D ((-D.host.xi0) ^ (q.1 + 1) * dW.a j qW) := by
         change incA D ((F.dJ (σ + 1) h).e j q) = _
         rw [eW]; rfl
-      rw [this, cA_incA, star_mul', (incA D).map_mul, p.pr.map_mul]
+      rw [this, _root_.GlobalTheory.DualPairCheck.cA_incA, star_mul', (incA D).map_mul, p.pr.map_mul]
     simp only [Matrix.vecMul, dotProduct, Matrix.mul_apply, Matrix.map_apply, x1, h6, Finset.mul_sum]
     rw [← mul_one (ξ * _), ← g3, Finset.sum_comm]
     simp only [Finset.mul_sum]
@@ -412,14 +403,14 @@ theorem bessel_step_conj_place_column_functional_bound : OnStd fun {D} _ _ {sc} 
     have a2 : ∑ m, u j m * incA D (s * dV.a m qV) = incA D s * ∑ m, u j m * incA D (dV.a m qV) := by
       rw [Finset.mul_sum]
       exact Finset.sum_congr rfl fun m _ => by rw [(incA D).map_mul, mul_left_comm]
-    rw [a2, (cA D).map_mul, cA_incA, p.pr.map_mul, p.pr_sec, mulVec_single_one]
+    rw [a2, (cA D).map_mul, _root_.GlobalTheory.DualPairCheck.cA_incA, p.pr.map_mul, p.pr_sec, mulVec_single_one]
     simp only [Matrix.col, Matrix.transpose_apply, mul_assoc]
   have hval : ((fun j => p.pr (cA D (a j q))) ᵥ*
       ((G.V (.grid (2 * (σ + 1) + 1) 0)).gram.map (fun c => p.pr (incA D c)) * β.b)) i = ξ * V := by
     rw [hV]
     simp only [Matrix.vecMul, dotProduct, Matrix.mul_apply, Matrix.map_apply, Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun l _ => ?_
-    rw [hcol j, (cA D).map_mul, cA_incA, p.pr.map_mul]
+    rw [hcol j, (cA D).map_mul, _root_.GlobalTheory.DualPairCheck.cA_incA, p.pr.map_mul]
     ring
   refine ⟨ϖ ^ G.pl.depth sc v * ⟨z, hz⟩, Ideal.mul_mem_right _ _ (Ideal.pow_mem_pow h4.not_isUnit _), ?_⟩
   have hn : 2 * (σ + 1) + 2 - 1 - qV.1 = (r.1 + 1) + 1 := by simp only [qV, r]; omega

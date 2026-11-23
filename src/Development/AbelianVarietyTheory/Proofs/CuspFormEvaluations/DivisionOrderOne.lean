@@ -89,7 +89,7 @@ theorem division_order_one : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     ⟨z0, hz0, hz0'⟩ (hLev k0).1 (fun z hz hz' => hET _ hz ⟨k0, hz'⟩)
     (fun z hz hz' ξ => (hmar x0 ho z hz ξ).trans ((hLev k0).2 z hz hz' ξ)) hcusp FF hFF
     ⟨K, gs, fun f hf _ => hgs f hf⟩ _ (hcusp _ hf) hIn
-  obtain ⟨H, hH, hFH⟩ := GlobalTheory.T.one_division_upstairs_free_weight E r X Xa Fl G x0 ho bb
+  obtain ⟨H, hH, hFH⟩ := _root_.GlobalTheory.Shares.DivOne.divOne_up E r X Xa Fl G x0 ho bb
     (fun z hz ξ => (mul_le_mul_of_nonneg_right hbm'
       (OntoB.levi_rh_nonneg RhGradFStatement_holds ho hz ξ)).trans (hmar x0 ho z hz ξ))
     ⟨k0, z0, hz0, hz0'⟩ F hF hFI

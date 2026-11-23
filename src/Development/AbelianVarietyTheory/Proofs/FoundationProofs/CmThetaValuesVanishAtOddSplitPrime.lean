@@ -155,11 +155,6 @@ theorem const_l : PowerSeries.constantCoeff g.l = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
   simp [GL3Theta.G1.l, flog]
 
-theorem const_ph : PowerSeries.constantCoeff g.ph = 0 := by
-  simp only [GL3Theta.G1.ph, map_neg, neg_eq_zero]
-  show GL3Theta.logMv _ 0 = 0
-  simp [GL3Theta.logMv]
-
 theorem ex_l (h : g.Ok) : PowerSeries.subst g.l g.ex = PowerSeries.X := by
   obtain ⟨-, -, h0, h1⟩ := h
   have hl : ∀ _ : Unit, MvPowerSeries.constantCoeff (g.l : MvPowerSeries Unit ℂ_[p]) = 0 := fun _ => const_l g
@@ -178,21 +173,9 @@ theorem pt_lg (h : g.Ok) {a : MvPowerSeries σ ℂ_[p]} (ha : MvPowerSeries.cons
   rw [GL3Theta.G1.pt, GL3Theta.G1.lg, ← PowerSeries.subst_comp_subst_apply
     (PowerSeries.HasSubst.of_constantCoeff_zero' (const_l g)) ha', ex_l g h, PowerSeries.subst_X ha']
 
-theorem subst_zero {f : PowerSeries ℂ_[p]} (hf : PowerSeries.constantCoeff f = 0) :
-    PowerSeries.subst (0 : MvPowerSeries σ ℂ_[p]) f = 0 := by
-  obtain ⟨k, rfl⟩ := PowerSeries.X_dvd_iff.2 hf
-  have h0 : PowerSeries.HasSubst (0 : MvPowerSeries σ ℂ_[p]) := PowerSeries.HasSubst.of_constantCoeff_zero (map_zero _)
-  rw [PowerSeries.subst_mul h0, PowerSeries.subst_X h0, zero_mul]
-
-theorem mulBy_one (h : g.Ok) (i : σ) : g.mulBy 1 (GL3Theta.Xv i) = GL3Theta.Xv i := by
-  rw [GL3Theta.G1.mulBy, map_one, one_mul, pt_lg g h (MvPowerSeries.constantCoeff_X i)]
-
-theorem mulBy_zero (h : g.Ok) (a : MvPowerSeries σ ℂ_[p]) : g.mulBy 0 a = 0 := by
-  rw [GL3Theta.G1.mulBy, map_zero, zero_mul, GL3Theta.G1.pt, subst_zero h.2.2.1]
-
 theorem be_zero (h : g.Ok) (i : σ) : g.be (GL3Theta.Xv i) 0 = 0 := by
-  have h1 : g.lg (0 : MvPowerSeries σ ℂ_[p]) = 0 := subst_zero (const_l g)
-  have h2 : g.phAt (0 : MvPowerSeries σ ℂ_[p]) = 0 := subst_zero (const_ph g)
+  have h1 : g.lg (0 : MvPowerSeries σ ℂ_[p]) = 0 := _root_.GlobalTheory.CMEndo.subst_zero (_root_.Formalism.MainNotions.Ext.CutA.l0 g)
+  have h2 : g.phAt (0 : MvPowerSeries σ ℂ_[p]) = 0 := _root_.GlobalTheory.CMEndo.subst_zero (_root_.Formalism.MainNotions.Ext.CutA.ph0 g)
   rw [GL3Theta.G1.be, GL3Theta.G1.add, h1, add_zero, pt_lg g h (MvPowerSeries.constantCoeff_X i), h2]
   simp
 
@@ -205,7 +188,7 @@ theorem splitZero : ∀ D : D7, GL3Theta.splitZero D := by
   have hok : g.Ok := hg.2.2.2.2
   have h1 := hC p cc δ g hg h2 _ hα
   have h3 := hN p cc δ g hg h2 _ hα
-  simp only [mulBy_one g hok, mulBy_zero g hok, be_zero g hok, mul_zero, map_zero, zero_mul] at h1 h3
+  simp only [_root_.GlobalTheory.CMEndo.mulBy_one g hok, _root_.GlobalTheory.CMEndo.mulBy_zero g hok, be_zero g hok, mul_zero, map_zero, zero_mul] at h1 h3
   exact ⟨h1, h3⟩
 
 end GlobalTheory.ThetaSplit

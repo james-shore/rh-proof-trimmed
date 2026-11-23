@@ -42,6 +42,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 namespace UpperTheory.Gal.LocalSmoothExtension
 
 theorem ksHodge_of_geo (hW : HolomorphicLefschetzFormula) (hF : FixK) : UpperTheory.Gal.Int.Geo.KSHodge :=
-  ksHodge_of_inputs hW hF UpperTheory.Gal.Cnt.weighted_count_definite_unitary UpperTheory.Gal.Cnt.trace_definite_forms_identity
+  ksHodge_of_inputs hW hF UpperTheory.Gal.Cnt.weighted_count_definite_unitary _root_.GlobalTheory.LKDef.trace_definite_forms_identity
 
 end UpperTheory.Gal.LocalSmoothExtension

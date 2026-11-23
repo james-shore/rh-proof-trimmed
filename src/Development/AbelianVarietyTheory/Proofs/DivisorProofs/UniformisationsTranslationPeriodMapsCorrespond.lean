@@ -92,8 +92,8 @@ theorem exists_ratio_gen (g : GtCoord I D e G) (g₂ : GtCoord I D₂ e G) (β :
         val u r z J = (∏ k, gv w (r ≫ D₂.Oφ g₂.pG χ₂ k) z (fun i => J ((r ≫ D₂.Oφ g₂.pG χ₂ k) ≫ twφ D₂ D β b i))
           (J' (r ≫ D₂.Oφ g₂.pG χ₂ k)) ^ Oinvε k) * val (g₂.t χ₂) r z J' *
           val D.cub.t (r ≫ (θpt g (D₂.c χ₂ ≫ β) b).left) z J * (val (g.t χ) r z J)⁻¹ := by
-  obtain ⟨t₁, ht₁, hv₁⟩ := exists_flat_transport D.P.isLB D₂.P.isLB _ _ w hw _ _ (g₂.t χ₂) (g₂.t_gen χ₂)
-  have hF := formEq_twist D₂ D ((Over.map (thick R I e)).map g.q) (D.prBe I e) g₂.pG β hp b χ₂ χ
+  obtain ⟨t₁, ht₁, hv₁⟩ := _root_.GlobalTheory.Mum.GenTransport.exists_transport D.P.isLB D₂.P.isLB _ _ w hw _ _ (g₂.t χ₂) (g₂.t_gen χ₂)
+  have hF := _root_.GlobalTheory.MumCmp.formEq_twist_cube D₂ D ((Over.map (thick R I e)).map g.q) (D.prBe I e) g₂.pG β hp b χ₂ χ
   obtain ⟨u, hu, hv⟩ := exists_gen D.P.isLB hF
     (LB.mulGen D.P.L _ _ _ _ (LB.mulGen D.P.L _ _ _ _ t₁
       (LB.pullGen D.P.L (thφ D.P.A (x3 D.P.A)) thε D.cub.t (θpt g (D₂.c χ₂ ≫ β) b).left))

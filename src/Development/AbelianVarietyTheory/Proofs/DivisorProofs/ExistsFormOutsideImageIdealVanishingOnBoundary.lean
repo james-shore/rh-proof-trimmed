@@ -77,7 +77,7 @@ theorem exists_form_vanishing : ∀ (F : Type) [Field F] [NumberField F] (T : Tu
   have := isNoetherian_of_isProjOver hV.proj
   have hp := HeightExists.isPrime_imageIdeal hV
   choose W a hy ha hz using exists_local_fun T.bd hG.bd_ne
-  choose d P Q hP _ _ hPn hval using fun y => GlobalTheory.T.exists_homogeneous_forms_quotient_birational_system F T.toLinSys hV hG.alg.bpf hB (W y) (a y)
+  choose d P Q hP _ _ hPn hval using fun y => _root_.GlobalTheory.HSShort.FormRatio.exists_forms F T.toLinSys hV hG.alg.bpf hB (W y) (a y)
   obtain ⟨s, hs⟩ := isCompact_univ.elim_finite_subcover (fun y => (W y : Set T.Y)) (fun y => (W y).isOpen)
     fun y _ => Set.mem_iUnion.2 ⟨y, hy y⟩
   refine ⟨∑ y ∈ s, d y, ∏ y ∈ s, P y, IsHomogeneous.prod s P d fun y _ => hP y, fun h => ?_, fun K _ _ x hx => ?_⟩

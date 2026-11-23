@@ -44,21 +44,11 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsSphericalTwistOfJacquetConstituentEmptyBlock
 
 @[expose] public section
 
 open Filter Topology GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult UpperTheory.Lit.Cas
-
-private theorem detjac_tprod_ne_zero {α : Type} [Fintype α] {X : α → Type} [∀ a, AddCommGroup (X a)]
-    [∀ a, Module ℂ (X a)] (y : ∀ a, X a) (hy : ∀ a, y a ≠ 0) : PiTensorProduct.tprod ℂ y ≠ 0 := by
-  have hφ : ∀ b, ∃ φ : X b →ₗ[ℂ] ℂ, φ (y b) ≠ 0 := fun b => by
-    by_contra! h
-    exact hy b ((Module.forall_dual_apply_eq_zero_iff ℂ (y b)).1 h)
-  choose φ hφ using hφ
-  intro h
-  have h1 := congrArg (PiTensorProduct.lift ((MultilinearMap.mkPiAlgebra ℂ α ℂ).compLinearMap φ)) h
-  rw [PiTensorProduct.lift.tprod, map_zero] at h1
-  exact Finset.prod_ne_zero_iff.2 (fun b _ => hφ b) (by simpa using h1)
 
 private theorem detjac_scalar_factor {α : Type} [Fintype α] [DecidableEq α] {Γ X : α → Type} [∀ a, Group (Γ a)]
     [∀ a, AddCommGroup (X a)] [∀ a, Module ℂ (X a)] (ρ : ∀ a, Representation ℂ (Γ a) (X a))
@@ -78,7 +68,7 @@ private theorem detjac_scalar_factor {α : Type} [Fintype α] [DecidableEq α] {
     simpa using (PiTensorProduct.tprod ℂ).map_update_smul x j c v
   rw [← hs, ← sub_eq_zero, ← (PiTensorProduct.tprod ℂ).map_update_sub x j] at h1
   by_contra hne
-  refine detjac_tprod_ne_zero _ (fun a => ?_) h1
+  refine _root_.GlobalTheory.EmptyFirstBlock.tprod_ne_zero _ (fun a => ?_) h1
   by_cases ha : a = j
   · subst ha; simpa [sub_eq_zero] using hne
   · simpa [Function.update_of_ne ha] using hx a

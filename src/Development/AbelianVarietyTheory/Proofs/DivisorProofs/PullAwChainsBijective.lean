@@ -58,17 +58,17 @@ universe u v
 theorem ez_nat {C : Type u} [Category.{v} C] [Preadditive C] [HasFiniteCoproducts C]
     (Y : SimplicialObject (SimplicialObject C)) :
     ∃ e : HomotopyEquiv (diagCx Y) (tot Y), ∀ n : ℕ, e.hom.f n = awF Y n := by
-  obtain ⟨G, h0, hG⟩ := GlobalTheory.T.exists_bisimplicial_shuffle_operators
-  obtain ⟨H, hH⟩ := GlobalTheory.T.alexanderWhitney_comp_shuffle_homotopic_id G h0 hG
-  obtain ⟨K, hK⟩ := GlobalTheory.T.alexander_whitney_homotopy_formula G h0 hG
-  exact GlobalTheory.T.bisimplicialAlexanderWhitney_homotopyEquiv Y G H K h0 hG hH hK
+  obtain ⟨G, h0, hG⟩ := _root_.GlobalTheory.EZ.Shuf.exists_shuffle
+  obtain ⟨H, hH⟩ := _root_.GlobalTheory.EZ.awThen_homotopic G h0 hG
+  obtain ⟨K, hK⟩ := _root_.GlobalTheory.EZ.HTot.htot G h0 hG
+  exact _root_.GlobalTheory.EZ.awHomotopyEquiv Y G H K h0 hG hH hK
 
 variable (R : Type) [CommRing R]
 
 theorem ez (X : SimplicialObject GlobalTheory.EtC.Spc) :
     ∃ e : HomotopyEquiv ((GlobalTheory.EtC.chains R).obj (GlobalTheory.EtC.bidiag.obj X)) (totChains R X),
       ∀ n : ℕ, e.hom.f (-(n : ℤ)) = awZ R X n :=
-  GlobalTheory.T.eilenberg_zilber_homotopy_equivalence R X (ez_nat _)
+  _root_.GlobalTheory.EZ.Ext.homotopyEquiv_chains_totChains R X (ez_nat _)
 
 def ezEquiv (X : SimplicialObject GlobalTheory.EtC.Spc) :
     HomotopyEquiv ((GlobalTheory.EtC.chains R).obj (GlobalTheory.EtC.bidiag.obj X)) (totChains R X) := (ez R X).choose

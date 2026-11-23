@@ -53,5 +53,3 @@ open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
-theorem _root_.GlobalTheory.T.lineBundleSymmetryHypothesis_baseChange : ∀ (K K' : Type) [Field K] [Field K'] (f : K →+* K') (P : PolAV (Sp K)) (P' : PolAV (Sp K')) (ψ : P'.A.left ⟶ P.A.left), IsPolFibre f P P' ψ → (letI := P.isAb.comm; GlobalTheory.ZH.HypS P.A P.L) → (letI := P'.isAb.comm; GlobalTheory.ZH.HypS P'.A P'.L) := by
-  first | exact @GlobalTheory.MBLow.hypS_of_isPolFibre | exact GlobalTheory.MBLow.hypS_of_isPolFibre | (intros; apply GlobalTheory.MBLow.hypS_of_isPolFibre <;> assumption)

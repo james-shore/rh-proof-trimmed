@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatJDACapTodaVGrp
 
 @[expose] public section
 
@@ -53,18 +54,6 @@ section loc
 
 variable {r : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
-theorem rds_pbOp_locO (l : Fin r) {f₁ f₂ : (Fin r → ℂ) → E} (h : ∀ c ∈ OmX r, f₁ c = f₂ c) {c : Fin r → ℂ}
-    (hc : c ∈ OmX r) : pbOp l f₁ c = pbOp l f₂ c := by
-  have hopen : IsOpen (OmX r) := by
-    have e : OmX r = ⋂ l, {x : Fin r → ℂ | x l ≠ 0} := by
-      ext x
-      simp [OmX]
-    rw [e]
-    exact isOpen_iInter_of_finite fun l => isOpen_ne_fun (continuous_apply l) continuous_const
-  have hev : f₁ =ᶠ[nhds c] f₂ := Filter.eventuallyEq_of_mem (hopen.mem_nhds hc) h
-  unfold pbOp wirtBar
-  rw [if_pos hc, if_pos hc, hev.fderiv_eq]
-
 theorem rds_vABm_loc (Y : ℂ) : ∀ (i : ℕ) (f₁ f₂ : (Fin r → ℂ) → E), (∀ c ∈ OmX r, f₁ c = f₂ c) →
     ∀ c ∈ OmX r, (CutMP.vABm r Y i).1 f₁ c = (CutMP.vABm r Y i).1 f₂ c ∧
       (CutMP.vABm r Y i).2 f₁ c = (CutMP.vABm r Y i).2 f₂ c
@@ -75,7 +64,7 @@ theorem rds_vABm_loc (Y : ℂ) : ∀ (i : ℕ) (f₁ f₂ : (Fin r → ℂ) → 
     · simp only [CutMP.vABm, dif_pos hi]
       refine ⟨?_, ?_⟩
       · simp only [Pi.sub_apply, Pi.smul_apply, cbOp]
-        rw [(ih c hc).1, (ih c hc).2, rds_pbOp_locO _ (fun c' hc' => (ih c' hc').1) hc]
+        rw [(ih c hc).1, (ih c hc).2, _root_.Formalism.FourierDecayAlt.P.CutMP.TVG.pbOp_locO _ (fun c' hc' => (ih c' hc').1) hc]
       · simp only [cbiOp]
         rw [(ih c hc).1]
     · simp only [CutMP.vABm, dif_neg hi]

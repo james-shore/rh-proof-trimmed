@@ -109,9 +109,7 @@ theorem absE_rIdU [IsTotallyReal F] (h2 : Module.finrank F E = 2) (c : ℝ) :
   push_cast
   ring
 
-theorem pos_hom' {H : Type} [Group H] (δ : H →* ℝ≥0) (p : H) : 0 < δ p := by
-  have e : δ p * δ p⁻¹ = 1 := by rw [← map_mul, mul_inv_cancel, map_one]
-  exact pos_iff_ne_zero.2 fun h0 => by rw [h0, zero_mul] at e; exact zero_ne_one e
+alias pos_hom' := _root_.GlobalTheory.Doubling.hom_pos
 
 variable (σ) in
 theorem sigRA_sigRA (h : IsCMExt F E σ) (x : AF F ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ x) = x := by

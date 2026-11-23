@@ -47,6 +47,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HyperbolicPlaceProducts.SubgroupIndexCounts.CountO
+import Formalism.HyperbolicPlaceProducts.SubgroupIndexCounts.OmegaPow
 
 @[expose] public section
 
@@ -180,8 +182,8 @@ theorem sub_count {K W : Type} [Field K] [NumberField K] [AddCommGroup W] [Modul
     (({N : Submodule (𝓞 K) W | N ≤ C ∧ N.toAddSubgroup.relIndex C.toAddSubgroup = j}.ncard : ℕ) : ℝ) ≤
       (j : ℝ) ^ Real.logb 2 (Module.finrank ℚ K) * (j : ℝ) ^ Module.finrank K W := by
   obtain ⟨h1, h2, h3⟩ := proj_rank C hC
-  obtain ⟨h4, h5⟩ := Formalism.SLP.Final.submoduleIndexCountO K C j hj
-  have h6 := Formalism.SLP.Final.omegaPow (Module.finrank ℚ K) j Module.finrank_pos hj
+  obtain ⟨h4, h5⟩ := _root_.Formalism.SLP.P.card_submodules_of_index_le K C j hj
+  have h6 := _root_.Formalism.SLP.P.pow_primeFactors_length_le (Module.finrank ℚ K) j Module.finrank_pos hj
   have hsub : {N : Submodule (𝓞 K) W | N ≤ C ∧ N.toAddSubgroup.relIndex C.toAddSubgroup = j} ⊆
       (fun N : Submodule (𝓞 K) C => N.map C.subtype) '' {N | N.toAddSubgroup.index = j} := by
     rintro N ⟨hN, hNj⟩

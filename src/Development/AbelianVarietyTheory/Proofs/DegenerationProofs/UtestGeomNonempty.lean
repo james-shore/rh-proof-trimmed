@@ -163,7 +163,7 @@ theorem utest_geom_nonempty : Laws → ∀ (o Ω : Type) [CommRing o] [Field Ω]
   intro hL o Ω _ _ _ _ S ρ p _ y₀ u
   obtain ⟨x, hx, hadd, hinj, hsurj⟩ := utest_torsion_points o Ω S ρ p y₀ u
   obtain ⟨w, hw⟩ := u.lb
-  obtain ⟨rig, fr, hrig, vrig, hfr⟩ := GlobalTheory.T.exists_frames_on_uniformised_fibre_through_iso o Ω S ρ p y₀ u x hx w hw
+  obtain ⟨rig, fr, hrig, vrig, hfr⟩ := _root_.GlobalTheory.exists_frames_on_fibre_through o Ω S ρ p y₀ u x hx w hw
   have hp := u.cart
   have hL₀ := ρ.P.isLB
   have hL₁ := u.A.isLB
@@ -191,7 +191,7 @@ theorem utest_geom_nonempty : Laws → ∀ (o Ω : Type) [CommRing o] [Field Ω]
   choose U hU hU' using fun a => symLift_move hp τ hτ hw hL₀ hL₁ (hx (S.r • a)).symm (hN a) (ρ.U_sym a)
   obtain ⟨r₀, hr₀, -⟩ := thetaGrp_acts_linearly hL.globalFns _ ρ.P S.N (baseOver (Sp S.R))
   obtain ⟨r₁, hr₁, -⟩ := thetaGrp_acts_linearly hL.globalFns _ u.A S.N (TFK (R := u.V) (PadicAlgCl p))
-  refine ⟨⟨x, hx, hadd, fun z hz => ?_, GlobalTheory.T.weilPairing_labelledTorsion_uniformTest hL o Ω S ρ p y₀ u x hx, rig, hrig, fr, fun a => (hfr a).1, th,
+  refine ⟨⟨x, hx, hadd, fun z hz => ?_, _root_.GlobalTheory.ZH.weilIs_uTest hL o Ω S ρ p y₀ u x hx, rig, hrig, fr, fun a => (hfr a).1, th,
     fun a z J hJ => ?_, s, fun a i => valAt_of_isValueAt ?_, α, hα,
     norm_move hp τ hτ hL₀ hL₁ vrig vα ρ.α_norm,
     isTwistPull_move hp τ hτ hL₀ hL₁ (psi_pow hp τ hτ (ρ.n ^ ρ.k)) hα vα hth (hs ρ.i₀) ρ.s_zero,

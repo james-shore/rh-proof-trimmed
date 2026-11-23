@@ -160,24 +160,8 @@ theorem FunEqHom_of' (h1 : SolveExists.{u, 0}) (h2 : InvIntegralOfClass.{u, 0})
     exact funEqType_unit (q_ne_zero hS) hgE)
   exact ⟨h, hh0, fun n => hI _, hh⟩
 
-section FG
-
-open Formalism.G.LogP
-
-variable {K : Type u} [NormedField K] [IsUltrametricDist K]
-
-end FG
-
 end Formalism.LT.Asm
 
 namespace Formalism.LT
-
-theorem FunEqGroup_of (h1 : Formalism.LT.SolveExists.{u, 0}) (h2 : Formalism.LT.InvIntegralOfClass.{u, 0})
-    (h3 : Formalism.LT.FunEqLowCoeff.{u, 0}) (hk : Formalism.G.FunEqSubst.{u, 0}) : Formalism.G.FunEqGroup.{u} :=
-  Formalism.LT.Asm.FunEqGroup_of' h1 h2 h3 hk
-
-theorem FunEqHom_of (h1 : Formalism.LT.SolveExists.{u, 0}) (h2 : Formalism.LT.InvIntegralOfClass.{u, 0})
-    (h3 : Formalism.LT.FunEqLowCoeff.{u, 0}) (hk : Formalism.G.FunEqSubst.{u, 0}) : Formalism.G.FunEqHom.{u} :=
-  Formalism.LT.Asm.FunEqHom_of' h1 h2 h3 hk
 
 end Formalism.LT

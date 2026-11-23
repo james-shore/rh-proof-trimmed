@@ -57,16 +57,12 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 open GroundTheory.Heights₂.Heights.LowerBoundFree (valAt)
 open scoped ComplexOrder
 
-theorem valAt_one {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
-    {z : Spec (CommRingCat.of ℂ) ⟶ X} (h : GlobalTheory.CompanionTheory.Ar.genPt ξ ⤳ centre z) : ValAt ξ z 1 (1 : ℂ) :=
-  ⟨h, 1, map_one _, map_one _⟩
-
 theorem valAt_prod {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
     {z : Spec (CommRingCat.of ℂ) ⟶ X} (h : GlobalTheory.CompanionTheory.Ar.genPt ξ ⤳ centre z) {I : Type} (s : Finset I) {a : I → Ω}
     {u : I → ℂ} (hv : ∀ m ∈ s, ValAt ξ z (a m) (u m)) : ValAt ξ z (∏ m ∈ s, a m) (∏ m ∈ s, u m) := by
   classical
   induction s using Finset.induction_on with
-  | empty => simpa using valAt_one h
+  | empty => simpa using _root_.GlobalTheory.CompanionTheory.Ar.CxVal.one h
   | insert m s hm ih =>
     rw [Finset.prod_insert hm, Finset.prod_insert hm]
     exact CoordModel.valAt_mul (hv m (Finset.mem_insert_self _ _)) (ih fun m' h' => hv m' (Finset.mem_insert_of_mem h'))

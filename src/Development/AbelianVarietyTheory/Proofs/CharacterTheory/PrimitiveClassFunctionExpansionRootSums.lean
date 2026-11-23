@@ -179,7 +179,7 @@ theorem eq_zero_of_ipGL_rootSum_eq_zero (F : Type) [Field F] [Finite F] (V : Typ
   swap
   · exact GlobalTheory.T.classFn_eq_zero_of_charpoly_not_irreducible_pow F V φ hc hp hn g hex
   obtain ⟨f, m, hfm, hfi, hm, hcp⟩ := hex
-  apply GlobalTheory.T.primitiveEndClassFunction_zero_of_charpoly_mass_zero F V φ hc hp g
+  apply _root_.GlobalTheory.CuspGL.eq_zero_of_mass_charpoly_eq_zero F V φ hc hp g
   have hdeg : f.natDegree * m = Module.finrank F V := by
     have := LinearMap.charpoly_natDegree g
     rw [hcp, natDegree_pow] at this
@@ -246,9 +246,9 @@ theorem expand_primitive (F : Type) [Field F] [Finite F] (V : Type) [AddCommGrou
       (fun k x => ψ k x * star (R l x))
     have h30342 : ∀ k, ipGL (ψ k) (R l) = glCard F n *
         (((Finset.range n).filter (fun i => k * Nat.card F ^ i ≡ l [MOD (Nat.card F ^ n - 1)])).card : ℂ) :=
-      fun k => GlobalTheory.T.invertibleEndInnerProduct_rootPowerSum_mobius F V θ hθ hn k l
+      fun k => _root_.GlobalTheory.CuspGL.ipGL_psi_rootSum F V θ hθ hn k l
     have hA : ∀ k i : ℕ, k * Nat.card F ^ i ≡ l [MOD (Nat.card F ^ n - 1)] → a k = a l :=
-      fun k i hki => GlobalTheory.T.innerProduct_rootPowerSum_eq_of_frobenius_modEq F V θ φ hc hp hn k l i hki
+      fun k i hki => _root_.GlobalTheory.CuspGL.ipGL_rootSum_eq_of_modEq F V θ φ hc hp hn k l i hki
     have hmain := sum_mul_card_filter_modEq (Nat.card F) n l hq hn a hA
     show ∑ᶠ x ∈ {x : Module.End F V | IsUnit x}, D x * star (R l x) = 0
     simp only [hexp]

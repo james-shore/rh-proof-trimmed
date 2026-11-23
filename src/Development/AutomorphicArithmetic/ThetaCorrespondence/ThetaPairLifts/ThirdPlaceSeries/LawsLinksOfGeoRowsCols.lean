@@ -80,10 +80,10 @@ theorem GlobalTheory.Fam.lawsLinks_of_geo_rows_cols_alt : GlobalTheory.Published
   letI := a.fld; letI := a.val; letI := a.top; haveI := a.loc
   have hRow : ∀ col, (a.fam row col).RowOK := fun col => ⟨ha.meas, ha.last, ha.x, hrow, hsame⟩
   obtain ⟨col₀, -, -, -, -, -⟩ := hcol ⟨fun _ _ => 1, fun _ => ⟨0, Fin.elim0, Fin.elim0⟩, 0, 0, 0, 0⟩
-  have hcIs : (commOf (_root_.GlobalTheory.Fam.pk_z W) u a.g).Is := (_root_.GlobalTheory.T.famCh_is_and_tuples_is_of_colOK hDS hHC W u hW.pk (a.fam row col₀) (hRow col₀)).1
+  have hcIs : (commOf (_root_.GlobalTheory.Fam.pk_z W) u a.g).Is := (_root_.GlobalTheory.Fam.IsFam.main_alt_alt hDS hHC W u hW.pk (a.fam row col₀) (hRow col₀)).1
   obtain ⟨ε, op, r, e, cG, hr, hcG, hkap, hvIs, hall⟩ :=
-    GlobalTheory.T.seeSaw_latticeFramePins_finiteIntegralLaws _ _ a.v a.k a.ι a.o a.n a.G hcIs ha.last ha.vis ha.shape ha.gpin
-  obtain ⟨s, hs, hζ⟩ := _root_.GlobalTheory.T.nonzero_scalars_roots_of_unity_alt _ _ _ _ _ _ _ _ _ W u (a.fam row col₀) hW.pk (hRow col₀) a.v ha.vis
+    _root_.GlobalTheory.SeeSaw.pins_finiteIntegrals _ _ a.v a.k a.ι a.o a.n a.G hcIs ha.last ha.vis ha.shape ha.gpin
+  obtain ⟨s, hs, hζ⟩ := _root_.GlobalTheory.StepVacForm.main_alt_alt _ _ _ _ _ _ _ _ _ W u (a.fam row col₀) hW.pk (hRow col₀) a.v ha.vis
     (ha.tie row col₀).1 a.n a.G a.pl ha.gpin (ha.tie row col₀).2
   choose ζ hζu hζv using hζ
   let k : _root_.GlobalTheory.Fam.FamilyConstants a := ⟨ε, op, r, e, cG, fun t j => s j * ζ t j⟩
@@ -107,12 +107,12 @@ theorem GlobalTheory.Fam.lawsLinks_of_geo_rows_cols_alt : GlobalTheory.Published
     refine ⟨fun j hj P b hb b' hb' => ?_, fun j h P => ?_⟩
     · rw [he]; exact h1.1 j hj P b hb b' hb'
     · rw [heT]; exact h1.2 j h P
-  have hIs := _root_.GlobalTheory.T.famCh_is_and_tuples_is_of_colOK hDS hHC W u hW.pk (a.fam row col) (hRow col)
+  have hIs := _root_.GlobalTheory.Fam.IsFam.main_alt_alt hDS hHC W u hW.pk (a.fam row col) (hRow col)
   have htIs : ∀ t, ((a.fam row col).t t).Is := hIs.2 hCO.ok
-  have hweil := fun t => _root_.GlobalTheory.T.weilOK_of_rank_one_gram' W u hW.pk (a.fam row col) a.v (hRow col) hCO.ok (ha.tie row col).1
+  have hweil := fun t => _root_.GlobalTheory.FamChars.weilOK_of_rank_one_gram W u hW.pk (a.fam row col) a.v (hRow col) hCO.ok (ha.tie row col).1
     (fun j h => ⟨ha.shape.pre.line.1, ha.shape.pre.tau j h⟩) t (w t) (hQ t)
   have hchars : ∀ t i, (a.G i).Chars ((a.fam row col).t t) := fun t => (hweil t).2.2.2.2.2.2 a.n a.G a.pl (ha.tie row col).2
-  have hrowt := fun t => _root_.GlobalTheory.T.quadratic_family_level_identity_alt _ _ _ _ _ _ _ _ _ W u (a.fam row col) hW.pk (hRow col) a.v ha.vis (ha.tie row col).1 a.n a.G a.pl
+  have hrowt := fun t => _root_.GlobalTheory.RowLevel.main_alt_alt _ _ _ _ _ _ _ _ _ W u (a.fam row col) hW.pk (hRow col) a.v ha.vis (ha.tie row col).1 a.n a.G a.pl
     ha.gpin (ha.tie row col).2 t (w₀ t) (F t) (htIs t) (hCO.pins t) (hCO.lev t) (hchars t)
   have hVF : ∀ t, VForm k.v (w t) := by
     intro t
@@ -158,7 +158,7 @@ theorem GlobalTheory.Fam.lawsLinks_of_geo_rows_cols_alt : GlobalTheory.Published
       rw [hFT]; exact hCO.FT t _
   obtain ⟨hloc, hval, hlast⟩ := hall W.P.T (a.fam row col).t w fun t => ⟨htIs t, hVF t, (hweil t).1, (hrowt t).2.2, (hweil t).2.1,
     (hweil t).2.2.2.1, hchars t, (hCO.laws t).1, (hCO.laws t).2.1, (hCO.laws t).2.2, hCO.cT t, hCO.cv t⟩
-  have hcls : ClsPinD (a.fam row col).t := _root_.GlobalTheory.T.cls_pin_d_of_true_family W u (a.fam row col) hW.tr hW.tw ha.top (hRow col) hFC
+  have hcls : ClsPinD (a.fam row col).t := _root_.GlobalTheory.AdForm.clsPinD_of_famCol_of_trueW W u (a.fam row col) hW.tr hW.tw ha.top (hRow col) hFC
   have hlaws : LawsX (a.fam row col).t := ⟨hIs.1, htIs, hloc, _root_.GlobalTheory.T.realEq_of_colOK' W u hW.pk (a.fam row col) hCO.ok, hval, hlast,
     GlobalTheory.T.seeSawKernelLiftCombination_of_definiteClassData _ _ _ _ hIs.1 htIs hcls, GlobalTheory.T.seeSawLastPeriodFactorization_of_classData _ _ _ _ hIs.1 htIs hcls, GlobalTheory.T.seeSaw_scalarForms_continuous_automorphic_central _ _ _ _ hIs.1 htIs hcls⟩
   have hheq : ∀ t, W.P.I.tup t = (I.rec7 l Z).what₂.mu0 → ∀ φ, HEq (_root_.GlobalTheory.MiTop.col0_alt (a.fam row col) t φ) ((I.rec7 l Z).eMu u φ).1 := by
@@ -176,7 +176,7 @@ theorem GlobalTheory.Fam.lawsLinks_of_geo_rows_cols_alt : GlobalTheory.Published
         fun x => ⟨(hs.good x).bf, (hs.good x).fb⟩, fun x hx => ⟨(hs.split x hx).core, (hs.split x hx).top⟩, hs.glued, hs.rep,
         hs.ram⟩
     have hne : ∀ {S : ℕ → Prop} {x y : ℂ}, UnitRatio S x y → x ≠ 0 := fun h => ((GlobalTheory.Fam.unitRatio_laws _).2.1 _ _ _ _ h h).2.2
-    refine _root_.GlobalTheory.T.type_data_unit_shift_relation_alt W u (a.fam row col) a.k a.ι a.o ε S₀ (GlobalTheory.FinPl.RamUnit.ramUnitary_holds _) hIs.1
+    refine _root_.GlobalTheory.MiTop.linkComm_of_laws_alt W u (a.fam row col) a.k a.ι a.o ε S₀ (GlobalTheory.FinPl.RamUnit.ramUnitary_holds _) hIs.1
       (fun t => ⟨htIs t, ?_, ?_, ?_, hS₀ t⟩) ha.shape.pre.nodup ha.shape.pre.all ha.shape.pre.inj ?_ ?_ ?_
     · obtain ⟨⟨A, hAI⟩, -⟩ := hA t
       exact GlobalTheory.T.seeSawTuple_kernelBack_of_classKernelData _ _ _ ρ A hIs.1 (htIs t) hρ hAI fun j hj => hne (hCO.cK t j hj)
@@ -207,7 +207,7 @@ theorem GlobalTheory.Fam.lawsLinks_of_geo_rows_cols_alt : GlobalTheory.Published
       rw [mul_pow, mul_pow, pow_mul (ζ tt j), e₁, mul_comm n₁ n₂, pow_mul (ζ W.P.A3.A.μ0 j), e₂, one_pow, one_pow]
     have hcI : ∀ tt j, j < (I.rec7 l Z).R.m → ((a.fam row col).t tt).cI j ≠ 0 := fun tt j hj =>
       GlobalTheory.Fam.GeoMeas.cIOf_ne_zero (_root_.GlobalTheory.Fam.complexLevelStructure W) ha.meas tt j hj
-    have hci := fun tt => _root_.GlobalTheory.T.cI_mul_prod_idx_eq_cI_mu0 _ _ _ _ _ _ _ _ _ W u (a.fam row col) hW.pk (hRow col) a.v ha.vis (ha.tie row col).1 tt
+    have hci := fun tt => _root_.GlobalTheory.StepConst.cI_mul_idx_alt _ _ _ _ _ _ _ _ _ W u (a.fam row col) hW.pk (hRow col) a.v ha.vis (ha.tie row col).1 tt
       (w₀ tt) (F tt) (hCO.pins tt) (hCO.lev tt)
     have hq : ∀ tt j ρ, j + 2 * ρ + 2 = (I.rec7 l Z).R.m → (w tt).cQ j / (((a.fam row col).t tt).cI j * ((a.fam row col).t tt).cI (j + 1)) =
         (((a.fam row col).t W.P.A3.A.μ0).cI j * ((a.fam row col).t W.P.A3.A.μ0).cI (j + 1))⁻¹ := by
@@ -223,7 +223,7 @@ theorem GlobalTheory.Fam.lawsLinks_of_geo_rows_cols_alt : GlobalTheory.Published
       refine ⟨?_, ?_⟩
       · rw [hCO.cT tt j ρ h, hCO.cT W.P.A3.A.μ0 j ρ h, ((hrow tt).sBF j ρ h).2.2.2, ((hrow W.P.A3.A.μ0).sBF j ρ h).2.2.2]
         exact GlobalTheory.SeeSaw.mono_unitRatio _ _ a.k a.ι a.o (r j) (e j) _ _ _ (hr j)
-          ((_root_.GlobalTheory.T.root_of_unity_theta_twist_alt _ _ _ _ _ _ _ _ _ W u (a.fam row col) hW.pk (hRow col) tt).choose_spec.2.2.2 (j + 1))
+          ((_root_.GlobalTheory.TupRoot.weil_tuple_root_alt _ _ _ _ _ _ _ _ _ W u (a.fam row col) hW.pk (hRow col) tt).choose_spec.2.2.2 (j + 1))
       · rw [hq tt j ρ h, hq W.P.A3.A.μ0 j ρ h]
         exact (GlobalTheory.Fam.unitRatio_laws _).1 _ (inv_ne_zero (mul_ne_zero (hcI _ j (by omega)) (hcI _ (j + 1) (by omega))))
     obtain ⟨h1, -, h3⟩ := GlobalTheory.T.seeSaw_totalConstant_ratio_of_factor_ratios _ _ k.v W.P.T (a.fam row col).t w (_root_.GlobalTheory.MiTop.qPrime_alt W) W.P.A3.A.μ0 htIs hCO.cv hkap hcG hsc hct

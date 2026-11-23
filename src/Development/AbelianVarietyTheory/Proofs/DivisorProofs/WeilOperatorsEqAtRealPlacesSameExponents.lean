@@ -324,7 +324,7 @@ theorem member_eq_of_arch (σ : E →ₐ[F] E) (hσ : IsCMExt F E σ) {a b : ℕ
     refine Units.ext ?_
     rw [hcv, Units.val_one]
     exact mul_right_cancel₀ hl0 (by rw [one_mul]; exact e1.symm)
-  have hc1 := GlobalTheory.T.doubledUnitary_character_trivial_of_siegel F E σ hσ b JB ε hJ hdet c' hcont' hP
+  have hc1 := _root_.GlobalTheory.SiegelChar.eq_one_of_siegel F E σ hσ b JB ε hJ hdet c' hcont' hP
   intro g hg Φ hΦ
   obtain ⟨gd, hgd⟩ := GlobalTheory.T.exists_unitaryDoubled_blockDiag_one (AF F) (AE F E) (cA σ) (Fin b) (incM F JB) g
   have hgdA : At (evI F) (((gd : GL (Fin b ⊕ Fin b) (AE F E)) : Matrix (Fin b ⊕ Fin b) (Fin b ⊕ Fin b) (AE F E)) - 1) :=

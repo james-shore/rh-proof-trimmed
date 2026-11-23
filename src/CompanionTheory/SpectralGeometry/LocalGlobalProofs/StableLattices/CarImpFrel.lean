@@ -246,6 +246,4 @@ theorem frel_of_car (h : CAR) : FRel := by
   simp only [← sub_eq_add_neg] at this
   exact this
 
-theorem car_imp_frel : CompanionTheory.D.DSIC.CAR → CompanionTheory.D.DSIC.FRel := frel_of_car
-
 end GlobalTheory.CompanionTheory.DSICFRel

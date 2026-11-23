@@ -39,22 +39,11 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import GroundTheory.AutomorphicForms.Satake
 
 @[expose] public section
 
 open MeasureTheory NumberField GroundTheory.Automorphic GroundTheory.Automorphic.Spherical UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.H
-
-private theorem evalAt_polynomialEmbed {n : ℕ} (z : Fin n → ℂˣ) (Q : MvPolynomial (Fin n) ℂ) :
-    evalAt z (polyEmb (n := n) Q) = MvPolynomial.aeval (fun j : Fin n => (z j : ℂ)) Q := by
-  have h : (evalAt z).comp (polyEmb (n := n)) = MvPolynomial.aeval (fun j : Fin n => (z j : ℂ)) := by
-    refine MvPolynomial.algHom_ext fun i => ?_
-    rw [AlgHom.comp_apply, polyEmb_X, evalAt_single, MvPolynomial.aeval_X, one_mul,
-      monomialChar_apply, Finset.prod_eq_single i]
-    · simp
-    · intro j _ hj
-      simp [Pi.single_eq_of_ne hj]
-    · simp
-  exact AlgHom.congr_fun h Q
 
 private theorem baseChange_polynomialEmbed {n : ℕ} (l : ℕ) (Q : MvPolynomial (Fin n) ℂ) :
     bc l (polyEmb (n := n) Q) = polyEmb (n := n) (MvPolynomial.expand l Q) := by
@@ -120,7 +109,7 @@ theorem UpperTheory.ConvolutionTheory.H.polyAlg :
     rw [← MvPolynomial.esymmAlgHom_apply, hγ]
     rfl
   · intro γ z
-    rw [evalAt_polynomialEmbed]
+    rw [_root_.GroundTheory.Automorphic.Spherical.evalAt_polyEmb]
     have h : (MvPolynomial.aeval (fun j : Fin n => (z j : ℂ))).comp
           (MvPolynomial.aeval (fun i : Fin n => MvPolynomial.esymm (Fin n) ℂ (i + 1))) =
         MvPolynomial.aeval (fun i : Fin n => (Finset.univ.val.map fun j => (z j : ℂ)).esymm (i + 1)) := by

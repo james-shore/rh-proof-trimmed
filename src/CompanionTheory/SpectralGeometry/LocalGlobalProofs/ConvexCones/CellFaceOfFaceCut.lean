@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HomExtNormalSt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolyhedralPolarisationFaceCutIsCell
 
 @[expose] public section
 
@@ -58,55 +59,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Fan.CellFaces
 variable {O : Type} [CommRing O] {bar : O → O} {ψ : InvFun O}
   {X : Type} [AddCommGroup X] [Module O X] [Module.Finite O X]
 
-
-omit [Module O X] [Module.Finite O X] in
-theorem apply_eq_sum_of_toReal {m : ℕ} {β : LinearMap.BilinForm ℤ X} {u : Fin m → LinearMap.BilinForm ℤ X}
-    {c : Fin m → ℝ} (hβ : toReal β = ∑ i, c i • toReal (u i)) (F : LinearMap.BilinForm ℤ X →ₗ[ℤ] ℤ) :
-    (F β : ℝ) = ∑ i, c i * (F (u i) : ℝ) := by
-  have hpt : ∀ a b : X, ((β a b : ℤ) : ℝ) = ∑ i, c i * ((u i a b : ℤ) : ℝ) := by
-    intro a b
-    have := congrArg (fun B : X →ₗ[ℤ] X →ₗ[ℤ] ℝ => B a b) hβ
-    simpa [toReal_apply, LinearMap.sum_apply, LinearMap.smul_apply] using this
-  have hπ : ∀ (π : ℝ →ₗ[ℚ] ℚ) (x : ℝ) (n : ℤ), π (x * (n : ℝ)) = π x * (n : ℚ) := by
-    intro π x n
-    rw [mul_comm, ← zsmul_eq_mul, map_zsmul, zsmul_eq_mul, mul_comm]
-  have hrat : ∀ π : ℝ →ₗ[ℚ] ℚ, π 1 * (F β : ℚ) = ∑ i, π (c i) * (F (u i) : ℚ) := by
-    intro π
-    have hq : ∀ a b : X, π 1 * ((β a b : ℤ) : ℚ) = ∑ i, π (c i) * ((u i a b : ℤ) : ℚ) := by
-      intro a b
-      have h1 := congrArg π (hpt a b)
-
-      rw [← one_mul ((β a b : ℤ) : ℝ), hπ, map_sum] at h1
-      simpa only [hπ] using h1
-    obtain ⟨b, hb⟩ := IsLocalization.exist_integer_multiples (nonZeroDivisors ℤ)
-      (Finset.univ : Finset (Option (Fin m))) (fun o : Option (Fin m) => o.elim (π 1) (fun i => π (c i)))
-    choose z hz using fun o => hb o (Finset.mem_univ o)
-    have hz' : ∀ o, ((z o : ℤ) : ℚ) = ((b : ℤ) : ℚ) * o.elim (π 1) (fun i => π (c i)) := by
-      intro o
-      simpa [zsmul_eq_mul] using hz o
-    have hint : z none • β = ∑ i, z (some i) • u i := by
-      ext x y
-      apply Int.cast_injective (α := ℚ)
-      simp only [LinearMap.smul_apply, LinearMap.sum_apply, smul_eq_mul, Int.cast_mul, Int.cast_sum, hz',
-        Option.elim_none, Option.elim_some]
-      rw [mul_assoc, hq x y, Finset.mul_sum]
-      exact Finset.sum_congr rfl fun i _ => by ring
-    have h2 := congrArg (fun β => ((F β : ℤ) : ℚ)) hint
-
-    simp only [map_zsmul, map_sum, smul_eq_mul, Int.cast_mul, Int.cast_sum, hz', Option.elim_none,
-    Option.elim_some] at h2
-    have hb0 : ((b : ℤ) : ℚ) ≠ 0 := by exact_mod_cast nonZeroDivisors.ne_zero b.2
-    apply mul_left_cancel₀ hb0
-    rw [Finset.mul_sum, ← mul_assoc, h2]
-    exact Finset.sum_congr rfl fun i _ => by ring
-  have hr : ∑ i, c i * (F (u i) : ℝ) - (F β : ℝ) = 0 := by
-    refine (Module.forall_dual_apply_eq_zero_iff ℚ _).mp fun π => ?_
-
-    rw [map_sub, map_sum, ← one_mul ((F β : ℤ) : ℝ), hπ]
-    simp only [hπ]
-    rw [← hrat π]
-    ring
-  linarith
 
 theorem est_at {m : ℕ} {γ : Fin m → LinearMap.BilinForm ℤ X} {N : ℕ} {ℓ h : LinearMap.BilinForm ℤ X →ₗ[ℤ] ℤ}
     (hstr : ∀ β ∈ balForms bar X, (∀ y, 0 ≤ β y y) → N * ψ.evalZ β = ℓ β →
@@ -212,8 +164,8 @@ theorem isCell_comp : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero
     have hrel : toReal β = ∑ i, c i • toReal (pull (e.symm : X →ₗ[O] X) (γ' i)) := by
       ext a b
       simpa [toReal_apply, LinearMap.sum_apply] using hpt a b
-    have hℓ := apply_eq_sum_of_toReal hrel ℓ
-    have hh := apply_eq_sum_of_toReal hrel h
+    have hℓ := _root_.GlobalTheory.PolFan.FaceCutCell.apply_eq_sum_of_toReal hrel ℓ
+    have hh := _root_.GlobalTheory.PolFan.FaceCutCell.apply_eq_sum_of_toReal hrel h
     have hφ : ψ.evalZ β = ∑ i, c i * ψ.evalZ (pull (e.symm : X →ₗ[O] X) (γ' i)) := by
       rw [← hcellu.linear c hc']
       show ψ.eval X (fun a b => ((β a b : ℤ) : ℝ)) = _

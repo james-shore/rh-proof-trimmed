@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.PtOrderProdSub
+import Formalism.LocalToGlobal.ProjectiveLattices.ConjNeSelfOfCM
 
 @[expose] public section
 
@@ -121,17 +122,10 @@ theorem derivAt0_coe_eq_pair {σ : Type} (P Q : MvPolynomial σ C) :
   simp only [derivAt0, GlobalTheory.PolyPairingAdjoint.pair, MvPolynomial.coeff_coe]
   rfl
 
-theorem apply_le_degree {σ : Type} (α : σ →₀ ℕ) (s : σ) : α s ≤ α.degree := by
-  rw [Finsupp.degree_apply]
-  by_cases hs : s ∈ α.support
-  · exact Finset.single_le_sum (f := fun x => α x) (fun _ _ => Nat.zero_le _) hs
-  · rw [Finsupp.notMem_support_iff.1 hs]
-    exact Nat.zero_le _
-
 theorem le_const_of_degree_le {σ : Type} [Fintype σ] {α : σ →₀ ℕ} {N : ℕ} (h : α.degree ≤ N) :
     α ≤ Finsupp.equivFunOnFinite.symm (fun _ => N) := by
   intro s
-  simpa using le_trans (apply_le_degree α s) h
+  simpa using le_trans (_root_.Formalism.L2.Pj.Crude.le_degree α s) h
 
 theorem degree_le_totalDegree {σ : Type} {P : MvPolynomial σ C} {α : σ →₀ ℕ} (h : α ∈ P.support) :
     α.degree ≤ P.totalDegree := by

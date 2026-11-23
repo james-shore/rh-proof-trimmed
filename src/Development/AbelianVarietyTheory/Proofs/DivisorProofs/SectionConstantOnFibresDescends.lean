@@ -65,19 +65,10 @@ namespace GlobalTheory.CoverDesc
 
 open AlgebraicGeometry CategoryTheory Limits NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 
-theorem exists_lift_pt : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra A B], Module.FaithfullyFlat A B →
-    Algebra.FiniteType A B → ∀ (k : Type) [Field k] [IsAlgClosed k] (φ : A →+* k),
-    ∃ φ' : B →+* k, φ'.comp (algebraMap A B) = φ := GlobalTheory.T.exists_lift_geometricPoint_of_faithfullyFlat_finiteType
-
 theorem exists_eq_of_geom : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra A B] [IsReduced A] [IsJacobsonRing A],
     Module.FaithfullyFlat A B → Algebra.Etale A B → ∀ b : B,
     (∀ (k : Type) [Field k] [IsAlgClosed k] (φ ψ : B →+* k), φ.comp (algebraMap A B) = ψ.comp (algebraMap A B) →
       φ b = ψ b) → ∃ a : A, algebraMap A B a = b := GlobalTheory.T.etale_faithfullyFlat_descent_geometric_points
-
-theorem exists_etale_lift : ∀ (Y Z : Scheme.{0}) (π : Z ⟶ Y), IsFinite π → Etale π → Surjective π →
-    ∀ (K : Type) [Field K] (p : TRing K) (x : Sp p.R ⟶ Y), ∃ (q : TRing K) (ι : p.R →ₐ[K] q.R),
-      (letI := ι.toRingHom.toAlgebra; Module.FaithfullyFlat p.R q.R ∧ Algebra.Etale p.R q.R) ∧
-      ∃ z : Sp q.R ⟶ Z, z ≫ π = spMap ι.toRingHom ≫ x := GlobalTheory.T.exists_lift_finiteEtaleSurjection_testRing
 
 theorem exists_good_cover : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H)
     (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (d : DeltaDat Xo c 0), 1 ≤ Dw.p + Dw.q → d.IsLev →
@@ -171,8 +162,8 @@ variable (d : DeltaDat Xo c 0) (hpq : 1 ≤ Dw.p + Dw.q) (hl : d.IsLev)
 include hpq hl in
 theorem val_exists {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} {g : Rul d.Xo₂ d.c₂} (hg : g ∈ sec d.Xo₂ d.c₂ a n)
     (hF : GlobalTheory.LevPull.FibConst d g) (p : TRing c.F) (y : FrPt Xo c p.R) : ∃ v, Val d g p y v := by
-  obtain ⟨Z, π, z₂, hfin, het, hsur, hr, hs⟩ := exists_good_cover E H Dw l Xo c d hpq hl
-  obtain ⟨q, ι, ⟨hff, het'⟩, z, hz⟩ := exists_etale_lift _ _ π hfin het hsur c.F p (ptF y)
+  obtain ⟨Z, π, z₂, hfin, het, hsur, hr, hs⟩ := _root_.GlobalTheory.CoverGood.exists_good_cover E H Dw l Xo c d hpq hl
+  obtain ⟨q, ι, ⟨hff, het'⟩, z, hz⟩ := _root_.GlobalTheory.exists_lift_finiteEtale_testRing _ _ π hfin het hsur c.F p (ptF y)
   letI := algAbove d q.R
   haveI : IsReduced p.R := (Ideal.isRadical_iff_quotient_reduced p.I).1 p.rad
   haveI : IsReduced q.R := (Ideal.isRadical_iff_quotient_reduced q.I).1 q.rad
@@ -187,7 +178,7 @@ theorem val_exists {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} {g : Rul d.Xo₂
     (GlobalTheory.TransferCompare.allTest_framed d.Xo₂ d.c₂) g hg.1
   letI : Algebra p.R q.R := ι.toRingHom.toAlgebra
   haveI : IsScalarTower c.F p.R q.R := IsScalarTower.of_algebraMap_eq fun t => (ι.commutes t).symm
-  obtain ⟨v, hv⟩ := exists_eq_of_geom p.R q.R hff het' (evR d.Xo₂ d.c₂ g y₂) (by
+  obtain ⟨v, hv⟩ := _root_.GlobalTheory.EtaleGeomDescent.descent p.R q.R hff het' (evR d.Xo₂ d.c₂ g y₂) (by
     intro k _ _ φ ψ hφψ
     letI : Algebra c.F k := (φ.comp (algebraMap c.F q.R)).toAlgebra
     letI := algAbove d k
@@ -214,7 +205,7 @@ theorem val_exists {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} {g : Rul d.Xo₂
     exact k₁.symm.trans (k₃.trans k₂))
   refine ⟨v, fun k _ _ _ _ hk φ zz zz₂ hzz hzz₂ => ?_⟩
   have hft : Algebra.FiniteType p.R q.R := by haveI := het'; infer_instance
-  obtain ⟨φ₁, hφ₁⟩ := exists_lift_pt p.R q.R hff hft k φ.toRingHom
+  obtain ⟨φ₁, hφ₁⟩ := _root_.GlobalTheory.GeomPointLift.exists_lift p.R q.R hff hft k φ.toRingHom
   have hc : ∀ t : c.F, φ₁ (algebraMap c.F q.R t) = algebraMap c.F k t := fun t => by
     rw [IsScalarTower.algebraMap_apply c.F p.R q.R, ← RingHom.comp_apply, hφ₁]
     exact φ.commutes t

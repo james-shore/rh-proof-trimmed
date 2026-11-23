@@ -98,8 +98,8 @@ theorem preconnected_of_complex (g n : ℕ) (hg : 1 ≤ g) (hn : 3 ≤ n) (hodd 
   obtain ⟨q, hq, hqW⟩ := exists_complexPoint_mem F.X F.s ⟨Wᶜ, hW.compl.isOpen⟩
     (by simpa [Set.nonempty_compl] using hne.2)
   have hζ : RingHom.id ℂ (conjEmb n (zetaAway n)) = Complex.exp (-(2 * Real.pi * Complex.I) / n) := conjEmb_zeta n
-  obtain ⟨τ, hτ⟩ := exists_ptAt g n ℂ _ (RingHom.id ℂ) F hg hn hodd hζ p hp
-  obtain ⟨τ', hτ'⟩ := exists_ptAt g n ℂ _ (RingHom.id ℂ) F hg hn hodd hζ q hq
+  obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.SiegelPtAt.exists_ptAt g n ℂ _ (RingHom.id ℂ) F hg hn hodd hζ p hp
+  obtain ⟨τ', hτ'⟩ := _root_.GlobalTheory.SiegelPtAt.exists_ptAt g n ℂ _ (RingHom.id ℂ) F hg hn hodd hζ q hq
   obtain ⟨hp', hq', H⟩ := GlobalTheory.SiegelConnected.sameComp_of_ptAt hL.1 hL.2 GlobalTheory.thetaUnifAV_all GlobalTheory.torusAlgebraic_holds
     g n ℂ _ (RingHom.id ℂ) F hg hn hodd hζ τ τ' p q hp hq hτ hτ'
   obtain ⟨z⟩ : Nonempty (Sp ℂ) := inferInstance

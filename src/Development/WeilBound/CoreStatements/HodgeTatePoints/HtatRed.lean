@@ -86,14 +86,9 @@ def dualOf (hg : IsBaseChange B g) : Module.Dual A M →ₗ[A] Module.Dual B N w
     dualOf hg w (g m) = algebraMap A B (w m) := by
   simp [dualOf, IsBaseChange.lift_eq]
 
-theorem exists_dualBasis (A M : Type) [CommRing A] [AddCommGroup M] [Module A M] [Module.Finite A M]
-    [Module.Projective A M] :
-    ∃ (n : ℕ) (e : Fin n → M) (f : Fin n → Module.Dual A M), ∀ m, ∑ i, f i m • e i = m :=
-  _root_.UpperTheory.Reformulated.B.DYhb1.main A M
-
 theorem isBaseChange_dual [Module.Finite A M] [Module.Projective A M] (hg : IsBaseChange B g) :
     IsBaseChange B (dualOf hg) := by
-  obtain ⟨n, e, f, hef⟩ := exists_dualBasis A M
+  obtain ⟨n, e, f, hef⟩ := _root_.UpperTheory.Reformulated.B.DYhb1.main A M
   let Φ : B ⊗[A] Module.Dual A M →ₗ[B] Module.Dual B N := LinearMap.liftBaseChange B (dualOf hg)
   let Ψ : Module.Dual B N →ₗ[B] B ⊗[A] Module.Dual A M :=
     { toFun := fun y => ∑ i, y (g (e i)) • ((1 : B) ⊗ₜ[A] f i)

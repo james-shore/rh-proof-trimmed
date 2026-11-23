@@ -173,7 +173,7 @@ theorem topDensNonnegOfKappa : TopDensNonnegOfKappa := by
 
   let st' : Fr.Start (Pr (RadSp P.k P.r z z' π π')) :=
     { st with xi := fun Y => κ fun ρ => (M.x0 P l0 ρ Y)⁻¹ }
-  have hCD := (Formalism.FourierDecayAlt.P.c_diagonal (Pr (RadSp P.k P.r z z' π π')) S P.r L st' (M.Ty P) κ
+  have hCD := (_root_.Formalism.FourierDecayAlt.P.Fr2.cDiag (Pr (RadSp P.k P.r z z' π π')) S P.r L st' (M.Ty P) κ
     (fun ρ Y => M.x0 P l0 ρ Y) hκx (fun Y => rfl) w).2.2
   have hc : (Fr.ofWord L st w).c = Matrix.diagonal fun e => κ fun ρ => Fr.cs (M.x0 P l0 ρ) (M.qC P) w e := by
     rw [← ofWord_c_congr L st st' rfl rfl w, hCD]
@@ -184,8 +184,8 @@ theorem topDensNonnegOfKappa : TopDensNonnegOfKappa := by
 
   have hpos : ∀ (e : Ix S) (ρ : M.Ty P), 0 < Fr.cs (M.x0 P l0 ρ) (M.qC P) w e := by
     intro e ρ
-    have h := Formalism.FourierDecayAlt.P.c_pos_truncated Formalism.FourierDecayAlt.P.interlacing_sign Formalism.FourierDecayAlt.P.q_positive_interlacing
-      Formalism.FourierDecayAlt.P.q_positive_shift Formalism.FourierDecayAlt.P.cPos_true S P.k P.u P.u' (M.rho P ρ) l0 P.T P.T' w hl1 hlk
+    have h := _root_.Formalism.FourierDecayAlt.P.Fr2.cPosCut _root_.Formalism.FourierDecayAlt.P.Interlace.interlaceSign _root_.Formalism.FourierDecayAlt.P.Interlace.qPositive
+      _root_.Formalism.FourierDecayAlt.P.Fr2.qPositiveShift _root_.Formalism.FourierDecayAlt.P.Fr2.cPos S P.k P.u P.u' (M.rho P ρ) l0 P.T P.T' w hl1 hlk
       (Formalism.FourierDecayAlt.P.types_interlace P hPl.1 ρ) hPl.1.T_pos hPl.1.T'_pos hw.2.1 hw.2.2 e
     rw [Complex.lt_def]
     exact ⟨h.1, h.2.symm⟩

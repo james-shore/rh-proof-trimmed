@@ -46,7 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Gal.TranscendenceTraces
 
-theorem adic : Adic := adic_holds GlobalTheory.T.etaleCohomology_coefficientRing_invariance
+theorem adic : Adic := adic_holds _root_.GlobalTheory.EtC.a8
 
 theorem all_holds : Weights ∧ Torsion ∧ Adic := ⟨weights_holds, torsion_holds, adic⟩
 

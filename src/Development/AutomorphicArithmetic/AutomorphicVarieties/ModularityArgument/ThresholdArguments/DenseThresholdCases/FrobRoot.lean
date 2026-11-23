@@ -47,7 +47,7 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 namespace UpperTheory.V.Z.Kato.WeilSphericalRecords
 theorem frobRoot_alt : _root_.UpperTheory.V.Af.Hypotheses' → LocQ → FrobRoot := by
   intro P hQ l _ Ω _ _ _ ι e V A κ g hl he hc hirr hdet hA hex hatt hgM σ hσ
-  obtain ⟨π, hreg, hπ, hsat⟩ := _root_.GlobalTheory.T.exists_cuspidal_attached_satake_eq_hecke_poly_of_not_dvd P e g l Ω ι V he hatt hgM
+  obtain ⟨π, hreg, hπ, hsat⟩ := _root_.GlobalTheory.NewformAutAtL.exists_cuspidal_satake_prod_eq_hecke_poly_of_not_dvd_level P e g l Ω ι V he hatt hgM
   obtain ⟨v, hv, hlv⟩ := hA
   obtain ⟨B, hB, hpoly⟩ := hsat v hlv
   obtain ⟨b, hb, hrel⟩ :=

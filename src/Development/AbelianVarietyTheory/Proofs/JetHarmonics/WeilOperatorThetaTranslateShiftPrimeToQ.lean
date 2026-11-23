@@ -83,9 +83,6 @@ theorem norm_natCast_eq_one {s : ℕ} (h : Nat.Coprime s q) : ‖(s : ℤ_[q])�
   rw [PadicInt.norm_natCast_eq_one_iff]
   exact h.symm
 
-theorem zc_natCast (s : ℕ) : zc (s : ℤ_[q]) = (s : ℂ_[q]) := by
-  simp [zc]
-
 theorem hasSubst_mulS (a : ℤ_[q]) : HasSubst (mulS a : ℂ_[q]⟦X⟧) :=
   HasSubst.of_constantCoeff_zero' ((MulSeries.mulS_laws q).1 a).2.1
 
@@ -96,7 +93,7 @@ theorem subst_mulS_cancel {a : ℤ_[q]} (ha : ‖a‖ = 1) {f g : ℂ_[q]⟦X⟧
       (show ℂ_[q]⟦X⟧ from f.subst (mulS (u : ℤ_[q]) : ℂ_[q]⟦X⟧)) = f := by
     intro f
     dsimp only
-    rw [subst_comp_subst_apply (hasSubst_mulS _) (hasSubst_mulS _), (MulSeries.mulS_laws q).2.1,
+    rw [subst_comp_subst_apply (_root_.GlobalTheory.MomOne.MulSeries.hasSubst_mulS _) (_root_.GlobalTheory.MomOne.MulSeries.hasSubst_mulS _), (MulSeries.mulS_laws q).2.1,
       Units.mul_inv, (MulSeries.mulS_laws q).2.2.1]
     rw [← map_algebraMap_eq_subst_X]
     simp
@@ -115,7 +112,7 @@ theorem main : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q]) (θ : �
     · exact h
   have hsC : (s : ℂ) ≠ 0 := by exact_mod_cast hs0.ne'
   have hsn : ‖(s : ℤ_[q])‖ = 1 := norm_natCast_eq_one hs
-  have hιs : M.ι (s : ℂ) = zc (s : ℤ_[q]) := by rw [zc_natCast, map_natCast]
+  have hιs : M.ι (s : ℂ) = zc (s : ℤ_[q]) := by rw [_root_.GlobalTheory.MomOne.ShiftComp.zc_natCast, map_natCast]
   set y' : ℂ := v / (q : ℂ) ^ n with hy'
   have hyy : y = (s : ℂ) * y' := by rw [hyv, hy']; ring
   have hg' : Good M.ι d n 1 y' := ⟨v, hv, hvn, by rw [hy']; simp⟩
@@ -137,7 +134,7 @@ theorem main : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q]) (θ : �
   have hWd : Differentiable ℂ (W1 d y θ) := (hdiff y _ hθd).2
   set f : ℂ → ℂ := fun z => U1 d t θ z / θ z with hf
   have hfa : AnalyticAt ℂ f 0 := (hUd.analyticAt 0).div (hθd.analyticAt 0) hθ0
-  obtain ⟨hEll, hφa, -, -, hφb⟩ := GlobalTheory.T.scaledThetaTranslationQuotient_elliptic d q M ω θ hd hd16 hsp hOK hM hθ t s hs0 hs ht
+  obtain ⟨hEll, hφa, -, -, hφb⟩ := _root_.GlobalTheory.MomOne.ScaledQuot.scaled_quotient_elliptic d q M ω θ hd hd16 hsp hOK hM hθ t s hs0 hs ht
   have hscale : ∀ G : ℂ → ℂ, AnalyticAt ℂ G 0 → hat M.ι (C ω * logS) (fun z => G ((s : ℂ) * z)) =
       (hat M.ι (C ω * logS) G).subst (mulS (s : ℤ_[q]) : ℂ_[q]⟦X⟧) :=
     fun G hG => (hat_multiplicative_chart q M.ι ω G hG).2.2.1 _ _ hιs

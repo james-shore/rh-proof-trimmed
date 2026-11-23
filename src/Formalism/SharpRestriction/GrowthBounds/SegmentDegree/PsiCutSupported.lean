@@ -178,8 +178,7 @@ theorem k_r_le_segN (hV : F.Valid L₁ N₁) (hr : 0 < r) (j : ℤ) : r ≤ segN
   have h0 := card_filter_lt_fr_add_sub_eq_segN F hV j (t := 0) hr
   omega
 
-theorem segE_eq_fr_iff (hV : F.Valid L₁ N₁) (j : ℤ) (i : Fin (segN F j)) {t : ℕ} (ht : t < r) :
-    segE F j i = F.fr j t ↔ i.val = segN F j - r + t := segE_eq_fr_iff' F hV j i ht
+alias segE_eq_fr_iff := _root_.Formalism.MainNotions.SelectionLemmas.Pf.segE_eq_fr_iff'
 
 theorem segE_lt_fr_iff (hV : F.Valid L₁ N₁) (hr : 0 < r) (j : ℤ) (i : Fin (segN F j)) :
     segE F j i < F.fr j 0 ↔ i.val < segN F j - r := by

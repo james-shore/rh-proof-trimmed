@@ -145,7 +145,7 @@ theorem dualtr {n : ℕ} (lam : Fin n → ℤ) (hl : Antitone lam) (E : KMod n) 
     (fun z hz hinj => ?_) μ hμ).2
   have hzi : Function.Injective z := fun a b h => hinj (by simp only [h])
   have h1 := hch ⟨diagonal z, diagonal_mem_unitary z hz⟩ z rfl hzi
-  have h2 := GlobalTheory.T.twisted_trace_weyl_character lam E T hT ⟨diagonal z, diagonal_mem_unitary z hz⟩ z rfl hinj
+  have h2 := _root_.GlobalTheory.CompanionTheory.RealCountG.LefDual.trace_dualT_inv lam E T hT ⟨diagonal z, diagonal_mem_unitary z hz⟩ z rfl hinj
   rw [← h1, h2]
 
 theorem countG : CountG := by

@@ -87,7 +87,7 @@ theorem exists_setup_both : Hyps → ∀ (D : D7) (large₂ : SizeData₂ D) (C'
   have hv : 1 ≤ D.host.v := hZ.1.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1
   have hNH : IsHaarOn (Nset D.R.k D.R.rS) W.μN := by
     rw [hN]
-    exact GlobalTheory.T.haarLie_isHaarOn_unipotentRadical _ _ _ (ENNReal.ofReal_pos.2 (by positivity)) ENNReal.ofReal_lt_top
+    exact _root_.GlobalTheory.haarLie_isHaarOn_Nset _ _ _ (ENNReal.ofReal_pos.2 (by positivity)) ENNReal.ofReal_lt_top
   have hT1 : 0 < Tz D.R.k D.R.rS W.z := by
     rw [t1]; unfold Tr; exact_mod_cast hTT.1.pos
   have hT2 : 0 < Tz D.R.k D.R.rS W.z' := by
@@ -101,9 +101,9 @@ theorem exists_setup_both : Hyps → ∀ (D : D7) (large₂ : SizeData₂ D) (C'
   have m1 := (GlobalTheory.T.torus_normaliser_bessel hH _ _ _ _ _ _ _ _ _ _ _ t ht hNt (hψ _ z1).1 (hψ _ z1).2 s1).1
   have m2 := (GlobalTheory.T.torus_normaliser_bessel hH _ _ _ _ _ _ _ _ _ _ _ t ht hNt (hψ _ z2).1 (hψ _ z2).2 s2).1
   obtain ⟨c, hc, hd⟩ := GlobalTheory.BesselDegree.schur_fdeg hH D.R.k D.R.rS (PI.BesselPeriodGGP.eps48 _ _) W.μG hG
-  obtain ⟨l, hl⟩ := exists_setup hH (GlobalTheory.T.momentPieriNumerics_of_sizeHyps D large₂ C' Cl Cg cb Cu cT CT C0 hZ hCl τ w U hU).1 hF m1 hc
+  obtain ⟨l, hl⟩ := exists_setup hH (_root_.GlobalTheory.SizeNum.num_of_size D large₂ C' Cl Cg cb Cu cT CT C0 hZ hCl τ w U hU).1 hF m1 hc
     fun mu R h => (hd mu R h).1
-  obtain ⟨l', hl'⟩ := exists_setup hH (GlobalTheory.T.momentPieriNumerics_of_sizeHyps D large₂ C' Cl Cg cb Cu cT CT C0 hZ hCl τ w' U' hU').1 hF m2 hc
+  obtain ⟨l', hl'⟩ := exists_setup hH (_root_.GlobalTheory.SizeNum.num_of_size D large₂ C' Cl Cg cb Cu cT CT C0 hZ hCl τ w' U' hU').1 hF m2 hc
     fun mu R h => (hd mu R h).1
   exact ⟨U, U', l, l', _, hl, hl'⟩
 

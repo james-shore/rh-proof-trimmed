@@ -167,7 +167,7 @@ theorem exists_level_pairing_eq : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (k 
         map_nsmul (D.EF x), nsmul_eq_mul, nsmul_eq_mul]
       ring
     rw [ha, hb, this, zpow_add, hζ1, _root_.mul_one]
-  obtain ⟨ε, u, v, hε1, hε2⟩ := GlobalTheory.T.exists_conj_idempotent_mod_prime_pow p D r
+  obtain ⟨ε, u, v, hε1, hε2⟩ := _root_.GlobalTheory.UPel.HT.SplitIdem.exists_conj_idem p D r
   have hkill : ∀ (c : 𝓞 D.F) (x : D.La ⧸ K), algebraMap (𝓞 D.F) D.O ((p : 𝓞 D.F) ^ r * c) • x = 0 := by
     intro c x
     obtain ⟨x, rfl⟩ := surj x
@@ -181,7 +181,7 @@ theorem exists_level_pairing_eq : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (k 
     have h := D.alt (x + y)
     rw [map_add D.EF, LinearMap.add_apply, map_add (f := _), map_add (f := _), D.alt, D.alt] at h
     linarith
-  obtain ⟨g, hg⟩ := GlobalTheory.T.exists_linearEquiv_of_adjoint_skewPairings D.O (fun c => (D.star c).unop) (D.La ⧸ K) k
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.SkewPairingCmp.exists_linearEquiv D.O (fun c => (D.star c).unop) (D.La ⧸ K) k
     (fun x y => W (fb x) (fb y)) E (algebraMap (𝓞 D.F) D.O ε) D.star_star
     (fun c => Algebra.commutes ε c)
     (fun c => by simp only [hst]; exact Algebra.commutes _ c)

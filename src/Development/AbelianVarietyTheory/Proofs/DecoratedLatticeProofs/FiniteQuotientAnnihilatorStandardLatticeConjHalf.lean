@@ -57,24 +57,17 @@ namespace GlobalTheory.AnnConjHalf
 
 variable {D : D7}
 
-theorem symplO_add_right' (S T : HSp D) (x u v : WO S T) :
-    symplO S T x (u + v) = symplO S T x u + symplO S T x v := by
-  simp only [symplO, hO, Matrix.add_apply, map_add (f := _), mul_add, add_mul, Finset.sum_add_distrib]
-
 theorem symplO_neg_right' (S T : HSp D) (x u : WO S T) :
     symplO S T x (-u) = -symplO S T x u := by
   simp only [symplO, hO, Matrix.neg_apply, map_neg, mul_neg, neg_mul, Finset.sum_neg_distrib]
 
-theorem symplO_zero_right' (S T : HSp D) (x : WO S T) : symplO S T x 0 = 0 := by
-  simp only [symplO, hO, Matrix.zero_apply, map_zero, mul_zero, zero_mul, Finset.sum_const_zero]
-
 def annHalf (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (E₂ : AE D) : AddSubgroup (WO S T) where
   carrier := {u | IsHalf (cA D E₂) u ∧ ∀ x ∈ stdHom S T, IsHalf E₂ x → ψ (symplO S T x u) = 1}
-  zero_mem' := ⟨fun i j => by simp, fun x _ _ => by rw [symplO_zero_right', AddChar.map_zero_eq_one]⟩
+  zero_mem' := ⟨fun i j => by simp, fun x _ _ => by rw [_root_.GlobalTheory.PlaceModel.symplO_zero_right, AddChar.map_zero_eq_one]⟩
   add_mem' := by
     rintro u v ⟨hu, hu'⟩ ⟨hv, hv'⟩
     refine ⟨fun i j => by rw [Matrix.add_apply, mul_add, hu i j, hv i j], fun x hx hxh => ?_⟩
-    rw [symplO_add_right', AddChar.map_add_eq_mul, hu' x hx hxh, hv' x hx hxh, mul_one]
+    rw [_root_.GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul, hu' x hx hxh, hv' x hx hxh, mul_one]
   neg_mem' := by
     rintro u ⟨hu, hu'⟩
     refine ⟨fun i j => by rw [Matrix.neg_apply, mul_neg, hu i j], fun x hx hxh => ?_⟩

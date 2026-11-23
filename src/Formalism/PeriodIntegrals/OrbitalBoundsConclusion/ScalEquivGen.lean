@@ -41,5 +41,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem scalar_equiv_general : PI.ScalPairs.ScalarEquivG :=
-  PI.UnitaryGroupMassFormula.ScalEquivGen.scalarEquivG_holds

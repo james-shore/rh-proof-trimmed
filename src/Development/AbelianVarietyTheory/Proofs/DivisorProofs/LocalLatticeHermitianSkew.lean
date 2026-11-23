@@ -105,7 +105,7 @@ theorem splitTrace : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Numbe
       fun p q r => by simp only [Algebra.smul_def]; ring, h0]
     simp
   show GlobalTheory.AdelicU.evFin F v (Algebra.trace (AF F) _ _) = _
-  rw [GlobalTheory.T.adelicTrace_supportedAtSplitPlace hcm v t _ hzAt, GlobalTheory.LatVac.evFin_liftV]
+  rw [_root_.GlobalTheory.SplitAdeleTrace.trace_at_split hcm v t _ hzAt, GlobalTheory.LatVac.evFin_liftV]
 
   simp only [GlobalTheory.WeilM.hTens, map_mul, map_neg, map_one, map_sum, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM, Matrix.map_apply, piW_cA, piW_inclR,
   GlobalTheory.AdelicU.comp_conj_conj hcm, AlgHom.comp_apply, hJ, hK]

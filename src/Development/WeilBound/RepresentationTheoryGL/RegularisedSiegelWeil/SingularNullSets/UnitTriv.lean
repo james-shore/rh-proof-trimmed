@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EventuallyAlgebraMapMemIntegers
 
 @[expose] public section
 
@@ -70,7 +71,7 @@ theorem unit_triv (D : D7) (χ : (AE D)ˣ →* Circle) (hχ : IsHeckeChar D χ) 
   have hbad : {v : Pl D | ¬ (IsGood D.host.F D.host.E v ∧
       algebraMap D.host.F (Fv D.host.F v) ((N : D.host.F)⁻¹) ∈ v.adicCompletionIntegers D.host.F)}.Finite :=
     Filter.eventually_cofinite.1 ((eventually_good (F := D.host.F) (E := D.host.E)).and
-      (eventually_int (F := D.host.F) ((N : D.host.F)⁻¹)))
+      (_root_.GlobalTheory.AdelicU.eventually_algebraMap_mem_integers (F := D.host.F) ((N : D.host.F)⁻¹)))
   refine ⟨hbad.toFinset, fun S hS u hinf hSv hoff => ?_⟩
   have hgood : ∀ v ∉ S, IsGood D.host.F D.host.E v ∧
       algebraMap D.host.F (Fv D.host.F v) ((N : D.host.F)⁻¹) ∈ v.adicCompletionIntegers D.host.F := by

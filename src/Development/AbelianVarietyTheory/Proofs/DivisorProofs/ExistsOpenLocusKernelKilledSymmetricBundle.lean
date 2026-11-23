@@ -57,13 +57,13 @@ theorem exists_open_kerKilled_locus : ∀ (d : ℕ) (S' : Scheme.{0}) [IsLocally
   intro d S' _ G _ _ P hG hP h1 h2 hs
   refine ⟨sSup {V | GlobalTheory.KerKilledLocus.KerKilledOn d G P V}, ?_, ?_⟩
   · intro V hV
-    refine GlobalTheory.T.kernelKilledOverOpen_of_local d S' G P V ?_
+    refine _root_.GlobalTheory.KerKilledLocal.kerKilledOn_of_local d S' G P V ?_
     intro p hp
     obtain ⟨W, hW, hpW⟩ := (TopologicalSpace.Opens.mem_sSup).1 (hV hp)
     exact ⟨W, hpW, hW⟩
   · intro T g A' _ _ φ φ₂ P' hpb hsq hP' hiso hu hamp hker
     rintro _ ⟨t, rfl⟩
-    obtain ⟨V, hV, hK⟩ := GlobalTheory.T.exists_open_kernel_killed_near_point d S' G P hG hP h1 h2 hs T g A' φ φ₂ P' hpb hsq hP' hiso hu hamp hker t
+    obtain ⟨V, hV, hK⟩ := _root_.GlobalTheory.KerKilledNear.kerKilledOn_near d S' G P hG hP h1 h2 hs T g A' φ φ₂ P' hpb hsq hP' hiso hu hamp hker t
     exact (TopologicalSpace.Opens.mem_sSup).2 ⟨V, hK, hV⟩
 
 end GlobalTheory.KerKilledLocus

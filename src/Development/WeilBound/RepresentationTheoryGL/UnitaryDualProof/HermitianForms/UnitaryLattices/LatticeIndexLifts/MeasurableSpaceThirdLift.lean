@@ -169,7 +169,7 @@ theorem cov {K : Set (Fin (m + 1) → k)} (hK : IsCompact K) (h0 : (0 : Fin (m +
     exact ENNReal.ofReal_le_ofReal hb
   have hnn : ∀ η ∈ S, 0 ≤ (B (av ψ col η M v) v).re := fun η hη =>
     le_trans (mul_nonneg (Df_re_nonneg hCp η v) ENNReal.toReal_nonneg) (hbd η hη).1
-  have hbes := av_bessel ψ hψ col hS.col_zero hS.col_add hS.smooth_col B hBp hBc M hML S hSd v
+  have hbes := _root_.PositivityTheory.RgUd.Form.U.Lift2.AvA.av_bessel' ψ hψ col hS.col_zero hS.col_add hS.smooth_col B hBp hBc M hML S hSd v
   calc ∫⁻ ξ in K, ENNReal.ofReal (Df gl s C ξ v v).re ∂ν
       ≤ ∫⁻ ξ in ⋃ η ∈ S, (fun ξ => ξ - η) ⁻¹' (perp ψ M : Set (Fin (m + 1) → k)),
           ENNReal.ofReal (Df gl s C ξ v v).re ∂ν := lintegral_mono_set hKS

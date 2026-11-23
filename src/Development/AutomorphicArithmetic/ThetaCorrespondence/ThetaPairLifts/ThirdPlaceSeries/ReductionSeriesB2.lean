@@ -83,23 +83,17 @@ private theorem listPin_thetaTwist {K : Ctx} {B : Base} {f : Fr B.toPre}
 open GlobalTheory.Mem.R3.Tr in
 theorem points_step_alt_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → SerN → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, ∀ cDep : ℝ, _root_.GlobalTheory.HeightCounting.Up.ModuliPointsExistList' hL cDep := by
   intro hPr hSer hL cDep
-  refine StepW.trans (_root_.GlobalTheory.T.geoLaws_iC_at_levelB1_of_serN hPr hSer hL) (StepW.of_all ?_)
+  refine StepW.trans (_root_.GlobalTheory.HeightCounting.Up.geoLaws_at_levelB1_states hPr hSer hL) (StepW.of_all ?_)
   intro K B f T w _ _ hq P x l
   have hlaw := hq P x l
   let th := GlobalTheory.GeoTie.geoNTh hlaw
   obtain ⟨x', hl', ho, hLc⟩ :=
-    _root_.GlobalTheory.T.exists_levelB2_twist_of_thetaTie hL x l th (GlobalTheory.GeoTie.geoTie hlaw)
+    _root_.GlobalTheory.HeightCounting.Up.exists_levelB2_twisted_state_of_thetaTie hL x l th (GlobalTheory.GeoTie.geoTie hlaw)
   refine ⟨x', hl', fun hLs => ?_⟩
   exact listPin_of_stage_eq (a := x'.o.Z) (b := (oTw x (thTw (Dof x) th)).Z)
     (congrArg (fun o : P.q.Over => o.Z) ho) hLc
     (listPin_thetaTwist x th x.m.z.R.toRealDat.toLevCh (c := cDep) (bound := K.s.b) hLs)
 end GlobalTheory.HeightCounting.Up
 end
-end
-section
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
-
-theorem _root_.GlobalTheory.T.moduliPointsExistList_of_inputs_serN : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → SerN → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, ∀ cDep : ℝ, _root_.GlobalTheory.HeightCounting.Up.ModuliPointsExistList' hL cDep := by
-  exact _root_.GlobalTheory.HeightCounting.Up.points_step_alt_alt
 end
 end

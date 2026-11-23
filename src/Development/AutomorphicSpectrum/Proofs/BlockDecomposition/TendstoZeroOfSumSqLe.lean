@@ -57,11 +57,6 @@ open scoped ValuativeRel
 
 namespace GlobalTheory.CompanionTheory.Satake
 
-theorem norm_sq_le_of_psd {V : Type} [AddCommGroup V] [Module ℂ V] (B : V →ₗ⋆[ℂ] V →ₗ[ℂ] ℂ)
-    (herm : ∀ u u', starRingEnd ℂ (B u u') = B u' u) (psd : ∀ u, 0 ≤ (B u u).re) (x y : V) :
-    ‖B x y‖ ^ 2 ≤ (B x x).re * (B y y).re :=
-  _root_.UpperTheory.Reformulated.B.DYhd3.main B herm psd x y
-
 theorem tendsto_zero_of_sum_sq_le (g : ℕ → ℂ) (D : ℝ)
     (hD : ∀ T, ∑ j ∈ Finset.range T, ‖g j‖ ^ 2 ≤ D) :
     Filter.Tendsto g Filter.atTop (nhds 0) := by
@@ -191,7 +186,7 @@ theorem l10 : L6 → L7 → L8 → liftZP_newton → ParameterUpperBound := by
   have hterm : ∀ j, ‖w‖ ^ 2 * ‖g j‖ ^ 2 ≤
       w.re * ((qF F : ℝ) ^ (j * m) * (B' (ρ (a j) v) (ρ (a j) v)).re) := by
     intro j
-    have hcs := norm_sq_le_of_psd B' hI.herm hI.psd v (ρ (a j) v)
+    have hcs := _root_.UpperTheory.Reformulated.B.DYhd3.main B' hI.herm hI.psd v (ρ (a j) v)
     rw [hval j, norm_mul, norm_mul, norm_inv, norm_pow] at hcs
     have := bound_arith r hr m j ‖w‖ ‖h j‖ w.re _ hcs
     rw [hq]

@@ -141,6 +141,6 @@ theorem logIffHomGa : LogIffHomGa := by
     exact ⟨⟨h0, h2.trans (key h0).symm⟩, h1⟩
   · rintro ⟨⟨h0, h2⟩, h1⟩
     exact ⟨h0, h1, h2.trans (key h0)⟩
-theorem substInjective : SubstInjective := substInjective_statement
+alias substInjective := _root_.Formalism.G.substInjective_statement
 
 end Formalism.G

@@ -83,7 +83,7 @@ theorem L_an : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpObj G] (A : Ove
     have h3 : HasDerivAt (fun τ : ℂ => τ • c) c τ := by
       simpa using (hasDerivAt_id τ).smul_const c
     have h4 := h1.hasFDerivAt.comp_hasDerivAt τ h3
-    rw [GlobalTheory.T.derivation_hol_unif_tangent R G A z φ cart g Lb u v₀ hv₀ c v' hl hd V hV a (τ • c) hτ] at h4
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.InvDer.fderiv_valAt_eq_der R G A z φ cart g Lb u v₀ hv₀ c v' hl hd V hV a (τ • c) hτ] at h4
     exact h4
   have hanal : ∀ a : Γ(G.left, V), AnalyticAt ℂ (fun τ : ℂ => valAt' ((u.ex (τ • c)).left ≫ φ) V a) 0 := fun a =>
     DifferentiableOn.analyticAt (s := (fun τ : ℂ => τ • c) ⁻¹' Z)

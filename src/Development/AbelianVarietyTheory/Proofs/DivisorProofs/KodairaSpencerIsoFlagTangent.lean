@@ -47,11 +47,6 @@ open AlgebraicGeometry CategoryTheory
 
 namespace GlobalTheory.FlagTan
 
-theorem spMap_comp_spMap {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (φ : A →+* B) (ψ : B →+* C) :
-    spMap ψ ≫ spMap φ = spMap (ψ.comp φ) := by
-  unfold spMap
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
 theorem isTanX_dir {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
     {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {K : Type} [Field K] [Algebra c.F K]
     {ι : Type} [Fintype ι] (y : FrPt Xo c K) (X : Sp (TrivSqZeroExt K (ι → K)) ⟶ Xo.X)
@@ -62,8 +57,8 @@ theorem isTanX_dir {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Recip
     unfold sOf
     have e : (GlobalTheory.FlagTan.dir c M).toRingHom.comp (algebraMap c.F (TrivSqZeroExt K (ι → K))) =
         algebraMap c.F (DualNumber K) := (GlobalTheory.FlagTan.dir c M).comp_algebraMap
-    rw [spMap_comp_spMap, ← RingHom.comp_assoc, e]
-  · rw [← Category.assoc, spMap_comp_spMap, ← h2]
+    rw [_root_.GlobalTheory.spMap_comp_ring, ← RingHom.comp_assoc, e]
+  · rw [← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, ← h2]
     congr 2
     ext z <;> simp
 

@@ -75,9 +75,7 @@ section Val
 
 variable {E K : Type} [Field E] [NumberField E] [Field K] [NumberField K]
 
-theorem conjP_conjP' [StarRing E] (P : HeightOneSpectrum (𝓞 E)) : conjPrime₂ (conjPrime₂ P) = P := by
-  ext x
-  rw [mem_conjP, mem_conjP, cO_cO]
+alias conjP_conjP' := _root_.GlobalTheory.CharVal.Vp.conjP_conjP'
 
 theorem valuation_conjP [StarRing E] (P : HeightOneSpectrum (𝓞 E)) (x : E) :
     (conjPrime₂ P).valuation E x = P.valuation E (star x) := by
@@ -106,9 +104,7 @@ theorem val_natCast_of_notMem_sq {Q : HeightOneSpectrum (𝓞 E)} {p : ℕ} (h1 
   push_cast at e1 e2
   omega
 
-theorem exists_pull (φ : E →+* K) (w : HeightOneSpectrum (𝓞 K)) :
-    ∃ Q : HeightOneSpectrum (𝓞 E), ∀ r : 𝓞 E, r ∈ Q.asIdeal ↔ RingOfIntegers.mapRingHom φ r ∈ w.asIdeal :=
-  _root_.GlobalTheory.ComapPrimeExistence.exists_comap_prime φ w
+alias exists_pull := _root_.GlobalTheory.ComapPrimeExistence.exists_comap_prime
 
 theorem val_emb_le_one {φ : E →+* K} {w : HeightOneSpectrum (𝓞 K)} {Q : HeightOneSpectrum (𝓞 E)}
     (h : ∀ r : 𝓞 E, r ∈ Q.asIdeal ↔ RingOfIntegers.mapRingHom φ r ∈ w.asIdeal) {x : E} (hx : Q.valuation E x ≤ 1) :

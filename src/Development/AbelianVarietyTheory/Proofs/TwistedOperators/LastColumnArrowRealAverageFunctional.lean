@@ -141,7 +141,7 @@ theorem real_average : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G 
   have hp : DefPair D.R.m (.chi i D.R.m : Pair T) := ⟨hi, rfl⟩
   have hh : h = ((finOf _ h : GfC (G.V (.grid (i + 1) D.R.m))) : GA D (G.V (.grid (i + 1) D.R.m))) *
       ((infOf _ h : GinfC (G.V (.grid (i + 1) D.R.m))) : GA D (G.V (.grid (i + 1) D.R.m))) := by
-    rw [← GlobalTheory.AdelicSplit.commute_GinfC_GfC _ (infOf _ h).2 (finOf _ h).2, infOf_mul_finOf]
+    rw [← _root_.GlobalTheory.PointAtPlaceHom.comm_of_mem _ (infOf _ h).2 (finOf _ h).2, infOf_mul_finOf]
   let ℓ : PolF D (G.pT (.chi i D.R.m : Pair T)).rank (G.pS (.chi i D.R.m : Pair T)).rank →ₗ[ℂ] ℂ :=
     ((LinearMap.proj 0 : (WO (G.pS (.chi i D.R.m : Pair T)) (G.pT (.chi i D.R.m : Pair T)) → ℂ) →ₗ[ℂ] ℂ) ∘ₗ
       W.om (.chi i D.R.m) (G.toPair (.chi i D.R.m) ((x * S.N.u _ : FinPt G (.grid i D.R.m)) : GA D (G.V (.grid i D.R.m)))

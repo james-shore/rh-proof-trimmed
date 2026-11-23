@@ -75,7 +75,7 @@ theorem rTrans_lev {D : D7} {θ : InfFam D} (hθ : IsInfFam θ) {V : HSp D} {S :
     (hk : k ∈ GfC V) (hm : b⁻¹ * k * b ∈ J) :
     rTrans k (rTrans (a * b) (G w)) = χ (b⁻¹ * k * b) • rTrans (a * b) (G w) := by
   have h1 := (GlobalTheory.ValMoveProof.valMove D θ hθ V S M J χ).1 G hG w _ hm
-  have hc : a * k = k * a := GlobalTheory.AdelicSplit.commute_GinfC_GfC V ha hk
+  have hc : a * k = k * a := _root_.GlobalTheory.PointAtPlaceHom.comm_of_mem V ha hk
   funext y
   have h2 := congrFun h1 (y * (a * b))
   simp only [rTrans, Pi.smul_apply, smul_eq_mul] at h2 ⊢

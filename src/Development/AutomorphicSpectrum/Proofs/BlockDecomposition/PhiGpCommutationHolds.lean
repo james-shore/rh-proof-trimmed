@@ -136,12 +136,12 @@ theorem coinv_cInd (H U : Subgroup G) (hUH : U ≤ H) (hUn : U.Normal) (θ : U �
     intro y hy
     obtain ⟨f, rfl⟩ := Submodule.Quotient.mk_surjective _ y
     have h0 : Tl f = 0 := hy
-    refine (Submodule.Quotient.mk_eq_zero _).2 (GlobalTheory.T.jacquet_kernel_span_twisted_character H U hUH hUn θ ι hstab σ q hσ hker hD hbase f fun x => ?_)
+    refine (Submodule.Quotient.mk_eq_zero _).2 (_root_.GlobalTheory.CompanionTheory.LeibPhi.Kernel.mem_twKer_of_restrict_zero H U hUH hUn θ ι hstab σ q hσ hker hD hbase f fun x => ?_)
     rw [← hTl, h0]
     rfl
   have hsurj : Function.Surjective Tq := by
     intro F
-    obtain ⟨f, hf⟩ := GlobalTheory.T.quotient_map_induced_surjective_intertwiner H H' ι σ σ' q hι hσ hqs hH' hq hemb hbase F
+    obtain ⟨f, hf⟩ := _root_.GlobalTheory.CompanionTheory.LeibPhi.exists_cInd_restrict_eq H H' ι σ σ' q hι hσ hqs hH' hq hemb hbase F
     refine ⟨Submodule.Quotient.mk f, ?_⟩
     show Tl f = F
     exact hext _ _ fun x => by rw [hTl, hf]

@@ -163,7 +163,7 @@ theorem mem_cptPart_iff_torusOf_mem_intUnits : ∀ (E : Type) [Field E] [NumberF
           WithZero.exp m := by
       rw [isIntegral_iff_of_mulVec B φ _ _ (linModel_mul w e B ψ hmod.1 _ _ (specInv s hs)), GlobalTheory.IntMatBound.isIntegral_iff_bounded K e hint n]
       simp only [hmat]
-    rw [GlobalTheory.T.isCompact_closure_zpowers_iff_bounded_entries w n (UL n w) hcl s]
+    rw [_root_.GlobalTheory.PowersCompact.isCompact_closure_zpowers_iff w n (UL n w) hcl s]
     show _ ↔ IsIntegral K.O _ ∧ IsIntegral K.O _
     rw [hI1, hI2]
     simp only [SubgroupClass.coe_zpow]

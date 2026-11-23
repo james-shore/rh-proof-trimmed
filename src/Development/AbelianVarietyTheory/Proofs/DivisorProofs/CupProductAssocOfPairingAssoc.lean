@@ -89,14 +89,14 @@ theorem GlobalTheory.EtC.Pair.cup_assoc_of_mul_assoc : ∀ (R : Type) [CommRing 
   obtain ⟨α, rfl⟩ := CohomologyClass.mk_surjective a
   obtain ⟨β, rfl⟩ := CohomologyClass.mk_surjective b
   obtain ⟨γ, rfl⟩ := CohomologyClass.mk_surjective c
-  obtain ⟨δ, hδ⟩ := (GlobalTheory.T.cup_eq_class_of_isAW R μ h1).1 α β
-  rw [(GlobalTheory.T.cup_eq_class_of_isAW R μ h1).2 α β δ hδ]
-  obtain ⟨ε, hε⟩ := (GlobalTheory.T.cup_eq_class_of_isAW R ν h2).1 δ γ
-  rw [(GlobalTheory.T.cup_eq_class_of_isAW R ν h2).2 δ γ ε hε]
-  obtain ⟨δ', hδ'⟩ := (GlobalTheory.T.cup_eq_class_of_isAW R μ' h3).1 β γ
-  rw [(GlobalTheory.T.cup_eq_class_of_isAW R μ' h3).2 β γ δ' hδ']
-  obtain ⟨ε', hε'⟩ := (GlobalTheory.T.cup_eq_class_of_isAW R ν' h4).1 α δ'
-  rw [(GlobalTheory.T.cup_eq_class_of_isAW R ν' h4).2 α δ' ε' hε']
+  obtain ⟨δ, hδ⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ h1).1 α β
+  rw [(_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ h1).2 α β δ hδ]
+  obtain ⟨ε, hε⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R ν h2).1 δ γ
+  rw [(_root_.GlobalTheory.EtC.Pair.cup_spec_full R ν h2).2 δ γ ε hε]
+  obtain ⟨δ', hδ'⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ' h3).1 β γ
+  rw [(_root_.GlobalTheory.EtC.Pair.cup_spec_full R μ' h3).2 β γ δ' hδ']
+  obtain ⟨ε', hε'⟩ := (_root_.GlobalTheory.EtC.Pair.cup_spec_full R ν' h4).1 α δ'
+  rw [(_root_.GlobalTheory.EtC.Pair.cup_spec_full R ν' h4).2 α δ' ε' hε']
   suffices hh : ε.1 = ε'.1 by rw [show ε = ε' from Subtype.ext hh]
   apply (GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R (E := E) (I := L) (n := w)).2.2.1
   intro N s hs U x

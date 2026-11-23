@@ -152,7 +152,7 @@ theorem coords_of_cover : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K
           _ = h₀.f (a.f b * y x i) := (map_mul h₀.f _ _).symm }
   refine ⟨v, ?_⟩
   intro Q' h' a' hcomm x
-  have hU := GlobalTheory.T.prismPushoutModAdicPow_universal l _ B C Q Q₀ h a a₀ h₀ hpo Q' a' h' hcomm
+  have hU := _root_.GlobalTheory.BSP.PoUniv.isPO_univ l _ B C Q Q₀ h a a₀ h₀ hpo Q' a' h' hcomm
   obtain ⟨c, hc, -⟩ := hU
   have e : (fun i => h'.f (v x i)) = fun i => (c.comp h₀).f (y x i) :=
     congrArg (fun k : Hom Q Q' => fun i => k.f (y x i)) hc.2.symm

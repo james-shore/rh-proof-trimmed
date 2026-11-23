@@ -147,7 +147,7 @@ theorem conjMap_isCuspFun : GlobalTheory.Published.DiscreteSeriesClassification 
   obtain ⟨hd, hl, hH, hb, -⟩ := GlobalTheory.Core.Mi.seeData_of_gap D X hgap
   have hSL : GlobalTheory.DSId.StrictLow := GlobalTheory.ClassificationConsequences.strictLow_of_dsClass
     (GlobalTheory.Published.discreteSeriesClassification_iff.1 hDSC)
-  have hL2 := ((GlobalTheory.Dec.CuspAll.cusp_all hSL X.B X.dv _ hd (GlobalTheory.PinScale.one_le_g X) hb hl hH Φ hΦ).2
+  have hL2 := ((GlobalTheory.Dec.CuspAll.cusp_all hSL X.B X.dv _ hd (_root_.Formalism.L2.SG.PoincareInHH.Cut.one_le_g X) hb hl hH Φ hΦ).2
     (X.B.tens (GlobalTheory.ConjRowMult.vecC X M c u))).1
   have hψc := isCuspFn_of_contRep X hψ hL2
   have hY := isCuspFun_of_isCuspFn_iota D X.B.I h X.B.μf ψ hψ.1 hψ.2.1 hψc

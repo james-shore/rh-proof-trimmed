@@ -371,7 +371,7 @@ theorem unipRad_cocompact (W : Submodule E V.V) (hW : IsIsotropic V W) :
   have e : V.gram⁻¹ * cT (hc.sig : E →+* E) (C * L) * V.gram =
       V.gram⁻¹ * cT (hc.sig : E →+* E) L * (cT (hc.sig : E →+* E) C * V.gram) := by
     rw [cT_mul]; simp only [Matrix.mul_assoc]
-  obtain ⟨K', hK', h1, h2⟩ := GlobalTheory.T.twoStepUnipotent_compact_mod_subring (Matrix (Fin V.rank) (Fin V.rank) (AF F ⊗[F] E)) (adj hc V)
+  obtain ⟨K', hK', h1, h2⟩ := _root_.GlobalTheory.TwoStepUnipotent.compact_mod_subring (Matrix (Fin V.rank) (Fin V.rank) (AF F ⊗[F] E)) (adj hc V)
     (φ.mapMatrix (m := Fin V.rank)).range ((C * L).map φ) (adj hc V ((C * L).map φ))
     (Matrix.scalar _ (φ (1 / 2))) (Set.pi Set.univ fun _ => Set.pi Set.univ fun _ => K)
     ((continuous_const.matrix_mul (continuous_id.matrix_map
@@ -475,7 +475,7 @@ theorem stab_latHat_iff (k : GFin hc V) :
       ∀ v, projLoc hc V v k ∈ hypLoc hc V v := by
   classical
   have H : ∀ y, y ∈ Formalism.MainNotions.StandardLattice.latHat F E {x | ∑ i, x i • V.frame i ∈ V.L0} ↔
-    ∀ v, evVec V v y ∈ latLoc (F := F) V v := GlobalTheory.T.mem_adelic_lattice_iff_local_selfDual_completion F E V
+    ∀ v, evVec V v y ∈ latLoc (F := F) V v := _root_.GlobalTheory.LatticeLocalGlobal.mem_latHat_iff F E V
   constructor
   · intro h v z
     have h1 : evVec V v (fun i => tensNU (sgV v) (sgV_mul v) (z i)) = z :=

@@ -286,9 +286,6 @@ theorem T_D {Φ : d.Fn} (hΦ : Φ ∈ d.sch) {u : Matrix (Fin d.m) (Fin d.n ⊕ 
     map_smul, smul_eq_mul]
   ring
 
-theorem evI_add' (a b : AF F) : evI F (a + b) = evI F a + evI F b :=
-  map_add (InfiniteAdeleRing.ringEquiv_mixedSpace F) a.1 b.1
-
 theorem sp_add_right (x y y' : Matrix (Fin d.m) (Fin d.n ⊕ Fin d.n) (AE F E)) :
     sp d x (y + y') = sp d x y + sp d x y' := by
   rw [sp_eq, sp_eq, sp_eq, map_add (f := _), Prod.fst_add, Prod.snd_add, dotProduct_add, add_dotProduct]
@@ -300,7 +297,7 @@ theorem sp_smul_left (c : AF F) (x y : Matrix (Fin d.m) (Fin d.n ⊕ Fin d.n) (A
   ring
 
 theorem mZ_add (Z Z' X : Mx F E d.m d.n) : mZ d (Z + Z') X = mZ d Z X + mZ d Z' X := by
-  simp only [mZ, Matrix.add_mul, sp_add_right, evI_add', map_add (f := _)]
+  simp only [mZ, Matrix.add_mul, sp_add_right, _root_.GlobalTheory.ThK.Dbl.Dense.evI_add, map_add (f := _)]
 
 theorem td_T_add (Φ Ψ : d.Fn) (X : Mx F E d.m d.n) : d.T (Φ + Ψ) X = d.T Φ X + d.T Ψ X := by
   simp only [SD.T, rho_add_fn, map_add (f := _)]

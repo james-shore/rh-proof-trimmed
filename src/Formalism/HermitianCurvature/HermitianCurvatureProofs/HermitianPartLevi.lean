@@ -46,6 +46,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.Block3MulBlocks
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.UnipotentCoordinatesMeasurePreserving
 
 @[expose] public section
 
@@ -57,10 +59,6 @@ noncomputable section
 namespace Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.P.LevelPointCoordinates
-
-theorem castM_mul' {k a b : ℕ} (h : a = b) (g g' : B.Mat k a) :
-    D.castM h (g * g') = D.castM h g * D.castM h g' := by
-  simp only [D.castM, Matrix.reindex_apply, Matrix.submatrix_mul_equiv]
 
 theorem exp_castM {k a b : ℕ} (h : a = b) (M : B.Mat k a) :
     NormedSpace.exp (D.castM h M) = D.castM h (NormedSpace.exp M) := by
@@ -81,9 +79,6 @@ theorem exp_block_two_diagonal {p s : ℕ} (A : Matrix (Fin p) (Fin p) ℂ) (Dd 
     NormedSpace.exp (U.blk2 A 0 0 Dd) = U.blk2 (NormedSpace.exp A) 0 0 (NormedSpace.exp Dd) := by
   unfold U.blk2
   rw [exp_reindex, exp_fromBlocks]
-
-theorem symmetricScalarBlockMatrix_one_zero {p s : ℕ} : U.blk2 (1 : Matrix (Fin p) (Fin p) ℂ) 0 0 (1 : Matrix (Fin s) (Fin s) ℂ) = 1 := by
-  simp [U.blk2]
 
 theorem block_two_identity_conjTranspose {p s : ℕ} (A : Matrix (Fin p) (Fin p) ℂ) :
     (U.blk2 A 0 0 (1 : Matrix (Fin s) (Fin s) ℂ))ᴴ = U.blk2 Aᴴ 0 0 1 := by
@@ -108,7 +103,7 @@ theorem block_two_exp_conjTranspose_inv {j : ℕ} (y : MJ j) :
   rw [Ux4.symmetricScalarBlockMatrix_mul]
   simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.mul_one]
   have hu : IsUnit (NormedSpace.exp yᴴ).det := (Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)
-  rw [Matrix.exp_neg, ← Matrix.exp_conjTranspose, Matrix.nonsing_inv_mul _ hu, symmetricScalarBlockMatrix_one_zero]
+  rw [Matrix.exp_neg, ← Matrix.exp_conjTranspose, Matrix.nonsing_inv_mul _ hu, _root_.Formalism.FourierDecayAlt.P.Ux5.block2_one]
 
 theorem exp_levi {k r j : ℕ} (hj : j + 1 ≤ r) (x : MJ j) (t : ℝ) :
     NormedSpace.exp ((t : ℂ) • levi k r j x) = D.castM (by omega : j + 1 + (r - (j + 1)) = r)
@@ -132,10 +127,7 @@ theorem curveLevi : CurveLevi := by
   intro k r j hj Z τ γ x t
   rw [exp_levi hj]
   unfold x0
-  rw [← castM_mul', Ux4.mMap_mul_muP, zfull_mul]
+  rw [← _root_.Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul, Ux4.mMap_mul_muP, zfull_mul]
 
 end Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential
 
-theorem Formalism.FourierDecayAlt.P.levi_curve : Formalism.FourierDecayAlt.P.WirtingerOperators.CurveLevi := Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential.curveLevi
-
-theorem Formalism.FourierDecayAlt.P.hermitian_part_levi : Formalism.FourierDecayAlt.P.WirtingerOperators.HpartLevi := Formalism.FourierDecayAlt.P.WirtingerOperators.LeviExponential.hpartLevi

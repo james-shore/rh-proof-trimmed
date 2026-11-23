@@ -51,12 +51,4 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.IwUFacts
 
-variable {E : Type} [Field E] [NumberField E] [IsCMField E]
-
-theorem continuous_cj (w : Pl E) : Continuous (cj w) := by
-  unfold cj
-  split_ifs with h
-  · exact h.choose_spec.1
-  · exact continuous_id
-
 end GlobalTheory.CompanionTheory.IwUFacts

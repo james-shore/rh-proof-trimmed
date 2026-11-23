@@ -239,9 +239,7 @@ theorem kap_gen (U : Scheme.{0}) (ζ : Prim q Γ(U, ⊤)) :
   exact (kap_sec U (Submodule.Quotient.mk (Finsupp.single ζ 1))).trans
     (congrArg (ofRings.sec unitsF U) (kapN_gen Γ(U, ⊤) ζ))
 
-theorem sec_res_comp {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (x : Sec F U) :
-    Sec.res (k ≫ g) x = Sec.res k (Sec.res g x) := by
-  simp [Sec.res]
+alias sec_res_comp := _root_.GlobalTheory.TwSec.res_comp
 
 theorem sec_map_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
     Sec.map φ (Sec.res g x) = Sec.res g (Sec.map φ x) := by
@@ -335,12 +333,6 @@ noncomputable section
 namespace GlobalTheory.EtC.KummerSeq
 variable {q : ℕ} [NeZero q]
 
-theorem loc_mono' {U : Scheme.{0}} {P Q : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : Loc U P) (hPQ : ∀ V g, P V g → Q V g) :
-    Loc U Q := loc_calculus.2.1 U P Q h hPQ
-
-theorem loc_trans' {U : Scheme.{0}} {P : ∀ V : Scheme.{0}, (V ⟶ U) → Prop}
-    (h : Loc U fun V g => Loc V fun W k => P W (k ≫ g)) : Loc U P := loc_calculus.2.2.2.2.1 U P h
-
 theorem isUnit_res {V U : Scheme.{0}} (g : V ⟶ U) (hq : IsUnit (q : Γ(U, ⊤))) : IsUnit (q : Γ(V, ⊤)) := by
   simpa using hq.map g.appTop.hom
 
@@ -349,11 +341,11 @@ theorem kap_nsmul {U : Scheme.{0}} (c : ℕ) (a : Sec (Rt q) U) : Sec.map (kap q
 
 theorem lift_root (V : Scheme.{0}) (x : (Γ(V, ⊤))ˣ) (hq : IsUnit (q : Γ(V, ⊤))) (hx : x ^ q = 1) :
     Loc V fun W k => ∃ a : Sec (Rt q) W, Sec.map (kap q) a = unitSec (Units.map k.appTop.hom.toMonoidHom x) := by
-  refine loc_trans' (loc_mono' ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q V).1 hq) ?_)
+  refine _root_.GlobalTheory.TwSec.loc_trans (_root_.GlobalTheory.TwSec.loc_mono ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q V).1 hq) ?_)
   rintro W k ⟨ζ⟩
   have hx' : ((Units.map k.appTop.hom.toMonoidHom x : (Γ(W, ⊤))ˣ) : Γ(W, ⊤)) ^ q = 1 := by
     rw [← Units.val_pow_eq_pow_val, ← map_pow, hx, map_one, Units.val_one]
-  refine loc_mono' ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q W).2.2.1 ζ _ hx') ?_
+  refine _root_.GlobalTheory.TwSec.loc_mono ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q W).2.2.1 ζ _ hx') ?_
   rintro W' k' ⟨c, hc⟩
   refine ⟨c • gen (ζ.map k'.appTop.hom), ?_⟩
   rw [kap_nsmul, kap_gen, ← unitSec_pow]
@@ -370,9 +362,9 @@ namespace GlobalTheory.EtC.KummerSeq
 variable {q : ℕ} [NeZero q]
 
 theorem kap_mono : Mono (kap q) := by
-  refine ((GlobalTheory.T.bigEtaleModuleSheaf_mono_epi_iff_sections ℤ (kap q)).2.1).2 ?_
+  refine ((_root_.GlobalTheory.EtC.mono_epi_sections ℤ (kap q)).2.1).2 ?_
   intro U a ha
-  refine loc_trans' (loc_mono' ((GlobalTheory.T.tateTwist_sections_locally_generated q 1).1 U a) ?_)
+  refine _root_.GlobalTheory.TwSec.loc_trans (_root_.GlobalTheory.TwSec.loc_mono ((_root_.GlobalTheory.EtC.twist_sections q 1).1 U a) ?_)
   rintro V g (h0 | ⟨ζ, c, hc⟩)
   · refine loc_calculus.1 V _ (fun W k => ?_)
     show Sec.res (k ≫ g) a = 0
@@ -383,7 +375,7 @@ theorem kap_mono : Mono (kap q) := by
   · have e : Sec.res (F := Rt q) g a = c • gen ζ := hc
     have h1 : Sec.map (kap q) (Sec.res g a) = 0 := by rw [sec_map_res, ha]; exact map_zero _
     rw [e, kap_nsmul, kap_gen, ← unitSec_pow] at h1
-    refine loc_mono' ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 V _ h1) ?_
+    refine _root_.GlobalTheory.TwSec.loc_mono ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 V _ h1) ?_
     intro W k hk
     have h2 : Units.map k.appTop.hom.toMonoidHom (pu ζ ^ c) = 1 := congrArg (fun y => Additive.toMul (ULift.down y)) hk
     have hz : (ζ.map k.appTop.hom).1 ^ c = 1 := by
@@ -394,11 +386,11 @@ theorem kap_mono : Mono (kap q) := by
     rw [sec_res_comp, e]
     show ((Rt q).obj.map k.op).hom (c • gen ζ) = 0
     rw [map_nsmul]
-    have e2 : Sec.res (F := Rt q) k (gen ζ) = gen (ζ.map k.appTop.hom) := (GlobalTheory.T.tateTwist_sections_locally_generated q 1).2.2.2.1 W V k ζ
+    have e2 : Sec.res (F := Rt q) k (gen ζ) = gen (ζ.map k.appTop.hom) := (_root_.GlobalTheory.EtC.twist_sections q 1).2.2.2.1 W V k ζ
     exact (congrArg (c • ·) e2).trans (smul_twGen_eq_zero W _ c hz)
 
 theorem kap_q : kap q ≫ ((q : ℤ) • 𝟙 Gm) = 0 := by
-  refine (GlobalTheory.T.bigEtaleModuleSheaf_mono_epi_iff_sections ℤ _).2.2.2 0 (fun U a => ?_)
+  refine (_root_.GlobalTheory.EtC.mono_epi_sections ℤ _).2.2.2 0 (fun U a => ?_)
   rw [sec_map_comp, sec_map_smul]
   show ((q : ℕ) : ℤ) • Sec.map (kap q) a = Sec.map 0 a
   have h0 : (q • a : Sec (Rt q) U) = 0 := sec_q_smul (tw q 1) U a
@@ -409,9 +401,9 @@ theorem kap_q : kap q ≫ ((q : ℤ) • 𝟙 Gm) = 0 := by
 
 theorem kap_ker (U : Scheme.{0}) (hq : IsUnit (q : Γ(U, ⊤))) (b : Sec Gm U) (hb : Sec.map ((q : ℤ) • 𝟙 Gm) b = 0) :
     ∃ a, Sec.map (kap q) a = b := by
-  have hinj := ((GlobalTheory.T.bigEtaleModuleSheaf_mono_epi_iff_sections ℤ (kap q)).1).1 kap_mono
+  have hinj := ((_root_.GlobalTheory.EtC.mono_epi_sections ℤ (kap q)).1).1 kap_mono
   refine glue_inj (kap q) hinj U b ?_
-  refine loc_trans' (loc_mono' ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).1 U b) ?_)
+  refine _root_.GlobalTheory.TwSec.loc_trans (_root_.GlobalTheory.TwSec.loc_mono ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).1 U b) ?_)
   rintro V g ⟨(x : ULift.{1} (Additive (Γ(V, ⊤))ˣ)), hx⟩
   have hx' : unitSec (Additive.toMul x.down) = Sec.res (F := Gm) g b := hx
   have hqx : unitSec ((Additive.toMul x.down) ^ q) = 0 := by
@@ -422,12 +414,12 @@ theorem kap_ker (U : Scheme.{0}) (hq : IsUnit (q : Γ(U, ⊤))) (b : Sec Gm U) (
       rw [map_zsmul, natCast_zsmul]
     rw [this, hb]
     exact map_zero _
-  refine loc_trans' (loc_mono' ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 V _ hqx) ?_)
+  refine _root_.GlobalTheory.TwSec.loc_trans (_root_.GlobalTheory.TwSec.loc_mono ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).2.1 V _ hqx) ?_)
   intro W k hk
   have h2 : (Units.map k.appTop.hom.toMonoidHom (Additive.toMul x.down)) ^ q = 1 := by
     rw [← map_pow]
     exact congrArg (fun y => Additive.toMul (ULift.down y)) hk
-  refine loc_mono' (lift_root W _ (isUnit_res (k ≫ g) hq) h2) ?_
+  refine _root_.GlobalTheory.TwSec.loc_mono (lift_root W _ (isUnit_res (k ≫ g) hq) h2) ?_
   rintro W' k' ⟨a, ha⟩
   refine ⟨a, ?_⟩
   rw [ha, ← unitSec_res, ← unitSec_res]
@@ -436,10 +428,10 @@ theorem kap_ker (U : Scheme.{0}) (hq : IsUnit (q : Γ(U, ⊤))) (b : Sec Gm U) (
 
 theorem kap_roots (U : Scheme.{0}) (hq : IsUnit (q : Γ(U, ⊤))) (b : Sec Gm U) :
     Loc U fun V g => ∃ c : Sec Gm V, Sec.map ((q : ℤ) • 𝟙 Gm) c = Sec.res g b := by
-  refine loc_trans' (loc_mono' ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).1 U b) ?_)
+  refine _root_.GlobalTheory.TwSec.loc_trans (_root_.GlobalTheory.TwSec.loc_mono ((toSheafify_loc_bij_lift ℤ (Scheme.Γ ⋙ unitsF)).1 U b) ?_)
   rintro V g ⟨(x : ULift.{1} (Additive (Γ(V, ⊤))ˣ)), hx⟩
   have hx' : unitSec (Additive.toMul x.down) = Sec.res (F := Gm) g b := hx
-  refine loc_mono' ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q V).2.2.2 (isUnit_res g hq) (Additive.toMul x.down)) ?_
+  refine _root_.GlobalTheory.TwSec.loc_mono ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q V).2.2.2 (isUnit_res g hq) (Additive.toMul x.down)) ?_
   rintro W k ⟨v, hv⟩
   refine ⟨unitSec v, ?_⟩
   rw [sec_map_smul]

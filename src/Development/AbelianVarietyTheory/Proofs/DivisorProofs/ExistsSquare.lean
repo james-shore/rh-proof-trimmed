@@ -115,7 +115,7 @@ theorem chi_indep [IsCommMonObj A] {p : ℕ} (hp : (p : R) = 0) {g : Fn2 A} (hg 
     PtExt.chi p g D z = PtExt.chi p g D z' := by
   obtain ⟨t, rfl⟩ : ∃ t, z = z' * t := ⟨z'⁻¹ * z, by simp⟩
   have ht : t ^ p = 1 := by rwa [mul_pow, mul_eq_left] at h
-  have h1 := GlobalTheory.T.symmetric_two_cocycle_sum_pow_mul (Pt A D) D (g D) (hg D).1 (hg D).2 p z' t
+  have h1 := _root_.GlobalTheory.TwoCocycle.sum_pow_mul (Pt A D) D (g D) (hg D).1 (hg D).2 p z' t
   have h2 := (hg D).2 (z' ^ p) 1 1
   have h3 := h0 D t ht
   have h4 : (p : D) = 0 := by rw [← map_natCast (algebraMap R D), hp, map_zero]

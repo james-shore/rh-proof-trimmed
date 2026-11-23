@@ -188,10 +188,10 @@ theorem fibre {c : Coeff l} {P : Ideal (𝓞 E)} {p i n : ℕ} {T : Type} [CommR
   obtain ⟨-, -, pm, pms, pmf, pmv⟩ := hFr
   obtain ⟨pm₁, pm', hpm, hpm', hc, hf⟩ := id hΨ₁
   obtain rfl : pm = pm₁ := GlobalTheory.HeckeFrCompare.gx_ext (by rw [pmf, hpm.2.2]) (by rw [pms, hpm.2.1])
-  have hsy := sv_of_pull pm pms pmv
+  have hsy := _root_.GlobalTheory.HeckeEx.SvPull.sv_pull_eq pm pms pmv
   obtain ⟨hker, hisog⟩ := hfam.2.2.2.2 Ω χ.toRingHom y₁.x x₁' Ψ₁ hΨ₁
   obtain ⟨e, he⟩ := hlist Ω χ.toRingHom y₁.x x₁' Ψ₁ hΨ₁
-  obtain ⟨β₁, hβ₁, hvβ⟩ := rigIso_baseChange χ.toRingHom hpm hpm' hc hf hβ
+  obtain ⟨β₁, hβ₁, hvβ⟩ := _root_.GlobalTheory.HeckeEx.exists_isRigIso_baseChange χ.toRingHom hpm hpm' hc hf hβ
   obtain ⟨s₁₁, hs₁₁, hvs⟩ := mulPull_baseChange χ.toRingHom hpm hsy hs₁
   have heps := GlobalTheory.T.heckeKernel_sum_eq_card_torsion_mul_trace E H Dw l Xo Ω y₁.x x₁' Ψ₁ p n y₁.s s' β₁ s₁₁ e hisog hth htr hβ₁ hs₁₁
   haveI : Finite (transKer Xo.univ.t.G Ψ₁) := Finite.of_equiv _ e
@@ -207,7 +207,7 @@ theorem fibre {c : Coeff l} {P : Ideal (𝓞 E)} {p i n : ℕ} {T : Type} [CommR
       sv Xo.univ.t.G Xo.univ.t.PP s₀₁ r z J = sv Xo.univ.t.G Xo.univ.t.PP s₀ (r ≫ pm') z J := by
     obtain ⟨pmB, sB, fB, vB⟩ := hs₀₁
     obtain rfl : pmB = pm' := GlobalTheory.HeckeFrCompare.gx_ext (by rw [fB, hpm'.2.2]) (by rw [sB, hpm'.2.1])
-    exact sv_of_pull pmB sB fun j hj => by
+    exact _root_.GlobalTheory.HeckeEx.SvPull.sv_pull_eq pmB sB fun j hj => by
       have := vB j hj
       erw [NonzeroGenerates.scal_one, _root_.one_mul] at this
       exact this
@@ -226,7 +226,7 @@ theorem fibre {c : Coeff l} {P : Ideal (𝓞 E)} {p i n : ℕ} {T : Type} [CommR
       rw [heps Z r z J hJ]
       refine Finset.sum_congr rfl fun j _ => ?_
       have e₁ : (r ≫ pm) ≫ (translT Xo.univ.t.G (σ j)).left = (r ≫ (translT Xo.univ.t.G (e j).1).left) ≫ pm := by
-        rw [Category.assoc, Category.assoc, translT_comp_can χ.toRingHom (σ j) (e j).1 hpm (he j)]
+        rw [Category.assoc, Category.assoc, _root_.GlobalTheory.HeckeEx.translT_comp_isCan χ.toRingHom (σ j) (e j).1 hpm (he j)]
       rw [e₁, ← hvβ _ _ z J hJ, ← hvs _ _ z J hJ]
     have hs' := sv_smul (A := Xo.univ.t.G) (L := Xo.univ.t.PP) (T := Over.mk x₁') (a := toΓ Ω α') hα' (r ≫ Ψ₁) z hJ
     have h0 : sv Xo.univ.t.G Xo.univ.t.PP s₀ ((r ≫ pm) ≫ Ψ) z J = sv Xo.univ.t.G Xo.univ.t.PP s₀₁ (r ≫ Ψ₁) z J := by
@@ -243,11 +243,11 @@ theorem fibre {c : Coeff l} {P : Ideal (𝓞 E)} {p i n : ℕ} {T : Type} [CommR
     have hw₁ : (lift (𝟙 (Over.mk y₁.x)) b).left ≫ pm = w := GlobalTheory.HeckeFrCompare.gx_ext
       (by rw [Category.assoc, hpm.2.2, reassoc_of% hw₁f]; exact hw.symm)
       (by rw [Category.assoc, hpm.2.1, GlobalTheory.HeckeFrCompare.lift_l_snd]; rfl)
-    refine appLE_eq_of_sv w t t₀ _ (fun z J hJ => ?_) j hj
+    refine _root_.GlobalTheory.HeckeEx.appLE_eq_mul_of_sv w t t₀ _ (fun z J hJ => ?_) j hj
     rw [← hw₁, hv _ _ z J hJ, hw₁f, map_mul, gs_mul (𝟙 (Sp Ω)) z ⊤ trivial, map_natCast]
     congr 2
     rw [gs_eq (𝟙 (Sp Ω)) z ⊤ trivial, map_natCast, map_natCast]
-  · obtain ⟨w', hw'f, hw'nz⟩ := exists_ratPt_sv_ne_zero (hg₀₁ : IsThGen x₁' s₀₁)
+  · obtain ⟨w', hw'f, hw'nz⟩ := _root_.GlobalTheory.ThetaNZ.exists_ratPt_sv_ne_zero (hg₀₁ : IsThGen x₁' s₀₁)
     let b' : Over.mk x₁' ⟶ Xo.univ.t.G := Over.homMk (w' ≫ (snd (Over.mk x₁') Xo.univ.t.G).left) (by
       show (w' ≫ (snd (Over.mk x₁') Xo.univ.t.G).left) ≫ Xo.univ.t.G.hom = x₁'
       rw [Category.assoc, GlobalTheory.HeckeFrCompare.snd_hom, reassoc_of% hw'f])
@@ -265,7 +265,7 @@ theorem fibre {c : Coeff l} {P : Ideal (𝓞 E)} {p i n : ℕ} {T : Type} [CommR
       rw [(ht _ _ z I hJ).2, Category.assoc, ← hc, ← Category.assoc, ← hv₀ _ _ z I hJ, hr₁]
       intro h0
       exact hw'nz z I hJ (by simpa using congrArg (· * ((val β ((lift (𝟙 (Over.mk y₁.x)) a).left ≫ pm) z I)⁻¹).val) h0)
-    obtain ⟨j, hj, hne'⟩ := appLE_ne_zero_of_sv _ t₀ z I hJ hne
+    obtain ⟨j, hj, hne'⟩ := _root_.GlobalTheory.HeckeEx.exists_appLE_ne_zero_of_sv_ne_zero _ t₀ z I hJ hne
     exact ⟨j, _, hj, hwq, hne'⟩
 
 end GlobalTheory.HeckeScal
@@ -307,7 +307,7 @@ theorem GlobalTheory.HeckeScal.exists_scal_of_family : ∀ (E : Type) [Field E] 
   have hχa : χ a' = ((n / Ideal.absNorm P ^ i : ℕ) : Ω) * α' := by
     have e1 := congrArg (fun f => (w.appLE _ ⊤ hj).hom f) (ha' j)
     simp only [map_mul] at e1
-    rw [appLE_toΓ χ.toRingHom _ _ w hj hw a', hval w hw j hj] at e1
+    rw [_root_.GlobalTheory.PullConst.pull_const_apply χ.toRingHom _ _ w hj hw a', hval w hw j hj] at e1
     have e2 := congrArg (Scheme.ΓSpecIso (CommRingCat.of Ω)).hom.hom e1
     simp only [map_mul, hφ] at e2
     have hne' : (Scheme.ΓSpecIso (CommRingCat.of Ω)).hom.hom ((w.appLE _ ⊤ hj).hom (t₀.f j)) ≠ 0 := by

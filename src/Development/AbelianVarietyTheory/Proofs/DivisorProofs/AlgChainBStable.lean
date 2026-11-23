@@ -134,7 +134,7 @@ theorem grp_stab (s : Finset ι) (g : ι → GL (Fin N) O) :
   unfold chainB at hx ⊢
   split_ifs at hx ⊢ with hi
   · exact Submodule.mem_top
-  · exact Formalism.UG.P.weyl_module_GL_stable O N N le_rfl (res N (lam i)) (g i) x.1 hx
+  · exact _root_.Formalism.UG.P.wlocal_global O N N le_rfl (res N (lam i)) (g i) x.1 hx
 
 theorem proj_stab (s : Finset ι) (τ : ι) (w : Fin N → ℕ) (a : Module.End O (NablaT O N lam))
     (ha : IsProj O N lam τ w a) :

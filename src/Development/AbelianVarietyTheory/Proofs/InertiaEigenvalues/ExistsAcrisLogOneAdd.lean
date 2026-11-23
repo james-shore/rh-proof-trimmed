@@ -101,7 +101,7 @@ theorem exists_divPow {w : Per.Ainf l} (hw : InJ w) (k : ℕ) :
       rw [← mul_assoc, hu, one_mul]
     exact ⟨_, GlobalTheory.RingIface.dividedPower_mem_Acris0 l _ j _ hz e, e⟩
   choose d hdm hdd using hd
-  choose q hq using fun m : ℕ => GlobalTheory.RingBasics.exists_pow_div_factorial l m
+  choose q hq using fun m : ℕ => _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow l m
   let ζ : ℤ_[l] →+* Per.AinfP l := (algebraMap (Per.Ainf l) (Per.AinfP l)).comp (Per.zA l)
   have hq' : ∀ m : ℕ, ((m.factorial : ℕ) : Per.AinfP l) * ζ (q m) = ((l : ℕ) : Per.AinfP l) ^ m := by
     intro m

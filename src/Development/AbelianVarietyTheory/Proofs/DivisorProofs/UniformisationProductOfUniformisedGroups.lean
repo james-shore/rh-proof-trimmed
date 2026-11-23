@@ -239,7 +239,7 @@ theorem exists_pre (hD : IsSumDeg D.toPre D₁.toPre D₂.toPre p₁ p₂ q₁ q
           (EvenPull.inv_fst _ (G₁ ⊗ G₂)) (EvenPull.inv_hom_fst _ _ (gt e).q) (EvenPull.inv_fst _ G₁)
           (EvenPull.inv_hom_fst _ _ (U₁.gt e).q) (EvenPull.inv_fst _ G₂) (EvenPull.inv_hom_fst _ _ (U₂.gt e).q) ls ms
           (U₁.w_even e) (U₂.w_even e)
-      w_cub := fun e => GlobalTheory.T.thickeningProductIso_preserves_cubicalStructure R I D₁ A₁ G₁ U₁ D₂ A₂ G₂ U₂ D p₁ p₂ q₁ q₂ hD wM L.L c.t wL L.isLB mc lc e (gt e) (hp₁ e)
+      w_cub := fun e => _root_.GlobalTheory.ProdUnif.cubAlong_prod R I D₁ A₁ G₁ U₁ D₂ A₂ G₂ U₂ D p₁ p₂ q₁ q₂ hD wM L.L c.t wL L.isLB mc lc e (gt e) (hp₁ e)
         (hp₂ e) (w e) (Q e)
       w_compat := fun e => GlobalTheory.ProdUnif.compat_box₂ (T := (thickObj R I e (G₁ ⊗ G₂)).left) (T₁ := (thickObj R I e G₁).left)
         (T₂ := (thickObj R I e G₂).left) wM wL (U₁.w e) (U₂.w e) D.toPre.P.isLB D₁.toPre.P.isLB D₂.toPre.P.isLB L.isLB
@@ -297,7 +297,7 @@ theorem expands_box (hD : IsSumDeg D.toPre D₁.toPre D₂.toPre p₁ p₂ q₁ 
     · exact congrArg (fun m => m.left) (comp_cP D.toPre (DegPre.prB D.toPre (FractionRing R)) α)
     · exact congrArg (fun m : DegPre.BF D.toPre (FractionRing R) ⟶ D.toPre.P.A => m.left)
         (MonObj.comp_one (M := D.toPre.P.A) (DegPre.prB D.toPre (FractionRing R)))
-  · exact GlobalTheory.T.expansionModIdealPow_boxProduct_eq_boxProduct R I D₁ A₁ G₁ U₁ D₂ A₂ G₂ U₂ D p₁ p₂ q₁ q₂ A U hD.xsum wM wL e k
+  · exact _root_.GlobalTheory.ProdUnif.expandsAt_boxProd R I D₁ A₁ G₁ U₁ D₂ A₂ G₂ U₂ D p₁ p₂ q₁ q₂ A U hD.xsum wM wL e k
       (congrArg (fun z => z.left) (pG_pr (hU.q_pr₁ e))) (congrArg (fun z => z.left) (pG_pr (hU.q_pr₂ e))) (ht e) (Q e)
       σ σ₁ σ₂ f f₁ f₂ hσ hf (c₁ e) (c₂ e)
 

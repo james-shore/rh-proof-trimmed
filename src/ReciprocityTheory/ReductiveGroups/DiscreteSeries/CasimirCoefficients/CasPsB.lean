@@ -147,9 +147,6 @@ theorem contDiffOn_DPhi (μ : Fin n → ℤ) :
     fun z hz => (contDiffAt_phiP_three μ hz).contDiffWithinAt
   exact h.fderiv_of_isOpen (m := 2) Ps1.isOpen_omega' (by norm_num)
 
-theorem continuousOn_DPhi (μ : Fin n → ℤ) :
-    ContinuousOn (fderiv ℂ (Ps1.PhiP μ)) (OmegaSet n : Set 𝕄) := (contDiffOn_DPhi μ).continuousOn
-
 theorem continuousOn_D2Phi (μ : Fin n → ℤ) :
     ContinuousOn (fderiv ℂ (fderiv ℂ (Ps1.PhiP μ))) (OmegaSet n : Set 𝕄) := (contDiffOn_DPhi μ).continuousOn_fderiv_of_isOpen isOpen_omega (by norm_num)
 
@@ -199,7 +196,7 @@ theorem contOn_FY (T : KType ε Λ) (μ : Fin n → ℤ) (Y : Matrix (Fin n) (Fi
       (U ×ˢ Set.univ) (OmegaSet n) := fun p hp => hΩ p.1 hp.1 p.2
   have hA : ContinuousOn (fun p : Matrix (Fin n) (Fin n) ℂ × KG ε =>
       fderiv ℂ (Ps1.PhiP μ) (toMK p.2⁻¹ * p.1 * toMK p.2)) (U ×ˢ Set.univ) :=
-    (continuousOn_DPhi μ).comp Ps1.continuous_conj.continuousOn hmaps
+    (_root_.ReciprocityTheory.ChartRestriction.DS.S7.Ps1.continuousOn_fderiv_phiP μ).comp Ps1.continuous_conj.continuousOn hmaps
   have hA2 : ContinuousOn (fun p : Matrix (Fin n) (Fin n) ℂ × KG ε =>
       fderiv ℂ (fderiv ℂ (Ps1.PhiP μ)) (toMK p.2⁻¹ * p.1 * toMK p.2)) (U ×ˢ Set.univ) :=
     (continuousOn_D2Phi μ).comp Ps1.continuous_conj.continuousOn hmaps

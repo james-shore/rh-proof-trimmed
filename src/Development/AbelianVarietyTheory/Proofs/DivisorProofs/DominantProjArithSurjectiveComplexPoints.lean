@@ -44,6 +44,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 import Development.AbelianVarietyTheory.Definitions.Divisors.CharZeroFunctionField
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsRatioOfWeight
 import Development.AbelianVarietyTheory.Definitions.Divisors.NefFibOfIsNef
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsAbelianSchemeAway
 
 @[expose] public section
 
@@ -57,16 +58,10 @@ namespace GlobalTheory.DomSurj
 
 open CategoryTheory.Limits
 
-theorem isProper_of_projOver {R : Type} [CommRing R] {X : Scheme.{0}} {f : X ⟶ Sp R} (h : IsProjOver f) :
-    IsProper f := by
-  obtain ⟨m, i, hi, rfl⟩ := h
-  have := isProper_str R m
-  infer_instance
-
 theorem surjective_cxPts_map : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ (Y : Scheme.{0}) [IsIntegral Y] (q : Y ⟶ Sp k) (E : ℕ), IsArithVar q E → ∀ (π : Y ⟶ X) (hπ : π ≫ p = q), π (genericPoint Y) = genericPoint X → ∀ σ : k →+* ℂ, Function.Surjective (Points.PtsOver.map π hπ (spMap σ) : CxPts q σ → CxPts p σ) := by
   intro k _ X _ p D hX Y _ q E hY π hπ hgen σ x
-  have := isProper_of_projOver hX.isProjOver
-  have : IsProper (π ≫ p) := hπ ▸ isProper_of_projOver hY.isProjOver
+  have := _root_.GlobalTheory.SpreadAb.isProper_of_isProjOver hX.isProjOver
+  have : IsProper (π ≫ p) := hπ ▸ _root_.GlobalTheory.SpreadAb.isProper_of_isProjOver hY.isProjOver
   have : IsProper π := IsProper.of_comp π p
 
   have hsurj : Function.Surjective π := by

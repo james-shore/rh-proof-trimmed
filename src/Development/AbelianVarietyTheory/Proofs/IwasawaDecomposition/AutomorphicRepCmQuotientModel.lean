@@ -113,22 +113,9 @@ theorem isoRep_map (e : W ≃ₗ[ℂ] W') (S : Submodule ℂ (GAf L n → W)) :
   simp only [LinearEquiv.submoduleMap_apply]
   rw [hf, rt_compE]
 
-omit [Field L] [NumberField L] [IsCMField L] in
-theorem irr_iff {G : Type} [Group G] {V : Type} [AddCommGroup V] [Module ℂ V]
-    (ρ : Representation ℂ G V) :
-    ρ.IsIrreducible ↔ Nontrivial V ∧
-      ∀ U : Submodule ℂ V, (∀ g : G, ∀ v ∈ U, ρ g v ∈ U) → U = ⊥ ∨ U = ⊤ := by
-  first
-  | exact @_root_.GlobalTheory.SubrepTopBot.main
-  | exact _root_.GlobalTheory.SubrepTopBot.main
-  | (apply _root_.GlobalTheory.SubrepTopBot.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SubrepTopBot.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SubrepTopBot.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SubrepTopBot.main ..)
-
 theorem irr_conj (e : W ≃ₗ[ℂ] W') {ρ : Representation ℂ (GQ L n) W} (h : ρ.IsIrreducible) :
     (conjRep e ρ).IsIrreducible := by
-  rw [irr_iff] at h ⊢
+  rw [_root_.GlobalTheory.CuspRep.isIrreducible_iff] at h ⊢
   obtain ⟨hW, hmin⟩ := h
   refine ⟨e.symm.surjective.nontrivial, fun U' hU' => ?_⟩
   have hU : ∀ γ, ∀ x ∈ U'.comap (e : W →ₗ[ℂ] W'), ρ γ x ∈ U'.comap (e : W →ₗ[ℂ] W') := by

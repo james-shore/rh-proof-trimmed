@@ -228,7 +228,7 @@ theorem exists_cp (hG : GlobalFnsSt) {V : Type} [CommRing V] [IsDomain V] [IsDis
     (w : ∀ e, LBIso (P e).L.L (M.pull (b e))) :
     ∃ Q : CP B, Q.L.L = M ∧ ∀ e, IsCPPullback (P e) Q (thick V _ e) (b e) := by
   obtain ⟨L, rfl⟩ := exists_rig hM
-  obtain ⟨h₁, h₂⟩ := GlobalTheory.T.abelianScheme_cubical_bundle_exists_and_maps hG _ B hB
+  obtain ⟨h₁, h₂⟩ := _root_.GlobalTheory.AbPackage.abelian_cp hG _ B hB
   obtain ⟨Q, rfl⟩ := h₁ L (triv_theta_of_levels hG hB hp hM P h w) (triv_sym_of_levels hG hB hp hM P h w)
   exact ⟨Q, rfl, fun e => h₂ _ _ _ (hY e) Q (P e) _ (h e) ⟨(P e).L.rig, (P e).L.rigGen⟩ (w e)⟩
 

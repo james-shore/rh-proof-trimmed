@@ -54,7 +54,7 @@ namespace CompanionTheory.RgGu.NR
 variable (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
 theorem nuPair : GlobalTheory.BZSeg.NuPair k :=
-  nuPair_of k (GlobalTheory.T.derivative_jacquet_holds k GlobalTheory.CompanionTheory.BZCuspPair.irrAdm) (jmTheta k) (derFin_of k (derEquiv k))
+  nuPair_of k (_root_.GlobalTheory.CompanionTheory.BZDerivJac.derivJac_main k GlobalTheory.CompanionTheory.BZCuspPair.irrAdm) (jmTheta k) (derFin_of k (derEquiv k))
 
 theorem cuspPairIrr : GlobalTheory.BZSeg.CuspPairIrr k := cuspPairIrr_of k (nuPair k)
 

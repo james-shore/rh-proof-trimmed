@@ -37,6 +37,8 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ThirdLevelOfGoodTwists
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StatementCOfCasselmanWallach
 
 @[expose] public section
 
@@ -62,7 +64,7 @@ theorem exists_pre_point_with_henselian_level {hL : _root_.UpperTheory.Zero.LLC.
   refine ⟨P, x, l, hl, GlobalTheory.HeightCounting.Up.nonempty_seed_of_kept (Dof x) (w.st Z).toD7 l.c.ch c.O.nch c.O.xd hk rfl (fun v v₀ hv ht => ?_) l.c.side.nct
     l.c.side.choice.twI_conj ?_ B.coeffGaloisSubfield_isGalois (twistedPlaceIndex_mem_firstPair_of_compatibleChoice (w.st Z).toD7 c.O.nch c.nch_tie B.coeffGaloisSubfield_isGalois) e b.nx.2.1.1.1.xd⟩
   · obtain rfl : v = v₀ := eq_of_heq hv
-    exact (key v).2 (hW ▸ (twisted_st x v).1 ht)
-  · exact (TupTieW.tupTied_of_muIsW (w.st x.o.Z) f T P.Wt w.I.xi (muIsW_st x)).2.1.subset fun v hv => (twisted_st x v).1 hv
+    exact (key v).2 (hW ▸ (_root_.GlobalTheory.HeightCounting.Up.Model.twisted_iff x v).1 ht)
+  · exact (TupTieW.tupTied_of_muIsW (w.st x.o.Z) f T P.Wt w.I.xi (_root_.GlobalTheory.LevCmp.muIsW x)).2.1.subset fun v hv => (_root_.GlobalTheory.HeightCounting.Up.Model.twisted_iff x v).1 hv
 end GlobalTheory.HeightCounting.Up
 end

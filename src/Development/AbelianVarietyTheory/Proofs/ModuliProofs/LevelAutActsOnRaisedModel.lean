@@ -68,7 +68,7 @@ namespace GlobalTheory.LevActs
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem spMap_id' (R : Type) [CommRing R] : spMap (RingHom.id R) = 𝟙 (Sp R) := Spec.map_id _
+alias spMap_id' := _root_.GlobalTheory.LevelFibre.spMap_id'
 
 theorem exists_sab_inv {S : Scheme.{0}} {t : SAB H S} (e : S ≅ S) (n : SABMap t t e.hom) :
     ∃ n' : SABMap t t e.inv, n'.φ ≫ n.φ = 𝟙 _ ∧ n.φ ≫ n'.φ = 𝟙 _ := by

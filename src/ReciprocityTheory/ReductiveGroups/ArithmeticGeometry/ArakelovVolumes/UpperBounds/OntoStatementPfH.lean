@@ -51,6 +51,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolum
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OntoStatementPfE
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OntoStatementPfF
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OntoStatementPfG
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FourierCoefficientDomain
 
 @[expose] public section
 
@@ -66,32 +67,6 @@ noncomputable section
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r) (x0 : Frame X.Ψ r)
 
-private theorem continuous_dmin_apply (τ : X.Ψ) (i : Fin (r + 1)) :
-    Continuous fun x : Frame X.Ψ r => ReciprocityTheory.ChartRestriction.G.FD.dmin X.Gm x τ i := by
-  unfold ReciprocityTheory.ChartRestriction.G.FD.dmin ReciprocityTheory.ChartRestriction.G.FD.lminor ReciprocityTheory.ChartRestriction.G.FD.gram
-    ReciprocityTheory.ChartRestriction.G.FD.hermC ReciprocityTheory.ChartRestriction.G.FD.col ReciprocityTheory.ChartRestriction.G.FD.mat
-  refine Continuous.matrix_det ?_
-  refine Continuous.matrix_submatrix ?_ _ _
-  refine continuous_pi fun a => continuous_pi fun b => ?_
-  simp only [Matrix.of_apply]
-  refine continuous_finsetSum _ fun c _ => continuous_finsetSum _ fun d _ => ?_
-  refine Continuous.mul (Continuous.mul ?_ continuous_const) ?_
-  · exact (continuous_apply _).comp ((continuous_apply _).comp (continuous_apply τ))
-  · exact Complex.continuous_conj.comp
-      ((continuous_apply _).comp ((continuous_apply _).comp (continuous_apply τ)))
-
-private theorem isOpen_data_dom : IsOpen X.dom := by
-  show IsOpen {x : Frame X.Ψ r | ∀ τ : X.Ψ, (ReciprocityTheory.ChartRestriction.G.FD.mat x τ).det ≠ 0 ∧
-    ∀ i : Fin (r + 1), 0 < ReciprocityTheory.ChartRestriction.G.FD.psgn X.p0 i * (ReciprocityTheory.ChartRestriction.G.FD.dmin X.Gm x τ i).re}
-  simp only [Set.setOf_forall, Set.setOf_and]
-  refine isOpen_iInter_of_finite fun τ => ?_
-  refine IsOpen.inter ?_ (isOpen_iInter_of_finite fun i => ?_)
-  · refine isOpen_ne_fun (Continuous.matrix_det ?_) continuous_const
-    unfold ReciprocityTheory.ChartRestriction.G.FD.mat
-    exact continuous_apply τ
-  · exact isOpen_lt continuous_const
-      (continuous_const.mul (Complex.continuous_re.comp (continuous_dmin_apply X τ i)))
-
 private theorem cpt_continuous : Continuous fun z => cpt X x0 z := by
   unfold cpt rmul nmat mat
   refine continuous_pi fun τ => ?_
@@ -106,7 +81,7 @@ private theorem cpt_continuous : Continuous fun z => cpt X x0 z := by
   · exact continuous_const
 
 private theorem measurableSet_omF : MeasurableSet (OmF X x0) :=
-  ((isOpen_data_dom X).preimage (cpt_continuous X x0)).measurableSet
+  ((_root_.ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X).preimage (cpt_continuous X x0)).measurableSet
 
 theorem muF_ac : muF X x0 ≪ volume.restrict (OmF X x0) := by
   unfold muF

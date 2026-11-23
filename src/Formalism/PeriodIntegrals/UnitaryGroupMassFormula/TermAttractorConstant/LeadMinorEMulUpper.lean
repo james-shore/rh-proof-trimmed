@@ -127,9 +127,7 @@ theorem isLoUni_mul {N : ℕ} {A L : Matrix (Fin N) (Fin N) K} (hA : IsLoUni A) 
       · rw [(hA i k).1 hik, zero_mul]
     · simp
 
-theorem isUpUni_mul {N : ℕ} {U B : Matrix (Fin N) (Fin N) K} (hU : IsUpUni U) (hB : IsUpUni B) :
-    IsUpUni (U * B) := by
-  first | exact GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul .. | (apply GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul <;> assumption) | (intros; apply GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul <;> assumption) | (apply @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul <;> assumption) | (intros; apply @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul <;> assumption) | (apply @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul <;> first | assumption | infer_instance) | exact @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul K ‹_› N U B hU hB | exact @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul K ‹_› N U B hU | exact @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul K ‹_› N U B | exact @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul K ‹_› N U | exact @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul K ‹_› N | exact @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul K ‹_› | exact @GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul K
+alias isUpUni_mul := _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul
 
 end Mat
 

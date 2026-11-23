@@ -43,6 +43,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HeckeCharEqOfLAdicRealisation
+import Formalism.LocalToGlobal.NormalizedHeckeFactors.ChiDefs
 
 @[expose] public section
 
@@ -79,12 +80,6 @@ theorem scaleRoots_prod (m : Multiset K) (s : K) :
     rw [Multiset.map_cons, Multiset.prod_cons, mul_scaleRoots_of_noZeroDivisors, ih, X_sub_C_scaleRoots,
       Multiset.map_cons, Multiset.prod_cons]
 
-theorem twGL_val' {a : ℕ} (ρ : Γ →* GL (Fin a) K) (χ : Γ →* Kˣ) (g : Γ) :
-    ((twGL ρ χ g : GL _ K) : Matrix (Fin a) (Fin a) K) =
-      (χ g : K) • ((ρ g : GL _ K) : Matrix (Fin a) (Fin a) K) := by
-  show algebraMap K (Matrix (Fin a) (Fin a) K) (χ g : K) * ((ρ g : GL _ K) : Matrix (Fin a) (Fin a) K) = _
-  rw [Algebra.algebraMap_eq_smul_one, smul_mul_assoc, one_mul]
-
 theorem charpoly_sumRep' {a b : ℕ} (ρ : Γ →* GL (Fin a) K) (ρ' : Γ →* GL (Fin b) K) (g : Γ) :
     ((sumRep ρ ρ' g : GL _ _) : Matrix (Fin (a + b)) (Fin (a + b)) K).charpoly =
       ((ρ g : GL _ _) : Matrix (Fin a) (Fin a) K).charpoly *
@@ -106,7 +101,7 @@ theorem charpoly_strRep [CharZero K] {a : ℕ} (ρ : Γ →* GL (Fin a) K) (e : 
   | d + 1 => by
     show ((sumRep (strRep ρ e d) (twGL ρ (e ^ d)) g : GL _ K) :
       Matrix (Fin (a * d + a)) (Fin (a * d + a)) K).charpoly = _
-    rw [charpoly_sumRep', charpoly_strRep ρ e g d, Finset.prod_range_succ, twGL_val',
+    rw [charpoly_sumRep', charpoly_strRep ρ e g d, Finset.prod_range_succ, _root_.GlobalTheory.TwistLG.twGL_val,
       charpoly_smul _ (Units.ne_zero _), MonoidHom.pow_apply, Units.val_pow_eq_pow_val]
 
 theorem cont_strRep [TopologicalSpace Γ] [TopologicalSpace K] [IsTopologicalRing K] {a : ℕ}
@@ -122,7 +117,7 @@ theorem cont_strRep [TopologicalSpace Γ] [TopologicalSpace K] [IsTopologicalRin
     show Continuous fun g => ((sumRep (strRep ρ e d) (twGL ρ (e ^ d)) g : GL _ K) :
       Matrix (Fin (a * d + a)) (Fin (a * d + a)) K)
     refine GlobalTheory.BCGal.cont_sumRep _ _ (cont_strRep ρ e hρ he d) ?_
-    simp only [twGL_val', MonoidHom.pow_apply, Units.val_pow_eq_pow_val]
+    simp only [_root_.GlobalTheory.TwistLG.twGL_val, MonoidHom.pow_apply, Units.val_pow_eq_pow_val]
     exact (he.pow d).smul hρ
 
 noncomputable def rkL {CG : ℕ → Type} : List (Part CG) → ℕ
@@ -191,11 +186,6 @@ section Frob
 
 variable {R : Ranks} {H : Host R} {what₂ : Rows.Data R} {N : NData R H what₂} {A : NAut N}
 
-theorem normV_ne_zero' {F : Type} [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F)) : normV w ≠ 0 := by
-  have h := (Ideal.absNorm_eq_zero_iff (I := w.asIdeal)).not.mpr w.ne_bot
-  rw [Ideal.absNorm_apply, Submodule.cardQuot_apply] at h
-  exact h
-
 theorem fold_poly (i : N.Loc) (w : PlE H) (hl : w ∉ placesOver H.E (N.l i)) (B : ValuationSubring N.Om)
     (σ : G H.E N.Om) (hB : IsPlaceOver (F := H.E) B w) (hσ : IsFrob (F := H.E) B (normV w) σ)
     {a : ℕ} (ρ : G H.E N.Om →* GL (Fin a) (Qbar (N.l i))) (large₂ : A.LP w) (d : ℕ) (s0 : ℝ)
@@ -214,7 +204,7 @@ theorem fold_poly (i : N.Loc) (w : PlE H) (hl : w ∉ placesOver H.E (N.l i)) (B
     rw [List.foldr_cons] at hun
     have h12 := (A.unr_sum _ _).1 hun
     have hLg : A.unr large₂ := (A.unr_tw _ _).1 h12.1
-    have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (normV_ne_zero' w)
+    have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (_root_.Formalism.L2.NC.normV_ne_zero w)
     have hU : A.unr (A.wdOf i ρ w) := by rw [hρ]; exact (A.unr_tw _ _).2 hLg
     rw [List.map_cons, List.prod_cons, Polynomial.map_mul, fold_poly i w hl B σ hB hσ ρ large₂ d s0 hcρ hρ u hu l h12.2,
       List.foldr_cons, A.lpTw_sum, A.frobEig_sum _ _ ((A.unr_tw _ _).2 h12.1) ((A.unr_tw _ _).2 h12.2),
@@ -347,17 +337,5 @@ end Eps
 end GlobalTheory.StringDecomp
 
 namespace GlobalTheory.StringDecomp
-
-open Formalism.MainNotions.SumRepresentations.At Topology
-
-theorem placesOver_finite' (E : Type) [Field E] [NumberField E] (p : ℕ) (hp : p ≠ 0) :
-    (placesOver E p).Finite := by
-  have h0 : Ideal.span {((p : ℕ) : 𝓞 E)} ≠ 0 := by
-    rw [Ne, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]
-    exact_mod_cast hp
-  refine (Ideal.finite_factors h0).subset fun v hv => ?_
-  show v.asIdeal ∣ _
-  rw [Ideal.dvd_iff_le, Ideal.span_singleton_le_iff_mem]
-  exact hv
 
 end GlobalTheory.StringDecomp

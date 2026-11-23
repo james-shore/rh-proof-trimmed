@@ -282,8 +282,8 @@ theorem measure_ext_of_pure (F E : Type) [Field F] [NumberField F] [Field E] [Nu
   have : ∀ v : HeightOneSpectrum (𝓞 F), TotallyDisconnectedSpace (Fv F v ⊗[F] E) := fun v => by
     obtain ⟨e⟩ := GlobalTheory.AdelicUnitaryTop.nonempty_homeomorph (F := F) (E := E) (Fv F v)
     exact e.symm.totallyDisconnectedSpace
-  obtain ⟨he, hrange, -, -⟩ := GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d' b' n M
-  have hint := (GlobalTheory.T.integralPointsFinitePlaceTensor_properties F E (AlgHom.id F E) d' b').1
+  obtain ⟨he, hrange, -, -⟩ := _root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d' b' n M
+  have hint := (_root_.GlobalTheory.GaugeEx.IntBasis.main F E (AlgHom.id F E) d' b').1
   have hL : ∀ v : HeightOneSpectrum (𝓞 F), IsCompact (latV (n := n) (M := M) b' v) ∧
       IsOpen (latV (n := n) (M := M) b' v) := fun v => by
     have e : latV (n := n) (M := M) b' v =

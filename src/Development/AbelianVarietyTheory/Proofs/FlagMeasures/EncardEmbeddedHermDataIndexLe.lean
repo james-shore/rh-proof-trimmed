@@ -45,6 +45,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HyperbolicPlaceProducts.SubgroupIndexCounts.CountO
+import Formalism.HyperbolicPlaceProducts.SubgroupIndexCounts.OmegaPow
 
 @[expose] public section
 
@@ -73,7 +75,7 @@ theorem sublat_count {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Mo
   have : Module.Flat (𝓞 K) L := inferInstance
   have : Module.FinitePresentation (𝓞 K) L := Module.finitePresentation_of_finite _ _
   have : Module.Projective (𝓞 K) L := Module.Flat.projective_of_finitePresentation
-  obtain ⟨h1, h2⟩ := Formalism.SLP.Final.submoduleIndexCountO K L x hx
+  obtain ⟨h1, h2⟩ := _root_.Formalism.SLP.P.card_submodules_of_index_le K L x hx
   have hsub : {N : Submodule (𝓞 K) V | N ≤ L ∧ idx L N = x} ⊆
       (Submodule.map L.subtype) '' {N : Submodule (𝓞 K) L | N.toAddSubgroup.index = x} := by
     rintro N ⟨hN, hi⟩
@@ -84,7 +86,7 @@ theorem sublat_count {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Mo
   have h3 := (Set.ncard_le_ncard hsub (h1.image _)).trans (Set.ncard_image_le h1)
   have hx1 : (1 : ℝ) ≤ x := by exact_mod_cast hx
   have hx0 : (0 : ℝ) < x := by linarith
-  have h4 := Formalism.SLP.Final.omegaPow (Module.finrank ℚ K) x Module.finrank_pos hx
+  have h4 := _root_.Formalism.SLP.P.pow_primeFactors_length_le (Module.finrank ℚ K) x Module.finrank_pos hx
   have h5 : ((Module.finrank (𝓞 K) L : ℕ) : ℝ) ≤ (Module.finrank K V : ℝ) := by
     exact_mod_cast finrank_sub_le L
   calc (({N : Submodule (𝓞 K) V | N ≤ L ∧ idx L N = x}.ncard : ℕ) : ℝ)

@@ -81,7 +81,7 @@ theorem mem_basicOpen_normCoeff_of_fibre {X Y : Scheme.{0}} (f : Y ⟶ X) [IsFin
       rw [hy]; exact hr
     obtain ⟨q, rfl⟩ : y ∈ Set.range hV'.fromSpec := by rw [hV'.range_fromSpec]; exact hyV
     exact ⟨q.asIdeal, q.isPrime, congrArg PrimeSpectrum.asIdeal (inj ((pt q).trans hy))⟩
-  obtain ⟨k, hk, hc⟩ := GlobalTheory.T.exists_reversedCharpolyCoeff_not_mem_prime (f.app V).hom (f.finite_app V hV) τ h0 p.asIdeal p.isPrime
+  obtain ⟨k, hk, hc⟩ := _root_.GlobalTheory.NormalDescent.exists_normCoeff_not_mem (f.app V).hom (f.finite_app V hV) τ h0 p.asIdeal p.isPrime
     (fun Q hQ hQp => by
       let q : PrimeSpectrum Γ(Y, f ⁻¹ᵁ V) := ⟨Q, hQ⟩
       have e : PrimeSpectrum.comap (f.app V).hom q = p := PrimeSpectrum.ext hQp

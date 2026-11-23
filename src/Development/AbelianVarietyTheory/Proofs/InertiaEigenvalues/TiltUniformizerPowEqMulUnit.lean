@@ -46,6 +46,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LocalP
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.PolyApproxZeroPadic
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TrivIsCr
 import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UntiltNormUltrametricEqZero
 
 @[expose] public section
 
@@ -56,8 +57,6 @@ noncomputable section
 namespace GlobalTheory.TiltDiv
 
 variable {l : ℕ} [Fact l.Prime]
-
-theorem norm_OC_le_one (x : Per.OC l) : ‖(x : ℂ_[l])‖ ≤ 1 := (GlobalTheory.RingBasics.mem_OC _).1 x.2
 
 theorem mk_untilt_iterate (x : OCb l) (n : ℕ) :
     Ideal.Quotient.mk (Ideal.span {((l : ℕ) : Per.OC l)})
@@ -204,12 +203,12 @@ theorem flat_pow_natDegree_eq_mul_unit : ∀ (l : ℕ) [Fact l.Prime] (K : FinEx
   let Ψ0 : (Wq l bk.a)⟦X⟧ →+* ℂ_[l] := (PadicComplexInt l).subtype.comp
     ((intToOC K).comp (bk.str.symm.toRingHom.comp (Ideal.Quotient.mk _)))
   let Ψ : Wq l bk.a →+* ℂ_[l] := Ψ0.comp (Polynomial.coeToPowerSeries.ringHom.comp Polynomial.C)
-  have hΨ : ∀ y, ‖Ψ y‖ ≤ 1 := fun y => norm_OC_le_one _
+  have hΨ : ∀ y, ‖Ψ y‖ ≤ 1 := fun y => _root_.GlobalTheory.TiltAbs.norm_le_one _
   set z : ℂ_[l] := Ψ0 (Polynomial.coeToPowerSeries.ringHom Polynomial.X) with hzdef
   have hzX : z = ((bk.flat.untilt : Per.OC l) : ℂ_[l]) := by
     rw [h1, hzdef, Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coe_X]
     rfl
-  have hz1 : ‖z‖ ≤ 1 := by rw [hzX]; exact norm_OC_le_one _
+  have hz1 : ‖z‖ ≤ 1 := by rw [hzX]; exact _root_.GlobalTheory.TiltAbs.norm_le_one _
   have hE : Ψ0 (bk.Ep : (Wq l bk.a)⟦X⟧) = 0 := by
     have : Ideal.Quotient.mk (Ideal.span {(bk.Ep : (Wq l bk.a)⟦X⟧)}) (bk.Ep : (Wq l bk.a)⟦X⟧) = 0 :=
       Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.subset_span rfl)

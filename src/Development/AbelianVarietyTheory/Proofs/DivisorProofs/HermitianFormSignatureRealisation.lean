@@ -89,7 +89,7 @@ theorem gramOn_det_totallyPositive_of_posDef {E : Type} [Field E] [NumberField E
     have hinj : Function.Injective (Q * A).mulVec := by
       intro v w hvw
       simp only [← Matrix.mulVec_mulVec] at hvw
-      exact gramOn_basis_mulVec_injective V τ (hQi hvw)
+      exact _root_.GlobalTheory.BasisLeftInverse.injective_mulVec_map_basis V τ (hQi hvw)
     exact (Matrix.PosDef.conjTranspose_mul_self _ hinj).det_pos
   refine ⟨fun h0 => ?_, fun τ => ?_⟩
   · have τ0 := (Classical.arbitrary (NumberField.InfinitePlace E)).embedding

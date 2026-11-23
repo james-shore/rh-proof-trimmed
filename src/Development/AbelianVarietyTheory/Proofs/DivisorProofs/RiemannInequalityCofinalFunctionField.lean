@@ -115,10 +115,7 @@ theorem ord_prod {ι : Type} (v : Place k F) (s : Finset ι) (x : ι → F) (hx 
         (Finset.prod_ne_zero_iff.2 fun i hi => hx i (Finset.mem_insert_of_mem hi)),
       ih fun i hi => hx i (Finset.mem_insert_of_mem hi)]
 
-theorem val_algebraMap_le (v : Place k F) (c : k) : v.1 (algebraMap k F c) ≤ 1 := by
-  by_cases hc : c = 0
-  · simp [hc]
-  · rw [v.2.2 c hc]
+alias val_algebraMap_le := _root_.GlobalTheory.Nef.place_le_one_const
 
 end RiemannCofinal
 

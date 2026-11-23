@@ -176,7 +176,7 @@ theorem lintegral_hB_lt_top_of_pos (p0 : ℕ) (pa pb pc : Low 4) (hab : pa ≠ p
     _ = (∫⁻ w, U w) + ∫⁻ w, U (Function.update w pb (w pb - w pa * w pc)) :=
         lintegral_add_left hU _
     _ = (∫⁻ w, U w) + ∫⁻ w, U w := by
-        rw [GlobalTheory.T.lintegral_update_sub_shear' pb (fun w => w pa * w pc) hgm hgi U hU]
+        rw [_root_.GlobalTheory.lintegral_update_sub_shear pb (fun w => w pa * w pc) hgm hgi U hU]
     _ < ⊤ := ENNReal.add_lt_top.2 ⟨hUfin, hUfin⟩
 
 theorem lintegral_hB_four_lt_top : ∀ p0 : ℕ, (p0 = 1 ∨ p0 = 3) → ∫⁻ w : Low 4 → ℂ, hB p0 w < ⊤ := by

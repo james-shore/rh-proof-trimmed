@@ -98,9 +98,9 @@ theorem inner_vec (F : Fock (Ix P Q)) (p q : Par P Q) :
     inner ℂ (vec F p) (vec F q) = star p.1 * q.1 * ker p.2.1.1 p.2.2.1 p.2.2.2 q.2.1.1 q.2.2.1 q.2.2.2 := by
   obtain ⟨c, ⟨Y, hY⟩, v, φ⟩ := p
   obtain ⟨c', ⟨Y', hY'⟩, v', φ'⟩ := q
-  have h1 := GlobalTheory.T.inner_gaussianVectors_fockSpace P Q F _ _ _ _ hY.posDef hY'.posDef _ _
+  have h1 := _root_.GlobalTheory.GaussInner.inner_gauss_gauss P Q F _ _ _ _ hY.posDef hY'.posDef _ _
     (hasCoeff_gauss F hY.posDef (linX Y v φ)) (hasCoeff_gauss F hY'.posDef (linX Y' v' φ'))
-  have h2 := GlobalTheory.T.gaussian_inner_eq_invariantKernel P Q Y Y' v φ v' φ' hY.isUnit hY'.isUnit (GlobalTheory.T.isUnit_det_one_sub_conjTranspose_mul_contractions P Q _ _ hY.posDef hY'.posDef)
+  have h2 := _root_.GlobalTheory.OscGauss.kerAlg P Q Y Y' v φ v' φ' hY.isUnit hY'.isUnit (_root_.GlobalTheory.isUnit_det_one_sub_conjTranspose_mul_of_contractions P Q _ _ hY.posDef hY'.posDef)
   simp only at h1 h2 ⊢
   simp only [vec, inner_smul_left, inner_smul_right, h1, ← h2, map_mul, starRingEnd_apply]
   ring
@@ -109,7 +109,7 @@ theorem isUnit_form {Y Y' : Matrix (Ix P Q) (Fin Q) ℂ} (h : IsNeg Y) (h' : IsN
     IsUnit (Yᴴ * Jm P Q * Y').det := by
   have h1 : IsUnit (-(Yᴴ * Jm P Q * Y')).det := by
     rw [form_factor Y Y' h.isUnit h'.isUnit, Matrix.det_mul, Matrix.det_mul, Matrix.det_conjTranspose]
-    exact (h.isUnit.star.mul (GlobalTheory.T.isUnit_det_one_sub_conjTranspose_mul_contractions P Q _ _ h.posDef h'.posDef)).mul h'.isUnit
+    exact (h.isUnit.star.mul (_root_.GlobalTheory.isUnit_det_one_sub_conjTranspose_mul_of_contractions P Q _ _ h.posDef h'.posDef)).mul h'.isUnit
   rw [Matrix.det_neg] at h1
   exact isUnit_of_mul_isUnit_right h1
 
@@ -138,7 +138,7 @@ theorem exists_rep (T0 : GrpData P Q) (F : Fock (Ix P Q)) :
     linear_combination (star p.1 * q.1 * ker p.2.1.1 p.2.2.1 p.2.2.2 q.2.1.1 q.2.2.1 q.2.2.2) * h
   · simp only [inner_vec]
     refine (continuous_const.mul (RealPar.Cover.continuous_sq.mul continuous_const)).mul
-      (GlobalTheory.T.continuous_oscillatorGaussianKernel_right P Q T0.G _ _ _ _ _ _ ?_ ?_ ?_ fun g => isUnit_form q.2.1.2 (act T0 g p).2.1.2)
+      (_root_.GlobalTheory.OscGauss.continuous_ker_right P Q T0.G _ _ _ _ _ _ ?_ ?_ ?_ fun g => isUnit_form q.2.1.2 (act T0 g p).2.1.2)
     · exact hc.matrix_mul continuous_const
     · exact hc.matrix_mulVec continuous_const
     · exact continuous_const.matrix_vecMul (hc.comp continuous_inv)
@@ -184,7 +184,7 @@ theorem hasDerivAt_inner_act (T0 : GrpData P Q) (F : Fock (Ix P Q)) {Z : Mat P Q
   have e0 : gauss F (hn 0).posDef (linX (g 0 * baseY A) (g 0 *ᵥ baseV x) (baseF x ᵥ* g' 0)) = gauss F h x :=
     gauss_congr F _ _ (by rw [g0, Matrix.one_mul, matA_baseY])
       (by rw [g0, g0', Matrix.one_mul, Matrix.one_mulVec, Matrix.vecMul_one, linX_base])
-  obtain ⟨a1, a2⟩ := GlobalTheory.T.gaussianVector_annihilator_equations P Q F A x _ (hasCoeff_gauss F h x)
+  obtain ⟨a1, a2⟩ := _root_.GlobalTheory.OscGauss.gauss_annihilator P Q F A x _ (hasCoeff_gauss F h x)
   have h5 := ((((RealPar.Cover.hasDerivAt_sq (T := T0) hZ).mul_const c).fun_mul hs).fun_mul hp)
   simp only [vec_base, inner_smul_right, GlobalTheory.T.inner_lieAction_adjoint_gaussian_polynomial P Q F A x _ a1 a2 Z f]
   simp only [vec, inner_smul_right]
@@ -198,7 +198,7 @@ theorem exists_isOsc (P Q : ℕ) (T0 : GrpData P Q) (F : Fock (Ix P Q)) :
     ∃ Om : T0.G →* (F.H →L[ℂ] F.H), IsOsc T0 F Om := by
   obtain ⟨π, h1, h2, h3⟩ := exists_rep T0 F
   refine ⟨π, h1, h2, fun Z hZ f => ?_⟩
-  refine GlobalTheory.T.hasDerivAt_of_weak_deriv_on_invariant_total_set F.H (fun t => π (T0.expt (t • Z))) (Set.range (vec F)) _ _ ?_ (fun s t => ?_) (fun t => h1 _)
+  refine _root_.GlobalTheory.Mem.Osc.hasDerivAt_of_weak_on_invariant_total F.H (fun t => π (T0.expt (t • Z))) (Set.range (vec F)) _ _ ?_ (fun s t => ?_) (fun t => h1 _)
     (fun y => (h2 y).comp (T0.expt_cont.comp_continuous (by fun_prop)
       fun t => RealPar.KStabLie.smul_mem_upq hZ t)) (dense_vec F) ?_ ?_
   · simp [T0.expt_zero]

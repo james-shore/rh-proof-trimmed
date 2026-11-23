@@ -210,7 +210,7 @@ theorem GlobalTheory.ZM.exists_moduli_prime_power_level : Out.Laws → Out.Laws2
   intro hL hL2 hth hU E _ _ _ H D n hpq hn hodd
   obtain ⟨bas, hbas⟩ := ZM.exists_isSympBasis E H D
   obtain ⟨J, hJ, a, w, w', hw, hw', hgen⟩ := exists_generating_family (E := E) H.w0 (H.bar H.w0)
-  obtain ⟨Mat, κ, hGood⟩ := T.isGoodThetaComplexClass_unitaryFullLevel hL hL2 hth hU E H D _ J a w w' bas hpq hbas hw hw' hgen
+  obtain ⟨Mat, κ, hGood⟩ := _root_.GlobalTheory.PelGood.goodClass_pelClass hL hL2 hth hU E H D _ J a w w' bas hpq hbas hw hw' hgen
   obtain ⟨j₁, hj₁⟩ := hGood n hn hodd
   obtain ⟨j₂, hj₂⟩ := T.nonempty_thetaFamily_over_open_closure hL hL2 _ J Mat κ n w w' hn hodd
   obtain ⟨j₃, hj₃⟩ := T.existsUnique_map_to_thetaFamily_openPart hL hL2 _ J Mat κ n w w' hn hodd
@@ -244,7 +244,7 @@ theorem GlobalTheory.ZM.exists_moduli_prime_power_level : Out.Laws → Out.Laws2
   haveI := hredU
   haveI := lft_of_qproj hqU'
   haveI : IsLocallyNoetherian F.U.toScheme := LocallyOfFiniteType.isLocallyNoetherian (F.U.ι ≫ F.Y.s)
-  obtain ⟨τU, hτU⟩ := T.exists_isPELTriple_of_dense_fibres hL hL2 hth E H D _ J a bas w w' hpq hbas hw hw' hgen _ o b em ρ F.U.toScheme
+  obtain ⟨τU, hτU⟩ := _root_.GlobalTheory.PELFamily.exists_isPEL_of_dense hL hL2 hth E H D _ J a bas w w' hpq hbas hw hw' hgen _ o b em ρ F.U.toScheme
     (F.U.ι ≫ F.Y.s) F.univ hemρ har.2.2 F.dense
   refine moduli_of_family hL hL2 hth D a w w' bas hbas hw hw' hgen _
     (dvd_pow (dvd_pow_self n (by omega)) two_ne_zero) b ρ hρ hζ (F.U.ι ≫ F.Y.s) F.univ τU hqU' hτU
@@ -256,11 +256,11 @@ theorem GlobalTheory.ZM.exists_moduli_prime_power_level : Out.Laws → Out.Laws2
     haveI := hch _ (S.fromSpecResidueField p)
     exact ⟨_, inferInstance, S.fromSpecResidueField p,
       ⟨IsLocalRing.closedPoint _, Scheme.fromSpecResidueField_apply p _⟩,
-      T.pelObject_fibre_from_complex_charZero hL hL2 E H D _ J a w w' bas hpq hbas hw hw' hgen (n ^ j) o b em ρ hemρ har S s' t τ hP _ _⟩
+      _root_.GlobalTheory.PELFrom.fromC_of_isPEL hL hL2 E H D _ J a w w' bas hpq hbas hw hw' hgen (n ^ j) o b em ρ hemρ har S s' t τ hP _ _⟩
   · intro K _ _ x t' hT
     haveI := hch K x
     obtain ⟨K₀, _, β, i, e, t₀, tx, tc, -, -, htx, htx0, htc0, hC⟩ :=
-      T.pelObject_fibre_from_complex_charZero hL hL2 E H D _ J a w w' bas hpq hbas hw hw' hgen (n ^ j) o b em ρ hemρ har S s' t τ hP K x
+      _root_.GlobalTheory.PELFrom.fromC_of_isPEL hL hL2 E H D _ J a w w' bas hpq hbas hw hw' hgen (n ^ j) o b em ρ hemρ har S s' t τ hP K x
     have s1 := (hGd.shape tc hC).1
     have s2 := ((shape_prim_pull_and_descend o _ _ J b Mat κ w w' _ _ _ _ _ t₀ tc htc0).2.2 K₀ rfl
       inferInstance inferInstance).1 s1

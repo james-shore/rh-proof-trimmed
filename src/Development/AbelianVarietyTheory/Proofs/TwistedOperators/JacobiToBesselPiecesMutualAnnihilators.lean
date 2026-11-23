@@ -132,22 +132,18 @@ theorem mulVec_latV_idLat {S : HSp D} {L : Lat S} {P : GlobalTheory.FinPl.Pl D �
   | add z z' _ _ hz hz' => rw [Matrix.mulVec_add]; exact add_mem hz hz'
   | neg z _ hz => rw [Matrix.mulVec_neg]; exact neg_mem hz
 
-theorem mulVec_eq_sum_colMul {m n : ℕ} (j : Mx D m n) (z : Fin n → AE D) : j *ᵥ z = ∑ i, GlobalTheory.FinPl.colMul j i (z i) := by
-  funext k
-  simp [Matrix.mulVec, dotProduct, GlobalTheory.FinPl.colMul, Finset.sum_apply, mul_comm]
-
 section Mono
 
 variable {S S₀ : HSp D} {ρ : ℕ} {d : HypDec S S₀ ρ} {L : Lat S} {L₀ : Lat S₀} {v : GlobalTheory.FinPl.Pl D}
 
 theorem projX_mem (h : MonoAt d L L₀ v) {y : Fin S.rank → AE D} (hy : y ∈ latV S L (· = v)) :
     (d.jX * d.pX) *ᵥ y ∈ latV S L (· = v) := by
-  rw [← Matrix.mulVec_mulVec, mulVec_eq_sum_colMul]
+  rw [← Matrix.mulVec_mulVec, _root_.GlobalTheory.SeeSaw.SplitLat.mulVec_eq_sum_colMul]
   exact sum_mem fun i _ => ((h y).1 hy).1 i
 
 theorem projY_mem (h : MonoAt d L L₀ v) {y : Fin S.rank → AE D} (hy : y ∈ latV S L (· = v)) :
     (d.jY * d.pY) *ᵥ y ∈ latV S L (· = v) := by
-  rw [← Matrix.mulVec_mulVec, mulVec_eq_sum_colMul]
+  rw [← Matrix.mulVec_mulVec, _root_.GlobalTheory.SeeSaw.SplitLat.mulVec_eq_sum_colMul]
   exact sum_mem fun i _ => ((h y).1 hy).2.1 i
 
 theorem witt_projCore_mem_split_lattice_completion (h : MonoAt d L L₀ v) {y : Fin S.rank → AE D} (hy : y ∈ latV S L (· = v)) :

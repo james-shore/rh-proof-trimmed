@@ -49,18 +49,6 @@ noncomputable section
 
 namespace GlobalTheory.Mum.GlueNear
 
-theorem isSeparated_of_surjective {X Y S : Scheme.{0}} (j : X ⟶ Y) (f : Y ⟶ S)
-    [Surjective j] [UniversallyClosed j] [IsSeparated (j ≫ f)] : IsSeparated f := by
-  let m : pullback (j ≫ f) (j ≫ f) ⟶ pullback f f :=
-    pullback.map (j ≫ f) (j ≫ f) f f j j (𝟙 S) (by simp) (by simp)
-  have hm : UniversallyClosed m :=
-    MorphismProperty.pullbackMap (P := @UniversallyClosed) ‹_› ‹_› rfl rfl
-  have e : j ≫ pullback.diagonal f = pullback.diagonal (j ≫ f) ≫ m := by
-    apply pullback.hom_ext <;> simp [m, pullback.map, pullback.lift_fst, pullback.lift_snd]
-  have : UniversallyClosed (j ≫ pullback.diagonal f) := by rw [e]; infer_instance
-  have : UniversallyClosed (pullback.diagonal f) := UniversallyClosed.of_comp_surjective j _
-  exact ⟨IsClosedImmersion.of_isPreimmersion _ (pullback.diagonal f).isClosedMap.isClosed_range⟩
-
 theorem isPullback_iSup {Y X S S' : Scheme.{0}} (π : Y ⟶ X) (q : X ⟶ S) (t : Y ⟶ S') (f : S' ⟶ S)
     {I : Type} (V : I → X.Opens)
     (h : ∀ i, IsPullback (π ∣_ V i) ((π ⁻¹ᵁ V i).ι ≫ t) ((V i).ι ≫ q) f) :
@@ -125,7 +113,7 @@ theorem exists_near {R : Type} [CommRing R] [IsLocalRing R] {S : Scheme.{0}} (f 
     have h₁ : IsFinite (π ∣_ U) := MorphismProperty.of_isPullback (P := @IsFinite) P.flip inferInstance
     have h₂ : Surjective (π ∣_ U) := MorphismProperty.of_isPullback (P := @Surjective) P.flip inferInstance
     have h₃ : IsSeparated (π ∣_ U ≫ U.ι ≫ X.hom) := by rw [P.w]; infer_instance
-    exact isSeparated_of_surjective (π ∣_ U) _
+    exact _root_.GlobalTheory.NilProper.isSeparated_of_comp_surjective (π ∣_ U) _
   let N : Near f G :=
     { U := Over.mk (U.ι ≫ X.hom)
       smooth := hS

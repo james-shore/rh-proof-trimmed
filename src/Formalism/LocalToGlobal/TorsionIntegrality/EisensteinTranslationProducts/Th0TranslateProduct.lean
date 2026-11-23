@@ -47,7 +47,5 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.F
 
-theorem opUTh0 : OpUTh0 := operator_u_theta
-theorem th0Line : ThetaZeroLine := even_theta_line
-
+alias opUTh0 := _root_.Formalism.L2.Th1.F.operator_u_theta
 end Formalism.L2.Th1.F

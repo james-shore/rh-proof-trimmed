@@ -166,7 +166,7 @@ theorem fockSpan_rowHighest : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (om : GA 
     exact this.symm
   obtain rfl : p = fun _ => C.X.p0 := funext hp
   obtain rfl : q = fun _ => C.q0 := funext hq
-  obtain ⟨c, c', hc, hc0⟩ := GlobalTheory.T.reversedMinorProduct_mem_harmonicRowHighest D S T C hrk ap am
+  obtain ⟨c, c', hc, hc0⟩ := _root_.GlobalTheory.RenamedMinors.renamed_delta_mem_rowHighest D S T C hrk ap am
   obtain ⟨Q₀, hQ₀, hQ₀pt⟩ := hpt' (Formalism.IndefR.Datum.delta (fun _ => C.X.p0) (fun _ => C.q0) ap am)
   have hQ₀mem : C.toH Q₀ ∈ Harm.rowHighest ℂ c c' := by
     rw [hQ₀]

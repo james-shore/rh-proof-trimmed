@@ -103,6 +103,4 @@ theorem exists_sep (D : D7) (W : HSp D) (r : ℕ) :
 
 end GlobalTheory.RatPairSep
 
-theorem GlobalTheory.RatPairSep.main : ∀ (D : D7) (W : HSp D) (r : ℕ), ∃ (n : ℕ) (X : Fin n → Matrix (Fin W.rank) (Fin r) D.host.E),
-    (∀ j a b, IsIntegral ℤ (X j a b)) ∧ ∀ y y' : Matrix (Fin W.rank) (Fin r) D.host.E,
-    (∀ j, ratPair W y (X j) = ratPair W y' (X j)) → y = y' := GlobalTheory.RatPairSep.exists_sep
+alias GlobalTheory.RatPairSep.main := _root_.GlobalTheory.RatPairSep.exists_sep

@@ -79,17 +79,17 @@ theorem main : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClosed k] [
     simpa only [map_natCast] using this
 
   have hFR : Subsingleton (Ht q (sp (FractionRing R)) m i) := by
-    obtain ⟨hArt, hRed⟩ := GlobalTheory.T.fractionRing_away_etale_dedekind_artinian_reduced B f A'
-    refine GlobalTheory.T.cohomology_vanishes_artinian q _ m i (fun M => ?_)
-    obtain ⟨alg, halg⟩ := GlobalTheory.T.etale_maximal_quotient_algebraic k B hBf f hf A' M
+    obtain ⟨hArt, hRed⟩ := _root_.GlobalTheory.fractionRing_away_etale_isArtinian_isReduced B f A'
+    refine _root_.GlobalTheory.EtC.ArtCoh.ht_subsingleton_artinian q _ m i (fun M => ?_)
+    obtain ⟨alg, halg⟩ := _root_.GlobalTheory.FracAlgEtale.exists_isAlgebraic_ratFunc_residue k B hBf f hf A' M
     have hqM : IsUnit (q : FractionRing R ⧸ M.asIdeal) := by
       have := (hqR.map (algebraMap R (FractionRing R))).map (Ideal.Quotient.mk M.asIdeal)
       rwa [map_natCast, map_natCast] at this
     haveI := M.isMaximal
     letI : Field (FractionRing R ⧸ M.asIdeal) := Ideal.Quotient.field _
-    exact GlobalTheory.T.etale_cohomology_vanishing_algebraic_over_ratFunc q k (FractionRing R ⧸ M.asIdeal) hqM m i hm
+    exact _root_.GlobalTheory.EtC.gaugeSplitting_holds q k (FractionRing R ⧸ M.asIdeal) hqM m i hm
 
-  obtain ⟨g, hg, hz⟩ := GlobalTheory.T.class_vanishes_away_nonZeroDivisor q R hqR m i z (Subsingleton.elim _ _)
+  obtain ⟨g, hg, hz⟩ := _root_.GlobalTheory.EtC.classVanishesAwayNZD q R hqR m i z (Subsingleton.elim _ _)
 
   have hf'reg : IsSMulRegular A' f' := by
     have h := Module.Flat.isSMulRegular_of_nonZeroDivisors (M := A') (mem_nonZeroDivisors_of_ne_zero hf)
@@ -140,14 +140,14 @@ theorem main : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClosed k] [
     by_contra hne
     obtain ⟨M, hM, hle⟩ := Ideal.exists_le_maximal _ hne
     have hfM : f' ∈ M := hle (Ideal.mem_sup_right (Ideal.mem_span_singleton_self _))
-    obtain ⟨t, htM, N, hN⟩ := GlobalTheory.T.exists_dvd_mul_pow_etale_nbhd_zeroLocus B A' f hf hN a ha M hM hfM
+    obtain ⟨t, htM, N, hN⟩ := _root_.GlobalTheory.LocDivEtale.exists_dvd_mul_pow B A' f hf hN a ha M hM hfM
     exact htM (hle (Ideal.mem_sup_left ⟨N, hN⟩))
   have h1 : (1 : A') ∈ J ⊔ Ideal.span {f'} := by rw [hJ]; trivial
   obtain ⟨h, ⟨N, hhN⟩, y, hy, hhy⟩ := Submodule.mem_sup.mp h1
   obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.mp hy
 
   refine ⟨Localization.Away h, inferInstance, inferInstance, inferInstance,
-    IsScalarTower.toAlgHom B A' (Localization.Away h), GlobalTheory.T.isNbhd_away_of_add_algebraMap_mul_eq_one B A' f h c hN (by rw [← hhy]; ring), ?_⟩
+    IsScalarTower.toAlgHom B A' (Localization.Away h), _root_.GlobalTheory.AffineCurveNbhd.isNbhd_away_of_add_mul_eq_one B A' f h c hN (by rw [← hhy]; ring), ?_⟩
   set φ := IsScalarTower.toAlgHom B A' (Localization.Away h)
   set S := Localization.Away (algebraMap B (Localization.Away h) f)
   have hcomp : ∀ x : A', awayHom φ f (algebraMap A' R x) = algebraMap _ S (φ x) := fun x =>

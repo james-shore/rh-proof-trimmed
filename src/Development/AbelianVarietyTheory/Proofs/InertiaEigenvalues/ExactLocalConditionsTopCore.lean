@@ -99,7 +99,7 @@ theorem admissibleExtension_iff_equivariantCoefIso {G : Type} [Group G] [Topolog
     (hzz : ∀ g, z' g = LinearEquiv.rTensor X e (z g)) (hz : z ∈ Z1 (twCoef W χ X) ⊤)
     (hz' : z' ∈ Z1 (twCoef W' χ X) ⊤) {c : O} (hc : ∀ x : X, c • x = 0) :
     Admissible PD emb Γ t Ut (Ea W χ hc ⟨z, hz⟩) ↔ Admissible PD emb Γ t Ut (Ea W' χ hc ⟨z', hz'⟩) := by
-  obtain ⟨f, hf⟩ := (GlobalTheory.T.equivariantIso_transport_cocycles_extensions W W' e he χ X z z' hzz).2.1 hz hz' hc
+  obtain ⟨f, hf⟩ := (_root_.GlobalTheory.TransportCoef.transport W W' e he χ X z z' hzz).2.1 hz hz' hc
   have hf' : ∀ g x, f.symm (Ea W' χ hc ⟨z', hz'⟩ g x) = Ea W χ hc ⟨z, hz⟩ g (f.symm x) :=
     fun g x => f.injective (by rw [hf, LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply])
   exact ⟨fun h => h.of_equiv f hf, fun h => h.of_equiv f.symm hf'⟩
@@ -165,7 +165,7 @@ theorem topCore_of_typings : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI :
         (tableLineDegreeTwo.jTil U w t) p L X (χ 1) z) hpoly
     refine (iff_of_eq hcongr).trans ?_
     exact exists_congr fun a₀ => forall_congr' fun a => forall_congr' fun _ => forall_congr' fun ha =>
-      GlobalTheory.T.admissible_quotientExtension_iff_admissible_ext S (tableLineDegreeTwo.jTil U w t) hcount T' L X z hz a ha
+      _root_.GlobalTheory.AdmQuotExt.admissible_quotientExtension_iff_admissible_ext' S (tableLineDegreeTwo.jTil U w t) hcount T' L X z hz a ha
 
   have ext_iff : ∀ (c : ℕ) {Mc : Type} [AddCommGroup Mc] [Module S.O Mc] (Wc : Representation S.O S.G Mc)
       (e : S.O ≃ₗ[S.O] Mc), (∀ g x, e (S.Γ.Wchi c g x) = Wc g (e x)) →
@@ -199,7 +199,7 @@ theorem topCore_of_typings : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI :
     have hzz : ∀ g, z g = eX (z₀ g) := fun g => (eX.apply_symm_apply (z g)).symm
     have htransport := GlobalTheory.T.equivariantIso_transport_cocycles_extensions
       (S.Γ.Wchi c) (latRep Lc) e he' (χ 1) X z₀ z hzz
-    have hact := GlobalTheory.T.twistedAction_eq_twistedCoefficients_cocycle_iff Lc X (χ 1)
+    have hact := _root_.GlobalTheory.actTw_eq_twCoef_and_isCoc_iff Lc X (χ 1)
     have hz' := (hact.2 z).1 hz
     have hz₀ := htransport.1.2 hz'
     let cocycle : ↥(Z1 π ⊤) := ⟨z₀, hz₀⟩
@@ -222,13 +222,13 @@ theorem topCore_of_typings : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI :
   refine ⟨?_, ?_, ?_⟩
   · intro ρ' T₀' hρ' hTT z hz
     let π := twCoef (latRep T₀) (χ 1) X
-    have hz' : z ∈ Z1 π ⊤ := ((GlobalTheory.T.twistedAction_eq_twistedCoefficients_cocycle_iff T₀ X (χ 1)).2 z).1 hz
+    have hz' : z ∈ Z1 π ⊤ := ((_root_.GlobalTheory.actTw_eq_twCoef_and_isCoc_iff T₀ X (χ 1)).2 z).1 hz
     let cocycle : ↥(Z1 π ⊤) := ⟨z, hz'⟩
     have hclass := GlobalTheory.T.cocycle_class_admissible S S.Γ.W₀ X hkill (hL0 X).2.1 cocycle
     have hA' := ((hSA K LL _ r (H.W K 1 LL hA.2.2).emb D S.Γ hHyp.1 hHyp.2.1 hHyp.2.2.1 hHyp.2.2.2.1
       hHyp.2.2.2.2).2.2.2.2 X).2
     have hmem := mk_mem_class_congr π cocycle hA'
-    have hdual := GlobalTheory.T.period_data_dual_exact (P.PD K) T₀ ρ' T₀' X (χ 1) hρ' hTT z hz'
+    have hdual := _root_.GlobalTheory.AdmLoc.mk_mem_H1fX_iff_inHfX (P.PD K) T₀ ρ' T₀' X (χ 1) hρ' hTT z hz'
     exact (hadmCoc T T₀ z hz').trans (hclass.trans (hmem.trans hdual))
   · intro c hc Lc z hz
     have hc' := Finset.mem_Icc.1 hc

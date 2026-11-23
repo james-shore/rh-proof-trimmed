@@ -55,7 +55,7 @@ namespace GlobalTheory.PDForm.CrysCmp
 theorem exists_compatibleFormsCocycle_deRhamClass {R : Type} [CommRing R] {X : Scheme.{0}} (s : X ⟶ Sp R) (c : FirstDeRham s) :
     ∃ (f₀ : Z1 (O (dp0 R) s)) (k₀ : (KK (dp0 R) s).Z1), k₀.1.1 = f₀.1 ∧ H1.mk _ f₀ = c := by
   obtain ⟨f, rfl⟩ := H1.mk_surjective _ c
-  have hb := (GlobalTheory.T.fnMap_pullbackBijective12_kk_and_res R ⊥ (dp0 R) X s X (𝟙 X)).1.1.2
+  have hb := (_root_.GlobalTheory.PDForm.crystalline_forget_forms_bijective_site_and_pairs R ⊥ (dp0 R) X s X (𝟙 X)).1.1.2
   have hfe : ((f.1, fun _ ↦ PUnit.unit) : (Cx.single (KK (dp0 R) s).M0).T1) ∈ (Cx.single (KK (dp0 R) s).M0).Z1 := by
     refine AddMonoidHom.mem_ker.2 (Prod.ext ?_ (Prod.ext (Subsingleton.elim _ _) (Subsingleton.elim _ _)))
     funext T T' T'' φ ψ

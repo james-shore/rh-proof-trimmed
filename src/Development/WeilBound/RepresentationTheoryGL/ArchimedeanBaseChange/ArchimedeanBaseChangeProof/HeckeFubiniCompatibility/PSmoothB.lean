@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelUniqueness
 
 @[expose] public section
 
@@ -80,11 +81,6 @@ theorem gI_infGL_val (v : InfinitePlace E) (u : GL (Fin n) (Cinf E)) :
 omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
 theorem isOpen_GLs₀ : IsOpen (GLs n) :=
   isOpen_ne.preimage (Continuous.matrix_det continuous_id)
-
-omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
-theorem val_mem_GLs₀ (y : G n) : y.val ∈ GLs n :=
-  ((Matrix.isUnit_iff_isUnit_det _).1 y.isUnit).ne_zero
-
 
 omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
 def xv (v : InfinitePlace E) (x : Lie E n) : Mat n := fun i j => x i j v
@@ -146,7 +142,7 @@ theorem xv_eq {x : Lie E n} (hx : x ∈ invSet E n) (v : InfinitePlace E) :
 
 theorem xv_mem {x : Lie E n} (hx : x ∈ invSet E n) (v : InfinitePlace E) : xv v x ∈ GLs n := by
   rw [← xv_eq hx v]
-  exact val_mem_GLs₀ _
+  exact _root_.GlobalTheory.CompanionTheory.KerUniq.val_mem _
 
 omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
 theorem inv_mul_mem {A B : Mat n} (hA : A ∈ GLs n) (hB : B ∈ GLs n) : A⁻¹ * B ∈ GLs n := by
@@ -199,7 +195,7 @@ theorem mem_Sm_conv (μ : Measure T) [μ.IsMulLeftInvariant] [IsFiniteMeasureOnC
     have hl : Continuous fun y : T => (t₀ * ι g)⁻¹ * y := continuous_const.mul continuous_id
     exact (continuous_pi fun v => Units.continuous_val.comp ((continuous_gI v).comp (hρ.comp hl))).prodMk
       ((hC.comp hl).mul hF)
-  have hpW : ∀ y, p y ∈ Wset E n := fun y => ⟨fun v _ => val_mem_GLs₀ _, trivial⟩
+  have hpW : ∀ y, p y ∈ Wset E n := fun y => ⟨fun v _ => _root_.GlobalTheory.CompanionTheory.KerUniq.val_mem _, trivial⟩
   have key : ∀ x ∈ invSet E n, ∀ y,
       kerQ κ (x, p y) = Φ ((ι (infGL E n (uOf x)))⁻¹ * ((t₀ * ι g)⁻¹ * y)) * F y := by
     intro x hx y

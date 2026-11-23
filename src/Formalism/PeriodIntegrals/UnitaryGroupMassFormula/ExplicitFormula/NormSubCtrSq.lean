@@ -62,14 +62,6 @@ lemma norm_sub_ctr_sq (ρ : ℂ) (t : ℝ) : ‖ρ - ctr t‖ ^ 2 = (ρ.re - 2) 
   rw [← Complex.normSq_eq_norm_sq, Complex.normSq_apply, Complex.sub_re, Complex.sub_im, ctr_re, ctr_im]
   ring
 
-private lemma Lent_eq_zero_iff_LFunction_eq_zero_of_ne_one (χ : DirichletCharacter ℂ N) {ρ : ℂ} (hρ : ρ ≠ 1) :
-    Lent χ ρ = 0 ↔ LFunction χ ρ = 0 := by
-  unfold Lent
-  split_ifs with h
-  · subst h
-    simp [DirichletCharacter.LFunctionTrivChar₁, Function.update_apply, hρ, sub_eq_zero]
-  · exact Iff.rfl
-
 lemma DZ_facts (hZL : ZeroLocus) {χ : DirichletCharacter ℂ N} (hχ : χ.IsPrimitive) {t : ℝ} {ρ : ℂ}
     (hρ : ρ ∈ DZ χ t) :
     ρ ≠ 1 ∧ LFunction χ ρ = 0 ∧ |ρ.im - t| ≤ 3 ∧
@@ -92,7 +84,7 @@ lemma DZ_facts (hZL : ZeroLocus) {χ : DirichletCharacter ℂ N} (hχ : χ.IsPri
         | exact DirichletCharacter.LFunctionTrivChar₁_apply_one_ne_zero _ hz
         | exact DirichletCharacter.LFunctionTrivChar₁_apply_one_ne_zero hz
     · exact DirichletCharacter.LFunction_apply_one_ne_zero h hz
-  have hL : LFunction χ ρ = 0 := (Lent_eq_zero_iff_LFunction_eq_zero_of_ne_one χ hne).1 hz
+  have hL : LFunction χ ρ = 0 := (_root_.PI.EF.Lent_eq_zero_iff χ hne).1 hz
   refine ⟨hne, hL, him, ?_⟩
   rcases hZL N χ hχ ρ (by linarith) hne hL with h | h | ⟨rfl, -⟩
   · exact Or.inl h

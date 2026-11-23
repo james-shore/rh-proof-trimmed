@@ -87,7 +87,7 @@ private noncomputable def mvS {U V E : Spc} (f : U ⟶ E) (g : V ⟶ E) : ShortC
 
 private theorem mvS_exact {U V E : Spc} (f : U ⟶ E) (g : V ⟶ E) (h : Cover2 R f g) :
     (mvS (R := R) f g).ShortExact := by
-  obtain ⟨w, hw⟩ := GlobalTheory.T.etaleSpaceChains_mayerVietoris_shortExact R f g h
+  obtain ⟨w, hw⟩ := _root_.GlobalTheory.EtC.mv_shortExact R f g h
   exact hw
 
 private noncomputable def mvMap {U V E U' V' E' : Spc} (f : U ⟶ E) (g : V ⟶ E) (f' : U' ⟶ E') (g' : V' ⟶ E')

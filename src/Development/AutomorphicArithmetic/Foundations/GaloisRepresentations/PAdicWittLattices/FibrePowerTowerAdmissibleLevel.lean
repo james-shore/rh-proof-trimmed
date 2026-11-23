@@ -98,108 +98,74 @@ universe u
 
 namespace UpperTheory.Gal.G3
 
-theorem nuInt_holds : NuInt := @pNuInt
+theorem multBasic_holds : MultBasic := @pMultBasic @_root_.UpperTheory.Gal.G3.pNuInt
 
-theorem multBasic_holds : MultBasic := @pMultBasic @nuInt_holds
-
-theorem kNBasic_holds : KNBasic := @pKNBasic
-
-theorem sysOf_holds : SysOf := @pSysOf @nuInt_holds
-
-theorem fibrePowerTower_admissibleLevel : AdmOf := @pAdmOf
-
-theorem kNCong_holds : KNCong := @pKNCong
+theorem sysOf_holds : SysOf := @pSysOf @_root_.UpperTheory.Gal.G3.pNuInt
 
 theorem gSimOf_holds : GSimOf := @pGSimOf @multBasic_holds
 
-theorem relComp_holds : RelComp := @pRelComp
-
-theorem tateDiff_holds : TateDiff := @pTateDiff
-
 theorem tateTwist_holds : TateTwist := @pTateTwist @gSimOf_holds
 
-theorem fullOf_holds : FullOf := @pFullOf
+theorem transSelf_holds : TransSelf := @pTransSelf @multBasic_holds @_root_.UpperTheory.Gal.G3.pRelComp @tateTwist_holds
 
-theorem relArith_holds : RelArith := @pRelArith
+theorem transComp_holds : TransComp := @pTransComp @multBasic_holds @_root_.UpperTheory.Gal.G3.pRelComp @_root_.UpperTheory.Gal.G3.pTateDiff @tateTwist_holds
 
-theorem transSelf_holds : TransSelf := @pTransSelf @multBasic_holds @relComp_holds @tateTwist_holds
+theorem transPull_holds : TransPull := @pTransPull @_root_.UpperTheory.Gal.G3.pHomPull @_root_.UpperTheory.Gal.G3.pTatePull
 
-theorem transComp_holds : TransComp := @pTransComp @multBasic_holds @relComp_holds @tateDiff_holds @tateTwist_holds
+theorem transOfMap_holds : TransOfMap := @pTransOfMap @multBasic_holds @_root_.UpperTheory.Gal.G3.pRelComp @_root_.UpperTheory.Gal.G3.pTatePull
 
-theorem homPull_holds : HomPull := @pHomPull
+theorem transKer_holds : TransKer := @pTransKer @_root_.UpperTheory.Gal.G3.pRelComp @_root_.UpperTheory.Gal.G3.pTateDiff @tateTwist_holds
 
-theorem tatePull_holds : TatePull := @pTatePull
+theorem transDeep_holds : TransDeep := @pTransDeep @sysOf_holds @_root_.UpperTheory.Gal.G3.pAdmOf @_root_.UpperTheory.Gal.G3.pFullOf @_root_.UpperTheory.Gal.G3.pRelArith
 
-theorem transPull_holds : TransPull := @pTransPull @homPull_holds @tatePull_holds
+theorem transIso_holds : TransIso := @pTransIso @_root_.UpperTheory.Gal.G3.pIsoPts @_root_.UpperTheory.Gal.G3.pIsogFEt
 
-theorem transOfMap_holds : TransOfMap := @pTransOfMap @multBasic_holds @relComp_holds @tatePull_holds
+theorem transOrbit_holds : TransOrbit := @pTransOrbit @multBasic_holds @_root_.UpperTheory.Gal.G3.pRelComp @_root_.UpperTheory.Gal.G3.pTateDiff @tateTwist_holds @_root_.UpperTheory.Gal.G3.pKNCong @transIso_holds
 
-theorem rigid_holds : Rigid := @pRigid
+theorem transFree_holds : TransFree := @pTransFree @_root_.UpperTheory.Gal.G3.pKNCong
 
-theorem isogFEt_holds : IsogFEt := @pIsogFEt
+theorem powSm_holds : PowSm := @pPowSm @_root_.UpperTheory.Gal.G3.pGenSm
 
-theorem transKer_holds : TransKer := @pTransKer @relComp_holds @tateDiff_holds @tateTwist_holds
+theorem etDesc_holds : EtDesc := @pEtDesc @_root_.UpperTheory.Gal.G3.pExtPts
 
-theorem polUniq_holds : PolUniq := @pPolUniq
-
-theorem mapOfIso_holds : MapOfIso := @pMapOfIso
-
-theorem transDeep_holds : TransDeep := @pTransDeep @sysOf_holds @fibrePowerTower_admissibleLevel @fullOf_holds @relArith_holds
-
-theorem transIso_holds : TransIso := @pTransIso @isoPts_holds @isogFEt_holds
-
-theorem transOrbit_holds : TransOrbit := @pTransOrbit @multBasic_holds @relComp_holds @tateDiff_holds @tateTwist_holds @kNCong_holds @transIso_holds
-
-theorem transFree_holds : TransFree := @pTransFree @kNCong_holds
-
-theorem genSm_holds : GenSm := @pGenSm
-
-theorem powSm_holds : PowSm := @pPowSm @genSm_holds
-
-theorem etDesc_holds : EtDesc := @pEtDesc @extPts_holds
-
-theorem ptOrbit_holds : PtOrbit := @pPtOrbit @transComp_holds @transPull_holds @transOfMap_holds @transOrbit_holds @rigid_holds
+theorem ptOrbit_holds : PtOrbit := @pPtOrbit @transComp_holds @transPull_holds @transOfMap_holds @transOrbit_holds @_root_.UpperTheory.Gal.G3.pRigid
 
 theorem witComp_holds : WitComp := @pWitComp @transSelf_holds @transComp_holds @transPull_holds
 
 theorem witCart_holds : WitCart := @pWitCart @transIso_holds
 
-theorem witForget_holds : WitForget := @pWitForget @mapOfIso_holds @transSelf_holds
+theorem witForget_holds : WitForget := @pWitForget @_root_.UpperTheory.Gal.G3.pMapOfIso @transSelf_holds
 
-theorem witDeep_holds : WitDeep := @pWitDeep @kNBasic_holds @genSm_holds @transDeep_holds @witComp_holds @witForget_holds
+theorem witDeep_holds : WitDeep := @pWitDeep @_root_.UpperTheory.Gal.G3.pKNBasic @_root_.UpperTheory.Gal.G3.pGenSm @transDeep_holds @witComp_holds @witForget_holds
 
 theorem homDesc_holds : HomDesc := @pHomDesc @etDesc_holds
 
-theorem polDesc_holds : PolDesc := @pPolDesc
+theorem transDesc_holds : TransDesc := @pTransDesc @_root_.UpperTheory.Gal.G3.pIsogFEt @_root_.UpperTheory.Gal.G3.pTatePull @homDesc_holds @_root_.UpperTheory.Gal.G3.pPolDesc
 
-theorem transDesc_holds : TransDesc := @pTransDesc @isogFEt_holds @tatePull_holds @homDesc_holds @polDesc_holds
-
-theorem transCancel_holds : TransCancel := @pTransCancel @multBasic_holds @relComp_holds @tateDiff_holds @tateTwist_holds @transIso_holds
+theorem transCancel_holds : TransCancel := @pTransCancel @multBasic_holds @_root_.UpperTheory.Gal.G3.pRelComp @_root_.UpperTheory.Gal.G3.pTateDiff @tateTwist_holds @transIso_holds
 
 theorem twFEt_holds : TwFEt := @pTwFEt @fEtBasic_holds @twGal_holds
 
-theorem sigmaFEt_holds : SigmaFEt := @pSigmaFEt
-
-theorem kSNice_holds : KSNice := @pKSNice @kNBasic_holds @powSm_holds @twFEt_holds @sigmaFEt_holds
+theorem kSNice_holds : KSNice := @pKSNice @_root_.UpperTheory.Gal.G3.pKNBasic @powSm_holds @twFEt_holds @_root_.UpperTheory.Gal.G3.pSigmaFEt
 
 theorem quotUniq_holds : QuotUniq := @pQuotUniq @etDesc_holds
 
-theorem transUniqPt_holds : TransUniqPt := @pTransUniqPt @multBasic_holds @isogFEt_holds @transKer_holds @quotUniq_holds @polUniq_holds @mapOfIso_holds
+theorem transUniqPt_holds : TransUniqPt := @pTransUniqPt @multBasic_holds @_root_.UpperTheory.Gal.G3.pIsogFEt @transKer_holds @quotUniq_holds @_root_.UpperTheory.Gal.G3.pPolUniq @_root_.UpperTheory.Gal.G3.pMapOfIso
 
-theorem ptEq_holds : PtEq := @pPtEq @transSelf_holds @transComp_holds @transPull_holds @transUniqPt_holds @rigid_holds
+theorem ptEq_holds : PtEq := @pPtEq @transSelf_holds @transComp_holds @transPull_holds @transUniqPt_holds @_root_.UpperTheory.Gal.G3.pRigid
 
-theorem witUniq_holds : WitUniq := @pWitUniq @genSm_holds @extPts_holds @transSelf_holds @ptEq_holds
+theorem witUniq_holds : WitUniq := @pWitUniq @_root_.UpperTheory.Gal.G3.pGenSm @_root_.UpperTheory.Gal.G3.pExtPts @transSelf_holds @ptEq_holds
 
-theorem descMap_holds : DescMap := @pDescMap @genSm_holds @etDesc_holds @ptEq_holds @ptOrbit_holds @witCart_holds
+theorem descMap_holds : DescMap := @pDescMap @_root_.UpperTheory.Gal.G3.pGenSm @etDesc_holds @ptEq_holds @ptOrbit_holds @witCart_holds
 
-theorem witEx_holds : WitEx := @pWitEx @kNBasic_holds @genSm_holds @rigid_holds @witForget_holds @witDeep_holds @descMap_holds @transIso_holds @transCancel_holds @transDesc_holds
+theorem witEx_holds : WitEx := @pWitEx @_root_.UpperTheory.Gal.G3.pKNBasic @_root_.UpperTheory.Gal.G3.pGenSm @_root_.UpperTheory.Gal.G3.pRigid @witForget_holds @witDeep_holds @descMap_holds @transIso_holds @transCancel_holds @transDesc_holds
 
-theorem witOne_holds : WitOne := @pWitOne @genSm_holds @witUniq_holds @witComp_holds @witForget_holds
+theorem witOne_holds : WitOne := @pWitOne @_root_.UpperTheory.Gal.G3.pGenSm @witUniq_holds @witComp_holds @witForget_holds
 
-theorem witTrans_holds : WitTrans := @pWitTrans @kNBasic_holds @ptEq_holds @ptOrbit_holds @witComp_holds
+theorem witTrans_holds : WitTrans := @pWitTrans @_root_.UpperTheory.Gal.G3.pKNBasic @ptEq_holds @ptOrbit_holds @witComp_holds
 
-theorem witFree_holds : WitFree := @pWitFree @kNBasic_holds @transComp_holds @transPull_holds @transOfMap_holds @transFree_holds @ptEq_holds @witCart_holds @witEx_holds
+theorem witFree_holds : WitFree := @pWitFree @_root_.UpperTheory.Gal.G3.pKNBasic @transComp_holds @transPull_holds @transOfMap_holds @transFree_holds @ptEq_holds @witCart_holds @witEx_holds
 
-theorem kSEx_holds : KSEx := @pKSEx @kNBasic_holds @witUniq_holds @witComp_holds @witCart_holds @witEx_holds @witOne_holds @witTrans_holds @witFree_holds
+theorem kSEx_holds : KSEx := @pKSEx @_root_.UpperTheory.Gal.G3.pKNBasic @witUniq_holds @witComp_holds @witCart_holds @witEx_holds @witOne_holds @witTrans_holds @witFree_holds
 
 end UpperTheory.Gal.G3

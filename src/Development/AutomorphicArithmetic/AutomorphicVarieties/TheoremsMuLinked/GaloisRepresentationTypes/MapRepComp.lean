@@ -152,13 +152,6 @@ private theorem conj_map {H K K' : Type} [Group H] [Field K] [Field K'] (e : K �
   show e.mapMatrix (r' g) = e.mapMatrix (u : M4 K) * e.mapMatrix (r g) * e.mapMatrix ((u⁻¹ : (M4 K)ˣ) : M4 K)
   rw [hu, map_mul, map_mul]
 
-private theorem gsp_map' {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') {ν : R} {X : M4 R} (h : IsGSp ν X) :
-    IsGSp (f ν) (X.map f) := by
-  have e : adj (X.map f) = (adj X).map f := by ext i j; simp [adj_apply]
-  rw [IsGSp, e, ← Matrix.map_mul, h]
-  ext i j
-  by_cases hij : i = j <;> simp [Matrix.one_apply, hij]
-
 private theorem conj_trans {H R : Type} [Group H] [CommRing R] {r r' r'' : H →* M4 R} (h : IsConj4 r r') (h' : IsConj4 r' r'') :
     IsConj4 r r'' := by
   obtain ⟨u, hu⟩ := h
@@ -223,11 +216,6 @@ private theorem ps_wt_any {D : Raw Ω c} (h : D.Good) {A : ValuationSubring Ω} 
     rw [map_mul, map_mul, map_inv, mul_right_comm, inv_mul_cancel, one_mul]
   have h3 := (facts D h).2.2.2.1 i (u⁻¹ * s * u) ⟨⟨hu s hs, (e _).trans h1⟩, (e _).trans h2⟩
   rwa [e, e] at h3
-
-private theorem map_psi {ι Γ R R' : Type} [Group Γ] [CommRing R] [CommRing R'] (P : PD ι Γ R) (f : R →+* R') (v : ι) (i : Fin 4)
-    (s : Γ) : (P.map f).ψ v i s = f (P.ψ v i s) := by
-
-  simp [PD.ψ, PD.map, Matrix.mul_apply, adj_apply, map_sum]
 
 private theorem irr_L {D : Raw Ω c} (T : Tower D) (hT : T.Ok) (𝔞 : Amb l) (f : 𝔞.V →+* PadicAlgCl l) (hf : Function.Injective f)
     (r : G ℚ Ω →* M4 𝔞.V) (hr : ∀ g i j, r g i j - 𝔞.a c (D.r0 g i j) ∈ maximalIdeal 𝔞.V) (hi : Irr (mapRep f r)) :
@@ -318,7 +306,7 @@ theorem UpperTheory.V.Th.spPt :
   have hres : P'.r.comp (resQ T.F) = (X.P.map y).r := by rw [k5, er]
   have hin : ∀ v i, ∀ s ∈ Ine (F := T.F) (T.pl v), y (X.P.ψ v i s) = 𝔞.a c (D.ps i (resQ T.F s)) := fun v i s hs => by
     subst k5
-    exact (map_psi X.P y v i s).symm.trans (ine v i s hs)
+    exact (_root_.UpperTheory.V.Ws.PD.map_ψ X.P y v i s).symm.trans (ine v i s hs)
   let f : 𝔞.V →+* PadicAlgCl l := (e : 𝔞.K →+* PadicAlgCl l).comp 𝔞.toK
   let y' : X.A →ₐ[c'.O] PadicAlgCl l :=
     { f.comp y with
@@ -335,7 +323,7 @@ theorem UpperTheory.V.Th.spPt :
       (congrArg f (hin v i s hs.2)).trans (he.1 c _)
     have h4 : (GlobalTheory.GalOfCusp.cycBar T.F Ω l s : PadicAlgCl l) =
       ((chiO ℚ Ω l c.O (resQ T.F s) : c.O) : PadicAlgCl l) := rfl
-    refine (congrArg (· ^ 2) ((map_psi X.P _ v i s).trans h3)).trans ?_
+    refine (congrArg (· ^ 2) ((_root_.UpperTheory.V.Ws.PD.map_ψ X.P _ v i s).trans h3)).trans ?_
     rw [h2]
     have h5 : (2 * (D.wts4 i : ℤ)) = ((D.wts4 i * 2 : ℕ) : ℤ) := by push_cast; ring
     simp only [h5, zpow_natCast, Units.val_pow_eq_pow_val, h4, SubmonoidClass.coe_pow, pow_mul]
@@ -344,7 +332,7 @@ theorem UpperTheory.V.Th.spPt :
     exact conj_map _ hconj
   have hiL := irr_L T hfit.1 𝔞 f (e.injective.comp Subtype.val_injective) r hK.red hI
   have hm : D.Mult (mapRep f P'.r) := fun g => by
-    have h1 := gsp_map' f (hmult g)
+    have h1 := _root_.UpperTheory.V.Ws.gsp_map f (hmult g)
     rw [show f (𝔞.a c ((frQ D T₀.pr (resQ T₀.F T₀.g0)).ν g)) = algebraMap c.O (PadicAlgCl l) (D.th g) from he.1 c _] at h1
     exact h1
   have hr : (mapRep f P'.r).comp (resQ T.F) = (X.P.map (y' : X.A →+* PadicAlgCl l)).r := by

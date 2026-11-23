@@ -158,7 +158,7 @@ def etBase : Base p (fun _ _ G => G.IsEt) where
   smap_comp h'' h' h s t u hu m :=
     (tr_eq B h'' h u m _ (GlobalTheory.T.etaleDieudonneTranspose_comp p B _ _ _ _ _ _ _ _ _ h'' h' h s t u hu m _ _
       (isTr_tr B h' h s m) (isTr_tr B h'' h' t _)))
-  red_smap h' h s m := GlobalTheory.T.etaleDieudonneTranspose_eq_rigidifiedExtensionPullback p B _ _ _ _ _ h' h s m _ (isTr_tr B h' h s m)
+  red_smap h' h s m := _root_.GlobalTheory.Dieu.EtFromConn.red_of_isTr p B _ _ _ _ _ h' h s m _ (isTr_tr B h' h s m)
 
 end Main
 

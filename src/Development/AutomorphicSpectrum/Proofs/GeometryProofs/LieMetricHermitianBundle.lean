@@ -92,10 +92,6 @@ theorem pure_smul {L : Type} [Field L] {E : Type} [AddCommGroup E] [Module (𝓞
   rw [TensorProduct.smul_tmul', ComplexAt.complex_smul_def, _root_.mul_one]
   simp
 
-theorem spMap_spMap' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
 theorem dualMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     dualMap (g.comp f) = (dualMap g).comp (dualMap f) := by
   apply RingHom.ext
@@ -241,9 +237,9 @@ theorem ip_conj (h : LieMetric M y) (MB : LieModel G z E) (σ : L →+* ℂ) (e 
     ext a; rfl
   rw [Category.comp_id] at hv hw hv' hw'
   refine key _ _ ?_ v w v' w' ?_ ?_
-  · rw [← Category.assoc, spMap_spMap', hc]
-  · rw [hv, hv', hc, dualMap_comp', ← Category.assoc, spMap_spMap']
-  · rw [hw, hw', hc, dualMap_comp', ← Category.assoc, spMap_spMap']
+  · rw [← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', hc]
+  · rw [hv, hv', hc, dualMap_comp', ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp']
+  · rw [hw, hw', hc, dualMap_comp', ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp']
 
 theorem form_conj_of_pure (core : ∀ σ : L →+* ℂ, InnerProductSpace.Core ℂ (Fibre σ E))
     (h : ∀ (σ : L →+* ℂ) (e f : E),

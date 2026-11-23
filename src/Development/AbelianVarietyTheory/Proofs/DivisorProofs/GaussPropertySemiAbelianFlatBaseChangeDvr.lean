@@ -60,15 +60,6 @@ open GlobalTheory.Desc
 
 namespace GlobalTheory.Desc.GaussBC
 
-theorem gp_comp_eq_spMap_cst : ∀ (X : Scheme.{0}) [IsIntegral X] (R : Type) [CommRing R] (p : X ⟶ Sp R),
-    gp X ≫ p = spMap (GlobalTheory.Desc.cst p) := by
-  intro X _ R _ p
-  apply ext_of_isAffine
-  rw [← cancel_mono (Scheme.ΓSpecIso _).hom, Scheme.ΓSpecIso_naturality, Scheme.Hom.comp_appTop, gp,
-    Scheme.fromSpecStalk_appTop]
-  ext r
-  simp [GlobalTheory.Desc.cst, fnOf, Scheme.functionField]
-
 theorem cst_regAt_zeroAt : ∀ (R : Type) [CommRing R] [IsLocalRing R] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp R) (x : X), p x = closedPoint R → ∀ r : R, GlobalTheory.Cartier.RegAt x (GlobalTheory.Desc.cst p r) ∧ (r ∈ maximalIdeal R → GlobalTheory.Cartier.ZeroAt x (GlobalTheory.Desc.cst p r)) := by
   intro R _ _ X _ p x hx r
   have hreg : GlobalTheory.Cartier.RegAt x (GlobalTheory.Desc.cst p r) := regAt_fnOf (U := ⊤) trivial trivial _
@@ -90,16 +81,6 @@ variable {R₁ F₁ : Type} [CommRing R₁] [CommRing F₁] (c : R₁ →+* F₁
 
 theorem zero_mem_spanBy (T : Set F₁) : (0 : F₁) ∈ spanBy c T := ⟨0, Fin.elim0, Fin.elim0, fun i => i.elim0, by simp⟩
 
-theorem add_mem_spanBy {T : Set F₁} {v w : F₁} (hv : v ∈ spanBy c T) (hw : w ∈ spanBy c T) :
-    v + w ∈ spanBy c T := by
-  obtain ⟨n, r, t, ht, rfl⟩ := hv
-  obtain ⟨m, r', t', ht', rfl⟩ := hw
-  refine ⟨n + m, Fin.append r r', Fin.append t t', fun i => ?_, ?_⟩
-  · refine Fin.addCases (fun i => ?_) (fun i => ?_) i
-    · rw [Fin.append_left]; exact ht i
-    · rw [Fin.append_right]; exact ht' i
-  · rw [Fin.sum_univ_add]; simp
-
 theorem mul_mem_spanBy {T : Set F₁} {v : F₁} (hv : v ∈ spanBy c T) (d : R₁) : c d * v ∈ spanBy c T := by
   obtain ⟨n, r, t, ht, rfl⟩ := hv
   exact ⟨n, fun i => d * r i, t, ht, by rw [Finset.mul_sum]; simp only [map_mul, _root_.mul_assoc]⟩
@@ -111,12 +92,6 @@ theorem spanBy_induction {T : Set F₁} (p : F₁ → Prop) (h0 : p 0) (hadd : �
 
 end Span
 
-theorem regAt_pow {X : Scheme.{0}} [IsIntegral X] {x : X} {f : X.functionField} (h : GlobalTheory.Cartier.RegAt x f) (n : ℕ) :
-    GlobalTheory.Cartier.RegAt x (f ^ n) := by
-  induction n with
-  | zero => rw [pow_zero]; exact (unitAt_one x).regAt
-  | succ n ih => rw [pow_succ]; exact ih.mul h
-
 theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscreteValuationRing T] [CommRing D] [IsDomain D] [IsDiscreteValuationRing D] (a : T →+* D), a.Flat → (maximalIdeal T).map a = maximalIdeal D → ∀ (H : Over (Sp T)) [GrpObj H] [IsIntegral H.left] (H' : Over (Sp D)) [GrpObj H'] [IsIntegral H'.left] (π : H'.left ⟶ H.left) (θ : H.left.functionField →+* H'.left.functionField), IsSemiAbelian H → IsPullback π H'.hom H.hom (spMap a) → PFF (𝟙 _) π θ → ∀ (y : H.left) (y' : H'.left), H.hom y = closedPoint T → H'.hom y' = closedPoint D → ringKrullDim (H.left.presheaf.stalk y) = 1 → ringKrullDim (H'.left.presheaf.stalk y') = 1 → GaussAt (GlobalTheory.Desc.cst H'.hom) (maximalIdeal D) θ (regSet y) (regSet y') ∧ θ ⁻¹' (regSet y') = regSet y ∧ LinDisj (GlobalTheory.Desc.cst H.hom) (GlobalTheory.Desc.cst H'.hom) θ := by
   intro T D _ _ _ _ _ _ a ha hm H _ _ H' _ _ π θ hH hpb hff y y' hy hy' hdy hdy'
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible T
@@ -125,8 +100,8 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
 
   have hcomp : θ.comp (cst H.hom) = (cst H'.hom).comp a := by
     obtain ⟨l, hl1, hl2⟩ := hff
-    have e1 := gp_comp_eq_spMap_cst H.left T H.hom
-    have e2 := gp_comp_eq_spMap_cst H'.left D H'.hom
+    have e1 := _root_.GlobalTheory.Desc.ModPi.gp_comp_cst H.left T H.hom
+    have e2 := _root_.GlobalTheory.Desc.ModPi.gp_comp_cst H'.left D H'.hom
     have hl : l = gp H'.left := by simpa using hl1
     have key : spMap (θ.comp (cst H.hom)) = spMap ((cst H'.hom).comp a) := by
       calc spMap (θ.comp (cst H.hom)) = spMap θ ≫ spMap (cst H.hom) := by simp [spMap, CommRingCat.ofHom_comp]
@@ -142,12 +117,12 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
   obtain ⟨hϖ0, hfac⟩ := GlobalTheory.T.semiAbelian_dvr_closedFibre_stalk_uniformiser T H hH y hy hdy ϖ hmT
   have hP0 : P ≠ 0 := by rw [hP]; exact (map_ne_zero θ).2 hϖ0
   have hPz : GlobalTheory.Cartier.ZeroAt y' P :=
-    (cst_regAt_zeroAt D H'.left H'.hom y' hy' (a ϖ)).2 (by rw [hmD]; exact Ideal.subset_span rfl)
+    (_root_.GlobalTheory.Desc.ModPi.cst_reg_zero D H'.left H'.hom y' hy' (a ϖ)).2 (by rw [hmD]; exact Ideal.subset_span rfl)
   have hreg : ∀ u, GlobalTheory.Cartier.RegAt y u → GlobalTheory.Cartier.RegAt y' (θ u) := by
     intro u hu
     have hpt := GlobalTheory.T.baseChange_sends_closedFibre_genericPoint_dvr T D a ha hm H H' π θ hH hpb ⟨_, hff.choose_spec⟩ y y' hy hy' hdy hdy'
     exact GlobalTheory.T.regularAtPoint_functionField_map_of_genericPoint_comp H.left H'.left π θ ⟨_, hff.choose_spec⟩ y' u (hpt ▸ hu)
-  have hcreg : ∀ d, GlobalTheory.Cartier.RegAt y' (c d) := fun d => (cst_regAt_zeroAt D H'.left H'.hom y' hy' d).1
+  have hcreg : ∀ d, GlobalTheory.Cartier.RegAt y' (c d) := fun d => (_root_.GlobalTheory.Desc.ModPi.cst_reg_zero D H'.left H'.hom y' hy' d).1
   have hc0reg : ∀ t, GlobalTheory.Cartier.RegAt y (cst H.hom t) := fun t => (cst_regAt_zeroAt T H.left H.hom y hy t).1
   have hmod := GlobalTheory.T.thetaSpan_vanishing_eq_uniformiser_mul T D a ha hm H H' π θ hH hpb ⟨_, hff.choose_spec⟩ y y' hy hy' hdy hdy' ϖ hmT
   set S := spanBy c (θ '' regSet y) with hS
@@ -164,7 +139,7 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
     refine spanBy_induction c _ ⟨0, by simpa using zero_mem_spanBy c _⟩ ?_ ?_
     · rintro v w ⟨N, hN⟩ ⟨M, hM⟩
       refine ⟨N + M, ?_⟩
-      have := add_mem_spanBy c (hSP _ hN M) (hSP _ hM N)
+      have := _root_.GlobalTheory.Desc.ModPi.span_add c (hSP _ hN M) (hSP _ hM N)
       convert this using 1; ring
     · rintro r _ ⟨u, rfl⟩
       by_cases hu : u = 0
@@ -183,7 +158,7 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
         linear_combination (c r * θ w) * hq
       rw [e]
       exact mul_mem_spanBy c (subset_spanBy c (θ '' regSet y) (Set.mem_image_of_mem θ
-        (show _ ∈ regSet y from (regAt_pow (hc0reg ϖ) _).mul hw.regAt))) r
+        (show _ ∈ regSet y from (_root_.GlobalTheory.Desc.ModPi.regAt_npow (hc0reg ϖ) _).mul hw.regAt))) r
 
   have hB : ∀ (N : ℕ) (t : H'.left.functionField), GlobalTheory.Cartier.RegAt y' t → P ^ N * t ∈ S → t ∈ S := by
     intro N
@@ -192,7 +167,7 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
     | succ N ih =>
       intro t ht h
       rw [pow_succ', _root_.mul_assoc] at h
-      obtain ⟨z₁, hz₁, e⟩ := hmod _ h (hPz.mul ((regAt_pow hPz.regAt N).mul ht))
+      obtain ⟨z₁, hz₁, e⟩ := hmod _ h (hPz.mul ((_root_.GlobalTheory.Desc.ModPi.regAt_npow hPz.regAt N).mul ht))
       have : P ^ N * t = z₁ := mul_left_cancel₀ hP0 e
       exact ih t ht (this ▸ hz₁)
   refine ⟨fun v ⟨d, hd0, hdv⟩ => ⟨fun hv => ?_, fun ⟨s, hs, hsv⟩ => ?_⟩, ?_, ?_⟩
@@ -218,7 +193,7 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
     obtain ⟨k, w, hw, rfl⟩ := hfac u hu
     rcases le_or_gt 0 k with hk | hk
     · lift k to ℕ using hk
-      rw [zpow_natCast]; exact (regAt_pow (hc0reg ϖ) k).mul hw.regAt
+      rw [zpow_natCast]; exact (_root_.GlobalTheory.Desc.ModPi.regAt_npow (hc0reg ϖ) k).mul hw.regAt
     · exfalso
       have hw0 := hw.ne_zero
       obtain ⟨hw1, hw2⟩ := (unitAt_iff hw0).1 hw
@@ -229,7 +204,7 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
         rw [map_mul, map_zpow₀, ← hP, _root_.mul_assoc (P ^ k), mul_inv_cancel₀ ((map_ne_zero θ).2 hw0),
           _root_.mul_one, ← zpow_natCast, hm1, ← zpow_add₀ hP0, show k + -(k + 1) = -1 by ring, zpow_neg_one]
       have hPi : GlobalTheory.Cartier.RegAt y' P⁻¹ := by
-        rw [e]; exact (h.mul hθw.inv.regAt).mul (regAt_pow hPz.regAt _)
+        rw [e]; exact (h.mul hθw.inv.regAt).mul (_root_.GlobalTheory.Desc.ModPi.regAt_npow hPz.regAt _)
       exact (zeroAt_iff.1 hPz).2 ((unitAt_iff hP0).2 ⟨hPz.regAt, hPi⟩)
   · exact GlobalTheory.T.linearlyDisjoint_functionField_of_flat_baseChange T D a ha H H' π θ hpb ⟨_, hff.choose_spec⟩
 

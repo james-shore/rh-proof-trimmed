@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankLaRingOfIntegers
 
 @[expose] public section
 
@@ -80,7 +81,7 @@ theorem latQuot_free : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Da
   haveI := projective_La_int D
   haveI := D.finLa
   haveI : Module.Finite (𝓞 D.F) D.La := Module.Finite.of_restrictScalars_finite ℤ (𝓞 D.F) D.La
-  obtain ⟨g, hs, hk⟩ := GlobalTheory.T.exists_surjective_pi_quotient_pow_ker_eq w0 hw r _ (GlobalTheory.T.finrank_La_ringOfIntegers' D)
+  obtain ⟨g, hs, hk⟩ := _root_.GlobalTheory.exists_surj_pi_quot_pow_ker_eq w0 hw r _ (_root_.GlobalTheory.UPel.HT.Datum.finrank_La_ringOfIntegers D)
   refine ⟨g.toAddMonoidHom, hs, fun c x => ?_, fun x => ?_⟩
   · show g (c • x) = _
     rw [map_smul, ← Ideal.Quotient.algebraMap_eq, algebraMap_smul]

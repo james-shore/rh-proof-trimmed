@@ -85,7 +85,7 @@ theorem tameChar_of_prime_residue : ∀ {E Ω : Type} [Field E] [NumberField E] 
     intro u hu
     obtain ⟨ζ, hζ, hζu⟩ := GlobalTheory.T.exists_rootOfUnity_congr_unit_at_place A₀ P hA₀ u hu
     rw [hNm] at hζ
-    obtain ⟨σ, hσ, hσπ⟩ := GlobalTheory.T.inertia_acts_on_tame_root A₀ P hA₀ m hm0 hmP ϖ hϖ hϖ2 π hπ ζ hζ
+    obtain ⟨σ, hσ, hσπ⟩ := _root_.GlobalTheory.TameSurj.main A₀ P hA₀ m hm0 hmP ϖ hϖ hϖ2 π hπ ζ hζ
     exact ⟨σ, hσ, ζ, hζ, hζu, hσπ⟩
   have hrep : ∀ σ ∈ Ine (F := E) A₀, ∀ u : 𝓞 E, A₀.valuation (σ π / π - algebraMap E Ω (u : E)) < 1 →
       NX.TameRep P 1 σ u := by
@@ -95,7 +95,7 @@ theorem tameChar_of_prime_residue : ∀ {E Ω : Type} [Field E] [NumberField E] 
   have hkey : ∀ (σ : G E Ω) (u : 𝓞 E), NX.TameRep P 1 σ u → NX.tameVal χ P 1 u = χ σ := by
     intro σ u h
     rw [NX.tameVal, dite_eq_left ⟨σ, h⟩]
-    exact GlobalTheory.T.tameChar_eq_of_tameRep_congr P hadic χ hχc (by rw [hNm]; exact hm0) (by rw [hNm]; exact hmP)
+    exact _root_.GlobalTheory.TameTau.char_eq_of_tameRep_congr P hadic χ hχc (by rw [hNm]; exact hm0) (by rw [hNm]; exact hmP)
       (by intro A hA σ' hσ'; rw [hNm]; exact hχI A hA σ' hσ') _ σ u u (⟨σ, h⟩ : ∃ σ, NX.TameRep P 1 σ u).choose_spec h (by simp)
   have hlt : ∀ a b : Ω, A₀.valuation a ≤ 1 → A₀.valuation b < 1 → A₀.valuation (a * b) < 1 := by
     intro a b ha hb

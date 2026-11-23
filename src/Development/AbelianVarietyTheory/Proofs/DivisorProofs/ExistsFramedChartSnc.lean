@@ -264,8 +264,8 @@ theorem exists_isLogChart_snc : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
 theorem logGrowth_snc : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : Model Xo c β) (hsm : SmoothOfRelativeDimension Dw.dim (genStr Z)) (hsnc : ReciprocityTheory.AnForm.R.FinalTheorems.Snc (genBdIdeal Z)) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Letter Dw) (Fu : Fam Xo c σ e) (τ : E →+* ℂ) (x : ∀ i, Idx Dw τ → (Fu.Di i).La) (hm : Fin Fu.n → Matrix (Idx Dw τ) (Idx Dw τ) E) (h : CxFr Z σ → ℂ), Formalism.L2.PjFree.GoodEmb c σ → 1 ≤ Dw.p + Dw.q → (∀ i, IsPerBasis (Fu.Di i) (x i) (hm i)) → (∀ a i Q, Per Fu a i Q → h a = perVal c σ τ (x i) (hm i) Q) → LogGrowth h := by
   intro E _ _ _ H Dw l Xo c O _ β Z hsm hsnc σ g e Fu τ x hm h hσ hpq hx hh x₀
   obtain ⟨n, g', r, k, ch, ex, lam, ρ, hx₀, hx₀', hch⟩ := exists_isLogChart_snc E H Dw l Xo c O β Z hsm hsnc σ hσ hpq x₀
-  obtain ⟨i, T₀, hmark⟩ := GlobalTheory.T.exists_constant_periodMarking_universalCover E H Dw l Xo c O β Z σ g e Fu n g' r k ch ex lam ρ hch
-  obtain ⟨C₂, k₂, hbnd⟩ := GlobalTheory.T.horizontalCoordinate_polynomial_bound E H Dw l c σ (Fu.Di i) τ (x i) (hm i) g' r T₀ ρ (hx i)
+  obtain ⟨i, T₀, hmark⟩ := _root_.GlobalTheory.ShFam.Hor.Mark.exists_marking_const E H Dw l Xo c O β Z σ g e Fu n g' r k ch ex lam ρ hch
+  obtain ⟨C₂, k₂, hbnd⟩ := _root_.GlobalTheory.ShFam.Hor.PolyBd.perVal_bound E H Dw l c σ (Fu.Di i) τ (x i) (hm i) g' r T₀ ρ (hx i)
   obtain ⟨hexp, hinner, -, hlam, C₁, k₁, hgrow⟩ := hch
   refine ⟨ch.source ∩ ch ⁻¹' Metric.ball 0 (1 / 2),
     fun y => ∏ j ∈ Finset.univ.filter (fun j : Fin n => (j : ℕ) < k), ch y j,

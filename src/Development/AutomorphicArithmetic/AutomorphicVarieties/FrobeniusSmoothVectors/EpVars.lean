@@ -56,12 +56,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr
 
-open MvPowerSeries in
-private theorem ev_decomp {O σ : Type} [CommRing O] [Fintype σ] (f : MvPowerSeries σ O) :
-    ∃ h : σ → MvPowerSeries σ O, f = C (constantCoeff f) + ∑ i, MvPowerSeries.X i * h i ∧
-      ∀ i, constantCoeff (h i) = coeff (Finsupp.single i 1) f :=
-  _root_.UpperTheory.Reformulated.B.Qf39.ev_decomp f
-
 private theorem ev_max {O : Type} [CommRing O] [IsLocalRing O] {R : Type} [CommRing R] [Algebra O R]
     [IsCO O R] {R' : Type} [CommRing R'] [Algebra O R'] [IsCO O R'] (f : R →ₐ[O] R') {x : R} :
     f x ∈ maximalIdeal R' ↔ x ∈ maximalIdeal R := by
@@ -147,7 +141,7 @@ theorem UpperTheory.V.Fr.ep_vars :
     refine h2R.mul_left_cancel ?_
     rw [hw, h1]
     simp
-  · obtain ⟨u, hu, hu0⟩ := ev_decomp h
+  · obtain ⟨u, hu, hu0⟩ := _root_.UpperTheory.Reformulated.B.Qf39.ev_decomp h
     have h0 : p h = 0 := hh
     have h1 : algebraMap O R (MvPowerSeries.constantCoeff h) + ∑ i, z i * p (u i) = 0 := by
 

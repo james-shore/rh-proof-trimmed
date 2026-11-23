@@ -301,7 +301,7 @@ theorem secTransform (hL : GlobalTheory.IndefiniteRowSideFullHecke.HeckePrimeDet
     · obtain ⟨w, hw⟩ := bc_exists ψ y
       obtain ⟨w', hw'⟩ := bc_exists ψ y'
       rw [map_mul, hg q y Ω ψ w hw, hg q y' Ω ψ w' hw']
-      refine (GlobalTheory.T.heckeKernel_value_sum_weight_triangular_frame E H Dw l Xo c P p i a n hA hT (hL.2.2.1 E H Dw l Xo c P p i hP) f hf Ω _ w w'
+      refine (_root_.GlobalTheory.HeckeWeight.hkVal_frBor E H Dw l Xo c P p i a n hA hT (hL.2.2.1 E H Dw l Xo c P p i hP) f hf Ω _ w w'
         (frBorBC (Xo := Xo) (c := c) _ _ ψ t y y' w w' h hw hw')).trans ?_
       congr 1
       simp [wchar]

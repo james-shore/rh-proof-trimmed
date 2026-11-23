@@ -61,7 +61,7 @@ theorem exists_isThetaFunOF_ne_zero_k : ∀ (F E : Type) [Field F] [NumberField 
       IsHermND σ JS → IsHermND σ JT → ∀ ξ₀ : E, ξ₀ ≠ 0 → σ ξ₀ = -ξ₀ →
       ∃ f₀ : Formalism.IndefR.DatumF.WOF F E nS nT → ℂ, Formalism.IndefR.DatumF.IsThetaFunOF σ JS JT ξ₀ B.ψ f₀ ∧ f₀ ≠ 0 := by
   intro F E _ _ _ _ _ σ B hB nS nT JS JT hS hT ξ₀ hξ0 hσξ
-  have hstd := _root_.GlobalTheory.T.standard_additive_character_sign F E σ B hB
+  have hstd := _root_.GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood_k F E σ B hB
   obtain ⟨w⟩ : Nonempty (InfinitePlace F) := inferInstance
   have hσ : ∀ x, σ (σ x) = x := fun x => by
     apply ((B.emb w).1 : E →+* ℂ).injective
@@ -100,7 +100,7 @@ theorem exists_isThetaFunOF_ne_zero_k : ∀ (F E : Type) [Field F] [NumberField 
   obtain ⟨Φ, hΦ, hne⟩ := GlobalTheory.ThetaSumNe.exists_mem_schA_thetaSum_ne_zero F (Fin nT × Fin nS)
   refine ⟨GlobalTheory.WeilSchrodinger.thetaTr F co' B.ψ Φ, ?_, ?_⟩
   · rw [GlobalTheory.TransportF.thetaTr_eqF co' τ]
-    exact _root_.GlobalTheory.T.schrodinger_model_isomorphism F E σ B hB nS nT JS JT hS hT ξ₀ hξ0 hσξ hstd _ (GlobalTheory.TransportF.numCoordF co' τ) he hr _
+    exact _root_.GlobalTheory.ThetaTransformF.isThetaFunOF_thV_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ0 hσξ hstd _ (GlobalTheory.TransportF.numCoordF co' τ) he hr _
       (GlobalTheory.TransportF.comp_mem_schA τ hΦ)
   · intro h
     have h0 := congrFun h 0

@@ -58,34 +58,19 @@ open GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.SmGL Global
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-section Char
-
-variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] [_root_.NumberField.IsTotallyComplex E]
-  {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)}
-
-end Char
-
 section Eta
 
 variable {R : Ranks} {H : Formalism.BasicNotions.Host R} {χ : HChar H.E}
-
-theorem ordF_unif {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) : ordF v (unif v) = 1 := by
-  have h := unif_spec v
-  have hk : Valued.v ((atFin v (Formalism.L2.Host.unif v) : (v.adicCompletion F)ˣ) : v.adicCompletion F) =
-      v.valuation F (Formalism.L2.Host.unif v : F) :=
-    HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v (Formalism.L2.Host.unif v : F)
-  unfold IsUnifAt at h
-  rw [ordF, ← hk, h, WithZero.log_exp]; simp
 
 theorem prod_val (h : IsEtaT H χ) (v : HeightOneSpectrum (𝓞 H.F)) :
     ∏ P ∈ aboveF (L := H.E) H.F v, χ.val P = if (aboveF (L := H.E) H.F v).card = 1 then -1 else 1 := by
   obtain ⟨c, hc, hcm, hr, -⟩ := GlobalTheory.Mem.HostCM.host_cm R H
   have h1 := h.res.1 v (unif v)
-  rw [etaFin, ordF_unif, zpow_one, HChar.resFin, MonoidHom.finsetProd_apply] at h1
+  rw [etaFin, _root_.GlobalTheory.Mem.Chr.ordF_unif_self, zpow_one, HChar.resFin, MonoidHom.finsetProd_apply] at h1
   rw [← h1]
   refine Finset.prod_congr rfl fun P hP => ?_
   have hP' : P.under (𝓞 H.F) = v := by simpa [aboveF] using hP
-  rw [MonoidHom.comp_apply, GlobalTheory.HeckeProduct.locK_unr χ (h.unr P), hr, hP', ordF_unif, zpow_one]
+  rw [MonoidHom.comp_apply, GlobalTheory.HeckeProduct.locK_unr χ (h.unr P), hr, hP', _root_.GlobalTheory.Mem.Chr.ordF_unif_self, zpow_one]
 
 open Classical in
 theorem above_eq {w w' : PlE H} (hc : IsConjPl H w w') : aboveF (L := H.E) H.F (w.under (𝓞 H.F)) = {w, w'} := by

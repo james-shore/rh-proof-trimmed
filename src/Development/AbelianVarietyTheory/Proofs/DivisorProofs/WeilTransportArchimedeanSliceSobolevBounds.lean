@@ -148,7 +148,7 @@ theorem slice_l2_of (hψ : IsStdInf F ψ) {G : Type} [Group G] [TopologicalSpace
       ∫ x, (‖x‖ ^ i * ‖iteratedFDeriv ℝ j (fun x => om p Φ (GlobalTheory.WeilCont.adeleJoin F x y)) x‖) ^ 2 ≤ B := by
   obtain ⟨L, C, hL⟩ := GlobalTheory.T.adelic_schwartz_l2_word_bound_exists F κ ψ hψ i j
   obtain ⟨N, hN, m, g, yy, hg, hdual, hf⟩ := hfin
-  obtain ⟨CG, hCG, hG⟩ := GlobalTheory.T.finite_adelic_dual_basis_integral F κ m g yy hg hdual μ hμ y
+  obtain ⟨CG, hCG, hG⟩ := _root_.GlobalTheory.WeilL2Words.slice_le_l2A F κ m g yy hg hdual μ hμ y
   set R : ℝ := ∑ h ∈ L.flatten.toFinset, (‖M p0 h‖ + 1) with hR
   have hev : ∀ᶠ p in nhds p0, ∀ h ∈ L.flatten.toFinset, ‖M p h‖ ≤ R := by
     refine (Filter.eventually_all_finset _).2 fun h hh => ?_

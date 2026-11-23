@@ -82,12 +82,6 @@ theorem pow_succ_dvd_factorial (l : ℕ) (hl : 0 < l) : l ^ (l + 1) ∣ (l * l)!
 
 variable (l : ℕ) [Fact l.Prime]
 
-theorem isUnit_natCast_ainfP (n : ℕ) (hn : n ≠ 0) : IsUnit (n : Formalism.Per.AinfP l) :=
-  GlobalTheory.AcrisDiscExt.isUnit_natCast_of (l := l) ((algebraMap (Formalism.Per.Ainf l) (Formalism.Per.AinfP l)).comp (Formalism.Per.zA l))
-    (by
-      have := IsLocalization.Away.algebraMap_isUnit (S := Formalism.Per.AinfP l) (l : Formalism.Per.Ainf l)
-      simpa using this) n hn
-
 end GlobalTheory.AcrisFrobE
 
 namespace GlobalTheory.AcrisFrobE
@@ -100,7 +94,7 @@ theorem coe_natCast0 (k : ℕ) : ((k : Formalism.Per.Acris0 l) : Formalism.Per.A
 theorem exists_dpow (x : Formalism.Per.Ainf l) (hx : Formalism.Per.θ l x = 0) (n : ℕ) :
     ∃ d : Formalism.Per.Acris0 l, ((n ! : ℕ) : Formalism.Per.AinfP l) * (d : Formalism.Per.AinfP l) =
       algebraMap (Formalism.Per.Ainf l) (Formalism.Per.AinfP l) x ^ n := by
-  obtain ⟨u, hu⟩ := isUnit_natCast_ainfP l (n !) (Nat.factorial_ne_zero n)
+  obtain ⟨u, hu⟩ := _root_.GlobalTheory.RingBasics.isUnit_nat l (n !) (Nat.factorial_ne_zero n)
   have key : ((n ! : ℕ) : Formalism.Per.AinfP l) *
       (algebraMap (Formalism.Per.Ainf l) (Formalism.Per.AinfP l) x ^ n * ((u⁻¹ : (Formalism.Per.AinfP l)ˣ) : Formalism.Per.AinfP l)) =
       algebraMap (Formalism.Per.Ainf l) (Formalism.Per.AinfP l) x ^ n := by
@@ -123,7 +117,7 @@ theorem exists_div_l (x : Formalism.Per.Ainf l) (hx : Formalism.Per.θ l x = 0) 
   · apply Subtype.ext
     rw [Subalgebra.coe_mul, Subalgebra.coe_mul, Subalgebra.coe_pow, Subalgebra.coe_mul, coe_natCast0,
       coe_natCast0, coe_natCast0]
-    refine ((isUnit_natCast_ainfP l (l ^ l) (pow_ne_zero _ hl0.ne')).mul_right_inj).1 ?_
+    refine ((_root_.GlobalTheory.RingBasics.isUnit_nat l (l ^ l) (pow_ne_zero _ hl0.ne')).mul_right_inj).1 ?_
     have h1 : ((l ^ l : ℕ) : Formalism.Per.AinfP l) * ((((l - 1)! : ℕ) : Formalism.Per.AinfP l) * (g : Formalism.Per.AinfP l)) ^ l =
         X ^ (l * l) := by
       rw [pow_mul, ← hg, ← e, Nat.cast_mul, Nat.cast_pow, ← mul_pow]; ring

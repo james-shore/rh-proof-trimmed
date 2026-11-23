@@ -64,7 +64,7 @@ theorem rightConv_eq_smul_of_inner_translates : ∀ {G : Type} [Group G] [Topolo
 
   have intOn : ∀ f : G → ℂ, Continuous f → ∀ C : ℝ, (∀ g, ‖f g‖ ≤ C) → IntegrableOn f 𝓕 μ :=
     fun f hf C hC => Measure.integrableOn_of_bounded hμ.ne hf.aestronglyMeasurable (ae_of_all _ hC)
-  have hΦc : Continuous Φ := GlobalTheory.T.continuous_right_convolution_bounded_integrable m α hα φ hφ B hB
+  have hΦc : Continuous Φ := _root_.GlobalTheory.conv_right_continuous m α hα φ hφ B hB
   set K : ℝ := ∫ h, ‖α h‖ * B ∂m
   have hΦb : ∀ x, ‖Φ x‖ ≤ K := by
     intro x
@@ -103,7 +103,7 @@ theorem rightConv_eq_smul_of_inner_translates : ∀ {G : Type} [Group G] [Topolo
 
   have hsα : Integrable (fun h => star (α h)) m := by
     simpa using Complex.conjCLE.toContinuousLinearMap.integrable_comp hα
-  have F := GlobalTheory.T.integral_fundamentalDomain_convolution_comm_of_bounded (H := H) μ 𝓕 hμ m (fun h => star (α h)) hsα D (fun x => star (φ x)) hDc hsφc
+  have F := _root_.GlobalTheory.fubini_right_convolution_bounded_continuous (H := H) μ 𝓕 hμ m (fun h => star (α h)) hsα D (fun x => star (φ x)) hDc hsφc
     (K + ‖c‖ * B) B hDb hsφb
   have hstarΦ : ∀ x, star (Φ x) = ∫ h, star (α h) * star (φ (x * (h : G))) ∂m := by
     intro x
@@ -150,7 +150,7 @@ theorem rightConv_eq_smul_of_inner_translates : ∀ {G : Type} [Group G] [Topolo
   have hDinv : ∀ γ ∈ Γ, ∀ x, D (γ * x) = D x := by
     intro γ hγ x
     simp only [hDdef, Φ, mul_assoc, hinv γ hγ]
-  have := GlobalTheory.T.eq_zero_of_ae_zero_on_fundamentalDomain Γ μ 𝓕 hF D hDc hDinv hae'
+  have := _root_.GlobalTheory.eq_zero_of_ae_fundamentalDomain_of_leftInvariant Γ μ 𝓕 hF D hDc hDinv hae'
   intro x
   exact sub_eq_zero.1 (this x)
 

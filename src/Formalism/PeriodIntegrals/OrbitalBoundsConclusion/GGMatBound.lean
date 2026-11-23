@@ -55,4 +55,4 @@ theorem gg_matrix_bound : Formalism.L2.SG.GGMirabolic.GGMatrixBoundOfLit :=
   PI.GGMatBoundW.ggMatrixBoundOfLit_of PI.GGMatBoundW.matrix_coefficient_equation PI.GGMatBoundW.totally_hermitian_form
     (PI.GGMatBoundW.eigBound_of PI.GGMatBoundW.local_place_bound PI.GGMatBoundW.joint_eigenvector_exists
       PI.GGMatBoundW.prod_formula')
-    PI.GGMatBoundW.spectrum_positive_semidefinite convolution_scalar generic_ratio_bound mirabolic_card_unipotent
+    PI.GGMatBoundW.spectrum_positive_semidefinite convolution_scalar generic_ratio_bound _root_.PI.GGCardUniWork.cardUni

@@ -58,8 +58,8 @@ theorem semistablePeriodFrame : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk 
   obtain ⟨N, F, Y, Z, hY, hZ, hW⟩ := GlobalTheory.T.exists_breuilKisinBasis_of_semistablePeriods l K bk τ hτ d ρ hρ s
   obtain ⟨F₀, rfl, hε⟩ := GlobalTheory.T.semistablePeriods_breuilKisin_galoisStable l K bk τ hτ d ρ hρ s N F Y Z hY hZ hW
   refine ⟨N, F₀, ?_, ?_⟩
-  · exact GlobalTheory.T.semistablePeriodFrame_isDeRham l K bk τ hτ d ρ hρ s N F₀ Y Z hY hZ hW hε
+  · exact _root_.GlobalTheory.BKLim.WDR.frame_isDR l K bk τ hτ d ρ hρ s N F₀ Y Z hY hZ hW hε
   · intro hκ
-    exact GlobalTheory.T.isCr_of_wSeed_alt l K bk τ hτ d ρ hρ s N F₀ Y Z hY hZ hW hε hκ
+    exact _root_.GlobalTheory.BKLim.Frame.isCr_of_wSeed l K bk τ hτ d ρ hρ s N F₀ Y Z hY hZ hW hε hκ
 
 end GlobalTheory

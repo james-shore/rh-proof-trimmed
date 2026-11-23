@@ -73,15 +73,4 @@ theorem gapGe_sub_smul {E : Type} [Field E] [NumberField E] [IsCMField E] {H : R
   push_cast
   linarith
 
-theorem cls_common_nsmul {Y : Scheme.{0}} {Λ : Type} [AddCommGroup Λ] {B : Λ → LB Y} (C : Common B) (n : ℕ) (a : Λ) :
-    cls (B (n • a)) (C.isLB (n • a)) = n • cls (B a) (C.isLB a) := by
-  induction n with
-  | zero =>
-    have h := cls_common_add C 0 0
-    simp only [add_zero] at h
-    simp only [zero_nsmul]
-    exact left_eq_add.1 h
-  | succ n ih =>
-    rw [succ_nsmul, cls_common_add C, ih, succ_nsmul]
-
 end GlobalTheory.HSApp

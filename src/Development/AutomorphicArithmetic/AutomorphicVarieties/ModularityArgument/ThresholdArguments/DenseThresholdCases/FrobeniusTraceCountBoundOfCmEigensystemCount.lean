@@ -267,10 +267,6 @@ private theorem bit_of_fibre {X U : Type} (R : X → X → Prop) (hs : ∀ x y, 
   by_cases hc : R (Classical.epsilon (α := X) (h := ⟨x⟩) fun y => Q y (u x)) x
   · exact ht _ _ _ (hs _ _ hc) (h3.1 hc)
   · exact h2 _ _ _ _ h0 (hu x) hx' hc fun h4 => hc (h3.2 h4)
-private theorem iso_symm {Γ k : Type} [Group Γ] [Field k] {n : ℕ} {r r' : Γ →* GL (Fin n) k} (h : RepIso r r') :
-    RepIso r' r := by
-  obtain ⟨g, hg⟩ := h
-  exact ⟨g⁻¹, fun s => by rw [hg s]; group⟩
 private theorem iso_trans {Γ k : Type} [Group Γ] [Field k] {n : ℕ} {r r' r'' : Γ →* GL (Fin n) k} (h : RepIso r r')
     (h' : RepIso r' r'') : RepIso r r'' := by
   obtain ⟨g, hg⟩ := h
@@ -351,7 +347,7 @@ theorem countQ_alt :
   have hMw : ((M : ℕ) : 𝓞 ℚ) ∉ w.asIdeal := not_mem_of_coprime ((Nat.Prime.coprime_iff_not_dvd hp).2 hpM) w hpw
   refine Exists.elim (bit_of_fibre (X := {r : G ℚ Ω →* GL (Fin n) (Qbar l) // _root_.UpperTheory.GalN.V.AdmRNAlt ι M m wt r})
     (U := Σ i, {x : (D i).S × Multiset ℂ // x.2.map (· ^ f i) = (D i).β x.1})
-    (fun r r' => RepIso r.1 r'.1) (fun _ _ => iso_symm) (fun _ _ _ => iso_trans)
+    (fun r r' => RepIso r.1 r'.1) (fun _ _ => _root_.UpperTheory.V.Af.RepIso.symm') (fun _ _ _ => iso_trans)
     (fun r t => (∃ h : _root_.UpperTheory.GalN.V.AdmPNAlt ι M m (r.1.comp (res ℚ Ω (K₀ (u t.1)))), cl t.1 ⟨_, h⟩ = t.2.1.1) ∧
       FrobEig ι r.1 w (t.2.1.2.map (·⁻¹))) ?ex ?two) ?main
   case main =>
@@ -390,7 +386,7 @@ theorem countQ_alt :
     have hR := (resTwo _ _ _ n (res ℚ Ω (K₀ (u i))) (δ i) (hδ i).1 (hδ i).2 r₀.1).2
     have k1 := (hR r.1 a₀.irr (hcl i _ _ (e₀.trans e₁.symm))).resolve_left n1
     have k2 := (hR r'.1 a₀.irr (hcl i _ _ (e₀.trans e₂.symm))).resolve_left n2
-    exact iso_trans (iso_symm k1) k2
+    exact iso_trans (_root_.UpperTheory.V.Af.RepIso.symm' k1) k2
 end
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial GlobalTheory.GalOfCusp UpperTheory.V.Af

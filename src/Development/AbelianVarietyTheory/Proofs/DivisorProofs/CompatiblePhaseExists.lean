@@ -69,11 +69,6 @@ def skw (st : S →+ S) (e : S) (h : R) (z : S) : S :=
 
 def ex (h : R) (x : S) : S := 1 + x + h • (x * x)
 
-theorem st_one' (hm : ∀ x y, st (x * y) = st y * st x) (hi : ∀ x, st (st x) = x) : st 1 = 1 := by
-  have := hm (st 1) 1
-  rw [mul_one, hi, mul_one] at this
-  exact this.symm
-
 theorem half_add (hh : h + h = 1) (x : S) : h • x + h • x = x := by rw [← add_smul, hh, one_smul]
 
 theorem st_smul (hh : h + h = 1) (x : S) : st (h • x) = h • st x := by
@@ -88,7 +83,7 @@ theorem ex_unitary (hm : ∀ x y, st (x * y) = st y * st x) (hi : ∀ x, st (st 
     (hs : st x = -x) (h3 : x * x * x = 0) : st (ex h x) * ex h x = 1 := by
   have h4 : x * x * (x * x) = 0 := by rw [← mul_assoc, h3, zero_mul]
   have h3' : x * (x * x) = 0 := by rw [← mul_assoc, h3]
-  simp only [ex, map_add (f := _), st_one' hm hi, st_smul hh, hm, hs, add_mul, mul_add, smul_mul_assoc, mul_smul_comm, neg_mul, mul_neg,
+  simp only [ex, map_add (f := _), _root_.GlobalTheory.TwoStepUnipotent.st_one hm hi, st_smul hh, hm, hs, add_mul, mul_add, smul_mul_assoc, mul_smul_comm, neg_mul, mul_neg,
     neg_neg, h3, h3', h4, one_mul, mul_one, smul_zero, add_zero, neg_zero]
   have := half_add hh (x * x)
   generalize h • (x * x) = y at this ⊢
@@ -98,7 +93,7 @@ theorem skw_spec (hm : ∀ x y, st (x * y) = st y * st x) (hi : ∀ x, st (st x)
     (h0 : st e * e = 0) (z : S) : st (ex h (skw st e h z)) * ex h (skw st e h z) = 1 := by
   have he' : st e * st e = st e := by rw [← hm, he]
   have e1 : st (e * z * (1 - e - h • st e)) = (1 - st e - h • e) * st z * st e := by
-    rw [hm, hm, map_sub, map_sub, st_one' hm hi, st_smul hh, hi, mul_assoc]
+    rw [hm, hm, map_sub, map_sub, _root_.GlobalTheory.TwoStepUnipotent.st_one hm hi, st_smul hh, hi, mul_assoc]
   refine ex_unitary hm hi hh (by rw [skw, map_sub, hi, neg_sub]) (cube_zero (e := e) (f := st e) ?_ ?_ ?_)
   · rw [skw, e1, sub_mul, mul_assoc, mul_assoc _ (st e), h0, sub_mul, sub_mul, smul_mul_assoc, h0, he]; simp
   · rw [skw, e1, mul_sub (1 - e), sub_mul, ← mul_assoc, ← mul_assoc, sub_mul 1 e e, he, mul_assoc (1 - e), mul_assoc _ (st e),
@@ -108,7 +103,7 @@ theorem skw_spec (hm : ∀ x y, st (x * y) = st y * st x) (hi : ∀ x, st (st x)
 
 theorem exists_log (hm : ∀ x y, st (x * y) = st y * st x) (hi : ∀ x, st (st x) = x) (hh : h + h = 1) {g : S}
     (hu : st g * g = 1) (h1 : (g - 1) * e = 0) (h2 : (1 - e) * (g - 1) * (1 - st e) = 0) : ∃ z, ex h (skw st e h z) = g := by
-  have s1 := st_one' hm hi
+  have s1 := _root_.GlobalTheory.TwoStepUnipotent.st_one hm hi
   have k1 : g * e = e := by rwa [sub_mul, one_mul, sub_eq_zero] at h1
   have k2 : st g * e = e := by conv_lhs => rw [← k1, ← mul_assoc, hu, one_mul]
   have k3 : st e * (g - 1) = 0 := by

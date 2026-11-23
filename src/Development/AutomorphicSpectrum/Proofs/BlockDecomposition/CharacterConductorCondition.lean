@@ -56,9 +56,6 @@ namespace GlobalTheory.CompanionTheory.PsiCondLoc
 open HeckeCharacterZeroLocus.SiegelWeilU NumberField IsDedekindDomain Filter Topology Metric
 open Formalism.L2.SG.Pf.RescaleCore.NCov.AdCocptW
 
-theorem eq_one_of_pow_near {z : ℂ} (h : ∀ k : ℕ, ‖z ^ (2 ^ k) - 1‖ ≤ 1 / 2) : z = 1 :=
-  _root_.UpperTheory.Reformulated.B.Ue24.eq_one_of_pow_near h
-
 theorem exists_sub_mem_of_infinite {G : Type*} [AddCommGroup G] [TopologicalSpace G] [IsTopologicalAddGroup G]
     {C s : Set G} (hC : IsCompact C) (hs : s ⊆ C) (hi : s.Infinite) {V : Set G} (hV : V ∈ 𝓝 (0 : G)) :
     ∃ a ∈ s, ∃ b ∈ s, a ≠ b ∧ a - b ∈ V := by
@@ -164,7 +161,7 @@ theorem exists_int_kernel {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) :
   have h00 : ψ (pairA F 0 0) = 1 := by
     have : pairA F (0 : Ainf F) (0 : Af F) = 0 := rfl
     rw [this]; exact AddChar.map_zero_eq_one ψ
-  have hI : IsCompact (Formalism.UG.intAd F : Set (Af F)) := (finiteAdeleIntegers_compactOpen F).2
+  have hI : IsCompact (Formalism.UG.intAd F : Set (Af F)) := (_root_.PI.IntAdCpctOpenWork.main F).2
   obtain ⟨u, w, hu, -, h0u, hIw, huw⟩ := generalized_tube_lemma (isCompact_singleton (x := (0 : Af F))) hI hno
     (by
       rintro ⟨a, b⟩ ⟨ha, -⟩
@@ -184,7 +181,7 @@ theorem exists_int_kernel {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) :
         algebraMap F (Af F) (β₁ : F) - algebraMap F (Af F) (β₂ : F) := by
       rw [show ((β₁ - β₂ : 𝓞 F) : F) = (β₁ : F) - (β₂ : F) from map_sub (algebraMap (𝓞 F) F) _ _, map_sub]
     rw [hal]
-    refine eq_one_of_pow_near fun k => ?_
+    refine _root_.UpperTheory.Reformulated.B.Ue24.eq_one_of_pow_near fun k => ?_
     have e : ψ (pairA F 0 ((algebraMap F (Af F) (β₁ : F) - algebraMap F (Af F) (β₂ : F)) * y)) ^ (2 ^ k) =
         ψ (pairA F 0 ((algebraMap F (Af F) (β₁ : F) - algebraMap F (Af F) (β₂ : F)) * ((2 ^ k : ℕ) • y))) := by
       rw [← AddChar.map_nsmul_eq_pow, ← pairA_nsmul_snd, mul_smul_comm]
@@ -285,7 +282,7 @@ theorem inf_trivial_of_small {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) (K 
       conv_lhs => rw [e, pairA_add_fst, AddChar.map_add_eq_mul, hK _ hsm, one_mul]
     rw [e2]
     exact le_of_lt hin
-  refine eq_one_of_pow_near fun k => ?_
+  refine _root_.UpperTheory.Reformulated.B.Ue24.eq_one_of_pow_near fun k => ?_
   rw [← AddChar.map_nsmul_eq_pow, ← pairA_nsmul_fst]
   exact hall _
 

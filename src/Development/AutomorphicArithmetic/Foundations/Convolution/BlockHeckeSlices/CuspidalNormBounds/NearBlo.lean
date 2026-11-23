@@ -56,14 +56,6 @@ open scoped TensorProduct
 
 namespace UpperTheory.ConvolutionTheory.BW
 
-private theorem indep {V I J : Type} [AddCommGroup V] [Module ℂ V] (T : I → Module.End ℂ V) (v : J → V) (lam : J → I → ℂ)
-    (h0 : ∀ j, v j ≠ 0) (he : ∀ j i, T i (v j) = lam j i • v j) (hinj : Function.Injective lam) : LinearIndependent ℂ v :=
-  _root_.UpperTheory.Reformulated.B.IndependenceEigenvectors.indep T v lam h0 he hinj
-
-private theorem nss {G A : Type} [Group G] [NormedRing A] [NormedAlgebra ℝ A] (ρ : G →* A) (H : Subgroup G)
-    (h : ∀ g ∈ H, ‖ρ g - 1‖ ≤ 1 / 2) : ∀ g ∈ H, ρ g = 1 :=
-  _root_.UpperTheory.Reformulated.B.NoSmallSubgroupsNormedAlgebra.nss ρ H h
-
 attribute [local instance] Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra in
 private theorem openKer {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G]
     [TotallyDisconnectedSpace G] {d : ℕ} (ρ : G →* Matrix (Fin d) (Fin d) ℂ) (hρ : Continuous ρ) :
@@ -71,7 +63,7 @@ private theorem openKer {G : Type} [Group G] [TopologicalSpace G] [IsTopological
   have hc : Continuous fun g => ‖ρ g - 1‖ := (hρ.sub continuous_const).norm
   have hn : {g | ‖ρ g - 1‖ < 1 / 2} ∈ 𝓝 (1 : G) := (isOpen_lt hc continuous_const).mem_nhds (by simp)
   obtain ⟨U, -, hU⟩ := exists_openSubgroup_isCompact_subset hn
-  exact ⟨U, U.isOpen, nss ρ U fun g hg => (hU hg).le⟩
+  exact ⟨U, U.isOpen, _root_.UpperTheory.Reformulated.B.NoSmallSubgroupsNormedAlgebra.nss ρ U fun g hg => (hU hg).le⟩
 
 private theorem trInv {R : Type} [CommRing R] {r : ℕ} (X Y Z : Matrix (Fin r) (Fin r) R) :
     Matrix.trace ((X * Y - Y * X) * Z) = -Matrix.trace (Y * (X * Z - Z * X)) := by
@@ -232,7 +224,7 @@ theorem UpperTheory.ConvolutionTheory.BW.nearBlo :
       rintro ⟨_, q, ⟨b, h1, h2, h3, h4⟩, rfl⟩
       exact ⟨b, h1, h2, heig q b h3 h4⟩
     choose b h1 h2 h3 using hex
-    have li := indep T (fun x => (b x).f) (fun x : lam '' P => x.1) (fun x => (b x).ne) h3 Subtype.val_injective
+    have li := _root_.UpperTheory.Reformulated.B.IndependenceEigenvectors.indep T (fun x => (b x).f) (fun x : lam '' P => x.1) (fun x => (b x).ne) h3 Subtype.val_injective
     have li2 : LinearIndependent ℂ fun x : lam '' P => (⟨⟨(b x).f.1, (b x).cusp⟩, hmem S (b x) (h1 x) (h2 x)⟩ : W) :=
       LinearIndependent.of_comp ((cuspForms E r).subtype ∘ₗ W.subtype) (li.map' (Sm E r).subtype (Submodule.ker_subtype _))
     exact Set.finite_coe_iff.1 li2.finite

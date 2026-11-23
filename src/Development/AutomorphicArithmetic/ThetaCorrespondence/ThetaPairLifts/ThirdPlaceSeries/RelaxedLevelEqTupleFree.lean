@@ -89,7 +89,7 @@ theorem GlobalTheory.PenLev.relax_rd_mem_KO_alt : ∀ {B : GlobalTheory.Mem.Base
   · have hle : J.A.U j (J.ι j α) ⊔ GlobalTheory.FinPl.grpAt _ (_root_.GlobalTheory.PenBridge.finitePlaceCondition J) ≤
         (KO (J'.G i).k _).comap ((Pi.evalMonoidHom _ i).comp (_root_.GlobalTheory.PenBridge.reductionHomAtLastLevel J' j hj)) := by
       refine sup_le (fun x hx => ?_) (fun x hx => ?_)
-      · exact _root_.GlobalTheory.T.true_geometry_tuple_free_index_alt W hW u a ha hTr j hj t J hJ α t' J' hJ' i hv x hx
+      · exact _root_.GlobalTheory.PenBridge.rd_mem_KO_off_twist_alt W hW u a ha hTr j hj t J hJ α t' J' hJ' i hv x hx
       · rw [Subgroup.mem_comap, MonoidHom.comp_apply, Pi.evalMonoidHom_apply,
           _root_.GlobalTheory.PenLev.rd_eq_one_of_grpAt_alt J' hj i hv hx]
         exact one_mem _
@@ -101,7 +101,7 @@ theorem GlobalTheory.PenLev.relaxed_level_eq_tuple_free_alt : ∀ {B : GlobalThe
     intro t J hJ α t' J' hJ' α' x hx
     have hx' := (_root_.GlobalTheory.PenLev.mem_relax_iff' J j hj α x).1 hx
     exact (_root_.GlobalTheory.PenLev.mem_relax_iff' J' j hj α' x).2
-      ⟨_root_.GlobalTheory.T.tuple_free_level_step_alt W hW u a ha hTr j hj t J hJ α t' J' hJ' α' x hx, hx'.2.1,
+      ⟨_root_.GlobalTheory.PenLev.relax_le_sup_alt W hW u a ha hTr j hj t J hJ α t' J' hJ' α' x hx, hx'.2.1,
         _root_.GlobalTheory.PenLev.relax_rd_mem_KO_alt W hW u a ha hTr j hj t J hJ α t' J' hJ' x hx⟩
   obtain ⟨t₀, J₀, α₀, hJ₀, h⟩ := _root_.GlobalTheory.PenLev.base_level_subgroup_eq_relax J j hj hJ α
   rw [h]

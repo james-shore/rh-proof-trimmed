@@ -392,7 +392,7 @@ theorem universal_lift_frame [IsDomain O] (hdvr : IsDiscreteValuationRing O) (hf
       simp only [LinearMap.mulLeft_apply, twA_apply, map_mul, hγπ', Formalism.MainNotions.LiftingTheory.gammaA_letter_idempotent]
       ring
     have hzmem : ∀ j, Polynomial.aeval (twA W uE' h') PΩ (π' * ((letE c : LetA O n) * H j)) ∈ Sπ :=
-      fun j => aeval_mem_of_stable Sπ (twA W uE' h') hSπ PΩ ⟨H j, hHΔ j, by simp⟩
+      fun j => _root_.Bl.PowerMembership.goal1 Sπ (twA W uE' h') hSπ PΩ ⟨H j, hHΔ j, by simp⟩
     choose zj hzjΔ hzj using fun j => Submodule.mem_map.1 (hzmem j)
     simp only [LinearMap.mulLeft_apply] at hzj
 
@@ -577,7 +577,7 @@ theorem universal_lift_frame [IsDomain O] (hdvr : IsDiscreteValuationRing O) (hf
     have hPb : γLA W T₂ π' c (Polynomial.aeval (γLA W T₂ π' c) PΩ b₀) - Polynomial.aeval (γLA W T₂ π' c) PΩ b₀ ∈
         piNL W T₂ Pt π' Eπ h' c 1 := by
       rw [← aeval_comm, ← map_sub]
-      exact aeval_mem_of_stable _ _ hpiγ PΩ hγb1
+      exact _root_.Bl.PowerMembership.goal1 _ _ hpiγ PΩ hγb1
     have hxrI : xr ∈ InvL W T₂ Pt π' Eπ h' c Lr := by
       refine Submodule.mem_inf.2 ⟨hxrL, ?_⟩
       rw [Submodule.mem_comap]
@@ -616,6 +616,6 @@ theorem universal_lift_frame [IsDomain O] (hdvr : IsDiscreteValuationRing O) (hf
         rw [← h3, map_sub, LinearMap.sub_apply, Polynomial.aeval_C, Module.algebraMap_end_apply, hPΩ1, hstar]
         abel
       rw [e2]
-      exact Submodule.neg_mem _ (aeval_mem_of_stable _ _ hpiγ R hγb1)
+      exact Submodule.neg_mem _ (_root_.Bl.PowerMembership.goal1 _ _ hpiγ R hγb1)
 
 end Formalism.MainNotions.N.Ln34.UniversalLiftFrames

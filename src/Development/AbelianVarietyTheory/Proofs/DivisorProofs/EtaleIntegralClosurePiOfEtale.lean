@@ -66,7 +66,7 @@ noncomputable def integralClosurePiEquiv (R : Type) [CommRing R] (ι : Type) [Fi
         exact congrArg Subtype.val (congrFun hxy i)
       · intro l
         refine ⟨⟨fun i => (l i).1,
-          GlobalTheory.PurityProd.isIntegral_of_forall_apply (fun i => (l i).1) fun i => (l i).2⟩, ?_⟩
+          _root_.GlobalTheory.IntegralPi.isIntegral_pi (fun i => (l i).1) fun i => (l i).2⟩, ?_⟩
         funext i
         rfl)
 

@@ -64,7 +64,7 @@ theorem pow_prime_norm (hK : Module.finrank ℚ K = 2) {P : Ideal (𝓞 K)} {k :
     (hk : 1 ≤ k) : IsPrimePow (Ideal.absNorm (P ^ k)) ∧
       P ∣ Ideal.span {((Ideal.absNorm (P ^ k)).minFac : 𝓞 K)} ∧ 1 < Ideal.absNorm P := by
   let v : IsDedekindDomain.HeightOneSpectrum (𝓞 K) := ⟨P, hP, h0⟩
-  obtain ⟨p, hp, hm⟩ := GlobalTheory.Mem.FewPrimes.exists_prime_mem v
+  obtain ⟨p, hp, hm⟩ := _root_.GlobalTheory.PrimeInHeightOneSpectrum.exists_prime_mem_heightOneSpectrum v
   have hd : P ∣ Ideal.span {(p : 𝓞 K)} := Ideal.dvd_span_singleton.2 hm
   have hN : Ideal.absNorm (Ideal.span {(p : 𝓞 K)}) = p ^ 2 := by
     rw [Ideal.absNorm_span_natCast, RingOfIntegers.rank, hK]

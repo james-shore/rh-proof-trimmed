@@ -167,13 +167,6 @@ theorem trc_mul (e e' : GA D V →₀ ℂ) (f : GA D V → ℂ) :
       funext x
       simp only [rTrans, Pi.smul_apply, smul_eq_mul, mul_assoc]
 
-theorem contAut_trc (e : GA D V →₀ ℂ) {f : GA D V → ℂ} (hf : IsContAut V f) : IsContAut V (trc e f) := by
-  refine ⟨fun γ hγ x => ?_, ?_⟩
-  · simp only [trc_apply, mul_assoc, hf.1 γ hγ]
-  · have : trc e f = fun x => ∑ g ∈ e.support, e g * f (x * g) := funext (trc_apply e f)
-    rw [this]
-    exact continuous_finsetSum _ fun g _ => (GlobalTheory.Core.Mi.BotPin.isContAut_rTrans g hf).2.const_smul (e g)
-
 end Trc
 
 end GlobalTheory.QValOuter

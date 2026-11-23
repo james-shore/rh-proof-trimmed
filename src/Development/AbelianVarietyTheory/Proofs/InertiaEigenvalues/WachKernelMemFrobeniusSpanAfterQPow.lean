@@ -155,7 +155,7 @@ theorem main : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf 
     · rw [hp]
       exact GlobalTheory.EtaleExact.sep_RW LL
   exact phispan_of W (fun j : Fin l => (fun _ => ((1 : PowerSeries ↥(OL LL)) + PowerSeries.X) ^ (j : ℕ) : AA K LL))
-    (GlobalTheory.T.wachLetterRing_frobenius_decomposition D HW l K s LL h) ι π hex.1 hex.2.1 (fun x hx => W.map_N π c1 c2 x hx)
-    (GlobalTheory.T.wachFrobenius_flat_crystalline D HW F l K s LL h T₂ c2)
+    (_root_.GlobalTheory.NL.PhiDec.phi_dec D HW l K s LL h) ι π hex.1 hex.2.1 (fun x hx => W.map_N π c1 c2 x hx)
+    (_root_.GlobalTheory.NL.PhiFlat.main D HW F l K s LL h T₂ c2)
 
 end GlobalTheory.NL.PhiSpanKer

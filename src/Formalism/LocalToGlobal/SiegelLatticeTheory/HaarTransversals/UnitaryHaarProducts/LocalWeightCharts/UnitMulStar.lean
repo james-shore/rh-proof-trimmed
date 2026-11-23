@@ -101,34 +101,6 @@ lemma conj_mem {ε : Fin n → Bool} {u : Matrix (Fin n) (Fin n) ℂ} (hu : u �
     {g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ UJset ε) : uᴴ * g * u ∈ UJset ε := by
   exact conj_mem_lemma (conj_mem_lemma (mem_UJset_of_mem_Kset_local_weight_charts (conjTranspose_mem_Kset' hu)) hg) (mem_UJset_of_mem_Kset_local_weight_charts hu)
 
-lemma star_mem_K {ε : Fin n → Bool} {u : Matrix (Fin n) (Fin n) ℂ} (hu : u ∈ Formalism.REAL.Kset ε) :
-    uᴴ ∈ Formalism.REAL.Kset ε := by
-  obtain ⟨hU, hc⟩ := hu
-  refine ⟨?_, ?_⟩
-  · refine Matrix.mem_unitaryGroup_iff.2 ?_
-    rw [Matrix.star_eq_conjTranspose, Matrix.conjTranspose_conjTranspose]
-    exact unit_star_mul hU
-  · calc uᴴ * Formalism.REAL.Jm ε = uᴴ * (Formalism.REAL.Jm ε * u) * uᴴ := by
-          simp only [Matrix.mul_assoc, unit_mul_star hU, Matrix.mul_one]
-      _ = uᴴ * (u * Formalism.REAL.Jm ε) * uᴴ := by rw [hc]
-      _ = Formalism.REAL.Jm ε * uᴴ := by
-          simp only [← Matrix.mul_assoc, unit_star_mul hU, Matrix.one_mul]
-
-lemma K_mem_UJ {ε : Fin n → Bool} {u : Matrix (Fin n) (Fin n) ℂ} (hu : u ∈ Formalism.REAL.Kset ε) :
-    u ∈ UJset ε := by
-  obtain ⟨hU, hJ⟩ := hu
-  show uᴴ * Formalism.REAL.Jm ε * u = Formalism.REAL.Jm ε
-  rw [Matrix.mul_assoc, ← hJ, ← Matrix.mul_assoc, unit_star_mul hU, Matrix.one_mul]
-
-lemma mul_mem_UJ {ε : Fin n → Bool} {a b : Matrix (Fin n) (Fin n) ℂ} (ha : a ∈ UJset ε) (hb : b ∈ UJset ε) :
-    a * b ∈ UJset ε := by
-  have ha' : aᴴ * Formalism.REAL.Jm ε * a = Formalism.REAL.Jm ε := ha
-  have hb' : bᴴ * Formalism.REAL.Jm ε * b = Formalism.REAL.Jm ε := hb
-  show (a * b)ᴴ * Formalism.REAL.Jm ε * (a * b) = Formalism.REAL.Jm ε
-  calc (a * b)ᴴ * Formalism.REAL.Jm ε * (a * b) = bᴴ * (aᴴ * Formalism.REAL.Jm ε * a) * b := by
-        simp only [Matrix.conjTranspose_mul, Matrix.mul_assoc]
-    _ = Formalism.REAL.Jm ε := by rw [ha', hb']
-
 end MatAlg
 
 section KTypes
@@ -202,14 +174,14 @@ variable {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 theorem isDS_conj (hσ : IsDS ε lam σ) {u : Matrix (Fin n) (Fin n) ℂ} (hu : u ∈ Formalism.REAL.Kset ε) :
     IsDS ε lam (fun g => σ (uᴴ * g * u)) := by
   obtain ⟨hc, hnt, ⟨⟨h1, hmul⟩, hnorm, hcont⟩, hirr, hsq, ⟨S0, hS0⟩, hmin⟩ := hσ
-  have huJ : u ∈ UJset ε := K_mem_UJ hu
-  have husJ : uᴴ ∈ UJset ε := K_mem_UJ (star_mem_K hu)
+  have huJ : u ∈ UJset ε := _root_.WlocSk.OneP.mem_UJset_of_mem_Kset_local_weight_charts hu
+  have husJ : uᴴ ∈ UJset ε := _root_.WlocSk.OneP.mem_UJset_of_mem_Kset_local_weight_charts (_root_.WlocSk.OneP.conjTranspose_mem_Kset' hu)
   have huu : uᴴ * u = 1 := unit_star_mul hu.1
   have huu' : u * uᴴ = 1 := unit_mul_star hu.1
   have hconj : ∀ g ∈ UJset ε, uᴴ * g * u ∈ UJset ε := fun g hg => conj_mem hu hg
   have key : ∀ g ∈ UJset ε, ∀ x : H, σ (uᴴ * g * u) x = σ uᴴ (σ g (σ u x)) := by
     intro g hg x
-    rw [hmul _ (mul_mem_UJ husJ hg) _ huJ, hmul _ husJ _ hg]
+    rw [hmul _ (_root_.WlocSk.OneP.conj_mem_lemma husJ hg) _ huJ, hmul _ husJ _ hg]
     rfl
   have hinv1 : ∀ x : H, σ u (σ uᴴ x) = x := by
     intro x
@@ -227,7 +199,7 @@ theorem isDS_conj (hσ : IsDS ε lam σ) {u : Matrix (Fin n) (Fin n) ℂ} (hu : 
   have hInter : Inter (ε := ε) σ (fun g => σ (uᴴ * g * u)) T := by
     intro g hg x
     show σ (uᴴ * g * u) (T x) = T (σ g x)
-    rw [hT, hT, key g (K_mem_UJ hg), hinv1]
+    rw [hT, hT, key g (_root_.WlocSk.OneP.mem_UJset_of_mem_Kset_local_weight_charts hg), hinv1]
   refine ⟨hc, hnt, ⟨⟨?_, ?_⟩, ?_, ?_⟩, ?_, ?_, ⟨S0.map (T : H →ₗ[ℂ] H), ktype_map hInter hS0⟩, ?_⟩
   · show σ (uᴴ * 1 * u) = 1
     rw [Matrix.mul_one, huu, h1]
@@ -247,7 +219,7 @@ theorem isDS_conj (hσ : IsDS ε lam σ) {u : Matrix (Fin n) (Fin n) ℂ} (hu : 
   · intro S hS hst
     apply hirr S hS
     intro h hh x hx
-    have hm := conj_mem (star_mem_K hu) hh
+    have hm := conj_mem (_root_.WlocSk.OneP.conjTranspose_mem_Kset' hu) hh
     rw [Matrix.conjTranspose_conjTranspose] at hm
     have hx' := hst _ hm x hx
     have e : uᴴ * (u * h * uᴴ) * u = h := by
@@ -324,5 +296,3 @@ end Cayley
 
 end WlocSk.OneP
 
-section Check
-end Check

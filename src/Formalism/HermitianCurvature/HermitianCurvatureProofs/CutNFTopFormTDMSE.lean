@@ -100,18 +100,6 @@ theorem scalar_point_measurability_holds : ScalarMeas := fun k r TT => ⟨measur
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
-theorem entry_le_gN {k r : ℕ} (g : B.Mat k r) (i j : Fin (2 * r + k + 1)) : ‖g i j‖ ≤ B.gN g := by
-  unfold B.gN
-  rw [← Real.sqrt_sq (norm_nonneg (g i j)), Complex.sq_norm]
-  apply Real.sqrt_le_sqrt
-  have h1 : Complex.normSq (g i j) ≤ ∑ j', Complex.normSq (g i j') :=
-    Finset.single_le_sum (f := fun j' => Complex.normSq (g i j')) (fun j' _ => Complex.normSq_nonneg _)
-      (Finset.mem_univ j)
-  have h2 : ∑ j', Complex.normSq (g i j') ≤ ∑ i', ∑ j', Complex.normSq (g i' j') :=
-    Finset.single_le_sum (f := fun i' => ∑ j', Complex.normSq (g i' j'))
-      (fun i' _ => Finset.sum_nonneg fun j' _ => Complex.normSq_nonneg _) (Finset.mem_univ i)
-  exact h1.trans h2
-
 theorem gN_ball_compact (k r : ℕ) (R : ℝ) : IsCompact {g : B.Mat k r | B.gN g ≤ R} := by
   have hc : Continuous (fun g : B.Mat k r => B.gN g) := by
     unfold B.gN
@@ -122,7 +110,7 @@ theorem gN_ball_compact (k r : ℕ) (R : ℝ) : IsCompact {g : B.Mat k r | B.gN 
   refine ⟨max R 0, fun g hg => ?_⟩
   rw [Matrix.norm_le_iff (le_max_right _ _)]
   intro i j
-  exact (entry_le_gN g i j).trans (le_trans hg (le_max_left _ _))
+  exact (_root_.Formalism.FourierDecayAlt.P.Ux5.entry_le_gN g i j).trans (le_trans hg (le_max_left _ _))
 
 theorem cptCoef_inCC {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
     [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] (Bs : B.RealPlaceData k r Wp Wq) {X : B.Mat k r → (Wq →L[ℂ] Wp)}

@@ -63,15 +63,6 @@ open GlobalTheory.FinTranslate GlobalTheory.FockCompare
 
 variable {D : D7}
 
-theorem finPart_eInf_smul (a : AE D) : finPart D (eInf D • a) = 0 := by
-  induction a using TensorProduct.induction_on with
-  | zero => simp only [smul_zero, map_zero]
-  | add a b ha hb => rw [smul_add, RingHom.map_add (f := _), ha, hb, add_zero]
-  | tmul a x =>
-    rw [TensorProduct.smul_tmul']
-    show (sndA D.host.F (eInf D • a)) ⊗ₜ[D.host.F] x = 0
-    rw [show sndA D.host.F (eInf D • a) = 0 from zero_mul _, TensorProduct.zero_tmul]
-
 theorem infPart_eInf_smul (a : AE D) : infPart D (eInf D • a) = infPart D a := by
   induction a using TensorProduct.induction_on with
   | zero => simp only [smul_zero]
@@ -84,7 +75,7 @@ theorem infPart_eInf_smul (a : AE D) : infPart D (eInf D • a) = infPart D a :=
 theorem infPart_eq_zero {θ : InfFam D} (hθ : IsInfFam θ) {a : AE D} (h : ∀ τ, θ τ (infPart D a) = 0) :
     infPart D a = 0 := by
   obtain ⟨σ, hσ⟩ := GlobalTheory.RealLineAt.exists_inverse_chart hθ
-  have := hσ.ext (eInf D • a) (finPart_eInf_smul a) fun τ => by rw [infPart_eInf_smul, h]
+  have := hσ.ext (eInf D • a) (_root_.GlobalTheory.ThetaClosed.finPart_eInf_smul a) fun τ => by rw [infPart_eInf_smul, h]
   rw [← infPart_eInf_smul, this, map_zero]
 
 variable {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : HSp D}
@@ -115,7 +106,7 @@ theorem exists_extension (hψ : IsStdChar D ψ (-1)) (F₀ : (WO S T → ℂ) �
   obtain ⟨L, hL⟩ := L₀.exists_extend
   have hL' : ∀ g, IsThetaFunO ψ S T g → L g = F₀ g := fun g hg => LinearMap.congr_fun hL ⟨g, hg⟩
   have hr : ∀ w : WO S T, (eInf D • w).map (finPart D) = 0 := fun w =>
-    Matrix.ext fun i j => finPart_eInf_smul (w i j)
+    Matrix.ext fun i j => _root_.GlobalTheory.ThetaClosed.finPart_eInf_smul (w i j)
   have hf : ∀ w : WO S T, (w - eInf D • w).map (infPart D) = 0 := fun w => Matrix.ext fun i j => by
     show infPart D (w i j - eInf D • w i j) = 0
     rw [RingHom.map_sub, infPart_eInf_smul, sub_self]
@@ -282,7 +273,7 @@ theorem main : Big fun {D} _ _ _ _ {T} _ _ _ _ _ _ ch => ∀ (t : T) (e : AE D) 
   refine ⟨0, fun _ _ _ => ⟨0, fun D _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ch _ _ t e v f P j φ hv h => ?_⟩⟩
   exact ⟨GlobalTheory.GalLift.Vec.theta_pureTensorO ch.W.ψ_std ch.W.θ_is _ _ _ _ hv (P j), h.1,
     isThetaAt_pureTensorO ch.W.ψ_std ch.W.θ_is (ch.W.cart_is (.grid D.R.m j) ⟨le_rfl, j.2.le⟩)
-      (ch.W.cart_is (.grid D.R.m (j + 1)) ⟨le_rfl, j.2⟩) _ _ (fun _ hu => GlobalTheory.VacGood.infPart_latO hu) hv h.1 h.2 (P j)⟩
+      (ch.W.cart_is (.grid D.R.m (j + 1)) ⟨le_rfl, j.2⟩) _ _ (fun _ hu => _root_.GlobalTheory.SplitScalar.latO_fin hu) hv h.1 h.2 (P j)⟩
 
 end GlobalTheory.FockPlace
 

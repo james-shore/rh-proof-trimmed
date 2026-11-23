@@ -104,12 +104,12 @@ theorem exists_choice (c : Comm D) (v : VCom c) (k : Type) [Field k] [ValuativeR
                 (op.app c.ψ (c.lst j h (v.τ j h) (t.sBF j 0 h) Ψ₁ Ψ₂)))) ((c.oT (j + 1 + 1) h).emb (h', 1)) ∂c.volT.μ := by
   by_cases h1 : ∃ σ, j + 2 * (σ + 1) + 2 = D.R.m
   · obtain ⟨σ, h⟩ := h1
-    obtain ⟨ε, op, r, e, hr, hop, H⟩ := GlobalTheory.T.seeSawLevelPrimeLaw_doubleStep D c v k ι o hc hv hS j σ h
+    obtain ⟨ε, op, r, e, hr, hop, H⟩ := _root_.GlobalTheory.LevPrimeMid.lawLevelPrime_double D c v k ι o hc hv hS j σ h
     refine ⟨ε, op, r, e, hr, hop, fun σ' h' => ?_, fun h' => absurd h' (by omega)⟩
     obtain rfl : σ = σ' := by omega
     exact H
   · by_cases h2 : j + 2 * 0 + 2 = D.R.m
-    · obtain ⟨ε, op, r, e, hr, hop, H⟩ := GlobalTheory.T.levelPrime_law_last_two_steps_all_tuples D c v k ι o hc hv hS j h2
+    · obtain ⟨ε, op, r, e, hr, hop, H⟩ := _root_.GlobalTheory.FinPl.TLastAll.main D c v k ι o hc hv hS j h2
       exact ⟨ε, op, r, e, hr, hop, fun σ h => absurd ⟨σ, h⟩ h1, fun _ => H⟩
     · exact ⟨fun _ => 1, ⟨0, Fin.elim0, Fin.elim0⟩, fun _ => 1, fun _ => 0, fun _ => one_pos, fun i => i.elim0,
         fun σ h => absurd ⟨σ, h⟩ h1, fun h => absurd h h2⟩

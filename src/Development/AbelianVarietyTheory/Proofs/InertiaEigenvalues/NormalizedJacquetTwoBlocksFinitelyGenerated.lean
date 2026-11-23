@@ -55,17 +55,6 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel Top
 
 namespace GlobalTheory.JacquetFinGen
 
-theorem span_orbit_eq_top {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V]
-    (π : Representation ℂ G V) (hπ : π.IsIrreducible) {v : V} (hv : v ≠ 0) :
-    Submodule.span ℂ (Set.range fun g : G => π g v) = ⊤ := by
-  first
-  | exact @_root_.GlobalTheory.SpanOrbitTop.span_orbit_eq_top
-  | exact _root_.GlobalTheory.SpanOrbitTop.span_orbit_eq_top
-  | (apply _root_.GlobalTheory.SpanOrbitTop.span_orbit_eq_top <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanOrbitTop.span_orbit_eq_top <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanOrbitTop.span_orbit_eq_top <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SpanOrbitTop.span_orbit_eq_top ..)
-
 theorem jacquet_fg : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] (a b n : ℕ) (h : a + b = n) (V : Type) [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin n) k) V), IsSmooth π → π.IsIrreducible →
@@ -105,7 +94,7 @@ theorem jacquet_fg : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
   have hle : Submodule.span ℂ (Set.range fun g : GL (Fin n) k => π g v) ≤
       (Submodule.span ℂ T).comap (twKer π N 1).mkQ :=
     Submodule.span_le.2 (by rintro _ ⟨g, rfl⟩; exact key g)
-  rw [GlobalTheory.JacquetFinGen.span_orbit_eq_top π hirr hv, top_le_iff] at hle
+  rw [_root_.GlobalTheory.SpanOrbitTop.span_orbit_eq_top π hirr hv, top_le_iff] at hle
   rw [eq_top_iff]
   rintro x -
   obtain ⟨y, rfl⟩ := Submodule.Quotient.mk_surjective _ x

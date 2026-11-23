@@ -61,10 +61,10 @@ theorem term_eq_termAt : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P : Pair 
   set δ₀ := hex.choose.1
   set z₀ := hex.choose.2
   have hn₀ : IsNrm G r P.atP δ₀ z₀ := hex.choose_spec
-  obtain ⟨_, hreg, hcent⟩ := GlobalTheory.T.similitudePair_regular_image_at_p p G P
-  obtain ⟨g, hgx⟩ := GlobalTheory.T.hermitianTripleTrivializations_differ_by_group_point p G (AfP p) (P.β : G.C) x x₀ t t₀ hx h₀
-  obtain ⟨g₂, hδ, hcz⟩ := GlobalTheory.T.twistedConj_of_twistedNormConj_hermitianTriple_regular p G r P.atP δ z δ₀ z₀ hr hreg hn hn₀
-  have htw := GlobalTheory.T.map_centralizer_regular_twistedCentraliser p G r P.atP δ z hr hreg hn
+  obtain ⟨_, hreg, hcent⟩ := _root_.GlobalTheory.LKMid.atP_regular p G P
+  obtain ⟨g, hgx⟩ := _root_.GlobalTheory.LKMid.triv_quot p G (AfP p) (P.β : G.C) x x₀ t t₀ hx h₀
+  obtain ⟨g₂, hδ, hcz⟩ := _root_.GlobalTheory.NrmUnique.nrm_unique p G r P.atP δ z δ₀ z₀ hr hreg hn hn₀
+  have htw := _root_.GlobalTheory.CarryCent.map_centralizer_carry p G r P.atP δ z hr hreg hn
   have hAf : P.toAf x₀ t₀ h₀ = (MulAut.conj g⁻¹⁻¹).toMonoidHom.comp (P.toAf x t hx) := by
     ext y : 1
     apply Subtype.ext
@@ -83,7 +83,7 @@ theorem term_eq_termAt : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P : Pair 
     rw [hAf]; simp [MulAut.conj_apply]
   unfold termAt
   rw [hself, hAf, hQr, hδ]
-  refine GlobalTheory.T.kottwitzIsogenyClassPointSum_conj_data _ _ _ _ _ _ _ _ _ _ _ hf hφ ?_ ?_
+  refine _root_.GlobalTheory.PointSumConj.pointSum_conj_data _ _ _ _ _ _ _ _ _ _ _ hf hφ ?_ ?_
   · intro y
     rw [← map_mul, ← map_mul]
     congr 1

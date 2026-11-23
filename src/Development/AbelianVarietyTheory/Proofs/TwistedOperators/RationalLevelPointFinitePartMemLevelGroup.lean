@@ -43,6 +43,7 @@ import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RevPosRevPos
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.WeilActionFixesLevelVectorUpToUnit
 
 @[expose] public section
 
@@ -146,13 +147,6 @@ theorem smul_step {R : Type} [CommRing R] {k : ℕ} (P : R) (K G : Matrix (Fin k
     (h : P • K = P • G) : P • (K *ᵥ u - w) = P • (G *ᵥ u - w) := by
   rw [smul_sub, smul_sub, ← Matrix.smul_mulVec, h, Matrix.smul_mulVec]
 
-theorem toAf_sub {k : ℕ} (u w : Fin k → D.host.E) : (toAf (u - w) : Fin k → AfE D) = toAf u - toAf w := by
-  funext i
-  simp only [toAf, Pi.sub_apply, TensorProduct.tmul_sub]
-
-theorem toAf_mem {k : ℕ} {L : Lt D.host.E k} {u : Fin k → D.host.E} (hu : u ∈ L) : toAf u ∈ hatV L :=
-  AddSubgroup.subset_closure ⟨1, fun v => by rw [map_one]; exact one_mem _, u, hu, rfl⟩
-
 end GlobalTheory.Ker.LevMove.Rat
 
 
@@ -169,9 +163,9 @@ theorem GlobalTheory.Ker.LevMove.levK_of_rat_moves : ∀ (D : D7) (S T : HSp D) 
   have hfull : C.X.Λ.FG ∧ Submodule.span D.host.E (C.X.Λ : Set (Fin T.rank → D.host.E)) = ⊤ :=
     ⟨C.X.Λ_fg, C.X.Λ_span⟩
   have e1 : fmt T g₁ * fmt T g₁⁻¹ = 1 := by
-    rw [← GlobalTheory.Ker.LevMove.fmt_mul', mul_inv_cancel, GlobalTheory.Ker.LevMove.fmt_one']
+    rw [← GlobalTheory.Ker.LevMove.fmt_mul', mul_inv_cancel, _root_.GlobalTheory.Ker.LevEig.fmt_one]
   have e2 : fmt T g₂ * fmt T g₂⁻¹ = 1 := by
-    rw [← GlobalTheory.Ker.LevMove.fmt_mul', mul_inv_cancel, GlobalTheory.Ker.LevMove.fmt_one']
+    rw [← GlobalTheory.Ker.LevMove.fmt_mul', mul_inv_cancel, _root_.GlobalTheory.Ker.LevEig.fmt_one]
   obtain ⟨hto, -, -, lawsΛ⟩ := GlobalTheory.Ker.isMov_laws D T.rank C.X.Λ hfull
   obtain ⟨-, -, hG, -⟩ := GlobalTheory.Ker.isMov_laws D T.rank L ⟨hLfg, hLs⟩
   obtain ⟨-, hinv2, -, -, -⟩ := (lawsΛ _ _ e2).2 (mapL γ L) hMfg m2
@@ -180,9 +174,9 @@ theorem GlobalTheory.Ker.LevMove.levK_of_rat_moves : ∀ (D : D7) (S T : HSp D) 
     exact GlobalTheory.Ker.LevMove.Rat.mov_comp m1 (GlobalTheory.Ker.LevMove.Rat.mov_comp (hG γ) hinv2)
   obtain ⟨κ', hκ', hcong⟩ := hred
   refine ⟨mul_mem (mul_mem (inv_mem h2) hf) h1, hk, κ', hκ', fun i => ?_⟩
-  have hb : toAf (Lv.β i) ∈ hatV C.X.Λ := GlobalTheory.Ker.LevMove.Rat.toAf_mem (Lv.β_mem i)
+  have hb : toAf (Lv.β i) ∈ hatV C.X.Λ := _root_.GlobalTheory.Ker.LevEig.toAf_mem (Lv.β_mem i)
   have hw : toAf (∑ j, κ' j i • Lv.β j) ∈ hatV C.X.Λ :=
-    GlobalTheory.Ker.LevMove.Rat.toAf_mem (sum_mem fun j _ => Submodule.smul_mem _ _ (Lv.β_mem j))
+    _root_.GlobalTheory.Ker.LevEig.toAf_mem (sum_mem fun j _ => Submodule.smul_mem _ _ (Lv.β_mem j))
   refine GlobalTheory.Ker.LevMove.Rat.mem_of_loc (F := D.host.F) C.X.Λ Lv.𝔪 Lv.ne_bot
     (sub_mem ((hk _).2 ⟨_, hb, rfl⟩) hw) ?_
   intro v hv α a1 a0
@@ -199,7 +193,7 @@ theorem GlobalTheory.Ker.LevMove.levK_of_rat_moves : ∀ (D : D7) (S T : HSp D) 
     ∑ j, κ' j i • Lv.β j := ⟨_, rfl⟩
   have hx : P • (fmt T (g₂⁻¹ * f * g₁) *ᵥ toAf (Lv.β i) - toAf (∑ j, κ' j i • Lv.β j)) = P • toAf d := by
     rw [GlobalTheory.Ker.LevMove.Rat.smul_step P _ _ _ _ qk, GlobalTheory.Ker.LevMove.Rat.map_mulVec_toAf,
-      ← GlobalTheory.Ker.LevMove.Rat.toAf_sub, hd]
+      ← _root_.GlobalTheory.Ker.LevEig.toAf_sub, hd]
   have hPd : P • toAf d ∈ hatV C.X.Λ := by
     rw [← hx]
     exact GlobalTheory.Ker.LevMove.int_smul_mem C.X.Λ hPint (sub_mem ((hk _).2 ⟨_, hb, rfl⟩) hw)
@@ -218,6 +212,6 @@ theorem GlobalTheory.Ker.LevMove.levK_of_rat_moves : ∀ (D : D7) (S T : HSp D) 
       Algebra.TensorProduct.one_def.symm, one_smul]
   rw [hsplit]
   refine add_mem ?_ (GlobalTheory.Ker.LevMove.ideal_smul_mem C.X.Λ Lv.𝔪 hm hPd)
-  refine GlobalTheory.Ker.LevMove.int_smul_mem _ hPint (GlobalTheory.Ker.LevMove.Rat.toAf_mem ?_)
+  refine GlobalTheory.Ker.LevMove.int_smul_mem _ hPint (_root_.GlobalTheory.Ker.LevEig.toAf_mem ?_)
   rw [mul_smul]
   exact Submodule.smul_mem _ t hsd

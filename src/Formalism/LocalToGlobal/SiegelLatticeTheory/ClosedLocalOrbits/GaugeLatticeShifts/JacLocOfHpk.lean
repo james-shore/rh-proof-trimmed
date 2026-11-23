@@ -82,11 +82,11 @@ def HpkEx : Prop :=
           ∫⁻ s, ∫⁻ s', φ (fun i j => (Matrix.of s * Formalism.QuantumDeterminants.bigCell k r q.1 (μsec q.2) * (Matrix.of s')⁻¹) i j)
             ∂(Formalism.MainNotions.S.muS μW' μN) ∂(Formalism.MainNotions.S.muS μW μN)
 
-def TransEx : Prop := HpkEx → RightInvS → JacExGood
+def TransEx : Prop := HpkEx → _root_.Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates.UnimodLoc → JacExGood
 
-def DegRed : Prop := RightInvS → JacExGood → JacEx
+def DegRed : Prop := _root_.Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates.UnimodLoc → JacExGood → JacEx
 
-theorem jacLoc_of_ex (h1 : DiagDCLoc) (hR : RightInvS) (hE : JacEx) : JacLoc := by
+theorem jacLoc_of_ex (h1 : DiagDCLoc) (hR : _root_.Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates.UnimodLoc) (hE : JacEx) : JacLoc := by
   intro n r k ε e z z' T T' sc hF hsc μS μS' hμ hμ' h hh
   obtain ⟨h0, hh0, hD⟩ := hE n r k ε e z z' T T' sc hF hsc
   obtain ⟨C, hC, hDC⟩ := hD μS μS' hμ hμ'

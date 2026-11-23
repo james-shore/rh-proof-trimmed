@@ -194,13 +194,13 @@ theorem unifUniq : GlobalFnsSt → SecBaseChangeSt → AmpleSt → UnifUniqSt :=
     rw [gw_isoPullId wL rfl f y j k hj hk, gw_isoPullId wL rfl f y j' k' hj' hk', Category.comp_id]
     exact gm_isGen hwg f y j j' k k' hj hj' hk hk')
   have m₁ := isoPullId_maps hwm (rfl : 𝟙 G.left = 𝟙 _) rfl he₀
-  obtain ⟨Φ, w, hΦ⟩ := GlobalTheory.T.uniformisation_polarised_abelianSchemes_iso hG hS hA R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre _ he₀ g₁ m₁
+  obtain ⟨Φ, w, hΦ⟩ := _root_.GlobalTheory.unifPre_polarised_iso hG hS hA R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre _ he₀ g₁ m₁
   have hhom := abelianPartIso_isMonHom_and_rigidified R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre _ he₀ g₁ m₁
     Φ w hΦ
   obtain ⟨xe, hxe⟩ := unifPre_characterGroup_iso R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre
   have hc := GlobalTheory.T.unifPre_c_and_coord_correspond_alt hG R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre Φ w hΦ.1 hhom.1
     (fun e => (hΦ.2 e).1) xe hxe
-  have hψ := GlobalTheory.T.uniformisation_trivialisations_correspond hG hS R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre _ he₀ g₁ m₁ (U.expand 1 le_rfl)
+  have hψ := _root_.GlobalTheory.unifPre_psi_correspond hG hS R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre _ he₀ g₁ m₁ (U.expand 1 le_rfl)
     (U'.expand 1 le_rfl) Φ w hΦ hhom xe hc
   have hlin := UnifLinear.identification_linear R I hR D D' A A' G hsa U.toUnifPre U'.toUnifPre Φ
     (fun e => (hΦ.2 e).1) xe hxe

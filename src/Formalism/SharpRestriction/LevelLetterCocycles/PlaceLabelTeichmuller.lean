@@ -54,29 +54,6 @@ noncomputable section
 
 namespace Formalism.MainNotions.N.PlaceLabelTeichmuller
 
-section BoundedBy'
-
-open Formalism.BasicNotions Formalism.MainNotions
-
-section Len
-
-variable {R : Type} [CommRing R]
-
-end Len
-
-section Drop
-
-variable {O K V X : Type} [CommRing O] [IsDomain O] [IsPrincipalIdealRing O] [Field K] [Algebra O K]
-    [IsFractionRing O K] [AddCommGroup V] [Module K V] [Module O V] [IsScalarTower O K V]
-    [FiniteDimensional K V] [DecidableEq X]
-    (T : Subalgebra O (X → O)) (act : T →ₐ[O] (V →ₗ[K] V))
-
-
-
-end Drop
-
-end BoundedBy'
-
 section Tensor
 
 variable {ι : Type} [Fintype ι] {G : ι → Type} [∀ i, Group (G i)] [∀ i, Finite (G i)]
@@ -418,23 +395,10 @@ def ESer (kv : Σ k : Fin 2, D.nd.PlG k) (p : Fin D.R.r → ZMod (D.host.g kv.1)
 def goodVec (p : ∀ kv : (Σ k : Fin 2, D.nd.PlG k), Fin D.R.r → ZMod (D.host.g kv.1)) : Prop :=
   D.ntypes.goodTuple (fun k v => Formalism.CyclotomicNorms.monicOf (p ⟨k, v⟩))
 
-private theorem monicOf_coeff_lemma {K : Type} [Field K] {N : ℕ} (a : Fin N → K) (i : Fin N) :
-    (Formalism.CyclotomicNorms.monicOf a).coeff i = a i := by
-  unfold Formalism.CyclotomicNorms.monicOf
-  rw [Polynomial.coeff_add, Polynomial.coeff_X_pow, if_neg (Nat.ne_of_lt i.isLt), zero_add,
-    Polynomial.finsetSum_coeff]
-  simp only [Polynomial.coeff_C_mul_X_pow]
-  rw [Finset.sum_eq_single i]
-  · simp
-  · intro j _ hj
-    rw [if_neg]
-    exact fun h => hj (Fin.ext h).symm
-  · simp
-
 theorem monicOf_inj {K : Type} [Field K] {N : ℕ} (a b : Fin N → K)
     (h : Formalism.CyclotomicNorms.monicOf a = Formalism.CyclotomicNorms.monicOf b) : a = b := by
   funext i
-  rw [← monicOf_coeff_lemma a i, ← monicOf_coeff_lemma b i, h]
+  rw [← _root_.Formalism.CyclotomicNorms.Sqf.coeff_monicOf_lt a i, ← _root_.Formalism.CyclotomicNorms.Sqf.coeff_monicOf_lt b i, h]
 
 theorem ESer_idem (kv) (p) : ESer D kv p * ESer D kv p = ESer D kv p := by
   unfold ESer
@@ -695,35 +659,5 @@ theorem good_of {PP J : Type} (N : ℕ) (f : PP → (ZMod g)[X]) (χ : PP → J 
 end GoodTr
 
 end ClauseA
-
-section DualAmb
-
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Polynomial
-
-section Poly
-
-variable {g : ℕ} [Fact g.Prime]
-
-end Poly
-
-variable (D : D7)
-
-end DualAmb
-
-section RecordA
-
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Polynomial
-
-variable (D : D7)
-
-variable {D}
-
-variable (D)
-
-variable {D}
-
-variable (D)
-
-end RecordA
 
 end Formalism.MainNotions.N.PlaceLabelTeichmuller

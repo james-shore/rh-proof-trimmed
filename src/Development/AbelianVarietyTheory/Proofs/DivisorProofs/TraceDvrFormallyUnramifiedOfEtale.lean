@@ -98,7 +98,7 @@ theorem formallyUnramified_of_dvr_of_essFiniteType : ∀ (R T V : Type) [CommRin
   have hmD : IsLocalRing.maximalIdeal D = Ideal.span {algebraMap R D ϖ} := by
     rw [← hmax, hmR, Ideal.map_span, Set.image_singleton]
   have hϖm : ϖ ∈ IsLocalRing.maximalIdeal R := (IsLocalRing.mem_maximalIdeal _).2 hϖ.not_isUnit
-  have hS := GlobalTheory.T.subring_eq_univ_of_uniformizer_generates V (ν : D →+* V).range (algebraMap R V ϖ) ⟨algebraMap R D ϖ, ν.commutes ϖ⟩
+  have hS := _root_.GlobalTheory.dvrSubring_eq_top V (ν : D →+* V).range (algebraMap R V ϖ) ⟨algebraMap R D ϖ, ν.commutes ϖ⟩
     ((map_ne_zero_iff _ hinj).2 hϖ.ne_zero) (hm ϖ hϖm) ?_ ?_ ?_
   · refine Algebra.FormallyUnramified.of_surjective ν fun v => ?_
     have hv : v ∈ (ν : D →+* V).range := hS ▸ Subring.mem_top v

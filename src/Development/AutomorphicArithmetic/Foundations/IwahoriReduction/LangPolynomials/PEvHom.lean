@@ -81,14 +81,10 @@ private theorem tail {R K : Type} [CommRing R] [NormedField K] [CompleteSpace K]
   refine IsUltrametricDist.norm_tsum_le_of_forall_le_of_nonneg (by positivity) fun i => ?_
   exact (term_le f hf t h _).trans (pow_le_pow_of_le_one (norm_nonneg _) ht.le (by omega))
 
-private theorem rootb {K : Type} [NormedField K] [IsUltrametricDist K] (l m : ℕ) (hl : l.Prime) (h2 : l ≠ 2)
-    (z : K) (hz : z ^ l ^ m = 1) : ‖z - 1‖ ^ l ^ m ≤ ‖(l : K)‖ :=
-  _root_.UpperTheory.Reformulated.B.Qh18.rootb l m hl h2 z hz
-
 theorem UpperTheory.Kd.C7.pEvHom :
     UpperTheory.Kd.C7.SEvHom := by
   intro l hl h2 Ω _ _ _ A _ j Φ m hm z hz
-  have hb := rootb l m hl.out h2 z hz.pow_eq_one
+  have hb := _root_.UpperTheory.Reformulated.B.Qh18.rootb l m hl.out h2 z hz.pow_eq_one
   have hl1 : ‖(l : ℂ_[l])‖ < 1 := by
     have : (l : ℂ_[l]) = algebraMap ℚ_[l] ℂ_[l] (l : ℚ_[l]) := by simp
     rw [this, norm_algebraMap']

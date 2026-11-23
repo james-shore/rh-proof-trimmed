@@ -297,7 +297,7 @@ theorem unramified_h1_dual_iff_perp : GlobalTheory.Mem.LiteralAutomorphy.LitCoh 
   haveI : Finite (H1 ((twDual χ ρ).comp (MonoidHom.id _))) := hfin1'
   haveI : Finite (H0 ((twDual χ ρ).comp (MonoidHom.id _))) := hfin0'
   exact GlobalTheory.InertiaFixed.mem_H1ur_of_perp χ ρ hρ J inv hb hbf h20
-    ((hL.le F Ω l r M A ρ v hr hA hρ).2 hl) (GlobalTheory.T.unramified_h1_card_invariants F Ω l r M A v ρ hρ hA)
-    (GlobalTheory.T.unramified_h1_card_invariants F Ω l r (TDual (ZMod (l ^ r)) M) A v (twDual χ ρ) hρ' hA) orth _ hy
+    ((hL.le F Ω l r M A ρ v hr hA hρ).2 hl) (_root_.GlobalTheory.Ord2.UrCard.card_unramified_h1_eq_card_h0 F Ω l r M A v ρ hρ hA)
+    (_root_.GlobalTheory.Ord2.UrCard.card_unramified_h1_eq_card_h0 F Ω l r (TDual (ZMod (l ^ r)) M) A v (twDual χ ρ) hρ' hA) orth _ hy
 
 end GlobalTheory.Ord2

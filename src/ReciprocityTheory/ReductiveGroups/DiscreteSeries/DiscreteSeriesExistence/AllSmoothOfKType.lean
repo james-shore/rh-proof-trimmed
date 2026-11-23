@@ -69,7 +69,7 @@ theorem all_smooth_of_kType {n : ℕ} {ε : Fin n → Bool} {lam : Fin n → ℝ
     let _ : NormedAddCommGroup (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedAddCommGroup
     let _ : NormedSpace ℝ (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedSpace
     intro g₀ hg₀
-    obtain ⟨U, F, hU, hmem, hF, hEq⟩ := hw (g₀ * g) (pdA_inUJ_mul hg₀ hg)
+    obtain ⟨U, F, hU, hmem, hF, hEq⟩ := hw (g₀ * g) (_root_.ReciprocityTheory.ChartRestriction.DS.smd_inUJ_mul hg₀ hg)
     let L : Matrix (Fin n) (Fin n) ℂ →L[ℝ] Matrix (Fin n) (Fin n) ℂ :=
       LinearMap.toContinuousLinearMap (LinearMap.mulRight ℝ g)
     have hL : ∀ x, L x = x * g := fun x => rfl
@@ -79,7 +79,7 @@ theorem all_smooth_of_kType {n : ℕ} {ε : Fin n → Bool} {lam : Fin n → ℝ
     have hx' : x * g ∈ U := by simpa [hL] using hx
     have hrep := hσ.1.2 x hxUJ g hg
     simp only [Function.comp_apply, hL]
-    rw [← hEq (x * g) hx' (pdA_inUJ_mul hxUJ hg)]
+    rw [← hEq (x * g) hx' (_root_.ReciprocityTheory.ChartRestriction.DS.smd_inUJ_mul hxUJ hg)]
     show σ x (σ g w) = σ (x * g) w
     rw [hrep]
     rfl

@@ -457,17 +457,6 @@ private theorem v_natCast_nonneg_vf (V : VF C) (m : ℕ) : 0 ≤ V.v (m : C) := 
     refine le_trans (le_min ih ?_) (AddValuation.map_add _ _ _)
     rw [AddValuation.map_one]
 
-private theorem mm_add_of_both {a b : C} (ha : V.MM a) (hb : V.MM b) : V.MM (a + b) := by
-  unfold VF.MM at *
-  exact lt_of_lt_of_le (lt_min ha hb) (AddValuation.map_add _ _ _)
-
-private theorem mm_finset_sum {ι : Type} (s : Finset ι) (a : ι → C) (h : ∀ i ∈ s, V.MM (a i)) :
-    V.MM (∑ i ∈ s, a i) := by
-  refine Finset.sum_induction a (fun x => V.MM x) (fun x y hx hy => mm_add_of_both hx hy) ?_ h
-  unfold VF.MM
-  rw [AddValuation.map_zero, ← WithTop.coe_zero]
-  exact WithTop.coe_lt_top _
-
 private theorem mm_add_pow_l_sub_pow_l_sub_pow_l {y z : C} (hy : V.Ge 0 y) (hz : V.Ge 0 z) :
     V.MM ((y + z) ^ V.l - y ^ V.l - z ^ V.l) := by
   obtain ⟨n, hn⟩ : ∃ n, V.l = n + 1 := ⟨V.l - 1, (Nat.succ_pred_eq_of_pos V.l_prime.pos).symm⟩
@@ -482,7 +471,7 @@ private theorem mm_add_pow_l_sub_pow_l_sub_pow_l {y z : C} (hy : V.Ge 0 y) (hz :
     intros
     ring
   rw [e]
-  apply mm_finset_sum
+  apply _root_.Formalism.L2.FormalSeriesBounds.FunEq.mm_sum_character_germs
   intro m hm
   have hm' : m < n := Finset.mem_range.mp hm
   obtain ⟨q, hq⟩ := hpr.dvd_choose_self (Nat.succ_ne_zero m) (by omega)
@@ -518,7 +507,7 @@ theorem mm_sum_pow {ι : Type} (s : Finset ι) (a : ι → C) (ha : ∀ i, V.Ge 
           ((∑ i ∈ t, a i) ^ V.l - ∑ i ∈ t, a i ^ V.l) := by
       ring
     rw [e]
-    exact mm_add_of_both (mm_add_pow_l_sub_pow_l_sub_pow_l (ha x) hS) ih
+    exact _root_.Formalism.L2.FormalSeriesBounds.FunEq.mm_add_character_germs (mm_add_pow_l_sub_pow_l_sub_pow_l (ha x) hS) ih
 
 private theorem single_zero_apply_up_two_eq_zero (i : Fin dd) (L : ℕ) (t : Fin 2 × Fin dd) :
     (Finsupp.single ((0 : Fin 3), i) L : Fin 3 × Fin dd →₀ ℕ) (up 2 t) = 0 := by

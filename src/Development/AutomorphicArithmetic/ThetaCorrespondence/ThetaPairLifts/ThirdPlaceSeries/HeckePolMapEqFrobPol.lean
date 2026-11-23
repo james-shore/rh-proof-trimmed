@@ -52,7 +52,7 @@ theorem heckePol_map_eq_frobPol_alt : ∀ (D : D7) (cf : CharFrame D) (jE : D.ho
   intro D cf jE A low Pq S hL eig θ Bs M C tp hCS hMI hstar hE hsp hCh big X T Sp i ι _ F irr hinj hsurj hne hind htop ptV hpt P x hx w hw
   obtain ⟨s, ϖ, hc, hu⟩ := GlobalTheory.SplitConjPlace.splitEx_all D w hw.1
   have heig := (hpt P x).1 hx
-  have hlev := _root_.GlobalTheory.T.mem_j_iff_umax_and_chi_eq_one_of_split_out D cf jE A M C tp hMI big X T Sp i w s hw hc
+  have hlev := _root_.GlobalTheory.LocLevel.level_at_splitOut_alt D cf jE A M C tp hMI big X T Sp i w s hw hc
   have hne' : Formalism.L2.NG.isoTyp (mlX M X i).wt.ρ (F P) ⊓ Formalism.L2.NG.TypeSp (mlX M X i).wt.ρ (mlX M X i).J (mlX M X i).χ ≠ ⊥ := by
     obtain ⟨y, hy, hy0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot (hne P)
     rw [Submodule.ne_bot_iff]

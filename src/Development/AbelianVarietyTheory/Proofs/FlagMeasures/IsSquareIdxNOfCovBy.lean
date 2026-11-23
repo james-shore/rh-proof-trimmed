@@ -127,19 +127,12 @@ theorem exists_killed {M : Submodule (𝓞 K) V} (hM : Submodule.IsFullLattice K
   rw [smul_smul]
   exact (hmemI _).1 hrj
 
-private theorem star_algebraMap_mem_range' (r : 𝓞 K) :
-    star (algebraMap (𝓞 K) K r) ∈ Set.range (algebraMap (𝓞 K) K) := by
-  have hi : IsIntegral ℤ (star (algebraMap (𝓞 K) K r)) := by
-    have := (NumberField.RingOfIntegers.isIntegral_coe r).map (starRingEnd K).toIntAlgHom
-    simpa [starRingEnd_apply] using this
-  exact ⟨⟨_, hi⟩, rfl⟩
-
 theorem isSquare_disc (h : V →ₗ⋆[K] V →ₗ[K] K) (hs : h.IsSymm) (hn : h.Nondegenerate)
     (hP : ∀ P : HeightOneSpectrum (𝓞 K), conjIdeal (K := K) P.asIdeal = P.asIdeal →
       IsSquare (Ideal.absNorm P.asIdeal)) : ∀ (n : ℕ) (M : Submodule (𝓞 K) V), Submodule.IsFullLattice K M →
       M ≤ dual h M → idxN (dual h M) M = n → IsSquare n := by
   have hstar : ∀ r : 𝓞 K, star (algebraMap (𝓞 K) K r) ∈ Set.range (algebraMap (𝓞 K) K) :=
-    star_algebraMap_mem_range'
+    _root_.Formalism.HermitianLatticesTheory.star_algebraMap_ringOfIntegers_mem_range
   obtain ⟨hanti, -, -, hint, -⟩ := Formalism.HermitianLatticesTheory.dualBasic (𝓞 K) K V h hs hstar
   have hstar1 : ∀ k : K, k ∈ (1 : Submodule (𝓞 K) K) → star k ∈ (1 : Submodule (𝓞 K) K) := by
     intro k hk
@@ -285,7 +278,7 @@ theorem latDetH_nat (h : V →ₗ⋆[K] V →ₗ[K] K) (hs : h.IsSymm) (ha : ∀
       IsSquare (Ideal.absNorm P.asIdeal)) (M : Submodule (𝓞 K) V) (hM : M.FG) (hle : M ≤ dualInH h M) :
     ∃ de : ℕ, 1 ≤ de ∧ latDetH h M = de := by
   have hstar : ∀ r : 𝓞 K, star (algebraMap (𝓞 K) K r) ∈ Set.range (algebraMap (𝓞 K) K) :=
-    star_algebraMap_mem_range'
+    _root_.Formalism.HermitianLatticesTheory.star_algebraMap_ringOfIntegers_mem_range
 
   set U : Submodule K V := Submodule.span K (M : Set V) with hU
   have hMU : ∀ m ∈ M, m ∈ U := fun m hm => Submodule.subset_span hm

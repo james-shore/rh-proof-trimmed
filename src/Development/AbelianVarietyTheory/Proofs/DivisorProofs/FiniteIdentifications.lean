@@ -55,6 +55,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalMod
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnimodMod
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HomExtNormalSt
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.SiegelToroidalIntegral
+import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsLeNatCastNeZero
 
 @[expose] public section
 
@@ -84,7 +85,7 @@ theorem finite_over_point {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : LB A.lef
   rcases Set.eq_empty_or_nonempty {φ : B.left ⟶ A.left | IsGrpPullback B A z φ ∧ pull φ (cls L hL) = m} with
     h | ⟨φ₁, h₁, -⟩
   · rw [h]; exact Set.finite_empty
-  obtain ⟨N, hN, hNK⟩ := GlobalTheory.AmpleFiniteOrder.exists_ge_cast_ne_zero K 3
+  obtain ⟨N, hN, hNK⟩ := _root_.GlobalTheory.PolVanishing.exists_le_natCast_ne_zero K 3
   have := hB.comm
   obtain ⟨hfin, hdiv⟩ := GlobalTheory.TorsionDivisible.finite_torsion_and_divisible K B hB N hNK
   let U : Over (Sp K) := 𝟙_ (Over (Sp K))

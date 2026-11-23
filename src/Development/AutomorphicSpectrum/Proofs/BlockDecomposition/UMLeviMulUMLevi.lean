@@ -88,7 +88,7 @@ theorem uM_levi_inj (n : ℕ) {y y' : Fin n → k} {g g' : GL (Fin n) k}
     (h : uM k n y * levi k n g = uM k n y' * levi k n g') : y = y' ∧ g = g' := by
   have hg : g = g' := by
     have hp := congrArg (GlobalTheory.BZMir.mirabolicProjection k n) h
-    simpa only [map_mul, GlobalTheory.CompanionTheory.BZPsiPG.FibOnto.mirProj_levi_eq, GlobalTheory.CompanionTheory.BZPsiPG.FibOnto.mirProj_uM, one_mul] using hp
+    simpa only [map_mul, _root_.GlobalTheory.CompanionTheory.MirLevi.mirProj_levi, GlobalTheory.CompanionTheory.BZPsiPG.FibOnto.mirProj_uM, one_mul] using hp
   subst hg
   exact ⟨GlobalTheory.CompanionTheory.BZPsiPG.FibOnto.uM_injective n (mul_right_cancel h), rfl⟩
 

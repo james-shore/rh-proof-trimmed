@@ -68,7 +68,7 @@ theorem frames_stdHom : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topo
     simp only [RingHom.mapMatrix_apply, RingHom.coe_comp] at h
     change (Matrix.map (HSpace.gram S) (⇑q.pr ∘ ⇑(incA D))).det ≠ 0
     rw [h]
-    exact (map_ne_zero_iff _ (q.pr.comp (incA D)).injective).2 (GlobalTheory.FrameCont.gram_det_isUnit S).ne_zero
+    exact (map_ne_zero_iff _ (q.pr.comp (incA D)).injective).2 (_root_.GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.gram_det_isUnit S).ne_zero
   let FS : Frame k S.rank (Fin S.rank) := ⟨G⁻¹, G, Matrix.nonsing_inv_mul G hdet, Matrix.mul_nonsing_inv G hdet⟩
   let FT : Frame k T.rank (Fin T.rank) := ⟨1, 1, mul_one 1, mul_one 1⟩
   exact ⟨FS, FT, GlobalTheory.T.stdHomLattice_point_integral_matrix_at_split_place D k q S T c hne hdiv FS FT rfl rfl rfl, GlobalTheory.T.integral_matrix_split_place_mem_stdHomLattice D k q S T a₀ ha₀ hne FS FT rfl rfl rfl⟩
@@ -87,12 +87,6 @@ theorem symplO_idem_left (S T : HSp D) {e : AE D} {l : WO S T} (hl : IsHalf (cA 
   rw [Matrix.map_apply]
   conv_lhs => rw [h]
   ring
-
-theorem pr_e {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-    (q : GlobalTheory.FinPl.SplitPt D k) : q.pr q.e = 1 := by
-  have h := q.sec_pr 1
-  rw [mul_one] at h
-  rw [← h, q.pr_sec, map_one]
 
 theorem mul_idem_of_mem {E₂ : AE D} {Q : Finset (Formalism.L2.DIV.Pl D.host.E)} {es : Formalism.L2.DIV.Pl D.host.E → AE D}
     (hes : ∀ PP ∈ Q, Formalism.L2.NTheta.IsIdemAt (es PP) PP) (hsum : E₂ = ∑ PP ∈ Q, es PP) {PP : Formalism.L2.DIV.Pl D.host.E}
@@ -132,7 +126,7 @@ theorem idem_part_mem (ψ : AddChar (AF D.host.F) ℂ) (hψ : IsStdChar D ψ (-1
     congr 2
     ext i j
     simp only [Matrix.map_apply]
-    have h1 : (Place.ofSplitPt q).π q.e = 1 := pr_e q
+    have h1 : (Place.ofSplitPt q).π q.e = 1 := _root_.GlobalTheory.SplitCharCond.pr_e q
     rw [map_mul, h1, one_mul]
   have hhalf : ∀ u : WO S T, IsHalf q.e (u.map (q.e * ·)) := fun u i j => by
     rw [Matrix.map_apply, ← mul_assoc, he.1]

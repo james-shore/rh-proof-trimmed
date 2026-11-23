@@ -131,7 +131,7 @@ theorem mem_pair (hJ₁ : ∀ i j, σ (W₁.J j i) = -W₁.J i j) {u : UA σ W.J
       rw [this, Matrix.mulVec_smul, e1]
     · obtain ⟨a, b, hab⟩ := span_pair_iff.1 (k2 (H.ι *ᵥ z) fun v hv => by
         obtain ⟨a, b, rfl⟩ := Submodule.mem_span_pair.1 hv
-        refine inc_inj (F := F) ?_
+        refine _root_.PositivityTheory.ThKF.inclR_inj (F := F) ?_
         have z1 := congrArg (inclR (F := F) (AF F)) (hz _ (Submodule.mem_span_singleton_self _))
         rw [← fa_inc, map_zero] at z1
         have : ∀ w p q : Fin d → AE F E, fa σ W.J w (p + q) = fa σ W.J w p + fa σ W.J w q := fun w p q => by
@@ -286,7 +286,7 @@ theorem two_kill (hd : W.J.det ≠ 0) (hJ₁ : ∀ i j, σ (W₁.J j i) = -W₁.
     have n1 := emb2_norm h hJ hH hH₁ g
     have n2 := emb2_norm h hJ hH hH₁ g⁻¹
     rw [map_inv, map_inv] at n2
-    exact IsAv.conj_sub G2.closed (lat_of_good G2) hφ r (fun u => conj_unipU r n1 n2)
+    exact _root_.UpperTheory.Reformulated.B.ConjugateSubgroup.conj_sub G2.closed (lat_of_good G2) hφ r (fun u => conj_unipU r n1 n2)
       (fun u hu => by simpa using conj_unipU (inv_mem r) n2 (by simpa using n1) hu) (hf.2 _ r)
   have φu : ∀ γ ∈ ((inclR (F := F) (E := E) (AF F)).toAddMonoidHom.toMultiplicative).range, ∀ x, φ ((m.comp uni) γ * x) = φ x := by
     rintro _ ⟨ξ, rfl⟩

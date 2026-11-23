@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorIrreducibleModules
 
 @[expose] public section
 
@@ -59,33 +60,14 @@ variable {T : Type} [Fintype T] [DecidableEq T] {V : T → Type} [∀ w, AddComm
 theorem atPl_eq_toLinearMap (w : T) (L : Module.End ℂ (V w)) :
     atPl w L = (PiTensorProduct.mapMultilinear ℂ V V).toLinearMap (fun i => (LinearMap.id : V i →ₗ[ℂ] V i)) w L := rfl
 
-theorem atPl_one (w : T) : atPl w (1 : Module.End ℂ (V w)) = 1 := by
-  unfold atPl
-  have h : Function.update (fun i => (LinearMap.id : V i →ₗ[ℂ] V i)) w 1 = fun i => LinearMap.id := by
-    funext i
-    by_cases hi : i = w
-    · subst hi; simp; rfl
-    · simp [hi]
-  rw [h]; exact PiTensorProduct.map_id
-
 theorem atPl_sub_smul (w : T) (L : Module.End ℂ (V w)) (c : ℂ) (y : ⨂[ℂ] i, V i) :
     atPl w (L - c • 1) y = atPl w L y - c • y := by
-  rw [atPl_eq_toLinearMap, map_sub, map_smul, ← atPl_eq_toLinearMap, ← atPl_eq_toLinearMap, atPl_one]
+  rw [atPl_eq_toLinearMap, map_sub, map_smul, ← atPl_eq_toLinearMap, ← atPl_eq_toLinearMap, _root_.GlobalTheory.TensIrr.atPl_one]
   simp
-
-theorem atPl_tprod (w : T) (L : Module.End ℂ (V w)) (v : ∀ i, V i) :
-    atPl w L (PiTensorProduct.tprod ℂ v) = PiTensorProduct.tprod ℂ (Function.update v w (L (v w))) := by
-  unfold atPl
-  rw [PiTensorProduct.map_tprod]
-  congr 1
-  funext i
-  by_cases hi : i = w
-  · subst hi; simp
-  · simp [hi]
 
 theorem atPl_tprod_eq_zero (w : T) (L : Module.End ℂ (V w)) (v : ∀ i, V i) (h : L (v w) = 0) :
     atPl w L (PiTensorProduct.tprod ℂ v) = 0 := by
-  rw [atPl_tprod, h]
+  rw [_root_.GlobalTheory.RealLift.atPl_tprod, h]
   exact MultilinearMap.map_update_zero _ _ _
 
 theorem tensAll_mono {H H' : ∀ w, Submodule ℂ (V w)} (h : ∀ w, H w ≤ H' w) : tensAll H ≤ tensAll H' := by

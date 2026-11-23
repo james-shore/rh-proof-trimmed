@@ -101,9 +101,9 @@ theorem GlobalTheory.TameRecip.exists_ine_of_unit : GlobalTheory.Published.Globa
       field_simp
     rw [e, map_mul, map_inv₀, hu1, inv_one, mul_one]
     exact hxu
-  obtain ⟨z, hz1, hz⟩ := GlobalTheory.T.exists_unit_pow_normV_sub_one' E v (x * uc⁻¹) hy
+  obtain ⟨z, hz1, hz⟩ := _root_.GlobalTheory.OneUnitRoot.exists_unit_pow_normV_sub_one E v (x * uc⁻¹) hy
   obtain ⟨ρ, hρ, hρz⟩ := (ha.ine v A hA _).mp ⟨z, hz1, rfl⟩
-  obtain ⟨τ, hτF, hτπ, hτc⟩ := GlobalTheory.T.exists_frob_of_eisenstein_root H E Ω art ha v A hA ϖ hϖ1 hϖ2 π hπ
+  obtain ⟨τ, hτF, hτπ, hτc⟩ := _root_.GlobalTheory.TameRecip.exists_frob_fix_of_eisenstein H E Ω art ha v A hA ϖ hϖ1 hϖ2 π hπ
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed E
   obtain ⟨t, ht⟩ := IsAlgClosed.exists_pow_nat_eq (algebraMap E Ω (u : E)) hn
   have h1' : u * ϖ ∈ v.asIdeal := Ideal.mul_mem_left _ _ hϖ1
@@ -116,8 +116,8 @@ theorem GlobalTheory.TameRecip.exists_ine_of_unit : GlobalTheory.Published.Globa
     rw [mul_pow, hπ, ht, ← map_mul]
     push_cast
     ring_nf
-  obtain ⟨τ', hτ'F, hτ'π, hτ'c⟩ := GlobalTheory.T.exists_frob_of_eisenstein_root H E Ω art ha v A hA (u * ϖ) h1' h2' (π * t) hπ'
-  have hσ0 : τ'⁻¹ * τ ∈ Ine (F := E) A := GlobalTheory.T.frobenius_inv_mul_mem_inertia E Ω v A hA τ τ' hτF hτ'F
+  obtain ⟨τ', hτ'F, hτ'π, hτ'c⟩ := _root_.GlobalTheory.TameRecip.exists_frob_fix_of_eisenstein H E Ω art ha v A hA (u * ϖ) h1' h2' (π * t) hπ'
+  have hσ0 : τ'⁻¹ * τ ∈ Ine (F := E) A := _root_.GlobalTheory.frob_inv_mul_mem_inertia E Ω v A hA τ τ' hτF hτ'F
   have hϖ0 : (ϖ : E) ≠ 0 := by
     intro h
     apply hϖ2
@@ -127,7 +127,7 @@ theorem GlobalTheory.TameRecip.exists_ine_of_unit : GlobalTheory.Published.Globa
     rintro rfl
     rw [zero_pow hn.ne', eq_comm, map_eq_zero] at hπ
     exact hϖ0 hπ
-  have hval := GlobalTheory.T.frobenius_ratio_pi_congr_tame_unit E Ω v A hA u hu π t hπ0 ht τ τ' hτF hτ'F hτπ hτ'π
+  have hval := _root_.GlobalTheory.TameRatio.ratio_cong E Ω v A hA u hu π t hπ0 ht τ τ' hτF hτ'F hτπ hτ'π
   have hc0 : (-1) ^ normV v * algebraMap E (v.adicCompletion E) (ϖ : E) ≠ 0 :=
     mul_ne_zero (pow_ne_zero _ (neg_ne_zero.mpr one_ne_zero)) ((map_ne_zero _).mpr hϖ0)
   have huE : (u : E) ≠ 0 := by
@@ -157,7 +157,7 @@ theorem GlobalTheory.TameRecip.exists_ine_of_unit : GlobalTheory.Published.Globa
     congr 1
     rw [mul_comm x, mul_inv_cancel_left]
   · have e : (τ'⁻¹ * τ * ρ ^ (normV v - 1)) π = (τ'⁻¹ * τ) π := by
-      rw [AlgEquiv.mul_apply, GlobalTheory.T.inertia_pow_residueCard_sub_one_apply_of_pow_mem E Ω v A hA (ϖ : E) π hπ ρ hρ]
+      rw [AlgEquiv.mul_apply, _root_.GlobalTheory.ine_pow_normV_sub_one_apply_of_pow_mem E Ω v A hA (ϖ : E) π hπ ρ hρ]
     rw [e]
     exact hval
 

@@ -69,7 +69,7 @@ namespace GlobalTheory.KZ.LevelOneFrac
 
 open Filter Topology Polynomial
 
-theorem isOpen_Hs' : IsOpen Hs := isOpen_lt continuous_const Complex.continuous_im
+alias isOpen_Hs' := _root_.GlobalTheory.KZ.SiegelModel.isOpen_Hs
 
 theorem isConnected_Hs' : IsConnected Hs :=
   ⟨⟨Complex.I, by simp [Hs]⟩, (convex_halfSpace_im_gt (0 : ℝ)).isPreconnected⟩

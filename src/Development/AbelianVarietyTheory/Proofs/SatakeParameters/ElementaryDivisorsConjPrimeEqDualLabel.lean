@@ -48,6 +48,7 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
 import Formalism.LocalToGlobal.Divisibility.CoefMod
 import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitarySupportedEquiv
 
 @[expose] public section
 
@@ -68,16 +69,6 @@ theorem cT_mul (σ : A →+* A) (M N : Matrix (Fin n) (Fin n) A) :
     Formalism.UG.cT σ (M * N) = Formalism.UG.cT σ N * Formalism.UG.cT σ M := by
   unfold Formalism.UG.cT
   rw [Matrix.map_mul, Matrix.transpose_mul]
-
-theorem cT_smul (σ : A →+* A) (a : A) (M : Matrix (Fin n) (Fin n) A) :
-    Formalism.UG.cT σ (a • M) = σ a • Formalism.UG.cT σ M := by
-  ext i j
-  simp [Formalism.UG.cT]
-
-theorem cT_cT (σ : A →+* A) (hσ : ∀ x, σ (σ x) = x) (M : Matrix (Fin n) (Fin n) A) :
-    Formalism.UG.cT σ (Formalism.UG.cT σ M) = M := by
-  ext i j
-  simp [Formalism.UG.cT, hσ]
 
 theorem cT_one (σ : A →+* A) : Formalism.UG.cT σ (1 : Matrix (Fin n) (Fin n) A) = 1 := by
   unfold Formalism.UG.cT
@@ -107,7 +98,7 @@ theorem smul_congr_right {ε : A} {M N : Matrix (Fin n) (Fin n) A} (X : Matrix (
 
 theorem cT_congr (σ : A →+* A) {ε : A} {M N : Matrix (Fin n) (Fin n) A} (h : ε • M = ε • N) :
     σ ε • Formalism.UG.cT σ M = σ ε • Formalism.UG.cT σ N := by
-  rw [← cT_smul, h, cT_smul]
+  rw [← _root_.GlobalTheory.UnitarySplit.cT_smul', h, _root_.GlobalTheory.UnitarySplit.cT_smul']
 
 theorem ext_cols {M N : Matrix (Fin n) (Fin n) A} (h : ∀ j, M *ᵥ Pi.single j 1 = N *ᵥ Pi.single j 1) : M = N := by
   ext i j
@@ -274,7 +265,7 @@ theorem dv_conj (σ : A →+* A) (hσ : ∀ x, σ (σ x) = x) {J Ji : Matrix (Fi
   have hrel : σ ε • (g * Formalism.UG.cT σ (C * Ji)) =
       σ ε • (Formalism.UG.cT σ (C * Ji) * Matrix.diagonal (fun i => σ (v i)) * Formalism.UG.cT σ Z') := by
     have := cT_congr σ hkey
-    rw [cT_mul σ (C * Ji) (Formalism.UG.cT σ g), cT_cT σ hσ, cT_mul σ (Z' * Matrix.diagonal v) (C * Ji),
+    rw [cT_mul σ (C * Ji) (Formalism.UG.cT σ g), _root_.GlobalTheory.UnitarySplit.cT_cT' σ hσ, cT_mul σ (Z' * Matrix.diagonal v) (C * Ji),
       cT_mul σ Z' (Matrix.diagonal v), cT_diagonal] at this
     rw [this, Matrix.mul_assoc]
   have hWW : σ ε • (Formalism.UG.cT σ Z' * Formalism.UG.cT σ Z) = σ ε • 1 := by
@@ -294,7 +285,7 @@ theorem dv_conj (σ : A →+* A) (hσ : ∀ x, σ (σ x) = x) {J Ji : Matrix (Fi
     obtain ⟨z'', hz'', e⟩ := b2 w hw
     have hB' : Formalism.UG.cT σ (ε • B) * J * Formalism.UG.cT σ (C * Ji) = σ ε • 1 := by
       rw [cT_mul σ C Ji, hJi', ← Matrix.mul_assoc, Matrix.mul_assoc (Formalism.UG.cT σ (ε • B)) J Ji, hJ, Matrix.mul_one,
-        ← cT_mul, Matrix.mul_smul, hCB, cT_smul, cT_one]
+        ← cT_mul, Matrix.mul_smul, hCB, _root_.GlobalTheory.UnitarySplit.cT_smul', cT_one]
     have e3 : Formalism.UG.hform σ J w (σ ε • Formalism.UG.cT σ (C * Ji) *ᵥ z) =
         (fun i => σ ((ε • w) i)) ⬝ᵥ (J *ᵥ (Formalism.UG.cT σ (C * Ji) *ᵥ z)) := by
       rw [GlobalTheory.SplitStab.hform_eq, Matrix.mulVec_smul, dotProduct_smul]
@@ -309,7 +300,7 @@ theorem dv_conj (σ : A →+* A) (hσ : ∀ x, σ (σ x) = x) {J Ji : Matrix (Fi
       rw [cT_mulVec_apply, Matrix.smul_mulVec]; exact h0
     · have hXB : Formalism.UG.cT σ (C * Ji) * Formalism.UG.cT σ (ε • B) * J = σ ε • 1 := by
         rw [← cT_mul, Matrix.smul_mul, ← Matrix.mul_assoc, ← Matrix.smul_mul, hBC, Matrix.smul_mul, Matrix.one_mul,
-          cT_smul, hJi', Matrix.smul_mul, hJi]
+          _root_.GlobalTheory.UnitarySplit.cT_smul', hJi', Matrix.smul_mul, hJi]
       simp only [Matrix.mulVec_mulVec, ← Matrix.mul_assoc]
       rw [hXB, Matrix.smul_mulVec, Matrix.one_mulVec, smul_smul, hσε]
 

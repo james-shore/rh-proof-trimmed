@@ -128,7 +128,4 @@ theorem im_tz_form {I : Type} [Fintype I] [DecidableEq I] (Z : Matrix I I ℂ) (
   simp only [Complex.add_im, Complex.sub_im, Complex.star_def, Complex.conj_im]
   ring
 
-theorem im_tz_form' : ∀ {I : Type} [Fintype I] [DecidableEq I] (Z : Matrix I I ℂ), Zᵀ = Z → (1 - Zᴴ * Z).PosDef → ∀ z w : I → ℂ, (tz Z z ⬝ᵥ (1 - Zᴴ * Z)⁻¹ *ᵥ star (tz Z w)).im = (z ⬝ᵥ star w).im :=
-  fun Z hZ hP z w => im_tz_form Z hZ hP z w
-
 end GlobalTheory.CompanionTheory.Ar.Cusp.Univ

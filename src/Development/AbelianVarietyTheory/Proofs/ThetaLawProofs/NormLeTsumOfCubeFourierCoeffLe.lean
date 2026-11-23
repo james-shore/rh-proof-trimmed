@@ -92,7 +92,7 @@ theorem norm_le_tsum_of_cube_fourierCoeff_le {ι : Type*} [Fintype ι] [Decidabl
       obtain ⟨n, hn⟩ := (AddCircle.coe_eq_zero_iff _).1 h3
       exact ⟨n, by simpa using hn⟩
     choose n hn using h2
-    rw [← apply_add_intCast_vec_of_unit_periods hA n x]
+    rw [← _root_.GlobalTheory.IntegerShiftSingle.main hA n x]
     change A x' = _
     congr 1
     funext i
@@ -251,7 +251,7 @@ theorem exists_bound_of_unit_periods {ι : Type*} [Fintype ι] [DecidableEq ι]
   obtain ⟨M, hM⟩ := (isCompact_Icc (a := (0 : ι → ℝ)) (b := 1)).exists_bound_of_continuousOn
     hc.continuousOn
   refine ⟨M, fun x => ?_⟩
-  have h := apply_add_intCast_vec_of_unit_periods hA (fun i => ⌊x i⌋) fun i => Int.fract (x i)
+  have h := _root_.GlobalTheory.IntegerShiftSingle.main hA (fun i => ⌊x i⌋) fun i => Int.fract (x i)
   have e : ((fun i => Int.fract (x i)) + fun i => ((⌊x i⌋ : ℤ) : ℝ)) = x := by
     funext i; simp
   rw [e] at h
@@ -410,7 +410,7 @@ theorem summable_exp_neg_mul_sum_abs {ι : Type*} [Fintype ι] {ε : ℝ} (hε :
     rw [← Real.exp_nat_mul]; congr 1; ring
   have h1 : Summable fun n : ℤ => Real.exp (-(ε * |(n : ℝ)|)) :=
     Summable.of_nat_of_neg (by simpa using h0) (by simpa using h0)
-  refine (summable_prod_tuples (J := fun _ : ι => ℤ)
+  refine (_root_.GlobalTheory.SummablePiProd.summable_pi_prod (J := fun _ : ι => ℤ)
     (u := fun _ n => Real.exp (-(ε * |(n : ℝ)|))) (fun _ _ => (Real.exp_pos _).le)
     fun _ => h1).congr fun m => ?_
   rw [← Real.exp_sum, Finset.mul_sum, Finset.sum_neg_distrib]

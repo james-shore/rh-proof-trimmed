@@ -80,7 +80,7 @@ theorem ratioOne_of_killed_l (ℓ : ℕ) [Fact ℓ.Prime] (P : FiniteSubfield �
         fun _ _ h => Subtype.ext h
     have hl : ∃ r : ℕ, ∀ m : (rangeStepComplex T hT ⊤ hD).X₂, (ℓ ^ r) • m = 0 :=
       ⟨r + 1, fun m => Subtype.ext (hr m.1)⟩
-    have hmul := ratio_shortExact_l ℓ K S hS hSl ιr _ hSE hl
+    have hmul := _root_.PositivityTheory.Lit1.GEN.W_multl.ratio_shortExact_l ℓ K S hS hSl ιr _ hSE hl
     have h1 : gsEulerRatio S (rangeStepComplex T hT ⊤ hD).X₁ ιr = 1 := by
       refine h K S hS hSl hP ιr _ fun m => Subtype.ext ?_
       have h' : T m.1 = 0 := m.2.2

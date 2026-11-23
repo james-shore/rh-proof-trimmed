@@ -103,16 +103,6 @@ end Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
 namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
-theorem star_mul_self_psi {k n : ℕ} (z : Fin (2 * n + k + 1) → ℂ) (c : ℂ) (g : B.Mat k n) :
-    star (psi k n z c g) * psi k n z c g = 1 := by
-  have h1 := Formalism.FourierDecayAlt.P.LeftFubiniLemmas.norm_psi z c g
-  have h2 : star (psi k n z c g) * psi k n z c g = ((Complex.normSq (psi k n z c g) : ℝ) : ℂ) := by
-    rw [Complex.normSq_eq_conj_mul_self]; rfl
-  rw [h2, Complex.normSq_eq_norm_sq, h1]
-  simp
-
 end Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
 namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
@@ -185,7 +175,7 @@ theorem krI_pt (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k (p + ρ
   simp only [ContinuousLinearMap.smul_comp, ContinuousLinearMap.comp_assoc, e7, ContinuousLinearMap.comp_id,
     smul_smul]
   congr 1
-  have hB := star_mul_self_psi (liftVec k p ρ Bj.z') cStd (U.muP k p ρ (G.upper s.2.2))
+  have hB := _root_.Formalism.FourierDecayAlt.P.PBG.star_psi_mul (liftVec k p ρ Bj.z') cStd (U.muP k p ρ (G.upper s.2.2))
   rw [star_mul']
   push_cast
   linear_combination ((b a : ℂ) * (b' s.2.1 : ℂ) * (β (Matrix.of.symm (Matrix.of Z * G.upper s.2.2)) : ℂ) *

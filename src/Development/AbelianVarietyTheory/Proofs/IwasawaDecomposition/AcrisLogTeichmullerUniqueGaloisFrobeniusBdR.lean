@@ -82,9 +82,7 @@ theorem mu_mem {e : Per.Fl l} (he : e.untilt = 1) :
     algebraMap (Per.Ainf l) (Per.AinfP l) (mu e) ∈ Per.kerP l := by
   exact GlobalTheory.RingIface.alg_mem_kerP l (by rw [Model.theta_mu, he, sub_self])
 
-theorem ev_alg (n : ℕ) (a : Per.AinfP l) :
-    Per.ev l n (algebraMap (Per.AinfP l) (Per.BdRp l) a) = Ideal.Quotient.mk _ a :=
-  GlobalTheory.RingIface.ev_alg l n a
+alias ev_alg := _root_.GlobalTheory.MemLoc.CrisUnique.ev_alg
 
 theorem isLog_map {e : Per.Fl l} (he : e.untilt = 1) {t : Per.Acris l} (ht : IsLogA e t)
     {j : Per.Acris l →+* Per.BdRp l} (hj : IsCrisP j) : Per.IsLog l e (j t) := by

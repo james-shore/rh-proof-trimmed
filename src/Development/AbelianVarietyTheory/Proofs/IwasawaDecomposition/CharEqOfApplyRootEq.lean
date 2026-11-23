@@ -71,8 +71,8 @@ theorem char_eq_of_apply_root_eq : ∀ {E Ω : Type} [Field E] [NumberField E] [
   obtain ⟨ζ, hζ⟩ : ∃ ζ : Ω, IsPrimitiveRoot ζ m := by
     have : NeZero (m : Ω) := ⟨Nat.cast_ne_zero.2 hm0⟩
     exact HasEnoughRootsOfUnity.exists_primitiveRoot Ω m
-  obtain ⟨σ₀, hσ₀, hσ₀π⟩ := GlobalTheory.T.inertia_acts_on_tame_root A P hP m hm hmP ϖ hϖP hϖ2 π hπ ζ hζ.pow_eq_one
-  have J := fun τ hτ => GlobalTheory.T.character_tameQuotient_jointPowers_tameGenerator A γ hγ hO χ hχ m hm hvm hχm (ϖ : E) π hπ0 hπ τ hτ
+  obtain ⟨σ₀, hσ₀, hσ₀π⟩ := _root_.GlobalTheory.TameSurj.main A P hP m hm hmP ϖ hϖP hϖ2 π hπ ζ hζ.pow_eq_one
+  have J := fun τ hτ => _root_.GlobalTheory.TameTau.joint_pow_of_tameGen A γ hγ hO χ hχ m hm hvm hχm (ϖ : E) π hπ0 hπ τ hτ
   obtain ⟨k, -, hk⟩ := J σ₀ hσ₀
   obtain ⟨n, hn1, hn2⟩ := J σ hσ
   obtain ⟨n', hn1', hn2'⟩ := J σ' hσ'

@@ -151,24 +151,4 @@ theorem hE_crdX (X : HidaSetting D) (v w : (VS D).V) :
   show Formalism.UG.hform (starRingEnd X.B.I.E) X.B.I.J _ _ = _
   rw [← hform_crdX X v w, RingEquiv.symm_apply_apply]
 
-theorem frame_stdX (X : HidaSetting D) (u : D.what₂.Word) :
-    (Formalism.L2.SG.TypedSets.frameOf X u).IsStd X.B.I.cm.sig X.B.I.J (((D.mem u).A.T : ℕ) : X.B.I.F) := by
-  refine ⟨fun a b => ?_, fun a b => ?_, fun a b => ?_, fun a => ?_, fun a => ?_, ?_, ?_⟩
-  · show hE _ _ (crdOf X.B.I X.ιE X.bas (X.eX a)) (crdOf X.B.I X.ιE X.bas (X.eX b)) = 0
-    rw [hE_crdX, X.ee, map_zero]
-  · show hE _ _ (crdOf X.B.I X.ιE X.bas (X.fY a)) (crdOf X.B.I X.ιE X.bas (X.fY b)) = 0
-    rw [hE_crdX, X.ff, map_zero]
-  · show hE _ _ (crdOf X.B.I X.ιE X.bas (X.eX a)) (crdOf X.B.I X.ιE X.bas (X.fY b)) = _
-    rw [hE_crdX, X.ef]
-    split_ifs <;> simp
-  · show hE _ _ (crdOf X.B.I X.ιE X.bas (X.eX a)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0
-    rw [hE_crdX, (X.zu_orth u a).1, map_zero]
-  · show hE _ _ (crdOf X.B.I X.ιE X.bas (X.fY a)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = 0
-    rw [hE_crdX, (X.zu_orth u a).2, map_zero]
-  · show hE _ _ (crdOf X.B.I X.ιE X.bas (X.zu u)) (crdOf X.B.I X.ιE X.bas (X.zu u)) = _
-    rw [hE_crdX, X.zu_norm]
-    simp
-  · exact Nat.cast_ne_zero.2 (D.mem u).A.T_prime.ne_zero
-
-
 end Formalism.L2.SG.Pf.Rescale

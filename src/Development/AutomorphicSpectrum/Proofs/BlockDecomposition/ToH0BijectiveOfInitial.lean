@@ -155,9 +155,9 @@ theorem step (a b : ι → ℤ → IdF Φ.A) (a' b' : ℤ → IdF Φ'.A) (r : �
     Tens R (N := N) (M := fun i => CH.H (sq (a i r) (b i r)) j) (M' := CH.H (sq (a' r) (b' r)) j)
       fun i n x => (m.sqC (ν i n) (ha i n r) (hb i n r)).pull j x := by
   have hle : r - 1 ≤ r := by omega
-  choose β hinj hex hsurj hform using fun i => GlobalTheory.T.filtration_critical_comparison_map Q E (a i) (b i) r (hQ i).le ((hQ i).ca r le_rfl)
+  choose β hinj hex hsurj hform using fun i => _root_.GlobalTheory.CompanionTheory.PolySes.ses Q E (a i) (b i) r (hQ i).le ((hQ i).ca r le_rfl)
     ((hQ i).ca _ hle) ((hQ i).cb r le_rfl) ((hQ i).cb _ hle)
-  obtain ⟨β', hinj', hex', hsurj', hform'⟩ := GlobalTheory.T.filtration_critical_comparison_map Q' E' a' b' r hQ'.le (hQ'.ca r le_rfl)
+  obtain ⟨β', hinj', hex', hsurj', hform'⟩ := _root_.GlobalTheory.CompanionTheory.PolySes.ses Q' E' a' b' r hQ'.le (hQ'.ca r le_rfl)
     (hQ'.ca _ hle) (hQ'.cb r le_rfl) (hQ'.cb _ hle)
   have sI := fun i => CrystallineSemistableComparison.P.ses_cochains (alpha Q (a i r) (b i r)) (β i) (hinj i) (hex i) (hsurj i)
   have sP := CrystallineSemistableComparison.P.ses_cochains (alpha Q' (a' r) (b' r)) β' hinj' hex' hsurj'

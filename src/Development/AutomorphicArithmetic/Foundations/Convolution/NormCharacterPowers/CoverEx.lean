@@ -39,18 +39,15 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.GelfandKazhdanReal
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ResFinEqOneOfAway
 
 @[expose] public section
 
 open UpperTheory.ConvolutionTheory.R
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V.Published PositivityTheory.RgJS
 
-private theorem normV_eq {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) :
-    normV v = Ideal.absNorm v.asIdeal := by
-  rw [normV, Ideal.absNorm_apply, Submodule.cardQuot_apply]
-
 private theorem one_lt_normV {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) : 1 < normV v := by
-  rw [normV_eq]
+  rw [_root_.GlobalTheory.ToricDistribution.normV_eq]
   exact NumberField.HeightOneSpectrum.one_lt_absNorm v
 
 theorem UpperTheory.ConvolutionTheory.R.coverEx :
@@ -124,7 +121,7 @@ theorem UpperTheory.ConvolutionTheory.R.coverEx :
     obtain ⟨w, hw⟩ := hex v.1 v.2
     exact hw ▸ (hgood w (hw ▸ v.2)).2.1
   · intro w
-    simpa only [nq, normV_eq] using hnorm w
+    simpa only [nq, _root_.GlobalTheory.ToricDistribution.normV_eq] using hnorm w
   · intro v
     obtain ⟨w₀, hw₀⟩ := hex v.1 v.2
     have hg := hgood w₀ (hw₀ ▸ v.2)

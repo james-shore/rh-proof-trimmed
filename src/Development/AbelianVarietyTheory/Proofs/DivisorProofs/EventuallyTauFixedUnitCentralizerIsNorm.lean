@@ -95,7 +95,7 @@ theorem GlobalTheory.LocNormTau.exists_norm_of_tau_fixed_sep : ∀ (p : ℕ) [Fa
     intro w₁ h₁ w₂ h₂
     simp only [Set.mem_setOf_eq, not_not] at h₁ h₂
     exact Subtype.ext (IsDedekindDomain.HeightOneSpectrum.ext (h₁.trans h₂.symm))
-  filter_upwards [hne2, GlobalTheory.T.eventually_isIntegral_of_integralCoordsLocalTensor p G, GlobalTheory.T.eventually_integralCoords_scalarTensorInclusion p G (ι d), GlobalTheory.T.eventually_integralCoords_scalarTensorInclusion p G (ι di)] with w h2 hint hId hId'
+  filter_upwards [hne2, _root_.GlobalTheory.FinClsLoc.intC_isIntegral p G, _root_.GlobalTheory.FinClsLoc.intC_inC_eventually p G (ι d), _root_.GlobalTheory.FinClsLoc.intC_inC_eventually p G (ι di)] with w h2 hint hId hId'
   intro m hmY hmI hmI' hmτ
   set K := w.1.adicCompletion ℚ
   obtain ⟨hΦinj, hΦrange⟩ := GlobalTheory.FinClsLoc.baseChange_fixedCentraliser_alg p G β Y L ι hιinj hιrange K

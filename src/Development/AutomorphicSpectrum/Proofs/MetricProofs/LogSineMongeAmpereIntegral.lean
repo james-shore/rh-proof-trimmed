@@ -176,8 +176,8 @@ theorem hess_lin {D : ℕ} {f₀ f₁ h₀ h₁ : (Fin D → ℂ) → ℝ} {z : 
     (hf₀ : ContDiffAt ℝ 2 f₀ z) (hf₁ : ContDiffAt ℝ 2 f₁ z) (hh₀ : ContDiffAt ℝ 2 h₀ z) (hh₁ : ContDiffAt ℝ 2 h₁ z)
     (e₀ : hessC f₀ z = hessC h₀ z) (e₁ : hessC f₁ z = hessC h₁ z) :
     hessC (fun w => c₀ * f₀ w + c₁ * f₁ w) z = hessC (fun w => c₀ * h₀ w + c₁ * h₁ w) z := by
-  rw [ReciprocityTheory.AnForm.A.hessC_add _ _ z (contDiffAt_const.mul hf₀) (contDiffAt_const.mul hf₁),
-    ReciprocityTheory.AnForm.A.hessC_add _ _ z (contDiffAt_const.mul hh₀) (contDiffAt_const.mul hh₁),
+  rw [_root_.ReciprocityTheory.AnForm.A.TraceConjugationCover.complexHessian_add_of_contDiffAt _ _ z (contDiffAt_const.mul hf₀) (contDiffAt_const.mul hf₁),
+    _root_.ReciprocityTheory.AnForm.A.TraceConjugationCover.complexHessian_add_of_contDiffAt _ _ z (contDiffAt_const.mul hh₀) (contDiffAt_const.mul hh₁),
     ReciprocityTheory.AnForm.M.hessC_const_mul', ReciprocityTheory.AnForm.M.hessC_const_mul',
     ReciprocityTheory.AnForm.M.hessC_const_mul', ReciprocityTheory.AnForm.M.hessC_const_mul', e₀, e₁]
 
@@ -300,7 +300,7 @@ theorem GlobalTheory.CompanionTheory.Ar.PB.FibPt.fibre_integral_any_frame : Grou
   have key := GlobalTheory.T.log_sine_monge_ampere_normalized hF d k hk hkd (fun y' => (g y')ᴴ * G y' * g y') α y hpd hc2 hα h1 hf0
   have hae := ae_den_ne (g y) hgu
   have hR : ∫ a : ℂ, maDens (fun (r : Fin (d + 1)) (z : Fin (d + 1) → ℂ) => if (r : ℕ) < 2 * k - 1 then xiPot ((g (Fin.tail z))ᴴ * G (Fin.tail z) * g (Fin.tail z)) (z 0) else α (Fin.tail z)) (Fin.cons a y) = ∫ a : ℂ, maDens (fun (r : Fin (d + 1)) (z : Fin (d + 1) → ℂ) => if (r : ℕ) < 2 * k - 1 then xiPot (G (Fin.tail z)) (z 0) else α (Fin.tail z)) (Fin.cons a y) := by
-    refine Eq.trans (integral_congr_ae (hae.mono fun a ha => ?_)) (GlobalTheory.T.integral_normSq_mobD_mul_comp_mob' (g y) hgu (fun b : ℂ => maDens (fun (r : Fin (d + 1)) (z : Fin (d + 1) → ℂ) => if (r : ℕ) < 2 * k - 1 then xiPot (G (Fin.tail z)) (z 0) else α (Fin.tail z)) (Fin.cons b y)))
+    refine Eq.trans (integral_congr_ae (hae.mono fun a ha => ?_)) (_root_.GlobalTheory.CompanionTheory.Ar.PB.FibPt.integral_normSq_mobD_mul_comp_mob (g y) hgu (fun b : ℂ => maDens (fun (r : Fin (d + 1)) (z : Fin (d + 1) → ℂ) => if (r : ℕ) < 2 * k - 1 then xiPot (G (Fin.tail z)) (z 0) else α (Fin.tail z)) (Fin.cons b y)))
     exact dens1 d (2 * k - 1) G g α y hG hC hα hgd hgu a ha
   have hL : ∀ u : ℕ → Fin 2 → ℝ, ∫ p : ℂ × ℂ, logSin ((g y)ᴴ * G y * g y) p.1 p.2 * maDens (fun (r : Fin (d + 2)) (z : Fin (d + 2) → ℂ) => if (r : ℕ) < 2 * k then u r 0 * xiPot ((g (Fin.tail (Fin.tail z)))ᴴ * G (Fin.tail (Fin.tail z)) * g (Fin.tail (Fin.tail z))) (z 0) + u r 1 * xiPot ((g (Fin.tail (Fin.tail z)))ᴴ * G (Fin.tail (Fin.tail z)) * g (Fin.tail (Fin.tail z))) (z 1) else α (Fin.tail (Fin.tail z))) (Fin.cons p.1 (Fin.cons p.2 y)) = ∫ p : ℂ × ℂ, logSin (G y) p.1 p.2 * maDens (fun (r : Fin (d + 2)) (z : Fin (d + 2) → ℂ) => if (r : ℕ) < 2 * k then u r 0 * xiPot (G (Fin.tail (Fin.tail z))) (z 0) + u r 1 * xiPot (G (Fin.tail (Fin.tail z))) (z 1) else α (Fin.tail (Fin.tail z))) (Fin.cons p.1 (Fin.cons p.2 y)) := by
     intro u

@@ -83,11 +83,6 @@ theorem hR_colV (v : HeightOneSpectrum (𝓞 F)) (A : Matrix (Fin n) (Fin r) E)
 
   simp only [mulVec, dotProduct, map_apply, colV, map_sum, map_mul]
 
-theorem sigma_sigma (hCM : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [hCM.2.2.2 τ, hCM.2.2.2 τ, star_star]
-
 theorem cT_mul_rect (s : E →+* E) {a b c : Type} [Fintype b] (P : Matrix a b E) (Q : Matrix b c E) :
     cT s (P * Q) = cT s Q * cT s P := by
   simp [cT, Matrix.map_mul, transpose_mul]
@@ -99,7 +94,7 @@ theorem gram_yx (hCM : IsCMExt F E σ) (hJ : IsHermND σ J) {X Y : Matrix (Fin n
     exact hJ.1 i j
   have hcc : cT (σ : E →+* E) (cT (σ : E →+* E) X) = X := by
     ext i j
-    exact sigma_sigma hCM _
+    exact _root_.GlobalTheory.AdelicU.cm_conj_conj hCM _
   have h1 : cT (σ : E →+* E) (1 : Matrix (Fin r) (Fin r) E) = 1 := by
     ext i j
     simp [cT, Matrix.one_apply, eq_comm]

@@ -70,7 +70,7 @@ theorem plogK_four {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) 
     (hu : ∀ n : ℕ, n ≠ 0 → IsUnit (n : B)) {a b c d : B} (ha : a - 1 ∈ J) (hb : b - 1 ∈ J) (hc : c - 1 ∈ J)
     (hd : d - 1 ∈ J) (h : a * b = c * d) :
     plogK δ s (a - 1) + plogK δ s (b - 1) = plogK δ s (c - 1) + plogK δ s (d - 1) := by
-  rw [← GlobalTheory.T.truncated_log_multiplicative δ s hs hu ha hb, ← GlobalTheory.T.truncated_log_multiplicative δ s hs hu hc hd]
+  rw [← _root_.GlobalTheory.CompanionTheory.PlogMul.plogK_mul δ s hs hu ha hb, ← _root_.GlobalTheory.CompanionTheory.PlogMul.plogK_mul δ s hs hu hc hd]
   simp only [add_sub_cancel]
   rw [h]
 

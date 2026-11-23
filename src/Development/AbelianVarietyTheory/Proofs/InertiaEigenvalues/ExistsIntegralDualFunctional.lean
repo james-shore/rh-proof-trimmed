@@ -102,7 +102,7 @@ theorem intDual_coef : ∀ (l : ℕ) [Fact l.Prime] (LL : Type) [Field LL] [Alge
       (∀ o : O, ∃ z : ℤ_[l], lam (algebraMap O LL o) = (z : ℚ_[l])) ∧
       (∀ x : LL, x = ∑ i, lam (algebraMap O LL (f i) * x) • algebraMap O LL (e i)) := by
   intro l _ LL _ _ _ O _ _ hO
-  have H := GlobalTheory.T.coefficient_ring_integers_compact_adic_properties l LL O hO
+  have H := _root_.GlobalTheory.PowerImageOpen.main l LL O hO
   obtain ⟨⟨hdom, hdvr, hfrac⟩, hfd, -, -, -⟩ := hO
   haveI := hdom
   haveI := hdvr

@@ -129,12 +129,7 @@ theorem gen_low_inV {N : ℕ} (hN : 0 < N) {f : PowerSeries C} (hf0 : PowerSerie
   · exact gen_mm_pw hN hf0 hf1 _ hμ
   · exact gen_mm_zero
 
-theorem gen_intS_X {τ : Type} (x : τ) : IntS V (MvPowerSeries.X x : MvPowerSeries τ C) := by
-  intro μ
-  rw [MvPowerSeries.coeff_X]
-  split_ifs
-  · exact VF.Ge.one
-  · exact VF.Ge.zero 0
+alias gen_intS_X := _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_X
 
 theorem gen_intS_psubst {τ : Type} {a : MvPowerSeries τ C} (ha0 : MvPowerSeries.constantCoeff a = 0) (ha : IntS V a)
     {f : PowerSeries C} (hf : ∀ m, V.Ge 0 (PowerSeries.coeff m f)) : IntS V (PowerSeries.subst a f) :=

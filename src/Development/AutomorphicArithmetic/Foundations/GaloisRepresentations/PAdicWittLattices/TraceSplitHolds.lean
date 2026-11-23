@@ -89,7 +89,7 @@ theorem seamHopEx_holds : UpperTheory.Gal.Seam.HopEx := by
     exact (Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero) h1
   exact (hopSpec_holds l hl H Ω g d hd).1
 
-theorem locTower_holds : UpperTheory.Gal.Seam.LocTower := locTower_of vBcS_holds seamHopEx_holds UpperTheory.Gal.Seam.niceBc
+theorem locTower_holds : UpperTheory.Gal.Seam.LocTower := locTower_of _root_.UpperTheory.Gal.G3.jVBcS seamHopEx_holds UpperTheory.Gal.Seam.niceBc
 
 theorem traceSplit_holds : PositivityTheory.AutomorphicGaloisHodgeTate.G8.TraceSplit := by
   intro k _ Z Y W q s _ _ c _ _ I _ σ hσ hS a b y

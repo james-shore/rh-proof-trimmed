@@ -89,7 +89,7 @@ theorem exists_free_H2_twist : ∀ {p : ℕ} [Fact p.Prime] {K : IntermediateFie
   haveI := hO.t2
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible O
   obtain ⟨hopen, hbasis⟩ := powSub_open_basis hO hϖ
-  haveI := GlobalTheory.T.isAdicComplete_of_padicCoeff' hO
+  haveI := _root_.GlobalTheory.isAdicComplete_of_padicCoeff hO
   have hd : ∀ n : ℕ, ringChar (O ⧸ IsLocalRing.maximalIdeal O ^ n) ∣ p ^ n := fun n => by
     apply ringChar.dvd
     rw [← map_natCast (Ideal.Quotient.mk (IsLocalRing.maximalIdeal O ^ n)),
@@ -128,7 +128,7 @@ theorem exists_free_H2_twist : ∀ {p : ℕ} [Fact p.Prime] {K : IntermediateFie
     show Continuous fun q : G × O => twist ε O q.1 q.2
     simp only [twist_apply, smul_eq_mul]
     exact (hεc.comp continuous_fst).mul continuous_snd
-  have hfin := fun n => GlobalTheory.T.finite_cocycles_quotient_pow_smul_of_isOpen hT hK hO.p_mem i (twist ε O) hcont ϖ hϖ hopen n
+  have hfin := fun n => _root_.GlobalTheory.LocDualInt.finite_cocycles_quotient_pow_smul_module hT hK hO.p_mem i (twist ε O) hcont ϖ hϖ hopen n
   have hG := fun r => GlobalTheory.GenSpan.gen_zmod (hcG r)
   have hcc : Continuous cG :=
     GlobalTheory.PadicH2Separated.continuous_of_reductions cG fun s => (hG (s + 1)).1.1.continuous
@@ -149,19 +149,19 @@ theorem exists_free_H2_twist : ∀ {p : ℕ} [Fact p.Prime] {K : IntermediateFie
       exact sub_eq_zero.2 hab
     rw [← Submodule.Quotient.mk_smul, Submodule.Quotient.mk_eq_zero] at h0
     obtain ⟨f, hf, hfd⟩ := (separated_dvr_second_cohomology_mem _ _).1 h0
-    refine sub_eq_zero.1 (GlobalTheory.T.fundamentalTwoCocycle_multiple_not_coboundary χ cG hcG φ ε hεφ ϖ hϖ hO.p_mem hopen (a - b) f hf
+    refine sub_eq_zero.1 (_root_.GlobalTheory.TateNat.free_inj χ cG hcG φ ε hεφ ϖ hϖ hO.p_mem hopen (a - b) f hf
       fun g h => ?_)
     have e1 := congrFun hfd (g, h)
     rw [e1]
     rfl
   · induction y using Submodule.Quotient.induction_on with
     | H w =>
-      obtain ⟨a, ha⟩ := GlobalTheory.T.twoCocycle_fundamental_multiple_mod_pow χ cG hcG φ ε hεφ ϖ hϖ hO.p_mem hopen w.1 w.2
+      obtain ⟨a, ha⟩ := _root_.GlobalTheory.UnifSpan.span_mod_pow χ cG hcG φ ε hεφ ϖ hϖ hO.p_mem hopen w.1 w.2
       refine ⟨a, ?_⟩
       show a • Z = Submodule.Quotient.mk w
       rw [← Submodule.Quotient.mk_smul, eq_comm, Submodule.Quotient.eq]
       show (w.1 - a • z0) ∈ B2 (twist ε O)
-      refine GlobalTheory.T.twoCocycle_mem_coboundaries_of_mod_uniformizer_pow ε ϖ hopen hbasis hfin _
+      refine _root_.GlobalTheory.PadicH2SeparatedDVR.separated_dvr_second_cohomology_mem ε ϖ hopen hbasis hfin _
         (sub_mem w.2 (Submodule.smul_mem _ a hz0)) fun n => ?_
       obtain ⟨b, hb, hbd⟩ := ha n
       exact ⟨b, hb, fun g h => by rw [hbd]; rfl⟩

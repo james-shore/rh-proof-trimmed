@@ -234,7 +234,7 @@ theorem levi_of_cell {j : ℕ} (hj : j ≤ N) (i : Fin N) {z0 : Fin e → ℂ} {
       then (1 / 2 : ℝ) * ‖fderiv ℂ z z0 v p‖ ^ 2 else 0 := by
   obtain ⟨H, hH, hev⟩ := hf
   let φ : (Pairs N → ℂ) → ℝ := fun y => stepPot N j i (cellMat N y)
-  have hφ : ContDiffAt ℝ 2 φ 0 := (GlobalTheory.T.flag_potential_levi_form_cell N j hj i 0).1
+  have hφ : ContDiffAt ℝ 2 φ 0 := (_root_.GlobalTheory.CompanionTheory.Ar.PB.levi_stepPot_cell N j hj i 0).1
   have hφ' : ContDiffAt ℝ 2 φ (z z0) := by rwa [hz0]
   have hzR : ContDiffAt ℝ 2 z z0 := (hz.restrictScalars (𝕜 := ℝ)).contDiffAt
   have hc : ContDiffAt ℝ 2 (φ ∘ z) z0 := hφ'.comp z0 hzR
@@ -246,7 +246,7 @@ theorem levi_of_cell {j : ℕ} (hj : j ≤ N) (i : Fin N) {z0 : Fin e → ℂ} {
     linarith
   refine ⟨(hc.add (contDiffAt_const.mul hHR)).congr_of_eventuallyEq hfe, fun v => ?_⟩
   rw [levi_congr hfe v, levi_add_smul 1 hc hHR v, levi_comp v hz hφ', levi_re_analytic hH v, hz0]
-  have hlev := (GlobalTheory.T.flag_potential_levi_form_cell N j hj i (fderiv ℂ z z0 v)).2
+  have hlev := (_root_.GlobalTheory.CompanionTheory.Ar.PB.levi_stepPot_cell N j hj i (fderiv ℂ z z0 v)).2
   simp [φ, rel] at hlev ⊢
   exact hlev
 

@@ -75,7 +75,7 @@ theorem glue : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField
       GlobalTheory.T.exists_nat_mul_mem_integers_quadraticCompletion A (fun y hy => by
         obtain ⟨x, hx⟩ := happ1 y hy
         exact ⟨x, fun p => by simpa using hx p⟩)
-    obtain ⟨N, hN, hb⟩ := GlobalTheory.T.exists_nat_bound_localLattices_standard_ae A n Λ hfin fun p => GlobalTheory.T.local_lattice_between_scaled_standard_lattices A p n (Λ p) (hlat p) (h3 p)
+    obtain ⟨N, hN, hb⟩ := _root_.GlobalTheory.HL.Glue.exists_uniform_bound A n Λ hfin fun p => _root_.GlobalTheory.HL.Glue.lat_between A p n (Λ p) (hlat p) (h3 p)
     let Γ : Submodule (𝓞 E) (Fin n → E) :=
       { carrier := {x | ∀ p, A.bc p x ∈ Λ p}
         add_mem' := by
@@ -94,7 +94,7 @@ theorem glue : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField
           rw [this]; exact (Λ p).smul_mem _ (hx p) }
     have hΓ : ∀ x, x ∈ Γ ↔ ∀ p, A.bc p x ∈ Λ p := fun x => Iff.rfl
     have hL : Submodule.IsLattice E Γ := by
-      refine GlobalTheory.T.isLattice_of_squeezed_between_nat_multiples n Γ N hN (fun x hx p => ?_) (fun x hx i => ?_)
+      refine _root_.GlobalTheory.glue_latt_isLattice n Γ N hN (fun x hx p => ?_) (fun x hx i => ?_)
       · have : A.bc p ((N : E) • x) = (N : (A.loc p).Ep) • A.bc p x := by
           funext i; simp [Places.bc]
         rw [this]
@@ -105,7 +105,7 @@ theorem glue : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField
     refine ⟨Γ, hL, fun p => le_antisymm ?_ ?_⟩
     · exact Submodule.span_le.2 (by rintro _ ⟨x, hx, rfl⟩; exact hx p)
     · haveI := (A.loc p).char0
-      refine GlobalTheory.T.localLattice_le_completion_glued_lattice A n Λ Γ N hΓ (fun q => (hb q).1) ?_ p
+      refine _root_.GlobalTheory.HL.Glue.local_le_lat_of_approx A n Λ Γ N hΓ (fun q => (hb q).1) ?_ p
       have hc : ∀ q, (N : (A.loc q).Fp) ≠ 0 := fun q => by
         haveI := (A.loc q).char0; exact_mod_cast hN
       have happN := (GlobalTheory.T.strong_approximation_additive_quadratic_extension A (fun q => Units.mk0 _ (hc q))

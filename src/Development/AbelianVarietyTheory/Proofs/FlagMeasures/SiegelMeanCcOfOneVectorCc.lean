@@ -74,10 +74,6 @@ noncomputable section
 
 namespace GlobalTheory.OneVectorMean
 
-theorem continuous_qEps {n : ℕ} (ε : Fin n → Bool) : Continuous (qEps ε) := by
-  unfold qEps
-  fun_prop
-
 theorem qEps_smul {n : ℕ} (ε : Fin n → Bool) (r : ℝ) (y : Fin n → ℂ) : qEps ε (r • y) = r ^ 2 * qEps ε y := by
   simp only [qEps, Finset.mul_sum, Pi.smul_apply, norm_smul, mul_pow, Real.norm_eq_abs, sq_abs]
   exact Finset.sum_congr rfl fun i _ => by ring
@@ -89,7 +85,7 @@ theorem eq_zero_of_isDens {n : ℕ} {ε : Fin n → Bool} {φ : (Fin n → ℂ) 
   have hpos : 0 < φ y₀ := lt_of_le_of_ne (h0 _) (Ne.symm hne)
   set a := φ y₀ / 2 with ha
   have ha0 : 0 < a := by positivity
-  have hq := continuous_qEps ε
+  have hq := _root_.GlobalTheory.GaussMean.Density.continuous_qEps ε
   have hnb : {p : ℝ × (Fin n → ℂ) | a < φ (p.1 • p.2)} ∈ 𝓝 ((1 : ℝ), y₀) :=
     (isOpen_lt continuous_const (by fun_prop)).mem_nhds (by simp only [Set.mem_setOf_eq, one_smul]; linarith)
   obtain ⟨V, hV, U', hU', hVU⟩ := mem_nhds_prod_iff.1 hnb
@@ -291,7 +287,7 @@ theorem test_eq_term (θ : InfinitePlace I.F → (Ainf I.F ⊗[I.F] I.E →+* �
       ∑ j, (HA.mat (AF I.F) I.cm.sig I.J h⁻¹).1 i j * ((1 : AF I.F) ⊗ₜ[I.F] X 0 j) := fun i => rfl
   have e1 : projFin (h⁻¹ • ratTup (F := I.F) (AF I.F) X) 0 ∈ Formalism.MainNotions.StandardLattice.latHat I.F I.E (I.L : Set (Fin I.n → I.E)) ↔
       X 0 ∈ lamX I (T h) := by
-    rw [GlobalTheory.T.mem_adelicLatticeClosure_iff_swap_mem_span, (GlobalTheory.PointLattice.lamX_selfDual I (T h)).1, show (T h).2⁻¹ = (T h⁻¹).2 by rw [map_inv]; rfl, hf]
+    rw [_root_.GlobalTheory.AdelicLatticeSwap.mem_latHat_iff_comm_mem_lamAf, (GlobalTheory.PointLattice.lamX_selfDual I (T h)).1, show (T h).2⁻¹ = (T h⁻¹).2 by rw [map_inv]; rfl, hf]
     refine iff_of_eq (congrArg (· ∈ I.Lf) (funext fun i => ?_))
 
     simp only [projFin, e0, map_sum, map_mul, Algebra.TensorProduct.map_tmul, map_one]

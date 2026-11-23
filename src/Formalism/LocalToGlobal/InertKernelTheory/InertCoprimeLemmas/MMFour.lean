@@ -239,7 +239,7 @@ theorem fourProd_main : FourProd := by
       U D B.tor (prjB (eOne 2) (eOne 2) I J s) (B.thZero 1 1) (blkPt D (eOne 2) (eOne 2) I J z) :=
     funext (U_tensPow (eOne 2) (eOne 2) B.tor B.thMM s)
   have hH := fun I J => H _ (torsB (eOne 2) (eOne 2) B.tor p I J s hs)
-  rw [hfun, pSer_blk (eOne 2) (eOne 2) lam taylor_product_over_blocks _ (fun I J => (hH I J).1), atLogV_prod]
+  rw [hfun, pSer_blk (eOne 2) (eOne 2) lam _root_.Formalism.L2.KerInert.IntTens.taylor_product_blocks_factorization _ (fun I J => (hH I J).1), atLogV_prod]
   simp_rw [atLogV_rename (eOne 2) (eOne 2) lam _ C wq v _ (four_block_vector_entry (eOne 2) (eOne 2) lam A b v hvb)]
   rw [ePh_blk lam _ C wq hp2 r]
   rw [← Finset.prod_mul_distrib]
@@ -250,7 +250,5 @@ theorem fourProd_main : FourProd := by
 end Formalism.L2.KerInert.MMFour
 
 namespace Formalism.L2.KerInert
-
-theorem four_products_from_one : FourProd := MMFour.fourProd_main
 
 end Formalism.L2.KerInert

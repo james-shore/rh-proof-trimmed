@@ -112,11 +112,11 @@ theorem nuLocOf_eq_nuP : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
       (fun f : {f : MvPowerSeries (Σ _ : GlobalTheory.IndefiniteRowSideFullHecke.LocalValuationColumns.Col cx, Fin (chD Ch.ch)) X.C // MvIsInt (vX_vp X) f} =>
         derivAt0 (GlobalTheory.IndefiniteRowSideFullHecke.LocalValuationColumns.polyH X.C cx) (MvPowerSeries.subst (GlobalTheory.IndefiniteRowSideFullHecke.LocalValuationColumns.expH Ch X cx) f.1))
       (fun g N => ?_) (fun f N => ?_)
-    · obtain ⟨f, hf, hN⟩ := GlobalTheory.T.exists_integral_germ_on_columns_same_value E H Dw l Xo c p la T io e ho y Ch X cx n B hB N k g.1 g.2
+    · obtain ⟨f, hf, hN⟩ := _root_.GlobalTheory.ColApprox.exists_germ_cols E H Dw l Xo c p la T io e ho y Ch X cx n B hB N k g.1 g.2
       exact ⟨⟨f, hf⟩, hN⟩
-    · obtain ⟨g, hg, hN⟩ := GlobalTheory.T.exists_integral_germ_on_copies_same_value E H Dw l Xo c p la T io e ho y Ch X cx n B hB N k f.1 f.2
+    · obtain ⟨g, hg, hN⟩ := _root_.GlobalTheory.ColumnGerm.exists_germ_on_copies E H Dw l Xo c p la T io e ho y Ch X cx n B hB N k f.1 f.2
       exact ⟨⟨g, hg⟩, hN⟩
-  exact (GlobalTheory.T.localDepth_over_dvr_eq_over_closed_field E H Dw l Xo c p la T io e ho y Ch X cx n B k).trans
-    (hmid.trans (GlobalTheory.T.isotropicFactor_depth_eq_sum_factor_depths E H Dw l Xo c p T io y Ch X cx).1)
+  exact (_root_.GlobalTheory.DepthDescent.nuLocOf_eq_nuLocX_vp E H Dw l Xo c p la T io e ho y Ch X cx n B k).trans
+    (hmid.trans (_root_.GlobalTheory.IsoFactorDepth.nuH_vp_eq_nuP E H Dw l Xo c p T io y Ch X cx).1)
 
 end GlobalTheory.ColDepth

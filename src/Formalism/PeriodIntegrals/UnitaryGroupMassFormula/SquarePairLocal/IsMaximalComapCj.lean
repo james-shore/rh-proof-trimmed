@@ -193,21 +193,6 @@ theorem smallAt_smul {ρ : 𝓞 E} {X : Matrix (Fin N) (Fin N) E} (hρ : Dv Q c 
   simp only [integers_smul_eq_coe_smul]
   rw [smul_mulVec_eq_smul, smul_smul, smul_smul, hw']
 
-private lemma smallAt_add' {A B : Matrix (Fin N) (Fin N) E} (hA : SmallAt Q c L A)
-    (hB : SmallAt Q c L B) : SmallAt Q c L (A + B) := by
-  intro y hy
-  obtain ⟨s, hs, m, hm, e1⟩ := hA y hy
-  obtain ⟨t, ht, n, hn, e2⟩ := hB y hy
-  refine ⟨s * t, fun h => ?_, t • m + s • n, L.add_mem (L.smul_mem t hm) (L.smul_mem s hn), ?_⟩
-  · rcases Ideal.IsPrime.mem_or_mem ‹Q.IsPrime› h with h | h
-    · exact hs h
-    · exact ht h
-  · have f1 : (s * t) • (A *ᵥ y) = c • (t • m) := by
-      rw [mul_comm, mul_smul, e1, smul_comm]
-    have f2 : (s * t) • (B *ᵥ y) = c • (s • n) := by
-      rw [mul_smul, e2, smul_comm]
-    rw [Matrix.add_mulVec, smul_add, smul_add, f1, f2]
-
 theorem small_pert (hL : IsSDG E N L) {e₀ D : Matrix (Fin N) (Fin N) E} {ρ : 𝓞 E}
     (h₀ : Pres L e₀) (hD : Pres L D) (hρ : Dv Q c ρ) (hρc : Dv Q c (cj E ρ))
     (g1 : SmallAt Q c L (e₀ * e₀ - e₀)) (g2 : SmallAt Q c L (e₀ + e₀ᴴ - 1)) :
@@ -226,9 +211,9 @@ theorem small_pert (hL : IsSDG E N L) {e₀ D : Matrix (Fin N) (Fin N) E} {ρ : 
       (pres_smul ρ (pres_mul hD hD))
   refine ⟨?_, ?_⟩
   · rw [k1]
-    exact smallAt_add' g1 (smallAt_smul hρ pD)
+    exact _root_.PI.SqPairLocal.smallAt_add g1 (smallAt_smul hρ pD)
   · rw [k2]
-    exact smallAt_add' (smallAt_add' g2 (smallAt_smul hρ hD))
+    exact _root_.PI.SqPairLocal.smallAt_add (_root_.PI.SqPairLocal.smallAt_add g2 (smallAt_smul hρ hD))
       (smallAt_smul hρc (pres_conj hL hD))
 
 theorem good_pert {L' L'' : Submodule (𝓞 E) (Fin N → E)} (h' : IsSDG E N L') (h'' : IsSDG E N L'')

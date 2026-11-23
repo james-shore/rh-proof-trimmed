@@ -121,7 +121,7 @@ theorem exists_comp_eq_of_colength (p : ℕ) [Fact p.Prime] (T : Theory p) (k : 
   have hcq₁ := GlobalTheory.T.cotangent_kernel_eq_coker_omegaMap p k G Q₁ q₁ C π hπs
   have hcotf : cotMap (π.comp (f.app 1)) = 0 :=
     hcq.2.2 H f fun w hw => hcq.1 hqπ w (hω hw)
-  have htriv := GlobalTheory.T.eq_counit_of_heightOne_cotangentPullback_zero p k C (H.A 1) (π.comp (f.app 1)) hnil hcotf
+  have htriv := _root_.GlobalTheory.HeightOneHom.eq_algebraMap_counit_of_cotMap_eq_zero p k C (H.A 1) (π.comp (f.app 1)) hnil hcotf
   have hfπ : kerIdeal (f.app 1) ≤ RingHom.ker π :=
     (kerIdeal_le_ker_iff (f.app 1) (π : G.A 1 →ₐ[k] C)).2 htriv
   have e1' : q₁ ≫ q₁' = (p : ℤ_[p]) ^ 1 • 𝟙 G := by rw [pow_one]; exact e1

@@ -227,7 +227,7 @@ theorem core (hF : IsTotallyReal F) (ρ : InfinitePlace F → (F →+* ℝ))
   have hXint : ∀ r : 𝓞 F, ∃ n : ℤ, ∑ w, ρ w (r : F) * (X w - ρ w c1) = n := by
     intro r
     have h1 := H1 r
-    rw [((GlobalTheory.T.standard_adelic_character F).2 ψf hstd).2.1 _ (oh_mul ((hint _).2 ⟨r, rfl⟩) hc1'), mul_one] at h1
+    rw [((_root_.GlobalTheory.CompanionTheory.SW.Core.StdChar.main F).2 ψf hstd).2.1 _ (oh_mul ((hint _).2 ⟨r, rfl⟩) hc1'), mul_one] at h1
     exact eR_int h1
   obtain ⟨c2, hc2⟩ := real_eq_of_int hF ρ hρ _ hXint
   have H2 := sub_field hF ρ hρ ψf hstd H1 c2

@@ -82,10 +82,6 @@ def emb : D.host.E →+* k := p.pr.comp (incA D)
 
 theorem emb_apply (x : D.host.E) : emb p x = p.pr (incA D x) := rfl
 
-theorem pr_int {a : AE D} (ha : finPart D a ∈ intAE D) : p.pr a ∈ 𝒪[k] := by
-  rw [p.int_iff, p.sec_pr, RingHom.map_mul]
-  exact mul_mem_intAE (e_mem_intAt p).2 ha
-
 theorem coord_int {S : HSp D} {L : Lat S} {n : Type} [Fintype n] (b' : Matrix n (Fin S.rank) k)
     (h : ∀ z ∈ L, ∀ j, (b' *ᵥ fun i => emb p (z i)) j ∈ 𝒪[k]) {Y : Fin S.rank → AE D} (hY : Y ∈ latV S L (· = p.v)) (j : n) :
     (b' *ᵥ fun i => p.pr (Y i)) j ∈ 𝒪[k] := by
@@ -95,7 +91,7 @@ theorem coord_int {S : HSp D} {L : Lat S} {n : Type} [Fintype n] (b' : Matrix n 
     rw [Set.mem_singleton_iff] at hc
     subst hc
     have ht : p.pr (pairA D.host.F 0 α ⊗ₜ[D.host.F] (1 : D.host.E)) ∈ 𝒪[k] :=
-      pr_int p (AddSubgroup.subset_closure ⟨α, hα, 1, rfl⟩)
+      _root_.GlobalTheory.SplitCharCond.pr_int p (AddSubgroup.subset_closure ⟨α, hα, 1, rfl⟩)
     have e : (fun i => p.pr (pairA D.host.F 0 α ⊗ₜ[D.host.F] (1 * x i))) =
         p.pr (pairA D.host.F 0 α ⊗ₜ[D.host.F] (1 : D.host.E)) • fun i => emb p (x i) := by
       funext i
@@ -170,17 +166,13 @@ theorem exists_basis {A : HSp D} {Λ : Lat A} (hΛ : IsSelfDualC A Λ) : ∃ g :
   rw [hβ, one_mulVec, ← hg, GlobalTheory.LatPair.mem_smul_iff, inv_smul_smul, GlobalTheory.LatPair.mem_stdLat] at h3
   exact h3
 
-theorem gram_star' (B : HSp D) (i j : Fin B.rank) : star (B.gram i j) = B.gram j i := by
-  have := B.herm.eq (B.frame i) (B.frame j)
-  simpa [HSpace.gram, starRingEnd_apply] using this
-
 theorem perp_left {A B : HSp D} {c : ℕ} {ε : D.host.E} (d : HermitianOrthogonalExtensionData A B c ε) :
     Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) d.a * B.gram * frameMat B A d.ι = 0 := by
   refine Matrix.ext fun r i => ?_
   have e := congrArg star (congrFun (congrFun d.perp i) r)
   have hsig : ∀ x : D.host.E, (D.sp.cm.sig : D.host.E →+* D.host.E) x = star x := fun _ => rfl
   simp only [Matrix.mul_apply, Formalism.UG.cT, transpose_apply, map_apply, Matrix.zero_apply, star_sum, star_mul',
-    Finset.sum_mul, hsig, star_star, gram_star', star_zero] at e ⊢
+    Finset.sum_mul, hsig, star_star, _root_.GlobalTheory.DualPairCheck.gram_star, star_zero] at e ⊢
   rw [← e, Finset.sum_comm]
   exact Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun j _ => by ring
 
@@ -310,7 +302,7 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
   {w : HeightOneSpectrum (𝓞 D.host.E)}
 
 theorem emb_int (x : 𝓞 D.host.E) : emb p (x : D.host.E) ∈ 𝒪[k] :=
-  pr_int p (AddSubgroup.subset_closure ⟨1, fun v => by rw [map_one]; exact one_mem _, x, rfl⟩)
+  _root_.GlobalTheory.SplitCharCond.pr_int p (AddSubgroup.subset_closure ⟨1, fun v => by rw [map_one]; exact one_mem _, x, rfl⟩)
 
 theorem emb_int_of_valuation (he : Formalism.L2.NTheta.IsIdemAt p.e w) {x : D.host.E} (hx : w.valuation D.host.E x ≤ 1) :
     emb p x ∈ 𝒪[k] := by

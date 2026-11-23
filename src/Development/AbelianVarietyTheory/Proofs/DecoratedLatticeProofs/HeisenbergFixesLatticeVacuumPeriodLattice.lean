@@ -197,10 +197,6 @@ theorem sum_two_re_eq_trace (D : D7) (e : D.host.E) :
   refine Finset.sum_congr rfl fun t _ => ?_
   rw [Complex.add_conj]
 
-theorem tauE_star' (τ : D.what₂.Tau) (x : D.host.E) : tauE D τ (star x) = starRingEnd ℂ (tauE D τ x) := by
-  have := D.host.isCMField_hostE
-  exact NumberField.IsCMField.complexEmbedding_complexConj D.host.E (tauE D τ) x
-
 theorem sgnW_finTens {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S T : HSp D} (w : D.host.E)
     (γ : Matrix (Fin T.rank) (Fin S.rank) D.host.E) :
     sgnW ψ (incA D w) (finTens 1 γ : WO S T) =
@@ -236,7 +232,7 @@ theorem tauE_X (S T : HSp D) (hS1 : S.gram = 1) (hT1 : T.gram = 1)
 
   rw [hX, map_mul, map_div₀, map_add (f := _), map_one, hxi, map_ofNat, map_sum]
 
-  simp only [map_sum, map_mul, tauE_star']
+  simp only [map_sum, map_mul, _root_.GlobalTheory.FockCompare.tauE_star]
   have hn : ∀ c a, starRingEnd ℂ (tauE D τ (γ c a)) * tauE D τ (γ c a) =
       ((Complex.normSq (tauE D τ (γ c a)) : ℝ) : ℂ) := fun c a => (Complex.normSq_eq_conj_mul_self).symm
   simp only [hn, ← Complex.ofReal_sum, Complex.re_mul_ofReal]

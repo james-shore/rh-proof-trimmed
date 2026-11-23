@@ -53,7 +53,7 @@ namespace GlobalTheory.CenLocAt
 theorem frameAt_of_layer_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.MemberAtLayerPoint hL fun _ _ _ _ w Z _ _ t _ _ c => ∀ (ad : MtAd t.r.Y c.a.all.gal.mt) (i : (w.st Z).toD7.nd.Loc) s k, t.r.Y.tup s = (w.st Z).toD7.nd.mu i → GlobalTheory.CenLocAt.FrameAt t.r.Y t.r.z.cG k (ad.PV k) s := by
   intro hL
   refine _root_.GlobalTheory.HeightCounting.Up.Model.AtMem.at_member_imp
-    (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.T.level_finE_mem_divisor_standard_alt hL) (_root_.GlobalTheory.T.central_frame_split_place_nontrivial_alt hL)) (_root_.GlobalTheory.T.g0_lift_unitary_central_frame_alt hL)) ?_
+    (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.FrameInt.main_alt_alt hL) (_root_.GlobalTheory.FrameBlockTriangular.blockTri_at_alt hL)) (_root_.GlobalTheory.BlockLiftFrame.atMem_alt hL)) ?_
   intro K B f T w Z Wt p0 t nch n c h ad i s k hs
   obtain ⟨⟨hA, hB⟩, hC⟩ := h
   obtain ⟨L, hL1, hU, hLc⟩ := hC s

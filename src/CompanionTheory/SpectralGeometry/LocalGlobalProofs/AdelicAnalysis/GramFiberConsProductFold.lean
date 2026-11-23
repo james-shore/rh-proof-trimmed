@@ -69,15 +69,11 @@ section Alg
 
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
 
-theorem sigR_scalar_tmul (σ : E →ₐ[F] E) (α : R) :
-    sigR R σ (α ⊗ₜ[F] (1 : E)) = α ⊗ₜ[F] (1 : E) := by
-  simp [sigR]
-
 theorem gramR_scl_tmul (σ : E →ₐ[F] E) {N : ℕ} (J : Matrix (Fin N) (Fin N) E) (α : R)
     (y : Fin 1 → Fin N → R ⊗[F] E) (i j : Fin 1) :
     gramR R σ J (scl (α ⊗ₜ[F] (1 : E)) y) i j =
       (α ⊗ₜ[F] (1 : E)) * (α ⊗ₜ[F] (1 : E)) * gramR R σ J y i j := by
-  simp only [gramR, hR, hform, scl, map_mul, sigR_scalar_tmul, Finset.mul_sum]
+  simp only [gramR, hR, hform, scl, map_mul, _root_.GlobalTheory.CompanionTheory.SW.PiLocalization₂.sigR_tmul_one, Finset.mul_sum]
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_
   ring
 

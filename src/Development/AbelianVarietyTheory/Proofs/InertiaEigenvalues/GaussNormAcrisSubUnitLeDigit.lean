@@ -111,7 +111,7 @@ theorem GlobalTheory.PMon.Gauss.one_digit : ∀ (l : ℕ) [Fact l.Prime] (h s : 
   · rw [hw1, gC_zero_of_radius l h0 h1]
     exact mul_nonneg hρ.le (hN.1 w').1
   have hφz : φc l (zc l c) = zc l c := by
-    rw [hc, frob_teich, hζl]
+    rw [hc, _root_.GlobalTheory.PMon.Gauss.φc_tc, hζl]
   have hrat1 : φc l (w - zc l c * w') * w' = (w - zc l c * w') * φc l w' := by
     rw [map_sub, map_mul, hφz]
     linear_combination hrat

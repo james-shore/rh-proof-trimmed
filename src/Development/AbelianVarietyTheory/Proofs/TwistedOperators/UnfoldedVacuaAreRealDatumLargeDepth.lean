@@ -63,7 +63,7 @@ variable {D : D7}
 theorem mem_GfC_of_idemSum {e : AE D} {Q : Finset (Formalism.L2.DIV.Pl D.host.E)} (he : IsIdemSum e Q) {V : HSp D} {g : GA D V}
     (hs : SuppAt e V g) : g ∈ GfC V := by
   have h0 : infPart D (e + cA D e) = 0 := by
-    have h1 := GlobalTheory.FinRestComm.infPart_of_idemSum he
+    have h1 := _root_.GlobalTheory.PlaceVec.idemSum_infPart he
     rw [RingHom.map_add (f := _), h1, GlobalTheory.AdjointPair.infPart_zero e h1, add_zero]
   show g ∈ (infHom V).ker
   rw [MonoidHom.mem_ker]
@@ -81,10 +81,6 @@ theorem mem_GfC_of_idemSum {e : AE D} {Q : Finset (Formalism.L2.DIV.Pl D.host.E)
     · rw [Matrix.one_apply_ne hij, Matrix.one_apply_ne hij, RingHom.map_zero]
   rw [h2] at h1
   exact sub_eq_zero.1 h1.symm
-
-theorem moves_one (S : HSp D) (L : GlobalTheory.FinPl.Lat S) (P : GlobalTheory.FinPl.Pl D → Prop) : GlobalTheory.FinPl.Moves S 1 L L P := by
-  intro y _
-  rw [show mt S 1 = 1 from rfl, Matrix.one_mulVec]
 
 theorem mem_idx {j : ℕ} : j ∈ idx D ↔ 1 ≤ j ∧ j + 2 ≤ D.R.m := by
   have := D.R.two_le_m
@@ -168,7 +164,7 @@ theorem vacReal_of_shape (hsh : ShapeAt ch) : VacReal ch := by
       (hmv t b hb j (by omega)) hmv1 (hpi j) (one_mem _)
     rw [one_mul] at v₁
     have v₂ := fock_vac ch t (j + 1) (by omega) P (M := N (j + 1)) (M' := ch.G.Λ (.grid D.R.m (j + 1 + 1))) hg0.sdW
-      (sd_grid ch _ (by omega)) (one_mem _) (one_mem _) hmv1 (moves_one _ _ _) (one_mem _) (one_mem _)
+      (sd_grid ch _ (by omega)) (one_mem _) (one_mem _) hmv1 (_root_.GlobalTheory.BaseTiltMove.moves_one _ _ _) (one_mem _) (one_mem _)
     rw [one_mul, one_mul, Prod.mk_one_one, map_one, Module.End.one_apply] at v₂
     have v₃ := vac_cast ch (show j + 1 + 1 = D.R.m by omega) v₂
     have f₁ := hFV.1 0 _ _ (lastAt ch.G ch.W t hM j h0 (GlobalTheory.Unf.Inhab.nonempty_volN _).some).s (N j) (N₀ j) (N (j + 1))

@@ -292,10 +292,6 @@ private theorem ι_appLE_apply_topIso_hom {X₁ Y₁ : Scheme.{u}} (V : X₁.Ope
   simp only [CommRingCat.hom_comp, RingHom.comp_apply]
   rw [Iso.hom_inv_id_apply]
 
-private theorem ofIdealTop_ideal_top {Y : Scheme.{u}} [IsAffine Y] (J : Ideal Γ(Y, ⊤)) :
-    (Scheme.IdealSheafData.ofIdealTop J).ideal ⟨⊤, isAffineOpen_top Y⟩ = J := by
-  simp
-
 private theorem ι_appLE_coord {X₁ : Scheme.{u}} {K : Type u} [Field K]
     {q : X₁ ⟶ Spec (CommRingCat.of K)} {U : X₁.Opens} {m : ℕ} (c : EtaleChart q U m)
     {W : U.toScheme.Opens} (e1 : W ≤ U.ι ⁻¹ᵁ U)
@@ -316,7 +312,7 @@ private theorem restrictIdeal_eq_coordIdeal_of_isAffineOpen_ideal_eq_span {X₁ 
       = Ideal.span ((fun i : Fin m =>
           AffineSpace.coord (Spec (CommRingCat.of K)) (ULift.up i)) '' (S : Set (Fin m))) := by
     rw [coordSubspaceIdeal_eq_ofIdealTop_span_coord]
-    exact ofIdealTop_ideal_top _
+    exact _root_.AlgebraicGeometry.Scheme.IdealSheafData.ofIdealTop_ideal_top _
   refine Scheme.IdealSheafData.ext (funext ?_)
   intro W
   have htop : (⊤ : U.toScheme.Opens) ≤ U.ι ⁻¹ᵁ U := by

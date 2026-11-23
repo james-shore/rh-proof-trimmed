@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardTraceAddCharIsStandardCharOfAdmissibleCM
 
 @[expose] public section
 
@@ -136,10 +137,6 @@ theorem MeanOK.sum (h : MeanOK σ W H' μ 𝓕) {ι : Type} [Countable ι] {f : 
 theorem MeanOK.const (h : MeanOK σ W H' μ 𝓕) (c : ℂ) : ∫ _x in 𝓕, c ∂μ = c := by
   rw [setIntegral_const, Measure.real, h.one, ENNReal.toReal_one, one_smul]
 
-theorem exists_psi {ψ : AddChar (AF F) ℂ} (h : IsStd ψ) : ∃ a, ψ a ≠ 1 := by
-  obtain ⟨a, ha⟩ := DFunLike.ne_iff.1 (std_ne_one h)
-  exact ⟨a, by simpa using ha⟩
-
 theorem bf0 {R : Type} [CommRing R] {c : R →+* R} {J : Matrix (Fin n) (Fin n) R} (u) : bf c J u 0 = 0 := by
   simpa using bf_smul_r (c := c) (J := J) 0 u 0
 
@@ -183,7 +180,7 @@ theorem constant_term_anisotropic_integral_zero (hm : MeanOK σ W H' μ 𝓕) (h
     (hi : ∀ u ∈ unip σ W H', ∀ Φ ∈ schA F (Fin n × Fin d), e₀ (om (1, u) Φ) = e₀ Φ) {x : Fin n → E} (hx : form σ X.J x x ≠ 0) {Φ}
     (hΦ : Φ ∈ schA F (Fin n × Fin d)) : ∫ u in 𝓕, tm B M om H' e₀ (vecMulVec x H'.y) Φ u ∂μ = 0 := by
   have h := hp.base.std
-  obtain ⟨a, ha⟩ := exists_psi h
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.StdCharWeilDatum.exists_ne_one h
   have hq : σ (form σ X.J x x) = form σ X.J x x := by
     rw [PositivityTheory.ThKG.Tow.Pln.form_swap hp.base.cm (ε := 1) (fun i j => by rw [hp.herm.herm, one_mul]), one_mul]
   set c : AE F E := algebraMap (AF F) (AE F E) a * inclR (F := F) (AF F) (form σ X.J x x)⁻¹ with hc
@@ -228,7 +225,7 @@ theorem tA_zero (hm : MeanOK σ W H' μ 𝓕) (hp : IsPair B M χX χW om r s r'
     (hi : ∀ u ∈ unip σ W H', ∀ Φ ∈ schA F (Fin n × Fin d), e (om (1, u) Φ) = e Φ) {w : Fin d₁ → E} (hw : w ≠ 0) {Φ}
     (hΦ : Φ ∈ schA F (Fin n × Fin d)) : ∫ u in 𝓕, tm B M om H' e (vA H.y H'.y H'.ι (H.x, w)) Φ u ∂μ = 0 := by
   have hψ := hp.base.std
-  obtain ⟨a, ha⟩ := exists_psi hψ
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.StdCharWeilDatum.exists_ne_one hψ
   obtain ⟨z₀, hz₀⟩ : ∃ z, bf σ.toRingHom W.J (H'.ι *ᵥ z) (H'.ι *ᵥ w) ≠ 0 := by
     by_contra h0
     push Not at h0

@@ -101,11 +101,7 @@ theorem actO_inv_actO (S T : HSp D) (g : GA D S) (h : GA D T) (x : WO S T) :
   simp only [Matrix.mul_assoc, GlobalTheory.MixModel.mt_inv_mul, Matrix.mul_one]
   rw [← Matrix.mul_assoc, GlobalTheory.MixModel.mt_inv_mul, Matrix.one_mul]
 
-theorem heisO_smul (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (w : WO S T) (c : ℂ) (f : WO S T → ℂ) :
-    heisO ψ S T w (c • f) = c • heisO ψ S T w f := by
-  ext x
-  simp only [heisO, Pi.smul_apply, smul_eq_mul]
-  ring
+alias heisO_smul := _root_.GlobalTheory.SplitScalar.heisO_smul
 
 theorem absE_ne_zero (u : (AE D)ˣ) : GlobalTheory.Doubling.absE D.host.F D.host.E u ≠ 0 := ((Group.isUnit u).map (GlobalTheory.Doubling.absE D.host.F D.host.E)).ne_zero
 

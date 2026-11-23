@@ -119,7 +119,7 @@ theorem herm_mulVec {n : ℕ} {H g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ UH 
 theorem gramProj_le {n r : ℕ} (P : Submodule ℂ (EuclideanSpace ℂ (Fin n))) (v : Fin r → Fin n → ℂ)
     (U : Matrix (Fin r) (Fin r) ℂ) (hU : U.det = 1) (R : ℝ) (hR : ∀ a, eucl (∑ b, U b a • v b) ≤ R) :
     gramProj P v ≤ R ^ r := by
-  have h := (Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.gramHadamard (EuclideanSpace ℂ (Fin n)) r
+  have h := (_root_.Formalism.HermitianLatticeCounting.P.gram_hadamard_inequality (EuclideanSpace ℂ (Fin n)) r
     (fun a => ∑ b, U b a • P.starProjection (WithLp.toLp 2 (v b)))).2 R (fun a => by
       refine le_trans ?_ (hR a)
       rw [eucl_eq, WithLp.toLp_sum]
@@ -149,7 +149,7 @@ theorem dr_y_le : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (γ : M
     rw [(hu' a).1]; exact (((LInv.lengths_basic k r z' hz').2.2 _).2.1 _).2
   have hD0 : 0 ≤ Dr k r z z' γ := norm_nonneg _
   refine ⟨?_, div_nonneg (Real.sqrt_nonneg _) hD0, ?_⟩
-  · have h := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.wedgeHadamard _ _ (formE (Hpk k r))
+  · have h := _root_.Formalism.HermitianLatticeCounting.P.wedge_hadamard_inequality _ _ (formE (Hpk k r))
       (formE_le _ (by rw [(hpkFacts k r).1, (hpkFacts k r).2.1])) r
       (fun a => ∑ b, upper u' b a • WithLp.toLp 2 (x⁻¹ *ᵥ bvec (eI k r b)))
       (fun a => ∑ b, upper u b a • WithLp.toLp 2 ((γ * x)⁻¹ *ᵥ bvec (eI k r b)))

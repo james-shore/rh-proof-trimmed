@@ -48,6 +48,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstantTermStar
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatchLMWordSOf
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatchingUnitOf
 
 @[expose] public section
 
@@ -57,24 +60,18 @@ open PositivityTheory.Rg.Bc.ArchbcB.B PositivityTheory.Rg.BcN.F2.LocOpPf
 
 theorem ctMul : MT.CtMul := GlobalTheory.T.constant_term_multiplicative
 
-theorem hM4 : M4 := archimedean_base_change_fourth
-
-theorem hM1 : M1 := m1
-
-theorem matchT_of (h4 : M4) : MT.MatchT := TorusMatching.match_torus_of_twisted_matching h4
-
 theorem matchUnitI_of (h1 : M1) : MB.MatchUnitI := MB.matchUnitIOf h1
 
 theorem matchSplit (h3 : M3) : MT.MatchSplit := GlobalTheory.T.matching_split_of h3 ctMul
 
-theorem matchLMId : MLM.MatchLMId := MLM.matchLMIdOf idemAlg BlockFiniteConvolution.locOk₀
+theorem matchLMId : MLM.MatchLMId := _root_.GlobalTheory.CompanionTheory.MatchId.matchLMIdOf idemAlg BlockFiniteConvolution.locOk₀
 
-theorem matchLMWordS (h3 : M3) : MLM.MatchLMWordS := MLM.matchLMWordSOf (matchSplit h3) ctMul MLM.ctStar sphComm idemAlg
+theorem matchLMWordS (h3 : M3) : MLM.MatchLMWordS := _root_.GlobalTheory.CompanionTheory.MatchWordS.matchLMWordSOf (matchSplit h3) _root_.GlobalTheory.CompanionTheory.CtMulSplit.ctMul _root_.GlobalTheory.CompanionTheory.CtAdj.ctStar sphComm idemAlg
 
-theorem matchLMUnit (h1 : M1) (h3 : M3) : MLM.MatchLMUnit := MLM.matchLMUnitOf (matchUnitI_of h1) (matchSplit h3) idemAlg
+theorem matchLMUnit (h1 : M1) (h3 : M3) : MLM.MatchLMUnit := _root_.GlobalTheory.CompanionTheory.MatchUnit.matchLMUnitOf (matchUnitI_of h1) (matchSplit h3) idemAlg
 
 theorem matchLMB2 (h2 : M2) (h3 : M3) (h4 : M4) : MLM.MatchLMB2 :=
-  MLM.matchLMB3Of_pf (matchT_of h4) (MS.match_split_place_of_powers h3 (MS.split_place_powers_of_local_ops locOp3)) (MB.matchBadSOf h3 MB.lponeIdem)
+  _root_.GlobalTheory.CompanionTheory.LeviMatchingAssembly.matchLMB3Of_main (_root_.PositivityTheory.Rg.BcB.F.TorusMatching.match_torus_of_twisted_matching h4) (MS.match_split_place_of_powers h3 (MS.split_place_powers_of_local_ops locOp3)) (MB.matchBadSOf h3 MB.lponeIdem)
     (MB.matchBadIOf2 h2 MB.lponeIdem) MB.fixIdem idemAlg
 
 end PositivityTheory.Rg.BcB.F.MatchAll

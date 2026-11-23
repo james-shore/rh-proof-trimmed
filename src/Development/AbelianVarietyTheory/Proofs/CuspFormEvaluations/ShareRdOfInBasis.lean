@@ -52,10 +52,6 @@ namespace GlobalTheory.Shares
 
 variable {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} {j : ℕ} {X : PJ D B P j}
 
-theorem addL_zero_wt (u wL : WeightFamilies.Wt D j) : addL u wL 0 = u := by
-  cases u
-  simp [addL, wadd, wsmul]
-
 theorem rk_Mlat_eq_finrank (X : PJ D B P j) (ka : WeightFamilies.Wt D j) (h : LatAt B j ka) :
     X.rk ka (B.Mlat j ka) = Module.finrank B.KO (⊤ : Submodule B.KO (B.Cusp j ka)) := by
   letI : Submodule.IsFullLattice B.KO (B.Mlat j ka) := h
@@ -109,7 +105,7 @@ theorem shareRd_of_inBasis : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : Modul
       R.sp ka Set.univ := by
     rintro ⟨⟨α, hα⟩, i⟩
     have h0 : R.ev (X.inc wF (G.th' i)) ∈ R.sp (addL wF wL 0) Set.univ := by
-      rw [addL_zero_wt]
+      rw [_root_.Formalism.MainNotions.Gaps.EtaleWeightGaps.addL_zero]
       exact hθ i
     have h1 := R.s_pow_mul_mem G.w t hmul 0 wF 0 (T - ∑ k, α k) h0
     have h2 := R.prod_pow_mul_mem G.w t hmul α Finset.univ wF (0 + (T - ∑ k, α k)) h1

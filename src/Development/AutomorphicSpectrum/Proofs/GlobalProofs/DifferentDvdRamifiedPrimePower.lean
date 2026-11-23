@@ -55,10 +55,6 @@ open NumberField IsDedekindDomain
 
 namespace GlobalTheory.CompanionTheory.Glob
 
-theorem exists_prime_mem_of_natCast_mem {R : Type*} [CommRing R] (P : Ideal R) [hP : P.IsPrime]
-    (t : ℕ) (ht : t ≠ 0) (htP : (t : R) ∈ P) : ∃ p : ℕ, p.Prime ∧ p ∣ t ∧ (p : R) ∈ P :=
-  _root_.UpperTheory.Reformulated.B.DYdc5.main P t ht htP
-
 theorem prime_pow_dvd_span_of_dvd_differentIdeal (E : Type) [Field E] [NumberField E] (t : ℕ)
     (ht : t ≠ 0)
     (h : ∀ P : Ideal (𝓞 E), P.IsPrime → P ≠ ⊥ → P ∣ differentIdeal ℤ (𝓞 E) → (t : 𝓞 E) ∈ P)
@@ -69,7 +65,7 @@ theorem prime_pow_dvd_span_of_dvd_differentIdeal (E : Type) [Field E] [NumberFie
   have hPD : P ∣ differentIdeal ℤ (𝓞 E) := (dvd_pow_self P hipos.ne').trans hi
   have hP0 : P ≠ ⊥ := hPp.ne_zero
   haveI hPprime : P.IsPrime := Ideal.isPrime_of_prime hPp
-  obtain ⟨p, hp, hpt, hpP⟩ := exists_prime_mem_of_natCast_mem P t ht (h P hPprime hP0 hPD)
+  obtain ⟨p, hp, hpt, hpP⟩ := _root_.UpperTheory.Reformulated.B.DYdc5.main P t ht (h P hPprime hP0 hPD)
   have hp0 : ((p : 𝓞 E)) ≠ 0 := Nat.cast_ne_zero.2 hp.ne_zero
   have hS0 : Ideal.span {((p : 𝓞 E)) ^ (Module.finrank ℚ E)} ≠ 0 := by
     intro h0
@@ -77,7 +73,7 @@ theorem prime_pow_dvd_span_of_dvd_differentIdeal (E : Type) [Field E] [NumberFie
     exact pow_ne_zero _ hp0 this
   obtain ⟨J, hJ, hnd⟩ :=
     (FiniteMultiplicity.of_not_isUnit hPp.not_unit hS0).exists_eq_pow_mul_and_not_dvd
-  have hnot := GlobalTheory.T.prime_power_not_dvd_different E P J p _ hp hpP hnd hJ
+  have hnot := _root_.GlobalTheory.CompanionTheory.Glob.not_pow_dvd_different E P J p _ hp hpP hnd hJ
   have hlt : i < multiplicity P (Ideal.span {((p : 𝓞 E)) ^ (Module.finrank ℚ E)}) := by
     by_contra hle
     exact hnot ((pow_dvd_pow P (not_lt.1 hle)).trans hi)

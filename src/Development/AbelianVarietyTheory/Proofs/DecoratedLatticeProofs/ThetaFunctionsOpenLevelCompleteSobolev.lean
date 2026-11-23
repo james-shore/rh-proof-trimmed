@@ -87,13 +87,13 @@ theorem limit_theta : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D
   intro D ψ hψ θ hθ S T U hU u hu F hF
   have h0 := lim_clauses D ψ S T U u hu (F []) (hF [])
   have hth : IsThetaFunO ψ S T (F []) :=
-    ⟨h0.1, ⟨U, hU, h0.2.1⟩, h0.2.2, lim_smooth D ψ hψ θ hθ S T u (fun j => (hu j).1) F hF []⟩
+    ⟨h0.1, ⟨U, hU, h0.2.1⟩, h0.2.2, _root_.GlobalTheory.ThetaDens.contDiff_of_tendstoUniformly_words D ψ hψ θ hθ S T u (fun j => (hu j).1) F hF []⟩
   refine ⟨⟨hth, h0.2.1⟩, fun l => ?_⟩
   induction l with
   | nil => rfl
   | cons a l ih =>
     rw [GlobalTheory.Size.wordAct_cons, ih]
-    exact lim_deriv D ψ hψ θ hθ S T (fun j => GlobalTheory.Size.wordAct (GlobalTheory.Size.heisDer ψ θ) l (u j)) (F l) (F (a :: l))
+    exact _root_.GlobalTheory.ThetaLimDeriv.heisDer_of_tendstoUniformly D ψ hψ θ hθ S T (fun j => GlobalTheory.Size.wordAct (GlobalTheory.Size.heisDer ψ θ) l (u j)) (F l) (F (a :: l))
       (fun j => GlobalTheory.Size.theta_word hψ hθ l (hu j).1) (hF l) a (hF (a :: l))
 
 theorem complete : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ θ : InfFam D, IsInfFam θ → ∀ S T : HSp D, ∀ (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) → ∀ u : ℕ → WO S T → ℂ, (∀ j, u j ∈ thetaLevel ψ S T U) → (∀ d, ∀ ε : ℝ≥0∞, 0 < ε → ∃ J, ∀ i ≥ J, ∀ j ≥ J, sobO ψ θ μ 𝓕 d (u i - u j) < ε) → ∃ f ∈ thetaLevel ψ S T U, ∀ d, Filter.Tendsto (fun j => sobO ψ θ μ 𝓕 d (u j - f)) Filter.atTop (nhds 0) := by

@@ -67,10 +67,6 @@ theorem foldr_sOp_zero_fun {D : D7} {k : Type} [Field k] [ValuativeRel k] [Topol
   | nil => rfl
   | cons i J ih => simp only [List.foldr_cons, ih]; exact sOp_zero_fun _ _ _ _ _
 
-theorem infM_one_eq {D : D7} (θ : InfFam D) (V : HSp D) {n : ℕ} (hn : V.rank = n) (τ : D.what₂.Tau) :
-    infM θ V hn 1 τ = 1 := by
-  simp [infM, Formalism.L2.Theta.mt, Datum.compAt]
-
 variable {B : Base} {X : PreX B.toPre} {I : TC B X} {l : I.Laws} {Z : TC.Later B (I.cols l)} {u : B.Word} {a : I.ι}
   {Ch : ℕ → Type}
 
@@ -100,13 +96,13 @@ theorem twS_ramL : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} (I : TC B 
   funext y'
   have hTr : IsTr (G := fun _ => 1) (infM θ _ (rankN (I.rec7 l Z) j hj) 1) ⟨y'.1, y'.2⟩ ⟨y'.1, y'.2⟩ := by
     intro τ
-    rw [infM_one_eq]
+    rw [_root_.GlobalTheory.AdForm.Model.infM_one]
     first
     | exact (Matrix.one_mul _).symm
     | exact (one_mul _).symm
     | exact (one_smul _ _).symm
     | (show _ = _; simp [Matrix.one_mul])
-  have key := (GlobalTheory.T.scalarForms_on_charts_of_trueColumnTuple I hOk hPins l Z u a Ch₀ A hA θ hθ j hj (S j η φ) (h2 η).1.1).2 (A.chOf j c) y' 1 (one_mem _)
+  have key := (_root_.GlobalTheory.AdForm.rd_charts I hOk hPins l Z u a Ch₀ A hA θ hθ j hj (S j η φ) (h2 η).1.1).2 (A.chOf j c) y' 1 (one_mem _)
     ⟨c, rfl⟩ 1 (one_mem _) 1 y' hTr
   rw [hrdS] at key
   simpa using key.symm

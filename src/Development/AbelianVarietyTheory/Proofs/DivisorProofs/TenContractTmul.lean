@@ -91,7 +91,7 @@ theorem Charts.tenZ_eq_zero (K : Charts F) (hK : K.Rich) (hz : ∃ z, z ∈ F.V)
     have e' := congrArg (T'.tenContract ℓ) e
     rw [map_sub, Charts.Hom.tenContract_ten, Charts.Obj.tenContract_tmul, ← Algebra.algebraMap_eq_smul_one] at e'
     exact e'
-  have h1 : algebraMap ℂ (Hol F.V) (ℓ (p l)) = 0 := DFunLike.congr_fun (GlobalTheory.T.periodClass_injective_of_rich_charts K hK q 0 hq) l
+  have h1 : algebraMap ℂ (Hol F.V) (ℓ (p l)) = 0 := DFunLike.congr_fun (_root_.GlobalTheory.AnPer.Charts.perCl_injective K hK q 0 hq) l
   have h2 := congrArg (Hol.ev z hz) h1
   rwa [AlgHom.commutes, map_zero] at h2
 

@@ -146,9 +146,6 @@ theorem idxFun_bij (ε : Fin n → Bool) : Function.Bijective (idxFun ε) := by
 def idx (ε : Fin n → Bool) : Fin n ⊕ (Qp ε ⊕ Qp ε) ≃ Fin n × Fin n :=
   Equiv.ofBijective _ (idxFun_bij ε)
 
-theorem card_Qp (ε : Fin n → Bool) : Fintype.card (Qp ε) = n * (n - 1) / 2 := by
-  exact card_qp_eq_mul_pred_div_two ε
-
 abbrev XC (ε : Fin n → Bool) : Type := (Fin n → ℂ) × (Qp ε → Fin 2 → ℂ)
 
 def Fmap (ε : Fin n → Bool) (st : GCo ε × GCo ε) : XC ε :=
@@ -226,7 +223,7 @@ theorem det_Gl (ε : Fin n → Bool) : LinearMap.det (Gl ε) = (4 : ℝ) ^ (n * 
     rw [LinearMap.det_restrictScalars, LinearMap.det_toLin', Algebra.norm_complex_apply, h0,
       Complex.normSq_mul, Complex.normSq_I]
     norm_num [Complex.normSq_apply]
-  simp only [h1, h2, Finset.prod_const_one, one_mul, Finset.prod_const, Finset.card_univ, card_Qp]
+  simp only [h1, h2, Finset.prod_const_one, one_mul, Finset.prod_const, Finset.card_univ, _root_.ReciprocityTheory.ChartRestriction.DS.OmegaPQAux.card_qp_eq_mul_pred_div_two]
 
 theorem mp_conj : MeasurePreserving (starRingEnd ℂ) volume volume := by
   exact Complex.conjLIE.measurePreserving

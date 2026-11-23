@@ -81,7 +81,7 @@ theorem smoothMatInf_affine_eq_integral_secKInf : ∀ (E : Type) [Field E] [Numb
     exact ⟨C, fun a ha => (Real.le_norm_self _).trans (hC a ha)⟩
   refine ⟨R1 * R2, ?_⟩
   intro W hW q z g
-  have hfam := GlobalTheory.T.schwartz_integral_bound_smooth E n Z X ν κ τ hκ hτ hmom (R1 * R2) σ₀ L
+  have hfam := _root_.GlobalTheory.JSW.MirCinf.SecFamInf.isRapidFamInf_secKInf E n Z X ν κ τ hκ hτ hmom (R1 * R2) σ₀ L
   have hrap : IsRapidFInf ((volume : Measure (Fin n → Fin n → Cinf E)).prod ν) (secKInf (R1 * R2) σ₀ κ τ q)
       (fun p => toGLInf (Matrix.of p.1)) (secEtaInf L τ q) := by
     obtain ⟨h1, h2, h3⟩ := hfam
@@ -142,7 +142,7 @@ theorem smoothMatInf_affine_eq_integral_secKInf : ∀ (E : Type) [Field E] [Numb
   have hu := hσ z hzK
   set σ' := toGLInf (Matrix.of (σ₀ + L z)) with hσ'
   have hσv : (σ' : Matrix (Fin n) (Fin n) (Cinf E)) = Matrix.of (σ₀ + L z) := val_toGLInf hu
-  rw [smoothMatInf, GlobalTheory.T.integral_archimedeanMatrices_leftMul_jacobian E n (q⁻¹ * σ'), ← integral_const_mul]
+  rw [smoothMatInf, _root_.GlobalTheory.JSW.MirCinf.integral_eq_integral_mulLeft_matrixInf E n (q⁻¹ * σ'), ← integral_const_mul]
   refine integral_congr_ae (Filter.Eventually.of_forall fun h => ?_)
   simp only
   have hAh : Matrix.of (fun i j => (((q⁻¹ * σ' : GL (Fin n) (Cinf E)) : Matrix (Fin n) (Fin n) (Cinf E)) * Matrix.of h) i j) =

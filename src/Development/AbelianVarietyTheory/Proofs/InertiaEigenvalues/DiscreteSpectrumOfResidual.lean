@@ -77,20 +77,6 @@ theorem qdet_sub_blocks_mem : ∀ (A : Type) [Ring A] [Algebra ℂ A] {c N : ℕ
       Submodule.span ℂ {y : A | ∃ (p q : Fin N) (w : A), blk (stdBlocks n h) p < blk (stdBlocks n h) q ∧ y = X p q * w} :=
   GlobalTheory.T.capelliDet_block_levi_congr_mod_upperBlockIdeal
 
-theorem Eop_leviEmb_eq_zero : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {c N : ℕ} (n : Fin c → ℕ)
-    (h : ∑ i, n i = N) (ψ : Sm E N), (∀ u ∈ unipRad (Ad E) (stdBlocks n h), ∀ g, ψ.1 (u * g) = ψ.1 g) →
-    ∀ (τ : E →+* ℂ) (p q : Fin N), blk (stdBlocks n h) p < blk (stdBlocks n h) q →
-    ∀ m, (Eop τ p q ψ).1 (leviEmb (Ad E) (stdBlocks n h) m) = 0 :=
-  GlobalTheory.T.upperMatrixUnit_kills_unipotentInvariant_on_levi
-
-theorem blockCap_leviEmb : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {c N : ℕ} (n : Fin c → ℕ)
-    (h : ∑ i, n i = N) (π : ∀ i, CuspSub E (n i)) (τ : E →+* ℂ) (i : Fin c) (M : Multiset ℂ), (π i).HasInfChar τ M →
-    ∀ (u : ℂ) (ψ : Sm E N), (fun m => ψ.1 (leviEmb (Ad E) (stdBlocks n h) m)) ∈ tensorForms π →
-    ∀ m, (Formalism.REAL.qdet (fun p q : Fin (n i) => Eop (a := N) τ (stdBlocks n h ⟨i, p⟩) (stdBlocks n h ⟨i, q⟩))
-      (u + ((n i : ℂ) - 1) / 2) ψ).1 (leviEmb (Ad E) (stdBlocks n h) m) =
-      (M.map (u + ·)).prod * ψ.1 (leviEmb (Ad E) (stdBlocks n h) m) :=
-  GlobalTheory.T.capelliDet_diagonalBlock_acts_by_infinitesimalCharacter
-
 theorem exists_iwasawa : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {c N : ℕ} (n : Fin c → ℕ)
     (h : ∑ i, n i = N) (x : GA E N), ∃ u ∈ unipRad (Ad E) (stdBlocks n h), ∃ (m : ∀ i, GA E (n i)) (k : Kinf E N)
       (g : GL (Fin N) (Af E)), x = u * leviEmb (Ad E) (stdBlocks n h) m * (infGL E N (Unitary.toUnits k) * finGL E N g) :=
@@ -179,8 +165,8 @@ theorem lie_mem_smoothPart {N : ℕ} (X : Lie E N) {φ : Sm E N} (hφ : φ ∈ G
 
 theorem lie_mem_indForms {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (π : ∀ i, CuspSub E (n i)) (X : Lie E N)
     (φ : Sm E N) (hφ : φ ∈ indForms h π) : lie E N X φ ∈ indForms h π :=
-  ⟨lie_leftInv _ X hφ.1, lie_mem_smoothPart X hφ.2.1, lie_mem_finVec E X φ hφ.2.2.1,
-    lie_tensorForms E n h π X φ hφ⟩
+  ⟨lie_leftInv _ X hφ.1, lie_mem_smoothPart X hφ.2.1, _root_.GlobalTheory.LieFin.lie_mem_finVec E X φ hφ.2.2.1,
+    _root_.GlobalTheory.LieTensor.lie_tensorForms E n h π X φ hφ⟩
 
 theorem cap_indForms {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (π : ∀ i, CuspSub E (n i)) (τ : E →+* ℂ)
     (M : Fin c → Multiset ℂ) (hM : ∀ i, (π i).HasInfChar τ (M i)) (u : ℂ) (φ : Sm E N) (hφ : φ ∈ indForms h π) :
@@ -196,7 +182,7 @@ theorem cap_indForms {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (π : 
   have hX : Formalism.REAL.GlRel X := fun a b c' d => Subtype.ext (by
     have := glRel_Eop (a := N) τ a b c' d
     split_ifs at this ⊢ <;> simpa [X] using this)
-  have key := qdet_sub_blocks_mem S n h X hX u
+  have key := _root_.GlobalTheory.CapHC.qdet_blocks_congr S n h X hX u
 
   let B : Fin c → Module.End ℂ (Sm E N) := fun i =>
     Formalism.REAL.qdet (fun p q : Fin (n i) => Eop (a := N) τ (e ⟨i, p⟩) (e ⟨i, q⟩)) (u + ((n i : ℂ) - 1) / 2 - mE i)
@@ -226,7 +212,7 @@ theorem cap_indForms {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (π : 
       refine Submodule.span_le.2 ?_
       rintro _ ⟨p, q, w, hpq, rfl⟩
       change (Eop τ p q ((w : Module.End ℂ (Sm E N)) ψ)).1 (leviEmb (Ad E) e m) = 0
-      exact Eop_leviEmb_eq_zero E n h _ (hSL w.2 ψ hψ) τ p q hpq m
+      exact _root_.GlobalTheory.UnipKill.eop_leviEmb_eq_zero E n h _ (hSL w.2 ψ hψ) τ p q hpq m
     have h1 := hker key
     rw [LinearMap.mem_ker, map_sub, sub_eq_zero] at h1
     change ((S.val (Formalism.REAL.qdet X _)) ψ).1 _ = ((S.val _) ψ).1 _ at h1
@@ -235,7 +221,7 @@ theorem cap_indForms {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (π : 
     have hl := list_prod_along (leviEmb (Ad E) e) (tensorForms π) (List.ofFn fun i => (B i, sc i)) (by
       intro x hx ψ' hψ' m'
       obtain ⟨i, rfl⟩ := List.mem_ofFn.1 hx
-      have := blockCap_leviEmb E n h π τ i (M i) (hM i) (u - mE i) ψ' hψ' m'
+      have := _root_.GlobalTheory.BlockCap.qdet_block_levi E n h π τ i (M i) (hM i) (u - mE i) ψ' hψ' m'
       have e1 : u - mE i + ((n i : ℂ) - 1) / 2 = u + ((n i : ℂ) - 1) / 2 - mE i := by ring
       have e2 : ((M i).map (u - mE i + ·)) = (M i).map fun x => u + x - mE i :=
         Multiset.map_congr rfl fun x _ => by ring
@@ -245,7 +231,7 @@ theorem cap_indForms {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (π : 
     rw [List.prod_ofFn] at hl
     exact hl
   refine Subtype.ext (funext fun x => ?_)
-  obtain ⟨v, hv, m, k, g, rfl⟩ := exists_iwasawa E n h x
+  obtain ⟨v, hv, m, k, g, rfl⟩ := _root_.GlobalTheory.IwasawaAdelic.iwasawa E n h x
   set y := infGL E N (Unitary.toUnits k) * finGL E N g
   have hcapInv : ∀ v ∈ unipRad (Ad E) e, ∀ g, (cap τ u φ).1 (v * g) = (cap τ u φ).1 g := by
     have : cap τ u ∈ S := by

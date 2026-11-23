@@ -58,13 +58,6 @@ theorem castSt_K_U {D : D7} {u : D.what₂.Word} {C C' : ColumnChain D.R D.what�
     ((castSt e S).K ((castSt e S).chOf (castCls e i c))).lev.U = (S.K (S.chOf c)).lev.U := by
   subst e; rfl
 
-theorem castSt_y {D : D7} {u : D.what₂.Word} {C C' : ColumnChain D.R D.what₂.Tau (D.hcW u)} (e : C = C') {i : ℕ} {hi : i ≤ D.R.m}
-    (S : GlobalTheory.TwU.StepCharts C i hi) (c : C.cls i) :
-    (castSt e S).y (castCls e i c) = S.y c := by
-  subst e; rfl
-
-
-
 theorem rdJ_eq_of_realAt : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => J.Dict std → ∀ (ι : ℂ →+* ℂ_[D.what₂.places.resChar w]) j (hj : j + 1 ≤ D.R.m) (h : ((sysS H X std).Pj (j + 1)).m + 1 = D.R.N (j + 1)) (La : (sysS H X std).Lt (j + 1)), ((sysS H X std).Pj (j + 1)).IsLatTup La.2 → ∀ (φ : (D.chTw u μ).cls (j + 1) → (D.chTw u μ).Y (j + 1) → ℂ) (V : XR ((sysS H X std).Pj (j + 1)) ℂ), (∀ d : Dec J std, RealAt d (j + 1) hj h La φ V) → rdJ I X.onCh ι j La.1 La.2 φ = MvPolynomial.map ι V) := by
   intro D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X _ std t J S hDict ι j hj h La hLa φ V hR
   refine rdJ_of_isValV I X.onCh H Formalism.L2.G.RelativeIndexFlags.blockRationality_holds ι j hj La.1 La.2 hLa φ V ?_
@@ -89,7 +82,7 @@ theorem rdJ_eq_of_realAt : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv 
     exact congrArg (fun β => ((I.at' j hj).st.K β).lev.U) c.2
   have hy : ((J.St (j + 1) hj).y (clsAt X H (j + 1) La.1 La.2)).1 =
       (((I.at' j hj).st.K ((I.at' j hj).st.eC.symm La.1).1).y c).1 := by
-    rw [hclsAt, J.st j hj, castSt_y]
+    rw [hclsAt, J.st j hj, _root_.GlobalTheory.TwV.castSt_y_castCls]
     exact congrArg Subtype.val ((GlobalTheory.TwU.StepCharts.ofStepIn (I.at' j hj).st).y_eq c).symm
   let κ' : ((J.St (j + 1) hj).K (J.chart std (j + 1) hj La)).lev.U := ⟨(κ * κ₀).1, by rw [hU]; exact (κ * κ₀).2⟩
   obtain ⟨d, hdγ, hdκ⟩ := GlobalTheory.T.latticeTupleDecomposition_occurs_in_family S hDict j hj La hLa γ hγ κ' (by

@@ -55,7 +55,7 @@ theorem fam_jointBCD_closed_alt : GlobalTheory.Published.FontaineBcris → (∀ 
   intro hF h7 hFo hJ eps Fm R
   obtain ⟨x0, h⟩ := GlobalTheory.HTW.RecS.fam_jointBCD Fm R h7 hFo
   refine ⟨x0, fun x hx h1 j HW X hA hX => h x hx h1 j HW X (hJ _ _ hA).1 fun i _ hi π hπ => ?_⟩
-  refine _root_.GlobalTheory.T.ptIn_of_ptFam_deRham_away hF _ X hX hA.1 i ?_ π hπ
+  refine _root_.GlobalTheory.pointInputAwayFromTypePrimes_alt hF _ X hX hA.1 i ?_ π hπ
   simp only [TwistedPlaces.gset, Finset.mem_insert, Finset.mem_singleton, not_or]
   exact ⟨GlobalTheory.T.inert_prime_ne_typePrime _ _ 0 hi, GlobalTheory.T.inert_prime_ne_typePrime _ _ 1 hi⟩
 end GlobalTheory.HTW.RecS

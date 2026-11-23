@@ -129,18 +129,6 @@ theorem natCast_mul_mem_of_isIntegral (K : IntermediateField ℚ ℂ) [FiniteDim
   linear_combination (-(m + 1 : ℂ) * z) * hζ
 
 
-open IntermediateField in
-theorem mem_of_isIntegral_quadratic {d : ℕ} (hd : d.Prime) (hd4 : d % 4 = 3) {r : ℂ}
-    (hr : r ^ 2 = -(d : ℂ)) (T : Subring ℂ) (hT : (1 + r) / 2 ∈ T) {z : ℂ} (hzK : z ∈ ℚ⟮r⟯)
-    (hz : IsIntegral ℤ z) : z ∈ T := by
-  first
-  | exact @_root_.GlobalTheory.RationalIntegralCoordinates.main
-  | exact _root_.GlobalTheory.RationalIntegralCoordinates.main
-  | (apply _root_.GlobalTheory.RationalIntegralCoordinates.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RationalIntegralCoordinates.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RationalIntegralCoordinates.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RationalIntegralCoordinates.main ..)
-
 end
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
@@ -183,7 +171,7 @@ theorem mem_RZ_of_isIntegral (l : Level H) {S e : ℕ} (hS : 0 < S) (hA : l.A �
     (hzK : z ∈ KA l) (hz : IsIntegral ℤ z) : z ∈ RZ H S l.A := by
   have : FiniteDimensional ℚ ℚ⟮H.rt0⟯ := adjoin.finiteDimensional (isIntegral_sqrt_discriminant H).tower_top
   have h := natCast_mul_mem_of_isIntegral ℚ⟮H.rt0⟯ (RZ H S l.A)
-    (fun w hw hw' => mem_of_isIntegral_quadratic H.d_prime (by have := H.d_mod; omega) H.sqrt_neg_disc_sq _
+    (fun w hw hw' => _root_.GlobalTheory.RationalIntegralCoordinates.main H.d_prime (by have := H.d_mod; omega) H.sqrt_neg_disc_sq _
       (Subring.subset_closure (by simp)) hw hw') l.A_pos (zeta_pow_self l.A_pos)
     (Subring.subset_closure (by simp)) (z := z)
     ((mem_restrictScalars ℚ).mp ((adjoin_simple_adjoin_simple ℚ H.rt0 (zeta l.A)).ge hzK)) hz

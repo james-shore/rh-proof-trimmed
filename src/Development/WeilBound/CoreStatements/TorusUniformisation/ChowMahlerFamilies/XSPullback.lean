@@ -313,7 +313,7 @@ theorem vertEval_contract {ϖ : O} (hϖ : Irreducible ϖ) {y : (Σ k, ι k) → 
     exact h0 (by unfold GroundTheory.Heights₂.Heights.NumbersDVR.divCycle; rw [dite_eq_right hn])
   have hh := MinimalPrimeMultiHomog.proof O _ _ _ W
     (SupSpanMultiHomog.proof O _ _ _ _ _ hj.multiProj.multiHomog hf') hm.1
-  refine GlobalTheory.T.multi_projective_prime_intersection O Ω K ι y ϖ hϖ d r hr hy K' ι' y' W ⟨hm.1.1.1, hh, hm.2⟩ ?_ hW l hl hdim.le
+  refine _root_.GlobalTheory.CompanionTheory.Ar.Num.vNumL_pull_eq_zero_of_contracted O Ω K ι y ϖ hϖ d r hr hy K' ι' y' W ⟨hm.1.1.1, hh, hm.2⟩ ?_ hW l hl hdim.le
   rw [← joinCoords_eq_joinCoord]
   exact le_sup_left.trans hm.1.1.2
 
@@ -325,7 +325,7 @@ theorem vertEval_push {ϖ : O} (hϖ : Irreducible ϖ) {y : (Σ k, ι k) → Ω} 
     vertEval ϖ (pointIdeal O (joinCoords y y')) (joinForm f) (l.map pullDeg) =
       vertEval ϖ (pointIdeal O y) f l := by
   rw [joinCoords_eq_joinCoord] at hj ⊢
-  have h := GlobalTheory.T.field_extension_intersection_invariance O Ω K ι y ϖ hϖ d hy Ω K' ι' y' hj b f hf hfP l hl
+  have h := _root_.PositivityTheory.Xgn.model_pushforward_fibre_degree O Ω K ι y ϖ hϖ d hy Ω K' ι' y' hj b f hf hfP l hl
   rw [modelDeg_eq_one hF, Nat.cast_one, one_mul] at h
   exact h
 

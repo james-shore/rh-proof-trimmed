@@ -67,43 +67,10 @@ theorem nd_eq_dimFl (X : Data E r) : nd X = dimFl E r := by
   unfold nd dimFl
   rw [Fintype.card_prod, card_strictLower, QuadraticCoefficientForms.card_Psi]
 
-theorem cpt_zero (X : Data E r) (x0 : Frame X.Ψ r) : cpt X x0 0 = x0 := by
-  funext τ a b
-  have h1 : mat (nmat X 0) τ = 1 := by
-    ext i j
-    simp only [mat, nmat, Matrix.of_apply, Matrix.one_apply]
-    by_cases h : j < i
-    · rw [dif_pos h, if_neg (ne_of_gt h)]
-      rfl
-    · rw [dif_neg h]
-  show (mat x0 τ * mat (nmat X 0) τ) a b = x0 τ a b
-  rw [h1, Matrix.mul_one]
-  rfl
-
-theorem differentiable_cpt (X : Data E r) (x0 : Frame X.Ψ r) : Differentiable ℂ (cpt X x0) := by
-  rw [differentiable_pi]; intro τ
-  rw [differentiable_pi]; intro a
-  rw [differentiable_pi]; intro b
-  simp only [cpt, rmul, mat, Matrix.mul_apply, Matrix.of_apply]
-  refine Differentiable.fun_sum fun k _ => Differentiable.const_mul ?_ _
-  by_cases h : b < k
-  · simp only [nmat, dif_pos h]
-    fun_prop
-  · simp only [nmat, dif_neg h]
-    exact differentiable_const _
-
-theorem norm_dmin_of_orth (X : Data E r) {x : Frame X.Ψ r} (hx : IsOrth X x) (τ : X.Ψ) (i : Fin (r + 1)) :
-    ‖dmin X.Gm x τ i‖ = 1 := by
-  unfold dmin lminor
-  rw [hx τ, Matrix.submatrix_diagonal _ _ (Fin.castLE_injective _), Matrix.det_diagonal, norm_prod]
-  refine Finset.prod_eq_one fun a _ => ?_
-  simp only [Function.comp_apply, sgn]
-  split_ifs <;> simp
-
 theorem nfac_of_orth (X : Data E r) (la : Wt X.Ψ r) {x : Frame X.Ψ r} (hx : IsOrth X x) : X.nfac la x = 1 := by
   unfold Data.nfac
   refine Finset.prod_eq_one fun τ _ => Finset.prod_eq_one fun i _ => ?_
-  rw [norm_div, norm_dmin_of_orth X hx, norm_dmin_of_orth X hx, div_one, Real.one_rpow]
+  rw [norm_div, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PoinPf.norm_dmin_orth' X hx, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PoinPf.norm_dmin_orth' X hx, div_one, Real.one_rpow]
 
 theorem pnorm_eq (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ) (x : Frame X.Ψ r) :
     X.pnorm la P x = ‖P x‖ * X.nfac la x := rfl
@@ -134,11 +101,11 @@ theorem submean_chart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   intro E _ _ _ r X la w x P hr hx hw hP
   set ρ := chartRad E r w with hρdef
   have hρ : 0 < ρ := chartRad_pos X la hr hw
-  have hch := GlobalTheory.T.normFactor_and_density_near_one_in_flagChart E r X la w x hr hx hw
+  have hch := _root_.GlobalTheory.ChartNearOne.chart_near_one E r X la w x hr hx hw
 
   set φ : V (nd X) → ℂ := fun z => P (cpt X x z) with hφdef
   have hφ : DifferentiableOn ℂ φ (Metric.ball 0 ρ) :=
-    hP.comp (differentiable_cpt X x).differentiableOn fun z hz =>
+    hP.comp (_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PoinPf.diff_cpt X x).differentiableOn fun z hz =>
       (hch z (le_of_lt (mem_ball_zero_iff.1 hz))).1
   have hsub := GlobalTheory.enorm_pow_le_inv_measure_mul_lintegral_ball (volume : Measure (V (nd X))) (a := 0) hρ hφ 2
   have hne : ENNReal.ofReal (Real.pi ^ nd X * ρ ^ (2 * nd X) / ((nd X).factorial : ℝ)) =
@@ -184,7 +151,7 @@ theorem submean_chart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
       _ ≤ _ := by gcongr
 
   have h0 : ENNReal.ofReal (X.pnorm la P x ^ 2) = ‖φ 0‖ₑ ^ 2 := by
-    rw [pnorm_eq, nfac_of_orth X la hx, mul_one, show φ 0 = P x by simp only [hφdef, cpt_zero], ← ofReal_norm, ENNReal.ofReal_pow (norm_nonneg _)]
+    rw [pnorm_eq, nfac_of_orth X la hx, mul_one, show φ 0 = P x by simp only [hφdef, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PoinPf.cpt_zero], ← ofReal_norm, ENNReal.ofReal_pow (norm_nonneg _)]
 
   have hvol : (ENNReal.ofReal (Real.pi ^ D * ρ ^ (2 * D) / (D.factorial : ℝ)))⁻¹ =
       ENNReal.ofReal ((D.factorial : ℝ) / (Real.pi * ρ ^ 2) ^ D) := by

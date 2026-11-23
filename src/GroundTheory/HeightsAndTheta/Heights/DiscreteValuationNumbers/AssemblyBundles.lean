@@ -89,9 +89,9 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 universe u
 
-theorem SymmetricSpanHsymm.full : SymmetricSpanHsymm.Statement := SymmetricSpanHsymm.proof
+alias SymmetricSpanHsymm.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.SymmetricSpanHsymm.proof
 
-theorem DivisorIdealCycle.full : DivisorIdealCycle.Statement.{u} := DivisorIdealCycle.proof
+alias DivisorIdealCycle.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.DivisorIdealCycle.proof
 
 theorem VNumCut.full : VNumCut.Statement.{u} := VNumCut.proof CutByForm.full
 
@@ -103,12 +103,11 @@ theorem LeftExpansion.full : LeftExpansion.Statement.{u} := LeftExpansion.proof 
 theorem RightExpansion.full : RightExpansion.Statement.{u} :=
   RightExpansion.proof VertCutEff.full DivisorIdealCycle.full
 
-theorem ExcessPositive.full : ExcessPositive.Statement.{u} := ExcessPositive.proof
+alias ExcessPositive.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.ExcessPositive.proof
 
-theorem AvoidingFormExists.full : AvoidingFormExists.Statement.{u} := AvoidingFormExists.proof
+alias AvoidingFormExists.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.AvoidingFormExists.proof
 
-theorem HorizontalAvoidingForm.full : HorizontalAvoidingForm.Statement.{u} :=
-  HorizontalAvoidingForm.proof
+alias HorizontalAvoidingForm.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.HorizontalAvoidingForm.proof
 
 theorem LeftSideAdditiveInDegree.full : LeftSideAdditiveInDegree.Statement.{u} := LeftSideAdditiveInDegree.proof
 
@@ -149,10 +148,7 @@ theorem NumericalSegre.of_open (hdim : FlagBundleDim.Statement)
   NumericalSegre.proof FieldNumbers.IntNumAdd.full hdim (FlagBundleCut.of_open hdim hforms hdiv)
     (FlagBundlePullbackVanish.of_open hdim) (FlagBundleLineBase.of_open hdim hsec hdeg hloc)
 
-theorem LocalCoefficient.of_open (hl : LeftTermSupport.Statement.{u})
-    (hr : RightTermSupport.Statement.{u}) (hring : LocalCoeffRing.Statement.{u}) :
-    LocalCoefficient.Statement.{u} :=
-  LocalCoefficient.proof hl hr hring
+alias LocalCoefficient.of_open := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.LocalCoefficient.proof
 
 theorem NoCommonComponentCase.of_open (hl : LeftTermSupport.Statement.{u})
     (hr : RightTermSupport.Statement.{u}) (hring : LocalCoeffRing.Statement.{u}) :
@@ -160,8 +156,7 @@ theorem NoCommonComponentCase.of_open (hl : LeftTermSupport.Statement.{u})
   NoCommonComponentCase.proof LeftExpansion.full RightExpansion.full (LocalCoefficient.of_open hl hr hring)
     IntNumVanish.full
 
-theorem BlowUpModel.of_open (hrees : ReesAlgebraDim.Statement.{u}) : BlowUpModel.Statement.{u} :=
-  BlowUpModel.proof hrees
+alias BlowUpModel.of_open := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.BlowUpModel.proof
 
 theorem BlowUpDecomposition.of_open (hrees : ReesAlgebraDim.Statement.{u})
     (hst : BlowUpStrictTransform.Statement.{u}) : BlowUpDecomposition.Statement.{u} :=

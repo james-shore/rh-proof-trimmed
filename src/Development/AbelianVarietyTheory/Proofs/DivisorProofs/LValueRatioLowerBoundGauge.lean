@@ -78,13 +78,6 @@ variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc)
 
 
 open Classical in
-theorem twist_val {μ₀ : T} (hL : L.Is μ₀) (t : T) (i j : Fin D.R.m) {s : ℕ} (hs : s ≤ halfRank D i j) :
-    IsValChar (cmPhi D) s (kap D sc.cGap i j s) (condF G.pl)
-      ((GlobalTheory.SqTop.twPl G t).image fun P => P.under (𝓞 D.host.F)) (nuH G t i j) :=
-  GlobalTheory.T.square_nu_twisted_tuple_isCMValueHeckeCharacter G hL t i j hs
-
-
-open Classical in
 theorem squareTopTwistPlaces_coprime_splitPlaces {μ₀ : T} (hL : L.Is μ₀) (t : T) :
     IsFinSetSplitPlacesCoprimeConductor (condF G.pl) ((GlobalTheory.SqTop.twPl G t).image fun P => P.under (𝓞 D.host.F)) :=
   GlobalTheory.T.isFinSetSplitPlacesCoprimeConductor_twPl_under G hL t
@@ -106,10 +99,6 @@ theorem vw_pow {K : Type} [Field K] [NumberField K] (w : Formalism.PairingDivisi
     vw w (z ^ n) = n * vw w z := by
   unfold vw
   rw [← FractionalIdeal.spanSingleton_pow, FractionalIdeal.count_pow]
-
-theorem over_under {E : Type} [Field E] [NumberField E] (P : HeightOneSpectrum (𝓞 E)) :
-    Over P (P.under (OF E)) := rfl
-
 
 open Classical in
 theorem core (hTD : GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds.ToricDenominator) {D : D7} {T : Type} {Lc : LevCh D T} {sc : Consts} {μ₀ : T}
@@ -137,10 +126,10 @@ theorem core (hTD : GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBo
 
   obtain ⟨Q, hQdef⟩ : ∃ Q : Finset (HeightOneSpectrum (OF D.host.E)),
       Q = (GlobalTheory.SqTop.twPl G t).image fun P => P.under (𝓞 D.host.F) := ⟨_, rfl⟩
-  have hQval := twist_val G hL t i j hs2
-  have hQaux := squareTopTwistPlaces_coprime_splitPlaces G hL t
-  have hQram := twist_ram G hL t i j
-  have hQpr := twist_prime G t hl hlw hQw
+  have hQval := _root_.GlobalTheory.SqTop.TwVal.isValChar_nu_twist G hL t i j hs2
+  have hQaux := _root_.GlobalTheory.KummerTwistLemmas.twist_places_under_split_coprime_conductor G hL t
+  have hQram := _root_.GlobalTheory.SqTop.nuH_not_unrAt_twPl G hL t i j
+  have hQpr := _root_.GlobalTheory.twPl_under_not_mem_prime G t hl hlw hQw
   rw [← hQdef] at hQval hQaux hQpr
   have hex : ∀ q ∈ Q, ∃ P ∈ GlobalTheory.SqTop.twPl G t, P.under (𝓞 D.host.F) = q := fun q hq => by
     rw [hQdef] at hq
@@ -152,7 +141,7 @@ theorem core (hTD : GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBo
     simp only [Pq, dif_pos h]
     exact h.choose_spec
   have hov : ∀ q ∈ Q, Over (Pq q) q := fun q hq =>
-    (over_under (Pq q)).trans (congrArg HeightOneSpectrum.asIdeal (hPq q hq).2)
+    (_root_.GlobalTheory.CMVal.Euler.over_under (Pq q)).trans (congrArg HeightOneSpectrum.asIdeal (hPq q hq).2)
   have htor := GlobalTheory.ToricSumValue.toricSum_eq GlobalTheory.Published.HeckeEntire_holds D.host.E D.what₂.Tau (cmPhi D) hφ s
     (kap D sc.cGap i j s) (condF G.pl) Q (nuH G t i j) Pq Λ hU hs1 hbc hQaux hQval
     hov hΛ
@@ -178,7 +167,7 @@ theorem core (hTD : GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBo
   have hV := ((H (kap D sc.cGap i j s) (condF G.pl) Λl (nuH G μ₀ i j) hbc hΛl hx.1) l hl Q hQaux hQpr).2
     (Lc.xiH t) (Λ s) hpic (hnu ▸ htor)
   obtain ⟨zc', hzc', hn⟩ := hden
-  obtain rfl : zc = zc' := classZetaVals_unique (by omega) hzc hzc'
+  obtain rfl : zc = zc' := _root_.GlobalTheory.ZetaValUnique.classZetaVals_unique (by omega) hzc hzc'
   set B := GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds.betaBound_vp D.host.d s (kap D sc.cGap i j s) (condF G.pl) zc l with hB
   set N := ⌈B / 12⌉₊ with hN
   have hnl : n l = N := by rw [hn l hl]
@@ -194,7 +183,7 @@ theorem core (hTD : GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBo
       exact hP.1.resolve_left hP.2
     exact G.pl.levelPlace_ne_basePlace t P hP' e
   have hram0 : ¬ (nuH G t i j).UnrAt (G.pl.w G.pl.v0) := by
-    have h1 := (hQval.2.2.2 G.pl.v0 (G.pl.w G.pl.v0) ((over_under _).trans (congrArg HeightOneSpectrum.asIdeal (G.pl.w_over _ (Finset.mem_insert_self _ _))))).2 hv0
+    have h1 := (hQval.2.2.2 G.pl.v0 (G.pl.w G.pl.v0) ((_root_.GlobalTheory.CMVal.Euler.over_under _).trans (congrArg HeightOneSpectrum.asIdeal (G.pl.w_over _ (Finset.mem_insert_self _ _))))).2 hv0
     rw [GlobalTheory.FunObj.SqNum.Model.expIn_condF, if_pos (G.pl.mem_S0_of_sum_eq.2 (Or.inl rfl)), condExp, if_pos rfl] at h1
     exact h1.not_unrAt one_ne_zero
   have hΛs : Λ s ≠ 0 := GlobalTheory.HeckePartial.IsHeckeL.ne_zero_of_one_le hQval.1
@@ -212,7 +201,7 @@ theorem core (hTD : GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBo
     refine div_ne_zero (pow_ne_zero _ (mul_ne_zero ?_ hx0)) (pow_ne_zero _ (latDisc_ne_zero Λl))
     exact_mod_cast (cmValueConst_pos D.host.E (hfd.1.pos) (by omega) _).ne'
   rw [hbeta, pow_one, zpow_natCast] at hInt
-  have key := meanVal_lower D.what₂.embLL hp hβ0 (pow_ne_zero 12 hz0) hl hlw hInt
+  have key := _root_.GlobalTheory.FunObj.SqNum.meanVal_vw_ge_of_intAt D.what₂.embLL hp hβ0 (pow_ne_zero 12 hz0) hl hlw hInt
   rw [vw_pow w hz0] at key
   have h2 : ((-(N * vw w (l : D.what₂.LL)) : ℤ) : ℝ) ≤ (vw w z : ℝ) + meanVal_vw w p / 12 := by
     push_cast at key ⊢

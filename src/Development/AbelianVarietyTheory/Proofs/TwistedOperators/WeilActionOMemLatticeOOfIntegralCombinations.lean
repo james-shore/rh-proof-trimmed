@@ -73,17 +73,6 @@ namespace GlobalTheory.LatMoveGen
 
 variable {D : D7}
 
-theorem gram_mul_inv (V : HSp D) (g : Formalism.L2.Theta.GA D V) :
-    V.gram.map (incA D) * Formalism.L2.Theta.mt V g⁻¹ =
-      ((Formalism.L2.Theta.mt V g).map (cA D))ᵀ * V.gram.map (incA D) := by
-  have h : ((Formalism.L2.Theta.mt V g).map (cA D))ᵀ * V.gram.map (incA D) * Formalism.L2.Theta.mt V g = V.gram.map (incA D) :=
-    (g : HR (AF D.host.F) D.sp.cm.sig V.gram).2
-  have h2 : Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V g⁻¹ = 1 := by
-    rw [← GlobalTheory.LatMoveStd.mt_mul'', mul_inv_cancel, GlobalTheory.LatMoveStd.mt_one'']
-  calc V.gram.map (incA D) * Formalism.L2.Theta.mt V g⁻¹
-      = (((Formalism.L2.Theta.mt V g).map (cA D))ᵀ * V.gram.map (incA D) * Formalism.L2.Theta.mt V g) * Formalism.L2.Theta.mt V g⁻¹ := by rw [h]
-    _ = _ := by rw [Matrix.mul_assoc _ (Formalism.L2.Theta.mt V g), h2, Matrix.mul_one]
-
 theorem row_move (V : HSp D) (g : Formalism.L2.Theta.GA D V) (s : Fin V.rank → D.host.E) (j : Fin V.rank) :
     ∑ m, incA D (∑ k, star (s k) * V.gram k m) * Formalism.L2.Theta.mt V g⁻¹ m j =
       ∑ m, cA D ((Formalism.L2.Theta.mt V g *ᵥ fun k => incA D (s k)) m) * incA D (V.gram m j) := by
@@ -100,7 +89,7 @@ theorem row_move (V : HSp D) (g : Formalism.L2.Theta.GA D V) (s : Fin V.rank →
       ((fun m => incA D (∑ k, star (s k) * V.gram k m)) ᵥ* Formalism.L2.Theta.mt V g⁻¹) j := rfl
   have rhs : ∑ m, cA D ((Formalism.L2.Theta.mt V g *ᵥ fun k => incA D (s k)) m) * incA D (V.gram m j) =
       ((fun m => cA D ((Formalism.L2.Theta.mt V g *ᵥ fun k => incA D (s k)) m)) ᵥ* V.gram.map (incA D)) j := rfl
-  rw [lhs, rhs, e1, e2, Matrix.vecMul_vecMul, gram_mul_inv, ← Matrix.vecMul_vecMul, Matrix.vecMul_transpose]
+  rw [lhs, rhs, e1, e2, Matrix.vecMul_vecMul, _root_.GlobalTheory.AdelicLatMove.gram_mul_inv, ← Matrix.vecMul_vecMul, Matrix.vecMul_transpose]
 
 end GlobalTheory.LatMoveGen
 

@@ -212,7 +212,7 @@ theorem exists_open_locus : ∀ (h h' M d : ℕ) (O : Type) [Ring O] (bar : O �
         hee'
     haveI := hinc
     haveI := hpr
-    have hGab : IsAbelianScheme G := GlobalTheory.T.isAbelianScheme_of_semiAbelian_hom_retract S' z.A G inc pr z.ab hGs hinc hpr hip
+    have hGab : IsAbelianScheme G := _root_.GlobalTheory.isAbelianScheme_of_retract_of_isSemiAbelian S' z.A G inc pr z.ab hGs hinc hpr hip
     let Pe : LB (G2 G).left := z.P.pull (inc ⊗ₘ inc).left
     have hPe : Pe.IsLB := pull_isLB z.isLB _
     obtain ⟨hr₁, hr₂, hsy⟩ := image_bundle_rig z.A G z.P inc z.rig₁ z.rig₂ z.symm
@@ -228,13 +228,13 @@ theorem exists_open_locus : ∀ (h h' M d : ℕ) (O : Type) [Ring O] (bar : O �
     let y₃ : (Fin h' ⊕ Fin h' → ℤ) → (𝟙_ (Over S') ⟶ z.A) :=
       fun a => (List.ofFn fun k => z.lev (jl (κ k a)) ≫ act (o k)).prod
     have hy₃ : ∀ a, y₃ a = ∏ k, z.lev (jl (κ k a)) ≫ act (o k) := fun a => List.prod_ofFn
-    obtain ⟨U₁, hU₁, hT₁⟩ := GlobalTheory.T.natCast_unit_locus_open S' d
-    obtain ⟨U₂, hU₂, hT₂⟩ := GlobalTheory.T.additive_torsion_families_equal_locus_open h M S' t z.A z.ab hM1 x₂ y₂
+    obtain ⟨U₁, hU₁, hT₁⟩ := _root_.GlobalTheory.UnitLocus.natCast_unit_locus S' d
+    obtain ⟨U₂, hU₂, hT₂⟩ := _root_.GlobalTheory.torsFamily_eq_isOpen h M S' t z.A z.ab hM1 x₂ y₂
       (fun a b => by simp only [x₂, map_add (f := _), z.lev_add, MonObj.mul_comp])
       (fun a b => by simp only [y₂, map_add (f := _), z.lev_add])
       (fun a => by simp only [x₂, ← MonObj.pow_comp, z.lev_tors, MonObj.one_comp])
       (fun a => by simp only [y₂, z.lev_tors])
-    obtain ⟨U₃, hU₃, hT₃⟩ := GlobalTheory.T.additive_torsion_families_equal_locus_open h' M S' t z.A z.ab hM1 z.lev y₃ z.lev_add
+    obtain ⟨U₃, hU₃, hT₃⟩ := _root_.GlobalTheory.torsFamily_eq_isOpen h' M S' t z.A z.ab hM1 z.lev y₃ z.lev_add
       (fun a b => by
         haveI := fun k => hRA.1 (o k)
         simp only [hy₃, map_add (f := _), z.lev_add, MonObj.mul_comp, Finset.prod_mul_distrib])
@@ -242,9 +242,9 @@ theorem exists_open_locus : ∀ (h h' M d : ℕ) (O : Type) [Ring O] (bar : O �
       (fun a => by
         haveI := fun k => hRA.1 (o k)
         simp only [hy₃, ← Finset.prod_pow, ← MonObj.pow_comp, z.lev_tors, MonObj.one_comp, Finset.prod_const_one])
-    obtain ⟨U₄, hU₄, hT₄⟩ := GlobalTheory.T.isOpen_symplecticLevel_locus h M S' t G Pe lev hGab hPe hr₁ hr₂ hsy hM hMo lev_add lev_tors
-    obtain ⟨U₅, hU₅, hT₅⟩ := GlobalTheory.T.diagonal_restriction_relAmple_locus_open S' G Pe hGab hPe
-    obtain ⟨U₆, hU₆, hT₆⟩ := GlobalTheory.T.exists_open_locus_kernel_killed_symmetric_bundle d S' G Pe hGab hPe hr₁ hr₂ hsy
+    obtain ⟨U₄, hU₄, hT₄⟩ := _root_.GlobalTheory.SympLevLocus.exists_open_sympLev h M S' t G Pe lev hGab hPe hr₁ hr₂ hsy hM hMo lev_add lev_tors
+    obtain ⟨U₅, hU₅, hT₅⟩ := _root_.GlobalTheory.DiagAmpleLocus.diag_relAmple_locus S' G Pe hGab hPe
+    obtain ⟨U₆, hU₆, hT₆⟩ := _root_.GlobalTheory.KerKilledLocus.exists_open_kerKilled_locus d S' G Pe hGab hPe hr₁ hr₂ hsy
     let U : S'.Opens := U₁ ⊓ U₂ ⊓ U₃ ⊓ U₄ ⊓ U₅ ⊓ U₆
     have l₁ : U ≤ U₁ := inf_le_left.trans (inf_le_left.trans (inf_le_left.trans (inf_le_left.trans inf_le_left)))
     have l₂ : U ≤ U₂ := inf_le_left.trans (inf_le_left.trans (inf_le_left.trans (inf_le_left.trans inf_le_right)))
@@ -307,10 +307,10 @@ theorem exists_open_locus : ∀ (h h' M d : ℕ) (O : Type) [Ring O] (bar : O �
         simp only [x₂, y₂, Over.comp_left] at this ⊢
         rw [reassoc_of% this]
     · intro T g c' hdT hker ⟨w', actw', hpb, hzr⟩
-      obtain ⟨hl₂, hl₃⟩ := GlobalTheory.T.level_sections_formulas_of_idempotent_image_pullback h h' M O e jl n o κ S' T t z act g c' w' actw' hpb hzr
+      obtain ⟨hl₂, hl₃⟩ := _root_.GlobalTheory.ZRelLevs.zrel_levs h h' M O e jl n o κ S' T t z act g c' w' actw' hpb hzr
       obtain ⟨inc', pr', hinc', hpr', hip', hpi', hP', hl', -⟩ := hzr
       obtain ⟨ψ, ψ₂, hψ, hsq, hw', hlw, hact⟩ := hpb
-      obtain ⟨φ, φ₂, hφ, hsqφ, hiφ, hiφ₂⟩ := GlobalTheory.T.idempotent_endomorphism_image_commutes_base_change S' T g z.A G inc pr (act e) w'.A c'.A inc' pr' (actw' e)
+      obtain ⟨φ, φ₂, hφ, hsqφ, hiφ, hiφ₂⟩ := _root_.GlobalTheory.ImgPB.image_idem_pullback S' T g z.A G inc pr (act e) w'.A c'.A inc' pr' (actw' e)
         ψ ψ₂ hinc hpr hip hpi hinc' hpr' hip' hpi' hψ hsq (hact e)
       have hcP : LBIso c'.P (Pe.pull φ₂) := by
         have e₁ := GlobalTheory.ZM.SiegPull.lbIso_pull_comp hw' (inc' ⊗ₘ inc').left

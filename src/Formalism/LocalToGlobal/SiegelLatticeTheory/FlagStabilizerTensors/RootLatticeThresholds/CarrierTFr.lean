@@ -250,7 +250,7 @@ theorem exists_Cc_data : ∃ Cc : ℝ, ∀ {D : D7} (X : Formalism.L2.SG.HidaSet
         (towersOf X C u u' e j).base.π (towersOf X C u u' e j).base.π' Xo μ L st (l + 1) := by
   have hLAB : Formalism.FourierDecayAlt.JCT.LevelsActualBuilt := by
     first
-      | exact Formalism.FourierDecayAlt.P.levels_of_built_setting
+      | exact _root_.Formalism.FourierDecayAlt.P.JCTx5.levelsActualBuilt
       | exact Formalism.FourierDecayAlt.P.JCT.levelsActualBuilt_proof
       | exact Formalism.FourierDecayAlt.JCT.levelsActualBuilt
       | exact Formalism.FourierDecayAlt.P.levelsActualBuilt_proof

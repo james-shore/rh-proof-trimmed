@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FlagNilradicalFinrankAndAbsDetConj
 
 @[expose] public section
 
@@ -70,30 +71,12 @@ theorem measurable_modA (A : Matrix (Fin n) (Fin n) ℂ) : Measurable (modA (ε 
   exact (h1.comp (Measurable.of_eval fun i =>
     measurable_locSize_uMat n ε 1 (fun _ : Fin 1 => rk A) (W A) i)).ennreal_ofReal
 
-theorem detOn_pos_of_left_inv {f g : Matrix (Fin n) (Fin n) ℂ} (hgf : g * f = 1) (V : Submodule ℂ (Fin n → ℂ))
-    (hV : ∀ y ∈ V, f *ᵥ y ∈ V) : 0 < detOn f V := by
-  classical
-  have h : ∀ y ∈ V, Matrix.toLin' f y ∈ V := fun y hy => by
-    rw [Matrix.toLin'_apply]
-    exact hV y hy
-  unfold detOn
-  rw [dite_eq_left h]
-  refine norm_pos_iff.mpr fun h0 => ?_
-  obtain ⟨x, hx, hx0⟩ := SetLike.exists_of_lt (LinearMap.bot_lt_ker_of_det_eq_zero h0)
-  have h1 : f *ᵥ (x : Fin n → ℂ) = 0 := by
-    have := congrArg Subtype.val (LinearMap.mem_ker.mp hx)
-    simpa [Matrix.toLin'_apply] using this
-  have h2 : (x : Fin n → ℂ) = 0 := by
-    have := congrArg (g *ᵥ ·) h1
-    simpa [Matrix.mulVec_mulVec, hgf] using this
-  exact hx0 (by simpa using Subtype.ext h2)
-
 theorem modA_ne_zero (A : Matrix (Fin n) (Fin n) ℂ) {m : Formalism.REAL.UJ ε} (hm : m ∈ flagM ε (W A)) :
     modA A m ≠ 0 := by
   have hinv : (((m : (Matrix (Fin n) (Fin n) ℂ)ˣ)⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ) *
       uMat m = 1 := Units.inv_mul _
   have hd : ∀ i, 0 < detOn (uMat m) (W A i) := fun i =>
-    detOn_pos_of_left_inv hinv _ fun y hy => (hm i y hy).1
+    _root_.GlobalTheory.FlagModulus.detOn_pos hinv _ fun y hy => (hm i y hy).1
   have hτ : ∀ i : Fin 1, 0 < locSize (fun _ : Fin 1 => rk A) (W A) (uMat m) i := fun i =>
     Real.rpow_pos_of_pos (div_pos (hd _) (hd _)) _
   have hp : 0 < layerProd n 1 (fun _ : Fin 1 => rk A) (locSize (fun _ : Fin 1 => rk A) (W A) (uMat m)) id := by

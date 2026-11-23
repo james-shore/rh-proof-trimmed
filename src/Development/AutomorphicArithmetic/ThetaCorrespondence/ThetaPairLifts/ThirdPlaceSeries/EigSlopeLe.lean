@@ -85,7 +85,7 @@ theorem exists_finite_group_lev_char_slope : ∀ {D : D7} {L : SizeData₂ D} {h
           ((p.fw.e i f : (p.R.FW i).WK) : Fin (p.R.nW i) → D.what₂.LL) := fun u f => by
     rw [LinearEquiv.map_smul, Submodule.coe_smul, ← hχ u, algebraMap_smul]
   refine ⟨(p.F.lv2.lvl false).P, inferInstance, inferInstance, fun g => (p.O i).lev2 (g : p.P.Gp), χ, actLev_levB p i,
-    _root_.GlobalTheory.T.freePt_last_index_of_fnAlgClosed p i PP A M hp hi hG hW hH hF, le_of_eq ?_⟩
+    _root_.GlobalTheory.DefFree.free_base_alt p i PP A M hp hi hG hW hH hF, le_of_eq ?_⟩
   have hAB : ((eigSub (Xo := p.T.Q.Xo ((i : ℕ) + 1)) (c := p.T.Q.c)
         (fun g : (p.F.lv2.lvl false).P => (p.O i).lev2 (g : p.P.Gp)) χ).comap
         (cuspW (p.T.Q.Xo ((i : ℕ) + 1)) p.T.Q.c (p.T.U ((i : ℕ) + 1)) (Gk p i)).subtype).restrictScalars (𝓞 p.T.Q.c.F) =

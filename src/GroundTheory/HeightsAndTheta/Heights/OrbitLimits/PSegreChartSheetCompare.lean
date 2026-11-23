@@ -56,10 +56,7 @@ open ComplexSets Matrix Filter Topology
 
 namespace SegreChartSheetComparison
 
-theorem hessC_congr_germ {D : ℕ} {f g : (Fin D → ℂ) → ℝ} {y : Fin D → ℂ} (h : f =ᶠ[𝓝 y] g) :
-    ReciprocityTheory.AnForm.hessC f y = ReciprocityTheory.AnForm.hessC g y := by
-  unfold ReciprocityTheory.AnForm.hessC
-  rw [(h.fderiv (𝕜 := ℝ)).fderiv_eq (𝕜 := ℝ)]
+alias hessC_congr_germ := _root_.ReciprocityTheory.AnForm.A.hessC_congr'
 
 variable {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} [∀ k, Fintype (ι k)]
 

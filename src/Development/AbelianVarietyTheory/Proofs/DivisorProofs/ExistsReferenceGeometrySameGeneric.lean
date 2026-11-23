@@ -136,12 +136,12 @@ theorem exists_padic_similitude : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R 
         rwa [h b hb, uone] at this)
     have h2 := pow_gcd_eq_one.2 ⟨h1, ha⟩
     rwa [Nat.Coprime.gcd_eq_one (Nat.Coprime.pow_right r he), pow_one] at h2
-  obtain ⟨ζ, hζ, hζ'⟩ := GlobalTheory.T.exists_compatible_prime_power_roots p k
-  obtain ⟨ev, hev, hev'⟩ := GlobalTheory.T.exists_compatible_similitude_level_tower p D k Q act (fun r => W (p ^ r)) ζ amul hζ'
+  obtain ⟨ζ, hζ, hζ'⟩ := _root_.GlobalTheory.exists_compatible_primitive_prime_pow_roots p k
+  obtain ⟨ev, hev, hev'⟩ := _root_.GlobalTheory.TowerLev.exists_compatible p D k Q act (fun r => W (p ^ r)) ζ amul hζ'
     (fun r a b ha hb => lev (p ^ r) p (pow_pos hp.pos r) hp.pos a b ha hb) fun r => by
-      obtain ⟨f, hf⟩ := GlobalTheory.T.exists_level_evaluation_hom p D R b N hN3 hN S s o k x β hβ r
+      obtain ⟨f, hf⟩ := _root_.GlobalTheory.UPel.HT.PTors.exists_ev_pow p D R b N hN3 hN S s o k x β hβ r
       have hq : 0 < p ^ r := pow_pos hp.pos r
-      exact GlobalTheory.T.exists_level_pairing_eq_alt p D k Q act r (W (p ^ r)) (ζ r) (hζ r) (wmul _ hq) (wskew _ hq) (wadj _ hq) (wnd r) f hf
+      exact _root_.GlobalTheory.UPel.HT.FinLevSim.exists_level_pairing_eq p D k Q act r (W (p ^ r)) (ζ r) (hζ r) (wmul _ hq) (wskew _ hq) (wadj _ hq) (wnd r) f hf
   refine ⟨ζ, ev, hζ, hζ', fun r => (hev r).1.1, fun r => (hev r).1.2.1, fun r => (hev r).1.2.2.1,
     fun r => (hev r).1.2.2.2, hev', fun r y z => ?_⟩
   have hq : 0 < p ^ r := pow_pos hp.pos r

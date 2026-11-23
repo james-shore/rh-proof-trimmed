@@ -134,14 +134,14 @@ theorem label_data (hG : Top.Given) (hGl : Top.IsGlobal Xo l c Y) (𝔐 : HodgeC
   refine ⟨b, M, hflag, hb0, fun t => by simp [M, leadMinor_size_zero], fun m hm => ?_, ?_⟩
   · rw [hM m hm]
     have hli' : LinearIndependent ℂ fun j : Fin m => U (Fin.castLE hm j) 0 := hli.comp _ (Fin.castLE_injective hm)
-    refine ⟨tame_logdet L _ π ρ hρ hρ1 (fun j => hU _) hli' fun i hi => (ha i hi).1, fun h0 => ?_⟩
+    refine ⟨_root_.AnalyticReference.An.H.tame_logdet L _ π ρ hρ hρ1 (fun j => hU _) hli' fun i hi => (ha i hi).1, fun h0 => ?_⟩
     have : a₀ = 0 := by
       by_contra hne
       have hle := L.a_le
       have := (ha ⟨0, by omega⟩ (Nat.pos_of_ne_zero hne)).1
       omega
     subst this
-    exact pshAt0_logdet L _ π ρ hρ (fun j => hU _) hli'
+    exact _root_.AnalyticReference.An.H.pshAt0_logdet L _ π ρ hρ (fun j => hU _) hli'
   · filter_upwards [Metric.ball_mem_nhds (0 : Fin n → ℂ) hρ] with t ht hoff z hz
     have hu := HodgeMetric.uncentre_mem_ball (t₀ := 0) (t := t) hρ π (by simpa using ht)
     obtain ⟨h1, h2, h3, h4⟩ := hP _ hu

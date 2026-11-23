@@ -82,17 +82,7 @@ private theorem valAt'_resG_of_le {Y : Scheme.{0}} (x : Sp ℂ ⟶ Y) {U V : Y.O
   exact congrArg (fun s => (Scheme.ΓSpecIso (CommRingCat.of ℂ)).hom.hom s)
     (congrArg (fun φ => CommRingCat.Hom.hom φ f) (Scheme.Hom.map_appLE x h (homOfLE hVU).op))
 
-private theorem valAt'_app_eq_valAt'_comp_moduli {Y Z : Scheme.{0}} (x : Sp ℂ ⟶ Y) (φ : Y ⟶ Z) (U : Z.Opens) (f : Γ(Z, U)) :
-    valAt' x (φ ⁻¹ᵁ U) ((φ.app U).hom f) = valAt' (x ≫ φ) U f := by
-  unfold valAt'
-  by_cases hh : ⊤ ≤ x ⁻¹ᵁ φ ⁻¹ᵁ U
-  · have hh' : ⊤ ≤ (x ≫ φ) ⁻¹ᵁ U := hh
-    rw [dif_pos hh, dif_pos hh']
-    unfold valAt
-    rw [Scheme.Hom.comp_appLE]
-    rfl
-  · have hh' : ¬ ⊤ ≤ (x ≫ φ) ⁻¹ᵁ U := hh
-    rw [dite_eq_right hh, dite_eq_right hh']
+private alias valAt'_app_eq_valAt'_comp_moduli := _root_.GlobalTheory.valAt'_comp
 
 private theorem valAt'_constFn' {Y : Scheme.{0}} (y : Sp ℂ ⟶ Y) (q : Y ⟶ Sp ℂ) (hq : y ≫ q = 𝟙 _) (U : Y.Opens)
     (h : ⊤ ≤ y ⁻¹ᵁ U) (c : ℂ) : valAt' y U (constFn q U c) = c := by

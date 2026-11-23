@@ -43,6 +43,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalModelStructureMap
 import Development.AbelianVarietyTheory.Definitions.Divisors.RigidForFan
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsUniqueSpecializes
 
 @[expose] public section
 
@@ -72,11 +73,6 @@ theorem top_le_preimage_of_mem {A : Type} [CommRing A] [IsLocalRing A] {X : Sche
 theorem germ_resG {X : Scheme.{0}} {U V : X.Opens} (h : V ≤ U) (p : X) (hp : p ∈ V) (f : Γ(X, U)) :
     X.presheaf.germ V p hp (resG X h f) = X.presheaf.germ U p (h hp) f :=
   X.presheaf.germ_res_apply (homOfLE h) p hp f
-
-theorem resG_resG {X : Scheme.{0}} {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (f : Γ(X, U)) :
-    resG X h' (resG X h f) = resG X (h'.trans h) f := by
-  simp only [resG, ← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
 
 theorem eventually_zero {X : Scheme.{0}} {Ω : Type} [CommRing Ω] [IsDomain Ω] [IsLocalRing Ω] (x : Sp Ω ⟶ X)
     (hx : ∀ (O : X.Opens) (f : Γ(X, O)), ⊤ ≤ x ⁻¹ᵁ O → valR x O f = 0 → f = 0) (O : X.Opens) (f : Γ(X, O))
@@ -117,17 +113,17 @@ theorem eventually_zero {X : Scheme.{0}} {Ω : Type} [CommRing Ω] [IsDomain Ω]
   rw [valR_res ξ _ hξW₁, valR_res ξ _ hξW₁, valR_mul ξ _ (le_preimage_mono ξ (leOfHom iU) hξW₁),
     valR_res ξ _ (le_preimage_mono ξ (leOfHom iU) hξW₁), hf, zero_mul, hξ, valR_spMap_comp _ x U hxU] at hval
   have ha0 : a = 0 := hx U a hxU ((IsFractionRing.injective Ω (FractionRing Ω)) (by rw [← hval, map_zero]))
-  rw [ha0, map_zero, map_mul, resG_resG, resG_resG] at heq
+  rw [ha0, map_zero, map_mul, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG] at heq
   set O₃ : X.Opens := W₁ ⊓ X.basicOpen (s : Γ(X, U)) with hO₃
   have h₃ : O₃ ≤ W₁ := inf_le_left
   have hunit : IsUnit (resG X (h₃.trans ((leOfHom iU).trans inf_le_right)) (s : Γ(X, U))) := by
     have h0 : IsUnit (resG X (X.basicOpen_le (s : Γ(X, U))) (s : Γ(X, U))) :=
       RingedSpace.isUnit_res_basicOpen X.toLocallyRingedSpace.toRingedSpace (s : Γ(X, U))
-    rw [← resG_resG (X.basicOpen_le (s : Γ(X, U))) (show O₃ ≤ X.basicOpen (s : Γ(X, U)) from inf_le_right)]
+    rw [← _root_.GlobalTheory.Cartier.resG_resG (X.basicOpen_le (s : Γ(X, U))) (show O₃ ≤ X.basicOpen (s : Γ(X, U)) from inf_le_right)]
     exact h0.map _
   refine ⟨O₃, h₃.trans ((leOfHom iU).trans inf_le_left), top_le_preimage_of_mem ξ O₃ (show p ∈ O₃ from ⟨hpW₁, hps⟩), ?_⟩
   have := congrArg (resG X h₃) heq
-  rw [map_mul, resG_resG, resG_resG, map_zero] at this
+  rw [map_mul, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG, map_zero] at this
   exact (hunit.mul_left_eq_zero).mp this
 
 theorem valR_sub {C : Type} [CommRing C] {X : Scheme.{0}} (x : Sp C ⟶ X) (U : X.Opens) (h : ⊤ ≤ x ⁻¹ᵁ U)
@@ -181,10 +177,10 @@ theorem valR_der_eq (H : ∀ (O : X.Opens) (f : Γ(X, O)), ⊤ ≤ ξ ⁻¹ᵁ O
     (d : Fld X) (hd : IsField W d) {O O' : X.Opens} (f : Γ(X, O)) (f' : Γ(X, O')) (hOW : O ≤ W) (hO'W : O' ≤ W)
     (hO : ⊤ ≤ ξ ⁻¹ᵁ O) (hO' : ⊤ ≤ ξ ⁻¹ᵁ O') (e : valR ξ O f = valR ξ O' f') :
     valR ξ O (d O f) = valR ξ O' (d O' f') := by
-  have h2 := top_le_preimage_inf ξ hO hO'
+  have h2 := _root_.GlobalTheory.Specialise.le_preimage_inf ξ hO hO'
   obtain ⟨O₃, h₃, hO₃, hz⟩ := H (O ⊓ O') (resG X inf_le_left f - resG X inf_le_right f') h2
     (by rw [valR_sub ξ _ h2, valR_res ξ _ h2, valR_res ξ _ h2, e, sub_self])
-  rw [map_sub, resG_resG, resG_resG, sub_eq_zero] at hz
+  rw [map_sub, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG, sub_eq_zero] at hz
   rw [← valR_res ξ (h₃.trans inf_le_left) hO₃, ← valR_res ξ (h₃.trans inf_le_right) hO₃,
     ← hd.2.2 O O₃ _ hOW f, ← hd.2.2 O' O₃ _ hO'W f', hz]
 
@@ -216,7 +212,7 @@ theorem valDer_add (H : ∀ (O : X.Opens) (f : Γ(X, O)), ⊤ ≤ ξ ⁻¹ᵁ O 
     valDer ξ W hW d (a + b) = valDer ξ W hW d a + valDer ξ W hW d b := by
   obtain ⟨O, f, hOW, hO, ea⟩ := (mem_valField_iff ξ W hW a).mp a.2
   obtain ⟨O', f', hO'W, hO', eb⟩ := (mem_valField_iff ξ W hW b).mp b.2
-  have h2 := top_le_preimage_inf ξ hO hO'
+  have h2 := _root_.GlobalTheory.Specialise.le_preimage_inf ξ hO hO'
   have h2W : O ⊓ O' ≤ W := inf_le_left.trans hOW
   rw [valDer_eq H hW d hd (a + b) (resG X inf_le_left f + resG X inf_le_right f') h2W h2
       (by rw [valR_add ξ _ h2, valR_res ξ _ h2, valR_res ξ _ h2, ea, eb]; rfl),
@@ -230,7 +226,7 @@ theorem valDer_mul (H : ∀ (O : X.Opens) (f : Γ(X, O)), ⊤ ≤ ξ ⁻¹ᵁ O 
     valDer ξ W hW d (a * b) = (a : K) * valDer ξ W hW d b + (b : K) * valDer ξ W hW d a := by
   obtain ⟨O, f, hOW, hO, ea⟩ := (mem_valField_iff ξ W hW a).mp a.2
   obtain ⟨O', f', hO'W, hO', eb⟩ := (mem_valField_iff ξ W hW b).mp b.2
-  have h2 := top_le_preimage_inf ξ hO hO'
+  have h2 := _root_.GlobalTheory.Specialise.le_preimage_inf ξ hO hO'
   have h2W : O ⊓ O' ≤ W := inf_le_left.trans hOW
   have ea' : valR ξ (O ⊓ O') (resG X inf_le_left f) = a := by rw [valR_res ξ _ h2, ea]
   have eb' : valR ξ (O ⊓ O') (resG X inf_le_right f') = b := by rw [valR_res ξ _ h2, eb]

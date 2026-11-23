@@ -157,7 +157,7 @@ theorem kernelDegree_le_dieudonneColength_of_colength_eq (n : ℕ) : ∀ (G H : 
       have := (GlobalTheory.T.existsUnique_kernelOrder_pPowerDegree_isogeny p k G H q hq).unique he h0
       omega
     · obtain ⟨Q, q₁, q₁', r, h1, h2, hfr, hr, hns⟩ := exists_step (dualHom G H q) hB
-      have hg := GlobalTheory.T.pDivGroupIsogeny_height_eq_dual_sameDegree p k G H q hq
+      have hg := _root_.GlobalTheory.Dieu.height_eq_and_dual_isog p k G H q hq
       have hq₁ : IsIsog q₁ := ⟨1, q₁', by rw [pow_one]; exact h1, by rw [pow_one]; exact h2⟩
       have hrI : IsIsog r := (GlobalTheory.T.pDivisibleGroup_isogeny_basic_properties p k H.dual).2.2.1 Q G.dual q₁ r hq₁ (hr ▸ hg.2.1)
       obtain ⟨e₁, he₁⟩ := (GlobalTheory.T.existsUnique_kernelOrder_pPowerDegree_isogeny p k H.dual Q q₁ hq₁).exists
@@ -167,7 +167,7 @@ theorem kernelDegree_le_dieudonneColength_of_colength_eq (n : ℕ) : ∀ (G H : 
       have h1e := one_le_deg q₁ q₁' h1 h2 hns e₁ he₁
       have hL1 := (GlobalTheory.T.kernelDegree_le_dieudonneColength_of_heightOne p T k H.dual Q q₁ q₁' e₁ h1 h2 hfr he₁).2.1
       have hgr := GlobalTheory.T.pDivGroupIsogeny_height_eq_dual_sameDegree p k Q G.dual r hrI
-      have hg₁ := GlobalTheory.T.pDivGroupIsogeny_height_eq_dual_sameDegree p k H.dual Q q₁ hq₁
+      have hg₁ := _root_.GlobalTheory.Dieu.height_eq_and_dual_isog p k H.dual Q q₁ hq₁
       have hcomp : dualHom _ _ (dualHom G H q) = dualHom Q G.dual r ≫ dualHom H.dual Q q₁ := by
         rw [← hr]; rfl
       have hlen : Module.length (WittVector p k) (T.M G ⧸ LinearMap.range (T.map q)) =

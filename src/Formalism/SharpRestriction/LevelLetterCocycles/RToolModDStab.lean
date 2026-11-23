@@ -64,10 +64,7 @@ section DStab
 
 variable (W : LocWach PD LL O v n) (T : LocLat G Qp LL O)
 
-theorem γD_smul' (g : W.Gam) (a : LetA O n) (x : W.DD T) :
-    W.γD T g (a • x) = W.γA g a • W.γD T g x := by
-  show W.γD T g (a • x) = letγ (W.γ₀ g) a • W.γD T g x
-  rw [← algebraMap_smul W.EE a x, W.γD_smul, W.γE_ext, algebraMap_smul]
+alias γD_smul' := _root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear
 
 theorem rToolMod_geom (a : LetA O n) (m : ℕ) : ∃ g : LetA O n, (1 + a) ^ m = 1 + a * g := by
   induction m with

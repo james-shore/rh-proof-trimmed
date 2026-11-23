@@ -49,10 +49,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal TensorProduct Module UpperTheory.V.Loc Topology
 
-private theorem killed (l : ℕ) [Fact l.Prime] (M : Type) [AddCommGroup M] [Module ℤ_[l] M] [Finite M] :
-    ∃ r : ℕ, 0 < r ∧ ∀ x : M, (l : ℤ_[l]) ^ r • x = 0 :=
-  _root_.UpperTheory.Reformulated.B.Qe12.killed l M
-
 private theorem H0dual_eq {G A V : Type} [Group G] [CommRing A] [AddCommGroup V] [Module A V] (χ : G →* Aˣ)
     (ρ : Representation A G V) : H0dual χ ρ = (coSub χ ρ).dualAnnihilator := by
   ext f
@@ -93,7 +89,7 @@ private def modRep (n : ℕ) {G Q V : Type} [Group G] [CommRing Q] [AddCommGroup
 theorem UpperTheory.finite_level_of_finite_level_mod :
     ∀ (l : ℕ) [Fact l.Prime] (G : Type) [Group G] [TopologicalSpace G] (χ : G →* ℤ_[l]ˣ) (d : ℕ), FinLevelMod l G χ d → FinLevel l G χ d := by
   intro l _ G _ _ χ d h M _ _ _ _ _ ρ hρ
-  obtain ⟨r, hr, hk⟩ := killed l M
+  obtain ⟨r, hr, hk⟩ := _root_.UpperTheory.Reformulated.B.Qe12.killed l M
   have hk' : ∀ x : M, (l ^ r) • x = 0 := fun x => by
     rw [← Nat.cast_smul_eq_nsmul ℤ_[l], Nat.cast_pow]; exact hk x
   haveI : NeZero (l ^ r) := ⟨pow_ne_zero _ (Fact.out : l.Prime).ne_zero⟩

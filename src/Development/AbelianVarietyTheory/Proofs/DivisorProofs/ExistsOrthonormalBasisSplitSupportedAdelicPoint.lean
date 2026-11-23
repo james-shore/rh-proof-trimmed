@@ -68,7 +68,7 @@ theorem exists_std_vertex : ∀ (D : D7) (V : HSp D) (Λ : Submodule (𝓞 D.hos
   obtain ⟨x, hxx⟩ := GlobalTheory.T.exists_finiteAdelicUnitary_moves_selfDualLattice D V fr0 Λ hfr0 hΛ
   have hx : x ∈ GfC V := hxx.1
   have hxL := hxx.2
-  obtain ⟨γ, h, k, hr⟩ := GlobalTheory.T.idempotent_support_hermitian_decomposition D V fr0 S hS x hx
+  obtain ⟨γ, h, k, hr⟩ := _root_.GlobalTheory.FunObj.StdReps.exists_rep_std D V fr0 S hS x hx
   have hγ := hr.1
   have hh := hr.2.1
   have hsupp := hr.2.2.1
@@ -102,7 +102,7 @@ theorem exists_std_vertex : ∀ (D : D7) (V : HSp D) (Λ : Submodule (𝓞 D.hos
             ((Formalism.IndefR.Lev.finE V k).1 * ((Formalism.IndefR.Lev.finE V k)⁻¹).1) * (γ⁻¹).1.map (eToEAf D) := by
               simp only [Matrix.mul_assoc]
         _ = _ := by rw [hKK, Matrix.mul_one]
-    have s1 := GlobalTheory.T.mem_completedLattice_columnLattice_mul_iff D γ fr0 v
+    have s1 := _root_.GlobalTheory.LatMulAd.mem_hatL_colLat_mul D γ fr0 v
     have s2 := h1 ((γ⁻¹).1.map (eToEAf D) *ᵥ v)
     have s3 := hxL (((Formalism.IndefR.Lev.finE V k)⁻¹).1 *ᵥ ((γ⁻¹).1.map (eToEAf D) *ᵥ v))
     rw [key] at s3

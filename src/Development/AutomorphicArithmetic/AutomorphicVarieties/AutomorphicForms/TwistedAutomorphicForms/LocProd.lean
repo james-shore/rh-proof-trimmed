@@ -35,6 +35,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHeckeCharTrivOnRealSubfieldInfinityType
 
 @[expose] public section
 
@@ -53,17 +54,7 @@ private noncomputable def UpperTheory.V.Af.Tw.infPart (K : Type) [Field K] [Numb
   map_one' := rfl
   map_mul' _ _ := rfl
 
-private theorem UpperTheory.V.Af.Tw.loc_same {K : Type} [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
-    (x : (v.adicCompletion K)ˣ) : (localIdele K v x).val.2 v = x := by
-  classical
-  simp only [localIdele, finiteSingle, Units.coe_map, MonoidHom.coe_mk, OneHom.coe_mk]
-  exact RestrictedProduct.mulSingle_eq_same _ _ _
-
-private theorem UpperTheory.V.Af.Tw.loc_ne {K : Type} [Field K] [NumberField K] {v w : HeightOneSpectrum (𝓞 K)}
-    (h : w ≠ v) (x : (v.adicCompletion K)ˣ) : (localIdele K v x).val.2 w = 1 := by
-  classical
-  simp only [localIdele, finiteSingle, Units.coe_map, MonoidHom.coe_mk, OneHom.coe_mk]
-  exact RestrictedProduct.mulSingle_eq_of_ne _ _ h
+private alias UpperTheory.V.Af.Tw.loc_ne := _root_.GlobalTheory.Mem.Chr.AntiExist.loc_ne
 
 theorem UpperTheory.V.Af.Tw.locProd :
     UpperTheory.V.Af.Tw.LocProd := by
@@ -99,7 +90,7 @@ theorem UpperTheory.V.Af.Tw.locProd :
         ∏ w ∈ aboveF F v, (localIdele L w (y w)).val.2 w'
       by_cases hw' : HeightOneSpectrum.under (𝓞 F) w' = v
       · rw [Finset.prod_eq_single w']
-        · rw [UpperTheory.V.Af.Tw.loc_same, hy]
+        · rw [_root_.GlobalTheory.Mem.Chr.AntiExist.loc_self, hy]
         · intro b _ hb
           exact UpperTheory.V.Af.Tw.loc_ne (Ne.symm hb) _
         · intro h
@@ -110,5 +101,5 @@ theorem UpperTheory.V.Af.Tw.locProd :
   · intro hunr hx w hw
     subst hw
     unfold IsUnifAt at hx ⊢
-    rw [hy, UpperTheory.V.Af.Tw.loc_same, GlobalTheory.UpIdeleMod.valued_finiteCompletionMap, hunr w rfl, pow_one]
+    rw [hy, _root_.GlobalTheory.Mem.Chr.AntiExist.loc_self, GlobalTheory.UpIdeleMod.valued_finiteCompletionMap, hunr w rfl, pow_one]
     exact hx

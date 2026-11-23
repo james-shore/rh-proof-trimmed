@@ -55,13 +55,13 @@ namespace UpperTheory.Et
 structure SlopeTestRemainingChoices : Prop where
   sheaf : type_of% @GlobalTheory.T.etaleSheafSections_ext_and_glue
   resol : type_of% @GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness
-  freeS : type_of% @GlobalTheory.T.free_sections_ext_res_map
+  freeS : type_of% @_root_.GlobalTheory.EtC.free_hom_sections
   evs : type_of% @GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties
   rep : type_of% @GlobalTheory.T.cocycle_ev_d_eq_zero_and_mk_eq_zero_iff
   sec : type_of% @GlobalTheory.T.degreeZeroSectionClass_properties
-  aw : type_of% @GlobalTheory.T.cup_eq_class_of_isAW
-  twist : type_of% @GlobalTheory.T.tateTwist_sections_locally_generated
-  pair : type_of% @GlobalTheory.T.tateTwistResolutionPairing_spec_and_cup_unique
+  aw : type_of% @_root_.GlobalTheory.EtC.Pair.cup_spec_full
+  twist : type_of% @_root_.GlobalTheory.EtC.twist_sections
+  pair : type_of% @_root_.GlobalTheory.EtC.TwPairUniq.main
   unit : type_of% @GlobalTheory.T.tateTwistUnitClass_rootClass_spec
 
 section Site

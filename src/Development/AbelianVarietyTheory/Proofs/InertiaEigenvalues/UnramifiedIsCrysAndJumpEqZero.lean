@@ -142,7 +142,7 @@ theorem exists_witt_matrix
     have := congrArg c (map_zlW p (frobenius R p) z)
     exact this
   obtain ⟨m, hm, h1⟩ := exists_fixer_dvd ρ hopen M hM hJ 1
-  obtain ⟨W₁, hW₁, hW₁m, hW₁g⟩ := GlobalTheory.T.exists_unit_matrix_coboundary_of_fixed_frobenius_pow p G R ρ m hm (hfin m hm) r
+  obtain ⟨W₁, hW₁, hW₁m, hW₁g⟩ := _root_.GlobalTheory.UnramifiedHilbertNinety.exists_matrix_coboundary p G R ρ m hm (hfin m hm) r
     ((c.comp (zlW p R)).mapMatrix.toMonoidHom.comp M)
     (fun g h i j => by
       change ρ g (c (zlW p R (M h i j))) = c (zlW p R (M h i j))
@@ -268,7 +268,7 @@ theorem isCrys_and_jump_eq_zero : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) 
       exact (ιA_zlW AI Ti (M g i j)).symm
     · ext i j
       exact (P.PD_actB K g _).trans (AI.ιA_act g _).symm
-  refine ⟨GlobalTheory.T.isCrys_of_split_alt (P.PD K) T.ρ e (AI.ιA.mapMatrix W) ?_ hB, ?_⟩
+  refine ⟨_root_.GlobalTheory.SplitCrys.isCrys_of_split (P.PD K) T.ρ e (AI.ιA.mapMatrix W) ?_ hB, ?_⟩
   · rw [← RingHom.map_det]
     exact hW.map _
   · let f : Ainf l →+* P.R.BdR := ((P.PD K).ι : P.R.B →+* P.R.BdR).comp AI.ιA
@@ -276,7 +276,7 @@ theorem isCrys_and_jump_eq_zero : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) 
       change (P.PD K).ι (AI.ιA a) ∈ _
       rw [P.PD_ι]
       exact AI.ainf_image_mem_filtration_zero K a
-    refine GlobalTheory.T.period_data_comparison (P.PD K) T.ρ e (f.mapMatrix W) (f.mapMatrix W⁻¹) ?_ (fun i j => hf _) (fun i j => hf _)
+    refine _root_.GlobalTheory.SplitJump.jump_eq_zero (P.PD K) T.ρ e (f.mapMatrix W) (f.mapMatrix W⁻¹) ?_ (fun i j => hf _) (fun i j => hf _)
       fun g => ?_
     · rw [← map_mul, Matrix.mul_nonsing_inv _ hW, map_one]
     · have hι : ∀ c : ℚ_[l], ((P.PD K).ι : P.R.B →+* P.R.BdR) (algebraMap ℚ_[l] P.R.B c) =

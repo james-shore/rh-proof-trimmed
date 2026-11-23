@@ -53,10 +53,10 @@ theorem bessel_convergence : Formalism.FourierDecayAlt.ThreeDimData.BeConv := be
 theorem norm_identity_smooth : Formalism.FourierDecayAlt.ThreeDimData.NormIdSm :=
   PI.WBL.NIS.normIdSm_of_growth growth_spherical_bound growth_group_bound
 
-theorem schur_hermitian : Formalism.FourierDecayAlt.ThreeDimData.SchurH := PI.WBL.NIS.schurH
+alias schur_hermitian := _root_.PI.WBL.NIS.schurH
 
 theorem bessel_function_bound : Formalism.FourierDecayAlt.ThreeDimData.BeBessel := PI.WBL.S5.beBessel_of growth_spherical_bound
 
-theorem psi_constant : Formalism.FourierDecayAlt.ThreeDimData.PsiConst := PI.WBL.S5.psiConst
+alias psi_constant := _root_.PI.WBL.S5.psiConst
 
 end Formalism.FourierDecayAlt.P

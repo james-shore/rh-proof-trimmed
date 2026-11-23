@@ -84,9 +84,3 @@ theorem cycle_pair_empty (V W : Type) (D : Set (List V × List W)) (p : ℕ) (c 
 
 end GlobalTheory.SeqCx
 
-section
-open GlobalTheory.SeqCx
-theorem _root_.GlobalTheory.T.pair_nil_hbd_vbd_eq_zero_of_cycle : ∀ (V W : Type) (D : Set (List V × List W)) (p : ℕ) (c : List V →₀ ℤ), c ∈ chains {l | (l, ([] : List W)) ∈ D} p → bd V c = 0 → Finsupp.mapDomain (fun l => (l, ([] : List W))) c ∈ chains2 D p 0 ∧ hbd V W (Finsupp.mapDomain (fun l => (l, ([] : List W))) c) = 0 ∧ vbd V W (Finsupp.mapDomain (fun l => (l, ([] : List W))) c) = 0 := by
-  first
-  | exact @GlobalTheory.SeqCx.cycle_pair_empty
-end

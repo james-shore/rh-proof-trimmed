@@ -99,7 +99,7 @@ theorem exists_generic_jacobian_data_iterated : ∀ (Λ : Type) [CommRing Λ] [I
   let e := MvPolynomial.sumAlgEquiv Λ τ σ
   have eC : ∀ a : Λ, e (MvPolynomial.C a) = MvPolynomial.C (MvPolynomial.C a) := fun a => by
     simp [e, MvPolynomial.sumAlgEquiv_C_inl]
-  obtain ⟨h, f, s, g, hg, hf, hx, hdet⟩ := GlobalTheory.T.exists_local_generators_jacobian_det_not_mem Λ (τ ⊕ σ) (Q.comap e)
+  obtain ⟨h, f, s, g, hg, hf, hx, hdet⟩ := _root_.GlobalTheory.exists_generic_jacobian_data_of_prime Λ (τ ⊕ σ) (Q.comap e)
     (fun a ha => hQ a (by rw [← eC]; exact ha))
   refine ⟨h, fun j => e (f j), s, e g, hg, hf, fun x hxQ => ?_, ?_⟩
   · have h4 := hx (e.symm x) (by simpa [Ideal.mem_comap] using hxQ)

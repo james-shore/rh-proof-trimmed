@@ -83,14 +83,6 @@ theorem actB_one_tmul (T : LocLat (Gl l) ℚ_[l] K O) (g : Gl l) (t : ↥T.L.T) 
     actB (sQ l) T g ((1 : OB l O) ⊗ₜ[O] t) = (1 : OB l O) ⊗ₜ[O] T.actT g t := by
   simp only [actB, TWact, TensorProduct.map_tmul, AlgHom.toLinearMap_apply, map_one]
 
-theorem smul_cancel (T : LocLat (Gl l) ℚ_[l] K O) (c : ℕ) {u v : TW (OB l O) T}
-    (h : ((l : O) ^ c) • u = ((l : O) ^ c) • v) : u = v := by
-  have e : ∀ w : TW (OB l O) T, ((l : O) ^ c) • w = ((l : OB l O) ^ c) • w := by
-    intro w
-    rw [← algebraMap_smul (OB l O) ((l : O) ^ c) w, map_pow, map_natCast]
-  rw [e, e] at h
-  exact (isUnit_l_OB.pow c).smul_left_cancel.1 h
-
 theorem step_mul {a e : ℕ} [NeZero a] [NeZero e] [TameDescentExponentData K l e a] (t : Wq l a →ₐ[ℤ_[l]] O)
     (ϖ : PiSys l e) (hF : GlobalTheory.Published.FontaineBcris) (hl2 : l ≠ 2) {ι : Type} [Fintype ι] [DecidableEq ι]
     {η H : ℕ} (D : BKDat O K l e a ι η H) (T : LocLat (Gl l) ℚ_[l] K O) (R : GalDat t ϖ (sQ l) D T)
@@ -112,7 +104,7 @@ theorem cob_of (T : LocLat (Gl l) ℚ_[l] K O) (b : TW (OB l O) T) (c : ℕ) (X 
   haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ_[l] K).injective
   have hne : (l : K) ^ c ≠ 0 := pow_ne_zero _ (Nat.cast_ne_zero.2 hl.out.ne_zero)
   intro g n x hx
-  apply smul_cancel T c
+  apply _root_.GlobalTheory.BKGal.Count.smul_cancel T c
   rw [smul_comm ((l : O) ^ c) ((l : O) ^ n), hX g, ← TensorProduct.tmul_smul, ← TensorProduct.tmul_smul]
   congr 1
   apply Subtype.ext

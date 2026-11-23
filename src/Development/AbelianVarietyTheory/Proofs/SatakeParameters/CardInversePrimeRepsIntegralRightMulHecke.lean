@@ -144,17 +144,6 @@ theorem Hk.mul {n j : ℕ} {g k₁ k₂ : GL (Fin n) K} (h : Hk O p j g) (h₁ :
     congr 1
     ring
 
-theorem intM_div_iff (hp : Irreducible p) {m n : ℕ} (z : Matrix (Fin m) (Fin n) O) :
-    IntM O ((algebraMap O K p)⁻¹ • z.map (algebraMap O K)) ↔ z.map (residue O) = 0 := by
-  have h0 : algebraMap O K p ≠ 0 := (map_ne_zero_iff _ (IsFractionRing.injective O K)).2 hp.ne_zero
-  rw [← Matrix.ext_iff]
-  refine forall₂_congr fun i j => ?_
-  rw [Matrix.map_apply, Matrix.zero_apply, residue_eq_zero_iff, hp.maximalIdeal_eq, Ideal.mem_span_singleton',
-    Matrix.smul_apply, Matrix.map_apply, smul_eq_mul]
-  refine exists_congr fun a => ?_
-  rw [eq_inv_mul_iff_mul_eq₀ h0, ← map_mul, (IsFractionRing.injective O K).eq_iff, mul_comm]
-
-
 variable (O) in
 def sec (a : ResidueField O) : O := (residue_surjective a).choose
 
@@ -175,16 +164,16 @@ theorem existsUnique_yw (hp : Irreducible p) {m n : ℕ} {y : Matrix (Fin m) (Fi
   have e : ∀ w, IntM O (y - yw K p w) ↔ w = z.map (residue O) := fun w => by
     have : y - yw K p w = (algebraMap O K p)⁻¹ • (z - w.map (sec O)).map (algebraMap O K) := by
       rw [Matrix.map_sub _ (map_sub _), smul_sub, hz, smul_smul, inv_mul_cancel₀ h0, one_smul, yw]
-    rw [this, intM_div_iff hp, Matrix.map_sub _ (map_sub _), map_sec, sub_eq_zero, eq_comm]
+    rw [this, _root_.GlobalTheory.SplitHecke.Cosets.intM_inv_smul_iff hp, Matrix.map_sub _ (map_sub _), map_sec, sub_eq_zero, eq_comm]
   simp only [e, existsUnique_eq]
 
 theorem card_inversePrimeReps_integral_right_mul_hecke [Finite (ResidueField O)] (hp : Irreducible p) {m n j : ℕ} (hj : j ≤ n) {a : GL (Fin n) K}
     (ha : Hk O p j a) : Nat.card {w : Matrix (Fin m) (Fin n) (ResidueField O) // IntM O (yw K p w * a.1)} =
       Nat.card (ResidueField O) ^ (j * m) := by
   obtain ⟨A, hA⟩ := intM_iff.1 ha.1
-  rw [← GlobalTheory.T.natCard_left_kernel_matrices_eq_pow _ m n j _ (GlobalTheory.T.finrank_reduction_range_add_corank O K p hp n j a A hj ha hA)]
+  rw [← _root_.GlobalTheory.natCard_matrices_mul_eq_zero _ m n j _ (_root_.GlobalTheory.SplitHecke.finrank_range_reduction O K p hp n j a A hj ha hA)]
   refine Nat.card_congr (Equiv.subtypeEquivRight fun w => ?_)
-  rw [yw, ← hA, Matrix.smul_mul, ← Matrix.map_mul, intM_div_iff hp, Matrix.map_mul, map_sec]
+  rw [yw, ← hA, Matrix.smul_mul, ← Matrix.map_mul, _root_.GlobalTheory.SplitHecke.Cosets.intM_inv_smul_iff hp, Matrix.map_mul, map_sec]
 
 theorem intM_tr {m n : ℕ} (w : Matrix (Fin m) (Fin n) (ResidueField O)) (a : GL (Fin m) K) :
     IntM O (a.1 * yw K p w) ↔ IntM O (yw K p wᵀ * (tr a).1) := by
@@ -255,7 +244,7 @@ theorem suppAt_of {V : HSp D} {g : GA D V}
 
 theorem suppAt_one (V : HSp D) : SuppAt e V 1 := suppAt_of (by rw [mt_one])
 
-theorem suppAt_inv {V : HSp D} {g : GA D V} (h : SuppAt e V g) : SuppAt e V g⁻¹ := suppAt_of (off_smul_mt_inv h)
+alias suppAt_inv := _root_.GlobalTheory.SplitHecke.Stab.suppAt_inv
 
 theorem suppAt_mul {V : HSp D} {g g' : GA D V} (h : SuppAt e V g) (h' : SuppAt e V g') : SuppAt e V (g * g') :=
   suppAt_of (by rw [mt_mul, ← Matrix.smul_mul, off_smul_mt h, Matrix.smul_mul, Matrix.one_mul, off_smul_mt h'])

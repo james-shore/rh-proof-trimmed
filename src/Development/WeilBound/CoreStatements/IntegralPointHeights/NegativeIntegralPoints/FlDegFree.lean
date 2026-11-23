@@ -88,7 +88,7 @@ open GroundTheory.Heights₂.Heights.LowerBoundFree
 variable {Ψ : Type} [Fintype Ψ] [DecidableEq Ψ] {N : ℕ} {K : Type}
 
 theorem arith [Fintype K] [Nonempty K] (j : K → FlBlock Ψ N) (hj : IsChain j) :
-    IsArithVar (PPart j) (cellDim j + 1) := GlobalTheory.T.flag_chain_arith_variety Ψ N K j hj
+    IsArithVar (PPart j) (cellDim j + 1) := _root_.GlobalTheory.CompanionTheory.Ar.Top.FlDeg.isArithVar_pPart Ψ N K j hj
 
 theorem fibreLin [Fintype K] [DecidableEq K] (j : K → FlBlock Ψ N) (hj : IsChain j) (k₀ : K)
     (hmax : ∀ k, ((j k).2 : ℕ) ≤ (j k₀).2) (hne : ∃ k, k ≠ k₀) :
@@ -110,7 +110,7 @@ theorem coeff_formPoly_sym {σ : Type} [Fintype σ] [DecidableEq σ] (n : ℕ) (
     (hsym : ∀ (π : Equiv.Perm (Fin n)) (w : Fin n → σ), a (w ∘ π) = a w) (w₀ : Fin n → σ) (m : σ →₀ ℕ)
     (hm : ∀ p, m p = (Finset.univ.filter fun r => w₀ r = p).card) :
     AddMonoidAlgebra.coeff (PB.formPoly n a) m * ∏ p, ((m p).factorial : ℝ) = (n.factorial : ℝ) * a w₀ :=
-  GlobalTheory.T.symmetric_form_polynomial_coeff σ n a hsym w₀ m hm
+  _root_.GlobalTheory.CompanionTheory.Ar.Top.FlDeg.CoeffSym.coeff_formPoly_mul σ n a hsym w₀ m hm
 
 theorem toWt_injective (Ψ : Type) (N : ℕ) :
     Function.Injective (PB.toWt : MvPolynomial (Ψ × Fin N) ℝ →ₐ[ℝ] MvPolynomial (Ψ × Fin N) ℝ) := GlobalTheory.T.weight_map_injective Ψ N
@@ -433,13 +433,13 @@ theorem alg_const (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N : ℕ) (D : ℕ)
     (h : PB.toWt (PB.formPoly D a) = C c * GroundTheory.Heights₂.Heights.antisymDelta Ψ N) :
     c * ∏ _τ : Ψ, ∏ i : Fin N, ∏ k : Fin N, (if i < k then ((k : ℝ) - (i : ℝ)) else 1) = (D.factorial : ℝ) := by
   have hG : PB.formPoly D a = C c * gapDelta Ψ N := by
-    apply toWt_injective Ψ N
-    rw [h, map_mul, toWt_gapDelta]
+    apply _root_.GlobalTheory.CompanionTheory.Ar.Top.FlDeg.toWt_leftInverse_injective Ψ N
+    rw [h, map_mul, _root_.GlobalTheory.CompanionTheory.Ar.Top.FlDeg.toWt_gapDelta_eq_antisymDelta]
     simp [PB.toWt]
   have h2 := coeff_formPoly_sym D a hsym w₀ (rhoM Ψ N) (fun p => by
     rw [hcnt p]
     rfl)
-  rw [hG, coeff_C_mul, coeff_gapDelta, h1, prod_rhoM] at h2
+  rw [hG, coeff_C_mul, _root_.GlobalTheory.CompanionTheory.Ar.Top.FlDeg.coeff_rhoM_gapDelta, h1, _root_.GlobalTheory.CompanionTheory.Ar.Top.FlDeg.prod_rhoM_factorial] at h2
   simpa using h2
 
 open GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights in

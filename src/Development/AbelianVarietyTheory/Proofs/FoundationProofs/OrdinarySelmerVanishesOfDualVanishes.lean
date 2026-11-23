@@ -51,7 +51,7 @@ theorem grZero_of_grZero_dual1 : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → �
     Nf e S A W → GrZero (dual1 W) A → GrZero W A := by
   intro hL l _ Ω _ _ _ e S A W hN hD
   by_contra hW
-  obtain ⟨c, hc, hm⟩ := GlobalTheory.T.exists_dualSelmer_classes_unbounded_order hL l Ω e S A W hN hW
-  exact GlobalTheory.T.dualSelmer_unbounded_order_nonzero_ordinaryClass hL l Ω e S A W hN c hc hm hD
+  obtain ⟨c, hc, hm⟩ := _root_.GlobalTheory.Ord2.GwCount.dual_classes_unbounded hL l Ω e S A W hN hW
+  exact _root_.GlobalTheory.Ord2.gw_limit hL l Ω e S A W hN c hc hm hD
 
 end GlobalTheory.Ord2

@@ -54,8 +54,8 @@ namespace GlobalTheory.CompanionTheory.SiegelEisHalf
 theorem eisHalf : EisHalf := by
   unfold SiegelEisensteinSeries.EisHalf
   intro F E _ _ _ _ _ σ B n Y r s hB hn hY χ hχ c hc b K a hb hK ha s₁ f hf
-  obtain ⟨Ê, t₁, hsum, hdiff⟩ := GlobalTheory.T.eisenstein_series_continuation F E σ B n Y r s hB hn hY b K a hb hK ha χ s₁ f hf
-  obtain ⟨t₀, h23⟩ := GlobalTheory.T.eisenstein_vertical_bound F E σ B n Y r s hB hn hY b K a hb hK ha χ s₁ f hf
+  obtain ⟨Ê, t₁, hsum, hdiff⟩ := _root_.GlobalTheory.CompanionTheory.SiegelEis.eis_half_plane F E σ B n Y r s hB hn hY b K a hb hK ha χ s₁ f hf
+  obtain ⟨t₀, h23⟩ := _root_.GlobalTheory.CompanionTheory.EisHalf.eis_half_plane F E σ B n Y r s hB hn hY b K a hb hK ha χ s₁ f hf
   obtain ⟨t, ht₀, ht₁⟩ : ∃ t : ℝ, t₀ ≤ t ∧ t₁ ≤ t := ⟨max t₀ t₁, le_max_left _ _, le_max_right _ _⟩
   have hsum' : ∀ z : ℂ, t < z.re → ∀ x : GlobalTheory.ThK.Dbl.G2 σ Y,
       HasSum (GlobalTheory.ThK.Dbl.eisTerm (GlobalTheory.ThK.Dbl.flat a f s₁ z) x) (Ê z x) :=

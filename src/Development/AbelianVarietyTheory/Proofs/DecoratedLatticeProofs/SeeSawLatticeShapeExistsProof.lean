@@ -67,7 +67,7 @@ namespace GlobalTheory.SeeSaw.ShapeExProof
 
 theorem shapeEx : ∀ D : D7, GlobalTheory.SeeSaw.ShapeEx D := by
   intro D c v k _ _ _ _ ι o hc hdisj hNT hpre hNv hgP hLZ
-  obtain ⟨N0, M0, β₀, hN0, hgood0, hsplit0, hglued0⟩ := GlobalTheory.T.exists_lattices_goodPosition_all_places D c v k ι o hc hNT hpre hLZ
+  obtain ⟨N0, M0, β₀, hN0, hgood0, hsplit0, hglued0⟩ := _root_.GlobalTheory.GoodPos.exists_goodAt D c v k ι o hc hNT hpre hLZ
   have key : ∃ (N : ∀ j, Lat (c.V j)) (M : ∀ j ρ h, Lat (c.bes j ρ h).V₀),
       (∀ j, j < D.R.m → IsSelfDualC (c.V j) (N j) ∧ ∀ x ∈ v.gP, latV (c.V j) (N j) (· = x) = latV (c.V j) (v.N j) (· = x)) ∧
       (∀ j ρ h, ∀ x ∈ v.gP, latV _ (M j ρ h) (· = x) = latV _ (o.M j ρ h) (· = x)) ∧
@@ -99,10 +99,10 @@ theorem shapeEx : ∀ D : D7, GlobalTheory.SeeSaw.ShapeEx D := by
             (SplitAt { v with N := N0 } { o with M := M0, β₀ := β₀ } x → SplitAt { v with N := N } { o with M := M } x)) := by
         intro x
         refine ⟨fun hx => ?_, fun hx => ?_⟩
-        · have := GlobalTheory.T.goodPosition_splitLines_read_completions_at_place D c v k ι o N M x (fun j hj => ⟨hNv j hj, (hN j hj).1, (hN j hj).2.1 x hx⟩)
+        · have := _root_.GlobalTheory.LocCongr.goodAt_splitAt_congr D c v k ι o N M x (fun j hj => ⟨hNv j hj, (hN j hj).1, (hN j hj).2.1 x hx⟩)
             (fun j ρ h => ⟨hsdM j ρ h, (hM j ρ h).1, (hM j ρ h).2.1 x hx⟩)
           exact ⟨fun g => let g' := this.1 g; ⟨g'.1, g'.2⟩, fun s => let s' := this.2 s; ⟨s'.1, s'.2⟩⟩
-        · have := GlobalTheory.T.goodPosition_splitLines_read_completions_at_place D c { v with N := N0 } k ι { o with M := M0, β₀ := β₀ } N M x
+        · have := _root_.GlobalTheory.LocCongr.goodAt_splitAt_congr D c { v with N := N0 } k ι { o with M := M0, β₀ := β₀ } N M x
             (fun j hj => ⟨hN0 j hj, (hN j hj).1, (hN j hj).2.2 x hx⟩)
             (fun j ρ h => ⟨hsdM0 j ρ h, (hM j ρ h).1, (hM j ρ h).2.2 x hx⟩)
           exact ⟨fun g => let g' := this.1 g; ⟨g'.1, g'.2⟩, fun s => let s' := this.2 s; ⟨s'.1, s'.2⟩⟩

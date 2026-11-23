@@ -73,13 +73,6 @@ theorem mem_upq_iff {e : Ix p q ≃ Fin n} {ε : Fin n → Bool} (h : BlockOrd e
   have := (Matrix.reindex e e).injective.eq_iff (a := Yᴴ * Jm p q + Jm p q * Y) (b := 0)
   exact this.symm
 
-theorem Jm_herm (ε : Fin n → Bool) : (Formalism.REAL.Jm ε)ᴴ = Formalism.REAL.Jm ε := by
-  unfold Formalism.REAL.Jm
-  rw [Matrix.diagonal_conjTranspose]
-  congr 1
-  funext a
-  by_cases h : ε a <;> simp [h]
-
 theorem inG_of_J {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) ℂ}
     (h : Formalism.REAL.Jm ε * Xᴴ * Formalism.REAL.Jm ε = -X) : Formalism.REAL.inG ε X := by
   unfold Formalism.REAL.inG
@@ -93,7 +86,7 @@ theorem inG_cpart1 (ε : Fin n → Bool) (Z : Matrix (Fin n) (Fin n) ℂ) :
     Formalism.REAL.inG ε (Formalism.REAL.cpart1 ε Z) := by
   apply inG_of_J
   unfold Formalism.REAL.cpart1
-  rw [conjTranspose_smul, conjTranspose_sub, conjTranspose_mul, conjTranspose_mul, Jm_herm,
+  rw [conjTranspose_smul, conjTranspose_sub, conjTranspose_mul, conjTranspose_mul, _root_.Formalism.REAL.Jm_conjTranspose,
     conjTranspose_conjTranspose]
   simp only [Matrix.mul_smul, Matrix.smul_mul, mul_sub, sub_mul, mul_assoc]
   rw [← mul_assoc (Formalism.REAL.Jm ε) (Formalism.REAL.Jm ε), Formalism.REAL.Jm_mul_self, one_mul, mul_one]
@@ -104,7 +97,7 @@ theorem inG_cpart2 (ε : Fin n → Bool) (Z : Matrix (Fin n) (Fin n) ℂ) :
     Formalism.REAL.inG ε (Formalism.REAL.cpart2 ε Z) := by
   apply inG_of_J
   unfold Formalism.REAL.cpart2
-  rw [conjTranspose_smul, conjTranspose_add, conjTranspose_mul, conjTranspose_mul, Jm_herm,
+  rw [conjTranspose_smul, conjTranspose_add, conjTranspose_mul, conjTranspose_mul, _root_.Formalism.REAL.Jm_conjTranspose,
     conjTranspose_conjTranspose]
   simp only [Matrix.mul_smul, Matrix.smul_mul, mul_add, add_mul, mul_assoc]
   rw [← mul_assoc (Formalism.REAL.Jm ε) (Formalism.REAL.Jm ε), Formalism.REAL.Jm_mul_self, one_mul, mul_one]

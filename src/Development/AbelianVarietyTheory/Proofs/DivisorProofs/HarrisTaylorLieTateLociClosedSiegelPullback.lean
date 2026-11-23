@@ -57,9 +57,9 @@ theorem lieGeom_locus_closed : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
   intro p _ D R _ b N hN3 hNp h M B _ ζ S s₁ t c e he hK X _ πX AX _ _ φX φ₂X actX ηX hpb hsq hros heta
   have hab : IsAbelianScheme AX := GlobalTheory.PolPull.isAbelianScheme_of_isGrpPullback c.ab hpb
   obtain ⟨Z₁, i₁, hi₁, hZ₁⟩ := lieHer_closed b (πX ≫ t) AX hab.smooth actX
-  obtain ⟨o, ho⟩ := GlobalTheory.T.exists_harrisTaylorPreObject_of_siegelPullback p D R b N h M B ζ S s₁ t c e he hK X πX AX φX φ₂X actX ηX hpb hsq hros heta
+  obtain ⟨o, ho⟩ := _root_.GlobalTheory.UPel.HT.exists_preEta_of_siegPull p D R b N h M B ζ S s₁ t c e he hK X πX AX φX φ₂X actX ηX hpb hsq hros heta
   obtain ⟨U, hU, hUx⟩ := PreEta.exists_clopen_geomAt p D R b N hN3 hNp X (πX ≫ t) o
-  obtain ⟨Z, j, hj, hZ⟩ := GlobalTheory.T.closedImmersion_restrict_clopen_factorization i₁ hi₁ U hU
+  obtain ⟨Z, j, hj, hZ⟩ := _root_.GlobalTheory.clopen_cut_closedImmersion i₁ hi₁ U hU
   refine ⟨Z, j, hj, fun T g => ?_⟩
   rw [hZ T g]
   apply and_congr
@@ -67,8 +67,8 @@ theorem lieGeom_locus_closed : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
     · rintro ⟨y, rfl⟩ R' _ β x hx
       exact (hZ₁ R' β (x ≫ y ≫ i₁) (by simpa only [Category.assoc] using hx)).1 ⟨x ≫ y, by simp⟩
     · intro H
-      refine GlobalTheory.T.exists_factor_closedImmersion_of_affine_points i₁ hi₁ g fun R' _ x => ?_
-      obtain ⟨β, hβ⟩ := lieOc_exists_spMap (x ≫ g ≫ πX ≫ t)
+      refine _root_.GlobalTheory.factor_closedImmersion_of_affine_points i₁ hi₁ g fun R' _ x => ?_
+      obtain ⟨β, hβ⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (x ≫ g ≫ πX ≫ t)
       exact (hZ₁ R' β (x ≫ g) (by simpa only [Category.assoc] using hβ)).2 (H R' β x hβ)
   · constructor
     · intro hg k _ _ x β _
@@ -78,7 +78,7 @@ theorem lieGeom_locus_closed : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : T
     · intro H
       rintro _ ⟨τ, rfl⟩
       obtain ⟨k, _, _, x, hx⟩ := GlobalTheory.FinEt.exists_algClosed_point T τ
-      obtain ⟨β, hβ⟩ := lieOc_exists_spMap (x ≫ g ≫ πX ≫ t)
+      obtain ⟨β, hβ⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (x ≫ g ≫ πX ≫ t)
       have hG := (hUx k (x ≫ g)).2 ((ho k (x ≫ g)).2 (H k x β hβ))
       obtain ⟨u, hu⟩ : τ ∈ Set.range x.base := by rw [hx]; rfl
       exact hG ⟨u, by simp [hu]⟩

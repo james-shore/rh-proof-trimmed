@@ -84,15 +84,6 @@ variable {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ)
 theorem hf_transpose (a v : Fin g → ℂ) : star v ⬝ᵥ Hmᵀ *ᵥ a = hermForm Hm a v := by
   rw [hermForm, mulVec_transpose, dotProduct_comm, ← dotProduct_mulVec]
 
-theorem hf_add_left (a b v : Fin g → ℂ) : hermForm Hm (a + b) v = hermForm Hm a v + hermForm Hm b v := by
-  simp only [hermForm, add_dotProduct]
-
-theorem hf_add_right (a u v : Fin g → ℂ) : hermForm Hm a (u + v) = hermForm Hm a u + hermForm Hm a v := by
-  simp only [hermForm, star_add, mulVec_add, dotProduct_add]
-
-theorem hf_smul_left (t : ℂ) (a v : Fin g → ℂ) : hermForm Hm (t • a) v = t * hermForm Hm a v := by
-  simp only [hermForm, smul_dotProduct, smul_eq_mul]
-
 theorem eq_zero_of_im (hpos : ∀ z, z ≠ 0 → 0 < (hermForm Hm z z).re) {S : Set (Fin g → ℂ)}
     (hS : Submodule.span ℝ S = ⊤) {d : Fin g → ℂ} (h : ∀ a ∈ S, (hermForm Hm a d).im = 0) : d = 0 := by
   have key : ∀ z, (hermForm Hm z d).im = 0 := by
@@ -101,11 +92,11 @@ theorem eq_zero_of_im (hpos : ∀ z, z ≠ 0 → 0 < (hermForm Hm z z).re) {S : 
     induction hz using Submodule.span_induction with
     | mem u hu => exact h u hu
     | zero => simp [hermForm]
-    | add a b _ _ ha hb => rw [hf_add_left, add_im, ha, hb, add_zero]
-    | smul t a _ ha => rw [← Complex.coe_smul, hf_smul_left, im_ofReal_mul, ha, mul_zero]
+    | add a b _ _ ha hb => rw [_root_.GlobalTheory.AppellHumbertTrivial.hermForm_add_left, add_im, ha, hb, add_zero]
+    | smul t a _ ha => rw [← Complex.coe_smul, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left, im_ofReal_mul, ha, mul_zero]
   by_contra hd
   have h1 := key (I • d)
-  rw [hf_smul_left, I_mul_im] at h1
+  rw [_root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left, I_mul_im] at h1
   exact (hpos d hd).ne' h1
 
 theorem discrete_of_integral (hpos : ∀ z, z ≠ 0 → 0 < (hermForm Hm z z).re) (Λ : AddSubgroup (Fin g → ℂ))
@@ -154,27 +145,11 @@ theorem contDiffAt_of_entire [FiniteDimensional ℂ V] {F : V → ℂ} (hF : Dif
   rw [this]
   exact (h3.comp e.contDiff).contDiffAt
 
-open ReciprocityTheory.ChartRestriction.G.PullbackSections (mD mD_coe lD_eq) in
-theorem polyDeriv_eq_mD {θ : V → ℂ} {x : V} (hθ : ContDiffAt ℂ ω θ x) {T₁ : Type} (P : MvPolynomial T₁ ℂ)
-    (u : T₁ → V) :
-    I2.polyDeriv P u θ x = ∑ m ∈ P.support, P.coeff m * mD θ x ((Finsupp.toMultiset m).map u) := by
-  unfold I2.polyDeriv
-  refine Finset.sum_congr rfl fun m _ => ?_
-  congr 1
-  have hL : (((Finsupp.toMultiset m).toList.map u : List V) : Multiset V) =
-      (Finsupp.toMultiset m).map u := by
-    rw [← Multiset.map_coe, Multiset.coe_toList]
-  rw [← hL, mD_coe hθ, lD_eq θ x _ (n := Multiset.card (Finsupp.toMultiset m))
-    (by rw [List.length_map, Multiset.length_toList])]
-  congr 1
-  funext k
-  simp [List.get_eq_getElem]
-
 theorem polyDeriv_rename [FiniteDimensional ℂ V] {θ : V → ℂ} (hθ : Differentiable ℂ θ) (x : V) {T₁ T₂ : Type}
     (ρ : T₁ → T₂) (hρ : Function.Injective ρ) (P : MvPolynomial T₁ ℂ) (v : T₂ → V) :
     I2.polyDeriv (MvPolynomial.rename ρ P) v θ x = I2.polyDeriv P (v ∘ ρ) θ x := by
   have h := contDiffAt_of_entire hθ x
-  rw [polyDeriv_eq_mD h, polyDeriv_eq_mD h, MvPolynomial.support_rename_of_injective hρ,
+  rw [_root_.GlobalTheory.Dict.ThVal.polyDeriv_eq_mD h, _root_.GlobalTheory.Dict.ThVal.polyDeriv_eq_mD h, MvPolynomial.support_rename_of_injective hρ,
     Finset.sum_image (fun a _ b _ h => Finsupp.mapDomain_injective hρ h)]
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [MvPolynomial.coeff_rename_mapDomain ρ hρ, ← Finsupp.toMultiset_map, Multiset.map_map]
@@ -228,7 +203,7 @@ theorem mem_perGrp_of_integral (hs : IsSympl X bas) (hx : x ∈ X.dom) {L : Lt E
   let φ : L →+ ℤ := AddMonoidHom.mk' (fun u => k u u.2) fun a b => by
     have h : (hermForm (ThFr.Hm X bas idx x) (pv X idx x ((a : Fin r → E) + b)) v).im = k _ (a + b).2 :=
       hk _ (a + b).2
-    rw [pv_add', hf_add_left, add_im, hk _ a.2, hk _ b.2] at h
+    rw [pv_add', _root_.GlobalTheory.AppellHumbertTrivial.hermForm_add_left, add_im, hk _ a.2, hk _ b.2] at h
     exact_mod_cast h.symm
   obtain ⟨u₀, hu₀, hφ⟩ := SelfTorus.perf hs hL φ
   have h0 : v + pv X idx x u₀ = 0 := by
@@ -238,7 +213,7 @@ theorem mem_perGrp_of_integral (hs : IsSympl X bas) (hx : x ∈ X.dom) {L : Lt E
     have h1 : (hermForm (ThFr.Hm X bas idx x) (pv X idx x u) (pv X idx x u₀)).im = (EF X u u₀ : ℝ) :=
       im_hermForm_Hm idx hs hx u u₀
     have h2 : ((k u hu : ℤ) : ℚ) = EF X u₀ u := hφ ⟨u, hu⟩
-    rw [hf_add_right, add_im, hk u hu, h1, TensLat.EF_swap, ← h2]
+    rw [_root_.GlobalTheory.SelfCube.herm_add_right, add_im, hk u hu, h1, TensLat.EF_swap, ← h2]
     push_cast
     ring
   rw [eq_neg_of_add_eq_zero_left h0]
@@ -341,7 +316,7 @@ theorem exists_jet_ne_zero (hs : IsSympl X bas) (hd : x ∈ X.dom) {L : Lt E r} 
         cexp (Real.pi * (star (pv X idx x u) ⬝ᵥ _ *ᵥ z) +
           Real.pi / 2 * (star (pv X idx x u) ⬝ᵥ _ *ᵥ pv X idx x u)) * θ z
       have h := congrFun (hθ.2 u hu) z
-      simp only [Pi.smul_apply, smul_eq_mul, fock, hx_eq_hermForm, hf_add_left, hf_smul_left] at h
+      simp only [Pi.smul_apply, smul_eq_mul, fock, hx_eq_hermForm, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_add_left, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left] at h
       have he : eps1 X w u ≠ 0 := exp_ne_zero _
       rw [Function.leftInverse_invFun hinj, hf_transpose, hf_transpose, ← h, Complex.exp_neg]
       have hA : ∀ A B : ℂ, (Real.pi : ℂ) * A + Real.pi / 2 * B = ((1 : ℕ) : ℂ) * Real.pi * (A + 1 / 2 * B) :=
@@ -357,7 +332,7 @@ theorem exists_jet_ne_zero (hs : IsSympl X bas) (hd : x ∈ X.dom) {L : Lt E r} 
           refine mem_perGrp_of_integral idx hs hd hL fun u hu => ?_
           obtain ⟨k, hk⟩ := h _ ⟨_, Submodule.smul_mem_smul hMP hu, rfl⟩
           change (hermForm _ (pv X idx x ((M : 𝓞 E) • u)) v).im = _ at hk
-          rw [Nat.cast_smul_eq_nsmul, pv_nsmul, hf_smul_left, ← ofReal_natCast, im_ofReal_mul] at hk
+          rw [Nat.cast_smul_eq_nsmul, pv_nsmul, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left, ← ofReal_natCast, im_ofReal_mul] at hk
           exact ⟨k, mul_left_cancel₀ hMR hk⟩
         refine ⟨t, (mem_smul_iff hL hM cj hcj hPQ h1 h2 ht).1 fun u hu => ?_, rfl⟩
         obtain ⟨k, hk⟩ := h _ ⟨u, hu, rfl⟩
@@ -393,7 +368,7 @@ theorem exists_jet_ne_zero (hs : IsSympl X bas) (hd : x ∈ X.dom) {L : Lt E r} 
     have e5 := congrFun hc z
     rw [Pi.smul_apply, smul_eq_mul] at e5
     rw [_root_.mul_assoc, ← e5, fock, ← _root_.mul_assoc, ← Complex.exp_add, hf_transpose, hx_eq_hermForm,
-      hf_add_left, hf_smul_left]
+      _root_.GlobalTheory.AppellHumbertTrivial.hermForm_add_left, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left]
     congr 2
     push_cast
     ring
@@ -473,7 +448,7 @@ theorem exists_thGen_ne_zero (hC : Formalism.MainNotions.ModuliIntegralCharts.H1
   rintro a n hD - - hdeg ⟨P, hP, hP0⟩
   letI : Algebra c.F ℂ := σ.toAlgebra
   obtain ⟨W, Dc, A, θ, v, κ, he, -, -, hL, hmk, hA, hrd, hθ, hmean, hv, hκ⟩ :=
-    GlobalTheory.T.exists_analyticData_unitFrame_framedPoint E H Dw l Xo c σ r U hσ hU hr a n hD k x hx
+    _root_.GlobalTheory.Dict.VSetup.exists_setup E H Dw l Xo c σ r U hσ hU hr a n hD k x hx
   have hM : l.M ≠ 0 := by have := l.three_le; omega
   have hME : (l.M : E) ≠ 0 := Nat.cast_ne_zero.2 hM
   have hθ0 : θ ≠ 0 := by

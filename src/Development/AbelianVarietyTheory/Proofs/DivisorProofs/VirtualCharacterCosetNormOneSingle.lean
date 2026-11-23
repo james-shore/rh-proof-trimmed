@@ -128,7 +128,7 @@ theorem int_comb_unit_norm_single {ι G : Type} [Fintype ι] [Fintype G] (l : �
     have := hsum
     rw [← one_mul (Fintype.card G : ℂ)] at this
     exact mul_right_cancel₀ hG (by simpa using this)
-  obtain ⟨i₀, -, hi₀⟩ := GlobalTheory.T.cyclotomic_sum_normSq_eq_one_single_nonzero l ζ hl hζ (Quotient S) Finset.univ n h3
+  obtain ⟨i₀, -, hi₀⟩ := _root_.GlobalTheory.cyclo_sum_mul_star_eq_one_single l ζ hl hζ (Quotient S) Finset.univ n h3
   refine ⟨rep i₀, C i₀, fun g => ?_⟩
   rw [hF, Finset.sum_eq_single i₀]
   · intro i _ hi
@@ -180,13 +180,13 @@ theorem virt_coset_norm_one_single : ∀ (G Γ : Type) [Group G] [Finite G] [Gro
   have hζ := Complex.isPrimitiveRoot_exp (Nat.card Γ) hp.ne_zero
   have hnorm : ∀ t, ∑ g, f t g * star (f t g) = Fintype.card G := by
     intro t
-    rcases GlobalTheory.T.clifford_semidirect_primeIndex_irreducibleCharacter G Γ φ s hp hs t.1 (hT t).1 with h | ⟨-, h⟩
+    rcases _root_.GlobalTheory.Shin.clifford_prime_index G Γ φ s hp hs t.1 (hT t).1 with h | ⟨-, h⟩
     · exact absurd h (hT t).2
     · rw [finsum_eq_sum_of_fintype, Nat.card_eq_fintype_card] at h
       exact h
   have horth : ∀ t u, ∑ g, f t g * star (f u g) ≠ 0 → R t u := by
     intro t u h
-    rcases GlobalTheory.T.semidirect_coset_pairing_eq_zero_or_twist G Γ φ s hp hs t.1 u.1 (hT t).1 (hT u).1 with h' | h'
+    rcases _root_.GlobalTheory.Shin.coset_pair_eq_zero_or_twist G Γ φ s hp hs t.1 u.1 (hT t).1 (hT u).1 with h' | h'
     · rw [finsum_eq_sum_of_fintype] at h'
       exact absurd h' h
     · exact h'
@@ -208,7 +208,7 @@ theorem virt_coset_norm_one_single : ∀ (G Γ : Type) [Group G] [Finite G] [Gro
   obtain ⟨t₀, e, he⟩ := int_comb_unit_norm_single (Nat.card Γ) hp _ hζ f (fun t => c t.1) R hR
     (Nat.cast_ne_zero.2 Fintype.card_ne_zero) hnorm horth hrel hsum
   refine ⟨t₀.1, e, (hT t₀).1, ?_, fun δ => by rw [hX', he]⟩
-  rcases GlobalTheory.T.clifford_semidirect_primeIndex_irreducibleCharacter G Γ φ s hp hs t₀.1 (hT t₀).1 with h | ⟨h, -⟩
+  rcases _root_.GlobalTheory.Shin.clifford_prime_index G Γ φ s hp hs t₀.1 (hT t₀).1 with h | ⟨h, -⟩
   · exact absurd h (hT t₀).2
   · exact h
 

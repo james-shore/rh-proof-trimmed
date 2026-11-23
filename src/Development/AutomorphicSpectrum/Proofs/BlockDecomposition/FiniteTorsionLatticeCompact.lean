@@ -71,11 +71,6 @@ theorem relIndex_ne_zero_of_cover {G : Type} [Group G] (M W : Subgroup G) (S : S
   have : Finite (W ⧸ M.subgroupOf W) := Finite.of_injective ψ hinj
   exact Subgroup.index_ne_zero_of_finite
 
-theorem exists_pow_mem {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] (L : Subgroup G)
-    (hL : IsOpen (L : Set G)) (t : G) (hc : IsCompact (closure (Subgroup.zpowers t : Set G))) :
-    ∃ k : ℕ, 0 < k ∧ t ^ k ∈ L :=
-  _root_.Bl.FirstLemmaC.goal1 L hL t hc
-
 theorem cover_cosets {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     (L T Γ : Subgroup G) (C : Set G) (hLo : IsOpen (L : Set G)) (hTc : IsClosed (T : Set G)) (hΓ : Γ ≤ T)
     (hC : IsCompact C) (hcov : ∀ t ∈ T, ∃ γ ∈ Γ, ∃ c ∈ C, t = γ * c) :
@@ -114,7 +109,7 @@ theorem cptPart_le_powRad {G : Type} [Group G] [TopologicalSpace G] [IsTopologic
     cptPart T ≤ powRad T (T ⊓ L) hcomm := by
   rw [cptPart, Subgroup.closure_le]
   rintro t ⟨ht, hc⟩
-  obtain ⟨k, hk, hkL⟩ := exists_pow_mem L hLo t hc
+  obtain ⟨k, hk, hkL⟩ := _root_.Bl.FirstLemmaC.goal1 L hLo t hc
   exact ⟨ht, k, hk, T.pow_mem ht k, hkL⟩
 
 theorem inf_le_cptPart' {G : Type} [Group G] [TopologicalSpace G] [T2Space G] (T L : Subgroup G)

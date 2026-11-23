@@ -429,6 +429,6 @@ theorem phase_main : PhaseWellDef := by
 
 end Phase
 
-theorem phaseWellDef : Formalism.DoubleCosetMeasures.PhaseWellDef := Phase.phase_main
+alias phaseWellDef := _root_.Formalism.DoubleCosetMeasures.P.Phase.phase_main
 
 end Formalism.DoubleCosetMeasures.P

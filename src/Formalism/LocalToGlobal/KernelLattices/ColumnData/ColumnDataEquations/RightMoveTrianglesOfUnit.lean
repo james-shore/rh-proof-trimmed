@@ -79,7 +79,7 @@ theorem tripleData_of {B : Cd.Base D cc δ} (hL : B.LatAll) {N N' : ℕ}
     (a1 : TaylorLogMetric.admitted D N N' L₁ L₁') (a2 : TaylorLogMetric.admitted D N N' L₂ L₂') (a3 : TaylorLogMetric.admitted D N N' L₃ L₃') :
     TripleData (Ker.formV (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') (TaylorLogMetric.al D B.tor)
       (TaylorLogMetric.La D B.tor L₁ L₁') (TaylorLogMetric.La D B.tor L₂ L₂') (TaylorLogMetric.La D B.tor L₃ L₃') :=
-  { herm := formV_herm' _ _ _ _
+  { herm := _root_.Formalism.L2.Ker.Cd.formV_herm _ _ _ _
     sd₁ := (hL.1 N N' _ _ a1).1
     sd₂ := (hL.1 N N' _ _ a2).1
     sd₃ := (hL.1 N N' _ _ a3).1

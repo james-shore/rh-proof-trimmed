@@ -79,7 +79,7 @@ theorem evc_symm (o : SiegPre h M ζ s) {Y : Over S} (a b : Y ⟶ o.A) :
   simp only [evc, c]
 
 theorem additive (o : SiegPre h M ζ s) : IsAdditive o.P ∧ IsAdditive (swap o.P) :=
-  additive_of_cube GlobalTheory.CubeTop.cubeTheorem o.ab o.ab o.isLB o.rig₁ o.rig₂
+  additive_of_cube _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds o.ab o.ab o.isLB o.rig₁ o.rig₂
 
 theorem evc_mul_left (o : SiegPre h M ζ s) {Y : Over S} (a a' b : Y ⟶ o.A) :
     evc o.isLB (a * a') b = evc o.isLB a b + evc o.isLB a' b :=

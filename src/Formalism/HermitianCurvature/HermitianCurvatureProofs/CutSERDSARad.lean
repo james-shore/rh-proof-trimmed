@@ -145,7 +145,7 @@ theorem rds_vab_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
           -L.c ⟨i, h⟩ * rdsVp L Y i 1 0).1 Φ : RadSp k r z z' π π') =
           Y • ((rdsVp L Y i 0 0).1 Φ) + X.op ⟨i, h⟩ 0 ((rdsVp L Y i 0 0).1 Φ) -
             X.op ⟨i, h⟩ 1 ((rdsVp L Y i 1 0).1 Φ) := by
-        rw [rds_fst_add, rds_fst_mul, rds_fst_mul, rds_fst_add, rds_fst_alg, rdsR_fst_neg, hp, hc]
+        rw [rds_fst_add, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, rds_fst_add, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_algebraMap, rdsR_fst_neg, hp, hc]
         simp only [LinearMap.add_apply, Module.End.mul_apply, LinearMap.neg_apply, Module.algebraMap_end_apply,
           sub_eq_add_neg]
       rw [e, Submodule.coe_sub, Submodule.coe_add, Submodule.coe_smul, rds_op_coe, rds_op_coe, hA, hB]
@@ -154,7 +154,7 @@ theorem rds_vab_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
       rfl
     · have e : ((L.ci ⟨i, h⟩ * rdsVp L Y i 0 0).1 Φ : RadSp k r z z' π π') =
           X.op ⟨i, h⟩ 2 ((rdsVp L Y i 0 0).1 Φ) := by
-        rw [rds_fst_mul, hci]
+        rw [_root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, hci]
         rfl
       rw [e, rds_op_coe, hA]
       funext c g
@@ -192,7 +192,7 @@ theorem rds_vabm_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
           -L.cb ⟨i, h⟩ * rdsVvp L Y i 1 0).1 Φ : RadSp k r z z' π π') =
           Y • ((rdsVvp L Y i 0 0).1 Φ) - X.op ⟨i, h⟩ 3 ((rdsVvp L Y i 0 0).1 Φ) -
             X.op ⟨i, h⟩ 4 ((rdsVvp L Y i 1 0).1 Φ) := by
-        rw [rds_fst_add, rds_fst_mul, rds_fst_mul, rdsR_fst_sub, rds_fst_alg, rdsR_fst_neg, hp, hc]
+        rw [rds_fst_add, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, rdsR_fst_sub, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_algebraMap, rdsR_fst_neg, hp, hc]
         simp only [LinearMap.add_apply, LinearMap.sub_apply, Module.End.mul_apply, LinearMap.neg_apply,
           Module.algebraMap_end_apply, sub_eq_add_neg]
       rw [e, Submodule.coe_sub, Submodule.coe_sub, Submodule.coe_smul, rds_op_coe, rds_op_coe, hA, hB]
@@ -201,7 +201,7 @@ theorem rds_vabm_ind (hL : IsActualLevel X L) (Y : ℂ) : ∀ i : ℕ, i ≤ r �
       rfl
     · have e : ((L.cbi ⟨i, h⟩ * rdsVvp L Y i 0 0).1 Φ : RadSp k r z z' π π') =
           X.op ⟨i, h⟩ 5 ((rdsVvp L Y i 0 0).1 Φ) := by
-        rw [rds_fst_mul, hci]
+        rw [_root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, hci]
         rfl
       rw [e, rds_op_coe, hA]
       funext c g
@@ -224,10 +224,10 @@ theorem rds_cprod (hL : IsActualLevel X L) : ∀ (ls : List (Fin r)) (Φ : RadSp
     have hc : (L.c a).1 = X.op a 1 := by rw [hL.2.2.1 a]; rfl
     have hcb : (L.cb a).1 = X.op a 4 := by rw [hL.2.2.2.2.1 a]; rfl
     refine ⟨?_, ?_⟩
-    · rw [List.map_cons, List.prod_cons, rds_fst_mul, hc, Module.End.mul_apply, rds_op_coe, h1]
+    · rw [List.map_cons, List.prod_cons, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, hc, Module.End.mul_apply, rds_op_coe, h1]
       funext c g
       simp only [crd, opL, cOp, List.map_cons, List.prod_cons, smul_smul]
-    · rw [List.map_cons, List.prod_cons, rds_fst_mul, hcb, Module.End.mul_apply, rds_op_coe, h2]
+    · rw [List.map_cons, List.prod_cons, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, hcb, Module.End.mul_apply, rds_op_coe, h2]
       funext c g
       simp only [crd, opL, cbOp, List.map_cons, List.prod_cons, smul_smul]
 
@@ -253,9 +253,9 @@ theorem spectral_radial_action : RDSARad := by
     rw [← List.ofFn_eq_map, List.prod_ofFn, map_prod]
     rfl
   refine ⟨?_, ?_⟩
-  · rw [R.LevelData.Ahat, rds_fst_mul, Module.End.mul_apply, hDr, R.LevelData.Ar, rds_tprod,
+  · rw [R.LevelData.Ahat, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, Module.End.mul_apply, hDr, R.LevelData.Ar, rds_tprod,
       (rds_vab_ind X L hL y P.r le_rfl Φ).1]
-  · rw [R.LevelData.Ahatv, rds_fst_mul, Module.End.mul_apply, hDrb, R.LevelData.Avr, rds_tvprod,
+  · rw [R.LevelData.Ahatv, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, Module.End.mul_apply, hDrb, R.LevelData.Avr, rds_tvprod,
       (rds_vabm_ind X L hL y P.r le_rfl Φ).1]
 
 end Formalism.FourierDecayAlt.P.CutSE

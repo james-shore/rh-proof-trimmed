@@ -64,13 +64,9 @@ namespace PositivityTheory.Rg.Sw.Glob.DerOneBH
 
 variable {D : D7} {n : ℕ}
 
-theorem mt_mul' (V : HSp D) (a b : GA D V) :
-    Formalism.L2.Theta.mt V (a * b) = Formalism.L2.Theta.mt V a * Formalism.L2.Theta.mt V b := by
-  simp only [Formalism.L2.Theta.mt, map_mul, Units.val_mul]
-
 theorem shiftPt (V : HSp D) (x k : GA D V) (y : Mx D V.rank n) :
     HMul.hMul (mt V (x * k⁻¹)⁻¹) y = HMul.hMul (mt V k) (HMul.hMul (mt V x⁻¹) y) := by
-  rw [mul_inv_rev, inv_inv, mt_mul', Matrix.mul_assoc]
+  rw [mul_inv_rev, inv_inv, _root_.GlobalTheory.BesselCompare.mt_mul, Matrix.mul_assoc]
 
 theorem leftInv_absTheta (V : HSp D) (φ : Mx D V.rank n → ℂ) : LeftInv (GQ V) (GlobalTheory.SiegelFormula.absTheta V φ) := by
   intro γ hγ h

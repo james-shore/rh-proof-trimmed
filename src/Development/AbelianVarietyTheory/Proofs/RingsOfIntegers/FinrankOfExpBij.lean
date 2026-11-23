@@ -231,7 +231,7 @@ theorem expBij_of_indep (hL : Laws) {A : PolAV (Spec (CommRingCat.of (FractionRi
 theorem main : Laws → UUStatement → ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V],
     UnifPowSt3 (I := maximalIdeal V) := by
   intro hL hU V _ _ _ D A G _ _ U j D' A' G' _ _ pD pA pG
-  obtain ⟨U', wL, hyp⟩ := GlobalTheory.T.uniformisation_power_without_expansion hL.globalFns V _ j D D' A A' G G' pD pA pG U.toUnifPre
+  obtain ⟨U', wL, hyp⟩ := _root_.GlobalTheory.PowUnif.main hL.globalFns V _ j D D' A A' G G' pD pA pG U.toUnifPre
   have key : ∀ k : ℕ, 1 ≤ k → U'.ExpBij k := by
     intro k hk
     obtain ⟨hbox, hspan⟩ := GenericBoxSpan.main hL V _ j D D' A A' G G' pD pA pG U' U.toUnifPre wL hyp k hk

@@ -65,7 +65,7 @@ theorem HasRep.baseChange (S : Scheme.{0}) (A S' S'' : Over S) [GrpObj A] (g : �
 
   have sq := IsPullback.of_hasPullback b h
   refine ⟨pullback b h, pullback.snd b h, ev P (fst A (pullback b h)) (snd A (pullback b h) ≫ pullback.fst b h),
-    GlobalTheory.T.rep_ev_of_isPullback S A B S' S'' (pullback b h) b P h _ _ hRep sq, ?_⟩
+    _root_.GlobalTheory.DualCon.Rep.baseChange S A B S' S'' (pullback b h) b P h _ _ hRep sq, ?_⟩
 
   exact Good.good_of_isPullback' (sq.map (Over.forget S)) hGood
 

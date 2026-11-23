@@ -92,18 +92,11 @@ theorem q_pow (T : Tower p Ω) : ∀ m, T.qq m ^ (p ^ m) = T.qq 0
   | 0 => by simp
   | m + 1 => by rw [pow_succ', pow_mul, T.qpow, q_pow T m]
 
-theorem qO_unit : IsUnit (qO p) := by
-  have : IsUnit (HahnSeries.single (1 : ℤ) (1 : ℤ_[p]) : Lau p) := by
-    refine ⟨⟨HahnSeries.single (1 : ℤ) (1 : ℤ_[p]), HahnSeries.single (-1 : ℤ) (1 : ℤ_[p]), ?_, ?_⟩, rfl⟩
-    · rw [HahnSeries.single_mul_single]; simp
-    · rw [HahnSeries.single_mul_single]; simp
-  exact this.map _
-
 theorem qq_ne_zero (T : Tower p Ω) (m : ℕ) : T.qq m ≠ 0 := by
   intro h
   have h0 := q_pow T m
   rw [h, zero_pow (pp_ne m), T.q0] at h0
-  exact ((qO_unit (p := p)).map (algebraMap (O0 p) Ω)).ne_zero h0.symm
+  exact ((_root_.GlobalTheory.KumDlog.isUnit_qO (p := p)).map (algebraMap (O0 p) Ω)).ne_zero h0.symm
 
 theorem zeta_mem (T : Tower p Ω) (m : ℕ) : T.ζ m ∈ integralClosure (O0 p) Ω := by
   refine IsIntegral.of_pow (Nat.pos_of_ne_zero (pp_ne (p := p) m)) ?_

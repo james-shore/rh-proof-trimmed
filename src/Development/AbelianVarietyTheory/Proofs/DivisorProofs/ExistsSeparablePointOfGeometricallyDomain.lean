@@ -85,7 +85,7 @@ theorem core (k F : Type) [Field k] [Field F] [Algebra k F] (s : Finset F)
     (B : Subalgebra k F) (hB : B.FG) : Nonempty (B →ₐ[k] SeparableClosure k) := by
   obtain ⟨T, rfl⟩ := hB
   haveI : IsIntegrallyClosed (Algebra.adjoin k (s : Set F)) := isIntegrallyClosed_adjoin k F s hs.1
-  obtain ⟨θ, hθ, H, hH0, U, V, hUV, hT⟩ := GlobalTheory.T.exists_primitive_element_separability_certificate k F s hs hsep T
+  obtain ⟨θ, hθ, H, hH0, U, V, hUV, hT⟩ := _root_.GlobalTheory.SepPoint.exists_primitive_sep_certificate k F s hs hsep T
   obtain ⟨ev, hev⟩ := exists_ev k F s hs.1 H hH0
   let R := Algebra.adjoin k (s : Set F)
   let f := minpoly R θ
@@ -106,7 +106,7 @@ theorem core (k F : Type) [Field k] [Field F] [Algebra k F] (s : Finset F)
   obtain ⟨ψ, hψ⟩ := GlobalTheory.T.exists_algHom_adjoin_extend_of_isIntegral_root k F (SeparableClosure k) R θ hθ ev r hr'
   have hHS : (H : F) ∈ Algebra.adjoin k (insert θ (R : Set F)) :=
     Algebra.subset_adjoin (Set.mem_insert_of_mem _ H.2)
-  exact GlobalTheory.T.nonempty_adjoin_algHom_of_mul_mem_of_map_ne_zero k F (SeparableClosure k) _ ψ ⟨H, hHS⟩
+  exact _root_.GlobalTheory.AdjoinAlgebraHomNonempty.nonempty_algHom_adjoin k F (SeparableClosure k) _ ψ ⟨H, hHS⟩
     (by rw [hψ _ H.2 hHS]; exact hev) (T : Set F) hT
 
 theorem exists_sepPoint : ∀ (k B : Type) [Field k] [CommRing B] [Algebra k B],
@@ -119,7 +119,7 @@ theorem exists_sepPoint : ∀ (k B : Type) [Field k] [CommRing B] [Algebra k B],
   haveI : IsDomain (k ⊗[k] B) := hK k inferInstance inferInstance
   haveI : IsDomain B := (Algebra.TensorProduct.lid k B).symm.toMulEquiv.isDomain
   obtain ⟨s, hs, hsep⟩ := exists_sepBasis k B hB
-    (fun p hp hpk => GlobalTheory.T.linearIndepOn_frob_pow_of_isDomain_tensor_insep k B p hp hpk hK)
+    (fun p hp hpk => _root_.GlobalTheory.linearIndepOn_pow_of_isDomain_tensor_purelyInseparable k B p hp hpk hK)
   let g : B →ₐ[k] FractionRing B := IsScalarTower.toAlgHom k B (FractionRing B)
   have hfg : g.range.FG := by
     rw [← Algebra.map_top]

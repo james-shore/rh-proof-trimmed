@@ -152,12 +152,12 @@ theorem extend_to_line : ∀ (k : Type) [Field k] [IsAlgClosed k] (B : Over (Sp 
       IsLocalization.ringHom_ext (Submonoid.powers (Polynomial.C a)) (RingHom.ext fun x => by
         simp [φ, IsLocalization.Away.lift, IsLocalization.lift_eq])
     refine ⟨spMap φ ≫ u, ?_, ?_⟩
-    · rw [Category.assoc, hu, ← spMap_comp']
+    · rw [Category.assoc, hu, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
       congr 1
       refine RingHom.ext fun x => ?_
       rw [RingHom.comp_apply, IsScalarTower.algebraMap_apply k (Polynomial k) (Localization.Away (Polynomial.C a))]
       simp [φ, IsLocalization.Away.lift, IsLocalization.lift_eq]
-    · rw [← Category.assoc, ← spMap_comp', hφ]
+    · rw [← Category.assoc, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, hφ]
       show Spec.map (CommRingCat.ofHom (RingHom.id _)) ≫ u = u
       rw [CommRingCat.ofHom_id, Spec.map_id, Category.id_comp]
   | succ n ih =>
@@ -169,10 +169,10 @@ theorem extend_to_line : ∀ (k : Type) [Field k] [IsAlgClosed k] (B : Over (Sp 
     have hn' : P'.natDegree = n := by
       rw [Polynomial.natDegree_mul hP' (Polynomial.X_sub_C_ne_zero c), Polynomial.natDegree_X_sub_C] at hn
       omega
-    obtain ⟨v', hv', ev'⟩ := GlobalTheory.T.extend_affineLine_morphism_to_proper_across_point k B P' c hP' u hu
+    obtain ⟨v', hv', ev'⟩ := _root_.GlobalTheory.AffineLineExt.extend k B P' c hP' u hu
     obtain ⟨v, hv, ev⟩ := ih P' hP' hn' v' hv'
     refine ⟨v, hv, ?_⟩
-    rw [← ev', ← ev, ← Category.assoc, ← spMap_comp']
+    rw [← ev', ← ev, ← Category.assoc, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     congr 2
     exact RingHom.ext fun x => (IsLocalization.Away.awayToAwayRight_eq (S := Localization.Away P')
       (P := Localization.Away (P' * (Polynomial.X - Polynomial.C c))) P' (Polynomial.X - Polynomial.C c) x).symm
@@ -184,7 +184,7 @@ theorem maps_from_open_line_const : ∀ (k : Type) [Field k] [IsAlgClosed k] (B 
   obtain ⟨Q, hQ, σ, τ, h1, h2⟩ := GlobalTheory.T.exists_inversion_coordinate_localization_polynomial k P hP
   obtain ⟨f₀, hf₀, e₀⟩ := extend_to_line k B P hP u hu
   have hu' : (spMap σ.toRingHom ≫ u) ≫ B.hom = spMap (algebraMap k (Localization.Away Q)) := by
-    rw [Category.assoc, hu, ← spMap_comp']
+    rw [Category.assoc, hu, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     congr 1
     ext x
     exact σ.commutes x
@@ -199,27 +199,27 @@ theorem maps_from_open_line_const : ∀ (k : Type) [Field k] [IsAlgClosed k] (B 
       spMap (Polynomial.aeval (IsLocalization.Away.invSelf (Polynomial.X : Polynomial k) :
         Localization.Away (Polynomial.X : Polynomial k))).toRingHom ≫ f₁ := by
     refine ext_of_isDominant_of_isSeparated B.hom ?_ (spMap (rhoMap k P)) ?_
-    · rw [Category.assoc, Category.assoc, hf₀, hf₁, ← spMap_comp', ← spMap_comp']
+    · rw [Category.assoc, Category.assoc, hf₀, hf₁, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
       congr 1
       refine RingHom.ext fun x => ?_
       simp only [RingHom.comp_apply, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, AlgHom.commutes]
       exact (IsScalarTower.algebraMap_apply _ _ _ _).symm
     · calc spMap (rhoMap k P) ≫ spMap (algebraMap (Polynomial k) (Localization.Away (Polynomial.X : Polynomial k))) ≫ f₀
           = spMap ((rhoMap k P).comp (algebraMap (Polynomial k) (Localization.Away (Polynomial.X : Polynomial k)))) ≫ f₀ := by
-            rw [spMap_comp' (algebraMap (Polynomial k) (Localization.Away (Polynomial.X : Polynomial k))) (rhoMap k P),
+            rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp (algebraMap (Polynomial k) (Localization.Away (Polynomial.X : Polynomial k))) (rhoMap k P),
               Category.assoc]
         _ = spMap τ.toRingHom ≫ spMap σ.toRingHom ≫ u := by
-            rw [rhoMap_comp_algebraMap, ← h1, spMap_comp', Category.assoc, e₀]
+            rw [rhoMap_comp_algebraMap, ← h1, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc, e₀]
             show spMap (τ.toRingHom.comp σ.toRingHom) ≫ u = _
-            rw [spMap_comp', Category.assoc]
+            rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc]
         _ = spMap (τ.toRingHom.comp (algebraMap (Polynomial k) (Localization.Away Q))) ≫ f₁ := by
-            rw [spMap_comp', Category.assoc, e₁]
+            rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc, e₁]
         _ = _ := by
             rw [h2, ← rhoMap_comp_aeval, spMap_comp', Category.assoc]
   have key := GlobalTheory.T.projectiveLine_to_abelianVariety_const k B hB f₀ f₁ hf₀ hf₁ hc
     (a.comp (IsScalarTower.toAlgHom k (Polynomial k) (Localization.Away P)))
     (b.comp (IsScalarTower.toAlgHom k (Polynomial k) (Localization.Away P)))
-  rw [← e₀, ← Category.assoc, ← Category.assoc, ← spMap_comp', ← spMap_comp']
+  rw [← e₀, ← Category.assoc, ← Category.assoc, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
   exact key
 
 end GlobalTheory.NoRatCurve

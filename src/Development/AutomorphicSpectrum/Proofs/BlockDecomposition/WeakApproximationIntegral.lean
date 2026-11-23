@@ -73,10 +73,6 @@ theorem exists_bound : ∃ B : ℝ≥0, ∀ f : InfinitePlace F → ℝ≥0, B �
         field_simp
     _ ≤ _ := mul_le_mul_right hf _
 
-theorem exists_supported (p : HeightOneSpectrum (𝓞 F)) :
-    ∃ π : 𝓞 F, π ≠ 0 ∧ π ∈ p.asIdeal ∧ ∀ v : HeightOneSpectrum (𝓞 F), v ≠ p → π ∉ v.asIdeal :=
-  _root_.UpperTheory.Reformulated.B.Qo8.exists_supported p
-
 theorem one_lt_abs_norm {p : HeightOneSpectrum (𝓞 F)} {π : 𝓞 F} (h0 : π ≠ 0) (hp : π ∈ p.asIdeal) :
     (1 : ℝ) < ∏ w : InfinitePlace F, w (π : F) ^ w.mult := by
   rw [InfinitePlace.prod_eq_abs_norm]
@@ -121,7 +117,7 @@ theorem exists_small (s : Pl F) {d : 𝓞 F} (hd : d ≠ 0) {ε : ℝ} (hε : 0 
     · rw [HeightOneSpectrum.valuation_of_algebraMap]
       exact v.intValuation_le_one b
   | inr p =>
-    obtain ⟨π, hπ0, hπp, hπv⟩ := exists_supported p
+    obtain ⟨π, hπ0, hπp, hπv⟩ := _root_.UpperTheory.Reformulated.B.Qo8.exists_supported p
     have hπF : (π : F) ≠ 0 := by simpa using hπ0
     have hwπ : ∀ w : InfinitePlace F, 0 < w (π : F) := fun w => w.pos_iff.2 hπF
     set N : ℝ := ∏ w : InfinitePlace F, w (π : F) ^ w.mult with hN

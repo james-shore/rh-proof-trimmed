@@ -132,7 +132,7 @@ theorem GlobalTheory.TraitArc.exists_input_recovering : ∀ (R : Type) [CommRing
   have hdiv : ∀ a a', (2 * l.M' : ℤ) ∣ beF D' hϖ a a' := fun a a' => by
     have := hdvd _ (isQ_qv D' hϖ) a a'
     exact_mod_cast this
-  obtain ⟨pA, pM, hT⟩ := GlobalTheory.T.exists_rational_tate_pairs_unitaryType E H Dm l c O β hβ T b hb D' o' hP' (fun k hk => hrat k (hk.mul_left 2))
+  obtain ⟨pA, pM, hT⟩ := _root_.GlobalTheory.TraitTate.exists_tate E H Dm l c O β hβ T b hb D' o' hP' (fun k hk => hrat k (hk.mul_left 2))
   have hLie : LieCl D' o' Dm β b := by
     intro F _ _ _ r _ τ
     obtain ⟨n, h₁, h₂⟩ := (hP'.2.2.2 F).1 τ
@@ -144,7 +144,7 @@ theorem GlobalTheory.TraitArc.exists_input_recovering : ∀ (R : Type) [CommRing
   refine ⟨T.V, T.cr, T.dom, inferInstance, ρ, b, ϖ, arc D' o' hϖ β b hX' hP'.2.2.1 hdiv pA pM hLie hTate,
     ⟨T.dvr, T.cpl, T.ch0⟩, hρ, hρf, hϖ, ?_⟩
   intro Xo Y y hy
-  obtain ⟨t, m, P, ⟨hD₂⟩⟩ := GlobalTheory.T.exists_pullDeg_arcData_at_uniformiser E H Dm l c O β T b D' o' ϖ hϖ hX' hP'.2.2.1 hdiv pA pM hLie hTate Xo Y y hy
+  obtain ⟨t, m, P, ⟨hD₂⟩⟩ := _root_.GlobalTheory.TraitArcMatch.exists_isPullDeg_arc E H Dm l c O β T b D' o' ϖ hϖ hX' hP'.2.2.1 hdiv pA pM hLie hTate Xo Y y hy
   refine ⟨t, m, P, ?_⟩
   have := GlobalTheory.Mum.nonempty_isPullDeg_comp_of_injective R T.V T.V ρ (RingHom.id T.V) D.toPre D'.toPre P.D.toPre
     Function.injective_id ⟨hD⟩ ⟨hD₂⟩

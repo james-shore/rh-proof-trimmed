@@ -97,16 +97,6 @@ theorem lawAt : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS
       om (g, h) (Tm Φ) = GlobalTheory.SplitLinear.fac S T χS χT x y • Tm fun t => Φ (actO S T g⁻¹ h⁻¹ t) :=
   GlobalTheory.T.splitPlace_linearLaw_halfVacuum
 
-theorem thetaModel : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D)
-    (ΛS : Lat S) (ΛT : Lat T)
-    (e : AE D) (f₀ : WO S T → ℂ) (Tm : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ)),
-    IsStdChar D ψ (-1) → IsSelfDualC S ΛS → IsSelfDualC T ΛT → IsSplitIdem D e → IsThetaFunO ψ S T f₀ →
-    IsPlaceModel ψ (symplO S T) (heisO ψ S T) e
-      (latO S T (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E)) fun _ => True) 1 f₀ Tm →
-    ∀ Φ : WO S T → ℂ, IsSBHalf e (latO S T (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E))
-      fun _ => True) Φ → IsThetaFunO ψ S T (Tm Φ) :=
-  GlobalTheory.T.isThetaFun_splitPlaceSchroedingerModel
-
 theorem sbHalf : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (p : SplitPt D k) (S T : HSp D) (n n' : Type) [Fintype n] [DecidableEq n] [Fintype n'] [DecidableEq n']
     (α : Frame p S n') (β : Frame p T n) (LS : Lat S) (LT : Lat T), IsSelfDualC S LS → IsSelfDualC T LT →
@@ -291,7 +281,7 @@ theorem linModelAt : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topolog
     rw [Pi.smul_apply, smul_eq_mul, extFunAct D k p S T n n' α β Ψ g h t, ← extFun_smul]
   ·
     have act : ∀ u : WO S T, (u ∈ latO S T (LS : Set (Fin S.rank → D.host.E)) (LT : Set (Fin T.rank → D.host.E))
-        (· = p.v) ∨ IsHalf p.e u ∨ IsHalf (cA D p.e) u) → actO S T g h u = u := offAct D k p S T LS LT g h hg hh
+        (· = p.v) ∨ IsHalf p.e u ∨ IsHalf (cA D p.e) u) → actO S T g h u = u := _root_.GlobalTheory.FinPl.OffFix.actO_eq_of_grpOff D k p S T LS LT g h hg hh
     have hV' : Vac ψ S T LS LT (· = p.v) (om (g, h) f₀) := by
       refine ⟨hW.om_pres _ _ hV.1, fun u hu => ?_, fun e' he' u hu hh' => ?_⟩
       · have := hW.om_heis g h (2 • u) f₀ hV.1
@@ -304,7 +294,7 @@ theorem linModelAt : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topolog
     have hTm' := (placeModel_congr hA hle).1 hTm
     have hth0 : ∀ Φ, IsSBHalf p.e (latO S T (LS : Set (Fin S.rank → D.host.E)) (LT : Set (Fin T.rank → D.host.E))
         (· = p.v)) Φ → IsThetaFunO ψ S T (Tm Φ) := fun Φ hΦ =>
-      thetaModel D ψ S T LS LT p.e f₀ Tm hW.std hsS hsT he hV.1 hTm' Φ ((sbHalf_congr hA hle).1 hΦ)
+      _root_.GlobalTheory.LocMod.LinTheta.isThetaFunO_placeModel D ψ S T LS LT p.e f₀ Tm hW.std hsS hsT he hV.1 hTm' Φ ((sbHalf_congr hA hle).1 hΦ)
     have hPM : IsPlaceModel ψ (symplO S T) (heisO ψ S T) p.e
         (latO S T (LS : Set (Fin S.rank → D.host.E)) (LT : Set (Fin T.rank → D.host.E)) (· = p.v)) 1 (om (g, h) f₀)
         ((om (g, h)).comp Tm) := by

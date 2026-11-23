@@ -549,10 +549,7 @@ section AtRecordC
 
 variable {D : D7} {L : SizeData₂ D} (X : G.Inst D L) (K : G.Consts) (Cr C bo : ℝ)
 
-theorem pc_mem_Ps {p : ℕ} : p ∈ PsAt L ↔ p < bndP L ∧ p.Prime ∧ InertK D p := by
-  classical
-  unfold PsAt
-  rw [Finset.mem_filter, Finset.mem_range]
+alias pc_mem_Ps := _root_.Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_PsAt
 
 theorem pc_X'_le (L : SizeData₂ D) : L.sc.X' ≤ L.sc.X'' D.R.n := by
   obtain ⟨hx, hb, ha, hX, hb'⟩ := Lnk.sc_pos L.sc
@@ -945,9 +942,7 @@ theorem pd_wpp_pos (L : SizeData₂ D) : 0 < L.sc.w'' D.R.n := by
   unfold Scale.w''
   exact div_pos hb' (mul_pos hx (by linarith))
 
-theorem pd_one_le_X' (s : Scale) : 1 ≤ s.X' := by
-  unfold Scale.X'
-  exact Real.one_le_exp (Real.rpow_nonneg (lt_trans one_pos s.one_lt_alt).le _)
+alias pd_one_le_X' := _root_.Formalism.MainNotions.J.one_le_Xp
 
 theorem pd_wpp_le_bx (L : SizeData₂ D) : L.sc.w'' D.R.n ≤ L.sc.b' / L.sc.x := by
   obtain ⟨hx, -, -, -, hb'⟩ := Lnk.sc_pos L.sc
@@ -1653,11 +1648,7 @@ theorem two_not_inert (D : D7) : ¬ InertK D 2 := by
   have hcl : D.host.cls 2 = PrimeClass.ram2 := primeClass_two D.host.toHostRaw
   rintro (h | h) <;> rw [hcl] at h <;> cases h
 
-theorem mem_sAt {p : ℕ} : p ∈ sAt L K ↔ G.Cand D L K p := by
-  classical
-  unfold sAt
-  rw [Finset.mem_filter, Finset.mem_range]
-  exact ⟨fun h => h.2, fun h => ⟨Nat.lt_ceil.mpr h.2.1, h⟩⟩
+alias mem_sAt := _root_.Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_sAt
 
 end AtRecord
 

@@ -240,7 +240,7 @@ theorem main : CrystallineSemistableComparison.Pb.KH.LocGr → CrystallineSemist
   let σ : ∀ T, E.D ⟶ T := fun T => (E.ne T).some
   have hF := GlobalTheory.CompanionTheory.DPFil.isFil_sFil (KS q s {V})
   have hc : E.GrConst (sFil (KS q s {V})) := hL.1
-  have hT := GlobalTheory.T.taylor_of_local_frame q c s E ε hL D hD
+  have hT := _root_.GlobalTheory.CompanionTheory.ConeLocal.taylor_loc q c s E ε hL D hD
   have hr : (n : ℤ) + 1 = ((n + 1 : ℕ) : ℤ) := by push_cast; ring
   obtain ⟨ξ, hξ⟩ := rep_exists (a := sFil (KS q s {V'}) (n : ℤ)) (b := sFil (KS q s {V'}) ((n : ℤ) + 1)) f hf hdf
   have h1 := rep_res (ks_le q s hVV) _ _ hξ

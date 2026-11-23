@@ -94,11 +94,11 @@ theorem triple (A₁ : AddSubgroup W₁) (A₂ : AddSubgroup W₂) (A₃ : AddSu
     Nice A₁ (fun b => ind P b * cint A₂ (fun u => ind (fun u => Q u ∧ Z u) u * g b u)) ∧
     cint (A₁.prod (A₂.prod A₃)) (fun w => ind M w * g w.1 w.2.1) =
       cint A₁ (fun b => ind P b * cint A₂ (fun u => ind (fun u => Q u ∧ Z u) u * g b u)) := by
-  obtain ⟨k1, k2, k3⟩ := GlobalTheory.T.indexMeasureIntegral_prod_fubini _ _ _ hn
+  obtain ⟨k1, k2, k3⟩ := _root_.GlobalTheory.IdxInt.Fubini.cint_prod _ _ _ hn
   have key : (fun b => cint (A₂.prod A₃) (fun w' => ind M (b, w') * g b w'.1)) =
       (fun b => ind P b * cint A₂ (fun u => ind (fun u => Q u ∧ Z u) u * g b u)) := by
     funext b
-    rw [(GlobalTheory.T.indexMeasureIntegral_prod_fubini _ _ _ (k1 b)).2.2]
+    rw [(_root_.GlobalTheory.IdxInt.Fubini.cint_prod _ _ _ (k1 b)).2.2]
     by_cases hb : P b
     · rw [show ind P b = 1 by simp [ind, hb], one_mul]
       congr 1

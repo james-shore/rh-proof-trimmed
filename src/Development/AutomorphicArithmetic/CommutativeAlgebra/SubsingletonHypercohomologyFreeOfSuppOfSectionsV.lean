@@ -58,7 +58,7 @@ theorem UpperTheory.subsingleton_hypercohomology_free_of_supp_of_sections_vanish
   intro U hU m b hb
   have hQ : Q U := hP U hU
   haveI : Subsingleton (Sec G U) := hG U hQ
-  obtain ⟨h0, -, h3, hneg⟩ := GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ G U
+  obtain ⟨h0, -, h3, hneg⟩ := _root_.GlobalTheory.EtC.resSec ℤ G U
   have hz : ∀ (c : Sec ((res ℤ G).X m) U), b = c → c = 0 →
       Loc U fun V g => ∃ a : Sec ((res ℤ G).X (m - 1)) V,
         Sec.map ((res ℤ G).d (m - 1) m) a = Sec.res g b := by

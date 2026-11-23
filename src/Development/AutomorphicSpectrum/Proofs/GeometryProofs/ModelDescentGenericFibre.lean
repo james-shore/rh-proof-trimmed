@@ -412,7 +412,7 @@ theorem main : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing
 
   have hex : ∀ τ, ∃ χ : F →*₀ O', ∀ a, IsLocalRing.residue O' (χ a) =
       ((IsLocalRing.ResidueField.map (algebraMap O O')).comp (σ τ)) a := fun τ =>
-    (teichmuller_lift_of_embedding O' F p ζ hζ _).1.exists
+    (_root_.PositivityTheory.HtPt.Teich.glue_teich O' F p ζ hζ _).1.exists
   choose χ₀ hχ₀ using hex
   refine ⟨fun τ a => χ₀ τ a, fun c => (Df c).bc
     ((chartRing O' (mseg fun v => algebraMap Ω Ω' (y v)) c).restrictScalars O), ⟨?_, ?_, ?_, ?_, ?_⟩,

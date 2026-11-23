@@ -84,11 +84,11 @@ theorem coboundary_locally_of_cocycle : ∀ {X Y : Scheme.{0}} (f : X ⟶ Y) [Is
     exact hz
   have hle : pullback.fst f f ⁻¹ᵁ f ⁻¹ᵁ V₀ ≤ pullback.fst f f ⁻¹ᵁ f ⁻¹ᵁ V := fun z hz => hV₀V hz
   letI : Algebra Γ(Y, V₀) Γ(X, f ⁻¹ᵁ V₀) := (f.app V₀).hom.toAlgebra
-  obtain ⟨hN, hF, hFF⟩ := GlobalTheory.T.finite_faithfullyFlat_algebra_over_affine_open f V₀ hV₀
-  obtain ⟨e, he⟩ := GlobalTheory.T.exists_tensorSquare_equiv_fibreSquare_sections f V₀ hV₀ h
-  have hcoc := GlobalTheory.T.unit_cocycle_descends_on_triple_overlaps f V V₀ hV₀ h hle c hc e he
+  obtain ⟨hN, hF, hFF⟩ := _root_.GlobalTheory.finiteFlatSurj_affine_algebra f V₀ hV₀
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.LBDescent.exists_tensorSquare_equiv_sections f V₀ hV₀ h
+  have hcoc := _root_.GlobalTheory.LBDescent.CocycleTensor.cocycle_tensor_of_pointwise f V V₀ hV₀ h hle c hc e he
   let c₀ : (Γ(X, f ⁻¹ᵁ V₀) ⊗[Γ(Y, V₀)] Γ(X, f ⁻¹ᵁ V₀))ˣ := Units.map e.symm.toMonoidHom (res hle c)
-  obtain ⟨r, hr, m, s, n, hm, hs⟩ := GlobalTheory.T.hilbert90_of_cocycle_faithfullyFlat_tensor _ _ c₀ hcoc
+  obtain ⟨r, hr, m, s, n, hm, hs⟩ := _root_.GlobalTheory.FlatDescent.hilbert90_local_of_cocycle _ _ c₀ hcoc
     (Ideal.comap (Y.presheaf.germ V₀ y hyV₀).hom (IsLocalRing.maximalIdeal _)) inferInstance
   have hm' : ((pullback.fst f f).app (f ⁻¹ᵁ V₀)).hom m * (res hle c).val =
       ((pullback.snd f f).appLE (f ⁻¹ᵁ V₀) _ h).hom m := by

@@ -132,7 +132,7 @@ theorem core [Fintype ι] [DecidableEq ι] (a b : ι → V) (ha : LinearIndepend
   · rw [← hM]
     exact (LinearEquiv.isUnit_det f bX bY).ne_zero
   · intro x y hx hy hxy
-    have h := Formalism.LatticeIndexTer.idxDet O K _ _ ι bX bY f x y hx hy (by rw [hM]; exact hxy)
+    have h := _root_.Formalism.LatticeIndexTer.lattice_index_eq_det_valuation O K _ _ ι bX bY f x y hx hy (by rw [hM]; exact hxy)
     let s : Submodule.span K (Set.range b) →ₗ[O] V :=
       (Submodule.span K (Set.range b)).subtype.restrictScalars O
     have hs : Function.Injective s := Subtype.val_injective

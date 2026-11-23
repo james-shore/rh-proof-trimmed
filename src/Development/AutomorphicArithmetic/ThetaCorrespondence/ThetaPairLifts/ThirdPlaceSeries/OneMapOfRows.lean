@@ -69,7 +69,7 @@ theorem exists_unit_root_ze_leafC_of_square_nonzero (p : PtAt ex Csz) (hp : p.Po
   obtain ⟨hL, hI, hC, hF⟩ := hQ
   obtain ⟨κ, ze, hz, hform⟩ := hF ht.ok.field
   obtain ⟨R0, hR0⟩ := hR
-  obtain ⟨hinj, hrow⟩ := _root_.GlobalTheory.T.iC_iota_mulVec_eq_iC p hp
+  obtain ⟨hinj, hrow⟩ := _root_.GlobalTheory.BigTop.Fun.iC_base_factor_of_rows_alt p hp
   have hzK : ∀ t, ze t ≠ 0 := fun t h => by
     obtain ⟨n, hn, e⟩ := hz t
     rw [h, zero_pow hn.ne'] at e
@@ -81,8 +81,8 @@ theorem exists_unit_root_ze_leafC_of_square_nonzero (p : PtAt ex Csz) (hp : p.Po
         (cpt p.P.A3.fam3.base3.v0.embedding (((Df p).Pq t).mulVec y))) =
         κ * D.what₂.embLL ((d.V t).mulVec y b) := by
     intro t y b
-    rw [← _root_.GlobalTheory.T.theta_j_ev0_eq_ic_pq p hp t y, ht.sums t (TieModel.inUse p t) y b]
-    exact hform t _ (_root_.GlobalTheory.T.eV0_mem_goodF' p hp t y) b
+    rw [← _root_.GlobalTheory.BigTop.Fun.theta_eV0_eq_iC_Pq_alt p hp t y, ht.sums t (TieModel.inUse p t) y b]
+    exact hform t _ (_root_.GlobalTheory.BigTop.Fun.eV0_mem_goodF_alt p hp t y) b
   have lin : ∀ (b : Fin d.n) (z : Fin (p.S false).D → D.what₂.LL),
       psiK a.ch b ((p.R.toCx3 p.F).iC p.F.cr false p.P.A3.fam3.base3.μ0 (cpt p.P.A3.fam3.base3.v0.embedding z)) =
         ∑ k, D.what₂.embLL (z k) *

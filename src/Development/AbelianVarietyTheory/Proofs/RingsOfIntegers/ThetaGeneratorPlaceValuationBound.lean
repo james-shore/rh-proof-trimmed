@@ -96,12 +96,6 @@ theorem vLa_nonneg {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum 
   simp only [WithZero.log_one] at h2
   simp only [vLa]; omega
 
-theorem vLa_mul {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) {x y : K} (hx : x ≠ 0)
-    (hy : y ≠ 0) : vLa la (x * y) = vLa la x + vLa la y := by
-  simp only [vLa, map_mul,
-    WithZero.log_mul ((la.valuation K).ne_zero_iff.2 hx) ((la.valuation K).ne_zero_iff.2 hy)]
-  ring
-
 theorem killed_pow (Xo : Moduli Dw l) {T : Over Xo.X} (t : T ⟶ Xo.univ.t.G) (h : KilledBy Xo (l.Mb ^ 2) t) :
     KilledBy Xo l.Mb (t ^ l.M) := by
   intro a ha
@@ -151,7 +145,7 @@ theorem bound_of_chBound (Xo : Moduli Dw l) (c : Coeff l) (π : 𝓞 E) (hπ : �
     (RatData.exists_thetaVal_data E H Dw l Xo c T'.Fr y'.1).1 hrat (x b)
   have hev : iT (evI y f) = thExpr Xo c nab y'.1 P F := by
     letI : Algebra T.Fr T'.Fr := iT.toAlgebra
-    exact GlobalTheory.T.thetaRule_value_integral_framed_point_extension_field E H Dw l Xo c nab hnab T io y T'.Fr φ hφ y'.1 hmap w n x P hP F hF f hf
+    exact _root_.GlobalTheory.PtTie.evI_eq_thExpr_ext E H Dw l Xo c nab hnab T io y T'.Fr φ hφ y'.1 hmap w n x P hP F hF f hf
   have ht : ∀ b, ∃ t' : ptO Xo (xOf y') ⟶ Xo.univ.t.G, KilledBy Xo (l.Mb ^ 2) t' ∧
       IsUUOver Xo.univ.t.G Xo.univ.t.PP l.M (sOf1 y') 1 t' (F b) := by
     intro b
@@ -162,7 +156,7 @@ theorem bound_of_chBound (Xo : Moduli Dw l) (c : Coeff l) (π : 𝓞 E) (hπ : �
     obtain ⟨t', -, b2, b3⟩ := (uu_through_moves E H Dw l Xo T'.Fr (xOf y') l.M l.odd (sOf1 y')).2 _ _ (F b) h1 (hF b)
     exact ⟨t', b2, b3⟩
   choose t' ht1 ht2 using ht
-  have hb := GlobalTheory.T.harmonicValue_translated_product_valuation_bound E H Dw l Xo c hnab.1 T' (iT.comp io) y' C' hgood nab hnab (r * e) ρ w n ho'.1
+  have hb := _root_.GlobalTheory.PlaceInt.TermBound.term_bound E H Dw l Xo c hnab.1 T' (iT.comp io) y' C' hgood nab hnab (r * e) ρ w n ho'.1
     (hρ T' _ y' C' _ ho') l.M n' A Bn α β l.odd a2 a3 a4 (hu n' a1) (fun _ => 1) t' F
     (fun b => ⟨one_pow _, (a5 _ _ (ht1 b)).1, by
       haveI := Xo.univ.t.act.hom (α * β)
@@ -173,7 +167,7 @@ theorem bound_of_chBound (Xo : Moduli Dw l) (c : Coeff l) (π : 𝓞 E) (hπ : �
   have hα' : α' ≠ 0 := by rintro rfl; exact hπ (by rw [← e1, mul_zero])
   rw [map_mul, _root_.mul_assoc, nval_smul ho' (nrm_ne_zero c w hα), ← hh] at hb
   have hv1 : vLa la (nrm Dw c w α) ≤ vLa la (nrm Dw c w π) := by
-    rw [← e1, nrm_mul, vLa_mul la (nrm_ne_zero c w hα) (nrm_ne_zero c w hα')]
+    rw [← e1, nrm_mul, _root_.Formalism.L2.Pj.Crude.crv_vLa_mul la (nrm_ne_zero c w hα) (nrm_ne_zero c w hα')]
     have := vLa_nonneg la (nrm_ne_zero (Dw := Dw) c w hα') (nrm_isIntegral c w α')
     omega
   rw [hev]

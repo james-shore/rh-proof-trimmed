@@ -98,7 +98,7 @@ theorem herm_cW (θ : ℝ) {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (
 theorem GGl_cW (θ : ℝ) {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (z' : Fin (2 * r + k + 1) → ℂ) (g : Q.Mx k r) :
     Q.GGl k r z z' (cW k r θ * g) = Q.GGl k r z z' g := by
   unfold Q.GGl Q.zetaL
-  rw [fvec_last, fvec_last, ← Matrix.mulVec_mulVec, herm_cW θ hz, map_mul, Complex.normSq_eq_norm_sq,
+  rw [_root_.Formalism.FourierDecayAlt.P.Dx2.DF.fvec_lastI, _root_.Formalism.FourierDecayAlt.P.Dx2.DF.fvec_lastI, ← Matrix.mulVec_mulVec, herm_cW θ hz, map_mul, Complex.normSq_eq_norm_sq,
     Complex.norm_exp_ofReal_mul_I]
   norm_num
 

@@ -93,20 +93,10 @@ lemma proj_neg {A : Type} [Ring A] [Algebra ℚ A] (K j : ℕ) (X Y : A) : proj 
   · rw [h.neg_pow, h.neg_pow]
   · rw [h.neg_pow, h.neg_pow, neg_mul_neg]
 
-lemma comm_pow_of {A : Type} [Ring A] [Algebra ℚ A] {H X : A} {s : ℚ} (h : H * X - X * H = s • X) (k : ℕ) :
-    H * X ^ k - X ^ k * H = ((k : ℚ) * s) • X ^ k := by
-  first
-  | exact @_root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul
-  | exact _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul
-  | (apply _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul ..)
-
 lemma commute_pair_pow {A : Type} [Ring A] [Algebra ℚ A] {H X Y : A} {s : ℚ} (hX : H * X - X * H = s • X)
     (hY : H * Y - Y * H = (-s) • Y) (k : ℕ) : Commute H (Y ^ k * X ^ k) := by
-  have h1 := comm_pow_of hX k
-  have h2 := comm_pow_of hY k
+  have h1 := _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul hX k
+  have h2 := _root_.GlobalTheory.CommutatorPowerFormula.commutator_pow_of_commutator_eq_smul hY k
   have e : H * (Y ^ k * X ^ k) = (H * Y ^ k - Y ^ k * H) * X ^ k + Y ^ k * (H * X ^ k - X ^ k * H)
       + Y ^ k * X ^ k * H := by noncomm_ring
   show H * (Y ^ k * X ^ k) = Y ^ k * X ^ k * H

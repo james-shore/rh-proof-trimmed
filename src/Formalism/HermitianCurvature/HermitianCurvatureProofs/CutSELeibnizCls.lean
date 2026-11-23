@@ -73,10 +73,6 @@ theorem wOp_cons (j : Fin 6) (js : List (Fin 6)) (Φ : RadSp k r z z' π π') :
   simp only [wOp, List.map_cons, List.prod_cons]
   rfl
 
-theorem wOp_nil_sg (Φ : RadSp k r z z' π π') : wOp X l [] Φ = Φ := by
-  simp only [wOp, List.map_nil, List.prod_nil]
-  rfl
-
 theorem wOp_op (js : List (Fin 6)) (j : Fin 6) (Φ : RadSp k r z z' π π') :
     wOp X l js (X.op l j Φ) = wOp X l (js ++ [j]) Φ := by
   simp only [wOp, List.map_append, List.map_cons, List.map_nil, List.prod_append, List.prod_cons,
@@ -86,7 +82,7 @@ theorem wOp_op (js : List (Fin 6)) (j : Fin 6) (Φ : RadSp k r z z' π π') :
 theorem wOp_lc (js : List (Fin 6)) : ∀ Φ ∈ lcSub k r z z' π π', wOp X l js Φ ∈ lcSub k r z z' π π' := by
   intro Φ hΦ
   induction js with
-  | nil => rwa [wOp_nil_sg]
+  | nil => rwa [_root_.Formalism.FourierDecayAlt.P.CutSE.wOp_nil]
   | cons j js ih =>
     rw [wOp_cons]
     exact Formalism.FourierDecayAlt.P5.HerC.op_lc X l j _ ih
@@ -239,7 +235,7 @@ theorem levelSquareIntegrable_succ_update_of_sliceGood {k r : ℕ} {z z' : Fin (
     {Φ : RadSp k r z z' π π'} (h : SliceGood X μ l c Φ) {t : ℂ} (ht : t ≠ 0) :
     LevelSquareIntegrable μ l.succ Φ (Function.update c l t) := by
   have h0 := h.2 []
-  rw [wOp_nil_sg] at h0
+  rw [_root_.Formalism.FourierDecayAlt.P.CutSE.wOp_nil] at h0
   exact level_l2_of_slice_domination μ l c h0 ht
 
 theorem contDiffOn_inverse_norm_sq (n : ℕ) :

@@ -81,10 +81,7 @@ theorem unitAt_functionFieldMap (q : Y ⟶ X) [IsDominant q] (y : Y) {f : X.func
   obtain ⟨a, ha, rfl⟩ := h
   exact ⟨q.stalkMap y a, ha.map _, (functionFieldMap_algebraMap q y a).symm⟩
 
-theorem supp_nsmul_le (D : CartierDiv X) (r : ℕ) : (r • D).supp ≤ D.supp := by
-  induction r with
-  | zero => rw [zero_smul, CartierDiv.supp_eq_bot_iff.2 rfl]; exact bot_le
-  | succ r ih => rw [succ_nsmul]; exact (CartierDiv.supp_add_le _ _).trans (sup_le ih le_rfl)
+alias supp_nsmul_le := _root_.GlobalTheory.AmpleUpstairs.supp_nsmul_le
 
 theorem functionFieldMap_mem_sections (q : Y ⟶ X) [IsDominant q] {A : CartierDiv X}
     {f : X.functionField} (h : f ∈ A.sections) : functionFieldMap q f ∈ (pullCart q A).sections := by
@@ -136,7 +133,7 @@ theorem GlobalTheory.PairStep.kltAt_add_general_member : GlobalTheory.Published.
   obtain ⟨η, hη⟩ := hG.exists_isLogMult hm
   obtain ⟨m', D₀, hm', -, rfl⟩ := hD
   obtain ⟨Y, hY, π, hπ, K, B, hres, hB⟩ :=
-    GlobalTheory.T.exists_log_resolution hP ℂ X p n hproj hn η m G hη.ne_zero D₀.supp D₀.supp_ne_top
+    _root_.GlobalTheory.LogResExist.exists_logRes hP ℂ X p n hproj hn η m G hη.ne_zero D₀.supp D₀.supp_ne_top
   haveI : IsNoetherian Y := isNoetherian_of_isProjOver hres.proj
   haveI := hres.smooth
   haveI : IsProper p := ((isProjOver_iff_isProper_and_exists_isAmpleLB p).1 hproj).1
@@ -191,7 +188,7 @@ theorem GlobalTheory.PairStep.kltAt_add_general_member : GlobalTheory.Published.
   have hη' : EtaleKlt.ratPull p π n η ≠ 0 := fun h =>
     hη.ne_zero ((GlobalTheory.T.rationalTopFormPullback_bijective_birational ℂ X Y p π hres.bir n).1 (h.trans (map_zero _).symm))
   have hΘm : ∀ w, w ⤳ y' → (pullCart π G' - m'' • K).mult w < m'' := fun w hw =>
-    ((GlobalTheory.T.log_resolution_multiplier_local ℂ X p n hproj hn _ η m'' G' Y π K B hmult hres' (π y')).1.1 hklt) w
+    ((_root_.GlobalTheory.Discrepancy.kltAt_lcAt_iff_of_isLogRes ℂ X p n hproj hn _ η m'' G' Y π K B hmult hres' (π y')).1.1 hklt) w
       (hw.map π.continuous)
   have hΘe : (pullCart π G' - m'' • K + m'' • K).IsEqn y' (fnPull π g'') := by
     rw [sub_add_cancel]; exact isEqn_pullCart π hg''

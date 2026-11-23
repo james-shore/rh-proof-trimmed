@@ -222,7 +222,7 @@ theorem lie_quot_full : ∀ (O K : Type) [CommRing O] [IsDedekindDomain O] [Fiel
   obtain ⟨T', _, _, _, _, MK', j', hj', hbc'⟩ := exists_fibre_model G' τ.B φ' hφ' M'
   obtain ⟨I, hI, -⟩ := lieModel_exists_unique_diff _ _ GK K _ _ T MT MK τ.i
   obtain ⟨A, hA, -⟩ := lieModel_exists_unique_diff _ GK τ.B K _ T T' MK MK' τ.q
-  have hex := GlobalTheory.T.torus_extension_tangent_exact K GK τ K (RingHom.id K)
+  have hex := _root_.GlobalTheory.CompanionTheory.Ar.LieExact.lie_exact_field K GK τ K (RingHom.id K)
   have hid : spMap (RingHom.id K) = 𝟙 (Sp K) := Spec.map_id _
   rw [hid] at hex
   refine ⟨io, f, hio, hf, hinj, lattice_step j j' hbc hbc' I A (fun t => ?_) (fun t' => ?_) io f

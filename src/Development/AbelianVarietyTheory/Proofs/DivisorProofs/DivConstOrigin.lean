@@ -51,9 +51,9 @@ open IsLocalRing Polynomial
 namespace GlobalTheory.VertUnits
 
 theorem divConstOrigin : GlobalTheory.VertUnits.DivConstOrigin := by
-  have h₁ := GlobalTheory.T.exists_etaleStage_divisor_strictHenselisation_origin
-  have h₂ := GlobalTheory.T.exists_noetherian_model_of_divisor_of_constants
-  have h₃ := GlobalTheory.T.divConst_origin_noeth_alt
+  have h₁ := _root_.GlobalTheory.KeyOriginCut.exists_stage_divisor
+  have h₂ := _root_.GlobalTheory.VertUnitsNoeth.exists_noetherian_model_of_mul_eq
+  have h₃ := _root_.GlobalTheory.VertUnitsNoeth.divConst_origin_noeth
   unfold GlobalTheory.VertUnits.DivConstOrigin GlobalTheory.VertUnits.DivConstWith GlobalTheory.VertUnits.DivConst
   intro T O _ _ _ _ _ _ _ _ hT P _ φ hφ hsh _ hPo b c s hs hbc
   have hPo' : P = GlobalTheory.KeyOriginCut.originIdeal T := hPo

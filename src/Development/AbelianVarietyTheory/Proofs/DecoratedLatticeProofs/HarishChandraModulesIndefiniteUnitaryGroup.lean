@@ -67,7 +67,7 @@ noncomputable section
 
 theorem GlobalTheory.HcPort.kfinDense_UJC {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
   {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} (hσ : Formalism.MainNotions.S.IsURepOn (Formalism.MainNotions.S.UJset ε) σ) : Dense {v : H | Formalism.MainNotions.S.IsKFin ε σ v} :=
-  GlobalTheory.T.dense_kFinite_vectors_unitaryGroupRep n ε H σ hσ
+  _root_.GlobalTheory.CompactRep.dense_isKFin n ε H σ hσ
 
 section
 
@@ -420,7 +420,7 @@ theorem dictD (hS : KFSm) (h : IsHCMod πU M io) {j : ℕ} (m : ℕ)
     intro Y hY v
     refine Subtype.ext ((hder.deriv _ (hex Y hY).1 (κ v)).unique ?_)
     have d1 : HasDerivAt (fun t : ℝ => (NormedSpace.exp (t • rx Y)).det) (rx Y).trace 0 :=
-      PI.UnitaryCorollaryDerivatives.DjC.hasDerivAt_det_of_one _ _ (by simp) fun a b => PI.UnitaryCorollaryDerivatives.DjC.hasDerivAt_exp_entry (rx Y) a b
+      _root_.Bl.b110.goal1 _ _ (by simp) fun a b => PI.UnitaryCorollaryDerivatives.DjC.hasDerivAt_exp_entry (rx Y) a b
     have d2 := ((((hasDerivAt_id (0 : ℝ)).ofReal_comp.mul_const Y.trace).div_const 2).const_mul (j : ℂ)).fun_neg.cexp
     have d3 := ((d1.fun_pow m).fun_mul d2).fun_smul (h.2.2 Y hY v)
     convert (preTransparency := .reducible) d3 using 1

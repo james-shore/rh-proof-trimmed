@@ -93,7 +93,7 @@ theorem cosetOne (hX : Xf.Ok) (hPr : Pr.Ok) (hCh : Ch.Ok) (hsel : IsSel Xf sel) 
       have h1 := ih (by omega) al P hP
       have hs1 := hok.stabG i al P hP
       have hs2 := hok.stabG (i + 1) b P hP
-      have h2 := (GlobalTheory.T.unfoldedDatum_ne_zero_iff_doubleCoset Ch sel mu cst L G m2 hX hPr hCh hsel hs hok i hi P hP _ _ hs1 hs2 (by rw [hs]; exact h1)).1 hal
+      have h2 := (_root_.GlobalTheory.SrcDoubleCoset.unfoldedDatum_ne_zero_iff_doubleCoset' Ch sel mu cst L G m2 hX hPr hCh hsel hs hok i hi P hP _ _ hs1 hs2 (by rw [hs]; exact h1)).1 hal
       have h3 := twSurjG G.σ₀ hB hi P hP _ hs2 h2
       rwa [hs] at h3
     · obtain rfl : i = m2 := by omega
@@ -115,7 +115,7 @@ theorem idx_nonempty (hX : Xf.Ok) (hPr : Pr.Ok) (hCh : Ch.Ok) (hsel : IsSel Xf s
     by_cases hi : i < m2
     · obtain ⟨al⟩ := ih (by omega)
       obtain ⟨b, -⟩ := hok.surj i hi (fun _ => 1) (fun _ _ => one_mem _) (fun P hP => absurd (hQ P) hP)
-        (fun P => ⟨al, (GlobalTheory.T.unfoldedDatum_ne_zero_iff_doubleCoset Ch sel mu cst L G m2 hX hPr hCh hsel hs hok i hi P (hQ P) _ _ (hok.stabG i al P (hQ P))
+        (fun P => ⟨al, (_root_.GlobalTheory.SrcDoubleCoset.unfoldedDatum_ne_zero_iff_doubleCoset' Ch sel mu cst L G m2 hX hPr hCh hsel hs hok i hi P (hQ P) _ _ (hok.stabG i al P (hQ P))
           (one_mem _) (by rw [hs]; exact cosetOne hX hPr hCh hsel hs hok i (by omega) al P (hQ P))).2
           (twNonVanG G.σ₀ hB hi P (hQ P))⟩)
       exact ⟨b⟩
@@ -174,7 +174,7 @@ theorem idx_match : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → ∀
       group
   obtain ⟨β0, hw⟩ := key
   choose r κ hr hκ he hr1 using hw
-  have gc := fun w => GlobalTheory.T.doubleCoset_reps_conjugate_level_groups I.Ch I.sel (I.tup a) (I.tup I.mu0) (I.cst a) (I.cst I.mu0) (I.idx a) (I.idx I.mu0) I.glob m2
+  have gc := fun w => _root_.GlobalTheory.Mem.Col2.IdxEx.LocMatch.loc_match I.Ch I.sel (I.tup a) (I.tup I.mu0) (I.cst a) (I.cst I.mu0) (I.idx a) (I.idx I.mu0) I.glob m2
     hX l.pr h.ch_ok (h.sharp a) (h.sharp I.mu0) hoka hok0 i (by omega) β β0 w (r w) (κ w) (hr w) (hκ w) (he w)
   choose x hx1 hxH hxL using gc
   refine ⟨⟨some β0, by simp [hi]⟩, x, fun e w => hx1 w (hr1 w e), ?_⟩

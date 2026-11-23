@@ -61,10 +61,6 @@ private theorem conj_form {R ι : Type} [CommRing R] [Fintype ι] [DecidableEq �
     _ = (A'ᵀ * Aᵀ) * J * (A * A') := by simp only [Matrix.mul_assoc]
     _ = J := by rw [e1, e2, one_mul, mul_one]
 
-private theorem triple_ne {R ι : Type} [CommRing R] [Fintype ι] {A Y B : Matrix ι ι R} {a b : ι}
-    (hab : (A * Y * B) a b ≠ 0) : ∃ c d, A a c ≠ 0 ∧ Y c d ≠ 0 ∧ B d b ≠ 0 :=
-  _root_.UpperTheory.Reformulated.B.Qk1.triple_ne hab
-
 private theorem blk_inv {R ι κ : Type} [CommRing R] [Fintype ι] [DecidableEq ι] (blk : ι → κ) {h h' : Matrix ι ι R}
     (e1 : h * h' = 1) (e2 : h' * h = 1) (hb : ∀ a b, blk a ≠ blk b → h a b = 0) :
     ∀ a b, blk a ≠ blk b → h' a b = 0 := by
@@ -140,7 +136,7 @@ theorem UpperTheory.V.Alg.hh_group :
       rw [FormData.JR, ← Matrix.transpose_map, ← Matrix.map_mul, ← Matrix.map_mul, hν]
       ext a b; simp
     · by_contra hne
-      obtain ⟨c, d, k1, k2, k3⟩ := triple_ne hne
+      obtain ⟨c, d, k1, k2, k3⟩ := _root_.UpperTheory.Reformulated.B.Qk1.triple_ne hne
       have k1' : r0 s a c ≠ 0 := fun e => k1 (by simp [e])
       have k3' : r0 s⁻¹ d b ≠ 0 := fun e => k3 (by simp [e])
       have k4 : Φ.blk c = Φ.blk d := by_contra fun n => k2 (a2 c d n)

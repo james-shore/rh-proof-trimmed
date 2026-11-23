@@ -57,10 +57,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 
 namespace GlobalTheory.Mum.CanonPull
 
-theorem lam_isLB {S : Scheme.{0}} (G : Over S) [GrpObj G] [IsCommMonObj G] {L : LB G.left} (hL : L.IsLB) :
-    (abelian₂ G L).IsLB :=
-  ReciprocityTheory.ChartRestriction.G.DVR.linComb_isLB L hL _ _
-
 end GlobalTheory.Mum.CanonPull
 
 
@@ -91,5 +87,5 @@ theorem GlobalTheory.Mum.canon_pull_unif : ∀ (R V' : Type) [CommRing R] [IsDom
     (by rw [← CategoryTheory.Functor.map_comp, hpi]; exact (ha _).symm)
   refine ⟨(Over.pullback (specOf θ)).obj G₁, inferInstance, inferInstance, _, π₂, A, U, isGrpPullback_pullback G₁ (specOf θ), sq, ?_⟩
   rw [show oG₁.act F₁.f = (Over.pullback (specOf θ)).map (oG.act F.f) from ha _] at hU
-  exact LBIso.trans (GlobalTheory.Mum.CanonPull.lam_isLB _ U.LG.isLB)
-    (pull_isLB (GlobalTheory.Mum.CanonPull.lam_isLB _ U₁.LG.isLB) _) (pull_isLB hPl _) hU hl
+  exact LBIso.trans (_root_.GlobalTheory.Mum.UExt.lam_isLB _ U.LG.isLB)
+    (pull_isLB (_root_.GlobalTheory.Mum.UExt.lam_isLB _ U₁.LG.isLB) _) (pull_isLB hPl _) hU hl

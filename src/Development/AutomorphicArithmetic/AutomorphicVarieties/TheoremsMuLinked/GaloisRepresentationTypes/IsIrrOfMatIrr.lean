@@ -326,9 +326,7 @@ theorem sub_facts {l : ℕ} [Fact l.Prime] (c : Coef l) (A : Subalgebra c.O (Pad
   haveI := (abelian₂.dvr_finite l c.O).1
   refine ⟨AlgebraTools.Conn.cplFinite (A := c.O) _ (maximalIdeal.isMaximal A).ne_top, Db.locHom c A, fun Γ _ f hf => ((UpperTheory.integrality_of_norm_coefficients l).2 c' Γ f).1 hf⟩
 
-theorem matIrr_conj {Γ k : Type} [Group Γ] [Field k] {n : ℕ} {U : Subgroup Γ} {a a' : Γ → Matrix (Fin n) (Fin n) k}
-    (H : MatIrr U a) (h : GL (Fin n) k) (e : ∀ g ∈ U, a' g = h.val * a g * (h⁻¹).val) : MatIrr U a' :=
-  _root_.UpperTheory.Reformulated.B.StationaryPhaseModel.matIrr_conj H h e
+alias matIrr_conj := _root_.UpperTheory.Reformulated.B.StationaryPhaseModel.matIrr_conj
 
 private theorem left_conj {R : Type} [CommRing R] {m : ℕ} (x y : GG (m := m) (R := R)) (h1 : x.mat = 1) (h2 : x.right = -1)
     (h3 : y.right = 1) : (x * y * x⁻¹).left = theta y.left := by
@@ -342,9 +340,7 @@ private theorem pairing_theta {R : Type} [CommRing R] {m : ℕ} (a : GL (Fin m) 
     Matrix.mul_one, ← Matrix.transpose_mul, ← Units.val_mul, inv_mul_cancel, Units.val_one, Matrix.transpose_one,
     Matrix.one_mul]
 
-private theorem cont_hom {Γ M : Type} [Group Γ] [TopologicalSpace Γ] [ContinuousInv Γ] [Monoid M] [TopologicalSpace M]
-    (f : Γ →* Mˣ) (h : Continuous fun g => (f g : M)) : Continuous f :=
-  _root_.UpperTheory.Reformulated.B.ContinuousHomomorphism.cont_hom f h
+private alias cont_hom := _root_.UpperTheory.Reformulated.B.ContinuousHomomorphism.cont_hom
 
 private theorem isIrr_of_matIrr {Γ k : Type} [Group Γ] [Field k] {n : ℕ} (r : Γ →* GL (Fin (n + 1)) k)
     (h : MatIrr ⊤ fun g => (r g).val) : Af.IsIrr r :=
@@ -357,9 +353,7 @@ private theorem matIrr_tw {Γ k : Type} [Group Γ] [Field k] {n : ℕ} (r : Γ �
     beta_reduce at this
     rwa [Af.tw_val, Matrix.smul_mulVec, W.smul_mem_iff (χ g).ne_zero] at this
 
-private theorem lc_of_ker {Γ C : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group C] (η : Γ →* C)
-    (h : IsOpen (η.ker : Set Γ)) : IsLocallyConstant η :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernel.lc_of_ker η h
+private alias lc_of_ker := _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernel.lc_of_ker
 
 section Abs
 

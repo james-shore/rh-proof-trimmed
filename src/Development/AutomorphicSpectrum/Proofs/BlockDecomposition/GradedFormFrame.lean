@@ -89,9 +89,9 @@ open FrameEx in
 theorem stFrame : StFrame := by
   intro O _ l s hb X q W d c u hu
   letI := (strV q W).toAlgebra
-  obtain ⟨c', e, hTF, he1, het, hev⟩ := GlobalTheory.T.exists_chart_from_coordinates (O := O) (R := O) (I := ⊥) (dividedPowersBot O) l s hb q
+  obtain ⟨c', e, hTF, he1, het, hev⟩ := _root_.GlobalTheory.CompanionTheory.ChartAlg.chart_exists (O := O) (R := O) (I := ⊥) (dividedPowersBot O) l s hb q
     (Ideal.Quotient.mk ⊥) (fun a => rfl) c
-  have good := GlobalTheory.T.chart_is_good c'
+  have good := _root_.GlobalTheory.CompanionTheory.ChartMaps.good c'
   have hQ : ∀ T, SS q l s W T → InU W T := inU_of_SS
   have hD : SS q l s W c'.D := ⟨hTF, W, rfl, c'.inV⟩
   obtain ⟨hpow, hgr⟩ := GlobalTheory.T.chart_divided_powers_graded_constant c' good (SS q l s W) hQ hD

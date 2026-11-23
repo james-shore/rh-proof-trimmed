@@ -116,7 +116,7 @@ theorem epow_left {A : Type} [Ring A] (E : Fin n → Fin n → A) (k : ℕ) (a b
 
 theorem cov_apply {E : Fin n → Fin n → Module.End ℂ V} (hE : GlRel E) (k : ℕ) (p c q : Fin n) (x : V) :
     E p c (Formalism.REAL.epow E k c q x) = Formalism.REAL.epow E k c q (E p c x) + Formalism.REAL.epow E k p q x - (if q = p then Formalism.REAL.epow E k c c x else 0) := by
-  have h := LinearMap.congr_fun (Formalism.REAL.epowCov _ n E hE k c q p c) x
+  have h := LinearMap.congr_fun (_root_.Formalism.REAL.generatorPowCovariance_holds _ n E hE k c q p c) x
   simp only [LinearMap.sub_apply, Module.End.mul_apply, if_true] at h
   rw [sub_eq_iff_eq_add] at h
   rw [h]
@@ -283,7 +283,7 @@ theorem kill_list {V : Type} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
     obtain ⟨mm, s, hs, hys⟩ := hbad ν y hy0 hy
     set T : Module.End ℂ V := etr E mm - s • (1 : Module.End ℂ V) with hT
     have hTE : ∀ a b x, T (E a b x) = E a b (T x) := fun a b x => by
-      have := LinearMap.congr_fun (Formalism.REAL.etrCentral _ n E hE mm a b) x
+      have := LinearMap.congr_fun (_root_.Formalism.REAL.generatorTraceCentral_holds _ n E hE mm a b) x
       simp only [Module.End.mul_apply] at this
       simp [hT, this]
     have hkL : ∀ x ∈ L, T x = 0 := by
@@ -383,7 +383,7 @@ theorem etr_cycle (E : Fin n → Fin n → Module.End ℂ V) (hE : GlRel E) (m j
       have hG := glRel_of_k hK
       refine ⟨fun i _ => ?_, fun x => ?_⟩
       · rw [evK_etr]
-        exact (Formalism.REAL.etrCentral _ n E hG m _ _).symm
+        exact (_root_.Formalism.REAL.generatorTraceCentral_holds _ n E hG m _ _).symm
       · rw [evK_etr]
         exact hN V E hG x) V E (k_of_glRel hE) ∅ j z hz (ref_all z) hb
   refine ⟨w, hw1, ?_⟩
@@ -470,7 +470,7 @@ theorem chain_list (E : Fin n → Fin n → Module.End ℂ V) (hE : GlRel E) (j 
     set T : Module.End ℂ V := etr E p.1 - p.2 • (1 : Module.End ℂ V) with hT
     set c := GlobalTheory.Dec.gelfVal (chiOf τ) p.1 with hc
     have hTE : ∀ (i : Pos n), cpt (allT n) i → ∀ x, T (E i.1.1 i.1.2 x) = E i.1.1 i.1.2 (T x) := fun i _ x => by
-      have := LinearMap.congr_fun (Formalism.REAL.etrCentral _ n E hE p.1 i.1.1 i.1.2) x
+      have := LinearMap.congr_fun (_root_.Formalism.REAL.generatorTraceCentral_holds _ n E hE p.1 i.1.1 i.1.2) x
       simp only [Module.End.mul_apply] at this
       simp [hT, this]
     have hz1 : lift n T z = (c - p.2) • z + bd (allT n) E w' := by

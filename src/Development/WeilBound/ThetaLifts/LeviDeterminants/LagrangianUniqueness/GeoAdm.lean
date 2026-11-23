@@ -58,13 +58,6 @@ namespace PositivityTheory.ThKF0.GeoAdm
 open GlobalTheory.EvAdm
 open scoped Classical
 
-theorem boxS : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] (a : F) (r : κ → FiniteAdeleRing (𝓞 F) F), a ≠ 0 →
-    ∃ φ : ∀ v : HeightOneSpectrum (𝓞 F), (κ → Fv F v) → ℂ, (∀ v, φ v ∈ GlobalTheory.WeilM.SB (κ → Fv F v)) ∧
-      (∀ᶠ v in cofinite, φ v = Set.indicator {x | ∀ i, x i ∈ v.adicCompletionIntegers F} 1) ∧
-      ∀ y : κ → FiniteAdeleRing (𝓞 F) F, Set.indicator {y | y - r ∈ scaledInt F κ a} (fun _ => (1 : ℂ)) y =
-        ∏ᶠ v, φ v fun i => evalV F v (y i) := by
-  exact PositivityTheory.Mix.T.indicator_coset_scaledIntegral_eq_restrictedProduct
-
 variable {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ]
 
 theorem exists_invariant {g : (κ → FiniteAdeleRing (𝓞 F) F) → ℂ} (hg : g ∈ GlobalTheory.WeilM.SB (κ → FiniteAdeleRing (𝓞 F) F)) :
@@ -155,7 +148,7 @@ theorem exists_sum_finprod {g : (κ → FiniteAdeleRing (𝓞 F) F) → ℂ} (hg
       (∀ k, ∀ᶠ v in cofinite, φ k v = Set.indicator {x | ∀ i, x i ∈ v.adicCompletionIntegers F} 1) ∧
       g = ∑ k, c k • fun y => ∏ᶠ v, φ k v fun i => evalV F v (y i) := by
   obtain ⟨a, ha, R, hR⟩ := exists_sum_cosets hg
-  choose ψ hψSB hψcof hψeq using fun r => boxS F κ a r ha
+  choose ψ hψSB hψcof hψeq using fun r => _root_.GlobalTheory.EvAdm.indicator_coset_scaledInt_eq_finprod F κ a r ha
   refine ⟨R.card, fun k => g (R.equivFin.symm k), fun k => ψ (R.equivFin.symm k),
     fun k v => hψSB _ v, fun k => hψcof _, ?_⟩
   have key : ∀ r, Set.indicator {y | y - r ∈ scaledInt F κ a} (fun _ => (1 : ℂ)) =

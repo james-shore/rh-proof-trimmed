@@ -66,7 +66,7 @@ theorem exists_quadratic_extension_readsLow : ∀ {B : GlobalTheory.Mem.Base} {X
   intro B X I l Z L hT Gi Gl Kc Yd cX ex W hW u a _ ha hc t
   have hI := hW.tr.ok
   have hm := B.R.two_le_m
-  obtain ⟨Ch₀, -, A, hA, hlast, hne, -, hstd, -⟩ := GlobalTheory.T.exists_tupleAdelicData_standardBasePoints I hI hW.tr.pins.some l Z u (W.P.I.tup t)
+  obtain ⟨Ch₀, -, A, hA, hlast, hne, -, hstd, -⟩ := _root_.GlobalTheory.AdForm.exists_twDat_baseStd I hI hW.tr.pins.some l Z u (W.P.I.tup t)
   have hχ : ∀ j (hj : j < B.R.m), ChrEq (D := I.rec7 l Z) (_root_.GlobalTheory.Fam.chrK_alt W t j) (I.C.mu0 ⟨j, hj⟩ * I.xi (W.P.I.tup t)) := fun j hj =>
     GlobalTheory.Mem.TupChar.chrEq_mul (hW.tr.chr ⟨j, hj⟩) (hW.tq.xi t)
   let e := ((_root_.GlobalTheory.Fam.pk_z W).Q t).equivFin

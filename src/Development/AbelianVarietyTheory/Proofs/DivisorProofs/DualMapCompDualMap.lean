@@ -197,13 +197,9 @@ section Transl
 
 variable {K : Type} [Field K] {A : Over (Sp K)} [GrpObj A]
 
-theorem dualMap_comp_algebraMap {B B' : Type} [CommRing B] [CommRing B'] (φ : B →+* B') :
-    (dualMap φ).comp (algebraMap B (DualNumber B)) = (algebraMap B' (DualNumber B')).comp φ := by
-  ext b <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl']
+alias dualMap_comp_algebraMap := _root_.Formalism.L2.Pj.dualMap_alg
 
-theorem dualMap_comp_dualMap {B B' B'' : Type} [CommRing B] [CommRing B'] [CommRing B''] (φ : B →+* B')
-    (ψ : B' →+* B'') : (dualMap ψ).comp (dualMap φ) = dualMap (ψ.comp φ) := by
-  ext c <;> simp [dualMap]
+alias dualMap_comp_dualMap := _root_.GlobalTheory.Frames.Glue.dual_comp
 
 theorem exists_isTransl {B : Type} [CommRing B] (φ : K →+* B) (x : Sp B ⟶ A.left) (hx : x ≫ A.hom = spMap φ)
     (v : epsR K ⟶ A) : ∃ w, IsTransl φ x v w := by

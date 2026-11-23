@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.NonemptyIsLimitBaseChange
 
 @[expose] public section
 
@@ -99,17 +100,12 @@ theorem lieMod_transport (ω : O) (ρ : T) {a : ℕ} (τ : Fin a → (O →+* T)
 
 end Transport
 
-theorem spMap_comp_spMap' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp only [spMap, ← Spec.map_comp]
-  rfl
-
 theorem exists_baseMap {R : Type} [CommRing R] {S : Scheme.{0}} (s : S ⟶ Sp R) {U : S.Opens} (hU : IsAffineOpen U) :
     ∃ βB : R →+* Γ(S, U), ∀ (R' : Type) [CommRing R'] (f : Γ(S, U) →+* R') (β : R →+* R'),
       spMap f ≫ hU.fromSpec ≫ s = spMap β → β = f.comp βB := by
   refine ⟨(Spec.preimage (hU.fromSpec ≫ s)).hom, fun R' _ f β h => ?_⟩
   have h2 : spMap (f.comp (Spec.preimage (hU.fromSpec ≫ s)).hom) = spMap β := by
-    rw [← h, ← spMap_comp_spMap']
+    rw [← h, ← _root_.GlobalTheory.spMap_comp_ring]
     congr 1
     show Spec.map (CommRingCat.ofHom (Spec.preimage (hU.fromSpec ≫ s)).hom) = _
     rw [CommRingCat.ofHom_hom, Spec.map_preimage]
@@ -128,21 +124,21 @@ theorem lieHer_iff_mat {p : ℕ} [Fact p.Prime] {D : Datum p} {R : Type} [CommRi
   unfold LieHer LieHerMat LieRankAt
   refine forall_congr' fun T' => forall_congr' fun _ => forall_congr' fun g => ?_
   have hx : spMap g ≫ spMap f ≫ hU.fromSpec = spMap (g.comp f) ≫ hU.fromSpec := by
-    rw [← Category.assoc, spMap_comp_spMap']
+    rw [← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
   rw [hx]
   obtain ⟨e, he⟩ := hM T' (g.comp f)
   refine and_congr ?_ ?_
-  · rw [GlobalTheory.T.harrisTaylorLieConditionAt_iff_kottwitzModuleCondition]
+  · rw [_root_.GlobalTheory.UPel.HT.LieLin.lieAt_iff_lieMod]
     exact lieMod_transport _ _ e he _ _ _
   · refine forall_congr' fun k => forall_congr' fun _ => forall_congr' fun _ => forall_congr' fun h =>
       forall_congr' fun i => ?_
     have hx2 : spMap h ≫ spMap (g.comp f) ≫ hU.fromSpec = spMap (h.comp (g.comp f)) ≫ hU.fromSpec := by
-      rw [← Category.assoc, spMap_comp_spMap']
+      rw [← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
     rw [hx2]
     obtain ⟨e2, he2⟩ := hM k (h.comp (g.comp f))
     haveI : Module.Finite k (ReciprocityTheory.ChartRestriction.G.PullbackSections.TanM (spMap (h.comp (g.comp f)) ≫ hU.fromSpec) A) :=
       Module.Finite.equiv e2.symm
-    rw [GlobalTheory.T.lieMult_iff_finrank_simultaneousEigenSubmodule _ _ _ _ _ _ _ _ inferInstance, finrank_eigSub_transport _ _ e2 he2]
+    rw [_root_.GlobalTheory.UPel.HT.LieLin.lieMult_iff_finrank _ _ _ _ _ _ _ _ inferInstance, finrank_eigSub_transport _ _ e2 he2]
 
 theorem lieHerMat_iff_le {p : ℕ} [Fact p.Prime] {D : Datum p} {R : Type} [CommRing R] (b : Base D R) {B : Type}
     [CommRing B] (βB : R →+* B) {n : ℕ} (M : 𝓞 D.F →+* Matrix (Fin n) (Fin n) B) (K₂ : Ideal B)
@@ -171,9 +167,9 @@ theorem lieHer_ideal : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [Co
     ∀ (R' : Type) [CommRing R'] (f : Γ(S, U) →+* R') (β : R →+* R'), spMap f ≫ hU.fromSpec ≫ s = spMap β →
       (LieHer b act β (spMap f ≫ hU.fromSpec) ↔ K ≤ RingHom.ker f) := by
   intro p _ D R _ b S s A _ _ hA act z
-  obtain ⟨U, hU, hz, n, M, hM⟩ := GlobalTheory.T.exists_affine_nbhd_lie_matrix_smooth_comm_group (𝓞 D.F) S A hA (act.toF D) z
+  obtain ⟨U, hU, hz, n, M, hM⟩ := _root_.GlobalTheory.exists_affine_lieMatrix (𝓞 D.F) S A hA (act.toF D) z
   obtain ⟨βB, hβB⟩ := exists_baseMap s hU
-  obtain ⟨K₂, hK₂⟩ := GlobalTheory.T.exists_ideal_geometric_rank_iff_of_lie_condition p D R b Γ(S, U) βB n M
+  obtain ⟨K₂, hK₂⟩ := _root_.GlobalTheory.UPel.HT.LieLin.RankIdeal.exists_ideal_rank_iff p D R b Γ(S, U) βB n M
   refine ⟨U, hU, hz, lieIdeal b βB M ⊔ K₂, fun R' _ f β hc => ?_⟩
   obtain rfl := hβB R' f β hc
   rw [lieHer_iff_mat b act hU M hM f]

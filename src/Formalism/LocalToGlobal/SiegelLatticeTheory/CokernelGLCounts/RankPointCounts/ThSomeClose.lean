@@ -57,7 +57,7 @@ theorem thSome_holds {D : Formalism.BasicNotions.D7} {δ : ∀ p : PlF D, (D.s.a
     {F0 : FlagG (VS D) D.R.rS (Formalism.L2.SG.CntLocal.Tn u)} {what₂ : Finset (Submodule (𝓞 D.host.E) (VS D).V)}
     (hrows : IsRowReps D F0 what₂) (hNR : NormRepElig u u' F0 what₂) :
     ThSome M δ u u' F0 what₂ := by
-  refine thSome_holds_of hA hNR fun γ w hγ p a b => ?_
+  refine _root_.Formalism.L2.SG.Pf.ThSomePf.thSome_of hA hNR fun γ w hγ p a b => ?_
   obtain ⟨Λ, hΛ, F', hF'⟩ := dnInDens_of hNR hrows γ w hγ
   exact PI.CntNotIntW.integral_on_pairs_holds D δ M hA u u' hT F0 what₂ hrows Λ hΛ (zT γ) F' hF' p a b
 

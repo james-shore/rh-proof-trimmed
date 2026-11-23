@@ -111,8 +111,8 @@ theorem descends_of_invariant : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDisc
     (fun s => by rw [hφ0]; exact Ideal.zero_mem _)
   have hp : ∀ a, pullM B q a = Ψ a := fun a => hΨ a
   have hs' : ∀ a, MvPowerSeries.subst φ a = Ψ a := fun a => (hsub hφ0 a).symm.trans (hΨ a)
-  obtain ⟨r, b, hr, hb⟩ := GlobalTheory.FiniteColength.exists_basis_subst_finrank_quotient V (Fin n × Fin d) φ hφ0 (GlobalTheory.T.exists_pow_span_X_le_span_formalModuleMatrix V d O B hB n q q' N hN hq)
-  obtain ⟨hfin, hcard⟩ := GlobalTheory.T.formalMatrixKernel_finite_ncard_eq_rank V d O B hB n q q' N hN hq hj hs
+  obtain ⟨r, b, hr, hb⟩ := GlobalTheory.FiniteColength.exists_basis_subst_finrank_quotient V (Fin n × Fin d) φ hφ0 (_root_.GlobalTheory.PlaceInt.exists_pow_span_X_le_span_matV V d O B hB n q q' N hN hq)
+  obtain ⟨hfin, hcard⟩ := _root_.GlobalTheory.KerCard.finite_ncard_kerM V d O B hB n q q' N hN hq hj hs
   have : IsDomain (MvPowerSeries (Fin n × Fin d) V) := NoZeroDivisors.to_isDomain _
   have hsh := (GlobalTheory.T.formalGroupTranslate_automorphism_and_matrixKernel V d O B n q).2.2
   obtain ⟨a, ha⟩ := mem_range_of_invariant (MvPowerSeries (Fin n × Fin d) V) (MvPowerSeries (Fin n × Fin d) V)

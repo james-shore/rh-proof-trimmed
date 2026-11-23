@@ -174,7 +174,7 @@ theorem gcm_inv_mul_conj (c : ℂ) : (c⁻¹ * conj c⁻¹ : ℂ) = ((Complex.no
 
 theorem gcm_matH_scale {m : Type} [Fintype m] (c : ℂ) (M : Matrix m m ℂ) (u v : m → ℂ) :
     matH (((Complex.normSq c : ℝ) : ℂ)⁻¹ • M) u v = matH M (c⁻¹ • u) (c⁻¹ • v) := by
-  rw [(Formalism.L2.Th1.H.matHBasic m _).1, (Formalism.L2.Th1.H.matHBasic m M).1, ← gcm_inv_mul_conj c]
+  rw [(_root_.Formalism.L2.Th1.H.matrixFormBasic m _).1, (_root_.Formalism.L2.Th1.H.matrixFormBasic m M).1, ← gcm_inv_mul_conj c]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   simp only [Matrix.smul_apply, smul_eq_mul, Pi.smul_apply, map_mul]
   ring

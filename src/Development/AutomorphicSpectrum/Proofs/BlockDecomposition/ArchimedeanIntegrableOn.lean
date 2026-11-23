@@ -130,10 +130,10 @@ theorem exists_modif (hK : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKSta
     obtain ⟨z, hz, hyz⟩ := GlobalTheory.T.complex_point_lifts_to_multicone m n X i y
     have hzJ : z ∉ mcPts J := fun h => hy ⟨z, hyz, hJz z h⟩
     obtain ⟨x, hx⟩ := R.surj z hz hzJ
-    exact ⟨x, (GlobalTheory.T.points_eq_iff_same_torus_orbit m n X i _ _ _ _ (hF' x) hyz).2 hx⟩
+    exact ⟨x, (_root_.GlobalTheory.CompanionTheory.MixZ.Orbit.eq_iff_sameOrbit m n X i _ _ _ _ (hF' x) hyz).2 hx⟩
   · intro x x' hx e
     refine R.inj x x' (fun h => hx ⟨_, hF' x, hJz _ h⟩) ?_
-    exact (GlobalTheory.T.points_eq_iff_same_torus_orbit m n X i _ _ _ _ (hF' x) (hF' x')).1 e
+    exact (_root_.GlobalTheory.CompanionTheory.MixZ.Orbit.eq_iff_sameOrbit m n X i _ _ _ _ (hF' x) (hF' x')).1 e
 
 theorem integrableOn_of_modif {X : Scheme.{0}} [IsIntegral X] {q : X ⟶ Sp ℤ} {σ : ℤ →+* ℂ} {D : ℕ}
     [CompactSpace (GlobalTheory.CxPts q σ)] {T : Type} [TopologicalSpace T] [CompactSpace T] [T2Space T]
@@ -149,7 +149,7 @@ theorem integrableOn_of_modif {X : Scheme.{0}} [IsIntegral X] {q : X ⟶ Sp ℤ}
   obtain ⟨N, W, b, a, d, hcov, hWb, hd, hf⟩ := GlobalTheory.T.rational_section_finite_open_cover ψ hr
   set S := offSupp q σ (divOfRatSec ψ.isLB hr) with hSdef
   have hSo : IsOpen S := isOpen_offSupp _
-  have hgc := GlobalTheory.T.log_norm_continuous_off_divisor ψ hψ hr
+  have hgc := _root_.GlobalTheory.CompanionTheory.MixZ.ArchInt.continuousOn_logNorm_offSupp ψ hψ hr
   set g := GlobalTheory.Cartier.logNorm ψ r with hgdef
   set Z' : Set (GlobalTheory.CxPts q σ) := Z ∪ ⋃ l, {y | y ∈ ptsIn q σ (W l) ∧ ev q σ (W l) (d l) y = 0} with hZ'def
   have hpiece (l : Fin N) : MeasurableSet {y | y ∈ ptsIn q σ (W l) ∧ ev q σ (W l) (d l) y = 0} := by

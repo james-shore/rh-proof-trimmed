@@ -115,7 +115,7 @@ theorem unitaryData (hL : B.LatAll) {N N' : ℕ} (hN : Even N) (hN' : Even N')
       TaylorLogMetric.La D (TaylorLogMetric.tor0 D cc δ) (SDLat.smulLat (γ : Matrix (Fin N) (Fin N) D.host.E) (StandardLatticesGL3.stdL D N))
         (SDLat.smulLat (γ' : Matrix (Fin N') (Fin N') D.host.E) (StandardLatticesGL3.stdL D N')) := la_img _ _ _ _ _ _ _ _
   exact
-    { herm := formV_herm' _ _ _ _
+    { herm := _root_.Formalism.L2.Ker.Cd.formV_herm _ _ _ _
       pos := formV_pos (area_pos' B) _ _ _
       selfDual := (hL.1 N N' _ _ a0).1
       semi := (hL.1 N N' _ _ a0).2
@@ -197,7 +197,7 @@ theorem J1at_of_ne (hS : B.StdOK) (hL : B.LatAll) (hG : GaussRow B) {N N' : ℕ}
   rcases Nat.eq_zero_or_pos N' with rfl | hpos
   · have hsub : ∀ a b : AddSubgroup (TaylorLogMetric.VC D N 0), a = b := fun a b => Subsingleton.elim a b
     rw [hsub (TaylorLogMetric.La D B.tor (SDLat.smulLat _ _) _) (TaylorLogMetric.La D B.tor (StandardLatticesGL3.stdL D N) (StandardLatticesGL3.stdL D 0)),
-      iopSelf D B.tor N 0 _ _ (mem_ThSp_of' D B.tor _ _ h0), Nat.zero_div, pow_zero, one_smul]
+      iopSelf D B.tor N 0 _ _ (_root_.Formalism.L2.Ker.Cd.mem_ThSp_of D B.tor _ _ h0), Nat.zero_div, pow_zero, one_smul]
     funext z
     simp only [TaylorLogMetric.pull]
     congr 1
@@ -247,7 +247,7 @@ theorem J1at_of_ne (hS : B.StdOK) (hL : B.LatAll) (hG : GaussRow B) {N N' : ℕ}
       simp only [OneMemClass.coe_one, Examples₂.smulLat_one]
     rw [hK, Iop_eq, ← himg, hc.gauss hS₁.1, det_eq_det_pow_card_of_diagonal_copies (rowE D N N') _ _ hc.cay, Fintype.card_fin]
     congr 1
-    have hconj := detCayley _ _ (formV_herm' _ _ N 1) (formV_pos (area_pos' B) _ N 1) δ₁ Ae₁
+    have hconj := detCayley _ _ (_root_.Formalism.L2.Ker.Cd.formV_herm _ _ N 1) (formV_pos (area_pos' B) _ N 1) δ₁ Ae₁
       (by rw [hδ₁]; unfold phiU; exact phiL_isom _ _ _ _ _ _ _) hAe₁
     rw [finrank_row, hδ₁, det_row, (hN.mul_left _).neg_one_pow, one_mul] at hconj
     have hg := hG N γ Ae₁ hN hAe₁ S₁ hS₁
@@ -277,7 +277,7 @@ theorem J2at_of_ne (hS : B.StdOK) (hL : B.LatAll) (hG : GaussRow B) {N N' : ℕ}
   rcases Nat.eq_zero_or_pos N with rfl | hpos
   · have hsub : ∀ a b : AddSubgroup (TaylorLogMetric.VC D 0 N'), a = b := fun a b => Subsingleton.elim a b
     rw [hsub (TaylorLogMetric.La D B.tor (StandardLatticesGL3.stdL D 0) (SDLat.smulLat _ _)) (TaylorLogMetric.La D B.tor (StandardLatticesGL3.stdL D 0) (StandardLatticesGL3.stdL D N')),
-      iopSelf D B.tor 0 N' _ _ (mem_ThSp_of' D B.tor _ _ h0), Nat.zero_div, pow_zero, one_smul]
+      iopSelf D B.tor 0 N' _ _ (_root_.Formalism.L2.Ker.Cd.mem_ThSp_of D B.tor _ _ h0), Nat.zero_div, pow_zero, one_smul]
     funext z
     simp only [TaylorLogMetric.pull]
     congr 1
@@ -335,7 +335,7 @@ theorem J2at_of_ne (hS : B.StdOK) (hL : B.LatAll) (hG : GaussRow B) {N N' : ℕ}
       simp only [OneMemClass.coe_one, Examples₂.smulLat_one]
     rw [hK, Iop_eq, ← himg, hc.gauss hS₁.1, det_eq_det_pow_card_of_diagonal_copies (colE D N N') _ _ hc.cay, Fintype.card_fin]
     congr 1
-    have hconj := detCayley _ _ (formV_herm' _ _ N' 1) (formV_pos (area_pos' B) _ N' 1) δ₁ Ae₁
+    have hconj := detCayley _ _ (_root_.Formalism.L2.Ker.Cd.formV_herm _ _ N' 1) (formV_pos (area_pos' B) _ N' 1) δ₁ Ae₁
       (by rw [hδ₁]; unfold phiU; exact phiL_isom _ _ _ _ _ _ _) hAe₁
     rw [finrank_row, hδ₁, det_row, (hN'.mul_left _).neg_one_pow, one_mul, det_cjU] at hconj
     simp only [star_star] at hconj

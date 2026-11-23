@@ -188,7 +188,7 @@ theorem isIrredSubrep_of_isCopyFinDS : ∀ (D : D7) (V : HSp D) (S : D.what₂.T
     rfl
   obtain ⟨K, hKo, hKc⟩ := GlobalTheory.CuspDec.exists_compact_open V
   obtain ⟨φ, hφ, hC⟩ := GlobalTheory.InvPairing.exists_intertwiner (GfC V) K hKo hKc W W σ σ hadm hadm.1 B C hBpos hBinv hCinv
-  obtain ⟨c, hc⟩ := GlobalTheory.SchurAdm.schur_admissible (GfC V) K hKo hKc W σ hirr hadm φ hφ
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.SchurAdmissibility.schur_admissible (GfC V) K hKo hKc W σ hirr hadm φ hφ
   have key : ∀ x y, bePi (T' x) (T y) = conj c * bePi (T x) (T y) := fun x y => by
     have := hC x y
     rw [hc, LinearMap.smul_apply, LinearMap.id_apply, map_smulₛₗ, smul_eq_mul] at this

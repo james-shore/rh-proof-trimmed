@@ -70,16 +70,16 @@ theorem GlobalTheory.GoodEtale.closure_finiteEtale : ∀ (A : Type) [CommRing A]
       GlobalTheory.KeyOriginNoeth.ClosureFiniteEtale A (Localization.AtPrime QA) DA := by
   intro A _ _ _ _ _ _ EA _ _ _ _ _ QA _ hQA ρ hρ hker q hq hqu DA _ _ actA htor hgood
   haveI : NeZero q := ⟨hq.ne'⟩
-  obtain ⟨hflat, hnoeth, ht, hic⟩ := GlobalTheory.T.genericFibreBase_flat_noetherian_intClosed A EA QA hQA ρ hρ hker
+  obtain ⟨hflat, hnoeth, ht, hic⟩ := _root_.GlobalTheory.GoodEtaleBase.flat_noetherian_nzd_intClosed A EA QA hQA ρ hρ hker
   haveI := hflat
   haveI := hnoeth
-  have hHR := GlobalTheory.T.hasHartogsPropertyHeightOnePrimes_of_flat A (Localization.AtPrime QA)
+  have hHR := _root_.GlobalTheory.GoodEtale.hart_of_flat A (Localization.AtPrime QA)
   obtain ⟨act', T, hT, ⟨a, ha, n, x, y, hxy⟩, htf, hHC, hint, hnt⟩ :=
-    GlobalTheory.T.integralClosure_zmodTorsor_genericFibre_data A (Localization.AtPrime QA) hHR hic q DA actA htor
+    _root_.GlobalTheory.ClosureData.closureData A (Localization.AtPrime QA) hHR hic q DA actA htor
   letI := GlobalTheory.KeyOriginNoeth.closureAlg A (Localization.AtPrime QA) DA
   obtain ⟨hEt, s, hs⟩ := hgood
-  obtain ⟨O, _, _, hO, hσ⟩ := GlobalTheory.T.exists_faithfullyFlat_algHom_etale_height_one A (Localization.AtPrime QA) (GlobalTheory.KeyOriginNoeth.closure A _ DA)
+  obtain ⟨O, _, _, hO, hσ⟩ := _root_.GlobalTheory.GoodEtaleSection.exists_faithfullyFlat_algHom A (Localization.AtPrime QA) (GlobalTheory.KeyOriginNoeth.closure A _ DA)
     ρ hρ _ hker ht hint (fun P _ h => hEt P h) ⟨s, hs⟩
-  obtain ⟨hfin, het⟩ := GlobalTheory.T.finiteEtale_of_galois_descent_hartogs A (Localization.AtPrime QA) (GlobalTheory.KeyOriginNoeth.closure A _ DA) O
+  obtain ⟨hfin, het⟩ := _root_.GlobalTheory.GoodEtale.descent_finiteEtale A (Localization.AtPrime QA) (GlobalTheory.KeyOriginNoeth.closure A _ DA) O
     (Multiplicative (ZMod q)) act' T hT a ha n x y hxy htf hHC (fun P _ h => hEt P h) hσ
   exact ⟨hfin, het, hnt⟩

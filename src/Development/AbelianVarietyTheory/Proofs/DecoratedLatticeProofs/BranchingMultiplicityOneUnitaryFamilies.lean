@@ -80,17 +80,6 @@ theorem fnOf_ten {n : ℕ} (G : ι → Matrix (Fin n) (Fin n) ℂ) (s : ι → �
     Finset.prod_mul_distrib]
   rfl
 
-theorem eval_rowAct {n : ℕ} (g y : Matrix (Fin n) (Fin n) ℂ) (f : MvPolynomial (Fin n × Fin n) ℂ) :
-    eval (fun p : Fin n × Fin n => y p.1 p.2) (Formalism.GradedWeylDivisibility.rowAct ℂ g f) =
-      eval (fun p : Fin n × Fin n => (g * y) p.1 p.2) f := by
-  induction f using MvPolynomial.induction_on with
-  | C a => simp [Formalism.GradedWeylDivisibility.rowAct]
-  | add p q hp hq => simp only [map_add (f := _), hp, hq]
-  | mul_X p v hp =>
-    simp only [map_mul, hp]
-    congr 1
-    simp [Formalism.GradedWeylDivisibility.rowAct, Matrix.mul_apply]
-
 theorem fnOf_ten_update {n : ℕ} (G : ι → Matrix (Fin n) (Fin n) ℂ) (s : ι → ℤ)
     (f : ι → MvPolynomial (Fin n × Fin n) ℂ) (τ : ι) (g : Matrix (Fin n) (Fin n) ℂ) (z z' : Frames G)
     (hz : IsTr (Function.update (1 : ι → Matrix (Fin n) (Fin n) ℂ) τ g) z z') :
@@ -101,7 +90,7 @@ theorem fnOf_ten_update {n : ℕ} (G : ι → Matrix (Fin n) (Fin n) ℂ) (s : �
   by_cases hσ : σ = τ
   · subst hσ
     rw [Function.update_self] at h ⊢
-    rw [h, smul_eval, eval_rowAct, Matrix.det_mul, mul_zpow]
+    rw [h, smul_eval, _root_.GlobalTheory.ValueSpaceCoordinates.eval_rowAct, Matrix.det_mul, mul_zpow]
     ring
   · rw [Function.update_of_ne hσ] at h ⊢
     rw [h, Pi.one_apply, Matrix.one_mul]

@@ -76,7 +76,7 @@ theorem reduces_of_det_leadM_eq_zero : ∀ (M : ℕ) (Γ : Subgroup SL(2, ℤ)) 
   classical
   intro M Γ r s w F hM hΓ hs hF hdet
   obtain ⟨c, hc, hcv⟩ := Matrix.exists_mulVec_eq_zero_iff.mpr hdet
-  have hT := fun j => GlobalTheory.T.slashQExpansionCoeffWidth_transform M Γ (w j) (F j) hM hΓ (hF j).2
+  have hT := fun j => _root_.GlobalTheory.OddFrame.co_transform M Γ (w j) (F j) hM hΓ (hF j).2
   have hb : ∀ (x : SL(2, ℤ)) (n : ℕ), n < M → ∑ j, c j * co M (w j) (F j) x n = 0 := by
     refine GlobalTheory.T.coeff_eq_zero_of_sum_plusMinusReps_eq_zero M Γ r s (fun x n => ∑ j, c j * co M (w j) (F j) x n) hM hs ?_ ?_ ?_ ?_
     · intro x n
@@ -141,7 +141,7 @@ theorem reduces_of_det_leadM_eq_zero : ∀ (M : ℕ) (Γ : Subgroup SL(2, ℤ)) 
     refine (h1.add (hO x)).congr_left fun τ => ?_
     rw [← Finset.sum_add_distrib, Finset.sum_apply]
     exact Finset.sum_congr rfl fun j _ => by simp; ring
-  obtain ⟨G, hG, hHG⟩ := GlobalTheory.T.exists_eq_discriminant_mul_of_expDecay_cusps Γ _ _ hH hHO
+  obtain ⟨G, hG, hHG⟩ := _root_.GlobalTheory.exists_eq_discriminant_mul Γ _ _ hH hHO
   have hΔ : IsMF ⊤ 12 ModularForm.discriminant := (isCF_coe_top CuspForm.discriminant).isMF
   refine ⟨j₀, w j₀ + 4 - 12, G, ModularForm.discriminant, e, by omega, ?_, hG,
     fun j => (heMF j).2.1, ?_, ?_⟩

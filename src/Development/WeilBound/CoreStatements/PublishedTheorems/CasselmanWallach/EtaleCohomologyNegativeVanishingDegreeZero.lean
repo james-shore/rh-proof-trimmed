@@ -75,62 +75,40 @@ namespace PositivityTheory.CWB
 
 open PositivityTheory.CW
 
-theorem word_filtration_basic : A0 := orthonormal_eigenbasis_of_basic
+theorem casimir_real_scalar : CasimirIsRealScalar := casimir_real_of_central _root_.PositivityTheory.CW.gelfand_central_holds _root_.PositivityTheory.CW.casimir_eigen_exists
 
-theorem aux_statement_7 : A1 := word_filtration_of_length
+theorem commutator_adjoint_lower_order : CommutatorAdjointModLower := commutator_adjoint_holds _root_.PositivityTheory.CWB.word_filtration_of_length
 
-theorem filtration_adjoint_stable : FiltrationAdjointStable := adjoint_stable_filtration
+theorem aux_statement_6 : A5 := normal_nilpotent_of_commutator _root_.PositivityTheory.CWB.word_filtration_of_length _root_.PositivityTheory.CW.gelfand_central_holds _root_.PositivityTheory.CW.casimir_eigen_exists _root_.PositivityTheory.CW.nilpotent_of_power_traces commutator_adjoint_lower_order
 
-theorem gelfand_invariants_central : A2 := gelfand_central_holds
+theorem identity_operator_filtration : A6 := SymmetricPowerMatrix _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic _root_.PositivityTheory.CWB.word_filtration_of_length casimir_real_scalar
 
-theorem casimir_eigenvector_exists : A3 := casimir_eigen_exists
+theorem column_moments_bound : ColumnOperatorMoments := column_moments_of_symmetric _root_.PositivityTheory.CW.symmetric_power_holds
 
-theorem casimir_real_scalar : CasimirIsRealScalar := casimir_real_of_central gelfand_invariants_central casimir_eigenvector_exists
+theorem second_moment_bound : A8 := second_moment_of_columns _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic _root_.PositivityTheory.CWB.word_filtration_of_length _root_.PositivityTheory.CW.adjoint_stable_filtration casimir_real_scalar aux_statement_6 identity_operator_filtration column_moments_bound
 
-theorem power_traces_nilpotent : A4 := nilpotent_of_power_traces
+theorem etale_cohomology_vanishing_negative_degree_zero : A9 := a9_of_a0_a1_eigenbasis_a6 _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic _root_.PositivityTheory.CWB.word_filtration_of_length casimir_real_scalar identity_operator_filtration
 
-theorem commutator_adjoint_lower_order : CommutatorAdjointModLower := commutator_adjoint_holds aux_statement_7
+theorem orthonormal_eigenbasis_exists : EigenbasisExists := eigenbasis_of_basic _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic
 
-theorem aux_statement_6 : A5 := normal_nilpotent_of_commutator aux_statement_7 gelfand_invariants_central casimir_eigenvector_exists power_traces_nilpotent commutator_adjoint_lower_order
+theorem functional_calculus : FunctionalCalculusLaws := functional_calculus_of_basic _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic
 
-theorem identity_operator_filtration : A6 := SymmetricPowerMatrix word_filtration_basic aux_statement_7 casimir_real_scalar
+theorem normal_nilpotent_graded_zero : EigenspacesOrthogonalAlt := eigenspaces_orthogonal_of_calculus _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic functional_calculus
 
-theorem matrix_symmetric_power : A7 := symmetric_power_holds
+theorem eigen_gain_high : A12 := eigen_gain_of_moments _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic second_moment_bound etale_cohomology_vanishing_negative_degree_zero _root_.PositivityTheory.CW.inverse_power_bound_holds functional_calculus
 
-theorem column_moments_bound : ColumnOperatorMoments := column_moments_of_symmetric matrix_symmetric_power
+theorem basis_sum_form_values : BasisSumAsFormValues := basis_sum_of_orthogonality _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic functional_calculus normal_nilpotent_graded_zero
 
-theorem second_moment_bound : A8 := second_moment_of_columns word_filtration_basic aux_statement_7 filtration_adjoint_stable casimir_real_scalar aux_statement_6 identity_operator_filtration column_moments_bound
+theorem eigenspace_form_sum : A13 := basis_form_sum_of_gain _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic functional_calculus eigen_gain_high basis_sum_form_values
 
-theorem etale_cohomology_vanishing_negative_degree_zero : A9 := a9_of_a0_a1_eigenbasis_a6 word_filtration_basic aux_statement_7 casimir_real_scalar identity_operator_filtration
+theorem word_length_filtration : B1 := growth_of_basic _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic
 
-theorem inverse_power_square_bound : A10 := inverse_power_bound_holds
+theorem maximum_principle_one_function : MaximumPrincipleVar := maximum_principle_of_facts _root_.PositivityTheory.CW.heightFunctionalStatement_of_pairingProperties _root_.PositivityTheory.CW.second_derivative_holds _root_.PositivityTheory.CW.group_facts_holds
 
-theorem orthonormal_eigenbasis_exists : EigenbasisExists := eigenbasis_of_basic word_filtration_basic
+theorem second_derivative_sum_squares : SumSquaresSecondDerivative := second_derivatives_of_growth word_length_filtration _root_.PositivityTheory.CW.group_facts_holds
 
-theorem functional_calculus : FunctionalCalculusLaws := functional_calculus_of_basic word_filtration_basic
+theorem lieExponentialMajorant_holds : B5 := eigen_weighted_sum_bound _root_.PositivityTheory.CW.orthonormal_eigenbasis_of_basic functional_calculus
 
-theorem normal_nilpotent_graded_zero : EigenspacesOrthogonalAlt := eigenspaces_orthogonal_of_calculus word_filtration_basic functional_calculus
-
-theorem eigen_gain_high : A12 := eigen_gain_of_moments word_filtration_basic second_moment_bound etale_cohomology_vanishing_negative_degree_zero inverse_power_square_bound functional_calculus
-
-theorem basis_sum_form_values : BasisSumAsFormValues := basis_sum_of_orthogonality word_filtration_basic functional_calculus normal_nilpotent_graded_zero
-
-theorem eigenspace_form_sum : A13 := basis_form_sum_of_gain word_filtration_basic functional_calculus eigen_gain_high basis_sum_form_values
-
-theorem word_length_filtration : B1 := growth_of_basic word_filtration_basic
-
-theorem hilbert_schmidt_growth : B2 := heightFunctionalStatement_of_pairingProperties
-
-theorem tateTwist_local_to_global_strictlyHenselian : B3 := second_derivative_holds
-
-theorem group_facts : UnitaryGroupFacts := group_facts_holds
-
-theorem maximum_principle_one_function : MaximumPrincipleVar := maximum_principle_of_facts hilbert_schmidt_growth tateTwist_local_to_global_strictlyHenselian group_facts
-
-theorem second_derivative_sum_squares : SumSquaresSecondDerivative := second_derivatives_of_growth word_length_filtration group_facts
-
-theorem lieExponentialMajorant_holds : B5 := eigen_weighted_sum_bound word_filtration_basic functional_calculus
-
-theorem maxPr : MaxPr := maxPr_of casimir_real_scalar orthonormal_eigenbasis_exists eigenspace_form_sum group_facts maximum_principle_one_function second_derivative_sum_squares lieExponentialMajorant_holds
+theorem maxPr : MaxPr := maxPr_of casimir_real_scalar orthonormal_eigenbasis_exists eigenspace_form_sum _root_.PositivityTheory.CW.group_facts_holds maximum_principle_one_function second_derivative_sum_squares lieExponentialMajorant_holds
 
 end PositivityTheory.CWB

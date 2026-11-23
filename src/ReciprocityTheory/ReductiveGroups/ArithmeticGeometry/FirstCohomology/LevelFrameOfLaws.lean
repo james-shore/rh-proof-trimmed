@@ -163,10 +163,7 @@ theorem cst_stalkMap {V : Type} [CommRing V] {X Z : Scheme.{0}} (r : Z ⟶ X) (p
           (Scheme.Hom.germ_stalkMap r (p ⁻¹ᵁ ⊤) z hp)
        simpa using e)
 
-theorem gs_sum {X Z : Scheme.{0}} (r : Z ⟶ X) (z : Z) (U : X.Opens) (h : r z ∈ U) {n : ℕ} (a : Fin n → Γ(X, U)) :
-    gs r z U (∑ i, a i) = ∑ i, gs r z U (a i) := by
-
-  simp [gs, h, map_sum]
+alias gs_sum := _root_.ReciprocityTheory.ChartRestriction.G.DVR.SectionScalarValuation.gs_sum
 
 theorem gs_spec {A C : Type} [CommRing A] [CommRing C] (φ : A →+* C) (z : Sp C) (a : A) :
     cst (spMap φ) z a = cst (𝟙 _) z (φ a) := by

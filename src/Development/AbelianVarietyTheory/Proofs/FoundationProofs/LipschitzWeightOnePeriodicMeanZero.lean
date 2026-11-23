@@ -189,7 +189,7 @@ theorem lipschitz_one : ∀ (L : ℕ) (φ : ZMod L → ℂ) (z : ℂ), 0 < L →
     refine hG.congr fun N => ?_
     simp only [Function.comp_apply]
     rw [← hb N, hsplit, hzero N, add_zero]
-  have hlim := hF.add (T.tendsto_sum_Icc_periodic_mul_inv_floor_div L φ z hL hz h0)
+  have hlim := hF.add (_root_.GlobalTheory.FloorTelescope.tendsto_sum_Icc_div L φ z hL hz h0)
   rw [add_zero, hT] at hlim
   refine hlim.congr fun R => ?_
   simp only [Function.comp_apply]

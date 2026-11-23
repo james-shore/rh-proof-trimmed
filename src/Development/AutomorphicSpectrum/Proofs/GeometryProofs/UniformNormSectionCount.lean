@@ -56,17 +56,17 @@ namespace GlobalTheory.CompanionTheory.Ar.Plug
 
 theorem cusp_mem_chartLatNm : _root_.GlobalTheory.CompanionTheory.Ar.Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (h : GenFrEx Xo c) (e : Comp Xo c → Rul Xo c), CompLaws U h e → ∀ x : ℝ, (∀ σ, GoodEmb c σ → ∀ k (τ : E →+* ℂ), ‖τ ((U σ).X k).ξ0‖ = x) → ∀ (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) [DecidableEq (CMType H)] (T : Top.RootTower (CMType H) (Dw.p + Dw.q)) (o : _root_.GlobalTheory.CompanionTheory.Ar.Top.GoodOrigin Y T) (B : ℕ) (b : T.Comp) (Fr : Small.GenFrame (o.toTowerOrigin.Or B b)) (Z : Comp Xo c) (Rd : Reading Fr h Z) (u : GlobalTheory.AllWt.Weight Dw), ∀ f ∈ GlobalTheory.AllWt.cuspOn U Z (GlobalTheory.AllWt.wtOf Dw u 0), ∃ N : ℕ, 0 < N ∧ (N : (T.M B b).Ω) * (gauge Rd u * Rd.φ (evC h Z f)) ∈ chartLatNm (T.M B b).y (degOf (T.M B b) u) 1 := by
   intro hG E _ _ _ H Dw l Xo c r U h e hL x hx Y _ T o B b Fr Z Rd u f hf
-  obtain ⟨R, w, hw, hval⟩ := GlobalTheory.T.comp_laws_model_root_bound hG E H Dw l Xo c r U h e hL x hx _ _ Y _ _ _ _ _ Fr Z Rd u f hf
-  obtain ⟨f₀, hf₀, hint⟩ := GlobalTheory.T.root_origin_exists_form E H Dw l Xo c _ _ Y _ _ _ _ (o.toTowerOrigin.Or B b)
+  obtain ⟨R, w, hw, hval⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.CuspHodge.cusp_hodgeLe hG E H Dw l Xo c r U h e hL x hx _ _ Y _ _ _ _ _ Fr Z Rd u f hf
+  obtain ⟨f₀, hf₀, hint⟩ := _root_.GlobalTheory.CompanionTheory.RootForm.exists_form E H Dw l Xo c _ _ Y _ _ _ _ (o.toTowerOrigin.Or B b)
   obtain ⟨hJ, inst, hsm⟩ := o.smooth B b
   refine GlobalTheory.T.holomorphic_disc_component_growth GlobalTheory.T.holomorphic_disc_ratio_growth _ _ _ (T.M B b).y (degOf (T.M B b) u) _
     (fun z => R * ∏ r, ((o.toTowerOrigin.Or B b).sing r).h z ^ nOf u (some r)) w f₀ (T.M B b).birational hsm hw hf₀
     hval ?_
   intro Zf hol hmem hne
   have hJ' : (o.toTowerOrigin.Or B b).Re.J = ⊤ := hJ
-  obtain ⟨C₁, ρ₁, hρ₁, hb⟩ := GlobalTheory.T.holomorphic_disc_orbit_bound _ _ _ _ _ _ (o.toTowerOrigin.Or B b).Re hJ' Zf hol hmem
+  obtain ⟨C₁, ρ₁, hρ₁, hb⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.rW_le_log_disc _ _ _ _ _ _ (o.toTowerOrigin.Or B b).Re hJ' Zf hol hmem
     (fun z hz hz0 x' hx' => hint _ (hmem z hz) (hne z hz hz0) x' hx')
-  obtain ⟨C₂, M, hC₂, hev⟩ := GlobalTheory.T.root_origin_weight_section E H Dw l Xo c _ _ Y _ _ _ _ (o.toTowerOrigin.Or B b)
+  obtain ⟨C₂, M, hC₂, hev⟩ := _root_.GlobalTheory.CompanionTheory.Ar.VsReg.sing_prod_le_rW_pow E H Dw l Xo c _ _ Y _ _ _ _ (o.toTowerOrigin.Or B b)
     (fun r => nOf u (some r)) (Zf 0) (hmem 0 (by simp))
   have hcont : ContinuousAt Zf 0 := by
     refine continuousAt_pi.2 fun p => ?_

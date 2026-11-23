@@ -70,7 +70,7 @@ theorem lift_linear_of_injective {S : Type*} [Ring S] {N A B C : Type*} [AddComm
 
 theorem lift_homSh : ∀ (R : Type) [CommRing R] (J X : Shv R), Module.Injective (ULift.{1} R) (X ⟶ J) → ∀ (A B C : ModuleCat.{1} (ULift.{1} R)) (u : A ⟶ B) (v : B ⟶ C), (∀ b, v.hom b = 0 → ∃ a, u.hom a = b) → ∀ f : X ⟶ (homSh J).obj (op B), f ≫ (homSh J).map u.op = 0 → ∃ g : X ⟶ (homSh J).obj (op C), g ≫ (homSh J).map v.op = f := by
   intro R _ J X hinj A B C u v hex f hf
-  obtain ⟨e, hnat, -⟩ := GlobalTheory.T.exists_sheafHom_linearMapsSheaf_curry_equiv R J
+  obtain ⟨e, hnat, -⟩ := _root_.GlobalTheory.EtC.homSh_curry R J
   have he0 : ∀ M : ModuleCat.{1} (ULift.{1} R), e X M 0 = 0 := by
     intro M
     have := hnat X M M 0 0

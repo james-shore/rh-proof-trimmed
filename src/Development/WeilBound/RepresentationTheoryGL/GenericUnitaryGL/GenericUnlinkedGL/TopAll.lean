@@ -50,7 +50,7 @@ namespace GlobalTheory.RgGu
 
 theorem genericUnique (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] :
     GenericUnique k :=
-  genericUnique_of PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top (PositivityTheory.rg.gu.hered2.whitHeredity_all k)
+  genericUnique_of PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top (_root_.GlobalTheory.CompanionTheory.Rodier.whitHeredity k)
     (PositivityTheory.rg.gu.whit.whitRankIrr k) (GlobalTheory.BZSeg.Cusp.cuspGeneric k)
 
 end GlobalTheory.RgGu

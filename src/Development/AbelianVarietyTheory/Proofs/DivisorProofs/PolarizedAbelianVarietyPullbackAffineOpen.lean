@@ -59,17 +59,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Poinc.TorsExtend
 
-theorem exists_section_of_isFinite {R K : Type} [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [Field K]
-    [Algebra R K] [IsFractionRing R K] {Z : Scheme.{0}} (p : Z ⟶ Sp R) [IsFinite p] (y : Sp K ⟶ Z)
-    (h : y ≫ p = spMap (algebraMap R K)) : ∃ x : Sp R ⟶ Z, spMap (algebraMap R K) ≫ x = y ∧ x ≫ p = 𝟙 _ := by
-  first
-  | exact @_root_.GlobalTheory.FactorAndSection.exists_section
-  | exact _root_.GlobalTheory.FactorAndSection.exists_section
-  | (apply _root_.GlobalTheory.FactorAndSection.exists_section <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FactorAndSection.exists_section <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FactorAndSection.exists_section <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FactorAndSection.exists_section ..)
-
 theorem pow_eq_one_iff {S : Scheme.{0}} (G : Over S) [GrpObj G] (n : ℕ) {T : Over S} (z : T ⟶ G) :
     z ^ n = 1 ↔ z.left ≫ (mulA G n).left = T.hom ≫ (η[G]).left := by
   have e : (1 : T ⟶ G).left = T.hom ≫ (η[G]).left := by
@@ -85,7 +74,7 @@ theorem exists_torsion_section (hL : Laws) {R K : Type} [CommRing R] [IsDomain R
   haveI := (hL.mulN _ P n hn).1
   let e : Sp R ⟶ P.A.left := (η[P.A]).left
   have he : e ≫ P.A.hom = 𝟙 _ := Over.w η[P.A]
-  obtain ⟨x, h₁, h₂⟩ := exists_section_of_isFinite (pullback.snd (mulA P.A n).left e)
+  obtain ⟨x, h₁, h₂⟩ := _root_.GlobalTheory.FactorAndSection.exists_section (pullback.snd (mulA P.A n).left e)
     (pullback.lift y.left (spMap (algebraMap R K)) ((pow_eq_one_iff _ _ _).1 hy)) (pullback.lift_snd _ _ _)
   have h₃ : (x ≫ pullback.fst (mulA P.A n).left e) ≫ (mulA P.A n).left = e := by
     rw [Category.assoc, pullback.condition, ← Category.assoc, h₂, Category.id_comp]

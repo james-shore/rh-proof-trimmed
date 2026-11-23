@@ -49,6 +49,8 @@ import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsArchOne
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.IsStrictDom
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.BigStatementPfA
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.FundSetPf
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FlowCoefficientBounds
 
 @[expose] public section
 
@@ -84,10 +86,6 @@ theorem lminor_zero (M : Matrix (Fin r) (Fin r) ℂ) : lminor M 0 = 1 := by
   unfold lminor
   exact Matrix.det_eq_one_of_card_eq_zero (by simp; exact Fintype.card_eq_zero)
 
-theorem lminor_last (M : Matrix (Fin r) (Fin r) ℂ) : lminor M (Fin.last r) = M.det := by
-  unfold lminor
-  exact Matrix.det_submatrix_equiv_self (finCongr (Fin.val_last r)) M
-
 theorem gram_eq (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (x : Matrix (Fin r) (Fin r) ℂ) :
     gram τ G x = x.transpose * G.map τ * x.map (starRingEnd ℂ) := by
   ext a b
@@ -101,19 +99,12 @@ theorem det_gram (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (x : Matrix (
   congr 1
   exact (RingHom.map_det (starRingEnd ℂ) x).symm
 
-theorem dmin_ne (X : Data E r) {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (i : Fin (r + 1)) :
-    dmin X.Gm x τ i ≠ 0 := by
-  intro h
-  have := (hx τ).2 i
-  rw [h] at this
-  simp at this
-
 theorem pnorm_factor (X : Data E r) {x : Frame X.Ψ r} (hx : x ∈ X.dom) (a : ℤ) (τ : X.Ψ) :
     ‖(mat x τ).det ^ a‖ * ∏ i : Fin r, ‖dmin X.Gm x τ i.succ / dmin X.Gm x τ i.castSucc‖ ^ (-(a : ℝ) / 2) =
       ‖(X.Gm.map τ.1).det‖ ^ (-(a : ℝ) / 2) := by
   have hD : (mat x τ).det ≠ 0 := (hx τ).1
   have hpos : 0 < ‖(mat x τ).det‖ := norm_pos_iff.mpr hD
-  have ht := telescope r (fun i => ‖dmin X.Gm x τ i‖) (fun i => norm_ne_zero_iff.mpr (dmin_ne X hx τ i))
+  have ht := telescope r (fun i => ‖dmin X.Gm x τ i‖) (fun i => norm_ne_zero_iff.mpr (_root_.ReciprocityTheory.ChartRestriction.G.FD.FlowCoefficientBounds.dmin_ne X hx τ i))
   beta_reduce at ht
   have hprod : ∏ i : Fin r, ‖dmin X.Gm x τ i.succ / dmin X.Gm x τ i.castSucc‖ ^ (-(a : ℝ) / 2) =
       (‖dmin X.Gm x τ (Fin.last r)‖ / ‖dmin X.Gm x τ 0‖) ^ (-(a : ℝ) / 2) := by
@@ -122,7 +113,7 @@ theorem pnorm_factor (X : Data E r) {x : Frame X.Ψ r} (hx : x ∈ X.dom) (a : �
   rw [hprod]
   have h0 : dmin X.Gm x τ 0 = 1 := lminor_zero _
   have hl : dmin X.Gm x τ (Fin.last r) = (mat x τ).det * (X.Gm.map τ.1).det * starRingEnd ℂ (mat x τ).det := by
-    unfold dmin; rw [lminor_last, det_gram]
+    unfold dmin; rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.lminor_last, det_gram]
   rw [h0, hl, norm_one, div_one, norm_mul, norm_mul, Complex.norm_conj, norm_zpow]
   have hg : 0 ≤ ‖(X.Gm.map τ.1).det‖ := norm_nonneg _
   rw [show ‖(mat x τ).det‖ * ‖(X.Gm.map τ.1).det‖ * ‖(mat x τ).det‖ =
@@ -150,11 +141,6 @@ theorem detPow_diff (X : Data E r) (a : ℤ) : DifferentiableOn ℂ (detPow X.Ψ
   have h : ∀ τ : X.Ψ, DifferentiableAt ℂ (fun y : Frame X.Ψ r => (mat y τ).det ^ a) x :=
     fun τ => (det_diff X.Ψ τ x).zpow (Or.inl (hx τ).1)
   fun_prop
-
-theorem lact_one {Ψ : Finset (E →+* ℂ)} (x : Frame Ψ r) : lact 1 x = x := by
-  funext τ
-  simp [lact, mat, Matrix.map_one]
-  rfl
 
 theorem chi_one (X : Data E r) (la : Wt X.Ψ r) : X.χ la 1 = 1 := by
   have h1 : (1 : GL (Fin r) E) ∈ X.Γ := X.Γ.one_mem
@@ -251,7 +237,7 @@ theorem detPow_mem_SS (X : Data E r) (hΓ : ∀ γ ∈ X.Γ, γ = 1) (hdef : ∀
     simp only [e1, Finset.prod_mul_distrib]
     ring
   · intro γ hγ x _
-    rw [hΓ γ hγ, lact_one, chi_one, one_mul]
+    rw [hΓ γ hγ, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_one, chi_one, one_mul]
 
 theorem exists_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r),
     (∀ γ ∈ X.Γ, γ = 1) → (X.p0 = 0 ∨ X.p0 = r) → ∀ s : ℕ, ∀ x ∈ X.dom,

@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleChartLocalizationFiniteTypeFormallyUnramifi
 
 @[expose] public section
 
@@ -83,7 +84,7 @@ theorem exists_poly_vanishing_of_fibre : ∀ (R : Type) [CommRing R] (A : Type) 
   letI : IsDomain (TensorProduct R Ω A ⧸ N) := Ideal.Quotient.isDomain N
   have hle : Submonoid.powers u ≤ nonZeroDivisors (TensorProduct R Ω A ⧸ N) := powers_le_nonZeroDivisors_of_noZeroDivisors hu
   letI : IsDomain (Localization.Away u) := IsLocalization.isDomain_localization hle
-  obtain ⟨hFT, hFU⟩ := GlobalTheory.T.etaleChart_localization_finiteType_formallyUnramified R A g t h hE Ω N
+  obtain ⟨hFT, hFU⟩ := _root_.GlobalTheory.DenseSec.locQuot_finiteType_formallyUnramified R A g t h hE Ω N
   letI : Algebra (MvPolynomial (Fin g) Ω) (Localization.Away u) :=
     (MvPolynomial.aeval (fun i => algebraMap (TensorProduct R Ω A ⧸ N) (Localization.Away u) (Ideal.Quotient.mk N (1 ⊗ₜ[R] t i)))).toRingHom.toAlgebra
   have hf' : algebraMap (TensorProduct R Ω A ⧸ N) (Localization.Away u) (Ideal.Quotient.mk N f) ≠ 0 := by

@@ -69,7 +69,7 @@ theorem twisted_kernel : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (A : O
     | (show LocallyOfFiniteType (pullback.snd A.hom T.hom ≫ T.hom); infer_instance)
   have : IsLocallyNoetherian (A ⊗ T).left := LocallyOfFiniteType.isLocallyNoetherian (A ⊗ T).hom
   have hΛ : Fam A (abelian₂ A L) := ⟨LB.isLB_linComb hL _ _,
-    (GlobalTheory.CubeDual.isAdditive_lam GlobalTheory.CubeTop.cubeTheorem hA hL (LB.isLB_linComb hL _ _)).1⟩
+    (GlobalTheory.CubeDual.isAdditive_lam _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hA hL (LB.isLB_linComb hL _ _)).1⟩
   obtain ⟨H, h, hh, hH⟩ := GlobalTheory.DualLocus.exists_closed_same (Sp R) A (A ⊗ T) hA
     (ev (abelian₂ A L) (fst A (A ⊗ T)) (snd A (A ⊗ T) ≫ fst A T)) (ev N (fst A (A ⊗ T)) (snd A (A ⊗ T) ≫ snd A T))
     (hΛ.ev (fst A T)) (hN.ev (snd A T))

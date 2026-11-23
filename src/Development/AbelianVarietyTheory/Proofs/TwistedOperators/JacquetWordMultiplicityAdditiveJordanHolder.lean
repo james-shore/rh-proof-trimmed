@@ -88,7 +88,7 @@ theorem wordMult_exact {π : Representation ℂ (GL (Fin n) k) V}
   swap
   · simp
   refine jhMult_exact (compMap (jacMap (points _) ι) _) (compMap (jacMap (points _) p) _)
-    (isIrreducible_ofChar _) (GlobalTheory.T.jacquetModule_map_injective_of_injective k _ _ _ (points _) W V π₁ π ι hπ hι) (fun x => ?_)
+    (isIrreducible_ofChar _) (_root_.GlobalTheory.JacInj.jacMap_injective k _ _ _ (points _) W V π₁ π ι hπ hι) (fun x => ?_)
     (fun x => ?_) (fun x hx => ?_)
   · obtain ⟨u, rfl⟩ := Submodule.Quotient.mk_surjective _ x
     obtain ⟨v, rfl⟩ := hp u

@@ -53,7 +53,7 @@ namespace GlobalTheory.Hk
 
 theorem LFam.norm_deriv_F_le_near_one (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) (z : ℂ)
     (hz : z ∈ Metric.closedBall (1 : ℂ) (1 / 4)) : ‖deriv (𝓕.F χ) z‖ ≤ 18000 * 𝓕.B := by
-  obtain ⟨han, -, hbd, -⟩ := GlobalTheory.T.rayClassLFunctionFamily_continuation_growth 𝓕 χ
+  obtain ⟨han, -, hbd, -⟩ := _root_.GlobalTheory.Hk.RayCont.continuation_growth 𝓕 χ
   have hB : 0 < 𝓕.B := by linarith [𝓕.B_ge]
   have key : ∀ w ∈ Metric.closedBall z (1 / 10), 13 / 20 ≤ w.re ∧ ‖w‖ ≤ 27 / 20 := by
     intro w hw
@@ -95,8 +95,8 @@ theorem LFam.real_zero_far_from_one : ∃ A c : ℝ, 0 < A ∧ 0 < c ∧ ∀ (�
   have hβ1 : β ≤ 1 := by
     by_contra hlt
     push_neg at hlt
-    exact (GlobalTheory.T.rayClassFamily_logDeriv_re_gt_one 𝓕 χ β (by simpa using hlt)).2.2.1 h0
-  obtain ⟨han, -, -, -⟩ := GlobalTheory.T.rayClassLFunctionFamily_continuation_growth 𝓕 χ
+    exact (_root_.GlobalTheory.Hk.LogDeriv.logDeriv_F 𝓕 χ β (by simpa using hlt)).2.2.1 h0
+  obtain ⟨han, -, -, -⟩ := _root_.GlobalTheory.Hk.RayCont.continuation_growth 𝓕 χ
   have hn : ‖(1 : ℂ) - β‖ = 1 - β := by
     rw [show (1 : ℂ) - β = ((1 - β : ℝ) : ℂ) by push_cast; ring, Complex.norm_real, Real.norm_eq_abs,
       abs_of_nonneg (by linarith)]

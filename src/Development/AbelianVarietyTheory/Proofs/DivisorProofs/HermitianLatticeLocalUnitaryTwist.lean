@@ -207,7 +207,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
     constructor
     · rintro ⟨a, rfl⟩; exact ⟨a, rfl⟩
     · rintro ⟨a, rfl⟩; exact ⟨a, rfl⟩
-  obtain ⟨d, hd, hdet⟩ := GlobalTheory.KapSignMul.gram_change (K.c : K.E →+* K.E) W u v hu_li hu_span hv_li hv_span
+  obtain ⟨d, hd, hdet⟩ := _root_.GlobalTheory.gram_det_change_of_bases (K.c : K.E →+* K.E) W u v hu_li hu_span hv_li hv_span
   have hM : (Matrix.of fun i j => ∑ k, cj w ((b i : Fin n → w.adicCompletion E) k) * (b j : Fin n → w.adicCompletion E) k) =
       (Matrix.of fun i j => ∑ k, (K.c : K.E →+* K.E) (v i k) * v j k).map e := by
     ext i j

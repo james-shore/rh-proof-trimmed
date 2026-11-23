@@ -75,39 +75,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.TriStep
 
-theorem isBiTheta_add' {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {A S A' : HSp D} {f g : WO A S → WO S A' → ℂ}
-    (hf : IsBiTheta ψ A S A' f) (hg : IsBiTheta ψ A S A' g) : IsBiTheta ψ A S A' (f + g) := by
-  refine ⟨hf.cont.add hg.cont, ?_, fun γ u v => ?_, fun γ u v => ?_, ?_, ?_⟩
-  · intro n L L' hL hL' hLf hL'f u v
-    exact (hf.smooth n L L' hL hL' hLf hL'f u v).add (hg.smooth n L L' hL hL' hLf hL'f u v)
-  · simp only [Pi.add_apply]; rw [hf.quasiL, hg.quasiL]; ring
-  · simp only [Pi.add_apply]; rw [hf.quasiR, hg.quasiR]; ring
-  · obtain ⟨U, hU, hUf⟩ := hf.levL
-    obtain ⟨V, hV, hVf⟩ := hg.levL
-    refine ⟨U ⊓ V, hU.inter hV, fun a ha ha' v => ?_⟩
-    funext u
-    have h1 := congrFun (hUf a ha.1 ha' v) u
-    have h2 := congrFun (hVf a ha.2 ha' v) u
-    simp only [heisO, Pi.add_apply] at h1 h2 ⊢
-    rw [mul_add, h1, h2]
-  · obtain ⟨U, hU, hUf⟩ := hf.levR
-    obtain ⟨V, hV, hVf⟩ := hg.levR
-    refine ⟨U ⊓ V, hU.inter hV, fun a ha ha' u => ?_⟩
-    funext v
-    have h1 := congrFun (hUf a ha.1 ha' u) v
-    have h2 := congrFun (hVf a ha.2 ha' u) v
-    simp only [heisO, Pi.add_apply] at h1 h2 ⊢
-    rw [mul_add, h1, h2]
-
-theorem isBiTheta_zero' {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {A S A' : HSp D} : IsBiTheta ψ A S A' 0 := by
-  refine ⟨?_, fun n L L' _ _ _ _ u v => ?_, fun γ u v => by simp, fun γ u v => by simp,
-    ⟨⊤, by rw [AddSubgroup.coe_top]; exact isOpen_univ, fun a _ _ v => ?_⟩,
-    ⟨⊤, by rw [AddSubgroup.coe_top]; exact isOpen_univ, fun a _ _ u => ?_⟩⟩
-  · simp only [Pi.zero_apply]; exact continuous_const
-  · simp only [Pi.zero_apply]; exact contDiff_const
-  · funext x; simp [heisO]
-  · funext x; simp [heisO]
-
 theorem isBiTheta_of_prod {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {A S A' : HSp D} {X Y : Type} [TopologicalSpace X]
     [TopologicalSpace Y] [T2Space X] [LocallyCompactSpace X] [TotallyDisconnectedSpace X] [T2Space Y] [LocallyCompactSpace Y]
     [TotallyDisconnectedSpace Y] (Λ : SB (X × Y) →ₗ[ℂ] (WO A S → WO S A' → ℂ))
@@ -123,8 +90,8 @@ theorem isBiTheta_of_prod {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {A S A' : HS
         change c • GlobalTheory.LocFlat.CFac.prodSBBil X Y q.1 q.2 = GlobalTheory.LocFlat.CFac.prodSBBil X Y (c • q.1) q.2
         rw [map_smul, LinearMap.smul_apply]
       rw [e]; exact h _ _
-    | zero => intro c; rw [smul_zero, map_zero]; exact isBiTheta_zero'
-    | add x y _ _ hx hy => intro c; rw [smul_add, map_add (f := _)]; exact isBiTheta_add' (hx c) (hy c)
+    | zero => intro c; rw [smul_zero, map_zero]; exact _root_.GlobalTheory.VReal.biTheta_zero
+    | add x y _ _ hx hy => intro c; rw [smul_add, map_add (f := _)]; exact _root_.GlobalTheory.VReal.biTheta_add (hx c) (hy c)
     | smul a x _ hx => intro c; rw [smul_smul]; exact hx _
   simpa using key 1
 

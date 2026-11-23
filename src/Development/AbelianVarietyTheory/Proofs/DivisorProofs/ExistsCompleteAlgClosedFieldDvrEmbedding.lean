@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.UnifAlong
 import Development.AbelianVarietyTheory.Definitions.KeyFormula.KeyRootOfKeyFormula
+import Development.AbelianVarietyTheory.Definitions.Jets.CmLatticeCommutatorPairingPowEqOneOfGoodLift
 
 @[expose] public section
 
@@ -88,7 +89,7 @@ theorem exists_complete_closed_field :
   let T : Formalism.L2.Pj.CDVR := { V := V }
   obtain ⟨p, hp, k, kO, hk⟩ := GlobalTheory.CompleteDvrEmbedding.exists_embedding_padicComplexInt T hf
   letI : Algebra (FractionRing V) ℂ_[p] := k.toAlgebra
-  obtain ⟨eC⟩ := GlobalTheory.MomOne.Inh.nonempty_iso p
+  obtain ⟨eC⟩ := _root_.GlobalTheory.MomOne.Basic.nonempty_iso p
   refine ⟨ℂ_[p], inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, this, ⟨?_, ?_⟩, ⟨eC.symm⟩⟩
   · have hle : ∀ r : V, ‖k (algebraMap V (FractionRing V) r)‖ ≤ 1 := fun r => by
       rw [← hk r]

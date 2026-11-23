@@ -58,9 +58,6 @@ section Ring
 
 variable {R : Type} [CommRing R] (s : R →+* R) {n : ℕ} (A : Matrix (Fin n) (Fin n) R)
 
-theorem cT_add' {p q : Type} (M N : Matrix p q R) : cT s (M + N) = cT s M + cT s N := by
-  ext i k; simp [cT]
-
 theorem cT_sub' {p q : Type} (M N : Matrix p q R) : cT s (M - N) = cT s M - cT s N := by
   ext i k; simp [cT]
 
@@ -71,7 +68,7 @@ variable {p q k : ℕ}
 
 theorem gr_add_left (X X' : Matrix (Fin n) (Fin p) R) (Y : Matrix (Fin n) (Fin q) R) :
     gr s A (X + X') Y = gr s A X Y + gr s A X' Y := by
-  simp [gr, cT_add', Matrix.add_mul]
+  simp [gr, _root_.GlobalTheory.SphEis.ColImg.cT_add', Matrix.add_mul]
 
 theorem gr_sub_left (X X' : Matrix (Fin n) (Fin p) R) (Y : Matrix (Fin n) (Fin q) R) :
     gr s A (X - X') Y = gr s A X Y - gr s A X' Y := by
@@ -97,9 +94,7 @@ end Ring
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E)
 
-theorem cT_adMat {p q : Type} (X : Matrix p q E) :
-    cT (sigR (AF F) σ) (adMat F X) = adMat F (cT (σ : E →+* E) X) := by
-  ext i k; simp [cT, adMat, sigR, inclR]
+alias cT_adMat := _root_.GlobalTheory.SphEis.ColImg.cT_adMat
 
 theorem gr_adMat {n p q : ℕ} (J : Matrix (Fin n) (Fin n) E) (X : Matrix (Fin n) (Fin p) E) (Y : Matrix (Fin n) (Fin q) E) :
     gr (sigR (AF F) σ) (adMat F J) (adMat F X) (adMat F Y) = adMat F (cT (σ : E →+* E) X * J * Y) := by

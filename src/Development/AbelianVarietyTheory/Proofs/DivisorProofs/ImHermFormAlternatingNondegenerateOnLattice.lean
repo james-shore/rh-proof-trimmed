@@ -41,6 +41,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsHolPeriods
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.TransportThetaLevelUniformisationCoordinates
+import Development.AbelianVarietyTheory.Proofs.ToricGeometry.AppellHumbertDataOfIsoCube
 
 @[expose] public section
 
@@ -49,14 +51,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped Matrix
 
 namespace GlobalTheory.HermImNondeg
-
-theorem hermForm_add_right' {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (z w w' : Fin g → ℂ) :
-    hermForm Hm z (w + w') = hermForm Hm z w + hermForm Hm z w' := by
-  simp only [hermForm, star_add, Matrix.mulVec_add, dotProduct_add]
-
-theorem hermForm_smul_right' {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (a : ℂ) (z w : Fin g → ℂ) :
-    hermForm Hm z (a • w) = star a * hermForm Hm z w := by
-  simp only [hermForm, star_smul, Matrix.mulVec_smul, dotProduct_smul, smul_eq_mul]
 
 theorem hermForm_self_star {g : ℕ} {Hm : Matrix (Fin g) (Fin g) ℂ} (h : Hm.IsHermitian) (z : Fin g → ℂ) :
     star (hermForm Hm z z) = hermForm Hm z z := by
@@ -87,12 +81,12 @@ theorem im_hermForm_alternating_nondegenerate (La : Type) [AddCommGroup La] (g :
         obtain ⟨y, rfl⟩ := ha
         rw [hEF, hx y]; simp
       | zero => simp [hermForm]
-      | add a b _ _ h1 h2 => rw [hermForm_add_right', Complex.add_im, h1, h2, add_zero]
+      | add a b _ _ h1 h2 => rw [_root_.GlobalTheory.SelfCube.herm_add_right, Complex.add_im, h1, h2, add_zero]
       | smul r a _ h1 =>
-        rw [← Complex.coe_smul, hermForm_smul_right']
+        rw [← Complex.coe_smul, _root_.GlobalTheory.UnifTransport.hermForm_smul_right]
         simp [h1]
     have hI := key (Complex.I • z)
-    rw [hermForm_smul_right'] at hI
+    rw [_root_.GlobalTheory.UnifTransport.hermForm_smul_right] at hI
     have hre : (hermForm Hm z z).re = 0 := by
       have : (star Complex.I * hermForm Hm z z).im = -(hermForm Hm z z).re := by
         simp [Complex.mul_im]

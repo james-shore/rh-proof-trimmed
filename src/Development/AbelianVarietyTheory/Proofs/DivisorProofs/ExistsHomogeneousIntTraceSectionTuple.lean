@@ -70,7 +70,7 @@ theorem trace_homog : ∀ (K : Type) [Field K] [CharZero K] (D : ℕ) (x : Fin (
     rw [this]; exact div_mem (e k) (e l)
   set t : K := (Algebra.trace (ratF x) K (w / x 0 ^ q) : K) with htdef
 
-  obtain ⟨f₀, hf₀, hft₀⟩ := GlobalTheory.T.exists_monic_root_trace_of_isIntegral_closure (ratF x) (fun k => x k / x 0) (hzF 0) _ (hint 0)
+  obtain ⟨f₀, hf₀, hft₀⟩ := _root_.GlobalTheory.trace_monic_over_mvPolynomial (ratF x) (fun k => x k / x 0) (hzF 0) _ (hint 0)
   have hz0 : ∀ k, ∃ p : MvPolynomial (Fin D) ℤ, aeval y p = x k / x 0 := by
     intro k
     refine Fin.cases ⟨1, ?_⟩ (fun i => ⟨X i, by simp [y]⟩) k
@@ -83,7 +83,7 @@ theorem trace_homog : ∀ (K : Type) [Field K] [CharZero K] (D : ℕ) (x : Fin (
       rw [MvPolynomial.eq_C_of_isEmpty T₀, totalDegree_C]; exact Nat.zero_le _
     · set j : Fin D := ⟨0, hD⟩
       have hyj : y j ≠ 0 := div_ne_zero (hx _) (hx 0)
-      obtain ⟨f₁, hf₁, hft₁⟩ := GlobalTheory.T.exists_monic_root_trace_of_isIntegral_closure (ratF x) (fun k => x k / x j.succ) (hzF j.succ) _ (hint j.succ)
+      obtain ⟨f₁, hf₁, hft₁⟩ := _root_.GlobalTheory.trace_monic_over_mvPolynomial (ratF x) (fun k => x k / x j.succ) (hzF j.succ) _ (hint j.succ)
       have hc : (⟨(x 0 / x j.succ) ^ q, pow_mem (hzF _ 0) q⟩ : ratF x) • (w / x 0 ^ q) = w / x j.succ ^ q := by
         rw [Subfield.smul_def]; simp only [smul_eq_mul, div_pow]; field_simp [hx 0, hx j.succ] <;> ring
       have htr : (Algebra.trace (ratF x) K (w / x j.succ ^ q) : K) = aeval y T₀ / y j ^ q := by

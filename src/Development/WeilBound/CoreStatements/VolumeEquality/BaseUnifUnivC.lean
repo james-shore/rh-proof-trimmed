@@ -61,6 +61,7 @@ import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PUnipotentModulusMatrix
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
+import Development.WeilBound.CoreStatements.PlurisubharmonicCones.RiemannLatticeEigenProjections
 
 @[expose] public section
 
@@ -247,7 +248,7 @@ theorem member {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ} {Λ 
     exact h.1
   · intro x y
     show (tz Z (R₁.P x) ⬝ᵥ (1 - Zᴴ * Z)⁻¹ *ᵥ star (tz Z (R₁.P y))).im = _
-    rw [GlobalTheory.T.siegel_transform_symplectic_imaginary Z hs hp, ← R₁.im, hH, one_mulVec]
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.Cusp.Univ.im_tz_form Z hs hp, ← R₁.im, hH, one_mulVec]
   · intro a x
     show tz Z (R₁.P (a • x)) = R₁.B a (tz Z (R₁.P x))
     rw [R₁.act, hc]
@@ -290,10 +291,10 @@ theorem exists_univFam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     rw [(hR t ht).1]
     exact (hfr τ).1
   · intro t ht
-    exact GlobalTheory.T.log_det_eq_ball_potential e q t (R t) ht (hR t ht).2.1
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Univ.GramPot.logDet_coord e q t (R t) ht (hR t ht).2.1
   · intro R' hR' _
     obtain ⟨L, hL1, hL2, hL3⟩ := exists_realExt R₁ R' (hR'.trans hform.symm)
-    obtain ⟨A, Z, hZs, hZp, hLZ⟩ := GlobalTheory.T.siegel_normal_form_of_hermitian L R'.Hm R'.herm R'.pos (by
+    obtain ⟨A, Z, hZs, hZp, hLZ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Univ.PeriodCoord.exists_linearEquiv_tz L R'.Hm R'.herm R'.pos (by
       intro z w
       rw [hL2, hHm, one_mulVec])
     have hsupp : ∀ (a : 𝓞 E) i k, emb σ (e.symm i) a * Z i k = Z i k * star (emb σ (e.symm k) a) := by
@@ -309,7 +310,7 @@ theorem exists_univFam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
       rw [← hLZ, ← hLZ, hL3]
     have hZ0 : ∀ i k, Z i k ≠ 0 → (e.symm i).2 = (e.symm k).2 ∧ (e.symm i).1.isLeft ≠ (e.symm k).1.isLeft := by
       intro i k hik
-      refine (GlobalTheory.T.conjugate_embeddings_criterion σ hσ (e.symm i) (e.symm k)).1 fun a => ?_
+      refine (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.Univ.EmbConj.emb_eq_star_iff σ hσ (e.symm i) (e.symm k)).1 fun a => ?_
       have := hsupp a i k
       rw [mul_comm] at this
       exact mul_left_cancel₀ hik this
@@ -319,7 +320,7 @@ theorem exists_univFam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     · rw [(hR t ht).2.2 x, ← hLZ, hL1]
       rfl
     · rintro t' ⟨ht', h', hh⟩
-      have hspan := (SheetDecomposition.riemBasic E g Λ Ψ R₁).2.1
+      have hspan := (_root_.LevelTowerAlt.riemann_lattice_eigen_projections E g Λ Ψ R₁).2.1
       refine bigZe_injective e q (tz_unique _ hspan h' A _ _ ?_)
       rintro _ ⟨x, rfl⟩
       rw [← (hR t' ht').2.2 x, ← hh x, ← hLZ, hL1]
@@ -327,5 +328,3 @@ theorem exists_univFam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
 
 end SheetDecomposition.Univ
 
-theorem SheetDecomposition.univExists : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (Ψ : Type) [Fintype Ψ] (j j' n g : ℕ) (Λ : Type) [AddCommGroup Λ] [Module (𝓞 E) Λ] (R₀ : RiemLat E g Λ) (σ : Ψ → (𝓞 E →+* ℂ)) (q : Ψ × Fin j × Fin j' ≃ Fin n), IsCMFam σ → R₀.HasSig σ j j' → ∃ F : UnivFam E Ψ j j' n g Λ, F.q = q ∧ F.σ = σ ∧ F.form = R₀.form :=
-  SheetDecomposition.Univ.exists_univFam

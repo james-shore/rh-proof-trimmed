@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.InhTate
 
 @[expose] public section
 
@@ -175,7 +176,7 @@ theorem eq_zero_of_sqZero_baseChange_nsmul : ∀ (k : ℕ) (R R₀ : Type) [Comm
     intro a b
     dsimp only [σ']
     rw [map_mul, map_mul, hσ a b]
-    simp only [res_res, _root_.mul_assoc]
+    simp only [_root_.ReciprocityTheory.ChartRestriction.G.Out.InhTate.res_res, _root_.mul_assoc]
   let n : ∀ a, Γ(X, D.U a) := fun a => (σ' a).val - 1
   have hn0 : ∀ a, (i.app (D.U a)).hom (n a) = 0 := fun a => by
     simp only [n, map_sub, map_one, hσ'1 a, sub_self]
@@ -193,8 +194,8 @@ theorem eq_zero_of_sqZero_baseChange_nsmul : ∀ (k : ℕ) (R R₀ : Type) [Comm
   let ρt := (X.presheaf.map (homOfLE (le_top : D.U a ⊓ D.U b ≤ ⊤)).op).hom
   show ρa (t a) = (D.g a b).val * ρb (t b)
   let Hc : Γ(X, D.U a ⊓ D.U b) := (res (le_top : D.U a ⊓ D.U b ≤ ⊤) h2X.unit⁻¹).val
-  have hHa : ρa (Hh a) = Hc := congrArg Units.val (res_res inf_le_left le_top h2X.unit⁻¹)
-  have hHb : ρb (Hh b) = Hc := congrArg Units.val (res_res inf_le_right le_top h2X.unit⁻¹)
+  have hHa : ρa (Hh a) = Hc := congrArg Units.val (_root_.ReciprocityTheory.ChartRestriction.G.Out.InhTate.res_res inf_le_left le_top h2X.unit⁻¹)
+  have hHb : ρb (Hh b) = Hc := congrArg Units.val (_root_.ReciprocityTheory.ChartRestriction.G.Out.InhTate.res_res inf_le_right le_top h2X.unit⁻¹)
   have hH : ((k + 1 : ℕ) : Γ(X, D.U a ⊓ D.U b)) * Hc = 1 := by
     show ((k + 1 : ℕ) : Γ(X, D.U a ⊓ D.U b)) * ρt h2X.unit⁻¹.val = 1
     rw [show ((k + 1 : ℕ) : Γ(X, D.U a ⊓ D.U b)) = ρt ((k + 1 : ℕ) : Γ(X, ⊤)) from (map_natCast ρt _).symm,

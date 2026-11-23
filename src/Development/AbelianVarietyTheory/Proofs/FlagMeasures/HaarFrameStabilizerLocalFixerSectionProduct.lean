@@ -308,7 +308,7 @@ theorem haar_S_local : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   haveI := i1; haveI := i2; haveI := i3; haveI := i4; haveI := i5; haveI := i6; haveI := i7; haveI := i8
   haveI : BorelSpace (HA (Fv F v) σ J) := ⟨rfl⟩
   haveI : BorelSpace (Fv F v ⊗[F] E) := ⟨rfl⟩
-  obtain ⟨t0, ht0c, ht0⟩ := GlobalTheory.T.exists_continuous_unitriangular_section F E σ hCM n J hJ v r P T hP
+  obtain ⟨t0, ht0c, ht0⟩ := _root_.GlobalTheory.UnitriSection.unitri_section F E σ hCM n J hJ v r P T hP
   obtain ⟨ν, hνc, hν⟩ := GlobalTheory.UnitriangularCoeff.exists_coeff F E σ hCM n J hJ v r P T hP
   have ht0coef : ∀ x, Coef P (t0 x) (umat x) := ht0
   have hνcoef : ∀ s : Ssub (Fv F v) σ J P, Coef P (s : HA (Fv F v) σ J) (umat (ν s)) :=

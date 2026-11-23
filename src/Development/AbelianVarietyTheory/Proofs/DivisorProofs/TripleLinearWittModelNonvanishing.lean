@@ -289,20 +289,20 @@ theorem linIso_lintegral_eq : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Ty
     fun w f hf => GlobalTheory.SchrSB.schr_mem_SB B.ψ hTr.base.std.1 v w f hf
   have hU : ∀ w f f', ip μ (schr (GlobalTheory.LatVac.psiAt B.ψ v) w f) (schr (GlobalTheory.LatVac.psiAt B.ψ v) w f') = ip μ f f' :=
     fun w f f' => GlobalTheory.schr_unitary (GlobalTheory.LatVac.psiAt B.ψ v) hψc μ hμ w f f'
-  obtain ⟨hLoc, hBasis⟩ := GlobalTheory.T.characterTrivialMatrixLattice_open_compact_basis a (a + a') (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψ1
+  obtain ⟨hLoc, hBasis⟩ := _root_.GlobalTheory.LinSchurLatt.latt_open_compact_basis a (a + a') (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψ1
   have hB' : ∀ W ∈ 𝓝 (0 : Matrix (Fin a) (Fin (a + a')) (Fv F v)), ∃ i : {s : Fv F v // s ≠ 0},
       (latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') i.1 : Set _) ⊆ W := fun W hW => by
     obtain ⟨s, hs, h⟩ := hBasis W hW
     exact ⟨⟨s, hs⟩, h⟩
-  obtain ⟨⟨s1, hs1⟩, hper1⟩ := GlobalTheory.T.exists_openSubgroup_periodic (fun s : {s : Fv F v // s ≠ 0} => latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') s.1)
+  obtain ⟨⟨s1, hs1⟩, hper1⟩ := _root_.GlobalTheory.WeilM.SB.exists_periodic (fun s : {s : Fv F v // s ≠ 0} => latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') s.1)
     (fun s => (hLoc s.1 s.2).1) hB' (ι φ) (hmaps hφ)
-  obtain ⟨⟨s2, hs2⟩, hper2⟩ := GlobalTheory.T.exists_openSubgroup_periodic (fun s : {s : Fv F v // s ≠ 0} => latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') s.1)
+  obtain ⟨⟨s2, hs2⟩, hper2⟩ := _root_.GlobalTheory.WeilM.SB.exists_periodic (fun s : {s : Fv F v // s ≠ 0} => latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') s.1)
     (fun s => (hLoc s.1 s.2).1) hB' (ι φ₁) (hmaps hφ₁)
   obtain ⟨s, hs, hsub⟩ := hBasis ((latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') s1 : Set _) ∩ latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') s2)
     (Filter.inter_mem ((hLoc s1 hs1).1.mem_nhds (zero_mem _)) ((hLoc s2 hs2).1.mem_nhds (zero_mem _)))
   set L := latt (GlobalTheory.LatVac.psiAt B.ψ v) a (a + a') s with hLdef
-  obtain ⟨Fa, hFa⟩ := GlobalTheory.T.exists_finset_eq_sum_addCosetIndicator L (hLoc s hs).1 (ι φ) (hmaps hφ) (fun Y C hC => hper1 Y C (hsub hC).1)
-  obtain ⟨Fb, hFb⟩ := GlobalTheory.T.exists_finset_eq_sum_addCosetIndicator L (hLoc s hs).1 (ι φ₁) (hmaps hφ₁) (fun Y C hC => hper2 Y C (hsub hC).2)
+  obtain ⟨Fa, hFa⟩ := _root_.GlobalTheory.LinSchur.exists_finset_eq_sum_cind L (hLoc s hs).1 (ι φ) (hmaps hφ) (fun Y C hC => hper1 Y C (hsub hC).1)
+  obtain ⟨Fb, hFb⟩ := _root_.GlobalTheory.LinSchur.exists_finset_eq_sum_cind L (hLoc s hs).1 (ι φ₁) (hmaps hφ₁) (fun Y C hC => hper2 Y C (hsub hC).2)
   have hcm : ∀ y, cind L y ∈ SB (Matrix (Fin a) (Fin (a + a')) (Fv F v)) :=
     fun y => cind_mem (hLoc s hs).1 (hLoc s hs).2 y
   obtain ⟨x0, hx0, hιx0⟩ := hbij.surjOn (hcm 0)

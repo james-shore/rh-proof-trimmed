@@ -72,7 +72,7 @@ theorem invU_holds : InvU := by
   intro N k d ρ F Y Y' Q Q' hY hYY hQQ hε
   have hgal : ∀ g : ↥(GK K), τ ^ N • ((ρ g).val.map (Per.zA l) * Y.map (Per.σA (g : GQ l))) =
       Per.σA (g : GQ l) τ ^ N • (Y * F.ε g) :=
-    (GlobalTheory.T.frame_ainf_matrix_frobenius_galois_eqs l K bk τ hτ N d _ F Y Y' hY hYY).2.1
+    (_root_.GlobalTheory.FrameEq.frame_Y_eqs l K bk τ hτ N d _ F Y Y' hY hYY).2.1
   have e2 : (⇑alg ∘ ⇑(fI l)) = ⇑f := funext hif
   obtain ⟨W, hW⟩ := hw.pow N
   set A := Y.map f with hA

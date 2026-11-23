@@ -70,19 +70,6 @@ theorem vLa_nat_eq_zero {K : Type} [Field K] [NumberField K] (la : HeightOneSpec
     (la.intValuation_eq_one_iff_mem_primeCompl _).2 hN]
   simp
 
-theorem vLa_nat_pos {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) {N : ℕ} (h0 : N ≠ 0)
-    (hN : ((N : ℕ) : 𝓞 K) ∈ la.asIdeal) : 0 < vLa la (N : K) := by
-  have h1 : la.valuation K (N : K) < 1 := by
-    rw [← map_natCast (algebraMap (𝓞 K) K) N]
-    exact (la.valuation_lt_one_iff_mem _).2 hN
-  have h2 : la.valuation K (N : K) ≠ 0 := by
-    rw [Ne, Valuation.zero_iff]
-    exact_mod_cast h0
-  have h3 := (WithZero.log_lt_log h2 one_ne_zero).2 h1
-  rw [WithZero.log_one] at h3
-  unfold vLa
-  omega
-
 theorem isUnit_nat {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) (S : CDVR)
     (io : K →+* S.Fr) (e : ℕ) (ho : OverLa la S.V io e) (N : ℕ) (hN : ((N : ℕ) : 𝓞 K) ∉ la.asIdeal) :
     IsUnit ((N : ℕ) : S.V) := by
@@ -164,13 +151,13 @@ theorem refExp_le_of_oscLe : ∀ (D : D7) (T : Core D), LawsM T → ∀ (_ : Err
   obtain ⟨st, nab, hnab⟩ := GlobalTheory.CanonConn.exists_isNab_uncond _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c
   obtain rfl := GlobalTheory.PowGerm.starSt _ T.Q.H st hnab.1
   obtain ⟨A, hA⟩ := hO la
-  obtain ⟨P₁, hP₁, hPB⟩ := GlobalTheory.T.exists_harmonicPolynomial_localDepth_between D T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c q la a hD.1 n hs _ _ hA
+  obtain ⟨P₁, hP₁, hPB⟩ := _root_.GlobalTheory.RefSum.GlobalPoly.exists_polyBetween D T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c q la a hD.1 n hs _ _ hA
   obtain ⟨S', io', y', r, C, P, hy', hr0, hC, hP, hφ', hov, hvm, hsc⟩ :=
-    GlobalTheory.T.exists_finiteExtension_uniformisedChart_scale _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c S io y hy φ hφ
+    _root_.GlobalTheory.ExtScale.exists_ext_chart_scale _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c S io y hy φ hφ
   have ho' := hov la.1 e ho
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible S'.V
   obtain ⟨⟨Q, hQ⟩, -⟩ := GlobalTheory.PowData.exists_powData _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c S' io' y' C P ϖ hϖ
-  obtain ⟨ρ, hρ, hSB⟩ := GlobalTheory.T.exists_short_periodLattice_basis_balanced_slope _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c S' io' y' _ hφ' C P ϖ hϖ Q hQ
+  obtain ⟨ρ, hρ, hSB⟩ := _root_.GlobalTheory.ShortPhi.exists_shortBasis _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c S' io' y' _ hφ' C P ϖ hϖ Q hQ
   obtain ⟨⟨α, hα1, hα2⟩, -⟩ := GlobalTheory.HalfGen.half_principal_and_split D T hL EX
   obtain ⟨π, π', hsplit⟩ := GlobalTheory.SplitLevel.level_halfSplit D T hL EX
   have hM : T.Q.l.M = D.host.g 0 * D.host.g 1 := hL.pins.2.1.1
@@ -199,7 +186,7 @@ theorem refExp_le_of_oscLe : ∀ (D : D7) (T : Core D), LawsM T → ∀ (_ : Err
     refine lt_of_le_of_lt ?_ ((hJ 0).2.1.trans_le hle')
     gcongr
 
-  have hε : 0 < vLa la.1 (q : T.Q.c.F) := vLa_nat_pos la.1 hqp.ne_zero la.2
+  have hε : 0 < vLa la.1 (q : T.Q.c.F) := _root_.GlobalTheory.RefSum.GlobalPoly.vLa_pos_of_mem la.1 hqp.ne_zero la.2
   have hv0 : 0 < vV S.V (q : S.Fr) := by
     rw [vV_nat_eq ho]
     exact mul_pos (by exact_mod_cast ho.1) hε
@@ -236,7 +223,7 @@ theorem refExp_le_of_oscLe : ∀ (D : D7) (T : Core D), LawsM T → ∀ (_ : Err
       a n hD hLP f hf
     have hlow := GlobalTheory.RefSum.LowP.thRule_lower _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c nab hnab q hqp
       (hqp.coprime_iff_not_dvd.1 hcop) la a n P₁ hP₁ _ _ hPB x f hx
-    obtain ⟨s, hs0, hsv, g, hg, hgs⟩ := GlobalTheory.T.cuspForm_clear_denominators_away_from_place _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c D.R.r (T.U j) (wtZ a n)
+    obtain ⟨s, hs0, hsv, g, hg, hgs⟩ := _root_.GlobalTheory.RefSum.Clear.clear _ T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c D.R.r (T.U j) (wtZ a n)
       ⟨f, hcusp⟩ m hm (hmlow f hf) la.1 (vLa la.1 (q : T.Q.c.F) * A) (by
         rintro _ ⟨⟨_, S₁, io₁, e₁, ho₁, y₁, hy₁, η, hη, rfl⟩, rfl⟩
         exact le_nval_place ho₁ hε A _ (hlow S₁ io₁ e₁ ho₁ y₁ hy₁))

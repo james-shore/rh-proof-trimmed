@@ -201,19 +201,19 @@ theorem exists_res_degree (hRes : ResExistsStatement) {K₀ K : Type} [Fintype K
     (rename (blkV bk' bx') G') (rename (blkV κ bx) (rename (blkV bk' bx') G')) _ _ 1 rfl hA₀ hA
     (holoMap_id _) (isDegreeOff_id _) hh hGh hGP
     (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.isMultiHomog_rename' hv hGh) hG2P
-    (fun z z₁ w w₁ hr hz hw => GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.sameOrbit_trans'
-      (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.sameOrbit_trans' (sameOrbit_comp_blkV κ bx hz) hr)
-      (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.sameOrbit_symm' hw))
+    (fun z z₁ w w₁ hr hz hw => _root_.GroundTheory.Heights₂.Heights.Inter.PullbackDegreeCount.sameOrbit_comp
+      (_root_.GroundTheory.Heights₂.Heights.Inter.PullbackDegreeCount.sameOrbit_comp (sameOrbit_comp_blkV κ bx hz) hr)
+      (_root_.GroundTheory.Heights₂.Heights.Inter.PullbackDegreeCount.sameOrbit_flip hw))
     (by
       intro x x₀ hx
       simp only [id] at hx
       subst hx
-      exact GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.sameOrbit_symm' (hho x))
+      exact _root_.GroundTheory.Heights₂.Heights.Inter.PullbackDegreeCount.sameOrbit_flip (hho x))
     (by
       intro x x₀ hr
       exact R₀.inj x₀ (h x) (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.not_mem_mcPts_top _)
-        (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.sameOrbit_trans' (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.sameOrbit_symm' hr)
-          (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.sameOrbit_symm' (hho x))))
+        (_root_.GroundTheory.Heights₂.Heights.Inter.PullbackDegreeCount.sameOrbit_comp (_root_.GroundTheory.Heights₂.Heights.Inter.PullbackDegreeCount.sameOrbit_flip hr)
+          (_root_.GroundTheory.Heights₂.Heights.Inter.PullbackDegreeCount.sameOrbit_flip (hho x))))
     (by
       intro w hw hGw
       exact hcount w hw (hnz w hw hGw).1)

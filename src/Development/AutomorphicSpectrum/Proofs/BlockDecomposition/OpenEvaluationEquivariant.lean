@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicDoubleCosetDecomposition
 
 @[expose] public section
 
@@ -73,13 +74,6 @@ theorem levi_mul_uM (n : ℕ) (g : GL (Fin n) k) (v : Fin n → k) :
   apply Subtype.ext
   exact glEmb_mul_unip' k n g (Multiplicative.ofAdd v)
 
-theorem ePG_true_val (i t : ℕ) (b : Fin t) : ((ePG i t ⟨true, b⟩ : Fin (i + t + 1)) : ℕ) = i + b := by
-  simp [ePG]
-
-theorem ePG_false_castSucc_val (i t : ℕ) (a : Fin i) :
-    ((ePG i t ⟨false, Fin.castSucc a⟩ : Fin (i + t + 1)) : ℕ) = a := by
-  simp [ePG, finSumFinEquiv_symm_apply_castSucc]
-
 theorem piPerm_last (i t : ℕ) : piPerm i t (Fin.last ((i + 1) + t)) = Fin.castAdd (t + 1) (Fin.last i) := by
   have h1 : (finCongr (by omega : (i + 1) + t + 1 = i + (t + 1) + 1)) (Fin.last ((i + 1) + t)) = Fin.last (i + (t + 1)) :=
     Fin.ext (by simp)
@@ -99,20 +93,20 @@ theorem unip_entry (n : ℕ) (w : Fin n → k) (a b : Fin (n + 1)) :
 theorem ePG_true_ne_last (i t : ℕ) (b : Fin t) : ePG i t ⟨true, b⟩ ≠ Fin.last (i + t) := by
   intro h
   have := congrArg Fin.val h
-  rw [ePG_true_val] at this
+  rw [_root_.GlobalTheory.CompanionTheory.BZPhiPG.Cells.ePG_true_val] at this
   simp at this
   omega
 
 theorem ePG_true_eq_natAdd (i t : ℕ) (b : Fin (t + 1)) :
     ePG (i + 1) (t + 1) ⟨true, b⟩ = Fin.castSucc (Fin.natAdd (i + 1) b) := by
   apply Fin.ext
-  rw [ePG_true_val]
+  rw [_root_.GlobalTheory.CompanionTheory.BZPhiPG.Cells.ePG_true_val]
   simp
 
 theorem ePG_false_eq_castAdd (i t : ℕ) (a : Fin (i + 1)) :
     ePG (i + 1) (t + 1) ⟨false, Fin.castSucc a⟩ = Fin.castSucc (Fin.castAdd (t + 1) a) := by
   apply Fin.ext
-  rw [ePG_false_castSucc_val]
+  rw [_root_.GlobalTheory.CompanionTheory.BZPhiPG.Cells.ePG_false_val]
   simp
 
 theorem uM_mem_HPG (i t : ℕ) (c : Fin (i + 1) → k) : uM k _ (cVec i t c) ∈ HPG k (i + 1) (t + 1) := by

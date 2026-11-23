@@ -71,15 +71,6 @@ namespace ChowFormHeightComparison₂.CF.C
 
 variable {n : ℕ}
 
-theorem eq_zero_of_pointOf_eq_zero (h : HermNorm n) {y : EuclideanSpace ℂ (Fin n)}
-    (hy : h.pointOf y = 0) : y = 0 := by
-  have hu : IsUnit (Matrix.transpose h.mat) := by
-    rw [Matrix.isUnit_iff_isUnit_det, Matrix.det_transpose]; exact h.isUnit_det
-  have h0 : (fun i => y i) = 0 :=
-    Matrix.mulVec_injective_iff_isUnit.mpr hu (by rw [Matrix.mulVec_zero]; exact hy)
-  ext i
-  simpa using congrFun h0 i
-
 theorem coneBall_subset (h : HermNorm n) {J : Ideal (MvPolynomial (Fin n) ℂ)} (hJ : J.IsRadical) :
     coneBall h J ⊆ {0} ∪ ⋃ W ∈ (fundCycle J).support, coneBall h W := by
   classical
@@ -96,7 +87,7 @@ theorem coneBall_subset (h : HermNorm n) {J : Ideal (MvPolynomial (Fin n) ℂ)} 
       exact one_ne_zero
     exact Set.mem_biUnion hmem ⟨hy1, fun q hq => (RingHom.mem_ker).1 (hWle hq)⟩
   · left
-    refine eq_zero_of_pointOf_eq_zero h (funext fun j => ?_)
+    refine _root_.GroundTheory.Heights₂.Heights.HermNorm.pointOf_eq_zero h (funext fun j => ?_)
     have hX : X j ∈ W := by
       by_contra hj
       exact hrel ⟨j, hj⟩

@@ -70,7 +70,7 @@ theorem finite_of_isClosed_of_no_torsion : ∀ (E : Type) [Field E] [NumberField
   haveI := T.isAbelian.proper
   haveI := T.isAbelian.smooth
   haveI := act.hom π
-  obtain ⟨actB, actT, hB, hT⟩ := GlobalTheory.T.exists_ringAction_torus_and_abelian_quotient (𝓞 E) k G act hG T
+  obtain ⟨actB, actT, hB, hT⟩ := _root_.GlobalTheory.SemiAbAct.exists_torus_quotient_act (𝓞 E) k G act hG T
   let φ : (𝟙_ (Over (Sp k)) ⟶ G) →* (𝟙_ (Over (Sp k)) ⟶ T.B) :=
     MonoidHom.mk' (fun x => x ≫ T.q) fun x y => MonObj.mul_comp x y T.q
   let j : (𝟙_ (Over (Sp k)) ⟶ splitTorus (Sp k) T.X) →* (𝟙_ (Over (Sp k)) ⟶ G) :=

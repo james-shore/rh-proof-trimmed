@@ -66,16 +66,9 @@ noncomputable section
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 
-theorem haarChart_exists (X : Data E r) : ∃ c : ℝ≥0∞, c ≠ 0 ∧ c ≠ ⊤ ∧ HaarChart X c := GlobalTheory.T.exists_haarIntegral_eq_unitriangularChart X
-
 theorem haar_trF {E' : Type} [Field E'] [NumberField E'] [IsCMField E'] (X : Data E r) (X' : Data E' r)
     (e : X.Ψ ≃ X'.Ψ) (hp : X.p0 = X'.p0) (φ : Frame X'.Ψ r → ℝ≥0∞) (hφ : Measurable φ) :
     ∫⁻ g, φ (trF X X' e (frameOf X g)) ∂haarR X = ∫⁻ g, φ (frameOf X' g) ∂haarR X' := GlobalTheory.T.lintegral_transportHermitianFrame_realUnitary X X' e hp φ hφ
-
-theorem muF_trF {E' : Type} [Field E'] [NumberField E'] [IsCMField E'] (X : Data E r) (X' : Data E' r)
-    (e : X.Ψ ≃ X'.Ψ) (hp : X.p0 = X'.p0) (φ : Frame X'.Ψ r → ℝ≥0∞) (hφ : Measurable φ) :
-    ∫⁻ z, φ (trF X X' e (cpt X (baseFr X) z)) ∂muF X (baseFr X) =
-      ∫⁻ z, φ (cpt X' (baseFr X') z) ∂muF X' (baseFr X') := GlobalTheory.T.lintegral_transportHermitianFrame_chartMeasure X X' e hp φ hφ
 
 theorem test_exists (X : Data E r) : ∃ φ : Frame X.Ψ r → ℝ≥0∞, Measurable φ ∧
     (∀ x ∈ X.dom, ∀ b ∈ Bor X.Ψ r, φ (rmul x b) = φ x) ∧
@@ -130,14 +123,14 @@ theorem haarChart_unique {E' : Type} [Field E'] [NumberField E'] [IsCMField E'] 
     (hp : X.p0 = X'.p0) (hn : X.Ψ.card = X'.Ψ.card) {c c' : ℝ≥0∞} (hc : HaarChart X c) (hc' : HaarChart X' c') :
     c = c' := by
   have e : X.Ψ ≃ X'.Ψ := Fintype.equivOfCardEq (by simpa using hn)
-  obtain ⟨φ, hφm, hφB, h0, htop⟩ := test_exists X'
+  obtain ⟨φ, hφm, hφB, h0, htop⟩ := _root_.GlobalTheory.FlagQuotHaar.TestFn.exists_invariant_test X'
   have hm : Measurable (fun y => φ (trF X X' e y)) := hφm.comp (continuous_trF X X' e).measurable
   have hB : ∀ x ∈ X.dom, ∀ b ∈ Bor X.Ψ r, φ (trF X X' e (rmul x b)) = φ (trF X X' e x) := by
     intro x hx b hb
     rw [trF_rmul]
     exact hφB _ (trF_mem_dom X X' e hp hx) _ fun τ' => hb (e.symm τ')
   have h1 := hc _ hm hB
-  rw [haar_trF X X' e hp φ hφm, hc' φ hφm hφB, muF_trF X X' e hp φ hφm] at h1
+  rw [_root_.GlobalTheory.FlagQuotHaar.lintegral_trF_frameOf X X' e hp φ hφm, hc' φ hφm hφB, _root_.GlobalTheory.FlagTransport.lintegral_trF_cpt X X' e hp φ hφm] at h1
   exact ((ENNReal.mul_left_inj h0 htop).1 h1).symm
 
 theorem countable_image (X : Data E r) {Λ : Subgroup (RealGrp X)}
@@ -158,7 +151,7 @@ theorem quotInt_eq_of_haarChart (X : Data E r) {c : ℝ≥0∞} (hc : HaarChart 
   haveI := countable_image X hΛ
   set S := GlobalTheory.Unfold.satFrames X x0 FF
   have hS : MeasurableSet S := GlobalTheory.Unfold.measurableSet_satFrames X ho hF.1 hF.2.1
-  rw [GlobalTheory.PeterssonCompare.quotInt_eq X hΛ (isFundamentalDomain_sat X hc ho hF Λ hΛ) hΓ]
+  rw [GlobalTheory.PeterssonCompare.quotInt_eq X hΛ (_root_.GlobalTheory.FundFrames.isFundamentalDomain_satFrames X hc ho hF Λ hΛ) hΓ]
   have hpre : MeasurableSet (frameOf X ⁻¹' S) := GlobalTheory.PeterssonCompare.measurable_frameOf X hS
   rw [← lintegral_indicator hpre]
   have e1 : (frameOf X ⁻¹' S).indicator (fun g => Φ (frameOf X g)) = fun g => S.indicator Φ (frameOf X g) := by
@@ -184,9 +177,9 @@ theorem GlobalTheory.FlagQuotHaar.quotInt_eq_const_mul : ∀ (r p0 n : ℕ), ∃
   by_cases h : ∃ (E : Type) (_ : Field E) (_ : NumberField E) (_ : IsCMField E) (X : Data E r),
       X.p0 = p0 ∧ X.Ψ.card = n
   · obtain ⟨E₁, _, _, _, X₁, hp₁, hn₁⟩ := h
-    obtain ⟨c₁, h0, htop, hc₁⟩ := haarChart_exists X₁
+    obtain ⟨c₁, h0, htop, hc₁⟩ := _root_.GlobalTheory.FlagQuotHaar.exists_haarChart X₁
     refine ⟨c₁, h0, htop, fun E _ _ _ X hp hn x0 FF Φ ho hF hΦ hΓ hB => ?_⟩
-    obtain ⟨c, -, -, hc⟩ := haarChart_exists X
+    obtain ⟨c, -, -, hc⟩ := _root_.GlobalTheory.FlagQuotHaar.exists_haarChart X
     rw [quotInt_eq_of_haarChart X hc ho hF hΦ hΓ hB,
       haarChart_unique X X₁ (hp.trans hp₁.symm) (hn.trans hn₁.symm) hc hc₁]
   · refine ⟨1, one_ne_zero, ENNReal.one_ne_top, fun E _ _ _ X hp hn => ?_⟩

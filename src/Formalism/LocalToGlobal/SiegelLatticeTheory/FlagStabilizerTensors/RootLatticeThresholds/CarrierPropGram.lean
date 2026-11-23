@@ -60,10 +60,10 @@ theorem propGram_of_vtTensor {E : Type} [Field E] [NumberField E] [IsCMField E] 
     (hg1 : 0 < S.G.g1) (hg2 : 0 < S.G.g2) (hB : Formalism.FourierDecayAlt.D.IsBuilt S T f χ ν' m₀ top A₀)
     {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] (Vt : Formalism.FourierDecayAlt.TB.Pt E → H)
     (hVt : Formalism.FourierDecayAlt.JCT.VtTensor S T f ν' m₀ Vt) : Formalism.FourierDecayAlt.C.PropGram S Vt := by
-  exact Formalism.FourierDecayAlt.Final.jc_propGramOfPlaces E Wp Wq S
+  exact _root_.Formalism.FourierDecayAlt.P.gram_proposition_of_places E Wp Wq S
     _ (fun v => Formalism.FourierDecayAlt.JC.vecPlace S T f ν' m₀ v) H Vt hVt
-    (Formalism.FourierDecayAlt.Final.jc_gramPlaceBuilt Formalism.FourierDecayAlt.Final.d_ptPermSpec Formalism.FourierDecayAlt.Final.d_ptGSpec
-      Formalism.FourierDecayAlt.Final.d_ptRelevant Formalism.FourierDecayAlt.Final.d_muRHaar Formalism.FourierDecayAlt.Final.jc_orbJCutScalar
+    (_root_.Formalism.FourierDecayAlt.P.gram_at_built_place _root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec _root_.Formalism.FourierDecayAlt.P.Dx1.ptGSpec
+      _root_.Formalism.FourierDecayAlt.P.Dx1.Rel.ptRelevant _root_.Formalism.FourierDecayAlt.P.Dx2.Rad.muRHaar _root_.Formalism.FourierDecayAlt.P.orbital_integral_cutoff_scalar
       E Wp Wq S T f χ ν' m₀ top A₀ hg1 hg2 hB)
 
 end Formalism.L2.SG.Pf.Carrier

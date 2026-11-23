@@ -163,7 +163,7 @@ theorem card_fibre_gram_differential : ∀ (E : Type) [CommRing E] (τ : E →+*
     change Nat.card (Fin m → Fin n → E) = _
     rw [Nat.card_fun, Nat.card_fun, h.card]
     simp
-  have hHerm : Nat.card (hermSub τ n) = q ^ (n ^ 2) := GlobalTheory.T.hermitian_matrices_card E τ q ε h n
+  have hHerm : Nat.card (hermSub τ n) = q ^ (n ^ 2) := _root_.GlobalTheory.CompanionTheory.UnrDens.card_hermitian_resAlg E τ q ε h n
   have hfib := card_fibre_mul (diffMap τ h.inv S hS x)
     (diffMap_surjective τ h S hS T x hT hx) ⟨H, hH⟩
   have hc : Nat.card {y : Matrix (Fin m) (Fin n) E // cT τ y * S * x + cT τ x * S * y = H} =

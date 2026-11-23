@@ -255,8 +255,8 @@ theorem eq_of_hasArcData : Laws → Laws2 → Laws3 → Laws4 → Laws5 → ∀ 
   let _ := H.starRing
   obtain ⟨W⟩ := (Y.hasArcData_iff a I f u χ).1 hχ
   obtain ⟨W'⟩ := (Y.hasArcData_iff a I f u χ').1 hχ'
-  obtain ⟨hD, he, hact, w', hφ, hw, T⟩ := GlobalTheory.T.degenerationData_iso_of_two_witnesses h1 h2 h5 E H D l Xo c W₀ Y O' b a R I f u hR hI hf χ χ' W W'
-  obtain ⟨ψ, mψ, hL, hQ, hO⟩ := GlobalTheory.T.exists_generic_iso_of_uniformisations_isoData h1 h2 R I hR hI W.P.D W'.P.D W.P.A W'.P.A W.t.G W'.t.G W.t.semi W'.t.semi
+  obtain ⟨hD, he, hact, w', hφ, hw, T⟩ := _root_.GlobalTheory.WitnessData.witness_data_iso h1 h2 h5 E H D l Xo c W₀ Y O' b a R I f u hR hI hf χ χ' W W'
+  obtain ⟨ψ, mψ, hL, hQ, hO⟩ := _root_.GlobalTheory.exists_generic_iso_of_unif h1 h2 R I hR hI W.P.D W'.P.D W.P.A W'.P.A W.t.G W'.t.G W.t.semi W'.t.semi
     W.P.U W'.P.U hD
   have hψ := hO (𝓞 E) W.P.oD W'.P.oD W.P.oA W'.P.oA _ _ W.P.lin W'.P.lin (fun x z => by
     obtain ⟨z, rfl⟩ := W'.e.surjective z

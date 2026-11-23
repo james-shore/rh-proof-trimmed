@@ -129,12 +129,12 @@ theorem exists_goodSet_Ks (eR : Gc X.B px ≃* G0g X.toD7.nd) :
       simp only [Finset.mem_filter, Finset.mem_image, hA, Formalism.L2.Col.mem_XgE]
       constructor
       · rintro ⟨hψ, hs⟩
-        obtain ⟨χ, hχ, hχψ⟩ := GlobalTheory.T.absIrrChar_realise_of_primitiveRoot_card σ z hzp ψ hψ
+        obtain ⟨χ, hχ, hχψ⟩ := _root_.GlobalTheory.BrauerRealise.absIrr_realise_of_isPrimitiveRoot σ z hzp ψ hψ
         refine ⟨χ, ⟨hχ, ?_⟩, funext hχψ⟩
         simp only [hχψ]
         exact hs
       · rintro ⟨χ, ⟨hχ, hs⟩, rfl⟩
-        exact ⟨GlobalTheory.T.absIrrChar_comp_mem_complexIrrCharSet σ χ hχ, hs⟩
+        exact ⟨_root_.GlobalTheory.absIrrChar_comp_mem_gxIrrSet σ χ hχ, hs⟩
     have hinj : Set.InjOn (fun (χ : Gc X.B px → X.B.LL) g => σ (χ g)) (Formalism.L2.Col.XgE σ e : Set _) :=
       fun χ _ χ' _ h => funext fun g => σ.injective (congrFun h g)
     rw [← hcoeff g]
@@ -151,8 +151,8 @@ theorem exists_goodSet_Ks (eR : Gc X.B px ≃* G0g X.toD7.nd) :
       exact this hy
     refine IntermediateField.sum_mem _ fun χ hχ => ?_
     have hχ' := Formalism.L2.Col.XgE_irr χ hχ
-    exact IntermediateField.mul_mem _ (IntermediateField.div_mem _ (hcl _ (GlobalTheory.T.absIrrChar_mem_closure_primitiveRoot_card z hzp χ hχ' 1))
-      (IntermediateField.natCast_mem _ _)) (hcl _ (GlobalTheory.T.absIrrChar_mem_closure_primitiveRoot_card z hzp χ hχ' _))
+    exact IntermediateField.mul_mem _ (IntermediateField.div_mem _ (hcl _ (_root_.GlobalTheory.absIrrChar_mem_closure_primitiveRoot z hzp χ hχ' 1))
+      (IntermediateField.natCast_mem _ _)) (hcl _ (_root_.GlobalTheory.absIrrChar_mem_closure_primitiveRoot z hzp χ hχ' _))
 
 end Record
 

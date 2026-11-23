@@ -143,7 +143,7 @@ theorem sum_dimensions_flattened_weights (hD : RestDims) {p n' : ℕ} (R : RS p 
   congr 1
   rw [← Finset.prod_univ_sum (fun s : TT => Finset.range (min (A s) (B s) + 1))
     (fun s j => Formalism.CountingSumsFrames.dimHar m (A s - j) (B s - j))]
-  exact Finset.prod_congr rfl fun s _ => Formalism.CountingSumsFrames.Top.levelCount m (A s) (B s)
+  exact Finset.prod_congr rfl fun s _ => _root_.Formalism.CountingSumsFrames.harmonic_level_count m (A s) (B s)
 
 theorem exponent_le_shifted_add {n' : ℕ} {TT : Finset (Fin n')} (B j : TT → ℕ) (J : ℕ) (hj : ∀ s, j s ≤ J) (s : Fin n') :
     (ex B s : ℝ) ≤ (ex (fun s => B s - j s) s : ℝ) + J := by

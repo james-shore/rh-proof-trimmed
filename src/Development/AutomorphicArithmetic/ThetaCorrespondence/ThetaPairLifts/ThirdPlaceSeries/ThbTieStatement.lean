@@ -42,9 +42,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 
-section
-open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.BigTop GlobalTheory.BigTop.Fun GlobalTheory.SqTop
-
-theorem _root_.GlobalTheory.T.leaf_theta_bound_of_set_at : _root_.GlobalTheory.BigTop.Fun.SettingAtPoint → (Closed FamHyp fun Fm _ => _root_.GlobalTheory.BigTop.EventuallyAtPoints Fm fun x _ i _ => |(Fm.L x i).logDerivativeAtOne| ≤ (Fm.L x i).sc.x ^ (Fm.L x i).sc.eps) → ThbSt → _root_.GlobalTheory.BigTop.Fun.LeafThetaBound @Comparison₂ := by
-  first | exact @_root_.GlobalTheory.BigTop.Fun.thb_tie_alt | exact _root_.GlobalTheory.BigTop.Fun.thb_tie_alt | (intros; apply _root_.GlobalTheory.BigTop.Fun.thb_tie_alt <;> assumption)
-end

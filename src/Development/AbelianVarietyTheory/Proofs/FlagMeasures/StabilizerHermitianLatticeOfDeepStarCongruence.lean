@@ -84,15 +84,7 @@ theorem cancel {J : Ideal (𝓞 K)} (hJ : J ≠ ⊥) {M : Submodule (𝓞 K) V} 
   have hc1 : (c : K) ≠ 0 := by exact_mod_cast hc0
   rwa [← smul_right_injective V hc1 hmv]
 
-theorem exists_mul {M : Submodule (𝓞 K) V} {v : V} (hv : v ∈ Submodule.span K (M : Set V)) :
-    ∃ d : 𝓞 K, d ≠ 0 ∧ d • v ∈ M := by
-  first
-  | exact @_root_.GlobalTheory.ExistsSmulMemLattice.exists_smul_mem
-  | exact _root_.GlobalTheory.ExistsSmulMemLattice.exists_smul_mem
-  | (apply _root_.GlobalTheory.ExistsSmulMemLattice.exists_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ExistsSmulMemLattice.exists_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ExistsSmulMemLattice.exists_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ExistsSmulMemLattice.exists_smul_mem ..)
+alias exists_mul := _root_.GlobalTheory.ExistsSmulMemLattice.exists_smul_mem
 
 variable [StarRing K]
 

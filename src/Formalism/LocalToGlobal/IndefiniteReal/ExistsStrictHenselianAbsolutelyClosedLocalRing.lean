@@ -64,16 +64,7 @@ section Lin
 variable {K : Type} [Field K] {G : Type} [Group G]
   {T : Type} [AddCommGroup T] [Module K T] [FiniteDimensional K T]
 
-theorem exists_strictHenselian_absolutely_closed_local_ring (τ : Representation K G T)
-    (hirr : ∀ W : Submodule K T, (∀ g : G, ∀ w ∈ W, τ g w ∈ W) → W = ⊥ ∨ W = ⊤)
-    (ε₀ ε : T →ₗ[K] T) (h1 : finrank K (LinearMap.range ε₀) = 1) :
-    ∃ (γ δ : Fin (finrank K (LinearMap.range ε)) → G)
-      (c : Matrix (Fin (finrank K (LinearMap.range ε))) (Fin (finrank K (LinearMap.range ε))) K),
-      c.det ≠ 0 ∧
-      (∀ i j, c i j = LinearMap.trace K T (ε₀ ∘ₗ τ (δ i) ∘ₗ ε ∘ₗ τ (γ j))) ∧
-      (∀ i j, ε₀ ∘ₗ τ (δ i) ∘ₗ ε ∘ₗ τ (γ j) ∘ₗ ε₀ = c i j • ε₀) ∧
-      ∑ j, ∑ i, c⁻¹ j i • (ε ∘ₗ τ (γ j) ∘ₗ ε₀ ∘ₗ τ (δ i) ∘ₗ ε) = ε := by
-  first | exact Bl.RankOneOrbitForms.goal1 .. | (apply Bl.RankOneOrbitForms.goal1 <;> assumption) | (intros; apply Bl.RankOneOrbitForms.goal1 <;> assumption)
+alias exists_strictHenselian_absolutely_closed_local_ring := _root_.Bl.RankOneOrbitForms.goal1
 
 end Lin
 

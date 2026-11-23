@@ -111,7 +111,7 @@ theorem stepUp : StepUpStatement := by
     LemK.generated_submodule_stable_under_action V a b hm
   have hkill : ∀ m ∈ genSub E V, Capelli.capelliC E (((-(LemK.thV lam s)) : ℝ) : ℂ) m = 0 := by
     intro m hm
-    rw [capVal (2 * r + k + 1) ε lam h H σ D E V T μ ι hσ hD hV hc hVK hμ hcoef hlam hgl hNeed hq0 _ m hm,
+    rw [_root_.ReciprocityTheory.ChartRestriction.DS.Lap.CapelliClosureMembership.capVal_main (2 * r + k + 1) ε lam h H σ D E V T μ ι hσ hD hV hc hVK hμ hcoef hlam hgl hNeed hq0 _ m hm,
       Finset.prod_eq_zero (Finset.mem_univ s) (by push_cast; ring), zero_smul]
   have hvS : (((ι.symm v₁ : V) : D)) ∈ genSub E V :=
     LemK.le_generatedSubmodule_dual V (ι.symm v₁).2

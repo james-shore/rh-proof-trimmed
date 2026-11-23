@@ -56,6 +56,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsHalfOfBasePins
 
 @[expose] public section
 
@@ -104,13 +105,6 @@ private theorem tf_of_mem {X M : Type} [Group X] [Group M] (T : TyLev X M) {h : 
   funext g
   simp only [TyLev.tf, dosetInd, e]
 
-private theorem nat_not_mem {R : Type} [CommRing R] {I : Ideal R} (hI : I ≠ ⊤) {a b : ℕ} (hab : a.Coprime b)
-    (ha : (a : R) ∈ I) : (b : R) ∉ I := by
-  intro hb
-  obtain ⟨u, v, huv⟩ := Nat.isCoprime_iff_coprime.2 hab
-  have h : (u : R) * a + v * b = 1 := by exact_mod_cast congrArg (Int.cast : ℤ → R) huv
-  exact hI ((Ideal.eq_top_iff_one I).2 (h ▸ I.add_mem (I.mul_mem_left _ ha) (I.mul_mem_left _ hb)))
-
 private theorem gl_comm_of_scalar {k : Type} [Field k] {n : ℕ} (A B : GL (Fin n) k) (c : k)
     (h : A.val = c • (1 : Matrix (Fin n) (Fin n) k)) : A * B = B * A := by
   apply Units.ext
@@ -157,7 +151,7 @@ private theorem apart_of_primes {w u : Plc E} {a b : ℕ} (hab : a.Coprime b) (h
     simpa using hb
   rw [← h] at h1
   have h2 : algebraMap _ (𝓞 E) (b : 𝓞 (maximalRealSubfield E)) ∈ w.asIdeal := h1
-  exact nat_not_mem w.isPrime.ne_top hab ha (by simpa using h2)
+  exact _root_.GlobalTheory.CoverHalf.not_mem_of_coprime w.isPrime.ne_top hab ha (by simpa using h2)
 
 private theorem comp_cj_ofU (w : Plc E) (a b : finU (E := E) (n := n))
     (h : comp w (CertificateRingHomMap.ofU a) = comp w (CertificateRingHomMap.ofU b)) : comp (cj w) (CertificateRingHomMap.ofU a) = comp (cj w) (CertificateRingHomMap.ofU b) := by
@@ -209,8 +203,8 @@ private theorem sh_comm (F : Frame S) {w₀ : Plc E} {x : E} {L : ∀ w : Spl E 
 theorem memComm : UpperTheory.Gal.Spc.MemComm := by
   intro E _ _ _ A n p _ S F x U w₀ Up V hodd hsc hgen hoff hq r W hAux N hN hStab L hw Ty hTy g g' θ θ' hs hs'
   obtain ⟨hAdm, hIdem, -⟩ := tf_facts
-  have hMF := UpperTheory.Gal.Spc.memFn E A n p S F x U w₀ Up V hodd hsc hgen hoff hq r W hAux N hN hStab L hw Ty hTy
-  have hTF := UpperTheory.Gal.Spc.tyFact E A n p S F x U w₀ Up V hodd hsc hgen hoff hq r W hAux N hN hStab L hw Ty hTy
+  have hMF := _root_.UpperTheory.Gal.W2.Seed.memFn_holds E A n p S F x U w₀ Up V hodd hsc hgen hoff hq r W hAux N hN hStab L hw Ty hTy
+  have hTF := _root_.UpperTheory.Gal.W2.Seed.tyFact_holds E A n p S F x U w₀ Up V hodd hsc hgen hoff hq r W hAux N hN hStab L hw Ty hTy
   have hOff : ∀ (g : Mem S.L N) (θ : ℂ), Seen F V r g θ → conv Ty.K₀ g.fn (Ty.tf 1) ∈ Off2 W L Ty := by
     intro g θ hs
     obtain ⟨-, -, hb⟩ := hMF g θ hs
@@ -234,7 +228,7 @@ theorem memComm : UpperTheory.Gal.Spc.MemComm := by
         obtain ⟨hw', t, z, -, hcen, hh⟩ := hIsH
         have hqw : (σ.q : 𝓞 E) ∈ w.asIdeal := σ.atp.le (Ideal.subset_span (Or.inl rfl))
         have hp : (p : 𝓞 E) ∉ w.asIdeal :=
-          nat_not_mem w.isPrime.ne_top ((Nat.coprime_primes σ.atp.prime Fact.out).2 σ.atp.ne) hqw
+          _root_.GlobalTheory.CoverHalf.not_mem_of_coprime w.isPrime.ne_top ((Nat.coprime_primes σ.atp.prime Fact.out).2 σ.atp.ne) hqw
         obtain ⟨wS, hwS⟩ : ∃ wS : Spl E p, wS = ⟨w, hw', hp⟩ := ⟨_, rfl⟩
         have hap : ∀ u ∈ W, GlobalTheory.Cong.Apart wS.1 u.1 := fun u hu => by
           rw [hwS]

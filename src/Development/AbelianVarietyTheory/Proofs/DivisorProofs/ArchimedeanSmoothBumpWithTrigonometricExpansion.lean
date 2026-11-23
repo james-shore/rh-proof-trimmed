@@ -51,20 +51,6 @@ open scoped GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
 namespace GlobalTheory.ArchTrigBump
 
-theorem exists_bounded_trig {X : Type} [PseudoMetricSpace X] [ProperSpace X] (x₀ : X) {B : Type} [AddCommGroup B]
-    (χ : B → X → ℂ) (hc : ∀ b, Continuous (χ b)) (hadd : ∀ a b x, χ (a + b) x = χ a x * χ b x)
-    (hzero : ∀ x, χ 0 x = 1) (hnorm : ∀ a x, ‖χ a x‖ = 1) (hsep : ∀ x y, x ≠ y → ∃ b, χ b x ≠ χ b y)
-    (β : X → ℝ) (hβ : Continuous β) (h01 : ∀ u, 0 ≤ β u ∧ β u ≤ 1) :
-    ∃ (s : ℕ → Finset B) (c : ℕ → B → ℂ), (∀ n x, ‖∑ b ∈ s n, c n b * χ b x‖ ≤ 2) ∧
-      ∀ x, Filter.Tendsto (fun n => ∑ b ∈ s n, c n b * χ b x) Filter.atTop (nhds (β x : ℂ)) := by
-  first
-  | exact @_root_.GlobalTheory.RealAlgebraCharacters.main
-  | exact _root_.GlobalTheory.RealAlgebraCharacters.main
-  | (apply _root_.GlobalTheory.RealAlgebraCharacters.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RealAlgebraCharacters.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RealAlgebraCharacters.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RealAlgebraCharacters.main ..)
-
 variable {F : Type} [Field F] [NumberField F]
 
 theorem continuous_toMixed : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F) := by
@@ -158,7 +144,7 @@ theorem arch_bump_trig : ∀ {F : Type} [Field F] [NumberField F] {κ : Type} [F
     Complex.exp (-(2 * Real.pi * Complex.I) * (Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (u ⬝ᵥ w) : ℝ))
   have hT : Continuous (Algebra.trace ℝ (mixedEmbedding.mixedSpace F)) :=
     LinearMap.continuous_of_finiteDimensional _
-  obtain ⟨s, c, hb, hl⟩ := exists_bounded_trig 0 χ
+  obtain ⟨s, c, hb, hl⟩ := _root_.GlobalTheory.RealAlgebraCharacters.main 0 χ
     (fun w => Complex.continuous_exp.comp (continuous_const.mul (Complex.continuous_ofReal.comp
       (hT.comp (continuous_id.dotProduct continuous_const)))))
     (fun a b x => by simp only [χ, dotProduct_add, map_add (f := _), Complex.ofReal_add, mul_add, Complex.exp_add])

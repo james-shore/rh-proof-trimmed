@@ -104,9 +104,6 @@ lemma Xflag_mono (j : ℕ) : Xflag F j ≤ Xflag F (j + 1) :=
 lemma mem_orth {U : Submodule E S.V} {y : S.V} : y ∈ orth S U ↔ ∀ x ∈ U, S.hT x y = 0 := by
   simp [orth, Submodule.mem_iInf]
 
-lemma hT_symm0 {x y : S.V} (h : S.hT x y = 0) : S.hT y x = 0 := by
-  rw [← S.herm.eq x y, h, map_zero]
-
 lemma X_iso {x y : S.V} (hx : x ∈ Xsp F) (hy : y ∈ Xsp F) : S.hT x y = 0 := by
   have h1 : ∀ a, S.hT (F.fl.e a) y = 0 := by
     intro a
@@ -118,8 +115,8 @@ lemma X_iso {x y : S.V} (hx : x ∈ Xsp F) (hy : y ∈ Xsp F) : S.hT x y = 0 := 
   have : Xsp F ≤ LinearMap.ker (S.hT y) := by
     refine Submodule.span_le.2 ?_
     rintro _ ⟨b, rfl⟩
-    exact hT_symm0 (h1 b)
-  exact hT_symm0 (this hx)
+    exact _root_.Formalism.MainNotions.hT_swap_zero (h1 b)
+  exact _root_.Formalism.MainNotions.hT_swap_zero (this hx)
 
 lemma NLam_one : LinearEquiv.refl E S.V ∈ NLam Λ F :=
   ⟨⟨fun _ _ => rfl, (gmap_iff _).2 fun _ => Iff.rfl⟩, fun j x _ => by simp, fun x _ => by simp⟩
@@ -407,26 +404,26 @@ lemma eich_single {u : D.what₂.Word} {F0 : Fb D u} {Λ : LatV D} (hb : IsBase 
     have : Xsp (lf D F0) ≤ LinearMap.ker ((hS D).hT F0.z) := by
       refine Submodule.span_le.2 ?_
       rintro _ ⟨a, rfl⟩
-      exact hT_symm0 (F0.z_orth a)
+      exact _root_.Formalism.MainNotions.hT_swap_zero (F0.z_orth a)
     exact this hy
   refine ⟨n, ⟨hn, fun b => ?_, fun p => ?_⟩, fun y τ => ?_⟩
   · refine Fin.lastCases ?_ (fun c => ?_) b
     · rw [frame_last, hnf]
       have a1 : (hS D).hT σ F0.z = 0 := by
-        apply hT_symm0
+        apply _root_.Formalism.MainNotions.hT_swap_zero
         rw [eσ, map_sub, h2, hXz x hx, sub_zero]
       have a2 : (hS D).hT (F0.e a) F0.z = 0 := F0.z_orth a
       simp [a1, a2]
     · rw [frame_castSucc]; exact hnX _ (heX c)
   · have hp : φ p ∈ Xsp (lf D F0) := (hφ p).2
     have a1 : (hS D).hT σ (D.sp.iXY 0 (p : (D.sp.X 0).V) + φ p) = 0 := by
-      apply hT_symm0
+      apply _root_.Formalism.MainNotions.hT_swap_zero
       have b1 : (hS D).hT (φ p) σ = 0 := mem_orth.1 hσ.2 _ hp
       rw [map_add (f := _), LinearMap.add_apply, b1, eσ, map_sub, iXY_isom, iXY_X hb _ hx,
         mem_perpE.1 h3 _ p.2]
       simp
     have a2 : (hS D).hT (F0.e a) (D.sp.iXY 0 (p : (D.sp.X 0).V) + φ p) = 0 := by
-      rw [map_add (f := _), X_iso (heX a) hp, hT_symm0 (iXY_X hb _ (heX a)), add_zero]
+      rw [map_add (f := _), X_iso (heX a) hp, _root_.Formalism.MainNotions.hT_swap_zero (iXY_X hb _ (heX a)), add_zero]
     rw [hnf, a1, a2]
     simp
   · have a1 : (hS D).hT (D.sp.iXY 0 τ) (F0.e a) = 0 := iXY_X hb _ (heX a)

@@ -71,7 +71,7 @@ theorem exists_fam_of_pull : ∀ (S : Scheme.{0}) (A U U' : Over S) [GrpObj A] [
   have keyM : ∀ (Y : Over S) (a : Y ⟶ A) (u : Y ⟶ U'), evc hM a (u ≫ p) = evc h.isLB a u := by
     intro Y a u
     rw [form, key, key, h.add.evc_one h.isLB, sub_zero]
-  refine ⟨M, ⟨hM, GlobalTheory.T.isAdditive_lineBundleFamily_of_geometricFibres S A U hA M hM ((triv_ev_iff hM _ _).2 (by rw [form, sub_self])) ?_⟩, ?_⟩
+  refine ⟨M, ⟨hM, _root_.GlobalTheory.AddFib.isAdditive_of_geomFibres S A U hA M hM ((triv_ev_iff hM _ _).2 (by rw [form, sub_self])) ?_⟩, ?_⟩
   · intro K _ _ s t
     haveI := hfin
     haveI := hsurj

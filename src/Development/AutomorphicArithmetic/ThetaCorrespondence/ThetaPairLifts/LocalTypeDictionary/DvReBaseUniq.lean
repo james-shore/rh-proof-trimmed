@@ -73,8 +73,8 @@ theorem real_maps_unique : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (F
   have hR := hM.real
   have hPV := isPair_V hM.triple
   have hPV' := isPair_V' hM.triple
-  have actV := _root_.GlobalTheory.T.dualPair_preserves_polarization hKP _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hPV
-  have actV' := _root_.GlobalTheory.T.dualPair_preserves_polarization hKP _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hPV'
+  have actV := _root_.GlobalTheory.PolActsPf.polarization_acts_of_isDualPair hKP _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hPV
+  have actV' := _root_.GlobalTheory.PolActsPf.polarization_acts_of_isDualPair hKP _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hPV'
   have ks_p : ∀ R' : RealMaps F a a', IsRealMaps B G om om' R' → KerStab B G.M om R'.p := fun R' h =>
     ⟨fun γ hγ f hf f₁ h1 h0 => by
       have := h.lie γ hγ f hf 0 (zero_mem _) f₁ 0 h1 (actsD_zero _) (by rw [h0, map_zero])

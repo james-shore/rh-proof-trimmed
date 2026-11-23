@@ -53,6 +53,8 @@ import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsRationalUnitaryDeterminantMapRationalUnitaryTo
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHeckeCharTrivOnRealSubfieldInfinityType
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 @[expose] public section
 
@@ -191,42 +193,17 @@ private theorem prod_type (E : Type) [Field E] [NumberField E] (a : ℤ) (k : E)
   · intro φ hφ hne
     rw [(Finset.mem_filter.1 hφ).2, if_neg hne.symm, zpow_zero]
 
-private theorem loc_self {E : Type} [Field E] [NumberField E] (v : HeightOneSpectrum (𝓞 E))
-    (x : (v.adicCompletion E)ˣ) : ((localIdele E v x : Ideles E) : AdeleRing (𝓞 E) E).2 v = x := by
-  classical
-  show (Pi.mulSingle v (x : v.adicCompletion E) : ∀ w : HeightOneSpectrum (𝓞 E), w.adicCompletion E) v = x
-  convert Pi.mulSingle_eq_same v (x : v.adicCompletion E)
-
-private theorem loc_ne {E : Type} [Field E] [NumberField E] {v w : HeightOneSpectrum (𝓞 E)} (h : w ≠ v)
-    (x : (v.adicCompletion E)ˣ) : ((localIdele E v x : Ideles E) : AdeleRing (𝓞 E) E).2 w = 1 := by
-  classical
-  show (Pi.mulSingle v (x : v.adicCompletion E) : ∀ w : HeightOneSpectrum (𝓞 E), w.adicCompletion E) w = 1
-  convert Pi.mulSingle_eq_of_ne h (x : v.adicCompletion E)
-
-private theorem loc_mem {E : Type} [Field E] [NumberField E] {v : HeightOneSpectrum (𝓞 E)}
-    {x : (v.adicCompletion E)ˣ} (hx : IsUnitAt v x) : localIdele E v x ∈ GlobalTheory.Mem.Chr.unitIdl E := by
-  intro w
-  by_cases h : w = v
-  · subst h
-    rw [loc_self]
-    exact hx
-  · rw [loc_ne h, map_one]
-
 private theorem kap_loc {E : Type} [Field E] [NumberField E] (a : ℤ) (v : HeightOneSpectrum (𝓞 E))
     (x : (v.adicCompletion E)ˣ) : kap E a (localIdele E v x) = 1 := by
   apply Units.ext
   rw [kap_of_fst a _ 1 (by rw [map_one]; rfl)]
   simp
 
-private theorem val_alg {E : Type} [Field E] [NumberField E] (v : HeightOneSpectrum (𝓞 E)) (a : E) :
-    Valued.v (algebraMap E (v.adicCompletion E) a) = v.valuation E a :=
-  HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v a
-
 private theorem exists_unit {E : Type} [Field E] [NumberField E] (k : Eˣ)
     (h : diagUnits E k ∈ GlobalTheory.Mem.Chr.unitIdl E) : ∃ u : (𝓞 E)ˣ, ((u : 𝓞 E) : E) = k := by
   have key : ∀ k : Eˣ, diagUnits E k ∈ GlobalTheory.Mem.Chr.unitIdl E → ∃ r : 𝓞 E, algebraMap (𝓞 E) E r = k :=
     fun k h => HeightOneSpectrum.mem_integers_of_valuation_le_one (R := 𝓞 E) E (k : E) fun v => by
-      rw [← val_alg]
+      rw [← _root_.Formalism.UG.P.levelaf_valued_algebraMap]
       exact (h v).le
   obtain ⟨r, hr⟩ := key k h
   obtain ⟨s, hs⟩ := key k⁻¹ (by rw [map_inv]; exact inv_mem h)
@@ -288,9 +265,9 @@ theorem UpperTheory.V.Sd.Tw.hecke :
   let Y : HChar K := ⟨ξ, hcont, hdiag⟩
   have hunr : ∀ v : HeightOneSpectrum (𝓞 K), (N : 𝓞 K) ∉ v.asIdeal → Y.UnrAt v := fun v hv x hx => by
     change ξ (localIdele K v x) = 1
-    rw [hu1 _ (loc_mem hx), kap_loc]
+    rw [hu1 _ (_root_.GlobalTheory.Mem.Chr.AntiExist.loc_mem hx), kap_loc]
     intro w hw
-    rw [loc_ne (fun h : w = v => hv (h ▸ hw)), sub_self, map_zero]
+    rw [_root_.GlobalTheory.Mem.Chr.AntiExist.loc_ne (fun h : w = v => hv (h ▸ hw)), sub_self, map_zero]
     exact zero_le
   refine ⟨Y, fun φ => if (InfinitePlace.mk φ).embedding = φ then -1 else 0, w₀.embedding, fun k => ?_, ?_, ?_,
     hunr, ⟨m, hm, hlm, fun v x hx => ?_⟩, fun p hp w hw => ?_⟩
@@ -310,7 +287,7 @@ theorem UpperTheory.V.Sd.Tw.hecke :
     intro h
     exact IsTotallyComplex.complexEmbedding_not_isReal _ (ComplexEmbedding.isReal_iff.2 h.symm)
   · change ξ (localIdele K v x) ^ m = 1
-    rw [hu _ (loc_mem hx), kap_loc, one_mul, hem]
+    rw [hu _ (_root_.GlobalTheory.Mem.Chr.AntiExist.loc_mem hx), kap_loc, one_mul, hem]
   · have hp0 : (p : 𝓞 K) ≠ 0 := fun h => w.ne_bot (by rw [hw, h, Ideal.span_singleton_eq_bot])
     have hpw : (p : 𝓞 K) ∈ w.asIdeal := hw ▸ Ideal.mem_span_singleton_self _
     have hNw : (N : 𝓞 K) ∉ w.asIdeal := fun h => by
@@ -320,20 +297,20 @@ theorem UpperTheory.V.Sd.Tw.hecke :
     let k : Kˣ := Units.mk0 ((p : 𝓞 K) : K) (by simpa using hp0)
     have hval : ∀ v : HeightOneSpectrum (𝓞 K),
         Valued.v (algebraMap K (v.adicCompletion K) k) = v.intValuation (p : 𝓞 K) := fun v => by
-      rw [val_alg]
+      rw [_root_.Formalism.UG.P.levelaf_valued_algebraMap]
       exact v.valuation_of_algebraMap _
     have hun : IsUnifAt w (atFin w k) := (hval w).trans (w.intValuation_singleton hp0 hw)
     let b : Ideles K := diagUnits K k * localIdele K w (atFin w k)⁻¹
     have hb2 : ∀ v : HeightOneSpectrum (𝓞 K), v ≠ w →
         (b : AdeleRing (𝓞 K) K).2 v = algebraMap K (v.adicCompletion K) k := fun v hv => by
       change algebraMap K (v.adicCompletion K) k * (localIdele K w (atFin w k)⁻¹).val.2 v = _
-      rw [loc_ne hv, mul_one]
+      rw [_root_.GlobalTheory.Mem.Chr.AntiExist.loc_ne hv, mul_one]
     have hb : b ∈ GlobalTheory.Mem.Chr.unitIdl K := fun v => by
       by_cases hv : v = w
       · subst hv
         change Valued.v (((atFin v k : (v.adicCompletion K)ˣ) : v.adicCompletion K) *
           (localIdele K v (atFin v k)⁻¹).val.2 v) = 1
-        rw [loc_self, Units.mul_inv, map_one]
+        rw [_root_.GlobalTheory.Mem.Chr.AntiExist.loc_self, Units.mul_inv, map_one]
       · rw [hb2 v hv, hval, v.intValuation_eq_one_iff]
         intro h
         refine hv (HeightOneSpectrum.ext (w.isMaximal.eq_of_le v.isPrime.ne_top ?_).symm)

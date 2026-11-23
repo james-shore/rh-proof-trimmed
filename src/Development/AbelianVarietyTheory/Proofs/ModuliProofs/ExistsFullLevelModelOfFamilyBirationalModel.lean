@@ -89,11 +89,7 @@ theorem isProjOver_comp_iso {R : Type} [CommRing R] {Z : Scheme.{0}} {s : Z ⟶ 
   have : IsIso (CommRingCat.ofHom σ.toRingHom) := σ.toCommRingCatIso.isIso_hom
   exact hL.isProjOver _
 
-theorem isReduced_of_normal {Z : Scheme.{0}} (h : Geo.Tor.IsNormalScheme Z) : IsReduced Z := by
-  have : ∀ x : Z, _root_.IsReduced (Z.presheaf.stalk x) := fun x ↦
-    have := (h x).1
-    inferInstance
-  exact isReduced_of_isReduced_stalk Z
+alias isReduced_of_normal := _root_.GlobalTheory.AbelianLocusNormalisation.isReduced_of_normal
 
 theorem charZero_residueField {k : Type} [Field k] [CharZero k] {S : Scheme.{0}} (s : S ⟶ Sp k) (p : S) :
     CharZero (S.residueField p) := by

@@ -49,6 +49,6 @@ import Mathlib.Topology.Sheaves.Init
 
 theorem ssAscent : PI.SSAscent :=
   PI.SSAscent.UnitaryGroupMassFormula.ssAscent_of
-    (PI.SSAscent.UnitaryGroupMassFormula.downStep_of PI.SSAscent.UnitaryGroupMassFormula.trace_nilpotent_ascent)
+    (PI.SSAscent.UnitaryGroupMassFormula.downStep_of _root_.Bl.IdempotentTraceVanishing.goal1)
     PI.SSAscent.UnitaryGroupMassFormula.traceFormNondegenerate_baseChange
     PI.SSAscent.UnitaryGroupMassFormula.semisimpleOfTraceFormNondegenerate

@@ -280,7 +280,7 @@ theorem cond_transport (D : Datum H) {g p q : ℕ} (ty : Fin g → (E →+* ℂ)
   have hL : ∀ y m, τ' (sesq D (gam (e m)) y) = ∑ n, τ' (A m n) • τ' (sesq D (e n) y) := fun y m =>
     hφ _ τ' (sesqL D τ' y) (fun a x => by
       show τ' (sesq D (a • x) y) = τ' a * τ' (sesq D x y)
-      rw [GlobalTheory.CompanionTheory.Ar.Fl.Test.sesq_smul_left, map_mul]) m
+      rw [_root_.GlobalTheory.CompanionTheory.Ar.Flat.RiemannTau.sesq_smul_left, map_mul]) m
   have hR : ∀ x m, τ' (sesq D x (gam (e m))) =
       ∑ n, ComplexEmbedding.conjugate τ' (A m n) • τ' (sesq D x (e n)) := fun x m =>
     hφ _ (ComplexEmbedding.conjugate τ') (sesqR D τ' x) (fun a y => by

@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEqAtAllEmbeddings
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.CmHostUnitAddConjEqOne
 
 @[expose] public section
 
@@ -89,15 +90,6 @@ theorem hostRoot_conj_eq_neg_and_ne_zero (H : ReciprocityTheory.ChartRestriction
   simp at hre
   exact H.d_prime.ne_zero hre
 
-theorem emb_rt_cases (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (τ : E →+* ℂ) :
-    τ (H.rt : E) = H.rt0 ∨ τ (H.rt : E) = -H.rt0 := by
-  apply sq_eq_sq_iff_eq_or_eq_neg.1
-  rw [H.sqrt_neg_disc_sq, ← map_pow]
-  have : ((H.rt : E)) ^ 2 = -(H.d : E) := by
-    have := congrArg (algebraMap (𝓞 E) E) H.rt_sq
-    simpa using this
-  rw [this]; simp
-
 theorem conj_off (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (τ : E →+* ℂ) (h : τ (H.rt : E) = H.rt0) :
     ((starRingEnd ℂ).comp τ) (H.rt : E) ≠ H.rt0 := by
   obtain ⟨h1, h2⟩ := hostRoot_conj_eq_neg_and_ne_zero H
@@ -107,7 +99,7 @@ theorem conj_off (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (τ :
 
 theorem conj_on (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (τ : E →+* ℂ) (h : τ (H.rt : E) ≠ H.rt0) :
     ((starRingEnd ℂ).comp τ) (H.rt : E) = H.rt0 := by
-  rcases emb_rt_cases H τ with h' | h'
+  rcases _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.CVA.emb_rt H τ with h' | h'
   · exact absurd h' h
   · rw [RingHom.comp_apply, h', map_neg, (hostRoot_conj_eq_neg_and_ne_zero H).1, neg_neg]
 

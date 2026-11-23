@@ -88,5 +88,3 @@ theorem Formalism.FourierDecayAlt.P.operator_preserves_fusion_forms : Formalism.
 theorem Formalism.FourierDecayAlt.P.capelli_commutation : Formalism.FourierDecayAlt.Q.CapCommute := by
   exact capelli_det_commute
 
-theorem Formalism.FourierDecayAlt.P.hermitian_haar_invariance : Formalism.FourierDecayAlt.Q.HermHaar := by
-  exact qnHermHaar

@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvMemDoubleCosetAndComm
 
 @[expose] public section
 
@@ -188,17 +189,15 @@ section Val
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem mem_intL (x : L) : x ∈ intL L ↔ Valued.v x ≤ (1 : WithZero (Multiplicative ℤ)) := Iff.rfl
-
 theorem eventually_int (ϖ : L)
     (hv : Valued.v ϖ = ((Multiplicative.ofAdd (-1 : ℤ) : Multiplicative ℤ) : WithZero (Multiplicative ℤ))) (x : L) :
     ∀ᶠ N : ℕ in Filter.atTop, ϖ ^ N * x ∈ intL L := by
   by_cases hx : Valued.v x = (0 : WithZero (Multiplicative ℤ))
   · refine Filter.Eventually.of_forall fun N => ?_
-    rw [mem_intL, map_mul, hx, mul_zero]; exact zero_le_one
+    rw [_root_.GlobalTheory.UnitarySwap.mem_int, map_mul, hx, mul_zero]; exact zero_le_one
   · obtain ⟨u, hu⟩ := WithZero.ne_zero_iff_exists.1 hx
     refine Filter.eventually_atTop.2 ⟨(Multiplicative.toAdd u).toNat, fun N hN => ?_⟩
-    rw [mem_intL, map_mul, map_pow, hv, ← hu, ← WithZero.coe_pow, ← WithZero.coe_mul, ← WithZero.coe_one,
+    rw [_root_.GlobalTheory.UnitarySwap.mem_int, map_mul, map_pow, hv, ← hu, ← WithZero.coe_pow, ← WithZero.coe_mul, ← WithZero.coe_one,
       WithZero.coe_le_coe, ← Multiplicative.toAdd_le]
     simp only [toAdd_mul, toAdd_pow, toAdd_ofAdd, toAdd_one, smul_neg, nsmul_eq_mul, mul_one]
     omega
@@ -207,10 +206,10 @@ theorem le_of_lt_one (ϖ : L)
     (hv : Valued.v ϖ = ((Multiplicative.ofAdd (-1 : ℤ) : Multiplicative ℤ) : WithZero (Multiplicative ℤ))) (x : L)
     (hx : Valued.v x < (1 : WithZero (Multiplicative ℤ))) : x / ϖ ∈ intL L := by
   by_cases h0 : Valued.v x = (0 : WithZero (Multiplicative ℤ))
-  · rw [mem_intL, map_div₀, h0, zero_div]; exact zero_le_one
+  · rw [_root_.GlobalTheory.UnitarySwap.mem_int, map_div₀, h0, zero_div]; exact zero_le_one
   · obtain ⟨u, hu⟩ := WithZero.ne_zero_iff_exists.1 h0
     rw [← hu, ← WithZero.coe_one, WithZero.coe_lt_coe, ← Multiplicative.toAdd_lt] at hx
-    rw [mem_intL, map_div₀, hv, ← hu, ← WithZero.coe_div, ← WithZero.coe_one,
+    rw [_root_.GlobalTheory.UnitarySwap.mem_int, map_div₀, hv, ← hu, ← WithZero.coe_div, ← WithZero.coe_one,
       WithZero.coe_le_coe, ← Multiplicative.toAdd_le]
     simp only [toAdd_div, toAdd_ofAdd, toAdd_one] at hx ⊢
     omega
@@ -219,7 +218,7 @@ theorem finite_quot (ϖ : L) (c : L →+* L) (q : ℕ) (h : IsUnramInv ϖ c q) :
     ∃ a : intL L, (a : L) = ϖ ∧ ∀ N : ℕ, Finite (intL L ⧸ Ideal.span {a ^ N}) := by
   obtain ⟨-, -, -, hv, -, hq, hc⟩ := h
   have hϖ : ϖ ∈ intL L := by
-    rw [mem_intL, hv, ← WithZero.coe_one, WithZero.coe_le_coe, ← Multiplicative.toAdd_le]; simp
+    rw [_root_.GlobalTheory.UnitarySwap.mem_int, hv, ← WithZero.coe_one, WithZero.coe_le_coe, ← Multiplicative.toAdd_le]; simp
   have hϖ0 : ϖ ≠ 0 := by
     intro h0; rw [h0, map_zero] at hv; exact WithZero.zero_ne_coe hv
   refine ⟨⟨ϖ, hϖ⟩, rfl, fun N => ?_⟩

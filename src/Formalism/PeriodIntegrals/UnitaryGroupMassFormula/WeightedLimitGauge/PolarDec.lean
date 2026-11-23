@@ -67,9 +67,6 @@ open PI.RhsWLim
 
 variable {k r : ℕ}
 
-theorem hpk_mulVec_gen (v : Fin (2 * r + k + 1) → ℂ) (i : Fin (2 * r + k + 1)) :
-    (Hpk k r *ᵥ v) i = HU.sgn k r i * v (HU.tau k r i) := hpk_mulVec_apply v i
-
 theorem herm_bvec (u : Fin (2 * r + k + 1) → ℂ) (i : Fin (2 * r + k + 1)) :
     herm (Hpk k r) u (bvec i) = (Hpk k r *ᵥ u) i := by
   unfold herm bvec
@@ -114,7 +111,7 @@ theorem uwb_emb {p : Mat k r} (hp : p ∈ UWb k r) :
           set a : Fin r := ⟨i.val, hi⟩
           have hfix := (hp.2 a).2
           have h1 := herm_pres hp.1 (bvec (wI k r j')) (bvec (esI k r a))
-          rw [hfix, herm_bvec, herm_bvec, hpk_mulVec_gen, hpk_mulVec_gen] at h1
+          rw [hfix, herm_bvec, herm_bvec, _root_.PI.RhsWLim.W.hpk_mulVec_apply, _root_.PI.RhsWLim.W.hpk_mulVec_apply] at h1
           have ht : HU.tau k r (esI k r a) = i := by
             unfold HU.tau esI; apply Fin.ext; simp only [a]; split_ifs <;> omega
           have hs : HU.sgn k r (esI k r a) = 1 := by
@@ -125,7 +122,7 @@ theorem uwb_emb {p : Mat k r} (hp : p ∈ UWb k r) :
         · set a : Fin r := ⟨2 * r + k - i.val, by omega⟩
           have hfix := (hp.2 a).1
           have h1 := herm_pres hp.1 (bvec (wI k r j')) (bvec (eI k r a))
-          rw [hfix, herm_bvec, herm_bvec, hpk_mulVec_gen, hpk_mulVec_gen] at h1
+          rw [hfix, herm_bvec, herm_bvec, _root_.PI.RhsWLim.W.hpk_mulVec_apply, _root_.PI.RhsWLim.W.hpk_mulVec_apply] at h1
           have ht : HU.tau k r (eI k r a) = i := by
             unfold HU.tau eI; apply Fin.ext; simp only [a]; split_ifs <;> omega
           have hs : HU.sgn k r (eI k r a) = 1 := by

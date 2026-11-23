@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsFundamentalDomainOfHaar
 
 @[expose] public section
 
@@ -93,9 +94,6 @@ end GlobalTheory.LinExactAt
 
 namespace GlobalTheory.LinExactAt
 
-theorem algebraMap_inj (D : D7) : Function.Injective (algebraMap (AF D.host.F) (AE D)) :=
-  Algebra.TensorProduct.includeLeft_injective (S := AF D.host.F) (algebraMap D.host.F D.host.E).injective
-
 theorem idem_calc {R : Type} [CommRing R] (E C s t : R) (he : E * E = E) (hcc : C * C = C) (hc : E * C = 0)
     (hs : E * s = s) (hcs : C * t = t) : (1 - E + s) * (1 - C + t) * (1 - (E + C)) = 1 - (E + C) := by
   have h1 : (1 - E + s) * (1 - C + t) = 1 - E - C + s + t := by
@@ -107,7 +105,7 @@ theorem idem_calc {R : Type} [CommRing R] (E C s t : R) (he : E * E = E) (hcc : 
 theorem norm_idele_mul {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (p : SplitPt D k) (a : kˣ) (ε : AF D.host.F) (hε : p.e + cA D p.e = algebraMap (AF D.host.F) (AE D) ε) :
     Algebra.norm (AF D.host.F) (p.idele a : AE D) * (1 - ε) = 1 - ε := by
-  apply algebraMap_inj D
+  apply _root_.GlobalTheory.VolHeckeCompare.algebraMap_AE_injective D
   rw [map_mul, GlobalTheory.SplitDetCharacter.algebraMap_norm, map_sub, map_one, ← hε, p.idele_val]
   have he : p.e * p.e = p.e := p.split.1
   have hc : p.e * cA D p.e = 0 := p.split.2.1

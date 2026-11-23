@@ -76,17 +76,6 @@ theorem vge_zero' (a : ℝ) : vge v a (0 : K) := by
 theorem vge_mono' {a b : ℝ} {x : K} (hab : b ≤ a) (h : vge v a x) : vge v b x := by
   rw [vge_iff'] at *; intro n hn; exact hab.trans (h n hn)
 
-theorem vge_add' {a : ℝ} {x y : K} (hx : vge v a x) (hy : vge v a y) : vge v a (x + y) := by
-  rw [vge_iff'] at *
-  intro n hn
-  have h := v.map_add x y
-  rw [hn] at h
-  rcases min_le_iff.mp h with h1 | h1
-  · obtain ⟨m, hm, hmn⟩ := WithTop.le_coe_iff.mp h1
-    exact (hx m hm).trans (by exact_mod_cast hmn)
-  · obtain ⟨m, hm, hmn⟩ := WithTop.le_coe_iff.mp h1
-    exact (hy m hm).trans (by exact_mod_cast hmn)
-
 theorem vge_mul' {a b : ℝ} {x y : K} (hx : vge v a x) (hy : vge v b y) : vge v (a + b) (x * y) := by
   rw [vge_iff'] at *
   intro n hn
@@ -218,10 +207,6 @@ theorem support_dg_subset (f : (σ →₀ ℕ) → K) (F : MvPolynomial σ K) :
   intro α hα
   rw [mem_support_iff, coeff_dg] at hα
   exact mem_support_iff.mpr (right_ne_zero_of_mul hα)
-
-theorem gaAct_eq_dg (D : TwistData K) (G : MvPolynomial (D.OL × Fin D.r) K) :
-    D.gaAct G = dg D.ga G := by
-  rw [dg_eq_sum_f]; rfl
 
 end Fock
 

@@ -182,7 +182,7 @@ theorem spec_of_units [IsAlgClosure ℚ Ω] (X : Tower Ω ε) {M l n : ℕ} (hM 
   letI := algPoly X (CongruenceSubgroup.Gamma M)
   letI := algRat X (CongruenceSubgroup.Gamma M)
   haveI := isScalarTower_poly_rat X (CongruenceSubgroup.Gamma M)
-  haveI : FiniteDimensional (RatFunc Ω) (topL X M) := GlobalTheory.T.finiteDimensional_lev_of_gamma_le Ω ε X _ M (Nat.pos_of_ne_zero hM) le_rfl
+  haveI : FiniteDimensional (RatFunc Ω) (topL X M) := _root_.GlobalTheory.K4.finiteDimensional_lev Ω ε X _ M (Nat.pos_of_ne_zero hM) le_rfl
   haveI := normal_top X hM
   haveI : Algebra.IsAlgebraic (topF X M) (topBar X M) := Algebra.IsAlgebraic.trans _ (topL X M) _
   obtain ⟨hu0, huF, huL, hu1, hu2⟩ := hu

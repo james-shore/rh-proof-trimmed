@@ -45,6 +45,9 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CoordinateSizesOfHypotheses
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.OpApplyZeroNear
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdjointInverseTranslate.SubsetUpperHessenberg
 
 @[expose] public section
 
@@ -69,9 +72,6 @@ theorem castM_apply' {k a b : ℕ} (h : a = b) (g : B.Mat k a) (p q : Fin (2 * b
     D.castM h g p q = g (Fin.cast (by omega) p) (Fin.cast (by omega) q) := by
   subst h; simp [D.castM, Matrix.reindex_apply]
 
-theorem castM_GV' {k a b : ℕ} (h : a = b) {g : B.Mat k a} (hg : g ∈ B.GV k a) : D.castM h g ∈ B.GV k b := by
-  subst h; simpa [D.castM] using hg
-
 theorem zfull_apply {j : ℕ} (Z : Matrix (Fin j) (Fin j) ℂ) (τ : ℂ) (c d : Fin (j + 1)) :
     zfull Z τ c d = if hc : c.val < j then (if hd : d.val < j then Z ⟨c.val, hc⟩ ⟨d.val, hd⟩ else 0)
       else (if d.val < j then 0 else τ) := by
@@ -82,10 +82,6 @@ theorem det_zfull {j : ℕ} (Z : Matrix (Fin j) (Fin j) ℂ) (τ : ℂ) : (zfull
   unfold zfull U.blk2
   rw [Matrix.det_reindex_self, Matrix.det_fromBlocks_zero₂₁]
   simp [Matrix.det_unique]
-
-theorem wMat_mul_apply {d n : ℕ} (M : Matrix (Fin d) (Fin n) ℂ) (i : Fin d) (c : Fin n) :
-    (G.wMat d * M) i c = M i.rev c := by
-  simp [G.wMat, Matrix.mul_apply]
 
 theorem level_point_first_lines (k r j : ℕ) (hj : j + 1 ≤ r) (Z : Matrix (Fin j) (Fin j) ℂ) (τ : ℂ) (γ : B.Mat k (r - (j + 1)))
     (a : Fin j) (q : Fin (2 * r + k + 1)) :
@@ -104,7 +100,7 @@ theorem level_point_first_lines (k r j : ℕ) (hj : j + 1 ≤ r) (Z : Matrix (Fi
   · have hq : q.val = c.val := by
       have := congrArg Fin.val hy; rw [Ux4.block_index_first_val_eq] at this; simp at this; omega
     simp only [Matrix.fromBlocks_apply₂₁, Matrix.fromCols_apply_inl]
-    rw [wMat_mul_apply]
+    rw [_root_.Formalism.FourierDecayAlt.P.Ux6.wMat_mul_apply']
     have hrev : (⟨j - a.val, by omega⟩ : Fin (j + 1)).rev = ⟨a.val, by omega⟩ := by
       ext; simp [Fin.rev]; omega
     rw [hrev, zfull_apply, dite_eq_left (by simp)]
@@ -120,11 +116,6 @@ theorem level_point_first_lines (k r j : ℕ) (hj : j + 1 ≤ r) (Z : Matrix (Fi
       have := congrArg Fin.val hy; rw [Ux4.block_index_last_val_eq] at this; simp at this; omega
     simp only [Matrix.fromBlocks_apply₂₂, Matrix.zero_apply]
     rw [dite_eq_right (by omega)]
-
-theorem Hpk_eI_row (k r : ℕ) (a : Fin r) (s : Fin (2 * r + k + 1)) :
-    Hpk k r (eI k r a) s = if s = esI k r a then 1 else 0 := by
-  simp only [Hpk, eI, esI, Fin.ext_iff, Fin.val_mk]
-  split_ifs <;> first | rfl | (exfalso; omega)
 
 theorem Hpk_eI_col (k r : ℕ) (a : Fin r) (s : Fin (2 * r + k + 1)) :
     Hpk k r s (eI k r a) = if s = esI k r a then 1 else 0 := by
@@ -143,14 +134,14 @@ theorem xiCoef : XiCoef := by
     intro v
     simp [herm, bvec, dotProduct, Matrix.mulVec, Pi.single_apply]
   rw [h1]
-  simp only [Hpk_eI_row, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [_root_.AAInvW.lf_H_eI, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
   simp only [bvec, Matrix.mulVec_single_one, Matrix.transpose_apply]
   exact level_point_first_lines k r j hj Z τ γ a p
 
 theorem x0_GV (k r j : ℕ) (hj : j + 1 ≤ r) (Z : Matrix (Fin j) (Fin j) ℂ) (τ : ℂ) (γ : B.Mat k (r - (j + 1)))
     (hZ : Z.det ≠ 0) (hτ : τ ≠ 0) (hγ : γ ∈ B.GV k (r - (j + 1))) : x0 k r j hj Z τ γ ∈ B.GV k r := by
   unfold x0
-  apply castM_GV'
+  apply _root_.Formalism.FourierDecayAlt.P.PBE.castM_GV
   exact (Ux2.sliceMem k (j + 1) (r - (j + 1))).1 _ _ (by rw [det_zfull]; exact mul_ne_zero hZ hτ) hγ
 
 theorem xiMem : XiMem := by
@@ -269,13 +260,5 @@ end smooth
 end Formalism.FourierDecayAlt.P.WirtingerOperators.XiPf
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem xi_coefficient : WirtingerOperators.XiCoef := WirtingerOperators.XiPf.xiCoef
-
-theorem xi_coefficient_vector : WirtingerOperators.XiCoefV := WirtingerOperators.XiPf.xiCoefV
-
-theorem xiMem_statement : WirtingerOperators.XiMem := WirtingerOperators.XiPf.xiMem
-
-theorem xi_smooth : WirtingerOperators.XiSmooth := WirtingerOperators.XiPf.xiSmooth
 
 end Formalism.FourierDecayAlt.P

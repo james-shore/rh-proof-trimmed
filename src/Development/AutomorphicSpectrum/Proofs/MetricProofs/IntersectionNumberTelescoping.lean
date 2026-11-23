@@ -179,7 +179,7 @@ theorem word_step (I : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine ι
   have e2 : I P (n + 1) (Fin.snoc (mixWord (n := n) a a₀ A' k m) a) =
       I P (n + 1) (Fin.snoc (mixWord (n := n) a a₀ A' k m)
         (a₀.tensor (HermLine.ofWeight (logRatio a a₀) hu))) := by
-    refine metricLocal K ι I hI P (n + 1) _ _ hP (forall_snoc (p := IsSmoothHerm) hMs ha)
+    refine _root_.GroundTheory.Heights₂.Heights.MetricLocalB.full K ι I hI P (n + 1) _ _ hP (forall_snoc (p := IsSmoothHerm) hMs ha)
       (forall_snoc (p := IsSmoothHerm) hMs hT) ?_ ?_
     · intro j
       induction j using Fin.lastCases with

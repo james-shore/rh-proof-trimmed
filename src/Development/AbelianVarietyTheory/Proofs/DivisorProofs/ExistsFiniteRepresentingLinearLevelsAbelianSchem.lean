@@ -66,7 +66,7 @@ theorem exists_finite_rep_linLevel : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) 
   obtain ⟨Z, et, hZf, -, eadd, epow, huniv⟩ := GlobalTheory.exists_finiteEtale_latticeTorsionHom H AH N D.La hab hN
   let bO := Module.Free.chooseBasis ℤ D.O
   let bL := Module.Free.chooseBasis ℤ D.La
-  obtain ⟨Y, i, hYf, hieq, hiu⟩ := GlobalTheory.T.exists_finite_agreementLocus_separated H Z AH hZf inferInstance
+  obtain ⟨Y, i, hYf, hieq, hiu⟩ := _root_.GlobalTheory.EqLocus.exists_finite_eqLocus H Z AH hZf inferInstance
     (Module.Free.ChooseBasisIndex ℤ D.O × Module.Free.ChooseBasisIndex ℤ D.La)
     (fun k => et (bO k.1 • bL k.2)) (fun k => et (bL k.2) ≫ actH.act (bO k.1))
   let u : D.La → (Y ⟶ AH) := fun x => i ≫ et x
@@ -94,9 +94,9 @@ theorem exists_finite_rep_linLevel : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) 
     obtain ⟨h, hh, hu⟩ := hiu T h₀ heq
     refine ⟨h, fun x => by simp only [u]; rw [← Category.assoc, hh, hh₀], fun h' hh' => hu h' ?_⟩
     exact hu₀ _ fun x => by rw [Category.assoc]; exact hh' x
-  obtain ⟨AE, _, _, φE, actE, ηE, hE, hact, heta, hηu⟩ := GlobalTheory.T.exists_pullback_group_oLinear_torsion_level p D N H AH actH Y u uadd ulin ukill
+  obtain ⟨AE, _, _, φE, actE, ηE, hE, hact, heta, hηu⟩ := _root_.GlobalTheory.UPel.HT.LevPull.exists_pull_level p D N H AH actH Y u uadd ulin ukill
   exact ⟨Y.left, Y.hom, AE, inferInstance, inferInstance, φE, actE, ηE, hYf, hE, hact, heta,
     fun T g AT _ φ act eta hT hTact hTeta =>
-      GlobalTheory.T.oLinearLevel_pullback_universal_factorisation p D N H AH actH Y u AE φE ηE hE hηu uuniv T g AT φ act eta hT hTact hTeta⟩
+      _root_.GlobalTheory.UPel.HT.pullUnivP p D N H AH actH Y u AE φE ηE hE hηu uuniv T g AT φ act eta hT hTact hTeta⟩
 
 end GlobalTheory.UPel.HT

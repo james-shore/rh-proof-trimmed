@@ -88,9 +88,9 @@ theorem conj_map_eq_id : ∀ (k G : Type) [CommRing k] [Group G] (g : G) (n : �
     intro A u hu
     obtain ⟨ι, K, i, e, h, hS⟩ := exists_free_shortExact k G A
     have hP : IsZero (groupHomology (Rep.free k G ι) (n + 1)) :=
-      GlobalTheory.T.projective_rep_groupHomology_pos_vanishes k G (Rep.free k G ι) inferInstance n
+      _root_.GlobalTheory.HomStab.isZero_groupHomology_succ_of_projective k G (Rep.free k G ι) inferInstance n
     have hmono := groupHomology.mono_δ_of_isZero hS n hP
-    have hnat := (GlobalTheory.T.groupHomology_longExact_maps_natural_of_res k G G (MulAut.conj g).toMonoidHom _ _ hS hS
+    have hnat := (_root_.GlobalTheory.HomStab.groupHomology_δ_natural_changeGroup k G G (MulAut.conj g).toMonoidHom _ _ hS hS
       (conjActHom g K) (conjActHom g (Rep.free k G ι)) u
       (fun a => by
         change (Rep.free k G ι).ρ g (i.hom a) = i.hom (K.ρ g a)
@@ -105,11 +105,3 @@ theorem conj_map_eq_id : ∀ (k G : Type) [CommRing k] [Group G] (g : G) (n : �
 
 end GlobalTheory.HomStab
 
-section
-open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab
-theorem _root_.GlobalTheory.T.innerAut_acts_trivially_groupHomology : ∀ (k G : Type) [CommRing k] [Group G] (g : G) (n : ℕ) (A : Rep k G) (u : A ⟶ Rep.res (MulAut.conj g).toMonoidHom A), (∀ a, u.hom a = A.ρ g a) → groupHomology.map (MulAut.conj g).toMonoidHom u n = 𝟙 _ := by
-  first
-  | exact @GlobalTheory.HomStab.conj_map_eq_id
-  | exact @GlobalTheory.HomStab.conj_map_eq_id_zero
-  | exact @GlobalTheory.HomStab.conjActHom_hom_apply
-end

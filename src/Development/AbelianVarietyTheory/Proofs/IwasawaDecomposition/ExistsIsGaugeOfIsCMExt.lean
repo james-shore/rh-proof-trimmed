@@ -199,7 +199,7 @@ theorem exists_isGauge_of_isCMExt (hσ : IsCMExt F E σ) : ∃ G : GaugeFam F E 
   classical
   haveI : FiniteDimensional F E := Module.finite_of_finrank_pos (by rw [hσ.2.2.1]; norm_num)
   haveI : IsTotallyReal F := hσ.1
-  obtain ⟨s⟩ := GlobalTheory.T.nonempty_standardLocalHaarMeasures F E _ (Module.finBasis F E)
+  obtain ⟨s⟩ := _root_.GlobalTheory.GaugeEx.StdExist.nonempty_stdMeas F E _ (Module.finBasis F E)
   obtain ⟨G, α, hH, hB, hαinv, hstep⟩ := exists_std_family hσ s
   obtain ⟨κ, hκ0, hκ⟩ := GlobalTheory.T.quadricFibreMeasure_eq_smul_normalisedProduct F E σ hσ _ _ s
   obtain ⟨ψ, hψ⟩ := GlobalTheory.T.exists_nontrivial_adeleChar_trivial_on_totallyReal F

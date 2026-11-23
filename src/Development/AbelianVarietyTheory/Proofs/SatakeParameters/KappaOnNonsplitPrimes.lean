@@ -184,20 +184,11 @@ theorem trace_le_ramified (l : ℕ) [Fact l.Prime] (T v : ℚ_[l])
   have := zpow_right_injective₀ (by positivity : (0 : ℝ) < l) hl1.ne' hn
   omega
 
-theorem norm_of_normOne {a : ℕ} {b c : ℤ} {d : ℕ} (hok : PI.UnitDetRootDefs.CmOK a b c d) (l : ℕ) [Fact l.Prime]
-    (hT : ∀ T v : ℚ_[l], T ^ 2 + (d : ℚ_[l]) * v ^ 2 = 4 → ‖T‖ ≤ 1) (ι : ℂ ≃+* ℂ_[l]) {x : ℂ}
-    (hx : x ∈ PI.UnitaryGroupMassFormula.UnitDetRoot.KF b d) (h1 : x * conj x = 1) : ‖ι x‖ = 1 := by
-  first
-  | exact @_root_.GlobalTheory.TraceNormCoordinates.norm_eq_one
-  | exact _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one
-  | (apply _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceNormCoordinates.norm_eq_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one ..)
+alias norm_of_normOne := _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one
 
 theorem le_one (l : ℕ) [Fact l.Prime] (ι : ℂ ≃+* ℂ_[l]) (z : ℂ) (hz : IsIntegral ℤ z) : ‖ι z‖ ≤ 1 := by
   obtain ⟨p, hp, hpz⟩ := hz
-  apply PI.UnitaryGroupMassFormula.UnitDetRoot.norm_le_one_of_root p hp
+  apply _root_.Bl.general_b_fact_left_ter.goal1 p hp
   have h : (ι.toRingHom) (p.eval₂ (algebraMap ℤ ℂ) z) = 0 := by rw [hpz, map_zero]
   rw [Polynomial.hom_eval₂, RingHom.ext_int (ι.toRingHom.comp (algebraMap ℤ ℂ)) (Int.castRingHom _)] at h
   exact h

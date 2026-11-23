@@ -77,9 +77,9 @@ private lemma pow_mul_mem (h : IsFinCover ℂ K (xv x)) (i i' : Fin (d + 1)) (b 
     refine ⟨0, fun N _ => ?_⟩
     exact Subalgebra.mul_mem _ (Subalgebra.pow_mem _ (ratio_mem i i) N) hb
   have hb' : b ∈ rB ℂ K (xv x) {i, i'} :=
-    (GlobalTheory.T.finite_cover_ring_localization_chart ℂ F K d (xv x) h {i} i (by simp)).1 {i, i'} (by simp) hb
+    (_root_.GlobalTheory.PD.rB_mono_loc ℂ F K d (xv x) h {i} i (by simp)).1 {i, i'} (by simp) hb
   obtain ⟨N0, hN0⟩ :=
-    ((GlobalTheory.T.finite_cover_ring_localization_chart ℂ F K d (xv x) h {i, i'} i' (by simp)).2 b).mp hb'
+    ((_root_.GlobalTheory.PD.rB_mono_loc ℂ F K d (xv x) h {i, i'} i' (by simp)).2 b).mp hb'
   rw [Finset.prod_pair hne, div_self (Units.ne_zero (x i')), mul_one] at hN0
   refine ⟨N0, fun N hN => ?_⟩
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hN

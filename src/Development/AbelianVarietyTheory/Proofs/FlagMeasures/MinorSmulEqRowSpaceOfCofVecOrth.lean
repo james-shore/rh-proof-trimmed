@@ -78,7 +78,7 @@ theorem minor_smul_eq_rowSpace_of_cofVec_orth (K V : Type) [Field K] [NumberFiel
     congr 1
     unfold Formalism.HermitianLatticeCounting.LatticeSumBounds.cofVec
     rw [hsub, ← RingHom.map_det, map_mul, map_pow, map_neg, map_one]
-  have h := congrFun ((Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.kernelRowSpace K r (Y.map (algebraMap (𝓞 K) K))).2
+  have h := congrFun ((_root_.Formalism.HermitianLatticeCounting.P.cofactorVectorKernel K r (Y.map (algebraMap (𝓞 K) K))).2
     (fun b => φ (u b)) h0 b₀) b
   rw [hsub, ← RingHom.map_det, ← RingHom.map_adjugate] at h
 
@@ -126,7 +126,7 @@ theorem exists_reps_ideal_inv_lattice (K V : Type) [Field K] [NumberField K]
   have : Module.FinitePresentation (𝓞 K) P := Module.finitePresentation_of_finite _ _
   have : Module.Flat (𝓞 K) P := inferInstance
   have : Module.Projective (𝓞 K) P := Module.Flat.projective_of_finitePresentation
-  have hcard := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.projQuotCard K P J hJ
+  have hcard := _root_.Formalism.HermitianLatticeCounting.P.projective_quotient_card K P J hJ
   have hN : Ideal.absNorm J ≠ 0 := by rwa [Ne, Ideal.absNorm_eq_zero_iff]
   have hrk : finrank (𝓞 K) P ≤ finrank K (Submodule.span K (S0 : Set V)) := by
     obtain ⟨g, hg⟩ := exists_linearIndependent_of_le_finrank (R := 𝓞 K) (M := P) le_rfl

@@ -113,7 +113,7 @@ end One
 
 theorem sigma_rules_hold : SRules := by
   intro K _ _ A kap w hw
-  obtain ⟨hw1, -⟩ := wSecond K A kap w hw
+  obtain ⟨hw1, -⟩ := _root_.Formalism.L2.Th1.B.invertedSecondDeriv K A kap w hw
   obtain ⟨hw0, hw2, hwE⟩ := hw
   have hsq := sW_sq hw0 hw1 hw2
   have hd : 2 * sW w * dz (sW w) = dz w := by

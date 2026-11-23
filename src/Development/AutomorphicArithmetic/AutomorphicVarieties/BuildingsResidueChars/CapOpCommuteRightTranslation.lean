@@ -109,7 +109,7 @@ theorem UpperTheory.capOp_commute_rightTranslation :
     (fun X => rtInf_lam a y rfl X) τ
   have hq := GlobalTheory.CapAdInv.qdet_semiconj (gen D (lam K n) τ) _ (rtInf a) hsemi u
   have hGl := (UpperTheory.gen_glRelations_and_commute_of_isLie (mixedSpace K) ι n _ D (lam K n) (isLie_lam K n)).1 τ
-  have had := GlobalTheory.CapAdInv.qdet_ad (gen D (lam K n) τ) hGl P Q hQP u
+  have had := _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj (gen D (lam K n) τ) hGl P Q hQP u
   show Formalism.REAL.qdet (gen D (lam K n) τ) u * rtInf a = rtInf a * Formalism.REAL.qdet (gen D (lam K n) τ) u
   rw [hq]
   congr 1

@@ -134,8 +134,8 @@ theorem finite_isogSource : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
     · rw [hσ]
       exact ⟨by rw [Category.assoc, hτ, hs], oz, scale ou e rfl, ψ', ⟨mz⟩, ⟨compMap (scaleMap mu e) mτ⟩, hψ'⟩
   choose k hk σ υ hυ hT using key
-  obtain ⟨L, _, _, g, h, hg⟩ := GlobalTheory.T.exists_isAlgClosed_compatible_embeddings_of_family (M.X.residueField z) Z k σ
-  have hfin := (GlobalTheory.T.finite_pIsogenyTargets_at_charP_point p D R b N hN hNp hm (p ^ e) M z hz L h).preimage
+  obtain ⟨L, _, _, g, h, hg⟩ := _root_.GlobalTheory.exists_isAlgClosed_embeddings_of_family (M.X.residueField z) Z k σ
+  have hfin := (_root_.GlobalTheory.UPel.HT.ES.CorrQF.finite_isogTarget p D R b N hN hNp hm (p ^ e) M z hz L h).preimage
     (f := fun υ' : Sp L ⟶ M.X => υ' ≫ τ) (fun x _ y _ hxy => (cancel_mono τ).1 hxy)
   refine (Set.Finite.biUnion hfin fun υ' _ => Set.finite_range (fun q : Sp L => υ' q)).subset ?_
   intro u hu

@@ -103,7 +103,7 @@ theorem GlobalTheory.evA_tensor_presents : ∀ (k : Type) [CommRing k] (σ τ : 
   intro k _ σ τ _ _ A B _ _ _ _ x hx y hy hz hsx hsy
   have hX : ∀ t, evA k _ hz (X t) =
       Sum.elim (fun i => x i ⊗ₜ[k] (1 : B)) (fun j => (1 : A) ⊗ₜ[k] y j) t :=
-    fun t => GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k (σ ⊕ τ) (A ⊗[k] B) _ hz t
+    fun t => _root_.GlobalTheory.Katz.evA_X k (σ ⊕ τ) (A ⊗[k] B) _ hz t
   have hzX : ∀ t, IsNilpotent (evA k _ hz (X t)) := fun t => by rw [hX]; exact hz t
   have hxl : ∀ i, IsNilpotent (x i ⊗ₜ[k] (1 : B)) := fun i => hz (Sum.inl i)
   have hyr : ∀ j, IsNilpotent ((1 : A) ⊗ₜ[k] y j) := fun j => hz (Sum.inr j)
@@ -194,11 +194,11 @@ theorem GlobalTheory.evA_tensor_presents : ∀ (k : Type) [CommRing k] (σ τ : 
       cases t with
       | inl i =>
         simp only [Sum.elim_inl, Ψ, Algebra.TensorProduct.lift_tmul, map_one, mul_one]
-        rw [← GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k σ A x hx i, hΨA]
+        rw [← _root_.GlobalTheory.Katz.evA_X k σ A x hx i, hΨA]
         simp only [φA, AlgHom.comp_apply, coe_substAlgHom, subst_X haL]
       | inr j =>
         simp only [Sum.elim_inr, Ψ, Algebra.TensorProduct.lift_tmul, map_one, one_mul]
-        rw [← GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k τ B y hy j, hΨB]
+        rw [← _root_.GlobalTheory.Katz.evA_X k τ B y hy j, hΨB]
         simp only [φB, AlgHom.comp_apply, coe_substAlgHom, subst_X haR])
     have hmk : mk f = 0 := by
       rw [huniq, AlgHom.comp_apply, hf, map_zero]

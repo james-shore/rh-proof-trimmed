@@ -112,10 +112,4 @@ theorem gaussE_qr_const (μ : Measure (UNgrp N)) [IsProbabilityMeasure μ] (C : 
   rw [← hXdef] at h2
   exact mul_right_cancel₀ hXpos.ne' (h.symm.trans h2.symm)
 
-theorem qr_const (μ : Measure (UNgrp N)) [IsProbabilityMeasure μ] (C : ℝ)
-    (hC : ∀ f : (Fin N → Fin N → ℂ) → ENNReal, Measurable f →
-      ∫⁻ Z, f Z = ENNReal.ofReal C * ∫⁻ k, (∫⁻ t in triPos N, f (qrMap (k, t)) * ENNReal.ofReal (qrWt t)) ∂μ) :
-    C = volU N :=
-  gaussE_qr_const μ C hC
-
 end ReciprocityTheory.ChartRestriction.DS

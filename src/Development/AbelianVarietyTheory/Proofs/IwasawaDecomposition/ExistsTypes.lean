@@ -58,7 +58,7 @@ theorem exists_types : GlobalTheory.Published.RayClassFieldSt → GlobalTheory.P
       X.cenMt = D.ntypes.cenMt ∧ Nonempty (ParSide (setTy D hE X h1 h0) jE) ∧
       (Nonempty (GrpSide D) → IotaOk (setTy D hE X h1 h0) ⟨Pl.ι, Pl.ι_w, Pl.plB, Pl.plB_eq, Pl.plκ⟩) := by
   intro hray _ D hE jE Pl hg
-  obtain ⟨h, hf, hgal, hab, hunr, hsplit⟩ := GlobalTheory.T.rayClassFieldHostConductor_isRayClassField hray D jE
+  obtain ⟨h, hf, hgal, hab, hunr, hsplit⟩ := _root_.GlobalTheory.ParRayMax.rayField_isRay hray D jE
   letI := algK D jE h
   have := nfOf hf
   let X : NTypes D.naut :=

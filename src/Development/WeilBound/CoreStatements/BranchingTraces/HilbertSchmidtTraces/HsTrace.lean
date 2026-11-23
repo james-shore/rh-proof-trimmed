@@ -62,11 +62,6 @@ theorem hs_trace {m : ℕ} (X : Matrix (Fin m) (Fin m) ℂ) : (hs X : ℂ) = tra
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   rw [Complex.star_def, Complex.conj_mul']
 
-theorem jm_ct {m : ℕ} (ε : Fin m → Bool) : (Jm ε)ᴴ = Jm ε := by
-  rw [Jm, diagonal_conjTranspose]
-  congr 1; funext a
-  simp only [Pi.star_apply]; split_ifs <;> simp
-
 theorem stab : ∀ {n r : ℕ} {ε : Fin n → Bool} {ε' : Fin r → Bool} (ι : UJ ε' →* UJ ε) (z : Fin n → ℂ), IsStdStab ε ε' ι z → IsNormEmb ι ∧ (∀ h, hs (umat (ι h)) = hs (umat h) + 1) ∧ ∀ g : UJ ε, umat g *ᵥ z = z → ∃ h, ι h = g := by
   intro n r ε ε' ι z ⟨F, hF, FF, Fz, hz⟩
   set Z : Matrix (Fin n) Unit ℂ := replicateCol Unit z with hZ
@@ -89,7 +84,7 @@ theorem stab : ∀ {n r : ℕ} {ε : Fin n → Bool} {ε' : Fin r → Bool} (ι 
   have FJZ : Fᴴ * Jm ε * Z = 0 := by rw [col, hF.perp]; ext; simp
   have ZJF : Zᴴ * Jm ε * F = 0 := by
     have := congrArg conjTranspose FJZ
-    simpa [jm_ct, Matrix.mul_assoc] using this
+    simpa [_root_.Formalism.REAL.Jm_conjTranspose, Matrix.mul_assoc] using this
   have ZJZ : Zᴴ * Jm ε * Z = 1 := by
     ext i j
     rw [Matrix.mul_assoc, col, Subsingleton.elim i j, one_apply_eq, ← hF.one]
@@ -124,7 +119,7 @@ theorem stab : ∀ {n r : ℕ} {ε : Fin n → Bool} {ε' : Fin r → Bool} (ι 
     have gJ : (umat g)ᴴ * Jm ε * umat g = Jm ε := g.2
     have ZgF : Zᴴ * (umat g * F) = 0 := by
       have h1 : Zᴴ = Zᴴ * (umat g)ᴴ * Jm ε := by
-        rw [← conjTranspose_mul, gZ, ← jm_ct ε, ← conjTranspose_mul, JZ]
+        rw [← conjTranspose_mul, gZ, ← _root_.Formalism.REAL.Jm_conjTranspose ε, ← conjTranspose_mul, JZ]
       calc _ = Zᴴ * (umat g)ᴴ * Jm ε * (umat g * F) := by rw [← h1]
         _ = Zᴴ * ((umat g)ᴴ * Jm ε * umat g) * F := by simp only [Matrix.mul_assoc]
         _ = 0 := by rw [gJ, ZJF]

@@ -319,20 +319,6 @@ private theorem integralBasis_repr_eq_trace_mul_dualInt (z : E) (k : Module.Free
   simp only [smul_mul_assoc, map_smul, hd, smul_eq_mul, mul_ite, mul_one, mul_zero,
     Finset.sum_ite_eq', Finset.mem_univ, if_true]
 
-private theorem sum_dualInt_mul_integralBasis_eq_one : ∑ k, dualInt E k * integralBasis E k = 1 := by
-  classical
-  have key : ∀ y : E, Algebra.traceForm ℚ E (∑ k, dualInt E k * integralBasis E k - 1) y = 0 := by
-    intro y
-
-    rw [Algebra.traceForm_apply, sub_mul, one_mul, map_sub, Finset.sum_mul, map_sum,
-    Algebra.trace_eq_matrix_trace (integralBasis E) y, Matrix.trace, sub_eq_zero]
-    apply Finset.sum_congr rfl
-    intro k _
-    rw [Matrix.diag_apply, Algebra.leftMulMatrix_eq_repr_mul, integralBasis_repr_eq_trace_mul_dualInt]
-    congr 1
-    ring
-  exact sub_eq_zero.mp ((traceForm_nondegenerate ℚ E).1 _ key)
-
 private theorem coe_mul_dualInt_eq_sum (a : 𝓞 E) (j : Module.Free.ChooseBasisIndex ℤ (𝓞 E)) :
     (a : E) * dualInt E j = ∑ l, ((RingOfIntegers.basis E).repr (a * RingOfIntegers.basis E l) j : E) *
       dualInt E l := by
@@ -396,7 +382,7 @@ private theorem eigProj_eq_self_of_eigenvector {K L : Type} [Field K] [AddCommGr
   rw [← Finset.sum_smul]
   have h1 : ∑ k, σ (dualInt E k) * σ ((RingOfIntegers.basis E k : 𝓞 E) : E) = 1 := by
 
-    rw [← map_one σ, ← sum_dualInt_mul_integralBasis_eq_one, map_sum]
+    rw [← map_one σ, ← _root_.GlobalTheory.CompanionTheory.Ar.HT.LatBasic.sum_dualInt_mul, map_sum]
     apply Finset.sum_congr rfl
     intro k _
     rw [integralBasis_apply, map_mul]

@@ -94,10 +94,6 @@ theorem toProj_congr {R : Type} [CommRing R] {N : ℕ} {X Z : Scheme.{0}} {L : L
     GlobalTheory.ProjSpace.toProj f (fun i => GlobalTheory.secPull (s i) a) h₁ = GlobalTheory.ProjSpace.toProj g (fun i => GlobalTheory.secPull (s i) b) h₂ := by
   subst hab; subst hfg; rfl
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]; rfl
-
 theorem fib : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (M : Modif R) (G : Over M.S) [GrpObj G],
     IsSemiAbelian G → ∀ (B L : LB G.left), B.IsLB → L.IsLB → ∀ (N : ℕ) (s : Fin (N + 1) → B.Sec) (θ : L.Sec)
     (Y : Over (Sp (ResidueField R))) [GrpObj Y], Smooth Y.hom → ∀ (j : Y.left ⟶ PSpace R N),
@@ -126,17 +122,17 @@ theorem fib : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R �
   have hpt0 : (spMap (residue W') ≫ spMap io' ≫ ξ) (closedPoint (ResidueField W')) = x (closedPoint Ω) := by
     show ξ (spMap io' (spMap (residue W') (closedPoint _))) = _
     rw [hres0, hio0, hξ0]
-  obtain ⟨Ω', _, io, i₂, hc⟩ := compositum M.S Ω (ResidueField W') x _ hpt0.symm
+  obtain ⟨Ω', _, io, i₂, hc⟩ := _root_.GlobalTheory.Mum.exists_common_field_of_point_eq M.S Ω (ResidueField W') x _ hpt0.symm
   have hκ : io.comp κ = i₂.comp κ' := by
     have e1 : spMap ((io.comp κ).comp (residue R)) = spMap ((i₂.comp κ').comp (residue R)) := by
-      rw [RingHom.comp_assoc, spMap_comp', ← hx, RingHom.comp_assoc, hκ', spMap_comp', spMap_comp', spMap_comp',
+      rw [RingHom.comp_assoc, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← hx, RingHom.comp_assoc, hκ', _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp,
         ← hξ, ← Category.assoc, hc]
       simp only [Category.assoc]
     have e2 := congrArg CommRingCat.Hom.hom (Spec.map_injective e1)
     ext a
     obtain ⟨r, rfl⟩ := residue_surjective a
     exact congrArg (fun f : R →+* Ω' => f r) e2
-  obtain ⟨e, τ, he, hτ, heτ⟩ := baseChangeIso M.S G W' G' (spMap io' ≫ ξ) β hβ (ResidueField R) Y κ' e' he' Ω x κ
+  obtain ⟨e, τ, he, hτ, heτ⟩ := _root_.GlobalTheory.Mum.FibBC.fibre_baseChange M.S G W' G' (spMap io' ≫ ξ) β hβ (ResidueField R) Y κ' e' he' Ω x κ
     Ω' io i₂ hc hκ
   have hrange : Set.range (pullback.fst G.hom (spMap io ≫ x)) ⊆ Set.range (GlobalTheory.Mum.SecEmb.embH s).ι := by
     rintro _ ⟨z, rfl⟩
@@ -163,7 +159,7 @@ theorem fib : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R �
     have a3 : (e.hom.left ≫ pullback.fst Y.hom (spMap (io.comp κ)) ≫ j) ≫ PSpace.str R N =
         pullback.snd G.hom (spMap io ≫ x) ≫ spMap (io.comp κ) ≫ spMap (residue R) := by
       rw [Category.assoc, Category.assoc, hj, pullback.condition_assoc, reassoc_of% eo]
-    rw [a2, a3, hx, spMap_comp', spMap_comp']
+    rw [a2, a3, hx, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     simp only [Category.assoc]
   · intro K _ _ q _
     obtain ⟨⟨hs, hproj⟩, -⟩ := hptw K (q ≫ τ) (q ≫ τ ≫ pullback.fst G'.hom (spMap (residue W')))
@@ -177,7 +173,7 @@ theorem fib : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R �
         (q ≫ τ ≫ pullback.fst G'.hom (spMap (residue W'))) ≫ G'.hom ≫ spMap (io'.comp φ) := by
       have hqb' : q ≫ l ≫ (GlobalTheory.Mum.SecEmb.embH s).ι = q ≫ τ ≫ pullback.fst G'.hom (spMap (residue W')) ≫ β := by
         simp only [Category.assoc] at hqb; exact hqb
-      rw [Category.assoc q l, reassoc_of% hqb', hβ.1.w_assoc, Category.assoc (spMap io'), hξ, spMap_comp']
+      rw [Category.assoc q l, reassoc_of% hqb', hβ.1.w_assoc, Category.assoc (spMap io'), hξ, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
       simp only [Category.assoc]
     have hs₂ : ⨆ i, nonzeroLocus (GlobalTheory.secPull (s i) ((q ≫ l) ≫ (GlobalTheory.Mum.SecEmb.embH s).ι)) = ⊤ := by
       rw [hqb]; exact hs
@@ -185,6 +181,6 @@ theorem fib : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R �
     show (q ≫ l) ≫ GlobalTheory.ProjSpace.toProj ((GlobalTheory.Mum.SecEmb.embH s).ι ≫ G.hom ≫ M.π)
       (fun i => GlobalTheory.secPull (s i) (GlobalTheory.Mum.SecEmb.embH s).ι) (GlobalTheory.Mum.SecEmb.iSup_nonzeroLocus_embH s) = _
     rw [← GlobalTheory.ProjSpace.toProj_secPull]
-    exact (toProj_secPull_secPull R N _ _ _ B s _ (q ≫ l) _ _ hs₂).trans (toProj_congr s hqb hbase _ _)
+    exact (_root_.GlobalTheory.Mum.toProj_secPull_secPull R N _ _ _ B s _ (q ≫ l) _ _ hs₂).trans (toProj_congr s hqb hbase _ _)
 
 end GlobalTheory.Mum.SecEmb.Fib

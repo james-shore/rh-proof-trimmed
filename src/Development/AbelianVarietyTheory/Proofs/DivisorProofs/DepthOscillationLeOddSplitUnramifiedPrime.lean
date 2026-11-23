@@ -129,7 +129,7 @@ theorem oscLe_split : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
     refine Finset.sum_le_sum fun f _ => ?_
     by_cases hf : IsBig k f
     · simp only [B, if_pos hf]
-      exact (GlobalTheory.T.factorDepth_upperBound_oddUnramifiedPrime E H Dw l Xo c p T io y (not_isUnit_of_overLa la ho) ha h2 hd f (cx f) hf.1).1 hs
+      exact (_root_.GlobalTheory.FacUpOdd.nuFac_le_odd_unram E H Dw l Xo c p T io y (not_isUnit_of_overLa la ho) ha h2 hd f (cx f) hf.1).1 hs
     · simp only [B, if_neg hf]
       exact (hall f).2 ha
 

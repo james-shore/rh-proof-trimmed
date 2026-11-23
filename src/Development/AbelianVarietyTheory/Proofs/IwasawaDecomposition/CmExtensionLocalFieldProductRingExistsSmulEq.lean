@@ -156,22 +156,11 @@ theorem exists_isUnit_sub {S : Type} [CommRing S] [Finite (MaximalSpectrum S)] (
     rwa [sub_add_cancel] at this
   exact (hm k).ne_top ((m k).eq_top_of_isUnit_mem h4 hβ)
 
-theorem exists_normOne {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    {σ : E →ₐ[F] E} (h : IsCMExt F E σ) :
-    ∃ a : ℕ → E, Function.Injective a ∧ ∀ k, a k * σ (a k) = 1 := by
-  first
-  | exact @_root_.GlobalTheory.InjectiveSeqNormOne.exists_injective_seq_norm_one
-  | exact _root_.GlobalTheory.InjectiveSeqNormOne.exists_injective_seq_norm_one
-  | (apply _root_.GlobalTheory.InjectiveSeqNormOne.exists_injective_seq_norm_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.InjectiveSeqNormOne.exists_injective_seq_norm_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.InjectiveSeqNormOne.exists_injective_seq_norm_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.InjectiveSeqNormOne.exists_injective_seq_norm_one ..)
-
 theorem exists_smul_eq : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (R : Type) [CommRing R] [Algebra F R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] [LocallyCompactSpace R] [SecondCountableTopology R] [MeasurableSpace R] [BorelSpace R], Nice R → ∀ (M : ℕ) (J : Matrix (Fin M) (Fin M) E), IsHermND σ J → ∀ (β : R) (x y : (Fin 1 → Fin M → R ⊗[F] E)), IsUnit β → qR R σ J (x 0) = β → qR R σ J (y 0) = β → ∃ g : HA R σ J, g • x = y := by
   intro F E _ _ _ _ _ σ hcm R _ _ _ _ _ _ _ _ _ hR' M J hJ β x y hβ hx hy
   have := hR'.1
   have : IsArtinianRing (R ⊗[F] E) := IsArtinianRing.of_finite R (R ⊗[F] E)
-  obtain ⟨a, ha, hn⟩ := exists_normOne hcm
+  obtain ⟨a, ha, hn⟩ := _root_.GlobalTheory.InjectiveSeqNormOne.exists_injective_seq_norm_one hcm
   obtain ⟨k, hk⟩ := exists_isUnit_sub (fun k => inclR R (a k))
     (fun k l hkl => by
       rw [← map_sub]

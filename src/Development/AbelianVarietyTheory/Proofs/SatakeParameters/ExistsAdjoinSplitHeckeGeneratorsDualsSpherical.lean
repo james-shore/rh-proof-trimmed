@@ -109,7 +109,7 @@ theorem good_nonneg (hP : conjPl P ≠ P) : ∀ s q : ℕ, ∀ d : List ℤ, (�
   swap
   · exact good_nonlab hl
   by_cases hpos : ∃ x ∈ d, 0 < x
-  · obtain ⟨m, hm, c, hc, hrel⟩ := top_step V P hP d hl hd hpos
+  · obtain ⟨m, hm, c, hc, hrel⟩ := _root_.GlobalTheory.SplitTopStep.top_step V P hP d hl hd hpos
     set d1 := d.map fun x => if 0 < x then x - 1 else x with hd1
     have hd1n : ∀ x ∈ d1, 0 ≤ x := by
       intro x hx
@@ -161,7 +161,7 @@ theorem shift (hP : conjPl P ≠ P) (u : M) (hu : ∀ k ∈ hyp V P, π k u = u)
   | zero => intro d; simp
   | succ j ih =>
     intro d
-    rw [pow_succ, Module.End.mul_apply, central_shift V P hP _ M π u hu, List.map_map, ← ih d]
+    rw [pow_succ, Module.End.mul_apply, _root_.GlobalTheory.CentralShift.central_shift V P hP _ M π u hu, List.map_map, ← ih d]
     congr 4
     refine List.map_congr_left fun x _ => ?_
     simp only [Function.comp_apply, Nat.cast_succ]

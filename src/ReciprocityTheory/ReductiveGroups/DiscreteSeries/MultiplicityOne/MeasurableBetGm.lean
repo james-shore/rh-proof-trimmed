@@ -146,10 +146,7 @@ theorem pow_mul_le (hGL : GNLower) {g x : Mat k r} (hg : g ∈ GV k r) (hx : x �
 
 def bet (x : Mt k r) : ℝ := gN (Matrix.of x : Mat k r) ^ (-AB k r)
 
-private theorem continuous_gN_lemma : Continuous (fun x : Mt k r => gN (Matrix.of x : Mat k r)) := by
-  unfold gN
-  exact Real.continuous_sqrt.comp (continuous_finsetSum _ fun i _ => continuous_finsetSum _ fun j _ =>
-    Complex.continuous_normSq.comp ((continuous_apply j).comp (continuous_apply i)))
+private alias continuous_gN_lemma := _root_.ReciprocityTheory.ChartRestriction.DS.Mult1.bc_gN_cont_mt
 
 theorem measurable_bet : Measurable (bet (k := k) (r := r)) := by
   exact continuous_gN_lemma.measurable.pow_const _

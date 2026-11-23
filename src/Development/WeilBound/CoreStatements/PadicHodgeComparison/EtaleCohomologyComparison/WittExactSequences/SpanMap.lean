@@ -111,11 +111,11 @@ theorem cov_step : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] (r : ℕ
   intro p _ A _ r hA hr
   let 𝓔 : Set (Set (MvPolynomial (Fin 3) A)) := {E | (∃ P : Polynomial A, P.Monic ∧ 0 < P.natDegree ∧ E = eqA P) ∨
     ∃ f g : A, (∃ N : ℕ, r 0 ^ N ∈ Ideal.span {f, g}) ∧ E = eqB f g}
-  obtain ⟨B, _, _, hB, hc, hE, hs⟩ := Leaf.big_step p A r 𝓔 hA (fin_step p A r 𝓔 hA hr (by
+  obtain ⟨B, _, _, hB, hc, hE, hs⟩ := _root_.GlobalTheory.CompanionTheory.BigStep.big_step p A r 𝓔 hA (fin_step p A r 𝓔 hA hr (by
     rintro E (⟨P, hP, hd, rfl⟩ | ⟨f, g, ⟨N, hN⟩, rfl⟩) B _ _ hB
     · rcases subsingleton_or_nontrivial B with _ | _
-      · exact ⟨B, inferInstance, inferInstance, hB, (Leaf.cov_mono p B _).1, (pt_eqA _ _).2 ⟨0, Subsingleton.elim _ _⟩⟩
-      · obtain ⟨B₁, _, _, h1, h2, x, hx⟩ := Leaf.cov_root p B (fun k => algebraMap A B (r k)) (P.map (algebraMap A B)) hB
+      · exact ⟨B, inferInstance, inferInstance, hB, (_root_.GlobalTheory.CompanionTheory.CovMono.cov_mono p B _).1, (pt_eqA _ _).2 ⟨0, Subsingleton.elim _ _⟩⟩
+      · obtain ⟨B₁, _, _, h1, h2, x, hx⟩ := _root_.GlobalTheory.CompanionTheory.CovRoot.cov_root p B (fun k => algebraMap A B (r k)) (P.map (algebraMap A B)) hB
           (hP.map _) (by rwa [hP.natDegree_map])
         refine ⟨B₁, inferInstance, inferInstance, h1, h2, (pt_eqA _ _).2 ⟨x, ?_⟩⟩
         rw [← Polynomial.map_map, Polynomial.IsRoot, Polynomial.eval_map, ← Polynomial.aeval_def]

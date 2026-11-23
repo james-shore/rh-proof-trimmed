@@ -124,7 +124,7 @@ namespace GlobalTheory.EulerCharH1
 theorem two_le_card (l : ℕ) [Fact l.Prime] (LL : Type) [Field LL] [Algebra ℚ_[l] LL]
     [TopologicalSpace LL] (O : Type) [CommRing O] [Algebra O LL]
     (hO : GoodO (Qp := ℚ_[l]) LL O) : 2 ≤ Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) := by
-  obtain ⟨hint, -, hfin, -⟩ := GlobalTheory.T.coefficient_ring_integers_compact_adic_properties l LL O hO
+  obtain ⟨hint, -, hfin, -⟩ := _root_.GlobalTheory.PowerImageOpen.main l LL O hO
   have hf : Finite (O ⧸ Ideal.span {((l : ℕ) : O)}) := by
     simpa using hfin 1
   have : Nontrivial (O ⧸ Ideal.span {((l : ℕ) : O)}) :=
@@ -173,15 +173,15 @@ theorem finite_and_finrank_H1V : Formalism.GaloisCohomology.LocalTateDualityK �
     Module.Finite LL (H1V A.ρ) ∧ finrank LL (H1V A.ρ) = finrank LL ↥(H0V A.ρ) +
       finrank LL ↥(H0V A'.ρ) + finrank ℚ_[l] ↥K.1 * finrank LL A.V := by
   intro hTD hEC l _ P K LL _ _ _ O _ _ hO A A' m hm
-  obtain ⟨LA, LA', hLL, -⟩ := GlobalTheory.T.exists_mutuallyDual_stable_lattices l P K LL O hO A A' m hm
-  have hfinT : Module.Finite O (LatticeCohomology LA) := GlobalTheory.T.finite_H1_period_datum hTD l P K LL O hO A LA
-  obtain ⟨hfinV, C1, -, hX⟩ := GlobalTheory.T.H1_lattice_rank_growth_of_goodO l K LL O hO A LA hfinT
-  obtain ⟨C2, -, hY⟩ := GlobalTheory.T.H1_reduction_index_bound_of_tateDuality hTD l P K LL O hO A A' LA LA' m hLL
-  obtain ⟨C3, -, hH⟩ := GlobalTheory.T.growth_galois_invariants_mod_prime_power_lattice l K LL O hO A LA
-  obtain ⟨C4, -, hH'⟩ := GlobalTheory.T.growth_galois_invariants_mod_prime_power_lattice l K LL O hO A' LA'
+  obtain ⟨LA, LA', hLL, -⟩ := _root_.GlobalTheory.StableDual.stable_dual_lattices l P K LL O hO A A' m hm
+  have hfinT : Module.Finite O (LatticeCohomology LA) := _root_.GlobalTheory.TateFiniteH1.tate_finH1 hTD l P K LL O hO A LA
+  obtain ⟨hfinV, C1, -, hX⟩ := _root_.GlobalTheory.H1Rank.growth_H1T_dim_H1V l K LL O hO A LA hfinT
+  obtain ⟨C2, -, hY⟩ := _root_.GlobalTheory.BoundedIndex.h1_reduction_index_bounded hTD l P K LL O hO A A' LA LA' m hLL
+  obtain ⟨C3, -, hH⟩ := _root_.GlobalTheory.GrowthOfInvariants.growth_galois_invariants_mod_prime_power_lattice_alt l K LL O hO A LA
+  obtain ⟨C4, -, hH'⟩ := _root_.GlobalTheory.GrowthOfInvariants.growth_galois_invariants_mod_prime_power_lattice_alt l K LL O hO A' LA'
   exact ⟨hfinV, eq_of_bounds _ _ _ _ (two_le_card l LL O hO) hX
     (fun r => hY r (stableSub_span_smul LA _))
-    (fun r => GlobalTheory.T.H1_lattice_index_growth_of_tateDuality_eulerChar hTD hEC l P K LL O hO A A' LA LA' m hLL r
+    (fun r => _root_.GlobalTheory.EulerLevel.card_H1Q_eq hTD hEC l P K LL O hO A A' LA LA' m hLL r
       (stableSub_span_smul LA _) (stableSub_span_smul LA' _))
     (fun r => hH r (stableSub_span_smul LA _)) (fun r => hH' r (stableSub_span_smul LA' _))⟩
 

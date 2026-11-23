@@ -173,7 +173,7 @@ theorem HasFlag.pull {M : ℕ} {W : Type} [AddCommGroup W] [Module Ω W] {ϖ : O
     HasFlag ϖ (joinCoord x z) BB B'B := by
   obtain ⟨w, w', b, b', f, g, hf⟩ := h
   exact ⟨w, w', _, _, _, _,
-    (GlobalTheory.T.flag_pair_base_extension O Ω K ι x ϖ M W B B' w w' b b' f g hf).1 K' ι' z BB B'B hp hp'⟩
+    (_root_.PositivityTheory.Xgn.t_pull_flagpair O Ω K ι x ϖ M W B B' w w' b b' f g hf).1 K' ι' z BB B'B hp hp'⟩
 
 theorem exists_flag {M : ℕ} {W : Type} [AddCommGroup W] [Module Ω W] {ϖ : O} (hϖ : Irreducible ϖ)
     {x : (Σ k, ι k) → Ω} {d : ℕ}
@@ -232,10 +232,10 @@ theorem descend {x : (Σ k, ι k) → Ω} {d : ℕ} {E E' : ChartBundle O (mseg 
       GlobalTheory.T.chart_bundle_short_exact O Ω K ι x N N₁ N₂ V V₁ V₂ E' i p E₁' E₂' h' K' ι' z E'B E₁'B E₂'B p0' p1' p2'⟩
   intro k hk1 hk2 q L Q hQ
   have e := H hS' k hk1 hk2 q (fun j => pullDeg (K' := K') (L j)) Q hQ
-  rw [(GlobalTheory.T.same_generic_base_extension O Ω K ι x d hM N V E E' hs K' ι' z hz hb EB E'B p0 p0').1 k hk1 hk2 q L Q hQ,
-    (GlobalTheory.T.same_generic_base_extension O Ω K ι x d hM N₁ V₁ E₁ E₁' (sameGeneric_sub hs h h') K' ι' z hz hb E₁B E₁'B
+  rw [(_root_.GlobalTheory.CompanionTheory.Ar.CkPullBirat.main O Ω K ι x d hM N V E E' hs K' ι' z hz hb EB E'B p0 p0').1 k hk1 hk2 q L Q hQ,
+    (_root_.GlobalTheory.CompanionTheory.Ar.CkPullBirat.main O Ω K ι x d hM N₁ V₁ E₁ E₁' (sameGeneric_sub hs h h') K' ι' z hz hb E₁B E₁'B
       p1 p1').1 k hk1 hk2 q L Q hQ,
-    (GlobalTheory.T.same_generic_base_extension O Ω K ι x d hM N₂ V₂ E₂ E₂' (sameGeneric_quot hs h h') K' ι' z hz hb E₂B E₂'B
+    (_root_.GlobalTheory.CompanionTheory.Ar.CkPullBirat.main O Ω K ι x d hM N₂ V₂ E₂ E₂' (sameGeneric_quot hs h h') K' ι' z hz hb E₂B E₂'B
       p2 p2').1 k hk1 hk2 q L Q hQ] at e
   exact e
 

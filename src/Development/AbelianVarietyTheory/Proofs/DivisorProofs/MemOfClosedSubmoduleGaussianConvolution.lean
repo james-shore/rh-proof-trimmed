@@ -80,7 +80,7 @@ theorem mem_of_conv_gaussian : ∀ (E : Type) [NormedAddCommGroup E] [InnerProdu
     have h1 : HasSum (fun j => t j y) ((∑' j, t j) y) := hL.mapL φ
     have h2 : HasSum (fun j => t j y) (u y) := by
       rw [hu y]
-      exact (GlobalTheory.T.hasSum_gaussianConvolutionSeriesTerm_integral E b c hb hc h y).congr_fun (fun j => hty j y)
+      exact (_root_.GlobalTheory.ConvSeries.hasSum_term_integral E b c hb hc h y).congr_fun (fun j => hty j y)
     exact h1.unique h2
   have hLu : (∑' j, t j) = u := SchwartzMap.ext hev
   rw [← hLu]

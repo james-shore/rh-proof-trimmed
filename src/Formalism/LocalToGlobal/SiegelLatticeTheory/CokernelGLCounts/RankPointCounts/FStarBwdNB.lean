@@ -204,7 +204,7 @@ theorem dual_sum (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsLattice E Λ) 
       simp
     obtain ⟨d, hd, hdu⟩ := hfull u
     have h1 := hm _ hdu (by rw [oSmul]; exact U.smul_mem _ hu)
-    rw [oSmul, hT_smulL] at h1
+    rw [oSmul, _root_.PI.ScalarPairDr.W.hT_smul_left] at h1
     have hd' : star ((d : E)) ≠ 0 := by
       rw [star_ne_zero]; exact coe_ne_zero hd
     exact (mul_eq_zero.1 h1).resolve_left hd'

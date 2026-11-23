@@ -134,7 +134,7 @@ theorem rel_frob : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (d : 
     simp only [eA, eF, eB, e1, e2]
     exact hP
 
-  have hn := GlobalTheory.T.norm_breuilKisinHom_uniformizer_frobenius_le l K bk B f₀
+  have hn := _root_.GlobalTheory.BSP.norm_hf_g_X_and_φ_le l K bk B f₀
   have hFf := isDiscMap_map (BK.hf f) (hn f).1
   have hFg := isDiscMap_map (BK.hf g) (hn g).1
   have h1f := key f _ hFf

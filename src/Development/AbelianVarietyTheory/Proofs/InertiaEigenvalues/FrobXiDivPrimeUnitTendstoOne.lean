@@ -60,10 +60,7 @@ namespace GlobalTheory.MemLoc.PhiXiUnit
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem phiA_alg (x : Per.Ainf l) :
-    phiA l (algebraMap (Per.Ainf l) (Per.Acris l) x) =
-      algebraMap (Per.Ainf l) (Per.Acris l) (Per.φA l x) :=
-  (GlobalTheory.CrisMaps.phiA_extends l).alg x
+alias phiA_alg := _root_.GlobalTheory.MemLoc.PhiImage.phiA_alg
 
 theorem φA_tm (x : Per.Fl l) : Per.φA l (Per.tm x) = Per.tm x ^ l := by
   rw [← map_pow]

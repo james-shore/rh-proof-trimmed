@@ -54,7 +54,7 @@ theorem GlobalTheory.metaplectic_euclidean_gaussian : ∀ (l : Type) [Fintype l]
   intro l _ _
   obtain ⟨G, iG, tG, hG, pr, om, omS, φ, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ := GlobalTheory.T.metaplecticGaussianNormalisedAlt l
   refine ⟨G, iG, tG, hG, pr, om, omS, φ, h1, h2, h3, h4, h5, h6, h7,
-    GlobalTheory.T.continuous_metaplectic_schwartz_action_prod l G pr om omS h1.continuous h4 h5 h6, ?_⟩
+    _root_.GlobalTheory.RealWeil.continuous_omS_prod l G pr om omS h1.continuous h4 h5 h6, ?_⟩
   intro g P Q hP hQ
   refine ⟨omS g φ 0, h9 g P hP, ?_⟩
   obtain ⟨hdet, hS⟩ := GlobalTheory.T.symplectic_holPart_det_ne_zero_and_isSymm l (pr g).1 P Q hP hQ (pr g).2

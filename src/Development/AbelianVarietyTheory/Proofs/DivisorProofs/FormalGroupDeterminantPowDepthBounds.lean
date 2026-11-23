@@ -81,7 +81,7 @@ theorem detDepth_bounds : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuatio
       (fun α => by obtain ⟨n, hn⟩ := hint α; rw [hn]; exact intCast_isInt v n)
   have h1 : detDepth G u c ≤ content v (detPow C i c) := by
     unfold detDepth
-    exact GlobalTheory.T.differentialOperatorDepth_le_dividedPowerContent C v (Fin i) (fun _ => d) (fun _ => i) (fun _ => G) (fun _ => u)
+    exact _root_.GlobalTheory.FGDepth.DepthLeContent.depth_le_content C v (Fin i) (fun _ => d) (fun _ => i) (fun _ => G) (fun _ => u)
       (detPow C i c) (i * c) hhom (fun _ => hu)
   exact ⟨h0, h1, h1.trans (GlobalTheory.T.dividedPowerContentValuation_detPow_bounds C v p hp hv i c).1⟩
 

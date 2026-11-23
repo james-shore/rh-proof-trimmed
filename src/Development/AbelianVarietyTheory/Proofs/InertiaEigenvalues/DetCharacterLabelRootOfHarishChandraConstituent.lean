@@ -65,15 +65,6 @@ open scoped Classical
 
 variable {g : ℕ} [Fact g.Prime]
 
-theorem ip_list_sum_left {G : Type} [Group G] [Fintype G] (L : List (G → ℂ)) (B : G → ℂ) :
-    ip L.sum B = (L.map fun ρ => ip ρ B).sum := by
-  induction L with
-  | nil => simp [ip]
-  | cons ρ L ih =>
-    rw [List.sum_cons, List.map_cons, List.sum_cons, ← ih]
-    unfold ip
-    simp only [Pi.add_apply, add_mul, Finset.sum_add_distrib, mul_add]
-
 theorem list_nat_sum {G : Type} [Group G] [Fintype G] (L : List (G → ℂ)) (hL : ∀ ρ ∈ L, IsIrr ρ) (B : G → ℂ)
     (hB : IsChar B) : ∃ N : ℕ, (L.map fun ρ => ip ρ B).sum = N ∧ ∀ ρ ∈ L, ip ρ B ≠ 0 → N ≠ 0 := by
   induction L with
@@ -96,12 +87,12 @@ theorem ip_ne_zero_of_common {G : Type} [Group G] [Fintype G] {ψ A B : G → �
   rw [GlobalTheory.GLq.LabelMul.ip_sum_eq_count hψ L hL] at hψA
   have hm : ψ ∈ L := List.count_pos_iff.1 (Nat.pos_of_ne_zero (by exact_mod_cast hψA))
   obtain ⟨N, hN, hN0⟩ := list_nat_sum L hL B hB
-  rw [ip_list_sum_left, hN]
+  rw [_root_.GlobalTheory.CharDec.ip_list_sum_left, hN]
   exact_mod_cast hN0 ψ hm hψB
 
 theorem ip_add_ne_zero {G : Type} [Group G] [Fintype G] {ψ X Y : G → ℂ} (hψ : IsIrr ψ) (hX : IsChar X)
     (hY : IsChar Y) (h : ip ψ X ≠ 0) : ip ψ (X + Y) ≠ 0 := by
-  rw [GlobalTheory.GLq.LabelMul.ip_add_right]
+  rw [_root_.GlobalTheory.CharDec.ip_add_right]
   obtain ⟨k, hk⟩ := GlobalTheory.GLq.LabelMul.ip_nat hψ hX
   obtain ⟨l, hl⟩ := GlobalTheory.GLq.LabelMul.ip_nat hψ hY
   rw [hk] at h

@@ -52,15 +52,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open MeasureTheory GlobalTheory.SplitFlip GlobalTheory.SplitWeil ValuativeRel GlobalTheory.ConjSize
 
-open scoped Pointwise in
-private theorem sum_rightInv {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    [MeasurableSpace G] [BorelSpace G] (μ : Measure G) [μ.IsMulLeftInvariant] (K : Subgroup G)
-    (hKo : IsOpen (K : Set G)) (hKt : μ K ≠ ⊤) {S : Set G} (hS : IsCompact S)
-    (hSK : ∀ s ∈ S, ∀ k ∈ K, s * k ∈ S) :
-    ∃ t : Finset (G ⧸ K), (∀ Q ∈ t, Q.out ∈ S) ∧ ∀ f : G → ℂ, (∀ s ∈ S, ∀ k ∈ K, f (s * k) = f s) →
-      ∫ g in S, f g ∂μ = ∑ Q ∈ t, f Q.out * μ.real K :=
-  _root_.UpperTheory.Reformulated.B.SumRightInverse.sum_rightInv μ K hKo hKt hS hSK
-
 section
 variable {k : Type} [Field k] [ValuativeRel k] {A : Type} [Fintype A] [DecidableEq A]
 
@@ -136,7 +127,7 @@ theorem UpperTheory.unramified_character_invariant :
       GlobalTheory.FunObj.GivenAdm.gdet_mem_unitCong (Subgroup.mem_inf.1 (Subgroup.mem_inf.1 hk).1).2
     rw [gdet_mul, map_mul, Units.val_mul, apow_mul, hcond _ hu, apow_of_valuation_eq_one hu.1]
     simp
-  obtain ⟨t, htS, ht⟩ := sum_rightInv (haarVol J) K' hKo hKt hSc
+  obtain ⟨t, htS, ht⟩ := _root_.UpperTheory.Reformulated.B.SumRightInverse.sum_rightInv (haarVol J) K' hKo hKt hSc
     (fun s hs k' hk => ((Subgroup.mem_inf.1 hk).2 s).1 hs)
   rw [ht (fun g => (ν (gdet g) : ℂ) * apow (gdet g) ((n : ℂ) / 2)) hinv]
   have h1 := ht (fun _ => (1 : ℂ)) (fun _ _ _ _ => rfl)

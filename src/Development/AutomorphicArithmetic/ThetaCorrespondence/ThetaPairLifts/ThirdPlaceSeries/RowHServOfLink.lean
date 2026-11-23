@@ -49,7 +49,7 @@ theorem row_hServ_of_link_alt : GlobalTheory.Published.GlobalArtinReciprocity �
     _root_.GlobalTheory.Fc.R1.SlotServiceCondition (IsGoodE p.s) Lk := by
   intro hA hL p Lk hLk
   have h1 := Row.map (Bd := _root_.GlobalTheory.Fc.BundleCondition) (Q := IsGoodE p.s) (Lk := Lk) (Bd' := _root_.GlobalTheory.Mem.Top.Bl.BoundaryReciprocity) (Q' := IsGoodE p.s) (Lk' := _root_.GlobalTheory.Mem.Top.Bl.ReciprocityLinkage p)
-    (fun _ _ _ b => b.R) (fun _ _ _ _ _ h => h) (fun K β c b _ h => hLk K β c b h) (_root_.GlobalTheory.T.reciprocity_kernel_of_artin hA p)
+    (fun _ _ _ b => b.R) (fun _ _ _ _ _ h => h) (fun K β c b _ h => hLk K β c b h) (_root_.GlobalTheory.Svd.servH_row_linkR_alt hA p)
   exact _root_.GlobalTheory.Fc.R1.row_hServ_of_kerServ_alt _ Lk h1
 end GlobalTheory
 end

@@ -161,7 +161,7 @@ theorem kills_of_noLift : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A W : H
   set M : Submodule ℂ (WO (dblSp A) W → ℂ) := Submodule.span ℂ
     {φ | ∃ f₁ f₂, IsThetaFunO ψ A W f₁ ∧ IsThetaFunO ψ A W f₂ ∧ φ = delta A W f₁ f₂} with hM
   have h83 : (∀ g ∈ M, IsThetaFunO ψ (dblSp A) W g) ∧ (∀ g ∈ M, ∀ w, heisO ψ (dblSp A) W w g ∈ M) ∧
-      ∀ f, IsThetaFunO ψ (dblSp A) W f → GlobalTheory.IndefiniteRowSideFullHecke.ConjugateAdjointDagger.UnifLimit M f := GlobalTheory.T.doublingMap_span_dense_heisenbergStable D ψ A W hom.std
+      ∀ f, IsThetaFunO ψ (dblSp A) W f → GlobalTheory.IndefiniteRowSideFullHecke.ConjugateAdjointDagger.UnifLimit M f := _root_.GlobalTheory.Core.Rk.DoubleSpan.main D ψ A W hom.std
   obtain ⟨hMθ, hMh, hMlim⟩ := h83
 
   have hintθ : ∀ g, IsThetaFunO ψ (dblSp A) W g → Integrable (fun x => c x * omh (p x) g 0) μ := fun g hg =>

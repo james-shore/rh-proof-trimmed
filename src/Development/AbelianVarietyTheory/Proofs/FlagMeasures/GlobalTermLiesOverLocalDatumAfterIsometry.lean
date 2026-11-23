@@ -106,11 +106,6 @@ variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
   {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
   {M : Model F E} {V : Type} [AddCommGroup V] [Module E V]
 
-theorem mem_img (g : V ≃ₗ[E] V) (Λ : Submodule M.L.O V) (x : V) :
-    x ∈ img g Λ ↔ ∃ y ∈ Λ, g y = x := by
-  unfold img
-  exact Submodule.mem_map
-
 theorem span_map_le (g : V ≃ₗ[E] V) (S : Set V) :
     ∀ v ∈ Submodule.span M.L.O S, g v ∈ Submodule.span M.L.O ((fun x => g x) '' S) := by
   intro v hv
@@ -118,65 +113,12 @@ theorem span_map_le (g : V ≃ₗ[E] V) (S : Set V) :
   rw [← Submodule.span_image] at h
   exact h
 
-theorem img_selfDual (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g)
-    {Λ : Submodule M.L.O V} (hΛ : H.IsSelfDual Λ) : H.IsSelfDual (img g Λ) := by
-  obtain ⟨hfg, hsp, hdual⟩ := hΛ
-  have hg' : ∀ x y, H.h (g x) (g y) = H.h x y := hg
-  have hset : ((img g Λ : Submodule M.L.O V) : Set V) = (g : V →ₗ[E] V) '' (Λ : Set V) := by
-    ext x
-    simp only [SetLike.mem_coe, mem_img, Set.mem_image, LinearEquiv.coe_coe]
-  refine ⟨hfg.map _, ?_, fun x => ?_⟩
-  · rw [hset, Submodule.span_image, hsp, Submodule.map_top]
-    exact LinearEquiv.range g
-  · have hx : x ∈ img g Λ ↔ g.symm x ∈ Λ := by
-      rw [mem_img]
-      constructor
-      · rintro ⟨y, hy, rfl⟩
-        simpa using hy
-      · intro h
-        exact ⟨_, h, by simp⟩
-    rw [hx, hdual (g.symm x)]
-    constructor
-    · intro h y hy
-      obtain ⟨z, hz, rfl⟩ := (mem_img g Λ y).1 hy
-      have := h z hz
-      rw [← hg' (g.symm x) z, LinearEquiv.apply_symm_apply] at this
-      exact this
-    · intro h z hz
-      rw [← hg' (g.symm x) z, LinearEquiv.apply_symm_apply]
-      exact h (g z) ((mem_img g Λ (g z)).2 ⟨z, hz, rfl⟩)
-
-theorem img_frame (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g)
-    {Λ : Submodule M.L.O V} {r : ℕ} {f : Fin (r + 1) → V} {T : F} (hf : H.IsFrame Λ r f T) :
-    H.IsFrame (img g Λ) r (fun b => g (f b)) T := by
-  have hg' : ∀ x y, H.h (g x) (g y) = H.h x y := hg
-  obtain ⟨⟨hmem, hli, hsp⟩, hiso, hzz, hT⟩ := hf
-  refine ⟨⟨fun a => (mem_img g Λ _).2 ⟨f a, hmem a, rfl⟩, hli.map' _ g.ker, ?_⟩, ?_, ?_, hT⟩
-  · intro x hx hxs
-    obtain ⟨y, hy, rfl⟩ := (mem_img g Λ x).1 hx
-    have hr : Set.range (fun b => g (f b)) = (g : V →ₗ[E] V) '' Set.range f :=
-      Set.range_comp (⇑(g : V →ₗ[E] V)) f
-    have hys : y ∈ Submodule.span E (Set.range f) := by
-      rw [hr, Submodule.span_image, Submodule.mem_map] at hxs
-      obtain ⟨z, hz, hzy⟩ := hxs
-      rwa [← g.injective hzy]
-    have h2 := span_map_le (M := M) g (Set.range f) y (hsp y hy hys)
-    have hr' : Set.range (fun b => g (f b)) = (fun x => g x) '' Set.range f :=
-      Set.range_comp (fun x => g x) f
-    rw [hr']
-    exact h2
-  · intro a b hab
-    rw [hg']
-    exact hiso a b hab
-  · rw [hg']
-    exact hzz
-
 theorem smulLat_map (H : HermSp M V) (g : V ≃ₗ[E] V) (c : E) (Λ : Submodule M.L.O V) {x : V}
     (hx : x ∈ H.smulLat c Λ) : g x ∈ H.smulLat c (img g Λ) := by
   unfold HermSp.smulLat at hx ⊢
   refine Submodule.span_mono ?_ (span_map_le (M := M) g _ x hx)
   rintro _ ⟨_, ⟨v, hv, rfl⟩, rfl⟩
-  exact ⟨g v, (mem_img g Λ (g v)).2 ⟨v, hv, rfl⟩, by simp only [map_smul]⟩
+  exact ⟨g v, (_root_.GlobalTheory.LocOver.TermOver.mem_img g Λ (g v)).2 ⟨v, hv, rfl⟩, by simp only [map_smul]⟩
 
 private lemma Zhat_comp_unitary (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g) {r : ℕ}
     (f f' : Fin (r + 1) → V) :
@@ -193,7 +135,7 @@ private lemma Dl_comp_unitary (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnita
 theorem isTerm_move (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g) {r : ℕ} {t : Term V M r}
     (ht : H.IsTerm t) : H.IsTerm (move g t) := by
   obtain ⟨hsd, hfr, hfr', hD, hG, hsp⟩ := ht
-  refine ⟨img_selfDual H hg hsd, img_frame H hg hfr, img_frame H hg hfr', ?_, ?_, ?_⟩
+  refine ⟨_root_.GlobalTheory.LocOver.TermOver.img_selfDual H hg hsd, _root_.GlobalTheory.LocOver.TermOver.img_frame H hg hfr, _root_.GlobalTheory.LocOver.TermOver.img_frame H hg hfr', ?_, ?_, ?_⟩
   · show IsUnit (H.Dl (fun b => g (t.f b)) (fun b => g (t.f' b)) (r + 1))
     rw [Dl_comp_unitary H hg]
     exact hD

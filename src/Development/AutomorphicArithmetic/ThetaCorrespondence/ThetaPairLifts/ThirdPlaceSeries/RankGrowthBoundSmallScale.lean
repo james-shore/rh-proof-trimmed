@@ -81,8 +81,8 @@ noncomputable section
 namespace GlobalTheory.CovTop.HodgeSteps
 theorem rk_le_alt_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoverDegree → _root_.GlobalTheory.CovTop.ShareCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ s : ℕ, 1 ≤ s → s ≤ 2 → (Y.rk (Gs p i (s * cZero (Fm.D x ι) ((i : ℕ) + 1))) : ℝ) ≤ (1 + min (1 / 2) ((Fm.L x ι).sc.b / (PP * kap p i))) * Y.rk (Gs p i (-(cZero (Fm.D x ι) ((i : ℕ) + 1)))) := by
   intro hX hP hSi hTo hG hQ hN hDG hS hFD hDeg hSh
-  refine ((((((((((hDG.and hS).and hFD).and hDeg).and hSh).and (_root_.GlobalTheory.T.weight_parameter_strict_antitone_alt hS)).and (_root_.GlobalTheory.T.size_bounds_for_family_alt hS)).and
-    (_root_.GlobalTheory.T.valuation_multiplicity_run_estimate_alt hP hG hQ hSi hTo hN hDG hS hFD)).and (_root_.GlobalTheory.T.abs_flat_c1_add_logOm_le_and_logSum_badPrimes_le hFD)).and _root_.GlobalTheory.HSApp.wtBig_run_alt).and _root_.GlobalTheory.CovTop.WtShape.wtN_z).imp fun Fm CH _ h => ?_
+  refine ((((((((((hDG.and hS).and hFD).and hDeg).and hSh).and (_root_.GlobalTheory.QuoWt.weights_at_point_alt hS)).and (_root_.GlobalTheory.CovTop.CovSz.size_rows_alt hS)).and
+    (_root_.GlobalTheory.ValMultRun.valuation_multiplicity_of_consecutive_run_alt hP hG hQ hSi hTo hN hDG hS hFD)).and (_root_.GlobalTheory.CovTop.FlatVal.flat_val_alt hFD)).and _root_.GlobalTheory.HSApp.wtBig_run_alt).and _root_.GlobalTheory.CovTop.WtShape.wtN_z).imp fun Fm CH _ h => ?_
   obtain ⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨_, -, a1⟩, A, -, a2⟩, _, -, a3⟩, _, -, a4⟩, _, -, a5⟩, _, -, a6⟩, _, -, a7⟩, _, -, a8⟩, _, -, a9⟩,
     _, -, a10⟩, _, -, a11⟩ := h
   obtain ⟨x0, h⟩ := (((((((((a1.and a2).and a3).and a4).and a5).and a6).and a7).and a8).and a9).and a10).and a11
@@ -128,7 +128,7 @@ theorem rk_le_alt_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.
     rw [le_div_iff₀ c3]
     gcongr
   obtain ⟨a, ha1, ha2⟩ := exists_jet_order _ _ _ (by omega) hT hρ0 hz2
-  have hbir := _root_.GlobalTheory.T.birOn_wtOf_of_consecutive_gap_bound hX hG hQ hSi (_root_.GlobalTheory.T.covering_topology_refinement hP) hP.q15 hP.q16 _ p.T hL _ hp1 hq1 Y _ _ hY.1 u1 fun τ a b hb => by
+  have hbir := _root_.GlobalTheory.DegVal.birOn_of_weight_gaps_large hX hG hQ hSi (_root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems.toClassicalTheorems hP) hP.q15 hP.q16 _ p.T hL _ hp1 hq1 Y _ _ hY.1 u1 fun τ a b hb => by
     rw [← gap_eq _ hb]
     refine le_trans ?_ (hgap τ a (hb ▸ b.2))
     exact_mod_cast bir_gap_le _ _ hd3
@@ -165,8 +165,8 @@ theorem rk_le_alt_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.
   have hev : Even (p.κ i).n := (p.κ i).n_even
   have g2 : Y.GoodAt (Gs p i (s * cZero (Fm.D x ι) ((i : ℕ) + 1))) :=
     _root_.GlobalTheory.CovTop.HodgeSteps.covering_goodAt_shift hP _ p.T hL _ hj Y _ _ hY.1 (le_add_right hp1) hC hl hF _ _ ((Fm.D x ι).R.k - 1) _ hev
-      (_root_.GlobalTheory.T.covering_domain_lattice_regularity hP _ p.T hL _ hp1 hq1 hf hj Y _ _ hY.1 _ hl1 hl3).1
-  have htw := ((_root_.GlobalTheory.T.twisted_flat_bundle_ranks hP _ p.T hL _ hp1 hq1 hf hj Y _ _ hY.1 _ hfl).2 _ (p.κ i).n ((Fm.D x ι).R.k - 1) · hdom hev)
+      (_root_.GlobalTheory.CovTop.GoodDom.covering_regular_at_domain hP _ p.T hL _ hp1 hq1 hf hj Y _ _ hY.1 _ hl1 hl3).1
+  have htw := ((_root_.GlobalTheory.TwistRank.flat_twist_rank_eq hP _ p.T hL _ hp1 hq1 hf hj Y _ _ hY.1 _ hfl).2 _ (p.κ i).n ((Fm.D x ι).R.k - 1) · hdom hev)
   rw [htw _ g1, htw _ g2]
   have hk : 0 < PP * kap p i := by linarith
   have hz : zed p i PP u1 ≤ min (1 / 2) ((Fm.L x ι).sc.b / (PP * kap p i)) := le_min hz2 ((le_div_iff₀ hk).2 hz1)
@@ -210,7 +210,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 
-theorem _root_.GlobalTheory.T.rank_growth_bound_small_scale_alt_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoverDegree → _root_.GlobalTheory.CovTop.ShareCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ s : ℕ, 1 ≤ s → s ≤ 2 → (Y.rk (Gs p i (s * cZero (Fm.D x ι) ((i : ℕ) + 1))) : ℝ) ≤ (1 + min (1 / 2) ((Fm.L x ι).sc.b / (PP * kap p i))) * Y.rk (Gs p i (-(cZero (Fm.D x ι) ((i : ℕ) + 1)))) := by
-  first | exact @_root_.GlobalTheory.CovTop.HodgeSteps.rk_le_alt_alt | exact _root_.GlobalTheory.CovTop.HodgeSteps.rk_le_alt_alt | (intros; apply _root_.GlobalTheory.CovTop.HodgeSteps.rk_le_alt_alt <;> assumption)
+alias _root_.GlobalTheory.T.rank_growth_bound_small_scale_alt_alt := _root_.GlobalTheory.CovTop.HodgeSteps.rk_le_alt_alt
 end
 end

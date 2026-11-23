@@ -66,7 +66,7 @@ theorem one_le_interNumRed : GlobalTheory.Published.NefNumerics → ∀ (k : Typ
   have hBig : ∀ (k : Type) [Field k] (X : Scheme.{0}) [IsIntegral X] (q : X ⟶ Sp k), IsProjOver q →
       letI := algebraΓOfHom q; ∀ (N N₁ N₂ : LB X) (hN : N.IsLB) (h₁ : N₁.IsLB) (h₂ : N₂.IsLB) (a : ℕ) (x : X),
       IsNef k N → 0 < a → a • cls N hN = cls N₁ h₁ + cls N₂ h₂ → AmpleAt N₁ x → IsNef k N₂ → IsBig k N :=
-    GlobalTheory.T.isBigLineBundle_of_smul_class_eq_ampleAt_add_nef hNN
+    _root_.GlobalTheory.isBig_of_smul_cls_eq_add_ampleAt hNN
   have hAmp : ∀ (Y X : Scheme.{0}) (π : X ⟶ Y) [IsAffineHom π] (N : LB Y), N.IsLB → ∀ x : X,
       AmpleAt N (π x) → AmpleAt (N.pull π) x := GlobalTheory.T.ampleModuloEffectiveAwayFromPoint_pull_affine
   have : IsIntegral (Scheme.IdealSheafData.vanishingIdeal Z).subscheme := isIntegral_red hZ

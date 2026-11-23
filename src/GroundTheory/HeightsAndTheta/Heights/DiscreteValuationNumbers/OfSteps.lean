@@ -72,8 +72,7 @@ universe u
 
 theorem DivCycleMul.full : DivCycleMul.Statement.{u} := DivCycleMul.proof
 
-theorem DivCycleFiniteSupport.full : DivCycleFiniteSupport.Statement.{u} :=
-  DivCycleFiniteSupport.proof
+alias DivCycleFiniteSupport.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.DivCycleFiniteSupport.proof
 
 theorem SupSpanMultiHomog.full : SupSpanMultiHomog.Statement.{u} := SupSpanMultiHomog.proof
 
@@ -82,14 +81,14 @@ theorem MinimalPrimeMultiHomog.full : MinimalPrimeMultiHomog.Statement.{u} :=
 
 theorem SpecialQuotDim.full : SpecialQuotDim.Statement.{u} := SpecialQuotDim.proof
 
-theorem MaximalIdealHeightFG.full : MaximalIdealHeightFG.Statement.{u} := MaximalIdealHeightFG.proof
+alias MaximalIdealHeightFG.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.MaximalIdealHeightFG.proof
 
 theorem GenericDimBound.full : GenericDimBound.Statement.{u} :=
   GenericDimBound.proof MaximalIdealHeightFG.full
 
 theorem GenericFibProps.full : GenericFibProps.Statement.{u} := GenericFibProps.proof
 
-theorem GenericCycleCorresp.full : GenericCycleCorresp.Statement.{u} := GenericCycleCorresp.proof
+alias GenericCycleCorresp.full := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.GenericCycleCorresp.proof
 
 theorem ConservationOfNumberLE.full : ConservationOfNumberLE.Statement.{u} :=
   ConservationOfNumberLE.proof IntNumAssoc.full SpecialCycleEval.full SpecialPieceRank.full
@@ -111,9 +110,7 @@ theorem IntNumAddFirst.full : IntNumAddFirst.Statement.{u} :=
   IntNumAddFirst.proof FieldNumbers.IntNumAdd.full FieldNumbers.IntNumZeroSlot.full
     FieldNumbers.HilbDegreeBound.full
 
-theorem EffectiveCase.of_steps (h₀ : NoCommonComponentCase.Statement.{u}) (h₁ : CommonFactorInduction.Statement.{u}) :
-    EffectiveCase.Statement.{u} :=
-  EffectiveCase.proof h₀ h₁
+alias EffectiveCase.of_steps := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.EffectiveCase.proof
 
 theorem CutByEffectiveDivisor.of_steps (h₀ : NoCommonComponentCase.Statement.{u})
     (h₁ : CommonFactorInduction.Statement.{u}) : CutByEffectiveDivisor.Statement.{u} :=

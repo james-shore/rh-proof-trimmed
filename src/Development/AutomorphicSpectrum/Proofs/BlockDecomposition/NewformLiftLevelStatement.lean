@@ -42,5 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 @[expose] public section
 
 
-theorem _root_.GlobalTheory.T.newform_lift_level : Ad3.R.B0 → Ad3.R.F1 := by
-  first | exact @GlobalTheory.CompanionTheory.RSLift.adelic_lift_exists | exact GlobalTheory.CompanionTheory.RSLift.adelic_lift_exists | (intros; apply GlobalTheory.CompanionTheory.RSLift.adelic_lift_exists <;> assumption)
+alias _root_.GlobalTheory.T.newform_lift_level := _root_.GlobalTheory.CompanionTheory.RSLift.adelic_lift_exists

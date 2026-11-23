@@ -98,9 +98,7 @@ theorem one_dim (Φ A B : ℝ → ℝ → ℂ)
 
 variable {n : ℕ}
 
-theorem val_mem_GLs (y : G n) : y.val ∈ GLs n := by
-  have h : IsUnit (y.val.det) := (Matrix.isUnit_iff_isUnit_det _).mp y.isUnit
-  exact h.ne_zero
+alias val_mem_GLs := _root_.GlobalTheory.CompanionTheory.WaveMult.Ibp.val_mem
 
 theorem continuous_val : Continuous (fun y : G n => y.val) := Units.continuous_val
 
@@ -309,22 +307,12 @@ section Gel
 
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
 
-theorem Rd_zero (X : Mat n) : Rd X (0 : Mat n → V) = 0 := by
-  funext g
-  have : fderiv ℝ (0 : Mat n → V) g = 0 := by
-    change fderiv ℝ (fun _ : Mat n => (0 : V)) g = 0
-    simp
-  simp [Rd, this]
-
-theorem Eu_zero (s : Bool) (a b : Fin n) : Eu s a b (0 : Mat n → V) = 0 := by
-  simp [Eu, Rd_zero]
-
 theorem Epow_one (s : Bool) (c b : Fin n) (f : Mat n → V) : Epow s 1 c b f = Eu s c b f := by
   simp only [Epow]
   rw [Finset.sum_eq_single b]
   · simp
   · intro d _ hd
-    simp [hd, Eu_zero]
+    simp [hd, _root_.GlobalTheory.CompanionTheory.WaveMult.Ibp.Eu_zero]
   · simp
 
 theorem EpowT_one (s : Bool) (c b : Fin n) (f : Mat n → V) : EpowT s 1 c b f = Eu s b c f := by
@@ -332,7 +320,7 @@ theorem EpowT_one (s : Bool) (c b : Fin n) (f : Mat n → V) : EpowT s 1 c b f =
   rw [Finset.sum_eq_single b]
   · simp
   · intro d _ hd
-    simp [hd, Eu_zero]
+    simp [hd, _root_.GlobalTheory.CompanionTheory.WaveMult.Ibp.Eu_zero]
   · simp
 
 theorem gel_two (s : Bool) (f : Mat n → V) : gel s 2 f = ∑ a, ∑ c, Eu s a c (Eu s c a f) := by

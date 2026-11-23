@@ -130,7 +130,7 @@ theorem not_kltAt_of_local : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoeth
   haveI := GlobalTheory.isProjOver_locallyOfFiniteType ℂ X p hp
   have hLM : IsLocModel (Cartier.constFn p) (locRing x) := isLocModel_locRing x
   obtain ⟨-, hx0⟩ := isLocModel_locRing_and_exists_trBasis X p n x hn
-  obtain ⟨xi, hxi⟩ := GlobalTheory.T.exists_trBasis_mem_of_isLocalRingOfVarietyPoint (Cartier.constFn p) (locRing x) n hLM hx0
+  obtain ⟨xi, hxi⟩ := _root_.GlobalTheory.FieldPair.exists_trBasis_mem_of_isLocModel (Cartier.constFn p) (locRing x) n hLM hx0
   have hfree := isFreeGen_dForm_of_trBasis (Cartier.constFn p) hxi
   have hω0 : dForm (Cartier.constFn p) (fun j => (xi j : X.functionField)) ≠ 0 := fun h0 =>
     one_ne_zero (hfree.1 (a₁ := 1) (a₂ := 0) (by simp [h0]))

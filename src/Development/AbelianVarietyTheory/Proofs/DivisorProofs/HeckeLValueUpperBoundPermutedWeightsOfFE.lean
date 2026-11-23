@@ -54,7 +54,7 @@ namespace GlobalTheory.SqTop
 theorem lBound_of : GlobalTheory.Published.HeckeFunctionalEquationAbs → GlobalTheory.IndefiniteRowSideFullHecke.CompletedLStripBounds.CompletedLBoundedInStrips → FieldDat → LBound := by
   intro hFE hS hFD
   set c : ℝ := max 0 (Real.log ‖riemannZeta (3 / 2)‖) with hc
-  obtain ⟨CF1, hB⟩ := GlobalTheory.T.gridSizes_log_bound c
+  obtain ⟨CF1, hB⟩ := _root_.GlobalTheory.SqTop.SizesBound.sizes c
   obtain ⟨CF2, hF⟩ := hFD
   refine ⟨max CF1 CF2, fun ε CF hCF => ?_⟩
   obtain ⟨C1, x1, hB⟩ := hB ε CF (le_of_max_le_left hCF)

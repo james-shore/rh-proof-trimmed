@@ -61,7 +61,7 @@ theorem GlobalTheory.BKGal.JumpDR.jump_gives_fixed_vector : GlobalTheory.Publish
   obtain ⟨A, hA⟩ := GlobalTheory.T.exists_coeffDeRhamPlus_action_on_VTensorBdR l Pl AI Td LL T
   obtain ⟨n, d, c, hd, h1, h2⟩ := GlobalTheory.T.exists_horizontal_vector_of_breuilKisin_jump l a e LL hl ι P hEN i hi
   let m : Fin n → P.MMl := fun k => ⟨P.xi (d k), hd k⟩
-  have key := fun j => GlobalTheory.T.mem_completionFiltration_iff_deRhamFiltration hF l a e ϖ LL hl ι P T I jB Pl AI Td hCmp X hX A hA n
+  have key := fun j => _root_.GlobalTheory.BKGal.JumpDR.inEhat_iff_filV hF l a e ϖ LL hl ι P T I jB Pl AI Td hCmp X hX A hA n
     (fun k => GlobalTheory.BKGal.JumpDR.kLift ↥(OL LL) (c k)) m j
   refine ⟨∑ k, A (ϖ.iD (thetaW a LL) ↥LL.1 (GlobalTheory.BKGal.JumpDR.kLift ↥(OL LL) (c k)))
     (X (jB (toBcris (thetaW a LL) ϖ P (m k)))), ?_, (key i).1 h1, fun h => h2 ((key (i + 1)).2 h)⟩

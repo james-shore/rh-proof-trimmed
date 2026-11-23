@@ -96,12 +96,6 @@ theorem eq_one_of_pow_eq_one {F : Type} [Field F] (V : ValuationSubring F) {m : 
   have := congrArg (fun w : V => (w : F)) this
   simpa [hz] using this
 
-theorem main : ∀ {F : Type} [inst : Field F] (V : ValuationSubring F) {m : ℕ},
-    (ValuationSubring.valuation V : F → ValuationSubring.ValueGroup V) (↑m : F) = (1 : ValuationSubring.ValueGroup V) →
-    ∀ {ζ : F}, ζ ^ m = (1 : F) →
-    (ValuationSubring.valuation V : F → ValuationSubring.ValueGroup V) (ζ - (1 : F)) < (1 : ValuationSubring.ValueGroup V) →
-    ζ = (1 : F) := by
-  intro F _ V m hm ζ hζ h1
-  exact eq_one_of_pow_eq_one V hm hζ h1
+alias main := _root_.GlobalTheory.RootOfUnityEqOne.eq_one_of_pow_eq_one
 
 end GlobalTheory.RootOfUnityEqOne

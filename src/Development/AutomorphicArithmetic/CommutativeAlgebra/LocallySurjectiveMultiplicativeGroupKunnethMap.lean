@@ -59,7 +59,7 @@ namespace UpperTheory.KunRed
 
 private theorem pull_cup' {q : ℕ} {E E' : Spc} (f : E ⟶ E') {n m i j : ℤ} (a : Ht q E' n i) (b : Ht q E' m j) :
     pull _ f _ _ (cup q a b) = cup q (pull _ f _ _ a) (pull _ f _ _ b) :=
-  GlobalTheory.T.cup_hypercohomologyPullback _ (twPair q i j) f rfl a b
+  _root_.GlobalTheory.EtC.Pair.cup_pull _ (twPair q i j) f rfl a b
 
 private noncomputable def Phi (q : ℕ) (m j : ℤ) (V : Scheme.{0})
     (p : Ht q (sch.obj V) (m + 1) (j + 1) × Ht q (sch.obj V) m j) : Ht q (sch.obj (Gq q ⨯ V)) (m + 1) (j + 1) :=
@@ -87,9 +87,6 @@ private theorem pull_prod (q : ℕ) {n i : ℤ} {V'' V' V : Scheme.{0}} (h : V''
       pull _ (sch.map (prod.map (𝟙 (Gq q)) (h ≫ g))) _ _ y := by
   rw [← pull_comp, ← sch.map_comp, prod.map_map, Category.comp_id]
 
-private theorem tw_finitary (q : ℕ) (i : ℤ) : Finitary (tw q i) :=
-  GlobalTheory.T.etaleSheafOfRingFunctor_isFinitary (ZMod q) (twF q i) (GlobalTheory.T.tateTwistRingFunctor_preservesFilteredColimits q i)
-
 private theorem affine_prod (W X : Scheme.{0}) [IsAffine W] [IsAffine X] : IsAffine (W ⨯ X) := by
   haveI : IsAffine (⊤_ Scheme.{0}) := IsAffine.of_isIso (terminalIsoIsTerminal specZIsTerminal).hom
   haveI : IsAffine (pullback (terminal.from W) (terminal.from X)) :=
@@ -108,8 +105,8 @@ private theorem exists_nbhd (q : ℕ) [NeZero q] (T : Scheme.{0}) (hq : IsUnit (
       (∀ n i' : ℤ, ∀ (k : I) (y : Ht q (sch.obj (Gq q ⨯ D.obj k)) n i'),
         pull _ (sch.map (prod.map (𝟙 (Gq q)) (e k))) _ _ y = 0 →
           ∃ (k' : I) (f : k' ⟶ k), pull _ (sch.map (prod.map (𝟙 (Gq q)) (D.map f))) _ _ y = 0) := by
-  obtain ⟨O, _, s, g, hs, v, hv⟩ := GlobalTheory.T.exists_strictlyHenselianEtaleStalk_over_point T (Over.mk (𝟙 T)) (by dsimp; infer_instance) u
-  obtain ⟨I, _, _, G, π, ⟨hl⟩, hG⟩ := GlobalTheory.T.exists_cofiltered_limit_affine_etale_of_isStalk' T O s hs
+  obtain ⟨O, _, s, g, hs, v, hv⟩ := _root_.GlobalTheory.EtC.exists_isStalk_over_point T (Over.mk (𝟙 T)) (by dsimp; infer_instance) u
+  obtain ⟨I, _, _, G, π, ⟨hl⟩, hG⟩ := _root_.GlobalTheory.EtC.exists_cofiltered_limit_affine_etale_of_isStalk T O s hs
   haveI : IsConnected I := IsCofiltered.isConnected I
   have hgs : g.left = s := by simpa using Over.w g
   have hc : IsLimit ((Over.forget T).mapCone (Cone.mk _ π)) := isLimitOfPreserves (Over.forget T) hl
@@ -126,18 +123,18 @@ private theorem exists_nbhd (q : ℕ) [NeZero q] (T : Scheme.{0}) (hq : IsUnit (
     simpa using this
   · rw [← hgs]; exact hv
   · intro n i'
-    exact GlobalTheory.T.cohomologyContinuous_cofiltered_affine_limit (ZMod q) (tw q i') (tw_finitary q i') I (G ⋙ Over.forget T) _ hc (fun i => (hG i).1) n
+    exact _root_.GlobalTheory.EtC.contCone_of_affine_limit (ZMod q) (tw q i') (_root_.GlobalTheory.EtC.tw_finitary q i') I (G ⋙ Over.forget T) _ hc (fun i => (hG i).1) n
   · intro n i' k y hy
     have hA : ∀ i, IsAffine (((G ⋙ Over.forget T) ⋙ prod.functor.obj (Gq q)).obj i) := fun i => by
       haveI := (hG i).1
       exact affine_prod (Gq q) (G.obj i).left
-    exact (GlobalTheory.T.cohomologyContinuous_cofiltered_affine_limit (ZMod q) (tw q i') (tw_finitary q i') I ((G ⋙ Over.forget T) ⋙ prod.functor.obj (Gq q)) _ hc2
+    exact (_root_.GlobalTheory.EtC.contCone_of_affine_limit (ZMod q) (tw q i') (_root_.GlobalTheory.EtC.tw_finitary q i') I ((G ⋙ Over.forget T) ⋙ prod.functor.obj (Gq q)) _ hc2
       hA n).2 k y hy
 
 private theorem surj_part (q : ℕ) [NeZero q] (T : Scheme.{0}) (hq : IsUnit (q : Γ(T, ⊤))) (m j : ℤ)
     (y : Ht q (sch.obj (Gq q ⨯ T)) (m + 1) (j + 1)) :
     Loc T fun V g => ∃ p, Phi q m j V p = pull _ (sch.map (prod.map (𝟙 (Gq q)) g)) _ _ y := by
-  refine (GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover T _ ?_).2 ?_
+  refine (_root_.GlobalTheory.EtC.loc_iff_etale_affine_points T _ ?_).2 ?_
   · rintro V W g k ⟨p, hp⟩
     refine ⟨(pull _ (sch.map k) _ _ p.1, pull _ (sch.map k) _ _ p.2), ?_⟩
     rw [← Phi_nat, hp, pull_prod]
@@ -171,7 +168,7 @@ private theorem surj_part (q : ℕ) [NeZero q] (T : Scheme.{0}) (hq : IsUnit (q 
 private theorem inj_part (q : ℕ) [NeZero q] (T : Scheme.{0}) (hq : IsUnit (q : Γ(T, ⊤))) (m j : ℤ)
     (p : Ht q (sch.obj T) (m + 1) (j + 1) × Ht q (sch.obj T) m j) (hp : Phi q m j T p = 0) :
     Loc T fun V g => pull _ (sch.map g) _ _ p.1 = 0 ∧ pull _ (sch.map g) _ _ p.2 = 0 := by
-  refine (GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover T _ ?_).2 ?_
+  refine (_root_.GlobalTheory.EtC.loc_iff_etale_affine_points T _ ?_).2 ?_
   · rintro V W g k ⟨h1, h2⟩
     refine ⟨?_, ?_⟩
     · rw [sch.map_comp, pull_comp, h1, map_zero]

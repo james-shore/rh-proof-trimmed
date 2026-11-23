@@ -76,7 +76,7 @@ theorem desc : ∀ (p : ℕ) [Fact p.Prime] (T T' : CDVR) (φ : T.V →+* T'.V),
     have h2 := congrArg ((algebraMap O C).comp iota) hm
     rw [map_natCast, map_mul, map_pow, h1, zero_pow hm0, mul_zero] at h2
     exact (Fact.out : p.Prime).ne_zero (by exact_mod_cast h2)
-  obtain ⟨ι', hl, hc⟩ := GlobalTheory.CharDepth.exists_local_extension_of_integral v hv φ hφ hfin.to_isIntegral iota hinj
+  obtain ⟨ι', hl, hc⟩ := _root_.GlobalTheory.LocalHomExtension.exists_isLocalHom_extension v hv φ hφ hfin.to_isIntegral iota hinj
   have key : ∀ {σ : Type} (f : MvPowerSeries σ T.V),
       MvPowerSeries.map ι' (MvPowerSeries.map φ f) = MvPowerSeries.map iota f := by
     intro σ f

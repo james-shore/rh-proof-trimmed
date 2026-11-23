@@ -244,18 +244,6 @@ end GlobalTheory.KHwExist
 
 namespace GlobalTheory.KHwExist
 
-theorem exists_common_eigenvector {V ι : Type*} [AddCommGroup V] [Module ℂ V] [Fintype ι]
-    (H : ι → Module.End ℂ V) (hH : ∀ i j, H i * H j = H j * H i) (E : Submodule ℂ V) [FiniteDimensional ℂ E]
-    (hE : ∀ i, ∀ x ∈ E, H i x ∈ E) (hE0 : E ≠ ⊥) :
-    ∃ v ∈ E, v ≠ 0 ∧ ∀ i, ∃ c : ℂ, H i v = c • v := by
-  first
-  | exact @_root_.GlobalTheory.CommonEigenvector.common_eigenvector
-  | exact _root_.GlobalTheory.CommonEigenvector.common_eigenvector
-  | (apply _root_.GlobalTheory.CommonEigenvector.common_eigenvector <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonEigenvector.common_eigenvector <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonEigenvector.common_eigenvector <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CommonEigenvector.common_eigenvector ..)
-
 theorem exists_hw_of_height {V ι ρ : Type*} [AddCommGroup V] [Module ℂ V] [Fintype ι]
     (H : ι → Module.End ℂ V) (hH : ∀ i j, H i * H j = H j * H i)
     (h : Module.End ℂ V) (hh : ∀ i, h * H i = H i * h)
@@ -304,7 +292,7 @@ theorem exists_hw_of_height {V ι ρ : Type*} [AddCommGroup V] [Module ℂ V] [F
     have := LinearMap.congr_fun (hh i) x
     simp only [Module.End.mul_apply] at this
     rw [this, hxz, map_smul]
-  obtain ⟨v, hvE, hv0, hv⟩ := exists_common_eigenvector H hH E hEH hE0
+  obtain ⟨v, hvE, hv0, hv⟩ := _root_.GlobalTheory.CommonEigenvector.common_eigenvector H hH E hEH hE0
   exact ⟨v, ((memE v).1 hvE).1, hv0, fun r => hkill r v hvE, hv⟩
 
 end GlobalTheory.KHwExist

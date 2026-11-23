@@ -155,7 +155,7 @@ theorem main : Laws → ThetaPtDeterminesSt → BrUthSt → UrCSt := by
   have key : ∀ j, j₀ ≤ j → ∃ I : NumB.Iso N.toNumB N'.toNumB, GeoIso ν ν' I ∧
       ∀ b, b ^ (n ^ j) ^ 2 = 1 → I.φ b = ρ j b := fun j hj => by
     obtain ⟨σ, hσ, hs⟩ := H j hj _ _ mt.c₀_ne (hρ j)
-    obtain ⟨φ, w, hφ, hw, hp⟩ := GlobalTheory.T.exists_product_iso_of_fibre_iso_field R D D' C Q Q' Φ Φ' hΦ hΦ' σ hσ
+    obtain ⟨φ, w, hφ, hw, hp⟩ := _root_.GlobalTheory.Ex.AbPartIso.exists_iso_of_isFib R D D' C Q Q' Φ Φ' hΦ hΦ' σ hσ
     obtain ⟨t, -, ht⟩ := hT'.good 1
     obtain ⟨I, hI, hc⟩ := exists_iso ν ν' hL.globalFns w hφ hw ⟨_, fun h => by
       rw [h, norm_zero] at ht; exact zero_ne_one ht⟩

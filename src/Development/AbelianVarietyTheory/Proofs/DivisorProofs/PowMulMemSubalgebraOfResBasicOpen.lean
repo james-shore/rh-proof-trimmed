@@ -93,7 +93,7 @@ theorem res_pow_mul_mem_gen
     intro U₁ U₂ U₃ h₁ h₂ y
     rw [← CommRingCat.comp_apply, ← F.map_comp]
     rfl
-  obtain ⟨m, hm⟩ := GlobalTheory.T.exists_pow_mul_mem_adjoin_of_localizationAway (R := Γ(X, D)) (A := F.obj (op D))
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.adjoin_mem_of_away_localization (R := Γ(X, D)) (A := F.obj (op D))
     (R' := Γ(X, X.basicOpen fD)) (A' := F.obj (op (X.basicOpen fD))) fD
     ((F.map (homOfLE hDV).op).hom '' T) ((F.map (homOfLE hDW).op).hom a) (by
       have h0 := ha _ hD' hD'f hD'V
@@ -132,7 +132,7 @@ theorem GlobalTheory.QcSub.pow_mul_mem_sub_of_res_basicOpen : ∀ (X : Scheme.{0
   refine ⟨∑ j, ∑ h : s j, m j h, ?_⟩
   rw [mem_sub]
   intro j W' hW' hWW' hWV
-  refine GlobalTheory.T.mem_adjoin_restricted_sections_of_local X F α hα (V j) W (T j) _ ?_ W' hW' hWW' hWV
+  refine _root_.GlobalTheory.QcSub.Local.mem_gen_of_local X F α hα (V j) W (T j) _ ?_ W' hW' hWW' hWV
   intro x hx
   have hx' := hs2 j hx
   simp only [Set.mem_iUnion, SetLike.mem_coe] at hx'

@@ -113,7 +113,7 @@ theorem int_dlog : ∀ (p : ℕ) [Fact p.Prime] (g : GL3Theta.G1 p), g.Ok → (�
   obtain ⟨-, -, -, hEL, -⟩ := Formalism.L2.Th1.A.expSpec ℂ_[p] g.W
   refine ⟨?_, ?_, ?_⟩
   · intro f hf n
-    have hJ := (Formalism.L2.Th1.A.jetMem ℂ_[p] g.W (Formalism.G.unitBall ℂ_[p]) hM.1 hM.2.1 hM.2.2.1
+    have hJ := (_root_.Formalism.L2.Th1.A.jet_mem' ℂ_[p] g.W (Formalism.G.unitBall ℂ_[p]) hM.1 hM.2.1 hM.2.2.1
       hM.2.2.2.1 hM.2.2.2.2).2.1 f hf n
     rw [he]
     exact hJ

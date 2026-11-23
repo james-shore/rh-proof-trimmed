@@ -79,7 +79,7 @@ theorem main : ∀ (h n : ℕ), 1 ≤ h → 3 ≤ n → Odd n → ∀ (K : Type)
   have he : ∀ u v : Fin 8, ∃ j, acts W j = Matrix.single u v 1 := fun u v => ⟨.inl (u, v), rfl⟩
   obtain ⟨t, ht⟩ := GlobalTheory.SiegelPower.exists_tObj_isSharp L1 L2 h (8 * h) W _ (acts W) bas hW hbas n (cycAway n)
     (cycBase hn) _ _ c hodd h3 hζ hc
-  refine GlobalTheory.PowerTangent.main L1 L2 GlobalTheory.Moduli.cube_of_isLB h (8 * h) W _ (acts W) bas hW hbas (.inr true) (.inr false)
+  refine GlobalTheory.PowerTangent.main L1 L2 _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen h (8 * h) W _ (acts W) bas hW hbas (.inr true) (.inr false)
     hw hw' n (cycAway n) (cycBase hn) K r β t c hc ht ?_
   intro lam t' m₁ m₂
   have hf : spMap (dirMap lam) ≫ spMap ((algebraMap K (TrivSqZeroExt K (Fin r → K))).comp β) =

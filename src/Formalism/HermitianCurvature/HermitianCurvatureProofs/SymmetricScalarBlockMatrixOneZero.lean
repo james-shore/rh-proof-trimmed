@@ -265,10 +265,10 @@ def shearU (n : ℕ) : (G.UT n → ℂ) × (Fin n → ℂ) ≃ᵐ (G.UT n → �
   invFun q := (q.1, (G.upper q.1)⁻¹ *ᵥ q.2)
   left_inv q := by
     simp only
-    rw [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ (Dx2.SL.isUnit_up q.1), Matrix.one_mulVec]
+    rw [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ (_root_.Formalism.FourierDecayAlt.P.Dx2.Split.upper_det q.1), Matrix.one_mulVec]
   right_inv q := by
     simp only
-    rw [Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _ (Dx2.SL.isUnit_up q.1), Matrix.one_mulVec]
+    rw [Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _ (_root_.Formalism.FourierDecayAlt.P.Dx2.Split.upper_det q.1), Matrix.one_mulVec]
   measurable_toFun := (continuous_fst.prodMk ((Dx2.SL.cont_upper.comp continuous_fst).matrix_mulVec
     continuous_snd)).measurable
   measurable_invFun := (continuous_fst.prodMk (((G5.continuous_inv_upper n).comp continuous_fst).matrix_mulVec

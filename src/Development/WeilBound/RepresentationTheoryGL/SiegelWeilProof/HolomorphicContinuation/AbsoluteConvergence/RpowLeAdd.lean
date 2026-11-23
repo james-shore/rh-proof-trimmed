@@ -72,15 +72,6 @@ theorem sL_bound (hI : Iwa) (hM : Mult) (hD : CayleyBlocksInvertible) (hL : LocD
         mul_le_mul_of_nonneg_left (h1.trans h2) (norm_nonneg _)
     _ = max B 0 / ‖F0 p q e k0‖ * (‖F0 p q e u‖ * ‖F0 p q e k‖) := by ring
 
-theorem rpow_le_add {a x₁ x₂ s : ℝ} (ha : 0 < a) (h₁ : x₁ ≤ s) (h₂ : s ≤ x₂) : a ^ s ≤ a ^ x₁ + a ^ x₂ := by
-  rcases le_total 1 a with h | h
-  · have := Real.rpow_le_rpow_of_exponent_le h h₂
-    have := Real.rpow_nonneg ha.le x₁
-    linarith
-  · have := Real.rpow_le_rpow_of_exponent_ge ha h h₁
-    have := Real.rpow_nonneg ha.le x₂
-    linarith
-
 section Glob
 
 variable {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G]

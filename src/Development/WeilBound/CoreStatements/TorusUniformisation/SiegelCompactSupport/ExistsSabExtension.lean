@@ -51,6 +51,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.AbelianLocusOpenFamilyOverLevel
 
 @[expose] public section
 
@@ -74,12 +75,6 @@ theorem pic_ext {X U : Scheme.{0}} [IsLocallyNoetherian X] (hX : Geo.Tor.IsNorma
     ((cls_eq_zero_iff (pull_isLB hN _)).1 ?_) ((cls_eq_zero_iff (pull_isLB hN _)).1 ?_)
   · rw [cls_pull hN, hc, map_sub, h₂, sub_self]
   · rw [cls_pull hN, hc, ← hj.isoPullback_inv_fst, pull_comp, map_sub, h₁, sub_self, map_zero]
-
-theorem isReduced_of_normal {X : Scheme.{0}} (hX : Geo.Tor.IsNormalScheme X) : IsReduced X := by
-  have : ∀ x : X, _root_.IsReduced (X.presheaf.stalk x) := fun x => by
-    have := (hX x).1
-    infer_instance
-  exact isReduced_of_isReduced_stalk X
 
 theorem isReduced_source {X U : Scheme.{0}} (hX : Geo.Tor.IsNormalScheme X) (j : U ⟶ X)
     (h : ∀ u : U, IsIso (j.stalkMap u)) : IsReduced U := by
@@ -122,8 +117,8 @@ theorem exists_sab_extension {X U : Scheme.{0}} [IsLocallyNoetherian X] (hX : Ge
     ⟨Over.homMk (h.1.lift (pullback.fst T.hom j ≫ y.left) (pullback.snd T.hom j)
       (by rw [Category.assoc, Over.w]; exact pullback.condition)) (h.1.lift_snd _ _ _),
       Over.OverMorphism.ext (h.1.lift_fst _ _ _)⟩
-  obtain ⟨hcub, hsym⟩ := GlobalTheory.T.cubicalStructure_and_symmetric_of_cube_gen X G PP semi
-    ⟨isReduced_of_normal hX, hgen.trans (range_subset_abLocus_of_isProper semi h.1)⟩
+  obtain ⟨hcub, hsym⟩ := _root_.GlobalTheory.CubeGen.cubical_and_symmetric X G PP semi
+    ⟨_root_.GlobalTheory.AbelianLocusNormalisation.isReduced_of_normal hX, hgen.trans (range_subset_abLocus_of_isProper semi h.1)⟩
   obtain ⟨cub⟩ : Nonempty (CubicalStr G PP) := by
     refine hcub ((cls_eq_zero_iff (isLB_cube (x3 G) PP.isLB)).1 ?_)
     rw [cls_cube _ PP.isLB]

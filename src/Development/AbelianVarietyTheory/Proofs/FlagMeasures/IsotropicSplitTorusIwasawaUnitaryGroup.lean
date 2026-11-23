@@ -51,6 +51,7 @@ import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.EigenfunctionFiniteCoefficients
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormPosOfIsUnit
 
 @[expose] public section
 
@@ -706,8 +707,6 @@ private theorem J_mul_tor_eq_tor_swap_mul_J {J P Q : Matrix (Fin n) (Fin n) ℂ}
   simp only [tor, mul_add, add_mul, mul_one, one_mul, mul_smul_comm, smul_mul_assoc, hJP, hJQ]
   abel
 
-private theorem dOp_eq_log_norm (g : Matrix (Fin n) (Fin n) ℂ) : dOp g = Real.log ‖g‖ := rfl
-
 private theorem log_le_of_le_exp' {x t : ℝ} (hx : 0 ≤ x) (hxt : x ≤ Real.exp t) (ht : 0 ≤ t) : Real.log x ≤ t := by
   rcases hx.eq_or_lt with h | h
   · rw [← h, Real.log_zero]; exact ht
@@ -787,7 +786,7 @@ theorem split_torus : ∀ (n : ℕ) (ε : Fin n → Bool) (W : Submodule ℂ (Fi
     abel
   · rw [ha]
     exact (exp_tor hPP hQQ hPQ hQP (s : ℂ)).symm
-  · rw [dOp_eq_log_norm, ha, e1, e2]
+  · rw [_root_.GlobalTheory.Count.Cartan.dOp_eq, ha, e1, e2]
     rcases le_or_gt 0 s with hs | hs
     · rw [abs_of_nonneg hs]
       exact log_le_of_le_exp' (norm_nonneg _) (norm_tor_le hPs hQs (Real.one_le_exp hs)

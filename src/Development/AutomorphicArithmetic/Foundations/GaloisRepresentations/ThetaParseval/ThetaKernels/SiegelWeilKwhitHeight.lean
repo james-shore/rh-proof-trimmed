@@ -215,7 +215,7 @@ theorem absE_split_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (x 
       exact fun h => hv (by rw [h, NNReal.coe_one])
 theorem heightDict_k : _root_.PositivityTheory.SiegelWeilFormula.KWhit.HeightDict_k := by
   intro F E _ _ _ _ _ σ d R x t u T η T₀ hOf θ fr g hR nb lam 𝓖 hc ε w hw
-  choose lv hlv using fun v : HeightOneSpectrum (𝓞 F) => exists_haar_tup (E := E) v d.n
+  choose lv hlv using fun v : HeightOneSpectrum (𝓞 F) => _root_.PositivityTheory.SiegelWeilFormula.HeightDict.exists_haar_tup (E := E) v d.n
   obtain ⟨hCO, hstd⟩ := _root_.PositivityTheory.SiegelWeilFormula.HeightDict.fin_std_k (σ := σ) d d.n t u η hR.ne
   have hat : (0 : ℝ) < ((GlobalTheory.Doubling.absE F E (Matrix.GeneralLinearGroup.det t) : ℝ≥0) : ℝ) :=
     absE_pos _

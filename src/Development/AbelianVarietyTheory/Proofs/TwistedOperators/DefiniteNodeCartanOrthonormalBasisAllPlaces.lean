@@ -44,6 +44,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilActionNegPairPureTensorFock
 
 @[expose] public section
 
@@ -62,11 +63,6 @@ section DefOnb
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
 
-theorem gramAt_negSp (V : HSp D) (ρ : D.what₂.Tau) : gramAt D (negSp V) ρ = -gramAt D V ρ := by
-  unfold gramAt
-  rw [negSp_gram]
-  exact Matrix.map_neg _ (map_neg (tauE D ρ)) _
-
 theorem isCartanInv_neg {k : ℕ} {G s : Matrix (Fin k) (Fin k) ℂ} (h : IsCartanInv G s) : IsCartanInv (-G) (-s) := by
   obtain ⟨h1, h2, h3⟩ := h
   refine ⟨by rw [neg_mul_neg, h1], ?_, ?_⟩
@@ -82,7 +78,7 @@ theorem defNode_cart_onb {μ0 : T} (hL : L.Is μ0) (W : G.Weil) (X : Node) (hX :
   obtain ⟨ε, h1, h2⟩ := W.onb_is X hX.inRange ρ
   have hJ : Formalism.REAL.Jm ε = 1 := h1.symm.trans hP
   rw [hJ, Matrix.mul_one] at h2
-  have hn : gramAt D (negSp (G.V X)) ρ = -gramAt D (G.V X) ρ := gramAt_negSp _ _
+  have hn : gramAt D (negSp (G.V X)) ρ = -gramAt D (G.V X) ρ := _root_.GlobalTheory.FockRealNeg.gramAt_negSp _ _
   refine ⟨hC, ⟨fun _ => 1, fun a => Or.inl ⟨rfl, a.2⟩, ?_, ?_⟩, ?_, ⟨fun _ => -1, fun a => Or.inr ⟨rfl, Nat.zero_le _⟩, ?_, ?_⟩⟩
   · rw [hP]; simp [Matrix.diagonal_one]
   · rw [h2]; simp [Matrix.diagonal_one]

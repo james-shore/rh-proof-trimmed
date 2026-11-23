@@ -95,7 +95,7 @@ theorem core {R : Type} [CommRing R] [IsDomain R] [IsLocalRing R] [IsNoetherianR
   set y := q.1.1.toAdd with hy
   have hh : h ^ m = N.io y := by rw [hdef, ← pow_mul, ← sq]; exact N.mem_QT.1 q.2
   obtain ⟨mu, rh, hrf, hχ⟩ := decomp N.X m hm
-  choose w hwS hw using GlobalTheory.T.thetaSeriesTerm_smul_add_decomposition (Kb R) N S.toSubring m h y hh hθ hσ
+  choose w hwS hw using _root_.GlobalTheory.theta_term_smul_add (Kb R) N S.toSubring m h y hh hθ hσ
   obtain ⟨r, s, hs⟩ := Module.Finite.exists_fin (R := R) (M := S)
   obtain ⟨e, he⟩ : ∃ e, m ^ 2 = e + 1 := ⟨m ^ 2 - 1, by have := pow_pos hm 2; omega⟩
   let K : N.X → Kb R := fun b => ((N.wQ q / mulq N.θ N.σ m q.1.2.b : (Kb R)ˣ) : Kb R) *

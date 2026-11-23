@@ -163,7 +163,7 @@ theorem cxM_smul_conj (η : grp G β) (a : Ys G v β x t hx Kf K') (y : grp G β
     rw [hc, eigL_smul _ (toV_ne_zero η hr) hc0, eigL_conj η y hr]
   unfold cxM
   rw [he]
-  exact GlobalTheory.T.pairWeight_invariant_form_group_conj p G v _ Kf f hf K' f' hf' β x t hx η a y
+  exact _root_.GlobalTheory.CxUnfold.cxF_smul_conj_gen p G v _ Kf f hf K' f' hf' β x t hx η a y
 
 theorem cxF_one_ne (wt : Polynomial G.F → ℂ) (a : Ys G v β x t hx Kf K') (y : grp G β)
     (h : cxF G v wt β x t hx Kf f K' f' a y ≠ 0) :
@@ -314,7 +314,7 @@ theorem cls_part
         rw [hmu, hcz, eigL_smul y₀ hz0 hc0]
     · rfl
   simp only [hpt]
-  rw [GlobalTheory.T.conjugacyClassPart_eq_weight_mul_kottwitzPointSum p G v _ Kf f hf K' f' hf' β x t hx hu y₀]
+  rw [_root_.GlobalTheory.CxUnfoldGen.cls_eq_of_uniq p G v _ Kf f hf K' f' hf' β x t hx hu y₀]
   rfl
 
 
@@ -338,25 +338,25 @@ theorem cxSumAtM_unfold
     fun η a γ => cxM_smul_conj w x t hx Kf f K' f' hf hf' η a γ
   have hsupp : ∀ a : Ys G v β x t hx Kf K', (Function.support (cxM w x t hx Kf f K' f' a)).Finite := by
     intro a
-    refine (GlobalTheory.T.pairWeight_support_finite_of_finite_fixing p G v (fun _ => 1) Kf f hf K' f' hf' β x t hx hA a).subset ?_
+    refine (_root_.GlobalTheory.CxUnfold.support_cxF_finite p G v (fun _ => 1) Kf f hf K' f' hf' β x t hx hA a).subset ?_
     intro y hy
     exact cxF_one_ne x t hx Kf f K' f'
       (fun P => w P (eigL G v β y (Projectivization.rep (a.2 : Projectivization ℂ (Fin G.n → ℂ))))) a y hy
   have hfin : {o : MulAction.orbitRel.Quotient (grp G β) (Ys G v β x t hx Kf K') |
       ∃ γ, cxM w x t hx Kf f K' f' (Quotient.out o) γ ≠ 0}.Finite := by
-    refine (GlobalTheory.T.finite_weightedPairOrbits_of_finite_weightedFixedPoints p G v (fun _ => 1) Kf f hf K' f' hf' β x t hx hB).subset ?_
+    refine (_root_.GlobalTheory.CxUnfold.finite_orbits_of_finite_pts p G v (fun _ => 1) Kf f hf K' f' hf' β x t hx hB).subset ?_
     rintro o ⟨γ, hγ⟩
     exact ⟨γ, cxF_one_ne x t hx Kf f K' f'
       (fun P => w P (eigL G v β γ (Projectivization.rep ((Quotient.out o).2 : Projectivization ℂ (Fin G.n → ℂ)))))
       _ γ hγ⟩
-  rw [GlobalTheory.T.orbit_sum_conj_classes _ hinv hsupp hfin]
+  rw [_root_.GlobalTheory.OrbitUnfold.finsum_orbits_eq_finsum_conjClasses_of_any_stabilizer _ hinv hsupp hfin]
   apply finsum_congr
   intro c
   have hc : IsConj (Quotient.out c) (Classical.choose (ConjClasses.exists_rep c)) := by
     rw [← ConjClasses.mk_eq_mk_iff_isConj, Classical.choose_spec (ConjClasses.exists_rep c)]
     exact Quotient.out_eq c
   obtain ⟨g, hg⟩ := isConj_iff.mp hc
-  rw [GlobalTheory.T.centralizer_orbit_sum_conjugate _ hinv (Quotient.out c) g, hg]
+  rw [_root_.GlobalTheory.ClassPart.orbitSum_conj _ hinv (Quotient.out c) g, hg]
   exact cls_part w x t hx Kf f K' f' hf hf' hu _
 
 end Inv
@@ -392,7 +392,7 @@ theorem muOf_eq_mark (ha : G.a = 1) (hv : sigPosH (G.gram_herm v) = 1) (P : Pair
       (minpoly G.F (((r : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C)).Separable := by
     rw [hr1]
     exact P.reg
-  obtain ⟨c, hc⟩ := GlobalTheory.T.separable_formGroup_element_fixes_unique_positive_line p G v hv P.β P.sym P.trivR r hreg.1 hreg.2 x _ hpos' hz1 ⟨μ, hxv⟩ hz2
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LKCx.fixL_pos_unique_of_sep p G v hv P.β P.sym P.trivR r hreg.1 hreg.2 x _ hpos' hz1 ⟨μ, hxv⟩ hz2
   have hc0 : c ≠ 0 := by
     rintro rfl
     rw [zero_smul] at hc
@@ -402,7 +402,7 @@ theorem muOf_eq_mark (ha : G.a = 1) (hv : sigPosH (G.gram_herm v) = 1) (P : Pair
 theorem mark_unique (ha : G.a = 1) (hv : sigPosH (G.gram_herm v) = 1) (P : Pair G) {μ μ' : ℂ}
     (h : P.Mark μ) (h' : P.Mark μ') : μ = μ' := by
   have hm : ((1 : G.Cˣ)⁻¹ * P.γ * 1, P.c) ∈ grp G P.β :=
-    GlobalTheory.T.conj_by_carrying_unit_mem_positiveSimilitudeFormGroup p G P P.β 1 1 one_pos (pair_sim_pos ha P h) (by simp [sh_one_eq])
+    _root_.GlobalTheory.pair_conj_mem_grp p G P P.β 1 1 one_pos (pair_sim_pos ha P h) (by simp [sh_one_eq])
   simp only [inv_one, _root_.one_mul, _root_.mul_one] at hm
   rw [← muOf_eq_mark (v := v) ha hv P ⟨_, hm⟩ rfl h, muOf_eq_mark (v := v) ha hv P ⟨_, hm⟩ rfl h']
 
@@ -426,7 +426,7 @@ theorem markTerm_rel (ha : G.a = 1) (hv : sigPosH (G.gram_herm v) = 1) {P P' : P
   by_cases hM : ∃ μ, P.Mark μ
   · have hM' := hiff.mp hM
     rw [dite_eq_left hM, dite_eq_left hM', (Pair.rel_pol_c p G P P' h).1,
-      GlobalTheory.T.term_eq_of_similitude_rel p G P P' Kf f 1 K' f' one_pos hf hf' h]
+      _root_.GlobalTheory.LKMid.Pair.term_eq_of_rel p G P P' Kf f 1 K' f' one_pos hf hf' h]
     congr 2
     exact mark_unique ha hv P' hM'.choose_spec ((Pair.mark_iff_of_rel p G P P' _ h).mp hM.choose_spec)
   · rw [dif_neg hM, dif_neg (fun h' => hM (hiff.mpr h'))]
@@ -453,7 +453,7 @@ theorem carry_of_formCls {Q : Cls G} {q : FCls G} (h : formCls Q = q) :
       ((Quot.out Q).β : G.C) = algebraMap ℚ G.C s * (y * (Quot.out q).β * sh G y) := by
   have h1 : Quot.mk Form.Rel (Quot.out q) = Quot.mk Form.Rel (formOf (Quot.out Q)) :=
     (Quot.out_eq q).trans h.symm
-  obtain ⟨y, s, hs, he⟩ := (GlobalTheory.T.quot_mk_eq_iff_positiveScalarFormIsomorphic p G _ _).mp h1
+  obtain ⟨y, s, hs, he⟩ := (_root_.GlobalTheory.LKCx.Form.mk_eq_iff_rel p G _ _).mp h1
   exact ⟨y, s, hs, he⟩
 
 theorem phi_of_formCls {Q : Cls G} {q : FCls G} (h : formCls Q = q) (hc : 0 < (((Quot.out Q).c : ℚˣ) : ℚ)) :
@@ -462,7 +462,7 @@ theorem phi_of_formCls {Q : Cls G} {q : FCls G} (h : formCls Q = q) (hc : 0 < ((
       ∃ hm : ((y⁻¹ * (Quot.out Q).γ * y, (Quot.out Q).c) : G.Cˣ × ℚˣ) ∈ grp G (Quot.out q).β,
         phi q Q = ConjClasses.mk ⟨_, hm⟩ := by
   obtain ⟨y, s, hs, hβ⟩ := carry_of_formCls h
-  exact phi_spec q Q y s hs hβ (GlobalTheory.T.conj_by_carrying_unit_mem_positiveSimilitudeFormGroup p G _ _ y s hs hc hβ)
+  exact phi_spec q Q y s hs hβ (_root_.GlobalTheory.pair_conj_mem_grp p G _ _ y s hs hc hβ)
 
 theorem reg_of_conj {B : G.Cˣ} (r g : grp G B) (P : Pair G) (y : G.Cˣ)
     (e : (g : G.Cˣ × ℚˣ).1 * (r : G.Cˣ × ℚˣ).1 * (g : G.Cˣ × ℚˣ).1⁻¹ = y⁻¹ * P.γ * y) :
@@ -483,7 +483,7 @@ theorem ofGrp_rel (F : Form G) (r g : grp G F.β)
     (e : (g : G.Cˣ × ℚˣ).1 * (r : G.Cˣ × ℚˣ).1 * (g : G.Cˣ × ℚˣ).1⁻¹ = y⁻¹ * P.γ * y) :
     (ofGrp F r hrg).Rel P := by
   obtain ⟨hg1, hg2⟩ := g.2
-  refine GlobalTheory.T.rel_of_conj_in_group_of_common_form p G (ofGrp F r hrg) P F.β 1 y (g : G.Cˣ × ℚˣ).1 1 s ((g : G.Cˣ × ℚˣ).2 : ℚ)
+  refine _root_.GlobalTheory.RelConj.rel_of_conj_in_form p G (ofGrp F r hrg) P F.β 1 y (g : G.Cˣ × ℚˣ).1 1 s ((g : G.Cˣ × ℚˣ).2 : ℚ)
     one_pos hs hg2 ?_ hβ hg1 ?_
   · show (F.β : G.C) = _
     simp [sh_one_eq]
@@ -534,7 +534,7 @@ theorem markSumC_regroup (ha : G.a = 1) (hv : sigPosH (G.gram_herm v) = 1) (w : 
     · exact pair_sim_pos ha _ hμ.choose_spec
     · exact absurd rfl hQ
   show ∑ᶠ Q : Cls G, markTerm w L.K.toSubgroup f K' f' (Quot.out Q) = _
-  refine GlobalTheory.T.finsum_eq_finsum_finsum_of_fibre_bij (κ := fun q : FCls G => ConjClasses (grp G (Quot.out q).β))
+  refine _root_.GlobalTheory.finsum_regroup_fibre_bij (κ := fun q : FCls G => ConjClasses (grp G (Quot.out q).β))
     (fun Q : Cls G => markTerm w L.K.toSubgroup f K' f' (Quot.out Q))
     (fun q c => clsW (v := v) w (Quot.out q).trivAf.choose (Quot.out q).trivAf.choose_spec.choose
       (Quot.out q).trivAf.choose_spec.choose_spec L.K.toSubgroup f K' f'
@@ -559,7 +559,7 @@ theorem markSumC_regroup (ha : G.a = 1) (hv : sigPosH (G.gram_herm v) = 1) (w : 
     have e : (g : G.Cˣ × ℚˣ).1 * (y⁻¹ * (Quot.out a).γ * y) * (g : G.Cˣ × ℚˣ).1⁻¹ =
         y'⁻¹ * (Quot.out a').γ * y' := conj_comp hg
     obtain ⟨hg1, hg2⟩ := g.2
-    have hrel := GlobalTheory.T.rel_of_conj_in_group_of_common_form p G (Quot.out a) (Quot.out a') _ y y' _ s s' _ hs hs' hg2 hβ hβ' hg1 e
+    have hrel := _root_.GlobalTheory.RelConj.rel_of_conj_in_form p G (Quot.out a) (Quot.out a') _ y y' _ s s' _ hs hs' hg2 hβ hβ' hg1 e
     have hq : Quot.mk Pair.Rel (Quot.out a) = Quot.mk Pair.Rel (Quot.out a') :=
       ((Pair.mk_eq_iff_rel_and_out_rel p G _ _).1).mpr hrel
     exact (Quot.out_eq a).symm.trans (hq.trans (Quot.out_eq a'))
@@ -588,14 +588,14 @@ theorem markSumC_regroup (ha : G.a = 1) (hv : sigPosH (G.gram_herm v) = 1) (w : 
     have hform : formCls a = i := by
       obtain ⟨y, s, hs, hβ, -⟩ := hrel0
       have hR : (formOf (Quot.out a)).Rel (Quot.out i) := ⟨y, s, hs, hβ⟩
-      exact ((GlobalTheory.T.quot_mk_eq_iff_positiveScalarFormIsomorphic p G _ _).mpr hR).trans (Quot.out_eq i)
+      exact ((_root_.GlobalTheory.LKCx.Form.mk_eq_iff_rel p G _ _).mpr hR).trans (Quot.out_eq i)
     have hr2 : 0 < (((r : G.Cˣ × ℚˣ).2 : ℚˣ) : ℚ) := r.2.2
     have hPc : P.c = (Quot.out a).c := (Pair.rel_pol_c p G _ _ hrel0).2
     have hca : 0 < (((Quot.out a).c : ℚˣ) : ℚ) := by
       rw [← hPc]
       exact hr2
     obtain ⟨y₁, s₁, hs₁, hβ₁, hm₁, hphi₁⟩ := phi_of_formCls hform hca
-    obtain ⟨g, sg, hsg, hg, hγ⟩ := GlobalTheory.T.exists_conj_of_rel_similitude_pairs_same_form p G (Quot.out a) P (Quot.out i).β y₁ 1 s₁ 1 hs₁ one_pos hβ₁
+    obtain ⟨g, sg, hsg, hg, hγ⟩ := _root_.GlobalTheory.LKCx.ConjR.conj_of_rel p G (Quot.out a) P (Quot.out i).β y₁ 1 s₁ 1 hs₁ one_pos hβ₁
       (by
         show ((Quot.out i).β : G.C) = _
         simp [sh_one_eq]) hrel0
@@ -639,4 +639,4 @@ theorem UpperTheory.Cb.complex_count_regular_marked_points :
     (CxReg.finite_pts_reg G ha v hv L f hf hreg K' f' hf' _ _ _ _ (Quot.out q).sym (Quot.out q).trivR)
     (fun y₀ h hne z z' hz hz' hF hF' => by
       obtain ⟨hd, hs⟩ := CxReg.sep_of_regAf G v hv f hreg _ _ _ _ (Quot.out q).sym (Quot.out q).trivR y₀ h hne ⟨z, hz, hF⟩
-      exact GlobalTheory.T.separable_formGroup_element_fixes_unique_positive_line p G v hv _ (Quot.out q).sym (Quot.out q).trivR y₀ hd hs z z' hz hz' hF hF')
+      exact _root_.GlobalTheory.LKCx.fixL_pos_unique_of_sep p G v hv _ (Quot.out q).sym (Quot.out q).trivR y₀ hd hs z z' hz hz' hF hF')

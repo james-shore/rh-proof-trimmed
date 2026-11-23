@@ -395,7 +395,7 @@ theorem target : Target k := by
         ((orbit_locallyConstant (omR_smooth hμ') (omR μ (1, h) Φ)).comp_continuous
           (continuous_const.prodMk ExchangeSupport.continuous_colE)).comp fun Ψ => opL hψ ν (ρ + 1) Ψ
       obtain ⟨K, hK, HK⟩ := ColumnSupport.opE_colE_eq_zero k n n' c ρ h2 ψ ν μ _ (omR μ (1, h) Φ).2
-      obtain ⟨m, Ψ, Φ₀, hd⟩ := GlobalTheory.T.exists_sum_smul_of_locallyConstant_compactSupport (n → k) _ T hT K hK fun β hβ => Subtype.ext (by
+      obtain ⟨m, Ψ, Φ₀, hd⟩ := _root_.GlobalTheory.LocConstTensor.exists_sum (n → k) _ T hT K hK fun β hβ => Subtype.ext (by
         have := HK β hβ fun _ => 1
         simp only [one_mul] at this
         exact this)

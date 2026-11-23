@@ -107,7 +107,7 @@ theorem htOm_eq_of_dvr : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   obtain ⟨hd, hdvr⟩ := id hq
   have hic : IsIntegrallyClosed (X.presheaf.stalk q.1) := inferInstance
   have hno : IsNoetherianRing (X.presheaf.stalk q.1) := inferInstance
-  have e1 := (PositivityTheory.UnitarySelfGeneration.lattice_integrally_closed_torsion E H D l B b X Ω ξ s o t m V M n q hξ hn hf hic hno).2.2
+  have e1 := (_root_.GlobalTheory.CompanionTheory.Ar.OmLinkK.htOm_eq_htLat E H D l B b X Ω ξ s o t m V M n q hξ hn hf hic hno).2.2
   have e2 := (PositivityTheory.UnitarySelfGeneration.lattice_integrally_closed_torsion E H D l B b X Ω ξ s (twistObj o g a hok) t' m' V M' n q hξ hn hf' hic hno).2.2
   have e3 := GlobalTheory.T.semiabelian_lie_models_agree X Ω ξ hξ t.G t'.G o.t.G m.φ m'.φ t.semi t'.semi m.cart m'.cart V M M' hv n q hq
   rw [e2, e1, e3]

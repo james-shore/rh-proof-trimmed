@@ -157,7 +157,7 @@ theorem resInd_mem_cInd {Q P : Subgroup G} {x : G} (hLS : LocSec Q P x) (hP : Is
     (f : smoothPart (ind Q σ)) (T : Set G) (hT : IsClosed T) (hTs : T ⊆ dcos Q P x)
     (hTQ : ∀ q ∈ Q, ∀ g ∈ T, q * g ∈ T) (hfT : ∀ p : P, f.1.1 (x * (p : G)) ≠ 0 → x * (p : G) ∈ T) :
     resInd σ H hH τ E hE f ∈ cIndSpace H τ := by
-  obtain ⟨C, hC, hD⟩ := GlobalTheory.T.compact_transversal_double_coset hLS hP B₀ hB hB1 (K₀ ∩ T) (hK₀.inter_right hT) (fun g hg => hTs hg.2)
+  obtain ⟨C, hC, hD⟩ := _root_.GlobalTheory.CompanionTheory.BZRes.dcos_compact_lift hLS hP B₀ hB hB1 (K₀ ∩ T) (hK₀.inter_right hT) (fun g hg => hTs hg.2)
   refine ⟨C, hC, fun p hp => ?_⟩
   have hp' : f.1.1 (x * (p : G)) ≠ 0 := fun h => hp (by
     show E _ = 0
@@ -204,7 +204,7 @@ theorem two_orbits [NonarchimedeanGroup G] {Q P : Subgroup G} {w : G}
   have hRs : Function.Surjective R := fun φ => by
     obtain ⟨f, hf, -⟩ := exists_lift h1 σ hσ H₁ hH₁ τ₁ E₁ hE₁ Set.univ isOpen_univ (fun _ => trivial) φ
     exact ⟨f, Subtype.ext hf⟩
-  obtain ⟨S, hS, hq⟩ := GlobalTheory.T.surjective_intertwiner_quotient_equiv _ _ R hRs
+  obtain ⟨S, hS, hq⟩ := _root_.GlobalTheory.CompanionTheory.BZRes.KerQuot.exists_subQuot_top_ker_equiv _ _ R hRs
   refine ⟨S, ?_, hq⟩
   have memS : ∀ f : smoothPart (ind Q σ), f ∈ S.toSubmodule ↔ ∀ p : P, f.1.1 (p : G) = 0 := by
     intro f
@@ -269,7 +269,7 @@ theorem two_orbits [NonarchimedeanGroup G] {Q P : Subgroup G} {w : G}
       obtain ⟨q, hq, hy⟩ := hs _ h
       exact hy ⟨q, hq, p, p.2, by simp⟩
     exact ⟨⟨f, hfS⟩, Subtype.ext hf⟩
-  exact GlobalTheory.T.bijective_intertwiner_subrep_equiv _ _ S O ⟨hOinj, hOs⟩ (fun p f => by
+  exact _root_.GlobalTheory.CompanionTheory.BZRes.subQuot_bot_equiv_of_bijective _ _ S O ⟨hOinj, hOs⟩ (fun p f => by
     refine Subtype.ext (Subtype.ext (Subtype.ext (funext fun y => ?_)))
     show E₂ (f.1.1.1 (w * (y : G) * (p : G))) = E₂ (f.1.1.1 (w * ((y * p : P) : G)))
     simp [mul_assoc])

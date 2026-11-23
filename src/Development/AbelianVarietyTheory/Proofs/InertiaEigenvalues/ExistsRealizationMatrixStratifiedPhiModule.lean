@@ -112,7 +112,7 @@ theorem exists_mreal : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (
       ext1 i j
       exact frobW_inclW _
   · intro g
-    have h0 := descend bk.iA hinj _ _ _ _ _ _ (GlobalTheory.T.rel_galois_comparison_matrix l K bk d ρ τ s ht hτ g _ (hrel g))
+    have h0 := descend bk.iA hinj _ _ _ _ _ _ (_root_.GlobalTheory.BSP.Height.rel_gal l K bk d ρ τ s ht hτ g _ (hrel g))
     have h := push (inclW l) _ _ _ _ _ _ _ h0
     rw [← galW_inclW] at h
     refine galois_matrix_equation_inverse_scaling (galW l (g : GQ l) : WCb l →+* WCb l) (inclW l τ) _ hv _ _ _ _ ?_

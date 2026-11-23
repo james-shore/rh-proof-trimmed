@@ -346,13 +346,6 @@ theorem kappa_basis (κ : W ⊗[Z] T ≃+ RW ⊗[O] T) (hκ : ∀ w t, κ (w ⊗
   rw [hw, key, AddEquiv.symm_apply_apply, LinearEquiv.apply_symm_apply]
 
 
-omit [Module Z T] in
-theorem map_mulLeft (r : RW) (y : RW ⊗[O] T) :
-    TensorProduct.map (LinearMap.mulLeft O r) (LinearMap.id : T →ₗ[O] T) y = r • y := by
-  induction y with
-  | tmul w' t => rw [TensorProduct.map_tmul, TensorProduct.smul_tmul']; rfl
-  | add y y' h h' => rw [map_add (f := _), smul_add, h, h']
-
 end Kappa
 
 section Rings

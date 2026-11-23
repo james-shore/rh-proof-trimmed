@@ -54,12 +54,12 @@ namespace PI.ClassNumImQ.ZetaNonvanishing₂.Loc
 variable {d : ℕ} {K : Type} [Field K] [NumberField K] {b : K}
 
 noncomputable def om (hq : QuadData d K b) : 𝓞 K :=
-  ⟨(1 + b) / 2, (imag_quadratic_integral_basis d K b hq).1⟩
+  ⟨(1 + b) / 2, (_root_.PI.UnitaryGroupMassFormula.ClassNumImQInt.intBasis d K b hq).1⟩
 
 theorem om_coe (hq : QuadData d K b) : ((om hq : 𝓞 K) : K) = (1 + b) / 2 := rfl
 
 theorem basis (hq : QuadData d K b) (x : 𝓞 K) : ∃ m n : ℤ, x = m + n * om hq := by
-  obtain ⟨m, n, h⟩ := (imag_quadratic_integral_basis d K b hq).2 x
+  obtain ⟨m, n, h⟩ := (_root_.PI.UnitaryGroupMassFormula.ClassNumImQInt.intBasis d K b hq).2 x
   refine ⟨m, n, RingOfIntegers.ext ?_⟩
   rw [h]
   push_cast [om_coe]

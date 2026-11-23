@@ -162,6 +162,6 @@ theorem continuous_pos {K : Subgroup (G2 σ Y)} {a : G2 σ Y → ℝ}
 
 theorem height_continuous_pos : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E) (n : ℕ) (Y : Spc F E n) (r s : ℕ), B.IsGood σ → 1 ≤ n → (Y.IsHerm σ B r s ∨ Y.IsSkew σ B r s) → ∀ (b : GL (Fin n ⊕ Fin n) E) (K : Subgroup (G2 σ Y)) (a : G2 σ Y → ℝ), IsFrame2 σ Y b → IsStdK (σ := σ) (Y := Y) B b K → IsHgt K a → Continuous a ∧ ∀ x, 0 < a x :=
   fun F E _ _ _ _ _ σ B n Y r s hB hn hY b K a hb hK ha =>
-    continuous_pos (GlobalTheory.T.isCompact_standard_maximal F E σ B n Y r s hB hn hY b K a hb hK ha) ha
+    continuous_pos (_root_.GlobalTheory.CompanionTheory.StdK.isCompact_K F E σ B n Y r s hB hn hY b K a hb hK ha) ha
 
 end GlobalTheory.CompanionTheory.Iwasawa

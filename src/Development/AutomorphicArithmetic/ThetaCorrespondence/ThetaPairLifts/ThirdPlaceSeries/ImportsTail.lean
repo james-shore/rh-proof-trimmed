@@ -56,7 +56,7 @@ theorem main_alt_alt : ∀ (D : D7) (L : SizeData₂ D) (hT : GatTies D) (Gi : F
   intro D L hT Gi Gl Kc Yd cX ex W u f hPk hRow v hv hVT n G pl hGP hGR j h d₀ hd₀ hΛ hΛX M hM hMv
   have hψ : IsStdChar D f.c.ψ (-1) := hd₀.2.1.1
   have hLT : IsSelfDualC D.sp.X' f.g.LT := hVT.bT.2 ▸ hv.sdT
-  obtain ⟨κ, hκ, hdat⟩ := _root_.GlobalTheory.T.descent_top_standard_character_alt D L hT Gi Gl Kc Yd cX ex W u f hPk hRow v hv hVT n G pl hGP hGR j h hψ d₀ hd₀ hΛ hΛX M hM hLT hMv
+  obtain ⟨κ, hκ, hdat⟩ := _root_.GlobalTheory.TopDatumTheta.moved_top_datum_alt D L hT Gi Gl Kc Yd cX ex W u f hPk hRow v hv hVT n G pl hGP hGR j h hψ d₀ hd₀ hΛ hΛX M hM hLT hMv
   refine ⟨_root_.GlobalTheory.TopLocData.localLatticeAtPlace hψ hGP h hM hLT, κ, hκ, fun i => rfl, fun i => ⟨?_, ?_⟩, fun F hF => (_root_.GlobalTheory.TopLocData.eGT_comb_eq_foldr_eigenvectorAtPlace hGP h).2 F hF, hdat⟩
   · exact intIn_reN (G i).q v.N (_root_.GlobalTheory.TopLocData.s_eq_alt (G i) h) _ ((G i).latY ((G i).s + 1) 0 rfl)
   · have := (G i).latT

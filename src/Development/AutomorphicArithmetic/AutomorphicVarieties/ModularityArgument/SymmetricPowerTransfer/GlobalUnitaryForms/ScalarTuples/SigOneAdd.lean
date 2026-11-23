@@ -56,6 +56,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.IsFixMapIff
 
 @[expose] public section
 
@@ -180,14 +181,11 @@ private theorem tr_pos {K : Type} [Field K] {Δ τ : K} (σ : K →+* ℝ) (hΔ 
   simp only [map_eq_zero] at e1 e2
   exact hy (by ext <;> simp [e1.1, e1.2, e2.1, e2.2])
 
-private theorem sig_mul {K : Type} [Field K] {Δ τ : K} (x y : EL Δ τ) : sigL (x * y) = sigL x * sigL y := by
-  ext <;> simp [sigL] <;> ring
+private alias sig_mul := _root_.UpperTheory.V.Z.Sym.Loc.sigL_mul
 
-private theorem sig_sig {K : Type} [Field K] {Δ τ : K} (x : EL Δ τ) : sigL (sigL x) = x := by
-  ext <;> simp [sigL]
+private alias sig_sig := _root_.UpperTheory.V.Z.Sym.Loc.sigL_sigL
 
-private theorem sig_star {K : Type} [Field K] {Δ τ : K} (x : EL Δ τ) : sigL (star x) = star (sigL x) := by
-  ext <;> simp [sigL]
+private alias sig_star := _root_.UpperTheory.V.Z.Sym.Loc.sigL_star
 
 private theorem sig_one_add {K : Type} [Field K] {Δ τ : K} (x : EL Δ τ) : sigL (1 + x) = 1 + sigL x := by
   ext <;> simp [sigL, QuadraticAlgebra.re_one, QuadraticAlgebra.im_one]

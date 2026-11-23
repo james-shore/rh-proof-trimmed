@@ -75,7 +75,7 @@ theorem pow_mul_small : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R]
     | succ m ih =>
       intro n j hn hj
       obtain ⟨Fm, hFS, hFT, hFm⟩ := ih ((N : ℤ) * m) ((k : ℤ) - m) rfl rfl
-      obtain ⟨F, hS, hT, hP⟩ := GlobalTheory.T.exists_product_small_twistedFunctionalEqn_family R hAdm D a a' h h' hE A G hG U b hb
+      obtain ⟨F, hS, hT, hP⟩ := _root_.GlobalTheory.TwFam.exists_prod_family R hAdm D a a' h h' hE A G hG U b hb
         (N : ℤ) (-1) ((N : ℤ) * m) ((k : ℤ) - m) n j (by rw [hn]; push_cast; ring)
         (by rw [hj]; push_cast; ring) g Fm hgS hFS hgT hFT
       refine ⟨F, hS, hT, fun e τ τ' hτ hτ' => ?_⟩

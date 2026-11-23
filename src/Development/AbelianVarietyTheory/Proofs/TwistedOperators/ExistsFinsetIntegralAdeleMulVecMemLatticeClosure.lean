@@ -56,14 +56,10 @@ namespace GlobalTheory.AdelicLatticeIntegral
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem exists_nsmul_mem {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFullLattice E)
-    (x : Fin n → E) : ∃ D : ℕ, D ≠ 0 ∧ D • x ∈ L := by
-  exact _root_.GlobalTheory.NatMultipleInLattice.exists_nsmul_mem_lattice L hL x
-
 theorem exists_nsmul_map_mem {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFullLattice E)
     (N : (Fin n → E) →ₗ[E] (Fin n → E)) : ∃ D : ℕ, D ≠ 0 ∧ ∀ y ∈ L, D • N y ∈ L := by
   obtain ⟨s, hs⟩ := hL.fg
-  choose! D hD hDm using fun g => exists_nsmul_mem L hL (N g)
+  choose! D hD hDm using fun g => _root_.GlobalTheory.NatMultipleInLattice.exists_nsmul_mem_lattice L hL (N g)
   refine ⟨∏ g ∈ s, D g, Finset.prod_ne_zero_iff.mpr fun g _ => hD g, ?_⟩
   intro y hy
   rw [← hs] at hy

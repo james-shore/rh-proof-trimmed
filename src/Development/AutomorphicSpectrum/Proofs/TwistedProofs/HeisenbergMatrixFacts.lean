@@ -151,11 +151,6 @@ private theorem antiJ_apply_eq_ite_rev {n : ℕ} (i j : Fin n) :
     rw [Fin.val_rev]
     omega
 
-private theorem antiJ_mul_apply_eq_apply_rev_left {n : ℕ} (X : Matrix (Fin n) (Fin n) L) (a c : Fin n) :
-    (antiJ L n * X) a c = X a.rev c := by
-  rw [Matrix.mul_apply]
-  simp only [antiJ_apply_eq_ite_rev, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
-
 private theorem mul_antiJ_apply_eq_apply_rev_right {n : ℕ} (X : Matrix (Fin n) (Fin n) L) (c b : Fin n) :
     (X * antiJ L n) c b = X c b.rev := by
   rw [Matrix.mul_apply]
@@ -163,36 +158,13 @@ private theorem mul_antiJ_apply_eq_apply_rev_right {n : ℕ} (X : Matrix (Fin n)
     propext ⟨fun h => by rw [h, Fin.rev_rev], fun h => by rw [h, Fin.rev_rev]⟩
   simp only [antiJ_apply_eq_ite_rev, e, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
 
-private theorem antiJ_mul_antiJ_eq_one {n : ℕ} : antiJ L n * antiJ L n = 1 := by
-  ext i j
-  rw [antiJ_mul_apply_eq_apply_rev_left, antiJ_apply_eq_ite_rev, Fin.rev_rev]
-  by_cases h : i = j
-  · subst h
-    rw [if_pos rfl, Matrix.one_apply_eq]
-  · rw [if_neg (Ne.symm h), Matrix.one_apply_ne h]
-
-private theorem mat_inv_apply_eq_sigma_mat_rev {n : ℕ} (g : GU σ n) (a b : Fin n) :
-    mat g⁻¹ a b = σ (mat g b.rev a.rev) := by
-  have hU : cT σ (mat g) * antiJ L n * mat g = antiJ L n := g.2
-  have hinv : mat g * mat g⁻¹ = 1 := by
-    show mat (g * g⁻¹) = 1
-    rw [mul_inv_cancel]
-    rfl
-  have key : mat g⁻¹ = antiJ L n * cT σ (mat g) * antiJ L n := by
-    calc mat g⁻¹ = antiJ L n * antiJ L n * mat g⁻¹ := by rw [antiJ_mul_antiJ_eq_one, Matrix.one_mul]
-      _ = antiJ L n * (cT σ (mat g) * antiJ L n * mat g * mat g⁻¹) := by rw [hU, Matrix.mul_assoc]
-      _ = antiJ L n * cT σ (mat g) * antiJ L n := by
-        rw [Matrix.mul_assoc (cT σ (mat g) * antiJ L n), hinv, Matrix.mul_one, ← Matrix.mul_assoc]
-  rw [key, mul_antiJ_apply_eq_apply_rev_right, antiJ_mul_apply_eq_apply_rev_left]
-  rfl
-
 theorem rowOf_inv (u : GU σ (N + 2)) (j : Fin N) : rowOf u⁻¹ j = σ (colOf u j.rev) := by
   show mat u⁻¹ 0 (mid j) = σ (mat u (mid j.rev) (Fin.last (N + 1)))
-  rw [mat_inv_apply_eq_sigma_mat_rev, mid_rev, Fin.rev_zero]
+  rw [_root_.GlobalTheory.SatakeWeyl.mat_inv_apply, mid_rev, Fin.rev_zero]
 
 theorem cornerOf_inv (u : GU σ (N + 2)) : cornerOf u⁻¹ = σ (cornerOf u) := by
   show mat u⁻¹ 0 (Fin.last (N + 1)) = σ (mat u 0 (Fin.last (N + 1)))
-  rw [mat_inv_apply_eq_sigma_mat_rev, Fin.rev_last, Fin.rev_zero]
+  rw [_root_.GlobalTheory.SatakeWeyl.mat_inv_apply, Fin.rev_last, Fin.rev_zero]
 
 theorem row_eq {u : GU σ (N + 2)} (hu : u ∈ radQ σ N) (j : Fin N) : rowOf u j = -σ (colOf u j.rev) := by
   have h := congrFun (rowOf_mul hu (inv_mem hu)) j
@@ -409,7 +381,7 @@ theorem Heisenberg₂ : Heis := by
         heisMat r (fun i => -σ (r i.rev)) c) = antiJ L (N + 2) := by
       rw [← Matrix.mul_assoc, hU]
     simp only [Matrix.mul_assoc]
-    rw [hU', antiJ_mul_antiJ_eq_one]
+    rw [hU', _root_.GlobalTheory.UnitarySwap.antiJ_mul_self]
   have hr := mul_eq_one_comm.mp hl
   refine ⟨⟨⟨heisMat r (fun i => -σ (r i.rev)) c, _, hr, hl⟩, hU⟩, ?_, ?_, ?_⟩
   · intro i j hij

@@ -93,9 +93,9 @@ theorem exists_isDetRoot_pow {D : D7} (V : HSp D) {u : GA D V} (hu : u ∈ GinfC
   obtain ⟨x0, hx0⟩ := (GlobalTheory.Member.isDetRoot_laws D V).1 u
   have hcm := GlobalTheory.Mem.VolExists.isCMExt D.sp.cm
   have einf : ∀ w : AE D, infPart D (sigR (AF D.host.F) D.sp.cm.sig w) = sigR (Ainf D.host.F) D.sp.cm.sig (infPart D w) :=
-    fun w => GlobalTheory.DetCharArch.map_conj _ _ _
+    fun w => _root_.GlobalTheory.UnitarySplit.map_sig _ _ _
   have efin : ∀ w : AE D, finPart D (sigR (AF D.host.F) D.sp.cm.sig w) = sigR (Af D.host.F) D.sp.cm.sig (finPart D w) :=
-    fun w => GlobalTheory.DetCharArch.map_conj _ _ _
+    fun w => _root_.GlobalTheory.UnitarySplit.map_sig _ _ _
   set dt : AE D := (matHom V u).1.det with hdt
   have hfd : finPart D dt = 1 := by
     have h1 : (finHom V u).1.det = finPart D dt := ((finPart D).map_det _).symm

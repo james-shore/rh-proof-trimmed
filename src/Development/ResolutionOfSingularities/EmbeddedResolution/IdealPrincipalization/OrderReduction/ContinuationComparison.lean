@@ -267,7 +267,7 @@ theorem isPullbackBlowupSequence_derivedTriple
   have hSmoothLast : AlgebraicGeometry.Smooth Dt.lastMap := Dt.smooth_lastMap
   have hsm : AlgebraicGeometry.Smooth (s.proj s.length ≫ S.structMap) := by
     have hsmU := hVU.smooth
-    rwa [LowerDimReductionPullback.structureMorphism_derivedTriple] at hsmU
+    rwa [_root_.FunctorialResolution.EmbeddedResolution.MaxContactCoverData.derivedTriple_structureMorphism] at hsmU
   have hpb0 := NontrivialBoundary.pullbackAlong_derivedTriple_eq S q s s' Dt hstar hV hV' hftS hftT hsm [] 0 0
   have hOU := LowerDimReductionPullback.isOrderBoundedByMult_derivedTriple hstar S hV hm hO s hftS [] 0 hVU
   have hDU := LowerDimReductionPullback.isBalanced_derivedTriple hstar S hV hm hO s hftS [] 0 hVU

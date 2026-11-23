@@ -58,8 +58,8 @@ theorem cech_level_eqv_of_integral_pullback :
 
   have hn : IsPullback (m.app n) ((cechAug f').app n) ((cechAug f).app n) (yoneda.map b) :=
     hm.map ((evaluation SimplexCategoryᵒᵖ PSh).obj n)
-  obtain ⟨Z, π, e, hπ, he⟩ := GlobalTheory.T.exists_representable_cech_level_of_stable (@IsIntegralHom) Y X f hf n
-  obtain ⟨Z', π', e', hπ', he'⟩ := GlobalTheory.T.exists_representable_cech_level_of_stable (@IsIntegralHom) Y' X' f' hf' n
+  obtain ⟨Z, π, e, hπ, he⟩ := _root_.GlobalTheory.EtC.cech_level_representable (@IsIntegralHom) Y X f hf n
+  obtain ⟨Z', π', e', hπ', he'⟩ := _root_.GlobalTheory.EtC.cech_level_representable (@IsIntegralHom) Y' X' f' hf' n
   have hh : IsIntegralHom (π ≫ f) := inferInstance
   have hh' : IsIntegralHom (π' ≫ f') := inferInstance
   let φ : Z' ⟶ Z := yoneda.preimage (e'.hom ≫ m.app n ≫ e.inv)
@@ -75,7 +75,7 @@ theorem cech_level_eqv_of_integral_pullback :
     apply yoneda.map_injective
     simpa using hsqY.w
   have hE := H Z Z' (π ≫ f) (π' ≫ f') φ hh hsq
-  obtain ⟨hiso, hcomp, -, -⟩ := GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F
+  obtain ⟨hiso, hcomp, -, -⟩ := _root_.GlobalTheory.EtC.eqv_basic R F
   have hdec : disc.map (m.app n) = disc.map e'.inv ≫ sch.map φ ≫ disc.map e.hom := by
     change _ = disc.map e'.inv ≫ disc.map (yoneda.map φ) ≫ disc.map e.hom
     simp only [hφ, ← Functor.map_comp, Iso.inv_hom_id_assoc, Category.assoc, Iso.inv_hom_id, Category.comp_id]

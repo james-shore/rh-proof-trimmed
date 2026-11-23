@@ -68,9 +68,6 @@ def muCDtr {P Q : ℕ} (e : Fin P ⊕ Fin Q ≃ Fin n) (ε : Fin n → Bool) : M
     (fun g : Formalism.BasicNotions.UpqT P Q => Matrix.reindex e e (Formalism.BasicNotions.UpqT.mat g))
     (ENNReal.ofReal (cPQ ε) • muPolarMat ε)
 
-theorem tie_volU_pos (N : ℕ) : 0 < volU N :=
-  Finset.prod_pos fun i _ => by positivity
-
 theorem tie_tendsto {f : ℝ → ENNReal} {x : ℝ} (hx : 0 < x)
     (h : ∀ η : ℝ, 0 < η → ∀ᶠ r in 𝓝[>] (0 : ℝ),
       ENNReal.ofReal ((1 - η) * x) ≤ f r ∧ f r ≤ ENNReal.ofReal ((1 + η) * x)) :
@@ -115,7 +112,7 @@ theorem tie_d_eq (ε : Fin n → Bool) (d : ℝ) (hd0 : 0 < d)
   obtain ⟨hK, hP, hG⟩ := gco_haar ε
   have hpol := haar_pol_density (muPolar ε) d hd
   set x := volU (pOf ε) * volU (qOf ε) with hx
-  have hx0 : 0 < x := mul_pos (tie_volU_pos _) (tie_volU_pos _)
+  have hx0 : 0 < x := mul_pos (_root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' _) (_root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' _)
   set D := 1 / x with hD
   have hD0 : 0 < D := by positivity
   have key : ∀ η : ℝ, 0 < η → η < 1 → (1 - η) * d ≤ (1 + η) * D ∧ (1 - η) * D ≤ (1 + η) * d := by
@@ -240,9 +237,9 @@ theorem omegaDensity_muCDtr {P Q : ℕ} (e : Fin P ⊕ Fin Q ≃ Fin n) {ε : Fi
     rw [Measure.smul_apply, smul_eq_mul,
       Measure.map_apply (tie_gToLie_cont e he1 he2).measurable (tie_ball_open P Q r).measurableSet]
     rfl
-  have hvn := tie_volU_pos n
-  have hvp := tie_volU_pos (pOf ε)
-  have hvq := tie_volU_pos (qOf ε)
+  have hvn := _root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' n
+  have hvp := _root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' (pOf ε)
+  have hvq := _root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' (qOf ε)
   have hc : cOmega n * κ = cPQ ε * d := by
     rw [hdD, cPQ_eq_volU, cOmega, ← hκ]
     field_simp

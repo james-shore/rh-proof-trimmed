@@ -99,7 +99,7 @@ theorem GlobalTheory.XGeoStd.exists_xgeo_alt : GlobalTheory.Published.StrongAppr
     case refine_8 =>
       intro PP hPP
       obtain ⟨k, _, _, _, _, _, _, q, h1, h2, h3, h4⟩ := _root_.GlobalTheory.XGeoPlace.exists_index_place_eq_of_readsStd_of_mem W hW u PP hPP
-      exact _root_.GlobalTheory.T.true_family_vacuum_data_alt W hW u vac PP k q h1 h2 h3 h4
+      exact _root_.GlobalTheory.XGeoStd.Frames.exists_locX_std_alt W hW u vac PP k q h1 h2 h3 h4
   )
 end
 end

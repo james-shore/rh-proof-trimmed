@@ -195,12 +195,6 @@ theorem cloudHalf_lt (D : D7) (τ : D.what₂.Tau) {y : ℚ} (hy : y ∈ (Global
   change _ ≤ _ + ((GlobalTheory.Grid.gap D : ℕ) : ℚ) + _
   linarith
 
-theorem mem_blockTP {c y : ℚ} {len : ℕ} (h : y ∈ TPar.block c len) : |y - c| ≤ ((len : ℚ) - 1) / 2 := by
-  obtain ⟨a', ha', rfl⟩ := Finset.mem_image.1 h
-  have : (a' : ℚ) + 1 ≤ len := by exact_mod_cast (Finset.mem_range.1 ha')
-  have h0 : (0 : ℚ) ≤ a' := Nat.cast_nonneg a'
-  rw [abs_le]; constructor <;> linarith
-
 theorem block_sym {c x : ℚ} {len : ℕ} : c - x ∈ block len ↔ x ∈ TPar.block c len := by
   unfold block TPar.block
   simp
@@ -233,7 +227,7 @@ theorem loc (D : D7) (τ : D.what₂.Tau) {i : ℕ} (hi : i < D.R.m) {p : ℚ ×
     linarith
   · left; refine ⟨?_, h2⟩
     rw [hm] at hl1 hl2
-    have hb' := mem_blockTP hb
+    have hb' := _root_.GlobalTheory.SignedHC.abs_sub_le_of_mem_block hb
     change |p.1 - ((GlobalTheory.Grid.cen D τ l : ℤ) : ℚ)| ≤ (((GlobalTheory.Grid.sLen D - 1 : ℕ) : ℚ) - 1) / 2 at hb'
     rw [sLen_sub_one] at hb'
     have hc := cen_near D τ (by omega : 1 ≤ l) hl2
@@ -253,7 +247,7 @@ theorem blockC'_le (D : D7) (τ : D.what₂.Tau) {j l : ℕ} {x : ℚ} (hl1 : j 
   have hg := gapQ D
   have hs : (6 : ℚ) ≤ GlobalTheory.Grid.sLen D := by exact_mod_cast sLen_ge D
   have hN : (0 : ℚ) ≤ (GlobalTheory.Grid.bigN D : ℚ) ^ 3 := by positivity
-  have hb' := mem_blockTP hb
+  have hb' := _root_.GlobalTheory.SignedHC.abs_sub_le_of_mem_block hb
   change |x - ((GlobalTheory.Grid.cen D τ l : ℤ) : ℚ)| ≤ (((GlobalTheory.Grid.sLen D - 1 : ℕ) : ℚ) - 1) / 2 at hb'
   rw [sLen_sub_one] at hb'
   have hc := cen_near D τ (by omega : 1 ≤ l) hl2

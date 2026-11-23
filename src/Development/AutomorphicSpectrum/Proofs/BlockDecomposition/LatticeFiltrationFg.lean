@@ -61,11 +61,6 @@ theorem dpE_eq (i : ℕ) : Lat.dpE f ξ l M i =
     (((i.factorial : ℚ))⁻¹ * (((l : ℚ) ^ M)⁻¹) ^ i) • f ξ ^ i := by
   simp only [Lat.dpE, Lat.η, smul_pow, mul_smul]
 
-theorem dpE_mem {k i : ℕ} (h : k ≤ i) : Lat.dpE f ξ l M i ∈ Ideal.span {f ξ ^ k} := by
-  rw [dpE_eq, Ideal.mem_span_singleton']
-  refine ⟨(((i.factorial : ℚ))⁻¹ * (((l : ℚ) ^ M)⁻¹) ^ i) • f ξ ^ (i - k), ?_⟩
-  rw [smul_mul_assoc, ← pow_add, Nat.sub_add_cancel h]
-
 variable {f ξ} in
 theorem dpE_eq_zero {m : ℕ} (hn : f ξ ^ m = 0) {i : ℕ} (h : m ≤ i) : Lat.dpE f ξ l M i = 0 := by
   rw [dpE_eq, pow_eq_zero_of_le h hn, smul_zero]
@@ -164,7 +159,7 @@ theorem exists_coeff {m : ℕ} (h : Lat.Hyp f ξ l m) {x : B} (hx : x ∈ Lat.su
       by_cases hi : i ≤ j
       · rw [hz i hi, map_zero, zero_mul]
         exact Ideal.zero_mem _
-      · exact Ideal.mul_mem_left _ _ (dpE_mem f ξ l M (by omega))
+      · exact Ideal.mul_mem_left _ _ (_root_.GlobalTheory.CompanionTheory.LatPdpEq.dpE_mem_span f ξ l M (by omega))
     have hx1 : x ∈ Ideal.span {f ξ ^ (j + 1)} :=
       (Ideal.span_singleton_le_span_singleton.2 (pow_dvd_pow _ hj)) hr
     have hterm : f (c j) * Lat.dpE f ξ l M j ∈ Ideal.span {f ξ ^ (j + 1)} := by
@@ -212,7 +207,7 @@ theorem dividedPowerFiltration_fg : ∀ {W B : Type} [CommRing W] [CommRing B] [
     · refine Ideal.span_le.2 ?_
       rintro _ ⟨i, hi, rfl⟩
       simp only [Finset.coe_Ico, Set.mem_Ico] at hi
-      exact Ideal.mem_comap.2 (dpE_mem f ξ l M hi.1)
+      exact Ideal.mem_comap.2 (_root_.GlobalTheory.CompanionTheory.LatPdpEq.dpE_mem_span f ξ l M hi.1)
   rw [key]
   exact Submodule.fg_span ((Finset.finite_toSet _).image _)
 

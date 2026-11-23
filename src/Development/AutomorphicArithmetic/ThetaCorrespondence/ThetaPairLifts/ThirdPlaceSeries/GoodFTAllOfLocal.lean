@@ -57,7 +57,7 @@ theorem goodFTAll_of_local_alt : Green → GlobalTheory.Published.ZelevinskyPoly
   intro hG hZ hL D T Rw rep L hRow hDep hLT hDZ hTP hVec σ
   obtain ⟨I⟩ := GlobalTheory.T.nonempty_typePlaceCompletionIdent D
   obtain ⟨rc, hrc, hcls⟩ := _root_.GlobalTheory.T.exists_isRc_classMap_correspondence hL D T I
-  obtain ⟨cp, hcomp, hcp⟩ := _root_.GlobalTheory.T.exists_comp_irrSm_locR_eq_rc hL D T I rc hrc Rw rep hRow hDep
+  obtain ⟨cp, hcomp, hcp⟩ := _root_.GlobalTheory.TypeRec.exists_comp_irrSm_param_alt hL D T I rc hrc Rw rep hRow hDep
   have hP : DiscreteGroups.sglob.DzType.Rt.LabParamLe D.R.nV D L rc :=
     DiscreteGroups.sglob.DzType.Rt.labParamLe_of D L rc hG (_root_.GlobalTheory.T.tame_gen_support_compat_of_is_rc hZ hL D T I rc hrc) hDZ (hTP I rc hrc)
   have hSC := GlobalTheory.T.seriesIdempotentStarCompatible_of_labelling_agree hG D L hLT

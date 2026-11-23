@@ -62,16 +62,9 @@ def preHom {S : Scheme.{0}} {T A : Over S} (x : T ⟶ A) (B : Over S) [GrpObj B]
   map_one' := by simp
   map_mul' y z := by simp [MonObj.comp_mul]
 
-theorem zpow_finset_sum {G J : Type} [CommGroup G] (g : G) (s : Finset J) (e : J → ℤ) :
-    g ^ (∑ i ∈ s, e i) = ∏ i ∈ s, g ^ e i := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.prod_insert ha, zpow_add, ih]
-
 theorem prod_prod_zpow {G C J : Type} [CommGroup G] [Fintype C] [Fintype J] (b : C → G) (x : J → C → ℤ) (k : J → ℤ) :
     ∏ i, (∏ c, b c ^ x i c) ^ k i = ∏ c, b c ^ (∑ i, k i * x i c) := by
-  simp only [← Finset.prod_zpow, ← zpow_mul, zpow_finset_sum]
+  simp only [← Finset.prod_zpow, ← zpow_mul, _root_.GlobalTheory.SharpFamRel.zpow_finsetSum]
   rw [Finset.prod_comm]
   simp only [mul_comm]
 

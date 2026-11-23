@@ -96,19 +96,19 @@ theorem cpush_toZ_eq_zero_of_kill (S : Type) [CommRing S] (F : Shv S) (R : Type)
   haveI := hqF; haveI := hqG; haveI := hgeG; haveI := hKI'; haveI := hGE'
   haveI : QuasiIso (rAug (Int.castRingHom S) (resAug F)) := rAug_quasiIso _ _
   haveI : QuasiIso (rAug (Int.castRingHom R) (resAug G)) := rAug_quasiIso _ _
-  obtain ⟨v, hv⟩ := (GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective ℤ G' ((rcx (Int.castRingHom R)).obj (res R G)) (res ℤ G')
+  obtain ⟨v, hv⟩ := (_root_.GlobalTheory.EtC.extHom_of_quasiIso ℤ G' ((rcx (Int.castRingHom R)).obj (res R G)) (res ℤ G')
     (rAug (Int.castRingHom R) (resAug G))).1 (resAug G')
   have hacyc : ∀ (t : ℤ) (P : PSh) (m : ℤ), 0 < m →
       Subsingleton (H ℤ (disc.obj P) (((rcx (Int.castRingHom R)).obj (res R G)).X t) m) :=
-    fun t P m hm => GlobalTheory.T.restrictScalars_injective_sheaf_acyclic ℤ R (Int.castRingHom R) ((res R G).X t) P m hm
-  have hbij := GlobalTheory.T.acyclic_resolution_computes_etale_cohomology ℤ G' ((rcx (Int.castRingHom R)).obj (res R G)) (rAug (Int.castRingHom R) (resAug G)) v hv
+    fun t P m hm => _root_.GlobalTheory.EtC.restr_injective_acyclic ℤ R (Int.castRingHom R) ((res R G).X t) P m hm
+  have hbij := _root_.GlobalTheory.EtC.acycRes_computes ℤ G' ((rcx (Int.castRingHom R)).obj (res R G)) (rAug (Int.castRingHom R) (resAug G)) v hv
     hacyc E n
   have hzero := rAug_comp_toZ_eq_zero_of_kill S F R G δ hδ
-  obtain ⟨hom⟩ := (GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective ℤ ((restr (Int.castRingHom S)).obj F) ((rcx (Int.castRingHom S)).obj (res S F)) (res ℤ G')
+  obtain ⟨hom⟩ := (_root_.GlobalTheory.EtC.extHom_of_quasiIso ℤ ((restr (Int.castRingHom S)).obj F) ((rcx (Int.castRingHom S)).obj (res S F)) (res ℤ G')
     (rAug (Int.castRingHom S) (resAug F))).2 (δ.toZ ≫ v) 0 (by rw [← Category.assoc, hzero]; simp)
-  have h1 := ((GlobalTheory.T.hypercohomologyPullbackPushforward_functorial ℤ).2.2.2.2 _ _ ⟨hom⟩ ((chains ℤ).obj E) n).2
+  have h1 := ((_root_.GlobalTheory.EtC.ZcFun.main ℤ).2.2.2.2 _ _ ⟨hom⟩ ((chains ℤ).obj E) n).2
   have h2 : cpush ((chains ℤ).obj E) v n (cpush ((chains ℤ).obj E) δ.toZ n y) = cpush ((chains ℤ).obj E) v n 0 := by
-    rw [← (GlobalTheory.T.hypercohomologyPullbackPushforward_functorial ℤ).2.2.1, h1, cpush_zero_hom, map_zero]
+    rw [← (_root_.GlobalTheory.EtC.ZcFun.main ℤ).2.2.1, h1, cpush_zero_hom, map_zero]
   exact hbij.1 h2
 
 theorem semiMap_op_eq_zero_of_kill : ∀ (S R : Type) [CommRing S] [CommRing R] (F : Shv S) (G : Shv R)
@@ -121,15 +121,15 @@ theorem semiMap_op_eq_zero_of_kill : ∀ (S R : Type) [CommRing S] [CommRing R] 
     { app := fun U s => δ.app U s
       nat := fun g s a => δ.nat g s a
       comm := fun U s t a => δ.comm U s t a }
-  have hA := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective S ℤ ιA ρ' δ.toZ (fun _ _ _ => rfl)).1 E n x
-  have hB := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective R ℤ ιB ιB (𝟙 _) (fun _ _ _ => rfl)).2
+  have hA := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij S ℤ ιA ρ' δ.toZ (fun _ _ _ => rfl)).1 E n x
+  have hB := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij R ℤ ιB ιB (𝟙 _) (fun _ _ _ => rfl)).2
     (fun _ _ => ⟨fun _ _ h => h, fun b => ⟨b, rfl⟩⟩) E n
   have hcomp : ρ'.op.app E n x = ιB.op.app E n (δ.op.app E n x) := by
     obtain ⟨α, rfl⟩ := CohomologyClass.mk_surjective x
-    obtain ⟨β, hβ⟩ := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap S R δ).1 E n α
-    obtain ⟨γ, hγ⟩ := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R ℤ ιB).1 E n β
-    rw [(GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap S R δ).2 E n α β hβ, (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R ℤ ιB).2 E n β γ hγ,
-      (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap S ℤ ρ').2 E n α γ ?_]
+    obtain ⟨β, hβ⟩ := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec S R δ).1 E n α
+    obtain ⟨γ, hγ⟩ := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R ℤ ιB).1 E n β
+    rw [(_root_.GlobalTheory.EtC.SemiMap.op_image_spec S R δ).2 E n α β hβ, (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R ℤ ιB).2 E n β γ hγ,
+      (_root_.GlobalTheory.EtC.SemiMap.op_image_spec S ℤ ρ').2 E n α γ ?_]
     intro p s h U y
     rw [hγ p s h U y, hβ p s h U y]
     rfl

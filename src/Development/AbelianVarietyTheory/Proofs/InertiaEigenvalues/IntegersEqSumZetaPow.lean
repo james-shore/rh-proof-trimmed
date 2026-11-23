@@ -89,7 +89,7 @@ theorem norm_term (K : FinExt l) (i : ℕ) (hi : 2 ≤ i) (ζ : Om l) (hζ : IsP
     have := hζ.map_of_injective (algebraMap (PadicAlgCl l) (PadicComplex l)).injective
     simpa [← PadicComplex.coe_eq] using this
   have hnorm1 : ‖ζ - 1‖ = (l : ℝ) ^ (-(1 : ℝ) / ((l : ℝ) ^ (i - 1) * ((l : ℝ) - 1))) := by
-    rw [← GlobalTheory.T.norm_primitiveRoot_primePow_sub_one_padicComplex l i (by omega) _ hζC, ← PadicComplex.norm_extends]
+    rw [← _root_.GlobalTheory.Cyc.norm_primitiveRoot_sub_one l i (by omega) _ hζC, ← PadicComplex.norm_extends]
     congr 1
     rw [PadicComplex.coe_eq, PadicComplex.coe_eq, map_sub, map_one]
   set D : ℝ := (l : ℝ) ^ (i - 1) * ((l : ℝ) - 1) with hD

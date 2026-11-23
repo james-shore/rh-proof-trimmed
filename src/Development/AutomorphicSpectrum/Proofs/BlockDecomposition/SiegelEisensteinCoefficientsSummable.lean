@@ -75,24 +75,17 @@ namespace GlobalTheory.CompanionTheory.WSum
 
 variable {D : D7} {r : ℕ}
 
-theorem halfTr_add (x y : AE D) : halfTr (x + y) = halfTr x + halfTr y := by
-  simp only [halfTr, trA, map_add (f := _), mul_add]
-
-theorem halfTr_zero : halfTr (0 : AE D) = 0 := by
-  simp only [halfTr, trA, map_zero, mul_zero]
-
-theorem continuous_halfTr : Continuous (halfTr : AE D → AF D.host.F) :=
-  continuous_const.mul (IsModuleTopology.continuous_of_linearMap (Algebra.trace (AF D.host.F) (AE D)))
+alias continuous_halfTr := _root_.GlobalTheory.CompanionTheory.BigCellJ.continuous_halfTr
 
 def chi (ψ : AddChar (AF D.host.F) ℂ) (β : HermE D r) : AddChar (hermA D r) ℂ where
   toFun b := ψ (-halfTr (Matrix.trace (HMul.hMul (β.1.map (incA D)) b.1 : Mx D r r)))
   map_zero_eq_one' := by
     show ψ (-halfTr (Matrix.trace (HMul.hMul (β.1.map (incA D)) (0 : Mx D r r) : Mx D r r))) = 1
-    rw [Matrix.mul_zero, Matrix.trace_zero, halfTr_zero, neg_zero]
+    rw [Matrix.mul_zero, Matrix.trace_zero, _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_zero', neg_zero]
     exact ψ.map_zero_eq_one
   map_add_eq_mul' x y := by
     show ψ (-halfTr (Matrix.trace (HMul.hMul (β.1.map (incA D)) (x.1 + y.1) : Mx D r r))) = _
-    rw [Matrix.mul_add, Matrix.trace_add, halfTr_add, neg_add, AddChar.map_add_eq_mul]
+    rw [Matrix.mul_add, Matrix.trace_add, _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_add', neg_add, AddChar.map_add_eq_mul]
 
 theorem chi_apply (ψ : AddChar (AF D.host.F) ℂ) (β : HermE D r) (b : hermA D r) :
     chi ψ β b = ψ (-halfTr (Matrix.trace (HMul.hMul (β.1.map (incA D)) b.1 : Mx D r r))) := rfl
@@ -137,7 +130,7 @@ theorem Jt_add (ψ : AddChar (AF D.host.F) ℂ) (V : HSp D) (μ : Measure (Mx D 
   unfold Jt
   refine integral_congr_ae (Filter.Eventually.of_forall fun y => ?_)
   show φ y * ψ (halfTr (tq V (b.1 + c.1) y)) = _
-  rw [tq_add, halfTr_add, AddChar.map_add_eq_mul]
+  rw [tq_add, _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_add', AddChar.map_add_eq_mul]
   exact (mul_assoc _ _ _).symm
 
 theorem hasDeriv_Jt {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) (V : HSp D)
@@ -159,7 +152,7 @@ theorem hasDeriv_Jt {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ
     · exact (hMφ.aestronglyMeasurable.mul hu.aestronglyMeasurable).congr
         (Filter.Eventually.of_forall fun y => mul_assoc _ _ _)
     · simp only [norm_mul, hn, mul_one, le_refl]
-  have h := GlobalTheory.T.fourier_parameter_derivative _ μ (fun y => φ y * ψ (halfTr (tq V b.1 y))) M hM hg hMg s
+  have h := _root_.GlobalTheory.CompanionTheory.Analysis.OscPhase.hasDerivAt_integral_oscillating_phase _ μ (fun y => φ y * ψ (halfTr (tq V b.1 y))) M hM hg hMg s
   have e1 : (fun t : ℝ => Jt ψ V μ φ (b + c t)) = fun t : ℝ => ∫ y, φ y * ψ (halfTr (tq V b.1 y)) *
       Complex.exp (2 * Real.pi * Complex.I * ((t * M y : ℝ) : ℂ)) ∂μ := by
     funext t
@@ -265,7 +258,7 @@ theorem W_mult {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) {θ
       Complex.exp (2 * Real.pi * Complex.I * ((s * multM θ α V a y : ℝ) : ℂ)) := fun s y => by
     rw [tq_path]
     exact hph _ s
-  exact GlobalTheory.T.fourier_one_parameter_integral (hermA D r) lam' (path hσ a) (continuous_path hσ a) _ _ (cont φ hφ) (cont _ hMφ)
+  exact _root_.GlobalTheory.CompanionTheory.OneParamFourier.integral_mul_char_eq_of_hasDerivAt (hermA D r) lam' (path hσ a) (continuous_path hσ a) _ _ (cont φ hφ) (cont _ hMφ)
     (intg φ hφ) (intg _ hMφ) (chi ψ β) (continuous_chi hψ β) (norm_chi hψ β) (pairF θ α a β)
     (chi_path hσ hph a β)
     (hasDeriv_Jt hψ V μ (GlobalTheory.T.integrable_of_mem_schwartzA D θ hθ _ _ μ φ hφ) hMc.measurable
@@ -366,7 +359,7 @@ theorem GlobalTheory.CompanionTheory.WSum.summable_W_of_two_mul_lt_rank : ∀ (D
   obtain ⟨C, hC⟩ := hdec
   have hlev := fun k => GlobalTheory.T.integral_multiple_path_trivial_character D r V ψ hψ θ σ hσ (a k) φ hφ
   choose Nk hNk hNy using hlev
-  refine GlobalTheory.T.summable_of_lattice_decay_of_injective (HermE D r) d _ (fun β k => GlobalTheory.CompanionTheory.WSum.pairF θ α (a k) β) hinj (∏ k, Nk k)
+  refine _root_.GlobalTheory.CompanionTheory.LatticeCount.summable_of_lattice_decay (HermE D r) d _ (fun β k => GlobalTheory.CompanionTheory.WSum.pairF θ α (a k) β) hinj (∏ k, Nk k)
     (Finset.prod_pos fun k _ => hNk k) C hC fun β hW k => ?_
   obtain ⟨n, hn⟩ := GlobalTheory.CompanionTheory.WSum.W_int hψ hσ hph (a k) (Nk k) (hNy k) β hW
   obtain ⟨c, hc⟩ := Finset.dvd_prod_of_mem Nk (Finset.mem_univ k)

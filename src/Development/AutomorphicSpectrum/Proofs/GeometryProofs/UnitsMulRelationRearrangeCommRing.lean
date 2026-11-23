@@ -76,16 +76,16 @@ theorem pfold : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host
     have e₁ := congrArg (fun q => q.left) hy0
     have e₂ : homAt x (jetAug : Jet k Unit p →ₐ[k] k) ≫ (1 : Tm x p ⟶ t.G) = 1 := by simp [Hom.one_def]
     exact e₁.trans (congrArg (fun q => q.left) e₂).symm
-  obtain ⟨τ, hτ, hτ1⟩ := GlobalTheory.T.line_bundle_section_difference_generator t.G.left t.PP.L t.PP.isLB k p y.left (1 : Tm x p ⟶ t.G).left hy1
-  obtain ⟨C, hC, hCv⟩ := GlobalTheory.T.frobenius_torsion_generator_relation E H X0 t k x p y hyp κ hκ τ hτ
-  refine ⟨C, hC, GlobalTheory.T.frobenius_generator_correspondence E H X0 t k x p y hy0 κ hκ2 τ hτ1 C hCv, fun j₀ hj₀ m => ?_⟩
+  obtain ⟨τ, hτ, hτ1⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Coc.jetPair_gen t.G.left t.PP.L t.PP.isLB k p y.left (1 : Tm x p ⟶ t.G).left hy1
+  obtain ⟨C, hC, hCv⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Coc.exists_gen_pfold E H X0 t k x p y hyp κ hκ τ hτ
+  refine ⟨C, hC, _root_.GlobalTheory.CompanionTheory.Ar.Coc.Pf.red_one E H X0 t k x p y hy0 κ hκ2 τ hτ1 C hCv, fun j₀ hj₀ m => ?_⟩
   obtain ⟨u, hu, hκ3'⟩ := hκ3 k x d g (p + m + 1)
   obtain ⟨e₀, he₀, hve⟩ := GlobalTheory.T.germ_jet_unit_on_chart E H X0 t k p x d g w m j₀ hj₀
   obtain ⟨τ₀, hτ₀, hvτ⟩ := GlobalTheory.T.jet_section_generator_value E H X0 t k x p y (Jet k (Fin 1 × Fin d) m) hy0 τ hτ1 j₀ hj₀
   have hp0 : ((p : ℕ) : Jet k (Fin 1 × Fin d) m) = 0 := by
     have : ((p : ℕ) : k) = 0 := CharP.cast_eq_zero k p
     rw [← map_natCast (algebraMap k (Jet k (Fin 1 × Fin d) m)), this, map_zero]
-  obtain ⟨v, hv⟩ := GlobalTheory.T.jet_augmentation_one_pth_power (Jet k (Fin 1 × Fin d) m) p hp0 ((e₀ * τ₀ : (Jet (Jet k (Fin 1 × Fin d) m) Unit p)ˣ) : Jet (Jet k (Fin 1 × Fin d) m) Unit p) (by
+  obtain ⟨v, hv⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Coc.QAlg.pow_eq_one_add (Jet k (Fin 1 × Fin d) m) p hp0 ((e₀ * τ₀ : (Jet (Jet k (Fin 1 × Fin d) m) Unit p)ˣ) : Jet (Jet k (Fin 1 × Fin d) m) Unit p) (by
     rw [Units.val_mul, map_mul, he₀, hτ₀, _root_.one_mul])
   refine ⟨v, fun h => ?_⟩
   have hju : jq w p m (u : Jet k (Fin 2 × Fin d) (p + m + 1)) = 1 + dQ _ p ^ p * algebraMap _ _ (psJet m (dSer gs fun i => w i ^ p)) := by

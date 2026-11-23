@@ -677,6 +677,6 @@ end Formalism.FourierDecayAlt.P.AdicNeighbourhood
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem nonStationary : Formalism.FourierDecayAlt.A6.NonStationary := AdicNeighbourhood.nonStationary_main
+alias nonStationary := _root_.Formalism.FourierDecayAlt.P.AdicNeighbourhood.nonStationary_main
 
 end Formalism.FourierDecayAlt.P

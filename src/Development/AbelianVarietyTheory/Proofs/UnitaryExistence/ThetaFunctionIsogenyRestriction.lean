@@ -199,20 +199,6 @@ theorem exists_prod_ne_zero {σ κ W : Type} [Fintype σ] [NormedAddCommGroup W]
   rw [e, h3]
   exact mul_ne_zero h0 hs
 
-theorem exists_coc {ι : Type} [Fintype ι]
-    (b : Module.Basis (Fin (2 * Fintype.card ι)) ℝ (EuclideanSpace ℂ ι))
-    (hint : ∀ x y : EuclideanSpace ℂ ι, x ∈ lat b → y ∈ lat b → ∃ k : ℤ, (Hf x y).im = k)
-    (hperf : ∀ φ : lat b →+ ℤ, ∃ x ∈ lat b, ∀ y : lat b,
-      (φ y : ℝ) = (Hf x (y : EuclideanSpace ℂ ι)).im) :
-    ∃ Y : GT ι, Y.b = b ∧ FPw.Coc Y 1 := by
-  first
-  | exact @_root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc
-  | exact _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc
-  | (apply _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc ..)
-
 variable {g : ℕ} {Hm : Matrix (Fin g) (Fin g) ℂ}
 
 
@@ -251,7 +237,7 @@ theorem exists_theta (hH : Hm.PosDef) (Λ : AddSubgroup (Fin g → ℂ)) [hd : D
     simp [b₀]
   have hsk : ∀ z u : Fin g → ℂ, (star u ⬝ᵥ Hm.mulVec z).im = -(star z ⬝ᵥ Hm.mulVec u).im :=
     fun z u => by rw [ThetaTranslSpan.herm_swap hH z u]; simp
-  obtain ⟨Y, hYb, hC⟩ := exists_coc b (fun x y hx hy => by
+  obtain ⟨Y, hYb, hC⟩ := _root_.GlobalTheory.UpperHalfImaginaryForm.exists_coc b (fun x y hx hy => by
     obtain ⟨x, rfl⟩ := Φ.surjective x
     obtain ⟨y, rfl⟩ := Φ.surjective y
     rw [hΦ]

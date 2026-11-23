@@ -118,10 +118,6 @@ theorem act_isLoUni_map {K : Type} [Field K] {N : ℕ} (ψ : K →+* ℂ) {M : M
     (h : IsLoUni M) : IsLoUni (M.map ψ) := fun i j =>
   ⟨fun hij => by simp [(h i j).1 hij], fun hij => by subst hij; simp [(h i i).2 rfl]⟩
 
-theorem act_isLoUni_conjTranspose {N : ℕ} {C : Matrix (Fin N) (Fin N) ℂ} (h : IsUpUni C) : IsLoUni Cᴴ :=
-  fun i j => ⟨fun hij => by simp [Matrix.conjTranspose_apply, (h j i).1 hij],
-    fun hij => by subst hij; simp [Matrix.conjTranspose_apply, (h i i).2 rfl]⟩
-
 theorem act_sgn_mem {r : ℕ} {Z P m : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hZ : IsUnit Z.det)
     (hP : Z * actSgn r = P) (hm : m ∈ GlobalTheory.LoopV.stabU Z) : actSgn r * m * actSgn r ∈ GlobalTheory.LoopV.stabU P := by
   refine ⟨act_isUpUni_sgn hm.1, ?_⟩
@@ -207,9 +203,9 @@ theorem cover_action : ∀ Cg cb Cu cT CT C0 A : ℝ, ∀ (D : D7) (X : HidaSett
   refine ⟨T, ?_, ?_⟩
   · set a : D.what₂.Tau → Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) ℂ := fun τ => Uc τ * (sg * (B τ)⁻¹ * sg) with ha
     set b : D.what₂.Tau → Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) ℂ := fun τ => sg * B τ * sg * (Uc τ)⁻¹ with hb
-    have hau : ∀ τ, IsUpUni (a τ) := fun τ => Formalism.L2.SG.Pf.ZsVolGrp.isUpUni_mul (hUcu τ)
+    have hau : ∀ τ, IsUpUni (a τ) := fun τ => _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul (hUcu τ)
       (act_isUpUni_sgn (Formalism.L2.SG.Pf.ZsVolGrp.isUpUni_inv (hBu τ)).1)
-    have hbu : ∀ τ, IsUpUni (b τ) := fun τ => Formalism.L2.SG.Pf.ZsVolGrp.isUpUni_mul (act_isUpUni_sgn (hBu τ))
+    have hbu : ∀ τ, IsUpUni (b τ) := fun τ => _root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul (act_isUpUni_sgn (hBu τ))
       (Formalism.L2.SG.Pf.ZsVolGrp.isUpUni_inv (hUcu τ)).1
     have hconj : ∀ τ (M : Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) ℂ),
         Xm τ * M * (Xm τ)⁻¹ = a τ * (sg * M * sg) * b τ := fun τ M => by
@@ -335,7 +331,7 @@ theorem cover_action : ∀ Cg cb Cu cT CT C0 A : ℝ, ∀ (D : D7) (X : HidaSett
       rw [act_zhatOM_map, hzr, hdec, hzm, Matrix.map_mul, Matrix.map_mul, ← hZs] at h
       exact h
     set g0 := B τ * (sg * (Uc τ)⁻¹ * sg) with hg0
-    have hCl := act_isLoUni_conjTranspose (hCu τ)
+    have hCl := _root_.GlobalTheory.FrameStab.isLoUni_conjTranspose (hCu τ)
     have hCli := Formalism.L2.SG.Pf.ZsVolGrp.isLoUni_inv hCl
     have hZg : Zv * g0 * Zv⁻¹ = ((Cm τ)ᴴ)⁻¹ * L.map (embS D τ) := by
       have h1 : (Cm τ)ᴴ * (Zv * g0) = L.map (embS D τ) * Zv := by
@@ -349,10 +345,10 @@ theorem cover_action : ∀ Cg cb Cu cT CT C0 A : ℝ, ∀ (D : D7) (X : HidaSett
         rw [← h1, ← Matrix.mul_assoc ((Cm τ)ᴴ)⁻¹, hCli.2.1, Matrix.one_mul]
       rw [h2, Matrix.mul_assoc, Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hZu, Matrix.mul_one]
     have hg0s : g0 ∈ GlobalTheory.LoopV.stabU Zv := by
-      refine ⟨Formalism.L2.SG.Pf.ZsVolGrp.isUpUni_mul (hBu τ)
+      refine ⟨_root_.GlobalTheory.UpperUnipotentProductInertiaEigenvalues.isUpUni_mul (hBu τ)
         (act_isUpUni_sgn (Formalism.L2.SG.Pf.ZsVolGrp.isUpUni_inv (hUcu τ)).1), ?_⟩
       rw [hZg]
-      exact Formalism.L2.SG.Pf.ZsVolGrp.isLoUni_mul hCli.1 (act_isLoUni_map _ hL)
+      exact _root_.PI.TermAttrConst.UnitaryGroupMassFormula.isLoUni_mul hCli.1 (act_isLoUni_map _ hL)
     have hg0i : g0⁻¹ = sg * Uc τ * sg * (B τ)⁻¹ := by
       refine Matrix.inv_eq_right_inv ?_
       calc g0 * (sg * Uc τ * sg * (B τ)⁻¹) = B τ * (sg * ((Uc τ)⁻¹ * (sg * (sg * (Uc τ * (sg * (B τ)⁻¹)))))) := by

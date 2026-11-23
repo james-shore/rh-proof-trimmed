@@ -226,6 +226,4 @@ theorem ld_blockWt_anti (p q w : ℕ) (lam2 : Fin q → ℕ) (ha : Antitone lam2
       rw [Fin.le_def] at hij ⊢
       simpa using hij
 
-theorem d_n_ne_zero : DnNeZero := dnNeZero
-
 end Formalism.CohomologicalDescent.LD

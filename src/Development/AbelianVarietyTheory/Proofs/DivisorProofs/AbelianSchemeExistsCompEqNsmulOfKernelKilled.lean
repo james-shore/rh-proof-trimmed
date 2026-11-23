@@ -114,7 +114,7 @@ theorem exists_comp_eq_nsmul (A B : AbVar k) (f : A ⟶ B) (hdim : A.dim = B.dim
     rw [← h0, finrank_eq_of_kerPow hi0 hi (fun R _ _ x hx => ⟨fun _ => hkill _ x hx, fun _ => pow_zero x⟩)]
     exact hH
   haveI hGfin := finite_invKer f hf
-  obtain ⟨C, q, hq, hdq, hker, huniv⟩ := GlobalTheory.T.exists_quotient_of_galoisStable_finite_subgroup k A (invKer f) hGfin (card_invKer_ne_zero f hf)
+  obtain ⟨C, q, hq, hdq, hker, huniv⟩ := _root_.GlobalTheory.AV.AbVar.exists_quot_of_galois_stable k A (invKer f) hGfin (card_invKer_ne_zero f hf)
     (galPts_mem_invKer f)
   obtain ⟨h, hqh⟩ := huniv B f (fun x hx => hx.1)
   have hdimAC := (GlobalTheory.AV.AbVar.isogeny_flat_finrank k A C q hq).1
@@ -125,8 +125,8 @@ theorem exists_comp_eq_nsmul (A B : AbVar k) (f : A ⟶ B) (hdim : A.dim = B.dim
   have hv : ∀ l : ℕ, l.Prime → (l : k) ≠ 0 → padicValNat l (deg f) = padicValNat l (deg q) := by
     intro l hl hlK
     haveI := Fact.mk hl
-    have e1 := GlobalTheory.T.card_lPowerTorsion_kernel_eq_lPart_isogenyDegree k l hlK A B f hf
-    have e2 := GlobalTheory.T.card_lPowerTorsion_kernel_eq_lPart_isogenyDegree k l hlK A C q hq
+    have e1 := _root_.GlobalTheory.AV.AbVar.card_kerLPart_eq k l hlK A B f hf
+    have e2 := _root_.GlobalTheory.AV.AbVar.card_kerLPart_eq k l hlK A C q hq
     have hset : Nat.card {x : A.Pt // x ≫ f.hom = 1 ∧ ∃ n : ℕ, x ^ l ^ n = 1} =
         Nat.card {x : A.Pt // x ≫ q.hom = 1 ∧ ∃ n : ℕ, x ^ l ^ n = 1} := by
       apply Nat.card_congr

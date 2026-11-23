@@ -106,14 +106,9 @@ section Frame
 
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : RigLB A} {x0 : Sp ℂ ⟶ S} {g : ℕ} (Φ : AnFr A L x0 g)
 
-theorem e_zero : Φ.e 0 = 1 := by
-  have h := Φ.e_add 0 0
-  rw [add_zero] at h
-  exact mul_left_cancel (a := Φ.e 0) (by rw [_root_.mul_one]; exact h.symm)
-
 theorem e_neg (z : Fin g → ℂ) : Φ.e (-z) = (Φ.e z)⁻¹ := by
   have h := Φ.e_add (-z) z
-  rw [neg_add_cancel, GlobalTheory.AnValSym.e_zero Φ] at h
+  rw [neg_add_cancel, _root_.GlobalTheory.AnVal.AnFr.genMove_e_zero Φ] at h
   exact eq_inv_of_mul_eq_one_left h.symm
 
 private theorem isHolFam_comp' {Y Y' : Scheme.{0}} {n : ℕ} {e : (Fin n → ℂ) → (Sp ℂ ⟶ Y)} (he : IsHolFam e)
@@ -217,7 +212,7 @@ theorem sq_const_eq_one : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMo
   unfold symGen at hcorr
   obtain ⟨hpt, hU⟩ := hT
   obtain ⟨v, hv, hnuR⟩ := neg_const Φ k nu hnu
-  have e0 : Φ.e 0 = 1 := e_zero Φ
+  have e0 : Φ.e 0 = 1 := _root_.GlobalTheory.AnVal.AnFr.genMove_e_zero Φ
   have hx' : Φ.e (-x) = U.pt⁻¹ := by rw [e_neg, hpt]
   have hp1 : (ptSecT A (Φ.e 0)).left ≫ (translT A U.pt⁻¹).left = (ptSecT A (Φ.e (-x))).left := by
     rw [← Over.comp_left, ptSecT_translT, e0, _root_.mul_one, hx']

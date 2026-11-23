@@ -349,7 +349,7 @@ theorem UpperTheory.V.Hi.levelUR2LocSub :
     intro z hz i
     rw [← RingHom.comp_apply, hz]
     exact x.commutes _
-  obtain ⟨e, he, hpow, hone⟩ := ls_core x.toRingHom (fun b => Up.pt_le x b) (fun b hb => Up.pt_lt x b hb) htf
+  obtain ⟨e, he, hpow, hone⟩ := ls_core x.toRingHom (fun b => Up.pt_le x b) (fun b hb => _root_.UpperTheory.Reformulated.B.Gs4b.pt_lt x b hb) htf
     (heckeGen Y op) (fun i => algebraMap c.O A (a i)) j htop (by
       intro z hz hj i
       have h := hH z hz (fun i => by simpa only [map_sub, hza z hz] using hj i) i

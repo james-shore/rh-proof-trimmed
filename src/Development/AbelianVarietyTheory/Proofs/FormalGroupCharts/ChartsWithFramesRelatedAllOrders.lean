@@ -69,9 +69,9 @@ theorem jRel_of_charts_frames : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
     GlobalTheory.T.tangentDirection_two_charts_linearPart E H V t d B B' κ κ' tg tg' uv uv' x x' φ hc hc' hu h0 hx⟩
   obtain ⟨ε, hε, hr⟩ := GlobalTheory.T.jetFrames_differ_by_unit_each_order E H V t d x x' e e' φ h0 hx hg hg' m
   exact ⟨ε, hinv, hε, hlaw, hact,
-    GlobalTheory.T.frame_ratio_first_partial_law E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr h1 h1',
-    GlobalTheory.T.frame_ratio_second_partial_law E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr h2 h2',
-    GlobalTheory.T.frame_ratio_symmetry_series E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr hs hs',
-    GlobalTheory.T.frame_ratio_adjointness_series E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr hstar hsurj ha ha'⟩
+    _root_.GlobalTheory.RatioPh1.frame_ratio_first_partial_law_alt E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr h1 h1',
+    _root_.GlobalTheory.ChartCmp.RatioSecondLaw.ratio_second_law E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr h2 h2',
+    _root_.GlobalTheory.FrameRatioSym.frameRatio_sy E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr hs hs',
+    _root_.GlobalTheory.FrameRatioAdj.ratio_adj E H V t d B B' κ κ' tg tg' uv uv' x x' e e' φ φi m ε hc hc' hinv hx hlaw hact hg hg' hr hstar hsurj ha ha'⟩
 
 end GlobalTheory.ChartCmp

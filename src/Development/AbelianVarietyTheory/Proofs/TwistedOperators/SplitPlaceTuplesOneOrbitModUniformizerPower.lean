@@ -392,7 +392,7 @@ theorem one_orbit : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topologi
     rw [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top]
     exact Ideal.pow_le_self (Nat.pos_iff_ne_zero.mp he)
   have hJ : IsUnit (W.gram.map (fun c => p.pr (incA D c))).det := by
-    have h := (GlobalTheory.FrameCont.gram_det_isUnit W).map (p.pr.comp (incA D))
+    have h := (_root_.GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.gram_det_isUnit W).map (p.pr.comp (incA D))
     rw [RingHom.map_det] at h
     exact h
   have hU : ∀ j, u.1.1.map p.pr (Fin.last ρ) j = if j = Fin.last ρ then 1 else 0 := by

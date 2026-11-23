@@ -56,18 +56,6 @@ open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.IndefiniteRowSideF
 namespace GlobalTheory.IdeleCovolume
 
 
-open NumberField.Units NumberField.Units.dirichletUnitTheorem in
-theorem exists_bound_log (E : Type) [Field E] [NumberField E] :
-    ∃ R : ℝ, ∀ t : InfinitePlace E → ℝ, ∃ (u : (𝓞 E)ˣ) (n : ℤ), ∀ w : InfinitePlace E,
-      |t w + Real.log (w (u : E)) + n| ≤ R := by
-  first
-  | exact @_root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le
-  | exact _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le
-  | (apply _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le ..)
-
 theorem isCompact_units {A : Type} [Monoid A] [TopologicalSpace A] [ContinuousMul A] [T1Space A] {C : Set A}
     (hC : IsCompact C) : IsCompact {x : Aˣ | (x : A) ∈ C ∧ ((x⁻¹ : Aˣ) : A) ∈ C} := by
   have h2 := (Units.isClosedEmbedding_embedProduct (α := A)).isCompact_preimage
@@ -117,7 +105,7 @@ theorem isCompact_box (r : ℝ) :
 theorem exists_compact_unit : ∃ K : Set (Ad E)ˣ, IsCompact K ∧ ∀ a ∈ GlobalTheory.Mem.Chr.unitIdl E,
     ∃ (k : Eˣ) (n : ℤ), diag E k * eIdele E ^ n * a ∈ K := by
   haveI := GlobalTheory.AdelicUnitaryTop.t2Space_adeleRing_numberField E
-  obtain ⟨R, hR⟩ := exists_bound_log E
+  obtain ⟨R, hR⟩ := _root_.GlobalTheory.IntegerUnitBound.exists_unit_int_abs_le E
   refine ⟨_, isCompact_units (isCompact_box E (Real.exp R)), fun a ha => ?_⟩
   obtain ⟨u, n, hu⟩ := hR fun w => Real.log ‖pInf E (a : Ad E) w‖
   let k : Eˣ := Units.map (algebraMap (𝓞 E) E).toMonoidHom u

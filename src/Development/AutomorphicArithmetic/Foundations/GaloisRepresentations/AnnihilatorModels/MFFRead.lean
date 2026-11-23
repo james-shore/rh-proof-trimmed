@@ -67,7 +67,7 @@ private theorem count_eq (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMonObj 
     apply IsFractionRing.injective V (FractionRing V)
     simpa using h
   let pt : Sp (FractionRing V) := (⊥ : PrimeSpectrum (FractionRing V))
-  have h1 := GlobalTheory.T.finrank_finiteFlat_torsion_subscheme_eq_card_points S A hab K i c hm hfin hfl hi (FractionRing V) hcF
+  have h1 := _root_.GlobalTheory.TorsionRank.finrank_eq_card S A hab K i c hm hfin hfl hi (FractionRing V) hcF
     (spMap (algebraMap V (FractionRing V)) ≫ z) pt
   have h2 := Scheme.Hom.finrank_of_isPullback k (spMap (algebraMap V B)) K.hom z hk
     (spMap (algebraMap V (FractionRing V)) pt)

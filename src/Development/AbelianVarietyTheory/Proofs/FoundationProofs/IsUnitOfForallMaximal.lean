@@ -225,9 +225,4 @@ theorem card_fixed_eq (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] [Finite R
     rw [← h3, h1, Nat.card_congr e]
   exact Nat.mul_self_inj.mp hsq
 
-theorem card_fixed (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] [Finite R]
-    (X : Matrix (Fin 2) (Fin 2) R) : IsUnit (2 : R) → X * X = 1 → X.det = -1 → X.trace = 0 →
-      Nat.card {v : Fin 2 → R // X *ᵥ v = v} = Nat.card R :=
-  fun h2 hXX hdet htr => card_fixed_eq l R X h2 hXX hdet htr
-
 end GlobalTheory.OddInvolution

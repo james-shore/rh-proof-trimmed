@@ -44,6 +44,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InHHDef
 
 @[expose] public section
 
@@ -63,12 +64,6 @@ theorem hJ_add_right (x y y' : Fin n → ℂ) : hJ ε x (y + y') = hJ ε x y + h
 
 theorem hJ_add_left (x x' y : Fin n → ℂ) : hJ ε (x + x') y = hJ ε x y + hJ ε x' y := by
   unfold hJ; rw [star_add, add_dotProduct]
-
-theorem hJ_sub_right' (x y y' : Fin n → ℂ) : hJ ε x (y - y') = hJ ε x y - hJ ε x y' := by
-  unfold hJ; rw [Matrix.mulVec_sub, dotProduct_sub]
-
-theorem hJ_sub_left' (x x' y : Fin n → ℂ) : hJ ε (x - x') y = hJ ε x y - hJ ε x' y := by
-  unfold hJ; rw [star_sub, sub_dotProduct]
 
 theorem hJ_smul_right (c : ℂ) (x y : Fin n → ℂ) : hJ ε x (c • y) = c * hJ ε x y := by
   unfold hJ; rw [Matrix.mulVec_smul, dotProduct_smul, smul_eq_mul]
@@ -339,7 +334,7 @@ theorem Uw (H : Frame ε e f z w) (hU : (U : Matrix (Fin n) (Fin n) ℂ)ᴴ * Fo
     obtain ⟨x1, hx1, hx1e⟩ := U_X_surj U hS h0
     have e1 : z = (U : Matrix (Fin n) (Fin n) ℂ) *ᵥ (z - x1) := by
       rw [Matrix.mulVec_sub, hx1e, Matrix.sub_mulVec, Matrix.one_mulVec, sub_sub_cancel]
-    rw [e1, hJ_U U hU, hJ_sub_left', H.zw, hJ_X_left hx1 (fun c => H.ew c b), sub_zero]
+    rw [e1, hJ_U U hU, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left, H.zw, hJ_X_left hx1 (fun c => H.ew c b), sub_zero]
   have := perp_e H _ hUe
   rw [hUz, zero_div, zero_smul, sub_zero] at this
   unfold uu Mm
@@ -413,7 +408,7 @@ theorem Vm_hJ (H : Frame ε e f z w) (hU : (U : Matrix (Fin n) (Fin n) ℂ)ᴴ *
   have huu := uu_on H hU hS
   have hperp : ∀ v : Fin n → ℂ, ∀ c, hJ ε (w c) (v - ∑ b, hJ ε (w b) v • w b) = 0 := by
     intro v c
-    rw [hJ_sub_right', hJ_sum_right]
+    rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, hJ_sum_right]
     simp [hJ_smul_right, hww]
   have hperp' : ∀ v : Fin n → ℂ, ∀ c, hJ ε (v - ∑ b, hJ ε (w b) v • w b) (w c) = 0 := fun v c => by
     rw [← hJ_conj_lemma, hperp, star_zero]

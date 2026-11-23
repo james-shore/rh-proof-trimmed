@@ -46,6 +46,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhitGenOf
 import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.IsSingTest
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EventuallyAlgebraMapMemIntegers
 
 @[expose] public section
 
@@ -110,7 +111,7 @@ def OkE {d : ℕ} (bs : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F
   ∀ m, algebraMap F (Fv F v) (bs.repr x m) ∈ v.adicCompletionIntegers F
 
 theorem ev_okE {d : ℕ} (bs : Module.Basis (Fin d) F E) (x : E) : ∀ᶠ v in cofinite, OkE bs v x :=
-  Filter.eventually_all.2 fun m => GlobalTheory.CompanionTheory.SiegelND.Coef.Lim.ev_rat _
+  Filter.eventually_all.2 fun m => _root_.GlobalTheory.AdelicU.eventually_algebraMap_mem_integers _
 
 theorem tmul_mem_intE {d : ℕ} (bs : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F)) {c : Fv F v} {x : E}
     (hc : c ∈ v.adicCompletionIntegers F) (hx : OkE bs v x) : c ⊗ₜ[F] x ∈ intE bs v := fun m => by
@@ -125,12 +126,12 @@ theorem eventually_good (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {d M n : ℕ
     Filter.eventually_all.2 fun k => Filter.eventually_all.2 fun l => ev_okE bs _
   have h3 : ∀ᶠ v in cofinite, ∀ k, OkE bs v (σ (bs k)) := Filter.eventually_all.2 fun k => ev_okE bs _
   have h4 : ∀ᶠ v in cofinite, ∀ k, algebraMap F (Fv F v) (Algebra.trace F E (bs k)) ∈ v.adicCompletionIntegers F :=
-    Filter.eventually_all.2 fun k => GlobalTheory.CompanionTheory.SiegelND.Coef.Lim.ev_rat _
+    Filter.eventually_all.2 fun k => _root_.GlobalTheory.AdelicU.eventually_algebraMap_mem_integers _
   have h6 : ∀ᶠ v in cofinite, ∀ i j, OkE bs v (J i j) :=
     Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j => ev_okE bs _
   have h7 : ∀ᶠ v in cofinite, ∀ i j, OkE bs v (T i j) :=
     Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j => ev_okE bs _
-  filter_upwards [ev_okE bs (1 : E), h2, h3, h4, GlobalTheory.CompanionTheory.SiegelND.Coef.Lim.ev_rat (1 / 2 : F), h6, h7]
+  filter_upwards [ev_okE bs (1 : E), h2, h3, h4, _root_.GlobalTheory.AdelicU.eventually_algebraMap_mem_integers (1 / 2 : F), h6, h7]
     with v h1 h2 h3 h4 h5 h6 h7
   have hone : (1 : Fv F v ⊗[F] E) ∈ intE bs v := by
     rw [Algebra.TensorProduct.one_def]

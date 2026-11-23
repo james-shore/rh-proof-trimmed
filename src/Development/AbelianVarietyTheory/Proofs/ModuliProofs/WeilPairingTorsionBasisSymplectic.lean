@@ -59,17 +59,7 @@ open GlobalTheory.ZV
 
 namespace GlobalTheory.FormTorsion
 
-theorem rel_prod {G U : Type} [Monoid G] [CommMonoid U] (R : G → U → Prop) (h1 : R 1 1)
-    (hm : ∀ x x' c c', R x c → R x' c' → R (x * x') (c * c')) :
-    ∀ (n : ℕ) (y : Fin n → G) (c : Fin n → U) (a : Fin n → ℕ), (∀ i, R (y i) (c i)) →
-      R (List.ofFn fun i => y i ^ a i).prod (∏ i, c i ^ a i) := by
-  first
-  | exact @_root_.GlobalTheory.RelationPowers.rel_prod_pow
-  | exact _root_.GlobalTheory.RelationPowers.rel_prod_pow
-  | (apply _root_.GlobalTheory.RelationPowers.rel_prod_pow <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RelationPowers.rel_prod_pow <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RelationPowers.rel_prod_pow <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RelationPowers.rel_prod_pow ..)
+alias rel_prod := _root_.GlobalTheory.RelationPowers.rel_prod_pow
 
 theorem unitOn_inj {R : Type} [CommRing R] : Function.Injective (unitOn (R := R)) := fun _ _ h =>
   Units.ext ((ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of R)).inv).1 (congrArg Units.val h))

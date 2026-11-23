@@ -99,7 +99,7 @@ theorem lamMemP : LamMemP := by
     simp only [AlgHom.comp_apply, hcol l j hlj] at h1
     simpa [MvPolynomial.eval_rename, MvPolynomial.coe_aeval_eq_eval] using h1
 
-theorem subCoeffP : SubCoeffP := QB.subCoeffP
+alias subCoeffP := _root_.Formalism.MainNotions.flipOneThree.Pf.QB.subCoeffP
 
 end Formalism.MainNotions.flipOneThree.Pf
 

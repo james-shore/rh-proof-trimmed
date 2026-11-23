@@ -71,7 +71,7 @@ theorem base : PeriodRingBase := fun l _ =>
     galois_t_transform := galois_period_cyclotomic l
     σ_u := base_σ_u l
     κ_mul := base_κ_mul l
-    κ_cont := base_κ_cont l
+    κ_cont := _root_.period_ring_base.continuous_κ l
     χ_cont := base_χ_cont l
     ι_Bst := base_ι_Bst l
     u_Bst := base_u_Bst l

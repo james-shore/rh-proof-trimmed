@@ -59,7 +59,7 @@ theorem dual_classes_unbounded : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → �
   have hcol : ∀ s (x : Fin 2 → Qbar l), Loc.colRep W s x = mat W s *ᵥ x := fun s x => by
     simp [Loc.colRep, Matrix.toLin'_apply]
   obtain ⟨c0, hc0⟩ := hN.int
-  obtain ⟨c, k, hle, hYi, hYu, -, hYg⟩ := GlobalTheory.T.galois_cocycle_integral_after_scaling l Ω S W c0 y hN.cont hc0 hN.unr hyZ hyU A
+  obtain ⟨c, k, hle, hYi, hYu, -, hYg⟩ := _root_.GlobalTheory.CocInt.integral_after_scaling l Ω S W c0 y hN.cont hc0 hN.unr hyZ hyU A
   have hW : ∀ s i j, mat W s i j ∈ c.O := fun s i j => hle (hc0 s i j)
   obtain ⟨Y, hY⟩ : ∃ Y : G ℚ Ω → Fin 2 → Qbar l, Y = fun s => ((l : ℕ) : Qbar l) ^ k • y s := ⟨_, rfl⟩
   have hYs : ∀ s, Y s = ((l : ℕ) : Qbar l) ^ k • y s := fun s => by rw [hY]
@@ -82,7 +82,7 @@ theorem dual_classes_unbounded : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → �
     rw [map_smul, ← smul_sub, ← h1, smul_smul, inv_mul_cancel₀ hl0, one_smul]
   obtain ⟨k0, hk0⟩ := GlobalTheory.T.nonzero_class_bounded_torsion l Ω W c Y hW hYZ hYI hYB
   have hY0 : ∀ a ∈ (toGS Ω (S : Set Pl)).ker, Y a = 0 := by
-    refine GlobalTheory.T.cocycle_vanishes_on_ker_toGS_of_inertia_coboundary l Ω e S A W Y hN hYZ fun q hq B hB => ?_
+    refine _root_.GlobalTheory.Ord2.GwCount.cocycle_zero_on_ker_toGS l Ω e S A W Y hN hYZ fun q hq B hB => ?_
     have hlq : ((l : ℕ) : 𝓞 ℚ) ∉ q.asIdeal := fun h => hq (hN.above q h)
     obtain ⟨x, -, hx⟩ := hYu q hlq B hB
     exact ⟨x, fun s hs => by rw [hYs]; exact hx s hs⟩
@@ -120,7 +120,7 @@ theorem dual_classes_unbounded : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → �
       funext s; simp only [yF, Pi.sub_apply]; push_cast; rw [sub_smul]
     rw [e1] at h
     have hd := hk0 (t + k0) _ (intCast_mem _ _) h
-    refine GlobalTheory.T.not_congruent_zero_intCast_mul_prime_pow l t k0 (((i : ℕ) : ℤ) - ((j : ℕ) : ℤ)) ?_ ?_ hd
+    refine _root_.GlobalTheory.Ord2.IntNorm.not_cg_int_mul_pow l t k0 (((i : ℕ) : ℤ) - ((j : ℕ) : ℤ)) ?_ ?_ hd
     · intro h0; apply hij; ext; omega
     · have hi := i.2; have hj := j.2
       have : ((l ^ t : ℕ) : ℤ) = (l : ℤ) ^ t := by push_cast; rfl

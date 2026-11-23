@@ -109,11 +109,6 @@ theorem half_int_coords {E : Type} [Field E] [NumberField E] (d : ℕ) (hd : d.P
     rw [he] at h5; linear_combination h5⟩
   exact Int.prime_two.dvd_of_dvd_pow h6
 
-theorem exists_rat_coords {E : Type} [Field E] [NumberField E] (d : ℕ)
-    (s : E) (hs : s ^ 2 = -(d : E)) {x : E} (hx : x ∈ IntermediateField.adjoin ℚ {s}) :
-    ∃ a b : ℚ, x = (a : E) + (b : E) * s :=
-  _root_.GlobalTheory.RatCoordsAdjoin.exists_rat_add_mul_of_mem_adjoin d s hs hx
-
 theorem normOne_iff_of_sqrt {E : Type} [Field E] [NumberField E] (d : ℕ) (hd : d.Prime) (h4 : d % 4 = 3)
     (s : E) (hs : s ^ 2 = -(d : E)) (c : E ≃ₐ[ℚ] E) (hc : c s = -s) (M p : ℕ) :
     NormOne d M p ↔ ∃ π : 𝓞 E, (π : E) ∈ IntermediateField.adjoin ℚ {s} ∧ (π : E) * c (π : E) = (p : E) ∧
@@ -162,7 +157,7 @@ theorem normOne_iff_of_sqrt {E : Type} [Field E] [NumberField E] (d : ℕ) (hd :
         have : (y : E) = ((π : E) - 1) / M := by rw [hyE]; field_simp; ring
         rw [this]
         exact div_mem (sub_mem hK (one_mem _)) (natCast_mem _ _)
-      obtain ⟨a, b, hab⟩ := exists_rat_coords d s hs hyK
+      obtain ⟨a, b, hab⟩ := _root_.GlobalTheory.RatCoordsAdjoin.exists_rat_add_mul_of_mem_adjoin d s hs hyK
       obtain ⟨t, u, ⟨w, hw⟩, ht, hu⟩ := half_int_coords d hd h4 s hs c hc a b (hab ▸ y.isIntegral_coe)
       have htE : 2 * (a : E) = t := by exact_mod_cast congrArg (Rat.cast : ℚ → E) ht
       have huE : 2 * (b : E) = u := by exact_mod_cast congrArg (Rat.cast : ℚ → E) hu

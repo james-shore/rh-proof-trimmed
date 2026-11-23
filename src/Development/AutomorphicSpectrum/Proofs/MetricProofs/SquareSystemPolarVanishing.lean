@@ -279,29 +279,13 @@ theorem samePot_comb {P J : Ideal (MRing ι)} {e : ℕ} (R : AnLogRes P J e) {X 
     show _ = (c a : ℝ) * (Real.log ((C a).h (R.lift x y)) - (Pp a).φ (π x) (π y))
     ring
 
-theorem continuous_of_smooth {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X) {u : X → ℝ}
-    (hu : A.Smooth u) : Continuous u := by
-  rw [continuous_iff_continuousAt]
-  intro x
-  obtain ⟨j, hj⟩ := A.cover x
-  have hm : A.chart j x ∈ (A.chart j).target ∩ (A.chart j).symm ⁻¹' Set.univ :=
-    ⟨(A.chart j).map_source hj, trivial⟩
-  have hopen : IsOpen ((A.chart j).target ∩ (A.chart j).symm ⁻¹' Set.univ) := by
-    simpa using (A.chart j).open_target
-  have h1 : ContinuousAt (u ∘ (A.chart j).symm) (A.chart j x) :=
-    (hu j).continuousOn.continuousAt (hopen.mem_nhds hm)
-  have h2 := ContinuousAt.comp (f := A.chart j) (x := x) h1 ((A.chart j).continuousAt hj)
-  refine h2.congr ?_
-  filter_upwards [(A.chart j).open_source.mem_nhds hj] with y hy
-  simp [(A.chart j).left_inv hy]
-
 theorem mIntegrable_gT {d : ℕ} {SY : AnSys (d + 1) σ} {a₀ : σ} {ε : σ → ℤ} (Q : AnSq SY a₀ ε) {t : ℝ}
     (ht : 0 < t) (ht' : t ≤ SY.t₀) (Φ : Fin (d + 2) → LocPot Q.SW.X)
     (hΦ : ∀ i, IsPotential Q.SW.A (Φ i)) : MIntegrable Q.SW.A Φ (Q.gT t) := by
   have h1 : MIntegrable Q.SW.A Φ (logNormSec Q.L' Q.v) :=
     logNormIntegrable Q.SW.A Q.L' Q.v _ _ Q.potL' Q.secv Q.sncv Φ hΦ
   have hc : ∀ a, Continuous (SY.phT a t) := fun a =>
-    continuous_of_smooth SY.A (((SY.reg a).2.2 t ht ht').1)
+    _root_.ReciprocityTheory.AnForm.M.st_smooth_continuous SY.A (((SY.reg a).2.2 t ht ht').1)
   have hcont : Continuous fun x => Q.cst + (1 / 2) * ∑ a, (ε a : ℝ) *
       (SY.phT a t (Q.q 0 x) + SY.phT a t (Q.q 1 x)) :=
     continuous_const.add (continuous_const.mul (continuous_finsetSum _ fun a _ =>

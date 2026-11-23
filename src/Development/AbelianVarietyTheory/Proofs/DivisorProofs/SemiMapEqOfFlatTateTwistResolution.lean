@@ -59,9 +59,7 @@ noncomputable section
 
 namespace GlobalTheory.EtC.ScalarExt
 
-theorem sec_map_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
-    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) :=
-  (congrArg (fun f => ModuleCat.Hom.hom f x) (φ.hom.naturality g.op)).symm
+alias sec_map_res := _root_.GlobalTheory.EtC.CupSpec.map_res
 
 theorem loc_mono {U : Scheme.{0}} {P P' : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : Loc U P)
     (hP : ∀ V g, P V g → P' V g) : Loc U P' := by
@@ -129,10 +127,10 @@ theorem semiMap_op_eq_of_flat_res : ∀ (Q q : ℕ) [NeZero Q], q ∣ Q → ∀ 
       erw [HomologicalComplex.comp_f, Category.assoc, Category.assoc]
       exact congrArg (_ ≫ ·) key
     · exact (HomologicalComplex.isZero_single_obj_X _ _ _ _ hi).eq_of_src _ _
-  obtain ⟨H⟩ := (GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective (ZMod q) _ _ _ εb).2 _ _ hcomp
-  have h1 := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective (ZMod Q) (ZMod q) (unitSemi T) σ (semiBar σ hl) (semi_factor σ hl)).1 E n x
-  have h2 := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective (ZMod Q) (ZMod q) (unitSemi T) σ' (semiBar σ' hl') (semi_factor σ' hl')).1 E n x
-  rw [h1, h2, ((GlobalTheory.T.hypercohomologyPullbackPushforward_functorial (ZMod q)).2.2.2.2 _ _ ⟨H⟩ _ n).2]
+  obtain ⟨H⟩ := (_root_.GlobalTheory.EtC.extHom_of_quasiIso (ZMod q) _ _ _ εb).2 _ _ hcomp
+  have h1 := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij (ZMod Q) (ZMod q) (unitSemi T) σ (semiBar σ hl) (semi_factor σ hl)).1 E n x
+  have h2 := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij (ZMod Q) (ZMod q) (unitSemi T) σ' (semiBar σ' hl') (semi_factor σ' hl')).1 E n x
+  rw [h1, h2, ((_root_.GlobalTheory.EtC.ZcFun.main (ZMod q)).2.2.2.2 _ _ ⟨H⟩ _ n).2]
 
 end GlobalTheory.EtC.ScalarExt
 

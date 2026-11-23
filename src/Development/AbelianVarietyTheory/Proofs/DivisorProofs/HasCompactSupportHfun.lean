@@ -197,7 +197,7 @@ theorem twTr_linearIndependent : ∀ (G : Type) [Group G] [TopologicalSpace G] [
   haveI : ∀ i, FiniteDimensional ℂ (fixed (σ i).ρ K') := fun i => (hfix i).1
   let b : ∀ i, Module.Basis (Fin (Module.finrank ℂ (fixed (σ i).ρ K'))) ℂ (fixed (σ i).ρ K') :=
     fun i => Module.finBasis ℂ _
-  obtain ⟨x, hx⟩ := GlobalTheory.SimpleCharIndep.exists_smul_eq_ite (R := MonoidAlgebra ℂ G)
+  obtain ⟨x, hx⟩ := _root_.GlobalTheory.OrthogonalProjectionOnto.main (R := MonoidAlgebra ℂ G)
     (fun i => (σ i).ρ.asModule) hzero i₀
     (fun i => Finset.univ.image fun k => (((b i k : fixed (σ i).ρ K') : (σ i).V) : (σ i).ρ.asModule))
   set s : Finset G := x.coeff.support

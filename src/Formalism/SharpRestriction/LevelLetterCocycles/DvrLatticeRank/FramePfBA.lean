@@ -75,7 +75,7 @@ theorem framepf_βα_core (Bs : FramepfBas W T) (π' Eπ : LetA O n) (h' M : ℕ
     (x : LA W T π' c) (hx : x ∈ LamLA W T π' Eπ h' c ⊤) :
     Φ (Ψ x) - lam • x ∈ JLA W T π' Eπ h' M c := by
   choose a haΔ ha using (framepf_mem_toLA π' c eb _).1 hx
-  have hee : (letE c : LetA O n) * letE c = letE c := Formalism.MainNotions.LiftingTheory.wmap_letE_idem c
+  have hee : (letE c : LetA O n) * letE c = letE c := _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq c
   have hx' : algebraMap (LetA O n) W.EE (Eπ ^ h') • x =
       ∑ k, algebraMap (LetA O n) W.EE ((letE c : LetA O n) * a k) ⊗ₜ[O] eb k := by
     rw [← framepf_smulLA_alg, ← (Algebra.TensorProduct.basis W.EE eb).sum_repr (smulLA W T π' c _ x)]

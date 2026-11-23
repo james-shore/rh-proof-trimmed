@@ -61,10 +61,6 @@ open scoped TensorProduct
 
 namespace UpperTheory.Cb.SeparatedH1Cohomology
 
-private theorem res_nsmul' {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (k : V ⟶ U) (n : ℕ)
-    (a : Sec F U) : Sec.res k (n • a) = n • Sec.res k a :=
-  map_nsmul (F.obj.map k.op).hom n a
-
 private theorem exists_h0_restriction_eq_of_le_open {q : ℕ} [NeZero q] {X E : Scheme.{0}} [IsIntegral X] (ζ : Prim q Γ(X, ⊤))
     (j : E ⟶ X) [IsOpenImmersion j] {O P : E.Opens} (h : P ≤ O) (c : Ht q (sch.obj P) 0 1) :
     ∃ a : Ht q (sch.obj O) 0 1, pl q 1 (E.homOfLE h) 0 a = c := by
@@ -77,7 +73,7 @@ private theorem exists_h0_restriction_eq_of_le_open {q : ℕ} [NeZero q] {X E : 
     have h1 : c = e P (k • twGen 1 (ζ.map (P.ι ≫ j).appTop.hom)) := by
       rw [← hk, AddEquiv.apply_symm_apply]
     have hk : E.homOfLE h ≫ O.ι ≫ j = P.ι ≫ j := by simp
-    rw [h1, he, res_nsmul', (GlobalTheory.T.tateTwist_sections_locally_generated q 1).2.2.2.1, ← hk]
+    rw [h1, he, _root_.GlobalTheory.TwSec.res_nsmul, (_root_.GlobalTheory.EtC.twist_sections q 1).2.2.2.1, ← hk]
     congr 1
   · have hb : P = ⊥ := le_bot_iff.1 fun p hp => (hP ⟨(⟨p, hp⟩ : P)⟩).elim
     subst hb

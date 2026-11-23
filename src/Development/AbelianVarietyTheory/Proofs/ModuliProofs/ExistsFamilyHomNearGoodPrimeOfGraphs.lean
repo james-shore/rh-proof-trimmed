@@ -293,7 +293,7 @@ theorem exists_hom_near_of_graphs : ∀ (R σ₁ σ₂ Hh : Type) [CommRing R] [
     have h1 : r * a f₁ ^ (n + 1) = 0 := by
       rw [pow_succ, ← _root_.mul_assoc, hr₀, ← map_mul, h0, map_zero]
     exact hr (((IsLocalization.Away.algebraMap_isUnit f₁).pow (n + 1)).mul_left_eq_zero.1 h1)
-  obtain ⟨g, hg, -, hc, -⟩ := GlobalTheory.T.exists_scheme_map_of_projective_coordinates R _ _ _ Y _ (sY ≫ spMap a) _ N _ ty hP hY.1 fun T _ β y v hy hv => by
+  obtain ⟨g, hg, -, hc, -⟩ := _root_.GlobalTheory.ZM.RepMap.exists_map_of_coord R _ _ _ Y _ (sY ≫ spMap a) _ N _ ty hP hY.1 fun T _ β y v hy hv => by
     obtain ⟨β', hβ'⟩ : ∃ β' : S →+* T, y ≫ sY = spMap β' := ⟨(Spec.preimage (y ≫ sY)).hom, (Spec.map_preimage _).symm⟩
     have hβ : β'.comp a = β := by
       rw [← Category.assoc, hβ', spc] at hy
@@ -312,7 +312,7 @@ theorem exists_hom_near_of_graphs : ∀ (R σ₁ σ₂ Hh : Type) [CommRing R] [
       (IsPullback.of_hasPullback _ _) (hG K x φ hx).1 fun T _ β v hv => ?_
     rw [hmap' K x x' hx']
     have hcut := (hG K x φ hx).2
-    exact ⟨eval₂_eq_zero_of_forms_le (homogeneousComponent_mem_vanIdeal d _)
+    exact ⟨eval₂_eq_zero_of_forms_le (_root_.GlobalTheory.ZM.FormsFamily.component_mem_vanIdeal d _)
         (fun e he F hF h => ((hcut e he).2 F hF).2 h) β v hv,
       eval₂_eq_zero_of_forms_le (GlobalTheory.ZM.ideals_homogeneous.2.1 K σ₁ σ₂ _ _ _ _ M₁ th₁ _ M₂ th₂ φ h₁.1 h₂.1)
         (fun e he F hF h => ((hcut e he).2 F hF).1 h) β v hv⟩

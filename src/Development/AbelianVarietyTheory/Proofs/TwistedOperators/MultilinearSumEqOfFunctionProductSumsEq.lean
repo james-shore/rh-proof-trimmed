@@ -49,17 +49,6 @@ open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheor
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 namespace GlobalTheory
 
-theorem funSub_evalExpand_exists {X : Type} (V : Submodule ℂ (X → ℂ)) (W : Submodule ℂ V)
-    [FiniteDimensional ℂ W] :
-    ∃ (P : Finset X) (e : X → V), ∀ w ∈ W, w = ∑ x ∈ P, (w : X → ℂ) x • e x := by
-  first
-  | exact @_root_.GlobalTheory.FinsetKernelTrivial.main
-  | exact _root_.GlobalTheory.FinsetKernelTrivial.main
-  | (apply _root_.GlobalTheory.FinsetKernelTrivial.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FinsetKernelTrivial.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FinsetKernelTrivial.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FinsetKernelTrivial.main ..)
-
 theorem funSub_multilinear_expand {ι : Type} [Fintype ι] [DecidableEq ι] {X : ι → Type}
     {V : ∀ i, Submodule ℂ (X i → ℂ)} {N : Type} [AddCommMonoid N] [Module ℂ N]
     (Φ : MultilinearMap (RingHom.id ℂ) (fun i => V i) N) (P : ∀ i, Finset (X i))
@@ -92,8 +81,8 @@ theorem funProd_multilinear_sum_eq : ∀ {ι κ Δ : Type} [Fintype ι] [Decidab
   let Wg : ∀ j, Submodule ℂ (V' j) := fun j =>
     Submodule.span ℂ ((τ.support.image (fun d => g d j) ∪ τ.support.image (fun d => g' d j) :
       Finset (V' j)) : Set (V' j))
-  choose P e hP using fun i => funSub_evalExpand_exists (V i) (Wf i)
-  choose Q e' hQ using fun j => funSub_evalExpand_exists (V' j) (Wg j)
+  choose P e hP using fun i => _root_.GlobalTheory.FinsetKernelTrivial.main (V i) (Wf i)
+  choose Q e' hQ using fun j => _root_.GlobalTheory.FinsetKernelTrivial.main (V' j) (Wg j)
   have key : ∀ (F : Δ → ∀ i, V i) (G : Δ → ∀ j, V' j),
       (∀ d ∈ τ.support, ∀ i, F d i ∈ Wf i) → (∀ d ∈ τ.support, ∀ j, G d j ∈ Wg j) →
       (τ.sum fun d a => a * M (F d) (G d)) =

@@ -57,8 +57,7 @@ open GlobalTheory.CompanionTheory.PcB (chz_norm continuous_chz)
 
 variable {D : D7} {n ρ p : ℕ}
 
-theorem continuous_adjMx : Continuous (adj : Mx D ρ p → Mx D p ρ) :=
-  Continuous.matrix_transpose (Continuous.matrix_map continuous_id GlobalTheory.AnnihBox.continuous_cA')
+alias continuous_adjMx := _root_.GlobalTheory.MixModel.continuous_adj
 
 theorem continuous_bT (hn : ρ + p = n) :
     Continuous fun u : hermA D ρ × Mx D ρ p × hermA D p => bT hn u.1 u.2.1 u.2.2 := by

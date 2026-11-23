@@ -111,10 +111,6 @@ variable {G : Type} [Group G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field 
     [IsScalarTower K₀ K BdR] [IsScalarTower Qp K₀ BdR]
     (PD : PeriodData G Qp K₀ K B BdR) {E : Type} [Field E] [Algebra Qp E]
 
-theorem mem_Dcris {V : Type} [AddCommGroup V] [Module E V] [Module Qp V] [IsScalarTower Qp E V]
-    (ρ : Representation E G V) (x : V ⊗[Qp] B) : x ∈ Dcris PD ρ ↔ ∀ g, actVB PD ρ g x = x := by
-  simp only [Dcris, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.id_apply, sub_eq_zero]
-
 theorem sub_sigma_ne_one [CharZero Qp] (e : K₀) : e - PD.σ e ≠ 1 := by
   intro h
   haveI := PD.finK₀
@@ -129,10 +125,6 @@ theorem sub_sigma_ne_one [CharZero Qp] (e : K₀) : e - PD.σ e ≠ 1 := by
 theorem act_mul (κ : G →* Eˣ) (g : G) (x y : E ⊗[Qp] B) :
     actVB PD (chRep κ) g x * actVB PD (chRep κ⁻¹) g y = actVB PD (chRep (1 : G →* Eˣ)) g (x * y) :=
   by apply _root_.UpperTheory.Reformulated.B.Qh15.act_mul <;> assumption
-
-theorem phi_mul (x y : E ⊗[Qp] B) :
-    φVB PD (LL := E) (x * y) = φVB PD (LL := E) x * φVB PD (LL := E) y :=
-  by apply _root_.UpperTheory.Reformulated.B.Qf14.phi_mul <;> assumption
 
 theorem ctr_act (μ : E →ₗ[Qp] Qp) (g : G) (x : E ⊗[Qp] B) :
     ctr B μ (actVB PD (chRep (1 : G →* Eˣ)) g x) = PD.actB g (ctr B μ x) := by
@@ -177,10 +169,10 @@ theorem char_generic [CharZero Qp] [FiniteDimensional Qp E] [Nontrivial B] (κ :
       (1 : E ⊗[Qp] B) = ∑ i, AlgebraTensorModule.map (LinearMap.id : E →ₗ[E] E) (LinearMap.mulLeft Qp (b i)) (d i))
     (hsurj : ∀ y ∈ Dcris PD (chRep κ⁻¹), ∃ z ∈ Dcris PD (chRep κ⁻¹), z - φVB PD (LL := E) z = y)
     (x : E ⊗[Qp] B) (hx : x ∈ Dcris PD (chRep κ)) (hφ : φVB PD (LL := E) x = x) : x = 0 := by
-  rw [mem_Dcris] at hx
+  rw [_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris] at hx
   have hinv : ∀ (μ : E →ₗ[Qp] Qp), ∀ y ∈ Dcris PD (chRep κ⁻¹), ∃ c : K₀, algebraMap K₀ B c = ctr B μ (x * y) := by
     intro μ y hy
-    rw [mem_Dcris] at hy
+    rw [_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris] at hy
     refine PD.invB _ fun g => ?_
     rw [← ctr_act, ← act_mul PD κ, hx, hy]
   have hzero : ∀ y ∈ Dcris PD (chRep κ⁻¹), x * y = 0 := by
@@ -190,14 +182,14 @@ theorem char_generic [CharZero Qp] [FiniteDimensional Qp E] [Nontrivial B] (κ :
     by_contra hne
     have hc0 : c ≠ 0 := by rintro rfl; exact hne (by rw [← hc, map_zero])
     have hy' : y * ((1 : E) ⊗ₜ[Qp] algebraMap K₀ B c⁻¹) ∈ Dcris PD (chRep κ⁻¹) := by
-      rw [mem_Dcris] at hy ⊢
+      rw [_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris] at hy ⊢
       intro g
       rw [galois_action_mul_unramified, hy]
     obtain ⟨z, hz, hzy⟩ := hsurj _ hy'
     obtain ⟨e, he⟩ := hinv μ z hz
     have h1 : ctr B μ (x * (z - φVB PD (LL := E) z)) = 1 := by
       rw [hzy, ← mul_assoc, ctr_mul, ← hc, ← map_mul, mul_inv_cancel₀ hc0, map_one]
-    have h2 : x * φVB PD (LL := E) z = φVB PD (LL := E) (x * z) := by rw [phi_mul, hφ]
+    have h2 : x * φVB PD (LL := E) z = φVB PD (LL := E) (x * z) := by rw [_root_.UpperTheory.Reformulated.B.Qf14.phi_mul, hφ]
     rw [mul_sub, map_sub, h2, ctr_phi, ← he, PD.φ_K₀, ← map_sub, ← map_one (algebraMap K₀ B)] at h1
     exact sub_sigma_ne_one PD e ((algebraMap K₀ B).injective h1)
   obtain ⟨m, b, d, hd, h1⟩ := hspan
@@ -260,7 +252,7 @@ theorem isOpenEmbedding_GK (K : FinExt l) : IsOpenEmbedding (GK K).subtype := by
 
 theorem iota_mem (K : FinExt l) (ρ : Representation E ↥(GK K) V) {y : V ⊗[ℚ_[l]] Bcr l}
     (hy : y ∈ Dcris ((PP l).PD K) ρ) : ιV ((PP l).PD K) (LL := E) (V := V) y ∈ DdR ((PP l).PD K) ρ := by
-  rw [mem_Dcris] at hy
+  rw [_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris] at hy
   have h : ∀ g (y : V ⊗[ℚ_[l]] Bcr l), actVdR ((PP l).PD K) ρ g (ιV ((PP l).PD K) (LL := E) (V := V) y) =
       ιV ((PP l).PD K) (LL := E) (V := V) (actVB ((PP l).PD K) ρ g y) := by
     intro g y
@@ -296,7 +288,7 @@ theorem surj_of_inj (K : FinExt l) (ρ : Representation E ↥(GK K) V)
       (LinearMap.id - φVB ((PP l).PD K) (LL := E) (V := V) : _ →ₗ[E] _) y ∈ Dcris ((PP l).PD K) ρ := by
     intro y hy
     refine Submodule.sub_mem _ hy ?_
-    rw [mem_Dcris] at hy ⊢
+    rw [_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris] at hy ⊢
     intro g
     rw [hc, hy]
   have hi : Function.Injective (LinearMap.restrict _ hm) := by
@@ -304,7 +296,7 @@ theorem surj_of_inj (K : FinExt l) (ρ : Representation E ↥(GK K) V)
     rintro ⟨y, hy⟩ h0
     have h1 : y - φVB ((PP l).PD K) (LL := E) y = 0 := congrArg Subtype.val h0
     refine Subtype.ext (h y (fun g => ?_) ?_)
-    · rw [actC_eq]; exact (mem_Dcris _ _ _).1 hy g
+    · rw [actC_eq]; exact (_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris _ _ _).1 hy g
     · rw [phC_eq K]; exact (sub_eq_zero.1 h1).symm
   intro y hy
   obtain ⟨z, hz⟩ := LinearMap.injective_iff_surjective.1 hi ⟨y, hy⟩
@@ -351,9 +343,9 @@ theorem noFix_char_field (K : FinExt l) (κ : ↥(GK K) →* Eˣ) (hκ : Continu
     exact Nat.mul_pos finrank_pos finrank_pos
   have hno : NoFix (GK K).subtype (chRep κ⁻¹) := by
     intro y hy hφ
-    have h1 := hfil (iota_mem K _ ((mem_Dcris _ _ y).2 fun g => by rw [← actC_eq]; exact hy g))
+    have h1 := hfil (iota_mem K _ ((_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris _ _ y).2 fun g => by rw [← actC_eq]; exact hy g))
     rw [phC_eq K] at hφ
-    obtain ⟨v, rfl⟩ := (GlobalTheory.T.tensor_fundamental_exact_sequence_crystalline l _ _ T K E E).2 y hφ
+    obtain ⟨v, rfl⟩ := (_root_.GlobalTheory.FundSeq.tensor_fundamental_sequence l _ _ T K E E).2 y hφ
       (GlobalTheory.DRFil.FilV_antitone ((PP l).PD K) (show (0 : ℤ) ≤ 1 by omega) h1)
     by_contra hne
     have hv : v ≠ 0 := by rintro rfl; exact hne (zero_tmul _ _)
@@ -363,7 +355,7 @@ theorem noFix_char_field (K : FinExt l) (κ : ↥(GK K) →* Eˣ) (hκ : Continu
     exact GlobalTheory.DRFil.one_notMem_fil_one ((PP l).PD K) (by simpa using h2)
   intro x hx hφ
   refine char_generic ((PP l).PD K) κ ?_ (surj_of_inj K _ hno) x
-    ((mem_Dcris _ _ x).2 fun g => by rw [← actC_eq]; exact hx g) (by rw [← phC_eq K]; exact hφ)
+    ((_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris _ _ x).2 fun g => by rw [← actC_eq]; exact hx g) (by rw [← phC_eq K]; exact hφ)
   exact GlobalTheory.Per.TiedSpan.exists_sum_of_isCrys ((PP l).PD K) (GlobalTheory.TateDualCrys.fracInv_of_tied T K)
     (GlobalTheory.TateDualCrys.lineUnit_of_tied T K) _ hcr 1
 
@@ -572,7 +564,7 @@ theorem exists_fixed (hc : ∀ x, Continuous fun g => ρ g x) (hn : NoFix (GK K)
   letI : Module ℤ_[l] V := Module.compHom V (algebraMap ℤ_[l] ℚ_[l])
   haveI : IsScalarTower ℤ_[l] ℚ_[l] V := IsScalarTower.of_algebraMap_smul fun _ _ => rfl
   haveI : Module.Finite ℚ_[l] ↥(Dcris ((PP l).PD K) ρ) :=
-    (GlobalTheory.Per.FontaineTied.fontCore_all_of_tied l _ _ T K ℚ_[l] ℤ_[l] GlobalTheory.Published.BlochKato.goodO_padicInt
+    (_root_.GlobalTheory.Per.FontaineAll.fontCore_of_tied l _ _ T K ℚ_[l] ℤ_[l] GlobalTheory.Published.BlochKato.goodO_padicInt
       { V := V, ρ := ρ, cont := hc }).1.1
   have hcm : ∀ g (y : V ⊗[ℚ_[l]] Bcr l), actVB ((PP l).PD K) ρ g (φVB ((PP l).PD K) (LL := ℚ_[l]) y) =
       φVB ((PP l).PD K) (LL := ℚ_[l]) (actVB ((PP l).PD K) ρ g y) := by
@@ -582,7 +574,7 @@ theorem exists_fixed (hc : ∀ x, Continuous fun g => ρ g x) (hn : NoFix (GK K)
     | add x x' hx hx' => simp only [map_add (f := _), hx, hx']
     | tmul v b => simp [actVB, φVB, ((PP l).PD K).φ_comm]
   have hd : x - φVB ((PP l).PD K) (LL := ℚ_[l]) x ∈ Dcris ((PP l).PD K) ρ := by
-    rw [mem_Dcris]
+    rw [_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris]
     intro g
     have h1 := congrArg (φVB ((PP l).PD K) (LL := ℚ_[l])) (hx g)
     have h2 : φVB ((PP l).PD K) (LL := ℚ_[l]) (c g ⊗ₜ[ℚ_[l]] (1 : Bcr l)) = c g ⊗ₜ[ℚ_[l]] (1 : Bcr l) := by
@@ -592,7 +584,7 @@ theorem exists_fixed (hc : ∀ x, Continuous fun g => ρ g x) (hn : NoFix (GK K)
   obtain ⟨z, hz, hzx⟩ := surj_of_inj K ρ hn _ hd
   refine ⟨x - z, ?_, fun g => ?_⟩
   · rw [map_sub, sub_eq_sub_iff_sub_eq_sub, ← neg_inj, neg_sub, neg_sub, ← hzx]
-  · rw [map_sub, (mem_Dcris _ _ _).1 hz g, hx g]
+  · rw [map_sub, (_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris _ _ _).1 hz g, hx g]
     abel
 
 open GlobalTheory.BKRightExact in
@@ -608,15 +600,15 @@ theorem core_surj (hc : ∀ x, Continuous fun g => ρ g x) (hc' : ∀ x, Continu
   letI : Module ℤ_[l] V' := Module.compHom V' (algebraMap ℤ_[l] ℚ_[l])
   haveI : IsScalarTower ℤ_[l] ℚ_[l] V' := IsScalarTower.of_algebraMap_smul fun _ _ => rfl
   obtain ⟨hdr', hl2⟩ := lift_dR T K ℚ_[l] ρ ρ' f hf hs hdr
-  obtain ⟨-, d₂', hd2, hfil⟩ := GlobalTheory.T.crystalline_coboundary_lift l _ _ T K ℚ_[l] ℤ_[l] GlobalTheory.Published.BlochKato.goodO_padicInt
+  obtain ⟨-, d₂', hd2, hfil⟩ := _root_.GlobalTheory.CobCrisLift.coboundary_lift l _ _ T K ℚ_[l] ℤ_[l] GlobalTheory.Published.BlochKato.goodO_padicInt
     { V := V', ρ := ρ', cont := hc' } hdr' c' x' hx'
   obtain ⟨d₂, hd₂, e₂⟩ := hl2 _ hd2
-  obtain ⟨x, y, c, hy, hx1, hx2, hc, hcx⟩ := GlobalTheory.T.exists_blochKato_cocycle_of_crys_deRham_pair l _ _ T K ℚ_[l] ℤ_[l]
+  obtain ⟨x, y, c, hy, hx1, hx2, hc, hcx⟩ := _root_.GlobalTheory.FundDel.connecting_cocycle l _ _ T K ℚ_[l] ℤ_[l]
     GlobalTheory.Published.BlochKato.goodO_padicInt { V := V, ρ := ρ, cont := hc } 0 (zero_mem _) d₂ hd₂
   dsimp only at *
   refine ⟨c, hc, ?_⟩
   rw [← hx2, map_sub, map_ιV] at e₂
-  obtain ⟨v, hv⟩ := (GlobalTheory.T.tensor_fundamental_exact_sequence_crystalline l _ _ T K ℚ_[l] V').2
+  obtain ⟨v, hv⟩ := (_root_.GlobalTheory.FundSeq.tensor_fundamental_sequence l _ _ T K ℚ_[l] V').2
     (AlgebraTensorModule.map f (LinearMap.id : Bcr l →ₗ[ℚ_[l]] Bcr l) x - x')
     (by rw [map_sub, hφ, ← map_φVB, ← sub_eq_zero.1 hx1])
     (by

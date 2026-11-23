@@ -142,6 +142,6 @@ theorem descent_free_cocycle : ∀ (A B D T : Type) [CommRing A] [CommRing B] [C
       change ψ (p (z i)) = ψ _
       rw [hmv i, hψp]
       exact congrFun h i
-  exact GlobalTheory.T.faithfullyFlat_descent_free_module_cocycle A B d ε' hε' hcoc' N hN'
+  exact _root_.GlobalTheory.CocycleDescent.descent A B d ε' hε' hcoc' N hN'
 
 end GlobalTheory

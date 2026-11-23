@@ -57,10 +57,6 @@ variable {A : Type} [CommRing A] {m : Type} [Fintype m] [DecidableEq m]
 
 theorem cay_cT_apply (σ : A →+* A) (M : Matrix m m A) (i j : m) : Formalism.UG.cT σ M i j = σ (M j i) := rfl
 
-theorem cay_cT_add (σ : A →+* A) (M N : Matrix m m A) :
-    Formalism.UG.cT σ (M + N) = Formalism.UG.cT σ M + Formalism.UG.cT σ N := by
-  ext i j; simp only [cay_cT_apply, Matrix.add_apply, map_add (f := _)]
-
 theorem cay_cT_sub (σ : A →+* A) (M N : Matrix m m A) :
     Formalism.UG.cT σ (M - N) = Formalism.UG.cT σ M - Formalism.UG.cT σ N := by
   ext i j; simp only [cay_cT_apply, Matrix.sub_apply, map_sub]
@@ -125,7 +121,7 @@ theorem cayleyRational_holds : CayleyQ := by
       _ = (Formalism.UG.cT σ X * X) * Xi := by rw [Matrix.mul_assoc]
       _ = Xi := by rw [hxu, Matrix.one_mul]
   have hcP : Formalism.UG.cT σ Pm = Xi * Pm := by
-    rw [hP, cay_cT_add, Formalism.UG.cT_one, hcX, Matrix.mul_add, Matrix.mul_one, hXiX, add_comm]
+    rw [hP, _root_.Formalism.L2.DIV.cT_add, Formalism.UG.cT_one, hcX, Matrix.mul_add, Matrix.mul_one, hXiX, add_comm]
   have h3 : Formalism.UG.cT σ Pm * (Pi * X) = 1 := by
     rw [hcP, Matrix.mul_assoc, ← Matrix.mul_assoc Pm, hPP, Matrix.one_mul, hXiX]
   have key : Formalism.UG.cT σ Pi = Pi * X := by

@@ -113,7 +113,7 @@ theorem finite_setOf_formOrd_ne_zero : ∀ (k : Type) [Field k] [CharZero k] (X 
   have hB : B ≠ ⊤ := fun h => by
     have hm : genericPoint X ∈ (B : Set X) := by rw [h]; trivial
     exact hm ⟨hU, hW⟩
-  refine (GlobalTheory.T.finite_codim_one_points_closed X B hB).subset ?_
+  refine (_root_.GlobalTheory.Cartier.finite_coheight_one_of_ne_top X B hB).subset ?_
   rintro z ⟨E, hE, hne⟩
   refine ⟨hE.coheight_eq_one, fun hz => hne ?_⟩
   obtain ⟨hzU, hzW⟩ := hz

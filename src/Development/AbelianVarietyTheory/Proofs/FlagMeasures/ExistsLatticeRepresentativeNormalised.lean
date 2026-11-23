@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -57,34 +58,6 @@ namespace GlobalTheory.RowPartner
 section Gen
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : ℕ} {T : E}
-
-theorem mem_orth_iff (U : Submodule E S.V) (y : S.V) : y ∈ orth S U ↔ ∀ x ∈ U, S.hT x y = 0 := by
-  simp [orth, Submodule.mem_iInf]
-
-theorem X_iso (F : LFlag S r T) {x y : S.V} (hx : x ∈ Xsp F) (hy : y ∈ Xsp F) : S.hT x y = 0 := by
-  induction hx using Submodule.span_induction with
-  | mem x hx =>
-    obtain ⟨a, rfl⟩ := hx
-    induction hy using Submodule.span_induction with
-    | mem y hy => obtain ⟨b, rfl⟩ := hy; exact F.fl.e_iso a b
-    | zero => simp
-    | add u v _ _ hu hv => simp [hu, hv]
-    | smul c u _ hu => simp [hu]
-  | zero => simp
-  | add u v _ _ hu hv => simp [hu, hv]
-  | smul c u _ hu => simp [hu]
-
-theorem z_mem_orth (F : LFlag S r T) : F.fl.z ∈ orth S (Xsp F) := by
-  rw [mem_orth_iff]
-  intro x hx
-  induction hx using Submodule.span_induction with
-  | mem x hx => obtain ⟨a, rfl⟩ := hx; exact F.fl.z_orth a
-  | zero => simp
-  | add u v _ _ hu hv => simp [hu, hv]
-  | smul c u _ hu => simp [hu]
-
-theorem X_le_orth (F : LFlag S r T) : Xsp F ≤ orth S (Xsp F) := fun y hy =>
-  (mem_orth_iff _ _).2 fun x hx => X_iso F hx hy
 
 theorem half_not_int : ¬ ∃ o : 𝓞 E, (o : E) = algebraMap ℚ E (1 / 2) := by
   rintro ⟨o, ho⟩
@@ -161,7 +134,7 @@ theorem z_not_mem_X (Λ : Submodule (𝓞 E) S.V) (F : LFlag S r T)
   apply half_not_int (E := E)
   apply hprim
   have hc : algebraMap ℚ E (1 / 2) • F.fl.z ∈ Xsp F := (Xsp F).smul_mem _ hz
-  exact ⟨Submodule.mem_sup_right hc, X_le_orth F hc⟩
+  exact ⟨Submodule.mem_sup_right hc, _root_.Formalism.MainNotions.LatticeGluingRadicals.c_X_iso F hc⟩
 
 theorem exists_partner_rep (Λ : Submodule (𝓞 E) S.V) (F : LFlag S r T)
     (hlat : Submodule.IsLattice E Λ) (hU : Formalism.HermitianLatticesTheory.IsUnimodular S.hT Λ) (hz : F.fl.z ∈ Λ)
@@ -172,8 +145,8 @@ theorem exists_partner_rep (Λ : Submodule (𝓞 E) S.V) (F : LFlag S r T)
   have hφ0 : ∀ y ∈ Xsp F, φ y = 0 := fun y hy => by simpa using congr($hφX ⟨y, hy⟩)
   set U : Submodule E S.V := Xsp F ⊔ Submodule.span E {F.fl.z} with hUdef
   set M0 : Submodule (𝓞 E) S.V := Λ ⊓ toO S U with hM0
-  have hUo : U ≤ orth S (Xsp F) := sup_le (X_le_orth F)
-    ((Submodule.span_singleton_le_iff_mem _ _).2 (z_mem_orth F))
+  have hUo : U ≤ orth S (Xsp F) := sup_le (_root_.Formalism.MainNotions.LatticeGluingRadicals.c_X_iso F)
+    ((Submodule.span_singleton_le_iff_mem _ _).2 (_root_.Formalism.L2.SG.FourParts.z_mem_orth F))
   have hprimM : IsPrimitiveSub M0 Λ := by
     refine ⟨inf_le_left, le_antisymm (le_inf inf_le_left fun x hx => Submodule.subset_span hx) ?_⟩
     refine inf_le_inf_left _ ?_
@@ -188,7 +161,7 @@ theorem exists_partner_rep (Λ : Submodule (𝓞 E) S.V) (F : LFlag S r T)
         have h1 : y + a • F.fl.z ∈ Lrep Λ F := ⟨hxΛ, hxo⟩
         have h2 : -y ∈ toO S (Xsp F) := (Xsp F).neg_mem hy
         have := Submodule.add_mem_sup h1 h2
-        simpa using this, (orth S (Xsp F)).smul_mem a (z_mem_orth F)⟩
+        simpa using this, (orth S (Xsp F)).smul_mem a (_root_.Formalism.L2.SG.FourParts.z_mem_orth F)⟩
     refine ⟨o, ?_⟩
     simp [map_add (f := _), hφ0 y hy, hφz, ho]
   choose ψ hψ using hint
@@ -212,7 +185,7 @@ theorem exists_partner_rep (Λ : Submodule (𝓞 E) S.V) (F : LFlag S r T)
     rwa [hU] at this
   refine ⟨w, ⟨hwΛ, ?_⟩, ?_⟩
   · show (w : S.V) ∈ orth S (Xsp F)
-    rw [mem_orth_iff]
+    rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth]
     intro x hx
     obtain ⟨c, hc0, hcx⟩ := exists_smul_mem_lat Λ hlat hU x
     have hcX : c • x ∈ Xsp F := by

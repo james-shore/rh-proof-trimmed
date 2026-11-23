@@ -160,7 +160,7 @@ theorem morse_local : ∀ (n : ℕ) (U K : Set (V n)) (φ g : V n → ℝ) (ε :
   obtain ⟨hzU, h, hh, hh0, hbd⟩ := hty z hz
   set H := cHess n (fun v => (φ v : ℂ)) z with hH
   have hpsd : H.PosSemidef :=
-    GlobalTheory.T.complexHessian_posSemidef_of_leviForm_nonneg n φ z (hφ.contDiffAt (hU.mem_nhds (hKU hz))) (hlevi z (hKU hz))
+    _root_.GlobalTheory.cHess_posSemidef_of_levi_nonneg n φ z (hφ.contDiffAt (hU.mem_nhds (hKU hz))) (hlevi z (hKU hz))
   have hT := hm H hpsd (hC z hz)
   set d := H.det.re / Real.pi ^ n with hd
   have hd0 : 0 ≤ d := by

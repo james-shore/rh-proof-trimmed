@@ -96,9 +96,6 @@ theorem mem_orth_ker [FiniteDimensional K X] {H W : Type} [NormedAddCommGroup H]
     exact h4 u hu
   exact h6 hw
 
-theorem re_inner_self {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] (x : H) : (⟪x, x⟫_ℂ).re = ‖x‖ ^ 2 :=
-  inner_self_eq_norm_sq (𝕜 := ℂ) x
-
 theorem csumAt_conj [NumberField K] [StarRing K] (S : CSD K) (σ : K →+* ℂ) (f g : S.Forms) :
     csumAt S ((starRingEnd ℂ).comp σ) f g = starRingEnd ℂ (csumAt S σ f g) := by
   unfold csumAt

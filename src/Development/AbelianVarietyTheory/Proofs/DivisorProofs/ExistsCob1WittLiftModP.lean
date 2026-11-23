@@ -167,7 +167,7 @@ theorem start : ∀ (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP k p] [P
           algebraMap (WittVector p k) (Fr p k) (p * w) := by
   intro p _ k _ _ _ d μ hμ c hc w
   classical
-  have hL := GlobalTheory.T.formal_group_law_linear_coeff_additive p k d μ hμ
+  have hL := _root_.GlobalTheory.Katz.coeff_law_of_degree_le_one p k d μ hμ
   have hdeg : ∀ s : Fin d ⊕ Fin d, (Finsupp.single s 1).degree ≤ 1 := fun s => by
     rw [Finsupp.degree_single]
   have hμk : ∀ i s, coeff (Finsupp.single s 1) (μ i) = coeff (Finsupp.single s 1) (addLaw k d i) :=

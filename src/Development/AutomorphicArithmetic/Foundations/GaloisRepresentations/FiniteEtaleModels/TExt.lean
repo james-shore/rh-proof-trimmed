@@ -41,6 +41,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCTools
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGtExtOfTorsion
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsoFreePerpLabelKernelWeights
 
 @[expose] public section
 
@@ -64,7 +66,7 @@ theorem UpperTheory.Gal.FiniteEtaleModels.O.tExt :
   haveI := G.finLa
   let h : Over.mk (spMap f) ⟶ Over.mk (𝟙 (Sp Ω)) := Over.homMk (spMap f) (by simp)
   haveI : Epi h := by
-    haveI : Epi h.left := (GlobalTheory.UPel.GeometricLevelExistence.epi_spMap_field f : _)
+    haveI : Epi h.left := (_root_.GlobalTheory.ArcExt.epi_spMap f : _)
     exact Over.epi_of_epi_left h
   have hadd : ∀ n a b, h ≫ I.ev n (a + b) = (h ≫ I.ev n a) * (h ≫ I.ev n b) := by
     intro n a b
@@ -108,4 +110,4 @@ theorem UpperTheory.Gal.FiniteEtaleModels.O.tExt :
                 (pull_isLB o.isLB _) h (I.isom n hn a b)
               convert hw using 1
               rw [← map_zpow]
-              exact (GlobalTheory.UPel.GeometricLevelExistence.unitOn_pull_spMap f _).symm }, fun n hn y => rfl⟩
+              exact (_root_.GlobalTheory.ZH.TorusPerp.map_unitOn f _).symm }, fun n hn y => rfl⟩

@@ -68,23 +68,9 @@ namespace GlobalTheory.CompanionTheory.Ar.HTTie
 section val
 variable {B B' : Type} [CommRing B] [CommRing B'] {Y Z : Scheme.{0}}
 
-theorem valAt_comp (y : Spec (CommRingCat.of B) ⟶ Y) (φ : Y ⟶ Z) (W : Z.Opens) (h : ⊤ ≤ (y ≫ φ) ⁻¹ᵁ W) (f : Γ(Z, W)) :
-    BT.valAt (y ≫ φ) W h f = BT.valAt y (φ ⁻¹ᵁ W) h ((φ.app W).hom f) := by
-  simp only [BT.valAt, Scheme.Hom.comp_appLE]
-  rfl
+alias valAt_comp := _root_.PositivityTheory.HtPt.Htat.Pull.valAt_comp
 
-theorem valAt_spec (φ : B →+* B') (y : Spec (CommRingCat.of B) ⟶ Y) (W : Y.Opens)
-    (h : ⊤ ≤ y ⁻¹ᵁ W) (h' : ⊤ ≤ (Spec.map (CommRingCat.ofHom φ) ≫ y) ⁻¹ᵁ W) (f : Γ(Y, W)) :
-    BT.valAt (Spec.map (CommRingCat.ofHom φ) ≫ y) W h' f = φ (BT.valAt y W h f) := by
-  have e : (Spec.map (CommRingCat.ofHom φ) ≫ y).appLE W ⊤ h' =
-      y.appLE W ⊤ h ≫ (Spec.map (CommRingCat.ofHom φ)).appTop := by
-    have := Scheme.Hom.appLE_comp_appLE (Spec.map (CommRingCat.ofHom φ)) y W ⊤ ⊤ h le_top
-    rw [← this]
-    simp [Scheme.Hom.appLE]
-    rfl
-  have n := Scheme.ΓSpecIso_naturality (CommRingCat.ofHom φ)
-  simp only [BT.valAt, e]
-  exact congrArg (fun z => z.hom ((y.appLE W ⊤ h).hom f)) n
+alias valAt_spec := _root_.PositivityTheory.HtPt.Htat.Pull.valAt_spec
 
 theorem valAt_res (y : Spec (CommRingCat.of B) ⟶ Y) (U V : Y.Opens) (hUV : U ≤ V) (h : ⊤ ≤ y ⁻¹ᵁ U) (h' : ⊤ ≤ y ⁻¹ᵁ V)
     (f : Γ(Y, V)) : BT.valAt y U h (Y.presheaf.map (homOfLE hUV).op f) = BT.valAt y V h' f := by
@@ -246,16 +232,7 @@ theorem valAt_congr {B : Type} [CommRing B] {Y : Scheme.{0}} {y y' : Spec (CommR
 theorem one_left {S : Over X} : (1 : S ⟶ G).left = S.hom ≫ (η[G]).left := by
   simp [Hom.one_def]
 
-theorem hk_stalk (ξ : Spec (CommRingCat.of Ω) ⟶ X) (p : Cpt ξ) :
-    Spec.map (CommRingCat.ofHom (genMap ξ p)) ≫ X.fromSpecStalk p.1 = ξ := by
-  obtain ⟨q, hq⟩ := p
-  have a := Scheme.SpecMap_stalkSpecializes_fromSpecStalk hq
-  have b := Scheme.Spec_stalkClosedPointTo_fromSpecStalk ξ
-  have c : Spec.map (CommRingCat.ofHom (genMap ξ ⟨q, hq⟩)) =
-      Spec.map (Scheme.stalkClosedPointTo ξ) ≫ Spec.map (X.presheaf.stalkSpecializes hq) :=
-    Spec.map_comp _ _
-  rw [c, Category.assoc]
-  exact (congrArg (fun m => Spec.map (Scheme.stalkClosedPointTo ξ) ≫ m) a).trans b
+alias hk_stalk := _root_.GlobalTheory.CompanionTheory.Ar.LieTangent.spec_genMap
 
 theorem tan_mem {R : Type} [CommRing R] [IsLocalRing R] (x : Spec (CommRingCat.of R) ⟶ X) (v : epsAt x ⟶ G)
     (hv : IsTanAt G x v) (W : G.left.Opens) (hW : (η[G]).left (x (IsLocalRing.closedPoint R)) ∈ W) :
@@ -314,9 +291,7 @@ theorem valAt_one {B : Type} [CommRing B] {Y : Scheme.{0}} (y : Spec (CommRingCa
     (h : ⊤ ≤ y ⁻¹ᵁ W) : BT.valAt y W h 1 = 1 := by
   simp [BT.valAt]
 
-theorem valAt_sub {B : Type} [CommRing B] {Y : Scheme.{0}} (y : Spec (CommRingCat.of B) ⟶ Y) (W : Y.Opens)
-    (h : ⊤ ≤ y ⁻¹ᵁ W) (a b : Γ(Y, W)) : BT.valAt y W h (a - b) = BT.valAt y W h a - BT.valAt y W h b := by
-  simp [BT.valAt]
+alias valAt_sub := _root_.PositivityTheory.HtPt.Htat.StalkDivisibility.valAt_sub
 
 theorem comp_pow' {A B : Over X} (ψ : A ⟶ B) (g : B ⟶ G) (n : ℕ) : ψ ≫ g ^ n = (ψ ≫ g) ^ n := by
   induction n with
@@ -376,22 +351,11 @@ theorem spec_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A �
     Spec.map (CommRingCat.ofHom (g.comp f)) = Spec.map (CommRingCat.ofHom g) ≫ Spec.map (CommRingCat.ofHom f) := by
   rw [CommRingCat.ofHom_comp, Spec.map_comp]
 
-theorem dual_alg {A B : Type} [CommRing A] [CommRing B] (φ : A →+* B) :
-    (dualMap φ).comp (algebraMap A (DualNumber A)) = (algebraMap B (DualNumber B)).comp φ :=
-  RingHom.ext fun a => by
-    show dualMap φ (TrivSqZeroExt.inl a) = TrivSqZeroExt.inl (φ a)
-    ext <;> simp [dualMap]
+alias dual_alg := _root_.GlobalTheory.CompanionTheory.Ar.SqAdd.dualMap_comp_algebraMap
 
-theorem dual_fst {A B : Type} [CommRing A] [CommRing B] (φ : A →+* B) :
-    (TrivSqZeroExt.fstHom B B B).toRingHom.comp (dualMap φ) = φ.comp (TrivSqZeroExt.fstHom A A A).toRingHom :=
-  RingHom.ext fun a => by
-    show (dualMap φ a).fst = φ a.fst
-    simp [dualMap]
+alias dual_fst := _root_.GlobalTheory.CompanionTheory.Ar.SqAdd.fst_comp_dualMap
 
-theorem dual_eps {A B : Type} [CommRing A] [CommRing B] (φ : A →+* B) (c : A) :
-    (dualMap φ).comp (epsMul c) = (epsMul (φ c)).comp (dualMap φ) :=
-  RingHom.ext fun a => by
-    ext <;> simp [dualMap, epsMul, _root_.mul_comm]
+alias dual_eps := _root_.GlobalTheory.CompanionTheory.Ar.LieCarrier.dualMap_epsMul
 
 section main
 variable {ξ : Spec (CommRingCat.of Ω) ⟶ X} {E : Type} [AddCommGroup E] [Module Ω E]
@@ -679,7 +643,7 @@ theorem htLat_eq_htOm [IsCommMonObj G] [IsSeparated G.hom] (hξ : IsCptGen ξ) (
     exact ⟨genMap ξ p r, ⟨r, rfl⟩, hr⟩
   · refine Submodule.span_le.2 ?_
     rintro w ⟨y, hy, hom, W, f, hW, hA, hB⟩
-    refine Submodule.subset_span (core_ge (hξ.inj p) (hk_stalk ξ p) M hw (q := p.1) hN (GlobalTheory.T.exists_stalk_fraction_of_generic ξ hξ p) Γ' i htor hy
+    refine Submodule.subset_span (core_ge (hξ.inj p) (hk_stalk ξ p) M hw (q := p.1) hN (_root_.GlobalTheory.CompanionTheory.Ar.exists_frac_genMap ξ hξ p) Γ' i htor hy
       Scheme.fromSpecStalk_closedPoint hW hA (fun e' v a b h' => ?_) (fun e' v a b => hom e' (Submodule.subset_span ⟨v, a, b⟩)))
     obtain ⟨_, ⟨r', rfl⟩, hr⟩ := hB e' v ⟨a, b⟩ h'
     exact ⟨r', hr⟩

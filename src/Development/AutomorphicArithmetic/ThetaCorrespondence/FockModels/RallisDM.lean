@@ -106,7 +106,7 @@ theorem rallis_of_dm : ResidueKilled.DM → GlobalTheory.Published.SiegelWeilUni
   have hEF := hDM1.1.1
   have hZF : GlobalTheory.Eis.IsZetaFamily A χB⁻¹ m (flat A a (swSec A B ωd ν 𝓕 (delta A B Φ₁ Φ₂)) (sZero A B)) f₁ f₂ :=
     ⟨hEF, fun s hs => (hBI s hs).1⟩
-  have hEV := UpperTheory.Lit.Rallis.T.siegelWeil_convergent_range_kFinite_thetaFun hSWU hWC D ψ A B χB ωd hωd hab hb2 hw' a ha hI θ hθ ν 𝓕 hcov mH hmH _ hφ hK
+  have hEV := _root_.UpperTheory.Lit.Rallis.SiegelWeilFinite.siegelWeil_kFin hSWU hWC D ψ A B χB ωd hωd hab hb2 hw' a ha hI θ hθ ν 𝓕 hcov mH hmH _ hφ hK
   obtain ⟨-, hZV⟩ := GlobalTheory.Eis.zetaHolValueAt_of_eisValueAt D A χB⁻¹ hHk m hm _ hDM1.1
     (fun g => hEF.analyticOnNhd_flat g) hDM1.2 f₁ f₂ (rd _ hA₁) (rd _ hA₂) hZF (sZero A B) _ hEV
 
@@ -117,7 +117,7 @@ theorem rallis_of_dm : ResidueKilled.DM → GlobalTheory.Published.SiegelWeilUni
       (GlobalTheory.Grow.ModGrowth A fun g => petersson B mH (fun h => thetaKO ω g h Φ) fun h => thetaKO ω g h Φ) ∧
       ∀ h, GlobalTheory.Grow.ModGrowth A fun g => thetaKO ω g h Φ := by
     intro Φ hΦ
-    obtain ⟨hL2, hMG⟩ := UpperTheory.Lit.Rallis.T.petersson_normSq_thetaKernel_moderateGrowth hWC D ψ A B χA χB ω ωd hω hωd hTC ha1 hw mH hmH Φ hΦ
+    obtain ⟨hL2, hMG⟩ := _root_.UpperTheory.Lit.Rallis.ThetaSq.normSq_thetaKO_modGrowth hWC D ψ A B χA χB ω ωd hω hωd hTC ha1 hw mH hmH Φ hΦ
     refine ⟨hω.om_cont Φ hΦ 0, fun γ hγ g h => ?_, hL2, hMG, fun h => ?_⟩
     · have e : ((γ * g, h) : GA D A × GA D B) = (γ, 1) * (g, h) := by simp
       unfold thetaKO

@@ -79,7 +79,7 @@ theorem natAbs_discr_dvd {F E : Type} [Field F] [NumberField F] [Field E] [Numbe
     (discr E).natAbs ∣ bound S ^ (Module.finrank ℚ E * Module.finrank ℚ E) := by
   have hdvd := GlobalTheory.T.different_dvd_ramified_prime_power E (bound S) (bound_ne_zero S) fun P hP hP0 hPd => by
     haveI := hP
-    exact GlobalTheory.T.ramified_prime_contains_discriminant F E S hE P hP0 hPd
+    exact _root_.GlobalTheory.CompanionTheory.GlobalFiniteness.natAbs_discr_mul_prod_absNorm_mem_of_dvd_differentIdeal F E S hE P hP0 hPd
   have h := map_dvd Ideal.absNorm hdvd
   rw [absNorm_differentIdeal E (𝓞 E)] at h
   have hr : ((bound S : 𝓞 E)) ^ (Module.finrank ℚ E) =

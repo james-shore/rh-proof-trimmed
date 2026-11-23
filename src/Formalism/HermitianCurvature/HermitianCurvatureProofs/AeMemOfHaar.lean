@@ -103,10 +103,6 @@ def MCOm : Prop :=
       D.castM (Nat.add_comm 1 ρ) (U.mMap k 1 ρ (Matrix.of fun _ _ => c) γ) ∈
         JF.Om k (ρ + 1) (D.castV (Nat.add_comm 1 ρ) (liftVec k 1 ρ z0)) (D.castV (Nat.add_comm 1 ρ) (liftVec k 1 ρ z0'))
 
-theorem ae_mem_of_haar {r : ℕ} {U : Set (B.Mat k r)} {μ : Measure (Mt k r)} (h : B.IsHaarOn U μ) :
-    ∀ᵐ x ∂μ, Matrix.of x ∈ U := by
-  rw [ae_iff]; exact h.conc
-
 theorem jfStep_of (hO : MCOm) : JFStep := by
   intro k ρ m e Wp Wq _ _ _ _ _ _ B1 B0 hz hz' hπ hπ' hW1 hW1' hW0 hW0' hN1 hN0 f1 f0 c hc hf1 hstep γ hγ hγO
   subst e
@@ -129,7 +125,7 @@ theorem jfStep_of (hO : MCOm) : JFStep := by
   rw [← hz, ← hz', ← hmc] at hOm
   have hInt := rhs_int B1 f1 hf1 _ hOm
   have hsH := sf_heis (k := k) ρ
-  have hsN := sf_muN (k := k) ρ
+  have hsN := _root_.Formalism.FourierDecayAlt.P.Dx2.SplitF.sf_muN (k := k) ρ
   have hfW : IsFiniteMeasure B0.μW := ⟨by rw [hW0]; exact ENNReal.one_lt_top⟩
   have hfW' : IsFiniteMeasure B0.μW' := ⟨by rw [hW0']; exact ENNReal.one_lt_top⟩
   set T : (Mt k ρ × (Mt k (1 + ρ) × Mt k ρ)) × (Mt k ρ × (Mt k (1 + ρ) × Mt k ρ)) → B.SS k (ρ + 1) :=
@@ -159,11 +155,11 @@ theorem jfStep_of (hO : MCOm) : JFStep := by
   change B.JF B0 f0 γ = ∫ x, (FI ∘ T ∘ reorderE) x ∂_
   rw [integral_prod _ hInt3, hL]
 
-  have w1 : ∀ᵐ x ∂B0.μW, Matrix.of x ∈ UWset k ρ B0.z := ae_mem_of_haar B0.haarW
-  have w1' : ∀ᵐ x ∂B0.μW', Matrix.of x ∈ UWset k ρ B0.z' := ae_mem_of_haar B0.haarW'
-  have w2 : ∀ᵐ x ∂(D.muN k ρ), Matrix.of x ∈ QuantumDeterminants.Nset k ρ := ae_mem_of_haar (Dx2.MN.haar ρ)
+  have w1 : ∀ᵐ x ∂B0.μW, Matrix.of x ∈ UWset k ρ B0.z := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.ae_mem B0.haarW
+  have w1' : ∀ᵐ x ∂B0.μW', Matrix.of x ∈ UWset k ρ B0.z' := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.ae_mem B0.haarW'
+  have w2 : ∀ᵐ x ∂(D.muN k ρ), Matrix.of x ∈ QuantumDeterminants.Nset k ρ := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.ae_mem (Dx2.MN.haar ρ)
   have wH : ∀ᵐ x ∂(B2.μHeis k ρ), Matrix.of x ∈ QuantumDeterminants.Nset k (1 + ρ) := by
-    filter_upwards [ae_mem_of_haar (Formalism.FourierDecayAlt.P.heisenberg_haar_measure k ρ)] with x hx
+    filter_upwards [_root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.ae_mem (Formalism.FourierDecayAlt.P.heisenberg_haar_measure k ρ)] with x hx
     obtain ⟨p, hp⟩ := hx
     rw [← hp]; exact Formalism.FourierDecayAlt.P.heisenberg_mem_unipotent k ρ p
   set μO := (B0.μW.prod (D.muN k ρ)).prod (B0.μW'.prod (D.muN k ρ)) with hμO

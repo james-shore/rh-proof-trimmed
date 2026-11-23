@@ -59,27 +59,6 @@ open scoped InnerProductSpace ComplexOrder ContDiff
 
 namespace GlobalTheory.LipFlow
 
-theorem cauchy {V : Type} [AddCommGroup V] [Module ℂ V] (I : V →ₗ⋆[ℂ] V →ₗ[ℂ] ℂ)
-    (h : ∀ x, 0 ≤ I x x) (x y : V) : ‖I x y‖ ^ 2 ≤ (I x x).re * (I y y).re := by
-  first
-  | exact @_root_.GlobalTheory.HermitianCauchySchwarz.main
-  | exact _root_.GlobalTheory.HermitianCauchySchwarz.main
-  | (apply _root_.GlobalTheory.HermitianCauchySchwarz.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.HermitianCauchySchwarz.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.HermitianCauchySchwarz.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.HermitianCauchySchwarz.main ..)
-
-theorem integrable_exp_abs {e : ℝ} (he : 0 < e) :
-    Integrable (fun s : ℝ => Real.exp (-(e * |s|))) := by
-  rw [← integrableOn_univ, ← Set.Iic_union_Ioi (a := (0:ℝ))]
-  refine IntegrableOn.union ?_ ?_
-  · refine (integrableOn_exp_mul_Iic he 0).congr_fun (fun x hx => ?_) measurableSet_Iic
-    simp only [abs_of_nonpos (Set.mem_Iic.1 hx)]
-    congr 1; ring
-  · refine (exp_neg_integrableOn_Ioi 0 he).congr_fun (fun x hx => ?_) measurableSet_Ioi
-    simp only [abs_of_pos (Set.mem_Ioi.1 hx)]
-    congr 1; ring
-
 theorem decay_shift {φ : ℝ → ℂ} {A e : ℝ} (he : 0 < e)
     (h : ∀ s, ‖φ s‖ ≤ A * Real.exp (-(e * |s|))) (r t : ℝ) :
     ‖φ (r + t)‖ ≤ A * Real.exp (e * |r|) * Real.exp (-(e * |t|)) := by
@@ -98,7 +77,7 @@ theorem decay_shift {φ : ℝ → ℂ} {A e : ℝ} (he : 0 < e)
 theorem integrable_fourier {φ : ℝ → ℂ} (hc : Continuous φ) {A e : ℝ} (he : 0 < e)
     (h : ∀ s, ‖φ s‖ ≤ A * Real.exp (-(e * |s|))) (ξ : ℝ) :
     Integrable (fun s : ℝ => Complex.exp (-(Complex.I * ξ * s)) * φ s) := by
-  refine ((integrable_exp_abs he).const_mul A).mono' (by fun_prop) (ae_of_all _ fun s => ?_)
+  refine ((_root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs he).const_mul A).mono' (by fun_prop) (ae_of_all _ fun s => ?_)
   rw [norm_mul, Complex.norm_exp]
   simpa using h s
 
@@ -130,7 +109,7 @@ theorem coeff_eq_zero : ∀ (V : Type) [AddCommGroup V] [Module ℂ V] (I : V �
       have e1 : φ u - φ t = I v (U (u - t) (U t v) - U t v) := by
         simp [hφ, hU]
       rw [e1]
-      refine (cauchy I hpos _ _).trans ?_
+      refine (_root_.GlobalTheory.HermitianCauchySchwarz.cauchy_schwarz I hpos _ _).trans ?_
       have := hlip (u - t) (U t v) hu'
       rw [hiso] at this
       exact mul_le_mul_of_nonneg_left this (hre v)

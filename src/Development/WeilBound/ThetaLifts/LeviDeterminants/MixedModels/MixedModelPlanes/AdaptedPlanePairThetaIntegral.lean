@@ -76,10 +76,10 @@ theorem unip_trivial_m : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
       (∀ z : Fin n₁ → _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E), ∃ b : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E), mat g *ᵥ (incM F H.ι *ᵥ z) = incM F H.ι *ᵥ z + b • incV F H.x) →
       ∃ c : ℂ, ∀ Φ ∈ schA F (Fin n × Fin d), e (om (g, 1) Φ) = c • e Φ := by
     intro g a ha hb
-    obtain ⟨h1, h2⟩ := PositivityTheory.Mix.T.hermitian_adapted_pair_of_pair F E σ B n d X W M χX χW om r s r' s' hP n₁ X₁ H j₀ j₁ M₁ om₁ r₁ s₁ hH hP₁ e he g a ha hb
-    refine PositivityTheory.Mix.T.hermitian_adapted_plane_local F E σ B n d X W M χX χW om r s r' s' hP n₁ X₁ H j₀ j₁ M₁ om₁ r₁ s₁ hH hP₁ e he
+    obtain ⟨h1, h2⟩ := _root_.GlobalTheory.MixXUnip.twist_heis_inv F E σ B n d X W M χX χW om r s r' s' hP n₁ X₁ H j₀ j₁ M₁ om₁ r₁ s₁ hH hP₁ e he g a ha hb
+    refine _root_.PositivityTheory.ThKF0.hermitian_plane_theta_restriction F E σ B n d X W M χX χW om r s r' s' hP n₁ X₁ H j₀ j₁ M₁ om₁ r₁ s₁ hH hP₁ e he
       (e ∘ₗ om (g, 1)) h1 h2 fun y => ?_
-    have := hS.adm (g, 1) _ (PositivityTheory.Mix.T.hermitian_adapted_pair_converse F E σ B n d X W M χX χW om r s r' s' hP n₁ X₁ H j₀ j₁ M₁ om₁ r₁ s₁ hH hP₁ e he y)
+    have := hS.adm (g, 1) _ (_root_.PositivityTheory.ThKF0.hermitian_plane_theta_cusp_integral F E σ B n d X W M χX χW om r s r' s' hP n₁ X₁ H j₀ j₁ M₁ om₁ r₁ s₁ hH hP₁ e he y)
     rwa [LinearMap.comp_assoc] at this
   by_cases h0 : ∀ Φ ∈ schA F (Fin n × Fin d), e Φ = 0
   · intro Φ hΦ
@@ -112,7 +112,7 @@ theorem unip_trivial_m : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
         (t : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) • (mat m *ᵥ incV F H.y) = incV F H.y ∧ ∀ z : Fin n₁ → _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E), mat m *ᵥ (incM F H.ι *ᵥ z) = incM F H.ι *ᵥ z) ∧
         ∃ c, Q m c := by
       intro t ht
-      obtain ⟨m, h1, h2, h3⟩ := PositivityTheory.Mix.T.exists_unitary_scaling_vector F E σ B n n₁ X X₁ H j₀ j₁ r s r₁ s₁ hP.base hH hP.herm hP₁.herm t ht
+      obtain ⟨m, h1, h2, h3⟩ := _root_.PositivityTheory.Mix.exists_unitary_scaling_isotropic F E σ B n n₁ X X₁ H j₀ j₁ r s r₁ s₁ hP.base hH hP.herm hP₁.herm t ht
       exact ⟨m, ⟨h1, h2, h3⟩, twist m _ h1 fun z => ⟨0, by rw [zero_smul, add_zero, h3]⟩⟩
     obtain ⟨m, ⟨hm1, hm2, hm3⟩, cm, hcm⟩ := scl 2 two_ne_zero
     have hm1' : mat m *ᵥ incV F H.x = (2 : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) • incV F H.x := by exact_mod_cast hm1
@@ -129,7 +129,7 @@ theorem unip_trivial_m : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
       obtain ⟨m', ⟨h1, h2, h3⟩, cm', hcm'⟩ := scl t ht
       obtain ⟨hcm0', hcmi'⟩ := Qinv _ _ hcm'
       have e1 := Qmul _ _ _ _ (Qmul _ _ _ _ hcm' hQv) hcmi'
-      rw [PositivityTheory.Mix.T.unitary_fixing_vector_preserves F E σ B n n₁ X X₁ H j₀ j₁ r s r₁ s₁ hP.base hH hP.herm hP₁.herm g hgx hgz m m' t hm1' hm2' hm3 h1 h2 h3] at e1
+      rw [_root_.PositivityTheory.Mix.unitary_fixing_isotropic_complement F E σ B n n₁ X X₁ H j₀ j₁ r s r₁ s₁ hP.base hH hP.herm hP₁.herm g hgx hgz m m' t hm1' hm2' hm3 h1 h2 h3] at e1
       have := Quniq _ _ _ (Qpow _ _ hQv (t ^ 2)) e1
       rw [this]; field_simp
     have hcv0 : cv ≠ 0 := by rw [hcv']; exact inv_ne_zero hcu0

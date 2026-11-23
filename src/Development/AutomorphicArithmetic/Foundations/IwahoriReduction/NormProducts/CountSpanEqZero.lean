@@ -61,33 +61,12 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
 import Development.AbelianVarietyTheory.Definitions.Foundations.Mdl
 import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.NormProducts.InvMod
 public import Mathlib.RingTheory.DedekindDomain.Factorization
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ValuationAlgebraMapEqCount
 
 @[expose] public section
 
 open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.Kd.K4 Polynomial
 open scoped Matrix MatrixGroups
-
-private theorem valuation_eq_exp_neg_count_spanSingleton {R L : Type*} [CommRing R] [IsDedekindDomain R] [Field L]
-    [Algebra R L] [IsFractionRing R L] (v : IsDedekindDomain.HeightOneSpectrum R) {x : L}
-    (hx : x ≠ 0) :
-    v.valuation L x = WithZero.exp
-      (-FractionalIdeal.count L v (FractionalIdeal.spanSingleton (nonZeroDivisors R) x)) := by
-  classical
-  obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective (nonZeroDivisors R) x
-  have ha : a ≠ 0 := by
-    rintro rfl
-    simp at hx
-  have hs : (s : R) ≠ 0 := nonZeroDivisors.coe_ne_zero s
-  have hspan : FractionalIdeal.spanSingleton (nonZeroDivisors R) (IsLocalization.mk' L a s) =
-      FractionalIdeal.spanSingleton (nonZeroDivisors R) ((algebraMap R L) (s : R))⁻¹ *
-        ↑(Ideal.span {a}) := by
-    rw [FractionalIdeal.coeIdeal_span_singleton, FractionalIdeal.spanSingleton_mul_spanSingleton,
-      IsFractionRing.mk'_eq_div, div_eq_inv_mul]
-  rw [FractionalIdeal.count_well_defined L v (FractionalIdeal.spanSingleton_ne_zero_iff.mpr hx)
-    hspan, IsDedekindDomain.HeightOneSpectrum.valuation_of_mk', v.intValuation_if_neg ha,
-    v.intValuation_if_neg hs, ← WithZero.exp_sub]
-  congr 1
-  ring
 
 private theorem valuation_eq_one_of_valuationSubring_eq_one {R L : Type*} [CommRing R] [IsDedekindDomain R] [Field L]
     [Algebra R L] [IsFractionRing R L] (v : IsDedekindDomain.HeightOneSpectrum R) {y : L}
@@ -149,7 +128,7 @@ theorem UpperTheory.Kd.K4.cdAbs :
       exact v.valuation_le_one _)
     have h1 := valuation_eq_one_of_valuationSubring_eq_one v hcv
     have hc0 : v.valuation K c ^ m ≠ 0 := pow_ne_zero _ ((Valuation.ne_zero_iff _).mpr hc)
-    rw [map_div₀, map_pow, div_eq_one_iff_eq hc0, valuation_eq_exp_neg_count_spanSingleton v hf, valuation_eq_exp_neg_count_spanSingleton v hc,
+    rw [map_div₀, map_pow, div_eq_one_iff_eq hc0, _root_.GlobalTheory.AdicValuationCountFactors.valuation_eq_exp_neg_count v hf, _root_.GlobalTheory.AdicValuationCountFactors.valuation_eq_exp_neg_count v hc,
       ← WithZero.exp_nsmul, WithZero.exp_inj, nsmul_eq_mul] at h1
     exact ⟨FractionalIdeal.count K v (FractionalIdeal.spanSingleton _ c), by linarith⟩
   obtain ⟨I, hIdef⟩ : ∃ I : FractionalIdeal (nonZeroDivisors (FunctionField.ringOfIntegers k K)) K,

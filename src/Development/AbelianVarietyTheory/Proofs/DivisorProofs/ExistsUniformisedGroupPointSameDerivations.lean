@@ -67,9 +67,9 @@ theorem exists_point_sameDerivations : ∀ (E : Type) [Field E] [NumberField E] 
   choose dd' hdd' using fun a => GlobalTheory.T.exists_invariant_vectorField_semiAbelian_triple_affine E H R t (v' a)
   have hpt : GlobalTheory.FormalPoint.IsPointOf P.U.toUnifPre (Y.Φ (Over.mk (spMap φ)) (Over.homMk x hx))
       (Over.homMk x'.left (Over.w x')) := hx'p
-  have hder := GlobalTheory.T.uniformised_point_from_formal_raynaud_point_same_derivations E H R t P Y n (fun a => vH a) dd hdd v' hv' dd' hdd' Ω φ x δ hΩ hx hδ hxd x'.left
+  have hder := _root_.GlobalTheory.Heat.FormalDer.main E H R t P Y n (fun a => vH a) dd hdd v' hv' dd' hdd' Ω φ x δ hΩ hx hδ hxd x'.left
     (Over.w x') hpt
-  obtain ⟨b, hb⟩ := GlobalTheory.T.uniformisedTangentBasis_of_raynaudBasis E H R t P Y n vH v' hv'
+  obtain ⟨b, hb⟩ := _root_.GlobalTheory.TanRay.tanBasis_of_isPointOf E H R t P Y n vH v' hv'
   refine ⟨x'.left, Over.w x', dd', hdd', hder, ?_, hpt⟩
   intro O f hO h0
   refine GlobalTheory.T.eq_zero_of_invariantDerivatives_vanish_semiAbelian R t.G t.semi n b dd' (fun a => (hb a).symm ▸ hdd' a) Ω φ hφ x'.left (Over.w x') O f hO

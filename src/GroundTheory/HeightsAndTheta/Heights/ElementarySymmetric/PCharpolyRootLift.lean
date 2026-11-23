@@ -256,11 +256,6 @@ theorem exists_algHom_ratios {D : ℕ} {Ω : Type} [Field Ω] [CharZero Ω] {l :
     rw [h1]
     simp
 
-theorem exists_ringHom_extend_of_isIntegral {R S K : Type*} [CommRing R] [CommRing S] [Field K] [IsAlgClosed K]
-    [Algebra R S] [Algebra.IsIntegral R S] (hinj : Function.Injective (algebraMap R S)) (f : R →+* K) :
-    ∃ g : S →+* K, ∀ r, g (algebraMap R S r) = f r :=
-  _root_.UpperTheory.Reformulated.B.RingHomExtensionOfIntegral.exists_ringHom_extend_of_isIntegral hinj f
-
 end CharpolyRootLift
 
 
@@ -371,7 +366,7 @@ theorem CharpolyRootLift.proof : CharpolyRootLift.Statement := by
   have : Algebra.IsIntegral (Algebra.adjoin A {v}) (integralClosure A Ω) :=
     ⟨fun s => (integralClosure.isIntegral s).tower_top⟩
   obtain ⟨g, hg⟩ :=
-    CharpolyRootLift.exists_ringHom_extend_of_isIntegral (Subalgebra.inclusion_injective hBS) ψ0
+    _root_.UpperTheory.Reformulated.B.RingHomExtensionOfIntegral.exists_ringHom_extend_of_isIntegral (Subalgebra.inclusion_injective hBS) ψ0
   refine ⟨g, fun k hk => ?_, ?_⟩
   · have h1 : (⟨l k / l a, hk⟩ : integralClosure A Ω) =
         algebraMap (Algebra.adjoin A {v}) _ (algebraMap A _ (ptA k)) := rfl

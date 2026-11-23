@@ -57,7 +57,7 @@ namespace PositivityTheory.PfWsf.Hand.Merge
 theorem siegelND : PositivityTheory.GramSchwartzFunctions.BC.SiegelND := by
   intro D r V ψ θ μ lam ν φ hyp β hβ
   obtain ⟨hr, hψ, hθ, hμ, hlam, hν, hφ, habs⟩ := hyp
-  have hCM := GlobalTheory.DefiniteQuotient.cmExt D
+  have hCM := _root_.Formalism.MainNotions.UnusedSlot34.isCMExt_D D
   have hJ := GlobalTheory.DefiniteQuotient.gram_hermND V
   obtain ⟨μH, 𝓕, hμH, h𝓕, -⟩ := GlobalTheory.Published.SiegelOneVector.exists_normalised D.sp.cm.sig V.gram hCM hJ
   obtain ⟨dx, db, hdx, hdb, hW⟩ := GlobalTheory.T.exists_self_dual_siegel_weil_measures D r V ψ hψ μ hμ lam hlam

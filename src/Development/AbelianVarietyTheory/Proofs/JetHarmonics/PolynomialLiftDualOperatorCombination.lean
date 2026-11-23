@@ -98,14 +98,6 @@ theorem contDiff_of_poly {N κ : ℕ} {φ : Matrix (Fin N) (Fin N) ℂ → ℂ} 
     · exact he _ _
     · exact Complex.conjCLE.contDiff.comp (he i.1 i.2)
 
-theorem herm_poly {N : ℕ} (H : Matrix (Fin N) (Fin N) ℂ) (v w : Fin N → ℂ) :
-    U.IsPolyDeg 1 (fun g : Matrix (Fin N) (Fin N) ℂ => herm H (g.mulVec v) w) := by
-  unfold herm
-  simp only [dotProduct, Matrix.mulVec]
-  refine PartialDerivativeAlgebra.pd_sum _ fun i _ => PartialDerivativeAlgebra.pd_mono (by norm_num : 0 + 1 ≤ 1) (PartialDerivativeAlgebra.pd_mul (PartialDerivativeAlgebra.pd_const _ 0) ?_)
-  refine PartialDerivativeAlgebra.pd_sum _ fun j _ => PartialDerivativeAlgebra.pd_mono (by norm_num : 0 + 1 ≤ 1) (PartialDerivativeAlgebra.pd_mul (PartialDerivativeAlgebra.pd_const _ 0) ?_)
-  exact PartialDerivativeAlgebra.pd_sum _ fun c _ => PartialDerivativeAlgebra.pd_mono (by norm_num : 1 + 0 ≤ 1) (PartialDerivativeAlgebra.pd_mul (PartialDerivativeAlgebra.pd_entry _ _) (PartialDerivativeAlgebra.pd_const _ 0))
-
 theorem glRel_cast {A : Type*} [Ring A] {n n' : ℕ} (h : n = n') {E : Fin n' → Fin n' → A} (hE : GlRel E) :
     GlRel (fun a b => E (Fin.cast h a) (Fin.cast h b)) := by
   subst h; exact hE
@@ -201,7 +193,7 @@ theorem cramer_poly (a : Fin (r + 1 + (r + k))) (j : Fin (r + 1)) :
   refine PartialDerivativeAlgebra.pd_det _ fun p q => ?_
   simp only [Matrix.updateCol_apply]
   split_ifs
-  · exact herm_poly _ _ _
+  · exact _root_.PI.UnitaryCorollaryDerivatives.PolynomialDegreeClosure.pd_herm _ _ _
   · exact zhat_pd k r z z' p q
 
 theorem isOpen_dom : IsOpen {g : Q.Mx k r | dZ z z' g ≠ 0} :=
@@ -254,7 +246,7 @@ theorem coef_poly (Qm : Matrix (Fin (r + 1 + (r + k))) (Fin (r + 1 + (r + k))) �
     refine PartialDerivativeAlgebra.pd_det _ fun a b => ?_
     refine Fin.addCases (fun b => ?_) (fun b => ?_) b
     · simp only [Matrix.of_apply, Fin.append_left]
-      exact herm_poly _ _ _
+      exact _root_.PI.UnitaryCorollaryDerivatives.PolynomialDegreeClosure.pd_herm _ _ _
     · simp only [Matrix.of_apply, Fin.append_right]
       exact PartialDerivativeAlgebra.pd_const _ _
   exact PartialDerivativeAlgebra.pd_mono (by omega) (PartialDerivativeAlgebra.pd_mul (PartialDerivativeAlgebra.pd_const _ 0) (PartialDerivativeAlgebra.pd_mul h (PartialDerivativeAlgebra.pd_const _ 0)))
@@ -266,7 +258,7 @@ theorem group_identity (hz' : inWb k r z') (hT : 0 < Tz k r z') (Y : ℂ) :
           (dZ z z' g ^ (r + 1 - (s : ℕ)) • Q.CV k r Y (fun x => dZ z z' x ^ (s : ℕ) • F x) g) =
         dZ z z' g ^ r • ∑ i : (Fin (r + k) → Fin (r + 1 + (r + k))) × (Fin (r + k) → Fin (r + 1 + (r + k))),
           coef z Qm i g • qminorOp (EabH (Hpk k r)) (pos k r ∘ i.1) (pos k r ∘ i.2) w F g := by
-  obtain ⟨Qm, hQ, hQ1, hQ2⟩ := GlobalTheory.T.exists_dual_matrix_frame_fvec k r z' (pos k r) hz' hT
+  obtain ⟨Qm, hQ, hQ1, hQ2⟩ := _root_.GlobalTheory.HatNF.DualFrame.exists_dual_matrix k r z' (pos k r) hz' hT
   set u := Q.uC k r 0 Y with hu
   refine ⟨Qm, u - ((r + 1 : ℕ) : ℂ), fun F hF g hgG hg0 => ?_⟩
   have hD := isOpen_dom z z'

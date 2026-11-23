@@ -87,7 +87,7 @@ theorem locInj_of_finiteType : ∀ (N M : CommRingCat.{0} ⥤ AbCx) (ε : N ⟶ 
   intro n A c hc hy
   obtain ⟨y, hy⟩ := hy
   obtain ⟨J, _, _, D, ιD, ⟨hcol⟩, hft⟩ := GlobalTheory.FiniteTypeColimit.exists_filtered_colimit_finiteType A
-  obtain ⟨-, hN2⟩ := GlobalTheory.T.complexCohomology_commutes_with_filteredColimits N hN
+  obtain ⟨-, hN2⟩ := _root_.GlobalTheory.EtC.ContFin.cohomology_filteredColimit N hN
   obtain ⟨⟨hmul, hcob, -⟩, -, hftB⟩ := GlobalTheory.T.etaleFaithfullyFlatRingHom_basic_properties
   obtain ⟨j, w, y', hw, hwc⟩ := (hN2 J D (Cocone.mk A ιD) hcol n).1 c hc
   change (N.map (ιD.app j)).f n w = c + (N.obj A).d (n - 1) n y' at hwc
@@ -125,7 +125,7 @@ theorem locInj_of_finiteType : ∀ (N M : CommRingCat.{0} ⥤ AbCx) (ε : N ⟶ 
       rw [hιnat, hx0, ← nat_apply, hwc, map_add (f := _), hy, comm_apply,
         eq_zero_of_isZero (hMneg _ (by norm_num) _) ((ε.app A).f (0 - 1) y'), map_zero, add_zero]
       exact (map_zero _).symm
-    obtain ⟨-, hF0inj⟩ := (GlobalTheory.T.preservesFilteredColimits_addCommGrp_iff_elements CommRingCat.{0} F0).1 hF0 J D (Cocone.mk A ιD) hcol
+    obtain ⟨-, hF0inj⟩ := (_root_.GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_iff_elements CommRingCat.{0} F0).1 hF0 J D (Cocone.mk A ιD) hcol
     obtain ⟨k, f, hk⟩ := hF0inj j x0 hdie
     haveI := hε _ (hft k)
     haveI := isIso_f (ε.app (D.obj k)) 0

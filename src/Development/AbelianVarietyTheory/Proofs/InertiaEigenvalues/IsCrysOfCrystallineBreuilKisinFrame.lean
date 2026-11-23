@@ -71,11 +71,7 @@ theorem map_smul_ring {R S : Type} [CommRing R] [CommRing S] (f : R →+* S) {d 
     (M : Matrix (Fin d) (Fin d) R) : (c • M).map f = f c • M.map f := by
   ext i j; simp
 
-theorem pow_cancel {R : Type} [CommRing R] {lr : R} (h : ∀ x : R, lr * x = 0 → x = 0) (n : ℕ) :
-    ∀ x : R, lr ^ n * x = 0 → x = 0 := by
-  induction n with
-  | zero => intro x hx; simpa using hx
-  | succ n ih => intro x hx; exact ih x (h _ (by rw [← mul_assoc, ← pow_succ']; exact hx))
+alias pow_cancel := _root_.GlobalTheory.FrobeniusDefect.nzd_pow
 
 theorem smul_cancel {R : Type} [CommRing R] {c : R} (h : ∀ x : R, c * x = 0 → x = 0) {d : ℕ}
     {M M' : Matrix (Fin d) (Fin d) R} (hM : c • M = c • M') : M = M' := by
@@ -126,7 +122,7 @@ theorem crys_of_frame : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) 
       simp only [map_smul_ring, Matrix.map_mul, Matrix.map_map, map_pow, RingHom.comp_apply] at e
       have hfrfun : (fA : bk.S → Per.Acris l) = (fun s => ι (WittVector.frobenius (bk.ev s))) := funext hfr
       simpa only [hε', Matrix.map_map, RingHom.coe_comp, Function.comp_def, RingHom.comp_apply, hfrfun, hσf, hφι] using e
-    have hL1 := GlobalTheory.T.frobenius_equation_of_twisted_cocycle_defect (Per.Acris l) (phiA l) σ d N k (l : Per.Acris l) (fA bk.E) (f0 bk.E) Q Q' (F.A.map fA) (F.A'.map fA)
+    have hL1 := _root_.GlobalTheory.FrobeniusDefect.frobenius_defect_eq (Per.Acris l) (phiA l) σ d N k (l : Per.Acris l) (fA bk.E) (f0 bk.E) Q Q' (F.A.map fA) (F.A'.map fA)
       (F.A.map f0) (F.A'.map f0) ε' htf ⟨v, hv⟩ he₀ hcomm (map_natCast _ _) (map_natCast _ _) hσe₀ hσA₀ hQQ hBB hAA hQφ h2
 
     obtain ⟨w₀, hw₀⟩ := he₀

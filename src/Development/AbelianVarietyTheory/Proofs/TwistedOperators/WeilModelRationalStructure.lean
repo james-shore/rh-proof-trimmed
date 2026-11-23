@@ -113,16 +113,6 @@ theorem sub_mem_of_path {Q Z : Type} [AddCommGroup Q] [Module ℂ Q] (E : Q →�
   rw [map_sub, sub_eq_zero]
   exact is_const_of_deriv_eq_zero (fun t => (h4 t).differentiableAt) (fun t => (h4 t).deriv) 1 0
 
-theorem exists_fg_subst {D : D7} {a b : ℕ} (τ : D.what₂.Tau) (ε : Fin a → Bool) (ε' : Fin b → Bool) (P : PolF D b a) :
-    ∃ V : Submodule ℂ (PolF D b a), V.FG ∧ ∀ g k, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.subst τ ε ε' g k P ∈ V := by
-  first
-  | exact @_root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg
-  | exact _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg
-  | (apply _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg ..)
-
 section Oriented
 
 variable {D : D7} {V W : HSp D} {θ : InfFam D} {ψ : AddChar (AF D.host.F) ℂ} {χS χT : (AE D)ˣ →* Circle}
@@ -220,7 +210,7 @@ theorem moves_atTau (hθ : IsInfFam θ) (hω : IsWeilDatumO ψ V W χS χT ω) (
   let E := pureTensorO ψ θ V W A.cart B.cart A.onb B.onb f
   have hE : Function.Injective E := GlobalTheory.LieScalar.ptF_injective hθ hω.std A B hf h0
   intro P
-  obtain ⟨U, hU, hUm⟩ := exists_fg_subst τ (A.ε τ) (B.ε τ) P
+  obtain ⟨U, hU, hUm⟩ := _root_.GlobalTheory.SubstitutionFinitelyGenerated.subst_mem_fg τ (A.ε τ) (B.ε τ) P
   have hex : ∀ t : ℝ, ∃ Q ∈ U, ω (oneP θ V τ X t, 1) (E P) = E Q := by
     intro t
     have h1 := hcf _ (hK t) 1 (GlobalTheory.LieScalar.one_mem_K _) P
@@ -520,8 +510,6 @@ end Reading
 end GlobalTheory.RealDict.CompactCoinv
 
 namespace GlobalTheory.RealDict
-
-open GlobalTheory.RealDict.CompactCoinv
 
 end GlobalTheory.RealDict
 

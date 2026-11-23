@@ -105,7 +105,7 @@ theorem om_fock_chi {μ0 : T} (hL : L.Is μ0) (W : G.Weil) {U : Set T} (S : Grid
       (fun τ => (u τ).1.submatrix (Fin.cast (rank_gridM G (i := (i : ℕ)) i.2.le)) (Fin.cast (rank_gridM G (i := (i : ℕ)) i.2.le)))
       Q := by
     apply trRow_injective G i
-    rw [hQ, map_smul, GlobalTheory.T.fockSubstitution_columnStep_rename_conj G i u v Q]
+    rw [hQ, map_smul, _root_.GlobalTheory.RowReal.trRow_fockSubAll G i u v Q]
     rfl
   exact key.trans (by rw [hQ', LinearMap.map_smul])
 

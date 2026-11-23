@@ -75,7 +75,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (lam : algebraicClosure ℚ ℂ →+
   let A : Matrix (Fin 2) (Fin 2) ℤ := (α : Matrix (Fin 2) (Fin 2) (ZMod N)).map (ZMod.cast : ZMod N → ℤ)
   have hAα : A.map (Int.cast : ℤ → ZMod N) = (α : Matrix (Fin 2) (Fin 2) (ZMod N)) := by
     ext i j; simp [A, ZMod.intCast_cast, ZMod.cast_id']
-  have hI := (GlobalTheory.T.mem_hilbertLatticeTwist_iff_lift F N L A · hLs)
+  have hI := (_root_.GlobalTheory.HilbFam.TwistMem.mem_twist_iff F N L A · hLs)
   rw [← hAα]
   refine ⟨?_, ?_⟩
   · let B : Matrix (Fin 2) (Fin 2) ℤ :=

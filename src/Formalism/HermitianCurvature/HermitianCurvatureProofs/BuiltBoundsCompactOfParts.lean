@@ -192,7 +192,7 @@ theorem core (hW : WaveLocB) (hL : LiftLocB) (hTL : PBL.TopLocB) (hDT : KB.DegTo
         (∃ Ll Ll', JC.LiftBelowTop S Ll ∧ JC.LiftTopDiag S Ll' ∧ JC.ThresholdsLift S Ll Ll') ∧
         JC.SumFormConcrete S C₄ := by
   obtain ⟨c1, h1⟩ := limit_of_module_forms Cb
-  obtain ⟨C₄, hC₄, hSF⟩ := sum_form_of_local_statements
+  obtain ⟨C₄, hC₄, hSF⟩ := _root_.Formalism.FourierDecayAlt.P.PBC.sumFormOfLoc
   obtain ⟨c2, h2⟩ := hW Cb
   obtain ⟨c3, h3⟩ := hL Cb
   obtain ⟨c4, h4⟩ := hG Cb

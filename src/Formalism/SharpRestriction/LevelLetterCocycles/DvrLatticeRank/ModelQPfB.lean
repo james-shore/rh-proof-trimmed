@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusPowUniformizerFactorisation
 
 @[expose] public section
 
@@ -121,36 +122,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ}
     (W : LocWach PD LL O v n)
 
-theorem delF_mul' {g h : W.Gam} (hg : g ∈ W.DelF) (hh : h ∈ W.DelF) : g * h ∈ W.DelF := by
-  rw [W.DelF_def] at hg hh ⊢
-  obtain ⟨k₁, hk₁, h₁⟩ := hg
-  obtain ⟨k₂, hk₂, h₂⟩ := hh
-  exact ⟨k₁ * k₂, Nat.mul_pos hk₁ hk₂, by
-    rw [mul_pow, pow_mul, h₁, one_pow, one_mul, mul_comm k₁ k₂, pow_mul, h₂, one_pow]⟩
-
-theorem delF_inv' {g : W.Gam} (hg : g ∈ W.DelF) : g⁻¹ ∈ W.DelF := by
-  rw [W.DelF_def] at hg ⊢
-  obtain ⟨k, hk, h⟩ := hg
-  exact ⟨k, hk, by rw [inv_pow, h, inv_one]⟩
-
-theorem γA_mul' (g h : W.Gam) (a : LetA O n) : W.γA (g * h) a = W.γA g (W.γA h a) := by
-  funext i
-  show W.γ₀ (g * h) (a i) = W.γ₀ g (W.γ₀ h (a i))
-  rw [map_mul, AlgHom.mul_apply]
-
-theorem letE_mem (c : ZMod n) : (letE c : LetA O n) ∈ W.AΔ := by
-  show ∀ δ ∈ W.DelF, W.γA δ (letE c : LetA O n) = letE c
-  intro δ _
-  funext i
-  show W.γ₀ δ ((letE c : LetA O n) i) = (letE c : LetA O n) i
-  simp only [letE, Pi.single_apply]
-  split_ifs <;> simp
-
-theorem letE_mul_self' (i : ZMod n) : (letE i : LetA O n) * letE i = letE i := by
-  funext j
-  simp only [letE, Pi.mul_apply, Pi.single_apply]
-  split_ifs <;> simp
-
 def avg (u : Oˣ) (x : LetA O n) : LetA O n := ((u⁻¹ : Oˣ) : O) • ∑ δ ∈ W.DelF, W.γA δ x
 
 theorem avg_mem (u : Oˣ) (x : LetA O n) : avg W u x ∈ W.AΔ := by
@@ -162,15 +133,15 @@ theorem avg_mem (u : Oˣ) (x : LetA O n) : avg W u x ∈ W.AΔ := by
   congr 1
   refine Finset.sum_nbij' (fun δ => δ' * δ) (fun δ => δ'⁻¹ * δ) ?_ ?_ ?_ ?_ ?_
   · intro a ha
-    exact delF_mul' W hδ' ha
+    exact _root_.Formalism.MainNotions.LiftingTheory.delta_mul_mem W hδ' ha
   · intro a ha
-    exact delF_mul' W (delF_inv' W hδ') ha
+    exact _root_.Formalism.MainNotions.LiftingTheory.delta_mul_mem W (_root_.Formalism.MainNotions.LiftingTheory.delta_inv_mem_alt W hδ') ha
   · intro a _
     exact inv_mul_cancel_left δ' a
   · intro a _
     exact mul_inv_cancel_left δ' a
   · intro a _
-    exact (γA_mul' W δ' a x).symm
+    exact (_root_.Formalism.MainNotions.LiftingTheory.tr_γA_mul W δ' a x).symm
 
 theorem avg_self (u : Oˣ) (hu : (u : O) = (W.DelF.card : ℕ)) {x : LetA O n} (hx : x ∈ W.AΔ) :
     avg W u x = x := by
@@ -264,12 +235,12 @@ theorem div_at (hp : PD.p.Prime) [Nontrivial O] [IsAdicComplete (Ideal.span {((P
     · rw [Finset.mem_range, not_lt] at hk
       exact hdeg k hk
   have hg : π' * Eπ ^ (2 * h') ∈ W.AΔ := mul_mem hπΔ (pow_mem hEΔ _)
-  have hae : (letE c : LetA O n) * a ∈ W.AΔ := mul_mem (letE_mem W c) a.2
+  have hae : (letE c : LetA O n) * a ∈ W.AΔ := mul_mem (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W c) a.2
   refine ⟨fun i => R.coeff i, ⟨avg W u s₀, avg_mem W u _⟩, ?_⟩
   calc (letE c : LetA O n) * a = avg W u ((letE c : LetA O n) * a) := (avg_self W u hu hae).symm
     _ = avg W u ((letE c : LetA O n) * Rt + (letE c : LetA O n) * (π' * Eπ ^ (2 * h') * s₀)) := by rw [hcl]
     _ = (letE c : LetA O n) * avg W u Rt + (letE c : LetA O n) * (π' * Eπ ^ (2 * h') * avg W u s₀) := by
-      rw [avg_add, avg_mul_left W u (letE_mem W c), avg_mul_left W u (letE_mem W c), avg_mul_left W u hg]
+      rw [avg_add, avg_mul_left W u (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W c), avg_mul_left W u (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W c), avg_mul_left W u hg]
     _ = _ := by
       rw [hR', avg_sum]
       congr 2

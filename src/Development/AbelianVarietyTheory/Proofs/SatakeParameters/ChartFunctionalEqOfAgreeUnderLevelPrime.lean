@@ -118,14 +118,14 @@ theorem exists_unit_one_add_generator {D : D7} (i : ℕ) (hi : i ≤ D.R.m) {T f
     intro l hl
     obtain ⟨l₁, h₁, l₂, h₂, rfl⟩ := Submodule.mem_sup.1 hl
     rw [hadd]
-    refine M.add_mem (GlobalTheory.T.placeComponent_pullback_latticeVector_mem_dual_span i hi lev x v l₁ h₁) ?_
+    refine M.add_mem (_root_.GlobalTheory.AwayLat.prV_pullV_mem_latS_dual i hi lev x v l₁ h₁) ?_
     refine Submodule.smul_induction_on h₂ ?_ ?_
     · intro r hr s hs
       obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.1 hr
       rw [hsmul]
       refine M.smul_mem _ ?_
       induction hs using Submodule.span_induction with
-      | mem s hs => exact GlobalTheory.T.stepPoint_pulledDualVector_mem_localBaseLattice i hi lev x v s hs
+      | mem s hs => exact _root_.GlobalTheory.ZDual.pullV_dual_mem_latS i hi lev x v s hs
       | zero => rw [hzero]; exact M.zero_mem
       | add p q _ _ hp hq => rw [hadd]; exact M.add_mem hp hq
       | smul c s _ h => rw [hsmul]; exact M.smul_mem _ h
@@ -155,7 +155,7 @@ theorem fnl_eq : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : G.Inst 
     (∀ v : HeightOneSpectrum (𝓞 D.host.F), IsOver v (seamP t.seam P.1) → bc (prV (E := D.host.E) v) x₁.1 = bc (prV (E := D.host.E) v) x.1) →
     ∀ y ∈ p.deco.1.at P.1, p₁.deco.1.f P y = p.deco.1.f P y := by
   intro D L hT Gi Gl Kc Y cX ex t u μ St A dtU a hpin htie i hi β x x₁ p p₁ hp hp₁ P hagree y hy
-  have hat := GlobalTheory.T.localizedLattice_eq_of_adelic_matrices_agree_at_place A dtU a hpin htie i hi β x x₁ p p₁ hp hp₁ P hagree
+  have hat := _root_.GlobalTheory.LatAway.decoAt_eq A dtU a hpin htie i hi β x x₁ p p₁ hp hp₁ P hagree
   set v := HeightOneSpectrum.under (𝓞 D.host.F) (seamP t.seam P.1) with hvdef
   have hvo : IsOver v (seamP t.seam P.1) := by
     unfold IsOver

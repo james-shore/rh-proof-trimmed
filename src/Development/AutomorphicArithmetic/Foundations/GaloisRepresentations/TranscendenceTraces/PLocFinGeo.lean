@@ -48,7 +48,7 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 theorem UpperTheory.Gal.TranscendenceTraces.locFinGeo_of :
     LocFinAff → LocFinGeo := by
   intro hA W V U π r _ _ _
-  rw [GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover U (fun V' g ↦ ∃ s, s ≫ π = pullback.fst r g)]
+  rw [_root_.GlobalTheory.EtC.loc_iff_etale_affine_points U (fun V' g ↦ ∃ s, s ≫ π = pullback.fst r g)]
   swap
   · rintro V' W' g k ⟨s, hs⟩
     refine ⟨pullback.lift (pullback.fst r (k ≫ g)) (pullback.snd r (k ≫ g) ≫ k)

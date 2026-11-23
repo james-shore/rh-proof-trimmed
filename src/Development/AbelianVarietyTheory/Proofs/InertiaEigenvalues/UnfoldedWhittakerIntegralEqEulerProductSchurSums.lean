@@ -92,9 +92,9 @@ theorem lintegral_unfolded_eq : ∀ (E : Type) [Field E] [NumberField E] [_root_
               (fun w i => ((α w i : ℂˣ) : ℂ)) x := by
   intro E _ _ _ a π ha hπ T hT
   obtain ⟨m, rfl⟩ : ∃ m, a = m + 1 := ⟨a - 1, by omega⟩
-  obtain ⟨α, π₀, ω, hα, hmk, hωu, hω, hπ₀, hsat⟩ := GlobalTheory.T.exists_cuspRep_bump_data_satake_unitary E (m + 1) π hπ T hT
+  obtain ⟨α, π₀, ω, hα, hmk, hωu, hω, hπ₀, hsat⟩ := _root_.GlobalTheory.BumpData.bumpData E (m + 1) π hπ T hT
   obtain ⟨ϖ, hϖ⟩ := exists_isUnifV E
-  obtain ⟨F, hF, l₀, hl₀, ⟨U, hUo, hU⟩, hK, hW0, ⟨C, hC, hCp⟩, hprof⟩ := GlobalTheory.T.exists_shifted_vector_shintani_formula_ramified E m T π₀ hπ₀ α hsat ϖ hϖ
+  obtain ⟨F, hF, l₀, hl₀, ⟨U, hUo, hU⟩, hK, hW0, ⟨C, hC, hCp⟩, hprof⟩ := _root_.GlobalTheory.RamShift.exists_shifted_bump_shintani E m T π₀ hπ₀ α hsat ϖ hϖ
   have hSm : F ∈ Sm E (m + 1) := (GlobalTheory.MSpanDecay.mspanR_le_goodSub hπ₀ hF : GlobalTheory.MSpanDecay.Good F).mem_Sm
   let φ : Sm E (m + 1) := ⟨F, hSm⟩
   have hFc : Continuous F := by

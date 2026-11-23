@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem phi_form' : PI.SwBig.PhiForm := PI.SwBig.PhiFormProof.phiForm

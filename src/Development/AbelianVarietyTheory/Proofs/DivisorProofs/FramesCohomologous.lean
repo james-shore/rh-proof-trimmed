@@ -53,13 +53,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FrameCob
 
-theorem res_comp {X : Scheme.{0}} {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (x : Γ(X, U)ˣ) :
-    res h₂ (res h₁ x) = res (h₂.trans h₁) x := by
-  ext
-  change ((X.presheaf.map (homOfLE h₁).op ≫ X.presheaf.map (homOfLE h₂).op).hom) (x : Γ(X, U)) = _
-  rw [← Functor.map_comp]
-  rfl
-
 theorem comm_group_step {G : Type*} [CommGroup G] (a b c d e f g k : G) (A : a * b = c * d) (B : b = e * f)
     (C : d = g * k) : e * a * g⁻¹ * f = c * k := by
   subst B C
@@ -83,8 +76,8 @@ theorem frames_cohomologous : ∀ (X : Scheme.{0}) (C : Type) [Category.{0} C] (
       V T' ⊓ (L'.U m' ⊓ L.U m) ≤ V T' ⊓ L'.U m')) (hτ' T T' a m')
     have C' := congrArg (res (inf_le_inf_left (V T') inf_le_right :
       V T' ⊓ (L'.U m' ⊓ L.U m) ≤ V T' ⊓ L.U m)) (hτ T T' a m)
-    simp only [map_mul, map_inv, res_comp] at A B C' ⊢
-    erw [res_comp] at A
+    simp only [map_mul, map_inv, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at A B C' ⊢
+    erw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at A
     exact comm_group_step _ _ _ _ _ _ _ _ A B C'
   rw [← key, inv_mul_cancel_right]
 

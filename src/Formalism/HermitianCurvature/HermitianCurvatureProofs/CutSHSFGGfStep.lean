@@ -74,7 +74,7 @@ theorem gram_function_induction : GfStep := by
         D.castM e (D.castM h1 (U.mMap k 1 ρ (Matrix.of fun _ _ => t) γ)) *
         D.castM e (D.castM h1 (U.Rn k 1 ρ xx.2))) = _
   rw [gf_castPt e, gf_castPt h1,
-    level_function_slice k 1 ρ _ _ (Qx4.lift_inWb hz) (Qx4.lift_inWb hz'), lowV_lift, lowV_lift]
+    _root_.Formalism.FourierDecayAlt.P.Ux3.gfSlice k 1 ρ _ _ (Qx4.lift_inWb hz) (Qx4.lift_inWb hz'), lowV_lift, lowV_lift]
   simp [Matrix.det_unique, Complex.normSq_eq_norm_sq]
 
 end Formalism.FourierDecayAlt.P.CutSH.SFG

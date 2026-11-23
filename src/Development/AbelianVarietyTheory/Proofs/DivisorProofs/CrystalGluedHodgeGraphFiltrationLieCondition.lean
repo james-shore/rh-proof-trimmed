@@ -330,7 +330,7 @@ theorem lieZ_le_fil (hs : t = spMap β) : lieZ o₀ β ≤ Fil o₀.A := by
       simp only [LinearMap.sub_apply, LinearMap.smul_apply, Module.End.one_apply, map_sub, map_smul]
       linear_combination (norm := module) hq + hroot • h
     rw [e]; exact zero_mem _
-  obtain ⟨w, hw, hws⟩ := GlobalTheory.T.harrisTaylor_lie_condition_mod_hodgeFiltration p D R b N k β t hs o₀ _ hy0
+  obtain ⟨w, hw, hws⟩ := _root_.GlobalTheory.HTSummand.lie_mod_fil p D R b N k β t hs o₀ _ hy0
   set y := (A - ((D.tr : k) - β b.ρ) • 1) h
   have e : ∑ l, lam l • crysAct o₀ (algebraMap (𝓞 D.F) D.O (c l)) y =
       ∑ l, lam l • crysAct o₀ (algebraMap (𝓞 D.F) D.O (c l)) (y - ∑ i, w i) +

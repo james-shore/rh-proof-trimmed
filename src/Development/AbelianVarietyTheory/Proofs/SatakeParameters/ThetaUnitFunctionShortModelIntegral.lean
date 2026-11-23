@@ -79,31 +79,23 @@ theorem integral_ps' {K : Type} [NormedField K] {f : PowerSeries K}
   rw [e]
   exact h (n ())
 
-theorem ips' {f : PowerSeries K} (hf : Integral (f : MvPowerSeries Unit K)) (k : ℕ) :
-    ‖PowerSeries.coeff k f‖ ≤ 1 := hf _
-
 theorem ips_add' {f g : PowerSeries K} (hf : Integral (f : MvPowerSeries Unit K))
     (hg : Integral (g : MvPowerSeries Unit K)) : Integral ((f + g : PowerSeries K) : MvPowerSeries Unit K) := by
   apply integral_ps'; intro k
   rw [map_add (f := _)]
-  exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (ips' hf k) (ips' hg k))
+  exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (_root_.GlobalTheory.CurveDictionary.ips hf k) (_root_.GlobalTheory.CurveDictionary.ips hg k))
 
 theorem ips_sub' {f g : PowerSeries K} (hf : Integral (f : MvPowerSeries Unit K))
     (hg : Integral (g : MvPowerSeries Unit K)) : Integral ((f - g : PowerSeries K) : MvPowerSeries Unit K) := by
   apply integral_ps'; intro k
   rw [map_sub, sub_eq_add_neg]
-  exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (ips' hf k) (by rw [norm_neg]; exact ips' hg k))
+  exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (_root_.GlobalTheory.CurveDictionary.ips hf k) (by rw [norm_neg]; exact _root_.GlobalTheory.CurveDictionary.ips hg k))
 
 theorem ips_Cmul' {c : K} (hc : ‖c‖ ≤ 1) {f : PowerSeries K} (hf : Integral (f : MvPowerSeries Unit K)) :
     Integral ((PowerSeries.C c * f : PowerSeries K) : MvPowerSeries Unit K) := by
   apply integral_ps'; intro k
   rw [PowerSeries.coeff_C_mul, norm_mul]
-  exact mul_le_one₀ hc (norm_nonneg _) (ips' hf k)
-
-theorem ips_X' : Integral ((PowerSeries.X : PowerSeries K) : MvPowerSeries Unit K) := by
-  apply integral_ps'; intro k
-  rw [PowerSeries.coeff_X]
-  split_ifs <;> simp
+  exact mul_le_one₀ hc (norm_nonneg _) (_root_.GlobalTheory.CurveDictionary.ips hf k)
 
 theorem ips_mul' {f g : PowerSeries K} (hf : Integral (f : MvPowerSeries Unit K))
     (hg : Integral (g : MvPowerSeries Unit K)) : Integral ((f * g : PowerSeries K) : MvPowerSeries Unit K) :=
@@ -185,17 +177,17 @@ theorem shortIso_holds : ShortIso := by
   have ha12 : ‖W.a₁ / 2‖ ≤ 1 := by rw [norm_div, h2, div_one]; exact hi1
   have ha32 : ‖W.a₃ / 2‖ ≤ 1 := by rw [norm_div, h2, div_one]; exact hi3
   have hX2 : Integral (((PowerSeries.X : PowerSeries K) ^ 2 : PowerSeries K) : MvPowerSeries Unit K) := by
-    rw [pow_two]; exact ips_mul' ips_X' ips_X'
+    rw [pow_two]; exact ips_mul' _root_.Formalism.L2.Th1.D.FormalExponential.integral_X _root_.Formalism.L2.Th1.D.FormalExponential.integral_X
   have hX3 : Integral (((PowerSeries.X : PowerSeries K) ^ 3 : PowerSeries K) : MvPowerSeries Unit K) := by
-    rw [pow_succ]; exact ips_mul' hX2 ips_X'
+    rw [pow_succ]; exact ips_mul' hX2 _root_.Formalism.L2.Th1.D.FormalExponential.integral_X
   have hNI : Integral ((N : PowerSeries K) : MvPowerSeries Unit K) := by
     rw [hN]; exact ips_add' hxI (ips_Cmul' hb2 hX2)
   have hDI : Integral ((D : PowerSeries K) : MvPowerSeries Unit K) := by
     rw [hD]
-    exact ips_sub' (ips_sub' hxI (ips_mul' (ips_Cmul' ha12 ips_X') hxI)) (ips_Cmul' ha32 hX3)
+    exact ips_sub' (ips_sub' hxI (ips_mul' (ips_Cmul' ha12 _root_.Formalism.L2.Th1.D.FormalExponential.integral_X) hxI)) (ips_Cmul' ha32 hX3)
   have hDiI : Integral ((D⁻¹ : PowerSeries K) : MvPowerSeries Unit K) :=
     Formalism.InvariantFactorPaths.G7.LogarithmEquivalence.integral_of_mul_eq_one hDI hD1 hDinv
-  exact ips_mul' (ips_mul' ips_X' hNI) hDiI
+  exact ips_mul' (ips_mul' _root_.Formalism.L2.Th1.D.FormalExponential.integral_X hNI) hDiI
 
 theorem exists_witt_series_inverse_formalGroup_iso_short {l : ℕ} [Fact l.Prime] {g : G1 l} (hOk : g.Ok) (hLT : LTIso g) :
     ∃ w : PowerSeries (WW l), PowerSeries.map (wToC l) w = vLT hLT := by

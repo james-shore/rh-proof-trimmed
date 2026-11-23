@@ -134,7 +134,7 @@ theorem lbIso_pull_iff_adjoint : ∀ (A : Over (Sp ℂ)) [GrpObj A] [IsCommMonOb
       rw [hEF, hEF, ← hFQ, ← hFQ', this]
     exact_mod_cast hh
   · intro h
-    apply GlobalTheory.T.cubeLineBundle_iso_of_appellHumbert_adjoint A g hA hg _ hN hamp M v Hm χ hM hAH f f' F F' hf hf' hvF hvF'
+    apply _root_.GlobalTheory.AdjPullFrame.lbIso_cubeLB_of_adjoint A g hA hg _ hN hamp M v Hm χ hM hAH f f' F F' hf hf' hvF hvF'
     refine GlobalTheory.HermAdjoint.adjoint_of_im Hm F F' _ v.full fun a ha b hb => ?_
     obtain ⟨x, rfl⟩ := (hmem a).1 ha
     obtain ⟨y, rfl⟩ := (hmem b).1 hb

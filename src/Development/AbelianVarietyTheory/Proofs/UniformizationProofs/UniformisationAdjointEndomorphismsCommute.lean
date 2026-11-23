@@ -167,7 +167,7 @@ theorem keepsIota_up (H : KeepsIota E h F) : KeepsIota E h F' := fun y g g' hy h
 include hL hR hG σ in
 theorem keepsTors_down (H : KeepsTors E h F') : KeepsTors E h F := fun k hk p p' x hy ha hx => by
   have hB := D.tau_bimult
-  have X := GlobalTheory.T.qkToAkU_iff_galois_equivariant hL R I hR D A G hG U F F' σ k hk
+  have X := _root_.GlobalTheory.TorsionExt.qkToAkU_iff_of_qkExt hL R I hR D A G hG U F F' σ k hk
   refine (X p' _ (x ≫ E.aA) (extPt σ x ≫ E.aA) ((qkExt_iff hB _ (hom_comp σ) _ _).2 rfl) (Category.assoc _ _ _)).2 ?_
   exact H k hk (qkExt hB _ (hom_comp σ) p) _ _ hy (act_gtExt _ (hom_comp σ) E ha)
     ((X p _ x _ ((qkExt_iff hB _ (hom_comp σ) _ _).2 rfl) rfl).1 hx)
@@ -194,7 +194,7 @@ theorem exists_equiv_qkExt (k : ℕ) (hk : 1 ≤ k) (p : QkPt D.toPre F' k) :
 include hL hR hG σ in
 theorem keepsTors_up (H₁ : KeepsIota E h F) (H : KeepsTors E h F) : KeepsTors E h F' := fun k hk p p' x hy ha hx => by
   have hB := D.tau_bimult
-  have X := GlobalTheory.T.qkToAkU_iff_galois_equivariant hL R I hR D A G hG U F F' σ k hk
+  have X := _root_.GlobalTheory.TorsionExt.qkToAkU_iff_of_qkExt hL R I hR D A G hG U F F' σ k hk
   obtain ⟨α, hα⟩ := exists_actHom hL hR hG E F
   obtain ⟨α', hα'⟩ := exists_actHom hL hR hG E F'
   obtain ⟨f, hf, -⟩ := GlobalTheory.T.uniformisation_torsion_identification_with_pairing hL R I hR D A G hG U F k hk

@@ -58,6 +58,6 @@ theorem deep_slim_use (h₁ : GlobalTheory.CompanionTheory.Hypotheses₂.Resolut
     (hBig : ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.MoriwakiBigStatement) (hF : HT.FarguesExact) (hZ : GR.ZarhinStatement)
     (hN : Pub.NefRR) : Plug.DeepStR :=
   Plug.deepStR_of_use (ais h₁ h₂ hPL) hU hBig (resK h₁ h₂) GlobalTheory.CompanionTheory.SAH.semiAbelianHomExtension
-    (GlobalTheory.CompanionTheory.Relay.hodge_tate_of_fargues_exact hF) GlobalTheory.CompanionTheory.Gaga.gagaSections quot hZ hN
+    (_root_.PositivityTheory.Xgn.farguesHodgeTate_of_farguesExact hF) GlobalTheory.CompanionTheory.Gaga.gagaSections quot hZ hN
 
 end PositivityTheory.HtPt.Ah

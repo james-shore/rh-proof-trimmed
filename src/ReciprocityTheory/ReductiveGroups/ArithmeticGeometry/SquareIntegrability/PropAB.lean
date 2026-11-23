@@ -78,8 +78,7 @@ theorem paT_apply (z : EuclideanSpace ℂ (Fin (Fintype.card ι))) (i : ι) :
   | rfl
   | simp [paT, LinearIsometryEquiv.piLpCongrLeft_apply, Equiv.piCongrLeft'_apply]
 
-theorem Hf_eq_inner (v w : EuclideanSpace ℂ ι) : Hf v w = inner ℂ w v := by
-  exact FPw.Hf_eq_inner v w
+alias Hf_eq_inner := _root_.ReciprocityTheory.ChartRestriction.G.I2.FPw.Hf_eq_inner
 
 theorem paMono_smul_paT (α : ι →₀ ℕ) (t : ℝ) (z : EuclideanSpace ℂ (Fin (Fintype.card ι))) :
     paMono α (t • paT z) = (t : ℂ) ^ α.degree *
@@ -224,17 +223,6 @@ theorem polynomial_translate_innerProduct_bound {q c : ℕ} (hq : 1 ≤ q) (a : 
           Real.exp (-(q * Real.pi) * ‖a‖ ^ 2 / 16) * paN q F * paN q G) * hsq
   exact le_of_mul_le_mul_left hB' hqn
 
-theorem paTail (hP : Ext.PackingCount) (hA : Ext.GaussianTailBound) (Y : GT ι) {q : ℕ} {R0 : ℝ}
-    (hq : 1 ≤ q) (hR0 : 0 < R0)
-    (hlat : ∀ γ ∈ lat Y.b, γ ≠ 0 → R0 ≤ Real.sqrt (q * Real.pi) * ‖γ‖)
-    (hR : 16 * (2 * (Fintype.card ι : ℝ) + 1) ≤ R0 ^ 2) :
-    Summable (fun γ : lat Y.b => if (γ : EuclideanSpace ℂ ι) = 0 then 0 else
-      Real.exp (-(q * Real.pi) * ‖(γ : EuclideanSpace ℂ ι)‖ ^ 2 / 16)) ∧
-    ∑' γ : lat Y.b, (if (γ : EuclideanSpace ℂ ι) = 0 then 0 else
-      Real.exp (-(q * Real.pi) * ‖(γ : EuclideanSpace ℂ ι)‖ ^ 2 / 16)) ≤
-      2 * 9 ^ Fintype.card ι * Real.exp (-R0 ^ 2 / 16) := by
-  exact FPw.paTail hP hA Y hq hR0 hlat hR
-
 theorem paHf_contDiff (a : EuclideanSpace ℂ ι) :
     ContDiff ℂ (⊤ : ℕ∞) (fun v : EuclideanSpace ℂ ι => Hf v a) := by
   show ContDiff ℂ (⊤ : ℕ∞) (fun v : EuclideanSpace ℂ ι => ∑ i, v i * (starRingEnd ℂ) (a i))
@@ -248,36 +236,9 @@ theorem paU_contDiff {q c : ℕ} (a : EuclideanSpace ℂ ι) {F : EuclideanSpace
   refine ContDiff.mul ?_ ((paPF_contDiff p).comp (contDiff_id.sub contDiff_const))
   exact Complex.contDiff_exp.comp ((contDiff_const.mul (paHf_contDiff a)).sub contDiff_const)
 
-theorem paD_add (α : ι →₀ ℕ) {H1 H2 : EuclideanSpace ℂ ι → ℂ} (h1 : ContDiff ℂ (⊤ : ℕ∞) H1)
-    (h2 : ContDiff ℂ (⊤ : ℕ∞) H2) : paD α (H1 + H2) = paD α H1 + paD α H2 := by
-  exact FPw.paD_add α h1 h2
+alias paD_add := _root_.ReciprocityTheory.ChartRestriction.G.I2.FPw.paD_add
 
-theorem paD_smul (α : ι →₀ ℕ) (a : ℂ) {H : EuclideanSpace ℂ ι → ℂ}
-    (h : ContDiff ℂ (⊤ : ℕ∞) H) : paD α (a • H) = a * paD α H := by
-  exact FPw.paD_smul α a h
-
-theorem gaussianInner_jet {q c : ℕ} (hq : 1 ≤ q) (a : EuclideanSpace ℂ ι) {F G : EuclideanSpace ℂ ι → ℂ}
-    (hF : F ∈ paPoly c) (hG : G ∈ paPoly c) :
-    paIP q (paU q a F) G = paIP q (paJet c (paU q a F)) G := by
-  exact FPw.gaussianInner_jet' hq a hF hG
-
-theorem paUnfold (hP : Ext.PackingCount) (hA : Ext.GaussianTailBound) (Y : GT ι) {q c : ℕ} {R0 : ℝ}
-    (hq : 1 ≤ q) (hR0 : 0 < R0)
-    (hC : ∀ γ ∈ lat Y.b, ∀ γ' ∈ lat Y.b,
-      Y.ka (γ + γ') = Y.ka γ * Y.ka γ' * cexp (-(Real.pi * q * (Hf γ γ').im) * I))
-    (hlat : ∀ γ ∈ lat Y.b, γ ≠ 0 → R0 ≤ Real.sqrt (q * Real.pi) * ‖γ‖)
-    (hR : 16 * (2 * (Fintype.card ι : ℝ) + 1) ≤ R0 ^ 2)
-    {F : EuclideanSpace ℂ ι → ℂ} (hF : F ∈ paPoly c) :
-    Y.l2 q (paTh Y q F) = (paIP q (paTh Y q F) F).re := by
-  exact FPw.paUnfold_w hP hA Y hq hR0 hC hlat hR hF
-
-theorem paTh_IP (hP : Ext.PackingCount) (hA : Ext.GaussianTailBound) (Y : GT ι) {q c : ℕ} {R0 : ℝ}
-    (hq : 1 ≤ q) (hR0 : 0 < R0)
-    (hlat : ∀ γ ∈ lat Y.b, γ ≠ 0 → R0 ≤ Real.sqrt (q * Real.pi) * ‖γ‖)
-    (hR : 16 * (2 * (Fintype.card ι : ℝ) + 1) ≤ R0 ^ 2)
-    {F G : EuclideanSpace ℂ ι → ℂ} (hF : F ∈ paPoly c) (hG : G ∈ paPoly c) :
-    HasSum (fun γ : lat Y.b => Y.ka γ * paIP q (paU q γ F) G) (paIP q (paTh Y q F) G) := by
-  exact FPw.gaussianInner_theta' hP hA Y hq hR0 hlat hR hF hG
+alias paD_smul := _root_.ReciprocityTheory.ChartRestriction.G.I2.FPw.paD_smul
 
 theorem paMono_contDiff (β : ι →₀ ℕ) : ContDiff ℂ (⊤ : ℕ∞) (paMono (ι := ι) β) :=
   paPF_contDiff _

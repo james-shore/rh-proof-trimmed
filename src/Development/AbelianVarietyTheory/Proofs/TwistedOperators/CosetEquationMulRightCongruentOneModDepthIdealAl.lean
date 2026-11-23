@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsNsmulIntMemLatO
 
 @[expose] public section
 
@@ -59,16 +60,6 @@ theorem actO_one_left (S T : HSp D) (h : GA D T) (Z : WO S T) :
   unfold actO
   simp [Formalism.L2.Theta.mt]
 
-theorem infPart_idemSum {e : AE D} {P : Finset (Pl D.host.E)} (he : IsIdemSum e P) : infPart D e = 0 := by
-  classical
-  obtain ⟨⟨es, hes, hsum⟩, -⟩ := he
-  subst hsum
-  induction P using Finset.induction_on with
-  | empty => rw [Finset.sum_empty, RingHom.map_zero]
-  | insert a s ha ih =>
-    rw [Finset.sum_insert ha, RingHom.map_add (f := _), GlobalTheory.SplitScalar.infPart_splitIdem (hes a (Finset.mem_insert_self a s)).1,
-      ih fun PP hPP => hes PP (Finset.mem_insert_of_mem hPP), add_zero]
-
 def finLift {m n : ℕ} (c : Matrix (Fin m) (Fin n) D.host.E) : Mx D m n :=
   Matrix.of fun a b => pairA D.host.F 0 1 ⊗ₜ[D.host.F] c a b
 
@@ -78,7 +69,7 @@ theorem smul_map_incA {P : Finset (Pl D.host.E)} {e : AE D} (he : IsIdemSum e P)
   ext a b
   simp only [finLift, Matrix.smul_apply, Matrix.map_apply, Matrix.of_apply, smul_eq_mul]
   refine GlobalTheory.SplitScalar.adele_ext ?_ ?_
-  · rw [map_mul, map_mul, infPart_idemSum he, zero_mul, zero_mul]
+  · rw [map_mul, map_mul, _root_.GlobalTheory.PlaceVec.idemSum_infPart he, zero_mul, zero_mul]
   · rw [map_mul, map_mul, GlobalTheory.LatVac.finPart_pair, GlobalTheory.LatVac.finPart_incA]
 
 theorem homLat_mul {a b c : ℕ} {Λ : Submodule (𝓞 D.host.E) (Fin a → D.host.E)}

@@ -111,7 +111,7 @@ theorem exists_reading_lat {E K : Type} [Field E] [NumberField E] [Field K] [Num
         ∀ g, rd f' g = ∑ s ∈ A, rd f (g * s)) ∧
       (∀ f : S.Forms, (∀ c, (f : S.Cl → S.V) c ∈ S.Nab c) → ∀ g, rd f g ∈ F.latN lamW) ∧
       ∀ f : S.Forms, (∀ g, rd f g ∈ F.latD lamW) → ∃ s : 𝓞 K, s ∉ w.asIdeal ∧ ∀ c, s • (f : S.Cl → S.V) c ∈ S.Del c := by
-  obtain ⟨Φ, hΦ, hli⟩ := GlobalTheory.T.exists_dualWeylTensor_lift_coefficientSpace _ _ e0 _ _ lam lamW cs hS
+  obtain ⟨Φ, hΦ, hli⟩ := _root_.GlobalTheory.FrameRead.ExPhi.exists_phi _ _ e0 _ _ lam lamW cs hS
   obtain ⟨θ, hs, hθ, hθi⟩ := exists_avatar io hio (bVV K lam) c0 hc1 hc2 Φ hli
   have heq := GlobalTheory.T.dualWeylTensorLift_equivariant _ _ e0 _ _ lam lamW cs Φ hS hΦ
   let Λ0 := lamG (PadicAlgCl l) n lamW cs

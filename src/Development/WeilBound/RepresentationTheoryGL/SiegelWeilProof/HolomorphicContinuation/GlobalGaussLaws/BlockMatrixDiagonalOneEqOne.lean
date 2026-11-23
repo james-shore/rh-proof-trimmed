@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdeleAt
 
 @[expose] public section
 
@@ -75,7 +76,7 @@ theorem chi_exp {χ : (AE D)ˣ →* Circle} {θ : InfFam D} (hθ : IsInfFam θ) 
   obtain ⟨k, hk, hall⟩ := ha
   refine ⟨k, ?_, hall.2 θ hθ⟩
   obtain ⟨η, -, hη2, hη3, -⟩ := GlobalTheory.Mem.EtaTilde.exists_etaTilde D
-  obtain ⟨k', hk', hall'⟩ := GlobalTheory.OneMapRef.RealMove.hasInfExp_twist ha' (hη2 τ) m
+  obtain ⟨k', hk', hall'⟩ := _root_.GlobalTheory.VacuumCharacter.hasInfExp_twist ha' (hη2 τ) m
   have ek : k' = k - m := by
     have : (k' : ℚ) = k - m := by rw [hk', hk]; ring
     exact_mod_cast this

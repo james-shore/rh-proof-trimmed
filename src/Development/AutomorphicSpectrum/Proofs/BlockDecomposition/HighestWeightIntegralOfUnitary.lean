@@ -112,7 +112,7 @@ theorem eq_smul_id_of_apply (L : Type) [NormedAddCommGroup L] [InnerProductSpace
     (huniq : ∀ w : L, (∀ a b, a < b → K a b w = 0) → ∃ c : ℂ, w = c • v)
     (R : L →ₗ[ℂ] L) (hR : ∀ a b w, R (K a b w) = K a b (R w)) (r : ℂ) (hr : R v = r • v) :
     R = r • LinearMap.id := by
-  have h0 := GlobalTheory.T.intertwiner_eq_zero_of_vanish_on_highest L L K K hK hKs (R - r • LinearMap.id)
+  have h0 := _root_.GlobalTheory.CompanionTheory.RealCountG.intertwiner_eq_zero_of_highest L L K K hK hKs (R - r • LinearMap.id)
     (fun a b w => by simp [hR, map_smul]) (fun μ w hw => by
       obtain ⟨c, rfl⟩ := huniq w (fun a b hab => hw.2 a b hab rfl)
       simp [hr, smul_comm c r])

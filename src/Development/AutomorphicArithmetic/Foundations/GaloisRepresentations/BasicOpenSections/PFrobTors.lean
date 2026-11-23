@@ -92,7 +92,7 @@ private theorem frob_pt (m : ℕ) [NeZero m] (Ω : Type) [Field Ω] [IsAlgClosed
     Sec.res (absFrob (gp Ω) p f hp h) y = y := by
   obtain ⟨ζ⟩ := prim_ex m Ω hm
   obtain ⟨φ, -, hφ⟩ := secFun_holds m 0 (gp Ω) ζ y
-  have hI := GlobalTheory.T.tateTwist_sections_locally_generated m 0
+  have hI := _root_.GlobalTheory.EtC.twist_sections m 0
   have key : Sec.res (absFrob (gp Ω) p f hp h) (twGen 0 ζ) = twGen 0 ζ := by
     rw [hI.2.2.2.1]
     by_cases h1 : m = 1

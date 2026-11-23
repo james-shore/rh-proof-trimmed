@@ -162,16 +162,16 @@ theorem opE_step (ν : Measure k) (hν : IsUnitVol ν) {s κ : ℕ} (S : SymData
         · simp at hs
       · intro h r; exact h (Sum.inl r, Sum.inr q.succ) ⟨rfl, rfl⟩
     simp only [G]
-    rw [hch, hx, hΦ, GlobalTheory.T.matrix_block_column_vanishing_step k s κ S t hP j c H q hq hqc _ col0 w]
+    rw [hch, hx, hΦ, _root_.GlobalTheory.SymChain.ExchangeCol.phi_add_col k s κ S t hP j c H q hq hqc _ col0 w]
     by_cases hc : ∀ i, B i → m i ∈ sB
     · rw [if_pos (hiff.2 hc), if_pos hc, one_mul]
     · rw [if_neg (fun h => hc (hiff.1 h)), if_neg hc, zero_mul, zero_mul]
   have e2 : ∀ x₀, opE S.ψ ν (q.val + 2) Φ x₀ = (((ν sA).toReal ^ Fintype.card {i // A i} : ℝ) : ℂ) *
       ∫ e : {i // R i} → k, G x₀ (fun i => if h : R i then e ⟨i, h⟩ else 0) ∂(Measure.pi fun _ => ν) :=
-    fun x₀ => GlobalTheory.T.integral_pi_block_indicator_eq_pow_mul k ν I (Free (q.val + 2)) A R hR2 hA sA mA fA (G x₀) (gA x₀)
+    fun x₀ => _root_.GlobalTheory.BlockFubini.integral_block_indicator k ν I (Free (q.val + 2)) A R hR2 hA sA mA fA (G x₀) (gA x₀)
   have e1 : ∀ x₀, opE S.ψ ν (q.val + 1) Φ x₀ = (((ν sB).toReal ^ Fintype.card {i // B i} : ℝ) : ℂ) *
       ∫ e : {i // R i} → k, G x₀ (fun i => if h : R i then e ⟨i, h⟩ else 0) ∂(Measure.pi fun _ => ν) :=
-    fun x₀ => GlobalTheory.T.integral_pi_block_indicator_eq_pow_mul k ν I (Free (q.val + 1)) B R hR1 hB sB mB fB (G x₀) (gB x₀)
+    fun x₀ => _root_.GlobalTheory.BlockFubini.integral_block_indicator k ν I (Free (q.val + 1)) B R hR1 hB sB mB fB (G x₀) (gB x₀)
   have tA : 0 < (ν sA).toReal := ENNReal.toReal_pos pA.ne' fA
   have tB : 0 < (ν sB).toReal := ENNReal.toReal_pos pB.ne' fB
   refine ⟨(ν sA).toReal ^ Fintype.card {i // A i} / (ν sB).toReal ^ Fintype.card {i // B i},

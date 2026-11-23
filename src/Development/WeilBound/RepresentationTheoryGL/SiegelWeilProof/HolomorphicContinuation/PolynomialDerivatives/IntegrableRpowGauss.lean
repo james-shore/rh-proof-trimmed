@@ -166,6 +166,6 @@ end PositivityTheory.Rg.Sw.LC.Mom1
 
 namespace PositivityTheory.Rg.Sw.LC
 
-theorem oneMom : OneMom := Mom1.oneMom
+alias oneMom := _root_.PositivityTheory.Rg.Sw.LC.Mom1.oneMom
 
 end PositivityTheory.Rg.Sw.LC

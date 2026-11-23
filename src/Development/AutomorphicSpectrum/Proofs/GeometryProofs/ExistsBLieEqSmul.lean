@@ -170,7 +170,7 @@ theorem delta_smul_proj_mem {_ : DecidableEq (E →+* C)} (i : E →+* C) {δ : 
 
     simp only [t, map_sum, Finset.sum_apply, splitMap_tmul, RingHom.comp_apply, Pi.smul_apply, smul_eq_mul,
     algebraMap_embO]
-    have h := _root_.idempotent_evaluation E C _ (integralBasis E) k i
+    have h := _root_.PI.UnitaryGroupMassFormula.TBIdemDen.idemEval E C _ (integralBasis E) k i
     have h2 : ∑ j, i (ReciprocityTheory.ChartRestriction.G.TB.trDual (integralBasis E) j) * k (integralBasis E j) =
         ReciprocityTheory.ChartRestriction.G.TB.evAt i (ReciprocityTheory.ChartRestriction.G.TB.idemOf (integralBasis E) k) := by
 

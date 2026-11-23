@@ -144,7 +144,7 @@ theorem GlobalTheory.NormSign.exists_neg_even_norm_away : ∀ (M : Type) [Field 
       · exact hcc _ _ h
     obtain ⟨b, hb0, hbσ, hbneg, hbpos, ub, hub⟩ := ih S' hS'stab hcard
     obtain ⟨c, hc0, hcσ, hcε, hcε', hcpos, uc, huc⟩ :=
-      GlobalTheory.T.exists_realSubfield_negative_twoPlaces_normEverywhere M σ hσ hc ε ε' (Ne.symm h2) h3 p
+      _root_.GlobalTheory.NormSign.exists_neg_two_norm_away M σ hσ hc ε ε' (Ne.symm h2) h3 p
     have hcneg : ∀ φ, φ = ε ∨ φ = ComplexEmbedding.conjugate ε ∨ φ = ε' ∨ φ = ComplexEmbedding.conjugate ε' →
         (φ c).re < 0 := by
       rintro φ (rfl | rfl | rfl | rfl)

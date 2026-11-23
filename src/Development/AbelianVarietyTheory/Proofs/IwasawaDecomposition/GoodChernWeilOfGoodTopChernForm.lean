@@ -63,26 +63,6 @@ namespace GlobalTheory.GoodMetric
 
 variable {F : Type} [Field F] {X : Var F} {σ : F →+* ℂ}
 
-theorem eventually_regAt_under {y : CxPts X.str σ} {g : X.Fn} (hg : RegAt (under y) g) :
-    ∀ᶠ z in 𝓝 y, RegAt (under z) g := by
-  obtain ⟨W, hW, a, rfl⟩ := hg.exists_fnOf
-  filter_upwards [(isOpen_ptsIn W).mem_nhds (mem_ptsIn.2 hW)] with z hz
-  exact regAt_fnOf (mem_ptsIn.1 hz) _ a
-
-theorem eventually_mem_frames {ι : Type} [Finite ι] {m : ι → ℕ} {S : Fr (ratOf X) m 0} {y : CxPts X.str σ}
-    {A : Mat m X.Fn} (hA : A ∈ S.S (under y)) : ∀ᶠ z in 𝓝 y, A ∈ S.S (under z) := by
-  obtain ⟨U, B, hU, hB, hS⟩ := S.loc (under y)
-  have hP := (hS _ hU A).1 hA
-  have hU' : ∀ᶠ z in 𝓝 y, under z ∈ U := by
-    filter_upwards [(isOpen_ptsIn U).mem_nhds (mem_ptsIn.2 hU)] with z hz
-    exact mem_ptsIn.1 hz
-  have h1 : ∀ᶠ z in 𝓝 y, ∀ τ, (∀ i j, RegAt (under z) ((A * B⁻¹) τ i j)) ∧ RegAt (under z) ((A * B⁻¹) τ).det⁻¹ :=
-    Filter.eventually_all.2 fun τ => (Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j =>
-      eventually_regAt_under (mem_O_ratOf.1 ((hP τ).1 i j))).and (eventually_regAt_under (mem_O_ratOf.1 (hP τ).2.2.1))
-  filter_upwards [hU', h1] with z hz hz1
-  exact (hS _ hz A).2 fun τ => ⟨fun i j => mem_O_ratOf.2 ((hz1 τ).1 i j), (hP τ).2.1, mem_O_ratOf.2 (hz1 τ).2,
-    fun i j hi => absurd hi (by simp)⟩
-
 theorem CInfAt.contDiffAt_holoChart {f : CxPts X.str σ → ℝ} {y : CxPts X.str σ} (h : CInfAt f y)
     {e : OpenPartialHomeomorph (CxPts X.str σ) (V X.dim)} (he : IsHoloChart e) (hy : y ∈ e.source) :
     ContDiffAt ℝ ∞ (fun v => f (e.symm v)) (e y) := by
@@ -132,7 +112,7 @@ theorem curvPoly_polyRep {ι : Type} [Fintype ι] {m : ι → ℕ} (ρ : PolyRep
     have := e.continuousAt_symm (e.map_source hye)
     rwa [ContinuousAt, e.left_inv hye] at this
   have heq : (fun v => H' (fun _ => ρ.ev A) (e.symm v) ()) =ᶠ[𝓝 (e y)] fun v => ρ.ev (H A (e.symm v)) := by
-    filter_upwards [ht.eventually ((isOpen_ptsIn O).mem_nhds hy), ht.eventually (eventually_mem_frames hA)] with v h1 h2
+    filter_upwards [ht.eventually ((isOpen_ptsIn O).mem_nhds hy), ht.eventually (_root_.GlobalTheory.FrameLift.eventually_mem hA)] with v h1 h2
     exact hρ _ h1 A h2
   simp only [curvPoly, curv_congr heq]
 
@@ -164,7 +144,7 @@ theorem _root_.GlobalTheory.GoodMetric.isGood_polyRep : ∀ (F : Type) [Field F]
       rwa [ha₀] at this
     exact h0.norm.eventually (gt_mem_nhds (by rw [norm_zero]; positivity))
   filter_upwards [hev, self_mem_nhdsWithin, nhdsWithin_le_nhds (e.open_source.mem_nhds hye),
-    nhdsWithin_le_nhds (eventually_mem_frames hA), nhdsWithin_le_nhds hsmall] with z hz hzO hzs hzA hzsm
+    nhdsWithin_le_nhds (_root_.GlobalTheory.FrameLift.eventually_mem hA), nhdsWithin_le_nhds hsmall] with z hz hzO hzs hzA hzsm
   rintro ⟨⟩
   have hz2 : ∀ τ, MContDiffAt 2 (fun v => H A (e.symm v) τ) (e z) := hH.mContDiffAt_two hzO hzA he hzs
   have hdet : ∀ τ, (H A (e.symm (e z)) τ).det ≠ 0 := fun τ => by
@@ -181,7 +161,7 @@ theorem _root_.GlobalTheory.GoodMetric.isGood_polyRep : ∀ (F : Type) [Field F]
   have ht : Tendsto e.symm (𝓝 (e z)) (𝓝 z) := by
     have := e.continuousAt_symm (e.map_source hzs)
     rwa [ContinuousAt, e.left_inv hzs] at this
-  filter_upwards [ht.eventually ((isOpen_ptsIn O).mem_nhds hzO), ht.eventually (eventually_mem_frames hzA)]
+  filter_upwards [ht.eventually ((isOpen_ptsIn O).mem_nhds hzO), ht.eventually (_root_.GlobalTheory.FrameLift.eventually_mem hzA)]
     with v h1 h2
   exact (hρ _ h1 A h2).symm
 

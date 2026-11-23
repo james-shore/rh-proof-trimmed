@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.EichlerIsometry
 
 @[expose] public section
 
@@ -121,18 +122,6 @@ theorem hf_sm {N : ℕ} {a b c : K} {Hm : Matrix (Fin N) (Fin N) R} {x y : Fin N
     Sm L (a * b * c) (hf L Hm x y) :=
   sm_sum L _ _ fun i _ => sm_sum L _ _ fun j _ => sm_mul L (sm_mul L (hx i) (hH i j)) (sm_cj L (hy j))
 
-theorem hf_add_l {N : ℕ} (Hm : Matrix (Fin N) (Fin N) R) (a b y : Fin N → R) :
-    hf L Hm (a + b) y = hf L Hm a y + hf L Hm b y := by
-  simp [hf, add_mul, Finset.sum_add_distrib]
-
-theorem hf_add_r {N : ℕ} (Hm : Matrix (Fin N) (Fin N) R) (a b y : Fin N → R) :
-    hf L Hm y (a + b) = hf L Hm y a + hf L Hm y b := by
-  simp [hf, mul_add, Finset.sum_add_distrib]
-
-theorem hf_sub_l {N : ℕ} (Hm : Matrix (Fin N) (Fin N) R) (a b y : Fin N → R) :
-    hf L Hm (a - b) y = hf L Hm a y - hf L Hm b y := by
-  simp [hf, sub_mul, Finset.sum_sub_distrib]
-
 theorem exists_bound {ι : Type} [Fintype ι] (f : ι → R) : ∃ e ∈ 𝒪[K], e ≠ 0 ∧ ∀ i, Sm L e⁻¹ (f i) := by
   first
   | exact @_root_.GlobalTheory.SmulIntegralDenominator.main
@@ -158,7 +147,7 @@ theorem local_choice {N r : ℕ} (Hm : Matrix (Fin N) (Fin N) R) (X Y : Fin r �
   have hv' : ∀ a ∈ T, hf L Hm v (Y a) = hf L Hm (v - up) (Y a) ∧
       hf L Hm v (X a) = hf L Hm (v - up) (X a) := by
     intro a ha
-    rw [hf_sub_l, hf_sub_l, (horth a ha).1, (horth a ha).2, sub_zero, sub_zero]
+    rw [_root_.GlobalTheory.HL.Eichler.hf_sub_l, _root_.GlobalTheory.HL.Eichler.hf_sub_l, (horth a ha).1, (horth a ha).2, sub_zero, sub_zero]
     exact ⟨rfl, rfl⟩
   have hmv : ∀ j, Sm L (2 * d' * e ^ 5) ((v - up) j) := fun j => by simpa using hv j
   have hm' : ∀ j, Sm L (2 * d' * e ^ 2) (piL L Hm X Y T v j - up j) := by
@@ -178,7 +167,7 @@ theorem local_choice {N r : ℕ} (Hm : Matrix (Fin N) (Fin N) R) (X Y : Fin r �
   set m' : Fin N → R := fun j => piL L Hm X Y T v j - up j with hm'def
   have hpv : piL L Hm X Y T v = up + m' := by funext j; simp [m']
   have hm'' : ∀ j, Sm L (2 * d' * e ^ 2) (m' j) := hm'
-  rw [hpv, hf_add_l, hf_add_r, hf_add_r]
+  rw [hpv, _root_.GlobalTheory.HL.Eichler.hf_add_l, _root_.GlobalTheory.HL.Eichler.hf_add_r, _root_.GlobalTheory.HL.Eichler.hf_add_r]
   have e2 : hf L Hm up up + hf L Hm up m' + (hf L Hm m' up + hf L Hm m' m') - hf L Hm up up =
       hf L Hm up m' + hf L Hm m' up + hf L Hm m' m' := by ring
   rw [e2]
@@ -193,16 +182,10 @@ end Local
 section Global
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {sig : E →ₐ[F] E}
 
-theorem sig_sig (A : Places F E sig) (y : E) : sig (sig y) = y := by
-  obtain ⟨p⟩ := exists_place F
-  haveI := GlobalTheory.HL.PlacesInt.nontrivial_Ep (A.loc p)
-  apply (A.loc p).ιE.injective
-  rw [← (A.loc p).cj_ιE, ← (A.loc p).cj_ιE, ← A.L_cj, (A.L p).cj_cj]
-
 theorem hq_swap (A : Places F E sig) {N : ℕ} (Hm : Matrix (Fin N) (Fin N) E)
     (hH : ∀ i j, sig (Hm j i) = Hm i j) (x y : Fin N → E) : sig (hq sig Hm x y) = hq sig Hm y x := by
 
-  simp only [hq, map_sum, map_mul, sig_sig A]
+  simp only [hq, map_sum, map_mul, _root_.GlobalTheory.HL.StrongApprox.sig_sig A]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   rw [hH]

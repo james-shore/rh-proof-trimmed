@@ -341,7 +341,7 @@ theorem exists_frame_of_hom [DecidableEq (CMType H)] (hG : Top.Given) (hL : Comp
     rw [Rd.rd_eq a g hg] at e1
     rw [div_mul_eq_mul_div, eq_div_iff hθ0, mul_comm (rdU (U σ) g k' y'), e1, map_mul, map_mul, map_mul]
     ring
-  · obtain ⟨h1, -, -, h4, -⟩ := GlobalTheory.T.tower_weight_of_zero E H Dw l Xo c RM u
+  · obtain ⟨h1, -, -, h4, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.integer_weights_vocab E H Dw l Xo c RM u
     obtain ⟨θ, hθ, hθf⟩ := hall (GlobalTheory.AllWt.wtOf Dw u 0).1 (nOf u) (fun j => by rw [h1]; exact h4 j)
     have hf' : f ∈ Rec.secZ Xo c (GlobalTheory.AllWt.wtOf Dw u 0).1 := GlobalTheory.CompanionTheory.Ar.Plug.Test.secZ_eq u ▸ hf
     have e1 := eq_of_hasVal ((hθf f hf').1 hσ)
@@ -474,10 +474,10 @@ theorem vs_arch : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
       have h1 := hw (e Z) (hL.e_sec Z)
       rw [hk y hy, (hL.e_val Z).2 Z' hne, map_zero, mul_one] at h1
       exact hw0 h1
-    obtain ⟨a, N, g, hgs, hgb⟩ := GlobalTheory.T.good_origin_component_sections hG E H Dw l Xo c r U h e hL Y T o Z'
+    obtain ⟨a, N, g, hgs, hgb⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.BirEx.bir_exists hG E H Dw l Xo c r U h e hL Y T o Z'
     exact bound_at_frame hG hL x hx hpq Fr Z' Rd u s R hR hH hf hev hσ hk ⟨y, hy⟩ φ fun y' hy' => by
       obtain ⟨w, hw, hwg⟩ := hy' a
-      exact GlobalTheory.T.good_embedding_component_sections E H Dw l Xo c r U h e hL σ hσ Z' k hk a N g hgs hgb φ ⟨y, hy⟩ y' y₁ t hm hb w hw fun j => hwg _ (hgs j)
+      exact _root_.GlobalTheory.CompanionTheory.Ar.SameFlag.frBor_of_proportional_readings E H Dw l Xo c r U h e hL σ hσ Z' k hk a N g hgs hgb φ ⟨y, hy⟩ y' y₁ t hm hb w hw fun j => hwg _ (hgs j)
   have hcl : y₀ ∈ closure (((U σ).X k).dom ∩ ⋂ n, (S n)ᶜ) := hd.open_subset_closure_inter ho hy₀
   have hct : ContinuousAt (fun y => GlobalTheory.AllWt.homN (U σ) x (GlobalTheory.AllWt.wtOf Dw u 0) f ⟨k, y⟩) y₀ :=
     (continuousOn_homN (U σ) hU hpq x u hf k).continuousAt (ho.mem_nhds hy₀)

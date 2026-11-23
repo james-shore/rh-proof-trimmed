@@ -70,7 +70,7 @@ theorem stCartanGL : StCartanGL := by
   have hp1 : ‖(p : L)‖ < 1 := by
     unfold GlobalTheory.CompanionTheory.CartGL.IsUnif at hp
     exact hp.1
-  obtain ⟨ε, hε, hεU⟩ := GlobalTheory.T.congruence_subgroups_neighborhood_basis L n (U : Set (GL (Fin n) L)) hU U.one_mem
+  obtain ⟨ε, hε, hεU⟩ := _root_.GlobalTheory.CompanionTheory.CartGL.congK_cofinal L n (U : Set (GL (Fin n) L)) hU U.one_mem
   obtain ⟨r, hr0, hr1, hrε⟩ : ∃ r : ℝ, 0 < r ∧ r < 1 ∧ r ≤ ε :=
     ⟨min ε (1 / 2), lt_min hε (by norm_num), lt_of_le_of_lt (min_le_right _ _) (by norm_num), min_le_left _ _⟩
   have h0 : 0 ≤ r := hr0.le
@@ -85,9 +85,9 @@ theorem stCartanGL : StCartanGL := by
   · intro i k
     constructor
     · intro hk
-      exact GlobalTheory.T.congruence_subgroup_normal_in_maximal_compact L n r h0 h1 (c i) k (hc i) hk
+      exact _root_.GlobalTheory.CompanionTheory.CartGL.Normal.conj_mem_congK L n r h0 h1 (c i) k (hc i) hk
     · intro hk
-      have h2 := GlobalTheory.T.congruence_subgroup_normal_in_maximal_compact L n r h0 h1 (c i)⁻¹ _ (Subgroup.inv_mem _ (hc i)) hk
+      have h2 := _root_.GlobalTheory.CompanionTheory.CartGL.Normal.conj_mem_congK L n r h0 h1 (c i)⁻¹ _ (Subgroup.inv_mem _ (hc i)) hk
       have e : (c i)⁻¹ * (c i * k * (c i)⁻¹) * (c i)⁻¹⁻¹ = k := by group
       rwa [e] at h2
   · intro i j
@@ -95,16 +95,16 @@ theorem stCartanGL : StCartanGL := by
       GlobalTheory.CompanionTheory.CartGL.dPow p (GlobalTheory.CompanionTheory.CartGL.tExp n j) * GlobalTheory.CompanionTheory.CartGL.dPow p (GlobalTheory.CompanionTheory.CartGL.tExp n i)
     rw [← GlobalTheory.CompanionTheory.CartGL.dPow_add, ← GlobalTheory.CompanionTheory.CartGL.dPow_add, add_comm]
   · intro g
-    obtain ⟨a, ha, k₁, hk₁, k₂, hk₂, rfl⟩ := GlobalTheory.T.cartan_decomposition_gl_nonarchimedean L n p hp g
+    obtain ⟨a, ha, k₁, hk₁, k₂, hk₂, rfl⟩ := _root_.GlobalTheory.CompanionTheory.CartGL.cartan_unitBall L n p hp g
     obtain ⟨i, κ₁, hκ₁, rfl⟩ := hcK k₁ hk₁
     obtain ⟨j, κ₂, hκ₂, rfl⟩ := hcK k₂ hk₂
-    refine ⟨i, j, GlobalTheory.CompanionTheory.CartGL.dPow p a, GlobalTheory.T.antitone_powers_in_dominant_monoid L n p a ha, κ₁, hκ₁, (c j)⁻¹ * κ₂ * c j, ?_, ?_⟩
-    · have h2 := GlobalTheory.T.congruence_subgroup_normal_in_maximal_compact L n r h0 h1 (c j)⁻¹ κ₂ (Subgroup.inv_mem _ (hc j)) hκ₂
+    refine ⟨i, j, GlobalTheory.CompanionTheory.CartGL.dPow p a, _root_.GlobalTheory.CompanionTheory.CartGL.dPow_antitone_mem_closure L n p a ha, κ₁, hκ₁, (c j)⁻¹ * κ₂ * c j, ?_, ?_⟩
+    · have h2 := _root_.GlobalTheory.CompanionTheory.CartGL.Normal.conj_mem_congK L n r h0 h1 (c j)⁻¹ κ₂ (Subgroup.inv_mem _ (hc j)) hκ₂
       rwa [inv_inv] at h2
     · group
   · intro s hs s' hs' k hk
-    obtain ⟨a₁, ha₁, rfl⟩ := GlobalTheory.T.dominant_monoid_elements_are_antitone_powers L n p s hs
-    obtain ⟨a₂, ha₂, rfl⟩ := GlobalTheory.T.dominant_monoid_elements_are_antitone_powers L n p s' hs'
+    obtain ⟨a₁, ha₁, rfl⟩ := _root_.GlobalTheory.CompanionTheory.CartGL.closure_tGen_antitone L n p s hs
+    obtain ⟨a₂, ha₂, rfl⟩ := _root_.GlobalTheory.CompanionTheory.CartGL.closure_tGen_antitone L n p s' hs'
     have hkA : ∀ i j, ‖((k : Matrix (Fin n) (Fin n) L) - 1) i j‖ ≤ r := fun i j =>
       (GlobalTheory.CompanionTheory.CartGL.mem_congK.mp hk i j).1
     obtain ⟨Um, Wm, hUl, hWu, hUr, hWr, hUW⟩ := GlobalTheory.T.near_identity_upper_lower_factorization L n r h0 hr1 (k : Matrix (Fin n) (Fin n) L) hkA

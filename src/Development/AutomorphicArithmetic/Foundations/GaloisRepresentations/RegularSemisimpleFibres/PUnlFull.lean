@@ -63,7 +63,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.unlFull :
       (fun a => (single_spec (hx a)).2.1)
   have h1 := GlobalTheory.LocGL.SupportPerm.isSubquotient_prodIrr_of_hasSupport
     UpperTheory.Zero.LLC.Pr.zel UpperTheory.Zero.LLC.Pr.bz k N s ⟨V, π, hs.isSmooth, hs.isIrreducible⟩ x hd hs
-  haveI := GlobalTheory.ReducedFactor.nontrivial_of_irr hs.isIrreducible
+  haveI := _root_.GlobalTheory.JacFactor.nontrivial_of_isIrreducible hs.isIrreducible
   have equiv_of_sub {G A B : Type} [Group G] [AddCommGroup A] [Module ℂ A]
       [AddCommGroup B] [Module ℂ B] {σ : Representation ℂ G B}
       {ρ : Representation ℂ G A} (h : IsSubquotient σ ρ) [Nontrivial B]

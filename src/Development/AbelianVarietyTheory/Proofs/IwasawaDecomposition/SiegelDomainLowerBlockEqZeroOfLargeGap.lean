@@ -52,15 +52,7 @@ open Matrix GlobalTheory.RedTh NumberField GlobalTheory.PolFan ReciprocityTheory
 
 namespace GlobalTheory.SiegelGap
 
-theorem chain {n : ℕ} {d : Fin n → ℝ} {u : Matrix (Fin n) (Fin n) ℝ} (hS : GlobalTheory.RedTh.IsSiegel d u) :
-    ∀ m : ℕ, ∀ i j : Fin n, (j : ℕ) = i + m → d i ≤ 4 ^ m * d j := by
-  first
-  | exact @_root_.GlobalTheory.SiegelChain.siegel_chain
-  | exact _root_.GlobalTheory.SiegelChain.siegel_chain
-  | (apply _root_.GlobalTheory.SiegelChain.siegel_chain <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SiegelChain.siegel_chain <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SiegelChain.siegel_chain <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SiegelChain.siegel_chain ..)
+alias chain := _root_.GlobalTheory.SiegelChain.siegel_chain
 
 theorem chain_le {n : ℕ} {d : Fin n → ℝ} {u : Matrix (Fin n) (Fin n) ℝ} (hS : GlobalTheory.RedTh.IsSiegel d u)
     (i j : Fin n) (h : i ≤ j) : d i ≤ 4 ^ n * d j := by

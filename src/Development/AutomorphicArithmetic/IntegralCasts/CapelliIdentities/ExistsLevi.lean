@@ -44,14 +44,6 @@ import Mathlib.Topology.Sheaves.Init
 @[expose] public section
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes in
-private theorem sigma_sq {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    {σ : E →ₐ[F] E} (h : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨_, _, _, hs⟩ := h
-  let t : E →+* ℂ := (IsAlgClosed.lift : E →ₐ[ℚ] ℂ).toRingHom
-  apply t.injective
-  rw [hs, hs, star_star]
-
-open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes in
 private theorem sigR_sq {F E : Type} [Field F] [Field E] [Algebra F E] (A : Type) [CommRing A] [Algebra F A]
     {σ : E →ₐ[F] E} (h : ∀ x, σ (σ x) = x) (x : TensorProduct F A E) :
     sigR A σ (sigR A σ x) = x := by
@@ -59,11 +51,6 @@ private theorem sigR_sq {F E : Type} [Field F] [Field E] [Algebra F E] (A : Type
   | zero => simp
   | tmul a e => simp [sigR, h]
   | add a b ha hb => simp [ha, hb]
-
-open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes in
-private theorem sigR_incl {F E : Type} [Field F] [Field E] [Algebra F E] (A : Type) [CommRing A] [Algebra F A]
-    (σ : E →ₐ[F] E) (e : E) : sigR A σ (inclR A e) = inclR A (σ e) := by
-  simp [sigR, inclR]
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes in
 private theorem dual_map {F E : Type} [Field F] [Field E] [Algebra F E] (A : Type) [CommRing A] [Algebra F A]
@@ -128,7 +115,7 @@ theorem UpperTheory.Reformulated.B.Gka3.exists_levi :
                                     (X.map (⇑(Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR A) : E → TensorProduct F A E)).mulVec a := by
   intro F E _ _ _ _ _ σ n J r X Y hCM hH hW A _ _ _ p B hB hpX
   obtain ⟨hXX, hYY, hXY, -⟩ := hW
-  have hτ := sigR_sq A (sigma_sq hCM)
+  have hτ := sigR_sq A (_root_.GlobalTheory.AdelicU.cm_conj_conj hCM)
   let τ := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR A σ
   let ι := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (E := E) A
   let JA := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.JR (F := F) A J
@@ -142,7 +129,7 @@ theorem UpperTheory.Reformulated.B.Gka3.exists_levi :
   have hJh : (JA.map τ).transpose = JA := by
     ext i j
     simp only [JA, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.JR, Matrix.transpose_apply, Matrix.map_apply, τ]
-    rw [sigR_incl]
+    rw [_root_.GlobalTheory.Mem.VolFin.sigR_inclR]
     exact congrArg _ (hH.1 i j)
   have hJu : IsUnit JA.det := by
     have h1 : JA.det = ι J.det := (RingHom.map_det ι J).symm

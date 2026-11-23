@@ -213,35 +213,6 @@ theorem tens_change {W A R R' : Type} [CommRing W] [CommRing A] [CommRing R] [Co
   rw [hP, hg]
   exact (comm a y).symm
 
-theorem mapH_bijective {R R' : Type} [CommRing R] [CommRing R'] {σ : R →+* R'} {K : Cx.{w} R} {L : Cx.{w'} R'}
-    (φ : Cx.Hom K L σ) (h : ∀ n, Function.Bijective (φ.f n)) (n : ℕ) : Function.Bijective (φ.mapH n) := by
-  constructor
-  · rw [injective_iff_map_eq_zero]
-    intro c hc
-    obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ c
-    have h1 : φ.mapZ n z ∈ (L.B n).submoduleOf (L.Z n) := (Submodule.Quotient.mk_eq_zero _).1 hc
-    have h2 : φ.f n z.1 ∈ L.B n := h1
-    refine (Submodule.Quotient.mk_eq_zero _).2 ?_
-    change z.1 ∈ K.B n
-    cases n with
-    | zero =>
-      have h3 : φ.f 0 z.1 = 0 := h2
-      have h4 : z.1 = 0 := (h 0).1 (h3.trans (map_zero _).symm)
-      rw [h4]
-      exact Submodule.zero_mem _
-    | succ n =>
-      obtain ⟨v, hv⟩ := h2
-      obtain ⟨v', rfl⟩ := (h n).2 v
-      rw [φ.comm] at hv
-      exact ⟨v', (h (n + 1)).1 hv⟩
-  · intro c
-    obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ c
-    obtain ⟨y, hy⟩ := (h n).2 z.1
-    have hd : K.d n y = 0 := (h (n + 1)).1 (by
-      rw [← φ.comm, hy, map_zero]
-      exact z.2)
-    exact ⟨Submodule.Quotient.mk ⟨y, hd⟩, congrArg (Submodule.Quotient.mk (p := _)) (Subtype.ext hy)⟩
-
 theorem pullC_bijective {R R' : Type} [CommRing R] [CommRing R'] {σ : R →+* R'} {C : Type 1} [Category.{0} C]
     (Q : ObjectProperty C) (hQ : ∀ T, Q T) {F : C ⥤ ModuleCat.{w} R} {F' : Q.FullSubcategory ⥤ ModuleCat.{w'} R'}
     (m : CH.Mor F F' σ) (hG : m.G = Q.ι) (hτ : ∀ T, Function.Bijective (m.τ T)) (n : ℕ) :
@@ -296,7 +267,7 @@ theorem toQ_bijective (T : Q.FullSubcategory) : Function.Bijective ((toQ Q c).τ
     exact ⟨x, Subtype.ext rfl⟩
 
 theorem toQ_pull_bijective (hQ : ∀ T, Q T) (j : ℕ) : Function.Bijective ((toQ Q c).pull j) :=
-  mapH_bijective _ (fun n => pullC_bijective Q hQ _ rfl (toQ_bijective Q c) n) j
+  _root_.CrystallineSemistableComparison.P.mapH_bij _ (fun n => pullC_bijective Q hQ _ rfl (toQ_bijective Q c) n) j
 
 end ToQ
 

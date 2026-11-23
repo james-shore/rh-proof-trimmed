@@ -129,7 +129,7 @@ theorem exists_dR_frame : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : Lo
     rw [Set.finrank, eq_top_iff.2 htop, finrank_top, Module.finrank_fin_fun, Fintype.card_fin] at h1
     exact h1
   have hle2 : m' ≤ m := by
-    have := GlobalTheory.Per.Components.card_le_of_idem_indep (GlobalTheory.DRFil.idem_mul_idem (F := P.R.BdR) τ')
+    have := _root_.GlobalTheory.Per.LetterDim.card_le_of_idem (GlobalTheory.DRFil.idem_mul_idem (F := P.R.BdR) τ')
       (GlobalTheory.DRFil.idem_ne_zero (F := P.R.BdR) τ')
       (fun i j => GlobalTheory.DRFil.ext ℚ_[l] P.R.BdR ((Pi.basisFun ↥LL.1 (Fin m)).coord j) (d i))
       (fun r hr => had.indep r (by
@@ -162,8 +162,8 @@ theorem GlobalTheory.HTBasis.htc_basis : ∀ (l : ℕ) [Fact l.Prime] (P : LocPr
   intro l _ P AI T K LL m r' ρ hdR τ' hτ K' _hK hL
   obtain ⟨u, k, hcount, hmem, heq, hspan, hind⟩ :=
     GlobalTheory.HTBasis.exists_dR_frame l P AI T K LL m r' hdR τ' hτ
-  have hU := GlobalTheory.T.hodgeTateSymbolMatrix_isUnit_det (GlobalTheory.HTBasis.thetaOf T) u k hmem hspan hind
+  have hU := _root_.GlobalTheory.HTBasis.colHT_isUnit_det (GlobalTheory.HTBasis.thetaOf T) u k hmem hspan hind
   refine ⟨((Matrix.isUnit_iff_isUnit_det _).2 hU).unit, k, hcount, fun g hg => ?_⟩
   have hfix : ∀ x ∈ LL.1, (g : GQ l) x = x := fun x hx =>
     (IntermediateField.mem_fixingSubgroup_iff _ _).1 hg x (hL hx)
-  exact GlobalTheory.T.hodgeTateSymbolMatrix_equivariant (GlobalTheory.HTBasis.thetaOf T) r' u k hmem g (heq g hfix)
+  exact _root_.GlobalTheory.HTBasis.colHT_equivariant (GlobalTheory.HTBasis.thetaOf T) r' u k hmem g (heq g hfix)

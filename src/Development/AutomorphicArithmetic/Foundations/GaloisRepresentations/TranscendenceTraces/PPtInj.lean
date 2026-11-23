@@ -62,9 +62,6 @@ private theorem res_sub' {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} 
 private theorem res_zero' {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) :
     Sec.res g (0 : Sec F U) = 0 := map_zero (F.obj.map g.op).hom
 
-private theorem res_nsmul' {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (g : V ⟶ U) (c : ℕ) (a : Sec F U) :
-    Sec.res g (c • a) = c • Sec.res g a := map_nsmul (F.obj.map g.op).hom c a
-
 private theorem sec_empty {R : Type} [CommRing R] (F : Shv R) {V : Scheme.{0}} [IsEmpty V] (a b : Sec F V) : a = b :=
   (GlobalTheory.T.etaleSheafSections_ext_and_glue R F V).1 a b ((GlobalTheory.T.etaleLocal_property_calculus_rules).2.2.2.2.2.2 V _)
 
@@ -85,10 +82,10 @@ theorem UpperTheory.Gal.TranscendenceTraces.ptInj_of :
       · obtain ⟨Ω, _, _, x, -⟩ := hEx V v
         have h1 : c • twGen i (ζ.map x.appTop.hom) = 0 := by
           have h2 := hy Ω (x ≫ g)
-          rw [← res_res, hc, res_nsmul', (GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.2.1] at h2
+          rw [← res_res, hc, _root_.GlobalTheory.TwSec.res_nsmul, (_root_.GlobalTheory.EtC.twist_sections q i).2.2.2.1] at h2
           exact h2
         haveI : Nonempty (gp Ω) := ⟨IsLocalRing.closedPoint Ω⟩
-        obtain ⟨d, rfl⟩ := (GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.1 (gp Ω) _ c h1
+        obtain ⟨d, rfl⟩ := (_root_.GlobalTheory.EtC.twist_sections q i).2.2.1 (gp Ω) _ c h1
         rw [hc, mul_nsmul', q_smul_sec]
   rw [res_sub'] at key
   exact sub_eq_zero.1 key

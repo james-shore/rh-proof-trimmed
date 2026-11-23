@@ -162,7 +162,7 @@ theorem exists_base' (hRes : ResK.ResKStatement) (E : Type) [Field E] [NumberFie
 theorem stBase : StBase := by
   intro hRes hW E _ _ _ H D l Xo c Y S Ω₀ _ ξ₀ hξ₀ hS hSd
   obtain ⟨Ω, _, _, K₁, _, J₁, _, y₁, M₁, f₁, z₀, i, ⟨k₁⟩, hfin, hN, hz₀, hdomi, htors, hroot, hsnc₁, htr⟩ :=
-    exists_base' hRes E H D l Xo c Y Ω₀ ξ₀ hξ₀ S hS
+    _root_.GlobalTheory.CompanionTheory.Ar.GeoModel.exists_base hRes E H D l Xo c Y Ω₀ ξ₀ hξ₀ S hS
   have hgen₁ : f₁ (GlobalTheory.CompanionTheory.Ar.genPt M₁.ξ) ∈ genericPoints Y.X := by
     have e : GlobalTheory.CompanionTheory.Ar.genPt (M₁.ξ ≫ f₁) = GlobalTheory.CompanionTheory.Ar.genPt ξ₀ := by
       rw [hdomi]; exact GeoModel.genPt_comp i ξ₀
@@ -190,7 +190,7 @@ theorem stBase : StBase := by
   haveI : Nonempty K₂ := ⟨bk k₁⟩
   refine ⟨Ω, inferInstance, inferInstance, K₂, inferInstance, J₂, inferInstance, y₂, overCpt A ξ₀ hξ₀ i hi,
     Module.finrank Ω₀ Ω, inferInstance, rfl, ⟨Module.finrank_pos, rfl⟩,
-    (GlobalTheory.T.birational_of_transcendence_degree A.X Ω A.ξ K₂ J₂ y₂ _ A.tie htr).2, ⟨bd, hbd, fun z w hw => ?_⟩, fun p _ => congrFun hR₂ p, hfree⟩
+    (_root_.GlobalTheory.CompanionTheory.Ar.coordTie_birational_isArithVar A.X Ω A.ξ K₂ J₂ y₂ _ A.tie htr).2, ⟨bd, hbd, fun z w hw => ?_⟩, fun p _ => congrFun hR₂ p, hfree⟩
   rw [hbd' z w hw]
   constructor
   · rintro ⟨h, -, h2⟩ hI

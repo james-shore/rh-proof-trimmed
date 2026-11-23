@@ -307,7 +307,7 @@ theorem swap_coeff {V Z : Ideal (MRingOver F ι)} {n : ℕ} {f t : MRingOver F �
       (fun W hW hWZ => hft W ⟨hW, isRelevant_of_le hZr hWZ⟩)
     have hlen := length_quot_ne_top_of_mem_minimalPrimes _
       (h.maximalIdeal_mem_minimalPrimes (hex Z inferInstance hVZ le_rfl) hZm)
-    have key := (len2 _ _ _ hdim (fun e => hfV ((h.map_eq_zero_iff hVZ f).mp e))
+    have key := (_root_.ReciprocityTheory.ChartRestriction.G.AI.length_two_generator_quotient _ _ _ hdim (fun e => hfV ((h.map_eq_zero_iff hVZ f).mp e))
       (fun e => htV ((h.map_eq_zero_iff hVZ t).mp e)) hlen).2.2
     have e : ((∑ W ∈ (divSupp_finite V f).toFinset, divCycle V f W * divCycle W t Z : ℕ) : ℕ∞) =
         ((∑ W ∈ (divSupp_finite V t).toFinset, divCycle V t W * divCycle W f Z : ℕ) : ℕ∞) := by

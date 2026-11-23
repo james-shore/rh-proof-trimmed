@@ -67,11 +67,6 @@ theorem pullHO1_congr {X X' : Scheme.{0}} {s : X ⟶ Sp R} {s' : X' ⟶ Sp R} {�
     pullHO1 h c = pullHO1 h' c := by
   subst e; rfl
 
-theorem isPullO_congr {X X' : Scheme.{0}} {s : X ⟶ Sp R} {s' : X' ⟶ Sp R} {φ ψ : X' ⟶ X} (e : φ = ψ)
-    (h : φ ≫ s = s' ≫ spMap (RingHom.id R)) (h' : ψ ≫ s = s' ≫ spMap (RingHom.id R)) {c : HO1 s} {c' : HO1 s'} :
-    IsPullO h c c' ↔ IsPullO h' c c' := by
-  subst e; rfl
-
 theorem pullHO1_self {X : Scheme.{0}} {s : X ⟶ Sp R} (h : 𝟙 X ≫ s = s ≫ spMap (RingHom.id R)) (c : HO1 s) :
     pullHO1 h c = c :=
   (IsPullO.eq_pullHO1 h
@@ -83,7 +78,7 @@ theorem pullHO1_comp {A B C : Over (Sp R)} (f : B ⟶ C) (g : A ⟶ B) (a : HO1 
     rw [← Over.comp_left]; exact overW (g ≫ f)
   have k := (GlobalTheory.T.structureSheaf_pullback_relations_basic R C.left B.left C.hom B.hom f.left (overW f)).2.2 A.left A.hom g.left (overW g) h'' a _ _
     (isPullO_pullHO1 _ a) (isPullO_pullHO1 _ _)
-  exact IsPullO.eq_pullHO1 _ ((isPullO_congr (show g.left ≫ f.left = (g ≫ f).left from rfl) _ _).1 k)
+  exact IsPullO.eq_pullHO1 _ ((_root_.GlobalTheory.Obs.Axes.isPullO_congr (show g.left ≫ f.left = (g ≫ f).left from rfl) _ _).1 k)
 
 theorem pullHO1_pull_self {A B : Over (Sp R)} (f : B ⟶ A) (g : A ⟶ B) (e : g ≫ f = 𝟙 A) (a : HO1 A.hom) :
     pullHO1 (overW g) (pullHO1 (overW f) a) = a := by

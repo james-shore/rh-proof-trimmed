@@ -56,7 +56,7 @@ theorem exists_eq_of_henselian {R : Type*} [CommRing R] [IsLocalRing R]
     [HenselianRing R (maximalIdeal R)] [Finite (ResidueField R)] (t n u : R)
     (hD : IsUnit (t ^ 2 - 4 * n)) (hu : IsUnit u) :
     ∃ r s : R, r ^ 2 + t * r * s + n * s ^ 2 = u := by
-  obtain ⟨r, s, hrs⟩ := GlobalTheory.UnramifiedHermitian.exists_binary_eq_of_finite
+  obtain ⟨r, s, hrs⟩ := _root_.GlobalTheory.BinaryFormUniversal.binary_form_universal
     (a := residue R t) (n := residue R n)
     (by simpa only [map_sub, map_mul, map_pow, map_ofNat] using (hD.map (residue R)).ne_zero)
     (residue R u)

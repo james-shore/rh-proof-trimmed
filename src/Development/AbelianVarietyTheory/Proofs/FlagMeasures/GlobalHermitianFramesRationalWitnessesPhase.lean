@@ -304,7 +304,7 @@ theorem global_witnesses : ∀ {F E : Type} [Field F] [NumberField F] [Field E] 
     rw [Set.mem_setOf_eq, hone p h] at hp
     exact hp (by simp)
   have hcfin : {p | ¬ ∃ u : (𝒪[(A.loc p).Fp])ˣ, ((u : 𝒪[(A.loc p).Fp]) : (A.loc p).Fp) =
-      (Units.mk0 (G.S p).th (th_ne (G.S p)) : ((A.loc p).Fp)ˣ)}.Finite := by
+      (Units.mk0 (G.S p).th (_root_.GlobalTheory.FrameLevel.th_ne_zero (G.S p)) : ((A.loc p).Fp)ˣ)}.Finite := by
     refine G.gg_fin.subset fun p hp => ?_
     by_contra hg
     rw [Set.mem_setOf_eq] at hp hg

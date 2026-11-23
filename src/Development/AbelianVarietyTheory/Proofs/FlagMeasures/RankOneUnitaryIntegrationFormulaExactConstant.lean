@@ -365,18 +365,9 @@ theorem isHaar_comap {μ : Measure (Mt k r)} (h : IsHaarOn (UWb k r) μ) :
     rw [Measure.map_map embA_memb.measurable hm, e, ← Measure.map_map hm' embA_memb.measurable, map_comap_embA h3,
       h4 _ hs']
 
-theorem isMatGroup_one (j : ℕ) : PI.IsMatGroup (UH (1 : Matrix (Fin j) (Fin j) ℂ)) := by
-  refine ⟨isClosed_eq ((continuous_id.matrix_conjTranspose.matrix_mul continuous_const).matrix_mul continuous_id)
-      continuous_const, by simp [UH], fun a ha b hb => ?_, fun a ha => ?_⟩
-  · simp only [UH, Set.mem_ofPred_eq, mul_one] at ha hb ⊢
-    rw [conjTranspose_mul, mul_assoc, ← mul_assoc aᴴ, ha, one_mul, hb]
-  · simp only [UH, Set.mem_ofPred_eq, mul_one] at ha ⊢
-    rw [Matrix.inv_eq_left_inv ha, conjTranspose_conjTranspose]
-    exact ⟨mul_eq_one_comm.1 ha, mul_eq_one_comm.1 ha⟩
-
 theorem exists_prob (j : ℕ) :
     ∃ μ : Measure (PI.MtM j), PI.IsHaarOnM (UH (1 : Matrix (Fin j) (Fin j) ℂ)) μ ∧ μ Set.univ = 1 := by
-  have hG := isMatGroup_one j
+  have hG := _root_.GlobalTheory.UnitaryVolume.isMatGroup_UH_one j
   have hc : IsCompact (GlobalTheory.MatHaar.amb (UH (1 : Matrix (Fin j) (Fin j) ℂ))) := by
     refine (isCompact_closedBall (0 : PI.MtM j) 1).of_isClosed_subset (GlobalTheory.MatHaar.amb_closed hG) fun x hx => ?_
     have hx' : (Matrix.of x) ∈ Matrix.unitaryGroup (Fin j) ℂ := by
@@ -597,7 +588,7 @@ theorem shell_lhs {z z' : Fin (2 * r + k + 1) → ℂ} {μb : Measure (Mt k r)}
     ← mul_sub_one, abs_mul, abs_of_pos hTT, mul_le_mul_iff_right₀ hTT]
   rfl
 
-theorem volUn_pos (j : ℕ) : 0 < volUn j := Finset.prod_pos fun i _ => by positivity
+alias volUn_pos := _root_.GlobalTheory.UnitaryVolume.volUn_pos
 
 theorem rankOne_exact : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (μsec : ℂ → Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (μb μW μW' : Measure (Mt k r)) (cb : ℝ), 1 ≤ k → inWb k r z → inWb k r z' → 0 < Tz k r z → 0 < Tz k r z' → IsSection k r z z' μsec → 0 < cb → IsHaarOn (Formalism.FourierDecayAlt.B2.UWb k r) μb → HasDens (Formalism.FourierDecayAlt.B2.UWb k r) μb (ENNReal.ofReal cb) → IsHaarOn (UWset k r z) μW → μW Set.univ = 1 → IsHaarOn (UWset k r z') μW' → μW' Set.univ = 1 → ∀ f : Mt k r → ℝ≥0∞, Measurable f → ∫⁻ m, f m ∂μb = ENNReal.ofReal (cb * 2 * volUn k ^ 2 / volUn (k - 1) / (Tz k r z * Tz k r z') ^ k) * ∫⁻ ζ : ℂ, ENNReal.ofReal (Formalism.FourierDecayAlt.B2.zWeight k (Tz k r z) (Tz k r z') ζ) * ∫⁻ p : Mt k r × Mt k r, f ((Matrix.of p.1)⁻¹ * Formalism.FourierDecayAlt.B2.embWb k r (μsec ζ) * Matrix.of p.2) ∂(μW.prod μW') := by
   intro k r z z' μsec μb μW μW' cb hk hz hz' hT hT' hsec hcb hb hd hW h1 hW' h1'

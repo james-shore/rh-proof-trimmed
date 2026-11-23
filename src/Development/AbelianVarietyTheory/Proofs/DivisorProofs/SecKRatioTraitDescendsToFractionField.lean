@@ -90,8 +90,7 @@ theorem gs_top' (f : Z ⟶ Y) (z : Z) (a : Γ(Y, ⊤)) : gs f z ⊤ a = gs (𝟙
   rw [Category.id_comp] at this
   exact this.symm
 
-theorem gs_zero'' (f : Z ⟶ Y) (z : Z) (U : Y.Opens) : gs f z U 0 = 0 := by
-  unfold gs; split_ifs <;> simp
+alias gs_zero'' := _root_.GlobalTheory.UU.SchurComp.gs_zero
 
 abbrev sg (g : Z ⟶ Sp A) (z : Z) (a : A) : Z.presheaf.stalk z := gs (𝟙 Z) z ⊤ (scal g a)
 
@@ -169,7 +168,7 @@ theorem secK_ratio_descends : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalR
         rw [G0 j₀ y hy]
         change _ = sg g y c' * (_ * sg g y (d' / c'))
         rw [mul_comm _ (sg g y (d' / c')), ← _root_.mul_assoc, ← sg_mul, hcd]
-      obtain ⟨m₀, hm₀⟩ := GlobalTheory.T.mem_range_of_base_change_ratio_sections ψ C.A.A.hom (Uc j₀) (s₁.f j₀) (s₂.f j₀) (d' / c') hj₀ e
+      obtain ⟨m₀, hm₀⟩ := _root_.GlobalTheory.ConstDescent.mem_range_of_pullback_eq ψ C.A.A.hom (Uc j₀) (s₁.f j₀) (s₂.f j₀) (d' / c') hj₀ e
       refine ⟨m₀, fun h => ?_, fun j y hy => ?_⟩
       · rw [h, map_zero] at hm₀
         exact div_ne_zero hd0 hc0 hm₀.symm

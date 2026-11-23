@@ -202,7 +202,7 @@ theorem exists_finite_space_rank (h : ∀ (L' : Subgroup (GL (Fin a) (Af E))), I
   let w0 : spanK E a φ := ⟨φ, self_mem_spanK φ⟩
   haveI := finiteDimensional_mapsJ_rank h φ hφ (stabL φ) hφ.level
   refine ⟨(mapsJ φ (stabL φ)).map (LinearMap.applyₗ w0), inferInstance, ?_, fun α hα hK =>
-    ⟨GlobalTheory.T.realLieSmoothing_mem_smoothAdelicFunctions E a ν α hα φ.1 φ.2, smoothMap ν hα _, smoothMap_mem ν hα hK hφ, rfl⟩⟩
+    ⟨_root_.GlobalTheory.AutGrowth.smoothing_mem_Sm E a ν α hα φ.1 φ.2, smoothMap ν hα _, smoothMap_mem ν hα hK hφ, rfl⟩⟩
   rintro _ ⟨T, hT, rfl⟩
   exact (hT.1.2 w0).1
 

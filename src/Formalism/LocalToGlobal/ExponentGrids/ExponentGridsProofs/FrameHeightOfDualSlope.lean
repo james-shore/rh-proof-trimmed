@@ -69,9 +69,6 @@ noncomputable section
 
 namespace Formalism.AtG
 
-theorem grid_ell_bound : FinitePlaceLiesOverPrime := by
-  first | exact Bl.PlaneOverMembership.goal1 .. | (apply Bl.PlaneOverMembership.goal1 <;> assumption) | (intros; apply Bl.PlaneOverMembership.goal1 <;> assumption) | (apply @Bl.PlaneOverMembership.goal1 <;> assumption) | (intros; apply @Bl.PlaneOverMembership.goal1 <;> assumption) | (apply @Bl.PlaneOverMembership.goal1 <;> first | assumption | infer_instance)
-
 theorem sum_le_finsum' {α : Type} (f : α → ℝ) (hf : ∀ a, 0 ≤ f a) (hs : (Function.support f).Finite)
     (F : Finset α) : ∑ a ∈ F, f a ≤ ∑ᶠ a, f a := by
   classical
@@ -192,10 +189,6 @@ theorem log_absNorm_denIdeal {K : Type} [Field K] [NumberField K] (T : Finset (P
     have := absNorm_pl_ne_zero w
     exact_mod_cast this
 
-theorem lw_nonneg' {K : Type} [Field K] [NumberField K] (w : Pl K) : 0 ≤ lw w := by
-  unfold Formalism.DivisionValues.lw
-  exact div_nonneg (Real.log_natCast_nonneg _) (Nat.cast_nonneg _)
-
 theorem grid_lemma_A : SlopeInequalityDenominators := by
   intro K V ι W κ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ b X b' X' hX hX' φ A B T a hA hA0 hB hB0 hφ hincl
   have hI : denIdeal T a ≠ 0 := denIdeal_ne_zero T a
@@ -258,7 +251,7 @@ theorem grid_function_of_lemma_A (hA : SlopeInequalityDenominators) : LargestSlo
         ≤ ∑ w ∈ T, (lw w * (vw w (r w) : ℝ) + lw w * dF w) := by
           refine Finset.sum_le_sum fun w hw => ?_
           have h1 := ha w hw
-          have hl : 0 ≤ lw w := lw_nonneg' w
+          have hl : 0 ≤ lw w := _root_.Formalism.PairingDivisionLocalBalance.lw_nonneg w
           nlinarith
       _ = ∑ w ∈ T, lw w * (vw w (r w) : ℝ) + ∑ w ∈ T, lw w * dF w := Finset.sum_add_distrib
       _ ≤ Gr + BF := add_le_add hGr hBF

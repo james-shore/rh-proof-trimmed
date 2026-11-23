@@ -67,7 +67,7 @@ theorem exists_periodMatrix_of_isSst : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrim
     fun c => rfl
   have hst : ∀ (g : ↥(GK K)) (y : V ⊗[ℚ_[l]] Bst P),
       stRep P ρ g y = TensorProduct.map (ρ g) (actSt P (g : GQ l)).toLinearMap y := fun g y => rfl
-  refine GlobalTheory.T.exists_periodMatrix_of_finrank_alt ℚ_[l] ↥(K0 K) (Bst P) ↥(GK K)
+  refine _root_.GlobalTheory.RegularRing.exists_periodMatrix_of_finrank ℚ_[l] ↥(K0 K) (Bst P) ↥(GK K)
     (fun g => (actSt P (g : GQ l) : Bst P →+* Bst P)) n (fun g => LinearMap.toMatrix b b (ρ g))
     (fun g => ?_) (fun g c => ?_) (fun x x' hx hh => ?_) (fun x hx hh => hu K x hx hh)
     ((Dst P ρ).map e.toLinearMap) (fun x => ?_) ?_

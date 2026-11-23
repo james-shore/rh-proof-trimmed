@@ -189,7 +189,7 @@ theorem main : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField
   have hcm : IsCMExt F E σ := hP.base.cm
   have hψ : IsStd B.ψ := hP.base.std
   have hf : ∑ i, ∑ k, incV F H.y i * incM F X.J i k * cA σ (incV F H.x k) = 1 := by
-    rw [form_inc, form_swap (invol hcm) hP.herm.herm, hH.xy, map_one, map_one]
+    rw [form_inc, form_swap (_root_.GlobalTheory.AdelicU.cm_conj_conj hcm) hP.herm.herm, hH.xy, map_one, map_one]
   have hdet : IsUnit (incM F W.J).det := by
     obtain ⟨w⟩ : Nonempty (InfinitePlace F) := inferInstance
     have h1 := GlobalTheory.ArchTraceNondeg.det_ne_zero_of_hasSig (hP.skew.sig w)

@@ -62,16 +62,11 @@ namespace GlobalTheory.EndLoc.AdjClosed
 
 variable {S : Scheme.{0}}
 
-theorem hom_ext_sq {A : Over S} {X : Scheme.{0}} {u v : X ⟶ (A ⊗ A).left}
-    (h₁ : u ≫ (fst A A).left = v ≫ (fst A A).left) (h₂ : u ≫ (snd A A).left = v ≫ (snd A A).left) : u = v := by
-  have p : IsPullback (fst A A).left (snd A A).left A.hom A.hom := IsPullback.of_hasPullback _ _
-  exact p.hom_ext h₁ h₂
-
 theorem comm_left {S' : Scheme.{0}} {A : Over S} {A' : Over S'} {φ : A'.left ⟶ A.left}
     {φ₂ : (A' ⊗ A').left ⟶ (A ⊗ A).left} (hsq : IsSquare φ φ₂) (f : A ⟶ A) (g : A' ⟶ A')
     (hg : g.left ≫ φ = φ ≫ f.left) :
     (lift (fst A' A' ≫ g) (snd A' A')).left ≫ φ₂ = φ₂ ≫ (lift (fst A A ≫ f) (snd A A)).left := by
-  apply hom_ext_sq
+  apply _root_.GlobalTheory.GrpSpread.sq_ext
   · rw [Category.assoc, hsq.1, Category.assoc, ← Over.comp_left, lift_fst, ← Category.assoc, ← Over.comp_left,
       lift_fst, Over.comp_left, Over.comp_left, Category.assoc, hg]
     simp only [← Category.assoc, hsq.1]
@@ -82,7 +77,7 @@ theorem comm_right {S' : Scheme.{0}} {A : Over S} {A' : Over S'} {φ : A'.left �
     {φ₂ : (A' ⊗ A').left ⟶ (A ⊗ A).left} (hsq : IsSquare φ φ₂) (f : A ⟶ A) (g : A' ⟶ A')
     (hg : g.left ≫ φ = φ ≫ f.left) :
     (lift (fst A' A') (snd A' A' ≫ g)).left ≫ φ₂ = φ₂ ≫ (lift (fst A A) (snd A A ≫ f)).left := by
-  apply hom_ext_sq
+  apply _root_.GlobalTheory.GrpSpread.sq_ext
   · rw [Category.assoc, hsq.1, Category.assoc, ← Over.comp_left, lift_fst, ← Category.assoc, ← Over.comp_left,
       lift_fst, hsq.1]
   · rw [Category.assoc, hsq.2, Category.assoc, ← Over.comp_left, lift_snd, ← Category.assoc, ← Over.comp_left,

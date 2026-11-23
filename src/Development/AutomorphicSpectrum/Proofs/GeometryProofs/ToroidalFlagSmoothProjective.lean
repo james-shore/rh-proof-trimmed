@@ -56,6 +56,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LineModel
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsUniqueSpecializes
 
 @[expose] public section
 
@@ -97,15 +98,15 @@ theorem nonempty_atlas_of_cover (Y : Model Xo c (RingHom.id c.F)) (p : Proj (Rin
     (fun j => j.U) (fun j => j.n) (fun j j' => chg j.toMChart j'.toMChart) Y.proj
     (fun x => hG x)
     (fun K _ w j hw => by
-      have hh : ⊤ ≤ w ⁻¹ᵁ (j.U ⊓ j.U) := GlobalTheory.TwistEmb.le_inf' w hw hw
+      have hh : ⊤ ≤ w ⁻¹ᵁ (j.U ⊓ j.U) := _root_.GlobalTheory.Specialise.le_preimage_inf w hw hw
       show (chg j.toMChart j.toMChart).map (valF w (j.U ⊓ j.U)) = 1
       rw [map_valF_eq_ev w _ hh, chg_map _ _ w hw hw hh, Module.Basis.toMatrix_self])
     (fun K _ w j j' j'' h1 h2 h3 => by
       show (chg j.toMChart j'.toMChart).map (valF w (j.U ⊓ j'.U)) *
         (chg j'.toMChart j''.toMChart).map (valF w (j'.U ⊓ j''.U)) =
         (chg j.toMChart j''.toMChart).map (valF w (j.U ⊓ j''.U))
-      rw [map_valF_eq_ev w _ (GlobalTheory.TwistEmb.le_inf' w h1 h2), map_valF_eq_ev w _ (GlobalTheory.TwistEmb.le_inf' w h2 h3),
-        map_valF_eq_ev w _ (GlobalTheory.TwistEmb.le_inf' w h1 h3), chg_map _ _ w h1 h2, chg_map _ _ w h2 h3,
+      rw [map_valF_eq_ev w _ (_root_.GlobalTheory.Specialise.le_preimage_inf w h1 h2), map_valF_eq_ev w _ (_root_.GlobalTheory.Specialise.le_preimage_inf w h2 h3),
+        map_valF_eq_ev w _ (_root_.GlobalTheory.Specialise.le_preimage_inf w h1 h3), chg_map _ _ w h1 h2, chg_map _ _ w h2 h3,
         chg_map _ _ w h1 h3, Module.Basis.toMatrix_mul_toMatrix])
   have hcovL : ∀ x : Y.X, ∃ i, x ∈ L.U i := fun x => exists_chart L.isLB x
   have hk : ∀ x : Y.X, ∃ i, ∃ k : ECh Y p, k.M = σ i ∧ x ∈ k.V ∧ IsAffineOpen k.V ∧ k.V ≤ L.U i := fun x => by

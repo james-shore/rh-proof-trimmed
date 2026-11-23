@@ -52,12 +52,7 @@ namespace GlobalTheory.Cyc.Graded
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem mem_OC_iff (y : PadicComplex l) : y ∈ PadicComplexInt l ↔ ‖y‖ ≤ 1 := by
-  rw [PadicComplexInt, Valuation.mem_valuationSubring_iff]
-  rw [PadicComplex.norm_eq_norm]
-  exact (Valued.toNormedField.norm_le_one_iff (L := PadicComplex l) (Γ₀ := NNReal)).symm
-
-theorem norm_OC (y : OC l) : ‖(y : PadicComplex l)‖ ≤ 1 := (mem_OC_iff _).1 y.2
+theorem norm_OC (y : OC l) : ‖(y : PadicComplex l)‖ ≤ 1 := (_root_.GlobalTheory.RingBasics.mem_OC _).1 y.2
 
 theorem norm_alg (x : ℚ_[l]) : ‖algebraMap ℚ_[l] (PadicComplex l) x‖ = ‖x‖ := by
   exact norm_algebraMap' _ x
@@ -295,7 +290,7 @@ theorem graded_of_theta (θ : Ainf l →+* OC l) (hθ : IsTheta AI θ) (i : ℤ)
       rw [Set.mem_setOf_eq, hΦ]
       exact norm_OC _
     · intro hy
-      obtain ⟨a, ha⟩ := hθ.2.1 ⟨y, (mem_OC_iff y).2 hy⟩
+      obtain ⟨a, ha⟩ := hθ.2.1 ⟨y, (_root_.GlobalTheory.RingBasics.mem_OC y).2 hy⟩
       exact ⟨_, by rw [hΦ a, hθ', ha]⟩
   · intro z x
     obtain ⟨a, rfl⟩ := hsurj x

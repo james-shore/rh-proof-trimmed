@@ -82,14 +82,7 @@ lemma order_eq_one {f : ℂ → ℂ} {z : ℂ} (hf : AnalyticAt ℂ f z) (h0 : f
     analyticOrderNatAt f z = 1 := by
   simp [analyticOrderNatAt, hf.analyticOrderAt_eq_one_of_zero_deriv_ne_zero h0 h1]
 
-lemma norm_lamChi_le (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) (n : ℕ) : ‖𝓕.lamChi χ n‖ ≤ 2 * Λ n := by
-  unfold LFam.lamChi
-  calc ‖∑ g, χ g * (𝓕.lam g n : ℂ)‖ ≤ ∑ g, ‖χ g * (𝓕.lam g n : ℂ)‖ := norm_sum_le _ _
-    _ = ∑ g, 𝓕.lam g n := by
-        refine Finset.sum_congr rfl fun g _ => ?_
-        rw [norm_mul, AddChar.norm_apply, one_mul, Complex.norm_real, Real.norm_eq_abs,
-          abs_of_nonneg (𝓕.lam_nonneg g n)]
-    _ ≤ 2 * Λ n := 𝓕.lam_le n
+alias norm_lamChi_le := _root_.GlobalTheory.Hk.LogDeriv.norm_lamChi_le
 
 lemma exists_bound_LSeries : ∃ K : ℝ, 0 ≤ K ∧ ∀ (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) (s : ℂ), 7 / 4 ≤ s.re →
     ‖LSeries (𝓕.lamChi χ) s‖ ≤ K := by
@@ -165,7 +158,7 @@ theorem logDeriv_sub_exceptional_le : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 
       nlinarith
     linarith
   by_cases hs74 : 7 / 4 ≤ s.re
-  · obtain ⟨-, -, -, hL⟩ := GlobalTheory.T.rayClassFamily_logDeriv_re_gt_one 𝓕 χ s (by linarith)
+  · obtain ⟨-, -, -, hL⟩ := _root_.GlobalTheory.Hk.LogDeriv.logDeriv_F 𝓕 χ s (by linarith)
     have hdl : deriv (𝓕.F χ) s / 𝓕.F χ s =
         (if χ = 1 then 1 / (s - 1) else 0) - LSeries (𝓕.lamChi χ) s := by
       rw [← hL]
@@ -267,7 +260,7 @@ theorem logDeriv_sub_exceptional_le : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 
       by_cases hβT : (β : ℂ) ∈ hfin.toFinset
       · have hhalf : 1 / 2 < (β : ℂ).re :=
           𝓕.half_lt_re_of_region (c := c₀) (by linarith) (s := (β : ℂ)) (by simpa using hβ.1)
-        have hAn : AnalyticAt ℂ (𝓕.F χ) (β : ℂ) := (GlobalTheory.T.rayClassLFunctionFamily_continuation_growth 𝓕 χ).1 _ hhalf
+        have hAn : AnalyticAt ℂ (𝓕.F χ) (β : ℂ) := (_root_.GlobalTheory.Hk.RayCont.continuation_growth 𝓕 χ).1 _ hhalf
         have hord : analyticOrderNatAt (𝓕.F χ) (β : ℂ) = 1 := order_eq_one hAn hβ.2.2.1 hβ.2.2.2
         have hk := key (hfin.toFinset.erase (β : ℂ)) (Finset.erase_subset _ _)
           fun w hw => notZ w (Finset.ne_of_mem_erase hw)

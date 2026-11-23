@@ -65,8 +65,8 @@ namespace GroundTheory.Heights₂.Heights.Vertical
 
 open MvPolynomial NumberField IsDedekindDomain
 
-theorem FibreClosedComponent.full : FibreClosedComponent.Statement := FibreClosedComponent.proof
-theorem FiniteOrd.full : FiniteOrd.Statement := FiniteOrd.proof
+alias FibreClosedComponent.full := _root_.GroundTheory.Heights₂.Heights.Vertical.FibreClosedComponent.proof
+alias FiniteOrd.full := _root_.GroundTheory.Heights₂.Heights.Vertical.FiniteOrd.proof
 theorem FibreCompDim.full : FibreCompDim.Statement :=
   FibreCompDim.proof FibreClosedComponent.full FibreCut.full GenericFibreDrop.full
 

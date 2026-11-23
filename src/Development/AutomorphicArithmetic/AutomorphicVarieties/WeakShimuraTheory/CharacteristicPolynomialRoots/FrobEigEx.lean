@@ -44,32 +44,11 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.Selm
 import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.DirichletPrimeToLPartMulLPowerPart
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.MapRepApply
 import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.RedIdeal
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WeilDeligneParamMonodromyEqZeroIff
 
 @[expose] public section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC Formalism.MainNotions.N ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp
-
-open Pointwise in
-private theorem frob_back {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] {A : ValuationSubring Ω} {q : ℕ}
-    {g σ : G F Ω} (hσ : IsFrob (F := F) (g • A) q σ) : IsFrob (F := F) A q (g⁻¹ * σ * g) := by
-  have key : ∀ y : Ω, (g • A).valuation y < 1 ↔ A.valuation (g⁻¹ y) < 1 := by
-    intro y
-    rw [valuation_lt_one_iff', valuation_lt_one_iff',
-      ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem,
-      ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
-    simp [AlgEquiv.smul_def, map_inv₀]
-  refine ⟨?_, fun x hx => ?_⟩
-  · have hs : σ • g • A = g • A := hσ.1
-    show (g⁻¹ * σ * g) • A = A
-    rw [mul_smul, mul_smul, hs, inv_smul_smul]
-  · have hx' : (g • A).valuation (g x) ≤ 1 := by
-      rw [ValuationSubring.valuation_le_one_iff] at hx ⊢
-      rw [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
-      simpa [AlgEquiv.smul_def] using hx
-    have h := hσ.2 (g x) hx'
-    rw [key] at h
-    convert h using 2
-    simp [map_sub, map_pow, AlgEquiv.mul_apply]
 
 private theorem frob_ine {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] {A : ValuationSubring Ω} {q : ℕ}
     {σ τ : G F Ω} (hσ : IsFrob (F := F) A q σ) (hτ : IsFrob (F := F) A q τ) : σ⁻¹ * τ ∈ Ine (F := F) A := by
@@ -93,7 +72,7 @@ theorem UpperTheory.V.Ws.Pu.frobEigEx :
   have hpm : p.Monic := (Matrix.charpoly_monic _).map _
   rw [prod_multiset_X_sub_C_of_monic_of_roots_card_eq hpm IsAlgClosed.card_roots_eq_natDegree]
   obtain ⟨g, rfl⟩ := exists_smul_eq_of_isPlaceOver hA₀ hA
-  have hb := frob_back hσ
+  have hb := _root_.GlobalTheory.WeilDeligne.MonodromyThm.isFrob_conj hσ
   have h1 := hI A₀ hA₀ _ (frob_ine hσ₀ hb)
   rw [map_mul, map_inv] at h1
   have h2 : ρ (g⁻¹ * σ * g) = ρ σ₀ := (inv_mul_eq_one.mp h1).symm

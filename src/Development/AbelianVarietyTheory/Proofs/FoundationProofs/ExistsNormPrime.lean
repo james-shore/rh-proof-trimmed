@@ -79,15 +79,15 @@ theorem unif_setup (D : D7) (p : ℕ) [Fact p.Prime] (cc : Ideal (𝓞 D.host.K)
   obtain ⟨hcurve, -, hδ12, hLam, hOk⟩ := hA
   have hcc : cc ≠ ⊥ := hcurve.1
   have hδ : δ ≠ 0 := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.brcc_delta_ne D cc hcurve δ hδ12
-  obtain ⟨⟨L, hL⟩, -⟩ := Formalism.L2.Th1.F2.lamOfLat D cc δ hcc hδ
+  obtain ⟨⟨L, hL⟩, -⟩ := _root_.Formalism.L2.Th1.F2.lambda_of_lattice_holds D cc δ hcc hδ
   have hLg : g.abelian₂ = L.lattice.toAddSubgroup := hLam.trans hL.symm
-  obtain ⟨hg2, hg3⟩ := Formalism.L2.KerInert.Sigma.invAlg' D cc δ hcurve hδ12 L hL
+  obtain ⟨hg2, hg3⟩ := _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic D cc δ hcurve hδ12 L hL
   set a2 : Qbar := ⟨L.g₂, hg2⟩ with ha2
   set a3 : Qbar := ⟨L.g₃, hg3⟩ with ha3
   obtain ⟨e2, e3⟩ := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.g2_g3_eq_periodPair _ L
     (congrArg (fun A : AddSubgroup ℂ => (A : Set ℂ)) hLg.symm)
   have hcmby := Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.hasCMBy_curve D cc δ hcurve hδ12 L hL
-  obtain ⟨ι, hι⟩ := Formalism.L2.KerInert.lamExt p g.lam
+  obtain ⟨ι, hι⟩ := _root_.Formalism.L2.KerInert.lattice_extension p g.lam
   have hιg2 : ι L.g₂ = g.lam a2 := hι a2
   have hιg3 : ι L.g₃ = g.lam a3 := hι a3
   have hwm : wModel g.lam g.abelian₂ = Formalism.L2.Th1.A.shortW (ι L.g₂) (ι L.g₃) := by
@@ -189,7 +189,7 @@ theorem hb_odd (dK : ℕ) (L : PeriodPair) (hmod : dK % 4 = 3) (hCM : Formalism.
   have intR : ∀ R : ℂ, R ∉ L.lattice → (2 * (b * bb)) * R ∈ L.lattice →
       ι (L.weierstrassP R) - W.b₂ / 12 ∈ Formalism.G.unitBall ℂ_[p] := by
     intro R hR h
-    have h1 := (Formalism.L2.Th1.E.TransW.ptW_int Formalism.L2.Th1.E.ptWAdd Formalism.L2.Th1.E.ptWZero hU hW R M hpM
+    have h1 := (Formalism.L2.Th1.E.TransW.ptW_int _root_.Formalism.L2.Th1.E.analytic_point_map_add _root_.Formalism.L2.Th1.E.analytic_point_eq_zero_iff hU hW R M hpM
       (hMR R h) hR).1
     rw [Formalism.L2.Th1.E.AnaSysW.px_ptW hU R hR] at h1
     exact h1
@@ -289,11 +289,11 @@ theorem endoDatum_model (dK : ℕ) (L : PeriodPair) (hmod : dK % 4 = 3) (hCM : F
       rw [Formalism.L2.Th1.E.AnaSysW.wpBridge hU]
       exact h
   · intro P
-    have h := (Formalism.L2.Th1.E.TransW.ptW_int Formalism.L2.Th1.E.ptWAdd Formalism.L2.Th1.E.ptWZero hU hW (P : ℂ)
+    have h := (Formalism.L2.Th1.E.TransW.ptW_int _root_.Formalism.L2.Th1.E.analytic_point_map_add _root_.Formalism.L2.Th1.E.analytic_point_eq_zero_iff hU hW (P : ℂ)
       (S.card + 1) hpN (hker P).1 (hker P).2).1
     rwa [Formalism.L2.Th1.E.AnaSysW.px_ptW hU _ (hker P).2] at h
   · intro P
-    have h := (Formalism.L2.Th1.E.TransW.ptW_int Formalism.L2.Th1.E.ptWAdd Formalism.L2.Th1.E.ptWZero hU hW (P : ℂ)
+    have h := (Formalism.L2.Th1.E.TransW.ptW_int _root_.Formalism.L2.Th1.E.analytic_point_map_add _root_.Formalism.L2.Th1.E.analytic_point_eq_zero_iff hU hW (P : ℂ)
       (S.card + 1) hpN (hker P).1 (hker P).2).2
     rw [Formalism.L2.Th1.E.AnaSysW.ptW_notMem hU _ (hker P).2] at h
     exact h

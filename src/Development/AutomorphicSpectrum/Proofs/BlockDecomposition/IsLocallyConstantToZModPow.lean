@@ -80,11 +80,6 @@ theorem exists_period (p : ℕ) [Fact p.Prime] {N : Type} (f : ℤ_[p] → N)
     rw [zpow_neg, zpow_natCast, inv_pow]
   rw [hx, hy]
 
-theorem sum_periodic {N : Type} [AddCommGroup N] (g : ℕ → N) (P : ℕ)
-    (hg : ∀ i, g (i + P) = g i) (k : ℕ) :
-    ∑ i ∈ Finset.range (k * P), g i = k • ∑ i ∈ Finset.range P, g i :=
-  _root_.UpperTheory.Reformulated.B.Yra7.main g P hg k
-
 theorem isLocallyConstant_toZModPow (p : ℕ) [Fact p.Prime] (M : ℕ) :
     IsLocallyConstant (PadicInt.toZModPow (p := p) M) := by
   have hp : (0 : ℝ) < p := by exact_mod_cast (Fact.out : p.Prime).pos
@@ -117,7 +112,7 @@ theorem exists_primitive (p : ℕ) [Fact p.Prime] {N : Type} [AddCommGroup N] (n
     push_cast
     ring
   have hsum : ∑ i ∈ Finset.range (p ^ M), g i = 0 := by
-    rw [hM, pow_add, sum_periodic g (p ^ m) hper (p ^ n), hN]
+    rw [hM, pow_add, _root_.UpperTheory.Reformulated.B.Yra7.main g (p ^ m) hper (p ^ n), hN]
   have hfg : ∀ z, f z = g (PadicInt.toZModPow (p := p) M z).val := by
     intro z
     apply hm

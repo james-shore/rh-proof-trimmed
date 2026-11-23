@@ -63,7 +63,7 @@ namespace GlobalTheory.Phase
 theorem vacS_of_isVac : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (g : ℕ) (bas : (Fin g ⊕ Fin g → ℤ) ≃ₗ[ℤ] X.Λ) (idx : Fin g ≃ X.Ψ × Fin r) (n : ℕ), IsSympl X bas → Even n → ∀ w : E, IsIntegral ℤ w → w + cc w = 1 → ∀ L : Lt E r, SelfD X L → ∀ Λ ∈ Vset E n 1, ∀ v : TF n g, IsVac X bas w (tens Λ L) v → ∃ A ε, VacS A ε v := by
   intro E _ _ _ r X g bas idx n hs hn w hw hw' L hL Λ hΛ v hv
   have hA : TensVac.Good X w (tens Λ L) := by
-    obtain ⟨h1, h2, h3, -⟩ := GlobalTheory.T.tensorLattice_selfDual_semicharacter_index E r X g bas idx n hs hn w hw hw' L hL 1 Λ hΛ
+    obtain ⟨h1, h2, h3, -⟩ := _root_.GlobalTheory.SW.TensLat.tens_selfDual_semichar_index E r X g bas idx n hs hn w hw hw' L hL 1 Λ hΛ
     exact ⟨h1, h2, h3⟩
   let e := AddEquiv.ofBijective _ (TensVac.crdHom_bijective (n := n) hs)
   have he (y) : e.symm (TensVac.crdHom hs y) = y := e.symm_apply_apply y

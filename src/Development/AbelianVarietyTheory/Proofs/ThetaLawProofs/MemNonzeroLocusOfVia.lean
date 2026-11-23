@@ -369,7 +369,7 @@ theorem IsLinePt.cancel (h : IsLinePt s₀ s₁ f τ y s) (h' : IsLinePt s₀ s�
 theorem IsLinePt.trans (h : IsLinePt s₀ s₁ f τ y s) {φ' w'} (hg' : y'.P.g = y.P.g) (H' : KeyVia y' y g φ' w')
     (hs' : ∀ i, SecVia y' y φ' w' (s' i) (s (i.cast hg'))) : IsLinePt s₀ s₁ (g.comp f) (g τ) y' s' := by
   obtain ⟨φ, w, hg, H, hs⟩ := h
-  obtain ⟨w'', H'', hv⟩ := keyVia_trans H H'
+  obtain ⟨w'', H'', hv⟩ := _root_.GlobalTheory.KaFiniteUnit.keyVia_trans H H'
   refine ⟨φ' ≫ φ, w'', hg'.trans hg, H'', fun i => ?_⟩
   obtain ⟨a, b, ha, hb, hl⟩ := hs (i.cast hg')
   obtain ⟨a', ha'⟩ := (((KeyVia.main _ _ y y' g).2 φ' w' H').1 n a).exists

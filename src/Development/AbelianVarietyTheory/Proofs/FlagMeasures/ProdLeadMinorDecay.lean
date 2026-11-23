@@ -55,13 +55,6 @@ open Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeter
 
 namespace GlobalTheory.MinorDecay
 
-lemma Jm_sq {n : ℕ} (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  unfold Jm
-  rw [diagonal_mul_diagonal, ← diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> simp
-
 lemma herm_of_inP {n : ℕ} {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) ℂ} (h : inP ε X) :
     X.IsHermitian := by
   obtain ⟨h1, h2⟩ := h
@@ -69,7 +62,7 @@ lemma herm_of_inP {n : ℕ} {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) �
   have h3 : Xᴴ * Jm ε = X * Jm ε := by
     rw [h2]; exact eq_neg_of_add_eq_zero_left h1
   have h4 := congrArg (· * Jm ε) h3
-  simp only [Matrix.mul_assoc, Jm_sq, Matrix.mul_one] at h4
+  simp only [Matrix.mul_assoc, _root_.Formalism.REAL.Jm_mul_self, Matrix.mul_one] at h4
   exact h4
 
 lemma diag_of_inP {n : ℕ} {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) ℂ} (h : inP ε X)

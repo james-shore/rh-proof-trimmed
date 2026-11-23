@@ -95,7 +95,7 @@ theorem mem_BD_of_orthogonal : Formalism.GaloisCohomology.LocalTateDualityK → 
     intro h
     exact hϖ.ne_zero (IsFractionRing.injective O LL (by rw [← hπdef, h, map_zero]))
   by_contra hcB
-  obtain ⟨r, hr⟩ := GlobalTheory.T.torsionCocycle_uniformizer_pow_smul_mem l K LL O hO A' LA' ϖ hϖ c hc
+  obtain ⟨r, hr⟩ := _root_.GlobalTheory.TorsCoc.cocycle_pow_smul_mem l K LL O hO A' LA' ϖ hϖ c hc
   let I : ℕ → Submodule O ↥LA.T := fun k => Ideal.span {ϖ ^ (r + k)} • ⊤
   have hI : ∀ k, StableSub LA (I k) := fun k => stable_span_smul_top LA _
   let Φ : ∀ k, (↥(GK K) → ↥LA.T ⧸ I k) → ↥(GK K) × ↥(GK K) → LL := fun k z x =>
@@ -152,14 +152,14 @@ theorem mem_BD_of_orthogonal : Formalism.GaloisCohomology.LocalTateDualityK → 
     exact LA'.T.smul_mem _ (hr h)
 
   have hfin : ∀ k, (Y k).Finite := fun k =>
-    (GlobalTheory.T.finite_latticeCocycles_mod_uniformizer_pow hT l K LL O hO A LA ϖ hϖ (r + k) (hI k)).subset (fun z hz => hz.1)
+    (_root_.GlobalTheory.CocycleModPow.finite_Z1Q hT l K LL O hO A LA ϖ hϖ (r + k) (hI k)).subset (fun z hz => hz.1)
   have hne : ∀ k, (Y k).Nonempty := by
     intro k
     have hI' : StableSub LA' (Ideal.span {ϖ ^ (r + k)} • ⊤ : Submodule O ↥LA'.T) :=
       stable_span_smul_top LA' _
     obtain ⟨c', hc'Z, hc'B, hc'l⟩ :=
-      GlobalTheory.T.exists_torsionCocycle_finite_level_lift l K LL O hO A' LA' ϖ hϖ c hc hcB r hr (r + k) (by omega) hI'
-    have h2 := (GlobalTheory.T.tate_pairing_lattice_quotients_nondegenerate hT l P K LL O hO L1 hL1 A A' LA LA' m hm ϖ hϖ (r + k) (hI k) hI').2 c' hc'Z
+      _root_.GlobalTheory.TorsionLevel.exists_cocycle_level l K LL O hO A' LA' ϖ hϖ c hc hcB r hr (r + k) (by omega) hI'
+    have h2 := (_root_.GlobalTheory.TateFin.tate_pairing_nondegenerate hT l P K LL O hO L1 hL1 A A' LA LA' m hm ϖ hϖ (r + k) (hI k) hI').2 c' hc'Z
     by_contra hemp
     rw [Set.not_nonempty_iff_eq_empty] at hemp
     apply hc'B
@@ -190,7 +190,7 @@ theorem mem_BD_of_orthogonal : Formalism.GaloisCohomology.LocalTateDualityK → 
       rw [← hmk0]
       rfl)
     exact hcong (r + k) _ _ _ t ht hteq (hT'pow k x.1 x.2)
-  obtain ⟨s, hs⟩ := GlobalTheory.T.exists_compatible_seq_of_finite_nonempty' (fun k => ↥(GK K) → ↥LA.T ⧸ I k) f Y hfin hne hmap
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.exists_compatible_seq_of_finite_nonempty (fun k => ↥(GK K) → ↥LA.T ⧸ I k) f Y hfin hne hmap
   let w : ℕ → ↥(GK K) → ↥LA.T := fun k g => (Submodule.Quotient.mk_surjective (I k) (s k g)).choose
   have hwk : ∀ k g, (Submodule.Quotient.mk (w k g) : ↥LA.T ⧸ I k) = s k g := fun k g =>
     (Submodule.Quotient.mk_surjective (I k) (s k g)).choose_spec
@@ -213,7 +213,7 @@ theorem mem_BD_of_orthogonal : Formalism.GaloisCohomology.LocalTateDualityK → 
     show _ = Submodule.factor (hle k) (s (k + 1) g)
     rw [← hwk (k + 1) g]
     rfl
-  obtain ⟨d, hdZ, hd⟩ := GlobalTheory.T.exists_limit_cocycle_of_compatible_mod_pow l K LL O hO A LA ϖ hϖ hI' w hwZ (fun n g => hI'I n (hstep n g))
+  obtain ⟨d, hdZ, hd⟩ := _root_.GlobalTheory.LimCocycle.limit_cocycle l K LL O hO A LA ϖ hϖ hI' w hwZ (fun n g => hI'I n (hstep n g))
   have htele : ∀ n g, w n g - w 0 g ∈ I 0 := by
     intro n g
     induction n with

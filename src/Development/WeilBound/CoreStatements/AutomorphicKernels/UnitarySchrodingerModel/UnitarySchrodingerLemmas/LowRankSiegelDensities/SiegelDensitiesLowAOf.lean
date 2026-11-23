@@ -297,7 +297,7 @@ theorem mass_summable_lt (hE2 : OneVecBinaryMass) :
     haveI hH := hh.2.2 n
     have hlf := (GlobalTheory.T.gram_fiber_measure_locallyFinite_and_ne_zero_of_isOpen F E σ hCM M J hJ (Fv F v) hloc n _ _ (m v) hW hH (hm v)
       (hermOf (Fv F v) σ T hT)).1
-    exact (GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hCM d b n M v).1.measure_lt_top
+    exact (_root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hCM d b n M v).1.measure_lt_top
   · obtain ⟨C, hC⟩ := mass_good_lt hE2 hCM n M J hJ hn T hT hdet d b
     refine Summable.of_norm_bounded_eventually
       (g := fun v : HeightOneSpectrum (𝓞 F) => C * (1 / (Ideal.absNorm v.asIdeal : ℝ) ^ 2))

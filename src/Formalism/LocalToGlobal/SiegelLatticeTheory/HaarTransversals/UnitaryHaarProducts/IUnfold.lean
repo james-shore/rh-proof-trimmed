@@ -618,12 +618,12 @@ theorem weightMeas_holds : WeightMeas X u := by
   exact normI_nonneg _ _
 
 theorem level_subgroup_compact_open : LevelSubgroupCompactOpen X := by
-  have hc := Cut.level_subgroup_isClopen X (Formalism.L2.SG.Closed.level_subgroup_is_group X) (Formalism.L2.SG.Closed.level_subgroup_properties X)
+  have hc := Cut.level_subgroup_isClopen X (_root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X) (Formalism.L2.SG.Closed.level_subgroup_properties X)
   exact ⟨hc.isOpen, (Formalism.L2.SG.Closed.AutKCompact_holds X.B.I).of_isClosed_subset hc.isClosed
     (Formalism.L2.SG.Closed.level_subgroup_properties X).2.1⟩
 
 theorem multPoly_holds_of (hTT : TauTrans X.B.I) (hNP : NormPow X.B.I) (hO : OmCover X.B.I) : Cut.MultPoly X :=
-  multPoly_of X (Formalism.L2.SG.Closed.LatCount_holds X.B.I) Formalism.L2.SG.Closed.DistTri_holds reduction_theory hTT hNP hO
+  multPoly_of X (Formalism.L2.SG.Closed.LatCount_holds X.B.I) Formalism.L2.SG.Closed.DistTri_holds _root_.Formalism.L2.SG.Pf.Tau.reductionTau hTT hNP hO
 
 theorem iUnfold_holds_of (hK : X.LevelSubgroupCharacter) (hSC : SCompact X u) (hPU : PsiUnit X u) (hCB : ColBound X u hK)
     (hSec : SinfSection X u) (hNG : NormGeOne X.B.I) : Cut.IUnfold X u hK :=
@@ -819,7 +819,7 @@ theorem tauTrans_holds : TauTrans I := by
   have hne' : Nonempty (Sub I x') := by
     by_contra hE
     rw [not_nonempty_iff] at hE
-    have hpos := ((reduction_theory I hn).2 x').1
+    have hpos := ((_root_.Formalism.L2.SG.Pf.Tau.reductionTau I hn).2 x').1
     unfold LitS.Size.tau1 at hpos
     rw [Real.iInf_of_isEmpty] at hpos
     norm_num at hpos

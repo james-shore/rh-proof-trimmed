@@ -58,8 +58,8 @@ namespace GlobalTheory.GalLoc.RowParamAt
 theorem localGalois_parameter_mem_at_place_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → SerN → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.MemberAtLayerPoint hL fun _ _ _ _ w Z _ _ t nch n c =>
     ∀ Rw : RowSide (w.D Z), HEq Rw.locR c.a.nt.A.row.locR → GlobalTheory.TwInputs.RowParam (w.D Z) Rw := by
   intro hN _ hL
-  refine _root_.GlobalTheory.GalLoc.atMem_mono (_root_.GlobalTheory.GalLoc.atMem_and' (_root_.GlobalTheory.GalLoc.atMem_and' (_root_.GlobalTheory.T.good_cusp_param_at_member_of_heq_locR hN hL) (_root_.GlobalTheory.T.exists_loc_with_place_and_index_at_member hN hL))
-    (_root_.GlobalTheory.T.exists_twisted_place_at_member hL)) ?_
+  refine _root_.GlobalTheory.GalLoc.atMem_mono (_root_.GlobalTheory.GalLoc.atMem_and' (_root_.GlobalTheory.GalLoc.atMem_and' (_root_.GlobalTheory.HeightCounting.Up.cuspParameter_at_member_alt hN hL) (_root_.GlobalTheory.HeightCounting.Up.LocEx.exists_localization_at_member_alt hN hL))
+    (_root_.GlobalTheory.GalLoc.twistedAt_atMem_alt hL)) ?_
   intro K B f T w Z Wt p0 t nch n xd c _ H Rw hRw
   obtain ⟨⟨hp, hl⟩, v, hv⟩ := H
   have hW := _root_.GlobalTheory.GalLoc.RowParamAt.locW_of_nTrue_alt c.a.nt Rw hRw

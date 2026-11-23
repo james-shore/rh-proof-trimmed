@@ -418,6 +418,6 @@ end PositivityTheory.Rg.Sw.LC.PolynomialWeightAction
 
 namespace PositivityTheory.Rg.Sw.LC
 
-theorem fftSym : FFTSym := PolynomialWeightAction.fftSym
+alias fftSym := _root_.PositivityTheory.Rg.Sw.LC.PolynomialWeightAction.fftSym
 
 end PositivityTheory.Rg.Sw.LC

@@ -94,9 +94,9 @@ theorem invLevCore_of (W : LocWach PD LL O v n) (hπ : W.π₀ ∈ W.AΔ) (hL : 
   letI : Algebra O L.F := L.algOF
   set D : LetA O n := ∏ t ∈ T, ps W t ^ e t with hDdef
   set U : LetA O n := letE a * 1 * u with hUdef
-  have hDΔ : D ∈ W.AΔ := Subalgebra.prod_mem _ fun t _ => Subalgebra.pow_mem _ (RatW.ps_mem W hπ t) _
+  have hDΔ : D ∈ W.AΔ := Subalgebra.prod_mem _ fun t _ => Subalgebra.pow_mem _ (_root_.Formalism.MainNotions.UnusedSlot80.KL.ps_mem W hπ t) _
   have hUΔ : U ∈ W.AΔ := W.AΔ.mul_mem (W.AΔ.mul_mem (Formalism.MainNotions.UnusedSlot80.SatPW.letE_mem_AΔ W a) (W.AΔ.one_mem)) hu
-  have hUe : letE a * U = U := by rw [hUdef, ← mul_assoc, ← mul_assoc, RatW.letE_idem]
+  have hUe : letE a * U = U := by rw [hUdef, ← mul_assoc, ← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
 
   have hp0 : ((PD.p : ℕ) : L.F) ≠ 0 := L.hp
   have hγE' : algebraMap (LetA O n) W.EE (W.γA W.gam D) * W.γE W.gam f =
@@ -154,7 +154,7 @@ theorem invLevCore_of (W : LocWach PD LL O v n) (hπ : W.π₀ ∈ W.AΔ) (hL : 
     calc letE a * ps W s * w = letE a * (ps W s * w) := mul_assoc _ _ _
       _ = letE a * (((PD.p : ℕ) : LetA O n) ^ κ2 * (letE a * g)) := by rw [hgw]
       _ = ((PD.p : ℕ) : LetA O n) ^ κ2 * ((letE a * letE a) * g) := by ring
-      _ = ps W s * w := by rw [RatW.letE_idem, hgw]
+      _ = ps W s * w := by rw [_root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq, hgw]
   rw [hlw, ← hgw]
   have hO : algebraMap O W.EE (((PD.p : ℕ) : O) ^ κ2 * x) =
       algebraMap (LetA O n) W.EE (algebraMap O (LetA O n) (((PD.p : ℕ) : O) ^ κ2 * x)) :=

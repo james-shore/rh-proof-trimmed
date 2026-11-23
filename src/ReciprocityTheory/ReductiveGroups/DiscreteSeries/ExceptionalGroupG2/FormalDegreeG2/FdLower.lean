@@ -82,7 +82,7 @@ theorem formal_degree_liminf_lower_bound {ε : Fin n → Bool} {lam : Fin n → 
     intro t
     refine ENNReal.measurable_ofReal.comp (Continuous.measurable ?_)
     exact ((continuous_norm.comp ((fdl_inner_continuous _ (T t) _ _).comp (continuous_const_smul _))).pow 2).mul
-      ((jac_continuous ε).comp (continuous_const_smul _))
+      ((_root_.ReciprocityTheory.ChartRestriction.DS.pb_jac_continuous ε).comp (continuous_const_smul _))
   refine le_trans ?_ (lintegral_liminf_le hmeas)
   rw [← fdl_gauss ε]
   refine lintegral_mono fun y => ?_

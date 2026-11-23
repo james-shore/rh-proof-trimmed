@@ -82,7 +82,7 @@ theorem tens_maxStab_contains_left_ker : ∀ {M₀ V : Type} [AddCommGroup M₀]
     simp only [bAct, dif_pos (hsh h hh), Submodule.mapQ_apply, Submodule.mkQ_apply]
   let φ : M₀ →ₗ[ℂ] (M₀ ⊗[ℂ] V) ⧸ N' := N'.mkQ ∘ₗ (TensorProduct.mk ℂ M₀ V).flip y
   have hφ : ∀ x, φ x = N'.mkQ (x ⊗ₜ[ℂ] y) := fun x => rfl
-  have key := GlobalTheory.T.le_ker_of_local_finite_length_to_simple Op₀ Rel₀ K₀ φ act (bAct '' B) hlen hmax hK hKs
+  have key := _root_.GlobalTheory.TensHead.le_ker_of_simple_commuting Op₀ Rel₀ K₀ φ act (bAct '' B) hlen hmax hK hKs
     (by
       intro z hz
       rw [LinearMap.mem_ker, hφ, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]

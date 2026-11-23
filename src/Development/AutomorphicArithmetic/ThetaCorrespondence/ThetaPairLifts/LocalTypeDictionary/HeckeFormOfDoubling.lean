@@ -70,7 +70,7 @@ theorem heckeForm_of_doubling' : GlobalTheory.Published.WeilRepresentationUnitar
   intro p1 p2 p3 p4 p5 p6 D
   have hU := GlobalTheory.T.unramifiedDoublingIntegral_inert_place
   have hG : GlobalForm D := _root_.GlobalTheory.T.globalForm_of_siegel_weil p1 p2 p3 p4 p5 D
-  have hPB := paramBoundOn_all_of_split_inert D (GlobalTheory.T.sphericalParameterBound_split_place D) (GlobalTheory.T.sphericalParameterBound_nonsplit_places hU D)
+  have hPB := paramBoundOn_all_of_split_inert D (_root_.GlobalTheory.Core.Rk.BdSplit.paramBound_split D) (_root_.GlobalTheory.Core.Rk.ParamInert.paramBoundOn_nonsplit hU D)
   have hLZ := localZetaOn_all_of_split_inert D (GlobalTheory.T.unramifiedDoublingIntegral_splitPlace_adelic p6 D) (GlobalTheory.T.unramified_doubling_integral_inert_adelic hU D (GlobalTheory.T.sphericalParameterBound_nonsplit_places hU D))
   have hE : EulerRight D := GlobalTheory.T.doubling_eulerProduct_farRight p2 D (GlobalTheory.T.doublingSphericalFactorization_of_weilDualPair p1 D) hLZ hPB
   exact GlobalTheory.T.heckeInnerProductFormula_of_doublingEuler D hG hE

@@ -244,9 +244,9 @@ theorem integrand_periodic {ρ σ : ℕ} {B : BesLev D ρ} {B' : BesLev D σ} (l
   have e2 : ratW B'.V₀ S γ₂ = (B'.o.resT S).symm (0, γ) := hγ₂
   have e1 : ratW S B.V₀ γ₁ = (B.o.resS S).symm (0, l.κ S γ) := hγ₁
   rw [e2, ← map_add (f := _), Prod.mk_add_mk, zero_add, B'.o.symplOH_resT, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply,
-    ContrComb.symplOH_zero_left, zero_add] at q2
+    _root_.GlobalTheory.MixModel.symplOH_zero_left, zero_add] at q2
   rw [e1, ← map_add (f := _), Prod.mk_add_mk, zero_add, B.o.symplOH_resS, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply,
-    ContrComb.symplOH_zero_left, zero_add, hκ, neg_neg] at q1
+    _root_.GlobalTheory.MixModel.symplOH_zero_left, zero_add, hκ, neg_neg] at q1
   rw [hadd, q2, q1]
   have e : ψ (-symplOH S B'.L γ a) * ψ (symplOH S B'.L γ a) = 1 := by
     rw [← AddChar.map_add_eq_mul, neg_add_cancel, AddChar.map_zero_eq_one]

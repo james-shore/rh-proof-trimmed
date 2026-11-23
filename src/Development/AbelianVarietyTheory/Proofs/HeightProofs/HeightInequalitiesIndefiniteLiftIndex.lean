@@ -449,9 +449,9 @@ theorem heights_indefinite :
     show meanK (fun sg => Real.log (d.supN sg d.wF (d.thp (hd.sel k)))) ≤ _
     rw [hsel]
     exact meanK_mono' fun σ => hlog _ (G.th' (eD k)) σ
-  · exact GlobalTheory.T.lengths_at_primes_le_functionField_data_of_curve D T h j hj hG ka wL wF G S g0 hH hV hC hB y hw hcur htie δ hT d hd hs eN rfl
+  · exact _root_.GlobalTheory.LengthTie.ilaTie_of_curveHyp D T h j hj hG ka wL wF G S g0 hH hV hC hB y hw hcur htie δ hT d hd hs eN rfl
       (fun _ _ => rfl) rfl rfl (fun _ => rfl) eD (fun k => by rw [hsel]; rfl) Gc PH Prw Pet
-  · exact GlobalTheory.T.orders_auxiliary_form_at_primes_eq_functionField D T h j hj hG ka wL wF G S g0 hH hV hC hB y hw hcur htie hjm δ hT d hd hs eN rfl
+  · exact _root_.GlobalTheory.NetOrders.netTie_record D T h j hj hG ka wL wF G S g0 hH hV hC hB y hw hcur htie hjm δ hT d hd hs eN rfl
       (fun _ _ => rfl) rfl rfl (fun _ => rfl) rfl huet.symm Gc PH Prw Pet
 
 end GlobalTheory.HeightTop

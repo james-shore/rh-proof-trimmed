@@ -62,7 +62,7 @@ theorem UpperTheory.V.Ws.exists_phi_universal_ordinary_det_ring_of_link :
     _root_.UpperTheory.V.Ws.UnramifiedInputs → ∀ {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime] {c : Coef l} (D : Raw Ω c) (T : Tower D), T.Fit → T.Deep → ∀ (c' : Coef l) (h : c.O ≤ c'.O) (K : Link T c' h) (X : Space (T.fr ∅) (inc h)) (n : ℕ), (∃ B : W.UniversalOrdinaryDeterminantRing K.r, True) ∧ ∀ B : W.UniversalOrdinaryDeterminantRing K.r, ∃ φ : B.B →ₐ[c'.O] X.B, K.IsPhi X n B φ := by
   intro U Ω _ _ _ l _ c D T _ _ c' h K X n
   obtain ⟨hs, hq, hk⟩ := phiKer K.V
-  obtain ⟨E, hE, hcp, hc⟩ := phiDet (maximalIdeal X.B) (algebraMap X.B X.A) X.inj K.V.pr hs hq (K.rho X n) (K.cpT X n)
+  obtain ⟨E, hE, hcp, hc⟩ := _root_.UpperTheory.Reformulated.B.DeterminantIdentities.phiDet (maximalIdeal X.B) (algebraMap X.B X.A) X.inj K.V.pr hs hq (K.rho X n) (K.cpT X n)
     (fun g => (phiCpMap K X n g).2.2.2) (phiCpCont K X n)
     fun U hU hle => hk U hU fun A v hA hv => (phiUnr K X n A v hA hv).trans hle
   obtain ⟨ψ, hψ⟩ := phiPsiEx K X n

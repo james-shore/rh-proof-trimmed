@@ -102,8 +102,8 @@ theorem isCoordPt_descend (hL : Laws) {K C : Type} [Field K] [IsAlgClosed K] [Fi
     (v : I → K) (v' : I → C) (s : Cˣ) (hv : ∀ i, f (v i) = s * v' i)
     (H : IsCoordPt P m x z fun i => fnOf (v' i)) : IsCoordPt P₀ m x₀ z₀ fun i => fnOf (v i) := by
   have hC : (m : C) ≠ 0 := by rw [← map_natCast f]; exact (map_ne_zero f).2 hK
-  obtain ⟨a₁, a₂, -⟩ := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL K (Sp K) P₀ (𝟙 _) m hm hK I x₀ hk₀
-  obtain ⟨-, b₂, -⟩ := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL C (Sp C) P (𝟙 _) m hm hC I x hk
+  obtain ⟨a₁, a₂, -⟩ := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL K (Sp K) P₀ (𝟙 _) m hm hK I x₀ hk₀
+  obtain ⟨-, b₂, -⟩ := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL C (Sp C) P (𝟙 _) m hm hC I x hk
   obtain ⟨v₀, h₀⟩ := a₁ z₀
   have q := isCoordPt_cart hL.secBaseChange hp hw hx hk hz h₀
   simp only [← FullExtend.fnOf_map] at q
@@ -146,9 +146,9 @@ theorem exists_descend : Laws → AllD fun {E} _ _ _ {H} D => ∀ (K C : Type) [
     have e' : I'.ev 1 0 = 1 := (I'.ker 1 one_pos 0).2 ⟨0, by simp⟩
     have k := key m hm 1 one_pos 0 v v' s hv
     rw [e, e'] at k
-    obtain ⟨-, -, a₃, -⟩ := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL K (Sp K) o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
+    obtain ⟨-, -, a₃, -⟩ := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL K (Sp K) o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
       (I.ev (m ^ 2)) (tateIso_ev_pow I (pow_pos hm.pos 2))
-    obtain ⟨-, -, b₃, -⟩ := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL C (Sp C) o'.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
+    obtain ⟨-, -, b₃, -⟩ := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL C (Sp C) o'.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
       (I'.ev (m ^ 2)) (tateIso_ev_pow I' (pow_pos hm.pos 2))
     exact (a₃ v).2 (k ((b₃ v').1 Q))
 

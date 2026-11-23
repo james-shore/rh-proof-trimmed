@@ -82,10 +82,7 @@ theorem core_sum {V : Type} [AddCommGroup V] [Module ℂ V] (core : InnerProduct
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [inner_smul_left, inner_smul_right, _root_.mul_assoc]
 
-theorem spMap_cmp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (d : A →+* B) (c : B →+* C) :
-    spMap c ≫ spMap d = spMap (c.comp d) := by
-  simp only [spMap, ← Spec.map_comp]
-  rfl
+alias spMap_cmp := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp'
 
 theorem ringHom_eq {R A : Type} [CommRing R] [CommRing A] {X : Scheme.{0}} (x : Sp R ⟶ X) [Mono x]
     {a b : R →+* A} (h : spMap a ≫ x = spMap b ≫ x) : a = b :=

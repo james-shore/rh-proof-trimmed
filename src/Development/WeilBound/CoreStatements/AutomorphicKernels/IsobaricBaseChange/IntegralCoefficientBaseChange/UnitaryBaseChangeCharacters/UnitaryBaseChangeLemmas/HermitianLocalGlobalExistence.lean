@@ -235,13 +235,9 @@ theorem local_good (E : Type) [Field E] [NumberField E] [IsCMField E] (hU : Unr 
       _ = cT σ (a⁻¹ : GL (Fin n) (w.adicCompletion E)).val * (cT σ b.val * J * b.val) * (a⁻¹ : GL (Fin n) (w.adicCompletion E)).val := by rw [hbJ]
       _ = _ := by rw [Units.val_mul, cT_mul]; simp only [Matrix.mul_assoc]
 
-theorem eventually_int {E : Type} [Field E] [NumberField E] (x : E) :
-    ∀ᶠ w : Pl E in cofinite, algebraMap E (w.adicCompletion E) x ∈ w.adicCompletionIntegers E :=
-  (algebraMap E (FiniteAdeleRing (𝓞 E) E) x).2
-
 theorem eventually_int_coeff {E : Type} [Field E] [NumberField E] (A : E[X]) :
     ∀ᶠ w : Pl E in cofinite, ∀ i, algebraMap E (w.adicCompletion E) (A.coeff i) ∈ w.adicCompletionIntegers E := by
-  have h := (Filter.eventually_all_finset A.support).2 fun i _ => eventually_int (A.coeff i)
+  have h := (Filter.eventually_all_finset A.support).2 fun i _ => _root_.GlobalTheory.BCT.UnitStable.eventually_int (A.coeff i)
   filter_upwards [h] with w hw i
   by_cases hi : i ∈ A.support
   · exact hw i hi
@@ -250,7 +246,7 @@ theorem eventually_int_coeff {E : Type} [Field E] [NumberField E] (A : E[X]) :
 
 theorem eventually_int_mat {E : Type} [Field E] [NumberField E] {n : ℕ} (M : Matrix (Fin n) (Fin n) E) :
     ∀ᶠ w : Pl E in cofinite, ∀ i j, algebraMap E (w.adicCompletion E) (M i j) ∈ w.adicCompletionIntegers E :=
-  Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j => eventually_int (M i j)
+  Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j => _root_.GlobalTheory.BCT.UnitStable.eventually_int (M i j)
 
 end GlobalTheory.UsideLeaf.hermitian_local_global_existence
 

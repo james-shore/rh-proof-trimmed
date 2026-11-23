@@ -40,6 +40,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFunApply
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsRationalFrame
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PeriodLatticeFinitelyGenerated
 
 @[expose] public section
 
@@ -51,13 +53,6 @@ noncomputable section
 
 namespace GlobalTheory.LocBasisChange
 
-theorem norm_le_one_of_isIntegral_int {C : Type} [NormedField C] [IsUltrametricDist C] {x : C}
-    (hx : IsIntegral ℤ x) : ‖x‖ ≤ 1 := by
-  have h : x ∈ (NormedField.valuation (K := C)).integer :=
-    (Valuation.integer.integers (NormedField.valuation (K := C))).mem_of_integral hx.tower_top
-  rw [Valuation.mem_integer_iff, NormedField.valuation_apply] at h
-  exact_mod_cast h
-
 theorem norm_det_le_one {C : Type} [NormedField C] [IsUltrametricDist C] {n : ℕ}
     (M : Matrix (Fin n) (Fin n) C) (h : ∀ a b, ‖M a b‖ ≤ 1) : ‖M.det‖ ≤ 1 := by
   rw [Matrix.det_apply]
@@ -67,10 +62,6 @@ theorem norm_det_le_one {C : Type} [NormedField C] [IsUltrametricDist C] {n : �
   rcases Int.units_eq_one_or (Equiv.Perm.sign σ) with hs | hs <;> rw [hs]
   · rwa [one_smul]
   · rwa [Units.neg_smul, one_smul, norm_neg]
-
-theorem norm_natCast_of_not_dvd {p : ℕ} [Fact p.Prime] {s : ℕ} (hs : ¬ p ∣ s) : ‖(s : ℂ_[p])‖ = 1 := by
-  rw [← map_natCast (algebraMap ℚ_[p] ℂ_[p]), norm_algebraMap', Padic.norm_natCast_eq_one_iff]
-  exact (Nat.Prime.coprime_iff_not_dvd Fact.out).2 hs
 
 theorem basis_change : ∀ (D : D7) {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) (τ : D.what₂.Tau) {N : ℕ}
     (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (Bm : GL (Fin N) D.host.E) (Bs : Matrix (Fin N) (Fin N) ℂ_[p]),
@@ -83,9 +74,9 @@ theorem basis_change : ∀ (D : D7) {p : ℕ} [Fact p.Prime] (lam : TaylorLogMet
   set ρ : D.host.E →+* ℂ_[p] := lam.comp ((TaylorLogMetric.embT D τ).codRestrict TaylorLogMetric.Qbar hm) with hρ
   have hρe : ∀ x, TaylorLogMetric.tauEmb D lam τ x = ρ x := fun x => dif_pos (hm x)
   have hint : ∀ y : 𝓞 D.host.E, ‖ρ (y : D.host.E)‖ ≤ 1 := fun y =>
-    norm_le_one_of_isIntegral_int (map_isIntegral_int ρ y.isIntegral_coe)
+    _root_.GlobalTheory.UnUnitCmp.norm_le_one_of_isIntegral (map_isIntegral_int ρ y.isIntegral_coe)
   have hunit : ∀ s : ℕ, ¬ p ∣ s → ‖ρ (s : D.host.E)‖ = 1 := fun s hs => by
-    rw [map_natCast]; exact norm_natCast_of_not_dvd hs
+    rw [map_natCast]; exact _root_.Formalism.L2.Ker.norm_natCast_of_not_dvd hs
   set Mm : Matrix (Fin N) (Fin N) D.host.E := (Bm : Matrix (Fin N) (Fin N) D.host.E) with hMm
   set Mi : Matrix (Fin N) (Fin N) D.host.E := ((Bm⁻¹ : GL (Fin N) D.host.E) : Matrix (Fin N) (Fin N) D.host.E) with hMi
   have hMMi : Mm * Mi = 1 := Bm.mul_inv
@@ -135,7 +126,7 @@ theorem basis_change : ∀ (D : D7) {p : ℕ} [Fact p.Prime] (lam : TaylorLogMet
       simp only [hρe, Pi.smul_apply, smul_eq_mul, map_mul, hh, Matrix.mul_apply, Matrix.mulVec, dotProduct,
         hA, Matrix.map_apply, hxb, Finset.mul_sum]
       exact Finset.sum_congr rfl fun _ _ => by ring
-    rw [key, norm_mul, map_natCast, norm_natCast_of_not_dvd hs, one_mul] at hb
+    rw [key, norm_mul, map_natCast, _root_.Formalism.L2.Ker.norm_natCast_of_not_dvd hs, one_mul] at hb
     exact hb
   have hd1 := norm_det_le_one g hgi
   have hd2 := norm_det_le_one h hhi

@@ -44,14 +44,13 @@ import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicCases.AutomorphyClauseStatement
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.FlipTwoThree
 import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.DirichletPrimeToLPartMulLPowerPart
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InertialOrderFifteenCharAuxiliaryPrimeSpec
 
 @[expose] public section
 
 open NumberField IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Aut UpperTheory.V.Pr UpperTheory.V
 
-private theorem norm_le_one_of_integral_padic (l : ℕ) [Fact l.Prime] (x : PadicAlgCl l) (hx : IsIntegral ℤ_[l] x) :
-    ‖x‖ ≤ 1 :=
-  UpperTheory.V.Lib.Small.norm_le_one_of_isIntegral l x hx
+private alias norm_le_one_of_integral_padic := _root_.UpperTheory.Reformulated.B.S6.norm_le_one_of_isIntegral
 
 set_option linter.overlappingInstances false in
 private theorem small_norm_on_maximal_ideal_power {l : ℕ} [Fact l.Prime] {A : Type} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
@@ -86,11 +85,7 @@ private theorem continuous_padic_embedding_rep {l : ℕ} [Fact l.Prime] {A : Typ
   rw [dist_eq_norm, Matrix.map_apply, Matrix.map_apply, ← map_sub]
   exact hn _ (Ideal.Quotient.eq.1 (congrFun (congrFun hg' a) b))
 
-private theorem continuous_units_of_continuous_coe {Γ R : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Monoid R]
-    [TopologicalSpace R] (f : Γ →* Rˣ) (h : Continuous fun s => (f s : R)) : Continuous f := by
-  refine Units.continuous_iff.2 ⟨h, ?_⟩
-  simp only [← map_inv]
-  exact h.comp continuous_inv
+private alias continuous_units_of_continuous_coe := _root_.GlobalTheory.GalChar.continuous_units
 
 private theorem orthogonal_pairing_from_intertwiner {R : Type} [CommRing R]
     {x y j : GG (m := 3) (R := R)} (hj : j.mat = 1) (hj' : j.right = -1)

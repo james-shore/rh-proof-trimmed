@@ -142,13 +142,6 @@ theorem open_compact_hat :
   rw [RestrictedProduct.range_structureMap] at h1 h2
   exact ⟨h1, h2⟩
 
-theorem t2Space_adeleRing_numberField : T2Space (AdeleRing (𝓞 F) F) := by
-  have h1 : T2Space (InfiniteAdeleRing F) := (inferInstance : T2Space ((v : InfinitePlace F) → v.Completion))
-  have h2 : T2Space (FiniteAdeleRing (𝓞 F) F) :=
-    T2Space.of_injective_continuous (f := fun (a : FiniteAdeleRing (𝓞 F) F) v => a v)
-      (fun a b h => DFunLike.coe_injective h) (continuous_pi (cont_eval F))
-  exact (inferInstance : T2Space (InfiniteAdeleRing F × FiniteAdeleRing (𝓞 F) F))
-
 end Local
 
 section Grp
@@ -800,7 +793,7 @@ theorem exists_level (D : D7) (V : HSp D) (N : Lat V) (A B : Finset (Pl D)) (JA 
     ∃ K ≤ GfC V, IsCompact (K : Set (GA D V)) ∧ IsOpen (K.subgroupOf (GfC V) : Set (GfC V)) ∧
       ∀ k, k ∈ K ↔ ∃ κ x y, InK V N (fun p => p ∉ A ∧ p ∉ B) κ ∧ x ∈ JA ∧ y ∈ JB ∧ k = b⁻¹ * (κ * x * y) * b := by
   have i1 : IsModuleTopology (AF D.host.F) (AE D) := ⟨rfl⟩
-  have i2 : T2Space (AF D.host.F) := t2Space_adeleRing_numberField _
+  have i2 : T2Space (AF D.host.F) := _root_.GlobalTheory.AdelicUnitaryTop.t2Space_adeleRing_numberField _
   have i3 : T2Space (AE D) := t2_tensor_product
   have i4 : IsTopologicalRing (AE D) := IsModuleTopology.isTopologicalRing (AF D.host.F) (AE D)
   have hσ : Continuous (sigR (AF D.host.F) D.sp.cm.sig) :=

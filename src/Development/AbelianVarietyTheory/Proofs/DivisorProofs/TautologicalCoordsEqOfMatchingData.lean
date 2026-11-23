@@ -106,7 +106,7 @@ theorem coords_eq_of_match : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLocal
     rw [hk₁, hk₂, hχ, e₂.apply_symm_apply] at this
     exact this
   simp only [hε₀] at key
-  have hx := GlobalTheory.T.eq_of_prod_zpow_symmetricFormBasis_eq F T.r I ε₀ (fun i => f (s₁ i)) (fun i => f (s₂ i))
+  have hx := _root_.GlobalTheory.SymMono.eq_of_prod_zpow_eq F T.r I ε₀ (fun i => f (s₁ i)) (fun i => f (s₂ i))
     (fun i => (map_ne_zero_iff f hf).2 (hs₁ i)) (fun i => (map_ne_zero_iff f hf).2 (hs₂ i)) (fun a b => key a b)
   funext i
   exact hf (congrFun hx i)

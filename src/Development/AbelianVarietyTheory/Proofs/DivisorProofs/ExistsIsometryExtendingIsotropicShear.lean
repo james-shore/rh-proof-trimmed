@@ -78,7 +78,7 @@ theorem IsOpp.exists_isometry_extend {E : Type} [Field E] [NumberField E] [IsCMF
     have f1 := hZ' (c a) (c a')
     have f2 : D.EF (t (q a) - q a) (c a') = 0 := hδ (q a) _ (c a').2
     have f3 : D.EF (c a) (t (q a') - q a') = 0 := by
-      rw [ef_swap, hδ (q a') _ (c a).2, neg_zero]
+      rw [_root_.GlobalTheory.SimLift.form_skew, hδ (q a') _ (c a).2, neg_zero]
     have f4 := hiso (q a) (q a')
     have f5 := hZ (q a) (q a')
     have f7 : D.EF a (c a') = D.EF (t (q a) - q a) (a' - q a') := by
@@ -89,7 +89,7 @@ theorem IsOpp.exists_isometry_extend {E : Type} [Field E] [NumberField E] [IsCMF
     have f8 : D.EF (c a) a' = D.EF (a - q a) (t (q a') - q a') := by
       have := hr a' _ (c a).2
       have h2 := hc a (q a')
-      rw [ef_swap D (c a) a', ef_swap D (a - q a)]
+      rw [_root_.GlobalTheory.SimLift.form_skew D (c a) a', _root_.GlobalTheory.SimLift.form_skew D (a - q a)]
       simp only [map_sub, LinearMap.sub_apply] at this h2 ⊢
       linear_combination -this - h2
     rw [hg, hg]
@@ -98,13 +98,13 @@ theorem IsOpp.exists_isometry_extend {E : Type} [Field E] [NumberField E] [IsCMF
   · obtain ⟨e, -, he⟩ := ht (q a)
     obtain ⟨e', he'⟩ := GlobalTheory.ModuliGenus.exists_eq_nsmul_of_dvd D hN (c a : D.La) fun b => by
       obtain ⟨e₁, -, he₁⟩ := ht (q b)
-      have h1 : D.EF (c a) (b - q b) = 0 := by rw [ef_swap, hr b _ (c a).2, neg_zero]
+      have h1 : D.EF (c a) (b - q b) = 0 := by rw [_root_.GlobalTheory.SimLift.form_skew, hr b _ (c a).2, neg_zero]
       have h2 := hc a (q b)
       rw [he₁, add_sub_cancel_left, map_nsmul, LinearMap.smul_apply] at h2
       refine ⟨-D.EF e₁ (a - q a), ?_⟩
       have h3 : D.EF (c a) b = D.EF (c a) (q b) := by
         rw [map_sub] at h1; linear_combination h1
-      rw [h3, ef_swap, h2, nsmul_eq_mul]
+      rw [h3, _root_.GlobalTheory.SimLift.form_skew, h2, nsmul_eq_mul]
       ring
     refine ⟨e - e', ?_⟩
     rw [hg, he, he', smul_sub]

@@ -82,10 +82,10 @@ theorem rowOne_bijective : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A], SH 
     ∀ (A' : Type) [CommRing A'] [Algebra A A'], Module.Finite A A' → ∀ (k : ℕ) (i : ℤ),
     Function.Bijective (rowOne A A' q i k) := by
   intro q _ A _ hA hq A' _ _ hfin k i
-  obtain ⟨e0, e, h1, h2⟩ := GlobalTheory.T.laurentCechNerve_level_spec_tensorPower A A' k
+  obtain ⟨e0, e, h1, h2⟩ := _root_.GlobalTheory.EtC.GmStep.LevelIso.level_iso A A' k
   haveI := hfin
   have hT : Module.Finite A (PiTensorProduct A (fun _ : Fin (k + 1) => A')) := inferInstance
-  have hr1 := GlobalTheory.T.laurentKummerCupProductMap_bijective_finite_strictHenselian q A hA hq (PiTensorProduct A (fun _ : Fin (k + 1) => A')) hT i
+  have hr1 := _root_.GlobalTheory.EtC.GmStep.gmPhi_bijective_finite q A hA hq (PiTensorProduct A (fun _ : Fin (k + 1) => A')) hT i
   have hmap1 := congrArg (fun f => disc.map f) h1
   have hmap2 := congrArg (fun f => disc.map f) h2
   simp only [Functor.map_comp] at hmap1 hmap2

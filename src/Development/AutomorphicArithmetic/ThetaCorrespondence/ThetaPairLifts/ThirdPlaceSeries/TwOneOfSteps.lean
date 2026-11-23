@@ -68,7 +68,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.BigOn.Exp.TwConj
 open GlobalTheory.ConjTwist
 theorem normAt_alt : _root_.GlobalTheory.BigOn.Exp.TwConj.NormCondition := _root_.GlobalTheory.BigOn.Exp.TwistConditions.of_forall fun _ _ _ _ p _ _ _ _ _ B ν ν' ⟨_, c, hc, n, hn, hνn⟩ ⟨_, c', hc', m, hm, hνm⟩ => by
-  obtain ⟨k, hk, hkk⟩ := scale_pow_eq p.R p.v₀ B hc hc'
+  obtain ⟨k, hk, hkk⟩ := _root_.GlobalTheory.BigOn.Exp.TwConj.scale_pow_eq_of_isScale p.R p.v₀ B hc hc'
   refine ⟨n * m * k, Nat.mul_ne_zero (Nat.mul_ne_zero hn hm) hk, ?_⟩
   have e1 : ν' ^ (n * m * k) = (ν' ^ m) ^ (n * k) := by rw [← pow_mul]; ring_nf
   have e2 : ν ^ (n * m * k) = (ν ^ n) ^ (m * k) := by rw [← pow_mul]; ring_nf
@@ -103,8 +103,8 @@ theorem twOne_of_steps_alt (hA : _root_.GlobalTheory.BigOn.Exp.TwAdmAlt) (hT : _
 theorem conj_tw_of_prints : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt →
     GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.CasselmanWallach → GlobalTheory.SerStd.SeriesRatS →
     _root_.GlobalTheory.BigOn.Exp.TwAdmAlt → _root_.GlobalTheory.BigOn.Exp.TwistCharacter → _root_.GlobalTheory.BigOn.Exp.ConjugateTwist := fun h1 h2 h3 hD hW h4 hA hC =>
-  _root_.GlobalTheory.BigOn.Exp.TwConj.conjTw_of_twAdm_latSmallGen_normAt_twOne hA _root_.GlobalTheory.T.latSmallGen' _root_.GlobalTheory.BigOn.Exp.TwConj.normAt_alt (_root_.GlobalTheory.BigOn.Exp.TwConj.twOne_of_steps_alt hA (_root_.GlobalTheory.T.twisted_conj_tuple_at' h1 h2 h3 hD hW hA hC) (_root_.GlobalTheory.T.twisted_conj_fix_at' h3 hA) (_root_.GlobalTheory.T.twisted_conj_coef_at' hA)
-    (_root_.GlobalTheory.T.conjTwist_function_eq_sum_evaluations_alt h1 h2 h3 h4))
+  _root_.GlobalTheory.BigOn.Exp.TwConj.conjTw_of_twAdm_latSmallGen_normAt_twOne hA _root_.GlobalTheory.BigOn.Exp.latSmallGen_alt _root_.GlobalTheory.BigOn.Exp.TwConj.normAt_alt (_root_.GlobalTheory.BigOn.Exp.TwConj.twOne_of_steps_alt hA (_root_.GlobalTheory.BigOn.Exp.TwConj.tupAt_alt h1 h2 h3 hD hW hA hC) (_root_.GlobalTheory.BigOn.Exp.TwConj.fixAt_holds_alt h3 hA) (_root_.GlobalTheory.BigOn.Exp.TwConj.coefAt_of_twAdm_alt hA)
+    (_root_.GlobalTheory.ConjExpandRational.exists_evW_expansion_of_conjFun h1 h2 h3 h4))
 end GlobalTheory.BigOn.Exp.TwConj
 end
 end

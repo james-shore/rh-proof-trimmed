@@ -112,35 +112,6 @@ lemma quadR_nonneg {r : ℕ} (L : Matrix (Fin r) (Fin r) ℤ)
   rw [hdense.closure_range] at this
   exact this (Set.mem_univ x)
 
-theorem posDef_of_pos_int {r : ℕ} (L : Matrix (Fin r) (Fin r) ℤ) (hs : Lᵀ = L)
-    (hp : ∀ v : Fin r → ℤ, v ≠ 0 → 0 < v ⬝ᵥ L *ᵥ v) :
-    (L.map (Int.cast : ℤ → ℝ)).PosDef := by
-  have hH : (L.map (Int.cast : ℤ → ℝ)).IsHermitian := by
-    ext i j
-    have := congrFun (congrFun hs j) i
-    simp only [Matrix.transpose_apply] at this
-    simp [Matrix.conjTranspose_apply, this]
-  have hPSD : (L.map (Int.cast : ℤ → ℝ)).PosSemidef :=
-    Matrix.PosSemidef.of_dotProduct_mulVec_nonneg hH (fun x => by
-      rw [quadR_eq]; exact quadR_nonneg L hp x)
-  refine Matrix.PosDef.of_dotProduct_mulVec_pos hH (fun x hx => ?_)
-  rw [quadR_eq]
-  refine lt_of_le_of_ne (quadR_nonneg L hp x) (fun h0 => ?_)
-  have hz : (L.map (Int.cast : ℤ → ℝ)) *ᵥ x = 0 := by
-    rw [← hPSD.dotProduct_mulVec_zero_iff, quadR_eq]; exact h0.symm
-  have hdetR : (L.map (Int.cast : ℤ → ℝ)).det = 0 :=
-    Matrix.exists_mulVec_eq_zero_iff.mp ⟨x, hx, hz⟩
-  have hdet : L.det = 0 := by
-    have := (Int.castRingHom ℝ).map_det L
-    rw [RingHom.mapMatrix_apply] at this
-    simp only [eq_intCast] at this
-    have h' : ((L.det : ℤ) : ℝ) = 0 := by rw [this]; exact hdetR
-    exact_mod_cast h'
-  obtain ⟨w, hw, hLw⟩ := Matrix.exists_mulVec_eq_zero_iff.mpr hdet
-  have := hp w hw
-  rw [hLw, dotProduct_zero] at this
-  exact lt_irrefl _ this
-
 end GlobalTheory.Poinc.SumSqFunctional
 
 namespace GlobalTheory.Poinc.SumSqFunctional
@@ -204,7 +175,7 @@ theorem sumsq_functional : ∀ (X : Type) [AddCommGroup X] [Module.Free ℤ X] [
       simp only [hsq, hl, dotProduct, Matrix.mulVec, Finset.mul_sum]
       refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
     rw [h3]; have := hpos l hl0; omega
-  have hPD := posDef_of_pos_int L hs hp
+  have hPD := _root_.GlobalTheory.SharpShape.posDef_of_int L hs hp
   obtain ⟨D, m, a', hD, hspan, hsum⟩ := GlobalTheory.Poinc.SumSq.exists_smul_eq_sum_vecMulVec_span r L hPD
   have hentry : ∀ i j, (D : ℤ) * L i j = ∑ k, a' k i * a' k j := by
     intro i j

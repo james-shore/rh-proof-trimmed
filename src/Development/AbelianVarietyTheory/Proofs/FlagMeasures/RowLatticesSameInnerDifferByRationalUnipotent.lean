@@ -60,7 +60,7 @@ section Gen
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : ℕ}
 
-theorem herm (x y : S.V) : S.hT x y = star (S.hT y x) := Formalism.MainNotions.LatticeGluingRadicals.b_herm y x
+theorem herm (x y : S.V) : S.hT x y = star (S.hT y x) := _root_.Formalism.MainNotions.LatticeGluingRadicals.a_herm y x
 
 def pr (e f : Fin r → S.V) : S.V →ₗ[E] S.V :=
   LinearMap.id - ∑ a, (S.hT (f a)).smulRight (e a) - ∑ a, (S.hT (e a)).smulRight (f a)
@@ -292,13 +292,10 @@ theorem map_latSpan (aa : Fin r → FractionalIdeal (nonZeroDivisors (𝓞 E)) E
   · rintro ⟨a, x, hx, rfl⟩
     exact ⟨_, ⟨a, x, hx, rfl⟩, by simp⟩
 
-theorem mem_orth_iff {U : Submodule E S.V} {v : S.V} : v ∈ orth S U ↔ ∀ x ∈ U, S.hT x v = 0 := by
-  simp [orth, Submodule.mem_iInf]
-
 variable {T : E} (F0 : FlagG S r T)
 
 theorem perp_iff {v : S.V} : v ∈ orth S F0.X ↔ ∀ a, S.hT (F0.e a) v = 0 := by
-  rw [mem_orth_iff]
+  rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.p_mem_orth]
   constructor
   · intro h a; exact h _ (Submodule.subset_span ⟨a, rfl⟩)
   · intro h x hx; exact (perpX h hx).1

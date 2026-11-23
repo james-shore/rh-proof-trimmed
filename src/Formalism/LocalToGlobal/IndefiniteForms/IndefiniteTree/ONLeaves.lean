@@ -130,7 +130,7 @@ theorem card_Uv (hG : IsLevelGroups kf n Pm Uv) (v : ι) :
 
 theorem card_Pm (hG : IsLevelGroups kf n Pm Uv) (v : ι) :
     Nat.card (Pm v) = Nat.card (Uv v) * ∏ i ∈ Finset.Ico 1 (n + 1), (Fintype.card (kf v) ^ i - 1) := by
-  rw [card_Uv_uni hG v, ← mirabolic_index (kf v) n]
+  rw [card_Uv_uni hG v, ← _root_.PI.MirabolicIndex₂.mirabIndex (kf v) n]
   exact Nat.card_congr (Equiv.subtypeEquivRight (hG.1 v))
 
 theorem index_Uv (hG : IsLevelGroups kf n Pm Uv) (v : ι) :

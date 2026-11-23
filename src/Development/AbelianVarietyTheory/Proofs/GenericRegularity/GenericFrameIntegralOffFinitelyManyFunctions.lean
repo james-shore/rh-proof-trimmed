@@ -305,7 +305,7 @@ theorem exists_finset_of_lift (hT : Out.SecTwistSt) (hbc : FrBC Xo c) {Y : Model
   obtain ⟨z₀, hz₀⟩ := hbc R T.Fr ψ y₀
   have ht₀ := GlobalTheory.Reg.MChart.tie_baseChange E H Dw l Xo c _ _ Y M R T.Fr f ψ u y₀ z₀ ht hz₀
   rw [← hf₀, ← eu] at ht₀
-  have hi₀ : Integral T io z₀ := GlobalTheory.T.framedPoint_integral_integralCell_anyModel hT E H Dw l Xo c _ _ Y M T io f₀ ix (fun τ => Matrix.of (u₀ τ))
+  have hi₀ : Integral T io z₀ := _root_.GlobalTheory.Reg.tie_integral_of_any_model hT E H Dw l Xo c _ _ Y M T io f₀ ix (fun τ => Matrix.of (u₀ τ))
     (fun τ => ⟨fun i j hij => hinj ((hu₀ τ _ _).trans (by rw [(hcell τ).1 i j hij, map_zero, map_zero])),
       fun i => hinj ((hu₀ τ _ _).trans (by rw [(hcell τ).2 i, map_one, map_one]))⟩) z₀ ht₀
   have hc := (GlobalTheory.Frames.ChgBC.frChg_baseChange E H Dw l Xo c R T.Fr ψ y₀ y z₀ z k a hchg hz₀).1 hz

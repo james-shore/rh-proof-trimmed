@@ -53,15 +53,6 @@ noncomputable section
 
 namespace GlobalTheory.SeeSaw
 
-theorem castP_surjective {D : D7} {p q a b : ℕ} (hp : p = a) (hq : q = b) (Q : FP D.what₂.Tau a b) :
-    ∃ P : PolF D q p, castP hp hq P = Q := by
-  subst hp; subst hq
-  refine ⟨Q, ?_⟩
-  show MvPolynomial.rename _ Q = Q
-  have : (fun v : D.what₂.Tau × Fin q × Fin p => (v.1, Fin.cast rfl v.2.1, Fin.cast rfl v.2.2)) = id := by
-    funext v; simp
-  rw [this, MvPolynomial.rename_id_apply]
-
 theorem kBack_of_classData : ∀ (D : D7) (c : Comm D) (t : Tup c) (ρ : RealD c) (A : ClsK ρ t), c.Is → t.Is → ρ.Is → A.Is →
     (∀ j, j < D.R.m → t.cK j ≠ 0) → t.KBack := by
   intro D c t ρ A hc ht hρ hA hK j hj
@@ -80,7 +71,7 @@ theorem kBack_of_classData : ∀ (D : D7) (c : Comm D) (t : Tup c) (ρ : RealD c
   have hy : ∀ i, (ρ.fr j (y i)).1 = ys i := fun i => congrArg Subtype.val ((ρ.fr j).apply_symm_apply ⟨ys i, hinv i⟩)
   have hP : ∀ i, ∃ P : PolF D (c.X (j + 1)).rank (c.X j).rank,
       castP (ρ.hN j (Nat.le_of_succ_le hj1)) (ρ.hN (j + 1) hj1) P = (s0 * ∏ τ, (ys i τ).det ^ ρ.sS j τ) • Ps i :=
-    fun i => castP_surjective _ _ _
+    fun i => _root_.GlobalTheory.SeeSaw.LiftSum.castP_surj _ _ _
   choose P hP using hP
   refine ⟨m, y, P, fun ψ hψ γ => ?_⟩
   have hsc : ∀ (i : Fin 1) τ, (ρ.fr (j + 1) ((fun _ => w) i)).1 τ = ρ.sc j τ • (fun _ => z) i τ := by

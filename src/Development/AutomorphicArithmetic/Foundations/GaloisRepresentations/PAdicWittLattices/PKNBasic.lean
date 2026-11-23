@@ -81,8 +81,8 @@ theorem UpperTheory.Gal.G3.pKNBasic :
     have e : (k * u * k⁻¹)⁻¹ = k * u⁻¹ * k⁻¹ := by group
     rw [e]
     exact key _ hu.2
-  · obtain ⟨j, hj0, hjp, hj⟩ := GlobalTheory.T.exists_coprime_nsmul_endomorphism_preserves_completion p D (L.actG g)
-    obtain ⟨j', hj0', hjp', hj'⟩ := GlobalTheory.T.exists_coprime_nsmul_endomorphism_preserves_completion p D (L.actG g⁻¹)
+  · obtain ⟨j, hj0, hjp, hj⟩ := _root_.GlobalTheory.LKGeo.DenEnd.exists_coprime_nsmul_map_mem p D (L.actG g)
+    obtain ⟨j', hj0', hjp', hj'⟩ := _root_.GlobalTheory.LKGeo.DenEnd.exists_coprime_nsmul_map_mem p D (L.actG g⁻¹)
     refine ⟨j * j', ?_, fun u hu => ⟨?_, ?_⟩⟩
     · exact Nat.Coprime.mul_left hjp hjp'
     · exact congOne_conj L N g j j' hj0' hj hj' u hu.1

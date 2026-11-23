@@ -300,7 +300,7 @@ theorem mellin_comp (l : ℕ) [Fact l.Prime] (c : Coef l) (F : PowerSeries (Qbar
         rw [norm_mul, norm_pow]
         exact mul_le_one₀ (pow_le_one₀ (norm_nonneg _) (IsUltrametricDist.norm_natCast_le_one _ d)) (norm_nonneg _)
           (norm_char_le_one l l φ _ hlp.pos)
-  · have hg : ‖gSum (k + 1) z ψ‖ ≤ 1 := (GlobalTheory.T.norm_gaussSumModPrimePower_le_half_power l (k + 1) z ψ hz.pow_eq_one).trans (by simpa using hmono (Nat.zero_le _))
+  · have hg : ‖gSum (k + 1) z ψ‖ ≤ 1 := (_root_.GlobalTheory.KZ.Cmp.norm_gSum_le l (k + 1) z ψ hz.pow_eq_one).trans (by simpa using hmono (Nat.zero_le _))
     unfold Cg
     rw [norm_sub_rev]
     refine hA _ _ _ (l ^ (3 * k)) (l ^ (3 * (k + 1)) + (k + 1)) _ (GlobalTheory.AmiceDist.norm_sub_one_le hζ1) ?_ fun N hN => ?_
@@ -382,7 +382,7 @@ theorem nonvanishing_transfer : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) (Gs L 
   obtain ⟨-, hpin⟩ := GlobalTheory.T.powerSeries_eq_of_congruent_values_at_primitiveRoots l c' _ _ (a' / a) (fun k => v' (k + 1) / v (k + 1) * (a' / a)) c₁ (m₀ + 2 * c₁) hAO hBO hB0 hu hw
     (fun k hk ζ hζ => by
       obtain ⟨z, hz, hzψ⟩ := hyp (k + 1) (by omega)
-      obtain ⟨ψ, hψ, hin, hψζ⟩ := GlobalTheory.T.exists_primitive_character_twist l φ e k ζ hl2 (by omega) hζ
+      obtain ⟨ψ, hψ, hin, hψζ⟩ := _root_.GlobalTheory.KZ.Cmp.PrimChar.exists_primitive_inComp l φ e k ζ hl2 (by omega) hζ
       have g1 := hGc k (by omega) z hz ψ hψ hin ζ hψζ hζ.pow_eq_one
       have g2 := hcomb _ _ _ _ _ (h1c k (by omega) z hz ψ hψ hin ζ hψζ hζ.pow_eq_one)
         (h2c k (by omega) z hz ψ hψ hin ζ hψζ hζ.pow_eq_one)

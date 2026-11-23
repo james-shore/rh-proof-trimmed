@@ -80,23 +80,12 @@ theorem TopBasis.exists_sum (B : TopBasis i J ι) (z : ι → A) (hz : ∀ n : �
   have := hy n
   rwa [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top, ← Ideal.map_pow] at this
 
-theorem exists_eq_of_mem_pow_succ_pair (a d : A) (n : ℕ) {x : A}
-    (hx : x ∈ (Ideal.span {a} ⊔ Ideal.span {d}) ^ (n + 1)) :
-    ∃ u : A, ∃ w ∈ (Ideal.span {a} ⊔ Ideal.span {d}) ^ n, x = a ^ (n + 1) * u + d * w := by
-  first
-  | exact @_root_.GlobalTheory.PowerBound.main
-  | exact _root_.GlobalTheory.PowerBound.main
-  | (apply _root_.GlobalTheory.PowerBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerBound.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerBound.main ..)
-
 theorem mem_pow_of_mul_mem_pow_pair (a d : A) (N : ℕ) (hd : d ∈ nonZeroDivisors A)
     (hN : ∀ (x : A) (m : ℕ), a ^ m * x ∈ Ideal.span {d} → a ^ N * x ∈ Ideal.span {d}) (n : ℕ) {z : A}
     (hz : d * z ∈ (Ideal.span {a} ⊔ Ideal.span {d}) ^ (n + N + 1)) :
     z ∈ (Ideal.span {a} ⊔ Ideal.span {d}) ^ n := by
   have ha : a ∈ Ideal.span {a} ⊔ Ideal.span {d} := Ideal.mem_sup_left (Ideal.mem_span_singleton_self a)
-  obtain ⟨u, w, hw, e⟩ := exists_eq_of_mem_pow_succ_pair a d (n + N) hz
+  obtain ⟨u, w, hw, e⟩ := _root_.GlobalTheory.PowerBound.main a d (n + N) hz
   have h1 : a ^ (n + N + 1) * u ∈ Ideal.span {d} :=
     Ideal.mem_span_singleton'.2 ⟨z - w, by linear_combination e⟩
   obtain ⟨v, hv⟩ := Ideal.mem_span_singleton'.1 (hN u _ h1)

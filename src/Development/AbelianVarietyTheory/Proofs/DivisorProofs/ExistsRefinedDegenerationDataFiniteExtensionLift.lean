@@ -89,7 +89,7 @@ theorem exists_refined_ext_lift : ∀ g n : ℕ, ∀ (F : SFam g n (zetaAway n))
     simp only [Category.assoc]
     rw [← Category.assoc (jK V₁) (spMap ρ), GlobalTheory.Mum.GenDesc.jK_comp_spMap ρ hinj]
     simp only [Category.assoc]
-  · rw [Category.assoc, hyL, hfr, spMap_comp_ext]
+  · rw [Category.assoc, hyL, hfr, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     simp only [Category.assoc]
 
 end GlobalTheory.Poinc.Sep.SharpExt

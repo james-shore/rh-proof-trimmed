@@ -133,7 +133,7 @@ variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.w
 theorem irr_real {V : HSp D} (c : CoefA V) (hc : c.Is) (U : Submodule ℂ c.W)
     (hU : ∀ u ∈ GinfC V, U.map (c.ρ u) ≤ U) : U = ⊥ ∨ U = ⊤ := by
   refine hc.2.2.2.2 U fun h => ?_
-  obtain ⟨k, hk, hkh⟩ := GlobalTheory.TraceIncl.exists_fin V ((finHom V).rangeRestrict h)
+  obtain ⟨k, hk, hkh⟩ := _root_.GlobalTheory.TraceIncl.KernLaws.exists_finite_lift V ((finHom V).rangeRestrict h)
   have hfin : finHom V k = finHom V h := congrArg Subtype.val hkh
   have hu : k⁻¹ * h ∈ GinfC V := by
     change finHom V (k⁻¹ * h) = 1

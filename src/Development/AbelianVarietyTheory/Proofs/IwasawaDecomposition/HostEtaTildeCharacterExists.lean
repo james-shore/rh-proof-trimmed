@@ -100,7 +100,7 @@ open Classical in
 theorem etaT_exists : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R), EtaTExists H := by
   intro R H
   obtain ⟨c, hc, hcm, hunr, -, -⟩ := GlobalTheory.Mem.HostCM.host_cm R H
-  obtain ⟨χ, h1, h2, h3, h4⟩ := GlobalTheory.T.exists_unramified_resEta_alt H.F H.E c (R.Psi) (embPsi H) hcm hunr (GlobalTheory.T.quadraticChar_product_formula_CM_host R H)
+  obtain ⟨χ, h1, h2, h3, h4⟩ := _root_.GlobalTheory.Mem.EtaExt.exists_unramified_resEta H.F H.E c (R.Psi) (embPsi H) hcm hunr (_root_.GlobalTheory.EtaProduct.eta_product_formula R H)
     (fun _ => 1) (fun _ => odd_one) (fun ζ hζ => by
       obtain ⟨δ, hδ, hval, hprod⟩ := UpperTheory.exists_unit_eq_rootOfUnity_mul_conj_phase_one R H R.Psi (Equiv.refl _) ζ hζ
       refine ⟨δ, by rw [hc]; exact hδ, fun P hP => ?_, ?_⟩

@@ -53,8 +53,7 @@ variable {R : Ranks} (H : Host R)
 theorem sqrt_sq : (H.sqd) ^ 2 = -(H.d : H.E) := by
   exact H.sqd_sq
 
-theorem conj_sqrt : H.conj (H.sqd) = -H.sqd :=
-  by apply _root_.UpperTheory.Reformulated.B.Rc9.conj_sqrt <;> assumption
+alias conj_sqrt := _root_.UpperTheory.Reformulated.B.Rc9.conj_sqrt
 
 theorem exists_conjPl (l : ℕ) (w : HeightOneSpectrum (𝓞 H.E)) (hw : w ∈ placesOver H.E l) :
     ∃ w' ∈ placesOver H.E l, IsConjPl H w w' := by

@@ -167,7 +167,7 @@ theorem part_finite [CompactSpace M] {α : A.Fld} (hα : A.IsForm α) (ε : ℤ�
   have h := good_lin A hα ((ε : ℤ) : ℝ)
   have e : A.part α ε = G A (fun i v => ((ε : ℤ) : ℝ) * A.reDens α i v) := part_eq A α ε _ fun _ _ => rfl
   have fin : G A (fun i v => ((ε : ℤ) : ℝ) * A.reDens α i v) univ ≠ ∞ :=
-    GlobalTheory.T.glueMeas_univ_ne_infty_of_continuousOn A.e A.cover A.holo (fun i v => ((ε : ℤ) : ℝ) * A.reDens α i v) h.1 h.2
+    _root_.GlobalTheory.glueMeas_univ_ne_top_of_compact A.e A.cover A.holo (fun i v => ((ε : ℤ) : ℝ) * A.reDens α i v) h.1 h.2
   refine ⟨?_⟩
   rw [e]
   exact lt_top_iff_ne_top.2 fin

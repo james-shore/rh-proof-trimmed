@@ -685,8 +685,6 @@ end A5x6
 
 open A5x6
 
-theorem second_gram_of_gram_and_modulus : Formalism.FourierDecayAlt.A5.KpGram → Formalism.FourierDecayAlt.A5.ModMul → Formalism.FourierDecayAlt.A5.BlockKernelPosSemidef := fun hG hM => second_gram_of_kernel_gram hG hM
-
 theorem second_gram_vanishing_of_parts : Formalism.FourierDecayAlt.A5.BlockKernelPropertiesOfSteps := by
   unfold Formalism.FourierDecayAlt.A5.BlockKernelPropertiesOfSteps Formalism.FourierDecayAlt.A5.A2
   intro hG hM hTF hAvg hEnd

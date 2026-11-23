@@ -159,7 +159,7 @@ theorem exists_stable_affine_nbhd : ∀ {S : Scheme.{0}} (G X : Over S) [GrpObj 
   have hV₀O : V₀ ≤ O := fun y hy => hy (GlobalTheory.T.mem_orbit_self' G X y)
   have hV₀U : V₀ ≤ U := hV₀O.trans inf_le_left
   have hxV₀ : orbit G X x ⊆ V₀ := fun y hy w hw => hxO (htrans hy hw)
-  obtain ⟨f, hKf, hfV⟩ := GlobalTheory.T.finite_set_basic_open_affine U V₀ hU hV₀U _ (orbit_finite hG x) hxV₀
+  obtain ⟨f, hKf, hfV⟩ := _root_.GlobalTheory.CompanionTheory.PrimeAvoid.exists_basicOpen_between U V₀ hU hV₀U _ (orbit_finite hG x) hxV₀
   let D : X.left.Opens := X.left.basicOpen f
   have hD : IsAffineOpen D := hU.basicOpen f
   have hDW : D ≤ X.hom ⁻¹ᵁ W := (hfV.trans hV₀O).trans inf_le_right

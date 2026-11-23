@@ -47,6 +47,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FinTensMemLatO
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.RealIdemMulOfReal
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SmulEqZeroOfInf
 
 @[expose] public section
 
@@ -77,16 +79,6 @@ def twoT (x : WO A S × WO S A') : (WO A S → WO S A' → ℂ) →ₗ[ℂ] (WO 
 theorem twoT_apply (x : WO A S × WO S A') (C : WO A S → WO S A' → ℂ) (u : WO A S) (v : WO S A') :
     twoT ψ A S A' x C u v = ψ (symplOH A S u x.1) * (ψ (symplOH S A' v x.2) * C (u + x.1) (v + x.2)) := rfl
 
-theorem symplOH_add_l (T T' : HSp D) (x x' y : WO T T') :
-    symplOH T T' (x + x') y = symplOH T T' x y + symplOH T T' x' y := by
-  unfold symplOH
-  rw [symplO_add_left, mul_add]
-
-theorem symplOH_add_r (T T' : HSp D) (x y y' : WO T T') :
-    symplOH T T' x (y + y') = symplOH T T' x y + symplOH T T' x y' := by
-  unfold symplOH
-  rw [symplO_add_right, mul_add]
-
 theorem symplOH_two (T T' : HSp D) (x y : WO T T') : symplOH T T' x y + symplOH T T' x y = symplO T T' x y := by
   unfold symplOH
   rw [← add_mul, ← RingHom.map_add (f := _), add_halves, RingHom.map_one, one_mul]
@@ -112,7 +104,7 @@ theorem twoT_zero (C : WO A S → WO S A' → ℂ) : twoT ψ A S A' 0 C = C := b
 theorem twoT_mul (x y : WO A S × WO S A') (C : WO A S → WO S A' → ℂ) :
     twoT ψ A S A' x (twoT ψ A S A' y C) = bet ψ A S A' x y • twoT ψ A S A' (x + y) C := by
   funext u v
-  simp only [twoT_apply, Pi.smul_apply, smul_eq_mul, bet, Prod.fst_add, Prod.snd_add, symplOH_add_l, symplOH_add_r,
+  simp only [twoT_apply, Pi.smul_apply, smul_eq_mul, bet, Prod.fst_add, Prod.snd_add, _root_.GlobalTheory.FinTranslate.symplOH_add_left, _root_.GlobalTheory.SplitScalar.symplOH_add_right,
     AddChar.map_add_eq_mul, add_assoc]
   ring
 
@@ -124,7 +116,7 @@ theorem twoT_comm (x γ : WO A S × WO S A') (C : WO A S → WO S A' → ℂ) :
   rw [twoT_mul, twoT_mul, smul_smul, add_comm x γ]
   congr 1
   simp only [bet, chi]
-  rw [symplOH_skew A S γ.1 x.1, symplOH_skew S A' γ.2 x.2, ← symplOH_two A S γ.1 x.1, ← symplOH_two S A' γ.2 x.2]
+  rw [symplOH_skew A S γ.1 x.1, symplOH_skew S A' γ.2 x.2, ← _root_.GlobalTheory.SplitScalar.symplOH_add_self A S γ.1 x.1, ← _root_.GlobalTheory.SplitScalar.symplOH_add_self S A' γ.2 x.2]
   simp only [AddChar.map_add_eq_mul, AddChar.map_neg_eq_inv]
   field_simp [psi_ne_zero ψ]
 

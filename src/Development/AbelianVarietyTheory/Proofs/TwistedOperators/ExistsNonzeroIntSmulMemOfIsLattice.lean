@@ -86,7 +86,6 @@ theorem exists_int_smul_mem {E : Type} [Field E] [NumberField E] {n : ℕ}
     rw [key]
     exact L.smul_mem b hcx
 
-theorem exists_nonzero_int_smul_mem_of_isLattice : ∀ {E : Type} [inst : Field E] [NumberField E] {n : ℕ} (L : Submodule (NumberField.RingOfIntegers E) (Fin n → E)), Submodule.IsFullLattice E L → ∀ (v : Fin n → E), ∃ (c : ℤ), c ≠ (0 : ℤ) ∧ c • v ∈ L :=
-  fun L hL v => exists_int_smul_mem L hL v
+alias exists_nonzero_int_smul_mem_of_isLattice := _root_.GlobalTheory.IntSmulMemLatticeTwistedOperators.exists_int_smul_mem
 
 end GlobalTheory.IntSmulMemLatticeTwistedOperators

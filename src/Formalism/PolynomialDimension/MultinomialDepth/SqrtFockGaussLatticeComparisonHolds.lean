@@ -474,10 +474,6 @@ theorem isotypicLattice_holds : LevelLattice := by
     rw [map_mul, map_pow, glAct_hXY]
     exact h_pow_mul_mem_gauss O.toSubring j _ hwl
 
-theorem xDeg_add {k : ℕ} (m n : XY k →₀ ℕ) : xDeg (m + n) = xDeg m + xDeg n := by
-  simp [xDeg, Finset.sum_add_distrib]
-theorem yDeg_add {k : ℕ} (m n : XY k →₀ ℕ) : yDeg (m + n) = yDeg m + yDeg n := by
-  simp [yDeg, Finset.sum_add_distrib]
 theorem xDeg_single_inl {k : ℕ} (i : Fin k) (n : ℕ) : xDeg (Finsupp.single (Sum.inl i : XY k) n) = n := by
   simp [xDeg, Finsupp.single_apply]
 theorem xDeg_single_inr {k : ℕ} (i : Fin k) (n : ℕ) : xDeg (Finsupp.single (Sum.inr i : XY k) n) = 0 := by
@@ -527,38 +523,6 @@ theorem coeff_ctrF (f : PolXY K k) (m : XY k →₀ ℕ) :
   rw [coeff_pderiv_eq_coeff_add_single_mul_multinomial_depth, coeff_pderiv_eq_coeff_add_single_mul_multinomial_depth, Finsupp.add_apply, Finsupp.single_apply, if_neg Sum.inl_ne_inr,
     add_zero]
 
-theorem ctrF_mem_PolAB {a b : ℕ} {f : PolXY K k} (hf : f ∈ PolAB K k a b) :
-    ctrF K k f ∈ PolAB K k (a - 1) (b - 1) := by
-  show ∀ m ∈ (ctrF K k f).support, xDeg m = a - 1 ∧ yDeg m = b - 1
-  intro m hm
-  rw [MvPolynomial.mem_support_iff, coeff_ctrF] at hm
-  obtain ⟨i, -, hi⟩ := Finset.exists_ne_zero_of_sum_ne_zero hm
-  have hc : AddMonoidAlgebra.coeff f (m + Finsupp.single (Sum.inl i) 1 + Finsupp.single (Sum.inr i) 1) ≠ 0 := by
-    intro h0
-    apply hi
-    rw [h0]
-    ring
-  have hf' := (show ∀ m ∈ f.support, xDeg m = a ∧ yDeg m = b from hf) _ (MvPolynomial.mem_support_iff.2 hc)
-  rw [xDeg_add, xDeg_add, yDeg_add, yDeg_add, xDeg_single_inl, xDeg_single_inr, yDeg_single_inl,
-    yDeg_single_inr] at hf'
-  omega
-
-theorem ctrF_pow_mem_PolAB {a b : ℕ} (l : ℕ) {f : PolXY K k} (hf : f ∈ PolAB K k a b) :
-    (ctrF K k ^ l) f ∈ PolAB K k (a - l) (b - l) := by
-  induction l with
-  | zero => simpa using hf
-  | succ n ih =>
-    rw [pow_succ']
-    show ctrF K k ((ctrF K k ^ n) f) ∈ _
-    have h := ctrF_mem_PolAB (K := K) ih
-    convert h using 2 <;> omega
-
-theorem ctrDiv_mem_PolAB {a b : ℕ} (l : ℕ) {f : PolXY K k} (hf : f ∈ PolAB K k a b) :
-    ctrDiv K k l f ∈ PolAB K k (a - l) (b - l) := by
-  unfold ctrDiv
-  rw [LinearMap.smul_apply]
-  exact Submodule.smul_mem _ _ (ctrF_pow_mem_PolAB l hf)
-
 theorem hXY_mem_PolAB : hXY K k ∈ PolAB K k 1 1 := by
   rw [mem_PolAB_iff]
   unfold hXY
@@ -574,32 +538,11 @@ theorem mul_mem_PolAB {a b a' b' : ℕ} {f f' : PolXY K k} (hf : f ∈ PolAB K k
   rw [mem_PolAB_iff] at hf hf' ⊢
   simpa using hf.mul hf'
 
-theorem h_pow_mul_mem_PolAB {a b : ℕ} (l : ℕ) {f : PolXY K k} (hf : f ∈ PolAB K k a b) :
-    hXY K k ^ l * f ∈ PolAB K k (a + l) (b + l) := by
-  induction l with
-  | zero => simpa using hf
-  | succ n ih =>
-    rw [pow_succ', mul_assoc]
-    have h := mul_mem_PolAB hXY_mem_PolAB ih
-    convert h using 2 <;> omega
-
 theorem hDiv_mem_PolAB {a b : ℕ} (l : ℕ) {f : PolXY K k} (hf : f ∈ PolAB K k a b) :
     hDiv K k l f ∈ PolAB K k (a + l) (b + l) := by
   unfold hDiv
   rw [LinearMap.smul_apply, LinearMap.mulLeft_apply]
-  exact Submodule.smul_mem _ _ (h_pow_mul_mem_PolAB l hf)
-
-theorem harProj_mem_PolAB {A B : ℕ} {f : PolXY K k} (hf : f ∈ PolAB K k A B) :
-    harProj K k A B f ∈ PolAB K k A B := by
-  unfold harProj
-  rw [LinearMap.sum_apply]
-  refine Submodule.sum_mem _ fun l hl => ?_
-  rw [LinearMap.smul_apply, LinearMap.comp_apply]
-  refine Submodule.smul_mem _ _ ?_
-  have hl' : l ≤ min A B := Nat.lt_succ_iff.1 (Finset.mem_range.1 hl)
-  have h := hDiv_mem_PolAB (K := K) l (ctrDiv_mem_PolAB (K := K) l hf)
-  rwa [Nat.sub_add_cancel (le_trans hl' (min_le_left _ _)),
-    Nat.sub_add_cancel (le_trans hl' (min_le_right _ _))] at h
+  exact Submodule.smul_mem _ _ (_root_.Formalism.CountingSumsFrames.Har2.h_pow_mul_mem l hf)
 
 theorem levelProj_mem_PolAB {A B j : ℕ} (hj : j ≤ min A B) {f : PolXY K k} (hf : f ∈ PolAB K k A B) :
     levelProj K k A B j f ∈ PolAB K k A B := by
@@ -607,7 +550,7 @@ theorem levelProj_mem_PolAB {A B j : ℕ} (hj : j ≤ min A B) {f : PolXY K k} (
   rw [LinearMap.smul_apply]
   refine Submodule.smul_mem _ _ ?_
   simp only [LinearMap.comp_apply]
-  have h := hDiv_mem_PolAB (K := K) j (harProj_mem_PolAB (ctrDiv_mem_PolAB j hf))
+  have h := hDiv_mem_PolAB (K := K) j (_root_.Formalism.CountingSumsFrames.Har2.harProj_memPol (_root_.Formalism.CountingSumsFrames.Har2.ctrDiv_mem j hf))
   have hA : A - j + j = A := Nat.sub_add_cancel (le_trans hj (min_le_left _ _))
   have hB : B - j + j = B := Nat.sub_add_cancel (le_trans hj (min_le_right _ _))
   rwa [hA, hB] at h
@@ -698,7 +641,7 @@ theorem gauss_dual_of_fock {K : Type} [Field K] [CharZero K] {k A B p : ℕ} (R 
 
 theorem gaussProj_of (H : FockProj) : GaussProj := by
   intro K _ _ k A B p R g hk hp hR f hf
-  have hhar := gauss_dual_of_fock R g hk hp hR (harProj K k A B) (fun f' hf' => harProj_mem_PolAB hf')
+  have hhar := gauss_dual_of_fock R g hk hp hR (harProj K k A B) (fun f' hf' => _root_.Formalism.CountingSumsFrames.Har2.harProj_memPol hf')
     (Nat.log p (A + B + k)) (by omega) (fun f' hf' hfl => (H K k A B p R g hk hp hR f' hf' hfl).1) f hf
   have lev := fun (j : ℕ) (hj : j ≤ min A B) => gauss_dual_of_fock R g hk hp hR (levelProj K k A B j)
     (fun f' hf' => levelProj_mem_PolAB hj hf') (2 * Nat.log p (A + B + k)) le_rfl
@@ -782,8 +725,8 @@ theorem harQuot_of (H1 : HarProj) (H2 : GaussProj) : HarQuot := by
 end Har4
 
 theorem fockGaussLatticeComparison_holds : FockGaussXY := Har4.fockGaussLatticeComparison_holds
-theorem gaussLemmaPairing_holds : GaussLemmaH := Har4.gaussLemmaPairing_holds
-theorem isotypicLattice_holds : LevelLattice := Har4.isotypicLattice_holds
+alias gaussLemmaPairing_holds := _root_.Formalism.CountingSumsFrames.Har4.gaussLemmaPairing_holds
+alias isotypicLattice_holds := _root_.Formalism.CountingSumsFrames.Har4.isotypicLattice_holds
 theorem gaussLatticeProjection_holds : GaussProj := Har4.gaussProj_of fockLatticeProjection_holds
 theorem harmonicQuotient_holds : HarQuot := Har4.harQuot_of harmonicProjection_holds gaussLatticeProjection_holds
 

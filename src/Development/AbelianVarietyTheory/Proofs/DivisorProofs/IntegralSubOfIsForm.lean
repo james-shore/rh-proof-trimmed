@@ -162,7 +162,7 @@ theorem integral_sub [CompactSpace M] [MeasurableSpace M] [BorelSpace M] [Second
     (continuousOn_const.mul (cF i)).add (continuousOn_const.mul (cG i))
   let P (c d : ℝ) : ℝ≥0∞ := ChartGlue.glueMeas A.e (fun i y => ENNReal.ofReal (lin c d i (A.e i y))) univ
   have fin (c d : ℝ) : P c d ≠ ∞ :=
-    GlobalTheory.T.glueMeas_univ_ne_infty_of_continuousOn A.e A.cover A.holo (lin c d) (clin c d) (hlin c d)
+    _root_.GlobalTheory.glueMeas_univ_ne_top_of_compact A.e A.cover A.holo (lin c d) (clin c d) (hlin c d)
   have part_eq (γ : A.Fld) (ε : ℤˣ) (c d : ℝ) (h : ∀ i v, ((ε : ℤ) : ℝ) * A.reDens γ i v = lin c d i v) :
       A.part γ ε univ = P c d := by
     simp only [part, P]

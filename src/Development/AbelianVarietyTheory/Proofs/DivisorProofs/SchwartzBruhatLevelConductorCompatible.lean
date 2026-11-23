@@ -71,7 +71,7 @@ theorem pureA_fixed : ∀ {F : Type} [Field F] [NumberField F] {κ : Type} [Fint
       rw [map_sum]; refine Finset.sum_eq_zero fun i _ => ?_
       rw [map_mul]; change (c i).1 * (d i).1 = 0; rw [hd i, mul_zero]
     have hnat : ∀ (v : HeightOneSpectrum (𝓞 F)) (n : ℕ), ‖(n : Fv F v)‖ ≤ 1 :=
-      fun v n => GlobalTheory.SmoothForms.denom_norm_natCast_le_one v n
+      fun v n => _root_.GlobalTheory.AdicNatCastNorm.norm_natCast_adicCompletion_le_one v n
     rw [hψ _ ?_ ?_, one_mul]
     · change (x ⬝ᵥ b).1 + (⅟2 : AF F).1 * (a ⬝ᵥ b).1 = 0
       rw [hs x b hb.1, hs a b hb.1, mul_zero, add_zero]

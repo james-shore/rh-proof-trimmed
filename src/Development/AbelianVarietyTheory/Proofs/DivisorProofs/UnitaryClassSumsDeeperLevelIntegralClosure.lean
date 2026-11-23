@@ -54,20 +54,9 @@ namespace GlobalTheory.UPoinc.ClassCore
 
 theorem cm_refl {X : Type} [AddCommGroup X] (N : ℕ) (x : X) : CongMod N x x := ⟨0, by simp⟩
 
-theorem cm_symm {X : Type} [AddCommGroup X] {N : ℕ} {x y : X} (h : CongMod N x y) : CongMod N y x := by
-  obtain ⟨w, rfl⟩ := h; exact ⟨-w, by simp⟩
-
-theorem cm_trans {X : Type} [AddCommGroup X] {N : ℕ} {x y z : X} (h : CongMod N x y) (h' : CongMod N y z) :
-    CongMod N x z := by
-  obtain ⟨w, rfl⟩ := h; obtain ⟨w', rfl⟩ := h'; exact ⟨w' + w, by rw [smul_add, add_assoc]⟩
-
 theorem cm_map {X Y : Type} [AddCommGroup X] [AddCommGroup Y] {N : ℕ} (g : X →+ Y) {x y : X} (h : CongMod N x y) :
     CongMod N (g x) (g y) := by
   obtain ⟨w, rfl⟩ := h; exact ⟨g w, by simp [map_nsmul]⟩
-
-theorem qW_one {X : Type} [AddCommGroup X] (β : LinearMap.BilinForm ℤ X) (μ : Fin 1 → X) :
-    qW !![(1 : ℤ)] β μ = β (μ 0) (μ 0) := by
-  simp [qW]
 
 theorem exists_min {X : Type} [AddCommGroup X] (β : LinearMap.BilinForm ℤ X) (hpos : ∀ x, x ≠ 0 → 0 < β x x)
     (N : ℕ) (μ : Fin 1 → X) : ∃ μ' : Fin 1 → X, (∀ u, CongMod N (μ' u) (μ u)) ∧
@@ -82,7 +71,7 @@ theorem exists_min {X : Type} [AddCommGroup X] (β : LinearMap.BilinForm ℤ X) 
   refine ⟨μ', hμ', fun μ'' h => ?_⟩
   have := hmin _ ⟨μ'', h, rfl⟩
   have key := not_lt.1 this
-  simp only [qW_one] at key ⊢
+  simp only [_root_.GlobalTheory.UPoinc.UCore.qW_one] at key ⊢
   have h1 := hnn (μ' 0); have h2 := hnn (μ'' 0)
   have e1 := Int.toNat_of_nonneg h1; have e2 := Int.toNat_of_nonneg h2
   omega
@@ -182,9 +171,9 @@ theorem main_of_core (hcore : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
     apply propext
     constructor
     · rintro ⟨h₁, h₂⟩
-      exact ⟨fun u => cm_trans (h₁ u) (h u), fun μ'' h'' => h₂ μ'' fun u => cm_trans (h'' u) (cm_symm (h u))⟩
+      exact ⟨fun u => _root_.GlobalTheory.Poinc.GalTrans.cm_trans (h₁ u) (h u), fun μ'' h'' => h₂ μ'' fun u => _root_.GlobalTheory.Poinc.GalTrans.cm_trans (h'' u) (_root_.GlobalTheory.Poinc.GalTrans.cm_symm (h u))⟩
     · rintro ⟨h₁, h₂⟩
-      exact ⟨fun u => cm_trans (h₁ u) (cm_symm (h u)), fun μ'' h'' => h₂ μ'' fun u => cm_trans (h'' u) (h u)⟩
+      exact ⟨fun u => _root_.GlobalTheory.Poinc.GalTrans.cm_trans (h₁ u) (_root_.GlobalTheory.Poinc.GalTrans.cm_symm (h u)), fun μ'' h'' => h₂ μ'' fun u => _root_.GlobalTheory.Poinc.GalTrans.cm_trans (h'' u) (h u)⟩
   let NS : ∀ y, (Fin 1 → Φ.X y) → Prop := fun y μ => ∃ μ', Cg y μ' μ ∧ μ' ≠ μ ∧ qv y μ' ≤ qv y μ
   let wit : ∀ y, (Fin 1 → Φ.X y) → (Fin 1 → Φ.X y) := fun y μ => if h : NS y μ then h.choose else μ
   have hwit : ∀ y μ, NS y μ → Cg y (wit y μ) μ ∧ wit y μ ≠ μ ∧ qv y (wit y μ) ≤ qv y μ := by
@@ -197,7 +186,7 @@ theorem main_of_core (hcore : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
     obtain ⟨e, he⟩ := exists_norm_eq t (e' (μ 0))
     refine ⟨e, ?_⟩
     rw [he, ← he']
-    simp only [qv, qW_one]
+    simp only [qv, _root_.GlobalTheory.UPoinc.UCore.qW_one]
   choose el hel using hel
   let g : ∀ y, (Fin 1 → Φ.X y) → (Fin 1 → Φ.X y) → PadicAlgCl p := fun y μ ν =>
     if NS y μ then (if ν = μ then el y μ else if ν = wit y μ then -el y μ else 0) else 0
@@ -304,7 +293,7 @@ theorem main_of_core (hcore : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
             simp only [g, if_pos hns]
             by_cases hc : Cg y μ (fun u => k y (cc u))
             · have hμS : μ ∈ S := hS₀ μ (by simp) (fun u => by simpa using hc u)
-              have hwS : wit y μ ∈ S := hS₀ _ (by simp) (fun u => by simpa using cm_trans (hw1 u) (hc u))
+              have hwS : wit y μ ∈ S := hS₀ _ (by simp) (fun u => by simpa using _root_.GlobalTheory.Poinc.GalTrans.cm_trans (hw1 u) (hc u))
               have e : ∀ ν : Fin 1 → Φ.X y, (if ν = μ then el y μ else if ν = wit y μ then -el y μ else 0) =
                   (if ν = μ then el y μ else 0) + (if ν = wit y μ then -el y μ else 0) := by
                 intro ν
@@ -315,7 +304,7 @@ theorem main_of_core (hcore : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
                 Finset.sum_ite_eq' S (wit y μ), if_pos hμS, if_pos hwS, add_neg_cancel]
             · refine Finset.sum_eq_zero (fun ν hν => ?_)
               have h1 : ν ≠ μ := fun h => hc (h ▸ hS' ν hν)
-              have h2 : ν ≠ wit y μ := fun h => hc (fun u => cm_trans (cm_symm (hw1 u)) (h ▸ hS' ν hν u))
+              have h2 : ν ≠ wit y μ := fun h => hc (fun u => _root_.GlobalTheory.Poinc.GalTrans.cm_trans (_root_.GlobalTheory.Poinc.GalTrans.cm_symm (hw1 u)) (h ▸ hS' ν hν u))
               simp [h1, h2]
           · simp [g, hns]
         rw [hsum]
@@ -337,6 +326,6 @@ end GlobalTheory.UPoinc.ClassCore
 namespace GlobalTheory.UPoinc.ClassCore
 
 theorem classSums_core : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H), 1 ≤ Dw.p + Dw.q → ∀ (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (C : UCompact Xo c) (X₁ : USetup C) (p : ℕ) [Fact p.Prime] (z₁ : X₁.M.Z) (Φ : FPre (H.bar : 𝓞 E → 𝓞 E) (min Dw.p Dw.q) p (X₁.M.Z.presheaf.stalk z₁)), (∀ y, ∃ t : UCTrait X₁ p z₁, (∀ a, Φ.ev y a = t.val a) ∧ ∃ e : Φ.X y ≃ₗ[𝓞 E] t.T.P.D.toPre.X, ∀ a b, Φ.sc y * Φ.β y a b = t.sc * t.T.be (e a) (e b)) → ∀ (y₀ : Φ.Y) (N₀ : ℕ), ∃ N, N₀ ≤ N ∧ (X₁.S.r * X₁.S.N) ∣ N ∧ ∃ (Ω₂ : Type) (_ : Field Ω₂) (_ : Algebra X₁.Ω₁ Ω₂) (_ : FiniteDimensional X₁.Ω₁ Ω₂) (_ : IsGalois X₁.Ω₁ Ω₂), letI : Algebra (X₁.M.Z.presheaf.stalk z₁) Ω₂ := ((algebraMap X₁.Ω₁ Ω₂).comp (X₁.M.stalkHom z₁)).toAlgebra; ∀ 𝔷 : Ideal (integralClosure (X₁.M.Z.presheaf.stalk z₁) Ω₂), 𝔷.IsMaximal → ∀ ev' : Φ.Y → (integralClosure (X₁.M.Z.presheaf.stalk z₁) Ω₂) →+* PadicAlgCl p, (∀ y a, ev' y (algebraMap (X₁.M.Z.presheaf.stalk z₁) (integralClosure (X₁.M.Z.presheaf.stalk z₁) Ω₂) a) = Φ.ev y a) → (∀ y b, ‖ev' y b‖ ≤ 1) → (∀ y, ∀ b ∈ 𝔷, ‖ev' y b‖ < 1) → ∃ (k : ∀ y, Φ.X y₀ →ₗ[ℤ] Φ.X y) (Q : Type) (t : ∀ y, (Fin 1 → Φ.X y) → Q → PadicAlgCl p) (f : (Fin 1 → Φ.X y₀) → Q → (integralClosure (X₁.M.Z.presheaf.stalk z₁) Ω₂)), k y₀ = LinearMap.id ∧ (∀ y, IsUnimodMod (𝓞 E) N (k y)) ∧ Φ.IsTerms !![(1 : ℤ)] t ∧ (∀ c c' κ, (∀ u, CongMod N (c u) (c' u)) → f c κ = f c' κ) ∧ (∀ y c κ (ε : ℝ), 0 < ε → ∃ S₀ : Finset (Fin 1 → Φ.X y), ∀ S : Finset (Fin 1 → Φ.X y), (∀ μ ∈ S, ∀ u, CongMod N (μ u) (k y (c u))) → (∀ μ ∈ S₀, (∀ u, CongMod N (μ u) (k y (c u))) → μ ∈ S) → ‖ev' y (f c κ) - ∑ μ ∈ S, t y μ κ‖ ≤ ε) ∧ ∀ σ : (integralClosure (X₁.M.Z.presheaf.stalk z₁) Ω₂) ≃ₐ[(X₁.M.Z.presheaf.stalk z₁)] (integralClosure (X₁.M.Z.presheaf.stalk z₁) Ω₂), 𝔷.comap σ = 𝔷 → ∃ γ : Φ.X y₀ →ₗ[ℤ] Φ.X y₀, (∀ (a : 𝓞 E) x, CongMod N (γ (a • x)) (a • γ x)) ∧ (N : ℤ) ∣ LinearMap.det γ - 1 ∧ (∀ x, CongMod (X₁.S.r * X₁.S.N) (γ x) x) ∧ ∀ c κ, σ (f c κ) = f (fun u => γ (c u)) κ :=
-  main_of_core GlobalTheory.T.unitary_classSums_deeper_level_geometric_core
+  main_of_core _root_.GlobalTheory.UPoinc.UCore.classSums_core
 
 end GlobalTheory.UPoinc.ClassCore

@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbelianSchemeGerms
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.RigIsoCongr
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelQuotientUnramifiedDualNumberPoints
 
 @[expose] public section
 
@@ -66,26 +67,12 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.InteriorKS
 
-theorem subsingleton_sp_dualNumber (K : Type) [Field K] : Subsingleton (Sp (DualNumber K)) := by
-  have h : ∀ p : PrimeSpectrum (DualNumber K),
-      p.asIdeal = IsLocalRing.maximalIdeal (DualNumber K) := by
-    intro p
-    refine le_antisymm (IsLocalRing.le_maximalIdeal p.isPrime.ne_top) fun x hx => ?_
-    have hn : IsNilpotent x := by
-      rw [TrivSqZeroExt.isNilpotent_iff_isNilpotent_fst]
-      have : ¬ IsUnit x.fst := fun hu => hx (TrivSqZeroExt.isUnit_iff_isUnit_fst.2 hu)
-      have h0 : x.fst = 0 := by simpa using this
-      rw [h0]; exact IsNilpotent.zero
-    obtain ⟨n, hn⟩ := hn
-    exact p.isPrime.mem_of_pow_mem n (hn ▸ p.asIdeal.zero_mem)
-  exact ⟨fun p q => PrimeSpectrum.ext ((h p).trans (h q).symm)⟩
-
 theorem rigidity_dualNumber {K : Type} [Field K] (A₀ : Over (Sp K)) (A' G' : Over (Sp (DualNumber K))) [GrpObj A']
     [GrpObj G'] (j : A₀.left ⟶ A'.left) (a b : A' ⟶ G') (hA : IsAbelianScheme A')
     (hj : IsPullback j A₀.hom A'.hom (spMap (TrivSqZeroExt.fstHom K K K).toRingHom))
     (hab : j ≫ a.left = j ≫ b.left) (hη : η[A'] ≫ a = η[A'] ≫ b) : a = b := by
   have hL : Out.Laws := GlobalTheory.abelianSchemeLaws_all.1
-  haveI := subsingleton_sp_dualNumber K
+  haveI := _root_.GlobalTheory.LevelQuotUnram.subsingleton_sp_dual K
   let c : A' ⟶ G' := a * b⁻¹
   let j' : Over.mk (j ≫ A'.hom) ⟶ A' := Over.homMk j rfl
   have h1 : j' ≫ a = j' ≫ b := Over.OverMorphism.ext hab

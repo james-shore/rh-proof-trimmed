@@ -58,8 +58,6 @@ theorem lineEx_holds : LineEx := lineEx ordAut (ordLine conjAut (ideleStep conjA
 
 theorem spacesEx_holds : SpacesEx := spacesEx_of lineEx_holds posEx stdHerm lineSkew
 
-theorem baseEx_holds : BaseEx := baseEx
-
-theorem skewLine_holds : SkewLine := skewLine_of spacesEx_holds baseEx_holds
+theorem skewLine_holds : SkewLine := skewLine_of spacesEx_holds _root_.UpperTheory.Gal.TP.Skew.baseEx
 
 end UpperTheory.Gal.TP.Skew

@@ -114,11 +114,7 @@ open PartialDerivEval FirstUnitSeriesIntegrality MulLFrob LiftedCoordinateEvalua
 
 variable {C : Type} [Field C] [CharZero C] {dd : ℕ}
 
-theorem aux_statement_9 : Z0 (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) := by
-  intro k i
-  fin_cases k
-  · simp [pt]
-  · simp
+alias aux_statement_9 := _root_.Formalism.L2.FormalSeriesBounds.MulLFrob.constant_zero_first_then_zero
 
 theorem zl_sub (v : Fin dd → C) (F G : PS C 2 dd) : zl v (F - G) = zl v F - zl v G := by
   have hS : MvPowerSeries.HasSubst (fun p : Fin 2 × Fin dd => (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) p.1 p.2) :=

@@ -189,7 +189,7 @@ theorem xiTop_stab_law : ∀ {X : Fields} {Pr : Primes X} {R : Ranks} (Ch : Char
       have hc' : (κ' w)⁻¹ ∈ (twTt (R := R) sel mu (m2 + 1 + 1) ⟨w.1, hQw⟩).H := by
         rw [hκQ' w hw, inv_inv]
         exact a.2.2.2 _ (Set.mem_univ _)
-      have key := GlobalTheory.T.twTt_k1Depth_twice_m Ch sel mu cst w hw (κ' w) hc' (inFr (frsF sel mu p w) (frsF sel mu p' w) x) ((frsF sel mu p w).symm (repY Y))
+      have key := _root_.GlobalTheory.lastStepDatumLaw_K1Depth_twiceM Ch sel mu cst w hw (κ' w) hc' (inFr (frsF sel mu p w) (frsF sel mu p' w) x) ((frsF sel mu p w).symm (repY Y))
         hm hc (hU w.1 hQw) (hL.depthQ w hw) hMd hq
       have e4 : (⟨(κ' w)⁻¹, hc'⟩ : ↥(twTt (R := R) sel mu (m2 + 1 + 1) ⟨w.1, hQw⟩).H) =
           ⟨(a.2.2 : GLQ X.E (R.N (m2 + 1 + 1)) (QE sel (mu : Chr X.F X.E X.K))) ⟨w.1, hQw⟩, a.2.2.2 _ (Set.mem_univ _)⟩ :=

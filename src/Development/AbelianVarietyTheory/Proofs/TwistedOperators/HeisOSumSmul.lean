@@ -134,7 +134,7 @@ theorem om_algComb {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} 
 
   rw [map_sum]
   simp only [map_smul, e]
-  exact IsAlgComb.finsum _ _ hc fun p => IsAlgComb.Heisenberg₂ hψ (GlobalTheory.FinApprox.actO_fin _ _ (hw p)) h0
+  exact IsAlgComb.finsum _ _ hc fun p => IsAlgComb.Heisenberg₂ hψ (_root_.GlobalTheory.LatNhds.actO_fin _ _ (hw p)) h0
 
 end GlobalTheory.MovedAlg
 

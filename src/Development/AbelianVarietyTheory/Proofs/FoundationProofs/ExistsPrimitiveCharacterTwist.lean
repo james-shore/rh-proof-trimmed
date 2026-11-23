@@ -60,10 +60,6 @@ theorem norm_eq_one_of_pow {x : Qbar l} {n : ℕ} (hn : n ≠ 0) (h : x ^ n = 1)
   have : ‖x‖ ^ n = 1 := by rw [← norm_pow, h, norm_one]
   exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hn).1 this
 
-theorem norm_pow_sub_pow_lt_one {x y : Qbar l} (hx : ‖x‖ ≤ 1) (hy : ‖y‖ ≤ 1) (h : ‖x - y‖ < 1) (n : ℕ) :
-    ‖x ^ n - y ^ n‖ < 1 :=
-  _root_.GlobalTheory.PowerDifferenceNorm.norm_pow_sub_pow_lt_one hx hy h n
-
 theorem norm_natCast_sub_lt_one {a b : ℕ} (h : (a : ZMod l) = (b : ZMod l)) : ‖(a : Qbar l) - b‖ < 1 := by
   obtain ⟨m, hm⟩ := ((ZMod.natCast_eq_natCast_iff a b l).1 h).symm.dvd
   have h2 : (a : Qbar l) - b = (l : Qbar l) * (m : Qbar l) := by
@@ -112,7 +108,7 @@ theorem exists_teichmuller : ∃ ω : (ZMod l)ˣ →* (Qbar l)ˣ,
   refine ⟨monoidHomOfForallMemZpowers hg hdvd, fun x => ?_⟩
   obtain ⟨j, rfl⟩ := (mem_powers_iff_mem_zpowers.2 (hg x))
   rw [map_pow, monoidHomOfForallMemZpowers_apply_gen, Units.val_pow_eq_pow_val, hw']
-  refine norm_sub_lt_one_trans (norm_pow_sub_pow_lt_one (norm_eq_one_of_pow hl1 hw).le
+  refine norm_sub_lt_one_trans (_root_.GlobalTheory.PowerDifferenceNorm.norm_pow_sub_pow_lt_one (norm_eq_one_of_pow hl1 hw).le
     (IsUltrametricDist.norm_natCast_le_one _ _) hwg j) ?_
   have := norm_natCast_sub_lt_one (l := l) (a := (g : ZMod l).val ^ j) (b := ((g ^ j : (ZMod l)ˣ) : ZMod l).val) (by
     push_cast
@@ -249,7 +245,7 @@ theorem exists_primitive_inComp : ∀ (l : ℕ) [Fact l.Prime] (φ : DirichletCh
     have n2 : ‖(ω x : Qbar l)‖ = 1 := norm_eq_one_of_pow hl1 (by
       rw [← Units.val_pow_eq_pow_val, ← map_pow, hx1, map_one, Units.val_one])
     rw [n1, mul_one]
-    refine norm_pow_sub_pow_lt_one n2.le (IsUltrametricDist.norm_natCast_le_one _ _) ?_ e
+    refine _root_.GlobalTheory.PowerDifferenceNorm.norm_pow_sub_pow_lt_one n2.le (IsUltrametricDist.norm_natCast_le_one _ _) ?_ e
     refine norm_sub_lt_one_trans (hω x) (norm_natCast_sub_lt_one ?_)
     rw [hb', ZMod.natCast_zmod_val]
   · rw [inv_inv, hval]

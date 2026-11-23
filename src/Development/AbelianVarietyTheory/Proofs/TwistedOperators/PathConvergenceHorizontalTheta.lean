@@ -83,7 +83,7 @@ theorem liftA_right_eq (W : G.Weil) (M M' : Vol G) {i : ℕ} {K : Subgroup (GL (
     (hinv : ∀ γ ∈ GQ (G.V (.grid i 0)), ∀ g x, W.kerA (.right i 0) f (γ * g) x * F (γ * g) = W.kerA (.right i 0) f g x * F g) :
     liftA W M (.right i 0) f F = liftA W M' (.right i 0) f F := by
   funext x
-  have e := measEq M M' _ _ h h'
+  have e := _root_.GlobalTheory.HaarNorm.vol_nu_eq_of_isAt M M' _ _ h h'
   rw [liftA_apply, liftA_apply]
   have h1 := h.haar_fund
   have h2 := h'.haar_fund

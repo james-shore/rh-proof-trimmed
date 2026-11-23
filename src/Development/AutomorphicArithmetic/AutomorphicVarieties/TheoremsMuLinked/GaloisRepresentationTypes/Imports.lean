@@ -53,7 +53,7 @@ theorem UpperTheory.V.Th.split :
       rw [b.smul_lam, ← mul_smul]; rfl⟩
     haveI := b.fin
     exact Module.Finite.of_restrictScalars_finite (abelian₂ O Empty D) B b.M
-  obtain ⟨lam, m₀, hlam, hm₀⟩ := Sp.lam0 O B b.M x ((b.supp _ (RingHom.ker_isPrime x)).2 hJ)
+  obtain ⟨lam, m₀, hlam, hm₀⟩ := _root_.UpperTheory.Reformulated.B.Qf1.lam0 O B b.M x ((b.supp _ (RingHom.ker_isPrime x)).2 hJ)
   obtain ⟨F, hF, hev⟩ := Sp.eig l L G0 T n O y al hPL heig
   refine ⟨x t₀ ^ 2 * lam m₀ * F ^ (3 * E + 6), mul_ne_zero (mul_ne_zero (pow_ne_zero _ ht₀) hm₀) (pow_ne_zero _ hF), fun m => ?_⟩
   filter_upwards [hev, eventually_ge_atTop m] with N ⟨α, hα, hd⟩ hN A hA

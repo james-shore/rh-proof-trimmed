@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaFunctionProdConjEqOfHeisenbergFixed
 
 @[expose] public section
 
@@ -50,7 +51,7 @@ theorem weil_representation_level_eq_conductor : ∀ {D : D7} (ψ : AddChar (AF 
   intro D ψ S T χS χT om f _ hW hf
   have hψ := hW.std
   obtain ⟨U, hUo, hU⟩ := hf.level
-  obtain ⟨N, K, hNU, hKo, hAR, hKN, hKA⟩ := stab ψ S T hψ U hUo
+  obtain ⟨N, K, hNU, hKo, hAR, hKN, hKA⟩ := _root_.GlobalTheory.WeilLevelStab.exists_level_stab ψ S T hψ U hUo
   have hfN : ∀ u ∈ N, u.map (infPart D) = 0 → heisO ψ S T u f = f := fun u hu h0 => hU u (hNU hu) h0
   obtain ⟨-, hcomp, -⟩ := GlobalTheory.HeisThetaLaws.heis_theta_laws D ψ hψ S T
   have hMV : ∀ k ∈ K, k ∈ GfC T → ∀ g, IsThetaFunO ψ S T g → (∀ u ∈ N, u.map (infPart D) = 0 → heisO ψ S T u g = g) →
@@ -74,7 +75,7 @@ theorem weil_representation_level_eq_conductor : ∀ {D : D7} (ψ : AddChar (AF 
   have hsc : ∀ k ∈ K, k ∈ GfC T → ∃ c : ℂ, ∀ g, IsThetaFunO ψ S T g → (∀ u ∈ N, u.map (infPart D) = 0 → heisO ψ S T u g = g) → om (1, k) g = c • g := by
     intro k hk hkf
     exact scalar_of_prod hψ N (om (1, k)) hAR (fun g hg hgN => (hMV k hk hkf g hg hgN).1) (hMC k hk hkf)
-      (prodId ψ S T hψ N (om (1, k)) (hMV k hk hkf) (hMC k hk hkf)
+      (_root_.GlobalTheory.ThetaFixedProd.prod_eq_of_fixed ψ S T hψ N (om (1, k)) (hMV k hk hkf) (hMC k hk hkf)
         (fun μ 𝓕 hμ h𝓕 g hg _ => hW.om_unit μ 𝓕 hμ h𝓕 (1, k) g hg))
   by_cases hf0 : ∃ x₀, f x₀ ≠ 0
   · obtain ⟨x₀, hx₀⟩ := hf0
@@ -98,7 +99,7 @@ theorem weil_representation_level_eq_conductor : ∀ {D : D7} (ψ : AddChar (AF 
       rw [show ((1, a * b) : GA D S × GA D T) = (1, a) * (1, b) by simp, map_mul, Module.End.mul_apply,
         hcb f hf hfN, map_smul, hca f hf hfN, smul_smul, Pi.smul_apply, smul_eq_mul, mul_div_assoc, div_self hx₀,
         mul_one, mul_comm]
-    obtain ⟨V, hVo, hV⟩ := openKer T K hKo F hFc hF1 hFm
+    obtain ⟨V, hVo, hV⟩ := _root_.GlobalTheory.OpenKer.eq_one_on_finite_of_mul T K hKo F hFc hF1 hFm
     refine ⟨V ⊓ K, hVo.inter hKo, fun k hk hkf => ?_⟩
     obtain ⟨c, hc⟩ := hsc k hk.2 hkf
     have h1 : c = 1 := by rw [← hFc' k hk.2 hkf c hc]; exact hV k hk.1 hkf
@@ -110,11 +111,3 @@ theorem weil_representation_level_eq_conductor : ∀ {D : D7} (ψ : AddChar (AF 
 end GlobalTheory.WeilLevel
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory
-open scoped ContDiff ComplexOrder
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem _root_.GlobalTheory.T.twist_weil_level_eq_conductor : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)) (f : WO S T → ℂ), _root_.GlobalTheory.FunPr.ThetaLocalInputs → IsWeilDatumO ψ S T χS χT om → IsThetaFunO ψ S T f → ∃ U : Subgroup (GA D T), IsOpen (U : Set (GA D T)) ∧ ∀ k ∈ U, k ∈ GfC T → om (1, k) f = f := by
-  first | exact @_root_.GlobalTheory.WeilLevel.weil_representation_level_eq_conductor | exact _root_.GlobalTheory.WeilLevel.weil_representation_level_eq_conductor | (intros; apply _root_.GlobalTheory.WeilLevel.weil_representation_level_eq_conductor <;> assumption)
-end

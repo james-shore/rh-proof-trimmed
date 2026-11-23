@@ -100,12 +100,12 @@ theorem exists_pullCart_agree : ∀ (k : Type) [Field k] [CharZero k] (Y₀ Y₁
       rw [← (GlobalTheory.T.coheight_and_multiplicity_pullback_isIso_open Y₀ Y₁ t U hU w hw).1]
       exact CartierDiv.coheight_eq_one_of_mult_ne_zero hz
     · exact (hz (by simp only [c]; exact dif_neg h)).elim
-  obtain ⟨H₀, hH₀⟩ := GlobalTheory.T.exists_cartier_with_multiplicities Y₀ (fun x => AbelianProjective.ufd_stalk q x) c hfin hcod
+  obtain ⟨H₀, hH₀⟩ := _root_.GlobalTheory.Cartier.CartierDiv.exists_mult_eq_of_locallyFactorial Y₀ (fun x => AbelianProjective.ufd_stalk q x) c hfin hcod
   refine ⟨H₀, fun y hy hmem => ?_⟩
   have : GlobalTheory.IsNormalScheme Y₁ := (isNormalScheme_iff Y₁).mpr fun x =>
     ⟨inferInstance, have := AbelianProjective.ufd_stalk (t ≫ q) x
       UniqueFactorizationMonoid.instIsIntegrallyClosed⟩
-  obtain ⟨z, hzy, hz⟩ := ((GlobalTheory.T.cartier_divisor_mult_characterize Y₁ (H - pullCart t H₀)).2.1 y).1 hmem
+  obtain ⟨z, hzy, hz⟩ := ((_root_.GlobalTheory.Cartier.MultEff.eff_supp_eq_of_mult Y₁ (H - pullCart t H₀)).2.1 y).1 hmem
   have hzU : t z ∈ U := (hzy.map t.continuous).mem_open U.isOpen hy
   apply hz
   have hm := CartierDiv.mult_add (H - pullCart t H₀) (pullCart t H₀) z

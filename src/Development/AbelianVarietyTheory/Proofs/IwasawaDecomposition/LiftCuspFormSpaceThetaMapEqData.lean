@@ -209,6 +209,6 @@ theorem thDef3_thTheta : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I0 T
   intro D G _ _ Pl0 I0 T A3 Ks _ _ _ R F cG X0 Y Z hP hH
   exact ⟨⟨fun i => (li_span D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH i).1,
     fun i => (li_span D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH i).2, lat_of D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH⟩,
-    theta_of GlobalTheory.T.thetaMap_hilbertModel_eq_concreteThetaMap_familyThree GlobalTheory.T.liftLevelForm_orthogonal_killed_by_thetaMap D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH⟩
+    theta_of _root_.GlobalTheory.Mem.ThetaRead3.thetaP_read _root_.GlobalTheory.Mem.ThOrth.thG_eq_zero_of_orth D G Pl0 I0 T A3 Ks R F cG X0 Y Z hP hH⟩
 
 end GlobalTheory.Mem.ThRead

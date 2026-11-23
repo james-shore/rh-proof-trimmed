@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.HolomorphicSpanCoefficients
 
 @[expose] public section
 
@@ -226,7 +227,7 @@ theorem pot_of_family (F : UnivFam E Ψ j j' n g Λ) {V : Set (Fin n → ℂ)} (
       rw [(hfr.2 t' (hVb h1) τ).2]
       exact h2 τ i) (h3 τ)
   have hbpos : ∀ t' ∈ V, ∀ τ, 0 < ((F.R t').gram fun i => F.b τ i t').det.re := fun t' h τ =>
-    GlobalTheory.CompanionTheory.Ar.Cusp.MuPsh.gram_det_pos (F.R t') _ (hbt t' h τ)
+    _root_.GlobalTheory.CompanionTheory.Ar.Cusp.FrameChange.gram_det_re_pos (F.R t') _ (hbt t' h τ)
   have hq0 : ∀ τ, q τ t ≠ 0 := fun τ h0 => by
     have h := hgram t ht hev.self_of_nhds hev2.self_of_nhds τ
     rw [h0] at h

@@ -91,13 +91,13 @@ theorem occurs_topCut (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (hZ 
     exact GlobalTheory.CompanionTheory.FrobJm.one_le_jm hA (x a) (hx a) (y a).rep (y a).2.rep.smooth φ
       ⟨v, fun e => hv (hφ (e.trans (map_zero φ).symm))⟩
   have hcat0 : ∑ i, (concat c x i).1 = N := by
-    rw [sum_concat, ← hd]
+    rw [_root_.GlobalTheory.CompanionTheory.CoarseOcc.sum_concat, ← hd]
     exact Finset.sum_congr rfl fun a _ => hx a
   have hirr : π.IsIrreducible := hπ.2.1
   have hsm : IsSmooth π := hπ.hasSupport.isSmooth
   have hle := GlobalTheory.T.jacquet_multiplicity_concat hA y hd c x hx hcat0 hjx π hsm (hasFiniteLength_of_isIrreducible hirr)
   have h1' : 1 ≤ jm (concat c x) hcat0 π := h1.trans hle
-  obtain ⟨hl, hfine⟩ := (fineJac_all hA hZ Δ π hπ).2 _ (concat c x) hcat0 (fun i => hcusp _ _) h1'
+  obtain ⟨hl, hfine⟩ := (_root_.GlobalTheory.CompanionTheory.SegUniq.fineJac_all hA hZ Δ π hπ).2 _ (concat c x) hcat0 (fun i => hcusp _ _) h1'
   have hc : ∀ a, 0 < c a := fun a => by
     refine Nat.pos_of_ne_zero fun h0 => ?_
     have : IsEmpty (Fin (c a)) := by rw [h0]; infer_instance
@@ -115,7 +115,7 @@ theorem lSegJacquet : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpac
     (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (hZ : GlobalTheory.Published.SegmentRepresentation), LSegJacquet k := by
   intro k _ _ _ _ hA hZ Δ N V _ _ π hπ s y hd hpos
   have hdΔ : ∑ a, (dec Δ a).1 = N := (sum_dec Δ).trans hπ.deg_eq
-  have hone := (fineJac_all hA hZ Δ π hπ).1 hdΔ
+  have hone := (_root_.GlobalTheory.CompanionTheory.SegUniq.fineJac_all hA hZ Δ π hπ).1 hdΔ
   have hirr : π.IsIrreducible := hπ.2.1
   have hsm : IsSmooth π := hπ.hasSupport.isSmooth
 

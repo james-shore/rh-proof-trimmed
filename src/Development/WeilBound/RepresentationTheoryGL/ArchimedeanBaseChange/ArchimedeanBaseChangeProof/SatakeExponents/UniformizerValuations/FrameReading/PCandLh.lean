@@ -255,7 +255,7 @@ theorem candLev_of (h0 : Tail.ReadLev) (h1 : Tail.ReadT) (h2 : Tail.ExpRead) (h3
       obtain ⟨b1, b2⟩ := Tail.B.blocks_of_blk_mem _ w m X hm
       rw [LocOk.lev₂_out F.d (by rw [hS0, hBad]; exact hR')] at hf
       rw [Finset.mem_union, not_or] at hR'
-      have hun := ((RS.muLoc_holds' E hE F₀.μ F₀.e u F₀.hμ (F₀.good u hu hR'.1 hR'.2).2).2.2 w hus hcj).1
+      have hun := ((_root_.GlobalTheory.CompanionTheory.MuLocal.muLoc_holds E hE F₀.μ F₀.e u F₀.hμ (F₀.good u hu hR'.1 hR'.2).2).2.2 w hus hcj).1
       exact ⟨GlobalTheory.LGrp.mem_fixed.1 ((FG.conjFix_holds E _ _).1 u w (G j) hus hcj hf) m ⟨b1, b2⟩, mu_one hun m b1 b2 _ _⟩
 
 end PositivityTheory.Rg.BcB.F.PCandLh

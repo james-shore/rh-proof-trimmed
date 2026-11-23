@@ -67,7 +67,7 @@ theorem exists_std_wtCast : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.Col
   intro X px I hX U Xg tr L eG hI hV hL hG cX gramR c0R hc hgr hM hin hb
   obtain ⟨c, hc0, hInter, hli, hsp, hinn, hT⟩ := exists_coef X px I hX U Xg tr L hI cX gramR c0R hc hgr hM hin
   refine ⟨c, hc0, hli, hsp, hinn, hInter, fun t => ?_⟩
-  obtain ⟨P, hPc, hPy, hPe⟩ := GlobalTheory.T.rowsClassSet_presentation_coefficientMap X px I hX U Xg tr L eG hI hV hL hG hb cX c hInter hli hsp hinn t
+  obtain ⟨P, hPc, hPy, hPe⟩ := _root_.GlobalTheory.Mem.R3.RowStdPres.exists_pres X px I hX U Xg tr L eG hI hV hL hG hb cX c hInter hli hsp hinn t
   exact ⟨P, hPe, hT t P hPc hPy⟩
 
 

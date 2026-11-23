@@ -74,11 +74,6 @@ theorem unip_apply_last_last (n : ℕ) (v : Multiplicative (Fin n → k)) :
 
 end Entries
 
-theorem blockIndex_false_val (m j : ℕ) (a : Fin m) : (eGP m j ⟨false, a⟩ : Fin (m + j + 1)).val = a.val := by
-  first
-  | rfl
-  | simp [GlobalTheory.BZMir.Leib.eGP, GlobalTheory.SmGL.stdSum]
-
 theorem blockIndex_true_val (m j : ℕ) (b : Fin (j + 1)) : (eGP m j ⟨true, b⟩ : Fin (m + j + 1)).val = m + b.val := by
   first
   | rfl

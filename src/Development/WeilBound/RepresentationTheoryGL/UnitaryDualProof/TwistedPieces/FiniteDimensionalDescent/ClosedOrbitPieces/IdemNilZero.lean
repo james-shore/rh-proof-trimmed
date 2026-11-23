@@ -130,14 +130,14 @@ def Tef (e f : Matrix (Fin N) (Fin N) k) : Submodule k (Matrix (Fin N) (Fin N) k
 
 omit hχ in
 theorem tef_zero {e f : Matrix (Fin N) (Fin N) k} (heid : IsIdempotentElem e) (hne : e ≠ 0) (hf : f ∈ primIdem Z)
-    (hef : e * f = e) (hC : e ∈ Cx Z x) {z : Matrix (Fin N) (Fin N) k} (hz : z ∈ Z) (hn : IsNilpotent (e * (f * z))) :
+    (hef : e * f = e) (hC : e ∈ _root_.PositivityTheory.RgUd.T.adj Z x) {z : Matrix (Fin N) (Fin N) k} (hz : z ∈ Z) (hn : IsNilpotent (e * (f * z))) :
     f * z = 0 := by
   rcases pi_field hZ hf hz with h0 | ⟨b, hb, hfb⟩
   · exact h0
   · exfalso
     apply hne
-    have hfzC : f * z ∈ Cx Z x := (Cx Z x).mul_mem (z_le_cx hf.1) (z_le_cx hz)
-    have hefz : e * (f * z) ∈ Cx Z x := (Cx Z x).mul_mem hC hfzC
+    have hfzC : f * z ∈ _root_.PositivityTheory.RgUd.T.adj Z x := (_root_.PositivityTheory.RgUd.T.adj Z x).mul_mem (z_le_cx hf.1) (z_le_cx hz)
+    have hefz : e * (f * z) ∈ _root_.PositivityTheory.RgUd.T.adj Z x := (_root_.PositivityTheory.RgUd.T.adj Z x).mul_mem hC hfzC
     have hcb : Commute (e * (f * z)) b := cx_comm hZ hx _ hefz b (z_le_cx hb)
     have hnb : IsNilpotent (e * (f * z) * b) := Commute.isNilpotent_mul_right hcb hn
     have heq : e * (f * z) * b = e := by

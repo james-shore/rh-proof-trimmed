@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniformBaseChange.PullGt
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Splits
 
 @[expose] public section
 
@@ -60,10 +61,6 @@ namespace ReciprocityTheory.ChartRestriction.G.Out.GtBCPf
 open Semi Geo.Tor PullGtPf
 
 section General
-
-theorem gmRP {X Z : Scheme.{0}} (a : Z ⟶ X) (z : Z) (U : X.Opens) (V : Z.Opens) (hle : V ≤ a ⁻¹ᵁ U)
-    (hz : z ∈ V) (u : Γ(X, U)ˣ) : gm (𝟙 Z) z V (res hle (pullU a U u)) = gm a z U u :=
-  (gm_res (𝟙 Z) z hle hz _).trans ((gm_pull (𝟙 Z) a z U (hle hz) u).trans (by rw [Category.id_comp]))
 
 theorem act_le_of_hom {S : Scheme.{0}} {B G T : Over S} [GrpObj G] [GrpObj B] (q : G ⟶ B)
     [IsMonHom q] (i : T ⟶ G) (hk : i ≫ q = toUnit _ ≫ η[B]) (U : B.left.Opens) :
@@ -106,7 +103,7 @@ theorem equivPullL {T₁ T₂ Y Z P₁ P₂ : Scheme.{0}} (act₁ s₁ : P₁ �
     subst hc
     refine (gm_res f₂ y (V := ⊤) (U := h ⁻¹ᵁ ⊤) (fun _ _ => trivial) trivial _).trans ?_
     exact gm_pull f₂ h y ⊤ trivial c
-  rw [map_mul, gmRP act₂ y W' _ le₂ hy, gmRP f₂ y ⊤ _ t₂ hy,
+  rw [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gm_rp₁ act₂ y W' _ le₂ hy, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gm_rp₁ f₂ y ⊤ _ t₂ hy,
     gm_res act₂ y hW' hay, gm_pull act₂ a y W (hW' hay), e3]
   have e2 : gm (𝟙 P₂) y (s₂ ⁻¹ᵁ W') (pullU s₂ W' (res hW' (pullU a W u))) =
       gm (s₂ ≫ a) y W u := by
@@ -131,13 +128,13 @@ theorem charUnit_hTB (χ : X) :
       pullback.fst (splitTorusAff ZU X).hom (toZ S') := pullback.lift_fst _ _ _
   have e1 : gm (𝟙 _) x ⊤ (charUnit S' X χ) =
       gm (pullback.fst (splitTorusAff ZU X).hom (toZ S')) x ⊤ w :=
-    gmRP (pullback.fst (splitTorusAff ZU X).hom (toZ S')) x ⊤ ⊤ _ trivial w
+    _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gm_rp₁ (pullback.fst (splitTorusAff ZU X).hom (toZ S')) x ⊤ ⊤ _ trivial w
   have e2 : gm (hT f X) x ⊤ (charUnit S X χ) =
       gm (hT f X ≫ pullback.fst (splitTorusAff ZU X).hom (toZ S)) x ⊤ w :=
     (gm_res (hT f X) x (V := ⊤) (U := pullback.fst (splitTorusAff ZU X).hom (toZ S) ⁻¹ᵁ ⊤) _
       trivial _).trans (gm_pull _ _ x ⊤ trivial w)
   rw [e3] at e2
-  exact (gmRP (hT f X) x ⊤ ⊤ _ trivial _).trans (e2.trans e1.symm)
+  exact (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gm_rp₁ (hT f X) x ⊤ ⊤ _ trivial _).trans (e2.trans e1.symm)
 
 end Torus
 

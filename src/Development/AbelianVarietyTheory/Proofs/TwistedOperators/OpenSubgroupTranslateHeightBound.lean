@@ -137,12 +137,12 @@ theorem entry_of_map_eq {m n : ℕ} {R S : Type} [CommRing R] [CommRing S] (f : 
 theorem openSubY (D : D7) (V W : HSp D) (U : AddSubgroup (WO V W)) (hU : IsOpen (U : Set (WO V W))) :
     ∃ M₀ : ℕ, 0 < M₀ ∧ ∀ y : WO V W, y.map (infPart D) = 0 →
       (∀ i j k, ∃ b ∈ intRing D.host.F, finCoord D (finPr D (y i j)) k = (M₀ : Af D.host.F) * b) → y ∈ U := by
-  obtain ⟨M₀, hM₀, hsub⟩ := openSub D V W U hU
+  obtain ⟨M₀, hM₀, hsub⟩ := _root_.GlobalTheory.OpenSubAdele.exists_nat_mul_mem_openAddSubgroup D V W U hU
   refine ⟨M₀, hM₀, fun y hy hc => ?_⟩
   choose b hb hbe using hc
   convert hsub b hb using 1
   ext i j
-  rw [Matrix.of_apply, eq_sum_of_infPart D (y i j) (by simpa using congrFun (congrFun hy i) j)]
+  rw [Matrix.of_apply, _root_.GlobalTheory.InfZeroFinSum.eq_sum_finCoord_of_infPart_eq_zero D (y i j) (by simpa using congrFun (congrFun hy i) j)]
   exact Finset.sum_congr rfl fun k _ => by rw [hbe]
 
 def Den (D : D7) (e : ℕ) (z : Af D.host.F ⊗[D.host.F] D.host.E) : Prop :=
@@ -207,8 +207,8 @@ theorem levelheight : ∀ (D : D7) (V W : HSp D) (r : ℕ) (P : Matrix (Fin r) (
   obtain ⟨CV, hCV, hcV⟩ := GlobalTheory.Grow.height_comparison V hθ
   obtain ⟨CW, hCW, hcW⟩ := GlobalTheory.Grow.height_comparison W hθ
   obtain ⟨M₀, hM₀, hsub⟩ := openSubY D V W U hU
-  obtain ⟨c, hc0, hc⟩ := exists_denom_mul D
-  obtain ⟨dx, hdx, hx⟩ := exists_denom_integral D
+  obtain ⟨c, hc0, hc⟩ := _root_.GlobalTheory.CoordDenom.finCoord_mul_denom D
+  obtain ⟨dx, hdx, hx⟩ := _root_.GlobalTheory.DenInt.exists_den D
   obtain ⟨dP, hdP, hP⟩ := GlobalTheory.HolDict.ShortVec.exists_common_denom (intRing D.host.F)
     (fun q : Fin r × Fin V.rank × Fin (Module.finrank D.host.F D.host.E) =>
       finCoord D ((1 : Af D.host.F) ⊗ₜ[D.host.F] P q.1 q.2.1) q.2.2)

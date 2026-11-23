@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianLattices.HermitianLatticesProofs.GenusCovol
 
 @[expose] public section
 
@@ -58,9 +59,6 @@ section Gen
 
 variable {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
   [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
-
-theorem star_algebraMap_mem_range (r : 𝓞 K) : star (algebraMap (𝓞 K) K r) ∈ Set.range (algebraMap (𝓞 K) K) :=
-  ⟨⟨star (algebraMap (𝓞 K) K r), r.isIntegral_coe.map (starRingEnd K).toIntAlgHom⟩, rfl⟩
 
 theorem inner_sum_orthonormal (h : V →ₗ⋆[K] V →ₗ[K] K) {n : ℕ} (e : Fin n → V)
     (he : ∀ i j, h (e i) (e j) = if i = j then 1 else 0) (a b : Fin n → K) :
@@ -87,7 +85,7 @@ theorem integral_of_orthonormal_basis (h : V →ₗ⋆[K] V →ₗ[K] K) (L : Su
     Finset.sum_congr rfl fun i _ => (algebraMap_smul K (b i) (e i)).symm
   rw [e1, e2, inner_sum_orthonormal h e he]
   refine Submodule.sum_mem _ fun i _ => ?_
-  obtain ⟨a', ha'⟩ := star_algebraMap_mem_range (a i)
+  obtain ⟨a', ha'⟩ := _root_.Formalism.HermitianLatticesTheory.star_algebraMap_ringOfIntegers_mem_range (a i)
   rw [← ha', ← map_mul]
   exact Submodule.mem_one.2 ⟨_, rfl⟩
 
@@ -117,7 +115,7 @@ theorem unimodular_of_orthonormal_basis (h : V →ₗ⋆[K] V →ₗ[K] K) (L : 
 
 theorem genus_orthonormal_integral_unimodular (h : V →ₗ⋆[K] V →ₗ[K] K) (hs : h.IsSymm) (L : Submodule (𝓞 K) V) {n : ℕ} (hL : IsOrthoLattice h L n)
     (M : Submodule (𝓞 K) V) (hM : M ∈ genus h L) : IsIntegralLat h M ∧ dual h M = M := by
-  have hG := (final_genusBasic (𝓞 K) K V h hs star_algebraMap_mem_range).2.2 L M (fg_of_orthonormal_basis h L hL) hM.1.fg hM.2
+  have hG := (final_genusBasic (𝓞 K) K V h hs _root_.Formalism.HermitianLatticesTheory.star_algebraMap_ringOfIntegers_mem_range).2.2 L M (fg_of_orthonormal_basis h L hL) hM.1.fg hM.2
   exact ⟨hG.2.1 (integral_of_orthonormal_basis h L hL), hG.1.1 (unimodular_of_orthonormal_basis h L hL)⟩
 
 theorem mass_le_of_card_class_reps_le (h : V →ₗ⋆[K] V →ₗ[K] K) (L : Submodule (𝓞 K) V) (B : ℝ) (hB : 0 ≤ B)

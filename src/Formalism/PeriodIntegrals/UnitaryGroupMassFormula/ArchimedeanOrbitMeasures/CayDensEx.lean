@@ -230,7 +230,7 @@ theorem psiL_bij : Function.Bijective (psiL ε) := by
     apply Subtype.ext
     rw [psiL_val]
     show rA ε (unrealify ((WithLp.equiv 2 _).symm (realifyFun X))) = _
-    rw [unr_re, hX, AlgEquiv.apply_symm_apply]
+    rw [_root_.Formalism.MainNotions.S.Gauge.unrealify_realify, hX, AlgEquiv.apply_symm_apply]
 
 def psiC : gLie ε ≃L[ℝ] HcS.BasicNotions.lieU (pP ε) (pQ ε) :=
   (LinearEquiv.ofBijective (psiL ε) (psiL_bij ε)).toContinuousLinearEquiv

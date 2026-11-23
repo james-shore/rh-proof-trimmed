@@ -148,13 +148,6 @@ theorem psJet_pow {κ : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) (f : MvPow
 theorem toJet_eq {κ : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) (f : MvPowerSeries κ V) :
     JetSer.toJet m f = psJet m f := (congrArg (Ideal.Quotient.mk _) (FBIdJet.psTrunc_eq m f)).symm
 
-theorem ev_pt_one {d : ℕ} (f : PS V 1 d) : ev (n := 1) ![pt V (n := 1) d 0] f = f := by
-  have : (![pt V d 0] : Fin 1 → Pt V 1 d) = fun j => pt V d j := by
-    funext j; fin_cases j; rfl
-  rw [this]
-  unfold ev
-  exact congrFun MvPowerSeries.subst_self f
-
 theorem gs_of_isSer1 {G : Over (Sp V)} {d : ℕ} (xT : JetPts G (Fin 1 × Fin d)) (x : JetSer.Fam G (Fin d))
     (hM : Match (oneCol d) xT x) (U : G.left.Opens) (f : Γ(G.left, U)) (g : PS V 1 d) (h : JetSer.IsSer1 x U f g)
     (m : ℕ) (y : Sp (Jet V (Fin 1 × Fin d) m)) :
@@ -171,7 +164,7 @@ theorem gs_of_isSer1 {G : Over (Sp V)} {d : ℕ} (xT : JetPts G (Fin 1 × Fin d)
   have h1' : ⊤ ≤ (xT m).left ⁻¹ᵁ U := e ▸ h1
   have h2' : JetSer.fnVal (A := Jet V (Fin 1 × Fin d) m) (xT m).left U f = psJet m g :=
     (congrArg (fun p => JetSer.fnVal (A := Jet V (Fin 1 × Fin d) m) p U f) e).symm.trans
-      (h2.trans (by rw [ev_pt_one]; exact toJet_eq m g))
+      (h2.trans (by rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_ev_pt_self]; exact toJet_eq m g))
   refine ⟨h1' (show y ∈ (⊤ : (Sp (Jet V (Fin 1 × Fin d) m)).Opens) from trivial), ?_⟩
   rw [← h2']
   exact (JetSer.valSer_germ_fnVal (A := Jet V (Fin 1 × Fin d) m) (xT m).left U h1' y f).symm
@@ -206,7 +199,7 @@ theorem diagSub_one {d : ℕ} (m : ℕ) (φ : Pt V 1 d) :
 
 theorem diagSub_psJet {d : ℕ} (m : ℕ) (φ : Pt V 1 d) (hφ : ∀ i, MvPowerSeries.constantCoeff (φ i) = 0) (ε : PS V 2 d) :
     diagSub m φ (psJet m ε) = psJet m (ev (n := 1) ![pt V (n := 1) d 0, comp1 φ (pt V (n := 1) d 0)] ε) := by
-  have c : comp1 φ (pt V (n := 1) d 0) = φ := funext fun i => ev_pt_one _
+  have c : comp1 φ (pt V (n := 1) d 0) = φ := funext fun i => _root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_ev_pt_self _
   rw [c]
   have h0 : ∀ p : Fin 2 × Fin d, MvPowerSeries.constantCoeff
       ((![pt V (n := 1) d 0, φ] : Fin 2 → Pt V 1 d) p.1 p.2) = 0 := by

@@ -62,57 +62,18 @@ abbrev jz (z : (VS D).V) : ((D.sp.X 0).V × D.host.E) →ₗ[𝓞 D.host.E] (VS 
 theorem jz_apply (z : (VS D).V) (p : (D.sp.X 0).V × D.host.E) :
     jz D z p = D.sp.iXY 0 p.1 + p.2 • z := rfl
 
-theorem mem_Wb (v : (hS D).V) : v ∈ Wb D ↔
-    (∀ a, (hS D).hT (D.sp.hypE a) v = 0) ∧ ∀ a, (hS D).hT (D.sp.hypF a) v = 0 := by
-  unfold Wb
-  rw [Formalism.MainNotions.mem_orth_iff]
-  constructor
-  · intro h
-    exact ⟨fun a => h _ (Submodule.subset_span (Or.inl ⟨a, rfl⟩)),
-      fun a => h _ (Submodule.subset_span (Or.inr ⟨a, rfl⟩))⟩
-  · rintro ⟨h1, h2⟩ x hx
-    have : Submodule.span D.host.E (Set.range D.sp.hypE ∪ Set.range D.sp.hypF) ≤
-        LinearMap.ker ((hS D).hT.flip v) := by
-      refine Submodule.span_le.2 ?_
-      rintro _ (⟨a, rfl⟩ | ⟨a, rfl⟩)
-      · exact h1 a
-      · exact h2 a
-    exact this hx
-
-theorem eq_zero_of_mem_X {T : D.host.E} (F0 : FlagG (VS D) D.R.rS T) (he : F0.e = D.sp.hypE)
-    {x : (hS D).V} (hx : x ∈ F0.X) (hw : x ∈ Wb D) : x = 0 := by
-  unfold FlagG.X at hx
-  rw [he] at hx
-  obtain ⟨c, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun _).1 hx
-  have h2 := ((mem_Wb D _).1 hw).2
-  have hc : ∀ b, c b = 0 := by
-    intro b
-    have h := Formalism.MainNotions.hT_swap_zero (h2 b)
-
-    simp only [map_sum, LinearMap.sum_apply, map_smulₛₗ, LinearMap.smul_apply, D.sp.hyp_ef,
-    smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ,
-    if_true] at h
-    simpa using h
-  simp [hc]
-
-theorem iXY_mem_Wb (w : (D.sp.X 0).V) : D.sp.iXY 0 w ∈ Wb D :=
-  (mem_Wb D _).2 ⟨fun a => Formalism.MainNotions.hT_swap_zero (D.sp.hyp_orthX a w).1,
-    fun a => Formalism.MainNotions.hT_swap_zero (D.sp.hyp_orthX a w).2⟩
-
-theorem zmOf_mem_Wb (u : D.what₂.Word) : D.zmOf u ∈ Wb D :=
-  Submodule.smul_mem _ _ ((mem_Wb D _).2 ⟨fun a => Formalism.MainNotions.hT_swap_zero (D.sp.hyp_orthz a).1,
-    fun a => Formalism.MainNotions.hT_swap_zero (D.sp.hyp_orthz a).2⟩)
+alias mem_Wb := _root_.GlobalTheory.LoopC.GlueCount.mem_Wb
 
 theorem jz_mem_Wb (u : D.what₂.Word) (p : (D.sp.X 0).V × D.host.E) : jz D (D.zmOf u) p ∈ Wb D := by
   rw [jz_apply]
-  exact (Wb D).add_mem (iXY_mem_Wb D _) ((Wb D).smul_mem _ (zmOf_mem_Wb D u))
+  exact (Wb D).add_mem (_root_.GlobalTheory.LoopC.GlueCount.iXY_mem_Wb D _) ((Wb D).smul_mem _ (_root_.GlobalTheory.LoopC.GlueCount.zmOf_mem_Wb D u))
 
 theorem exists_jz (u : D.what₂.Word) (F0 : Fb D u) (hT : Tu D u ≠ 0) (he : F0.e = D.sp.hypE)
     (hz : F0.z = D.zmOf u) {v : (hS D).V} (hv : v ∈ Wb D) : ∃ p, jz D (D.zmOf u) p = v := by
   have hW := (Formalism.MainNotions.WHyp_Wsp D u hT (lf D F0) he hz).1
   have hT' : ((Tu D u : ℕ) : D.host.E) ≠ 0 := Nat.cast_ne_zero.2 hT
   set c : D.host.E := -((hS D).hT F0.z v) / ((Tu D u : ℕ) : D.host.E) with hc
-  have hvz : v - c • D.zmOf u ∈ Wb D := (Wb D).sub_mem hv ((Wb D).smul_mem _ (zmOf_mem_Wb D u))
+  have hvz : v - c • D.zmOf u ∈ Wb D := (Wb D).sub_mem hv ((Wb D).smul_mem _ (_root_.GlobalTheory.LoopC.GlueCount.zmOf_mem_Wb D u))
   have h1 : v - c • D.zmOf u ∈ orth (hS D) (Xplus (lf D F0)) := by
     rw [Formalism.MainNotions.mem_orth_iff]
     refine Formalism.MainNotions.hT_zero_of_mem_Xplus F0 (fun a => ?_) ?_
@@ -123,10 +84,10 @@ theorem exists_jz (u : D.what₂.Word) (F0 : Fb D u) (hT : Tu D u ≠ 0) (he : F
   rw [← hW] at h1
   obtain ⟨_, ⟨w, rfl⟩, x, hx, hs⟩ := Submodule.mem_sup.1 h1
   have hx0 : x = 0 := by
-    refine eq_zero_of_mem_X D F0 he hx ?_
+    refine _root_.GlobalTheory.LoopC.GlueCount.eq_zero_of_mem_X D F0 he hx ?_
     have : x = (v - c • D.zmOf u) - D.sp.iXY 0 w := by rw [← hs]; abel
     rw [this]
-    exact (Wb D).sub_mem hvz (iXY_mem_Wb D w)
+    exact (Wb D).sub_mem hvz (_root_.GlobalTheory.LoopC.GlueCount.iXY_mem_Wb D w)
   refine ⟨(w, c), ?_⟩
   rw [hx0, add_zero] at hs
   rw [jz_apply, hs]
@@ -139,7 +100,7 @@ theorem comap_sup_X (u : D.what₂.Word) (F0 : Fb D u) (he : F0.e = D.sp.hypE)
   intro p hp
   obtain ⟨l, hl, x, hx, hs⟩ := Submodule.mem_sup.1 hp
   have hx0 : x = 0 := by
-    refine eq_zero_of_mem_X D F0 he hx ?_
+    refine _root_.GlobalTheory.LoopC.GlueCount.eq_zero_of_mem_X D F0 he hx ?_
     have : x = jz D (D.zmOf u) p - l := by rw [← hs]; abel
     rw [this]
     exact (Wb D).sub_mem (jz_mem_Wb D u p) (hL hl)
@@ -212,7 +173,7 @@ theorem gluingNum : ∀ (D : D7) (u : D.what₂.Word), (Tu D u).Prime → 3 ≤ 
   intro D u hp h3 hs F0 he hz Λ hΛ M hM
   have hB : IsBase D u F0 := ⟨he, hz⟩
   have h1 : 1 ≤ Tu D u := by omega
-  rw [← (GlobalTheory.T.ncard_gluedMiddleLattices_eq_pow_prime_sub_one D u F0 Λ hp h3 hs hB hΛ M hM).2]
+  rw [← (_root_.GlobalTheory.LoopC.GlueCount.main D u F0 Λ hp h3 hs hB hΛ M hM).2]
   have hinj : Set.InjOn (fun L : LatV D => L.comap (jz D (D.zmOf u))) (glueSet D u M) := by
     have aux : ∀ L₁ ∈ glueSet D u M, ∀ L₂ : LatV D,
         L₁.comap (jz D (D.zmOf u)) = L₂.comap (jz D (D.zmOf u)) → L₁ ≤ L₂ := by

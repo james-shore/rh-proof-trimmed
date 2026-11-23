@@ -101,6 +101,6 @@ theorem exists_cp_of_generic_sym : ∀ (R : Type) [CommRing R] [IsDomain R] [IsL
   obtain ⟨c', -⟩ := GlobalTheory.DenseCubeExt.exists_cubical (L := LA) hN gp cA L' hw
   obtain ⟨s, hs, hrs⟩ := (GlobalTheory.isSymmetric_iff_exists_gen _ G L').1
     (GlobalTheory.DenseCubeExt.isSymmetric (L := LA) hN gp L' hw symA)
-  exact ⟨⟨L', c', s, hs, hrs, GlobalTheory.T.symmetry_cubicalBundle_of_dense_abelian_normal_base hN (jK R) G A F gp laws.globalFns hA L' c' s hs hrs⟩, rfl⟩
+  exact ⟨⟨L', c', s, hs, hrs, _root_.GlobalTheory.SymCubDense.sym_cub_of_dense_abelian hN (jK R) G A F gp laws.globalFns hA L' c' s hs hrs⟩, rfl⟩
 
 end GlobalTheory.CubSymPkg

@@ -75,9 +75,6 @@ section law
 
 variable {k j ρ : ℕ}
 
-def skc (M : Matrix (Fin j) (Fin j) ℂ) : (G.UT j → ℂ) × (Fin j → ℝ) :=
-  (fun p => M p.1.1 p.1.2, fun a => (M a a).im)
-
 lemma skewOf_gt (q : (G.UT j → ℂ) × (Fin j → ℝ)) {a b : Fin j} (h : b < a) :
     skewOf q a b = -conj (skewOf q b a) := by
   have := congrFun (congrFun (skewOf_ct q) b) a
@@ -87,7 +84,7 @@ lemma skewOf_gt (q : (G.UT j → ℂ) × (Fin j → ℝ)) {a b : Fin j} (h : b <
   rw [Complex.conj_conj, map_neg] at h3
   exact h3
 
-lemma skewOf_skc {M : Matrix (Fin j) (Fin j) ℂ} (hM : Mᴴ = -M) : skewOf (skc M) = M := by
+lemma skewOf_skc {M : Matrix (Fin j) (Fin j) ℂ} (hM : Mᴴ = -M) : skewOf (_root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords M) = M := by
   have hM' : ∀ a b, conj (M b a) = -M a b := fun a b => by
     have := congrFun (congrFun hM a) b
     rwa [conjTranspose_apply] at this
@@ -100,8 +97,8 @@ lemma skewOf_skc {M : Matrix (Fin j) (Fin j) ℂ} (hM : Mᴴ = -M) : skewOf (skc
     · simp only [Complex.mul_re, Complex.I_re, Complex.ofReal_re, Complex.I_im, Complex.ofReal_im]
       have := congrArg Complex.re h1
       simp only [Complex.conj_re, Complex.neg_re] at this
-      simp [skc]; linarith
-    · simp [skc]
+      simp [_root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords]; linarith
+    · simp [_root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords]
   · rw [skewOf_gt _ h, skewOf_lt _ h]
     show -conj (M b a) = M a b
     rw [hM']; ring
@@ -117,7 +114,7 @@ lemma skewOf_add (q1 q2 : (G.UT j → ℂ) × (Fin j → ℝ)) : skewOf (q1 + q2
     simp only [Prod.fst_add, Pi.add_apply, map_add (f := _)]; ring
 
 def kap (c1 c2 : Matrix (Fin (2 * ρ + k + 1)) (Fin j) ℂ) : (G.UT j → ℂ) × (Fin j → ℝ) :=
-  skc ((1 / 2 : ℂ) • (c2ᴴ * Hpk k ρ * c1 - c1ᴴ * Hpk k ρ * c2))
+  _root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords ((1 / 2 : ℂ) • (c2ᴴ * Hpk k ρ * c1 - c1ᴴ * Hpk k ρ * c2))
 
 lemma kap_skew (c1 c2 : Matrix (Fin (2 * ρ + k + 1)) (Fin j) ℂ) :
     ((1 / 2 : ℂ) • (c2ᴴ * Hpk k ρ * c1 - c1ᴴ * Hpk k ρ * c2))ᴴ =
@@ -430,8 +427,8 @@ theorem cont_ofExtC (z : Fin (2 * r + k + 1) → ℂ) :
     Continuous fun c : Fin (2 * 0 + k) → Fin r → ℂ => (Matrix.of (extC z c) : Matrix (Fin (2 * 0 + k + 1)) (Fin r) ℂ) :=
   cont_extC z
 
-theorem cont_skc {j : ℕ} : Continuous fun M : Matrix (Fin j) (Fin j) ℂ => skc M := by
-  unfold skc
+theorem cont_skc {j : ℕ} : Continuous fun M : Matrix (Fin j) (Fin j) ℂ => _root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords M := by
+  unfold _root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords
   refine Continuous.prodMk (continuous_pi fun p => ?_) (continuous_pi fun a => ?_)
   · exact continuous_apply_apply p.1.1 p.1.2
   · exact Complex.continuous_im.comp (continuous_apply_apply a a)
@@ -495,7 +492,7 @@ def sOf (M : Mt k r) : Matrix (Fin r) (Fin r) ℂ :=
   G.wMat r * (Matrix.of fun a b => M (eB k r 0 (Sum.inl (Sum.inl a))) (eB k r 0 (Sum.inr b))) +
     (1 / 2 : ℂ) • ((cOf M)ᴴ * Hpk k 0 * cOf M)
 
-def Rd (M : Mt k r) : X0 k r := (fun i a => cOf M i.castSucc a, skc (sOf M))
+def Rd (M : Mt k r) : X0 k r := (fun i a => cOf M i.castSucc a, _root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords (sOf M))
 
 theorem cont_Rd : Continuous (Rd (k := k) (r := r)) := by
   have hc : Continuous (cOf (k := k) (r := r)) :=
@@ -508,7 +505,7 @@ theorem cont_Rd : Continuous (Rd (k := k) (r := r)) := by
   · exact (continuous_const.matrix_mul h13).add
       (((hc.matrix_conjTranspose.matrix_mul continuous_const).matrix_mul hc).const_smul (1 / 2 : ℂ))
 
-lemma skc_skewOf {j : ℕ} (q : (G.UT j → ℂ) × (Fin j → ℝ)) : skc (skewOf q) = q := by
+lemma skc_skewOf {j : ℕ} (q : (G.UT j → ℂ) × (Fin j → ℝ)) : _root_.Formalism.FourierDecayAlt.P.Ux3.skewCoords (skewOf q) = q := by
   refine Prod.ext (funext fun p => ?_) (funext fun a => ?_)
   · exact skewOf_lt q p.2
   · show (skewOf q a a).im = q.2 a
@@ -584,9 +581,7 @@ section disint
 
 variable {k r : ℕ}
 
-lemma det_UT {m : ℕ} {u : Matrix (Fin m) (Fin m) ℂ} (hu : u ∈ C2.UTset m) : u.det = 1 := by
-  rw [Matrix.det_of_upperTriangular (fun i j hij => hu.1 i j hij)]
-  simp [hu.2]
+alias det_UT := _root_.Formalism.FourierDecayAlt.P.C2x2.ut_det
 
 lemma upper_mem {m : ℕ} (u : G.UT m → ℂ) : G.upper u ∈ C2.UTset m := by
   refine ⟨fun i j hij => ?_, fun i => ?_⟩
@@ -603,22 +598,6 @@ lemma upper_utc {m : ℕ} {M : Matrix (Fin m) (Fin m) ℂ} (hM : M ∈ C2.UTset 
   · simp [G.upper, G.strictUpper, StabilizerDisintegration.utc, h, ne_of_lt h, Matrix.one_apply]
   · simp [G.upper, G.strictUpper, hM.2]
   · simp [G.upper, G.strictUpper, h, ne_of_gt h, not_lt.mpr h.le, Matrix.one_apply, hM.1 i j h]
-
-lemma UT_mul {m : ℕ} {A B : Matrix (Fin m) (Fin m) ℂ} (hA : A ∈ C2.UTset m) (hB : B ∈ C2.UTset m) :
-    A * B ∈ C2.UTset m := by
-  refine ⟨fun i j hij => ?_, fun i => ?_⟩
-  · rw [Matrix.mul_apply]
-    refine Finset.sum_eq_zero fun l _ => ?_
-    rcases lt_or_ge l i with h | h
-    · rw [hA.1 i l h, zero_mul]
-    · rw [hB.1 l j (lt_of_lt_of_le hij h), mul_zero]
-  · rw [Matrix.mul_apply, Finset.sum_eq_single i]
-    · rw [hA.2, hB.2, one_mul]
-    · intro l _ hl
-      rcases lt_or_gt_of_ne hl with h | h
-      · rw [hA.1 i l h, zero_mul]
-      · rw [hB.1 l i h, mul_zero]
-    · simp
 
 lemma inv_GV {g : B.Mat k r} (hg : g ∈ B.GV k r) : g⁻¹ = Hpk k r * gᴴ * Hpk k r := by
   have hH : Hpk k r * Hpk k r = 1 := (hpkFacts k r).2.1
@@ -768,7 +747,7 @@ lemma cont_bC (z : Fin (2 * r + k + 1) → ℂ) (a : B.Mat k r) (ha : a ∈ Nset
   have hA := uMap_UT hz ha
   have e : (fun u : G.UT (r + 1) → ℂ => C2.tauM k r z (C2.uMap k r z a * G.upper u)) =
       (fun u => C2.tauM k r z (G.upper u)) ∘ fun u => StabilizerDisintegration.utc (C2.uMap k r z a * G.upper u) := by
-    funext u; simp only [Function.comp, upper_utc (UT_mul hA (upper_mem u))]
+    funext u; simp only [Function.comp, upper_utc (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_mul hA (upper_mem u))]
   have h1 : Continuous fun u : G.UT (r + 1) → ℂ => C2.tauM k r z (C2.uMap k r z a * G.upper u) := by
     rw [e]; exact (cont_tauU z).comp (cont_utc.comp (continuous_const.matrix_mul Formalism.FourierDecayAlt.P.Dx2.SL.cont_upper))
   unfold bC
@@ -778,14 +757,14 @@ lemma cont_bC (z : Fin (2 * r + k + 1) → ℂ) (a : B.Mat k r) (ha : a ∈ Nset
 lemma bC_eq {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {a : B.Mat k r} (ha : a ∈ Nset k r)
     (u : G.UT (r + 1) → ℂ) :
     bC z a u = (C2.tauM k r z (C2.uMap k r z a * G.upper u))⁻¹ * a * C2.tauM k r z (G.upper u) := by
-  have hT := tau_N hz (UT_mul (uMap_UT hz ha) (upper_mem u))
+  have hT := tau_N hz (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_mul (uMap_UT hz ha) (upper_mem u))
   rw [inv_GV hT.1]; rfl
 
 lemma bC_mem {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {a : B.Mat k r} (ha : a ∈ Nset k r)
     (u : G.UT (r + 1) → ℂ) : bC z a u ∈ C2.N0set k r z := by
   have hN := Formalism.FourierDecayAlt.P.unipotent_radical_closed k r
   have hA := uMap_UT hz ha
-  have hAU := UT_mul hA (upper_mem u)
+  have hAU := _root_.Formalism.FourierDecayAlt.P.C2x2.ut_mul hA (upper_mem u)
   have hT1 := tau_N hz hAU
   have hT0 := tau_N hz (upper_mem u)
   rw [bC_eq hz ha]
@@ -798,7 +777,7 @@ lemma bC_mem {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {a : B.Mat k
 lemma Phi_S {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {a : B.Mat k r} (ha : a ∈ Nset k r)
     (p : (G.UT (r + 1) → ℂ) × Mt k r) :
     Phi z (StabilizerDisintegration.utc (C2.uMap k r z a * G.upper p.1), lmulM (bC z a p.1) p.2) = lmulM a (Phi z p) := by
-  have hAU := UT_mul (uMap_UT hz ha) (upper_mem p.1)
+  have hAU := _root_.Formalism.FourierDecayAlt.P.C2x2.ut_mul (uMap_UT hz ha) (upper_mem p.1)
   have hT1 := tau_N hz hAU
   unfold Phi lmulM
   rw [upper_utc hAU, bC_eq hz ha]

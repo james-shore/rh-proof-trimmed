@@ -117,10 +117,6 @@ def jetVec {A K : Type} [CommRing A] [Field K] {D : ℕ} (φ : A →+* K) (d : F
     rw [Pi.add_apply, Pi.smul_apply, Pi.smul_apply, smul_eq_mul, MulOpposite.smul_eq_mul_unop,
       MulOpposite.unop_op, hd c, map_add, map_mul, map_mul, mul_comm (φ (d c s))]
 
-theorem evalPt_congr {R : Type} [CommRing R] {X : Scheme.{0}} {x y : Sp R ⟶ X} (e : x = y) (U : X.Opens)
-    (hx : ⊤ ≤ x ⁻¹ᵁ U) (hy : ⊤ ≤ y ⁻¹ᵁ U) (f : Γ(X, U)) : evalPt x U hx f = evalPt y U hy f := by
-  subst e; rfl
-
 end GlobalTheory.TanPt
 
 namespace GlobalTheory.TanPt
@@ -158,7 +154,7 @@ theorem exists_tangent_point : ∀ {o : Type} [CommRing o] (X : Scheme.{0}) (s :
     rw [← evalPt_constFn p w _ hw a, he]
     have hza : evalPt z _ hzO (constFn p (Y.basicOpen (t : Γ(Y, V))) a) = β a := by
       rw [evalPt_constFn]
-      exact (evalPt_congr hz (⊤ : (Sp o).Opens) _ le_rfl _).trans (evalPt_spMap β a)
+      exact (_root_.GlobalTheory.ArtinKernel.evalPt_congr hz (⊤ : (Sp o).Opens) _ le_rfl _).trans (evalPt_spMap β a)
     refine TrivSqZeroExt.ext ?_ ?_
     · exact hza
     · funext c
@@ -171,9 +167,9 @@ theorem exists_tangent_point : ∀ {o : Type} [CommRing o] (X : Scheme.{0}) (s :
       fun q _ => hw (Set.mem_univ _)
     have h3 : ⊤ ≤ (spMap (TrivSqZeroExt.fstHom K K K).toRingHom ≫ spMap (dirMap mu) ≫ w) ⁻¹ᵁ
         Y.basicOpen (t : Γ(Y, V)) := fun q _ => hw (Set.mem_univ _)
-    have e := congrArg TrivSqZeroExt.snd (evalPt_congr hmu _ h1 h2 (x a))
+    have e := congrArg TrivSqZeroExt.snd (_root_.GlobalTheory.ArtinKernel.evalPt_congr hmu _ h1 h2 (x a))
     have e2 : (evalPt (constPt (spMap (dirMap mu) ≫ w)) _ h2 (x a)).snd = 0 := by
-      rw [evalPt_congr (show constPt (spMap (dirMap mu) ≫ w) = spMap (algebraMap K (DualNumber K)) ≫
+      rw [_root_.GlobalTheory.ArtinKernel.evalPt_congr (show constPt (spMap (dirMap mu) ≫ w) = spMap (algebraMap K (DualNumber K)) ≫
         (spMap (TrivSqZeroExt.fstHom K K K).toRingHom ≫ spMap (dirMap mu) ≫ w) from rfl) _ h2 h2,
         evalPt_spMap_comp _ _ _ h3 h2]
       rfl

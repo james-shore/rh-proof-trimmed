@@ -197,16 +197,6 @@ theorem exists_multi {H V : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ 
 
     simp only [LinearMap.sum_apply, LinearMap.comp_apply, map_sum, hP1, hT2]
 
-theorem exp_mem_unitary (X : Matrix (Fin n) (Fin n) ℂ) (hX : Xᴴ = -X) (s : ℝ) :
-    NormedSpace.exp ((s : ℂ) • X) ∈ Matrix.unitaryGroup (Fin n) ℂ := by
-  rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose, ← Matrix.exp_conjTranspose]
-  have h : ((s : ℂ) • X)ᴴ = -((s : ℂ) • X) := by
-    rw [conjTranspose_smul, hX]
-    simp
-  have hc : Commute ((s : ℂ) • X) (-((s : ℂ) • X)) := (Commute.refl _).neg_right
-  rw [h, ← Matrix.exp_add_of_commute _ _ hc]
-  simp
-
 theorem single_conjT (a b : Fin n) (c : ℂ) :
     (Matrix.single a b c : Matrix (Fin n) (Fin n) ℂ)ᴴ = Matrix.single b a (star c) := by
   ext i j
@@ -256,7 +246,7 @@ theorem dual_rel (E : KMod n) (G : Fin n → Fin n → Module.End ℂ (E.V →L[
         HasDerivAt (fun t : ℝ => ρ' (γ t) w) (∑ a, ∑ b, X a b • G' a b w) 0)
     (a b : Fin n) (ξ : E.V →L[ℂ] ℂ) : G' a b (e ξ) = e (G a b ξ) := by
   have key := coef_zero (fun i j => G' i j (e ξ) - e (G i j ξ)) (fun X hX => by
-    let γ : ℝ → Matrix.unitaryGroup (Fin n) ℂ := fun t => ⟨_, exp_mem_unitary X hX t⟩
+    let γ : ℝ → Matrix.unitaryGroup (Fin n) ℂ := fun t => ⟨_, _root_.GlobalTheory.CompanionTheory.RealCount.IntegrateK.exp_smul_mem_unitary X hX t⟩
     have h1 := hGd X γ hX (fun _ => rfl) (e ξ)
     have h2 := hG.2 X γ hX (fun _ => rfl) ξ
     have h3 : HasDerivAt (fun t : ℝ => e (ξ ∘L E.ρ (γ t)⁻¹)) (e (∑ a, ∑ b, X a b • G a b ξ)) 0 :=

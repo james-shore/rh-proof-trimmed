@@ -49,10 +49,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 namespace PositivityTheory.Xgn.PlaceValuation
 
-theorem exists_place {K : Type} [Field K] [NumberField K] (p : Nat.Primes) (κ : K →+* ℂ_[p]) :
-    ∃ la : HeightOneSpectrum (𝓞 K), ∀ a : K, la.valuation K a ≤ 1 ↔ ‖κ a‖ ≤ 1 :=
-  _root_.Bl.KappaIntegralBound.goal1 p κ
-
 theorem place_unique {K : Type} [Field K] [NumberField K] {p : Nat.Primes} {κ : K →+* ℂ_[p]}
     {la la' : HeightOneSpectrum (𝓞 K)} (h : ∀ a : K, la.valuation K a ≤ 1 ↔ ‖κ a‖ ≤ 1)
     (h' : ∀ a : K, la'.valuation K a ≤ 1 ↔ ‖κ a‖ ≤ 1) : la = la' :=
@@ -74,7 +70,7 @@ end PositivityTheory.Xgn.PlaceValuation
 
 theorem PositivityTheory.Xgn.line_function_place_valuation : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) [NumberField c.F] (Z : Formalism.L2.Pj.Comp Xo c) (τ : GlobalTheory.AllWt.Psi H) (s : Formalism.L2.Pj.Rul Xo c) (φ : FrameFn Xo c) (ρ : HeightOneSpectrum (𝓞 c.F) → ℝ), IsLineFn (Z : Set (Xo.XF c)) τ.1 φ → Reads (Z : Set (Xo.XF c)) τ.1 s φ → (∀ (p : Nat.Primes) (κ : c.F →+* ℂ_[p]) (la : HeightOneSpectrum (𝓞 c.F)) (π : c.F), (∀ a : c.F, la.valuation c.F a ≤ 1 ↔ ‖κ a‖ ≤ 1) → la.valuation c.F π = WithZero.exp (-1 : ℤ) → HasFinNorm (Z : Set (Xo.XF c)) τ.1 φ p κ (ρ la * Real.log ‖κ π‖)) → ∀ la, ∀ v ∈ GlobalTheory.FlatLine.valOn Z la, v s = (ρ la : EReal) := by
   intro E _ _ _ H D l Xo c _ Z τ s φ ρ hφ hs hN la v hv
-  choose pl hpl using fun (p : Nat.Primes) (κ : c.F →+* ℂ_[p]) => PositivityTheory.Xgn.PlaceValuation.exists_place p κ
+  choose pl hpl using fun (p : Nat.Primes) (κ : c.F →+* ℂ_[p]) => _root_.Bl.KappaIntegralBound.goal1 p κ
   choose un hun using fun la : HeightOneSpectrum (𝓞 c.F) => la.valuation_exists_uniformizer c.F
   obtain ⟨⟨_, T, io, e, ho, y, hy, eta, -, rfl⟩, rfl⟩ := hv
   letI := io.toAlgebra

@@ -77,10 +77,10 @@ theorem reversed_unitriangular : ∀ (k : Type) [Field k] (n : ℕ) (A M : Matri
     ⟨fun x y hxy => a1 _ _ (hrevlt x y hxy), fun x => a2 _⟩
   refine ⟨⟨fun hA => ?_, fun hM => ?_⟩, fun hA => ?_⟩
   · obtain ⟨d1, d2⟩ := hAtoAd hA
-    obtain ⟨i1, i2, -⟩ := GlobalTheory.T.inv_upperUnitriangular_superdiag_neg k n Ad d1 d2
+    obtain ⟨i1, i2, -⟩ := _root_.GlobalTheory.inv_upperUnitriangular k n Ad d1 d2
     rw [hinvM] at i1 i2
     exact ⟨i1, i2⟩
-  · obtain ⟨i1, i2, -⟩ := GlobalTheory.T.inv_upperUnitriangular_superdiag_neg k n M hM.1 hM.2
+  · obtain ⟨i1, i2, -⟩ := _root_.GlobalTheory.inv_upperUnitriangular k n M hM.1 hM.2
     rw [hinvA] at i1 i2
     refine ⟨fun x y hxy => ?_, fun x => ?_⟩
     · have := i1 (Fin.rev y) (Fin.rev x) (hrevlt x y hxy)
@@ -88,7 +88,7 @@ theorem reversed_unitriangular : ∀ (k : Type) [Field k] (n : ℕ) (A M : Matri
     · have := i2 (Fin.rev x)
       simpa [Ad] using this
   · obtain ⟨d1, d2⟩ := hAtoAd hA
-    obtain ⟨-, -, i3⟩ := GlobalTheory.T.inv_upperUnitriangular_superdiag_neg k n Ad d1 d2
+    obtain ⟨-, -, i3⟩ := _root_.GlobalTheory.inv_upperUnitriangular k n Ad d1 d2
     rw [hinvM] at i3
     have e1 : ∀ x y : Fin n, (if (x : ℕ) + 1 = y then M x y else 0) =
         - (fun p q : Fin n => if (p : ℕ) + 1 = q then A p q else 0) (Fin.rev y) (Fin.rev x) := by

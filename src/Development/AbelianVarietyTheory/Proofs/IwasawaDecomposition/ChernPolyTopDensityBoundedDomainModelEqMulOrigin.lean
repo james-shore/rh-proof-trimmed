@@ -62,11 +62,6 @@ namespace GlobalTheory.PointChernScale
 open Matrix
 open scoped ComplexOrder
 
-theorem curv_tau {n p q : ℕ} (Z : ReciprocityTheory.L2DbarEstimates.V n →ₗ[ℂ] Matrix (Fin p) (Fin q) ℂ) (w ξ η : ReciprocityTheory.L2DbarEstimates.V n)
-    (hw : (1 - (Z w)ᴴ * Z w).PosDef) :
-    curv (fun u => (1 - (Z u).map (starRingEnd ℂ) * (Z u)ᵀ)⁻¹) w ξ η =
-      -(Z ξ * (1 - (Z w)ᴴ * Z w)⁻¹ * (Z η)ᴴ * (1 - Z w * (Z w)ᴴ)⁻¹) := GlobalTheory.T.chernCurvature_modelGram_conjMulTranspose_inv Z w ξ η hw
-
 theorem curv_tauBar {n p q : ℕ} (Z : ReciprocityTheory.L2DbarEstimates.V n →ₗ[ℂ] Matrix (Fin p) (Fin q) ℂ) (w ξ η : ReciprocityTheory.L2DbarEstimates.V n)
     (hw : (1 - (Z w)ᴴ * Z w).PosDef) :
     curv (fun u => (1 - (Z u)ᴴ * Z u)⁻¹) w ξ η =
@@ -126,7 +121,7 @@ theorem conj_tau {n p q : ℕ} (Z : ReciprocityTheory.L2DbarEstimates.V n →ₗ
       -(Z (∑ c, J c a • coordVec c) * (Z (∑ d, J d b • coordVec d))ᴴ) := by
     have hc : ∀ ξ η, curv (fun u => (1 - (Z u).map (starRingEnd ℂ) * (Z u)ᵀ)⁻¹) 0 ξ η = -(Z ξ * (Z η)ᴴ) := by
       intro ξ η
-      rw [curv_tau Z 0 ξ η h0]
+      rw [_root_.GlobalTheory.PointChern.curv_modelGram_lie Z 0 ξ η h0]
       simp
 
     simp only [hc, map_sum, map_smul, conjTranspose_sum, conjTranspose_smul, Matrix.sum_mul,
@@ -134,7 +129,7 @@ theorem conj_tau {n p q : ℕ} (Z : ReciprocityTheory.L2DbarEstimates.V n →ₗ
     simp only [Finset.smul_sum, smul_smul]
     rw [Finset.sum_comm]
     exact Finset.sum_congr rfl fun x _ => Finset.sum_congr rfl fun y _ => by rw [mul_comm]; rfl
-  rw [hsum, hJ, hJ, curv_tau Z w _ _ hw, ← hAA, ← hB]
+  rw [hsum, hJ, hJ, _root_.GlobalTheory.PointChern.curv_modelGram_lie Z w _ _ hw, ← hAA, ← hB]
   simp only [conjTranspose_mul, Matrix.mul_neg, Matrix.neg_mul, Matrix.mul_assoc,
     nonsing_inv_mul_cancel_left _ _ hA]
 
@@ -152,7 +147,7 @@ theorem conj_tauBar {n p q : ℕ} (Z : ReciprocityTheory.L2DbarEstimates.V n →
       -((Z (∑ d, J d b • coordVec d))ᴴ * Z (∑ c, J c a • coordVec c))ᵀ := by
     have hc : ∀ ξ η, curv (fun u => (1 - (Z u)ᴴ * Z u)⁻¹) 0 ξ η = -((Z η)ᴴ * Z ξ)ᵀ := by
       intro ξ η
-      rw [curv_tauBar Z 0 ξ η h0]
+      rw [_root_.GlobalTheory.PointChern.curv_inv_one_sub_gram Z 0 ξ η h0]
       simp
 
     simp only [hc, map_sum, map_smul, conjTranspose_sum, conjTranspose_smul,
@@ -160,7 +155,7 @@ theorem conj_tauBar {n p q : ℕ} (Z : ReciprocityTheory.L2DbarEstimates.V n →
     Finset.sum_neg_distrib, neg_inj, transpose_sum, transpose_smul]
     simp only [Finset.smul_sum, smul_smul]
     rfl
-  rw [hsum, hJ, hJ, curv_tauBar Z w _ _ hw, ← hAA, ← hB, ← transpose_nonsing_inv, Matrix.mul_neg,
+  rw [hsum, hJ, hJ, _root_.GlobalTheory.PointChern.curv_inv_one_sub_gram Z w _ _ hw, ← hAA, ← hB, ← transpose_nonsing_inv, Matrix.mul_neg,
     Matrix.neg_mul, neg_inj, ← transpose_mul, ← transpose_mul]
   congr 1
   simp only [conjTranspose_mul, Matrix.mul_assoc, mul_nonsing_inv_cancel_right _ _ hB0]
@@ -171,10 +166,10 @@ theorem chernPoly_model_eq_subst {H : Host E} (Dw : Datum H) {n : ℕ}
       chernPoly (fun u => modelGram H Dw (coordOf ix u) τ) w k =
         aeval (fun x : Fin n × Fin n => ∑ a, ∑ b, C (J x.1 a * starRingEnd ℂ (J x.2 b)) * X (a, b))
           (chernPoly (fun u => modelGram H Dw (coordOf ix u) τ) 0 k) := by
-  have hP : ∀ σ, (1 - coordOf ix w σ * (coordOf ix w σ)ᴴ)⁻¹.PosDef := fun σ => (posDef_swap _ (hw σ)).inv
+  have hP : ∀ σ, (1 - coordOf ix w σ * (coordOf ix w σ)ᴴ)⁻¹.PosDef := fun σ => (_root_.GlobalTheory.PosDefSwap.one_sub_mul_conjTranspose_posDef _ (hw σ)).inv
   have hQ : ∀ σ, (1 - (coordOf ix w σ)ᴴ * coordOf ix w σ)⁻¹.PosDef := fun σ => (hw σ).inv
-  choose A hA hAA using fun σ => exists_factor _ (hP σ)
-  choose A' hA' hAA' using fun σ => exists_factor _ (hQ σ)
+  choose A hA hAA using fun σ => _root_.GlobalTheory.posDef_eq_conjTranspose_mul_self_of_isUnit_det _ (hP σ)
+  choose A' hA' hAA' using fun σ => _root_.GlobalTheory.posDef_eq_conjTranspose_mul_self_of_isUnit_det _ (hQ σ)
   let B : GlobalTheory.AllWt.Psi H → Matrix (Fin Dw.q) (Fin Dw.q) ℂ := fun σ => (A' σ)ᴴ
   have hB : ∀ σ, B σ * (B σ)ᴴ = (1 - (coordOf ix w σ)ᴴ * coordOf ix w σ)⁻¹ := fun σ => by
     simp only [B, conjTranspose_conjTranspose]; exact hAA' σ
@@ -186,16 +181,16 @@ theorem chernPoly_model_eq_subst {H : Host E} (Dw : Datum H) {n : ℕ}
         reindex (finCongr (mult_of_mem Dw h).symm) (finCongr (mult_of_mem Dw h).symm)
           ((1 - (zLin ix ⟨τ, h⟩ u).map (starRingEnd ℂ) * (zLin ix ⟨τ, h⟩ u)ᵀ)⁻¹) := by
       funext u; simp only [modelGram, dif_pos h]; rfl
-    rw [e, chernPoly_reindex, chernPoly_reindex]
-    exact chernPoly_conj _ w 0 _ (A ⟨τ, h⟩) (hA _)
+    rw [e, _root_.GlobalTheory.ChernReindex.chernPoly_reindex, _root_.GlobalTheory.ChernReindex.chernPoly_reindex]
+    exact _root_.GlobalTheory.ChernConj.chernPoly_conj_subst _ w 0 _ (A ⟨τ, h⟩) (hA _)
       (conj_tau (zLin ix ⟨τ, h⟩) w (A _) (B _) _ (hw _) (hA _) (hAA _) (hB _) (zLin_jMat ix A B _)) k
   · by_cases h' : conjEmb τ (H.rt : E) = H.rt0
     · have e : (fun u => modelGram H Dw (coordOf ix u) τ) = fun u =>
           reindex (finCongr (mult_of_not_mem Dw h).symm) (finCongr (mult_of_not_mem Dw h).symm)
             ((1 - (zLin ix ⟨conjEmb τ, h'⟩ u)ᴴ * zLin ix ⟨conjEmb τ, h'⟩ u)⁻¹) := by
         funext u; simp only [modelGram, dif_neg h, dif_pos h']; rfl
-      rw [e, chernPoly_reindex, chernPoly_reindex]
-      exact chernPoly_conj _ w 0 _ (B _)ᵀ (by rw [det_transpose]; exact hB0 _)
+      rw [e, _root_.GlobalTheory.ChernReindex.chernPoly_reindex, _root_.GlobalTheory.ChernReindex.chernPoly_reindex]
+      exact _root_.GlobalTheory.ChernConj.chernPoly_conj_subst _ w 0 _ (B _)ᵀ (by rw [det_transpose]; exact hB0 _)
         (conj_tauBar (zLin ix ⟨conjEmb τ, h'⟩) w (A _) (B _) _ (hw _) (hB0 _) (hAA _) (hB _)
           (zLin_jMat ix A B _)) k
     · have e : (fun u => modelGram H Dw (coordOf ix u) τ) = fun _ => 1 := by

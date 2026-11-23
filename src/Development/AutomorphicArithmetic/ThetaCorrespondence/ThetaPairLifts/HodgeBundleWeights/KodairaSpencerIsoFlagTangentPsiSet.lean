@@ -52,10 +52,10 @@ theorem kodaira_spencer_iso_flag_tangent_psi_set : _root_.GlobalTheory.CovTop.Hy
   obtain ⟨X, h1, h2, hks⟩ := _root_.GlobalTheory.T.kodaira_spencer_universal_family hP hG E H Dw l Xo c K y hpq
   refine ⟨X, h1, h2, fun x' hx => ?_⟩
   have key : ∀ M, IsKS (psiSet H) y x' M ↔ x' = spMap (dir c M).toRingHom ≫ X := fun M =>
-    ⟨fun k => _root_.GlobalTheory.T.flag_deformations_eq_of_kodaira_spencer_eq hP hG E H Dw l Xo c K y _ _ M hpq hx (isTanX_dir y X h1 h2 M) k (hks M),
+    ⟨fun k => _root_.GlobalTheory.FlagTan.eq_of_kodaira_spencer_eq hP hG E H Dw l Xo c K y _ _ M hpq hx (isTanX_dir y X h1 h2 M) k (hks M),
       fun e => e ▸ hks M⟩
-  obtain ⟨M, hM⟩ := _root_.GlobalTheory.T.exists_kodaira_spencer_flag_tangent hP E H Dw l Xo c K y x' hpq hx
-  exact ⟨⟨M, (key M).1 hM, fun M' e => _root_.GlobalTheory.T.flag_tangent_kodaira_spencer_unique hP E H Dw l Xo c K y x' hpq hx M' M ((key M').2 e) hM⟩, key⟩
+  obtain ⟨M, hM⟩ := _root_.GlobalTheory.KSExist.exists_kodaira_spencer_map hP E H Dw l Xo c K y x' hpq hx
+  exact ⟨⟨M, (key M).1 hM, fun M' e => _root_.GlobalTheory.FlagTan.kodaira_spencer_map_unique hP E H Dw l Xo c K y x' hpq hx M' M ((key M').2 e) hM⟩, key⟩
 end GlobalTheory.FlagTan
 end
 

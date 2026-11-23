@@ -55,13 +55,6 @@ open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.SympLevLocus
 
-theorem range_sub_iff {X : Scheme.{0}} {k : Type} [Field k] (x : Sp k ⟶ X) (W : Set X) (p₀ : Sp k) :
-    Set.range x.base ⊆ W ↔ x.base p₀ ∈ W := by
-  refine ⟨fun H => H ⟨p₀, rfl⟩, ?_⟩
-  rintro H _ ⟨p, rfl⟩
-  rwa [Subsingleton.elim p p₀]
-
-
 open GlobalTheory.SiegelPull in
 theorem exists_open_sympLev : ∀ (h M : ℕ) (S' : Scheme.{0}) [IsLocallyNoetherian S'] (t : S' ⟶ Sp (cycAway M)) (G : Over S') [GrpObj G] [IsCommMonObj G] (P : LB (G2 G).left) (lev : (Fin h ⊕ Fin h → ℤ) → (𝟙_ (Over S') ⟶ G)), IsAbelianScheme G → P.IsLB → (∃ s : (P.pull (lift (1 : G ⟶ G) (𝟙 G)).left).Gen, s.IsGen) → (∃ s : (P.pull (lift (𝟙 G) (1 : G ⟶ G)).left).Gen, s.IsGen) → LBIso P (P.pull (lift (snd G G) (fst G G)).left) → 3 ≤ M → Odd M → (∀ a b, lev (a + b) = lev a * lev b) → (∀ a, lev a ^ M = 1) → ∃ U : S'.Opens, (∀ V : S'.Opens, V ≤ U → IsSympLev (P.pull (Pdiv.PullbackComparison.pφ₂ V.ι G)) h M (zetaAway M) (V.ι ≫ t) (fun a => GlobalTheory.SiegelPull.secPull (Pdiv.PullbackComparison.isGrpPullback V.ι G) (lev a))) ∧ ∀ (T : Scheme.{0}) (g : T ⟶ S') (c' : SiegPre h M (zetaAway M) (g ≫ t)) (φ : c'.A.left ⟶ G.left) (φ₂ : (G2 c'.A).left ⟶ (G2 G).left), IsGrpPullback c'.A G g φ → IsSquare φ φ₂ → LBIso c'.P (P.pull φ₂) → (∀ a, (c'.lev a).left ≫ φ = g ≫ (lev a).left) → Set.range g.base ⊆ (U : Set S') := by
   intro h M S' _ t G _ _ P lev hab hP hr₁ hr₂ hsy hM hodd hadd htor
@@ -72,9 +65,9 @@ theorem exists_open_sympLev : ∀ (h M : ℕ) (S' : Scheme.{0}) [IsLocallyNoethe
       ∃ W, Good W ∧ Set.range x.base ⊆ W := by
     intro k _ x hx
     let p₀ : Sp k := (⊥ : PrimeSpectrum k)
-    rw [range_sub_iff x _ p₀] at hx
+    rw [_root_.GlobalTheory.LevTrivOpen.range_subset_iff_mem x _ p₀] at hx
     obtain ⟨W, hW, hpW⟩ := TopologicalSpace.Opens.mem_sSup.1 hx
-    exact ⟨W, hW, (range_sub_iff x _ p₀).2 hpW⟩
+    exact ⟨W, hW, (_root_.GlobalTheory.LevTrivOpen.range_subset_iff_mem x _ p₀).2 hpW⟩
   refine ⟨sSup {W | Good W}, fun V hV => ?_, ?_⟩
   · have pb := Pdiv.PullbackComparison.isGrpPullback V.ι G
     refine (isSympLev_iff _ _ _ _ _ _).2 ⟨fun a b => push_injective pb _ ?_, fun a => push_injective pb _ ?_,
@@ -94,9 +87,9 @@ theorem exists_open_sympLev : ∀ (h M : ℕ) (S' : Scheme.{0}) [IsLocallyNoethe
     let z : Kˣ := ((GlobalTheory.LowChart.isUnit_zetaAway M hM).map β).unit
     have hc : SympAt c'.P h M c'.lev K x₀ z := c'.geom K x₀ β z hβ.symm rfl
     obtain ⟨hS₁, hS₂, hS₃⟩ := (sympAt_pullback_iff g hP c'.isLB pb sq iso hl K x₀ z).1 hc
-    have e₁ := GlobalTheory.T.level_sections_exact_kernel_locus_open S' M t G h lev hab hM hadd htor K (x₀ ≫ g)
-    have e₂ := GlobalTheory.T.exists_open_locus_torsion_points_are_level_sections S' M t G h lev hab hM hadd htor K (x₀ ≫ g)
-    have e₃ := GlobalTheory.T.symmetric_bundle_level_odd S' M t G P h lev hab hP hr₁ hr₂ hsy hM hodd hadd htor K (x₀ ≫ g) β z (by rw [Category.assoc, hβ]) rfl
+    have e₁ := _root_.GlobalTheory.levTriv_locus_open S' M t G h lev hab hM hadd htor K (x₀ ≫ g)
+    have e₂ := _root_.GlobalTheory.LevSurjOpen.exists_open_levSurj S' M t G h lev hab hM hadd htor K (x₀ ≫ g)
+    have e₃ := _root_.GlobalTheory.WeilOpenLocus.weil_open S' M t G P h lev hab hP hr₁ hr₂ hsy hM hodd hadd htor K (x₀ ≫ g) β z (by rw [Category.assoc, hβ]) rfl
     obtain ⟨W₁, hW₁, H₁⟩ := e₁ hS₁
     obtain ⟨W₂, hW₂, H₂⟩ := e₂ hS₂
     obtain ⟨W₃, hW₃, H₃⟩ := e₃ hS₃

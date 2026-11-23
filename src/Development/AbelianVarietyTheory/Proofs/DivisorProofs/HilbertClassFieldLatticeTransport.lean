@@ -67,8 +67,6 @@ theorem nrm_eq_modF : ∀ {K : Type} [Field K] [NumberField K] (t : (Af K)ˣ) (�
 
 theorem modF_rat : ∀ {E : Type} [Field E] [NumberField E] (y : (Af E)ˣ), ∃ q : ℚ, modF y = q := GlobalTheory.T.finiteIdele_module_exists_rat
 
-theorem modF_upIdele : ∀ {K E : Type} [Field K] [NumberField K] [Field E] [NumberField E] [Algebra K E] (t : (Af K)ˣ), modF (upIdele K E t) = modF t ^ Module.finrank K E := GlobalTheory.T.modF_finiteIdeleUpToExtension
-
 theorem card_eq_finrank : ∀ {K E : Type} [Field K] [NumberField K] [Field E] [NumberField E] [IsCMField E] [Algebra K E] {I : Type} [Fintype I] (φ : I → E →+* ℂ) (hφ : IsCMType φ) (h2 : Module.finrank ℚ K = 2), Fintype.card I = Module.finrank K E := GlobalTheory.T.isCMTypeOfEmbeddings_card_eq_finrank
 
 theorem norm_conj_finPart : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {I : Type} [Fintype I] (φ : I → E →+* ℂ) (hφ : IsCMType φ) (s : ℕ) (κ : I → ℕ) (c : Ideal (OF E)) (hc : c ≠ ⊥) (χ : HChar E) (hχ : HasInf χ φ (fun i => (κ i : ℤ) + s)) (hu : ∀ u ∈ hatOUnits c, finPart χ u = 1) (σ : ℂ ≃+* ℂ) (y : (Af E)ˣ), ‖σ (finPart χ y : ℂ)‖ = 1 := GlobalTheory.T.norm_galois_conj_heckeCharacter_finitePart_eq_one
@@ -124,13 +122,13 @@ theorem norm_lamF_conj_up {K E : Type} [Field K] [NumberField K] [Field E] [Numb
     (σ : ℂ ≃+* ℂ) (hc : IsConjChar φ s κ' σ χ χ') (t : (Af K)ˣ) :
     ‖lamF s χ' (upIdele K E t)‖ = modF t ^ (s * Fintype.card I) := by
   have hu := GlobalTheory.CMVal.OrderUnits.finPart_eq_one E I φ hφ s κ 𝔣 Q χ hE h𝔣 hQ hχ
-  have h1 := norm_conj_finPart φ hφ s κ (condQ 𝔣 Q) (condQ_ne_bot h𝔣 Q) χ hχ.2.2.1 hu σ (upIdele K E t)
-  obtain ⟨q, hq⟩ := modF_rat (upIdele K E t)
+  have h1 := _root_.GlobalTheory.CMVal.norm_conj_finPart φ hφ s κ (condQ 𝔣 Q) (condQ_ne_bot h𝔣 Q) χ hχ.2.2.1 hu σ (upIdele K E t)
+  obtain ⟨q, hq⟩ := _root_.GlobalTheory.CMVal.ModFRat.modF_rat (upIdele K E t)
   have hpos := GlobalTheory.CMVal.IdeleModule.modF_pos (upIdele K E t)
   rw [hc.1, lamF, map_mul, norm_mul, h1, one_mul]
   have e : (((modF (upIdele K E t)) ^ s : ℝ) : ℂ) = ((q ^ s : ℚ) : ℂ) := by rw [hq]; push_cast; rfl
   rw [e, map_ratCast, ← e]
-  rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (pow_pos hpos _), modF_upIdele, ← card_eq_finrank φ hφ h2,
+  rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (pow_pos hpos _), _root_.GlobalTheory.UpIdeleMod.modF_upIdele, ← _root_.GlobalTheory.CMTypeCard.card_eq_finrank_of_isCMType φ hφ h2,
     ← pow_mul, mul_comm]
 
 theorem beta_eq_coordIn_pow (E : Type) [Field E] [NumberField E] {I : Type} [Fintype I] (d s : ℕ) (κ : I → ℕ)
@@ -154,13 +152,13 @@ theorem transportFor_of (hA : LatAlg) (hC : LatConj) {K : Type} [Field K] [Numbe
       σ (coordIn E d s κ Ω₀ T) = coordIn E d s κ (Ω σ) ((((nrm (𝔞 σ : FractionalIdeal (𝓞 K)⁰ K) : ℝ) : ℂ) ^
         (∑ i, κ i))⁻¹ * (lamF s χ' (upIdele K E (t σ)))⁻¹ * T') := by
     intro σ hσ κ' hκ' Q χ T χ' T' hV hV'
-    rw [nrm_eq_modF _ _ (hT σ hσ).2]
-    exact conj_coordIn_toric hC d δ φK h2 hd hδ σ (t σ) ΛK (Λ σ) Ω₀ (Ω σ) hΩ₀ (hT σ hσ).1 φ hE hφ hφK s hs
+    rw [_root_.GlobalTheory.LatVal.nrm_eq_modF_of_isInvIdealOf _ _ (hT σ hσ).2]
+    exact _root_.GlobalTheory.ConjCoordToric.conj_coordIn_toric hC d δ φK h2 hd hδ σ (t σ) ΛK (Λ σ) Ω₀ (Ω σ) hΩ₀ (hT σ hσ).1 φ hE hφ hφK s hs
       κ κ' hκ' 𝔣 h𝔣 Q χ χ' T T' hV hV'
   refine ⟨fun Q χ T hV => ⟨?_, fun σ hσ κ' hκ' χ' T' hV' => ?_⟩,
     fun Q₁ Q₂ χ₁ χ₂ T₁ T₂ hV₁ hV₂ hT₂ => ⟨?_, fun σ hσ κ' hκ' χ₁' χ₂' T₁' T₂' hV₁' hV₂' => ?_⟩⟩
   · rw [beta_eq_coordIn_pow E d s κ Ω₀ T ΛK hΩ₀]
-    exact (algebraic_coordIn_toric hA d δ φK h2 hd hδ ΛK Ω₀ hΛ hΩ₀ φ hE hφ hφK s hs κ 𝔣 h𝔣 Q χ T hV).pow 12
+    exact (_root_.GlobalTheory.ToricCoordAlg.isAlgebraic_coordIn hA d δ φK h2 hd hδ ΛK Ω₀ hΛ hΩ₀ φ hE hφ hφK s hs κ 𝔣 h𝔣 Q χ T hV).pow 12
   · have hD := (disc_j_of_torsTransport (hT σ hσ).1 hΩ₀).1
     set N := nrm (𝔞 σ : FractionalIdeal (𝓞 K)⁰ K) with hN
     have hN0 : N ≠ 0 := nrm_ne_zero _
@@ -170,7 +168,7 @@ theorem transportFor_of (hA : LatAlg) (hC : LatConj) {K : Type} [Field K] [Numbe
       rw [beta_eq_coordIn_pow E d s κ Ω₀ T ΛK hΩ₀, map_pow, conj σ hσ κ' hκ' Q χ T χ' T' hV hV',
         beta_eq_coordIn_pow E d s κ (Ω σ) _ (Λ σ) hD]
     have hl := norm_lamF_conj_up h2 φ hE hφ s κ κ' 𝔣 h𝔣 Q hV.1 χ χ' hV.2.1 σ hV'.1 (t σ)
-    rw [← nrm_eq_modF _ _ (hT σ hσ).2, ← hN] at hl
+    rw [← _root_.GlobalTheory.LatVal.nrm_eq_modF_of_isInvIdealOf _ _ (hT σ hσ).2, ← hN] at hl
     refine ⟨by rw [e, beta_eq]; ring, ?_⟩
     rw [e, beta_eq, norm_div, norm_pow, norm_mul, norm_mul, norm_mul, norm_inv, norm_inv, hl, norm_pow, norm_pow,
       Complex.norm_real, Complex.norm_real, Real.norm_eq_abs, Real.norm_eq_abs, abs_of_pos hNpos,
@@ -179,8 +177,8 @@ theorem transportFor_of (hA : LatAlg) (hC : LatConj) {K : Type} [Field K] [Numbe
     field_simp
     ring
   · rw [← coordIn_div E hd hs κ hΩ₀0 T₁ T₂, div_eq_mul_inv]
-    exact (algebraic_coordIn_toric hA d δ φK h2 hd hδ ΛK Ω₀ hΛ hΩ₀ φ hE hφ hφK s hs κ 𝔣 h𝔣 Q₁ χ₁ T₁ hV₁).mul
-      (algebraic_coordIn_toric hA d δ φK h2 hd hδ ΛK Ω₀ hΛ hΩ₀ φ hE hφ hφK s hs κ 𝔣 h𝔣 Q₂ χ₂ T₂ hV₂).inv
+    exact (_root_.GlobalTheory.ToricCoordAlg.isAlgebraic_coordIn hA d δ φK h2 hd hδ ΛK Ω₀ hΛ hΩ₀ φ hE hφ hφK s hs κ 𝔣 h𝔣 Q₁ χ₁ T₁ hV₁).mul
+      (_root_.GlobalTheory.ToricCoordAlg.isAlgebraic_coordIn hA d δ φK h2 hd hδ ΛK Ω₀ hΛ hΩ₀ φ hE hφ hφK s hs κ 𝔣 h𝔣 Q₂ χ₂ T₂ hV₂).inv
   · have hΩσ : Ω σ ≠ 0 := (hT σ hσ).1.2.1
     set m : ℂ := (((nrm (𝔞 σ : FractionalIdeal (𝓞 K)⁰ K) : ℝ) : ℂ) ^ (∑ i, κ i)) with hm
     have hm0 : m ≠ 0 := pow_ne_zero _ (by exact_mod_cast nrm_ne_zero _)
@@ -200,7 +198,7 @@ theorem transportFor_of (hA : LatAlg) (hC : LatConj) {K : Type} [Field K] [Numbe
 theorem transport_of (hH : GlobalTheory.Published.HilbertClassFieldJ) (hA : LatAlg) (hC : LatConj) : Transport := by
   intro K _ _ d hd h2 hdisc φK ΛK hΛ
   have hTC : IsTotallyComplex K := isTotallyComplex_of_discr_neg h2 (by rw [hdisc]; omega)
-  obtain ⟨δ, hδ⟩ := exists_sq_eq_neg K d h2 hdisc
+  obtain ⟨δ, hδ⟩ := _root_.GlobalTheory.exists_sq_eq_neg_of_discr_eq_neg K d h2 hdisc
   obtain ⟨Ω₀, hΩ₀⟩ := IsAlgClosed.exists_pow_nat_eq (latDisc ΛK) (by norm_num : 0 < 12)
   have hΩ₀0 : Ω₀ ≠ 0 := by rintro rfl; exact latDisc_ne_zero ΛK (by rw [← hΩ₀]; norm_num)
   have key : ∀ σ : ℂ ≃+* ℂ, Fixes φK σ → ∃ (t : (Af K)ˣ) (𝔞 : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (Λ : PeriodPair) (Ω : ℂ),
@@ -226,7 +224,7 @@ theorem transport_of (hH : GlobalTheory.Published.HilbertClassFieldJ) (hA : LatA
   haveI : Nonempty PeriodPair := ⟨ΛK⟩
   choose! t 𝔞 Λ Ω hT using key
   refine ⟨t, 𝔞, Λ, fun σ hσ => ⟨(hT σ hσ).2.1, (hT σ hσ).2.2, (disc_j_of_torsTransport (hT σ hσ).1 hΩ₀).2⟩,
-    equidistributed_of_j hH h2 φK ΛK hΛ 𝔞
+    _root_.GlobalTheory.EquidistJ.equidistributed_of_hilbertClassFieldJ hH h2 φK ΛK hΛ 𝔞
       (fun σ hσ => ⟨Λ σ, (hT σ hσ).2.2, (disc_j_of_torsTransport (hT σ hσ).1 hΩ₀).2⟩), ?_⟩
   intro E _ _ _ _ _ hE I _ φ hcard hφ hφK s κ 𝔣 hs hκ h𝔣
   exact transportFor_of hA hC d (by omega) δ hδ h2 φK ΛK hΛ Ω₀ hΩ₀ hΩ₀0 t 𝔞 Λ Ω

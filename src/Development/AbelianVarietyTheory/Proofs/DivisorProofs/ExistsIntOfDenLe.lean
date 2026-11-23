@@ -103,9 +103,9 @@ theorem finite_fix_core (G : HTGroup p) (hG : G.a = 1) (v : InfinitePlace G.F)
     (hz : 0 < (star z ⬝ᵥ (herm G v β *ᵥ z)).re) :
     Set.Finite {y : grp G β | FixL G v β y z ∧
       f (h.1⁻¹ * toAfF G β x t hx y * h.1) * f' (h.2⁻¹ * toP1 G β y * h.2) ≠ 0} := by
-  obtain ⟨D, hD, hAf⟩ := GlobalTheory.T.formGroup_testFunction_support_bounded_denominators p G β x t hx L f hf h.1
-  obtain ⟨k, hP⟩ := GlobalTheory.T.p_adic_denominator_bound p G β K' f' hf' h.2
-  obtain ⟨K, hK⟩ := GlobalTheory.T.fixed_vector_squared_bound p G hG v hv β hsym hR z hz
+  obtain ⟨D, hD, hAf⟩ := _root_.GlobalTheory.LKCx.BoundedDen.main p G β x t hx L f hf h.1
+  obtain ⟨k, hP⟩ := _root_.GlobalTheory.AtP.main p G β K' f' hf' h.2
+  obtain ⟨K, hK⟩ := _root_.GlobalTheory.LKCx.entries_sq_le_of_fixL p G hG v hv β hsym hR z hz
   set N : ℕ := D * p ^ k with hN
   have hNpos : (0 : ℝ) < N := by
     rw [hN]; exact_mod_cast Nat.mul_pos hD (pow_pos (Fact.out : p.Prime).pos k)
@@ -114,7 +114,7 @@ theorem finite_fix_core (G : HTGroup p) (hG : G.a = 1) (v : InfinitePlace G.F)
   let Φ : G.C →+ (InfinitePlace G.F → Fin G.n → Fin G.n → ℂ) :=
     AddMonoidHom.mk' (fun c w i l => G.psi w c i l) (by intro a c; funext w i l; simp [map_add (f := _)])
   refine Set.Finite.of_finite_image ?_ ((grp_val_injective G β).injOn)
-  refine GlobalTheory.T.finite_of_bounded_image_in_finitely_generated_subgroup Φ (fun k e he => GlobalTheory.T.embeddings_real_independent p G k e he) S _ ?_ (Real.sqrt (max K 0 * N)) ?_
+  refine _root_.GlobalTheory.finite_of_bounded_image_closure_finset Φ (fun k e he => _root_.GlobalTheory.LKCx.psi_linearIndependent_real p G k e he) S _ ?_ (Real.sqrt (max K 0 * N)) ?_
   · rintro _ ⟨y, ⟨-, hne⟩, rfl⟩
     have hf1 := left_ne_zero_of_mul hne
     have hf2 := right_ne_zero_of_mul hne

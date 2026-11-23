@@ -55,14 +55,6 @@ namespace GlobalTheory.HSNef
 
 variable {X : Scheme.{0}} [IsIntegral X]
 
-theorem unitAt_ne_zero {x : X} {h : X.functionField} (hh : UnitAt x h) : h ≠ 0 := by
-  obtain ⟨b, hb, rfl⟩ := hh
-  intro e
-  have h1 : algebraMap (X.presheaf.stalk x) X.functionField (b * ↑hb.unit⁻¹) = 1 := by
-    rw [IsUnit.mul_val_inv, map_one]
-  rw [map_mul, e, zero_mul] at h1
-  exact zero_ne_one h1
-
 theorem regAt_div_unitAt {x : X} {g h : X.functionField} (hg : RegAt x g) (hh : UnitAt x h) :
     RegAt x (g / h) := by
   obtain ⟨a, ha⟩ := hg
@@ -87,7 +79,7 @@ theorem le_shift_of_isFS_sub : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsI
       (ρ c : X.functionField) / (ρ' d : X.functionField) =
         f (ι j') * (ρ c : X.functionField) / (f (ι j') * (ρ' d : X.functionField)) := by
     intro x c d j' hu
-    have hf : f (ι j') ≠ 0 := left_ne_zero_of_mul (unitAt_ne_zero hu)
+    have hf : f (ι j') ≠ 0 := left_ne_zero_of_mul (_root_.GlobalTheory.Cartier.UnitAt.ne_zero hu)
     rw [mul_div_mul_left _ _ hf]
   have hτ : ∀ (x : X) c d, x ∈ M.B.U c → x ∈ M'.B.U d →
       RegAt x ((ρ c : X.functionField) / (ρ' d : X.functionField)) := by

@@ -63,7 +63,7 @@ theorem chebotarevDegreeOne' : ChebotarevDegreeOne := by
   obtain ⟨Z, τ, hZ, hZirr, hcross⟩ := GlobalTheory.T.exists_cyclotomic_crossing_field_deciding_frobenius F Ω L g' m hm hdvd hirr
   have : NumberField Z := NumberField.of_module_finite F Z
   have : IsAlgClosure Z Ω := ⟨IsAlgClosure.isAlgClosed F, inferInstance⟩
-  have hfin := hS.union (GlobalTheory.T.finite_places_inertia_not_fixing_finiteExtension F Ω L)
+  have hfin := hS.union (_root_.GlobalTheory.InertiaAlmostAll.finite_ramified F Ω L)
   let u : HeightOneSpectrum (𝓞 Z) → HeightOneSpectrum (𝓞 F) := fun w => w.under (𝓞 F)
   have hu : ∀ w : HeightOneSpectrum (𝓞 Z), w.asIdeal.LiesOver (u w).asIdeal := fun w => ⟨rfl⟩
   have hfin' : (u ⁻¹' (S ∪ {v | ∃ B : ValuationSubring Ω, IsPlaceOver B v ∧
@@ -77,7 +77,7 @@ theorem chebotarevDegreeOne' : ChebotarevDegreeOne := by
   obtain ⟨w, hw, hp, hτ⟩ := GlobalTheory.T.exists_prime_absNorm_eq_of_irreducible_cyclotomic' Z m hm hZirr τ _ hfin'
   obtain ⟨B, hB⟩ := exists_isPlaceOver Ω w
   obtain ⟨σ, hσ⟩ := exists_isFrob hB
-  obtain ⟨hN, hBv, hσv⟩ := GlobalTheory.T.isFrob_restrictScalars_of_prime_absNorm' F Ω Z w (u w) (hu w) hp B hB σ hσ
+  obtain ⟨hN, hBv, hσv⟩ := _root_.GlobalTheory.isFrob_restrictScalars_of_prime_absNorm F Ω Z w (u w) (hu w) hp B hB σ hσ
   simp only [Set.mem_preimage, Set.mem_union, not_or, Set.mem_ofPred_eq, not_exists, not_and, not_not] at hw
   refine ⟨u w, hw.1, ((GlobalTheory.absNorm_prime_iff_inertiaDeg_eq_one_and_finite_ramified F).1 _).1 (hN ▸ hp),
     B, hBv, hw.2 B hBv, σ.restrictScalars F, hσv, ?_⟩

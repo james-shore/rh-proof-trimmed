@@ -94,7 +94,7 @@ theorem gW_eq_chi_smul : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : 
     rw [h1]
     exact congrArg (· * (R.HW i σ).e w v h') hle.2
   have hA := level_action_spec hT ⟨κ', hκ'⟩ κ' hκ' h
-  rw [hA, GlobalTheory.ThetaShiftSmooth.levChi_flag_eq_one R i κ', inv_one, one_mul,
+  rw [hA, _root_.GlobalTheory.ThetaProjEquiv.realDatum_coeffFlagLevelCharacter_eq_one R i κ', inv_one, one_mul,
     hM.lev v κ' hmem h, hchi]
 
 end GlobalTheory.FormEigenW

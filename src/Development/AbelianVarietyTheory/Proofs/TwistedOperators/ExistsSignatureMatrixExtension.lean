@@ -92,11 +92,6 @@ theorem embOpt_inv {h : Matrix (Fin m) (Fin m) ℂ} (hh : IsUnit h) : (embOpt e 
   Matrix.inv_eq_right_inv (by
     rw [← embOpt_mul, Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).1 hh), embOpt_one])
 
-theorem Jm_unit (ε : Fin m → Bool) : IsUnit (Formalism.REAL.Jm ε) := by
-  refine IsUnit.of_mul_eq_one (Formalism.REAL.Jm ε) ?_
-  rw [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1; funext a; split_ifs <;> simp
-
 def vecOpt (y : Fin m → ℂ) (a : ℂ) : Fin N → ℂ := fun b => (e.symm b).elim a y
 
 theorem embOpt_vec (h : Matrix (Fin m) (Fin m) ℂ) (y : Fin m → ℂ) (a : ℂ) :
@@ -167,7 +162,7 @@ theorem exists_frame (J : Matrix (Fin N) (Fin N) ℂ) (h1 : Fᴴ * J * z = 0) (h
     rw [hM, colM_gram e F z J h1 h2 h3, ← hG, embOpt_mul, embOpt_mul, embOpt_ct, embOpt_Jm e h0 hε]
   have hMu : IsUnit M := by
     have : IsUnit (Mᴴ * J * M) := by
-      rw [hg]; exact (((Matrix.isUnit_conjTranspose _).2 hCu).mul (Jm_unit ε)).mul hCu
+      rw [hg]; exact (((Matrix.isUnit_conjTranspose _).2 hCu).mul (_root_.Formalism.REAL.f1alg_isUnit_J ε)).mul hCu
     rw [Matrix.isUnit_iff_isUnit_det, Matrix.det_mul] at this
     exact (Matrix.isUnit_iff_isUnit_det _).2 (isUnit_of_mul_isUnit_right this)
   have hd := (Matrix.isUnit_iff_isUnit_det _).1 hMu

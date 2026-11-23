@@ -55,11 +55,6 @@ open scoped Classical
 
 variable {g : ℕ} [Fact g.Prime]
 
-theorem toG_val {n : ℕ} (x : Gn g n) : toG (x : Mt g n) = x := by
-  unfold toG
-  rw [dif_pos x.isUnit]
-  exact Units.ext rfl
-
 theorem br_zero {a : ℕ} (M : Mt g a) : br 0 a M = M := by
   funext i j
   simp only [br, entN, zero_add, i.isLt, j.isLt, and_self, dif_pos]
@@ -86,7 +81,7 @@ theorem hc_one_left (a : ℕ) (α : Gn g a → ℂ) (hα : IsClass α) : hc 0 a 
   funext x
   unfold hc hcT
   simp only [inPar_zero, if_true, one_mul,
-    br_zero, toG_val]
+    br_zero, _root_.GlobalTheory.GLm.HcAssoc.toG_coe]
   rw [Finset.filter_true_of_mem (fun _ _ => trivial), Finset.card_univ]
   exact mean_class hα x
 
@@ -94,7 +89,7 @@ theorem hc_one_right (a : ℕ) (α : Gn g a → ℂ) (hα : IsClass α) : hc a 0
   funext x
   unfold hc hcT
   simp only [inPar_self, if_true, mul_one,
-    tl_self, toG_val]
+    tl_self, _root_.GlobalTheory.GLm.HcAssoc.toG_coe]
   rw [Finset.filter_true_of_mem (fun _ _ => trivial), Finset.card_univ]
   exact mean_class hα x
 

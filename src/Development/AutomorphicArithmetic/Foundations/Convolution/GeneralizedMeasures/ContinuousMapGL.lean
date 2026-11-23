@@ -79,9 +79,7 @@ private theorem rp_compact {ι : Type*} {R : ι → Type*} [∀ i, TopologicalSp
   · rintro ⟨y, hy, rfl⟩ i
     exact hy i trivial
 
-private theorem isLC_prod {X ι : Type*} [TopologicalSpace X] (T : Finset ι) (f : ι → X → ℂ)
-    (h : ∀ i ∈ T, IsLocallyConstant (f i)) : IsLocallyConstant fun x => ∏ i ∈ T, f i x :=
-  _root_.UpperTheory.Reformulated.B.Qf48.isLC_prod T f h
+private alias isLC_prod := _root_.UpperTheory.Reformulated.B.Qf48.isLC_prod
 
 private theorem continuous_mapGL' {m : ℕ} {R S : Type*} [CommRing R] [CommRing S] [TopologicalSpace R]
     [TopologicalSpace S] (f : R →+* S) (hf : Continuous f) : Continuous (mapGL m f) :=

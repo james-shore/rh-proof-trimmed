@@ -200,12 +200,12 @@ theorem bkA_exact_annihilators : Formalism.GaloisCohomology.LocalTateDualityK �
   obtain ⟨hdrd, hfd⟩ := GlobalTheory.T.de_rham_filtration_duality l P AI hT K
   have hdr' : IsDR (P.PD K) A'.ρ := hdrd LL O hO A A' m hdr hdual
   have hfil := hfd LL O hO A A' m hdr hdual
-  obtain ⟨hH1fin, hH1⟩ := GlobalTheory.T.finrank_H1_dual_pair hTD hEC l P K LL O hO A A' m hdual
-  obtain ⟨hH1fin', -⟩ := GlobalTheory.T.finrank_H1_dual_pair hTD hEC l P K LL O hO A' A m.flip hdual'
-  obtain ⟨-, hf⟩ := GlobalTheory.T.finrank_H1f_de_rham l P AI hT K LL O hO A hdr
-  obtain ⟨-, hf'⟩ := GlobalTheory.T.finrank_H1f_de_rham l P AI hT K LL O hO A' hdr'
-  have hort := GlobalTheory.T.cup_product_finite_classes_coboundary l P AI hT K LL O hO A A' m hdr hdual
-  obtain ⟨β, hβ, hl, hr⟩ := GlobalTheory.T.tateDuality_degreeOne_continuous_cocycles hTD l P K LL O hO A A' m hdual
+  obtain ⟨hH1fin, hH1⟩ := _root_.GlobalTheory.EulerCharH1.finite_and_finrank_H1V hTD hEC l P K LL O hO A A' m hdual
+  obtain ⟨hH1fin', -⟩ := _root_.GlobalTheory.EulerCharH1.finite_and_finrank_H1V hTD hEC l P K LL O hO A' A m.flip hdual'
+  obtain ⟨-, hf⟩ := _root_.GlobalTheory.SeqDim.h1f_finrank l P AI hT K LL O hO A hdr
+  obtain ⟨-, hf'⟩ := _root_.GlobalTheory.SeqDim.h1f_finrank l P AI hT K LL O hO A' hdr'
+  have hort := _root_.GlobalTheory.BKOrth.bk_orth l P AI hT K LL O hO A A' m hdr hdual
+  obtain ⟨β, hβ, hl, hr⟩ := _root_.GlobalTheory.tateDuality_degreeOne_cocycles hTD l P K LL O hO A A' m hdual
   haveI := finite_continuous_cocycles_localGaloisRep A hH1fin
   haveI := finite_continuous_cocycles_localGaloisRep A' hH1fin'
   have hkl : LinearMap.ker β = (B1 A.ρ).comap (continuousCocycles A.ρ).subtype := by

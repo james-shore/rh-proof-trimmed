@@ -62,27 +62,15 @@ section Top
 
 variable {R : Type*} [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] {a b : R}
 
-theorem continuous_re : Continuous (fun x : ℍ[R, a, b] => x.re) :=
-  (continuous_apply 0).comp (continuous_induced_dom (f := (coords : ℍ[R, a, b] → Fin 4 → R)))
+alias continuous_re := _root_.GlobalTheory.QSA.Grp.cont_re
 
-theorem continuous_imI : Continuous (fun x : ℍ[R, a, b] => x.imI) :=
-  (continuous_apply 1).comp (continuous_induced_dom (f := (coords : ℍ[R, a, b] → Fin 4 → R)))
+alias continuous_imI := _root_.GlobalTheory.QSA.Grp.cont_imI
 
-theorem continuous_imJ : Continuous (fun x : ℍ[R, a, b] => x.imJ) :=
-  (continuous_apply 2).comp (continuous_induced_dom (f := (coords : ℍ[R, a, b] → Fin 4 → R)))
+alias continuous_imJ := _root_.GlobalTheory.QSA.Grp.cont_imJ
 
-theorem continuous_imK : Continuous (fun x : ℍ[R, a, b] => x.imK) :=
-  (continuous_apply 3).comp (continuous_induced_dom (f := (coords : ℍ[R, a, b] → Fin 4 → R)))
+alias continuous_imK := _root_.GlobalTheory.QSA.Grp.cont_imK
 
-theorem continuous_of_coords {X : Type*} [TopologicalSpace X] {f : X → ℍ[R, a, b]}
-    (h0 : Continuous fun x => (f x).re) (h1 : Continuous fun x => (f x).imI)
-    (h2 : Continuous fun x => (f x).imJ) (h3 : Continuous fun x => (f x).imK) : Continuous f := by
-  refine continuous_induced_rng.2 (continuous_pi fun i => ?_)
-  fin_cases i
-  · exact h0
-  · exact h1
-  · exact h2
-  · exact h3
+alias continuous_of_coords := _root_.GlobalTheory.QSA.Grp.cont_of
 
 attribute [local fun_prop] continuous_re continuous_imI continuous_imJ continuous_imK
 
@@ -145,15 +133,6 @@ theorem isPlacesIdem_mul_self {S₁ : Finset (InfinitePlace F)} {S₂ : Finset (
     · rw [hη.2.2.2 u hu, zero_mul]
   exact Prod.ext h1 h2
 
-theorem rat_mul {a b : F} (x y : ℍ[F, a, b]) : rat (x * y) = rat x * rat y := by
-  ext <;> simp [rat] <;> ring
-
-theorem rat_one {a b : F} : rat (1 : ℍ[F, a, b]) = 1 := by
-  ext <;> simp [rat]
-
-theorem rat_star {a b : F} (x : ℍ[F, a, b]) : rat (star x) = star (rat x) := by
-  ext <;> simp [rat]
-
 theorem rat_smul {a b : F} (t : F) (x : ℍ[F, a, b]) : rat (t • x) = algebraMap F (AF F) t • rat x := by
   ext <;> simp [rat, Algebra.smul_def]
 
@@ -184,7 +163,7 @@ theorem conj_mem_closure_normOne_of_idempotent : ∀ (F : Type) [Field F] [Numbe
     c' * c = 1 → c * g * c' ∈ closure (H0 (a := a) (b := b) ε) → g ∈ closure (H0 (a := a) (b := b) ε) := by
   intro F _ _ a b _ _ T₁ T₂ η hη ε hε g _ hgη c c' hcc' hc'c hx
   have hηη := isPlacesIdem_mul_self hη
-  obtain ⟨-, -, hconj, -⟩ := GlobalTheory.T.closure_normOneProducts_h0_properties F a b ε hε
+  obtain ⟨-, -, hconj, -⟩ := _root_.GlobalTheory.QSA.Grp.closure_normOneProducts_subgroup_properties F a b ε hε
   by_cases hη0 : η = 0
   · have hg1 : g = 1 := by
       rw [hη0, zero_smul] at hgη
@@ -259,11 +238,11 @@ theorem conj_mem_closure_normOne_of_idempotent : ∀ (F : Type) [Field F] [Numbe
       rw [mul_sub, sub_mul, mul_one, hcc']
       abel
     have hr : rat δ * (c * g * c') * rat δ' = 1 + rat δ * (c * (g - 1) * c') * rat δ' := by
-      rw [hcg, mul_add, add_mul, mul_one, ← rat_mul, hδδ', rat_one]
+      rw [hcg, mul_add, add_mul, mul_one, ← _root_.GlobalTheory.QSA.Grp.rat_mul, hδδ', _root_.GlobalTheory.QSA.Grp.rat_one]
     rw [hr]
     show 1 + ((η • rat δ) * c) * (g - 1) * (c' * ((η * algebraMap F (AF F) (nrm δ)⁻¹) • star (η • rat δ))) = _
     refine congrArg (fun z => 1 + z) ?_
-    rw [hδ', rat_smul, rat_star]
+    rw [hδ', rat_smul, _root_.GlobalTheory.QSA.Grp.rat_star]
     exact conj_core η _ hηη (rat δ) c c' (g - 1) hgη
   rw [← hval]
   exact hmem

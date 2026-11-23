@@ -281,6 +281,6 @@ theorem span_class_eq_top : ∀ (F Ω : Type) [Field F] [NumberField F] [Field �
     rw [map_mul, map_pow]
     rfl
   · intro g hg
-    exact h7 _ (GlobalTheory.T.decomposition_group_local_galois F Ω A v hA ι _ g (e g).2 (hl g) hg)
+    exact h7 _ (_root_.GlobalTheory.CompanionTheory.Dict.isFrob_of_unramifiedDegree_eq_one F Ω A v hA ι _ g (e g).2 (hl g) hg)
 
 end GlobalTheory.CompanionTheory.KummerCup

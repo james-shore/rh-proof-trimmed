@@ -81,69 +81,13 @@ section Gen
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E]
   (hc : Formalism.BasicNotions.CMData F E) (n : ℕ) [NeZero n] {ST SG Q : Finset (Pl E)}
 
-theorem k_facts {π : 𝓞 E} (hB : BasePi ST π) (k : GL (Fin n) (AfE F E)) (c : DiaG (E := E) (ST := ST))
-    (hk : ∃ p₀ : DecoF E n ∅ ∅ ∅, IsPtOf hc k p₀ ∧ p₀.deco.1.N = stdLat E n)
-    (hT : ∀ (P : ST) (r j : Fin n), r.1 + 1 = n → HasRes P.1 (adAt F P.1 ((k⁻¹ : GL (Fin n) (AfE F E)).1 r j))
-      (if j = r then (c P : 𝓞 E ⧸ P.1.asIdeal) else 0)) :
-    k ∈ UAd hc n ∧ (∀ v, bc (prV (E := E) v) k ∈ levelVL hc.sig (1 : Matrix (Fin n) (Fin n) E) v (baseLb E n ST)) ∧
-    (∀ x : Fin n → E ⊗[F] FiniteAdeleRing (𝓞 F) F,
-      k.1 *ᵥ x ∈ latS (F := F) (FiniteAdeleRing (𝓞 F) F) (tensInt (F := F) (FiniteAdeleRing (𝓞 F) F) (intOE E) (intAd F)) (baseLb E n ST) ↔
-      x ∈ latS (F := F) (FiniteAdeleRing (𝓞 F) F) (tensInt (F := F) (FiniteAdeleRing (𝓞 F) F) (intOE E) (intAd F)) (baseLb E n ST)) ∧
-    ∀ v, v ∈ plUnder F ST →
-      (levelVL hc.sig (1 : Matrix (Fin n) (Fin n) E) v (baseLb E n ST) ⊓ stabFun (baseDualV hc n ST v) (fLoc hc n ST v)).map
-        (MulAut.conj (bc (prV (E := E) v) k)).toMonoidHom =
-      levelVL hc.sig (1 : Matrix (Fin n) (Fin n) E) v (baseLb E n ST) ⊓ stabFun (baseDualV hc n ST v) (fLoc hc n ST v) :=
-  GlobalTheory.T.admissibleBasePoint_unitary_normalisesLevel hc n hB k c hk hT
-
 theorem qb_chr_root {K : Type} [Field K] (Θ : LevQFam E K n Q) (hQ : ∀ P : Q, conjPrime₂ P.1 ≠ P.1) (hΘ : ThetaOpen Θ) (P : Q) :
     ∃ m : ℕ, 0 < m ∧ ∀ k, (qbLoc hc Θ hQ hΘ).chr P k ^ m = 1 :=
   GlobalTheory.T.localLevelCharacter_finiteOrder hc Θ hQ hΘ P
 
 theorem thetaOpen_cutQ {K : Type} [Field K] (Θ : LevQFam E K n Q) (hΘ : ThetaOpen Θ) (C : ∀ P : Q, Set (Sp E n))
     (hC : ∀ P : Q, C P = ∅ ∨ ∃ (z : Sp E n) (c : E), c ≠ 0 ∧ C P = {x | c⁻¹ • (x - z) ∈ stdAt E n P.1}) : ThetaOpen (cutQ Θ C) :=
-  GlobalTheory.T.openLevel_cutByCosetStabiliser Θ hΘ C hC
-
-theorem chartQ_exists {K : Type} [Field K] (Hw : ∀ w : SG, Subgroup (GL (Fin n) (𝓞 E ⧸ w.1.asIdeal))) {π : 𝓞 E} {T f : ℕ}
-    (hB : BasePi ST π) (hTπ : π * cO E π = (T : 𝓞 E)) (hST : ∀ P : Pl E, P ∈ ST ↔ π ∈ P.asIdeal)
-    (hcard : ∀ P ∈ ST, Nat.card (𝓞 E ⧸ P.asIdeal) = T)
-    (hSG : ∀ v : HeightOneSpectrum (𝓞 F), (T : 𝓞 F) ∈ v.asIdeal → v ∉ plUnder F SG)
-    (hidx : (baseLb E n ST).toAddSubgroup.relIndex
-      (Submodule.span (𝓞 E) (Formalism.BasicNotions.dualSet (hc.sig : E →+* E) (1 : Matrix (Fin n) (Fin n) E) (baseLb E n ST))).toAddSubgroup = T ^ (2 * f))
-    (lam : (Subgroup.pi Set.univ Hw : Subgroup (GLG (E := E) (n := n) (SG := SG))) →* ℂˣ)
-    {Θ : LevQFam E K n Q} (q : QLoc hc n Q Θ) (hO : QOpen q) (hQT : ∀ P : Q, (T : 𝓞 F) ∉ (qv F P.1).asIdeal) (σ₀ : K →+* ℂ)
-    (b : GL (Fin n) (AfE F E)) (hbU : b ∈ UAd hc n)
-    (hbV : ∀ v, bc (prV (E := E) v) b ∈ levelVL hc.sig (1 : Matrix (Fin n) (Fin n) E) v (baseLb E n ST))
-    (hbL : ∀ x : Fin n → E ⊗[F] FiniteAdeleRing (𝓞 F) F,
-      b.1 *ᵥ x ∈ latS (F := F) (FiniteAdeleRing (𝓞 F) F) (tensInt (F := F) (FiniteAdeleRing (𝓞 F) F) (intOE E) (intAd F)) (baseLb E n ST) ↔
-      x ∈ latS (F := F) (FiniteAdeleRing (𝓞 F) F) (tensInt (F := F) (FiniteAdeleRing (𝓞 F) F) (intOE E) (intAd F)) (baseLb E n ST))
-    (hbT : ∀ v, v ∈ plUnder F ST →
-      (levelVL hc.sig (1 : Matrix (Fin n) (Fin n) E) v (baseLb E n ST) ⊓ stabFun (baseDualV hc n ST v) (fLoc hc n ST v)).map
-        (MulAut.conj (bc (prV (E := E) v) b)).toMonoidHom =
-      levelVL hc.sig (1 : Matrix (Fin n) (Fin n) E) v (baseLb E n ST) ⊓ stabFun (baseDualV hc n ST v) (fLoc hc n ST v))
-    (hbO : ∀ v, v ∉ badQ' (F := F) SG Q → (T : 𝓞 F) ∉ v.asIdeal → bc (prV (E := E) v) b = 1)
-    (J : Matrix (Fin n) (Fin n) E) (hJ : J = 1) (bad : Set (HeightOneSpectrum (𝓞 F))) (hb : bad = badQ' (F := F) SG Q)
-    {cl : Type} (stab : cl → Type) [∀ c, Group (stab c)] (lat : cl → Submodule (𝓞 E) (Fin n → E))
-    (s : cl → DecoF E n ST SG Q) (y : cl → GL (Fin n) (AfE F E)) (hy : ∀ c, y c ∈ UAd hc n) (hd : ∀ c, FrOver q (y c) (s c))
-    (hs : Function.Bijective fun c => (Quotient.mk'' (s c) : DecoFCl (K := K) n ST SG Q (Subgroup.pi Set.univ Hw) Θ))
-    (hlat : ∀ c, lat c = (s c).deco.1.L)
-    (st : ∀ c, stab c →* GL (Fin n) E) (hinj : ∀ c, Function.Injective (st c))
-    (hr : ∀ c γ, γ ∈ (st c).range ↔ ∃ g : UF E n × ↥(Subgroup.pi Set.univ Hw : Subgroup (GLG (E := E) (n := n) (SG := SG))) × ↥Θ.grp, ufGL E n g.1 = γ ∧ g • s c = s c)
-    (hchr : ∀ P : Q, ∃ m : ℕ, 0 < m ∧ ∀ k, q.chr P k ^ m = 1) :
-    ∃ (lev : StepLevel F E hc.sig J T f bad) (Y : cl → UPts hc.sig J (FiniteAdeleRing (𝓞 F) F))
-      (SI : ∀ c, stab c →* UJ (hc.sig : E →+* E) J),
-      Function.Bijective (fun c => (Quotient.mk'' (Y c) : Cls lev)) ∧
-      (∀ c (x : Fin n → E ⊗[F] FiniteAdeleRing (𝓞 F) F),
-        x ∈ latS (F := F) (FiniteAdeleRing (𝓞 F) F) (tensInt (F := F) (FiniteAdeleRing (𝓞 F) F) (intOE E) (intAd F)) (lat c) ↔
-        ((Y c).1⁻¹).1 *ᵥ x ∈ latS (F := F) (FiniteAdeleRing (𝓞 F) F)
-          (tensInt (F := F) (FiniteAdeleRing (𝓞 F) F) (intOE E) (intAd F)) lev.Lb) ∧
-      (∀ c, Function.Injective (SI c)) ∧
-      (∀ c (γ : UJ (hc.sig : E →+* E) J), γ ∈ (SI c).range ↔
-        bc (inclE (F := F) (FiniteAdeleRing (𝓞 F) F)) γ.1 ∈ lev.U.map (MulAut.conj (Y c).1).toMonoidHom) ∧
-      lev.Lb = baseLb E n ST ∧ lev.U = (levUQ hc n ST SG Q (Subgroup.pi Set.univ Hw) q).map (MulAut.conj b).toMonoidHom ∧
-      (∀ (x : lev.U) (z : levUQ hc n ST SG Q (Subgroup.pi Set.univ Hw) q), x.1 = b * z.1 * b⁻¹ →
-        lev.chi x = ((levTyp lam).comp (Subgroup.inclusion (levUQ_le q _)) * (chiQ q _ σ₀)⁻¹ : levUQ hc n ST SG Q (Subgroup.pi Set.univ Hw) q →* ℂˣ) z) ∧
-      (∃ m : ℕ, 0 < m ∧ ∀ κ, lev.chi κ ^ m = 1) ∧ (∀ c, (Y c).1 = y c * b⁻¹) ∧ ∀ c a, (SI c a).1 = st c a :=
-  GlobalTheory.T.exists_conjugated_chartData_localLevel_at_Q hc n Hw hB hTπ hST hcard hSG hidx lam q hO hQT σ₀ b hbU hbV hbL hbT hbO J hJ bad hb stab lat s y hy hd hs hlat st hinj hr hchr
+  _root_.GlobalTheory.Mem.Col2.ChEx.thetaOpen_cutQ Θ hΘ C hC
 
 theorem frExact_of_isPtOf {K : Type} [Field K] {Θ : LevQFam E K n Q} (q : QLoc hc n Q Θ) (hQ : ∀ P : Q, conjPrime₂ P.1 ≠ P.1)
     {g : GL (Fin n) (AfE F E)} {p : DecoF E n ST SG Q} (h : IsPtOf hc g p) : g ∈ UAd hc n ∧ FrExact q g p :=
@@ -192,18 +136,6 @@ variable {X : Fields} {n : ℕ} {ST SG Q : Finset (HeightOneSpectrum (𝓞 X.E))
   (Λ : β → LevFam X.E X.K n SG) (Θ : β → LevQFam X.E X.K n Q) (p₀ : DecoF X.E n ST SG Q → Prop) (pref : β → PtY ST SG Q y → Prop)
   (cq : PtY ST SG Q y → ∀ P : Q, Set (Sp X.E n))
 
-theorem cls_bijQ [NeZero n] (hact : InvActs cq) (hinj : PtDet cq)
-    (hsur : ∀ (r : PtY ST SG Q y) (p : DecoF X.E n ST SG Q), ∃ r' : PtY ST SG Q y, r'.1.1 = p ∧ bar r' = bar r ∧ cq r' = cq r)
-    (hnorm : ∀ b r r', bar r = bar r' → cq r = cq r' →
-      bar (rp Λ Θ p₀ pref ((stR Λ Θ p₀ pref).cl b r)) = bar (rp Λ Θ p₀ pref ((stR Λ Θ p₀ pref).cl b r')) ∧
-      cq (rp Λ Θ p₀ pref ((stR Λ Θ p₀ pref).cl b r)) = cq (rp Λ Θ p₀ pref ((stR Λ Θ p₀ pref).cl b r')))
-    (c₀ : (stR Λ Θ p₀ pref).Cl) (p : (stR Λ Θ p₀ pref).Cl → Prop)
-    (hp : ∀ c, p c ↔ c.1 = c₀.1 ∧ bar (rp Λ Θ p₀ pref c) = bar (rp Λ Θ p₀ pref c₀) ∧ cq (rp Λ Θ p₀ pref c) = cq (rp Λ Θ p₀ pref c₀)) :
-    Function.Bijective fun c : {c // p c} =>
-      (Quotient.mk'' (rp Λ Θ p₀ pref c.1).1.1 : DecoFCl (K := X.K) n ST SG Q (chG (Λ c₀.1) (bar (rp Λ Θ p₀ pref c₀)))
-        (cutQ (Θ c₀.1) (cq (rp Λ Θ p₀ pref c₀)))) :=
-  GlobalTheory.T.chartClasses_bijective_orbits_framedLattices Λ Θ p₀ pref cq hact hinj hsur hnorm c₀ p hp
-
 theorem stM_rangeQ (hact : InvActs cq) (hinj : PtDet cq) (c : (stR Λ Θ p₀ pref).Cl) (b : β) (hb : c.1 = b)
     (C : ∀ w : SG, Set (Fin n → 𝓞 X.E ⧸ w.1.asIdeal)) (hC : bar (rp Λ Θ p₀ pref c) = C)
     (D : ∀ P : Q, Set (Sp X.E n)) (hD : cq (rp Λ Θ p₀ pref c) = D) (γ : GL (Fin n) X.E) :
@@ -218,23 +150,12 @@ section PtL
 variable {X : Fields} {Pr : Primes X} {R : Ranks} {sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)} {S : Set ℕ}
   {mu : Tup X.F X.E X.K S} {cst : LocCst X (rowSG Pr sel mu)} {u : Pr.Word} {j : ℕ}
 
-theorem cqOf_acts (hd : ∀ P ∈ QE sel (mu : Chr X.F X.E X.K), P ∉ Pr.vGs) :
-    InvActs (cqOf (R := R) (cst := cst) (u := u) (j := j) : PtAt R sel mu cst u j → _) :=
-  GlobalTheory.T.couplingCoset_moves_with_frameChange hd
-
-theorem cqOf_det (hd : ∀ P ∈ QE sel (mu : Chr X.F X.E X.K), P ∉ Pr.vGs)
-    (hq : ∀ w ∈ Pr.vGs, ((Formalism.L2.Col.qOf w : ℕ) : 𝓞 X.E) ∉ w.asIdeal ^ 2) :
-    PtDet (cqOf (R := R) (cst := cst) (u := u) (j := j) : PtAt R sel mu cst u j → _) :=
-  GlobalTheory.T.stepPoint_determined_by_latticeInvariants hd hq
-
 theorem cosetIn_iff (hd : ∀ P ∈ QE sel (mu : Chr X.F X.E X.K), P ∉ Pr.vGs)
     (hq : ∀ w ∈ Pr.vGs, ((Formalism.L2.Col.qOf w : ℕ) : 𝓞 X.E) ∉ w.asIdeal ^ 2) (r r' : PtAt R sel mu cst u j) :
     cosetIn r = cosetIn r' ↔ bar r = bar r' ∧ cqOf r = cqOf r' :=
   GlobalTheory.T.couplingCosetsInFrames_eq_iff_reductions hd hq r r'
 
-theorem exists_pt_inv (hd : ∀ P ∈ QE sel (mu : Chr X.F X.E X.K), P ∉ Pr.vGs) (r : PtAt R sel mu cst u j)
-    (p : ChPt (R := R) sel mu u j) : ∃ r' : PtAt R sel mu cst u j, r'.1.1 = p ∧ bar r' = bar r ∧ cqOf r' = cqOf r :=
-  GlobalTheory.T.exists_stepPoint_given_reductions_cosets hd r p
+alias exists_pt_inv := _root_.GlobalTheory.Mem.Col2.ChEx.TwLift.exists_ptAt_bar_cq_eq
 
 theorem cqOf_form (hd : ∀ P ∈ QE sel (mu : Chr X.F X.E X.K), P ∉ Pr.vGs) (r : PtAt R sel mu cst u j) (P : QE sel (mu : Chr X.F X.E X.K)) :
     cqOf r P = ∅ ∨ ∃ (z : Sp X.E (R.N j)) (c : X.E), c ≠ 0 ∧ cqOf r P = {x | c⁻¹ • (x - z) ∈ stdAt X.E (R.N j) P.1} :=
@@ -278,7 +199,7 @@ theorem lvQ_open (hI : I.Ok) (u : B.Word) (a : I.ι) (i : ℕ) (hm : i < B.R.m) 
   obtain ⟨al, hal⟩ := Option.isSome_iff_exists.1 (b.2.2 hm)
   show ThetaOpen (b.1.elim _ _)
   rw [hal]
-  exact thetaOpen_levQ (hI.idx_ok a) (q_disj I hI a) i al
+  exact _root_.GlobalTheory.Mem.Col2.ChEx.thetaOpen_levQ (hI.idx_ok a) (q_disj I hI a) i al
 
 end Main
 
@@ -321,7 +242,7 @@ theorem inv_norm (hI : I.Ok) (hPr : (B.primes X).Ok) (u : B.Word) (a : I.ι) (i 
     · funext w
       rw [bar_ya, bar_ya, h]
     · funext P
-      rw [cqOf_acts hd, cqOf_acts hd, h']
+      rw [_root_.GlobalTheory.Mem.Col2.ChEx.invActs_cqOf hd, _root_.GlobalTheory.Mem.Col2.ChEx.invActs_cqOf hd, h']
   exact this ▸ Iff.rfl
 
 end Main2
@@ -376,10 +297,10 @@ theorem chart_of (hI : I.Ok) (hP : TC.Pins B X) (l : I.Laws) (Z : TC.Later B (I.
   have hf : B.fields.f = B.R.f := (hPr.vT_card u).symm.trans (l.lev u a).card_ST
   have hd := q_disj I hI a
   have hq := hqG hPr
-  have hact := cqOf_acts (R := B.R) (cst := I.cst a) (u := u) (j := i) hd
-  have hdet := cqOf_det (R := B.R) (cst := I.cst a) (u := u) (j := i) hd hq
+  have hact := _root_.GlobalTheory.Mem.Col2.ChEx.invActs_cqOf (R := B.R) (cst := I.cst a) (u := u) (j := i) hd
+  have hdet := _root_.GlobalTheory.Mem.Col2.ChEx.ptDet_cqOf (R := B.R) (cst := I.cst a) (u := u) (j := i) hd hq
   have hO : ThetaOpen (cutQ (lvQ I a i c₀.1) (cqOf (rpT I u a i c₀))) :=
-    thetaOpen_cutQ (B.R.N i) _ (lvQ_open I hI u a i hm c₀.1) _ (cqOf_form hd (rpT I u a i c₀))
+    thetaOpen_cutQ (B.R.N i) _ (lvQ_open I hI u a i hm c₀.1) _ (_root_.GlobalTheory.Mem.Col2.ChEx.cqOf_empty_or_coset hd (rpT I u a i c₀))
   have hcj := q_conj I hI a
   let q := qbLoc B.sp.cm (cutQ (lvQ I a i c₀.1) (cqOf (rpT I u a i c₀))) hcj hO
   have k3' : ∀ (P : (B.primes X).vT u) (r j : Fin (B.R.N i)), r.1 + 1 = B.R.N i →
@@ -396,7 +317,7 @@ theorem chart_of (hI : I.Ok) (hP : TC.Pins B X) (l : I.Laws) (Z : TC.Later B (I.
       rfl
     rw [e]
     exact k3 P r j hr
-  obtain ⟨hkU, hkV, hkL, hkT⟩ := k_facts (F := B.host.F) (E := B.host.E) B.sp.cm (B.R.N i) (basePi_of_ok hX hPr u) k (diaT (Pr := B.primes X) u) k1 k3'
+  obtain ⟨hkU, hkV, hkL, hkT⟩ := _root_.GlobalTheory.Mem.Col2.ChEx.basePt_facts (F := B.host.F) (E := B.host.E) B.sp.cm (B.R.N i) (basePi_of_ok hX hPr u) k (diaT (Pr := B.primes X) u) k1 k3'
   have hbad : badQ (I.rec7 l Z) Q' = badQ' (F := B.host.F) (B.primes X).vGs (I.Q a) := by
     refine Set.ext fun v => or_congr (plUnder_vGs (X := B.fields) B.sp.cm hPr v).symm ?_
     refine (hQ' v).trans ⟨?_, ?_⟩
@@ -412,20 +333,20 @@ theorem chart_of (hI : I.Ok) (hP : TC.Pins B X) (l : I.Laws) (Z : TC.Later B (I.
     · exact Or.inl hj
     · exact Or.inr hj
   have hpt : ∀ c, g c ∈ UAd B.sp.cm (B.R.N i) ∧ FrExact q (g c) (rpT I u a i c).1.1 := fun c =>
-    frExact_of_isPtOf B.sp.cm (B.R.N i) q hcj (IsPtOf.of_extTo (q_sub_SQ I a) (Finset.disjoint_right.2 fun P h => hd P h) (hg c))
-  obtain ⟨lev, Y, SI, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10⟩ := chartQ_exists (F := B.host.F) (E := B.host.E) B.sp.cm (B.R.N i)
+    _root_.GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf B.sp.cm (B.R.N i) q hcj (IsPtOf.of_extTo (q_sub_SQ I a) (Finset.disjoint_right.2 fun P h => hd P h) (hg c))
+  obtain ⟨lev, Y, SI, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10⟩ := _root_.GlobalTheory.Mem.Col2.ChEx.chartQ_exists (F := B.host.F) (E := B.host.E) B.sp.cm (B.R.N i)
     (chH (X := B.fields) (lvG I a i c₀.1) (bar (rpT I u a i c₀))) (f := B.R.f)
     (basePi_of_ok hX hPr u) (hPr.piT_norm u) (rls_vT_iff hX hPr u)
     (fun P hP => by simpa [Ideal.absNorm_eq_natCard] using hPr.vT_norm u P hP) (rls_T_notUnder hPr u)
     (hf ▸ colBase_index (X := B.fields) B.sp.cm (B.R.N i) hPr u) (chLam (X := B.fields) B.embLL (lvG I a i c₀.1) (bar (rpT I u a i c₀)))
-    q (qbOpen _ _ hcj hO) (trace_not_mem_twistPrime_under I hI hPr u a) B.embLL k hkU hkV hkL hkT hkO
+    q (qbOpen _ _ hcj hO) (_root_.GlobalTheory.Mem.Col2.ChEx.T_notMem_qv I hI hPr u a) B.embLL k hkU hkV hkL hkT hkO
     (gramN (I.rec7 l Z) i hi) hg1 (badQ (I.rec7 l Z) Q') hbad
     (fun c : {c // p c} => (I.stp u a i).Stab c.1) (fun c => latCrd (I.rec7 l Z) i hi (I.latAt u a i c.1))
     (fun c => (rpT I u a i c.1).1.1) (fun c => g c.1) (fun c => (hpt c.1).1) (fun c => (hpt c.1).2.over)
-    (cls_bijQ (lvG I a i) (lvQ I a i) _ _ _ hact hdet (exists_pt_inv hd) (inv_norm I hI hPr u a i) c₀ p hp)
+    (_root_.GlobalTheory.Mem.Col2.ChEx.clsF_bij (lvG I a i) (lvQ I a i) _ _ _ hact hdet (exists_pt_inv hd) (inv_norm I hI hPr u a i) c₀ p hp)
     (fun c => (hl u a).1 c.1)
     (fun c => stM (lvG I a i) (lvQ I a i) _ _ c.1) (fun c => stM_inj (lvG I a i) (lvQ I a i) _ _ ((l.ch u a).step i) c.1)
-    (fun c γ => stM_rangeQ (lvG I a i) (lvQ I a i) _ _ _ hact hdet c.1 c₀.1 ((hp c.1).1 c.2).1 _ ((hp c.1).1 c.2).2.1 _ ((hp c.1).1 c.2).2.2 γ)
+    (fun c γ => _root_.GlobalTheory.Mem.Col2.ChEx.stM_range_tw (lvG I a i) (lvQ I a i) _ _ _ hact hdet c.1 c₀.1 ((hp c.1).1 c.2).1 _ ((hp c.1).1 c.2).2.1 _ ((hp c.1).1 c.2).2.2 γ)
     (qb_chr_root B.sp.cm (B.R.N i) _ hcj hO)
   exact ⟨⟨lev, Y, h1, h2, SI, h3, h4⟩, q, h5, h6, h7, h8, h9, h10⟩
 
@@ -460,7 +381,7 @@ theorem lev_at (hI : I.Ok) (hPr : (B.primes X).Ok) {u : B.Word} {a : I.ι} {i : 
         cosetIn ((I.stp u a i).act c.1 κ ((I.stp u a i).rep c)) = cosetIn ((I.stp u a i).rep c) := by
   subst hb
   have hd := q_disj I hI a
-  refine (lev_iffQ B.sp.cm cqOf (cqOf_acts hd) (lvG I a i c.1) (lvQ I a i c.1) (rpT I u a i c) C hC D hD q hg hx p e e').trans ?_
+  refine (_root_.GlobalTheory.Mem.Col2.ChEx.lev_iff_frames B.sp.cm cqOf (_root_.GlobalTheory.Mem.Col2.ChEx.invActs_cqOf hd) (lvG I a i c.1) (lvQ I a i c.1) (rpT I u a i c) C hC D hD q hg hx p e e').trans ?_
   exact exists_congr fun κ => and_congr Iff.rfl (and_congr Iff.rfl (cosetIn_iff hd (hqG hPr) _ _).symm)
 
 
@@ -475,7 +396,7 @@ theorem chr_at {u : B.Word} {a : I.ι} {i : ℕ} (c : (I.stp u a i).Cl) (b : (I.
       levUQ B.sp.cm (B.R.N i) ((B.primes X).vT u) (B.primes X).vGs (I.Q a) (chG (lvG I a i b) C) q →* ℂˣ) z : ℂˣ) : ℂ) =
       B.embLL (((I.stp u a i).chr c.1 κ : B.LLˣ) : B.LL) := by
   subst hb
-  have h := chr_eqQ (X := B.fields) B.sp.cm B.embLL (lvG I a i c.1) (lvQ I a i c.1) (rpT I u a i c) C D q z hg κ h1 e e'
+  have h := _root_.GlobalTheory.Mem.Col2.ChEx.chr_frames (X := B.fields) B.sp.cm B.embLL (lvG I a i c.1) (lvQ I a i c.1) (rpT I u a i c) C D q z hg κ h1 e e'
   rw [h]
   rfl
 
@@ -516,8 +437,8 @@ theorem exists_charts : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok →
     exact hg c
   · have h' : PtOf (g c * ((k (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c))⁻¹ * x * k (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c))) r := by
       rw [← hmove c x]; exact h
-    have e := frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj (hpt c)
-    have e' := frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj h'
+    have e := _root_.GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj (hpt c)
+    have e' := _root_.GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj h'
     have hc := (hp (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c) c).1 rfl
     refine ((hU _ x).trans (mem_map_conj _ _ _)).trans ?_
     exact lev_at I hI hPr c _ hc.1 _ hc.2.1 _ hc.2.2 _ e.1 e'.1 r e.2 e'.2
@@ -525,8 +446,8 @@ theorem exists_charts : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok →
     have h2' : PtOf (g c * ((k (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c))⁻¹ * x.1 * k (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)))
         ((I.stp u a i).act c.1 κ ((I.stp u a i).rep c)).1.1 := by
       rw [← hmove c x.1]; exact h2
-    have e := frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj (hpt c)
-    have e' := frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj h2'
+    have e := _root_.GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj (hpt c)
+    have e' := _root_.GlobalTheory.Mem.Col2.ChEx.frExact_of_isPtOf B.sp.cm (B.R.N i) (q (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c)) hcj h2'
     have hc := (hp (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c) c).1 rfl
     have h3 := K3 (GlobalTheory.Mem.Col2.TC.ChTw.chartOf I u a i c) x ⟨_, hz⟩ (by simp only [id, mul_assoc, mul_inv_cancel_left, mul_inv_cancel, mul_one])
     refine (congrArg Units.val h3).trans ?_

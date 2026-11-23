@@ -88,7 +88,7 @@ theorem geo_height_arch : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   obtain ⟨ρ', hρa, hρ⟩ := GlobalTheory.T.lie_model_base_change_action L ℂ e _ _ mK.φ mK.cart (𝓞 E) P.tK.act P'.tK.act mK.act V V' MV MV' j hjpt hjspan
     A.ρ hact
   have hcoch' : P'.IsCochars MV' (A.I.map j) :=
-    GlobalTheory.T.torus_over_lie_model_base_change L ℂ e _ _ mK.φ P.τ P'.τ mK.cart h3 V V' MV MV' j hjpt A.I hcoch
+    _root_.GlobalTheory.CompanionTheory.Ar.Cusp.PtHt.Arch.CocharsBC.cochars_baseChange L ℂ e _ _ mK.φ P.τ P'.τ mK.cart h3 V V' MV MV' j hjpt A.I hcoch
   letI := P'.τ.grpB
   haveI := P'.τ.q_hom
   haveI := P'.e_hom

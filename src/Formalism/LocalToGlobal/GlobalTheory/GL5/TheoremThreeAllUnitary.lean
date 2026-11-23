@@ -114,9 +114,6 @@ theorem lamAbs_ge_one {N : ℕ} (lam : Fin N → ℝ) (h : Formalism.QuantumDete
     _ = lam i0 - lam i1 := hd.symm
     _ ≤ lamAbs lam := sub_le_lamAbs' lam i0 i1
 
-theorem sub_le_lamAbs {N : ℕ} (lam : Fin N → ℝ) (a b : Fin N) : lam a - lam b ≤ lamAbs lam := by
-  exact sub_le_lamAbs' lam a b
-
 theorem facProd_mul_le (p q : ℕ) : facProd p * facProd q ≤ facProd (p + q) := by
   unfold facProd
   rw [Finset.prod_range_add]
@@ -124,36 +121,6 @@ theorem facProd_mul_le (p q : ℕ) : facProd p * facProd q ≤ facProd (p + q) :
   apply Finset.prod_le_prod₀ (fun _ _ => by positivity)
   intro j _
   exact_mod_cast Nat.factorial_le (by omega)
-
-private theorem prod_sub_of_lt_eq_facProd (N : ℕ) :
-    ∏ a : Fin N, ∏ b ∈ univ.filter (fun b : Fin N => a < b), (((b : ℕ) : ℝ) - ((a : ℕ) : ℝ)) =
-      facProd N := by
-  have inner : ∀ a : Fin N, ∏ b ∈ univ.filter (fun b : Fin N => a < b),
-      (((b : ℕ) : ℝ) - ((a : ℕ) : ℝ)) = (((N - 1 - (a : ℕ)).factorial : ℕ) : ℝ) := by
-    intro a
-    rw [Finset.prod_filter]
-    have e : ∀ b : Fin N, (if a < b then (((b : ℕ) : ℝ) - ((a : ℕ) : ℝ)) else 1) =
-        (fun k : ℕ => if (a : ℕ) < k then ((k : ℝ) - ((a : ℕ) : ℝ)) else 1) (b : ℕ) := fun b => by
-      simp only [Fin.lt_iff_val_lt_val]
-    rw [Finset.prod_congr rfl fun b _ => e b,
-      Fin.prod_univ_eq_prod_range (fun k : ℕ => if (a : ℕ) < k then ((k : ℝ) - ((a : ℕ) : ℝ)) else 1) N,
-      ← Finset.prod_filter]
-    have hI : (range N).filter (fun k => (a : ℕ) < k) = Ico ((a : ℕ) + 1) N := by
-      ext k
-      simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_Ico]
-      omega
-    rw [hI, Finset.prod_Ico_eq_prod_range]
-    have e2 : ∀ j ∈ range (N - ((a : ℕ) + 1)),
-        ((((a : ℕ) + 1 + j : ℕ) : ℝ) - ((a : ℕ) : ℝ)) = ((j + 1 : ℕ) : ℝ) := by
-      intro j _
-      push_cast
-      ring
-    rw [Finset.prod_congr rfl e2, ← Nat.cast_prod, Finset.prod_range_add_one_eq_factorial,
-      show N - ((a : ℕ) + 1) = N - 1 - (a : ℕ) by omega]
-  rw [Finset.prod_congr rfl fun a _ => inner a,
-    Fin.prod_univ_eq_prod_range (fun i => (((N - 1 - i).factorial : ℕ) : ℝ)) N]
-  unfold facProd
-  exact Finset.prod_range_reflect (fun i => ((i.factorial : ℕ) : ℝ)) N
 
 theorem fdegHC_le_dTau {N : ℕ} (s : Fin N → Bool) (lam : Fin N → ℝ) (hlam : Formalism.QuantumDeterminants.IsHCParam lam) :
     Formalism.QuantumDeterminants.fdegHC lam ≤ dTau s lam * lamAbs lam ^ (nPlus s * nMinus s) := by
@@ -185,7 +152,7 @@ theorem fdegHC_le_dTau {N : ℕ} (s : Fin N → Bool) (lam : Fin N → ℝ) (hla
       refine Finset.prod_le_prod₀ (fun b _ => abs_nonneg _) fun b hb => ?_
       have h := (Finset.mem_filter.1 hb).2
       rw [abs_of_pos (hpos a b h.1)]
-      exact sub_le_lamAbs lam a b
+      exact _root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.sub_le_lamAbs' lam a b
     · have h := (Finset.mem_filter.1 hb).2
       have := hpos a b h.1
       have := hrho a b h.1 h.2
@@ -229,7 +196,7 @@ theorem fdegHC_le_dTau {N : ℕ} (s : Fin N → Bool) (lam : Fin N → ℝ) (hla
     linarith
   have hFN : 0 < facProd N := factorial_product_pos N
   unfold Formalism.QuantumDeterminants.fdegHC dTau
-  rw [prod_sub_of_lt_eq_facProd]
+  rw [_root_.Formalism.MainNotions.StandardLattice.prod_gap_eq_facProd]
   calc (∏ a : Fin N, ∏ b ∈ univ.filter (fun b : Fin N => a < b), |lam a - lam b|) / facProd N
       ≤ ((∏ a : Fin N, ∏ b ∈ univ.filter (fun b : Fin N => a < b ∧ s a = s b),
           ((lam a + rhoN s a) - (lam b + rhoN s b))) * lamAbs lam ^ (nPlus s * nMinus s)) / facProd N := by

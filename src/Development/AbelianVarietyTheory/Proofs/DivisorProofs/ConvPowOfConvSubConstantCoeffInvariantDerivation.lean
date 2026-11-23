@@ -66,13 +66,13 @@ theorem convPow_ev_sub_constantCoeff_iterate_mem : ∀ (p : ℕ) (O : Type) [Com
   induction k with
   | zero =>
     intro F
-    obtain ⟨a, ha⟩ := GlobalTheory.T.counit_formalChart_ev_sub_constantCoeff_dvd p O G d c n F
+    obtain ⟨a, ha⟩ := _root_.GlobalTheory.FrNil.counit_ev_sub_constantCoeff p O G d c n F
     rw [pow_zero, Function.iterate_zero, id, LinearMap.convOne_apply, Algebra.algebraMap_self,
       RingHom.id_apply, ha]
     exact m.mul_mem_right a hp
   | succ k ih =>
     intro F
-    obtain ⟨t, ht⟩ := GlobalTheory.T.comul_chart_sub_subst_mem_p_smul p O G d c n F
+    obtain ⟨t, ht⟩ := _root_.GlobalTheory.comul_ev_sub_ev₂_subst_mem p O G d c n F
     rw [pow_succ, LinearMap.convMul_apply, Function.iterate_succ_apply, sub_eq_iff_eq_add.1 ht,
       map_add, map_add, map_smul, map_smul]
     have h1 := GlobalTheory.T.dual_pairing_chart_partial_derivative_mod_max p O G d c n m hp u φ hφ (φ ^ k).ofConv (subst c.μ F)

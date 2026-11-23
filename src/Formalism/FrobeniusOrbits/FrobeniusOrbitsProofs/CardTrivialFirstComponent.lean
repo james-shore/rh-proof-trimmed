@@ -59,9 +59,6 @@ open Formalism.TwoAdicCyclotomicDecomposition
 
 namespace EFG
 
-theorem two_isPrime : (span {(2 : ℤ)}).IsPrime := by
-  exact (Ideal.span_singleton_prime (by norm_num)).mpr Int.prime_two
-
 theorem card_trivial_first_component (e : ℕ) : Nat.card {g : GG e // g.1 = 1} = 2 ^ e := by
   rw [← Group.card_H e]
   exact Nat.card_congr
@@ -105,7 +102,7 @@ theorem hostEFGTwo_of (hI : HostInertia) (hD : HostDecomp) : HostEFGTwo := by
   have := hEgal
   have : IsGaloisGroup Gal(hostE ζ a b/ℚ) ℤ (𝓞 (hostE ζ a b)) :=
     IsGaloisGroup.of_isFractionRing _ _ _ ℚ (hostE ζ a b)
-  have := Formalism.FrobeniusOrbits.EFG.two_isPrime
+  have := _root_.Formalism.TwoAdicCyclotomicDecomposition.two_isPrime
   obtain ⟨⟨P, hPp, hPl⟩⟩ : Nonempty ((span {(2 : ℤ)}).primesOver (𝓞 (hostE ζ a b))) :=
     inferInstance
   have hcardG : Nat.card Gal(hostE ζ a b/ℚ) = 2 ^ (e + 2) := by

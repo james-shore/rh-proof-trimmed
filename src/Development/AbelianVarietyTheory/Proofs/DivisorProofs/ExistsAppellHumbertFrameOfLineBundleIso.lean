@@ -45,6 +45,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscrim
 public import Mathlib.Analysis.Calculus.FDeriv.Basic
 public import Mathlib.Analysis.Calculus.FDeriv.Congr
 public import Mathlib.Analysis.Calculus.FDeriv.Mul
+import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsHolomorphicUniformisationPowerThetaKeyDatu
 
 @[expose] public section
 
@@ -115,12 +116,6 @@ namespace GlobalTheory.TransportFrame
 
 open ReciprocityTheory.ChartRestriction.G.TB.ValAt
 
-theorem val_g_self {X : Scheme.{0}} {L : LB X} (hL : L.IsLB) (x : Sp ℂ ⟶ X) (i : L.ι) (h : ⊤ ≤ x ⁻¹ᵁ L.U i) :
-    valAt' x (L.U i ⊓ L.U i) (L.g i i).val = 1 := by
-  have e := val_res_unit x (le_inf le_rfl le_rfl : L.U i ≤ L.U i ⊓ L.U i) h (L.g i i)
-  rw [hL.g_self i, Units.val_one, ReciprocityTheory.ChartRestriction.G.TB.ValAt.valAt'_one x _ h] at e
-  exact e.symm
-
 variable {A : Over (Sp ℂ)} [GrpObj A] {g : ℕ} {L L' : LB A.left}
 
 def chartOf (hL' : L'.IsLB) (y : Sp ℂ ⟶ A.left) : L'.ι := (chart_pt L' hL' y).choose
@@ -142,7 +137,7 @@ theorem frT_eq (u' : HolUnif A L' g) (hL : L.IsLB) (hL' : L'.IsLB) (w : LB.Iso L
   have G := val_gen w hw (u'.ex z).left i i (chartOf hL' (u'.ex z).left) j hij0 hij
   have C := u'.fr_compat (chartOf hL' (u'.ex z).left) j z h0j
   have hne := val_unit_ne (u'.ex z).left _ h0j (L'.g (chartOf hL' (u'.ex z).left) j)
-  have hs := val_g_self hL (u'.ex z).left i hi
+  have hs := _root_.GlobalTheory.PowUnif.val_g_self hL (u'.ex z).left i hi
   unfold frT
   rw [G, hs, C]
   have hc := inv_mul_cancel₀ hne
@@ -180,7 +175,7 @@ theorem frT_compat (u' : HolUnif A L' g) (hL : L.IsLB) (hL' : L'.IsLB) (w : LB.I
   have hi₂ : ⊤ ≤ (u'.ex z).left ⁻¹ᵁ L.U i₂ := fun p hp => (h hp).2
   rw [frT_eq u' hL hL' w hw i j z hi hj, frT_eq u' hL hL' w hw i₂ j z hi₂ hj,
     val_gen w hw (u'.ex z).left i i₂ j j (fun p hp => ⟨hi hp, hj hp⟩) (fun p hp => ⟨hi₂ hp, hj hp⟩),
-    val_g_self hL' (u'.ex z).left j hj]
+    _root_.GlobalTheory.PowUnif.val_g_self hL' (u'.ex z).left j hj]
   ring
 
 def transport (u' : HolUnif A L' g) (hL : L.IsLB) (hL' : L'.IsLB) (w : LB.Iso L' L) (hw : w.IsGen) :

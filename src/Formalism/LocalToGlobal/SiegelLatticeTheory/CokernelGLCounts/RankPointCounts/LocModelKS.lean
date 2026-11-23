@@ -57,6 +57,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.KernelNonzeroModulusDeterminantEq
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PadicChangeOfVariables
 
 @[expose] public section
 
@@ -267,13 +268,6 @@ theorem isUnit_qE (p : PlF D) : IsUnit (qE p) := by
     exact (isUnit_iff_ne_zero.2 hq).map _
   · exact isUnit_one
 
-theorem unitAt_ne (p : PlF D) : uP p ≠ 0 := by
-  have h0 := (D.host.g_prime 0).ne_zero
-  have h1 := (D.host.g_prime 1).ne_zero
-  have hg : (Lat.gS D : ℚ) ≠ 0 := by exact_mod_cast (Formalism.MainNotions.LocalModelPeriodLattices.gS_pos D).ne'
-  unfold uP gpart
-  split_ifs <;> simp [hg, h0, h1]
-
 theorem isUnit_ιE (p : PlF D) {x : D.host.E} (hx : x ≠ 0) : IsUnit ((D.s.atP p).ιE x) :=
   (isUnit_iff_ne_zero.2 hx).map _
 
@@ -281,7 +275,7 @@ theorem isUnit_hF {δ : ∀ p : PlF D, (D.s.atP p).Fp} (p : PlF D) (hδ : δ p �
     IsUnit (PI.SupportDatumW.hF D δ p a s) := by
   unfold PI.SupportDatumW.hF
   refine ((isUnit_rinv (IsUnit.pow _ ?_)).mul (isUnit_twist p s)).mul (isUnit_rinv (isUnit_qE p))
-  exact ((isUnit_iff_ne_zero.2 hδ).map _).mul (isUnit_ιE p (by exact_mod_cast unitAt_ne p))
+  exact ((isUnit_iff_ne_zero.2 hδ).map _).mul (isUnit_ιE p (by exact_mod_cast _root_.Formalism.L2.SG.Pf.LocModel.unitAt_ne_zero₂ p))
 
 def uS (δ : ∀ p : PlF D, (D.s.atP p).Fp) (p : PlF D) (i s : ℕ) : (D.s.atP p).Ep :=
   (D.s.atP p).ιE (sgn D i) * PI.SupportDatumW.hF D δ p (i - s + 1) s
@@ -408,7 +402,7 @@ theorem hF_good {δ : ∀ p : PlF D, (D.s.atP p).Fp} {M : ∀ p : PlF D, Loc.Mod
     (D.s.atP p).ιE ((uP p : D.host.E)⁻¹) with hw1
   have hw01 : w0 * w1 = 1 := by
     rw [hw0, hw1, mul_mul_mul_comm, ← map_mul, ← map_mul, mul_inv_cancel₀ (hA p).2.1,
-      mul_inv_cancel₀ (by exact_mod_cast unitAt_ne p), map_one, map_one, one_mul]
+      mul_inv_cancel₀ (by exact_mod_cast _root_.Formalism.L2.SG.Pf.LocModel.unitAt_ne_zero₂ p), map_one, map_one, one_mul]
   have hw0O : w0 ∈ (D.s.atP p).O := Subring.mul_mem _ (LocModel.LM.algebraMap_mem_O p h.2.1.1) h.2.2.1.1
   have hw1O : w1 ∈ (D.s.atP p).O := Subring.mul_mem _ (LocModel.LM.algebraMap_mem_O p h.2.1.2) h.2.2.1.2
   have e : PI.SupportDatumW.hF D δ p a s = w1 ^ nu D.R.rS a (a + s - 1) := by
@@ -542,13 +536,6 @@ theorem blkN_hpt {m : ℕ} {h : TB.Pt D.host.E} {w : Point D.host.E m} (hw : ptO
   rw [(ptOfList_some hw).2]
   exact blkN_sign 1 h
 
-theorem modK_pow {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] {R : Subring K}
-    {ψ : AddChar K ℂ} (hd : A5.LocalDatum K R ψ) {x : K} (hx : IsUnit x) : ∀ n : ℕ,
-    A5.modK R (x ^ n) = A5.modK R x ^ n
-  | 0 => by simp [Formalism.FourierDecayAlt.P.A5x5.modK_one]
-  | n + 1 => by
-    rw [pow_succ, Formalism.FourierDecayAlt.P.A5x5.modK_mul' hd (hx.pow n) hx, modK_pow hd hx n, pow_succ]
-
 theorem det_modPt {δ : ∀ p : PlF D, (D.s.atP p).Fp} {T T' : ℕ} {p : PlF D} {n : ℕ} (w : Point D.host.E n)
     (a : Loc.Pt (D.s.atP p).Ep n) (ha : modPt δ T T' p w = some a) :
     a.mat.det = PI.SupportDatumW.blkDet (mapBlocks (blkTop δ T T' p) 1 w.1) := by
@@ -603,7 +590,7 @@ theorem pf_det (hMN : ModNorm D) {δ : ∀ p : PlF D, (D.s.atP p).Fp}
       have := Formalism.MainNotions.LocalModelPeriodLattices.top_of_OK (M p) (hA p).1
       have hd := Formalism.MainNotions.LocalModelPeriodLattices.datum_of_OK (M p) (hA p).1
       simp only [mapBlocks, PI.SupportDatumW.blkDet, hc p]
-      rw [mul_assoc, modK_negOnePow, Formalism.FourierDecayAlt.P.A5x5.modK_mul' hd ((hcu p).pow s) (hu p), modK_pow hd (hcu p)]
+      rw [mul_assoc, modK_negOnePow, Formalism.FourierDecayAlt.P.A5x5.modK_mul' hd ((hcu p).pow s) (hu p), _root_.Formalism.FourierDecayAlt.P.A6x9.modK_pow hd (hcu p)]
     refine ⟨fun p => ?_, ?_, ?_⟩
     · simp only [mapBlocks, PI.SupportDatumW.blkDet, hc p]
       exact (((isUnit_one.neg).pow _).mul ((hcu p).pow s)).mul (hu p)

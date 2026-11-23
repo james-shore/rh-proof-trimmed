@@ -61,17 +61,6 @@ section Frames
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 
-theorem gram_eq (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (x : Matrix (Fin r) (Fin r) ℂ) :
-    gram τ G x = xᵀ * G.map τ * x.map (starRingEnd ℂ) := by
-  ext a b
-  simp only [gram, hermC, col, Matrix.of_apply, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply,
-    Finset.sum_mul]
-  rw [Finset.sum_comm]
-
-theorem gram_mul (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (x m : Matrix (Fin r) (Fin r) ℂ) :
-    gram τ G (x * m) = mᵀ * gram τ G x * m.map (starRingEnd ℂ) := by
-  simp only [gram_eq, Matrix.transpose_mul, Matrix.map_mul, Matrix.mul_assoc]
-
 def Orth (X : Data E r) (x : Frame X.Ψ r) : Prop :=
   ∀ τ : X.Ψ, gram τ.1 X.Gm (mat x τ) = Matrix.diagonal fun a : Fin r => ((sgn X.p0 (a : ℕ) : ℝ) : ℂ)
 
@@ -89,8 +78,6 @@ theorem isUnit_det_of_x0Orth {X : Data E r} {x₀ : (E →+* ℂ) → Matrix (Fi
 def pass (Ψ : Finset (E →+* ℂ)) (x₀ x₁ : (E →+* ℂ) → Matrix (Fin r) (Fin r) ℂ) : Frame Ψ r :=
   fun τ => ((x₀ τ.1)⁻¹ * x₁ τ.1 : Matrix (Fin r) (Fin r) ℂ)
 
-theorem mat_rmul {Ψ : Finset (E →+* ℂ)} (x b : Frame Ψ r) (τ : Ψ) : mat (rmul x b) τ = mat x τ * mat b τ := rfl
-
 theorem mat_lact {Ψ : Finset (E →+* ℂ)} (γ : GL (Fin r) E) (x : Frame Ψ r) (τ : Ψ) :
     mat (lact γ x) τ = (γ : Matrix (Fin r) (Fin r) E).map τ.1 * mat x τ := rfl
 
@@ -102,7 +89,7 @@ theorem frame_ext {Ψ : Finset (E →+* ℂ)} {x y : Frame Ψ r} (h : ∀ τ, ma
 
 theorem rmul_lact {Ψ : Finset (E →+* ℂ)} (γ : GL (Fin r) E) (x b : Frame Ψ r) :
     rmul (lact γ x) b = lact γ (rmul x b) :=
-  frame_ext fun τ => by simp only [mat_rmul, mat_lact, Matrix.mul_assoc]
+  frame_ext fun τ => by simp only [_root_.Formalism.L2.Pj.mat_rmul, mat_lact, Matrix.mul_assoc]
 
 theorem lact_mul {Ψ : Finset (E →+* ℂ)} (γ γ' : GL (Fin r) E) (x : Frame Ψ r) :
     lact (γ * γ') x = lact γ (lact γ' x) :=
@@ -111,13 +98,13 @@ theorem lact_mul {Ψ : Finset (E →+* ℂ)} (γ γ' : GL (Fin r) E) (x : Frame 
 theorem Orth.pass {X : Data E r} {x₀ x₁ : (E →+* ℂ) → Matrix (Fin r) (Fin r) ℂ} (h₀ : IsOrthogonalFrame X x₀) (h₁ : IsOrthogonalFrame X x₁)
     {x : Frame X.Ψ r} (h : Orth X x) : Orth X (rmul x (pass X.Ψ x₀ x₁)) := by
   intro τ
-  rw [mat_rmul, gram_mul, h τ, ← h₀ τ.1 τ.2, ← gram_mul, mat_pass,
+  rw [_root_.Formalism.L2.Pj.mat_rmul, _root_.ReciprocityTheory.ChartRestriction.G.FD.FrameDegreeData.gram_mul, h τ, ← h₀ τ.1 τ.2, ← _root_.ReciprocityTheory.ChartRestriction.G.FD.FrameDegreeData.gram_mul, mat_pass,
     Matrix.mul_nonsing_inv_cancel_left _ _ (isUnit_det_of_x0Orth h₀ τ), h₁ τ.1 τ.2, h₀ τ.1 τ.2]
 
 theorem rmul_pass_pass {X : Data E r} {x₀ x₁ : (E →+* ℂ) → Matrix (Fin r) (Fin r) ℂ} (h₀ : IsOrthogonalFrame X x₀)
     (h₁ : IsOrthogonalFrame X x₁) (x : Frame X.Ψ r) : rmul (rmul x (pass X.Ψ x₀ x₁)) (pass X.Ψ x₁ x₀) = x :=
   frame_ext fun τ => by
-    rw [mat_rmul, mat_rmul, mat_pass, mat_pass, Matrix.mul_assoc, Matrix.mul_assoc,
+    rw [_root_.Formalism.L2.Pj.mat_rmul, _root_.Formalism.L2.Pj.mat_rmul, mat_pass, mat_pass, Matrix.mul_assoc, Matrix.mul_assoc,
       Matrix.mul_nonsing_inv_cancel_left _ _ (isUnit_det_of_x0Orth h₁ τ),
       Matrix.nonsing_inv_mul _ (isUnit_det_of_x0Orth h₀ τ), Matrix.mul_one]
 
@@ -190,7 +177,7 @@ theorem dictIsUnif_move {V : HSp D} {X : Comp → Data D.host.E r} {dict : GA D 
       fun τ => (unitary_iff _ _).1 (by rw [← gm_map (hW c)]; exact (hu τ).1)
     have hA : archMat V th rfl y h c = pass _ x₁ x₀ := frame_ext fun τ => by
       show (mat (y c) τ)⁻¹ * archM V (th c τ) h * mat (y c) τ = _
-      rw [ea, Matrix.mul_assoc, ← (hu τ).2, mat_rmul, Matrix.nonsing_inv_mul_cancel_left _ _ (hyd c τ)]
+      rw [ea, Matrix.mul_assoc, ← (hu τ).2, _root_.Formalism.L2.Pj.mat_rmul, Matrix.nonsing_inv_mul_cancel_left _ _ (hyd c τ)]
     have hI := dI g h hh
     rw [e] at hI
     obtain ⟨γ', h1, e'⟩ := hI

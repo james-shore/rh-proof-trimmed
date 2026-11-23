@@ -69,11 +69,11 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem twLe_alt : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt → _root_.GlobalTheory.BigOn.Exp.TwAdmAlt → _root_.GlobalTheory.BigOn.Exp.TwistCharacter → _root_.GlobalTheory.BigOn.Exp.TwistUpperBound₂ := by
   intro _ _ _ hA hX
   refine _root_.GlobalTheory.BigOn.Exp.TwistConditions.imp (_root_.GlobalTheory.BigOn.Exp.TwistConditions.and hA hX) fun Fm x hx i p hr hm w hw j ⟨a, c⟩ ρ hρ ν rd hf hc => ?_
-  have hL := _root_.GlobalTheory.T.links2_of_single_index_twisted _ _ _ _ _ _ _ _ _ _ p hr hm.1
-  have h0 := baseOf_of_pin (cG := p.cG) p.charW.base.lev hρ hf.pin ((Fm.ex x hx i).nch.twI w) j ((Fm.ex x hx i).nch.sd w)
+  have hL := _root_.GlobalTheory.BigOn.links2_of_rows_alt _ _ _ _ _ _ _ _ _ _ p hr hm.1
+  have h0 := _root_.GlobalTheory.BigOn.Exp.baseOf_of_realPin_at (cG := p.cG) p.charW.base.lev hρ hf.pin ((Fm.ex x hx i).nch.twI w) j ((Fm.ex x hx i).nch.sd w)
   obtain ⟨c1, c2⟩ := c ρ hρ hf.adapted
   obtain ⟨-, e, h1, h2⟩ := hf.adapted
-  exact _root_.GlobalTheory.BigOn.Exp.TupLe.realTw_le_alt _root_.GlobalTheory.T.seesaw_places_statement _root_.GlobalTheory.T.tuple_flat_estimate _root_.GlobalTheory.T.tupLe_traceSt _root_.GlobalTheory.T.tuple_coef_le _root_.GlobalTheory.T.small_tuple_statement_alt hr hm hL hw a.1 hρ hf.pin hf.level
+  exact _root_.GlobalTheory.BigOn.Exp.TupLe.realTw_le_alt _root_.GlobalTheory.BigOn.Exp.TupLe.placesSt_alt _root_.GlobalTheory.BigOn.Exp.TupLe.flatSt_holds_alt _root_.GlobalTheory.BigOn.Exp.TupLe.traceSt_alt _root_.GlobalTheory.BigOn.Exp.TupLe.CoefPf.coefSt_alt _root_.GlobalTheory.SmallSpan.smallSt_alt hr hm hL hw a.1 hρ hf.pin hf.level
     { h0 with } e h1 h2 c1 c2 hf.norm hf.rat hc
 end GlobalTheory.BigOn.Exp.TupLe
 end

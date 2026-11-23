@@ -112,20 +112,8 @@ theorem not_cdom_add_root (ε : Fin n → Bool) (Λ : Fin n → ℝ) {a b : Fin 
   have : ((a : ℕ) : ℝ) < (b : ℕ) := by exact_mod_cast hab
   linarith
 
-theorem kset_mul {ε : Fin n → Bool} {k k' : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Formalism.REAL.Kset ε)
-    (hk' : k' ∈ Formalism.REAL.Kset ε) : k * k' ∈ Formalism.REAL.Kset ε := by
-  refine ⟨Submonoid.mul_mem _ hk.1 hk'.1, ?_⟩
-  rw [mul_assoc, hk'.2, ← mul_assoc, hk.2, mul_assoc]
-
 theorem one_mem_kset (ε : Fin n → Bool) : (1 : Matrix (Fin n) (Fin n) ℂ) ∈ Formalism.REAL.Kset ε :=
   ⟨Submonoid.one_mem _, by simp⟩
-
-theorem kset_sub_ujset {ε : Fin n → Bool} {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Formalism.REAL.Kset ε) :
-    k ∈ Formalism.MainNotions.S.UJset ε := by
-  show Formalism.REAL.inUJ ε k
-  unfold Formalism.REAL.inUJ
-  have hu : star k * k = 1 := Matrix.mem_unitaryGroup_iff'.1 hk.1
-  rw [mul_assoc, ← hk.2, ← mul_assoc, ← Matrix.star_eq_conjTranspose, hu, one_mul]
 
 section Orbit
 
@@ -148,9 +136,9 @@ theorem orbSpan_kstable (hrep : Formalism.QuantumDeterminants.IsCRepOn (Formalis
   have h : orbSpan ε ρ w ≤ (orbSpan ε ρ w).comap ((ρ k : H →L[ℂ] H) : H →ₗ[ℂ] H) := by
     rw [orbSpan, Submodule.span_le]
     rintro _ ⟨k', hk', rfl⟩
-    refine Submodule.subset_span ⟨k * k', kset_mul hk hk', ?_⟩
+    refine Submodule.subset_span ⟨k * k', _root_.GlobalTheory.KSpanHighest.kset_mul hk hk', ?_⟩
     show ρ (k * k') w = ρ k (ρ k' w)
-    rw [hrep.2 k (kset_sub_ujset hk) k' (kset_sub_ujset hk')]; rfl
+    rw [hrep.2 k (_root_.Formalism.IndefR.FWT.kset_uj hk) k' (_root_.Formalism.IndefR.FWT.kset_uj hk')]; rfl
   exact h hv
 
 theorem isWtOn_add {μ : Fin n → ℝ} {x y : H} (hx : Formalism.MainNotions.S.IsWtOn (Formalism.REAL.Kset ε) ρ μ x)
@@ -209,7 +197,7 @@ theorem orth_kstable : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAdd
   have hk' := star_mem_kset hk
   have h1 : ρ k (ρ (star k) s) = s := by
     have hm : k * star k = 1 := Matrix.mem_unitaryGroup_iff.1 hk.1
-    rw [← ContinuousLinearMap.comp_apply, ← hrep.2 k (kset_sub_ujset hk) (star k) (kset_sub_ujset hk'), hm, hrep.1]
+    rw [← ContinuousLinearMap.comp_apply, ← hrep.2 k (_root_.Formalism.IndefR.FWT.kset_uj hk) (star k) (_root_.Formalism.IndefR.FWT.kset_uj hk'), hm, hrep.1]
     rfl
   let Lk : H →ₗᵢ[ℂ] H := ⟨(ρ k : H →ₗ[ℂ] H), hiso k hk⟩
   have h2 : inner ℂ (ρ k (ρ (star k) s)) (ρ k y) = inner ℂ (ρ (star k) s) y := Lk.inner_map_map _ _

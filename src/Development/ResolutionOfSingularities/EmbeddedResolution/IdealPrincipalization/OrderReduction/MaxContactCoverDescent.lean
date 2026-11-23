@@ -225,12 +225,12 @@ theorem orderAt_sequenceOfBlowups_ideal_le_mult (hstar : _root_.FunctorialResolu
 
 private theorem imageIdealSheaf_inv_eq_comap {X Y : Scheme.{u}} (φ : X ≅ Y)
     (J : Y.IdealSheafData) :
-    imageIdealSheaf φ.inv J = J.comap φ.hom := by
-  have h1 : (imageIdealSheaf φ.inv J).comap φ.inv = J :=
+    _root_.FunctorialResolution.Blowup.schemeImageIdeal φ.inv J = J.comap φ.hom := by
+  have h1 : (_root_.FunctorialResolution.Blowup.schemeImageIdeal φ.inv J).comap φ.inv = J :=
     Blowup.comap_map_of_isClosedImmersion φ.inv J
-  have h2 : ((imageIdealSheaf φ.inv J).comap φ.inv).comap φ.hom = imageIdealSheaf φ.inv J := by
+  have h2 : ((_root_.FunctorialResolution.Blowup.schemeImageIdeal φ.inv J).comap φ.inv).comap φ.hom = _root_.FunctorialResolution.Blowup.schemeImageIdeal φ.inv J := by
     rw [← Scheme.IdealSheafData.comap_comp, Iso.hom_inv_id, Scheme.IdealSheafData.comap_id]
-  calc imageIdealSheaf φ.inv J = ((imageIdealSheaf φ.inv J).comap φ.inv).comap φ.hom := h2.symm
+  calc _root_.FunctorialResolution.Blowup.schemeImageIdeal φ.inv J = ((_root_.FunctorialResolution.Blowup.schemeImageIdeal φ.inv J).comap φ.inv).comap φ.hom := h2.symm
     _ = J.comap φ.hom := by rw [h1]
 
 theorem isAdmissible_and_dim_eq_withSchemeIdealBoundary_ker (T : MarkedIdealWithBoundary.{u}) (hv : T.IsAdmissible) (Y : Scheme.{u})
@@ -240,9 +240,9 @@ theorem isAdmissible_and_dim_eq_withSchemeIdealBoundary_ker (T : MarkedIdealWith
     (ε : Y ⟶ (Scheme.Hom.ker e).subscheme)
     (hε : ε ≫ (Scheme.Hom.ker e).subschemeι = e) :
     (T.withSchemeIdealBoundary (Scheme.Hom.ker e).subscheme
-        ((Scheme.Hom.ker e).subschemeι ≫ T.structMap) (imageIdealSheaf ε J) []).IsAdmissible ∧
+        ((Scheme.Hom.ker e).subschemeι ≫ T.structMap) (_root_.FunctorialResolution.Blowup.schemeImageIdeal ε J) []).IsAdmissible ∧
       (T.withSchemeIdealBoundary (Scheme.Hom.ker e).subscheme
-          ((Scheme.Hom.ker e).subschemeι ≫ T.structMap) (imageIdealSheaf ε J) []).krullDimSucc
+          ((Scheme.Hom.ker e).subschemeι ≫ T.structMap) (_root_.FunctorialResolution.Blowup.schemeImageIdeal ε J) []).krullDimSucc
         = (T.withSchemeIdealBoundary Y q J []).krullDimSucc := by
   have : CategoryTheory.Mono ((Scheme.Hom.ker e).subschemeι) := inferInstance
   have hεi : ε = (kerSubschemeIso e).inv := by
@@ -276,9 +276,9 @@ theorem isAdmissible_and_dim_eq_withSchemeIdealBoundary_ker (T : MarkedIdealWith
       ((Scheme.Hom.ker e).subschemeι ≫ T.structMap) := by
     rw [hkey]
     infer_instance
-  have hnz : NonzeroOnComponents (imageIdealSheaf (kerSubschemeIso e).inv J) := by
+  have hnz : NonzeroOnComponents (_root_.FunctorialResolution.Blowup.schemeImageIdeal (kerSubschemeIso e).inv J) := by
     rw [imageIdealSheaf_inv_eq_comap (kerSubschemeIso e) J]
-    exact nonzeroOnComponents_comap_iso_hom (kerSubschemeIso e) J hnzJ
+    exact _root_.FunctorialResolution.EmbeddedResolution.PrincipalizationIsoTransport.nonzeroOnComponents_comap_iso (kerSubschemeIso e) J hnzJ
   have hdim : krullDimSucc ((Scheme.Hom.ker e).subscheme) = krullDimSucc Y := by
     rw [krullDimSucc_eq_withBotSuccToNat_topologicalKrullDim, krullDimSucc_eq_withBotSuccToNat_topologicalKrullDim,
       topologicalKrullDim_eq_of_homeomorph (Scheme.homeoOfIso (kerSubschemeIso e))]

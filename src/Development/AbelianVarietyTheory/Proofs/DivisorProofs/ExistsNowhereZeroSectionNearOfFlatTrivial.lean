@@ -63,11 +63,6 @@ namespace GlobalTheory.FlatTrivSec
 
 variable {X Y : Scheme.{0}}
 
-theorem isUnit_gs_iff {Z : Scheme.{0}} (f : Z ⟶ X) (z : Z) (U : X.Opens) (h : f z ∈ U) (a : Γ(X, U)) :
-    IsUnit (gs f z U a) ↔ f z ∈ X.basicOpen a := by
-  rw [gs_eq f z U h, ← Scheme.mem_basicOpen Z _ z h, ← Scheme.preimage_basicOpen]
-  rfl
-
 def pullSec (L : LB X) (θ : LB.Sec L) (F : Y ⟶ X) : LB.Sec (L.pull F) where
   f := fun I => (Y.presheaf.map (homOfLE (LB.wchart_le L (fun _ : PUnit => F) I PUnit.unit)).op).hom
     ((F.app _).hom (θ.f (I PUnit.unit)))
@@ -162,12 +157,12 @@ theorem exists_sec_near : ∀ (B C : Type) [CommRing B] [IsNoetherianRing B] [Co
   refine ⟨u i, PrimeSpectrum.basicOpen (e i), hi, fun z hz => ?_⟩
   obtain ⟨k, hk⟩ := chart z
   have hu1 : IsUnit (gs (𝟙 _) z ⊤ (a i)) := by
-    rw [← he i, gs_cst_top, isUnit_gs_iff _ z ⊤ trivial, basicOpen_eq_of_affine]
+    rw [← he i, gs_cst_top, _root_.GlobalTheory.LBGerm.isUnit_gs_iff _ z ⊤ trivial, basicOpen_eq_of_affine]
     exact hz
   have hu2 : IsUnit (gs (spMap g ∣_ W) z _ ((u i).f k)) := by
     rw [key z k hk i]
     exact hu1.mul (Units.isUnit _)
-  rw [isUnit_gs_iff _ z _ hk] at hu2
+  rw [_root_.GlobalTheory.LBGerm.isUnit_gs_iff _ z _ hk] at hu2
   exact TopologicalSpace.Opens.mem_iSup.2 ⟨k, hu2⟩
 
 end GlobalTheory.FlatTrivSec

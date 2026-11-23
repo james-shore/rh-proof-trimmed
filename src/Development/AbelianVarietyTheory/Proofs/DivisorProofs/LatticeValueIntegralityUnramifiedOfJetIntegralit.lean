@@ -276,7 +276,7 @@ theorem latIntUnr : GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates.
   classical
   haveI : Fact l.Prime := ⟨hl⟩
   have hld : l ≠ d := ne_d_of_c_eq_zero hF h𝔣 hc
-  rw [GlobalTheory.T.powerIntegralValuationLowerBound_iff_forall_embedding]
+  rw [_root_.GlobalTheory.LadicDenom.valGe_iff_forall_sz]
   intro lam
   obtain ⟨Ω, hΩ⟩ := IsAlgClosed.exists_pow_nat_eq (latDisc Λ) (by norm_num : 0 < 12)
   have hΩ0 : Ω ≠ 0 := by

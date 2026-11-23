@@ -135,7 +135,7 @@ theorem arc_length_three_inFP_smul_phi_lambda [NeZero n] [Fintype (K →ₐ[Qp] 
   have hφsU : IsUnit (W.φE s) := hsU.map W.φE
   have hφn : W.φD T₂ (s • lam) = W.φE s • W.φD T₂ lam := W.φD_smul T₂ s lam
   have hlet2 : (letE c : LetA O n) • W.φD T₂ (s • lam) = W.φD T₂ (s • lam) := by
-    have hfix := Formalism.MainNotions.LiftingTheory.wmap_Nl_fix W T₂ (c - 1) _ hn2.2
+    have hfix := _root_.Formalism.MainNotions.LiftingTheory.idempotent_smul_of_mem_letter' W T₂ (c - 1) _ hn2.2
     conv_rhs => rw [← hfix]
     rw [DYB.φD_smulA W, Formalism.MainNotions.LiftingTheory.wmap_φA_letE]
   have gen : ∀ a : LetA O n, a ∈ W.AΔ → ∀ x, Formalism.MainNotions.LiftingTheory.InNΔi W T₂ (c - 1) x →

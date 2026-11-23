@@ -62,8 +62,7 @@ theorem sqrt_mem : H.sqrtMinusD ∈ H.K := bE_mem H
 
 theorem φ₀_sqrt : H.φ₀ H.sqrtMinusD = Complex.I * (Real.sqrt H.d : ℂ) := H.φ₀_mem
 
-theorem exists_coords {x : H.E} (hx : x ∈ H.K) : ∃ a b : ℚ, x = (a : H.E) + (b : H.E) * H.sqrtMinusD :=
-  by apply _root_.GlobalTheory.CoordsOfMemAdjoin.exists_rat_coords <;> assumption
+alias exists_coords := _root_.GlobalTheory.CoordsOfMemAdjoin.exists_rat_coords
 
 theorem conj_coords (a b : ℚ) :
     H.conj ((a : H.E) + (b : H.E) * H.sqrtMinusD) = (a : H.E) - (b : H.E) * H.sqrtMinusD := by

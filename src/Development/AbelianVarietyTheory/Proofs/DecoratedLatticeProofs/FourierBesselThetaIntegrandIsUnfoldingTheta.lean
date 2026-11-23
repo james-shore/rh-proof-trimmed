@@ -65,9 +65,7 @@ namespace GlobalTheory.ThLaws
 
 variable {D : D7}
 
-theorem cA_cA' (z : AE D) : cA D (cA D z) = z := by
-  have h := congrFun (congrFun (adj_adj (Matrix.of fun _ _ => z : Mx D 1 1)) 0) 0
-  simpa [adj] using h
+alias cA_cA' := _root_.Formalism.L2.Theta.cA_cA
 
 theorem form_mulVec (S : HSp D) {ρ : ℕ} (J : Mx D S.rank ρ) (B : Fin ρ → AE D) (y : GlobalTheory.IndefiniteRowSideFullHecke.TransvectionAction.VA S) :
     GlobalTheory.IndefiniteRowSideFullHecke.TransvectionAction.form S y (J *ᵥ B) = (fun k => cA D (B k)) ⬝ᵥ ((adj J ⬝ gA S) *ᵥ y) := by

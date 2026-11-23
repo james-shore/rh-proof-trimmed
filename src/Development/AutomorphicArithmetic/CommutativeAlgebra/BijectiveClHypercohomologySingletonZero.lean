@@ -59,10 +59,10 @@ private lemma exists_lift {M F : Shv ℤ} (g : M ⟶ (res ℤ F).X 0) (hg : g �
     ∃ f : M ⟶ F, f ≫ resι ℤ F = g := by
   classical
   have hinj : ∀ U : Scheme, Function.Injective (Sec.map (resι ℤ F) (U := U)) :=
-    fun U => (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ F U).2.1
+    fun U => (_root_.GlobalTheory.EtC.resSec ℤ F U).2.1
   have hex : ∀ (U : Scheme) (x : Sec M U), ∃ a : Sec F U, Sec.map (resι ℤ F) a = Sec.map g x := by
     intro U x
-    refine ((GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness ℤ F U).1 _).1 ?_
+    refine ((_root_.GlobalTheory.EtC.resSec ℤ F U).1 _).1 ?_
     rw [← sec_comp, hg]
     rfl
   let φ : ∀ U : Scheme, Sec M U → Sec F U := fun U x => (hex U x).choose
@@ -93,7 +93,7 @@ private lemma exists_lift {M F : Shv ℤ} (g : M ⟶ (res ℤ F).X 0) (hg : g �
         refine n1.trans ?_
         refine Eq.trans ?_ n2.symm
         exact congrArg _ (hφ _ x).symm }
-  refine ⟨⟨η⟩, (GlobalTheory.T.bigEtaleModuleSheaf_mono_epi_iff_sections ℤ (⟨η⟩ ≫ resι ℤ F)).2.2.2 g (fun U a => ?_)⟩
+  refine ⟨⟨η⟩, (_root_.GlobalTheory.EtC.mono_epi_sections ℤ (⟨η⟩ ≫ resι ℤ F)).2.2.2 g (fun U a => ?_)⟩
   rw [sec_comp]
   exact hφ U a
 

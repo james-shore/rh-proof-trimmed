@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.ProdGPn
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothIntegralLinear
 
 @[expose] public section
 
@@ -53,17 +54,6 @@ noncomputable section
 namespace GlobalTheory.CompanionTheory.BZPsiPG.FibKer.SmFib
 
 open Topology
-
-theorem range_finite {X W : Type} [TopologicalSpace X] [AddCommGroup W] {φ : X → W}
-    (hl : IsLocallyConstant φ) (hc : HasCompactSupport φ) : (Set.range φ).Finite := by
-  have : CompactSpace (tsupport φ) := isCompact_iff_compactSpace.mp hc
-  have h1 : (Set.range (φ ∘ ((↑) : tsupport φ → X))).Finite :=
-    (hl.comp_continuous continuous_subtype_val).range_finite
-  refine (h1.insert 0).subset ?_
-  rintro _ ⟨x, rfl⟩
-  by_cases hx : x ∈ tsupport φ
-  · exact Or.inr ⟨⟨x, hx⟩, rfl⟩
-  · exact Or.inl (image_eq_zero_of_notMem_tsupport hx)
 
 theorem exists_nhds_translation_invariant {A Z : Type} [AddCommGroup A] [TopologicalSpace A]
     [IsTopologicalAddGroup A] [AddCommGroup Z] {φ : A → Z} (hl : IsLocallyConstant φ)
@@ -86,19 +76,14 @@ theorem exists_nhds_translation_invariant {A Z : Type} [AddCommGroup A] [Topolog
     simpa using hw
   exact (hsub h2).symm
 
-theorem isOpen_stabiliser {G V : Type} [Group G] [TopologicalSpace G] [ContinuousMul G] [AddCommGroup V]
-    [Module ℂ V] (ρ : Representation ℂ G V) (v : V) (h : {g | ρ g v = v} ∈ 𝓝 (1 : G)) :
-    IsOpen {g | ρ g v = v} :=
-  _root_.UpperTheory.Reformulated.B.Yhd4.main ρ v h
-
 theorem isSmooth_fibAct (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] (i t : ℕ) {Z : Type} [AddCommGroup Z] [Module ℂ Z]
     (ρ₀ : Representation ℂ (Multiplicative (Fin i → k)) Z) (hρ : IsSmooth ρ₀) :
     IsSmooth (fibAct t ρ₀) := by
   intro φ
-  refine isOpen_stabiliser (fibAct t ρ₀) φ ?_
+  refine _root_.UpperTheory.Reformulated.B.Yhd4.main (fibAct t ρ₀) φ ?_
   have hU : (⋂ z ∈ Set.range φ.1, {g : Multiplicative (Fin i → k) | ρ₀ g z = z}) ∈ 𝓝 1 :=
-    (Filter.biInter_mem (range_finite φ.2.1 φ.2.2)).2 fun z _ =>
+    (Filter.biInter_mem (_root_.GlobalTheory.CompanionTheory.Rodier.SmIntEl.finite_range φ.2.1 φ.2.2)).2 fun z _ =>
       (hρ z).mem_nhds (show ρ₀ 1 z = z by rw [map_one, Module.End.one_apply])
   obtain ⟨N, hN, hinv⟩ := exists_nhds_translation_invariant φ.2.1 φ.2.2
   have hT : Continuous fun y : Multiplicative (Fin (i + t) → k) =>

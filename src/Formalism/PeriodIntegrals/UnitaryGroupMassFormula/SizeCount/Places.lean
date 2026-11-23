@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 
 @[expose] public section
 
@@ -52,13 +53,6 @@ theorem eTau_tauPl (D : D7) (z : Bool × HH D) :
     (D.eTau (tauPl D z) : D.R.GG) = plGG D z := by
   unfold Formalism.BasicNotions.tauPl
   simp
-
-theorem ramifiedTau1_ne_ramifiedTau2 (φ : Formalism.HC.Frame) (a b : φ.A) : φ.tau1 a ≠ φ.tau2 b := by
-  intro h
-  have h1 := congrArg (fun x => x.1.1) h
-  simp only [Formalism.HC.Frame.tau1, Formalism.HC.Frame.tau2] at h1
-  revert h1
-  decide
 
 theorem tau1_injective_alt (φ : Formalism.HC.Frame) {a b : φ.A} (h : φ.tau1 a = φ.tau1 b) : a = b := by
   simp only [Formalism.HC.Frame.tau1, Prod.mk.injEq, true_and] at h
@@ -77,7 +71,7 @@ theorem placeFacts : PlaceFacts := by
     rw [h2] at h
     unfold Host.topPlaces at h
     obtain ⟨a, -, ha⟩ := Finset.mem_image.1 h
-    exact ramifiedTau1_ne_ramifiedTau2 _ _ _ ha
+    exact _root_.Formalism.HC.Frame.ramifiedTau1_ne_ramifiedTau2 _ _ _ ha
   refine ⟨h1, ?_, hnt, ?_⟩
   · intro t ht
     refine ⟨hPsi _, ?_, ?_⟩
@@ -90,7 +84,7 @@ theorem placeFacts : PlaceFacts := by
       rw [h1] at h
       unfold Host.thickPlaces at h
       obtain ⟨a, -, ha⟩ := Finset.mem_image.1 h
-      exact ramifiedTau1_ne_ramifiedTau2 _ _ _ ha.symm
+      exact _root_.Formalism.HC.Frame.ramifiedTau1_ne_ramifiedTau2 _ _ _ ha.symm
   · intro t
     by_cases h : (D.eTau (tauPl D (true, t)) : D.R.GG) ∈ D.host.thickPlaces
     · exact Or.inl h

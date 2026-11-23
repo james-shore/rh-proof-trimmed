@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkMapInitMinor
 
 @[expose] public section
 
@@ -51,17 +52,6 @@ open MvPolynomial
 open Formalism.GradedWeylDivisibility
 
 namespace GlobalTheory.HighWt
-
-theorem map_bidet {R S : Type} [CommRing R] [CommRing S] (φ : R →+* S) {r n K : ℕ} (sz : Fin K → ℕ)
-    (hsz : ∀ k, sz k ≤ n) (I : ∀ k, Fin (sz k) → Fin r) :
-    MvPolynomial.map φ (bideterminant R sz hsz I) = bideterminant S sz hsz I := by
-  unfold bideterminant initMinor
-  rw [map_prod]
-  refine Finset.prod_congr rfl fun k _ => ?_
-  rw [RingHom.map_det]
-  congr 1
-  ext p q
-  simp [RingHom.mapMatrix_apply]
 
 theorem baseChange_holds : BaseChange := by
   intro O _ _ _ ϖ hϖ N ν _
@@ -76,7 +66,7 @@ theorem baseChange_holds : BaseChange := by
     induction hf using Submodule.span_induction with
     | mem x hx =>
       obtain ⟨K, sz, hsz, I, hsh, rfl⟩ := hx
-      refine ⟨bideterminant O sz hsz I, ?_, map_bidet _ sz hsz I⟩
+      refine ⟨bideterminant O sz hsz I, ?_, _root_.Formalism.L2.DIV.fk_map_bidet _ sz hsz I⟩
       rw [← hsh]
       exact bidetMem O N N K sz hsz I
     | zero => exact ⟨0, Submodule.zero_mem _, by simp⟩

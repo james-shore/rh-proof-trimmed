@@ -108,7 +108,7 @@ theorem cusp_mul_card_pow (F F' : Type) [Field F] [Field F'] [Algebra F F'] [Fin
   have hchar : ringChar F' = ringChar F := (Algebra.ringChar_eq F F').symm
   have hq : Nat.card F = ringChar F' ^ (r : ℕ) := by rw [Nat.card_eq_fintype_card, hcard, hchar]
   funext x
-  have key := GlobalTheory.T.cuspidalCharacterGLFiniteField_frobenius_pow F' θ (RingEquiv.refl F') (r * Module.finrank F F') (fun y => by
+  have key := _root_.GlobalTheory.Shin.cusp_gal F' θ (RingEquiv.refl F') (r * Module.finrank F F') (fun y => by
     rw [pow_mul, ← hq, Nat.card_eq_fintype_card, ← Module.card_eq_pow_finrank, FiniteField.pow_card]
     rfl) m K x
   rw [hq, ← pow_mul, ← key]
@@ -132,7 +132,7 @@ theorem J_liftL_galAct_frob (F F' : Type) [Field F] [Field F'] [Algebra F F'] [F
   set l := Module.finrank F F' with hldef
   have hl : 0 < l := Module.finrank_pos
   obtain ⟨l', hl'⟩ : ∃ l', l = l' + 1 := ⟨l - 1, by omega⟩
-  have key := GlobalTheory.T.harishChandraProductCuspidalGL_frobenius_pow F' θ (FiniteField.frobeniusAlgEquivOfAlgebraic F F').toRingEquiv r (fun y => by
+  have key := _root_.GlobalTheory.Shin.J_gal F' θ (FiniteField.frobeniusAlgEquivOfAlgebraic F F').toRingEquiv r (fun y => by
     rw [← hq]
     show (FiniteField.frobeniusAlgEquivOfAlgebraic F F') y = _
     rw [FiniteField.coe_frobeniusAlgEquivOfAlgebraic, hqdef, Nat.card_eq_fintype_card]) (liftL q l L) n x
@@ -170,7 +170,7 @@ theorem J_liftL_galAct_frob (F F' : Type) [Field F] [Field F'] [Algebra F F'] [F
     unfold deg
     exact (hP.map Prod.fst).sum_eq
   rw [J_congr_forall₂ θ hF]
-  exact ((GlobalTheory.T.harishChandraProductCuspidalGL_list_properties F' θ).2.2 R (liftL q l L) n (hn.trans hdeg.symm) hP) ▸ rfl
+  exact ((_root_.GlobalTheory.Shin.J_list_props F' θ).2.2 R (liftL q l L) n (hn.trans hdeg.symm) hP) ▸ rfl
 
 end GlobalTheory.Shin
 

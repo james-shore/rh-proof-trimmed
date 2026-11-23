@@ -58,44 +58,27 @@ namespace Formalism.InvariantFactorPaths.G7.Top
 
 open Formalism.InvariantFactorPaths.G7
 
-theorem frobExprG : FrobExprG := frobenius_expression_g
-theorem valTable : ValTable := valuation_table
-theorem expIntegral : ExpIntegral := exp_integral
-theorem classChange : ClassChange := classChange_statement
-theorem classMul : ClassMul := class_multiplication
-theorem classSubst : ClassSubst := class_substitution
-theorem classExp : ClassExp := class_exponential
-theorem rescaleExact : RescaleExact := RescaleExact_of valTable expIntegral
-theorem rescaleCore : RescaleCore := RescaleCore_of rescaleExact classExp classMul
+alias classExp := _root_.Formalism.InvariantFactorPaths.G7.class_exponential
+theorem rescaleExact : RescaleExact := RescaleExact_of _root_.Formalism.InvariantFactorPaths.G7.valuation_table _root_.Formalism.InvariantFactorPaths.G7.exp_integral
+theorem rescaleCore : RescaleCore := RescaleCore_of rescaleExact classExp _root_.Formalism.InvariantFactorPaths.G7.class_multiplication
 
-theorem dworkMv : DworkMv := dwork_multivariable
-theorem simeqRules : SimeqRules := equivalence_rules
-theorem logRescale : LogRescale := log_rescale_alt
-theorem logRescaleUnique : LogRescaleUnique := log_rescale_unique
-theorem twoSums : TwoSums := two_sums
+alias simeqRules := _root_.Formalism.InvariantFactorPaths.G7.LogarithmEquivalence.simeqRules
 theorem thmSCore : ThmSCore :=
-  ThmSCore_of rescaleCore classSubst classChange classMul twoSums logRescale logRescaleUnique
+  ThmSCore_of rescaleCore _root_.Formalism.InvariantFactorPaths.G7.class_substitution _root_.Formalism.InvariantFactorPaths.G7.classChange_statement _root_.Formalism.InvariantFactorPaths.G7.class_multiplication _root_.Formalism.InvariantFactorPaths.G7.two_sums _root_.Formalism.InvariantFactorPaths.G7.LogarithmEquivalence.logRescale _root_.Formalism.InvariantFactorPaths.G7.LogarithmEquivalence.logRescaleUnique
 theorem theorem_s_from_k_one : CyclicPowerClassOfExpEquiv := theorem_s_from_k_one_of thmSCore simeqRules
 
-theorem lawExists : LawExists := formal_law_exists
-theorem lawSymm : LawSymm := formal_law_symmetric
-theorem divDeriv : DivDeriv := divided_derivative
-theorem deIntegral : DeIntegral := DeIntegral_of divDeriv lawSymm
-theorem derivA : DerivA := derivative_a
-theorem lemmaOne : LemmaOne := LemmaOne_of deIntegral lawSymm
-theorem lemmaTwo : LemmaTwo := LemmaTwo_of lemmaOne lawSymm
-theorem lamModule : LamModule := LamModule_of dworkMv
-theorem zeroCondition : StepZero := StepZero_of lamModule simeqRules lawSymm
-theorem firstDeriv : FirstDeriv := FirstDeriv_of lawSymm
-theorem cobLin : CobLin := CobLin_of lawSymm
+theorem deIntegral : DeIntegral := DeIntegral_of _root_.Formalism.InvariantFactorPaths.G7.divided_derivative _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
+theorem lemmaOne : LemmaOne := LemmaOne_of deIntegral _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
+theorem lemmaTwo : LemmaTwo := LemmaTwo_of lemmaOne _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
+theorem lamModule : LamModule := LamModule_of _root_.Formalism.InvariantFactorPaths.G7.dwork_multivariable
+theorem zeroCondition : StepZero := StepZero_of lamModule simeqRules _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
+theorem firstDeriv : FirstDeriv := FirstDeriv_of _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
+theorem cobLin : CobLin := CobLin_of _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
 theorem stepI : StepI := StepI_of lemmaOne firstDeriv cobLin
-theorem stepII : StepII := StepII_of dworkMv divDeriv deIntegral lawSymm
-theorem swapRules : SwapRules := swap_rules
-theorem stepH : StepH := StepH_of lemmaTwo swapRules lawSymm
-theorem stepIII : StepIII := c_add_sigma_c_eq_zero
-theorem stepIV : StepIV := StepIV_of dworkMv
-theorem mapSimeq : MapSimeq := mapSimeq_statement
+theorem stepII : StepII := StepII_of _root_.Formalism.InvariantFactorPaths.G7.dwork_multivariable _root_.Formalism.InvariantFactorPaths.G7.divided_derivative deIntegral _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
+theorem stepH : StepH := StepH_of lemmaTwo _root_.Formalism.InvariantFactorPaths.G7.swap_rules _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric
+theorem stepIV : StepIV := StepIV_of _root_.Formalism.InvariantFactorPaths.G7.dwork_multivariable
 theorem betaIsG : BetaIsG :=
-  BetaIsG_of zeroCondition stepI stepII stepH stepIII stepIV swapRules simeqRules
+  BetaIsG_of zeroCondition stepI stepII stepH _root_.Formalism.InvariantFactorPaths.G7.c_add_sigma_c_eq_zero stepIV _root_.Formalism.InvariantFactorPaths.G7.swap_rules simeqRules
 
 end Formalism.InvariantFactorPaths.G7.Top

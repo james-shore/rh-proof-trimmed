@@ -99,7 +99,7 @@ theorem shLift_cusp_kills_J : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F 
   have hq2 : 2 ≤ q := Finite.one_lt_card
   have hcardF' : Nat.card F' = q ^ l := Module.natCard_eq_pow_finrank
 
-  obtain ⟨X, hX, hXg, hXs⟩ := GlobalTheory.T.exists_virtualCharacter_shintani_psi_lift F F' s hl hs ι θ hθ k n
+  obtain ⟨X, hX, hXg, hXs⟩ := _root_.GlobalTheory.Shin.exists_virt_psi_lift F F' s hl hs ι θ hθ k n
   set c : ℂ := (-1) ^ (n - 1) with hc
   have hc2 : c = 1 ∨ c = -1 := neg_one_pow_eq_or ℂ (n - 1)
   set X' : GHat F F' n → ℂ := fun g => c * X g with hX'
@@ -114,13 +114,13 @@ theorem shLift_cusp_kills_J : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F 
     intro δ
     rw [hcusp, shLift_const_mul, ← hXs δ]
 
-  obtain ⟨hchar, hnorm⟩ := GlobalTheory.T.cuspidalCharacterGL_isCharacter_norm_one_of_regular F (pullθ ι θ) hθ' n k hn hreg
+  obtain ⟨hchar, hnorm⟩ := _root_.GlobalTheory.Shin.isChar_cusp_and_norm_of_reg F (pullθ ι θ) hθ' n k hn hreg
   have hclc : IsCl (cusp (pullθ ι θ) n k) := by
     intro x y
     rw [hcusp]
     simp only
-    rw [((GlobalTheory.T.twistedHarishChandraInductionGL_isTwistedClassFunction F (RingHom.id F) 0 0 n (fun _ => 0) (fun _ => 0)).2.2 (rootSum (pullθ ι θ) k)).1 x y]
-  have hiso := GlobalTheory.T.shintaniLiftClassFunction_isometry F F' s hgen n _ _ hclc hclc
+    rw [((_root_.GlobalTheory.Shin.twisted_class_main F (RingHom.id F) 0 0 n (fun _ => 0) (fun _ => 0)).2.2 (rootSum (pullθ ι θ) k)).1 x y]
+  have hiso := _root_.GlobalTheory.Shin.shLift_isometry F F' s hgen n _ _ hclc hclc
   rw [hnorm] at hiso
   have hGne : (Nat.card (GL (Fin n) F) : ℂ) ≠ 0 := by
     exact_mod_cast (Nat.card_pos (α := GL (Fin n) F)).ne'
@@ -129,26 +129,26 @@ theorem shLift_cusp_kills_J : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F 
     apply mul_left_cancel₀ hGne
     rw [hiso, mul_comm]
 
-  obtain ⟨hdeg, hlift⟩ := GlobalTheory.T.deg_liftL_and_reg_pow q l [(n, k)] hq2 hl.pos (by
+  obtain ⟨hdeg, hlift⟩ := _root_.GlobalTheory.Shin.liftL_deg_reg q l [(n, k)] hq2 hl.pos (by
     intro p hp
     simp only [List.mem_singleton] at hp
     subst hp
     exact ⟨hn, hln, hreg⟩)
   have hdegn : deg (liftL q l [(n, k)]) = n := by rw [hdeg]; simp [deg]
   have hYchar : IsChar ℂ ℂ (J θ (liftL q l [(n, k)]) n) := by
-    apply GlobalTheory.T.isCharacter_harishChandraProductCuspidalGL_of_regular F' θ hθ _ _ n hdegn.symm
+    apply _root_.GlobalTheory.Shin.isChar_J_of_reg F' θ hθ _ _ n hdegn.symm
     intro p hp
     rw [hcardF']
     exact hlift p hp
   have hYst : ∀ g, J θ (liftL q l [(n, k)]) n (galAct F F' n s g) = J θ (liftL q l [(n, k)]) n g :=
-    GlobalTheory.T.harishChandraProduct_shintaniLift_galois F F' θ s [(n, k)] n hdegn.symm
+    _root_.GlobalTheory.Shin.J_liftL_galAct F F' θ s [(n, k)] n hdegn.symm
 
   obtain ⟨m, hm⟩ := hln
   have hm0 : 0 < m := by
     rcases Nat.eq_zero_or_pos m with h | h
     · subst h; simp at hm; omega
     · exact h
-  obtain ⟨z, hz, hzsum⟩ := GlobalTheory.T.cuspidal_galois_pairing_eq_pm_one_prime_degree F F' s hl hs ι θ hθ m k n hm0 hm hreg
+  obtain ⟨z, hz, hzsum⟩ := _root_.GlobalTheory.Shin.PairPM.pairing_pm_one F F' s hl hs ι θ hθ m k n hm0 hm hreg
   have hpair : ∑ᶠ g, X' (inl g) * star (J θ (liftL q l [(n, k)]) n g)
       = ((if c = 1 then z else -z : ℤ) : ℂ) * (Nat.card (GL (Fin n) F') : ℂ) := by
     have : (fun g : GL (Fin n) F' => X' (inl g) * star (J θ (liftL q l [(n, k)]) n g))
@@ -174,7 +174,7 @@ theorem shLift_cusp_kills_J : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F 
       · rw [h] at hd'; exact (dvd_neg).1 hd'
     have : l ∣ 1 := by exact_mod_cast h1
     exact hl.one_lt.ne' (Nat.dvd_one.1 this)
-  have hK := GlobalTheory.T.twisted_virtualCharacter_norm_one_support (GL (Fin n) F') (F' ≃ₐ[F] F') (galAct F F' n) s (hΓ ▸ hl) hs X' hX'v hnorm'
+  have hK := _root_.GlobalTheory.Shin.kills_of_norm_one_of_pairing_prime (GL (Fin n) F') (F' ≃ₐ[F] F') (galAct F F' n) s (hΓ ▸ hl) hs X' hX'v hnorm'
     (J θ (liftL q l [(n, k)]) n) hYchar hYst _ hpair hndvd
   have hfun : (fun δ => X' (inl δ * inr s)) = shLift s (cusp (pullθ ι θ) n k) := funext hX's
   rw [hfun] at hK

@@ -59,12 +59,6 @@ open scoped Matrix ComplexOrder
 
 namespace GlobalTheory.ExtremalNorm
 
-theorem weight_colW_apply {r n : ℕ} (mo : Fin r × Fin n →₀ ℕ) (t : Fin n) :
-    Finsupp.weight (Formalism.GradedWeylDivisibility.colW r n) mo t = ∑ a, mo (a, t) := by
-  rw [Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by simp), Finset.sum_apply, Fintype.sum_prod_type]
-  refine Finset.sum_congr rfl fun a _ => ?_
-  simp [Formalism.GradedWeylDivisibility.colW, Pi.single_apply]
-
 theorem fockS_extremal_eq_nat : ∀ (n : ℕ) (lam : DomWeight n) (R : ℕ), (∀ i, lam.natW i ≤ R) → ∃ s : ℕ, 0 < s ∧ s ≤ (n.factorial) ^ (2 * R) * (R.factorial) ^ n ∧ ∀ (K : Type) [Field K] [StarRing K] [CharZero K], fockS (extremal K n lam) (extremal K n lam) = (s : K) := by
   intro n lam R hR
   have hanti := Formalism.L2.DIV.natW_antitone lam
@@ -87,7 +81,7 @@ theorem fockS_extremal_eq_nat : ∀ (n : ℕ) (lam : DomWeight n) (R : ℕ), (�
               (fun _ _ => Nat.zero_le _) hmo).trans hl1
           have h2 : mfact mo ≤ R.factorial ^ n := by
             refine GlobalTheory.TestLat.mfact_le_factorial_pow n lam.natW R hR mo fun t => ?_
-            rw [← weight_colW_apply, hmem (mem_support_iff.mp hmo)]
+            rw [← _root_.Formalism.GradedWeylDivisibility.lccomp_weight_colW_apply, hmem (mem_support_iff.mp hmo)]
           rw [pow_two, mul_assoc]
           exact Nat.mul_le_mul_left _ (Nat.mul_le_mul h1 h2)
       _ ≤ n.factorial ^ R * (n.factorial ^ R * R.factorial ^ n) := by

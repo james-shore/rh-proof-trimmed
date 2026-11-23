@@ -65,23 +65,18 @@ noncomputable section
 
 namespace GlobalTheory.Poinc.IntTerm
 
-theorem gs_comp_stalkMap {X Y Z : Scheme.{0}} (f : Z ⟶ Y) (g : Y ⟶ X) (z : Z) (U : X.Opens) (h : g (f z) ∈ U)
-    (a : Γ(X, U)) : gs (f ≫ g) z U a = (f.stalkMap z).hom (gs g (f z) U a) := by
-  rw [← gs_pull f g z U h a, gs_eq f z _ h, gs_eq g (f z) U h]
-  exact (Scheme.Hom.germ_stalkMap_apply f _ z h _).symm
-
 theorem formEq_famφB_zero {V : Type} [CommRing V] [IsDomain V] (D : DegPre V) {Y : Scheme.{0}} (h : Y ⟶ D.P.A.left) :
     FormEq (fun i => h ≫ D.famφB 0 i) (DegPre.famε 1) (fun _ : Fin 1 => h) (fun _ => (1 : ℤ)) := by
   intro U _ hh
   have e0 : D.famφB 0 0 = 𝟙 _ := rfl
   have e1 : D.famφB 0 1 = 𝟙 _ := by
     show (padd D.P.A (𝟙 D.P.A) (toUnit _ ≫ D.c 0)).left = _
-    rw [ThetaOne.c_zero, MonObj.comp_one]
+    rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, MonObj.comp_one]
     show ((𝟙 D.P.A) * 1).left = _
     rw [_root_.mul_one]; rfl
   have e2 : D.famφB 0 2 = D.famφB 0 3 := by
     show (toUnit D.P.A ≫ D.c 0).left = (toUnit D.P.A ≫ η[D.P.A]).left
-    rw [ThetaOne.c_zero, MonObj.comp_one]
+    rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, MonObj.comp_one]
     rfl
   simp only [Fin.prod_univ_four, Fin.prod_univ_one, e0, e1, e2]
   simp [DegPre.famε]
@@ -143,7 +138,7 @@ theorem exists_unitAt_mul : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRin
         have := hJ (r ≫ g.left ≫ D.famφB 0 i)
         simpa [Scheme.Hom.comp_apply] using this
     have h2' : IsUnit ((r.stalkMap q).hom (gs g.left (r q) _ (θ.f (fun i => J (r ≫ g.left ≫ D.famφB 0 i))))) := by
-      rw [← gs_comp_stalkMap r g.left q _ hm]; exact h2
+      rw [← _root_.GlobalTheory.OneBasis.ThMove.gs_comp r g.left q _ hm]; exact h2
     have h3 := isUnit_of_map_unit (r.stalkMap q).hom _ h2'
     rw [hrq] at h3
     exact h3

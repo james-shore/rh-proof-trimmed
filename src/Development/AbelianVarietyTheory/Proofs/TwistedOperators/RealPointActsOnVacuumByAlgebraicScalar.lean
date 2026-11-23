@@ -119,13 +119,6 @@ theorem detPlus_mem {m n : ℕ} {sS : Matrix (Fin n) (Fin n) ℂ} {sT : Matrix (
   have k5 : EIn ((1 / 2 : ℂ) • (1 - sT ⊗ₖ sSᵀ)) := (EIn.one.sub k1).smul half_mem
   exact (k4.add k5).det
 
-theorem compAt_mt_mul (θ : InfFam D) (τ : D.what₂.Tau) (V : HSp D) (g h : GA D V) :
-    compAt θ τ (Formalism.L2.Theta.mt V (g * h)) = compAt θ τ (Formalism.L2.Theta.mt V g) * compAt θ τ (Formalism.L2.Theta.mt V h) := by
-  have e : Formalism.L2.Theta.mt V (g * h) = Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V h := by
-    unfold Formalism.L2.Theta.mt; rw [map_mul, Units.val_mul]
-  rw [e]
-  exact Matrix.map_mul (f := (θ τ).comp (infPart D))
-
 theorem compAt_mt_fin (θ : InfFam D) (τ : D.what₂.Tau) (V : HSp D) (g : GA D V) (hg : g ∈ GfC V) :
     compAt θ τ (Formalism.L2.Theta.mt V g) = 1 := by
   have h1 : infHom V g = 1 := hg
@@ -150,10 +143,10 @@ theorem eIn_real {θ : InfFam D} (hθ : IsInfFam θ) (τ : D.what₂.Tau) (V : H
     (h : γ * a ∈ GfC V) : EIn (compAt θ τ (Formalism.L2.Theta.mt V a)) ∧ EIn (compAt θ τ (Formalism.L2.Theta.mt V a⁻¹)) := by
   constructor
   · have e : a = γ⁻¹ * (γ * a) := by group
-    rw [e, compAt_mt_mul, compAt_mt_fin θ τ V _ h, Matrix.mul_one]
+    rw [e, _root_.GlobalTheory.RatAut.compAt_mul, compAt_mt_fin θ τ V _ h, Matrix.mul_one]
     exact eIn_rat hθ τ V _ (inv_mem hγ)
   · have e : a⁻¹ = (γ * a)⁻¹ * γ := by group
-    rw [e, compAt_mt_mul, compAt_mt_fin θ τ V _ (inv_mem h), Matrix.one_mul]
+    rw [e, _root_.GlobalTheory.RatAut.compAt_mul, compAt_mt_fin θ τ V _ (inv_mem h), Matrix.one_mul]
     exact eIn_rat hθ τ V _ hγ
 
 theorem exists_root_alg {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (hV : ∀ τ, (gramAt D V τ).det ≠ 0)

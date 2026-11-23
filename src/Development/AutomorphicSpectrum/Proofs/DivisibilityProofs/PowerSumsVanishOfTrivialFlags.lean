@@ -81,7 +81,7 @@ theorem powerSumsVanish_of_trivFlagAt :
   intro hS O _ _ _ ϖ hϖ K _ _ ι _ P d hP N x hx W hW k hk Q hQ
   obtain ⟨Ω, _, _, y, w, hy, hflag⟩ := hx W hW
   obtain ⟨hprime, hdim⟩ := isFibreComp_variety hϖ hP hW
-  have h := GlobalTheory.T.flag_frame_point_dimension hS (IsLocalRing.ResidueField O) Ω K ι y d (hy ▸ hprime) (hy ▸ hdim) N w x hflag
+  have h := _root_.GlobalTheory.CompanionTheory.Relay.flag_frame_point_dimension hS (IsLocalRing.ResidueField O) Ω K ι y d (hy ▸ hprime) (hy ▸ hdim) N w x hflag
     k hk Q hQ
   have hmap : MvPolynomial.map (Int.castRingHom ℝ) (psum (Fin N) ℤ k) = ∑ i, X i ^ k := by
     simp [psum]

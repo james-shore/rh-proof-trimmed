@@ -63,14 +63,7 @@ theorem antiJ_iff (i j : Fin N) : i.val + j.val + 1 = N ↔ j = i.rev := by
 theorem antiJ_mulVec (b : Fin N → L) (k : Fin N) : (antiJ L N *ᵥ b) k = b k.rev := by
   simp [Matrix.mulVec, dotProduct, antiJ, antiJ_iff]
 
-theorem antiJ_mul_self : antiJ L N * antiJ L N = 1 := by
-  ext i j
-  simp only [Matrix.mul_apply, antiJ, antiJ_iff, boole_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true,
-    Fin.rev_rev, Matrix.one_apply]
-  by_cases h : i = j
-  · subst h
-    simp
-  · simp [h, Ne.symm h]
+alias antiJ_mul_self := _root_.GlobalTheory.UnitarySwap.antiJ_mul_self
 
 theorem isInt_antiJ : IsInt (antiJ L N) := by
   intro i j

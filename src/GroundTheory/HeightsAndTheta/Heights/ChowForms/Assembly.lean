@@ -62,8 +62,7 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights
 
-theorem FGNullstellensatz.full : FGNullstellensatz.Statement :=
-  FGNullstellensatz.proof
+alias FGNullstellensatz.full := _root_.GroundTheory.Heights₂.Heights.FGNullstellensatz.proof
 
 theorem ProjNullstellensatz.full : ProjNullstellensatz.Statement :=
   ProjNullstellensatz.proof FGNullstellensatz.full
@@ -74,23 +73,17 @@ theorem IncidenceGeneric.full : IncidenceGeneric.Statement :=
 theorem IncIdealPrime.full : IncIdealPrime.Statement :=
   IncIdealPrime.proof IncidenceGeneric.full
 
-theorem ChowFormMultiHomog.full : ChowFormMultiHomog.Statement :=
-  ChowFormMultiHomog.proof ProjNullstellensatz.full
+alias ChowFormMultiHomog.full := _root_.GroundTheory.Heights₂.Heights.chowFormMultiHomog
 
-theorem GenericLinearTrdeg.full : GenericLinearTrdeg.Statement :=
-  GenericLinearTrdeg.proof
+alias GenericLinearTrdeg.full := _root_.GroundTheory.Heights₂.Heights.GenericLinearTrdeg.proof
 
-theorem MinimalPrimeHomog.full : MinimalPrimeHomog.Statement :=
-  MinimalPrimeHomog.proof
+alias MinimalPrimeHomog.full := _root_.GroundTheory.Heights₂.Heights.MinimalPrimeHomog.proof
 
-theorem ConeDimComponent.full : ConeDimComponent.Statement :=
-  ConeDimComponent.proof MinimalPrimeHomog.full
+alias ConeDimComponent.full := _root_.GroundTheory.Heights₂.Heights.ConeDimComponent.proof_closed
 
-theorem LengthQuotientDet.full : LengthQuotientDet.Statement :=
-  LengthQuotientDet.proof
+alias LengthQuotientDet.full := _root_.GroundTheory.Heights₂.Heights.LengthQuotientDet.proof
 
-theorem OrdPolynomialLocalization.full : OrdPolynomialLocalization.Statement :=
-  OrdPolynomialLocalization.proof
+alias OrdPolynomialLocalization.full := _root_.GroundTheory.Heights₂.Heights.OrdPolynomialLocalization.proof
 
 theorem ChowFormBirational.full : ChowFormBirational.Statement :=
   ChowFormBirational.proof IncidenceGeneric.full ChowFormMultiHomog.full

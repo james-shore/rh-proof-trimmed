@@ -82,7 +82,7 @@ theorem szRow_primes_conductor : SzRow (fun C D L => (L.sc.x ^ (2 * L.Ct + 5) < 
   have hd0 : (0 : ℝ) < D.host.d := by
     have := D.host.qd_big.2
     exact_mod_cast (by omega : 0 < D.host.d)
-  have hez : L.sc.eps / C.P.Cpde ≤ L.sc.ez := hostBounds_ez hV.host
+  have hez : L.sc.eps / C.P.Cpde ≤ L.sc.ez := _root_.GlobalTheory.EX.HostVal.eps_div_le_ez hV.host
   have hx1 : 1 ≤ L.sc.x := L.sc.one_lt_alt.le
   have hZ : 0 < L.sc.x ^ (L.sc.ez / 5) := Real.rpow_pos_of_pos hx0 _
   have ha' : L.sc.x ^ (L.sc.eps / C.P.Cpde / 5) ≤ L.sc.x ^ (L.sc.ez / 5) :=

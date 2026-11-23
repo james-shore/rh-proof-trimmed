@@ -54,7 +54,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem GlobalTheory.charPolyRat : ∀ (K : Type) [Field K] (A : AbVar K) (f : End A), ∃ P : Polynomial ℚ, P.Monic ∧ P.natDegree = 2 * A.dim ∧ ∀ n : ℤ, P.eval (n : ℚ) = (deg (A := A) (B := A) ((n : End A) - f).asHom : ℚ) := by
   intro K _ A f
-  obtain ⟨F, hF, hev⟩ := GlobalTheory.T.homDegree_integerCombination_isHomogeneous K A A rfl 2 ![𝟙 A, f.asHom]
+  obtain ⟨F, hF, hev⟩ := _root_.GlobalTheory.AV.AbVar.deg_isHomogeneousPoly K A A rfl 2 ![𝟙 A, f.asHom]
   set N := 2 * A.dim with hN
   have hsupp : ∀ d ∈ F.support, d 0 + d 1 = N := by
     intro d hd

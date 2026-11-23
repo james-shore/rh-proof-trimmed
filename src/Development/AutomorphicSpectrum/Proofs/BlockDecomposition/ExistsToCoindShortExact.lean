@@ -147,7 +147,7 @@ theorem cmpSt_of_cxSt : CxSt → CmpSt := by
   have key : ∀ n, Nonempty ((nerveCx.obj (toMod (OSys s S))).homology n ≃ₗ[R] GlobalTheory.coh (GlobalTheory.structureModule X) n) := by
     intro n
     obtain ⟨i⟩ := nonempty_iso e' he' n (toMod (OSys s S))
-    obtain ⟨f⟩ := GlobalTheory.T.cech_structure_sheaf_comparison R X s P S e' n
+    obtain ⟨f⟩ := _root_.GlobalTheory.CompanionTheory.Hodge.Nerve.cech_OSys_homology_equiv R X s P S e' n
     letI : (GlobalTheory.structureModule X).IsQuasicoherent := GlobalTheory.QCoh.IsFiniteQC.isQuasicoherent
     exact ⟨i.toLinearEquiv ≪≫ₗ f ≪≫ₗ GlobalTheory.cechHEquivCoh R hc hD (GlobalTheory.structureModule X) n⟩
   obtain ⟨⟨a⟩, b⟩ := GlobalTheory.T.cochain_cohomology_nerve_homology_equiv (OSys s S)

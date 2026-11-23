@@ -70,16 +70,6 @@ namespace GlobalTheory.FrobInj
 section Pair
 variable {R : Type} [CommRing R] (p w : R)
 
-theorem mem_pow_succ (k : ℕ) (x : R) (hx : x ∈ Ideal.span {p, w} ^ (k + 1)) :
-    ∃ c G, G ∈ Ideal.span {p, w} ^ k ∧ x = w ^ (k + 1) * c + p * G := by
-  first
-  | exact @_root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ
-  | exact _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ
-  | (apply _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ ..)
-
 theorem pow_mem (k : ℕ) : w ^ k ∈ Ideal.span {p, w} ^ k :=
   Ideal.pow_mem_pow (Ideal.subset_span (by simp)) k
 
@@ -96,7 +86,7 @@ theorem dvd_of_pow (k : ℕ) (b : R) (h : p ∣ w ^ k * b) : p ∣ b := by
 
 include hp hw in
 theorem sat (k : ℕ) (x : R) (hx : p * x ∈ Ideal.span {p, w} ^ (k + 1)) : x ∈ Ideal.span {p, w} ^ k := by
-  obtain ⟨c, G, hG, e⟩ := mem_pow_succ p w k _ hx
+  obtain ⟨c, G, hG, e⟩ := _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ p w k _ hx
   obtain ⟨d, rfl⟩ := dvd_of_pow hw (k + 1) c ⟨x - G, by linear_combination -e⟩
   have : x = w ^ k * (w * d) + G := sub_eq_zero.1 (hp _ (by linear_combination e))
   rw [this]
@@ -126,7 +116,7 @@ theorem coeff_mem (l r : ℕ) (a F : ℕ → R) (hF : ∀ N, F (N + 1) = a N * w
         subst this
         omega
     · obtain ⟨e, he⟩ := Nat.exists_eq_add_of_le (not_le.1 hc).le
-      obtain ⟨c, G, hG, e1⟩ := mem_pow_succ p w _ _ h
+      obtain ⟨c, G, hG, e1⟩ := _root_.GlobalTheory.SpanPairPowSucc.mem_span_pair_pow_succ p w _ _ h
       rw [he, pow_add] at e1
       obtain ⟨d, hd⟩ := dvd_of_pow hw (l * N) (b * w ^ l + a N - w ^ e * c)
         ⟨G - F N, by linear_combination e1⟩
@@ -303,18 +293,7 @@ namespace GlobalTheory.MemLoc.PhiInj
 
 variable (l : ℕ) [Fact l.Prime]
 
-theorem exists_eps : ∃ e : Per.Fl l, IsEps e := by
-  obtain ⟨ζ, ε, h0, -, h1, h⟩ := exists_zeta_eps l
-  refine ⟨ε, ?_, ?_⟩
-  · have := h 0
-    rw [h0, map_one] at this
-    exact Subtype.ext this
-  · intro hh
-    have := h 1
-    apply h1
-    apply (algebraMap (Om l) ℂ_[l]).injective
-    rw [← this, map_one]
-    exact congrArg Subtype.val hh
+alias exists_eps := _root_.GlobalTheory.MemLoc.CrisUnique.exists_isEps
 
 theorem φA_bijective : Function.Bijective (Per.φA l) := by
   have h : (Per.φA l : Per.Ainf l → Per.Ainf l) = WittVector.map (frobenius (Per.Fl l) l) := by
@@ -345,7 +324,7 @@ theorem acris0_le {e : Per.Fl l} (he : IsEps e) {q : Per.AinfP l} (hq : (l : Per
         (Algebra.adjoin (Per.Ainf l) {algebraMap (Per.Ainf l) (Per.AinfP l) (xi e) * q}) := by
     refine Submodule.span_le.2 ?_
     rintro y ⟨n, hn⟩
-    obtain ⟨c, hc⟩ := GlobalTheory.RingBasics.exists_pow_div_factorial l n
+    obtain ⟨c, hc⟩ := _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow l n
     have h := congrArg (fun z => algebraMap (Per.Ainf l) (Per.AinfP l) (Per.zA l z)) hc
     simp only [map_mul, map_natCast, map_pow] at h
     have h' : ((n.factorial : ℕ) : Per.AinfP l) * algebraMap (Per.Ainf l) (Per.AinfP l) (Per.zA l c) =
@@ -363,9 +342,7 @@ theorem phiA_of (s : Per.Acris0 l) : phiA l (algebraMap (Per.Acris0 l) (Per.Acri
     algebraMap (Per.Acris0 l) (Per.Acris l) (phi0 l s) :=
   (GlobalTheory.CrisMaps.phiA_extends l).env s
 
-theorem ev_alg (n : ℕ) (x : Per.AinfP l) :
-    Per.ev l n (algebraMap (Per.AinfP l) (Per.BdRp l) x) = Ideal.Quotient.mk _ x :=
-  GlobalTheory.RingIface.ev_alg l n x
+alias ev_alg := _root_.GlobalTheory.RingIface.ev_alg
 
 theorem eq_zero_of_ev (y : Per.BdRp l) (h : ∀ n, Per.ev l n y = Per.ev l n 0) : y = 0 :=
   GlobalTheory.RingIface.ev_ext l y 0 h
@@ -373,10 +350,6 @@ theorem eq_zero_of_ev (y : Per.BdRp l) (h : ∀ n, Per.ev l n y = Per.ev l n 0) 
 theorem mem_kerP (x : Per.Ainf l) (hx : Per.θ l x = 0) :
     algebraMap (Per.Ainf l) (Per.AinfP l) x ∈ Per.kerP l :=
   GlobalTheory.RingIface.alg_mem_kerP l hx
-
-theorem φB_alg (x : Per.Acris l) : Per.φB l (algebraMap (Per.Acris l) (Per.Bcris l) x) =
-    algebraMap (Per.Acris l) (Per.Bcris l) (phiA l x) :=
-  GlobalTheory.CrisMaps.φB_phiA l x
 
 section
 set_option allowUnsafeReducibility true in
@@ -488,7 +461,7 @@ theorem φB_inj : Function.Injective (Per.φB l) := by
   obtain ⟨e, he, hne⟩ := GlobalTheory.CrisLoc.exists_root_ne_one l
   obtain ⟨n, x, h⟩ := GlobalTheory.CrisLoc.exists_mul_pow_eq l e he hne b
   have h1 := congrArg (Per.φB l) h
-  rw [map_mul, hb, zero_mul, φB_alg, ← map_zero (algebraMap (Per.Acris l) (Per.Bcris l)),
+  rw [map_mul, hb, zero_mul, _root_.GlobalTheory.CrisMaps.φB_phiA, ← map_zero (algebraMap (Per.Acris l) (Per.Bcris l)),
     ← map_zero (phiA l)] at h1
   have h2 := phiA_injective l (algebraMap_acris_bcris_injective l h1)
   rw [← h2, map_zero] at h
@@ -498,5 +471,4 @@ end
 
 end GlobalTheory.MemLoc.PhiInj
 
-theorem GlobalTheory.MemLoc.phiB_injective : ∀ (l : ℕ) [Fact l.Prime], Function.Injective (Per.φB l) :=
-  fun l _ => GlobalTheory.MemLoc.PhiInj.φB_inj l
+alias GlobalTheory.MemLoc.phiB_injective := _root_.GlobalTheory.MemLoc.PhiInj.φB_inj

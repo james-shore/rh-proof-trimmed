@@ -106,7 +106,7 @@ theorem norm_step [CompleteSpace L] (σ : L →+* L) (ϖ : L) (q : ℕ) (h : IsU
     refine (injective_iff_map_eq_zero ev).2 fun z hz => ?_
     obtain ⟨r, rfl⟩ := GlobalTheory.UTr.exists_aeval_root P z
     rw [hev] at hz
-    have hd := GlobalTheory.T.charpoly_dvd_of_aeval_eq_zero_alt (intL L) n γO r hsepO hz
+    have hd := _root_.GlobalTheory.SepCharpoly.charpoly_dvd_of_aeval_eq_zero (intL L) n γO r hsepO hz
     rw [hchO] at hd
     exact (GlobalTheory.UTr.aeval_root_eq_zero_iff P).2 hd
 

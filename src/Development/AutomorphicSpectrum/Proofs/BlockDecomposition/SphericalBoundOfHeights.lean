@@ -194,7 +194,7 @@ theorem frame_bound : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
     exact π.tsum_eq fun t : T => f ε (t.1.1 * g)
   have hint : ∀ ε : ℝ, 0 < ε → ε ≤ 1 → ENNReal.ofReal ε * ∫⁻ g in GlobalTheory.AutomorphicL2Unitary.stdDom (ratPts σ J), Φ ε g ∂μ ≤ 2 * B₀ := by
     intro ε h0 h1
-    have hu := GlobalTheory.T.setLIntegral_tsum_unfold_of_cosetRepresentatives (GAd σ J) μ (ratPts σ J) Λ T _ _ inferInstance inf_le_left hrep h𝓕 hDom _ (hf ε)
+    have hu := _root_.GlobalTheory.ResLine.setLIntegral_tsum_unfold (GAd σ J) μ (ratPts σ J) Λ T _ _ inferInstance inf_le_left hrep h𝓕 hDom _ (hf ε)
       (fun γ hγ g => by simp only [f, hinv γ hγ g])
     simp only [Φ]
     rw [hu]

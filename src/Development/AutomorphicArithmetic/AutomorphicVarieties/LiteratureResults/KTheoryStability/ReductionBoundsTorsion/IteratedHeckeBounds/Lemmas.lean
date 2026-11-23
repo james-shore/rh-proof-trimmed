@@ -269,27 +269,6 @@ private instance pointwiseGKAction (k : ℕ) : MulAction (GK L N) (Fin (k + 2) �
     funext j
     simp [mul_assoc]
 
-private theorem continuousOn_Hk_of_continuousOn {k : ℕ} (q : GK L N) {ω : Form (HS L N) k} (hc : ContinuousOn ω (Pos L N)) :
-    ContinuousOn (Hk q ω) (Pos L N) := by
-  have hpb : ∀ g : Gp L N, ContinuousOn (pb g ω) (Pos L N) := by
-    intro g
-    have ha : ContinuousOn (fun h => ω (actL g h)) (Pos L N) :=
-      hc.comp (actL g).continuous.continuousOn fun h hh => (g • (⟨h, hh⟩ : Pos L N)).2
-    unfold pb
-    exact (ContinuousAlternatingMap.compContinuousLinearMapCLM (actL g)).continuous.comp_continuousOn ha
-  unfold Hk mn
-  by_cases hfin : Finite (Quotient (QuotientGroup.rightRel (Sg q)))
-  · haveI := Fintype.ofFinite (Quotient (QuotientGroup.rightRel (Sg q)))
-    simp only [finsum_eq_sum_of_fintype]
-    exact ContinuousOn.const_smul (continuousOn_finsetSum _ fun c _ => hpb _) ((((Sg q).index : ℕ) : ℝ)⁻¹)
-  · have hinf : Infinite (Gm L N ⧸ Sg q) := by
-      rw [← not_finite_iff_infinite]
-      intro hf
-      exact hfin (Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel (Sg q)).symm)
-    have h0 : (Sg q).index = 0 := Subgroup.index_eq_zero_iff_infinite.2 hinf
-    simp only [h0, Nat.cast_zero, _root_.inv_zero, zero_smul]
-    exact continuousOn_const
-
 set_option synthInstance.maxHeartbeats 200000 in
 theorem hecke_iter {k : ℕ} (q : GK L N) {ω : Form (HS L N) (k + 1)} (hω : ContinuousOn ω (Pos L N)) (r : ℕ)
     (y : Fin (k + 2) → GK L N) :
@@ -318,7 +297,7 @@ theorem hecke_iter {k : ℕ} (q : GK L N) {ω : Form (HS L N) (k + 1)} (hω : Co
     | zero => exact hω
     | succ n ih =>
       rw [Function.iterate_succ_apply']
-      exact continuousOn_Hk_of_continuousOn q ih
+      exact _root_.PositivityTheory.KB.JoinReconstruction.Hk_contOn q ih
   have hall : ∀ n, (hecke (Y := Fin (k + 2) → GK L N) (E := ℝ)
         (toK L N) (MonoidHom.id (GK L N)) q)^[n]
         (fun y : Fin (k + 2) → GK L N => intP ω fun j => toP L N (y j) • one L N) =

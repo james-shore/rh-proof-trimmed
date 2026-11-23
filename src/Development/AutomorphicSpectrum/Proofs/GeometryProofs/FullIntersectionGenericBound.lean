@@ -124,7 +124,7 @@ theorem exists_componentData_origin : Top.Given → Out.WeilSt → ∀ (E : Type
       const_mem := fun cc hc r => GlobalTheory.T.constants_in_coord_ratio_field E H D l (Xo l) c Y S₀ Ω K J y 𝔐 cc hc r
       arith := harith
       birational := hbir
-      smoothGeneric := GlobalTheory.T.smooth_generic_fibre_of_snc K J Ω y _ bd hsnc
+      smoothGeneric := _root_.GlobalTheory.CompanionTheory.Ar.Cmp.SncSmooth.smoothGenericFibreM_of_isSncModel K J Ω y _ bd hsnc
       Bd := mcPts (mCoordIdeal y) ∩ mcPts bd
       bd_subset := Set.inter_subset_left
       bd_closed := hcl

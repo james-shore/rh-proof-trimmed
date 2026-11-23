@@ -97,7 +97,7 @@ theorem exists_twisted_pull (hL : Laws) [IsLocalRing O'] [IsNoetherianRing O'] (
   obtain ⟨ν', e₁, e₂⟩ := GlobalTheory.T.exists_degenerationValues_of_strict_pullback hL.globalFns O' R f a.D₀ D' hD hs C hf A.N A.ν th' h₁ h₂
   have h0 : algebraMap R (FractionRing R) u₀ ≠ 0 := fun h => u.ne_zero (by rw [hu, h, map_zero])
   let q : D'.X → (FractionRing R)ˣ := fun y => Units.mk0 _ h0 ^ (a.be (hD.xe y) (hD.xe y) / 2)
-  obtain ⟨m, oW, he, w, e, hM, hx, hE, hB⟩ := GlobalTheory.T.arcDatum_pullback_rescaled_matches hL.globalFns E H D l c O β O' b a R f D' hD u₀ (Units.mk0 _ h0) rfl q
+  obtain ⟨m, oW, he, w, e, hM, hx, hE, hB⟩ := _root_.GlobalTheory.RescaleMatch.exists_match_rescale hL.globalFns E H D l c O β O' b a R f D' hD u₀ (Units.mk0 _ h0) rfl q
     _ rfl fun _ => rfl
   obtain ⟨νW, e₃, e₄⟩ := GlobalTheory.T.exists_degenerationValues_of_rescaled_twisted R D' C A.N ν' _ A.be u q fun y => by
     simp only [q, e₁, A.be_eq, Units.val_zpow_eq_zpow_val, map_zpow₀, Units.val_mk0, hu]
@@ -153,7 +153,7 @@ theorem data_of_model : HV → Laws6 → GlobalTheory.LN.UDvrSt → GlobalTheory
   have tW : (A.N.twist A.be u).toNumB.Tors n DW.P.g := hg ▸ tN
   have tN' := GlobalTheory.T.abelianPartValues_torsion_pairing_separation_integral hL hL2 hUth M.W M.P.D.toPre M.P.D.psi_even M.P.D.tau_bimult C xW N' ν' hI'' n hn ho hn1
 
-  obtain ⟨lA, linA⟩ := GlobalTheory.T.torsionIsometry_values_isTorsionLabelSystem hGt hWp E H D O' a.D₀ a.oa a.even a.bimult C A.I A.N A.ν A.q A.hq
+  obtain ⟨lA, linA⟩ := _root_.GlobalTheory.ModelData.labels_of_tateIsoQ hGt hWp E H D O' a.D₀ a.oa a.even a.bimult C A.I A.N A.ν A.q A.hq
   have ex : ∀ (k : ℕ) (x : D.La), ∃ p : (A.N.twist A.be u).QT k, 0 < k → TwRel A.be u (r k) (A.q k x) p := fun k x => by
     rcases Nat.eq_zero_or_pos k with rfl | hk
     · exact ⟨1, fun h => absurd h (lt_irrefl 0)⟩
@@ -162,10 +162,10 @@ theorem data_of_model : HV → Laws6 → GlobalTheory.LN.UDvrSt → GlobalTheory
   choose lab hlab using ex
   have lT := GlobalTheory.T.torsionLabelSystem_twist_by_compatible_roots C A.N D.La D.EF A.I.ζ A.q _ A.be u r hr lA lab fun k hk x => hlab k x hk
 
-  obtain ⟨I', hζ, hTo⟩ := GlobalTheory.T.exists_torsion_isometry_uniformised_model hV.1 hGt E H D C o M N' ν'
+  obtain ⟨I', hζ, hTo⟩ := _root_.GlobalTheory.ModelData.ModelTate.exists_tateIsoQ_of_model hV.1 hGt E H D C o M N' ν'
   have G' := hGt M.W M.P.D.toPre M.P.D.psi_even M.P.D.tau_bimult C N' ν'
   choose lab' hlab' using fun (k : ℕ) (x : D.La) => ((G'.2.2.2.2 k).1 (I'.ev k x)).exists
-  obtain ⟨lM, linM⟩ := GlobalTheory.T.torsionIsometry_values_isTorsionLabelSystem hGt hWp E H D M.W M.P.D.toPre M.P.oD M.P.D.psi_even M.P.D.tau_bimult C I' N' ν' lab' hlab'
+  obtain ⟨lM, linM⟩ := _root_.GlobalTheory.ModelData.labels_of_tateIsoQ hGt hWp E H D M.W M.P.D.toPre M.P.oD M.P.D.psi_even M.P.D.tau_bimult C I' N' ν' lab' hlab'
   have qEqEquiv (k : ℕ) : Equivalence (N'.QEq (k := k)) := by
     refine ⟨?_, ?_, ?_⟩
     · intro p

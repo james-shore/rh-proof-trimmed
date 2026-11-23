@@ -80,11 +80,11 @@ theorem GlobalTheory.DetInt.det_integral : ∀ (E : Type) [Field E] [NumberField
   intro φ yT y' g a hφ hmap hchg hg hint
   obtain ⟨A, hA, hloc⟩ := hz.1.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2 p
   obtain ⟨nu, mu, C, hCint, hU, hAmu, hC⟩ :=
-    GlobalTheory.T.tangent_letters_integralLieBasis_eigenframe_relation E H Dw l Xo c z f La hz p T iK M hval A hA φ yT y' g a hφ hmap hchg hg hint
+    _root_.GlobalTheory.LamT.TanRel.tangent_letter_model_relation E H Dw l Xo c z f La hz p T iK M hval A hA φ yT y' g a hφ hmap hchg hg hint
   let Cv : Matrix (Fin z.Φ.T.g) (Fin z.Φ.T.g) T.V := Matrix.of fun i k => (hCint (z.e.symm i) k).choose
   have hCv : Cv.map (algebraMap T.V T.Fr) = Matrix.of fun i k => C (z.e.symm i) k := by
     ext i k; exact (hCint (z.e.symm i) k).choose_spec
-  obtain ⟨hUdet, hdet⟩ := GlobalTheory.T.det_block_change_of_basis_via_two_families_implicit Dw.mult z.e (fullB yT) (ReciprocityTheory.ChartRestriction.G.PullbackSections.fullB_basis yT) nu mu
+  obtain ⟨hUdet, hdet⟩ := _root_.GlobalTheory.Div.BlockChangeDet.det_block_change' Dw.mult z.e (fullB yT) (ReciprocityTheory.ChartRestriction.G.PullbackSections.fullB_basis yT) nu mu
     (z.U.map iK) (A.map iK) C g (by simpa using hU) (by simpa using hAmu) hC
   have e1 : (z.U.map iK).det = iK z.U.det := (RingHom.map_det iK z.U).symm
   have e2 : (A.map iK).det = iK A.det := (RingHom.map_det iK A).symm

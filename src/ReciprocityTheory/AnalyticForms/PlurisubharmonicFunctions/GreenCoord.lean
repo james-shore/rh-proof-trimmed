@@ -153,7 +153,7 @@ theorem ddcCoordDens_insertNth {D : ℕ} (j : Fin (D + 1)) {u : (Fin (D + 1) →
 
 theorem greenCoord_thm : GreenCoordStatement := by
   intro D j u hu hs
-  obtain ⟨hI, hE⟩ := greenParam_thm (Fin D → ℂ) (volume : Measure (Fin D → ℂ)) (uPair j u)
+  obtain ⟨hI, hE⟩ := _root_.ReciprocityTheory.AnForm.A.greenParam_main (Fin D → ℂ) (volume : Measure (Fin D → ℂ)) (uPair j u)
     (uPair_contDiff j hu) (uPair_hasCompactSupport j hs)
   have hπ : Real.pi ≠ 0 := Real.pi_ne_zero
   have hmp := (volume_preserving_piFinSuccAbove (fun _ : Fin (D + 1) => ℂ) j).symm

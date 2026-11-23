@@ -60,23 +60,13 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.MemLoc.PhiImage
 
-theorem exists_lim_series {R : Type} [CommRing R] (p : R) [IsPrecomplete (Ideal.span {p}) R] (f : ℕ → R) :
-    ∃ L : R, ∀ k, p ^ k ∣ (∑ i ∈ Finset.range k, p ^ i * f i) - L := by
-  first
-  | exact @_root_.GlobalTheory.LimitSeriesPowSmul.target
-  | exact _root_.GlobalTheory.LimitSeriesPowSmul.target
-  | (apply _root_.GlobalTheory.LimitSeriesPowSmul.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LimitSeriesPowSmul.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LimitSeriesPowSmul.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LimitSeriesPowSmul.target ..)
-
 theorem approx {R A : Type} [CommRing R] [CommRing A] (ι : R →+* A) (p : ℕ)
     [IsPrecomplete (Ideal.span {(p : R)}) R] [IsAdicComplete (Ideal.span {(p : A)}) A]
     (φ : A → A) (w : A) (h : ∀ y, ∃ (a : R) (z y' : A), φ y = ι a + w * z + p * φ y') (y : A) :
     ∃ (a : R) (z : A), φ y = ι a + w * z := by
   choose a z nx h using h
-  obtain ⟨α, hα⟩ := exists_lim_series (p : R) (fun i => a (nx^[i] y))
-  obtain ⟨ζ, hζ⟩ := exists_lim_series (p : A) (fun i => z (nx^[i] y))
+  obtain ⟨α, hα⟩ := _root_.GlobalTheory.LimitSeriesPowSmul.exists_limit_series (p : R) (fun i => a (nx^[i] y))
+  obtain ⟨ζ, hζ⟩ := _root_.GlobalTheory.LimitSeriesPowSmul.exists_limit_series (p : A) (fun i => z (nx^[i] y))
   have key : ∀ k, φ y = ι (∑ i ∈ Finset.range k, (p : R) ^ i * a (nx^[i] y)) +
       w * (∑ i ∈ Finset.range k, (p : A) ^ i * z (nx^[i] y)) + (p : A) ^ k * φ (nx^[k] y) := by
     intro k
@@ -158,7 +148,7 @@ theorem on_span {R P A : Type} [CommRing R] [CommRing P] [Algebra R P] [CommRing
     have h1 : ((n.factorial : ℕ) : B) * ⟨y, hs⟩ = algebraMap R B ξ ^ n := Subtype.ext (by simpa using hn)
     have h2 := congrArg (fun t => φ (j t)) h1
     simp only [map_mul, map_natCast, map_pow, hφ, hξ] at h2
-    obtain ⟨d, hd⟩ := GlobalTheory.RingBasics.exists_pow_div_factorial l n
+    obtain ⟨d, hd⟩ := _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow l n
     have h3 := congrArg ((j.comp (algebraMap R B)).comp zR) hd
     rw [map_mul, map_natCast, map_pow, map_natCast] at h3
     have h4 : φ (j ⟨y, hs⟩) = j (algebraMap R B (zR d)) * (j (algebraMap R B c) + w) ^ n := by

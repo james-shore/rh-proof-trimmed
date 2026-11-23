@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Upqcpt
 
 @[expose] public section
 
@@ -79,11 +80,6 @@ theorem permM_conj {ι : Type} [Fintype ι] [DecidableEq ι] {r : ℕ} (e : ι �
   simp [permM, Matrix.mul_apply, Matrix.conjTranspose_apply]
   rw [← e.symm.sum_comp]
   simp
-
-theorem jpq_eq_diagonal (p q : ℕ) :
-    Formalism.UG.Jpq p q = Matrix.diagonal (Sum.elim (fun _ : Fin p => (1 : ℂ)) (fun _ : Fin q => -1)) := by
-  rw [Formalism.UG.Jpq, ← Matrix.fromBlocks_diagonal, Matrix.diagonal_one, ← Matrix.diagonal_neg]
-  rfl
 
 theorem sumElim_sgn {p q r : ℕ} (hcard : r = q + p) (a : Fin r) :
     Sum.elim (fun _ : Fin p => (1 : ℂ)) (fun _ : Fin q => -1)
@@ -129,7 +125,7 @@ theorem exists_frame_of_sig {n p q : ℕ} {Gc : Matrix (Fin n) (Fin n) ℂ} (h :
   · have key : ∀ y : Matrix (Fin n) (Fin n) ℂ, yᴴ * Gc * y = (A * y)ᴴ * Formalism.UG.Jpq p q * (A * y) := fun y => by
       rw [← hA, Matrix.conjTranspose_mul]
       simp only [Matrix.mul_assoc]
-    rw [key, hAx, permM_conj, Equiv.symm_symm, jpq_eq_diagonal, Matrix.submatrix_diagonal_equiv,
+    rw [key, hAx, permM_conj, Equiv.symm_symm, _root_.Formalism.UG.P.Jpq_eq_diagonal, Matrix.submatrix_diagonal_equiv,
       Matrix.diagonal_neg, Matrix.diagonal_transpose]
     congr 1
     funext a

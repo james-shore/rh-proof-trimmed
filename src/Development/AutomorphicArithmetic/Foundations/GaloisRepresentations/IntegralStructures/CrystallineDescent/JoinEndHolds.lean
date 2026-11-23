@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasString
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConjOfFrobeniusMatch
 
 @[expose] public section
 
@@ -98,7 +99,7 @@ theorem joinU_of (h1 : OneUs) (h2 : IsoOne) (h3 : PhiPol) (h4 : AutT) (hA : Sub.
     obtain ⟨u, v, hu, hv, huv, hwu, hwv⟩ := pick
     obtain ⟨s, sc, ss, g1, g2⟩ := key u v hu hv huv
     refine hC E Ω l ι m s r sc (h2 E Ω l ι m s r sc hc ss hs ?_) w _ _ (g2 w hwl hwu hwv B hB.2)
-    filter_upwards [h1 E d hd, hA E m U hU, GlobalTheory.CongEx.eventually_not_mem_l E l] with x x1 x2 x3 hp
+    filter_upwards [h1 E d hd, hA E m U hU, _root_.GlobalTheory.TripleLocal.frobConj_natCast_notMem E l] with x x1 x2 x3 hp
     obtain ⟨B', hB'⟩ := x2 (x1 hp).1
     exact ⟨_, g1 x (x1 hp) x3 B' hB', f1 x (x1 hp) x3 B' hB'⟩
   · exact (hW E Ω l ι m r w hwl _ _).2 (f1 w hw hwl B hB.2)
@@ -126,7 +127,7 @@ theorem joinEnd_holds : JoinEnd := by
   obtain ⟨r, hc, hs, hr⟩ := h E Ω l ι a ha π hπ.all
   refine ⟨r, ⟨hc, hs, ?_⟩, fun w B hB =>
     ⟨hr w B trivial hB .unr, hr w B trivial hB .dR, hr w B trivial hB .crys, hr w B trivial hB .phi⟩⟩
-  filter_upwards [GlobalTheory.CongEx.eventually_not_mem_l E l,
+  filter_upwards [_root_.GlobalTheory.TripleLocal.frobConj_natCast_notMem E l,
     GlobalTheory.CuspRep.UnrSat.eventually_hasSatGL_locRep GlobalTheory.automorphicFormsFiniteGL E a π] with w hl hB
   obtain ⟨B, hB⟩ := hB
   exact ⟨B, hB, hr w B trivial hB .unr hl⟩
@@ -143,7 +144,7 @@ theorem stepDown_of (h2 : IsoOne) (hP : PatchOne) (hD : ∀ c, SphDown c) : Step
     obtain ⟨p, ⟨r, hc, hs, hr⟩, hp1, hp2⟩ := hQ.2.2 P hPl
     refine ⟨P, r, hPl, hc, hs, ?_, fun w B hw => hr w B (hp2 w hw)⟩
     unfold AttOne
-    filter_upwards [hp1, GlobalTheory.CongEx.eventually_not_mem_l (↥Q.K) l,
+    filter_upwards [hp1, _root_.GlobalTheory.TripleLocal.frobConj_natCast_notMem (↥Q.K) l,
       (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.tendsto_under (K := E) (L := ↥Q.K)).eventually hsat] with w x1 x2 x3 hp
     obtain ⟨B, hB⟩ := x3
     have hq := GlobalTheory.RealGal.AttRes.normV_eq_pow (F := E) w

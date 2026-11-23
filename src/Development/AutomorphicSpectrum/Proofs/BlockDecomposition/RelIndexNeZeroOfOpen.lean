@@ -101,7 +101,7 @@ theorem finActOf : FinActOf := by
   obtain ⟨U₀, hU₀, hlev⟩ := hG
   obtain ⟨-, hc⟩ := hConv E B S hS
   obtain ⟨hcs, ⟨U₁, hU₁, hinv⟩, -⟩ := hc φ₁ φ₂ h₁ h₂
-  obtain ⟨L, hLo, hLe, hLi, hLc, hLu⟩ := GlobalTheory.T.position_level_subgroups_exist (S := S) h₁ h₂
+  obtain ⟨L, hLo, hLe, hLi, hLc, hLu⟩ := _root_.GlobalTheory.CompanionTheory.PositionTest.exists_factor_level₂ (S := S) h₁ h₂
   let p : ∀ i : Slot S, Hf E B.a B.b →* GLw B.a i.pl × GLw B.b i.pl := fun i => MonoidHom.mk' (i.cp B.a B.b) (hmul i)
   let K : Subgroup (Hf E B.a B.b) := (Kf E B.a).prod (Kf E B.b)
   have hKo : IsOpen (K : Set (Hf E B.a B.b)) := by
@@ -160,7 +160,7 @@ theorem finActOf : FinActOf := by
       rw [e1, finH_mul, ← mul_assoc, hlev u hu.1])
     inferInstance
   have hF : (fun h => finFn S φ₁ φ₂ h * g h) = fun h => (∏ᶠ i : Slot S, sf φ₁ φ₂ i (p i h)) * g h :=
-    funext fun h => by rw [GlobalTheory.T.finite_test_function_product h₁ h₂]; rfl
+    funext fun h => by rw [_root_.GlobalTheory.CompanionTheory.FinActS.finFn_eq_finprod_factor h₁ h₂]; rfl
   have hfin := hfold l 1
   rw [finH_one, mul_one] at hfin
   rw [← hfin, ← hcore, ← hF]

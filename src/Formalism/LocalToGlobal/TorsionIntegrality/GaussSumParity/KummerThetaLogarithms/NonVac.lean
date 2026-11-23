@@ -47,6 +47,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.IntegralPartAtVariable
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.TraceDualExists
 
 @[expose] public section
 
@@ -87,16 +89,16 @@ theorem fieldWitness (hF : KurFrob) (hR : KurRoots) (hC : KurComplete) (hT : TrD
   obtain ⟨ζd, hζd⟩ := hR l (l ^ (2 * ν) - 1) (hnd _ (by omega)).1 (hnd _ (by omega)).2
   have hdual := hT (MaximalUnramifiedExtension l) l (2 * ν) σ hσ (even_two_mul ν) ζd hζd
   rw [Nat.mul_div_cancel_left ν two_pos] at hdual
-  obtain ⟨F, hFl⟩ := (Formalism.InvariantFactorPaths.G7.Top.lawExists (MaximalUnramifiedExtension l) l hσ.1 hσ.2.2.1).1
+  obtain ⟨F, hFl⟩ := (_root_.Formalism.InvariantFactorPaths.G7.formal_law_exists (MaximalUnramifiedExtension l) l hσ.1 hσ.2.2.1).1
   have h1 : σ (σ (1 : MaximalUnramifiedExtension l)) = 1 := by simp
-  have hbeta := Formalism.InvariantFactorPaths.G7.Top.gcIsBeta (MaximalUnramifiedExtension l) l σ hσ F hFl 1 (by simp) h1
+  have hbeta := _root_.Formalism.InvariantFactorPaths.G7.g_c_is_beta (MaximalUnramifiedExtension l) l σ hσ F hFl 1 (by simp) h1
   have hFF := hB (MaximalUnramifiedExtension l) l σ hσ ⟨ζ2, hζ2⟩ F hFl _ hbeta
   refine ⟨σ, hσ, hC l, fun _ => rfl, ⟨ζ2, hζ2⟩, ⟨ζd, hζd⟩, by omega, even_two_mul ν, ?_, hdual,
     F, hFl, _, hFF.1, hFF.2, ?_⟩
   · exact IsAlgClosed.exists_pow_nat_eq _ (hnd 2 (by norm_num)).1
   · intro h0
     have hz : (Gser l (0 : MaximalUnramifiedExtension l) (σ 0)) = 0 := by simp [Gser]
-    have := Formalism.InvariantFactorPaths.G7.Top.gcUnique (MaximalUnramifiedExtension l) l σ hσ 1 0 h1 (by simp) (by rw [hz]; exact h0)
+    have := _root_.Formalism.InvariantFactorPaths.G7.g_c_unique (MaximalUnramifiedExtension l) l σ hσ 1 0 h1 (by simp) (by rw [hz]; exact h0)
     exact one_ne_zero this
 
 theorem fullWitness (hF : KurFrob) (hR : KurRoots) (hC : KurComplete) (hT : TrDualExists)
@@ -151,6 +153,6 @@ end Formalism.L2.Th1.D.ChainWitness
 namespace Formalism.L2.Th1.D
 
 theorem chain_nonvacuous : ChainNonVacuous := fun l _ hl ν r0 r1 _ =>
-  ChainWitness.fullWitness kurFrob kurRoots kurComplete trDualExists fOfBetaHyp l hl ν r0 r1
+  ChainWitness.fullWitness kurFrob kurRoots kurComplete _root_.Formalism.L2.Th1.D.trace_dual_exists _root_.Formalism.L2.Th1.D.f_of_beta_hypotheses l hl ν r0 r1
 
 end Formalism.L2.Th1.D

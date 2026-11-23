@@ -432,7 +432,7 @@ theorem existsUnique_point (T : CoordTie ℤ ξ (fun c' : (k : K) → J k => ∏
   obtain ⟨p, ⟨hpc, hpu⟩, hpuniq⟩ := GlobalTheory.T.prime_chart_existsUnique_point X Ω ξ ℤ _ x T c hxc I hIp
   have hψu : ∀ a, IsUnit (ψ a) ↔ unitAt ξ p (a : Ω) := fun a => (hI a).symm.trans (hpu a)
   obtain ⟨φ, hφl, hφ⟩ := exists_local_ext T hpc ψ hψu
-  obtain ⟨z, ⟨hzc, hzv⟩, hzuniq⟩ := GlobalTheory.T.existsUnique_centre_local_hom X Ω ξ hξ p R φ hφl
+  obtain ⟨z, ⟨hzc, hzv⟩, hzuniq⟩ := _root_.GlobalTheory.CompanionTheory.Ar.exists_unique_point_of_local X Ω ξ hξ p R φ hφl
   have hmem : ∀ a : Algebra.adjoin ℤ (Set.range fun j => x j / x c), (a : Ω) ∈ regAt ξ p :=
     fun a => (T.ring c hxc a).1 a.2 p hpc
   have hval : ∀ a : Algebra.adjoin ℤ (Set.range fun j => x j / x c), ValAt ξ z (a : Ω) (ψ a) :=

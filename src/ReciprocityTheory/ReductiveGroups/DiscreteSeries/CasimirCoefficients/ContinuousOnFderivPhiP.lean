@@ -106,12 +106,7 @@ lemma contDiffAt_phiP (μ : Fin n → ℤ) {z : 𝕄} (hz : z ∈ OmegaSet n) :
   show ContDiffAt ℂ 1 (fun y : 𝕄 => ∏ i : Fin n, lead ((i : ℕ) + 1) y ^ (-(μ i - muNext μ i))) z
   exact contDiffAt_prod fun i _ => contDiffAt_zpow (contDiff_lead _).contDiffAt (hz i) _
 
-lemma isOpen_omega' : IsOpen (OmegaSet n) := by
-  have e : OmegaSet n = ⋂ i : Fin n, {z | lead ((i : ℕ) + 1) z ≠ 0} := by
-    ext z
-    simp [OmegaSet]
-  rw [e]
-  exact isOpen_iInter_of_finite fun i => isOpen_ne_fun (contDiff_lead _).continuous continuous_const
+alias isOpen_omega' := _root_.ReciprocityTheory.ChartRestriction.DS.S7.isOpen_omega
 
 lemma continuousOn_fderiv_phiP (μ : Fin n → ℤ) :
     ContinuousOn (fderiv ℂ (PhiP μ)) (OmegaSet n : Set 𝕄) :=

@@ -68,7 +68,7 @@ theorem main_alt_alt : GlobalTheory.Published.FontaineBcris → ∀ (D : D7) (L 
   intro hF D L hG2 hJa hJc i r ρ π hr h0 h1 hπ hD w hw C
   obtain ⟨ep, hJ⟩ := hJa
   have hcrys := _root_.GlobalTheory.CrysFromGTwo.main_alt_alt hF D i r ρ π hr (hG2 i r hr) h0 h1 hD w hw C
-  have hamb := GlobalTheory.T.ambientJumpBlock_of_admissibleDecomposition D i r ρ π hD hπ h0 h1 w hw C
+  have hamb := _root_.GlobalTheory.AmbBlockDecomp.main D i r ρ π hD hπ h0 h1 w hw C
   have hH := twistedRep_no_invariants_purity D L ep hJ hJc i r ρ π hr hπ w hw C hD (hcrys.2 π).2
   refine ⟨⟨fun x => (hcrys.2 x).1, fun τ => (tw_jumps D L ep hJ hJc i r hr w hw C τ).1,
     fun τ => (tw_jumps D L ep hJ hJc i r hr w hw C τ).2.1,

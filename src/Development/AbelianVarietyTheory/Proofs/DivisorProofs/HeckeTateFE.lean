@@ -42,5 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem GlobalTheory.Top.heckeTateFE : GlobalTheory.Published.HeckeTateFunctionalEquation :=
-  GlobalTheory.CompanionTheory.HeckeFE.heckeTateFunctionalEquation

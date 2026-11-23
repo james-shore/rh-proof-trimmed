@@ -110,14 +110,14 @@ theorem divAt_of_stdPsi {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSub
     (κ : Formalism.AUTREP.GAf D.host.E n) :
     DivAt V e ϖ d (Q.ψ κ) → DivAt V' e ϖ d (Q'.ψ κ) := by
   rintro ⟨hlen, hdiv⟩
-  obtain ⟨hr, J, J', h1, -, hc, hL⟩ := latMatch hF Q Q' hQ hQ' P e f hP
+  obtain ⟨hr, J, J', h1, -, hc, hL⟩ := _root_.GlobalTheory.LatMatch.frames_match_lattices hF Q Q' hQ hQ' P e f hP
   obtain ⟨-, -, T3, -⟩ := GlobalTheory.IdemSupport.supported_group_and_prime_idempotents V
   obtain ⟨hff, -⟩ := T3 P e f hP
   have hef : finPart D e * finPart D f = finPart D e := by
     rw [← RingHom.map_mul, GlobalTheory.SphTrans.mul_of_isPrimeIdem hP hff]
   exact ⟨hlen.trans hr.symm, GlobalTheory.SphTrans.div_conj hr (intAE D)
-    (fun i => finPart D (incA D (ϖ ^ (d.getD i 0)))) hef h1 (hc κ) hL (lamHat_idem V P e f hP)
-    (lamHat_idem V' P e f hP) hdiv⟩
+    (fun i => finPart D (incA D (ϖ ^ (d.getD i 0)))) hef h1 (hc κ) hL (_root_.GlobalTheory.IdemLat.lamHat_idem V P e f hP)
+    (_root_.GlobalTheory.IdemLat.lamHat_idem V' P e f hP) hdiv⟩
 
 end GlobalTheory.FrameTransport
 
@@ -134,10 +134,6 @@ theorem pre_psi (Q : principalLevelFrame.RowPsi V n) (κ : Formalism.AUTREP.GAf 
   unfold principalLevelFrame.pre
   rw [dite_eq_left h]
   exact Q.inj h.choose_spec
-
-theorem psi_pre (Q : principalLevelFrame.RowPsi V n) {γ : GA D V} (hγ : γ ∈ GfC V) : Q.ψ (principalLevelFrame.pre Q γ) = γ := by
-  obtain ⟨h, rfl⟩ := Q.onto γ hγ
-  rw [pre_psi]
 
 theorem pre_of_not_mem (Q : principalLevelFrame.RowPsi V n) {γ : GA D V} (hγ : γ ∉ GfC V) : principalLevelFrame.pre Q γ = 1 := by
   unfold principalLevelFrame.pre
@@ -172,10 +168,6 @@ namespace GlobalTheory.FrameTransport
 
 variable {D : D7}
 
-theorem one_mem_KsphC (V : HSp D) : (1 : GA D V) ∈ KsphC V ∅ :=
-  ⟨one_mem _, fun y => by rw [Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.finMat_one, Matrix.one_mulVec],
-    fun v hv => absurd hv (Finset.notMem_empty v)⟩
-
 theorem suppF_one (V : HSp D) (f : Formalism.L2.Theta.AE D) : SuppF V f (1 : GA D V) := by
   intro i j
   have : Formalism.L2.Theta.mt V 1 - 1 = 0 := sub_self _
@@ -196,7 +188,7 @@ theorem sphOp_image (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') {Pr : Pl D.host.E} {
   obtain ⟨e, f, ϖ, α, -, hpi, hϖ1, hϖ2, hd, -, -, hsα, hdiv, hsR, hcos⟩ := hB
   have hK : ∀ k ∈ {k | k ∈ KsphC V ∅ ∧ SuppF V f k}, k ∈ GfC V := fun k hk => hk.1.1
   have hK' : ∀ k ∈ {k | k ∈ KsphC V' ∅ ∧ SuppF V' f k}, k ∈ GfC V' := fun k hk => hk.1.1
-  have h1 : (1 : GA D V) ∈ {k | k ∈ KsphC V ∅ ∧ SuppF V f k} := ⟨one_mem_KsphC V, suppF_one V f⟩
+  have h1 : (1 : GA D V) ∈ {k | k ∈ KsphC V ∅ ∧ SuppF V f k} := ⟨_root_.GlobalTheory.InertDoubleCoset.one_mem_KsphC V, suppF_one V f⟩
 
   have hαf : α ∈ GfC V := by
     obtain ⟨γ, ⟨hγ, -⟩, -⟩ := hcos.2 α ⟨1, h1, 1, h1, by simp⟩
@@ -205,7 +197,7 @@ theorem sphOp_image (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') {Pr : Pl D.host.E} {
     rw [this]
     exact mul_mem (mul_mem (inv_mem (hK k₁ hk₁)) hγf) (inv_mem (hK k₂ hk₂))
   set a := principalLevelFrame.pre Q α with ha
-  have hαa : Q.ψ a = α := psi_pre Q hαf
+  have hαa : Q.ψ a = α := _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hαf
   refine ⟨e, f, ϖ, Q'.ψ a, fun v hv => absurd hv (Finset.notMem_empty v), hpi, hϖ1, hϖ2, hd,
     fun _ _ => Iff.rfl, fun _ _ _ => rfl, ?_, ?_, ?_, ?_, ?_⟩
   · exact suppF_of_stdPsi hQ hQ' f a (hαa ▸ hsα)
@@ -213,15 +205,15 @@ theorem sphOp_image (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') {Pr : Pl D.host.E} {
   · intro γ' hγ'
     obtain ⟨γ, hγ, rfl⟩ := Finset.mem_image.1 hγ'
     have hγf := (hcos.1 γ hγ).1
-    exact suppF_of_stdPsi hQ hQ' f _ ((psi_pre Q hγf).symm ▸ hsR γ hγ)
+    exact suppF_of_stdPsi hQ hQ' f _ ((_root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hγf).symm ▸ hsR γ hγ)
   · intro γ' hγ'
     obtain ⟨γ, hγ, rfl⟩ := Finset.mem_image.1 hγ'
     obtain ⟨hγf, k₁, hk₁, k₂, hk₂, hγe⟩ := hcos.1 γ hγ
-    refine ⟨Q'.into _, Q'.ψ (principalLevelFrame.pre Q k₁), (loc_iff hQ hQ' f _).1 ((psi_pre Q (hK k₁ hk₁)).symm ▸ hk₁),
-      Q'.ψ (principalLevelFrame.pre Q k₂), (loc_iff hQ hQ' f _).1 ((psi_pre Q (hK k₂ hk₂)).symm ▸ hk₂), ?_⟩
+    refine ⟨Q'.into _, Q'.ψ (principalLevelFrame.pre Q k₁), (loc_iff hQ hQ' f _).1 ((_root_.Formalism.IndefR.principalLevelFrame.pre_spec Q (hK k₁ hk₁)).symm ▸ hk₁),
+      Q'.ψ (principalLevelFrame.pre Q k₂), (loc_iff hQ hQ' f _).1 ((_root_.Formalism.IndefR.principalLevelFrame.pre_spec Q (hK k₂ hk₂)).symm ▸ hk₂), ?_⟩
     have e1 : principalLevelFrame.pre Q γ = principalLevelFrame.pre Q k₁ * a * principalLevelFrame.pre Q k₂ := by
       apply Q.inj
-      rw [psi_pre Q hγf, map_mul, map_mul, psi_pre Q (hK k₁ hk₁), psi_pre Q (hK k₂ hk₂), hαa, hγe]
+      rw [_root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hγf, map_mul, map_mul, _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q (hK k₁ hk₁), _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q (hK k₂ hk₂), hαa, hγe]
     rw [e1, map_mul, map_mul]
   · rintro x' ⟨k₁', hk₁', k₂', hk₂', rfl⟩
     obtain ⟨c₁, rfl⟩ := Q'.onto k₁' (hK' _ hk₁')
@@ -238,11 +230,11 @@ theorem sphOp_image (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') {Pr : Pl D.host.E} {
       simp only [map_mul, map_inv, hαa] at this
       exact this
     refine ⟨Q'.ψ (principalLevelFrame.pre Q γ), ⟨Finset.mem_image_of_mem _ hγ, ?_⟩, ?_⟩
-    · exact (key _).1 (by rw [psi_pre Q hγf]; exact hγx)
+    · exact (key _).1 (by rw [_root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hγf]; exact hγx)
     · rintro δ' ⟨hδ', hδx⟩
       obtain ⟨δ, hδ, rfl⟩ := Finset.mem_image.1 hδ'
       have hδf := (hcos.1 δ hδ).1
-      have : δ = γ := huniq δ ⟨hδ, by rw [← psi_pre Q hδf]; exact (key _).2 hδx⟩
+      have : δ = γ := huniq δ ⟨hδ, by rw [← _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hδf]; exact (key _).2 hδx⟩
       rw [this]
 
 def rreg (V : HSp D) : GA D V →* Module.End ℂ (GA D V → ℂ) where
@@ -282,7 +274,7 @@ theorem heckeOperator_image {B : Finset (GA D V)} (hB : ∀ γ ∈ B, γ ∈ GfC
   · intro a ha b hb hab
     have := congrArg (principalLevelFrame.pre Q') hab
     simp only [pre_psi] at this
-    rw [← psi_pre Q (hB a ha), ← psi_pre Q (hB b hb), this]
+    rw [← _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q (hB a ha), ← _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q (hB b hb), this]
 
 theorem heckeOperator_eq_heckeAlgebraAction {Pr : Pl D.host.E} {d : List ℤ} {R : Finset (GA D V')}
     (hR : SphOp V' Pr d R) (x : Formalism.AUTREP.GAf D.host.E n → ℂ)
@@ -308,7 +300,7 @@ theorem heckeOperator_eq_heckeAlgebraAction {Pr : Pl D.host.E} {d : List ℤ} {R
   rw [← key, heckeOperator_apply, Finset.sum_apply]
   refine Finset.sum_congr rfl fun γ hγ => ?_
   show x (h * principalLevelFrame.pre Q' γ) = x (principalLevelFrame.pre Q' (Q'.ψ h * γ))
-  rw [← psi_pre Q' (sphOp_sub_GfC hR γ hγ), ← map_mul, pre_psi, pre_psi]
+  rw [← _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q' (sphOp_sub_GfC hR γ hγ), ← map_mul, pre_psi, pre_psi]
 
 theorem sph_eigen_frame_indep : ∀ {D : D7} {V V' : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E) (Q : principalLevelFrame.RowPsi V n) (Q' : principalLevelFrame.RowPsi V' n), StdPsi hF Q → StdPsi hF Q' → ∀ Pr d, (∀ κ, Q.ψ κ ∈ hyp V Pr ↔ Q'.ψ κ ∈ hyp V' Pr) ∧ ∀ B B', SphOp V Pr d B → SphOp V' Pr d B' → ∀ x : Formalism.AUTREP.GAf D.host.E n → ℂ, (∀ κ, Q.ψ κ ∈ hyp V Pr → Formalism.L2.NG.rt D.host.E n κ x = x) → principalLevelFrame.Hecke₃ Q B x = principalLevelFrame.Hecke₃ Q' B' x := by
   intro D V V' n hF Q Q' hQ hQ' Pr d

@@ -99,10 +99,10 @@ theorem pointwise : PI.KFinSmooth → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) 
   intro hK k r ε mu R Wp _ _ _ _ z π u μW μN μG νq l Q E hR hS hl hQ hE g hg a w
   obtain ⟨hz, hT, ⟨u₀, hπ⟩, -⟩ := hS
   have hπ1 : π 1 = 1 := (Formalism.FourierDecayAlt.P.MatrixMultiplicationContinuity.piW_facts hT hπ).1
-  obtain ⟨hmul, -, -, hsm, -⟩ := GlobalTheory.T.discreteSeries_unitary_smooth_basic hK k r ε mu R hR
+  obtain ⟨hmul, -, -, hsm, -⟩ := _root_.GlobalTheory.rep_basic_of_isDS hK k r ε mu R hR
   obtain ⟨hact, -, -, hcomp⟩ := GlobalTheory.T.smooth_maps_closure hK k r ε mu mu mu R R R hR hR hR
-  obtain ⟨X, hX, hXn, hXt⟩ := GlobalTheory.T.exists_lie_unitary_element_simple_root k r z hz hT g hg a
-  obtain ⟨-, -, hexp⟩ := GlobalTheory.T.derivedAction_expand_matrixUnits hK k r ε mu R hR Q E hQ.1.1 hE
+  obtain ⟨X, hX, hXn, hXt⟩ := _root_.GlobalTheory.UnipotentElement.exists_element k r z hz hT g hg a
+  obtain ⟨-, -, hexp⟩ := _root_.GlobalTheory.dC_expand_units hK k r ε mu R hR Q E hQ.1.1 hE
   obtain ⟨ladd, lsmul, leq, lcont⟩ := hl
   have hla : 0 ≤ lenA k r z g a.castSucc := Metric.infDist_nonneg
   have hla1 : 0 ≤ lenA k r z g a.succ := Metric.infDist_nonneg
@@ -117,7 +117,7 @@ theorem pointwise : PI.KFinSmooth → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) 
   have bsmul : ∀ (c : ℂ), ∀ v ∈ R.sm, l (R.σ g (c • v)) = c • l (R.σ g v) := by
     intro c v hv
     rw [map_smul]; exact lsmul _ _ (hsm g hg v hv)
-  have hder := (GlobalTheory.T.frechetContinuous_continuousOn_orbit_hasDerivAt hK k r ε mu R hR Wp (fun v => l (R.σ g v)) badd bsmul
+  have hder := (_root_.GlobalTheory.cwCont_continuousOn_hasDerivAt hK k r ε mu R hR Wp (fun v => l (R.σ g v)) badd bsmul
     (hcomp Wp _ l (hact g hg) lcont) w w.2).2 X hX
   have hfun : (fun t : ℝ => l (R.σ g (R.σ (NormedSpace.exp ((t : ℂ) • X)) w))) =
       fun t : ℝ => Complex.exp (-(2 * (L : ℂ) * (t : ℂ)) * Complex.I) • l (R.σ g w) := by

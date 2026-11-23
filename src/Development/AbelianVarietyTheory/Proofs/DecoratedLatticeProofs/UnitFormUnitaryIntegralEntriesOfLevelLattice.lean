@@ -59,6 +59,8 @@ import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevelActsTriviallyOnDiscriminantGroup
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LevGapLoc
 
 @[expose] public section
 
@@ -113,7 +115,7 @@ theorem entry_mem_of_levelVL : ∀ (F E : Type) [Field F] [NumberField F] [Field
     intro z
     rw [hΛeq]
     exact Formalism.L2.Col.rll_mem_loc_dLat (F := F) n v _ (inv_ne_zero ht) z
-  have htS : ι (t : E) ∈ S := GlobalTheory.UnitLocLastRow.inclE_int v t
+  have htS : ι (t : E) ∈ S := _root_.Formalism.MainNotions.Gaps.LG.fm_incl_mem v t
   have hcols : ∀ h : GL (Fin n) (E ⊗[F] v.adicCompletion F),
       h ∈ Formalism.UG.stabGL (Formalism.UG.latS (F := F) (v.adicCompletion F) S Λ) →
       ∀ i j, j ≠ Formalism.L2.Col.lastIdx n → (i ≠ Formalism.L2.Col.lastIdx n → h.1 i j ∈ S) ∧
@@ -175,11 +177,11 @@ theorem entry_mem_of_levelVL : ∀ (F E : Type) [Field F] [NumberField F] [Field
     · have h3 := (hginv (Formalism.L2.Col.lastIdx n) i hi).2
       rw [hinv] at h3
       change ι (t : E)⁻¹ * Formalism.UG.sigR σ (v.adicCompletion F) (g.1 i (Formalism.L2.Col.lastIdx n)) ∈ S at h3
-      have h4 := GlobalTheory.UnitLocLastRow.sigR_mem_intV σ v h3
-      rw [map_mul, GlobalTheory.UnitLocLastRow.sigR_sigR σ hσ, GlobalTheory.UnitLocLastRow.sigR_inclE] at h4
+      have h4 := _root_.GlobalTheory.sigR_mem_intV_adic σ v h3
+      rw [map_mul, GlobalTheory.UnitLocLastRow.sigR_sigR σ hσ, _root_.GlobalTheory.sigR_inclE_adic] at h4
       have hs : ι (σ (t : E)) ∈ S := by
-        have := GlobalTheory.UnitLocLastRow.sigR_mem_intV σ v htS
-        rwa [GlobalTheory.UnitLocLastRow.sigR_inclE] at this
+        have := _root_.GlobalTheory.sigR_mem_intV_adic σ v htS
+        rwa [_root_.GlobalTheory.sigR_inclE_adic] at this
       have hst : σ (t : E) ≠ 0 := by
         intro h0; apply ht
         have := congrArg σ h0

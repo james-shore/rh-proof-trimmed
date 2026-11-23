@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceHermitianFrameProperties
 
 @[expose] public section
 
@@ -70,13 +71,7 @@ open Formalism.L2.Col (IntAt)
 section Place
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (q : SplitPt D k)
 
-theorem sec_one : q.sec 1 = q.e := by
-  have := q.sec_pr 1
-  rwa [map_one, mul_one] at this
-
-theorem pr_e : q.pr q.e = 1 := by rw [← sec_one, q.pr_sec]
-
-theorem pr_e_mul (x : AE D) : q.pr (q.e * x) = q.pr x := by rw [map_mul, pr_e, one_mul]
+theorem pr_e_mul (x : AE D) : q.pr (q.e * x) = q.pr x := by rw [map_mul, _root_.GlobalTheory.FrameAt.pr_e, one_mul]
 
 theorem idAt_mono {P P' : GlobalTheory.FinPl.Pl D → Prop} (h : ∀ v, P v → P' v) : idAt D P ≤ idAt D P' :=
   inf_le_inf_left _ (le_iInf fun w => iInf_le_of_le ⟨w.1, fun hw => w.2 (h _ hw)⟩ le_rfl)
@@ -99,7 +94,7 @@ theorem place_facts {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP) :
     have h0 := (GlobalTheory.T.placeIdempotent_acts_on_supportedAndOff D q₀.v ε hε).2 q.e
       (idAt_mono (fun v (hv : v = q.v) => hv ▸ hne) (GlobalTheory.FrameGlob.e_mem_idAt q))
     rw [← hs, he, add_mul_e] at h0
-    have := pr_e q
+    have := _root_.GlobalTheory.FrameAt.pr_e q
     rw [h0, map_zero] at this
     exact zero_ne_one this
   · rw [← hi, q.int_iff, q₀.int_iff]
@@ -135,7 +130,7 @@ theorem prO_eq_one {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP) {z 
     valuation k (prO q z) = 1 := le_antisymm (prO_le q h z) (not_lt.1 (mt (prO_lt q h z).2 hz))
 
 theorem xi_unit (hu : q.UnitAA) (h0 : (ofSplit q).xi ≠ 0) : valuation k (ofSplit q).xi = 1 := by
-  have he : q.e ∈ intAt D (· = q.v) := ⟨GlobalTheory.FrameGlob.e_mem_idAt q, by rw [← sec_one]; exact (q.int_iff 1).1 (one_mem _)⟩
+  have he : q.e ∈ intAt D (· = q.v) := ⟨GlobalTheory.FrameGlob.e_mem_idAt q, by rw [← _root_.GlobalTheory.FinPl.FrameLat.sec_one]; exact (q.int_iff 1).1 (one_mem _)⟩
   obtain ⟨h1, h2⟩ := hu.1 q.e he
   have h3 := h1.2
   have h4 := h2.2
@@ -151,7 +146,7 @@ theorem sec_mul (x y : k) : q.sec x * q.sec y = q.sec (x * y) := by
 
 theorem idl_mul (x y : k) (h : x * y = 1) : (q.sec x + (1 - q.e)) * (q.sec y + (1 - q.e)) = 1 := by
   have h1 := sec_mul q x y
-  rw [h, sec_one] at h1
+  rw [h, _root_.GlobalTheory.FinPl.FrameLat.sec_one] at h1
   have h2 := GlobalTheory.FrameGlob.sec_eq_mul q x
   have h3 := GlobalTheory.FrameGlob.sec_eq_mul q y
   have h4 := q.split.1
@@ -289,7 +284,7 @@ theorem exists_topFrame {PP : Formalism.L2.DIV.Pl D.host.E} (h : IsIdemAt q.e PP
     rw [map_one, Units.val_one, Matrix.one_mul, ← hb, ← h1]
     rfl
   have h3 : (fun i => q.sec (y i)) ∈ latV S L (· = q.v) ↔ (fun i => toEAf D (q.sec (y i))) ∈ Formalism.L2.Herm.hatL (F := D.host.F) L :=
-    ⟨GlobalTheory.T.latticeCompletionAtPlaces_mem_completedHermitianLattice D S L _ _, GlobalTheory.T.mem_latticeCompletionAtPlaces_of_finPart_mem_hatLattice D S L _ _ fun i => GlobalTheory.FrameGlob.sec_mem_idAt q _⟩
+    ⟨_root_.GlobalTheory.LatVHat.latV_mem_hatL D S L _ _, _root_.GlobalTheory.HatLatV.mem_latV_of_hatL D S L _ _ fun i => GlobalTheory.FrameGlob.sec_mem_idAt q _⟩
   rw [h3, hβ]
   refine forall_congr' fun i => ?_
   have h4 : ∀ j, (1 - toEAf D q.e) * toEAf D (q.sec (y j)) = 0 := fun j => by

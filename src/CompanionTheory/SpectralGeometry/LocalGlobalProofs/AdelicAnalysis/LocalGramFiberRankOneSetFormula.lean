@@ -72,11 +72,6 @@ section Alg
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   {σ : E →ₐ[F] E}
 
-theorem conj_invol (h : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [h.2.2.2, h.2.2.2, star_star]
-
 theorem exists_conj_ne (h : IsCMExt F E σ) : ∃ e : E, σ e ≠ e := by
   by_contra hσ
   push_neg at hσ
@@ -92,9 +87,9 @@ theorem exists_conj_ne (h : IsCMExt F E σ) : ∃ e : E, σ e ≠ e := by
 theorem exists_imag (h : IsCMExt F E σ) :
     ∃ w : E, σ w = -w ∧ ∀ e : E, ∃ a c : F, a • (1 : E) + c • w = e := by
   obtain ⟨e, he⟩ := exists_conj_ne h
-  refine ⟨e - σ e, by rw [map_sub, conj_invol h]; ring, ?_⟩
+  refine ⟨e - σ e, by rw [map_sub, _root_.GlobalTheory.CompanionTheory.SW.HermTop.sigma_sigma h]; ring, ?_⟩
   set w := e - σ e with hw
-  have hw' : σ w = -w := by rw [hw, map_sub, conj_invol h]; ring
+  have hw' : σ w = -w := by rw [hw, map_sub, _root_.GlobalTheory.CompanionTheory.SW.HermTop.sigma_sigma h]; ring
   have hw0 : w ≠ 0 := fun h0 => he (sub_eq_zero.mp h0).symm
   have h2 : (2 : F) ≠ 0 := two_ne_zero
   have hli : LinearIndependent F ![(1 : E), w] := by
@@ -179,7 +174,7 @@ theorem sigR_hR_self (h : IsCMExt F E σ) (hJ : IsHermND σ J) (x : Fin M → R 
     intro y
     induction y using TensorProduct.induction_on with
     | zero => simp
-    | tmul r e => rw [sigR_tmul, sigR_tmul, conj_invol h]
+    | tmul r e => rw [sigR_tmul, sigR_tmul, _root_.GlobalTheory.CompanionTheory.SW.HermTop.sigma_sigma h]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   have hJR : ∀ i j, sigR R σ (JR R J j i) = JR R J i j := by
     intro i j

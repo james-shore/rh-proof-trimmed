@@ -46,6 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.HermitianLatticeCounting.Final.LocalIntegralStructure
 
-theorem unitsSquareIndex : Formalism.HermitianLatticeCounting.LocalIntegralStructure.UnitsSquareIndex := Formalism.HermitianLatticeCounting.P.units_square_index
-
 end Formalism.HermitianLatticeCounting.Final.LocalIntegralStructure

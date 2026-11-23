@@ -82,7 +82,7 @@ theorem hJ_span_ef (v : InfinitePlace X.B.I.F) (α β : Fin D.R.rS → D.host.E)
     (he : ∀ c, hJ (X.B.I.ε v) (rv X.B.I v (X.crd (X.eX c))) w = 0)
     (hf : ∀ c, hJ (X.B.I.ε v) (rv X.B.I v (X.crd (X.fY c))) w = 0) :
     hJ (X.B.I.ε v) (rv X.B.I v (X.crd (∑ c, α c • X.eX c + ∑ c, β c • X.fY c))) w = 0 := by
-  rw [Formalism.L2.SG.NormCut.crd_add', Formalism.L2.SG.NormCut.crd_sum', Formalism.L2.SG.NormCut.crd_sum']
+  rw [_root_.Formalism.L2.SG.Pf.crd_add, Formalism.L2.SG.NormCut.crd_sum', Formalism.L2.SG.NormCut.crd_sum']
   simp only [Formalism.L2.SG.NormCut.crd_smul']
   have rv_add (a b : Fin X.B.I.n → X.B.I.E) : rv X.B.I v (a + b) = rv X.B.I v a + rv X.B.I v b := by
     unfold rv
@@ -137,7 +137,7 @@ theorem dictionary_place_holds : DictPlace := by
       congr 1
       ext i
       simp
-    rw [hy, Formalism.L2.SG.NormCut.crd_add', rv_add, Formalism.L2.SG.RealObj.InfCut.ProductExactness.hJ_add_l,
+    rw [hy, _root_.Formalism.L2.SG.Pf.crd_add, rv_add, Formalism.L2.SG.RealObj.InfCut.ProductExactness.hJ_add_l,
       hJ_span_ef X v _ _ w he hf, add_zero]
   funext p
   rcases p with ((p | b) | (p | a))

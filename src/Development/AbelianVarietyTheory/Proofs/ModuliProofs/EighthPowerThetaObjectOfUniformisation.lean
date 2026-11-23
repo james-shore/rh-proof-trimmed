@@ -159,7 +159,7 @@ theorem sharpClass_of_unif : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (P
     obtain ⟨x, hx⟩ := (hΛ l).1 l.2
     rw [hχ x l hx.symm, hEF, form_act, hw, ← exp_pi_I_int, ← hx]
     simp [hRQ, im_hermForm_per hs hp]
-  have hL := GlobalTheory.T.lbIso_linComb_lam_of_appellHumbert_alt laws laws2 hc hT W t.pol u Hm χ' P₀ u₀ _ χ₀ pr R hAH hAH₀ hpru hform hchi
+  have hL := _root_.GlobalTheory.lbIso_linComb_lam_of_appellHumbert laws laws2 hc hT W t.pol u Hm χ' P₀ u₀ _ χ₀ pr R hAH hAH₀ hpru hform hchi
   letI := P₀.isAb.comm
   haveI := hpr
   refine ⟨c, hcP, fun i => pr i ≫ φ.inv, fun i => inferInstanceAs (IsMonHom (pr i ≫ φ.inv)), fun T y => ?_, ?_, fun j i => ?_, fun i v => ?_⟩

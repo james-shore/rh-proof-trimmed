@@ -175,18 +175,6 @@ theorem sigR_invol (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) (h
   | tmul r e => simp [sigR, hσ]
   | add x y hx hy => simp [map_add (f := _), hx, hy]
 
-theorem sigR_incl (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) (e : E) :
-    sigR R σ (inclR R e) = inclR R (σ e) := by
-  simp [sigR, inclR]
-
-theorem gramR_ratTup (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {N n : ℕ}
-    (J : Matrix (Fin N) (Fin N) E) (X : Fin n → Fin N → E) :
-    gramR R σ J (ratTup R X) = (gramE σ J X).map (inclR R) := by
-  ext a b
-
-  simp only [gramR, hR, hform, ratTup, JR, sigR_incl, Matrix.map_apply, gramE, hE, map_sum, map_mul]
-  rfl
-
 end Tens
 
 def frame (E : Type) [Field E] (M : ℕ) : Fin 2 → Fin (M + 2) → E :=
@@ -310,7 +298,7 @@ theorem iwasawa : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFi
   obtain ⟨Ω, hΩ, hprim⟩ := GlobalTheory.T.adelic_primitive_vector_compact_rescale F E σ hCM (M + 2)
   have hLh : ∀ i j, sigR (AF F) σ (JR (F := F) (AF F) (hypJ J) j i) = JR (F := F) (AF F) (hypJ J) i j := by
     intro i j
-    simp only [JR, Matrix.map_apply, sigR_incl, hJ'.1 i j]
+    simp only [JR, Matrix.map_apply, _root_.GlobalTheory.CompanionTheory.SW.TransUC.sigR_inclR, hJ'.1 i j]
   have hLi : ((hypJ J)⁻¹).map (inclR (F := F) (AF F)) * JR (F := F) (AF F) (hypJ J) = 1 := by
     have hu : IsUnit (hypJ J).det := isUnit_iff_ne_zero.mpr hJ'.2
     have h1 : ((hypJ J)⁻¹ * hypJ J).map (inclR (F := F) (AF F)) = 1 := by
@@ -320,7 +308,7 @@ theorem iwasawa : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFi
     rfl
   have hh : sigR (AF F) σ (inclR (F := F) (AF F) (1 / 2 : E)) = inclR (F := F) (AF F) (1 / 2 : E) := by
     have e : σ (1 / 2 : E) = 1 / 2 := by rw [map_div₀, map_one, map_ofNat]
-    rw [sigR_incl, e]
+    rw [_root_.GlobalTheory.CompanionTheory.SW.TransUC.sigR_inclR, e]
   have h2 : 2 * inclR (F := F) (AF F) (1 / 2 : E) = 1 := by
     have h3 : inclR (F := F) (AF F) (2 * (1 / 2 : E)) = 1 := by
       rw [mul_one_div_cancel two_ne_zero, map_one]
@@ -334,7 +322,7 @@ theorem iwasawa : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFi
   have hX : ∀ a b, hform (sigR (AF F) σ) (JR (F := F) (AF F) (hypJ J)) (ratTup (AF F) (frame E M) a)
       (ratTup (AF F) (frame E M) b) = (!![0, 1; 1, 0] : Matrix (Fin 2) (Fin 2) (AF F ⊗[F] E)) a b := by
     intro a b
-    rw [← hmapG, ← gramR_ratTup]
+    rw [← hmapG, ← _root_.GlobalTheory.CompanionTheory.SW.TransUC.gramR_ratTup]
     rfl
   obtain ⟨C, hC, hCh⟩ := iwa_core (H := HA (AF F) σ (hypJ J)) (sigR (AF F) σ) hsc
     (sigR_invol (AF F) σ hσ) (JR (F := F) (AF F) (hypJ J)) _ hLh hLi _ hh h2

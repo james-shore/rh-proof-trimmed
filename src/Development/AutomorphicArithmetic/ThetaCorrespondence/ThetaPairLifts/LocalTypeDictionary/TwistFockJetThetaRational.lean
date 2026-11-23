@@ -150,15 +150,6 @@ private theorem normOne_emb (lam : Qbar →+* F) {E : Type} [Field E] [NumberFie
     mem_algebraicClosure_iff.2 ((Algebra.IsAlgebraic.isAlgebraic (R := ℚ) b).algHom τ.toRatAlgHom)
   exact ⟨hm a, h (lam.comp (τ.codRestrict Qbar hm))⟩
 end
-private theorem mem_smulLat {N : ℕ} (γ : Matrix (Fin N) (Fin N) D.host.E) (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E))
-    (y : Fin N → D.host.E) : y ∈ SDLat.smulLat γ L ↔ ∃ x ∈ L, γ.mulVec x = y := by
-  unfold SDLat.smulLat
-  rw [Submodule.mem_map]
-  rfl
-private theorem norm_natCast_coprime {p : ℕ} [Fact p.Prime] {n : ℕ} (h : Nat.Coprime n p) : ‖(n : ℂ_[p])‖ = 1 := by
-  have e : (n : ℂ_[p]) = algebraMap ℚ_[p] ℂ_[p] (n : ℚ_[p]) := (map_natCast _ n).symm
-  rw [e, norm_algebraMap', Padic.norm_natCast_eq_one_iff]
-  exact h.symm
 private theorem det_mul_star {N : ℕ} (U : Matrix.unitaryGroup (Fin N) D.host.E) : U.1.det * (star U.1).det = 1 := by
   rw [← Matrix.det_mul, U.2.2, Matrix.det_one]
 private theorem norm_det_complex {N : ℕ} (U : Matrix.unitaryGroup (Fin N) D.host.E) (φ : D.host.E →+* ℂ) : ‖φ U.1.det‖ = 1 := by
@@ -184,17 +175,17 @@ private theorem norm_det_le {N q : ℕ} [Fact q.Prime] (A : Matrix (Fin N) (Fin 
       Matrix.ext hB, Matrix.det_smul, Fintype.card_fin]
   have h3 := GlobalTheory.Proof.IdempotentLatticeSequence.norm_int_le φ (Matrix.of B).det
   change ‖φ (algebraMap _ D.host.E _)‖ ≤ 1 at h3
-  rwa [e, map_mul, map_pow, map_natCast, norm_mul, norm_pow, norm_natCast_coprime hs, one_pow, one_mul] at h3
+  rwa [e, map_mul, map_pow, map_natCast, norm_mul, norm_pow, _root_.GlobalTheory.HeckeVal.norm_natCast_eq_one hs, one_pow, one_mul] at h3
 private theorem norm_det_padic {N q : ℕ} [Fact q.Prime] (U : Matrix.unitaryGroup (Fin N) D.host.E)
     {M : Submodule (𝓞 D.host.E) (Fin N → D.host.E)} (h1 : EqAt D q M (stdL D N))
     (h2 : EqAt D q (SDLat.smulLat U.1 M) (stdL D N)) (φ : D.host.E →+* ℂ_[q]) : ‖φ U.1.det‖ = 1 := by
   obtain ⟨s, hs, a1, a2⟩ := h1
   obtain ⟨t, ht, b1, b2⟩ := h2
   have c1 := norm_det_le U.1 (Nat.Coprime.mul_left ht hs) (fun x hx => by
-    have := b1 _ ((mem_smulLat _ _ _).2 ⟨_, a2 x hx, rfl⟩)
+    have := b1 _ ((_root_.Formalism.L2.KerInert.PullbackComparison.mem_smulLat _ _ _).2 ⟨_, a2 x hx, rfl⟩)
     rwa [Matrix.mulVec_smul, smul_smul, ← Nat.cast_mul, ← Matrix.smul_mulVec] at this) φ
   have c2 := norm_det_le (star U.1) (Nat.Coprime.mul_left hs ht) (fun x hx => by
-    obtain ⟨y, hy, e⟩ := (mem_smulLat _ _ _).1 (b2 x hx)
+    obtain ⟨y, hy, e⟩ := (_root_.Formalism.L2.KerInert.PullbackComparison.mem_smulLat _ _ _).1 (b2 x hx)
     have e2 : y = (t : D.host.E) • (star U.1 *ᵥ x) := by
       rw [← Matrix.mulVec_smul, ← e, Matrix.mulVec_mulVec, U.2.1, Matrix.one_mulVec]
     have := a1 y hy
@@ -280,9 +271,6 @@ private theorem vac_scalar {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} (hθ
   · rw [k2]; exact NormOne.prod _ fun τ => NormOne.zpow' (h2 τ) _
   · rw [he, inv]
     exact (((h2 τ).pow _).mul ((NormOne.inv' (h1 τ)).pow _)).pow _
-private theorem mt_mul_inv (V : HSp D) (g : Formalism.L2.Theta.GA D V) : Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V g⁻¹ = 1 := by
-  unfold Formalism.L2.Theta.mt
-  rw [← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]
 private theorem om_rat {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D}
     {χS χT : (Formalism.L2.Theta.AE D)ˣ →* Circle} {om : Formalism.L2.Theta.GA D S × Formalism.L2.Theta.GA D T →* Module.End ℂ (WO S T → ℂ)}
     (hW : IsWeilDatumO ψ S T χS χT om) {γ : Formalism.L2.Theta.GA D S} (hγ : γ ∈ GQ S) {γ' : Formalism.L2.Theta.GA D T} (hγ' : γ' ∈ GQ T)
@@ -294,7 +282,7 @@ private theorem om_rat {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D}
     simpa [heisO, symplOH, symplO, hO] using h1
   rw [← hrat]
   unfold actO
-  rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, mt_mul_inv, Matrix.one_mul, Matrix.mul_assoc, mt_mul_inv, Matrix.mul_one]
+  rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.one_mul, Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.mul_one]
 private theorem move_fin {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} (hθ : IsInfFam θ) {S T : HSp D}
     {χS χT : (Formalism.L2.Theta.AE D)ˣ →* Circle} {om : Formalism.L2.Theta.GA D S × Formalism.L2.Theta.GA D T →* Module.End ℂ (WO S T → ℂ)}
     (hW : IsWeilDatumO ψ S T χS χT om) {s : Matrix (Fin S.rank) (Fin S.rank) ℂ} (hs : s = 1 ∨ s = -1)
@@ -491,8 +479,8 @@ theorem fock_jetTheta_rational : _root_.GlobalTheory.FunPr.ThetaLocalInputs → 
       GlobalTheory.RatMoveJets.JetTh ch p (r * x) (r' * y) (fun z => ε * Θ (Formalism.L2.KerInert.tPull D (tor0 D D.host.ccK ch.S.Z.δ) (GlobalTheory.RatMoveJets.srcU p U U').1 (GlobalTheory.RatMoveJets.tgtU p U U').1 z)) := by
   intro hP hI D Γ _ _ Pl0 T A Ks _ _ _ R ch hch p hp x y Θ hΘ hJ r r' U U' hU hU'
   have hθ := ch.W.θ_is
-  have hv := _root_.GlobalTheory.T.twisted_moved_vacuum_integral hP hI ch hch p hp x y
-  have hv' := _root_.GlobalTheory.T.twisted_moved_vacuum_integral hP hI ch hch p hp (r * x) (r' * y)
+  have hv := _root_.GlobalTheory.MovedDict.moved_vacuum_isVacuumIntegral hP hI ch hch p hp x y
+  have hv' := _root_.GlobalTheory.MovedDict.moved_vacuum_isVacuumIntegral hP hI ch hch p hp (r * x) (r' * y)
   have hlx := latAt_rat ch.S.toGridChoice _ r U hU x
   have hly := latAt_rat ch.S.toGridChoice _ r' U' hU' y
   obtain ⟨γ, g1, g2, g3, g4, g5⟩ := coord_data hθ hU
@@ -575,16 +563,4 @@ theorem fock_jetTheta_rational : _root_.GlobalTheory.FunPr.ThetaLocalInputs → 
     rfl
 end GlobalTheory.RatMoveFock
 end
-theorem _root_.GlobalTheory.T.twist_fock_jetTheta_rational : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
-    {A : FamIn D.what₂.LL Γ Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks}
-    (ch : Choice R), ch.Is → ∀ (p : Pair T), DefPair D.R.m p → ∀ (x : FinPt ch.G p.small) (y : FinPt ch.G p.big)
-    (Θ : VC D (ch.G.pS p).rank (ch.G.pT p).rank → ℂ), Differentiable ℂ Θ → GlobalTheory.RatMoveJets.JetTh ch p x y Θ →
-    ∀ (r : FinPt ch.G p.small) (r' : FinPt ch.G p.big) (U : Matrix.unitaryGroup (Fin (ch.G.V p.small).rank) D.host.E)
-      (U' : Matrix.unitaryGroup (Fin (ch.G.V p.big).rank) D.host.E),
-    GlobalTheory.RatMoveJets.RatCoord _ (ch.S.N.fr p.small) r U → GlobalTheory.RatMoveJets.RatCoord _ (ch.S.N.fr p.big) r' U' →
-    ∃ ε : ℂ, Mod1All ε ∧ (∀ (q : ℕ) [Fact q.Prime],
-        EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.small x) (stdL D _) → EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.big y) (stdL D _) →
-        EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.small (r * x)) (stdL D _) → EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.big (r' * y)) (stdL D _) →
-        GlobalTheory.MovedKappaEx.UnitAt q ε) ∧
-      GlobalTheory.RatMoveJets.JetTh ch p (r * x) (r' * y) (fun z => ε * Θ (Formalism.L2.KerInert.tPull D (tor0 D D.host.ccK ch.S.Z.δ) (GlobalTheory.RatMoveJets.srcU p U U').1 (GlobalTheory.RatMoveJets.tgtU p U U').1 z)) := _root_.GlobalTheory.RatMoveFock.fock_jetTheta_rational
 end

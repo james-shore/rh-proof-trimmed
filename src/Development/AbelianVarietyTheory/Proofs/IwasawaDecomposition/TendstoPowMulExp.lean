@@ -67,7 +67,7 @@ theorem tendsto_cusp {N : ℕ} {X : Data E N} {T : ℝ} {x : ℂ → Frame X.Ψ 
     (ht : ∀ w : ℂ, T + 1 < w.im → ∀ τ, c' * (w.im - T) ≤ X.tt ξ (x w) τ) {C' : ℝ} {B : ℕ}
     (hn : ∀ᶠ w in imTop, 0 < X.nfac la (x w) ∧ (X.nfac la (x w))⁻¹ ≤ C' * w.im ^ B) :
     Tendsto (fun w => P (x w)) imTop (𝓝 0) := by
-  obtain ⟨C, c, hc, hC⟩ := GlobalTheory.T.pnorm_le_exp_neg_of_mem_SS_of_isIso E N X la P ξ hP hξ
+  obtain ⟨C, c, hc, hC⟩ := _root_.GlobalTheory.cusp_pnorm_le_exp_neg_of_isIso E N X la P ξ hP hξ
   refine squeeze_zero_norm' ?_ (tendsto_pow_mul_exp C C' c c' T B hc hc')
   have he : ∀ᶠ w in imTop, T + 1 + 1 / c' < w.im :=
     (tendsto_comap (f := Complex.im)).eventually (eventually_gt_atTop _)

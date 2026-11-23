@@ -97,18 +97,14 @@ variable (W : LocWach PD LL O v n)
   (hqc : ∀ (i : ZMod n) (o : O) (g : LetA O n), g ∈ W.AΔ → (letE i : LetA O n) * g = g →
     algebraMap O (LetA O n) o * letE i = Formalism.MainNotions.LiftingTheory.qp W * g → o = 0)
 
-theorem letE_mem_AΔ (i : ZMod n) : (letE i : LetA O n) ∈ W.AΔ := Formalism.MainNotions.UnusedSlot80.SatPW.letE_mem_AΔ W i
-
-theorem letE_idem (i : ZMod n) : (letE i : LetA O n) * letE i = letE i := Formalism.MainNotions.LiftingTheory.frame_letE_idem i
-
-theorem letE_mul_mem {i : ZMod n} {g : LetA O n} (hg : g ∈ W.AΔ) : (letE i : LetA O n) * g ∈ W.AΔ := W.AΔ.mul_mem (letE_mem_AΔ W i) hg
+theorem letE_mul_mem {i : ZMod n} {g : LetA O n} (hg : g ∈ W.AΔ) : (letE i : LetA O n) * g ∈ W.AΔ := W.AΔ.mul_mem (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W i) hg
 
 
 include hAq in
 def resq (i : ZMod n) (g : LetA O n) : O :=
   if h : g ∈ W.AΔ then
     Classical.choose (hAq i ((letE i : LetA O n) * g) (letE_mul_mem W h)
-      (by rw [← mul_assoc, letE_idem]))
+      (by rw [← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]))
   else 0
 
 include hAq in
@@ -116,7 +112,7 @@ theorem resq_spec (i : ZMod n) {g : LetA O n} (hg : g ∈ W.AΔ) :
     ∃ g' ∈ W.AΔ, (letE i : LetA O n) * g =
       algebraMap O (LetA O n) (resq W hAq i g) * letE i + Formalism.MainNotions.LiftingTheory.qp W * g' := by
   obtain ⟨g', hg', he⟩ := Classical.choose_spec (hAq i ((letE i : LetA O n) * g) (letE_mul_mem W hg)
-    (by rw [← mul_assoc, letE_idem]))
+    (by rw [← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]))
   refine ⟨g', hg', ?_⟩
   unfold resq
   rw [dite_eq_left hg]
@@ -129,7 +125,7 @@ theorem resq_eq (i : ZMod n) {g : LetA O n} (hg : g ∈ W.AΔ) {o : O} {g' : Let
   obtain ⟨g₁, hg₁, he₁⟩ := resq_spec W hAq i hg
   set e : LetA O n := letE i with he_def
   set r := resq W hAq i g with hr_def
-  have hE : e * e = e := letE_idem i
+  have hE : e * e = e := _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq i
   have key : algebraMap O (LetA O n) (r - o) * e = Formalism.MainNotions.LiftingTheory.qp W * (g' - g₁) := by
     rw [map_sub]
     linear_combination he₁.symm.trans he
@@ -163,9 +159,9 @@ theorem resq_mul (hR : Formalism.MainNotions.UnusedSlot80.ToolsR.RingP W) (i : Z
     (hh : h ∈ W.AΔ) : resq W hAq i (g * h) = resq W hAq i g * resq W hAq i h := by
   obtain ⟨g₁, hg₁, e₁⟩ := resq_spec W hAq i hg
   obtain ⟨h₁, hh₁, e₂⟩ := resq_spec W hAq i hh
-  have hE : (letE i : LetA O n) * letE i = letE i := letE_idem i
+  have hE : (letE i : LetA O n) * letE i = letE i := _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq i
   have hq := qp_mem_AΔ' W hR
-  have he := letE_mem_AΔ W i
+  have he := _root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W i
   have ha := W.AΔ.algebraMap_mem (resq W hAq i g)
   have hb := W.AΔ.algebraMap_mem (resq W hAq i h)
   refine resq_eq W hAq hqc i (W.AΔ.mul_mem hg hh)
@@ -189,7 +185,7 @@ theorem resq_qp_mul (hR : Formalism.MainNotions.UnusedSlot80.ToolsR.RingP W) (i 
 include hqc in
 theorem residue_pi0_eq_neg_prime (hR : Formalism.MainNotions.UnusedSlot80.ToolsR.RingP W) (i : ZMod n) :
     resq W hAq i W.π₀ = -((PD.p : ℕ) : O) := by
-  refine resq_eq W hAq hqc i (Formalism.MainNotions.UnusedSlot80.UnivC.uniformizer_mem_delta_invariants W) (letE_mem_AΔ W i) ?_
+  refine resq_eq W hAq hqc i (Formalism.MainNotions.UnusedSlot80.UnivC.uniformizer_mem_delta_invariants W) (_root_.Formalism.MainNotions.LiftingTheory.idempotent_mem_invariants W i) ?_
   rw [map_neg, map_natCast]
   unfold Formalism.MainNotions.LiftingTheory.qp
   ring
@@ -414,7 +410,7 @@ theorem gamma_structure_of [NeZero n] [IsDomain O] (h9 : Formalism.MainNotions.D
     rw [hdy]
     refine ⟨hy'Δ, mem_Nl W T₂ hy'Δ.1 ?_⟩
     apply Formalism.MainNotions.UnusedSlot80.SatW.smul_cancel W T₂ hπU
-    have hyl : (letE i : LetA O n) • y = y := Formalism.MainNotions.UnusedSlot80.ArcF.letter_of_Nl W T₂ i hy.2
+    have hyl : (letE i : LetA O n) • y = y := _root_.Formalism.MainNotions.LiftingTheory.frame_letE_fix W T₂ i hy.2
     rw [smul_comm, ← hy'e, smul_sub, hyl]
     congr 1
     show (letE i : LetA O n) • W.γD T₂ W.gam y = W.γD T₂ W.gam y

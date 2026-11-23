@@ -70,7 +70,7 @@ theorem seriesUnit_alt : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.
   intro h1 h2 h3 h4
   have hI := _root_.GlobalTheory.BigOn.Exp.readInj_alt
   have hS := _root_.GlobalTheory.T.scale_root_of_reciprocity_inputs h1 h2 h3 h4
-  have hC := _root_.GlobalTheory.T.norm_ratio_realization_same_dual_alt h1 h2 h3 h4
+  have hC := _root_.GlobalTheory.BigOn.Exp.conjRoot_alt h1 h2 h3 h4
   have hR := _root_.GlobalTheory.BigOn.Exp.coordRange_alt
   unfold _root_.GlobalTheory.BigOn.Exp.ReadInjAlt at hI
   unfold _root_.GlobalTheory.BigOn.Exp.ScaleRootAltBis at hS

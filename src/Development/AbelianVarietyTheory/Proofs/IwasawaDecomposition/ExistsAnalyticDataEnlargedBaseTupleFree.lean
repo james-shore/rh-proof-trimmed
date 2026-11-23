@@ -78,7 +78,7 @@ theorem exists_realDat_keep_rsideW : GlobalTheory.Published.DiscreteSeriesCover 
         R₀.AllPlaces ∧ Keep R₀.toRealDat (face0 (w'.st Z') w'.I hX' (usedOf w'.I T' {v | B'.places.resChar v ∈ T'.pl}) Xg tr₀).lv2 cG ∧ BrgStd (w'.st Z') w'.I hX' (usedOf w'.I T' {v | B'.places.resChar v ∈ T'.pl}) Xg tr₀ R₀.toRealDat ∧
         RSideW z {v | B'.places.resChar v ∈ T'.pl} R₀) := by
   intro p1 p2 p3 p4 p5 p6 p7
-  refine StepW.trans (StepW.and (GlobalTheory.T.exists_firstAnalyticData_enlargedColumnChoices p1 p2 p3 p4 p5 p6 p7) (GlobalTheory.T.reset_tuple_free_fields_keeps_clauses_comparison p1 p2 p3 p4 p5 p6 p7)) (StepW.of_all fun K B' f' T' w' _ _ H => ?_)
+  refine StepW.trans (StepW.and (_root_.GlobalTheory.Mem.R3.Rw.seed_at_enl p1 p2 p3 p4 p5 p6 p7) (_root_.GlobalTheory.Mem.R3.Rw.reset_stepW p1 p2 p3 p4 p5 p6 p7)) (StepW.of_all fun K B' f' T' w' _ _ H => ?_)
   intro B f T w e hf hp hpx Z hX Wt z g1 g2 fz hl Z' hX' g3 g4 vt core' alg' a1 a2 a3 hq lc cn dw pb
   obtain ⟨Xg, tr₀, R₀, cG, hc⟩ := H.1 B f T w e hf hp hpx Z hX Wt z g1 g2 fz hl Z' hX' g3 g4 vt core' alg' a1 a2 a3 hq lc cn dw pb
   obtain ⟨R₁, cG₁, hc1⟩ := H.2 B f T w e hf hp hpx Z hX Wt z g1 g2 fz hl Z' hX' g3 g4 vt core' alg' a1 a2 a3 hq lc cn dw pb Xg tr₀ R₀ cG hc

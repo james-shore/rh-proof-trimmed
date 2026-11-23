@@ -61,11 +61,7 @@ namespace GlobalTheory.UnitLemma.Unr.Dual
 
 open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Unr
 
-theorem val_mul (K : UQ) {x y : K.E} (hx : x ≠ 0) (hy : y ≠ 0) :
-    val K.O (x * y) = val K.O x + val K.O y := by
-  unfold val
-  rw [map_mul, WithZero.log_mul (by simpa using hx) (by simpa using hy)]
-  ring
+alias val_mul := _root_.GlobalTheory.UnitLemma.Unr.val_mul_ne
 
 theorem val_inv (K : UQ) (x : K.E) : val K.O x⁻¹ = - val K.O x := by
   unfold val
@@ -133,7 +129,7 @@ theorem GlobalTheory.UnitLemma.Unr.dual_iff : ∀ (K K' : UQ) (d : ℕ) (φ : K.
     have hw0 : (overExt φ B ψ hψ hσ).herm x y z₀ ≠ 0 := by
       intro h0
       exact hw ⟨0, by rw [h0, map_zero]⟩
-    obtain ⟨u, a, ha, hua⟩ := GlobalTheory.T.exists_unit_trace_unramifiedInvolutionFieldExt K K' d φ hU
+    obtain ⟨u, a, ha, hua⟩ := _root_.GlobalTheory.UnitLemma.Unr.exists_trace_unit K K' d φ hU
     obtain ⟨π, hπ⟩ := (IsDiscreteValuationRing.maximalIdeal K.O).valuation_exists_uniformizer K.E
     have hπv : val K.O π = 1 := by
       unfold val

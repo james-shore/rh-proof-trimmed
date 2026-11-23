@@ -91,20 +91,7 @@ private theorem qb_intIff {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) : IsIntegr
     obtain ⟨q, hq, -, hqm⟩ := lifts_and_degree_eq_and_monic hl' (minpoly.monic hi)
     exact ⟨q, hqm, by rw [← aeval_def, ← aeval_map_algebraMap ℚ_[l], hq, minpoly.aeval]⟩
 
-private theorem qb_norm_lt {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] [IsLocalRing R] [Algebra ℤ_[l] R]
-    (y : R →ₐ[ℤ_[l]] PadicAlgCl l) (a : R) (ha : a ∈ maximalIdeal R) : ‖y a‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.MonicNormLtOne.mc_norm_lt y a ha
-
 end SlopeTestRemainingChoices
-
-private theorem qb_fd {l : ℕ} [Fact l.Prime] {ι : Type} [Finite ι] (f : ι → PadicAlgCl l) :
-    ∃ K : IntermediateField ℚ_[l] (PadicAlgCl l), FiniteDimensional ℚ_[l] K ∧ ∀ i, f i ∈ K :=
-  _root_.UpperTheory.Reformulated.B.QuotientBasisFiniteDimensional.qb_fd f
-
-private theorem qb_fdmod {l : ℕ} [Fact l.Prime] {M : Type} [AddCommGroup M] [Module ℤ_[l] M] [Module.Finite ℤ_[l] M]
-    (f : M →ₗ[ℤ_[l]] PadicAlgCl l) :
-    ∃ K : IntermediateField ℚ_[l] (PadicAlgCl l), FiniteDimensional ℚ_[l] K ∧ ∀ x, f x ∈ K :=
-  _root_.UpperTheory.Reformulated.B.FiniteModuleImageInFiniteExtension.qb_fdmod f
 
 section Ring
 
@@ -168,7 +155,7 @@ private theorem qb_ring [IsNoetherianRing O] [IsAdicComplete (maximalIdeal O) O]
         intro h0; rw [h0, norm_zero] at h1; exact zero_ne_one h1
       have hcu : IsUnit c := by
         by_contra hn
-        have h2 := qb_norm_lt (IsScalarTower.toAlgHom ℤ_[l] O (PadicAlgCl l)) c hn
+        have h2 := _root_.UpperTheory.Reformulated.B.MonicNormLtOne.mc_norm_lt (IsScalarTower.toAlgHom ℤ_[l] O (PadicAlgCl l)) c hn
         have h3 : x = (x - algebraMap O _ c) + algebraMap O _ c := by ring
         apply h
         show ‖x‖ < 1
@@ -213,7 +200,7 @@ private theorem qb_adic (K : IntermediateField ℚ_[l] (PadicAlgCl l)) (A : Suba
   have hl0 : (l : PadicAlgCl l) ≠ 0 := Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero
   have hl : (l : A) ∈ maximalIdeal A := by
     rw [hm]
-    have := qb_norm_lt (Algebra.ofId ℤ_[l] (PadicAlgCl l)) l (by
+    have := _root_.UpperTheory.Reformulated.B.MonicNormLtOne.mc_norm_lt (Algebra.ofId ℤ_[l] (PadicAlgCl l)) l (by
       rw [PadicInt.maximalIdeal_eq_span_p]; exact Ideal.mem_span_singleton_self _)
     simpa using this
   have key : ∀ a : A, ‖(a : PadicAlgCl l)‖ < ‖(l : PadicAlgCl l) ^ N‖ → a ∈ maximalIdeal A ^ N := by
@@ -260,8 +247,8 @@ private theorem qb_field {l : ℕ} [Fact l.Prime] (F : GFrame l) {n : ℕ} (ρ :
     rfl
   haveI : CompactSpace F.G₀ := isCompact_iff_compactSpace.1 (Subgroup.isClosed_of_isOpen _ F.η_open).isCompact
   obtain ⟨K₁, h₁, hK₁⟩ := GlobalTheory.CompactRepField.exists_finiteDimensional_entries_mem l F.G₀ n ρ hρ
-  obtain ⟨K₂, h₂, hK₂⟩ := qb_fd fun x : F.Vl × Fin n × Fin n => (P x.1).val x.2.1 x.2.2
-  obtain ⟨K₃, h₃, hK₃⟩ := qb_fd fun x : F.Vl × Fin n × Fin n => (P x.1).inv x.2.1 x.2.2
+  obtain ⟨K₂, h₂, hK₂⟩ := _root_.UpperTheory.Reformulated.B.QuotientBasisFiniteDimensional.qb_fd fun x : F.Vl × Fin n × Fin n => (P x.1).val x.2.1 x.2.2
+  obtain ⟨K₃, h₃, hK₃⟩ := _root_.UpperTheory.Reformulated.B.QuotientBasisFiniteDimensional.qb_fd fun x : F.Vl × Fin n × Fin n => (P x.1).inv x.2.1 x.2.2
   refine ⟨fun v i => ?_, K₁ ⊔ (K₂ ⊔ K₃), inferInstance, fun i g => ?_, fun v i g => ?_⟩
   · simp only [hψ]
     exact continuous_finsetSum _ fun b _ => (continuous_finsetSum _ fun a _ =>
@@ -363,7 +350,7 @@ theorem UpperTheory.V.W.exists_determinantPair_over_algebraicIntegers :
       ∃! f : B.B →ₐ[O] PadicAlgCl l, B.u.Maps (f : B.B →+* PadicAlgCl l) (GDet.ofRep (mat ρ)) ψ := by
   intro l _ F O _ _ _ _ _ _ _ _ _ _ _ n r B ρ ψ hρ ⟨P, hP⟩ h1 h2 h3 h4 h5
   obtain ⟨hψ, K₁, f₁, k1, k2⟩ := qb_field F ρ ψ hρ h5
-  obtain ⟨K₀, f₀, k0⟩ := qb_fdmod (IsScalarTower.toAlgHom ℤ_[l] O (PadicAlgCl l)).toLinearMap
+  obtain ⟨K₀, f₀, k0⟩ := _root_.UpperTheory.Reformulated.B.FiniteModuleImageInFiniteExtension.qb_fdmod (IsScalarTower.toAlgHom ℤ_[l] O (PadicAlgCl l)).toLinearMap
   have main : ∀ K : IntermediateField ℚ_[l] (PadicAlgCl l), FiniteDimensional ℚ_[l] K →
       ∃ f : B.B →ₐ[O] PadicAlgCl l, B.u.Maps (f : B.B →+* PadicAlgCl l) (GDet.ofRep (mat ρ)) ψ ∧
         ∀ f' : B.B →ₐ[O] PadicAlgCl l, (∀ x, f' x ∈ K) →
@@ -385,7 +372,7 @@ theorem UpperTheory.V.W.exists_determinantPair_over_algebraicIntegers :
       have hmem : ∀ x, f' x ∈ A := fun x => by
         obtain ⟨c, hc⟩ := IsCO.res_surj (O := O) x
         refine (hA _).2 ⟨(le_sup_left : K ≤ _) (hK x), c, ?_⟩
-        simpa using qb_norm_lt (f'.restrictScalars ℤ_[l]) _ hc
+        simpa using _root_.UpperTheory.Reformulated.B.MonicNormLtOne.mc_norm_lt (f'.restrictScalars ℤ_[l]) _ hc
       rw [← hu (f'.codRestrict A hmem) ⟨?_, fun v i => ?_⟩]
       · rfl
       · refine (groupDeterminant_existsUnique_descent_of_injective n A (PadicAlgCl l) F.G₀ (A.val : A →+* PadicAlgCl l) Subtype.val_injective
@@ -409,7 +396,7 @@ theorem UpperTheory.V.W.exists_determinantPair_over_algebraicIntegers :
       ∃ K : IntermediateField ℚ_[l] (PadicAlgCl l), FiniteDimensional ℚ_[l] K ∧ ∀ x, f x ∈ K := fun f => by
     haveI := exists_algebraicPoint_of_groupDeterminant O B.B (PadicAlgCl l) f
     haveI : Module.Finite ℤ_[l] f.range := Module.Finite.trans O f.range
-    obtain ⟨K, hK, h⟩ := qb_fdmod (f.range.val.toLinearMap.restrictScalars ℤ_[l])
+    obtain ⟨K, hK, h⟩ := _root_.UpperTheory.Reformulated.B.FiniteModuleImageInFiniteExtension.qb_fdmod (f.range.val.toLinearMap.restrictScalars ℤ_[l])
     exact ⟨K, hK, fun x => h ⟨f x, x, rfl⟩⟩
   obtain ⟨f, hf, -⟩ := main ⊥ inferInstance
   refine ⟨f, hf, fun f' hf' => ?_⟩

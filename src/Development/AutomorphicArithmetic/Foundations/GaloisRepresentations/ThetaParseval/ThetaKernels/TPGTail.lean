@@ -145,7 +145,7 @@ theorem UpperTheory.TP.tail_k :
     _root_.UpperTheory.TP.Tools_k → _root_.UpperTheory.TP.Tail_k := by
   intro T F E _ _ _ _ _ σ B n X hB hX K a e hK ha he μ t hμ hi S₀
   classical
-  have := GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.placesCountable F
+  have := _root_.GlobalTheory.AdelicUnitaryTop.countable_heightOneSpectrum F
   obtain ⟨a1, a2, a3⟩ := Euler.lcsc_UA σ X.J
   have hL := hX.lat
   have dec := _root_.UpperTheory.TP.decomp_k T F E σ B n X hB hX

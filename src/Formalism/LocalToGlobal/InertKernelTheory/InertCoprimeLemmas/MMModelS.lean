@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SigmaScale
 
 @[expose] public section
 
@@ -127,8 +128,8 @@ theorem ePartS (h5 : 5 ≤ p) (g2 g3 ε s2 a : ℂ_[p]) (hε0 : ε ≠ 0) (ha0 :
         (Formalism.L2.Th1.A.shortInv ℂ_[p] g2 g3).2.2.1]
     have hsc : PowerSeries.C (a * ε) * sg =
         PowerSeries.rescale (a * ε) (Formalism.L2.Th1.B.sgStar s2 (wpReg (shortW g2 g3))) := by
-      rw [hsg, (Formalism.L2.Th1.F.seriesScale ℂ_[p] g2 g3 (a * ε)).2.2.2.1, ← hP0]
-      exact (Formalism.L2.Th1.F.sigmaScale ℂ_[p] (Formalism.L2.Th1.F.pOf g2 g3) s2 (a * ε)).2
+      rw [hsg, (_root_.Formalism.L2.Th1.F.series_scale ℂ_[p] g2 g3 (a * ε)).2.2.2.1, ← hP0]
+      exact (_root_.Formalism.L2.Th1.F.sigma_scale' ℂ_[p] (Formalism.L2.Th1.F.pOf g2 g3) s2 (a * ε)).2
     have hεX : HasSubst ((a * ε) • (X : PowerSeries ℂ_[p])) := HasSubst.X'.smul' (a * ε)
     have hqq : PowerSeries.C (a * ε) * q = PowerSeries.C ε * l := by
       rw [hq, ← mul_assoc, ← map_mul]
@@ -303,6 +304,6 @@ theorem modelTieS_of (hInv : Formalism.L2.KerInert.Sigma.InvAlg) (hS2 : Formalis
 end Comparison₂
 
 theorem model_series_algebraic : Formalism.L2.KerInert.ModelTieS :=
-  modelTieS_of Formalism.L2.KerInert.Sigma.invAlg' Formalism.L2.KerInert.Sigma.secondEisensteinAlgebraic
+  modelTieS_of _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic Formalism.L2.KerInert.Sigma.secondEisensteinAlgebraic
 
 end Formalism.L2.KerInert.MModelS

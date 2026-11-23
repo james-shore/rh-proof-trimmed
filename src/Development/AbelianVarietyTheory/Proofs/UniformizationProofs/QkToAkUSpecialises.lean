@@ -105,7 +105,7 @@ theorem exists_families (hL : Laws) (hT : DVR.TwistBaseChangeStatement) {R R' : 
         PhiRel D'.toPre F' k p₁ ν' (s' i) (∑ l, π (c i l) • s' l) := by
   have hG := hL.globalFns
   have hM := D.toPre.P.isLB
-  obtain ⟨n, F₀, f, F₁, f', hf, hspan, hgen⟩ := GlobalTheory.T.exists_integral_families_span_generate_valuationRings hL.polBaseChange hG hT R R' I hR φ D D'.toPre hD k hk
+  obtain ⟨n, F₀, f, F₁, f', hf, hspan, hgen⟩ := _root_.GlobalTheory.FamGen.exists_span_generate hL.polBaseChange hG hT R R' I hR φ D D'.toPre hD k hk
   obtain ⟨Θ, hΘ₁, hΘ₂, -⟩ := exists_psi (pull_grp hD) (T := TF (R := R') F') (T₀ := Over.mk (specOf σ)) (specOf π) hτ'
   obtain ⟨ν, ν', hν, hν', hΦ⟩ := GlobalTheory.phi_specialises hG R R' I I' φ D D' hD S σ F g hg ρ hρ F' π hπl hπ Θ hΘ₁.w hΘ₂
     k hk gp p₀ p₁ h₁ h₂ h₃ h₄

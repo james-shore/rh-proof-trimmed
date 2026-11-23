@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsQuasicoherentOfForallExistsAffine
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffOfIsAffineOpen
 
 @[expose] public section
 
@@ -107,11 +108,6 @@ end GlobalTheory.LogPair.ChartPt
 noncomputable section
 namespace GlobalTheory.LogPair.ChartPt
 
-theorem resG_comp {X : Scheme.{0}} {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (a : Γ(X, U)) :
-    resG X h' (resG X h a) = resG X (h'.trans h) a := by
-  rw [← RingHom.comp_apply, ← CommRingCat.hom_comp, ← Functor.map_comp]
-  rfl
-
 theorem exists_chart : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (f : X ⟶ Sp R) [Smooth f] (d : ℕ) (s : ℕ) (L : Fin s → LB X) (σ : ∀ i, (L i).Sec) (U : X.Opens) (c : ∀ i, (L i).ι) (hc : ∀ i, U ≤ (L i).U (c i)) (x : X) (K : Type) [Field K] [Algebra Γ(X, U) K], IsAffineOpen U → x ∈ U → (∀ a : Γ(X, U), algebraMap Γ(X, U) K a ≠ 0 ↔ x ∈ X.basicOpen a) → (letI : Algebra R Γ(X, U) := (cstOn f U).toAlgebra; Module.finrank K (K ⊗[Γ(X, U)] Ω[Γ(X, U)⁄R]) = d ∧ LinearIndependent K (fun i : {i : Fin s // algebraMap Γ(X, U) K (resG X (hc i) ((σ i).f (c i))) = 0} => (1 : K) ⊗ₜ[Γ(X, U)] KaehlerDifferential.D R Γ(X, U) (resG X (hc i) ((σ i).f (c i))))) → ∃ C : SncChart f d L σ, x ∈ C.U := by
   intro R _ X f _ d s L σ U c hc x K _ _ hU hxU hK H
   classical
@@ -121,7 +117,7 @@ theorem exists_chart : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (f : X ⟶ S
   obtain ⟨t, e', het, htli⟩ := GlobalTheory.T.extend_linear_independent_differentials R Γ(X, U) K d
     {i : Fin s // algebraMap Γ(X, U) K (resG X (hc i) ((σ i).f (c i))) = 0}
     (fun i => resG X (hc i.1) ((σ i.1).f (c i.1))) hd hli
-  obtain ⟨h, hh, het2⟩ := GlobalTheory.T.etale_coordinates_kaehler_basis R Γ(X, U) K d t hd htli
+  obtain ⟨h, hh, het2⟩ := _root_.GlobalTheory.EtaleCoordSpread.exists_away_etale R Γ(X, U) K d t hd htli
   have hV := isEtCoord_basicOpen f hU t h het2
   let sf : Fin s → Γ(X, U) := fun i => resG X (hc i) ((σ i).f (c i))
   let q : Fin s → Γ(X, U) := fun j => if algebraMap Γ(X, U) K (sf j) = 0 then 1 else sf j
@@ -147,7 +143,7 @@ theorem exists_chart : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (f : X ⟶ S
     intro i hi
     have h1 : IsUnit (resG X (X.basicOpen_le (sf i)) (sf i)) := X.toRingedSpace.isUnit_res_basicOpen (sf i)
     have h2 := h1.map (resG X (hgs i hi))
-    rwa [resG_comp] at h2
+    rwa [_root_.GlobalTheory.Cartier.resG_resG] at h2
   refine ⟨{
       U := X.basicOpen g
       affine := hU.basicOpen g
@@ -160,7 +156,7 @@ theorem exists_chart : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (f : X ⟶ S
       u := fun i => if hi : algebraMap Γ(X, U) K (sf i) = 0 then 1 else (hunit i hi).unit
       eq := ?_ }, hxg⟩
   · convert hEt using 2 with a
-    rw [resG_comp]
+    rw [_root_.GlobalTheory.Cartier.resG_resG]
   · intro i j a hi hj
     split_ifs at hi hj with h1 h2
     have := e'.injective ((Option.some_injective _ hi).trans (Option.some_injective _ hj).symm)
@@ -169,9 +165,9 @@ theorem exists_chart : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (f : X ⟶ S
     by_cases hi : algebraMap Γ(X, U) K (sf i) = 0
     · rw [dite_eq_left hi, dite_eq_left hi]
       simp only [Units.val_one, one_mul, Option.elim_some]
-      rw [het ⟨i, hi⟩, resG_comp]
+      rw [het ⟨i, hi⟩, _root_.GlobalTheory.Cartier.resG_resG]
     · rw [dite_eq_right hi, dite_eq_right hi]
       simp only [IsUnit.unit_spec, Option.elim_none, mul_one]
-      rw [resG_comp]
+      rw [_root_.GlobalTheory.Cartier.resG_resG]
 
 end GlobalTheory.LogPair.ChartPt

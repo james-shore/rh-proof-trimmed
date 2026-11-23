@@ -251,7 +251,7 @@ theorem val_eq_one_eventually {F : Type} [Field F] [NumberField F] (a : F) (ha :
   have hc1 : ¬ 1 < v.valuation F a := fun h => hc (Or.inl h)
   have hc2 : ¬ 1 < v.valuation F a⁻¹ := fun h => hc (Or.inr h)
   apply hv
-  rw [GlobalTheory.CompanionTheory.SW.Growth.val_alg]
+  rw [_root_.GlobalTheory.CompanionTheory.SW.GoodInt.valued_algebraMap]
   have hne : v.valuation F a ≠ 0 := (Valuation.ne_zero_iff _).2 ha
   rw [not_lt] at hc1 hc2
   rw [map_inv₀] at hc2

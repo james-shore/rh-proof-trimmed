@@ -67,16 +67,10 @@ theorem exists_lseg (hs : LSegExists k) : ∃ Lseg : Segment k → IrrGL (k := k
   choose π hπ using hs
   exact ⟨fun Δ => ⟨Δ.deg, (π Δ).cl⟩, fun Δ => (hπ Δ).of_equiv (equivRep (π Δ))⟩
 
-theorem lfactors_sum {𝔪 : Multiset (Segment k)} {h : ℕ} {x : Fin h → IrrGL (k := k)} (hx : LFactors 𝔪 x) :
-    ∑ a, (x a).1 = (𝔪.map Segment.deg).sum := by
-  obtain ⟨Δ, ⟨hΔ, -⟩, hxΔ⟩ := hx
-  rw [← hΔ, Multiset.map_map, ← Finset.sum_eq_multiset_sum]
-  exact Finset.sum_congr rfl fun a _ => ((hxΔ a).deg_eq).symm
-
 theorem isL_deg {𝔪 : Multiset (Segment k)} {N : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]
     {π : Representation ℂ (GL (Fin N) k) V} (h : IsL 𝔪 π) : N = (𝔪.map Segment.deg).sum := by
   obtain ⟨_, x, hd, hx, -⟩ := h
-  rw [← hd, lfactors_sum hx]
+  rw [← hd, _root_.GlobalTheory.LocGL.SumProd.sum_fst_of_lFactors hx]
 
 theorem isL_cls_unique (hf : LOrderFree k) {𝔪 : Multiset (Segment k)} {x y : IrrGL (k := k)} (hx : IsL 𝔪 x.rep)
     (hy : IsL 𝔪 y.rep) : x = y := by
@@ -172,7 +166,7 @@ theorem phiL_main (hk : Steps k) (h2 : UniTri) :
   classical
   obtain ⟨c, -, -, -, -, hPL, hTri, hMO, -⟩ := hk
   obtain ⟨Lseg, hLseg⟩ := PhiLAux.exists_lseg c.seg
-  have hInj : LInjective k := GlobalTheory.T.langlands_injective_of_socle CompanionTheory.Tls2.BZGL.irreducibleAdmissibleGL_top c.soc c.jac
+  have hInj : LInjective k := _root_.GlobalTheory.CompanionTheory.Multisegment.lInjective CompanionTheory.Tls2.BZGL.irreducibleAdmissibleGL_top c.soc c.jac
   choose Lm hLm using c.ex
   have hLbij : Function.Bijective Lm := by
     refine ⟨fun 𝔪 𝔫 e => hInj 𝔪 𝔫 (Lm 𝔪) (hLm 𝔪) (by rw [e]; exact hLm 𝔫), fun x => ?_⟩
@@ -186,7 +180,7 @@ theorem phiL_main (hk : Steps k) (h2 : UniTri) :
   have hf1 : ∀ 𝔪, f 𝔪 (L 𝔪) = 1 := by
     intro 𝔪
     have hd : ∑ a, (Lseg (Δo 𝔪 a)).1 = (Lm 𝔪).1 :=
-      (PhiLAux.lfactors_sum (hLF 𝔪)).trans (PhiLAux.isL_deg (hLm 𝔪)).symm
+      (_root_.GlobalTheory.LocGL.SumProd.sum_fst_of_lFactors (hLF 𝔪)).trans (PhiLAux.isL_deg (hLm 𝔪)).symm
     show cl0 _ (Lm 𝔪) = 1
     rw [PhiLAux.class_product_irreducible_apply _ _ hd, hMO 𝔪 _ _ _ hd (hLF 𝔪) (hLm 𝔪)]
     rfl

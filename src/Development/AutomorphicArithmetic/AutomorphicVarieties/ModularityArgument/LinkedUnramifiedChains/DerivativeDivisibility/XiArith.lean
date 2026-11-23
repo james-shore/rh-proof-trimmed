@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EmbeddingClosedIntegral
 
 @[expose] public section
 
@@ -71,13 +72,6 @@ private theorem xa_pow {l : ℕ} [Fact l.Prime] (c : Coef l) [Fr.IsCoef l c.O] :
   rw [hϖ.maximalIdeal_eq, Ideal.span_singleton_pow, hu, Ideal.span_singleton_le_span_singleton]
   exact (Units.isUnit u).mul_left_dvd.2 dvd_rfl
 
-private theorem xa_lnorm {l : ℕ} [Fact l.Prime] : ‖((l : ℕ) : PadicAlgCl l)‖ < 1 := by
-  have h := PadicAlgCl.norm_extends (p := l) ((l : ℕ) : ℚ_[l])
-  have h2 : (((l : ℕ) : ℚ_[l]) : PadicAlgCl l) = ((l : ℕ) : PadicAlgCl l) := by simp
-  rw [h2] at h
-  rw [h]
-  exact Padic.norm_p_lt_one
-
 private theorem xa_key {l : ℕ} [Fact l.Prime] (c : Coef l) {e : ℕ} (he : maximalIdeal c.O ^ e ≤ Ideal.span {(l : c.O)})
     (N : ℕ) (x : c.O) (hx : x ∈ maximalIdeal c.O ^ (e * N)) :
     ‖(x.1 : PadicAlgCl l)‖ ≤ ‖((l : ℕ) : PadicAlgCl l)‖ ^ N := by
@@ -103,7 +97,7 @@ private theorem xa_cont {l : ℕ} [Fact l.Prime] (c : Coef l) [Fr.IsCoef l c.O] 
     (f : Γ → c.O) (h : Alg.AdicCont (maximalIdeal c.O) f) : Continuous fun g => ((f g).1 : PadicAlgCl l) := by
   obtain ⟨e, he⟩ := xa_pow c
   refine xa_top _ fun g₀ ε hε => ?_
-  obtain ⟨N, hN⟩ := exists_pow_lt_of_lt_one hε (xa_lnorm (l := l))
+  obtain ⟨N, hN⟩ := exists_pow_lt_of_lt_one hε (_root_.GlobalTheory.CoefEmbed.norm_prime_lt_one (l := l))
   have h0 := (h (e * N)).eventually_eq g₀
   refine h0.mono fun g hg => ?_
   have h1 : f g - f g₀ ∈ maximalIdeal c.O ^ (e * N) := Ideal.Quotient.eq.1 hg

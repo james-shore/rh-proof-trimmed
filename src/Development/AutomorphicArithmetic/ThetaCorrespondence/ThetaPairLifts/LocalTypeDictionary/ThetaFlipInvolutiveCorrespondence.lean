@@ -111,8 +111,8 @@ theorem thetaFlip_tuple_match (hP : _root_.GlobalTheory.FunPr.ThetaLocalInputs) 
   have hT' := hm.triple
   have H := fun (w : Pl D.host.E) (hw : w ∈ locPl G t) => local_charts hL W B t i j M hst h hm hti hw
   choose! ιA ι ιB ι' l hl h1 h2 h3 h4 h5 h6 h7 using H
-  obtain ⟨f, -, f2, f3⟩ := GlobalTheory.T.exists_gaussianVacuum_product_unitVacua hL W ρ t i j M hst e Bs Γ X om om' h hT' hti.1
-  obtain ⟨f', -, g2, g3⟩ := GlobalTheory.T.unitVacua_product_eq_gaussianDatum_smallModel hL W ρ t i j M hst e Bs Γ X om om' h hT' hti
+  obtain ⟨f, -, f2, f3⟩ := _root_.GlobalTheory.FlipVac.exists_gauss_vac hL W ρ t i j M hst e Bs Γ X om om' h hT' hti.1
+  obtain ⟨f', -, g2, g3⟩ := _root_.GlobalTheory.SmallVac.vac_datumB hL W ρ t i j M hst e Bs Γ X om om' h hT' hti
   obtain ⟨hs, a⟩ := mixglobA hL W B ρ t i j M hst e Bs Γ X om om' h hT' hti.1 f f3 ι h3
   obtain ⟨hs', b⟩ := mixglobB hL W B ρ t i j M hst e Bs Γ X om om' h hT' hti f' g3 ι' h4
   have vA : ∏ w ∈ locPl G t, ιA w (Γ.M.vac _) 0 = ∏ w ∈ locPl G t, ι w (Γ.M.vac _) 0 := Finset.prod_congr rfl fun w hw => by
@@ -234,7 +234,7 @@ theorem _root_.GlobalTheory.T.thetaFlip_involutive_correspondence : _root_.Globa
         ((s : ℝ) : ℂ) • p (fockF W.ψ W.θ true A (frSum AV AV₁) (datumA W τ) P) =
           (κ t * ((s' : ℝ) : ℂ) * g) • p' (fockF W.ψ W.θ false A₁ (frSum AV AV₁) (datumB W τ') P') := by
   intro hP hK hM
-  obtain ⟨F1, H1⟩ := _root_.GlobalTheory.T.theta_parameter_dictionary_bijective hP
+  obtain ⟨F1, H1⟩ := _root_.GlobalTheory.TopDict.theta_parameter_dictionary hP
   obtain ⟨F2, H2⟩ := _root_.GlobalTheory.T.theta_stage_unique hP hK hM
   refine ⟨max F1 F2, fun ε CF hCF => ?_⟩
   obtain ⟨C1, x1, H1⟩ := H1 ε CF (le_of_max_le_left hCF)

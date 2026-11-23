@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GlueApplyOfNotInFibre
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.MemIdealOfOfDense
 
 @[expose] public section
 
@@ -67,11 +68,6 @@ theorem spMap_comp' {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (a : R
     spMap (a.comp b) = spMap a ≫ spMap b := by
   show Spec.map (CommRingCat.ofHom (a.comp b)) = Spec.map (CommRingCat.ofHom a) ≫ Spec.map (CommRingCat.ofHom b)
   rw [CommRingCat.ofHom_comp, Spec.map_comp]
-
-theorem spMap_inj {R S : Type} [CommRing R] [CommRing S] {a b : R →+* S} (h : spMap a = spMap b) : a = b := by
-  have h' : Spec.map (CommRingCat.ofHom a) = Spec.map (CommRingCat.ofHom b) := h
-  have := Spec.map_injective h'
-  exact CommRingCat.hom_ext_iff.1 this |> fun e => by simpa using e
 
 theorem spMap_dualMap_id (Ω : Type) [Field Ω] : spMap (dualMap (RingHom.id Ω)) = 𝟙 _ := by
   have : dualMap (RingHom.id Ω) = RingHom.id _ := by
@@ -92,9 +88,9 @@ theorem exists_cover : _root_.GlobalTheory.CompanionTheory.Ar.Top.Given → Out.
   have hgen : GlobalTheory.CompanionTheory.Ar.genPt (o.𝔐.ξ ≫ o.𝔐.f) ∈ genericPoints Y.X := by
     have e : o.𝔐.ξ ≫ o.𝔐.f = Spec.map (CommRingCat.ofHom o.𝔐.fn) ≫ o.𝔐.ξ₀ := o.𝔐.fn_over
     rw [e, genPt_comp]; exact hgen₀
-  obtain ⟨Ω, _, _, i, hfin, htors, hroot⟩ := GlobalTheory.T.exists_finite_extension_primes E H D l Xo c Y R.Ω (o.𝔐.ξ ≫ o.𝔐.f) S hgen hSp
+  obtain ⟨Ω, _, _, i, hfin, htors, hroot⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ChgField.exists_field E H D l Xo c Y R.Ω (o.𝔐.ξ ≫ o.𝔐.f) S hgen hSp
   obtain ⟨K₁, _, J₁, _, y₁, bk₁, bx₁, M₁, h₁, hbk₁, hy₁, hdom₁, hnorm₁, hsm₁⟩ :=
-    GlobalTheory.T.coords_after_finite_extension hRes R.K R.ι R.Ω Ω i R.y o.𝔐.X o.𝔐.ξ hfin o.𝔐.all o.𝔐.tie
+    _root_.GlobalTheory.CompanionTheory.Ar.ChangeModel.exists_normal_model hRes R.K R.ι R.Ω Ω i R.y o.𝔐.X o.𝔐.ξ hfin o.𝔐.all o.𝔐.tie
   have hξ₁ : M₁.ξ ≫ h₁ ≫ o.𝔐.f = spMap i ≫ o.𝔐.ξ ≫ o.𝔐.f := by
     have e : M₁.ξ ≫ h₁ = Spec.map (CommRingCat.ofHom i) ≫ o.𝔐.ξ := hdom₁
     rw [← Category.assoc, e, Category.assoc]
@@ -125,7 +121,7 @@ theorem exists_cover : _root_.GlobalTheory.CompanionTheory.Ar.Top.Given → Out.
       simp
     have := c.fin
     have : NumberField c.F := {}
-    exact cst_ext (spMap_inj h4)
+    exact cst_ext (_root_.GlobalTheory.ZM.DenseFib.spMap_inj h4)
   obtain ⟨jA, hext, hpt, hact, hlat⟩ :=
     GlobalTheory.T.hodge_comp_comparison_left E H D l Xo c Y ∅ S R.Ω Ω R.K R.ι R.y K₂ J₂ y₂ o.𝔐 B i (g ≫ h₁) hdomB hfB
   obtain ⟨Li₀, _, _, M₀, j, V₀, hspan, hj, hV, hflag⟩ :=

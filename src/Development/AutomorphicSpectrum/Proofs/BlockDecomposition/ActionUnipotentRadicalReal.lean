@@ -93,20 +93,12 @@ theorem flS_erase (l : Lr n) (A : Finset (Lr n)) : flS (A.erase (fl l)) = (flS A
 
 theorem card_flS (A : Finset (Lr n)) : (flS A).card = A.card := by simp [flS]
 
-theorem key_lt (i : Pos n) : key i < n * n := by
-  have h1 : (i.1.1 : ℕ) < i.1.2 := i.2
-  have h2 : (i.1.2 : ℕ) < n := i.1.2.2
-  have h3 : (i.1.1 : ℕ) + 1 ≤ n := by omega
-  have h4 : ((i.1.1 : ℕ) + 1) * n ≤ n * n := Nat.mul_le_mul_right n h3
-  unfold key
-  nlinarith
-
 theorem key_iff (m l : Lr n) : PositivityTheory.RgBcC.RealD.keyL m < PositivityTheory.RgBcC.RealD.keyL l ↔
     GlobalTheory.CompanionTheory.PairMult.keyL (fl m) < GlobalTheory.CompanionTheory.PairMult.keyL (fl l) := by
   obtain ⟨s, i⟩ := m
   obtain ⟨t, j⟩ := l
-  have hi := key_lt i
-  have hj := key_lt j
+  have hi := _root_.GlobalTheory.CompanionTheory.RealMult.BdSqProof.key_lt i
+  have hj := _root_.GlobalTheory.CompanionTheory.RealMult.BdSqProof.key_lt j
   have hn : n * n ≤ (n + 1) * (n + 1) := by nlinarith
   cases s <;> cases t <;> simp [PositivityTheory.RgBcC.RealD.keyL, GlobalTheory.CompanionTheory.PairMult.keyL, fl] <;> omega
 

@@ -75,9 +75,9 @@ theorem exists_ideal_rank_iff : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : 
       RingHom.coe_comp, Function.comp_apply]
     constructor
     · intro hv
-      exact ⟨v, GlobalTheory.T.eigenPartProjectionMatrix_map_mulVec_of_eigenvector p D R b B βB n M K g i v hv⟩
+      exact ⟨v, _root_.GlobalTheory.UPel.HT.LieLin.RankIdeal.projMat_map_mulVec_of_eig p D R b B βB n M K g i v hv⟩
     · rintro ⟨w, rfl⟩ c
-      rw [Matrix.mulVec_mulVec, GlobalTheory.T.map_mul_eigenPartProjectionMatrix_eq_scalar p D R b B βB n M K g hg i c, Matrix.smul_mulVec]
+      rw [Matrix.mulVec_mulVec, _root_.GlobalTheory.UPel.HT.LieLin.RankIdeal.map_mul_projMat_eq_smul p D R b B βB n M K g hg i c, Matrix.smul_mulVec]
   have hidem : ∀ i, P i * P i = P i := by
     intro i
     apply (Matrix.toLin' (R := B ⧸ J) (m := Fin n) (n := Fin n)).injective
@@ -85,10 +85,10 @@ theorem exists_ideal_rank_iff : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : 
     intro v
     simp only [Matrix.toLin'_apply]
     rw [← Matrix.mulVec_mulVec]
-    apply GlobalTheory.T.eigenPartProjectionMatrix_map_mulVec_of_eigenvector p D R b B βB n M _ (Ideal.Quotient.mk J) i
+    apply _root_.GlobalTheory.UPel.HT.LieLin.RankIdeal.projMat_map_mulVec_of_eig p D R b B βB n M _ (Ideal.Quotient.mk J) i
     intro c
-    rw [Matrix.mulVec_mulVec, GlobalTheory.T.map_mul_eigenPartProjectionMatrix_eq_scalar p D R b B βB n M _ _ hJmk i c, Matrix.smul_mulVec]
-  obtain ⟨x, hx⟩ := GlobalTheory.T.exists_rank_ideal_of_idempotent' (B ⧸ J) (Fin D.a) n P hidem D.m
+    rw [Matrix.mulVec_mulVec, _root_.GlobalTheory.UPel.HT.LieLin.RankIdeal.map_mul_projMat_eq_smul p D R b B βB n M _ _ hJmk i c, Matrix.smul_mulVec]
+  obtain ⟨x, hx⟩ := _root_.GlobalTheory.exists_rank_ideal_of_idempotent (B ⧸ J) (Fin D.a) n P hidem D.m
   obtain ⟨x', rfl⟩ := Ideal.Quotient.mk_surjective x
   refine ⟨Ideal.span {x'}, fun T _ f hf => ?_⟩
   have hfa : ∀ a ∈ J, f a = 0 := fun a ha => RingHom.mem_ker.1 (hf ha)
@@ -105,6 +105,6 @@ theorem exists_ideal_rank_iff : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : 
     show (eigSub (matAct M (h.comp f)) (((h.comp f).comp βB).comp (b.t i)) : Set (Fin n → k)) = _
     rw [hrange k (h.comp f) (fun a ha => by simp [hfa a ha]) i]
     congr 3
-  rw [e1, GlobalTheory.T.finrank_range_map_idempotent_eq_rankAtStalk (B ⧸ J) n (P i) (hidem i) k (h.comp fb)]
+  rw [e1, _root_.GlobalTheory.IdemRankStalk.finrank_range_map_eq_rankAtStalk (B ⧸ J) n (P i) (hidem i) k (h.comp fb)]
 
 end GlobalTheory.UPel.HT.LieLin.RankIdeal

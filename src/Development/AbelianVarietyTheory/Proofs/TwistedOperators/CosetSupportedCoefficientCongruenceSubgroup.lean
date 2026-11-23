@@ -77,8 +77,8 @@ theorem cosSupp : CosSupp := by
     by_contra hne'
     exact hne (GlobalTheory.T.weilMatrixCoeff_eq_zero_of_distinct_eigencharacters D W.ψ _ _ _ _ (W.om (.core i)) hw m X hm Φ hth g y _ _ (hΦ.2 e he y h1 h2)
       (hΦ.2 e he _ (isHalf_actO_one _ _ _ _ y h1) h3) hne')
-  have hloc := GlobalTheory.T.cosetCharCondition_integral_unit_congruent_depth D hq T L μ0 hL sc G W M hM i hi x₀ hx₀ e he g hchar
-  refine GlobalTheory.T.mem_congruenceSubgroup_of_stabilises_and_congruent D (G.V (.core i)) (G.Λ (.core i)) (G.sp.P_is i (by omega)).sd G.pl.W0 e he G.modul ?_ g ?_ hloc
+  have hloc := _root_.GlobalTheory.CosDual.cosDual D hq T L μ0 hL sc G W M hM i hi x₀ hx₀ e he g hchar
+  refine _root_.GlobalTheory.CongAssemble.cong_assemble D (G.V (.core i)) (G.Λ (.core i)) (G.sp.P_is i (by omega)).sd G.pl.W0 e he G.modul ?_ g ?_ hloc
   · intro PP hPP
     have hprime : PP.asIdeal.IsPrime := PP.isPrime
     obtain ⟨v, hv, hle⟩ := hprime.prod_le.1 hPP

@@ -70,11 +70,6 @@ theorem graded_prod_pow_mul {A ι : Type} [CommRing A] (Q : ℕ → A → Prop) 
     rw [Finset.sum_insert hi, Finset.prod_insert hi, mul_assoc, add_comm (α i), ← add_assoc]
     exact hp _ _ _ _ ih
 
-theorem addL_zero' {D : D7} {j : ℕ} (u wL : WeightFamilies.Wt D j) : addL u wL 0 = u := by
-  cases u
-  unfold addL wadd wsmul
-  simp
-
 theorem shareRhoR_of_anFacts : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : ModuliIntegralCharts.Prov D) (j : ℕ) (X : PJ D B P j) (ka wL wF : WeightFamilies.Wt D j) (G : GlobalFamilyData X ka wL wF) (R : Rdg X) (t : Idx D j G.N → ℂ) (T : ℕ) (Mg : Submodule B.KO (B.Cusp j ka)) (δ : ℕ) (xs : Fin δ → R.Y), R.Generic t → AnFacts R G.w t ka wF T Mg xs → addL wF wL T = ka → 2 ≤ WeightFamilies.dimY D j → 11 * WeightFamilies.dimY D j ^ 2 ≤ T → LatAt B j ka → ∀ S : Scal B, ShareRhoR G S T (X.rk ka (B.Mlat j ka)) := by
   intro D B P j X ka wL wF G R t T Mg δ xs hgen hA hka hD hT hLat S la
   classical
@@ -161,7 +156,7 @@ theorem shareRhoR_of_anFacts : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : Mod
     rw [Submodule.span_le]
     rintro _ ⟨p, rfl⟩
     have h0 : OfWt X (addL wF wL 0) (MvPolynomial.C (X.inc wF (θ p.2)) : MvPolynomial (Idx D j G.N) X.Forms) := by
-      rw [addL_zero']; exact d3 _ _
+      rw [_root_.Formalism.MainNotions.Gaps.EtaleWeightGaps.addL_zero]; exact d3 _ _
     have h1 := hpm p.1.1 _ _ (hp0 (T - ∑ i, p.1.1 i) _ _ h0)
     have h2 := p.1.2
     rw [show 0 + (T - ∑ i, p.1.1 i) + ∑ i, p.1.1 i = T by omega, hka] at h1

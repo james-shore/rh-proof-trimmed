@@ -66,18 +66,6 @@ open Complex DirichletCharacter ArithmeticFunction MeasureTheory
 
 namespace GlobalTheory.LogDerivZeros
 
-theorem exists_factor_one {U : Set ℂ} {g : ℂ → ℂ} (hg : AnalyticOnNhd ℂ g U) {w : ℂ} (hw : w ∈ U)
-    (ho : analyticOrderAt g w ≠ ⊤) :
-    ∃ h : ℂ → ℂ, AnalyticOnNhd ℂ h U ∧ (∀ z, g z = (z - w) ^ (analyticOrderNatAt g w) * h z) ∧
-      h w ≠ 0 := by
-  first
-  | exact @_root_.GlobalTheory.FactorOrderExistence.exists_factor_order
-  | exact _root_.GlobalTheory.FactorOrderExistence.exists_factor_order
-  | (apply _root_.GlobalTheory.FactorOrderExistence.exists_factor_order <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FactorOrderExistence.exists_factor_order <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FactorOrderExistence.exists_factor_order <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FactorOrderExistence.exists_factor_order ..)
-
 theorem exists_factor {U : Set ℂ} {f : ℂ → ℂ} (hf : AnalyticOnNhd ℂ f U) (S : Finset ℂ)
     (hS : ∀ w ∈ S, w ∈ U) (ho : ∀ w ∈ S, analyticOrderAt f w ≠ ⊤) :
     ∃ g : ℂ → ℂ, AnalyticOnNhd ℂ g U ∧
@@ -100,7 +88,7 @@ theorem exists_factor {U : Set ℂ} {f : ℂ → ℂ} (hf : AnalyticOnNhd ℂ f 
       exact this
     have hordn : analyticOrderNatAt g a = analyticOrderNatAt f a := by
       simp [analyticOrderNatAt, hord]
-    obtain ⟨h, hh, hgh, hh0⟩ := exists_factor_one hg haU (hord ▸ ho a (Finset.mem_insert_self _ _))
+    obtain ⟨h, hh, hgh, hh0⟩ := _root_.GlobalTheory.FactorOrderExistence.exists_factor_order hg haU (hord ▸ ho a (Finset.mem_insert_self _ _))
     refine ⟨h, hh, fun z => ?_, fun w hw => ?_⟩
     · rw [Finset.prod_insert ha, hfg z, hgh z, hordn]; ring
     · rcases Finset.mem_insert.1 hw with rfl | hw

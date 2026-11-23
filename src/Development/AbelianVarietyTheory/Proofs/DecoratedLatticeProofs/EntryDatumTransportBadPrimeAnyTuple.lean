@@ -72,7 +72,7 @@ theorem entry_transport_any : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X) (hI
   intro B X I hI l u a i hm al be P p q p' q' k y k' y' hp hpN hp' hpN' hq hq'
   have hX := (GlobalTheory.Mem.FieldsLaws.fields_satisfy_definite_laws B).1
   have hL := hI.idx_ok a
-  have hq0 : ((Formalism.L2.Col.qOf P.1 : ℕ) : B.fields.E) ≠ 0 := Nat.cast_ne_zero.2 (GlobalTheory.Transport.Entry.qOf_pos P.1).ne'
+  have hq0 : ((Formalism.L2.Col.qOf P.1 : ℕ) : B.fields.E) ≠ 0 := Nat.cast_ne_zero.2 (_root_.Formalism.L2.Ker.qOf_pos P.1).ne'
   by_cases hP : P.1 ∈ (B.primes X).vGs
   · obtain ⟨M, hM, H⟩ := exists_modulus hp hp' hq hq' ⟨P.1, hP⟩ (pow_ne_zero (I.cst a).B hq0)
     refine ⟨M, hM, fun M₀ hM₀ x x₀ hx => ?_⟩
@@ -88,7 +88,7 @@ theorem entry_transport_any : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X) (hI
     · rw [hL.depthG P hP, pow_one]
       exact hκ'
   · have hQ : P.1 ∈ I.Q a := (Finset.mem_union.1 P.2).resolve_left hP
-    refine ⟨Formalism.L2.Col.qOf P.1 ^ (I.cst a).B, pow_pos (GlobalTheory.Transport.Entry.qOf_pos P.1) _, fun M₀ hM₀ x x₀ hx => ?_⟩
+    refine ⟨Formalism.L2.Col.qOf P.1 ^ (I.cst a).B, pow_pos (_root_.Formalism.L2.Ker.qOf_pos P.1) _, fun M₀ hM₀ x x₀ hx => ?_⟩
     have hd := GlobalTheory.Transport.TwistRead.qread I u a i P hQ (GlobalTheory.Mem.Df.disjoint_vGs_Q I hI l a) p q p' q' k y k' y' hp hpN hp' hpN' hq hq' M₀ x x₀ hx
     set z₀ := Formalism.L2.Col.inFr (Formalism.L2.Col.frsF I.sel (I.tup a) p.1.1 P) (Formalism.L2.Col.frsF I.sel (I.tup a) p'.1.1 P) x₀ with hz₀
     set z₁ := Formalism.L2.Col.inFr (Formalism.L2.Col.frsF I.sel (I.tup a) q.1.1 P) (Formalism.L2.Col.frsF I.sel (I.tup a) q'.1.1 P) x with hz₁

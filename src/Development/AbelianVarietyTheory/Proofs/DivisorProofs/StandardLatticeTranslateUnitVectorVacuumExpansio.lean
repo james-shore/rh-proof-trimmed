@@ -45,6 +45,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CosetVecEq
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsTraceCompatibleTorusEmbeddingStandardTorus
 
 @[expose] public section
 
@@ -59,19 +60,11 @@ noncomputable section
 
 namespace GlobalTheory.FunObj.TransExp
 
-theorem hf_swap (D : D7) (T : Tor D) {N N' : ℕ} (x y : VC D N N') :
-    Hf D T y x = (starRingEnd ℂ) (Hf D T x y) := by
-
-  simp only [Hf, map_div₀, map_sum, map_mul, Complex.conj_conj, Complex.conj_ofReal]
-  congr 1
-  exact Finset.sum_congr rfl fun τ _ => Finset.sum_congr rfl fun i _ =>
-    Finset.sum_congr rfl fun j _ => mul_comm _ _
-
 theorem wd_comm (D : D7) (T : Tor D) {N N' : ℕ} (x y : VC D N N') (F : VC D N N' → ℂ)
     (z : VC D N N') : Wd D T x (Wd D T y F) z = Formalism.MainNotions.TaylorLogMetric.kap D T x y * Wd D T y (Wd D T x F) z := by
   have key : Complex.exp (-(Real.pi : ℂ) * Hf D T x y) =
       Formalism.MainNotions.TaylorLogMetric.kap D T x y * Complex.exp (-(Real.pi : ℂ) * Hf D T y x) := by
-    rw [Formalism.MainNotions.TaylorLogMetric.kap, ← Complex.exp_add, hf_swap D T x y]
+    rw [Formalism.MainNotions.TaylorLogMetric.kap, ← Complex.exp_add, _root_.GlobalTheory.ThetaConj.Hf_conj D T x y]
     congr 1
     apply Complex.ext <;> simp [Complex.mul_re, Complex.mul_im, Complex.conj_re, Complex.conj_im] <;> ring
   have e1 : ∀ u v c : ℂ, Complex.exp (-(Real.pi : ℂ) * (u + v) - c) =

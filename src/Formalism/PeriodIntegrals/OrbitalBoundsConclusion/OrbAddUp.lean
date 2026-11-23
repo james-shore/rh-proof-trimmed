@@ -41,5 +41,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem PI.OrbAddUp : ∀ (D : Formalism.BasicNotions.D7) (E : PI.OrbJet.Ent D), PI.OrbJet.OrbitsAddLowerBound E :=
-  PI.OrbJet.AU.orbAddUp_main
+alias PI.OrbAddUp := _root_.PI.OrbJet.AU.orbAddUp_main

@@ -59,8 +59,8 @@ theorem GlobalTheory.USep.thetaConst_eq_lam_root_mul : ∀ (n : ℕ), n.Prime �
     rcases hodd with ⟨k, rfl⟩
     omega
   have hm3 : 3 ≤ n ^ j := le_trans hn3 (Nat.le_self_pow (by omega) n)
-  obtain ⟨M, lam, hM, H⟩ := GlobalTheory.T.thetaGenerator_torsionFrame_value_eq_scalar_mul_root (n ^ j) (hodd.pow) hm3 V₁ hV hunit D X C e u mo hmo hT K ev ρ₀ hρ₀ th hth
+  obtain ⟨M, lam, hM, H⟩ := _root_.GlobalTheory.USep.FrameInt.frameValue_eq_lam_root_mul (n ^ j) (hodd.pow) hm3 V₁ hV hunit D X C e u mo hmo hT K ev ρ₀ hρ₀ th hth
   refine ⟨M, lam, hM, fun y c hc => ?_⟩
   haveI : IsNoetherianRing V₁ := hV.1
-  obtain ⟨τ, hτ, hv⟩ := GlobalTheory.T.exists_torsionFrame_isValueAt_thetaConstant (Sp V₁) D.P ρ₀ hρ₀ (n ^ j) (hodd.pow) _ th y _ hc
-  exact H (y ^ n ^ j) τ c (GlobalTheory.T.isTorsionFrame_sq_of_torsion _ D.P ρ₀ (n ^ j) _ (y ^ n ^ j) τ hτ) hv
+  obtain ⟨τ, hτ, hv⟩ := _root_.GlobalTheory.Ex.OneGen.ThG.exists_isTorsFrame_isValueAt (Sp V₁) D.P ρ₀ hρ₀ (n ^ j) (hodd.pow) _ th y _ hc
+  exact H (y ^ n ^ j) τ c (_root_.GlobalTheory.USep.isTorsFrame_sq _ D.P ρ₀ (n ^ j) _ (y ^ n ^ j) τ hτ) hv

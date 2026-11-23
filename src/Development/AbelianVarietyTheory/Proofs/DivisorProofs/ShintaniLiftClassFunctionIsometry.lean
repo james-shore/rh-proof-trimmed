@@ -70,11 +70,11 @@ theorem shLift_isometry : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] 
   haveI : Finite F := Finite.of_injective (algebraMap F F') (algebraMap F F').injective
   letI : Fintype (GL (Fin n) F) := Fintype.ofFinite _
   letI : Fintype (GL (Fin n) F') := Fintype.ofFinite _
-  have hex := GlobalTheory.T.every_element_is_norm F F' s hs n
-  have hfib := GlobalTheory.T.card_isGaloisTwistedNormGL_mul_card_GL F F' s hs n
-  have hlf := (GlobalTheory.T.base_change_lift_class_function F F' s hs n f hf).1
-  have hlf' := (GlobalTheory.T.base_change_lift_class_function F F' s hs n f' hf').1
-  have hnd := GlobalTheory.T.isConj_of_isConj_glFieldExtensionInclusion F F' n
+  have hex := _root_.GlobalTheory.Shin.exists_isNorm F F' s hs n
+  have hfib := _root_.GlobalTheory.Shin.NormFibre.card_isNorm_mul_card F F' s hs n
+  have hlf := (_root_.GlobalTheory.Shin.shLift_isNorm_and_twisted_inv F F' s hs n f hf).1
+  have hlf' := (_root_.GlobalTheory.Shin.shLift_isNorm_and_twisted_inv F F' s hs n f' hf').1
+  have hnd := _root_.GlobalTheory.Shin.isConj_of_isConj_incl F F' n
   obtain ⟨c, hc⟩ : ∃ c : GL (Fin n) F → ℂ, ∀ γ, c γ = (Nat.card {γ' : GL (Fin n) F // IsConj γ γ'} : ℂ) :=
     ⟨_, fun _ => rfl⟩
   obtain ⟨v, hv⟩ : ∃ v : GL (Fin n) F → ℂ, ∀ γ, v γ = f γ * star (f' γ) := ⟨_, fun _ => rfl⟩

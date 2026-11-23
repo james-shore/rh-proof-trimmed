@@ -51,6 +51,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEtalePolynomialModelOfDirectedUnion
 
 @[expose] public section
 
@@ -85,7 +86,7 @@ theorem exists_stage_torsor : ∀ (T : Type) [CommRing T] [IsDomain T] (ι : Typ
           σ.comp (algebraMap (GlobalTheory.LocAcyc.GenFib (𝒜 i) (Localization.AtPrime (Q.comap e))) D) = ψ.comp β →
           ∃ σ₁ : D₁ →+* C, σ₁.comp (algebraMap (GlobalTheory.LocAcyc.GenFib T (Localization.AtPrime Q)) D₁) = ψ := by
   intro T _ _ ι _ _ _ 𝒜 hA hU q hq E _ _ _ _ _ Q _ D₁ _ _ act₁ htor
-  obtain ⟨i₀, E₀, _, _, hE₀, ⟨iso₀⟩⟩ := GlobalTheory.T.exists_etale_polynomial_descent_of_directed_union T ι 𝒜 hA hU E
+  obtain ⟨i₀, E₀, _, _, hE₀, ⟨iso₀⟩⟩ := _root_.GlobalTheory.EtaleDescent.exists_etale_polynomial_model_of_directed_union T ι 𝒜 hA hU E
 
   let ι' := {k : ι // i₀ ≤ k}
   haveI : IsDirected ι' (· ≤ ·) := ⟨fun a b => by
@@ -99,7 +100,7 @@ theorem exists_stage_torsor : ∀ (T : Type) [CommRing T] [IsDomain T] (ι : Typ
     obtain ⟨c, hjc, hic⟩ := directed_of (· ≤ ·) j i₀
     exact ⟨⟨c, hic⟩, hA hjc hj⟩
   obtain ⟨Ek, _, _, _, _, _, e, h, he, hh, heh, hid, hcomp, hinj, hsurj⟩ :=
-    GlobalTheory.T.directedSystem_etale_baseChange_polynomial T ι' 𝒜' hA' hU' ⟨i₀, le_rfl⟩ (fun k => k.2) E E₀ ⟨iso₀⟩
+    _root_.GlobalTheory.directedSystem_etaleBaseChange T ι' 𝒜' hA' hU' ⟨i₀, le_rfl⟩ (fun k => k.2) E E₀ ⟨iso₀⟩
   have he' : ∀ k (a : 𝒜' k), e k (algebraMap (𝒜' k) (Ek k) a) = algebraMap T E a := by
     intro k a
     have := congrArg (fun φ => φ (Polynomial.C a)) (he k)
@@ -141,7 +142,7 @@ theorem exists_stage_torsor : ∀ (T : Type) [CommRing T] [IsDomain T] (ι : Typ
           (GlobalTheory.LocAcyc.GenFib (𝒜' l) (Localization.AtPrime (Q.comap (e l))))
           (algebraMap (Ek l) (Localization.AtPrime (Q.comap (e l))) (h k l hkl y)) := fun k l hkl y =>
     GlobalTheory.GenFibMap.genFibMap_apply _ _ _ _ _ _ _ y
-  obtain ⟨k, hk⟩ := GlobalTheory.T.exists_torsor_model_filtered_colimit ι'
+  obtain ⟨k, hk⟩ := _root_.GlobalTheory.TorsorColimElem.exists_torsor_model_of_elements ι'
     (fun k => GlobalTheory.LocAcyc.GenFib (𝒜' k) (Localization.AtPrime (Q.comap (e k)))) f
     (fun k hkk => GlobalTheory.GenFibMap.genFibMap_id _ _ _ _ _ _ (hid k hkk))
     (fun k l m hkl hlm => GlobalTheory.GenFibMap.genFibMap_comp _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -149,8 +150,8 @@ theorem exists_stage_torsor : ∀ (T : Type) [CommRing T] [IsDomain T] (ι : Typ
     (GlobalTheory.LocAcyc.GenFib T (Localization.AtPrime Q)) g
     (fun k l hkl => GlobalTheory.GenFibMap.genFibMap_comp _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
       (fun y => (heh k l hkl y).symm))
-    (GlobalTheory.T.genericFibreLocalization_directedUnion_surjective T ι' 𝒜' hA' hU' E Q Ek e h he' heh hsurj g hgc)
-    (GlobalTheory.T.genericFibreLocalization_directedUnion_kernel T ι' 𝒜' hA' hU' E Q Ek e h he' hh heh hinj hsurj g hgc f hfc)
+    (_root_.GlobalTheory.genFib_colim_surj T ι' 𝒜' hA' hU' E Q Ek e h he' heh hsurj g hgc)
+    (_root_.GlobalTheory.genFib_colim_ker T ι' 𝒜' hA' hU' E Q Ek e h he' hh heh hinj hsurj g hgc f hfc)
     q hq D₁ act₁ htor
   obtain ⟨Di, _, _, acti, htori, ⟨iso₂⟩⟩ := hk
   refine ⟨k.1, Ek k, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, e k, he k,

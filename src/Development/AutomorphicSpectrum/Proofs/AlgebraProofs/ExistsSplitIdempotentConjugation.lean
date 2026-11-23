@@ -89,16 +89,11 @@ theorem exists_addChar_ne_one (C F : Type) [Field C] [IsAlgClosed C] [CharZero C
   have h2 : P.char a = 1 := j.toRingHom.injective (by simpa using h1)
   simpa [AddChar.mulShift_apply] using h2
 
-theorem exists_shift_equiv {C F : Type} [Field C] [Field F] [Fintype F] [DecidableEq F]
-    (ψ : AddChar F C) (hψ : ψ ≠ 1) :
-    ∃ e : F ≃ AddChar F C, (∀ h h', e (h + h') = e h * e h') ∧ ∀ h a, e h a = ψ (h * a) :=
-  _root_.UpperTheory.Reformulated.B.AddCharacterCount.main ψ hψ
-
 open PositivityTheory.HtPt.Ri in
 theorem rank_one_sum : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (v : Valuation C NNReal) (R : Type) [CommRing R] [Algebra R C], v.Integers R → v (p : C) < 1 → ∀ (F : Type) [Field F] [Fintype F] [DecidableEq F] [CharP F p] (f : ℕ), Fintype.card F = p ^ f → ∀ (AA : HopfOrder (C := C) R F), FStable (F := F) AA.carrier → ∃ AD : HopfOrder (C := C) R F, FStable (F := F) AD.carrier ∧ (∀ cN cD, HasColen R v AA.carrier cN → HasColen R v AD.carrier cD → (cN * cD) ^ 2 = v (p : C) ^ (f * p ^ f)) ∧ ∀ τ : MulChar F R, IsFund p τ → ∀ c cD : R, xIdeal AA.carrier τ = Ideal.span {c} → xIdeal AD.carrier τ = Ideal.span {cD} → (v (algebraMap R C c) * v (algebraMap R C cD)) ^ (p - 1) = v (p : C) := by
   intro p _ C _ _ _ v R _ _ hv hvp F _ _ _ _ f hcard AA hFS
   obtain ⟨ψ, hψ⟩ := exists_addChar_ne_one C F
-  obtain ⟨e, he, heψ⟩ := exists_shift_equiv ψ hψ
+  obtain ⟨e, he, heψ⟩ := _root_.UpperTheory.Reformulated.B.AddCharacterCount.main ψ hψ
   obtain ⟨AD, hAD, -, hcol⟩ := h1 C R v hv F F e he rfl AA
   have hfun : (fun (h a : F) => e h a) = fun (h a : F) => ψ (h * a) := by
     funext h a; exact heψ h a

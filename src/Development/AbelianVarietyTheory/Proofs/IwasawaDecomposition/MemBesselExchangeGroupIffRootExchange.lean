@@ -136,7 +136,7 @@ theorem mem_exSet (d : BesselDatum A B ι) {ε : AE D} (h1 : ε * ε = ε) (h0 :
 
 theorem exists_k (d : BesselDatum A B ι) {ε : AE D} (h0 : ε * cA D ε = 0) (i) {t} (ht : ε • t = t) :
     ∃ k : GA D B, IsK B (vecA B (dual d i)) (iA ι t) k := by
-  obtain ⟨K, -, hK⟩ := GlobalTheory.T.exists_continuous_unitaryRootExchangeMap D B ε h0 (vecA B (dual d i))
+  obtain ⟨K, -, hK⟩ := _root_.GlobalTheory.RootUnip.exists_continuous_isK D B ε h0 (vecA B (dual d i))
   exact ⟨_, hK ⟨iA ι t, by rw [← iA_smul, ht], dual_iA d i t⟩⟩
 
 theorem isK_one (v : Fin B.rank → AE D) : IsK B v 0 1 := fun x => by

@@ -158,12 +158,12 @@ theorem exists_carried_frame_upstairs : ∀ (R : Type) [CommRing R] [IsDomain R]
     have e' := congrArg (fun φ => φ z) e
     simp only [Scheme.Hom.comp_apply] at e'
     exact e'
-  obtain ⟨τ, hτ, hcar⟩ := GlobalTheory.T.exists_carriedFrame_theoremOfCube G' U'.LG U'.cubG θ T x a₁ b₁ c₁ (q ⁻¹ᵁ (β ⁻¹ᵁ V)) hten
+  obtain ⟨τ, hτ, hcar⟩ := _root_.GlobalTheory.Mum.exists_carried_frame_of_cubeTen G' U'.LG U'.cubG θ T x a₁ b₁ c₁ (q ⁻¹ᵁ (β ⁻¹ᵁ V)) hten
   refine ⟨R₁, inferInstance, inferInstance, inferInstance, ρ₁, hρ₁, het, V, hyV, τ, hτ, ?_⟩
   intro σ h bc hbc hP hPO f' hf'q hf's
   have hc : IsGrpPullback G' G' (specOf (Gal.hom σ)) (bc.hom.left ≫ pullback.fst G'.hom (specOf (Gal.hom σ))) :=
     hbc ▸ a.cart σ
-  have hrc := GlobalTheory.T.rigidifiedGaloisLinearisation_carries_rigidification_cube R hB R' ρ hF hG D D' hD A' G' hS' U' a G β hS hβ hact σ h bc hbc hP
+  have hrc := _root_.GlobalTheory.Mum.rigidified_galois_lin_carries_rig_and_cube R hB R' ρ hF hG D D' hD A' G' hS' U' a G β hS hβ hact σ h bc hbc hP
   have hTw : f' ≫ T.hom = T.hom ≫ spMap (Gal.hom σ) := by
     change f' ≫ q ≫ G'.hom = (q ≫ G'.hom) ≫ _
     rw [← Category.assoc, hf'q, Category.assoc, (a.cart σ).1.w, Category.assoc]

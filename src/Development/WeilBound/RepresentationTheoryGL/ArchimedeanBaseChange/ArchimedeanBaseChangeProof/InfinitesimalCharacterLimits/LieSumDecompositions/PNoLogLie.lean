@@ -234,7 +234,7 @@ theorem iwasawa2 (r s : ℕ) (g : GA E (r + s)) : ∃ (x : BlockIx (r + s) r →
     g = unip x * lev (Ad E) r s m * (infGL E (r + s) (Unitary.toUnits k) * finGL E (r + s) g') := by
   let n : Fin 2 → ℕ := ![r, s]
   have h : ∑ i, n i = n 0 + n 1 := CapFactor.two_sum n
-  obtain ⟨v, hv, m, k, g', e⟩ := GlobalTheory.SpehInfChar.exists_iwasawa E n h g
+  obtain ⟨v, hv, m, k, g', e⟩ := _root_.GlobalTheory.IwasawaAdelic.iwasawa E n h g
   obtain ⟨xv, rfl⟩ := CapFactor.exists_unip_of_mem n h hv
   refine ⟨xv, (m 0, m 1), k, g', ?_⟩
   have hx : lev (Ad E) r s (m 0, m 1) = GlobalTheory.SmGL.leviEmb (Ad E) (GlobalTheory.SmGL.stdBlocks n h) m :=

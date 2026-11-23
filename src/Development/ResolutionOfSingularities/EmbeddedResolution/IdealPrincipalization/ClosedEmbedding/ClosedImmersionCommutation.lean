@@ -158,9 +158,9 @@ private def IsClosedEmbeddingCompatibleInCodim (rules : PrincipalizationRules.{u
     AlgebraicGeometry.QuasiCompact p → AlgebraicGeometry.Smooth p' →
     AlgebraicGeometry.LocallyOfFiniteType p' → AlgebraicGeometry.QuasiCompact p' →
     j ≫ p' = p → 1 ≤ c → HasEtaleCoordCodim p' j c →
-    ∀ I : X.IdealSheafData, NonzeroOnComponents I → NonzeroOnComponents (imageIdealSheaf j I) →
+    ∀ I : X.IdealSheafData, NonzeroOnComponents I → NonzeroOnComponents (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) →
       IsPushforwardBlowupSeq j (rules.markedBlowupSeq k X p I []).toSequenceOfBlowups
-        (rules.markedBlowupSeq k X' p' (imageIdealSheaf j I) []).toSequenceOfBlowups
+        (rules.markedBlowupSeq k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) []).toSequenceOfBlowups
 
 private theorem commutesWithClosedImmersion_forall_codim (rules : PrincipalizationRules.{u}) (hB : rules.ReducesInductivelyOnDimension)
     (hpv : AdmissibilityStableUnderSmoothPullback.{u}) : ∀ c : ℕ, IsClosedEmbeddingCompatibleInCodim rules c := by
@@ -182,27 +182,27 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
       have hNX' : AlgebraicGeometry.IsNoetherian X' := isNoetherian_of_locallyOfFiniteType p'
       have hvX : (markedTripleOrderOne k X p I []).IsAdmissible :=
         markedTripleOrderOne_isAdmissible k X p I hI [] (inStrictNormalCrossingPosition_nil p)
-      have hvX' : (markedTripleOrderOne k X' p' (imageIdealSheaf j I) []).IsAdmissible :=
-        markedTripleOrderOne_isAdmissible k X' p' (imageIdealSheaf j I) hIim [] (inStrictNormalCrossingPosition_nil p')
+      have hvX' : (markedTripleOrderOne k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) []).IsAdmissible :=
+        markedTripleOrderOne_isAdmissible k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) hIim [] (inStrictNormalCrossingPosition_nil p')
       rcases isEmpty_or_nonempty ↥X with hXe | hXne
       · have := hXe
         have hIsub : IsEmpty ↥I.subscheme := Function.isEmpty (fun y => I.subschemeι y)
-        have himg : imageIdealSheaf j I = ⊤ := by
+        have himg : _root_.FunctorialResolution.Blowup.schemeImageIdeal j I = ⊤ := by
           rw [Scheme.IdealSheafData.eq_top_iff_support_eq_empty, imageIdealSheaf_eq_ker j I,
             Scheme.Hom.support_ker (I.subschemeι ≫ j), Set.range_eq_empty, closure_empty]
         have hcs1 : orderAtLeastLocus I 1 = (∅ : Set ↥X) := Set.eq_empty_of_isEmpty _
-        have hcs2 : orderAtLeastLocus (imageIdealSheaf j I) 1 = (∅ : Set ↥X') := by
+        have hcs2 : orderAtLeastLocus (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) 1 = (∅ : Set ↥X') := by
           rw [himg]
           exact orderAtLeastLocus_top_eq_empty 1 le_rfl
         have hspec := rules.isMaxOrderReduction_outputLevelData hB (krullDimSucc X + krullDimSucc X')
         have h1 := hspec.trivial_of_coSupport_empty (markedTripleOrderOne k X p I []) hvX
           (show krullDimSucc X ≤ krullDimSucc X + krullDimSucc X' by omega) hcs1
         have h2 := hspec.trivial_of_coSupport_empty
-          (markedTripleOrderOne k X' p' (imageIdealSheaf j I) []) hvX'
+          (markedTripleOrderOne k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) []) hvX'
           (show krullDimSucc X' ≤ krullDimSucc X + krullDimSucc X' by omega) hcs2
         rw [maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k X p I [] (krullDimSucc X + krullDimSucc X')
           (show krullDimSucc X ≤ krullDimSucc X + krullDimSucc X' by omega)] at h1
-        rw [maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k X' p' (imageIdealSheaf j I) [] (krullDimSucc X + krullDimSucc X')
+        rw [maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) [] (krullDimSucc X + krullDimSucc X')
           (show krullDimSucc X' ≤ krullDimSucc X + krullDimSucc X' by omega)] at h2
         exact IsPushforwardBlowupSeq.of_length_eq_zero j _ _ h1 h2
       · have hch : HasLocalEtaleCharts p' := by
@@ -250,7 +250,7 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
           infer_instance
         have hkerNZ : NonzeroOnComponents (Scheme.Hom.ker j) :=
           nonzeroOnComponents_ker_of_hasEtaleCoordCodim p' j hc hcod
-        have horder : ∀ x : ↥X', orderAt (imageIdealSheaf j I) x ≤ 1 := by
+        have horder : ∀ x : ↥X', orderAt (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) x ≤ 1 := by
           intro x
           exact orderAt_map_le_one_of_isClosedImmersion p' j hkerNZ I x
         have hfacH : C.pullbackFiberToHypersurface ≫ C.hypersurfaceStructureMap = C.pullbackFiberToBase ≫ p := by
@@ -258,15 +258,15 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
             = C.pullbackFiberToBase ≫ p
           rw [C.pullbackFiberToHypersurface_comp_subschemeι_assoc (C.projection ≫ p'), ← Category.assoc, ← hstarw,
             Category.assoc, hjp]
-        have hWideal : (imageIdealSheaf j I).comap C.projection
-            = imageIdealSheaf C.toCoverData.iInfImageIdeal.subschemeι C.idealOnHypersurface := by
+        have hWideal : (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection
+            = _root_.FunctorialResolution.Blowup.schemeImageIdeal C.toCoverData.iInfImageIdeal.subschemeι C.idealOnHypersurface := by
           rw [← C.comapImageIdealSheaf_eq]
           exact C.comapImageIdealSheaf_eq_imageIdealSheaf_idealOnHypersurface
-        have hHideal : C.idealOnHypersurface = imageIdealSheaf C.pullbackFiberToHypersurface (I.comap C.pullbackFiberToBase) :=
+        have hHideal : C.idealOnHypersurface = _root_.FunctorialResolution.Blowup.schemeImageIdeal C.pullbackFiberToHypersurface (I.comap C.pullbackFiberToBase) :=
           C.idealOnHypersurface_eq_imageIdealSheaf
         have hvW : (markedTripleOrderOne k C.toCoverData.disjointUnion (C.projection ≫ p')
-            ((imageIdealSheaf j I).comap C.projection) []).IsAdmissible :=
-          @hpv (markedTripleOrderOne k X' p' (imageIdealSheaf j I) []) hvX' C.toCoverData.disjointUnion
+            ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) []).IsAdmissible :=
+          @hpv (markedTripleOrderOne k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) []) hvX' C.toCoverData.disjointUnion
             (C.projection ≫ p') C.projection hsmP hqcWp rfl
         have hvS : (markedTripleOrderOne k C.pullbackFiber (C.pullbackFiberToBase ≫ p)
             (I.comap C.pullbackFiberToBase) []).IsAdmissible :=
@@ -276,12 +276,12 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
         have hcontactNZ : NonzeroOnComponents C.idealOnHypersurface := by
           rcases Nat.eq_zero_or_pos c' with hc0 | hc1
           · have hiso : IsIso C.pullbackFiberToHypersurface := C.isIso_pullbackFiberToHypersurface_of_eq_one (by omega)
-            have hinv : imageIdealSheaf C.pullbackFiberToHypersurface (I.comap C.pullbackFiberToBase)
+            have hinv : _root_.FunctorialResolution.Blowup.schemeImageIdeal C.pullbackFiberToHypersurface (I.comap C.pullbackFiberToBase)
                 = (I.comap C.pullbackFiberToBase).comap (CategoryTheory.inv C.pullbackFiberToHypersurface) :=
               imageIdealSheaf_eq_comap_inv C.pullbackFiberToHypersurface (I.comap C.pullbackFiberToBase)
             have h2 : NonzeroOnComponents
                 ((I.comap C.pullbackFiberToBase).comap (asIso C.pullbackFiberToHypersurface).symm.hom) :=
-              nonzeroOnComponents_comap_iso_hom (asIso C.pullbackFiberToHypersurface).symm
+              _root_.FunctorialResolution.EmbeddedResolution.PrincipalizationIsoTransport.nonzeroOnComponents_comap_iso (asIso C.pullbackFiberToHypersurface).symm
                 (I.comap C.pullbackFiberToBase) hNZS
             rw [hHideal, hinv]
             exact h2
@@ -334,11 +334,11 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
               hfacH hc1 hcc0 (I.comap C.pullbackFiberToBase) hNZS
               (by rw [← hHideal]; exact hcontactNZ)
         have hOBW : (markedTripleOrderOne k C.toCoverData.disjointUnion (C.projection ≫ p')
-            ((imageIdealSheaf j I).comap C.projection) []).IsOrderBoundedByMult := by
+            ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) []).IsOrderBoundedByMult := by
           rw [MarkedIdealWithBoundary.isOrderBoundedByMult_iff]
           intro x
-          have h1 : orderAt ((imageIdealSheaf j I).comap C.projection) x ≤ 1 := by
-            rw [orderAt_comap k p' C.projection (imageIdealSheaf j I) x]
+          have h1 : orderAt ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) x ≤ 1 := by
+            rw [orderAt_comap k p' C.projection (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) x]
             exact horder (C.projection.base x)
           refine le_trans h1 (le_of_eq ?_)
           exact Nat.cast_one.symm
@@ -350,24 +350,24 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
             ((rules.inputLevelData (m + 1)).maxOrderRed (markedTripleOrderOne k C.hypersurfaceScheme C.hypersurfaceStructureMap
               C.idealOnHypersurface [])).toSequenceOfBlowups
             ((rules.outputLevelData (m + 1)).orderRed (markedTripleOrderOne k C.toCoverData.disjointUnion
-              (C.projection ≫ p') ((imageIdealSheaf j I).comap C.projection) [])).toSequenceOfBlowups :=
+              (C.projection ≫ p') ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) [])).toSequenceOfBlowups :=
           @IsOrderReduction.pushforward _ _ _ hordspec
             (markedTripleOrderOne k C.toCoverData.disjointUnion (C.projection ≫ p')
-              ((imageIdealSheaf j I).comap C.projection) []) hvW
+              ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) []) hvW
             (show krullDimSucc C.toCoverData.disjointUnion ≤ m + 1 by omega) hOBW rfl rfl
             C.hypersurfaceScheme C.hypersurfaceStructureMap C.toCoverData.iInfImageIdeal.subschemeι hCI rfl hdiv
             C.idealOnHypersurface hvH hHW hWideal
         rw [rules.inputLevelData_succ m, maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k C.hypersurfaceScheme C.hypersurfaceStructureMap
           C.idealOnHypersurface [] m (by omega)] at hpushHW
         have hequivW : ((rules.outputLevelData (m + 1)).maxOrderRed (markedTripleOrderOne k
-            C.toCoverData.disjointUnion (C.projection ≫ p') ((imageIdealSheaf j I).comap C.projection) [])).Isomorphic
+            C.toCoverData.disjointUnion (C.projection ≫ p') ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) [])).Isomorphic
             ((rules.outputLevelData (m + 1)).orderRed (markedTripleOrderOne k C.toCoverData.disjointUnion
-              (C.projection ≫ p') ((imageIdealSheaf j I).comap C.projection) [])).toSequenceOfBlowups :=
+              (C.projection ≫ p') ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) [])).toSequenceOfBlowups :=
           hspec.orderRed_equiv (markedTripleOrderOne k C.toCoverData.disjointUnion (C.projection ≫ p')
-            ((imageIdealSheaf j I).comap C.projection) []) hvW
+            ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) []) hvW
             (show krullDimSucc C.toCoverData.disjointUnion ≤ m + 1 by omega) rfl hOBW
         rw [maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k C.toCoverData.disjointUnion (C.projection ≫ p')
-          ((imageIdealSheaf j I).comap C.projection) [] (m + 1) (by omega)] at hequivW
+          ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) [] (m + 1) (by omega)] at hequivW
         have hpushSubscheme := IsPushforwardBlowupSeq.of_isomorphic C.toCoverData.iInfImageIdeal.subschemeι
           hpushHW (SequenceOfBlowups.Isomorphic.symm hequivW)
         have hNtH : ∀ i : ℕ, i ≤ (rules.markedBlowupSeq k C.hypersurfaceScheme C.hypersurfaceStructureMap
@@ -376,16 +376,16 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
               C.idealOnHypersurface []).toSequenceOfBlowups.schemeAt i) :=
           fun i hi => isNoetherian_schemeAt _ i hi
         have hNtW : ∀ i : ℕ, i ≤ (rules.markedBlowupSeq k C.toCoverData.disjointUnion (C.projection ≫ p')
-            ((imageIdealSheaf j I).comap C.projection) []).toSequenceOfBlowups.length →
+            ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) []).toSequenceOfBlowups.length →
             AlgebraicGeometry.IsNoetherian ((rules.markedBlowupSeq k C.toCoverData.disjointUnion (C.projection ≫ p')
-              ((imageIdealSheaf j I).comap C.projection) []).toSequenceOfBlowups.schemeAt i) :=
+              ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) []).toSequenceOfBlowups.schemeAt i) :=
           fun i hi => isNoetherian_schemeAt _ i hi
         have hcomp := IsPushforwardBlowupSeq.comp C.pullbackFiberToHypersurface C.toCoverData.iInfImageIdeal.subschemeι
           hNtH hNtW hpushFiber hpushSubscheme
         have hcomp' : IsPushforwardBlowupSeq C.pullbackFiberToTotal
             (rules.markedBlowupSeq k C.pullbackFiber (C.pullbackFiberToBase ≫ p) (I.comap C.pullbackFiberToBase) []).toSequenceOfBlowups
             (rules.markedBlowupSeq k C.toCoverData.disjointUnion (C.projection ≫ p')
-              ((imageIdealSheaf j I).comap C.projection) []).toSequenceOfBlowups :=
+              ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) []).toSequenceOfBlowups :=
           isPushforwardSequenceOfBlowups_congr_hom C.pullbackFiberToHypersurface_comp_subschemeι hcomp
         have hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u} := strictTransformIsBlowupOfClosedSubscheme
         have hcart : EffectiveCartierSupportContainsNoComponent.{u} := effectiveCartierSupportContainsNoComponent
@@ -412,17 +412,17 @@ private theorem commutesWithClosedImmersion_forall_codim (rules : Principalizati
           maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k X p I [] (m + 1) (by omega)] at hsS
         have hSW : IsStrictPullbackBlowupSeq C.projection
             ((rules.outputLevelData (m + 1)).maxOrderRed (markedTripleOrderOne k C.toCoverData.disjointUnion
-              (C.projection ≫ p') ((imageIdealSheaf j I).comap C.projection) [])).toSequenceOfBlowups
+              (C.projection ≫ p') ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) [])).toSequenceOfBlowups
             ((rules.outputLevelData (m + 1)).maxOrderRed
-              (markedTripleOrderOne k X' p' (imageIdealSheaf j I) [])).toSequenceOfBlowups :=
+              (markedTripleOrderOne k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) [])).toSequenceOfBlowups :=
           @IsMaxOrderReduction.isStrictPullbackBlowupSeq_of_smooth_surjective _ _ _ hspec
-            (markedTripleOrderOne k X' p' (imageIdealSheaf j I) []) hvX'
+            (markedTripleOrderOne k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) []) hvX'
             (show krullDimSucc X' ≤ m + 1 by omega) C.toCoverData.disjointUnion (C.projection ≫ p')
             C.projection hsmP hsuP rfl hvW
             (show krullDimSucc C.toCoverData.disjointUnion ≤ m + 1 by omega)
         rw [maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k C.toCoverData.disjointUnion (C.projection ≫ p')
-            ((imageIdealSheaf j I).comap C.projection) [] (m + 1) (by omega),
-          maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k X' p' (imageIdealSheaf j I) [] (m + 1) (by omega)] at hSW
+            ((_root_.FunctorialResolution.Blowup.schemeImageIdeal j I).comap C.projection) [] (m + 1) (by omega),
+          maxOrderReduction_outputLevelData_eq_markedBlowupSeq rules k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) [] (m + 1) (by omega)] at hSW
         have hup := IsPushforwardBlowupSeq.of_flat_isPullback j C.pullbackFiberToTotal C.projection C.pullbackFiberToBase
           C.isPullback_pullbackFiber.flip (rules.markedBlowupSeq k X p I []).toSequenceOfBlowups u0
           (rules.markedBlowupSeq k C.pullbackFiber (C.pullbackFiberToBase ≫ p) (I.comap C.pullbackFiberToBase) []).toSequenceOfBlowups

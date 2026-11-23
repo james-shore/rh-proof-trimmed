@@ -86,9 +86,9 @@ theorem lattices_frames_basePoints_exist_alt : ∀ {D : D7} {L : SizeData₂ D} 
     fun PP h => GlobalTheory.T.exists_normalFrames_rationalDecompositions_over_local a y (l PP h) _ hTau hT0 (hU PP h)
   choose FY sc hFY using hA
   obtain ⟨N, dT, M, β₀, hShape, hdT, hSD, hInt⟩ :=
-    _root_.GlobalTheory.T.local_component_measure_identity_alt_bis W u hW a y m b₀ k ι v o l bas hIs hTau hT0 hτ hNT hζ hLT hgP htP hdisj hPre hLZ hbas FY sc hFY
+    _root_.GlobalTheory.Fam.LatShape.exists_shape_integral_in_normal_frames_alt W u hW a y m b₀ k ι v o l bas hIs hTau hT0 hτ hNT hζ hLT hgP htP hdisj hPre hLZ hbas FY sc hFY
   obtain ⟨b, hbG, hbM, hbF⟩ :=
-    _root_.GlobalTheory.T.local_component_measure_identity_alt_alt W u hW a y m b₀ k ι v o l bas hIs hTau hT0 hτ hNT hζ hLT hgP htP hdisj hPre hLZ hbas FY N hSD hInt
+    _root_.GlobalTheory.RLatMove.move_main_alt W u hW a y m b₀ k ι v o l bas hIs hTau hT0 hτ hNT hζ hLT hgP htP hdisj hPre hLZ hbas FY N hSD hInt
   refine ⟨N, b, dT, M, β₀, hShape, fun j => ⟨hbG j, hdT j⟩, fun j hj => ⟨hSD j hj, hbM j hj⟩, fun PP h => ⟨?_⟩⟩
   obtain ⟨h1, h2, h3, h4, h5, h6⟩ := hFY PP h
   exact { FY := FY PP h, sc := sc PP h, sc_unit := h1, sc_step := h2, hz_unit := h3, bes := h4, jac := h5, tau := h6,

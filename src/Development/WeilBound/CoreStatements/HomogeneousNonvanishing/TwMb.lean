@@ -47,13 +47,8 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 namespace PositivityTheory.UnitarySelfGeneration
 
-private theorem fix_rt_lemma {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} (g : HostAut H) : g.s H.rt = H.rt := by
-  apply RingOfIntegers.ext
-  rw [HostAut.s, RingOfIntegers.mapRingEquiv_apply]
-  exact g.fix
-
 private theorem fix_gen_lemma_2 {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} (g : HostAut H) : g.s H.w0 = H.w0 ∧ g.s (H.bar H.w0) = H.bar H.w0 := by
-  have hr := fix_rt_lemma g
+  have hr := _root_.GlobalTheory.CompanionTheory.Ar.HostAut.s_rt g
   have hbr : g.s (H.bar H.rt) = H.bar H.rt := by
     have hsq : (H.bar H.rt) ^ 2 = H.rt ^ 2 := by
       rw [← map_pow, H.rt_sq, map_neg, map_natCast]

@@ -67,15 +67,4 @@ theorem mk_le {A X : Type} [MetricSpace X] (f : A → X) (hf : DenseRange f) (hA
   rw [← Cardinal.power_def, Cardinal.mk_nat]
   exact (Cardinal.power_le_power_right hA).trans_eq Cardinal.continuum_power_aleph0
 
-theorem nonempty_iso (p : ℕ) [Fact p.Prime] : Nonempty (ℂ ≃+* ℂ_[p]) := by
-  have h1 : #ℚ_[p] ≤ 𝔠 := mk_le _ (Padic.denseRange_ratCast p)
-    (Cardinal.mk_le_aleph0.trans Cardinal.aleph0_le_continuum)
-  have h2 : #(PadicAlgCl p) ≤ 𝔠 :=
-    (Algebra.IsAlgebraic.cardinalMk_le_max ℚ_[p] (PadicAlgCl p)).trans (max_le h1 Cardinal.aleph0_le_continuum)
-  have h3 : #(ℂ_[p]) ≤ 𝔠 := mk_le (X := PadicComplex p) _
-    (UniformSpace.Completion.denseRange_coe (α := PadicAlgCl p)) h2
-  have h4 : 𝔠 ≤ #(ℂ_[p]) := continuum_le_cardinal_of_nontriviallyNormedField _
-  refine IsAlgClosed.ringEquiv_of_equiv_of_charZero (by rw [Cardinal.mk_complex]; exact Cardinal.aleph0_lt_continuum) ?_
-  exact Cardinal.eq.1 (by rw [Cardinal.mk_complex]; exact le_antisymm h4 h3)
-
 end GlobalTheory.MomOne.Inh

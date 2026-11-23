@@ -77,31 +77,20 @@ section Crt
 
 variable {M : Type} [CommGroup M]
 
-theorem bezout {q a : ℕ} (h : q.Coprime a) : (q : ℤ) * Nat.gcdA q a + a * Nat.gcdB q a = 1 := by
-  have e := Nat.gcd_eq_gcd_ab q a
-  rw [h.gcd_eq_one] at e
-  exact_mod_cast e.symm
-
-def crt (q a : ℕ) (u v : M) : M := u ^ Nat.gcdA q a * v ^ Nat.gcdB q a
-
 theorem crt_pow_left {q a : ℕ} (h : q.Coprime a) {u v : M} (hu : u ^ a = 1) (hv : v ^ q = 1) :
-    crt q a u v ^ q = u := by
-  have e : Nat.gcdA q a * (q : ℤ) = 1 - a * Nat.gcdB q a := by rw [← bezout h]; ring
-  rw [crt, mul_pow, ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul, e, mul_comm (Nat.gcdB q a), zpow_mul,
+    _root_.GlobalTheory.TateGlue.glue q a u v ^ q = u := by
+  have e : Nat.gcdA q a * (q : ℤ) = 1 - a * Nat.gcdB q a := by rw [← _root_.GlobalTheory.TateGlue.bezout h]; ring
+  rw [_root_.GlobalTheory.TateGlue.glue, mul_pow, ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul, e, mul_comm (Nat.gcdB q a), zpow_mul,
     zpow_natCast, hv, one_zpow, mul_one, zpow_sub, zpow_mul, zpow_natCast, hu, one_zpow, zpow_one, inv_one, mul_one]
 
 theorem crt_pow_right {q a : ℕ} (h : q.Coprime a) {u v : M} (hu : u ^ a = 1) (hv : v ^ q = 1) :
-    crt q a u v ^ a = v := by
-  have e : Nat.gcdB q a * (a : ℤ) = 1 - q * Nat.gcdA q a := by rw [← bezout h]; ring
-  rw [crt, mul_pow, ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul, e, mul_comm (Nat.gcdA q a), zpow_mul,
+    _root_.GlobalTheory.TateGlue.glue q a u v ^ a = v := by
+  have e : Nat.gcdB q a * (a : ℤ) = 1 - q * Nat.gcdA q a := by rw [← _root_.GlobalTheory.TateGlue.bezout h]; ring
+  rw [_root_.GlobalTheory.TateGlue.glue, mul_pow, ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul, e, mul_comm (Nat.gcdA q a), zpow_mul,
     zpow_natCast, hu, one_zpow, one_mul, zpow_sub, zpow_mul, zpow_natCast, hv, one_zpow, zpow_one, inv_one, mul_one]
 
-theorem crt_pow_pow {q a : ℕ} (h : q.Coprime a) (t : M) : crt q a (t ^ q) (t ^ a) = t := by
-  rw [crt, ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul, ← zpow_add, bezout h, zpow_one]
-
-theorem eq_of_pow_coprime {q a : ℕ} (h : q.Coprime a) {t t' : M} (h₁ : t ^ q = t' ^ q) (h₂ : t ^ a = t' ^ a) :
-    t = t' := by
-  rw [← crt_pow_pow h t, h₁, h₂, crt_pow_pow h]
+theorem crt_pow_pow {q a : ℕ} (h : q.Coprime a) (t : M) : _root_.GlobalTheory.TateGlue.glue q a (t ^ q) (t ^ a) = t := by
+  rw [_root_.GlobalTheory.TateGlue.glue, ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul, ← zpow_add, _root_.GlobalTheory.TateGlue.bezout h, zpow_one]
 
 theorem map_zsmul_of_add {L : Type} [AddCommGroup L] (f : L → M) (hf : ∀ x y, f (x + y) = f x * f y) (j : ℤ)
     (x : L) : f (j • x) = f x ^ j :=
@@ -133,8 +122,8 @@ theorem exists_join {κ : Type} [Field κ] {Q : Type} [CommGroup Q] (act : D.O �
   have apos : ∀ n, 0 < n → 0 < a n := fun n hn => Nat.pos_of_ne_zero fun h => by
     have := h1 n; rw [h, mul_zero] at this; omega
   have cop : ∀ n, 0 < n → (p ^ r n).Coprime (a n) := fun n hn => Nat.Coprime.pow_left _ (h2 n hn).symm
-  let T : ℕ → D.La → Q := fun n y => crt (p ^ r n) (a n) (I.ev (a n) y) (ev (r n) y)
-  let Z : ℕ → κˣ := fun n => crt (p ^ r n) (a n) (I.ζ (a n)) (ζ (r n))
+  let T : ℕ → D.La → Q := fun n y => _root_.GlobalTheory.TateGlue.glue (p ^ r n) (a n) (I.ev (a n) y) (ev (r n) y)
+  let Z : ℕ → κˣ := fun n => _root_.GlobalTheory.TateGlue.glue (p ^ r n) (a n) (I.ζ (a n)) (ζ (r n))
   have tI : ∀ n, 0 < n → ∀ y, I.ev (a n) y ^ a n = 1 := fun n hn y =>
     (I.onto _ (apos n hn) (h2 n hn) _).2 ⟨y, rfl⟩
   have tE : ∀ s y, ev s y ^ p ^ s = 1 := fun s y => (onto s _).2 ⟨y, rfl⟩
@@ -175,15 +164,15 @@ theorem exists_join {κ : Type} [Field κ] {Q : Type} [CommGroup Q] (act : D.O �
     have := (cop n hn).mul_dvd_of_dvd_of_dvd d2 d1
     rwa [h1] at this
   · have hnm := Nat.mul_pos hn hm
-    refine eq_of_pow_coprime (cop n hn) ?_ ?_
+    refine _root_.GlobalTheory.TateGlue.eq_of_pow_eq (cop n hn) ?_ ?_
     · rw [← pow_mul, p1 n m hn hm, pow_mul, Z1 _ hnm, Z1 n hn, h4, I.ζ_pow _ _ (apos n hn) (apos m hm) (c3 n m hn hm)]
     · rw [← pow_mul, p2 n m, pow_mul, Z2 _ hnm, Z2 n hn, h3 n m hn hm, ζpow]
-  · show crt _ _ (I.ev (a n) (x + y)) (ev (r n) (x + y)) = crt _ _ _ _ * crt _ _ _ _
-    rw [I.add, add, crt, crt, crt, mul_zpow, mul_zpow, mul_mul_mul_comm]
-  · show crt _ _ (I.ev (a n) (b • x)) (ev (r n) (b • x)) = act b (crt _ _ _ _)
+  · show _root_.GlobalTheory.TateGlue.glue _ _ (I.ev (a n) (x + y)) (ev (r n) (x + y)) = _root_.GlobalTheory.TateGlue.glue _ _ _ _ * _root_.GlobalTheory.TateGlue.glue _ _ _ _
+    rw [I.add, add, _root_.GlobalTheory.TateGlue.glue, _root_.GlobalTheory.TateGlue.glue, _root_.GlobalTheory.TateGlue.glue, mul_zpow, mul_zpow, mul_mul_mul_comm]
+  · show _root_.GlobalTheory.TateGlue.glue _ _ (I.ev (a n) (b • x)) (ev (r n) (b • x)) = act b (_root_.GlobalTheory.TateGlue.glue _ _ _ _)
     let F : Q →* Q := MonoidHom.mk' (act b) (hact b)
     have hF : ∀ t, act b t = F t := fun _ => rfl
-    rw [I.lin, lin, crt, crt, hF, hF, hF, map_mul, map_zpow, map_zpow]
+    rw [I.lin, lin, _root_.GlobalTheory.TateGlue.glue, _root_.GlobalTheory.TateGlue.glue, hF, hF, hF, map_mul, map_zpow, map_zpow]
   · constructor
     · intro h
       obtain ⟨u, hu⟩ := (I.ker _ (apos n hn) (h2 n hn) x).1 (by rw [← T1 n hn, h, one_pow])
@@ -192,18 +181,18 @@ theorem exists_join {κ : Type} [Field κ] {Q : Type} [CommGroup Q] (act : D.O �
       have e1 : n • u = p ^ r n • x := by rw [hu, smul_smul, h1]
       have e2 : n • w = a n • x := by rw [hw, smul_smul, mul_comm, h1]
       rw [smul_add, smul_comm n, smul_comm n, e1, e2, ← natCast_zsmul, ← natCast_zsmul x (a n), smul_smul, smul_smul,
-        ← add_smul, mul_comm, mul_comm (Nat.gcdB _ _), bezout (cop n hn), one_smul]
+        ← add_smul, mul_comm, mul_comm (Nat.gcdB _ _), _root_.GlobalTheory.TateGlue.bezout (cop n hn), one_smul]
     · rintro ⟨y, rfl⟩
-      refine eq_of_pow_coprime (cop n hn) ?_ ?_
+      refine _root_.GlobalTheory.TateGlue.eq_of_pow_eq (cop n hn) ?_ ?_
       · rw [T1 n hn, one_pow]
         exact (I.ker _ (apos n hn) (h2 n hn) _).2 ⟨p ^ r n • y, by rw [smul_smul, mul_comm, h1]⟩
       · rw [T2 n hn, one_pow]
         exact (ker _ _).2 ⟨a n • y, by rw [smul_smul, h1]⟩
   · obtain ⟨u, hu⟩ := (I.onto _ (apos n hn) (h2 n hn) (t ^ p ^ r n)).1 (by rw [← pow_mul, h1, ht])
     obtain ⟨w, hw⟩ := (onto (r n) (t ^ a n)).1 (by rw [← pow_mul, mul_comm, h1, ht])
-    have b := bezout (cop n hn)
+    have b := _root_.GlobalTheory.TateGlue.bezout (cop n hn)
     refine ⟨(((p ^ r n : ℕ) : ℤ) * Nat.gcdA (p ^ r n) (a n)) • u + ((a n : ℤ) * Nat.gcdB (p ^ r n) (a n)) • w,
-      eq_of_pow_coprime (cop n hn) ?_ ?_⟩
+      _root_.GlobalTheory.TateGlue.eq_of_pow_eq (cop n hn) ?_ ?_⟩
     · rw [T1 n hn, I.add, map_zsmul_of_add _ (I.add _), map_zsmul_of_add _ (I.add _), ← hu, eq_sub_of_add_eq b,
         zpow_sub, zpow_mul, zpow_mul, zpow_natCast, zpow_natCast, tI n hn, tI n hn]
       simp
@@ -213,12 +202,12 @@ theorem exists_join {κ : Type} [Field κ] {Q : Type} [CommGroup Q] (act : D.O �
   · rintro ⟨x, rfl⟩
     exact tT n hn x
   · have hnm := Nat.mul_pos hn hm
-    refine eq_of_pow_coprime (cop n hn) ?_ ?_
+    refine _root_.GlobalTheory.TateGlue.eq_of_pow_eq (cop n hn) ?_ ?_
     · rw [← pow_mul, p1 n m hn hm, pow_mul, T1 _ hnm, T1 n hn, h4, I.tower _ _ (apos n hn) (apos m hm) (c3 n m hn hm)]
     · rw [← pow_mul, p2 n m, pow_mul, T2 _ hnm, T2 n hn, h3 n m hn hm, tower]
   · obtain ⟨z, hz⟩ := E1 n hn _ _ (tT n hn x) (tT n hn y)
     have e : z = Z n ^ (2 * D.EF x y) := by
-      refine eq_of_pow_coprime (cop n hn) ?_ ?_
+      refine _root_.GlobalTheory.TateGlue.eq_of_pow_eq (cop n hn) ?_ ?_
       · have i1 := I.isom _ (apos n hn) (h2 n hn) x y
         rw [← T1 n hn, ← T1 n hn] at i1
         have i2 := E4 _ _ _ _ _ i1
@@ -286,7 +275,7 @@ theorem exists_join_isog {κ : Type} [Field κ] {Q Q' : Type} [CommGroup Q] [Gro
       rw [← map_pow, ← zpow_natCast, zpow_comm, zpow_natCast, ht, one_zpow, map_one])
     refine ⟨x, ?_⟩
     have h := crt_pow_pow (ck r) t
-    rw [crt, ht, one_zpow, one_mul] at h
+    rw [_root_.GlobalTheory.TateGlue.glue, ht, one_zpow, one_mul] at h
     show Φ (I'.ev (p ^ r) x) = t
     rw [hx, hΦ, ← zpow_natCast, zpow_comm, zpow_natCast, h]
   · rintro ⟨x, rfl⟩
@@ -310,7 +299,7 @@ theorem exists_join_isog {κ : Type} [Field κ] {Q Q' : Type} [CommGroup Q] [Gro
       simp only [map_nsmul, LinearMap.smul_apply, nsmul_eq_mul]
       linear_combination (-(D.EF x y)) * hm'
     have ez : z = (I'.ζ (p ^ r) ^ c) ^ (2 * D.EF x y) := by
-      refine eq_of_pow_coprime (cm r) ?_ ?_
+      refine _root_.GlobalTheory.TateGlue.eq_of_pow_eq (cm r) ?_ ?_
       · rw [i5, ← zpow_natCast, zpow_comm, zpow_natCast, ← pow_mul, mul_comm c, pow_mul,
           (I'.ζ_prim _ (q0 r)).pow_eq_one, one_pow, one_zpow]
       · rw [i2, eF, ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul]
@@ -321,8 +310,7 @@ theorem exists_join_isog {κ : Type} [Field κ] {Q Q' : Type} [CommGroup Q] [Gro
 
 open MonObj HeckeRestrict
 
-theorem unitOn_bij {κ : Type} [CommRing κ] : Function.Bijective (unitOn (R := κ)) :=
-  (Units.mapEquiv (Scheme.ΓSpecIso (CommRingCat.of κ)).symm.commRingCatIsoToRingEquiv.toMulEquiv).bijective
+alias unitOn_bij := _root_.GlobalTheory.ToricData.unitOn_bijective
 
 variable {R : Type} [CommRing R]
 
@@ -463,7 +451,7 @@ theorem spMap_id' : spMap (RingHom.id R) = 𝟙 (Sp R) := Spec.map_id _
 theorem exists_immersion [IsNoetherianRing R] (gb : GBase D.toG R) (N : ℕ) (h3 : 3 ≤ N) (hN : N.Coprime p)
     (M : Model (baseAt gb) N) (X : GenModel gb N) :
     ∃ i : X.X ⟶ M.X, IsOpenImmersion i ∧ IsClosedImmersion i ∧ i ≫ M.s = X.s ∧ IsGPull X.univ M.univ i := by
-  obtain ⟨j, h1, h2, h3, h4⟩ := GlobalTheory.T.exists_open_closed_immersion_genModel_to_fibre p D R (baseAt gb) R (RingHom.id R) gb rfl (fun _ => rfl) N h3 hN M X
+  obtain ⟨j, h1, h2, h3, h4⟩ := _root_.GlobalTheory.UPel.HT.GenCmp.genModel_eq_genericFibre p D R (baseAt gb) R (RingHom.id R) gb rfl (fun _ => rfl) N h3 hN M X
   haveI : IsIso (spMap (RingHom.id R)) := by rw [spMap_id']; infer_instance
   refine ⟨j ≫ pullback.fst _ _, inferInstance, inferInstance, ?_, h4⟩
   rw [Category.assoc, pullback.condition, ← Category.assoc, h3, spMap_id', Category.comp_id]
@@ -478,9 +466,9 @@ theorem exists_gHeckeMap_finite_etale_surjective : ∀ (p : ℕ) [Fact p.Prime] 
   have Npos : 0 < N := by omega
   have hNk : 3 ≤ N * k := hN.trans (Nat.le_mul_of_pos_right _ kpos)
   have hNkp : (N * k).Coprime p := Nat.Coprime.mul_left hNp hkp
-  obtain ⟨M⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D R (baseAt gb) N hN hNp
-  obtain ⟨M'⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D R (baseAt gb) (N * k) hNk hNkp
-  obtain ⟨π, hπ, πf, πe, πs⟩ := GlobalTheory.T.exists_heckeMap_finite_etale_surjective' p D R (baseAt gb) g c k N hcp hkp hN hNp hEF hg hck M M'
+  obtain ⟨M⟩ := _root_.GlobalTheory.UPel.HT.model_nonempty p D R (baseAt gb) N hN hNp
+  obtain ⟨M'⟩ := _root_.GlobalTheory.UPel.HT.model_nonempty p D R (baseAt gb) (N * k) hNk hNkp
+  obtain ⟨π, hπ, πf, πe, πs⟩ := _root_.GlobalTheory.UPel.HT.Hecke.exists_heckeMap_finite_etale_surjective p D R (baseAt gb) g c k N hcp hkp hN hNp hEF hg hck M M'
   change π ≫ M.s = M'.s ∧ ∃ (o' : Obj (baseAt gb) N M'.s) (ψ : M'.univ.A ⟶ o'.A), IsHecke g c k N M'.univ o' ψ ∧
     Nonempty (ObjMap o' M.univ π) at hπ
   obtain ⟨hπs, o', ψ, hH, ⟨hmap⟩⟩ := hπ

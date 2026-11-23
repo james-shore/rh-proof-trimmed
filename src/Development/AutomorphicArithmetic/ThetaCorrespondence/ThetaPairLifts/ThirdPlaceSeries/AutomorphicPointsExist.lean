@@ -40,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinrankJointEigenspaceCoefficientFieldComplex
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeMultiplicityEqFinrankJointEigenspace
 
 @[expose] public section
 
@@ -61,9 +63,9 @@ theorem automorphic_points_exist : ∀ (D : D7) (cf : CharFrame D) (jE : D.host.
   let jf : Fin D.R.m := ⟨X.nd.j i - 1, by have := X.nd.j_range i; omega⟩
   let B := gPl D ∪ qPl D (tp.tup (D.what₂.muTw (X.nd.w i)) jf)
   have hprod : NG.IsProdLevel (mlX M X i).J :=
-    mt_tr M (fun _ _ Mr => NG.IsProdLevel Mr.J) (X.nd.mu_w i).symm hj1 _ _ _ _ (hMI.prod (X.nd.w i) jf)
+    _root_.GlobalTheory.FitHecke.mt_transport M (fun _ _ Mr => NG.IsProdLevel Mr.J) (X.nd.mu_w i).symm hj1 _ _ _ _ (hMI.prod (X.nd.w i) jf)
   have hhyp : NG.HypOutside (mlX M X i).J (mlX M X i).χ B :=
-    mt_tr M (fun _ _ Mr => NG.HypOutside Mr.J Mr.χ B) (X.nd.mu_w i).symm hj1 _ _ _ _ (hMI.hyp (X.nd.w i) jf)
+    _root_.GlobalTheory.FitHecke.mt_transport M (fun _ _ Mr => NG.HypOutside Mr.J Mr.χ B) (X.nd.mu_w i).symm hj1 _ _ _ _ (hMI.hyp (X.nd.w i) jf)
   have hbad : ∀ w (s : SplitPlace D.host.E), SplitOut X.nd i w → IsConjPl D.host w s.w → s.v ∉ B :=
     fun w s hw hc => l0 D cf C tp A.pl M big X T Sp i w s hw hc
   have hlin : ∀ w k (s : SplitPlace D.host.E) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)),
@@ -119,8 +121,8 @@ theorem automorphic_points_exist : ∀ (D : D7) (cf : CharFrame D) (jE : D.host.
   have hdim : ∀ x, X.nd.mult i x = Module.finrank ℂ
       ↥(⨆ P ∈ {P | ptV P = some x}, (NG.isoTyp (mlX M X i).wt.ρ (F P)).comap (mlX M X i).real) := by
     intro x
-    rw [l2a D A.pl M C big X T Sp (X.nd.j i) (X.nd.w i) i hmem x]
-    refine l2b D M Sp.B (X.nd.j i) (X.nd.w i) (X.nd.mu i) (X.nd.j_range i).1 (X.nd.j_range i).2 (X.nd.mu_w i) φ hφ
+    rw [_root_.GlobalTheory.HeightCounting.mult_eq_finrank_jointEig D A.pl M C big X T Sp (X.nd.j i) (X.nd.w i) i hmem x]
+    refine _root_.GlobalTheory.PtLocalEig.eig_dim D M Sp.B (X.nd.j i) (X.nd.w i) (X.nd.mu i) (X.nd.j_range i).1 (X.nd.j_range i).2 (X.nd.mu_w i) φ hφ
       (fun v k => algebraMap _ _ (Sp.phO _ _ i hmem ((X.nd.hT i v k : X.nd.X i → X.nd.O i) x))) _ ?_ ?_ ?_
     · intro v k hvk
       exact GlobalTheory.T.splitEx_every_datum D v hvk.1

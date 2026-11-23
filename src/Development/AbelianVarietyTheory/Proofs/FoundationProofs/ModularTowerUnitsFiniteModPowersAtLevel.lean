@@ -65,20 +65,7 @@ open Matrix GlobalTheory.KZ Filter Topology
 
 namespace GlobalTheory.KZ.FinLev
 
-theorem isOpen_Hs : IsOpen Hs := isOpen_lt continuous_const Complex.continuous_im
-
-theorem isPreconnected_Hs : IsPreconnected Hs := (convex_halfSpace_im_gt 0).isPreconnected
-
-theorem neBot_Hs : (codiscreteWithin Hs).NeBot := by
-  rw [← Filter.forall_mem_nonempty_iff_neBot]
-  intro s hs
-  have hI : Complex.I ∈ Hs := by simp [Hs]
-  have h1 := (mem_codiscreteWithin_iff_forall_mem_nhdsNE.1 hs) _ hI
-  have h2 : Hs ∈ nhdsWithin Complex.I {Complex.I}ᶜ := mem_nhdsWithin_of_mem_nhds (isOpen_Hs.mem_nhds hI)
-  obtain ⟨z, hz1, hz2⟩ := Filter.nonempty_of_mem (Filter.inter_mem h1 h2)
-  rcases hz1 with h | h
-  · exact ⟨z, h⟩
-  · exact absurd hz2 h
+alias isOpen_Hs := _root_.GlobalTheory.KZ.ValAt.isOpen_Hs
 
 theorem germ_eq_of_eqOn {φ ψ : ℂ → ℂ} (h : ∀ z ∈ Hs, φ z = ψ z) : (φ : Mero) = (ψ : Mero) := by
   rw [Filter.Germ.coe_eq]
@@ -129,7 +116,7 @@ theorem comp_ne_zero {a : ℂ → ℂ} {z₀ : ℂ} (hz₀ : z₀ ∈ Hs) (h : a
 theorem exists_both_ne_zero {a b : ℂ → ℂ} (ha : DifferentiableOn ℂ a Hs) (hb : DifferentiableOn ℂ b Hs)
     {z₁ z₂ : ℂ} (hz₁ : z₁ ∈ Hs) (hz₂ : z₂ ∈ Hs) (h₁ : a z₁ ≠ 0) (h₂ : b z₂ ≠ 0) :
     ∃ z ∈ Hs, a z ≠ 0 ∧ b z ≠ 0 := by
-  haveI := neBot_Hs
+  haveI := _root_.GlobalTheory.FN.codiscreteWithin_Hs_neBot
   have hs : ∀ᶠ z in codiscreteWithin Hs, z ∈ Hs := Filter.self_mem_codiscreteWithin Hs
   obtain ⟨z, hz, h1, h2⟩ := (hs.and ((eventually_ne_zero ha hz₁ h₁).and (eventually_ne_zero hb hz₂ h₂))).exists
   exact ⟨z, hz, h1, h2⟩
@@ -162,7 +149,7 @@ theorem const_of_pow_eq {u v : ℂ → ℂ} (hu : DifferentiableOn ℂ u Hs) (hv
     rw [← he, div_mul_cancel₀ _ h2]
   have hua : AnalyticOnNhd ℂ u Hs := hu.analyticOnNhd isOpen_Hs
   have hva : AnalyticOnNhd ℂ (fun z => ζ * v z) Hs := (hv.const_mul ζ).analyticOnNhd isOpen_Hs
-  exact fun z hz => hua.eqOn_of_preconnected_of_eventuallyEq hva isPreconnected_Hs hz₀ hloc hz
+  exact fun z hz => hua.eqOn_of_preconnected_of_eventuallyEq hva _root_.GlobalTheory.FN.isPreconnected_Hs hz₀ hloc hz
 
 end GlobalTheory.KZ.FinLev
 

@@ -54,6 +54,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.DiscriminantEstimates.DiscriminantTheorems.ScaledBoundInequality
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.DiscriminantEstimates.DiscriminantLemmas.SchwarzBallNumerics.EBasis
 
 @[expose] public section
 
@@ -98,7 +99,7 @@ theorem exists_bounded_basis {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (h
       ∀ (σ : E →+* ℂ) (i k : Fin n), ‖σ (herm 1 (v i) (v k))‖ ≤
         4 * (fdeg E : ℝ) ^ 3 * n ^ 4 * rdE E ^ 2 := by
   obtain ⟨v, hv, hli, -, hle⟩ := exists_short_vectors L hfg hint hdual
-  obtain ⟨s, hs1, hs2, -⟩ := euclidean_basis_exists E (Fin n → E) _ v hli (by
+  obtain ⟨s, hs1, hs2, -⟩ := _root_.PI.UnitaryGroupMassFormula.TBNum.eBasis E (Fin n → E) _ v hli (by
     simp [ShortVectors.finrank_eq])
   have hsr : s.card = n := by simpa using hs1
   let e : Fin n ≃ s := (s.equivFinOfCardEq hsr).symm

@@ -58,21 +58,6 @@ section Places
 
 variable {K : Type} [Field K] [NumberField K]
 
-theorem exists_prime_mem (la : HeightOneSpectrum (𝓞 K)) : ∃ q : ℕ, q.Prime ∧ (q : 𝓞 K) ∈ la.asIdeal := by
-  have h0 : Ideal.absNorm la.asIdeal ≠ 0 := by
-    rw [Ne, Ideal.absNorm_eq_zero_iff]; exact la.ne_bot
-  have key : ∀ n : ℕ, n ≠ 0 → (n : 𝓞 K) ∈ la.asIdeal → ∃ q : ℕ, q.Prime ∧ (q : 𝓞 K) ∈ la.asIdeal := by
-    intro n
-    induction n using Nat.recOnMul with
-    | zero => exact fun h => absurd rfl h
-    | one => exact fun _ h => absurd ((Ideal.eq_top_iff_one _).2 (by simpa using h)) la.isPrime.ne_top
-    | prime p hp => exact fun _ h => ⟨p, hp, h⟩
-    | mul a b ha hb =>
-      intro h hm
-      rw [Nat.cast_mul] at hm
-      exact (la.isPrime.mem_or_mem hm).elim (ha (left_ne_zero_of_mul h)) (hb (right_ne_zero_of_mul h))
-  exact key _ h0 (Ideal.absNorm_mem _)
-
 theorem vLa_nat_nonneg (la : HeightOneSpectrum (𝓞 K)) {n : ℕ} (hn : n ≠ 0) : 0 ≤ vLa la (n : K) := by
   have := vAdd_int_nonneg la (a := (n : 𝓞 K)) (by simpa using hn)
   simpa [vLa, Formalism.BasicNotions.vAdd] using this
@@ -191,7 +176,7 @@ theorem exists_bound (hU : ∀ σ, GoodEmb c σ → IsUnf (U σ)) {a : ℕ → �
     ∃ B : ℝ, depthOn U Z G v ≤ (B : EReal) ∧ ((8 * B - 8 * e' la : ℝ) : EReal) ≤ v θ := by
   obtain ⟨⟨_, T, io, e₀, ho, y, hy, η, hη, rfl⟩, rfl⟩ := hv
   obtain ⟨T', i, e₁, y', φ, -, ho', hy', hφ, -, hv⟩ := exists_ext_hasPhi ho y hy
-  obtain ⟨q, hq, hla⟩ := exists_prime_mem la
+  obtain ⟨q, hq, hla⟩ := _root_.Formalism.BasicNotions.Examples₂.PlacesToy.exists_prime_mem la
   have hf1 : evI y' f ≠ 0 := fun h => hf0 (by
     show nval T.V e₀ (evI y f) = ⊤
     rw [← (hv f hf.1.1.1).2, h, nval_zero])

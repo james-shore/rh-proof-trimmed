@@ -142,9 +142,6 @@ theorem ex_nsmul {G : Over (Sp ℂ)} [GrpObj G] {g : ℕ} (e : (Fin g → ℂ) �
   | zero => simp [he0]
   | succ n ih => rw [Nat.cast_succ, add_smul, one_smul, he, ih, pow_succ]
 
-theorem unif_ex_zero {G : Over (Sp ℂ)} [GrpObj G] {L : LB G.left} {g : ℕ} (u : HolUnif G L g) : u.ex 0 = 1 :=
-  (u.ker 0).2 (zero_mem _)
-
 end GlobalTheory.PosAHIsog
 
 namespace GlobalTheory.PosAHIsog
@@ -184,11 +181,11 @@ theorem exists_isog_principal_lam :
   · refine GlobalTheory.ComplexPoints.over_hom_ext_of_complexPoints fun x => ?_
     obtain ⟨w, rfl⟩ := u.ex_onto x
     rw [← Category.assoc, hψe', hρe', comp_pow, Category.comp_id,
-      ex_nsmul u.ex u.ex_add (unif_ex_zero u)]
+      ex_nsmul u.ex u.ex_add (_root_.GlobalTheory.TangentOrigin.ex_zero u)]
   · refine GlobalTheory.ComplexPoints.over_hom_ext_of_complexPoints fun x => ?_
     obtain ⟨w, rfl⟩ := uB.ex_onto x
     rw [← Category.assoc, hρe', hψe', comp_pow, Category.comp_id,
-      ex_nsmul uB.ex uB.ex_add (unif_ex_zero uB)]
+      ex_nsmul uB.ex uB.ex_add (_root_.GlobalTheory.TangentOrigin.ex_zero uB)]
   · haveI := hψ
     have hM' : (P.L.pull ψ.left).IsLB := pull_isLB P.isLB _
     have hF₃ := pullUnif_factor ψ u uB hψe' hle' Hm χB (isFactorAH_of_isAH hAHB)

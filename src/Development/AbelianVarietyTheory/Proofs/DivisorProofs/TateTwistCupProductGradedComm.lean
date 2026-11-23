@@ -54,7 +54,7 @@ theorem cup_eq_cast_of_isTwPair (q : ℕ) [NeZero q] (E : Spc) {n m i j k w : �
     ν.cup E hw a b = (cup q a b).cast hw hk := by
   subst hk
   subst hw
-  have h := (GlobalTheory.T.tateTwistResolutionPairing_spec_and_cup_unique q i j).2 (i + j) rfl ν (twPair q i j) hν (GlobalTheory.T.tateTwistResolutionPairing_spec_and_cup_unique q i j).1 E (n := n) (m := m) rfl
+  have h := (_root_.GlobalTheory.EtC.TwPairUniq.main q i j).2 (i + j) rfl ν (twPair q i j) hν (_root_.GlobalTheory.EtC.TwPairUniq.main q i j).1 E (n := n) (m := m) rfl
   rw [h]
   rfl
 

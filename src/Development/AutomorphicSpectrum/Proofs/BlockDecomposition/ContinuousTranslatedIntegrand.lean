@@ -77,7 +77,7 @@ theorem continuous_thetaC {F : (ι → 𝔸[k]) → ℂ} (hF : F ∈ schwartzBru
     Continuous (thetaC F : GL ι 𝔸[k] → ℂ) := by
   refine continuous_iff_continuousAt.2 fun h₀ ↦ ?_
   obtain ⟨C, hC, hh₀⟩ := exists_compact_mem_nhds h₀
-  obtain ⟨u, hu, hFu⟩ := GlobalTheory.T.exists_summable_majorant_lattice_sum hF hC
+  obtain ⟨u, hu, hFu⟩ := _root_.GlobalTheory.CompanionTheory.EisRkNBound.exists_summable_bound_thetaC hF hC
   have hcont : ContinuousOn (thetaC F : GL ι 𝔸[k] → ℂ) C := by
     refine continuousOn_tsum (fun ξ ↦ Continuous.continuousOn ?_) hu fun ξ h hh ↦ hFu h hh ξ
     refine (continuous_of_mem_schwartzBruhatPi hF).comp ?_

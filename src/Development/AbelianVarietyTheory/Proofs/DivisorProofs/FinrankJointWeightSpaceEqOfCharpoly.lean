@@ -247,7 +247,7 @@ theorem finrank_weight_eq : ∀ (k : Type) [Field k] [IsAlgClosed k] (C : Type) 
     fun c => charpoly_lmul_includeRight k C c
   obtain ⟨S1, hS1⟩ := exists_finset_weights σ
   obtain ⟨S2, hS2⟩ := exists_finset_weights σA
-  obtain ⟨c, hc⟩ := GlobalTheory.T.exists_separating_element_ringHom_moduleFinite_int k C (S1 ∪ S2) χ
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.ringHom_exists_sep_of_moduleFinite_int k C (S1 ∪ S2) χ
   have sepH : ∀ ψ : C → k, (⨅ d, (σ d).maxGenEigenspace (ψ d)) ≠ ⊥ → ψ ≠ ⇑χ → ψ c ≠ χ c := by
     intro ψ h hne
     obtain ⟨φ, hφS, rfl⟩ := hS1 ψ h

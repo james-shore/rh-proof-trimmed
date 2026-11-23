@@ -102,10 +102,6 @@ theorem const_ext {u v : Γ(Y, ⊤)ˣ} (h : ∀ (Z : Scheme.{0}) (r : Z ⟶ (Ove
     exact (congrArg (fun q : Y ⟶ Y => gm q y ⊤ u) sec_fst).symm.trans
       (this.trans (congrArg (fun q : Y ⟶ Y => gm q y ⊤ v) sec_fst))
 
-theorem transl_transl {T : Over S} (a b : T ⟶ A) :
-    (translT A a).left ≫ (translT A b).left = (translT A (b * a)).left := by
-  rw [← Over.comp_left, translT_mul]
-
 variable {Ψ : (Over.mk x ⊗ A).left ⟶ (Over.mk x' ⊗ A).left} {p : ℕ}
   (β : LB.Gen (isoLB A L Ψ ((p : ℤ) ^ 2))) (β₀ : LB.Gen (isoLB A L (mulT A (Over.mk x) p).left ((p : ℤ) ^ 2)))
 
@@ -128,7 +124,7 @@ theorem exists_comm (hA : IsAbelianScheme A) (hβ : β.IsGen) (hβ₀ : β₀.Is
   have h := (CommPairing.commIsOf_iff L.isLB V U χ).1 hχ Z r z J hJ
   have h' := (congrArg₂ (· * ·) (hV.val r z hJ) (hU.val _ z hJ)).symm.trans (h.trans (congrArg₂ (· * ·)
     (congrArg₂ (· * ·) (hU.val r z hJ) (hV.val _ z hJ)) (gm_cu r z χ)))
-  rw [Category.assoc, Category.assoc, transl_transl, transl_transl, mul_comm U.pt] at h'
+  rw [Category.assoc, Category.assoc, _root_.GlobalTheory.ThetaAct.translT_translT, _root_.GlobalTheory.ThetaAct.translT_translT, mul_comm U.pt] at h'
   simp only [gam]
   apply Additive.ofMul.injective
   have a := congrArg Additive.ofMul h'
@@ -158,7 +154,7 @@ theorem exists_root (hA : IsAbelianScheme A) (hβ : β.IsGen) (hβ₀ : β₀.Is
     induction j with
     | zero => rw [pow_zero, pow_zero, translT_one, Over.id_left, Category.comp_id, _root_.one_mul]
     | succ j ih =>
-      rw [pow_succ', ← transl_transl, ← Category.assoc, key _ _ z J hJ, ih, cu_transl, pow_succ', _root_.mul_assoc]
+      rw [pow_succ', ← _root_.GlobalTheory.ThetaAct.translT_translT, ← Category.assoc, key _ _ z J hJ, ih, cu_transl, pow_succ', _root_.mul_assoc]
   have h := ind p
   rw [show c' ^ p = 1 from he, translT_one, Over.id_left, Category.comp_id] at h
   rw [map_pow, map_one]
@@ -174,7 +170,7 @@ theorem char_sum [IsDomain Γ(Y, ⊤)] [IsCommMonObj A] (hA : IsAbelianScheme A)
     have h₁ := hχ (d * d') Z r z J hJ
     have h₂ := hχ d Z (r ≫ (translT A (e d')).left) z J hJ
     have h₃ := hχ d' Z r z J hJ
-    rw [cu_transl, Category.assoc, Category.assoc, Category.assoc, transl_transl, transl_transl, transl_transl,
+    rw [cu_transl, Category.assoc, Category.assoc, Category.assoc, _root_.GlobalTheory.ThetaAct.translT_translT, _root_.GlobalTheory.ThetaAct.translT_translT, _root_.GlobalTheory.ThetaAct.translT_translT,
       mul_right_comm, mul_comm c, ← map_mul] at h₂
     rw [map_mul]
     apply Additive.ofMul.injective
@@ -482,8 +478,8 @@ theorem sum_val [IsDomain Γ(Y, ⊤)] [IsCommMonObj A] (hA : IsAbelianScheme A) 
       refine Finset.sum_congr rfl fun i _ => ?_
       have m : (translT A (e d * c i)).left ≫ (mulT A (Over.mk x) p).left =
           (translT A (c i)).left ≫ (mulT A (Over.mk x) p).left := by
-        rw [← transl_transl, Category.assoc, mem_transKer.1 ((mem_transKer_mulT p _).2 (he d))]
-      rw [hs₁.val _ z hJ, Category.assoc _ (translT A (e d)).left, transl_transl, mul_comm (c i),
+        rw [← _root_.GlobalTheory.ThetaAct.translT_translT, Category.assoc, mem_transKer.1 ((mem_transKer_mulT p _).2 (he d))]
+      rw [hs₁.val _ z hJ, Category.assoc _ (translT A (e d)).left, _root_.GlobalTheory.ThetaAct.translT_translT, mul_comm (c i),
         Category.assoc _ (translT A (e d * c i)).left, m, Units.val_mul,
         gam.eq_1 β β₀ ((r ≫ Ψ') ≫ (translT A (e d * c i)).left), Units.val_mul]
       ring
@@ -492,7 +488,7 @@ theorem sum_val [IsDomain Γ(Y, ⊤)] [IsCommMonObj A] (hA : IsAbelianScheme A) 
     congr 1
     rw [map_mul, map_natCast, ← cf_comp h'.1 r z, ← nsmul_eq_mul, ← Finset.card_univ, ← Finset.sum_const]
     refine Finset.sum_congr rfl fun d _ => ?_
-    rw [mul_comm (e d), ← transl_transl, ← Category.assoc, hζv _ _ z J hJ,
+    rw [mul_comm (e d), ← _root_.GlobalTheory.ThetaAct.translT_translT, ← Category.assoc, hζv _ _ z J hJ,
       mul_inv_cancel_right, cu_transl]
     rfl
   · intro i _ hi

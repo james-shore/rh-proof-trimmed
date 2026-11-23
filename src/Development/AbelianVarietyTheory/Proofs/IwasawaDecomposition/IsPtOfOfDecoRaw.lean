@@ -165,7 +165,7 @@ theorem int_iff (v : HeightOneSpectrum (𝓞 F)) (d : GL (Fin n) (v.adicCompleti
 theorem fst_std (v : HeightOneSpectrum (𝓞 F)) (sp : E ⊗[F] v.adicCompletion F ≃+* v.adicCompletion F × v.adicCompletion F)
     (hsp : ∀ a, sp ((1 : E) ⊗ₜ[F] a) = (a, a)) (x : Fin n → v.adicCompletion F) :
     (∃ y ∈ Formalism.L2.Herm.locL v (Formalism.L2.Col.stdLat E n), ∀ b, (sp (y b)).1 = x b) ↔ ∀ b, x b ∈ v.adicCompletionIntegers F := by
-  have h := split_integral_local F E v sp hsp
+  have h := _root_.PI.SplitIntLoc.Proof.main F E v sp hsp
   rw [rll_locL_std]
   constructor
   · rintro ⟨y, hy, e⟩ b

@@ -76,10 +76,7 @@ private theorem countable_of_finiteType (o : Type) [CommRing o] (h : Algebra.Fin
       (sup_le (sup_le Cardinal.mk_le_aleph0 Cardinal.mk_le_aleph0) le_rfl)
   exact hf.countable
 
-private theorem sp_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R') (f' : R' →+* R'') :
-    spMap f' ≫ spMap f = spMap (f'.comp f) := by
-  simp only [spMap, ← Spec.map_comp]
-  rfl
+private alias sp_comp := _root_.GlobalTheory.spMap_comp_ring
 
 private theorem exists_sp {R R' : Type} [CommRing R] [CommRing R'] (y : Sp R' ⟶ Sp R) : ∃ f : R →+* R', y = spMap f := ⟨Spec.preimage y |>.hom, by simp [spMap]⟩
 

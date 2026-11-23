@@ -152,14 +152,6 @@ theorem exists_of_mem_commutator {G : Type*} [Group G] (H : Subgroup G) [H.Norma
       _ = _ := by group
   exact hle hx
 
-theorem exists_ofK_eq_nl (x : KbarMult p) (hx : x ∈ multOf p K) : ∃ a : Kˣ, ofK p K (Additive.ofMul a) = x := by
-  have hne : (⟨((Additive.toMul x : (PadicAlgCl p)ˣ) : PadicAlgCl p), hx⟩ : K) ≠ 0 := fun h =>
-    (Additive.toMul x : (PadicAlgCl p)ˣ).ne_zero (congrArg Subtype.val h)
-  refine ⟨Units.mk0 _ hne, ?_⟩
-  apply Additive.toMul.injective
-  apply Units.ext
-  rfl
-
 theorem normHom_kbarRep_nl (hL : FiniteDimensional ℚ_[p] L) [(subG p K L).Normal] (σ : GK p K) (y : KbarMult p)
     (hy : y ∈ multOf p L) : normHom p K L (kbarRep p K σ y) = normHom p K L y := by
   have : Finite (GK p K ⧸ subG p K L) := finite_GalLK hL
@@ -179,14 +171,14 @@ theorem normGrp_le_of_tower_nl {M L' : IntermediateField ℚ_[p] (PadicAlgCl p)}
     (h : normGrp p M L ≤ normGrp p M L') : normGrp p K L ≤ normGrp p K L' := by
   intro a ha
   obtain ⟨y, hy, hya⟩ := (mem_normGrp_iff p K L a).1 ha
-  obtain ⟨b, hb⟩ := exists_ofK_eq_nl _ (normHom_mem hL hML y hy)
+  obtain ⟨b, hb⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq _ (normHom_mem hL hML y hy)
   obtain ⟨y', hy', hyb⟩ := (mem_normGrp_iff p M L' b).1 (h ((mem_normGrp_iff p M L b).2 ⟨y, hy, hb.symm⟩))
   refine (mem_normGrp_iff p K L' a).2 ⟨y', hy', ?_⟩
-  rw [← normHom_trans hL' hKM hML' y' hy', hyb, hb, normHom_trans hL hKM hML y hy, hya]
+  rw [← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_comp_normHom_of_le hL' hKM hML' y' hy', hyb, hb, _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_comp_normHom_of_le hL hKM hML y hy, hya]
 
 theorem map_resGK_subG_nl {M : IntermediateField ℚ_[p] (PadicAlgCl p)} (h : K ≤ M) (h' : M ≤ L) :
     (subG p M L).map (resGK h) = subG p K L := by
-  rw [← comap_resGK_subG h L, Subgroup.map_comap_eq, range_resGK, inf_eq_right]
+  rw [← comap_resGK_subG h L, Subgroup.map_comap_eq, _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction, inf_eq_right]
   exact subG_anti h'
 
 theorem exists_twist_nl {M : IntermediateField ℚ_[p] (PadicAlgCl p)} (hKM : K ≤ M) [(subG p K M).Normal]
@@ -200,7 +192,7 @@ theorem exists_twist_nl {M : IntermediateField ℚ_[p] (PadicAlgCl p)} (hKM : K 
   have : H.Normal := Subgroup.Normal.map inferInstance π hπ
   have hH : ∀ a ∈ H, ∀ b ∈ H, a * b = b * a := by
     rintro _ ⟨a, ha, rfl⟩ _ ⟨b, hb, rfl⟩
-    rw [SetLike.mem_coe, ← range_resGK hKM] at ha hb
+    rw [SetLike.mem_coe, ← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction hKM] at ha hb
     obtain ⟨a, rfl⟩ := ha
     obtain ⟨b, rfl⟩ := hb
     have h1 : ⁅a, b⁆ ∈ subG p M L :=
@@ -223,7 +215,7 @@ theorem exists_twist_nl {M : IntermediateField ℚ_[p] (PadicAlgCl p)} (hKM : K 
     rwa [Subgroup.map_sup, e, bot_sup_eq, commutator_def, Subgroup.map_commutator, ← MonoidHom.range_eq_map,
       MonoidHom.range_eq_top.2 hπ, ← commutator_def] at h1
   obtain ⟨_, ⟨h0, hh0, rfl⟩, hx'⟩ := exists_of_mem_commutator H hH (π σ) hs (π g) hx
-  rw [SetLike.mem_coe, ← range_resGK hKM] at hh0
+  rw [SetLike.mem_coe, ← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction hKM] at hh0
   obtain ⟨h', rfl⟩ := hh0
   refine ⟨h', ?_⟩
   rw [← QuotientGroup.eq]
@@ -237,17 +229,17 @@ theorem normGrp_eq_of_cyclic_of_ab (hK : FiniteDimensional ℚ_[p] K) {M E : Int
   have hML := hL.le
   have hKL := hKM.trans hML
   have hM : FiniteDimensional ℚ_[p] M := finDim_of_le p hLf hML
-  refine le_antisymm (normGrp_anti hLf hE.le hEL) fun a ha => ?_
+  refine le_antisymm (_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normGroup_antitone hLf hE.le hEL) fun a ha => ?_
   have hMab : IsAbLK p K M := isAbLK_of_cyclic hM hKM _ hσ
   have hME : M ≤ E := by
     have := (subG_le_iff (L := M) (L' := E) hKM).1 (by rw [hE']; exact sup_le (subG_anti hML) hMab.comm)
     rwa [sup_eq_right.2 hE.le] at this
   have hEab : IsAbLK p M E := hL.of_le hME hEL
   obtain ⟨y, hy, hya⟩ := (mem_normGrp_iff p K E a).1 ha
-  obtain ⟨b, hb⟩ := exists_ofK_eq_nl _ (normHom_mem hE.fin hME y hy)
+  obtain ⟨b, hb⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq _ (normHom_mem hE.fin hME y hy)
   have hbN : b ∈ normGrp p M E := (mem_normGrp_iff p M E b).2 ⟨y, hy, hb.symm⟩
   have hba : normHom p K M (ofK p M (Additive.ofMul b)) = ofK p K (Additive.ofMul a) := by
-    rw [hb, normHom_trans hE.fin hKM hME y hy, hya]
+    rw [hb, _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_comp_normHom_of_le hE.fin hKM hME y hy, hya]
   obtain ⟨g, hg⟩ := exists_isRecip hL b
   have hgE : g ∈ subG p M E := ((hg.of_le hEL).mem_subG_iff hM hEab).2 hbN
   have hgE' : resGK hKM g ∈ subG p K L ⊔ commutator (GK p K) := by
@@ -257,11 +249,11 @@ theorem normGrp_eq_of_cyclic_of_ab (hK : FiniteDimensional ℚ_[p] K) {M E : Int
   have stM := (subG_normal_iff hKM).1 inferInstance
   have stL := (subG_normal_iff hKL).1 inferInstance
   have hσc : kbarRep p K σ (ofK p M (Additive.ofMul c)) ∈ multOf p M := stM σ _ (ofK_mem p M _)
-  obtain ⟨c', hc'⟩ := exists_ofK_eq_nl _ hσc
+  obtain ⟨c', hc'⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq _ hσc
   obtain ⟨g', hg'⟩ : ∃ g' : GK p M, resGK hKM g' = σ * resGK hKM h' * σ⁻¹ := by
     have : σ * resGK hKM h' * σ⁻¹ ∈ (resGK hKM).range := by
-      rw [range_resGK]
-      exact (inferInstance : (subG p K M).Normal).conj_mem _ (by rw [← range_resGK hKM]; exact ⟨_, rfl⟩) σ
+      rw [_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction]
+      exact (inferInstance : (subG p K M).Normal).conj_mem _ (by rw [← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction hKM]; exact ⟨_, rfl⟩) σ
     exact this
   have hc'' : IsRecip p M L c' g' := IsRecip.conj hK hM hKM σ (stM σ) (stL σ) (stL σ⁻¹) (b := c) (b' := c')
     (congrArg (fun z : KbarMult p => ((Additive.toMul z : (PadicAlgCl p)ˣ) : PadicAlgCl p)) hc') hg' hc
@@ -272,7 +264,7 @@ theorem normGrp_eq_of_cyclic_of_ab (hK : FiniteDimensional ℚ_[p] K) {M E : Int
     exact hh'
   obtain ⟨l, hl, hld⟩ := (mem_normGrp_iff p M L _).1 ((hd.mem_subG_iff hM hL).1 hdm)
   refine (mem_normGrp_iff p K L a).2 ⟨-l, neg_mem hl, ?_⟩
-  rw [map_neg, ← normHom_trans hLf hKM hML l hl, hld, ofMul_mul, ofMul_mul, ofMul_inv, ofMul_inv, map_add (f := _), map_add (f := _),
+  rw [map_neg, ← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_comp_normHom_of_le hLf hKM hML l hl, hld, ofMul_mul, ofMul_mul, ofMul_inv, ofMul_inv, map_add (f := _), map_add (f := _),
     map_neg, map_neg, map_add, map_add, map_neg, map_neg, hc', normHom_kbarRep_nl hM σ _ (ofK_mem p M _), hba]
   abel
 
@@ -371,7 +363,7 @@ theorem normGrp_eq_of_soluble_nl (n : ℕ) : ∀ (K L : IntermediateField ℚ_[p
         (normGrp_le_of_tower_nl hE'ab.fin hL hKM hME' hML e1.ge)
     have e3 : subG p K E' = subG p K L ⊔ ⁅subG p K M, subG p K M⁆ := by
       rw [← map_resGK_subG_nl hKM hME', hE'U, Subgroup.map_sup, map_resGK_subG_nl hKM hML, commutator_def,
-        Subgroup.map_commutator, ← MonoidHom.range_eq_map, range_resGK]
+        Subgroup.map_commutator, ← MonoidHom.range_eq_map, _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction]
     have hE'n : (subG p K E').Normal := by rw [e3]; infer_instance
     have e4 : subG p K E = subG p K E' ⊔ commutator (GK p K) := by
       rw [hE', e3, sup_assoc, commutator_def, sup_eq_right.2 (Subgroup.commutator_mono le_top le_top)]

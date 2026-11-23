@@ -208,7 +208,7 @@ theorem lawLevelPrime_double : ∀ (D : D7) (c : Comm D) (v : VCom c) (k : Type)
     ⟨(hv.atT (j + 1)).1, hS.rep (j + 1) (by omega)⟩
   have hX1 := hext1.2.1 _ _ hrep1
   have hX2 := hext2.2.2 _ _ hrep2
-  obtain ⟨op0, hop0, hC⟩ := GlobalTheory.T.contractionOfVacuumCombinations_proof D k ι o.p o.I _ hPl (Fin (c.X j).rank) (Fin (c.X (j + 1 + 1)).rank) c.ψ hstd
+  obtain ⟨op0, hop0, hC⟩ := _root_.GlobalTheory.FinPl.ContrOpProof.contrOp D k ι o.p o.I _ hPl (Fin (c.X j).rank) (Fin (c.X (j + 1 + 1)).rank) c.ψ hstd
     (σ + 1) σ (c.B j (σ + 1) h) (c.B (j + 1 + 1) σ (idx_step h)) (c.lnk j σ h) (c.X (j + 1)) (c.vL j σ h) (o.β j)
     (o.β₀ j (σ + 1) h) (o.β (j + 1 + 1)) (o.β₀ (j + 1 + 1) σ (idx_step h)) M0 (c.x (j + 1)).L M0'
     (fun i => (o.Q j i).lat) (fun i => (o.Q (j + 1 + 1) i).lat) sdM0 sd1 sdM0'

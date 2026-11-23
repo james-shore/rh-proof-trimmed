@@ -75,10 +75,6 @@ theorem rep_mk {G : Type} [Group G] (θ : G →* G) (x : G) :
   rw [Equivalence.eqvGen_iff (equivalence_twisted_conj θ)] at h
   exact (equivalence_twisted_conj θ).symm h
 
-theorem mk_rep {G : Type} [Group G] {θ : G →* G} (c : TwCl θ) : (Quot.mk _ c.rep : TwCl θ) = c := by
-  unfold TwCl.rep
-  exact Quot.out_eq c
-
 noncomputable def clsEquiv {G G' : Type} [Group G] [Group G'] (θ : G →* G) (θ' : G' →* G') :
     TwCl θ × TwCl θ' ≃ TwCl (θ.prodMap θ') where
   toFun p := Quot.mk _ (p.1.rep, p.2.rep)
@@ -86,14 +82,14 @@ noncomputable def clsEquiv {G G' : Type} [Group G] [Group G'] (θ : G →* G) (�
   left_inv p := by
     obtain ⟨g, hg⟩ := rep_mk (θ.prodMap θ') (p.1.rep, p.2.rep)
     refine Prod.ext ?_ ?_
-    · refine Eq.trans (Quot.sound ⟨g.1, ?_⟩).symm (mk_rep p.1)
+    · refine Eq.trans (Quot.sound ⟨g.1, ?_⟩).symm (_root_.GlobalTheory.BCT.ClsFin.mk_rep p.1)
       exact congrArg Prod.fst hg
-    · refine Eq.trans (Quot.sound ⟨g.2, ?_⟩).symm (mk_rep p.2)
+    · refine Eq.trans (Quot.sound ⟨g.2, ?_⟩).symm (_root_.GlobalTheory.BCT.ClsFin.mk_rep p.2)
       exact congrArg Prod.snd hg
   right_inv c := by
     obtain ⟨g, hg⟩ := rep_mk θ c.rep.1
     obtain ⟨g', hg'⟩ := rep_mk θ' c.rep.2
-    refine Eq.trans (Quot.sound ⟨(g, g'), ?_⟩).symm (mk_rep c)
+    refine Eq.trans (Quot.sound ⟨(g, g'), ?_⟩).symm (_root_.GlobalTheory.BCT.ClsFin.mk_rep c)
     refine Prod.ext ?_ ?_
     · simp [hg]
     · simp [hg']

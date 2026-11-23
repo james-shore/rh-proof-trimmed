@@ -55,9 +55,6 @@ attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Ho
 namespace GlobalTheory.TwU.BaseComp
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {n : ℕ}
 
-theorem star_int (r : 𝓞 E) : ∃ s : 𝓞 E, (s : E) = star (r : E) :=
-  ⟨⟨star (r : E), r.2.map (starRingEnd E).toIntAlgHom⟩, rfl⟩
-
 theorem mem_dual_iff (L : Submodule (𝓞 E) (Fin n → E)) (y : Fin n → E) :
     y ∈ Formalism.HermitianLatticesTheory.dual (hStd E n) L ↔ ∀ x ∈ L, (∑ k, star (x k) * y k) ∈ (algebraMap (𝓞 E) E).range := by
   simp only [Formalism.HermitianLatticesTheory.dual, Formalism.E.hdual, Submodule.mem_iInf, Submodule.mem_comap, LinearMap.restrictScalars_apply, Submodule.mem_one]
@@ -125,7 +122,7 @@ theorem sup_dual_eq_std (t c : 𝓞 E) (ht : t ≠ 0) (hc : (c : E) = star (t : 
       by_cases hk : k.1 + 1 = n
       · obtain ⟨q, hq, hdiv⟩ := (hLb z).1 hz k
         obtain ⟨d, rfl⟩ := hdiv hk
-        obtain ⟨s, hs⟩ := star_int d
+        obtain ⟨s, hs⟩ := _root_.GlobalTheory.Mem.Chr.DetSD.star_integer d
         refine ⟨s * r k, ?_⟩
         simp only [w, hk, if_true, hq]
         rw [map_mul, hr k, show algebraMap (𝓞 E) E s = (s : E) from rfl, hs]

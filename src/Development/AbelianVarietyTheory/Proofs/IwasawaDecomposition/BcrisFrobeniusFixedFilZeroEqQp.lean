@@ -58,16 +58,6 @@ namespace GlobalTheory.MemLoc
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc
 open scoped Formalism.Per
 
-theorem fund_phiB_alg (l : ℕ) [Fact l.Prime] (x : Per.Acris l) :
-    Per.φB l (algebraMap (Per.Acris l) (Per.Bcris l) x) =
-      algebraMap (Per.Acris l) (Per.Bcris l) (phiA l x) :=
-  GlobalTheory.CrisMaps.φB_phiA l x
-
-theorem fund_zB (l : ℕ) [Fact l.Prime] (z : ℤ_[l]) :
-    Per.zB l z = algebraMap (Per.Acris l) (Per.Bcris l)
-      (algebraMap (Per.Ainf l) (Per.Acris l) (Per.zA l z)) :=
-  (GlobalTheory.RingIface.zB_eq_aB_zA l z).trans (GlobalTheory.RingIface.aB_eq_alg l _)
-
 set_option allowUnsafeReducibility true in
 attribute [local irreducible] Per.Acris Per.Bcris
 
@@ -88,8 +78,8 @@ theorem fundamental_exact (l : ℕ) [Fact l.Prime] (C : Core l) (b : Per.Bcris l
     rw [← C.ι_j, ← C.ι_j, h]
   have e1 : phiA l x = (l : Per.Acris l) ^ r * x := by
     apply hA
-    rw [← fund_phiB_alg, map_mul, map_pow, map_natCast, ← hx, map_mul, map_pow, hφ,
-      fund_phiB_alg, htφ, map_mul, map_natCast, mul_pow]
+    rw [← _root_.GlobalTheory.CrisMaps.φB_phiA, map_mul, map_pow, map_natCast, ← hx, map_mul, map_pow, hφ,
+      _root_.GlobalTheory.CrisMaps.φB_phiA, htφ, map_mul, map_natCast, mul_pow]
     ring
   have ht1' : algebraMap (Per.BdRp l) (Per.BdR l) (C.j C.t) ∈ Per.FilD l 1 :=
     (hP 1 _).2 ht1
@@ -104,11 +94,11 @@ theorem fundamental_exact (l : ℕ) [Fact l.Prime] (C : Core l) (b : Per.Bcris l
     rw [← hP, ← C.ι_j, ← hx, map_mul, map_pow, C.ι_j]
     have := hmul _ _ _ _ hF (htr r)
     rwa [zero_add] at this
-  obtain ⟨z, k, hz⟩ := GlobalTheory.T.acris_frobenius_eigen_fil_eq_qlMul_tPow l C r x e1 e2
+  obtain ⟨z, k, hz⟩ := _root_.GlobalTheory.MemLoc.fix_pow l C r x e1 e2
   have e3 : (l : Per.Bcris l) ^ k * b = Per.zB l z := by
     apply (htu.pow r).mul_right_cancel
     have := congrArg (algebraMap (Per.Acris l) (Per.Bcris l)) hz
-    rw [map_mul, map_mul, map_pow, map_pow, map_natCast, ← hx, ← fund_zB, ← mul_assoc] at this
+    rw [map_mul, map_mul, map_pow, map_pow, map_natCast, ← hx, ← _root_.GlobalTheory.RingIface.zB_alg, ← mul_assoc] at this
     exact this
   refine ⟨(z : ℚ_[l]) / (l : ℚ_[l]) ^ k, ?_⟩
   apply (hlu.pow k).mul_left_cancel

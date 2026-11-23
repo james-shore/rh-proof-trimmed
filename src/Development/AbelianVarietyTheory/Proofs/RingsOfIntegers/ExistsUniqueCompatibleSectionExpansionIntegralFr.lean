@@ -59,7 +59,7 @@ theorem tied_section_expansion_existsUnique : ∀ (E : Type) [Field E] [NumberFi
     rw [hh] at this
     exact this.symm
   obtain ⟨h1, h2, -, h4, -⟩ := GlobalTheory.firstFiveLaws
-  refine ⟨(GlobalTheory.T.powPullbackSec_modelUniversal_bijective E H Dw l Xo c T io y.1 I P F xF hx k).2.1 s, fun σ _ => ?_⟩
+  refine ⟨(_root_.GlobalTheory.SecTie.secTie_bijective E H Dw l Xo c T io y.1 I P F xF hx k).2.1 s, fun σ _ => ?_⟩
   exact (GlobalTheory.expandsG_bijective_of_dvr h1 h2 h4 GlobalTheory.twistBaseChange T.V P.D P.A I.G.G P.U F k hk).1 σ
 
 end GlobalTheory

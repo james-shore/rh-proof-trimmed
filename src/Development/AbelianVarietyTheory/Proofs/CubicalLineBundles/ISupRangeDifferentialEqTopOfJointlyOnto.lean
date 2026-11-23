@@ -86,10 +86,8 @@ section Unif
 
 variable {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g)
 
-theorem ex_zero : u.ex 0 = 1 := (u.ker 0).2 u.Λ.zero_mem
-
 theorem ex_sum : ∀ {n : ℕ} (z : Fin n → Fin g → ℂ), u.ex (∑ m, z m) = (List.ofFn fun m => u.ex (z m)).prod
-  | 0, z => by simpa using ex_zero u
+  | 0, z => by simpa using _root_.GlobalTheory.TangentOrigin.ex_zero u
   | n + 1, z => by rw [Fin.sum_univ_succ, u.ex_add, ex_sum, List.ofFn_succ, List.prod_cons]
 
 theorem sub_mem_of_ex_eq {z w : Fin g → ℂ} (h : u.ex z = u.ex w) : z - w ∈ u.Λ := by

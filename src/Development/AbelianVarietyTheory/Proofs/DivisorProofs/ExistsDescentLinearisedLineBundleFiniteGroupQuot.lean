@@ -192,7 +192,7 @@ theorem descent : ∀ (F : Type) [Field F] [NumberField F] (X W : Scheme.{0}) [I
     intro y
     obtain ⟨x, rfl⟩ := q.surjective y
     obtain ⟨g, hg, hgx⟩ := hloc x
-    obtain ⟨b, hb⟩ := GlobalTheory.T.exists_functionFieldMap_eq_of_groupInvariant X W Γ ρ q hq g hg
+    obtain ⟨b, hb⟩ := _root_.GlobalTheory.OrbitSep.exists_functionFieldMap_eq_of_invariant X W Γ ρ q hq g hg
     refine ⟨b, fun x' hx' => ?_⟩
     obtain ⟨γ, rfl⟩ := (hq.apply_eq_iff x x').1 hx'.symm
     rw [hb]

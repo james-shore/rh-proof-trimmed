@@ -52,17 +52,12 @@ namespace LateralTheory.EtaleFoundations
 theorem secmap_comp {R : Type} [CommRing R] {F G H : Shv R} (φ : F ⟶ G) (ψ : G ⟶ H) {U : Scheme.{0}} (x : Sec F U) :
     Sec.map ψ (Sec.map φ x) = Sec.map (φ ≫ ψ) x := rfl
 
-theorem secmap_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
-    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  have := congrArg (fun k => k.hom x) (φ.hom.naturality g.op)
-  exact this.symm
-
 noncomputable def pairPost {R : Type} [CommRing R] {I J K K' : Cx R} (μ : Pair I J K) (u : K ⟶ K') : Pair I J K' where
   mul U s t w h := (μ.mul U s t w h).compr₂ ((u.f w).hom.app (op U)).hom
   nat g s t w h a b := by
     simp only [LinearMap.compr₂_apply]
     rw [← μ.nat g s t w h a b]
-    exact secmap_res (u.f w) g _
+    exact _root_.LateralTheory.EtaleFoundations.EtaleTensorTripleProductLeibnizSeparated.res_map (u.f w) g _
   leibniz U s t w h a b := by
     simp only [LinearMap.compr₂_apply]
     have hc : Sec.map (K'.d w (w + 1)) (Sec.map (u.f w) (μ.mul U s t w h a b)) =
@@ -106,7 +101,7 @@ theorem tens_univ_uniq_of (hsep : LateralTheory.EtaleFoundations.EtaleTensorTrip
   apply hsep R (K'.X w) U.unop
   refine TensLocbij.loc_mono (hτ.1 U.unop w y) ?_
   rintro V r ⟨x, hx⟩
-  rw [secmap_res, secmap_res, ← hx]
+  rw [_root_.LateralTheory.EtaleFoundations.EtaleTensorTripleProductLeibnizSeparated.res_map, _root_.LateralTheory.EtaleFoundations.EtaleTensorTripleProductLeibnizSeparated.res_map, ← hx]
   exact lift_comp_eq τ ν f g u u' hu hu' V w x
 
 theorem sec_zero_of_isZero {R : Type} [CommRing R] {F : Shv R} (hF : IsZero F) {U : Scheme.{0}} (x : Sec F U) : x = 0 := by
@@ -168,7 +163,7 @@ theorem tens_univ_ex_of (hdeg : twpair_tens_univ_exdeg) : twpair_tens_univ_ex :=
   refine TensLocbij.loc_mono (hτ.1 U.unop i y) ?_
   rintro V r ⟨x, hx⟩
   show Sec.res r (Sec.map (φ i ≫ K'.d i (i + 1)) y) = Sec.res r (Sec.map (K.d i (i + 1) ≫ φ (i + 1)) y)
-  rw [secmap_res, secmap_res, ← hx]
+  rw [_root_.LateralTheory.EtaleFoundations.EtaleTensorTripleProductLeibnizSeparated.res_map, _root_.LateralTheory.EtaleFoundations.EtaleTensorTripleProductLeibnizSeparated.res_map, ← hx]
   classical
   have key : ((K.d i (i + 1) ≫ φ (i + 1)).hom.app (op V)).hom ∘ₗ τ.lift V i =
       ((φ i ≫ K'.d i (i + 1)).hom.app (op V)).hom ∘ₗ τ.lift V i := by

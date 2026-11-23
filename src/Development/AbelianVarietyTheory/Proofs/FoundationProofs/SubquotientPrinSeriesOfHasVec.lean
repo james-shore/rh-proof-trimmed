@@ -79,7 +79,7 @@ theorem subquotient_prinSeries_of_hasVec : GlobalTheory.Published.BernsteinZelev
       UnramFixed.deltaHalf_torusO k ht
     rw [this]
     simp
-  obtain ⟨ω, l, hl0, hω, hu⟩ := GlobalTheory.T.exists_torusEigenform_of_compactTorus_eigenvector k n _ (jacB π) (Submodule.Quotient.mk v) ψ
+  obtain ⟨ω, l, hl0, hω, hu⟩ := _root_.GlobalTheory.TorusEigenform.main k n _ (jacB π) (Submodule.Quotient.mk v) ψ
     (isSmooth_jacB hπ) hl hψ hx0 hact
   exact ⟨ω, fun i => GlobalTheory.TameIwahori.isSmoothChar_of_eq_on_units (hψ i) (hu i),
     fun i u hu' => (hu i u hu').symm,

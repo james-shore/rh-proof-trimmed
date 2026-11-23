@@ -74,7 +74,7 @@ theorem exists_baseChange_subring : ∀ (R : Type) [CommRing R] (S S' : Subring 
     (hφ.congr e rfl)
   have hs : SmoothOfRelativeDimension g ((Over.pullback (spMap (Subring.inclusion h))).obj AS).hom := by
     exact (smoothOfRelativeDimension_isStableUnderBaseChange g).of_isPullback (IsPullback.of_hasPullback _ _) hsm
-  exact ⟨_, inferInstance, _, pullback.fst _ _, isAbelianScheme_overPullback _ AS hab, hs, hf,
+  exact ⟨_, inferInstance, _, pullback.fst _ _, _root_.GlobalTheory.isAbelianScheme_pullback_obj _ AS hab, hs, hf,
     isGrpPullback_pullback _ _, pullback.lift_fst _ _ _⟩
 
 theorem exists_finset_le_of_finiteType : ∀ (R : Type) [CommRing R] (S : Subring R), Algebra.FiniteType ℤ S → ∃ F : Finset R, ∀ T : Subring R, (F : Set R) ⊆ T → S ≤ T := by

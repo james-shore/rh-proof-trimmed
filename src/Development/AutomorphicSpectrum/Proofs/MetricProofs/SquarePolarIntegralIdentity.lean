@@ -212,7 +212,7 @@ theorem AnSq.sum_polar_gH_eq : Inputs → GroundTheory.Heights₂.Heights.Inter.
           (fun r => sumPot (mix (2 * k - 1) (fun a => (ε a : ℝ)) c r) SY.potH) (Q.ΦY n) z := by
     intro n
     let α : (Fin d → ℂ) → ℝ := fun y => ∑ a, c a * Q.α n a y
-    have hd := GlobalTheory.T.square_parametrized_density_formula d σ SY a₀ ε Q c hc n k hk1 hk2
+    have hd := _root_.GlobalTheory.CompanionTheory.Relay.square_parametrized_density_formula d σ SY a₀ ε Q c hc n k hk1 hk2
     have hmW : MeasurableSet {z : Fin (d + 2) → ℂ | Fin.tail (Fin.tail z) ∈ Q.B n} := (Q.coverW.2.1 n).1
     have hmY : MeasurableSet {z : Fin (d + 1) → ℂ | Fin.tail z ∈ Q.B n} := (Q.coverY.2.1 n).1
     let F : ℕ → (Fin (d + 2) → ℂ) → ℝ := fun i z =>
@@ -245,7 +245,7 @@ theorem AnSq.sum_polar_gH_eq : Inputs → GroundTheory.Heights₂.Heights.Inter.
       have hyU : y ∈ Q.U n := (Q.B_meas n).2 hy
       have hnh : Q.U n ∈ 𝓝 y := (Q.U_open n).mem_nhds hyU
       have h2 : (2 : WithTop ℕ∞) ≤ ((⊤ : ℕ∞) : WithTop ℕ∞) := ENat.LEInfty.out
-      exact GlobalTheory.T.log_sine_monge_ampere_integral hF d k hk1 hk2 (Q.G n) α y
+      exact _root_.GlobalTheory.CompanionTheory.Ar.PB.FibPt.fibre_integral_any_frame hF d k hk1 hk2 (Q.G n) α y
         (by filter_upwards [hnh] with y' hy' using Q.G_pos n y' hy')
         (fun p q => ((Q.G_smooth n p q).contDiffAt hnh).of_le h2)
         (ContDiffAt.sum fun a _ => contDiffAt_const.mul (((Q.α_smooth n a).contDiffAt hnh).of_le h2))

@@ -136,12 +136,7 @@ section Val
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem ordL_eq_neg_log' (y : L) : ordL y = -WithZero.log (Valued.v y) := by
-  unfold ordL
-  split_ifs with h
-  · rw [h]; rfl
-  · conv_rhs => rw [← WithZero.coe_unzero h]
-    rfl
+alias ordL_eq_neg_log' := _root_.GlobalTheory.LGrp.ordL_eq
 
 theorem v_ne_zero' {y : L} (hy : y ≠ 0) : Valued.v y ≠ 0 := (Valuation.ne_zero_iff _).2 hy
 

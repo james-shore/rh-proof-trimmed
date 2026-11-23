@@ -79,7 +79,7 @@ theorem tri_msupp_of_inShW {𝔪 : Multiset (Segment k)} {w : List (IrrGL (k := 
     msupp 𝔪 = (w : Multiset (IrrGL (k := k))) := by
   obtain ⟨L, rfl, hS⟩ := H
   rw [msupp, ← tri_coe_flatten_decW]
-  exact (Multiset.coe_eq_coe.2 (GlobalTheory.T.perm_flatten_of_shuffle _ _ hS)).symm
+  exact (Multiset.coe_eq_coe.2 (_root_.GlobalTheory.CompanionTheory.Comb.shuffle_perm_flatten _ _ hS)).symm
 
 theorem tri_msupp_wtW {h : ℕ} {Γ : Fin h → Segment k} {𝔫 : Multiset (Segment k)} (H : IsOrderedForm Γ 𝔫) :
     msupp 𝔫 = (wtW Γ : Multiset (IrrGL (k := k))) := by
@@ -102,7 +102,7 @@ theorem tri (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarc
   have hA := CompanionTheory.Tls2.BZGL.irreducibleAdmissibleGL_top
   have w1 : Wd y.rep (wtW Γ) := GlobalTheory.T.langlands_rep_ordered_word_occurs hA c.soc c.jac 𝔫 y.rep hy h' Γ hΓ
   have hs : IsSubquotient y.rep (prodIrr x hd) := jhMult_ne_zero_iff.1 hm
-  have w2 : Wd (prodIrr x hd) (wtW Γ) := GlobalTheory.T.word_occurs_of_subquotient _ _ (isSmooth_prodIrr x hd) hs _ w1
+  have w2 : Wd (prodIrr x hd) (wtW Γ) := _root_.GlobalTheory.CompanionTheory.Words.wd_of_isSubquotient _ _ (isSmooth_prodIrr x hd) hs _ w1
   have sh : InShW (Finset.univ.val.map Δ) (wtW Γ) :=
     GlobalTheory.T.segment_product_word_in_shuffle hA c.jac x hd Δ hΔL (wtW Γ) (GlobalTheory.T.ordered_word_letters_cuspidal Γ) w2
   rw [hΔ.1] at sh
@@ -115,7 +115,7 @@ theorem tri (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarc
     rw [hL]
     intro e
     exact he (Multiset.map_injective GlobalTheory.CompanionTheory.ZcWords.toA_injective e)
-  have key := GlobalTheory.T.shuffle_weight_square_length_lt sNu GlobalTheory.CompanionTheory.ZcWords.sNu_injective GlobalTheory.CompanionTheory.ZcWords.sNu_aperiodic
+  have key := _root_.GlobalTheory.CompanionTheory.MultiSeg.Rank.sqLen_lt_of_inSh sNu GlobalTheory.CompanionTheory.ZcWords.sNu_injective GlobalTheory.CompanionTheory.ZcWords.sNu_aperiodic
     ((List.ofFn Γ).map toA) (𝔪.map toA) (GlobalTheory.CompanionTheory.ZcWords.aOrdered_of_isOrderedForm hΓ)
     (GlobalTheory.CompanionTheory.ZcWords.inSh_of_inShW sh) hne
   rw [hL, tri_sqLen_map_toA, tri_sqLen_map_toA] at key

@@ -78,12 +78,12 @@ theorem isArithVar_mpZ (m : ℕ) (n : Fin (m + 1) → ℕ) : IsArithVar (mpStr �
 theorem isArithVar_qp (n' m : ℕ) (n : Fin (m + 1) → ℕ) :
     IsArithVar (qpStr n' m n) (∑ a, (Fin.cons n' n : Fin (m + 2) → ℕ) a) := by
   have hA := isArithVar_mpZ m n
-  have h1 : ringKrullDim ℤ = 1 := GlobalTheory.Amb.ringKrullDim_eq_one (Module.Finite.self ℤ)
+  have h1 : ringKrullDim ℤ = 1 := _root_.GlobalTheory.Amb.ringKrullDim_eq_one' (Module.Finite.self ℤ)
   have hP := GlobalTheory.ProjModel.isArithVar_pspace ℤ h1 n'
   have hsum : ∑ a, (Fin.cons n' n : Fin (m + 2) → ℕ) a = n' + ∑ a, n a := Fin.sum_cons _ _
   rw [hsum]
   have hpc : GlobalTheory.Amb.PolyCovered (qpStr n' m n) (n' + ∑ a, n a) :=
-    GlobalTheory.Amb.polyCovered_pullback (PSpace.str ℤ n') (mpStr ℤ m n) _ _ (GlobalTheory.Amb.polyCovered_pSpace n')
+    GlobalTheory.Amb.polyCovered_pullback (PSpace.str ℤ n') (mpStr ℤ m n) _ _ (_root_.GlobalTheory.Amb.polyCovered_pSpace' n')
       (GlobalTheory.Amb.polyCovered_mp ℤ m n)
   have e : spMap (Int.castRingHom ℤ) = 𝟙 (Sp ℤ) := by simp
   have f1 : Flat (toSpecBase ℤ n') := by
@@ -92,9 +92,9 @@ theorem isArithVar_qp (n' m : ℕ) (n : Fin (m + 1) → ℕ) :
   have f2 : Flat (mpStr ℤ m n) := by
     have := hA.flat
     rwa [e, Category.comp_id] at this
-  refine ⟨inferInstance, inferInstance, GlobalTheory.Amb.isIntegral_of_polyCovered _ _ hpc,
+  refine ⟨inferInstance, inferInstance, _root_.GlobalTheory.Amb.isIntegral_of_polyCovered' _ _ hpc,
     GlobalTheory.ProjSpace.isProjOver_pullback hP.isProjOver hA.isProjOver, ?_,
-    GlobalTheory.Amb.topologicalKrullDim_of_polyCovered h1 _ _ hpc⟩
+    _root_.GlobalTheory.Amb.topologicalKrullDim_of_polyCovered' h1 _ _ hpc⟩
   rw [e, Category.comp_id]
   infer_instance
 

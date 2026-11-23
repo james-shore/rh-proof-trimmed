@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem integers_inert_prime : PI.OkpInert := PI.OkpW.okpInert_main

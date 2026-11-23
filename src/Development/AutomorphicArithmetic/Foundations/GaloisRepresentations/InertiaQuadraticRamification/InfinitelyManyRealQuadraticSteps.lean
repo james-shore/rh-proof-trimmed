@@ -68,6 +68,6 @@ theorem noSelfTwist_holds : NoSelfTwist := noSelfTwist_of normRam
 theorem infinitely_many_real_quadratic_steps : Quad0 := quadraticCharTwist_of_exists_of_infinity (quad0Ex sqrtFix mkQ unrLarge) infOf
 theorem allUnr_holds : AllUnr := allUnr splitIff
 theorem threeApart_holds : ThreeApart := threeApart_of double apartUp
-theorem satSplit_holds : SatSplit := satSplit
+alias satSplit_holds := _root_.UpperTheory.Gal.UnramifiedFromSplittingCriterion.satSplit
 
 end UpperTheory.Gal.UnramifiedFromSplittingCriterion

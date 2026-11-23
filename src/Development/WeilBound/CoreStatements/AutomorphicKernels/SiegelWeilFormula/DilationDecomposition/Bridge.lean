@@ -57,7 +57,7 @@ theorem derCont : DerCont := GlobalTheory.CompanionTheory.HolFamily.continuousOn
 
 theorem stripOK : StripOK := GlobalTheory.CompanionTheory.Strip.strip_open_real_discs
 
-theorem matCount : MatCount := GlobalTheory.CompanionTheory.NumberFieldMatrix.matrix_countable
+theorem matCount : MatCount := _root_.GlobalTheory.CompanionTheory.NumberFieldMatrix.countable_matrix
 
 theorem holMean : HolMean := GlobalTheory.CompanionTheory.HolMean.holomorphic_mean
 

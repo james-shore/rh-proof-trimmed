@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHeckeCharTrivOnRealSubfieldInfinityType
 
 @[expose] public section
 
@@ -64,23 +65,7 @@ open GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele (ideleMap adeleMap finiteCompletionMap ideleConj IsCMExtension)
 open GlobalTheory.Mem.Chr (unitIdl)
 
-private theorem loc_self {K : Type} [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K)) (x : (v.adicCompletion K)ˣ) :
-    (localIdele K v x).val.2 v = x := by
-  classical
-  exact Function.update_self v (x : v.adicCompletion K) (fun w : HeightOneSpectrum (𝓞 K) => (1 : w.adicCompletion K))
-
-private theorem loc_ne {K : Type} [Field K] [NumberField K] {v w : HeightOneSpectrum (𝓞 K)} (h : w ≠ v)
-    (x : (v.adicCompletion K)ˣ) : (localIdele K v x).val.2 w = 1 := by
-  classical
-  exact Function.update_of_ne h (x : v.adicCompletion K) (fun w : HeightOneSpectrum (𝓞 K) => (1 : w.adicCompletion K))
-
-private theorem loc_unit {K : Type} [Field K] [NumberField K] {v : HeightOneSpectrum (𝓞 K)}
-    {x : (v.adicCompletion K)ˣ} (hx : IsUnitAt v x) : localIdele K v x ∈ unitIdl K := fun w => by
-  by_cases h : w = v
-  · subst h
-    rw [loc_self]
-    exact hx
-  · rw [loc_ne h, map_one]
+private alias loc_unit := _root_.GlobalTheory.Mem.Chr.AntiExist.loc_mem
 
 private theorem lev_one {K : Type} [Field K] [NumberField K] {a : Ideles K} : a ∈ lev K 1 ↔ a ∈ unitIdl K :=
   ⟨fun h => h.1, fun h => ⟨h, fun v => by
@@ -98,7 +83,7 @@ private theorem loc_lev {K : Type} [Field K] [NumberField K] {l : ℕ} {v : Heig
         exact (HeightOneSpectrum.valuation_eq_one_iff_notMem w).2 hv
       rw [e]
       exact Valuation.map_sub_le _ (loc_unit hx w).le (map_one _).le
-    · rw [loc_ne h, sub_self, map_zero]
+    · rw [_root_.GlobalTheory.Mem.Chr.AntiExist.loc_ne h, sub_self, map_zero]
       exact zero_le⟩
 
 private theorem isDiv_qbar (l : ℕ) [Fact l.Prime] : KStar.Choice.IsDiv (Qbar l)ˣ := fun n hn a => by
@@ -176,9 +161,9 @@ private theorem ideleExt_of (hG : Glue) (hP : LevPow) (hK : Kron) (hΦ : PhiPart
   · have e : ∀ w, z.val.2 w = 1 := fun w => by rw [hz]; rfl
     rw [hV z ⟨fun w => by rw [e, map_one], fun w => by rw [e, sub_self, map_zero]; exact zero_le⟩,
       p3 z fun w _ _ => e w, map_one]
-  · rw [hV _ (loc_lev hw hx), p3 _ fun u hu _ => loc_ne (by rintro rfl; exact hw hu) x, map_one]
+  · rw [hV _ (loc_lev hw hx), p3 _ fun u hu _ => _root_.GlobalTheory.Mem.Chr.AntiExist.loc_ne (by rintro rfl; exact hw hu) x, map_one]
   · have hu := loc_unit hx
-    rw [h4 _ hu, MonoidHom.comp_apply, p3 _ fun u _ hu' => loc_ne (by rintro rfl; exact hw hu') x, map_one, one_mul]
+    rw [h4 _ hu, MonoidHom.comp_apply, p3 _ fun u _ hu' => _root_.GlobalTheory.Mem.Chr.AntiExist.loc_ne (by rintro rfl; exact hw hu') x, map_one, one_mul]
     exact h6 _ (div_mem hu (lev_one.1 (c3 1 _ (lev_one.2 hu))))
 
 private theorem frob_val {L Ω B : Type} [Field L] [NumberField L] [Field Ω] [Algebra L Ω] [CommGroup B] [TopologicalSpace B]

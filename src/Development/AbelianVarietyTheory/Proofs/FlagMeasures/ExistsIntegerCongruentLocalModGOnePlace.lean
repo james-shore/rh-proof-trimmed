@@ -73,13 +73,6 @@ private lemma exists_integer_mul_eq_of_valuation_le (D : D7) (q : PlF D) (x y : 
     exact (div_le_one₀ hpos).2 hv
   · field_simp
 
-private lemma algebraMap_mem_O_of_mem_integer' (D : D7) (q : PlF D) (w : (D.s.atP q).Fp)
-    (hw : w ∈ Valuation.integer (ValuativeRel.valuation (D.s.atP q).Fp)) :
-    algebraMap (D.s.atP q).Fp (D.s.atP q).Ep w ∈ (D.s.atP q).O := by
-  rw [(D.s.atP q).O_def]
-  exact isIntegral_algebraMap (R := Valuation.integer (ValuativeRel.valuation (D.s.atP q).Fp))
-    (x := (⟨w, hw⟩ : Valuation.integer (ValuativeRel.valuation (D.s.atP q).Fp)))
-
 private lemma exists_smul_sub_eq_gS_mul_mem_O (D : D7) (p : PlF D) (f : (D.s.atP p).Fp) (e : D.host.E) :
     ∃ b : D.host.E, ∃ o ∈ (D.s.atP p).O,
       f • (D.s.atP p).ιE e - (D.s.atP p).ιE b = (D.s.atP p).ιE ((gS D : ℕ) : D.host.E) * o := by
@@ -111,7 +104,7 @@ private lemma exists_smul_sub_eq_gS_mul_mem_O (D : D7) (p : PlF D) (f : (D.s.atP
     exact (div_le_one₀ (zero_lt_iff.2 hvu)).2 ha.le
   refine ⟨algebraMap D.host.F D.host.E a * e,
     algebraMap (D.s.atP p).Fp (D.s.atP p).Ep ((f - (D.s.atP p).ιF a) / u) * (D.s.atP p).ιE ((d : ℤ) • e),
-    mul_mem (algebraMap_mem_O_of_mem_integer' D p _ ((Valuation.mem_integer_iff _ _).2 hβ))
+    mul_mem (_root_.PI.CntNotIntW.algMap_mem_O D p _ ((Valuation.mem_integer_iff _ _).2 hβ))
       (Formalism.L2.SG.Pf.StabIntSh.lg_iota_int p ⟨(d : ℤ) • e, hdint⟩), ?_⟩
   rw [map_mul, (D.s.atP p).compat, zsmul_eq_mul, map_mul, map_intCast, map_natCast, Algebra.smul_def]
   have hsplit : f = (f - (D.s.atP p).ιF a) / u * u + (D.s.atP p).ιF a := by
@@ -214,7 +207,7 @@ theorem exists_int_congr_gS : ∀ (D : D7) (p : PlF D) (c : (D.s.atP p).Ep), c �
       exact mul_le_of_le_one_right' (p.intValuation_le_one _)
     obtain ⟨β, hβ, hβe⟩ := exists_integer_mul_eq_of_valuation_le D p _ _ (by exact_mod_cast hgN) hle
     refine ⟨algebraMap (D.s.atP p).Fp (D.s.atP p).Ep β * (D.s.atP p).ιE b₀ - o₀,
-      sub_mem (mul_mem (algebraMap_mem_O_of_mem_integer' D p β hβ) hb₀) ho₀, ?_⟩
+      sub_mem (mul_mem (_root_.PI.CntNotIntW.algMap_mem_O D p β hβ) hb₀) ho₀, ?_⟩
     have ht : (D.s.atP p).ιF (t : D.host.F) = (D.s.atP p).ιF ((gS D : ℕ) : D.host.F) * β + 1 := by
       rw [← hβe, map_sub, map_one]; ring
     rw [hιa p, ht, map_add (f := _), map_mul, map_one, map_natCast, map_natCast, map_natCast]
@@ -237,7 +230,7 @@ theorem exists_int_congr_gS : ∀ (D : D7) (p : PlF D) (c : (D.s.atP p).Ep), c �
       mul_ne_zero (by exact_mod_cast hgN) (by exact_mod_cast hd0)
     obtain ⟨β, hβ, hβe⟩ := exists_integer_mul_eq_of_valuation_le D q _ _ hne hle
     refine ⟨algebraMap (D.s.atP q).Fp (D.s.atP q).Ep β * (D.s.atP q).ιE ((d : ℤ) • b₀),
-      mul_mem (algebraMap_mem_O_of_mem_integer' D q β hβ) (hdb q), ?_⟩
+      mul_mem (_root_.PI.CntNotIntW.algMap_mem_O D q β hβ) (hdb q), ?_⟩
     rw [hιa q, hβe, zsmul_eq_mul]
     simp only [map_mul, map_intCast, map_natCast]
     ring

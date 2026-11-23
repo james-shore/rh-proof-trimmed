@@ -234,7 +234,7 @@ theorem core_of (hA : SplitA) (hS : SplitS) (hB : SplitB) (hZ : ZInv) (hEz : E2V
     congr 1
     exact hinv (s (pr g)) (fun i => s (pr (y i)))
   · funext y
-    rw [dc_sub, Pi.sub_apply, hpt y, hbv (fun i => pr (y i))]
+    rw [_root_.PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_sub, Pi.sub_apply, hpt y, hbv (fun i => pr (y i))]
     have h3 : dc (fun z => e' (fun i => s (z i))) (fun i => pr (y i))
         = dc (fun z => e' (fun i => s (pr (z i)))) y := rfl
     linarith

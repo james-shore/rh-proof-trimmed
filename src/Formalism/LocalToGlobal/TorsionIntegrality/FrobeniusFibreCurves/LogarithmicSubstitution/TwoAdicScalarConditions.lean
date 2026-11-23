@@ -69,19 +69,19 @@ theorem Th0Vanish_of (hC : CubeE) (hN : PhENorm) : ThetaZeroVanishing := by
     hCu3 hT hQ hFib hN1 hS hEnd hcl h0 hne h1 hb1 hb2
   have hl0 : PowerSeries.constantCoeff l = 0 := hL.2.2.1
   obtain ⟨hc0, hth⟩ :=
-    phEDef K s2 (xT + c0) (3 * (xT + c0) ^ 2 - g2 / 4) (wOf (xT + c0) P) l hl0
+    _root_.Formalism.L2.Th1.B.Ph.logSigmaOnePullbackSpec K s2 (xT + c0) (3 * (xT + c0) ^ 2 - g2 / 4) (wOf (xT + c0) P) l hl0
   obtain ⟨-, -, hd1, -⟩ := hC K g2 g3 s2 c0 a1 a3 xT yT P l i ep F hP hL hI hCu hCu3 hT
   obtain ⟨-, hFG, hF1⟩ := Formalism.L2.Th1.C.first_level_from_universal_law K F l linv _ hlp hL hc0 hd1
   have hPN := hN K g2 g3 s2 c0 xT al albar S P l linv i ep F ι xQ wp wm hP hT.2.1 hlp hCu
     hT.2.2.1 hQ hFib hN1 hS
   have hLG : LG (unitBall K) (phTw g2 s2 c0 xT P l) :=
-    Split.split_vanishing_at_two K (unitBall K) (Formalism.L2.Th1.C.unitBallClosed K) l linv _ al albar
+    Split.split_vanishing_at_two K (unitBall K) (_root_.Formalism.L2.Th1.C.unit_ball_closed K) l linv _ al albar
       ⟨hlp, hFG, hc0⟩ hF1 hEnd hcl hPN h0 hne h1 hb1 hb2
   have hth' : PowerSeries.subst l (thTw g2 s2 c0 xT P) = fExp (-phTw g2 s2 c0 xT P l) := hth
   have hneg : LG (unitBall K) (-phTw g2 s2 c0 xT P l) :=
     (Formalism.L2.Th1.C.lGSubgroup K (unitBall K) Unit).2.2 _ hLG
   refine ⟨?_, ?_, ?_⟩
-  · refine (Formalism.L2.Th1.C.simeqIffCong K Unit _ _).2 ?_
+  · refine (_root_.Formalism.L2.Th1.C.simeq_iff_congruence K Unit _ _).2 ?_
     rw [Formalism.L2.Th1.C.Cong, sub_zero]
     exact hLG
   · rw [hth']
@@ -146,7 +146,7 @@ theorem endInt_int {K : Type} [Field K] (R : Subring K) {l linv : PowerSeries K}
 
 theorem two_adic_scalar_conditions : TwoAdicScalars := by
   intro K _ _ _ _ F l linv b b' hL hlp hb hb' al albar
-  have hcl := Formalism.L2.Th1.C.unitBallClosed K
+  have hcl := _root_.Formalism.L2.Th1.C.unit_ball_closed K
   have hFG : FGInt (unitBall K) l linv := by
     rw [FGInt, ← Formalism.L2.Th1.C.Dict.law_eq hlp hL.1 hL.2.2.2.2]
     exact hL.2.1
@@ -158,7 +158,7 @@ theorem two_adic_scalar_conditions : TwoAdicScalars := by
   have h1b' : ‖(1 : ℤ_[2]) - b'‖ = 1 := norm_sub_eq_one norm_one hb'
   have hbb' : ‖b - b'‖ = 1 := norm_sub_eq_one hb hb'
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · exact phi_mem_of_closed (Formalism.L2.Th1.C.endIntClosed K (unitBall K) hcl l linv hlp.1)
+  · exact phi_mem_of_closed (_root_.Formalism.L2.Th1.C.integralEndoClosed' K (unitBall K) hcl l linv hlp.1)
       (endInt_int (unitBall K) hlp hFG) b
   · exact phi_mem_closure b
   · rw [hal, ← map_zero (phi K)]

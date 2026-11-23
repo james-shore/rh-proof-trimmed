@@ -100,12 +100,6 @@ theorem csd_zero_or {K : Type} [Field K] [NumberField K] [StarRing K] {E : Type}
     simp only [heckeCSDI, Col.heckeFamI]
     rw [hyeq]
 
-theorem rank_rows (R : Ranks) : R.N R.m - 1 = R.r + R.m * R.t := by
-  have hm := R.two_le_m
-  simp only [Ranks.N, Ranks.r, Nat.mul_succ]
-  generalize R.m * R.t = x
-  omega
-
 theorem inertJunk_col {X : Col.Fields} {Pr : Col.Primes X} {R : Ranks} (W : Col.Wts X Pr.Word R) (Ch : Col.Chars X Pr R.m)
     (sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)) {S : Set ℕ} (hX : X.Ok)
     (v0 : InfinitePlace X.K) (TU : Finset (Tup X.F X.E X.K S))
@@ -120,25 +114,13 @@ theorem inertJunk_col {X : Col.Fields} {Pr : Col.Primes X} {R : Ranks} (W : Col.
     · exact Or.inl h
     · refine Or.inr ⟨y, ?_, hyeq⟩
       show Col.InertTypeOk (R.r + R.m * R.t) y
-      rw [← rank_rows R]
+      rw [← _root_.Formalism.L2.Col.rank_X'_eq R]
       exact hy
   · intro j t Q s
     rcases csd_zero_or (Col.mtKGSD W Ch sel t.1 (j.1 + 1)) (Col.mtKOk W Ch sel t.1 hX (j.1 + 1)) (formPts _ _) Pr.vGs S0
         Q s with h | ⟨y, hy, hyeq⟩
     · exact Or.inl h
     · exact Or.inr ⟨y, hy, hyeq⟩
-
-section Real
-
-open Formalism.IndefR Formalism.IndefR.Links Formalism.L2.Theta
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} (A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m)
-
-variable {A3} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
-
-end Real
 
 end GlobalTheory.Hk3.FamModel
 

@@ -119,7 +119,7 @@ theorem resultant_factors_prod_eq_one {E : Type} [Field E] [NumberField E] [IsCM
         ext x
         simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
         constructor
-        · exact fun hx => GlobalTheory.T.eq_or_eq_of_under_maximalRealSubfield_eq_CMField E w u x hu huw hx
+        · exact fun hx => _root_.GlobalTheory.BCT.FiberTwo.eq_or_eq_of_under_eq E w u x hu huw hx
         · rintro (rfl | rfl)
           · rfl
           · exact huw

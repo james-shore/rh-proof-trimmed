@@ -230,7 +230,7 @@ theorem isSobForm_slice {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} (hθ : 
     let U' : AddSubgroup (WO A T) := U.comap (extA o T)
     have hU' : IsOpen (U' : Set (WO A T)) :=
       hU.preimage ((o.continuous_resS_symm T).comp (continuous_id.prodMk continuous_const))
-    obtain ⟨e, d, hK⟩ := GlobalTheory.KernelSeminorm.thetaGrowth_onObjects D A.rank T.rank
+    obtain ⟨e, d, hK⟩ := _root_.GlobalTheory.KernelSeminorm.thetaGrowth D A.rank T.rank
     obtain ⟨C, hC⟩ := hK A T rfl rfl ψ θ hθ U' hU'
     obtain ⟨μ, 𝓕, hμ⟩ := exists_isCovolOne A T
     obtain ⟨K, hKs⟩ := sobO_slice_le (T := T) hψ hθ o d

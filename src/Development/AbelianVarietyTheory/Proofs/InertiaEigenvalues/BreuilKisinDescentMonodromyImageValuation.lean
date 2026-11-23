@@ -205,7 +205,7 @@ theorem image (U : Finset ℤ) (hS : D.jumps ⊆ U) : Image D U := by
   · apply le_antisymm
     · intro w hw
       obtain ⟨hwR, hwW⟩ := Submodule.mem_inf.1 hw
-      have h := GlobalTheory.coeff_zero_smul_mem_map_of_aeval_mul_eq_zero D.LcZ ((polyR l e U η).map (Int.castRingHom K))
+      have h := _root_.GlobalTheory.CoefficientMembership.coeff_zero_smul_mem_map D.LcZ ((polyR l e U η).map (Int.castRingHom K))
         (polyRK_mul_eq_zero D U hS) W (fun z hz => hW hz) w hwW hwR
       rw [Polynomial.coeff_map, Polynomial.coeff_zero_eq_eval_zero] at h
       have hne := castK_ne_zero (K := K) (l := l) (e := e) (η := η) U

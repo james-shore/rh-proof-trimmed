@@ -246,8 +246,8 @@ theorem exists_pullDeg {C : Type} [Field C] [IsAlgClosed C] [CharZero C] [Algebr
     rw [asIso_hom, b₁, pt, pt, b₂, hz', rb]
   obtain ⟨g, hg, -⟩ := GlobalTheory.T.existsUnique_descent_automorphism_invariant_morphism (FractionRing V) C _ (jK V) D.P.A D'.P.A
     (haveI := D'.P.isAb.proper; inferInstance) (Over.homMk (jFK (R := V) C) rfl) rfl (φ.hom ≫ snd _ _) inv
-  obtain ⟨Ψ, a₁, a₂, a₃⟩ := GlobalTheory.T.exists_iso_polarisedAbelianSchemes_dvr_of_fieldExtension hL hL2 V D.P D'.P C φ g₁ h1 ⟨w, g₂⟩ _ g hg
-  obtain ⟨e, hc⟩ := GlobalTheory.T.exists_pullbackDegeneration_of_values_iso_dvr hL V D D' C N N' ν ν' J Ψ a₁ a₃ φ w g₁ a₂ g₂ g₃
+  obtain ⟨Ψ, a₁, a₂, a₃⟩ := _root_.GlobalTheory.IsoOverField.exists_iso_over_dvr hL hL2 V D.P D'.P C φ g₁ h1 ⟨w, g₂⟩ _ g hg
+  obtain ⟨e, hc⟩ := _root_.GlobalTheory.ValuesIdent.exists_isPullDeg_of_values hL V D D' C N N' ν ν' J Ψ a₁ a₃ φ w g₁ a₂ g₂ g₃
     (fun x => (congrArg _ (g₄ 1).symm).trans ((g₅ x).trans (g₄ x)))
   exact ⟨e, fun k p p' q hq hq' => hc k p p' q _ hq hq' rfl ((qMap_iff (TateInh.homOfIso J)).2 rfl).2⟩
 

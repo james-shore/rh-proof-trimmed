@@ -118,14 +118,6 @@ theorem sum_resCount {k : Type} [Field k] (U : Multiset ℤ) (w a : ℤ) (L : �
       have hj' := Finset.mem_range.mp hj
       exact hp (hu.2 (a + j) (by omega) (by omega) ((tr j).mp hc)).2
 
-theorem exists_of_resCount_ne {k : Type} [Field k] {U : Multiset ℤ} {w : ℤ} {x : k} (h : resCount U w x ≠ 0) :
-    ∃ u ∈ U, ((u - w : ℤ) : k) = x := by
-  classical
-  unfold resCount at h
-  obtain ⟨u, hu⟩ := Multiset.card_pos_iff_exists_mem.mp (Nat.pos_of_ne_zero h)
-  rw [Multiset.mem_filter] at hu
-  exact ⟨u, hu.1, hu.2⟩
-
 theorem count : ∀ {k G : Type} [Field k] [Group G] {l n : ℕ} [Fact l.Prime] [CharP k l] [NeZero n] {R : RingPG k l} (F : DFun R n G) {r : ℕ} {Dt : TopData n r} (M : ModTh F Dt), Dt.T1 l → Dt.T2 l → Dt.T3 l → ∀ N : Lats k n M.T.m, M.Model M.T N → (∀ i, M.Nstd i ≤ N i) → ∀ i, (∀ a : ℕ, a ≤ Dt.sg l i + 1 → sen ((F.D M.T).γ i) (N i) (a : k) = 0) ∧ (Dt.ty i = LType.G → ∑ j ∈ Finset.range (Dt.w i).toNat, sen ((F.D M.T).γ i) (N i) ((-Dt.w i + j : ℤ) : k) = Dt.d i) ∧ (Dt.ty i = LType.Bd → Dt.d i + ∑ a ∈ Finset.range ((Dt.wst i).toNat + 1), sen ((F.D M.T).γ i) (N i) (a : k) = r) := by
   intro k G _ _ l n _ _ _ R F r Dt M h1 h2 h3 N hN hle i
   have hNabc := (GlobalTheory.T.obj_and_abc_of_model F M M.T N hN).2
@@ -148,7 +140,7 @@ theorem count : ∀ {k G : Type} [Field k] [Group G] {l n : ℕ} [Fact l.Prime] 
     intro y hy
     obtain ⟨j, hj1, hj2, hj⟩ := (tel y).2 hy
     rw [M.std_sen] at hj
-    obtain ⟨u, hu, hux⟩ := exists_of_resCount_ne hj
+    obtain ⟨u, hu, hux⟩ := _root_.GlobalTheory.Models.exists_of_resCount_ne_zero_sq hj
     refine ⟨j, hj1, hj2, u, hu, ?_⟩
     push_cast at hux ⊢
     linear_combination hux

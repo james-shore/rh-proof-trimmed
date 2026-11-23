@@ -64,10 +64,6 @@ theorem exists_int_generators (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.FG)
   obtain ⟨m, hm⟩ := (Submodule.mem_span_range_iff_exists_fun ℤ).1 this
   exact ⟨m, by simpa using (congrArg Subtype.val hm).symm⟩
 
-theorem exists_int_smul_mem (L : Submodule (𝓞 E) (Fin n → E)) (hL : Submodule.IsFullLattice E L)
-    (w : Fin n → E) : ∃ N : ℤ, N ≠ 0 ∧ N • w ∈ L := by
-  exact _root_.GlobalTheory.IntSmulIntegerEq.exists_int_smul_mem L hL w
-
 theorem latLoc_compact_open (L : Submodule (𝓞 E) (Fin n → E)) (hL : Submodule.IsFullLattice E L)
     (v : HeightOneSpectrum (𝓞 F)) :
     IsCompact (GlobalTheory.AdelicU.latLoc F L v : Set (Fin n → Fv F v ⊗[F] E)) ∧
@@ -89,7 +85,7 @@ theorem latLoc_compact_open (L : Submodule (𝓞 E) (Fin n → E)) (hL : Submodu
   have hf : Function.Surjective f := by
     have h1 : ∀ (a : Fv F v) (w : Fin n → E), (fun i => a ⊗ₜ[F] w i) ∈ LinearMap.range f := by
       intro a w
-      obtain ⟨N, hN, h⟩ := exists_int_smul_mem L hL w
+      obtain ⟨N, hN, h⟩ := _root_.GlobalTheory.IntSmulIntegerEq.exists_int_smul_mem L hL w
       obtain ⟨m, e⟩ := hx _ h
       refine ⟨fun j => m j • ((N : Fv F v)⁻¹ * a), ?_⟩
       rw [hm, ← e]

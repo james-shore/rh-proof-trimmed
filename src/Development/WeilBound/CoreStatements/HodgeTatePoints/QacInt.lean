@@ -156,7 +156,7 @@ theorem key_mem_of_dvr {κ : KeyRule} (hκ : IsKeyRule κ) (hpow : ∀ (K : Type
     (x : KeyIn K) (hx : IsFibreOf x t.G t.PP.L t.PP.rig θ w ((algebraMap V K).comp f)) (hw : IsLieBasis w)
     (hθ : ∀ b : Sp A, ∃ y : t.G.left, t.G.hom y = b ∧ y ∈ Out.nonzeroLocus θ) :
     ∃ u : Vˣ, (κ K x : K) = algebraMap V K u := by
-  obtain ⟨t', ⟨m⟩⟩ := Kftwo.exists_pull (spMap f) t
+  obtain ⟨t', ⟨m⟩⟩ := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap f) t
   obtain ⟨θ', w', h₁, h₂, h₃⟩ := exists_isFibreOf_pull_local m hθ hw hx
   exact Kftwo.key_isUnit hκ hpow t' θ' w' x h₃ h₂ h₁
 

@@ -377,7 +377,7 @@ theorem psiE_exists : ∀ (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW)
   intro D HW F l _ K s LL h
   haveI : NeZero l := ⟨(Fact.out : l.Prime).ne_zero⟩
   have hp : ((D.loc l).PD K).p = l := (D.loc l).PD_p K
-  refine GlobalTheory.PsiOp.psi_exists ((HW l).W K s LL h) hp ?_ (fun x => GlobalTheory.T.etaleRing_free_over_frobenius_image D HW F l K s LL h x)
+  refine GlobalTheory.PsiOp.psi_exists ((HW l).W K s LL h) hp ?_ (fun x => _root_.GlobalTheory.NL.FreeEE.ee_free D HW F l K s LL h x)
   intro c hc
   rcases mul_eq_zero.1 hc with h0 | h0
   · exfalso

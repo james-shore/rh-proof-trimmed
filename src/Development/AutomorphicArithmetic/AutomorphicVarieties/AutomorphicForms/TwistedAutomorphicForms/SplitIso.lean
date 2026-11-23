@@ -78,7 +78,7 @@ theorem UpperTheory.V.Af.Tw.splitIso :
     Algebra.finrank_eq_one_iff_bijective_algebraMap.mp hfin
   let e := RingEquiv.ofBijective (completionMap v w) hbij
   refine ⟨(e.symm : w.adicCompletion L →+* v.adicCompletion F), ?_, ?_⟩
-  · refine GlobalTheory.DenseCompl.continuous_of_valued_eq (HeightOneSpectrum.valuedAdicCompletion_surjective L w) _ ?_
+  · refine _root_.GlobalTheory.Mem.Chr.continuous_of_valued_eq (HeightOneSpectrum.valuedAdicCompletion_surjective L w) _ ?_
     intro y
     obtain ⟨x, rfl⟩ := hbij.2 y
     have hx : (e.symm : w.adicCompletion L →+* v.adicCompletion F) (completionMap v w x) = x :=

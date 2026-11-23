@@ -79,7 +79,7 @@ theorem cv_mem_Sm {U : Subgroup (GL (Fin a) (Af E))} (hUo : IsOpen (U : Set (GL 
   (GlobalTheory.T.convolution_smooth_lie_derivative E a μ U hUo hUc β hβ Fl hFl).1
 
 omit μ in
-theorem isTest_dTest {β : Lie E a → ℂ} (hβ : IsTest β) (X : Lie E a) : IsTest (dTest X β) := GlobalTheory.T.test_function_derivative_is_test E a β hβ X
+theorem isTest_dTest {β : Lie E a → ℂ} (hβ : IsTest β) (X : Lie E a) : IsTest (dTest X β) := _root_.GlobalTheory.CompanionTheory.SmoothRep.isTest_dTest E a β hβ X
 
 theorem lieD_cv {U : Subgroup (GL (Fin a) (Af E))} (hUo : IsOpen (U : Set (GL (Fin a) (Af E))))
     (hUc : IsCompact (U : Set (GL (Fin a) (Af E)))) {β : Lie E a → ℂ} (hβ : IsTest β) {Fl : GA E a → ℂ}
@@ -97,7 +97,7 @@ theorem cv_cpt (U : Subgroup (GL (Fin a) (Af E))) {β : Lie E a → ℂ} (hβ : 
 
 theorem cv_split (f : GA E a → ℂ) {F : L2 (latticeGL E a) μ} (hF : F ∈ L2cusp μ) (t : ℝ) (x : GA E a) :
     convR μ f (lift (latticeGL E a) F) (splitCentre E a t * x) = convR μ f (lift (latticeGL E a) F) x :=
-  GlobalTheory.T.cuspidal_convolution_split_centre_invariant E a μ f F hF t x
+  _root_.GlobalTheory.CompanionTheory.SmoothRep.convR_lift_splitCentre_mul E a μ f F hF t x
 
 theorem exists_injective (U : Subgroup (GL (Fin a) (Af E))) (hUo : IsOpen (U : Set (GL (Fin a) (Af E))))
     (hUc : IsCompact (U : Set (GL (Fin a) (Af E)))) (X : Submodule ℂ (L2 (latticeGL E a) μ)) [hX' : FiniteDimensional ℂ X]

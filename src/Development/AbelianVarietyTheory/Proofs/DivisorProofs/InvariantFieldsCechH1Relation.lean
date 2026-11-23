@@ -66,28 +66,12 @@ set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CoverRefinementPullback
 
-theorem resG_resG' {X : Scheme.{0}} {O₀ O₁ O₂ : X.Opens} (h : O₁ ≤ O₀) (h' : O₂ ≤ O₁) (s : Γ(X, O₀)) :
-    resG X h' (resG X h s) = resG X (h'.trans h) s := by
-  simp only [resG]; rw [← CommRingCat.comp_apply, ← Functor.map_comp]; rfl
-
-theorem pbT_id' {X : Scheme.{0}} {O₀ : X.Opens} (s : Γ(X, O₀)) {O : X.Opens} (h : O ≤ O₀) :
-    pbT (𝟙 X) s O = resG X h s := by
-  unfold pbT; rw [dite_eq_left (show O ≤ (𝟙 X) ⁻¹ᵁ O₀ from h)]; simp [Scheme.Hom.appLE, resG, Category.id_comp]; rfl
-
-theorem dlg_res' {A : Type} [CommRing A] (B : Over (Sp A)) [GrpObj B] [IsCommMonObj B] (L : LB B.left)
-    (δ : Fld B.left) (hδ : IsField ⊤ δ) (i j : L.ι) {T : B.left.Opens} (hT : T ≤ L.U i ⊓ L.U j) :
-    rsT (dlg B (𝟙 _) L δ i j (L.U i ⊓ L.U j)) T =
-      δ T (res hT (L.g i j)).val * (res hT (L.g i j))⁻¹.val := by
-  unfold dlg
-  rw [GlobalTheory.KS.rsT_of_le hT, map_mul, pbT_id' _ le_rfl, pbT_id' _ le_rfl, ← hδ.2.2 _ _ hT le_top, resG_resG', resG_resG']
-  rfl
-
 theorem dlg_tri {A : Type} [CommRing A] (B : Over (Sp A)) [GrpObj B] [IsCommMonObj B] (L : LB B.left) (hL : L.IsLB)
     (δ : Fld B.left) (hδ : IsField ⊤ δ) (i j k : L.ι) {T : B.left.Opens} (h₁ : T ≤ L.U i ⊓ L.U j)
     (h₂ : T ≤ L.U j ⊓ L.U k) (h₃ : T ≤ L.U i ⊓ L.U k) :
     rsT (dlg B (𝟙 _) L δ i j (L.U i ⊓ L.U j)) T + rsT (dlg B (𝟙 _) L δ j k (L.U j ⊓ L.U k)) T =
       rsT (dlg B (𝟙 _) L δ i k (L.U i ⊓ L.U k)) T := by
-  rw [dlg_res' B L δ hδ i j h₁, dlg_res' B L δ hδ j k h₂, dlg_res' B L δ hδ i k h₃,
+  rw [_root_.GlobalTheory.DlogBasis.dlg_res B L δ hδ i j h₁, _root_.GlobalTheory.DlogBasis.dlg_res B L δ hδ j k h₂, _root_.GlobalTheory.DlogBasis.dlg_res B L δ hδ i k h₃,
     ← FinAffineCharts.cocycle_on hL i j k h₁ h₂ h₃]
   set u := res h₁ (L.g i j)
   set w := res h₂ (L.g j k)
@@ -101,8 +85,8 @@ theorem dlg_refine {A : Type} [CommRing A] (B : Over (Sp A)) [GrpObj B] [IsCommM
     (a b : κ) {T : B.left.Opens} (hT : T ≤ W a ⊓ W b) :
     rsT (dlg B (𝟙 _) (FinAffineCharts.refineLB L W c h) δ a b (W a ⊓ W b)) T =
       rsT (dlg B (𝟙 _) L δ (c a) (c b) (L.U (c a) ⊓ L.U (c b))) T := by
-  refine (dlg_res' B (FinAffineCharts.refineLB L W c h) δ hδ a b hT).trans ?_
-  rw [dlg_res' B L δ hδ (c a) (c b) (hT.trans (inf_le_inf (h a) (h b)))]
+  refine (_root_.GlobalTheory.DlogBasis.dlg_res B (FinAffineCharts.refineLB L W c h) δ hδ a b hT).trans ?_
+  rw [_root_.GlobalTheory.DlogBasis.dlg_res B L δ hδ (c a) (c b) (hT.trans (inf_le_inf (h a) (h b)))]
   have e : res hT ((FinAffineCharts.refineLB L W c h).g a b) =
       res (hT.trans (inf_le_inf (h a) (h b))) (L.g (c a) (c b)) := FinAffineCharts.res_res _ _ _
   exact congrArg (fun u : Γ(B.left, T)ˣ => δ T u.val * (u⁻¹).val) e

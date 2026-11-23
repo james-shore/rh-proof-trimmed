@@ -106,8 +106,8 @@ open Formalism.BasicNotions Formalism.L2.Forms
 
 variable {D : D7} {u : D.what₂.Word}
 
-theorem freeT_0 (T : Forms0 D u) : Nonempty (Formalism.MainNotions.product_first_zeroth_parts.FreeT D u) := S0.freeT_tied T
+alias freeT_0 := _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.freeT_tied
 
-theorem slopeLine_0 (hS : Formalism.MainNotions.product_first_zeroth_parts.HidaSetting D u) (T : Forms0 D u) (hC : ChiFin0 T) : Formalism.MainNotions.product_first_zeroth_parts.SlopeLine D u := S0.slopeLine_tied hS T hC
+alias slopeLine_0 := _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.slopeLine_tied
 
 end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases

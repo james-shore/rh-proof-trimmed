@@ -83,7 +83,7 @@ theorem isLab_std {D : D7} (hF : D.host.F = maximalRealSubfield D.host.E) {V : T
     (ϖ : (sp.v).adicCompletion (maximalRealSubfield D.host.E)) (hϖ : Formalism.AUTREP.IsUnif D.host.E sp.v ϖ)
     (k : ℕ) (hk : k ≤ n) :
     GlobalTheory.Hk3.IsLab V sp.w (List.replicate k 1 ++ List.replicate (n - k) 0) := by
-  obtain ⟨x₀, -, e, f, ϖ', h1, h2, h3, h4, h5⟩ := exists_std hF Ps hs hn sp ϖ hϖ k hk
+  obtain ⟨x₀, -, e, f, ϖ', h1, h2, h3, h4, h5⟩ := _root_.GlobalTheory.StdEltLabel.std_elt_label hF Ps hs hn sp ϖ hϖ k hk
   exact GlobalTheory.SphLabelOps.isLab_of_divAt h1 h2 h3 (pairwise_lab _ _) h4 h5
 
 theorem tSet_iff {D : D7} (hF : D.host.F = maximalRealSubfield D.host.E) {V : TH.HSp D} {n : ℕ}
@@ -93,7 +93,7 @@ theorem tSet_iff {D : D7} (hF : D.host.F = maximalRealSubfield D.host.E) {V : TH
     κ ∈ Formalism.AUTREP.tSet D.host.E n sp ϖ k ↔
       ∃ γ ∈ GlobalTheory.Hk3.rep V sp.w (List.replicate k 1 ++ List.replicate (n - k) 0),
         γ⁻¹ * Ps.ψ κ ∈ GlobalTheory.Hk3.hyp V sp.w := by
-  obtain ⟨x₀, hx₀, e, f, ϖ', h1, h2, h3, h4, h5⟩ := exists_std hF Ps hs hn sp ϖ hϖ k hk
+  obtain ⟨x₀, hx₀, e, f, ϖ', h1, h2, h3, h4, h5⟩ := _root_.GlobalTheory.StdEltLabel.std_elt_label hF Ps hs hn sp ϖ hϖ k hk
   have hLab := GlobalTheory.SphLabelOps.isLab_of_divAt h1 h2 h3 (pairwise_lab _ _) h4 h5
   obtain ⟨K, hK⟩ := GlobalTheory.SphLabelOps.exists_hyp V sp.w
   have hR := GlobalTheory.SphLabelOps.reps_of_sphOp hK h1 h2 h3 h4 h5 (GlobalTheory.SphLabelOps.sphOp_rep hLab)
@@ -102,12 +102,12 @@ theorem tSet_iff {D : D7} (hF : D.host.F = maximalRealSubfield D.host.E) {V : TH
     intro l hl
     have hl' := (memK l).1 hl
     obtain ⟨m, rfl⟩ := Ps.onto l hl'.1.1
-    exact ⟨m, (frame_hyp hF Ps hs sp m).1 hl', rfl⟩
+    exact ⟨m, (_root_.GlobalTheory.FrameHyp.mem_hyp_iff hF Ps hs sp m).1 hl', rfl⟩
   have img : ∀ m, (m ∈ Umax D.host.E n ∧ TrivOutside {sp.v} m) → Ps.ψ m ∈ K := fun m hm =>
-    (memK _).2 ((frame_hyp hF Ps hs sp m).2 hm)
+    (memK _).2 ((_root_.GlobalTheory.FrameHyp.mem_hyp_iff hF Ps hs sp m).2 hm)
   constructor
   · intro hκ
-    obtain ⟨k₁, hk₁, k₂, hk₂, rfl⟩ := (tSet_dc n sp ϖ k x₀ hx₀ κ).1 hκ
+    obtain ⟨k₁, hk₁, k₂, hk₂, rfl⟩ := (_root_.GlobalTheory.TSetDoubleCoset.mem_tSet_iff n sp ϖ k x₀ hx₀ κ).1 hκ
     obtain ⟨γ, ⟨hγ, hm⟩, -⟩ := hR.2 (Ps.ψ (k₁ * x₀ * k₂))
       ⟨Ps.ψ k₁, img _ hk₁, Ps.ψ k₂, img _ hk₂, by rw [map_mul, map_mul]⟩
     exact ⟨γ, hγ, (memK _).1 hm⟩
@@ -116,7 +116,7 @@ theorem tSet_iff {D : D7} (hF : D.host.F = maximalRealSubfield D.host.E) {V : TH
     have hl : γ⁻¹ * Ps.ψ κ ∈ K := (memK _).2 hm
     obtain ⟨m₁, hm₁, e₁⟩ := pre l₁ hl₁
     obtain ⟨m₂, hm₂, e₂⟩ := pre (l₂ * (γ⁻¹ * Ps.ψ κ)) (mul_mem hl₂ hl)
-    refine (tSet_dc n sp ϖ k x₀ hx₀ κ).2 ⟨m₁, hm₁, m₂, hm₂, Ps.inj ?_⟩
+    refine (_root_.GlobalTheory.TSetDoubleCoset.mem_tSet_iff n sp ϖ k x₀ hx₀ κ).2 ⟨m₁, hm₁, m₂, hm₂, Ps.inj ?_⟩
     rw [map_mul, map_mul, e₁, e₂, ← mul_assoc, ← mul_assoc, ← hγe, mul_inv_cancel, one_mul]
 
 end GlobalTheory.EigTransport

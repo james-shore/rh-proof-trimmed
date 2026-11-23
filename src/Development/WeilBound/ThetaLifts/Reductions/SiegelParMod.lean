@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
+import Formalism.LocalToGlobal.ProjectiveLattices.UnifDom
 
 @[expose] public section
 
@@ -77,7 +78,7 @@ theorem ring_facts : IsTopologicalRing (AF F ⊗[F] E) ∧ T2Space (AF F ⊗[F] 
   exact ⟨GlobalTheory.Doubling.isTopologicalRing_tens, e.isEmbedding.t2Space, e.isClosedEmbedding.locallyCompactSpace,
     e.isEmbedding.secondCountableTopology⟩
 
-theorem tr_RE : IsTopologicalRing (AF F ⊗[F] E) := ring_facts.1
+alias tr_RE := _root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.isTopRing
 theorem t2_space_adele_tensor : T2Space (AF F ⊗[F] E) := ring_facts.2.1
 theorem lc_RE : LocallyCompactSpace (AF F ⊗[F] E) := ring_facts.2.2.1
 theorem sc_RE : SecondCountableTopology (AF F ⊗[F] E) := ring_facts.2.2.2
@@ -191,15 +192,6 @@ theorem conjC_mul (b c : G) : conjC (b * c) = (conjC c).trans (conjC b) := by
 
 end Conj
 
-theorem sum_castLE {R : Type} [AddCommMonoid R] {k r : ℕ} (hk : k ≤ r) (g : Fin r → R)
-    (hg : ∀ l : Fin r, k ≤ l.val → g l = 0) : ∑ l, g l = ∑ l : Fin k, g (Fin.castLE hk l) := by
-  let e : Fin k ↪ Fin r := ⟨Fin.castLE hk, Fin.castLE_injective hk⟩
-  have h1 := Finset.sum_map Finset.univ e g
-  rw [show (∑ l : Fin k, g (Fin.castLE hk l)) = ∑ x ∈ Finset.univ.map e, g x from h1.symm]
-  refine (Finset.sum_subset (Finset.subset_univ _) fun l _ hl => hg l ?_).symm
-  by_contra h'
-  exact hl (Finset.mem_map.2 ⟨⟨l.val, by omega⟩, Finset.mem_univ _, Fin.ext rfl⟩)
-
 theorem gram_colL {k : ℕ} (hk : k ≤ r) {R : Type} [CommRing R] (s : R →+* R) {m : ℕ} (A : Matrix (Fin n) (Fin r) R)
     (J' : Matrix (Fin n) (Fin n) R) (B : Matrix (Fin n) (Fin m) R) :
     cT s (colK hk A) * J' * B = (cT s A * J' * B).submatrix (Fin.castLE hk) id := by
@@ -217,7 +209,7 @@ theorem colK_of_minPar {k : ℕ} (hk : k ≤ r) {R : Type} [CommRing R] {M : Mat
   rw [mul_colK, e]
   ext i j
   simp only [colK, Matrix.submatrix_apply, id, Matrix.mul_apply]
-  exact sum_castLE hk _ fun l hl => by
+  exact _root_.Formalism.L2.Pj.sum_castLE hk _ fun l hl => by
     have hz : B l (Fin.castLE hk j) = 0 := hB (by have := j.2; rw [Fin.lt_iff_val_lt_val]; simp; omega)
     rw [hz, mul_zero]
 
@@ -255,7 +247,7 @@ theorem minPar_of_eich {k : ℕ} (hk : k ≤ r) {R : Type} [CommRing R] (A : Mat
     congr 1
     ext i m
     simp only [Matrix.mul_apply, Matrix.of_apply, colK, Matrix.submatrix_apply, id]
-    rw [sum_castLE hk (fun l => A i l * if hl : l.val < k then C ⟨l.val, hl⟩ m else 0) fun l hl => by
+    rw [_root_.Formalism.L2.Pj.sum_castLE hk (fun l => A i l * if hl : l.val < k then C ⟨l.val, hl⟩ m else 0) fun l hl => by
       rw [dite_eq_right (by omega), mul_zero]]
     refine Finset.sum_congr rfl fun l _ => ?_
     rw [dite_eq_left (by simp)]

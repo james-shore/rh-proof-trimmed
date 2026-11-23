@@ -104,8 +104,6 @@ theorem ordL_neg' (x : L) (hx : x ≠ 0) : ordL (-x) = ordL x := by
   have := WithZero.exp_injective h1
   omega
 
-theorem ordL_one' : ordL (1 : L) = 0 := by simp [ordL]; rfl
-
 theorem isBorel_root (hσ : ∀ x, σ (σ x) = x) (a : ℕ) (h : 2 * (a + 2) ≤ n) (x : L) (hx : x ≠ 0) :
     IsBorelU (rootHom σ hσ a h (betaU x hx)) := by
   intro i j hji
@@ -199,7 +197,7 @@ theorem sR_uR_factor : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicat
       have hkn : k.val < n := by omega
       rw [dite_eq_left hkn, diag_other hU.1 a h x hx ⟨k.val, hkn⟩ (by simpa using k.2)
         (fun e => hk.1 (Fin.ext (by simpa [hi] using e)))
-        (fun e => hk.2 (Fin.ext (by simpa [hj] using e))), ordL_one']
+        (fun e => hk.2 (Fin.ext (by simpa [hj] using e))), _root_.Formalism.UG.P.fSatake_ord_one]
       simp
   · simp only [sR, uR, ← map_mul]
     exact congrArg _ (wU_mul_nU x hx)

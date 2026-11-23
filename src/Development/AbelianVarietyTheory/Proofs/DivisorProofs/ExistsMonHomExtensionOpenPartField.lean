@@ -74,18 +74,6 @@ instance flat_bc (K : Type) [Field K] : Flat (bc K) := by
 instance surjective_bc (K : Type) [Field K] : Surjective (bc K) :=
   ⟨Function.surjective_to_subsingleton _⟩
 
-theorem isPullback_map_left {S T : Scheme.{0}} (φ : T ⟶ S) {X Y : Over S} (u : X ⟶ Y) :
-    IsPullback ((Over.pullback φ).map u).left (pullback.fst X.hom φ) (pullback.fst Y.hom φ) u.left := by
-  refine IsPullback.of_right (h₁₂ := pullback.snd Y.hom φ) (v₁₃ := φ) (h₂₂ := Y.hom) ?_ ?_
-    (IsPullback.of_hasPullback Y.hom φ).flip
-  · have e1 : ((Over.pullback φ).map u).left ≫ pullback.snd Y.hom φ = pullback.snd X.hom φ :=
-      Over.w ((Over.pullback φ).map u)
-    have e2 : u.left ≫ Y.hom = X.hom := Over.w u
-    rw [e1, e2]
-    exact (IsPullback.of_hasPullback X.hom φ).flip
-  · simp only [Over.pullback_map_left]
-    exact pullback.lift_fst _ _ _
-
 variable {K : Type} [Field K]
 
 theorem map_injective {X Y : Over (Sp K)} {u v : X ⟶ Y}
@@ -93,7 +81,7 @@ theorem map_injective {X Y : Over (Sp K)} {u v : X ⟶ Y}
   have : Epi (pullback.fst X.hom (bc K)) := Flat.epi_of_flat_of_surjective _
   ext1
   apply (cancel_epi (pullback.fst X.hom (bc K))).1
-  rw [← (isPullback_map_left (bc K) u).w, ← (isPullback_map_left (bc K) v).w, h]
+  rw [← (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) u).w, ← (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) v).w, h]
 
 theorem map_mul' {X M : Over (Sp K)} [MonObj M] (a b : X ⟶ M) :
     (Over.pullback (bc K)).map (a * b) = (Over.pullback (bc K)).map a * (Over.pullback (bc K)).map b :=
@@ -137,13 +125,13 @@ theorem surjective_mul {K : Type} [Field K] (H V : Over (Sp K)) [GrpObj H] (hH :
   have : IsIntegral ((Over.pullback (bc K)).obj H).left :=
     isIntegral_of_smooth_of_geometricallyConnected ((Over.pullback (bc K)).obj H).hom
   have hj' : IsOpenImmersion ((Over.pullback (bc K)).map j).left :=
-    MorphismProperty.of_isPullback (isPullback_map_left (bc K) j).flip inferInstance
+    MorphismProperty.of_isPullback (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) j).flip inferInstance
   have hV' : Nonempty ((Over.pullback (bc K)).obj V).left := by
     obtain ⟨v⟩ := ‹Nonempty V.left›
     obtain ⟨w, -⟩ := (pullback.fst V.hom (bc K)).surjective v
     exact ⟨w⟩
   have hflat : Flat ((Over.pullback (bc K)).map ((fst V V ≫ j) * (snd V V ≫ j))).left :=
-    MorphismProperty.of_isPullback (isPullback_map_left (bc K) _).flip (flat_mul H V j)
+    MorphismProperty.of_isPullback (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) _).flip (flat_mul H V j)
   have htr : ∀ (a x : 𝟙_ (Over (Sp (AlgebraicClosure K))) ⟶ (Over.pullback (bc K)).obj H),
       x ≫ (GlobalTheory.SS.transl a).hom = a * x := fun a x =>
     (GlobalTheory.GenericHom.point_comp_mul x a (𝟙 _)).trans (by rw [Category.comp_id])
@@ -180,12 +168,12 @@ theorem surjective_mul {K : Type} [Field K] (H V : Over (Sp K)) [GrpObj H] (hH :
   obtain ⟨yb, rfl⟩ := (pullback.fst H.hom (bc K)).surjective y
   obtain ⟨w, rfl⟩ := hrange yb
   exact ⟨pullback.fst _ (bc K) w, by
-    rw [← Scheme.Hom.comp_apply, ← (isPullback_map_left (bc K) _).w, Scheme.Hom.comp_apply]⟩
+    rw [← Scheme.Hom.comp_apply, ← (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) _).w, Scheme.Hom.comp_apply]⟩
 
 theorem exists_monHom_extension_of_field : ∀ (K : Type) [Field K] (H G V : Over (Sp K)) [GrpObj H] [GrpObj G], GlobalTheory.SS.SmConn H → GlobalTheory.SS.SmConn G → ∀ (j : V ⟶ H) (f : V ⟶ G), IsOpenImmersion j.left → Nonempty V.left → (∀ (Z : Over (Sp K)) (u₁ u₂ u₃ : Z ⟶ V), (u₁ ≫ j) * (u₂ ≫ j) = u₃ ≫ j → (u₁ ≫ f) * (u₂ ≫ f) = u₃ ≫ f) → ∃ F : H ⟶ G, IsMonHom F ∧ j ≫ F = f := by
   intro K _ H G V _ _ hH hG j f hj hV hm
   have hj' : IsOpenImmersion ((Over.pullback (bc K)).map j).left :=
-    MorphismProperty.of_isPullback (isPullback_map_left (bc K) j).flip hj
+    MorphismProperty.of_isPullback (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) j).flip hj
   have hV' : Nonempty ((Over.pullback (bc K)).obj V).left := by
     obtain ⟨v⟩ := hV
     obtain ⟨w, -⟩ := (pullback.fst V.hom (bc K)).surjective v
@@ -235,9 +223,9 @@ theorem exists_monHom_extension_of_field : ∀ (K : Type) [Field K] (H G V : Ove
   have hmF : m ≫ F = g := Over.OverMorphism.ext hF₀
   have hmb : Epi ((Over.pullback (bc K)).map m).left := by
     have : Flat ((Over.pullback (bc K)).map m).left :=
-      MorphismProperty.of_isPullback (isPullback_map_left (bc K) m).flip hflat
+      MorphismProperty.of_isPullback (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) m).flip hflat
     have : Surjective ((Over.pullback (bc K)).map m).left :=
-      MorphismProperty.of_isPullback (isPullback_map_left (bc K) m).flip hsurj
+      MorphismProperty.of_isPullback (_root_.GlobalTheory.isPullback_overPullback_map_left (bc K) m).flip hsurj
     exact Flat.epi_of_flat_of_surjective _
   have hPF : (Over.pullback (bc K)).map F = Fb := by
     ext1

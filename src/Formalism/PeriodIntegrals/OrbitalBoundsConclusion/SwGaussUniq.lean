@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem gauss_sum_unique : PI.SwBig.GaussUniq := PI.SwBig.GU.gaussUniq_main

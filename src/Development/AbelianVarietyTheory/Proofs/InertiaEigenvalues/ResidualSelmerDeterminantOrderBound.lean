@@ -190,7 +190,7 @@ theorem core (hT : TameQuotient) (hG : GalHyp bkP i s) (hF : FirstHalf i s) (hR 
     have := h _ (l_mem i)
     rwa [map_natCast] at this
   haveI : CharP k (X.l i) := (CharP.charP_iff_prime_eq_zero Fact.out).2 (hchar k hk)
-  have hloc := fun a : Fin R => GlobalTheory.T.tame_local_relation_dualNumber_cocycle hT D.host.E N.Om (X.l i) M (N.plOm.1 (P (.inr a))) (P (.inr a)) (N.plOm.2 _)
+  have hloc := fun a : Fin R => _root_.GlobalTheory.TameRel.tame_relation hT D.host.E N.Om (X.l i) M (N.plOm.1 (P (.inr a))) (P (.inr a)) (N.plOm.2 _)
     (fun h => (hAux.1 (.inr a) _ (over_refl _)).2.2.2.1 (X.twistExcludedPlaces_contains_residueChar i h)) hM (hAux.1 (.inr a) _ (over_refl _)).2.2.2.2.2
     (d (.inr a)) (hAux.2.2 _).1 ((hAux.2.2 _).2.2.2.2 _ (over_refl _) _ (N.plOm.2 _)) (φ a) (hPa a).2.1
   choose γ hγI hγd hγ using hloc
@@ -223,7 +223,7 @@ theorem core (hT : TameQuotient) (hG : GalHyp bkP i s) (hF : FirstHalf i s) (hR 
     choose z1 hz1 using fun j => Submodule.Quotient.mk_surjective _ (E (x1 j))
     simp only [LinearMap.comp_apply, ← hz0, ← hz1] at hx
     refine hc0 z0 (fun j => ?_) (fun j y hy => ?_) ?_
-    · refine GlobalTheory.T.relaxedResidualSelmer_mem_unrelaxed D N X bkP i s hF k hk M R P d φ φ' Q hM hP hQ (z0 j) (by rw [cl, hz0]; exact hEs _) fun a σ hσ => ?_
+    · refine _root_.GlobalTheory.ResUnr.unrelax D N X bkP i s hF k hk M R P d φ φ' Q hM hP hQ (z0 j) (by rw [cl, hz0]; exact hEs _) fun a σ hσ => ?_
       have h0 := congrFun (hx j).1 a
       rw [ht] at h0
       have hlc : IsLocallyConstant (z0 j).1 := (IsLocallyConstant.iff_continuous _).2 (z0 j).2.1
@@ -385,17 +385,17 @@ theorem resBound : TameLocal → ∀ (D : Formalism.BasicNotions.D7) (N : NData 
   · obtain ⟨K, _, _, b, Ψ, hK, rfl, h1, h2⟩ := core bkP i s hT.1 hG hF hR hM1 hP hQ _ hC zero_le_one hcor
     have h3 := GlobalTheory.T.not_X_pow_succ_dvd_det_of_first_order_kernel K a (4 * D.R.r * R) _ h1 (h2.trans (by nlinarith))
     rw [← AlgHom.mapMatrix_apply, ← AlgHom.map_det] at h3 hFd
-    obtain ⟨m, hm, hu⟩ := GlobalTheory.T.exists_unit_coeff_of_not_X_pow_dvd_line D N X i M _ K hK b _ (by omega) F _ hFd h3
+    obtain ⟨m, hm, hu⟩ := _root_.GlobalTheory.ResSel.exists_unit_coeff_of_not_dvd_line D N X i M _ K hK b _ (by omega) F _ hFd h3
     exact ⟨m, by omega, hu⟩
   · by_cases ha : a = 0
     · exact Or.inl ha
     obtain ⟨K, _, _, b, Ψ, hK, rfl, h1, h2⟩ := core bkP i s hT.1 hG hF hR hM1 hP hQ _ hC le_rfl hcor
-    obtain ⟨p, q, h3⟩ := GlobalTheory.T.exists_not_X_pow_dvd_adjugate_of_first_order_kernel K a (2 * D.R.r * R) _ h1 h2 ha
+    obtain ⟨p, q, h3⟩ := _root_.GlobalTheory.exists_not_X_pow_dvd_adjugate_of_firstOrderKernel K a (2 * D.R.r * R) _ h1 h2 ha
     refine Or.inr ⟨p, q, fun F hFd => ?_⟩
     rw [← AlgHom.mapMatrix_apply, ← AlgHom.map_adjugate, AlgHom.mapMatrix_apply, Matrix.map_apply] at h3 hFd
     have e : 2 * (2 * D.R.r * R) = 4 * D.R.r * R := by ring
     rw [e] at h3
-    obtain ⟨m, hm, hu⟩ := GlobalTheory.T.exists_unit_coeff_of_not_X_pow_dvd_line D N X i M _ K hK b _ (by omega) F _ hFd h3
+    obtain ⟨m, hm, hu⟩ := _root_.GlobalTheory.ResSel.exists_unit_coeff_of_not_dvd_line D N X i M _ K hK b _ (by omega) F _ hFd h3
     exact ⟨m, by omega, hu⟩
 
 end GlobalTheory.ResOrder

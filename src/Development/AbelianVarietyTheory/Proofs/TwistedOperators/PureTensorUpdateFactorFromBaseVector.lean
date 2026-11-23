@@ -116,7 +116,7 @@ theorem change_factor : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfF
         (∏ᶠ (p) (_ : p ≠ q), ipO μ 𝓕 (x p) (heisO ψ S T (wAt p w) f₀)) *
           ipO μ 𝓕 (heisO ψ S T (wAt q u) f₀) (heisO ψ S T (wAt q w) f₀) := by
       intro u
-      obtain ⟨-, -, hpu⟩ := GlobalTheory.T.heisenberg_operator_pure_tensor_place_by_place D ψ θ S T sS sT ΛS ΛT f₀ μ 𝓕 hB hμ x f hfpure (wAt q u)
+      obtain ⟨-, -, hpu⟩ := _root_.GlobalTheory.PlaceTensorHeis.isPure_heisO D ψ θ S T sS sT ΛS ΛT f₀ μ 𝓕 hB hμ x f hfpure (wAt q u)
       obtain ⟨hfinu, hequ⟩ := hpu w
       rw [hequ, ← mul_finprod_cond_ne q hfinu]
       dsimp only

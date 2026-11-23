@@ -94,17 +94,6 @@ theorem l2ball_sq_mul_vol_le {n : ℕ} {x : V n} {s : ℝ} (u : V n → ℂ)
   · have hxy : x + y ∉ ball x s := by simpa [mem_ball, dist_eq_norm] using hy
     rw [Set.indicator_of_notMem hy, Set.indicator_of_notMem hxy]; simp
 
-theorem norm_fderiv_le_of_ball {n : ℕ} {p : V n} {ρ R M : ℝ} (hρ : 0 < ρ) (hρR : ρ < R)
-    (u : V n → ℂ) (hu : DifferentiableOn ℂ u (ball p R)) (hM : ∀ x ∈ ball p R, ‖u x‖ ≤ M) :
-    ‖fderiv ℂ u p‖ ≤ M / ρ := by
-  first
-  | exact @_root_.GlobalTheory.FrechetDerivativeBound.norm_fderiv_le_of_bounded
-  | exact _root_.GlobalTheory.FrechetDerivativeBound.norm_fderiv_le_of_bounded
-  | (apply _root_.GlobalTheory.FrechetDerivativeBound.norm_fderiv_le_of_bounded <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FrechetDerivativeBound.norm_fderiv_le_of_bounded <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FrechetDerivativeBound.norm_fderiv_le_of_bounded <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FrechetDerivativeBound.norm_fderiv_le_of_bounded ..)
-
 theorem l2_value_deriv_ball :
     ∀ (n : ℕ) (r : ℝ), 0 < r → ∃ C : ℝ, 0 ≤ C ∧ ∀ (p : V n) (u : V n → ℂ),
       DifferentiableOn ℂ u (ball p r) →
@@ -137,7 +126,7 @@ theorem l2_value_deriv_ball :
     intro x hx'
     have := Real.sqrt_le_sqrt (hx x hx')
     rwa [Real.sqrt_sq (norm_nonneg _)] at this
-  have hD := norm_fderiv_le_of_ball (ρ := r / 4) (by positivity) (by linarith) u
+  have hD := _root_.GlobalTheory.FrechetDerivativeBound.norm_fderiv_le_of_bounded (ρ := r / 4) (by positivity) (by linarith) u
     (hu.mono (ball_subset_ball (by linarith))) hMx
   have hD2 : ‖fderiv ℂ u p‖ ^ 2 ≤ 16 / r ^ 2 * (J / β) := by
     have := pow_le_pow_left₀ (norm_nonneg _) hD 2

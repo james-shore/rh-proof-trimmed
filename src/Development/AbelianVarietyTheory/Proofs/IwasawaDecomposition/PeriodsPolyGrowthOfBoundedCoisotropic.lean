@@ -112,7 +112,7 @@ theorem lam_polyGrowth_of_coisotropic : ∀ (n a g r : ℕ) (lam : (Fin n → �
       ∀ i j, τ s i j - τ s j i = ((f i ⬝ᵥ M *ᵥ f j : ℝ) : ℂ) := by
     intro s hs'
     obtain ⟨hli1, -, Hm, hH, hP, hMs⟩ := hs s hs'
-    have h6 := GlobalTheory.T.hermForm_im_real_combination_eq_dotProduct d r (lam s) M Hm hMs
+    have h6 := _root_.GlobalTheory.hermForm_im_real_comb d r (lam s) M Hm hMs
     have hEE : ∀ i j, (hermForm Hm (E s i) (E s j)).im = 0 := fun i j => by
       rw [hE]; exact (h6 _ _).trans (hee i j)
     have hFE : ∀ i j, (hermForm Hm (F s i) (E s j)).im = if i = j then 1 else 0 := fun i j => by

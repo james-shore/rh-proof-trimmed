@@ -86,12 +86,6 @@ theorem perp_top_eq_bot (S : ThetaSys o Ω) : S.perp ⊤ = ⊥ := by
   · have := ha' (Pi.single (Sum.inl i) 1)
     simpa [eStd, Pi.single_apply] using this
 
-theorem proj_eq_one {T : AddSubgroup S.Gam} (h : T = ⊥) : S.proj T 0 = 1 := by
-  subst h
-  unfold ThetaSys.proj
-  rw [finsum_unique, S.ρ_one _ (by rw [AddSubgroup.mem_bot.1 (Subtype.prop _), smul_zero])]
-  simp
-
 variable {ρ : S.Real} {M : RatModel o Ω} {U₀ : M.Z.Opens} {EE : M.Lat S.J}
 
 theorem exists_crd_ne_zero (hB : BaseFacts S M U₀ EE) (Q : Clos ρ M U₀ EE) {K : Type} [Field K]
@@ -121,7 +115,7 @@ theorem exists_crd_ne_zero (hB : BaseFacts S M U₀ EE) (Q : Clos ρ M U₀ EE) 
   refine ⟨_, Q.rel l K x' _ hw, fun h0 => hwi ?_⟩
   have hBm : ∀ a b, Q.B l a b ∈ M.O z := fun a => hB.zero z hc _
     (by rw [Q.basis l z hl]; exact Submodule.subset_span ⟨a, rfl⟩)
-    (by rw [proj_eq_one hT, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mulVec])
+    (by rw [_root_.GlobalTheory.ZH.TestInOpen.proj_bot hT, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mulVec])
   let B' : Matrix S.J S.J (M.O z) := fun a b => ⟨_, hBm a b⟩
   let C' : Matrix S.J S.J (M.O z) := fun a b => ⟨_, RatModel.valF_mem_O hl (Q.c l a b)⟩
   have h1 : C' * B' = 1 := by
@@ -157,7 +151,7 @@ theorem mem_G [ArithBase o Ω] (hB : BaseFacts S M U₀ EE) (Q : Clos ρ M U₀ 
     (Spec.preimage (x ≫ Q.P.hom ≫ M.s)).hom v hz (Or.inl hc) (Spec.map_preimage _).symm hv).2 (by
       obtain ⟨i, hi⟩ := Function.ne_iff.1 hv0
       refine ⟨i, ?_⟩
-      rw [proj_eq_one hT, Finset.sum_eq_single i]
+      rw [_root_.GlobalTheory.ZH.TestInOpen.proj_bot hT, Finset.sum_eq_single i]
       · simpa using hi
       · intro j _ hj
         simp [hj]

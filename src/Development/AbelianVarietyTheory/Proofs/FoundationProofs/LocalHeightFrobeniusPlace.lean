@@ -102,24 +102,10 @@ theorem mem_iff (v : Pl) (n : ℕ) : (n : 𝓞 ℚ) ∈ v.asIdeal ↔ normV v �
   rw [Nat.cast_mul]
   exact Ideal.mul_mem_right _ _ (Ideal.absNorm_mem _)
 
-theorem normV_prime (v : Pl) : (normV v).Prime := by
-  have h1 : 1 < normV v := by
-    rw [normV_eq]
-    exact NumberField.HeightOneSpectrum.one_lt_absNorm v
-  refine Nat.prime_def.2 ⟨h1, fun m hm => ?_⟩
-  obtain ⟨c, hc⟩ := hm
-  have h2 := (mem_iff v _).2 dvd_rfl
-  rw [hc, Nat.cast_mul] at h2
-  rcases v.isPrime.mem_or_mem h2 with h | h
-  · exact Or.inr (Nat.dvd_antisymm ⟨c, hc⟩ ((mem_iff v _).1 h))
-  · have h3 := Nat.dvd_antisymm (Dvd.intro_left m hc.symm) ((mem_iff v _).1 h)
-    rw [h3] at hc
-    exact Or.inl (Nat.eq_of_mul_eq_mul_right (by omega) (hc.symm.trans (one_mul _).symm))
-
 theorem not_mem_l {w : Pl} {n : ℕ} (hn : 1 ≤ n) (hw : l ^ n ∣ normV w - 1) : ((l : ℕ) : 𝓞 ℚ) ∉ w.asIdeal := by
   intro h
   have h1 := (mem_iff w l).1 h
-  have h2 : normV w = l := (Nat.prime_dvd_prime_iff_eq (normV_prime w) (Fact.out : l.Prime)).1 h1
+  have h2 : normV w = l := (Nat.prime_dvd_prime_iff_eq (_root_.GlobalTheory.Ord2.PrimeChar.normV_prime w) (Fact.out : l.Prime)).1 h1
   rw [h2] at hw
   have hl := (Fact.out : l.Prime).two_le
   have h3 : l ^ n ≤ l - 1 := Nat.le_of_dvd (by omega) hw
@@ -140,7 +126,7 @@ theorem eps_frob [IsAlgClosure ℚ Ω] {B : ValuationSubring Ω} {w : Pl} (hl : 
 
 theorem cg_norm {w : Pl} {n : ℕ} (hw : l ^ n ∣ normV w - 1) : Cg n ((normV w : ℕ) : Qbar l) 1 := by
   obtain ⟨k, hk⟩ := hw
-  have h0 : 1 ≤ normV w := (normV_prime w).one_lt.le
+  have h0 : 1 ≤ normV w := (_root_.GlobalTheory.Ord2.PrimeChar.normV_prime w).one_lt.le
   have e : ((normV w : ℕ) : Qbar l) - 1 = ((l : ℕ) : Qbar l) ^ n * (k : Qbar l) := by
     have : normV w = l ^ n * k + 1 := by omega
     rw [this]; push_cast; ring

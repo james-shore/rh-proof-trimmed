@@ -188,14 +188,6 @@ noncomputable def halfRowEquiv (hσ : Function.Involutive σ) (hΨ : ∀ τ, ¬ 
 
 end Rows
 
-section Coord
-
-variable {E : Type} [Field E] {Ψ : (E →+* ℂ) → Prop} {dim : (E →+* ℂ) → ℕ}
-  {p q : ℕ} (n : ℕ) (hΨ : ∀ τ, ¬ Ψ τ ↔ Ψ (ComplexEmbedding.conjugate τ))
-  (hp : ∀ τ, Ψ τ → dim τ = p) (hq : ∀ τ, Ψ τ → dim (ComplexEmbedding.conjugate τ) = q)
-
-end Coord
-
 section Host
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
@@ -212,18 +204,9 @@ theorem emb_rt_sq (τ : E →+* ℂ) : τ (H.rt : E) ^ 2 = -(H.d : ℂ) := by
   have := congrArg (fun a : 𝓞 E => τ (a : E)) H.rt_sq
   simpa using this
 
-theorem conjEmb_rt (τ : E →+* ℂ) : Tor.conjEmb τ (H.rt : E) = -τ (H.rt : E) := by
-  first
-  | exact @_root_.GlobalTheory.ConjugateEmbeddingSquareRoot.conjEmb_rt
-  | exact _root_.GlobalTheory.ConjugateEmbeddingSquareRoot.conjEmb_rt
-  | (apply _root_.GlobalTheory.ConjugateEmbeddingSquareRoot.conjEmb_rt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ConjugateEmbeddingSquareRoot.conjEmb_rt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ConjugateEmbeddingSquareRoot.conjEmb_rt <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ConjugateEmbeddingSquareRoot.conjEmb_rt ..)
-
 theorem not_mem_hostType_iff (τ : E →+* ℂ) :
     ¬ τ (H.rt : E) = H.rt0 ↔ Tor.conjEmb τ (H.rt : E) = H.rt0 := by
-  rw [conjEmb_rt]
+  rw [_root_.GlobalTheory.ConjugateEmbeddingSquareRoot.conjEmb_rt]
   have h := (emb_rt_sq H τ).trans H.sqrt_neg_disc_sq.symm
   constructor
   · intro hne

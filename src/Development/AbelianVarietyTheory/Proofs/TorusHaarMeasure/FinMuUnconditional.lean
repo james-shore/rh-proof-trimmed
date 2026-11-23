@@ -52,6 +52,6 @@ namespace GlobalTheory.DriftCovolume
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 theorem finMu_unconditional : ∀ (r : ℕ) (X : Data E r), FinMu X :=
-  GlobalTheory.ClosedFiniteMeasure.finMu_of_covolume GlobalTheory.T.exists_finite_measure_cover_unitary_lattice
+  GlobalTheory.ClosedFiniteMeasure.finMu_of_covolume _root_.GlobalTheory.FiniteCovolume.exists_finite_measure_cover
 
 end GlobalTheory.DriftCovolume

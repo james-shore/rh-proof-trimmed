@@ -67,7 +67,7 @@ theorem PositivityTheory.Rg.Bc.ArchbcB.B.archimedean_base_change_first : Positiv
       Polynomial.natDegree_map_eq_of_injective e.symm.injective _
     rw [h1, h2, Polynomial.resultant_map_map]
     simp
-  rw [PositivityTheory.BcbA.Ties.unit_product_indicator_twist E hE a b w hw Q₁ Q₂ hs₁ hs₂, hst₁, hst₂, hk, ← Rat.cast_mul, ← hid, Rat.cast_mul]
+  rw [_root_.GlobalTheory.BCT.UnitProd.stTw2_unit E hE a b w hw Q₁ Q₂ hs₁ hs₂, hst₁, hst₂, hk, ← Rat.cast_mul, ← hid, Rat.cast_mul]
   congr 1
   rw [hv]
   unfold delta absHalf
@@ -80,5 +80,4 @@ theorem PositivityTheory.Rg.Bc.ArchbcB.B.archimedean_base_change_first : Positiv
   push_cast
   rw [neg_eq_neg_one_mul, mul_zpow, ← _root_.inv_zpow', inv_neg_one]
 
-theorem PositivityTheory.Rg.Bc.ArchbcB.B.m1 : PositivityTheory.Rg.Bc.ArchbcB.B.M1 :=
-  PositivityTheory.Rg.Bc.ArchbcB.B.archimedean_base_change_first
+alias PositivityTheory.Rg.Bc.ArchbcB.B.m1 := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.archimedean_base_change_first

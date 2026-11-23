@@ -202,8 +202,7 @@ theorem continuous_bl (hn : ρ + p = n) {a : X → Matrix (Fin ρ) (Fin ρ) R} {
 
 end Blocks
 
-theorem continuous_adjR {a b : ℕ} : Continuous (adj : Mx D a b → Mx D b a) :=
-  (continuous_id.matrix_map GlobalTheory.AnnihBox.continuous_cA').matrix_transpose
+alias continuous_adjR := _root_.GlobalTheory.MixModel.continuous_adj
 
 theorem adjoint_symplectic_block_product (a b c d : Mx D n n) :
     (adj (blk4 a b c d : Mx D (n + n) (n + n)) * blk4 0 1 (-1) 0 * blk4 a b c d : Mx D (n + n) (n + n)) =

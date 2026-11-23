@@ -54,8 +54,8 @@ open GlobalTheory.Mum
 namespace GlobalTheory.Mum.PsiUnitAb
 
 theorem subset_abLocus_of_psiUnitOn : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D : DegData R (maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G], IsSemiAbelian G → Unif (maximalIdeal R) D A G → ∀ W : (Sp R).Opens, (∀ y, PsiUnitOn D.toPre y W) → (W : Set (Sp R)) ⊆ abLocus G := by
-  have hI1 := @GlobalTheory.T.torsion_fixed_unramified_complete_trait
-  have hI2 := @GlobalTheory.T.closedPoint_mem_abelianLocus_of_fixedTorsion
+  have hI1 := @_root_.GlobalTheory.UnramTorsPull.torsion_fixed_unramified
+  have hI2 := @_root_.GlobalTheory.FixedTorsionTrait.closedPoint_mem_abLocus_of_fixedTorsion
   intro R _ _ _ hR D A G _ _ hG U W hW x hx
   have := hR.1.1
   have := hR.2

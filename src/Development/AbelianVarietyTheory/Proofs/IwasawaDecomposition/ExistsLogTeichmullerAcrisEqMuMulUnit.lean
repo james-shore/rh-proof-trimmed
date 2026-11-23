@@ -169,10 +169,7 @@ theorem isUnit_nat_acris0 (l : ℕ) [Fact l.Prime] (a : ℕ) (ha : ¬ l ∣ a) :
   have := h.map ((algebraMap (Per.Ainf l) (Per.Acris0 l)).comp (Per.zA l))
   rwa [map_natCast] at this
 
-theorem algebraMap_acris (l : ℕ) [Fact l.Prime] (x : Per.Ainf l) :
-    algebraMap (Per.Ainf l) (Per.Acris l) x =
-      algebraMap (Per.Acris0 l) (Per.Acris l) (algebraMap (Per.Ainf l) (Per.Acris0 l) x) :=
-  GlobalTheory.RingIface.tower l x
+alias algebraMap_acris := _root_.GlobalTheory.RingIface.tower
 
 theorem factorial_mul_sum {P : Type} [CommRing P] (m : P) (c : ℕ → P)
     (h : ∀ k, ((k + 1 : ℕ) : P) * c k = m ^ k) (n : ℕ) :

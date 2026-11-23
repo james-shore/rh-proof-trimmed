@@ -72,9 +72,9 @@ theorem GlobalTheory.UPel.HT.exists_sqZero_lift_realising_ks : ∀ (p : ℕ) [Fa
   have h1 := GlobalTheory.T.crystalGluedHodgeGraphFiltration_hasComplement p D R b N hN hNp k t o₀ β ht φ hφ d f hf
   have h2 := GlobalTheory.T.mem_hodgeFiltration_iff_reduction_gluedFil_htObject p D R b N hN hNp k t o₀ β ht φ hφ d f hf
   have h3 := GlobalTheory.T.crystalGluedHodgeGraphFiltration_order_stable p D R b N hN hNp k t o₀ β ht φ hφ d f hf
-  have h4 := GlobalTheory.T.crystalGluedHodgeGraphFiltration_isotropic_polarisation p D R b N hN hNp k t o₀ β ht φ hφ d f hf
-  have h5 := GlobalTheory.T.crystalGluedHodgeGraphFiltration_lie_condition p D R b N hN hNp k t o₀ β ht φ hφ d f hf
-  have key := GlobalTheory.T.harrisTaylor_exists_squareZero_lift_of_filtration p D R b N hNp (TrivSqZeroExt k (Fin d → k)) k
+  have h4 := _root_.GlobalTheory.HTGlueIsoPol.glueFil_isotropic p D R b N hN hNp k t o₀ β ht φ hφ d f hf
+  have h5 := _root_.GlobalTheory.HTGlueLie.glueFil_lie p D R b N hN hNp k t o₀ β ht φ hφ d f hf
+  have key := _root_.GlobalTheory.UPel.HT.exists_sqZero_lift_of_fil p D R b N hNp (TrivSqZeroExt k (Fin d → k)) k
     (TrivSqZeroExt.fstHom k k (Fin d → k)).toRingHom hsurj (GlobalTheory.FODef.sqZero k (Fin d → k))
     ((algebraMap k (TrivSqZeroExt k (Fin d → k))).comp β) (spMap (algebraMap k (TrivSqZeroExt k (Fin d → k))) ≫ t) t htR ht₀ o₀ (GlobalTheory.HTGlue.glueFil o₀.A f)
   obtain ⟨o, m, hm⟩ := key h1 h2 h3 h4 h5

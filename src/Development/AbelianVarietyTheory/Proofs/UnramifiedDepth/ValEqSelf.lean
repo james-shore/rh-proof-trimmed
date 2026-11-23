@@ -234,14 +234,6 @@ omit [CharZero C] in
 theorem linCol_out (b : Fin n) (hb : ∀ y, pl y ≠ b) (j : Fin dd) : linCol pl u (b, j) = 0 := by
   simp [linCol, hb]
 
-omit [CharZero C] in
-theorem subst_zero_of_cc {σ τ : Type} [Finite σ] {f : MvPowerSeries σ C} (hf : constantCoeff f = 0) :
-    subst (fun _ : σ => (0 : MvPowerSeries τ C)) f = 0 := by
-  ext ν
-  have h0 : Van (∅ : Set τ) (subst (fun _ : σ => (0 : MvPowerSeries τ C)) f) :=
-    Van.subst Set.univ (fun _ => map_zero _) (fun _ _ ν _ => by simp) (van_univ hf)
-  exact h0 ν (by simp)
-
 theorem glue (ex : Pt C 1 dd) (hex : ∀ i, constantCoeff (ex i) = 0) (hl : PS C 1 dd) (hhl : constantCoeff hl = 0)
     (k : C) (F : Fin N → MvPowerSeries (Fin 2 × Fin dd) C) :
     subst (fun s : Fin n × Fin dd => subst (fun j : Fin dd => linCol pl u (s.1, j)) (un1 (ex s.2)))
@@ -338,9 +330,9 @@ theorem glue (ex : Pt C 1 dd) (hex : ∀ i, constantCoeff (ex i) = 0) (hl : PS C
         funext j
         show subst (fun i : Fin dd => linCol pl u (b, i)) (un1 (ex j)) = 0
         simp only [linCol_out pl u b hb']
-        exact subst_zero_of_cc (hex' j)
+        exact _root_.GlobalTheory.RowLaw.EndBlock.subst_zero' (hex' j)
       rw [h2]
-      exact subst_zero_of_cc hl'
+      exact _root_.GlobalTheory.RowLaw.EndBlock.subst_zero' hl'
     · intro ρ
 
       rw [constantCoeff_smul, map_sum, Finset.sum_eq_zero, smul_zero]

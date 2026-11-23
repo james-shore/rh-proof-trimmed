@@ -68,29 +68,29 @@ theorem member_bundles_large_unramified_exponents_alt : _root_.GlobalTheory.Fc.S
         (_root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension (_root_.GlobalTheory.Mem.LiteralAutomorphy.extensionWithAtProperty hL (_root_.GlobalTheory.HeightCounting.Up.extensionWithOrigin hL cDep) A) SExt.none (geoCl anyGeometry))) := by
   intro P hR hL cDep A hEv
   have sw := P.siegelWeilUnitaryConvergent2
-  have hA := _root_.GlobalTheory.T.compatibleSystem_member_hypotheses P.globalArtinReciprocity P.cMCurveGoodOutsidePrimeSt P.weberRayFieldSt
+  have hA := _root_.GlobalTheory.compatibleSystem_hypotheses_of_localInputs P.globalArtinReciprocity P.cMCurveGoodOutsidePrimeSt P.weberRayFieldSt
     P.harishChandraModules P.cuspRapidDecay P.casselmanWallach P.harishChandraFinite
     P.discreteSeriesClassification P.discreteSeriesCoverExists
     P.formalDegreeCompactDual sw
   have hPM : _root_.GlobalTheory.Mem.LiteralAutomorphy.MemberHypotheses := ⟨P.harishChandraAnalyticity, P.discreteSeriesClassification, P.cuspRapidDecay,
     P.harishChandraFinite, P.cuspTraceClass, P.dixmierMalliavinFactorisation, P.flathFactorisation,
     P.zelevinskyPolynomialRing, P.geometricLemma, P.greenCuspidal⟩
-  have hH := _root_.GlobalTheory.T.compatibleSystem_member_rationalWeights hPM P.harishChandraModules P.discreteSeriesCover P.casselmanWallach
+  have hH := _root_.GlobalTheory.Mem.member_hodgeHyp_of_localInputs_rationalWeights hPM P.harishChandraModules P.discreteSeriesCover P.casselmanWallach
     P.weilSiegelFormulaUnitary P.siegelWeilUnitarySchrodinger P.siegelEisensteinContinuation
     P.siegelEisensteinSimplePole P.unramifiedDoublingGL P.bernsteinZelevinskyFiniteness
     P.schurOrthogonalitySquareIntegrable hR
-  have hW := _root_.GlobalTheory.T.compatibleSystem_weightOne_saturated hA hH
-  have hM := _root_.GlobalTheory.T.member_multiplicatively_closed_alt P.harishChandraAnalyticity P.discreteSeriesClassification
+  have hW := _root_.GlobalTheory.HeightCounting.Up.weightOne_saturated_of_hypotheses hA hH
+  have hM := _root_.GlobalTheory.Mem.Top.Bl.MultQClose.multiplicative_closure_prime_mem_alt P.harishChandraAnalyticity P.discreteSeriesClassification
     P.cuspRapidDecay P.harishChandraFinite P.cuspTraceClass P.dixmierMalliavinFactorisation
     P.flathFactorisation P.zelevinskyPolynomialRing P.geometricLemma
     P.greenCuspidal hL (_root_.GlobalTheory.HeightCounting.Up.extensionWithOrigin hL cDep) SExt.none (geoCl anyGeometry)
-  obtain ⟨hE, -, -, hL', hN⟩ := _root_.GlobalTheory.T.hyps_e_third_layer_ser_n_of_geometric_galois P.litN P.toHypothesesX
+  obtain ⟨hE, -, -, hL', hN⟩ := _root_.GlobalTheory.MemberClose.exists_hyp_n_of_geometric_galois_compat P.litN P.toHypothesesX
   have hMember :=
     (_root_.GlobalTheory.Mem.Top.Bl.exists_baseLattice_of_prime_alt hA hE hH hW hL hN cDep hM).1
   exact ⟨hA.a18,
-    _root_.GlobalTheory.T.memberE_extensionWithAtProperty_of_evLgG hL _ _ _ A hEv hMember,
+    _root_.GlobalTheory.Mem.LiteralAutomorphy.memberE_extensionWithAtProperty_of_memberE hL _ _ _ A hEv hMember,
     _root_.GlobalTheory.T.compatibleSystem_weilBlock_ne_alt hA hH hPM hL _ _ A (fun _ _ _ _ _ _ _ _ _ _ _ _ _ x => ⟨x.1.1⟩)
-      (_root_.GlobalTheory.T.slot_mv_extension_with_origin_geo_cl hL cDep anyGeometry)⟩
+      (_root_.GlobalTheory.HeightCounting.Up.movable_prmR_nel_alt hL cDep anyGeometry)⟩
 end GlobalTheory.Fc.StageOneU
 end
 

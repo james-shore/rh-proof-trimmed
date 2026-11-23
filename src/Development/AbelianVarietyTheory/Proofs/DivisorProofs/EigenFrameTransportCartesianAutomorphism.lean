@@ -43,6 +43,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.CuspIso
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsoOverOfIsOpenImmersion
 import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEqAtAllEmbeddings
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GapGeSubKapBase
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.FramedPointsLiftToLevelCover
 
 @[expose] public section
 
@@ -72,17 +73,6 @@ section
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
   {X Y : Scheme.{0}} {t : SAB H Y} {p : X ⟶ Y} {G' : Over X} [GrpObj G'] {ψ : G'.left ⟶ t.G.left}
 
-theorem spMap_eps_alg {R : Type} [CommRing R] (a : R) :
-    spMap (epsMul a) ≫ spMap (algebraMap R (DualNumber R)) = spMap (algebraMap R (DualNumber R)) := by
-  rw [← Spec.map_comp]
-  congr 1
-  ext r <;> simp [epsMul]
-
-theorem spMap_fst_alg {R : Type} [CommRing R] :
-    spMap (TrivSqZeroExt.fstHom R R R).toRingHom ≫ spMap (algebraMap R (DualNumber R)) = 𝟙 (Sp R) := by
-  rw [← Spec.map_comp, ← Spec.map_id]
-  exact congrArg Spec.map (CommRingCat.hom_ext (RingHom.ext fun x => by simp [TrivSqZeroExt.algebraMap_eq_inl]))
-
 theorem cancel_g_ψ (hψ : IsPullback ψ G'.hom t.G.hom p) {b : X ⟶ X} {g : G'.left ⟶ G'.left}
     (hg : IsPullback g G'.hom G'.hom b) {T : Scheme.{0}} {u₁ u₂ : T ⟶ G'.left}
     (h₁ : u₁ ≫ G'.hom = u₂ ≫ G'.hom) (h₂ : u₁ ≫ g ≫ ψ = u₂ ≫ g ≫ ψ) : u₁ = u₂ :=
@@ -105,7 +95,7 @@ theorem isTan_trv (hG : IsGrpPullback G' t.G p ψ) {b : X ⟶ X} {g : G'.left �
   rw [trv_eq hG.1 g q w hw hw']
   have e : spMap (TrivSqZeroExt.fstHom R R R).toRingHom ≫ w = (1 : Over.mk q ⟶ G').left :=
     hG.1.hom_ext (by rw [Category.assoc, hw, hv.2]; exact grpPull_one hG (Over.mk q))
-      (by rw [Category.assoc, hw', ← Category.assoc, spMap_fst_alg, Category.id_comp]
+      (by rw [Category.assoc, hw', ← Category.assoc, _root_.GlobalTheory.Diag.fstHom_base, Category.id_comp]
           exact (Over.w (1 : Over.mk q ⟶ G')).symm)
   rw [← Category.assoc, e, one_g_ψ hG hgb q]
 
@@ -118,7 +108,7 @@ theorem trv_eig (hψ : IsPullback ψ G'.hom t.G.hom p) {act' : OAct (𝓞 E) G'}
   obtain ⟨w, hw, hw'⟩ := exists_lift hψ q hv
   have hwa : w ≫ (act'.act a).left = spMap (epsMul c) ≫ w :=
     hψ.hom_ext (by rw [Category.assoc, hact, ← Category.assoc, hw, he, Category.assoc, hw])
-      (by rw [Category.assoc, Over.w, hw', Category.assoc, hw', ← Category.assoc, spMap_eps_alg])
+      (by rw [Category.assoc, Over.w, hw', Category.assoc, hw', ← Category.assoc, _root_.GlobalTheory.FrameLift.eps_alg])
   rw [trv_eq hψ g q w hw hw']
   simp only [Category.assoc]
   rw [← hact a, ← reassoc_of% (hgc a), reassoc_of% hwa]
@@ -168,7 +158,7 @@ theorem trv_eigFrame : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H
   have htr : GlobalTheory.EqvTrans.trv hG.1 g q (w₀ ≫ ψ) = w' := (GlobalTheory.EqvTrans.trv_eq hG.1 g q w₀ rfl hw₀).trans hw₀g
   have hone : spMap (TrivSqZeroExt.fstHom R R R).toRingHom ≫ w₀ = (1 : Over.mk q ⟶ G').left :=
     GlobalTheory.EqvTrans.cancel_g_ψ hG.1 hgb.1
-      (by rw [Category.assoc, hw₀, ← Category.assoc, GlobalTheory.EqvTrans.spMap_fst_alg, Category.id_comp]
+      (by rw [Category.assoc, hw₀, ← Category.assoc, _root_.GlobalTheory.Diag.fstHom_base, Category.id_comp]
           exact (Over.w (1 : Over.mk q ⟶ G')).symm)
       (by rw [Category.assoc, hw₀g, hw'.2, GlobalTheory.EqvTrans.one_g_ψ hG hgb q])
   have hwt : IsTanAtG Y.t (q ≫ p) (w₀ ≫ ψ) :=
@@ -178,7 +168,7 @@ theorem trv_eigFrame : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H
       spMap (epsMul (φR (embK c τ a))) ≫ (w₀ ≫ ψ) := fun a => by
     have h0 : w₀ ≫ (act'.act a).left = spMap (epsMul (φR (embK c τ a))) ≫ w₀ :=
       GlobalTheory.EqvTrans.cancel_g_ψ hG.1 hgb.1
-        (by rw [Category.assoc, Over.w, hw₀, Category.assoc, hw₀, ← Category.assoc, GlobalTheory.EqvTrans.spMap_eps_alg])
+        (by rw [Category.assoc, Over.w, hw₀, Category.assoc, hw₀, ← Category.assoc, _root_.GlobalTheory.FrameLift.eps_alg])
         (by rw [Category.assoc, reassoc_of% (hgc a), hact a, ← Category.assoc w₀, ← Category.assoc (w₀ ≫ g),
               Category.assoc w₀, hw₀g, heig a, Category.assoc, hw₀g])
     rw [Category.assoc, ← hact a, ← Category.assoc, h0, Category.assoc]

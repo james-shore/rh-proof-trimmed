@@ -175,9 +175,9 @@ theorem good_local (F E : Type) [Field F] [NumberField F] [Field E] [NumberField
   let A : ι → Set (Fin 1 → Fin (M + 2) → Fv F v ⊗[F] E) := fun i => {y | ∃ y₀ ∈ P, y = scalT (c i) y₀}
   haveI := a8 (n + 1) (M + 2)
   have hlatM : MeasurableSet (latV b v : Set (Fin 1 → Fin (M + 2) → Fv F v ⊗[F] E)) :=
-    (GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hσ d b 1 (M + 2) v).2.1.measurableSet
+    (_root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hσ d b 1 (M + 2) v).2.1.measurableSet
   have hlatM' : MeasurableSet (latV b v : Set (Fin (n + 1) → Fin (M + 2) → Fv F v ⊗[F] E)) :=
-    (GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hσ d b (n + 1) (M + 2) v).2.1.measurableSet
+    (_root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hσ d b (n + 1) (M + 2) v).2.1.measurableSet
 
   have hinv : ∀ i, ∃ u : Fv F v ⊗[F] E, u * c i = 1 := fun i => by
     obtain ⟨x, hx⟩ := (c1 i).1

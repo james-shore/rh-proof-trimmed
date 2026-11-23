@@ -57,14 +57,6 @@ open BpJoin Formalism.FourierDecayAlt
 
 namespace GlobalTheory.BpDiscreteSeriesTwoInputs
 
-theorem thmBpAt_mono {P : M.Par} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-    [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq]
-    {p : KB.Pl P Wp Wq} {f : B.Mat P.k P.r → (Wq →L[ℂ] Wp)} {b C C' : ℝ} {n₀ p₀ : ℕ}
-    (hb : 1 ≤ b) (hC : C ≤ C') (h : TBB.ThmBpAt p f b C n₀ p₀) : TBB.ThmBpAt p f b C' n₀ p₀ := by
-  intro γ hγ hG
-  refine (h γ hγ hG).trans ?_
-  gcongr
-
 theorem pointwise_bound_discreteSeries : GlobalTheory.HCXi.BesselXiIntegrable → P5.ThmPActualCpt → ThmBpDS := by
   intro hXi hP Ch C₀ hC₀
   have hC : 0 ≤ 2 * |Ch| := by positivity
@@ -106,11 +98,11 @@ theorem pointwise_bound_discreteSeries : GlobalTheory.HCXi.BesselXiIntegrable �
   have hb : 1 ≤ b := by linarith
   have hgap := (hfam ν₀ (by omega)).2.2.1
   rw [← hν] at hgap
-  have hE := GlobalTheory.T.discreteSeries_KFinite_coeff_capelli_eigen_decay P.k P.r _ lam' (h / 2) R Wp Wq f hDS hgap hgok hf
-  have hexp := GlobalTheory.T.discreteSeries_coefficient_expansion_bound_ball' (2 * |Ch|) hC P Wp Wq p lam b bv ga h _ (2 * p₀ + n₀) ν₀ R f
+  have hE := _root_.GlobalTheory.CoefRegG.eigDec_of_isKFinCoefT P.k P.r _ lam' (h / 2) R Wp Wq f hDS hgap hgok hf
+  have hexp := _root_.GlobalTheory.discreteSeries_coefficient_expansion_bound_ball (2 * |Ch|) hC P Wp Wq p lam b bv ga h _ (2 * p₀ + n₀) ν₀ R f
     hN hN' hTb hTb' le_rfl (hν ▸ hDS) hf
-  have hreg := Formalism.FourierDecayAlt.P.regularity_at_place p f b _ _ (by linarith) hexp
-  refine thmBpAt_mono hb (le_max_left _ _) ?_
+  have hreg := _root_.Formalism.FourierDecayAlt.P.TBBx4.regularity_at_place_of_expansion p f b _ _ (by linarith) hexp
+  refine _root_.GlobalTheory.BpEigen.pointwise_bound_mono hb (le_max_left _ _) ?_
   exact heig P Wp Wq p f b _ _ n₀ p₀ lam lam' hSN (hcases n₀ hn1 hn2) hp1 hp2 hE hm1
     (fun s => by linarith [habs s]) hreg
 

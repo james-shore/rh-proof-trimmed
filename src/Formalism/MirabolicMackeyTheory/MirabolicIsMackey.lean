@@ -53,16 +53,9 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.EigenvalueLevelCeiling
 
-theorem idxMono : IdxMono := index_monotone
-theorem idxScaleIn : IdxScaleIn := index_scale_inclusion
-theorem idxCutLe : IdxCutLe := index_truncation_le
-theorem idxTransport : IdxTransport := index_transport
-theorem latInter : LatInter := lattice_intersection
-theorem threeForms : ThreeForms := three_forms
-theorem idxPsiGood : IdxPsiGood := idxPsiGood_of idxMono idxScaleIn idxCutLe latInter
-theorem lemmaGG : LemmaGG := good_index_GG
+theorem idxPsiGood : IdxPsiGood := idxPsiGood_of _root_.Formalism.EigenvalueLevelCeiling.index_monotone _root_.Formalism.EigenvalueLevelCeiling.index_scale_inclusion _root_.Formalism.EigenvalueLevelCeiling.index_truncation_le _root_.Formalism.EigenvalueLevelCeiling.lattice_intersection
 theorem mirabolicIsMackey : MirabolicIsMackey := mirabolic_is_mackey
-theorem onLocal : OnLocal := onLocal_of idxMono idxCutLe idxTransport latInter threeForms idxPsiGood lemmaGG
+theorem onLocal : OnLocal := onLocal_of _root_.Formalism.EigenvalueLevelCeiling.index_monotone _root_.Formalism.EigenvalueLevelCeiling.index_truncation_le _root_.Formalism.EigenvalueLevelCeiling.index_transport _root_.Formalism.EigenvalueLevelCeiling.lattice_intersection _root_.Formalism.EigenvalueLevelCeiling.three_forms idxPsiGood _root_.Formalism.EigenvalueLevelCeiling.good_index_GG
 theorem ramBasic : RamBasic := ramified_basic_bound
 
 end Formalism.EigenvalueLevelCeiling

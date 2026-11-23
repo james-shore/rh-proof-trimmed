@@ -43,23 +43,9 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-noncomputable section
-
 namespace Formalism.L2.Ker.Cd.IntegralLatticeDensity.TI
 
-open Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity hiding CMConjEmb CMTransitive DedekindFactor LinkChi LinkPer LinkThIndep LinkThU LinkThUFam ThetaNormIndependent theta_norm_independent_of_bounds th22U theta_norm_unitary_invariant_of_bounds
-
-open Polynomial NumberField Matrix
-
-theorem trace_isIntegral {E : Type*} [Field E] [NumberField E] (φ : E →+* ℂ) {n : ℕ}
-    (L : Submodule (𝓞 E) (Fin n → E)) (hfg : L.FG)
-    (hsp : Submodule.span E (L : Set (Fin n → E)) = ⊤)
-    (M : Matrix (Fin n) (Fin n) E) (hM : ∀ x ∈ L, M *ᵥ x ∈ L) : IsIntegral ℤ M.trace := by
-  first | exact Bl.general_b_fact_third_bis.goal1 .. | (apply Bl.general_b_fact_third_bis.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_third_bis.goal1 <;> assumption) | (apply @Bl.general_b_fact_third_bis.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_third_bis.goal1 <;> assumption) | (apply @Bl.general_b_fact_third_bis.goal1 <;> first | assumption | infer_instance) | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› φ n L hfg hsp M hM | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› φ n L hfg hsp M | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› φ n L hfg hsp | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› φ n L hfg | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› φ n L | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› φ n | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› φ | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› ‹_› | exact @Bl.general_b_fact_third_bis.goal1 E ‹_› | exact @Bl.general_b_fact_third_bis.goal1 E
-
 end Formalism.L2.Ker.Cd.IntegralLatticeDensity.TI
-
-end
 
 noncomputable section
 
@@ -149,7 +135,7 @@ theorem sE_hom_gen {N N' : ℕ} (L : Submodule (𝓞 D.host.E) (Fin N → D.host
     intro x hx
     rw [← Matrix.mulVec_mulVec]
     exact hBs_mem _ (hA x hx)
-  have h := trace_isIntegral D.host.φ₀ L hL.1 hL.2.1 (Bs * A) hM
+  have h := _root_.Bl.general_b_fact_third_bis.goal1 D.host.φ₀ L hL.1 hL.2.1 (Bs * A) hM
   have htr : (Bs * A).trace = sE D A B := by
     simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, sE, hBs, Matrix.of_apply]
     rw [Finset.sum_comm]

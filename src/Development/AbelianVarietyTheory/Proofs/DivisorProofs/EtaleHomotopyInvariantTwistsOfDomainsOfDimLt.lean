@@ -167,6 +167,6 @@ theorem hInv_of_domains_of_dim_lt : ∀ (q : ℕ) [NeZero q] (d : ℕ),
     refine key _ (fun p hp => ?_)
     rw [Set.Finite.mem_toFinset] at hp
     exact hp.1.1
-  exact GlobalTheory.T.etaleHomotopyInvariantTwists_of_closedCover q R (nilradical R) (nilradical R) (by simp) hq hred hred (by rwa [sup_idem])
+  exact _root_.GlobalTheory.EtC.ClosedCover.closedCover q R (nilradical R) (nilradical R) (by simp) hq hred hred (by rwa [sup_idem])
 
 end GlobalTheory

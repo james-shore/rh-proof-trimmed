@@ -110,7 +110,7 @@ theorem amp_eq_mass_phase : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' 
   intro D X Y u u' hS hk w F00 F'0 FP hZ hG hAt G c ν hν t₀ ρ U U' hmv hrel hpt
   have hG0 : t₀.G ≠ 0 := by
     rw [G_eq_gval]; exact fun h => hG ((gval_of_movesTo hmv).symm.trans h)
-  obtain ⟨-, T0, hT0, hform⟩ := GlobalTheory.T.orbital_integrals_terms_one_doubleCoset D X Y u u' hS ν hν t₀ hrel hG0 w hpt.symm
+  obtain ⟨-, T0, hT0, hform⟩ := _root_.GlobalTheory.CosetOrbital.coset_orbital_form D X Y u u' hS ν hν t₀ hrel hG0 w hpt.symm
   have hpU : psiInf (gS D) (sgUp U) ≠ 0 := by
     intro h; have := norm_psiInf (gS D) (sgUp U); rw [h, norm_zero] at this; exact zero_ne_one this
   have hpU' : psiInf (gS D) (sgUp U') ≠ 0 := by
@@ -128,7 +128,7 @@ theorem amp_eq_mass_phase : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' 
     obtain ⟨xm, hxm, -⟩ := hL.1 m hm.1
     obtain ⟨μR, K, hpin, hK, hOO⟩ := hform t n m xn xm ⟨hn, hm, hlin⟩ hxn hxm
     obtain ⟨-, -, -, -, -, hgrp⟩ :=
-      GlobalTheory.T.rational_unipotent_groups_lattices_global_coordinates D X Y u u' hS hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hmv
+      _root_.GlobalTheory.HL.GrpCoord.grp_coords D X Y u u' hS hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hmv
     obtain ⟨A, A', hA, hA', hnA, hmA', hmv'⟩ := hgrp t n m ⟨hn, hm, hlin⟩
     have hcos := GlobalTheory.T.flagTerm_invariants_const_on_rationalDoubleCoset D X Y u u' hS t₀ t n m hrel hG0 ⟨hn, hm, hlin⟩
     have hvol := GlobalTheory.T.automorphismCovolume_eq_latticeMass D X Y u u' hS hk w F00 F'0 FP hZ hG hAt G c t (ρ * n) (U * A) (U' * A')

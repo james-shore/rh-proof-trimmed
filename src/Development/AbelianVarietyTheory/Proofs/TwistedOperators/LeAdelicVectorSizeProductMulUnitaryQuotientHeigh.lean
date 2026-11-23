@@ -60,12 +60,9 @@ namespace GlobalTheory.SeenSize
 
 variable {D : D7}
 
-theorem mt_mul_mt_inv (V : HSp D) (g : GA D V) : Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V g⁻¹ = 1 := by
-  simp [Formalism.L2.Theta.mt, ← Units.val_mul, ← map_mul]
-
 theorem mulVec_seen (V : HSp D) (g : GA D V) (ξ : Fin V.rank → D.host.E) :
     Formalism.L2.Theta.mt V g *ᵥ seen V g ξ = fun i => incA D (ξ i) := by
-  rw [seen, mulVec_mulVec, mt_mul_mt_inv, one_mulVec]
+  rw [seen, mulVec_mulVec, _root_.GlobalTheory.MixModel.mt_mul_inv, one_mulVec]
 
 theorem htFin_inv (V : HSp D) (g : GA D V) (v : HeightOneSpectrum (𝓞 D.host.F)) :
     htFin D.host.F v (Formalism.UG.bc (compFin D.host.F D.host.E v) (matHom V g⁻¹)) =
@@ -275,9 +272,7 @@ end GlobalTheory.SeenSize
 namespace GlobalTheory.SeenSize
 variable {D : D7}
 
-theorem mt_mul (V : HSp D) (a b : GA D V) :
-    Formalism.L2.Theta.mt V (a * b) = Formalism.L2.Theta.mt V a * Formalism.L2.Theta.mt V b := by
-  simp [Formalism.L2.Theta.mt, map_mul, Units.val_mul]
+alias mt_mul := _root_.GlobalTheory.MixModel.mt_mul
 
 theorem exists_seen_mul {V : HSp D} {γ : GA D V} (hγ : γ ∈ GQ V) (g : GA D V) {ξ : Fin V.rank → D.host.E}
     (hξ : ξ ≠ 0) : ∃ η : Fin V.rank → D.host.E, η ≠ 0 ∧ seen V (γ * g) η = seen V g ξ := by
@@ -286,7 +281,7 @@ theorem exists_seen_mul {V : HSp D} {γ : GA D V} (hγ : γ ∈ GQ V) (g : GA D 
   have h2 : (fun i => incA D ((γ₀ *ᵥ ξ) i)) = Formalism.L2.Theta.mt V γ *ᵥ fun i => incA D (ξ i) := by
     rw [h1]; funext i; exact RingHom.map_mulVec (incA D) γ₀ ξ i
   have h3 : Formalism.L2.Theta.mt V γ⁻¹ * Formalism.L2.Theta.mt V γ = 1 := by
-    simpa using mt_mul_mt_inv V γ⁻¹
+    simpa using _root_.GlobalTheory.MixModel.mt_mul_inv V γ⁻¹
   refine ⟨γ₀ *ᵥ ξ, fun h => hξ ?_, ?_⟩
   · have h4 : Formalism.L2.Theta.mt V γ *ᵥ (fun i => incA D (ξ i)) = 0 := by
       rw [← h2, h]; funext i; exact map_zero _

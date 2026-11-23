@@ -46,6 +46,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Pi
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.PieriRules.TensRepB
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.PieriRules.WeylPos
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Weight
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.IsCompactInvariantOrthogonalInf
 
 @[expose] public section
 
@@ -57,22 +58,6 @@ open scoped InnerProductSpace
 namespace ReciprocityTheory.ChartRestriction.DS.HW
 
 open ReciprocityTheory.ChartRestriction.DS ReciprocityTheory.ChartRestriction.DS.S7
-
-theorem count_mem_kSpan_self {V : Type*} [AddCommGroup V] [Module ℂ V] {n : ℕ} (ε : Fin n → Bool)
-    (F : Fin n → Fin n → Module.End ℂ V) (x : V) : x ∈ Formalism.REAL.kSpan ε F x :=
-  Submodule.mem_sInf.mpr fun _ hS => hS.1
-
-theorem count_mem_khwSub_iff {W : Type*} [AddCommGroup W] [Module ℂ W] {n : ℕ} (ε : Fin n → Bool)
-    (E : Fin n → Fin n → Module.End ℂ W) (ν : Fin n → ℝ) (v : W) :
-    v ∈ khwSub ε E ν ↔ Formalism.REAL.KHighest ε E ν v := by
-  simp only [khwSub, Submodule.mem_inf, Submodule.mem_iInf, LinearMap.mem_ker]
-  simp only [LinearMap.sub_apply, LinearMap.smul_apply, sub_eq_zero, Formalism.REAL.KHighest,
-    Formalism.REAL.IsWeight]
-  constructor
-  · rintro ⟨h1, h2⟩
-    exact ⟨fun a => by simpa using h1 a, fun a b hab he => h2 a b ⟨hab, he⟩⟩
-  · rintro ⟨h1, h2⟩
-    exact ⟨fun a => by simpa using h1 a, fun a b h => h2 a b h.1 h.2⟩
 
 theorem count_eq_zero_of_orth {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V] {m : ℕ}
     (A : Fin m → Submodule ℂ V) (htop : (⨆ k, A k) = ⊤) (x : V)
@@ -157,14 +142,14 @@ theorem pieriCount_of_st (hc : CompRedStatement) (hr : KRepRelStatement) (ht : T
     rw [hcard1] at hle
     have hk : x k ∈ khwSub ε (tensAct (kunits T) (fun a b => dρ (Matrix.single a b 1)))
         (Λ + γ (idx k)) := by
-      rw [count_mem_khwSub_iff, ← hidx k]
+      rw [_root_.ReciprocityTheory.ChartRestriction.DS.HW.tensHW_mem_khwSub, ← hidx k]
       exact (hx k).2
     have hk' : x k' ∈ khwSub ε (tensAct (kunits T) (fun a b => dρ (Matrix.single a b 1)))
         (Λ + γ (idx k)) := by
-      rw [count_mem_khwSub_iff, hkk', ← hidx k']
+      rw [_root_.ReciprocityTheory.ChartRestriction.DS.HW.tensHW_mem_khwSub, hkk', ← hidx k']
       exact (hx k').2
     exact count_not_two_of_finrank_le_one _ hle hk hk' (hx k).1 (hx k').1
-      (horth k k' hne _ (count_mem_kSpan_self _ _ _) _ (count_mem_kSpan_self _ _ _))
+      (horth k k' hne _ (_root_.Formalism.REAL.mem_compactSpan_self _ _ _) _ (_root_.Formalism.REAL.mem_compactSpan_self _ _ _))
 
   have hpiece : ∀ (ν : Fin n → ℝ) (y : PiLp 2 (fun _ : ι => T.V)), y ≠ 0 →
       Formalism.REAL.KHighest ε (tensAct (kunits T) (fun a b => dρ (Matrix.single a b 1))) ν y →
@@ -175,7 +160,7 @@ theorem pieriCount_of_st (hc : CompRedStatement) (hr : KRepRelStatement) (ht : T
     apply hy0
     refine count_eq_zero_of_orth _ htop y fun k z hz => ?_
     exact Formalism.REAL.kOrth _ n ε _ ν (μ k) y (x k) hrelR hunitR hy (hx k).2 (hno k).symm y
-      (count_mem_kSpan_self _ _ _) z hz
+      (_root_.Formalism.REAL.mem_compactSpan_self _ _ _) z hz
   have hnn : ∀ i, 0 ≤ weylK ε (Λ + γ i) := by
     intro i
     by_cases hd : KDom ε (Λ + γ i)

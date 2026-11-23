@@ -69,8 +69,8 @@ theorem origin_primes : ∀ (A' : Type) [CommRing A'] [HenselianLocalRing A'] [I
     Q.comap (algebraMap (Polynomial A') E) = GlobalTheory.KeyOriginCut.originIdeal A' →
     (𝔭.map ((algebraMap (Polynomial A') (Localization.AtPrime Q)).comp Polynomial.C)).IsPrime := by
   intro A' _ _ _ 𝔭 _ E _ _ _ Q _ hQ
-  obtain ⟨S, _, _, _, _, f, hfi, hker⟩ := GlobalTheory.T.exists_normal_local_domain_over_henselian_prime A' 𝔭
-  obtain ⟨hXi, hOp, hOc, hOu⟩ := GlobalTheory.T.origin_ideal_unique_prime_over A' S f hfi
+  obtain ⟨S, _, _, _, _, f, hfi, hker⟩ := _root_.GlobalTheory.NormalLocal.exists_normal_local A' 𝔭
+  obtain ⟨hXi, hOp, hOc, hOu⟩ := _root_.GlobalTheory.PolyOrigin.polyOrigin A' S f hfi
   letI : Algebra (Polynomial A') (Polynomial S) := (Polynomial.mapRingHom f).toAlgebra
   haveI : Algebra.IsIntegral (Polynomial A') (Polynomial S) := ⟨hXi⟩
   have hmax : (maximalIdeal (Localization.AtPrime Q)).comap
@@ -80,11 +80,11 @@ theorem origin_primes : ∀ (A' : Type) [CommRing A'] [HenselianLocalRing A'] [I
     rw [IsScalarTower.algebraMap_eq (Polynomial A') E (Localization.AtPrime Q), ← Ideal.comap_comap,
       h0, hQ]
   haveI hloc : IsLocalRing (TensorProduct (Polynomial A') (Polynomial S) (Localization.AtPrime Q)) :=
-    GlobalTheory.T.isLocalRing_tensor_of_unique_prime_over (Polynomial A') (Polynomial S) (Localization.AtPrime Q) (GlobalTheory.KeyOriginCut.originIdeal S)
+    _root_.GlobalTheory.tensor_isLocalRing_of_unique_prime_over (Polynomial A') (Polynomial S) (Localization.AtPrime Q) (GlobalTheory.KeyOriginCut.originIdeal S)
       (by rw [hmax]; exact hOc) (by intro 𝔔 h1 h2; rw [hmax] at h2; exact hOu 𝔔 h1 h2)
-      (GlobalTheory.T.exists_sub_mem_maximalIdeal_etale_over_origin A' E Q hQ)
+      (_root_.GlobalTheory.OriginResidue.residue_origin A' E Q hQ)
   haveI hdom : IsDomain (TensorProduct (Polynomial A') (Polynomial S) (Localization.AtPrime Q)) :=
-    GlobalTheory.T.isDomain_tensor_atPrime_of_isLocalRing_of_etale (Polynomial A') (Polynomial S) E Q hloc
+    _root_.GlobalTheory.tensor_localization_atPrime_isDomain_of_isLocalRing_etale (Polynomial A') (Polynomial S) E Q hloc
   haveI : Module.Flat (Polynomial A') (Localization.AtPrime Q) :=
     Module.Flat.trans (Polynomial A') E (Localization.AtPrime Q)
   have hkerX : RingHom.ker (algebraMap (Polynomial A') (Polynomial S)) = 𝔭.map Polynomial.C := by
@@ -111,7 +111,7 @@ theorem origin_primes : ∀ (A' : Type) [CommRing A'] [HenselianLocalRing A'] [I
   have hg1 : ∀ y, g y = 0 → y ∈ 𝔭.map ((algebraMap (Polynomial A') (Localization.AtPrime Q)).comp Polynomial.C) := by
     intro y hy
     rw [hJ]
-    exact GlobalTheory.T.flat_tensor_kernel_mem_map_ideal (Polynomial A') (Polynomial S) (Localization.AtPrime Q) _ hkerX y hy
+    exact _root_.GlobalTheory.flat_one_tmul_eq_zero_mem_map (Polynomial A') (Polynomial S) (Localization.AtPrime Q) _ hkerX y hy
   refine ⟨?_, ?_⟩
   · intro htop
     have h1 := hg0 1 (by rw [htop]; exact Submodule.mem_top)

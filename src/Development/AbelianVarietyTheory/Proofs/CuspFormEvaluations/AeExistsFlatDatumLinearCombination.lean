@@ -58,11 +58,11 @@ theorem ae_exists_flat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   filter_upwards [GlobalTheory.T.ae_transcendental_point_nonvanishing K σ (Fin (nd X + 1) × Fin Xa.N), GlobalTheory.T.ae_coefficients_common_zeros_simple E r X Xa] with t hgen hsimple
 
   have hdom : ∃ C : ℝ, ∀ x ∈ X.dom, ∑ k, ‖Xa.w k x‖ ^ 2 ≤ C * ∑ i, ‖∑ j, t (i, j) * Xa.w j x‖ ^ 2 :=
-    GlobalTheory.T.theta_forms_bounded_by_generic_combinations E r X Xa K σ t hgen hR
+    _root_.GlobalTheory.Shares.forms_le_generic_comb E r X Xa K σ t hgen hR
   have hlow : ∃ ε c0 : ℝ, 0 < ε ∧ 0 < c0 ∧ ∀ x ∈ X.dom,
       ∑ i : Fin (nd X), ‖∑ j, t (i.succ, j) * Xa.w j x‖ ^ 2 < ε * ‖∑ j, t (0, j) * Xa.w j x‖ ^ 2 →
         c0 ≤ ∑ k, X.pnorm Xa.L (Xa.w k) x ^ 2 :=
-    GlobalTheory.T.theta_forms_not_small_where_combinations_vanish E r X Xa K σ t hgen hR
+    _root_.GlobalTheory.Shares.Low.forms_not_small E r X Xa K σ t hgen hR
   have hsim : ∀ x ∈ X.dom, ∑ j, t (0, j) * Xa.w j x ≠ 0 →
       (∀ k : Fin (nd X), ∑ j, t (k.succ, j) * Xa.w j x = 0) →
       (fderiv ℂ (fun z : V (nd X) => (WithLp.toLp 2 fun k =>

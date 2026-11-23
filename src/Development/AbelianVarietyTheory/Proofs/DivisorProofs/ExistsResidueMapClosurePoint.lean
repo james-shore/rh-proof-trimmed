@@ -136,7 +136,7 @@ theorem residueMap : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X]
     rw [hc]
     exact RingHom.congr_fun (fnOf_comp_algX q (i ⁻¹ᵁ ⊤) (gen_mem (x := genericPoint Z) trivial)) a
   · intro x h
-    have hs : i (genericPoint Z) ⤳ x := GlobalTheory.T.specializes_of_pointLocalRing_le_separated X x _ h
+    have hs : i (genericPoint Z) ⤳ x := _root_.GlobalTheory.specializes_of_locRing_le X x _ h
     obtain ⟨y, rfl⟩ : x ∈ Set.range i := by
       rw [hrange]; exact specializes_iff_mem_closure.mp hs
     have key : ∀ a : X.presheaf.stalk (i y),

@@ -68,16 +68,16 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.GradedWeylDivisibility
 
-theorem bidetMem : BideterminantMem := bideterminantMem
-theorem hwMem : HWMem := highestWeightVectorMem
+alias bidetMem := _root_.Formalism.GradedWeylDivisibility.bideterminantMem
+alias hwMem := _root_.Formalism.GradedWeylDivisibility.highestWeightVectorMem
 theorem hwNe : HWNe := highestWeightVectorNeZero
 theorem hwRowWeight : HWRowWeight := highestWeightVectorRowWeight
 theorem dualWeylSat : DualWeylSat := dualWeylModuleSaturated
 theorem dualWeylPoint : DualWeylPoint := dualWeylModuleMemIff
 theorem dualWeylRowStable : DualWeylRowStable := dualWeylModuleRowActionStable
-theorem rowDivStable : RowDivStable := dualWeylModuleRowDividedPowerStable
+alias rowDivStable := _root_.Formalism.GradedWeylDivisibility.dualWeylModuleRowDividedPowerStable
 theorem dualWeylRowGraded : DualWeylRowGraded := dualWeylModuleRowGraded
-theorem dualWeylMap : DualWeylMap := dualWeylModuleMap
+alias dualWeylMap := _root_.Formalism.GradedWeylDivisibility.dualWeylModuleMap
 theorem dualWeylIntRat : DualWeylIntRat := dualWeylModuleIntRat
 theorem weylLeDual : WeylLeDual := by
   intro R _ r n hn ν hν
@@ -87,18 +87,16 @@ theorem weylLeDual : WeylLeDual := by
   induction w with
   | nil => exact hwMem R r n hn ν hν
   | cons x w ih => exact rowDivStable R r n ν x.1 x.2.1 x.2.2 _ ih
-theorem dualWeylNonDom : DualWeylNonDom := dualWeylModuleNonDominant
+alias dualWeylNonDom := _root_.Formalism.GradedWeylDivisibility.dualWeylModuleNonDominant
 theorem bidetDominance : BideterminantDominance := bideterminantDominance
-theorem dualWeylMul : DualWeylMul := dualWeylModuleMul
-theorem hwRaise : HWRaise := highestWeightVectorRaising
+alias dualWeylMul := _root_.Formalism.GradedWeylDivisibility.dualWeylModuleMul
+alias hwRaise := _root_.Formalism.GradedWeylDivisibility.highestWeightVectorRaising
 theorem weylRowDivStable : WeylRowDivStable := weylModuleRowDividedPowerStable
-theorem rowNuSum : RowNuSum := rowPartSum
+alias rowNuSum := _root_.Formalism.GradedWeylDivisibility.rowPartSum
 theorem fockHerm : FockHerm := fischerInnerConjSymm_holds
 theorem fockPos : FockPos := fischerInnerPos
 theorem fockWeightOrth : FockWeightOrth := fischerInnerWeightOrthogonal_holds
-theorem fockSubAdj : FockSubAdj := fischerInnerSubstitutionAdjoint
 theorem fockRowAdj : FockRowAdj := fischerInnerRowActionAdjoint
-theorem domPow : DomPow := dominancePowerProduct_holds
-theorem fockDiagBound : FockDiagBound := fockDiagBound_of domPow
+theorem fockDiagBound : FockDiagBound := fockDiagBound_of _root_.Formalism.GradedWeylDivisibility.dominancePowerProduct_holds
 
 end Formalism.GradedWeylDivisibility

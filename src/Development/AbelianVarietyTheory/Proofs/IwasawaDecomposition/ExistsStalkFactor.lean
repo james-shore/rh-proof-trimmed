@@ -274,8 +274,7 @@ theorem eigFrame_of_basis (Z : Model Xo c β) {R : Type} [CommRing R] (φ : c.F 
   simp only [k]
   exact existsUnique_eq'
 
-theorem spMap_inj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
+alias spMap_inj := _root_.GlobalTheory.ZM.DenseFib.spMap_inj
 
 end GlobalTheory.ShFam.EigLoc
 

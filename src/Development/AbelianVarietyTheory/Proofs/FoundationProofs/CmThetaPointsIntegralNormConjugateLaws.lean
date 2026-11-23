@@ -63,9 +63,7 @@ open Formalism.MainNotions.GL3Theta
 
 variable {p : ℕ} [Fact p.Prime] (g : G1 p) {σ : Type*}
 
-theorem const_l : PowerSeries.constantCoeff g.l = 0 := by
-  rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
-  simp [GL3Theta.G1.l, flog]
+alias const_l := _root_.Formalism.MainNotions.Ext.CutA.l0
 
 theorem ex_l (h : g.Ok) : PowerSeries.subst g.l g.ex = PowerSeries.X := by
   obtain ⟨-, -, h0, h1⟩ := h

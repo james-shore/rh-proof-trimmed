@@ -60,10 +60,7 @@ noncomputable section
 namespace GlobalTheory.OneBasis.TabMap
 open GlobalTheory.FrameGen GlobalTheory.ConstFam GlobalTheory.FrameMove GlobalTheory.OneBasis.Calc
 
-theorem gs_comp {X Y Z : Scheme.{0}} (r : Z ⟶ Y) (q : Y ⟶ X) (z : Z) (U : X.Opens) (h : q (r z) ∈ U) (a : Γ(X, U)) :
-    gs (r ≫ q) z U a = (r.stalkMap z).hom (gs q (r z) U a) := by
-  rw [← gs_pull r q z U h a, gs_eq r z _ h, gs_eq q (r z) U h]
-  exact (Scheme.Hom.germ_stalkMap_apply r _ z h _).symm
+alias gs_comp := _root_.GlobalTheory.OneBasis.ThMove.gs_comp
 
 section
 variable {S S' : Scheme.{0}} {f : S' ⟶ S} {A : Over S} {A' : Over S'} [GrpObj A] [GrpObj A']
@@ -86,33 +83,6 @@ theorem exists_ptHom (gp : IsGrpPullback A' A f φ) (hh : h ≫ T.hom = T'.hom �
   rfl
 
 
-omit [GrpObj A] in
-theorem sval_all {L : LB A.left} {k : ℤ} {s : LB.Sec (LPow A L k T)} {q : T.left ⟶ (T ⊗ A).left} {p : T.left ⟶ A.left}
-    {e : LB.Gen (LB.LinComb L (Y := T.left) (K := Fin 1) (fun _ => p) (fun _ => k))} {c : Γ(T.left, ⊤)}
-    (H : ∀ z J, Good L z J → sval (φ := fun _ : Fin 1 => (snd T A).left) (ε := fun _ => k) s q z J =
-      gs (𝟙 _) z ⊤ c * (val e (𝟙 _) z J).val) {Z : Scheme.{0}} (r : Z ⟶ T.left) (z : Z) {J} (hJ : Good L z J) :
-    sval (φ := fun _ : Fin 1 => (snd T A).left) (ε := fun _ => k) s (r ≫ q) z J = gs r z ⊤ c * (val e r z J).val := by
-  have hJ' : Good L (r z) (fun ψ => J (r ≫ ψ)) := fun ψ => by
-    have := hJ (r ≫ ψ)
-    simpa using this
-  have H1 := H (r z) (fun ψ => J (r ≫ ψ)) hJ'
-  rw [sval_of s q (r z) _ (fun _ => J (r ≫ q ≫ (snd T A).left)) (fun _ => rfl),
-    val_of e (𝟙 _) (r z) _ (fun _ => J (r ≫ p)) (fun _ => by simp)] at H1
-  have hm := hJ.mem (fun _ : Fin 1 => (snd T A).left) (r ≫ q)
-  have hm' := hJ.mem (fun _ : Fin 1 => p) r
-  rw [sval_of s (r ≫ q) z J (fun _ => J (r ≫ q ≫ (snd T A).left)) (fun _ => by simp),
-    val_of e r z J (fun _ => J (r ≫ p)) (fun _ => rfl)]
-  simp only [Category.assoc] at hm
-  refine (gs_comp r q z _ hm _).trans ?_
-  erw [H1]
-  rw [map_mul]
-  congr 1
-  · have := gs_comp r (𝟙 _) z ⊤ trivial c
-    simpa using this.symm
-  · erw [← gs_unit r z _ hm', ← gs_unit (𝟙 _) (r z) _ (by simpa using hm')]
-    have := gs_comp r (𝟙 _) z (L.wchart (fun _ => p) fun _ => J (r ≫ p)) hm' (e.s fun _ => J (r ≫ p)).val
-    rw [Category.comp_id] at this
-    exact this.symm
 end
 
 section
@@ -168,7 +138,7 @@ theorem frame_move {ρ ρ'} (R : RigPull P'.A P.A f φ w ρ' ρ) {x : T ⟶ P.A}
   have c2 : (h ≫ (ptSecT P.A x).left) ≫ (snd T P.A).left = (ptSecT P'.A x').left ≫ (snd T' P'.A).left ≫ φ := by
     rw [Category.assoc, ps, ← Category.assoc, ps, hx]
   have h1 := hs _ (ptSecT P'.A x').left (h ≫ (ptSecT P.A x).left) c1 c2 z J J' hJ hJ'
-  have h2 := sval_all hval h z hJ
+  have h2 := _root_.GlobalTheory.OneBasis.ThMove.sval_all hval h z hJ
   rw [ps] at h1
   rw [h1, val_powFrame, ht z J J' hJ hJ'] at h2
   rw [val_powFrame]

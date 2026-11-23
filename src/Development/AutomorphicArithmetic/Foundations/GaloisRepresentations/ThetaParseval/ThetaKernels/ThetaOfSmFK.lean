@@ -65,7 +65,7 @@ theorem GlobalTheory.ThetaOfSmF.theta_of_smF_k : ∀ (F E : Type) [Field F] [Num
         IsThetaFunOF σ JS JT ξ₀ B.ψ f.1 := by
   intro F E _ _ _ _ _ σ B hB nS nT JS JT _ _ ξ₀ _ _ θ hθ ι hι hψ f hF hl
   refine ⟨f.2, hl, f.1.continuous, fun k L hL hL0 w => ?_⟩
-  obtain ⟨lam, hlc, hlam⟩ := GlobalTheory.HeisLineDiffF.exists_log (_root_.GlobalTheory.T.standard_additive_character_sign F E σ B hB)
+  obtain ⟨lam, hlc, hlam⟩ := GlobalTheory.HeisLineDiffF.exists_log (_root_.GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood_k F E σ B hB)
   let P : (Fin k → ℝ) →+ (IxF F nS nT → ℂ) :=
     { toFun := fun t => piWF θ (L t)
       map_zero' := by

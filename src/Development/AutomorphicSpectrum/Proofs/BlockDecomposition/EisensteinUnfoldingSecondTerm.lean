@@ -83,7 +83,7 @@ theorem unfold2 : Unfold2 := by
     rw [hT]
     dsimp only
     rw [← e.tsum_eq]
-    exact tsum_congr fun pq => GlobalTheory.T.block_weil_action_theta_unfolding D ψ hψ V r s b.1 b.2 a ha Φ y₁ y₂ _ hx hy pq.1 pq.2
+    exact tsum_congr fun pq => _root_.GlobalTheory.CompanionTheory.EisUnfold.Summand.summand D ψ hψ V r s b.1 b.2 a ha Φ y₁ y₂ _ hx hy pq.1 pq.2
   have hper : ∀ γ ∈ ratMx D V.rank (r + s), ∀ y, T (γ + y) = T y := by
     intro γ hγ y
     obtain ⟨g, rfl⟩ := mem_ratMx.1 hγ

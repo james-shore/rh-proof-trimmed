@@ -57,14 +57,8 @@ variable {D : D7} {X : HidaSetting D} {θ : ℝ} (C : Choice X θ) (u u' : D.wha
 def g0 (γ : X.B.I.Ginf) (τ : D.what₂.Tau) : Formalism.QuantumDeterminants.Mt D.R.k D.R.rS :=
   Formalism.L2.SG.RealObj.trG (C.Q τ) (C.Qi τ) (γ (vOf X τ))
 
-private theorem rdE_pos_rank_point_counts (D : D7) : 0 < D.host.rdE := by
-  simp only [Formalism.BasicNotions.Host.rdE]
-  apply Real.rpow_pos_of_pos
-  rw [abs_pos]
-  exact_mod_cast NumberField.discr_ne_zero (K := D.host.E)
-
 private theorem frS_eq_inv_rdE (D : D7) : frS D = ((D.host.rdE : ℝ) : ℂ)⁻¹ := by
-  have hne := (rdE_pos_rank_point_counts D).ne'
+  have hne := (_root_.Formalism.MainNotions.S.rdE_pos D).ne'
   have hpi := Real.pi_ne_zero
   have h : D.host.ka / (2 * Real.pi) = D.host.rdE⁻¹ := by
     simp only [Formalism.BasicNotions.Host.ka, Formalism.BasicNotions.Host.v]
@@ -73,7 +67,7 @@ private theorem frS_eq_inv_rdE (D : D7) : frS D = ((D.host.rdE : ℝ) : ℂ)⁻�
 
 private theorem rhoF_eq_frS_pow (D : D7) (a : Fin (D.R.rS + 1)) :
     ((rhoF D a : ℝ) : ℂ) = frS D ^ (D.R.rS - (a : ℕ)) := by
-  have hpos := rdE_pos_rank_point_counts D
+  have hpos := _root_.Formalism.MainNotions.S.rdE_pos D
   have ha : (a : ℕ) ≤ D.R.rS := Nat.lt_succ_iff.mp a.isLt
   rw [frS_eq_inv_rdE]
   simp only [rhoF]
@@ -125,7 +119,7 @@ private theorem ptEntry_locBlocksFrom_eq (D : D7) (τ : D.what₂.Tau) :
       ptEntry (locBlocksFrom D (rhoReal D) τ A L) i j =
         ((D.host.rdE ^ (-((D.R.rS : ℤ) - ((A + i : ℕ) : ℤ))) *
           D.host.rdE ^ (-((D.R.rS : ℤ) - ((A + j : ℕ) : ℤ))) : ℝ) : ℂ) * plEmb D τ (ptEntry L i j) := by
-  have hne : D.host.rdE ≠ 0 := (rdE_pos_rank_point_counts D).ne'
+  have hne : D.host.rdE ≠ 0 := (_root_.Formalism.MainNotions.S.rdE_pos D).ne'
   intro L
   induction L with
   | nil =>
@@ -176,7 +170,7 @@ theorem zhat_conjugator_eq_point (w : Point D.host.E (D.R.rS + 1)) (γ : X.B.I.G
 
 theorem frS_mul_rd (D : D7) : frS D * (D.host.rdE : ℂ) = 1 := by
   rw [frS_eq_inv_rdE]
-  exact inv_mul_cancel₀ (by exact_mod_cast (rdE_pos_rank_point_counts D).ne')
+  exact inv_mul_cancel₀ (by exact_mod_cast (_root_.Formalism.MainNotions.S.rdE_pos D).ne')
 
 theorem rho_eq (D : D7) (b : Fin (D.R.rS + 1)) :
     ((rhoF D b : ℝ) : ℂ) = ((D.host.rdE : ℂ) ^ (D.R.rS - b.val))⁻¹ := by

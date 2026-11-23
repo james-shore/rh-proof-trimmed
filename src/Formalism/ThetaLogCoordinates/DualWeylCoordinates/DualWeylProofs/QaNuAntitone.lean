@@ -143,7 +143,7 @@ def qa_g {n : ℕ} [NeZero n] (m : Fin n × Fin n →₀ ℕ) (k : ℤ) (p : Fin
 
 lemma qa_g_le_iff {n : ℕ} [NeZero n] (m : Fin n × Fin n →₀ ℕ) (k : ℤ) (p : Fin n)
     (hk : k ≤ (∑ b : Fin n, m (b, p) : ℕ)) (a : Fin n) : qa_g m k p ≤ a ↔ k ≤ qa_S m a p := by
-  have hl := qa_lower_iff (fun a : Fin n => (qa_S m a p : ℤ) < k)
+  have hl := _root_.Bl.general_b_fact_second_ter.goal1 (fun a : Fin n => (qa_S m a p : ℤ) < k)
     (fun q q' hqq hq => lt_of_le_of_lt (by exact_mod_cast qa_S_mono m p hqq) hq)
   have hn : (univ.filter fun a : Fin n => (qa_S m a p : ℤ) < k).card < n := by
     have h1 := hl (lastIdx n)

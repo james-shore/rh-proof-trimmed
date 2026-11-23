@@ -192,7 +192,7 @@ theorem hodgeChartBounds_of_schur_lemW (hS : ∀ (k l : ℕ) (a bt : Matrix (Fin
     have hgn0 : 0 ≤ gnorm (poincareGram a z) ξ := gnorm_nonneg _ _
     obtain ⟨hξk, hξi⟩ := hG ξ
     have hξ : ‖ξ‖ ≤ 2 * gnorm (poincareGram a z) ξ := (pi_norm_le_iff_of_nonneg (by positivity)).2 hξk
-    rw [conn_hodgeGram ha hP hzp.1 ξ, (GlobalTheory.T.hodgeMetricGramMatrix_local_holomorphic_imPart n a g rk ha τ₀ B hP z hzp).2.1 ξ]
+    rw [conn_hodgeGram ha hP hzp.1 ξ, (_root_.GlobalTheory.HodgeGramLocal.hodgeGram_local n a g rk ha τ₀ B hP z hzp).2.1 ξ]
     have ht'0 : ∀ i, 0 < (fun i => tlog (z (Fin.castLE ha i)) - T₀) i := fun i => by
       simp only; linarith [ht z hz i]
     have hWY : ∀ i x, ‖((fun i => tlog (z (Fin.castLE ha i)) - T₀) i • ((imPeriod ha τ₀ B z)⁻¹ *

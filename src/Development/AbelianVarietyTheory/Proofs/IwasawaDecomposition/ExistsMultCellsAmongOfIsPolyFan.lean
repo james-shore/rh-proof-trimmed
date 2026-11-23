@@ -115,7 +115,7 @@ theorem perModule {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E
     have := LinearMap.congr_fun₂ hsum (e.symm y) (e.symm z)
     simpa [LinearMap.sum_apply, γ'] using this
   refine ⟨e, fun i => ?_⟩
-  obtain ⟨k, a, hk, hka⟩ := GlobalTheory.T.cell_generators_smul_mem_other_cellCone H.bar φ δ γ' c h hγ' hc hsum' i
+  obtain ⟨k, a, hk, hka⟩ := _root_.GlobalTheory.PolFan.exists_smul_eq_sum_of_sum_toReal_eq H.bar φ δ γ' c h hγ' hc hsum' i
   obtain ⟨j, p, r, hp, hr, hpr⟩ :=
     GlobalTheory.T.exists_pos_smul_eq_of_linearIndependent_cone' δ γ' i k a hli hk hka (GlobalTheory.T.cell_generator_mem_cone_of_smul_combination H.bar φ δ γ' i k a h hγ' hk hka)
   refine Set.mem_biUnion (hγS j) ⟨pull_mem _ (h.mem i), isPrim_pull_equiv e (h.mem i) (hprim i), p, r, hp, hr, ?_⟩

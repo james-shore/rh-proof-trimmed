@@ -62,7 +62,7 @@ namespace RatioProp
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem one_lt_l : (1 : ℝ) < l := by exact_mod_cast (Fact.out : l.Prime).one_lt
+alias one_lt_l := _root_.GlobalTheory.PMon.Gauss.one_lt_natCast_of_prime
 
 theorem inv_l_pos : (0 : ℝ) < (l : ℝ)⁻¹ := inv_pos.2 (by linarith [(one_lt_l : (1 : ℝ) < l)])
 
@@ -114,10 +114,10 @@ theorem pert {ρ : ℝ} (h0 : (l : ℝ)⁻¹ ≤ ρ) (h1 : ρ < 1) (W W' : Forma
     simp only [map_add (f := _), map_mul, map_pow, map_natCast]
     ring
   rw [e]
-  refine ((gauss h0 h1).2.1 _ _).trans (max_le_max le_rfl ?_)
-  rw [(gauss h0 h1).2.2.1, gC_lpow h0 h1, (gauss h0 h1).2.2.2.1]
+  refine ((_root_.GlobalTheory.GaussCancel.isGauss_gC h0 h1).2.1 _ _).trans (max_le_max le_rfl ?_)
+  rw [(_root_.GlobalTheory.GaussCancel.isGauss_gC h0 h1).2.2.1, gC_lpow h0 h1, (_root_.GlobalTheory.GaussCancel.isGauss_gC h0 h1).2.2.2.1]
   exact mul_le_mul_of_nonneg_left
-    (mul_le_of_le_one_left ((gauss h0 h1).1 _).1 ((gauss h0 h1).1 _).2) (pow_nonneg (rho_pos h0).le _)
+    (mul_le_of_le_one_left ((_root_.GlobalTheory.GaussCancel.isGauss_gC h0 h1).1 _).1 ((_root_.GlobalTheory.GaussCancel.isGauss_gC h0 h1).1 _).2) (pow_nonneg (rho_pos h0).le _)
 
 def digitSet (W W' : Formalism.Per.Acris l) (k : ℕ) : Set ℤ_[l] :=
   {c | ∀ ρ : ℝ, (l : ℝ)⁻¹ ≤ ρ → ρ < 1 → gC l ρ (W - zc l c * W') ≤ ρ ^ k * gC l ρ W'}
@@ -199,7 +199,7 @@ theorem digit_step {h s : ℕ} (hs : s < h) {W W' : Formalism.Per.Acris l}
   refine (hu ρ h0 h1).trans ?_
   rw [gC_lpow h0 h1, ← mul_assoc, ← pow_succ']
   exact mul_le_mul_of_nonneg_right (pow_le_pow_of_le_one (rho_pos h0).le h1.le (by omega))
-    ((gauss h0 h1).1 _).1
+    ((_root_.GlobalTheory.GaussCancel.isGauss_gC h0 h1).1 _).1
 
 theorem eq_zc_mul {h s : ℕ} (hs : s < h) {W W' : Formalism.Per.Acris l}
     (he : (φc l)^[h] W' = (l : Formalism.Per.Acris l) ^ s * W') (hW' : W' ≠ 0)
@@ -208,7 +208,7 @@ theorem eq_zc_mul {h s : ℕ} (hs : s < h) {W W' : Formalism.Per.Acris l}
     ∃ c : ℤ_[l], W = zc l c * W' := by
   have hmono : ∀ i, digitSet W W' (i + 1) ⊆ digitSet W W' i := fun i c hc ρ h0 h1 =>
     (hc ρ h0 h1).trans (mul_le_mul_of_nonneg_right
-      (pow_le_pow_of_le_one (rho_pos h0).le h1.le (Nat.le_succ i)) ((gauss h0 h1).1 _).1)
+      (pow_le_pow_of_le_one (rho_pos h0).le h1.le (Nat.le_succ i)) ((_root_.GlobalTheory.GaussCancel.isGauss_gC h0 h1).1 _).1)
   have hne : ∀ i, (digitSet W W' i).Nonempty := by
     intro i
     induction i with

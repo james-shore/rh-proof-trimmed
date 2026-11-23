@@ -47,4 +47,4 @@ public import Formalism.PeriodIntegrals.ArtSch
 @[expose] public section
 
 theorem _root_.GlobalTheory.T.frobenius_sub_one_surjective_witt_tilt : Formalism.MainNotions.ElementDenominator.ArtinSchreierWittOnto := fun l _ x =>
-  PI.ArtSch.main_of witt_lift (tiltSurjectiveOfParts rootModP_holds tilt_divisibility smallSurjective) l x
+  PI.ArtSch.main_of _root_.PI.ArtSch.WittLiftWork.wittLift (_root_.PI.ArtSch.Glue.tiltGlue rootModP_holds _root_.PI.ArtSch.tiltDiv_of_general _root_.PI.UnitaryGroupMassFormula.ASSmall.tiltSmall) l x

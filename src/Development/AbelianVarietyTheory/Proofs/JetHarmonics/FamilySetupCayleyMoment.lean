@@ -193,7 +193,7 @@ theorem moment_step : Hyps → ∀ (k r : ℕ) (Wp : Type) [NormedAddCommGroup W
     rw [← param_sub_single]
     exact GlobalTheory.T.cayley_endomorphisms_modular hH k r _ _ _ hNum.1 (hDSs s) Q _ hQ (hE _ (hνs s)).1
   have hShape := ((GlobalTheory.NumFam.num_fam k r lam u b bv ga h q0 hNum).2 ν hν0).2.1
-  have hlev := GlobalTheory.T.unitaryGl_projection_level_sum_sq_le _ _ _ (E ν) (fun s => (R (ν - Pi.single s 1)).smSub) (fun s => E (ν - Pi.single s 1))
+  have hlev := _root_.GlobalTheory.lev_proj_and_sum_sq_le _ _ _ (E ν) (fun s => (R (ν - Pi.single s 1)).smSub) (fun s => E (ν - Pi.single s 1))
     io' pr' _ k j bv w hMod hMods hAlg hShape hj hw
   have hexp : 2 * r + k + 1 + 1 - k = 2 * r + 2 := by omega
   rw [hexp] at hlev
@@ -224,7 +224,7 @@ theorem moment_step : Hyps → ∀ (k r : ℕ) (Wp : Type) [NormedAddCommGroup W
         (fun d => Formalism.QuantumDeterminants.herm (Formalism.QuantumDeterminants.Hpk k r) (dualM (Matrix.of x) *ᵥ (fun c => Q d c))
           (flat k r (Formalism.QuantumDeterminants.fvec k r z 0)))
         (fun s => (ep s : ℂ) * star (κ s)) _ _ _ hdg.le ?_ (fun d => ?_) hA
-      · rw [GlobalTheory.T.sum_norm_sq_herm_translates_orthonormal k r _ dualM _ Q 1 _ hF hQ.2 _ hx]
+      · rw [_root_.GlobalTheory.MomentParseval.sum_herm_sq k r _ dualM _ Q 1 _ hF hQ.2 _ hx]
         exact (GlobalTheory.TensLen.lengths k r z hG.1 hG.2.1 _ hx).2.1
       · simp only [hy]
         exact GlobalTheory.T.tensor_bessel_transfer hK k r _ _ dualM (Formalism.QuantumDeterminants.Hpk k r) 1 (R ν) (fun s => R (ν - Pi.single s 1)) io pr _ _ _

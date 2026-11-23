@@ -78,16 +78,10 @@ theorem polyEmb_esymm_mem (k : ℕ) :
     polyEmb (n := n) (MvPolynomial.esymm (Fin n) ℂ k) ∈ symmetricLaurent (n := n) := fun σ => by
   rw [← polyEmb_rename, MvPolynomial.esymm_isSymmetric (Fin n) ℂ k σ]
 
-theorem exists_perm_of_map_eq {z z' : Fin n → ℂˣ}
-    (h : Multiset.map (fun i => (z i : ℂ)) Finset.univ.val =
-      Multiset.map (fun i => (z' i : ℂ)) Finset.univ.val) :
-    ∃ σ : Equiv.Perm (Fin n), z' = z ∘ σ :=
-  _root_.UpperTheory.Reformulated.B.Yoa3.exists_perm_of_map_eq h
-
 theorem exists_perm_of_evalAt_eq {z z' : Fin n → ℂˣ}
     (h : ∀ p ∈ symmetricLaurent (n := n), evalAt z p = evalAt z' p) :
     ∃ σ : Equiv.Perm (Fin n), z' = z ∘ σ := by
-  apply exists_perm_of_map_eq
+  apply _root_.UpperTheory.Reformulated.B.Yoa3.exists_perm_of_map_eq
   have he : ∀ k, (Multiset.map (fun i => (z i : ℂ)) Finset.univ.val).esymm k =
       (Multiset.map (fun i => (z' i : ℂ)) Finset.univ.val).esymm k := fun k => by
     have := h _ (polyEmb_esymm_mem k)

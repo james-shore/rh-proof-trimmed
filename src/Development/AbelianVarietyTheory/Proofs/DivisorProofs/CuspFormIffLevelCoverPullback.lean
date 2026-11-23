@@ -175,7 +175,7 @@ theorem mem_SS_of_isom (X X' : Data E r) (a : GL (Fin r) E) (hψ : X.Ψ = X'.Ψ)
     rw [BoundedSectionAlgebra.pnorm_eq, hPQ x hx, norm_mul, mul_assoc]
     exact mul_le_mul_of_nonneg_left this (norm_nonneg _)
   refine ⟨⟨hP, _, hb⟩, fun ξ hξ x hx => ?_⟩
-  obtain ⟨q, hq, hqv⟩ := GlobalTheory.T.exists_pos_nat_smul_mem_of_spanning_numberField_lattice E r X'.Λ X'.Λ_span ((a : Matrix (Fin r) (Fin r) E) *ᵥ ξ)
+  obtain ⟨q, hq, hqv⟩ := _root_.GlobalTheory.NatMultipleIntegral.exists_nat_smul_mem E r X'.Λ X'.Λ_span ((a : Matrix (Fin r) (Fin r) E) *ᵥ ξ)
   have hvv : herm X'.Gm ((a : Matrix (Fin r) (Fin r) E) *ᵥ ξ) ((a : Matrix (Fin r) (Fin r) E) *ᵥ ξ) = 0 := by
     rw [hiso, hξ.2.1]
   have hξ'iso : X'.IsIso ((q : E) • ((a : Matrix (Fin r) (Fin r) E) *ᵥ ξ)) := by

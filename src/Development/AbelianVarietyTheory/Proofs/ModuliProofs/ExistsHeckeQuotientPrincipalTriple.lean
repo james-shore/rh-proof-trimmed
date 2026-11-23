@@ -70,10 +70,10 @@ theorem exists_heckeQuotient_triple_of_laws : Out.Laws → ∀ (E : Type) [Field
   intro laws E _ _ _ H k _ _ _ t g p C hp hprop hsm hamp hK hst hpow
     hweil hcard
   have glob : Out.GlobalFnsSt := laws.globalFns
-  have cube := GlobalTheory.Moduli.cube_of_isLB
+  have cube := _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen
   have cubeDesc := GlobalTheory.cube_descends_along_etale_isogeny glob
   have quot := GlobalTheory.exists_quotient_by_finite_group_of_points laws
-  have split := GlobalTheory.lbPow_descends_of_isotropic_of_laws laws
+  have split := _root_.GlobalTheory.LinDescent.lbPow_descends laws
   have princ := GlobalTheory.kTriv_of_descent laws
   have amp := GlobalTheory.relAmple_finite_pow_iso
   have prim := GlobalTheory.PrimNorm.exists_primitive_normalisation glob

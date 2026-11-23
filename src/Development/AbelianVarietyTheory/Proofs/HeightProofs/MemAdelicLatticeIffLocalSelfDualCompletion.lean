@@ -90,18 +90,7 @@ theorem exists_generators (V : HSpace E) :
   have := congrArg Subtype.val hn
   simpa using this.symm
 
-theorem exists_coeff (V : HSpace E) {k : ℕ} (x : Fin k → V.V)
-    (hx : ∀ w ∈ V.L0, ∃ n : Fin k → ℤ, w = ∑ j, n j • x j) (v : HeightOneSpectrum (𝓞 F))
-    (y : Fin V.rank → Fv F v ⊗[F] E) (hy : y ∈ GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.latLoc (F := F) V v) :
-    ∃ a : Fin k → Fv F v, (∀ j, a j ∈ v.adicCompletionIntegers F) ∧
-      ∀ i, y i = ∑ j, a j ⊗ₜ[F] V.frame.repr (x j) i := by
-  first
-  | exact @_root_.GlobalTheory.MiscellaneousLemmas.main
-  | exact _root_.GlobalTheory.MiscellaneousLemmas.main
-  | (apply _root_.GlobalTheory.MiscellaneousLemmas.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MiscellaneousLemmas.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MiscellaneousLemmas.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MiscellaneousLemmas.main ..)
+alias exists_coeff := _root_.GlobalTheory.MiscellaneousLemmas.main
 
 theorem mem_latHat_iff :
     ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E]

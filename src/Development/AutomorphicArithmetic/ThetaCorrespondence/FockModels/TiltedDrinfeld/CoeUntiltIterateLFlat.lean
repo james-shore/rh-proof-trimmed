@@ -187,10 +187,6 @@ theorem kummer_rel {a b : ℤ_[l]} (ha : epsPow untilt_epsilon a = epsT AI) (hb 
     ← epsPow_add, ← epsPow_add] at h1
   exact h1
 
-theorem fontaineT_congr' {x y : 𝒪♭} (h : x = y) (hx : PreTilt.untilt x = 1) (hy : PreTilt.untilt y = 1) :
-    fontaineT x hx = fontaineT y hy := by
-  subst h; rfl
-
 theorem exists_rel (T : Formalism.BasicNotions.LocTied6 l P AI) : ∃ a b : ℤ_[l],
     T.eD (P.ιB P.tB) = algebraMap (Formalism.Per6.BdRp l) (Formalism.Per6.BdR l)
       (algebraMap ℚ_[l] (Formalism.Per6.BdRp l) (a : ℚ_[l]) * fontaineT (epsilon l) untilt_epsilon) ∧
@@ -201,6 +197,6 @@ theorem exists_rel (T : Formalism.BasicNotions.LocTied6 l P AI) : ∃ a b : ℤ_
   obtain ⟨b, hb⟩ := exists_lFlat_eq (l := l)
   refine ⟨a, b, ?_, kummer_rel AI ha hb⟩
   rw [PositivityTheory.LocInh.tie_t T, ← fontaineT_epsPow,
-    fontaineT_congr' ((tiltMap_eps AI).trans ha.symm) _ (untilt_epsPow _ a)]
+    _root_.GroundTheory.PAdicHodge.fontaineT_congr ((tiltMap_eps AI).trans ha.symm) _ (untilt_epsPow _ a)]
 
 end UpperTheory.Lit.Drps.Kum

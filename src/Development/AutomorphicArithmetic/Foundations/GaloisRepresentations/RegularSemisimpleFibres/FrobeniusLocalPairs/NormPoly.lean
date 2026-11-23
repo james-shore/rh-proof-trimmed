@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.GroupLattices.PerfectRings.IsLocalRingOfComplete
 
 @[expose] public section
 
@@ -173,21 +174,6 @@ private theorem linearMap_apply_mem_ideal_smul_of_mem {R M N : Type*} [CommRing 
   rw [Submodule.map_smul''] at h
   exact Submodule.smul_mono le_rfl le_top h
 
-private theorem isPrecomplete_of_linearEquiv {R M N : Type*} [CommRing R] [AddCommGroup M] [Module R M]
-    [AddCommGroup N] [Module R N] (I : Ideal R) (e : M ≃ₗ[R] N) [hM : IsPrecomplete I M] :
-    IsPrecomplete I N := by
-  refine ⟨fun f hf => ?_⟩
-  obtain ⟨L, hL⟩ := hM.prec (f := fun n => e.symm (f n)) (fun {m n} hmn => by
-    have h := hf hmn
-    rw [SModEq.sub_mem] at h ⊢
-    rw [← map_sub]
-    exact linearMap_apply_mem_ideal_smul_of_mem _ e.symm.toLinearMap _ h)
-  refine ⟨e L, fun n => ?_⟩
-  have h := hL n
-  rw [SModEq.sub_mem] at h ⊢
-  have h2 := linearMap_apply_mem_ideal_smul_of_mem _ e.toLinearMap _ h
-  simpa using h2
-
 private theorem isPrecomplete_pi_of_fintype {R ι : Type*} [CommRing R] [Fintype ι] (I : Ideal R)
     [hR : IsPrecomplete I R] : IsPrecomplete I (ι → R) := by
   classical
@@ -219,7 +205,7 @@ private theorem isAdicComplete_map_maximalIdeal_adjoinRoot_of_monic {R : Type*} 
   haveI : Module.Finite R (AdjoinRoot ψ) := pb.finite
   haveI : IsPrecomplete (IsLocalRing.maximalIdeal R) (Fin pb.dim → R) := isPrecomplete_pi_of_fintype _
   have h2 : IsPrecomplete (IsLocalRing.maximalIdeal R) (AdjoinRoot ψ) :=
-    isPrecomplete_of_linearEquiv _ pb.basis.equivFun.symm
+    _root_.Formalism.L2.G.IntCl.precomplete_equiv _ pb.basis.equivFun.symm
   exact { toIsHausdorff := IsHausdorff.map_algebraMap_iff.mpr inferInstance
           toIsPrecomplete := IsPrecomplete.map_algebraMap_iff.mpr h2 }
 

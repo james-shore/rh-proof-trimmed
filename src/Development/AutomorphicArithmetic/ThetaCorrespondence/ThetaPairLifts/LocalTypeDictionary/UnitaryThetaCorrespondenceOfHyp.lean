@@ -69,5 +69,5 @@ theorem UpperTheory.Lit.I5.unitary_theory_of_harishChandra_langlands_alt : Globa
   intro _ ds rd hf tc dm _ ze gl gc D G _ _ Pl0 T A Ks _ _ _ R F hG
   exact GlobalTheory.PsCo.Pc.multEq_of_sides GlobalTheory.T.localPseudoCoefficientExistence_unitaryGroup rd hf dm gc (GlobalTheory.PsCo.SpecX.main ds tc)
     (GlobalTheory.T.trace_separation_of_iwahori_trace GlobalTheory.IwahoriTraceProof.iwahoriTrace (GlobalTheory.SmGL.Exponents.exponentsSeparate gl ze))
-    (GlobalTheory.PsCo.Plug.ellipticSideDirect tc) GlobalTheory.PsCo.Plug.ellipticT R F hG
+    (GlobalTheory.PsCo.Plug.ellipticSideDirect tc) _root_.GlobalTheory.TrEllSum.ellipticPartX R F hG
 end

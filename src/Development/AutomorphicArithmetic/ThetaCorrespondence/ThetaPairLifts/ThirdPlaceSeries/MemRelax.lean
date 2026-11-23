@@ -82,7 +82,7 @@ theorem gl_mem_relax_of_supp_at_and_map_pr (hW : _root_.GlobalTheory.Fam.AllFami
   refine Subgroup.mem_inf.2 ⟨Subgroup.mem_inf.2 ⟨?_, GlobalTheory.FinPl.SetCut.grpAt_le_GfC _ _ (hAt (· = (J₂.G i).q.v) rfl)⟩, ?_⟩
   · by_cases hv : _root_.GlobalTheory.LevProd.quadraticTwistAtPlace J (J₂.G i).q.v
     · exact Subgroup.mem_sup_right (hAt _ hv)
-    · exact Subgroup.mem_sup_left (_root_.GlobalTheory.T.true_geometry_lattice_open_alt W hW u a ha hTr j hj t J hJ α t₂ J₂ hJ₂ i hv gl hgl y hy)
+    · exact Subgroup.mem_sup_left (_root_.GlobalTheory.LevProd.OffTwist.gl_mem_level_alt W hW u a ha hTr j hj t J hJ α t₂ J₂ hJ₂ i hv gl hgl y hy)
   · rw [Subgroup.mem_comap, Subgroup.mem_pi]
     intro i' _
     show GlobalTheory.LevIdx.locHom (J.G i').q _ ((J.G i').FX j _) (gl y) ∈ KO (J.G i').k _

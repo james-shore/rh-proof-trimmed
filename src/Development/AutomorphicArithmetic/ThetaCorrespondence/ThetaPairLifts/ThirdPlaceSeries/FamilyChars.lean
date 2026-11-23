@@ -88,7 +88,7 @@ theorem weilOK_of_rank_one_gram : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies
   have tQ : ∀ x ∈ v.tP, ∀ PP ∈ (_root_.GlobalTheory.Fam.pk_z W).Q t, (_root_.IsDedekindDomain.HeightOneSpectrum.under (𝓞 D.host.F) PP) ≠ x := by
     intro x hx PP hPP e
     exact (hL.Q_off t PP hPP).2 u ((mem_under PP _).1 (e ▸ (hV.tP x).1 hx))
-  have muU := fun n x h1 h2 hg hq => _root_.GlobalTheory.T.charUnramAt_of_not_under_pk W hP t n x h1 h2 hg hq
+  have muU := fun n x h1 h2 hg hq => _root_.GlobalTheory.MuUnrOff.mu_charUnramAt_alt W hP t n x h1 h2 hg hq
   have unr : ∀ P : HeightOneSpectrum (𝓞 D.host.F) → Prop,
       (∀ x, P x → ∀ PP ∈ (_root_.GlobalTheory.Fam.pk_z W).Pg, (_root_.IsDedekindDomain.HeightOneSpectrum.under (𝓞 D.host.F) PP) ≠ x) →
       (∀ x, P x → ∀ PP ∈ (_root_.GlobalTheory.Fam.pk_z W).Q t, (_root_.IsDedekindDomain.HeightOneSpectrum.under (𝓞 D.host.F) PP) ≠ x) → (f.t t).UnrOn P := by
@@ -111,7 +111,7 @@ theorem weilOK_of_rank_one_gram : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies
       split_ifs
       · exact ⟨cu_mul m1 (cu_inv (eU x)), m1⟩
       · exact ⟨m1, cu_mul m1 (cu_inv (eU x))⟩
-  refine ⟨_root_.GlobalTheory.T.weil_datum_of_rank_one_gram' W u hP f v hR hC hτ t, ?_, ?_, ?_, ?_, ?_, fun n G pl hG i => _root_.GlobalTheory.T.gLoc_chars_of_gRead' W u hP f v hR hV t n G pl hG i⟩
+  refine ⟨_root_.GlobalTheory.Fam.WeilTup.weilOK_fam_alt W u hP f v hR hC hτ t, ?_, ?_, ?_, ?_, ?_, fun n G pl hG i => _root_.GlobalTheory.TupChars.gLoc_chars_of_gRead W u hP f v hR hV t n G pl hG i⟩
   · exact unr _ (fun x hx PP hPP e => hx.1 ((hV.gP x).2 ⟨PP, hPP, e.symm⟩))
       (fun x hx PP hPP e => hx.2 ((hQ x).2 ⟨PP, hPP, e.symm⟩))
   · exact unr _ tG tQ

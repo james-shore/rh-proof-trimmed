@@ -59,7 +59,7 @@ theorem loc_holds : Loc := by
     { bz := bz
       geo := geo
       zel := zel
-      disj := PositivityTheory.SlGl.totallyDisjointProductIrreducible_of_parts geo seg
+      disj := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.totallyDisjointProductIrreducible_of_parts geo seg
         (PositivityTheory.Groth.grothendieckRingPolynomial_of_seg seg)
       mp := GlobalTheory.CompanionTheory.MoyPrasadTop.moyPrasadJacquetIso
       dzi := GlobalTheory.DepthZeroPass.depthZeroInduction geo bz zel

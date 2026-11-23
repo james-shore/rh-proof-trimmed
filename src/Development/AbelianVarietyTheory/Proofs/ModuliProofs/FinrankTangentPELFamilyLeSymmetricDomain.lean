@@ -65,7 +65,7 @@ theorem finrank_derivation_le : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0})
   obtain ⟨act, act₀, hc, hdet⟩ := GlobalTheory.FibreAct.exists_fibre_act E H D g (N' ^ 2) J a bas o b ρ _ _ t τ _
     (algebraMap o ℂ) t₀.A m hP hx hm
   obtain ⟨F, hF⟩ := (GlobalTheory.KS.exists_linear_lift_action t₀.pol u Hm χ hG).2 (𝓞 E) act₀
-  have hle := GlobalTheory.T.finrank_symm_antilinear_comm_CM_le E H t₀.pol.g D.p D.q (algebraMap o ℂ ρ) Hm F (LinearMap.range κ)
+  have hle := _root_.GlobalTheory.KS.DimPEL.finrank_symm_comm_le E H t₀.pol.g D.p D.q (algebraMap o ℂ ρ) Hm F (LinearMap.range κ)
     (by rw [← map_pow, hρ]; simp) hG.ah.1 hG.ah.2.1
     (fun σ => by
       split_ifs with h

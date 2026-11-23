@@ -79,28 +79,6 @@ theorem pairM_comm {K : Type} [CommRing K] {n d : ℕ} (P Q : Matrix (Fin n) (Fi
     GlobalTheory.FlipMatch.pairM P Q = GlobalTheory.FlipMatch.pairM Q P := by
   simp only [GlobalTheory.FlipMatch.pairM, mul_comm]
 
-theorem pairM_chart {K : Type} [Field K] {n d : ℕ} (A : Matrix (Fin n) (Fin n) K) (B : Matrix (Fin d) (Fin d) K)
-    (b : GL (Fin n) K) (c : GL (Fin d) K) (P Q : Matrix (Fin n) (Fin d) K) :
-    GlobalTheory.FlipMatch.pairM ((b⁻¹).1 * P * (c⁻¹).1ᵀ) (-(b.1ᵀ * A * Q * Bᵀ * c.1)) =
-      -∑ i : Fin n, ∑ j : Fin d, ∑ k : Fin n, ∑ l : Fin d, P i j * A i k * B j l * Q k l := by
-  first
-  | exact @_root_.GlobalTheory.PairingTraceExpansion.main
-  | exact _root_.GlobalTheory.PairingTraceExpansion.main
-  | (apply _root_.GlobalTheory.PairingTraceExpansion.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PairingTraceExpansion.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PairingTraceExpansion.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PairingTraceExpansion.main ..)
-
-theorem sum_four_swap_pairs_alt {R α β : Type} [AddCommMonoid R] [Fintype α] [Fintype β] (f : α → β → α → β → R) :
-    ∑ a, ∑ b, ∑ c, ∑ e, f a b c e = ∑ c, ∑ e, ∑ a, ∑ b, f a b c e := by
-  first
-  | exact @_root_.GlobalTheory.FourTermSumSwap.sum_four_swap
-  | exact _root_.GlobalTheory.FourTermSumSwap.sum_four_swap
-  | (apply _root_.GlobalTheory.FourTermSumSwap.sum_four_swap <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FourTermSumSwap.sum_four_swap <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FourTermSumSwap.sum_four_swap <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FourTermSumSwap.sum_four_swap ..)
-
 theorem piW_cA {σ : E →ₐ[F] E} {v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)} (τ : E →ₐ[F] Fv F v) (w : AE F E) :
     piW τ (cA σ w) = piW (τ.comp σ) w := by
   induction w using TensorProduct.induction_on with
@@ -132,14 +110,14 @@ theorem evFin_symp {σ : E →ₐ[F] E} (hcm : IsCMExt F E σ) {n d : ℕ} (X : 
   unfold GlobalTheory.WeilM.symp
   rw [GlobalTheory.T.adelicTrace_supportedAtSplitPlace hcm v t _ hz, GlobalTheory.LatVac.evFin_liftV]
   rw [pairM_comm (GlobalTheory.FlipMatch.coY σ X Y t b c x), GlobalTheory.FlipMatch.coX, GlobalTheory.FlipMatch.coX, GlobalTheory.FlipMatch.coY,
-    GlobalTheory.FlipMatch.coY, pairM_chart, pairM_chart]
+    GlobalTheory.FlipMatch.coY, _root_.GlobalTheory.PairingTraceExpansion.main, _root_.GlobalTheory.PairingTraceExpansion.main]
 
   simp only [map_mul, map_neg, map_one, neg_one_mul, GlobalTheory.WeilM.hTens, map_sum, piW_cA, piW_incl,
   GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM, Matrix.map_apply, hss, AlgHom.comp_apply, hX, hY]
   rw [sub_eq_add_neg]
   congr 1
   rw [neg_neg]
-  refine Eq.trans ?_ (sum_four_swap_pairs_alt _).symm
+  refine Eq.trans ?_ (_root_.GlobalTheory.FourTermSumSwap.sum_four_swap _).symm
   simp only [← Finset.sum_neg_distrib]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ =>
     Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_
@@ -232,7 +210,7 @@ theorem exists_isLinW_at : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type)
   have hB : IsUnit (W.J.map t)ᵀ.det := by
     rw [Matrix.det_transpose, show (W.J.map t).det = (t : E →+* Fv F v) W.J.det from (RingHom.map_det _ _).symm]
     exact isUnit_iff_ne_zero.2 fun h => hdW ((t : E →+* Fv F v).injective (by rw [map_zero]; exact h))
-  choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin n) (Fin d) (Fv F v)) => GlobalTheory.T.exists_splitPlace_adelicMatrix_given_components hcm v t P₀ P₁
+  choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin n) (Fin d) (Fv F v)) => _root_.GlobalTheory.SplitComps.exists_mat_comps hcm v t P₀ P₁
   have hat_add : ∀ x y : Matrix (Fin n) (Fin d) (AE F E), At (evFin F v) x → At (evFin F v) y →
       At (evFin F v) (x + y) := fun x y hx hy r hr => by rw [smul_add, hx r hr, hy r hr, add_zero]
   have heq := fun (u u' : Matrix (Fin n) (Fin d) (AE F E)) => locCo_eq_of hcm X W hX hY M t u u'
@@ -307,7 +285,7 @@ theorem exists_isLinW_at : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type)
   haveI : CharZero (Fv F v) := charZero_of_injective_algebraMap (algebraMap F _).injective
   have hψc : Continuous (GlobalTheory.LatVac.psiAt B.ψ v) := GlobalTheory.SchrSB.continuous_psiAt B.ψ hstd.1 v
   have hψne : GlobalTheory.LatVac.psiAt B.ψ v ≠ 1 := GlobalTheory.PsiNontriv.psiAt_ne_one B.ψ hstd v
-  obtain ⟨ι, hbij, htr, hmu⟩ := GlobalTheory.T.stoneVonNeumann_schwartzBruhat_anyCharacter (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψne wT wM
+  obtain ⟨ι, hbij, htr, hmu⟩ := _root_.GlobalTheory.SvNAnyChar.stoneVonNeumann_any_char (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψne wT wM
     (fun Y Y' => by
       rw [hwT, hwT, hform _ _ (hUat _ _), hcoX0, hcoX0, hcoY0, hcoY0]
       simp [GlobalTheory.FlipMatch.pairM])

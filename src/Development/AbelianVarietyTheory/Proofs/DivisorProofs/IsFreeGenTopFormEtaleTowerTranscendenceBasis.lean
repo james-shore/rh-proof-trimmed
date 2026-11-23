@@ -109,12 +109,12 @@ theorem isFreeGen_dForm_tower : ∀ {K L : Type} [Field K] [Field L] (cK : ℂ �
   intro K L _ _ cK cL n r R T ι ψ τ x h hx
   have hinj := h.eval₂Hom_injective
   letI := cL.toAlgebra
-  have hind := GlobalTheory.T.algebraicIndependent_etaleTower_coordinates cK cL n r R T ι ψ τ x h hx hinj
+  have hind := _root_.GlobalTheory.FieldPair.etTower_coords_algebraicIndependent cK cL n r R T ι ψ τ x h hx hinj
   have halg : Algebra.IsAlgebraic
       (Algebra.adjoin ℂ (Set.range (Fin.append (fun i => (τ i : L)) (fun i => (ι (x i) : L))))) L := by
     refine ⟨fun z => GlobalTheory.T.isAlgebraic_of_isAlgebraic_over_algebraic_subring _ _ z ?_ (GlobalTheory.T.isAlgebraic_over_mvPolynomial_range_etaleTower cK cL r R T ι ψ τ h hinj z)⟩
     rintro b ⟨a, rfl⟩
-    exact GlobalTheory.T.isAlgebraic_mvPolynomialEval_adjoin_etaleTowerCoords cK cL n r R T ι ψ τ x h hx a
+    exact _root_.GlobalTheory.FieldPair.TowerTrdeg.image_isAlgebraic cK cL n r R T ι ψ τ x h hx a
   have htr : TrBasis cL (Fin.append (fun i => (τ i : L)) (fun i => (ι (x i) : L))) :=
     isTranscendenceBasis_iff_algebraicIndependent_isAlgebraic.2 ⟨hind, halg⟩
   exact isFreeGen_dForm_of_trBasis cL htr

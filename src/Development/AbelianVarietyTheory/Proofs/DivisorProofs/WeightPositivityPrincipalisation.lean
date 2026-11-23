@@ -278,12 +278,6 @@ theorem flatSec_continuousOn_horizGen {r : ℕ} (X : Data E r) (τ : X.Ψ) : Con
 
 variable {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
 
-theorem flatSec_relab_mem {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (hσ : GoodEmb c σ) (hU : IsUnf U) (τ : Psi H) (k : U.Comp) :
-    relab c σ τ.1 ∈ (U.X k).Ψ := by
-  refine ((hU.2.1 k).2 _).2 ?_
-  have hσ0 : σ ⟨H.rt0, c.le (baseKA l).ρ.2⟩ = H.rt0 := hσ
-  exact (congrArg σ (Subtype.ext τ.2)).trans hσ0
-
 end SlopeTestRemainingChoices
 
 theorem flatSec_always : Always fun U x => ArchEx U x := by
@@ -294,7 +288,7 @@ theorem flatSec_always : Always fun U x => ArchEx U x := by
   have hex : exZ Dw (G + wtOf Dw (flatWt Dw τ) 0) - exZ Dw G = exOf Dw (flatWt Dw τ) 0 := by
     funext i; rw [Pi.sub_apply, exZ_add, exOf, add_sub_cancel_left]
   have hmem : ∀ σ (hσ : GoodEmb c σ) k, relab c σ τ.1 ∈ ((U σ).X k).Ψ := fun σ hσ k =>
-    flatSec_relab_mem (U σ) hσ (hL.unf σ hσ) τ k
+    _root_.GlobalTheory.FlatPair.relab_mem (U σ) hσ (hL.unf σ hσ) τ k
   have hgood : ∀ σ, GoodEmb c (goodOf c σ) := fun σ => goodEmb_goodOf c σ
   have hσ₀ := hgood c.F.val.toRingHom
   generalize goodOf c c.F.val.toRingHom = σ₀ at hσ₀

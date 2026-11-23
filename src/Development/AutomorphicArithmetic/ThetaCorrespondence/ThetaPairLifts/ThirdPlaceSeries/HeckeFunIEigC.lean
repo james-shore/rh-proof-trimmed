@@ -109,7 +109,7 @@ theorem eig_eq_satU_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL → �
   intro hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 h hops s hs w hG hin
   classical
   have hn : (Formalism.IndefR.Links.Vc D j).rank = D.R.nV := D.sp.V_rank _ (Nat.le_add_left _ _) j.2
-  have hns : ¬ Formalism.BasicNotions.IsSplitPl D.host w := GlobalTheory.T.not_isSplitPlace_of_inert_over_realSubfield D w hin
+  have hns : ¬ Formalism.BasicNotions.IsSplitPl D.host w := _root_.GlobalTheory.not_isSplitPl_of_isInertAt D w hin
   have hf0 : (hj ▸ f : D.what₂.Mt (D.nd.mu i) (D.nd.j i)) ≠ 0 := fun e => hy0 (X.hinj _ _ (by
     rw [hy, cast_eq_zero hj f e, map_zero]
     exact congrArg Subtype.val (map_zero (X.IL.jMt _ hμ j))))
@@ -129,7 +129,7 @@ theorem eig_eq_satU_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL → �
   obtain ⟨v, Dv, hov, rfl, rfl, hq, he, hsupp⟩ :=
     exists_datum D.host.F hA.hF D.sp.cm.sig (fun _ => rfl) D.R.nV w hin τ ϖ hU hc
   obtain ⟨R, hR, hop⟩ := exists_sphOp hn (hA.stdV j) hin Dv hc he (triv_iff (hA.stdV j) hsupp) hd t ht
-  have hfix := _root_.GlobalTheory.T.operator_eigen_good_place_first_alt hAF hL D P X hA h41 h7 htl i hμ j hj h hops w hG hin v hov
+  have hfix := _root_.GlobalTheory.InertFormFix.real_rt_eq_of_good_inert_alt hAF hL D P X hA h41 h7 htl i hμ j hj h hops w hG hin v hov
   have k1 := _root_.GlobalTheory.InertEigSat.heckeFunI_eigC_alt hL D P h41 i x hns hov Dv hfix P₀ hP₀ α₀ hα₀ _
     (Formalism.UG.Final.DosetIndMem _ (Formalism.UG.KU Dv.σw D.R.nV) ℂ t) _ hf
   rw [← hop _ _ (hfix _), hq] at k1

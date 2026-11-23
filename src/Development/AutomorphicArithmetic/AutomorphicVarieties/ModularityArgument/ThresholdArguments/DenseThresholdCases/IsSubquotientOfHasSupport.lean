@@ -67,9 +67,6 @@ private theorem eq_one_of_charpoly_dvd {V : Type} [AddCommGroup V] [Module ℂ V
     Module.End.isSemisimple_sub_algebraMap_iff.2 hf
   have := sub_eq_zero.1 (Module.End.eq_zero_of_isNilpotent_isSemisimple ⟨_, h0⟩ hs)
   rwa [map_one] at this
-private theorem multiset_eq_of_sum {Γ : Type} [Monoid Γ] (s t : Multiset (Γ →* ℂ))
-    (h : ∀ g, (s.map fun f => f g).sum = (t.map fun f => f g).sum) : s = t :=
-  _root_.UpperTheory.Reformulated.B.Qf50.multiset_eq_of_sum s t h
 section
 variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
   {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)} {h : IsPlaceOver A w}
@@ -180,7 +177,7 @@ private theorem hasSupport_iff (hZ : GlobalTheory.Published.ZelevinskyPolynomial
     Subtype.ext (MonoidHom.ext fun y => Units.ext (DFunLike.congr_fun e y))
   let t' : Multiset S := Finset.univ.val.map fun i => ⟨ω i, hω i⟩
   have htt : t = t' := by
-    refine Multiset.map_injective hc (multiset_eq_of_sum _ _ fun y => ?_)
+    refine Multiset.map_injective hc (_root_.UpperTheory.Reformulated.B.Qf50.multiset_eq_of_sum _ _ fun y => ?_)
     obtain ⟨g, rfl⟩ := ha.surj y
     have h1 : (((t.map c).map fun f => f (a g)).map fun r => X - C r).prod =
         (((t'.map c).map fun f => f (a g)).map fun r => X - C r).prod := by

@@ -47,6 +47,6 @@ universe u v
 
 namespace Formalism.L2.Th1.A
 
-theorem divSpec : DivSpec.{u, v} := division_spec
+alias divSpec := _root_.Formalism.L2.Th1.A.division_spec
 
 end Formalism.L2.Th1.A

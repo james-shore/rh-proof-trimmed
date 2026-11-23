@@ -131,7 +131,7 @@ theorem UpperTheory.V.Z.Kato.WeilSphericalRecords.recSph_alt :
   choose α hα using fun i => exists_unr (hun i)
   obtain rfl : ξ = fun i => GlobalTheory.SmGL.unrChar _ (α i) := funext hα
   have hs' : HasSupport σ.ρ (GlobalTheory.RoadU.chars _ hξ) := hs.of_equiv (IrrGL.equivOf σ.ρ σ.smooth σ.irred).symm
-  obtain ⟨-, hq⟩ := (UpperTheory.Gal.LocD.ofSupport_holds _ n σ.V σ.ρ _ hξ).1 hs'
+  obtain ⟨-, hq⟩ := (_root_.UpperTheory.Gal.LocD.ofSupport _ n σ.V σ.ρ _ hξ).1 hs'
   have hN : (resCard (w.adicCompletion E) : ℂ) = (Ideal.absNorm w.asIdeal : ℂ) := by
     have := GlobalTheory.CompanionTheory.ResCardAbsNorm.resCard_completion_eq_absNorm E w
     exact_mod_cast this

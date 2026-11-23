@@ -82,7 +82,7 @@ theorem nrm_mul_nrm {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host
 theorem alphaForm_at_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), letI := H.starRing; ∀ (nab : NabV Xo c), IsNab Xo c nab → ∀ (F : Type) [Field F] [IsAlgClosed F] [Algebra c.F F] (yF : FrPt Xo c F) (α : 𝓞 E), α * star α = (l.M : 𝓞 E) → l.Mb = Ideal.span {star α} → ∀ (n : ℕ) (b : Fin n → (ptO Xo yF.x ⟶ Xo.univ.t.G)) (hh : Fin n → LB.Sec (LPow Xo.univ.t.G Xo.univ.t.PP.L (l.M : ℤ) (ptO Xo yF.x))), (∀ i, b i ≫ Xo.univ.t.act.act (star α) = 1) → (∀ i, IsTransPull Xo.univ.t.G Xo.univ.t.PP (Xo.univ.t.act.act α) l.M yF.s (b i) (hh i)) → ∃ (xx : Fin n → Dw.La) (Fs : Fin n → LB.Sec (LPow Xo.univ.t.G Xo.univ.t.PP.L ((l.M : ℤ) ^ 2) (ptO Xo yF.x))), (∀ i, IsVtOver Xo.univ.t.G Xo.univ.t.PP l.M (KilledBy Xo (l.Mb ^ 2)) yF.s (levPt Xo yF.x (xx i)) (Fs i)) ∧ ∀ (a : ((E →+* ℂ) × ℕ → ℕ)) (Pp : MvPolynomial (LtN Dw n) c.F), Pp ∈ harmA c a n → ∑ m ∈ Pp.support, algebraMap c.F F (Pp.coeff m) * ∏ i, nab yF (l.M : ℤ) (hh i) (colOf m i) = algebraMap c.F F (nrm Dw c a α) * thExpr Xo c nab yF Pp Fs := by
   intro E _ _ _ H Dw l Xo c nab hnab F _ _ _ yF α hα hMb n b hh hb hT
   letI := H.starRing
-  have hI := fun i => GlobalTheory.T.normalizedPullback_conjugate_translate_eq_translate_level E H Dw l Xo c F yF.x α hα hMb yF.s (b i) (hh i) (hb i) (hT i)
+  have hI := fun i => _root_.GlobalTheory.isVtOver_conj_pull_of_isTransPull E H Dw l Xo c F yF.x α hα hMb yF.s (b i) (hh i) (hb i) (hT i)
   choose Fs hN hV using hI
   have hK : ∀ i, KilledBy Xo l.Mb (b i ≫ Xo.univ.t.act.act α) := by
     intro i
@@ -94,7 +94,7 @@ theorem alphaForm_at_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     rw [Category.assoc, ← Xo.univ.t.act.mul, e, Xo.univ.t.act.mul, ← Category.assoc, hb i]
     haveI := Xo.univ.t.act.hom (α * r)
     simp
-  choose xx hxx using fun i => GlobalTheory.T.exists_levelPoint_eq_of_killedByHalfLevel E H Dw l Xo c F yF (b i ≫ Xo.univ.t.act.act α) (hK i)
+  choose xx hxx using fun i => _root_.GlobalTheory.exists_levPt_eq_of_killedBy E H Dw l Xo c F yF (b i ≫ Xo.univ.t.act.act α) (hK i)
   refine ⟨xx, Fs, fun i => by rw [hxx i]; exact hV i, ?_⟩
   intro a Pp hPp
   have hs : star α * star (star α) = ((l.M : ℕ) : 𝓞 E) := by rw [star_star, _root_.mul_comm]; exact hα

@@ -60,16 +60,6 @@ namespace GlobalTheory.PD.ResVan
 
 variable {F : Type} [Field F] {d : ℕ}
 
-theorem prod_zpow_add (x : Fin (d + 1) → F) (hx : ∀ i, x i ≠ 0) (m n : Fin (d + 1) → ℤ) :
-    ∏ j, x j ^ (m j + n j) = (∏ j, x j ^ m j) * ∏ j, x j ^ n j := by
-  first
-  | exact @_root_.GlobalTheory.ProductZpowAdd.prod_zpow_add
-  | exact _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add
-  | (apply _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProductZpowAdd.prod_zpow_add <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add ..)
-
 def monoA (x : Fin (d + 1) → F) (hx : ∀ i, x i ≠ 0) (I : Finset (Fin (d + 1))) : Submonoid F where
   carrier := {f | ∃ m : Fin (d + 1) → ℤ, ∑ j, m j = 0 ∧ (∀ j ∉ I, 0 ≤ m j) ∧ f = ∏ j, x j ^ m j}
   one_mem' := ⟨0, by simp, fun _ _ => le_rfl, by simp⟩
@@ -77,7 +67,7 @@ def monoA (x : Fin (d + 1) → F) (hx : ∀ i, x i ≠ 0) (I : Finset (Fin (d + 
     rintro _ _ ⟨m, hm, hm', rfl⟩ ⟨n, hn, hn', rfl⟩
     refine ⟨m + n, ?_, fun j hj => add_nonneg (hm' j hj) (hn' j hj), ?_⟩
     · simp [Finset.sum_add_distrib, hm, hn]
-    · simp only [Pi.add_apply]; exact (prod_zpow_add x hx m n).symm
+    · simp only [Pi.add_apply]; exact (_root_.GlobalTheory.ProductZpowAdd.prod_zpow_add x hx m n).symm
 
 theorem prod_single_sub (x : Fin (d + 1) → F) (hx : ∀ i, x i ≠ 0) (i j : Fin (d + 1)) :
     ∏ l, x l ^ ((Pi.single j 1 : Fin (d + 1) → ℤ) l - (Pi.single i 1 : Fin (d + 1) → ℤ) l) = x j / x i := by
@@ -128,7 +118,7 @@ theorem resvan : ∀ (k : Type) [Field k] (F : Type) [Field F] [Algebra k F] (d 
   induction hz using Submodule.span_induction with
   | mem f hf =>
     obtain ⟨m, hm, hm', rfl⟩ := hf
-    rw [← prod_zpow_add x hne]
+    rw [← _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add x hne]
     refine hρ.2 _ ?_ ?_
     · rw [Finset.sum_add_distrib, hm, add_zero, Finset.sum_sub_distrib]
       simp

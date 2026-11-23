@@ -166,6 +166,6 @@ end GlobalTheory.PsCo.Pc3.ReproPf
 
 namespace GlobalTheory.PsCo.Pc3
 
-theorem fock_reproducing_formula : Repro := ReproPf.fock_reproducing_formula
+alias fock_reproducing_formula := _root_.GlobalTheory.PsCo.Pc3.ReproPf.fock_reproducing_formula
 
 end GlobalTheory.PsCo.Pc3

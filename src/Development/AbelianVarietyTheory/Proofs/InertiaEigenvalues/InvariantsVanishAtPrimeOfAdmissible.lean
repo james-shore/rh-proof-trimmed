@@ -54,16 +54,6 @@ namespace GlobalTheory.Cyc.InvKilled
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem exists_pow_smul_mem (K LL : FinExt l) (T : LocLat ↥(GK K) ℚ_[l] ↥LL.1 ↥(OL LL)) (v : T.V) :
-    ∃ n : ℕ, (l : ↥LL.1) ^ n • v ∈ T.L.T := by
-  first
-  | exact @_root_.GlobalTheory.IntegerRingPowers.main
-  | exact _root_.GlobalTheory.IntegerRingPowers.main
-  | (apply _root_.GlobalTheory.IntegerRingPowers.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegerRingPowers.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegerRingPowers.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegerRingPowers.main ..)
-
 theorem killed_of_coordinates {G : Type} [Group G] [TopologicalSpace G] {Qp LL O : Type} [Field Qp]
     [Field LL] [CharZero LL] [Algebra Qp LL] [CommRing O] [Algebra O LL] [TopologicalSpace LL]
     (T : LocLat G Qp LL O) [Module ℤ_[l] ↥T.L.T]
@@ -151,7 +141,7 @@ theorem killed_of_coord (K LL : FinExt l) (T : LocLat ↥(GK K) ℚ_[l] ↥LL.1 
       ∀ a, ‖(l : ℚ_[l]) ^ c * y a‖ ≤ 1)
     (v : T.V) (hw : ∀ g : ↥(GK K), T.ρ g v - v ∈ T.L.T) : (l : ↥LL.1) ^ c • v ∈ T.L.T := by
   obtain ⟨b, hb, -⟩ := hM
-  obtain ⟨n, hn⟩ := exists_pow_smul_mem K LL T v
+  obtain ⟨n, hn⟩ := _root_.GlobalTheory.IntegerRingPowers.main K LL T v
   refine @killed_of_coordinates l _ _ _ _ _ _ _ _ _ _ _ _ _ _ T (zlMod LL T) ?_
     (fun g => actTZ LL T g) (fun _ _ => rfl) d b (fun g => M g) hb c
     (fun y hy => H y fun σ hσ => hy ⟨σ, hσ⟩) v hw n hn
@@ -178,27 +168,13 @@ def imBall {r d : ℕ} (P : Matrix (Fin r) (Fin d) (PadicComplex l)) :
     rintro _ ⟨x, hx, rfl⟩
     exact ⟨-x, fun a => by simpa using hx a, Matrix.mulVec_neg _ _⟩
 
-theorem Ks_mono' (K : FinExt l) {i j : ℕ} (h : i ≤ j) : Ks K i ≤ Ks K j := by
-  refine sup_le_sup_left (IntermediateField.adjoin.mono _ _ _ ?_) _
-  intro x hx
-  obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le h
-  simp only [Set.mem_setOf_eq] at hx ⊢
-  rw [pow_add, pow_mul, hx, one_pow]
-
-theorem act_algebraMap' {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} (ha : IsActC act)
-    (g : GQ l) (x : ℚ_[l]) :
-    act g (algebraMap ℚ_[l] (PadicComplex l) x) = algebraMap ℚ_[l] (PadicComplex l) x := by
-  have := ha.1 g (algebraMap ℚ_[l] (Om l) x)
-  rw [AlgEquiv.commutes] at this
-  exact this
-
 theorem invariants_killed : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW), adm7 D → ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let S := sit D.loc HW l (D.locA l) K s LL h; let E : S.Comparison₂ := ((F l).E K s LL h).tie; H0at S E := by
   intro D HW F h7 l _ K s LL h S E M0 h0 T τ hW hj x hx
   have hell : ell S = l := (D.loc l).PD_p K
   have hs : S.W.s = s := (HW l).W_s K s LL h
   obtain ⟨d, M, A, hM⟩ := (GlobalTheory.T.exists_continuous_galoisLatticeMatrix_integral l K LL T).1
   obtain ⟨r, P, U, g, J, hJ, hfin, hFr, hHT, hPM, hb1, hb2, hint⟩ :=
-    GlobalTheory.T.exists_tau_component_frame_of_lattice D HW F h7 l K s LL h T M0 h0 τ hW d M A hM
+    _root_.GlobalTheory.TauFrame.exists_tau_frame D HW F h7 l K s LL h T M0 h0 τ hW d M A hM
   have hact : IsActC (D.locA l).actC := ⟨(D.locA l).actC_ext, (D.locA l).actC_norm⟩
   have hχ : IsCyc (D.loc l).χQ := (D.loc l).χQ_cyc
   set m := mN l s (M0 + h0) with hm
@@ -206,7 +182,7 @@ theorem invariants_killed : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc
   have hs1 := h.1
   have hLev : Lev l m := ⟨by omega, fun _ => by omega⟩
   have hG : Gj K m ≤ GK K :=
-    IntermediateField.fixingSubgroup_le (h.2.2.1.trans (Ks_mono' K (by omega)))
+    IntermediateField.fixingSubgroup_le (h.2.2.1.trans (_root_.GlobalTheory.TateDecomp.Ks_mono K (by omega)))
   have h0J : (0 : ℤ) ∉ J := fun hh => hj (hJ 0 hh)
   have hc0 : c0 S T τ M0 h0 = 2 + ∑ u ∈ hfin.toFinset, (m + padicValInt l u) := by
     rw [c0, hell, hs]
@@ -234,7 +210,7 @@ theorem invariants_killed : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc
           funext a
 
           simp only [Matrix.mulVec, dotProduct, map_sum, map_mul, Matrix.map_apply,
-          act_algebraMap' hact]
+          _root_.GlobalTheory.Cyc.FrameTorsion.act_algebraMap hact]
         rw [Matrix.mulVec_sub, Matrix.mulVec_mulVec, hPM σ hσ, twAct, e1, Matrix.mulVec_mulVec]
         simp [chiC])
     rw [Finset.erase_eq_of_notMem h0J] at key

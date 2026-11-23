@@ -130,7 +130,7 @@ theorem discrete (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra ℚ Ω
       (∀ s ∈ Ine (F := ℚ) A, (∀ y ∈ F, s y = y) → X.galB l s v = ((cycZ ℚ Ω l s : ℤ_[l]) ^ (w + 1)) • v) →
       ∀ (n : ℕ) (φ : HahnSeries ℚ Ω), IsThB X A N l n v φ → ∀ r, CgA A l n ((l : Ω) ^ c * φ.coeff r) 0 := by
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed ℚ
-  obtain ⟨c, hc⟩ := GlobalTheory.T.integral_tate_inertia_cyclotomic_twist_torsion l Ω A hA (w + 1) (by omega) F
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.IntTate.integral_tate_inertia l Ω A hA (w + 1) (by omega) F
   refine ⟨c, fun v hv hgal n φ hφ r => ?_⟩
   have hφA : ∀ r, φ.coeff r ∈ A := by
     obtain ⟨f, -, -, -, hDl⟩ := hφ

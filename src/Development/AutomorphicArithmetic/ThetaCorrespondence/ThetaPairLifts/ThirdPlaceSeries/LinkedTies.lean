@@ -71,7 +71,7 @@ theorem linked_ties_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperThe
       rintro x _ rfl t
       exact ⟨t, rfl⟩
     obtain ⟨t', e'⟩ := key ⟨β.D, β.O, b⟩ _ e t
-    exact ⟨q, b'.part t', _root_.GlobalTheory.T.exponent_reading_of_hasExp_bundle hL N S Γ hE K q c b' w t', e'⟩
+    exact ⟨q, b'.part t', _root_.GlobalTheory.PlugPt.pin_pt_of_bundle_witness hL N S Γ hE K q c b' w t', e'⟩
   have hB : RowE (sAnd (IsGoodE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ).s) GlobalTheory.PlugPt.RayPosition) (_root_.GlobalTheory.Mem.Top.Bl.BundleLinkage (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N S Γ))
       (fun _ D O c (b : _root_.GlobalTheory.Fc.BundleCondition D O c) => ∀ t : b.Comparison₂, GlobalTheory.PlugPt.TiesB D O c (b.part t).pt ∧ GlobalTheory.CovTop.RecTied D O.L ∧
         GlobalTheory.BigOn.More (b.part t).pt) :=
@@ -98,7 +98,7 @@ theorem linked_ties_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.UpperThe
         (y.2.2.part t).pt.CompatibilityConditions ∧ GlobalTheory.CovTop.RecTied y.1 y.2.1.L ∧ GlobalTheory.BigOn.More (y.2.2.part t).pt := by
     rintro _ rfl htw hdv hT t
     obtain ⟨hTB, hRec, hMore⟩ := hT t
-    have hcs := _root_.GlobalTheory.T.class_sum_divisibility_of_extensionWithLaw hL N S Γ hN K q c b' w t
+    have hcs := _root_.GlobalTheory.ClassSumPinLink.pIota_classSumPin_alt hL N S Γ hN K q c b' w t
     refine ⟨hcs.1, hcs.2 (_root_.GlobalTheory.Fc.FourBoundsAtBundles.p_div_of_div3g _ hdv), ?_, hRec, hMore⟩
     exact _root_.GlobalTheory.PlugPt.ties_of_tiesB_alt _ _ c _ hTB hRec.1 (_root_.GlobalTheory.Fc.Ind.pt_realised_and_pb_eq _ _ c _).1 htw
   exact key ⟨β.D, β.O, b⟩ e htw hdv hT

@@ -75,7 +75,7 @@ theorem isTriple_of_standing : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Con
     SquareStanding G t → ∀ M : Vol G, M.Is t →
       GlobalTheory.SquareComm.IsTriple (G.V (.grid (↑i + 1) (↑j + 1))) (G.V (.grid ↑i ↑j)) (GlobalTheory.Doubling.hsum (G.V (.grid ↑i (↑j + 1))) (G.V (.grid (↑i + 1) ↑j))) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.alpha G t i j) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.beta G i j) := by
   intro D T L sc G μ₀ hL W t i j hS M hM
-  obtain ⟨e, Bs, Γ, X, om, om', hX, hY, -⟩ := GlobalTheory.T.squareThetaTripleHypotheses_of_standing hL W t i j hS M hM
+  obtain ⟨e, Bs, Γ, X, om, om', hX, hY, -⟩ := _root_.GlobalTheory.FunObj.squareTriple_of_standing hL W t i j hS M hM
   have hi := i.2
   have hj := j.2
   have nv : ∀ a b, a ≤ D.R.m → b ≤ D.R.m → (G.node (.grid a b)).IsV (rankV D a b) ((D.R.m - b) / 2) :=
@@ -91,10 +91,10 @@ theorem isTriple_of_standing : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Con
   obtain ⟨hχ, hχ0⟩ := GlobalTheory.SquareChars.chi_hecke_res G hL i
   have hμ := GlobalTheory.HeckeCharacterRestriction.isHecke_mu hL t j
   have hμ0 := GlobalTheory.HeckeCharacterRestriction.resEta_mu hL t j
-  have hη := GlobalTheory.SquareChars.isHeckeChar_pow' hL.eta.1 (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.eps G i j)
-  have hη1 := GlobalTheory.SquareChars.resEta_pow' (GlobalTheory.HeckeCharacterRestriction.resEta_eta hL) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.eps G i j)
+  have hη := _root_.GlobalTheory.WeilProduct.isHeckeChar_pow hL.eta.1 (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.eps G i j)
+  have hη1 := _root_.GlobalTheory.WeilProduct.resEta_pow (GlobalTheory.HeckeCharacterRestriction.resEta_eta hL) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.eps G i j)
   obtain ⟨p1, p2⟩ := GlobalTheory.SquareChars.rank_parity G hL i j
-  refine ⟨GlobalTheory.SquareChars.isHeckeChar_mul' hμ hη, GlobalTheory.SquareChars.isHeckeChar_mul' hχ hη,
+  refine ⟨_root_.GlobalTheory.WeilChange.hecke_mul hμ hη, _root_.GlobalTheory.WeilChange.hecke_mul hχ hη,
     resEta_parity (resEta_mul hμ0 hη1) (by rw [zero_add]; exact p2),
     resEta_parity (resEta_mul hχ0 hη1) (by rw [zero_add]; exact p1), hrank, ?_, ?_, ?_, ?_⟩
   · rw [hrank]; exact hY.geo.even

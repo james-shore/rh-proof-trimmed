@@ -101,7 +101,7 @@ theorem GlobalTheory.Poinc.lattice_equiv_of_same_centre : ∀ (g n : ℕ) (F : S
   obtain ⟨Y, U₀, EE, FinalForm, q, hov, hee, hq, hpt, hcon, hlift⟩ := GlobalTheory.T.exists_semiabelianModel_proper_over_thetaSetup g n F W Z i X₁ hg hn ho hi he ht hp
   obtain ⟨y, hy⟩ := hlift p z₁ c
   obtain ⟨y', hy'⟩ := hlift p z₁ c'
-  obtain ⟨θ, hl, hE⟩ := GlobalTheory.T.exists_labelled_lattice_equiv_of_common_fibre g n F W Z i X₁ hg hn ho hi he ht hp ε₁ hε Y U₀ EE FinalForm q hov hee hq hpt p z₁ (hcon z₁) c c' y y' hy hy' yy yy' h h'
+  obtain ⟨θ, hl, hE⟩ := _root_.GlobalTheory.Poinc.FibLat.exists_equiv_of_fibre g n F W Z i X₁ hg hn ho hi he ht hp ε₁ hε Y U₀ EE FinalForm q hov hee hq hpt p z₁ (hcon z₁) c c' y y' hy hy' yy yy' h h'
   obtain ⟨κ, hκ⟩ := GlobalTheory.Poinc.LatCmp.exists_diag θ hE
   refine ⟨κ, fun a μ hμ => ?_⟩
   rw [hl a μ hμ, hκ]

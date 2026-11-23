@@ -44,9 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.InjSlice
-theorem etale_forget_preservesInjectiveObjects : LateralTheory.KummerTheory.ForgetInj := by
-  apply LateralTheory.KummerTheory.ForgetInj_of
 theorem etale_injective_sheaf_restricts_to_slice_injective_in_local_homotopy_a : LateralTheory.KummerTheory.InjSlice := by
-  apply LateralTheory.KummerTheory.InjSlice_of <;> first | exact etale_forget_preservesInjectiveObjects
-theorem intersectionNumber_baseChange : LateralTheory.KummerTheory.InjSlice := etale_injective_sheaf_restricts_to_slice_injective_in_local_homotopy_a
+  apply LateralTheory.KummerTheory.InjSlice_of <;> first | exact _root_.LateralTheory.KummerTheory.ForgetInj_of
+alias intersectionNumber_baseChange := _root_.LateralTheory.Fin.InjSlice.etale_injective_sheaf_restricts_to_slice_injective_in_local_homotopy_a
 end LateralTheory.Fin.InjSlice

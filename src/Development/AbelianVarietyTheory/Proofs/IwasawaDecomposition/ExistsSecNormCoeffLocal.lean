@@ -109,9 +109,9 @@ theorem exists_sec_normCoeff_local : ∀ {X Y : Scheme.{0}} (f : Y ⟶ X) [IsFin
     obtain ⟨_, _⟩ := GlobalTheory.IsNormalScheme.isDomain_and_isIntegrallyClosed_of_isIrreducible hWi
     obtain ⟨_, _⟩ := nd a
     obtain ⟨_, _⟩ := nd b
-    have ea := GlobalTheory.T.reversedCharpolyCoeff_map_of_isPushout _ _ _ _ (isPushout_app f a.2.1 hW la) (injective_res_of_isAffineOpen a.2.1 la hx)
+    have ea := _root_.GlobalTheory.NormalDescent.normCoeff_map_of_isPushout _ _ _ _ (isPushout_app f a.2.1 hW la) (injective_res_of_isAffineOpen a.2.1 la hx)
       (f.finite_app _ a.2.1) (f.finite_app _ hW) (τ a) k
-    have eb := GlobalTheory.T.reversedCharpolyCoeff_map_of_isPushout _ _ _ _ (isPushout_app f b.2.1 hW lb) (injective_res_of_isAffineOpen b.2.1 lb hx)
+    have eb := _root_.GlobalTheory.NormalDescent.normCoeff_map_of_isPushout _ _ _ _ (isPushout_app f b.2.1 hW lb) (injective_res_of_isAffineOpen b.2.1 lb hx)
       (f.finite_app _ b.2.1) (f.finite_app _ hW) (τ b) k
     have eτ : resG Y (show f ⁻¹ᵁ W ≤ f ⁻¹ᵁ a.1.1 from fun _ hy => la hy) (τ a) =
         (f.app W).hom (resG X lg (M.g a.1.2 b.1.2).val) *

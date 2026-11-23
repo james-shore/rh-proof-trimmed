@@ -51,7 +51,7 @@ theorem row_jOn_of_realisations_alt : ∀ (Bd : BdT) (Q' : V4.Slot) (Lk : LkT Bd
   refine ⟨Fm.x1 + 1, fun x hx i => ?_⟩
   have hx' : Fm.x1 < x := by linarith
   obtain ⟨Rc, P, Dcf, Spf, Zscf, S, Ks, i1, i2, i3, Q, s, h1, h2, h3⟩ := hA Fm (w3_a hc) x hx' i
-  exact _root_.GlobalTheory.T.V0_map_iota_eq_top_real_alt _ _ _ _ _ _ _ _ _ Rc P Dcf Spf Zscf S Ks i1 i2 i3 Q s h1 h2 h3
+  exact _root_.GlobalTheory.V0_map_iota_eq_top_of_real_alt _ _ _ _ _ _ _ _ _ Rc P Dcf Spf Zscf S Ks i1 i2 i3 Q s h1 h2 h3
 end GlobalTheory.JOnRow
 end
 end

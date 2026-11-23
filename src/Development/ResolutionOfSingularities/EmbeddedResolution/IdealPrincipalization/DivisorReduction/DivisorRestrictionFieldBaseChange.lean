@@ -83,10 +83,6 @@ theorem strictPullbackSmoothSurjectiveOfDimLT_of_isMaxOrderReduction (n : ℕ) (
     (hL : IsMaxOrderReduction (fun d => d < n) L O) : StrictPullbackSmoothSurjectiveOfDimLT n L :=
   hL.smooth_pullback_strict
 
-private theorem toSequenceOfBlowups_heq_of_eq (L : PrincipalizationAssignment.{u}) {A B : MarkedIdealWithBoundary.{u}} (h : A = B) :
-    HEq (L A).toSequenceOfBlowups (L B).toSequenceOfBlowups := by
-  subst h; rfl
-
 structure DivisorRestrictionFieldBaseChange : Prop where
   comap_comap :
     ∀ (X Y Z : Scheme.{u}) (f : X ⟶ Y) (g : Y ⟶ Z) (I : Z.IdealSheafData),
@@ -292,7 +288,7 @@ private theorem restrictToBoundaryDivisor_isStrictPullbackBlowupSeq_baseChange (
         (List.map (fun D => D.comap (E'.get ⟨j, hjE⟩).subschemeι)
           (List.take (E'.length - 1) (E₀'.eraseIdx j))))).toSequenceOfBlowups
       = (L (restrictToBoundaryDivisor ((T.baseChange K f).withBoundary E') j hjE I₀' E₀')).toSequenceOfBlowups :=
-    eq_of_heq (toSequenceOfBlowups_heq_of_eq L htriple)
+    eq_of_heq (_root_.FunctorialResolution.EmbeddedResolution.PrincipalizationAssignment.toSequenceOfBlowups_heq_of_eq L htriple)
   exact (congrArg (fun t : SequenceOfBlowups (E'.get ⟨j, hjE⟩).subscheme =>
       IsStrictPullbackBlowupSeq
         (divisorPullbackMap T j hj I₀ E₀ (T.baseChange K f).scheme (fieldBaseChangeProjection T K f)

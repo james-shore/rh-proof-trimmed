@@ -65,6 +65,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.LocalToGlobal.InertKernelTheory.DefsBeW
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.SigmaScale
+import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.NormHalfB2SubTwoTorsionLeOne
 
 @[expose] public section
 
@@ -365,9 +367,9 @@ open Formalism.L2.Th1.CM (MaximalUnramifiedExtension omegaK)
 open Formalism.DworkPowerSeriesWeights (Integral)
 
 theorem rdictMain : Formalism.L2.KerInert.Rep.CurveDict := by
-  have hInv := Sigma.invAlg'
+  have hInv := _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic
   have hS2 := Sigma.secondEisensteinAlgebraic
-  have hPhW : PhWAll := Dict.phWAll_of (Sigma.sigmaCurveInert_of Sigma.invAlg' Sigma.secondEisensteinAlgebraic)
+  have hPhW : PhWAll := Dict.phWAll_of (Sigma.sigmaCurveInert_of _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic Sigma.secondEisensteinAlgebraic)
   have hBC := beta_coefficients
   have hCE := coboundary_exact
   have hCS := coboundary_equivalence
@@ -379,7 +381,7 @@ theorem rdictMain : Formalism.L2.KerInert.Rep.CurveDict := by
   have hcc : cc ≠ ⊥ := hcurve.1
   have hδ : δ ≠ 0 := by
     intro h0
-    obtain ⟨⟨L1, hL1⟩, -⟩ := Formalism.L2.Th1.F2.lamOfLat D cc 1 hcc one_ne_zero
+    obtain ⟨⟨L1, hL1⟩, -⟩ := _root_.Formalism.L2.Th1.F2.lambda_of_lattice_holds D cc 1 hcc one_ne_zero
     obtain ⟨e2, e3⟩ := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.g2_g3_eq_periodPair _ L1 (congrArg (fun A : AddSubgroup ℂ => (A : Set ℂ)) hL1)
     have hd := Formalism.L2.Th1.F.discNeZero L1
     apply hd
@@ -387,7 +389,7 @@ theorem rdictMain : Formalism.L2.KerInert.Rep.CurveDict := by
     unfold Formalism.MainNotions.TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice Formalism.MainNotions.TaylorLogMetric.discr at h12
     rw [h0, e2, e3] at h12
     rw [← h12]; norm_num
-  obtain ⟨⟨L, hL⟩, hCM⟩ := Formalism.L2.Th1.F2.lamOfLat D cc δ hcc hδ
+  obtain ⟨⟨L, hL⟩, hCM⟩ := _root_.Formalism.L2.Th1.F2.lambda_of_lattice_holds D cc δ hcc hδ
   have hLg : g.abelian₂ = L.lattice.toAddSubgroup := hLam.trans hL.symm
   obtain ⟨hg2, hg3⟩ := hInv D cc δ hcurve hδ12 L hL
   have hs := hS2 D cc δ hcurve hδ12 L hL
@@ -407,17 +409,17 @@ theorem rdictMain : Formalism.L2.KerInert.Rep.CurveDict := by
   have hwp : Formalism.L2.Th1.A.wpReg g.W =
       PowerSeries.C (εu ^ 2) * PowerSeries.rescale εu (Formalism.L2.Th1.F.pOf (g.lam a2) (g.lam a3)) := by
     rw [Sigma.wpReg_eq, gW2, gW3]
-    exact (Formalism.L2.Th1.F.seriesScale ℂ_[l] (g.lam a2) (g.lam a3) εu).2.2.2.1
+    exact (_root_.Formalism.L2.Th1.F.series_scale ℂ_[l] (g.lam a2) (g.lam a3) εu).2.2.2.1
   set s2 : ℂ_[l] := εu ^ 2 * g.lam s0 with hs2def
   have hR : PowerSeries.rescale εu (Formalism.MainNotions.TaylorLogMetric.sgSer g.lam g.abelian₂) = PowerSeries.C εu * Formalism.L2.Th1.B.sgW g.W s2 := by
     unfold Formalism.L2.Th1.B.sgW
     rw [hser, hwp]
-    exact ((Formalism.L2.Th1.F.sigmaScale ℂ_[l] (Formalism.L2.Th1.F.pOf (g.lam a2) (g.lam a3)) (g.lam s0) εu).2).symm
+    exact ((_root_.Formalism.L2.Th1.F.sigma_scale' ℂ_[l] (Formalism.L2.Th1.F.pOf (g.lam a2) (g.lam a3)) (g.lam s0) εu).2).symm
   have hph : g.ph = Formalism.L2.Th1.B.phW g.W s2 := Dict.formal_phase_agree l g s2 hOk hR
   have hcc0 : PowerSeries.constantCoeff g.ph = 0 := by
-    rw [hph]; exact (Formalism.L2.Th1.B.curveSigma ℂ_[l] g.W s2).1
+    rw [hph]; exact (_root_.Formalism.L2.Th1.B.Crv.curve_sigma_function_holds ℂ_[l] g.W s2).1
 
-  obtain ⟨ι, hι⟩ := Formalism.L2.KerInert.lamExt l g.lam
+  obtain ⟨ι, hι⟩ := _root_.Formalism.L2.KerInert.lattice_extension l g.lam
   have hdp : D.host.d.Prime := D.host.hyp.2.1
   have hsqf : Squarefree D.host.d := hdp.squarefree
   have hd4 : D.host.d % 4 = 3 := by have := D.host.hyp.2.2.2.1; omega
@@ -508,7 +510,7 @@ theorem rdictMain : Formalism.L2.KerInert.Rep.CurveDict := by
     rw [← Formalism.L2.G.Pend.witt_fraction_to_Cp_algebraMap l]
     exact Formalism.L2.G.Pend.beRat_of g hOk.2.2.1 hB (Formalism.L2.G.Pend.exRat_of g hOk ⟨w1, w2, w3, w4, w6⟩) _
   obtain ⟨σ0, hσ0⟩ := Formalism.L2.Th1.Top.frobExistsH l h5
-  obtain ⟨F0, hF0⟩ := (Formalism.InvariantFactorPaths.G7.Top.lawExists (MaximalUnramifiedExtension l) l hσ0.1 hσ0.2.2.1).1
+  obtain ⟨F0, hF0⟩ := (_root_.Formalism.InvariantFactorPaths.G7.formal_law_exists (MaximalUnramifiedExtension l) l hσ0.1 hσ0.2.2.1).1
   have tie : ∀ F : MvPowerSeries (Fin 2) (MaximalUnramifiedExtension l), IsLawOfLog l F →
       Formalism.InvariantFactorPaths.G7.Simeq (MvPowerSeries.map (k0ToC l) (inParam l (beLT hLT)))
         (MvPowerSeries.map (MaximalUnramifiedExtension l).subtype (cob F (phFF l G2 G3 S2 E))) := by
@@ -625,7 +627,5 @@ theorem rdictMain : Formalism.L2.KerInert.Rep.CurveDict := by
 end Formalism.L2.KerInert.BeCob
 
 namespace Formalism.L2.KerInert.Rep
-
-theorem curve_dictionary : CurveDict := Formalism.L2.KerInert.BeCob.rdictMain
 
 end Formalism.L2.KerInert.Rep

@@ -274,9 +274,7 @@ theorem exists_approx_of_pow_sub {z : ℂ_[p]} (hz : ‖z‖ ≤ 1) {r m : ℕ} 
   rw [hvω, ← norm_neg, neg_sub]
   exact hωz
 
-theorem exists_lt_norm_pow_sub_lt {c : PadicAlgCl p} (hc : ‖c‖ ≤ 1) {ε : ℝ} (hε : 0 < ε)
-    (f : ℕ → ℕ) : ∃ k₀ k₁, k₀ < k₁ ∧ ‖c ^ f k₁ - c ^ f k₀‖ < ε :=
-  _root_.GroundTheory.Variant₂.N1.exists_lt_norm_pow_sub_pow_lt hc hε f
+alias exists_lt_norm_pow_sub_lt := _root_.GroundTheory.Variant₂.N1.exists_lt_norm_pow_sub_pow_lt
 
 theorem eventually_approx_pow {c : ℂ_[p]} (hc : ‖c‖ ≤ 1) (m : ℕ) :
     ∃ K : ℕ, ∀ k ≥ K, ∃ u ∈ unramifiedClosure p,

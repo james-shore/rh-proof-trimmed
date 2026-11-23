@@ -234,7 +234,7 @@ theorem kap_mem_latO : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topol
   rw [GlobalTheory.FinPl.LatMem.mem_latO_iff D L S LL MS hL hS]
   refine ⟨huP, fun y hy => ?_⟩
   rw [hU.2 S MS]
-  have hyP : ∀ b, y b ∈ idAt D (· = q.v) := GlobalTheory.ContrComb.LatT.latV_entry_mem hy
+  have hyP : ∀ b, y b ∈ idAt D (· = q.v) := _root_.GlobalTheory.FinPlLoc.latV_idAt hy
   refine mem_latV_of_pairH hS (fun b => ?_) (fun t ht => ?_)
   · show (GlobalTheory.FinPl.kap τ S w *ᵥ y) b ∈ _
     simp only [Matrix.mulVec, dotProduct]

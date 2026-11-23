@@ -321,7 +321,7 @@ theorem GlobalTheory.exists_iso_of_compatible_thickenings_sq : SecBaseChangeSt �
         gw w (r ≫ (fstG I e P'.A).left) z (fun _ => j) (fun _ => j') = gw (v e) r z (fun _ => j) (fun _ => fun _ => j') := by
   intro hS hA R _ _ _ I _ P P' β v hv hβ hc
   obtain ⟨Φ, w, hw, H⟩ := GlobalTheory.AlgebraiseGen.exists_iso_of_compatible_thickenings_gen I P P' _ _
-    (LB.isLB_linComb P.isLB _ _) (LB.isLB_linComb P'.isLB _ _) (GlobalTheory.T.existsUnique_section_compatible_square_thickening hS R I P) (GlobalTheory.T.existsUnique_section_compatible_square_thickening hS R I P') 2 (by norm_num)
+    (LB.isLB_linComb P.isLB _ _) (LB.isLB_linComb P'.isLB _ _) (_root_.GlobalTheory.SectionLimitSq.existsUnique_sec_of_compatible_sq hS R I P) (_root_.GlobalTheory.SectionLimitSq.existsUnique_sec_of_compatible_sq hS R I P') 2 (by norm_num)
     (GlobalTheory.T.exists_affine_cover_square_polarisation_sections hA R P) (GlobalTheory.T.exists_affine_cover_square_polarisation_sections hA R P') β v hv hβ (fun e Z r z j j' hj hj' => by
       obtain ⟨a, rfl⟩ : ∃ a, j = fun _ => a := ⟨j 0, fin_one_const j⟩
       obtain ⟨a', rfl⟩ : ∃ a', j' = fun _ => a' := ⟨j' 0, fin_one_const j'⟩

@@ -66,7 +66,7 @@ private theorem rank_le_aleph0_of_irred [TopologicalSpace G] [IsTopologicalGroup
   rw [← rank_top]
   refine GlobalTheory.CompanionTheory.SatAe.rank_le_of_simple (⊤ : Submodule ℂ V) (fun g : G => ρ g)
     ((Submodule.ne_bot_iff _).2 ⟨v, trivial, hv⟩) (fun W _ hW => stable_eq hi W hW) fun x _ => ?_
-  exact ⟨_, GlobalTheory.CompanionTheory.SatAe.countable_orbit ρ x (hs x), fun _ _ => trivial, fun g => Submodule.subset_span ⟨g, rfl⟩⟩
+  exact ⟨_, _root_.UpperTheory.Reformulated.B.Yhd2.main ρ x (hs x), fun _ _ => trivial, fun g => Submodule.subset_span ⟨g, rfl⟩⟩
 
 end
 

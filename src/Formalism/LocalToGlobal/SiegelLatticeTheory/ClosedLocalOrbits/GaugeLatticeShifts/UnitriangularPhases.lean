@@ -140,7 +140,7 @@ theorem phase_move (Λ : Submodule (𝓞 E) S.V) {T T' : E} (F : LFlag S r T) (F
   have e : (vn.conjTranspose * Ls) * ptMat w * (Us * epsConj um) = L2 * ptMat w * U2 := by
     rw [← h2, hZ, zhatOM_mul, hs]; simp only [Matrix.mul_assoc]
   have hds := simple_decomposition_holds E (r + 1) w _ _ _ _
-    (Formalism.MainNotions.BridgeLemma.bru_lo_mul (isLoUni_conjT hvn) hLs) (Formalism.MainNotions.BridgeLemma.bru_up_mul hUs (isUpUni_epsConj hum))
+    (Formalism.MainNotions.BridgeLemma.bru_lo_mul (isLoUni_conjT hvn) hLs) (_root_.GlobalTheory.UpperUnipotentMul.isUpUni_mul hUs (isUpUni_epsConj hum))
     hL2 hU2 e
   rw [sgLo_mul (isLoUni_conjT hvn) hLs, sgUp_mul hUs (isUpUni_epsConj hum), sgLo_conjT, sgUp_epsConj] at hds
   linear_combination -hds

@@ -229,7 +229,7 @@ private theorem PJ_mul_of_PJ_of_PJ (u v : GL (Fin N) (ZMod g)) (hu : PJ kk s (u 
     (hv : PJ kk s (v : Matrix (Fin N) (Fin N) (ZMod g))) :
     PJ kk s ((u * v : GL (Fin N) (ZMod g)) : Matrix (Fin N) (Fin N) (ZMod g)) := by
   rw [Units.val_mul]
-  refine ⟨AllRowsOf.isUniUp_mul hu.1 hv.1, fun a ha hb => ?_⟩
+  refine ⟨_root_.GlobalTheory.UnipotentUpperMul.isUniUp_mul hu.1 hv.1, fun a ha hb => ?_⟩
   rw [AllRowsOf.entN_mul_add hu.1 hv.1 hb (fun j hj1 hj2 => hv.2 j (by omega) hj2), hu.2 a ha hb,
     hv.2 a ha hb, add_zero]
 

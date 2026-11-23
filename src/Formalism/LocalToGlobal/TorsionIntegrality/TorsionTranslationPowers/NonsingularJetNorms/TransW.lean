@@ -192,7 +192,7 @@ open Classical in
 theorem ptW_int (hA : PtWAdd) (hZ : PtWZero) (hU : Unif l L ι W) (hW : IntCurve W) (t : ℂ) (N : ℕ)
     (hlN : ¬ l ∣ N) (hNt : (N : ℂ) * t ∈ L.lattice) (ht : t ∉ L.lattice) :
     ‖px W (ptW l L ι W t)‖ ≤ 1 ∧ ‖py W (ptW l L ι W t)‖ ≤ 1 :=
-  torsionIntegral ℂ_[l] W hW _ N (Tor.norm_natCast l hlN)
+  _root_.Formalism.L2.Th1.E.torsion_integral ℂ_[l] W hW _ N (Tor.norm_natCast l hlN)
     (by rw [nsmul_ptW hA hU]; exact (hZ l L ι W hU _).2 hNt)
     (fun h => ht ((hZ l L ι W hU t).1 h))
 
@@ -535,7 +535,7 @@ theorem oddCase (hS : AnalyticSysW) (hA : PtWAdd) (hZ : PtWZero) (hU : Unif l L 
   refine (hW_sim l L ι W (ω₀ / 2) s (2 * N) (by omega) (two_mem hNs) (half_mem hω N) hω2).gaussOne ?_
   refine Tor.gaussOne_C_mul (by rw [norm_inv, hc1, inv_one]) ?_
   rw [eW_eq]
-  exact gaussMul ℂ_[l] _ _ (gaussOne_of_oneUnit hE') (gW_gauss hS hA hZ hU hW _ (2 * N) hN2 m3)
+  exact _root_.Formalism.L2.Th1.E.gauss_multiplicative ℂ_[l] _ _ (gaussOne_of_oneUnit hE') (gW_gauss hS hA hZ hU hW _ (2 * N) hN2 m3)
 
 
 open Classical in
@@ -579,7 +579,7 @@ theorem shiftCase (hS : AnalyticSysW) (hA : PtWAdd) (hZ : PtWZero) (hU : Unif l 
     exact hS0 h1
   have hy : ‖py W (ptW l L ι W (ω₀ / 2))‖ ≤ 1 :=
     Shift.py_int W ⟨hW.1, hW.2.1, hW.2.2.1, hW.2.2.2.1, hW.2.2.2.2.1⟩ _ hx
-  obtain ⟨hAint, hSint⟩ := shiftPtsInt ℂ_[l] W hW (AddSubgroup.zmultiples (ptW l L ι W s)) hcard
+  obtain ⟨hAint, hSint⟩ := _root_.Formalism.L2.Th1.E.shifted_points_integral ℂ_[l] W hW (AddSubgroup.zmultiples (ptW l L ι W s)) hcard
     (ptW l L ι W (ω₀ / 2)) hSA hSS hx hy
 
   let rep : W.toAffine.Point → ℂ := fun P =>
@@ -644,7 +644,7 @@ theorem shiftCase (hS : AnalyticSysW) (hA : PtWAdd) (hZ : PtWZero) (hU : Unif l 
       rw [hadd, (repS _ hP).2, (repS _ hQ).2] at hk
       rw [hk, map_mul]
       ring
-  obtain ⟨hn, ho⟩ := (shiftUnit ℂ_[l] W hW (AddSubgroup.zmultiples (ptW l L ι W s)) hcard
+  obtain ⟨hn, ho⟩ := (_root_.Formalism.L2.Th1.E.shift_unit' ℂ_[l] W hW (AddSubgroup.zmultiples (ptW l L ι W s)) hcard
     (ptW l L ι W (ω₀ / 2)) hSA hAint hSint _ _ hsys).2 (ptW l L ι W s)
     (AddSubgroup.mem_zmultiples _)
   have hs := repS _ (AddSubgroup.mem_zmultiples (ptW l L ι W s))

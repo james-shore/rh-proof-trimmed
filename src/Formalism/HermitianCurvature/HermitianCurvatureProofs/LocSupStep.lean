@@ -172,12 +172,12 @@ theorem locSup_step (S : C.HidaSetting E Wp Wq) (hpos : C.ThmPPos S) (hg : 0 < S
   set Bt := max (max Ba 0) (Bp + Bq) with hBt
   have hBt0 : 0 ≤ Bt := (le_max_right _ _).trans (le_max_left _ _)
 
-  obtain ⟨i1, i2, hcov, -⟩ := pbc_lstdFacts 1 1 one_pos
+  obtain ⟨i1, i2, hcov, -⟩ := _root_.Formalism.FourierDecayAlt.P.PBC.Lat.lstdFacts 1 1 one_pos
   have := i1; have := i2
   have hgR : (0 : ℝ) < S.g := by exact_mod_cast hg
   obtain ⟨Lm, j1, j2, hLm⟩ := GlobalTheory.dual_smul_mem (Lstd 1 1) (S.g : ℝ) hgR.ne'
   have := j1; have := j2
-  obtain ⟨Cs, -, hCsum⟩ := pbc_lstdSum
+  obtain ⟨Cs, -, hCsum⟩ := _root_.Formalism.FourierDecayAlt.P.PBC.Lat.lstdSum
   obtain ⟨hsm, -⟩ := hCsum 1 1 (S.g : ℝ) (fun _ => Λ b (n - 1) v) one_pos hgR (fun _ => hΛ0)
   let D : Fin 1 → C.LPt → C.LPt → ℂ → ℂ := fun _ p q c =>
     KB.gN S v ε (b + n - 1) (w.1 v) (p ++ [(n, c)]) (q ++ [(n, c)])

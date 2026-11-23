@@ -102,7 +102,7 @@ theorem GlobalTheory.restPt_of_ptFam_aux41_oSplit : GlobalTheory.Published.Fonta
   obtain ⟨hrho, hss, hblock, hdec⟩ := GlobalTheory.T.pointConditions_of_pointGaloisRepFamilies D r ρ hP i π hZ
   obtain ⟨hshape, heps⟩ := GlobalTheory.T.admissible_shape_and_epsilon_at_every_localisation D i
   have hG2 := ((h41 i).2.2 _ (hP.good i)).2.1
-  have hX := _root_.GlobalTheory.T.semisimple_decomposition_of_good_galois_local hF D i (r i) (ρ i) π (hP.good i) hG2 hg0 hg1 hdec
+  have hX := _root_.GlobalTheory.CrysFromGTwo.main_alt_alt hF D i (r i) (ρ i) π (hP.good i) hG2 hg0 hg1 hdec
   exact
     { ng0 := hg0
       ng1 := hg1

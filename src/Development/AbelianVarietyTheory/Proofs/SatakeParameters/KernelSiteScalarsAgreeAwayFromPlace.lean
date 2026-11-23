@@ -69,24 +69,19 @@ theorem map_zpow_of {G M : Type*} [Group G] [DivisionMonoid M] (f : G → M) (U 
   have := map_zpow φ ⟨x, hx⟩ n
   simpa [φ] using this
 
-theorem lamC_mul' {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ TaylorLogMetric.Qbar) :
-    TaylorLogMetric.lamC lam (x * y) = TaylorLogMetric.lamC lam x * TaylorLogMetric.lamC lam y := by
-  rw [lamC_eq_of_mem lam hx, lamC_eq_of_mem lam hy, lamC_eq_of_mem lam (mul_mem hx hy), ← map_mul]
-  rfl
-
 theorem lamC_zpow' {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (n : ℤ) :
     TaylorLogMetric.lamC lam (x ^ n) = TaylorLogMetric.lamC lam x ^ n := by
-  rw [lamC_eq_of_mem lam hx, lamC_eq_of_mem lam (zpow_mem hx n), ← map_zpow₀]
+  rw [_root_.GlobalTheory.NormUnitInert.lamC_of_mem lam hx, _root_.GlobalTheory.NormUnitInert.lamC_of_mem lam (zpow_mem hx n), ← map_zpow₀]
   rfl
 
 theorem lamC_inv' {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) :
     TaylorLogMetric.lamC lam x⁻¹ = (TaylorLogMetric.lamC lam x)⁻¹ := by
-  rw [lamC_eq_of_mem lam hx, lamC_eq_of_mem lam (inv_mem hx), ← map_inv₀]
+  rw [_root_.GlobalTheory.NormUnitInert.lamC_of_mem lam hx, _root_.GlobalTheory.NormUnitInert.lamC_of_mem lam (inv_mem hx), ← map_inv₀]
   rfl
 
 theorem lamC_ne_zero' {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (h0 : x ≠ 0) :
     TaylorLogMetric.lamC lam x ≠ 0 := by
-  rw [lamC_eq_of_mem lam hx]
+  rw [_root_.GlobalTheory.NormUnitInert.lamC_of_mem lam hx]
   exact (map_ne_zero lam).2 fun h => h0 (congrArg Subtype.val h)
 
 theorem final {K : Type} [Field K] {P M C Q s : K} (hP : P ≠ 0) (hM : M ≠ 0) (hC : C ≠ 0) (V A A' la la' n n' : ℤ) :
@@ -112,7 +107,7 @@ theorem scal_away : Sites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fa
   have hjm : j < (sysS H X std).mm := hR.1 ▸ hj
   have hPa := hP j hjm La La' hab.1 hab'.1
   have hPb := hP j hjm Lb Lb' hab.2.1 hab'.2.1
-  obtain ⟨k, hkU, hkI, hkO, hk⟩ := GlobalTheory.T.det_latticeTuples_agreeing_away_from_place S hD hSpl v π hπ j hjle La Lb hab
+  obtain ⟨k, hkU, hkI, hkO, hk⟩ := _root_.GlobalTheory.TwV.Xc.dt_sameAway_step S hD hSpl v π hπ j hjle La Lb hab
   obtain ⟨k', hkU', hkI', hkO', hk'⟩ := GlobalTheory.T.det_latticeTuples_agreeing_away_from_place S hD hSpl v π hπ (j + 1) hj1 La' Lb' hab'
   obtain ⟨c0, hc0⟩ := GlobalTheory.T.kernelLattice_detIdeal_character_eq_const_mul_det S hD hSpl j hjle
   obtain ⟨c0', hc0'⟩ := GlobalTheory.T.kernelLattice_detIdeal_character_eq_const_mul_det S hD hSpl (j + 1) hj1
@@ -183,12 +178,12 @@ theorem scal_away : Sites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fa
   have hLc := lamC_ne_zero' S.lam hc_alg hc_ne
   have hma := fun (e : ℤ) => zpow_mem hm_alg e
   have hca := fun (e : ℤ) => zpow_mem hc_alg e
-  rw [lamC_mul' S.lam hm_alg (hca _), lamC_zpow' S.lam hc_alg] at ha
-  rw [lamC_mul' S.lam (inv_mem hm_alg) (hca _), lamC_inv' S.lam hm_alg, lamC_zpow' S.lam hc_alg] at hb
-  rw [hpp, hscal, lamC_mul' S.lam hsb (mul_mem (mul_mem (mul_mem (hma _) (inv_mem (hma _))) (zpow_mem (hca _) _)) (zpow_mem (hca _) _)),
-    lamC_mul' S.lam (mul_mem (mul_mem (hma _) (inv_mem (hma _))) (zpow_mem (hca _) _)) (zpow_mem (hca _) _),
-    lamC_mul' S.lam (mul_mem (hma _) (inv_mem (hma _))) (zpow_mem (hca _) _),
-    lamC_mul' S.lam (hma _) (inv_mem (hma _)), lamC_inv' S.lam (hma _),
+  rw [_root_.Formalism.L2.Ker.lamC_mul S.lam hm_alg (hca _), lamC_zpow' S.lam hc_alg] at ha
+  rw [_root_.Formalism.L2.Ker.lamC_mul S.lam (inv_mem hm_alg) (hca _), lamC_inv' S.lam hm_alg, lamC_zpow' S.lam hc_alg] at hb
+  rw [hpp, hscal, _root_.Formalism.L2.Ker.lamC_mul S.lam hsb (mul_mem (mul_mem (mul_mem (hma _) (inv_mem (hma _))) (zpow_mem (hca _) _)) (zpow_mem (hca _) _)),
+    _root_.Formalism.L2.Ker.lamC_mul S.lam (mul_mem (mul_mem (hma _) (inv_mem (hma _))) (zpow_mem (hca _) _)) (zpow_mem (hca _) _),
+    _root_.Formalism.L2.Ker.lamC_mul S.lam (mul_mem (hma _) (inv_mem (hma _))) (zpow_mem (hca _) _),
+    _root_.Formalism.L2.Ker.lamC_mul S.lam (hma _) (inv_mem (hma _)), lamC_inv' S.lam (hma _),
     lamC_zpow' S.lam (hca _), lamC_zpow' S.lam (hca _), lamC_zpow' S.lam hm_alg, lamC_zpow' S.lam hm_alg,
     lamC_zpow' S.lam hc_alg, lamC_zpow' S.lam hc_alg,
     map_mul, map_mul, map_zpow₀, map_zpow₀, map_zpow₀, map_zpow₀, ha, hb]

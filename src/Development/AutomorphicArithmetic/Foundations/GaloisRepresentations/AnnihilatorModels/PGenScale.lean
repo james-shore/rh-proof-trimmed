@@ -52,14 +52,10 @@ private theorem prod_map_scale (z : ℂ) (s : Multiset ℂˣ) :
     simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons, ih, Units.val_mul, pow_succ]
     ring
 
-private theorem lift_map {α β : Type} (f : α → β) (B : Multiset α) (t : Multiset β)
-    (h : ∀ x ∈ t, x ∈ B.map f) : ∃ t' : Multiset α, t'.map f = t ∧ ∀ x ∈ t', x ∈ B :=
-  _root_.UpperTheory.Reformulated.B.Qk56.lift_map f B t h
-
 private theorem generic_scale_units (B : Multiset ℂˣ) (z : ℂ) (hz : z ≠ 0) (hB : GenericMul B) :
     GenericMul (B.map fun b : ℂˣ => z * (b : ℂ)) := by
   intro t hc hm hp
-  obtain ⟨t', rfl, h2⟩ := lift_map (fun b : ℂˣ => z * (b : ℂ)) B t hm
+  obtain ⟨t', rfl, h2⟩ := _root_.UpperTheory.Reformulated.B.Qk56.lift_map (fun b : ℂˣ => z * (b : ℂ)) B t hm
   have hcard : t'.card = B.card := by simpa using hc
   rw [prod_map_scale, prod_map_scale, hcard] at hp
   have hprod : t'.prod = B.prod :=

@@ -177,9 +177,9 @@ theorem etale_thom_tail_vanishing_of_thom_isomorphism : LateralTheory.Cohomologi
 theorem etale_thom_class_unit_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTauU := by
   apply LateralTheory.CohomologicalPurity.Thom.LeafTauU_of <;> first | exact etale_thom_geometric_fibers_of_thom_isomorphism | exact etale_thom_pullback_of_thom_isomorphism | exact etale_thom_tail_vanishing_of_thom_isomorphism | exact etale_boundary_map_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
 theorem etale_thom_class_top_degree_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTauTop := by
-  apply LateralTheory.CohomologicalPurity.Thom.LeafTauTop_of <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_thom_geometric_fibers_of_thom_isomorphism | exact etale_thom_pullback_of_thom_isomorphism | exact etale_thom_tail_vanishing_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
+  apply _root_.LateralTheory.CohomologicalPurity.Thom.tauTop <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_thom_geometric_fibers_of_thom_isomorphism | exact etale_thom_pullback_of_thom_isomorphism | exact etale_thom_tail_vanishing_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
 theorem etale_thom_class_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTau := by
-  apply LateralTheory.CohomologicalPurity.Thom.ThomClassRestriction.LeafTau_of <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_thom_geometric_fibers_of_thom_isomorphism | exact etale_thom_pullback_of_thom_isomorphism | exact etale_thom_tail_vanishing_of_thom_isomorphism | exact etale_thom_class_unit_of_thom_isomorphism | exact etale_thom_class_top_degree_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
+  apply _root_.LateralTheory.CohomologicalPurity.Thom.LeafTau_ofU <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_thom_geometric_fibers_of_thom_isomorphism | exact etale_thom_pullback_of_thom_isomorphism | exact etale_thom_tail_vanishing_of_thom_isomorphism | exact etale_thom_class_unit_of_thom_isomorphism | exact etale_thom_class_top_degree_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
 theorem etale_thom_class_natural_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTauNat := by
   apply LateralTheory.CohomologicalPurity.Thom.LeafTauNat_of <;> first | exact etale_thom_geometric_fibers_of_thom_isomorphism | exact etale_boundary_map_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
 theorem etale_cokernel_isomorphism_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafCokIso := by
@@ -187,7 +187,7 @@ theorem etale_cokernel_isomorphism_of_thom_isomorphism : LateralTheory.Cohomolog
 theorem etale_double_cokernel_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafDblCok := by
   apply LateralTheory.CohomologicalPurity.Thom.ExcSp.leafDblCok_of <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
 theorem etale_mapping_cone_cokernel_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafConeCok := by
-  apply LateralTheory.CohomologicalPurity.Thom.ExcSp.leafConeCok_of <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
+  apply _root_.LateralTheory.CohomologicalPurity.Thom.ExcSp.leafConeCok <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
 theorem etale_relative_homotopy_sequence_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafHsRel := by
   apply LateralTheory.CohomologicalPurity.Thom.ExcSp.etale_relative_cohomology_iso_of_cone_and_double_cokernel_isos <;> first | exact etale_double_cokernel_of_thom_isomorphism | exact etale_mapping_cone_cokernel_of_thom_isomorphism | exact etale_boundary_map_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision
 theorem etale_thom_excision_specialization_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafExcSp := by
@@ -233,12 +233,10 @@ theorem etale_chart_coordinate_functions_property_holds : LateralTheory.Cohomolo
 theorem etale_chart_section_property_holds : LateralTheory.CohomologicalPurity.ChartCut.LeafSec := by
   apply LateralTheory.CohomologicalPurity.LeafSecPf.LeafSec_of
 theorem etale_chart_polynomial_algebra_property_holds : LateralTheory.CohomologicalPurity.ChartCut.LeafPoly := by
-  apply LateralTheory.CohomologicalPurity.LeafPolyPf.LeafPoly_of
+  apply _root_.LateralTheory.CohomologicalPurity.LeafPolyPf.leafPoly
 theorem etale_chart_neighborhood_property_holds : LateralTheory.CohomologicalPurity.ChartCut.LeafNbhd := by
   apply LateralTheory.CohomologicalPurity.ChartCut.LeafNbhd_of <;> first | exact etale_chart_section_property_holds | exact etale_chart_polynomial_algebra_property_holds
 theorem etale_coordinate_chart_existence : LateralTheory.CohomologicalPurity.LeafChart := by
   apply LateralTheory.CohomologicalPurity.ChartCut.goal_of <;> first | exact etale_chart_localization_property_holds | exact etale_chart_shrinking_open_property_holds | exact etale_chart_conormal_rank_property_holds | exact etale_chart_generator_choice_property_holds | exact etale_chart_ideal_span_property_holds | exact etale_chart_etaleness_property_holds | exact etale_chart_coordinate_functions_property_holds | exact etale_chart_section_property_holds | exact etale_chart_polynomial_algebra_property_holds | exact etale_chart_neighborhood_property_holds
-theorem etale_purity_closed_immersion_of_reduction : LateralTheory.CohomologicalPurity.LeafCl := by
-  apply LateralTheory.Fix.LeafCl.intersectionNumber_baseChange <;> first | exact etale_boundary_map_of_thom_isomorphism | exact etale_excision_isomorphism_of_excision | exact etale_thom_isomorphism_of_thom_isomorphism | exact etale_coordinate_chart_existence
-theorem intersectionNumber_baseChange : LateralTheory.CohomologicalPurity.LeafCl := etale_purity_closed_immersion_of_reduction
+alias intersectionNumber_baseChange := _root_.LateralTheory.Fix.LeafCl.intersectionNumber_baseChange
 end LateralTheory.Fin.LeafCl

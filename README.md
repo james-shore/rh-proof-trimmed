@@ -19,7 +19,7 @@ mechanical steps only.
 | Base | the source at `7da4577e` | 164,463 | 16,588,671 | 1,024,669 | yes (leanprover-community's CI) | | | |
 | S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | yes | yes | 0 statements changed |
 | S2 | remove syntax Lean's own linters flag as unused | 150,632 | 14,453,805 | 858,404 | yes | yes | yes | 0 statements changed |
-| S3 | keep one copy of each duplicate theorem or definition | coming | | | | | | |
+| S3 | keep one copy of each duplicate theorem or definition, on Lean 4.37 only, see below | | | | | | | |
 | S4 | remove import lines each file doesn't need, on branch [`s4-on-s1`](https://github.com/james-shore/rh-proof-trimmed/tree/s4-on-s1) | 150,632 | 14,252,250 | 858,404 | yes | yes | yes | 0 statements changed |
 
 - Compiles means Lean 4.33.1 builds every module
@@ -35,7 +35,9 @@ mechanical steps only.
   Its lists are at tag [`s2-pr-185-4`](https://github.com/james-shore/rh-proof-trimmed/tree/s2-pr-185-4)
 - It compiles on [#134](https://github.com/leanprover-community/riemann-hypothesis/pull/134) under Lean 4.36 and cuts the
   warnings from the three linters by 94%
-- S3 is coming as a PR on #185 too
+- S3 is [PR #295](https://github.com/leanprover-community/riemann-hypothesis/pull/295) on leanprover-community/riemann-hypothesis,
+  stacked on [#185](https://github.com/leanprover-community/riemann-hypothesis/pull/185). Its lists are at tag
+  [`s3-pr-185`](https://github.com/james-shore/rh-proof-trimmed/tree/s3-pr-185)
 
 ## Base
 

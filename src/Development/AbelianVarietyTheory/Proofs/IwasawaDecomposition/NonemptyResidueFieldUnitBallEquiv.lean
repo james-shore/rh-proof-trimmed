@@ -80,7 +80,7 @@ theorem exists_embedding_inducing_place (K : Type) [Field K] [NumberField K] [Is
       rw [h1, PadicAlgCl.norm_extends]
       exact Padic.norm_p_lt_one
     convert hfin using 3
-    first | exact map_natCast _ _ | simp
+    first | exact map_natCast _ _
   have := v.isPrime
   have := w₀.isPrime
   haveI := Formalism.BasicNotions.Examples₂.PlOver.liesOver_of_mem v.asIdeal hl
@@ -104,11 +104,7 @@ theorem algebraMap_toZMod_eq {l : ℕ} [Fact l.Prime] {R : Type} [Field R] [Alge
     (f : ℤ_[l] →+* R) (hf : f (l : ℤ_[l]) = 0) (x : ℤ_[l]) :
     algebraMap (ZMod l) R (PadicInt.toZMod x) = f x := by
   first
-  | exact @_root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq
-  | exact _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq
   | (apply _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq ..)
 
 theorem isAlgebraic_residueField {l : ℕ} [Fact l.Prime] {B : Type} [CommRing B] [IsLocalRing B]

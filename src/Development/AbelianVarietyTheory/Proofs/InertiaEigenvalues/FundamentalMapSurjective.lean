@@ -71,11 +71,7 @@ variable {R O : Type} [CommRing R] [CommRing O] (p : ℕ)
 theorem exists_lim [IsAdicComplete (Ideal.span {(p : R)}) R] (f : ℕ → R)
     (h : ∀ n, (p : R) ^ n ∣ f (n + 1) - f n) : ∃ L, ∀ n, (p : R) ^ n ∣ L - f n := by
   first
-  | exact @_root_.GlobalTheory.LimitOfDivisibility.exists_limit_of_pow_dvd_sub
-  | exact _root_.GlobalTheory.LimitOfDivisibility.exists_limit_of_pow_dvd_sub
   | (apply _root_.GlobalTheory.LimitOfDivisibility.exists_limit_of_pow_dvd_sub <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LimitOfDivisibility.exists_limit_of_pow_dvd_sub <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LimitOfDivisibility.exists_limit_of_pow_dvd_sub <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LimitOfDivisibility.exists_limit_of_pow_dvd_sub ..)
 
 theorem eq_zero_of_dvd [IsAdicComplete (Ideal.span {(p : R)}) R] (x : R)

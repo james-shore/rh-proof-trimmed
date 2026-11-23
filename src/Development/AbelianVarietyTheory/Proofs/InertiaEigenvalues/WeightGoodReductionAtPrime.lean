@@ -148,11 +148,7 @@ omit [TopologicalSpace Qp] in
 theorem quot_torsion [IsDomain O] [IsFractionRing O LL] (T : LocLat G Qp LL O)
     (w : T.V ⧸ T.L.T) : ∃ b : O, b ≠ 0 ∧ b • w = 0 := by
   first
-  | exact @_root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion
-  | exact _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion
   | (apply _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion <;> assumption)
-  | (intros; apply _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion ..)
 
 omit [TopologicalSpace Qp] in

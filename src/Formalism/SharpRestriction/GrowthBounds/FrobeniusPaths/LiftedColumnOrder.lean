@@ -174,7 +174,7 @@ lemma lift_substitution_letter (w : O) (LL : LiftLetters (Fin N)) (g g' : Matrix
         algebraMap O (KK O) (psiO p f O (LL.pos i) ((g⁻¹ * g') b c)) := by
       intro c; rw [← Matrix.mul_apply, ← sigMat_mul, sigMat_apply]
 
-    simp only [← e, Finset.sum_mul, map_sum, Finset.mul_sum, C_mul]
+    simp only [← e, Finset.sum_mul, map_sum, C_mul]
     rw [Finset.sum_comm]
     exact Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun a _ => by
       rw [MvPolynomial.algebraMap_eq]; ring

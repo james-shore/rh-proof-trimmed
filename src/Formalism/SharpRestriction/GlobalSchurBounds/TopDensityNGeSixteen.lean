@@ -1581,7 +1581,7 @@ theorem algMap_ne {d : 𝓞 K} (hd : d ≠ 0) : algebraMap (𝓞 K) K d ≠ 0 :=
 
 theorem exists_mul_mem (L : Submodule (𝓞 K) V) (v : V) (hv : v ∈ Submodule.span K (L : Set V)) :
     ∃ d : 𝓞 K, d ≠ 0 ∧ d • v ∈ L := by
-  first | exact Bl.general_b_fact_left''''''''.goal1 .. | (apply Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (apply @Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (apply @Bl.general_b_fact_left''''''''.goal1 <;> first | assumption | infer_instance)
+  first | (apply Bl.general_b_fact_left''''''''.goal1 <;> assumption)
 
 end General
 

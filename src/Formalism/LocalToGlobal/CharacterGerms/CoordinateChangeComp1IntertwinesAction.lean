@@ -66,9 +66,7 @@ theorem coordinateChange_comp1_intertwines_action {n : ℕ} (x : O) (a : Pt C n 
   funext i
   unfold ev
   first
-  | rfl
   | (congr 1; funext q; simp)
-  | (congr 1; funext q; skip)
 
 theorem addOf_eq' {n : ℕ} (a b : Pt C n dd) : addOf Y.B.G.F a b = addAt Y a b := by
   unfold addAt
@@ -76,7 +74,6 @@ theorem addOf_eq' {n : ℕ} (a b : Pt C n dd) : addOf Y.B.G.F a b = addAt Y a b 
   funext i
   unfold ev
   first
-  | rfl
   | (congr 1; funext q; unfold P2; rfl)
   | (congr 1; funext q; unfold P2; obtain ⟨j, k⟩ := q; fin_cases j <;> simp)
 

@@ -86,11 +86,7 @@ open TensorProduct
 theorem exists_eq_eval {K : Type} [Field K] {P : Type} [Fintype P] [DecidableEq P]
     (θ : (P → K) →ₐ[K] K) : ∃ p : P, ∀ z : P → K, θ z = z p := by
   first
-  | exact @_root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval
-  | exact _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval
   | (apply _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval ..)
 
 theorem trace_pi_self {K : Type} [Field K] {P : Type} [Fintype P] [DecidableEq P] (z : P → K) :
@@ -98,7 +94,7 @@ theorem trace_pi_self {K : Type} [Field K] {P : Type} [Fintype P] [DecidableEq P
   let b := Pi.basisFun K P
   rw [Algebra.trace_eq_matrix_trace b, Matrix.trace]
   refine Finset.sum_congr rfl fun p _ => ?_
-  simp [Algebra.leftMulMatrix_eq_repr_mul, b, Pi.single_apply]
+  simp [Algebra.leftMulMatrix_eq_repr_mul, b]
 
 theorem exists_trace_eq_finsum : ∀ (R B : Type) [CommRing R] [CommRing B] [Algebra R B], Module.Finite R B →
     Algebra.Etale R B → ∀ b : B, ∃ v : R, ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (φ : R →+* Ω),

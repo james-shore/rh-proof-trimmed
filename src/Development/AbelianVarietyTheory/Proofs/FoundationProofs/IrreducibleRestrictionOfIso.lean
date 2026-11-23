@@ -48,11 +48,7 @@ theorem isIrrSub_conj {Γ k : Type} [Group Γ] [Field k] {n : ℕ}
     (r r' : Γ →* GL (Fin n) k) (g : GL (Fin n) k) (hg : ∀ s, r' s = g * r s * g⁻¹)
     (hr : IsIrrSub (r.comp H.subtype) ⊤) : IsIrrSub (r'.comp H'.subtype) ⊤ := by
   first
-  | exact @_root_.GlobalTheory.ConjugateIrreducibility.target
-  | exact _root_.GlobalTheory.ConjugateIrreducibility.target
   | (apply _root_.GlobalTheory.ConjugateIrreducibility.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ConjugateIrreducibility.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ConjugateIrreducibility.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ConjugateIrreducibility.target ..)
 
 theorem dt_eq_of_repIso {Ω : Type} [Field Ω] [Algebra ℚ Ω] {l : ℕ} [Fact l.Prime]

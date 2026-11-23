@@ -292,7 +292,7 @@ theorem left (ε : Fin n → Bool) (μ : Measure (UJ ε)) (c : ℝ≥0) (hc : c 
     NNReal.smul_def, ← integral_smul]
   congr 1
   funext B
-  simp only [pol, NNReal.smul_def, smul_eq_mul, Complex.real_smul]
+  simp only [pol, NNReal.smul_def, Complex.real_smul]
   push_cast
   ring
 

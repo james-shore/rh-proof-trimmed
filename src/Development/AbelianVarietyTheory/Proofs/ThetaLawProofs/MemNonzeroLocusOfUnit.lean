@@ -145,7 +145,7 @@ theorem exists_generator (hS : Out.SecBaseChangeSt) [IsLocalRing R] [IsNoetheria
           (congrArg₂ (· * ·) ((gs_unit (𝟙 _) y _ hy _).trans (congrArg Units.val ?_))
             ((gs_res (𝟙 _) y _ hy _).trans (gs_res (𝟙 _) y (le j) hy.2 _))))))
       refine (gm_linComb P.L _ _ (𝟙 _) y i j hy.1 hy.2).trans ?_
-      simp [Geo.Tor.trF]
+      simp
     obtain ⟨σ, hσ⟩ := hpow s
     obtain ⟨c, hc, -⟩ := hβ R (𝟙 _) _ (𝟙 _) P.A.hom (IsPullback.of_vert_isIso ⟨by simp⟩) σ
     refine ⟨c i₀, (sec_eq_iff _ _ _ _).2 fun i y hy => ?_⟩

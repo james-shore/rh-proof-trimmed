@@ -138,10 +138,10 @@ theorem actL_single (E : Fin n → Fin n → Module.End ℂ M) (a b : Fin n) (x 
   rw [actL_apply, actM, Finset.sum_eq_single a, Finset.sum_eq_single b]
   · simp
   · intro c _ hc
-    simp [Matrix.single_apply, hc.symm]
+    simp [hc.symm]
   · simp
   · intro c _ hc
-    exact Finset.sum_eq_zero fun d _ => by simp [Matrix.single_apply, hc.symm]
+    exact Finset.sum_eq_zero fun d _ => by simp [hc.symm]
   · simp
 
 theorem act_single (E : Fin n → Fin n → Module.End ℂ M) (a b : Fin n) :
@@ -344,12 +344,12 @@ theorem conj_weight {U Ui : Matrix (Fin n) (Fin n) ℂ} (hUi : Ui * U = 1) (d : 
     ext a b
     by_cases ha : p = a
     · subst ha; simp [Matrix.diagonal_mul, Matrix.single_apply]
-    · simp [Matrix.diagonal_mul, Matrix.single_apply, ha]
+    · simp [Matrix.diagonal_mul, ha]
   have h4 : Matrix.single p q (1 : ℂ) * Matrix.diagonal d = d q • Matrix.single p q 1 := by
     ext a b
     by_cases hb : q = b
     · subst hb; simp [Matrix.mul_diagonal, Matrix.single_apply]
-    · simp [Matrix.mul_diagonal, Matrix.single_apply, hb]
+    · simp [Matrix.mul_diagonal, hb]
   rw [h1, h2, h3, h4, sub_smul, Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_smul, Matrix.smul_mul]
 
 theorem Ym_weight (B : GradBasis A) (p q : Fin n) :
@@ -609,14 +609,14 @@ theorem A_eq (B : GradBasis A) : A = ∑ p, (dz (bl B p) : ℂ) • Ym B p p := 
       rw [Finset.sum_eq_single a]
       · simp [dv_eq, bl]
       · intro c _ hc
-        simp [Matrix.single_apply, hc]
+        simp [hc]
       · simp
     · rw [Finset.sum_eq_zero]
-      · simp [Matrix.diagonal_apply, h]
+      · simp [h]
       · intro c _
         by_cases hc : c = a
-        · subst hc; simp [Matrix.single_apply, h]
-        · simp [Matrix.single_apply, hc]
+        · subst hc; simp [h]
+        · simp [hc]
   have hA2 : A = B.U * (∑ p, (dz (bl B p) : ℂ) • Matrix.single p p (1 : ℂ)) * B.Ui := by
     rw [← e]; exact hA
   calc A = _ := hA2

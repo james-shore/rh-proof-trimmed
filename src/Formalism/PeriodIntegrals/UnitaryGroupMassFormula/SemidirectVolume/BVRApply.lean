@@ -82,9 +82,9 @@ theorem bVR_apply (i : Fin (Fintype.card (Σ _ : Fin M, Fin (Module.finrank F E)
   by_cases hj : j = a
   · subst hj
     simp only [Pi.single_eq_same]
-    first | rfl | simp
+    first | rfl
   · simp only [Pi.single_eq_of_ne hj]
-    first | rfl | simp
+    first | simp
 
 end Bases
 

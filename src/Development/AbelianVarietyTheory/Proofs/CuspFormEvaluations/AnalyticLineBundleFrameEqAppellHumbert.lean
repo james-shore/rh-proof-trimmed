@@ -96,7 +96,7 @@ theorem tay_coord {N : ℕ} (k : Fin N) :
     congr 2
     by_cases h : k = j
     · subst h; simp
-    · simp [h, Ne.symm h, Pi.single_apply]
+    · simp [h]
 
 
 theorem jetN_coord {n g : ℕ} (m : ℕ) (a : ℂ) (i : Fin n) (j : Fin g) :

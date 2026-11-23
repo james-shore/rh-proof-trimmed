@@ -282,7 +282,7 @@ theorem exists_skew_norm_mul_unit : ∀ D : D7, ∃ μ : D.host.E, IsSkew μ ∧
   · rw [h] at hsq
     exact_mod_cast (by simpa using hsq : (D.host.q : D.host.E) = 0)
   · have := congrArg (fun z : 𝓞 D.host.E => (z : D.host.E)) e
-    simp only [RingOfIntegers.coe_eq_algebraMap, map_mul] at this
+    simp only [map_mul] at this
     exact (congrArg _ (hcv α).symm).trans this
 
 end GlobalTheory.StdUnn.SkewNorm

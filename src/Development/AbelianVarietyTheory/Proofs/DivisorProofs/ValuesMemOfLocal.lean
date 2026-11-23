@@ -294,7 +294,7 @@ theorem _root_.GlobalTheory.ExpCover.values_mem_of_local {l : ℕ} [Fact l.Prime
           _ = b ((((∑ k, ρ (X i) k j • B k : Z) : M) : G → V) g) := by rw [e1]
           _ = ∑ k, emb (ρ (X i) k j) • f k g := by
 
-              simp [f, map_sum, map_smulₛₗ, Submodule.coe_sum, Finset.sum_apply]
+              simp [f, map_sum, map_smulₛₗ, Finset.sum_apply]
       calc emb (cst i) • ∑ s ∈ tr i, v (g * s)
           = ∑ j, c j • (emb (cst i) • ∑ s ∈ tr i, f j (g * s)) := by
             simp only [hv_apply, Finset.smul_sum]

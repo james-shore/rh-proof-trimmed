@@ -492,7 +492,7 @@ theorem barStd : GlobalTheory.IndefiniteRowSideFullHecke.JetSumTable.JetMoments 
     letI := Formalism.L2.Ker.full_of_sd hsd'
     letI := d'.2.Lsh_lattice
     exact Submodule.IsFullLattice.of_le Z.X.E d'.2.N_le_Lsh
-  rw [← GlobalTheory.KerT.localization_delAtr_eq_localization_nabAtr hP Z.X _ _ _ (hPr.T_prime u) hAl w hTw _ (by first | exact hfullLsh | exact hfullLsh.toIsLattice)] at hG
+  rw [← GlobalTheory.KerT.localization_delAtr_eq_localization_nabAtr hP Z.X _ _ _ (hPr.T_prime u) hAl w hTw _ (by first | exact hfullLsh)] at hG
   have hT0 : (Z.Pr.T u : Z.X.K) ≠ 0 := Nat.cast_ne_zero.2 (hPr.T_prime u).ne_zero
   have hvT : w.valuation Z.X.K (Z.Pr.T u) ≠ 0 := by simpa using hT0
   have hdet : ∀ {n : ℕ} (τ : Z.X.Tau) (C : GL (Fin n) Z.X.E),

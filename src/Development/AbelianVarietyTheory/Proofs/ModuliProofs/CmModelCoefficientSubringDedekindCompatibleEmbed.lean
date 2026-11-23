@@ -125,7 +125,7 @@ theorem natCast_mul_mem_of_isIntegral (K : IntermediateField ℚ ℂ) [FiniteDim
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   have hxc : (x : ℂ) = ζ := rfl
   set_option synthInstance.maxHeartbeats 200000 in
-    simp [derivative_X_pow, hxc]
+    simp [hxc]
   linear_combination (-(m + 1 : ℂ) * z) * hζ
 
 
@@ -134,11 +134,7 @@ theorem mem_of_isIntegral_quadratic {d : ℕ} (hd : d.Prime) (hd4 : d % 4 = 3) {
     (hr : r ^ 2 = -(d : ℂ)) (T : Subring ℂ) (hT : (1 + r) / 2 ∈ T) {z : ℂ} (hzK : z ∈ ℚ⟮r⟯)
     (hz : IsIntegral ℤ z) : z ∈ T := by
   first
-  | exact @_root_.GlobalTheory.RationalIntegralCoordinates.main
-  | exact _root_.GlobalTheory.RationalIntegralCoordinates.main
   | (apply _root_.GlobalTheory.RationalIntegralCoordinates.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RationalIntegralCoordinates.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RationalIntegralCoordinates.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RationalIntegralCoordinates.main ..)
 
 end

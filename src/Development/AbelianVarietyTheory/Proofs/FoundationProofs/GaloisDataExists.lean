@@ -57,11 +57,7 @@ theorem exists_sum_of_mem_La (D : D7) (T : Tor D) {N N' : ℕ}
     ∃ (r : ℕ) (b : Fin r → Matrix (Fin N') (Fin N) D.host.E) (w : Fin r → ℂ),
       (∀ j, b j ∈ YYl D L L') ∧ (∀ j, w j ∈ T.abelian₂) ∧ y = ∑ j, w j • embV D T (b j) := by
   first
-  | exact @_root_.GlobalTheory.LatticeSumMembership.La_mem_sum
-  | exact _root_.GlobalTheory.LatticeSumMembership.La_mem_sum
   | (apply _root_.GlobalTheory.LatticeSumMembership.La_mem_sum <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LatticeSumMembership.La_mem_sum <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LatticeSumMembership.La_mem_sum <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LatticeSumMembership.La_mem_sum ..)
 
 theorem galEx_of_galStar (D : D7) (hS : galStar D) : galEx D := by

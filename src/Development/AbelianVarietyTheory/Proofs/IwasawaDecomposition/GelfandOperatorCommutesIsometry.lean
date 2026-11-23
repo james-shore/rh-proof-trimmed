@@ -59,11 +59,7 @@ theorem trace_pow_rect {A : Type} [Ring A] [Algebra ℂ A] {n m : ℕ} (E : Fin 
     (h : ∀ a b, E' a b = ∑ c, ∑ d, (Q c a * P b d) • E c d) (k : ℕ) :
     ∑ c, (Matrix.of E' ^ k) c c = ∑ c, (Matrix.of E ^ k) c c := by
   first
-  | exact @_root_.GlobalTheory.TracePowEq.trace_pow_eq
-  | exact _root_.GlobalTheory.TracePowEq.trace_pow_eq
   | (apply _root_.GlobalTheory.TracePowEq.trace_pow_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TracePowEq.trace_pow_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TracePowEq.trace_pow_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TracePowEq.trace_pow_eq ..)
 
 namespace IsoMat

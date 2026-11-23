@@ -125,7 +125,6 @@ theorem indepMod_first_coeff : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [Ne
       exact_mod_cast (zero_lt_one : (0 : ℝ) < 1)
     apply mm_of_ge_one
     first
-      | simpa using hr0.l_mul
       | simpa [mul_assoc] using (ha.mul_int (hb.mul_int hr0)).l_mul
   have mm_sum_pow : ∀ (e : ℕ) {ι : Type} (s : Finset ι) (x : ι → C),
       (∀ i ∈ s, V.Ge 0 (x i)) →

@@ -123,14 +123,12 @@ theorem exists_excisionNbhd_adjoin_root : ∀ (A : Type) [CommRing A] (h : A) (q
     intro a
     first
       | rfl
-      | simp [ψ, Ideal.Quotient.liftₐ_apply, IsScalarTower.algebraMap_apply A P.Ring (P.Ring ⧸ J)]
   have hcomp : ψ.comp φ = Ideal.Quotient.mkₐ A J := by
     apply P.hom_ext
     simp only [AlgHom.comp_apply, φ, StandardEtalePair.lift_X, Ideal.Quotient.mkₐ_eq_mk]
     show ψ (Ideal.Quotient.mk I r) = _
     rw [hψ, Ideal.Quotient.eq]
     first
-      | exact hX
       | (have := J.neg_mem hX; rwa [neg_sub] at this)
   refine ⟨P.Ring, inferInstance, inferInstance, ⟨inferInstance, ?_, ?_⟩, P.X, e2.symm⟩
   · intro a'

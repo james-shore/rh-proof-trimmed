@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.exists_diag_mem_doubledVacuumLatticeStabilizer : �
     (v : Pl (F := F)), ∀ k ∈ GlobalTheory.InertSph.KAt σ W v, ∃ g : GlobalTheory.DblVac.UD σ W,
       ((g : GL (Fin d ⊕ Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) : Matrix (Fin d ⊕ Fin d) (Fin d ⊕ Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) = Matrix.fromBlocks (mat k) 0 0 1 ∧
       g ∈ GlobalTheory.DblVac.KD σ W v := by
-  first | exact @GlobalTheory.DblVacDiag.diag_mem_KD | exact GlobalTheory.DblVacDiag.diag_mem_KD | (intros; apply GlobalTheory.DblVacDiag.diag_mem_KD <;> assumption)
+  first | exact @GlobalTheory.DblVacDiag.diag_mem_KD

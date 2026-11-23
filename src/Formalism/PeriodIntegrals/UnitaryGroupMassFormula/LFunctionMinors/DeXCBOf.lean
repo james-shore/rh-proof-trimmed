@@ -73,8 +73,6 @@ theorem block (hCB : CBSorted) {Lt : Type} (l : ℕ) [Fact l.Prime] (N0 N1 : ℕ
         first
           | (rw [Finset.sum_comm]
              exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring)
-          | exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => by ring
-          | (rw [Finset.sum_comm]; ring)
     _ = _ := hCB _ _ _ _ _
     _ = _ := by
         refine Finset.sum_congr rfl fun J _ => ?_
@@ -82,11 +80,9 @@ theorem block (hCB : CBSorted) {Lt : Type} (l : ℕ) [Fact l.Prime] (N0 N1 : ℕ
         congr 1
         · rw [RingHom.map_det]
           congr 1
-          try (refine Matrix.ext fun i j => ?_; simp [Matrix.submatrix_apply, RingHom.mapMatrix_apply, Matrix.map_apply])
         · rw [RingHom.map_det]
           congr 1
-          try (refine Matrix.ext fun i k => ?_; simp [Matrix.submatrix_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
-            map_sum, MvPolynomial.eval₂Hom_X'])
+          try (refine Matrix.ext fun i k => ?_; simp [Matrix.submatrix_apply, RingHom.mapMatrix_apply, Matrix.map_apply])
 
 theorem deXCB_of (hCB : CBSorted) : DeXCB := by
   unfold DeXCB
@@ -96,7 +92,5 @@ theorem deXCB_of (hCB : CBSorted) : DeXCB := by
   simp only [Finset.prod_univ_sum, Fintype.piFinset_univ]
   first
     | rfl
-    | (congr 1)
-    | exact Finset.sum_congr (Subsingleton.elim _ _) fun _ _ => rfl
 
 end PI.WwMainW

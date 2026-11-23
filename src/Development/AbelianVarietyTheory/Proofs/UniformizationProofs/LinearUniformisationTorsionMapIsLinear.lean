@@ -62,5 +62,5 @@ theorem main : LL → TwistBCSpanStatement → TWM.VRatioGtStatement → TWState
   have e := (hf.1 q _).1 hb
   rw [eA] at e
   rw [e]
-  first | exact (hf.2.2.1 _ _).2 hq | exact ((hf.2.2.1 _ _).2 hq).symm
+  first | exact ((hf.2.2.1 _ _).2 hq).symm
 end GlobalTheory.UT.OLinTors

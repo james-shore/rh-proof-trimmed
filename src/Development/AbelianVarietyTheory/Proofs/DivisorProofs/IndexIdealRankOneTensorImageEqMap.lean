@@ -115,7 +115,7 @@ theorem one_mem_dets {F : Type} [Field F] [NumberField F] (p : ℕ) (L : Submodu
     ext i j
     by_cases hij : i = j
     · subst hij; simp
-    · simp [Pi.single_apply, Matrix.one_apply, hij, Ne.symm hij]
+    · simp [hij, Ne.symm hij]
   rw [hI, Matrix.det_one]
 
 theorem dets_std {F : Type} [Field F] [NumberField F] (p : ℕ) :
@@ -132,7 +132,7 @@ theorem dets_std {F : Type} [Field F] [NumberField F] (p : ℕ) :
       rw [← hf i]
       by_cases hij : j = f i
       · subst hij; simp
-      · simp [Pi.single_apply, hij]
+      · simp [hij]
     rw [hM]
     exact Submodule.mem_one.2 ⟨_, RingHom.map_det _ _⟩
   · rw [Submodule.one_le]
@@ -142,7 +142,7 @@ theorem dets_std {F : Type} [Field F] [NumberField F] (p : ℕ) :
       ext i j
       by_cases hij : i = j
       · subst hij; simp
-      · simp [Pi.single_apply, Matrix.one_apply, hij, Ne.symm hij]
+      · simp [hij, Ne.symm hij]
     rw [hI, Matrix.det_one]
 
 theorem big_eq_map {E K : Type} [Field E] [NumberField E] [Field K] [NumberField K] (τE : E →+* K) {p m n : ℕ}
@@ -174,7 +174,7 @@ private lemma sum_single_smul_eq_apply {E K : Type} [Field E] [Field K] (τE : E
   rw [Finset.sum_eq_single b]
   · simp
   · intro a _ hab
-    simp [Pi.single_apply, hab]
+    simp [hab]
   · simp
 
 theorem small_eq_big_std {E K : Type} [Field E] [NumberField E] [Field K] [NumberField K]
@@ -247,7 +247,7 @@ theorem idx_image_eq_map : ∀ (E K : Type) [Field E] [NumberField E] [Field K] 
     funext b
     by_cases hab : b = a
     · subst hab; simp
-    · simp [Pi.single_apply, hab]
+    · simp [hab]
   have hD1 : (1 : E) ∈ GlobalTheory.IdxTensor.dets E p Λ := one_mem_dets p Λ hsing
   have hDfg : (GlobalTheory.IdxTensor.dets E p Λ).FG := dets_fg p Λ hΛfg
   have hR := cut_idxmap (V := Fin p → E) p (LinearMap.id) Function.injective_id Λ

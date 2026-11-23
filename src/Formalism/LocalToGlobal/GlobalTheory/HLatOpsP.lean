@@ -142,8 +142,6 @@ theorem isSesq_maj (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
     refine Finset.sum_congr rfl fun i _ => ?_
     first
     | (rw [Complex.star_def]; ring)
-    | (simp only [RCLike.star_def]; ring)
-    | ring
   · simp only [majAt, hsmul, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
     ring
@@ -191,7 +189,7 @@ theorem gramOf_maj (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
     by_cases hj : j = i
     · subst hj
       simp
-    · simp [Finsupp.single_apply, Pi.single_apply, hj, Ne.symm hj]
+    · simp [hj]
   have hf : ∀ i k, fcoord b X v (b i) k = (X v)⁻¹ k i := by
     intro i k
     simp [fcoord, hv, Matrix.mulVec, dotProduct, Pi.single_apply]
@@ -362,7 +360,6 @@ theorem exists_frame {ι : Type} [Fintype ι] [DecidableEq ι] {G : Matrix ι ι
     ∃ B : Matrix ι ι ℂ, IsUnit B.det ∧ B.conjTranspose * B = G := by
   have hex : ∃ B : Matrix ι ι ℂ, G = B.conjTranspose * B := by
     first
-    | exact Matrix.posSemidef_iff_eq_conjTranspose_mul_self.1 hG.posSemidef
     | (obtain ⟨B, hB⟩ := Matrix.posSemidef_iff_eq_conjTranspose_mul_self.1 hG.posSemidef
        exact ⟨B, hB⟩)
     | (have h0 : (0 : Matrix ι ι ℂ) ≤ G := Matrix.nonneg_iff_posSemidef.2 hG.posSemidef
@@ -375,8 +372,6 @@ theorem exists_frame {ι : Type} [Fintype ι] [DecidableEq ι] {G : Matrix ι ι
   have hdet : G.det ≠ 0 := by
     first
     | exact hG.det_pos.ne'
-    | exact hG.det_ne_zero
-    | exact (Matrix.isUnit_iff_isUnit_det G).1 hG.isUnit |>.ne_zero
   rw [isUnit_iff_ne_zero]
   intro h0
   apply hdet
@@ -446,7 +441,6 @@ theorem posAt_comp {V ι W κ : Type} [AddCommGroup V] [Module K V] [Fintype ι]
   rw [hgram]
   first
   | exact hG.conjTranspose_mul_mul_same hinj
-  | exact Matrix.PosDef.conjTranspose_mul_mul_same hG hinj
 
 theorem isSesq_comp {V W : Type} [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
     {H : InfinitePlace K → V → V → ℂ} (hH : IsSesq H) (f : W →ₗ[K] V) :
@@ -475,9 +469,6 @@ theorem posAt_maj {V ι : Type} [AddCommGroup V] [Module K V] [Fintype ι] [Deci
     simpa [Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _ (hX v)] using h1
   first
   | exact Matrix.PosDef.conjTranspose_mul_self _ hinj
-  | exact (Matrix.posDef_conjTranspose_mul_self_iff _).2 hinj
-  | (have h1 := Matrix.PosDef.one.conjTranspose_mul_mul_same hinj
-     simpa using h1)
 
 end Forms
 
@@ -507,9 +498,6 @@ theorem map_comap_eq' {V W : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K
   rw [Submodule.map_comap_eq, inf_comm]
   first
   | rfl
-  | (congr 1
-     ext y
-     simp [LinearMap.mem_range])
 
 theorem rkK_map {V W : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K) V]
     [IsScalarTower (𝓞 K) K V] [AddCommGroup W] [Module K W] [Module (𝓞 K) W]
@@ -602,7 +590,7 @@ theorem vecAt_basis {V ι : Type} [AddCommGroup V] [Module K V] [Fintype ι] [De
   by_cases hj : j = i
   · subst hj
     simp
-  · simp [Finsupp.single_apply, Pi.single_apply, hj, Ne.symm hj]
+  · simp [hj]
 
 theorem fcoord_basis {V ι : Type} [AddCommGroup V] [Module K V] [Fintype ι] [DecidableEq ι]
     (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ) (v : InfinitePlace K) (i : ι) :

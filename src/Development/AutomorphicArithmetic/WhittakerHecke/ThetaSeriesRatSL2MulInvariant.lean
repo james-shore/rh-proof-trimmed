@@ -69,7 +69,7 @@ private theorem row_rat (γ : Matrix.SpecialLinearGroup (Fin 2) ℚ) (x : Fin 2 
     (fun i => rt (x i)) ᵥ* (ratS ℚ γ).1 = fun i => rt ((x ᵥ* γ.1) i) := by
   funext j
   simp only [Matrix.vecMul, dotProduct, Fin.sum_univ_two, ratS, Matrix.SpecialLinearGroup.map_apply_coe,
-    RingHom.mapMatrix_apply, Matrix.map_apply, map_add, map_mul]
+    Matrix.map_apply, map_add, map_mul]
 
 theorem UpperTheory.thetaSeries_ratSL2_mul_invariant :
     ∀ (Φ : (Fin 2 → A ℚ) → ℂ) (t : ℝ) (γ : Matrix.SpecialLinearGroup (Fin 2) ℚ) (g : G1 ℚ) (h : GL (Fin 2) (A ℚ)),

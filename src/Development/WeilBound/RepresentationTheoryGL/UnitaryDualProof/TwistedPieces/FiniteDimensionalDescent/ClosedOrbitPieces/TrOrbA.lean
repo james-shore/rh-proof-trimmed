@@ -126,11 +126,11 @@ theorem pidem_mul (I J : MaximalSpectrum A) : pidem A I * pidem A J = if I = J t
     rw [map_mul, Pi.mul_apply, equivPi_pidem]
     by_cases hL : L = I
     · subst hL; simp
-    · simp [Pi.single_apply, hL]
+    · simp [hL]
   · rw [map_mul, Pi.mul_apply, equivPi_pidem, equivPi_pidem, map_zero, Pi.zero_apply]
     by_cases hL : L = I
-    · subst hL; simp [Pi.single_apply, Ne.symm h]
-    · simp [Pi.single_apply, hL]
+    · subst hL; simp [Ne.symm h]
+    · simp [hL]
 
 theorem pidem_idem (I : MaximalSpectrum A) : IsIdempotentElem (pidem A I) := by
   have h := pidem_mul I I
@@ -143,7 +143,7 @@ theorem sum_pidem [Fintype (MaximalSpectrum A)] : ∑ I, pidem A I = 1 := by
 
   rw [map_sum, Finset.sum_apply, map_one, Pi.one_apply]
   simp_rw [equivPi_pidem]
-  simp [Pi.single_apply]
+  simp
 
 theorem mul_pidem_of_mem (I : MaximalSpectrum A) {x : A} (hx : x ∈ I.asIdeal) : x * pidem A I = 0 := by
   apply (IsArtinianRing.equivPi A).injective
@@ -152,7 +152,7 @@ theorem mul_pidem_of_mem (I : MaximalSpectrum A) {x : A} (hx : x ∈ I.asIdeal) 
   by_cases hL : L = I
   · subst hL
     rw [IsArtinianRing.equivPi_apply, (Ideal.Quotient.eq_zero_iff_mem).2 hx, zero_mul]
-  · simp [Pi.single_apply, hL]
+  · simp [hL]
 
 end idem
 

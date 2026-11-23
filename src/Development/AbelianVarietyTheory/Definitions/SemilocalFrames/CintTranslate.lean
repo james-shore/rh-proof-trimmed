@@ -65,11 +65,7 @@ lemma sum_refine {A B C : AddSubgroup W} {φ : W → ℂ} (h : Fine A φ B) (hC 
     (hi : C.relIndex B ≠ 0) :
     (∑ᶠ c : W ⧸ C, φ c.out) = (C.relIndex B : ℂ) * ∑ᶠ c : W ⧸ B, φ c.out := by
   first
-  | exact @_root_.GlobalTheory.SumRefinement.sum_refine
-  | exact _root_.GlobalTheory.SumRefinement.sum_refine
   | (apply _root_.GlobalTheory.SumRefinement.sum_refine <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SumRefinement.sum_refine <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SumRefinement.sum_refine <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SumRefinement.sum_refine ..)
 
 lemma ratio_eq {A B B' : AddSubgroup W} {φ : W → ℂ} (h : Fine A φ B) (h' : Fine A φ B') :

@@ -199,8 +199,6 @@ private theorem valAt'_comp' {Y X : Scheme.{0}} (y : Sp ℂ ⟶ Y) (m : Y ⟶ X)
   · have hy' : ⊤ ≤ y ⁻¹ᵁ (m ⁻¹ᵁ W) := hy
     rw [valAt', dif_pos hy, valAt', dif_pos hy', valAt, valAt]
     first
-      | (rw [Scheme.comp_appLE]; rfl)
-      | simp [Scheme.comp_appLE]
       | simp [Scheme.Hom.comp_appLE]
   · have hy' : ¬ ⊤ ≤ y ⁻¹ᵁ (m ⁻¹ᵁ W) := hy
     rw [valAt', dite_eq_right hy, valAt', dite_eq_right hy']

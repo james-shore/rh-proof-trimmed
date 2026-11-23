@@ -125,11 +125,7 @@ theorem low_inter (hreg : ∀ y : A, algebraMap R A ξ * y = 0 → y = 0)
 theorem split_low (N : ℕ) (w : A) (hw : w ∈ Submodule.span R (Set.range γ)) :
     ∃ w₁ ∈ low R γ N, algebraMap R A ξ ^ N ∣ w - w₁ := by
   first
-  | exact @_root_.GlobalTheory.IsolatedTheoremThree.main
-  | exact _root_.GlobalTheory.IsolatedTheoremThree.main
   | (apply _root_.GlobalTheory.IsolatedTheoremThree.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IsolatedTheoremThree.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IsolatedTheoremThree.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IsolatedTheoremThree.main ..)
 
 end

@@ -88,7 +88,7 @@ theorem modfree_pb (R : Type) [CommRing R] {A' A B' B : Type} (t : A' ⟶ B') (l
     have := ConcreteCategory.congr_hom w x; have h2 := ConcreteCategory.congr_hom w y; simp only [ConcreteCategory.comp_apply, types_comp_apply] at this h2
     rw [← this, ← h2, h])⟩
   have hw : ∀ a : ULift.{1} A', ULift.up (r (t a.down)) = ULift.up (b (l a.down)) := fun a => by
-    have := ConcreteCategory.congr_hom w a.down; simp only [ConcreteCategory.comp_apply, types_comp_apply] at this; rw [this]
+    have := ConcreteCategory.congr_hom w a.down; simp only [ConcreteCategory.comp_apply] at this; rw [this]
   have sq : (ModuleCat.free (ULift.{1} R)).map (uliftFunctor.{1}.map t) ≫
       (ModuleCat.free (ULift.{1} R)).map (uliftFunctor.{1}.map r) =
       (ModuleCat.free (ULift.{1} R)).map (uliftFunctor.{1}.map l) ≫

@@ -143,8 +143,6 @@ theorem degree_quotient : DegQuot := by
     intro u hu w hw
     first
       | exact (Submodule.mem_orthogonal W w).1 hw u hu
-      | exact (Submodule.mem_orthogonal w).1 hw u hu
-      | exact Submodule.inner_right_of_mem_orthogonal hu hw
   have hPW : ∀ x ∈ W, P x = 0 := by
     intro x hx
     have h2 : P x ∈ W := by
@@ -167,7 +165,6 @@ theorem degree_quotient : DegQuot := by
     show Module.Finite ℤ (L.map _)
     first
       | exact Module.Finite.map L _
-      | exact Module.Finite.iff_fg.mpr (Submodule.FG.map _ (Module.Finite.iff_fg.mp inferInstance))
   haveI : Module.IsTorsionFree ℤ Q := Module.IsTorsionFree.mk fun r hr x y hxy => by
     have hr0 : r ≠ 0 := hr.ne_zero
     apply Subtype.ext
@@ -245,7 +242,7 @@ theorem degree_quotient : DegQuot := by
     refine ⟨Sum.elim s r, ?_⟩
     apply Subtype.ext
     simp only [Fintype.sum_sum_type, Sum.elim_inl, Sum.elim_inr, Submodule.coe_add,
-      Submodule.coe_sum, Submodule.coe_smul, v, Submodule.coe_mk]
+      Submodule.coe_sum, Submodule.coe_smul, v]
     rw [hs]
     abel
   let cB := Module.Basis.mk hli hsp
@@ -327,7 +324,6 @@ theorem degree_quotient : DegQuot := by
         Matrix.fromBlocks_apply₁₂, Matrix.fromBlocks_apply₂₁, Matrix.fromBlocks_apply₂₂,
         Matrix.zero_apply]
     all_goals first
-      | rfl
       | exact horth _ (hNW _ (bN i).2) _ (heQW j')
       | (rw [real_inner_comm]; exact horth _ (hNW _ (bN i').2) _ (heQW j))
   have hdet : (Matrix.gram ℝ fun k => ((cB k : L) : E)).det =

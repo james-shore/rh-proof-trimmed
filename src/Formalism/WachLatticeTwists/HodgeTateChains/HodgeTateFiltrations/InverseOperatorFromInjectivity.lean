@@ -97,13 +97,13 @@ lemma aeval_split {V : Type} [AddCommGroup V] [Module ℤ_[ℓ] V] (g : V →ₗ
     (R R' : Polynomial ℤ_[ℓ]) (h : R = C (R.eval 1) + (X - 1) * R') (x : V) :
     aeval g R x = (R.eval 1) • x + (g (aeval g R' x) - aeval g R' x) := by
   conv_lhs => rw [h]
-  simp [Module.End.mul_apply, Algebra.algebraMap_eq_smul_one]
+  simp [Algebra.algebraMap_eq_smul_one]
 
 lemma aeval_split' {V : Type} [AddCommGroup V] [Module ℤ_[ℓ] V] (g : V →ₗ[ℤ_[ℓ]] V)
     (R R' : Polynomial ℤ_[ℓ]) (h : R = C (R.eval 1) + (X - 1) * R') (x : V) :
     aeval g R x = (R.eval 1) • x + aeval g R' (g x - x) := by
   conv_lhs => rw [h, mul_comm]
-  simp [Module.End.mul_apply, Algebra.algebraMap_eq_smul_one]
+  simp [Algebra.algebraMap_eq_smul_one]
 
 end padic
 

@@ -114,7 +114,7 @@ theorem of_parts (Lirr : (GlobalTheory.Published.BernsteinUnitaryProductIrreduci
     rw [← integral_add (hint Φ hΦ x) (hint Ψ hΨ x)]
     congr 1
     funext g
-    simp only [omA, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+    simp only [omA, Pi.add_apply]
     ring
   have hsmul : ∀ (c : ℂ) (Φ : Matrix (Fin a) (Fin (a + b)) k → ℂ),
       fibre ν β a b (c • Φ) = c • fibre ν β a b Φ := by
@@ -125,7 +125,7 @@ theorem of_parts (Lirr : (GlobalTheory.Published.BernsteinUnitaryProductIrreduci
     rw [← integral_const_mul]
     congr 1
     funext g
-    simp only [omA, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+    simp only [omA, Pi.smul_apply, smul_eq_mul]
     ring
   have hzero : fibre ν β a b 0 = 0 := by
     funext x

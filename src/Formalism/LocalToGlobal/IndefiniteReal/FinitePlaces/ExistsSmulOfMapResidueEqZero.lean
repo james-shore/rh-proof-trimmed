@@ -690,8 +690,6 @@ theorem card_reps {ϖ : O} (hϖ : Irreducible ϖ) [Fintype (IsLocalRing.ResidueF
   classical
   have h1 := card_filter_reps O hϖ hα hR (fun _ => True)
   first
-    | simp only [Finset.filter_True] at h1
-    | rw [Finset.filter_true_of_mem (fun _ _ => trivial)] at h1
     | simp only [Finset.filter_true_of_mem, implies_true] at h1
   obtain ⟨u, hu, hd⟩ := hα.det
   have hk : k ≤ n := by

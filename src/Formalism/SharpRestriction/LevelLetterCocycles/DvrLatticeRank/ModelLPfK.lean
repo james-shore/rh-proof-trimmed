@@ -99,7 +99,7 @@ theorem lev_Eat_simple (D : D7) (HW : HWOf D.loc) (l : ℕ) [Fact l.Prime] (hl :
   have hF1c : PowerSeries.constantCoeff F1 = 1 := by
     have hd := congrArg (fun f : PowerSeries ↥LL.1 => PowerSeries.constantCoeff (PowerSeries.derivative f)) hF1
     simp only [map_sub, Derivation.map_one_eq_zero, sub_zero, hFd, hF0, Derivation.leibniz,
-      PowerSeries.derivative_X, smul_eq_mul, map_add, map_mul, map_one, PowerSeries.constantCoeff_X,
+      PowerSeries.derivative_X, smul_eq_mul, map_add, map_mul, PowerSeries.constantCoeff_X,
       zero_mul, zero_add, mul_one] at hd
     exact hd.symm
 

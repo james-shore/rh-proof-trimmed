@@ -180,7 +180,7 @@ lemma lieL_bracket {i : Fin (r + 1)} {X Y : Mx k r} (hX : X ∈ LieL k r i) (hY 
 lemma skew_hpart1 (Z : Mx k r) : Skew (hpart1 (Hpk k r) Z) := by
   have hH : (Hpk k r)ᴴ = Hpk k r := (hpkFacts k r).1
   have hs : star (1 / 2 : ℂ) = 1 / 2 := by
-    first | simp | (rw [Complex.star_def]; simp)
+    first | simp
   show (hpart1 (Hpk k r) Z)ᴴ * Hpk k r + Hpk k r * hpart1 (Hpk k r) Z = 0
   simp only [hpart1, hinv, Matrix.conjTranspose_smul, Matrix.conjTranspose_sub, Matrix.conjTranspose_mul,
     Matrix.conjTranspose_conjTranspose, hH, hs, Matrix.smul_mul, Matrix.mul_smul, Matrix.sub_mul,
@@ -250,7 +250,6 @@ lemma hpart_decomp (Z : Mx k r) : Z = hpart1 (Hpk k r) Z + Complex.I • hpart2 
   have hI : Complex.I * (1 / (2 * Complex.I)) = 1 / 2 := by
     have := Complex.I_ne_zero
     field_simp
-    try ring
   unfold hpart1 hpart2
   rw [smul_smul, hI]
   module

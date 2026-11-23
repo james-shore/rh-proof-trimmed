@@ -60,7 +60,7 @@ theorem exists_isClopen_equalizer {P C S : Scheme.{0}} (c : C ⟶ S) [IsFinite c
     have h0 : j ≫ l = pullback.snd l d ≫ d := pullback.condition
     have h1 := congrArg (· ≫ pullback.fst c c) h0
     have h2 := congrArg (· ≫ pullback.snd c c) h0
-    simp [l, d, pullback.lift_fst, pullback.lift_snd] at h1 h2
+    simp [l, d] at h1 h2
     rw [h1, h2]
   refine ⟨Set.range j, ⟨j.isClosedEmbedding.isClosed_range, j.isOpenEmbedding.isOpen_range⟩, ?_⟩
   intro T y
@@ -68,8 +68,8 @@ theorem exists_isClopen_equalizer {P C S : Scheme.{0}} (c : C ⟶ S) [IsFinite c
   · intro hy
     have e : y ≫ l = (y ≫ a) ≫ d := by
       apply pullback.hom_ext
-      · simp [l, d, pullback.lift_fst]
-      · simp [l, d, hy, pullback.lift_snd]
+      · simp [l, d]
+      · simp [l, d, hy]
     have e2 : pullback.lift y (y ≫ a) e ≫ j = y := pullback.lift_fst _ _ _
     rintro _ ⟨t, rfl⟩
     refine ⟨pullback.lift y (y ≫ a) e t, ?_⟩

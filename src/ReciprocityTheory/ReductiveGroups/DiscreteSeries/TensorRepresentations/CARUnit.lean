@@ -204,7 +204,7 @@ theorem pair_apply_khw {E : Fin n → Fin n → Module.End ℂ W} {μ : Fin n �
     rw [sub_smul]
   · simp only [Module.End.mul_apply, hd, map_smul, smul_smul, if_true]
     push_cast; ring_nf
-  · simp [Module.End.mul_apply, hba h, h.ne', not_lt_of_gt h]
+  · simp [hba h, h.ne', not_lt_of_gt h]
 
 theorem casimirK_khwVec_compact (ε : Fin n → Bool) {E : Fin n → Fin n → Module.End ℂ W}
     (hE : ∀ a b, ε a = ε b → E a b * E b a - E b a * E a b = E a a - E b b)

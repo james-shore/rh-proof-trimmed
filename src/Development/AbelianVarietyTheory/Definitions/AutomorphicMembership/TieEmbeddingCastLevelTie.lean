@@ -83,7 +83,6 @@ theorem pack_eq (D : D7) (u : D.what₂.Word)
     (ψ : Formalism.L2.Herm.awayFrom₂ Lc (D.what₂.places.resChar w) →* (ORec D w (nFr D (D.what₂.places.resChar w)))ˣ) :
     pack D u Lc w h5 h2 he I ψ = locPackC D u Lc w h5 h2 he I ψ := by
   first
-    | with_reducible rfl
     | (delta pack locPackC frobOrder nFr; with_reducible rfl)
 
 end Bridge

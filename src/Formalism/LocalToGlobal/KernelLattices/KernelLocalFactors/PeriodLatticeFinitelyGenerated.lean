@@ -1047,7 +1047,7 @@ theorem colSub1_trans (l j : Fin n) (hlj : l ≠ j) (c : K) :
       · have h2' : s ≠ l := fun h => h2 (h1.trans h)
         simp [h1, h2']
     · by_cases h2 : w = l
-      · by_cases h3 : s = j <;> simp [h1, h2, h3, hlj]
+      · by_cases h3 : s = j <;> simp [h2, h3, hlj]
       · simp [h1, h2]
   simp only [e, Finset.sum_add_distrib, Finset.sum_ite_eq', Finset.mem_univ, if_true]
   split_ifs <;> simp
@@ -1766,7 +1766,7 @@ theorem perO_fg {E : Type} [Field E] [NumberField E] [StarRing E] {a b : ℕ} (A
     intro x
     have hx : x = ∑ i, x i • (Pi.single i (1 : E) : Sp E b) := by
       funext j
-      simp [Pi.single_apply, Finset.sum_ite_eq']
+      simp [Pi.single_apply]
     rw [hx]
     exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _
       (Submodule.subset_span (single_mem_stdLat (E := E) i 1))

@@ -71,7 +71,7 @@ theorem pderiv_inr_rename_inl {α β : Type} (b : β) (a : MvPolynomial α ℂ) 
   induction a using MvPolynomial.induction_on with
   | C c => simp
   | add p p' hp hp' => simp [hp, hp']
-  | mul_X p i hp => simp [pderiv_mul, hp, pderiv_X, Pi.single_apply]
+  | mul_X p i hp => simp [hp, pderiv_X]
 
 theorem proof : ProjectionUnramifiedGeneric.Statement := by
   classical

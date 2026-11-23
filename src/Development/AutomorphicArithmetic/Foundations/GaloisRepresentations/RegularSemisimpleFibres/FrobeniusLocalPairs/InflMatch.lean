@@ -78,7 +78,7 @@ private theorem twOrb_twConj' {G : Type} [Group G] [TopologicalSpace G] [IsTopol
       rw [DoubleCoset.eq]
       refine ⟨g⁻¹ * t⁻¹ * g, ?_, k⁻¹, K.inv_mem hk, by group⟩
       rw [GlobalTheory.TwOrbConj.twCent_conj]
-      exact ⟨t⁻¹, (GlobalTheory.BCT.twCent θ δ).inv_mem ht, by simp [MulAut.conj_apply]⟩
+      exact ⟨t⁻¹, (GlobalTheory.BCT.twCent θ δ).inv_mem ht, by simp⟩
     right_inv q := by
       obtain ⟨t, ht, k, hk, he⟩ := (@DoubleCoset.eq _ _ _ _ _ _).1
         (DoubleCoset.out_eq' (DoubleCoset.mk _ K (g⁻¹ * Quotient.out q))).symm

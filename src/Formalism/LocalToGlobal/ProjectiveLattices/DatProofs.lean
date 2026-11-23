@@ -174,7 +174,6 @@ theorem efR_formula (ε : ℤ) (hI : DatInt D j) (x y : ℝ ⊗[ℤ] latW D j) :
     rw [map_add (f := _), LinearMap.add_apply, h1, h2, ← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl (fun τ _ => ?_)
     simp only [map_add (f := _), Pi.add_apply, star_add, add_dotProduct, mul_add, Complex.add_re]
-    try ring
   | tmul a v =>
     induction y using TensorProduct.induction_on with
     | zero => simp
@@ -182,7 +181,6 @@ theorem efR_formula (ε : ℤ) (hI : DatInt D j) (x y : ℝ ⊗[ℤ] latW D j) :
       rw [map_add (f := _), h1, h2, ← Finset.sum_add_distrib]
       refine Finset.sum_congr rfl (fun τ _ => ?_)
       simp only [map_add (f := _), Pi.add_apply, mulVec_add, dotProduct_add, mul_add, Complex.add_re]
-      try ring
     | tmul a' w =>
       rw [LinearMap.BilinForm.baseChange_tmul, thW_tmul, thW_tmul]
       simp only [dot_smul_real, ← hT_emb]

@@ -105,7 +105,7 @@ theorem count_append {α : Type*} {p q : ℕ} (Γ' : Fin p → α) (Γ'' : Fin q
       simp only [Finset.mem_filter, Finset.mem_univ, true_and, Fin.append_left] at hj ⊢
       refine ⟨?_, hj.2⟩
       have h0 := hj.1
-      simp only [Fin.le_def, Fin.coe_castAdd, Fin.coe_natAdd] at h0 ⊢
+      simp only [Fin.le_def, Fin.coe_castAdd] at h0 ⊢
       omega
     · intro a _ b _ h
       exact Fin.ext (by simpa using congrArg Fin.val h)
@@ -116,7 +116,7 @@ theorem count_append {α : Type*} {p q : ℕ} (Γ' : Fin p → α) (Γ'' : Fin q
         simp only [Finset.mem_filter, Finset.mem_univ, true_and]
         refine ⟨?_, hb.2⟩
         have h0 := hb.1
-        simp only [Fin.le_def, Fin.coe_castAdd, Fin.coe_natAdd] at h0 ⊢
+        simp only [Fin.le_def, Fin.coe_castAdd] at h0 ⊢
         omega
       · simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hb
         exfalso
@@ -130,7 +130,7 @@ theorem count_append {α : Type*} {p q : ℕ} (Γ' : Fin p → α) (Γ'' : Fin q
       simp only [Finset.mem_filter, Finset.mem_univ, true_and, Fin.append_right] at hj ⊢
       refine ⟨?_, hj.2⟩
       have h0 := hj.1
-      simp only [Fin.le_def, Fin.coe_castAdd, Fin.coe_natAdd] at h0 ⊢
+      simp only [Fin.le_def, Fin.coe_natAdd] at h0 ⊢
       omega
     · intro a _ b _ h
       exact Fin.ext (by simpa using congrArg Fin.val h)
@@ -143,7 +143,7 @@ theorem count_append {α : Type*} {p q : ℕ} (Γ' : Fin p → α) (Γ'' : Fin q
         simp only [Finset.mem_filter, Finset.mem_univ, true_and]
         refine ⟨?_, hb.2⟩
         have h0 := hb.1
-        simp only [Fin.le_def, Fin.coe_castAdd, Fin.coe_natAdd] at h0 ⊢
+        simp only [Fin.le_def, Fin.coe_natAdd] at h0 ⊢
         omega
 
 theorem sum_get_fst (W : List (IrrGL (k := k))) : ∑ a : Fin W.length, (W.get a).1 = (W.map Sigma.fst).sum := by

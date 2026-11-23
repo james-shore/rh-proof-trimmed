@@ -394,7 +394,7 @@ theorem totPos_of_kind {T T' : ℕ} {w w' : Point D.host.E (D.R.rS + 1)} (hk : k
     rw [dmin_top_eq_zeta w h0]
     rw [dmin_top_eq_zeta w' h0'] at h'τ
     rw [hz]
-    simp only [map_mul, Complex.normSq_mul] at h'τ ⊢
+    simp only [map_mul] at h'τ ⊢
     have hp : 0 < Complex.normSq (D.host.emb (D.eTau τ : D.R.GG) (Dmin w D.R.rS)) :=
       Complex.normSq_pos.mpr ((map_ne_zero _).mpr h0)
     have hp' : 0 < Complex.normSq (D.host.emb (D.eTau τ : D.R.GG) (Dmin w' D.R.rS)) :=

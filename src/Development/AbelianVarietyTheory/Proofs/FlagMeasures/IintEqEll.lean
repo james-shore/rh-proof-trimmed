@@ -72,7 +72,6 @@ theorem iint_eq_ell : ∀ (k r : ℕ) {H : Type} [NormedAddCommGroup H] [InnerPr
   have hd : (0 : ℝ) < d := hStd.2.2.2.2.2.1.1
   have h0 : μG {x | Matrix.of x ∉ GG k r} = 0 := by
     first
-    | exact hHaar.1
     | exact hHaar.2.2.1
   have hGG : ∀ᵐ x ∂μG, Matrix.of x ∈ GG k r := ae_iff.2 h0
   have hU : IsUnit (Hpk k r).det := Matrix.isUnit_det_of_right_inverse (hpkFacts k r).2.1

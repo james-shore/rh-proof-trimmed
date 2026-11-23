@@ -82,7 +82,7 @@ theorem bdL_inRR_eq {n : ℕ} {lev : Fin n → ℕ} {V : Type} [AddCommGroup V] 
     · rw [if_pos (Or.inr hl : inRR lev l), if_pos hl]
     · rw [if_neg hl]
       split_ifs
-      · simp [Module.End.mul_apply, h1 l hl]
+      · simp [h1 l hl]
       · rfl
   · refine sum_congr rfl fun l _ => sum_congr rfl fun m _ => sum_congr rfl fun k _ => ?_
     by_cases hl : inUU lev l
@@ -94,13 +94,13 @@ theorem bdL_inRR_eq {n : ℕ} {lev : Fin n → ℕ} {V : Type} [AddCommGroup V] 
             k.2.1.2 = m.2.1.2) := fun t => hm t.2.1
         rw [if_neg hn]
         split_ifs
-        · simp [Module.End.mul_apply, h2 l m hm]
+        · simp [h2 l m hm]
         · rfl
     · have hn : ¬(inUU lev l ∧ inUU lev m ∧ l.2.1.2 = m.2.1.1 ∧ k.1 = xor l.1 m.1 ∧ k.2.1.1 = l.2.1.1 ∧
           k.2.1.2 = m.2.1.2) := fun t => hl t.1
       rw [if_neg hn]
       split_ifs
-      · simp [Module.End.mul_apply, h1 l hl]
+      · simp [h1 l hl]
       · rfl
 
 variable {n : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]

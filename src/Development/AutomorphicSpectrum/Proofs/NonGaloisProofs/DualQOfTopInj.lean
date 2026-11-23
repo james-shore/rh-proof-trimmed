@@ -384,7 +384,7 @@ theorem actQ_mul (L : Lattice (O := O) ρ) (I : Submodule O ↥L.T) (hI : Stable
   rw [actQ_mk, actQ_mk, actQ_mk]
   congr 1
   apply Subtype.ext
-  simp [actT, Module.End.mul_apply]
+  simp [actT]
   rfl
 
 theorem liftQ_spec (L : Lattice (O := O) ρ) (I : Submodule O ↥L.T) (w : ↥L.T ⧸ I) :

@@ -222,14 +222,14 @@ theorem period_chgSp :
     rw [hAd, Matrix.transpose_add, Matrix.transpose_mul, hτs.eq]
     ext i j
     simp [jAut, ReciprocityTheory.ChartRestriction.G.Key.Chi.cMat, chgSp, Matrix.mul_apply, Matrix.toBlocks₂₁, Matrix.toBlocks₂₂,
-      Matrix.toBlocks₁₁, Matrix.toBlocks₁₂, Matrix.transpose_apply]
+      Matrix.toBlocks₁₁, Matrix.toBlocks₁₂]
     ring
   have hN : Bᵀ = (ReciprocityTheory.ChartRestriction.G.Key.Chi.cMat (chgSp bas bas')).toBlocks₁₁ * tauMat X bas idx x +
       (ReciprocityTheory.ChartRestriction.G.Key.Chi.cMat (chgSp bas bas')).toBlocks₁₂ := by
     rw [hBd, Matrix.transpose_add, Matrix.transpose_mul, hτs.eq]
     ext i j
     simp [ReciprocityTheory.ChartRestriction.G.Key.Chi.cMat, chgSp, Matrix.mul_apply, Matrix.toBlocks₂₁, Matrix.toBlocks₂₂,
-      Matrix.toBlocks₁₁, Matrix.toBlocks₁₂, Matrix.transpose_apply]
+      Matrix.toBlocks₁₁, Matrix.toBlocks₁₂]
     ring
   refine ⟨?_, ?_, ?_⟩
   · have h1' : tauMat X bas' idx x = Bᵀ * Aᵀ⁻¹ := h1

@@ -62,11 +62,7 @@ variable {E : Type} [Field E] [NumberField E] {n : ℕ}
 theorem sum_norm_mul_le' {α : Type} [NormedRing α] (a b : Matrix (Fin n) (Fin n) α) :
     ∑ i, ∑ j, ‖(a * b) i j‖ ≤ (∑ i, ∑ j, ‖a i j‖) * ∑ i, ∑ j, ‖b i j‖ := by
   first
-  | exact @_root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le
-  | exact _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le
   | (apply _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le ..)
 
 theorem norm_sandCLMInf_le (A B : Matrix (Fin n) (Fin n) (Cinf E)) :

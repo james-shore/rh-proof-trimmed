@@ -62,7 +62,7 @@ theorem mulMatHom_algebraMap (x : K.E) :
     mulMatHom e b (algebraMap K.E B.A x) = algebraMap (w.adicCompletion E) _ (e x) := by
   simp only [mulMatHom, RingHom.comp_apply, AlgHom.toRingHom_eq_coe, AlgEquiv.coe_toRingEquiv,
     RingEquiv.toRingHom_eq_coe, AlgHom.coe_toRingHom, AlgHom.commutes, RingEquiv.coe_toRingHom,
-    AlgEquiv.coe_ringEquiv, AlgEquiv.commutes]
+    AlgEquiv.commutes]
   rw [Matrix.algebraMap_eq_diagonal, Matrix.algebraMap_eq_diagonal]
   simp [Pi.algebraMap_def]
 

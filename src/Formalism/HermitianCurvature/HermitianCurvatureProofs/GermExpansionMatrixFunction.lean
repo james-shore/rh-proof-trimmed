@@ -252,8 +252,7 @@ theorem gauss_hessian_index_exists : Formalism.FourierDecayAlt.A6.GaussHess := b
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem padic_stationary_phase : Formalism.FourierDecayAlt.A6.StationaryPhase := by
   have h := stationaryPhaseOfSteps
@@ -429,8 +428,7 @@ theorem padic_stationary_phase : Formalism.FourierDecayAlt.A6.StationaryPhase :=
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem germ_expansion_matrix_function : Formalism.FourierDecayAlt.A6.GermPhi := by
   have h := germExpansionOfTestFunction
@@ -606,8 +604,7 @@ theorem germ_expansion_matrix_function : Formalism.FourierDecayAlt.A6.GermPhi :=
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem germ_expansion_with_head : Formalism.FourierDecayAlt.A6.Germ := by
   have h := germExpansionOfSteps
@@ -783,8 +780,7 @@ theorem germ_expansion_with_head : Formalism.FourierDecayAlt.A6.Germ := by
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem germ_kernel_expansion : Formalism.FourierDecayAlt.A6.GermKernel := by
   have h := germExpansionKernelOfSteps
@@ -960,8 +956,7 @@ theorem germ_kernel_expansion : Formalism.FourierDecayAlt.A6.GermKernel := by
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem germ_identity_bis : Formalism.FourierDecayAlt.A6.GermIdentity := by
   have h := germIdentityOfSteps
@@ -1137,8 +1132,7 @@ theorem germ_identity_bis : Formalism.FourierDecayAlt.A6.GermIdentity := by
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem theta_omega_bound : Formalism.FourierDecayAlt.A6.ThOm := by
   have h := thetaOnDomainOfSteps
@@ -1314,8 +1308,7 @@ theorem theta_omega_bound : Formalism.FourierDecayAlt.A6.ThOm := by
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem lattice_average_induction : Formalism.FourierDecayAlt.A5.ThetaExistsStep := by
   have h := thetaExistsStepOfSteps
@@ -1491,8 +1484,7 @@ theorem lattice_average_induction : Formalism.FourierDecayAlt.A5.ThetaExistsStep
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 theorem lattice_average_lemma_full : Formalism.FourierDecayAlt.A5.LemmaA := by
   have h := lattice_average_lemma_from_parts
@@ -1668,7 +1660,6 @@ theorem lattice_average_lemma_full : Formalism.FourierDecayAlt.A5.LemmaA := by
       | exact a5x_thxLower_proof
       | exact averaged_kernel_periodic_psd
       | exact a5x_thxBasic_proof
-      | exact averaged_kernel_parseval
-      | exact a5x_thxSum_proof)
+      | exact averaged_kernel_parseval)
 
 end Formalism.FourierDecayAlt.P

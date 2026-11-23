@@ -406,7 +406,7 @@ theorem icxGood_tm {x : smD ε (rreg ε)} {Φ : Matrix (Fin n) (Fin n) ℂ → E
       (icxGood_eab hx a a) 1
     refine icxGood_congr h1 ?_ (fun g _ => ?_)
     · simp [Formalism.REAL.Tm]
-    · simp only [Formalism.QuantumDeterminants.Top, eq_self_iff_true, if_true, zero_add, one_smul, S7_EabV_eq_REAL_EabV]
+    · simp only [Formalism.QuantumDeterminants.Top, if_true, zero_add, one_smul, S7_EabV_eq_REAL_EabV]
   · refine icxGood_congr (icxGood_eab hx a b) ?_ (fun g _ => ?_)
     · simp [Formalism.REAL.Tm, hab]
     · simp only [Formalism.QuantumDeterminants.Top, if_neg hab, zero_add, S7_EabV_eq_REAL_EabV]

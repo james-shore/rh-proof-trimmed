@@ -124,7 +124,7 @@ theorem exists_rep (φ : (Fin a → Fin n → LL) →ₗ[LL] LL) :
   refine ⟨fun b k => φ (Pi.single b (Pi.single k 1)), fun u => ?_⟩
   have hu : u = ∑ b, ∑ k, u b k • (Pi.single b (Pi.single k 1) : Fin a → Fin n → LL) := by
     funext b' k'
-    simp [Finset.sum_apply, Pi.single_apply, ite_apply, Finset.sum_ite_eq, Finset.sum_ite_eq']
+    simp [Finset.sum_apply, Pi.single_apply, ite_apply, Finset.sum_ite_eq]
   conv_lhs => rw [hu]
   rw [pr_apply]
 
@@ -193,11 +193,7 @@ theorem finrank_eq_of_perfect {LL : Type} [Field LL] {V V' : Type} [AddCommGroup
     (P : V →ₗ[LL] V' →ₗ[LL] LL) (h1 : ∀ x, (∀ y, P x y = 0) → x = 0) (h2 : ∀ y, (∀ x, P x y = 0) → y = 0) :
     finrank LL V = finrank LL V' := by
   first
-  | exact @_root_.GlobalTheory.NondegenerateFinrank.main
-  | exact _root_.GlobalTheory.NondegenerateFinrank.main
   | (apply _root_.GlobalTheory.NondegenerateFinrank.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NondegenerateFinrank.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NondegenerateFinrank.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NondegenerateFinrank.main ..)
 
 

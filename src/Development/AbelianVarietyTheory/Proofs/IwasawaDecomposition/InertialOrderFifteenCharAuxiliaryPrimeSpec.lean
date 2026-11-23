@@ -167,7 +167,7 @@ theorem block_loc {μ η : HChar E} {r : ℕ} {v : HeightOneSpectrum (𝓞 E)} (
   have loc_inv (a : HChar E) (v : HeightOneSpectrum (𝓞 E)) (x : (v.adicCompletion E)ˣ) :
       (a⁻¹).loc v x = (a.loc v x)⁻¹ := rfl
   rw [block, loc_mul, loc_mul, loc_inv, hη x hx, (Model.absPow_isAbsPow E _).1 v x hx]
-  simp [loc_mul, loc_inv, hη x hx, (Model.absPow_isAbsPow E _).1 v x hx]
+  simp
 
 theorem isAlgPos_mul {χ χ' : HChar E} {n n' : (E →+* ℂ) → ℤ} (h : IsAlgPos χ n) (h' : IsAlgPos χ' n') :
     IsAlgPos (χ * χ') (n + n') := fun k hk => by

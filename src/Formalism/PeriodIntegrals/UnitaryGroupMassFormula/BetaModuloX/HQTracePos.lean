@@ -65,7 +65,6 @@ theorem hQ_symm {T' : E} (F' : LFlag S r T') (c : E) (hc : star c = c) : (hQ F' 
       starRingEnd_apply c, hc]
     ring
   first
-    | exact key
     | exact ⟨key⟩
 
 theorem hV_pos {T' : ℕ} (F' : LFlag S r ((T' : ℕ) : E)) (hT : 0 < T')

@@ -85,7 +85,7 @@ theorem hform_last {E : Type} [CommRing E] (σ : E →+* E) {N : ℕ} (hN : 0 < 
   · simp
 
 theorem sigD_conj (D : D7) (x : D.host.E) : (sigD D : D.host.E →+* D.host.E) x = D.host.conj x := by
-  first | rfl | exact Formalism.BasicNotions.Examples₂.star_eq_conj _ _
+  first | exact Formalism.BasicNotions.Examples₂.star_eq_conj _ _
 
 
 

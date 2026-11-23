@@ -65,7 +65,7 @@ private theorem coeff_initPart_eq_ite (v : σ) (e : ℕ) (f : MvPolynomial σ �
   classical
   unfold initPart
   rw [coeff_sum]
-  simp only [apply_ite (AddMonoidAlgebra.coeff · n), coeff_monomial, AddMonoidAlgebra.coeff_zero, Pi.zero_apply]
+  simp only [apply_ite (AddMonoidAlgebra.coeff · n), coeff_monomial, AddMonoidAlgebra.coeff_zero]
   rw [Finset.sum_eq_single n]
   · by_cases h : n v = e <;> simp [h]
   · intro b _ hb

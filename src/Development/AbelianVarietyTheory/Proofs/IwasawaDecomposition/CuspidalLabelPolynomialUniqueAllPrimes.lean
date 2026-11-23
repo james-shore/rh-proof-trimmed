@@ -60,11 +60,7 @@ theorem esymm_eq_of_psum_eq {d : ℕ} (a b : Fin d → ℂ)
     ∀ k, k ≤ d → MvPolynomial.aeval a (MvPolynomial.esymm (Fin d) ℂ k) =
       MvPolynomial.aeval b (MvPolynomial.esymm (Fin d) ℂ k) := by
   first
-  | exact @_root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq
-  | exact _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq
   | (apply _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.EsymmOfPowerSums.esymm_eq_of_psum_eq ..)
 
 theorem map_eq_of_psum_eq {d : ℕ} (a b : Fin d → ℂ)

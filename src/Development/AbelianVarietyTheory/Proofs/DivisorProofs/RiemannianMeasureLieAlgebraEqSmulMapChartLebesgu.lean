@@ -136,11 +136,11 @@ def frameL {Ψ : Finset (E →+* ℂ)} (x : Frame Ψ r) :
   map_add' Z Z' := by
     ext p
     have e : Matrix.of ((Z + Z') p.1) = Matrix.of (Z p.1) + Matrix.of (Z' p.1) := rfl
-    simp only [inFrame, PiLp.toLp_apply, PiLp.add_apply, e, Matrix.mul_add, Matrix.add_mul]; rfl
+    simp only [inFrame, PiLp.add_apply, e, Matrix.mul_add, Matrix.add_mul]; rfl
   map_smul' c Z := by
     ext p
     have e : Matrix.of ((c • Z) p.1) = (c : ℂ) • Matrix.of (Z p.1) := rfl
-    simp only [inFrame, PiLp.toLp_apply, PiLp.smul_apply, e, Matrix.mul_smul, Matrix.smul_mul,
+    simp only [inFrame, PiLp.smul_apply, e, Matrix.mul_smul, Matrix.smul_mul,
       RingHom.id_apply]
     rfl
 
@@ -173,8 +173,8 @@ theorem gram_angles {r : ℕ} {Ψ : Type} [Fintype Ψ] [DecidableEq Ψ] (hr : 1 
   by_cases hτ : τ = τ'
   · subst hτ
     by_cases hk : k = k'
-    · subst hk; simp [Finset.sum_add_distrib, Matrix.one_apply, Matrix.mul_apply, Matrix.replicateCol_apply, Matrix.replicateRow_apply]
-    · simp [Finset.sum_add_distrib, Matrix.one_apply, Matrix.mul_apply, Matrix.replicateCol_apply, Matrix.replicateRow_apply, hk, Ne.symm hk]
+    · subst hk; simp [Finset.sum_add_distrib, Matrix.mul_apply, Matrix.replicateCol_apply, Matrix.replicateRow_apply]
+    · simp [Matrix.mul_apply, Matrix.replicateCol_apply, Matrix.replicateRow_apply, hk, Ne.symm hk]
   · simp [Finset.sum_add_distrib, Matrix.one_apply, Matrix.mul_apply, Matrix.replicateCol_apply, Matrix.replicateRow_apply, hτ, Ne.symm hτ]
 
 theorem angles_zero (a : Fin r) : angles (0 : Fin (r - 1) → ℝ) a = 0 := by

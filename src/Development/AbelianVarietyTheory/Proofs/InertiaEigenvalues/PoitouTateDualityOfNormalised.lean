@@ -168,7 +168,6 @@ theorem exists_place_map {v : HeightOneSpectrum (𝓞 F)} (hAv : IsPlaceOver A v
     rw [Ideal.map_comap_of_equiv, Ideal.mem_comap]
   refine ⟨v', fun x => ?_, ?_, fun ϖ h1 h2 => ⟨e ϖ, ?_, ?_, ?_⟩⟩
   · rw [hmem, ← hAv, ← valuation_lt_one_iff_of_map σ hA, hστ]
-    congr 3
     rw [← he, RingEquiv.apply_symm_apply]
   · unfold normV
     exact Nat.card_congr (Ideal.quotientEquiv v.asIdeal v'.asIdeal e rfl).toEquiv.symm

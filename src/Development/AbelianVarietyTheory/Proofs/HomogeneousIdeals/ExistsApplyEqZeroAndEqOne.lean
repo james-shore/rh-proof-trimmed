@@ -150,11 +150,7 @@ theorem isProperMap_comap (φ : A →ₐ[ℂ] B) (hφ : φ.toRingHom.IsIntegral)
 theorem exists_isRoot_norm_lt {h : ℂ[X]} (hm : h.Monic) {ε : ℝ} (hε : 0 ≤ ε)
     (h0 : ‖h.coeff 0‖ < ε ^ h.natDegree) : ∃ t, h.IsRoot t ∧ ‖t‖ < ε := by
   first
-  | exact @_root_.GlobalTheory.RootNormBound.exists_root_norm_lt
-  | exact _root_.GlobalTheory.RootNormBound.exists_root_norm_lt
   | (apply _root_.GlobalTheory.RootNormBound.exists_root_norm_lt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RootNormBound.exists_root_norm_lt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RootNormBound.exists_root_norm_lt <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RootNormBound.exists_root_norm_lt ..)
 
 theorem exists_apply_eq_zero_and_eq_one {K : Type*} [Field K] [Algebra K A] (p : A →ₐ[K] K)

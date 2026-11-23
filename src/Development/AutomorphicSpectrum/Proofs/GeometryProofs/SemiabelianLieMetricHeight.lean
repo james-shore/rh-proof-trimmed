@@ -338,7 +338,6 @@ theorem stratum_good : GlobalTheory.Published.SemiAbelianHomExtension → ∀ (X
         rw [e0]) (Mz.pt ((Int.castAddHom ℂ).comp (β a))) t' hchar
     refine Eq.trans ?_ e2.symm
     have e3 := hε a
-    unfold LieModel.Lifts at e3
     have e4 : (v a).left = spMap (dualMap c) ≫ (MB.pt (ε a)).left :=
       (LieTangent.left_eq_iff _ _ _ _).2 rfl
     rw [e4]
@@ -346,7 +345,7 @@ theorem stratum_good : GlobalTheory.Published.SemiAbelianHomExtension → ∀ (X
       rw [LieTangent.spec_comp, ← RootHt.dualMap_comp]
     rw [e5, CategoryTheory.Category.assoc, ← e3, Over.comp_left]
     show _ = ((spMap g1 ≫ (MT.pt δ').left) ≫ τ.i.left) ≫ φ
-    simp only [CategoryTheory.Category.assoc, Over.comp_left]
+    simp only [CategoryTheory.Category.assoc]
     rfl
   obtain ⟨hlo, hhi⟩ := hb zc zX hzX Mz hMz v hv w
   have hΓ : ∀ a b, RootHt.gramAt h zX v a b = (B.metric.form σ).inner ((1 : GroundTheory.Heights₂.Heights.ComplexAt σ) ⊗ₜ[𝓞 L] ε a)

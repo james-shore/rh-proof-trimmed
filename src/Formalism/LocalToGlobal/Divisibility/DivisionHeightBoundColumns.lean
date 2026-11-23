@@ -112,9 +112,7 @@ theorem heckeCSD_zero (P : offSub ST SG SG' S0) : heckeCSD S h c SG S0 (P, 0) = 
   unfold heckeCSD
   dsimp only
   first
-    | (simp only [Col.heckeFam_zero]; ext x; simp [LinearEquiv.conj_apply])
     | (erw [Col.heckeFam_zero]; ext x; simp [LinearEquiv.conj_apply])
-    | (ext x; simp [LinearEquiv.conj_apply, Col.heckeFam_zero])
 
 theorem heckeCSD_comm (hc : Col.HeckeComm c S0) : Col.PairComm (heckeCSD S h c SG S0) := by
   intro x y

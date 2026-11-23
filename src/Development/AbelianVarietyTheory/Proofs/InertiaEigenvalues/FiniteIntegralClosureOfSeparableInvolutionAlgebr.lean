@@ -61,11 +61,7 @@ open Matrix
 theorem isIntegral_matrix_trace {R F : Type} [CommRing R] [Field F] [Algebra R F] {n : Type}
     [Fintype n] [DecidableEq n] (M : Matrix n n F) (hM : IsIntegral R M) : IsIntegral R M.trace := by
   first
-  | exact @_root_.GlobalTheory.TargetStatementAlt.target
-  | exact _root_.GlobalTheory.TargetStatementAlt.target
   | (apply _root_.GlobalTheory.TargetStatementAlt.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TargetStatementAlt.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TargetStatementAlt.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TargetStatementAlt.target ..)
 
 variable {K : UQ} (B : InvAlg K)

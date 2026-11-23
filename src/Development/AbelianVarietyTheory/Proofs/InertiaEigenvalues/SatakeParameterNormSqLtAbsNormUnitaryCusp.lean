@@ -83,8 +83,8 @@ theorem hasProd_split {ι : Type*} [DecidableEq ι] (f : ι → ℂ) (T : Finset
       {v | v ∉ T}.mulIndicator f := by
     funext v
     by_cases hv : v = w
-    · subst hv; simp [Set.mulIndicator_apply, hw]
-    · by_cases hvT : v ∈ T <;> simp [Set.mulIndicator_apply, hv, hvT]
+    · subst hv; simp [hw]
+    · by_cases hvT : v ∈ T <;> simp [hv, hvT]
   rw [heq] at h4
   exact h1'.unique h4
 

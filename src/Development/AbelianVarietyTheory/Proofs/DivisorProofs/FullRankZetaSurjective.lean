@@ -65,7 +65,7 @@ theorem Y0_mul_apply (hnd : n ≤ d) {β : Type*} (M : Matrix (Fin d) β k) (i :
 theorem mul_Y0_apply (hnd : n ≤ d) {β : Type*} [Fintype β] (A : Matrix β (Fin n) k) (i : β) (j : Fin n) :
     (A * Yo) i ⟨d - n + j, by omega⟩ = A i j := by
   have e : ∀ l : Fin n, (d - n + (j : ℕ) = d - n + l) ↔ l = j := fun l => by rw [Fin.ext_iff]; omega
-  simp [GlobalTheory.FullRankCoinv.Y0, Matrix.mul_apply, e, Fin.val_inj]
+  simp [GlobalTheory.FullRankCoinv.Y0, Matrix.mul_apply, Fin.val_inj]
 
 theorem mul_Y0_apply_lt {β : Type*} [Fintype β] (A : Matrix β (Fin n) k) (i : β) (j : Fin d)
     (hj : (j : ℕ) < d - n) : (A * Yo) i j = 0 := by

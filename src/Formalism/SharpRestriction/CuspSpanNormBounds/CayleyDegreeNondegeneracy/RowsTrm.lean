@@ -271,7 +271,6 @@ theorem rows_absDl_nonneg (hrd : 0 < D.host.rdE) (Z : GramM D) (l : ℕ) (τ : D
   unfold absDl absReal
   first
     | exact mul_nonneg (norm_nonneg _) (Real.rpow_nonneg hrd.le _)
-    | exact mul_nonneg (norm_nonneg _) (Real.rpow_nonneg_of_nonneg hrd.le _)
 
 theorem rows_max_cmp {b x c Ch M : ℝ} (hb : 1 ≤ b) (hx : 0 ≤ x) (hM : 0 ≤ M) :
     max 1 (x / b ^ (c * M)) ≤ b ^ (max (Ch - c) 0 * M) * max 1 (x / b ^ (Ch * M)) := by
@@ -339,7 +338,6 @@ theorem rows_HHZ_cmp (hrd : 0 < D.host.rdE) {b : ℝ} (hb : 1 ≤ b) (c Ch : ℝ
   set E := max (Ch - c) 0 * (D.R.m : ℝ) ^ 2 * D.R.f * ((D.R.rS : ℝ) + 1) with hE
   have h4 : sizeZ D b c Z ^ 4 ≤ (b ^ E * sizeZ D b Ch Z) ^ 4 := by
     first
-      | exact pow_le_pow_left h0 h1 4
       | exact pow_le_pow_left₀ h0 h1 4
   have e1 : (b ^ (c * (D.R.m : ℝ) ^ 2 * D.R.f)) ^ (c * (D.R.m : ℝ)) =
       b ^ (c ^ 2 * (D.R.m : ℝ) ^ 3 * D.R.f) := by
@@ -762,13 +760,7 @@ section Pos
 theorem rowsT_Tr_pos (D : D7) (w : D.what₂.Word) : 0 < Tr D w := by
   unfold Tr
   first
-    | exact_mod_cast (D.mem w).A.T_pos
-    | exact_mod_cast (D.mem w).A.hT
-    | exact_mod_cast (D.mem w).A.pos
-    | exact_mod_cast (D.mem w).A.prime.pos
-    | exact_mod_cast (D.mem w).A.hprime.pos
     | exact_mod_cast (D.mem w).A.T_prime.pos
-    | exact_mod_cast (D.mem w).A.hT.pos
 
 theorem rowsT_gS_pos {D : D7} {u u' : D.what₂.Word} (h : Cnt.Stand D u u') : (0 : ℝ) < (gS D : ℝ) := by
   unfold Cnt.Stand at h
@@ -881,7 +873,7 @@ theorem rowsT_chSh_nonneg (T T' : ℕ) (F : LFlag (D.sp.Y 0) D.R.rS (T : D.host.
 theorem rowsT_invSh_nonneg (T T' : ℕ) (F : LFlag (D.sp.Y 0) D.R.rS (T : D.host.E)) (F' : LFlag (D.sp.Y 0) D.R.rS (T' : D.host.E))
     (φ : D.host.E →+* ℂ) : 0 ≤ invSh T T' F F' φ := by
   unfold invSh Lat.sh Lat.ch
-  split_ifs <;> first | positivity | exact le_rfl
+  split_ifs <;> first | positivity
 
 theorem rowsT_small_one {ι : Type*} [Fintype ι] (s : ι → ℝ) (T T' g : ℝ) (hT : 0 < T) (hT' : 0 < T') (hg : 0 < g)
     (hs : ∀ v, 0 < s v) (h : Real.sqrt (T * T' / g ^ 2) ^ Fintype.card ι ≤ ∏ v, 1 / s v) :
@@ -936,7 +928,6 @@ theorem rowsT_small_one {ι : Type*} [Fintype ι] (s : ι → ℝ) (T T' g : ℝ
         rw [mul_one]
         have h4 : Real.sqrt (T' / T) * g ≤ 4 * Real.sqrt (T' / T) * g := by nlinarith
         first
-          | exact pow_le_pow_left hr0 h4 _
           | exact pow_le_pow_left₀ hr0 h4 _
 
 variable {large₂ : SizeData₂ D} {X : TermTie D} {u u' : D.what₂.Word} {C1 : ℝ} (Y : LoopTie D large₂ X u u' C1)

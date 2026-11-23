@@ -81,7 +81,7 @@ theorem exists_geom_level : ∀ (h n N : ℕ) (B : Type) [CommRing B] (b : TBase
   let U : Over.mk x ⟶ Over.mk (T0.hom ≫ 𝟙 (Sp k) ≫ x) := Over.homMk (𝟙 (Sp k)) wU
   let V : Over.mk (T0.hom ≫ 𝟙 (Sp k) ≫ x) ⟶ Over.mk x := Over.homMk (𝟙 (Sp k)) (by simp [T0])
   have VU : V ≫ U = 𝟙 _ := by ext; simp [U, V]; try rfl
-  have UV : U ≫ V = 𝟙 _ := by ext; simp [U, V]; try rfl
+  have UV : U ≫ V = 𝟙 _ := by ext; simp [U, V]
   let ψ : (T0 ⟶ C.A) →* (Over.mk x ⟶ c.A) := (preHom U).comp (pushHom pb T0)
   have ψl : ∀ g : T0 ⟶ C.A, (ψ g).left = g.left ≫ φC ≫ φx := fun g => by
     show 𝟙 (Sp k) ≫ g.left ≫ φC ≫ φx = _

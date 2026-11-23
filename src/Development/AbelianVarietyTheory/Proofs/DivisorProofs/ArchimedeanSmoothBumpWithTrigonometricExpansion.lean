@@ -58,11 +58,7 @@ theorem exists_bounded_trig {X : Type} [PseudoMetricSpace X] [ProperSpace X] (x�
     ∃ (s : ℕ → Finset B) (c : ℕ → B → ℂ), (∀ n x, ‖∑ b ∈ s n, c n b * χ b x‖ ≤ 2) ∧
       ∀ x, Filter.Tendsto (fun n => ∑ b ∈ s n, c n b * χ b x) Filter.atTop (nhds (β x : ℂ)) := by
   first
-  | exact @_root_.GlobalTheory.RealAlgebraCharacters.main
-  | exact _root_.GlobalTheory.RealAlgebraCharacters.main
   | (apply _root_.GlobalTheory.RealAlgebraCharacters.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RealAlgebraCharacters.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RealAlgebraCharacters.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RealAlgebraCharacters.main ..)
 
 variable {F : Type} [Field F] [NumberField F]

@@ -97,7 +97,7 @@ theorem sum_bas_re {n : ℕ} (ξ : Fin n → ℂ) :
     exact Complex.re_add_im (ξ k)
   have hsum : ∑ k, ξ k • bas n k = WithLp.toLp 2 ξ := by
     ext j
-    simp [bas, PiLp.single_apply, Pi.single_apply, mul_ite, Finset.sum_ite_eq, Finset.sum_ite_eq']
+    simp [bas, Pi.single_apply, mul_ite, Finset.sum_ite_eq]
   simp_rw [h]
   exact hsum
 
@@ -110,7 +110,7 @@ theorem sum_bas_im {n : ℕ} (ξ : Fin n → ℂ) :
     apply Complex.ext <;> simp
   have hsum : ∑ k, ξ k • bas n k = WithLp.toLp 2 ξ := by
     ext j
-    simp [bas, PiLp.single_apply, Pi.single_apply, mul_ite, Finset.sum_ite_eq, Finset.sum_ite_eq']
+    simp [bas, Pi.single_apply, mul_ite, Finset.sum_ite_eq]
   simp_rw [h, ← Finset.smul_sum, hsum]
 
 theorem leviV_re_line {n : ℕ} (h : V n → ℝ) (z : V n) (hh : ContDiffAt ℝ 2 h z) (ξ : Fin n → ℂ) :

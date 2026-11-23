@@ -72,7 +72,6 @@ lemma prim_bound {E K : Type*} [Field E] [Field K] [Algebra ℚ E] [Algebra ℚ 
   haveI : CharZero K := by
     first
     | exact algebraRat.charZero K
-    | exact (algebraMap ℚ K).charZero
   rw [Module.finrank_mul_finrank ℚ E K]
   have hint : IsIntegral ℚ μ := .of_finite ℚ μ
   have h1 : Module.finrank ℚ (IntermediateField.adjoin ℚ {μ}) = g - 1 := by
@@ -123,7 +122,6 @@ lemma dim_bound {E : Type*} [Field E] [Algebra ℚ E] [FiniteDimensional ℚ E]
   haveI : CharZero (AdjoinRoot f) := by
     first
     | exact algebraRat.charZero (AdjoinRoot f)
-    | exact (algebraMap ℚ (AdjoinRoot f)).charZero
   haveI : NeZero g := ⟨hg.ne_zero⟩
   have hμ : IsPrimitiveRoot (AdjoinRoot.root f) g := by
     rw [← isRoot_cyclotomic_iff, ← map_cyclotomic g (algebraMap E (AdjoinRoot f)), IsRoot, eval_map]

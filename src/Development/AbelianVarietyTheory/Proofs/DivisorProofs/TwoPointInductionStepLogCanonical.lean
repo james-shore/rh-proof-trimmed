@@ -103,7 +103,6 @@ private lemma two_mul_lt_pow_mul_of_le (a t t' c : ℚ) (k : ℕ) (ha : 0 ≤ a)
     linarith
   have hpow : t ^ k ≤ t' ^ k := by
     first
-    | exact pow_le_pow_left ht.le htt k
     | exact pow_le_pow_left₀ ht.le htt k
   have : t ^ k * c ≤ t' ^ k * c := mul_le_mul_of_nonneg_right hpow hc.le
   constructor <;> linarith

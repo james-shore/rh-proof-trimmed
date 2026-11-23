@@ -96,11 +96,7 @@ theorem exists_common_denominator {R A : Type*} [CommRing R] [IsDomain R] [CommR
     (h : ∀ b : A, ∃ s : R, s ≠ 0 ∧ ∃ r : R[X], algebraMap R A s * b = aeval a r) :
     ∃ s : R, s ≠ 0 ∧ ∀ b : A, ∃ r : R[X], algebraMap R A s * b = aeval a r := by
   first
-  | exact @_root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator
-  | exact _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator
   | (apply _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator ..)
 
 theorem exists_primitive_element_discriminant_multiple (R A K L : Type*) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]

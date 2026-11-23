@@ -160,8 +160,6 @@ theorem exists_colimit_of_quotient_charts : ∀ {X : Scheme.{0}} (R : X → X �
       rw [hm' (U := ⟨W, hW⟩), hz]
     · rw [← cancel_epi α.isoOpensRange.hom]
       simp only [Scheme.Hom.isoOpensRange_hom_ι_assoc]
-      change α ≫ pullback.fst U.1.ι V.1.ι ≫ e U ≫ colimit.ι F U =
-        α ≫ pullback.snd U.1.ι V.1.ι ≫ e V ≫ colimit.ι F V
       rw [reassoc_of% hα1, reassoc_of% hα2,
         ← reassoc_of% (hnat (U := ⟨W, hW⟩) (V := U) (homOfLE h1)),
         ← reassoc_of% (hnat (U := ⟨W, hW⟩) (V := V) (homOfLE h2)), colimit.w, colimit.w])

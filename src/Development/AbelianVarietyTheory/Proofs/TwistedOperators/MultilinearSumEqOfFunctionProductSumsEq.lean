@@ -53,11 +53,7 @@ theorem funSub_evalExpand_exists {X : Type} (V : Submodule ℂ (X → ℂ)) (W :
     [FiniteDimensional ℂ W] :
     ∃ (P : Finset X) (e : X → V), ∀ w ∈ W, w = ∑ x ∈ P, (w : X → ℂ) x • e x := by
   first
-  | exact @_root_.GlobalTheory.FinsetKernelTrivial.main
-  | exact _root_.GlobalTheory.FinsetKernelTrivial.main
   | (apply _root_.GlobalTheory.FinsetKernelTrivial.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FinsetKernelTrivial.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FinsetKernelTrivial.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FinsetKernelTrivial.main ..)
 
 theorem funSub_multilinear_expand {ι : Type} [Fintype ι] [DecidableEq ι] {X : ι → Type}

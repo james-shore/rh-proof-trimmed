@@ -66,10 +66,7 @@ private theorem cc_subst_lemma {σ τ : Type} [Fintype σ] {L : σ → MvPowerSe
   classical
   have hL : MvPowerSeries.HasSubst L := by
     first
-      | exact MvPowerSeries.HasSubst.of_constantCoeff_zero hL0
       | exact MvPowerSeries.hasSubst_of_constantCoeff_zero hL0
-      | exact MvPowerSeries.HasSubst.of_constantCoeff_nilpotent (fun p => by rw [hL0 p]; exact IsNilpotent.zero)
-      | exact MvPowerSeries.hasSubst_of_constantCoeff_nilpotent (fun p => by rw [hL0 p]; exact IsNilpotent.zero)
   rw [MvPowerSeries.constantCoeff_subst hL, finsum_eq_single _ 0]
   · simp [MvPowerSeries.coeff_zero_eq_constantCoeff_apply]
   · intro e he
@@ -108,7 +105,7 @@ theorem cc_jac (i b : Fin d) : constantCoeff (Jac G i b) = if i = b then 1 else 
   by_cases hib : i = b
   · subst hib
     simp
-  · simp [hib, Ne.symm hib]
+  · simp [hib]
 
 def JM : Matrix (Fin d) (Fin d) (PS k 1 d) := Matrix.of (Jac G)
 
@@ -147,7 +144,6 @@ theorem cc_om : (Om G).map constantCoeff = 1 := by
   simp only [Matrix.map_mul] at h
   first
     | (rw [jm_map_cc, mul_one, Matrix.map_one _ (map_zero _) (map_one _)] at h; exact h)
-    | (simpa [jm_map_cc] using h)
 
 theorem om_Q (i b : Fin d) : ∑ j, ev (n := 2) ![G.F] (Om G i j) * Ar G j b = ev (n := 2) ![pt k d 1] (Om G i b) := by
   have hF : CZ (![G.F] : Fin 1 → Pt k 2 d) := by
@@ -181,7 +177,6 @@ theorem om_Q (i b : Fin d) : ∑ j, ev (n := 2) ![G.F] (Om G i j) * Ar G j b = e
   rw [Matrix.mul_apply] at h4
   first
     | exact h4
-    | simpa using h4
 
 theorem czSw : CZ (![pt k (n := 2) d 1, pt k d 0] : Fin 2 → Pt k 2 d) := by
   intro j i
@@ -213,8 +208,6 @@ theorem sw_y (h : PS k 1 d) :
   fin_cases j
   first
     | exact ev_X czSw 1 i
-    | (simp only [Matrix.cons_val_zero]; exact ev_X czSw 1 i)
-    | simp [pt, ev_X czSw]
 
 theorem sw_dF (j b : Fin d) :
     ev (n := 2) ![pt k d 1, pt k d 0] (pderiv (R := k) ((1 : Fin 2), b) (G.F j)) = pderiv (R := k) ((0 : Fin 2), b) (G.F j) := by
@@ -223,7 +216,6 @@ theorem sw_dF (j b : Fin d) :
   simp [pt, MvPowerSeries.pderiv_X, Pi.single_apply] at h
   first
     | exact h
-    | simpa using h
 
 theorem om_P (i a : Fin d) :
     ∑ j, ev (n := 2) ![G.F] (Om G i j) * pderiv (R := k) ((0 : Fin 2), a) (G.F j) = ev (n := 2) ![pt k d 0] (Om G i a) := by
@@ -268,10 +260,8 @@ private theorem ev_coordinate_F (i : Fin d) :
     fin_cases j
     · first
         | exact ev_X CZ_pt_vector 1 i'
-        | simp [pt, ev_X CZ_pt_vector]
     · first
         | exact ev_X CZ_pt_vector 0 i'
-        | simp [pt, ev_X CZ_pt_vector]
   rw [e, G.unit i]
 
 theorem ez_F (h : PS k 1 d) : ev (n := 1) ![pt k d 0, 0] (ev (n := 2) ![G.F] h) = h := by
@@ -290,7 +280,6 @@ theorem ez_dx (j a : Fin d) :
   simp [pt, MvPowerSeries.pderiv_X, Pi.single_apply] at h
   first
     | exact h
-    | simpa [eq_comm] using h
 
 theorem ez_dy (c b : Fin d) : ev (n := 1) ![pt k d 0, 0] (pderiv (R := k) ((1 : Fin 2), b) (G.F c)) = Jac G c b := rfl
 
@@ -328,7 +317,7 @@ theorem om_key (i a b : Fin d) :
     simp [pt, MvPowerSeries.pderiv_X, Pi.single_apply]
   have hR : pderiv (R := k) ((1 : Fin 2), b) (ev (n := 2) ![pt k d 0] (Om G i a)) = 0 := by
     rw [pderiv_ev czX, Fintype.sum_prod_type]
-    simp [pt, MvPowerSeries.pderiv_X, Pi.single_apply]
+    simp [pt]
   have hP := congrArg (⇑(pderiv (R := k) ((1 : Fin 2), b))) (om_P G i a)
 
   rw [hR, map_sum] at hP

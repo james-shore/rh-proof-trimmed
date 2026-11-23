@@ -63,11 +63,7 @@ variable {F : Type} [Field F] {d : ℕ}
 theorem prod_zpow_add (x : Fin (d + 1) → F) (hx : ∀ i, x i ≠ 0) (m n : Fin (d + 1) → ℤ) :
     ∏ j, x j ^ (m j + n j) = (∏ j, x j ^ m j) * ∏ j, x j ^ n j := by
   first
-  | exact @_root_.GlobalTheory.ProductZpowAdd.prod_zpow_add
-  | exact _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add
   | (apply _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProductZpowAdd.prod_zpow_add <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ProductZpowAdd.prod_zpow_add ..)
 
 def monoA (x : Fin (d + 1) → F) (hx : ∀ i, x i ≠ 0) (I : Finset (Fin (d + 1))) : Submonoid F where

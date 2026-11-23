@@ -138,7 +138,6 @@ theorem isSymplectic_of_subring : ∀ (h M : ℕ) (B R : Type) [CommRing B] [Com
       have e := congrArg (fun q => q.hom z) (Scheme.ΓSpecIso_naturality (CommRingCat.ofHom R₁.subtype))
       first
         | exact e
-        | (simp only [CommRingCat.hom_comp, RingHom.comp_apply, CommRingCat.hom_ofHom, Subring.subtype_apply] at e; exact e)
     intro x y hxy
     have h2 := congrArg (Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom hxy
     rw [k, k] at h2

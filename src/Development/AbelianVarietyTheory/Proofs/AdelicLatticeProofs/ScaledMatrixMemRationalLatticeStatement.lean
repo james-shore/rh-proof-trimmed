@@ -48,4 +48,3 @@ theorem _root_.GlobalTheory.T.scaled_matrix_mem_rational_lattice : ∀ (D : D7) 
   intro D S T ΛS ΛT hS hT M
   first
   | exact GlobalTheory.LatVacFull.latRat_full D S T ΛS ΛT hS hT M
-  | exact GlobalTheory.LatVacFull.latRat_full D S T ΛS ΛT hS.toIsLattice hT.toIsLattice M

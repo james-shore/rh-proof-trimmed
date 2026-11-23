@@ -166,7 +166,6 @@ theorem orbDirac_holds : OrbDirac := by
   have hu := Formalism.QuantumDeterminants.WeylGroupFacts.isUnit_of_uh hγ
   have hinv : γ⁻¹ * γ = 1 := by
     first
-    | exact Matrix.nonsing_inv_mul γ ((Matrix.isUnit_iff_isUnit_det _).1 hu)
     | exact Matrix.nonsing_inv_mul γ hu
   have hact : ∀ p, Formalism.FourierDecayAlt.C6.actR γ (Matrix.of (Matrix.of.symm (1 : Mat k r))) p = p := by
     intro p
@@ -280,7 +279,7 @@ theorem relDiag_holds : RelDiag := by
     simp only [List.mem_map, List.mem_ofFn] at hb
     obtain ⟨t, ⟨a, rfl⟩, rfl⟩ := hb
     exact ⟨le_refl _, hd a⟩
-  · simp only [Formalism.FourierDecayAlt.D.ptSize, List.map_map, List.map_ofFn, List.sum_ofFn, Function.comp_def,
+  · simp only [Formalism.FourierDecayAlt.D.ptSize, List.map_ofFn, List.sum_ofFn, Function.comp_def,
       Finset.sum_const, Finset.card_univ, Fintype.card_fin, smul_eq_mul, mul_one]
   · rw [hZ]
     ext i j

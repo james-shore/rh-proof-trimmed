@@ -113,7 +113,6 @@ theorem pderiv_glAct (LL : M.Letters N) (J : ℕ) (a : Fin N) (c c' d' : Fin r)
           by_cases hcd : c = d'
           · subst hcd
             simp
-            try abel
           · simp [hcd, Ne.symm hcd]
         · have hne : (i, d') ≠ (a, c) := fun h' => hai (congrArg Prod.fst h').symm
           simp [hai, hne]

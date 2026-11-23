@@ -256,7 +256,6 @@ theorem arc_length_three_representation_of [NeZero n] [Fintype (K →ₐ[Qp] LL)
   have hps2 : W.φA (W.φA (Formalism.MainNotions.LiftingTheory.pk W 0)) = ps W 2 := by
     first
     | rfl
-    | (simp only [Formalism.MainNotions.LiftingTheory.pk, ps, pow_zero, AlgHom.one_apply, pow_two, AlgHom.mul_apply] <;> rfl)
   have hJJ : W.φA (W.φA (Formalism.MainNotions.LiftingTheory.JJ W 1 (2 * A.G₀) (A.M PD.p))) =
       ((W.φA ^ 2) W.π₀) ^ A.M PD.p * ps W 2 ^ (2 * A.G₀) := by
     simp only [Formalism.MainNotions.LiftingTheory.JJ, Finset.prod_range_one, map_mul, map_pow]
@@ -298,7 +297,6 @@ theorem arc_length_three_representation_of [NeZero n] [Fintype (K →ₐ[Qp] LL)
     refine (?_ : _ = (lA W ^ t * a₀) • (lA W ^ κ' • (lA W ^ κ • W.φD T₂ lam -
       lA W ^ A.σ PD.p • ((W.φD T₂) ^ 3) Hh))).trans ?_
     · first
-      | module
       | (simp only [smul_sub, smul_smul]; congr 1 <;> congr 1 <;> ring)
     · rw [hφ, smul_smul, smul_smul]
       congr 1

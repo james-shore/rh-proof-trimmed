@@ -215,7 +215,7 @@ variable {R : Type} [CommRing R] [Invertible (2 : R)] {E : Type} [CommRing E] [A
 
 omit [Invertible (2 : R)] [Fintype β] in
 theorem smul_one_map (a : E) : (a • (1 : Matrix β β E)).map c = c a • 1 := by
-  ext i j; by_cases h : i = j <;> simp [Matrix.one_apply, h]
+  ext i j; by_cases h : i = j <;> simp [h]
 
 
 omit [Invertible (2 : R)] in
@@ -271,8 +271,8 @@ theorem siegel_mixed {C : TestClass R} {ψ : AddChar R ℂ} {ξ : E} {JA : Matri
       Matrix.fromRows ((1 - ε) • (1 : Matrix β β E)) ((1 - c ε) • (1 : Matrix β β E)) := by
     rw [hγ, diagCols, Matrix.fromBlocks_mul_fromRows]
     congr 1
-    · simp [sub_smul, sub_eq_add_neg, add_smul]
-    · simp [sub_smul, sub_eq_add_neg, add_smul, add_comm]
+    · simp [sub_eq_add_neg, add_smul]
+    · simp [sub_eq_add_neg, add_smul, add_comm]
   rw [← hres g gd hgd φ₁ hφ₁ φ₂ hφ₂]
   refine siegel_conj hs hS γ l hl (fun z Φ hΦ => ?_) gd t ?_ _ hb
   · rw [← hinv z Φ hΦ, hC, Matrix.transpose_fromRows, Matrix.mul_fromCols, Darboux.rho, hdd]
@@ -280,12 +280,12 @@ theorem siegel_mixed {C : TestClass R} {ψ : AddChar R ℂ} {ξ : E} {JA : Matri
   · rw [hC, hgd, ht, Matrix.fromBlocks_mul_fromRows, Matrix.fromRows_mul]
     set G : Matrix β β E := ((g : GL β E) : Matrix β β E)
     congr 1
-    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, Matrix.zero_mul, smul_zero, add_zero,
+    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, smul_zero, add_zero,
         smul_add, smul_smul]
       have e : (1 - ε) * c ε = c ε := by rw [sub_mul, one_mul, h2, sub_zero]
       rw [e, ← sub_eq_zero, ← hg]
       module
-    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, Matrix.zero_mul, smul_zero, zero_add,
+    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, smul_zero, zero_add,
         smul_add, smul_smul]
       have e : (1 - c ε) * c ε = 0 := by rw [sub_mul, one_mul, h4, sub_self]
       rw [e, zero_smul, add_zero]
@@ -526,7 +526,7 @@ theorem char_eq_local : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [F
     push_cast
     rfl
   rw [k2] at k1
-  simp only [GlobalTheory.SplitFlip.omA, map_one, GlobalTheory.SplitFlip.apow_one, MonoidHom.one_apply, Units.val_one, mul_one,
+  simp only [GlobalTheory.SplitFlip.omA, map_one, GlobalTheory.SplitFlip.apow_one, Units.val_one, mul_one,
     Matrix.mul_zero, Matrix.zero_mul] at k1
   have k3 := mul_right_cancel₀ (GlobalTheory.SplitFlip.apow_ne_zero _ _) (mul_right_cancel₀ hφ0 k1)
   rw [MonoidHom.inv_apply, ← inv_eq_iff_eq_inv]

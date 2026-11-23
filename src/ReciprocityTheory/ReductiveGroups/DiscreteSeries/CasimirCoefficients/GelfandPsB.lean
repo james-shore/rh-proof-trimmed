@@ -75,8 +75,6 @@ local notation "𝕄f" => Fin n → Fin n → ℂ
 lemma contDiff_entry (i j : Fin n) : ContDiff ℂ ∞ (fun z : Matrix (Fin n) (Fin n) ℂ => z i j) := by
   first
     | exact contDiff_apply_apply (𝕜 := ℂ) (n := ∞) i j
-    | fun_prop
-    | exact ((contDiff_apply ℂ (fun _ => (Fin n → ℂ)) i).clm_apply contDiff_const).comp contDiff_id
 
 lemma contDiff_mat {X : Type*} [NormedAddCommGroup X] [NormedSpace ℂ X] {f : X → Matrix (Fin n) (Fin n) ℂ}
     (h : ∀ i j, ContDiff ℂ ∞ (fun x => f x i j)) : ContDiff ℂ ∞ f := by
@@ -128,7 +126,7 @@ lemma sm_DH (X : Matrix (Fin n) (Fin n) ℂ)
       ((X * p.1, 0) : Matrix (Fin n) (Fin n) ℂ × Matrix (Fin n) (Fin n) ℂ × Matrix (Fin n) (Fin n) ℂ)) :=
     (contDiff_mmul contDiff_const contDiff_fst).prodMk contDiff_const
   have hmn : (∞ : WithTop ℕ∞) + 1 ≤ ∞ := by
-    first | simp | (exact_mod_cast le_rfl) | norm_cast | exact le_of_eq (by rfl)
+    first | simp
   exact (hg.fderiv_of_isOpen isOpen_kappaOpenNeighbourhood hmn).clm_apply h2.contDiffOn
 
 lemma DH_slice (X : Matrix (Fin n) (Fin n) ℂ)
@@ -182,8 +180,6 @@ lemma continuous_emb : Continuous (fun q : Matrix (Fin n) (Fin n) ℂ × KG ε =
     unfold toMK toM
     first
       | fun_prop
-      | exact Units.continuous_val.comp (continuous_subtype_val.comp continuous_subtype_val)
-      | done
   exact continuous_fst.prodMk ((hM.comp continuous_snd).prodMk (hM.comp (continuous_inv.comp continuous_snd)))
 
 lemma emb_mem {x : Matrix (Fin n) (Fin n) ℂ} (hx : x ∈ Ps1.Uset ε) (k : KG ε) : emb x k ∈ Wset n := by

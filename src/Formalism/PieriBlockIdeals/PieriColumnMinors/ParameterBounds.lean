@@ -646,7 +646,6 @@ theorem thinSum_holds : SumA := by
           mul_le_mul_of_nonneg_right hpcb.le hM
       _ = 1.26 * D.hw τ * (P.Nr.choose 2 : ℝ) := by
           field_simp
-          try ring
       _ ≤ 1.3 * (P.Nr : ℝ) ^ 2 * P.b' := by
           have k1 := mul_le_mul hhw hC hC0 (by linarith : (0 : ℝ) ≤ 2 * P.b')
           have k2 : 0 ≤ D.hw τ * (P.Nr.choose 2 : ℝ) := mul_nonneg (by linarith) hC0
@@ -834,7 +833,7 @@ theorem cW_eq_of_eq_zero {ι : Type} (D : SizeData₂ ι) (P : Par) (τ : ι) (l
       + gatedCoefficientTerm D P τ l
       + ((D.q τ : ℝ) * P.h / (l : ℝ)) * (1 + max 0 (Real.log (P.h / (l : ℝ)))) := by
   simp only [SizeData₂.cW, SizeData₂.depth, gatedCoefficientTerm, h1, h2, h3, Nat.cast_zero, mul_zero, add_zero,
-    zero_mul, zero_add]
+    zero_mul]
 
 theorem sum_min_cW_le_split {P : Par} (H : P.Hyp) (G : P.Large) {ι : Type} {D : SizeData₂ ι}
     (hA : D.ThickA P) (hC : D.CloudA P) (hNW : D.NoWindow P) {τ : ι} (hτ : τ ∈ D.T2)

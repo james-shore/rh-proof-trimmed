@@ -61,11 +61,7 @@ theorem dvd_iff_map_eq {R : Type*} [CommRing R] {p q : Type*} (a : R) (A B : Mat
     (∀ i j, a ∣ (A - B) i j) ↔
       A.map (Ideal.Quotient.mk (Ideal.span {a})) = B.map (Ideal.Quotient.mk (Ideal.span {a})) := by
   first
-  | exact @_root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq
-  | exact _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq
   | (apply _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq ..)
 
 theorem map_smul_ringHom {R S : Type*} [CommRing R] [CommRing S] {p q : Type*} (f : R →+* S) (r : R)
@@ -98,7 +94,7 @@ theorem GlobalTheory.BKLim.limit_basis_link_mod : ∀ (l : ℕ) [Fact l.Prime] (
           = Pi.single j 1 := by
         funext a; by_cases h : a = j
         · subst h; simp
-        · simp [Pi.single_apply, h]
+        · simp [h]
       have := hv1 i
       rw [hs] at this
       simpa [Matrix.mulVec_single_one] using this

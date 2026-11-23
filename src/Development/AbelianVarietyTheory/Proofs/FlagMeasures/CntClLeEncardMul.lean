@@ -219,7 +219,7 @@ theorem orth_lattice (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D
   have hg : gS D ≠ 0 := mul_ne_zero hs.2.2.2.2.2.2.2.1.ne_zero hs.2.2.2.2.2.2.2.2.1.ne_zero
   have hB := GlobalTheory.T.norm_pow_le_card_flag_quotient _ (hS D) _ Λ (gS D) _ _ (lf D F0) F' hg hl hl' hF hF' hc' had hG
     (Nat.finite_of_card_ne_zero g1)
-  refine ⟨Partner.seen_le_L0X _ _ hH, (Partner.rk_seen _ (by first | exact hfull | exact hL) hW _ hH ?_).trans n3, d1.trans ?_⟩
+  refine ⟨Partner.seen_le_L0X _ _ hH, (Partner.rk_seen _ (by first | exact hfull) hW _ hH ?_).trans n3, d1.trans ?_⟩
   · rw [eq_bot_iff, ← n2, inf_comm]
     exact inf_le_inf (le_sup_left.trans hXp) le_rfl
   · have hN : 0 < NE (E := D.host.E) (gS D) ^ (D.R.rS + 1) := by

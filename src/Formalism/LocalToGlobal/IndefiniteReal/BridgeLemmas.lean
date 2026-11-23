@@ -331,7 +331,7 @@ theorem span_eq (P : ClassPres ι S σ ρ J χ) : Submodule.span ℂ (Set.range 
       intro c' hc l
       rw [hL, P.ext_rep]
       classical
-      simp [clsSingle, Pi.single_apply, hc, Ne.symm hc]
+      simp [clsSingle, Ne.symm hc]
     have hs : ∀ l, P.extL (clsSingle S c (S.bV l)) (P.y c) = P.coef (clsAvg S c (S.bV l)) := by
       intro l
       rw [hL, P.ext_rep]
@@ -447,7 +447,6 @@ theorem lift_independent_action_holds (ι : Γ →* G) (ρ : Γ →* Module.End 
     simp [mul_assoc]
   have e2 : χ ⟨((κ⁻¹ * κ' : Q) : G), hk⟩ = (ch κ)⁻¹ * ch κ' := by
     rw [← hch, ← map_inv, ← map_mul]
-    try rfl
   rw [e1, hm, e2, map_one]
   change _ = (((ch κ')⁻¹ : ℂˣ) : ℂ) • (((ch κ)⁻¹ * ch κ' : ℂˣ) : ℂ) • F (h * (κ : G))
   rw [smul_smul, ← Units.val_mul, mul_comm ((ch κ')⁻¹), mul_inv_cancel_right]

@@ -93,7 +93,7 @@ theorem tau_mat (D : ℂ) (hD1 : D - 1 ≠ 0) (zi zbi G la F τ s T : B)
   · linear_combination (norm := (
       simp only [mul_add, add_mul, mul_sub, sub_mul, mul_neg, neg_mul, smul_add, smul_sub,
         smul_mul_assoc, mul_smul_comm, mul_assoc, one_mul, mul_one, zero_mul, mul_zero, smul_zero];
-      match_scalars <;> first | ring1 | (field_simp [hD1] <;> ring)))
+      match_scalars <;> first | ring1))
       ((D - 1)⁻¹ * D) • (zi * hτ) - ((D - 1)⁻¹ * D) • (hTzi * F)
   · simp
   · linear_combination (norm := (
@@ -252,7 +252,7 @@ theorem L_mat (D : ℂ) (hD : D ≠ 0) (hD1 : D - 1 ≠ 0)
   · linear_combination (norm := (
       simp only [mul_add, add_mul, mul_sub, sub_mul, mul_neg, neg_mul, smul_add, smul_sub,
         smul_mul_assoc, mul_smul_comm, mul_assoc, one_mul, mul_one, zero_mul, mul_zero, smul_zero];
-      match_scalars <;> first | ring1 | (field_simp [hD, hD1] <;> ring)))
+      match_scalars <;> first | ring1))
       -(D - 1)⁻¹ • (zbi * G * la * hτ) + ((D - 1)⁻¹ * D) • (zbi * G * hs) + hC * F
 
 end Gen3

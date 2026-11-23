@@ -147,7 +147,7 @@ theorem mul_incl_mem {v : Pl (F := F)} {s : AE F E} (hs : s ∈ AddSubgroup.clos
   induction hs using AddSubgroup.closure_induction with
   | mem x hx =>
     obtain ⟨a, ha, hev, o', rfl⟩ := hx
-    exact AddSubgroup.subset_closure ⟨a, ha, hev, o' * o, by simp [smul_mul_assoc, map_mul]⟩
+    exact AddSubgroup.subset_closure ⟨a, ha, hev, o' * o, by simp [map_mul]⟩
   | zero => simp
   | add x y _ _ hx hy => rw [add_mul]; exact add_mem hx hy
   | neg x _ hx => rw [neg_mul]; exact neg_mem hx
@@ -191,7 +191,7 @@ theorem mul_latAt {n : ℕ} (X : Spc F E n) {v : Pl (F := F)} {s : AE F E}
     have h := smul_latAt_mem X ha hev (mul_incl_latAt X hs hy)
     convert h using 1
     funext i
-    simp [mul_smul_comm]
+    simp
   | zero => convert (GlobalTheory.InertSph.latAt X v).zero_mem using 1; funext i; simp
   | add x x' _ _ hx hx' => convert add_mem hx hx' using 1; funext i; simp [mul_add]
   | neg x _ hx => convert neg_mem hx using 1; funext i; simp

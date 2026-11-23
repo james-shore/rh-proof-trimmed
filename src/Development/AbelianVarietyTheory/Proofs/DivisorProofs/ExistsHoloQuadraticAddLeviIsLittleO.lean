@@ -116,7 +116,7 @@ noncomputable section
 
 theorem rmVec_coord (h : V n) : rmVec (fun j => h j) = h := by
   ext i
-  simp [rmVec, bas, PiLp.single_apply, Pi.single_apply]
+  simp [rmVec, bas, Pi.single_apply]
 
 def linCoef (D : V n →L[ℝ] ℝ) (j : Fin n) : ℂ :=
   (D (bas n j) : ℂ) - Complex.I * (D (Complex.I • bas n j) : ℂ)

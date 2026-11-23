@@ -118,11 +118,7 @@ theorem avg_of_weight_ne [IsDomain o] (c d : T →* oˣ) (hcd : d ≠ c) (x : M)
 theorem sum_avg [IsDomain o] [HasEnoughRootsOfUnity o (Monoid.exponent T)] [Fintype (T →* oˣ)]
     (hu : u * (Fintype.card T : o) = 1) (x : M) : ∑ c : T →* oˣ, avg ρ u c x = x := by
   first
-  | exact @_root_.GlobalTheory.CharacterSumInverse.main
-  | exact _root_.GlobalTheory.CharacterSumInverse.main
   | (apply _root_.GlobalTheory.CharacterSumInverse.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CharacterSumInverse.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CharacterSumInverse.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CharacterSumInverse.main ..)
 
 theorem baseChange_avg_of_weight (hu : u * (Fintype.card T : o) = 1) (A : Type) [CommRing A]

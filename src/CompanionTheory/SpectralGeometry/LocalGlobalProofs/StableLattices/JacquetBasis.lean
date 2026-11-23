@@ -125,13 +125,13 @@ theorem exists_gradBasis {ε : Fin n → Bool} {A : Matrix (Fin n) (Fin n) ℂ} 
   let c : Fin n → Fin 3 := fun x =>
     if hA.eigenvalues x = -1 then 0 else if hA.eigenvalues x = 0 then 1 else 2
   have hc0 : ∀ x, c x = 0 ↔ hA.eigenvalues x = -1 := by
-    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx] <;> decide
+    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx]
   have hc1 : ∀ x, c x = 1 ↔ hA.eigenvalues x = 0 := by
-    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx] <;> decide
+    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx]
   have hc2 : ∀ x, c x = 2 ↔ hA.eigenvalues x = 1 := by
-    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx] <;> decide
+    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx]
   have hval : ∀ x, (![-1, 0, 1] : Fin 3 → ℂ) (c x) = ((hA.eigenvalues x : ℝ) : ℂ) := by
-    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx] <;> rfl
+    intro x; rcases hcase x with hx | hx | hx <;> norm_num [c, hx]
   obtain ⟨j, hj⟩ : ∃ j, (Finset.univ.filter fun x => hA.eigenvalues x = -1).card = j := ⟨_, rfl⟩
   have hsumR : ∑ x, hA.eigenvalues x = 0 := by
     have h1 := hA.trace_eq_sum_eigenvalues

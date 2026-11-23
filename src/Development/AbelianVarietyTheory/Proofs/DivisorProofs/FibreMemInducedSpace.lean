@@ -107,7 +107,7 @@ theorem fibre_mem_indSpace (a b : ℕ) (ν β : kˣ →* ℂˣ) (Φ : Matrix (Fi
       apow (gdet g) z = c * F (g * invT A) := by
     intro g
     rw [h1, h2, hm g]
-    simp only [hF, hc, gdet_mul, gdet_invT, map_mul, map_inv, Units.val_mul, Units.val_inv_eq_inv_val, apow_mul,
+    simp only [hF, hc, gdet_invT, map_mul, map_inv, Units.val_mul, Units.val_inv_eq_inv_val, apow_mul,
       apow_inv, apow_neg]
     have n1 : (ν (gdet A) : ℂ) ≠ 0 := Units.ne_zero _
     have n2 : apow (gdet A) z ≠ 0 := apow_ne_zero _ _

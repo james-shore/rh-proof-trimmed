@@ -189,7 +189,7 @@ theorem GlobalTheory.OTY.extension_values_at_zeros : ∀ (n : ℕ) (Y : Type) [T
     have h0 : ∀ k, s k i (e.symm (e P)) = 0 := fun k => by rw [e.left_inv hPs]; exact hP' k
     ext k
     simp only [Z, WeightedAtlas.zLoc, PiLp.toLp_apply, div_one]
-    first | exact h0 k | simpa using h0 k | (simp; exact h0 k)
+    first | exact h0 k
   have hdet : (fderiv ℂ Z (e P)).det ≠ 0 := hjac P hP
   have hlam : ContinuousOn lam O :=
     ((A.smooth_ph L i).continuousOn).mono (fun v hv => hv.1)
@@ -237,7 +237,7 @@ theorem GlobalTheory.OTY.extension_values_at_zeros : ∀ (n : ℕ) (Y : Type) [T
         have h3 := hv hvB
         simp only [Pi.zero_apply, ENNReal.ofReal_eq_zero] at h3
         exact absurd h3 (not_le.2 (Real.exp_pos _))
-      first | exact measure_zero_iff_ae_nmem.2 h2 | exact measure_eq_zero_iff_ae_notMem.2 h2
+      first | exact measure_eq_zero_iff_ae_notMem.2 h2
     have hOW : volume (O \ W) = 0 := by
       apply measure_mono_null (t := {e P} ∪ (e.target ∩ e.symm ⁻¹' (nz A τ)ᶜ))
       · intro v hv

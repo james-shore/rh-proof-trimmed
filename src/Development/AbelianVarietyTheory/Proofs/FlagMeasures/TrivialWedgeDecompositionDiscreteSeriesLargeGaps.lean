@@ -283,7 +283,7 @@ theorem lOneNorm_add_single_unit_le {n : ℕ} (x : Fin n → ℤ) (a : Fin n) (z
     rw [Finset.sum_eq_single a]
     · simp [hz]
     · intro b _ hb
-      simp [Pi.single_apply, hb]
+      simp [hb]
     · simp
   calc ∑ i, ((x + (Pi.single a z : Fin n → ℤ)) i).natAbs ≤ ∑ i, ((x i).natAbs + ((Pi.single a z : Fin n → ℤ) i).natAbs) :=
         Finset.sum_le_sum fun i _ => h1 i

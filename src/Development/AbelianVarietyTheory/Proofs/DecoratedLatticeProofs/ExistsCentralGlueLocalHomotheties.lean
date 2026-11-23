@@ -64,10 +64,10 @@ namespace GlobalTheory.Core.Mi.LatGlue
 variable {D : D7}
 
 theorem mt_mul (S : HSp D) (a b : GA D S) : Formalism.L2.Theta.mt S (a * b) = Formalism.L2.Theta.mt S a * Formalism.L2.Theta.mt S b := by
-  first | rfl | simp [Formalism.L2.Theta.mt, map_mul]
+  first | rfl
 
 theorem mt_one (S : HSp D) : Formalism.L2.Theta.mt S 1 = 1 := by
-  first | rfl | simp [Formalism.L2.Theta.mt]
+  first | rfl
 
 theorem mem_congGrp {V : HSp D} {I : Ideal (AE D)} {g : GA D V} :
     g ∈ GlobalTheory.FinPl.congGrp V I ↔ ∀ i j, Formalism.L2.Theta.mt V g i j - (1 : Matrix (Fin V.rank) (Fin V.rank) (AE D)) i j ∈ I := by
@@ -112,7 +112,7 @@ theorem mulVec_fix {S : HSp D} {v w : GlobalTheory.FinPl.Pl D} (hvw : v ≠ w) {
   exact key
 
 theorem scal_mulVec {n : ℕ} (c : AE D) (y : Fin n → AE D) : (c • (1 : Matrix (Fin n) (Fin n) (AE D))) *ᵥ y = c • y := by
-  first | rw [Matrix.smul_mulVec, Matrix.one_mulVec] | simp [Matrix.smul_mulVec] | (ext i; simp [Matrix.mulVec, dotProduct, Matrix.one_apply])
+  first | rw [Matrix.smul_mulVec, Matrix.one_mulVec]
 
 end GlobalTheory.Core.Mi.LatGlue
 
@@ -192,7 +192,7 @@ theorem glue : ∀ (D : D7) (V A : HSp D) (e : GA D A →* GA D V) (g : GA D V) 
         refine ⟨b + c, ?_⟩
         change (b : D.host.E) + c = _
         rw [hb, hc]
-        simp [f, map_add, add_mul, Finset.sum_add_distrib, mul_add]
+        simp [f, add_mul, Finset.sum_add_distrib, mul_add]
       smul_mem' := by
         rintro c x ⟨b, hb⟩
         refine ⟨RingOfIntegers.mapRingHom (starRingEnd D.host.E) c * b, ?_⟩
@@ -233,7 +233,6 @@ theorem glue : ∀ (D : D7) (V A : HSp D) (e : GA D A →* GA D V) (g : GA D V) 
   have hcompare := by
     first
     | exact GlobalTheory.FinPl.latV_eq_off_finite D V M' M (hfull V M' hM'sd) (hfull V M hM)
-    | exact GlobalTheory.FinPl.latV_eq_off_finite D V M' M (hfull V M' hM'sd) hM.1
   obtain ⟨T, hT⟩ := hcompare
   have hoff : ∀ v ∉ T, Moves V g L M (· = v) := fun v hv y hy => by
     rw [hgM' _ y hy, hT v hv]

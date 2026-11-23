@@ -92,7 +92,7 @@ theorem continuous_char_apow (n : ℕ) (ν : kˣ →* ℂˣ) (hν : GlobalTheory
   refine continuous_of_mul_right_inv H hH _ fun g h hh => ?_
   have h1 : ν (gdet h) = 1 := hh.2
   have h2 : apow (gdet h) z = 1 := apow_of_valuation_eq_one (valuation_gdet_of_mem_KO hh.1) z
-  simp only [gdet_mul, map_mul, Units.val_mul, apow_mul, h1, h2, Units.val_one, mul_one]
+  simp only [map_mul, apow_mul, h1, h2, mul_one]
 
 theorem integrable_fibre (n d : ℕ) (ν : kˣ →* ℂˣ) (hν : GlobalTheory.SmGL.IsSmoothChar ν)
     [MeasurableSpace k] [BorelSpace k] (Ψ : Matrix (Fin n) (Fin d) k → ℂ) (hΨ : Ψ ∈ fullRk k n d)

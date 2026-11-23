@@ -76,8 +76,6 @@ theorem mem_killSub (A : PolAV (Sp (FractionRing R))) {O : Type} [Ring O] (ρ : 
     (x : TFK (R := R) F ⟶ A.A) : x ∈ killSub F A ρ ga ↔ x ≫ ρ.act ga = 1 := by
   first
     | exact Iff.rfl
-    | exact MonoidHom.mem_ker
-    | simp [killSub, MonoidHom.mem_ker]
 
 theorem card_killSub_le (hW : WeilSt) (A : PolAV (Sp (FractionRing R))) {O : Type} [Ring O] (ρ : RingAct A.A O)
     (N : ℕ) (ga gb : O) (hga : ∀ x ∈ killSub F A ρ ga, x ^ N = 1) (hgb : ∀ z ∈ killSub F A ρ gb, z ^ N = 1)
@@ -90,7 +88,6 @@ theorem card_killSub_le (hW : WeilSt) (A : PolAV (Sp (FractionRing R))) {O : Typ
   haveI : IsLocallyNoetherian (Sp (FractionRing R)) := by
     first
       | infer_instance
-      | (unfold Sp; infer_instance)
   obtain ⟨hEx, hMul, -, -⟩ := hW (Sp (FractionRing R)) A N (TFK (R := R) F)
   have huniq : ∀ (z x : TFK (R := R) F ⟶ A.A) (hz : z ^ N = 1) (hx : x ^ N = 1)
       (c : Γ((TFK (R := R) F).left, ⊤)ˣ), WeilIs A.A A.L N z x c → c = (hEx z x hz hx).exists.choose :=
@@ -116,7 +113,6 @@ theorem card_killSub_le (hW : WeilSt) (A : PolAV (Sp (FractionRing R))) {O : Typ
     exact congrArg (fun f => f z) h
   haveI : IsDomain Γ((TFK (R := R) F).left, ⊤) := by
     first
-      | infer_instance
       | exact Function.Injective.isDomain (Scheme.ΓSpecIso (CommRingCat.of F)).hom.hom
           (ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of F)).hom).1
   have hli := (linearIndependent_monoidHom (killSub F A ρ gb) Γ((TFK (R := R) F).left, ⊤)).comp ψ hψ
@@ -177,7 +173,6 @@ theorem alphaBarEnum_holds (hW : WeilSt) (hM : MulNSt) : AlphaBarEnumStatement :
   haveI : IsLocallyNoetherian (Sp (FractionRing V)) := by
     first
       | infer_instance
-      | (unfold Sp; infer_instance)
   let ρ := P.oA.toRingAct
   have hNF : ((N : ℕ) : F) ≠ 0 := by
     have h1 := (hNV.map (algebraMap V (FractionRing V))).map (algebraMap (FractionRing V) F)

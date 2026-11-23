@@ -84,8 +84,6 @@ def iF (F : Type) [Field F] [NumberField F] : Af F →ₗ[F] AF F where
     · show (0 : Ainf F) = (c • ((0, x) : AF F)).1
       first
         | (show (0 : Ainf F) = c • (0 : Ainf F); simp)
-        | (show (0 : Ainf F) = algebraMap F (Ainf F) c * 0; simp)
-        | (show (0 : Ainf F) = (algebraMap F (AF F) c * ((0, x) : AF F)).1; show (0 : Ainf F) = (algebraMap F (AF F) c).1 * 0; simp)
     · show c • x = (c • ((0, x) : AF F)).2
       rfl
 

@@ -75,7 +75,6 @@ theorem eq_θ {Rg : Type} [CommRing Rg] (A : Over (Sp Rg)) {Y : Scheme.{0}} (φ 
       haveI : Mono (topS Rg).hom := by dsimp [topS, overRes]; infer_instance
       rw [← cancel_mono (topS Rg).hom]
       simp only [Over.comp_left, Category.assoc, Over.w]
-      try exact w1.trans w2.symm
     · ext
       simp only [Over.comp_left, u, v, Over.homMk_left, Category.assoc, θ_snd, Category.comp_id, h]
   exact congrArg CommaMorphism.left this

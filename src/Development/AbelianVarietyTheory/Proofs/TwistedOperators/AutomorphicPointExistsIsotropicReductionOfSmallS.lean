@@ -92,11 +92,7 @@ theorem isIsot_span (I : AutInst) (R : Submodule (𝓞 I.E) (Fin I.n → I.E)) (
     (hiso : ∀ y ∈ R, ∀ z ∈ R, Formalism.UG.hform (starRingEnd I.E) I.J y z = 0) :
     I.IsIsot (Submodule.span I.E (R : Set (Fin I.n → I.E))) := by
   first
-  | exact @_root_.GlobalTheory.HermitianFormLinearity.main
-  | exact _root_.GlobalTheory.HermitianFormLinearity.main
   | (apply _root_.GlobalTheory.HermitianFormLinearity.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.HermitianFormLinearity.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.HermitianFormLinearity.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.HermitianFormLinearity.main ..)
 
 theorem exists_step (I : AutInst) (x : I.GA) (q : ℕ) (hn : 1 ≤ I.n)

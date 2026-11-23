@@ -181,8 +181,7 @@ theorem aeval_mem {σ σ' ι : Type} [Fintype ι] (r : ℚ → σ → ι → K) 
       mul_mem (hr x j) (hp (ℓ ∘ₗ LinearMap.mulRight K (MvPolynomial.X (y x j))))
     convert this using 1
     funext s
-    simp only [Finset.sum_apply, Pi.mul_apply, map_mul, MvPolynomial.aeval_X, map_sum,
-      LinearMap.comp_apply, LinearMap.mulRight_apply]
+    simp only [Finset.sum_apply, Pi.mul_apply, map_mul, MvPolynomial.aeval_X, LinearMap.comp_apply, LinearMap.mulRight_apply]
     rw [Finset.mul_sum, map_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [mul_left_comm, ← MvPolynomial.smul_eq_C_mul, map_smul, smul_eq_mul]

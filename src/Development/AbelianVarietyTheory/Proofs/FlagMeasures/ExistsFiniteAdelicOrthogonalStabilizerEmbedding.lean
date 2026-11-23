@@ -100,7 +100,7 @@ theorem exists_stab_emb_baseChange {E R : Type} [Field E] [StarRing E] [CommRing
       Matrix.vecMulVec_mulVec, k4]
     simp
   · rw [hj, Matrix.add_mul, Matrix.mul_assoc, k1, Matrix.mul_one, Matrix.vecMulVec_mul, k3]
-    ext a b; simp [vecMulVec_apply]
+    ext a b; simp
 
 theorem exists_finEmb : ∀ (I : AutInst) (D : Sib I) (s : Bool) (x : Fin I.n → I.E) (A : Matrix (Fin I.n) (Fin D.n) I.E) (xf : I.Gf), IsPerp D s x A xf → ∃ jf : D.inst.Gf →* I.Gf, IsFinEmb D x A jf ∧ ∀ h : I.Gf, I.fmat h *ᵥ afVec I x = afVec I x → h ∈ jf.range := by
   intro I D s x A xf h

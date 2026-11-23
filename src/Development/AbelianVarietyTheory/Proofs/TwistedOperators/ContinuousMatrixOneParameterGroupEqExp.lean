@@ -59,11 +59,7 @@ theorem banach_oneParamGroup_eq_exp {𝔸 : Type*} [NormedRing 𝔸] [NormedAlge
     (hm : ∀ s t, M (s + t) = M s * M t) :
     ∃ X : 𝔸, ∀ t, NormedSpace.exp (t • X) = M t := by
   first
-  | exact @_root_.GlobalTheory.ExponentialIntegralUnits.exists_exp_eq
-  | exact _root_.GlobalTheory.ExponentialIntegralUnits.exists_exp_eq
   | (apply _root_.GlobalTheory.ExponentialIntegralUnits.exists_exp_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ExponentialIntegralUnits.exists_exp_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ExponentialIntegralUnits.exists_exp_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ExponentialIntegralUnits.exists_exp_eq ..)
 
 theorem matrix_oneParamGroup_eq_exp : ∀ (ι : Type) [Fintype ι] [DecidableEq ι]

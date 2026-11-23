@@ -146,7 +146,7 @@ theorem local_cong (ϖ : v.adicCompletion F) (k N : ℕ) (hϖ : Valued.v ϖ ≤ 
   · apply smul_right_injective _ hϖ0
     simp only
     rw [Units.val_mul, ← Matrix.smul_mul, hgi, hg', ha, hb]
-    simp only [add_mul, mul_add, Matrix.mul_smul, Matrix.smul_mul, smul_add, mul_assoc, haa', hDD', hbb, hbb']
+    simp only [add_mul, mul_add, Matrix.mul_smul, Matrix.smul_mul, smul_add, mul_assoc, haa', hDD', hbb]
     module
 end Loc
 

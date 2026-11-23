@@ -88,7 +88,7 @@ theorem twMap_range_eq_ker : ∀ {G V₁ V₂ V₃ : Type} [Group G] [Topologica
         map_mul' := by
           intro x y
           ext u
-          simp [Module.End.mul_apply] }
+          simp }
     have hq : GlobalTheory.PRep.IsSmooth ρq := by
       intro u
       obtain ⟨w0, rfl⟩ := Submodule.Quotient.mk_surjective _ u

@@ -76,11 +76,11 @@ theorem J_succ {n : ℕ} (a b : Fin n ⊕ Fin n) :
 
 theorem J_succ_e {n : ℕ} (a : Fin n ⊕ Fin n) :
     J (Fin (n + 1)) ℝ (Sum.map Fin.succ Fin.succ a) (Sum.inl 0) = 0 := by
-  rcases a with i | i <;> simp [J, one_apply, Fin.succ_ne_zero]
+  rcases a with i | i <;> simp [J, Fin.succ_ne_zero]
 
 theorem J_e_succ {n : ℕ} (b : Fin n ⊕ Fin n) :
     J (Fin (n + 1)) ℝ (Sum.inl 0) (Sum.map Fin.succ Fin.succ b) = 0 := by
-  rcases b with j | j <;> simp [J, one_apply, (Fin.succ_ne_zero j).symm]
+  rcases b with j | j <;> simp [J, (Fin.succ_ne_zero j).symm]
 
 theorem reduce_row {n : ℕ} (H : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ)
     (a : Fin n ⊕ Fin n) :

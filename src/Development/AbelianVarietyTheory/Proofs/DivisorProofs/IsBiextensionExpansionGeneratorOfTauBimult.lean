@@ -304,7 +304,7 @@ theorem expand_single [DecidableEq K] (hB : D.TauBimult) (j : K) : Expand D (Pi.
       simp only [Fin.prod_univ_four, lamPts, Oε, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
         Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons]
       apply Additive.ofMul.injective
-      simp only [ofMul_mul, ofMul_inv, ofMul_zpow, ofMul_prod]
+      simp only [ofMul_mul, ofMul_zpow]
       simp
       abel)
     (LB.oneGen D.P.L (Y := T.left)) oneGen_isGen'

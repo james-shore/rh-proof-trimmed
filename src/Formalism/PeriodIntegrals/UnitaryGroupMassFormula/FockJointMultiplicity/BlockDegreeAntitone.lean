@@ -69,7 +69,7 @@ variable {σ : Type} {m n : ℕ} (ι : Fin m × Fin n → σ)
 
 theorem bRow_apply' (a b : Fin m) (P : MvPolynomial σ ℂ) :
     PI.FJM.bRow ι a b P = ∑ k : Fin n, X (ι (a, k)) * pderiv (ι (b, k)) P := by
-  simp [PI.FJM.bRow, LinearMap.sum_apply, Module.End.mul_apply]
+  simp [PI.FJM.bRow, LinearMap.sum_apply]
 
 theorem pd_X_mul [DecidableEq σ] (l v : σ) (Q : MvPolynomial σ ℂ) :
     pderiv l (X v * Q) = X v * pderiv l Q + (if v = l then Q else 0) := by

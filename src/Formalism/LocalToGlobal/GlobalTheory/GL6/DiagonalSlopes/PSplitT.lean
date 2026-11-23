@@ -67,14 +67,10 @@ theorem valuation_le_of_pow_dvd {ϖ x : v.adicCompletionIntegers K} {n : ℕ} (h
   have hy : Valued.v (y : v.adicCompletion K) ≤ 1 := by
     first
       | exact y.2
-      | exact (IsDedekindDomain.HeightOneSpectrum.mem_adicCompletionIntegers R K).1 y.2
-      | simpa using y.2
   have hc : ((ϖ ^ n * y : v.adicCompletionIntegers K) : v.adicCompletion K) =
       (ϖ : v.adicCompletion K) ^ n * (y : v.adicCompletion K) := by
     first
       | rfl
-      | (push_cast; rfl)
-      | simp
   rw [hc, map_mul, map_pow]
   exact mul_le_of_le_one_right' hy
 
@@ -161,7 +157,6 @@ theorem mem_maximal_ideal_completion_iff (r : R) :
     rw [hx]
     first
       | simp [IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap]
-      | simp
   have hle : ∀ y : v.adicCompletionIntegers K, Valued.v (y : v.adicCompletion K) ≤ 1 := fun y => y.2
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
   constructor
@@ -171,9 +166,7 @@ theorem mem_maximal_ideal_completion_iff (r : R) :
     have h1 : Valued.v (x : v.adicCompletion K) = 1 := by
       rw [hval]
       first
-        | exact (IsDedekindDomain.HeightOneSpectrum.intValuation_eq_one_iff v).2 hr
         | exact (v.intValuation_eq_one_iff).2 hr
-        | exact (v.intValuation_eq_one_iff r).2 hr
     have hx0 : (x : v.adicCompletion K) ≠ 0 := by
       intro h0
       rw [h0, map_zero] at h1
@@ -183,16 +176,12 @@ theorem mem_maximal_ideal_completion_iff (r : R) :
       rw [map_inv₀, h1, inv_one]
     first
       | exact IsUnit.of_mul_eq_one (⟨_, hinv⟩ : v.adicCompletionIntegers K) (Subtype.ext (mul_inv_cancel₀ hx0))
-      | exact IsUnit.of_mul_eq_one (a := x) (⟨_, hinv⟩ : v.adicCompletionIntegers K) (Subtype.ext (mul_inv_cancel₀ hx0))
-      | exact ⟨⟨x, ⟨_, hinv⟩, Subtype.ext (mul_inv_cancel₀ hx0), Subtype.ext (inv_mul_cancel₀ hx0)⟩, rfl⟩
   · intro hr hu
     obtain ⟨y, hy⟩ := hu.exists_right_inv
     have h1 : Valued.v (x : v.adicCompletion K) < 1 := by
       rw [hval]
       first
         | exact (IsDedekindDomain.HeightOneSpectrum.intValuation_lt_one_iff_mem v r).2 hr
-        | exact (v.intValuation_lt_one_iff_mem r).2 hr
-        | exact (v.intValuation_lt_one_iff_mem).2 hr
     have h3 : Valued.v ((x : v.adicCompletion K) * (y : v.adicCompletion K)) = 1 := by
       rw [show (x : v.adicCompletion K) * (y : v.adicCompletion K) =
         ((x * y : v.adicCompletionIntegers K) : v.adicCompletion K) from rfl, hy]
@@ -299,22 +288,15 @@ variable {D : D7} {u : D.what₂.Word}
 
 theorem forms_involution_eq_host_conj (x : D.host.E) : sigD D x = D.host.conj x := by
   first
-    | rfl
     | (unfold sigD; rfl)
     | (unfold sigD Formalism.BasicNotions.CMData.sig; rfl)
     | (simp only [sigD, Formalism.BasicNotions.CMData.sig]; rfl)
     | (unfold sigD Formalism.BasicNotions.CMData.sig; exact Formalism.L2.Herm.star_conj x)
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp only [starRingEnd_apply]; exact Formalism.L2.Herm.star_conj x)
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp; rfl)
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp [Formalism.BasicNotions.Host.cmStar])
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp only [starRingEnd_apply]; unfold Formalism.BasicNotions.Host.cmStar; simp)
 
 theorem host_conj_involutive (x : D.host.E) : D.host.conj (D.host.conj x) = x := by
   first
-    | simp
     | (rw [← forms_involution_eq_host_conj, ← forms_involution_eq_host_conj]; simp)
     | (letI := D.host.cmStar; rw [← Formalism.L2.Herm.star_conj, ← Formalism.L2.Herm.star_conj, star_star])
-    | (letI := D.host.cmStar; rw [← Formalism.L2.Herm.star_conj, ← Formalism.L2.Herm.star_conj]; exact star_star x)
 
 
 

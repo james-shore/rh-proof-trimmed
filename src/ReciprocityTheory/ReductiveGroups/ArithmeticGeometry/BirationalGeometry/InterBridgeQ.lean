@@ -124,8 +124,6 @@ theorem exists_homog_of_cone {n : ℕ} {c : MvPolynomial (Fin n) ℂ} (hc : c �
     have hdeg : ∑ i ∈ d.support, d i = m := by
       first
       | exact hd.2
-      | (rw [← hd.2]; rfl)
-      | simpa [Finsupp.degree] using hd.2
     simp only [eval_monomial, Finsupp.prod, mul_pow, Finset.prod_mul_distrib,
       Finset.prod_pow_eq_pow_sum, hdeg]
     ring

@@ -306,7 +306,7 @@ theorem nb_UH (hS : Sᴴ = -S) : unipotentBlockMatrix k r Bm S ∈ UH (Hpk k r) 
     simp only [piI_eI, piI_wI, piI_esI, epsI_eI, epsI_wI, epsI_esI, one_mul, mul_one, mul_zero, zero_mul,
       nb_ee, nb_we, nb_se, nb_ew, nb_ww, nb_sw, nb_es, nb_ws, nb_ss, star_ite_one_zero, star_zero,
       Finset.sum_const_zero, add_zero, zero_add, Hpk_ee, Hpk_ew, Hpk_es, Hpk_we, Hpk_ww, Hpk_ws, Hpk_se,
-      Hpk_sw, Hpk_ss, ite_mul, mul_ite, Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, ↓reduceIte]
+      Hpk_sw, Hpk_ss, ite_mul, mul_ite, Finset.sum_ite_eq', Finset.mem_univ, ↓reduceIte]
   all_goals first
     | exact aux1 _ _
     | exact aux2 _ _
@@ -446,7 +446,7 @@ theorem nb_fwd {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) (n : B.Mat
     · exact h1
     · intro h
       have h2 := congrArg Fin.val h
-      simp only [Fin.val_last, Fin.val_mk] at h2
+      simp only [Fin.val_last] at h2
       have := a.isLt
       omega
   obtain ⟨B0, hB0⟩ : ∃ B0 : Matrix (Fin r) (Fin (k + 1)) ℂ, ∀ a j, B0 a j = n (eI k r a) (wI k r j) :=
@@ -484,7 +484,7 @@ theorem nb_fwd {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) (n : B.Mat
     rw [sum_split] at h
     simp only [piI_eI, piI_wI, piI_esI, epsI_eI, epsI_wI, epsI_esI, one_mul, hee, hwe, hse, star_ite_one_zero,
       star_zero, zero_mul, ite_mul, Finset.sum_const_zero, add_zero, Finset.sum_ite_eq',
-      Finset.sum_ite_eq, Finset.mem_univ, ↓reduceIte, Hpk_es] at h
+      Finset.mem_univ, ↓reduceIte, Hpk_es] at h
     exact h
   have hws : ∀ j b, n (wI k r j) (esI k r b) = -(hW k j) * star (B0 b j) := by
     intro j b
@@ -492,7 +492,7 @@ theorem nb_fwd {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) (n : B.Mat
     rw [sum_split] at h
     simp only [piI_eI, piI_wI, piI_esI, epsI_eI, epsI_wI, epsI_esI, one_mul, hss, hww, hsw, star_ite_one_zero,
       star_zero, zero_mul, mul_zero, mul_one, ite_mul, mul_ite, Finset.sum_const_zero, add_zero,
-      Finset.sum_ite_eq', Finset.sum_ite_eq, Finset.mem_univ, ↓reduceIte, Hpk_ws] at h
+      Finset.sum_ite_eq', Finset.mem_univ, ↓reduceIte, Hpk_ws] at h
     rw [hB0]
     linear_combination (hW k j) * h - n (wI k r j) (esI k r b) * hW_sq j
   have hcm : ∀ a b, C0 a b + star (C0 b a) + (B0 * Matrix.diagonal (hW k) * B0ᴴ) a b = 0 := by
@@ -500,8 +500,8 @@ theorem nb_fwd {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) (n : B.Mat
     have h := hE (esI k r a) (esI k r b)
     rw [sum_split] at h
     simp only [piI_eI, piI_wI, piI_esI, epsI_eI, epsI_wI, epsI_esI, one_mul, hss, hws, star_ite_one_zero,
-      mul_one, mul_zero, zero_mul, ite_mul, mul_ite, Finset.sum_const_zero, Finset.sum_ite_eq',
-      Finset.sum_ite_eq, Finset.mem_univ, ↓reduceIte, Hpk_ss] at h
+      mul_one, mul_zero, zero_mul, ite_mul, mul_ite, Finset.sum_ite_eq',
+      Finset.mem_univ, ↓reduceIte, Hpk_ss] at h
     rw [mid_sum] at h
     rw [hC0, hC0]
     linear_combination h

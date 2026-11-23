@@ -68,10 +68,7 @@ theorem extended_form_naturality (hp : Par F) (l : Glob1 F →ₗ[R] R) {T T' : 
       GlobalTheory.CatCoh.mp F φ (GlobalTheory.CompanionTheory.OneFormCoh.extForm F hp l T (v.1 T))
     have hv : GlobalTheory.CechDR.p1 F φ (v.1 T) = v.1 T' := by
       first
-        | exact v.2 φ
-        | exact v.2 T T' φ
         | exact (v.2 φ).symm
-        | exact (v.2 T T' φ).symm
     rw [hv, GlobalTheory.CompanionTheory.OneFormCoh.extForm_ev, GlobalTheory.CompanionTheory.OneFormCoh.extForm_ev, AlgHom.commutes]
   · intro s n hn
     rw [GlobalTheory.CechDR.oneFormsMapOfFunctorMorphism_smul, map_smul, map_smul, hn, smul_eq_mul, smul_eq_mul, map_mul]

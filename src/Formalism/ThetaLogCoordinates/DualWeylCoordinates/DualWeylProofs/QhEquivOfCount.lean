@@ -88,7 +88,7 @@ lemma qh_le_last [NeZero n] (a : Fin n) : a ≤ lastIdx n := by
 
 lemma qh_count [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (t : Fin n) :
     ((TCols mu).filter (fun c => t.val < colH mu c)).card = (mu t - mu (lastIdx n)).toNat := by
-  have h0 : mu t ≤ mu 0 := hmu (by first | exact Fin.zero_le _ | (rw [Fin.le_iff_val_le_val]; simp))
+  have h0 : mu t ≤ mu 0 := hmu (by first | exact Fin.zero_le _)
   have hset : (TCols mu).filter (fun c => t.val < colH mu c) =
       Finset.Ioc (mu (lastIdx n)) (mu t) := by
     ext c
@@ -111,8 +111,6 @@ lemma qh_mapCoord_alg (P : MvPolynomial (Fin n × Fin n) ℤ) :
   first
     | (rw [mapCoord, IsLocalization.Away.AwayMap.lift_eq]; try rfl; done)
     | (rw [mapCoord, IsLocalization.Away.lift_eq]; try rfl; done)
-    | (simp [mapCoord]; done)
-    | (unfold mapCoord; exact IsLocalization.lift_eq _ _)
 
 lemma qh_mapCoord_detU (z : ℤ) :
     mapCoord R ((detU n ^ z : (GLCoord ℤ n)ˣ) : GLCoord ℤ n) = ((qhDet R n ^ z : (GLCoord R n)ˣ) : GLCoord R n) := by
@@ -131,7 +129,6 @@ lemma qh_can_emb [NeZero n] (mu : Fin n → ℤ) (c : ↥(TCols mu)) (a : Fin (c
     intro x
     first
       | (simp only [canT, Finset.mem_map, Finset.mem_univ, true_and]; exact ⟨x, rfl⟩)
-      | simp [canT]
   have hmono : StrictMono (Fin.castLE (colH_le mu c)) := by
     intro x y hxy
     rw [Fin.lt_iff_val_lt_val] at hxy ⊢
@@ -149,7 +146,6 @@ lemma qh_mapCoord_minor [NeZero n] (mu : Fin n → ℤ) (c : ↥(TCols mu)) (S :
   first
     | (simp only [RingHom.mapMatrix_apply, Matrix.map_apply, Matrix.of_apply, genMat, MvPolynomial.map_X,
         qh_can_emb]; done)
-    | simp [genMat, qh_can_emb]
 
 lemma qh_mapCoord_brk [NeZero n] (mu : Fin n → ℤ) (I : TIdx mu) :
     mapCoord R (brk mu I) = ((qhDet R n ^ mu (lastIdx n) : (GLCoord R n)ˣ) : GLCoord R n) *
@@ -160,8 +156,6 @@ lemma qh_mapCoord_brk [NeZero n] (mu : Fin n → ℤ) (I : TIdx mu) :
        congr 1
        refine Finset.prod_congr rfl (fun c _ => ?_)
        exact qh_mapCoord_minor mu c _ _)
-    | (simp only [brk, TMat, map_mul, map_prod, qh_mapCoord_detU,
-        qh_mapCoord_minor])
 
 lemma qh_brk_mem [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (I : TIdx mu) :
     mapCoord R (brk mu I) ∈ inducedSections R mu := by
@@ -173,6 +167,5 @@ lemma qh_brk_mem [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (I : TIdx m
       (fun c _ => qh_N_mem (R := R) (colH mu c) (colH_le mu c) _))
   first
     | (rw [qh_weight_sum hmu] at h; exact h)
-    | (convert h using 2; exact (qh_weight_sum hmu).symm)
 
 end Formalism.InvariantFactorPaths.ColumnFamilies

@@ -206,7 +206,7 @@ theorem exists_finite_homogeneous_generators : ∀ (K : Type) [CommRing K] (D c 
     exact Submodule.span_mono (by
       intro p hp; simp only [Finset.coe_biUnion, Set.mem_iUnion, Finset.mem_coe]; exact ⟨s, hs, hp⟩) (hsT s hs)
   have h := (hgood _ hmem).2 q
-  simp only [v, Polynomial.coeff_C_mul_X_pow, if_pos rfl] at h
+  simp only [v, Polynomial.coeff_C_mul_X_pow] at h
   exact h
 
 end GlobalTheory.HSAmpGen

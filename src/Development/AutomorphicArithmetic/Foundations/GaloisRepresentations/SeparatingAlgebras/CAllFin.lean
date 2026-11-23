@@ -334,7 +334,7 @@ theorem frame (hD : DenomBdd) (hR : RhoBound) (hL : LatFacts) (hE : LevelEx) {E 
       have hq := hyc q
       have e1 : AddMonoidAlgebra.coeff ((t j h • y : W.Sp) : Formalism.L2.DIV.Pol ℂ (InfinitePlace E) a) q =
           t j h * AddMonoidAlgebra.coeff (y : Formalism.L2.DIV.Pol ℂ (InfinitePlace E) a) q := by
-        simp [MvPolynomial.coeff_smul]
+        simp
       rw [e1, map_mul, norm_mul]
       have hlpos : (0 : ℝ) < (l : ℝ) := by linarith
       calc _ ≤ ((l : ℝ)⁻¹) ^ (a * d * s) * ((l : ℝ) ^ d) ^ (a * s) :=

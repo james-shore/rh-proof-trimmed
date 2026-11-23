@@ -84,7 +84,7 @@ theorem sum_le_sum_of_threshold {α : Type*} [DecidableEq α] (e : α → ℤ) (
     Finset.sum_le_sum_of_subset_of_nonneg Finset.inter_subset_right (fun i hi hni => by
       have : i ∉ U := fun h => hni (Finset.mem_inter.2 ⟨h, hi⟩)
       linarith [hU' i hi this])
-  simp only [Finset.sum_sub_distrib, Finset.sum_const, smul_eq_mul] at h1 h2
+  simp only [Finset.sum_sub_distrib, Finset.sum_const] at h1 h2
   rw [hc] at h2
   linarith
 
@@ -165,11 +165,7 @@ theorem KO_det {m : Type} [Fintype m] [DecidableEq m] {κ : GL m k} (hκ : κ �
 
 theorem card_filter_lt (N n : ℕ) (hn : n ≤ N) : (Finset.univ.filter fun i : Fin N => (i : ℕ) < n).card = n := by
   first
-  | exact @_root_.GlobalTheory.CardValuationLt.card_val_lt
-  | exact _root_.GlobalTheory.CardValuationLt.card_val_lt
   | (apply _root_.GlobalTheory.CardValuationLt.card_val_lt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CardValuationLt.card_val_lt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CardValuationLt.card_val_lt <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CardValuationLt.card_val_lt ..)
 
 theorem indic_antitone (N n : ℕ) : Antitone (indic (Finset.univ.filter fun i : Fin N => (i : ℕ) < n)) := by

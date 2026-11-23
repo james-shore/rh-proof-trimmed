@@ -55,8 +55,8 @@ theorem comp_eq_iff_factors {S X B W : Scheme.{0}} (p : X ⟶ B) (x y : S ⟶ X)
   · intro hg
     refine ⟨pullback.lift g (g ≫ x) ?_, pullback.lift_fst _ _ _⟩
     apply pullback.hom_ext
-    · simp [pullback.diagonal_fst, pullback.lift_fst]
-    · simp [pullback.diagonal_snd, pullback.lift_snd, hg]
+    · simp [pullback.diagonal_fst]
+    · simp [pullback.diagonal_snd, hg]
   · rintro ⟨l, rfl⟩
     have hc := pullback.condition (f := pullback.lift x y h) (g := pullback.diagonal p)
     have h1 := congrArg (· ≫ pullback.fst p p) hc
